@@ -21,6 +21,7 @@
 #ifndef __FREECELL__GAME_H
 #define __FREECELL__GAME_H
 
+#include <glib.h>
 #include "card.h"
 
 typedef struct __FREECELLGAME
@@ -35,51 +36,48 @@ typedef struct __FREECELLGAME
   DECK **fields;
 
   int seed;
+  GSList *history;
 } FREECELLGAME;
 
 
 /* constructor/destructor.  */
-extern FREECELLGAME *freecellgame_restart (int freecells_number, int fields_number);
-extern FREECELLGAME *freecellgame_new (int freecells_number, int fields_number);
-extern FREECELLGAME *freecellgame_new_with_seed (int freecells_number, int fields_number, int seed);
-extern void freecellgame_delete (FREECELLGAME *game);
+FREECELLGAME *freecellgame_restart (int freecells_number, int fields_number);
+FREECELLGAME *freecellgame_new (int freecells_number, int fields_number);
+FREECELLGAME *freecellgame_new_with_seed (int freecells_number, int fields_number, int seed);
+void freecellgame_delete (FREECELLGAME *game);
 
 /* for getting game's current information */
-extern CARD *freecellgame_get_destination_top (FREECELLGAME *game, int index);
-extern DECK *freecellgame_get_field (FREECELLGAME *game, int index);
-extern CARD *freecellgame_get_freecell (FREECELLGAME *game, int index);
-
-extern int freecellgame_can_move_field_to_destination (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_field_to_freecell (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_field_to_field (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_freecell_to_destination (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_freecell_to_freecell (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_freecell_to_field (FREECELLGAME *game, int from, int to);
-
+CARD *freecellgame_get_destination_top (FREECELLGAME *game, int index);
+DECK *freecellgame_get_field (FREECELLGAME *game, int index);
+CARD *freecellgame_get_freecell (FREECELLGAME *game, int index);
 
 /* simple movement.  */
-extern int freecellgame_field_to_destination (FREECELLGAME *game, int from, int to);
-extern int freecellgame_field_to_freecell (FREECELLGAME *game, int from, int to);
-extern int freecellgame_field_to_field (FREECELLGAME *game, int from, int to);
-extern int freecellgame_freecell_to_freecell (FREECELLGAME *game, int from, int to);
-extern int freecellgame_freecell_to_field (FREECELLGAME *game, int from, int to);
-extern int freecellgame_freecell_to_destination (FREECELLGAME *game, int from, int to);
+int freecellgame_field_to_destination (FREECELLGAME *game, int from, int to);
+int freecellgame_field_to_freecell (FREECELLGAME *game, int from, int to);
+int freecellgame_field_to_field (FREECELLGAME *game, int from, int to);
+int freecellgame_freecell_to_freecell (FREECELLGAME *game, int from, int to);
+int freecellgame_freecell_to_field (FREECELLGAME *game, int from, int to);
+int freecellgame_freecell_to_destination (FREECELLGAME *game, int from, int to);
 
 /* complex movement. */
-extern int freecellgame_field_to_empty_freecell (FREECELLGAME *game, int field_index, int *empty_index);
-extern int freecellgame_field_to_field_sequence (FREECELLGAME *game, int from_field_index, int to_field_index);
-extern int freecellgame_to_destination_auto (FREECELLGAME *game, int *is_from_freecell, int *from_index, int *to_index);
+int freecellgame_field_to_empty_freecell (FREECELLGAME *game, int field_index, int *empty_index);
+int freecellgame_field_to_field_sequence (FREECELLGAME *game, int from_field_index, int to_field_index);
+int freecellgame_to_destination_auto (FREECELLGAME *game, int *is_from_freecell, int *from_index, int *to_index);
 
 /* predicates.  */
-extern int freecellgame_can_move_field_to_destination (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_field_to_freecell (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_field_to_field (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_freecell_to_destination (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_freecell_to_freecell (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_freecell_to_field (FREECELLGAME *game, int from, int to);
-extern int freecellgame_can_move_field_to_field_sequence (FREECELLGAME *game, int from, int to);
-extern int freecellgame_is_finished (FREECELLGAME *game);
-extern int freecellgame_is_there_no_way (FREECELLGAME *game);
+int freecellgame_can_move_field_to_destination (FREECELLGAME *game, int from, int to);
+int freecellgame_can_move_field_to_freecell (FREECELLGAME *game, int from, int to);
+int freecellgame_can_move_field_to_field (FREECELLGAME *game, int from, int to);
+int freecellgame_can_move_freecell_to_destination (FREECELLGAME *game, int from, int to);
+int freecellgame_can_move_freecell_to_freecell (FREECELLGAME *game, int from, int to);
+int freecellgame_can_move_freecell_to_field (FREECELLGAME *game, int from, int to);
+int freecellgame_can_move_field_to_field_sequence (FREECELLGAME *game, int from, int to);
+int freecellgame_is_finished (FREECELLGAME *game);
+int freecellgame_is_there_no_way (FREECELLGAME *game);
+
+
+/* undo */
+int freecellgame_undo (FREECELLGAME *game);
 
 
 #endif /* __FREECELL__GAME_H */

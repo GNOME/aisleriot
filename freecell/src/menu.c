@@ -1,4 +1,5 @@
-/* menu.c
+/* menu.c --
+   Copyright (C) 1998 Free Software Foundation, Inc.
 
    This program is free software; you can redistribute it and'or modify
    it under the terms of the GNU General Public License as published by
@@ -12,9 +13,10 @@
 
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software
-   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+   USA */
 
-/* Written by Ryu Changwoo <cwryu@eve.kaist.ac.kr>. */
+/* Written by Changwoo Ryu <cwryu@adam.kaist.ac.kr>. */
 
 #include <config.h>
 #include <libgnomeui/gnome-stock.h>
@@ -38,10 +40,14 @@ GnomeUIInfo game_menuinfo[] =
    callback_new_with_seed, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 
-  {GNOME_APP_UI_SEPARATOR, NULL, NULL,
-   NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  GNOMEUIINFO_SEPARATOR,
+
+  {GNOME_APP_UI_ITEM, N_("Undo"), NULL,
+   callback_undo, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_UNDO, 0, 0, NULL},
   
+  GNOMEUIINFO_SEPARATOR,
+
   {GNOME_APP_UI_ITEM, N_("Properties..."), NULL,
    callback_option, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP, 0, 0, NULL},
@@ -102,6 +108,10 @@ GnomeUIInfo main_toolbarinfo[] =
   {GNOME_APP_UI_ITEM, N_("Seed"), NULL,
    callback_new_with_seed, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+
+  {GNOME_APP_UI_ITEM, N_("Undo"), N_("Cancel a last move"),
+   callback_undo, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_UNDO, 0, 0, NULL},
 
   {GNOME_APP_UI_ITEM, N_("Score"), N_("Show the score"),
    callback_score, NULL, NULL,

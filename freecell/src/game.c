@@ -28,7 +28,31 @@
 #include "card.h"
 #include "game.h"
 
-int last_seed;
+typedef enum _Part Part;
+enum _Part
+{
+  PART_FREECELL, PART_DESTINATION, PART_FIELD
+};
+    
+
+typedef struct _HistoryElement HistoryElement;
+struct _HistoryElement
+{
+  Part from_part;
+  int from_index;
+  Part to_part;
+  int to_index;
+
+  /* When field->field, it has moved number of cards.  No meaning in the other
+     cases.  */
+  int more_info;
+};
+
+static GSList *history_push (GSList *history, Part from_part, int from_index, Part to_part, int to_index, int more_info);
+static GSList *history_pop (GSList *history, Part *from_part, int *from_index, Part *to_part, int *to_index, int *more_info);
+
+
+static int last_seed;
 
 /* Allocate memory and initialize game data.  */
 FREECELLGAME *
@@ -73,6 +97,7 @@ freecellgame_new_with_seed (int freecells_number, int fields_number, int seed)
     new_game->fields[i] = deck_new (DECK_OPTION_NO_CARD);
 
   new_game->seed = seed;
+  new_game->history = NULL;
   
   /* 2) Initialize game.  */
   tmp_deck = deck_new (DECK_OPTION_NO_JOKER);
@@ -97,6 +122,7 @@ void
 freecellgame_delete(FREECELLGAME *freecellgame)
 {
   int i;
+  GSList *list, *tmplist;
 
   for (i = 0; i < freecellgame->freecells_number; i++)
     if (freecellgame->freecells[i] != NULL)
@@ -111,6 +137,14 @@ freecellgame_delete(FREECELLGAME *freecellgame)
     deck_delete (freecellgame->fields[i]);
   g_free (freecellgame->fields);
 
+  list = freecellgame->history;
+  while (list)
+    {
+      g_free (list->data);
+      list = list->next;
+    }
+  g_slist_free (freecellgame->history);
+  
   g_free(freecellgame);
 }
 
@@ -358,6 +392,8 @@ freecellgame_field_to_destination (FREECELLGAME *game,
       card = deck_view_top(game->fields[from]);
       deck_add_top (game->destinations[to], card);
       deck_remove_top (game->fields[from]);
+      game->history = history_push (game->history, PART_FIELD, from,
+				    PART_DESTINATION, to, 1);
       return 1;
     }
   else
@@ -378,6 +414,8 @@ freecellgame_field_to_freecell (FREECELLGAME *game,
       card = deck_view_top(game->fields[from]);
       game->freecells[to] = card;
       deck_remove_top (game->fields[from]);
+      game->history = history_push (game->history, PART_FIELD, from,
+				    PART_FREECELL, to, 1);
       return 1;
     }
   else
@@ -398,6 +436,8 @@ freecellgame_field_to_field (FREECELLGAME *game,
       card = deck_view_top(game->fields[from]);
       deck_remove_top (game->fields[from]);
       deck_add_top (game->fields[to], card);
+      game->history = history_push (game->history, PART_FIELD, from,
+				    PART_FIELD, to, 1);
       return 1;
     }
   else
@@ -415,6 +455,8 @@ freecellgame_freecell_to_destination (FREECELLGAME *game,
     {
       deck_add_top (game->destinations[to], game->freecells[from]);
       game->freecells[from] = NULL;
+      game->history = history_push (game->history, PART_FREECELL, from,
+				    PART_DESTINATION, to, 1);
       return 1;
     }
   else
@@ -432,6 +474,8 @@ freecellgame_freecell_to_freecell (FREECELLGAME *game,
     {
       game->freecells[to] = game->freecells[from];
       game->freecells[from] = NULL;
+      game->history = history_push (game->history, PART_FREECELL, from,
+				    PART_FREECELL, to, 1);
       return 1;
     }
   else
@@ -449,6 +493,8 @@ freecellgame_freecell_to_field (FREECELLGAME *game,
     {
       deck_add_top (game->fields[to], game->freecells[from]);
       game->freecells[from] = NULL;
+      game->history = history_push (game->history, PART_FREECELL, from,
+				    PART_FIELD, to, 1);
       return 1;
     }
   else
@@ -564,6 +610,8 @@ freecellgame_field_to_field_sequence (FREECELLGAME *game,
       p = deck_number(game->fields[from]) - count;
       for (i = 0; i < count; i++)
 	deck_add_top (to_deck, deck_remove(from_deck, p));
+      game->history = history_push (game->history, PART_FIELD, from,
+				    PART_FIELD, to, count);
       return 1;
     }
   else
@@ -728,6 +776,112 @@ freecellgame_is_there_no_way (FREECELLGAME *game)
 
   return 1;
 }
+
+
+int
+freecellgame_undo (FREECELLGAME *game)
+{
+  Part from_part, to_part;
+  int from_index, to_index, more_info;
+  CARD *card;
+  int i, tmp;
+  
+  if (! game->history)
+    return -1;
+
+  game->history = history_pop (game->history, &from_part, &from_index,
+			       &to_part, &to_index, &more_info);
+
+  if ((from_part == PART_FIELD) && (to_part == PART_FIELD))
+    {
+      tmp = deck_number (game->fields[to_index]) - more_info;
+      for (i = (more_info - 1); i >= 0; i--)
+	deck_add_top (game->fields[from_index],
+		      deck_remove (game->fields[to_index], tmp));
+
+      return more_info;
+    }
+  else
+    {
+      switch (to_part)
+	{
+	case PART_FREECELL:
+	  card = game->freecells[to_index];
+	  game->freecells[to_index] = NULL;
+	  break;
+	case PART_DESTINATION:
+	  card = deck_view_top (game->destinations[to_index]);
+	  deck_remove_top (game->destinations[to_index]);
+	  break;
+	case PART_FIELD:
+	  card = deck_view_top (game->fields[to_index]);
+	  deck_remove_top (game->fields[to_index]);
+	  break;
+	}
+      
+      switch (from_part)
+	{
+	case PART_FREECELL:
+	  game->freecells[from_index] = card;
+	  break;
+	case PART_DESTINATION:
+	  deck_add_top (game->destinations[from_index], card);
+	  break;
+	case PART_FIELD:
+	  deck_add_top (game->fields[from_index], card);
+	  break;
+	}
+      return 1;
+    }
+}
+
+
+static GSList *
+history_push (GSList *history, Part from_part, int from_index,
+	      Part to_part, int to_index, int more_info)
+{
+  HistoryElement *he;
+
+  he = (HistoryElement *) g_malloc (sizeof (HistoryElement));
+  he->from_part = from_part;
+  he->from_index = from_index;
+  he->to_part = to_part;
+  he->to_index = to_index;
+  he->more_info = more_info;
+  
+  return g_slist_prepend (history, he);
+}
+
+
+static GSList *
+history_pop (GSList *history, Part *from_part, int *from_index,
+	     Part *to_part, int *to_index, int *more_info)
+{
+  HistoryElement *he;
+  GSList *list;
+
+  he = history->data;
+  if (from_part)
+    *from_part = he->from_part;
+  if (from_index)
+    *from_index = he->from_index;
+  if (to_part)
+    *to_part = he->to_part;
+  if (to_index)
+    *to_index = he->to_index;
+  if (more_info)
+    *more_info = he->more_info;
+
+  g_free (he);
+  list = history->next;
+  g_slist_free_1 (history);
+  return list;
+}
+
+
+
+
+
 
 #ifdef DEBUG
 #include <stdio.h>

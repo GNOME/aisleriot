@@ -1,4 +1,5 @@
-/* io-gtk.c
+/* io-gtk.c --
+   Copyright (C) 1998 Free Software Foundation, Inc.
 
    This program is free software; you can redistribute it and'or modify
    it under the terms of the GNU General Public License as published by
@@ -12,9 +13,10 @@
 
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software
-   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+   USA */
 
-/* Written by Changwoo Ryu <cwryu@eve.kaist.ac.kr>. */
+/* Written by Changwoo Ryu <cwryu@adam.kaist.ac.kr>. */
 
 #include <config.h>
 
@@ -386,45 +388,24 @@ callback_seed_input (GtkWidget *widget, gpointer data)
 static void
 callback_new_with_seed_really (void)
 {
-  GtkWidget *dialog, *entry, *label, *button, *vbox;
+  GtkWidget *dialog, *entry, *label;
 
-  dialog = gtk_dialog_new ();
-  GTK_WINDOW(dialog)->position = GTK_WIN_POS_MOUSE;
-  gtk_window_set_title (GTK_WINDOW(dialog), _("Seed"));
-  gtk_signal_connect (GTK_OBJECT (dialog), "delete_event",
-                      GTK_SIGNAL_FUNC (callback_cancel),
-                      (gpointer)dialog);
+  dialog = gnome_dialog_new (_("Seed"), _("OK"), _("Cancel"), NULL);
+
   label = gtk_label_new (_("Enter the seed."));
-  gtk_box_pack_start_defaults (GTK_BOX(GTK_DIALOG(dialog)->vbox), label);
+  gtk_box_pack_start_defaults (GTK_BOX(GNOME_DIALOG(dialog)->vbox), label);
   gtk_widget_show (label);
   
   entry = gtk_entry_new ();
-  gtk_box_pack_start_defaults (GTK_BOX(GTK_DIALOG(dialog)->vbox), entry);
+  gtk_box_pack_start_defaults (GTK_BOX(GNOME_DIALOG(dialog)->vbox), entry);
   gtk_widget_show (entry);
 
-  vbox = gtk_hbox_new (TRUE, 4);
-  gtk_container_add (GTK_CONTAINER(GTK_DIALOG(dialog)->action_area), vbox);
-  
-  button = gtk_button_new_with_label (_("OK"));
-  gtk_signal_connect (GTK_OBJECT (button), "clicked",
-                      GTK_SIGNAL_FUNC (callback_seed_input),
-                      (gpointer)entry);
-  gtk_signal_connect (GTK_OBJECT (button), "clicked",
-                      GTK_SIGNAL_FUNC (callback_cancel),
-                      (gpointer)dialog);
-  gtk_box_pack_start_defaults (GTK_BOX(vbox), button);
-  gtk_widget_show(button);
-  
-  button = gtk_button_new_with_label (_("Cancel"));
-  gtk_signal_connect (GTK_OBJECT (button), "clicked",
-                      GTK_SIGNAL_FUNC (gtk_widget_destroy),
-                      (gpointer)dialog);
-  gtk_box_pack_start_defaults (GTK_BOX(vbox), button);
-  gtk_widget_show(button);
-  
-  gtk_widget_show(vbox);
-  
-  gtk_grab_add (dialog);
+  gnome_dialog_button_connect (GNOME_DIALOG(dialog), 0,
+			       GTK_SIGNAL_FUNC (callback_seed_input), entry);
+  gnome_dialog_button_connect (GNOME_DIALOG(dialog), 0,
+			       GTK_SIGNAL_FUNC (callback_cancel), dialog);
+  gnome_dialog_button_connect (GNOME_DIALOG(dialog), 1,
+			       GTK_SIGNAL_FUNC (callback_cancel), dialog);
   gtk_widget_show (dialog);
 }
 
@@ -535,14 +516,12 @@ callback_score (GtkWidget *widget, GdkEvent *event)
 void
 callback_undo (GtkWidget *widget, GdkEvent *event)
 {
-  GtkWidget *mb;
-
-  mb = gnome_message_box_new (_("Sorry, this feature is not implemented (yet)."),
-			     GNOME_MESSAGE_BOX_INFO,
-			     _("OK"), NULL, NULL);
-  GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-  gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
-  gtk_widget_show (mb);
+  if (freecellgame && freecellgame_undo (freecellgame) > 0)
+    {
+      selected = SELECTED_NONE;
+      inverted = 0;
+      refresh_all ();
+    }
 }
 
 
@@ -622,19 +601,21 @@ callback_about (GtkWidget *widget, GdkEvent *event)
     N_("Changwoo Ryu."),
     NULL
   };
+
+#ifdef ENABLE_NLS
 #ifndef ELEMENTS  
 #define ELEMENTS(x) (sizeof(x) / sizeof(x[0]))
-#endif
-
+#endif /* ELEMENTS */
   {
     int i;
 
     for (i = 0; i < (ELEMENTS(authors) - 1); i++)
       authors[i] = _(authors[i]);
   }  
+#endif /* ENABLE_NLS */
   
   about = gnome_about_new (_("FreeCell"), VERSION,
-			   _("(C) 1997-1998 Changwoo Ryu"),
+			   "(C) 1998 Free Software Foundation, Inc.",
 			   authors,
 			   _("Reimplement the popular solitaire card game."),
 			   NULL);
@@ -877,23 +858,30 @@ callback_field_press (GtkWidget *widget, GdkEventButton *event,
 		  selected = SELECTED_NONE;
 		  refresh_field(selected_index);
 		}
-	      else if (freecellgame_field_to_field_sequence(freecellgame,
-							    selected_index,
-							    index) < 0)
-		{
-		  if (option_inform_invalid_move)
-		    {
-		      inform_invalid_move();
-		      selected = SELECTED_NONE;
-		      refresh_field(selected_index);
-		    }
-		}
 	      else
 		{
-		  selected = SELECTED_NONE;
-		  refresh_field(selected_index);
-		  refresh_field(index);
-		  to_destination_auto();
+		  if (option_move_one_by_one)
+		    tmp = freecellgame_field_to_field (freecellgame,
+						       selected_index,
+						       index);
+		  else
+		    tmp = freecellgame_field_to_field_sequence (freecellgame,
+							        selected_index,
+							        index);
+
+		  if ((tmp < 0) && option_inform_invalid_move)
+		    {
+			  inform_invalid_move();
+			  selected = SELECTED_NONE;
+			  refresh_field (selected_index);
+		    }
+		  else
+		    {
+		      selected = SELECTED_NONE;
+		      refresh_field (selected_index);
+		      refresh_field (index);
+		      to_destination_auto ();
+		    }
 		}
 	    }
 	  else
@@ -991,7 +979,7 @@ callback_field_release (GtkWidget *widget, GdkEventButton *event,
 static void
 update_cursors (void)
 {
-  int i;
+  int i, tmp;
 
   switch (selected)
     {
@@ -1029,9 +1017,12 @@ update_cursors (void)
 	}
       for (i = 0; i < 8; i++)
 	{
-	  if (freecellgame_can_move_field_to_field_sequence (freecellgame,
-							     selected_index,
-							     i))
+	  if (option_move_one_by_one)
+	    tmp = freecellgame_can_move_field_to_field (freecellgame, selected_index, i);
+	  else
+	    tmp = freecellgame_can_move_field_to_field_sequence (freecellgame, selected_index, i);
+
+	  if (tmp)
 	    gdk_window_set_cursor(field_drawing_areas[i]->window,
 				  up_cursor);
 	  else

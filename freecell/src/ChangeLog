@@ -1,3 +1,26 @@
+1998-04-25  Changwoo Ryu  <cwryu@adam.kaist.ac.kr>
+
+	* menu.c (game_menuinfo): Added undo feature.
+	* io-gtk.c (callback_undo): Undo feature.
+
+	* game.h (__FREECELLGAME): Added history.
+	* game.c (history_pop): New function.
+	(history_push): New function.
+	(freecellgame_undo): Undo implemented with the history.  But, even
+	automatical moves are saved to history.  It must be fixed.
+
+	* option.[ch]: Added an option, `move one by one' at each turns.
+	* option-dialog.c (option_dialog): Likewise.
+	* io-gtk.c (callback_field_press): Likewise.
+
+	* io-gtk.c (callback_new_with_seed_really): Use GnomeDialog.
+
+	* option-dialog.c: Use callback's parameter instead of static
+	variable.
+
+	* *.[ch]: Confusings about FSF's address..  Boston is the correct
+	address.
+
 1998-04-24  Changwoo Ryu  <cwryu@adam.kaist.ac.kr>
 
 	* option-dialog.c: Use GnomePropertyBox.
