@@ -175,7 +175,7 @@
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)
-       (flip-stock 0 1 2)))
+       (flip-stock 0 1 2 3)))
 
 (define (place-ace card slot)
   (remove-card slot)
