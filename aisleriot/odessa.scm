@@ -229,12 +229,14 @@
 
 ; Check to see if any cards can be moved up to the foundation
 (define (check-game-over-foundation slot-id check-kings)
-  (and (< slot-id 8)
-       (or (let* ((card (get-top-card slot-id))
-		  (suit (get-suit card))
-		  (value (- (get-value card) 1)))
-	     (is-ploppable card value suit))
-	   (check-game-over-foundation (+ 1 slot-id) check-kings))))
+  (cond ((> slot-id 7) #f) 
+	((empty-slot? slot-id) 
+	 (check-game-over-foundation (+ 1 slot-id) check-kings))
+	(#t (or (let* ((card (get-top-card slot-id))
+		       (suit (get-suit card))
+		       (value (- (get-value card) 1)))
+		  (is-ploppable card value suit))
+		(check-game-over-foundation (+ 1 slot-id) check-kings)))))
 
 ; We want to always check to see if moves can be moved among the
 ; tableau before checking if cards can be moved up to the foundation,
