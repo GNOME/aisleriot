@@ -22,7 +22,7 @@ if test -n "$ORBIT_CONFIG"; then
 		ORBIT_LIBS="-lgnorba `orbit-config --libs client server`"
 		ORBIT_CFLAGS="`orbit-config --cflags client server`"
 		AC_DEFINE(HAVE_ORBIT)
-	]
+	])
 fi
 AC_SUBST(ORBIT_CFLAGS)
 AC_SUBST(ORBIT_LIBS)
