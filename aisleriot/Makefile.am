@@ -1,7 +1,7 @@
 cardimagedir = $(datadir)/pixmaps/cards
 icondir = $(datadir)/pixmaps
 Gamesdir  = $(datadir)/applications
-typesdir  = $(datadir)/sol-games
+scmdir  = $(datadir)/sol-games
 gladedir = $(datadir)/sol-games/glade
 
 schemadir   = @GCONF_SCHEMA_FILE_DIR@
@@ -9,7 +9,7 @@ schema_in_files = aisleriot.schemas.in
 schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
-SUBDIRS=help
+SUBDIRS=help rules
 
 INCLUDES =  \
 	-I$(top_srcdir)/libgames-support           \
@@ -53,87 +53,16 @@ sol_LDADD = $(GNOME_GAMES_LIBS) \
 glade_DATA = \
 	statistics.glade
 
-types_DATA  = 		\
-	agnes.scm	\
-	auld_lang_syne.scm	\
-	bakers_dozen.scm	\
-	bakers_game.scm	\
-	beleaguered_castle.scm	\
-	bristol.scm	\
-	camelot.scm	\
-	canfield.scm	\
-	chessboard.scm	\
-	clock.scm	\
-	cover.scm	\
-	diamond_mine.scm	\
-	doublets.scm	\
-	eagle_wing.scm	\
-	easthaven.scm	\
-	eight_off.scm	\
-	elevator.scm	\
-	escalator.scm	\
-	first_law.scm	\
-	fortress.scm	\
-	fortunes.scm	\
-	fourteen.scm	\
-	freecell.scm	\
-	gay_gordons.scm	\
-	glenwood.scm	\
-	golf.scm	\
-	gypsy.scm	\
-	helsinki.scm	\
-	hopscotch.scm	\
-	isabel.scm	\
-	jamestown.scm	\
-	jumbo.scm	\
-	kansas.scm	\
-	king_albert.scm	\
-	klondike.scm	\
-	labyrinth.scm	\
-	lady_jane.scm	\
-	maze.scm	\
-	monte_carlo.scm	\
-	neighbor.scm	\
-	odessa.scm	\
-	osmosis.scm	\
-	peek.scm	\
-	pileon.scm	\
-	poker.scm	\
-	quatorze.scm	\
-	royal_east.scm	\
-	scorpion.scm	\
-	scuffle.scm	\
-	seahaven.scm	\
-	sir_tommy.scm	\
-	sol.scm		\
-	spider.scm	\
-	spiderette.scm	\
-	spider_two_suit.scm \
-	spider_one_suit.scm \
-	straight_up.scm	\
-	streets_and_alleys.scm	\
-	ten_across.scm  \
-	thieves.scm     \
-	thirteen.scm	\
-	thumb_and_pouch.scm	\
-	treize.scm	\
-	union_square.scm	\
-	valentine.scm	\
-	westhaven.scm	\
-	whitehead.scm	\
-	will_o_the_wisp.scm	\
-	yield.scm	\
-	yukon.scm	\
-	zebra.scm	\
-	plait.scm
+scm_DATA  = 		\
+	sol.scm
 
 cardimage_DATA = baize.png slot.svg
 
 icon_DATA = gnome-aisleriot.png gnome-cardgame.png
 
-EXTRA_DIST = AUTHORS $(types_DATA) $(cardimage_DATA) \
+EXTRA_DIST = AUTHORS $(scm_DATA) $(cardimage_DATA) \
 	$(icon_DATA) sol.desktop.in freecell.desktop.in \
-	template.scm translatable_game_names.h \
+	translatable_game_names.h \
 	$(schema_in_files) $(glade_DATA)
 
 
