@@ -62,10 +62,10 @@ libgames_support_la_SOURCES =		\
 	$(NULL)
 
 %.c %.h %-private.h: %.gob
-	if [ "x$(GOB2)" = "x" ] ; then
-		touch $@ ; 
-	else 
-		@GOB2@ $< ;
+	if [ "x$(GOB2)" = "x" ] ; then \
+		touch $@ ; \
+	else \
+		@GOB2@ $< ; \
 	fi
 
 install-data-local:
