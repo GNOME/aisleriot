@@ -42,6 +42,9 @@ typedef struct _GamesGridFrame {
   gint xpadding;
   gint ypadding;
 
+  gfloat xalign;
+  gfloat yalign;
+
   GtkAllocation old_allocation;
 } GamesGridFrame;
 
@@ -55,6 +58,8 @@ GtkWidget *games_grid_frame_new (gint width, gint height);
 void games_grid_frame_set (GamesGridFrame *frame, gint width, gint height);
 void games_grid_frame_set_padding (GamesGridFrame *frame, gint xpadding, 
 				   gint ypadding);
+void games_grid_frame_set_alignment (GamesGridFrame *frame, gfloat xalign, 
+				     gfloat yalign);
 
 G_END_DECLS
 

@@ -32,7 +32,9 @@ enum {
   PROP_X_PADDING,
   PROP_Y_PADDING,
   PROP_WIDTH,
-  PROP_HEIGHT
+  PROP_HEIGHT,
+  PROP_X_ALIGN,
+  PROP_Y_ALIGN
 };
 
 void
@@ -59,6 +61,27 @@ games_grid_frame_set_padding (GamesGridFrame *frame, gint newxpadding,
   gtk_widget_queue_resize (GTK_WIDGET (frame));
 }
 
+
+void
+games_grid_frame_set_alignment (GamesGridFrame *frame, gfloat xalign,
+                                gfloat yalign)
+{
+  if (xalign < 0.0)
+    xalign = 0.0;
+  else if (xalign > 1.0)
+    xalign = 1.0;
+
+  if (yalign < 0.0)
+    yalign = 0.0;
+  else if (yalign > 1.0)
+    yalign = 1.0;
+
+  frame->xalign = xalign;
+  frame->yalign = yalign;
+
+  gtk_widget_queue_resize (GTK_WIDGET (frame));
+}
+
 static void
 games_grid_frame_set_property (GObject *object, guint prop_id, 
 			       const GValue *value, GParamSpec *pspec)
@@ -72,6 +95,12 @@ games_grid_frame_set_property (GObject *object, guint prop_id,
       break;
     case PROP_Y_PADDING:
       games_grid_frame_set_padding (frame, -1, g_value_get_int (value));
+      break;
+    case PROP_X_ALIGN:
+      games_grid_frame_set_alignment (frame, g_value_get_float (value), frame->yalign);
+      break;
+    case PROP_Y_ALIGN:
+      games_grid_frame_set_alignment (frame, frame->xalign, g_value_get_float (value));
       break;
     case PROP_WIDTH:
       games_grid_frame_set (frame, g_value_get_int (value), -1);
@@ -98,6 +127,12 @@ games_grid_frame_get_property (GObject *object, guint prop_id,
       break;
     case PROP_Y_PADDING:
       g_value_set_int (value, frame->ypadding);
+      break;
+    case PROP_X_ALIGN:
+      g_value_set_float (value, frame->xalign);
+      break;
+    case PROP_Y_ALIGN:
+      g_value_set_float (value, frame->yalign);
       break;
     case PROP_WIDTH:
       g_value_set_int (value, frame->xmult);
@@ -142,10 +177,11 @@ games_grid_frame_size_allocate (GtkWidget * widget,
   size = MIN (xsize, ysize);
 
   child_allocation.width = size*frame->xmult + frame->xpadding;
-  child_allocation.x = (allocation->width - child_allocation.width)/2
-    + allocation->x;
   child_allocation.height = size*frame->ymult + frame->ypadding;
-  child_allocation.y = (allocation->height - child_allocation.height)/2
+
+  child_allocation.x = (allocation->width - child_allocation.width) * frame->xalign
+    + allocation->x;
+  child_allocation.y = (allocation->height - child_allocation.height) * frame->yalign
     + allocation->y;
 
   if (GTK_WIDGET_MAPPED (widget) &&
@@ -204,6 +240,24 @@ games_grid_frame_class_init (GamesGridFrameClass * class)
 						     1, G_MAXINT, 1,
 						     G_PARAM_READABLE |
 						     G_PARAM_WRITABLE));
+  g_object_class_install_property (object_class, PROP_X_ALIGN,
+                                   g_param_spec_float ("xalign",
+                                                       _("X align"),
+                                                       _("The horizontal alignment, from 0 (left) to 1 (right)"),
+                                                       0.0,
+                                                       1.0,
+                                                       0.5,
+                                                       G_PARAM_READABLE |
+						       G_PARAM_WRITABLE));
+  g_object_class_install_property (object_class, PROP_Y_ALIGN,
+                                   g_param_spec_float ("yalign",
+                                                       _("Y align"),
+                                                       _("The vertical alignment, from 0 (top) to 1 (bottom)"),
+                                                       0.0,
+                                                       1.0,
+                                                       0.5,
+                                                       G_PARAM_READWRITE |
+						       G_PARAM_WRITABLE));
 }
 
 static void
@@ -211,6 +265,9 @@ games_grid_frame_init (GamesGridFrame * frame)
 {
   frame->xmult = 1;
   frame->ymult = 1;
+
+  frame->xalign = 0.5;
+  frame->yalign = 0.5;
 }
 
 GType
