@@ -34,14 +34,15 @@ typedef struct {
   SCM game_over_lambda;
   SCM winning_game_lambda;
   SCM hint_lambda;
+  SCM timeout_lambda;
 } lambda_data;
 
 
 /* variables */
-#ifndef CSCMI_C
 extern lambda_data* game_data;
-#endif
 
+/* Init function */
+void cscm_init();
 
 /* Scheme to C functions... */
 hslot_type new_slot(SCM);
@@ -50,24 +51,5 @@ hcard_type new_card(SCM);
 
 /* C to Scheme functions... */
 SCM make_card(hcard_type);
-
-/* Scheme functions */
-SCM scm_get_card_width();
-SCM scm_get_card_height();
-SCM scm_get_horiz_offset();
-SCM scm_get_vert_offset();
-SCM scm_get_horiz_start();
-SCM scm_get_vert_start();
-SCM scm_set_surface_layout(SCM);
-SCM scm_reset_surface();
-SCM scm_add_slot(SCM);
-SCM scm_get_slot(SCM);  
-SCM scm_set_cards(SCM, SCM);
-SCM scm_add_to_score(SCM);
-SCM scm_get_score();  
-SCM scm_set_score(SCM);  
-
-SCM scm_set_lambda(SCM, SCM, SCM, SCM, SCM, SCM, SCM, SCM);
-SCM scm_random(SCM);
 
 #endif
