@@ -47,17 +47,19 @@ dnl (in programs/freecell) or it is builde out of the box.
 
 dnl GNOME's configure export USE_GNOME when freecell is builded in GNOME tree.
 
-if test "$USE_GNOME" = "yes"
+if test "$gnome_cv_use_gnome" = "yes"
 then
   AC_MSG_RESULT([OK, builded in GNOME tree.])
   in_gnome_tree="yes"
 
   dnl GNOME's configure kindly passes X11, GTK library paths.
-  X_LIBS=$xX_LIBS
+  X_CFLAGS=$gnome_cv_passdown_X_CFLAGS
+  AC_SUBST(X_CFLAGS)
+  X_LIBS=$gnome_cv_passdown_X_LIBS
   AC_SUBST(X_LIBS)
-  x_libs=$xx_libs
+  x_libs=$gnome_cv_passdown_x_libs
   AC_SUBST(x_libs)
-  GTK_LIBS=$xGTK_LIBS
+  GTK_LIBS=$gnome_cv_passdown_GTK_LIBS
   AC_SUBST(GTK_LIBS)
 else
   AC_MSG_RESULT([OK, builded out of GNOME tree.])
@@ -111,4 +113,3 @@ AC_CHECK_FUNCS(getcwd getwd putenv strerror)
 AC_OUTPUT([Makefile src/Makefile 
 	   image/Makefile intl/Makefile po/Makefile.in],
 [sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])
-

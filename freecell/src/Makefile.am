@@ -12,22 +12,23 @@ score.h score-dialog.h option.h option-dialog.h menu.h
 datadir = $(prefix)/@DATADIRNAME@
 localedir = $(datadir)/locale
 
-INCLUDES = -I. -I.. -I../../.. -I../lib -I$(top_srcdir) -I$(top_srcdir)/intl
+INCLUDES = -I. -I.. -I$(top_srcdir)/../.. -I../lib -I$(srcdir)/../lib \
+	-I$(top_srcdir) -I$(top_srcdir)/intl -I$(includedir) $(X_CFLAGS)
+
 DEFS = -DLOCALEDIR=\"$(localedir)\" -DPKGDATADIR=\"$(pkgdatadir)\" \
 	@DEFS@
 CFLAGS = -Wall @CFLAGS@
 
 if IN_GNOME_TREE
   freecell_LDADD = $(X_LIBS) \
-	$(srcdir)/../../../libgnomeui/libgnomeui.la \
-	$(srcdir)/../../../libgnome/libgnome.la \
+	../../../libgnomeui/libgnomeui.la \
+	../../../libgnome/libgnome.la \
 	-ldl -lSM -lICE \
 	$(GTK_LIBS) $(x_libs) $(INTLLIBS)
 else
   freecell_LDADD = $(X_LIBS) $(GNOME_LIBS) \
 	$(GTK_LIBS) $(x_libs) $(INTLLIBS)
 endif
-
 
 EXTRA_DIST = freecell.desktop
 
