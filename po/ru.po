@@ -5,13 +5,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1999-01-29 03:54-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 1999-01-31 22:26-0500\n"
+"PO-Revision-Date: 1999-01-30 0:30 EST\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Type: text/plain; charset=koi8-r\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: aisleriot/dialog.c:16
 msgid ""
@@ -39,7 +39,7 @@ msgstr "Новая игра"
 msgid "Select Game"
 msgstr "Выбор игры"
 
-#: aisleriot/dialog.c:73 freecell/src/io-gtk.c:399 freecell/src/menu.c:109
+#: aisleriot/dialog.c:73 freecell/src/io-gtk.c:399 freecell/src/menu.c:96
 #: mahjongg/mahjongg.c:418
 msgid "Seed"
 msgstr "Зерно"
@@ -99,6 +99,8 @@ msgid ""
 "The GNOME Generic Solitaire provides a rule-based solitaire engine that "
 "allows many different games to be played"
 msgstr ""
+"GNOME пасьянс снабжённый гибкой системой опреления новых правил игры, "
+"которая позволила создать целый набор игр"
 
 #: aisleriot/menu.c:91
 msgid "Game _options..."
@@ -124,19 +126,19 @@ msgstr "Вы_брать..."
 msgid "Select a new game variation"
 msgstr "Выбрать другой вариант игры"
 
-#: aisleriot/menu.c:166 freecell/src/menu.c:105 mahjongg/mahjongg.c:415
+#: aisleriot/menu.c:166 freecell/src/menu.c:90 mahjongg/mahjongg.c:415
 msgid "New"
 msgstr "Новая"
 
-#: aisleriot/menu.c:166
+#: aisleriot/menu.c:166 freecell/src/menu.c:90
 msgid "Deal a new game."
 msgstr "Начать новую игру."
 
-#: aisleriot/menu.c:169 mahjongg/mahjongg.c:421
+#: aisleriot/menu.c:169 freecell/src/menu.c:93 mahjongg/mahjongg.c:421
 msgid "Restart"
 msgstr "Начало"
 
-#: aisleriot/menu.c:169
+#: aisleriot/menu.c:169 freecell/src/menu.c:93
 msgid "Start this game over."
 msgstr "Начать эту игру с начала."
 
@@ -156,11 +158,11 @@ msgstr "Совет"
 msgid "Suggest a move."
 msgstr "Подсказать следующий ход."
 
-#: aisleriot/menu.c:180 freecell/src/menu.c:113 mahjongg/mahjongg.c:427
+#: aisleriot/menu.c:180 freecell/src/menu.c:102 mahjongg/mahjongg.c:427
 msgid "Undo"
 msgstr "Отмена"
 
-#: aisleriot/menu.c:180
+#: aisleriot/menu.c:180 freecell/src/menu.c:102
 msgid "Undo the last move."
 msgstr "Отменить последний ход."
 
@@ -172,7 +174,7 @@ msgstr "Повтор"
 msgid "Redo the last move."
 msgstr "Повторить отменённый ход."
 
-#: aisleriot/menu.c:188 freecell/src/menu.c:125
+#: aisleriot/menu.c:188 freecell/src/menu.c:115
 msgid "Exit"
 msgstr "Выход"
 
@@ -220,216 +222,166 @@ msgstr "Инициализация схемы..."
 
 #: freecell/gdk-card-image/gdk-card-image.c:102
 msgid "Card back:"
-msgstr ""
+msgstr "Обложка:"
 
 #: freecell/gdk-card-image/gdk-card-image.c:103
 msgid "Honor pictures:"
-msgstr ""
+msgstr "Изображения знати:"
 
 #: freecell/gdk-card-image/gdk-card-image.c:104
 msgid "Joker icon:"
-msgstr ""
+msgstr "Изображение Джокера:"
 
 #: freecell/gdk-card-image/gdk-card-image.c:105
 msgid "Rank font:"
-msgstr ""
+msgstr "Шрифт ранга:"
 
 #: freecell/gdk-card-image/gdk-card-image.c:106
 msgid "Suit font (small):"
-msgstr ""
+msgstr "Шрифт масти (маленький):"
 
 #: freecell/gdk-card-image/gdk-card-image.c:107
 msgid "Suit font (medium):"
-msgstr ""
+msgstr "Шрифт масти (средний):"
 
 #: freecell/gdk-card-image/gdk-card-image.c:108
 msgid "Suit font (large):"
-msgstr ""
+msgstr "Шрифт масти (большой):"
 
 #: freecell/gdk-card-image/gdk-card-image.c:861
 msgid "Cards"
 msgstr "Карты"
 
 #. make main window.
-#: freecell/src/io-gtk.c:119 freecell/src/io-gtk.c:635
+#: freecell/src/io-gtk.c:119 freecell/src/io-gtk.c:637
 msgid "Freecell"
 msgstr ""
 
-#: freecell/src/io-gtk.c:317 freecell/src/io-gtk.c:439
-#: freecell/src/io-gtk.c:504 freecell/src/io-gtk.c:596
+#: freecell/src/io-gtk.c:317 freecell/src/io-gtk.c:441
+#: freecell/src/io-gtk.c:506 freecell/src/io-gtk.c:598
 msgid "Exit this game?"
 msgstr "Закончить эту игру?"
 
-#: freecell/src/io-gtk.c:381 freecell/src/io-gtk.c:472
+#: freecell/src/io-gtk.c:381 freecell/src/io-gtk.c:474
 #, c-format
 msgid "Freecell #%d"
 msgstr ""
 
-#: freecell/src/io-gtk.c:399 scottfree/GnomeScott.c:1222
-msgid "OK"
-msgstr ""
-
-#: freecell/src/io-gtk.c:399
-msgid "Cancel"
-msgstr ""
-
-#: freecell/src/io-gtk.c:401
+#: freecell/src/io-gtk.c:403
 msgid "Enter the seed."
-msgstr ""
+msgstr "Введите зерно."
 
-#: freecell/src/io-gtk.c:558
+#: freecell/src/io-gtk.c:560
 msgid "Sorry, this feature is not implemented (yet)."
-msgstr ""
+msgstr "С сожалению эта функциональная часть (ещё) отсутствует."
 
-#: freecell/src/io-gtk.c:619
+#: freecell/src/io-gtk.c:621
 msgid "Changwoo Ryu."
 msgstr ""
 
-#: freecell/src/io-gtk.c:638
+#: freecell/src/io-gtk.c:640
 msgid "Reimplement the popular solitaire card game."
-msgstr ""
+msgstr "Ещё одно воплощение популярного пасьянса."
 
-#: freecell/src/io-gtk.c:648
+#: freecell/src/io-gtk.c:650
 msgid "You can't move in that way."
-msgstr ""
+msgstr "Так ходить нельзя."
 
-#: freecell/src/io-gtk.c:1135
+#: freecell/src/io-gtk.c:1137
 msgid "Sorry, there is no card to move."
-msgstr ""
+msgstr "К сожалению больше не осталось ходов."
 
-#: freecell/src/io-gtk.c:1149
+#: freecell/src/io-gtk.c:1151
 msgid ""
 "Congraturations.  You won.\n"
 "Do you want to play again?"
 msgstr ""
-
-#: freecell/src/menu.c:32
-msgid "_New Game"
-msgstr ""
+"Примите поздравления. Вы выиграли.\n"
+"Хотите начать новую игру?"
 
 #: freecell/src/menu.c:36
-msgid "_Restart Game"
-msgstr ""
-
-#: freecell/src/menu.c:40
 msgid "New Game with a seed..."
-msgstr ""
+msgstr "Новая игра с зерном..."
 
-#: freecell/src/menu.c:46
-msgid "_Undo"
-msgstr ""
+#: freecell/src/menu.c:37 freecell/src/menu.c:97
+msgid "Start a new game with a different random number generator seed."
+msgstr "Начать новую игру с другим зерном генератора случайных чисел."
 
-#: freecell/src/menu.c:52 gnometris/tetris.cpp:55
-msgid "_Properties..."
-msgstr ""
-
-#: freecell/src/menu.c:56
-msgid "_Score..."
-msgstr ""
-
-#: freecell/src/menu.c:64 gnometris/tetris.cpp:59
-msgid "E_xit"
-msgstr ""
-
-#: freecell/src/menu.c:79 scottfree/GnomeScott.c:1547
-msgid "_About..."
-msgstr ""
-
-#: freecell/src/menu.c:90 gnometris/tetris.cpp:74
-msgid "_Game"
-msgstr ""
-
-#: freecell/src/menu.c:94 gnometris/tetris.cpp:75
-msgid "_Help"
-msgstr ""
-
-#: freecell/src/menu.c:105
-msgid "Start a new game"
-msgstr ""
-
-#: freecell/src/menu.c:109
-msgid "Start a new game after choosing the seed"
-msgstr ""
-
-#: freecell/src/menu.c:113
-msgid "Cancel a last move"
-msgstr ""
-
-#: freecell/src/menu.c:117 freecell/src/score-dialog.c:54
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54
 msgid "Score"
-msgstr ""
+msgstr "Счёт"
 
-#: freecell/src/menu.c:117
-msgid "Show the score"
-msgstr ""
+#: freecell/src/menu.c:107
+msgid "Show the score."
+msgstr "Показать счёт"
 
-#: freecell/src/menu.c:121
+#: freecell/src/menu.c:110
 msgid "Props"
-msgstr ""
+msgstr "Свойст."
 
-#: freecell/src/menu.c:121
-msgid "Setup Freecell"
-msgstr ""
+#: freecell/src/menu.c:110
+msgid "Setup Freecell."
+msgstr "Настроить Freecell."
 
-#: freecell/src/menu.c:125
-msgid "Quit Freecell"
-msgstr ""
+#: freecell/src/menu.c:115
+msgid "Quit Freecell."
+msgstr "Выйти из Freecell."
 
 #: freecell/src/option-dialog.c:51
 msgid "Freecell Properties"
-msgstr ""
+msgstr "Настройка Freecell"
 
 #: freecell/src/option-dialog.c:56
 msgid "Inform invalid move"
-msgstr ""
+msgstr "Сообщять о неправильных ходах"
 
 #: freecell/src/option-dialog.c:66
 msgid "Move one by one"
-msgstr ""
+msgstr "Передвигать но одному"
 
 #: freecell/src/option-dialog.c:78
 msgid "Options"
-msgstr ""
+msgstr "Параметры"
 
 #: freecell/src/score-dialog.c:54
 msgid "Clear"
-msgstr ""
+msgstr "Очистить"
 
 #: freecell/src/score.c:56
 msgid "This session: %d%%"
-msgstr ""
+msgstr "Эта сессия: %d%%"
 
 #: freecell/src/score.c:57 freecell/src/score.c:67
 #, c-format
 msgid "won: %d, lost: %d"
-msgstr ""
+msgstr "выиграл: %d, проиграл: %d"
 
 #: freecell/src/score.c:66
 msgid "Total: %d%%"
-msgstr ""
+msgstr "Общее количество: %d%%"
 
 #: freecell/src/score.c:70
 msgid "Streaks"
-msgstr ""
+msgstr "Подряд"
 
 #: freecell/src/score.c:71
 #, c-format
 msgid "wins: %d, losses: %d"
-msgstr ""
+msgstr "выигрышей: %d, проигрышей: %d"
 
 #: freecell/src/score.c:75
 #, c-format
 msgid "current: %d wins"
-msgstr ""
+msgstr "сейчас: %d выигрышей"
 
 #: freecell/src/score.c:77
 #, c-format
 msgid "current: %d losses"
-msgstr ""
+msgstr "сейчас: %d проигрышей"
 
 #: gnobots/gnobots.c:118 gnobots2/gnobots.c:57 same-gnome/same-gnome.c:773
 msgid "Set game scenario"
-msgstr ""
+msgstr "Определить сценарий игры"
 
 #: gnobots/gnobots.c:119 gnobots2/gnobots.c:60 gnomine/gnomine.c:490
 #: gnomine/gnomine.c:495
@@ -445,15 +397,15 @@ msgstr ""
 #: gnobots2/graphics.c:88
 #, c-format
 msgid "Could not find '%s' pixmap file for Gnome Robots\n"
-msgstr ""
+msgstr "Не найдено файл изображения '%s' для Gnome Robots\n"
 
 #: gnobots/gnobots.c:691 gnobots2/menu.c:118
 msgid "Do you really want to start a new game?"
-msgstr ""
+msgstr "Вы действительно хотите начать новую игру?"
 
 #: gnobots/gnobots.c:717 gnothello/gnothello.c:242 same-gnome/same-gnome.c:641
 msgid "Do you really want to quit?"
-msgstr ""
+msgstr "Вы действительно хотите закончить?"
 
 #: gnobots/gnobots.c:764
 msgid "Gnobots"
@@ -461,88 +413,93 @@ msgstr ""
 
 #: gnobots/gnobots.c:767
 msgid "Gnome Robots game"
-msgstr ""
+msgstr "Игра роботы Gnome"
 
 #: gnobots/gnobots.c:781
 msgid "Gnome Robots - Safe Teleports"
-msgstr ""
+msgstr "Роботы Gnome\n"
+"Безопасные телепортации"
 
 #: gnobots/gnobots.c:784 gnobots/gnobots.c:1287
 msgid "Gnome Robots"
-msgstr ""
+msgstr "Роботы Gnome"
 
 #: gnobots/gnobots.c:1217
 msgid "No Locations Available For Safe Teleport"
-msgstr ""
+msgstr "Нет места для безопасной телепортации"
 
 #: gnobots/gnobots.c:1222
 msgid "No Locations Available For Teleport"
-msgstr ""
+msgstr "Нет места для телепортации"
 
 #: gnobots/gnobots.c:1239
 msgid ""
 "Congratulations, you have defeated the Robots!\n"
 "But can you do it again?"
 msgstr ""
+"Примите поздравления. Вы победили роботов.\n"
+"Но удастся ли вам это ещё раз?"
 
 #: gnobots/gnobots.c:1323 gnobots2/statusbar.c:54
 msgid "Safe Teleports:"
-msgstr ""
+msgstr "Безопасные телепортации:"
 
 #: gnobots/gnobots.c:1333 gnobots2/statusbar.c:64
 msgid "Level:"
-msgstr ""
+msgstr "Уровень:"
 
 #: gnobots/properties.c:194
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: gnobots/properties.c:204 same-gnome/same-gnome.c:575
 msgid "Select scenario:"
-msgstr ""
+msgstr "Выбор сценария:"
 
 #: gnobots/properties.c:223 same-gnome/same-gnome.c:581
 msgid "Make it the default scenario"
-msgstr ""
+msgstr "Сделать подразумеваемым сценарием"
 
 #: gnobots/properties.c:231
 msgid "Safe mode"
-msgstr ""
+msgstr "Безопасный режим"
 
 #: gnobots/properties.c:239
 msgid "Safe Teleports"
-msgstr ""
+msgstr "Безопасные телепортации"
 
 #: gnobots/properties.c:247 gnobots2/properties.c:742
 #: gnome-stones/preferences.c:682 mahjongg/mahjongg.c:434
 msgid "Sound"
-msgstr ""
+msgstr "Звук"
 
 #: gnobots2/game.c:333 gnobots2/game.c:348
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
 msgstr ""
+"Примите поздравления. Вы победили роботов!!\n"
+"Но удастся ли вам это ещё раз?"
 
 #: gnobots2/game.c:1160
 msgid "There are no teleport locations left!!"
-msgstr ""
+msgstr "Нет места для телепортации!!"
 
 #: gnobots2/game.c:1228
 msgid "There are no safe locations to teleport to!!"
-msgstr ""
+msgstr "Нет безопасных мест для  телепортации!!"
 
 #: gnobots2/gnobots.c:59
 msgid "Set game configuration"
-msgstr ""
+msgstr "Определить конфигурацию игры"
 
 #: gnobots2/gnobots.c:210
 msgid "Gnome Robots II"
-msgstr ""
+msgstr "Роботы Gnome II"
 
 #: gnobots2/menu.c:210
 msgid "Do you really want to quit the game?"
-msgstr ""
+msgstr "Вы действительно хотите закончить игру?"
 
 #: gnobots2/menu.c:248
 msgid "Gnobots II"
@@ -550,135 +507,135 @@ msgstr ""
 
 #: gnobots2/menu.c:251
 msgid "Gnome Robots Game"
-msgstr ""
+msgstr "Игра роботы Gnome"
 
 #: gnobots2/properties.c:310
 msgid "Initial Number of Type 1 Robots"
-msgstr ""
+msgstr "Начальное число роботов первого типа"
 
 #: gnobots2/properties.c:312
 msgid "Initial Number of Robots"
-msgstr ""
+msgstr "Начальное число роботов"
 
 #: gnobots2/properties.c:319
 msgid "Initial Number of Type 2 Robots"
-msgstr ""
+msgstr "Начальное число роботов второго типа"
 
 #: gnobots2/properties.c:326
 msgid "Increasing Number of Type 1 Robots per Level"
-msgstr ""
+msgstr "Увеличивающееся с уровнем число роботов первого типа"
 
 #: gnobots2/properties.c:328
 msgid "Increasing Number of Robots per Level"
-msgstr ""
+msgstr "Увеличивающееся с уровнем число роботов"
 
 #: gnobots2/properties.c:335
 msgid "Increasing Number of Type 2 Robots per Level"
-msgstr ""
+msgstr "Увеличивающееся с уровнем число роботов второго типа"
 
 #: gnobots2/properties.c:342
 msgid "Maximum Number of Type 1 Robots"
-msgstr ""
+msgstr "Максимальное число роботов первого типа"
 
 #: gnobots2/properties.c:344
 msgid "Maximum Number of Robots"
-msgstr ""
+msgstr "Максимальное число роботов"
 
 #: gnobots2/properties.c:347 gnobots2/properties.c:357
 msgid "Fill Screen"
-msgstr ""
+msgstr "На весь экран"
 
 #: gnobots2/properties.c:355
 msgid "Maximum Number of Type 2 Robots"
-msgstr ""
+msgstr "Максимальное число роботов второго типа"
 
 #: gnobots2/properties.c:366
 msgid "Type 1 Robot Score"
-msgstr ""
+msgstr "Счёт по роботам первого типа"
 
 #: gnobots2/properties.c:368
 msgid "Robot Score"
-msgstr ""
+msgstr "Счёт по роботам"
 
 #: gnobots2/properties.c:375
 msgid "Type 2 Robot Score"
-msgstr ""
+msgstr "Счёт по роботам второго типа"
 
 #: gnobots2/properties.c:382
 msgid "Type 1 Robot Score When Waiting"
-msgstr ""
+msgstr "Счёт по роботам первого типа (в ожидании)"
 
 #: gnobots2/properties.c:384
 msgid "Robot Score When Waiting"
-msgstr ""
+msgstr "Счёт по роботам (в ожидании)"
 
 #: gnobots2/properties.c:391
 msgid "Type 2 Robot Score When Waiting"
-msgstr ""
+msgstr "Счёт по роботам второго типа (в ожидании)"
 
 #: gnobots2/properties.c:398
 msgid "Type 1 Robot Score When Splatted"
-msgstr ""
+msgstr "Счёт по роботам первого типа (в движении)"
 
 #: gnobots2/properties.c:400
 msgid "Robot Score When Splatted"
-msgstr ""
+msgstr "Счёт по роботам (в движении)"
 
 #: gnobots2/properties.c:407
 msgid "Type 2 Robot Score When Splatted"
-msgstr ""
+msgstr "Счёт по роботам второго типа (в движении)"
 
 #: gnobots2/properties.c:413
 msgid "Initial Number of Safe Teleports"
-msgstr ""
+msgstr "Начальное число безопасных телепортаций"
 
 #: gnobots2/properties.c:418
 msgid "Number of Free Safe Teleports per Level"
-msgstr ""
+msgstr "Число безплатных безопасных телепортаций"
 
 #: gnobots2/properties.c:423
 msgid "Kills Required While Waiting to Get A Safe Teleport"
-msgstr ""
+msgstr "Количество жертв для получения безопасной телепортации"
 
 #: gnobots2/properties.c:428
 msgid "Score Required To Get A Safe Teleport"
-msgstr ""
+msgstr "Счёт необходимый для получения безопасной телепортации"
 
 #: gnobots2/properties.c:433
 msgid "Maximum Number of Safe Teleports"
-msgstr ""
+msgstr "Максимальное число безопасных телепортаций"
 
 #: gnobots2/properties.c:438
 msgid "Moveable Junkheaps"
-msgstr ""
+msgstr "Движущиеся горы мусора"
 
 #: gnobots2/properties.c:440
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: gnobots2/properties.c:442
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: gnobots2/properties.c:678
 msgid "GnobotsII Preferences"
-msgstr ""
+msgstr "Настройка GnobotsII"
 
 #: gnobots2/properties.c:689
 msgid "Game Type:"
-msgstr ""
+msgstr "Тип игры"
 
 #: gnobots2/properties.c:708
 msgid "Property"
-msgstr ""
+msgstr "Свойство"
 
 #: gnobots2/properties.c:710
 msgid "Value"
-msgstr ""
+msgstr "Значение"
 
 #: gnobots2/properties.c:735
 msgid "Safe Moves"
-msgstr ""
+msgstr "Безопасное передвижение"
 
 #: gnobots2/properties.c:749
 msgid "Splats"
@@ -686,44 +643,44 @@ msgstr ""
 
 #: gnobots2/properties.c:760
 msgid "You Cannot Change the Game Type When Playing"
-msgstr ""
+msgstr "Нельзя переключить тип текущей игры"
 
 #: gnobots2/properties.c:767
 msgid "Configuration"
-msgstr ""
+msgstr "Конфигурация"
 
 #: gnobots2/properties.c:780
 msgid "Graphics:"
-msgstr ""
+msgstr "Графика:"
 
 #: gnobots2/properties.c:806
 msgid "Graphics"
-msgstr ""
+msgstr "Графика"
 
 #: gnobots2/properties.c:980
 msgid "Standard Robots Keys"
-msgstr ""
+msgstr "Стандартные клавишы роботов"
 
 #: gnobots2/properties.c:986
 msgid "Predefined Set 1"
-msgstr ""
+msgstr "Набор 1"
 
 #: gnobots2/properties.c:992
 msgid "Predefined Set 2"
-msgstr ""
+msgstr "Набор 2"
 
 #: gnobots2/properties.c:1001
 msgid "Keyboard"
-msgstr ""
+msgstr "Клавиатура"
 
 #: gnobots2/statusbar.c:74
 msgid "Remaining:"
-msgstr ""
+msgstr "Осталось:"
 
 #. This cave is to big to be played with gnome-stones.
 #: gnome-stones/io.c:323
 msgid "The cave you are trying to load it to big for this game."
-msgstr ""
+msgstr "Вы пытаетесь загрузить слишком большую для этой игры пещеру."
 
 #. An object was requested in this cave, that was not
 #. declared in the game file's Object section.
@@ -731,6 +688,7 @@ msgstr ""
 msgid ""
 "The cave you are trying to load includes an object, that wasn't declared."
 msgstr ""
+"Вы пытаетесь загрузить пещеру с неопределённым обьектом."
 
 #. **************************************************************************
 #. Some constants.
@@ -742,23 +700,23 @@ msgstr ""
 
 #: gnome-stones/main.c:313
 msgid "Game title:"
-msgstr ""
+msgstr "Название игры:"
 
 #: gnome-stones/main.c:314
 msgid "Start cave:"
-msgstr ""
+msgstr "Первая пещера:"
 
 #: gnome-stones/main.c:445
 msgid "Pause"
-msgstr ""
+msgstr "Пауза"
 
 #: gnome-stones/main.c:799
 msgid "Congratulations, you win!"
-msgstr ""
+msgstr "Примите поздравления, вы выиграли!"
 
 #: gnome-stones/main.c:970 gyahtzee/cyahtzee.c:552 gyahtzee/gyahtzee.c:116
 msgid "Game over!"
-msgstr ""
+msgstr "Игра законченна"
 
 #. That's what a gnome application needs:
 #: gnome-stones/main.c:1129 gnome-stones/main.c:1320
@@ -767,89 +725,89 @@ msgstr ""
 
 #: gnome-stones/main.c:1132
 msgid "A game."
-msgstr ""
+msgstr "Игра."
 
 #: gnome-stones/main.c:1242
 msgid "Loading curtain image..."
-msgstr ""
+msgstr "Загрузка изображения зановеса..."
 
 #: gnome-stones/main.c:1246
 msgid "Scanning private object directory..."
-msgstr ""
+msgstr "Просмотр персонального каталога обьектов..."
 
 #: gnome-stones/main.c:1250
 msgid "Scanning public object directory..."
-msgstr ""
+msgstr "Просмотр публичного каталога обьектов..."
 
 #: gnome-stones/main.c:1255
 msgid "Filling game widget..."
-msgstr ""
+msgstr "Заполнение игровой виджеты.."
 
 #: gnome-stones/main.c:1260
 msgid "Scanning private game directory..."
-msgstr ""
+msgstr "Просмотр персонального каталога игры..."
 
 #: gnome-stones/main.c:1264
 msgid "Scanning public game directory..."
-msgstr ""
+msgstr "Просмотр публичного каталога игры..."
 
 #: gnome-stones/main.c:1268
 msgid "Restoring preferences..."
-msgstr ""
+msgstr "Восстановление состояния..."
 
 #: gnome-stones/player.c:72
 msgid "You gained an extra life!"
-msgstr ""
+msgstr "Вы получили дополнительную жизнь!"
 
 #: gnome-stones/player.c:116
 #, c-format
 msgid "Seconds left: %d"
-msgstr ""
+msgstr "Оставшиеся секунды: %d"
 
 #: gnome-stones/preferences.c:477
 msgid "Gnome-Stones Preferences"
-msgstr ""
+msgstr "Настройка Gnome-Stones"
 
 #: gnome-stones/preferences.c:490
 msgid "Game title"
-msgstr ""
+msgstr "Название игры"
 
 #: gnome-stones/preferences.c:492
 msgid "Caves"
-msgstr ""
+msgstr "Пещеры"
 
 #: gnome-stones/preferences.c:495
 msgid "Filename"
-msgstr ""
+msgstr "Имя файла"
 
 #: gnome-stones/preferences.c:546
 msgid "Game"
-msgstr ""
+msgstr "Игра"
 
 #: gnome-stones/preferences.c:571
 msgid "Device"
-msgstr ""
+msgstr "Устройство"
 
 #: gnome-stones/preferences.c:583
 msgid "Joystick device:"
-msgstr ""
+msgstr "Джойстик:"
 
 #. We definatly have a "disable" entry.
 #: gnome-stones/preferences.c:590
 msgid "disabled"
-msgstr ""
+msgstr "выключен"
 
 #: gnome-stones/preferences.c:629
 msgid "Digital joytick emulation"
-msgstr ""
+msgstr "Эмуляция джойстика"
 
 #: gnome-stones/preferences.c:641
 msgid "Switch level:"
-msgstr ""
+msgstr "Переключить уровень:"
 
 #: gnome-stones/preferences.c:667
 msgid "Joystick"
-msgstr ""
+msgstr "Джойстик"
 
 #: gnome-stones/preferences.c:676
 msgid "Not yet implemented!"
@@ -857,31 +815,31 @@ msgstr ""
 
 #: gnome-stones/status.c:76
 msgid "Diamonds:"
-msgstr ""
+msgstr "Алмазы:"
 
 #: gnome-stones/status.c:90
 msgid "Cave:"
-msgstr ""
+msgstr "Пещера:"
 
 #: gnome-stones/status.c:100
 msgid "Lives:"
-msgstr ""
+msgstr "Жизни:"
 
 #: gnomine/gnomine.c:41 gnomine/gnomine.c:292
 msgid "Tiny"
-msgstr ""
+msgstr "Маленький"
 
 #: gnomine/gnomine.c:42 gnomine/gnomine.c:300
 msgid "Medium"
-msgstr ""
+msgstr "Средний"
 
 #: gnomine/gnomine.c:43 gnomine/gnomine.c:308
 msgid "Biiiig"
-msgstr ""
+msgstr "Большой"
 
 #: gnomine/gnomine.c:44 gnomine/gnomine.c:316
 msgid "Custom"
-msgstr ""
+msgstr "Заказной"
 
 #: gnomine/gnomine.c:77 gnomine/gnomine.c:244 gnomine/gnomine.c:557
 msgid "Gnome Mines"
@@ -889,47 +847,47 @@ msgstr ""
 
 #: gnomine/gnomine.c:247
 msgid "Minesweeper clone"
-msgstr ""
+msgstr "Миноискатель"
 
 #: gnomine/gnomine.c:271
 msgid "Gnome Mines setup"
-msgstr ""
+msgstr "Настройка Gnome Mines"
 
 #: gnomine/gnomine.c:284
 msgid "Custom size"
-msgstr ""
+msgstr "Заказанный размер"
 
 #: gnomine/gnomine.c:286
 msgid "Field size"
-msgstr ""
+msgstr "Размер поля"
 
 #: gnomine/gnomine.c:328
 msgid "Mine Size:"
-msgstr ""
+msgstr "Размер мин:"
 
 #: gnomine/gnomine.c:355
 msgid "Horizontal:"
-msgstr ""
+msgstr "По горизонтали:"
 
 #: gnomine/gnomine.c:368
 msgid "Vertical:"
-msgstr ""
+msgstr "По вертикали:"
 
 #: gnomine/gnomine.c:381
 msgid "Number of mines:"
-msgstr ""
+msgstr "Число мин:"
 
 #: gnomine/gnomine.c:490
 msgid "Width of grid"
-msgstr ""
+msgstr "Ширина решётки"
 
 #: gnomine/gnomine.c:491
 msgid "Height of grid"
-msgstr ""
+msgstr "Высота решётки"
 
 #: gnomine/gnomine.c:492
 msgid "Size of mines"
-msgstr ""
+msgstr "Размер мин"
 
 #: gnomine/gnomine.c:492 gnotravex/gnotravex.c:192
 msgid "SIZE"
@@ -937,7 +895,7 @@ msgstr ""
 
 #: gnomine/gnomine.c:493
 msgid "Number of mines"
-msgstr ""
+msgstr "Число мин"
 
 #: gnomine/gnomine.c:493 gyahtzee/setup.c:74 gyahtzee/setup.c:75
 msgid "NUMBER"
@@ -945,7 +903,7 @@ msgstr ""
 
 #: gnomine/gnomine.c:634
 msgid "Flags:"
-msgstr ""
+msgstr "Флаги:"
 
 #: gnothello/gnothello.c:103
 msgid "IOR of remote Iagno server"
@@ -1660,6 +1618,10 @@ msgstr ""
 msgid "It's beyond my power to do that.\n"
 msgstr ""
 
+#: scottfree/GnomeScott.c:1222
+msgid "OK"
+msgstr ""
+
 #: scottfree/GnomeScott.c:1275
 msgid "You use word(s) I don't know! "
 msgstr ""
@@ -1744,16 +1706,36 @@ msgstr ""
 msgid "_Quit"
 msgstr ""
 
+#: scottfree/GnomeScott.c:1547
+msgid "_About..."
+msgstr ""
+
 #: gnometris/tetris.cpp:47
 msgid "Gnometris"
+msgstr ""
+
+#: gnometris/tetris.cpp:55
+msgid "_Properties..."
 msgstr ""
 
 #: gnometris/tetris.cpp:57
 msgid "_Scores"
 msgstr ""
 
+#: gnometris/tetris.cpp:59
+msgid "E_xit"
+msgstr ""
+
 #: gnometris/tetris.cpp:67
 msgid "_About Gnometris"
+msgstr ""
+
+#: gnometris/tetris.cpp:74
+msgid "_Game"
+msgstr ""
+
+#: gnometris/tetris.cpp:75
+msgid "_Help"
 msgstr ""
 
 #: gnometris/tetris.cpp:159
