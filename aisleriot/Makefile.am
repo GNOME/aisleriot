@@ -129,7 +129,7 @@ EXTRA_DIST = AUTHORS $(types_DATA) $(cardimage_DATA) \
 	template.scm translatable_game_names.h
 
 
-sysdir = $(datadir)/gnome/apps/Games
+sysdir = $(datadir)/applications/
 sys_in_files = sol.desktop.in
 sys_DATA = $(sys_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
