@@ -1,3 +1,53 @@
+gnome-games "Credibility Problem" 2.5.0
+========================================
+
+So here it is, the first release of the new unstable series of
+gnome-games and quite frankly I think I've done an excellent job of
+trying to make it unstable.
+
+There are of course numerous bug fixes, most of which are also in the
+2.4.1 release. Updated translations too (athough I changed
+several strings at the last minute). But these aren't the things
+you're after, what you want is new features.
+
+First some warnings. You will need the following software:
+gettext 0.12 and intltool 0.27.2. 
+GTK+ 2.3 (when it is released in a few days time) or GTK+ from CVS.
+
+So, what is new ?
+
+i18n: The .gmo files are no longer distributed in the tarball, you
+have to generate them yourself.
+
+installation: Building gnome-games outside the source tree should now
+work.
+
+gnotravex: Rather than using an "x" for a multiplication symbol we now
+use real multiplication symbols.
+
+aisleriot: The hint function for Odessa is now consistent with the
+strategy suggested in the documentation. The win condition for spider
+has been altered slightly: you now have to move the completed
+sequences to the foundation.
+
+mahjongg: Two thirds of this program has been rewritten. The game
+generation code is quicker and doesn't generate occasional
+warnings. The drawing code is now over five times faster and is
+rescalable. Resizing the window is now supported. The tile sets are
+now monolithic, you don't select foregrounds and backgrounds
+separately anymore. Only the default tileset has been converted to the
+new format so far. SVG is also supported and there is an example
+tileset, but it is half-complete and unusable.
+
+gnomine: There is now a hint function, an idea of Juhani Heino's. The
+hint will clear one, hopefully useful, square at the cost of a ten
+second penalty. The drawing code has been altered to make more use of
+the gtk theme. This should improve the contrast between open and
+closed cells even in pathological themes.
+
+Thats about it, aside from Steven Chaplin's usual round of memory
+leak fixes and one or two strange bugs which I *think* I've fixed.
+
 gnome-games "Carisbrook" 2.3.7
 ==============================
 
