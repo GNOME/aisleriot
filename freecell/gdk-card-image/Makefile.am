@@ -7,6 +7,8 @@ LINK = $(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o $@
 
 INCLUDES = -I$(includedir) -DCARDIMAGEDIR=\"$(cardimagedir)\" $(X_CFLAGS)
 
+EXTRA_DIST = $(cardimage_DATA)
+
 lib_LTLIBRARIES = libgdkcardimage.la
 libgdkcardimage_la_SOURCES = gdk-card-image.c
 libgdkcardimageincludedir = $(includedir)/gdkcardimage
