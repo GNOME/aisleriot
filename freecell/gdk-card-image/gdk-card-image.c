@@ -212,9 +212,14 @@ gdk_card_deck_get_type ()
 }
 
 static int
-is_image (struct dirent* dent)
+is_image (const struct dirent* dent)
 {
-  return g_is_image_filename(dent->d_name);
+	const char *type = gnome_mime_type (dent->d_name);
+	if (type == NULL ||
+	    strncmp (type, "image/", strlen ("image/")) != 0)
+		return FALSE;
+	else
+		return TRUE;
 }
 
 static gint
@@ -225,16 +230,27 @@ gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name)
   if (!dir->file) {
     gchar* dir_name = gnome_pixmap_file (dir->name);
     struct dirent** de;
-    dir->nfiles = scandir (dir_name, &de, is_image, alphasort);
+    int records;
+
+    if (dir_name == NULL)
+      return -1;
+
+    records = scandir (dir_name, &de, is_image, alphasort);
+
+    if (records == -1)
+      return -1;
+    
+    dir->nfiles = records;
     dir->file = g_new0 (GdkCardDeckFile, dir->nfiles);
     for (i = 0; i < dir->nfiles; i++) {
       dir->file[i].name = g_strconcat (dir_name, de[i]->d_name, NULL);
       dir->file[i].cols = dir->cols;
       dir->file[i].rows = dir->rows;
       dir->file[i].rotate = dir->rotate;
-      g_free (de[i]);
+      free (de[i]);
     }
-    g_free (de);
+    free (de);
+    g_free (dir_name);
   }
 
   for (i = 0; i < dir->nfiles; i++)
