@@ -260,7 +260,7 @@ void cscm_init ()
   gh_new_procedure0_0("reset-surface", scm_reset_surface);
   gh_new_procedure1_0("add-slot", scm_add_slot);
   gh_new_procedure1_0("get-slot", scm_get_slot);  
-  gh_new_procedure2_0("set-cards!", scm_set_cards);
+  gh_new_procedure2_0("set-cards-c!", scm_set_cards);
   gh_new_procedure("set-lambda", scm_set_lambda, 8, 0, 1);
   gh_new_procedure1_0("random", scm_random);
   gh_new_procedure0_0("get-score", scm_get_score);  

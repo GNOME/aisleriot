@@ -22,8 +22,23 @@
 #include "draw.h"
 #include "dialog.h"
 
+/* Defining SINGLE_ACTION prevents scheme from being called twice when
+ * a double click occurs but delays the single_click action by 250ms */
+#define SINGLE_ACTION 
+
+/* Button press statuses */
+enum {
+  STATUS_NONE,
+  STATUS_MAYBE_DRAG,
+  STATUS_NOT_DRAG,
+  STATUS_IS_DRAG,
+  STATUS_CLICK,
+  STATUS_SHOW
+};
+
 void end_of_game_test() {
 
+  gh_eval_str ("(end-move)");
   if(!game_over) { 
     game_over = !gh_scm2bool (gh_call0 (game_data->game_over_lambda));
     
@@ -37,13 +52,10 @@ void end_of_game_test() {
 
 void drop_moving_cards(gint x, gint y) {
   GList* temp;
-  SCM cardlist;
+  SCM cardlist = SCM_EOL;
   hslot_type hslot;
-  gint cardid, moved;
+  gint cardid, moved = 0;
   gint width, height;
-
-  moved = 0;
-  cardlist = SCM_EOL;
 
   slot_pressed(x + get_card_width() / 2 - press_data->xoffset, 
 	       y + get_card_height() / 2 - press_data->yoffset, 
@@ -62,6 +74,8 @@ void drop_moving_cards(gint x, gint y) {
   if (!moved) {
     hslot = press_data->hslot;
     add_cards_to_slot(press_data->cards, hslot);
+
+    gh_eval_str ("(discard-move)");
   }
 
   update_slot_length(hslot);
@@ -86,14 +100,39 @@ void drop_moving_cards(gint x, gint y) {
   if(moved) end_of_game_test();
 }
 
-/* event handlers */
+#ifdef SINGLE_ACTION
+guint timer_click = 0;
+
+gint single_click ()
+{
+  if (press_data->status == STATUS_CLICK) {
+    press_data->status = STATUS_NONE;
+    gh_call1 (game_data->button_clicked_lambda, 
+	      gh_long2scm (press_data->hslot->id));
+    refresh_screen();
+    end_of_game_test();
+  }
+  return FALSE;
+}
+#endif
 
 gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
   hslot_type hslot;
   gint cardid;
+  static guint dbl_click_time = 250;
+  static first_press;
 
-  slot_pressed(event->x,event->y, &hslot, &cardid);
+  /* ignore the gdk synthetic click events */
+  if (event->type != GDK_BUTTON_PRESS)
+    return TRUE;
+
+#ifndef SINGLE_ACTION
+  if (gdk_time_get() > first_press + dbl_click_time)
+    press_data->status = STATUS_NONE;
+#endif
+
+  slot_pressed(event->x, event->y, &hslot, &cardid);
 
   if (!hslot)
     return TRUE;
@@ -103,13 +142,25 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   press_data->hslot = hslot;
   press_data->cardid = cardid;
 
-  if (event->type == GDK_2BUTTON_PRESS) {
-    gh_call1 (game_data->button_double_clicked_lambda, 
-	      gh_long2scm (hslot->id));
-    return TRUE;
-  }
-  else if (event->button == 1) {
-    press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
+  if (event->button == 1) {
+    if (press_data->status == STATUS_CLICK) {
+      /* double click */
+      press_data->status = STATUS_NONE;
+#ifdef SINGLE_ACTION
+      gtk_timeout_remove (timer_click);
+#endif
+      gh_call1 (game_data->button_double_clicked_lambda, 
+		gh_long2scm (hslot->id));
+      return TRUE;
+    }
+    else {
+      first_press = gdk_time_get();
+      press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
+#ifdef SINGLE_ACTION
+      timer_click = 
+	gtk_timeout_add (dbl_click_time, (GtkFunction) (single_click), NULL);
+#endif
+    }
   }
   else if (event->button == 3 && cardid > 0) {
     hcard_type card = g_list_nth(hslot->cards, cardid - 1)->data;
@@ -130,6 +181,39 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       gdk_window_move(press_data->moving_cards, x, y); 
       gdk_window_show(press_data->moving_cards);
     }
+  }
+  return TRUE;
+}
+
+gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
+{
+  switch (press_data->status) {
+  case STATUS_IS_DRAG:
+    press_data->status = STATUS_NONE;
+    drop_moving_cards(event->x, event->y);
+    break;
+    
+  case STATUS_SHOW:
+    press_data->status = STATUS_NONE;
+    gdk_window_hide(press_data->moving_cards);
+    press_data->moving_pixmap = NULL;
+    press_data->moving_mask = NULL;
+    break;
+    
+  case STATUS_MAYBE_DRAG:
+  case STATUS_NOT_DRAG:
+    press_data->status = STATUS_CLICK;
+#ifndef SINGLE_ACTION
+    gh_call1 (game_data->button_clicked_lambda, 
+	      gh_long2scm (press_data->hslot->id));
+    refresh_screen();
+    end_of_game_test();
+#endif
+    break;
+    
+  case STATUS_CLICK:
+  case STATUS_NONE:
+    break;
   }
   return TRUE;
 }
@@ -156,41 +240,14 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 			       gh_long2scm (press_data->hslot->id), 
 			       cardlist))) {
       press_data->status = STATUS_IS_DRAG;
-      generate_press_data();
+#ifdef SINGLE_ACTION
+      gtk_timeout_remove (timer_click);
+#endif
+      generate_press_data ();
       take_snapshot();
     }
     else
       press_data->status = STATUS_NOT_DRAG;      
-  }
-  return TRUE;
-}
-
-gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
-{
-  switch (press_data->status) {
-  case STATUS_MAYBE_DRAG:
-  case STATUS_NOT_DRAG:
-    press_data->status = STATUS_NONE;
-    gh_call1 (game_data->button_clicked_lambda, 
-	      gh_long2scm (press_data->hslot->id));
-    refresh_screen();
-    end_of_game_test();
-    break;
-    
-  case STATUS_IS_DRAG:
-    press_data->status = STATUS_NONE;
-    drop_moving_cards(event->x, event->y);
-    break;
-    
-  case STATUS_SHOW:
-    press_data->status = STATUS_NONE;
-    gdk_window_hide(press_data->moving_cards);
-    press_data->moving_pixmap = NULL;
-    press_data->moving_mask = NULL;
-    break;
-    
-  case STATUS_NONE:
-    break;
   }
   return TRUE;
 }

@@ -132,7 +132,7 @@
 	   (<= (length card-list) (+ (empty-freecell-number) 1)))
       (if (empty-slot? field-id)
 	  (add-cards! field-id card-list)
-	  (let ((bottomdest (car (get-cards (get-slot field-id))))
+	  (let ((bottomdest (car (get-cards field-id)))
 		(topsrc (last card-list)))
 	    (if (join? topsrc bottomdest)
 		(add-cards! field-id card-list)

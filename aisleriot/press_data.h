@@ -33,12 +33,6 @@ typedef struct {
   GdkWindow *moving_cards;
 } press_data_type;
 
-#define STATUS_NONE 0
-#define STATUS_IS_DRAG 1
-#define STATUS_MAYBE_DRAG 2
-#define STATUS_NOT_DRAG 3
-#define STATUS_SHOW 4
-
-void generate_press_data();
+void generate_press_data ();
 
 #endif

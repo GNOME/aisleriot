@@ -22,15 +22,20 @@
 #include "draw.h"
 #include "slot.h"
 #include "sol.h"
+#include "cscmi.h"
 
 press_data_type* press_data; 
 
-void generate_press_data() {
+void generate_press_data (SCM old_cards) {
   GList* tempptr;
+  SCM new_cards = old_cards = SCM_EOL; 
   hslot_type hslot = press_data->hslot;
   gint delta, height, width, x, y;
   GdkGC *gc1, *gc2;
   GdkColor masked = {0, 0, 0, 0}, unmasked = {1, 65535, 65535, 65535};
+
+  for (tempptr = hslot->cards; tempptr; tempptr = tempptr->next)
+    old_cards = gh_cons(make_card(tempptr->data), old_cards);
 
   delta = hslot->exposed - (hslot->length - press_data->cardid) - 1;
   press_data->xoffset -= x = hslot->x + delta * hslot->dx;
@@ -43,10 +48,6 @@ void generate_press_data() {
   gdk_window_resize(press_data->moving_cards, width, height);
   gdk_window_move(press_data->moving_cards, x, y);
 
-  /* 
-   * IMHO gdk could give us better access to the XShape extension
-   * All the bitmap stuff would be unneccessary with the ShapeUnion operation
-   */
   press_data->moving_pixmap = 
     gdk_pixmap_new(press_data->moving_cards, width, height,
   		   gdk_window_get_visual (press_data->moving_cards)->depth);
@@ -96,6 +97,13 @@ void generate_press_data() {
     press_data->cards->prev->next = NULL;
   else 
     hslot->cards = NULL;
+
+  for (tempptr = hslot->cards; tempptr; tempptr = tempptr->next)
+    new_cards = gh_cons(make_card(tempptr->data), new_cards);
+  
+  gh_call3 (gh_eval_str ("record-move"), gh_long2scm (hslot->id), 
+	    new_cards, old_cards);
+
   press_data->cards->prev = NULL;
   update_slot_length(press_data->hslot);
 }

@@ -188,6 +188,7 @@ void new_game (gchar* file, guint *seedp )
     timer_start();
 
   size = gh_call0(game_data->start_game_lambda);
+  gh_eval_str ("(start-game)");
   min_w = gh_scm2int (gh_car (size))*get_horiz_offset() + 2*get_horiz_start();
   min_h = gh_scm2int (gh_cadr (size))*get_vert_offset() + 2*get_vert_start();
 

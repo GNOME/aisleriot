@@ -40,10 +40,14 @@ void new_rules (GtkWidget* w, gchar* file)
 
 void undo_callback ()
 {
+  gh_eval_str ("(undo)");
+  refresh_screen();
 }
 
 void redo_callback ()
 {
+  gh_eval_str ("(redo)");
+  refresh_screen();
 }
 
 void help_about_callback ()
