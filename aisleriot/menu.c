@@ -317,7 +317,7 @@ GnomeUIInfo toolbar[] =
 
   {GNOME_APP_UI_ITEM, N_("Exit"), N_("Quit Aisleriot"),
    file_quit_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_EXIT, 0, 0, NULL},
 
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
    NULL, NULL, NULL,
