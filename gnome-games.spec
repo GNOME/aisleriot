@@ -74,6 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/share/pixmaps/*
 %{prefix}/share/apps/*
 %{prefix}/share/sol-games
+%{prefix}/lib/lib*.so.*
 
 %files devel
 %defattr(-, root, root)
