@@ -97,24 +97,18 @@ static void games_card_images_prerender (GamesCardImages * images)
   images->prerendered = TRUE;
 }
 
-static void games_card_images_reset (GamesCardImages * images)
+static void games_card_images_purge (GamesCardImages * images)
 {
   int i;
+
+  if (images->prerendered)
+    g_object_unref (images->source);
 
   for (i=0; i<GAMES_CARDS_TOTAL; i++) {
     if (images->rendered[i])
       g_object_unref (images->pixbufs[i]);
     images->rendered[i] = FALSE;
   }
-  
-}
-
-static void games_card_images_purge (GamesCardImages * images)
-{
-  if (images->prerendered)
-    g_object_unref (images->source);
-  
-  games_card_images_reset (images);  
   
   images->prerendered = FALSE;
 }
@@ -161,7 +155,7 @@ void games_card_images_set_size (GamesCardImages * images,
   images->width = width;
   images->height = height;
 
-  games_card_images_reset (images);
+  games_card_images_purge (images);
 }
 
 void games_card_images_set_theme (GamesCardImages * images, gchar * name)
