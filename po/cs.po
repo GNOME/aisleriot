@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-24 20:19+0100\n"
-"PO-Revision-Date: 2004-12-25 15:48+0100\n"
+"POT-Creation-Date: 2005-01-02 12:08+0100\n"
+"PO-Revision-Date: 2005-01-02 14:59+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -111,7 +111,7 @@ msgstr "Vyhráli jste!!!"
 msgid "There are no more moves."
 msgstr "Nejsou možné žádné další tahy."
 
-#: aisleriot/dialog.c:63
+#: aisleriot/dialog.c:64 same-gnome/ui.c:134
 msgid "New Game"
 msgstr "Nová hra"
 
@@ -194,7 +194,7 @@ msgstr "Karetní hry:"
 #: gnobots2/menu.c:224 gnome-stones/main.c:1095 gnometris/tetris.cpp:1431
 #: gnomine/gnomine.c:541 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1573
 #: gtali/gyahtzee.c:455 iagno/gnothello.c:369 mahjongg/mahjongg.c:1006
-#: same-gnome/same-gnome.c:222
+#: same-gnome/ui.c:114
 msgid "translator-credits"
 msgstr ""
 "Jirka Lébl\n"
@@ -215,11 +215,11 @@ msgstr ""
 
 #: aisleriot/menu.c:212 gnect/src/prefs.c:391 gnibbles/preferences.c:213
 #: gnome-stones/preferences.c:744 gnometris/tetris.cpp:775
-#: gnotski/gnotski.c:652 same-gnome/same-gnome.c:267
+#: gnotski/gnotski.c:652 same-gnome/ui.c:248
 msgid "_Game"
 msgstr "_Hra"
 
-#: aisleriot/menu.c:213 same-gnome/same-gnome.c:268
+#: aisleriot/menu.c:213 same-gnome/ui.c:249
 msgid "_View"
 msgstr "_Zobrazit"
 
@@ -227,11 +227,11 @@ msgstr "_Zobrazit"
 msgid "_Control"
 msgstr "_Ovládání"
 
-#: aisleriot/menu.c:215 gnotski/gnotski.c:653 same-gnome/same-gnome.c:270
+#: aisleriot/menu.c:215 gnotski/gnotski.c:653 same-gnome/ui.c:251
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: aisleriot/menu.c:217 same-gnome/same-gnome.c:272
+#: aisleriot/menu.c:217 same-gnome/ui.c:253
 msgid "_New Game"
 msgstr "_Nová hra"
 
@@ -251,11 +251,11 @@ msgstr "_Statistiky..."
 msgid "_Cards..."
 msgstr "_Karty..."
 
-#: aisleriot/menu.c:225 same-gnome/same-gnome.c:274
+#: aisleriot/menu.c:225 same-gnome/ui.c:255
 msgid "_Undo Move"
 msgstr "Tah _zpět"
 
-#: aisleriot/menu.c:226 same-gnome/same-gnome.c:275
+#: aisleriot/menu.c:226 same-gnome/ui.c:256
 msgid "_Redo Move"
 msgstr "Tah zn_ovu"
 
@@ -263,7 +263,7 @@ msgstr "Tah zn_ovu"
 msgid "_Hint"
 msgstr "_Rada"
 
-#: aisleriot/menu.c:230 same-gnome/same-gnome.c:281
+#: aisleriot/menu.c:230 same-gnome/ui.c:261
 msgid "_Contents"
 msgstr "_Obsah"
 
@@ -837,7 +837,7 @@ msgid "Variation on game rules"
 msgstr "Variace pravidel hry"
 
 #: aisleriot/sol.c:464 gnobots2/gnobots.c:61 gnobots2/gnobots.c:63
-#: same-gnome/same-gnome.c:409 same-gnome/same-gnome.c:411
+#: same-gnome/same-gnome.c:117 same-gnome/same-gnome.c:119
 msgid "NAME"
 msgstr "JMÉNO"
 
@@ -3470,7 +3470,7 @@ msgstr "Pauza"
 msgid "Congratulations, you win!"
 msgstr "Gratuluji, vyhráli jste!"
 
-#: gnome-stones/main.c:871 gtali/gyahtzee.c:136
+#: gnome-stones/main.c:871 gtali/gyahtzee.c:136 same-gnome/ui.c:124
 msgid "Game over!"
 msgstr "Konec hry!"
 
@@ -3940,7 +3940,7 @@ msgid "Number of mines"
 msgstr "Počet min"
 
 #: gnomine/gnomine.c:919 gtali/setup.c:85 gtali/setup.c:86
-#: same-gnome/same-gnome.c:413
+#: same-gnome/same-gnome.c:121
 msgid "NUMBER"
 msgstr "ČÍSLO"
 
@@ -4683,7 +4683,7 @@ msgstr "%.2d"
 msgid "Play a game of Reversi"
 msgstr "Hrát hru Reversi"
 
-#: iagno/iagno.soundlist.in.h:1 same-gnome/same-gnome.c:252
+#: iagno/iagno.soundlist.in.h:1
 msgid "Game over"
 msgstr "Konec hry"
 
@@ -5151,54 +5151,21 @@ msgstr "Čtyři mosty"
 msgid "The Ziggurat"
 msgstr "Ziggurat"
 
-#: same-gnome/same-gnome.c:153
-#, c-format
-msgid "Score: %d"
-msgstr "Skóre: %d"
+#. FIXME: This is long enough to resize the window upwards when
+#. * the game finishes.
+#: same-gnome/game.c:350
+msgid "1000 point bonus for clearing the board!"
+msgstr "Bonus 1000 bodů za vyčištění desky!"
 
-#: same-gnome/same-gnome.c:219
-msgid ""
-"I want to play that game! You know, they all go whirly-round and you click "
-"on them and they vanish!"
-msgstr "Chci hrát tu hru! Víte, všechny se točí a vy na ně klikáte a ony mizí!"
-
-#: same-gnome/same-gnome.c:269
-msgid "_Size"
-msgstr "_Velikost"
-
-#: same-gnome/same-gnome.c:273
-msgid "_Scores..."
-msgstr "_Skóre..."
-
-#: same-gnome/same-gnome.c:278
-msgid "_Fullscreen"
-msgstr "_Celá obrazovka"
-
-#: same-gnome/same-gnome.c:279
-msgid "_Theme..."
-msgstr "_Téma..."
-
-#: same-gnome/same-gnome.c:288
-msgid "_Small"
-msgstr "_Malá"
-
-#: same-gnome/same-gnome.c:289
-msgid "_Medium"
-msgstr "_Střední"
-
-#: same-gnome/same-gnome.c:290
-msgid "_Large"
-msgstr "_Velká"
-
-#: same-gnome/same-gnome.c:408
+#: same-gnome/same-gnome.c:116
 msgid "Set the theme"
 msgstr "Nastavit hru"
 
-#: same-gnome/same-gnome.c:411
+#: same-gnome/same-gnome.c:119
 msgid "For backwards compatibility"
 msgstr "Pro zpětnou komptibilitu"
 
-#: same-gnome/same-gnome.c:413
+#: same-gnome/same-gnome.c:121
 msgid "Game size (1=small, 3=large)"
 msgstr "Velikost hry (1=malá, 3=velká)"
 
@@ -5229,7 +5196,8 @@ msgstr "Výška vlastní desky, 101 &gt; výška &gt; 3."
 #: same-gnome/same-gnome.schemas.in.h:6
 msgid ""
 "The size of the board to use. 1 = Custom, 2 = Small 3 = Medium 4 = Large."
-msgstr "Velikost desky, kterou používat. 1 = vlastní, 2 = malá 3 = střední 4 = velká."
+msgstr ""
+"Velikost desky, kterou používat. 1 = vlastní, 2 = malá 3 = střední 4 = velká."
 
 #: same-gnome/same-gnome.schemas.in.h:7
 msgid "The theme to use"
@@ -5251,17 +5219,86 @@ msgstr "Šířka okna"
 msgid "Width of the custom board"
 msgstr "Šířka vlastní desky"
 
+#: same-gnome/ui.c:54
+#, c-format
+msgid "%d object selected"
+msgid_plural "%d objects selected"
+msgstr[0] "Vybrán %d objekty"
+msgstr[1] "Vybrány %d objekty"
+msgstr[2] "Vybráno %d objektů"
+
+#: same-gnome/ui.c:56
+#, c-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d bod"
+msgstr[1] "%d body"
+msgstr[2] "%d bodů"
+
+#. Translators: the previous messages get merged into this
+#. * format string.
+#: same-gnome/ui.c:59
+#, c-format
+msgid "%s (%s)"
+msgstr "%s (%s)"
+
+#: same-gnome/ui.c:63
+msgid "No objects selected"
+msgstr "Nevybrány žádné objekty"
+
+#: same-gnome/ui.c:73
+msgid "No points"
+msgstr "Žádné body"
+
+#: same-gnome/ui.c:78
+#, c-format
+msgid "%d point !"
+msgid_plural "%d points !"
+msgstr[0] "%d bod!"
+msgstr[1] "%d body!"
+msgstr[2] "%d bodů!"
+
+#: same-gnome/ui.c:92
+#, c-format
+msgid "Score: %d"
+msgstr "Skóre: %d"
+
+#: same-gnome/ui.c:111
+msgid ""
+"I want to play that game! You know, they all go whirly-round and you click "
+"on them and they vanish!"
+msgstr "Chci hrát tu hru! Víte, všechny se točí a vy na ně klikáte a ony mizí!"
+
+#: same-gnome/ui.c:250
+msgid "_Size"
+msgstr "_Velikost"
+
+#: same-gnome/ui.c:254
+msgid "_Scores..."
+msgstr "_Skóre..."
+
+#: same-gnome/ui.c:259
+msgid "_Theme..."
+msgstr "_Téma..."
+
+#: same-gnome/ui.c:267
+msgid "_Small"
+msgstr "_Malá"
+
+#: same-gnome/ui.c:268
+msgid "_Medium"
+msgstr "_Střední"
+
+#: same-gnome/ui.c:269
+msgid "_Large"
+msgstr "_Velká"
+
+#: same-gnome/ui.c:273
+msgid "_Fullscreen"
+msgstr "_Celá obrazovka"
+
 #~ msgid "Unable to locate theme file: %s"
 #~ msgstr "Nemohu najít soubor tématu: %s"
-
-#~ msgid "%d stone selected"
-#~ msgid_plural "%d stones selected"
-#~ msgstr[0] "Vybrán %d kámen"
-#~ msgstr[1] "Vybrány %d kameny"
-#~ msgstr[2] "Vybráno %d kamenů"
-
-#~ msgid "No stones selected"
-#~ msgstr "Nevybrány žádné kameny"
 
 #~ msgid "The Same GNOME"
 #~ msgstr "Same GNOME"
