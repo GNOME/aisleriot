@@ -5,6 +5,7 @@ INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-I$(includedir)					\
 	$(GNOME_INCLUDEDIR)				\
+	$(GDK_PIXBUF_CFLAGS)				\
 	-I$(srcdir)/../gdk-card-image
 
 bin_PROGRAMS = freecell
@@ -19,6 +20,7 @@ freecell_LDADD = \
 	../gdk-card-image/libgdkcardimage.la	\
 	$(GNOME_LIBDIR)				\
 	$(GNOMEUI_LIBS)				\
+	$(GDK_PIXBUF_LIBS)			\
 	$(INTLLIBS)
 
 Games_DATA = freecell.desktop
