@@ -330,13 +330,13 @@ callback_restart (GtkWidget *widget, GdkEvent *event)
 		      _("Exit this game?"),
 		      NULL);
 
+      gtk_dialog_set_default_response (GTK_DIALOG (mb),
+		      GTK_RESPONSE_YES);
       response = gtk_dialog_run (GTK_DIALOG(mb));
       gtk_widget_destroy (mb);
 
       if (response == GTK_RESPONSE_YES)
-      {
 	      callback_restart_lose();
-      }
     }
   else
     callback_restart_really();
@@ -460,6 +460,8 @@ callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
 		      _("Exit this game?"),
 		      NULL);
 
+      gtk_dialog_set_default_response (GTK_DIALOG (mb),
+		      GTK_RESPONSE_YES);
       response = gtk_dialog_run (GTK_DIALOG(mb));
       gtk_widget_destroy(mb);
 
@@ -525,6 +527,8 @@ callback_new (GtkWidget *widget, GdkEvent *event)
 		      _("Exit this game?"),
 		      NULL);
 
+      gtk_dialog_set_default_response (GTK_DIALOG (mb),
+		      GTK_RESPONSE_YES);
       response = gtk_dialog_run (GTK_DIALOG(mb));
       gtk_widget_destroy(mb);
 
@@ -619,6 +623,8 @@ callback_exit (GtkWidget *widget, GdkEvent *event)
 		      _("Exit this game?"),
 		      NULL);
 
+      gtk_dialog_set_default_response (GTK_DIALOG (mb),
+		      GTK_RESPONSE_YES);
       response = gtk_dialog_run (GTK_DIALOG(mb));
       gtk_widget_destroy (mb);
 
@@ -685,6 +691,7 @@ inform_invalid_move (void)
 
   gtk_widget_show (mb);
   gtk_dialog_run (GTK_DIALOG(mb));
+  gtk_widget_destroy (mb);
 }
 
 static void
