@@ -105,10 +105,10 @@ void create_sol_board ()
 
 	/* Set up the pixmaps */
 	surface = gdk_pixmap_new (playing_area->window, SURFACE_WIDTH, SURFACE_HEIGHT,
-				  gtk_widget_get_visual (playing_area)->depth);
+				  gdk_window_get_visual (playing_area->window)->depth);
 
 	blank_surface = gdk_pixmap_new (playing_area->window, SURFACE_WIDTH, SURFACE_HEIGHT,
-					gtk_widget_get_visual (playing_area)->depth);
+					gdk_window_get_visual (playing_area->window)->depth);
 
 	refresh_screen();
   

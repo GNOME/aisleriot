@@ -261,11 +261,13 @@ printf("take_snapshot\n");
 	 gdk_window_get_size (snapshot, &snapshot_width, &snapshot_height);
 	 if (!((snapshot_width == surface_width) && (snapshot_height == surface_height))) {
 		gdk_pixmap_unref(snapshot);
-		snapshot = gdk_pixmap_new(playing_area->window, surface_width, surface_height, gtk_widget_get_visual (playing_area)->depth);
+		snapshot = gdk_pixmap_new(playing_area->window, surface_width, surface_height,
+					  gdk_window_get_visual (playing_area->window)->depth);
 	 }
   }
   else 
-	 snapshot = gdk_pixmap_new(playing_area->window, surface_width, surface_height, gtk_widget_get_visual (playing_area)->depth);		
+	 snapshot = gdk_pixmap_new(playing_area->window, surface_width, surface_height,
+				   gdk_window_get_visual (playing_area->window)->depth);		
 
   gdk_draw_pixmap(snapshot, playing_area->style->black_gc,blank_surface,0,0,0,0,-1,-1);  
   draw_cards(snapshot);

@@ -1,5 +1,9 @@
 1998-04-24  Federico Mena Quintero  <federico@nuclecu.unam.mx>
 
+	* press_data.c (generate_press_data): Doh.  Logical or is not the
+	same as bitwise or.  This is why the window attributes were not
+	being set correctly.
+
 	* press_data.c (generate_press_data): Set the window shape to the
 	mask bitmap to drag cards with rounded corners.
 

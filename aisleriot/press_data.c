@@ -61,7 +61,7 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
 			gdk_pixmap_new(playing_area->window, 
 				       get_card_width(),
 				       get_card_height() + (g_list_length(press_data->cards) - 1)*EXPANDED_VERT_OFFSET,
-				       gtk_widget_get_visual (playing_area)->depth);
+				       gdk_window_get_visual (playing_area->window)->depth);
 	}
 	else if ((slot->type == EXPANDING_SLOT) || (slot->type == PARTIALLY_EXPANDING_SLOT)) {
 		press_data->xoffset = (x - slot->x);
@@ -82,7 +82,7 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
 			gdk_pixmap_new(playing_area->window, 
 				       get_card_width(),
 				       get_card_height() + (g_list_length(press_data->cards) - 1)*EXPANDED_VERT_OFFSET,
-				       gtk_widget_get_visual (playing_area)->depth);
+				       gdk_window_get_visual (playing_area->window)->depth);
 	}
 	else if ((slot->type == EXPANDING_SLOT_RIGHT) || (slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT)) {
 		if ((slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT)
@@ -102,7 +102,7 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
 			gdk_pixmap_new(playing_area->window, 
 				       get_card_width() + (g_list_length(press_data->cards) - 1)*EXPANDED_HORIZ_OFFSET,
 				       get_card_height(),
-				       gtk_widget_get_visual (playing_area)->depth);
+				       gdk_window_get_visual (playing_area->window)->depth);
 	}
 
 	i = 0;
@@ -142,12 +142,12 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
 		attributes.height = get_card_height() + (g_list_length(press_data->cards) - 1)*EXPANDED_VERT_OFFSET;
 		attributes.wclass = GDK_INPUT_OUTPUT;
 		attributes.event_mask = 0;
-		attributes.colormap = gtk_widget_get_colormap (playing_area);
-		attributes.visual = gtk_widget_get_visual(playing_area);
+		attributes.colormap = gdk_window_get_colormap (playing_area->window);
+		attributes.visual = gdk_window_get_visual (playing_area->window);
 	 
 		press_data->moving_cards =  gdk_window_new(playing_area->window,
 							   &attributes,
-							   (GDK_WA_X || GDK_WA_Y || GDK_WA_VISUAL || GDK_WA_COLORMAP));
+							   (GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP));
 		gdk_window_set_back_pixmap(press_data->moving_cards, press_data->moving_pixmap, 0);
 		gdk_window_shape_combine_mask (press_data->moving_cards, mask, 0, 0);
 
