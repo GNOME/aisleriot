@@ -79,34 +79,34 @@ int help_about_callback (GtkWidget *widget, void *data)
 
 /* We fill the items in at runtime... */
 GnomeUIInfo variation_menu[] = {
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 
 GnomeUIInfo help_menu[] = {
-  {GNOME_APP_UI_ITEM, N_("About..."), NULL, help_about_callback,
+  {GNOME_APP_UI_ITEM, N_("About..."), NULL, help_about_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 
 GnomeUIInfo file_menu[] = {
-  {GNOME_APP_UI_ITEM, N_("New"), NULL, file_new_game_callback,
+  {GNOME_APP_UI_ITEM, N_("New"), NULL, file_new_game_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'n', GDK_CONTROL_MASK, NULL},
-  {GNOME_APP_UI_SUBTREE, N_("Variation"), NULL, variation_menu,
+  {GNOME_APP_UI_SUBTREE, N_("Variation"), NULL, variation_menu, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  {GNOME_APP_UI_ITEM, N_("Exit"), NULL, file_quit_callback,
+  {GNOME_APP_UI_ITEM, N_("Exit"), NULL, file_quit_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 
 GnomeUIInfo main_menu[] = {
-  {GNOME_APP_UI_SUBTREE, N_("Game"), NULL, file_menu,
+  {GNOME_APP_UI_SUBTREE, N_("Game"), NULL, file_menu, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  {GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu,
+  {GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 

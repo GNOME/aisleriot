@@ -18,6 +18,8 @@
 
 #define SOL_C
 
+#include <config.h>
+
 #include <sys/types.h>
 #include <string.h>
 #include <stdlib.h>
@@ -144,6 +146,8 @@ void main_prog(int argc, char *argv[])
 
   printf(_("Done.\ninitializing gnome/gdk...\n"));
   gnome_init ("aisleriot", &argc, &argv);
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+  textdomain (PACKAGE);
   gdk_imlib_init();
   printf(_("Done.\n"));
 
