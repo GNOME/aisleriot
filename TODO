@@ -1,25 +1,234 @@
-Things to work on before GNOME Games 2.0:
+General 2.4 cleanups:
+
+1. Documentation cleanup: version numbers, completeness and make sure
+   they actually work.
+2. GConf, make sure it is sane, works and accepts bad input gracefully.
+3. HIG compliant preferences
+4. Menu item sensitivity, undo, redo, hint, solve, etc.
+5. Remove the quit dialog.
+6. Builds without warnings (make sure they are enabled).
+
+Y = OK., N = probably needs work, P = partial, ? = maybe, 
+lower case letter = note.
+
+These should all become yes or have a good reason why not.
+
+                1.      2.      3.      4.      5.      6.
+aisleriot       P       Y       a       Y       Y       ?
+blackjack       d       ?       ?       ?       Y       ?
+gataxx          N       N       Y       N       N       ?
+glines          N       N       Y       Y       Y       ?
+gnect           N       Y       Y       Y       N       ?
+gnibbles        N       b       c       Y       N       ?
+gnobots2        N       N       c       Y       N       ?
+gnome-stones    N       N       Y       N       Y       ?
+gnometris       N       N       Y       Y       Y       ?
+gnomine         N       Y       Y       Y       Y       ?
+gnotravex       N       Y       Y       N       Y       ?
+gnotski         N       e       Y       Y       Y       ?
+gtali           P       N       Y       N       Y       ?
+iagno           N       N       f       N       N       ?
+mahjongg        N       P       g       N       N       ?
+same-gnome      N       N       Y       Y       Y       ?
+libgame-support N       -       -       -       -       ?
+gdk-card-image  N       -       -       -       -       ?
+
+a) The preference and select dialogs are compliant, but there is
+   debate about whether it is good UI.
+b) Some checks are made, but, for example you can have 100 worms.
+c) Yes, except for some horrible behaviour with the control selection.
+d) Yes, but check that the screenshots where done with the correct
+   theme.
+e) Doesn't have any preferences, but if we start remembering which
+   games have been done we will.
+f) Not auto-apply.
+g) Yes, but it is too high for a 480 pixel high screen.
+
+2.4 Issues
 
 General:
+        - Make sure the build system is clean.
 
- * Port everything to GConf, it will be post 2.0 (or
-   before if we have time to finish everything else).
-   Need porting:
-   glines, gnobots2, aisleriot, gnibbles, gnome-stones
+AisleRiot:
+        - Consider spider game-over too soon (bug 101984)
+        - Odessa hint function (bug 51694)
+        - Corner pixels in the mask.
 
- * Needing Docs:
-   freecell, gnometris, gnotski
+Blackjack:
+        - Whatever the UI review says.
 
-Gnome Stones:
+Gataxx:
+        - Share graphics with Iagno.
+        - Grid visibility issues.
+        - Grid options in prefs (once previous is sorted).
+        - Start-up grid behaviour is odd.
 
- * It does have some fonts problem.
- * The game feels like slow.
+Glines:
+        - Remove the ball theme.
+        - Clean up the classic theme.
+        
+Gnect:
+        - Default controls -> arrow keys
+        - The -> in the welcome message
+        - Controls aren't a11y (bug 97327)
+
+Gnibbles:
+        
+Gnobots2:
+        - Find out why it crashes for some people (bugs 92297, 102370,
+          112059, 113186, 113657).
+        - Fix no-moves issue (bug 107846).
+
+Gnome-stones:
+        - Fixup the horrible problems in the prefs dialog like the
+          missing sound options.
+        - Also the joystick tab.
+        - Hide the filename columns.
+        - Remove the help button.
+        - Rearrange location of scores, etc., if it seems serious
+          (must play it some more). Otherwise this can be left to 2.5.
+        - Try and track down bug 106623, it may be because they have
+          never selected a game (in which case it is a real bug) or it
+          is misinstalled and there is nothing to load (in which case
+          there should be an error dialog).
 
 Gnometris:
+        - Update xtris backgrounds to give the current name (perhaps
+          replace the x with a foot). Not urgent and can wait until 2.5.
+        - Have another go at tracking down bug 103787.
+        - Check that there's nothing funny in the way we build C++
+          programs (bug 92559) or alternatively confirm that there is
+          a RedHat 7.2 package that could be missing.
 
- * Does not update the windows size when you changue
-   the field size.
+Gnomine:
+        - Resizable window (2.4 since everything is already in place).
+        - Again, an unreproducable segfault (bugs 95231, 100932,
+          114223).
+        - Check flag counting code and whether this is in fact bug
+          103125 is still possible.        
 
+Gnotravex:
+        - Tweak the tile positions within the game widget.
 
-Games needing GConf sanity checks:
-  freecell, gnomine, gtali
+Gnotski:
+
+Gtali:
+        - Some of the options can be removed.
+        - Anti-alias the dice if we have time (maybe remove the
+          built-in xpms) this can safely be left to 2.5.
+        - Stripe the lines if possible.
+
+Iagno:
+        - Share graphics with gataxx.
+        - Make defaults consistent with gataxx.
+        - Preferences aren't auto apply.
+        - Make sure the grid is always visible.
+        - Start-up grid behaviour is odd.
+
+Mahjongg:
+        - Oddball crashes (bugs 82402, 100492, 102474).
+        - Move the seed to the title (or whatever is consistent).
+        - Fix shuffling bugs (91098, 94750).
+        - GConf key fixes (no '-' character), see if it can be made
+          backwards compatible.
+
+Same-gnome:
+        - Highlight the current theme in the prefs dialog.
+        - Make the pixmap background transparent so that we don't have
+          the rotate theme background problems (not urgent).
+
+2.5 Issues
+
+General:
+        - Make games respond to the gconf key change signals.
+        - Remove the need for setgid binaries (needs a setgid launcher
+          and back-end modifications to libgnome).
+        - Move more common code into the libgames-support library.
+        - Make as much as possible scalable so we can have full-screen
+          modes. 
+        - Seriously look at a11y for actually playing the games.
+        - Look at network multi-player.
+        - Consider how to handle the whole game seed thing.
+
+AisleRiot:
+        - Scalability of cards (bugs 80167, 104969, 105536) 
+        - Better card selection, include a preview (bug 110729)
+        - Better klondike hint (bug 85712)
+        - 3-card flip-over (possibly reinstate the game-specific
+          options, bug 50704).
+        - 2-suit spider (3-suit too ? bug 69252)
+        - Scheme clean-ups (see bug 51016 for suggestions)
+        - Be able to automatically drag lists of cards to the
+          foundation and have them distributed (like at the end of
+          klondike) this is less surprising than auto-move (bug 2845).
+        - Pretty show at the end (bug 2845)
+        - Be better at capturing cards (bug 91595)
+        - Descriptions of games in Select dialog (bug 110730)
+        - Can we eliminate the splash screen (bug 110731)
+
+Blackjack:
+        - Eliminate the splash screen (and hopefully any recalculation).
+
+Gataxx:
+        - Share a front-end with Iagno.
+        - AI improvement.
+
+Gline:
+        - Configure the playing field size and ball number (bug
+          83532).
+        - Scalability.
+
+Gnect:
+        - Graphics (could we share some with iagno/gataxx)
+        - Size of AI file
+        - Sound improvements
+
+Gnibbles:
+        - Redo the graphics. Vector based and themable.
+
+Gnobots2:
+        - Graphics so they are viewable on large monitors.
+        - Clean up the sounds.
+
+Gnome-stones:
+        - Definitely redo locations of score and the like.
+        - Fix "jerkiness", make the game "feel" better.
+        - Separate the two games to be started separately (using the
+          same shared code).
+
+Gnometris:
+        - Make the pieces scalable.
+        - Drag and drop background.
+        - Sound (see bug 80665, but we can't use those sounds) ?               
+
+Gnomine:
+        - Try and fix the colour issue (part of 112571, the bit where
+          I misunderstand).
+        - Consider bug 97833, but probably not.
+
+Gnotravex:
+        - Have a colour mode in addition to the numbers.
+
+Gnotski:
+        - Redo the game so that it records what have been completed
+          and also has a next game option (as well as a retry game
+          option). See bug 111543.
+        
+Gtali:
+        - AI upgrade, but make it optional: see Phil Woodward. "Yahtzee®: 
+        The Solution", Chance 16(1):17-20 (Winter 2003). (bug 52635)
+
+Iagno:
+        - Merge with Gataxx (see above)
+        - High contrast theme ? Other a11y stuff.
+        - See if the code causeing problems in bug 79180 can't be 
+          glib-ised to make the portability problem glibs.
+
+Mahjongg:
+        - Consider the usability bugs (83531 and 84837), the first can
+          be solved via scalable tiles the second via cleaner themes
+          (it can also be worked into a high-contrast things to).
+        
+Same-gnome:
+        - Add a seed (bug 86088) ?
+        - Continue arguing bug 91778.
