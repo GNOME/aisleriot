@@ -18,7 +18,7 @@ sgml_ents = \
 	clock.sgml	\
 	cover.sgml	\
 	doublets.sgml	\
-	escalator.sgml	\
+	elevator.sgml	\
 	first_law.sgml	\
 	fortunes.sgml	\
 	fourteen.sgml	\
