@@ -123,7 +123,7 @@ void eval_installed_file (char *file)
     return;
   }
   
-  relative = g_copy_strings (GAMESDIR, file, NULL);
+  relative = g_strconcat (GAMESDIR, file, NULL);
   installed_filename = gnome_datadir_file (relative);
   gh_eval_file (installed_filename);
   g_free (installed_filename);

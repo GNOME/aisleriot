@@ -222,7 +222,7 @@ gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name)
     dir->nfiles = scandir (dir_name, &de, is_image, alphasort);
     dir->file = g_new0 (GdkCardDeckFile, dir->nfiles);
     for (i = 0; i < dir->nfiles; i++) {
-      dir->file[i].name = g_copy_strings (dir_name, de[i]->d_name, NULL);
+      dir->file[i].name = g_strconcat (dir_name, de[i]->d_name, NULL);
       dir->file[i].cols = dir->cols;
       dir->file[i].rows = dir->rows;
       dir->file[i].rotate = dir->rotate;
