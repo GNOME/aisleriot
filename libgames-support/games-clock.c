@@ -1,7 +1,7 @@
 /*
  * clock.c: 
  *
- * Copyright (C) 2001 Iain Holmes
+ * Copyright (C) 2001, 2003 Iain Holmes
  *           (C) 2001 Mark McLoughlin
  *
  * Authors: Iain Holmes <iain@ximian.com>
@@ -152,5 +152,15 @@ games_clock_set_seconds (GamesClock *clock,
 	g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
 
 	clock->seconds = seconds;
+	clock_paint (clock);
+}
+
+void
+games_clock_add_seconds (GamesClock *clock,
+			 time_t      seconds)
+{
+	g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
+
+	clock->seconds += seconds;
 	clock_paint (clock);
 }

@@ -1,7 +1,7 @@
 /*
  * clock.c: Clock widget.
  *
- * Copyright (C) 2001 Iain Holmes
+ * Copyright (C) 2001, 2003 Iain Holmes
  *           (C) 2001 Mark McLoughlin
  *
  * Authors: Iain Holmes <iain@ximian.com>
@@ -41,6 +41,8 @@ GtkWidget    *games_clock_new         (void);
 void          games_clock_start       (GamesClock *clock);
 void          games_clock_stop        (GamesClock *clock);
 void          games_clock_set_seconds (GamesClock *clock,
+				       time_t      seconds);
+void          games_clock_add_seconds (GamesClock *clock,
 				       time_t      seconds);
 
 G_END_DECLS
