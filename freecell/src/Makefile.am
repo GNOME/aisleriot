@@ -2,9 +2,10 @@
 Gamesdir = $(datadir)/apps/Games
 
 INCLUDES = -I$(includedir) \
+	-DLOCALEDIR=\""$(datadir)/locale"\" \
 	-I$(srcdir)/../lib \
 	-I$(srcdir)/../gdk-card-image \
-	-DLOCALEDIR=\""$(datadir)/locale"\" \
+	$(GNOME_INCLUDEDIR)
 	$(X_CFLAGS)
 
 bin_PROGRAMS = freecell
@@ -18,7 +19,7 @@ score.h score-dialog.h option.h option-dialog.h menu.h
 freecell_LDADD = \
 	../gdk-card-image/libgdkcardimage.la \
 	../lib/libfc.a \
-	$(GNOMEUI_LIBS) $(INTLLIBS)
+	$(GNOME_LIBDIR)	$(GNOMEUI_LIBS) $(INTLLIBS)
 
 EXTRA_DIST = freecell.desktop
 

@@ -26,76 +26,97 @@
 
 GnomeUIInfo game_menuinfo[] =
 {
-  {GNOME_APP_UI_ITEM, N_("New Game"), NULL, callback_new,
+  {GNOME_APP_UI_ITEM, N_("New Game"), NULL,
+   callback_new, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
 
-  {GNOME_APP_UI_ITEM, N_("Restart Game"), NULL, callback_restart,
+  {GNOME_APP_UI_ITEM, N_("Restart Game"), NULL,
+   callback_restart, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("New Game with a seed..."), NULL, callback_new_with_seed,
+  {GNOME_APP_UI_ITEM, N_("New Game with a seed..."), NULL,
+   callback_new_with_seed, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 
-  {GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL,
+  {GNOME_APP_UI_SEPARATOR, NULL, NULL,
+   NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("Properties..."), NULL, callback_option,
+  {GNOME_APP_UI_ITEM, N_("Properties..."), NULL,
+   callback_option, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_PROPERTIES, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("Score..."), NULL, callback_score,
+  {GNOME_APP_UI_ITEM, N_("Score..."), NULL,
+   callback_score, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
-  {GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL,
+  {GNOME_APP_UI_SEPARATOR, NULL, NULL,
+   NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("Exit"), NULL, callback_exit,
+  {GNOME_APP_UI_ITEM, N_("Exit"), NULL,
+   callback_exit, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
 
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
+   NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
 };
 
 GnomeUIInfo help_menuinfo[] =
 {
-  {GNOME_APP_UI_HELP, NULL, NULL, NULL,
+  {GNOME_APP_UI_HELP, NULL, NULL,
+   NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 
-  {GNOME_APP_UI_ITEM, N_("About..."), NULL, callback_about,
+  {GNOME_APP_UI_ITEM, N_("About..."), NULL,
+   callback_about, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
+   NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
 };
   
 GnomeUIInfo main_menuinfo[] =
 {
-  {GNOME_APP_UI_SUBTREE, N_("Game"), NULL, game_menuinfo,
+  {GNOME_APP_UI_SUBTREE, N_("Game"), NULL,
+   game_menuinfo, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
-  {GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menuinfo,
+  {GNOME_APP_UI_SUBTREE, N_("Help"), NULL,
+   help_menuinfo, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
+   NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
 };
 
 GnomeUIInfo main_toolbarinfo[] =
 {
-  {GNOME_APP_UI_ITEM, N_("New"), N_("Start a new game"), callback_new,
+  {GNOME_APP_UI_ITEM, N_("New"), N_("Start a new game"),
+   callback_new, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("Seed"), NULL, callback_new_with_seed,
+  {GNOME_APP_UI_ITEM, N_("Seed"), NULL,
+   callback_new_with_seed, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 
-  {GNOME_APP_UI_ITEM, N_("Score"), N_("Show the score"), callback_score,
+  {GNOME_APP_UI_ITEM, N_("Score"), N_("Show the score"),
+   callback_score, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("Props"), N_("Setup Freecell"), callback_option,
+  {GNOME_APP_UI_ITEM, N_("Props"), N_("Setup Freecell"),
+   callback_option, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_PROPERTIES, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("Exit"), NULL, callback_exit,
+  {GNOME_APP_UI_ITEM, N_("Exit"), NULL,
+   callback_exit, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
 
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
+   NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
 };
 

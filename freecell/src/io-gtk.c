@@ -72,7 +72,7 @@ static GdkCursor *up_cursor;
 static int stalled = 0;
 
 
-void callback_new_really_callback (GtkWidget *widget, gpointer data);
+static void callback_new_really_callback (GtkWidget *widget, gpointer data);
 
 static void to_destination_auto(void);
 
