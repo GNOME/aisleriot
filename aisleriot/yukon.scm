@@ -129,7 +129,7 @@
 		 ((empty-slot? 9)
 		  (complete-transaction slot (list top-card) 9))
 		 (#t
-		  (complete-transaction slot (list top-card) 8)))))
+		  (complete-transaction slot (list top-card) 10)))))
       	((and (not (empty-slot? 0))
 	      (= (get-suit (get-top-card 0))
 		 (get-suit (get-top-card slot)))

@@ -1,3 +1,6 @@
+; Aisleriot - clock.scm
+; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+
 (define (new-game)
   (initialize-playing-area)
   (make-standard-deck)
@@ -94,7 +97,6 @@
   (if (transaction-good? end-slot card-list)
       (complete-transaction card-list end-slot)
       #f))
-
 
 (define (button-clicked slot-id)  
   #f)     

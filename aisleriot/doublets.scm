@@ -80,16 +80,13 @@
       #f))
 
 (define (button-clicked slot-id)
-  (display "here\n")
   (if (= slot-id 0)
       (cond ((and (empty-slot? 0)
-		  (display "here1\n")
 		  (not (empty-slot? 1)))
 	     (begin
 	       (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
 	       (flip-cards-back 2)))
-	    ((and (not (empty-slot? 0))
-		    (display "here2\n"))
+	    ((not (empty-slot? 0))
 	     (add-card! 1 (flip-card (remove-card 0))))
 	    (#t #f))
       #f))
