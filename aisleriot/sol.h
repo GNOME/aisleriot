@@ -49,6 +49,10 @@ extern gboolean         game_over;
 extern gboolean         game_won;
 extern press_data_type* press_data; 
 
+extern guint            x_spacing;
+extern guint            y_spacing;
+extern guint            x_expanded_offset;
+extern guint            y_expanded_offset;
 
 gchar* game_file_to_name(const gchar* file);
 void new_game(gchar* file, guint *seed);

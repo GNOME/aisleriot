@@ -1,3 +1,17 @@
+Sat Oct 31 Felix Bellaby <felix@pooh.u-net.com>
+	* scheme_messages: added names of new games {for i18n}
+	* sol.c: (game_file_to_game_name) converts "-" to " ".
+	* sol.c: (game_file_to_help_entry) converts "_" to "-" {for DocBook}
+	* press_data.h: press_data redesigned for efficiency
+	* slot.h: hslot_type redesigned for efficiency
+	* press_data.c: updated for new press_data / hslot_type
+	* slot.c: updated for new press_data / hslot_type, fixed bugs in
+	expanding slots
+	* event.c: updated for new press_data / hslot_type,
+	tidied handling of button events.
+	* draw.c: updated for new press_data / hslot_type.
+	* cscm.c: updated for new press_data / hslot_type.
+	
 Thu Oct 29 Felix Bellaby <felix@pooh.u-net.com>
 	* event.c: (drop_moving_cards) fixed bug in expanding slots.
 	(button_press_event) delay decision on what event means so that clicks

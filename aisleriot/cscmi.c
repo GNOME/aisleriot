@@ -16,56 +16,58 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#define CSCMI_C
-
 #include "cscmi.h"
 #include "sol.h"
 
 lambda_data* game_data = NULL;
 
 /* Scheme to C functions... */
-hslot_type new_slot(SCM slot_data) {
-  hslot_type retval;
-  retval = malloc(sizeof(slot_type));
 
-  retval->id = SCM_INUM(SCM_CAR(slot_data));
-  retval->cards = new_deck(SCM_CADR(slot_data));
-  if (!strcmp("expanded", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    retval->type = EXPANDING_SLOT;
-  }
-  else if (!strcmp("expanded-right", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    retval->type = EXPANDING_SLOT_RIGHT;
-  }
-  else if (!strcmp("partially-expanded", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    retval->type = PARTIALLY_EXPANDING_SLOT;
-    retval->expansion_depth = SCM_INUM(SCM_CADDR(SCM_CADDR(slot_data)));
-  }
-  else if (!strcmp("partially-expanded-right", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    retval->type = PARTIALLY_EXPANDING_SLOT_RIGHT;
-    retval->expansion_depth = SCM_INUM(SCM_CADDR(SCM_CADDR(slot_data)));
-  }
-  else if (!strcmp("normal", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    retval->type = NORMAL_SLOT;
-  }
-  /* if we don't recognize */
-  else {
-	 retval->type = NORMAL_SLOT;
-  }
+void add_slot(SCM slot_data) 
+{
+  hslot_type hslot = malloc(sizeof(slot_type));
+
+  hslot->id = SCM_INUM(SCM_CAR(slot_data));
+  hslot->cards = new_deck(SCM_CADR(slot_data));
+  hslot->x = SCM_INUM(SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))));
+  hslot->y = SCM_INUM(SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))));
   
-  retval->x = SCM_INUM(SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))));
-  retval->y = SCM_INUM(SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))));
+  hslot->dx = hslot->dy = 0;
+  hslot->expansion_depth = 0;
 
-  /* hmmm, this is sorta messy... I assume that update_slot_length will be called soon...  */
-  retval->height = get_card_height();
-  retval->width = get_card_width();
+  if (!strcmp("expanded", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+    hslot->dy = y_expanded_offset;
+  }
+  else if (!strcmp("expanded-right", 
+		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+    hslot->dx = x_expanded_offset;
+  }
+  else if (!strcmp("partially-expanded", 
+		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+    hslot->dy = y_expanded_offset;
+    hslot->expansion_depth = SCM_INUM(SCM_CADDR(SCM_CADDR(slot_data)));
+  }
+  else if (!strcmp("partially-expanded-right", 
+		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+    hslot->dx = x_expanded_offset;
+    hslot->expansion_depth = SCM_INUM(SCM_CADDR(SCM_CADDR(slot_data)));
+  }
 
-  return retval;
+  hslot->length = hslot->exposed = 0;
+  update_slot_length(hslot);
+
+  if (slot_list)
+    g_list_append(slot_list, hslot);
+  else {
+    slot_list = g_list_alloc();
+    slot_list->data = hslot;
+  }
 }
 
-hcard_type new_card(SCM card_data) {
-  hcard_type temp_card;
-  
-  temp_card = malloc(sizeof(card_type));
+hcard_type new_card(SCM card_data) 
+{
+  hcard_type temp_card = malloc(sizeof(card_type));
+
   temp_card->value = SCM_INUM(SCM_CAR(card_data));
   temp_card->suit = SCM_INUM(SCM_CADR(card_data));
   temp_card->direction = !(SCM_NFALSEP(SCM_CADDR(card_data)));
@@ -73,117 +75,114 @@ hcard_type new_card(SCM card_data) {
   return temp_card;
 }
 
-GList* new_deck(SCM deck_data) {
+GList* new_deck(SCM deck_data) 
+{
   SCM list_el;
-  GList* temp_deck;
+  GList* temp_deck = NULL;
 
-  temp_deck = NULL;
-  if (!SCM_NFALSEP(deck_data)) {
-	 return NULL;
-  }
- 
-  if (deck_data == SCM_EOL) {
-	 return NULL;
-  }
-
-  for (list_el = deck_data; list_el != SCM_EOL; list_el = SCM_CDR(list_el)) {
-	 add_card(&temp_deck,new_card(SCM_CAR(list_el)));
+  if (SCM_NFALSEP(deck_data)) {
+    for (list_el = deck_data; list_el != SCM_EOL; list_el = SCM_CDR(list_el))
+      add_card(&temp_deck,new_card(SCM_CAR(list_el)));
   }
   
   return g_list_reverse(temp_deck);
 }
 
 /* C to Scheme functions... */
-SCM make_card(hcard_type card) {
-  SCM retval;
-
+SCM make_card(hcard_type card) 
+{
   if (card->direction)
-	 retval = gh_cons(gh_long2scm(card->value),gh_cons(gh_long2scm(card->suit),gh_cons(SCM_BOOL_F,SCM_EOL)));
+    return gh_cons(gh_long2scm(card->value),
+		   gh_cons(gh_long2scm(card->suit),
+			   gh_cons(SCM_BOOL_F, SCM_EOL)));
   else
-	 retval = gh_cons(gh_long2scm(card->value),gh_cons(gh_long2scm(card->suit),gh_cons(SCM_BOOL_T,SCM_EOL)));
-  return retval;
+    return gh_cons(gh_long2scm(card->value),
+		   gh_cons(gh_long2scm(card->suit),
+			   gh_cons(SCM_BOOL_T, SCM_EOL)));
 }
 
 /* Scheme functions */
-SCM scm_get_card_width() {
+SCM scm_get_card_width() 
+{
   return gh_long2scm(get_card_width());
 }
-SCM scm_get_card_height() {
+
+SCM scm_get_card_height() 
+{
   return gh_long2scm(get_card_height());
 }
-SCM scm_get_horiz_offset() {
+
+SCM scm_get_horiz_offset() 
+{
   return gh_long2scm(get_horiz_offset());
 }
-SCM scm_get_vert_offset() {
+
+SCM scm_get_vert_offset() 
+{
   return gh_long2scm(get_vert_offset());
 }
-SCM scm_get_horiz_start() {
+
+SCM scm_get_horiz_start() 
+{
   return gh_long2scm(get_horiz_start());
 }
-SCM scm_get_vert_start() {
+
+SCM scm_get_vert_start() 
+{
   return gh_long2scm(get_vert_start());
 }
 
-SCM scm_set_surface_layout(SCM surface) {
-  SCM list_el;
-  int i;
+SCM scm_set_surface_layout(SCM surface) 
+{
+  if (surface != SCM_EOL) {
+    SCM list_el;
   
-  if (surface == SCM_EOL)
-	 return SCM_EOL;
-  delete_surface();
+    delete_surface();
 
-  for (list_el = surface; list_el != SCM_EOL; list_el = SCM_CDR(list_el))
-	 add_slot(new_slot(SCM_CAR(list_el)));
-
-  for (i = g_list_length(slot_list) - 1; i >= 0; i--)
-	 update_slot_length(i);
-  return SCM_EOL;
-}
-
-
-SCM scm_reset_surface() {
-  delete_surface();
-  return SCM_EOL;
-}
-
-SCM scm_add_slot(SCM slot) {
-  add_slot(new_slot(slot));
-
-  update_slot_length(g_list_length(slot_list) - 1);
-  return SCM_EOL;
-}
-
-SCM scm_get_slot(SCM scm_slot_id) {
-  SCM cards = SCM_EOL;
-  hslot_type slot = NULL;
-  GList* tempcard;
-  gint slot_id = gh_scm2int(scm_slot_id);
-
-  slot = get_slot(slot_id);
-  
-  for (tempcard = slot->cards; tempcard; tempcard = tempcard->next) {
-		cards = gh_cons(make_card(tempcard->data),cards);
-
+    for (list_el = surface; list_el != SCM_EOL; list_el = SCM_CDR(list_el))
+      add_slot(SCM_CAR(list_el));
   }
-  return gh_cons(scm_slot_id, gh_cons(cards, SCM_EOL));
-
+  return SCM_EOL;
 }
 
-SCM scm_set_cards(SCM scm_slot_id, SCM new_cards) {
-  gint i;
-  hslot_type slot;
-  GList* temptr;
-  gint slot_id = gh_scm2int(scm_slot_id);
-  
-  slot = get_slot(slot_id);
-  
-  for (temptr = slot->cards; temptr; temptr = temptr->next)
-	 free(temptr->data);
-  
-  slot->cards = new_deck(new_cards);
 
-  for (i = g_list_length(slot_list) - 1; i >= 0; i--)
-	 update_slot_length(i);
+SCM scm_reset_surface() 
+{
+  delete_surface();
+  return SCM_EOL;
+}
+
+SCM scm_add_slot(SCM slot) 
+{
+  add_slot(slot);
+  return SCM_EOL;
+}
+
+SCM scm_get_slot(SCM scm_slot_id) 
+{
+  SCM cards = SCM_EOL;
+  hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
+  GList* tempcard;
+  
+  if (slot) {
+    for (tempcard = slot->cards; tempcard; tempcard = tempcard->next)
+      cards = gh_cons(make_card(tempcard->data), cards);
+
+    cards = gh_cons(scm_slot_id, gh_cons(cards, SCM_EOL));
+  }
+  return cards; 
+}
+
+SCM scm_set_cards(SCM scm_slot_id, SCM new_cards) 
+{
+  hslot_type hslot = get_slot(gh_scm2int(scm_slot_id));
+  GList* tempptr;
+  
+  for (tempptr = hslot->cards; tempptr; tempptr = tempptr->next)
+    free(tempptr->data);
+
+  hslot->cards = new_deck(new_cards);
+  update_slot_length(hslot);
 
   return SCM_BOOL_T;
 }
@@ -196,7 +195,8 @@ SCM scm_set_lambda(SCM start_game_lambda,
 		   SCM game_over_lambda,
 		   SCM winning_game_lambda,
 		   SCM hint_lambda,
-		   SCM timeout_lambda) {
+		   SCM timeout_lambda) 
+{
   if (!game_data)
 	 game_data = malloc(sizeof(lambda_data));
   game_data->start_game_lambda = start_game_lambda;
@@ -211,36 +211,43 @@ SCM scm_set_lambda(SCM start_game_lambda,
   return SCM_EOL;
 }
 
-SCM scm_random(SCM range) {
+SCM scm_random(SCM range) 
+{
   return gh_long2scm(random()%SCM_INUM(range));
 }
 
-SCM scm_get_score() {
+SCM scm_get_score() 
+{
   return gh_int2scm(score);
 }
 
-SCM scm_set_score(SCM new) {
+SCM scm_set_score(SCM new) 
+{
   score = gh_scm2int(new);
   set_score();
   return gh_int2scm(score);
 }
 
-SCM scm_add_to_score(SCM new) {
+SCM scm_add_to_score(SCM new) 
+{
   score += gh_scm2int(new);
   set_score();
   return gh_int2scm(score);
 }
 
-SCM scm_set_timeout (SCM new) {
+SCM scm_set_timeout (SCM new) 
+{
   timeout = gh_scm2int(new);
   return new;
 }
 
-SCM scm_get_timeout () {
+SCM scm_get_timeout () 
+{
   return gh_int2scm(timeout);
 }
 
-void cscm_init () {
+void cscm_init () 
+{
   /* FIXME: On 1997-11-14, gh_enter stopped loading `icd-9/boot-9.scm'.
      In my copy of guile, the first define in boot-9.scm is for "provide",
      and it looked as good a test as any  */

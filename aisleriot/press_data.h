@@ -19,6 +19,7 @@
 #ifndef PRESS_DATA_H
 #define PRESS_DATA_H
 #include <gtk/gtk.h>
+#include "slot.h"
 
 typedef struct {
   gint xoffset;
@@ -27,12 +28,18 @@ typedef struct {
   GdkBitmap *moving_mask;
   gint button_pressed;
   GList* cards;
-  gint slot_id;
-  gint slot_location;
+  hslot_type hslot;
+  gint cardid;
   gint temporary_partial_hack;
-  gboolean moving;
+  gint status;
   GdkWindow *moving_cards;
 } press_data_type;
+
+#define STATUS_NONE 0
+#define STATUS_IS_DRAG 1
+#define STATUS_MAYBE_DRAG 2
+#define STATUS_NOT_DRAG 3
+#define STATUS_SHOW 4
 
 void generate_press_data();
 

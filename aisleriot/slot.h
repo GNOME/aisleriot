@@ -26,30 +26,22 @@
  */
 
 typedef struct {
+
+  gint id;
+  GList* cards;
   gint x;
   gint y;
+  gint dx;
+  gint dy;
+  gint length;
+  gint exposed;
+  gint expansion_depth;
   gint width;
   gint height;
-  gint type; 
-  GList* cards;
-  gint id;
-  gint expansion_depth;
+
 } slot_type;
 
 typedef slot_type* hslot_type;
-
-/*
- * Variables
- */
-#define EXPANDED_VERT_OFFSET 20
-#define EXPANDED_HORIZ_OFFSET 20
-
-#define NORMAL_SLOT 0
-#define EXPANDING_SLOT 1
-#define EXPANDING_SLOT_RIGHT 2
-#define PARTIALLY_EXPANDING_SLOT 3
-#define PARTIALLY_EXPANDING_SLOT_RIGHT 4
-#define SCHEME_DEFINED_SLOT 5
 
 extern GList *slot_list;
 
@@ -57,14 +49,15 @@ extern GList *slot_list;
  * Functions
  */
 
-void slot_pressed(gint, gint, gint*, gint*);
+void slot_pressed (gint, gint, hslot_type *, gint*);
+void card_offset (hslot_type, gint, gint*, gint*);
 GList* get_slot_list();
 void delete_surface();
-void add_slot(hslot_type);
 void delete_slot(hslot_type);
 hslot_type get_slot(gint);
-void update_slot_length(gint);
-void add_cards_to_slot(GList*, gint);
+void increase_slot_length(hslot_type);
+void reduce_slot_length(hslot_type);
+void add_cards_to_slot(GList*, hslot_type hslot);
 
 #endif
 

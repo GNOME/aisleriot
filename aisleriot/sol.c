@@ -53,6 +53,11 @@ gboolean         game_over;
 gboolean         game_won;
 press_data_type* press_data; 
 
+guint            x_spacing = 5;
+guint            y_spacing = 15;
+guint            x_expanded_offset = 20;
+guint            y_expanded_offset = 20;
+
 /*
  * This function does i18n on game files using the convention that
  * filenames are LC_MESSAGES with mechanical changes:
@@ -64,6 +69,7 @@ gchar* game_file_to_name (const gchar* file)
 
   if ((p = strrchr (buf, '.'))) *p = '\0';
   for(p = buf; p = strchr(p, '_'), p && *p;) *p = ' ';
+  for(p = buf; p = strchr(p, '-'), p && *p;) *p = ' ';
   buf[0] = toupper(buf[0]);
   p = g_strdup(_(buf));
 
@@ -73,7 +79,7 @@ gchar* game_file_to_name (const gchar* file)
 
 /*
  * This function assumes that xxx.scm has a HTML help file xxx.html
- * located in the gnome/help/aisleriot/C/ directory (or a LANG directory).
+ * located in the gnome/help/aisleriot/../ dir (nb '_' -> '-' for DocBook).
  */
 gpointer* game_file_to_help_entry (const gchar* file)
 {
@@ -83,6 +89,7 @@ gpointer* game_file_to_help_entry (const gchar* file)
 
   if ((p = strrchr (help->str, '.'))) 
     g_string_truncate (help, p - help->str);
+  for(p = help->str; p = strchr(p, '_'), p && *p;) *p = '-';
   g_string_append (help, ".html");
 
   entry = g_new (GnomeHelpMenuEntry, 1);

@@ -27,8 +27,6 @@
 
 #define UP FALSE
 #define DOWN TRUE
-#define HORIZ_SPACING 5
-#define VERT_SPACING 15
 
 /*
  * Data Structures

@@ -45,7 +45,7 @@ extern lambda_data* game_data;
 void cscm_init();
 
 /* Scheme to C functions... */
-hslot_type new_slot(SCM);
+void add_slot(SCM);
 GList* new_deck(SCM);
 hcard_type new_card(SCM);
 

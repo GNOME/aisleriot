@@ -17,6 +17,7 @@
  */
 
 #include "../freecell/gdk-card-image/gdk-card-image.h"
+#include "sol.h"
 #include "card.h"
 
 GdkPixmap *default_background_pixmap; 
@@ -54,11 +55,11 @@ int get_card_height() {
 }
 
 int get_horiz_offset() {
-  return get_card_width() + HORIZ_SPACING;
+  return get_card_width() + x_spacing;
 }
 
 int get_vert_offset() {
-  return get_card_height() + VERT_SPACING;
+  return get_card_height() + y_spacing;
 }
 
 int get_vert_start() {

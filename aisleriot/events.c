@@ -41,44 +41,40 @@ void drop_moving_cards(gint x, gint y) {
   GList* temp;
   SCM arglist;
   SCM cardlist;
-  hslot_type slot;
-  gint slotid, cardid, moved;
+  hslot_type hslot;
+  gint cardid, moved;
   gint width, height;
 
   moved = 0;
   cardlist = SCM_EOL;
 
-  slot_pressed(x+get_card_width()/2-press_data->xoffset, 
-	       y+get_card_height()/2-press_data->yoffset, 
-	       &slotid, &cardid);
+  slot_pressed(x + get_card_width() / 2 - press_data->xoffset, 
+	       y + get_card_height() / 2 - press_data->yoffset, 
+	       &hslot, &cardid);
 
-  if (slotid != -1) {
+  if (hslot) {
 
     for (temp = press_data->cards; temp; temp = temp->next)
       cardlist = gh_cons(make_card(temp->data), cardlist);
     
-    arglist = gh_cons(gh_long2scm(press_data->slot_id), 
+    arglist = gh_cons(gh_long2scm(press_data->hslot->id), 
 		      gh_cons(cardlist, 
-			      gh_cons(gh_long2scm(slotid), SCM_EOL)));
+			      gh_cons(gh_long2scm(hslot->id), SCM_EOL)));
     moved = gh_scm2bool(gh_apply(game_data->button_released_lambda, arglist));
   }
 
   if (!moved) {
-    slotid = press_data->slot_id;
-    add_cards_to_slot(press_data->cards, slotid);
+    hslot = press_data->hslot;
+    add_cards_to_slot(press_data->cards, hslot);
   }
 
-  get_slot(press_data->slot_id)->expansion_depth = 
-    press_data->temporary_partial_hack;
-
-  slot = get_slot(slotid);
-  update_slot_length(slotid);
+  update_slot_length(hslot);
   press_data->cards = NULL;
 
   gdk_window_get_size(press_data->moving_cards, &width, &height);
   gdk_window_move(press_data->moving_cards, 
-		  slot->x + slot->width - width, 
-		  slot->y + slot->height - height);
+		  hslot->x + hslot->width - width, 
+		  hslot->y + hslot->height - height);
 
   refresh_screen();
 
@@ -98,128 +94,120 @@ void drop_moving_cards(gint x, gint y) {
 
 gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
-  gint slotid, cardid;
-  hslot_type slot;
+  hslot_type hslot;
+  gint cardid;
 
-  slot_pressed(event->x,event->y, &slotid, &cardid);
+  slot_pressed(event->x,event->y, &hslot, &cardid);
 
-  if (slotid == -1)
+  if (!hslot)
     return TRUE;
 
   press_data->xoffset = event->x;
   press_data->yoffset = event->y;
-  press_data->slot_id = slotid;
-  press_data->slot_location = cardid;
+  press_data->hslot = hslot;
+  press_data->cardid = cardid;
 
   if (event->type == GDK_2BUTTON_PRESS) {
-    SCM arglist;
+    SCM arglist =  gh_cons(gh_long2scm(hslot->id), SCM_EOL);
 
-    if (press_data->moving) {
-      press_data->moving = FALSE;
-      drop_moving_cards(event->x, event->y);
-    }
-
-    arglist =  gh_cons(gh_long2scm(slotid), SCM_EOL);
     gh_apply(game_data->button_double_clicked_lambda, arglist);
     return TRUE;
   }
-  else if (press_data->button_pressed == 0) {
-
-    if (event->button == 1) {
-      press_data->button_pressed = 1;    
-    }
-    else if (event->button == 3 && cardid > 0) {
-
-      hcard_type card;
+  else if (event->button == 1) {
+    press_data->button_pressed = 1;
+    press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
+  }
+  else if (event->button == 3 && cardid > 0) {
+    hcard_type card = g_list_nth(hslot->cards, cardid - 1)->data;
+    press_data->button_pressed = 3;
+    
+    if (card->direction == UP) {      
+      guint delta = hslot->exposed - (hslot->length - cardid) - 1;
+      int x = hslot->x + delta * hslot->dx;
+      int y = hslot->y + delta * hslot->dy;
       
-      slot = get_slot(slotid);
-      card = g_list_nth(slot->cards, cardid - 1)->data;
+      press_data->status = STATUS_SHOW;
+      press_data->button_pressed = 3;
+      press_data->moving_pixmap = get_card_picture (card->suit, card->value);
+      press_data->moving_mask = mask;
       
-      if (card->direction == UP) {      
-	press_data->button_pressed = 3;
-	press_data->moving_pixmap = get_card_picture (card->suit, card->value);
-	press_data->moving_mask = mask;
-	
-	gdk_window_set_back_pixmap (press_data->moving_cards, 
-				    press_data->moving_pixmap, 0);
-	gdk_window_shape_combine_mask (press_data->moving_cards, 
-				       press_data->moving_mask, 0, 0);
-	gdk_window_move(press_data->moving_cards, slot->x, 
-			slot->y + (cardid - 1)*EXPANDED_VERT_OFFSET);
-	gdk_window_show(press_data->moving_cards);
-      }
+      gdk_window_set_back_pixmap (press_data->moving_cards, 
+				  press_data->moving_pixmap, 0);
+      gdk_window_shape_combine_mask (press_data->moving_cards, 
+				     press_data->moving_mask, 0, 0);
+      gdk_window_move(press_data->moving_cards, x, y); 
+      gdk_window_show(press_data->moving_cards);
     }
   }
-  
   return TRUE;
 }
 
 gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 {
-  if (press_data->moving) {
+  if (press_data->status == STATUS_IS_DRAG) {
     gdk_window_move(press_data->moving_cards,  
 		    event->x - press_data->xoffset,
 		    event->y - press_data->yoffset);
   }
-  else if (press_data->button_pressed == 1 &&
+  else if (press_data->status == STATUS_MAYBE_DRAG &&
 	   (abs(press_data->xoffset - event->x) > 2 ||
 	    abs(press_data->yoffset - event->y) > 2)) {
-    hslot_type slot;
-    GList* temp;
+
+    hslot_type hslot = press_data->hslot;
+    GList* glist = g_list_nth(hslot->cards, press_data->cardid - 1); 
+    SCM arglist = SCM_EOL;
     
-    slot = get_slot(press_data->slot_id);
-    press_data->button_pressed = 0;
+    for (; glist; glist = glist->next)
+      arglist = gh_cons(make_card((hcard_type)glist->data), arglist);
     
-    if (slot->cards) {
-      SCM arglist;
-      SCM cardlist = SCM_EOL;
-      
-      for (temp = g_list_nth(slot->cards, press_data->slot_location - 1); 
-	   temp; temp = temp->next) {
-	cardlist = gh_cons(make_card((hcard_type)temp->data), cardlist);
-      }
-      
-      arglist =  gh_cons(gh_long2scm(press_data->slot_id), 
-			 gh_cons(cardlist, SCM_EOL));
-      
-      press_data->moving = 
-	gh_scm2bool(gh_apply(game_data->button_pressed_lambda, arglist));
-      
-      if(press_data->moving) {
-	generate_press_data();
-	take_snapshot();
-	press_data->button_pressed = 1;
-      }
+    arglist =  gh_cons(gh_long2scm(press_data->hslot->id), 
+		       gh_cons(arglist, SCM_EOL));
+    
+    if (gh_scm2bool(gh_apply(game_data->button_pressed_lambda, arglist))) {
+      press_data->status = STATUS_IS_DRAG;
+      generate_press_data();
+      take_snapshot();
     }
+    else
+      press_data->status = STATUS_NOT_DRAG;      
   }
   return TRUE;
 }
 
 gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
-  if (event->button == 1) {
-    if (press_data->button_pressed == 1) {
-      press_data->button_pressed = 0;
-      if (press_data->moving) {
-	press_data->moving = FALSE;
-	drop_moving_cards(event->x, event->y);
-      }
-      else {
-	SCM arglist;
- 
-	arglist =  gh_cons(gh_long2scm(press_data->slot_id), SCM_EOL);
-	gh_apply(game_data->button_clicked_lambda, arglist);
-	refresh_screen();
-      } 
-    }
-  }
-  else if (event->button == 3) {
-    if (press_data->button_pressed == 3) {
+  if (event->button == press_data->button_pressed) {
 
-      press_data->button_pressed = 0;
+    SCM arglist;
+
+    switch (press_data->status) {
+    case STATUS_MAYBE_DRAG:
+    case STATUS_NOT_DRAG:
+      press_data->status = STATUS_NONE;
+      arglist = gh_cons(gh_long2scm(press_data->hslot->id), SCM_EOL);
+      gh_apply(game_data->button_clicked_lambda, arglist);
+      refresh_screen();
+      break;
+
+    case STATUS_IS_DRAG:
+      press_data->status = STATUS_NONE;
+      drop_moving_cards(event->x, event->y);
+      break;
+
+    case STATUS_SHOW:
+      press_data->status = STATUS_NONE;
       gdk_window_hide(press_data->moving_cards);
+
+      if (press_data->moving_pixmap)
+	gdk_pixmap_unref(press_data->moving_pixmap);
+      if (press_data->moving_mask)
+	gdk_pixmap_unref(press_data->moving_mask);
       press_data->moving_pixmap = NULL;
       press_data->moving_mask = NULL;
+      break;
+
+    case STATUS_NONE:
+      break;
     }
   }
   return TRUE;
@@ -236,7 +224,6 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
     gdk_pixmap_unref(surface);
   }
   else {
-    /* hack to get first timer started after gtkmain is entered */
     timer_start();
   }
 
