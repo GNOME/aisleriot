@@ -45,20 +45,41 @@ void show_game_over_dialog() {
   /* Should we use the status bar for game over reports when the user
    * look & feel prefs go for the status bar ? I think not... */
 #if 1
-  dialog = gtk_message_dialog_new (GTK_WINDOW(app),
-	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+  dialog = gtk_message_dialog_new (GTK_WINDOW (app),
+                                   GTK_DIALOG_DESTROY_WITH_PARENT,
                                    GTK_MESSAGE_QUESTION,
-																	 GTK_BUTTONS_NONE,
-																	 message);
+                                   GTK_BUTTONS_NONE,
+                                   message);
 
-	gtk_dialog_add_button(GTK_DIALOG(dialog), _("New Game"),
-	                      GTK_RESPONSE_ACCEPT);
-	/* add a stock icon? */ 
-  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) 
-	{
-		gtk_widget_destroy(dialog);
-    new_game (NULL, NULL);
-	}
+  gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+                          _("New Game"), GTK_RESPONSE_ACCEPT,
+                          GTK_STOCK_QUIT, GTK_RESPONSE_REJECT,
+                          NULL);
+
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+
+  /* add a stock icon? */ 
+  switch (gtk_dialog_run (GTK_DIALOG (dialog)))
+  {
+    case GTK_RESPONSE_ACCEPT: 
+      {
+        gtk_widget_destroy (dialog);
+        new_game (NULL, NULL);
+      }
+      break;
+    case GTK_RESPONSE_REJECT:
+      {
+        gtk_widget_destroy (dialog);
+        gtk_widget_destroy (app);
+        gtk_main_quit ();
+      }
+      break;
+    default:
+     {
+       gtk_widget_destroy (dialog);
+     }
+  }
+
 #else
   gnome_app_question_modal ( GNOME_APP (app), message, random_seed, NULL);
 #endif
