@@ -19,9 +19,10 @@
 /* Written by Changwoo Ryu <cwryu@adam.kaist.ac.kr>. */
 
 #include <config.h>
-#include <libgnomeui/gnome-stock.h>
-#include <gnome.h>
 #include <gtk/gtk.h>
+#include <libgnomeui/gnome-stock-icons.h>
+#include <libgnomeui/gnome-app-helper.h> 
+
 
 #include "io-gtk.h"
 #include "menu.h"

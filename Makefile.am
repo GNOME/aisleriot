@@ -38,4 +38,7 @@ EXTRA_DIST = \
 	game-docs.make \
 	MAINTAINERS	\
 	HACKING
+	intltool-extract.in \
+	intltool-merge.in    \
+	intltool-update.in
 
