@@ -21,7 +21,7 @@ AC_PROG_LN_S
 # See if C++ support is actually there and tell automake about it
 # so we can conditionally compile.
 AC_CHECK_PROG(CXX_PRESENT, $CXX, yes, no)
-AM_CONDITIONAL([HAVE_CXX], [test "x$CXX_PRESENT" == xyes])
+AM_CONDITIONAL([HAVE_CXX], [test "x$CXX_PRESENT" = xyes])
 
 # See if we have guile
 GAMES_CHECK_GUILE
