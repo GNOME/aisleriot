@@ -29,9 +29,18 @@ extern void games_network_new (char *server, char *port,
 extern void games_network_start (void);
 extern void games_network_stop (void);
 extern void games_network_connect (const char *id);
-extern gint games_game_move (guint, guint, guint);
+void games_send_gamedata (const gchar *msg);
+
 extern void network_set_status (NetworkGame *ng,
                                 int status, const char *message);
+extern int get_network_status (void);
+int get_mycolor (void);
+
+extern void set_game_input_cb (void (*game_input_cb)(NetworkGame *ng, char *buf));
+extern void set_game_clear_cb (void (*func)(void)); 
+extern void set_game_move_cb (gint (*func)(guint x, guint y, guint me)); 
+
+
 
 #endif
 

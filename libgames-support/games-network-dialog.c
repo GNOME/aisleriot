@@ -47,13 +47,20 @@ static GtkWidget *sw, *view, *hbox, *label, *name_entry;
 static GtkListStore *model;   
 static GtkCellRenderer *rend;
 
-/* FIXME: Another external symbol we don't neeed. */
-void gui_message (gchar *message);
+/* Callback functions  */
+void (*game_msg_cb)(gchar *message);
+
+void
+set_game_msg_cb (void (*func)(gchar *message))
+{
+  game_msg_cb = func;
+}
+
 
 void
 network_gui_message (const char *message)
 {
-  gui_message ((char *)message);
+  game_msg_cb ((char *)message);
   if (status) {
     gtk_label_set_text (GTK_LABEL(status), message);
   }
@@ -73,6 +80,7 @@ network_gui_connected(void)
 {
   gtk_widget_hide (connect_cmd);
   gtk_widget_show (start_cmd);
+  gtk_widget_set_sensitive(GTK_WIDGET(connect_cmd), TRUE);
 }
 
 void 
@@ -173,6 +181,7 @@ connect_cb (GtkWidget *widget)
   const char *id;
                                                                                                           
   gtk_list_store_clear (model);
+  gtk_widget_set_sensitive(GTK_WIDGET(connect_cmd), FALSE);
   id = gtk_entry_get_text (GTK_ENTRY(name_entry));
   if (!id || *id == '\0') {
     network_gui_message(_("Invalid name"));
@@ -195,6 +204,7 @@ static gboolean
 close_cb (GtkWidget *widget)
 {
   network_gui_close ();
+  games_network_stop ();
   return TRUE;
 }
 

@@ -151,8 +151,12 @@ class MetaServer(Thread):
 			print("Bye.")
 		 	sys.exit(0)	
 
-iagno1 = Server((ord('g')<<8)+ord('n'))
+iagno1 = Server(26478)
 iagno1.start()
+
+gnibbles1 = Server(26479)
+gnibbles1.start()
+
 
 MetaServer().start()
 

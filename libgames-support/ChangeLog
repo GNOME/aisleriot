@@ -1,4 +1,14 @@
-2004-09-02  callum  <callum@spooky-possum.org>
+2004-09-20  Andreas Røsdal <andrearo@stud.ntnu.no>
+
+	* games-network.c: Use callback functions to handle the function
+	calls from the network layer to the game. Also add the
+	function games_send_gamedata (), which makes the network
+	code more generalized.
+	* games-network-dialog.c: Use callback functions, and
+	disable the "Connect" button when no game can be started.
+	* games-server.py: Add support for gnibbles.
+
+2004-09-02  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* games-gridframe.h:
 	* games-gridframe.c: Add code to allow for a "padding" in the

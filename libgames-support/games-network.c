@@ -44,6 +44,13 @@
 static char *game_server; 
 static char *game_port;
 
+guint game_in_progress = 0;
+guint whose_turn;
+
+/* Callback functions  */
+void (*game_input_cb)(NetworkGame *ng, char *buf);
+void (*game_clear_cb)(void);
+
 static NetworkGame *netgame = NULL;
 typedef enum { CALLER_READ_CB, CALLER_WRITE_CB, CALLER_OTHER } CallerType;
 
@@ -54,13 +61,28 @@ static gboolean network_handle_write (GIOChannel *source,
 static void network_handle_input (NetworkGame *ng, char *buf);
 static gboolean network_io_setup (NetworkGame *ng, CallerType caller);
 
-/* FIXME: This is the wrong way to do this. Signals are the right way.
- * This is because of the iagno legacy. */
-/* These need to be provided by the code that it is linked to. */
-void game_handle_input (NetworkGame *, char *);
-gint move (guint, guint, guint);
-void network_start (void);
-void clear_board (void);
+int
+get_network_status (void)
+{
+  if (netgame) {
+    return netgame->status;
+  } else {
+    return 0;
+  }
+}
+
+void 
+set_game_input_cb (void (*func)(NetworkGame *ng, char *buf))
+{
+  game_input_cb = func;
+}
+
+void
+set_game_clear_cb (void (*func)(void))
+{
+  game_clear_cb = func;
+}
+
 
 void
 games_network_start (void)
@@ -114,6 +136,16 @@ network_set_status (NetworkGame *ng, int status, const char *message)
   ng->mycolor = 0;
 
   network_gui_message ((char *)message);
+}
+
+int
+get_mycolor (void)
+{
+  if (netgame) {
+    return netgame->mycolor;
+  } else {
+    return 0;
+  }
 }
 
 static gboolean
@@ -238,29 +270,20 @@ network_handle_write (GIOChannel *source, GIOCondition cond, gpointer data)
 static void
 network_handle_input (NetworkGame *ng, char *buf)
 {
-  game_handle_input (ng, buf);
+  game_input_cb (ng, buf);
 }
-                                                                                
-int
-games_game_move (guint x, guint y, guint me)
+
+void
+games_send_gamedata (const gchar *msg)
 {
   NetworkGame *ng = netgame;
 
-  gnome_triggers_do ("", NULL, "gnothello", "flip-piece", NULL);
-
-  if (ng)
-    {
-      if (me != ng->mycolor)
-	g_error ("Impossible!");
-
-      if (ng->status == CONNECTED)
-	{
-	  g_string_append_printf (ng->outbuf, "move %u %u %u\n", x, y, me);
-	  network_io_setup (ng, CALLER_OTHER);
-	}
+  if (ng) {
+    if (ng->status == CONNECTED) {
+      g_string_append_printf (ng->outbuf, msg);
+      network_io_setup (ng, CALLER_OTHER);
     }
-
-  return move (x, y, me);
+  }
 }
 
 int
@@ -331,7 +354,7 @@ games_network_connect(const char *id)
   }
 
   player_name = id;
-  network_start ();
+  games_network_start (); 
 
   if (!game_server) {
     network_set_status (netgame, DISCONNECTED, _("No game server defined"));
@@ -341,7 +364,7 @@ games_network_connect(const char *id)
   if (netgame->status != CONNECTED)
     network_connect ();
 
-  clear_board ();
+  game_clear_cb ();
   
  
   g_string_append_printf (netgame->outbuf, "new_game %s \n", player_name);
