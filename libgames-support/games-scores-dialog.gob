@@ -179,14 +179,19 @@ class Games:Scores:Dialog from Gtk:Dialog {
     self->_priv->hilight = 0;
 
     gtk_dialog_set_has_separator (GTK_DIALOG (self), FALSE);
+    gtk_container_set_border_width (GTK_CONTAINER (self), 5);
+    gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (self)->vbox), 2);
 
     g_signal_connect (G_OBJECT (self), "show", 
 		      G_CALLBACK (games_scores_dialog_show), NULL);
     g_signal_connect (G_OBJECT (self), "hide", 
 		      G_CALLBACK (games_scores_dialog_hide), NULL);
 
-    vbox = GTK_DIALOG (self)->vbox;
- 
+    vbox = gtk_vbox_new (FALSE, 6);
+    gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
+    gtk_box_pack_end (GTK_BOX (GTK_DIALOG (self)->vbox), vbox, TRUE, TRUE, 
+                      0);
+
     scroll = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
 				    GTK_POLICY_AUTOMATIC,
@@ -196,15 +201,15 @@ class Games:Scores:Dialog from Gtk:Dialog {
 					 GTK_SHADOW_ETCHED_IN);
     gtk_box_pack_end (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
     
-    hbox = gtk_hbox_new (FALSE, 5);
-    gtk_box_pack_end (GTK_BOX (vbox), hbox, FALSE, FALSE, 5);
+    hbox = gtk_hbox_new (FALSE, 12);
+    gtk_box_pack_end (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
     self->_priv->label = gtk_label_new ("");
     gtk_box_pack_start (GTK_BOX (hbox), self->_priv->label, FALSE, FALSE, 
-			5);	
+			0);	
    
     self->_priv->combo = gtk_combo_box_new_text ();
-    gtk_box_pack_start (GTK_BOX (hbox), self->_priv->combo, TRUE, TRUE, 5);
+    gtk_box_pack_start (GTK_BOX (hbox), self->_priv->combo, TRUE, TRUE, 0);
 
     g_signal_connect (G_OBJECT (self->_priv->combo), "changed", 
 		      G_CALLBACK (games_scores_dialog_change_category), self);
