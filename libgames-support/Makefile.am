@@ -35,6 +35,8 @@ libgames_support_la_SOURCES =		\
 	games-network.h			\
         games-network-dialog.c          \
         games-network-dialog.h          \
+        games-preimage.c                \
+        games-preimage.h                \
 	$(NULL)
 
 EXTRA_DIST = $(card_DATA)

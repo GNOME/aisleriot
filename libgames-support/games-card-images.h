@@ -27,6 +27,8 @@ G_BEGIN_DECLS
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
+#include "games-preimage.h"
+
 enum {
   GAMES_CARD_ACE         = 1,
   GAMES_CARD_TWO         = 2,
@@ -58,6 +60,9 @@ typedef struct _GamesCardImages {
   gint height;
 
   gchar * themename;
+
+  GamesPreimage * preimage;
+  gboolean prescaled;
 
   GdkPixbuf * source;
   gint subwidth, subheight;

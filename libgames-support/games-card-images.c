@@ -23,8 +23,8 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 #include "games-card-images.h"
-
 #include "games-card-common.h"
+#include "games-preimage.h"
 
 G_DEFINE_TYPE(GamesCardImages, games_card_images, G_TYPE_OBJECT);
 
@@ -44,9 +44,16 @@ static void games_card_images_render (GamesCardImages * images, gint cardid)
   subpixbuf = gdk_pixbuf_new_subpixbuf (images->source, sx*images->subwidth, 
 					sy*images->subheight,
 					images->subwidth, images->subheight);
-  images->pixbufs[cardid] = gdk_pixbuf_scale_simple (subpixbuf, images->width, 
-						     images->height, 
-						     GDK_INTERP_BILINEAR);
+  if (images->prescaled){
+    images->pixbufs[cardid]=subpixbuf;
+    g_object_ref (images->pixbufs[cardid]);
+  } else {
+    images->pixbufs[cardid] = gdk_pixbuf_scale_simple (subpixbuf,
+                                                       images->width,
+                                                       images->height, 
+                                                       GDK_INTERP_BILINEAR);
+  }
+  
   images->rendered[cardid] = TRUE;
   g_object_unref (subpixbuf);
 }
@@ -57,21 +64,34 @@ static void games_card_images_prerender (GamesCardImages * images)
 
   /* FIXME: We should search a path. */
   fullname = g_strconcat (CARDDIR, images->themename, NULL);
-  images->source = gdk_pixbuf_new_from_file (fullname, NULL);
-  g_free (fullname);
-
-  if (!images->source) {
-    g_warning ("Using a fallback card image set.");
-    fullname = CARDDIR"bonded.png";
-    images->source = gdk_pixbuf_new_from_file (fullname, NULL);    
+  if (!images->preimage) {
+    images->preimage = games_preimage_new_from_uri (fullname, NULL);
   }
 
-  if (!images->source) {
+  g_free (fullname);
+
+  if (!images->preimage) {
+    g_warning ("Using a fallback card image set.");
+    fullname = CARDDIR"bonded.png";
+    images->preimage = games_preimage_new_from_uri (fullname, NULL);    
+  }
+
+  if (!images->preimage) {
     /* FIXME: Find a better way to report errors. */
     g_warning ("Failed to load the fallback file.\n");
   }
 
-  images->subwidth = gdk_pixbuf_get_width (images->source)/13;
+  images->prescaled = games_preimage_is_scalable (images->preimage);
+  
+  if (!images->prescaled){
+    images->source = games_preimage_render_unscaled_pixbuf (images->preimage);
+  } else {
+    images->source = games_preimage_render (images->preimage, 
+                                            images->width*13, 
+                                            images->height*5, NULL);
+  }
+
+  images->subwidth  = gdk_pixbuf_get_width (images->source)/13;
   images->subheight = gdk_pixbuf_get_height (images->source)/5;
 
   images->prerendered = TRUE;
@@ -149,6 +169,11 @@ void games_card_images_set_theme (GamesCardImages * images, gchar * name)
 
   images->themename = g_strdup (name);
 
+  if (images->preimage != NULL){
+    g_object_unref (images->preimage);
+    images->preimage=NULL;
+  }
+
   games_card_images_purge (images);
 }
 
@@ -169,7 +194,10 @@ static void games_card_images_init (GamesCardImages *cardimages)
   /* This is the size of the original gdk-card-image cards. */
   cardimages->width = 79;
   cardimages->height = 123;
-  cardimages->themename = g_strdup ("bonded-new.png");
+  cardimages->themename = g_strdup ("bonded.png");
+
+  cardimages->preimage = NULL;
+  cardimages->prescaled = FALSE;
 
   cardimages->prerendered = FALSE;
   cardimages->rendered = g_new0 (gboolean, GAMES_CARDS_TOTAL);
