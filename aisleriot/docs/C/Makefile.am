@@ -27,6 +27,7 @@ help_DATA = index.html	\
 	diamond-mine.html	\
 	doublets.html	\
 	eagle-wing.html	\
+	easthaven.html	\
 	eight-off.html	\
 	elevator.html	\
 	escalator.html	\
@@ -38,6 +39,7 @@ help_DATA = index.html	\
 	glenwood.html	\
 	golf.html	\
 	gypsy.html	\
+	helsinki.html	\
 	hopscotch.html	\
 	isabel.html	\
 	jamestown.html	\
@@ -62,6 +64,7 @@ help_DATA = index.html	\
 	seahaven.html	\
 	sir-tommy.html	\
 	spider.html	\
+	spiderette.html	\
 	straight-up.html	\
 	thieves.html	\
 	thirteen.html	\
@@ -71,6 +74,7 @@ help_DATA = index.html	\
 	valentine.html	\
 	westhaven.html	\
 	whitehead.html	\
+	will-o-the-wisp.html	\
 	yield.html	\
 	yukon.html 	\
 	zebra.html 
@@ -94,6 +98,7 @@ help_SGML = \
 	diamond_mine.sgml	\
 	doublets.sgml	\
 	eagle-wing.sgml	\
+	easthaven.sgml	\
 	eight_off.sgml	\
 	elevator.sgml	\
 	escalator.sgml	\
@@ -105,6 +110,7 @@ help_SGML = \
 	glenwood.sgml	\
 	golf.sgml	\
 	gypsy.sgml	\
+	helsinki.sgml	\
 	hopscotch.sgml	\
 	isabel.sgml	\
 	jamestown.sgml	\
@@ -129,6 +135,7 @@ help_SGML = \
 	seahaven.sgml	\
 	sir_tommy.sgml	\
 	spider.sgml	\
+	spiderette.sgml	\
 	straight_up.sgml	\
 	thieves.sgml	\
 	thirteen.sgml	\
@@ -138,6 +145,7 @@ help_SGML = \
 	valentine.sgml	\
 	westhaven.sgml	\
 	whitehead.sgml	\
+	will_o_the_wisp.sgml	\
 	yield.sgml	\
 	yukon.sgml 	\
 	zebra.sgml 

@@ -44,10 +44,10 @@ sol_LDADD = -lgdk_imlib $(GNOME_LIBDIR) $(GNOMEUI_LIBS) \
 
 types_DATA  = 		\
 	agnes.scm	\
-	auld_lang_syne.scm \
-	bakers_dozen.scm \
+	auld_lang_syne.scm	\
+	bakers_dozen.scm	\
 	bakers_game.scm	\
-	beleaguered_castle.scm \
+	beleaguered_castle.scm	\
 	block_ten.scm	\
 	bristol.scm	\
 	camelot.scm	\
@@ -57,6 +57,7 @@ types_DATA  = 		\
 	diamond_mine.scm	\
 	doublets.scm	\
 	eagle_wing.scm	\
+	easthaven.scm	\
 	eight_off.scm	\
 	elevator.scm	\
 	escalator.scm	\
@@ -68,6 +69,7 @@ types_DATA  = 		\
 	glenwood.scm	\
 	golf.scm	\
 	gypsy.scm	\
+	helsinki.scm	\
 	hopscotch.scm	\
 	isabel.scm	\
 	jamestown.scm	\
@@ -78,7 +80,7 @@ types_DATA  = 		\
 	labyrinth.scm	\
 	lady_jane.scm	\
 	maze.scm	\
-	monte_carlo.scm \
+	monte_carlo.scm	\
 	neighbor.scm	\
 	odessa.scm	\
 	osmosis.scm	\
@@ -93,15 +95,17 @@ types_DATA  = 		\
 	sir_tommy.scm	\
 	sol.scm		\
 	spider.scm	\
+	spiderette.scm	\
 	straight_up.scm	\
 	thieves.scm     \
 	thirteen.scm	\
-	thumb_and_pouch.scm \
+	thumb_and_pouch.scm	\
 	treize.scm	\
-	union_square.scm \
+	union_square.scm	\
 	valentine.scm	\
 	westhaven.scm	\
 	whitehead.scm	\
+	will_o_the_wisp.scm	\
 	yield.scm	\
 	yukon.scm	\
 	zebra.scm
