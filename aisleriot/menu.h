@@ -27,6 +27,7 @@
 /* Call backs... */
 int file_quit_callback (GtkWidget*, void* );
 int game_load_game_callback (GtkWidget*, void* );
+int file_select_game_callback (GtkWidget*, void* );
 int file_new_game_callback (GtkWidget*, void* );
 int game_hint_callback (GtkWidget*, void* );
 int help_about_callback (GtkWidget*, void* );

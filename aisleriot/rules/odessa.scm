@@ -211,8 +211,9 @@
 
 (define (get-hint ugh)
   (let ((hint (game-over #t)))
-	 (display hint)(newline)
-	 (list 1 (get-name (make-card (+ -1 (get-value (car hint))) (get-suit (car hint)))) (get-name (car hint)))))
+	 (if (eq? ace (get-value (car hint)))
+		  (list 2 (get-name (car hint)) "an empty slot" )
+		  (list 1 (get-name (make-card (+ -1 (get-value (car hint))) (get-suit (car hint)))) (get-name (car hint))))))
 
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
 

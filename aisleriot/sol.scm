@@ -100,7 +100,6 @@
 		  (#t "Unknown suit")))
 
 (define (get-name card)
-  (display "in get-name of ")(display card)(newline)
   (string-append (get-value-name (get-value card)) " of "(get-suit-name (get-suit card))))
 
 ;color handling

@@ -237,6 +237,7 @@ printf("configure_event\n");
 									event->width,
 									event->height,
 									gtk_widget_get_visual (playing_area)->depth);
+  
   refresh_screen();
   return TRUE;
 

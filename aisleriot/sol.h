@@ -26,7 +26,7 @@
  * Constants
  */
 #define SURFACE_WIDTH 920
-#define SURFACE_HEIGHT 680
+#define SURFACE_HEIGHT 650
 #define GAME_EVENTS (GDK_EXPOSURE_MASK              |\
 							GDK_BUTTON_PRESS_MASK          |\
 							GDK_POINTER_MOTION_MASK        |\
@@ -36,14 +36,19 @@
 
 #ifndef SOL_C
 extern GtkWidget* playing_area;
+extern GtkWidget* app;
 extern GdkPixmap *snapshot;
 extern GdkPixmap *blank_surface;
 extern GdkPixmap *surface;
 extern GdkPixmap *moving_card_pixmap;
 gint score;
 extern GtkWidget *scorew;
+extern gint seed;
+extern GtkWidget *label;
+extern GString* game;
 #endif
 void set_score();
+void make_title();
 
 
 #endif

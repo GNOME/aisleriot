@@ -33,18 +33,26 @@
   (add-normal-slot '())
   (add-normal-slot '())
   (add-normal-slot '())
+  (set! HORIZPOS (+ 21 HORIZPOS))
   (add-normal-slot '())
   (add-normal-slot '())
   (add-normal-slot '())
   (add-normal-slot '())
   (add-carriage-return-slot)
   (add-extended-slot '() down) ; 8
+  (set! HORIZPOS (+ 3 HORIZPOS))
   (add-extended-slot '() down) ; 9
+  (set! HORIZPOS (+ 3 HORIZPOS))
   (add-extended-slot '() down) ; 10
+  (set! HORIZPOS (+ 3 HORIZPOS))
   (add-extended-slot '() down) ; 11
+  (set! HORIZPOS (+ 3 HORIZPOS))
   (add-extended-slot '() down) ; 12
+  (set! HORIZPOS (+ 3 HORIZPOS))
   (add-extended-slot '() down) ; 13
+  (set! HORIZPOS (+ 3 HORIZPOS))
   (add-extended-slot '() down) ; 14
+  (set! HORIZPOS (+ 3 HORIZPOS))
   (add-extended-slot '() down) ; 15
   (add-blank-slot)
   (deal-initial-setup)

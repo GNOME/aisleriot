@@ -42,14 +42,15 @@
  */
 
 GtkWidget *scorew;
-GtkWidget *app, *playing_area,  *vb;
+GtkWidget *label;
+GtkWidget *app, *playing_area, *vb, *hb;
 GtkMenuFactory *mf;
 GdkPixmap *surface, *blank_surface;
 GdkPixmap *snapshot = NULL;
 GdkPixmap *moving_card_pixmap;
 gint score;
 gint seed;
-
+GString* game;
 press_data_type* press_data = NULL; 
 
 
@@ -63,6 +64,19 @@ void set_score()
 
   sprintf (b, "%5d", score);
   gtk_label_set(GTK_LABEL(scorew), b);
+}
+
+void make_title() 
+{
+  GString* title;
+  title = g_string_new(game->str);
+  if (!strcmp(".scm", (title->str + title->len - 4))) 
+	 g_string_truncate(title, title->len - 4);
+  g_string_append(title, "  --  ");
+  g_string_sprintfa(title, "%5d", seed);
+
+
+  gtk_window_set_title(GTK_WINDOW(app),title->str); 
 }
 
 void create_sol_board ()
@@ -150,7 +164,6 @@ void eval_installed_file (char *file)
 			  
 void main_prog(int argc, char *argv[])
 {
-  GtkWidget *label, *hb;
   
   printf(_("Done.\ninitializing gnome/gdk...\n"));
   gnome_init ("aisleriot", &argc, &argv);
@@ -164,7 +177,10 @@ void main_prog(int argc, char *argv[])
   
   /* generic startup... */
   printf(_("Creating App...\n"));
-  srandom(time(NULL));
+  seed = time(NULL);
+  srandom(seed);
+  seed = random();
+  srandom(seed);
   app = create_main_window ();
   vb = gtk_vbox_new (FALSE, 0);
   hb = gtk_hbox_new (FALSE, 0);
@@ -199,11 +215,13 @@ void main_prog(int argc, char *argv[])
   gh_new_procedure1_0("random", scm_random);
   eval_installed_file ("sol.scm");
   eval_installed_file ("klondike.scm");
+  game = g_string_new("klondike.scm");
   gh_apply(game_data->start_game_lambda, SCM_EOL);
   create_sol_board();
 
-  /* create the menus */
+  /* create the menus and title */
   create_menus(GNOME_APP(app));
+  make_title();
 
   /* create the scoring widget */
   label = gtk_label_new (_("Score: "));
