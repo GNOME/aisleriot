@@ -1,3 +1,44 @@
+gnome-games 2.9.4
+=================
+
+This is the feature-complete version of gnome-games leading up to
+2.10.  Most of the work since the last release has gone into restoring
+the missing features in same-gnome.  While there are one or two bugs I
+know about, please report any that you find.
+
+Other changes:
+
+General:
+ - games-preimage usage has been changed to remove unnecessary
+   gnome-vfs dependencies (rah).
+ - New, generic, high scores widget based on the gnomine one (callum).
+
+Aisleriot:
+ - Swapped the "new game" and "quit" buttons on the end-of-game dialog. 
+   It doesn't really matter, but it seems better this way around in same-gnome
+   and I want to be consistent (callum).
+
+Mahjongg:
+ - Behave nicely when the requested theme cannot be found (rah).
+
+Mines:
+ - Use the new high scores widget. It looks like the old one though (callum).
+
+Same GNOME:
+ - High scores now work (callum).
+ - The theme selector now works. I will also search in you home directory
+   under $XDG_DATA_HOME/gnome-games/same-gnome/themes/2.10 $XDG_DATA_HOME is
+   $HOME/.local/share if you haven't set it explicitly. A better UI for this
+   will appear in the future. The system-wide theme location has also changed
+   because the format has changed (callum).
+ - The game-over dialog is much improved. It gives a quit option and, if you
+   scored in the top 10, displays the high score table (callum).
+ - The stones theme has been restored, but still has a slight animation glitch 
+   (callum).
+ - Undo and Redo work (callum).
+ - Fullscreen mode works (callum).
+ - Online help works (callum).
+
 gnome-games 2.9.3
 =================
 
