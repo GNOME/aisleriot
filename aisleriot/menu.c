@@ -53,14 +53,14 @@ void random_seed ()
 void undo_callback ()
 {
   if (waiting_for_mouse_up()) return;
-  scm_c_eval_string ("(undo)");
+  gh_eval_str ("(undo)");
   refresh_screen();
 }
 
 void redo_callback ()
 {
   if (waiting_for_mouse_up()) return;
-  scm_c_eval_string ("(redo)");
+  gh_eval_str ("(redo)");
   refresh_screen();
 }
 static void

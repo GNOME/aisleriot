@@ -55,7 +55,7 @@ void generate_press_data ( ) {
   GdkColor masked = {0, 0, 0, 0}, unmasked = {1, 65535, 65535, 65535};
 
   for (tempptr = hslot->cards; tempptr; tempptr = tempptr->next)
-    old_cards = scm_cons (make_card(tempptr->data), old_cards);
+    old_cards = gh_cons(make_card(tempptr->data), old_cards);
 
   delta = hslot->exposed - (hslot->length - press_data->cardid) - 1;
   press_data->xoffset -= x = hslot->pixelx + delta * hslot->pixeldx;
@@ -119,9 +119,8 @@ void generate_press_data ( ) {
   else 
     hslot->cards = NULL;
 
-  scm_call_2 (scm_c_eval_string ("record-move"),
-	      scm_long2num (hslot->id), 
-	      old_cards);
+  gh_call2 (gh_eval_str ("record-move"), gh_long2scm (hslot->id), 
+	   old_cards);
 
   press_data->cards->prev = NULL;
   update_slot_length(press_data->hslot);

@@ -39,8 +39,8 @@ void add_slot(SCM slot_data)
 
   hslot->id = SCM_INUM(SCM_CAR(slot_data));
   hslot->cards = new_deck(SCM_CADR(slot_data));
-  hslot->x = scm_num2dbl (SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))), NULL);
-  hslot->y = scm_num2dbl (SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))), NULL);
+  hslot->x = gh_scm2double (SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))));
+  hslot->y = gh_scm2double (SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))));
   
   hslot->dx = hslot->dy = 0;
   hslot->expansion_depth = 0;
@@ -101,9 +101,9 @@ GList* new_deck(SCM deck_data)
 /* C to Scheme functions... */
 SCM make_card(hcard_type card) 
 {
-  return scm_cons(scm_long2num(card->value),
-		 scm_cons(scm_long2num(card->suit),
-			  scm_cons(SCM_BOOL(!card->direction), SCM_EOL)));
+  return gh_cons(gh_long2scm(card->value),
+		 gh_cons(gh_long2scm(card->suit),
+			 gh_cons(gh_bool2scm(!card->direction), SCM_EOL)));
 }
 
 /* Scheme functions */
@@ -111,6 +111,7 @@ static SCM scm_gettext(SCM message)
 {
   static char * input = NULL;
   char * output;
+  size_t len;
 
   /* This is needed because we can't free the string before returning
    * if it isn't translated. This way we have a permanent one-string
@@ -118,16 +119,16 @@ static SCM scm_gettext(SCM message)
   if (!input)
     free (input);
   
-  input = SCM_STRING_CHARS (message);
-  output = _(input);
-  return scm_makfrom0str (output);
+  input = gh_scm2newstr (message, &len);
+  output = gettext (input);
+  return gh_str02scm (output);
 }
 
 static SCM scm_undo_set_sensitive (SCM in_state)
 {
   gboolean state;
 
-  state = SCM_NFALSEP (in_state) ? TRUE : FALSE;
+  state = gh_scm2bool (in_state) ? TRUE : FALSE;
   undo_set_sensitive (state);
 
   return SCM_EOL;
@@ -137,7 +138,7 @@ static SCM scm_redo_set_sensitive (SCM in_state)
 {
   gboolean state;
 
-  state = SCM_NFALSEP (in_state) ? TRUE : FALSE;
+  state = gh_scm2bool (in_state) ? TRUE : FALSE;
   redo_set_sensitive (state);
 
   return SCM_EOL;
@@ -146,7 +147,7 @@ static SCM scm_redo_set_sensitive (SCM in_state)
 static SCM scm_set_statusbar_message(SCM message)
 {
   gnome_appbar_clear_stack (GNOME_APPBAR (GNOME_APP (app)->statusbar));
-  gnome_appbar_push (GNOME_APPBAR(GNOME_APP (app)->statusbar), _(SCM_STRING_CHARS(message)));
+  gnome_appbar_push (GNOME_APPBAR(GNOME_APP (app)->statusbar), _(gh_scm2newstr(message,NULL)));
   return SCM_EOL;
 }
 
@@ -178,36 +179,36 @@ static SCM gg_scm_add_slot(SCM slot)
 
 static SCM scm_set_slot_y_expansion(SCM scm_slot_id, SCM new_exp_val)
 {
-  hslot_type slot = get_slot(scm_num2int(scm_slot_id, SCM_ARG1, NULL));
-  slot->dy = scm_num2dbl (new_exp_val, NULL);
+  hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
+  slot->dy = gh_scm2double (new_exp_val);
   return SCM_EOL;
 }
 
 static SCM scm_set_slot_x_expansion(SCM scm_slot_id, SCM new_exp_val)
 {
-  hslot_type slot = get_slot(scm_num2int(scm_slot_id, SCM_ARG1, NULL));
-  slot->dx = scm_num2dbl (new_exp_val, NULL);
+  hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
+  slot->dx = gh_scm2double (new_exp_val);
   return SCM_EOL;
 }
 
 static SCM scm_get_slot(SCM scm_slot_id) 
 {
   SCM cards = SCM_EOL;
-  hslot_type slot = get_slot(scm_num2int(scm_slot_id, SCM_ARG1, NULL));
+  hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
   GList* tempcard;
   
   if (slot) {
     for (tempcard = slot->cards; tempcard; tempcard = tempcard->next)
-      cards = scm_cons(make_card(tempcard->data), cards);
+      cards = gh_cons(make_card(tempcard->data), cards);
 
-    cards = scm_cons(scm_slot_id, scm_cons(cards, SCM_EOL));
+    cards = gh_cons(scm_slot_id, gh_cons(cards, SCM_EOL));
   }
   return cards; 
 }
 
 static SCM scm_set_cards(SCM scm_slot_id, SCM new_cards) 
 {
-  hslot_type hslot = get_slot(scm_num2int(scm_slot_id, SCM_ARG1, NULL));
+  hslot_type hslot = get_slot(gh_scm2int(scm_slot_id));
   GList* tempptr;
   
   for (tempptr = hslot->cards; tempptr; tempptr = tempptr->next)
@@ -239,66 +240,71 @@ static SCM scm_set_lambda(SCM start_game_lambda,
   game_data->game_over_lambda = game_over_lambda;
   game_data->winning_game_lambda = winning_game_lambda;
   game_data->hint_lambda = hint_lambda;
-  game_data->get_options_lambda = SCM_CAR(rest);
-  game_data->apply_options_lambda = SCM_CADR(rest);
-  game_data->timeout_lambda = SCM_CADDR(rest);
+  game_data->get_options_lambda = gh_car(rest);
+  game_data->apply_options_lambda = gh_cadr(rest);
+  game_data->timeout_lambda = gh_caddr(rest);
   return SCM_EOL;
 }
 
 static SCM scm_myrandom(SCM range) 
 {
-  return scm_long2num(g_random_int_range(0,SCM_INUM(range)));
+  return gh_long2scm(g_random_int_range(0,SCM_INUM(range)));
 }
 
 static SCM scm_get_score() 
 {
-  return scm_long2num(score);
+  return gh_int2scm(score);
 }
 
 static SCM scm_set_score(SCM new) 
 {
-  score = scm_num2int(new, SCM_ARG1, NULL);
+  score = gh_scm2int(new);
   set_score();
-  return scm_long2num(score);
+  return gh_int2scm(score);
 }
 
 static SCM scm_add_to_score(SCM new) 
 {
-  score += scm_num2int(new, SCM_ARG1, NULL);
+  score += gh_scm2int(new);
   set_score();
-  return scm_long2num(score);
+  return gh_int2scm(score);
 }
 
 static SCM scm_set_timeout (SCM new) 
 {
-  timeout = scm_num2int(new, SCM_ARG1, NULL);
+  timeout = gh_scm2int(new);
   return new;
 }
 
 static SCM scm_get_timeout () 
 {
-  return scm_long2num(timeout);
+  return gh_int2scm(timeout);
 }
 
 void cscm_init () 
 {
-  scm_c_define_gsubr("set-statusbar-message", 1, 0, 0, scm_set_statusbar_message);
-  scm_c_define_gsubr("set-surface-layout", 1, 0, 0, scm_set_surface_layout);
-  scm_c_define_gsubr("reset-surface", 0, 0, 0, scm_reset_surface);
-  scm_c_define_gsubr("add-slot", 1, 0, 0, gg_scm_add_slot);
-  scm_c_define_gsubr("get-slot", 1, 0, 0, scm_get_slot);  
-  scm_c_define_gsubr("set-cards-c!", 2, 0, 0, scm_set_cards);
-  scm_c_define_gsubr("set-slot-y-expansion!", 2, 0, 0, scm_set_slot_y_expansion);
-  scm_c_define_gsubr("set-slot-x-expansion!", 2, 0, 0, scm_set_slot_x_expansion);
-  scm_c_define_gsubr("set-lambda", 8, 0, 1, scm_set_lambda);
-  scm_c_define_gsubr("random", 1, 0, 0, scm_myrandom);
-  scm_c_define_gsubr("get-score", 0, 0, 0, scm_get_score);  
-  scm_c_define_gsubr("set-score!", 1, 0, 0, scm_set_score);
-  scm_c_define_gsubr("get-timeout", 0, 0, 0, scm_get_timeout);  
-  scm_c_define_gsubr("set-timeout!", 1, 0, 0, scm_set_timeout);
-  scm_c_define_gsubr("add-to-score!", 1, 0, 0, scm_add_to_score);
-  scm_c_define_gsubr("_", 1, 0, 0, scm_gettext);
-  scm_c_define_gsubr("undo-set-sensitive", 1, 0, 0, scm_undo_set_sensitive);
-  scm_c_define_gsubr("redo-set-sensitive", 1, 0, 0, scm_redo_set_sensitive);
+  /* FIXME: On 1997-11-14, gh_enter stopped loading `icd-9/boot-9.scm'.
+     In my copy of guile, the first define in boot-9.scm is for "provide",
+     and it looked as good a test as any  */
+  gh_eval_str ("(if (not (defined? \'provide))\n"
+  	       "  (primitive-load-path \"ice-9/boot-9.scm\"))");
+  gh_new_procedure1_0("set-statusbar-message", scm_set_statusbar_message);
+  gh_new_procedure1_0("set-surface-layout", scm_set_surface_layout);
+  gh_new_procedure0_0("reset-surface", scm_reset_surface);
+  gh_new_procedure1_0("add-slot", gg_scm_add_slot);
+  gh_new_procedure1_0("get-slot", scm_get_slot);  
+  gh_new_procedure2_0("set-cards-c!", scm_set_cards);
+  gh_new_procedure2_0("set-slot-y-expansion!", scm_set_slot_y_expansion);
+  gh_new_procedure2_0("set-slot-x-expansion!", scm_set_slot_x_expansion);
+  gh_new_procedure("set-lambda", scm_set_lambda, 8, 0, 1);
+  gh_new_procedure1_0("random", scm_myrandom);
+  gh_new_procedure0_0("get-score", scm_get_score);  
+  gh_new_procedure1_0("set-score!", scm_set_score);
+  gh_new_procedure0_0("get-timeout", scm_get_timeout);  
+  gh_new_procedure1_0("set-timeout!", scm_set_timeout);
+  gh_new_procedure1_0("add-to-score!", scm_add_to_score);
+  gh_new_procedure("_", scm_gettext, 1, 0, 0);
+  gh_new_procedure1_0("undo-set-sensitive", scm_undo_set_sensitive);
+  gh_new_procedure1_0("redo-set-sensitive", scm_redo_set_sensitive);
   eval_installed_file ("sol.scm");
 }

@@ -27,6 +27,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <libguile.h>
+#include <guile/gh.h>
 #include <ctype.h>
 #include "sol.h"
 #include "events.h"
@@ -145,7 +146,7 @@ void eval_installed_file (char *file)
   char *relative;
   
   if (g_file_test (file, G_FILE_TEST_EXISTS)){
-    scm_c_primitive_load (file);
+    gh_eval_file (file);
     return;
   }
   
@@ -155,8 +156,8 @@ void eval_installed_file (char *file)
                                                   relative,
                                                   FALSE, NULL);
 
-  if (g_file_test (installed_filename, G_FILE_TEST_EXISTS)){
-    scm_c_primitive_load (installed_filename);
+  if (g_file_test(installed_filename, G_FILE_TEST_EXISTS)){
+    gh_eval_file (installed_filename);
   } else {
     char *message = g_strdup_printf (
          _("Aisleriot can't load the file: \n%s\n\n"
@@ -243,15 +244,14 @@ void new_game (gchar* file, guint *seedp)
   set_score();
   timer_reset ();
 
-  size = scm_call_0(game_data->start_game_lambda);
-  scm_c_eval_string ("(start-game)");
+  size = gh_call0(game_data->start_game_lambda);
+  gh_eval_str ("(start-game)");
 
-  set_geometry (scm_num2double (SCM_CAR (size), 0, NULL),
-		scm_num2double (SCM_CADR (size), 0, NULL));
+  set_geometry (gh_scm2double (gh_car (size)), gh_scm2double (gh_cadr (size)));
 
   /* It is possible for some games to not have any moves right from the
    * start. If this happens we redeal. */
-  if (!SCM_NFALSEP (scm_call_0 (game_data->game_over_lambda))) {
+  if (!gh_scm2bool (gh_call0 (game_data->game_over_lambda))) {
     new_game (file, NULL);
   } else {
     if (surface)
@@ -280,7 +280,7 @@ GtkWidget *time_value;
 static gint timer_cb ()
 {
   timeout = 3600;
-  scm_call_0(game_data->timeout_lambda);
+  gh_call0(game_data->timeout_lambda);
   end_of_game_test();
   return 0;	
 }
@@ -385,10 +385,10 @@ static void create_main_window ()
 
 gchar* start_game;
 
-static void main_prog(void *closure, int argc, char *argv[])
+static void main_prog(int argc, char *argv[])
 {
   GtkWidget *score_label, *time_label, *score_box, *status_bar;
-
+  
   cscm_init();
 
   create_main_window ();
@@ -499,6 +499,6 @@ int main (int argc, char *argv [])
     g_free (var_file);
   }
 
-  scm_boot_guile (argc, argv, main_prog, NULL);
+  gh_enter(argc, argv, main_prog);
   return 0;
 }
