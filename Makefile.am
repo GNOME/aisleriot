@@ -1,5 +1,5 @@
 if OBJECTIVE_C
-objc_DIRS = phaser-chess
+objc_DIRS = 
 endif
 
 if GUILE
