@@ -2,14 +2,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games HEAD\n"
-"POT-Creation-Date: 2003-06-30 11:26+0700\n"
-"PO-Revision-Date: 2003-06-29 22:52+0700\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-10-25 08:47+0700\n"
+"PO-Revision-Date: 2004-10-23 19:28+0700\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: (null)\n"
 
 #: aisleriot/agnes.scm.h:1 aisleriot/canfield.scm.h:1
 #: aisleriot/chessboard.scm.h:1 aisleriot/eagle_wing.scm.h:1
@@ -68,6 +68,7 @@ msgstr "Bagikan kartu"
 #: aisleriot/osmosis.scm.h:3 aisleriot/peek.scm.h:3 aisleriot/quatorze.scm.h:1
 #: aisleriot/royal_east.scm.h:7 aisleriot/scuffle.scm.h:4
 #: aisleriot/sir_tommy.scm.h:3 aisleriot/spider.scm.h:4
+#: aisleriot/spider_one_suit.scm.h:4 aisleriot/spider_two_suit.scm.h:4
 #: aisleriot/spiderette.scm.h:3 aisleriot/straight_up.scm.h:5
 #: aisleriot/thieves.scm.h:2 aisleriot/thirteen.scm.h:2
 #: aisleriot/thumb_and_pouch.scm.h:4 aisleriot/treize.scm.h:2
@@ -75,54 +76,96 @@ msgstr "Bagikan kartu"
 #: aisleriot/whitehead.scm.h:3 aisleriot/will_o_the_wisp.scm.h:3
 #: aisleriot/yield.scm.h:2 aisleriot/zebra.scm.h:4
 msgid "Stock left:"
-msgstr ""
+msgstr "Sisa stok:"
 
 #: aisleriot/agnes.scm.h:8 aisleriot/lady_jane.scm.h:8
 msgid "Stock left: 0"
-msgstr ""
+msgstr "Sisa stok: 0"
 
 #: aisleriot/agnes.scm.h:9 aisleriot/bakers_dozen.scm.h:1
 #: aisleriot/beleaguered_castle.scm.h:1 aisleriot/canfield.scm.h:11
 #: aisleriot/jumbo.scm.h:5 aisleriot/king_albert.scm.h:1
 #: aisleriot/lady_jane.scm.h:9 aisleriot/streets_and_alleys.scm.h:1
 msgid "Try rearranging the cards"
-msgstr ""
+msgstr "Cobalah atur lagi kartunya"
 
 #: aisleriot/agnes.scm.h:10
 #, fuzzy
 msgid "an empty foundation pile"
 msgstr "slot kosong di bawah"
 
-#: aisleriot/aisleriot.schemas.in.h:1 blackjack/data/blackjack.schemas.in.h:1
+#: aisleriot/aisleriot.schemas.in.h:1
 msgid ""
-"A string containing a list of files to use to describe the cards. The format "
-"is obscure and defined by the gdk-card-image library"
+"A list of strings that come in the form of a quintuple: name, wins, total "
+"games played, best time (in seconds) and worst time (also in seconds). "
+"Unplayed games do not need to be represented."
 msgstr ""
 
 #: aisleriot/aisleriot.schemas.in.h:2
-msgid "The game file to use"
+msgid "Select the style of control"
 msgstr ""
 
 #: aisleriot/aisleriot.schemas.in.h:3
+msgid ""
+"Select whether to drag the cards or to click on the source then the "
+"destination."
+msgstr ""
+
+#: aisleriot/aisleriot.schemas.in.h:4
+msgid "Statistics of games played"
+msgstr ""
+
+#: aisleriot/aisleriot.schemas.in.h:5
+msgid "The game file to use"
+msgstr "File gim yang akan dimainkan"
+
+#: aisleriot/aisleriot.schemas.in.h:6 glines/glines.schemas.in.h:11
+#, fuzzy
+msgid "The height of the main window."
+msgstr "Ukuran kotak permainan"
+
+#: aisleriot/aisleriot.schemas.in.h:7 blackjack/data/blackjack.schemas.in.h:5
+#, fuzzy
+msgid "The name of the file with the graphics for the cards."
+msgstr "Nama berkas aturan berisi variasi peraturan permainan."
+
+#: aisleriot/aisleriot.schemas.in.h:8
 msgid "The name of the scheme file containing the solitaire game to play."
-msgstr ""
+msgstr "Nama file skema yang berisi permainan solitaire."
 
-#: aisleriot/aisleriot.schemas.in.h:4 blackjack/data/blackjack.schemas.in.h:10
-msgid "What card style to use"
-msgstr ""
+#: aisleriot/aisleriot.schemas.in.h:9 glines/glines.schemas.in.h:12
+#, fuzzy
+msgid "The width of the main window."
+msgstr "Ukuran kotak permainan"
 
-#: aisleriot/aisleriot.schemas.in.h:5 blackjack/data/blackjack.schemas.in.h:11
+#: aisleriot/aisleriot.schemas.in.h:10 blackjack/data/blackjack.schemas.in.h:8
+#, fuzzy
+msgid "Theme file name"
+msgstr "Berkas tema"
+
+#: aisleriot/aisleriot.schemas.in.h:11
+#: blackjack/data/blackjack.schemas.in.h:11
 msgid "Whether or not to show the toolbar"
 msgstr ""
 
-#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:12
+#: aisleriot/aisleriot.schemas.in.h:12
+#: blackjack/data/blackjack.schemas.in.h:12
 msgid "Whether or not to show the toolbar."
+msgstr ""
+
+#: aisleriot/aisleriot.schemas.in.h:13 glines/glines.schemas.in.h:15
+msgid "Window height"
+msgstr ""
+
+#: aisleriot/aisleriot.schemas.in.h:14 glines/glines.schemas.in.h:16
+msgid "Window width"
 msgstr ""
 
 #: aisleriot/auld_lang_syne.scm.h:1 aisleriot/bristol.scm.h:1
 #: aisleriot/first_law.scm.h:1 aisleriot/fortunes.scm.h:2
 #: aisleriot/lady_jane.scm.h:6 aisleriot/scuffle.scm.h:1
-#: aisleriot/spider.scm.h:1 aisleriot/thumb_and_pouch.scm.h:1
+#: aisleriot/spider.scm.h:1 aisleriot/spider_one_suit.scm.h:1
+#: aisleriot/spider_two_suit.scm.h:1 aisleriot/thumb_and_pouch.scm.h:1
 #: aisleriot/zebra.scm.h:1
 msgid "Deal another round"
 msgstr "Bagikan ronde lain"
@@ -136,7 +179,7 @@ msgstr "slot kosong di bawah"
 #: aisleriot/bakers_game.scm.h:1 aisleriot/eight_off.scm.h:1
 #: aisleriot/seahaven.scm.h:1
 msgid "Move something on to an empty reserve"
-msgstr ""
+msgstr "PIndahkan ke tempat kosong"
 
 #: aisleriot/bakers_game.scm.h:2 aisleriot/chessboard.scm.h:8
 #: aisleriot/easthaven.scm.h:4 aisleriot/eight_off.scm.h:2
@@ -242,19 +285,19 @@ msgstr "Kuncinya adalah konsisten"
 
 #: aisleriot/clock.scm.h:2
 msgid "Fishing wire makes bad dental floss"
-msgstr ""
+msgstr "Jangan gunakan kabel pancing untuk dental floss"
 
 #: aisleriot/clock.scm.h:3
 msgid "Have you read the help file?"
-msgstr ""
+msgstr "Sudahkan membaca keterangan cara bermain?"
 
 #: aisleriot/clock.scm.h:4
 msgid "I could sure use a backrub right about now..."
-msgstr ""
+msgstr "Tolonglah garuk punggung saya..."
 
 #: aisleriot/clock.scm.h:5
 msgid "If you're ever lost and alone in the woods, hug a tree"
-msgstr ""
+msgstr "Kalau tersesat sendirian di hutan, peluk saja pohon yang paling besar"
 
 #: aisleriot/clock.scm.h:6
 msgid ""
@@ -263,19 +306,19 @@ msgstr ""
 
 #: aisleriot/clock.scm.h:7
 msgid "Look both ways before you cross the street"
-msgstr ""
+msgstr "Lihat kiri kanan sebelum menyeberang jalan"
 
 #: aisleriot/clock.scm.h:8
 msgid "Monitors won't give you Vitamin D -- but sunlight will..."
-msgstr ""
+msgstr "Sumber Vitamin D adalah matahari, bukannya layar monitor..."
 
 #: aisleriot/clock.scm.h:9
 msgid "Never blow in a dog's ear"
-msgstr ""
+msgstr "Jangan pernah meniup telinga anjing"
 
 #: aisleriot/clock.scm.h:10
 msgid "Odessa is a better game.  Really."
-msgstr ""
+msgstr "Main Odessa saja, lebih seru!"
 
 #: aisleriot/clock.scm.h:11
 msgid "Tourniquets are not recommended unless in the direst emergency"
@@ -285,40 +328,32 @@ msgstr ""
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr ""
 
-#: aisleriot/dialog.c:43
-#, fuzzy
-msgid "Congratulations."
-msgstr ""
-"Selamat\n"
-"\n"
-"Anda Menang!!!"
-
-#: aisleriot/dialog.c:44
-msgid "You won!!!"
-msgstr ""
-
 #: aisleriot/dialog.c:46
-#, fuzzy
-msgid "Game over."
-msgstr "Permainan Usai"
+msgid "Congratulations."
+msgstr "Selamat."
 
-#: aisleriot/dialog.c:58
+#: aisleriot/dialog.c:47
+msgid "You won!!!"
+msgstr "Anda menang!!!"
+
+#: aisleriot/dialog.c:49
+msgid "Game over."
+msgstr "Permainan Usai."
+
+#: aisleriot/dialog.c:61
 msgid "New Game"
 msgstr "Permainan Baru"
 
-#: aisleriot/dialog.c:132 mahjongg/mahjongg.c:1582
+#: aisleriot/dialog.c:164
 msgid "Select Game"
 msgstr "Pilih Permainan"
 
-#: aisleriot/dialog.c:141
-msgid "Seed"
-msgstr "Benih"
-
-#: aisleriot/dialog.c:159
+#. Rules Tab
+#: aisleriot/dialog.c:179 blackjack/src/dialog.cpp:250
 msgid "Rules"
 msgstr "Peraturan"
 
-#: aisleriot/dialog.c:244
+#: aisleriot/dialog.c:258
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -326,45 +361,45 @@ msgstr ""
 "Permainan telah usai.\n"
 "Tidak ada petunjuk yang tersedia"
 
-#: aisleriot/dialog.c:250
+#: aisleriot/dialog.c:264
 msgid "This game does not have hint support yet."
 msgstr "Permainan ini tidak mendukung petunjuk"
 
-#: aisleriot/dialog.c:262 aisleriot/dialog.c:270
-#, fuzzy, c-format
+#: aisleriot/dialog.c:276 aisleriot/dialog.c:284
+#, c-format
 msgid "Move %s onto %s."
 msgstr "Pindahkan %s ke %s."
 
-#: aisleriot/dialog.c:278
-#, fuzzy, c-format
+#: aisleriot/dialog.c:292
+#, c-format
 msgid "Move %s %s."
-msgstr "Pindahkan %s ke %s."
+msgstr "Pindahkan %s %s."
 
-#: aisleriot/dialog.c:281
+#: aisleriot/dialog.c:295
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
 "the name of the game you where playing (look in the title bar if you \n"
 "aren't sure)."
 msgstr ""
+"Permainan ini menggunakan metoda bermain yang usang (kasus 3).\n"
+"Silakan catatkan bug ini pada http://bugzilla.gnome.org dan isikan pesan "
+"ini\n"
+"serta nama permainan yang Anda mainkan (lihat pada judul jendela di atas)."
 
-#: aisleriot/dialog.c:286
+#: aisleriot/dialog.c:300
 #, c-format
 msgid "You are searching for a %s."
-msgstr ""
+msgstr "Anda mencari %s."
 
-#: aisleriot/dialog.c:291
+#: aisleriot/dialog.c:305
 msgid "This game is unable to provide a hint."
-msgstr ""
+msgstr "Permainan tidak dapat memberi saran."
 
-#: aisleriot/dialog.c:344
+#: aisleriot/dialog.c:357
 #, fuzzy
-msgid "AisleRiot Preferences"
-msgstr "Setting"
-
-#: aisleriot/dialog.c:349
-msgid "Card Style"
-msgstr ""
+msgid "AisleRiot Cards"
+msgstr "AisleRiot"
 
 #: aisleriot/diamond_mine.scm.h:2
 msgid "the foundation pile"
@@ -392,68 +427,67 @@ msgstr ""
 
 #: aisleriot/first_law.scm.h:2
 msgid "I'm not sure"
-msgstr ""
+msgstr "Tidak yakin"
 
 #: aisleriot/first_law.scm.h:3
 msgid "Remove the aces"
-msgstr ""
+msgstr "Buang semua as"
 
 #: aisleriot/first_law.scm.h:4
 msgid "Remove the eights"
-msgstr ""
+msgstr "Buang semua delapan"
 
 #: aisleriot/first_law.scm.h:5
 msgid "Remove the fives"
-msgstr ""
+msgstr "Buang semua lima"
 
 #: aisleriot/first_law.scm.h:6
 msgid "Remove the fours"
-msgstr ""
+msgstr "Buang semua empat"
 
 #: aisleriot/first_law.scm.h:7
 msgid "Remove the jacks"
-msgstr ""
+msgstr "Buang semua jack"
 
 #: aisleriot/first_law.scm.h:8
 msgid "Remove the kings"
-msgstr ""
+msgstr "Buang semua raja"
 
 #: aisleriot/first_law.scm.h:9
 msgid "Remove the nines"
-msgstr ""
+msgstr "Buang semua sembilan"
 
 #: aisleriot/first_law.scm.h:10
 msgid "Remove the queens"
-msgstr ""
+msgstr "Buang semua ratu"
 
 #: aisleriot/first_law.scm.h:11
 msgid "Remove the sevens"
-msgstr ""
+msgstr "Buang semua tujuh"
 
 #: aisleriot/first_law.scm.h:12
 msgid "Remove the sixes"
-msgstr ""
+msgstr "Buang semua enam"
 
 #: aisleriot/first_law.scm.h:13
 msgid "Remove the tens"
-msgstr ""
+msgstr "Buang semua sepuluh"
 
 #: aisleriot/first_law.scm.h:14
-#, fuzzy
 msgid "Remove the threes"
-msgstr "Pindahkan %s ke %s."
+msgstr "Buang semua tiga"
 
 #: aisleriot/first_law.scm.h:15
 msgid "Remove the twos"
-msgstr ""
+msgstr "Buang semua dua"
 
 #: aisleriot/first_law.scm.h:16
 msgid "Return cards to Stock"
-msgstr ""
+msgstr "Kembalikan kartu ke Stok"
 
 #: aisleriot/fortunes.scm.h:1
 msgid "Consider moving something into an empty slot"
-msgstr ""
+msgstr "Coba pindahkan satu kartu ke tempat yang kosong"
 
 #: aisleriot/fortunes.scm.h:3
 #, fuzzy
@@ -461,16 +495,41 @@ msgid "Move ~a off the board"
 msgstr "diluar papan"
 
 #: aisleriot/freecell.desktop.in.h:1
-msgid "FreeCell"
-msgstr "FreeCell"
+#, fuzzy
+msgid "FreeCell Solitaire"
+msgstr "permainan Freecel"
 
 #: aisleriot/freecell.desktop.in.h:2
-msgid "FreeCell game"
-msgstr "permainan Freecel"
+msgid "Play the popular FreeCell card game"
+msgstr ""
+
+#: aisleriot/freecell.scm.h:1
+#, fuzzy
+msgid "No moves available"
+msgstr "Tidak ada petunjuk"
+
+#: aisleriot/freecell.scm.h:2
+#, fuzzy
+msgid "an empty reserve"
+msgstr "ruang kosong pada meja"
+
+#: aisleriot/freecell.scm.h:3
+#, fuzzy
+msgid "an open tableau"
+msgstr "ruang kosong pada meja"
+
+#: aisleriot/freecell.scm.h:4
+msgid "game has no solution"
+msgstr ""
+
+#: aisleriot/freecell.scm.h:5
+#, fuzzy
+msgid "the foundation"
+msgstr "slot kosong di bawah"
 
 #: aisleriot/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
-msgstr ""
+msgstr "Pindahkan kartu dari tempat cadangan ke slot kosong pada meja"
 
 #: aisleriot/glenwood.scm.h:10
 msgid "Select a card from the reserve for first foundation pile"
@@ -485,10 +544,6 @@ msgstr ""
 #: aisleriot/whitehead.scm.h:1
 msgid "Deal another card"
 msgstr "Bagi kartu lain"
-
-#: aisleriot/golf.scm.h:3
-msgid "bdc\n"
-msgstr ""
 
 #: aisleriot/gypsy.scm.h:1
 #, fuzzy
@@ -508,7 +563,6 @@ msgid "Move waste to stock"
 msgstr ""
 
 #: aisleriot/jumbo.scm.h:7 aisleriot/king_albert.scm.h:3
-#, fuzzy
 msgid "an empty tableau slot"
 msgstr "ruang kosong pada meja"
 
@@ -530,9 +584,8 @@ msgid "Try moving cards down from the foundation"
 msgstr ""
 
 #: aisleriot/lady_jane.scm.h:1 aisleriot/royal_east.scm.h:1
-#, fuzzy
 msgid "Base Card:"
-msgstr "Kartu Dasar: "
+msgstr "Kartu Dasar:"
 
 #: aisleriot/maze.scm.h:1
 msgid ""
@@ -540,123 +593,154 @@ msgid ""
 "naturally."
 msgstr ""
 
-#: aisleriot/menu.c:67 blackjack/src/menu.cpp:73 gnome-stones/main.c:1069
-#: gnomine/gnomine.c:337 mahjongg/mahjongg.c:1328
-#, fuzzy
+#: aisleriot/menu.c:77 gnome-stones/main.c:1083 gnomine/gnomine.c:533
+#: mahjongg/mahjongg.c:1624
 msgid "Main game:"
-msgstr "Permainan Ataxx"
+msgstr "Permainan utama:"
 
-#: aisleriot/menu.c:72
-#, fuzzy
+#: aisleriot/menu.c:83
 msgid "Card games:"
-msgstr "Sisi belakang kartu:"
+msgstr "Gim kartu:"
 
 #. Translator credits
-#: aisleriot/menu.c:87 gataxx/gataxx.c:398 glines/glines.c:806
-#: gnect/src/dialog.c:63 gnibbles/main.c:167 gnobots2/menu.c:193
-#: gnome-stones/main.c:1080 gnometris/tetris.cpp:1086 gnomine/gnomine.c:350
-#: gnotravex/gnotravex.c:1483 gnotski/gnotski.c:1140 gtali/gyahtzee.c:371
-#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1344 same-gnome/same-gnome.c:714
+#: aisleriot/menu.c:98 blackjack/src/menu.cpp:84 gataxx/gataxx.c:367
+#: glines/glines.c:958 gnect/src/main.c:816 gnibbles/main.c:184
+#: gnobots2/menu.c:224 gnome-stones/main.c:1094 gnometris/tetris.cpp:1425
+#: gnomine/gnomine.c:553 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1136
+#: gtali/gyahtzee.c:407 iagno/gnothello.c:368 mahjongg/mahjongg.c:1648
+#: same-gnome/same-gnome.c:707
 msgid "translator-credits"
 msgstr "Mohammad DAMT <mdamt@bisnisweb.com>"
 
-#: aisleriot/menu.c:108 aisleriot/sol.desktop.in.h:1 aisleriot/splash.c:91
+#: aisleriot/menu.c:119
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
-#: aisleriot/menu.c:111
+#: aisleriot/menu.c:122
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
-msgstr ""
+msgstr "AisleRiot menyediakan beragam gim kartu yang dapat dimainkan sendiri."
 
-#: aisleriot/menu.c:176
+#: aisleriot/menu.c:199
 msgid "Game _options..."
-msgstr ""
+msgstr "_Pilihan gim..."
 
-#: aisleriot/menu.c:177
+#: aisleriot/menu.c:200
 msgid "Modify the options for this game"
-msgstr ""
+msgstr "Ubah pilihan gim ini"
 
-#: aisleriot/menu.c:183 blackjack/src/menu.cpp:148 gnect/src/gui.c:76
-#: mahjongg/mahjongg.c:375
+#: aisleriot/menu.c:206 blackjack/src/menu.cpp:155 gnect/src/main.c:1189
+#: mahjongg/mahjongg.c:825
 msgid "_Toolbar"
-msgstr ""
+msgstr "Ba_tang alat"
 
-#: aisleriot/menu.c:183 blackjack/src/menu.cpp:149 gnect/src/gui.c:76
-#: mahjongg/mahjongg.c:376
+#: aisleriot/menu.c:206 blackjack/src/menu.cpp:156 mahjongg/mahjongg.c:826
 msgid "Show or hide the toolbar"
+msgstr "Tampilkan atau sembunyikan batang alat"
+
+#: aisleriot/menu.c:209
+msgid "_Cards..."
 msgstr ""
 
-#: aisleriot/menu.c:205
+#: aisleriot/menu.c:209
 #, fuzzy
-msgid "_Select..."
-msgstr "Pilih"
+msgid "Change the appearance of the cards"
+msgstr "as hati"
 
-#: aisleriot/menu.c:205 aisleriot/menu.c:250
+#: aisleriot/menu.c:232
+msgid "_Select..."
+msgstr "_Pilih..."
+
+#: aisleriot/menu.c:232 aisleriot/menu.c:280
 msgid "Select a different game"
+msgstr "Pilih gim lain"
+
+#: aisleriot/menu.c:234
+msgid "S_tatistics..."
 msgstr ""
 
-#: aisleriot/menu.c:244 blackjack/src/menu.cpp:196 gnect/src/gui.c:99
-#: mahjongg/mahjongg.c:405
+#: aisleriot/menu.c:234
+#, fuzzy
+msgid "Get statistics on the current game"
+msgstr "Ulangi level ini"
+
+#: aisleriot/menu.c:245
+#, fuzzy
+msgid "_Click to move"
+msgstr "Gerakan cepat"
+
+#: aisleriot/menu.c:245
+msgid "Use clicks instead of drags to move cards"
+msgstr ""
+
+#: aisleriot/menu.c:265
+#, fuzzy
+msgid "_Control"
+msgstr "Kendali"
+
+#: aisleriot/menu.c:274 blackjack/src/menu.cpp:203 gnect/src/main.c:1213
+#: gnobots2/menu.c:106 mahjongg/mahjongg.c:848
 msgid "New"
 msgstr "Buat baru"
 
-#: aisleriot/menu.c:244 gnect/src/gui.c:99
+#: aisleriot/menu.c:274 gnect/src/main.c:1214 gnobots2/menu.c:106
 msgid "Start a new game"
 msgstr "Mulai gim baru"
 
-#: aisleriot/menu.c:247 blackjack/src/menu.cpp:199 mahjongg/mahjongg.c:409
+#: aisleriot/menu.c:277 blackjack/src/menu.cpp:206 mahjongg/mahjongg.c:852
 msgid "Restart"
-msgstr ""
+msgstr "Restart"
 
-#: aisleriot/menu.c:247
-#, fuzzy
+#: aisleriot/menu.c:277
 msgid "Restart the game"
-msgstr "Mulai gim baru"
+msgstr "Ulangi gim"
 
-#: aisleriot/menu.c:250
+#: aisleriot/menu.c:280
 msgid "Select"
 msgstr "Pilih"
 
-#: aisleriot/menu.c:255 gnect/src/gui.c:100 mahjongg/mahjongg.c:421
+#: aisleriot/menu.c:285 gnect/src/main.c:1216 mahjongg/mahjongg.c:864
 msgid "Undo"
-msgstr ""
+msgstr "Batalkan"
 
-#: aisleriot/menu.c:255 gnect/src/gui.c:100
+#: aisleriot/menu.c:285 gnect/src/main.c:1216
 msgid "Undo the last move"
 msgstr "Batalkan langkah terakhir"
 
-#: aisleriot/menu.c:258 mahjongg/mahjongg.c:425
+#: aisleriot/menu.c:288 mahjongg/mahjongg.c:868
 msgid "Redo"
-msgstr ""
+msgstr "Ulangi"
 
-#: aisleriot/menu.c:258
-#, fuzzy
+#: aisleriot/menu.c:288
 msgid "Redo the undone move"
-msgstr "Batalkan langkah terakhir"
+msgstr "Jadikan lagi langkah terakhir"
 
-#: aisleriot/menu.c:261 blackjack/src/menu.cpp:203 gnect/src/gui.c:101
-#: mahjongg/mahjongg.c:427
+#: aisleriot/menu.c:291 blackjack/src/menu.cpp:210 gnect/src/main.c:1217
+#: mahjongg/mahjongg.c:870
 msgid "Hint"
-msgstr ""
+msgstr "Petunjuk"
 
-#: aisleriot/menu.c:261 gnect/src/gui.c:101
+#: aisleriot/menu.c:291 gnect/src/main.c:1217
 msgid "Get a hint for your next move"
 msgstr "Petunjuk untuk langkah berikutnya"
+
+#: aisleriot/menu.c:316
+msgid "View help for the current game"
+msgstr ""
 
 #: aisleriot/pileon.scm.h:2
 msgid "something"
 msgstr "sesuatu"
 
 #: aisleriot/plait.scm.h:3
-msgid "Move ~a to an empty field"
-msgstr ""
+#, fuzzy
+msgid "Move ~a from the stock to an empty edge or tableau slot"
+msgstr "Pindahkan kartu dari tempat cadangan ke slot kosong pada meja"
 
 #: aisleriot/plait.scm.h:4
-#, fuzzy
-msgid "Try a new game"
-msgstr "Mulai gim baru"
+msgid "Move ~a to an empty field"
+msgstr ""
 
 #: aisleriot/poker.scm.h:1
 msgid "Place cards on to the Tableau to form poker hands"
@@ -685,12 +769,12 @@ msgstr ""
 msgid "empty foundation"
 msgstr "slot kosong di bawah"
 
-#: aisleriot/sol.c:131
+#: aisleriot/sol.c:136
 #, fuzzy, c-format
-msgid "AisleRiot: %s (%d)"
-msgstr "AisleRiot"
+msgid "AisleRiot: %s"
+msgstr "AisleRiot: %s (%d)"
 
-#: aisleriot/sol.c:158
+#: aisleriot/sol.c:163
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -698,54 +782,48 @@ msgid ""
 "\n"
 "Please check your Aisleriot installation"
 msgstr ""
+"Aisleriot tidak dapat membuka berkas:\n"
+"%s\n"
+"\n"
+"Silakan periksa apakah program Aisleriot sudah dipasang dengan benar."
 
-#: aisleriot/sol.c:211 aisleriot/sol.c:230
-msgid "Help"
-msgstr "Bantuan"
-
-#: aisleriot/sol.c:230 aisleriot/sol.c:378
+#: aisleriot/sol.c:375
 msgid "Aisleriot"
-msgstr ""
+msgstr "Aisleriot"
 
-#: aisleriot/sol.c:417
-msgid "Loading images..."
-msgstr ""
-
-#: aisleriot/sol.c:423
-msgid "Dealing game..."
-msgstr ""
-
-#: aisleriot/sol.c:429 gnobots2/statusbar.c:65 gnome-stones/status.c:71
-#: gnometris/scoreframe.cpp:53 gnomine/gnomine.c:343
-#: same-gnome/same-gnome.c:954
+#: aisleriot/sol.c:402 glines/glines.c:1566 gnobots2/statusbar.c:65
+#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:58 gnomine/gnomine.c:542
+#: same-gnome/same-gnome.c:957
 msgid "Score:"
-msgstr ""
+msgstr "Nilai:"
 
-#: aisleriot/sol.c:433 gnomine/gnomine.c:953 gnotravex/gnotravex.c:1011
-#: mahjongg/mahjongg.c:2029
+#: aisleriot/sol.c:406 gnomine/gnomine.c:1103 gnotravex/gnotravex.c:1019
+#: mahjongg/mahjongg.c:2107
 msgid "Time:"
-msgstr ""
+msgstr "Waktu:"
 
-#: aisleriot/sol.c:500 blackjack/src/blackjack.cpp:586
+#: aisleriot/sol.c:456 blackjack/src/blackjack.cpp:588
 msgid "Variation on game rules"
 msgstr "Variasi peraturan permainan"
 
-#: aisleriot/sol.c:501 blackjack/src/blackjack.cpp:587 gnobots2/gnobots.c:60
-#: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:887
+#: aisleriot/sol.c:457 blackjack/src/blackjack.cpp:589 gnobots2/gnobots.c:61
+#: gnobots2/gnobots.c:63 same-gnome/same-gnome.c:887
 msgid "NAME"
 msgstr "NAMA"
 
-#: aisleriot/sol.c:521
-msgid "Initializing scheme..."
-msgstr ""
+#: aisleriot/sol.desktop.in.h:1
+#, fuzzy
+msgid "AisleRiot Solitaire"
+msgstr "AisleRiot"
 
 #: aisleriot/sol.desktop.in.h:2
-msgid "Card-based solitaire suite"
-msgstr "Kumpulan permainan kartu yang dimainkan sendiri"
+#, fuzzy
+msgid "Play many different solitaire games"
+msgstr "Pilih gim lain"
 
 #: aisleriot/sol.scm.h:1
 msgid "Unknown color"
-msgstr ""
+msgstr "Warna tidak diketahui"
 
 #: aisleriot/sol.scm.h:2
 msgid "Unknown suit"
@@ -757,7 +835,7 @@ msgstr ""
 
 #: aisleriot/sol.scm.h:4
 msgid "ace"
-msgstr ""
+msgstr "as"
 
 #: aisleriot/sol.scm.h:5
 msgid "black joker"
@@ -773,7 +851,7 @@ msgstr "wajik"
 
 #: aisleriot/sol.scm.h:8
 msgid "eight"
-msgstr "delaoan"
+msgstr "delapan"
 
 #: aisleriot/sol.scm.h:9
 msgid "five"
@@ -804,9 +882,8 @@ msgid "queen"
 msgstr "ratu"
 
 #: aisleriot/sol.scm.h:16
-#, fuzzy
 msgid "red joker"
-msgstr "Joker hitam"
+msgstr "Joker merah"
 
 #: aisleriot/sol.scm.h:17
 msgid "seven"
@@ -826,215 +903,215 @@ msgstr "sepuluh"
 
 #: aisleriot/sol.scm.h:21
 msgid "the ace of clubs"
-msgstr ""
+msgstr "as keriting"
 
 #: aisleriot/sol.scm.h:22
 msgid "the ace of diamonds"
-msgstr ""
+msgstr "as wajik"
 
 #: aisleriot/sol.scm.h:23
 msgid "the ace of hearts"
-msgstr ""
+msgstr "as hati"
 
 #: aisleriot/sol.scm.h:24
 msgid "the ace of spades"
-msgstr ""
+msgstr "as sekop"
 
 #: aisleriot/sol.scm.h:25
 msgid "the eight of clubs"
-msgstr ""
+msgstr "delapan keriting"
 
 #: aisleriot/sol.scm.h:26
 msgid "the eight of diamonds"
-msgstr ""
+msgstr "delapan wajik"
 
 #: aisleriot/sol.scm.h:27
 msgid "the eight of hearts"
-msgstr ""
+msgstr "delapan hati"
 
 #: aisleriot/sol.scm.h:28
 msgid "the eight of spades"
-msgstr ""
+msgstr "delapan sekop"
 
 #: aisleriot/sol.scm.h:29
 msgid "the five of clubs"
-msgstr ""
+msgstr "lima keriting"
 
 #: aisleriot/sol.scm.h:30
 msgid "the five of diamonds"
-msgstr ""
+msgstr "lima wajik"
 
 #: aisleriot/sol.scm.h:31
 msgid "the five of hearts"
-msgstr ""
+msgstr "lima hati"
 
 #: aisleriot/sol.scm.h:32
 msgid "the five of spades"
-msgstr ""
+msgstr "lima sekop"
 
 #: aisleriot/sol.scm.h:33
 msgid "the four of clubs"
-msgstr ""
+msgstr "empat keriting"
 
 #: aisleriot/sol.scm.h:34
 msgid "the four of diamonds"
-msgstr ""
+msgstr "empat wajik"
 
 #: aisleriot/sol.scm.h:35
 msgid "the four of hearts"
-msgstr ""
+msgstr "empat hati"
 
 #: aisleriot/sol.scm.h:36
 msgid "the four of spades"
-msgstr ""
+msgstr "empat sekop"
 
 #: aisleriot/sol.scm.h:37
 msgid "the jack of clubs"
-msgstr ""
+msgstr "jack keriting"
 
 #: aisleriot/sol.scm.h:38
 msgid "the jack of diamonds"
-msgstr ""
+msgstr "jack wajik"
 
 #: aisleriot/sol.scm.h:39
 msgid "the jack of hearts"
-msgstr ""
+msgstr "jack hati"
 
 #: aisleriot/sol.scm.h:40
 msgid "the jack of spades"
-msgstr ""
+msgstr "jack sekop"
 
 #: aisleriot/sol.scm.h:41
 msgid "the king of clubs"
-msgstr ""
+msgstr "raja keriting"
 
 #: aisleriot/sol.scm.h:42
 msgid "the king of diamonds"
-msgstr ""
+msgstr "raja wajik"
 
 #: aisleriot/sol.scm.h:43
 msgid "the king of hearts"
-msgstr ""
+msgstr "raja hati"
 
 #: aisleriot/sol.scm.h:44
 msgid "the king of spades"
-msgstr ""
+msgstr "raja sekop"
 
 #: aisleriot/sol.scm.h:45
 msgid "the nine of clubs"
-msgstr ""
+msgstr "sembilan keriting"
 
 #: aisleriot/sol.scm.h:46
 msgid "the nine of diamonds"
-msgstr ""
+msgstr "sembilan wajik"
 
 #: aisleriot/sol.scm.h:47
 msgid "the nine of hearts"
-msgstr ""
+msgstr "sembilan hati"
 
 #: aisleriot/sol.scm.h:48
 msgid "the nine of spades"
-msgstr ""
+msgstr "sembilan sekop"
 
 #: aisleriot/sol.scm.h:49
 msgid "the queen of clubs"
-msgstr ""
+msgstr "ratu keriting"
 
 #: aisleriot/sol.scm.h:50
 msgid "the queen of diamonds"
-msgstr ""
+msgstr "ratu wajik"
 
 #: aisleriot/sol.scm.h:51
 msgid "the queen of hearts"
-msgstr ""
+msgstr "ratu hati"
 
 #: aisleriot/sol.scm.h:52
 msgid "the queen of spades"
-msgstr ""
+msgstr "ratu sekop"
 
 #: aisleriot/sol.scm.h:53
 msgid "the seven of clubs"
-msgstr ""
+msgstr "tujuh keriting"
 
 #: aisleriot/sol.scm.h:54
 msgid "the seven of diamonds"
-msgstr ""
+msgstr "tujuh wajik"
 
 #: aisleriot/sol.scm.h:55
 msgid "the seven of hearts"
-msgstr ""
+msgstr "tujuh hati"
 
 #: aisleriot/sol.scm.h:56
 msgid "the seven of spades"
-msgstr ""
+msgstr "tujuh sekop"
 
 #: aisleriot/sol.scm.h:57
 msgid "the six of clubs"
-msgstr ""
+msgstr "enam keriting"
 
 #: aisleriot/sol.scm.h:58
 msgid "the six of diamonds"
-msgstr ""
+msgstr "enam wajik"
 
 #: aisleriot/sol.scm.h:59
 msgid "the six of hearts"
-msgstr ""
+msgstr "enam hati"
 
 #: aisleriot/sol.scm.h:60
 msgid "the six of spades"
-msgstr ""
+msgstr "enam sekop"
 
 #: aisleriot/sol.scm.h:61
 msgid "the ten of clubs"
-msgstr ""
+msgstr "sepuluh keriting"
 
 #: aisleriot/sol.scm.h:62
 msgid "the ten of diamonds"
-msgstr ""
+msgstr "sepuluh wajik"
 
 #: aisleriot/sol.scm.h:63
 msgid "the ten of hearts"
-msgstr ""
+msgstr "sepuluh hati"
 
 #: aisleriot/sol.scm.h:64
 msgid "the ten of spades"
-msgstr ""
+msgstr "sepuluh sekop"
 
 #: aisleriot/sol.scm.h:65
 msgid "the three of clubs"
-msgstr ""
+msgstr "tiga keriting"
 
 #: aisleriot/sol.scm.h:66
 msgid "the three of diamonds"
-msgstr ""
+msgstr "tiga wajik"
 
 #: aisleriot/sol.scm.h:67
 msgid "the three of hearts"
-msgstr ""
+msgstr "tiga hati"
 
 #: aisleriot/sol.scm.h:68
 msgid "the three of spades"
-msgstr ""
+msgstr "tiga sekop"
 
 #: aisleriot/sol.scm.h:69
 msgid "the two of clubs"
-msgstr ""
+msgstr "dua keriting"
 
 #: aisleriot/sol.scm.h:70
 msgid "the two of diamonds"
-msgstr ""
+msgstr "dua wajik"
 
 #: aisleriot/sol.scm.h:71
 msgid "the two of hearts"
-msgstr ""
+msgstr "dua hati"
 
 #: aisleriot/sol.scm.h:72
 msgid "the two of spades"
-msgstr ""
+msgstr "dua sekop"
 
 #: aisleriot/sol.scm.h:73
 msgid "the unknown card"
-msgstr ""
+msgstr "kartu tidak diketahui"
 
 #: aisleriot/sol.scm.h:74
 msgid "three"
@@ -1044,21 +1121,78 @@ msgstr "tiga"
 msgid "two"
 msgstr "dua"
 
-#: aisleriot/spider.scm.h:2
+#: aisleriot/spider.scm.h:2 aisleriot/spider_one_suit.scm.h:2
+#: aisleriot/spider_two_suit.scm.h:2
 msgid "Place something on empty slot"
-msgstr ""
+msgstr "Letakkan apa saja pada slot kosong"
 
-#: aisleriot/spider.scm.h:3
+#: aisleriot/spider.scm.h:3 aisleriot/spider_one_suit.scm.h:3
+#: aisleriot/spider_two_suit.scm.h:3
 msgid "Please fill in empty pile first."
-msgstr ""
+msgstr "Isikan dulu tumpukan yang masih kosong."
 
-#: aisleriot/spider.scm.h:5
+#: aisleriot/spider.scm.h:5 aisleriot/spider_one_suit.scm.h:5
+#: aisleriot/spider_two_suit.scm.h:5
 msgid "Try moving card piles around"
-msgstr ""
+msgstr "Coba pindahkan kartu-kartu dalam tumpukan ke tumpukan lain"
 
 #: aisleriot/spiderette.scm.h:2 aisleriot/will_o_the_wisp.scm.h:2
 msgid "Place something on to the empty Tableau slot"
+msgstr "Letakkan apa saja pada slot kosong pada meja"
+
+#. For translators: N/A means "Not Applicable", use whatever
+#. * abbreviation you have for a value that has no meaning.
+#: aisleriot/statistics.c:95 aisleriot/statistics.c:104
+#: aisleriot/statistics.c:113
+msgid "N/A"
 msgstr ""
+
+#. Translators: this represents minutes:seconds.
+#: aisleriot/statistics.c:99 aisleriot/statistics.c:108
+#, c-format
+msgid "%d:%02d"
+msgstr ""
+
+#: aisleriot/statistics.glade.h:1
+msgid "<b>Time</b>"
+msgstr ""
+
+#: aisleriot/statistics.glade.h:2
+msgid "<b>Wins</b>"
+msgstr ""
+
+#: aisleriot/statistics.glade.h:3
+#, fuzzy
+msgid "Best:"
+msgstr "Ukuran sendiri"
+
+#: aisleriot/statistics.glade.h:4
+msgid "Percentage:"
+msgstr ""
+
+#: aisleriot/statistics.glade.h:5
+msgid "Statistics"
+msgstr ""
+
+#: aisleriot/statistics.glade.h:6
+#, fuzzy
+msgid "Total:"
+msgstr "Total"
+
+#: aisleriot/statistics.glade.h:7
+#, fuzzy
+msgid "Wins:"
+msgstr "Jalur:"
+
+#: aisleriot/statistics.glade.h:8
+#, fuzzy
+msgid "Worst:"
+msgstr "Cacing"
+
+#: aisleriot/statistics.glade.h:9
+#, fuzzy
+msgid "_Reset"
+msgstr "Peraturan"
 
 #: aisleriot/ten_across.scm.h:1
 msgid "Allow temporary spots use"
@@ -1066,19 +1200,19 @@ msgstr ""
 
 #: aisleriot/ten_across.scm.h:2
 msgid "Move a card to an empty temporary slot"
-msgstr ""
+msgstr "Pindahkan kartu ke slot sementara yang masih kosong"
 
 #: aisleriot/ten_across.scm.h:3
 msgid "No hint available"
-msgstr ""
+msgstr "Tidak ada petunjuk"
 
 #: aisleriot/ten_across.scm.h:5
 msgid "and all cards below it"
-msgstr ""
+msgstr "dan semua kartu dibawahnya"
 
 #: aisleriot/ten_across.scm.h:6
 msgid "empty slot(s)"
-msgstr ""
+msgstr "slot kosong"
 
 #: aisleriot/thieves.scm.h:1
 msgid "Deal a card from the deck"
@@ -1314,66 +1448,76 @@ msgid "Spider"
 msgstr "Spider"
 
 #: aisleriot/translatable_game_names.h:63
+#, fuzzy
+msgid "Spider two suit"
+msgstr "Spiderette"
+
+#: aisleriot/translatable_game_names.h:64
+#, fuzzy
+msgid "Spider one suit"
+msgstr "Spiderette"
+
+#: aisleriot/translatable_game_names.h:65
 msgid "Straight up"
 msgstr "Straight up"
 
-#: aisleriot/translatable_game_names.h:64
+#: aisleriot/translatable_game_names.h:66
 msgid "Streets and alleys"
 msgstr "Streets and alleys"
 
-#: aisleriot/translatable_game_names.h:65
+#: aisleriot/translatable_game_names.h:67
 msgid "Template"
 msgstr "Template"
 
-#: aisleriot/translatable_game_names.h:66
+#: aisleriot/translatable_game_names.h:68
 msgid "Ten across"
 msgstr "Ten across"
 
-#: aisleriot/translatable_game_names.h:67
+#: aisleriot/translatable_game_names.h:69
 msgid "Thieves"
 msgstr "Thieves"
 
-#: aisleriot/translatable_game_names.h:68
+#: aisleriot/translatable_game_names.h:70
 msgid "Thirteen"
 msgstr "Thirteen"
 
-#: aisleriot/translatable_game_names.h:69
+#: aisleriot/translatable_game_names.h:71
 msgid "Thumb and pouch"
 msgstr "Thumb and pouch"
 
-#: aisleriot/translatable_game_names.h:70
+#: aisleriot/translatable_game_names.h:72
 msgid "Treize"
 msgstr "Treize"
 
-#: aisleriot/translatable_game_names.h:71
+#: aisleriot/translatable_game_names.h:73
 msgid "Union square"
 msgstr "Union square"
 
-#: aisleriot/translatable_game_names.h:72
+#: aisleriot/translatable_game_names.h:74
 msgid "Valentine"
 msgstr "Valentine"
 
-#: aisleriot/translatable_game_names.h:73
+#: aisleriot/translatable_game_names.h:75
 msgid "Westhaven"
 msgstr "Westhaven"
 
-#: aisleriot/translatable_game_names.h:74
+#: aisleriot/translatable_game_names.h:76
 msgid "Whitehead"
 msgstr "Whitehead"
 
-#: aisleriot/translatable_game_names.h:75
+#: aisleriot/translatable_game_names.h:77
 msgid "Will o the wisp"
 msgstr "Will o the wisp"
 
-#: aisleriot/translatable_game_names.h:76
+#: aisleriot/translatable_game_names.h:78
 msgid "Yield"
 msgstr "Yield"
 
-#: aisleriot/translatable_game_names.h:77
+#: aisleriot/translatable_game_names.h:79
 msgid "Yukon"
 msgstr "Yukon"
 
-#: aisleriot/translatable_game_names.h:78
+#: aisleriot/translatable_game_names.h:80
 msgid "Zebra"
 msgstr "Zebra"
 
@@ -1389,1033 +1533,901 @@ msgstr ""
 msgid "the appropriate Foundation pile"
 msgstr ""
 
-#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:233
-#: blackjack/src/menu.cpp:103 blackjack/src/player.cpp:456
-#: blackjack/src/splash.cpp:96
-#, fuzzy
+#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:230
+#: blackjack/src/menu.cpp:107 blackjack/src/splash.cpp:95
 msgid "Blackjack"
-msgstr "Hitam"
+msgstr "Blackjack"
 
-#: blackjack/data/blackjack.schemas.in.h:2
-msgid "Display probabilities"
+#: blackjack/data/blackjack.desktop.in.h:2
+msgid "Play the casino card game Blackjack"
 msgstr ""
 
-#: blackjack/data/blackjack.schemas.in.h:3
+#: blackjack/data/blackjack.schemas.in.h:1
+msgid "Display probabilities"
+msgstr "Tampilkan peluang"
+
+#: blackjack/data/blackjack.schemas.in.h:2
 msgid ""
 "Display the probabilities of each dealer hand outcome and the expected value "
 "of your hand."
 msgstr ""
+"Tampilkan peluang masing-masing kemunculan dealer dan nilai yang Anda "
+"harapkan"
+
+#: blackjack/data/blackjack.schemas.in.h:3
+msgid "The amount of money in your bank"
+msgstr "Jumlah uang di bank"
 
 #: blackjack/data/blackjack.schemas.in.h:4
-msgid "The amount of money in your bank"
-msgstr ""
-
-#: blackjack/data/blackjack.schemas.in.h:5
 msgid "The amount of money in your bank."
-msgstr ""
+msgstr "Jumlah uang di bank."
 
 #: blackjack/data/blackjack.schemas.in.h:6
 msgid ""
 "The name of the rules file containing the variation of the rules to play."
-msgstr ""
+msgstr "Nama berkas aturan berisi variasi peraturan permainan."
 
 #: blackjack/data/blackjack.schemas.in.h:7
 msgid "The variation of the rules file to use"
-msgstr ""
-
-#: blackjack/data/blackjack.schemas.in.h:8
-msgid "Use a quick deal"
-msgstr ""
+msgstr "Variasi peraturan yang ingin digunakan"
 
 #: blackjack/data/blackjack.schemas.in.h:9
+msgid "Use a quick deal"
+msgstr "Pembagiannya cepat"
+
+#: blackjack/data/blackjack.schemas.in.h:10
 msgid "Use a quick deal with no delay between each card."
-msgstr ""
+msgstr "Kartu dibagi dengan cepat tanpa jeda waktu tiap-tiap kartu."
 
-#: blackjack/src/blackjack.cpp:98
-#, c-format
-msgid "Blackjack: %s (%d)"
-msgstr ""
+#: blackjack/src/blackjack.cpp:93
+#, fuzzy, c-format
+msgid "Blackjack: %s"
+msgstr "Blackjack: %s (%d)"
 
-#: blackjack/src/blackjack.cpp:311
+#: blackjack/src/blackjack.cpp:308
+msgid "Cards left:"
+msgstr "Sisa kartu:"
+
+#: blackjack/src/blackjack.cpp:317
+msgid "Wager:"
+msgstr "Taruhan:"
+
+#: blackjack/src/blackjack.cpp:330
+msgid "Balance:"
+msgstr "Saldo:"
+
+#: blackjack/src/blackjack.cpp:345
 msgid "Place your wager or deal a hand"
 msgstr ""
 
-#: blackjack/src/blackjack.cpp:314
-#, fuzzy
-msgid "Cards left:"
-msgstr "Kartu"
-
-#: blackjack/src/blackjack.cpp:322
-msgid "Wager:"
-msgstr ""
-
-#: blackjack/src/blackjack.cpp:334
-#, fuzzy
-msgid "Balance:"
-msgstr "Hitam"
-
-#: blackjack/src/dialog.cpp:50
+#: blackjack/src/dialog.cpp:51
 msgid "Would you like insurance?"
-msgstr ""
+msgstr "Ingin asuransi?"
 
-#: blackjack/src/dialog.cpp:93
+#: blackjack/src/dialog.cpp:89
 msgid "Set your wager and click in the white outline to deal a new hand."
 msgstr ""
 
-#: blackjack/src/dialog.cpp:96
+#: blackjack/src/dialog.cpp:91
 msgid "Set your wager or click on the cards to deal a new hand."
 msgstr ""
 
-#: blackjack/src/dialog.cpp:220
-#, fuzzy
+#: blackjack/src/dialog.cpp:205
 msgid "Blackjack Preferences"
-msgstr "Setting"
+msgstr "Pengaturan Blackjack"
 
-#: blackjack/src/dialog.cpp:235 gnobots2/properties.c:876
-#: gnome-stones/preferences.c:738
-#, fuzzy
-msgid "_Game"
+#: blackjack/src/dialog.cpp:219 gnobots2/properties.c:850
+msgid "Game"
 msgstr "Gim"
 
-#: blackjack/src/dialog.cpp:242
+#: blackjack/src/dialog.cpp:226
 msgid "Display hand probabilities"
 msgstr ""
 
-#: blackjack/src/dialog.cpp:253
+#: blackjack/src/dialog.cpp:236
 msgid "Quick deals (no delay between each card)"
 msgstr ""
 
-#: blackjack/src/dialog.cpp:265
-#, fuzzy
-msgid "_Rules"
-msgstr "Peraturan"
+#: blackjack/src/dialog.cpp:243
+msgid "Reset balance"
+msgstr ""
 
-#: blackjack/src/dialog.cpp:289
+#: blackjack/src/dialog.cpp:275 gnomine/gnomine.c:300
 #, fuzzy
 msgid "Name"
 msgstr "Gim"
 
-#: blackjack/src/dialog.cpp:294
+#: blackjack/src/dialog.cpp:280
 #, fuzzy
 msgid "Decks"
 msgstr "jek"
 
-#: blackjack/src/dialog.cpp:299
+#: blackjack/src/dialog.cpp:285
 msgid "Hit Soft 17"
 msgstr ""
 
-#: blackjack/src/dialog.cpp:304
+#: blackjack/src/dialog.cpp:290
 msgid "Double Any Total"
 msgstr ""
 
-#: blackjack/src/dialog.cpp:309
+#: blackjack/src/dialog.cpp:295
 #, fuzzy
 msgid "Double 9"
 msgstr "Doublets"
 
-#: blackjack/src/dialog.cpp:314
+#: blackjack/src/dialog.cpp:300
 #, fuzzy
 msgid "Double Soft"
 msgstr "Doublets"
 
-#: blackjack/src/dialog.cpp:319
+#: blackjack/src/dialog.cpp:305
 msgid "Double After Hit"
 msgstr ""
 
-#: blackjack/src/dialog.cpp:324
+#: blackjack/src/dialog.cpp:310
 msgid "Double After Split"
 msgstr ""
 
-#: blackjack/src/dialog.cpp:329
+#: blackjack/src/dialog.cpp:315
 msgid "Resplit"
 msgstr ""
 
-#: blackjack/src/dialog.cpp:334
+#: blackjack/src/dialog.cpp:320
 msgid "Resplit Aces"
 msgstr ""
 
-#: blackjack/src/dialog.cpp:339 blackjack/src/player.cpp:319
+#: blackjack/src/dialog.cpp:325 blackjack/src/player.cpp:312
 msgid "Surrender"
 msgstr ""
 
-#: blackjack/src/dialog.cpp:344
+#: blackjack/src/dialog.cpp:330
 msgid "Dealer Speed"
 msgstr ""
 
-#: blackjack/src/dialog.cpp:408
-#, fuzzy
-msgid "Card _Deck"
-msgstr "Sisi belakang kartu:"
-
-#: blackjack/src/events.cpp:493
-msgid "Click to deal another card; drag card to split pair"
-msgstr ""
-
-#: blackjack/src/events.cpp:495
-#, fuzzy
-msgid "Click to deal another card"
-msgstr "Bagi kartu lain"
-
-#: blackjack/src/events.cpp:497
-msgid "Click to finish adding cards to your hand"
-msgstr ""
-
-#: blackjack/src/events.cpp:500
-msgid "Click to deal a new hand"
-msgstr ""
-
-#: blackjack/src/events.cpp:516
+#: blackjack/src/events.cpp:547
 msgid "Click to double your wager"
 msgstr ""
 
-#: blackjack/src/events.cpp:522
+#: blackjack/src/events.cpp:552
 #, c-format
 msgid "Double click to increase your wager by %.2f"
 msgstr ""
 
-#: blackjack/src/events.cpp:536
+#: blackjack/src/events.cpp:564
 #, c-format
 msgid "Double click to decrease your wager by %.2f"
 msgstr ""
 
-#: blackjack/src/game.cpp:357
+#: blackjack/src/events.cpp:581
+msgid "Click to deal another card; drag card to split pair"
+msgstr ""
+
+#: blackjack/src/events.cpp:583
+#, fuzzy
+msgid "Click to deal another card"
+msgstr "Bagi kartu lain"
+
+#: blackjack/src/events.cpp:585
+msgid "Click to finish adding cards to your hand"
+msgstr ""
+
+#: blackjack/src/events.cpp:588
+msgid "Click to deal a new hand"
+msgstr ""
+
+#: blackjack/src/game.cpp:382
 msgid "Blackjack can't load the requested file"
 msgstr ""
 
-#: blackjack/src/game.cpp:359
+#: blackjack/src/game.cpp:384
 msgid "Please check your Blackjack installation"
 msgstr ""
 
-#: blackjack/src/hand.cpp:84
+#: blackjack/src/hand.cpp:115
 msgid "The best option is to stand"
 msgstr ""
 
-#: blackjack/src/hand.cpp:86
+#: blackjack/src/hand.cpp:117
 msgid "The best option is to hit"
 msgstr ""
 
-#: blackjack/src/hand.cpp:88
+#: blackjack/src/hand.cpp:119
 msgid "The best option is to double down"
 msgstr ""
 
-#: blackjack/src/hand.cpp:90
+#: blackjack/src/hand.cpp:121
 msgid "The best option is to split"
 msgstr ""
 
-#: blackjack/src/hand.cpp:92
+#: blackjack/src/hand.cpp:123
 msgid "The best option is to surrender"
 msgstr ""
 
-#: blackjack/src/menu.cpp:108
+#: blackjack/src/menu.cpp:111
 msgid "Blackjack provides a casino-style blackjack card game."
 msgstr ""
 
-#: blackjack/src/menu.cpp:196
+#: blackjack/src/menu.cpp:203
 msgid "Deal a new game"
 msgstr ""
 
-#: blackjack/src/menu.cpp:199
+#: blackjack/src/menu.cpp:206
 msgid "Start this game over"
 msgstr ""
 
-#: blackjack/src/menu.cpp:203
+#: blackjack/src/menu.cpp:210
 msgid "Suggest a move"
 msgstr ""
 
-#: blackjack/src/player.cpp:64
+#: blackjack/src/player.cpp:66
 msgid "Computing basic strategy..."
 msgstr ""
 
-#: blackjack/src/player.cpp:187 blackjack/src/player.cpp:448
+#: blackjack/src/player.cpp:187 blackjack/src/player.cpp:442
 #, fuzzy
 msgid "Bust"
 msgstr "Ukuran sendiri"
 
-#: blackjack/src/player.cpp:191
-#, fuzzy
+#: blackjack/src/player.cpp:189
 msgid "Blackjack!"
-msgstr "Hitam"
+msgstr "Blackjack!"
 
-#: blackjack/src/player.cpp:196
+#: blackjack/src/player.cpp:192
 msgid "Soft"
 msgstr ""
 
-#: blackjack/src/player.cpp:204
+#: blackjack/src/player.cpp:198
 msgid "Win"
 msgstr ""
 
-#: blackjack/src/player.cpp:205
+#: blackjack/src/player.cpp:199
 #, fuzzy
 msgid "Push"
-msgstr "Pause"
+msgstr "Tekan"
 
-#: blackjack/src/player.cpp:206
+#: blackjack/src/player.cpp:200
 msgid "Lose"
 msgstr ""
 
-#: blackjack/src/player.cpp:270
+#: blackjack/src/player.cpp:260
+msgid "Player expected values"
+msgstr ""
+
+#: blackjack/src/player.cpp:266
 #, fuzzy
 msgid "Stand"
 msgstr "Suara"
 
-#: blackjack/src/player.cpp:279
+#: blackjack/src/player.cpp:275
 msgid "Hit"
 msgstr ""
 
-#: blackjack/src/player.cpp:291
+#: blackjack/src/player.cpp:286
 #, fuzzy
 msgid "Double"
 msgstr "Doublets"
 
-#: blackjack/src/player.cpp:306
-#, fuzzy
+#: blackjack/src/player.cpp:300
 msgid "Split"
-msgstr "Plait"
-
-#: gataxx/ataxx.c:150 gataxx/gataxx.c:306 gataxx/gataxx.c:751
-#: iagno/gnothello.c:288 iagno/gnothello.c:699 iagno/othello.c:220
-msgid "Dark's move"
 msgstr ""
 
-#: gataxx/ataxx.c:158 gataxx/gataxx.c:304 iagno/gnothello.c:286
-#: iagno/othello.c:228
+#: blackjack/src/player.cpp:441
+#, fuzzy
+msgid "Dealer hand probabilities"
+msgstr "Tampilkan peluang"
+
+#: gataxx/appbar.c:39 iagno/gnothello.c:767
+msgid "Light:"
+msgstr "Terang:"
+
+#: gataxx/appbar.c:45 iagno/gnothello.c:757
+msgid "Dark:"
+msgstr "Gelap:"
+
+#: gataxx/appbar.c:79 iagno/gnothello.c:285 iagno/othello.c:228
 msgid "Light's move"
-msgstr ""
+msgstr "Terang jalan"
 
-#: gataxx/ataxx.c:610 iagno/othello.c:632
+#: gataxx/appbar.c:79 iagno/gnothello.c:287 iagno/gnothello.c:699
+#: iagno/othello.c:220
+msgid "Dark's move"
+msgstr "Gelap jalan"
+
+#: gataxx/gataxx.c:163 iagno/othello.c:702
 msgid "Light player wins!"
-msgstr ""
+msgstr "Terang menang!"
 
-#: gataxx/ataxx.c:612 iagno/othello.c:634
+#: gataxx/gataxx.c:165 iagno/othello.c:704
 msgid "Dark player wins!"
-msgstr ""
+msgstr "Gelap menang!"
 
-#: gataxx/ataxx.c:614 iagno/othello.c:636
+#: gataxx/gataxx.c:167 iagno/othello.c:706
 msgid "The game was a draw."
 msgstr "Permainan berakhir seri."
 
-#: gataxx/ataxx.c:623 iagno/othello.c:647
-msgid "Light must pass, Dark's move"
+#: gataxx/gataxx.c:365
+msgid "Based on code from Iagno by Ian Peters"
 msgstr ""
 
-#: gataxx/ataxx.c:635 iagno/othello.c:659
-msgid "Dark must pass, Light's move"
-msgstr ""
-
-#: gataxx/gataxx.c:418 gataxx/gataxx.c:775 gataxx/gataxx.soundlist.in.h:3
-msgid "gataxx"
+#: gataxx/gataxx.c:382 gataxx/gataxx.desktop.in.h:1
+#, fuzzy
+msgid "Ataxx"
 msgstr "gataxx"
 
-#: gataxx/gataxx.c:420
-#, fuzzy
-msgid ""
-"gataxx is a GNOME port of the old game ataxx. It is derived from Ian Peters' "
-"iagno code."
+#: gataxx/gataxx.c:385
+msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr ""
-"gataxx adalah permainan ataxx yang dibuat untuk GNOME. Programnyaditurunkan "
-"dari program Iagno oleh Ian Peter"
-
-#: gataxx/gataxx.c:612
-#, c-format
-msgid "Could not find '%s' pixmap file for gataxx\n"
-msgstr "Tidak dapat menemukan file pixmap '%s'  milik gataxx\n"
-
-#: gataxx/gataxx.c:806 iagno/gnothello.c:757
-msgid "Dark:"
-msgstr ""
-
-#: gataxx/gataxx.c:812 iagno/gnothello.c:767
-msgid "Light:"
-msgstr ""
-
-#: gataxx/gataxx.c:828
-msgid "Welcome to gataxx!"
-msgstr "Selamat datang di gataxx!"
-
-#: gataxx/gataxx.c:836 gataxx/gataxx.c:838 iagno/gnothello.c:798
-#: iagno/gnothello.c:800
-#, c-format
-msgid "%.2d"
-msgstr "%.2d"
-
-#: gataxx/gataxx.desktop.in.h:1
-msgid "Ataxx game"
-msgstr "Permainan Ataxx"
 
 #: gataxx/gataxx.desktop.in.h:2
-msgid "Gataxx"
-msgstr "Gataxx"
+msgid "Compete to dominate the board in a Reversi-like game"
+msgstr ""
 
-#: gataxx/gataxx.schemas.in.h:1 gnect/data/gnect.schemas.in.h:1
+#: gataxx/gataxx.schemas.in.h:1 gnect/data/gnect.schemas.in.h:2
 msgid "Animate"
 msgstr "Animasi"
 
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:499 iagno/properties.c:693
+#. flip tiles button
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:395 iagno/properties.c:683
 msgid "Flip final results"
-msgstr ""
+msgstr "Balikkan hasil akhir"
 
 #: gataxx/gataxx.schemas.in.h:3
 msgid "Level of black player"
-msgstr ""
+msgstr "Tingkatan pemain hitam"
 
 #: gataxx/gataxx.schemas.in.h:4
 msgid "Level of white player"
-msgstr ""
+msgstr "Tingkatan pemain putih"
 
 #: gataxx/gataxx.schemas.in.h:5
 msgid "Quick moves"
-msgstr ""
+msgstr "Gerakan cepat"
 
 #: gataxx/gataxx.schemas.in.h:6
 msgid "Tileset"
-msgstr ""
+msgstr "Ubin"
 
 #: gataxx/gataxx.schemas.in.h:7
 msgid "Tileset to use."
-msgstr ""
+msgstr "Ubin yang digunakan"
 
 #: gataxx/gataxx.schemas.in.h:8
 msgid "Whether or not to flip final results."
-msgstr ""
+msgstr "Menentukan apakah hasil akhir akan dibalik atau tidak"
 
 #: gataxx/gataxx.schemas.in.h:9
 msgid "Whether or not to use quick moves."
-msgstr ""
+msgstr "Menentukan apakah ingin menggunakan gerakan cepat atau tidak"
 
 #: gataxx/gataxx.schemas.in.h:10
 msgid ""
 "Zero corresponds to no animations, one is partial animations, two is "
 "complete animations."
 msgstr ""
+"Nol berarti tidak menggunakan animasi, satu animasi parsial dan dua adalah "
+"animasi penuh."
 
-#: gataxx/gataxx.schemas.in.h:11
+#: gataxx/gataxx.schemas.in.h:11 gnect/data/gnect.schemas.in.h:21
 msgid ""
 "Zero is human; one through three correspond to the level of the computer "
 "player."
 msgstr ""
+"Nol berarti orang; satu hingga tiga berarti komputer dengan level yang "
+"diberikan angka tersebut."
 
-#: gataxx/gataxx.soundlist.in.h:1 iagno/iagno.soundlist.in.h:1
-msgid "Game over"
-msgstr "Permainan Usai"
-
-#: gataxx/gataxx.soundlist.in.h:2 iagno/iagno.soundlist.in.h:3
-msgid "Piece flipping"
-msgstr ""
-
-#: gataxx/properties.c:321
+#. create window
+#: gataxx/properties.c:298
 #, fuzzy
-msgid "Gataxx Preferences"
-msgstr "Setting"
+msgid "Ataxx Preferences"
+msgstr "Pengaturan Gataxx"
 
 #. Players tab
-#: gataxx/properties.c:340 iagno/properties.c:515
-msgid "Players"
+#. FIXME mnemonic doesn't seem to work
+#: gataxx/properties.c:319 iagno/properties.c:505
+#, fuzzy
+msgid "_Players"
+msgstr "Pemain"
+
+#: gataxx/properties.c:331
+#, fuzzy
+msgid "Quick Moves"
+msgstr "Gerakan cepat"
+
+#: gataxx/properties.c:332
+msgid "Shortens the time a computer waits before doing a move"
 msgstr ""
 
-#: gataxx/properties.c:352
-msgid "Quick Moves (cut computer delay in half)"
-msgstr ""
-
-#: gataxx/properties.c:360 gnect/src/theme.c:386 iagno/properties.c:538
+#. Dark level select
+#: gataxx/properties.c:341 gnect/src/theme.c:55 iagno/properties.c:528
 msgid "Dark"
-msgstr ""
+msgstr "Gelap"
 
-#: gataxx/properties.c:365 gataxx/properties.c:413 gnect/src/prefs.c:738
-#: gtali/yahtzee.c:66 iagno/properties.c:544 iagno/properties.c:591
+#: gataxx/properties.c:346 gnect/src/prefs.c:344 gtali/yahtzee.c:63
+#: iagno/properties.c:534 iagno/properties.c:581
 msgid "Human"
+msgstr "Orang"
+
+#: gataxx/properties.c:347 gataxx/properties.c:366
+msgid "Very Easy"
 msgstr ""
 
-#: gataxx/properties.c:375 gataxx/properties.c:421 iagno/properties.c:554
-#: iagno/properties.c:601
-msgid "Level one"
+#: gataxx/properties.c:348 gataxx/properties.c:367 mahjongg/mahjongg.c:738
+msgid "Easy"
 msgstr ""
 
-#: gataxx/properties.c:384 gataxx/properties.c:429 iagno/properties.c:564
-#: iagno/properties.c:611
-msgid "Level two"
+#: gataxx/properties.c:349 gataxx/properties.c:368 gnomine/gnomine.c:89
+#: gnomine/gnomine.c:740
+msgid "Medium"
+msgstr "Sedang"
+
+#: gataxx/properties.c:350 gataxx/properties.c:369
+msgid "Hard"
 msgstr ""
 
-#: gataxx/properties.c:393 gataxx/properties.c:437 iagno/properties.c:574
-#: iagno/properties.c:622
-msgid "Level three"
+#: gataxx/properties.c:351 gataxx/properties.c:370
+msgid "Very Hard"
 msgstr ""
 
-#: gataxx/properties.c:408 gnect/src/theme.c:383 iagno/properties.c:585
+#. Light level select
+#: gataxx/properties.c:360 gnect/src/theme.c:55 iagno/properties.c:575
 msgid "Light"
-msgstr ""
+msgstr "Terang"
 
 #. Appearance tab
-#: gataxx/properties.c:453 gnibbles/preferences.c:507 iagno/properties.c:635
+#: gataxx/properties.c:379 iagno/properties.c:625
+msgid "_Appearance"
+msgstr "T_ampilan"
+
+#: gataxx/properties.c:382 gnect/src/prefs.c:423 gnobots2/properties.c:888
 msgid "Appearance"
+msgstr "Tampilan"
+
+#. animation button
+#: gataxx/properties.c:387 iagno/properties.c:630
+msgid "Animation"
+msgstr "Animasi"
+
+#: gataxx/properties.c:391
+msgid "Flip the pieces with some visual effects"
 msgstr ""
 
-#: gataxx/properties.c:463 iagno/properties.c:644
-msgid "None"
-msgstr "Tidak ada"
-
-#: gataxx/properties.c:473 iagno/properties.c:653
-msgid "Partial"
-msgstr ""
-
-#: gataxx/properties.c:482 iagno/properties.c:662
-msgid "Complete"
-msgstr ""
-
-#. Options
-#: gataxx/properties.c:494 gnibbles/preferences.c:418
-#: gnibbles/preferences.c:675 gnobots2/properties.c:837 iagno/properties.c:674
-msgid "Options"
-msgstr ""
-
-#: gataxx/properties.c:508 iagno/properties.c:703
-msgid "Tile set:"
-msgstr ""
-
-#: gdk-card-image/gdk-card-image.c:109
-msgid "Card back:"
-msgstr "Sisi belakang kartu:"
-
-#: gdk-card-image/gdk-card-image.c:110
-msgid "Honor pictures:"
-msgstr ""
-
-#: gdk-card-image/gdk-card-image.c:111
-msgid "Joker icon:"
-msgstr "Ikon Joker:"
-
-#: gdk-card-image/gdk-card-image.c:112
-msgid "Rank font:"
-msgstr ""
-
-#: gdk-card-image/gdk-card-image.c:113
-msgid "Suit font (small):"
-msgstr ""
-
-#: gdk-card-image/gdk-card-image.c:114
-msgid "Suit font (medium):"
-msgstr ""
-
-#: gdk-card-image/gdk-card-image.c:115
-msgid "Suit font (large):"
-msgstr ""
-
-#: glines/glines.c:103
-#, c-format
+#: gataxx/properties.c:399
 msgid ""
-"Glines couldn't find image file:\n"
+"Put all the white pieces at the bottom and all the black pieces on the top "
+"of the board when a game is over"
+msgstr ""
+
+#. show grid button
+#: gataxx/properties.c:403 iagno/properties.c:675
+msgid "Show grid"
+msgstr "Tampilkan kotak-kotak"
+
+#: gataxx/properties.c:407
+msgid "Whether the grid should be shown"
+msgstr ""
+
+#: gataxx/properties.c:414 iagno/properties.c:693
+msgid "Tile set:"
+msgstr "Gambar ubin:"
+
+#: gataxx/properties.c:419
+msgid "The appearance of the pieces"
+msgstr ""
+
+#: glines/glines.c:144
+#, fuzzy, c-format
+msgid ""
+"Five or More could not find image file:\n"
 "%s\n"
 "\n"
-"Please check your Glines installation"
+"Please check Five or More is installed correctly."
 msgstr ""
+"Berkas gambar tidak dapat ditemukan Glines:\n"
+"%s\n"
+"\n"
+"Periksa dulu instalasi Glines Anda"
 
-#: glines/glines.c:187
+#: glines/glines.c:288
 msgid "Match five balls of the same color in a row to score!"
+msgstr "Cocokkan lima bola dengan warna yang sama dalam satu baris!"
+
+#: glines/glines.c:343 glines/glines.c:977 glines/glines.c:1512
+#: glines/glines.desktop.in.h:1
+msgid "Five or More"
 msgstr ""
 
-#: glines/glines.c:229 glines/glines.c:825 glines/glines.c:1356
-#: glines/glines.desktop.in.h:2
-msgid "Glines"
-msgstr "Glines"
-
-#: glines/glines.c:258
+#: glines/glines.c:376
 msgid "Game Over!"
-msgstr ""
+msgstr "Permainan Usai!"
 
 #. Can't move there!
-#: glines/glines.c:420
+#: glines/glines.c:547
 msgid "Can't move there!"
-msgstr ""
+msgstr "Tidak bisa pindah ke situ!"
 
-#: glines/glines.c:828
+#: glines/glines.c:980
 msgid "GNOME port of the once-popular Color Lines game"
-msgstr ""
+msgstr "Permainan Color Lines versi GNOME"
 
-#: glines/glines.c:995
+#: glines/glines.c:1117
 #, fuzzy
-msgid "Glines Preferences"
-msgstr "Setting"
+msgid "Five or More Preferences"
+msgstr "Pengaturan Glines"
 
-#: glines/glines.c:1007
-#, fuzzy
+#: glines/glines.c:1129
 msgid "Themes"
-msgstr "tematik"
+msgstr "Tema"
 
-#: glines/glines.c:1016
+#: glines/glines.c:1138
 msgid "Ball image"
-msgstr ""
+msgstr "Gambar bola"
 
-#: glines/glines.c:1027 glines/glines.schemas.in.h:1
+#: glines/glines.c:1148 glines/glines.schemas.in.h:1
 #: gnobots2/gnobots2.schemas.in.h:1
-#, fuzzy
 msgid "Background color"
-msgstr "Warna latar belakang"
+msgstr "Warna latar"
 
-#: glines/glines.c:1044
+#: glines/glines.c:1162
 msgid "General"
-msgstr ""
+msgstr "Umum"
 
-#: glines/glines.c:1052
-#, fuzzy
+#: glines/glines.c:1170
 msgid "Use fast moves"
-msgstr "Batalkan langkah terakhir"
+msgstr "Gerakan cepat"
 
-#: glines/glines.c:1368
-msgid "Welcome to Glines!"
-msgstr ""
+#: glines/glines.c:1536
+#, fuzzy
+msgid "Next Balls:"
+msgstr "Bola Berikutnya"
 
-#: glines/glines.c:1379
-msgid "Next Balls"
-msgstr ""
-
-#: glines/glines.c:1395
-msgid "Score"
-msgstr "Nilai"
-
-#: glines/glines.desktop.in.h:1
-msgid "Color lines game"
+#: glines/glines.desktop.in.h:2
+msgid "Remove colored balls from the board by forming lines"
 msgstr ""
 
 #: glines/glines.schemas.in.h:2 gnobots2/gnobots2.schemas.in.h:2
 msgid "Background color. The hex specification of the background color."
-msgstr ""
+msgstr "Warna latar. Warna latar dalam bentuk heksa."
 
 #: glines/glines.schemas.in.h:3
 msgid "Ball style"
-msgstr ""
+msgstr "Bentuk bola"
 
 #: glines/glines.schemas.in.h:4
 msgid "Ball style. The filename of the images to use for the balls."
-msgstr ""
+msgstr "Bentuk bola. Nama berkas gambar yang akan digunakan untuk gambar bola."
 
 #: glines/glines.schemas.in.h:5
-#, fuzzy
 msgid "Game field"
-msgstr "Judul Gim"
+msgstr "Kotak gim"
 
 #: glines/glines.schemas.in.h:6
 msgid "Game field from last saved session."
-msgstr ""
+msgstr "Kotak gim dari sesi terakhir yang disimpan."
 
 #: glines/glines.schemas.in.h:7
-#, fuzzy
 msgid "Game preview"
-msgstr "Permainan Usai"
+msgstr "Pratilik gim"
 
 #: glines/glines.schemas.in.h:8
 msgid "Game preview from last saved session."
-msgstr ""
+msgstr "Gambaran terakhir permainan yang telah disimpan."
 
 #: glines/glines.schemas.in.h:9
-#, fuzzy
 msgid "Game score"
-msgstr "Permainan Usai"
+msgstr "Perolehan nilai"
 
 #: glines/glines.schemas.in.h:10
 msgid "Game score from last saved session."
-msgstr ""
+msgstr "Nilai permainan yang sudah disimpan sebelumnya."
 
-#: glines/glines.schemas.in.h:11
+#: glines/glines.schemas.in.h:13
 msgid "Time between moves"
-msgstr ""
+msgstr "Waktu jeda setelah jalan"
 
-#: glines/glines.schemas.in.h:12
+#: glines/glines.schemas.in.h:14
 msgid "Time between moves in milliseconds."
-msgstr ""
+msgstr "Waktu jeda setelah jalan dalam milidetik"
 
 #: gnect/data/gnect.desktop.in.h:1
-msgid "Four-in-a-row game"
+msgid "Compete to make lines of the same color"
 msgstr ""
 
-#: gnect/data/gnect.desktop.in.h:2 gnect/data/gnect.soundlist.in.h:3
-msgid "Gnect"
-msgstr "Gnect"
+#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:1240
+#, fuzzy
+msgid "Four-in-a-row"
+msgstr "Permainan Empat-Sebaris"
 
-#: gnect/data/gnect.schemas.in.h:2
-msgid "Draw grid"
+#: gnect/data/gnect.schemas.in.h:1
+msgid "A number specifying the preferred theme."
 msgstr ""
 
 #: gnect/data/gnect.schemas.in.h:3
 msgid "Drop marble"
-msgstr ""
+msgstr "Buang gundu"
 
 #: gnect/data/gnect.schemas.in.h:4
-msgid "Key press to drop a marble."
-msgstr ""
+#, fuzzy
+msgid "Height of the main window"
+msgstr "Tinggi kotak"
 
 #: gnect/data/gnect.schemas.in.h:5
+msgid "Key press to drop a marble."
+msgstr "Tekan tombol untuk meletakkan gundu"
+
+#: gnect/data/gnect.schemas.in.h:6 gnometris/gnometris.schemas.in.h:6
 msgid "Key press to move left."
-msgstr ""
+msgstr "Tekan untuk pindah ke kiri."
 
-#: gnect/data/gnect.schemas.in.h:6
+#: gnect/data/gnect.schemas.in.h:7 gnometris/gnometris.schemas.in.h:7
 msgid "Key press to move right."
-msgstr ""
-
-#: gnect/data/gnect.schemas.in.h:7
-msgid "Level of Player One"
-msgstr ""
+msgstr "Tekan untuk pindah ke kanan."
 
 #: gnect/data/gnect.schemas.in.h:8
+msgid "Level of Player One"
+msgstr "Level Pemain Satu"
+
+#: gnect/data/gnect.schemas.in.h:9
 msgid "Level of Player Two"
-msgstr ""
+msgstr "Level Pemain Dua"
 
-#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:939
+#: gnect/data/gnect.schemas.in.h:10 gnibbles/gnibbles.schemas.in.h:18
+#: gnometris/gnometris.schemas.in.h:13
 msgid "Move left"
-msgstr ""
+msgstr "Pindah kiri"
 
-#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:945
+#: gnect/data/gnect.schemas.in.h:11 gnibbles/gnibbles.schemas.in.h:19
+#: gnometris/gnometris.schemas.in.h:14
 msgid "Move right"
-msgstr ""
-
-#: gnect/data/gnect.schemas.in.h:11
-msgid "Name of the theme file to use."
-msgstr ""
+msgstr "Pindah kanan"
 
 #: gnect/data/gnect.schemas.in.h:12
-msgid "One corresponds to speaker beeps, two to audio files."
-msgstr ""
-
-#: gnect/data/gnect.schemas.in.h:13
 msgid "Show tool bar"
-msgstr ""
+msgstr "Tampilkan batang alat"
 
-#: gnect/data/gnect.schemas.in.h:14 gnome-stones/preferences.c:853
-#: mahjongg/mahjongg.c:436
+#: gnect/data/gnect.schemas.in.h:13 gnome-stones/preferences.c:854
 msgid "Sound"
 msgstr "Suara"
 
+#: gnect/data/gnect.schemas.in.h:14
+msgid "The height of the main window, in pixels, at start-up."
+msgstr ""
+
 #: gnect/data/gnect.schemas.in.h:15
-msgid "Sound type"
+msgid "The width of the main window, in pixels, at start-up."
 msgstr ""
 
 #: gnect/data/gnect.schemas.in.h:16
-msgid "Theme file"
-msgstr ""
+#, fuzzy
+msgid "Theme ID"
+msgstr "Tema"
 
 #: gnect/data/gnect.schemas.in.h:17
-msgid "Whether or not to display grid lines on the game board."
-msgstr ""
+msgid "Whether or not to play event sounds."
+msgstr "Mainkan suara atau tidak."
 
 #: gnect/data/gnect.schemas.in.h:18
-msgid "Whether or not to play event sounds."
-msgstr ""
+msgid "Whether or not to show the tool bar."
+msgstr "Tampilkan batang alat atau tidak."
 
 #: gnect/data/gnect.schemas.in.h:19
-msgid "Whether or not to show the tool bar."
-msgstr ""
+msgid "Whether or not to use animation."
+msgstr "Gunakan animasi atau tidak."
 
 #: gnect/data/gnect.schemas.in.h:20
-msgid "Whether or not to use animation."
-msgstr ""
-
-#: gnect/data/gnect.schemas.in.h:21
-msgid "Who starts"
-msgstr ""
-
-#: gnect/data/gnect.schemas.in.h:22
-msgid ""
-"Zero is Player One, one is Player Two and two corresponds to players taking "
-"turns."
-msgstr ""
-
-#: gnect/data/gnect.schemas.in.h:23
-msgid ""
-"Zero is human; one through four correspond to the level of the computer "
-"player."
+msgid "Width of the main window"
 msgstr ""
 
 #: gnect/data/gnect.soundlist.in.h:1
 msgid "A counter drops"
-msgstr ""
+msgstr "Hitungan jalan"
 
 #: gnect/data/gnect.soundlist.in.h:2
 msgid "Drawn game!"
-msgstr ""
+msgstr "Seri!"
 
-#: gnect/data/gnect.soundlist.in.h:4 gnect/src/gui.c:442
+#: gnect/data/gnect.soundlist.in.h:3
+msgid "Gnect"
+msgstr "Gnect"
+
+#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:546
 msgid "I win!"
-msgstr ""
+msgstr "Saya menang!"
 
 #: gnect/data/gnect.soundlist.in.h:5
 msgid "Player wins!"
-msgstr ""
+msgstr "Pemain menang!"
 
-#: gnect/data/gnect.soundlist.in.h:6 gnect/src/gnect.c:533
+#: gnect/data/gnect.soundlist.in.h:6
 msgid "Sorry, full column"
-msgstr ""
+msgstr "Maaf, kolomnya penuh"
 
-#: gnect/data/gnect.soundlist.in.h:7 gnect/src/gui.c:438
+#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:542
 msgid "You win!"
+msgstr "Anda menang!"
+
+#: gnect/src/gfx.c:262
+#, c-format
+msgid ""
+"Unable to load image:\n"
+"%s"
 msgstr ""
 
-#: gnect/src/dialog.c:78
+#: gnect/src/main.c:534
+msgid "It's a draw!"
+msgstr "Seri!"
+
+#: gnect/src/main.c:543
+msgid "Your move..."
+msgstr "Anda jalan..."
+
+#: gnect/src/main.c:547 gnect/src/main.c:640
+msgid "Thinking..."
+msgstr "Berfikir..."
+
+#: gnect/src/main.c:555
+#, c-format
+msgid "%s wins!"
+msgstr "%s menang!"
+
+#: gnect/src/main.c:556
+#, c-format
+msgid "%s..."
+msgstr ""
+
+#: gnect/src/main.c:657
+#, c-format
+msgid "Hint: Column %d"
+msgstr "Petunjuk: Kolom %d"
+
+#: gnect/src/main.c:685 gnect/src/main.c:690
+msgid "You"
+msgstr "Anda"
+
+#: gnect/src/main.c:686 gnect/src/main.c:689
+msgid "Me"
+msgstr "Saya"
+
+#: gnect/src/main.c:736
+#, fuzzy
+msgid "Scores"
+msgstr "Nilai"
+
+#: gnect/src/main.c:783
+msgid "Drawn"
+msgstr "Ditarik"
+
+#: gnect/src/main.c:829
 msgid ""
 "\"Four in a row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
 msgstr ""
+"Permainan \"Empat Sebaris\" GNOME, pemain komputer dikendalikan dengan mesin "
+"Velena oleh Giuliano Bertoletti."
 
-#: gnect/src/dialog.c:113 gnect/src/dialog.c:118
-msgid "You"
-msgstr ""
-
-#: gnect/src/dialog.c:114 gnect/src/dialog.c:117
-msgid "Me"
-msgstr ""
-
-#: gnect/src/dialog.c:162
-msgid "Gnect Scores"
-msgstr ""
-
-#. drawn games
-#: gnect/src/dialog.c:215
-msgid "Drawn"
-msgstr ""
-
-#. Velena Engine
-#: gnect/src/gnect.c:291 gnect/src/gnect.c:550
-msgid "Thinking..."
-msgstr ""
-
-#: gnect/src/gnect.c:554
-#, c-format
-msgid "Hint: Column %d"
-msgstr ""
-
-#: gnect/src/gui.c:77
-msgid "Enable _sound"
-msgstr ""
-
-#: gnect/src/gui.c:77
-msgid "Enable or disable sound"
-msgstr ""
-
-#: gnect/src/gui.c:78
-msgid "Draw _grid"
-msgstr ""
-
-#: gnect/src/gui.c:78
-msgid "Show or hide the grid"
-msgstr ""
-
-#: gnect/src/gui.c:427
-msgid "It's a draw!"
-msgstr ""
-
-#: gnect/src/gui.c:453 gnect/src/gui.c:454
-#, c-format
-msgid "%s wins!"
-msgstr ""
-
-#: gnect/src/gui.c:483
-msgid "Your move..."
-msgstr ""
-
-#: gnect/src/gui.c:508
+#: gnect/src/main.c:1136 gnect/src/main.c:1163
 msgid "Select \"New game\" from the \"Game\" menu to begin."
-msgstr ""
+msgstr "Pilih \"Gim baru\" dari menu \"Gim\" untuk mulai."
 
-#: gnect/src/gui.c:642
+#: gnect/src/main.c:1190
 #, fuzzy
+msgid "Show or hide the tool bar"
+msgstr "Tampilkan atau sembunyikan batang alat"
+
+#: gnect/src/main.c:1192
+msgid "Enable _sound"
+msgstr "Aktifkan _suara"
+
+#: gnect/src/main.c:1193
+msgid "Enable or disable sound"
+msgstr "Matikan atau aktifkan suara"
+
+#: gnect/src/main.c:1213 mahjongg/mahjongg.c:848
+msgid "New game"
+msgstr "Gim baru"
+
+#: gnect/src/main.c:1307
 msgid "Welcome to Gnect!"
-msgstr "Selamat datang di gataxx!"
+msgstr "Selamat datang di Gnect!"
 
-#: gnect/src/main.c:50
-msgid "Initial window placement"
-msgstr ""
-
-#: gnect/src/main.c:51
-msgid "GEOMETRY"
-msgstr "GEOMETRY"
-
-#: gnect/src/main.c:57
-msgid "Random number seed"
-msgstr ""
-
-#: gnect/src/main.c:58
-msgid "SEED"
-msgstr ""
-
-#: gnect/src/main.c:64
-msgid "Initial theme file (excluding path)"
-msgstr ""
-
-#: gnect/src/main.c:65 gnome-stones/main.c:74
-msgid "FILENAME"
-msgstr "NAMA·FILE"
-
-#: gnect/src/main.c:71
-msgid "Debugging level (4 for random seed)"
-msgstr ""
-
-#: gnect/src/main.c:105
-#, c-format
-msgid "%s: no themes available\n"
-msgstr ""
-
-#: gnect/src/prefs.c:326
-#, c-format
-msgid "Player 1: %s"
-msgstr ""
-
-#: gnect/src/prefs.c:327
-#, c-format
-msgid "Player 2: %s"
-msgstr ""
-
-#: gnect/src/prefs.c:350
+#: gnect/src/prefs.c:158
+#, fuzzy, c-format
 msgid ""
-"Applying this change to Player Selection\n"
-"will end the current game"
-msgstr ""
+"Player One:\n"
+"%s"
+msgstr "Pemain 1: %s"
 
-#: gnect/src/prefs.c:581
-msgid "Error loading theme"
-msgstr ""
+#: gnect/src/prefs.c:162
+#, fuzzy, c-format
+msgid ""
+"Player Two:\n"
+"%s"
+msgstr "Pemain 1: %s"
 
-#: gnect/src/prefs.c:741
-msgid "Non-Velena / Simple"
-msgstr ""
+#: gnect/src/prefs.c:346 iagno/properties.c:544 iagno/properties.c:591
+msgid "Level one"
+msgstr "Level satu"
 
-#: gnect/src/prefs.c:744
-msgid "Velena / Weak"
-msgstr ""
+#: gnect/src/prefs.c:348 iagno/properties.c:554 iagno/properties.c:601
+msgid "Level two"
+msgstr "Level dua"
 
-#: gnect/src/prefs.c:747
-msgid "Velena / Medium"
-msgstr ""
+#: gnect/src/prefs.c:350 iagno/properties.c:564 iagno/properties.c:612
+msgid "Level three"
+msgstr "Level tiga"
 
-#: gnect/src/prefs.c:750
-msgid "Velena / Strong"
-msgstr ""
-
-#: gnect/src/prefs.c:763
-msgid "Always Player 1"
-msgstr ""
-
-#: gnect/src/prefs.c:766
-msgid "Always Player 2"
-msgstr ""
-
-#: gnect/src/prefs.c:769
-msgid "Take turns"
-msgstr ""
-
-#: gnect/src/prefs.c:794
-msgid "Gnect Preferences"
-msgstr ""
-
-#: gnect/src/prefs.c:811
-msgid "_Player Selection"
-msgstr ""
-
-#. who starts?
-#: gnect/src/prefs.c:850
-msgid "Who starts?"
-msgstr ""
-
-#. theme
-#: gnect/src/prefs.c:864
-msgid "Appearance and Behaviour"
-msgstr ""
-
-#: gnect/src/prefs.c:871 gnometris/tetris.cpp:732 same-gnome/same-gnome.c:637
-#: same-gnome/same-gnome.c:690
-msgid "Theme"
-msgstr "tematik"
-
-#: gnect/src/prefs.c:881
-msgid "Theme Selection:"
-msgstr ""
-
-#. animation
-#: gnect/src/prefs.c:894 iagno/properties.c:640
-msgid "Animation"
-msgstr "Animasi"
-
-#: gnect/src/prefs.c:901
+#: gnect/src/prefs.c:374
 #, fuzzy
-msgid "Enable animation"
-msgstr "Animasi"
+msgid "Four-in-a-row Preferences"
+msgstr "Permainan Empat-Sebaris"
 
-#. sound
-#: gnect/src/prefs.c:906
+#: gnect/src/prefs.c:391 gnibbles/preferences.c:213
+#: gnome-stones/preferences.c:744 gnometris/tetris.cpp:769
+msgid "_Game"
+msgstr "_Gim"
+
+#: gnect/src/prefs.c:432
 #, fuzzy
-msgid "Sound Type"
-msgstr "Suara"
+msgid "_Theme:"
+msgstr "Tema"
 
-#: gnect/src/prefs.c:911
-msgid "Speaker beep"
-msgstr ""
+#: gnect/src/prefs.c:446
+#, fuzzy
+msgid "Enable _animation"
+msgstr "Aktifkan animasi"
 
-#: gnect/src/prefs.c:915
-msgid "GNOME sound"
-msgstr ""
-
-#: gnect/src/prefs.c:917
-msgid "This can be set up using the GNOME Control Center"
-msgstr ""
-
-#. keyboard
-#: gnect/src/prefs.c:922
+#: gnect/src/prefs.c:453
 msgid "Controls"
+msgstr "Kendali"
+
+#: gnect/src/prefs.c:456 gnibbles/preferences.c:376 gnometris/tetris.cpp:900
+msgid "Keyboard controls"
+msgstr "Kendali keyboard"
+
+#: gnect/src/theme.c:42
+msgid "Classic"
 msgstr ""
 
-#: gnect/src/prefs.c:926
-msgid "Keyboard Control"
-msgstr ""
-
-#: gnect/src/prefs.c:952
-msgid "Drop counter"
-msgstr ""
-
-#: gnect/src/theme.c:389
-msgid "Black"
-msgstr "Hitam"
-
-#: gnect/src/theme.c:392
-msgid "White"
-msgstr "Putih"
-
-#: gnect/src/theme.c:395
-msgid "Grey"
-msgstr ""
-
-#: gnect/src/theme.c:398 gnibbles/preferences.c:709
-msgid "Yellow"
-msgstr ""
-
-#: gnect/src/theme.c:401 gnibbles/preferences.c:694
+#: gnect/src/theme.c:47 gnect/src/theme.c:63 gnect/src/theme.c:71
+#: gnect/src/theme.c:79 gnibbles/preferences.c:413
 msgid "Red"
 msgstr "Merah"
 
-#: gnect/src/theme.c:404 gnibbles/preferences.c:704
+#: gnect/src/theme.c:47 gnect/src/theme.c:79 gnibbles/preferences.c:416
+msgid "Yellow"
+msgstr "Kuning"
+
+#: gnect/src/theme.c:50
+msgid "High Contrast"
+msgstr ""
+
+#: gnect/src/theme.c:58
+msgid "Marbles"
+msgstr ""
+
+#: gnect/src/theme.c:63 gnect/src/theme.c:71 gnect/src/theme.c:87
+#: gnibbles/preferences.c:415
 msgid "Blue"
 msgstr "Biru"
 
-#: gnect/src/theme.c:407 gnibbles/preferences.c:699
-msgid "Green"
-msgstr "Hijau"
+#: gnect/src/theme.c:66
+#, fuzzy
+msgid "More Marbles"
+msgstr "Monte carlo"
 
-#: gnect/src/theme.c:410
+#: gnect/src/theme.c:74
+msgid "Nightfall"
+msgstr ""
+
+#: gnect/src/theme.c:82
+#, fuzzy
+msgid "Blocks"
+msgstr "Clock"
+
+#: gnect/src/theme.c:87
 msgid "Orange"
 msgstr "Oranye"
 
-#: gnect/src/theme.c:413 gnibbles/preferences.c:719
-msgid "Purple"
-msgstr ""
-
-#: gnect/src/theme.c:416
-msgid "Pink"
-msgstr ""
-
-#: gnect/src/theme.c:419
-msgid "Violet"
-msgstr "Ungu"
-
-#: gnect/src/theme.c:422
-msgid "Brown"
-msgstr ""
-
-#: gnibbles/gnibbles.c:123
+#: gnibbles/gnibbles.c:83
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -2423,17 +2435,12 @@ msgid ""
 "\n"
 "Please check your Gnibbles installation"
 msgstr ""
-
-#: gnibbles/gnibbles.c:147
-#, c-format
-msgid ""
-"Gnibbles Couldn't find pixmap file:\n"
+"Gnibbles tidak menemukan berkas gambar pixmap:\n"
 "%s\n"
 "\n"
-"Please check your Gnibbles instalation"
-msgstr ""
+"Silakan periksa dulu instalasi Gnibblesnya"
 
-#: gnibbles/gnibbles.c:183
+#: gnibbles/gnibbles.c:232
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -2441,785 +2448,943 @@ msgid ""
 "\n"
 "Please check your Gnibbles installation"
 msgstr ""
+"Gnibbles tidak dapat membuka berkas level:\n"
+"%s\n"
+"\n"
+"Silakan periksa dulu instalasi Gnibblesnya"
 
-#: gnibbles/gnibbles.desktop.in.h:1 gnibbles/gnibbles.soundlist.in.h:6
-#: gnibbles/main.c:187
-msgid "Gnibbles"
+#: gnibbles/gnibbles.desktop.in.h:1
+msgid "Guide a worm around a maze"
 msgstr ""
 
-#: gnibbles/gnibbles.desktop.in.h:2
+#: gnibbles/gnibbles.desktop.in.h:2 gnibbles/main.c:204
 #, fuzzy
-msgid "Nibbles game"
-msgstr "Bakers game"
+msgid "Nibbles"
+msgstr "Gnibbles"
 
 #: gnibbles/gnibbles.schemas.in.h:1
 msgid "Color to use for worm"
-msgstr ""
+msgstr "Warna cacing"
 
 #: gnibbles/gnibbles.schemas.in.h:2
 msgid "Color to use for worm."
-msgstr ""
+msgstr "Warna cacing."
 
-#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:436
+#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:291
 msgid "Enable fake bonuses"
-msgstr ""
+msgstr "Aktifkan bonus palsu"
 
 #: gnibbles/gnibbles.schemas.in.h:4
 msgid "Enable fake bonuses."
-msgstr ""
+msgstr "Aktifkan bonus palsu."
 
-#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:447
-#: gnobots2/properties.c:859
+#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:302
+#: gnobots2/properties.c:827 gnometris/tetris.cpp:831
 msgid "Enable sounds"
-msgstr ""
+msgstr "Aktifkan suara"
 
 #: gnibbles/gnibbles.schemas.in.h:6
 msgid "Enable sounds."
-msgstr ""
+msgstr "Aktifkan suara."
 
 #: gnibbles/gnibbles.schemas.in.h:7
 msgid "Game level to start on"
-msgstr ""
+msgstr "Level gim permulaan"
 
 #: gnibbles/gnibbles.schemas.in.h:8
 msgid "Game level to start on."
-msgstr ""
+msgstr "Level gim permulaan."
 
 #: gnibbles/gnibbles.schemas.in.h:9
-#, fuzzy
 msgid "Game speed"
-msgstr "Permainan Usai"
+msgstr "Kecepatan gim"
 
 #: gnibbles/gnibbles.schemas.in.h:10
 msgid "Game speed (1=fast, 4=slow)."
-msgstr ""
+msgstr "Kecepatan gim (1=cepat, 4=rendah)."
 
 #: gnibbles/gnibbles.schemas.in.h:11
-msgid "Key to use for motion down"
+msgid "Height of the GNibbles window"
 msgstr ""
 
 #: gnibbles/gnibbles.schemas.in.h:12
-msgid "Key to use for motion down."
+msgid ""
+"Height of the GNibbles window, used to restore the window size between "
+"sessions."
 msgstr ""
 
 #: gnibbles/gnibbles.schemas.in.h:13
-msgid "Key to use for motion left"
-msgstr ""
+msgid "Key to use for motion down."
+msgstr "Tombol bawah."
 
 #: gnibbles/gnibbles.schemas.in.h:14
 msgid "Key to use for motion left."
-msgstr ""
+msgstr "Tombol kiri."
 
 #: gnibbles/gnibbles.schemas.in.h:15
-msgid "Key to use for motion right"
-msgstr ""
+msgid "Key to use for motion right."
+msgstr "Tombol kanan."
 
 #: gnibbles/gnibbles.schemas.in.h:16
-msgid "Key to use for motion right."
-msgstr ""
-
-#: gnibbles/gnibbles.schemas.in.h:17
-msgid "Key to use for motion up"
-msgstr ""
-
-#: gnibbles/gnibbles.schemas.in.h:18
 msgid "Key to use for motion up."
-msgstr ""
+msgstr "Tombol atas."
 
-#: gnibbles/gnibbles.schemas.in.h:19
-msgid "Number of players"
-msgstr ""
+#: gnibbles/gnibbles.schemas.in.h:17 gnometris/gnometris.schemas.in.h:12
+#, fuzzy
+msgid "Move down"
+msgstr "Pindahkan ke bawah"
 
 #: gnibbles/gnibbles.schemas.in.h:20
-msgid "Number of players."
-msgstr ""
+#, fuzzy
+msgid "Move up"
+msgstr "_Pindahkan..."
 
-#: gnibbles/gnibbles.schemas.in.h:21 gnibbles/preferences.c:425
-msgid "Play levels in random order"
-msgstr ""
+#: gnibbles/gnibbles.schemas.in.h:21
+msgid "Number of players"
+msgstr "Jumlah pemain"
 
 #: gnibbles/gnibbles.schemas.in.h:22
-msgid "Play levels in random order."
-msgstr ""
+msgid "Number of players."
+msgstr "Jumlah pemain."
 
-#: gnibbles/gnibbles.schemas.in.h:23
-msgid "Size of game tiles"
-msgstr ""
+#: gnibbles/gnibbles.schemas.in.h:23 gnibbles/preferences.c:280
+msgid "Play levels in random order"
+msgstr "Mainkan beragam tingkatan secara acak"
 
 #: gnibbles/gnibbles.schemas.in.h:24
-msgid "Size of game tiles."
-msgstr ""
+msgid "Play levels in random order."
+msgstr "Mainkan berbagai tingkatan secara acak."
 
-#: gnibbles/gnibbles.schemas.in.h:25 gnibbles/preferences.c:682
-msgid "Use relative movement"
-msgstr ""
+#: gnibbles/gnibbles.schemas.in.h:25
+msgid "Size of game tiles"
+msgstr "Ukuran kotak ubin permainan"
 
 #: gnibbles/gnibbles.schemas.in.h:26
+msgid "Size of game tiles."
+msgstr "Ukuran kotak ubin permainan."
+
+#: gnibbles/gnibbles.schemas.in.h:27 gnibbles/preferences.c:402
+msgid "Use relative movement"
+msgstr "Gerakan relatif."
+
+#: gnibbles/gnibbles.schemas.in.h:28
 msgid "Use relative movement (ie. left or right only)."
+msgstr "Gerakan relatif (kiri atau kanan saja)."
+
+#: gnibbles/gnibbles.schemas.in.h:29
+msgid "Width of the GNibbles window"
+msgstr ""
+
+#: gnibbles/gnibbles.schemas.in.h:30
+msgid ""
+"Width of the GNibbles window, used to restore the window size between "
+"sessions."
 msgstr ""
 
 #: gnibbles/gnibbles.soundlist.in.h:1
 msgid "Bonus"
-msgstr ""
+msgstr "Bonus"
 
 #: gnibbles/gnibbles.soundlist.in.h:2
 msgid "Bonus Appears"
-msgstr ""
+msgstr "Kemunculan Bonus"
 
 #: gnibbles/gnibbles.soundlist.in.h:3
 msgid "Eat Bonus"
-msgstr ""
+msgstr "Bonus Makanan"
 
 #: gnibbles/gnibbles.soundlist.in.h:4
 msgid "Extra Life"
-msgstr ""
+msgstr "Nyawa Ekstra"
 
-#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:209
-#, fuzzy
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:281
 msgid "Game Over"
 msgstr "Permainan Usai"
 
+#: gnibbles/gnibbles.soundlist.in.h:6
+msgid "Gnibbles"
+msgstr "Gnibbles"
+
 #: gnibbles/gnibbles.soundlist.in.h:7
 msgid "Worm Death"
-msgstr ""
+msgstr "Cacing Setan"
 
 #: gnibbles/gnibbles.soundlist.in.h:8
 msgid "Worm Reverse"
-msgstr ""
+msgstr "Cacing Terbalik"
 
 #: gnibbles/gnibbles.soundlist.in.h:9
 msgid "Worm Teleport"
-msgstr ""
+msgstr "Teleport Cacing"
 
-#: gnibbles/main.c:190
+#: gnibbles/main.c:89 iagno/gnothello.c:118
+msgid "New net_work game"
+msgstr "Mulai gim lewat _jaringan"
+
+#: gnibbles/main.c:207
 msgid "A worm game for GNOME."
-msgstr ""
+msgstr "Gim cacing GNOME."
 
-#: gnibbles/preferences.c:349
+#: gnibbles/network.c:158 iagno/network.c:108
+msgid "Invalid move attempted"
+msgstr "Pemain mencoba mengambil jalan yang salah"
+
+#: gnibbles/network.c:163 iagno/network.c:114
+msgid "Invalid game data (set_peer)"
+msgstr "Data gim salah (set_peer)"
+
+#: gnibbles/network.c:169 iagno/network.c:121
+msgid "Peer introduction complete"
+msgstr "Pengenalan lawan selesai dilakukan"
+
+#: gnibbles/network.c:177 gnibbles/network.c:196 iagno/network.c:128
+msgid "Invalid game data (move)"
+msgstr "Data gim salah (jalan)"
+
+#: gnibbles/network.c:214
 #, fuzzy
+msgid "Invalid game data (add_bonus)"
+msgstr "Data gim salah (jalan)"
+
+#: gnibbles/network.c:224
+#, fuzzy
+msgid "Invalid game data (remove_bonus)"
+msgstr "Data gim salah (jalan)"
+
+#: gnibbles/network.c:238 iagno/network.c:139
+#, fuzzy
+msgid "New game ready to be started"
+msgstr "Gim baru dimulai"
+
+#: gnibbles/network.c:245 iagno/network.c:146
+msgid "New game started"
+msgstr "Gim baru dimulai"
+
+#: gnibbles/preferences.c:204
 msgid "Gnibbles Preferences"
-msgstr "Setting"
+msgstr "Pengaturan Gnibbles"
 
-#: gnibbles/preferences.c:358
-msgid "Game"
-msgstr "Gim"
-
-#: gnibbles/preferences.c:366
-#, fuzzy
+#: gnibbles/preferences.c:221
 msgid "Speed"
-msgstr "Benih"
+msgstr "Kecepatan"
 
-#: gnibbles/preferences.c:376
+#: gnibbles/preferences.c:231
 msgid "Nibbles newbie"
-msgstr ""
+msgstr "Pemula"
 
-#: gnibbles/preferences.c:386
+#: gnibbles/preferences.c:241
 msgid "My second day"
-msgstr ""
+msgstr "Hari kedua"
 
-#: gnibbles/preferences.c:396
+#: gnibbles/preferences.c:251
 msgid "Not too shabby"
-msgstr ""
+msgstr "Jangan terlalu mudah"
 
-#: gnibbles/preferences.c:407
+#: gnibbles/preferences.c:262
 msgid "Finger-twitching good"
-msgstr ""
+msgstr "Cukup mahir"
 
-#: gnibbles/preferences.c:460
+#. Options
+#: gnibbles/preferences.c:273 gnibbles/preferences.c:395
+#: gnobots2/properties.c:799 iagno/properties.c:664
+msgid "Options"
+msgstr "Pilihan"
+
+#: gnibbles/preferences.c:315
 msgid "Starting level:"
-msgstr ""
+msgstr "Tingkatan awal:"
 
-#: gnibbles/preferences.c:487 gtali/setup.c:292
+#: gnibbles/preferences.c:342 gtali/setup.c:266
 msgid "Number of players:"
-msgstr ""
+msgstr "Jumlah pemain:"
 
-#: gnibbles/preferences.c:512
-msgid "Board size"
-msgstr ""
-
-#: gnibbles/preferences.c:517
-msgid "Tiny  (184 x 132)"
-msgstr ""
-
-#: gnibbles/preferences.c:527
-msgid "Small  (368 x 264)"
-msgstr ""
-
-#: gnibbles/preferences.c:536
-msgid "Medium  (460 x 330)"
-msgstr ""
-
-#: gnibbles/preferences.c:545
-msgid "Large  (736 x 528)"
-msgstr ""
-
-#: gnibbles/preferences.c:554
-msgid "Extra large  (920 x 660)"
-msgstr ""
-
-#: gnibbles/preferences.c:563
-msgid "Huge  (1840 x 1320)"
-msgstr ""
-
-#: gnibbles/preferences.c:579
+#: gnibbles/preferences.c:367
 msgid "Worm"
-msgstr ""
+msgstr "Cacing"
 
-#: gnibbles/preferences.c:588
-msgid "Keyboard controls"
-msgstr ""
-
-#: gnibbles/preferences.c:599
-#, fuzzy
-msgid "Up"
-msgstr "_Atas"
-
-#: gnibbles/preferences.c:619
-#, fuzzy
-msgid "Down"
-msgstr "_Turun"
-
-#: gnibbles/preferences.c:639
-#, fuzzy
-msgid "Left"
-msgstr "K_iri"
-
-#: gnibbles/preferences.c:658
-#, fuzzy
-msgid "Right"
-msgstr "_Kanan"
-
-#: gnibbles/preferences.c:688
+#: gnibbles/preferences.c:408
 msgid "Worm color:"
-msgstr ""
+msgstr "Warna cacing:"
 
-#: gnibbles/preferences.c:714
+#: gnibbles/preferences.c:414
+msgid "Green"
+msgstr "Hijau"
+
+#: gnibbles/preferences.c:417
 msgid "Cyan"
-msgstr ""
+msgstr "Biru telor asin"
 
-#: gnibbles/preferences.c:724
+#: gnibbles/preferences.c:418
+msgid "Purple"
+msgstr "Ungu"
+
+#: gnibbles/preferences.c:419
 msgid "Gray"
-msgstr ""
+msgstr "Abu-abu"
 
 #: gnibbles/scoreboard.c:45
 #, c-format
 msgid "Worm %d:"
-msgstr ""
+msgstr "Cacing %d:"
 
-#: gnobots2/game.c:141
+#: gnobots2/game.c:143
 #, c-format
 msgid "'%s' with super-safe moves"
-msgstr ""
+msgstr "Tipe permainan '%s' dengan langkah super-aman"
 
-#: gnobots2/game.c:144
+#: gnobots2/game.c:146
 #, c-format
 msgid "'%s' with safe moves"
-msgstr ""
+msgstr "Tipe permainan '%s' dengan langkah aman"
 
-#: gnobots2/game.c:320 gnobots2/game.c:335
+#: gnobots2/game.c:322 gnobots2/game.c:337
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
 msgstr ""
+"Selamat, Anda telah mengalahkan para Robot!!\n"
+"Mau lagi?"
 
-#: gnobots2/game.c:1149
+#: gnobots2/game.c:1158
 msgid "There are no teleport locations left!!"
-msgstr ""
+msgstr "Tidak ada lokasi teleport lagi!!"
 
-#: gnobots2/game.c:1218
+#: gnobots2/game.c:1227
 msgid "There are no safe locations to teleport to!!"
-msgstr ""
+msgstr "Tidak ada lokasi aman untuk teleport!!"
 
-#: gnobots2/gnobots.c:60 same-gnome/same-gnome.c:887
+#: gnobots2/gnobots.c:61 same-gnome/same-gnome.c:887
 msgid "Set game scenario"
-msgstr ""
+msgstr "Pilih skenario permainan"
 
-#: gnobots2/gnobots.c:62
+#: gnobots2/gnobots.c:63
 msgid "Set game configuration"
-msgstr ""
+msgstr "Pilih konfigurasi permainan"
 
-#: gnobots2/gnobots.c:63 gnomine/gnomine.c:773 gnomine/gnomine.c:778
+#: gnobots2/gnobots.c:64 gnomine/gnomine.c:929 gnomine/gnomine.c:933
 msgid "X"
 msgstr "X"
 
-#: gnobots2/gnobots.c:64 gnomine/gnomine.c:774 gnomine/gnomine.c:779
+#: gnobots2/gnobots.c:65 gnomine/gnomine.c:930 gnomine/gnomine.c:934
 msgid "Y"
 msgstr "Y"
 
-#: gnobots2/gnobots.c:198 gnobots2/gnobots2.soundlist.in.h:2
-msgid "GNOME Robots II"
+#: gnobots2/gnobots.c:200 gnobots2/menu.c:243
+msgid "GNOME Robots"
+msgstr "GNOME Robot"
+
+#: gnobots2/gnobots.c:235
+msgid "No game data could be found."
+msgstr ""
+
+#: gnobots2/gnobots.c:236
+msgid ""
+"The program GNOME Robots was unable to find any valid game configuration "
+"files. Please check that the program is installed correctly."
 msgstr ""
 
 #. ********************************************************************
-#: gnobots2/gnobots2.desktop.in.h:1 gnobots2/menu.c:212
-#, fuzzy
-msgid "GNOME Robots"
-msgstr "GNOME Stones"
+#: gnobots2/gnobots2.desktop.in.h:1
+msgid "Avoid the robots and make them crash into each other"
+msgstr ""
 
 #: gnobots2/gnobots2.desktop.in.h:2
 #, fuzzy
-msgid "Robots game"
-msgstr "Klotski game"
+msgid "Robots"
+msgstr "robot"
 
 #: gnobots2/gnobots2.schemas.in.h:3
 msgid "Enable game sounds"
-msgstr ""
+msgstr "Aktifkan suara dalam gim"
 
 #: gnobots2/gnobots2.schemas.in.h:4
 msgid "Enable game sounds. Play sounds for various events throughout the game."
-msgstr ""
+msgstr "Aktifkan suara dalam gim. Mainkan suara dalam keseluruhan gim."
 
-#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:865
+#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:836
 msgid "Enable splats"
-msgstr ""
+msgstr "Aktifkan ledakan"
 
 #: gnobots2/gnobots2.schemas.in.h:6
 msgid "Enable splats. Play a sound and show a \"Splat!\" on the screen."
-msgstr ""
+msgstr "Aktifkan ledakan. Bunyikan suara dan tampilkan ledakan di layar."
 
 #: gnobots2/gnobots2.schemas.in.h:7
-#, fuzzy
 msgid "Game type"
-msgstr "Judul Gim"
+msgstr "Jenis gim"
 
 #: gnobots2/gnobots2.schemas.in.h:8
 msgid "Game type. The name of the game variation to use."
-msgstr ""
+msgstr "Jenis gim. Nama variasi gim."
 
 #: gnobots2/gnobots2.schemas.in.h:9
-msgid "Robot image theme"
+msgid "Key to hold"
 msgstr ""
 
 #: gnobots2/gnobots2.schemas.in.h:10
-msgid "Robot image theme. The theme of the images to use for the robots."
-msgstr ""
+#, fuzzy
+msgid "Key to move E"
+msgstr "Tekan untuk pindah ke kiri."
 
-#: gnobots2/gnobots2.schemas.in.h:11 gnobots2/properties.c:847
-msgid "Use safe moves"
-msgstr ""
+#: gnobots2/gnobots2.schemas.in.h:11
+#, fuzzy
+msgid "Key to move N"
+msgstr "Tekan untuk pindah ke kiri."
 
 #: gnobots2/gnobots2.schemas.in.h:12
+#, fuzzy
+msgid "Key to move NE"
+msgstr "Tekan untuk pindah ke kiri."
+
+#: gnobots2/gnobots2.schemas.in.h:13
+#, fuzzy
+msgid "Key to move NW"
+msgstr "Tekan untuk pindah ke kiri."
+
+#: gnobots2/gnobots2.schemas.in.h:14
+#, fuzzy
+msgid "Key to move S"
+msgstr "Tekan untuk pindah ke kiri."
+
+#: gnobots2/gnobots2.schemas.in.h:15
+#, fuzzy
+msgid "Key to move SE"
+msgstr "Tekan untuk pindah ke kiri."
+
+#: gnobots2/gnobots2.schemas.in.h:16
+#, fuzzy
+msgid "Key to move SW"
+msgstr "Tekan untuk pindah ke kiri."
+
+#: gnobots2/gnobots2.schemas.in.h:17
+#, fuzzy
+msgid "Key to move W"
+msgstr "Tekan untuk pindah ke kiri."
+
+#: gnobots2/gnobots2.schemas.in.h:18
+#, fuzzy
+msgid "Key to teleport"
+msgstr "Teleport Cacing"
+
+#: gnobots2/gnobots2.schemas.in.h:19
+msgid "Key to teleport randomly"
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:20
+msgid "Key to wait"
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:21
+msgid "Robot image theme"
+msgstr "Tema gambar Robot"
+
+#: gnobots2/gnobots2.schemas.in.h:22
+msgid "Robot image theme. The theme of the images to use for the robots."
+msgstr "Tema gambar robot."
+
+#: gnobots2/gnobots2.schemas.in.h:23
+msgid ""
+"The name of the key used to hold still. The name is a standard X key name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:24
+msgid ""
+"The name of the key used to move east. The name is a standard X key name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:25
+msgid ""
+"The name of the key used to move north-east. The name is a standard X key "
+"name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:26
+msgid ""
+"The name of the key used to move north-west. The name is a standard X key "
+"name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:27
+msgid ""
+"The name of the key used to move north. The name is a standard X key name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:28
+msgid ""
+"The name of the key used to move south-east. The name is a standard X key "
+"name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:29
+msgid ""
+"The name of the key used to move south-west. The name is a standard X key "
+"name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:30
+msgid ""
+"The name of the key used to move south. The name is a standard X key name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:31
+msgid ""
+"The name of the key used to move west. The name is a standard X key name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:32
+msgid ""
+"The name of the key used to teleport randomly. The name is a standard X key "
+"name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:33
+msgid ""
+"The name of the key used to teleport safely (if possible). The name is a "
+"standard X key name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:34
+msgid "The name of the key used to wait. The name is a standard X key name."
+msgstr ""
+
+#: gnobots2/gnobots2.schemas.in.h:35 gnobots2/properties.c:809
+msgid "Use safe moves"
+msgstr "Gunakan langkah aman"
+
+#: gnobots2/gnobots2.schemas.in.h:36
 msgid ""
 "Use safe moves. The safe moves option will help you to avoid being killed "
 "due to a mistake. If you try to make a move that would lead to your death "
 "when there is a safe move available you will not be allowed to proceed."
 msgstr ""
+"Gunakan langkah aman. Langkah aman akan menghindarkan Anda dari pembunuhan "
+"yang dilakukan robot karena salah langkah. Bila Anda sekiranya akan "
+"melangkah dan membahayakan diri Anda, maka langkah tersebut akan dibatalkan "
+"oleh komputer."
 
-#: gnobots2/gnobots2.schemas.in.h:13 gnobots2/properties.c:853
+#: gnobots2/gnobots2.schemas.in.h:37 gnobots2/properties.c:818
 msgid "Use super safe moves"
-msgstr ""
+msgstr "Gunakan langkah super aman"
 
-#: gnobots2/gnobots2.schemas.in.h:14
+#: gnobots2/gnobots2.schemas.in.h:38
 msgid ""
 "Use super safe moves. The player is alerted when there is no safe move and "
 "the only option is to teleport out."
 msgstr ""
+"Gunakan langkah super aman. Pemain akan diperingatkan bila tidak ada langkah "
+"yang aman dan satu-satunya jalan adalah dengan menggunakan teleport."
 
 #: gnobots2/gnobots2.soundlist.in.h:1
 msgid "Bad Move"
-msgstr ""
+msgstr "Salah Jalan"
+
+#: gnobots2/gnobots2.soundlist.in.h:2
+msgid "GNOME Robots II"
+msgstr "GNOME Robots II"
 
 #: gnobots2/gnobots2.soundlist.in.h:3
 msgid "Level Complete"
-msgstr ""
+msgstr "Level Selesai"
 
 #: gnobots2/gnobots2.soundlist.in.h:4
 msgid "Player Dead"
-msgstr ""
+msgstr "Pemain Mati"
 
 #: gnobots2/gnobots2.soundlist.in.h:5
 msgid "Player Teleport"
-msgstr ""
+msgstr "Telepor Pemain"
 
 #: gnobots2/gnobots2.soundlist.in.h:6
 msgid "Robot has been Splatted!"
-msgstr ""
+msgstr "Robot telah diledakkan!"
 
 #: gnobots2/gnobots2.soundlist.in.h:7
 msgid "Victory!!"
+msgstr "Menang!!"
+
+#: gnobots2/graphics.c:104 gnotski/gnotski.c:806 iagno/gnothello.c:536
+#, c-format
+msgid "Could not find '%s' pixmap file\n"
+msgstr "Berkas pixmap '%s' tidak ditemukan\n"
+
+#. FIXME: Someday these should be part of a gnome-games icon theme.
+#: gnobots2/menu.c:65 gnobots2/menu.c:112
+#, fuzzy
+msgid "Teleport"
+msgstr "Teleport:"
+
+#: gnobots2/menu.c:65 gnobots2/menu.c:112
+msgid "Teleport, safely if possible"
 msgstr ""
 
-#: gnobots2/graphics.c:104
-#, fuzzy, c-format
-msgid "Could not find '%s' image file for GNOME Robots\n"
-msgstr "Tidak dapat menemukan file pixmap '%s'  milik gataxx\n"
-
-#: gnobots2/menu.c:214
+#: gnobots2/menu.c:66 gnobots2/menu.c:116
 #, fuzzy
+msgid "Random"
+msgstr "Ulangi"
+
+#: gnobots2/menu.c:66 gnobots2/menu.c:116
+#, fuzzy
+msgid "Teleport randomly"
+msgstr "Teleport:"
+
+#: gnobots2/menu.c:67 gnobots2/menu.c:120
+#, fuzzy
+msgid "Wait"
+msgstr "Tunggu:"
+
+#: gnobots2/menu.c:67 gnobots2/menu.c:120
+msgid "Wait for the robots"
+msgstr ""
+
+#: gnobots2/menu.c:98 gnotravex/gnotravex.c:229
+msgid "_Move"
+msgstr "_Pindahkan..."
+
+#: gnobots2/menu.c:245
 msgid "GNOME Robots Game"
-msgstr "GNOME SameGame"
+msgstr "Gim Robot GNOME"
 
-#: gnobots2/properties.c:221
+#: gnobots2/properties.c:225
 msgid "Initial Number of Type 1 Robots"
-msgstr ""
+msgstr "Nomor awal Robot tipe 1"
 
-#: gnobots2/properties.c:223
+#: gnobots2/properties.c:227
 msgid "Initial Number of Robots"
-msgstr ""
+msgstr "Nomor awal Robot"
 
-#: gnobots2/properties.c:237
+#: gnobots2/properties.c:241
 msgid "Initial Number of Type 2 Robots"
-msgstr ""
+msgstr "Nomor awal Robot tipe 2"
 
-#: gnobots2/properties.c:250
+#: gnobots2/properties.c:254
 msgid "Increasing Number of Type 1 Robots per Level"
-msgstr ""
+msgstr "Jumlah Peningkatan Robot Tipe 1 per Level"
 
-#: gnobots2/properties.c:252
+#: gnobots2/properties.c:256
 msgid "Increasing Number of Robots per Level"
-msgstr ""
+msgstr "Jumlah Peningkatan Robot per Level"
 
-#: gnobots2/properties.c:265
+#: gnobots2/properties.c:269
 msgid "Increasing Number of Type 2 Robots per Level"
-msgstr ""
+msgstr "Jumlah Peningkatan Robot Tipe 2 per Level"
 
-#: gnobots2/properties.c:278
+#: gnobots2/properties.c:282
 msgid "Maximum Number of Type 1 Robots"
-msgstr ""
+msgstr "Jumlah Robot Tipe 1 Maksimal"
 
-#: gnobots2/properties.c:280
+#: gnobots2/properties.c:284
 msgid "Maximum Number of Robots"
-msgstr ""
+msgstr "Jumlah Robot Maksimal"
 
-#: gnobots2/properties.c:283 gnobots2/properties.c:299
+#: gnobots2/properties.c:287 gnobots2/properties.c:303
+#, c-format
 msgid "Fill Screen"
-msgstr ""
+msgstr "Penuhi Layar"
 
-#: gnobots2/properties.c:297
+#: gnobots2/properties.c:301
 msgid "Maximum Number of Type 2 Robots"
-msgstr ""
+msgstr "Jumlah Robot Tipe 2 Maksimal"
 
-#: gnobots2/properties.c:314
+#: gnobots2/properties.c:318
 msgid "Type 1 Robot Score"
-msgstr ""
+msgstr "Nilai Robot Tipe 1"
 
-#: gnobots2/properties.c:316
-#, fuzzy
+#: gnobots2/properties.c:320
 msgid "Robot Score"
-msgstr "Nilai"
+msgstr "Nilai Robot"
 
-#: gnobots2/properties.c:329
+#: gnobots2/properties.c:333
 msgid "Type 2 Robot Score"
-msgstr ""
+msgstr "Nilai Robot Tipe 2"
 
-#: gnobots2/properties.c:342
+#: gnobots2/properties.c:346
 msgid "Type 1 Robot Score When Waiting"
-msgstr ""
+msgstr "Nilai Robot Tipe 1 saat Menunggu"
 
-#: gnobots2/properties.c:344
+#: gnobots2/properties.c:348
 msgid "Robot Score When Waiting"
-msgstr ""
+msgstr "Nilai Robot saat Menunggu"
 
-#: gnobots2/properties.c:357
+#: gnobots2/properties.c:361
 msgid "Type 2 Robot Score When Waiting"
-msgstr ""
+msgstr "Nilai Robot Tipe 2 Saat Menunggu"
 
-#: gnobots2/properties.c:370
+#: gnobots2/properties.c:374
 msgid "Type 1 Robot Score When Splatted"
-msgstr ""
+msgstr "Nilai Robot Tipe 1 saat Diledakkan"
 
-#: gnobots2/properties.c:372
+#: gnobots2/properties.c:376
 msgid "Robot Score When Splatted"
-msgstr ""
+msgstr "Nilai Robot saat Diledakkan"
 
-#: gnobots2/properties.c:385
+#: gnobots2/properties.c:389
 msgid "Type 2 Robot Score When Splatted"
-msgstr ""
+msgstr "Nilai Robot Tipe 2 saat Diledakkan"
 
-#: gnobots2/properties.c:397
+#: gnobots2/properties.c:401
 msgid "Initial Number of Safe Teleports"
-msgstr ""
+msgstr "Jumlah Teleport Aman Awal"
 
-#: gnobots2/properties.c:408
+#: gnobots2/properties.c:412
 msgid "Number of Free Safe Teleports per Level"
-msgstr ""
+msgstr "Jumlah Teleport Aman yang Bebas tiap Tingkatan"
 
-#: gnobots2/properties.c:419
+#: gnobots2/properties.c:423
 msgid "Kills Required While Waiting to Get A Safe Teleport"
-msgstr ""
+msgstr "Jumlah Pembunuhan yang Diperlukan Untuk Mendapatkan Teleport yang Aman"
 
-#: gnobots2/properties.c:430
+#: gnobots2/properties.c:434
 msgid "Score Required To Get A Safe Teleport"
-msgstr ""
+msgstr "Nilai Yang Dibutuhkan untuk Mengambil Teleport Aman"
 
-#: gnobots2/properties.c:441
+#: gnobots2/properties.c:445
 msgid "Maximum Number of Safe Teleports"
-msgstr ""
-
-#: gnobots2/properties.c:452
-msgid "Moveable Junkheaps"
-msgstr ""
-
-#: gnobots2/properties.c:454
-msgid "Yes"
-msgstr ""
+msgstr "Jumlah Teleport Aman Maksimal"
 
 #: gnobots2/properties.c:456
-#, fuzzy
+msgid "Moveable Junkheaps"
+msgstr "Sampah yang Dapat Dipindahkan"
+
+#: gnobots2/properties.c:458
+msgid "Yes"
+msgstr "Ya"
+
+#: gnobots2/properties.c:460
 msgid "No"
-msgstr "Tidak ada"
+msgstr "Tidak"
 
-#: gnobots2/properties.c:646
+#: gnobots2/properties.c:621
 msgid "classic robots"
-msgstr ""
+msgstr "robot klasik"
 
-#: gnobots2/properties.c:647
+#: gnobots2/properties.c:622
 msgid "robots2"
-msgstr ""
+msgstr "robot2"
 
-#: gnobots2/properties.c:648
+#: gnobots2/properties.c:623
 msgid "robots2 easy"
-msgstr ""
+msgstr "robot2 mudah"
 
-#: gnobots2/properties.c:649
+#: gnobots2/properties.c:624
 msgid "robots with safe teleport"
-msgstr ""
+msgstr "robot dengan teleport aman"
 
-#: gnobots2/properties.c:650
-#, fuzzy
+#: gnobots2/properties.c:625
 msgid "nightmare"
-msgstr "Animasi"
+msgstr "mimpi buruk"
 
-#: gnobots2/properties.c:684
+#: gnobots2/properties.c:654
 msgid "robots"
-msgstr ""
+msgstr "robot"
 
-#: gnobots2/properties.c:685
+#: gnobots2/properties.c:655
 msgid "cows"
-msgstr ""
+msgstr "sapi"
 
-#: gnobots2/properties.c:686
+#: gnobots2/properties.c:656
 msgid "eggs"
-msgstr ""
+msgstr "telur"
 
-#: gnobots2/properties.c:687
-#, fuzzy
+#: gnobots2/properties.c:657
 msgid "gnomes"
-msgstr "Agnes"
+msgstr "orang cebol"
 
-#: gnobots2/properties.c:688
-#, fuzzy
+#: gnobots2/properties.c:658
 msgid "mice"
-msgstr "Perangkat"
+msgstr "tikus"
 
-#: gnobots2/properties.c:689
+#: gnobots2/properties.c:659
 msgid "windows"
-msgstr ""
+msgstr "jendela"
 
-#: gnobots2/properties.c:757
-#, fuzzy
+#: gnobots2/properties.c:719
 msgid "GNOME Robots Preferences"
-msgstr "Setting"
+msgstr "Pengaturan Robot GNOME"
 
-#: gnobots2/properties.c:774
-#, fuzzy
+#: gnobots2/properties.c:736
 msgid "Game Type"
-msgstr "Permainan Usai"
+msgstr "Jenis Permainan"
 
-#: gnobots2/properties.c:799
-#, fuzzy
+#: gnobots2/properties.c:761
 msgid "Property"
-msgstr "Properti"
+msgstr "Informasi"
 
-#: gnobots2/properties.c:806
-#, fuzzy
+#: gnobots2/properties.c:768
 msgid "Value"
-msgstr "Biru"
+msgstr "Nilai"
 
-#: gnobots2/properties.c:872
+#: gnobots2/properties.c:815
+msgid "Prevent some dangerous moves"
+msgstr ""
+
+#: gnobots2/properties.c:816
+msgid "Prevent accidental moves that result in getting killed."
+msgstr ""
+
+#: gnobots2/properties.c:824
+msgid "Prevent all dangerous moves"
+msgstr ""
+
+#: gnobots2/properties.c:825
+msgid "Prevents all moves that result in getting killed."
+msgstr ""
+
+#: gnobots2/properties.c:833
+msgid "Play sounds for major events"
+msgstr ""
+
+#: gnobots2/properties.c:834
+msgid "Play sounds for events like winning a level and dying."
+msgstr ""
+
+#: gnobots2/properties.c:842
+msgid "Play a sound when two robots collide"
+msgstr ""
+
+#: gnobots2/properties.c:843
+msgid "Play the most common, and potentially the most annoying, sound."
+msgstr ""
+
+#: gnobots2/properties.c:846
 msgid "You Cannot Change the Game Type When Playing"
-msgstr ""
+msgstr "Jenis Permainan Tidak Boleh Diganti Saat Bermain"
 
-#: gnobots2/properties.c:884
+#: gnobots2/properties.c:858
 msgid "Graphics Theme"
-msgstr ""
+msgstr "Tema Grafik"
 
-#: gnobots2/properties.c:893
+#: gnobots2/properties.c:867
 msgid "Image theme:"
-msgstr ""
+msgstr "Gambar tema:"
 
-#: gnobots2/properties.c:903
+#: gnobots2/properties.c:877
 #, fuzzy
-msgid "Background Color:"
-msgstr "Warna latar belakang"
+msgid "Background color:"
+msgstr "Warna latar"
 
-#: gnobots2/properties.c:918
-msgid "_Appearance"
-msgstr ""
-
-#: gnobots2/properties.c:925
+#: gnobots2/properties.c:895
 msgid "Keyboard Controls"
+msgstr "Kendali Keyboard"
+
+#: gnobots2/properties.c:921
+msgid "Use the Keypad"
 msgstr ""
 
-#. North West
+#: gnobots2/properties.c:926
+#, fuzzy
+msgid "Use Left Hand Keys"
+msgstr "Streets and alleys"
+
+#: gnobots2/properties.c:931
+#, fuzzy
+msgid "Use Original Robots Keys"
+msgstr "Tombol Robot Standar"
+
 #: gnobots2/properties.c:936
-msgid "NW"
-msgstr ""
-
-#. North
-#: gnobots2/properties.c:948
-msgid "N"
-msgstr ""
-
-#. North East
-#: gnobots2/properties.c:960
 #, fuzzy
-msgid "NE"
-msgstr "NAMA"
-
-#. West
-#: gnobots2/properties.c:972
-msgid "W"
-msgstr ""
-
-#. East
-#: gnobots2/properties.c:993
-msgid "E"
-msgstr ""
-
-#. South West
-#: gnobots2/properties.c:1005
-msgid "SW"
-msgstr ""
-
-#. South
-#: gnobots2/properties.c:1017
-msgid "S"
-msgstr ""
-
-#. South East
-#: gnobots2/properties.c:1029
-msgid "SE"
-msgstr ""
-
-#: gnobots2/properties.c:1047
-msgid "Teleport:"
-msgstr ""
-
-#: gnobots2/properties.c:1058
-msgid "Random Teleport:"
-msgstr ""
-
-#: gnobots2/properties.c:1069
-#, fuzzy
-msgid "Wait:"
-msgstr "Putih"
-
-#: gnobots2/properties.c:1085
-msgid "Standard Robots Keys"
-msgstr ""
-
-#: gnobots2/properties.c:1090
-msgid "Predefined Set 1"
-msgstr ""
-
-#: gnobots2/properties.c:1095
-msgid "Predefined Set 2"
-msgstr ""
-
-#: gnobots2/properties.c:1100
-#, fuzzy
-msgid "_Keyboard"
-msgstr "Chessboard"
+msgid "Keyboard"
+msgstr "_Keyboard"
 
 #: gnobots2/statusbar.c:75
 msgid "Safe Teleports:"
-msgstr ""
+msgstr "Teleport Aman:"
 
-#: gnobots2/statusbar.c:85 gnometris/scoreframe.cpp:61
+#: gnobots2/statusbar.c:85 gnometris/scoreframe.cpp:79
 msgid "Level:"
-msgstr ""
+msgstr "Level:"
 
 #: gnobots2/statusbar.c:95
 msgid "Remaining:"
-msgstr ""
+msgstr "Sisa:"
 
 #. ********************************************************************
 #: gnome-stones/atari.caves.in.h:1 gnome-stones/default.caves.in.h:1
 msgid "Collect all diamonds and find exit"
-msgstr ""
+msgstr "Ambil semua intan dan cari jalan keluar"
 
 #: gnome-stones/atari.caves.in.h:2
 msgid "Congratulations!!! You have won!"
-msgstr ""
+msgstr "Selamat!!! Anda menang!"
 
 #: gnome-stones/atari.caves.in.h:3
 msgid "Original Atari caves"
-msgstr ""
+msgstr "Gua Atari"
 
 #: gnome-stones/atari.caves.in.h:4 gnome-stones/default.caves.in.h:3
 #: gnome-stones/tutorial.caves.in.h:2
 msgid "gnome-stones:empty"
-msgstr ""
+msgstr "gnome-stones:kosong"
 
 #: gnome-stones/default.caves.in.h:2
 msgid "Default caves"
-msgstr ""
+msgstr "Gua awal"
 
-#. That's what a gnome application needs:
-#: gnome-stones/gnome-stones.desktop.in.h:1 gnome-stones/main.c:187
-#: gnome-stones/main.c:975 gnome-stones/main.c:1098 gnome-stones/main.c:1329
-msgid "GNOME Stones"
-msgstr "GNOME Stones"
+#: gnome-stones/gnome-stones.desktop.in.h:1
+#, fuzzy
+msgid "Collect diamonds while avoiding falling boulders"
+msgstr "Ambil semua intan dan cari jalan keluar"
 
 #: gnome-stones/gnome-stones.desktop.in.h:2
-msgid "GNOME Stones game"
-msgstr ""
+#, fuzzy
+msgid "Stones"
+msgstr "GNOME Stones"
 
 #: gnome-stones/gnome-stones.schemas.in.h:1
 msgid "Cave number to start"
-msgstr ""
+msgstr "Jumlah gua untuk memulai"
 
 #: gnome-stones/gnome-stones.schemas.in.h:2
 msgid "Cave number to start."
-msgstr ""
+msgstr "Jumlah gua untuk memulai."
 
 #: gnome-stones/gnome-stones.schemas.in.h:3
 msgid "Device to use for joystick control."
-msgstr ""
+msgstr "Perangkat kendali joystik"
 
 #: gnome-stones/gnome-stones.schemas.in.h:4
 msgid "Enable sound support"
-msgstr ""
+msgstr "Aktifkan suara"
 
 #: gnome-stones/gnome-stones.schemas.in.h:5
 msgid "Enable sound support."
-msgstr ""
+msgstr "Aktifkan suara."
 
 #: gnome-stones/gnome-stones.schemas.in.h:6
-#, fuzzy
 msgid "Game name"
-msgstr "Permainan Usai"
+msgstr "Nama gim"
 
 #: gnome-stones/gnome-stones.schemas.in.h:7
-#, fuzzy
 msgid "Joystick device"
-msgstr "Perangkat Joystik: "
+msgstr "Perangkat joystik"
 
 #: gnome-stones/gnome-stones.schemas.in.h:8
-#, fuzzy
 msgid "Joystick switch level"
-msgstr "Perangkat Joystik: "
+msgstr "Level tombol joystik"
 
-#: gnome-stones/gnome-stones.schemas.in.h:9 gnome-stones/preferences.c:895
+#: gnome-stones/gnome-stones.schemas.in.h:9 gnome-stones/preferences.c:894
 msgid "Scroll method"
-msgstr ""
+msgstr "Metode penggulungan"
 
 #: gnome-stones/gnome-stones.schemas.in.h:10
 msgid "The full path and filename of game to load."
-msgstr ""
+msgstr "Path penuh dan nama berkas gim yang hendak dibuka."
 
 #: gnome-stones/gnome-stones.schemas.in.h:11
 msgid ""
 "The level an analog joystick must reach to be considered \"on\" when "
 "emulating a digital joystick. This takes a value between 0.0 and 1.0."
 msgstr ""
+"Level joystik analog yang harus dicapai sebagai nilai \"on\" apabila "
+"digunakan untuk mengemulasi joystik digital. Angka berkisar antara 0.0 dan "
+"1.0."
 
 #: gnome-stones/gnome-stones.schemas.in.h:12
 msgid ""
 "The scroll method, valid values are \"atari_scroll\", \"smooth_scroll\" and "
 "\"center_scroll\"."
 msgstr ""
+"Metode penggulungan, dapat diisi \"atari_scroll\", \"smooth_scroll\" dan "
+"\"center_scroll\"."
 
 #: gnome-stones/gnomekoban.caves.in.h:1
 msgid "Gnomekoban"
@@ -3227,199 +3392,208 @@ msgstr "Gnomekoban"
 
 #: gnome-stones/gnomekoban.caves.in.h:2
 msgid "gnomekoban:empty,0"
-msgstr ""
+msgstr "gnomekoban:kosong,0"
 
 #. This cave is to big to be played with gnome-stones.
 #: gnome-stones/io.c:338
 msgid "The cave you are trying to load it to big for this game."
-msgstr ""
+msgstr "Gua yang ingin dibuka terlalu besar"
 
 #: gnome-stones/io.c:355
 #, c-format
 msgid "The cave is corrupted: %s is missing."
-msgstr ""
+msgstr "Guanya rusak: %s-nya hilang"
 
 #. An object was requested in this cave, that was not
 #. declared in the game file's Object section.
 #: gnome-stones/io.c:381
 msgid ""
 "The cave you are trying to load includes an object, that wasn't declared."
-msgstr ""
+msgstr "Gua yang hendak dibuka berisi objek yang belum dideklarasikan."
 
 #. **************************************************************************
 #. Some constants.
 #. This message will be printed in the statusline, if no message was
 #. specified in a game file.
 #: gnome-stones/main.c:64
-#, fuzzy
 msgid "This is GNOME Stones"
-msgstr "GNOME Stones"
+msgstr "Ini adalah GNOME Stones"
 
 #: gnome-stones/main.c:74
 msgid "Game to play"
-msgstr ""
+msgstr "Gim yang ingin dimainkan"
 
-#: gnome-stones/main.c:121
+#: gnome-stones/main.c:74
+msgid "FILENAME"
+msgstr "NAMAFILE"
+
+#: gnome-stones/main.c:124
 #, c-format
 msgid ""
 "An error occured while loading the image file \"%s\".\n"
 "Please make sure, that GNOME Stones is correctly installed!"
 msgstr ""
+"Ada error saat membuka berkas gambar \"%s\".\n"
+"Silakan periksa apakah program ini sudah dipasang dengan benar!"
 
-#: gnome-stones/main.c:276 gnome-stones/preferences.c:676
+#. That's what a gnome application needs:
+#: gnome-stones/main.c:204 gnome-stones/main.c:990 gnome-stones/main.c:1112
+#: gnome-stones/main.c:1337
+msgid "GNOME Stones"
+msgstr "GNOME Stones"
+
+#: gnome-stones/main.c:286 gnome-stones/preferences.c:682
 msgid "Game title"
 msgstr "Judul Gim"
 
-#: gnome-stones/main.c:277
-#, fuzzy
+#: gnome-stones/main.c:287
 msgid "Start cave"
-msgstr "Mulai gim baru"
+msgstr "Masuki gua"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:420 gnome-stones/main.c:1026 mahjongg/mahjongg.c:415
+#: gnome-stones/main.c:430 gnome-stones/main.c:1040
+#: gnometris/gnometris.schemas.in.h:15 mahjongg/mahjongg.c:858
 msgid "Pause"
 msgstr "Pause"
 
-#: gnome-stones/main.c:670
+#: gnome-stones/main.c:682
 msgid "Congratulations, you win!"
-msgstr ""
+msgstr "Selamat, Anda menang!"
 
-#: gnome-stones/main.c:858 gtali/gyahtzee.c:130
+#: gnome-stones/main.c:870 gtali/gyahtzee.c:124
 msgid "Game over!"
-msgstr ""
+msgstr "Selesai!"
 
-#: gnome-stones/main.c:1072
+#: gnome-stones/main.c:1086
 msgid "Sokoban levels:"
-msgstr ""
+msgstr "Level sokoban:"
 
-#: gnome-stones/main.c:1100
+#: gnome-stones/main.c:1114
 msgid "Mine through dirt and collect gems."
-msgstr ""
+msgstr "Gali tanah dan kumpulkan permata."
 
-#: gnome-stones/main.c:1123
+#: gnome-stones/main.c:1137
 msgid "_Restart level"
-msgstr ""
+msgstr "Ulangi _level ini"
 
-#: gnome-stones/main.c:1123
+#: gnome-stones/main.c:1137
 msgid "Restart the current level"
-msgstr ""
+msgstr "Ulangi level ini"
 
-#: gnome-stones/main.c:1219
+#: gnome-stones/main.c:1242
 msgid "Scanning private object directory..."
-msgstr ""
+msgstr "Cari direktori objek pribadi..."
 
-#: gnome-stones/main.c:1223
+#: gnome-stones/main.c:1246
 msgid "Scanning public object directory..."
-msgstr ""
+msgstr "Cari direktori objek publik..."
 
-#: gnome-stones/main.c:1228
+#: gnome-stones/main.c:1251
 msgid "Filling game widget..."
-msgstr ""
+msgstr "Mengisi widget gim..."
 
-#: gnome-stones/main.c:1233
+#: gnome-stones/main.c:1256
 msgid "Scanning private game directory..."
-msgstr ""
+msgstr "Memeriksa direktori gim pribadi..."
 
-#: gnome-stones/main.c:1237
+#: gnome-stones/main.c:1260
 msgid "Scanning public game directory..."
-msgstr ""
+msgstr "Memeriksa direktori gim publik..."
 
-#: gnome-stones/main.c:1241
+#: gnome-stones/main.c:1264
 msgid "Restoring preferences..."
-msgstr ""
+msgstr "Mengembalikan isi pengaturan..."
 
 #: gnome-stones/player.c:77
 msgid "You gained an extra life!"
-msgstr ""
+msgstr "Anda mendapatkan nyawa ekstra!"
 
 #: gnome-stones/player.c:121
 #, c-format
 msgid "Seconds left: %d"
-msgstr ""
-
-#: gnome-stones/preferences.c:460
-msgid "Neither your chosen game nor the default game could be loaded."
-msgstr ""
+msgstr "Sisa waktu: %d detik"
 
 #: gnome-stones/preferences.c:461
-msgid "Please make sure that GNOME Stones is correctly installed."
-msgstr ""
+msgid "Neither your chosen game nor the default game could be loaded."
+msgstr "Gim yang Anda pilih atau gim utama tidak dapat dibuka."
 
 #: gnome-stones/preferences.c:462
+msgid "Please make sure that GNOME Stones is correctly installed."
+msgstr "Periksa apakah program GNOME Stones sudah dipasang dengan benar."
+
+#: gnome-stones/preferences.c:463
 msgid "You may be able to select a different game from the preferences dialog."
-msgstr ""
+msgstr "Anda dapat memilih jenis gim yang lain pada dialog Pengaturan."
 
-#: gnome-stones/preferences.c:626
-#, fuzzy
+#: gnome-stones/preferences.c:632
 msgid "GNOME Stones Preferences"
-msgstr "GNOME Stones"
+msgstr "Pengaturan GNOME Stones"
 
-#: gnome-stones/preferences.c:683
+#: gnome-stones/preferences.c:689
 msgid "Caves"
 msgstr "Gua"
 
-#: gnome-stones/preferences.c:762
+#: gnome-stones/preferences.c:766
 msgid "Device"
 msgstr "Perangkat"
 
-#: gnome-stones/preferences.c:771
+#: gnome-stones/preferences.c:775
 msgid "Joystick device:"
 msgstr "Perangkat Joystik: "
 
 #. We definatly have a "disable" entry.
-#: gnome-stones/preferences.c:777
+#: gnome-stones/preferences.c:781
 msgid "disabled"
-msgstr "mati"
+msgstr "tidak ada"
 
-#: gnome-stones/preferences.c:811
+#: gnome-stones/preferences.c:812
 msgid "Digital joystick emulation"
 msgstr "Emulasi joystik digital"
 
-#: gnome-stones/preferences.c:820
+#: gnome-stones/preferences.c:821
 msgid "Switch level:"
-msgstr ""
+msgstr "Level switch:"
 
-#: gnome-stones/preferences.c:843
-#, fuzzy
+#: gnome-stones/preferences.c:844
 msgid "_Joystick"
-msgstr "Joystick"
+msgstr "_Joystik"
 
-#: gnome-stones/preferences.c:861
+#: gnome-stones/preferences.c:862
 msgid "Enable sound"
-msgstr ""
+msgstr "Nyalakan suara"
 
-#: gnome-stones/preferences.c:873 mahjongg/mahjongg.c:382
+#: gnome-stones/preferences.c:874
 msgid "_Sound"
-msgstr ""
+msgstr "_Suara"
 
 #: gnome-stones/preferences.c:914
 msgid "Atari like scrolling"
-msgstr ""
+msgstr "Gulungan model Atari"
 
-#: gnome-stones/preferences.c:927
+#: gnome-stones/preferences.c:918
 msgid "Smooth scrolling"
-msgstr ""
+msgstr "Gulungan halus"
 
-#: gnome-stones/preferences.c:938
+#: gnome-stones/preferences.c:922
 msgid "Always in the center"
-msgstr ""
+msgstr "Selalu di tengah"
 
-#: gnome-stones/preferences.c:953
+#: gnome-stones/preferences.c:934
 msgid "_Misc."
-msgstr ""
+msgstr "_Lainnya"
 
 #: gnome-stones/status.c:81
 msgid "Diamonds:"
-msgstr ""
+msgstr "Permata:"
 
 #: gnome-stones/status.c:95
 msgid "Cave:"
-msgstr ""
+msgstr "Gua:"
 
 #: gnome-stones/status.c:105
 msgid "Lives:"
-msgstr ""
+msgstr "Nyawa:"
 
 #. Local Variables:
 #. mode:c
@@ -3430,107 +3604,155 @@ msgstr ""
 #. End:
 #: gnome-stones/tutorial.caves.in.h:1
 msgid "Tutorial caves"
+msgstr "Gua latihan"
+
+#: gnometris/gnometris.desktop.in.h:1
+msgid "Fit falling blocks together"
 msgstr ""
 
-#: gnometris/gnometris.desktop.in.h:1 gnometris/tetris.cpp:92
+#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:138
 msgid "Gnometris"
-msgstr ""
-
-#: gnometris/gnometris.desktop.in.h:2
-msgid "Tetris game"
-msgstr ""
+msgstr "Gnometris"
 
 #: gnometris/gnometris.schemas.in.h:1
-msgid "Image to use as background"
+msgid "Drop"
 msgstr ""
 
 #: gnometris/gnometris.schemas.in.h:2
-msgid "Image to use as background."
-msgstr ""
+msgid "Image to use for drawing blocks"
+msgstr "Gambar blok"
 
 #: gnometris/gnometris.schemas.in.h:3
-msgid "Image to use for drawing blocks"
-msgstr ""
+msgid "Image to use for drawing blocks."
+msgstr "Gambar blok."
 
 #: gnometris/gnometris.schemas.in.h:4
-msgid "Image to use for drawing blocks."
-msgstr ""
+#, fuzzy
+msgid "Key press to drop."
+msgstr "Tekan tombol untuk meletakkan gundu"
 
 #: gnometris/gnometris.schemas.in.h:5
+#, fuzzy
+msgid "Key press to move down."
+msgstr "Tekan untuk pindah ke kiri."
+
+#: gnometris/gnometris.schemas.in.h:8
+#, fuzzy
+msgid "Key press to pause."
+msgstr "Tekan tombol untuk meletakkan gundu"
+
+#: gnometris/gnometris.schemas.in.h:9
+#, fuzzy
+msgid "Key press to rotate."
+msgstr "Tekan tombol untuk meletakkan gundu"
+
+#: gnometris/gnometris.schemas.in.h:10
 msgid "Level to start with"
-msgstr ""
+msgstr "Awal permainan dimulai pada level ini"
 
-#: gnometris/gnometris.schemas.in.h:6
+#: gnometris/gnometris.schemas.in.h:11
 msgid "Level to start with."
+msgstr "Awal permainan dimulai pada level ini."
+
+#: gnometris/gnometris.schemas.in.h:16
+#, fuzzy
+msgid "Rotate"
+msgstr "Restart"
+
+#: gnometris/gnometris.schemas.in.h:17
+#, fuzzy
+msgid "The background color"
+msgstr "Warna latar"
+
+#: gnometris/gnometris.schemas.in.h:18
+msgid "The background color, in a format gdk_color_parse understands."
 msgstr ""
 
-#: gnometris/gnometris.schemas.in.h:7
+#: gnometris/gnometris.schemas.in.h:19
 msgid ""
 "The density of blocks in rows filled at the start of the game. The value is "
 "between 0 (for no blocks) and 10 (for a completely filled row)."
 msgstr ""
+"Kerapatan blok pada baris yang sudah diisikan pada awal permainan. Angka "
+"bernilai antara 0 (tidak ada blok) hingga 10 (baris sudah komplit diisi)."
 
-#: gnometris/gnometris.schemas.in.h:8
+#: gnometris/gnometris.schemas.in.h:20
 msgid "The density of filled rows"
-msgstr ""
+msgstr "Kerapatan baris yang sudah diisikan"
 
-#: gnometris/gnometris.schemas.in.h:9
+#: gnometris/gnometris.schemas.in.h:21
 msgid ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
 msgstr ""
+"Jumlah baris yang sudah diisikan dengan balok-balok pada awal permainan."
 
-#: gnometris/gnometris.schemas.in.h:10
+#: gnometris/gnometris.schemas.in.h:22
 msgid "The number of rows to fill"
+msgstr "Jumlah baris yang diisi"
+
+#: gnometris/gnometris.schemas.in.h:23
+msgid ""
+"This selects whether or not to draw the background image over the background "
+"color."
 msgstr ""
 
-#: gnometris/gnometris.schemas.in.h:11
+#: gnometris/gnometris.schemas.in.h:24
 msgid "Whether to give blocks random colors"
-msgstr ""
+msgstr "Gunakna warna acak pada blok atau tidak"
 
-#: gnometris/gnometris.schemas.in.h:12
+#: gnometris/gnometris.schemas.in.h:25
 msgid "Whether to give blocks random colors."
-msgstr ""
+msgstr "Gunakan warna acak pada blok atau tidak."
 
-#: gnometris/gnometris.schemas.in.h:13
+#: gnometris/gnometris.schemas.in.h:26
 msgid "Whether to preview the next block"
-msgstr ""
+msgstr "Lihat blok selanjutnya atau tidak"
 
-#: gnometris/gnometris.schemas.in.h:14
+#: gnometris/gnometris.schemas.in.h:27
 msgid "Whether to preview the next block."
-msgstr ""
+msgstr "Lihat blok selanjutnya atau tidak."
 
-#: gnometris/gnometris.schemas.in.h:15
+#: gnometris/gnometris.schemas.in.h:28
 msgid "Whether to rotate counter clock wise"
-msgstr ""
+msgstr "Berlawanan jarum jam atau tidak"
 
-#: gnometris/gnometris.schemas.in.h:16
+#: gnometris/gnometris.schemas.in.h:29
 msgid "Whether to rotate counter clock wise."
-msgstr ""
+msgstr "Berlawanan jarum jam atau tidak."
+
+#: gnometris/gnometris.schemas.in.h:30
+#, fuzzy
+msgid "Whether to use sound"
+msgstr "Gunakan animasi atau tidak."
+
+#: gnometris/gnometris.schemas.in.h:31
+#, fuzzy
+msgid "Whether to use sound."
+msgstr "Gunakan animasi atau tidak."
+
+#: gnometris/gnometris.schemas.in.h:32
+#, fuzzy
+msgid "Whether to use the background image"
+msgstr "Gambar latar"
 
 #: gnometris/main.cpp:38
 msgid "Set starting level (1-10)"
-msgstr ""
+msgstr "Awali permainan pada level (1-10)"
 
 #: gnometris/main.cpp:38
 msgid "LEVEL"
-msgstr ""
+msgstr "LEVEL"
 
-#: gnometris/scoreframe.cpp:50
-msgid "Game Status"
-msgstr ""
-
-#: gnometris/scoreframe.cpp:57
-#, fuzzy
+#: gnometris/scoreframe.cpp:68
 msgid "Lines:"
-msgstr "Glines"
+msgstr "Jalur:"
 
-#: gnometris/tetris.cpp:197
-#, fuzzy
+#: gnometris/tetris.cpp:253
 msgid "Paused"
-msgstr "Pause"
+msgstr "Istirahat"
 
-#: gnometris/tetris.cpp:289
+#: gnometris/tetris.cpp:366
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3538,8 +3760,12 @@ msgid ""
 "\n"
 "Please check your gnome-games installation"
 msgstr ""
+"Tema tidak ditemukan: \n"
+"%s\n"
+"\n"
+"Silakan periksa instalasi gnome-games Anda"
 
-#: gnometris/tetris.cpp:305
+#: gnometris/tetris.cpp:381
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3547,214 +3773,274 @@ msgid ""
 "\n"
 "Please check your gnome-games installation"
 msgstr ""
+"Gambar tidak ditemukan:\n"
+"%s\n"
+"\n"
+"Silakan periksa instalasi gnome-games Anda"
 
-#: gnometris/tetris.cpp:627
+#: gnometris/tetris.cpp:722 gnometris/tetris.cpp:723
+#, fuzzy
+msgid "<none>"
+msgstr "Tidak ada"
+
+#: gnometris/tetris.cpp:751
 msgid "Gnometris preferences"
-msgstr ""
+msgstr "Pengaturan Gnometris"
 
-#: gnometris/tetris.cpp:639
+#: gnometris/tetris.cpp:772
 msgid "Setup"
-msgstr ""
+msgstr "Pengaturan"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:646
+#: gnometris/tetris.cpp:779
 msgid "Number of pre-filled rows:"
-msgstr ""
+msgstr "Jumlah baris yang sudah diisikan:"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:661
+#: gnometris/tetris.cpp:794
 msgid "Density of blocks in a pre-filled row:"
-msgstr ""
+msgstr "Kerapatan blok pada baris yang sudah diisikan"
 
 #. starting level
-#: gnometris/tetris.cpp:676
+#: gnometris/tetris.cpp:809
 msgid "Starting Level:"
-msgstr ""
+msgstr "Tingkatan awal:"
 
-#: gnometris/tetris.cpp:693
+#: gnometris/tetris.cpp:826
 msgid "Operation"
-msgstr ""
+msgstr "Operasi"
 
-#: gnometris/tetris.cpp:699
+#: gnometris/tetris.cpp:841
 msgid "Preview next block"
-msgstr ""
+msgstr "Lihat blok selanjutnya"
 
-#: gnometris/tetris.cpp:708
+#: gnometris/tetris.cpp:850
 msgid "Use random block colors"
-msgstr ""
+msgstr "Beri warna acak pada blok"
 
-#: gnometris/tetris.cpp:719
+#: gnometris/tetris.cpp:861
 msgid "Rotate blocks counterclockwise"
-msgstr ""
+msgstr "Putar blok berlawanan jarum jam"
+
+#: gnometris/tetris.cpp:874 same-gnome/same-gnome.c:630
+#: same-gnome/same-gnome.c:683
+msgid "Theme"
+msgstr "Tema"
 
 #. Block pixmap
-#: gnometris/tetris.cpp:739
-#, fuzzy
+#: gnometris/tetris.cpp:881
 msgid "Block image:"
-msgstr "Block ten"
+msgstr "Gambar blok"
 
-#. background pixmap
-#: gnometris/tetris.cpp:752
+#: gnometris/tetris.cpp:897
 #, fuzzy
-msgid "Background image:"
-msgstr "Warna latar belakang"
+msgid "_Controls"
+msgstr "Kendali"
 
-#: gnometris/tetris.cpp:1109
+#: gnometris/tetris.cpp:1448
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
 msgstr ""
+"Dibuat untuk istriku, Matylda\n"
+"Kirim komentar dan laporan bug ke: janusz.gorycki@intel.com"
 
-#: gnomine/gnomine.c:68 gnomine/gnomine.c:551
+#: gnomine/gnomine.c:88 gnomine/gnomine.c:730
 msgid "Small"
-msgstr ""
+msgstr "Kecil"
 
-#: gnomine/gnomine.c:69 gnomine/gnomine.c:561
-msgid "Medium"
-msgstr ""
-
-#: gnomine/gnomine.c:70 gnomine/gnomine.c:571
+#: gnomine/gnomine.c:90 gnomine/gnomine.c:750
 msgid "Large"
-msgstr ""
+msgstr "Besar"
 
-#: gnomine/gnomine.c:71 gnomine/gnomine.c:581
+#: gnomine/gnomine.c:91 gnomine/gnomine.c:760
 msgid "Custom"
 msgstr "Ukuran sendiri"
 
-#: gnomine/gnomine.c:149 gnomine/gnomine.c:374 gnomine/gnomine.c:861
-#: gnomine/gnomine.desktop.in.h:1
+#. Translators: this is for a minutes, seconds time display.
+#: gnomine/gnomine.c:209
+#, c-format
+msgid "%dm %ds"
+msgstr ""
+
+#: gnomine/gnomine.c:248
+#, fuzzy
+msgid "GNOME Mines Scores"
+msgstr "GNOME Mines"
+
+#: gnomine/gnomine.c:265
+#, fuzzy
+msgid "Size:"
+msgstr "Waktu:"
+
+#: gnomine/gnomine.c:307
+#, fuzzy
+msgid "Time"
+msgstr "Waktu:"
+
+#: gnomine/gnomine.c:400
+msgid "Click a square, any square"
+msgstr ""
+
+#: gnomine/gnomine.c:402
+msgid "Maybe they're all mines ..."
+msgstr ""
+
+#: gnomine/gnomine.c:536
+msgid "Faces:"
+msgstr "Wajah:"
+
+#: gnomine/gnomine.c:539
+#, fuzzy
+msgid "Graphics:"
+msgstr "Tema Grafik"
+
+#: gnomine/gnomine.c:545
+msgid "Resizing and SVG support:"
+msgstr ""
+
+#: gnomine/gnomine.c:577 gnomine/gnomine.c:1009
 msgid "GNOME Mines"
 msgstr "GNOME Mines"
 
-#: gnomine/gnomine.c:340
-#, fuzzy
-msgid "Faces:"
-msgstr "Faces: tigert"
-
-#: gnomine/gnomine.c:377
+#: gnomine/gnomine.c:580
 msgid "A Minesweeper clone."
-msgstr ""
+msgstr "Program tiruan Minesweeper"
 
-#: gnomine/gnomine.c:546
+#: gnomine/gnomine.c:725
 msgid "Field size"
-msgstr ""
+msgstr "Ukuran lapangan"
 
-#: gnomine/gnomine.c:594
-#, fuzzy
+#: gnomine/gnomine.c:773
 msgid "Custom size"
 msgstr "Ukuran sendiri"
 
-#: gnomine/gnomine.c:601
+#: gnomine/gnomine.c:780
 msgid "Number of mines:"
-msgstr ""
+msgstr "Jumlah ranjau:"
 
-#: gnomine/gnomine.c:613
+#: gnomine/gnomine.c:792
 msgid "Horizontal:"
-msgstr ""
+msgstr "Horisontal:"
 
-#: gnomine/gnomine.c:625
+#: gnomine/gnomine.c:804
 msgid "Vertical:"
-msgstr ""
+msgstr "Vertikal:"
 
-#: gnomine/gnomine.c:644
-msgid "Mine size:"
-msgstr ""
-
-#: gnomine/gnomine.c:656
+#: gnomine/gnomine.c:821
 msgid "Use \"I'm not sure\" flags."
-msgstr ""
+msgstr "Gunakan bendera \"Saya tidak yakin\"."
 
-#: gnomine/gnomine.c:665
+#: gnomine/gnomine.c:830
 msgid "GNOME Mines Preferences"
-msgstr ""
+msgstr "Pengaturan Gim GNOME Mines"
 
-#: gnomine/gnomine.c:773
+#: gnomine/gnomine.c:929
 msgid "Width of grid"
-msgstr ""
+msgstr "Lebar kotak"
 
-#: gnomine/gnomine.c:774
+#: gnomine/gnomine.c:930
 msgid "Height of grid"
-msgstr ""
+msgstr "Tinggi kotak"
 
-#: gnomine/gnomine.c:775
-msgid "Size of mines"
-msgstr ""
-
-#: gnomine/gnomine.c:775 gnotravex/gnotravex.c:240
-msgid "SIZE"
-msgstr ""
-
-#: gnomine/gnomine.c:776
+#: gnomine/gnomine.c:931
 msgid "Number of mines"
-msgstr ""
+msgstr "Jumlah ranjau"
 
-#: gnomine/gnomine.c:776 gtali/setup.c:85 gtali/setup.c:86
+#: gnomine/gnomine.c:931 gtali/setup.c:85 gtali/setup.c:86
 msgid "NUMBER"
+msgstr "ANGKA"
+
+#: gnomine/gnomine.c:932
+msgid "Size of the board (1=small, 3=large)"
 msgstr ""
 
-#: gnomine/gnomine.c:945
+#: gnomine/gnomine.c:933
+msgid "X location of window"
+msgstr ""
+
+#: gnomine/gnomine.c:934
+msgid "Y location of window"
+msgstr ""
+
+#: gnomine/gnomine.c:1095
 msgid "Flags:"
+msgstr "Bendera:"
+
+#: gnomine/gnomine.desktop.in.h:1
+msgid "Clear mines from a minefield"
 msgstr ""
 
 #: gnomine/gnomine.desktop.in.h:2
-msgid "Mines game"
-msgstr ""
+#, fuzzy
+msgid "Mines"
+msgstr "Glines"
 
 #: gnomine/gnomine.schemas.in.h:1
 msgid "Set to true to be able to mark squares as unknown."
-msgstr ""
+msgstr "Set ke true untuk dapat menandai kotak dengan tanda 'tidak diketahui'."
 
 #: gnomine/gnomine.schemas.in.h:2
 msgid "Use the unknown flag"
-msgstr ""
+msgstr "Gunakan tanda 'tidak diketahui'"
 
 #: gnotravex/gnotravex.c:166
 msgid "Sol_ve"
-msgstr ""
+msgstr "S_elesaikan"
 
 #: gnotravex/gnotravex.c:166
 msgid "Solve the game"
-msgstr ""
+msgstr "Selesaikan permainan"
 
 #: gnotravex/gnotravex.c:182
-msgid "_2x2"
-msgstr ""
+#, fuzzy
+msgid "_2×2"
+msgstr "_2x2"
 
 #: gnotravex/gnotravex.c:182
-msgid "Play on a 2x2 board"
-msgstr ""
+#, fuzzy
+msgid "Play on a 2×2 board"
+msgstr "Main di papan ukuran 2x2"
 
 #: gnotravex/gnotravex.c:185
-msgid "_3x3"
-msgstr ""
+#, fuzzy
+msgid "_3×3"
+msgstr "_3x3"
 
 #: gnotravex/gnotravex.c:185
-msgid "Play on a 3x3 board"
-msgstr ""
+#, fuzzy
+msgid "Play on a 3×3 board"
+msgstr "Main di papan ukuran 3x3"
 
 #: gnotravex/gnotravex.c:188
-msgid "_4x4"
-msgstr ""
+#, fuzzy
+msgid "_4×4"
+msgstr "_4x4"
 
 #: gnotravex/gnotravex.c:188
-msgid "Play on a 4x4 board"
-msgstr ""
+#, fuzzy
+msgid "Play on a 4×4 board"
+msgstr "Main di papan ukuran 4x4"
 
 #: gnotravex/gnotravex.c:191
-msgid "_5x5"
-msgstr ""
+#, fuzzy
+msgid "_5×5"
+msgstr "_5x5"
 
 #: gnotravex/gnotravex.c:191
-msgid "Play on a 5x5 board"
-msgstr ""
+#, fuzzy
+msgid "Play on a 5×5 board"
+msgstr "Main di papan ukuran 5x5"
 
 #: gnotravex/gnotravex.c:194
-msgid "_6x6"
-msgstr ""
+#, fuzzy
+msgid "_6×6"
+msgstr "_6x6"
 
 #: gnotravex/gnotravex.c:194
-msgid "Play on a 6x6 board"
-msgstr ""
+#, fuzzy
+msgid "Play on a 6×6 board"
+msgstr "Main di papan ukuran 6x6"
 
 #: gnotravex/gnotravex.c:201
 msgid "_Up"
@@ -3762,7 +4048,7 @@ msgstr "_Atas"
 
 #: gnotravex/gnotravex.c:201
 msgid "Move the pieces up"
-msgstr ""
+msgstr "Geser ke atas"
 
 #: gnotravex/gnotravex.c:204
 msgid "_Left"
@@ -3770,7 +4056,7 @@ msgstr "K_iri"
 
 #: gnotravex/gnotravex.c:204
 msgid "Move the pieces left"
-msgstr ""
+msgstr "Geser ke kiri"
 
 #: gnotravex/gnotravex.c:207
 msgid "_Right"
@@ -3778,75 +4064,85 @@ msgstr "_Kanan"
 
 #: gnotravex/gnotravex.c:207
 msgid "Move the pieces right"
-msgstr ""
+msgstr "Geser ke kanan"
 
 #: gnotravex/gnotravex.c:210
 msgid "_Down"
 msgstr "_Turun"
 
 #: gnotravex/gnotravex.c:210
-#, fuzzy
 msgid "Move the pieces down"
-msgstr "Pindahkan %s ke %s."
-
-#: gnotravex/gnotravex.c:229
-msgid "_Move"
-msgstr ""
+msgstr "Pindahkan ke bawah"
 
 #: gnotravex/gnotravex.c:239
 msgid "Size of board (2-6)"
-msgstr ""
+msgstr "Ukuran papan (2-6)"
 
-#: gnotravex/gnotravex.c:720
+#: gnotravex/gnotravex.c:240
+msgid "SIZE"
+msgstr "SIZE"
+
+#: gnotravex/gnotravex.c:739
 msgid "Puzzle solved! Well done!"
-msgstr ""
+msgstr "Selesai! Selamat!"
 
-#: gnotravex/gnotravex.c:723
+#: gnotravex/gnotravex.c:742
 msgid "Puzzle solved!"
-msgstr ""
+msgstr "Selesai!"
 
-#: gnotravex/gnotravex.c:1131
+#: gnotravex/gnotravex.c:1139 mahjongg/mahjongg.c:1706
 #, fuzzy
 msgid "Game paused"
 msgstr "Permainan Usai"
 
-#: gnotravex/gnotravex.c:1258
-#, c-format
-msgid "Playing %dx%d board"
-msgstr ""
+#: gnotravex/gnotravex.c:1261
+#, fuzzy, c-format
+msgid "Playing %d×%d board"
+msgstr "Main di papan ukuran %dx%d"
 
-#: gnotravex/gnotravex.c:1505
+#: gnotravex/gnotravex.c:1508
 msgid "A Tetravex clone."
-msgstr ""
+msgstr "Tiruan Tetravex"
 
 #: gnotravex/gnotravex.desktop.in.h:1
-msgid "GNOME Tetravex"
-msgstr "GNOME Tetravex"
+msgid "Play a puzzle game matching tiles together"
+msgstr ""
 
 #: gnotravex/gnotravex.desktop.in.h:2
-msgid "Tetravex game"
-msgstr ""
+#, fuzzy
+msgid "Tetravex"
+msgstr "Gim Tetravex"
 
 #: gnotravex/gnotravex.schemas.in.h:1
 msgid ""
-"The side length of an individual game tile. The minimum is 40, the maximum "
-"is set depending on screen height. The correct way to set this is by "
-"resizing the window."
+"The height of the playing window in pixels. At minimum it should be 240."
 msgstr ""
 
-#: gnotravex/gnotravex.schemas.in.h:2
-msgid "The size of a tile"
-msgstr ""
+#: gnotravex/gnotravex.schemas.in.h:2 mahjongg/mahjongg.schemas.in.h:1
+#, fuzzy
+msgid "The height of the window"
+msgstr "delapan wajik"
 
 #: gnotravex/gnotravex.schemas.in.h:3
 msgid "The size of the playing grid"
-msgstr ""
+msgstr "Ukuran kotak permainan"
 
 #: gnotravex/gnotravex.schemas.in.h:4
 msgid ""
 "The value of this key is used to decide the size of the playing grid. The "
 "valid values are 2 to 8, anything else gets set to 3."
 msgstr ""
+"Isikan angka ukuran kotak ubin permainan. Angka bisa diisi dari 2 hingga 8, "
+"bila diisi dengan angka lain maka akan otomatis menjadi 3."
+
+#: gnotravex/gnotravex.schemas.in.h:5
+msgid "The width of the playing window in pixels. At minimum it should be 320."
+msgstr ""
+
+#: gnotravex/gnotravex.schemas.in.h:6 mahjongg/mahjongg.schemas.in.h:4
+#, fuzzy
+msgid "The width of the window"
+msgstr "Ukuran kotak permainan"
 
 #: gnotski/gnotski.c:98 gnotski/gnotski.c:219 gnotski/gnotski.c:331
 msgid "1"
@@ -3887,570 +4183,700 @@ msgstr "7"
 
 #: gnotski/gnotski.c:450
 msgid "_Novice"
-msgstr ""
+msgstr "_Pemula"
 
 #: gnotski/gnotski.c:453
 msgid "_Medium"
-msgstr ""
+msgstr "_Sedang"
 
 #: gnotski/gnotski.c:456
 msgid "_Advanced"
-msgstr ""
+msgstr "M_ahir"
 
 #: gnotski/gnotski.c:608
 msgid "Level completed. Well done."
-msgstr ""
+msgstr "Level selesai. Selamat."
 
-#: gnotski/gnotski.c:774
+#: gnotski/gnotski.c:771
 msgid "Moves:"
-msgstr ""
+msgstr "Jalan:"
 
-#: gnotski/gnotski.c:809
-#, c-format
-msgid "Could not find '%s' pixmap file\n"
-msgstr ""
-
-#: gnotski/gnotski.c:1024
+#: gnotski/gnotski.c:1020
 msgid "Welcome to GNOME Klotski"
-msgstr ""
+msgstr "Selamat datang di GNOME Klotski"
 
-#: gnotski/gnotski.c:1048
+#: gnotski/gnotski.c:1044
 #, c-format
 msgid "Playing level %s"
-msgstr ""
+msgstr "Bermain pada level %s"
 
-#: gnotski/gnotski.c:1162
-#, fuzzy
+#: gnotski/gnotski.c:1158
 msgid "A Klotski clone"
-msgstr "Klotski game"
+msgstr "Gim tiruan Klotski"
 
 #: gnotski/gnotski.desktop.in.h:1
-msgid "Gnotski"
-msgstr "Gnotski"
-
-#: gnotski/gnotski.desktop.in.h:2
-msgid "Klotski game"
+#, fuzzy
+msgid "Klotski"
 msgstr "Klotski game"
 
-#: gtali/clist.c:138
-msgid "Already used! Where do you want to put that?"
+#: gnotski/gnotski.desktop.in.h:2
+msgid "Solve puzzles by sliding blocks"
 msgstr ""
+
+#: gtali/clist.c:139
+msgid "Already used! Where do you want to put that?"
+msgstr "Itu sudah ada isinya! Mau ditaruh dimana?"
 
 #. Arrgh - lets all use the same tabs under emacs:
 #. Local Variables:
 #. tab-width: 8
 #. c-basic-offset: 8
 #. indent-tabs-mode: nil
+#. End:
 #.
 #: gtali/gtali.desktop.in.h:1
-msgid "Dice game"
+msgid "Play a poker-style dice game"
 msgstr ""
 
 #: gtali/gtali.desktop.in.h:2
-msgid "GTali"
+#, fuzzy
+msgid "Tali"
 msgstr "GTali"
 
-#: gtali/gyahtzee.c:68
+#: gtali/gtali.schemas.in.h:1
+msgid ""
+"Choose whether or not to insert a delay between the computer's dice rolls so "
+"the player can follow what it is doing."
+msgstr ""
+
+#. --- Button ---
+#: gtali/gtali.schemas.in.h:2 gtali/setup.c:288
+msgid "Delay between rolls"
+msgstr "Jeda antara kocokan"
+
+#: gtali/gtali.schemas.in.h:3
+#, fuzzy
+msgid "Display the computer's thoughts"
+msgstr "Tampilkan isi pikiran komputer"
+
+#: gtali/gtali.schemas.in.h:4
+msgid ""
+"If set to true, a dump of the AI's working will be done to standard output."
+msgstr ""
+
+#: gtali/gtali.schemas.in.h:5
+msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
+msgstr ""
+
+#: gtali/gyahtzee.c:60
 msgid "GNOME Tali"
 msgstr "GNOME Tali"
 
-#: gtali/gyahtzee.c:125
-#, c-format
+#: gtali/gyahtzee.c:119
+#, fuzzy, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s memenangkan permainan dengan %d poin"
+msgstr[1] "%s memenangkan permainan dengan %d poin"
 
-#: gtali/gyahtzee.c:158
+#: gtali/gyahtzee.c:152
 #, c-format
 msgid "Computer playing for %s"
-msgstr ""
+msgstr "Komputer bermain untuk %s"
 
-#: gtali/gyahtzee.c:161
+#: gtali/gyahtzee.c:155
 #, c-format
 msgid "%s! -- You're up."
-msgstr ""
+msgstr "%s! -- Giliran Anda."
 
-#: gtali/gyahtzee.c:297 gtali/gyahtzee.c:320 gtali/yahtzee.c:187
-msgid "You're only allowed three rolls! Select a score box."
-msgstr ""
-
-#: gtali/gyahtzee.c:363
-#, fuzzy
-msgid "Curses version (1992):"
-msgstr "Orest Zborowski - Curses Version (C) 1992"
-
-#: gtali/gyahtzee.c:393
-msgid "A sort of poker with dice and less money."
-msgstr ""
-
-#: gtali/gyahtzee.c:437
-msgid "Cheater! Any high scores will not be recorded."
-msgstr ""
-
-#: gtali/gyahtzee.c:557
+#: gtali/gyahtzee.c:244 gtali/gyahtzee.c:579
 msgid "Select dice to re-roll, press Roll!, or select score slot."
-msgstr ""
+msgstr "Pilih dadu yang ingin dikocok, tekan Kocok! atau pilih slot nilai."
 
-#: gtali/gyahtzee.c:598
+#: gtali/gyahtzee.c:280
+#, fuzzy
+msgid "Roll"
+msgstr "Kocok!"
+
+#: gtali/gyahtzee.c:331 gtali/gyahtzee.c:354 gtali/yahtzee.c:184
+#, fuzzy
+msgid "You're only allowed three rolls! Select a score box."
+msgstr "Anda hanya boleh mengambil tiga kocokan! Pilih kotak nilai."
+
+#: gtali/gyahtzee.c:397
+#, fuzzy
+msgid "GNOME version (1998):"
+msgstr "Versi curses (1992):"
+
+#: gtali/gyahtzee.c:399
+msgid "Curses version (1992):"
+msgstr "Versi curses (1992):"
+
+#: gtali/gyahtzee.c:429
+msgid "A sort of poker with dice and less money."
+msgstr "Sejenis poker dengan dadu dan sedikit uang."
+
+#: gtali/gyahtzee.c:473
+msgid "Cheater! Any high scores will not be recorded."
+msgstr "Curang! Semua nilai tinggi tidak akan disimpan."
+
+#: gtali/gyahtzee.c:625
 msgid "Roll!"
-msgstr ""
+msgstr "Kocok!"
 
 #: gtali/setup.c:76
 msgid "Calculate random die throws (debug)"
-msgstr ""
+msgstr "Hitung lemparan dadu acak (debug)"
 
 #: gtali/setup.c:82
 msgid "Delay computer moves"
-msgstr ""
+msgstr "Jeda saat komputer jalan"
 
 #: gtali/setup.c:83
 msgid "Show high scores and exit"
-msgstr ""
+msgstr "Tampilkan perolehan nilai kemudian keluar"
 
 #: gtali/setup.c:84
 msgid "Display computer thoughts"
-msgstr ""
+msgstr "Tampilkan isi pikiran komputer"
 
 #: gtali/setup.c:85
 msgid "Number of computer opponents"
-msgstr ""
+msgstr "Jumlah lawan komputer"
 
 #: gtali/setup.c:86
 msgid "Number of human opponents"
-msgstr ""
+msgstr "Jumlah lawan manusia"
 
 #: gtali/setup.c:98
 msgid "Current game will complete with original number of players."
-msgstr ""
+msgstr "Permainan saat ini akan selesai dengan jumlah pemain asal."
 
-#: gtali/setup.c:257
-#, fuzzy
+#: gtali/setup.c:231
 msgid "GTali Preferences"
-msgstr "Setting"
+msgstr "Pengaturan GTali"
 
-#: gtali/setup.c:281
+#: gtali/setup.c:255
 msgid "Human Players"
-msgstr ""
+msgstr "Pemain Manusia"
 
-#: gtali/setup.c:318
+#: gtali/setup.c:280
 msgid "Computer Opponents"
-msgstr ""
+msgstr "Musuh Komputer"
 
-#. --- Button ---
-#: gtali/setup.c:326
-msgid "Delay between rolls"
-msgstr ""
-
-#. --- Button ---
-#: gtali/setup.c:333
-msgid "Show thoughts during turn"
-msgstr ""
-
-#: gtali/setup.c:345
+#: gtali/setup.c:298
 msgid "Number of opponents:"
-msgstr ""
+msgstr "Jumlah lawan:"
 
-#. --- OPTIONAL RULES FRAME ----
-#: gtali/setup.c:373
-msgid "Optional Rules"
-msgstr ""
-
-#: gtali/setup.c:384
-msgid "Extra Yahtzee Bonus"
-msgstr ""
-
-#. --- Button ---
-#: gtali/setup.c:408
-msgid "Enforce Joker Rules"
-msgstr ""
-
-#. NOT READY YET
 #. --- PLAYER NAMES FRAME ----
-#: gtali/setup.c:418
+#: gtali/setup.c:313
 msgid "Player Names"
-msgstr ""
+msgstr "Nama Pemain"
 
-#: gtali/yahtzee.c:74
+#: gtali/yahtzee.c:71
 msgid "1s [total of 1s]"
 msgstr ""
 
-#: gtali/yahtzee.c:75
+#: gtali/yahtzee.c:72
 msgid "2s [total of 2s]"
 msgstr ""
 
-#: gtali/yahtzee.c:76
+#: gtali/yahtzee.c:73
 msgid "3s [total of 3s]"
 msgstr ""
 
-#: gtali/yahtzee.c:77
+#: gtali/yahtzee.c:74
 msgid "4s [total of 4s]"
 msgstr ""
 
-#: gtali/yahtzee.c:78
+#: gtali/yahtzee.c:75
 msgid "5s [total of 5s]"
 msgstr ""
 
-#: gtali/yahtzee.c:79
+#: gtali/yahtzee.c:76
 msgid "6s [total of 6s]"
 msgstr ""
 
 #. End of upper panel
-#: gtali/yahtzee.c:81
+#: gtali/yahtzee.c:78
 msgid "3 of a Kind [total]"
 msgstr ""
 
-#: gtali/yahtzee.c:82
+#: gtali/yahtzee.c:79
 msgid "4 of a Kind [total]"
 msgstr ""
 
-#: gtali/yahtzee.c:83
+#: gtali/yahtzee.c:80
 msgid "Full House [25]"
 msgstr ""
 
-#: gtali/yahtzee.c:84
+#: gtali/yahtzee.c:81
 msgid "Small Straight [30]"
 msgstr ""
 
-#: gtali/yahtzee.c:85
+#: gtali/yahtzee.c:82
 msgid "Large Straight [40]"
 msgstr ""
 
-#: gtali/yahtzee.c:86
+#: gtali/yahtzee.c:83
 msgid "Yahtzee [50]"
-msgstr ""
+msgstr "Yahtzee [50]"
 
-#: gtali/yahtzee.c:87
+#: gtali/yahtzee.c:84
 msgid "Chance [total]"
-msgstr ""
+msgstr "Peluang [total]"
 
 #. End of lower panel
-#: gtali/yahtzee.c:89
+#: gtali/yahtzee.c:86
 msgid "Lower Total"
-msgstr ""
+msgstr "Total Bawah"
 
-#: gtali/yahtzee.c:90
+#: gtali/yahtzee.c:87
 msgid "Grand Total"
-msgstr ""
+msgstr "Total Keseluruhan"
 
 #. Need to squish between upper and lower pannel
-#: gtali/yahtzee.c:92
+#: gtali/yahtzee.c:89
 msgid "Upper total"
-msgstr ""
+msgstr "Total atas"
 
-#: gtali/yahtzee.c:93
+#: gtali/yahtzee.c:90
 msgid "Bonus if >62"
-msgstr ""
+msgstr "Bonus bila >62"
 
-#: gtali/yahtzee.c:507
+#: gtali/yahtzee.c:505
 msgid "How many times do you wish to roll?"
-msgstr ""
+msgstr "Berapa kali ingin mengocok dadu?"
 
-#: gtali/yahtzee.c:512
-msgid "Generating"
-msgstr ""
+#: gtali/yahtzee.c:510
+#, fuzzy
+msgid "Generating ..."
+msgstr "Memproses"
 
-#: gtali/yahtzee.c:547
+#: gtali/yahtzee.c:545
 msgid "Results"
-msgstr ""
+msgstr "Hasil"
 
-#: gtali/yahtzee.c:547
+#: gtali/yahtzee.c:545
 msgid "Num Rolls"
-msgstr ""
+msgstr "Jumlah Kocokan"
 
-#: gtali/yahtzee.c:547
+#: gtali/yahtzee.c:545
 msgid "Total"
 msgstr "Total"
 
-#: iagno/gnothello.c:112
+#: iagno/gnothello.c:111
 msgid "Iagno server to use"
-msgstr ""
+msgstr "Server Iagno"
 
-#: iagno/gnothello.c:119
-msgid "New net_work game"
-msgstr ""
-
-#: iagno/gnothello.c:390 iagno/gnothello.c:722 iagno/iagno.desktop.in.h:1
+#: iagno/gnothello.c:389 iagno/gnothello.c:722 iagno/iagno.desktop.in.h:1
 #: iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Iagno"
 
-#: iagno/gnothello.c:392
+#: iagno/gnothello.c:391
 msgid "GNOME version of the popular Othello disk flipping game."
-msgstr ""
-
-#: iagno/gnothello.c:537
-#, c-format
-msgid "Could not find '%s' pixmap file for Iagno\n"
-msgstr ""
+msgstr "Gim Othello versi GNOME"
 
 #: iagno/gnothello.c:790
 msgid "Welcome to Iagno!"
-msgstr ""
+msgstr "Selamat datang di Iagno!"
+
+#: iagno/gnothello.c:798 iagno/gnothello.c:800
+#, c-format
+msgid "%.2d"
+msgstr "%.2d"
 
 #: iagno/iagno.desktop.in.h:2
-msgid "Reversi game"
+msgid "Play a game of Reversi"
 msgstr ""
 
-#: iagno/network.c:74
-msgid "Network initialization complete."
-msgstr ""
+#: iagno/iagno.soundlist.in.h:1
+msgid "Game over"
+msgstr "Permainan Usai"
 
-#: iagno/network.c:84
-msgid "Network shutdown in progress."
-msgstr ""
+#: iagno/iagno.soundlist.in.h:3
+msgid "Piece flipping"
+msgstr "Pembalikan koin"
 
-#. Shut down the connection, either it was broken or someone is messing with us
-#: iagno/network.c:196
-msgid "The remote player disconnected"
-msgstr ""
+#: iagno/othello.c:717
+msgid "Light must pass, Dark's move"
+msgstr "Terang lewat, Gelap jalan"
 
-#: iagno/network.c:214
-msgid "Error occurred during connect attempt."
-msgstr ""
+#: iagno/othello.c:729
+msgid "Dark must pass, Light's move"
+msgstr "Gelap lewat, Terang jalan"
 
-#: iagno/network.c:216 iagno/network.c:365
-msgid "Connection succeeded, waiting for opponent"
-msgstr ""
-
-#: iagno/network.c:226
-msgid "Error occurred during write."
-msgstr ""
-
-#: iagno/network.c:252
-msgid "Invalid move attempted"
-msgstr ""
-
-#: iagno/network.c:258
-msgid "Invalid game data (set_peer)"
-msgstr ""
-
-#: iagno/network.c:266
-msgid "Peer introduction complete"
-msgstr ""
-
-#: iagno/network.c:275
-msgid "Invalid game data (move)"
-msgstr ""
-
-#: iagno/network.c:283
-msgid "New game started"
-msgstr ""
-
-#: iagno/network.c:344
-msgid "Cleaning up connection"
-msgstr ""
-
-#: iagno/network.c:356
-msgid "Connection in progress..."
-msgstr ""
-
-#: iagno/network.c:360
-msgid "Connection failed"
-msgstr ""
-
-#: iagno/network.c:378
-msgid "No game server defined"
-msgstr ""
-
-#: iagno/properties.c:508
-#, fuzzy
+#: iagno/properties.c:495
 msgid "Iagno Preferences"
-msgstr "Setting"
+msgstr "Pengaturan Iagno"
 
-#: iagno/properties.c:529
+#: iagno/properties.c:519
 msgid "Use quick moves"
-msgstr ""
+msgstr "Gerakan cepat"
 
-#: iagno/properties.c:677
+#: iagno/properties.c:634
+msgid "None"
+msgstr "Tidak ada"
+
+#: iagno/properties.c:643
+msgid "Partial"
+msgstr "Parsial"
+
+#: iagno/properties.c:652
+msgid "Complete"
+msgstr "Komplit"
+
+#: iagno/properties.c:667
 msgid "Stagger flips"
+msgstr "Balik satu-persatu"
+
+#: libgames-support/games-card-selector.c:51
+msgid "Card Style"
+msgstr "Gaya Kartu"
+
+#: libgames-support/games-controls.c:158 libgames-support/games-controls.c:331
+#: libgames-support/games-controls.c:403
+#, fuzzy
+msgid "No key"
+msgstr "Tidak ada"
+
+#: libgames-support/games-controls.c:203
+msgid "<Press a Key>"
 msgstr ""
 
-#: iagno/properties.c:685
-msgid "Show grid"
-msgstr ""
+#: libgames-support/games-controls.c:390
+#, fuzzy
+msgid "Unknown Command"
+msgstr "Warna tidak diketahui"
 
 #: libgames-support/games-gconf.c:66
 #, c-format
 msgid "There was an error accessing GConf: %s"
-msgstr ""
+msgstr "Ada error saat mengakses GConf: %s"
 
 #: libgames-support/games-gconf.c:79
 msgid "The default configuration values could not be retrieved correctly."
-msgstr ""
+msgstr "Konfigurasi awal tidak dapat diambil dengan benar."
 
 #: libgames-support/games-gconf.c:80
 msgid ""
 "Please check your GConf configuration, specifically that the schemas have "
 "been installed correctly."
 msgstr ""
+"Silakan periksa konfigurasi GConf, terutama apakah berkas-berkas skema telah "
+"dipasang dengan benar atau tidak."
 
-#: mahjongg/mahjongg.c:344
-msgid "New game with _seed..."
+#: libgames-support/games-gridframe.c:180
+#: libgames-support/games-gridframe.c:187
+msgid "X Padding"
 msgstr ""
 
-#: mahjongg/mahjongg.c:345
-msgid "Start a new game giving a seed number..."
+#: libgames-support/games-gridframe.c:181
+msgid "Extra space to add to the width allocation."
 msgstr ""
 
-#: mahjongg/mahjongg.c:360
-msgid "Shu_ffle tiles"
+#: libgames-support/games-gridframe.c:188
+msgid "Extra space to add to the height allocation."
 msgstr ""
 
-#: mahjongg/mahjongg.c:360 mahjongg/mahjongg.c:431
-msgid "Shuffle tiles"
+#: libgames-support/games-gridframe.c:194
+msgid "Width Multiple"
 msgstr ""
 
-#: mahjongg/mahjongg.c:405
-msgid "New game"
+#: libgames-support/games-gridframe.c:195
+msgid "What multiple to constrain the width to."
 msgstr ""
 
-#: mahjongg/mahjongg.c:409
+#: libgames-support/games-gridframe.c:201
+msgid "Height Multiple"
+msgstr ""
+
+#: libgames-support/games-gridframe.c:202
+msgid "What multiple to constrain the height to."
+msgstr ""
+
+#: libgames-support/games-network-dialog.c:105
+#, fuzzy
+msgid "New Network Game"
+msgstr "Mulai gim lewat _jaringan"
+
+#. Create Network Status Frame.
+#: libgames-support/games-network-dialog.c:110
+#, fuzzy
+msgid "Network Status:"
+msgstr "Status Gim"
+
+#: libgames-support/games-network-dialog.c:111
+#, fuzzy
+msgid "No network game started."
+msgstr "Gim baru dimulai"
+
+#. Create Players list
+#: libgames-support/games-network-dialog.c:117
+#, fuzzy
+msgid "Players:"
+msgstr "Pemain"
+
+#. Create playername label and entry field.
+#: libgames-support/games-network-dialog.c:136
+msgid "Your playername:"
+msgstr ""
+
+#: libgames-support/games-network-dialog.c:145
+#, fuzzy
+msgid "Player"
+msgstr "Pemain"
+
+#. Create buttons.
+#: libgames-support/games-network-dialog.c:154
+#, fuzzy
+msgid "_Connect"
+msgstr "Gnect"
+
+#: libgames-support/games-network-dialog.c:156
+#, fuzzy
+msgid "_Start game"
+msgstr "Ulangi gim"
+
+#: libgames-support/games-network-dialog.c:187
+#, fuzzy
+msgid "Invalid name"
+msgstr "Pemain mencoba mengambil jalan yang salah"
+
+#: libgames-support/games-network.c:102
+msgid "Network initialization complete."
+msgstr "Inisialisasi jaringan selesai."
+
+#: libgames-support/games-network.c:112
+msgid "Network shutdown in progress."
+msgstr "Jaringan sedang ditutup."
+
+#. Shut down the connection, either it was broken or someone is messing with us
+#: libgames-support/games-network.c:235
+msgid "The remote player disconnected"
+msgstr "Pemain lawan memutuskan hubungan jaringan"
+
+#: libgames-support/games-network.c:254
+msgid "Error occurred during connect attempt."
+msgstr "Ada error saat mencoba koneksi jaringan"
+
+#: libgames-support/games-network.c:256 libgames-support/games-network.c:342
+msgid "Connection succeeded, waiting for opponent"
+msgstr "Koneksi terjalin, sedang menunggu lawan"
+
+#: libgames-support/games-network.c:266
+msgid "Error occurred during write."
+msgstr "Ada error saat menulis ke jaringan"
+
+#: libgames-support/games-network.c:321
+msgid "Cleaning up connection"
+msgstr "Koneksi ditutup"
+
+#: libgames-support/games-network.c:333
+msgid "Connection in progress..."
+msgstr "Koneksi dalam proses..."
+
+#: libgames-support/games-network.c:337
+msgid "Connection failed"
+msgstr "Koneksi gagal"
+
+#: libgames-support/games-network.c:364
+msgid "No game server defined"
+msgstr "Server gim belum ditentukan"
+
+#: libgames-support/games-preimage.c:166 libgames-support/games-preimage.c:258
+msgid "Image rendering failed."
+msgstr ""
+
+#: mahjongg/drawing.c:422
+#, fuzzy, c-format
+msgid "Unable to locate theme file: %s"
+msgstr "Nama berkas tema yang ingin digunakan."
+
+#: mahjongg/mahjongg.c:739
+msgid "Difficult"
+msgstr ""
+
+#: mahjongg/mahjongg.c:740
+msgid "Confounding Cross"
+msgstr ""
+
+#: mahjongg/mahjongg.c:741
+msgid "Pyramid's Walls"
+msgstr ""
+
+#: mahjongg/mahjongg.c:742
+msgid "Tic-Tac-Toe"
+msgstr ""
+
+#: mahjongg/mahjongg.c:743
+#, fuzzy
+msgid "Cloud"
+msgstr "Suara"
+
+#: mahjongg/mahjongg.c:744
+msgid "Red Dragon"
+msgstr ""
+
+#: mahjongg/mahjongg.c:745
+#, fuzzy
+msgid "Four Bridges"
+msgstr "Fortress"
+
+#: mahjongg/mahjongg.c:746
+msgid "The Ziggurat"
+msgstr ""
+
+#: mahjongg/mahjongg.c:852
 msgid "Restart game"
-msgstr ""
+msgstr "Ulangi gim"
 
-#: mahjongg/mahjongg.c:415
+#: mahjongg/mahjongg.c:858
 msgid "Pause game"
-msgstr ""
+msgstr "Hentikan gim sebentar"
 
-#: mahjongg/mahjongg.c:421
+#: mahjongg/mahjongg.c:864
 msgid "Undo previous move"
-msgstr ""
+msgstr "Batalkan jalan sebelumnya"
 
-#: mahjongg/mahjongg.c:427
+#: mahjongg/mahjongg.c:870
 msgid "Get a hint"
-msgstr ""
+msgstr "Minta petunjuk"
 
-#: mahjongg/mahjongg.c:431
-msgid "Shuffle"
-msgstr ""
-
-#: mahjongg/mahjongg.c:436
-msgid "Toggle sound"
-msgstr ""
-
-#: mahjongg/mahjongg.c:685
+#: mahjongg/mahjongg.c:1076
 msgid ""
-"This new mapset will take effect when you start a new game, or when Mahjongg "
-"is restarted."
+"Do you want to finish the current game or start playing with the new map "
+"immediately?"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1029 mahjongg/mahjongg.c:1035
+#: mahjongg/mahjongg.c:1077
+msgid ""
+"If you choose to finish with the old map then the next game will use the new "
+"map."
+msgstr ""
+
+#: mahjongg/mahjongg.c:1079
+msgid "_Finish"
+msgstr ""
+
+#: mahjongg/mahjongg.c:1336 mahjongg/mahjongg.c:1341
 msgid "These tiles don't match."
-msgstr ""
+msgstr "Ubinnya tidak cocok."
 
-#: mahjongg/mahjongg.c:1067
+#: mahjongg/mahjongg.c:1373
 msgid "There are no more moves."
-msgstr ""
+msgstr "Tidak ada jalan lagi."
 
-#: mahjongg/mahjongg.c:1125
+#: mahjongg/mahjongg.c:1377
+msgid "Shuffle"
+msgstr "Kocok"
+
+#: mahjongg/mahjongg.c:1440
 msgid "Preferences"
 msgstr "Setting"
 
-#: mahjongg/mahjongg.c:1144
-#, fuzzy
+#: mahjongg/mahjongg.c:1459
 msgid "Tiles"
-msgstr "Thieves"
+msgstr "Ubin"
 
-#: mahjongg/mahjongg.c:1152
+#: mahjongg/mahjongg.c:1467
 msgid "Tile Set"
-msgstr ""
+msgstr "Jenis Ubin"
 
-#: mahjongg/mahjongg.c:1163
-msgid "Tile Background"
-msgstr ""
-
-#: mahjongg/mahjongg.c:1176
+#: mahjongg/mahjongg.c:1480
 msgid "Maps"
-msgstr ""
+msgstr "Peta"
 
-#: mahjongg/mahjongg.c:1184
+#: mahjongg/mahjongg.c:1488
 msgid "Select Map"
-msgstr ""
+msgstr "Pilih Peta"
 
-#: mahjongg/mahjongg.c:1197
+#: mahjongg/mahjongg.c:1501
 msgid "Colors"
-msgstr ""
+msgstr "Warna"
 
-#: mahjongg/mahjongg.c:1205
+#: mahjongg/mahjongg.c:1509
 msgid "Background Color"
 msgstr "Warna latar belakang"
 
-#: mahjongg/mahjongg.c:1224
-#, fuzzy
+#: mahjongg/mahjongg.c:1523
 msgid "Warnings"
-msgstr "raja"
+msgstr "Awas"
 
-#: mahjongg/mahjongg.c:1230
+#: mahjongg/mahjongg.c:1529
 msgid "Warn when tiles don't match"
-msgstr ""
+msgstr "Peringatkan saat ubin tidak cocok"
 
-#: mahjongg/mahjongg.c:1335
+#: mahjongg/mahjongg.c:1632
 #, fuzzy
-msgid "Tiles:"
-msgstr "Waktu:"
+msgid "Maps:"
+msgstr "Peta"
 
-#: mahjongg/mahjongg.c:1364
+#: mahjongg/mahjongg.c:1636
+msgid "Tiles:"
+msgstr "Ubin:"
+
+#: mahjongg/mahjongg.c:1668
 msgid "GNOME Mahjongg"
 msgstr "GNOME Mahjongg"
 
-#: mahjongg/mahjongg.c:1367
+#: mahjongg/mahjongg.c:1671
 msgid "GNOME version of the Eastern tile game, Mahjongg."
-msgstr ""
+msgstr "Permainan ubin dari Timur versi GNOME, Mahjongg."
 
-#: mahjongg/mahjongg.c:1394
-msgid "... Game paused ..."
-msgstr ""
+#: mahjongg/mahjongg.c:2025
+msgid "Sorry, I was unable to find a playable configuration."
+msgstr "Maaf, konfigurasi permainan tidak dapat ditemukan."
 
-#: mahjongg/mahjongg.c:1598
-msgid "Game Number:"
-msgstr ""
-
-#: mahjongg/mahjongg.c:1766 mahjongg/mahjongg.c:1781
-#, c-format
-msgid "Could not find file %s"
-msgstr ""
-
-#: mahjongg/mahjongg.c:1821 mahjongg/mahjongg.desktop.in.h:1
+#: mahjongg/mahjongg.c:2081 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:1946
-msgid "Sorry, I was unable to find a playable configuration."
-msgstr ""
-
-#: mahjongg/mahjongg.c:2011
+#: mahjongg/mahjongg.c:2089
 msgid "Tiles Left:"
-msgstr ""
+msgstr "Sisa Ubin:"
 
-#: mahjongg/mahjongg.c:2020
+#: mahjongg/mahjongg.c:2098
 msgid "Moves Left:"
-msgstr ""
+msgstr "Sisa Jalan:"
 
-#: mahjongg/mahjongg.c:2081
+#: mahjongg/mahjongg.c:2163
 msgid "Welcome to GNOME Mahjongg!"
+msgstr "Selamat datang di Mahjongg GNOME!"
+
+#: mahjongg/mahjongg.desktop.in.h:1
+msgid "Disassemble a pile of tiles by removing matching pairs"
 msgstr ""
 
-#: mahjongg/mahjongg.desktop.in.h:2
-msgid "Mahjongg game"
+#: mahjongg/mahjongg.schemas.in.h:2
+msgid ""
+"The requested height of the main window in pixels. Note that the widgets the "
+"window contains are at least 200 pixels high."
 msgstr ""
 
-#: same-gnome/same-gnome.c:204
-#, c-format
+#: mahjongg/mahjongg.schemas.in.h:3
+msgid ""
+"The requested width of the main window in pixels. Note that the widgets the "
+"window contains are at least 320 pixels wide."
+msgstr ""
+
+#: same-gnome/same-gnome.c:205
+#, fuzzy, c-format
 msgid "%d stone selected"
 msgid_plural "%d stones selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d batu terpilih"
+msgstr[1] "%d batu terpilih"
 
-#: same-gnome/same-gnome.c:209
+#: same-gnome/same-gnome.c:210
 msgid "No stones selected"
-msgstr ""
+msgstr "Tidak ada batu yang dipilih"
 
-#: same-gnome/same-gnome.c:287
+#: same-gnome/same-gnome.c:288
 msgid "The Same GNOME"
 msgstr "The Same GNOME"
 
-#: same-gnome/same-gnome.c:440
+#: same-gnome/same-gnome.c:441
 #, c-format
 msgid ""
 "Could not find the theme:\n"
@@ -4458,6 +4884,10 @@ msgid ""
 "\n"
 "Please check your Same GNOME installation."
 msgstr ""
+"Tema tidak ditemukan:\n"
+"%s\n"
+"\n"
+"Silakan periksa instalasi Same GNOME di komputer Anda ini."
 
 #: same-gnome/same-gnome.c:471
 #, c-format
@@ -4467,208 +4897,439 @@ msgid ""
 "\n"
 "Please check your Same GNOME installation"
 msgstr ""
+"Berkas gambar tidak dapat dibuka:\n"
+"%s\n"
+"\n"
+"Silakan periksa instalasi Same GNOME di komputer Anda ini."
 
-#: same-gnome/same-gnome.c:621
-#, fuzzy
+#: same-gnome/same-gnome.c:614
 msgid "Same GNOME Preferences"
-msgstr "Setting"
+msgstr "Pengaturan Same GNOME"
 
-#: same-gnome/same-gnome.c:734 same-gnome/same-gnome.c:926
+#: same-gnome/same-gnome.c:727 same-gnome/same-gnome.c:926
 #: same-gnome/same-gnome.desktop.in.h:2
 msgid "Same GNOME"
 msgstr "Same GNOME"
 
-#: same-gnome/same-gnome.c:737
+#: same-gnome/same-gnome.c:730
 msgid "Original idea from KDE's same game program."
-msgstr ""
+msgstr "Inspirasi berasal dari program gim same game dari KDE."
 
 #: same-gnome/same-gnome.c:936
 msgid "Welcome to Same GNOME!"
-msgstr ""
+msgstr "Selamat datang di Same GNOME!"
 
 #: same-gnome/same-gnome.desktop.in.h:1
-msgid "GNOME SameGame"
-msgstr "GNOME SameGame"
+msgid "Remove groups of balls to try and clear the screen"
+msgstr ""
 
-#~ msgid " of "
-#~ msgstr " dari "
+#~ msgid "What card style to use"
+#~ msgstr "Jenis gaya kartu yang digunakan"
 
-#~ msgid "melborp"
-#~ msgstr "melborp"
+#~ msgid "Seed"
+#~ msgstr "Benih"
 
-#~ msgid "queens"
-#~ msgstr "ratu"
+#~ msgid "AisleRiot Preferences"
+#~ msgstr "Pengaturan AisleRiot"
+
+#~ msgid "FreeCell"
+#~ msgstr "FreeCell"
+
+#~ msgid "Try a new game"
+#~ msgstr "Mulailah gim baru"
+
+#~ msgid "Help"
+#~ msgstr "Bantuan"
+
+#~ msgid "Loading images..."
+#~ msgstr "Buka permainan..."
+
+#~ msgid "Dealing game..."
+#~ msgstr "Bagi kartu..."
+
+#~ msgid "Initializing scheme..."
+#~ msgstr "Mengatur skema..."
+
+#~ msgid "Card-based solitaire suite"
+#~ msgstr "Kumpulan permainan kartu yang dimainkan sendiri"
+
+#, fuzzy
+#~ msgid "Card _Deck"
+#~ msgstr "Sisi belakang kartu:"
+
+#, fuzzy
+#~ msgid ""
+#~ "gataxx is a GNOME port of the old game ataxx. It is derived from Ian "
+#~ "Peters' iagno code."
+#~ msgstr ""
+#~ "gataxx adalah permainan ataxx yang dibuat untuk GNOME. "
+#~ "Programnyaditurunkan dari program Iagno oleh Ian Peter"
+
+#~ msgid "Could not find '%s' pixmap file for gataxx\n"
+#~ msgstr "Tidak dapat menemukan file pixmap '%s'  milik gataxx\n"
+
+#~ msgid "Welcome to gataxx!"
+#~ msgstr "Selamat datang di gataxx!"
+
+#~ msgid "Ataxx game"
+#~ msgstr "Permainan Ataxx"
+
+#~ msgid "Gataxx"
+#~ msgstr "Gataxx"
+
+#~ msgid "Quick Moves (cut computer delay in half)"
+#~ msgstr "Gerakan cepat (jeda waktu gerakan dipercepat)"
+
+#~ msgid "Card back:"
+#~ msgstr "Sisi belakang kartu:"
+
+#~ msgid "Joker icon:"
+#~ msgstr "Ikon Joker:"
+
+#~ msgid "Rank font:"
+#~ msgstr "Huruf ranking:"
+
+#~ msgid "Welcome to Glines!"
+#~ msgstr "Selamat datang di Glines!"
+
+#~ msgid "Color lines game"
+#~ msgstr "Gim color lines"
+
+#~ msgid "Draw grid"
+#~ msgstr "Gambar garis"
+
+#~ msgid "One corresponds to speaker beeps, two to audio files."
+#~ msgstr "Satu berarti suara speaker, dua berarti berkas audio."
+
+#~ msgid "Sound type"
+#~ msgstr "Jenis suara"
+
+#~ msgid "Whether or not to display grid lines on the game board."
+#~ msgstr "Tampilkan garis kotak pada papan atau tidak."
+
+#~ msgid "Who starts"
+#~ msgstr "Yang jalan duluan"
 
 #~ msgid ""
+#~ "Zero is Player One, one is Player Two and two corresponds to players "
+#~ "taking turns."
+#~ msgstr ""
+#~ "Nol adalah Pemain Satu, satu adalah Pemain Dua dan dua adalah pemain yang "
+#~ "bergantian."
+
+#~ msgid ""
+#~ "Zero is human; one through four correspond to the level of the computer "
+#~ "player."
+#~ msgstr "Nol adalah orang, satu hingga empat adalah komputer."
+
+#~ msgid "Gnect Scores"
+#~ msgstr "Perolehan Angka Gnect"
+
+#~ msgid "Draw _grid"
+#~ msgstr "_Gambar garis"
+
+#~ msgid "Show or hide the grid"
+#~ msgstr "Tampilkan atau sembunyikan garis"
+
+#~ msgid "Initial window placement"
+#~ msgstr "Letak awal jendela"
+
+#~ msgid "GEOMETRY"
+#~ msgstr "GEOMETRI"
+
+#~ msgid "Random number seed"
+#~ msgstr "Benih acak"
+
+#~ msgid "SEED"
+#~ msgstr "BENIH"
+
+#~ msgid "Initial theme file (excluding path)"
+#~ msgstr "Berkas tema awal (tanpa path)"
+
+#~ msgid "Debugging level (4 for random seed)"
+#~ msgstr "Tingkat debug (4 untuk benih acak)"
+
+#~ msgid "%s: no themes available\n"
+#~ msgstr "%s: tidak ada tema\n"
+
+#~ msgid "Player 2: %s"
+#~ msgstr "Pemain 2: %s"
+
+#~ msgid ""
+#~ "Applying this change to Player Selection\n"
+#~ "will end the current game"
+#~ msgstr ""
+#~ "Perubahan yang dilakukan pada Pemilihan Pemain\n"
+#~ "akan mengakhiri permainan yang sedang jalan"
+
+#~ msgid "Error loading theme"
+#~ msgstr "Error membuka tema"
+
+#~ msgid "Non-Velena / Simple"
+#~ msgstr "Non-Velena / Sederhana"
+
+#~ msgid "Velena / Weak"
+#~ msgstr "Velena / Mudah"
+
+#~ msgid "Velena / Medium"
+#~ msgstr "Velena / Sedang"
+
+#~ msgid "Velena / Strong"
+#~ msgstr "Velena / Sulit"
+
+#~ msgid "Always Player 1"
+#~ msgstr "Selalu Pemain 1"
+
+#~ msgid "Always Player 2"
+#~ msgstr "Selalu Pemain 2"
+
+#~ msgid "Take turns"
+#~ msgstr "Gantian jalan"
+
+#~ msgid "Gnect Preferences"
+#~ msgstr "Pengaturan Gnect"
+
+#~ msgid "_Player Selection"
+#~ msgstr "_Pemilihan Pemain"
+
+#~ msgid "Who starts?"
+#~ msgstr "Siapa mulai?"
+
+#~ msgid "Appearance and Behaviour"
+#~ msgstr "Tampilan dan Perilaku"
+
+#~ msgid "Theme Selection:"
+#~ msgstr "Pilihan Tema:"
+
+#~ msgid "Sound Type"
+#~ msgstr "Jenis suara"
+
+#~ msgid "Speaker beep"
+#~ msgstr "Bunyi speaker"
+
+#~ msgid "GNOME sound"
+#~ msgstr "Suara GNOME"
+
+#~ msgid "This can be set up using the GNOME Control Center"
+#~ msgstr "Ini bisa diatur melalui GNOME Control Center"
+
+#~ msgid "Keyboard Control"
+#~ msgstr "Kendali Keyboard"
+
+#~ msgid "Black"
+#~ msgstr "Hitam"
+
+#~ msgid "White"
+#~ msgstr "Putih"
+
+#~ msgid "Grey"
+#~ msgstr "Abu-abu"
+
+#~ msgid "Pink"
+#~ msgstr "Pink"
+
+#~ msgid "Violet"
+#~ msgstr "Ungu"
+
+#~ msgid "Brown"
+#~ msgstr "Coklat"
+
+#~ msgid ""
+#~ "Gnibbles Couldn't find pixmap file:\n"
+#~ "%s\n"
 #~ "\n"
-#~ "Game Over.\n"
+#~ "Please check your Gnibbles instalation"
 #~ msgstr ""
+#~ "Gnibbles tidak menemukan berkas gambar pixmap:\n"
+#~ "%s\n"
 #~ "\n"
-#~ "Permainan Usai.\n"
+#~ "Silakan periksa dulu instalasi Gnibblesnya"
 
-#~ msgid "Main program:  Jonathan Blandford (jrb@redhat.com)"
-#~ msgstr "Program Utama:  Jonathan Blandford (jrb@redhat.com)"
+#~ msgid "Nibbles game"
+#~ msgstr "Gim Nibbles"
 
-#~ msgid "                      Felix Bellaby (felix@pooh.u-net.com)"
-#~ msgstr "                      Felix Bellaby (felix@pooh.u-net.com)"
+#~ msgid "Key to use for motion down"
+#~ msgstr "Tombol bawah"
 
-#~ msgid "                      Rosanna Yuen (zana@webwynk.net)"
-#~ msgstr "                      Rosanna Yuen (zana@webwynk.net)"
+#~ msgid "Key to use for motion left"
+#~ msgstr "Tombol kiri"
 
-#~ msgid "Card Games:    Jonathan Blandford (jrb@redhat.com)"
-#~ msgstr "Permainan Kartu:    Jonathan Blandford (jrb@redhat.com)"
+#~ msgid "Key to use for motion right"
+#~ msgstr "Tombol kanan"
 
-#~ msgid "                      W. Borgert (debacle@debian.org)"
-#~ msgstr "                      W. Borgert (debacle@debian.org)"
+#~ msgid "Key to use for motion up"
+#~ msgstr "Tombol atas"
 
-#~ msgid "                      Robert Brady (rwb197@ecs.soton.ac.uk)"
-#~ msgstr "                      Robert Brady (rwb197@ecs.soton.ac.uk)"
+#~ msgid "Board size"
+#~ msgstr "Ukuran papan"
 
-#~ msgid "                      Nick Lamb (njl195@zepler.org.uk)"
-#~ msgstr "                      Nick Lamb (njl195@zepler.org.uk)"
+#~ msgid "Tiny  (184 x 132)"
+#~ msgstr "Kecil  (184 x 132)"
 
-#~ msgid "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"
-#~ msgstr "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"
+#~ msgid "Small  (368 x 264)"
+#~ msgstr "Kecil   (368 x 264)"
 
-#~ msgid "                      Matthew Wilcox (matthew@wil.cx)"
-#~ msgstr "                      Matthew Wilcox (matthew@wil.cx)"
+#~ msgid "Medium  (460 x 330)"
+#~ msgstr "Sedang  (460 x 330)"
 
-#~ msgid "(C) 1998 Jonathan Blandford (jrb@redhat.com)"
-#~ msgstr "(C) 1998 Jonathan Blandford (jrb@redhat.com)"
+#~ msgid "Large  (736 x 528)"
+#~ msgstr "Besar  (736 x 528)"
 
-#~ msgid "Freecell #%d"
-#~ msgstr "Freecell #%d"
+#~ msgid "Extra large  (920 x 660)"
+#~ msgstr "Ekstra Besar  (920 x 660)"
 
-#~ msgid "Seed value:"
-#~ msgstr "Nilai benih acak:"
+#~ msgid "Huge  (1840 x 1320)"
+#~ msgstr "Raksasa (1840 x 1320)"
 
-#~ msgid "Sorry, this feature is not (yet) implemented."
-#~ msgstr "Maaf, fitur ini belum dapat dijalankan"
+#~ msgid "Up"
+#~ msgstr "Atas"
 
-#~ msgid "Are you sure you want to quit Freecell?"
-#~ msgstr "Benar ingin keluar dari Freecell?"
+#~ msgid "Down"
+#~ msgstr "Turun"
 
-#~ msgid "Changwoo Ryu."
-#~ msgstr "Changwoo Ryu."
+#~ msgid "Left"
+#~ msgstr "Kiri"
 
-#~ msgid "That move is invalid."
-#~ msgstr "Langkah Anda tidak benar."
+#~ msgid "Right"
+#~ msgstr "Kanan"
 
-#~ msgid "Sorry, there are no more valid moves."
-#~ msgstr "Maaf, tidak ada lagi langkah yang mungkin dilakukan"
+#~ msgid "Robots game"
+#~ msgstr "Permainan Robot"
 
-#~ msgid ""
-#~ "Congratulations.  You won.\n"
-#~ "Do you want to play again?"
-#~ msgstr ""
-#~ "Selamat. Anda menang\n"
-#~ "Ingin main lagi?"
+#~ msgid "Could not find '%s' image file for GNOME Robots\n"
+#~ msgstr "Tidak dapat menemukan file pixmap '%s'  milik GNOME Robots\n"
 
-#~ msgid "New game with seed..."
-#~ msgstr "Permainan baru dengan benih acak baru..."
+#~ msgid "Background Color:"
+#~ msgstr "Warna Latar:"
 
-#~ msgid "Start a new game with a different seed"
-#~ msgstr "Mulai permainan baru dengan benih acak baru"
+#~ msgid "NW"
+#~ msgstr "Barat Laut"
 
-#~ msgid "Freecell Properties"
-#~ msgstr "Properti Freecell"
+#~ msgid "N"
+#~ msgstr "Utara"
 
-#~ msgid "Warn on invalid moves"
-#~ msgstr "Beri peringatan pada langkah yang salah"
+#~ msgid "NE"
+#~ msgstr "Timur Laut"
 
-#~ msgid "Move stacks one by one"
-#~ msgstr "Pindahkan tumpukan satu per satu"
+#~ msgid "W"
+#~ msgstr "Barat"
 
-#~ msgid "This session: %d%%"
-#~ msgstr "Sesi sekarang: %d%%"
+#~ msgid "E"
+#~ msgstr "Timur"
 
-#~ msgid "won: %d, lost: %d"
-#~ msgstr "menang: %d, kalah: %d"
+#~ msgid "SW"
+#~ msgstr "Barat Daya"
 
-#~ msgid "Total: %d%%"
-#~ msgstr "Total: %d%%"
+#~ msgid "S"
+#~ msgstr "Selatan"
 
-#~ msgid "wins: %d, losses: %d"
-#~ msgstr "menang: %d, kalah: %d"
+#~ msgid "SE"
+#~ msgstr "Tenggara"
 
-#~ msgid "current: %d wins"
-#~ msgstr "sekarang: %d kemenangan"
+#~ msgid "Random Teleport:"
+#~ msgstr "Teleport Acak:"
 
-#~ msgid "current: %d losses"
-#~ msgstr "sekarang: %d kekalahan"
+#~ msgid "Predefined Set 1"
+#~ msgstr "Tombol Set 1"
 
-#~ msgid "Are you sure you want to quit Gataxx?"
-#~ msgstr "Benar hendak keluar dari Gataxx?"
+#~ msgid "Predefined Set 2"
+#~ msgstr "Tombol Set 2"
 
-#~ msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
-#~ msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
+#~ msgid "GNOME Stones game"
+#~ msgstr "Gim GNOME Stones"
 
-#~ msgid "Szabolcs Ban <shooby@gnome.hu>"
-#~ msgstr "Szabolcs Ban <shooby@gnome.hu>"
+#~ msgid "Tetris game"
+#~ msgstr "Gim Tetris"
 
-#~ msgid "(C) 1997-2000 the Free Software Foundation"
-#~ msgstr "(C) 1997-2000 the Free Software Foundation"
+#~ msgid "Image to use as background."
+#~ msgstr "Gambar latar."
 
-#~ msgid "GNOME-Stones (c) 1998 Carsten Schaar"
-#~ msgstr "GNOME-Stones (c) 1998 Carsten Schaar"
+#~ msgid "Background image:"
+#~ msgstr "Gambar latar:"
 
-#~ msgid "GNOME-STONES"
-#~ msgstr "GNOME-STONES"
+#~ msgid "Mine size:"
+#~ msgstr "Ukuran ranjau:"
 
-#~ msgid "GNOME-Stones"
-#~ msgstr "GNOME-Stones"
+#~ msgid "Size of mines"
+#~ msgstr "Ukuran ranjau"
 
-#~ msgid "Filename"
-#~ msgstr "Nama file"
+#~ msgid "Mines game"
+#~ msgstr "Gim ranjau"
 
-#~ msgid "Code: Pista"
-#~ msgstr "Code: Pista"
-
-#~ msgid "Score: HoraPe"
-#~ msgstr "Score: HoraPe"
-
-#~ msgid "(C) 1997-1999 the Free Software Foundation"
-#~ msgstr "(C) 1997-1999 the Free Software Foundation"
+#~ msgid "GNOME Tetravex"
+#~ msgstr "GNOME Tetravex"
 
 #~ msgid ""
-#~ "Tetravex clone\n"
-#~ "(Comments to: Lars.Rydlinge@HIG.SE)"
+#~ "The side length of an individual game tile. The minimum is 40, the "
+#~ "maximum is set depending on screen height. The correct way to set this is "
+#~ "by resizing the window."
 #~ msgstr ""
-#~ "Tetravex clone\n"
-#~ "(Kirim komentar ke: Lars.Rydlinge@HIG.SE)"
+#~ "Panjang sisi ubin. Minimal 40 dan maksimumnya bergantung ukuran tinggi "
+#~ "layar. Ini bisa diset dengan mengubah ukuran jendela utama permainan."
+
+#~ msgid "The size of a tile"
+#~ msgstr "Ukuran ubin"
+
+#~ msgid "Gnotski"
+#~ msgstr "Gnotski"
+
+#~ msgid "Dice game"
+#~ msgstr "Gim dadu"
+
+#~ msgid "Show thoughts during turn"
+#~ msgstr "Tampilkan pikiran komputer saat jalan"
+
+#~ msgid "Optional Rules"
+#~ msgstr "Aturan Tambahan"
+
+#~ msgid "Extra Yahtzee Bonus"
+#~ msgstr "Bonus Ekstra Yahtzee"
+
+#~ msgid "Enforce Joker Rules"
+#~ msgstr "Gunakan Aturan Joker"
+
+#~ msgid "Could not find '%s' pixmap file for Iagno\n"
+#~ msgstr "Berkas pixmap '%s' tidak ditemukan oleh Iagno\n"
+
+#~ msgid "Reversi game"
+#~ msgstr "Gim Reversi"
+
+#~ msgid "New game with _seed..."
+#~ msgstr "Mulai gim baru dengan _benih..."
+
+#~ msgid "Start a new game giving a seed number..."
+#~ msgstr "Mulai gim baru dengan benih acak..."
+
+#~ msgid "Shu_ffle tiles"
+#~ msgstr "K_ocok ubin"
+
+#~ msgid "Shuffle tiles"
+#~ msgstr "Kocok ubin"
+
+#~ msgid "Toggle sound"
+#~ msgstr "Aktifkan/matikan suara"
 
 #~ msgid ""
-#~ "Klotski clone\n"
-#~ "(Comments to: Lars.Rydlinge@HIG.SE)"
+#~ "This new mapset will take effect when you start a new game, or when "
+#~ "Mahjongg is restarted."
 #~ msgstr ""
-#~ "Klotski clone\n"
-#~ "(Kirim komentar ke : Lars.Rydlinge@HIG.SE)"
+#~ "Peta ini akan diaktifkan saat memulai gim baru, atau saat Mahjongg "
+#~ "dijalankan ulang."
 
-#~ msgid "Scott Heavner"
-#~ msgstr "Scott Heavner"
+#~ msgid "Tile Background"
+#~ msgstr "Gambar Latar Ubin"
 
-#~ msgid "(C) 1998 the Free Software Fundation"
-#~ msgstr "(C) 1998 the Free Software Fundation"
+#~ msgid "... Game paused ..."
+#~ msgstr "... Istirahat ..."
 
-#~ msgid "(C) 1998 Ian Peters"
-#~ msgstr "(C) 1998 Ian Peters"
+#~ msgid "Game Number:"
+#~ msgstr "Nomor Gim:"
 
-#~ msgid ""
-#~ "Send comments and bug reports to: itp@gnu.org\n"
-#~ "Tiles under the General Public License."
-#~ msgstr ""
-#~ "Kirim komentar dan laporan bug ke: itp@gnu.org\n"
-#~ "Tiles under the General Public License."
+#~ msgid "Could not find file %s"
+#~ msgstr "File %s tidak ketemu"
 
-#~ msgid ""
-#~ "Send comments and bug reports to:\n"
-#~ "        pancho@nuclecu.unam.mx or\n"
-#~ "        mmeeks@gnu.org\n"
-#~ "\n"
-#~ "Tiles under the General Public License."
-#~ msgstr ""
-#~ "Kirim komentar dan laporan bug ke:\n"
-#~ "        pancho@nuclecu.unam.mx atau\n"
-#~ "        mmeeks@gnu.org\n"
-#~ "\n"
-#~ "Tiles under the General Public License."
+#~ msgid "Mahjongg game"
+#~ msgstr "Gim Mahjongg"
+
+#~ msgid "GNOME SameGame"
+#~ msgstr "GNOME SameGame"
