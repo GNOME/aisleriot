@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2003-06-02 19:51+0200\n"
-"PO-Revision-Date: 2003-06-02 19:52+0200\n"
+"POT-Creation-Date: 2003-06-04 16:08+0200\n"
+"PO-Revision-Date: 2003-06-04 16:09+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -290,20 +290,20 @@ msgstr ""
 msgid "New Game"
 msgstr "Nytt spel"
 
-#: aisleriot/dialog.c:132 mahjongg/mahjongg.c:1637
+#: aisleriot/dialog.c:133 mahjongg/mahjongg.c:1637
 msgid "Select Game"
 msgstr "Välj spel"
 
-#: aisleriot/dialog.c:141
+#: aisleriot/dialog.c:142
 msgid "Seed"
 msgstr "Slumptalsfrö"
 
-#: aisleriot/dialog.c:159 blackjack/src/dialog.cpp:270
-#: blackjack/src/dialog.cpp:281
+#: aisleriot/dialog.c:160 blackjack/src/dialog.cpp:268
+#: blackjack/src/dialog.cpp:279
 msgid "Rules"
 msgstr "Regler"
 
-#: aisleriot/dialog.c:242
+#: aisleriot/dialog.c:246
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -311,21 +311,21 @@ msgstr ""
 "Spelet är slut.\n"
 "Du kan inte få några tips."
 
-#: aisleriot/dialog.c:248
+#: aisleriot/dialog.c:252
 msgid "This game does not have hint support yet."
 msgstr "Det här spelet stöder inte ledtrådar ännu."
 
-#: aisleriot/dialog.c:260 aisleriot/dialog.c:268
+#: aisleriot/dialog.c:264 aisleriot/dialog.c:272
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Flytta %s till %s."
 
-#: aisleriot/dialog.c:276
+#: aisleriot/dialog.c:280
 #, c-format
 msgid "Move %s %s."
 msgstr "Flytta %s %s."
 
-#: aisleriot/dialog.c:279
+#: aisleriot/dialog.c:283
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 " Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -337,12 +337,12 @@ msgstr ""
 " meddelande namnet på spelet du spelade (titta i titelraden om du inte är\n"
 "säker)."
 
-#: aisleriot/dialog.c:284
+#: aisleriot/dialog.c:288
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Du letar efter en %s."
 
-#: aisleriot/dialog.c:289
+#: aisleriot/dialog.c:293
 msgid "This game is unable to provide a hint."
 msgstr "Det här spelet kan inte ge dig några tips."
 
@@ -554,7 +554,7 @@ msgstr "                      Matthew Wilcox (matthew@wil.cx)"
 #. Translator credits
 #: aisleriot/menu.c:92 gataxx/gataxx.c:428 glines/glines.c:764
 #: gnect/src/dialog.c:48 gnibbles/main.c:199 gnobots2/menu.c:210
-#: gnome-stones/main.c:1049 gnometris/tetris.cpp:1052 gnomine/gnomine.c:303
+#: gnome-stones/main.c:1054 gnometris/tetris.cpp:1052 gnomine/gnomine.c:303
 #: gnotravex/gnotravex.c:1108 gnotski/gnotski.c:1018 gtali/gyahtzee.c:361
 #: iagno/gnothello.c:409 mahjongg/mahjongg.c:1346 same-gnome/same-gnome.c:659
 msgid "translator_credits"
@@ -1436,6 +1436,11 @@ msgstr "den lämpliga grundhögen"
 msgid "Blackjack"
 msgstr "Tjugoett"
 
+#: blackjack/src/blackjack.cpp:89
+#, c-format
+msgid "Blackjack:  %s  ( %d )"
+msgstr "Tjugoett:  %s  ( %d )"
+
 #: blackjack/src/blackjack.cpp:208
 msgid "Are you sure you want to quit Blackjack?"
 msgstr "Vill du verkligen avsluta Tjugoett?"
@@ -1449,28 +1454,24 @@ msgid "Place your wager or deal a hand"
 msgstr "Placera din insats eller ge en hand"
 
 #: blackjack/src/blackjack.cpp:336
-msgid "Cards left: "
-msgstr "Återstående kort: "
+msgid "Cards left:"
+msgstr "Återstående kort:"
 
 #: blackjack/src/blackjack.cpp:344
-msgid "Wager: "
-msgstr "Insats: "
-
-#: blackjack/src/blackjack.cpp:349
-msgid "5.00"
-msgstr "5,00"
+msgid "Wager:"
+msgstr "Insats:"
 
 #: blackjack/src/blackjack.cpp:356
-msgid "Balance: "
-msgstr "Balans: "
+msgid "Balance:"
+msgstr "Balans:"
 
-#: blackjack/src/blackjack.cpp:636
+#: blackjack/src/blackjack.cpp:634
 msgid "Initializing..."
 msgstr "Initierar..."
 
 #: blackjack/src/dialog.cpp:51
-msgid "Would you like insurance? "
-msgstr "Vill du ha försäkring? "
+msgid "Would you like insurance?"
+msgstr "Vill du ha försäkring?"
 
 #: blackjack/src/dialog.cpp:109
 msgid "Set your wager and click in the white outline to deal a new hand."
@@ -1480,43 +1481,52 @@ msgstr "Ställ in din insats och klicka i den vita ramen för att ge en ny hand.
 msgid "Set your wager or click on the cards to deal a new hand."
 msgstr "Ställ in din insats och klicka på korten för att ge en ny hand."
 
-#: blackjack/src/dialog.cpp:116
-#, c-format
-msgid "The best option is to %s"
-msgstr "Det bästa alternativet är att %s"
-
-#: blackjack/src/dialog.cpp:227
+#: blackjack/src/dialog.cpp:225
 msgid "Blackjack Preferences"
 msgstr "Inställningar för Tjugoett"
 
-#: blackjack/src/dialog.cpp:240 gnibbles/preferences.c:306
+#: blackjack/src/dialog.cpp:238 gnibbles/preferences.c:306
 #: gnome-stones/preferences.c:688
 msgid "Game"
 msgstr "Spel"
 
-#: blackjack/src/dialog.cpp:247
+#: blackjack/src/dialog.cpp:245
 msgid "Display hand probabilities"
 msgstr "Visa handsannolikheter"
 
-#: blackjack/src/dialog.cpp:258
+#: blackjack/src/dialog.cpp:256
 msgid "Quick deals (no delay between each card)"
 msgstr "Snabba givar (ingen fördröjning mellan varje kort)"
 
-#: blackjack/src/events.cpp:491
+#: blackjack/src/events.cpp:493
+msgid "Click to deal another card; drag card to split pair"
+msgstr "Klicka för att ge ett annat kort. Drag kort för att dela par"
+
+#: blackjack/src/events.cpp:495
 msgid "Click to deal another card"
 msgstr "Klicka för att ge ett annat kort"
 
-#: blackjack/src/events.cpp:493
-msgid "Click to stand on your hand"
-msgstr "Klicka för att stanna med din hand"
+#: blackjack/src/events.cpp:497
+msgid "Click to finish adding cards to your hand"
+msgstr "Klicka för att sluta lägga till kort till din hand"
 
-#: blackjack/src/events.cpp:496
+#: blackjack/src/events.cpp:500
 msgid "Click to deal a new hand"
 msgstr "Klicka för att ge en ny hand"
 
-#: blackjack/src/events.cpp:512
+#: blackjack/src/events.cpp:516
 msgid "Click to double your wager"
 msgstr "Klicka för att dubbla din insats"
+
+#: blackjack/src/events.cpp:522
+#, c-format
+msgid "Double click to increase your wager by %.2f"
+msgstr "Dubbelklicka för att öka din insats med %.2f"
+
+#: blackjack/src/events.cpp:536
+#, c-format
+msgid "Double click to decrease your wager by %.2f"
+msgstr "Dubbelklicka för att minska din insats med %.2f"
 
 #: blackjack/src/game.cpp:283
 #, c-format
@@ -1532,25 +1542,25 @@ msgstr ""
 "Kontrollera din Tjugoettinstallation"
 
 #: blackjack/src/hand.cpp:83
-msgid "stand"
-msgstr "stanna"
+msgid "The best option is to stand"
+msgstr "Det bästa alternativet är att stanna"
 
 #: blackjack/src/hand.cpp:85
-msgid "hit"
-msgstr "dra kort"
+msgid "The best option is to hit"
+msgstr "Det bästa alternativet är att ta kort"
 
 # Osäker
 #: blackjack/src/hand.cpp:87
-msgid "double down"
-msgstr "dubbla ned"
+msgid "The best option is to double down"
+msgstr "Det bästa alternativet är att dubbla ned"
 
 #: blackjack/src/hand.cpp:89
-msgid "split"
-msgstr "dela"
+msgid "The best option is to split"
+msgstr "Det bästa alternativet är att dela"
 
 #: blackjack/src/hand.cpp:91
-msgid "surrender"
-msgstr "ge upp"
+msgid "The best option is to surrender"
+msgstr "Det bästa alternativet är att ge upp"
 
 #: blackjack/src/menu.cpp:78
 msgid "Main program:  William Jon McCann (mccann@jhu.edu)"
@@ -3049,48 +3059,56 @@ msgstr "Gratulerar, du vinner!"
 msgid "Game over!"
 msgstr "Spelet är över!"
 
-#: gnome-stones/main.c:1041
+#: gnome-stones/main.c:1046
 msgid "Main program: Carsten Schaar <nhadcasc@fs-maphy.uni-hannover.de>"
 msgstr "Huvudprogram: Carsten Schaar <nhadcasc@fs-maphy.uni-hannover.de>"
 
-#: gnome-stones/main.c:1042
+#: gnome-stones/main.c:1047
 msgid "Sokoban levels: Herman Mansilla"
 msgstr "Sokoban-nivåer: Herman Mansilla"
 
-#: gnome-stones/main.c:1067
+#: gnome-stones/main.c:1072
 msgid "GNOME-STONES"
 msgstr "GNOME-STENAR"
 
-#: gnome-stones/main.c:1069
+#: gnome-stones/main.c:1074
 msgid "A game."
 msgstr "Ett spel."
 
-#: gnome-stones/main.c:1187
+#: gnome-stones/main.c:1097
+msgid "_Restart level"
+msgstr "_Starta om nivå"
+
+#: gnome-stones/main.c:1097
+msgid "Restart the current level"
+msgstr "Starta om den aktuella nivån"
+
+#: gnome-stones/main.c:1193
 msgid "Scanning private object directory..."
 msgstr "Avsöker den privata objektkatalogen..."
 
-#: gnome-stones/main.c:1191
+#: gnome-stones/main.c:1197
 msgid "Scanning public object directory..."
 msgstr "Avsöker den allmänna objektkatalogen..."
 
-#: gnome-stones/main.c:1196
+#: gnome-stones/main.c:1202
 msgid "Filling game widget..."
 msgstr "Fyller spelplan..."
 
-#: gnome-stones/main.c:1201
+#: gnome-stones/main.c:1207
 msgid "Scanning private game directory..."
 msgstr "Avsöker den privata spelkatalogen..."
 
-#: gnome-stones/main.c:1205
+#: gnome-stones/main.c:1211
 msgid "Scanning public game directory..."
 msgstr "Avsöker den allmänna spelkatalogen..."
 
-#: gnome-stones/main.c:1209
+#: gnome-stones/main.c:1215
 msgid "Restoring preferences..."
 msgstr "Återställer inställningar..."
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:1284
+#: gnome-stones/main.c:1290
 msgid "GNOME-Stones"
 msgstr "GNOME-stenar"
 
@@ -4246,42 +4264,51 @@ msgstr "Välkommen till SameGNOME!"
 msgid "GNOME SameGame"
 msgstr "SameGame för GNOME"
 
-#~ msgid "Cards left:"
-#~ msgstr "Återstående kort:"
+#~ msgid "Restart level"
+#~ msgstr "Starta om nivå"
 
-#~ msgid "Wager:"
-#~ msgstr "Insats:"
+#~ msgid "Cards left: "
+#~ msgstr "Återstående kort: "
+
+#~ msgid "Wager: "
+#~ msgstr "Insats: "
+
+#~ msgid "5.00"
+#~ msgstr "5,00"
+
+#~ msgid "Balance: "
+#~ msgstr "Balans: "
+
+#~ msgid "Would you like insurance? "
+#~ msgstr "Vill du ha försäkring? "
+
+#~ msgid "The best option is to %s"
+#~ msgstr "Det bästa alternativet är att %s"
+
+#~ msgid "stand"
+#~ msgstr "stanna"
+
+#~ msgid "hit"
+#~ msgstr "dra kort"
+
+# Osäker
+#~ msgid "double down"
+#~ msgstr "dubbla ned"
+
+#~ msgid "split"
+#~ msgstr "dela"
+
+#~ msgid "surrender"
+#~ msgstr "ge upp"
 
 #~ msgid "Wager"
 #~ msgstr "Insats"
 
-#~ msgid "Balance:"
-#~ msgstr "Balans:"
-
 #~ msgid "Balance"
 #~ msgstr "Balans"
 
-#~ msgid "Would you like insurance?"
-#~ msgstr "Vill du ha försäkring?"
-
-#~ msgid "The best option is to stand"
-#~ msgstr "Det bästa alternativet är att stanna"
-
-#~ msgid "The best option is to hit"
-#~ msgstr "Det bästa alternativet är att ta kort"
-
 #~ msgid "The best option is to draw"
 #~ msgstr "Det bästa alternativet är att ta kort"
-
-# Osäker
-#~ msgid "The best option is to double down"
-#~ msgstr "Det bästa alternativet är att dubbla ned"
-
-#~ msgid "The best option is to split"
-#~ msgstr "Det bästa alternativet är att dela"
-
-#~ msgid "The best option is to surrender"
-#~ msgstr "Det bästa alternativet är att ge upp"
 
 #~ msgid "Display probabilities"
 #~ msgstr "Visa sannolikheter"
@@ -4606,9 +4633,6 @@ msgstr "SameGame för GNOME"
 
 #~ msgid "Bill:%d/%d  System:%d/%d/%d  Level: %d Score:%d"
 #~ msgstr "Bill:%d/%d  System:%d/%d/%d  Nivå: %d Poäng:%d"
-
-#~ msgid "Start at a different level"
-#~ msgstr "Starta på en annan nivå"
 
 #~ msgid ""
 #~ "             The Story:\n"
