@@ -1,8 +1,7 @@
 2005-03-22  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* menu.c: Game options are saved using gconf and an automatically
-	generated key. The catch is that we don't have the schemas
-	automatically generated.
+	generated key. We also autogenerate a schema if needed.
 
 	* statistics.c (load_statistics): Fix a memory leak when freeing
 	the list read from gconf. Names which aren't storeed in the hash

@@ -355,7 +355,9 @@ void help_update_game_name (gchar * name)
 static gchar * make_option_gconf_key (void)
 {
   static gchar *basekey = "/apps/aisleriot/rules/";
-  gchar *name, *s, *r;
+  gchar *name, *s, *r, *sk;
+  GConfSchema *schema;
+  GConfValue *def;
 
   name = g_strdup (gamename);
   s = name;
@@ -367,6 +369,27 @@ static gchar * make_option_gconf_key (void)
     
   r = g_strconcat (basekey, name, NULL);
   g_free(name);
+
+  sk = g_strconcat ("/schemas", r, NULL);
+
+  /* Check if we have a schema for this key and make one if we don't. */
+  schema = gconf_client_get_schema (gconf_client, sk, NULL);
+  if (schema == NULL) {
+    schema = gconf_schema_new ();
+    gconf_schema_set_type (schema, GCONF_VALUE_INT);
+    gconf_schema_set_owner (schema, "aisleriot");
+    /* FIXME: Translation - how? */
+    gconf_schema_set_short_desc (schema, "A per-game option");
+    gconf_schema_set_long_desc (schema, "An integer encoding a list of boolean values (LSB = first item) for use as options in an solitaire game.");
+    def = gconf_value_new (GCONF_VALUE_INT);
+    gconf_value_set_int (def, 0);
+    gconf_schema_set_default_value (schema, def);
+    gconf_value_free (def);
+    gconf_client_set_schema (gconf_client, sk, schema, NULL);
+    gconf_engine_associate_schema (gconf_engine_get_default (), r, sk, NULL);
+  } 
+  gconf_schema_free (schema);
+  g_free (sk);
 
   return r;
 }
