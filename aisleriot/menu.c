@@ -17,7 +17,7 @@
  */
 
 #define MENU_C
-
+#include <config.h>
 #include <guile/gh.h>
 #include "sol.h"
 #include "menu.h"
@@ -56,7 +56,25 @@ int file_new_game_callback (GtkWidget *app, void *data )
 
 int help_about_callback (GtkWidget *widget, void *data)
 {
-  return TRUE;
+  GtkWidget *about;
+  gchar *authors[] = {
+	  "Main program:  Jonathan Blandford (jrb@MIT.EDU)",
+	  "Freecell game: ",
+	  "Extra games:   ",
+          NULL
+          };
+
+  about = gnome_about_new ( _("GNOME Solitaire"), VERSION,
+        		/* copyrigth notice */
+                        "(C) 1998 Jonathan Blandford (jrb@MIT.EDU)",
+                        authors,
+                        /* another comments */
+                        _("The GNOME Generic Solitaire provides a rule-based "
+			  "solitaire engine that allows many different games to be played"),
+                        NULL);
+  gtk_widget_show (about);
+
+  return;
 }
 
 /* We fill the items in at runtime... */
