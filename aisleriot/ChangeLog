@@ -1,5 +1,16 @@
 2004-01-25  Callum McKenzie  <callum@physics.otago.ac.nz>
 
+	* statistics.c: 
+	* statistics.h:	
+	* sol.c: Statistics are saved and even have a gconf-notification
+	so that two games can be open at once. There is an obvious race
+	condition, but you have to be playing two games at once and finish
+	simultaneously, for a single user this is difficult (and if there are
+	multiple users on one account then the statistics are meaningless).
+
+	* aisleriot.schemas.in: Added a statistics entry to store the
+	statistics.
+
 	* sol.c:
 	* sol.h:
 	* events.c:

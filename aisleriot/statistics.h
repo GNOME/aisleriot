@@ -24,9 +24,12 @@ G_BEGIN_DECLS
 
 #include <glib.h>
 
+#define STATISTICS_KEY "/apps/aisleriot/statistics"
+
 void show_statistics_dialog (void);
 void update_statistics_display (void);
 void update_statistics (gboolean won, guint time);
+void load_statistics (void);
 
 G_END_DECLS
 

@@ -500,6 +500,12 @@ int main (int argc, char *argv [])
 
   gconf_client = gconf_client_get_default ();
   games_gconf_sanity_check_string (gconf_client, "/apps/aisleriot/game_file");
+  gconf_client_add_dir (gconf_client, "/apps/aisleriot", 
+			GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
+  gconf_client_notify_add (gconf_client, STATISTICS_KEY, 
+			   (GConfClientNotifyFunc) load_statistics,
+			   NULL, NULL, NULL);
+  load_statistics ();
   
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-aisleriot.png");
   g_signal_connect (GTK_OBJECT (gnome_master_client ()), "save_yourself",

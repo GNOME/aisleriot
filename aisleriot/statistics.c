@@ -33,6 +33,8 @@ typedef struct _game_stats {
 GHashTable * stats = NULL;
 game_stats * current_stats;
 
+GSList * stats_list;
+
 GtkWidget * statistics_dialog = NULL;
 GtkWidget * name_label;
 GtkWidget * wins_label;
@@ -45,19 +47,6 @@ GtkWidget * worst_label;
 gboolean close_statistics_dialog (GtkWidget * widget);
 void statistics_dialog_response (GtkWidget * widget, gint response, gpointer data);
 
-void 
-statistics_dialog_response (GtkWidget * widget, gint response, gpointer data)
-{
-  switch (response) {
-  case GTK_RESPONSE_CLOSE:
-    gtk_widget_hide (statistics_dialog);
-    break;
-  case GTK_RESPONSE_REJECT:
-    g_print ("Clearing statistics\n");
-    break;
-  }
-}
-
 gboolean
 close_statistics_dialog (GtkWidget * widget)
 {
@@ -66,8 +55,26 @@ close_statistics_dialog (GtkWidget * widget)
   return FALSE;
 }
 
+static void locate_current_stats (void)
+{
+  /* Get the current stats from the hash table. Create a new 
+   * entry if there are no stats. */
+  current_stats = g_hash_table_lookup (stats, game_name);
+  if (!current_stats) {
+    current_stats = g_new (game_stats, 1);
+    current_stats->wins = 0;
+    current_stats->total = 0;
+    current_stats->best = 0;
+    current_stats->worst = 0;
+    g_hash_table_insert (stats, g_strdup (game_name), current_stats);
+  }
+}
+
 static void update_labels (void) {
   gchar * text;
+
+  if (!statistics_dialog)
+    return;
   
   text = g_strdup_printf ("%d", current_stats->wins);
   gtk_label_set_text (GTK_LABEL (wins_label), text);
@@ -118,27 +125,96 @@ void update_statistics_display (void)
   gtk_label_set_use_markup (GTK_LABEL (name_label), TRUE);
   g_free (text);
 
-  if (!stats) {
-    stats = g_hash_table_new (g_str_hash, g_str_equal);
-  }
-
-  /* Get the current stats from the hash table. Create a new 
-   * entry if there are no stats. */
-  current_stats = g_hash_table_lookup (stats, game_name);
-  if (!current_stats) {
-    current_stats = g_new (game_stats, 1);
-    current_stats->wins = 0;
-    current_stats->total = 0;
-    current_stats->best = 0;
-    current_stats->worst = 0;
-    g_hash_table_insert (stats, game_name, current_stats);
-  }
+  locate_current_stats ();
 
   update_labels ();
 }
 
+static void save_single_stat (gchar * name, game_stats * entry, gpointer data)
+{
+  /* Everything is pushed onto the list in reverse order. */
+  stats_list = g_slist_prepend (stats_list, 
+				g_strdup_printf ("%d",entry->worst));
+  stats_list = g_slist_prepend (stats_list, 
+				g_strdup_printf ("%d",entry->best));
+  stats_list = g_slist_prepend (stats_list, 
+				g_strdup_printf ("%d",entry->total));
+  stats_list = g_slist_prepend (stats_list, 
+				g_strdup_printf ("%d",entry->wins));
+  stats_list = g_slist_prepend (stats_list, g_strdup (name));
+}
+
+static void save_statistics (void)
+{
+  if (!stats)
+    return;
+
+  stats_list = NULL;
+
+  g_hash_table_foreach (stats, (GHFunc) save_single_stat, NULL);
+
+  gconf_client_set_list (gconf_client, STATISTICS_KEY, GCONF_VALUE_STRING,
+			 stats_list, NULL);
+
+  g_slist_foreach (stats_list, (GFunc)g_free, NULL);
+  g_slist_free (stats_list);
+}
+
+void load_statistics (void)
+{
+  GSList * raw_list;
+  game_stats * new_stats;
+
+  raw_list = gconf_client_get_list (gconf_client, STATISTICS_KEY, 
+				      GCONF_VALUE_STRING, NULL);
+  
+  if (!stats) {
+    stats = g_hash_table_new (g_str_hash, g_str_equal);    
+  }
+
+  while (raw_list) {
+    new_stats = g_hash_table_lookup (stats, raw_list->data);
+
+    if (!new_stats) {
+      new_stats = g_new (game_stats, 1);
+      new_stats->wins = 0; new_stats->total = 0;
+      new_stats->best = 0; new_stats->worst = 0;
+      g_hash_table_insert (stats, raw_list->data, new_stats);
+    }
+
+    /* We don't free the string, it belongs to the hash table now. */
+    raw_list = g_slist_delete_link (raw_list, raw_list);
+
+    if (!raw_list) break;
+    new_stats->wins = g_ascii_strtoull (raw_list->data, NULL, 10);
+    g_free (raw_list->data);
+    raw_list = g_slist_delete_link (raw_list, raw_list);
+
+    if (!raw_list) break;
+    new_stats->total = g_ascii_strtoull (raw_list->data, NULL, 10);
+    g_free (raw_list->data);
+    raw_list = g_slist_delete_link (raw_list, raw_list);
+
+    if (!raw_list) break;
+    new_stats->best = g_ascii_strtoull (raw_list->data, NULL, 10);
+    g_free (raw_list->data);
+    raw_list = g_slist_delete_link (raw_list, raw_list);
+
+    if (!raw_list) break;
+    new_stats->worst = g_ascii_strtoull (raw_list->data, NULL, 10);
+    g_free (raw_list->data);
+    raw_list = g_slist_delete_link (raw_list, raw_list);
+  }
+
+  /* We do the whole thing again because we may need to reset the
+   * current_stats pointer. */
+  update_statistics_display ();
+}
+
 void update_statistics (gboolean won, guint time)
 {
+  locate_current_stats ();
+
   current_stats->total++;
   if (won) {
     current_stats->wins++;
@@ -149,9 +225,27 @@ void update_statistics (gboolean won, guint time)
 	current_stats->worst = time;
     }
   }
-  
-  if (statistics_dialog)
+
+  save_statistics ();
+  update_labels ();
+}
+
+void 
+statistics_dialog_response (GtkWidget * widget, gint response, gpointer data)
+{
+  switch (response) {
+  case GTK_RESPONSE_CLOSE:
+    gtk_widget_hide (statistics_dialog);
+    break;
+  case GTK_RESPONSE_REJECT:
+    current_stats->wins = 0;
+    current_stats->total = 0;
+    current_stats->best = 0;
+    current_stats->worst = 0;
+    save_statistics ();
     update_labels ();
+    break;
+  }
 }
 
 void
