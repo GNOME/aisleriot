@@ -247,14 +247,17 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
     press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
     
-    for (; glist; glist = glist->next)
-      cardlist = gh_cons(make_card((hcard_type)glist->data), cardlist);
-    
-    if (!gh_scm2bool (gh_call2 (game_data->button_pressed_lambda,
-			       gh_long2scm (press_data->hslot->id), 
-			       cardlist))) {
-      press_data->status = STATUS_NOT_DRAG;
-      clicked = FALSE;
+    /* Check if the cards are draggable, assuming we have any cards. */
+    if (hslot->cards) {
+      for (; glist; glist = glist->next)
+	cardlist = gh_cons(make_card((hcard_type)glist->data), cardlist);
+      
+      if (!gh_scm2bool (gh_call2 (game_data->button_pressed_lambda,
+				  gh_long2scm (press_data->hslot->id), 
+				  cardlist))) {
+	press_data->status = STATUS_NOT_DRAG;
+	clicked = FALSE;
+      }
     }
   } 
 
