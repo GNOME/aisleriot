@@ -99,6 +99,12 @@ else
 	       ,
                -lgnome -ldl $GTK_LIBS $x_libs -lSM -lICE)
   AC_SUBST(GNOME_LIBS)
+
+  dnl ********* Check for libSM, assume no libICE if no libSM *********
+  AC_CHECK_LIB(SM, SmcSaveYourselfDone,
+	[x_libs="$x_libs -lSM -lICE"], ,
+	$x_libs -lICE)
+
   LDFLAGS=$saved_LDFLAGS
 fi
 

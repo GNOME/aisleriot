@@ -19,6 +19,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <locale.h>
 
 
 #include "io-gtk.h"

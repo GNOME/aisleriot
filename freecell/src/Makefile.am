@@ -23,7 +23,7 @@ if IN_GNOME_TREE
   freecell_LDADD = $(X_LIBS) \
 	../../../libgnomeui/libgnomeui.la \
 	../../../libgnome/libgnome.la \
-	-ldl -lSM -lICE \
+	$(DL_LIB) \
 	$(GTK_LIBS) $(x_libs) $(INTLLIBS)
 else
   freecell_LDADD = $(X_LIBS) $(GNOME_LIBS) \
