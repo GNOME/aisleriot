@@ -456,7 +456,7 @@ int main (int argc, char *argv [])
   gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
 		      GTK_SIGNAL_FUNC (quit_app), NULL);
 
-  retrieve_state (gnome_cloned_client ());
+  retrieve_state (gnome_master_client ());
 
   dir = gnome_datadir_file (GAMESDIR);
   n_games = scandir (dir, &game_dents, is_game, alphasort);
