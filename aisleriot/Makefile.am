@@ -134,3 +134,4 @@ sys_in_files = sol.desktop.in
 sys_DATA = $(sys_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
+CLEANFILES = $(sys_DATA)
