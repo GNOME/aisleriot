@@ -28,7 +28,7 @@ gnotravex       N       Y       Y       Y       Y       Y
 gnotski         N       e       Y       Y       Y       Y
 gtali           P       N       Y       Y       Y       Y
 iagno           N       N       f       Y       Y       Y
-mahjongg        N       P       Y       N       Y       Y
+mahjongg        N       P       Y       Y       Y       Y
 same-gnome      N       N       Y       Y       Y       Y
 libgames-supportN       -       -       -       -       Y
 gdk-card-image  N       -       -       -       -       Y
@@ -94,7 +94,7 @@ Gnometris:
           a RedHat 7.2 package that could be missing.
 
 Gnomine:
-        - Resizable window (2.4 since everything is already in place).
+        - Resizable window - it doesn't handle shrinking.
         - Check flag counting code and whether this is in fact bug
           103125 is still possible.        
 
@@ -123,14 +123,11 @@ Iagno:
 
 Mahjongg:
         - Oddball crashes (bugs 82402, 100492, 102474).
-        - Move the seed to the title (or whatever is consistent).
         - Fix shuffling bugs (91098, 94750).
         - It takes too long to generate a new board (it seems to try randomly 
           until it finds a solvable one). This is intolerable when simply 
           building the game backwards does it trivially. Implement if time.
           Can also be used to fix the shuffling bugs.
-	- There is very little difference between selected and unselected
-	  tiles with background bg4b.png.
 
 Same-gnome:
         - Make the pixmap background transparent so that we don't have
