@@ -37,7 +37,7 @@ if test "x$GDK_PIXBUF_CFLAGS" = x; then
   HAS_GDK_PIXBUF='no'
 fi
 
-AC_SUBST(HAS_GDK_PIXBUF)
+AM_CONDITIONAL(HAS_GDK_PIXBUF, test "$HAS_GDK_PIXBUF" = yes)
 
 ## look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
