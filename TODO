@@ -1,60 +1,12 @@
-To be done before 2.5 code freeze (23 February 2004):
-
-General:
-
-Aisleriot:
-	- Are the Italian docs in the right place (no)?
-
-Blackjack:
-
-Gataxx:
-        
-Glines:
-
-Gnect:
-
-Gnibbles:
-
-Gnobots2:
-
-Gnome-stones:
-
-Gnometris:
-      - Re-check the docs.
-
-Gnomine:
-
-Gnotravex:
-
-Gnotski:
-
-Gtali:
-
-Iagno:
-
-Mahjongg:
-
-Same-gnome:
-
-libgames-support:
-
-gdk-card-image:
-
---------------------------------------------------------------------------
-
-For a possible 2.4.4:
- - Find the gnect crasher (134296).
- - There have also been blackjack fixes applied.
 
 --------------------------------------------------------------------------
 
 Priorities for 2.7/2.8:
 
-  gataxx (Sjoerd's code)
   iagno (to match gataxx)
   gnobots2, especially drawing code and mouse use
-  aisleriot rescaling (again).
   rework aisleriot statistics code (cleanliness).
+  New scoring infrastructure.
 
 --------------------------------------------------------------------------
 
@@ -76,7 +28,6 @@ General:
         - Naming issues (117191)
 
 AisleRiot:
-        - Scalability of cards (bugs 80167, 104969, 105536) 
         - Better klondike hint (bug 85712)
         - 3-card flip-over (possibly reinstate the game-specific
           options, bug 50704).
@@ -88,9 +39,8 @@ AisleRiot:
         - Pretty show at the end (bug 2845)
         - Be better at capturing cards (bug 91595)
         - Descriptions of games in Select dialog (bug 110730)
-        - Speed up the loading of pixmaps from gdk_card_image.
+        - Speed up the loading of card images.
         - Find out what's wrong with block-ten.
-	- Seahaven still crashes occasionally with the new code.
         - Final missing features from stand-alone freecell (124522).
         - Click moves instead of drag moves (123329)
         - Find the root cause of 121726.
@@ -105,7 +55,6 @@ Blackjack:
 Gataxx:
         - Grid options in prefs (like iagno, see also the next item)
         - Share a front-end with Iagno.
-        - AI improvement.
 
 Glines:
         - Configure the playing field size and ball number (bug
@@ -153,7 +102,7 @@ Gnometris:
           replace the x with a foot). 
         - Make the pieces scalable.
         - Drag and drop background.
-        - Sound (see bug 80665, but we can't use those sounds) ?               
+        - Sound (see bug 80665 <- new sounds) ?               
 	- Back out bug 130654 when the drawing code is rewritten (and
 	  also make the preferences universally enabled).
         - Revisit slow block bugs ? (103787)
@@ -232,9 +181,12 @@ Same-gnome:
 libgames-support:
 	- Widgets other than the combo box for the GamesFileList.
 	- GamesFileList standard directory option for paths.
+	- Make a shared library. Rename to libgnome-games
         - Document
 
 gdk-card-image:
+	- Pretty much deprectaed, see what Jon wants to do.
+	- Finish off the replacement in libgames.
 	- When a "custom" style is used make sure that there is no selection.
  	  Currently the default is selected, this may be a limit in the GtkTreeView
 	  widget.

@@ -23,6 +23,8 @@
 
 #include "games-card-images.h"
 
+G_DEFINE_TYPE(GamesCardImages, games_card_images, G_TYPE_OBJECT);
+
 GamesCardImages * games_card_images_new_with_size (gint width, gint height)
 {
   GamesCardImages * images;
@@ -164,25 +166,4 @@ static void games_card_images_class_init (GamesCardImagesClass *class)
 static void games_card_images_init (GamesCardImages *cardimages)
 {
  
-}
-
-GType games_card_images_get_type (void)
-{
-  static GType type = 0;
-  static const GTypeInfo info = {
-    sizeof (GamesCardImagesClass),
-    NULL,
-    NULL,
-    (GClassInitFunc) games_card_images_class_init,
-    NULL,
-    NULL,
-    sizeof (GamesCardImages),
-    0,     
-    (GInstanceInitFunc) games_card_images_init
-  };
-
-  if (!type)
-    type = g_type_register_static (G_TYPE_OBJECT, "GamesCardImages", &info, 0);
-
-  return type;
 }
