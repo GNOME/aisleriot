@@ -28,6 +28,8 @@ libgames_support_la_SOURCES =		\
 	games-card-pixmaps.h		\
 	games-card-selector.c		\
 	games-card-selector.h		\
+	games-controls.c		\
+	games-controls.h		\
 	$(NULL)
 
 EXTRA_DIST = $(card_DATA)
