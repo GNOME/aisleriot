@@ -1,5 +1,19 @@
 2003-06-06  Callum McKenzie  <callum@physics.otago.ac.nz>
 
+	* sol.scm: Do the scheme end of the undo/redo sensitivity code.
+
+	* sol.c (new_game): Set the undo/redo buttons to
+	insensitive at the beginning of a game.
+
+	* cscmi.c: The C <-> scheme interface for settings the undo and
+	redo button sensitivity.
+
+	* menu.h:
+	* menu.c: The C end of the undo/redo sensitivity code.
+
+	* sol.c: Take advantage of the gconf support routines in
+	libgames-support.
+
 	* .cvsignore: Ignore the schemas file.
 
 	* dialog.c

@@ -519,7 +519,13 @@
       (begin
 	(set! HISTORY (cons MOVE HISTORY))
 	(set! FUTURE '())
-	(set! MOVE '()))))
+	(set! MOVE '())
+        (if (null? HISTORY)
+            (undo-set-sensitive #f)
+            (undo-set-sensitive #t))
+        (if (null? FUTURE)
+            (redo-set-sensitive #f)
+            (redo-set-sensitive #t)))))
 
 (define (return-cards card-positions slot-id)
   (and (not (= 0 (length card-positions)))
@@ -541,7 +547,10 @@
        (eval-move (car HISTORY))
        (set! FUTURE (cons MOVE FUTURE))
        (set! HISTORY (cdr HISTORY))
-       (set! MOVE '())))
+       (set! MOVE '())
+       (redo-set-sensitive #t)
+       (if (null? HISTORY)
+           (undo-set-sensitive #f))))
 
 ; called from C:
 (define (redo)
@@ -550,7 +559,10 @@
        (eval-move (car FUTURE))
        (set! HISTORY (cons MOVE HISTORY))
        (set! FUTURE (cdr FUTURE))
-       (set! MOVE '())))
+       (set! MOVE '())
+       (undo-set-sensitive #f)
+       (if (null? FUTURE)
+           (redo-set-sensitive #f))))
 
 (define (undo-func data)
   (set-score! (car data))
@@ -571,9 +583,9 @@
 ; called from C:
 (define (record-move slot-id old-cards)
   (set! MOVE (list undo-func 
-		   (list (get-score) FLIP-COUNTER 
+                   (list (get-score) FLIP-COUNTER 
                          (save-variables variable-list))
-		   (snapshot-board 0 slot-id old-cards))))
+                   (snapshot-board 0 slot-id old-cards))))
 
 ; called from C:
 (define (discard-move)

@@ -43,6 +43,7 @@
 #include "menu.h"
 #include "splash.h"
 #include "games-clock.h"
+#include "games-gconf.h"
 
 /*
  * Global Variables
@@ -252,13 +253,17 @@ void new_game (gchar* file, guint *seedp )
 
   size = gh_call0(game_data->start_game_lambda);
   gh_eval_str ("(start-game)");
+
   min_w = gh_scm2int (gh_car (size))*get_horiz_offset() + 2*get_horiz_start();
   min_h = gh_scm2int (gh_cadr (size))*get_vert_offset() + 2*get_vert_start();
-
   gtk_widget_set_size_request (playing_area, min_w, min_h);
+
   if (surface)
     refresh_screen();
 
+  undo_set_sensitive (FALSE);
+  redo_set_sensitive (FALSE);
+  
   game_over = FALSE;
   make_title();
   end_of_game_test();
@@ -462,16 +467,12 @@ void main_prog(int argc, char *argv[])
 static void
 retrieve_state (GnomeClient *client)
 {
-  start_game = gconf_client_get_string (gconf_client, "/apps/aisleriot/game_file",
-                                        NULL);
-  if (start_game == NULL)
-    start_game = "klondike.scm";
-  deck_options = gconf_client_get_string (gconf_client,
-                                          "/apps/aisleriot/card_options",
-                                          NULL);
-  if (deck_options == NULL)
-    deck_options = "beige.png bonded.png gnome.png bold-09x14.png knuth-09x10.png 
-knuth-18x21.png knuth-21x25.png";
+  start_game = games_gconf_get_string (gconf_client,
+                                       "/apps/aisleriot/game_file",
+                                       "klondike.scm");
+  deck_options = games_gconf_get_string (gconf_client,
+                                         "/apps/aisleriot/card_options",
+                                         "beige.png bonded.png gnome.png bold-09x14.png knuth-09x10.png knuth-18x21.png knuth-21x25.png");
 }
 
 int
@@ -506,6 +507,7 @@ int main (int argc, char *argv [])
  		      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
   gconf_client = gconf_client_get_default ();
+  games_gconf_sanity_check_string (gconf_client, "/apps/aisleriot/game_file");
   
   gtk_widget_push_colormap (gdk_rgb_get_colormap ());
 

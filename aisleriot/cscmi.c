@@ -24,6 +24,7 @@
 #include "cscmi.h"
 #include "sol.h"
 #include "slot.h"
+#include "menu.h"
 
 lambda_data* game_data = NULL;
 
@@ -118,6 +119,26 @@ SCM scm_gettext(SCM message)
   input = gh_scm2newstr (message, &len);
   output = gettext (input);
   return gh_str02scm (output);
+}
+
+SCM scm_undo_set_sensitive (SCM in_state)
+{
+  gboolean state;
+
+  state = gh_scm2bool (in_state) ? TRUE : FALSE;
+  undo_set_sensitive (state);
+
+  return SCM_EOL;
+}
+
+SCM scm_redo_set_sensitive (SCM in_state)
+{
+  gboolean state;
+
+  state = gh_scm2bool (in_state) ? TRUE : FALSE;
+  redo_set_sensitive (state);
+
+  return SCM_EOL;
 }
 
 SCM scm_get_card_width() 
@@ -312,5 +333,7 @@ void cscm_init ()
   gh_new_procedure1_0("set-timeout!", scm_set_timeout);
   gh_new_procedure1_0("add-to-score!", scm_add_to_score);
   gh_new_procedure("_", scm_gettext, 1, 0, 0);
+  gh_new_procedure1_0("undo-set-sensitive", scm_undo_set_sensitive);
+  gh_new_procedure1_0("redo-set-sensitive", scm_redo_set_sensitive);
   eval_installed_file ("sol.scm");
 }

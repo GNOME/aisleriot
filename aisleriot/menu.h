@@ -27,5 +27,7 @@ void help_about_callback ( void );
 void create_menus ( void );
 void install_menu_hints ( GnomeApp * );
 void toolbar_hide ( void );
+void undo_set_sensitive (gboolean state);
+void redo_set_sensitive (gboolean state);
 
 #endif
