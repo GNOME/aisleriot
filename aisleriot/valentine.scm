@@ -62,7 +62,8 @@
 
 (define (button-clicked slot-id)
   (cond ((or (> slot-id 0)
-	     (empty-slot? 0))
+	     (and (empty-slot? 0)
+		  (empty-slot? 1)))
 	 #f)
 	((or (empty-slot? 2)
 	     (empty-slot? 3)
