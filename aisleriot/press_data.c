@@ -17,7 +17,7 @@
  */
 
 #define PRESS_DATA_C
-
+#include <gdk/gdk.h>
 #include "press_data.h"
 #include "card.h"
 #include "draw.h"
@@ -32,13 +32,15 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
   hslot_type slot = get_slot(slotid);
   gint i, tempint;
   GdkGC* gc;
+  GdkWindowAttr attributes;
 #ifdef DEBUG
 printf("generate_press_data\n");
 #endif
 
+
   gc = playing_area->style->fg_gc[GTK_STATE_NORMAL];
-  
   gdk_gc_set_clip_mask(gc,mask); 
+  gdk_gc_set_clip_mask(gc,NULL); 
 
   press_data->slot_id = slotid;
   press_data->slot_location = cardid;
@@ -125,5 +127,35 @@ printf("generate_press_data\n");
 							 -1, -1);
 	 }
   }
-  gdk_gc_set_clip_mask(gc,NULL); 
+
+  if (!press_data->moving_cards) {
+	 attributes.window_type = GDK_WINDOW_CHILD;
+	 attributes.x = x - press_data->xoffset;
+	 attributes.y = y - press_data->yoffset;
+	 printf("%d\t%d\n",attributes.x, attributes.y);
+	 attributes.width = get_card_width();
+	 attributes.height = get_card_height() + (g_list_length(press_data->cards) - 1)*EXPANDED_VERT_OFFSET;
+	 attributes.wclass = GDK_INPUT_OUTPUT;
+	 attributes.event_mask = 0;
+	 attributes.colormap = gtk_widget_get_colormap (playing_area);
+	 attributes.visual = gtk_widget_get_visual(playing_area);
+	 
+	 press_data->moving_cards =  gdk_window_new(playing_area->window,
+															  &attributes,
+															  (GDK_WA_X || GDK_WA_Y || GDK_WA_VISUAL || GDK_WA_COLORMAP));
+	 gdk_window_set_back_pixmap(press_data->moving_cards, press_data->moving_pixmap, 0);
+	 gdk_window_move(press_data->moving_cards,  
+						  x - press_data->xoffset,
+						  y - press_data->yoffset);
+	 gdk_window_show(press_data->moving_cards);
+  }
+  else {
+	 gdk_window_resize(press_data->moving_cards,
+							 get_card_width(),
+							 get_card_height() + (g_list_length(press_data->cards) - 1)*EXPANDED_VERT_OFFSET);
+	 gdk_window_set_back_pixmap(press_data->moving_cards, press_data->moving_pixmap, 0);
+	 gdk_window_move(press_data->moving_cards,  
+						  x - press_data->xoffset,
+						  y - press_data->yoffset);
+  }
 }

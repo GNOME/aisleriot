@@ -170,7 +170,6 @@ void main_prog(int argc, char *argv[])
 
   printf(_("Done.\ninitializing gnome/gdk...\n"));
   gnome_init ("aisleriot", NULL, argc, argv, 0, NULL);
-  gdk_imlib_init();
   printf(_("Done.\n"));
 
   gtk_widget_push_colormap (gdk_imlib_get_colormap ());
@@ -187,6 +186,7 @@ void main_prog(int argc, char *argv[])
   hb = gtk_hbox_new (FALSE, 0);
   gnome_app_set_contents (GNOME_APP (app), vb);
   press_data = malloc(sizeof(press_data_type));
+  press_data->moving_cards = NULL;
 
   /* load files as needed */
   printf(_("loading pixmaps...\n"));
@@ -196,6 +196,7 @@ void main_prog(int argc, char *argv[])
   /* FIXME: On 1997-11-14, gh_enter stopped loading `icd-9/boot-9.scm'.
      In my copy of guile, the first define in boot-9.scm is for "provide",
      and it looked as good a test as any  */
+  /* This seems to break guile-1.2. Do you want to find another way? */
   /*  gh_eval_str ("(if (not (procedure? \'provide))\n"
 		"  (primitive-load-path \"ice-9/boot-9.scm\"))");*/
   gh_new_procedure0_0("get-card-width", scm_get_card_width);

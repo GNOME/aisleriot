@@ -30,6 +30,7 @@ typedef struct {
   gint slot_location;
   gint temporary_partial_hack;
   gboolean moving;
+  GdkWindow *moving_cards;
 } press_data_type;
 
 void generate_press_data(gint, gint, gint, gint);

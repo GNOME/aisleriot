@@ -68,7 +68,7 @@ void drop_moving_cards(gint x, gint y) {
 		end_of_game_test();
 	 }
 	 else {
-		add_cards_to_slot(press_data->cards, press_data->slot_id);	 
+		add_cards_to_slot(press_data->cards, press_data->slot_id);
 		slot=get_slot(press_data->slot_id);
 		slot->expansion_depth = press_data->temporary_partial_hack;
 		update_slot_length(press_data->slot_id);
@@ -78,6 +78,9 @@ void drop_moving_cards(gint x, gint y) {
   if (press_data->moving_pixmap)
 	 gdk_pixmap_unref(press_data->moving_pixmap);
   press_data->moving_pixmap = NULL;
+  
+  gdk_window_move(press_data->moving_cards, 0 - get_card_width(), 0);
+
   return;
 
 }
@@ -171,13 +174,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
 	 take_snapshot();
 	 gdk_draw_pixmap(surface, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
-	 gdk_draw_pixmap(surface, playing_area->style->black_gc,press_data->moving_pixmap,0,0,
-						  event->x - press_data->xoffset,
-						  event->y - press_data->yoffset,-1,-1);
-	 gdk_draw_pixmap(playing_area->window, playing_area->style->black_gc,surface,0,0,0,0,-1,-1);
-	 
-
-	 
+	 gdk_draw_pixmap(playing_area->window, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
   }
   else if (event->button == 3) {
 	 if (press_data->button_pressed == 3)
@@ -245,11 +242,15 @@ printf("configure_event\n");
 
 gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event) {
   if ((press_data->button_pressed == 1) && (press_data->moving)) {
-	 gdk_draw_pixmap(surface, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
+	 /*	 gdk_draw_pixmap(surface, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
 	 gdk_draw_pixmap(surface, playing_area->style->black_gc,press_data->moving_pixmap,0,0,
 						  event->x - press_data->xoffset,
 						  event->y - press_data->yoffset,-1,-1);
-	 gdk_draw_pixmap(playing_area->window, playing_area->style->black_gc,surface,0,0,0,0,-1,-1);
+						  gdk_draw_pixmap(playing_area->window, playing_area->style->black_gc,surface,0,0,0,0,-1,-1);*/
+	 gdk_window_move(press_data->moving_cards,  
+						  event->x - press_data->xoffset,
+						  event->y - press_data->yoffset);
+
   }
 
 	 

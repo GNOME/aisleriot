@@ -20,7 +20,10 @@
 #include <gdk_imlib.h>
 
 #include "card.h"
-#include "pixmaps/mask.xbm"
+#include "pixmaps/cards.h"
+#include "pixmaps/slot.xpm"
+#include "pixmaps/back.xpm"
+#include "pixmaps/background.xpm"
 
 GdkPixmap *default_background_pixmap; 
 GdkPixmap *slot_pixmap;
@@ -45,79 +48,6 @@ GdkPixmap* get_slot_pixmap() {
   return slot_pixmap;
 }
 
-void load_file_to_pixmap (char *filename, GdkPixmap **p, void *data)
-{
-	char *name = g_copy_strings ("pixmaps/cards/", filename, NULL);
-	char *full = gnome_unconditional_datadir_file (name);
-	
-	gdk_imlib_load_file_to_pixmap (full, p, data);
-	g_free (full);
-	g_free (name);
-}
-
-void load_pixmaps(GtkWidget* app) {
-  GtkStyle* style;
-  /* change these all to not load from file! */
-	 
-  style = gtk_widget_get_style(app);
-  mask = gdk_bitmap_create_from_data(app->window, mask_bits, mask_width, mask_height);
-  load_file_to_pixmap("slot.xpm", &slot_pixmap, NULL);
-  load_file_to_pixmap("back.xpm", &card_back_pixmap, NULL);
-  load_file_to_pixmap("background.xpm", &default_background_pixmap, NULL);
-  load_file_to_pixmap("2club.xpm", &card_pixmaps[0], NULL);
-  load_file_to_pixmap("3club.xpm", &card_pixmaps[1], NULL);
-  load_file_to_pixmap("4club.xpm", &card_pixmaps[2], NULL);
-  load_file_to_pixmap("5club.xpm", &card_pixmaps[3], NULL);
-  load_file_to_pixmap("6club.xpm", &card_pixmaps[4], NULL);
-  load_file_to_pixmap("7club.xpm", &card_pixmaps[5], NULL);
-  load_file_to_pixmap("8club.xpm", &card_pixmaps[6], NULL);
-  load_file_to_pixmap("9club.xpm", &card_pixmaps[7], NULL);
-  load_file_to_pixmap("10club.xpm", &card_pixmaps[8], NULL);
-  load_file_to_pixmap("jackclub.xpm", &card_pixmaps[9], NULL);
-  load_file_to_pixmap("queenclub.xpm", &card_pixmaps[10], NULL);
-  load_file_to_pixmap("kingclub.xpm", &card_pixmaps[11], NULL);
-  load_file_to_pixmap("aceclub.xpm", &card_pixmaps[12], NULL);
-  load_file_to_pixmap("2diamond.xpm", &card_pixmaps[13], NULL);
-  load_file_to_pixmap("3diamond.xpm", &card_pixmaps[14], NULL);
-  load_file_to_pixmap("4diamond.xpm", &card_pixmaps[15], NULL);
-  load_file_to_pixmap("5diamond.xpm", &card_pixmaps[16], NULL);
-  load_file_to_pixmap("6diamond.xpm", &card_pixmaps[17], NULL);
-  load_file_to_pixmap("7diamond.xpm", &card_pixmaps[18], NULL);
-  load_file_to_pixmap("8diamond.xpm", &card_pixmaps[19], NULL);
-  load_file_to_pixmap("9diamond.xpm", &card_pixmaps[20], NULL);
-  load_file_to_pixmap("10diamond.xpm", &card_pixmaps[21], NULL);
-  load_file_to_pixmap("jackdiamond.xpm", &card_pixmaps[22], NULL);
-  load_file_to_pixmap("queendiamond.xpm", &card_pixmaps[23], NULL);
-  load_file_to_pixmap("kingdiamond.xpm", &card_pixmaps[24], NULL);
-  load_file_to_pixmap("acediamond.xpm", &card_pixmaps[25], NULL);
-  load_file_to_pixmap("2heart.xpm", &card_pixmaps[26], NULL);
-  load_file_to_pixmap("3heart.xpm", &card_pixmaps[27], NULL);
-  load_file_to_pixmap("4heart.xpm", &card_pixmaps[28], NULL);
-  load_file_to_pixmap("5heart.xpm", &card_pixmaps[29], NULL);
-  load_file_to_pixmap("6heart.xpm", &card_pixmaps[30], NULL);
-  load_file_to_pixmap("7heart.xpm", &card_pixmaps[31], NULL);
-  load_file_to_pixmap("8heart.xpm", &card_pixmaps[32], NULL);
-  load_file_to_pixmap("9heart.xpm", &card_pixmaps[33], NULL);
-  load_file_to_pixmap("10heart.xpm", &card_pixmaps[34], NULL);
-  load_file_to_pixmap("jackheart.xpm", &card_pixmaps[35], NULL);
-  load_file_to_pixmap("queenheart.xpm", &card_pixmaps[36], NULL);
-  load_file_to_pixmap("kingheart.xpm", &card_pixmaps[37], NULL);
-  load_file_to_pixmap("aceheart.xpm", &card_pixmaps[38], NULL);
-  load_file_to_pixmap("2spade.xpm", &card_pixmaps[39], NULL);
-  load_file_to_pixmap("3spade.xpm", &card_pixmaps[40], NULL);
-  load_file_to_pixmap("4spade.xpm", &card_pixmaps[41], NULL);
-  load_file_to_pixmap("5spade.xpm", &card_pixmaps[42], NULL);
-  load_file_to_pixmap("6spade.xpm", &card_pixmaps[43], NULL);
-  load_file_to_pixmap("7spade.xpm", &card_pixmaps[44], NULL);
-  load_file_to_pixmap("8spade.xpm", &card_pixmaps[45], NULL);
-  load_file_to_pixmap("9spade.xpm", &card_pixmaps[46], NULL);
-  load_file_to_pixmap("10spade.xpm", &card_pixmaps[47], NULL);
-  load_file_to_pixmap("jackspade.xpm", &card_pixmaps[48], NULL);
-  load_file_to_pixmap("queenspade.xpm", &card_pixmaps[49], NULL);
-  load_file_to_pixmap("kingspade.xpm", &card_pixmaps[50], NULL);
-  load_file_to_pixmap("acespade.xpm", &card_pixmaps[51], NULL);
-}
-
 GdkPixmap* get_card_back_pixmap() {
   return card_back_pixmap;
 }
@@ -127,22 +57,91 @@ int get_card_width() {
   gdk_window_get_size(card_back_pixmap, &width, &height);
   return width;
 }
+
 int get_card_height() {
   int width, height;
   gdk_window_get_size(card_back_pixmap, &width, &height);
   return height;
 }
+
 int get_horiz_offset() {
   return get_card_width() + HORIZ_SPACING;
 }
+
 int get_vert_offset() {
   return get_card_height() + VERT_SPACING;
 }
+
 int get_vert_start() {
   return 30;
 }
+
 int get_horiz_start() {
   return 30;
+}
+
+
+void load_pixmaps(GtkWidget* app) {
+  /* cruft */
+  mask = gdk_bitmap_create_from_data(app->window, mask_bits, mask_width, mask_height);
+  slot_pixmap = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, slot_xpm);
+  card_back_pixmap = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, back_xpm);
+  default_background_pixmap = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, background_xpm);
+
+  /* cards */
+  /* we should put a load bar here... */
+  card_pixmaps[0] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _2club_xpm);
+  card_pixmaps[1] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _3club_xpm);
+  card_pixmaps[2] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _4club_xpm);
+  card_pixmaps[3] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _5club_xpm);
+  card_pixmaps[4] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _6club_xpm);
+  card_pixmaps[5] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _7club_xpm);
+  card_pixmaps[6] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _8club_xpm);
+  card_pixmaps[7] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _9club_xpm);
+  card_pixmaps[8] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _10club_xpm);
+  card_pixmaps[9] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, jackclub_xpm);
+  card_pixmaps[10] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, queenclub_xpm);
+  card_pixmaps[11] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, kingclub_xpm);
+  card_pixmaps[12] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, aceclub_xpm);
+  card_pixmaps[13] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _2diamond_xpm);
+  card_pixmaps[14] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _3diamond_xpm);
+  card_pixmaps[15] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _4diamond_xpm);
+  card_pixmaps[16] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _5diamond_xpm);
+  card_pixmaps[17] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _6diamond_xpm);
+  card_pixmaps[18] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _7diamond_xpm);
+  card_pixmaps[19] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _8diamond_xpm);
+  card_pixmaps[20] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _9diamond_xpm);
+  card_pixmaps[21] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _10diamond_xpm);
+  card_pixmaps[22] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, jackdiamond_xpm);
+  card_pixmaps[23] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, queendiamond_xpm);
+  card_pixmaps[24] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, kingdiamond_xpm);
+  card_pixmaps[25] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, acediamond_xpm);
+  card_pixmaps[26] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _2heart_xpm);
+  card_pixmaps[27] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _3heart_xpm);
+  card_pixmaps[28] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _4heart_xpm);
+  card_pixmaps[29] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _5heart_xpm);
+  card_pixmaps[30] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _6heart_xpm);
+  card_pixmaps[31] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _7heart_xpm);
+  card_pixmaps[32] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _8heart_xpm);
+  card_pixmaps[33] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _9heart_xpm);
+  card_pixmaps[34] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _10heart_xpm);
+  card_pixmaps[35] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, jackheart_xpm);
+  card_pixmaps[36] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, queenheart_xpm);
+  card_pixmaps[37] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, kingheart_xpm);
+  card_pixmaps[38] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, aceheart_xpm);
+  card_pixmaps[39] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _2spade_xpm);
+  card_pixmaps[40] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _3spade_xpm);
+  card_pixmaps[41] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _4spade_xpm);
+  card_pixmaps[42] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _5spade_xpm);
+  card_pixmaps[43] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _6spade_xpm);
+  card_pixmaps[44] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _7spade_xpm);
+  card_pixmaps[45] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _8spade_xpm);
+  card_pixmaps[46] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _9spade_xpm);
+  card_pixmaps[47] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, _10spade_xpm);
+  card_pixmaps[48] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, jackspade_xpm);
+  card_pixmaps[49] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, queenspade_xpm);
+  card_pixmaps[50] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, kingspade_xpm);
+  card_pixmaps[51] = gdk_pixmap_create_from_xpm_d(app->window, &mask, NULL, acespade_xpm);
 }
 
 void add_card(GList** card_list, hcard_type temp_card) {
@@ -152,5 +151,4 @@ void add_card(GList** card_list, hcard_type temp_card) {
 	 *card_list = g_list_alloc();
 	 (*card_list)->data = temp_card;
   }
-
 }

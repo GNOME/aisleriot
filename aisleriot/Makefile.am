@@ -6,8 +6,6 @@ INCLUDES = \
 	-I$(includedir)				 \
 	$(GNOME_INCLUDEDIR)
 
-SUBDIRS = pixmaps
-
 bin_PROGRAMS = sol
 
 sol_SOURCES = 		\
