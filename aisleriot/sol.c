@@ -77,7 +77,7 @@ guint            y_expanded_offset = 20;
 
 gchar* game_file_to_name (const gchar* file)
 {
-  char* p, *buf = g_strdup (g_basename(file));
+  char* p, *buf = g_strdup (g_path_get_basename(file));
 
   if ((p = strrchr (buf, '.'))) *p = '\0';
   for(p = buf; p = strchr(p, '_'), p && *p;) *p = ' ';
@@ -130,22 +130,31 @@ void eval_installed_file (char *file)
   char *installed_filename;
   char *relative;
   
-  if (g_file_exists (file)){
+  if (g_file_test (file, G_FILE_TEST_EXISTS)){
     gh_eval_file (file);
     return;
   }
   
   relative = g_strconcat (GAMESDIR, file, NULL);
-  installed_filename = gnome_unconditional_datadir_file (relative);
+  installed_filename = gnome_program_locate_file (NULL, 
+                                                  GNOME_FILE_DOMAIN_DATADIR,
+                                                  relative,
+                                                  FALSE, NULL);
 
-  if (g_file_exists(installed_filename)){
+  if (g_file_test(installed_filename, G_FILE_TEST_EXISTS)){
     gh_eval_file (installed_filename);
   } else {
     char *message = g_strdup_printf (
          _("Aisleriot can't load the file: \n%s\n\n"
            "Please check your Aisleriot installation"), installed_filename);
-    GtkWidget *w = gnome_error_dialog (message);
-    gnome_dialog_run_and_close (GNOME_DIALOG(w));
+    GtkWidget *w = gtk_message_dialog_new (GTK_WINDOW(app),
+                                       GTK_DIALOG_DESTROY_WITH_PARENT,
+                                       GTK_MESSAGE_ERROR,
+                                       GTK_BUTTONS_CLOSE,
+                                       message);
+
+    gtk_dialog_run (GTK_DIALOG(w));
+		gtk_widget_destroy(w);
     g_free (message);
     exit (1);
   }
@@ -158,6 +167,25 @@ GnomeUIInfo rules_help[] = {
 
   GNOMEUIINFO_END
 };
+
+static int
+save_state (GnomeClient *client)
+{
+  const gchar *prefix = gnome_client_get_config_prefix (client);
+
+  gnome_config_push_prefix (prefix);
+  gnome_config_set_string ("Variation/Default File", game_file);
+  gnome_config_set_string ("Deck/Options", deck_options);
+  gnome_config_pop_prefix ();
+  gnome_config_sync();
+
+#ifndef GNOME_SESSION_BUG
+  argv[0] = "rm";
+  argv[1] = gnome_config_get_real_path (prefix);
+  gnome_client_set_discard_command (client, 2, argv);
+#endif  
+  return TRUE;
+}
 
 void new_game (gchar* file, guint *seedp )
 {
@@ -241,7 +269,7 @@ void set_score ()
   char b [10];
   g_snprintf (b, sizeof (b), "%6d  ", score);
 
-  gtk_label_set(GTK_LABEL(score_value), b);
+  gtk_label_set_text(GTK_LABEL(score_value), b);
 }
 
 GtkWidget *time_value;
@@ -319,11 +347,11 @@ void create_sol_board ()
   gdk_gc_set_fill (draw_gc, GDK_TILED);
   
 
-  gtk_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
+  g_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
 		      GTK_SIGNAL_FUNC (button_release_event), NULL);
-  gtk_signal_connect (GTK_OBJECT (playing_area), "motion_notify_event",
+  g_signal_connect (GTK_OBJECT (playing_area), "motion_notify_event",
 		      GTK_SIGNAL_FUNC (motion_notify_event), NULL);
-  gtk_signal_connect (GTK_OBJECT (playing_area), "button_press_event",
+  g_signal_connect (GTK_OBJECT (playing_area), "button_press_event",
 		      GTK_SIGNAL_FUNC (button_press_event), NULL);
 }
 
@@ -347,9 +375,9 @@ void create_main_window ()
 
   gtk_widget_realize (app);
 
-  gtk_signal_connect (GTK_OBJECT (app), "delete_event", 
+  g_signal_connect (GTK_OBJECT (app), "delete_event", 
 		      GTK_SIGNAL_FUNC (quit_app), NULL);
-  gtk_signal_connect (GTK_OBJECT (app), "configure_event",
+  g_signal_connect (GTK_OBJECT (app), "configure_event",
 		      GTK_SIGNAL_FUNC (configure_event), NULL);
 }
 
@@ -362,8 +390,8 @@ void create_press_data ()
   attributes.event_mask = 0;
   attributes.width = get_card_width();
   attributes.height = get_card_height();
-  attributes.colormap = gdk_window_get_colormap (playing_area->window);
-  attributes.visual = gdk_window_get_visual (playing_area->window);
+  attributes.colormap = gdk_drawable_get_colormap (GDK_DRAWABLE(playing_area->window));
+  attributes.visual = gdk_drawable_get_visual (GDK_DRAWABLE(playing_area->window));
   
   press_data = malloc(sizeof(press_data_type));
   press_data->moving_cards = gdk_window_new(playing_area->window, &attributes,
@@ -427,27 +455,8 @@ void main_prog(int argc, char *argv[])
   gtk_main ();
 
   free_pixmaps();
-  gdk_pixmap_unref (surface);
-  gdk_window_unref (press_data->moving_cards);
-}
-
-static int
-save_state (GnomeClient *client)
-{
-  gchar *prefix = gnome_client_get_config_prefix (client);
-
-  gnome_config_push_prefix (prefix);
-  gnome_config_set_string ("Variation/Default File", game_file);
-  gnome_config_set_string ("Deck/Options", deck_options);
-  gnome_config_pop_prefix ();
-  gnome_config_sync();
-
-#ifndef GNOME_SESSION_BUG
-  argv[0] = "rm";
-  argv[1] = gnome_config_get_real_path (prefix);
-  gnome_client_set_discard_command (client, 2, argv);
-#endif  
-  return TRUE;
+  gdk_drawable_unref (surface);
+  gdk_drawable_unref (press_data->moving_cards);
 }
 
 static void
@@ -500,22 +509,24 @@ int main (int argc, char *argv [])
   gnome_init_with_popt_table ("Aisleriot", VERSION, argc, argv,
 			      aisleriot_opts, 0, NULL);
 
-  gtk_widget_push_colormap (gdk_rgb_get_cmap ());
+  gtk_widget_push_colormap (gdk_rgb_get_colormap ());
 
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-aisleriot.png");
   splash_new ();
 
   splash_update (_("Initializing scheme..."), 0.20);
 
-  gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "save_yourself",
+  g_signal_connect (GTK_OBJECT (gnome_master_client ()), "save_yourself",
 		      GTK_SIGNAL_FUNC (save_state), 
 		      (gpointer) g_basename(argv[0]));
-  gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
+  g_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
 		      GTK_SIGNAL_FUNC (quit_app), NULL);
 
   retrieve_state (gnome_master_client ());
 
-  dir = gnome_unconditional_datadir_file (GAMESDIR);
+  dir = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_DATADIR,
+	                                        GAMESDIR, FALSE, NULL);
+
   records = scandir (dir, &game_dents, is_game, alphasort);
   g_free(dir);
 

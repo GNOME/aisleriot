@@ -41,26 +41,29 @@ enum {
 GtkType
 scroll_menu_get_type (void)
 {
-	static GtkType scroll_menu_type = 0;
+	static GType scroll_menu_type = 0;
 
 	if (scroll_menu_type == 0) {
-		GtkType menu_type;
+		GType menu_type;
 
-		GtkTypeInfo scroll_menu_info = {
-			"ScrollMenu",
-			sizeof (ScrollMenu),
+		GTypeInfo scroll_menu_info = {
 			sizeof (ScrollMenuClass),
-			(GtkClassInitFunc) scroll_menu_class_init,
-			(GtkObjectInitFunc) scroll_menu_init,
-			NULL,
-			NULL,
+			NULL, /* base_init */
+			NULL, /* base_finalize */
+			(GClassInitFunc) scroll_menu_class_init,
+			NULL, /* class_finalize */
+			NULL, /* class_data */
+			sizeof (ScrollMenu),
+			0, /* n_preallocs */
+			(GInstanceInitFunc) scroll_menu_init,
 			NULL
 		};
 
 		menu_type = gtk_menu_get_type ();
 
-		scroll_menu_type = gtk_type_unique (menu_type,
-						    &scroll_menu_info);
+		scroll_menu_type = g_type_register_static( menu_type,
+		                                           "ScrollMenu",
+		                                           &scroll_menu_info, 0 );
 		parent_class = gtk_type_class (menu_type);
 	}
 
@@ -278,17 +281,17 @@ make_scroller (ScrollMenu *self, int direction)
 
 	gtk_object_set_user_data (GTK_OBJECT (scroll), self);
 
-	gtk_signal_connect (GTK_OBJECT (scroll), "enter_notify_event",
+	g_signal_connect (GTK_OBJECT (scroll), "enter_notify_event",
 			    GTK_SIGNAL_FUNC (scroll_enter_notify),
 			    GINT_TO_POINTER (direction));
-	gtk_signal_connect (GTK_OBJECT (scroll), "leave_notify_event",
+	g_signal_connect (GTK_OBJECT (scroll), "leave_notify_event",
 			    GTK_SIGNAL_FUNC (scroll_leave_notify),
 			    GINT_TO_POINTER (direction));
 
-	gtk_signal_connect_after(GTK_OBJECT(scroll), "realize",
+	g_signal_connect_after(GTK_OBJECT(scroll), "realize",
 				 GTK_SIGNAL_FUNC(scroll_realize),
 				 GINT_TO_POINTER (direction));
-	gtk_signal_connect(GTK_OBJECT(scroll), "expose_event",
+	g_signal_connect(GTK_OBJECT(scroll), "expose_event",
 			   GTK_SIGNAL_FUNC(scroll_expose),
 			   GINT_TO_POINTER (direction));
 

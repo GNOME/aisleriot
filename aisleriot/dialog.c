@@ -45,13 +45,20 @@ void show_game_over_dialog() {
   /* Should we use the status bar for game over reports when the user
    * look & feel prefs go for the status bar ? I think not... */
 #if 1
-  dialog = gnome_message_box_new (message, GNOME_MESSAGE_BOX_QUESTION,
-				  _("New Game"), GNOME_STOCK_BUTTON_CANCEL, 
-				  NULL);
-  gnome_dialog_set_parent (GNOME_DIALOG (dialog), GTK_WINDOW (app));
-  gnome_dialog_set_default ( GNOME_DIALOG (dialog), 0 );
-  if (gnome_dialog_run (GNOME_DIALOG (dialog)) == 0) 
+  dialog = gtk_message_dialog_new (GTK_WINDOW(app),
+	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+                                   GTK_MESSAGE_QUESTION,
+																	 GTK_BUTTONS_NONE,
+																	 message);
+
+	gtk_dialog_add_button(GTK_DIALOG(dialog), _("New Game"),
+	                      GTK_RESPONSE_ACCEPT);
+	/* add a stock icon? */ 
+  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) 
+	{
+		gtk_widget_destroy(dialog);
     new_game (NULL, NULL);
+	}
 #else
   gnome_app_question_modal ( GNOME_APP (app), message, random_seed, NULL);
 #endif
@@ -59,31 +66,36 @@ void show_game_over_dialog() {
 
 gchar *filename = NULL;
 
-void select_rules(GtkCList       *clist,
-		  gint            row,
-		  gint            column,
-		  GdkEvent       *event)
+void select_rules(GtkTreeSelection *select, gpointer data)
 {
-	if (row == -1)
-		return;
+	GtkTreeModel *model;
+	GtkTreeIter iter;
 
-	filename = gtk_clist_get_row_data (GTK_CLIST (clist), row);
+	gtk_tree_selection_get_selected(select, &model, &iter);
+	gtk_tree_model_get(model, &iter, 1, &filename, -1);
 }
 
-void select_game (GtkWidget *app, gint button, GtkWidget* entry)
+void select_game (GtkWidget *app, gint response, GtkWidget* entry)
 {
-  if(button == 0) {
+  if(response == GTK_RESPONSE_OK) {
     seed = atoi (gtk_entry_get_text (GTK_ENTRY (entry)));
     new_game (filename, &seed);
   }
+
+	gtk_widget_hide(app);
 }
 
 void show_select_game_dialog() 
 {
   static GtkWidget* dialog = NULL;
   static GtkWidget* seed_entry;
-  static GtkWidget* list;
+  static GtkListStore* list;
+  static GtkWidget* list_view;
   GtkWidget* scrolled_window;
+	GtkTreeViewColumn* column;
+	GtkCellRenderer* renderer;
+	GtkTreeSelection* select;
+	GtkTreeIter iter;
   
   guint i;
   gchar buf[20];
@@ -96,14 +108,11 @@ void show_select_game_dialog()
     GtkWidget* hbox;
     gchar* message = _("Select Game");
 
-    dialog = gnome_message_box_new (message, GNOME_MESSAGE_BOX_QUESTION,
-				    GNOME_STOCK_BUTTON_OK, 
-				    GNOME_STOCK_BUTTON_CANCEL,
-				    NULL );
-    gtk_window_set_policy (GTK_WINDOW (dialog), FALSE, TRUE, FALSE);
-    gnome_dialog_set_default ( GNOME_DIALOG (dialog), 0 );
-
-    gnome_dialog_set_parent ( GNOME_DIALOG (dialog), GTK_WINDOW (app) );
+    dialog = gtk_message_dialog_new (GTK_WINDOW(app),
+		                                 GTK_DIALOG_DESTROY_WITH_PARENT,
+																		 GTK_MESSAGE_QUESTION,
+																		 GTK_BUTTONS_OK_CANCEL,
+		                                 message);
 
     hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
     seed_entry = gtk_entry_new ();
@@ -114,70 +123,92 @@ void show_select_game_dialog()
     gtk_box_pack_end (GTK_BOX (hbox), seed_entry, FALSE, FALSE, 
 		      GNOME_PAD_SMALL );
     
-    gtk_box_pack_end (GTK_BOX (GNOME_DIALOG (dialog)->vbox), 
+    gtk_box_pack_end (GTK_BOX (GTK_DIALOG (dialog)->vbox), 
 		      hbox, FALSE, FALSE, GNOME_PAD_SMALL );
     
     hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
 
-    list = gtk_clist_new (1);
-    gtk_signal_connect (GTK_OBJECT (list), "select_row", select_rules, NULL);
-    gtk_clist_set_selection_mode (GTK_CLIST (list), GTK_SELECTION_BROWSE);
+    list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+		list_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(list));
+		g_object_unref (G_OBJECT (list));
+
+		renderer = gtk_cell_renderer_text_new();
+		column = gtk_tree_view_column_new_with_attributes(_("Rules"),
+		                                                  renderer,
+		                                                  "text", 0,
+		                                                  NULL);
+
+		gtk_tree_view_append_column(GTK_TREE_VIEW (list_view), column);
+
+		select = gtk_tree_view_get_selection(GTK_TREE_VIEW (list_view));
+    gtk_tree_selection_set_mode (select, GTK_SELECTION_BROWSE); 
+
+    g_signal_connect (G_OBJECT (select), "changed", 
+		                  GTK_SIGNAL_FUNC (select_rules), NULL);
+		
+
     scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-    gtk_widget_set_usize (scrolled_window, 300, 250);
-    gtk_container_add (GTK_CONTAINER (scrolled_window), list);
+    gtk_widget_set_size_request (scrolled_window, 300, 250);
+    gtk_container_add (GTK_CONTAINER (scrolled_window), list_view);
 
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
 				    GTK_POLICY_NEVER,
 				    GTK_POLICY_AUTOMATIC);
 				    
-    
-    label = gtk_label_new(_("Rules"));
-    
-    gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 
-			GNOME_PAD_SMALL );
     gtk_box_pack_end (GTK_BOX (hbox), scrolled_window, TRUE, TRUE,
 		      GNOME_PAD_SMALL );
   
-    gtk_box_pack_end (GTK_BOX (GNOME_DIALOG (dialog)->vbox), 
+    gtk_box_pack_end (GTK_BOX (GTK_DIALOG (dialog)->vbox), 
 		      hbox, FALSE, FALSE, GNOME_PAD_SMALL );
         
     filename = NULL;
     
     for(i = 0; i < n_games; i++) {
-	    gchar *text[1];
+	    gchar *text;
 	    gint row;
-	    text[0] = game_file_to_name (game_dents[i]->d_name);
-	    row = gtk_clist_append (GTK_CLIST (list), text);
-	    gtk_clist_set_row_data (GTK_CLIST (list), row, game_dents[i]->d_name);
+	    text = game_file_to_name (game_dents[i]->d_name);
+	    gtk_list_store_append (GTK_LIST_STORE (list), &iter);
+			gtk_list_store_set(GTK_LIST_STORE (list), 
+			                   &iter, 0, text, 1,
+			                   game_dents[i]->d_name, -1);
     }
 
     
-    gnome_dialog_editable_enters (GNOME_DIALOG (dialog), 
-				  GTK_EDITABLE (seed_entry));
-    
-    gtk_signal_connect (GTK_OBJECT (dialog), "clicked", 
-			GTK_SIGNAL_FUNC (select_game), seed_entry);
+    gtk_dialog_set_default_response ( GTK_DIALOG (dialog), GTK_RESPONSE_OK );
+
+    g_signal_connect (GTK_OBJECT (dialog), "response", 
+			                GTK_SIGNAL_FUNC (select_game), seed_entry);
 
     gtk_widget_show_all (dialog);
     
-    gnome_dialog_close_hides (GNOME_DIALOG (dialog), TRUE);
+    g_signal_connect (GTK_WIDGET (dialog), "delete_event",
+		                  GTK_SIGNAL_FUNC(gtk_widget_hide), NULL);
   }
 
   /* Can we respect user prefs for status bar using libgnomeui ???
    * Current app-utils look insufficient to me. */
-  for(i = 0; i < n_games; i++) {
-	  gchar *text = NULL;
-	  text = (gchar *) gtk_clist_get_row_data (GTK_CLIST (list), i);
-	  if (!strcmp (text, game_file)) {
-		  gtk_clist_select_row (GTK_CLIST (list), i, 0);
-		  break;
-	  }
-  }
+	/*
+	if ( gtk_tree_model_get_iter_first(GTK_TREE_MODEL(list), &iter) )
+	{
+		GValue *value;
+		do
+		{
+			gtk_tree_model_get_value(GTK_TREE_MODEL(list), &iter, 1, value);
+			if (!strcmp ( g_value_get_string(value), game_file ) ) {
+				printf("%s\n", game_file);
+				gtk_tree_selection_select_iter (gtk_tree_view_get_selection(GTK_TREE_VIEW (list_view)), &iter);
+				g_value_unset(value); 
+				break;
+			}
+			g_value_unset(value);
+		} while ( gtk_tree_model_iter_next(GTK_TREE_MODEL(list), &iter ) );
+	} */
+
 
   g_snprintf (buf, sizeof (buf), "%d", seed);
   gtk_entry_set_text (GTK_ENTRY (seed_entry), buf);
 
-  gnome_dialog_run (GNOME_DIALOG (dialog));
+  gtk_dialog_run (GTK_DIALOG (dialog)); 
 }
 
   static void
@@ -245,20 +276,28 @@ void show_hint_dialog()
 	break;
       }
     }
-  }
+	}
 
   if (hint_dlg) {
-   gnome_dialog_close (GNOME_DIALOG (hint_dlg));
+   gtk_widget_destroy (GTK_WIDGET (hint_dlg));
 	  
   }
 
-  hint_dlg = gnome_ok_dialog_parented (gmessage, GTK_WINDOW (app));
+  hint_dlg = gtk_message_dialog_new (GTK_WINDOW (app),
+	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+	                                   GTK_MESSAGE_INFO,
+	                                   GTK_BUTTONS_OK,
+	                                   gmessage);
+
   if (hint_dlg) {
-	  gtk_signal_connect (GTK_OBJECT (hint_dlg),
+	  g_signal_connect (GTK_OBJECT (hint_dlg),
 			      "destroy",
 			      (GtkSignalFunc) hint_destroy_callback,
 			      NULL);
   }
+
+	gtk_dialog_run(GTK_DIALOG(hint_dlg));
+	gtk_widget_destroy(hint_dlg);
 
   g_free (gmessage);
 }
@@ -284,8 +323,14 @@ get_background_page (GtkWidget* dialog)
 static GtkObject* deck_edit = NULL;
 
 static void 
-property_apply (GtkWidget *w, int page)
+property_apply (GtkWidget *w, int response)
 {
+
+	gtk_widget_hide(w);
+
+	if ( response != GTK_RESPONSE_OK )
+		return;
+			
   if (gdk_card_deck_options_edit_dirty 
       (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit))) {
     gtk_object_destroy (card_deck);
@@ -300,22 +345,32 @@ property_apply (GtkWidget *w, int page)
 void show_preferences_dialog () 
 {
   static GtkWidget* property_box = NULL;
+	static GtkWidget* notebook = NULL;
 
   if (!property_box) {
-    property_box = gnome_property_box_new ();
+    property_box = gtk_dialog_new ();
+		notebook = gtk_notebook_new();
 
-    gnome_dialog_set_parent (GNOME_DIALOG (property_box), GTK_WINDOW (app));
+		gtk_container_add (GTK_CONTAINER(GTK_DIALOG(property_box)->vbox),
+		                   notebook);
+		
+		gtk_dialog_add_buttons(GTK_DIALOG(property_box),
+		                       GTK_STOCK_OK,
+													 GTK_RESPONSE_OK,
+													 GTK_STOCK_CANCEL,
+													 GTK_RESPONSE_CANCEL,
+													 NULL);
+
+		gtk_window_set_transient_for (GTK_WINDOW(property_box), GTK_WINDOW (app));
+		gtk_window_set_modal(GTK_WINDOW(property_box), TRUE);
   
-    deck_edit = gdk_card_deck_options_edit_new 
-      (GTK_NOTEBOOK (GNOME_PROPERTY_BOX (property_box)->notebook));
+    deck_edit = gdk_card_deck_options_edit_new (GTK_NOTEBOOK (notebook));
 
-    gtk_signal_connect_object (GTK_OBJECT (deck_edit), "changed",
-			       GTK_SIGNAL_FUNC (gnome_property_box_changed), 
-			       GTK_OBJECT (property_box));
-
-    gtk_signal_connect (GTK_OBJECT (property_box), "apply",
+    g_signal_connect (G_OBJECT (property_box), "response",
 			GTK_SIGNAL_FUNC (property_apply), NULL);
-    gnome_dialog_close_hides (GNOME_DIALOG (property_box), TRUE);
+
+		g_signal_connect(G_OBJECT (property_box), "delete_event",
+			GTK_SIGNAL_FUNC(gtk_widget_hide), NULL);
   }
   if (property_box && !GTK_WIDGET_VISIBLE (property_box)) {
     gdk_card_deck_options_edit_set (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit),
@@ -326,15 +381,16 @@ void show_preferences_dialog ()
 
 SCM options = SCM_BOOL_F;
 GtkWidget *option_page;
-gint option_page_num;
 
 static void 
-option_apply (GtkWidget *w, int page)
+option_apply (GtkWidget *w, int response)
 {
-  if (page == option_page_num) {
     SCM opts = options;
     GList *item = GTK_BOX (option_page)->children;
     
+		if ( response != GTK_RESPONSE_OK )
+			return;
+		
     for(; opts != SCM_EOL; item = item->next, opts = gh_cdr (opts)) {
       
       SCM_SETCAR (gh_cdar(opts), 
@@ -342,7 +398,6 @@ option_apply (GtkWidget *w, int page)
 			     (((GtkBoxChild *) item->data)->widget)->active));
     }    
     gh_call1(game_data->apply_options_lambda, options);
-  }
 }
 
 GtkWidget *
@@ -357,9 +412,6 @@ get_option_page (GtkWidget* option_dialog)
 						       NULL)));
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (toggle), 
 				 gh_scm2bool(gh_cadar(opts)));
-    gtk_signal_connect_object (GTK_OBJECT (toggle), "toggled",
-			       GTK_SIGNAL_FUNC (gnome_property_box_changed), 
-			       GTK_OBJECT (option_dialog));
     gtk_box_pack_end (GTK_BOX (vbox), toggle, 
 		      FALSE, FALSE, GNOME_PAD_SMALL);
   }
@@ -368,25 +420,37 @@ get_option_page (GtkWidget* option_dialog)
 
 void show_rules_options_dialog () 
 {
+	static GtkWidget *notebook = NULL;
   /* Need to call this every time as it might be garbage collected ! */
   options = gh_call0(game_data->get_options_lambda);
   
   if (!option_dialog && gh_scm2bool(options)) {
-    option_dialog = gnome_property_box_new ();
+    option_dialog = gtk_dialog_new ();
+		notebook = gtk_notebook_new();
 
-    gnome_dialog_set_parent (GNOME_DIALOG (option_dialog), GTK_WINDOW (app));
+		gtk_container_add (GTK_CONTAINER(GTK_DIALOG(option_dialog)->vbox),
+		                   notebook);
+		
+		gtk_dialog_add_buttons(GTK_DIALOG(option_dialog),
+		                       GTK_STOCK_OK,
+													 GTK_RESPONSE_OK,
+													 GTK_STOCK_CANCEL,
+													 GTK_RESPONSE_CANCEL);
+
+    gtk_window_set_transient_for (GTK_WINDOW (option_dialog), GTK_WINDOW (app));
+		gtk_window_set_modal(GTK_WINDOW(option_dialog), TRUE);
  
     option_page = get_option_page(option_dialog);
 
-    option_page_num = 
-      gnome_property_box_append_page (GNOME_PROPERTY_BOX (option_dialog), 
+		gtk_notebook_append_page (GTK_NOTEBOOK (notebook), 
 				      option_page, 
 				      gtk_label_new(game_name));
 
-    gtk_signal_connect (GTK_OBJECT (option_dialog), "apply",
+    g_signal_connect (GTK_OBJECT (option_dialog), "response",
 			GTK_SIGNAL_FUNC (option_apply), NULL);
 
-    gnome_dialog_close_hides (GNOME_DIALOG (option_dialog), TRUE);
+    g_signal_connect (GTK_OBJECT (option_dialog), "delete_event",
+			GTK_SIGNAL_FUNC (gtk_widget_hide), NULL);
   }
   if (option_dialog && !GTK_WIDGET_VISIBLE (option_dialog)) {
     gtk_widget_show_all(option_dialog);

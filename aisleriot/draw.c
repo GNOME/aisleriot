@@ -50,7 +50,7 @@ void draw_cards () {
 	
 	gdk_gc_set_clip_origin(draw_gc, x, y);
 	if (image != NULL)
-	  gdk_draw_pixmap(surface, draw_gc, image, 0, 0, x, y, -1, -1);
+	  gdk_draw_drawable(surface, draw_gc, image, 0, 0, x, y, -1, -1);
 	
 	x += hslot->dx; y += hslot->dy;
       }
@@ -71,7 +71,7 @@ void take_snapshot() {
 			   ((hslot_type)slot->data)->y);
     slot_pixmap = get_slot_pixmap();
     if (slot_pixmap != NULL)
-      gdk_draw_pixmap (surface, draw_gc,
+      gdk_draw_drawable (surface, draw_gc,
 		       slot_pixmap, 0, 0, 
 		       ((hslot_type)slot->data)->x, 
 		       ((hslot_type)slot->data)->y, -1, -1);

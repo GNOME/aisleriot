@@ -94,7 +94,7 @@ void drop_moving_cards(gint x, gint y) {
   update_slot_length(hslot);
   press_data->cards = NULL;
 
-  gdk_window_get_size(press_data->moving_cards, &width, &height);
+  gdk_drawable_get_size(press_data->moving_cards, &width, &height);
   gdk_window_move(press_data->moving_cards, 
 		  hslot->x + hslot->width - width, 
 		  hslot->y + hslot->height - height);
@@ -104,9 +104,9 @@ void drop_moving_cards(gint x, gint y) {
   gdk_window_hide(press_data->moving_cards);
 
   if (press_data->moving_pixmap)
-    gdk_pixmap_unref(press_data->moving_pixmap);
+    gdk_drawable_unref(press_data->moving_pixmap);
   if (press_data->moving_mask)
-    gdk_pixmap_unref(press_data->moving_mask);
+    gdk_drawable_unref(press_data->moving_mask);
   press_data->moving_pixmap = NULL;
   press_data->moving_mask = NULL;
 
@@ -301,10 +301,10 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   if(surface) {
     gint old_w, old_h;
 
-    gdk_window_get_size(surface, &old_w, &old_h);
+    gdk_drawable_get_size(surface, &old_w, &old_h);
     if(old_w == event->width && old_h == event->height)
       return TRUE;
-    gdk_pixmap_unref(surface);
+    gdk_drawable_unref(surface);
   }
   else {
     timer_start();
@@ -312,7 +312,7 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
 
   surface =
     gdk_pixmap_new (playing_area->window, event->width, event->height,
-		    gdk_window_get_visual (playing_area->window)->depth);
+		    gdk_drawable_get_visual (playing_area->window)->depth);
   
   refresh_screen();
 

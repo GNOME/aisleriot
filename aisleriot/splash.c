@@ -35,8 +35,8 @@ splash_update (gchar* text, gfloat percent)
 {
 	if (label != NULL &&
 	    progress != NULL) {
-		gtk_label_set (GTK_LABEL (label), text);
-		gtk_progress_set_percentage (GTK_PROGRESS (progress), percent); 
+		gtk_label_set_text (GTK_LABEL (label), text);
+		gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (progress), percent); 
 		while (gtk_events_pending ())
 			gtk_main_iteration ();
 	}
@@ -71,10 +71,12 @@ splash_new ()
   GtkWidget* splash_pixmap = NULL;
   GtkWidget* vbox;
 
-  image_file = gnome_pixmap_file ("cards/splash.png");
+  image_file = gnome_program_locate_file (NULL,
+	                                        GNOME_FILE_DOMAIN_PIXMAP,
+																					"cards/splash.png", TRUE, NULL);
 
   if (image_file != NULL)
-	  splash_pixmap = gnome_pixmap_new_from_file (image_file);
+	  splash_pixmap = gtk_image_new_from_file (image_file);
 
   g_free (image_file);
 
@@ -83,18 +85,18 @@ splash_new ()
 
   splash = gtk_dialog_new ();
 
-  gtk_window_position (GTK_WINDOW(splash), 
+  gtk_window_set_position (GTK_WINDOW(splash), 
 		       GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (splash), _("AisleRiot"));
   gtk_window_set_policy (GTK_WINDOW (splash), FALSE, FALSE, FALSE);
   gnome_window_icon_set_from_default (GTK_WINDOW (splash));
-  gtk_signal_connect (GTK_OBJECT (splash), "destroy",
+  g_signal_connect (GTK_OBJECT (splash), "destroy",
 		      GTK_SIGNAL_FUNC (splash_destroyed),
 		      NULL);
 
   vbox = GTK_DIALOG(splash)->vbox;
   
-  gtk_container_border_width (GTK_CONTAINER (vbox), 0);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 0);
 
   if (splash_pixmap != NULL)
 	  gtk_box_pack_start (GTK_BOX (vbox), splash_pixmap, FALSE, FALSE, 
@@ -106,7 +108,7 @@ splash_new ()
 
   /* Give window manager time to map the window */
   if (splash_pixmap != NULL) {
-	  gtk_signal_connect (GTK_OBJECT (splash_pixmap), "expose_event",
+	  g_signal_connect (GTK_OBJECT (splash_pixmap), "expose_event",
 			      GTK_SIGNAL_FUNC (expose_event), NULL);
 	  waiting_for_expose = TRUE;
 	  gtk_main ();

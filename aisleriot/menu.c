@@ -109,7 +109,7 @@ void help_about_callback ()
 			    (const char **)documenters,
 			    strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 			    NULL);
-  gtk_signal_connect (GTK_OBJECT (about),
+  g_signal_connect (GTK_OBJECT (about),
 		      "destroy",
 		      (GtkSignalFunc) about_destroy_callback,
 		      NULL);
@@ -156,7 +156,7 @@ GnomeUIInfo game_menu[] = {
   GNOMEUIINFO_MENU_RESTART_GAME_ITEM(restart_game, NULL),
 
   GNOMEUIINFO_ITEM_STOCK(N_("_Select..."), N_("Select a new game variation"),
-			 show_select_game_dialog, GNOME_STOCK_MENU_OPEN),
+			 show_select_game_dialog, GTK_STOCK_OPEN),
 
   GNOMEUIINFO_SEPARATOR,
 
@@ -196,29 +196,29 @@ GnomeUIInfo top_menu[] = {
 GnomeUIInfo toolbar[] =
 {
   GNOMEUIINFO_ITEM_STOCK(N_("New"), N_("Deal a new game"),
-			 random_seed, GNOME_STOCK_PIXMAP_NEW),
+			 random_seed, GTK_STOCK_NEW),
 
   GNOMEUIINFO_ITEM_STOCK(N_("Restart"), N_("Start this game over"),
-			 restart_game, GNOME_STOCK_PIXMAP_REFRESH),
+			 restart_game, GTK_STOCK_REFRESH),
 
   GNOMEUIINFO_ITEM_STOCK(N_("Select"), N_("Select a new game"),
-			 show_select_game_dialog, GNOME_STOCK_PIXMAP_OPEN),
+			 show_select_game_dialog, GTK_STOCK_OPEN),
 
   GNOMEUIINFO_SEPARATOR,
 
   GNOMEUIINFO_ITEM_STOCK(N_("Hint"), N_("Suggest a move"),
-			 show_hint_dialog, GNOME_STOCK_PIXMAP_JUMP_TO),
+			 show_hint_dialog, GTK_STOCK_JUMP_TO),
 
   GNOMEUIINFO_ITEM_STOCK(N_("Undo"), N_("Undo the last move"),
-			 undo_callback, GNOME_STOCK_PIXMAP_UNDO),
+			 undo_callback, GTK_STOCK_UNDO),
 
   GNOMEUIINFO_ITEM_STOCK(N_("Redo"), N_("Redo the last move"),
-			 redo_callback, GNOME_STOCK_PIXMAP_REDO),
+			 redo_callback, GTK_STOCK_REDO),
 
   GNOMEUIINFO_SEPARATOR,
 
   GNOMEUIINFO_ITEM_STOCK(N_("Exit"), N_("Quit Aisleriot"),
-			 quit_app, GNOME_STOCK_PIXMAP_EXIT),
+			 quit_app, GTK_STOCK_QUIT),
   GNOMEUIINFO_END
 };
 
@@ -244,7 +244,7 @@ void create_menus ()
       (game_file_to_name (game_dents[i]->d_name));
     gtk_widget_show(w);
     gtk_menu_shell_append (GTK_MENU_SHELL(menu), w);
-    gtk_signal_connect (GTK_OBJECT(w), "activate", 
+    g_signal_connect (GTK_OBJECT(w), "activate", 
 			(GtkSignalFunc) new_rules,
 			(gpointer) game_dents[i]->d_name);
   }

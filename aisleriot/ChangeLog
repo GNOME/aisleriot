@@ -1,3 +1,23 @@
+2002-05-07  Bastien Nocera  <hadess@hadess.net>
+
+	* Makefile.am:
+	* card.c: (get_card_width), (get_card_height), (get_pixmap),
+	(free_pixmaps):
+	* dialog.c: (show_game_over_dialog), (select_rules), (select_game),
+	(show_select_game_dialog), (show_hint_dialog), (property_apply),
+	(show_preferences_dialog), (option_apply), (get_option_page),
+	(show_rules_options_dialog):
+	* draw.c: (draw_cards), (take_snapshot):
+	* events.c: (drop_moving_cards), (configure_event):
+	* menu.c: (help_about_callback), (create_menus):
+	* press_data.c: (generate_press_data):
+	* scroll-menu.c: (scroll_menu_get_type), (make_scroller):
+	* sol.c: (game_file_to_name), (eval_installed_file), (save_state),
+	(set_score), (create_sol_board), (create_main_window),
+	(create_press_data), (main_prog), (main):
+	* splash.c: (splash_update), (splash_new): big Gnome2 port patch by
+	Shahms E. King <shahms@shahms.com>
+
 2002-05-07  Jacob Berkman  <jacob@ximian.com>
 
 	* Makefile.am (SUBDIRS): remove docs, as help is already there

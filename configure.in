@@ -31,9 +31,18 @@ PKG_CHECK_MODULES(GNOME_GAMES, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0
 AC_SUBST(GNOME_GAMES_CFLAGS)
 AC_SUBST(GNOME_GAMES_LIBS)
 
+PKG_CHECK_MODULES(ESD, esound)
+AC_SUBST(ESD_CFLAGS)
+AC_SUBST(ESD_LIBS)
+if test "x$ESD_CFLAGS" = "x" ; then
+	CFLAGS="$CFLAGS -DNO_ESD"
+fi
+
 ## look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
 AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true)
+AC_SUBST(CURSES_INCLUDEDIR)
+AC_SUBST(CURSES_LIBS)
 
 GETTEXT_PACKAGE=gnome-games
 AC_SUBST(GETTEXT_PACKAGE)
@@ -77,16 +86,6 @@ AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
 if test x$SCROLLKEEPER_CONFIG = xno; then
   AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the scrollkeeper packaga)
 fi
-
-## Test whether jw is installed
-AC_PATH_PROG(JW,jw,no)
-if test x$JW = xno; then
-  HAVE_JW="no"
-else
-  HAVE_JW="yes"
-fi
-AM_CONDITIONAL(HAVE_JW, test "x$HAVE_JW" = "xyes")
-AC_SUBST(HAVE_JW)
 
 AC_CHECK_FUNCS(rename)
 

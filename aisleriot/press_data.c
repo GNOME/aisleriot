@@ -51,7 +51,7 @@ void generate_press_data ( ) {
 
   press_data->moving_pixmap = 
     gdk_pixmap_new(press_data->moving_cards, width, height,
-  		   gdk_window_get_visual (press_data->moving_cards)->depth);
+  		   gdk_drawable_get_visual (press_data->moving_cards)->depth);
   press_data->moving_mask = 
     gdk_pixmap_new (press_data->moving_cards, width, height, 1);
 
@@ -79,15 +79,15 @@ void generate_press_data ( ) {
     gdk_gc_set_clip_origin (gc1, x, y);
     gdk_gc_set_clip_origin (gc2, x, y);
     if (cardpix != NULL)
-      gdk_draw_pixmap (press_data->moving_pixmap, gc1, cardpix,
+      gdk_draw_drawable (press_data->moving_pixmap, gc1, cardpix,
 		       0, 0, x, y, width, height);
     gdk_draw_rectangle (press_data->moving_mask, gc2, TRUE, 
 			x, y, width, height);
     
     x += hslot->dx; y += hslot->dy;
   }
-  gdk_gc_destroy (gc1);
-  gdk_gc_destroy (gc2);
+  gdk_gc_unref (gc1);
+  gdk_gc_unref (gc2);
   
   gdk_window_set_back_pixmap (press_data->moving_cards, 
 			      press_data->moving_pixmap, 0);

@@ -45,14 +45,14 @@ GdkPixmap* get_card_back_pixmap () {
 
 int get_card_width() {
   int width, height;
-  gdk_window_get_size(gdk_card_deck_back (GDK_CARD_DECK (card_deck)), 
+  gdk_drawable_get_size(gdk_card_deck_back (GDK_CARD_DECK (card_deck)), 
 		      &width, &height);
   return width;
 }
 
 int get_card_height() {
   int width, height;
-  gdk_window_get_size(gdk_card_deck_back (GDK_CARD_DECK (card_deck)), 
+  gdk_drawable_get_size(gdk_card_deck_back (GDK_CARD_DECK (card_deck)), 
 		      &width, &height);
   return height;
 }
@@ -77,7 +77,9 @@ GdkPixmap* get_pixmap (const char* filename)
 {
   GdkPixmap* ret;
   GdkPixbuf *im;
-  char* fullname = gnome_pixmap_file (filename);
+  char* fullname = gnome_program_locate_file (NULL,
+	                                            GNOME_FILE_DOMAIN_PIXMAP,
+	                                            filename, TRUE, NULL);
 
   if (fullname == NULL)
     return NULL; 
@@ -106,9 +108,9 @@ void free_pixmaps()
 {
   gtk_object_destroy (card_deck);
   if (slot_pixmap != NULL)
-    gdk_pixmap_unref (slot_pixmap);
+    gdk_drawable_unref (slot_pixmap);
   if (default_background_pixmap != NULL)
-    gdk_pixmap_unref (default_background_pixmap);
+    gdk_drawable_unref (default_background_pixmap);
 }
 
 void add_card(GList** card_list, hcard_type temp_card) {
