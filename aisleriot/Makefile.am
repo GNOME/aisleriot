@@ -4,6 +4,8 @@ icondir = $(datadir)/pixmaps
 Gamesdir  = $(datadir)/apps/Games
 typesdir  = $(datadir)/sol-games
 
+SUBDIRS=pixmaps
+
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	-I$(includedir)				 \
