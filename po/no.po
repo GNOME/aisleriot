@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 1.4.0\n"
-"POT-Creation-Date: 2001-05-29 21:05+0200\n"
-"PO-Revision-Date: 2001-05-29 21:03+02:00\n"
+"POT-Creation-Date: 2001-06-20 18:26+0200\n"
+"PO-Revision-Date: 2001-06-19 13:45+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -505,40 +505,53 @@ msgstr "Avslutt"
 msgid "Quit Aisleriot"
 msgstr "Avslutt Aisleriot"
 
-#: aisleriot/sol.c:166 aisleriot/sol.c:180
+#: aisleriot/sol.c:142
+#, c-format
+msgid ""
+"Aisleriot can't load the file: \n"
+"%s\n"
+"\n"
+"Please check you Aisleriot instalation"
+msgstr ""
+"Aisleriot kan ikke laste filen:\n"
+"%s\n"
+"\n"
+"Vennligst sjekk din Aisleriot-installasjon"
+
+#: aisleriot/sol.c:177 aisleriot/sol.c:193
 msgid "Help"
 msgstr "Hjelp"
 
-#: aisleriot/sol.c:180 aisleriot/sol.c:324
+#: aisleriot/sol.c:193 aisleriot/sol.c:337
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: aisleriot/sol.c:369
+#: aisleriot/sol.c:382
 msgid "Loading images..."
 msgstr "Laster bilder..."
 
-#: aisleriot/sol.c:375
+#: aisleriot/sol.c:388
 msgid "Dealing game..."
 msgstr "Deler ut spillet"
 
-#: aisleriot/sol.c:381 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:861
+#: aisleriot/sol.c:394 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:861
 msgid "Score: "
 msgstr "Poeng:"
 
-#: aisleriot/sol.c:385
+#: aisleriot/sol.c:398
 msgid "Time: "
 msgstr "Tid: "
 
-#: aisleriot/sol.c:476
+#: aisleriot/sol.c:489
 msgid "Variation on game rules"
 msgstr "Variasjon av spillreglene"
 
-#: aisleriot/sol.c:477 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
+#: aisleriot/sol.c:490 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
 #: same-gnome/same-gnome.c:791
 msgid "NAME"
 msgstr "NAVN"
 
-#: aisleriot/sol.c:493
+#: aisleriot/sol.c:506
 msgid "Initializing scheme..."
 msgstr "Initialiserer planen..."
 
@@ -967,7 +980,7 @@ msgstr "Nytt spill med seed..."
 msgid "Start a new game with a different seed"
 msgstr "Start et nytt spill med forskjellig seed"
 
-#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:1181
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:47 glines/glines.c:1180
 msgid "Score"
 msgstr "Poeng"
 
@@ -1037,7 +1050,7 @@ msgstr "hittil: %d seire"
 msgid "current: %d losses"
 msgstr "hittil: %d tap"
 
-#: freecell/src/score-dialog.c:54
+#: freecell/src/score-dialog.c:48
 msgid "Clear"
 msgstr "Slett"
 
@@ -1071,12 +1084,12 @@ msgstr "Lys må stå over...mørkt trekk..."
 msgid "Dark must pass, Light's move"
 msgstr "Mørk må stå over...lyst trekk..."
 
-#: gataxx/gataxx.c:248 glines/glines.c:940 iagno/gnothello.c:246
+#: gataxx/gataxx.c:248 glines/glines.c:939 iagno/gnothello.c:246
 #: same-gnome/same-gnome.c:659
 msgid "Do you really want to quit?"
 msgstr "Vil du virkelig avslutte?"
 
-#: gataxx/gataxx.c:271 gnibbles/main.c:133 iagno/gnothello.c:270
+#: gataxx/gataxx.c:271 gnibbles/main.c:154 iagno/gnothello.c:270
 msgid "Do you really want to end this game?"
 msgstr "Vil du virkelig avslutte dette spillet?"
 
@@ -1180,82 +1193,99 @@ msgstr "Steinsett:"
 msgid "Could not find the '%s' theme for Glines\n"
 msgstr "Kunne ikke finne temaet '%s' for Glines\n"
 
-#: glines/glines.c:189
+#: glines/glines.c:186
 msgid "Game Over!"
 msgstr "Spillet over!"
 
-#: glines/glines.c:191 glines/glines.c:684 glines/glines.c:707
-#: glines/glines.c:1147
+#: glines/glines.c:188 glines/glines.c:681 glines/glines.c:704
+#: glines/glines.c:1146
 msgid "Glines"
 msgstr "Glines"
 
 #. Can't move there!
-#: glines/glines.c:398
+#: glines/glines.c:395
 msgid "Can't move there!"
 msgstr "Kan ikke gå dit!"
 
-#: glines/glines.c:702
+#: glines/glines.c:699
 msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
 msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
 
-#: glines/glines.c:703
+#: glines/glines.c:700
 msgid "Szabolcs Ban <shooby@gnome.hu>"
 msgstr "Szabolcs Ban <shooby@gnome.hu>"
 
-#: glines/glines.c:708
+#: glines/glines.c:705
 msgid "(C) 1997-2000 the Free Software Foundation"
 msgstr "(C) 1997-2000 the Free Software Foundation"
 
-#: glines/glines.c:710
+#: glines/glines.c:707
 msgid "Gnome port of the once-popular Color Lines game"
 msgstr "GNOME port av det tidligere populære Color Lines spillet"
 
-#: glines/glines.c:848 mahjongg/mahjongg.c:1145 same-gnome/same-gnome.c:574
+#: glines/glines.c:847 mahjongg/mahjongg.c:1145 same-gnome/same-gnome.c:574
 msgid "Preferences"
 msgstr "Innstillinger"
 
-#: glines/glines.c:869
+#: glines/glines.c:868
 msgid "Theme"
 msgstr "Tema"
 
-#: glines/glines.c:875
+#: glines/glines.c:874
 msgid "Select theme:"
 msgstr "Velg tema:"
 
-#: glines/glines.c:889
+#: glines/glines.c:888
 msgid "Select background:"
 msgstr "Velg bakgrunn:"
 
-#: glines/glines.c:898
+#: glines/glines.c:897
 msgid "Fast moves"
 msgstr "Raske trekk"
 
-#: glines/glines.c:907
+#: glines/glines.c:906
 msgid "Ask confirmation when quitting"
 msgstr "Spør etter bekreftelse når spillet avsluttes"
 
-#: glines/glines.c:1157
+#: glines/glines.c:1156
 msgid "Welcome to Glines!"
 msgstr "Velkommen til Glines!"
 
-#: glines/glines.c:1168
+#: glines/glines.c:1167
 msgid "Next Balls"
 msgstr "Neste baller"
 
-#: gnibbles/gnibbles.c:96 gnibbles/gnibbles.c:113
-msgid "Couldn't find pixmap file!\n"
-msgstr "Kunne ikke finne bildefilen!\n"
-
-#: gnibbles/gnibbles.c:141
+#: gnibbles/gnibbles.c:97 gnibbles/gnibbles.c:118
 #, c-format
-msgid "Ack!  Couldn't load level file %s\n"
-msgstr "Akk! Kunne ikke laste nivåfilen %s\n"
+msgid ""
+"Gnibbles Couldn't find pixmap file:\n"
+"%s\n"
+"\n"
+"Please check you Gnibbles instalation"
+msgstr ""
+"Gnibbles kunne ikke finne bildefilen:\n"
+"%s\n"
+"\n"
+"Vennligst sjekk din Gnibbles-installasjon"
 
-#: gnibbles/main.c:168
+#: gnibbles/gnibbles.c:151
+#, c-format
+msgid ""
+"Gnibbles Couldn't load level file:\n"
+"%s\n"
+"\n"
+"Please check you Gnibbles instalation"
+msgstr ""
+"Same Gnome kan ikke laste nivåfilen:\n"
+"%s\n"
+"\n"
+"Vennligst sjekk din Gnibbles-installasjon"
+
+#: gnibbles/main.c:189
 msgid "Gnibbles"
 msgstr "Gnibbles"
 
-#: gnibbles/main.c:171
+#: gnibbles/main.c:192
 msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
 msgstr "Send kommentarer og feilrapporter til: sjm@acm.org, itp@gnu.org"
 
@@ -1420,11 +1450,11 @@ msgstr ""
 "Gratulerer, du har overvunnet robotene!! \n"
 "Men kan du klare det igjen?"
 
-#: gnobots2/game.c:1167
+#: gnobots2/game.c:1171
 msgid "There are no teleport locations left!!"
 msgstr "Ingen steder igjen å teleportere til!!"
 
-#: gnobots2/game.c:1235
+#: gnobots2/game.c:1239
 msgid "There are no safe locations to teleport to!!"
 msgstr "Ingen trygge steder å teleportere til!!"
 
@@ -2064,7 +2094,7 @@ msgstr "STØRRELSE"
 msgid "Number of mines"
 msgstr "Antall miner"
 
-#: gnomine/gnomine.c:564 gtali/setup.c:78 gtali/setup.c:79
+#: gnomine/gnomine.c:564 gtali/setup.c:79 gtali/setup.c:80
 msgid "NUMBER"
 msgstr "ANTALL"
 
@@ -2072,7 +2102,7 @@ msgstr "ANTALL"
 msgid "Flags:"
 msgstr "Flagg:"
 
-#: gnomine/gnomine.c:717 gnotravex/gnotravex.c:605 mahjongg/mahjongg.c:2008
+#: gnomine/gnomine.c:717 gnotravex/gnotravex.c:603 mahjongg/mahjongg.c:2008
 msgid "Time:"
 msgstr "Tid:"
 
@@ -2164,29 +2194,29 @@ msgstr "Flytt"
 msgid "Size of board (2-6)"
 msgstr "Størrensen på brettet (2-6)"
 
-#: gnotravex/gnotravex.c:448
+#: gnotravex/gnotravex.c:446
 msgid "Puzzle solved! Well done!"
 msgstr "Puslespillet løst! Godt gjort!"
 
-#: gnotravex/gnotravex.c:451
+#: gnotravex/gnotravex.c:449
 msgid "Puzzle solved!"
 msgstr "Puslespillet løst!"
 
-#: gnotravex/gnotravex.c:655 gnotski/gnotski.c:695
+#: gnotravex/gnotravex.c:653 gnotski/gnotski.c:693
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Kunne ikke finne bildefilen '%s'\n"
 
-#: gnotravex/gnotravex.c:747 mahjongg/mahjongg.c:1427
+#: gnotravex/gnotravex.c:745 mahjongg/mahjongg.c:1427
 msgid "... Game paused ..."
 msgstr "... Spillet er pauset ..."
 
-#: gnotravex/gnotravex.c:785
+#: gnotravex/gnotravex.c:783
 #, c-format
 msgid "Playing %dx%d board"
 msgstr "Spiller på %dx%d brett"
 
-#: gnotravex/gnotravex.c:971
+#: gnotravex/gnotravex.c:969
 msgid ""
 "Tetravex clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
@@ -2250,16 +2280,16 @@ msgstr "Nivå fullført! Godt gjort."
 msgid "Moves:"
 msgstr "Trekk:"
 
-#: gnotski/gnotski.c:877
+#: gnotski/gnotski.c:875
 msgid "Welcome to Gnome Klotski"
 msgstr "Velkommen til Gnome Klotski"
 
-#: gnotski/gnotski.c:894
+#: gnotski/gnotski.c:892
 #, c-format
 msgid "Playing level %s"
 msgstr "Spiller nivå %s"
 
-#: gnotski/gnotski.c:980
+#: gnotski/gnotski.c:978
 msgid ""
 "Klotski clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
@@ -2348,7 +2378,7 @@ msgstr ""
 "Vel, hvorfor startet du dette i det hele tatt???\n"
 "\n"
 
-#: gtali/gyahtzee.c:59 gtali/gyahtzee.c:375
+#: gtali/gyahtzee.c:59 gtali/gyahtzee.c:374
 msgid "Gnome Tali"
 msgstr "Gnome Tali"
 
@@ -2362,107 +2392,107 @@ msgstr "Datamaskinen spiller for %s"
 msgid "%s! -- You're up."
 msgstr "%s! -- Din tur."
 
-#: gtali/gyahtzee.c:295 gtali/gyahtzee.c:319 gtali/yahtzee.c:187
+#: gtali/gyahtzee.c:294 gtali/gyahtzee.c:318 gtali/yahtzee.c:187
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "Du får bare tre kast! Velg hvor du vil bruke det."
 
-#: gtali/gyahtzee.c:360
+#: gtali/gyahtzee.c:359
 msgid "Scott Heavner"
 msgstr "Scott Heavner"
 
-#: gtali/gyahtzee.c:361
+#: gtali/gyahtzee.c:360
 msgid "Orest Zborowski - Curses Version (C) 1992"
 msgstr "Orest Zborowski - Curses Versjon (C) 1992"
 
-#: gtali/gyahtzee.c:373
+#: gtali/gyahtzee.c:372
 msgid "(C) 1998 the Free Software Fundation"
 msgstr "(C) 1998 the Free Software Fundation"
 
-#: gtali/gyahtzee.c:401
+#: gtali/gyahtzee.c:400
 msgid "Cheater! Any high scores will not be recorded."
 msgstr "Juksepave! Poengsummen vil ikke bli lagret."
 
-#: gtali/gyahtzee.c:497
+#: gtali/gyahtzee.c:496
 msgid "Select dice to re-roll, press Roll!, or select score slot."
 msgstr "Velg terning som skal kastes om igjen, trykk kast!, eller velg."
 
-#: gtali/gyahtzee.c:538
+#: gtali/gyahtzee.c:537
 msgid " Roll ! "
 msgstr " Kast ! "
 
-#: gtali/setup.c:69
+#: gtali/setup.c:70
 msgid "Calculate random die throws (debug)"
 msgstr "Kalkuler vilkårlige terningkast (debug)"
 
-#: gtali/setup.c:75
+#: gtali/setup.c:76
 msgid "Delay computer moves"
 msgstr "Forsink datamaskinens trekk"
 
-#: gtali/setup.c:76
+#: gtali/setup.c:77
 msgid "Show high scores and exit"
 msgstr "Vis poengene og avslutt"
 
-#: gtali/setup.c:77
+#: gtali/setup.c:78
 msgid "Display computer thoughts"
 msgstr "Vis datamaskinens tanker"
 
-#: gtali/setup.c:78
+#: gtali/setup.c:79
 msgid "Number of computer opponents"
 msgstr "Antall datamaskinmotstandere"
 
-#: gtali/setup.c:79
+#: gtali/setup.c:80
 msgid "Number of human opponents"
 msgstr "Antall menneskelige motstandere"
 
-#: gtali/setup.c:88
+#: gtali/setup.c:89
 msgid "Current game will complete with original number of players."
 msgstr ""
 "Pågående spill vil spilles ferdig med det opprinnelige antall spillere."
 
-#: gtali/setup.c:213
+#: gtali/setup.c:214
 msgid "GTali setup"
 msgstr "GTali oppsett"
 
-#: gtali/setup.c:222
+#: gtali/setup.c:223
 msgid "Computer Opponents"
 msgstr "Datamaskinmotstandere"
 
-#: gtali/setup.c:230
+#: gtali/setup.c:231
 msgid "Delay between rolls"
 msgstr "Pause mellom omganger"
 
-#: gtali/setup.c:240
+#: gtali/setup.c:241
 msgid "Show thoughts during turn"
 msgstr "Vis tenking under tur"
 
-#: gtali/setup.c:254
+#: gtali/setup.c:255
 msgid "Number of opponents:"
 msgstr "Antall motstandere:"
 
-#: gtali/setup.c:282
+#: gtali/setup.c:283
 msgid "Human Players"
 msgstr "Menneskelige spillere"
 
-#: gtali/setup.c:292
+#: gtali/setup.c:293
 msgid "Number of players:"
 msgstr "Antall spillere:"
 
 #. --- OPTIONAL RULES FRAME ----
-#: gtali/setup.c:321
+#: gtali/setup.c:322
 msgid "Optional Rules"
 msgstr "Alternative regler"
 
-#: gtali/setup.c:331
+#: gtali/setup.c:332
 msgid "Extra Yahtzee Bonus"
 msgstr "Ekstra bonus for Yatzy"
 
 #. --- Button ---
-#: gtali/setup.c:357
+#: gtali/setup.c:358
 msgid "Enforce Joker Rules"
 msgstr "Tvungen bruke av joker-regler"
 
 #. --- PLAYER NAMES FRAME ----
-#: gtali/setup.c:372
+#: gtali/setup.c:373
 msgid "Player Names"
 msgstr "Navn på spillere"
 
@@ -3049,6 +3079,12 @@ msgstr "Hva jeg bærer"
 #: scottfree/GnomeScott.c:1511
 msgid "_New"
 msgstr "_Nytt"
+
+#~ msgid "Couldn't find pixmap file!\n"
+#~ msgstr "Kunne ikke finne bildefilen!\n"
+
+#~ msgid "Ack!  Couldn't load level file %s\n"
+#~ msgstr "Akk! Kunne ikke laste nivåfilen %s\n"
 
 #~ msgid "Could not find the '%s' theme for gnometris\n"
 #~ msgstr "Kunne ikke finne temaet '%s' for gnometris\n"
