@@ -17,7 +17,17 @@ DEFS = -DLOCALEDIR=\"$(localedir)\" -DPKGDATADIR=\"$(pkgdatadir)\" \
 	@DEFS@
 CFLAGS = -Wall @CFLAGS@
 
-freecell_LDADD = $(X_LIBS) $(GNOME_LIBS) $(GTK_LIBS) $(x_libs) $(INTLLIBS) -ldl
+if IN_GNOME_TREE
+  freecell_LDADD = $(X_LIBS) \
+	$(srcdir)/../../../libgnomeui/libgnomeui.la \
+	$(srcdir)/../../../libgnome/libgnome.la \
+	-ldl -lSM -lICE \
+	$(GTK_LIBS) $(x_libs) $(INTLLIBS)
+else
+  freecell_LDADD = $(X_LIBS) $(GNOME_LIBS) \
+	$(GTK_LIBS) $(x_libs) $(INTLLIBS)
+endif
+
 
 EXTRA_DIST = freecell.desktop
 
