@@ -9,7 +9,8 @@ helpdir = $(datadir)/gnome/help/aisleriot/C
 help_DATA = index.html intro.html glossary.html gpl.html \
 	camelot.html canfield.html clock.html doublets.html \
 	eagle-wing.html elevator.html fortunes.html klondike.html \
-	fourteen.html pileon.html auld-lang-syne.html hopscotch.html \
+	fourteen.html pileon.html auld-lang-syne.html \
+	hopscotch.html scorpion.html \
 	neighbor.html odessa.html osmosis.html spider.html \
 	yukon.html westhaven.html royal-east.html \
 	beleaguered-castle.html thirteen.html thieves.html \
@@ -25,7 +26,8 @@ help_SGML = aisleriot.sgml definitions.sgml gpl.sgml
 	bristol.sgml hopscotch.sgml union_square.sgml\
 	neighbor.sgml odessa.sgml osmosis.sgml spider.sgml \
 	yukon.sgml westhaven.sgml royal-east.sgml \
-	beleaguered-castle.sgml thirteen.sgml thieves.sgml freecell.sgml
+	beleaguered-castle.sgml thirteen.sgml thieves.sgml \
+	freecell.sgml scorpion.sgml
 
 EXTRA_DIST = $(help_DATA) $(help_SGML)
 
