@@ -42,10 +42,12 @@ extern gint      score;
 extern GtkWidget *scorew;
 extern gint      seed;
 extern GtkWidget *label;
-extern GString   *game;
+extern gchar     *game_file;
+extern gchar     *game_name;
 #endif
+gchar* game_file_to_name(const gchar* file);
 void set_score();
 void make_title();
-void eval_installed_file(char *file);
+void eval_installed_file(gchar *file);
 
 #endif

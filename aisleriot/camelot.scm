@@ -34,6 +34,7 @@
   (add-normal-slot '())           ; Slot 17
   (set! add-stage #t)
   (set! fill-count 0)
+  (list 4 5)
 )
 
 (define (button-pressed slot-id card-list)

@@ -56,6 +56,7 @@
   (add-extended-slot '() down) ; 15
   (add-blank-slot)
   (deal-initial-setup)
+  (list 8 3)
 )
 ;internal procedures/variables
 

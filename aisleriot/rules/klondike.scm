@@ -53,6 +53,7 @@
   (flip-top-card 11)
   (flip-top-card 12)
   (set! FLIP-COUNTER 0)
+  (list 7 3)
 )
 
 ;Set up the rules

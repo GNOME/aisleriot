@@ -39,101 +39,101 @@
  * Variables
  */
 
-GtkWidget *scorew;
-GtkWidget *label;
-GtkWidget *app, *playing_area, *vb, *hb;
+GtkWidget *app;
+GtkWidget *status_bar;
+GtkWidget *playing_area;
 GdkGC *draw_gc;  /* needed for tiling operations */
-GdkPixmap *surface;
+GdkPixmap *surface = NULL;
 GdkPixmap *moving_card_pixmap;
 gint score;
+GtkWidget *score_value;
 gint seed;
-GString* game;
+gchar* game_file;
+gchar* game_name;
 press_data_type* press_data = NULL; 
 
+/*
+ * This function does i18n on game files using the convention that
+ * filenames are C locale names with mechanical changes:
+ */
 
-/* paint functions */
-
-void set_score() 
+gchar* game_file_to_name (const gchar* file)
 {
-  char b [20];
+  char* p, *buf = g_strdup (g_filename_pointer(file));
 
-  sprintf (b, "%5d", score);
-  gtk_label_set(GTK_LABEL(scorew), b);
+  if ((p = strrchr (buf, '.'))) *p = '\0';
+  for(p = buf; p = strchr(p, '_'), p && *p;) *p = ' ';
+  /* FIXME : drop next hack by renaming the files */
+  buf[0] = toupper(buf[0]);
+  p = g_strdup(_(buf));
+
+  g_free(buf);
+  return p;
 }
 
-void make_title() 
+void set_score () 
 {
-  GString* title;
-  title = g_string_new(game->str);
-  if (!strcmp(".scm", (title->str + title->len - 4))) 
-	 g_string_truncate(title, title->len - 4);
-  g_string_append(title, "  --  ");
-  g_string_sprintfa(title, "%5d", seed);
+  char b [10];
+  sprintf (b, "%6d ", score);
 
-
-  gtk_window_set_title(GTK_WINDOW(app),title->str); 
+  gtk_label_set(GTK_LABEL(score_value), b);
 }
 
-void create_sol_board ()
+void make_title () 
 {
-#ifdef DEBUG
-	printf("create_sol_board\n");
-#endif
-	/* Here we create the actual playing surface */
-	gtk_widget_push_colormap (gdk_imlib_get_colormap ());
-	gtk_widget_push_visual (gdk_imlib_get_visual ());
+  gint old_w, old_h;
+  GString* title = g_string_new (game_name);
+  g_string_sprintfa (title, "  ( %d )", seed);
 
-	playing_area = gtk_drawing_area_new ();
-
-	gtk_widget_pop_visual ();
-	gtk_widget_pop_colormap ();
-
-	gtk_widget_set_events (playing_area, gtk_widget_get_events (playing_area) | GAME_EVENTS);
-  
-	gtk_box_pack_start (GTK_BOX(vb), playing_area, TRUE, TRUE, 0);
-
-	gtk_widget_realize (playing_area);
-	/* Set up the pixmaps */
-	surface 
-	  = gdk_pixmap_new (playing_area->window, 
-			    SURFACE_WIDTH, SURFACE_HEIGHT,
-			    gdk_window_get_visual (playing_area->window)->depth);
-
-	draw_gc = gdk_gc_new(surface);
-	gdk_gc_set_tile (draw_gc, get_background_pixmap());
-	gdk_gc_set_fill (draw_gc, GDK_TILED);
-
-	refresh_screen();
-  
-  
-	/* Set signals for X events... */
-	gtk_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
-			    (GtkSignalFunc) button_release_event, NULL);
-	gtk_signal_connect (GTK_OBJECT (playing_area), "motion_notify_event",
-			    (GtkSignalFunc) motion_notify_event, NULL);
-	gtk_signal_connect (GTK_OBJECT (playing_area), "button_press_event",
-			    (GtkSignalFunc) button_press_event, NULL);
-	gtk_signal_connect (GTK_OBJECT (app), "configure_event",
-			    (GtkSignalFunc) configure_event, NULL);
-
-	/* and, we're off and running... */
-	gtk_widget_show (playing_area);
+  gtk_window_set_title (GTK_WINDOW (app), title->str); 
 }
 
 /*
  * setup suff
  */
 
-GtkWidget *
-create_main_window ()
+void create_sol_board ()
 {
-  GtkWidget* retval;
-  retval = gnome_app_new ("solitaire", _("Solitaire"));
-  gtk_widget_realize (retval);
+  /* Here we create the actual playing surface */
+  gtk_widget_push_colormap (gdk_imlib_get_colormap ());
+  gtk_widget_push_visual (gdk_imlib_get_visual ());
   
-  gtk_signal_connect (GTK_OBJECT(retval), "delete_event", GTK_SIGNAL_FUNC(file_quit_callback), NULL);
-  gtk_window_set_policy (GTK_WINDOW(retval), 1, 1, 1);
-  return retval;
+  playing_area = gtk_drawing_area_new ();
+  
+  gtk_widget_pop_visual ();
+  gtk_widget_pop_colormap ();
+  
+  gtk_widget_set_events (playing_area, 
+			 gtk_widget_get_events (playing_area) | GAME_EVENTS);
+  
+  gnome_app_set_contents (GNOME_APP (app), playing_area);
+  
+  gtk_widget_realize (playing_area);
+
+  draw_gc = gdk_gc_new(playing_area->window);
+  gdk_gc_set_tile (draw_gc, get_background_pixmap());
+  gdk_gc_set_fill (draw_gc, GDK_TILED);
+  
+  /* Set signals for X events... */
+  gtk_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
+		      (GtkSignalFunc) button_release_event, NULL);
+  gtk_signal_connect (GTK_OBJECT (playing_area), "motion_notify_event",
+		      (GtkSignalFunc) motion_notify_event, NULL);
+  gtk_signal_connect (GTK_OBJECT (playing_area), "button_press_event",
+		      (GtkSignalFunc) button_press_event, NULL);
+  gtk_signal_connect (GTK_OBJECT (app), "configure_event",
+		      (GtkSignalFunc) configure_event, NULL);
+}
+
+void create_main_window ()
+{
+  app = gnome_app_new ("solitaire", _("Solitaire"));
+  gtk_widget_realize (app);
+
+  gtk_signal_connect (GTK_OBJECT(app), "delete_event", 
+		      GTK_SIGNAL_FUNC(file_quit_callback), NULL);
+
+  gtk_window_set_policy (GTK_WINDOW(app), TRUE, TRUE, FALSE);
 }
 
 /*
@@ -159,29 +159,16 @@ void eval_installed_file (char *file)
 
 void main_prog(int argc, char *argv[])
 {
+  GtkWidget *score_label, *score_box;
   
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  /*  printf(_("Done.\ninitializing gnome/gdk...\n"));*/
   gnome_init ("aisleriot", NULL, argc, argv, 0, NULL);
-  /*  printf(_("Done.\n"));*/
 
-  /* generic startup... */
-  /*  printf(_("Creating App...\n"));*/
   seed = time(NULL);
   srandom(seed);
-  seed = random();
-  srandom(seed);
-  app = create_main_window ();
-  vb = gtk_vbox_new (FALSE, 0);
-  hb = gtk_hbox_new (FALSE, 0);
-  gnome_app_set_contents (GNOME_APP (app), vb);
-  press_data = malloc(sizeof(press_data_type));
-  press_data->moving_cards = NULL;
 
-  /* load files as needed */
-  load_pixmaps(app);
   /* Scheme stuff... */
   /* FIXME: On 1997-11-14, gh_enter stopped loading `icd-9/boot-9.scm'.
      In my copy of guile, the first define in boot-9.scm is for "provide",
@@ -205,37 +192,37 @@ void main_prog(int argc, char *argv[])
   gh_new_procedure("set-lambda", scm_set_lambda, 8, 0, 0);
   gh_new_procedure1_0("random", scm_random);
   eval_installed_file ("sol.scm");
-  eval_installed_file ("klondike.scm");
-  game = g_string_new("klondike.scm");
-  gh_apply(game_data->start_game_lambda, SCM_EOL);
-  create_sol_board();
 
-  /* create the menus and title */
-  create_menus(GNOME_APP(app));
-  make_title();
+  create_main_window ();
 
-  /* create the scoring widget */
-  label = gtk_label_new (_("Score: "));
-  scorew = gtk_label_new ("0");
-  
-  /* put everything together */
-  gtk_box_pack_end   (GTK_BOX(hb), scorew, FALSE, FALSE, 10);
-  gtk_box_pack_end   (GTK_BOX(hb), label,  0, 0, 0);
-  gtk_box_pack_start (GTK_BOX(vb), hb, FALSE, FALSE, 0);
+  load_pixmaps (app);
+ 
+  create_sol_board ();
+  create_menus (GNOME_APP(app));
 
-  /* and we're up...*/
-  gtk_widget_set_usize (playing_area, SURFACE_WIDTH, SURFACE_HEIGHT);
+  score_box = gtk_hbox_new(0, FALSE);
+  score_label = gtk_label_new (_("Score: "));
+  gtk_box_pack_start (GTK_BOX(score_box), score_label, FALSE, FALSE, 0);
+  score_value = gtk_label_new ("     0 ");
+  gtk_box_pack_start (GTK_BOX(score_box), score_value, FALSE, FALSE, 0);
+  gtk_widget_show (score_label);
+  gtk_widget_show (score_value);
+  gtk_widget_show (score_box);
+
+  status_bar = gnome_appbar_new (FALSE, TRUE, TRUE);
+  gtk_box_pack_end (GTK_BOX(status_bar), score_box, FALSE, FALSE, 0);
+  gnome_app_set_statusbar (GNOME_APP (app), status_bar);
+
+  press_data = malloc(sizeof(press_data_type));
+  press_data->moving_cards = NULL;
+
+  game_load_game_callback (app, "klondike.scm" );
+
   gtk_widget_show (app);
-  gtk_widget_show (hb);
-  gtk_widget_show (vb);
-  gtk_widget_show (GTK_WIDGET(label));
-  gtk_widget_show (GTK_WIDGET(scorew));
 
-  /* ...and running */
   gtk_main ();
 
   /* clean up (needs some work ): */
-  /*  printf("cleaning up...\n");*/
   delete_surface();
   free(press_data);
 }
@@ -243,7 +230,6 @@ void main_prog(int argc, char *argv[])
 
 int main (int argc, char *argv [])
 {
-  /*  printf("starting guile...\n");*/
   gh_enter(argc, argv, main_prog);
   return 0;
 }

@@ -27,7 +27,7 @@ GdkBitmap *mask;
 
 GdkPixmap* get_card_picture(gint suit, gint value ) {
   GdkPixmap *ret;
-  gdk_card_image(13*((4-suit)%4)+value-1, &ret, &mask); 
+  gdk_card_image(13*((4-suit)%4)+value-1, &ret, NULL); 
 
   return ret;
 }
@@ -90,11 +90,13 @@ GdkPixmap* get_pixmap (char* filename)
 
 void load_pixmaps(GtkWidget* app) 
 {
+
   slot_pixmap = get_pixmap ("cards/Cardback4.xpm");
   card_back_pixmap = get_pixmap ("cards/Cardback1.xpm");
   default_background_pixmap = get_pixmap ("cards/Baize.xpm");
 
   gdk_card_image_init(app->window);
+  gdk_card_image(0, NULL, &mask); 
 }
 
 void add_card(GList** card_list, hcard_type temp_card) {

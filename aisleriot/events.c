@@ -216,15 +216,22 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
 gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
 
-  if (surface) 
+  if(surface) {
+    gint old_w, old_h;
+
+    gdk_window_get_size(surface, &old_w, &old_h);
+    if(old_w == event->width && old_h == event->height)
+      return TRUE;
     gdk_pixmap_unref(surface);
+  }
+
   surface =
-    gdk_pixmap_new(playing_area->window, event->width, event->height,
-		   gdk_window_get_visual (playing_area->window)->depth);
+    gdk_pixmap_new (playing_area->window, event->width, event->height,
+		    gdk_window_get_visual (playing_area->window)->depth);
   
   refresh_screen();
-  return TRUE;
 
+  return TRUE;
 }
 
 gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event) {

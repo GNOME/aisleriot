@@ -48,7 +48,7 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
   (deal-initial-setup)
-  
+  (list 10 4)  
 )
 ;internal procedures/variables
 (define DEAL_COUNTER 1)

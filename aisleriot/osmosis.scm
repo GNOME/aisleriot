@@ -45,6 +45,7 @@
   (deal-cards 8 '(0 2 4 6 0 2 4 6 0 2 4 6))
   (deal-cards-face-up 8 '(0 2 4 6 1))
   (set! FLIP-COUNTER 0)
+  (list 6 5)
 )
   
 (define (button-pressed slot-id card-list)

@@ -1,3 +1,19 @@
+Fri Sep 18 Felix Bellaby <felix@pooh.u-net.com>
+	* sol.c: (game_file_to_name) i18n game file name converter.
+	(main_prog) added status bar, removed redundant vbox and hbox.
+	(make_title) replace hyphens with parentheses.
+	(create_main_window) auto shrink disabled.
+	* sol.h: game_file_to_name made available. 
+	* menu.c: (game_load_game_callback) i18n used on game filenames, 
+	board size now dictated by game.
+	* klondike.scm: (new_game) return size of board.
+	* camelot.scm: (new_game) return size of board.
+	* odessa.scm: (new_game) return size of board.
+	* osmosis.scm: (new_game) return size of board.
+	* spider.scm: (new_game) return size of board.
+	* freecell.scm: (new_game) return size of board.
+	* event.c (configure_event) do nothing unless size has changed.
+	
 Wed Sep  9 Felix Bellaby <felix@pooh.u-net.com>
 	* draw.c: substantially rewritten to use a single pixmap - surface -
 	for double buffering and rationalise the drawing code.

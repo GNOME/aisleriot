@@ -114,17 +114,30 @@ int game_hint_callback (GtkWidget *app, void *data)
   return TRUE;
 }
 
-int game_load_game_callback (GtkWidget *app, void *data )
+int game_load_game_callback (GtkWidget *app, void *file )
 {
-  score = 0;
-  eval_installed_file((char*) data);
-  g_string_assign(game, (char*) data);
+  SCM size;
+  gint old_w, old_h, min_w, min_h;
+
+  eval_installed_file((char*) file);
+  game_file = file;
+  game_name = game_file_to_name((char*) file);
   seed = random();
-  srandom(seed);
-  gh_apply(game_data->start_game_lambda, SCM_EOL);
-  refresh_screen();
-  
+  score = 0;
+  set_score();
+  size = gh_apply(game_data->start_game_lambda, SCM_EOL);
+
+  min_w = gh_scm2int(gh_car(size))*get_horiz_offset() + 2*get_horiz_start();
+  min_h = gh_scm2int(gh_cadr(size))*get_vert_offset() + 2*get_vert_start();
+
+  gdk_window_get_size(playing_area->window, &old_w, &old_h);
+  gtk_widget_set_usize (playing_area, min_w, min_h);
+
+  if(old_w >= min_w && old_h >= min_h)
+    refresh_screen();
+
   make_title();
+
   return TRUE;
 }
 
@@ -134,7 +147,6 @@ int file_new_game_callback (GtkWidget *app, void *data )
   set_score();
   seed = random();
   srandom(seed);
-
   gh_apply(game_data->start_game_lambda, SCM_EOL);
   refresh_screen();
 
