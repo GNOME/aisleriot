@@ -107,7 +107,22 @@ int game_hint_callback (GtkWidget *app, void *data)
 	 show_hint_dialog(_((char*) hint_message));
   }
   else if (hint_type == 3) {
-	 /* Deal a new card <from slot A> */
+	 int offset = strlen(_("Move the "));
+	 /* Move the 'A' on 'B' */
+	 temp_string = gh_scm2newstr(gh_cadr(hint),NULL);
+	 strcpy(hint_message, _("Move the "));
+	 strcpy(hint_message + offset, temp_string);
+	 offset += strlen(temp_string);
+	 free (temp_string);
+
+	 temp_string = gh_scm2newstr(gh_caddr(hint),NULL);
+	 strcpy(hint_message+offset, _(" "));
+	 offset += strlen(_(" "));
+	 strcpy(hint_message+offset, temp_string);
+	 offset += strlen(temp_string);
+	 free (temp_string);
+	 strcpy(hint_message+offset, _("."));
+	 show_hint_dialog(_((char*) hint_message));
   }
   else {
 	 show_hint_dialog(_("This game is unable to provide a hint."));
