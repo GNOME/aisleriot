@@ -266,6 +266,10 @@
 	((= slot-id 4)
 	 (if (empty-slot? 3)
 	     (flip-top-card 2)
+	     ))
+	((= slot-id 3)
+	 (if (empty-slot? 4)
+	     (flip-top-card 2)
 	     ))))
 
 (define (button-released start-slot card-list end-slot)

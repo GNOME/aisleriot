@@ -268,6 +268,17 @@
 	(#t
 	 (check-to-foundations (+ 1 slot-id)))))
 
+(define (check-to-tableaus slot-id)
+  (cond ((>slot-id 19)
+	 #f)
+	((= slot-id 2)
+	 (check-to-tableaus 6))
+	((or (empty-slot? slot-id) 
+	     (not (is-visible? (get-top-card slot-id))))
+	 (check-to-tableaus (+ 1 slot-id)))
+	(#t
+	 (check-to-tableaus (+ 1 slot-id)))))
+
 (define (get-hint)
   (or (check-to-foundations 0)
       (dealable?)))
