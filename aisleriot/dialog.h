@@ -11,7 +11,7 @@ extern GtkWidget* dialog_box;
 int hide_box_callback (GtkWidget *app, void *data );
 void show_game_over_dialog(gboolean);
 void show_load_game_dialog();
-
+void show_hint_dialog(char*);
 
 
 #endif

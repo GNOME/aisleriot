@@ -55,3 +55,14 @@ void show_game_over_dialog(gboolean won) {
   gtk_widget_show(game_over_dialog_box);
 }
 
+
+void show_hint_dialog(char* message) {
+  GtkWidget* hint_dialog;
+
+  hint_dialog = gnome_messagebox_new (message,
+												  GNOME_MESSAGEBOX_QUESTION,
+												  _("Ok"), NULL);
+	GTK_WINDOW(hint_dialog)->position = GTK_WIN_POS_MOUSE;
+	gnome_messagebox_set_modal (GNOME_MESSAGEBOX (hint_dialog));
+	gtk_widget_show (hint_dialog);
+}

@@ -55,10 +55,25 @@
 				 #t
 				 #f)))))
 
+(define (num-in-a-row top-card rest-slot)
+  (if (eq? '() rest-slot)
+		0
+		(if (and (eq? 1 (abs (- (get-value top-card)
+										(get-value (car rest-slot)))))
+					(eq? (get-suit top-card) (get-suit (car rest-slot))))
+			 (+ 1 (num-in-a-row (car rest-slot) (cdr rest-slot)))
+			 0)))
 
+(define (extract-score cards find-card back-cards)
+  (if (cards-eq? (car cards) find-card)
+		(+ 1 
+			(num-in-a-row find-card back-cards)
+			(num-in-a-row find-card (cdr cards)))
+		(extract-score (cdr cards) find-card (cons (car cards) back-cards))))
+		
 (define (complete-transaction start-slot card-list end-slot)
-  (add-to-score! 1)
   (move-n-cards! start-slot end-slot card-list)
+  (add-to-score! (extract-score (get-cards end-slot) (car (reverse card-list)) '()))
   (if (not (empty-slot? start-slot)) 
       (make-visible-top-card start-slot)
       #f)
@@ -193,12 +208,11 @@
 			  (= 13 (list-length (get-cards 10))))
 		#t
 		#f))
-(define (get-hint ugh)
-  (let ((hint (game-over)))
-	 (if hint
-		  (display hint)
-		  #f)))
 
+(define (get-hint ugh)
+  (let ((hint (game-over #t)))
+	 (display hint)(newline)
+	 (list 1 (get-name (make-card (+ -1 (get-value (car hint))) (get-suit (car hint)))) (get-name (car hint)))))
 
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
 

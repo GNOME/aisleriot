@@ -38,6 +38,66 @@ int file_quit_callback (GtkWidget *app, void *data )
   
   return TRUE;
 }
+int game_hint_callback (GtkWidget *app, void *data)
+{
+  SCM hint;
+  int hint_type; 
+  char hint_message[100]; //GString appears to be broken?  hack for now...
+  char* temp_string;
+
+  /* check to see if the game is over... */
+  hint = gh_apply(game_data->game_over_lambda, gh_cons(SCM_EOL,SCM_EOL));
+
+  if (!gh_scm2bool(hint)) {
+	 show_hint_dialog(_("The game is over.\nNo hints are available"));
+	 return TRUE;
+  }  
+
+  /* get the hint... */
+  hint = gh_apply(game_data->hint_lambda, gh_cons(SCM_EOL,SCM_EOL));
+
+  if (!gh_scm2bool(hint)) {
+	 show_hint_dialog(_("This game does not have hint support yet."));
+	 return TRUE;
+  }
+  hint_type = (gh_scm2int(gh_car(hint)));
+  if (hint_type == 0) {
+	 /*	 /* 'A' (not recommended, as i18n is less likely to work... */
+	 /*	 temp_string = gh_scm2newstr(gh_cadr(hint));
+			 hint_message = g_string_new(temp_string);
+			 free (temp_string);
+			 show_hint_dialog(_(hint_message));*/
+  }
+  else if (hint_type == 1) {
+	 int offset = strlen(_("Move the "));
+	 /* Move the 'A' on the 'B' */
+	 /* 'A' (not recommended, as i18n is less likely to work... */
+	 temp_string = gh_scm2newstr(gh_cadr(hint),NULL);
+	 strcpy(hint_message, _("Move the "));
+	 strcpy(hint_message + offset, temp_string);
+	 offset += strlen(temp_string);
+	 free (temp_string);
+
+	 temp_string = gh_scm2newstr(gh_caddr(hint),NULL);
+	 strcpy(hint_message+offset, _(" on the "));
+	 offset += strlen(_(" on the "));
+	 strcpy(hint_message+offset, temp_string);
+	 offset += strlen(temp_string);
+	 free (temp_string);
+	 strcpy(hint_message+offset, _("."));
+	 show_hint_dialog(_((char*) hint_message));
+  }
+  else if (hint_type == 2) {
+	 /* Move the 'A' on slot 'B' */
+  }
+  else if (hint_type == 3) {
+	 /* Deal a new card <from slot A> */
+  }
+  else {
+	 show_hint_dialog(_("This game is unable to provide a hint."));
+  }
+  return TRUE;
+}
 
 int game_load_game_callback (GtkWidget *app, void *data )
 {
@@ -91,6 +151,12 @@ GnomeUIInfo variation_menu[] = {
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 
+GnomeUIInfo game_menu[] = {
+  {GNOME_APP_UI_ITEM, N_("Hint"), NULL, game_hint_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+};
 GnomeUIInfo help_menu[] = {
   {GNOME_APP_UI_ITEM, N_("About..."), NULL, help_about_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
@@ -110,7 +176,9 @@ GnomeUIInfo file_menu[] = {
 };
 
 GnomeUIInfo main_menu[] = {
-  {GNOME_APP_UI_SUBTREE, N_("Game"), NULL, file_menu, NULL, NULL,
+  {GNOME_APP_UI_SUBTREE, N_("File"), NULL, file_menu, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_SUBTREE, N_("Game"), NULL, game_menu, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   {GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},

@@ -76,6 +76,33 @@
 (define (get-suit card) 
   (cadr card))
 
+(define (get-value-name value)
+  (cond ((eq? value ace) "ace")
+		  ((eq? value 2) "two")
+		  ((eq? value 3) "three")
+		  ((eq? value 4) "four")
+		  ((eq? value 5) "five")
+		  ((eq? value 6) "six")
+		  ((eq? value 7) "seven")
+		  ((eq? value 8) "eight")
+		  ((eq? value 9) "nine")
+		  ((eq? value 10) "ten")
+		  ((eq? value jack) "jack")
+		  ((eq? value queen) "queen")
+		  ((eq? value king) "king")
+		  (#t "Unknown value")))
+
+(define (get-suit-name suit)
+  (cond ((eq? suit club) "clubs")
+		  ((eq? suit spade) "spades")
+		  ((eq? suit heart) "hearts")
+		  ((eq? suit diamond) "diamonds")
+		  (#t "Unknown suit")))
+
+(define (get-name card)
+  (display "in get-name of ")(display card)(newline)
+  (string-append (get-value-name (get-value card)) " of "(get-suit-name (get-suit card))))
+
 ;color handling
 (define (get-color card)
   (cond ((eq? (get-suit card) club) black)
@@ -185,6 +212,10 @@
 (define (add-cards! slot-id cards)
   (let ((slot (get-slot slot-id)))
 	 (set-cards! slot-id (append cards (get-cards slot)))))
+
+(define (cards-eq? card1 card2)
+  (and (eq? (get-value card1) (get-value card2))
+		 (eq? (get-suit card1) (get-suit card2))))
 
 (define (remove-card slot-id)
   (let ((slot (get-slot slot-id)))
