@@ -1,31 +1,67 @@
-For the next release, so I don't forget.
+gnome-games "The Freecell Players Will Lynch Me" 2.3.2
 
-Feature-ish things:
+There have been some major changes with gnome-games. Gnobots2 and
+Gnibbles are back, but Freecell has been removed. There are also 30%
+fewer bugs than in 2.3.1.
 
-* The Gnomine window no longer shrinks when the "Press to resume button comes 
-  up".
-* Reduced the size of the graphics used for gtali by 100k. There is no
-  perceptible loss of image quality and it downloads twenty seconds quicker
-  if you're stuck with a 56k modem..
-* The number of dialogs that pop up and ask inane questions should have dropped.
+Freecell addicts shouldn't panic: there is still a Freecell icon.
+It links directly to the AisleRiot version of freecell. There are two
+features that are known to be missing:
+ 1) There is no score dialog. If there is demand I will write a new
+    one for AisleRiot.
+ 2) The translations will be marginally worse. AisleRiot has some 
+    "interesting" issues regarding scheme and gettext. The fundamental 
+    problem has been resolved, but none of the issues it caused have
+    been fixed yet, this will happen in 2.3.3.
+If any other favourite feature of freecell is missing, file a bug report.
 
-Bug fixes of course. Lots of them:
-* i18n stuff pointed out by Christian Rose.
-* HIG stuff pointed out by Gregory Merchan.
-* Limited the number of mines in Gnomine to the field size minus two. This
-  prevents some odd behaviour.
-* Build fixes for NetBSD.
-* Fixed the broken desktop file for gnotravex (noticed ten seconds after
-  uploading 2.3.1).
-* Fixed the gnomine high scores so that the record large and small scores 
-  again.
-* Various minor AisleRiot fixes.
+The source for xbill and freecell are still available in the CVS
+module gnome-games-deprecated. They are not currently buildable. Xbill
+is also available (in a usable form) at www.xbill.org.
 
-Some things missing from the 2.3.1 announcement (all due to Ross):
+Here are the major changes:
 
-* Build fixes for Sun
-* Hopefully gnome-stones is more responsive
-* Fix Agnes hints in Aisleriot
+aisleriot: 
+        Gettext is now called from within scheme. There is no real
+        change yet, but we should be able to improve the
+        translations in the future.
+        If --variation is used then it is only applied to that
+        instance of the program.
+ 
+gataxx: 
+        It actually works now. At least we know the sanity checks
+        work, pity the schema wasn't sane.
+
+gdk-card-image: 
+        The library has been moved to its own directory. Build
+        problems on *BSD should now be resolved.
+
+gnome-stones: 
+        HIG cleanups.
+
+gnomine:
+        Improvements to the contrast between cleared and uncleared
+        cells. The window doesn't resize when it looses focus.
+        Also added checks to limit the number of mines to the field size.
+
+gnotravex: 
+        A tile corruption bug has been fixed. Gnotravex is now bug-free (TM).
+
+gtali:  The binary is now 100k lighter thanks to careful use of
+        colour-reduction.
+
+libgames-support: 
+        HIG and i18n fixups.
+
+mahjongg:  
+        HIG cleanups.
+
+same-gnome: 
+        Cleaner preferences dialog.
+
+There has also been an effort to limit the number of dialog boxes
+asking "Are you sure ...". This is an ongoing project.
+
 
 gnome-games "Nothing to See Here" 2.3.1
 =======================================
