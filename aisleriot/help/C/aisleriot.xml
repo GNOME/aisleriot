@@ -6,7 +6,7 @@
 <!ENTITY bakers-dozen SYSTEM "bakers_dozen.xml">
 <!ENTITY bakers-game SYSTEM "bakers_game.xml">
 <!ENTITY beleaguered-castle SYSTEM "beleaguered_castle.xml">
-<!-- <!ENTITY block-ten SYSTEM "block_ten.xml"> -->
+<!ENTITY block-ten SYSTEM "block_ten.xml">
 <!ENTITY bristol SYSTEM "bristol.xml">
 <!ENTITY camelot SYSTEM "camelot.xml">
 <!ENTITY canfield SYSTEM "canfield.xml">
@@ -73,9 +73,9 @@
 <!ENTITY zebra SYSTEM "zebra.xml">
 <!ENTITY definitions SYSTEM "definitions.xml">
 <!ENTITY legal SYSTEM "legal.xml">
-<!ENTITY appversion "2.0">
-<!ENTITY manrevision "2.0">
-<!ENTITY date "February 17 2002">
+<!ENTITY appversion "2.3">
+<!ENTITY manrevision "2.3">
+<!ENTITY date "June 2003">
 <!ENTITY app "<application>AisleRiot</application>">
 <!ENTITY appname "AisleRiot">
 ]>
@@ -89,10 +89,10 @@
 -->
 
 <!-- =============Document Header ============================= -->
-<book id="index" lang="en">
+<article id="index" lang="en">
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
-  <bookinfo>
+  <articleinfo>
     <title>&app; Manual V&manrevision;</title>
 
     <copyright>
@@ -170,22 +170,73 @@
       </para>
 <!-- Translators may also add here feedback address for translations -->
     </legalnotice> 
-  </bookinfo>
+  </articleinfo>
 
-<!--  <indexterm zone="index"> 
+  <indexterm zone="index"> 
     <primary>AisleRiot</primary> 
   </indexterm> 
--->
 
 <!-- ============= Document Body ============================= -->
 <!-- ============= Introduction ============================== -->
-  <preface id="intro">
+<sect1 id="intro">
     <title>Introduction to AisleRiot</title>
     <para>
 AisleRiot (also known as Solitaire or sol) is a collection of card games 
 which are easy to play with the aid of a mouse. The rules for the games have 
-been coded for your pleasure in the GNOME scripting language (Scheme).</para>
-  </preface>
+been coded for your pleasure in the GNOME scripting language (Scheme).
+</para>
+</sect1>
+
+<sect1 id="general-information">
+<!-- <chapterinfo>
+  <copyright>
+   <year>2002</year>
+   <holder>Telsa Gwynne</holder>
+  </copyright>
+  <author>
+   <firstname>Telsa</firstname>
+   <surname>Gwynne</surname>
+  </author>
+  <address>
+   <email>hobbit@aloss.ukuu.org.uk</email>
+  </address>
+ </chapterinfo> -->
+  
+
+
+ <title>General information</title>
+
+ <para>
+  Moving the cards is reasonably obvious. Assuming you have a 
+  right-handed mouse, left-click on a card and drag it somewhere.
+  Release the mouse button to deposit the card.
+ </para>
+ <para>
+  If a card can be moved to the foundation(s), you do not need to
+  drag it. You can double-click on it and it will move. If a sequence
+  of cards can be moved to the foundations, you can generally move
+  the sequence as one move.
+ </para>
+ <para>
+  Double clicking a card will send it to a foundation, if that is
+  possible. This is useful for cleaning up large numbers of cards at
+  the end of a successful game.
+ </para>
+ <para>
+  In games which have a stock pile you can redeal it by clicking on
+  the empty space where it was. Be warned that some games only let you
+  do this a limited number of time. Watch for the Redeals Left message
+  at the bottom of the window.
+ </para>
+ <para>
+  A useful tip to know is that right-clicking on a face-up card
+  which is partially obscured by a card laid over it will raise
+  it so that you can see what it is.
+ </para>
+</sect1>
+
+<sect1 id="games">
+    <title>The Games</title>
   &agnes;
   &auld-lang-syne;
   &bakers-dozen;
@@ -255,8 +306,10 @@ been coded for your pleasure in the GNOME scripting language (Scheme).</para>
   &yield;
   &yukon;
   &zebra;
-  <glossary id="glossary">
+</sect1>
+    <glossary id="glossary">
+       <title>Glossary</title>
     &definitions;
-  </glossary>
-</book>
+    </glossary>
+</article>
 

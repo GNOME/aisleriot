@@ -118,17 +118,15 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   hslot_type hslot;
   gint cardid;
   gboolean double_click;
-  
-  /* We only want first mouse click*/
-  if (event->button != 1)
-	  return TRUE;
+
+  if (event->button != 1 && event->button != 3)
+    return TRUE;
   
   /* ignore the gdk synthetic click events */
   if (event->type != GDK_BUTTON_PRESS)
     return TRUE;
   
-  if (press_data->status == STATUS_IS_DRAG ||
-      (press_data->status == STATUS_SHOW || press_data->status == STATUS_IS_DRAG))
+  if (press_data->status == STATUS_SHOW || press_data->status == STATUS_IS_DRAG)
     return TRUE;
 
   slot_pressed(event->x, event->y, &hslot, &cardid);
@@ -141,7 +139,8 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
    * cards and a double-click on one. */
   double_click = (g_timer_elapsed(click_timer,NULL) < dbl_click_time)
     && (last_cardid == cardid)
-    && (last_hslot->id == hslot->id);
+    && (last_hslot->id == hslot->id)
+    && (event->button != 3);
   g_timer_start(click_timer);
   slot_pressed(event->x, event->y, &last_hslot, &last_cardid);
 
@@ -149,17 +148,16 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   press_data->yoffset = event->y;
   press_data->hslot = hslot;
   press_data->cardid = cardid;
-  if (!(press_data->status == STATUS_CLICK && double_click)) {
-    press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
-  }
-  if (cardid > 0 && press_data->status == STATUS_NONE) {
+
+  if (cardid > 0 && (press_data->status == STATUS_NONE || press_data->status == STATUS_CLICK)
+      && event->button == 3) {
     hcard_type card = g_list_nth(hslot->cards, cardid - 1)->data;
-    
+
     if (card->direction == UP) {      
       guint delta = hslot->exposed - (hslot->length - cardid) - 1;
       int x = hslot->x + delta * hslot->dx;
       int y = hslot->y + delta * hslot->dy;
-      
+
       press_data->status = STATUS_SHOW;
       press_data->moving_pixmap = get_card_picture (card->suit, card->value);
       press_data->moving_mask = mask;
@@ -172,8 +170,13 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       gdk_window_move(press_data->moving_cards, x, y); 
       gdk_window_show(press_data->moving_cards);
     }
+    return TRUE;
   } 
-  else if (double_click) {
+  
+  if (!(press_data->status == STATUS_CLICK && double_click)) {
+    press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
+  }
+  if (double_click) {
     press_data->status = STATUS_NONE;
     gh_call2 (gh_eval_str ("record-move"), gh_long2scm (-1),
 	      SCM_EOL);
@@ -191,18 +194,20 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
 gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
-  if (event->button != 1) return TRUE;
-  switch (press_data->status) {
-  case STATUS_IS_DRAG:
-    press_data->status = STATUS_NONE;
-    drop_moving_cards(event->x, event->y);
-    break;
-    
-  case STATUS_SHOW:
+  if (event->button == 3 && press_data->status == STATUS_SHOW) {
     press_data->status = STATUS_NONE;
     gdk_window_hide(press_data->moving_cards);
     press_data->moving_pixmap = NULL;
     press_data->moving_mask = NULL;
+    return TRUE;
+  }
+
+  if (event->button != 1)
+    return TRUE;
+  switch (press_data->status) {
+  case STATUS_IS_DRAG:
+    press_data->status = STATUS_NONE;
+    drop_moving_cards(event->x, event->y);
     break;
     
   case STATUS_MAYBE_DRAG:
@@ -228,9 +233,7 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
 gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 {
-/*g_print ("move\n");*/
   if (press_data->status == STATUS_IS_DRAG) {
-/*g_print ("keep movin\n");*/
     gdk_window_move(press_data->moving_cards,  
 		    event->x - press_data->xoffset,
 		    event->y - press_data->yoffset);
@@ -243,7 +246,6 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
     hslot_type hslot = press_data->hslot;
     GList* glist = g_list_nth(hslot->cards, press_data->cardid - 1); 
     SCM cardlist = SCM_EOL;
-/*g_print ("maybe move\n");*/
     
     for (; glist; glist = glist->next)
       cardlist = gh_cons(make_card((hcard_type)glist->data), cardlist);
