@@ -101,7 +101,8 @@
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
-  (and (is-visible? (car card-list))
+  (and (not (empty-slot? slot-id))
+       (is-visible? (car card-list))
        (= (length card-list) 1)))
 
 (define (check-for-flips slot-id)

@@ -63,6 +63,7 @@ types_DATA  = 		\
 	spider.scm	\
 	thieves.scm     \
 	thirteen.scm	\
+	union_square.scm \
 	yukon.scm
 
 cardimage_DATA = baize.png splash.png

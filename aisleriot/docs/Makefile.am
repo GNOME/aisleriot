@@ -12,7 +12,7 @@ help_DATA = index.html intro.html glossary.html gpl.html \
 	fourteen.html pileon.html auld-lang-syne.html hopscotch.html \
 	neighbor.html odessa.html osmosis.html spider.html yukon.html \
 	beleaguered-castle.html thirteen.html thieves.html \
-	freecell.html bristol.html\
+	freecell.html bristol.html union-square.html \
 	camelot-goal.gif clock-rules.gif docbook.css topic.dat
 
 # These are the sources:
@@ -21,7 +21,7 @@ help_SGML = aisleriot.sgml definitions.sgml gpl.sgml
 	camelot.sgml canfield.sgml clock.sgml doublets.sgml \
 	eagle-wing.sgml elevator.sgml fortunes.sgml pileon.sgml \
 	fourteen.sgml klondike.sgml auld-lang-syne.sgml \
-	bristol.sgml hopscotch.sgml \
+	bristol.sgml hopscotch.sgml union_square.sgml\
 	neighbor.sgml odessa.sgml osmosis.sgml spider.sgml yukon.sgml \
 	beleaguered-castle.sgml thirteen.sgml thieves.sgml freecell.sgml
 
