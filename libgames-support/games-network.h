@@ -3,8 +3,8 @@
 
 extern char *game_server;
 extern guint whose_turn;
-const char *player_name;
-const char *opponent_name;
+extern const char *player_name;
+extern const char *opponent_name;
 extern guint game_in_progress;
 
 typedef struct {
