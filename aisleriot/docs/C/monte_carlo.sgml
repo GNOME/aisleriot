@@ -1,0 +1,80 @@
+<chapter id="monte-carlo">
+<docinfo>
+  <copyright>
+   <year>2001</year>
+   <holder>Rosanna Yuen</holder>
+  </copyright>
+  <author>
+   <firstname>Rosanna</firstname>
+   <surname>Yuen</surname>
+  </author>
+  <address><email>zana@webwynk.net</email></address>
+</docinfo>
+
+<title>Monte Carlo</title>
+  <para>written by Rosanna Yuen</para>
+  <bridgehead>Setup</bridgehead>
+
+  <informaltable>
+    <tgroup cols="2">
+      <tbody>
+	<row>
+	  <entry>Type of Deck</entry>
+	  <entry>Standard Deck</entry>
+	</row>
+	<row>
+	  <entry>Stock</entry>
+	  <entry>Top left pile.  The rest of the deck is placed here after
+	    dealing the Tableau.  Cards are dealt after concatenating
+	    the Tableau onto the empty slots.</entry>
+	</row>
+	<row>
+	  <entry>Tableau</entry>
+	  <entry>Five by five grid, each capable of holding one card.
+	  One card dealt to each space at the beginning of game.  Empty
+	  spaces can be filled by moving cards from the right to the
+	  left, from the leftmost card of the row below to the rightmost
+	  space, and from the Stock to all otherwise empty spaces by
+	  clicking on the Stock.</entry>
+	</row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+
+  <bridgehead>Goal</bridgehead>
+  <para>
+    Remove all cards.
+  </para>
+  <bridgehead>Rules</bridgehead>
+  <para>
+    Cards can be removed in pairs that have the same value as long as
+    the two cards are touching horizontally, vertically, or diagonally.
+  </para>
+  <para>
+    At any point that there are empty piles in the Tableau, dealing from
+    the Stock moves all the cards already in the Tableau from the right
+    to left and moving them up a row to the far right if necessary
+    making all the empty slots at the end.  The Stock is then dealt on
+    to these empty slots.
+  </para>
+  <bridgehead>Options</bridgehead>
+  <para>None</para>
+  <bridgehead>Scoring</bridgehead>
+  <para>
+    Each pair of cards removed scores two points.
+  </para>
+  <para>
+    Maximum possible score:  52
+  </para>
+  <bridgehead>Strategy</bridgehead>
+  <para>
+    Keep an eye out as to how the Tableau will shrink when you deal.
+    Sometimes leaving pairs in will allow more pairs to become available
+    after a deal.
+  </para>
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+sgml-default-dtd-file: "/usr/lib/sgml/cdtd/docbook.ced"
+End:
+-->

@@ -61,6 +61,7 @@ types_DATA  = 		\
 	klondike.scm	\
 	lady_jane.scm	\
 	maze.scm	\
+	monte_carlo.scm \
 	neighbor.scm	\
 	odessa.scm	\
 	osmosis.scm	\

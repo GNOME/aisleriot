@@ -66,7 +66,7 @@
 
   (give-status-message)
 
-  (list 6 5))
+  (list 7 5))
 
 (define (give-status-message)
   (set-statusbar-message (get-stock-no-string)))
