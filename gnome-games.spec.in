@@ -2,19 +2,20 @@
 %define ver      	@VERSION@
 %define RELEASE 	1
 %define rel     	%{?CUSTOM_RELEASE} %{!?CUSTOM_RELEASE:%RELEASE}
-%define prefix   	/usr
+%define localstatedir	/var/lib
 
-Summary: GNOME games.
+Summary: 	GNOME games.
 Name: 		gnome-games
 Version: 	%ver
 Release: 	%rel
-Copyright: 	GPL
+License: 	GPL
 Group: 		Amusements/Games
-Source:		ftp://ftp.gnome.org/pub/GNOME/sources/gnome-games-%{PACKAGE_VERSION}.tar.gz
-BuildRoot: 	/var/tmp/gnome-games-%{PACKAGE_VERSION}-root
+Source:		ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{version}.tar.gz
+BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 URL: 		http://www.gnome.org
-Docdir: 	%{prefix}/doc
 Requires:	gnome-libs >= 1.0.60
+BuildRequires:  gnome-libs-devel >= 1.0.60
+BuildRequires:  guile-devel
 
 %description
 GNOME (GNU Network Object Model Environment) is a user-friendly set of
@@ -32,7 +33,7 @@ games libraries then you should install the gnome-games-devel package.
 %package devel
 Summary:	GNOME games development libraries.
 Group: 		Development/Libraries
-Requires:	gnome-games
+Requires:	%{name} = %{version}
 
 %description devel
 GNOME (GNU Network Object Model Environment) is a user-friendly set of
@@ -47,29 +48,6 @@ included games. You will also need to install the gnome-libs package.
 If you would like to develop addtional games that utilize the GNOME
 games libraries then you should install the gnome-games-devel package.
 
-%changelog
-* Tue Sep 28 1999 Ian Peters <itp@gnu.org>
-
-- Merged some changes from Dax Kelson <dax@gurulabs.com> to get this thing to
-  work right.
-
-* Sun Aug 01 1999 Gregory McLean <gregm@comstar.net>
-
-- Updated with better descriptions and more consistant layout.
-
-* Sat Nov 21 1998 Michael Fulbright <drmike@redhat.com>
-
-- updated for 0.30 tree
-
-* Fri Nov 20 1998 Pablo Saratxaga <srtxg@chanae.alphanet.ch>
-
-- use --localstatedir=/var/lib in config state (score files for games
-  for exemple will go there).
-
-* Mon Mar 16 1998 Marc Ewing <marc@redhat.com>
-
-- Integrate into gnome-games CVS source tree
-
 %prep
 %setup -q
 
@@ -78,8 +56,11 @@ games libraries then you should install the gnome-games-devel package.
   MYARCH_FLAGS="--host=alpha-redhat-linux"
 %endif
 
-CFLAGS="$RPM_OPT_FLAGS" ./configure --quiet $MYARCH_FLAGS --prefix=%prefix \
-	 --localstatedir=/var/lib --sysconfdir=/etc
+CFLAGS="$RPM_OPT_FLAGS" ./configure --quiet $MYARCH_FLAGS \
+    --prefix=%{_prefix} --localstatedir=%{localstatedir} \
+    --sysconfdir=%{_sysconfdir} --libdir=%{_libdir} \
+    --bindir=%{_bindir} --datadir=%{_datadir} \
+    --includedir=%{_includedir}
 
 if [ "$SMP" != "" ]; then
   make -j$SMP MAKE="make -j$SMP"
@@ -90,14 +71,22 @@ fi
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make prefix=$RPM_BUILD_ROOT%{prefix} scoredir=$RPM_BUILD_ROOT/var/lib/games sysconfdir=$RPM_BUILD_ROOT/etc install >install.log 2>&1
+make scoredir=$RPM_BUILD_ROOT%{localstatedir}/games \
+    prefix=$RPM_BUILD_ROOT%{_prefix} \
+    localstatedir=$RPM_BUILD_ROOT%{localstatedir} \
+    sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} \
+    libdir=$RPM_BUILD_ROOT%{_libdir} bindir=$RPM_BUILD_ROOT%{_bindir} \
+    datadir=$RPM_BUILD_ROOT%{_datadir} \
+    includedir=$RPM_BUILD_ROOT%{_includedir} install >install.log 2>&1
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post 
-if ! grep %{prefix}/lib /etc/ld.so.conf > /dev/null ; then
-  echo "%{prefix}/lib" >> /etc/ld.so.conf
+if ! grep %{_libdir} /etc/ld.so.conf > /dev/null ; then
+  echo "%{_libdir}" >> /etc/ld.so.conf
 fi
 
 /sbin/ldconfig
@@ -106,52 +95,84 @@ fi
 
 
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
-%attr(-, root, games) %{prefix}/bin/GnomeScott
-%attr(-, root, games) %{prefix}/bin/ctali
-%attr(-, root, games) %{prefix}/bin/freecell
-%attr(-, root, games) %{prefix}/bin/gataxx
-%attr(2111, root, games) %{prefix}/bin/glines
-%attr(2111, root, games) %{prefix}/bin/gnibbles
-%attr(2111, root, games) %{prefix}/bin/gnobots2
-%attr(2111, root, games) %{prefix}/bin/gnome-stones
-%attr(2111, root, games) %{prefix}/bin/gnome-xbill
-%attr(2111, root, games) %{prefix}/bin/gnometris
-%attr(2111, root, games) %{prefix}/bin/gnomine
-%attr(2111, root, games) %{prefix}/bin/gnotravex  
-%attr(2111, root, games) %{prefix}/bin/gnotski
-%attr(2111, root, games) %{prefix}/bin/gtali
-%attr(2111, root, games) %{prefix}/bin/gturing
-%attr(2111, root, games) %{prefix}/bin/iagno
-%attr(2111, root, games) %{prefix}/bin/mahjongg
-%attr(2111, root, games) %{prefix}/bin/same-gnome
-%attr(-, root, games) %{prefix}/bin/sol
-%config /etc/sound/events
-%{prefix}/share/gnome/apps/Games/*
-%{prefix}/share/gnibbles/*
-%{prefix}/share/gnobots2/*
-%{prefix}/share/gnome/help/*
-%{prefix}/share/gnome-stones/*
-%{prefix}/share/gturing/*
-%{prefix}/share/locale/*/*/*
-%{prefix}/share/pixmaps/*
-%{prefix}/share/sol-games/*
-%{prefix}/share/sounds/*
-%{prefix}/share/xbill/*
 
-%{prefix}/lib/lib*.so.*
-%{prefix}/lib/gnome-stones/objects/lib*.so.*
+%config(noreplace) %{_sysconfdir}/sound/events/*
+%{_datadir}/gnome/apps/Games/*
+%{_datadir}/gnibbles/*
+%{_datadir}/gnobots2/*
+%{_datadir}/gnome/help/*
+%{_datadir}/gnome-stones/*
+%{_datadir}/gturing/*
+%{_datadir}/pixmaps/*
+%{_datadir}/sol-games/*
+%{_datadir}/sounds/*
+%{_datadir}/xbill/*
+%{_libdir}/lib*.so.*
+%{_libdir}/gnome-stones/objects/lib*.so.*
+
 %defattr(-, games, games)
-/var/lib/games/*
+%{localstatedir}/games/*
+
+%defattr (-, root,games)
+%{_bindir}/GnomeScott
+%{_bindir}/ctali
+%{_bindir}/freecell
+%{_bindir}/gataxx
+%{_bindir}/sol
+
+%defattr (2555, root, games)
+%{_bindir}/glines
+%{_bindir}/gnibbles
+%{_bindir}/gnobots2
+%{_bindir}/gnome-stones
+%{_bindir}/gnome-xbill
+%{_bindir}/gnometris
+%{_bindir}/gnomine
+%{_bindir}/gnotravex  
+%{_bindir}/gnotski
+%{_bindir}/gtali
+%{_bindir}/gturing
+%{_bindir}/iagno
+%{_bindir}/mahjongg
+%{_bindir}/same-gnome
 
 %files devel
 %defattr(-, root, root)
 
-%{prefix}/lib/lib*.so
-%{prefix}/lib/*a
-%{prefix}/lib/gnome-stones/objects/lib*.so
-%{prefix}/lib/gnome-stones/objects/lib*a
-%{prefix}/include/*
+%{_libdir}/lib*.so
+%{_libdir}/*a
+%{_libdir}/gnome-stones/objects/lib*.so
+%{_libdir}/gnome-stones/objects/lib*a
+%{_includedir}/*
+
+%changelog
+* Sun Jun 24 2001  <gleblanc@peecee.linuxweasel.com>
+- removed unnecessary %defines
+
+* Tue May 22 2001 Gregory Leblanc <gleblanc@localhost.localdomain>
+- changed permissions on binaries so that they will actually run
+- replaced copyright with License
+
+* Thu Feb 22 2001 Gregory Leblanc <gleblanc@cu-portland.edu>
+- fixed hard-coded paths, and improved macros
+
+* Tue Sep 28 1999 Ian Peters <itp@gnu.org>
+- Merged some changes from Dax Kelson <dax@gurulabs.com> to get this thing to
+  work right.
+
+* Sun Aug 01 1999 Gregory McLean <gregm@comstar.net>
+- Updated with better descriptions and more consistant layout.
+
+* Sat Nov 21 1998 Michael Fulbright <drmike@redhat.com>
+- updated for 0.30 tree
+
+* Fri Nov 20 1998 Pablo Saratxaga <srtxg@chanae.alphanet.ch>
+- use --localstatedir=/var/lib in config state (score files for games
+  for exemple will go there).
+
+* Mon Mar 16 1998 Marc Ewing <marc@redhat.com>
+- Integrate into gnome-games CVS source tree
