@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2000-05-18 20:09+0300\n"
-"PO-Revision-Date: 2000-05-18 20:30+0100\n"
+"POT-Creation-Date: 2000-05-23 00:37+0300\n"
+"PO-Revision-Date: 2000-05-23 00:40+0100\n"
 "Last-Translator: Sami Pesonen <spesonen@dlc.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "Peruskortti:  Ässä"
 
 #: aisleriot/SCHEME_GAMES.h:16
 msgid "Base Card:  Jack"
-msgstr "Peruskortti:  Sotamies"
+msgstr "Peruskortti:  Jätkä"
 
 #: aisleriot/SCHEME_GAMES.h:17
 msgid "Base Card:  King"
@@ -687,7 +687,7 @@ msgstr "Uusi peli, numerolla..."
 msgid "Start a new game with a different seed"
 msgstr "Aloita uusi peli eri pelinumerolla"
 
-#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:846
 msgid "Score"
 msgstr "Pisteet"
 
@@ -723,10 +723,6 @@ msgstr "Siirrä yksi kerrallaan"
 msgid "Options"
 msgstr "Valinnat"
 
-#: freecell/src/score-dialog.c:54
-msgid "Clear"
-msgstr "Tyhjennä"
-
 #: freecell/src/score.c:56
 msgid "This session: %d%%"
 msgstr "Tämä kierros: %d%%"
@@ -759,23 +755,48 @@ msgstr "nyt: %d voittoa"
 msgid "current: %d losses"
 msgstr "nyt: %d häviötä"
 
-#: gataxx/gataxx.c:248 iagno/gnothello.c:246 same-gnome/same-gnome.c:639
-msgid "Do you really want to quit?"
-msgstr "Haluatko todella lopettaa?"
+#: freecell/src/score-dialog.c:54
+msgid "Clear"
+msgstr "Tyhjennä"
 
-#: gataxx/gataxx.c:271 gnibbles/main.c:133 iagno/gnothello.c:270
-msgid "Do you really want to end this game?"
-msgstr "Haluatko todella lopettaa tämän pelin?"
+#: gataxx/ataxx.c:133 gataxx/gataxx.c:321 gataxx/gataxx.c:663
+#: iagno/gnothello.c:320 iagno/gnothello.c:631 iagno/othello.c:212
+msgid "Dark's move"
+msgstr "Mustan siirto"
 
 #: gataxx/ataxx.c:139 gataxx/gataxx.c:319 iagno/gnothello.c:318
 #: iagno/othello.c:218
 msgid "Light's move"
 msgstr "Valkoisen siirto"
 
-#: gataxx/ataxx.c:133 gataxx/gataxx.c:321 gataxx/gataxx.c:663
-#: iagno/gnothello.c:320 iagno/gnothello.c:631 iagno/othello.c:212
-msgid "Dark's move"
-msgstr "Mustan siirto"
+#: gataxx/ataxx.c:582 iagno/othello.c:610
+msgid "Light player wins!"
+msgstr "Valkoinen voitti!"
+
+#: gataxx/ataxx.c:584 iagno/othello.c:612
+msgid "Dark player wins!"
+msgstr "Musta voitti!"
+
+#: gataxx/ataxx.c:586 iagno/othello.c:614
+msgid "The game was a draw."
+msgstr "Tasapeli."
+
+#: gataxx/ataxx.c:595 iagno/othello.c:624
+msgid "Light must pass, Dark's move"
+msgstr "Valkoisen täytyy passata, mustan siirto"
+
+#: gataxx/ataxx.c:607 iagno/othello.c:636
+msgid "Dark must pass, Light's move"
+msgstr "Mustan täytyy passata, valkoisen siirto"
+
+#: gataxx/gataxx.c:248 glines/glines.c:643 iagno/gnothello.c:246
+#: same-gnome/same-gnome.c:639
+msgid "Do you really want to quit?"
+msgstr "Haluatko todella lopettaa?"
+
+#: gataxx/gataxx.c:271 gnibbles/main.c:133 iagno/gnothello.c:270
+msgid "Do you really want to end this game?"
+msgstr "Haluatko todella lopettaa tämän pelin?"
 
 #: gataxx/gataxx.c:401 gataxx/gataxx.c:689
 msgid "gataxx"
@@ -811,26 +832,6 @@ msgstr "Tervetuloa gataxx!"
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
-
-#: gataxx/ataxx.c:582 iagno/othello.c:610
-msgid "Light player wins!"
-msgstr "Valkoinen voitti!"
-
-#: gataxx/ataxx.c:584 iagno/othello.c:612
-msgid "Dark player wins!"
-msgstr "Musta voitti!"
-
-#: gataxx/ataxx.c:586 iagno/othello.c:614
-msgid "The game was a draw."
-msgstr "Tasapeli."
-
-#: gataxx/ataxx.c:595 iagno/othello.c:624
-msgid "Light must pass, Dark's move"
-msgstr "Valkoisen täytyy passata, mustan siirto"
-
-#: gataxx/ataxx.c:607 iagno/othello.c:636
-msgid "Dark must pass, Light's move"
-msgstr "Mustan täytyy passata, valkoisen siirto"
 
 #: gataxx/properties.c:320 iagno/properties.c:357
 msgid "Players"
@@ -891,6 +892,194 @@ msgstr "Asettele lopputulos siististi"
 #: gataxx/properties.c:510 iagno/properties.c:564
 msgid "Tile set:"
 msgstr "Laatat:"
+
+#: glines/glines.c:111
+msgid "Game Over!"
+msgstr "Peli loppu!"
+
+#: glines/glines.c:113 glines/glines.c:604 glines/glines.c:627
+#: glines/glines.c:812
+msgid "Glines"
+msgstr "Glines"
+
+#. Can't go there!
+#: glines/glines.c:318
+msgid "Can't go there!"
+msgstr "Ei voi mennä sinne!"
+
+#: glines/glines.c:630
+msgid "Gnome port of the once-popular Color Lines game"
+msgstr "Gnome käännös kerran kuuluisasta Color Lines -pelistä"
+
+#: glines/glines.c:822
+msgid "Welcome to Glines!"
+msgstr "Tervetuloa Glinesiin!"
+
+#: glines/glines.c:833
+msgid "Next Balls"
+msgstr "Seuraavat pallot"
+
+#: gnibbles/gnibbles.c:96 gnibbles/gnibbles.c:113
+msgid "Couldn't find pixmap file!\n"
+msgstr "Kuvatiedostoa ei löytynyt!\n"
+
+#: gnibbles/gnibbles.c:141
+#, c-format
+msgid "Ack!  Couldn't load level file %s\n"
+msgstr "En voinut ladata tasotiedostoa %s\n"
+
+#: gnibbles/main.c:168
+msgid "Gnibbles"
+msgstr "Gnibbles"
+
+#: gnibbles/main.c:171
+msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
+msgstr ""
+"Lähetä kommentit ja vikailmoitukset (englanniksi)\n"
+"osoitteisiin sjm@acm.org, itp@acm.org"
+
+#: gnibbles/preferences.c:305
+msgid "Gnibbles Preferences"
+msgstr "Gnibbles-asetukset"
+
+#: gnibbles/preferences.c:311 gnome-stones/preferences.c:558
+#: gnomine/gnomine.c:298
+msgid "Game"
+msgstr "Peli"
+
+#: gnibbles/preferences.c:318
+msgid "Speed"
+msgstr "Nopeus"
+
+#: gnibbles/preferences.c:328
+msgid "Nibbles newbie"
+msgstr "Aloittelija"
+
+#: gnibbles/preferences.c:338
+msgid "My second day"
+msgstr "Vähän pelannut"
+
+#: gnibbles/preferences.c:348
+msgid "Not too shabby"
+msgstr "Ei turhan huono"
+
+#: gnibbles/preferences.c:359
+msgid "Finger-twitching good"
+msgstr "Salamasormi"
+
+#: gnibbles/preferences.c:376
+msgid "Starting level: "
+msgstr "Aloitustaso: "
+
+#: gnibbles/preferences.c:401
+msgid "Levels in random order"
+msgstr "Sattumanvarainen tasojärjestys"
+
+#: gnibbles/preferences.c:413
+msgid "Fake bonuses"
+msgstr "Huijausbonukset"
+
+#: gnibbles/preferences.c:425
+msgid "Sounds"
+msgstr "Äänet"
+
+#: gnibbles/preferences.c:435
+msgid "Number of players: "
+msgstr "Pelaajien määrä:"
+
+#: gnibbles/preferences.c:461 gnobots2/properties.c:859
+msgid "Graphics"
+msgstr "Grafiikka"
+
+#: gnibbles/preferences.c:468
+msgid "Board size"
+msgstr "Kentän koko"
+
+#: gnibbles/preferences.c:476
+msgid "Tiny (184x132)"
+msgstr "Pikkuruinen (184x132)"
+
+#: gnibbles/preferences.c:486
+msgid "Small (368x264)"
+msgstr "Pieni (368x264)"
+
+#: gnibbles/preferences.c:496
+msgid "Medium (460x330)"
+msgstr "Keskikokoinen (460x330)"
+
+#: gnibbles/preferences.c:506
+msgid "Large (736x528)"
+msgstr "Suuri (736x528)"
+
+#: gnibbles/preferences.c:516
+msgid "Extra large (920x660)"
+msgstr "Erittäin suuri (920x660)"
+
+#: gnibbles/preferences.c:526
+msgid "Huge (1840x1320)"
+msgstr "Valtava (1840x1320)"
+
+#: gnibbles/preferences.c:543
+#, c-format
+msgid "Worm %d"
+msgstr "Mato %d"
+
+#: gnibbles/preferences.c:556
+msgid "Up:"
+msgstr "Ylös:"
+
+#: gnibbles/preferences.c:574
+msgid "Down:"
+msgstr "Alas:"
+
+#: gnibbles/preferences.c:592
+msgid "Left:"
+msgstr "Vasemmalle:"
+
+#: gnibbles/preferences.c:610
+msgid "Right:"
+msgstr "Oikealle:"
+
+#: gnibbles/preferences.c:628
+msgid "Color:"
+msgstr "Väri:"
+
+#: gnibbles/preferences.c:637
+msgid "Red"
+msgstr "Punainen"
+
+#: gnibbles/preferences.c:643
+msgid "Green"
+msgstr "Vihreä"
+
+#: gnibbles/preferences.c:649
+msgid "Blue"
+msgstr "Sininen"
+
+#: gnibbles/preferences.c:655
+msgid "Yellow"
+msgstr "Keltainen"
+
+#: gnibbles/preferences.c:661
+msgid "Cyan"
+msgstr "Syaani"
+
+#: gnibbles/preferences.c:667
+msgid "Purple"
+msgstr "Violetti"
+
+#: gnibbles/preferences.c:673
+msgid "Gray"
+msgstr "Harmaa"
+
+#: gnibbles/preferences.c:690
+msgid "Relative movement"
+msgstr "Suhteellinen liike"
+
+#: gnibbles/scoreboard.c:49
+#, c-format
+msgid "Worm %d:"
+msgstr "Mato %d:"
 
 #: gnobots2/game.c:120
 #, c-format
@@ -1156,10 +1345,6 @@ msgstr "Asetukset"
 msgid "Graphics:"
 msgstr "Grafiikka:"
 
-#: gnibbles/preferences.c:461 gnobots2/properties.c:859
-msgid "Graphics"
-msgstr "Grafiikka"
-
 #. North West
 #: gnobots2/properties.c:874
 msgid "NW"
@@ -1361,11 +1546,6 @@ msgstr "Luolia"
 msgid "Filename"
 msgstr "Tiedosto"
 
-#: gnibbles/preferences.c:311 gnome-stones/preferences.c:558
-#: gnomine/gnomine.c:298
-msgid "Game"
-msgstr "Peli"
-
 #: gnome-stones/preferences.c:583
 msgid "Device"
 msgstr "Laite"
@@ -1406,6 +1586,80 @@ msgstr "Luola:"
 #: gnome-stones/status.c:100
 msgid "Lives:"
 msgstr "Elämiä:"
+
+#: gnometris/main.cpp:36
+msgid "Set starting level (1-10)"
+msgstr "Aloitustaso (1-10)"
+
+#: gnometris/main.cpp:36
+msgid "LEVEL"
+msgstr "LEVEL"
+
+#: gnometris/scoreframe.cpp:31
+msgid "Game Status"
+msgstr "Pelitilanne"
+
+#: gnometris/scoreframe.cpp:37
+msgid "Lines: "
+msgstr "Rivejä: "
+
+#: gnometris/scoreframe.cpp:41
+msgid "Level: "
+msgstr "Taso: "
+
+#: gnometris/tetris.cpp:80
+msgid "Gnometris"
+msgstr "Gnometris"
+
+#: gnometris/tetris.cpp:214
+#, c-format
+msgid "Could not find the '%s' theme for gnometris\n"
+msgstr "Gnometris-teemaa '%s' ei löytynyt\n"
+
+#: gnometris/tetris.cpp:432
+msgid "Gnometris setup"
+msgstr "Gnometris-asetukset "
+
+#: gnometris/tetris.cpp:457
+msgid "Number of pre-filled rows:"
+msgstr "Täytettyjen rivien määrä:"
+
+#: gnometris/tetris.cpp:478
+msgid "Density of blocks in a pre-filled row:"
+msgstr "Täytetyn rivin vahvuus:"
+
+#: gnometris/tetris.cpp:499
+msgid "Starting Level:"
+msgstr "Aloitustaso:"
+
+#: gnometris/tetris.cpp:527
+msgid "Preview next block"
+msgstr "Seuraavan palikan esikatselu"
+
+#: gnometris/tetris.cpp:533
+msgid "Random block colors"
+msgstr "Sattumanvarainen palikan väri"
+
+#: gnometris/tetris.cpp:539
+msgid "Rotate counterclockwise"
+msgstr "Pyöritä vastapäivään"
+
+#: gnometris/tetris.cpp:552
+msgid "Block Pixmap: "
+msgstr "Palikan kuvio: "
+
+#: gnometris/tetris.cpp:567
+msgid "Background Pixmap: "
+msgstr "Taustakuvio: "
+
+#: gnometris/tetris.cpp:859
+msgid ""
+"Written for my wife, Matylda\n"
+"Send comments and bug reports to: marcin.gorycki@intel.com"
+msgstr ""
+"Omistettu vaimolleni, Matyldalle\n"
+"Lähetä kommentit ja virheraportit (englanniksi) osoitteeseen: "
+"marcin.gorycki@intel.com"
 
 #: gnomine/gnomine.c:42 gnomine/gnomine.c:315
 msgid "Tiny"
@@ -1507,129 +1761,6 @@ msgstr "Liput:"
 msgid "Time:"
 msgstr "Aika:"
 
-#: gnotski/gnotski.c:93 gnotski/gnotski.c:214 gnotski/gnotski.c:326
-msgid "1"
-msgstr "1"
-
-#: gnotski/gnotski.c:108 gnotski/gnotski.c:228 gnotski/gnotski.c:349
-msgid "2"
-msgstr "2"
-
-#. Tiles mismatch
-#. { GNOME_APP_UI_ITEM, N_("X"), NULL, level_cb,
-#. "14#20#12#"     "a     bbbbbb  cccccc"     "a     bbbbbb  cccccc"     "a   -##-#######     "     "    -AAAAABBCC#     "     "   d-   DEFGHI#     "     "    #   DEFGJI#     "     "  e #   KEFGLI#     "     "  e #   KEFG*I#     "     "    #   MM****#     "     "fff ###########     "     "fff  ggghhhiiiii  .j"     "kkkkkggg   iiiii....",
-#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
-#: gnotski/gnotski.c:123 gnotski/gnotski.c:242 gnotski/gnotski.c:380
-msgid "3"
-msgstr "3"
-
-#: gnotski/gnotski.c:138 gnotski/gnotski.c:257 gnotski/gnotski.c:395
-msgid "4"
-msgstr "4"
-
-#: gnotski/gnotski.c:153 gnotski/gnotski.c:268 gnotski/gnotski.c:410
-msgid "5"
-msgstr "5"
-
-#: gnotski/gnotski.c:168 gnotski/gnotski.c:281 gnotski/gnotski.c:424
-msgid "6"
-msgstr "6"
-
-#. Tiles mismatch
-#. { GNOME_APP_UI_ITEM, N_("7"), NULL, level_cb,
-#. "14#13#11#"     "         ... "     "          .  "     " ########    "     " #abcdde-    "     " #ffcddg-    "     " #hhijkl#    "     " #***jml#    "     " #n*op q#    "     " #nrr s #    "     " ########    "     "             ",
-#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
-#: gnotski/gnotski.c:183 gnotski/gnotski.c:309
-msgid "7"
-msgstr "7"
-
-#: gnotski/gnotski.c:444
-msgid "_Novice"
-msgstr "_Aloittelija"
-
-#: gnotski/gnotski.c:447
-msgid "_Medium"
-msgstr "_Keskitaso"
-
-#: gnotski/gnotski.c:450
-msgid "_Advanced"
-msgstr "_Vaikea"
-
-#: gnotski/gnotski.c:570
-msgid "Level completed. Well done."
-msgstr "Taso ratkaistu, hyvin tehty!"
-
-#: gnotski/gnotski.c:666
-msgid "Moves:"
-msgstr "Siirtoja:"
-
-#: gnotravex/gnotravex.c:655 gnotski/gnotski.c:695
-#, c-format
-msgid "Could not find '%s' pixmap file\n"
-msgstr "Kuvatiedostoa '%s' ei löytynyt\n"
-
-#: gnotski/gnotski.c:877
-msgid "Welcome to Gnome Klotski"
-msgstr "Tervetuloa Gnome Klotski"
-
-#: gnotski/gnotski.c:894
-#, c-format
-msgid "Playing level %s"
-msgstr "Aloitustaso %s"
-
-#: gnotski/gnotski.c:980
-msgid ""
-"Klotski clone\n"
-"(Comments to: Lars.Rydlinge@HIG.SE)"
-msgstr ""
-"Klotski-klooni\n"
-"(Kommentit (englanniksi): Lars.Rydlinge@HIG.SE)"
-
-#: iagno/gnothello.c:107
-msgid "IOR of remote Iagno server"
-msgstr "Iagno-palvelimen IOR"
-
-#: iagno/gnothello.c:108
-msgid "IOR"
-msgstr "IOR"
-
-#: iagno/gnothello.c:401 iagno/gnothello.c:654
-msgid "Iagno"
-msgstr "Iagno"
-
-#: iagno/gnothello.c:401
-msgid "(C) 1998 Ian Peters"
-msgstr "(C) 1998 Ian Peters"
-
-#: iagno/gnothello.c:402
-msgid ""
-"Send comments and bug reports to: itp@gnu.org\n"
-"Tiles under the General Public License."
-msgstr ""
-"Lähetä kommentit ja vikailmoitukset \n"
-"(englanniksi) osoitteeseen ipeters@acm.org"
-
-#: iagno/gnothello.c:498
-#, c-format
-msgid "Could not find '%s' pixmap file for Iagno\n"
-msgstr "Iagno:n kuvatiedostoa '%s' ei löytynyt\n"
-
-#: iagno/gnothello.c:726
-msgid "Welcome to Iagno!"
-msgstr "Tervetuloa Iagnoon!"
-
-#: iagno/properties.c:366
-msgid "Quick Moves"
-msgstr "Nopeat siirrot"
-
-#: iagno/properties.c:534
-msgid "Stagger flips"
-msgstr "Nykivät käännöt"
-
-#: iagno/properties.c:543
-msgid "Show grid"
-msgstr "Näytä ruudukko"
-
 #: gnotravex/gnotravex.c:122
 msgid "Sol_ve"
 msgstr "_Ratkaise"
@@ -1726,6 +1857,11 @@ msgstr "Peli ratkaistu, hyvin tehty!"
 msgid "Puzzle solved!"
 msgstr "Peli ratkaistu!"
 
+#: gnotravex/gnotravex.c:655 gnotski/gnotski.c:695
+#, c-format
+msgid "Could not find '%s' pixmap file\n"
+msgstr "Kuvatiedostoa '%s' ei löytynyt\n"
+
 #: gnotravex/gnotravex.c:745 mahjongg/mahjongg.c:1424
 msgid "... Game paused ..."
 msgstr "... Peli pysäytetty ..."
@@ -1743,110 +1879,78 @@ msgstr ""
 "Tetravex-klooni\n"
 "Kommentit (englanniksi) osoitteeseen Lars.Rydlinge@HIG.SE"
 
-#: gturing/gturing.c:189
+#: gnotski/gnotski.c:93 gnotski/gnotski.c:214 gnotski/gnotski.c:326
+msgid "1"
+msgstr "1"
+
+#: gnotski/gnotski.c:108 gnotski/gnotski.c:228 gnotski/gnotski.c:349
+msgid "2"
+msgstr "2"
+
+#. Tiles mismatch
+#. { GNOME_APP_UI_ITEM, N_("X"), NULL, level_cb,
+#. "14#20#12#"     "a     bbbbbb  cccccc"     "a     bbbbbb  cccccc"     "a   -##-#######     "     "    -AAAAABBCC#     "     "   d-   DEFGHI#     "     "    #   DEFGJI#     "     "  e #   KEFGLI#     "     "  e #   KEFG*I#     "     "    #   MM****#     "     "fff ###########     "     "fff  ggghhhiiiii  .j"     "kkkkkggg   iiiii....",
+#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
+#: gnotski/gnotski.c:123 gnotski/gnotski.c:242 gnotski/gnotski.c:380
+msgid "3"
+msgstr "3"
+
+#: gnotski/gnotski.c:138 gnotski/gnotski.c:257 gnotski/gnotski.c:395
+msgid "4"
+msgstr "4"
+
+#: gnotski/gnotski.c:153 gnotski/gnotski.c:268 gnotski/gnotski.c:410
+msgid "5"
+msgstr "5"
+
+#: gnotski/gnotski.c:168 gnotski/gnotski.c:281 gnotski/gnotski.c:424
+msgid "6"
+msgstr "6"
+
+#. Tiles mismatch
+#. { GNOME_APP_UI_ITEM, N_("7"), NULL, level_cb,
+#. "14#13#11#"     "         ... "     "          .  "     " ########    "     " #abcdde-    "     " #ffcddg-    "     " #hhijkl#    "     " #***jml#    "     " #n*op q#    "     " #nrr s #    "     " ########    "     "             ",
+#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
+#: gnotski/gnotski.c:183 gnotski/gnotski.c:309
+msgid "7"
+msgstr "7"
+
+#: gnotski/gnotski.c:444
+msgid "_Novice"
+msgstr "_Aloittelija"
+
+#: gnotski/gnotski.c:447
+msgid "_Medium"
+msgstr "_Keskitaso"
+
+#: gnotski/gnotski.c:450
+msgid "_Advanced"
+msgstr "_Vaikea"
+
+#: gnotski/gnotski.c:570
+msgid "Level completed. Well done."
+msgstr "Taso ratkaistu, hyvin tehty!"
+
+#: gnotski/gnotski.c:666
+msgid "Moves:"
+msgstr "Siirtoja:"
+
+#: gnotski/gnotski.c:877
+msgid "Welcome to Gnome Klotski"
+msgstr "Tervetuloa Gnome Klotski"
+
+#: gnotski/gnotski.c:894
 #, c-format
-msgid "State: %d"
-msgstr "Tila: %d"
+msgid "Playing level %s"
+msgstr "Aloitustaso %s"
 
-#: gturing/gturing.c:192 gturing/gturing.c:272
-msgid "Stopped"
-msgstr "Pysäytetty"
-
-#: gturing/gturing.c:317
-msgid "Open gTuring Program File"
-msgstr "Avaa gTuring-ohjelmatiedosto"
-
-#: gturing/gturing.c:330
-msgid "Tape Setting"
-msgstr "Nauhan asetus"
-
-#: gturing/gturing.c:330
-msgid "Please enter the tape:"
-msgstr "Syötä nauha:"
-
-#: gturing/gturing.c:371
-msgid "State"
-msgstr "Tila"
-
-#: gturing/gturing.c:371
-msgid "Read"
-msgstr "Lue"
-
-#: gturing/gturing.c:371
-msgid "Write"
-msgstr "Kirjoita"
-
-#: gturing/gturing.c:371
-msgid "Move"
-msgstr "Siirry"
-
-#: gturing/gturing.c:372
-msgid "New State"
-msgstr "Uusi tila"
-
-#: gturing/gturing.c:380
-msgid "Machine's states"
-msgstr "Koneen tilat"
-
-#: gturing/gturing.c:426
-msgid "Animation Speed"
-msgstr "Animaationopeus"
-
-#: gturing/gturing.c:426
-msgid "Miliseconds between steps:"
-msgstr "Millisekunteja askelten välillä:"
-
-#: gturing/gturing.c:443
-msgid "gturing"
-msgstr "gturing"
-
-#: gturing/gturing.c:446
-msgid "A Turing Machine for GNOME"
-msgstr "GNOME:n Turingin kone"
-
-#: gturing/gturing.c:464
-msgid "_Play Speed..."
-msgstr "_Nopeus..."
-
-#: gturing/gturing.c:464
-msgid "Set playing speed."
-msgstr "Aseta nopeus."
-
-#: gturing/gturing.c:466
-msgid "_Tape..."
-msgstr "_Nauha..."
-
-#: gturing/gturing.c:466
-msgid "Set the machine's tape."
-msgstr "Aseta koneen nauha."
-
-#: gturing/gturing.c:468
-msgid "_View States"
-msgstr "_Näytä tilat"
-
-#: gturing/gturing.c:469
-msgid "Open a table with the machine's states."
-msgstr "Avaa taulukon, joka näyttää koneen tilat."
-
-#: gturing/gturing.c:488
-msgid "Reset"
-msgstr "Alusta"
-
-#: gturing/gturing.c:490
-msgid "Stop"
-msgstr "Seis"
-
-#: gturing/gturing.c:492
-msgid "Run"
-msgstr "Aja"
-
-#: gturing/gturing.c:494
-msgid "Step"
-msgstr "Askel"
-
-#: gturing/gturing.c:504
-msgid "Welcome to gTuring."
-msgstr "Tervetuloa gTuring:iin."
+#: gnotski/gnotski.c:980
+msgid ""
+"Klotski clone\n"
+"(Comments to: Lars.Rydlinge@HIG.SE)"
+msgstr ""
+"Klotski-klooni\n"
+"(Kommentit (englanniksi): Lars.Rydlinge@HIG.SE)"
 
 #: gtali/clist.c:121
 msgid "Already used! Where do you want to put that?"
@@ -2118,6 +2222,156 @@ msgstr "Heittojen määrä"
 #: gtali/yahtzee.c:554
 msgid "Total"
 msgstr "Summa"
+
+#: gturing/gturing.c:189
+#, c-format
+msgid "State: %d"
+msgstr "Tila: %d"
+
+#: gturing/gturing.c:192 gturing/gturing.c:272
+msgid "Stopped"
+msgstr "Pysäytetty"
+
+#: gturing/gturing.c:317
+msgid "Open gTuring Program File"
+msgstr "Avaa gTuring-ohjelmatiedosto"
+
+#: gturing/gturing.c:330
+msgid "Tape Setting"
+msgstr "Nauhan asetus"
+
+#: gturing/gturing.c:330
+msgid "Please enter the tape:"
+msgstr "Syötä nauha:"
+
+#: gturing/gturing.c:371
+msgid "State"
+msgstr "Tila"
+
+#: gturing/gturing.c:371
+msgid "Read"
+msgstr "Lue"
+
+#: gturing/gturing.c:371
+msgid "Write"
+msgstr "Kirjoita"
+
+#: gturing/gturing.c:371
+msgid "Move"
+msgstr "Siirry"
+
+#: gturing/gturing.c:372
+msgid "New State"
+msgstr "Uusi tila"
+
+#: gturing/gturing.c:380
+msgid "Machine's states"
+msgstr "Koneen tilat"
+
+#: gturing/gturing.c:426
+msgid "Animation Speed"
+msgstr "Animaationopeus"
+
+#: gturing/gturing.c:426
+msgid "Miliseconds between steps:"
+msgstr "Millisekunteja askelten välillä:"
+
+#: gturing/gturing.c:443
+msgid "gturing"
+msgstr "gturing"
+
+#: gturing/gturing.c:446
+msgid "A Turing Machine for GNOME"
+msgstr "GNOME:n Turingin kone"
+
+#: gturing/gturing.c:464
+msgid "_Play Speed..."
+msgstr "_Nopeus..."
+
+#: gturing/gturing.c:464
+msgid "Set playing speed."
+msgstr "Aseta nopeus."
+
+#: gturing/gturing.c:466
+msgid "_Tape..."
+msgstr "_Nauha..."
+
+#: gturing/gturing.c:466
+msgid "Set the machine's tape."
+msgstr "Aseta koneen nauha."
+
+#: gturing/gturing.c:468
+msgid "_View States"
+msgstr "_Näytä tilat"
+
+#: gturing/gturing.c:469
+msgid "Open a table with the machine's states."
+msgstr "Avaa taulukon, joka näyttää koneen tilat."
+
+#: gturing/gturing.c:488
+msgid "Reset"
+msgstr "Alusta"
+
+#: gturing/gturing.c:490
+msgid "Stop"
+msgstr "Seis"
+
+#: gturing/gturing.c:492
+msgid "Run"
+msgstr "Aja"
+
+#: gturing/gturing.c:494
+msgid "Step"
+msgstr "Askel"
+
+#: gturing/gturing.c:504
+msgid "Welcome to gTuring."
+msgstr "Tervetuloa gTuring:iin."
+
+#: iagno/gnothello.c:107
+msgid "IOR of remote Iagno server"
+msgstr "Iagno-palvelimen IOR"
+
+#: iagno/gnothello.c:108
+msgid "IOR"
+msgstr "IOR"
+
+#: iagno/gnothello.c:401 iagno/gnothello.c:654
+msgid "Iagno"
+msgstr "Iagno"
+
+#: iagno/gnothello.c:401
+msgid "(C) 1998 Ian Peters"
+msgstr "(C) 1998 Ian Peters"
+
+#: iagno/gnothello.c:402
+msgid ""
+"Send comments and bug reports to: itp@gnu.org\n"
+"Tiles under the General Public License."
+msgstr ""
+"Lähetä kommentit ja vikailmoitukset \n"
+"(englanniksi) osoitteeseen ipeters@acm.org"
+
+#: iagno/gnothello.c:498
+#, c-format
+msgid "Could not find '%s' pixmap file for Iagno\n"
+msgstr "Iagno:n kuvatiedostoa '%s' ei löytynyt\n"
+
+#: iagno/gnothello.c:726
+msgid "Welcome to Iagno!"
+msgstr "Tervetuloa Iagnoon!"
+
+#: iagno/properties.c:366
+msgid "Quick Moves"
+msgstr "Nopeat siirrot"
+
+#: iagno/properties.c:534
+msgid "Stagger flips"
+msgstr "Nykivät käännöt"
+
+#: iagno/properties.c:543
+msgid "Show grid"
+msgstr "Näytä ruudukko"
 
 #: mahjongg/mahjongg.c:346
 msgid "New game with _seed..."
@@ -2399,230 +2653,3 @@ msgstr "Mitä minulla on?"
 #: scottfree/GnomeScott.c:1511
 msgid "_New"
 msgstr "_Uusi"
-
-#: gnometris/tetris.cpp:80
-msgid "Gnometris"
-msgstr "Gnometris"
-
-#: gnometris/tetris.cpp:214
-#, c-format
-msgid "Could not find the '%s' theme for gnometris\n"
-msgstr "Gnometris-teemaa '%s' ei löytynyt\n"
-
-#: gnometris/tetris.cpp:432
-msgid "Gnometris setup"
-msgstr "Gnometris-asetukset "
-
-#: gnometris/tetris.cpp:457
-msgid "Number of pre-filled rows:"
-msgstr "Täytettyjen rivien määrä:"
-
-#: gnometris/tetris.cpp:478
-msgid "Density of blocks in a pre-filled row:"
-msgstr "Täytetyn rivin vahvuus:"
-
-#: gnometris/tetris.cpp:499
-msgid "Starting Level:"
-msgstr "Aloitustaso:"
-
-#: gnometris/tetris.cpp:527
-msgid "Preview next block"
-msgstr "Seuraavan palikan esikatselu"
-
-#: gnometris/tetris.cpp:533
-msgid "Random block colors"
-msgstr "Sattumanvarainen palikan väri"
-
-#: gnometris/tetris.cpp:539
-msgid "Rotate counterclockwise"
-msgstr "Pyöritä vastapäivään"
-
-#: gnometris/tetris.cpp:552
-msgid "Block Pixmap: "
-msgstr "Palikan kuvio: "
-
-#: gnometris/tetris.cpp:567
-msgid "Background Pixmap: "
-msgstr "Taustakuvio: "
-
-#: gnometris/tetris.cpp:859
-msgid ""
-"Written for my wife, Matylda\n"
-"Send comments and bug reports to: marcin.gorycki@intel.com"
-msgstr ""
-"Omistettu vaimolleni, Matyldalle\n"
-"Lähetä kommentit ja virheraportit (englanniksi) osoitteeseen: "
-"marcin.gorycki@intel.com"
-
-#: gnometris/main.cpp:36
-msgid "Set starting level (1-10)"
-msgstr "Aloitustaso (1-10)"
-
-#: gnometris/main.cpp:36
-msgid "LEVEL"
-msgstr "LEVEL"
-
-#: gnometris/scoreframe.cpp:31
-msgid "Game Status"
-msgstr "Pelitilanne"
-
-#: gnometris/scoreframe.cpp:37
-msgid "Lines: "
-msgstr "Rivejä: "
-
-#: gnometris/scoreframe.cpp:41
-msgid "Level: "
-msgstr "Taso: "
-
-#: gnibbles/gnibbles.c:96 gnibbles/gnibbles.c:113
-msgid "Couldn't find pixmap file!\n"
-msgstr "Kuvatiedostoa ei löytynyt!\n"
-
-#: gnibbles/gnibbles.c:141
-#, c-format
-msgid "Ack!  Couldn't load level file %s\n"
-msgstr "En voinut ladata tasotiedostoa %s\n"
-
-#: gnibbles/main.c:168
-msgid "Gnibbles"
-msgstr "Gnibbles"
-
-#: gnibbles/main.c:171
-msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
-msgstr ""
-"Lähetä kommentit ja vikailmoitukset (englanniksi)\n"
-"osoitteisiin sjm@acm.org, itp@acm.org"
-
-#: gnibbles/preferences.c:305
-msgid "Gnibbles Preferences"
-msgstr "Gnibbles-asetukset"
-
-#: gnibbles/preferences.c:318
-msgid "Speed"
-msgstr "Nopeus"
-
-#: gnibbles/preferences.c:328
-msgid "Nibbles newbie"
-msgstr "Aloittelija"
-
-#: gnibbles/preferences.c:338
-msgid "My second day"
-msgstr "Vähän pelannut"
-
-#: gnibbles/preferences.c:348
-msgid "Not too shabby"
-msgstr "Ei turhan huono"
-
-#: gnibbles/preferences.c:359
-msgid "Finger-twitching good"
-msgstr "Salamasormi"
-
-#: gnibbles/preferences.c:376
-msgid "Starting level: "
-msgstr "Aloitustaso: "
-
-#: gnibbles/preferences.c:401
-msgid "Levels in random order"
-msgstr "Sattumanvarainen tasojärjestys"
-
-#: gnibbles/preferences.c:413
-msgid "Fake bonuses"
-msgstr "Huijausbonukset"
-
-#: gnibbles/preferences.c:425
-msgid "Sounds"
-msgstr "Äänet"
-
-#: gnibbles/preferences.c:435
-msgid "Number of players: "
-msgstr "Pelaajien määrä:"
-
-#: gnibbles/preferences.c:468
-msgid "Board size"
-msgstr "Kentän koko"
-
-#: gnibbles/preferences.c:476
-msgid "Tiny (184x132)"
-msgstr "Pikkuruinen (184x132)"
-
-#: gnibbles/preferences.c:486
-msgid "Small (368x264)"
-msgstr "Pieni (368x264)"
-
-#: gnibbles/preferences.c:496
-msgid "Medium (460x330)"
-msgstr "Keskikokoinen (460x330)"
-
-#: gnibbles/preferences.c:506
-msgid "Large (736x528)"
-msgstr "Suuri (736x528)"
-
-#: gnibbles/preferences.c:516
-msgid "Extra large (920x660)"
-msgstr "Erittäin suuri (920x660)"
-
-#: gnibbles/preferences.c:526
-msgid "Huge (1840x1320)"
-msgstr "Valtava (1840x1320)"
-
-#: gnibbles/preferences.c:543
-#, c-format
-msgid "Worm %d"
-msgstr "Mato %d"
-
-#: gnibbles/preferences.c:556
-msgid "Up:"
-msgstr "Ylös:"
-
-#: gnibbles/preferences.c:574
-msgid "Down:"
-msgstr "Alas:"
-
-#: gnibbles/preferences.c:592
-msgid "Left:"
-msgstr "Vasemmalle:"
-
-#: gnibbles/preferences.c:610
-msgid "Right:"
-msgstr "Oikealle:"
-
-#: gnibbles/preferences.c:628
-msgid "Color:"
-msgstr "Väri:"
-
-#: gnibbles/preferences.c:637
-msgid "Red"
-msgstr "Punainen"
-
-#: gnibbles/preferences.c:643
-msgid "Green"
-msgstr "Vihreä"
-
-#: gnibbles/preferences.c:649
-msgid "Blue"
-msgstr "Sininen"
-
-#: gnibbles/preferences.c:655
-msgid "Yellow"
-msgstr "Keltainen"
-
-#: gnibbles/preferences.c:661
-msgid "Cyan"
-msgstr "Syaani"
-
-#: gnibbles/preferences.c:667
-msgid "Purple"
-msgstr "Violetti"
-
-#: gnibbles/preferences.c:673
-msgid "Gray"
-msgstr "Harmaa"
-
-#: gnibbles/preferences.c:690
-msgid "Relative movement"
-msgstr "Suhteellinen liike"
-
-#: gnibbles/scoreboard.c:49
-#, c-format
-msgid "Worm %d:"
-msgstr "Mato %d:"
