@@ -93,7 +93,7 @@ void help_about_callback ()
 	  NULL
   };
 
-  const gchar *translator_credits = _("translator_credits");
+  const gchar *translator_credits = _("translator-credits");
 	char *filename = NULL;
 
 	filename = gnome_program_locate_file (NULL,
@@ -122,7 +122,7 @@ void help_about_callback ()
 			      "played."),
 			    (const char **)authors,
 			    (const char **)documenters,
-			    g_str_equal (translator_credits, "translator_credits") ? NULL : translator_credits,
+			    g_str_equal (translator_credits, "translator-credits") ? NULL : translator_credits,
 			    pixbuf);
 	
 	if (pixbuf != NULL)
