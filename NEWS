@@ -1,3 +1,39 @@
+gnome-games "Nervous Energy" 2.5.2
+==================================
+
+This release is evenly split between UI changes and back-end code
+consolidation.
+
+Code for locating files in gdk-card-image and glines has been merged
+into the libgames-support library. More games will take advantage of
+this as the (internal) API firms up.
+
+The card selection widget in gdk-card-image has been changed. This
+affects aisleriot and blackjack. You no longer select the details of
+the card image from seven menus, instead there is one list with a set
+of predefined styles. These styles are loaded from an external file
+but home directories are not searched yet so custom styles require
+root access. If the current style is not on the list it is not
+touched, so existing preferences and direct editing of the style using
+gconf-editor will work. 
+
+In addition to the gdk-card-image changes aisleriot has also had its
+preferences menu renamed to "view". This reflects the fact that the
+entries under it only affect the look of the program.
+
+Blackjack has recieved some cleanup work to the UI and some bug fixes.
+
+Mahjongg is in the middle of a rewrite of the shuffling code. The bug
+where all the tiles were drawn after a shuffle has been fixed. Also
+the "no more moves" dialog now has a "shuffle" option. Unfortunately
+this is all still a bit ugly since it is work in progress.
+
+Gnometris has better high score handling. There is no longer a
+duplicate score recorded when you start a new game without finishing
+the old one. Also the score is recorded if you quit the program
+without finishing the game: great for when the boss walks in
+unexpectedly.
+
 gnome-games "Trade Surplus" 2.5.1
 ====================
 
