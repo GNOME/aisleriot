@@ -266,7 +266,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
     gh_call2 (gh_eval_str ("record-move"), gh_long2scm (-1),
 	      SCM_EOL);
     if (gh_scm2bool (gh_call1 (game_data->button_double_clicked_lambda,
-                               gh_long2scm (hslot->id))))
+                               gh_long2scm (hslot->id)))) 
       gh_call0 (gh_eval_str ("end-move"));
     else {
       gh_call0 (gh_eval_str ("discard-move"));

@@ -257,7 +257,7 @@
   (caddr card))
 
 (define (get-suit card) 
-  (cadr card))
+      (cadr card))
 
 (define (get-color card)
   (cond ((eq? (get-suit card) club) black)
@@ -266,8 +266,8 @@
 	((eq? (get-suit card) diamond) red)
 	(#t (_"Unknown color"))))
 
-(define (get-value card) 
-  (car card))
+(define (get-value card)
+      (car card))
 
 ; slot procedures
 (define (get-cards slot-id)
