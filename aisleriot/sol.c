@@ -458,7 +458,7 @@ int main (int argc, char *argv [])
 
   retrieve_state (gnome_master_client ());
 
-  dir = gnome_datadir_file (GAMESDIR);
+  dir = gnome_datadir_file_unconditional (GAMESDIR);
   n_games = scandir (dir, &game_dents, is_game, alphasort);
   g_free(dir);
 
