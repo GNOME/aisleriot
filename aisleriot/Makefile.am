@@ -47,6 +47,7 @@ types_DATA  = 		\
 	bakers_dozen.scm \
 	bakers_game.scm	\
 	beleaguered_castle.scm \
+	block_ten.scm	\
 	bristol.scm	\
 	camelot.scm	\
 	canfield.scm	\
@@ -61,11 +62,13 @@ types_DATA  = 		\
 	fortunes.scm	\
 	fourteen.scm	\
 	freecell.scm	\
+	gay_gordons.scm	\
 	glenwood.scm	\
 	gypsy.scm	\
 	hopscotch.scm	\
 	isabel.scm	\
 	jamestown.scm	\
+	jumbo.scm	\
 	kansas.scm	\
 	klondike.scm	\
 	labyrinth.scm	\
@@ -94,6 +97,7 @@ types_DATA  = 		\
 	union_square.scm \
 	valentine.scm	\
 	westhaven.scm	\
+	yield.scm	\
 	yukon.scm	\
 	zebra.scm
 

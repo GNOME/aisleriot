@@ -1,5 +1,5 @@
-; AisleRiot - treize.scm
-; Copyright (C) 2001 Rosanna Yuen <rwsy@mit.edu>
+; AisleRiot - escalator.scm
+; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by

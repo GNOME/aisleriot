@@ -6,44 +6,151 @@
 
 helpdir = $(datadir)/gnome/help/aisleriot/C
 
-help_DATA = index.html intro.html glossary.html \
-	camelot.html canfield.html clock.html doublets.html \
-	eagle-wing.html elevator.html fortunes.html \
-	kansas.html klondike.html first-law.html poker.html \
-	fourteen.html pileon.html auld-lang-syne.html \
-	hopscotch.html scorpion.html thumb-and-pouch.html \
-	neighbor.html odessa.html osmosis.html spider.html \
-	yukon.html westhaven.html royal-east.html \
-	beleaguered-castle.html thirteen.html thieves.html \
-	freecell.html bristol.html union-square.html \
-	camelot-goal.png clock-rules.png docbook.css \
-	topic.dat straight-up.html zebra.html lady-jane.html \
-	maze.html glenwood.html gypsy.html monte-carlo.html \
-	bakers-dozen.html seahaven.html valentine.html \
-	cover.html labyrinth.html scuffle.html peek.html \
-	treize.html quatorze.html escalator.html isabel.html \
-	sir-tommy.html jamestown.html bakers-game.html \
-	eight-off.html
+help_DATA = index.html	\
+	intro.html	\
+	glossary.html	\
+	topic.dat	\
+	docbook.css	\
+	camelot-goal.png	\
+	clock-rules.png	\
+	auld-lang-syne.html	\
+	bakers-dozen.html	\
+	bakers-game.html	\
+	beleaguered-castle.html	\
+	block-ten.html	\
+	bristol.html	\
+	camelot.html	\
+	canfield.html	\
+	clock.html	\
+	cover.html	\
+	doublets.html	\
+	eagle-wing.html	\
+	eight-off.html	\
+	elevator.html	\
+	escalator.html	\
+	first-law.html	\
+	fortunes.html	\
+	fourteen.html	\
+	freecell.html	\
+	gay-gordons.html	\
+	glenwood.html	\
+	gypsy.html	\
+	hopscotch.html	\
+	isabel.html	\
+	jamestown.html	\
+	jumbo.html	\
+	kansas.html	\
+	klondike.html	\
+	labyrinth.html	\
+	lady-jane.html	\
+	maze.html	\
+	monte-carlo.html	\
+	neighbor.html	\
+	odessa.html	\
+	osmosis.html	\
+	peek.html	\
+	pileon.html 	\
+	poker.html	\
+	quatorze.html	\
+	royal-east.html	\
+	scorpion.html	\
+	scuffle.html	\
+	seahaven.html	\
+	sir-tommy.html	\
+	spider.html	\
+	straight-up.html	\
+	thieves.html	\
+	thirteen.html	\
+	thumb-and-pouch.html	\
+	treize.html	\
+	union-square.html	\
+	valentine.html	\
+	westhaven.html	\
+	yield.html	\
+	yukon.html 	\
+	zebra.html 
 
 # These are the sources:
 
-help_SGML = aisleriot.sgml definitions.sgml \
-	camelot.sgml canfield.sgml clock.sgml doublets.sgml \
-	eagle-wing.sgml elevator.sgml fortunes.sgml \
-	kansas.sgml pileon.sgml first_law.sgml poker.sgml \
-	fourteen.sgml klondike.sgml auld_lang_syne.sgml \
-	bristol.sgml hopscotch.sgml union_square.sgml\
-	neighbor.sgml odessa.sgml osmosis.sgml spider.sgml \
-	yukon.sgml westhaven.sgml royal_east.sgml \
-	beleaguered_castle.sgml thirteen.sgml thieves.sgml \
-	freecell.sgml scorpion.sgml thumb_and_pouch.sgml \
-	straight_up.sgml zebra.sgml lady_jane.sgml \
-	maze.sgml glenwood.sgml gypsy.sgml monte_carlo.sgml \
-	bakers_dozen.sgml seahaven.sgml valentine.sgml \
-	cover.sgml labyrinth.sgml scuffle.sgml peek.sgml \
-	treize.sgml quatorze.sgml escalator.sgml isabel.sgml \
-	sir_tommy.sgml jamestown.sgml bakers_game.sgml \
-	eight_off.sgml
+help_SGML = \
+	aisleriot.sgml	\
+	definitions.sgml	\
+	auld_lang_syne.sgml	\
+	bakers_dozen.sgml	\
+	bakers_game.sgml	\
+	beleaguered_castle.sgml	\
+	block_ten.sgml	\
+	bristol.sgml	\
+	camelot.sgml	\
+	canfield.sgml	\
+	clock.sgml	\
+	cover.sgml	\
+	doublets.sgml	\
+	eagle-wing.sgml	\
+	eight_off.sgml	\
+	elevator.sgml	\
+	escalator.sgml	\
+	first_law.sgml	\
+	fortunes.sgml	\
+	fourteen.sgml	\
+	freecell.sgml	\
+	gay_gordons.sgml	\
+	glenwood.sgml	\
+	gypsy.sgml	\
+	hopscotch.sgml	\
+	isabel.sgml	\
+	jamestown.sgml	\
+	jumbo.sgml	\
+	kansas.sgml	\
+	klondike.sgml	\
+	labyrinth.sgml	\
+	lady_jane.sgml	\
+	maze.sgml	\
+	monte_carlo.sgml	\
+	neighbor.sgml	\
+	odessa.sgml	\
+	osmosis.sgml	\
+	peek.sgml	\
+	pileon.sgml 	\
+	poker.sgml	\
+	quatorze.sgml	\
+	royal_east.sgml	\
+	scorpion.sgml	\
+	scuffle.sgml	\
+	seahaven.sgml	\
+	sir_tommy.sgml	\
+	spider.sgml	\
+	straight_up.sgml	\
+	thieves.sgml	\
+	thirteen.sgml	\
+	thumb_and_pouch.sgml	\
+	treize.sgml	\
+	union_square.sgml	\
+	valentine.sgml	\
+	westhaven.sgml	\
+	yield.sgml	\
+	yukon.sgml 	\
+	zebra.sgml 
+
+
+# help_SGML = aisleriot.sgml definitions.sgml \
+# 	camelot.sgml canfield.sgml clock.sgml doublets.sgml \
+# 	eagle-wing.sgml elevator.sgml fortunes.sgml \
+# 	kansas.sgml pileon.sgml first_law.sgml poker.sgml \
+# 	fourteen.sgml klondike.sgml auld_lang_syne.sgml \
+# 	bristol.sgml hopscotch.sgml union_square.sgml\
+# 	neighbor.sgml odessa.sgml osmosis.sgml spider.sgml \
+# 	yukon.sgml westhaven.sgml royal_east.sgml \
+# 	beleaguered_castle.sgml thirteen.sgml thieves.sgml \
+# 	freecell.sgml scorpion.sgml thumb_and_pouch.sgml \
+# 	straight_up.sgml zebra.sgml lady_jane.sgml \
+# 	maze.sgml glenwood.sgml gypsy.sgml monte_carlo.sgml \
+# 	bakers_dozen.sgml seahaven.sgml valentine.sgml \
+# 	cover.sgml labyrinth.sgml scuffle.sgml peek.sgml \
+# 	treize.sgml quatorze.sgml escalator.sgml isabel.sgml \
+# 	sir_tommy.sgml jamestown.sgml bakers_game.sgml \
+# 	eight_off.sgml yield.sgml block_ten.sgml gay_gordons.sgml \
+# 	jumbo.sgml
 
 EXTRA_DIST = $(help_DATA) $(help_SGML)
 
