@@ -1,4 +1,11 @@
 Mon Sep  7 Felix Bellaby <felix@pooh.u-net.com>
+	* events.c (drop_moving_cards): new drop test checks dragged card is
+	above slot rather than checking mouse is above slot, dropped cards 
+	now snap into place before the tedious screen refresh.
+	* press_data.c: fixed the mask for moving cards. Horizontal slots 
+	will also work if we start using them.
+	
+Mon Sep  7 Felix Bellaby <felix@pooh.u-net.com>
 	* card.c: reimplemented card pixmaps using libgdkcardimage.so
 	* Baize.xpm: A new background for the card table.
 	* Makefile.am: added library dependency and Baize.xpm installation.
