@@ -85,7 +85,6 @@ about_destroy_callback (void)
 {
 	about = NULL;
 }
-
  
 void help_about_callback ()
 {
@@ -183,6 +182,20 @@ static void toolbar_toggle_callback(GtkToggleAction * togglebutton,
   }
 }
 
+static void fullscreen_toggle_callback(GtkToggleAction * togglebutton, 
+				       gpointer data)
+{
+  gboolean state;
+
+  state = gtk_toggle_action_get_active (togglebutton);
+
+  if (state) {
+    gtk_window_fullscreen (GTK_WINDOW (app));
+  } else {
+    gtk_window_unfullscreen (GTK_WINDOW (app));
+  }
+}
+
 static void clickmove_toggle_callback(GtkToggleAction * 
 				      togglebutton, gpointer data)
 {
@@ -226,15 +239,14 @@ const GtkActionEntry actions[] = {
   { "RedoMove", GTK_STOCK_REDO, N_("_Redo Move"), "<shift><control>Z", NULL, G_CALLBACK (redo_callback) },
   { "Hint", GTK_STOCK_HELP, N_("_Hint"), NULL, NULL, G_CALLBACK (show_hint_dialog) },
   
-  
   { "Contents", GTK_STOCK_HELP, N_("_Contents"), "F1", NULL, G_CALLBACK (general_help) },
   { "Help", GTK_STOCK_HELP, "", "", NULL, G_CALLBACK (help_on_specific_game) },
   {"About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) }
-
 };
 
 const GtkToggleActionEntry toggles[] = {
   { "Toolbar", NULL, N_("_Toolbar"), NULL, NULL, G_CALLBACK (toolbar_toggle_callback) },
+  { "Fullscreen", NULL, N_("_Fullscreen"), "F11", NULL, G_CALLBACK (fullscreen_toggle_callback) },
   { "ClickToMove", NULL, N_("_Click to Move"), NULL, NULL, G_CALLBACK (clickmove_toggle_callback) },
 };
 
@@ -250,7 +262,9 @@ const char *ui_description =
 "      <menuitem action='Quit'/>"
 "    </menu>"
 "    <menu action='ViewMenu'>"
+"      <menuitem action='Fullscreen'/>"
 "      <menuitem action='Toolbar'/>"
+"      <separator/>"
 "      <menuitem action='Cards'/>"
 "    </menu>"
 "    <menu action='ControlMenu'>"
