@@ -329,13 +329,13 @@ void timer_start ()
  */
   games_clock_set_seconds (GAMES_CLOCK (time_value), 0);
   games_clock_start (GAMES_CLOCK (time_value));
-  timer_timeout = gtk_timeout_add (timeout * 1000, (GtkFunction) (timer_cb), NULL);
+  timer_timeout = g_timeout_add (timeout * 1000, (GSourceFunc) (timer_cb), NULL);
 }
 
 void timer_stop ()
 {
   games_clock_stop (GAMES_CLOCK (time_value));
-  gtk_timeout_remove (timer_timeout);
+  g_source_remove (timer_timeout);
   timer_timeout = 0;
 }
 
