@@ -1,7 +1,7 @@
 AC_INIT(gnomine)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-games, 0.99.3)
+AM_INIT_AUTOMAKE(gnome-games, 0.99.5)
 AM_MAINTAINER_MODE
 AM_ACLOCAL_INCLUDE(macros)
 GNOME_INIT
@@ -13,7 +13,12 @@ AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
 
 ## failure of 'AC_PRG_CXX' causes automake to abort
-GNOME_CHECK_CXX
+# see if a C++ compiler exists and works
+AC_REQUIRE([AC_PROG_CXX])dnl
+if test "x$ac_cv_prog_cxx_works" = xno; then
+  AC_MSG_WARN(ifelse([$1], , "No C++ compiler", [$1]))
+fi
+AM_CONDITIONAL(CXX_PRESENT, test "x$ac_cv_prog_cxx_works" != xno)
 
 ## this should come after `AC_PROG_CC'
 GNOME_X_CHECKS
@@ -69,6 +74,9 @@ gnobots/help/Makefile
 gnobots/help/C/Makefile
 gnobots/help/es/Makefile
 gnobots2/Makefile
+gnobots2/help/Makefile
+gnobots2/help/C/Makefile
+gnobots2/help/es/Makefile
 gnothello/Makefile
 gnotravex/Makefile
 metatris/Makefile
