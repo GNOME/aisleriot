@@ -10,7 +10,7 @@ if CXX_PRESENT
 cxx_DIRS = gnometris xbill
 endif
 
-SUBDIRS = po macros \
+SUBDIRS = intl po macros \
 	  freecell gnomine same-gnome scottfree mahjongg gturing \
           gtali gnobots2 iagno gnotravex gnome-stones \
 	  $(guile_DIRS) $(cxx_DIRS) idl gnibbles glines gataxx
