@@ -42,8 +42,8 @@
 GtkWidget *scorew;
 GtkWidget *label;
 GtkWidget *app, *playing_area, *vb, *hb;
-GdkPixmap *surface, *blank_surface;
-GdkPixmap *snapshot = NULL;
+GdkGC *draw_gc;  /* needed for tiling operations */
+GdkPixmap *surface;
 GdkPixmap *moving_card_pixmap;
 gint score;
 gint seed;
@@ -52,8 +52,6 @@ press_data_type* press_data = NULL;
 
 
 /* paint functions */
-
-
 
 void set_score() 
 {
@@ -95,13 +93,16 @@ void create_sol_board ()
 	gtk_box_pack_start (GTK_BOX(vb), playing_area, TRUE, TRUE, 0);
 
 	gtk_widget_realize (playing_area);
-
 	/* Set up the pixmaps */
-	surface = gdk_pixmap_new (playing_area->window, SURFACE_WIDTH, SURFACE_HEIGHT,
-				  gdk_window_get_visual (playing_area->window)->depth);
+	surface 
+	  = gdk_pixmap_new (playing_area->window, 
+			    SURFACE_WIDTH, SURFACE_HEIGHT,
+			    gdk_window_get_visual (playing_area->window)->depth);
 
-	blank_surface = gdk_pixmap_new (playing_area->window, SURFACE_WIDTH, SURFACE_HEIGHT,
-					gdk_window_get_visual (playing_area->window)->depth);
+	draw_gc = gdk_gc_new(surface);
+	gdk_gc_set_tile (draw_gc, get_background_pixmap());
+	gdk_gc_set_fill (draw_gc, GDK_TILED);
+
 	refresh_screen();
   
   
@@ -118,8 +119,6 @@ void create_sol_board ()
 	/* and, we're off and running... */
 	gtk_widget_show (playing_area);
 }
-
-
 
 /*
  * setup suff
@@ -143,19 +142,19 @@ create_main_window ()
 
 void eval_installed_file (char *file)
 {
-	char *installed_filename;
-	char *relative;
-	
-	if (g_file_exists (file)){
-		gh_eval_file (file);
-		return;
-	}
-
-	relative = g_copy_strings ("sol-games/", file, NULL);
-	installed_filename = gnome_datadir_file (relative);
-	gh_eval_file (installed_filename);
-	g_free (installed_filename);
-	g_free (relative);
+  char *installed_filename;
+  char *relative;
+  
+  if (g_file_exists (file)){
+    gh_eval_file (file);
+    return;
+  }
+  
+  relative = g_copy_strings ("sol-games/", file, NULL);
+  installed_filename = gnome_datadir_file (relative);
+  gh_eval_file (installed_filename);
+  g_free (installed_filename);
+  g_free (relative);
 }
 
 void main_prog(int argc, char *argv[])
