@@ -62,6 +62,16 @@ if test x$SCROLLKEEPER_CONFIG = xno; then
   AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the scrollkeeper packaga)
 fi
 
+## Test whether jw is installed
+AC_PATH_PROG(JW,jw,no)
+if test x$JW = xno; then
+  HAVE_JW="no"
+else
+  HAVE_JW="yes"
+fi
+AM_CONDITIONAL(HAVE_JW, test "x$HAVE_JW" = "xyes")
+AC_SUBST(HAVE_JW)
+
 ## gnomine checks
 oLIBS="$LIBS"
 LIBS="$LIBS $GTK_LIBS"
