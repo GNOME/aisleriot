@@ -7,7 +7,7 @@ omffile = aisleriot-C.omf
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
 entities = \
-	aisleriot.xml	\
+	legal.xml	\
 	definitions.xml	\
 	agnes.xml	\
 	auld_lang_syne.xml	\
@@ -54,6 +54,7 @@ entities = \
 	osmosis.xml	\
 	peek.xml	\
 	pileon.xml 	\
+	plait.xml	\
 	poker.xml	\
 	quatorze.xml	\
 	royal_east.xml	\
