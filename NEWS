@@ -3,16 +3,30 @@ gnome-games 2.8.0
 
 This is the first stable release of the 2.8 series. It should compile
 happily in a GNOME 2.6 or GNOME 2.8 environment although a recent
-librsvg is recommended (but not essential).
+librsvg is recommended.
 
-Please note that a lot of the themes and graphics have been moved to a
+*** Important ***
+
+A lot of the themes and graphics have been moved to a
 new, less frequently updated, package called gnome-games-extra-data. 
 You can get it from:
 
- http://ftp.gnome.org/pub/GNOME/sources/gnome-games-extra-data/2.7/
+ http://ftp.gnome.org/pub/GNOME/sources/gnome-games-extra-data/2.8/
 
 The main gnome-games package still contains everything you need to
 play, including the default themes.
+
+Also:
+
+ - The backgrounds for gnometris are now set by drag and drop. You are
+expected to use your own images for this, the old backgrounds are no
+longer shipped as part of the gnome-games package, but can be found in
+the gnome-games-extra-data package. The "Backgrounds and Emblems" menu
+option from the nautilus file browser is also good place to start.
+
+ - The more detailed SVG themes for the card games will be slow to
+redraw if you change the window size on anything but a fast machine. Be 
+patient. Playing the game is fine regardless of computer speed.
 
 People who contribute to this release, in no particular order, are:
 
@@ -71,7 +85,8 @@ Lines:
 Mahjongg:
  - New default theme: postmodern.
  - New layout: ziggurat.
- - The shuffle command has been removed.
+ - The explicit shuffle command has been removed, it is still
+   available if you run out of moves.
 
 Mines:
  - Graphics tweaks.
