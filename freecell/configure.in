@@ -9,20 +9,25 @@ AM_CONFIG_HEADER(config.h)
 AC_PREREQ(2.12)
 AM_INIT_AUTOMAKE([freecell], [0.7])
 
+AM_MAINTAINER_MODE
+
 dnl **************** Set available languages. ****************
 dnl ALL_LINGUAS="ko fr"
 ALL_LINGUAS="ko"
 
 dnl **************** Checks for programs. ****************
+AC_ISC_POSIX
 AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
+AM_PROG_LIBTOOL
 
 dnl **************** I18N matters ****************
 AM_GNU_GETTEXT
 AC_LINK_FILES($nls_cv_header_libgt, $nls_cv_header_intl)
+AC_CHECK_HEADER(libintl.h, [ AC_DEFINE(HAVE_LIBINTL_H) ])
 
 dnl **************** Checks for header files. ****************
 AC_HEADER_STDC
@@ -44,17 +49,20 @@ dnl GNOME's configure export USE_GNOME when freecell is builded in GNOME tree.
 
 if test "$USE_GNOME" = "yes"
 then
-dnl GNOME's configure kindly passes X11, GTK library paths.
+  AC_MSG_RESULT([OK, builded in GNOME tree.])
+  in_gnome_tree="yes"
+
+  dnl GNOME's configure kindly passes X11, GTK library paths.
   X_LIBS=$xX_LIBS
   AC_SUBST(X_LIBS)
   x_libs=$xx_libs
   AC_SUBST(x_libs)
   GTK_LIBS=$xGTK_LIBS
   AC_SUBST(GTK_LIBS)
-  GNOME_LIBS="-L../../../libgnome/.libs -lgnome -ldl \
--L../../../libgnomeui/.libs/ -lgnomeui -lSM -lICE"
-  AC_SUBST(GNOME_LIBS)
 else
+  AC_MSG_RESULT([OK, builded out of GNOME tree.])
+  in_gnome_tree="no"
+
   dnl **************** Find the X11. ****************
   AC_PATH_X
   AC_PATH_XTRA
@@ -92,6 +100,7 @@ else
   LDFLAGS=$saved_LDFLAGS
 fi
 
+AM_CONDITIONAL(IN_GNOME_TREE, test x$in_gnome_tree = xyes)
 
 dnl Checks for library functions.
 AC_FUNC_ALLOCA
