@@ -15,9 +15,6 @@
 ; License along with this library; if not, write to the Free
 ; Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-(use-modules (ice-9 slib))
-
-
 ;;In case it isn't defined already
 (define list-length
   (lambda (obj)

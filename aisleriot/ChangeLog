@@ -1,3 +1,13 @@
+1998-06-25  Maciej Stachowiak  <maciej@localhost.localdomain>
+
+	* sol.scm: Remove dependency on (ice-9 slib) module; it's not
+	actually used, AFAIK and the game works fine without it.
+
+	* sol.c (main_prog): Use (defined? 'provide), not (procedure?
+	'provide) to test wether boot-9.scm has been loaded; uncomment the
+	test, as it should now work with both Guile 1.2 and recent
+	snapshots.
+
 Fri May  1 06:03:57 1998  Jonathan Blandford  <jrb@mit.edu>
 	* press_data.c (generate_press_data): removed masking for moving cards (added 4/24)
 	This is because stacks are moved occaisionally...
@@ -90,4 +100,3 @@ Fri Feb 13 13:04:27 1998  Miguel de Icaza  <miguel@nuclecu.unam.mx>
 	installation directory.
 
 	* Makefile.am: integrate into build process.
-

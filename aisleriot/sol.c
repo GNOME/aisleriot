@@ -201,9 +201,8 @@ void main_prog(int argc, char *argv[])
   /* FIXME: On 1997-11-14, gh_enter stopped loading `icd-9/boot-9.scm'.
      In my copy of guile, the first define in boot-9.scm is for "provide",
      and it looked as good a test as any  */
-  /* This seems to break guile-1.2. Do you want to find another way? */
-  /*  gh_eval_str ("(if (not (procedure? \'provide))\n"
-		"  (primitive-load-path \"ice-9/boot-9.scm\"))");*/
+  gh_eval_str ("(if (not (defined? \'provide))\n"
+	       "  (primitive-load-path \"ice-9/boot-9.scm\"))");
   gh_new_procedure0_0("get-card-width", scm_get_card_width);
   gh_new_procedure0_0("get-card-height", scm_get_card_height);
   gh_new_procedure0_0("get-horiz-offset",scm_get_horiz_offset);
