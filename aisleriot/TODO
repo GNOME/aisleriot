@@ -1,27 +1,40 @@
-TODO: (roughly in order of importance...)
-add undo's
-allow variable slot graphics (ie. game can specify pixmap name)
-bind keys to menu-bar
-Write Preference Dialog:
-	Background color/pixmap
-	Dynamic card backs
-deal with double clicks...
-Write rules to the games, and add the help browser
-add a timer
-Write Game options for card-games
-Add a toolbar
-add right-mouse button => shows card
-Fix bugs that probably occured while writing all this.
+TODO -- (roughly in order of importance)
+~~~~
+integrate the game with gnome/gtk+-guile:  This will help us add hooks
+to the game to allow a game-sensitive menu.  It will also allow us
+make a preferences dialog for solitaire games.
 
+add undo:  This will probably be done scheme side, and will require
+modifying all of the games.  It will also make writing games a bit
+more complicated.
 
-FUTURE: (in no particular order)
-write guide to writing games
-search for card
-statistics
-Dynamicly sizing stacks if they get too long
-Allow game to add menu items w/ callbacks
-Jokers?!? (does anyone know of a solitaire game that needs one?)
-player -- ie. one can load a player and keep a cummulative total of money earned in various solitaire games.
-Hint support would be better if it pointed between two cards.
-Get a cool icon
-Maybe add a scrollbar to the pane.  I don't know if this is wanted/needed, though...
+redo the card format:  I'm thinking of making a dynamic library
+format.  This needs more thought.  I would like to have dynamic cards
+at some point (ala microsoft solitaire) with moving backgrounds,
+possibly.  Nothing really fancy, but good eye-candy anyway.
+
+Add a preferences dialog to the game:  Not exciting but necessary.
+Should allow the user to set the background, card/back pictures, and
+toolbar properties.
+
+Add a timer:  And add hooks to sol.scm to handle it.
+
+Add the help browser:  And set up a system to let cards add their own
+help info.
+
+Scan the directory for solitaire games:
+
+Have the right mouse button show the card completely if it's partially
+exposed.
+
+People have requested a search for card feature...  Dunno if it's
+actually useful.
+
+People have also requested Statistics.  That way it'll keep track of
+how many games you've played. etc.
+
+Add a splash screen while starting up.
+
+And finally, if a stack is getting too long, try compressing it.
+
+Release Aisleriot 1.0  (:
