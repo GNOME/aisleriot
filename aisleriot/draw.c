@@ -188,7 +188,9 @@ void draw_slot_placements(GdkPixmap* pix) {
 
   for (listptr = get_slot_list(); listptr; listptr = listptr->next) {
     gdk_draw_pixmap (pix, playing_area->style->black_gc,
-		     get_slot_pixmap(), 0, 0, x, y, -1, -1);
+		     get_slot_pixmap(), 0, 0, 
+		     ((hslot_type)listptr->data)->x, 
+		     ((hslot_type)listptr->data)->y, -1, -1);
   }
 }
 
