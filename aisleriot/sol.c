@@ -491,8 +491,9 @@ int main (int argc, char *argv [])
 
   gnome_score_init ("Aisleriot");
 
-  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-  textdomain (PACKAGE);
+  bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain (GETTEXT_PACKAGE);
 
   gnome_init_with_popt_table ("Aisleriot", VERSION, argc, argv,
 			      aisleriot_opts, 0, NULL);
