@@ -93,6 +93,7 @@ static void select_rules(GtkTreeSelection *select, gpointer data)
         GtkTreeIter iter;
 
 	gtk_tree_selection_get_selected(select, &model, &iter);
+        g_free (filename);
 	gtk_tree_model_get(model, &iter, 1, &filename, -1);
 }
 
@@ -169,7 +170,7 @@ void show_select_game_dialog()
     gtk_tree_selection_set_mode (select, GTK_SELECTION_BROWSE); 
 
     g_signal_connect (G_OBJECT (select), "changed", 
-                      GTK_SIGNAL_FUNC (select_rules), NULL);
+                      G_CALLBACK (select_rules), NULL);
 		
 
     scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -200,16 +201,17 @@ void show_select_game_dialog()
             if (g_utf8_collate(text,game_name) == 0) {
                     memcpy (&selected_iter, &iter, sizeof(GtkTreeIter));
             }
+            g_free (text);
     }
 
     gtk_dialog_set_default_response ( GTK_DIALOG (dialog), GTK_RESPONSE_OK );
 
-    g_signal_connect (GTK_OBJECT (dialog), "response", 
-			                GTK_SIGNAL_FUNC (select_game), seed_entry);
+    g_signal_connect (G_OBJECT (dialog), "response", 
+                      G_CALLBACK (select_game), seed_entry);
 
     
-    g_signal_connect (GTK_WIDGET (dialog), "delete_event",
-		                  GTK_SIGNAL_FUNC(gtk_widget_hide), NULL);
+    g_signal_connect (G_OBJECT (dialog), "delete_event",
+                      G_CALLBACK(gtk_widget_hide), NULL);
 
     gtk_widget_show_all (dialog);
 

@@ -1,3 +1,10 @@
+2003-10-18  Steve Chaplin
+
+       * dialog.c (show_select_game_dialog): Free memory when finished using
+       it. Update the casting macros used when calling g_signal_connect().
+       (select_rules): Free the old filename (if any) before getting the
+       current filename.
+
 2003-10-12  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* odessa.scm (game-over-helper): Altered the hint function so
