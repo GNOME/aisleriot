@@ -58,6 +58,7 @@ types_DATA  = 		\
 	neighbor.scm	\
 	odessa.scm	\
 	osmosis.scm	\
+	plait.scm	\
 	sol.scm		\
 	spider.scm	\
 	thieves.scm     \
