@@ -69,7 +69,7 @@ static GdkPixmap* get_pixmap (const char* filename)
 
   im = gdk_pixbuf_new_from_file (fullname, NULL);
   if (im != NULL) {
-    gdk_pixbuf_render_pixmap_and_mask (im, &ret, NULL, 127);
+    gdk_pixbuf_render_pixmap_and_mask_for_colormap (im, gdk_colormap_get_system(), &ret, NULL, 127);
     gdk_pixbuf_unref (im);
   } else {
     ret = NULL;
@@ -130,7 +130,7 @@ void set_card_size (gint width, gint height)
   scaled = games_preimage_render (slot_preimage, width, height, 
 				  NULL);
 
-  gdk_pixbuf_render_pixmap_and_mask (scaled, &slot_pixmap, &slot_mask, 255);
+  gdk_pixbuf_render_pixmap_and_mask_for_colormap (scaled, gdk_colormap_get_system(), &slot_pixmap, &slot_mask, 255);
 
   gdk_gc_set_clip_mask (slot_gc, slot_mask); 
 
