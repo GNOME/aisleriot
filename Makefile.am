@@ -34,7 +34,7 @@ EXTRA_DIST = \
 	sgmldocs.make \
 	game-docs.make \
 	MAINTAINERS	\
-	HACKING
+	HACKING		 \
 	intltool-extract.in \
 	intltool-merge.in    \
 	intltool-update.in
