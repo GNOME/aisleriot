@@ -1,5 +1,5 @@
 /* AisleRiot - menu.c
- * Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+ * Copyright (C) 1998 Jonathan Blandford <jrb@alum.mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,6 +66,7 @@ void help_about_callback ()
   const gchar *authors[] = {
 	  N_("Main program:  Jonathan Blandford (jrb@alum.mit.edu)"),
 	  N_("                      Felix Bellaby (felix@pooh.u-net.com)"),
+	  N_("                      Rosanna Yuen (rwsy@mit.edu)"),
 	  N_("Card Games:    Jonathan Blandford (jrb@alum.mit.edu)"),
 	  N_("                      Robert Brady <rwb197@ecs.soton.ac.uk>"),
 	  N_("                      Nick Lamb <njl195@zepler.org.uk>"),
