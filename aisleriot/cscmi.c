@@ -329,9 +329,10 @@ typedef struct
 } CallData;
 
 
-static void
-cscmi_call_lambda (CallData *call_data)
+static SCM
+cscmi_call_lambda (void *user_data)
 {
+  CallData *call_data = user_data;
   switch (call_data->n_args)
     {
     case 0:
@@ -349,14 +350,144 @@ cscmi_call_lambda (CallData *call_data)
     default:
       g_assert_not_reached ();
     }
+
+  return SCM_EOL;
 }
 
+extern guint32 seed;
+extern gchar *filename;
+
 static void
+cscmi_write_exception_details (int error_fd,
+			       SCM tag,
+			       SCM throw_args)
+{
+  char *message;
+  SCM port;
+  GList *slots;
+  GList *slot_list;
+
+  message = g_strdup_printf ("Variation: %s\n", filename);
+  write (error_fd, message, strlen (message));
+  g_free (message);
+
+  message = g_strdup_printf ("Seed: %ud\n", seed);
+  write (error_fd, message, strlen (message));
+  g_free (message);
+  
+  message = "Scheme error:\n\t";
+  write (error_fd, message, strlen (message));
+
+  port = scm_fdopen (scm_long2num (error_fd),
+		     scm_mem2string ("w", sizeof (char)));
+  scm_display (throw_args, port);
+  scm_fsync (port);
+
+  message = "\nScheme tag:\n\t";
+  write (error_fd, message, strlen (message));
+  scm_display (tag, port);
+  scm_fsync (port);
+
+  message = "\n\nDeck State:\n";
+  write (error_fd, message, strlen (message));
+  slots = get_slot_list ();
+  if (slots)
+    {
+      for (slot_list = slots; slot_list; slot_list = slot_list->next)
+	{
+	  hslot_type slot;
+	  GList *card_list;
+
+	  slot = slot_list->data;
+	  message = g_strdup_printf ("\tSlot %d\n", slot->id);
+	  write (error_fd, message, strlen (message));
+	  g_free (message);
+	  if (slot->cards)
+	    {
+	      int count = 0;
+	      for (card_list = slot->cards; card_list; card_list = card_list->next)
+		{
+		  hcard_type card = card_list->data;
+
+		  if (count == 0)
+		    message = "\t\t";
+		  else
+		    message = ", ";
+		  write (error_fd, message, strlen (message));
+
+		  message = g_strdup_printf ("(%d %d %s)",
+					     card->suit,
+					     card->value,
+					     card->direction ? "#t" : "#f");
+		  write (error_fd, message, strlen (message));
+		  g_free (message);
+		  count ++;
+		  if (count == 5)
+		    {
+		      message = "\n";
+		      write (error_fd, message, strlen (message));
+		      count = 0;
+		    }
+		}
+	      if (count != 0)
+		{
+		  message = "\n";
+		  write (error_fd, message, strlen (message));
+		}
+	    }
+	  else
+	    {
+	      message = "\t\t(Empty)\n";
+	      write (error_fd, message, strlen (message));
+	    }
+	}
+    }
+  else
+    {
+      message = "\tNo cards in deck\n";
+      write (error_fd, message, strlen (message));
+    }
+}
+
+/* Called when we get an exception from guile.  We launch bug-buddy with the
+ * exception information:
+ */
+static SCM
 cscmi_catch_handler (gpointer data,
 		     SCM      tag,
 		     SCM      throw_args)
 {
-  gh_display (throw_args);
+  int error_fd;
+  gchar *error_file;
+  GError *error = NULL;
+  gchar *exec_str;
+
+  error_fd = g_file_open_tmp ("arcrashXXXXXX",
+			      &error_file,
+			      &error);
+  if (error)
+    {
+      GtkWidget *message_dialog;
+
+      message_dialog = gtk_message_dialog_new (NULL,
+					       GTK_DIALOG_DESTROY_WITH_PARENT,
+					       GTK_MESSAGE_ERROR,
+					       GTK_BUTTONS_OK,
+					       _("A scheme exception occured and we were unable to create a temporary file to report it:\n\n%s"),
+					       error->message);
+      gtk_dialog_run (GTK_DIALOG (message_dialog));
+      exit (1);
+    }
+  cscmi_write_exception_details (error_fd, tag, throw_args);
+  close (error_fd);
+
+  exec_str = g_strdup_printf ("bug-buddy --package=gnome-games --package-version=%s --appname=aisleriot --kill=%d --include=%s",
+			      VERSION,
+			      getpid (),
+			      error_file);
+  system (exec_str);
+  unlink (error_file);
+  exit (1);
 }
 
 SCM

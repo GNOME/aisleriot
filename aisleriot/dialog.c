@@ -146,11 +146,10 @@ static void build_list (gchar * filename, GtkWidget * list)
   g_free (text);
 }
 
-void show_select_game_dialog() 
+void show_select_game_dialog (void) 
 {
   static GtkWidget* dialog = NULL;
   static GtkListStore* list;
-  GtkListStore ** listp;
   static GtkWidget* list_view;
   static GtkTreeSelection* select;
   GtkWidget* scrolled_window;
@@ -236,8 +235,7 @@ void show_select_game_dialog()
       gtk_tree_selection_select_iter (select, &selected_iter);    
   }
   
-  listp = &list;
-  if (gtk_tree_selection_get_selected (select, (GtkTreeModel **)listp, &iter)) {
+  if (gtk_tree_selection_get_selected (select, NULL, &iter)) {
     path = gtk_tree_model_get_path (GTK_TREE_MODEL(list), &iter);
     gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (list_view), path, NULL, TRUE, 0.5, 0.0);
     gtk_tree_path_free (path);

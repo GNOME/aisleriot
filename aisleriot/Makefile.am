@@ -16,8 +16,9 @@ INCLUDES =  \
 	-DDATADIR=\""$(datadir)"\"		   \
 	$(GNOME_GAMES_CFLAGS)			   \
 	@UCB_CFLAGS@				   \
-	-DGLADEDIR=\""$(gladedir)"\" \
+	-DGLADEDIR=\""$(gladedir)"\" 		   \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"   \
+	-DVERSION=\"$(VERSION)\"		   \
 	$(GUILE_INCS)
 
 bin_PROGRAMS = sol
