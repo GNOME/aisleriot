@@ -3,10 +3,10 @@
 # , fuzzy
 msgid ""
 msgstr ""
-"Date: 1998-08-02 11:21+0200\n"
+"Date: 1998-08-19 12:44+0200\n"
 "Project-Id-Version: gnome-games 0.20\n"
 "POT-Creation-Date: 1998-07-14 11:21+0200\n"
-"PO-Revision-Date: 1998-08-02 11:21+0200\n"
+"PO-Revision-Date: 1998-08-19 12:44+0200\n"
 "From: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Xgettext-Options: --default-domain=gnome-games --directory=.. --add-comments --keyword=_ --keyword=N_ --files-from=./POTFILES.in\n"
 "Files: aisleriot/dialog.c aisleriot/menu.c aisleriot/sol.c freecell/src/io-gtk.c freecell/src/menu.c freecell/src/option-dialog.c freecell/src/score-dialog.c freecell/src/score.c gnobots/gnobots.c gnobots/properties.c gnomine/gnomine.c gyahtzee/clist.c gyahtzee/computer.c gyahtzee/cyahtzee.c gyahtzee/gyahtzee.c gyahtzee/setup.c gyahtzee/yahtzee.c mahjongg/mahjongg.c same-gnome/same-gnome.c scottfree/GnomeScott.c\n"
 
-#: aisleriot/dialog.c:71 freecell/src/menu.c:32
+#: aisleriot/dialog.c:72 freecell/src/menu.c:32 gnothello/gnothello.c:92
 msgid "New Game"
 msgstr "Nuevo Juego"
 
-#: aisleriot/dialog.c:89
+#: aisleriot/dialog.c:90
 msgid ""
 "Congratulations\n"
 "\n"
@@ -30,7 +30,7 @@ msgstr ""
 "usted\n"
 "Ganó !!!"
 
-#: aisleriot/dialog.c:91
+#: aisleriot/dialog.c:92
 msgid ""
 "\n"
 "Game Over.\n"
@@ -38,11 +38,11 @@ msgstr ""
 "\n"
 "Juego Terminado.\n"
 
-#: aisleriot/dialog.c:147 mahjongg/mahjongg.c:492 mahjongg/mahjongg.c:527 mahjongg/mahjongg.c:551
+#: aisleriot/dialog.c:148 mahjongg/mahjongg.c:651 mahjongg/mahjongg.c:674 mahjongg/mahjongg.c:700
 msgid "Ok"
 msgstr "Ok"
 
-#: aisleriot/menu.c:52
+#: aisleriot/menu.c:53
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -50,159 +50,207 @@ msgstr ""
 "El juego ha terminado.\n"
 "No hay sugestiones disponibles"
 
-#: aisleriot/menu.c:60
+#: aisleriot/menu.c:61
 msgid "This game does not have hint support yet."
 msgstr "Las sugestiones aún no han sido implementadas en este juego."
 
-#: aisleriot/menu.c:72 aisleriot/menu.c:75 aisleriot/menu.c:90 aisleriot/menu.c:93
+#: aisleriot/menu.c:73 aisleriot/menu.c:76 aisleriot/menu.c:91 aisleriot/menu.c:94
 msgid "Move the "
 msgstr "Poner el "
 
-#: aisleriot/menu.c:81 aisleriot/menu.c:82
+#: aisleriot/menu.c:82 aisleriot/menu.c:83
 msgid " on the "
 msgstr " sobre el "
 
-#: aisleriot/menu.c:86 aisleriot/menu.c:104
+#: aisleriot/menu.c:87 aisleriot/menu.c:105
 msgid "."
 msgstr "."
 
-#: aisleriot/menu.c:99 aisleriot/menu.c:100
+#: aisleriot/menu.c:100 aisleriot/menu.c:101
 msgid " on "
 msgstr " sobre "
 
-#: aisleriot/menu.c:111
+#: aisleriot/menu.c:112
 msgid "This game is unable to provide a hint."
 msgstr "Este juego no puede brindar sugestiones."
 
-#: aisleriot/menu.c:162
+#: aisleriot/menu.c:180
 msgid "GNOME Solitaire"
 msgstr "GNOME Solitario"
 
 #. another comments
-#: aisleriot/menu.c:167
+#: aisleriot/menu.c:185
 msgid "The GNOME Generic Solitaire provides a rule-based solitaire engine that allows many different games to be played"
 msgstr "El Solitario genérico de GNOME contiene un sistema a base de reglas que permiten jugar a varios juegos de solitario diferentes"
 
-#: aisleriot/menu.c:182
-msgid "Variation"
-msgstr "Variación"
+#: aisleriot/menu.c:200
+msgid "Game Type"
+msgstr "Tipo de Juego"
 
-#: aisleriot/menu.c:184 mahjongg/mahjongg.c:272 mahjongg/mahjongg.c:338
+#: aisleriot/menu.c:202
+msgid "Game Seed..."
+msgstr "Parámetro Juego..."
+
+#: aisleriot/menu.c:204 mahjongg/mahjongg.c:364 mahjongg/mahjongg.c:427
 msgid "Hint"
 msgstr "Sugestión"
+
+#: aisleriot/menu.c:210
+msgid "Help with Aisleriot..."
+msgstr "Ayuda con Aisterlot..."
+
+#: aisleriot/menu.c:212
+msgid "Help with Klondike..."
+msgstr "Ayuda con Klondike..."
 
 #.
 #. * Help menu entries
 #.
-#: aisleriot/menu.c:190 freecell/src/menu.c:79 gnobots/gnobots.c:161 gnomine/gnomine.c:467 gyahtzee/gyahtzee.c:406 same-gnome/same-gnome.c:703 scottfree/GnomeScott.c:1539
+#: aisleriot/menu.c:215 freecell/src/menu.c:79 gnobots/gnobots.c:161 gnomine/gnomine.c:467 gnothello/gnothello.c:146 gyahtzee/gyahtzee.c:406 same-gnome/same-gnome.c:703 scottfree/GnomeScott.c:1539
 msgid "About..."
 msgstr "Acerca..."
 
 #. Define menus later so we don't have to proto callbacks?
-#: aisleriot/menu.c:197 freecell/src/menu.c:105 gnobots/gnobots.c:142 gnomine/gnomine.c:447 gyahtzee/gyahtzee.c:373 mahjongg/mahjongg.c:261 mahjongg/mahjongg.c:329 same-gnome/same-gnome.c:684 scottfree/GnomeScott.c:1519
+#: aisleriot/menu.c:222 freecell/src/menu.c:105 gnobots/gnobots.c:142 gnomine/gnomine.c:447 gyahtzee/gyahtzee.c:373 mahjongg/mahjongg.c:353 mahjongg/mahjongg.c:418 same-gnome/same-gnome.c:684 scottfree/GnomeScott.c:1519
 msgid "New"
 msgstr "Nuevo"
 
-#: aisleriot/menu.c:199 mahjongg/mahjongg.c:750
-msgid "Select Game"
-msgstr "Elegir un juego"
+#: aisleriot/menu.c:224 freecell/src/menu.c:52 gnobots/gnobots.c:145 gnomine/gnomine.c:450 gyahtzee/gyahtzee.c:377 gyahtzee/gyahtzee.c:392 mahjongg/mahjongg.c:387 same-gnome/same-gnome.c:687
+msgid "Properties..."
+msgstr "Propriedades..."
 
-#: aisleriot/menu.c:201 freecell/src/menu.c:64 freecell/src/menu.c:125 gnobots/gnobots.c:151 gnomine/gnomine.c:456 gyahtzee/gyahtzee.c:383 mahjongg/mahjongg.c:280 same-gnome/same-gnome.c:693 scottfree/GnomeScott.c:1528
+#: aisleriot/menu.c:226
+msgid "Statistics..."
+msgstr "Estadísticas..."
+
+#: aisleriot/menu.c:229 aisleriot/menu.c:263 freecell/src/menu.c:64 freecell/src/menu.c:125 gnobots/gnobots.c:151 gnomine/gnomine.c:456 gyahtzee/gyahtzee.c:383 mahjongg/mahjongg.c:372 same-gnome/same-gnome.c:693 scottfree/GnomeScott.c:1528
 msgid "Exit"
 msgstr "Salir"
 
-#: aisleriot/menu.c:208
-msgid "File"
-msgstr "Archivo"
-
-#: aisleriot/menu.c:210 freecell/src/menu.c:90 gnobots/gnobots.c:174 gnomine/gnomine.c:475 gyahtzee/gyahtzee.c:414 mahjongg/mahjongg.c:316 same-gnome/same-gnome.c:711
+#: aisleriot/menu.c:236 freecell/src/menu.c:90 gnobots/gnobots.c:174 gnomine/gnomine.c:475 gnothello/gnothello.c:151 gyahtzee/gyahtzee.c:414 mahjongg/mahjongg.c:405 same-gnome/same-gnome.c:711
 msgid "Game"
 msgstr "Juego"
 
-#: aisleriot/menu.c:212 freecell/src/menu.c:94 gnobots/gnobots.c:177 gnomine/gnomine.c:478 gyahtzee/gyahtzee.c:420 mahjongg/mahjongg.c:322 same-gnome/same-gnome.c:714
+#: aisleriot/menu.c:238
+msgid "Variation"
+msgstr "Variación"
+
+#: aisleriot/menu.c:240 freecell/src/menu.c:94 gnobots/gnobots.c:177 gnomine/gnomine.c:478 gnothello/gnothello.c:155 gyahtzee/gyahtzee.c:420 mahjongg/mahjongg.c:411 same-gnome/same-gnome.c:714
 msgid "Help"
 msgstr "Ayuda"
 
-#: aisleriot/menu.c:224
+#: aisleriot/menu.c:247 mahjongg/mahjongg.c:359 mahjongg/mahjongg.c:424
+msgid "Restart"
+msgstr "Recomenzar"
+
+#: aisleriot/menu.c:247
+msgid "Start this game over."
+msgstr "Empezar este juego acabado."
+
+#: aisleriot/menu.c:251 freecell/src/io-gtk.c:399 freecell/src/menu.c:109
+msgid "Seed"
+msgstr "Parámetro"
+
+#: aisleriot/menu.c:251
+msgid "Start a new game after choosing the seed."
+msgstr "Empezar un juego nuevo después de elegir el parámetro"
+
+#: aisleriot/menu.c:255 freecell/src/menu.c:46 freecell/src/menu.c:113 gyahtzee/gyahtzee.c:395 mahjongg/mahjongg.c:367 mahjongg/mahjongg.c:430
+msgid "Undo"
+msgstr "Anular movimiento"
+
+#: aisleriot/menu.c:255
+msgid "Undo the last move."
+msgstr "Anular el último movimiento"
+
+#: aisleriot/menu.c:259
+msgid "Redo"
+msgstr "Re-hacer movimiento"
+
+#: aisleriot/menu.c:259
+msgid "Redo the last move"
+msgstr "Re-hacer el último movimiento"
+
+#: aisleriot/menu.c:263
+msgid "Quit Aisleriot"
+msgstr "Salir de Aisterlot"
+
+#. These should be in *reverse* alphabetical order
+#: aisleriot/menu.c:280
 msgid "Spider"
 msgstr "Araña (Spider)"
 
-#: aisleriot/menu.c:225
+#: aisleriot/menu.c:281
 msgid "Osmosis"
 msgstr "Osmosis"
 
-#: aisleriot/menu.c:226
+#: aisleriot/menu.c:282
 msgid "Odessa"
 msgstr "Odesa"
 
-#: aisleriot/menu.c:227
+#: aisleriot/menu.c:283
 msgid "Klondike"
 msgstr "Klondike"
 
-#. ENABLE_NLS
-#: aisleriot/menu.c:228 freecell/src/io-gtk.c:118 freecell/src/io-gtk.c:634
+#. make main window.
+#: aisleriot/menu.c:284 freecell/src/io-gtk.c:119 freecell/src/io-gtk.c:635
 msgid "Freecell"
 msgstr "Freecell"
 
-#: aisleriot/menu.c:229
+#: aisleriot/menu.c:285
 msgid "Camelot"
 msgstr "Camelot"
 
-#: aisleriot/sol.c:143
+#: aisleriot/sol.c:132
 msgid "Solitaire"
 msgstr "Solitario"
 
-#. create the scoring widget
-#: aisleriot/sol.c:233 same-gnome/same-gnome.c:924
+#: aisleriot/sol.c:219 same-gnome/same-gnome.c:924
 msgid "Score: "
 msgstr "Puntuación: "
 
-#: freecell/src/io-gtk.c:316 freecell/src/io-gtk.c:438 freecell/src/io-gtk.c:503 freecell/src/io-gtk.c:595
+#: freecell/src/io-gtk.c:317 freecell/src/io-gtk.c:439 freecell/src/io-gtk.c:504 freecell/src/io-gtk.c:596
 msgid "Exit this game?"
 msgstr "¿Salir de este juego?"
 
 # , c-format
-#: freecell/src/io-gtk.c:380 freecell/src/io-gtk.c:471
+#: freecell/src/io-gtk.c:381 freecell/src/io-gtk.c:472
 msgid "Freecell #%d"
 msgstr "Freecell #%d"
 
-#: freecell/src/io-gtk.c:398 freecell/src/menu.c:109
-msgid "Seed"
-msgstr "Parámetro"
-
-#: freecell/src/io-gtk.c:398 scottfree/GnomeScott.c:1216
+#: freecell/src/io-gtk.c:399 scottfree/GnomeScott.c:1216
 msgid "OK"
 msgstr "OK"
 
-#: freecell/src/io-gtk.c:398
+#: freecell/src/io-gtk.c:399
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: freecell/src/io-gtk.c:400
+#: freecell/src/io-gtk.c:401
 msgid "Enter the seed."
 msgstr "Entre un parámetro."
 
-#: freecell/src/io-gtk.c:557
+#: freecell/src/io-gtk.c:558
 msgid "Sorry, this feature is not implemented (yet)."
 msgstr "Disculpe, pero esta funcionalidad no está implementada (todavía)."
 
-#: freecell/src/io-gtk.c:618
+#: freecell/src/io-gtk.c:619
 msgid "Changwoo Ryu."
 msgstr "Changwoo Ryu."
 
-#: freecell/src/io-gtk.c:637
+#: freecell/src/io-gtk.c:638
 msgid "Reimplement the popular solitaire card game."
 msgstr "Remplementación del clasico juego del solitario."
 
-#: freecell/src/io-gtk.c:647
+#: freecell/src/io-gtk.c:648
 msgid "You can't move in that way."
 msgstr "Ese movimiento no está permitido."
 
-#: freecell/src/io-gtk.c:1134
+#: freecell/src/io-gtk.c:1135
 msgid "Sorry, there is no card to move."
 msgstr "Disculpe, pero no hay ninguna carta que se pueda mover."
 
-#: freecell/src/io-gtk.c:1148
+#: freecell/src/io-gtk.c:1149
 msgid ""
 "Congraturations.  You won.\n"
 "Do you want to play again?"
@@ -217,14 +265,6 @@ msgstr "Recomenzar el juego"
 #: freecell/src/menu.c:40
 msgid "New Game with a seed..."
 msgstr "Nuevo juego con un parámetro..."
-
-#: freecell/src/menu.c:46 freecell/src/menu.c:113 gyahtzee/gyahtzee.c:395 mahjongg/mahjongg.c:275 mahjongg/mahjongg.c:341
-msgid "Undo"
-msgstr "Anular movimiento"
-
-#: freecell/src/menu.c:52 gnobots/gnobots.c:145 gnomine/gnomine.c:450 gyahtzee/gyahtzee.c:377 gyahtzee/gyahtzee.c:392 mahjongg/mahjongg.c:298 same-gnome/same-gnome.c:687
-msgid "Properties..."
-msgstr "Propriedades..."
 
 #: freecell/src/menu.c:56
 msgid "Score..."
@@ -242,7 +282,7 @@ msgstr "Empezar un juego nuevo después de elegir el parámetro"
 msgid "Cancel a last move"
 msgstr "Cancelar el último movimiento"
 
-#: freecell/src/menu.c:117 freecell/src/score-dialog.c:55
+#: freecell/src/menu.c:117 freecell/src/score-dialog.c:54
 msgid "Score"
 msgstr "Puntuación"
 
@@ -274,11 +314,11 @@ msgstr "Informar en caso de movimiento incorrecto"
 msgid "Move one by one"
 msgstr "Mover uno por uno"
 
-#: freecell/src/option-dialog.c:78 mahjongg/mahjongg.c:319
+#: freecell/src/option-dialog.c:78 mahjongg/mahjongg.c:408
 msgid "Options"
 msgstr "Opciones"
 
-#: freecell/src/score-dialog.c:55
+#: freecell/src/score-dialog.c:54
 msgid "Clear"
 msgstr "Borrar"
 
@@ -326,11 +366,11 @@ msgstr "NOMBRE"
 msgid "Set game scenario"
 msgstr "Seleccione un escenario"
 
-#: gnobots/gnobots.c:121 gnomine/gnomine.c:26 gnomine/gnomine.c:31
+#: gnobots/gnobots.c:121 gnomine/gnomine.c:26 gnomine/gnomine.c:31 gnothello/gnothello.c:80
 msgid "X"
 msgstr "X"
 
-#: gnobots/gnobots.c:122 gnomine/gnomine.c:27 gnomine/gnomine.c:32
+#: gnobots/gnobots.c:122 gnomine/gnomine.c:27 gnomine/gnomine.c:32 gnothello/gnothello.c:81
 msgid "Y"
 msgstr "Y"
 
@@ -338,43 +378,47 @@ msgstr "Y"
 msgid "Scores..."
 msgstr "Puntuaciones..."
 
-#: gnobots/gnobots.c:603 gnobots/gnobots.c:619 gnobots/gnobots.c:649
+#: gnobots/gnobots.c:605 gnobots/gnobots.c:621 gnobots/gnobots.c:651
 msgid "Could not find '%s' pixmap file for Gnome Robots\n"
 msgstr "No puedo encontrar el pixmap '%s' para Gnome Robots\n"
 
-#: gnobots/gnobots.c:699 same-gnome/same-gnome.c:669
+#: gnobots/gnobots.c:706
+msgid "Do you really want to start a new game?"
+msgstr "¿Quire realmente empezar un nuevo juego?"
+
+#: gnobots/gnobots.c:731 same-gnome/same-gnome.c:669
 msgid "Do you really want to quit?"
 msgstr "¿Quiere realmente salir?"
 
-#: gnobots/gnobots.c:745
+#: gnobots/gnobots.c:777
 msgid "Gnobots"
 msgstr "Gnobots"
 
-#: gnobots/gnobots.c:748
+#: gnobots/gnobots.c:780
 msgid "Gnome Robots game"
 msgstr "Juego Gnome Robots"
 
-#: gnobots/gnobots.c:760
+#: gnobots/gnobots.c:792
 msgid "Gnome Robots - Safe Teleports"
 msgstr "Gnome Robots - Teleportación"
 
-#: gnobots/gnobots.c:763 gnobots/gnobots.c:1219
+#: gnobots/gnobots.c:795 gnobots/gnobots.c:1259
 msgid "Gnome Robots"
 msgstr "Gnome Robots"
 
-#: gnobots/gnobots.c:1247
+#: gnobots/gnobots.c:1287
 msgid "Score:"
 msgstr "Puntuación:"
 
-#: gnobots/gnobots.c:1257
+#: gnobots/gnobots.c:1297
 msgid "Safe Teleports:"
 msgstr "Teleportaciones:"
 
-#: gnobots/gnobots.c:1267
+#: gnobots/gnobots.c:1307
 msgid "Level:"
 msgstr "Nivel:"
 
-#: gnobots/properties.c:194 mahjongg/mahjongg.c:353
+#: gnobots/properties.c:194 mahjongg/mahjongg.c:439
 msgid "Properties"
 msgstr "Propiedades"
 
@@ -394,7 +438,7 @@ msgstr "Modo seguro"
 msgid "Safe Teleports"
 msgstr "Teleportaciones"
 
-#: gnobots/properties.c:247 mahjongg/mahjongg.c:292 mahjongg/mahjongg.c:347
+#: gnobots/properties.c:247 mahjongg/mahjongg.c:384 mahjongg/mahjongg.c:436
 msgid "Sound"
 msgstr "Sonido"
 
@@ -491,7 +535,115 @@ msgstr "Banderas:"
 msgid "Time:"
 msgstr "Tiempo:"
 
-#: gyahtzee/clist.c:166 gyahtzee/clist.c:214
+#: gnothello/gnothello.c:93
+msgid "Quit"
+msgstr "Salir"
+
+#: gnothello/gnothello.c:98 gnothello/gnothello.c:106
+msgid "Disabled"
+msgstr "Desactivado"
+
+#: gnothello/gnothello.c:99 gnothello/gnothello.c:107
+msgid "Level One"
+msgstr "Primer Nivel"
+
+#: gnothello/gnothello.c:100 gnothello/gnothello.c:108
+msgid "Level Two"
+msgstr "Segundo Nivel"
+
+#: gnothello/gnothello.c:101 gnothello/gnothello.c:109
+msgid "Level Three"
+msgstr "Tercer Nivel"
+
+#: gnothello/gnothello.c:124
+msgid "Black"
+msgstr "Negras"
+
+#: gnothello/gnothello.c:125
+msgid "White"
+msgstr "Blancas"
+
+#: gnothello/gnothello.c:127
+msgid "Quick Moves"
+msgstr "Movimientos rápidos"
+
+#: gnothello/gnothello.c:132
+msgid "No Animation"
+msgstr "Sin animaciones"
+
+#: gnothello/gnothello.c:133
+msgid "Some Animation"
+msgstr "Un poco de animaciones"
+
+#: gnothello/gnothello.c:134
+msgid "Full Animation"
+msgstr "Animaciones completas"
+
+#: gnothello/gnothello.c:141
+msgid "Stagger Flips"
+msgstr "Caída de fichas"
+
+#: gnothello/gnothello.c:152
+msgid "Computer"
+msgstr "Computadora"
+
+#: gnothello/gnothello.c:153
+msgid "Animation"
+msgstr "Animaciones"
+
+#: gnothello/gnothello.c:259 gnothello/gnothello.c:485
+msgid "Gnome Othello"
+msgstr "Gnome Othello"
+
+#: gnothello/gnothello.c:259
+msgid ""
+"Send comments and bug reports to: ipeters@acm.org\n"
+"Tiles under the General Public License."
+msgstr ""
+"Envie sus comentarios y reportes de bugs a: peters@acm.org\n"
+"Los juegos de piezas están bajo licencia GPL."
+
+#: gnothello/gnothello.c:373
+msgid "Could not fine '%s' pixmap file for Gnothello\n"
+msgstr "No pude encontrar el archivo pixmap '%s' para Gnothello\n"
+
+#: gnothello/gnothello.c:373
+msgid "Could not find '%s' pixmap file for Gnothello\n"
+msgstr "No pude encontrar el archivo pixmap '%s' para Gnothello\n"
+
+#: gnothello/gnothello.c:480 gnothello/othello.c:179
+msgid "  Black's turn..."
+msgstr "  El turno de las negras..."
+
+#: gnothello/gnothello.c:526
+msgid "  Welcome to Gnome Othello!"
+msgstr "  ¡Bienvenido a Gnome Othello!"
+
+#: gnothello/othello.c:182
+msgid "  White's turn..."
+msgstr "  El turno de las blancas..."
+
+#: gnothello/othello.c:526
+msgid "  White player wins!"
+msgstr "  ¡Ganaron las blancas!"
+
+#: gnothello/othello.c:528
+msgid "  Black player wins!"
+msgstr "  ¡Ganaron las negras!"
+
+#: gnothello/othello.c:530
+msgid "  The game was a draw."
+msgstr "  ¡Empate!"
+
+#: gnothello/othello.c:538
+msgid "  White must pass...Black's turn..."
+msgstr "  Las blancas pasan el turno... A las negras..."
+
+#: gnothello/othello.c:544
+msgid "  Black must pass...White's turn..."
+msgstr "  Las negras pasan el turno... A las blancas..."
+
+#: gyahtzee/clist.c:166 gyahtzee/clist.c:215
 msgid "Already used! Where do you want to put that?"
 msgstr "¡Ya en uso! ¿Donde desea ponerlo?"
 
@@ -583,7 +735,7 @@ msgstr "Computadora jugando para %s"
 msgid "%s! -- You're up."
 msgstr "¡%s! -- Está al tanto."
 
-#: gyahtzee/gyahtzee.c:291 gyahtzee/yahtzee.c:177
+#: gyahtzee/gyahtzee.c:291 gyahtzee/yahtzee.c:184
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "¡Se permiten lanzar solo tres veces! Seleccione una casilla de puntos."
 
@@ -599,11 +751,11 @@ msgstr "¡Tramposo! Las puntuaciones no serán guardadas."
 msgid "Edit"
 msgstr "Editar"
 
-#: gyahtzee/gyahtzee.c:512
+#: gyahtzee/gyahtzee.c:514
 msgid "Select dice to re-roll, press Roll!, or select score slot."
 msgstr "Seleccione el dado a relanzar, presione ¡Lanzar!, o seleccione una casilla de puntos."
 
-#: gyahtzee/gyahtzee.c:551
+#: gyahtzee/gyahtzee.c:553
 msgid " Roll ! "
 msgstr " ¡ Lanzar ! "
 
@@ -666,174 +818,187 @@ msgstr "Jugadores humanos"
 msgid "Number of players:"
 msgstr "Cantidad de jugadores:"
 
-#: gyahtzee/yahtzee.c:56
+#: gyahtzee/yahtzee.c:63
 msgid "Human"
 msgstr "Humano"
 
-#: gyahtzee/yahtzee.c:64
+#: gyahtzee/yahtzee.c:71
 msgid "1's [total of 1s]"
 msgstr "1's [total de 1s]"
 
-#: gyahtzee/yahtzee.c:65
+#: gyahtzee/yahtzee.c:72
 msgid "2's [total of 2s]"
 msgstr "2's [total de 2s]"
 
-#: gyahtzee/yahtzee.c:66
+#: gyahtzee/yahtzee.c:73
 msgid "3's [total of 3s]"
 msgstr "3's [total de 3s]"
 
-#: gyahtzee/yahtzee.c:67
+#: gyahtzee/yahtzee.c:74
 msgid "4's [total of 4s]"
 msgstr "4's [total de 4s]"
 
-#: gyahtzee/yahtzee.c:68
+#: gyahtzee/yahtzee.c:75
 msgid "5's [total of 5s]"
 msgstr "5's [total de 5s]"
 
-#: gyahtzee/yahtzee.c:69
+#: gyahtzee/yahtzee.c:76
 msgid "6's [total of 6s]"
 msgstr "6's [total de 6s]"
 
-#. End of upper panel
-#: gyahtzee/yahtzee.c:71
+#: gyahtzee/yahtzee.c:78
 msgid "3 of a Kind [total]"
 msgstr "3 del mismo tipo [total]"
 
-#: gyahtzee/yahtzee.c:72
+#: gyahtzee/yahtzee.c:79
 msgid "4 of a Kind [total]"
 msgstr "4 del mismo tipo [total]"
 
-#: gyahtzee/yahtzee.c:73
+#: gyahtzee/yahtzee.c:80
 msgid "Full House [25]"
 msgstr ""
 
-#: gyahtzee/yahtzee.c:74
+#: gyahtzee/yahtzee.c:81
 msgid "Small Straight [30]"
 msgstr ""
 
-#: gyahtzee/yahtzee.c:75
+#: gyahtzee/yahtzee.c:82
 msgid "Large Straight [40]"
 msgstr ""
 
-#: gyahtzee/yahtzee.c:76
+#: gyahtzee/yahtzee.c:83
 msgid "Yahtzee [50]"
 msgstr ""
 
-#: gyahtzee/yahtzee.c:77
+#: gyahtzee/yahtzee.c:84
 msgid "Chance [total]"
 msgstr ""
 
 #. End of lower panel
-#: gyahtzee/yahtzee.c:79
+#: gyahtzee/yahtzee.c:86
 msgid "Lower Total"
 msgstr ""
 
-#: gyahtzee/yahtzee.c:80
+#: gyahtzee/yahtzee.c:87
 msgid "Grand Total"
 msgstr "Gran Total"
 
 #. Need to squish between upper and lower pannel
-#: gyahtzee/yahtzee.c:82
+#: gyahtzee/yahtzee.c:89
 msgid "Upper total"
 msgstr ""
 
-#: gyahtzee/yahtzee.c:83
+#: gyahtzee/yahtzee.c:90
 msgid "Bonus"
 msgstr "Bonus"
 
-#: gyahtzee/yahtzee.c:498
+#: gyahtzee/yahtzee.c:503
 msgid "How many times to you wish to roll? "
 msgstr "¿Cuantas veces desea lanzar?"
 
-#: gyahtzee/yahtzee.c:503
+#: gyahtzee/yahtzee.c:508
 msgid "Generating"
 msgstr "Generando"
 
-#: gyahtzee/yahtzee.c:538
+#: gyahtzee/yahtzee.c:543
 msgid "Results"
 msgstr "Resultados"
 
-#: gyahtzee/yahtzee.c:538
+#: gyahtzee/yahtzee.c:543
 msgid "Num Rolls"
 msgstr "Tiros"
 
-#: gyahtzee/yahtzee.c:538
+#: gyahtzee/yahtzee.c:543
 msgid "Total"
 msgstr "Total"
 
-#: mahjongg/mahjongg.c:264
+#: mahjongg/mahjongg.c:356
 msgid "New Seed..."
 msgstr "Nuevo Parámetro..."
 
-#: mahjongg/mahjongg.c:267 mahjongg/mahjongg.c:335
-msgid "Restart"
-msgstr "Recomenzar"
-
-#: mahjongg/mahjongg.c:287
+#: mahjongg/mahjongg.c:379
 msgid "Show Tool Bar"
 msgstr "Afichar la barra de íconos"
 
-#: mahjongg/mahjongg.c:295
-msgid "Tile Set"
-msgstr "Juego de piezas"
-
-#: mahjongg/mahjongg.c:309
+#: mahjongg/mahjongg.c:398
 msgid "About"
 msgstr "Acerca de"
 
-#: mahjongg/mahjongg.c:332
+#: mahjongg/mahjongg.c:421
 msgid "New Seed"
 msgstr "Nuevo parámetro"
 
-#: mahjongg/mahjongg.c:344
+#: mahjongg/mahjongg.c:433
 msgid "Re-do"
 msgstr "Re-hacer"
 
-#: mahjongg/mahjongg.c:490
+#: mahjongg/mahjongg.c:649
 msgid "Tiles don't match!"
 msgstr "¡Las piezas no corresponden!"
 
-#: mahjongg/mahjongg.c:525
+#: mahjongg/mahjongg.c:672
 msgid "No more movements"
 msgstr "No más movimientos posibles"
 
-#: mahjongg/mahjongg.c:549
+#: mahjongg/mahjongg.c:698
 msgid "You won!"
 msgstr "¡Ganó!"
 
-#: mahjongg/mahjongg.c:580
+#: mahjongg/mahjongg.c:731
 msgid "Tiles"
 msgstr "Piezas"
 
-#: mahjongg/mahjongg.c:586
+#: mahjongg/mahjongg.c:737
 msgid "Select Tiles:"
 msgstr "Elegir Juego de Piezas:"
 
-#: mahjongg/mahjongg.c:592
+#: mahjongg/mahjongg.c:743
 msgid "Make it the default tile set"
 msgstr "Juego de piezas por omisión"
 
-#: mahjongg/mahjongg.c:635 mahjongg/mahjongg.c:1104
+#: mahjongg/mahjongg.c:765
+msgid "Maps"
+msgstr "Mapas"
+
+#: mahjongg/mahjongg.c:771
+msgid "Select Map:"
+msgstr "Elegir Mapa:"
+
+#: mahjongg/mahjongg.c:777
+msgid "Make it the default map"
+msgstr "Mapa por omisión"
+
+#: mahjongg/mahjongg.c:873 mahjongg/mahjongg.c:1370
 msgid "Gnome Mahjongg"
 msgstr "Gnome Mahjongg"
 
-#: mahjongg/mahjongg.c:638
+#: mahjongg/mahjongg.c:876
 msgid ""
-"Send comments and bug reports to: pancho@nuclecu.unam.mx\n"
+"Send comments and bug reports to:\n"
+"        pancho@nuclecu.unam.mx or\n"
+"        michael@imaginator.com\n"
+"\n"
 "Tiles under the General Public License."
 msgstr ""
-"Envie sus comentarios y reportes de bugs a: pancho@nuclecu.unam.mx\n"
+"Envie sus comentarios y reportes de bugs a:\n"
+"\tpancho@nuclecu.unam.mx o\n"
+"\tmichael@imaginator.com\n"
+"\n"
 "Los juegos de piezas están bajo licencia GPL."
 
-#: mahjongg/mahjongg.c:754
+#: mahjongg/mahjongg.c:993
+msgid "Select Game"
+msgstr "Elegir un juego"
+
+#: mahjongg/mahjongg.c:997
 msgid "Game Number:"
 msgstr "Número de Juego:"
 
-#: mahjongg/mahjongg.c:1119
+#: mahjongg/mahjongg.c:1385
 msgid " Tiles "
 msgstr " Piezas "
 
-#: mahjongg/mahjongg.c:1123
+#: mahjongg/mahjongg.c:1389
 msgid " Remaining: "
 msgstr " Restantes: "
 
