@@ -6,11 +6,12 @@ typesdir  = $(datadir)/sol-games
 
 SUBDIRS=docs pixmaps
 
-INCLUDES = \
-	$(GNOME_GAMES_CFLAGS)			\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
-	-I$(includedir)				 \
-	$(GUILE_INCS)				 
+INCLUDES =  \
+	-I$(top_srcdir)/libgames-support           \
+	$(GNOME_GAMES_CFLAGS)			   \
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"   \
+	-I$(includedir)				   \
+	$(GUILE_INCS)
 
 bin_PROGRAMS = sol
 
@@ -40,6 +41,7 @@ sol_SOURCES = 		\
 
 sol_LDADD = $(GNOME_GAMES_LIBS) \
 	../freecell/gdk-card-image/libgdkcardimage.la \
+	../libgames-support/libgames-support.la \
 	$(GUILE_LIBS) 
 
 types_DATA  = 		\

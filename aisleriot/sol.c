@@ -41,7 +41,7 @@
 #include "cscmi.h"
 #include "menu.h"
 #include "splash.h"
-#include <games-clock.h>
+#include "games-clock.h"
 
 /*
  * Global Variables
