@@ -21,7 +21,6 @@ always_built_SUBDIRS =		\
 	gnotravex		\
 	glines			\
 	iagno			\
-	gdk-card-image		\
 	gnobots2		\
 	gnibbles		
 
