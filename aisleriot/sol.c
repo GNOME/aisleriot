@@ -98,37 +98,6 @@ gchar* game_file_to_name (const gchar* file)
   return p;
 }
 
-/*
- * This function assumes that xxx.scm has a HTML help file xxx.html
- * located in the gnome/help/aisleriot/../ dir (nb '_' -> '-' for DocBook).
- */
-static gpointer* game_file_to_help_entry (const gchar* file)
-{
-#if 0
-  GnomeHelpMenuEntry* entry;
-  char* p, *filename;
-  GString* help;
-
-  filename = g_path_get_basename (file);
-  help = g_string_new (filename);
-  g_free (filename);
-
-  if ((p = strrchr (help->str, '.'))) 
-    g_string_truncate (help, p - help->str);
-  for(p = help->str; p = strchr(p, '_'), p && *p;) *p = '-';
-  g_string_append (help, ".html");
-
-  entry = g_new (GnomeHelpMenuEntry, 1);
-  entry->name = g_strdup ("aisleriot");
-  entry->path = g_strdup(help->str);
-
-  g_string_free(help, TRUE);
-  return (gpointer *) entry;
-#else
-  return NULL;
-#endif
-}
-
 void make_title () 
 {
   char *title;
@@ -208,10 +177,6 @@ void new_game (gchar* file, guint *seedp )
   game_in_progress = FALSE;
 
   if (file && strcmp (file, game_file)) {
-    gchar buf[100];
-    GtkWidget *ms;
-    guint pos;
-
     game_file = file;
 
     /* Explicitly drop any dragged cards. This shouldn't happen, but it
@@ -224,33 +189,14 @@ void new_game (gchar* file, guint *seedp )
      * "clean". */
     eval_installed_file ("sol.scm");
     eval_installed_file (file);
-    if(game_name) {
-      g_snprintf(buf, sizeof (buf), "%s/%s", _("Help"), game_name);
-/*      gnome_app_remove_menus (GNOME_APP (app), buf, 1); */
-      if(rules_help[0].user_data) {
-#if 0
-	GnomeHelpMenuEntry *entry = 
-	  (GnomeHelpMenuEntry *) rules_help[0].user_data;
-	g_free (entry->name);
-	g_free (entry->path);
-	g_free (entry);
-#endif
-      }
-    }
+
     game_name = game_file_to_name (file);
     update_statistics_display ();
+    help_update_game_name (game_name);
 
     if (!dont_save)
       save_state (gnome_master_client ());
 
-    rules_help[0].label = game_name;
-    rules_help[0].user_data = game_file_to_help_entry(file);
-    g_snprintf(buf, sizeof (buf), "%s/%s", _("Help"), _("Aisleriot"));
-
-    ms = gnome_app_find_menu_pos(GNOME_APP (app)->menubar, buf, &pos);
-    if (ms != NULL)
-      gnome_app_fill_menu (GTK_MENU_SHELL(ms), rules_help, 
-			   GNOME_APP (app)->accel_group, TRUE, pos);
     if(option_dialog) {
       gtk_widget_destroy(option_dialog);
       option_dialog = NULL;

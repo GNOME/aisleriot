@@ -29,5 +29,6 @@ void install_menu_hints ( GnomeApp * );
 void toolbar_hide ( void );
 void undo_set_sensitive (gboolean state);
 void redo_set_sensitive (gboolean state);
+void help_update_game_name (gchar * name);
 
 #endif

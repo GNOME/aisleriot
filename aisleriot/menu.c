@@ -33,6 +33,7 @@
 #include "statistics.h"
 
 static GtkWidget *about = NULL;
+static gchar * gamename = NULL;
 
 static void restart_game ()
 {
@@ -136,6 +137,11 @@ void help_about_callback ()
   return;
 }
 
+static void help_on_specific_game ()
+{
+  gnome_help_display ("aisleriot.xml", gamename, NULL);
+}
+
 static void toolbar_show (void)
 {
   GtkWidget * toolbar;
@@ -197,6 +203,9 @@ GnomeUIInfo view_menu[] = {
 GnomeUIInfo help_menu[] = {
   GNOMEUIINFO_HELP("aisleriot"),
 
+  GNOMEUIINFO_ITEM_STOCK ("", "", help_on_specific_game, 
+			  GNOME_STOCK_PIXMAP_HELP),
+
   GNOMEUIINFO_MENU_ABOUT_ITEM(help_about_callback, NULL),
 
   GNOMEUIINFO_END
@@ -223,13 +232,7 @@ GnomeUIInfo game_menu[] = {
       show_property_dialog, GNOME_STOCK_MENU_PREF), */
 
   GNOMEUIINFO_SEPARATOR,
-#if 0
-  GNOMEUIINFO_MENU_SCORES_ITEM(show_global_stats_dialog, NULL),
-  /*  GNOMEUIINFO_ITEM_STOCK(N_("S_tatistics..."), NULL, 
-      show_global_stats_dialog, GNOME_STOCK_MENU_BOOK_BLUE), */
 
-  GNOMEUIINFO_SEPARATOR,
-#endif
   GNOMEUIINFO_MENU_EXIT_ITEM(quit_app, NULL),
 
   GNOMEUIINFO_END
@@ -282,6 +285,25 @@ void redo_set_sensitive (gboolean state)
 {
   gtk_widget_set_sensitive (game_menu[5].widget, state);
   gtk_widget_set_sensitive (toolbar[5].widget, state);
+}
+
+void help_update_game_name (gchar * name)
+{
+  static GnomeUIInfo newitems[] = { GNOMEUIINFO_ITEM_STOCK ("", 
+							  N_("View help for the current game"), 
+							  help_on_specific_game,
+							    GTK_STOCK_HELP),
+				    GNOMEUIINFO_END };
+  
+  if (gamename)
+    g_free (gamename);
+
+  gamename = g_strdup (name);
+
+  newitems[0].label = gamename;
+
+  gnome_app_remove_menu_range (GNOME_APP(app), "Help/Contents", 1, 1);
+  gnome_app_insert_menus (GNOME_APP(app), "Help/Contents", &newitems[0]);
 }
 
 void create_menus ()
