@@ -214,7 +214,7 @@ const GtkActionEntry actions[] = {
   { "ControlMenu", NULL, N_("_Control") },
   { "HelpMenu", NULL, N_("_Help") },
 
-  { "NewGame", GTK_STOCK_MEDIA_PLAY, N_("_New Game"), "<control>N", NULL, G_CALLBACK (random_seed) },
+  { "NewGame", GTK_STOCK_NEW, N_("_New Game"), "<control>N", NULL, G_CALLBACK (random_seed) },
   { "RestartGame", GTK_STOCK_REFRESH, N_("_Restart Game"), "<control>R", NULL, G_CALLBACK (restart_game) },
   { "Select", GTK_STOCK_INDEX, N_("_Select Game..."), NULL, NULL, G_CALLBACK (show_select_game_dialog) },
   { "Statistics", GTK_STOCK_ADD, N_("S_tatistics..."), NULL, NULL, G_CALLBACK (show_statistics_dialog) },
