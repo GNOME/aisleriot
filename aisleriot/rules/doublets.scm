@@ -53,8 +53,14 @@
 
   (add-to-score! 1)
 
+  (set-statusbar-message (get-stock-no-string))
+
   (list 6 3)
 )
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
 
 (define (check-kings slot-list)
   (if (= (get-value (get-top-card (car slot-list))) king)
@@ -124,6 +130,7 @@
 	  #f)))
 
 (define (game-over)
+  (set-statusbar-message (get-stock-no-string))
   (or (< FLIP-COUNTER 2)
       (not (empty-slot? 0))
       (check-move 1)))

@@ -51,12 +51,38 @@
 
   (set! BASE-VAL (get-value (get-top-card 2)))
   
-  ;(set-statusbar-message (string-append "Base Card:  " (string BASE-VAL)))
+  (set-statusbar-message (string-append (get-stock-no-string)
+					"   "
+					(get-reserve-no-string)
+					"   "
+					(get-base-string)))
 
   (add-to-score! 1)
 
   (list 7 4)
 )
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
+
+(define (get-reserve-no-string)
+  (string-append "Reserve left:  " 
+		 (number->string (length (get-cards 6)))))
+
+(define (get-base-string)
+  (cond ((and (> BASE-VAL 1)
+	      (< BASE-VAL 11))
+	 (string-append "Base Card:  " (number->string BASE-VAL)))
+	((= BASE-VAL 1)
+	 "Base Card:  Ace")
+	((= BASE-VAL 11)
+	 "Base Card:  Jack")
+	((= BASE-VAL 12)
+	 "Base Card:  Queen")
+	((= BASE-VAL 13)
+	 "Base Card:  King")
+	(#t #f)))
 
 (define (button-pressed slot-id card-list)
   (if (= slot-id 0)
@@ -175,6 +201,11 @@
 	    (place-found slot top-card 2)))))
 
 (define (game-over)
+  (set-statusbar-message (string-append (get-stock-no-string)
+					"   "
+					(get-reserve-no-string)
+					"   "
+					(get-base-string)))
   (if (and (empty-slot? 0)
 	   (empty-slot? 1)
 	   (empty-slot? 6)

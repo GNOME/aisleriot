@@ -85,8 +85,14 @@
   (deal-cards 0 '(2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22))
   (deal-cards-face-up 0 '(23 24 25 26 27 28 29))
 
+  (set-statusbar-message (get-stock-no-string))
+
   (list 5 4)
 )
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
   (and (is-visible? (car card-list))
@@ -321,6 +327,7 @@
 	  (playable? (+ 1 check-slot)))))
 
 (define (game-continuable)
+  (set-statusbar-message (get-stock-no-string))
   (and (not (game-won))
        (get-hint)))
 

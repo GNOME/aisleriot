@@ -64,8 +64,16 @@
   (add-normal-slot '())           ; Slot 17
   (set! add-stage #t)
   (set! fill-count 0)
+
+  (set-statusbar-message (get-stock-no-string))
+
   (list 6 4)
 )
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 16)))))
+
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -200,6 +208,7 @@
 	(#t "an empty slot")))
 
 (define (game-over)
+  (set-statusbar-message (get-stock-no-string))
   (if (or (= fill-count 16)
 	  (and (empty-slot? 16) (empty-slot? 17)))
       (begin 

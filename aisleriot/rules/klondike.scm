@@ -55,8 +55,14 @@
   
   (map flip-top-card tableau)
 
+  (set-statusbar-message (get-stock-no-string))
+
   (list 7 3)
 )
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
   (and (or (> slot-id 1)
@@ -211,6 +217,7 @@
 ; so we must NOT report game-over when they run out.
 
 (define (game-over)
+  (set-statusbar-message (get-stock-no-string))
   (not (game-won)))
 
 (define (get-options)

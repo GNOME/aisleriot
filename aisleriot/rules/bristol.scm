@@ -74,7 +74,14 @@
 			    8 9 10 11 12 13 14 15 
 			    8 9 10 11 12 13 14 15))
   (check-for-kings 8)
+
+  (set-statusbar-message (get-stock-no-string))
+
   (list 10 3))
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
 
 (define (check-for-kings slot-id)
   (if (> slot-id 15)
@@ -140,6 +147,7 @@
   #f)
 
 (define (game-continuable)
+  (set-statusbar-message (get-stock-no-string))
   (and (not (game-won))
        (get-hint)))
 

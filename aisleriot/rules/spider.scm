@@ -48,8 +48,16 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
   (deal-initial-setup)
+
+  (set-statusbar-message (get-stock-no-string))
+
   (list 10 4)  
 )
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
+
 ;internal procedures/variables
 (define DEAL_COUNTER 1)
 
@@ -166,12 +174,101 @@
 	      
 (define (button-double-clicked slot)
   #f)
+
 (define (game-over)
-  #t)
+  (set-statusbar-message (get-stock-no-string))
+  (and (not (game-won))
+      (get-hint))
+
+(define (check-empty-or-full slot-id)
+  (if (> slot-id 18)
+      #t
+      (and (or (empty-slot? slot-id)
+	       (= (length (get-cards slot-id)) 13))
+	   (check-empty-or-full (+ 1 slot-id)))))
+
+(define (visible-order? card-list)
+  (if (= (length card-list) 1)
+      #t
+      (and (eq? (get-suit (car card-list))
+		(get-suit (cadr card-list)))
+	   (= (+ 1 (get-value (car card-list)))
+	      (get-value (cadr card-list)))
+	   (visible-order? (cdr card-list)))))
+
+(define (check-sequence slot-id)
+  (if (> slot-id 18)
+      #t
+      (and (or (empty-slot? slot-id)
+	       (visible-order? (get-cards slot-id)))
+	   (check-sequence (+ 1 slot-id)))))
+
 (define (game-won)
-  #f)
+  (and (empty-slot? 0)
+       (check-empty-or-full 1)
+       (check-sequence 9)))
+
+(define (depth-card card-list)
+  (if (and (> (length card-list) 1)
+	   (is-visible? (cadr card-list))
+	   (eq? (get-suit (car card-list))
+		(get-suit (cadr card-list)))
+	   (eq? (+ 1 (get-value (car card-list)))
+		(get-value (cadr card-list))))
+      (depth-card (cdr card-list))
+      card-list))
+
+(define (check-a-slot slot1 card-to-move slot2 same-suit?)
+  (if (> slot2 18)
+      #f
+      (if (and (not (= slot1 slot2))
+	       (not (empty-slot? slot2))
+	       (eq? same-suit?
+		    (eq? (get-suit card-to-move)
+			 (get-suit (get-top-card slot2))))
+	       (= (+ 1 (get-value card-to-move))
+		  (get-value (get-top-card slot2))))
+	  (list 1
+		(get-name card-to-move)
+		(get-name (get-top-card slot2)))
+	  (check-a-slot slot1 card-to-move (+ 1 slot2) same-suit?))))
+
+(define (same-suit-check slot-id)
+  (if (> slot-id 18)
+      #f
+      (if (and (not (empty-slot? slot-id))
+	       (check-a-slot slot-id (car (depth-card (get-cards slot-id))) 9 #t))
+	  (check-a-slot slot-id (car (depth-card (get-cards slot-id))) 9 #t)
+	  (same-suit-check (+ 1 slot-id)))))
+
+(define (not-same-suit-check slot-id)
+  (if (> slot-id 18)
+      #f
+      (if (and (not (empty-slot? slot-id))
+	       (or (= 1 (length (depth-card (get-cards slot-id))))
+		   (not (eq? (+ 1 (get-value (car (depth-card (get-cards slot-id)))))
+			     (get-value (cadr (depth-card (get-cards slot-id)))))))
+	       (check-a-slot slot-id (car (depth-card (get-cards slot-id))) 9 #f))
+	  (check-a-slot slot-id (car (depth-card (get-cards slot-id))) 9 #f)
+	  (not-same-suit-check (+ 1 slot-id)))))
+
+(define (open-slots? slot-id)
+  (if (> slot-id 18)
+      #f
+      (if (empty-slot? slot-id)
+	  (list 0 "Place something on empty slot")
+	  (open-slots? (+ 1 slot-id)))))
+
+(define (dealable?)
+  (if (not (empty-slot? 0))
+      (list 0 "Deal another round")
+      #f))
+
 (define (get-hint)
-  #f)
+  (or (same-suit-check 9)
+      (not-same-suit-check 9)
+      (open-slots? 9)
+      (dealable?)))
 
 (define (get-options) #f)
 

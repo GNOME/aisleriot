@@ -44,8 +44,13 @@
   (add-card! 4 (make-visible (make-card 3 club)))
   (add-card! 5 (make-visible (make-card 4 club)))
 
+  (set-statusbar-message (get-stock-no-string))
+
   (list 7 4))
 
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -102,6 +107,7 @@
   #f)
 
 (define (game-continuable)
+  (set-statusbar-message (get-stock-no-string))
   (and (not (game-won))
        (get-hint)))
 

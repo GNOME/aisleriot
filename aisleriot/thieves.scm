@@ -19,8 +19,15 @@
   (add-partially-extended-slot DECK right 10 )
   (add-normal-slot '())
   (deal-cards-face-up 7 '(0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6 8))
+
+  (set-statusbar-message (get-stock-no-string))
+
   (list 7 3)
 )
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 7)))))
 
 (define (values-match? c1 c2)
   (or (eq? (get-value c1) joker)
@@ -83,6 +90,7 @@
                        (empty-slot? 6)))
 
 (define (game-over) 
+  (set-statusbar-message (get-stock-no-string))
   (if (game-won) 
     #f
     (if (empty-slot? 7) 

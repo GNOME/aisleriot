@@ -69,7 +69,36 @@
   (add-to-score! 1)
   (set! BASE-VAL (get-value (get-top-card 2)))
 
+  (set-statusbar-message (string-append (get-stock-no-string)
+					"   "
+					(get-reserve-no-string)
+					"   "
+					(get-base-string)))
+
   (list 9 3))
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
+
+(define (get-reserve-no-string)
+  (string-append "Reserve left:  " 
+		 (number->string (length (get-cards 10)))))
+
+(define (get-base-string)
+  (cond ((and (> BASE-VAL 1)
+	      (< BASE-VAL 11))
+	 (string-append "Base Card:  " (number->string BASE-VAL)))
+	((= BASE-VAL 1)
+	 "Base Card:  Ace")
+	((= BASE-VAL 11)
+	 "Base Card:  Jack")
+	((= BASE-VAL 12)
+	 "Base Card:  Queen")
+	((= BASE-VAL 13)
+	 "Base Card:  King")
+	(#t #f)))
+
 
 (define (button-pressed slot-id card-list)
   (and card-list
@@ -83,7 +112,12 @@
   (if (and (not (= start-slot 1))
 	   (empty-slot? start-slot)
 	   (not (empty-slot? 10)))
-      (deal-cards-face-up 10 (cons start-slot '()))))
+      (deal-cards-face-up 10 (cons start-slot '())))
+  (set-statusbar-message (string-append (get-stock-no-string)
+					"   "
+					(get-reserve-no-string)
+					"   "
+					(get-base-string))))
 
 (define (button-released start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
@@ -113,7 +147,14 @@
 
 (define (button-clicked slot-id)
   (if (= slot-id 0)
-      (flip-stock 0 1 2)))
+      (begin
+	(flip-stock 0 1 2)
+	(set-statusbar-message (string-append (get-stock-no-string)
+					      "   "
+					      (get-reserve-no-string)
+					      "   "
+					      (get-base-string))))
+      #f))
 
 (define (button-double-clicked slot)
   (if (and (not (empty-slot? slot))

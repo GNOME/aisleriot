@@ -31,8 +31,14 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
 
+  (set-statusbar-message (get-stock-no-string))
+
   (list 6 3)
 )
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
   (and card-list
@@ -95,6 +101,7 @@
        (= 1 (length (get-cards 4)))))
      
 (define (game-over)
+  (set-statusbar-message (get-stock-no-string))
   (not (and (empty-slot? 0)
 	    (and (not (empty-slot? 1))
 		     (not (empty-slot? 2))

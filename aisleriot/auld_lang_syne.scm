@@ -41,8 +41,14 @@
   (add-card! 3 (make-visible (make-card ace heart)))
   (add-card! 4 (make-visible (make-card ace spade)))
 
+  (set-statusbar-message (get-stock-no-string))
+
   (list 6 2)
 )
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -82,6 +88,7 @@
        (get-hint)))
 
 (define (game-won)
+  (set-statusbar-message (get-stock-no-string))
   (and (empty-slot? 0)
        (empty-slot? 5)
        (empty-slot? 6)
