@@ -836,29 +836,29 @@ static void gtk_card_deck_options_edit_set_selection (GtkCardDeckOptionsEdit *w)
 
   select = gtk_tree_view_get_selection (GTK_TREE_VIEW (w->listview));
   
-  if (w->selected_style) {
-    i = 0;
-    list = w->style_list;
-    while (list) {
-      /* Warning: this only works as long as the order of the list isn't
-       * disturbed. */
-      if (list->data == w->selected_style) {
-	path = gtk_tree_path_new_from_indices (i, -1);
-	gtk_tree_selection_select_path (select, path);
-	gtk_tree_view_set_cursor (GTK_TREE_VIEW (w->listview), path, 
-				  NULL, FALSE);
-	gtk_tree_path_free (path);
-	return;
-      }
-      i++;
-      list= g_list_next (list);
+  if (!w->selected_style)
+    return;
+
+  i = 0;
+  list = w->style_list;
+  while (list) {
+    /* Warning: this only works as long as the order of the list isn't
+     * disturbed. */
+    if (list->data == w->selected_style) {
+      /* So we don't signal on a program-requested change. */
+      w->ignore_changed = TRUE;
+      path = gtk_tree_path_new_from_indices (i, -1);
+      gtk_tree_selection_select_path (select, path);
+      gtk_tree_view_set_cursor (GTK_TREE_VIEW (w->listview), path, 
+				NULL, FALSE);
+      gtk_tree_path_free (path);
+      return;
     }
-  } else {
-    gtk_tree_selection_unselect_all (select);
+    i++;
+    list= g_list_next (list);
   }
 
-  /* To so we don't signal on a program-requested change. */
-  w->ignore_changed = TRUE;
+  gtk_tree_selection_unselect_all (select);
 }
 
 void          
@@ -893,15 +893,15 @@ gtk_card_deck_options_edit_set (GtkCardDeckOptionsEdit* w,
       if (identical) {
 	w->selected_style = style;
 	gtk_card_deck_options_edit_set_selection (w);
+	break;
       }
       possibles = g_list_next (possibles);
     }
   }
 
   for ( ; i>0; i--)
-    g_free (components[i]);
+    g_free (components[i-1]);
   g_free (components);
-
 }
 
 GdkCardDeckOptions 
@@ -1073,8 +1073,6 @@ gtk_card_deck_options_edit_new (void)
 
   select = gtk_tree_view_get_selection (GTK_TREE_VIEW (w->listview));
   gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
-
-  /* FIXME: The default selection and focus for the list is a bad thing. */
 
   gtk_card_deck_options_edit_set_selection (w);
 
