@@ -26,170 +26,144 @@
 
 press_data_type* press_data; 
 
-GdkBitmap *create_back_mask (hslot_type slot, gint width, gint height, gint list_length) {
-  gint i;
-  GdkBitmap *retval = gdk_pixmap_new (playing_area->window,
-				      width,
-				      height,
-				      1);
-  GdkColor color = {0,0,0,0};
-  GdkGC *gc = gdk_gc_new (retval);
-
-  gdk_gc_set_foreground (gc, &color);
-  gdk_draw_rectangle (retval, gc,
-		      TRUE, 0, 0, width, height);
-#ifdef GDK_OR
-  gdk_gc_set_function (gc, GDK_OR);
-#else
-  gdk_gc_set_function (gc, GDK_XOR);
-#endif
-  
-  for (i = 0; i < list_length; i++)
-    gdk_draw_pixmap (retval, gc, mask, 0, 0, 0, i*EXPANDED_VERT_OFFSET, get_card_width(), get_card_height());
-
-  return retval;
-}
-
 void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
-	GList* tempptr;
-	GdkPixmap* tempcard;
-	hslot_type slot = get_slot(slotid);
-	gint i, tempint;
-	GdkGC* gc;
-	GdkWindowAttr attributes;
+  GList* tempptr;
+  GdkPixmap* tempcard;
+  hslot_type slot = get_slot(slotid);
+  gint tempint;
+  gint length, height, width, dx, dy, x2, y2;
+  GdkGC *gc1, *gc2;
+  GdkColor masked = {0, 0, 0, 0}, unmasked = {1, 65535, 65535, 65535};
+  GdkWindowAttr attributes;
+  
+  press_data->slot_id = slotid;
+  press_data->slot_location = cardid;
+  press_data->cards = g_list_nth(slot->cards, cardid - 1);
+  press_data->temporary_partial_hack = slot->expansion_depth;
+  g_assert(press_data->cards);
+  if (press_data->cards->prev) 
+    press_data->cards->prev->next = NULL;
+  else 
+    slot->cards = NULL;
+  press_data->cards->prev = NULL;
+  update_slot_length(slotid);
 
-	gc = gdk_gc_new (playing_area->window);
-	gdk_gc_set_clip_mask(gc,mask); 
+  length = g_list_length(press_data->cards);
+  
+  if (slot->type == NORMAL_SLOT) {
+    press_data->xoffset = (x - slot->x);
+    press_data->yoffset = (y - slot->y);
+    width = get_card_width();
+    height = get_card_height() + (length - 1)*EXPANDED_VERT_OFFSET;
+    dx = 0; dy = EXPANDED_VERT_OFFSET;
+  }
+  else if ((slot->type == EXPANDING_SLOT) || 
+	   (slot->type == PARTIALLY_EXPANDING_SLOT)) {
+    if ((slot->type == PARTIALLY_EXPANDING_SLOT) &&
+	(g_list_length(slot->cards) + length > slot->expansion_depth)) {
+      tempint = length - slot->expansion_depth;
+      press_data->yoffset = (y - slot->y) + tempint*EXPANDED_VERT_OFFSET;
+      if  (tempint == 0)
+	slot->expansion_depth = 1;
+      else {
+	slot->expansion_depth = tempint;
+      }
+    } 
+    else
+      press_data->yoffset = (y - slot->y) - (cardid - 1)*EXPANDED_VERT_OFFSET;
 
-	press_data->slot_id = slotid;
-	press_data->slot_location = cardid;
-	press_data->cards = g_list_nth(slot->cards, cardid - 1);
-	press_data->temporary_partial_hack = slot->expansion_depth;
-	g_assert(press_data->cards);
-	if (press_data->cards->prev) 
-		press_data->cards->prev->next = NULL;
-	else 
-		slot->cards = NULL;
-	press_data->cards->prev = NULL;
-	update_slot_length(slotid);
+    press_data->xoffset = (x - slot->x);
+    width = get_card_width();
+    height = get_card_height() + (length - 1)*EXPANDED_VERT_OFFSET;
+    dx = 0; dy = EXPANDED_VERT_OFFSET;
+  }
+  else if ((slot->type == EXPANDING_SLOT_RIGHT) || 
+	   (slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT)) {
+    if ((slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT) &&
+        (g_list_length(slot->cards) + length > slot->expansion_depth)) {
+      tempint = length - slot->expansion_depth;
+      press_data->xoffset = (x - slot->x) + tempint*EXPANDED_VERT_OFFSET;
+      
+      if  (tempint == 0)
+	slot->expansion_depth = 1;
+      else 
+	slot->expansion_depth = -tempint;
+    } 
+    else
+      press_data->xoffset = (x - slot->x) - (cardid - 1)*EXPANDED_HORIZ_OFFSET;
 
-	if (slot->type == NORMAL_SLOT) {
-		press_data->xoffset = (x - slot->x);
-		press_data->yoffset = (y - slot->y);
-		press_data->moving_pixmap = 
-			gdk_pixmap_new(playing_area->window, 
-				       get_card_width(),
-				       get_card_height() + (g_list_length(press_data->cards) - 1)*EXPANDED_VERT_OFFSET,
-				       gdk_window_get_visual (playing_area->window)->depth);
-	}
-	else if ((slot->type == EXPANDING_SLOT) || (slot->type == PARTIALLY_EXPANDING_SLOT)) {
-		press_data->xoffset = (x - slot->x);
-		if ((slot->type == PARTIALLY_EXPANDING_SLOT)
-		    && (g_list_length(slot->cards) + g_list_length(press_data->cards) > slot->expansion_depth)) {
-			tempint = g_list_length(press_data->cards) - slot->expansion_depth;
-			press_data->yoffset = (y - slot->y) + tempint*EXPANDED_VERT_OFFSET;
-			if  (tempint == 0)
-				slot->expansion_depth = 1;
-			else {
-				slot->expansion_depth = tempint;
-			}
-		} 
-		else
-			press_data->yoffset = (y - slot->y) -(cardid -1)*EXPANDED_VERT_OFFSET;
+    press_data->yoffset = (y - slot->y);
+    height = get_card_height();
+    width = get_card_width() + (length - 1)*EXPANDED_HORIZ_OFFSET;
+    dx = EXPANDED_HORIZ_OFFSET; dy = 0;
+  }
+  
+  if (!press_data->moving_cards) {
+    attributes.wclass = GDK_INPUT_OUTPUT;
+    attributes.window_type = GDK_WINDOW_CHILD;
+    attributes.event_mask = 0;
+    attributes.width = width;
+    attributes.height = height;
+    attributes.colormap = gdk_window_get_colormap (playing_area->window);
+    attributes.visual = gdk_window_get_visual (playing_area->window);
+    
+    press_data->moving_cards = 
+      gdk_window_new(playing_area->window, &attributes,
+		     (GDK_WA_VISUAL | GDK_WA_COLORMAP));
+  }
+  else {
+    gdk_window_resize(press_data->moving_cards, width, height);
+  }
 
-		press_data->moving_pixmap = 
-			gdk_pixmap_new(playing_area->window, 
-				       get_card_width(),
-				       get_card_height() + (g_list_length(press_data->cards) - 1)*EXPANDED_VERT_OFFSET,
-				       gdk_window_get_visual (playing_area->window)->depth);
-	}
-	else if ((slot->type == EXPANDING_SLOT_RIGHT) || (slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT)) {
-		if ((slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT)
-		    && (g_list_length(slot->cards) + g_list_length(press_data->cards) > slot->expansion_depth)) {
-			tempint = g_list_length(press_data->cards) - slot->expansion_depth;
-			press_data->xoffset = (x - slot->x) + tempint*EXPANDED_VERT_OFFSET;
+  /* 
+   * IMHO gdk could give us better access to the XShape extension
+   * All the bitmap stuff would be unneccessary with the ShapeUnion operation
+   */
+  press_data->moving_pixmap = 
+    gdk_pixmap_new(press_data->moving_cards, width, height,
+  		   gdk_window_get_visual (press_data->moving_cards)->depth);
+  press_data->moving_mask = 
+    gdk_pixmap_new (press_data->moving_cards, width, height, 1);
 
-			if  (tempint == 0)
-				slot->expansion_depth = 1;
-			else 
-				slot->expansion_depth = -tempint;
-		} 
-		else
-			press_data->xoffset = (x - slot->x) -(cardid -1)*EXPANDED_HORIZ_OFFSET;
-		press_data->yoffset = (y - slot->y);
-		press_data->moving_pixmap = 
-			gdk_pixmap_new(playing_area->window, 
-				       get_card_width() + (g_list_length(press_data->cards) - 1)*EXPANDED_HORIZ_OFFSET,
-				       get_card_height(),
-				       gdk_window_get_visual (playing_area->window)->depth);
-	}
+  gc1 = gdk_gc_new (press_data->moving_pixmap);
+  gc2 = gdk_gc_new (press_data->moving_mask);
 
-	i = 0;
-	for (tempptr = press_data->cards; tempptr; tempptr = tempptr->next, i++) {
-		if (((hcard_type) tempptr->data)->direction == UP)
-			tempcard = get_card_picture(((hcard_type) tempptr->data)->suit,
-						    ((hcard_type) tempptr->data)->value);
-		else
-			tempcard = get_card_back_pixmap();
+  gdk_gc_set_foreground (gc2, &masked);
+  gdk_draw_rectangle (press_data->moving_mask, gc2, TRUE, 0, 0, width, height);
+  gdk_gc_set_foreground (gc2, &unmasked);
 
-		if ((slot->type == EXPANDING_SLOT_RIGHT) || (slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT)) {
-			gdk_gc_set_clip_origin(gc,0,0);
-			gdk_draw_pixmap(press_data->moving_pixmap,
-					gc,
-					tempcard,
-					0, 0,
-					i* EXPANDED_HORIZ_OFFSET, 0,
-					-1, -1);
-		}
-		else{
-			gdk_gc_set_clip_origin(gc,0,i * EXPANDED_VERT_OFFSET);
-			gdk_draw_pixmap(press_data->moving_pixmap,
-					gc,
-					tempcard,
-					0, 0,
-					0, i* EXPANDED_VERT_OFFSET,
-					-1, -1);
-		}
-	}
+  gdk_gc_set_clip_mask (gc1, mask); 
+  gdk_gc_set_clip_mask (gc2, mask); 
 
-	if (!press_data->moving_cards) {
-	        gint list_length = g_list_length(press_data->cards);
-		attributes.window_type = GDK_WINDOW_CHILD;
-		attributes.x = x - press_data->xoffset;
-		attributes.y = y - press_data->yoffset;
-		printf("%d\t%d\n",attributes.x, attributes.y);
-		attributes.width = get_card_width();
-		attributes.height = get_card_height() + (list_length - 1)*EXPANDED_VERT_OFFSET;
-		attributes.wclass = GDK_INPUT_OUTPUT;
-		attributes.event_mask = 0;
-		attributes.colormap = gdk_window_get_colormap (playing_area->window);
-		attributes.visual = gdk_window_get_visual (playing_area->window);
+  x2 = y2 = 0;
+  width = get_card_width(); height = get_card_height();
+
+  for (tempptr = press_data->cards; tempptr; tempptr = tempptr->next) {
 	 
-		press_data->moving_cards =  gdk_window_new(playing_area->window,
-							   &attributes,
-							   (GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP));
-		press_data->moving_mask = create_back_mask (slot, attributes.width, attributes.height, list_length);
-		gdk_window_set_back_pixmap(press_data->moving_cards, press_data->moving_pixmap, 0);
-		gdk_window_shape_combine_mask (press_data->moving_cards, press_data->moving_mask, 0, 0);
+    if (((hcard_type) tempptr->data)->direction == UP)
+      tempcard = get_card_picture(((hcard_type) tempptr->data)->suit,
+				  ((hcard_type) tempptr->data)->value);
+    else
+      tempcard = get_card_back_pixmap();
 
-		gdk_window_move(press_data->moving_cards,  
-				x - press_data->xoffset,
-				y - press_data->yoffset);
-		gdk_window_show(press_data->moving_cards);
-	}
-	else {
-	        gint list_length = g_list_length(press_data->cards);
-		gdk_window_resize(press_data->moving_cards,
-				  get_card_width(),
-				  get_card_height() + (list_length - 1)*EXPANDED_VERT_OFFSET);
-		press_data->moving_mask = create_back_mask (slot,
-							    get_card_width(),
-							    get_card_height() + (list_length - 1)*EXPANDED_VERT_OFFSET,
-							    list_length);
-		gdk_window_set_back_pixmap(press_data->moving_cards, press_data->moving_pixmap, 0);
-		gdk_window_shape_combine_mask (press_data->moving_cards, press_data->moving_mask, 0, 0);
-		gdk_window_move(press_data->moving_cards,  
-				x - press_data->xoffset,
-				y - press_data->yoffset);
-	}
+    gdk_gc_set_clip_origin (gc1, x2, y2);
+    gdk_gc_set_clip_origin (gc2, x2, y2);
+    gdk_draw_pixmap (press_data->moving_pixmap, gc1, tempcard,
+		     0, 0, x2, y2, width, height);
+    gdk_draw_rectangle (press_data->moving_mask, gc2, TRUE, 
+			x2, y2, width, height);
+    
+    x2 += dx; y2 += dy;
+  }
+  gdk_gc_destroy(gc1);
+  gdk_gc_destroy(gc2);
+  
+  gdk_window_set_back_pixmap(press_data->moving_cards, 
+			     press_data->moving_pixmap, 0);
+  gdk_window_shape_combine_mask (press_data->moving_cards, 
+				 press_data->moving_mask, 0, 0);
+  gdk_window_move(press_data->moving_cards,  
+		  x - press_data->xoffset,
+		  y - press_data->yoffset);
+  gdk_window_show(press_data->moving_cards);
 }
