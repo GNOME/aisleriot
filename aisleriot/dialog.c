@@ -355,7 +355,8 @@ property_apply (GtkWidget *w, int response)
     deck_options =  
       gdk_card_deck_options_edit_get (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit));
     card_deck = gdk_card_deck_new (app->window, deck_options);
-    gnome_config_set_string ("Deck/Options", deck_options);
+    gconf_client_set_string (gconf_client, "/apps/aisleriot/card-options",
+                             deck_options, NULL);
     refresh_screen();
   }
 }

@@ -29,7 +29,6 @@
 
 static GtkWidget *about = NULL;
 
-
 void restart_game ()
 {
   if (waiting_for_mouse_up()) return;
@@ -131,6 +130,41 @@ void help_about_callback ()
   return;
 }
 
+void toolbar_show (void)
+{
+  GtkWidget * toolbar;
+
+  toolbar = GTK_WIDGET(gnome_app_get_dock_item_by_name (GNOME_APP(app),
+                                                        GNOME_APP_TOOLBAR_NAME));
+  gtk_widget_show (toolbar);
+}
+
+void toolbar_hide (void)
+{
+  GtkWidget * toolbar;
+
+  toolbar = GTK_WIDGET(gnome_app_get_dock_item_by_name (GNOME_APP(app),
+                                                        GNOME_APP_TOOLBAR_NAME));
+  gtk_widget_hide (toolbar);
+}
+
+void toolbar_toggle_callback(GtkWidget * togglebutton, gpointer data)
+{
+  gboolean state;
+  
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM (togglebutton));
+
+  if (state) {
+    toolbar_show();
+    gconf_client_set_bool (gconf_client, "/apps/aisleriot/show-toolbar", TRUE,
+                           NULL);
+  } else {
+    toolbar_hide();
+    gconf_client_set_bool (gconf_client, "/apps/aisleriot/show-toolbar", FALSE,
+                           NULL);
+  }
+}
+
 GnomeUIInfo rules_sub_menu[] = {
   GNOMEUIINFO_END
 };
@@ -148,6 +182,10 @@ GnomeUIInfo settings_menu[] = {
 
   GNOMEUIINFO_SEPARATOR,
 #endif
+
+  GNOMEUIINFO_TOGGLEITEM (N_("_Toolbar"), N_("Show or hide the toolbar"),
+                          toolbar_toggle_callback, NULL),
+
   GNOMEUIINFO_MENU_PREFERENCES_ITEM(show_preferences_dialog, NULL),
 
   GNOMEUIINFO_END
@@ -165,9 +203,9 @@ GnomeUIInfo game_menu[] = {
 
   GNOMEUIINFO_MENU_NEW_GAME_ITEM(random_seed, NULL),
 
-  GNOMEUIINFO_ITEM_STOCK (N_("_Select..."), N_("Choose a different variation of solitaire"), show_select_game_dialog, GTK_STOCK_OPEN),
-
   GNOMEUIINFO_MENU_RESTART_GAME_ITEM(restart_game, NULL),
+
+  GNOMEUIINFO_ITEM_STOCK (N_("_Select..."), N_("Select a different game"), show_select_game_dialog, GTK_STOCK_OPEN),
 
   GNOMEUIINFO_SEPARATOR,
 
@@ -206,25 +244,25 @@ GnomeUIInfo top_menu[] = {
 
 GnomeUIInfo toolbar[] =
 {
-  GNOMEUIINFO_ITEM_STOCK(N_("New"), N_("Deal a new game"),
+  GNOMEUIINFO_ITEM_STOCK(N_("New"), N_("Start a new game"),
 			 random_seed, GTK_STOCK_NEW),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Restart"), N_("Start this game over"),
+  GNOMEUIINFO_ITEM_STOCK(N_("Restart"), N_("Restart the game"),
 			 restart_game, GTK_STOCK_REFRESH),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Select"), N_("Select a new game"),
+  GNOMEUIINFO_ITEM_STOCK(N_("Select"), N_("Select a different game"),
 			 show_select_game_dialog, GTK_STOCK_OPEN),
 
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Hint"), N_("Suggest a move"),
-			 show_hint_dialog, GTK_STOCK_JUMP_TO),
-
   GNOMEUIINFO_ITEM_STOCK(N_("Undo"), N_("Undo the last move"),
 			 undo_callback, GTK_STOCK_UNDO),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Redo"), N_("Redo the last move"),
+  GNOMEUIINFO_ITEM_STOCK(N_("Redo"), N_("Redo the undone move"),
 			 redo_callback, GTK_STOCK_REDO),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("Hint"), N_("Get a hint for your next move"),
+			 show_hint_dialog, GTK_STOCK_HELP),
 
   GNOMEUIINFO_END
 };
@@ -233,6 +271,11 @@ void create_menus ()
 {
   gnome_app_create_menus (GNOME_APP(app), top_menu);
   gnome_app_create_toolbar (GNOME_APP(app), toolbar);
+
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (settings_menu[0].widget),
+                                  gconf_client_get_bool (gconf_client,
+                                                         "/apps/aisleriot/show-toolbar",
+                                                         NULL));
 }
 
 void install_menu_hints (GnomeApp *app)

@@ -1,0 +1,42 @@
+<gconfschemafile>
+  <schemalist>
+
+    <schema>
+      <key>/schemas/apps/aisleriot/show-toolbar</key>
+      <applyto>/apps/aisleriot/show-toolbar</applyto>
+      <owner>aisleriot</owner>
+      <type>bool</type>
+      <default>TRUE</default>
+      <locale name="C">
+        <short>Whether or not to show the toolbar.</short>
+        <long>Whether or not to show the toolbar.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/aisleriot/game-file</key>
+      <applyto>/apps/aisleriot/game-file</applyto>
+      <owner>aisleriot</owner>
+      <type>string</type>
+      <default>klondike.scm</default>
+      <locale name="C">
+        <short>The game file to use.</short>
+        <long>The name of the scheme file containing the solitaire game to play.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/aisleriot/card-options</key>
+      <applyto>/apps/aisleriot/card-options</applyto>
+      <owner>aisleriot</owner>
+      <type>string</type>
+      <default>beige.png bonded.png gnome.png bold-09x14.png knuth-09x10.png 
+knuth-18x21.png knuth-21x25.png</default>
+      <locale name="C">
+        <short>What card style to use.</short>
+        <long>A string containing a list of files to use to describe the cards. The format is obscure and defined by the gdk-card-image library</long>
+      </locale>
+    </schema>
+
+  </schemalist>
+</gconfschemafile>

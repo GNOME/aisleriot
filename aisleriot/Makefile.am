@@ -3,6 +3,11 @@ icondir = $(datadir)/pixmaps
 Gamesdir  = $(datadir)/applications
 typesdir  = $(datadir)/sol-games
 
+schemadir   = @GCONF_SCHEMA_FILE_DIR@
+schema_in_files = aisleriot.schemas.in
+schema_DATA = $(schema_in_files:.schemas.in=.schemas)
+@INTLTOOL_SCHEMAS_RULE@
+
 SUBDIRS=help
 
 INCLUDES =  \
@@ -124,7 +129,8 @@ icon_DATA = gnome-aisleriot.png gnome-cardgame.png
 
 EXTRA_DIST = AUTHORS $(types_DATA) $(cardimage_DATA) \
 	$(icon_DATA) sol.desktop.in freecell.desktop.in \
-	template.scm translatable_game_names.h
+	template.scm translatable_game_names.h \
+	$(schema_in_files)
 
 
 sysdir = $(datadir)/applications/
@@ -133,3 +139,8 @@ sys_DATA = $(sys_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 CLEANFILES = $(sys_DATA)
+
+if GCONF_SCHEMAS_INSTALL
+install-data-local:
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
+endif

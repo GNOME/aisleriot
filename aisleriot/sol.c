@@ -35,6 +35,7 @@
 #include "events.h"
 #include "draw.h"
 #include <gnome.h>
+#include <gconf/gconf-client.h>
 #include <libgnomeui/gnome-window-icon.h>
 #include "slot.h"
 #include "card.h"
@@ -76,6 +77,7 @@ guint            x_spacing = 5;
 guint            y_spacing = 15;
 guint            x_expanded_offset = 20;
 guint            y_expanded_offset = 20;
+GConfClient      *gconf_client = NULL;
 
 #define DEFAULT_VARIATION "klondike.scm"
 #define GNOME_SESSION_BUG
@@ -178,17 +180,11 @@ save_state (GnomeClient *client)
 {
   const gchar *prefix = gnome_client_get_config_prefix (client);
 
-  gnome_config_push_prefix (prefix);
-  gnome_config_set_string ("Variation/Default File", game_file);
-  gnome_config_set_string ("Deck/Options", deck_options);
-  gnome_config_pop_prefix ();
-  gnome_config_sync();
+  gconf_client_set_string (gconf_client, "/apps/aisleriot/game-file",
+                           game_file, NULL);
+  gconf_client_set_string (gconf_client, "/apps/aisleriot/card-options",
+                           deck_options, NULL);
 
-#ifndef GNOME_SESSION_BUG
-  argv[0] = "rm";
-  argv[1] = gnome_config_get_real_path (prefix);
-  gnome_client_set_discard_command (client, 2, argv);
-#endif  
   return TRUE;
 }
 
@@ -363,48 +359,15 @@ void create_sol_board ()
 
 gboolean quit_app (GtkMenuItem *menuitem)
 {
-  GtkWidget *box;
-  gint response;
-
-  if (!game_over) {
-    box = gtk_message_dialog_new (GTK_WINDOW (app),
-            GTK_DIALOG_MODAL,
-            GTK_MESSAGE_QUESTION,
-            GTK_BUTTONS_NONE,
-            _("Are you sure you want to quit Aisleriot?"));
-    gtk_dialog_add_buttons (GTK_DIALOG (box),
-            GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
-            GTK_STOCK_QUIT, GTK_RESPONSE_ACCEPT,
-            NULL);
-
-    
-    gtk_dialog_set_default_response (GTK_DIALOG (box), GTK_RESPONSE_REJECT);
-
-    response = gtk_dialog_run (GTK_DIALOG (box));
-    gtk_widget_destroy (box);
-
-    if (response == GTK_RESPONSE_REJECT)
-        return TRUE;
-  }
-  
-  gtk_widget_destroy (app);
   gtk_main_quit ();
 }
 
 void create_main_window ()
 {
-  /* This is the prefix used to retrieve the state when NOT restarted: */
-  const gchar* prefix = 
-    gnome_client_get_global_config_prefix (gnome_master_client ());
-
-  app = gnome_app_new ("sol", _("Aisleriot"));
-  /* Use "prefix" as the default config location ... */
-  gnome_config_push_prefix (prefix);
-  /* ... and use it for the menubar and toolbar aw well: */
-  GNOME_APP (app)->prefix = (gchar*)prefix;
+  app = gnome_app_new ("aisleriot", _("Aisleriot"));
 
   gtk_widget_realize (app);
-
+  
   g_signal_connect (GTK_OBJECT (app), "delete_event", 
 		      GTK_SIGNAL_FUNC (quit_app), NULL);
   g_signal_connect (GTK_OBJECT (app), "configure_event",
@@ -434,7 +397,9 @@ gchar* start_game;
 void main_prog(int argc, char *argv[])
 {
   GtkWidget *score_label, *time_label, *score_box, *status_bar;
-
+  GtkWidget * toolbar_widget;
+  gboolean toolbar_state;
+  
   seed = time(NULL);
   g_random_set_seed(seed);
 
@@ -478,6 +443,11 @@ void main_prog(int argc, char *argv[])
   splash_destroy ();
 
   gtk_widget_show (app);
+
+  if (!gconf_client_get_bool (gconf_client,
+                             "/apps/aisleriot/show-toolbar", NULL))
+    toolbar_hide();
+
   create_press_data ();
 
   gtk_widget_pop_colormap ();
@@ -492,21 +462,16 @@ void main_prog(int argc, char *argv[])
 static void
 retrieve_state (GnomeClient *client)
 {
-  const gchar *prefix = gnome_client_get_config_prefix (client);
-
-  gnome_config_push_prefix (prefix);
-  start_game = gnome_config_get_string_with_default 
-    ("Variation/Default File=" DEFAULT_VARIATION, NULL);
-  deck_options = gnome_config_get_string ("Deck/Options");
-  gnome_config_pop_prefix ();
-
-#ifdef GNOME_SESSION_BUG
-  if (strcmp (prefix, gnome_client_get_global_config_prefix (client))) {
-    gchar *prefix = gnome_config_get_real_path (prefix);
-    prefix[ strlen (prefix) - 1] = '\0';
-    unlink (prefix);
-  }
-#endif  
+  start_game = gconf_client_get_string (gconf_client, "/apps/aisleriot/game-file",
+                                        NULL);
+  if (start_game == NULL)
+    start_game = "klondike.scm";
+  deck_options = gconf_client_get_string (gconf_client,
+                                          "/apps/aisleriot/card-options",
+                                          NULL);
+  if (deck_options == NULL)
+    deck_options = "beige.png bonded.png gnome.png bold-09x14.png knuth-09x10.png 
+knuth-18x21.png knuth-21x25.png";
 }
 
 int
@@ -530,18 +495,18 @@ int main (int argc, char *argv [])
   aisleriot_opts[0].descrip = N_("Variation on game rules");
   aisleriot_opts[0].argDescrip = N_("NAME");
 
-  gnome_score_init ("Aisleriot");
-
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-   gnome_program_init ("aisleriot", VERSION,
+  gnome_program_init ("aisleriot", VERSION,
  		      LIBGNOMEUI_MODULE, 
  		      argc, argv,
  		      GNOME_PARAM_POPT_TABLE, aisleriot_opts,
  		      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
+  gconf_client = gconf_client_get_default ();
+  
   gtk_widget_push_colormap (gdk_rgb_get_colormap ());
 
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-aisleriot.png");

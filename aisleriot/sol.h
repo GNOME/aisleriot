@@ -18,6 +18,7 @@
 
 #ifndef SOL_H
 #define SOL_H
+#include <gconf/gconf-client.h>
 #include <gtk/gtk.h>
 #include "press_data.h"
 #include "gdk-card-image.h"
@@ -59,6 +60,8 @@ extern guint            x_spacing;
 extern guint            y_spacing;
 extern guint            x_expanded_offset;
 extern guint            y_expanded_offset;
+
+extern GConfClient * gconf_client;
 
 gchar* game_file_to_name(const gchar* file);
 void new_game(gchar* file, guint *seed);
