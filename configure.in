@@ -47,6 +47,12 @@ LIBS="$oLIBS"
 
 AC_CHECK_FUNCS(rename)
 
+dnl
+dnl ScottFree check
+dnl
+ZVT_LIBS=`$GNOME_CONFIG --libs zvt`
+AC_SUBST(ZVT_LIBS)
+
 AC_OUTPUT([
 Makefile
 po/Makefile.in
