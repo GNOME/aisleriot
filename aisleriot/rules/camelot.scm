@@ -196,7 +196,7 @@
 	 ((= (get-value card) queen)
 	  (or (and (or (empty-slot? 1)
 		       (empty-slot? 2))
-		   (gettext "an empty top slot")
+		   (gettext "an empty top slot"))
 	      (and (or (empty-slot? 13)
 		       (empty-slot? 14))
 		   (gettext "an empty bottom slot"))))
