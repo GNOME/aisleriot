@@ -1,3 +1,21 @@
+2002-04-15  Bastien Nocera  <hadess@hadess.net>
+
+	* Makefile.am:
+	* freecell.c: (key_changed_callback), (main):
+	* freecell.schemas:
+	* io-gtk.c: (io_gtk_init), (callback_restart),
+	(callback_new_with_seed_really), (callback_new_with_seed),
+	(callback_new), (callback_option), (callback_rule),
+	(callback_exit), (inform_invalid_move), (to_destination_auto):
+	* option-dialog.c: (option_dialog), (check1_changed_callback),
+	(check2_changed_callback), (option_dialog_close_callback):
+	* option-dialog.h:
+	* option.c: (option_init), (option_write),
+	(freecell_gconf_get_int), (freecell_gconf_get_bool):
+	* option.h:
+	* score.c: (score_init), (score_write): patch by mark@sporkstorms.org
+	(Mark Stratman) for gconf support, needs more love though :(
+
 2002-01-06  Juan Pablo Mendoza <jpablo@gnome.org>
 
 	Patch from Andreas Simon.

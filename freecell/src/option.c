@@ -21,28 +21,96 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <gconf/gconf-client.h>
 
-int option_inform_invalid_move = 0;
-int option_move_one_by_one = 0;
+gboolean option_inform_invalid_move = FALSE;
+gboolean option_move_one_by_one = FALSE;
+
+extern GConfClient *freecell_gconf_client;
+gint
+freecell_gconf_get_int (GConfClient *client, gchar *key, gint default_int);
+gboolean
+freecell_gconf_get_bool (GConfClient *cilent, gchar *key, gboolean default_bool);
 
 void
 option_init (void)
 {
-  option_inform_invalid_move
-    = gnome_config_get_int ("/freecell/option/inform_invalid_move=1");
-  option_move_one_by_one
-    = gnome_config_get_int ("/freecell/option/move_one_by_one=0");
+  option_inform_invalid_move = freecell_gconf_get_bool (freecell_gconf_client,
+			"/apps/freecell/option/inform_invalid_move", TRUE);
+  option_move_one_by_one = freecell_gconf_get_bool (freecell_gconf_client,
+			"/apps/freecell/option/move_one_by_one", FALSE);
 }
 
 
 void
 option_write (void)
 {
-  gnome_config_set_int ("/freecell/option/inform_invalid_move",
-			option_inform_invalid_move);
-  gnome_config_set_int ("/freecell/option/move_one_by_one",
-			option_move_one_by_one);
-  gnome_config_sync();
+  gconf_client_set_bool (freecell_gconf_client,
+			"/apps/freecell/option/inform_invalid_move",
+			option_inform_invalid_move, NULL);
+  gconf_client_set_bool (freecell_gconf_client,
+			"/apps/freecell/option/move_one_by_one",
+			option_move_one_by_one, NULL);
 }
 
+
+gint
+freecell_gconf_get_int (GConfClient *client, gchar *key, gint default_int)
+{
+  GConfValue *value = NULL;
+  GConfValue *schema_value = NULL;
+  gint retval;
+
+  value = gconf_client_get (client, key, NULL);
+  if (value == NULL)
+    return default_int;
+
+  if (value->type == GCONF_VALUE_INT) {
+    retval = gconf_value_get_int (value);
+    gconf_value_free (value);
+  }
+  else {
+    schema_value = gconf_client_get_default_from_schema (client, key, NULL);
+    if (schema_value == NULL) {
+      retval = default_int;
+    }
+    else {
+      retval = gconf_value_get_int (schema_value);
+    }
+    gconf_value_free (value);
+    gconf_value_free (schema_value);
+  }
+
+  return retval;
+}
+
+gboolean
+freecell_gconf_get_bool (GConfClient *client, gchar *key, gboolean default_bool)
+{
+  GConfValue *value = NULL;
+  GConfValue *schema_value = NULL;
+  gboolean retval;
+
+  value = gconf_client_get (client, key, NULL);
+  if (value == NULL)
+    return default_bool;
+
+  if (value->type == GCONF_VALUE_BOOL) {
+    retval = gconf_value_get_bool (value);
+    gconf_value_free (value);
+  }
+  else {
+    schema_value = gconf_client_get_default_from_schema (client, key, NULL);
+    if (schema_value == NULL) {
+      retval = default_bool;
+    }
+    else {
+      retval = gconf_value_get_bool (schema_value);
+    }
+    gconf_value_free (value);
+    gconf_value_free (schema_value);
+  }
+
+  return retval;
+}
 

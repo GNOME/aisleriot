@@ -117,10 +117,10 @@ io_gtk_init (void)
 
   
   /* make main window.  */
-  gtk_widget_push_colormap (gdk_rgb_get_cmap ());
+  gtk_widget_push_colormap (gdk_rgb_get_colormap ());
   main_window = gnome_app_new ("freecell", _("Freecell"));
-  gtk_signal_connect (GTK_OBJECT(main_window), "delete_event",
-		      GTK_SIGNAL_FUNC(callback_exit), NULL);
+  g_signal_connect (G_OBJECT(main_window), "delete_event",
+		      G_CALLBACK(callback_exit), NULL);
   gtk_widget_realize(main_window);
 
   card_draw_init(main_window);
@@ -135,13 +135,13 @@ io_gtk_init (void)
   for (i = 0; i < 4; i++)
     {
       freecell_drawing_areas[i] = gtk_drawing_area_new();
-      gtk_signal_connect (GTK_OBJECT(freecell_drawing_areas[i]),
+      g_signal_connect (G_OBJECT(freecell_drawing_areas[i]),
 			  "expose_event",
-			  GTK_SIGNAL_FUNC (callback_freecell_expose),
+			  G_CALLBACK (callback_freecell_expose),
 			  GINT_TO_POINTER (i));
-      gtk_signal_connect (GTK_OBJECT(freecell_drawing_areas[i]),
+      g_signal_connect (G_OBJECT(freecell_drawing_areas[i]),
 			  "button_press_event",
-			  GTK_SIGNAL_FUNC (callback_freecell_press),
+			  G_CALLBACK (callback_freecell_press),
 			  GINT_TO_POINTER (i));
       
       gtk_drawing_area_size (GTK_DRAWING_AREA(freecell_drawing_areas[i]),
@@ -158,13 +158,13 @@ io_gtk_init (void)
   for (i = 0; i < 4; i++)
     {
       destination_drawing_areas[i] = gtk_drawing_area_new();
-      gtk_signal_connect (GTK_OBJECT(destination_drawing_areas[i]),
+      g_signal_connect (G_OBJECT(destination_drawing_areas[i]),
 			  "expose_event",
-			  GTK_SIGNAL_FUNC (callback_destination_expose),
+			  G_CALLBACK (callback_destination_expose),
 			  GINT_TO_POINTER (i));
-      gtk_signal_connect (GTK_OBJECT(destination_drawing_areas[i]),
+      g_signal_connect (G_OBJECT(destination_drawing_areas[i]),
 			  "button_press_event",
-			  GTK_SIGNAL_FUNC (callback_destination_press),
+			  G_CALLBACK (callback_destination_press),
 			  GINT_TO_POINTER (i));
       gtk_drawing_area_size (GTK_DRAWING_AREA(destination_drawing_areas[i]),
 			     card_image_width(), card_image_height());
@@ -187,17 +187,17 @@ io_gtk_init (void)
   for (i = 0; i < 8; i++)
     {
       field_drawing_areas[i] = gtk_drawing_area_new();
-      gtk_signal_connect (GTK_OBJECT(field_drawing_areas[i]),
+      g_signal_connect (G_OBJECT(field_drawing_areas[i]),
 			  "expose_event",
-			  GTK_SIGNAL_FUNC (callback_field_expose),
+			  G_CALLBACK (callback_field_expose),
 			  GINT_TO_POINTER (i));
-      gtk_signal_connect (GTK_OBJECT(field_drawing_areas[i]),
+      g_signal_connect (G_OBJECT(field_drawing_areas[i]),
 			  "button_press_event",
-			  GTK_SIGNAL_FUNC (callback_field_press),
+			  G_CALLBACK (callback_field_press),
 			  GINT_TO_POINTER (i));
-      gtk_signal_connect (GTK_OBJECT(field_drawing_areas[i]),
+      g_signal_connect (G_OBJECT(field_drawing_areas[i]),
 			  "button_release_event",
-			  GTK_SIGNAL_FUNC (callback_field_release),
+			  G_CALLBACK (callback_field_release),
 			  GINT_TO_POINTER (i));
       gtk_drawing_area_size (GTK_DRAWING_AREA(field_drawing_areas[i]),
 			     FIELD_WIDTH,
@@ -325,20 +325,20 @@ callback_restart (GtkWidget *widget, GdkEvent *event)
       && !freecellgame_is_finished(freecellgame))
     {
       mb = gnome_message_box_new (_("Exit this game?"),
-				  GNOME_MESSAGE_BOX_QUESTION,
-				  GNOME_STOCK_BUTTON_YES,
-				  GNOME_STOCK_BUTTON_NO,
+				  "question",
+				  GTK_STOCK_YES,
+				  GTK_STOCK_NO,
 				  NULL);
 /*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
 /*    gtk_window_set_modal(GTK_WINDOW (mb), TRUE); */
-      gtk_signal_connect_object(GTK_OBJECT(mb),
+      g_signal_connect_object(G_OBJECT(mb),
 				"clicked",
-				GTK_SIGNAL_FUNC(callback_restart_lose),
-				NULL);
-      gtk_signal_connect_object(GTK_OBJECT(mb),
+				G_CALLBACK(callback_restart_lose),
+				NULL, G_CONNECT_SWAPPED);
+      g_signal_connect_object(G_OBJECT(mb),
                                 "destroy",
-				GTK_SIGNAL_FUNC(callback_dialog_destroyed),
-                                NULL);
+				G_CALLBACK(callback_dialog_destroyed),
+                                NULL, G_CONNECT_SWAPPED);
 
       gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
@@ -415,13 +415,14 @@ callback_new_with_seed_really (void)
   GtkWidget *dialog, *entry, *label;
 
   dialog = gnome_dialog_new (_("Seed"),
-			     GNOME_STOCK_BUTTON_OK,
-			     GNOME_STOCK_BUTTON_CANCEL, NULL);
+			     GTK_STOCK_OK,
+			     GTK_STOCK_CANCEL, NULL);
 
   gnome_dialog_set_parent (GNOME_DIALOG (dialog), GTK_WINDOW (main_window));
 
   label = gtk_label_new (_("Seed value:"));
-  gtk_box_pack_start_defaults (GTK_BOX(GNOME_DIALOG(dialog)->vbox), label);
+  gtk_box_pack_start_defaults
+			(GTK_BOX (GTK_CHECK_CAST((dialog), GNOME_TYPE_DIALOG, GnomeDialog)->vbox), label);
   gtk_widget_show (label);
   
   entry = gtk_entry_new ();
@@ -461,20 +462,20 @@ callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
       && !freecellgame_is_finished(freecellgame))
     {
       mb = gnome_message_box_new (_("Exit this game?"),
-				  GNOME_MESSAGE_BOX_QUESTION,
-				  GNOME_STOCK_BUTTON_YES,
-				  GNOME_STOCK_BUTTON_NO,
+				  "question",
+				  GTK_STOCK_YES,
+				  GTK_STOCK_NO,
 				  NULL);
 /*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
 /*    gtk_window_set_modal(GTK_WINDOW(mb), TRUE); */
-      gtk_signal_connect_object(GTK_OBJECT(mb),
+      g_signal_connect_object(G_OBJECT(mb),
 				"clicked",
-				GTK_SIGNAL_FUNC(callback_new_with_seed_with_lose),
-				NULL);
-      gtk_signal_connect_object(GTK_OBJECT(mb),
+				G_CALLBACK (callback_new_with_seed_with_lose),
+				NULL, G_CONNECT_SWAPPED);
+      g_signal_connect_object(G_OBJECT(mb),
                                 "destroy",
-				GTK_SIGNAL_FUNC(callback_dialog_destroyed),
-                                NULL);
+				G_CALLBACK (callback_dialog_destroyed),
+                                NULL, G_CONNECT_SWAPPED);
 
       gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
@@ -534,20 +535,20 @@ callback_new (GtkWidget *widget, GdkEvent *event)
       && !freecellgame_is_finished(freecellgame))
     {
       mb = gnome_message_box_new (_("Exit this game?"),
-				  GNOME_MESSAGE_BOX_QUESTION,
-				  GNOME_STOCK_BUTTON_YES,
-				  GNOME_STOCK_BUTTON_NO,
+				  "question",
+				  GTK_STOCK_YES,
+				  GTK_STOCK_NO,
 				  NULL);
 /*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
 /*    gtk_window_set_modal(GTK_WINDOW(mb), TRUE); */
-      gtk_signal_connect_object(GTK_OBJECT(mb),
+      g_signal_connect_object(G_OBJECT(mb),
 				"clicked",
-				GTK_SIGNAL_FUNC(callback_new_with_lose),
-				NULL);
-      gtk_signal_connect_object(GTK_OBJECT(mb),
+				G_CALLBACK (callback_new_with_lose),
+				NULL, G_CONNECT_SWAPPED);
+      g_signal_connect_object(G_OBJECT(mb),
                                 "destroy",
-				GTK_SIGNAL_FUNC(callback_dialog_destroyed),
-                                NULL);
+				G_CALLBACK (callback_dialog_destroyed),
+                                NULL, G_CONNECT_SWAPPED);
 
       gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
@@ -582,7 +583,7 @@ callback_option (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *dialog;
 
-  dialog = option_dialog ();
+  dialog = option_dialog (main_window);
 
   gnome_dialog_set_parent (GNOME_DIALOG (dialog), GTK_WINDOW (main_window));
 
@@ -596,8 +597,8 @@ callback_rule (GtkWidget *widget, GdkEvent *event)
   GtkWidget *mb;
 
   mb = gnome_message_box_new (_("Sorry, this feature is not (yet) implemented."),
-			      GNOME_MESSAGE_BOX_INFO,
-			      GNOME_STOCK_BUTTON_OK,
+			      "question",
+			      GTK_STOCK_OK,
 			      NULL);
   /*GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;*/
   gtk_window_set_modal (GTK_WINDOW(mb), TRUE);
@@ -636,21 +637,21 @@ callback_exit (GtkWidget *widget, GdkEvent *event)
       && !freecellgame_is_finished(freecellgame))
     {
       mb = gnome_message_box_new (_("Exit this game?"),
-				  GNOME_MESSAGE_BOX_QUESTION,
-				  GNOME_STOCK_BUTTON_YES,
-				  GNOME_STOCK_BUTTON_NO,
+				  "question",
+				  GTK_STOCK_YES,
+				  GTK_STOCK_NO,
 				  NULL);
 
 /*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
 /*    gtk_window_set_modal(GTK_WINDOW(mb), TRUE); */
-      gtk_signal_connect_object(GTK_OBJECT(mb),
+      g_signal_connect_object(G_OBJECT(mb),
 				"clicked",
-				GTK_SIGNAL_FUNC(callback_exit_with_lose),
-				NULL);
-      gtk_signal_connect_object(GTK_OBJECT(mb),
+				G_CALLBACK(callback_exit_with_lose),
+				NULL, G_CONNECT_SWAPPED);
+      g_signal_connect_object(G_OBJECT(mb),
 				"destroy",
-				GTK_SIGNAL_FUNC(callback_dialog_destroyed),
-				NULL);
+				G_CALLBACK(callback_dialog_destroyed),
+				NULL, G_CONNECT_SWAPPED);
       gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
     }
@@ -695,8 +696,8 @@ inform_invalid_move (void)
   GtkWidget *mb;
 
   mb = gnome_message_box_new (_("That move is invalid."),
-			      GNOME_MESSAGE_BOX_ERROR,
-			      GNOME_STOCK_BUTTON_OK,
+			      "error",
+			      GTK_STOCK_OK,
 			      NULL);
   /*GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;*/
   gtk_window_set_modal(GTK_WINDOW(mb), TRUE);
@@ -1185,8 +1186,8 @@ to_destination_auto(void)
       freecellgame_delete_history(freecellgame);
 
       mb = gnome_message_box_new (_("Sorry, there are no more valid moves."),
-				  GNOME_MESSAGE_BOX_INFO,
-				  GNOME_STOCK_BUTTON_OK,
+				  "info",
+				  GTK_STOCK_OK,
 				  NULL);
 
 /*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
@@ -1202,17 +1203,17 @@ to_destination_auto(void)
       freecellgame_delete_history(freecellgame);
 
       mb = gnome_message_box_new (_("Congratulations.  You won.\nDo you want to play again?"),
-				  GNOME_MESSAGE_BOX_QUESTION,
-				  GNOME_STOCK_BUTTON_YES,
-				  GNOME_STOCK_BUTTON_NO,
+				  "question",
+				  GTK_STOCK_YES,
+				  GTK_STOCK_NO,
 				  NULL);
 /*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
       gtk_window_set_modal(GTK_WINDOW(mb), TRUE);
       gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
-      gtk_signal_connect_object (GTK_OBJECT (mb),
+      g_signal_connect_object (G_OBJECT (mb),
 				 "clicked",
-				 GTK_SIGNAL_FUNC(callback_new_really_callback),
-				 NULL);
+				 G_CALLBACK(callback_new_really_callback),
+				 NULL, G_CONNECT_SWAPPED);
       gtk_widget_show (mb);
       score_add_win();
       stalled = 1;

@@ -25,6 +25,10 @@
 #include <string.h>
 
 #include <gnome.h>
+#include <gconf/gconf-client.h>
+#include "option.h"
+
+extern GConfClient *freecell_gconf_client;
 
 static int win_number;
 static int lose_number;
@@ -90,13 +94,16 @@ score_formatstring (char **strings)
 void
 score_init(void)
 {
-  win_number = gnome_config_get_int ("/freecell/score/win_number=0");
-  lose_number = gnome_config_get_int ("/freecell/score/lose_number=0");
-  streaks_win_number = gnome_config_get_int ("/freecell/score/streaks_win_number=0");
-  streaks_lose_number = gnome_config_get_int
-    ("/freecell/score/streaks_lose_number=0");
-  streaks_current = gnome_config_get_int
-    ("/freecell/score/streaks_current=0");
+  win_number = freecell_gconf_get_int (freecell_gconf_client,
+    "/apps/freecell/score/win_number", 0);
+  lose_number = freecell_gconf_get_int (freecell_gconf_client,
+    "/apps/freecell/score/lose_number", 0);
+  streaks_win_number = freecell_gconf_get_int (freecell_gconf_client,
+    "/apps/freecell/score/streaks_win_number", 0);
+  streaks_lose_number = freecell_gconf_get_int (freecell_gconf_client,
+    "/apps/freecell/score/streaks_lose_number", 0);
+  streaks_current = freecell_gconf_get_int (freecell_gconf_client,
+    "/apps/freecell/score/streaks_current", 0);
 
   this_session_win_number = 0;
   this_session_lose_number = 0;
@@ -105,17 +112,18 @@ score_init(void)
 void
 score_write(void)
 {
-  gnome_config_set_int ("/freecell/score/win_number",
-			win_number);
-  gnome_config_set_int ("/freecell/score/lose_number",
-			lose_number);
-  gnome_config_set_int ("/freecell/score/streaks_win_number",
-			streaks_win_number);
-  gnome_config_set_int ("/freecell/score/streaks_lose_number",
-			streaks_lose_number);
-  gnome_config_set_int ("/freecell/score/streaks_current",
-			streaks_current);
-  gnome_config_sync();
+  gconf_client_set_int (freecell_gconf_client,
+			"/apps/freecell/score/win_number", win_number, NULL);
+  gconf_client_set_int (freecell_gconf_client,
+			"/apps/freecell/score/lose_number", lose_number, NULL);
+  gconf_client_set_int (freecell_gconf_client,
+			"/apps/freecell/score/streaks_win_number",
+			streaks_win_number, NULL);
+  gconf_client_set_int (freecell_gconf_client, 
+			"/apps/freecell/score/streaks_lose_number",
+			streaks_lose_number, NULL);
+  gconf_client_set_int (freecell_gconf_client,
+			"/apps/freecell/score/streaks_current", streaks_current, NULL);
 }
 
 void

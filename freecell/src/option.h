@@ -21,10 +21,17 @@
 #ifndef __FREECELLGAME__OPTION_H
 #define __FREECELLGAME__OPTION_H
 
-extern int option_inform_invalid_move;
-extern int option_move_one_by_one;
+#include <gconf/gconf-client.h>
+
+extern gboolean option_inform_invalid_move;
+extern gboolean option_move_one_by_one;
 
 void option_init (void);
 void option_write (void);
+
+gint
+freecell_gconf_get_int (GConfClient *client, gchar *key, gint default_int);
+gboolean
+freecell_gconf_get_bool (GConfClient *client, gchar *key, gint default_bool);
 
 #endif /* __FREECELLGAME__OPTION_H */

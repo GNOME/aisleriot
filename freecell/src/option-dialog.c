@@ -22,105 +22,80 @@
 
 #include <gnome.h>
 #include "option.h"
+#include "io-gtk.h"
 
 
-typedef struct _OPTION_DATA
-{
-  GtkWidget *inform_invalid_move_check;
-  GtkWidget *move_one_by_one_check;
-  
-}
-OPTION_DATA;
-
-static void option_dialog_apply_callback (GtkWidget *w, gpointer data1, gpointer data2);
-static void option_dialog_changed_callback (GtkWidget *w, gpointer data);
-static gint option_dialog_close_callback (GtkWidget *w, gpointer data1, gpointer data2);
+static void check1_changed_callback (GtkWidget *check, gpointer data);
+static void check2_changed_callback (GtkWidget *check, gpointer data);
+static gint option_dialog_close_callback (GtkWidget *w, gpointer data);
 
 GtkWidget *
-option_dialog (void)
+option_dialog (GtkWidget *parent)
 {
   GtkWidget *propbox;
   GtkWidget *box;
-  GtkWidget *check;
-  GtkWidget *label;
-  OPTION_DATA *option_data;
+  GtkWidget *check1;
+  GtkWidget *check2;
 
-  option_data = (OPTION_DATA *) g_malloc (sizeof (OPTION_DATA));
-  propbox = gnome_property_box_new ();
-  gtk_window_set_title (GTK_WINDOW(&GNOME_PROPERTY_BOX(propbox)->dialog.window),
-			_("Freecell Properties"));
+  propbox = gnome_dialog_new (_("Freecell Properties"),
+			GNOME_STOCK_BUTTON_CLOSE, NULL);
+  gnome_dialog_set_parent (GNOME_DIALOG (propbox), GTK_WINDOW (parent));
+  g_signal_connect (G_OBJECT (propbox), "clicked",
+			G_CALLBACK (gtk_widget_destroy), propbox);
 
-  /* the first option frame. */
+
   box = gtk_vbox_new (TRUE, 4);
 
-  check = gtk_check_button_new_with_label (_("Warn on invalid moves"));
-  option_data->inform_invalid_move_check = check;
-  gtk_box_pack_start_defaults (GTK_BOX (box), check);
+  check1 = gtk_check_button_new_with_label (_("Warn on invalid moves"));
+  gtk_box_pack_start_defaults (GTK_BOX (box), check1);
   if (option_inform_invalid_move)
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check), TRUE);
-  gtk_signal_connect (GTK_OBJECT (check), "toggled",
-		      GTK_SIGNAL_FUNC (option_dialog_changed_callback),
-		      propbox);
-  gtk_widget_show(check);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check1), TRUE);
+  g_signal_connect (G_OBJECT (check1), "toggled",
+			G_CALLBACK (check1_changed_callback),
+			NULL);
+  gtk_widget_show(check1);
 
-  check = gtk_check_button_new_with_label (_("Move stacks one by one"));
-  option_data->move_one_by_one_check = check;
-  gtk_box_pack_start_defaults (GTK_BOX (box), check);
+  check2 = gtk_check_button_new_with_label (_("Move stacks one by one"));
+  gtk_box_pack_start_defaults (GTK_BOX (box), check2);
   if (option_move_one_by_one)
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check), TRUE);
-  gtk_signal_connect (GTK_OBJECT (check), "toggled",
-		      GTK_SIGNAL_FUNC (option_dialog_changed_callback),
-		      propbox);
-  gtk_widget_show(check);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check2), TRUE);
+  g_signal_connect (G_OBJECT (check2), "toggled",
+		      G_CALLBACK (check2_changed_callback),
+		      NULL);
+  gtk_widget_show(check2);
+
+  gtk_box_pack_start_defaults (GTK_BOX (GNOME_DIALOG (propbox)->vbox), box);
 
   gtk_widget_show (box);
 
-  label = gtk_label_new (_("Options"));
-  gnome_property_box_append_page (GNOME_PROPERTY_BOX (propbox), box, label);
-
-  gtk_signal_connect (GTK_OBJECT (propbox), "delete_event",
-		      GTK_SIGNAL_FUNC (option_dialog_close_callback),
-		      option_data);
-  gtk_signal_connect (GTK_OBJECT (propbox), "apply",
-		      GTK_SIGNAL_FUNC (option_dialog_apply_callback),
-		      option_data);
+  g_signal_connect (G_OBJECT (propbox), "delete_event",
+			G_CALLBACK (option_dialog_close_callback),
+			NULL);
   return propbox;
 }
 
 
 static void
-option_dialog_apply_callback (GtkWidget *w, gpointer data1, gpointer data2)
+check1_changed_callback (GtkWidget *check, gpointer data)
 {
-  GtkWidget *check;
-
-  g_return_if_fail (data2 != NULL);
-
-  switch (GPOINTER_TO_INT (data1))
-    {
-    case 0:
-      check = ((OPTION_DATA *)data2)->inform_invalid_move_check;
-      option_inform_invalid_move = GTK_TOGGLE_BUTTON (check)->active;
-      check = ((OPTION_DATA *)data2)->move_one_by_one_check;
-      option_move_one_by_one = GTK_TOGGLE_BUTTON (check)->active;
-      break;
-    default:
-      break;
-    }
+  option_inform_invalid_move = gtk_toggle_button_get_active
+			(GTK_TOGGLE_BUTTON (check));
+  option_write ();
 }
+
 
 static void
-option_dialog_changed_callback (GtkWidget *w, gpointer data)
+check2_changed_callback (GtkWidget *check, gpointer data)
 {
-  g_return_if_fail (data != NULL);
-
-  gnome_property_box_changed (GNOME_PROPERTY_BOX(data));
+  option_move_one_by_one = gtk_toggle_button_get_active
+			(GTK_TOGGLE_BUTTON (check));
+  option_write ();
 }
 
+
 static gint
-option_dialog_close_callback (GtkWidget *w, gpointer data1, gpointer data2)
+option_dialog_close_callback (GtkWidget *w, gpointer data)
 {
-  if(data2)
-    g_free (data2);
   return FALSE;
 }
 

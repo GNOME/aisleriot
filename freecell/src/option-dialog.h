@@ -21,6 +21,6 @@
 #ifndef __FREECELL__OPTION_DIALOG_H
 #define __FREECELL__OPTION_DIALOG_H
 
-extern GtkWidget *option_dialog (void);
+extern GtkWidget *option_dialog (GtkWidget *parent);
 
 #endif /* __FREECELL__OPTION_DIALOG_H */

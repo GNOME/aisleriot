@@ -23,5 +23,11 @@ Games_in_files = freecell.desktop.in
 Games_DATA = $(Games_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-EXTRA_DIST = $(Games_in_files)
+schemadir = $(sysconfdir)/gconf/schemas
+schema_DATA = freecell.schemas
+
+EXTRA_DIST = $(Games_in_files) $(schema_DATA)
+
+install-data-local:
+	GCONF_CONFIG_SOURCE=$(GCONF_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
 
