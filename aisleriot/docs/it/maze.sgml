@@ -1,0 +1,102 @@
+<chapter id="maze">
+<docinfo>
+  <copyright>
+   <year>2000</year>
+   <holder>Telsa Gwynne</holder>
+  </copyright>
+  <author>
+   <firstname>Telsa</firstname>
+   <surname>Gwynne</surname>
+  </author>
+  <address><email>telsa@linuxchix.org</email></address>
+</docinfo>
+
+<title>Maze (Labirinto)</title>
+  <para>Scritto da Matthew Wilcox</para>
+  <para>Traduzione di Fabrizio stefani</para>
+  <bridgehead>Preparazione</bridgehead>
+
+  <informaltable>
+   <tgroup cols="2">
+    <tbody>
+     <row>
+      <entry>Tipo di Mazzo</entry>
+      <entry>48 carte: Mazzo Standard senza i Re</entry>
+     </row>
+
+     <row>
+      <entry>Riserva</entry>
+      <entry>Nessuna</entry>
+     </row>
+
+     <row>
+      <entry>Fondamenta</entry>
+      <entry>Nessuna</entry>
+     </row>
+
+     <row>
+      <entry>Tavola</entry>
+      <entry>
+        Cinquantaquattro spazi divisi in sei riga da nove. Distribuire le
+	carte negli spazi da uno a otto. Lasciare libero il nono. 
+	Distribuire le carte negli spazi dal dieci al diciassette. Lasciare
+	libero il diciottesimo. Distribuire le carte restanti nello
+	stesso modo. Poi togliere tutti i Re (che non servono a niente
+	in questo gioco), in modo che rimangano vuoti un totale di sei
+	spazi. Una carta può essere mossa nello spazio a sinistra di
+	un'altra carta avente lo stesso seme ed un valore superiore di uno.
+	Una carta può essere mossa nello spazio a destra di un'altra 
+	carta avente lo stesso seme ed un valore inferiore di uno.
+	Un Asso può essere mosso alla destra di una Regina o nell'angolo
+	in alto a sinistra. Una Regina può essere mossa alla sinistra
+	di un Asso o nell'angolo in basso a destra.
+      </entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </informaltable>
+
+  <bridgehead>Scopo del gioco</bridgehead>
+  <para>
+    Disporre tutti i semi in ordine crescente, con un asso nell'angolo
+    in alto a sinistra, in modo da creare una sequenza di carte:
+    dall'Asso alla Regina di un seme, dall'Asso alla Regina di un
+    altro seme, dall'Asso alla Regina del terzo seme e dall'Asso alla 
+    Regina del quarto seme.
+  </para>
+
+  <bridgehead>Regole</bridgehead>
+  <para>
+    Le carte vanno mosse una alla volta. Una carta può essere mossa nello 
+    spazio a sinistra di un'altra carta avente lo stesso seme ed un valore 
+    superiore di uno. Una carta può essere mossa nello spazio a destra di 
+    un'altra carta avente lo stesso seme ed un valore inferiore di uno.
+    Un Asso può essere mosso alla destra di una Regina o nell'angolo in 
+    alto a sinistra. Una Regina può essere mossa alla sinistra di un Asso 
+    o nell'angolo in basso a destra.
+  </para>
+
+  <bridgehead>Opzioni</bridgehead>
+  <para>Nessuna</para>
+
+  <bridgehead>Punteggio</bridgehead>
+  <para>
+    Ogni carta messa vicino ad un'altra carta dello stesso seme, e
+    nel giusto ordine, vale un punto.
+  </para>
+  <para>
+    Massimo punteggio possibile:  48
+  </para>
+
+  <bridgehead>Strategia</bridgehead>
+  <para>
+    Spazi multipli adiacenti vi consentono di gerare lunghe sequenze
+    di carte. Fate attenzione a non finire in trappola come nel caso
+    in cui potete muovere indefinitamente una carta fra due punti.
+  </para>
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+sgml-default-dtd-file: "/usr/lib/sgml/cdtd/docbook.ced"
+End:
+-->
