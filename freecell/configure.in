@@ -43,13 +43,13 @@ AC_TYPE_SIZE_T
 dnl **************** Check GNOME. ****************
 
 dnl It is now GNOME only.  Check whether it is in GNOME tree
-dnl (in programs/freecell) or it is builde out of the box.
+dnl (in programs/freecell) or it is built out of the box.
 
-dnl GNOME's configure export USE_GNOME when freecell is builded in GNOME tree.
+dnl GNOME's configure export USE_GNOME when freecell is built in GNOME tree.
 
 if test "$gnome_cv_use_gnome" = "yes"
 then
-  AC_MSG_RESULT([OK, builded in GNOME tree.])
+  AC_MSG_RESULT([OK, built in GNOME tree.])
   in_gnome_tree="yes"
 
   dnl GNOME's configure kindly passes X11, GTK library paths.
