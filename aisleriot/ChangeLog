@@ -1,3 +1,12 @@
+2002-10-21  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* klondike.scm (get-hint): Fixed an off-by-one error in checking
+	FLIP-COUNT and also added a default "no hint available" message
+	for the extremely rare situation where you can't move anything off
+	the foundation decks. It's still a completely unsatisfactory
+	answer to the klondike hints problem, but my brain hurts too much
+	tonight to fix it. Mostly fixes #85712.
+
 2002-10-04  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* seahaven.scm: Added (record-move) and (undo-func) so that the

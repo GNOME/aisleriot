@@ -205,12 +205,14 @@
 	   (set! card (get-top-card waste))
 	   (or-map addable? tableau))
       (or-map ploppable? foundation)
-      (and (or (and (< FLIP-COUNTER 3)
+      (and (or (and (< FLIP-COUNTER 2)
 		    (not (empty-slot? waste)))
 	       (not (empty-slot? stock))) 
 	   (list 0 "Deal a new card from the deck"))
 ; FIXME: need to give proper hints for this case too ...
-      (list 0 "Try moving cards down from the foundation")))
+      (and (not (and-map empty-slot? '(2 3 4 5)))
+           (list 0 "Try moving cards down from the foundation"))
+      (list 0 "No hint available right now")))
 
 (define (game-won)
   (and (= 13 (length (get-cards 2)))
