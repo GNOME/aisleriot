@@ -746,6 +746,7 @@ struct _GtkCardDeckOptionsEdit {
   CardDeckStyle * selected_style;
   GList * style_list;
   GtkWidget * listview;
+  gboolean ignore_changed;
 };
 
 struct _GtkCardDeckOptionsEditClass {
@@ -836,7 +837,6 @@ static void gtk_card_deck_options_edit_set_selection (GtkCardDeckOptionsEdit *w)
   select = gtk_tree_view_get_selection (GTK_TREE_VIEW (w->listview));
   
   if (w->selected_style) {
-    g_print ("Setting selection.\n");
     i = 0;
     list = w->style_list;
     while (list) {
@@ -845,6 +845,8 @@ static void gtk_card_deck_options_edit_set_selection (GtkCardDeckOptionsEdit *w)
       if (list->data == w->selected_style) {
 	path = gtk_tree_path_new_from_indices (i, -1);
 	gtk_tree_selection_select_path (select, path);
+	gtk_tree_view_set_cursor (GTK_TREE_VIEW (w->listview), path, 
+				  NULL, FALSE);
 	gtk_tree_path_free (path);
 	return;
       }
@@ -852,9 +854,11 @@ static void gtk_card_deck_options_edit_set_selection (GtkCardDeckOptionsEdit *w)
       list= g_list_next (list);
     }
   } else {
-    g_print ("Deselected (yeah, right)\n");
     gtk_tree_selection_unselect_all (select);
   }
+
+  /* To so we don't signal on a program-requested change. */
+  w->ignore_changed = TRUE;
 }
 
 void          
@@ -872,8 +876,6 @@ gtk_card_deck_options_edit_set (GtkCardDeckOptionsEdit* w,
 
   gnome_config_make_vector (deck_options, &i, &components);
 
-  g_print ("Searching...\n");
-
   /* Search for a matching options set in our list of predefined
    * styles. This is all to allow backwards compatibility of the
    * interface and a users existing options. */
@@ -889,7 +891,6 @@ gtk_card_deck_options_edit_set (GtkCardDeckOptionsEdit* w,
 	}
       }
       if (identical) {
-	g_print ("Found\n");
 	w->selected_style = style;
 	gtk_card_deck_options_edit_set_selection (w);
       }
@@ -1019,7 +1020,13 @@ gtk_card_deck_options_edit_changed (GtkWidget * w, GObject * o)
 
   inst = GTK_CARD_DECK_OPTIONS_EDIT (o);
 
-  g_print ("Changed\n");
+  /* We ignore times when the selection was set by us rather than the
+   * user. */
+  if (inst->ignore_changed) {
+    inst->ignore_changed = FALSE;
+    return;
+  }
+
 
   gtk_tree_selection_get_selected (GTK_TREE_SELECTION (w), &tree, &iter);
   gtk_tree_model_get (tree , &iter, 1, &inst->selected_style, -1);
@@ -1042,6 +1049,8 @@ gtk_card_deck_options_edit_new (void)
   w = gtk_type_new(gtk_card_deck_options_edit_get_type());
   w->selected_style = NULL;
   w->style_list = NULL;
+  /* To ignore the initial, default, selection. */
+  w->ignore_changed = TRUE;
 
   a = GTK_ALIGNMENT (w);
 
