@@ -53,7 +53,6 @@ types_DATA  = 		\
 	bakers_dozen.scm	\
 	bakers_game.scm	\
 	beleaguered_castle.scm	\
-##	block_ten.scm	\
 	bristol.scm	\
 	camelot.scm	\
 	canfield.scm	\
