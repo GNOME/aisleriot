@@ -6,18 +6,20 @@
 # Herve Dreau <hdreau@cybercable.fr>, 2000
 # maintainer: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2000-2004.
 # CLOTILDE Guy Daniel <guy.clotilde@wanadoo.fr>, 2002-2003.
+# Sébastien Bacher <seb128@debian.org>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games 2.5.4\n"
+"Project-Id-Version: gnome-games 2.5.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-17 16:03+0100\n"
-"PO-Revision-Date: 2004-01-17 16:03+0100\n"
-"Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
+"POT-Creation-Date: 2004-03-07 15:53+0100\n"
+"PO-Revision-Date: 2004-03-07 01:09+0100\n"
+"Last-Translator: Sébastien Bacher <seb128@debian.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
 
 #: aisleriot/agnes.scm.h:1 aisleriot/canfield.scm.h:1
 #: aisleriot/chessboard.scm.h:1 aisleriot/eagle_wing.scm.h:1
@@ -100,29 +102,45 @@ msgstr "Essayez de réarranger les cartes"
 msgid "an empty foundation pile"
 msgstr "une pile de fondation vide"
 
-#: aisleriot/aisleriot.schemas.in.h:1 blackjack/data/blackjack.schemas.in.h:1
+#: aisleriot/aisleriot.schemas.in.h:1
+msgid ""
+"A list of strings that come in the form of a quintuple: name, wins, total "
+"games played, best time (in seconds) and worst time (also in seconds). "
+"Unplayed games do not need to be represented."
+msgstr ""
+"Une liste de chaînes sous la forme d'un quintuplet : nom, victoires, total "
+"des parties jourées, meilleur temps (en secondes) et moins bon temps (aussi "
+"en secondes). Les parties non jourées non pas besoin d'être representées."
+
+#: aisleriot/aisleriot.schemas.in.h:2 blackjack/data/blackjack.schemas.in.h:1
 msgid ""
 "A string containing a list of files to use to describe the cards. The format "
 "is obscure and defined by the gdk-card-image library"
 msgstr ""
+"Une chaîne qui contient une liste des fichiers à utiliser pour décrire les "
+"cartes. Le format est obscure et définit par la bibliothèque gdk-card-image"
 
-#: aisleriot/aisleriot.schemas.in.h:2
+#: aisleriot/aisleriot.schemas.in.h:3
+msgid "Statistics of games played"
+msgstr "Statistiques des parties jouées"
+
+#: aisleriot/aisleriot.schemas.in.h:4
 msgid "The game file to use"
 msgstr "Le fichier de jeu à utiliser"
 
-#: aisleriot/aisleriot.schemas.in.h:3
+#: aisleriot/aisleriot.schemas.in.h:5
 msgid "The name of the scheme file containing the solitaire game to play."
-msgstr ""
+msgstr "Le nom du fichier contenant le jeu de solitaire à jouer."
 
-#: aisleriot/aisleriot.schemas.in.h:4 blackjack/data/blackjack.schemas.in.h:10
+#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:10
 msgid "What card style to use"
-msgstr ""
+msgstr "Le style de cartes à utiliser"
 
-#: aisleriot/aisleriot.schemas.in.h:5 blackjack/data/blackjack.schemas.in.h:11
+#: aisleriot/aisleriot.schemas.in.h:7 blackjack/data/blackjack.schemas.in.h:11
 msgid "Whether or not to show the toolbar"
 msgstr "Indique si il faut afficher ou non la barre d'outils"
 
-#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:12
+#: aisleriot/aisleriot.schemas.in.h:8 blackjack/data/blackjack.schemas.in.h:12
 msgid "Whether or not to show the toolbar."
 msgstr "Indique si il faut afficher ou non la barre d'outils."
 
@@ -141,9 +159,8 @@ msgstr "une fondation vide"
 
 #: aisleriot/bakers_game.scm.h:1 aisleriot/eight_off.scm.h:1
 #: aisleriot/seahaven.scm.h:1
-#, fuzzy
 msgid "Move something on to an empty reserve"
-msgstr "Mettez une carte sur un emplacement vide"
+msgstr "Déplacer quelque chose sur une réserve vide"
 
 #: aisleriot/bakers_game.scm.h:2 aisleriot/chessboard.scm.h:8
 #: aisleriot/easthaven.scm.h:4 aisleriot/eight_off.scm.h:2
@@ -240,16 +257,17 @@ msgid ""
 "\n"
 "AisleRiot will now exit."
 msgstr ""
+"AisleRiot ne peut pas charger les images de la pioche.\n"
+"\n"
+"AisleRiot va se terminer maintenant."
 
 #: aisleriot/chessboard.scm.h:6
-#, fuzzy
 msgid "Move a card to the Foundation"
-msgstr "Essayez de déplacer les cartes à partir du bas de la fondation"
+msgstr "Déplacer une carte vers la fondation"
 
 #: aisleriot/chessboard.scm.h:7 aisleriot/fortress.scm.h:1
-#, fuzzy
 msgid "Move something into the empty Tableau slot"
-msgstr "Mettez une carte sur un emplacement vide"
+msgstr "Déplacer quelque chose dans un emplacement de tableau vide"
 
 #: aisleriot/clock.scm.h:1
 msgid "Consistency is key"
@@ -322,19 +340,19 @@ msgstr "Perdu."
 msgid "New Game"
 msgstr "Nouvelle partie"
 
-#: aisleriot/dialog.c:146 mahjongg/mahjongg.c:1402
+#: aisleriot/dialog.c:145 mahjongg/mahjongg.c:1857
 msgid "Select Game"
 msgstr "Sélectionnez un jeu"
 
-#: aisleriot/dialog.c:155
+#: aisleriot/dialog.c:154
 msgid "Seed"
 msgstr "Paramètre"
 
-#: aisleriot/dialog.c:173
+#: aisleriot/dialog.c:172
 msgid "Rules"
 msgstr "Règles du jeu"
 
-#: aisleriot/dialog.c:261
+#: aisleriot/dialog.c:260
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -342,50 +360,52 @@ msgstr ""
 "Le jeu est terminé.\n"
 "Pas de suggestion disponible"
 
-#: aisleriot/dialog.c:267
+#: aisleriot/dialog.c:266
 msgid "This game does not have hint support yet."
 msgstr "Les suggestions ne sont pas encore implémentées dans ce jeu."
 
-#: aisleriot/dialog.c:279 aisleriot/dialog.c:287
+#: aisleriot/dialog.c:278 aisleriot/dialog.c:286
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Déplacer %s sur %s."
 
-#: aisleriot/dialog.c:295
+#: aisleriot/dialog.c:294
 #, c-format
 msgid "Move %s %s."
 msgstr "Déplace %s %s."
 
-#: aisleriot/dialog.c:298
+#: aisleriot/dialog.c:297
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
 "the name of the game you where playing (look in the title bar if you \n"
 "aren't sure)."
 msgstr ""
+"Ce jeu utilise une méthode de suggestions obsolète (cas 3).\n"
+"Veuillez faire un rapport d'anomalie sur http://bugzilla.gnome.org en "
+"incluant ce message et le nom du jeu auquel vous étiez entrain de jouer "
+"(vous pouvez regarder dans la barre de titre si vous n'êtes pas sûr)."
 
-#: aisleriot/dialog.c:303
+#: aisleriot/dialog.c:302
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Vous recherchez un %s."
 
-#: aisleriot/dialog.c:308
+#: aisleriot/dialog.c:307
 msgid "This game is unable to provide a hint."
 msgstr "Ce jeu ne peut fournir de suggestion."
 
-#: aisleriot/dialog.c:361
-#, fuzzy
+#: aisleriot/dialog.c:359
 msgid "AisleRiot Cards"
-msgstr "AisleRiot"
+msgstr "Cartes AisleRiot"
 
-#: aisleriot/dialog.c:366
+#: aisleriot/dialog.c:364
 msgid "Card Style"
-msgstr ""
+msgstr "Style de carte"
 
 #: aisleriot/diamond_mine.scm.h:2
-#, fuzzy
 msgid "the foundation pile"
-msgstr "une pile de Fondation vide"
+msgstr "la pile de fondation"
 
 #: aisleriot/eagle_wing.scm.h:6 aisleriot/elevator.scm.h:1
 #: aisleriot/escalator.scm.h:1 aisleriot/royal_east.scm.h:6
@@ -396,18 +416,16 @@ msgid "Deal a card"
 msgstr "Distribuez une carte"
 
 #: aisleriot/eagle_wing.scm.h:8
-#, fuzzy
 msgid "Move ~a to an empty foundation"
-msgstr "vers une fondation vide"
+msgstr "Déplacer ~a vers une fondation vide"
 
 #: aisleriot/eagle_wing.scm.h:12
 msgid "an empty slot on tableau"
 msgstr "une case vide dans le tableau"
 
 #: aisleriot/easthaven.scm.h:2
-#, fuzzy
 msgid "Move a King on to the empty Tableau slot"
-msgstr "une case de Tableau vide"
+msgstr "Déplacer un roi dans un emplacement de tableau vide"
 
 #: aisleriot/first_law.scm.h:2
 msgid "I'm not sure"
@@ -474,32 +492,29 @@ msgid "Consider moving something into an empty slot"
 msgstr "Pensez à déplacer une carte vers un emplacement vide"
 
 #: aisleriot/fortunes.scm.h:3
-#, fuzzy
 msgid "Move ~a off the board"
-msgstr "hors du plateau"
+msgstr "Déplacer ~a hors du plateau"
 
 #: aisleriot/freecell.desktop.in.h:1
-#, fuzzy
 msgid "FreeCell Solitaire"
-msgstr "Jeu de cartes Freecell"
+msgstr "FreeCell Solitaire"
 
 #: aisleriot/freecell.desktop.in.h:2
-#, fuzzy
 msgid "Play the popular FreeCell card game"
-msgstr "Réimplémentation du classique jeu de solitaire."
+msgstr "Jouer à Freecell, le populaire jeu de cartes"
 
 #: aisleriot/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
-msgstr ""
+msgstr "Déplacer une carte de la réserve vers un emplacement vide du tableau"
 
 #: aisleriot/glenwood.scm.h:10
 msgid "Select a card from the reserve for first foundation pile"
 msgstr ""
+"Sélectionner une carte de la réserve pour la première pile de la fondation"
 
 #: aisleriot/glenwood.scm.h:13
-#, fuzzy
 msgid "on to the empty tableau slot"
-msgstr "une case de Tableau vide"
+msgstr "sur une case vide de tableau"
 
 #: aisleriot/golf.scm.h:1 aisleriot/hopscotch.scm.h:1 aisleriot/jumbo.scm.h:1
 #: aisleriot/kansas.scm.h:6 aisleriot/sir_tommy.scm.h:1
@@ -509,30 +524,27 @@ msgstr "Distribuez une autre carte"
 
 #: aisleriot/golf.scm.h:3
 msgid "bdc\n"
-msgstr ""
+msgstr "bdc\n"
 
 #: aisleriot/gypsy.scm.h:1
-#, fuzzy
 msgid "Deal another hand"
-msgstr "Distribuez une autre carte"
+msgstr "Distribuez une autre main"
 
 #: aisleriot/gypsy.scm.h:2
 msgid "Move a card or build of cards on to the empty slot"
-msgstr ""
+msgstr "Déplacer une carte ou un ensemble de cartes sur un emplacement libre"
 
 #: aisleriot/hopscotch.scm.h:2
 msgid "Move card from Waste"
 msgstr "Déplacez une carte de la corbeille"
 
 #: aisleriot/jumbo.scm.h:2
-#, fuzzy
 msgid "Move waste to stock"
 msgstr "Déplacez de la corbeille vers la pile"
 
 #: aisleriot/jumbo.scm.h:7 aisleriot/king_albert.scm.h:3
-#, fuzzy
 msgid "an empty tableau slot"
-msgstr "une case de Tableau vide"
+msgstr "une case vide de tableau"
 
 #: aisleriot/kansas.scm.h:10 aisleriot/lady_jane.scm.h:11
 #: aisleriot/straight_up.scm.h:6
@@ -541,7 +553,7 @@ msgstr "une case de Tableau vide"
 
 #: aisleriot/klondike.scm.h:2
 msgid "No hint available right now"
-msgstr ""
+msgstr "Pas de suggestion disponible pour le moment"
 
 #: aisleriot/klondike.scm.h:5
 msgid "Three card deals"
@@ -560,131 +572,130 @@ msgid ""
 "Aim to place the suits in the order which fits the current layout most "
 "naturally."
 msgstr ""
+"Essayer de placer les suites dans l'ordre qui correspond le plus "
+"naturellement au modèle actuel."
 
-#: aisleriot/menu.c:73 gnome-stones/main.c:1074 gnomine/gnomine.c:374
-#: mahjongg/mahjongg.c:1163
+#: aisleriot/menu.c:76 gnome-stones/main.c:1083 gnomine/gnomine.c:388
+#: mahjongg/mahjongg.c:1618
 msgid "Main game:"
 msgstr "Jeu principal :"
 
-#: aisleriot/menu.c:78
-#, fuzzy
+#: aisleriot/menu.c:81
 msgid "Card games:"
-msgstr "Dos des cartes :"
+msgstr "Jeux de cartes :"
 
 #. Translator credits
-#: aisleriot/menu.c:93 gataxx/gataxx.c:398 glines/glines.c:874
-#: gnect/src/main.c:814 gnibbles/main.c:181 gnobots2/menu.c:194
-#: gnome-stones/main.c:1085 gnometris/tetris.cpp:1110 gnomine/gnomine.c:387
-#: gnotravex/gnotravex.c:1460 gnotski/gnotski.c:1137 gtali/gyahtzee.c:390
-#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1180 same-gnome/same-gnome.c:709
+#: aisleriot/menu.c:96 blackjack/src/menu.cpp:84 gataxx/gataxx.c:398
+#: glines/glines.c:878 gnect/src/main.c:812 gnibbles/main.c:181
+#: gnobots2/menu.c:194 gnome-stones/main.c:1094 gnometris/tetris.cpp:1124
+#: gnomine/gnomine.c:401 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1136
+#: gtali/gyahtzee.c:390 iagno/gnothello.c:369 mahjongg/mahjongg.c:1635
+#: same-gnome/same-gnome.c:707
 msgid "translator-credits"
 msgstr ""
 "Mainteneur :\n"
 "Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "\n"
 "Contributeur :\n"
-"Guy Daniel Clotilde <guy.clotilde@wanadoo.fr>"
+"Guy Daniel Clotilde <guy.clotilde@wanadoo.fr>\n"
+"Sébastien Bacher <seb128@debian.org>"
 
-#: aisleriot/menu.c:114
+#: aisleriot/menu.c:117
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
-#: aisleriot/menu.c:117
-#, fuzzy
+#: aisleriot/menu.c:120
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
 msgstr ""
-"AisleRiot contient un système basé sur les règles du Solitaire, qui permet "
-"de gérer plusieurs types de jeux"
+"AisleRiot fournit un système basé sur les règles du Solitaire, qui permet de "
+"jouer à différents types de jeux."
 
-#: aisleriot/menu.c:178
+#: aisleriot/menu.c:181
 msgid "Game _options..."
 msgstr "_Options du jeu..."
 
-#: aisleriot/menu.c:179
+#: aisleriot/menu.c:182
 msgid "Modify the options for this game"
 msgstr "Modifier les options de ce jeu"
 
-#: aisleriot/menu.c:185 blackjack/src/menu.cpp:146 gnect/src/main.c:1166
-#: mahjongg/mahjongg.c:355
+#: aisleriot/menu.c:188 blackjack/src/menu.cpp:150 gnect/src/main.c:1164
+#: mahjongg/mahjongg.c:815
 msgid "_Toolbar"
 msgstr "Barre d'_outils"
 
-#: aisleriot/menu.c:185 blackjack/src/menu.cpp:147 mahjongg/mahjongg.c:356
+#: aisleriot/menu.c:188 blackjack/src/menu.cpp:151 mahjongg/mahjongg.c:816
 msgid "Show or hide the toolbar"
 msgstr "Afficher ou cacher la barre d'outils"
 
-#: aisleriot/menu.c:188
+#: aisleriot/menu.c:191
 msgid "_Cards..."
 msgstr "_Cartes..."
 
-#: aisleriot/menu.c:188
+#: aisleriot/menu.c:191
 msgid "Change the appearance of the cards"
 msgstr "Mofifier l'apparence des cartes"
 
-#: aisleriot/menu.c:208
+#: aisleriot/menu.c:211
 msgid "_Select..."
 msgstr "_Sélectionner..."
 
-#: aisleriot/menu.c:208 aisleriot/menu.c:255
-#, fuzzy
+#: aisleriot/menu.c:211 aisleriot/menu.c:258
 msgid "Select a different game"
-msgstr "Choisit un nouveau jeu"
+msgstr "Choisir un jeu différent"
 
-#: aisleriot/menu.c:210
+#: aisleriot/menu.c:213
 msgid "S_tatistics..."
 msgstr "_Statistiques..."
 
-#: aisleriot/menu.c:210
-#, fuzzy
+#: aisleriot/menu.c:213
 msgid "Get statistics on the current game"
-msgstr "Commencer à un autre niveau"
+msgstr "Obtenir les statistiques du jeu courant"
 
-#: aisleriot/menu.c:249 blackjack/src/menu.cpp:194 gnect/src/main.c:1190
-#: mahjongg/mahjongg.c:380
+#: aisleriot/menu.c:252 blackjack/src/menu.cpp:198 gnect/src/main.c:1188
+#: mahjongg/mahjongg.c:838
 msgid "New"
 msgstr "Nouveau"
 
-#: aisleriot/menu.c:249 gnect/src/main.c:1191
+#: aisleriot/menu.c:252 gnect/src/main.c:1189
 msgid "Start a new game"
 msgstr "Commence une nouvelle partie"
 
-#: aisleriot/menu.c:252 blackjack/src/menu.cpp:197 mahjongg/mahjongg.c:384
+#: aisleriot/menu.c:255 blackjack/src/menu.cpp:201 mahjongg/mahjongg.c:842
 msgid "Restart"
 msgstr "Recommencer"
 
-#: aisleriot/menu.c:252
+#: aisleriot/menu.c:255
 msgid "Restart the game"
 msgstr "Recommence le jeu"
 
-#: aisleriot/menu.c:255
+#: aisleriot/menu.c:258
 msgid "Select"
-msgstr "Sélection"
+msgstr "Sélectionner"
 
-#: aisleriot/menu.c:260 gnect/src/main.c:1193 mahjongg/mahjongg.c:396
+#: aisleriot/menu.c:263 gnect/src/main.c:1191 mahjongg/mahjongg.c:854
 msgid "Undo"
 msgstr "Annuler"
 
-#: aisleriot/menu.c:260 gnect/src/main.c:1193
+#: aisleriot/menu.c:263 gnect/src/main.c:1191
 msgid "Undo the last move"
 msgstr "Annule le dernier mouvement"
 
-#: aisleriot/menu.c:263 mahjongg/mahjongg.c:400
+#: aisleriot/menu.c:266 mahjongg/mahjongg.c:858
 msgid "Redo"
-msgstr "Rétablir"
+msgstr "Refaire"
 
-#: aisleriot/menu.c:263
-#, fuzzy
+#: aisleriot/menu.c:266
 msgid "Redo the undone move"
-msgstr "Rétablit le dernier mouvement annulé"
+msgstr "Refait le mouvement annulé"
 
-#: aisleriot/menu.c:266 blackjack/src/menu.cpp:201 gnect/src/main.c:1194
-#: mahjongg/mahjongg.c:402
+#: aisleriot/menu.c:269 blackjack/src/menu.cpp:205 gnect/src/main.c:1192
+#: mahjongg/mahjongg.c:860
 msgid "Hint"
 msgstr "Suggestion"
 
-#: aisleriot/menu.c:266 gnect/src/main.c:1194
+#: aisleriot/menu.c:269 gnect/src/main.c:1192
 msgid "Get a hint for your next move"
 msgstr "Affiche une astuce pour votre prochain coup"
 
@@ -694,7 +705,7 @@ msgstr "quelque-chose"
 
 #: aisleriot/plait.scm.h:3
 msgid "Move ~a to an empty field"
-msgstr ""
+msgstr "Déplacer ~a vers un emplacement vide"
 
 #: aisleriot/plait.scm.h:4
 msgid "Try a new game"
@@ -702,7 +713,7 @@ msgstr "Essaye un nouveau jeu"
 
 #: aisleriot/poker.scm.h:1
 msgid "Place cards on to the Tableau to form poker hands"
-msgstr ""
+msgstr "Placer les cartes dans le tableau pour former des mains de poker"
 
 #: aisleriot/royal_east.scm.h:9 aisleriot/thumb_and_pouch.scm.h:6
 #: aisleriot/westhaven.scm.h:4
@@ -714,26 +725,23 @@ msgid "Deal the cards"
 msgstr "Distribuez les cartes"
 
 #: aisleriot/scuffle.scm.h:3
-#, fuzzy
 msgid "Reshuffle cards"
-msgstr "Distribuez les cartes"
+msgstr "Mélanger les cartes à nouveau"
 
 #: aisleriot/sir_tommy.scm.h:2
-#, fuzzy
 msgid "Move waste on to a reserve slot"
-msgstr "Déplacez de la corbeille vers la pile"
+msgstr "Déplacez de la corbeille vers un emplacement de réserve"
 
 #: aisleriot/sir_tommy.scm.h:4
-#, fuzzy
 msgid "empty foundation"
-msgstr "une Fondation vide"
+msgstr "une fondation vide"
 
-#: aisleriot/sol.c:132
-#, fuzzy, c-format
+#: aisleriot/sol.c:137
+#, c-format
 msgid "AisleRiot: %s (%d)"
-msgstr "AisleRiot"
+msgstr "AisleRiot : %s (%d)"
 
-#: aisleriot/sol.c:159
+#: aisleriot/sol.c:164
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -745,42 +753,41 @@ msgstr ""
 "%s\n"
 "Veuillez vérifiez votre installation d'Aisleriot."
 
-#: aisleriot/sol.c:217 aisleriot/sol.c:237
+#: aisleriot/sol.c:229 aisleriot/sol.c:249
 msgid "Help"
 msgstr "Aide"
 
-#: aisleriot/sol.c:237 aisleriot/sol.c:360
+#: aisleriot/sol.c:249 aisleriot/sol.c:387
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: aisleriot/sol.c:407 glines/glines.c:1489 gnobots2/statusbar.c:65
-#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:57 gnomine/gnomine.c:380
-#: same-gnome/same-gnome.c:959
+#: aisleriot/sol.c:434 glines/glines.c:1493 gnobots2/statusbar.c:65
+#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:57 gnomine/gnomine.c:394
+#: same-gnome/same-gnome.c:957
 msgid "Score:"
 msgstr "Score :"
 
-#: aisleriot/sol.c:411 gnomine/gnomine.c:933 gnotravex/gnotravex.c:993
-#: mahjongg/mahjongg.c:1686
+#: aisleriot/sol.c:438 gnomine/gnomine.c:949 gnotravex/gnotravex.c:1019
+#: mahjongg/mahjongg.c:2157
 msgid "Time:"
 msgstr "Durée :"
 
-#: aisleriot/sol.c:468 blackjack/src/blackjack.cpp:587
+#: aisleriot/sol.c:495 blackjack/src/blackjack.cpp:580
 msgid "Variation on game rules"
 msgstr "Variation des règles du jeu"
 
-#: aisleriot/sol.c:469 blackjack/src/blackjack.cpp:588 gnobots2/gnobots.c:60
-#: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:889
+#: aisleriot/sol.c:496 blackjack/src/blackjack.cpp:581 gnobots2/gnobots.c:60
+#: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:887
 msgid "NAME"
 msgstr "NOM"
 
 #: aisleriot/sol.desktop.in.h:1
-#, fuzzy
 msgid "AisleRiot Solitaire"
-msgstr "AisleRiot"
+msgstr "Solitaire AisleRiot"
 
 #: aisleriot/sol.desktop.in.h:2
 msgid "Play many different solitaire games"
-msgstr ""
+msgstr "Jouer plusieurs jeux de solitaire différents"
 
 #: aisleriot/sol.scm.h:1
 msgid "Unknown color"
@@ -1091,78 +1098,77 @@ msgid "Please fill in empty pile first."
 msgstr "Veuillez remplir l'emplacement vide d'abord."
 
 #: aisleriot/spider.scm.h:5
-#, fuzzy
 msgid "Try moving card piles around"
-msgstr "Essayez de déplacer les cartes à partir du bas de la fondation"
+msgstr "Essayez de déplacer les cartes de la pile ailleurs"
 
 #: aisleriot/spiderette.scm.h:2 aisleriot/will_o_the_wisp.scm.h:2
-#, fuzzy
 msgid "Place something on to the empty Tableau slot"
-msgstr "Mettez une carte sur un emplacement vide"
+msgstr "Mettez quelque chose dans un emplacement de tableau vide"
+
+#. For translators: N/A means "Not Applicable", use whatever
+#. * abbreviation you have for a value that has no meaning.
+#: aisleriot/statistics.c:95 aisleriot/statistics.c:104
+#: aisleriot/statistics.c:113
+msgid "N/A"
+msgstr "N/A"
+
+#. Translators: this represents minutes:seconds.
+#: aisleriot/statistics.c:99 aisleriot/statistics.c:108
+#, c-format
+msgid "%d:%02d"
+msgstr "%d:%02d"
 
 #: aisleriot/statistics.glade.h:1
-#, fuzzy
-msgid "<b>Game Name</b>"
-msgstr "GNOME Same"
+msgid "<b>Time</b>"
+msgstr "<b>Temps</b>"
 
 #: aisleriot/statistics.glade.h:2
-msgid "<b>Time</b>"
-msgstr ""
+msgid "<b>Wins</b>"
+msgstr "<b>Victoire</b>"
 
 #: aisleriot/statistics.glade.h:3
-msgid "<b>Wins</b>"
-msgstr ""
+msgid "Best:"
+msgstr "Meilleur :"
 
 #: aisleriot/statistics.glade.h:4
-#, fuzzy
-msgid "Best:"
-msgstr "Bonus"
+msgid "Percentage:"
+msgstr "Pourcentage :"
 
 #: aisleriot/statistics.glade.h:5
-msgid "Percentage:"
-msgstr ""
+msgid "Statistics"
+msgstr "Statistiques"
 
 #: aisleriot/statistics.glade.h:6
-#, fuzzy
-msgid "Statistics"
-msgstr "_Statistiques..."
+msgid "Total:"
+msgstr "Total :"
 
 #: aisleriot/statistics.glade.h:7
-#, fuzzy
-msgid "Total:"
-msgstr "Total"
+msgid "Wins:"
+msgstr "Victoires :"
 
 #: aisleriot/statistics.glade.h:8
-#, fuzzy
-msgid "Wins:"
-msgstr "Lignes : "
+msgid "Worst:"
+msgstr "Pire :"
 
 #: aisleriot/statistics.glade.h:9
-#, fuzzy
-msgid "Worst:"
-msgstr "Ver %d"
-
-#: aisleriot/statistics.glade.h:10
-#, fuzzy
 msgid "_Reset"
-msgstr "Règles du jeu"
+msgstr "_Réinitialiser"
 
 #: aisleriot/ten_across.scm.h:1
 msgid "Allow temporary spots use"
-msgstr ""
+msgstr "Authoriser l'utilisation d'emplacements temporaires"
 
 #: aisleriot/ten_across.scm.h:2
 msgid "Move a card to an empty temporary slot"
-msgstr ""
+msgstr "Déplacer une carte vers un emplacement temporaire vide"
 
 #: aisleriot/ten_across.scm.h:3
-#, fuzzy
 msgid "No hint available"
-msgstr "%s : pas de thème disponible\n"
+msgstr "Pas de suggestion disponible"
 
 #: aisleriot/ten_across.scm.h:5
 msgid "and all cards below it"
-msgstr ""
+msgstr "et toutes les cartes en dessous"
 
 #: aisleriot/ten_across.scm.h:6
 msgid "empty slot(s)"
@@ -1471,309 +1477,303 @@ msgstr "pile de Fondation appropriée"
 
 #: aisleriot/whitehead.scm.h:2
 msgid "Move a build of cards on to the empty Tableau slot"
-msgstr ""
+msgstr "Déplacer un ensemble de cartes vers l'emplacement de tableau vide"
 
 #: aisleriot/zebra.scm.h:5
 msgid "the appropriate Foundation pile"
 msgstr "la pile de Fondation appropriée"
 
-#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:235
-#: blackjack/src/menu.cpp:102 blackjack/src/splash.cpp:96
-#, fuzzy
+#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:228
+#: blackjack/src/menu.cpp:106 blackjack/src/splash.cpp:96
 msgid "Blackjack"
-msgstr "Noir"
+msgstr "Blackjack"
 
 #: blackjack/data/blackjack.desktop.in.h:2
 msgid "Play the casino card game Blackjack"
-msgstr ""
+msgstr "Jouer au jeu de carte de casino Blackjack"
 
 #: blackjack/data/blackjack.schemas.in.h:2
 msgid "Display probabilities"
-msgstr ""
+msgstr "Afficher les probabilités"
 
 #: blackjack/data/blackjack.schemas.in.h:3
 msgid ""
 "Display the probabilities of each dealer hand outcome and the expected value "
 "of your hand."
 msgstr ""
+"Afficher les probabilités d'obtention de chaque main du croupier et la "
+"valeur attendue de votre main."
 
 #: blackjack/data/blackjack.schemas.in.h:4
 msgid "The amount of money in your bank"
-msgstr ""
+msgstr "L'argent disponible dans votre banque"
 
 #: blackjack/data/blackjack.schemas.in.h:5
 msgid "The amount of money in your bank."
-msgstr ""
+msgstr "L'argent disponible dans votre banque."
 
 #: blackjack/data/blackjack.schemas.in.h:6
 msgid ""
 "The name of the rules file containing the variation of the rules to play."
-msgstr ""
+msgstr "Le nom du fichier de règles contenant les variantes de règles à jouer."
 
 #: blackjack/data/blackjack.schemas.in.h:7
-#, fuzzy
 msgid "The variation of the rules file to use"
-msgstr "Nom du thème à utiliser."
+msgstr "La variante des règles à utiliser"
 
 #: blackjack/data/blackjack.schemas.in.h:8
 msgid "Use a quick deal"
-msgstr ""
+msgstr "Utiliser une donne rapide"
 
 #: blackjack/data/blackjack.schemas.in.h:9
 msgid "Use a quick deal with no delay between each card."
-msgstr ""
+msgstr "Utiliser une donne rapide avec aucun délai entre les cartes."
 
 #: blackjack/src/blackjack.cpp:98
 #, c-format
 msgid "Blackjack: %s (%d)"
-msgstr ""
+msgstr "Blackjack : %s (%d)"
 
-#: blackjack/src/blackjack.cpp:313
+#: blackjack/src/blackjack.cpp:306
 msgid "Place your wager or deal a hand"
-msgstr ""
+msgstr "Placer votre mise ou distribuer une main"
 
-#: blackjack/src/blackjack.cpp:316
+#: blackjack/src/blackjack.cpp:309
 msgid "Cards left:"
 msgstr "Cartes restantes :"
 
-#: blackjack/src/blackjack.cpp:324
+#: blackjack/src/blackjack.cpp:317
 msgid "Wager:"
-msgstr ""
+msgstr "Mise :"
 
-#: blackjack/src/blackjack.cpp:336
-#, fuzzy
+#: blackjack/src/blackjack.cpp:329
 msgid "Balance:"
-msgstr "Noir"
+msgstr "Balance :"
+
+#: blackjack/src/card.cpp:156
+msgid "Could not load the card deck images."
+msgstr "Impossible de charger les images des dos de cartes."
+
+#: blackjack/src/card.cpp:157
+msgid "Blackjack will now exit."
+msgstr "Blackjack va se terminer."
 
 #: blackjack/src/dialog.cpp:50
 msgid "Would you like insurance?"
-msgstr ""
+msgstr "Voulez-vous vous assurer ?"
 
-#: blackjack/src/dialog.cpp:93
+#: blackjack/src/dialog.cpp:92
 msgid "Set your wager and click in the white outline to deal a new hand."
 msgstr ""
+"Définissez votre mise et cliquez dans la zone entourée de blanc pour "
+"distribuer une nouvelle main."
 
-#: blackjack/src/dialog.cpp:96
+#: blackjack/src/dialog.cpp:95
 msgid "Set your wager or click on the cards to deal a new hand."
 msgstr ""
+"Définissez votre mise ou cliquez sur les cartes pour distribuer une nouvelle "
+"main."
 
-#: blackjack/src/dialog.cpp:218
-#, fuzzy
+#: blackjack/src/dialog.cpp:216
 msgid "Blackjack Preferences"
-msgstr "Préférences"
+msgstr "Préférences de Blackjack"
 
-#: blackjack/src/dialog.cpp:233 gnect/src/prefs.c:464
-#: gnibbles/preferences.c:327 gnobots2/properties.c:875
-#: gnome-stones/preferences.c:740
-#, fuzzy
+#: blackjack/src/dialog.cpp:231 gnect/src/prefs.c:452
+#: gnibbles/preferences.c:327 gnome-stones/preferences.c:740
 msgid "_Game"
-msgstr "Jeu"
+msgstr "_Jeu"
 
-#: blackjack/src/dialog.cpp:240
+#: blackjack/src/dialog.cpp:238
 msgid "Display hand probabilities"
-msgstr ""
+msgstr "Afficher les probabilités de la main"
 
-#: blackjack/src/dialog.cpp:251
+#: blackjack/src/dialog.cpp:249
 msgid "Quick deals (no delay between each card)"
-msgstr ""
+msgstr "Donnes rapides (pas de délai entre les cartes)"
 
-#: blackjack/src/dialog.cpp:263
-#, fuzzy
+#: blackjack/src/dialog.cpp:261
 msgid "_Rules"
-msgstr "Règles du jeu"
+msgstr "_Règles du jeu"
 
-#: blackjack/src/dialog.cpp:287
-#, fuzzy
+#: blackjack/src/dialog.cpp:285
 msgid "Name"
-msgstr "Jeu"
+msgstr "Nom"
 
-#: blackjack/src/dialog.cpp:292
-#, fuzzy
+#: blackjack/src/dialog.cpp:290
 msgid "Decks"
-msgstr "valets"
+msgstr "Dos"
 
-#: blackjack/src/dialog.cpp:297
+#: blackjack/src/dialog.cpp:295
 msgid "Hit Soft 17"
-msgstr ""
+msgstr "Tirer 17 souple"
 
-#: blackjack/src/dialog.cpp:302
+#: blackjack/src/dialog.cpp:300
 msgid "Double Any Total"
-msgstr ""
+msgstr "Doubler les totaux"
 
-#: blackjack/src/dialog.cpp:307
-#, fuzzy
+#: blackjack/src/dialog.cpp:305
 msgid "Double 9"
-msgstr "Doublets"
+msgstr "Doubler 9"
 
-#: blackjack/src/dialog.cpp:312
-#, fuzzy
+#: blackjack/src/dialog.cpp:310
 msgid "Double Soft"
-msgstr "Doublets"
+msgstr "Doubler souple"
 
-#: blackjack/src/dialog.cpp:317
+#: blackjack/src/dialog.cpp:315
 msgid "Double After Hit"
-msgstr ""
+msgstr "Doubler après l'obtention d'une carte"
 
-#: blackjack/src/dialog.cpp:322
+#: blackjack/src/dialog.cpp:320
 msgid "Double After Split"
-msgstr ""
+msgstr "Doubler après la coupe"
 
-#: blackjack/src/dialog.cpp:327
-#, fuzzy
+#: blackjack/src/dialog.cpp:325
 msgid "Resplit"
-msgstr "Résultats"
+msgstr "Couper à nouveau"
 
-#: blackjack/src/dialog.cpp:332
-#, fuzzy
+#: blackjack/src/dialog.cpp:330
 msgid "Resplit Aces"
-msgstr "Résultats"
+msgstr "Couper à nouveau les aces"
 
-#: blackjack/src/dialog.cpp:337 blackjack/src/player.cpp:325
+#: blackjack/src/dialog.cpp:335 blackjack/src/player.cpp:328
 msgid "Surrender"
-msgstr ""
+msgstr "Abandonner"
 
-#: blackjack/src/dialog.cpp:342
+#: blackjack/src/dialog.cpp:340
 msgid "Dealer Speed"
-msgstr ""
+msgstr "Vitesse du croupier"
 
-#: blackjack/src/dialog.cpp:405
-#, fuzzy
+#: blackjack/src/dialog.cpp:403
 msgid "Card _Deck"
-msgstr "Dos des cartes :"
+msgstr "_Dos des cartes"
 
 #: blackjack/src/events.cpp:490
 msgid "Click to deal another card; drag card to split pair"
 msgstr ""
+"Cliquez pour recevoir une autre carte ; glissez une carte pour couper la "
+"paire"
 
 #: blackjack/src/events.cpp:492
-#, fuzzy
 msgid "Click to deal another card"
-msgstr "Distribuez une autre carte"
+msgstr "Cliquez pour distribuer une autre carte"
 
 #: blackjack/src/events.cpp:494
 msgid "Click to finish adding cards to your hand"
-msgstr ""
+msgstr "Cliquez pour finir d'ajouter des cartes à votre main"
 
 #: blackjack/src/events.cpp:497
 msgid "Click to deal a new hand"
-msgstr ""
+msgstr "Cliquez pour obtenir une nouvelle main"
 
 #: blackjack/src/events.cpp:513
 msgid "Click to double your wager"
-msgstr ""
+msgstr "Cliquez pour doubler votre mise"
 
 #: blackjack/src/events.cpp:519
 #, c-format
 msgid "Double click to increase your wager by %.2f"
-msgstr ""
+msgstr "Double cliquez pour augmenter votre mise par %.2f"
 
 #: blackjack/src/events.cpp:533
 #, c-format
 msgid "Double click to decrease your wager by %.2f"
-msgstr ""
+msgstr "Double cliquez pour diminuer votre mise par %.2f"
 
-#: blackjack/src/game.cpp:363
+#: blackjack/src/game.cpp:390
 msgid "Blackjack can't load the requested file"
-msgstr ""
+msgstr "Blackjack ne peut pas charger le fichier demandé"
 
-#: blackjack/src/game.cpp:365
+#: blackjack/src/game.cpp:392
 msgid "Please check your Blackjack installation"
-msgstr ""
-
-#: blackjack/src/hand.cpp:85
-msgid "The best option is to stand"
-msgstr ""
-
-#: blackjack/src/hand.cpp:87
-msgid "The best option is to hit"
-msgstr ""
+msgstr "Veuillez vérifier votre installation de Blackjack"
 
 #: blackjack/src/hand.cpp:89
-msgid "The best option is to double down"
-msgstr ""
+msgid "The best option is to stand"
+msgstr "La meilleure option est d'arrêter"
 
 #: blackjack/src/hand.cpp:91
-msgid "The best option is to split"
-msgstr ""
+msgid "The best option is to hit"
+msgstr "La meilleure option est de demander une carte"
 
 #: blackjack/src/hand.cpp:93
+msgid "The best option is to double down"
+msgstr "La meilleure option est de doubler la mise"
+
+#: blackjack/src/hand.cpp:95
+msgid "The best option is to split"
+msgstr "La meilleure option est de couper"
+
+#: blackjack/src/hand.cpp:97
 msgid "The best option is to surrender"
-msgstr ""
+msgstr "La meilleure option est d'abandonner"
 
-#: blackjack/src/menu.cpp:106
+#: blackjack/src/menu.cpp:110
 msgid "Blackjack provides a casino-style blackjack card game."
-msgstr ""
+msgstr "Blackjack fournit un jeu de carte du style du blackjack de casino"
 
-#: blackjack/src/menu.cpp:194
+#: blackjack/src/menu.cpp:198
 msgid "Deal a new game"
 msgstr "Commence une nouvelle partie"
 
-#: blackjack/src/menu.cpp:197
+#: blackjack/src/menu.cpp:201
 msgid "Start this game over"
 msgstr "Recommence cette partie"
 
-#: blackjack/src/menu.cpp:201
+#: blackjack/src/menu.cpp:205
 msgid "Suggest a move"
 msgstr "Suggére un coup"
 
-#: blackjack/src/player.cpp:64
+#: blackjack/src/player.cpp:67
 msgid "Computing basic strategy..."
-msgstr ""
+msgstr "Calcul des stratégies de base..."
 
-#: blackjack/src/player.cpp:187 blackjack/src/player.cpp:465
-#, fuzzy
+#: blackjack/src/player.cpp:190 blackjack/src/player.cpp:468
 msgid "Bust"
-msgstr "Bonus"
+msgstr "Dépassement"
 
-#: blackjack/src/player.cpp:191
-#, fuzzy
+#: blackjack/src/player.cpp:194
 msgid "Blackjack!"
-msgstr "Noir"
+msgstr "Blackjack !"
 
-#: blackjack/src/player.cpp:196
+#: blackjack/src/player.cpp:199
 msgid "Soft"
-msgstr ""
+msgstr "Souple"
 
-#: blackjack/src/player.cpp:204
+#: blackjack/src/player.cpp:207
 msgid "Win"
-msgstr ""
+msgstr "Victoire"
 
-#: blackjack/src/player.cpp:205
-#, fuzzy
+#: blackjack/src/player.cpp:208
 msgid "Push"
-msgstr "Pause"
+msgstr "Push"
 
-#: blackjack/src/player.cpp:206
+#: blackjack/src/player.cpp:209
 msgid "Lose"
-msgstr ""
+msgstr "Défaite"
 
-#: blackjack/src/player.cpp:266
+#: blackjack/src/player.cpp:269
 msgid "Player expected values"
-msgstr ""
+msgstr "Valeurs attendues par le joueur"
 
-#: blackjack/src/player.cpp:272
-#, fuzzy
+#: blackjack/src/player.cpp:275
 msgid "Stand"
-msgstr "Son"
+msgstr "Garder"
 
-#: blackjack/src/player.cpp:282
-#, fuzzy
+#: blackjack/src/player.cpp:285
 msgid "Hit"
-msgstr "Suggestion"
+msgstr "Carte"
 
-#: blackjack/src/player.cpp:295
-#, fuzzy
+#: blackjack/src/player.cpp:298
 msgid "Double"
-msgstr "Doublets"
+msgstr "Doubler"
 
-#: blackjack/src/player.cpp:311
-#, fuzzy
+#: blackjack/src/player.cpp:314
 msgid "Split"
-msgstr "Bruits d'écrasement"
+msgstr "Couper"
 
-#: blackjack/src/player.cpp:464
+#: blackjack/src/player.cpp:467
 msgid "Dealer hand probabilities"
-msgstr ""
+msgstr "Probabilités de la main de croupier"
 
 #: gataxx/ataxx.c:150 gataxx/gataxx.c:306 gataxx/gataxx.c:736
 #: iagno/gnothello.c:288 iagno/gnothello.c:699 iagno/othello.c:220
@@ -1846,13 +1846,13 @@ msgstr "%.2d"
 
 #: gataxx/gataxx.desktop.in.h:2
 msgid "Compete to dominate the board in a Reversi-like game"
-msgstr ""
+msgstr "Essayer de dominer le plateau dans un jeu de type Reversi"
 
 #: gataxx/gataxx.schemas.in.h:1 gnect/data/gnect.schemas.in.h:2
 msgid "Animate"
 msgstr "Animation"
 
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:523 iagno/properties.c:710
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:536 iagno/properties.c:723
 msgid "Flip final results"
 msgstr "Retourner le résultat final"
 
@@ -1902,82 +1902,99 @@ msgstr ""
 
 #: gataxx/gataxx.soundlist.in.h:1 iagno/iagno.soundlist.in.h:1
 msgid "Game over"
-msgstr "Game over"
+msgstr "Perdu"
 
 #: gataxx/gataxx.soundlist.in.h:2 iagno/iagno.soundlist.in.h:3
 msgid "Piece flipping"
 msgstr "Retournement des pièces"
 
-#: gataxx/properties.c:345
-#, fuzzy
+#: gataxx/properties.c:358
 msgid "Gataxx Preferences"
-msgstr "Préférences de Gnect"
+msgstr "Préférences de Gataxx"
 
 #. Players tab
-#: gataxx/properties.c:364 iagno/properties.c:532
-#, fuzzy
+#: gataxx/properties.c:377 iagno/properties.c:545
 msgid "_Players"
-msgstr "Joueurs"
+msgstr "_Joueurs"
 
-#: gataxx/properties.c:376
+#: gataxx/properties.c:389
 msgid "Quick Moves (cut computer delay in half)"
 msgstr "Mouvements rapides (divise les délais de l'ordinateur par deux)"
 
-#: gataxx/properties.c:384 gnect/src/theme.c:55 iagno/properties.c:555
+#: gataxx/properties.c:397 gnect/src/theme.c:55 iagno/properties.c:568
 msgid "Dark"
 msgstr "Noir"
 
-#: gataxx/properties.c:389 gataxx/properties.c:437 gnect/src/prefs.c:416
-#: gtali/yahtzee.c:63 iagno/properties.c:561 iagno/properties.c:608
+#: gataxx/properties.c:402 gataxx/properties.c:450 gnect/src/prefs.c:404
+#: gtali/yahtzee.c:63 iagno/properties.c:574 iagno/properties.c:621
 msgid "Human"
 msgstr "Humain"
 
-#: gataxx/properties.c:399 gataxx/properties.c:445 gnect/src/prefs.c:418
-#: iagno/properties.c:571 iagno/properties.c:618
+#: gataxx/properties.c:412 gataxx/properties.c:458 gnect/src/prefs.c:406
+#: iagno/properties.c:584 iagno/properties.c:631
 msgid "Level one"
 msgstr "Niveau un"
 
-#: gataxx/properties.c:408 gataxx/properties.c:453 gnect/src/prefs.c:420
-#: iagno/properties.c:581 iagno/properties.c:628
+#: gataxx/properties.c:421 gataxx/properties.c:466 gnect/src/prefs.c:408
+#: iagno/properties.c:594 iagno/properties.c:641
 msgid "Level two"
 msgstr "Niveau deux"
 
-#: gataxx/properties.c:417 gataxx/properties.c:461 gnect/src/prefs.c:422
-#: iagno/properties.c:591 iagno/properties.c:639
+#: gataxx/properties.c:430 gataxx/properties.c:474 gnect/src/prefs.c:410
+#: iagno/properties.c:604 iagno/properties.c:652
 msgid "Level three"
 msgstr "Niveau trois"
 
-#: gataxx/properties.c:432 gnect/src/theme.c:55 iagno/properties.c:602
+#: gataxx/properties.c:445 gnect/src/theme.c:55 iagno/properties.c:615
 msgid "Light"
 msgstr "Blanc"
 
 #. Appearance tab
-#: gataxx/properties.c:477 gnibbles/preferences.c:476
-#: gnobots2/properties.c:913 iagno/properties.c:652
+#: gataxx/properties.c:490 gnibbles/preferences.c:476 iagno/properties.c:665
 msgid "_Appearance"
 msgstr "_Apparence"
 
-#: gataxx/properties.c:487 iagno/properties.c:661
+#: gataxx/properties.c:500 iagno/properties.c:674
 msgid "None"
 msgstr "Aucune"
 
-#: gataxx/properties.c:497 iagno/properties.c:670
+#: gataxx/properties.c:510 iagno/properties.c:683
 msgid "Partial"
 msgstr "Partielle"
 
-#: gataxx/properties.c:506 iagno/properties.c:679
+#: gataxx/properties.c:519 iagno/properties.c:692
 msgid "Complete"
 msgstr "Complète"
 
 #. Options
-#: gataxx/properties.c:518 gnibbles/preferences.c:387
-#: gnibbles/preferences.c:644 gnobots2/properties.c:836 iagno/properties.c:691
+#: gataxx/properties.c:531 gnibbles/preferences.c:387
+#: gnibbles/preferences.c:644 gnobots2/properties.c:843 iagno/properties.c:704
 msgid "Options"
 msgstr "Options"
 
-#: gataxx/properties.c:532 iagno/properties.c:720
+#: gataxx/properties.c:545 iagno/properties.c:733
 msgid "Tile set:"
 msgstr "Jeu de pièces :"
+
+#: gdk-card-image/card-styles.xml.in.h:1
+msgid "Default"
+msgstr "Défaut"
+
+#: gdk-card-image/card-styles.xml.in.h:2
+msgid "Dondorf"
+msgstr "Dondorf"
+
+#: gdk-card-image/card-styles.xml.in.h:3
+msgid "Dondorf Red"
+msgstr "Dondorf rouge"
+
+#: gdk-card-image/card-styles.xml.in.h:4 gnibbles/preferences.c:668
+msgid "Gray"
+msgstr "Gris"
+
+#: gdk-card-image/card-styles.xml.in.h:5
+msgid "xpat"
+msgstr "xpat"
 
 #: gdk-card-image/gdk-card-image.c:113
 msgid "Card back:"
@@ -2008,138 +2025,134 @@ msgid "Suit font (large):"
 msgstr "Police pour la couleur (grande) :"
 
 #: glines/glines.c:143
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Glines couldn't find image file:\n"
 "%s\n"
 "\n"
 "Please check your Glines installation"
 msgstr ""
-"Glines n'a pu trouver l'image :\n"
+"Glines n'a pu trouver le fichier d'image :\n"
 "%s\n"
 "\n"
 "Veuillez vérifier votre installation de Glines"
 
-#: glines/glines.c:312
+#: glines/glines.c:311
 msgid "Match five balls of the same color in a row to score!"
 msgstr ""
 "Faîtes correspondre cinq boules de couleur identique dans une rangée pour "
 "marquer des points."
 
-#: glines/glines.c:361 glines/glines.c:893
+#: glines/glines.c:360 glines/glines.c:897
 msgid "Glines"
 msgstr "Glines"
 
-#: glines/glines.c:390
+#: glines/glines.c:389
 msgid "Game Over!"
 msgstr "Perdu !"
 
 #. Can't move there!
-#: glines/glines.c:545
+#: glines/glines.c:549
 msgid "Can't move there!"
 msgstr "Impossible de se déplacer ici !"
 
-#: glines/glines.c:896
+#: glines/glines.c:900
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "Portage GNOME du jeu autrefois célèbre Lignes Colorées"
 
-#: glines/glines.c:1033
+#: glines/glines.c:1037
 msgid "Glines Preferences"
 msgstr "Préférences de Glines"
 
-#: glines/glines.c:1045
+#: glines/glines.c:1049
 msgid "Themes"
 msgstr "Thèmes"
 
-#: glines/glines.c:1054
+#: glines/glines.c:1058
 msgid "Ball image"
-msgstr ""
+msgstr "Image de balle"
 
-#: glines/glines.c:1064 glines/glines.schemas.in.h:1
+#: glines/glines.c:1068 glines/glines.schemas.in.h:1
 #: gnobots2/gnobots2.schemas.in.h:1
 msgid "Background color"
 msgstr "Couleur d'arrière-plan"
 
-#: glines/glines.c:1078
+#: glines/glines.c:1082
 msgid "General"
 msgstr "Général"
 
-#: glines/glines.c:1086
+#: glines/glines.c:1090
 msgid "Use fast moves"
 msgstr "Utiliser des déplacements rapides"
 
-#: glines/glines.c:1432 glines/glines.desktop.in.h:1
+#: glines/glines.c:1436 glines/glines.desktop.in.h:1
 msgid "Lines"
 msgstr "Lignes"
 
-#: glines/glines.c:1445
+#: glines/glines.c:1449
 msgid "Welcome to Glines!"
 msgstr "Bienvenue à Glines !"
 
-#: glines/glines.c:1459
+#: glines/glines.c:1463
 msgid "Next Balls:"
 msgstr "Balles suivantes :"
 
 #: glines/glines.desktop.in.h:2
 msgid "Remove colored balls from the board by forming lines"
-msgstr ""
+msgstr "Enlever des balles de couleur du plateau en formant des lignes"
 
 #: glines/glines.schemas.in.h:2 gnobots2/gnobots2.schemas.in.h:2
 msgid "Background color. The hex specification of the background color."
-msgstr ""
+msgstr "Couleur de fond. La description hexadécimale de la couleur de fond."
 
 #: glines/glines.schemas.in.h:3
 msgid "Ball style"
-msgstr ""
+msgstr "Style de balle"
 
 #: glines/glines.schemas.in.h:4
 msgid "Ball style. The filename of the images to use for the balls."
 msgstr ""
+"Style de balle. Le nom de fichier des images à utiliser pour les balles."
 
 #: glines/glines.schemas.in.h:5
-#, fuzzy
 msgid "Game field"
-msgstr "Titre du jeu"
+msgstr "Zone de jeu"
 
 #: glines/glines.schemas.in.h:6
 msgid "Game field from last saved session."
-msgstr ""
+msgstr "Zone de jeu de la dernière sessions sauvegardée"
 
 #: glines/glines.schemas.in.h:7
-#, fuzzy
 msgid "Game preview"
-msgstr "Game over"
+msgstr "Aperçu du jeu"
 
 #: glines/glines.schemas.in.h:8
 msgid "Game preview from last saved session."
-msgstr ""
+msgstr "Aperçu du jeu de la dernière session sauvegardée."
 
 #: glines/glines.schemas.in.h:9
-#, fuzzy
 msgid "Game score"
-msgstr "Game over"
+msgstr "Score du jeu"
 
 #: glines/glines.schemas.in.h:10
 msgid "Game score from last saved session."
-msgstr ""
+msgstr "Score du jeu de la dernière session sauvegardée."
 
 #: glines/glines.schemas.in.h:11
-#, fuzzy
 msgid "The height of the main window."
-msgstr "Hauteur de la grille"
+msgstr "La hauteur de la fenêtre principale."
 
 #: glines/glines.schemas.in.h:12
 msgid "The width of the main window."
-msgstr ""
+msgstr "La largeur de la fenêtre principale."
 
 #: glines/glines.schemas.in.h:13
-#, fuzzy
 msgid "Time between moves"
-msgstr "Attente entre les lancers"
+msgstr "Le délai entre deux déplacements"
 
 #: glines/glines.schemas.in.h:14
 msgid "Time between moves in milliseconds."
-msgstr ""
+msgstr "Le délai, en millisecondes entre les déplacements."
 
 #: glines/glines.schemas.in.h:15
 msgid "Window height"
@@ -2151,16 +2164,15 @@ msgstr "Largeur de la fenêtre"
 
 #: gnect/data/gnect.desktop.in.h:1
 msgid "Compete to make lines of the same color"
-msgstr ""
+msgstr "Essayer de faire des lignes de la même couleur"
 
-#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:1206
-#, fuzzy
+#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:1204
 msgid "Four-in-a-row"
-msgstr "Jeu Quatre-en-lignes"
+msgstr "Quatre-en-lignes"
 
 #: gnect/data/gnect.schemas.in.h:1
 msgid "A number specifying the preferred theme."
-msgstr ""
+msgstr "Un numéro spécifiant le thème préféré."
 
 #: gnect/data/gnect.schemas.in.h:3
 msgid "Drop marble"
@@ -2230,7 +2242,7 @@ msgstr "Partie nulle !"
 msgid "Gnect"
 msgstr "Gnect"
 
-#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:544
+#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:542
 msgid "I win!"
 msgstr "J'ai gagné !"
 
@@ -2242,7 +2254,7 @@ msgstr "Le joueur a gagné !"
 msgid "Sorry, full column"
 msgstr "Désolé, la colonne est pleine"
 
-#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:540
+#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:538
 msgid "You win!"
 msgstr "Vous avez gagné !"
 
@@ -2255,50 +2267,50 @@ msgstr ""
 "Impossible de charger l'image :\n"
 "%s"
 
-#: gnect/src/main.c:532
+#: gnect/src/main.c:530
 msgid "It's a draw!"
 msgstr "C'est un nul !"
 
-#: gnect/src/main.c:541
+#: gnect/src/main.c:539
 msgid "Your move..."
 msgstr "À vous de jouer..."
 
-#: gnect/src/main.c:545 gnect/src/main.c:638
+#: gnect/src/main.c:543 gnect/src/main.c:636
 msgid "Thinking..."
 msgstr "Calculs..."
 
-#: gnect/src/main.c:553
+#: gnect/src/main.c:551
 #, c-format
 msgid "%s wins!"
 msgstr "%s a gagné !"
 
-#: gnect/src/main.c:554
+#: gnect/src/main.c:552
 #, c-format
 msgid "%s..."
 msgstr "%s..."
 
-#: gnect/src/main.c:655
+#: gnect/src/main.c:653
 #, c-format
 msgid "Hint: Column %d"
 msgstr "Astuce : colonne %d"
 
-#: gnect/src/main.c:683 gnect/src/main.c:688
+#: gnect/src/main.c:681 gnect/src/main.c:686
 msgid "You"
 msgstr "À vous"
 
-#: gnect/src/main.c:684 gnect/src/main.c:687
+#: gnect/src/main.c:682 gnect/src/main.c:685
 msgid "Me"
 msgstr "À moi"
 
-#: gnect/src/main.c:734
+#: gnect/src/main.c:732
 msgid "Scores"
 msgstr "Scores"
 
-#: gnect/src/main.c:781
+#: gnect/src/main.c:779
 msgid "Drawn"
 msgstr "Nul"
 
-#: gnect/src/main.c:827
+#: gnect/src/main.c:825
 msgid ""
 "\"Four in a row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -2306,32 +2318,31 @@ msgstr ""
 "« Quatre en ligne » pour GNOME, un jeu construit avec le Giuliano "
 "Bertoletti's Velena Engine pour l'intelligence artificielle."
 
-#: gnect/src/main.c:1104 gnect/src/main.c:1138
+#: gnect/src/main.c:1102 gnect/src/main.c:1136
 msgid "Select \"New game\" from the \"Game\" menu to begin."
-msgstr ""
+msgstr "Choisissez « Nouvelle partie » dans le menu « Jeu » pour commencer."
 
-#: gnect/src/main.c:1167
-#, fuzzy
+#: gnect/src/main.c:1165
 msgid "Show or hide the tool bar"
 msgstr "Afficher ou cacher la barre d'outils"
 
-#: gnect/src/main.c:1169
+#: gnect/src/main.c:1167
 msgid "Enable _sound"
 msgstr "Activer les _sons"
 
-#: gnect/src/main.c:1170
+#: gnect/src/main.c:1168
 msgid "Enable or disable sound"
 msgstr "Activer ou désactiver les sons"
 
-#: gnect/src/main.c:1190 mahjongg/mahjongg.c:380
+#: gnect/src/main.c:1188 mahjongg/mahjongg.c:838
 msgid "New game"
 msgstr "Nouvelle partie"
 
-#: gnect/src/main.c:1265
+#: gnect/src/main.c:1263
 msgid "Welcome to Gnect!"
 msgstr "Bienvenue à Gnect !"
 
-#: gnect/src/prefs.c:161
+#: gnect/src/prefs.c:160
 #, c-format
 msgid ""
 "Player One:\n"
@@ -2340,7 +2351,7 @@ msgstr ""
 "Joueur 1 :\n"
 "%s"
 
-#: gnect/src/prefs.c:165
+#: gnect/src/prefs.c:164
 #, c-format
 msgid ""
 "Player Two:\n"
@@ -2349,42 +2360,41 @@ msgstr ""
 "Joueur 2 :\n"
 "%s"
 
-#: gnect/src/prefs.c:447
+#: gnect/src/prefs.c:435
 msgid "Four-in-a-row Preferences"
 msgstr "Préférences de Quatre-en-lignes"
 
-#: gnect/src/prefs.c:496
+#: gnect/src/prefs.c:484 gnobots2/properties.c:932
 msgid "Appearance"
 msgstr "Apparence"
 
-#: gnect/src/prefs.c:505
+#: gnect/src/prefs.c:493
 msgid "_Theme:"
 msgstr "_Thème :"
 
-#: gnect/src/prefs.c:518
+#: gnect/src/prefs.c:507
 msgid "Enable _animation"
 msgstr "Activer les _animations"
 
-#: gnect/src/prefs.c:525
+#: gnect/src/prefs.c:514
 msgid "Controls"
 msgstr "Contrôles"
 
-#: gnect/src/prefs.c:528
+#: gnect/src/prefs.c:517
 msgid "Keyboard control"
 msgstr "Contrôle du clavier"
 
-#: gnect/src/prefs.c:537
+#: gnect/src/prefs.c:526
 msgid "Move _Left"
 msgstr "Déplacer à _gauche"
 
-#: gnect/src/prefs.c:542
+#: gnect/src/prefs.c:531
 msgid "Move _Right"
 msgstr "Déplacer à _droite"
 
-#: gnect/src/prefs.c:547
-#, fuzzy
+#: gnect/src/prefs.c:536
 msgid "_Drop"
-msgstr "_Bas"
+msgstr "_Lacher"
 
 #: gnect/src/theme.c:42
 msgid "Classic"
@@ -2418,7 +2428,7 @@ msgstr "Plus de marbres"
 
 #: gnect/src/theme.c:74
 msgid "Nightfall"
-msgstr ""
+msgstr "Nightfall"
 
 #: gnect/src/theme.c:82
 msgid "Blocks"
@@ -2428,7 +2438,7 @@ msgstr "Blocs"
 msgid "Orange"
 msgstr "Orange"
 
-#: gnibbles/gnibbles.c:123
+#: gnibbles/gnibbles.c:122
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -2441,7 +2451,7 @@ msgstr ""
 "\n"
 "Veuillez vérifier votre installation de Gnibbles"
 
-#: gnibbles/gnibbles.c:147
+#: gnibbles/gnibbles.c:146
 #, c-format
 msgid ""
 "Gnibbles Couldn't find pixmap file:\n"
@@ -2454,7 +2464,7 @@ msgstr ""
 "\n"
 "Veuillez vérifier votre installation de Gnibbles"
 
-#: gnibbles/gnibbles.c:183
+#: gnibbles/gnibbles.c:182
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -2469,7 +2479,7 @@ msgstr ""
 
 #: gnibbles/gnibbles.desktop.in.h:1
 msgid "Guide a worm around a maze"
-msgstr ""
+msgstr "Guider un ver au travers d'un labyrinthe"
 
 #: gnibbles/gnibbles.desktop.in.h:2
 msgid "Nibbles"
@@ -2492,7 +2502,7 @@ msgid "Enable fake bonuses."
 msgstr "Activer les faux bonus."
 
 #: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:416
-#: gnobots2/properties.c:858
+#: gnobots2/properties.c:871
 msgid "Enable sounds"
 msgstr "Activer les sons"
 
@@ -2501,12 +2511,10 @@ msgid "Enable sounds."
 msgstr "Activer les sons."
 
 #: gnibbles/gnibbles.schemas.in.h:7
-#, fuzzy
 msgid "Game level to start on"
-msgstr "Niveau de départ."
+msgstr "Niveau de départ"
 
 #: gnibbles/gnibbles.schemas.in.h:8
-#, fuzzy
 msgid "Game level to start on."
 msgstr "Niveau de départ."
 
@@ -2559,33 +2567,28 @@ msgid "Number of players."
 msgstr "Nombre de joueurs."
 
 #: gnibbles/gnibbles.schemas.in.h:21 gnibbles/preferences.c:394
-#, fuzzy
 msgid "Play levels in random order"
-msgstr "Niveaux dans un ordre aléatoire"
+msgstr "Jouer les niveaux dans un ordre aléatoire"
 
 #: gnibbles/gnibbles.schemas.in.h:22
-#, fuzzy
 msgid "Play levels in random order."
-msgstr "Niveaux dans un ordre aléatoire"
+msgstr "Jouer les niveaux dans un ordre aléatoire."
 
 #: gnibbles/gnibbles.schemas.in.h:23
-#, fuzzy
 msgid "Size of game tiles"
-msgstr "Taille des mines"
+msgstr "Taille des tuiles de jeu"
 
 #: gnibbles/gnibbles.schemas.in.h:24
-#, fuzzy
 msgid "Size of game tiles."
-msgstr "Taille des mines"
+msgstr "Taille des tuiles de jeu."
 
 #: gnibbles/gnibbles.schemas.in.h:25 gnibbles/preferences.c:651
-#, fuzzy
 msgid "Use relative movement"
-msgstr "Mouvement relatif"
+msgstr "Utiliser des mouvement relatifs"
 
 #: gnibbles/gnibbles.schemas.in.h:26
 msgid "Use relative movement (ie. left or right only)."
-msgstr ""
+msgstr "Utiliser des mouvements relatifs (ie. droite et gauche seulement)."
 
 #: gnibbles/gnibbles.soundlist.in.h:1
 msgid "Bonus"
@@ -2603,7 +2606,7 @@ msgstr "Mange-Bonus"
 msgid "Extra Life"
 msgstr "Vie supplémentaire"
 
-#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:210
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:231
 msgid "Game Over"
 msgstr "Fin"
 
@@ -2655,7 +2658,7 @@ msgstr "Les doigts dans le nez"
 msgid "Starting level:"
 msgstr "Niveau de départ :"
 
-#: gnibbles/preferences.c:456 gtali/setup.c:267
+#: gnibbles/preferences.c:456 gtali/setup.c:266
 msgid "Number of players:"
 msgstr "Nombre de joueurs :"
 
@@ -2727,10 +2730,6 @@ msgstr "Cyan"
 msgid "Purple"
 msgstr "Violet"
 
-#: gnibbles/preferences.c:668
-msgid "Gray"
-msgstr "Gris"
-
 #: gnibbles/scoreboard.c:45
 #, c-format
 msgid "Worm %d:"
@@ -2762,7 +2761,7 @@ msgstr "Il ne reste plus d'emplacement de téléportation !!"
 msgid "There are no safe locations to teleport to!!"
 msgstr "Il ne reste plus d'emplacement de téléportation sans danger !!"
 
-#: gnobots2/gnobots.c:60 same-gnome/same-gnome.c:889
+#: gnobots2/gnobots.c:60 same-gnome/same-gnome.c:887
 msgid "Set game scenario"
 msgstr "Sélectionnez un scénario"
 
@@ -2770,11 +2769,11 @@ msgstr "Sélectionnez un scénario"
 msgid "Set game configuration"
 msgstr "Définir la configuration du jeu"
 
-#: gnobots2/gnobots.c:63 gnomine/gnomine.c:763 gnomine/gnomine.c:767
+#: gnobots2/gnobots.c:63 gnomine/gnomine.c:777 gnomine/gnomine.c:781
 msgid "X"
 msgstr "X"
 
-#: gnobots2/gnobots.c:64 gnomine/gnomine.c:764 gnomine/gnomine.c:768
+#: gnobots2/gnobots.c:64 gnomine/gnomine.c:778 gnomine/gnomine.c:782
 msgid "Y"
 msgstr "Y"
 
@@ -2791,33 +2790,38 @@ msgid ""
 "The program GNOME Robots was unable to find any valid game configuration "
 "files. Please check that the program is installed correctly."
 msgstr ""
+"Le programme GNOME Roboets n'a pas été capable de trouver un fichier de "
+"configuration de jeu valide. Veuillez vérifier que le programme est "
+"correctement installé."
 
 #. ********************************************************************
 #: gnobots2/gnobots2.desktop.in.h:1
 msgid "Avoid the robots and make them crash into each other"
 msgstr ""
+"Éviter les robots et faire en sorte qu'ils se rentrent les uns dans les "
+"autres"
 
 #: gnobots2/gnobots2.desktop.in.h:2
 msgid "Robots"
 msgstr "Robots"
 
 #: gnobots2/gnobots2.schemas.in.h:3
-#, fuzzy
 msgid "Enable game sounds"
-msgstr "Activer les _sons"
+msgstr "Activer les sons du jeu"
 
 #: gnobots2/gnobots2.schemas.in.h:4
 msgid "Enable game sounds. Play sounds for various events throughout the game."
 msgstr ""
+"Activer les sons du jeu. Joue des sons pour les différents évements au cours "
+"de la partie."
 
-#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:864
-#, fuzzy
+#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:880
 msgid "Enable splats"
-msgstr "Activer les _sons"
+msgstr "Activer les splats"
 
 #: gnobots2/gnobots2.schemas.in.h:6
 msgid "Enable splats. Play a sound and show a \"Splat!\" on the screen."
-msgstr ""
+msgstr "Activer les splats. Joue un son et affiche un « Splat! » sur l'écran."
 
 #: gnobots2/gnobots2.schemas.in.h:7
 msgid "Game type"
@@ -2825,39 +2829,182 @@ msgstr "Type de jeu"
 
 #: gnobots2/gnobots2.schemas.in.h:8
 msgid "Game type. The name of the game variation to use."
-msgstr ""
+msgstr "Type de jeu. Le nom de la variante du jeu à utiliser."
 
 #: gnobots2/gnobots2.schemas.in.h:9
-#, fuzzy
-msgid "Robot image theme"
-msgstr "Jeu de Robots"
+msgid "Key to hold"
+msgstr "Touche pour arrêter"
 
 #: gnobots2/gnobots2.schemas.in.h:10
-msgid "Robot image theme. The theme of the images to use for the robots."
-msgstr ""
+msgid "Key to move E"
+msgstr "Touche pour déplacer à l'est"
 
-#: gnobots2/gnobots2.schemas.in.h:11 gnobots2/properties.c:846
-#, fuzzy
-msgid "Use safe moves"
-msgstr "« %s » avec mouvement sans danger"
+#: gnobots2/gnobots2.schemas.in.h:11
+msgid "Key to move N"
+msgstr "Touche pour déplacer au nord"
 
 #: gnobots2/gnobots2.schemas.in.h:12
+msgid "Key to move NE"
+msgstr "Touche pour déplacer au nord-est"
+
+#: gnobots2/gnobots2.schemas.in.h:13
+msgid "Key to move NW"
+msgstr "Touche pour déplacer au nord-ouest"
+
+#: gnobots2/gnobots2.schemas.in.h:14
+msgid "Key to move S"
+msgstr "Touche pour déplacer au sud"
+
+#: gnobots2/gnobots2.schemas.in.h:15
+msgid "Key to move SE"
+msgstr "Touche pour déplacer au sud-est"
+
+#: gnobots2/gnobots2.schemas.in.h:16
+msgid "Key to move SW"
+msgstr "Touche pour déplacer au sud-ouest"
+
+#: gnobots2/gnobots2.schemas.in.h:17
+msgid "Key to move W"
+msgstr "Touche pour déplacer à l'ouest"
+
+#: gnobots2/gnobots2.schemas.in.h:18
+msgid "Key to teleport"
+msgstr "Touche pour téléporter"
+
+#: gnobots2/gnobots2.schemas.in.h:19
+msgid "Key to teleport randomly"
+msgstr "Touche pour téléporter aléatoirement"
+
+#: gnobots2/gnobots2.schemas.in.h:20
+msgid "Key to wait"
+msgstr "Touche pour attendre"
+
+#: gnobots2/gnobots2.schemas.in.h:21
+msgid "Robot image theme"
+msgstr "Thème d'images du jeu de Robots"
+
+#: gnobots2/gnobots2.schemas.in.h:22
+msgid "Robot image theme. The theme of the images to use for the robots."
+msgstr ""
+"Thème d'images du jeu de Robots. Le thème d'images à utiliser pour les "
+"robots."
+
+#: gnobots2/gnobots2.schemas.in.h:23
+msgid ""
+"The name of the key used to hold still. The name is a standard X key name."
+msgstr ""
+"Le nom de la touche à utiliser pour rester arrêté. Le nom est un nom "
+"standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:24
+msgid ""
+"The name of the key used to move east. The name is a standard X key name."
+msgstr ""
+"Le nom de la touche à utiliser pour se déplacer à l'est. Le nom est un nom "
+"standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:25
+msgid ""
+"The name of the key used to move north-east. The name is a standard X key "
+"name."
+msgstr ""
+"Le nom de la touche à utiliser pour se déplacer au nord-est. Le nom est un "
+"nom standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:26
+msgid ""
+"The name of the key used to move north-west. The name is a standard X key "
+"name."
+msgstr ""
+"Le nom de la touche à utiliser pour se déplacer au nord-ouest. Le nom est un "
+"nom standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:27
+msgid ""
+"The name of the key used to move north. The name is a standard X key name."
+msgstr ""
+"Le nom de la touche à utiliser pour se déplacer au nord. Le nom est un nom "
+"standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:28
+msgid ""
+"The name of the key used to move south-east. The name is a standard X key "
+"name."
+msgstr ""
+"Le nom de la touche à utiliser pour se déplacer au sud-est. Le nom est un "
+"nom standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:29
+msgid ""
+"The name of the key used to move south-west. The name is a standard X key "
+"name."
+msgstr ""
+"Le nom de la touche à utiliser pour se déplacer au sud-ouest. Le nom est un "
+"nom standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:30
+msgid ""
+"The name of the key used to move south. The name is a standard X key name."
+msgstr ""
+"Le nom de la touche à utiliser pour se déplacer au sud. Le nom est un nom "
+"standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:31
+msgid ""
+"The name of the key used to move west. The name is a standard X key name."
+msgstr ""
+"Le nom de la touche à utiliser pour se déplacer à l'ouest. Le nom est un nom "
+"standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:32
+msgid ""
+"The name of the key used to teleport randomly. The name is a standard X key "
+"name."
+msgstr ""
+"Le nom de la touche à utiliser pour se téléporte aléatoirement. Le nom est "
+"un nom standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:33
+msgid ""
+"The name of the key used to teleport safely (if possible). The name is a "
+"standard X key name."
+msgstr ""
+"Le nom de la touche à utiliser pour se téléporter sans danger (si possible). "
+"Le nom est un nom standard de touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:34
+msgid "The name of the key used to wait. The name is a standard X key name."
+msgstr ""
+"Le nom de la touche à utiliser pour attendre. Le nom est un nom standard de "
+"touche X."
+
+#: gnobots2/gnobots2.schemas.in.h:35 gnobots2/properties.c:853
+msgid "Use safe moves"
+msgstr "Utiliser des mouvements sans danger"
+
+#: gnobots2/gnobots2.schemas.in.h:36
 msgid ""
 "Use safe moves. The safe moves option will help you to avoid being killed "
 "due to a mistake. If you try to make a move that would lead to your death "
 "when there is a safe move available you will not be allowed to proceed."
 msgstr ""
+"utiliser des mouvements sans danger. L'option de mouvements sans danger va "
+"vous aider à éviter d'être tué sur une erreur. Si vous essayez de faire un "
+"mouvement qui va mener à votre mort quand il y a une mouvement sans danger "
+"vous n'allez pas être authorisé à l'effectuer."
 
-#: gnobots2/gnobots2.schemas.in.h:13 gnobots2/properties.c:852
-#, fuzzy
+#: gnobots2/gnobots2.schemas.in.h:37 gnobots2/properties.c:862
 msgid "Use super safe moves"
-msgstr "« %s » avec mouvement *vraiment* sans danger"
+msgstr "Utiliser des mouvements *vraiment* sans danger"
 
-#: gnobots2/gnobots2.schemas.in.h:14
+#: gnobots2/gnobots2.schemas.in.h:38
 msgid ""
 "Use super safe moves. The player is alerted when there is no safe move and "
 "the only option is to teleport out."
 msgstr ""
+"Utiliser des mouvements *vraiment* sans danger. Le joueur est alerté quand "
+"il n'y a pas de mouvement sans danger et la seule option est de se "
+"téléporter en dehors."
 
 #: gnobots2/gnobots2.soundlist.in.h:1
 msgid "Bad Move"
@@ -2896,226 +3043,260 @@ msgstr "Impossible de trouver l'image « %s » pour GNOME Robots\n"
 msgid "GNOME Robots Game"
 msgstr "Jeu GNOME de Robots"
 
-#: gnobots2/properties.c:223
+#: gnobots2/properties.c:227
 msgid "Initial Number of Type 1 Robots"
 msgstr "Nombre initial de robots de type 1"
 
-#: gnobots2/properties.c:225
+#: gnobots2/properties.c:229
 msgid "Initial Number of Robots"
 msgstr "Nombre initial de robots"
 
-#: gnobots2/properties.c:239
+#: gnobots2/properties.c:243
 msgid "Initial Number of Type 2 Robots"
 msgstr "Nombre initial de robots de type 2"
 
-#: gnobots2/properties.c:252
+#: gnobots2/properties.c:256
 msgid "Increasing Number of Type 1 Robots per Level"
 msgstr "Accroissement du nombre de robots de type 1 par niveau"
 
-#: gnobots2/properties.c:254
+#: gnobots2/properties.c:258
 msgid "Increasing Number of Robots per Level"
 msgstr "Accroissement du nombre de robots par niveau"
 
-#: gnobots2/properties.c:267
+#: gnobots2/properties.c:271
 msgid "Increasing Number of Type 2 Robots per Level"
 msgstr "Accroissement du nombre de robots de type 2 par niveau"
 
-#: gnobots2/properties.c:280
+#: gnobots2/properties.c:284
 msgid "Maximum Number of Type 1 Robots"
 msgstr "Nombre maximum de robots de type 1"
 
-#: gnobots2/properties.c:282
+#: gnobots2/properties.c:286
 msgid "Maximum Number of Robots"
 msgstr "Nombre maximum de robots"
 
-#: gnobots2/properties.c:285 gnobots2/properties.c:301
+#: gnobots2/properties.c:289 gnobots2/properties.c:305
 #, c-format
 msgid "Fill Screen"
 msgstr "Remplir l'écran"
 
-#: gnobots2/properties.c:299
+#: gnobots2/properties.c:303
 msgid "Maximum Number of Type 2 Robots"
 msgstr "Nombre maximum de robots de type 2"
 
-#: gnobots2/properties.c:316
+#: gnobots2/properties.c:320
 msgid "Type 1 Robot Score"
 msgstr "Score pour un robot de type 1"
 
-#: gnobots2/properties.c:318
+#: gnobots2/properties.c:322
 msgid "Robot Score"
 msgstr "Score pour un robot"
 
-#: gnobots2/properties.c:331
+#: gnobots2/properties.c:335
 msgid "Type 2 Robot Score"
 msgstr "Score pour un robot de type 2"
 
-#: gnobots2/properties.c:344
+#: gnobots2/properties.c:348
 msgid "Type 1 Robot Score When Waiting"
 msgstr "Score pour un robot de type 1 en attente"
 
-#: gnobots2/properties.c:346
+#: gnobots2/properties.c:350
 msgid "Robot Score When Waiting"
 msgstr "Score pour un robot en attente"
 
-#: gnobots2/properties.c:359
+#: gnobots2/properties.c:363
 msgid "Type 2 Robot Score When Waiting"
 msgstr "Score pour un robot de type 2 en attente"
 
-#: gnobots2/properties.c:372
+#: gnobots2/properties.c:376
 msgid "Type 1 Robot Score When Splatted"
 msgstr "Score pour un robot de type 1 détruit"
 
-#: gnobots2/properties.c:374
+#: gnobots2/properties.c:378
 msgid "Robot Score When Splatted"
 msgstr "Score pour un robot détruit"
 
-#: gnobots2/properties.c:387
+#: gnobots2/properties.c:391
 msgid "Type 2 Robot Score When Splatted"
 msgstr "Score pour un robot de type 2 détruit"
 
-#: gnobots2/properties.c:399
+#: gnobots2/properties.c:403
 msgid "Initial Number of Safe Teleports"
 msgstr "Nombre initial de téléportations sans danger"
 
-#: gnobots2/properties.c:410
+#: gnobots2/properties.c:414
 msgid "Number of Free Safe Teleports per Level"
 msgstr "Nombre de téléportations sans danger gratuites par niveau"
 
-#: gnobots2/properties.c:421
+#: gnobots2/properties.c:425
 msgid "Kills Required While Waiting to Get A Safe Teleport"
 msgstr "Tués nécessaires en attendant un Téléportage Sans Danger"
 
-#: gnobots2/properties.c:432
+#: gnobots2/properties.c:436
 msgid "Score Required To Get A Safe Teleport"
 msgstr "Score requis pour gagner une téléportation sans danger"
 
-#: gnobots2/properties.c:443
+#: gnobots2/properties.c:447
 msgid "Maximum Number of Safe Teleports"
 msgstr "Nombre maximum de téléportations sans danger"
 
-#: gnobots2/properties.c:454
+#: gnobots2/properties.c:458
 msgid "Moveable Junkheaps"
 msgstr "Bugs de mémoire déplacables"
 
-#: gnobots2/properties.c:456
+#: gnobots2/properties.c:460
 msgid "Yes"
 msgstr "Oui"
 
-#: gnobots2/properties.c:458
+#: gnobots2/properties.c:462
 msgid "No"
 msgstr "Non"
 
-#: gnobots2/properties.c:650
+#: gnobots2/properties.c:654
 msgid "classic robots"
 msgstr "robots classiques"
 
-#: gnobots2/properties.c:651
+#: gnobots2/properties.c:655
 msgid "robots2"
 msgstr "robots2"
 
-#: gnobots2/properties.c:652
+#: gnobots2/properties.c:656
 msgid "robots2 easy"
 msgstr "robots2 facile"
 
-#: gnobots2/properties.c:653
+#: gnobots2/properties.c:657
 msgid "robots with safe teleport"
 msgstr "robots avec téléportation sans danger"
 
-#: gnobots2/properties.c:654
+#: gnobots2/properties.c:658
 msgid "nightmare"
 msgstr "cauchemar"
 
-#: gnobots2/properties.c:683
+#: gnobots2/properties.c:687
 msgid "robots"
 msgstr "robots"
 
-#: gnobots2/properties.c:684
+#: gnobots2/properties.c:688
 msgid "cows"
 msgstr "vaches"
 
-#: gnobots2/properties.c:685
+#: gnobots2/properties.c:689
 msgid "eggs"
 msgstr "oeufs"
 
-#: gnobots2/properties.c:686
+#: gnobots2/properties.c:690
 msgid "gnomes"
 msgstr "gnomes"
 
-#: gnobots2/properties.c:687
+#: gnobots2/properties.c:691
 msgid "mice"
 msgstr "souris"
 
-#: gnobots2/properties.c:688
+#: gnobots2/properties.c:692
 msgid "windows"
 msgstr "fenêtres"
 
-#: gnobots2/properties.c:756
+#: gnobots2/properties.c:763
 msgid "GNOME Robots Preferences"
 msgstr "Préférences de GNOME Robots"
 
-#: gnobots2/properties.c:773
+#: gnobots2/properties.c:780
 msgid "Game Type"
 msgstr "Type de jeu"
 
-#: gnobots2/properties.c:798
+#: gnobots2/properties.c:805
 msgid "Property"
 msgstr "Propriétés"
 
-#: gnobots2/properties.c:805
+#: gnobots2/properties.c:812
 msgid "Value"
 msgstr "Valeur"
 
-#: gnobots2/properties.c:871
+#: gnobots2/properties.c:859
+msgid "Prevent some dangerous moves"
+msgstr "Éviter certains mouvements dangereux"
+
+#: gnobots2/properties.c:860
+msgid "Prevent accidental moves that result in getting killed."
+msgstr "Éviter les mouvements accidentels qui conduisent à être tué."
+
+#: gnobots2/properties.c:868
+msgid "Prevent all dangerous moves"
+msgstr "Éviter tous les mouvements dangereux"
+
+#: gnobots2/properties.c:869
+msgid "Prevents all moves that result in getting killed."
+msgstr "Éviter tous les mouvements qui conduisent à être tué."
+
+#: gnobots2/properties.c:877
+msgid "Play sounds for major events"
+msgstr "Jouer des sons pour les événements majeurs"
+
+#: gnobots2/properties.c:878
+msgid "Play sounds for events like winning a level and dying."
+msgstr ""
+"Jouer des sons pour les événements tels que la réussite d'un niveau ou la "
+"mort."
+
+#: gnobots2/properties.c:886
+msgid "Play a sound when two robots collide"
+msgstr "Jouer un son lorsque deux robots entrent en collision"
+
+#: gnobots2/properties.c:887
+msgid "Play the most common, and potentially the most annoying, sound."
+msgstr "Jouer le son le plus commun, et potentiellement le plus ennuyeux."
+
+#: gnobots2/properties.c:890
 msgid "You Cannot Change the Game Type When Playing"
 msgstr "Vous ne pouvez pas changer de type de jeu en cours de partie"
 
-#: gnobots2/properties.c:883
-#, fuzzy
-msgid "Graphics Theme"
-msgstr "Graphismes"
-
-#: gnobots2/properties.c:892
-#, fuzzy
-msgid "Image theme:"
-msgstr "Sélectionner un thème :"
+#: gnobots2/properties.c:894
+msgid "Game"
+msgstr "Jeu"
 
 #: gnobots2/properties.c:902
-msgid "Background Color:"
+msgid "Graphics Theme"
+msgstr "Thème graphique"
+
+#: gnobots2/properties.c:911
+msgid "Image theme:"
+msgstr "Thème d'image :"
+
+#: gnobots2/properties.c:921
+msgid "Background color:"
 msgstr "Couleur d'arrière-plan :"
 
-#: gnobots2/properties.c:920
+#: gnobots2/properties.c:939
 msgid "Keyboard Controls"
 msgstr "Contrôles au clavier"
 
-#: gnobots2/properties.c:954
+#: gnobots2/properties.c:973
 msgid "Teleport"
 msgstr "Téléportation"
 
-#: gnobots2/properties.c:968
+#: gnobots2/properties.c:987
 msgid "Random Teleport"
 msgstr "Téléportation aléatoire"
 
-#: gnobots2/properties.c:982
+#: gnobots2/properties.c:1001
 msgid "Wait"
 msgstr "Attente"
 
-#: gnobots2/properties.c:1001
-#, fuzzy
-msgid "Use Standard Robots Keys"
-msgstr "Touches standard de Robots"
-
-#: gnobots2/properties.c:1006
-#, fuzzy
-msgid "Use Left Hand Keys"
-msgstr "Rue et ruelles"
-
-#: gnobots2/properties.c:1011
+#: gnobots2/properties.c:1020
 msgid "Use the Keypad"
-msgstr ""
+msgstr "Utiliser le pavé numérique"
 
-#: gnobots2/properties.c:1016
-msgid "_Keyboard"
-msgstr "_Clavier"
+#: gnobots2/properties.c:1025
+msgid "Use Left Hand Keys"
+msgstr "Utiliser les touches de la main gauche"
+
+#: gnobots2/properties.c:1030
+msgid "Use Original Robots Keys"
+msgstr "Utiliser les touches standard de Robots"
+
+#: gnobots2/properties.c:1035
+msgid "Keyboard"
+msgstr "Clavier"
 
 #: gnobots2/statusbar.c:75
 msgid "Safe Teleports:"
@@ -3152,27 +3333,24 @@ msgid "Default caves"
 msgstr "Caves par défaut"
 
 #: gnome-stones/gnome-stones.desktop.in.h:1
-#, fuzzy
 msgid "Collect diamonds while avoiding falling boulders"
-msgstr "Récupérez tous les diamants et trouvez la sortie"
+msgstr "Récupérez les diamants en évitant les chutes de pierres"
 
 #: gnome-stones/gnome-stones.desktop.in.h:2
 msgid "Stones"
 msgstr "Pierres"
 
 #: gnome-stones/gnome-stones.schemas.in.h:1
-#, fuzzy
 msgid "Cave number to start"
-msgstr "Nombre (perdant) - bandes"
+msgstr "Numéro de la cave de départ"
 
 #: gnome-stones/gnome-stones.schemas.in.h:2
-#, fuzzy
 msgid "Cave number to start."
-msgstr "Nombre (perdant) - bandes."
+msgstr "Numéro de la cave de départ."
 
 #: gnome-stones/gnome-stones.schemas.in.h:3
 msgid "Device to use for joystick control."
-msgstr ""
+msgstr "Périphérique à utiliser pour le contrôle du joystick"
 
 #: gnome-stones/gnome-stones.schemas.in.h:4
 msgid "Enable sound support"
@@ -3191,9 +3369,8 @@ msgid "Joystick device"
 msgstr "Périphérique joystick"
 
 #: gnome-stones/gnome-stones.schemas.in.h:8
-#, fuzzy
 msgid "Joystick switch level"
-msgstr "Périphérique joystick :"
+msgstr "Niveau de basculement du joystick"
 
 #: gnome-stones/gnome-stones.schemas.in.h:9 gnome-stones/preferences.c:889
 msgid "Scroll method"
@@ -3201,19 +3378,24 @@ msgstr "Méthode de défilement"
 
 #: gnome-stones/gnome-stones.schemas.in.h:10
 msgid "The full path and filename of game to load."
-msgstr ""
+msgstr "Le chemin complet et le nom de fichier du jeu à charger."
 
 #: gnome-stones/gnome-stones.schemas.in.h:11
 msgid ""
 "The level an analog joystick must reach to be considered \"on\" when "
 "emulating a digital joystick. This takes a value between 0.0 and 1.0."
 msgstr ""
+"Le niveau qu'un joystick analogique doit atteindre pour être considéré comme "
+"« on » lors de l'émulation de joystick numérique. C'est une valeur entre 0.0 "
+"et 1.0."
 
 #: gnome-stones/gnome-stones.schemas.in.h:12
 msgid ""
 "The scroll method, valid values are \"atari_scroll\", \"smooth_scroll\" and "
 "\"center_scroll\"."
 msgstr ""
+"La méthode de défilement, les valeurs valides sont « atari_scroll », "
+"« smooth_scroll » et « center_scroll »."
 
 #: gnome-stones/gnomekoban.caves.in.h:1
 msgid "Gnomekoban"
@@ -3231,7 +3413,7 @@ msgstr "La grotte que vous essayez de charger est trop grosse pour ce jeu."
 #: gnome-stones/io.c:355
 #, c-format
 msgid "The cave is corrupted: %s is missing."
-msgstr ""
+msgstr "La cave est corrompue : %s est manquant."
 
 #. An object was requested in this cave, that was not
 #. declared in the game file's Object section.
@@ -3247,9 +3429,8 @@ msgstr ""
 #. This message will be printed in the statusline, if no message was
 #. specified in a game file.
 #: gnome-stones/main.c:64
-#, fuzzy
 msgid "This is GNOME Stones"
-msgstr "GNOME Stones"
+msgstr "Ceci est GNOME Stones"
 
 #: gnome-stones/main.c:74
 msgid "Game to play"
@@ -3257,86 +3438,82 @@ msgstr "Jeu à utiliser"
 
 #: gnome-stones/main.c:74
 msgid "FILENAME"
-msgstr "NOM DE FICHIER"
+msgstr "NOMDUFICHIER"
 
 #: gnome-stones/main.c:124
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "An error occured while loading the image file \"%s\".\n"
 "Please make sure, that GNOME Stones is correctly installed!"
 msgstr ""
 "Une erreur est survenue lors du chargement du fichier image « %s ».\n"
-"Veuillez vous assurer que GNOME-Stones est correctement installé !"
+"Veuillez vous assurer que GNOME Stones est correctement installé !"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:190 gnome-stones/main.c:980 gnome-stones/main.c:1103
-#: gnome-stones/main.c:1343
+#: gnome-stones/main.c:204 gnome-stones/main.c:990 gnome-stones/main.c:1112
+#: gnome-stones/main.c:1337
 msgid "GNOME Stones"
 msgstr "GNOME Stones"
 
-#: gnome-stones/main.c:279 gnome-stones/preferences.c:678
+#: gnome-stones/main.c:286 gnome-stones/preferences.c:678
 msgid "Game title"
 msgstr "Titre du jeu"
 
-#: gnome-stones/main.c:280
-#, fuzzy
+#: gnome-stones/main.c:287
 msgid "Start cave"
-msgstr "Grotte de départ :"
+msgstr "Grotte de départ"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:423 gnome-stones/main.c:1031 mahjongg/mahjongg.c:390
+#: gnome-stones/main.c:430 gnome-stones/main.c:1040 mahjongg/mahjongg.c:848
 msgid "Pause"
 msgstr "Pause"
 
-#: gnome-stones/main.c:675
+#: gnome-stones/main.c:682
 msgid "Congratulations, you win!"
 msgstr "Félicitations, vous avez gagné !"
 
-#: gnome-stones/main.c:863 gtali/gyahtzee.c:130
+#: gnome-stones/main.c:870 gtali/gyahtzee.c:130
 msgid "Game over!"
 msgstr "Perdu !"
 
-#: gnome-stones/main.c:1077
-#, fuzzy
+#: gnome-stones/main.c:1086
 msgid "Sokoban levels:"
-msgstr "Niveau de départ : "
+msgstr "Niveaux de sokiban :"
 
-#: gnome-stones/main.c:1105
+#: gnome-stones/main.c:1114
 msgid "Mine through dirt and collect gems."
-msgstr ""
+msgstr "Creuser au travers de la terre et collecter les gemmes."
 
-#: gnome-stones/main.c:1128
-#, fuzzy
+#: gnome-stones/main.c:1137
 msgid "_Restart level"
-msgstr "Recommence la partie"
+msgstr "_Recommencer le niveau"
 
-#: gnome-stones/main.c:1128
-#, fuzzy
+#: gnome-stones/main.c:1137
 msgid "Restart the current level"
-msgstr "Commencer à un autre niveau"
+msgstr "Recommencer le niveau actuel"
 
-#: gnome-stones/main.c:1233
+#: gnome-stones/main.c:1242
 msgid "Scanning private object directory..."
 msgstr "Lecture du répertoire d'objets privé..."
 
-#: gnome-stones/main.c:1237
+#: gnome-stones/main.c:1246
 msgid "Scanning public object directory..."
 msgstr "Lecture du répertoire d'objets public..."
 
-#: gnome-stones/main.c:1242
+#: gnome-stones/main.c:1251
 msgid "Filling game widget..."
 msgstr "Remplissage des liens du jeu"
 
-#: gnome-stones/main.c:1247
+#: gnome-stones/main.c:1256
 msgid "Scanning private game directory..."
 msgstr "Lecture du répertoire de jeu privé"
 
-#: gnome-stones/main.c:1251
+#: gnome-stones/main.c:1260
 msgid "Scanning public game directory..."
 msgstr "Lecture du répertoire de jeu public"
 
-#: gnome-stones/main.c:1255
+#: gnome-stones/main.c:1264
 msgid "Restoring preferences..."
 msgstr "Restaurer les préférences..."
 
@@ -3349,20 +3526,20 @@ msgstr "Vous venez de gagner une vie supplémentaire !"
 msgid "Seconds left: %d"
 msgstr "Secondes restantes : %d"
 
-#: gnome-stones/preferences.c:460
+#: gnome-stones/preferences.c:461
 msgid "Neither your chosen game nor the default game could be loaded."
 msgstr ""
-
-#: gnome-stones/preferences.c:461
-#, fuzzy
-msgid "Please make sure that GNOME Stones is correctly installed."
-msgstr ""
-"Une erreur est survenue lors du chargement du fichier image « %s ».\n"
-"Veuillez vous assurer que GNOME-Stones est correctement installé !"
+"Le jeu que vous avez sélectionné ou le jeu par défaut ne peuvent pas être "
+"chargés."
 
 #: gnome-stones/preferences.c:462
+msgid "Please make sure that GNOME Stones is correctly installed."
+msgstr "Veuillez vous assurer que GNOME-Stones est correctement installé."
+
+#: gnome-stones/preferences.c:463
 msgid "You may be able to select a different game from the preferences dialog."
 msgstr ""
+"Vous pouvez sélectionner un jeu différent dans le dialogues des préférences."
 
 #: gnome-stones/preferences.c:628
 msgid "GNOME Stones Preferences"
@@ -3446,9 +3623,9 @@ msgstr "Aide à l'apprentissage de Caves"
 
 #: gnometris/gnometris.desktop.in.h:1
 msgid "Fit falling blocks together"
-msgstr ""
+msgstr "Faire correspondre les blocs tombants."
 
-#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:92
+#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:96
 msgid "Gnometris"
 msgstr "Gnometris"
 
@@ -3469,9 +3646,8 @@ msgid "Image to use for drawing blocks."
 msgstr "Image à utiliser pour dessiner les blocs."
 
 #: gnometris/gnometris.schemas.in.h:5
-#, fuzzy
 msgid "Level to start with"
-msgstr "Niveau de départ."
+msgstr "Niveau de départ"
 
 #: gnometris/gnometris.schemas.in.h:6
 msgid "Level to start with."
@@ -3482,48 +3658,48 @@ msgid ""
 "The density of blocks in rows filled at the start of the game. The value is "
 "between 0 (for no blocks) and 10 (for a completely filled row)."
 msgstr ""
+"La densité de blocs en lignes remplies au début du jeu. La valeur est entre "
+"0 (pour aucun bloc) et 10 (pour une ligne pleine)."
 
 #: gnometris/gnometris.schemas.in.h:8
-#, fuzzy
 msgid "The density of filled rows"
-msgstr "Densités de blocs dans les lignes préremplies :"
+msgstr "La densités de blocs dans les lignes remplies"
 
 #: gnometris/gnometris.schemas.in.h:9
 msgid ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
 msgstr ""
+"Le nombre de lignes qui sont remplies avec des blocs aléatoires au début du "
+"jeu."
 
 #: gnometris/gnometris.schemas.in.h:10
 msgid "The number of rows to fill"
-msgstr ""
+msgstr "Le nombre de lignes à remplir"
 
 #: gnometris/gnometris.schemas.in.h:11
-#, fuzzy
 msgid "Whether to give blocks random colors"
-msgstr "Doit-on donner des couleurs aléatoires aux blocs?"
+msgstr "Couleurs aléatoires des blocs ou non"
 
 #: gnometris/gnometris.schemas.in.h:12
 msgid "Whether to give blocks random colors."
-msgstr "Doit-on donner des couleurs aléatoires aux blocs?"
+msgstr "Couleurs aléatoires des blocs ou non."
 
 #: gnometris/gnometris.schemas.in.h:13
-#, fuzzy
 msgid "Whether to preview the next block"
-msgstr "Voir ou pas le prochain bloc"
+msgstr "Prévisualiser ou non le prochain bloc"
 
 #: gnometris/gnometris.schemas.in.h:14
 msgid "Whether to preview the next block."
-msgstr "Voir ou pas le prochain bloc"
+msgstr "Prévisualiser ou non le prochain bloc."
 
 #: gnometris/gnometris.schemas.in.h:15
-#, fuzzy
 msgid "Whether to rotate counter clock wise"
-msgstr "Tourner dans le sens inverse des aiguilles d'une montre ou pas"
+msgstr "Tourner dans le sens inverse des aiguilles d'une montre ou non"
 
 #: gnometris/gnometris.schemas.in.h:16
 msgid "Whether to rotate counter clock wise."
-msgstr "Tourner dans le sens inverse des aiguilles d'une montre ou pas"
+msgstr "Tourner dans le sens inverse des aiguilles d'une montre ou non."
 
 #: gnometris/main.cpp:38
 msgid "Set starting level (1-10)"
@@ -3537,11 +3713,11 @@ msgstr "NIVEAU"
 msgid "Lines:"
 msgstr "Lignes :"
 
-#: gnometris/tetris.cpp:198
+#: gnometris/tetris.cpp:203
 msgid "Paused"
-msgstr "Mis en pause"
+msgstr "Suspendu"
 
-#: gnometris/tetris.cpp:290
+#: gnometris/tetris.cpp:318
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3554,7 +3730,7 @@ msgstr ""
 "\n"
 "Veuillez vérifier votre installation de gnome-games"
 
-#: gnometris/tetris.cpp:306
+#: gnometris/tetris.cpp:333
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3567,68 +3743,65 @@ msgstr ""
 "\n"
 "Veuillez vérifier votre installation des jeux (gnome-games)"
 
-#: gnometris/tetris.cpp:619 gnometris/tetris.cpp:620
+#: gnometris/tetris.cpp:634 gnometris/tetris.cpp:635
 msgid "<none>"
 msgstr "<aucun>"
 
-#: gnometris/tetris.cpp:647
+#: gnometris/tetris.cpp:660
 msgid "Gnometris preferences"
 msgstr "Préférences de Gnometris"
 
-#: gnometris/tetris.cpp:659
+#: gnometris/tetris.cpp:672
 msgid "Setup"
-msgstr ""
+msgstr "Configuration"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:666
+#: gnometris/tetris.cpp:679
 msgid "Number of pre-filled rows:"
 msgstr "Nombre de lignes préremplies :"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:681
+#: gnometris/tetris.cpp:694
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Densités de blocs dans les lignes préremplies :"
 
 #. starting level
-#: gnometris/tetris.cpp:696
+#: gnometris/tetris.cpp:709
 msgid "Starting Level:"
 msgstr "Niveau de départ :"
 
-#: gnometris/tetris.cpp:713
+#: gnometris/tetris.cpp:726
 msgid "Operation"
 msgstr "Opération"
 
-#: gnometris/tetris.cpp:719
+#: gnometris/tetris.cpp:732
 msgid "Preview next block"
 msgstr "Voir le prochain bloc"
 
-#: gnometris/tetris.cpp:728
-#, fuzzy
+#: gnometris/tetris.cpp:741
 msgid "Use random block colors"
 msgstr "Couleurs aléatoires des blocs"
 
-#: gnometris/tetris.cpp:739
-#, fuzzy
+#: gnometris/tetris.cpp:752
 msgid "Rotate blocks counterclockwise"
-msgstr "Déplacer dans le sens inverse des aiguilles d'une montre"
+msgstr "Tourner les blocs dans le sens inverse des aiguilles d'une montre"
 
-#: gnometris/tetris.cpp:752 same-gnome/same-gnome.c:632
-#: same-gnome/same-gnome.c:685
+#: gnometris/tetris.cpp:765 same-gnome/same-gnome.c:630
+#: same-gnome/same-gnome.c:683
 msgid "Theme"
 msgstr "Thème"
 
 #. Block pixmap
-#: gnometris/tetris.cpp:759
-#, fuzzy
+#: gnometris/tetris.cpp:772
 msgid "Block image:"
-msgstr "Dessin des blocs :"
+msgstr "Image des blocs :"
 
 #. background pixmap
-#: gnometris/tetris.cpp:770
+#: gnometris/tetris.cpp:783
 msgid "Background image:"
 msgstr "Image d'arrière-plan :"
 
-#: gnometris/tetris.cpp:1133
+#: gnometris/tetris.cpp:1147
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -3636,121 +3809,117 @@ msgstr ""
 "Écrit pour ma femme, Matylda\n"
 "Envoyez vos commentaires et rapports d'anomalies à : janusz.gorycki@intel.com"
 
-#: gnomine/gnomine.c:84 gnomine/gnomine.c:564
+#: gnomine/gnomine.c:87 gnomine/gnomine.c:578
 msgid "Small"
-msgstr "Petit"
+msgstr "Petite"
 
-#: gnomine/gnomine.c:85 gnomine/gnomine.c:574
+#: gnomine/gnomine.c:88 gnomine/gnomine.c:588
 msgid "Medium"
 msgstr "Moyenne"
 
-#: gnomine/gnomine.c:86 gnomine/gnomine.c:584
+#: gnomine/gnomine.c:89 gnomine/gnomine.c:598
 msgid "Large"
 msgstr "Large"
 
-#: gnomine/gnomine.c:87 gnomine/gnomine.c:594
+#: gnomine/gnomine.c:90 gnomine/gnomine.c:608
 msgid "Custom"
 msgstr "Personnalisée"
 
-#: gnomine/gnomine.c:176 gnomine/gnomine.c:411 gnomine/gnomine.c:838
+#: gnomine/gnomine.c:182 gnomine/gnomine.c:425 gnomine/gnomine.c:852
 msgid "GNOME Mines"
 msgstr "GNOME Mines"
 
-#: gnomine/gnomine.c:243
+#: gnomine/gnomine.c:255
 msgid "Click a square, any square"
-msgstr ""
+msgstr "Cliquez sur un carré, n'importe quel carré"
 
-#: gnomine/gnomine.c:245
+#: gnomine/gnomine.c:257
 msgid "Maybe they're all mines ..."
-msgstr ""
+msgstr "Ce sont peut être toutes les mines ..."
 
-#: gnomine/gnomine.c:377
+#: gnomine/gnomine.c:391
 msgid "Faces:"
 msgstr "Figures :"
 
-#: gnomine/gnomine.c:414
-#, fuzzy
+#: gnomine/gnomine.c:428
 msgid "A Minesweeper clone."
-msgstr "Clone du Démineur"
+msgstr "Un clone du démineur."
 
-#: gnomine/gnomine.c:559
-#, fuzzy
+#: gnomine/gnomine.c:573
 msgid "Field size"
-msgstr "<b>Taille de la grille </b>"
+msgstr "Taille de la grille"
 
-#: gnomine/gnomine.c:607
-#, fuzzy
+#: gnomine/gnomine.c:621
 msgid "Custom size"
-msgstr "<b>Taille personnalisée</b>"
+msgstr "Taille personnalisée"
 
-#: gnomine/gnomine.c:614
+#: gnomine/gnomine.c:628
 msgid "Number of mines:"
 msgstr "Nombre de mines :"
 
-#: gnomine/gnomine.c:626
+#: gnomine/gnomine.c:640
 msgid "Horizontal:"
 msgstr "Horizontale :"
 
-#: gnomine/gnomine.c:638
+#: gnomine/gnomine.c:652
 msgid "Vertical:"
 msgstr "Verticale :"
 
-#: gnomine/gnomine.c:655
+#: gnomine/gnomine.c:669
 msgid "Use \"I'm not sure\" flags."
-msgstr ""
+msgstr "Utiliser le drapeau « Je ne suis pas sûr »"
 
-#: gnomine/gnomine.c:664
+#: gnomine/gnomine.c:678
 msgid "GNOME Mines Preferences"
 msgstr "Préférences de GNOME Mines"
 
-#: gnomine/gnomine.c:763
+#: gnomine/gnomine.c:777
 msgid "Width of grid"
 msgstr "Largeur de la grille"
 
-#: gnomine/gnomine.c:764
+#: gnomine/gnomine.c:778
 msgid "Height of grid"
 msgstr "Hauteur de la grille"
 
-#: gnomine/gnomine.c:765
+#: gnomine/gnomine.c:779
 msgid "Number of mines"
 msgstr "Nombre de mines"
 
-#: gnomine/gnomine.c:765 gtali/setup.c:85 gtali/setup.c:86
+#: gnomine/gnomine.c:779 gtali/setup.c:85 gtali/setup.c:86
 msgid "NUMBER"
 msgstr "NOMBRE"
 
-#: gnomine/gnomine.c:766
+#: gnomine/gnomine.c:780
 msgid "Size of the board (1=small, 3=large)"
-msgstr ""
+msgstr "Taille du plateau (1=petit, 3=large)"
 
-#: gnomine/gnomine.c:767
+#: gnomine/gnomine.c:781
 msgid "X location of window"
-msgstr ""
+msgstr "Position en X de la fenêtre"
 
-#: gnomine/gnomine.c:768
+#: gnomine/gnomine.c:782
 msgid "Y location of window"
-msgstr ""
+msgstr "Position en Y de la fenêtre"
 
-#: gnomine/gnomine.c:925
+#: gnomine/gnomine.c:941
 msgid "Flags:"
 msgstr "Drapeaux :"
 
 #: gnomine/gnomine.desktop.in.h:1
 msgid "Clear mines from a minefield"
-msgstr ""
+msgstr "Nettoyer les mines d'un champ de mines"
 
 #: gnomine/gnomine.desktop.in.h:2
-#, fuzzy
 msgid "Mines"
-msgstr "Glines"
+msgstr "Mines"
 
 #: gnomine/gnomine.schemas.in.h:1
 msgid "Set to true to be able to mark squares as unknown."
-msgstr ""
+msgstr "Définir à vrai pour être capable de marquer les carrés comme inconnus."
 
 #: gnomine/gnomine.schemas.in.h:2
 msgid "Use the unknown flag"
-msgstr ""
+msgstr "Utiliser le drapeau inconnu"
 
 #: gnotravex/gnotravex.c:166
 msgid "Sol_ve"
@@ -3834,7 +4003,7 @@ msgstr "Déplace les pièces sélectionnées vers le bas"
 
 #: gnotravex/gnotravex.c:229
 msgid "_Move"
-msgstr "Déplacer"
+msgstr "_Déplacer"
 
 #: gnotravex/gnotravex.c:239
 msgid "Size of board (2-6)"
@@ -3844,31 +4013,30 @@ msgstr "Taille du damier (2-6)"
 msgid "SIZE"
 msgstr "TAILLE"
 
-#: gnotravex/gnotravex.c:713
+#: gnotravex/gnotravex.c:739
 msgid "Puzzle solved! Well done!"
 msgstr "Puzzle résolu ! Bien joué !"
 
-#: gnotravex/gnotravex.c:716
+#: gnotravex/gnotravex.c:742
 msgid "Puzzle solved!"
 msgstr "Puzzle résolu !"
 
-#: gnotravex/gnotravex.c:1113
-#, fuzzy
+#: gnotravex/gnotravex.c:1139
 msgid "Game paused"
-msgstr "... Pause ..."
+msgstr "Jeu suspendu"
 
-#: gnotravex/gnotravex.c:1235
-#, fuzzy, c-format
+#: gnotravex/gnotravex.c:1261
+#, c-format
 msgid "Playing %d×%d board"
-msgstr "Jeu sur un damier %dx%d"
+msgstr "Jeu sur un plateau %dx%d"
 
-#: gnotravex/gnotravex.c:1482
+#: gnotravex/gnotravex.c:1508
 msgid "A Tetravex clone."
 msgstr "Un clone de Tetravex."
 
 #: gnotravex/gnotravex.desktop.in.h:1
 msgid "Play a puzzle game matching tiles together"
-msgstr ""
+msgstr "Jouez un jeu de puzzle avec des tuiles identiques"
 
 #: gnotravex/gnotravex.desktop.in.h:2
 msgid "Tetravex"
@@ -3878,28 +4046,33 @@ msgstr "Tetravex"
 msgid ""
 "The height of the playing window in pixels. At minimum it should be 240."
 msgstr ""
+"La hauteur de la fenêtre de jeu en pixels. Au minimum elle doit être de 240."
 
 #: gnotravex/gnotravex.schemas.in.h:2 mahjongg/mahjongg.schemas.in.h:1
 msgid "The height of the window"
-msgstr ""
+msgstr "La hauteur de la fenêtre"
 
 #: gnotravex/gnotravex.schemas.in.h:3
 msgid "The size of the playing grid"
-msgstr ""
+msgstr "La taille de la grille de jeu"
 
 #: gnotravex/gnotravex.schemas.in.h:4
 msgid ""
 "The value of this key is used to decide the size of the playing grid. The "
 "valid values are 2 to 8, anything else gets set to 3."
 msgstr ""
+"La valeur de cette clé est utilisée pour décider de la taille de la grille "
+"de jeu. Les valeurs valides sont de 2 à 8, toute autre valeur positionne la "
+"valeur à 3."
 
 #: gnotravex/gnotravex.schemas.in.h:5
 msgid "The width of the playing window in pixels. At minimum it should be 320."
 msgstr ""
+"La largeur de la fenêtre de jeu en pixels. Au minimum elle doit être de 320."
 
 #: gnotravex/gnotravex.schemas.in.h:6 mahjongg/mahjongg.schemas.in.h:4
 msgid "The width of the window"
-msgstr ""
+msgstr "La largeur de la fenêtre"
 
 #: gnotski/gnotski.c:98 gnotski/gnotski.c:219 gnotski/gnotski.c:331
 msgid "1"
@@ -3963,16 +4136,16 @@ msgstr "Déplacements :"
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Impossible de trouver l'image « %s »\n"
 
-#: gnotski/gnotski.c:1021
+#: gnotski/gnotski.c:1020
 msgid "Welcome to GNOME Klotski"
 msgstr "Bienvenue à GNOME Klotski"
 
-#: gnotski/gnotski.c:1045
+#: gnotski/gnotski.c:1044
 #, c-format
 msgid "Playing level %s"
 msgstr "Niveau de jeu %s"
 
-#: gnotski/gnotski.c:1159
+#: gnotski/gnotski.c:1158
 msgid "A Klotski clone"
 msgstr "Un clone de Klotski"
 
@@ -3982,7 +4155,7 @@ msgstr "Klotski"
 
 #: gnotski/gnotski.desktop.in.h:2
 msgid "Solve puzzles by sliding blocks"
-msgstr ""
+msgstr "Résoudre des puzzles en faisant coulisser des blocs"
 
 #: gtali/clist.c:139
 msgid "Already used! Where do you want to put that?"
@@ -3996,7 +4169,7 @@ msgstr "Déjà utilisé ! Où voulez-vous mettre ça ?"
 #.
 #: gtali/gtali.desktop.in.h:1
 msgid "Play a poker-style dice game"
-msgstr ""
+msgstr "Jouer un jeu de dés du style du poker"
 
 #: gtali/gtali.desktop.in.h:2
 msgid "Tali"
@@ -4007,25 +4180,28 @@ msgid ""
 "Choose whether or not to insert a delay between the computer's dice rolls so "
 "the player can follow what it is doing."
 msgstr ""
+"Choisir si un délai doit être inséré entre les lancés de dé de l'ordinateur, "
+"afin que le joueur puisse suivre ce qu'il fait, ou non."
 
 #. --- Button ---
-#: gtali/gtali.schemas.in.h:2 gtali/setup.c:289
+#: gtali/gtali.schemas.in.h:2 gtali/setup.c:288
 msgid "Delay between rolls"
 msgstr "Attente entre les lancers"
 
 #: gtali/gtali.schemas.in.h:3
-#, fuzzy
 msgid "Display the computer's thoughts"
-msgstr "Afficher la réflexion de l'ordinateur"
+msgstr "Afficher les réflexions de l'ordinateur"
 
 #: gtali/gtali.schemas.in.h:4
 msgid ""
 "If set to true, a dump of the AI's working will be done to standard output."
 msgstr ""
+"Si définit comme vrai une sortie du travail de l'IA sera affichées sur la "
+"sortie standard."
 
 #: gtali/gtali.schemas.in.h:5
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
-msgstr ""
+msgstr "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 
 #: gtali/gyahtzee.c:68
 msgid "GNOME Tali"
@@ -4055,14 +4231,17 @@ msgstr "%s ! -- Vous êtes prêt."
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "Vous n'avez droit qu'à trois jets de dés. Choisissez un score."
 
+#: gtali/gyahtzee.c:380
+msgid "GNOME version (1998):"
+msgstr "GNOME version (1998) :"
+
 #: gtali/gyahtzee.c:382
-#, fuzzy
 msgid "Curses version (1992):"
-msgstr "Orest Zborowski - Curses Version © 1992"
+msgstr "Curses version (1992) :"
 
 #: gtali/gyahtzee.c:412
 msgid "A sort of poker with dice and less money."
-msgstr ""
+msgstr "Un genre de pocker avec des dés et moins d'argent."
 
 #: gtali/gyahtzee.c:456
 msgid "Cheater! Any high scores will not be recorded."
@@ -4106,24 +4285,24 @@ msgstr "Nombre d'adversaires humains"
 msgid "Current game will complete with original number of players."
 msgstr "Le jeu en cours va finir avec le nombre initial de joueur"
 
-#: gtali/setup.c:232
+#: gtali/setup.c:231
 msgid "GTali Preferences"
 msgstr "Préférences de GTali"
 
-#: gtali/setup.c:256
+#: gtali/setup.c:255
 msgid "Human Players"
 msgstr "Joueurs humains"
 
-#: gtali/setup.c:281
+#: gtali/setup.c:280
 msgid "Computer Opponents"
 msgstr "Adversaires informatiques"
 
-#: gtali/setup.c:299
+#: gtali/setup.c:298
 msgid "Number of opponents:"
 msgstr "Nombre d'adversaires :"
 
 #. --- PLAYER NAMES FRAME ----
-#: gtali/setup.c:314
+#: gtali/setup.c:313
 msgid "Player Names"
 msgstr "Noms des joueurs"
 
@@ -4196,12 +4375,11 @@ msgstr "Total supérieur"
 
 #: gtali/yahtzee.c:90
 msgid "Bonus if >62"
-msgstr "Bonux si > 62"
+msgstr "Bonus si > 62"
 
 #: gtali/yahtzee.c:504
-#, fuzzy
 msgid "How many times do you wish to roll?"
-msgstr "Combien de fois désirez-vous relancer les dés ?"
+msgstr "Combien de fois désirez-vous lancer les dés ?"
 
 #: gtali/yahtzee.c:509
 msgid "Generating ..."
@@ -4310,23 +4488,23 @@ msgstr "Echec de la tentative de connexion"
 msgid "No game server defined"
 msgstr "Aucun serveur de jeu n'a été défini"
 
-#: iagno/properties.c:525
+#: iagno/properties.c:538
 msgid "Iagno Preferences"
 msgstr "Préférences de Iagno"
 
-#: iagno/properties.c:546
+#: iagno/properties.c:559
 msgid "Use quick moves"
 msgstr "Utiliser des mouvements rapides"
 
-#: iagno/properties.c:657
+#: iagno/properties.c:670
 msgid "Animation"
 msgstr "Animation"
 
-#: iagno/properties.c:694
+#: iagno/properties.c:707
 msgid "Stagger flips"
 msgstr "Retournements instables"
 
-#: iagno/properties.c:702
+#: iagno/properties.c:715
 msgid "Show grid"
 msgstr "Afficher la grille"
 
@@ -4349,43 +4527,75 @@ msgstr ""
 "Veuillez vérifiez votre configuration de GConf, en particulier que les "
 "schémas sont installés correctement."
 
-#: mahjongg/mahjongg.c:324
+#: mahjongg/mahjongg.c:714
+msgid "Easy"
+msgstr "Facile"
+
+#: mahjongg/mahjongg.c:715
+msgid "Difficult"
+msgstr "Difficile"
+
+#: mahjongg/mahjongg.c:716
+msgid "Confounding Cross"
+msgstr "Fondations croisées"
+
+#: mahjongg/mahjongg.c:717
+msgid "Pyramid's Walls"
+msgstr "Murs de pyramides"
+
+#: mahjongg/mahjongg.c:718
+msgid "Tic-Tac-Toe"
+msgstr "Tic-Tac-Toe"
+
+#: mahjongg/mahjongg.c:719
+msgid "Cloud"
+msgstr "Nuage"
+
+#: mahjongg/mahjongg.c:720
+msgid "Red Dragon"
+msgstr "Dragon rouge"
+
+#: mahjongg/mahjongg.c:721
+msgid "Four Bridges"
+msgstr "Quatre ponts"
+
+#: mahjongg/mahjongg.c:784
 msgid "New game with _seed..."
 msgstr "Nouvelle partie avec un _paramètre..."
 
-#: mahjongg/mahjongg.c:325
+#: mahjongg/mahjongg.c:785
 msgid "Start a new game giving a seed number..."
 msgstr "Commence une nouvelle partie avec un paramètre donné..."
 
-#: mahjongg/mahjongg.c:340
+#: mahjongg/mahjongg.c:800
 msgid "Shu_ffle tiles"
 msgstr "_Mélanger les tuiles"
 
-#: mahjongg/mahjongg.c:340 mahjongg/mahjongg.c:406
+#: mahjongg/mahjongg.c:800 mahjongg/mahjongg.c:864
 msgid "Shuffle tiles"
 msgstr "Mélange les tuiles"
 
-#: mahjongg/mahjongg.c:384
+#: mahjongg/mahjongg.c:842
 msgid "Restart game"
 msgstr "Recommence la partie"
 
-#: mahjongg/mahjongg.c:390
+#: mahjongg/mahjongg.c:848
 msgid "Pause game"
 msgstr "Mets le jeu en pause"
 
-#: mahjongg/mahjongg.c:396
+#: mahjongg/mahjongg.c:854
 msgid "Undo previous move"
 msgstr "Annule le dernier mouvement"
 
-#: mahjongg/mahjongg.c:402
+#: mahjongg/mahjongg.c:860
 msgid "Get a hint"
 msgstr "Affiche une astuce"
 
-#: mahjongg/mahjongg.c:406 mahjongg/mahjongg.c:910
+#: mahjongg/mahjongg.c:864 mahjongg/mahjongg.c:1366
 msgid "Shuffle"
 msgstr "Mélanger"
 
-#: mahjongg/mahjongg.c:617
+#: mahjongg/mahjongg.c:1075
 msgid ""
 "This new mapset will take effect when you start a new game, or when Mahjongg "
 "is restarted."
@@ -4393,106 +4603,111 @@ msgstr ""
 "Cette nouvelle disposition des tuiles ne prendra effet que lors d'une "
 "nouvelle partie, ou lorsque Mahjongg sera redémarré."
 
-#: mahjongg/mahjongg.c:870 mahjongg/mahjongg.c:876
+#: mahjongg/mahjongg.c:1327 mahjongg/mahjongg.c:1332
 msgid "These tiles don't match."
 msgstr "Ces tuiles ne correspondent pas."
 
-#: mahjongg/mahjongg.c:908
+#: mahjongg/mahjongg.c:1364
 msgid "There are no more moves."
 msgstr "Désolé, il n'y a plus de déplacement possible."
 
-#: mahjongg/mahjongg.c:975
+#: mahjongg/mahjongg.c:1430
 msgid "Preferences"
 msgstr "Préférences"
 
-#: mahjongg/mahjongg.c:994
+#: mahjongg/mahjongg.c:1449
 msgid "Tiles"
 msgstr "Tuiles"
 
-#: mahjongg/mahjongg.c:1002
+#: mahjongg/mahjongg.c:1457
 msgid "Tile Set"
 msgstr "Jeu de tuiles"
 
-#: mahjongg/mahjongg.c:1015
+#: mahjongg/mahjongg.c:1470
 msgid "Maps"
 msgstr "Dispositions"
 
-#: mahjongg/mahjongg.c:1023
+#: mahjongg/mahjongg.c:1478
 msgid "Select Map"
 msgstr "Choix d'une disposition"
 
-#: mahjongg/mahjongg.c:1036
+#: mahjongg/mahjongg.c:1491
 msgid "Colors"
 msgstr "Couleurs"
 
-#: mahjongg/mahjongg.c:1044
+#: mahjongg/mahjongg.c:1499
 msgid "Background Color"
 msgstr "Couleur d'arrière-plan"
 
-#: mahjongg/mahjongg.c:1058
+#: mahjongg/mahjongg.c:1513
 msgid "Warnings"
 msgstr "Avertissements"
 
-#: mahjongg/mahjongg.c:1064
+#: mahjongg/mahjongg.c:1519
 msgid "Warn when tiles don't match"
 msgstr "Avertir lorsque les tuiles ne correspondent pas"
 
-#: mahjongg/mahjongg.c:1171
+#: mahjongg/mahjongg.c:1626
 msgid "Tiles:"
 msgstr "Tuiles :"
 
-#: mahjongg/mahjongg.c:1200
+#: mahjongg/mahjongg.c:1655
 msgid "GNOME Mahjongg"
 msgstr "GNOME Mahjongg"
 
-#: mahjongg/mahjongg.c:1203
-#, fuzzy
+#: mahjongg/mahjongg.c:1658
 msgid "GNOME version of the Eastern tile game, Mahjongg."
-msgstr "Version GNOME du populaire jeu xBill"
+msgstr "Version GNOME du populaire jeu Mahjongg"
 
-#: mahjongg/mahjongg.c:1227
+#: mahjongg/mahjongg.c:1682
 msgid "... Game paused ..."
-msgstr "... Pause ..."
+msgstr "... Jeu suspendu ..."
 
-#: mahjongg/mahjongg.c:1418
+#: mahjongg/mahjongg.c:1873
 msgid "Game Number:"
 msgstr "Numéro du jeu :"
 
-#: mahjongg/mahjongg.c:1496 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1951 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:1600
+#: mahjongg/mahjongg.c:2072
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Désolé, je ne peut pas trouver une configuration jouable."
 
-#: mahjongg/mahjongg.c:1668
+#: mahjongg/mahjongg.c:2139
 msgid "Tiles Left:"
 msgstr "Tuiles restantes :"
 
-#: mahjongg/mahjongg.c:1677
+#: mahjongg/mahjongg.c:2148
 msgid "Moves Left:"
 msgstr "Mouvements restants :"
 
-#: mahjongg/mahjongg.c:1742
+#: mahjongg/mahjongg.c:2213
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "Bienvenue à GNOME Mahjongg !"
 
 #: mahjongg/mahjongg.desktop.in.h:1
 msgid "Disassemble a pile of tiles by removing matching pairs"
-msgstr ""
+msgstr "Désassembler une pile de tuiles en enlevant les paires correspondantes"
 
 #: mahjongg/mahjongg.schemas.in.h:2
 msgid ""
 "The requested height of the main window in pixels. Note that the widgets the "
 "window contains are at least 200 pixels high."
 msgstr ""
+"La hauteur demandée, en pixels, de la fenêtre principale. Notez que les "
+"composants graphiques que la fenêtre contient prennent au moins 200 pixels "
+"de haut."
 
 #: mahjongg/mahjongg.schemas.in.h:3
 msgid ""
 "The requested width of the main window in pixels. Note that the widgets the "
 "window contains are at least 320 pixels wide."
 msgstr ""
+"La largeur demandée, en pixels, de la fenêtre principale. Notez que les "
+"composants graphiques que la fenêtre contient prennent au moins 320 pixels "
+"de large."
 
 #: same-gnome/same-gnome.c:205
 #, c-format
@@ -4522,7 +4737,7 @@ msgstr ""
 "\n"
 "Veuillez vérifier votre installation de Same GNOME."
 
-#: same-gnome/same-gnome.c:472
+#: same-gnome/same-gnome.c:471
 #, c-format
 msgid ""
 "Same GNOME can't load the image file:\n"
@@ -4535,942 +4750,23 @@ msgstr ""
 "\n"
 "Veuillez vérifier votre installation de Same GNOME"
 
-#: same-gnome/same-gnome.c:616
+#: same-gnome/same-gnome.c:614
 msgid "Same GNOME Preferences"
 msgstr "Préférences de Same GNOME"
 
-#: same-gnome/same-gnome.c:729 same-gnome/same-gnome.c:928
+#: same-gnome/same-gnome.c:727 same-gnome/same-gnome.c:926
 #: same-gnome/same-gnome.desktop.in.h:2
 msgid "Same GNOME"
 msgstr "Same GNOME"
 
-#: same-gnome/same-gnome.c:732
+#: same-gnome/same-gnome.c:730
 msgid "Original idea from KDE's same game program."
 msgstr "Idée originale venant du programme Same Game de KDE."
 
-#: same-gnome/same-gnome.c:938
+#: same-gnome/same-gnome.c:936
 msgid "Welcome to Same GNOME!"
 msgstr "Bienvenue à Same GNOME !"
 
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
-msgstr ""
-
-#~ msgid "Draw grid"
-#~ msgstr "Afficher la grille"
-
-#~ msgid "Name of the theme file to use."
-#~ msgstr "Nom du thème à utiliser."
-
-#~ msgid "One corresponds to speaker beeps, two to audio files."
-#~ msgstr ""
-#~ "Un correspond au bips du haut-parleur interne, deux aux fichiers audio."
-
-#~ msgid "Sound type"
-#~ msgstr "Types de sons"
-
-#~ msgid "Theme file"
-#~ msgstr "Thème"
-
-#~ msgid "Whether or not to display grid lines on the game board."
-#~ msgstr "Affichage ou pas d'une grille sur le plateau de jeu."
-
-#~ msgid "Who starts"
-#~ msgstr "Qui commence"
-
-#~ msgid ""
-#~ "Zero is Player One, one is Player Two and two corresponds to players "
-#~ "taking turns."
-#~ msgstr ""
-#~ "Zero est le premier joueur, Un est le deuxième et Trois correspond aux "
-#~ "joueurs qui prennent leur tour."
-
-#~ msgid ""
-#~ "Zero is human; one through four correspond to the level of the computer "
-#~ "player."
-#~ msgstr ""
-#~ "Zero est l'humain; Un à Quatre correspondent au niveau du joueur "
-#~ "électronique."
-
-#, fuzzy
-#~ msgid "Gnect Scores"
-#~ msgstr "Scores"
-
-#~ msgid "Draw _grid"
-#~ msgstr "Afficher la _grille"
-
-#~ msgid "Show or hide the grid"
-#~ msgstr "Affiche ou cache la grille"
-
-#~ msgid "Initial window placement"
-#~ msgstr "Placement initial de la fenêtre"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "GÉOMÉTRIE"
-
-#~ msgid "Random number seed"
-#~ msgstr "Génération de nombres aléatoires"
-
-#~ msgid "SEED"
-#~ msgstr "PARAMÈTRE"
-
-#~ msgid "Initial theme file (excluding path)"
-#~ msgstr "Fichier de thème initial ( sans le chemin )"
-
-#~ msgid "Debugging level (4 for random seed)"
-#~ msgstr "Niveau de débogage (choix 4 pour nombres aléatoires)"
-
-#~ msgid "%s: no themes available\n"
-#~ msgstr "%s : pas de thème disponible\n"
-
-#, fuzzy
-#~ msgid "Player 2: %s"
-#~ msgstr "Joueur 2 : %s"
-
-#~ msgid ""
-#~ "Applying this change to Player Selection\n"
-#~ "will end the current game"
-#~ msgstr ""
-#~ "Appliquer ce changement à la Sélection\n"
-#~ "terminera le jeu en cours."
-
-#~ msgid "Error loading theme"
-#~ msgstr "Erreur lors du chargement du thème"
-
-#~ msgid "Non-Velena / Simple"
-#~ msgstr "Non-Velena / Simple"
-
-#~ msgid "Velena / Weak"
-#~ msgstr "Velena / Faible"
-
-#~ msgid "Velena / Medium"
-#~ msgstr "Velena / Moyen"
-
-#~ msgid "Velena / Strong"
-#~ msgstr "Véléna / Fort"
-
-#~ msgid "Always Player 1"
-#~ msgstr "Toujours joueur 1"
-
-#~ msgid "Always Player 2"
-#~ msgstr "Toujours Joueur 2"
-
-#~ msgid "Take turns"
-#~ msgstr "Prendre les tours"
-
-#, fuzzy
-#~ msgid "_Player Selection"
-#~ msgstr "Sélection du joueur"
-
-#~ msgid "Who starts?"
-#~ msgstr "Qui commence ?"
-
-#~ msgid "Appearance and Behaviour"
-#~ msgstr "Apparence et Comportement"
-
-#, fuzzy
-#~ msgid "Theme Selection:"
-#~ msgstr "Sélection du thème :"
-
-#, fuzzy
-#~ msgid "Sound Type"
-#~ msgstr "Types de sons"
-
-#~ msgid "Speaker beep"
-#~ msgstr "Sons des hauts parleurs"
-
-#~ msgid "GNOME sound"
-#~ msgstr "Sons de GNOME"
-
-#~ msgid "This can be set up using the GNOME Control Center"
-#~ msgstr "Vous pouvez régler cela en utilisant le centre de contrôle de GNOME"
-
-#, fuzzy
-#~ msgid "Keyboard Control"
-#~ msgstr "Contrôles au clavier :"
-
-#~ msgid "Drop counter"
-#~ msgstr "Remise à zéro du compteur"
-
-#~ msgid "Black"
-#~ msgstr "Noir"
-
-#~ msgid "White"
-#~ msgstr "Blanc"
-
-#~ msgid "Grey"
-#~ msgstr "Gris"
-
-#~ msgid "Pink"
-#~ msgstr "Rose"
-
-#~ msgid "Violet"
-#~ msgstr "Violet"
-
-#~ msgid "Brown"
-#~ msgstr "Marron"
-
-#~ msgid "   "
-#~ msgstr "   "
-
-#~ msgid " of "
-#~ msgstr " de "
-
-#~ msgid "'s"
-#~ msgstr " "
-
-#~ msgid "melborp"
-#~ msgstr "melborp"
-
-#~ msgid "kings"
-#~ msgstr "rois"
-
-#~ msgid "queens"
-#~ msgstr "reines"
-
-#~ msgid ""
-#~ "Congratulations\n"
-#~ "\n"
-#~ "You Won!!!"
-#~ msgstr ""
-#~ "Félicitations\n"
-#~ "\n"
-#~ "Vous avez gagné !!!"
-
-#~ msgid ""
-#~ "\n"
-#~ "Game Over.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Perdu !\n"
-
-#~ msgid "Move the %s on the %s."
-#~ msgstr "Déplacez le %s sur le %s."
-
-#~ msgid "FreeCell"
-#~ msgstr "Freecell"
-
-#~ msgid "Main program:  Jonathan Blandford (jrb@redhat.com)"
-#~ msgstr "Programme principal : Jonathan Blandford (jrb@redhat.com)"
-
-#~ msgid "                      Felix Bellaby (felix@pooh.u-net.com)"
-#~ msgstr "                      Felix Bellaby (felix@pooh.u-net.com)"
-
-#~ msgid "                      Rosanna Yuen (zana@webwynk.net)"
-#~ msgstr "                      Rosanna Yuen (zana@webwynk.net)"
-
-#~ msgid "Card Games:    Jonathan Blandford (jrb@redhat.com)"
-#~ msgstr "Jeux de cartes : Jonathan Blandford (jrb@redhat.com)"
-
-#~ msgid "                      W. Borgert (debacle@debian.org)"
-#~ msgstr "                      W. Borgert (debacle@debian.org)"
-
-#~ msgid "                      Robert Brady (rwb197@ecs.soton.ac.uk)"
-#~ msgstr "                      Robert Brady (rwb197@ecs.soton.ac.uk)"
-
-#~ msgid "                      Nick Lamb (njl195@zepler.org.uk)"
-#~ msgstr "                      Nick Lamb (njl195@zepler.org.uk)"
-
-#~ msgid "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"
-#~ msgstr "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"
-
-#~ msgid "                      Matthew Wilcox (matthew@wil.cx)"
-#~ msgstr "                      Matthew Wilcox (matthew@wil.cx)"
-
-#~ msgid "(C) 1998 Jonathan Blandford (jrb@redhat.com)"
-#~ msgstr "© 1998 Jonathan Blandford (jrb@redhat.com)"
-
-#~ msgid "Choose a different variation of solitaire"
-#~ msgstr "Propose une variante différente du solitaire"
-
-#~ msgid "Are you sure you want to quit Aisleriot?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter AisleRiot ?"
-
-#~ msgid "Loading images..."
-#~ msgstr "Chargement des images..."
-
-#~ msgid "Dealing game..."
-#~ msgstr "Distribution des cartes..."
-
-#~ msgid "Score: "
-#~ msgstr "Score : "
-
-#~ msgid "Time: "
-#~ msgstr "Temps : "
-
-#~ msgid "Initializing scheme..."
-#~ msgstr "Initialisation de scheme..."
-
-#~ msgid "Card-based solitaire suite"
-#~ msgstr "Ensemble de jeux de cartes basés sur le solitaire"
-
-#~ msgid "Are you sure you want to quit Gataxx?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter Gataxx ?"
-
-#~ msgid "Are you sure you want to start a new game?"
-#~ msgstr "Êtes-vous sûr de vouloir commencer une nouvelle partie ?"
-
-#~ msgid "Ataxx game"
-#~ msgstr "Jeu Ataxx"
-
-#~ msgid "Gataxx"
-#~ msgstr "Gataxx"
-
-#~ msgid "Properties"
-#~ msgstr "Propriétés"
-
-#~ msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
-#~ msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
-
-#~ msgid "Szabolcs Ban <shooby@gnome.hu>"
-#~ msgstr "Szabolcs Ban <shooby@gnome.hu>"
-
-#~ msgid "(C) 1997-2000 the Free Software Foundation"
-#~ msgstr "© 1997-2000 the Free Software Foundation"
-
-#~ msgid "Select background:"
-#~ msgstr "Sélectionner un arrière-plan :"
-
-#~ msgid "Ask confirmation when quitting"
-#~ msgstr "Demander confirmation avant de quitter"
-
-#~ msgid "Are you sure you want to quit Glines?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter Glines ?"
-
-#~ msgid "Color lines game"
-#~ msgstr "Jeu de lignes colorées"
-
-#~ msgid "Verify"
-#~ msgstr "Vérifiez"
-
-#~ msgid "Whether or not to ask before quitting an unfinished game."
-#~ msgstr "Demande de confirmation ou pas à la sortie d'un jeu non terminé."
-
-#~ msgid " Sorry, full column"
-#~ msgstr " Désolé, la colonne est pleine"
-
-#~ msgid "Are you sure you want to quit Gnect?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter Gnect ?"
-
-#~ msgid " You win!"
-#~ msgstr " Vous avez gagné !"
-
-#~ msgid " I win!"
-#~ msgstr " J'ai gagné !"
-
-#~ msgid " \"Game->New game\" to begin"
-#~ msgstr " « Jeu->Nouveau Jeu » pour commencer"
-
-#~ msgid "Animation:"
-#~ msgstr "Animation :"
-
-#~ msgid "Yes please!"
-#~ msgstr "Oui s'il vous plait !"
-
-#~ msgid "Sound type:"
-#~ msgstr "Types de sons :"
-
-#~ msgid "If stopping an unfinished game:"
-#~ msgstr "Si arrêt d'un jeu non terminé :"
-
-#~ msgid "Ask me first"
-#~ msgstr "Demandez-moi d'abord"
-
-#~ msgid "Nibbles game"
-#~ msgstr "Jeu Nibbles"
-
-#~ msgid "Are you sure you want to quit Gnibbles?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter Gnibbles ?"
-
-#~ msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
-#~ msgstr ""
-#~ "Envoyez vos commentaires et rapports d'anomalies à : sjm@acm.org, itp@gnu."
-#~ "org"
-
-#~ msgid "Sounds"
-#~ msgstr "Sons"
-
-#~ msgid "Number of players: "
-#~ msgstr "Nombre de joueurs : "
-
-#~ msgid "Color:"
-#~ msgstr "Couleur :"
-
-#~ msgid "Are you sure you want to quit GNOME Robots?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter GNOME Robots ?"
-
-#~ msgid "Safe Moves"
-#~ msgstr "Mouvements sans danger"
-
-#~ msgid "Super Safe Moves"
-#~ msgstr "Mouvements *vraiment* sans danger"
-
-#~ msgid "Configuration"
-#~ msgstr "Configuration"
-
-#~ msgid "Graphics:"
-#~ msgstr "Graphismes :"
-
-#~ msgid "NW"
-#~ msgstr "NO"
-
-#~ msgid "N"
-#~ msgstr "N"
-
-#~ msgid "NE"
-#~ msgstr "NE"
-
-#~ msgid "W"
-#~ msgstr "O"
-
-#~ msgid "E"
-#~ msgstr "E"
-
-#~ msgid "SW"
-#~ msgstr "SO"
-
-#~ msgid "S"
-#~ msgstr "S"
-
-#~ msgid "SE"
-#~ msgstr "SE"
-
-#~ msgid "Predefined Set 1"
-#~ msgstr "Touches prédéfinies (jeu 1)"
-
-#~ msgid "Predefined Set 2"
-#~ msgstr "Touches prédéfinies (jeu 2)"
-
-#~ msgid "GNOME Stones game"
-#~ msgstr "Jeu de Pierres GNOME"
-
-#  **************************************************************************
-#  Some constants.
-#  This message will be printed in the statusline, if no message was
-#  specified in a game file.
-#~ msgid "GNOME-Stones (c) 1998 Carsten Schaar"
-#~ msgstr "GNOME-Stones © 1998 Carsten Schaar"
-
-#~ msgid "Game title:"
-#~ msgstr "Titre du jeu :"
-
-#~ msgid "GNOME-STONES"
-#~ msgstr "GNOME-STONES (Les Pierres)"
-
-#~ msgid "A game."
-#~ msgstr "Un jeu."
-
-#~ msgid "GNOME-Stones"
-#~ msgstr "GNOME-Stones"
-
-#~ msgid "Filename"
-#~ msgstr "Fichier"
-
-#~ msgid "Sound enable/disable. Not yet implemented!"
-#~ msgstr ""
-#~ "Son / Pas de Son. Cette fonctionalité n'est pas (encore) disponible!"
-
-#~ msgid "Tetris game"
-#~ msgstr "Jeu Tetris"
-
-#~ msgid "Game Status"
-#~ msgstr "État du jeu"
-
-#~ msgid "Level: "
-#~ msgstr "Niveau : "
-
-#~ msgid "Code: Pista"
-#~ msgstr "Code : Pista"
-
-#~ msgid "Faces: tigert"
-#~ msgstr "Figures : tigert"
-
-#~ msgid "Score: HoraPe"
-#~ msgstr "Score : HoraPe"
-
-#~ msgid "(C) 1997-1999 the Free Software Foundation"
-#~ msgstr "© 1997-1999 la Free Software Foundation"
-
-#~ msgid "Mine size:"
-#~ msgstr "Taille de la mine :"
-
-#~ msgid "Time : "
-#~ msgstr "Temps : "
-
-#~ msgid ""
-#~ "Tetravex clone\n"
-#~ "(Comments to: Lars.Rydlinge@HIG.SE)"
-#~ msgstr ""
-#~ "Clone de Tetravex\n"
-#~ "(Envoyez vos commentaires à Lars.Rydlinge@HIG.SE)"
-
-#~ msgid "GNOME Tetravex"
-#~ msgstr "GNOME Tetravex"
-
-#~ msgid ""
-#~ "Klotski clone\n"
-#~ "(Comments to: Lars.Rydlinge@HIG.SE)"
-#~ msgstr ""
-#~ "Clone de Tetravex\n"
-#~ "(Envoyez vos commentaires à Lars.Rydlinge@HIG.SE)"
-
-#~ msgid "Gnotski"
-#~ msgstr "Gnotski"
-
-#~ msgid "Dice game"
-#~ msgstr "Jeu de dés"
-
-#~ msgid "Scott Heavner"
-#~ msgstr "Scott Heavner"
-
-#~ msgid "(C) 1998 the Free Software Fundation"
-#~ msgstr "© 1998 la Free Software Fundation"
-
-#~ msgid "GTali setup"
-#~ msgstr "Configuration de gTali"
-
-#~ msgid "Show thoughts during turn"
-#~ msgstr "Montrer les réflexions pendant les tours"
-
-#~ msgid "Extra Yahtzee Bonus"
-#~ msgstr "Bonus Extra Yahtzee"
-
-#~ msgid "Enforce Joker Rules"
-#~ msgstr "Renforcer les règles de Joker"
-
-#~ msgid "Are you sure you want to quit Iagno?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter Iagno ?"
-
-#~ msgid "(C) 1998 Ian Peters"
-#~ msgstr "© 1998 Ian Peters"
-
-#~ msgid ""
-#~ "Send comments and bug reports to: itp@gnu.org\n"
-#~ "Tiles under the General Public License."
-#~ msgstr ""
-#~ "Envoyez vos commentaires et rapports d'anomalies à : itp@gnu.org.\n"
-#~ "Les éléments graphiques sont sous la Licence Publique Générale GNU."
-
-#~ msgid "Reversi game"
-#~ msgstr "Jeu de reversi"
-
-#~ msgid "Quick Moves"
-#~ msgstr "Mouvements rapides"
-
-#~ msgid "Show _Tool Bar"
-#~ msgstr "_Afficher la barre d'outils"
-
-#~ msgid "Toggle display of the toolbar"
-#~ msgstr "Afficher / masquer la barre d'outils"
-
-#~ msgid "Toggle sound"
-#~ msgstr "Activer ou non les sons"
-
-#~ msgid "Tile Background"
-#~ msgstr "Texture des tuiles"
-
-#~ msgid "Show confirmation dialogs"
-#~ msgstr "Afficher les boîtes de dialogue de confirmation"
-
-#~ msgid ""
-#~ "Send comments and bug reports to:\n"
-#~ "        pancho@nuclecu.unam.mx or\n"
-#~ "        mmeeks@gnu.org\n"
-#~ "\n"
-#~ "Tiles under the General Public License."
-#~ msgstr ""
-#~ "Envoyez vos commentaires et rapports d'anomalies à :\n"
-#~ "        pancho@nuclecu.unam.mx ou\n"
-#~ "        mmeeks@gnu.org\n"
-#~ "\n"
-#~ "Les images de tuiles sont sous la Licence Publique Générale GNU."
-
-#~ msgid "Are you sure you want to restart this game?"
-#~ msgstr "Êtes-vous sûr de vouloir redémarrer cette partie ?"
-
-#~ msgid "Are you sure you want to quit GNOME Mahjongg?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter GNOME Mahjongg ?"
-
-#~ msgid "Serious internal error"
-#~ msgstr "Erreur interne sérieuse"
-
-#~ msgid "Could not find file %s"
-#~ msgstr "Impossible de trouver le fichier %s"
-
-#~ msgid "Seed: "
-#~ msgstr "Paramètre :"
-
-#~ msgid "Mahjongg game"
-#~ msgstr "Jeu de Mahjongg"
-
-#~ msgid "GNOME SameGame"
-#~ msgstr "GNOME SameGame"
-
-#~ msgid "Current streaks"
-#~ msgstr "bandes en cours"
-
-#~ msgid "Current streaks."
-#~ msgstr "Bandes en cours."
-
-#~ msgid "Inform users of invalid moves"
-#~ msgstr "Prévenir les utilisateurs des déplacements incorrects"
-
-#~ msgid "Inform users of invalid moves."
-#~ msgstr "Prévenir les utilisateurs des déplacements incorrects"
-
-#~ msgid "Lose number"
-#~ msgstr "Nombre (perdant)"
-
-#~ msgid "Lose number."
-#~ msgstr "Nombre perdant."
-
-#~ msgid "Move cards one at a time"
-#~ msgstr "Déplacer les cartes une par une"
-
-#~ msgid "Move cards one at a time."
-#~ msgstr "Déplacer les cartes une par une"
-
-#~ msgid "Win number"
-#~ msgstr "Nombre (gagnant)"
-
-#~ msgid "Win number - streaks"
-#~ msgstr "Nombre (gagnant) - bandes"
-
-#~ msgid "Win number - streaks."
-#~ msgstr "Nombre (gagnant) - bandes"
-
-#~ msgid "Win number."
-#~ msgstr "Nombre (gagnant)."
-
-#~ msgid "Freecell #%d"
-#~ msgstr "Freecell #%d"
-
-#~ msgid "Seed value:"
-#~ msgstr "Valeur de la graine aléatoire :"
-
-#~ msgid "Sorry, this feature is not (yet) implemented."
-#~ msgstr "Désolé, cette fonctionalité n'est pas (encore) implémentée."
-
-#~ msgid "Are you sure you want to quit Freecell?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter Freecell ?"
-
-#~ msgid "Changwoo Ryu."
-#~ msgstr "Changwoo Ryu."
-
-#~ msgid "That move is invalid."
-#~ msgstr "Ce déplacement est invalide."
-
-#~ msgid "Sorry, there are no more valid moves."
-#~ msgstr "Désolé, il n'y a plus de déplacement valide."
-
-#~ msgid ""
-#~ "Congratulations.  You won.\n"
-#~ "Do you want to play again?"
-#~ msgstr ""
-#~ "Félicitations.  Vous avez gagné.\n"
-#~ "Voulez-vous rejouer ?"
-
-#~ msgid "New game with seed..."
-#~ msgstr "Nouveau jeu avec un paramètre..."
-
-#~ msgid "Start a new game with a different seed"
-#~ msgstr "Commence une nouvelle partie avec un paramètre différent"
-
-#~ msgid "Freecell Properties"
-#~ msgstr "Propriétés de Freecell"
-
-#~ msgid "Warn on invalid moves"
-#~ msgstr "Prévenir en cas de déplacement incorrect"
-
-#~ msgid "Move stacks one by one"
-#~ msgstr "Déplacer les piles une par une"
-
-#~ msgid "This session: %d%%"
-#~ msgstr "Cette session : %d%%"
-
-#~ msgid "won: %d, lost: %d"
-#~ msgstr "gagnées : %d, perdues : %d"
-
-#~ msgid "Total: %d%%"
-#~ msgstr "Total : %d%%"
-
-#~ msgid "Streaks"
-#~ msgstr "Statistiques"
-
-# , c-format
-# , c-format
-#~ msgid "wins: %d, losses: %d"
-#~ msgstr "gagnées : %d, perdues : %d"
-
-# , c-format
-# , c-format
-#~ msgid "current: %d wins"
-#~ msgstr "actuellement : %d gagnées"
-
-# , c-format
-# , c-format
-#~ msgid "current: %d losses"
-#~ msgstr "actuellement : %d perdues"
-
-#~ msgid "Select scenario:"
-#~ msgstr "Sélectionnez un scénario :"
-
-#~ msgid "Are you sure you want to quit Same GNOME?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter Same GNOME ?"
-
-#~ msgid "Marked: "
-#~ msgstr "Marqués :"
-
-#~ msgid "New _game of..."
-#~ msgstr "Nouvelle _partie de..."
-
-#~ msgid "Start a new game of a different variation"
-#~ msgstr "Commence une nouvelle partie avec une variation différente"
-
-#~ msgid "Select a new game variation"
-#~ msgstr "Choisir une nouvelle variation du jeu"
-
-#~ msgid "Not enough lines on the terminal"
-#~ msgstr "Pas assez de lignes sur le terminal"
-
-#~ msgid "What dice to roll again (<RETURN> for none)? "
-#~ msgstr "Quel dé relancer (<ENTRÉE> pour aucun) ?"
-
-#~ msgid "Where do you want to put that? "
-#~ msgstr "Où voulez-vous mettre cela ? "
-
-#~ msgid "No good! Where do you want to put that? "
-#~ msgstr "Mauvais ! Où voulez-vous mettre cela ?"
-
-# , c-format
-#~ msgid "Rolling for %s"
-#~ msgstr "Jet de dés pour %s"
-
-#~ msgid "Tali top scores"
-#~ msgstr "Meilleurs Scores à Tali"
-
-#~ msgid "Can't get at score file."
-#~ msgstr "Impossible d'atteindre le fichier des scores."
-
-#~ msgid "Hit Return"
-#~ msgstr "Appuyez sur Entrée"
-
-#~ msgid "obsolete function - delay turned off by default)"
-#~ msgstr "Fonction obsolète - le délai d'attente est désactivé par défaut)"
-
-#~ msgid "Welcome to the game of Tali"
-#~ msgstr "Bienvenue à Tali"
-
-# , c-format
-#~ msgid "How many wish to play (max of %d)? "
-#~ msgstr "Comment de joueurs (maximum %d) ? "
-
-# , c-format
-#~ msgid "What is the name of player #%d ? "
-#~ msgstr "Quel est le nom du joueur #%d ? "
-
-#~ msgid "Boo hoo... I can't play...\n"
-#~ msgstr "Bouhou... Je ne peux pas jouer...\n"
-
-# , c-format
-#~ msgid "How many computers to play (max of %d) ? "
-#~ msgstr "Combien de joueurs informatiques (maximum %d) ?"
-
-#~ msgid ""
-#~ "Well, why did you run this anyways???\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Eh, pourquoi avez-vous lancé ça, au fait ???\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "Fantastic!  %.2f!\n"
-#~ "You have reached #%d in the Top Ten.\n"
-#~ "\n"
-#~ "Another game?"
-#~ msgstr ""
-#~ "Fantastique!  %.2f!\n"
-#~ "Vous êtes classé %d° dans le Top 10.\n"
-#~ "\n"
-#~ "Recommencer?"
-
-#~ msgid ""
-#~ "Great!\n"
-#~ "You made it in %.2f.\n"
-#~ "\n"
-#~ "Another game?"
-#~ msgstr ""
-#~ "Bien !\n"
-#~ "Vous l'avez fait en  %.2f.\n"
-#~ "\n"
-#~ "Recommencer ?"
-
-#~ msgid "Mahjongg - Preferences"
-#~ msgstr "Mahjongg - Préférences"
-
-#~ msgid "Bill:%d/%d  System:%d/%d/%d  Level: %d Score:%d"
-#~ msgstr "Bill : %d/%d  Système : %d/%d/%d  Niveau : %d Score :%d"
-
-#~ msgid ""
-#~ "             The Story:\n"
-#~ "\n"
-#~ "Yet again, the fate of the world rests\n"
-#~ "in your hands!  An evil computer hacker,\n"
-#~ "known only by his handle 'Bill', has\n"
-#~ "created the ultimate computer virus.  A\n"
-#~ "virus so powerful that it has the power\n"
-#~ "to transmute an ordinary computer into\n"
-#~ "a toaster oven.  (oooh!) 'Bill' has\n"
-#~ "cloned himself into a billion-jillion\n"
-#~ "micro-Bills.  Their sole purpose is to\n"
-#~ "deliver the nefarious virus, which has\n"
-#~ "been cleverly diguised as a popular\n"
-#~ "operating system.\n"
-#~ "\n"
-#~ "As System Administrator/Exterminator,\n"
-#~ "your job is to keep Bill from succeeding\n"
-#~ "at his task."
-#~ msgstr ""
-#~ "           L'histoire :\n"
-#~ "\n"
-#~ "Encore une fois, le destin du monde repose \n"
-#~ "entre vos mains! Un diabolique pirate informatique,\n"
-#~ "connu seulement par son surnom « Bill » , a\n"
-#~ "créé le virus informatique ultime,\n"
-#~ "un virus si puissant qu'il peut transformer\n"
-#~ "un simple ordinateur en grille-pain. ( ooooh! )\n"
-#~ "« Bill » s'est lui-même cloné en des millions de milliards de micro-"
-#~ "Bills.\n"
-#~ "Leur seul but est de lacer le virus scélérat, qui s'est \n"
-#~ "intelligemment déguisé en un système d'exploitation populaire.\n"
-#~ "\n"
-#~ "En tant qu'administrateur/exterminateur système,\n"
-#~ "votre mission est d'empêcher « Bill » d'arriver à ses fins."
-
-#~ msgid ""
-#~ "             The Rules:\n"
-#~ "\n"
-#~ "xBill has been painstakingly designed and\n"
-#~ "researched in order to make it as easy to use\n"
-#~ "for the whole family as it is for little Sally.\n"
-#~ "Years - nay - days of beta testing and \n"
-#~ "consulting with the cheapest of human interface\n"
-#~ "designers have resulted in a game that is easy\n"
-#~ "to use, yet nothing at all like a Macintosh.\n"
-#~ "\n"
-#~ "I.   Whack the Bills (click)\n"
-#~ "II.  Restart the computer (click)\n"
-#~ "III. Pick up stolen OSes & return(drag)\n"
-#~ "     them to their respective computers\n"
-#~ "IV.  Drag the bucket to extinguish sparks\n"
-#~ "V.   Scoring is based on total uptime,\n"
-#~ "     with bonuses for killing Bills.\n"
-#~ "\n"
-#~ "As for the rest, you can probably figure\n"
-#~ "it out.  We did, so it can't be too hard."
-#~ msgstr ""
-#~ "             Les règles :\n"
-#~ "\n"
-#~ "Des années - euh non - des jours de tests \n"
-#~ "et de contrôles avec les designers d'interface les moins payés\n"
-#~ "ont donné vie à un jeu qui est facile\n"
-#~ "à utiliser, mais pas autant qu'un Mac.\n"
-#~ "\n"
-#~ "I. ... Shooter les Bills (clique)\n"
-#~ "II.  Redémarrer l'ordinateur (clique)\n"
-#~ "III. Attraper les système d'exploitations ( OS ) volés \n"
-#~ "et les rendre à leur ordinateur respectif.\n"
-#~ "IV. Déplacer les positions pour éteindre les étincelles\n"
-#~ "V. Le score est fonction du temps de marche des micros sans redémarrage,\n"
-#~ "avec des bonus pour la destruction des Bills.\n"
-#~ "\n"
-#~ "Et pour le reste, vous pourrez le trouver \n"
-#~ "vous-même probablement. On a bien réussi nous,\n"
-#~ "c'est donc que ce n'est pas si difficile que çà :)."
-
-#~ msgid ""
-#~ "Module xBill has caused a segmentation fault\n"
-#~ "at memory address 097E:F1A0.  Core dumped.\n"
-#~ "\n"
-#~ "    We apologize for the inconvenience."
-#~ msgstr ""
-#~ "Le module xBill a causé une erreur de segmentation\n"
-#~ "à l'adresse mémoire 097E:F1A0. Le fichier core a été généré.\n"
-#~ "\n"
-#~ "    Désolé."
-
-#~ msgid "Warp to level?"
-#~ msgstr "Aller au niveau ?"
-
-#~ msgid "Quit Game?"
-#~ msgstr "Quitter le jeu ?"
-
-#~ msgid "New Game?"
-#~ msgstr "Nouveau jeu ?"
-
-#~ msgid "Game paused.  Press Continue to continue."
-#~ msgstr "Jeu mis en pause. Cliquez sur « Valider » pour continuer."
-
-#~ msgid ""
-#~ "You earned a high score.\n"
-#~ "Enter your name:"
-#~ msgstr ""
-#~ "Vous êtes parmi les meilleurs.\n"
-#~ "Saisissez votre nom :"
-
-#~ msgid "Pause Game"
-#~ msgstr "Mettre le jeu en pause"
-
-#~ msgid "Continue"
-#~ msgstr "Continuer"
-
-#~ msgid "Warp To Level"
-#~ msgstr "Aller au niveau"
-
-#~ msgid "Story"
-#~ msgstr "Histoire"
-
-#~ msgid "Endgame"
-#~ msgstr "Fin de jeu"
-
-#~ msgid "Warp to level..."
-#~ msgstr "Aller au niveau..."
-
-#~ msgid ""
-#~ "Copyright (C) 1994, Psychosoft\n"
-#~ "Computer logos, etc., copyright their respective owners"
-#~ msgstr ""
-#~ "Copyright © 1994, Psychosoft\n"
-#~ "Les logos d'ordinateurs, etc., sont copyright de leurs propriètaires "
-#~ "respectifs"
-
-#~ msgid ""
-#~ "After Level %d:     \n"
-#~ "Your score: %d"
-#~ msgstr ""
-#~ "Après le niveau %d :     \n"
-#~ "Votre score : %d"
-
-#~ msgid "GNOME xBill Scores"
-#~ msgstr "Scores de GNOME xBill"
-
-#~ msgid "Are you sure you want to quit GNOME xBill?"
-#~ msgstr "Êtes-vous sûr de vouloir quitter GNOME xBill ?"
-
-#~ msgid "GNOME xBill"
-#~ msgstr "GNOME xBill"
-
-#~ msgid "Gnobots II"
-#~ msgstr "Gnobots II"
-
-#~ msgid "Gnome Robots II"
-#~ msgstr "Gnome Robots II"
-
-#~ msgid "GnobotsII Preferences"
-#~ msgstr "Préférences GnobotsII"
-
-#~ msgid "Gnotravex"
-#~ msgstr "Gnotravex"
-
-#~ msgid "The Same Gnome"
-#~ msgstr "Gnome-Same"
+msgstr "Enlevez les groupes de balles et essayez de nettoyer l'écran"
