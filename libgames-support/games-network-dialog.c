@@ -34,6 +34,7 @@
 #include <errno.h>
 #include <netdb.h>
 #include <gconf/gconf-client.h>
+#include "games-frame.h"
 #include "games-network.h"
 #include "games-network-dialog.h"
 
@@ -135,14 +136,23 @@ network_gui_close (void)
 void
 network_game_dialog_show (GtkWidget *parent_window)
 {
+  GtkWidget *vbox;
+  
   game_dialog = gtk_dialog_new_with_buttons (_("New Network Game"),
                     			     GTK_WINDOW(parent_window),
 				             0, NULL);
+  gtk_dialog_set_has_separator (GTK_DIALOG (game_dialog), FALSE);
+  gtk_container_set_border_width (GTK_CONTAINER (game_dialog), 5);
+  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (game_dialog)->vbox), 2);
   conf_client = gconf_client_get_default ();
 
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
+  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (game_dialog)->vbox), vbox);
+  
   /*  Create Network Status Frame. */
-  frame = gtk_frame_new (_("Network Status:"));
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (game_dialog)->vbox), frame);
+  frame = games_frame_new (_("Network Status"));
+  gtk_container_add (GTK_CONTAINER (vbox), frame);
   status_view = gtk_text_view_new ();
   gtk_text_view_set_editable (GTK_TEXT_VIEW(status_view), FALSE);
   status_buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (status_view));
@@ -159,9 +169,9 @@ network_game_dialog_show (GtkWidget *parent_window)
 
   /* Create buttons. */
   config_cmd = gtk_button_new_from_stock (GTK_STOCK_PREFERENCES);
-  connect_cmd = gtk_button_new_with_mnemonic (_("_Connect"));
+  connect_cmd = gtk_button_new_with_mnemonic (_("C_onnect"));
   cancel_cmd = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
-  start_cmd = gtk_button_new_with_mnemonic (_("_Start game"));
+  start_cmd = gtk_button_new_with_mnemonic (_("_Start Game"));
 
   gtk_dialog_add_action_widget (GTK_DIALOG(game_dialog),
                                    GTK_WIDGET(config_cmd),
@@ -247,7 +257,7 @@ close_cb (GtkWidget *widget)
 static gboolean
 config_cb (GtkWidget *widget)
 {
-  GtkWidget *label, *hbox, *ok_cmd, *cancel_cmd, *table, *frame;
+  GtkWidget *label, *hbox, *ok_cmd, *cancel_cmd, *frame, *vbox, *vbox2;
   static GtkWidget *sw;
 
   struct passwd *pwent;
@@ -258,16 +268,23 @@ config_cb (GtkWidget *widget)
     return TRUE;
   }
 
-  net_cfg_dialog = gtk_dialog_new_with_buttons (_("Network Configuration"),
+  net_cfg_dialog = gtk_dialog_new_with_buttons (_("Network Preferences"),
                                              GTK_WINDOW(game_dialog),
                                              0, NULL);
-  frame = gtk_frame_new (NULL);
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (net_cfg_dialog)->vbox), frame);
+					     
+  gtk_dialog_set_has_separator (GTK_DIALOG (net_cfg_dialog), FALSE);
+  gtk_container_set_border_width (GTK_CONTAINER (net_cfg_dialog), 5);
+  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (net_cfg_dialog)->vbox), 2);
 
-  label = gtk_label_new(_("Your playername:"));
+  vbox = gtk_vbox_new (FALSE, 18);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
+  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (net_cfg_dialog)->vbox), vbox);
+
+  label = gtk_label_new_with_mnemonic(_("_Player name:"));
 
   name_entry = gtk_entry_new ();
   gtk_entry_set_max_length(GTK_ENTRY(name_entry), 12);
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), name_entry);
 
   name = gconf_client_get_string (conf_client, KEY_NETWORK_NAME, NULL);
 
@@ -282,29 +299,45 @@ config_cb (GtkWidget *widget)
     gtk_entry_set_text (GTK_ENTRY(name_entry), name);
   }
 
-  hbox = gtk_hbox_new (FALSE, 2);
-  gtk_container_add (GTK_CONTAINER(hbox), label);
-  gtk_container_add (GTK_CONTAINER(hbox), name_entry);
-  gtk_container_add (GTK_CONTAINER(frame), hbox);
+  hbox = gtk_hbox_new (FALSE, 12);
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX(hbox), name_entry, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
+  frame = games_frame_new (_("Network Connection Method"));
+  gtk_container_add (GTK_CONTAINER (vbox), frame);
 
-  frame = gtk_frame_new (_("Network connection method"));
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (net_cfg_dialog)->vbox), frame);
-  table = gtk_table_new (3, 2, FALSE);
-  gtk_container_add (GTK_CONTAINER (frame), table);
+  vbox2 = gtk_vbox_new (FALSE, 6);
+  gtk_container_add (GTK_CONTAINER (frame), vbox2);
 
-  rbutton_a = gtk_radio_button_new_with_label (NULL, _("Gnome Games Server"));
-  gtk_table_attach (GTK_TABLE(table), rbutton_a, 1, 2, 1, 2,
-                    GTK_FILL, GTK_FILL, 2, 2);
+  rbutton_a = gtk_radio_button_new_with_label (NULL, _("GNOME games server"));
+  gtk_box_pack_start (GTK_BOX(vbox2), rbutton_a, FALSE, FALSE, 0);
+
+  server_entry = gtk_entry_new ();
+
+  hbox = gtk_hbox_new (FALSE, 12);
+  label = gtk_label_new ("    ");
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0); 
+  label = gtk_label_new_with_mnemonic (_("_Hostname:"));
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), server_entry);
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX(hbox), server_entry, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX(vbox2), hbox, FALSE, FALSE, 0);
+    
+  server = gconf_client_get_string (conf_client, KEY_NETWORK_SERVER, NULL);
+  if (server == NULL) {
+    gtk_entry_set_text (GTK_ENTRY(server_entry), game_server);
+  } else {
+    gtk_entry_set_text (GTK_ENTRY(server_entry), server);
+  }
 
   rbutton_b = gtk_radio_button_new_with_label_from_widget (
 			GTK_RADIO_BUTTON (rbutton_a),
-			_("Host Local Game"));
+			_("Host local game"));
 #ifdef NO_HOWL
   gtk_widget_set_sensitive (rbutton_b, FALSE);
 #endif
-  gtk_table_attach (GTK_TABLE(table), rbutton_b, 1, 2, 2, 3,
-                    GTK_FILL, GTK_FILL, 2, 2);
+  gtk_box_pack_start (GTK_BOX(vbox2), rbutton_b, FALSE, FALSE, 0);
   game_entry = gtk_entry_new ();
 #ifdef NO_HOWL
   gtk_widget_set_sensitive (game_entry, FALSE);
@@ -317,24 +350,26 @@ config_cb (GtkWidget *widget)
   } else {
     gtk_entry_set_text (GTK_ENTRY(game_entry), gamename);
   }
-  frame = gtk_frame_new (_("Game name:"));
+  hbox = gtk_hbox_new (FALSE, 12);
+  label = gtk_label_new ("    ");
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);  
+  label = gtk_label_new_with_mnemonic (_("_Game name:"));
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), game_entry);
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
 #ifdef NO_HOWL
-  gtk_widget_set_sensitive (frame, FALSE);
+  gtk_widget_set_sensitive (label, FALSE);
+  gtk_widget_set_sensitive (game_entry, FALSE);
 #endif
-  gtk_container_add (GTK_CONTAINER(frame), game_entry);
-  gtk_table_attach (GTK_TABLE(table), frame, 2, 3, 2, 3,
-                    GTK_FILL, GTK_FILL, 2, 2);
-
+  gtk_box_pack_start (GTK_BOX(hbox), game_entry, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX(vbox2), hbox, FALSE, FALSE, 0);
 
   rbutton_c = gtk_radio_button_new_with_label_from_widget (
                         GTK_RADIO_BUTTON (rbutton_b),
-                        _("Join Local Game"));
+                        _("Join local game"));
 #ifdef NO_HOWL
   gtk_widget_set_sensitive (rbutton_c, FALSE);
 #endif
-  gtk_table_attach (GTK_TABLE(table), rbutton_c, 1, 2, 3, 4,
-                    GTK_FILL, GTK_FILL, 2, 2);
-
+  gtk_box_pack_start (GTK_BOX(vbox2), rbutton_c, FALSE, FALSE, 0);
 
   g_signal_connect (G_OBJECT (rbutton_a), "clicked", G_CALLBACK
                     (config_server_cb), NULL);
@@ -343,23 +378,15 @@ config_cb (GtkWidget *widget)
   g_signal_connect (G_OBJECT (rbutton_c), "clicked", G_CALLBACK
                     (config_lan_join_cb), NULL);
 
-  server_entry = gtk_entry_new ();
-
-  frame = gtk_frame_new (_("Hostname:"));
-  gtk_container_add (GTK_CONTAINER(frame), server_entry);
-  gtk_table_attach (GTK_TABLE(table), frame, 2, 3, 1, 2,
-                    GTK_FILL, GTK_FILL, 2, 2);
-
-  server = gconf_client_get_string (conf_client, KEY_NETWORK_SERVER, NULL);
-  if (server == NULL) {
-    gtk_entry_set_text (GTK_ENTRY(server_entry), game_server);
-  } else {
-    gtk_entry_set_text (GTK_ENTRY(server_entry), server);
-  }
-
-  frame = gtk_frame_new (_("Local Games:"));
+  hbox = gtk_hbox_new (FALSE, 12);
+  label = gtk_label_new ("    ");
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0); 
+  label = gtk_label_new_with_mnemonic (_("_Local games:"));
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX(vbox2), hbox, FALSE, FALSE, 0);
+  
 #ifdef NO_HOWL
-  gtk_widget_set_sensitive (frame, FALSE);
+  gtk_widget_set_sensitive (label, FALSE);
 #endif
   model = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
   view = gtk_tree_view_new_with_model (GTK_TREE_MODEL(model));
@@ -368,7 +395,6 @@ config_cb (GtkWidget *widget)
 #endif
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(view), FALSE);
   rend = gtk_cell_renderer_text_new ();
-  g_object_set (rend, "weight", "bold", NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW(view),
                                               -1, NULL, rend, "text", 0, NULL);
   sw = gtk_scrolled_window_new (NULL, NULL);
@@ -377,9 +403,13 @@ config_cb (GtkWidget *widget)
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(sw),
                                  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_container_add (GTK_CONTAINER(sw), view);
-  gtk_container_add (GTK_CONTAINER(frame), sw);
-  gtk_table_attach (GTK_TABLE(table), frame, 2, 3, 3, 4,
-                    GTK_FILL, GTK_FILL, 2, 2);
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), sw);
+  
+  hbox = gtk_hbox_new (FALSE, 12);
+  label = gtk_label_new ("    ");
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX(hbox), sw, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX(vbox2), hbox, TRUE, TRUE, 0);
 
   network_mode = gconf_client_get_int (conf_client, KEY_NETWORK_MODE, NULL);
   if (network_mode == SERVER_MODE || network_mode == 0) {

@@ -21,8 +21,6 @@
 #define __GAMES_FRAME_H__
 
 
-#include <gdk/gdk.h>
-#include <gtk/gtkbin.h>
 #include <gtk/gtkframe.h>
 
 #ifdef __cplusplus
@@ -43,21 +41,23 @@ typedef struct _GamesFrameClass  GamesFrameClass;
 
 struct _GamesFrame
 {
-  GtkFrame frame;
-
-  gint indent;
+  GtkFrame parent_instance;
 };
 
 struct _GamesFrameClass
 {
   GtkFrameClass parent_class;
+
+  /* Padding for future expansion */
+  void (* _games_reserved1) (void);
+  void (* _games_reserved2) (void);
+  void (* _games_reserved3) (void);
+  void (* _games_reserved4) (void);
 };
 
 
 GType      games_frame_get_type   (void) G_GNUC_CONST;
 GtkWidget* games_frame_new        (const gchar *label);
-void       games_frame_set        (GamesFrame  *bold_frame,
-                                   gint         indent);
 void       games_frame_set_label  (GamesFrame  *frame,
                                    const gchar *label);
 
