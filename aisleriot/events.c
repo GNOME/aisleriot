@@ -165,16 +165,21 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   
   if (!(press_data->status == STATUS_CLICK && double_click)) {
     press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
-  }
+  } 
+
   if (double_click) {
-    press_data->status = STATUS_NONE;
+    press_data->status = STATUS_NONE; 
     gh_call2 (gh_eval_str ("record-move"), gh_long2scm (-1),
 	      SCM_EOL);
     if (gh_scm2bool (gh_call1 (game_data->button_double_clicked_lambda,
                                gh_long2scm (hslot->id))))
       gh_call0 (gh_eval_str ("end-move"));
-    else
+    else {
       gh_call0 (gh_eval_str ("discard-move"));
+      /* Allow for a drag on the second click if nothing else happened. */
+      if (cardid > 0)
+	press_data->status = STATUS_MAYBE_DRAG; 
+    }
     refresh_screen ();
     end_of_game_test ();
     return TRUE;
