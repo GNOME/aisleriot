@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2003-08-02 00:02+0200\n"
-"PO-Revision-Date: 2003-08-02 00:03+0200\n"
+"POT-Creation-Date: 2003-08-02 15:20+0200\n"
+"PO-Revision-Date: 2003-08-02 15:21+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -560,7 +560,7 @@ msgstr "Kortspel:"
 #: aisleriot/menu.c:92 gataxx/gataxx.c:398 glines/glines.c:807
 #: gnect/src/dialog.c:63 gnibbles/main.c:167 gnobots2/menu.c:193
 #: gnome-stones/main.c:1085 gnometris/tetris.cpp:1086 gnomine/gnomine.c:347
-#: gnotravex/gnotravex.c:1483 gnotski/gnotski.c:1140 gtali/gyahtzee.c:372
+#: gnotravex/gnotravex.c:1460 gnotski/gnotski.c:1140 gtali/gyahtzee.c:372
 #: iagno/gnothello.c:369 mahjongg/mahjongg.c:1347 same-gnome/same-gnome.c:714
 msgid "translator_credits"
 msgstr ""
@@ -732,7 +732,7 @@ msgstr "Delar ut..."
 msgid "Score:"
 msgstr "Poäng:"
 
-#: aisleriot/sol.c:433 gnomine/gnomine.c:901 gnotravex/gnotravex.c:1011
+#: aisleriot/sol.c:433 gnomine/gnomine.c:901 gnotravex/gnotravex.c:993
 #: mahjongg/mahjongg.c:2033
 msgid "Time:"
 msgstr "Tid:"
@@ -3798,24 +3798,24 @@ msgstr "Storlek på spelplanen (2-6)"
 msgid "SIZE"
 msgstr "STORLEK"
 
-#: gnotravex/gnotravex.c:720
+#: gnotravex/gnotravex.c:713
 msgid "Puzzle solved! Well done!"
 msgstr "Pusslet är löst! Bra gjort!"
 
-#: gnotravex/gnotravex.c:723
+#: gnotravex/gnotravex.c:716
 msgid "Puzzle solved!"
 msgstr "Pusslet är löst!"
 
-#: gnotravex/gnotravex.c:1131
+#: gnotravex/gnotravex.c:1113
 msgid "Game paused"
 msgstr "Spelet gör paus"
 
-#: gnotravex/gnotravex.c:1258
+#: gnotravex/gnotravex.c:1235
 #, c-format
 msgid "Playing %dx%d board"
 msgstr "Spelar %d×%d-bräde"
 
-#: gnotravex/gnotravex.c:1505
+#: gnotravex/gnotravex.c:1482
 msgid "A Tetravex clone."
 msgstr "En Tetravex-klon."
 
@@ -3829,17 +3829,12 @@ msgstr "Tetravex"
 
 #: gnotravex/gnotravex.schemas.in.h:1
 msgid ""
-"The side length of an individual game tile. The minimum is 40, the maximum "
-"is set depending on screen height. The correct way to set this is by "
-"resizing the window."
-msgstr ""
-"Sidlängden på en enstaka spelbricka. Minsta värdet är 40, största värdet "
-"ställs in beroende på skärmstorleken. Det korrekta sättet att ställa in "
-"detta är genom att ändra storlek på fönstret."
+"The height of the playing window in pixels. At minimum it should be 240."
+msgstr "Höjden på spelfönstret i bildpunkter. Den bör minst vara 240."
 
 #: gnotravex/gnotravex.schemas.in.h:2
-msgid "The size of a tile"
-msgstr "Storleken på en bricka"
+msgid "The height of the window"
+msgstr "Höjden på fönstret"
 
 #: gnotravex/gnotravex.schemas.in.h:3
 msgid "The size of the playing grid"
@@ -3852,6 +3847,14 @@ msgid ""
 msgstr ""
 "Värdet på denna nyckel används för att avgöra storleken på spelrutnätet. De "
 "giltiga värdena är 2 till och med 8, och allt annat ställs in till 3."
+
+#: gnotravex/gnotravex.schemas.in.h:5
+msgid "The width of the playing window in pixels. At minimum it should be 320."
+msgstr "Bredden på spelfönstret i bildpunkter. Den bör minst vara 320."
+
+#: gnotravex/gnotravex.schemas.in.h:6
+msgid "The width of the window"
+msgstr "Bredden på fönstret"
 
 #: gnotski/gnotski.c:98 gnotski/gnotski.c:219 gnotski/gnotski.c:331
 msgid "1"
@@ -4506,6 +4509,24 @@ msgstr "Välkommen till SameGNOME!"
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Försök tömma skärmen genom att ta bort grupper med bollar"
+
+#~ msgid "The height of the playing window in pixels."
+#~ msgstr "Höjden på spelfönstret i bildpunkter."
+
+#~ msgid "The width of the playing window in pixels."
+#~ msgstr "Bredden på spelfönstret i bildpunkter."
+
+#~ msgid ""
+#~ "The side length of an individual game tile. The minimum is 40, the "
+#~ "maximum is set depending on screen height. The correct way to set this is "
+#~ "by resizing the window."
+#~ msgstr ""
+#~ "Sidlängden på en enstaka spelbricka. Minsta värdet är 40, största värdet "
+#~ "ställs in beroende på skärmstorleken. Det korrekta sättet att ställa in "
+#~ "detta är genom att ändra storlek på fönstret."
+
+#~ msgid "The size of a tile"
+#~ msgstr "Storleken på en bricka"
 
 #~ msgid "Teleport:"
 #~ msgstr "Teleport:"
