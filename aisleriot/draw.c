@@ -50,9 +50,6 @@ int card_height;
 /* The offset of the cards within the slot. */ 
 int xoffset, yoffset;
 
-/* The slot we are high-lighting. */
-hslot_type hilite = NULL;
-
 static void calculate_card_location (hslot_type hslot)
 {
   int xofs, yofs;
@@ -149,38 +146,6 @@ void draw_cards () {
   }
 }
 
-static void draw_hilite (hslot_type hslot)
-{
-  int x, y;
-  static GdkGC *gc = NULL;
-  static GdkBitmap *stipple = NULL;
-  const char stipple_data[] = { 0x08, 0x00, 0x02, 0x00 };
-
-  if (stipple == NULL) {
-    stipple = gdk_bitmap_create_from_data (surface, stipple_data, 4, 4);
-  }
-
-  if (gc == NULL) {
-    gc = gdk_gc_new (surface);
-    gdk_gc_copy (gc, playing_area->style->black_gc);
-    gdk_gc_set_stipple (gc, stipple);
-    gdk_gc_set_fill (gc, GDK_STIPPLED);
-    gdk_gc_set_clip_mask (gc, mask);
-  }
-
-  x = hslot->pixelx;
-  y = hslot->pixely;
-
-  gdk_gc_set_clip_origin (gc, x, y);
-  gdk_draw_rectangle (surface, gc, TRUE, x, y, card_width, card_height);
-}
-
-void set_hilite (hslot_type hslot)
-{
-  hilite = hslot;
-  refresh_screen ();
-}
-
 void take_snapshot() {
   GList* slot;
   GdkPixmap *slot_pixmap;
@@ -198,9 +163,6 @@ void take_snapshot() {
 			 card_width, card_height);
     }
   draw_cards ();
-  if (click_to_move && hilite) {
-    draw_hilite (hilite);
-  } 
   gdk_window_set_back_pixmap (playing_area->window, surface, 0);
 }
 

@@ -187,9 +187,6 @@ static void clickmove_toggle_callback(GtkWidget * togglebutton, gpointer data)
   click_to_move = state;
   gconf_client_set_bool (gconf_client, "/apps/aisleriot/click_to_move", state,
 			 NULL);
-
-  if (!state)
-    set_hilite (NULL);
 }
 
 GnomeUIInfo rules_sub_menu[] = {
