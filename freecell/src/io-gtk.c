@@ -421,7 +421,7 @@ callback_new_with_seed_really (void)
   gtk_widget_show (entry);
   gtk_widget_grab_focus (entry);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_STOCK_OK);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
   response = gtk_dialog_run (GTK_DIALOG(dialog));
   gtk_widget_hide (dialog);
 
@@ -649,6 +649,12 @@ callback_about (GtkWidget *widget, GdkEvent *event)
     NULL
   };
 
+  const gchar *documenters[] = {
+	  NULL
+  };
+
+  const gchar *translator_credits = _("translator_credits");
+
 #ifndef ELEMENTS  
 #define ELEMENTS(x) (sizeof(x) / sizeof(x[0]))
 #endif /* ELEMENTS */
@@ -658,12 +664,6 @@ callback_about (GtkWidget *widget, GdkEvent *event)
     for (i = 0; i < (ELEMENTS(authors) - 1); i++)
       authors[i] = _(authors[i]);
   }
-
-  const gchar *documenters[] = {
-	  NULL
-  };
-
-  const gchar *translator_credits = _("translator_credits");
 
   {
 	  char *filename = NULL;
