@@ -28,8 +28,6 @@
 
 /* IO interface.  */
 
-extern GtkWidget *main_window;
-
 void io_gtk_init (void);
 void io_gtk_loop (void);
 
