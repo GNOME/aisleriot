@@ -144,7 +144,7 @@ network_game_dialog_show (GtkWidget *parent_window)
 
   /* Create buttons. */
   connect_cmd = gtk_button_new_with_mnemonic (_("_Connect"));
-  cancel_cmd = gtk_button_new_with_mnemonic (_("_Cancel"));
+  cancel_cmd = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
   start_cmd = gtk_button_new_with_mnemonic (_("_Start game"));
 
   gtk_dialog_add_action_widget (GTK_DIALOG(game_dialog),
