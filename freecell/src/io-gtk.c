@@ -327,7 +327,7 @@ callback_restart (GtkWidget *widget, GdkEvent *event)
 		      GTK_DIALOG_MODAL,
 		      GTK_MESSAGE_QUESTION,
 		      GTK_BUTTONS_YES_NO,
-		      _("Exit this game?"),
+		      _("Are you sure you want to start a new game?"),
 		      NULL);
 
       gtk_dialog_set_default_response (GTK_DIALOG (mb),
@@ -459,7 +459,7 @@ callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
 		      GTK_DIALOG_MODAL,
 		      GTK_MESSAGE_QUESTION,
 		      GTK_BUTTONS_YES_NO,
-		      _("Exit this game?"),
+		      _("Are you sure you want to start a new game?"),
 		      NULL);
 
       gtk_dialog_set_default_response (GTK_DIALOG (mb),
@@ -526,7 +526,7 @@ callback_new (GtkWidget *widget, GdkEvent *event)
 		      GTK_DIALOG_MODAL,
 		      GTK_MESSAGE_QUESTION,
 		      GTK_BUTTONS_YES_NO,
-		      _("Exit this game?"),
+		      _("Are you sure you want to start a new game?"),
 		      NULL);
 
       gtk_dialog_set_default_response (GTK_DIALOG (mb),
@@ -616,7 +616,7 @@ callback_exit (GtkWidget *widget, GdkEvent *event)
 		      GTK_DIALOG_MODAL,
 		      GTK_MESSAGE_QUESTION,
 		      GTK_BUTTONS_NONE,
-		      _("Really exit GNOME Freecell?"),
+		      _("Are you sure you want to quit Freecell?"),
 		      NULL);
       gtk_dialog_add_buttons (GTK_DIALOG (mb),
 			      GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
