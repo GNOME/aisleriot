@@ -3,12 +3,12 @@
 %define rel      1
 %define prefix   /usr
 
-Summary: GNOME games
+Summary: GNOME games.
 Name: gnome-games
 Version: %ver
 Release: %rel
 Copyright: LGPL
-Group: X11/Libraries
+Group: System Environment/Libraries
 Source: ftp://ftp.gnome.org/pub/gnome-games-%{PACKAGE_VERSION}.tar.gz
 BuildRoot: /var/tmp/gnome-games-%{PACKAGE_VERSION}-root
 Obsoletes: gnome
@@ -17,21 +17,22 @@ URL: http://www.gnome.org
 Docdir: %{prefix}/doc
 
 %description
-GNOME games.
+GNOME is the GNU Network Object Model Environment. That's a fancy
+name, but really GNOME is a nice GUI desktop environment.
+Its powerful, friendly and easy-to-configure interface makes
+using your computer easy.
 
-GNOME is the GNU Network Object Model Environment.  That's a fancy
-name but really GNOME is a nice GUI desktop environment.  It makes
-using your computer easy, powerful, and easy to configure.
+This package installs some GNOME games on your system,
+such as gnothello, solitaire, tetris and others.
 
 %package devel
-Summary: GNOME games development libs
-Group: X11/Libraries
+Summary: GNOME games development libraries.
+Group: Development/Libraries
 Requires: gnome-games
 
 %description devel
-GNOME games development libs.
-
-Right now this is just stuff to develop care games.  I think.
+This packages installs the libraries and files needed
+to develop some GNOME games.
 
 %changelog
 
