@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 1.4.0.3\n"
-"POT-Creation-Date: 2002-12-15 16:46+0100\n"
-"PO-Revision-Date: 2002-12-15 16:46+0100\n"
+"POT-Creation-Date: 2002-12-27 16:30+0100\n"
+"PO-Revision-Date: 2002-12-27 16:30+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -593,7 +593,7 @@ msgstr ""
 "Kabale kan ikke indlæse filen:\n"
 "%s\n"
 "\n"
-"Tjek venligst din Kabale-installation."
+"Kontrollér installationen af Kabale."
 
 #: aisleriot/sol.c:208 aisleriot/sol.c:226
 msgid "Help"
@@ -1297,7 +1297,7 @@ msgstr "Hurtige træk (halverer maskintiden)"
 msgid "Dark"
 msgstr "Sort"
 
-#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:760
+#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:795
 #: gtali/yahtzee.c:66 iagno/properties.c:497 iagno/properties.c:549
 msgid "Human"
 msgstr "Menneske"
@@ -1353,7 +1353,7 @@ msgstr ""
 "Kunne ikke finde billedfilen:\n"
 "%s\n"
 "\n"
-"Tjek venligst din installation af Linjer."
+"Kontrollér installationen af Linjer."
 
 #: glines/glines.c:150
 msgid "Match five balls of the same color in a row to score!"
@@ -1465,11 +1465,11 @@ msgstr "Niveau for spiller en"
 msgid "Level of Player Two"
 msgstr "Niveau for spiller to"
 
-#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:960
+#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:995
 msgid "Move left"
 msgstr "Træk til venstre"
 
-#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:968
+#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:1003
 msgid "Move right"
 msgstr "Træk til højre"
 
@@ -1702,17 +1702,31 @@ msgstr "Fejlsøgningsniveau (4 for tilfældighedsfrø)"
 msgid "%s: no themes available\n"
 msgstr "%s: ingen temaer tilgængelige\n"
 
-#: gnect/src/prefs.c:330
+#: gnect/src/prefs.c:281 mahjongg/mahjongg.c:2024
+#, c-format
+msgid "There was an error accessing GConf: %s"
+msgstr "Der opstod en fejl under tilgang til GConf: %s"
+
+#: gnect/src/prefs.c:292 mahjongg/mahjongg.c:2035
+msgid ""
+"The default configuration values could not be retrieved correctly. Please "
+"check your GConf configuration, specifically that the schemas are installed "
+"correctly"
+msgstr ""
+"Standardkonfigurationsværdierne kunne ikke hentes korrekt. Kontrollér din "
+"GConf-installering, specifikt om skemaerne er korrekt installeret."
+
+#: gnect/src/prefs.c:365
 #, c-format
 msgid "Player 1 : %s"
 msgstr "Spiller 1: %s"
 
-#: gnect/src/prefs.c:331
+#: gnect/src/prefs.c:366
 #, c-format
 msgid "Player 2 : %s"
 msgstr "Spiller 2: %s"
 
-#: gnect/src/prefs.c:354
+#: gnect/src/prefs.c:389
 msgid ""
 "Applying this change to Player Selection\n"
 "will end the current game"
@@ -1720,99 +1734,99 @@ msgstr ""
 "Udførelse af denne ændring til udvalg af spillere\n"
 "vil afslutte det nuværende spil"
 
-#: gnect/src/prefs.c:603
+#: gnect/src/prefs.c:638
 msgid "Error loading theme"
 msgstr "Fejl ved indlæsning af tema"
 
-#: gnect/src/prefs.c:763
+#: gnect/src/prefs.c:798
 msgid "Non-Velena / Simple"
 msgstr "Ikke-Velena/simpel"
 
-#: gnect/src/prefs.c:766
+#: gnect/src/prefs.c:801
 msgid "Velena / Weak"
 msgstr "Velena/svag"
 
-#: gnect/src/prefs.c:769
+#: gnect/src/prefs.c:804
 msgid "Velena / Medium"
 msgstr "Velena/mellem"
 
-#: gnect/src/prefs.c:772
+#: gnect/src/prefs.c:807
 msgid "Velena / Strong"
 msgstr "Velena/stærk"
 
-#: gnect/src/prefs.c:785
+#: gnect/src/prefs.c:820
 msgid "Always Player 1"
 msgstr "Altid spiller 1"
 
-#: gnect/src/prefs.c:788
+#: gnect/src/prefs.c:823
 msgid "Always Player 2"
 msgstr "Altid spiller 1"
 
-#: gnect/src/prefs.c:791
+#: gnect/src/prefs.c:826
 msgid "Take turns"
 msgstr "Foretag træk"
 
-#: gnect/src/prefs.c:816
+#: gnect/src/prefs.c:851
 msgid "Gnect Preferences"
 msgstr "Indstillinger for Gnect"
 
-#: gnect/src/prefs.c:896
+#: gnect/src/prefs.c:931
 msgid "Who starts?"
 msgstr "Hvem starter?"
 
-#: gnect/src/prefs.c:914
+#: gnect/src/prefs.c:949
 msgid "Player Selection"
 msgstr "Spillervalg"
 
-#: gnect/src/prefs.c:932
+#: gnect/src/prefs.c:967
 msgid "Theme selection:"
 msgstr "Temavalg:"
 
 #. keyboard
-#: gnect/src/prefs.c:949
+#: gnect/src/prefs.c:984
 msgid "Keyboard control:"
 msgstr "Tastaturkontrol:"
 
 # RETMIG: rigtigt?
-#: gnect/src/prefs.c:976
+#: gnect/src/prefs.c:1011
 msgid "Drop counter"
 msgstr "Slip mønt"
 
-#: gnect/src/prefs.c:1017
+#: gnect/src/prefs.c:1052
 msgid "Animation:"
 msgstr "Animering:"
 
-#: gnect/src/prefs.c:1022
+#: gnect/src/prefs.c:1057
 msgid "Yes please!"
 msgstr "Ja!"
 
 #. sound
-#: gnect/src/prefs.c:1033
+#: gnect/src/prefs.c:1068
 msgid "Sound type:"
 msgstr "Lydtype:"
 
-#: gnect/src/prefs.c:1038
+#: gnect/src/prefs.c:1073
 msgid "Speaker beep"
 msgstr "Højtalerbip"
 
-#: gnect/src/prefs.c:1043
+#: gnect/src/prefs.c:1078
 msgid "GNOME sound"
 msgstr "Gnome-lyd"
 
-#: gnect/src/prefs.c:1046
+#: gnect/src/prefs.c:1081
 msgid "This can be set up using the GNOME Control Center"
 msgstr "Dette kan indstilles ved hjælp af Gnomes kontrolcenter"
 
 #. verify
-#: gnect/src/prefs.c:1056
+#: gnect/src/prefs.c:1091
 msgid "If stopping an unfinished game:"
 msgstr "Ved standsning af et uafsluttet spil:"
 
-#: gnect/src/prefs.c:1061
+#: gnect/src/prefs.c:1096
 msgid "Ask me first"
 msgstr "Spørg mig først"
 
-#: gnect/src/prefs.c:1065
+#: gnect/src/prefs.c:1100
 msgid "Appearance and Behaviour"
 msgstr "Udseende og opførsel"
 
@@ -1875,7 +1889,7 @@ msgstr ""
 "Kunne ikke finde billedfilen:\n"
 "%s\n"
 "\n"
-"Tjek venligst din installation af Orme."
+"Kontrollér installationen af Orme."
 
 #: gnibbles/gnibbles.c:134
 #, c-format
@@ -1888,7 +1902,7 @@ msgstr ""
 "Kunne ikke finde billedfilen:\n"
 "%s\n"
 "\n"
-"Tjek venligst din installation af Orme."
+"Kontrollér installationen af Orme."
 
 #: gnibbles/gnibbles.c:169
 #, c-format
@@ -1901,7 +1915,7 @@ msgstr ""
 "Kunne ikke indlæse banefilen:\n"
 "%s\n"
 "\n"
-"Tjek venligst din installation af Orme."
+"Kontrollér installationen af Orme."
 
 #: gnibbles/gnibbles.desktop.in.h:1 gnibbles/gnibbles.soundlist.in.h:6
 #: gnibbles/main.c:219
@@ -2746,7 +2760,7 @@ msgstr ""
 "Kunne ikke indlæse billedfilen:\n"
 "%s\n"
 "\n"
-"Tjek venligst din gnome-games-installation."
+"Kontroller installationen af gnome-games."
 
 #: gnometris/tetris.cpp:535
 msgid "Gnometris preferences"
@@ -3704,20 +3718,6 @@ msgstr "Kunne ikke finde filen %s"
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Desværre, jeg kan ikke finde en brugbar konfiguration."
 
-#: mahjongg/mahjongg.c:2024
-#, c-format
-msgid "There was an error accessing GConf: %s"
-msgstr "Der opstod en fejl under tilgang til GConf: %s"
-
-#: mahjongg/mahjongg.c:2035
-msgid ""
-"The default configuration values could not be retrieved correctly. Please "
-"check your GConf configuration, specifically that the schemas are installed "
-"correctly"
-msgstr ""
-"Standardkonfigurationsværdierne kunne ikke hentes korrekt. Kontrollér din "
-"GConf-installering, specifikt om skemaerne er korrekt installeret."
-
 #: mahjongg/mahjongg.c:2077
 msgid "Tiles Left: "
 msgstr "Brikker tilbage: "
@@ -3752,12 +3752,12 @@ msgid ""
 "Could not find the theme:\n"
 "%s\n"
 "\n"
-"Please check you Same GNOME installation."
+"Please check your Same GNOME installation."
 msgstr ""
 "Kunne ikke finde temaet:\n"
 "%s\n"
 "\n"
-"Tjek venligst din Samspil-installation."
+"Kontrollér installationen af Samspil."
 
 #: same-gnome/same-gnome.c:434
 #, c-format
@@ -3770,7 +3770,7 @@ msgstr ""
 "Kunne ikke indlæse billedfilen:\n"
 "%s\n"
 "\n"
-"Tjek venligst din Samspil-installation."
+"Kontrollér installationen af Samspil."
 
 #: same-gnome/same-gnome.c:579
 msgid "Select scenario:"
