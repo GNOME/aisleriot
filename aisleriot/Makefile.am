@@ -77,6 +77,7 @@ types_DATA  = 		\
 	thirteen.scm	\
 	thumb_and_pouch.scm \
 	union_square.scm \
+	valentine.scm	\
 	westhaven.scm	\
 	yukon.scm	\
 	zebra.scm

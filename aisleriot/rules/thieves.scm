@@ -84,6 +84,7 @@
 
 (define (button-pressed slot-id card-list) 
   (and (< slot-id 7)
+       (not (empty-slot? slot-id))
        (= (length card-list) 1)))
 
 (define (button-released start-slot card-list end-slot) 
@@ -99,7 +100,8 @@
       (if (empty-slot? slot-id)
 	  #f
 	  (add-card! 8 (flip-card (remove-card 7))))
-      (if (< slot-id 7)
+      (if (and (< slot-id 7)
+	       (not (empty-slot? slot-id)))
 	  (if (values-match? (get-top-card slot-id) (get-top-card 8))
               (begin
 		(add-to-score! (score-for (get-value (get-top-card slot-id))))

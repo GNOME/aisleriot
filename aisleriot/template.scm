@@ -1,5 +1,5 @@
 ; AisleRiot -
-; Copyright (C) 
+; Copyright (C)
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -17,7 +17,8 @@
 ; USA
 
 (define (new-game)
-  (initialize-playing-area))
+  (initialize-playing-area)
+)
 
 (define (button-pressed slot-id card-list)
   #f)
