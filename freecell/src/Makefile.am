@@ -5,7 +5,7 @@ card-image.c card-draw.c \
 score.c score-dialog.c option.c option-dialog.c
 noinst_HEADERS= card.h game.h io-gtk.h freecell.h \
 card-image.h card-draw.h \
-score.h score-dialog.h option.h option-dialog.h
+score.h score-dialog.h option.h option-dialog.h menu.h
 
 datadir = $(prefix)/@DATADIRNAME@
 localedir = $(datadir)/locale
