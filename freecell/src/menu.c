@@ -103,14 +103,6 @@ GnomeUIInfo main_toolbarinfo[] =
   GNOMEUIINFO_ITEM_STOCK(N_("Undo"), N_("Undo the last move"),
 			 callback_undo, GTK_STOCK_UNDO),
 
-  GNOMEUIINFO_SEPARATOR,
-
-  GNOMEUIINFO_ITEM_STOCK(N_("Scores"), N_("Scores"),
-		  callback_score, GTK_STOCK_INDEX),
-
-  GNOMEUIINFO_ITEM_STOCK(N_("Preferences"), N_("Configure Freecell"),
-			 callback_option, GTK_STOCK_PREFERENCES),
-
   GNOMEUIINFO_END
 };
 
