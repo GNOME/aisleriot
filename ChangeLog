@@ -1,3 +1,22 @@
+2002-08-02  Ross Burton <ross@burtonini.com>
+
+	* po/POTFILES.in: Added the GConf schema files so they can be
+	translated.
+
+	* freecell/src/freecell.schemas.in, gataxx/gataxx.schemas.in,
+	gnect/data/gnect.schemas.in, gnometris/gnometris.schemas.in,
+	gnomine/gnomine.schemas.in, gtali/gtali.schemas.in,
+	iagno/iagno.schemas.in, mahjongg/mahjongg.schemas.in,
+	same-gnome/same-gnome.schemas.in: Rename all .schema files to
+	.schema.in so that the translators can have their wicked way.
+
+	* freecell/src/Makefile.am, gataxx/Makefile.am,
+	gnect/data/Makefile.am, gnometris/Makefile.am,
+	gnomine/Makefile.am, gtali/Makefile.am, iagno/Makefile.am,
+	mahjongg/Makefile.am, same-gnome/Makefile.am: Do the secret mojo
+	correctly to get translated .schema files.  All in all this fixes
+	#89366.
+
 2002-07-21  Ross Burton <ross@burtonini.com>
 
 	* README: Added a README contributed by Fernando Herrera
