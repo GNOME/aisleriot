@@ -3,8 +3,7 @@ AC_INIT(gnomine)
 AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE(gnome-games, 1.90.0)
 AM_MAINTAINER_MODE
-AM_ACLOCAL_INCLUDE(macros)
-dnl GNOME_INIT
+
 
 SCROLLKEEPER_REQUIRED=0.1.4
 AC_SUBST(SCROLLKEEPER_REQUIRED)
@@ -12,36 +11,19 @@ AC_SUBST(SCROLLKEEPER_REQUIRED)
 AC_ISC_POSIX
 AC_PROG_CC
 AC_STDC_HEADERS
-AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
 
+## FIXME: get this to work with autoconf 1.5 (complains about AC_REQUIRE)
 ## failure of 'AC_PRG_CXX' causes automake to abort
 # see if a C++ compiler exists and works
-AC_REQUIRE([AC_PROG_CXX])dnl
-if test "x$ac_cv_prog_cxx_works" = xno; then
-  AC_MSG_WARN(ifelse([$1], , "No C++ compiler", [$1]))
-fi
-AM_CONDITIONAL(CXX_PRESENT, test "x$ac_cv_prog_cxx_works" != xno)
+dnl AC_REQUIRE([AC_PROG_CXX])dnl
+dnl if test "x$ac_cv_prog_cxx_works" = xno; then
+dnl  AC_MSG_WARN(ifelse([$1], , "No C++ compiler", [$1]))
+dnl fi
+dnl AM_CONDITIONAL(CXX_PRESENT, test "x$ac_cv_prog_cxx_works" != xno)
 
-## this should come after `AC_PROG_CC'
-dnl GNOME_X_CHECKS
-GNOME_CHECK_GUILE
-
-dnl Check for new enough gnome-libs
-dnl CFLAGS_save=$CFLAGS
-dnl LIBS_save=$LIBS
-dnl CFLAGS=`gnome-config --cflags gnomeui`
-dnl LIBS=`gnome-config --libs gnomeui`
-
-dnl AC_CHECK_LIB(gnomeui, gnome_window_icon_set_default_from_file, ,[
-dnl AC_MSG_ERROR(gnome-libs 1.0.59 or higher is required.)])
-
-dnl CFLAGS=$CFLAGS_save
-dnl LIBS=$LIBS_save
-
-dnl AM_PATH_GDK_PIXBUF(0.9.0, ,AC_MSG_ERROR([Need gdk-pixbuf-0.9.0 or later!]))
-
-dnl CFLAGS="`gnome-config --cflags gdk_pixbuf`${CFLAGS}"
+## FIXME: Guile should install a macro to aclocal/gnome2-macros?
+dnl GNOME_CHECK_GUILE
 
 LIBGNOMEUI_REQUIRED=1.105.0
 LIBGNOME_REQUIRED=1.105.0
@@ -82,19 +64,8 @@ fi
 AM_CONDITIONAL(HAVE_JW, test "x$HAVE_JW" = "xyes")
 AC_SUBST(HAVE_JW)
 
-## gnomine checks
-oLIBS="$LIBS"
-LIBS="$LIBS $GTK_LIBS"
-AC_CHECK_FUNCS(gtk_spin_button_set_snap_to_ticks)
-LIBS="$oLIBS"
-
 AC_CHECK_FUNCS(rename)
 
-dnl
-dnl ScottFree check
-dnl
-ZVT_LIBS=`$GNOME_CONFIG --libs zvt`
-AC_SUBST(ZVT_LIBS)
 
 AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${prefix}/share/pixmaps")
 
@@ -102,12 +73,16 @@ AC_OUTPUT([
 gnome-games.spec
 Makefile
 po/Makefile.in
-macros/Makefile
-dnl intl/Makefile
 idl/Makefile
 gnomine/Makefile
 gnomine/help/Makefile
 gnomine/help/C/Makefile
+gnome-stones/Makefile
+gnome-stones/graphics/Makefile
+gnome-stones/objects/Makefile
+gnome-stones/help/Makefile
+gnome-stones/help/C/Makefile
+gnome-stones/help/it/Makefile
 same-gnome/Makefile
 same-gnome/help/Makefile
 same-gnome/help/C/Makefile
@@ -117,20 +92,6 @@ mahjongg/Makefile
 mahjongg/help/Makefile
 mahjongg/help/C/Makefile
 mahjongg/help/it/Makefile
-aisleriot/Makefile
-aisleriot/docs/Makefile
-aisleriot/docs/C/Makefile
-aisleriot/docs/it/Makefile
-aisleriot/pixmaps/Makefile
-dnl freecell/Makefile
-dnl freecell/src/Makefile
-dnl freecell/gdk-card-image/Makefile
-dnl gnome-stones/Makefile
-dnl gnome-stones/graphics/Makefile
-dnl gnome-stones/objects/Makefile
-dnl gnome-stones/help/Makefile
-dnl gnome-stones/help/C/Makefile
-dnl gnome-stones/help/it/Makefile
 gtali/Makefile
 gtali/pix/Makefile
 gtali/help/Makefile
@@ -158,18 +119,28 @@ gnotravex/help/Makefile
 gnotravex/help/C/Makefile
 gnotravex/help/es/Makefile
 gnotski/Makefile
-dnl gnometris/Makefile 
-dnl gnometris/pix/Makefile
 gnibbles/Makefile
 gnibbles/help/Makefile
 gnibbles/help/C/Makefile
 gnibbles/sounds/Makefile
 glines/Makefile
 omf-install/Makefile 
+])
+dnl freecell/Makefile
+dnl freecell/src/Makefile
+dnl freecell/gdk-card-image/Makefile
+dnl gnometris/Makefile 
+dnl gnometris/pix/Makefile
 dnl xbill/Makefile
 dnl xbill/pixmaps/Makefile
 dnl xbill/cursors/Makefile
-])
+dnl aisleriot/Makefile
+dnl aisleriot/docs/Makefile
+dnl aisleriot/docs/C/Makefile
+dnl aisleriot/docs/it/Makefile
+dnl aisleriot/pixmaps/Makefile
+
+
 ## iagno2/Makefile
 ## iagno2/reversi-iagno2/Makefile
 ## iagno2/plugins/Makefile
