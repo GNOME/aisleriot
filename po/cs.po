@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-24 04:18+0100\n"
-"PO-Revision-Date: 2004-01-25 16:22+0100\n"
+"POT-Creation-Date: 2004-01-30 03:48+0100\n"
+"PO-Revision-Date: 2004-01-30 12:21+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,14 @@ msgstr "Zkuste znovu naaranžovat karty"
 msgid "an empty foundation pile"
 msgstr "prázdný základní balík"
 
-#: aisleriot/aisleriot.schemas.in.h:1 blackjack/data/blackjack.schemas.in.h:1
+#: aisleriot/aisleriot.schemas.in.h:1
+msgid ""
+"A list of strings that come in the form of a quintuple: name, wins, total "
+"games played, best time (in seconds) and worst time (also in seconds). "
+"Unplayed games do not need to be represented."
+msgstr "Seznam řetězců ve tvaru pětic: název, výher, celkem hraných her, nejlepší čas (v sekundách) a nejhorší čas (také v sekundách). Nehrané hry nemusí být reprezentovány."
+
+#: aisleriot/aisleriot.schemas.in.h:2 blackjack/data/blackjack.schemas.in.h:1
 msgid ""
 "A string containing a list of files to use to describe the cards. The format "
 "is obscure and defined by the gdk-card-image library"
@@ -107,23 +114,27 @@ msgstr ""
 "Řetězec obsahující seznam souborů, které použít pro popsání karet. Formát je "
 "obskurní a definovaný knihovnou gdk-card-image"
 
-#: aisleriot/aisleriot.schemas.in.h:2
+#: aisleriot/aisleriot.schemas.in.h:3
+msgid "Statistics of games played"
+msgstr "Statistika hraných her"
+
+#: aisleriot/aisleriot.schemas.in.h:4
 msgid "The game file to use"
 msgstr "Soubor hry, který používat"
 
-#: aisleriot/aisleriot.schemas.in.h:3
+#: aisleriot/aisleriot.schemas.in.h:5
 msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "Název souboru scheme obsahujícího hru solitaire, kterou hrát."
 
-#: aisleriot/aisleriot.schemas.in.h:4 blackjack/data/blackjack.schemas.in.h:10
+#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:10
 msgid "What card style to use"
 msgstr "Který styl karet používat"
 
-#: aisleriot/aisleriot.schemas.in.h:5 blackjack/data/blackjack.schemas.in.h:11
+#: aisleriot/aisleriot.schemas.in.h:7 blackjack/data/blackjack.schemas.in.h:11
 msgid "Whether or not to show the toolbar"
 msgstr "Jestli zobrazovat lištu nástrojů"
 
-#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:12
+#: aisleriot/aisleriot.schemas.in.h:8 blackjack/data/blackjack.schemas.in.h:12
 msgid "Whether or not to show the toolbar."
 msgstr "Jestli zobrazovat lištu nástrojů."
 
@@ -319,7 +330,7 @@ msgstr "Konec hry."
 msgid "New Game"
 msgstr "Nová hra"
 
-#: aisleriot/dialog.c:146 mahjongg/mahjongg.c:1402
+#: aisleriot/dialog.c:146 mahjongg/mahjongg.c:1861
 msgid "Select Game"
 msgstr "Vybrat hru"
 
@@ -554,32 +565,32 @@ msgstr ""
 "Snažte se umístit barvy v pořadí, které nejpřirozeněji odpovídá aktuálnímu "
 "rozložení."
 
-#: aisleriot/menu.c:73 gnome-stones/main.c:1077 gnomine/gnomine.c:374
-#: mahjongg/mahjongg.c:1163
+#: aisleriot/menu.c:76 gnome-stones/main.c:1077 gnomine/gnomine.c:374
+#: mahjongg/mahjongg.c:1622
 msgid "Main game:"
 msgstr "Hlavní hra:"
 
-#: aisleriot/menu.c:78
+#: aisleriot/menu.c:81
 msgid "Card games:"
 msgstr "Karetní hry:"
 
 #. Translator credits
-#: aisleriot/menu.c:93 gataxx/gataxx.c:398 glines/glines.c:879
+#: aisleriot/menu.c:96 gataxx/gataxx.c:398 glines/glines.c:879
 #: gnect/src/main.c:814 gnibbles/main.c:181 gnobots2/menu.c:194
-#: gnome-stones/main.c:1088 gnometris/tetris.cpp:1110 gnomine/gnomine.c:387
+#: gnome-stones/main.c:1088 gnometris/tetris.cpp:1112 gnomine/gnomine.c:387
 #: gnotravex/gnotravex.c:1460 gnotski/gnotski.c:1137 gtali/gyahtzee.c:390
-#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1180 same-gnome/same-gnome.c:709
+#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1639 same-gnome/same-gnome.c:709
 msgid "translator_credits"
 msgstr ""
 "Jirka Lébl\n"
 "Michal Bukovjan\n"
 "Miloslav Trmač"
 
-#: aisleriot/menu.c:114
+#: aisleriot/menu.c:117
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
-#: aisleriot/menu.c:117
+#: aisleriot/menu.c:120
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -587,90 +598,90 @@ msgstr ""
 "AisleRiot poskytuje na pravidlech založený engine pro karetní hry typu "
 "Solitaire, který umožňuje hrát mnoho různých her."
 
-#: aisleriot/menu.c:178
+#: aisleriot/menu.c:181
 msgid "Game _options..."
 msgstr "M_ožnosti hry..."
 
-#: aisleriot/menu.c:179
+#: aisleriot/menu.c:182
 msgid "Modify the options for this game"
 msgstr "Upravit možnosti pro tuto hru"
 
-#: aisleriot/menu.c:185 blackjack/src/menu.cpp:146 gnect/src/main.c:1166
-#: mahjongg/mahjongg.c:355
+#: aisleriot/menu.c:188 blackjack/src/menu.cpp:146 gnect/src/main.c:1166
+#: mahjongg/mahjongg.c:814
 msgid "_Toolbar"
 msgstr "_Lišta nástrojů"
 
-#: aisleriot/menu.c:185 blackjack/src/menu.cpp:147 mahjongg/mahjongg.c:356
+#: aisleriot/menu.c:188 blackjack/src/menu.cpp:147 mahjongg/mahjongg.c:815
 msgid "Show or hide the toolbar"
 msgstr "Zobrazit nebo skrýt lištu nástrojů"
 
-#: aisleriot/menu.c:188
+#: aisleriot/menu.c:191
 msgid "_Cards..."
 msgstr "_Karty..."
 
-#: aisleriot/menu.c:188
+#: aisleriot/menu.c:191
 msgid "Change the appearance of the cards"
 msgstr "Změnit vzhled karet"
 
-#: aisleriot/menu.c:208
+#: aisleriot/menu.c:211
 msgid "_Select..."
 msgstr "_Vybrat..."
 
-#: aisleriot/menu.c:208 aisleriot/menu.c:255
+#: aisleriot/menu.c:211 aisleriot/menu.c:258
 msgid "Select a different game"
 msgstr "Vybrat jinou hru"
 
-#: aisleriot/menu.c:210
+#: aisleriot/menu.c:213
 msgid "S_tatistics..."
 msgstr "_Statistiky..."
 
-#: aisleriot/menu.c:210
+#: aisleriot/menu.c:213
 msgid "Get statistics on the current game"
 msgstr "Získat statistiky o aktuální hře"
 
-#: aisleriot/menu.c:249 blackjack/src/menu.cpp:194 gnect/src/main.c:1190
-#: mahjongg/mahjongg.c:380
+#: aisleriot/menu.c:252 blackjack/src/menu.cpp:194 gnect/src/main.c:1190
+#: mahjongg/mahjongg.c:839
 msgid "New"
 msgstr "Nová hra"
 
-#: aisleriot/menu.c:249 gnect/src/main.c:1191
+#: aisleriot/menu.c:252 gnect/src/main.c:1191
 msgid "Start a new game"
 msgstr "Začít novou hru"
 
-#: aisleriot/menu.c:252 blackjack/src/menu.cpp:197 mahjongg/mahjongg.c:384
+#: aisleriot/menu.c:255 blackjack/src/menu.cpp:197 mahjongg/mahjongg.c:843
 msgid "Restart"
 msgstr "Začít znovu"
 
-#: aisleriot/menu.c:252
+#: aisleriot/menu.c:255
 msgid "Restart the game"
 msgstr "Začít hru znovu"
 
-#: aisleriot/menu.c:255
+#: aisleriot/menu.c:258
 msgid "Select"
 msgstr "Vybrat"
 
-#: aisleriot/menu.c:260 gnect/src/main.c:1193 mahjongg/mahjongg.c:396
+#: aisleriot/menu.c:263 gnect/src/main.c:1193 mahjongg/mahjongg.c:855
 msgid "Undo"
 msgstr "Zpět"
 
-#: aisleriot/menu.c:260 gnect/src/main.c:1193
+#: aisleriot/menu.c:263 gnect/src/main.c:1193
 msgid "Undo the last move"
 msgstr "Vrátit poslední tah"
 
-#: aisleriot/menu.c:263 mahjongg/mahjongg.c:400
+#: aisleriot/menu.c:266 mahjongg/mahjongg.c:859
 msgid "Redo"
 msgstr "Znovu"
 
-#: aisleriot/menu.c:263
+#: aisleriot/menu.c:266
 msgid "Redo the undone move"
 msgstr "Zopakovat vrácený tah"
 
-#: aisleriot/menu.c:266 blackjack/src/menu.cpp:201 gnect/src/main.c:1194
-#: mahjongg/mahjongg.c:402
+#: aisleriot/menu.c:269 blackjack/src/menu.cpp:201 gnect/src/main.c:1194
+#: mahjongg/mahjongg.c:861
 msgid "Hint"
 msgstr "Rada"
 
-#: aisleriot/menu.c:266 gnect/src/main.c:1194
+#: aisleriot/menu.c:269 gnect/src/main.c:1194
 msgid "Get a hint for your next move"
 msgstr "Získat radu pro váš další tah"
 
@@ -711,12 +722,12 @@ msgstr "Přesunout koš na rezervní místo"
 msgid "empty foundation"
 msgstr "prázdný základ"
 
-#: aisleriot/sol.c:132
+#: aisleriot/sol.c:133
 #, c-format
 msgid "AisleRiot: %s (%d)"
 msgstr "AisleRiot: %s (%d)"
 
-#: aisleriot/sol.c:159
+#: aisleriot/sol.c:160
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -729,30 +740,30 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím svou instalaci této hry"
 
-#: aisleriot/sol.c:217 aisleriot/sol.c:237
+#: aisleriot/sol.c:226 aisleriot/sol.c:246
 msgid "Help"
 msgstr "Nápověda"
 
-#: aisleriot/sol.c:237 aisleriot/sol.c:360
+#: aisleriot/sol.c:246 aisleriot/sol.c:384
 msgid "Aisleriot"
 msgstr "AisleRiot"
 
-#: aisleriot/sol.c:407 glines/glines.c:1494 gnobots2/statusbar.c:65
+#: aisleriot/sol.c:431 glines/glines.c:1494 gnobots2/statusbar.c:65
 #: gnome-stones/status.c:71 gnometris/scoreframe.cpp:57 gnomine/gnomine.c:380
 #: same-gnome/same-gnome.c:959
 msgid "Score:"
 msgstr "Skóre:"
 
-#: aisleriot/sol.c:411 gnomine/gnomine.c:933 gnotravex/gnotravex.c:993
-#: mahjongg/mahjongg.c:1686
+#: aisleriot/sol.c:435 gnomine/gnomine.c:933 gnotravex/gnotravex.c:993
+#: mahjongg/mahjongg.c:2150
 msgid "Time:"
 msgstr "Čas:"
 
-#: aisleriot/sol.c:468 blackjack/src/blackjack.cpp:587
+#: aisleriot/sol.c:492 blackjack/src/blackjack.cpp:587
 msgid "Variation on game rules"
 msgstr "Variace pravidel hry"
 
-#: aisleriot/sol.c:469 blackjack/src/blackjack.cpp:588 gnobots2/gnobots.c:60
+#: aisleriot/sol.c:493 blackjack/src/blackjack.cpp:588 gnobots2/gnobots.c:60
 #: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:889
 msgid "NAME"
 msgstr "JMÉNO"
@@ -1080,6 +1091,19 @@ msgstr "Zkuste přesouvat balíky karet"
 #: aisleriot/spiderette.scm.h:2 aisleriot/will_o_the_wisp.scm.h:2
 msgid "Place something on to the empty Tableau slot"
 msgstr "Dejte něco na prázdné stolní místo"
+
+#. For translators: N/A means "Not Applicable", use whatever
+#. * abbreviation you have for a value that has no meaning.
+#: aisleriot/statistics.c:95 aisleriot/statistics.c:104
+#: aisleriot/statistics.c:113
+msgid "N/A"
+msgstr "N/A"
+
+#. Translators: this represents minutes:seconds.
+#: aisleriot/statistics.c:99 aisleriot/statistics.c:108
+#, c-format
+msgid "%d:%02d"
+msgstr "%d:%02d"
 
 #: aisleriot/statistics.glade.h:1
 msgid "<b>Time</b>"
@@ -1937,6 +1961,26 @@ msgstr "Nastavení"
 msgid "Tile set:"
 msgstr "Sada kamenů:"
 
+#: gdk-card-image/card-styles.xml.in.h:1
+msgid "Default"
+msgstr "Implicitní"
+
+#: gdk-card-image/card-styles.xml.in.h:2
+msgid "Dondorf"
+msgstr "Dondorf"
+
+#: gdk-card-image/card-styles.xml.in.h:3
+msgid "Dondorf Red"
+msgstr "Dondorf Red"
+
+#: gdk-card-image/card-styles.xml.in.h:4 gnibbles/preferences.c:668
+msgid "Gray"
+msgstr "Šedá"
+
+#: gdk-card-image/card-styles.xml.in.h:5
+msgid "xpat"
+msgstr "xpat"
+
 #: gdk-card-image/gdk-card-image.c:113
 msgid "Card back:"
 msgstr "Rub karty:"
@@ -2272,7 +2316,7 @@ msgstr "_Zapnout zvuk"
 msgid "Enable or disable sound"
 msgstr "Zapnout nebo vypnout zvuk"
 
-#: gnect/src/main.c:1190 mahjongg/mahjongg.c:380
+#: gnect/src/main.c:1190 mahjongg/mahjongg.c:839
 msgid "New game"
 msgstr "Nová hra"
 
@@ -2667,10 +2711,6 @@ msgstr "Modrozelená"
 #: gnibbles/preferences.c:667
 msgid "Purple"
 msgstr "Purpurová"
-
-#: gnibbles/preferences.c:668
-msgid "Gray"
-msgstr "Šedá"
 
 #: gnibbles/scoreboard.c:45
 #, c-format
@@ -3223,7 +3263,7 @@ msgstr "Počáteční jeskyně"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:423 gnome-stones/main.c:1034 mahjongg/mahjongg.c:390
+#: gnome-stones/main.c:423 gnome-stones/main.c:1034 mahjongg/mahjongg.c:849
 msgid "Pause"
 msgstr "Pauza"
 
@@ -3470,7 +3510,7 @@ msgstr "Řad:"
 msgid "Paused"
 msgstr "Pozastaveno"
 
-#: gnometris/tetris.cpp:290
+#: gnometris/tetris.cpp:291
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3483,7 +3523,7 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím svou instalaci této hry"
 
-#: gnometris/tetris.cpp:306
+#: gnometris/tetris.cpp:307
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3496,65 +3536,65 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím svou instalaci této hry"
 
-#: gnometris/tetris.cpp:619 gnometris/tetris.cpp:620
+#: gnometris/tetris.cpp:620 gnometris/tetris.cpp:621
 msgid "<none>"
 msgstr "<žádný>"
 
-#: gnometris/tetris.cpp:647
+#: gnometris/tetris.cpp:648
 msgid "Gnometris preferences"
 msgstr "Nastavení Gnometris"
 
-#: gnometris/tetris.cpp:659
+#: gnometris/tetris.cpp:660
 msgid "Setup"
 msgstr "Nastavení"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:666
+#: gnometris/tetris.cpp:667
 msgid "Number of pre-filled rows:"
 msgstr "Počet předvyplněných řad:"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:681
+#: gnometris/tetris.cpp:682
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Hustota kostek v předvyplněné řadě:"
 
 #. starting level
-#: gnometris/tetris.cpp:696
+#: gnometris/tetris.cpp:697
 msgid "Starting Level:"
 msgstr "počáteční úroveň:"
 
-#: gnometris/tetris.cpp:713
+#: gnometris/tetris.cpp:714
 msgid "Operation"
 msgstr "Operace"
 
-#: gnometris/tetris.cpp:719
+#: gnometris/tetris.cpp:720
 msgid "Preview next block"
 msgstr "Náhled dalšího bloku"
 
-#: gnometris/tetris.cpp:728
+#: gnometris/tetris.cpp:729
 msgid "Use random block colors"
 msgstr "Používat náhodné barvy bloků"
 
-#: gnometris/tetris.cpp:739
+#: gnometris/tetris.cpp:740
 msgid "Rotate blocks counterclockwise"
 msgstr "Rotovat bloky proti směru hodinových ručiček"
 
-#: gnometris/tetris.cpp:752 same-gnome/same-gnome.c:632
+#: gnometris/tetris.cpp:753 same-gnome/same-gnome.c:632
 #: same-gnome/same-gnome.c:685
 msgid "Theme"
 msgstr "Téma"
 
 #. Block pixmap
-#: gnometris/tetris.cpp:759
+#: gnometris/tetris.cpp:760
 msgid "Block image:"
 msgstr "Obrázek bloku:"
 
 #. background pixmap
-#: gnometris/tetris.cpp:770
+#: gnometris/tetris.cpp:771
 msgid "Background image:"
 msgstr "Obrázek pozadí:"
 
-#: gnometris/tetris.cpp:1133
+#: gnometris/tetris.cpp:1135
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -4272,43 +4312,75 @@ msgstr ""
 "Zkontrolujte prosím své nastavení GConf, konkrétně jestli byla správně "
 "nainstalována schémata."
 
-#: mahjongg/mahjongg.c:324
+#: mahjongg/mahjongg.c:713
+msgid "Easy"
+msgstr "Jednoduché"
+
+#: mahjongg/mahjongg.c:714
+msgid "Difficult"
+msgstr "Těžké"
+
+#: mahjongg/mahjongg.c:715
+msgid "Confounding Cross"
+msgstr "Smíšený kříž"
+
+#: mahjongg/mahjongg.c:716
+msgid "Pyramid's Walls"
+msgstr "Stěny pyramidy"
+
+#: mahjongg/mahjongg.c:717
+msgid "Tic-Tac-Toe"
+msgstr "Tic-Tac-Toe"
+
+#: mahjongg/mahjongg.c:718
+msgid "Cloud"
+msgstr "Mrak"
+
+#: mahjongg/mahjongg.c:719
+msgid "Red Dragon"
+msgstr "Červený drak"
+
+#: mahjongg/mahjongg.c:720
+msgid "Four Bridges"
+msgstr "Čtyři mosty"
+
+#: mahjongg/mahjongg.c:783
 msgid "New game with _seed..."
 msgstr "Nová hra podle čí_sla ..."
 
-#: mahjongg/mahjongg.c:325
+#: mahjongg/mahjongg.c:784
 msgid "Start a new game giving a seed number..."
 msgstr "Začít novou hru se zadaným číslem..."
 
-#: mahjongg/mahjongg.c:340
+#: mahjongg/mahjongg.c:799
 msgid "Shu_ffle tiles"
 msgstr "Zamí_chat kameny"
 
-#: mahjongg/mahjongg.c:340 mahjongg/mahjongg.c:406
+#: mahjongg/mahjongg.c:799 mahjongg/mahjongg.c:865
 msgid "Shuffle tiles"
 msgstr "Zamíchat kameny"
 
-#: mahjongg/mahjongg.c:384
+#: mahjongg/mahjongg.c:843
 msgid "Restart game"
 msgstr "Začít hru znovu"
 
-#: mahjongg/mahjongg.c:390
+#: mahjongg/mahjongg.c:849
 msgid "Pause game"
 msgstr "Pozastavit hru"
 
-#: mahjongg/mahjongg.c:396
+#: mahjongg/mahjongg.c:855
 msgid "Undo previous move"
 msgstr "Vrátit předchozí tah"
 
-#: mahjongg/mahjongg.c:402
+#: mahjongg/mahjongg.c:861
 msgid "Get a hint"
 msgstr "Získat radu"
 
-#: mahjongg/mahjongg.c:406 mahjongg/mahjongg.c:910
+#: mahjongg/mahjongg.c:865 mahjongg/mahjongg.c:1369
 msgid "Shuffle"
 msgstr "Zamíchat"
 
-#: mahjongg/mahjongg.c:617
+#: mahjongg/mahjongg.c:1076
 msgid ""
 "This new mapset will take effect when you start a new game, or when Mahjongg "
 "is restarted."
@@ -4316,87 +4388,87 @@ msgstr ""
 "Tato nová mapa bude aplikována na novou hru, nebo po novém spuštění hry "
 "Mahjongg."
 
-#: mahjongg/mahjongg.c:870 mahjongg/mahjongg.c:876
+#: mahjongg/mahjongg.c:1329 mahjongg/mahjongg.c:1335
 msgid "These tiles don't match."
 msgstr "Tyto kameny k sobě nepasují."
 
-#: mahjongg/mahjongg.c:908
+#: mahjongg/mahjongg.c:1367
 msgid "There are no more moves."
 msgstr "Nejsou možné žádné další tahy."
 
-#: mahjongg/mahjongg.c:975
+#: mahjongg/mahjongg.c:1434
 msgid "Preferences"
 msgstr "Nastavení"
 
-#: mahjongg/mahjongg.c:994
+#: mahjongg/mahjongg.c:1453
 msgid "Tiles"
 msgstr "Kameny"
 
-#: mahjongg/mahjongg.c:1002
+#: mahjongg/mahjongg.c:1461
 msgid "Tile Set"
 msgstr "Sada kamenů"
 
-#: mahjongg/mahjongg.c:1015
+#: mahjongg/mahjongg.c:1474
 msgid "Maps"
 msgstr "Mapy"
 
-#: mahjongg/mahjongg.c:1023
+#: mahjongg/mahjongg.c:1482
 msgid "Select Map"
 msgstr "Vyberte mapu"
 
-#: mahjongg/mahjongg.c:1036
+#: mahjongg/mahjongg.c:1495
 msgid "Colors"
 msgstr "Barvy"
 
-#: mahjongg/mahjongg.c:1044
+#: mahjongg/mahjongg.c:1503
 msgid "Background Color"
 msgstr "Barva pozadí"
 
-#: mahjongg/mahjongg.c:1058
+#: mahjongg/mahjongg.c:1517
 msgid "Warnings"
 msgstr "Varování"
 
-#: mahjongg/mahjongg.c:1064
+#: mahjongg/mahjongg.c:1523
 msgid "Warn when tiles don't match"
 msgstr "Varovat, pokud kameny nepasují"
 
-#: mahjongg/mahjongg.c:1171
+#: mahjongg/mahjongg.c:1630
 msgid "Tiles:"
 msgstr "Kameny:"
 
-#: mahjongg/mahjongg.c:1200
+#: mahjongg/mahjongg.c:1659
 msgid "GNOME Mahjongg"
 msgstr "GNOME Mahjongg"
 
-#: mahjongg/mahjongg.c:1203
+#: mahjongg/mahjongg.c:1662
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "Verze GNOME východní hry s kameny, Mahjongg."
 
-#: mahjongg/mahjongg.c:1227
+#: mahjongg/mahjongg.c:1686
 msgid "... Game paused ..."
 msgstr "... Hra pozastavena ..."
 
-#: mahjongg/mahjongg.c:1418
+#: mahjongg/mahjongg.c:1877
 msgid "Game Number:"
 msgstr "Číslo hry:"
 
-#: mahjongg/mahjongg.c:1496 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1955 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:1600
+#: mahjongg/mahjongg.c:2064
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Promiňte, nepodařilo se nalézt hratelné nastavení."
 
-#: mahjongg/mahjongg.c:1668
+#: mahjongg/mahjongg.c:2132
 msgid "Tiles Left:"
 msgstr "Zbývá kamenů:"
 
-#: mahjongg/mahjongg.c:1677
+#: mahjongg/mahjongg.c:2141
 msgid "Moves Left:"
 msgstr "Zbývá tahů:"
 
-#: mahjongg/mahjongg.c:1742
+#: mahjongg/mahjongg.c:2206
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "Vítejte ve hře GNOME Mahjongg!"
 
