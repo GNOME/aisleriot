@@ -98,7 +98,7 @@ GStaticMutex image_suffix_mutex = G_STATIC_MUTEX_INIT;
 
 /* We only want to initilise the list of suffixes once, this is
  * the function that does it. It might even be thread safe, not that
- * any of the games are in a position to test this ... */
+ * this has been tested ... */
 static void games_image_suffix_list_init (void)
 {
   GSList * pixbuf_formats;
@@ -109,8 +109,12 @@ static void games_image_suffix_list_init (void)
 
   g_static_mutex_lock (&image_suffix_mutex);
   
-  if (image_suffix_list)
+  /* This check needs to be inside the lock to make sure that another
+   * thread haasn't half-completed the list. */
+  if (image_suffix_list) {
+    g_static_mutex_unlock (&image_suffix_mutex);
     return;
+  }
 
   pixbuf_formats = gdk_pixbuf_get_formats ();
 
