@@ -93,10 +93,11 @@ clock_paint (GamesClock *clock)
         int   hours;
         
         g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
- 
-        secs  = clock->seconds;
+
+	hours = clock->seconds / 3600;
+	secs -= hours*3600;
         mins  = clock->seconds / 60;
-        hours = clock->seconds / 3600;
+	secs  = clock->seconds - mins*60;
         
         string = g_strdup_printf ( "%.2d:%.2d:%.2d", hours, mins, secs);
         
