@@ -32,6 +32,11 @@
 #else
 #include <dirent.h>
 #endif
+
+#ifdef __osf__
+#undef HAVE_STRUCT_DIRECT
+#endif
+
 #include <gdk-card-image.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <libgnomevfs/gnome-vfs.h>
