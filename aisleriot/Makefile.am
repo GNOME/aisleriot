@@ -47,4 +47,6 @@ sys_DATA = sol.desktop
 
 dist-hook:
 	mkdir $(distdir)/pixmaps
-	cp $(srcdir)/pixmaps/* $(distdir)/pixmaps
+	cp $(srcdir)/pixmaps/*.xpm $(distdir)/pixmaps
+	cp $(srcdir)/pixmaps/*.h $(distdir)/pixmaps
+	cp $(srcdir)/pixmaps/*.xbm $(distdir)/pixmaps

@@ -38,7 +38,11 @@ GdkBitmap *create_back_mask (hslot_type slot, gint width, gint height, gint list
   gdk_gc_set_foreground (gc, &color);
   gdk_draw_rectangle (retval, gc,
 		      TRUE, 0, 0, width, height);
+#ifdef GDK_OR
   gdk_gc_set_function (gc, GDK_OR);
+#else
+  gdk_gc_set_function (gc, GDK_XOR);
+#endif
   
   for (i = 0; i < list_length; i++)
     gdk_draw_pixmap (retval, gc, mask, 0, 0, 0, i*EXPANDED_VERT_OFFSET, get_card_width(), get_card_height());
