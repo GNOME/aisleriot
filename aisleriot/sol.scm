@@ -560,7 +560,7 @@
        (set! HISTORY (cons MOVE HISTORY))
        (set! FUTURE (cdr FUTURE))
        (set! MOVE '())
-       (undo-set-sensitive #f)
+       (undo-set-sensitive #t)
        (if (null? FUTURE)
            (redo-set-sensitive #f))))
 
