@@ -310,6 +310,11 @@ refresh_all (void)
     refresh_field(i);
 }
 
+callback_dialog_destroyed (GtkWidget *widget, gpointer data)
+{
+        mb = NULL;
+}
+
 
 void
 callback_restart (GtkWidget *widget, GdkEvent *event)
@@ -332,6 +337,11 @@ callback_restart (GtkWidget *widget, GdkEvent *event)
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_restart_lose),
 				NULL);
+      gtk_signal_connect_object(GTK_OBJECT(mb),
+                                "destroy",
+				GTK_SIGNAL_FUNC(callback_dialog_destroyed),
+                                NULL);
+
       gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
     }
@@ -463,6 +473,11 @@ callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_new_with_seed_with_lose),
 				NULL);
+      gtk_signal_connect_object(GTK_OBJECT(mb),
+                                "destroy",
+				GTK_SIGNAL_FUNC(callback_dialog_destroyed),
+                                NULL);
+
       gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
     }
@@ -531,6 +546,11 @@ callback_new (GtkWidget *widget, GdkEvent *event)
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_new_with_lose),
 				NULL);
+      gtk_signal_connect_object(GTK_OBJECT(mb),
+                                "destroy",
+				GTK_SIGNAL_FUNC(callback_dialog_destroyed),
+                                NULL);
+
       gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
     }
@@ -607,7 +627,6 @@ callback_exit_with_lose (GtkWidget *widget, gpointer data)
   mb = NULL;
 }
 
-
 void
 callback_exit (GtkWidget *widget, GdkEvent *event)
 {
@@ -629,6 +648,10 @@ callback_exit (GtkWidget *widget, GdkEvent *event)
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_exit_with_lose),
+				NULL);
+      gtk_signal_connect_object(GTK_OBJECT(mb),
+				"destroy",
+				GTK_SIGNAL_FUNC(callback_dialog_destroyed),
 				NULL);
       gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
