@@ -84,7 +84,7 @@
       (make-visible-top-card start-slot)))
 
 (define (button-released start-slot card-list end-slot)
-  (cond ((and (= (list-length card-list) 1)
+  (cond ((and (= (length card-list) 1)
 	      (or (= end-slot 0)
 		  (> end-slot 7)))
 	 (cond ((and (= (get-value (car card-list)) ace)
@@ -165,18 +165,18 @@
 	(#t #f)))
 
 (define (game-over)
-  (if (and (= 13 (list-length (get-cards 0)))
-	   (= 13 (list-length (get-cards 8)))
-	   (= 13 (list-length (get-cards 9)))
-	   (= 13 (list-length (get-cards 10))))
+  (if (and (= 13 (length (get-cards 0)))
+	   (= 13 (length (get-cards 8)))
+	   (= 13 (length (get-cards 9)))
+	   (= 13 (length (get-cards 10))))
       #f
       #t))
 
 (define (game-won)
-  (if (and (= 13 (list-length (get-cards 0)))
-	   (= 13 (list-length (get-cards 8)))
-	   (= 13 (list-length (get-cards 9)))
-	   (= 13 (list-length (get-cards 10))))
+  (if (and (= 13 (length (get-cards 0)))
+	   (= 13 (length (get-cards 8)))
+	   (= 13 (length (get-cards 9)))
+	   (= 13 (length (get-cards 10))))
       #t
       #f))
 

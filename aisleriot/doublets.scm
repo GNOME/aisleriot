@@ -1,8 +1,6 @@
 ; Aisleriot - doublets.scm
 ; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
 
-(define FLIP-COUNTER 0)
-
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
@@ -39,7 +37,6 @@
 
   (add-to-score! 1)
 
-  (set! FLIP-COUNTER 0)
   (list 6 3)
 )
 
@@ -53,7 +50,7 @@
 	(remove-card (car slot-list))
 	(deal-cards-face-up 0 (cons (car slot-list) '()))
 	(check-kings slot-list))
-      (if (> (list-length slot-list) 1)
+      (if (> (length slot-list) 1)
 	  (check-kings (cdr slot-list)))))
 
 (define (button-pressed slot-id card-list)
@@ -81,15 +78,7 @@
 
 (define (button-clicked slot-id)
   (if (= slot-id 0)
-      (cond ((and (empty-slot? 0)
-		  (not (empty-slot? 1)))
-	     (begin
-	       (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
-	       (flip-cards-back 2)))
-	    ((not (empty-slot? 0))
-	     (add-card! 1 (flip-card (remove-card 0))))
-	    (#t #f))
-      #f))
+      (flip-stock 0 1 2)))
 
 (define (button-double-clicked slot)
   (if (and (not (empty-slot? slot))
@@ -124,7 +113,7 @@
       (check-move 1)))
 
 (define (game-won)
-  (= 48 (list-length (get-cards 8))))
+  (= 48 (length (get-cards 8))))
 
 (define (get-hint)
   (let ((wanted (modulo (* 2 (get-value (get-top-card 8))) 

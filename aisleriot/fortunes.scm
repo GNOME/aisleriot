@@ -29,7 +29,7 @@
 
 (define (button-released start-slot card-list end-slot)
   (if (= end-slot start-slot)
-      (if (= 1 (list-length card-list))
+      (if (= 1 (length card-list))
 	  (begin
 	    (move-n-cards! start-slot end-slot card-list)
 	    (if (button-clicked start-slot)
@@ -74,10 +74,10 @@
 	  
 (define (game-won)
   (and (empty-slot? 0)
-       (= 1 (list-length (get-cards 1)))
-       (= 1 (list-length (get-cards 2)))
-       (= 1 (list-length (get-cards 3)))
-       (= 1 (list-length (get-cards 4)))))
+       (= 1 (length (get-cards 1)))
+       (= 1 (length (get-cards 2)))
+       (= 1 (length (get-cards 3)))
+       (= 1 (length (get-cards 4)))))
      
 (define (game-over)
   (not (and (empty-slot? 0)

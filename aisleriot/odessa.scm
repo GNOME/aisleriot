@@ -64,7 +64,7 @@
 		 (= (get-value (car card-list))
 		    (+ (get-value (cadr card-list)) 1)))
 	    (add-to-score! 1))
-	(if (> (list-length card-list) 2)
+	(if (> (length card-list) 2)
 	    (begin-score (cdr card-list))
 	    #f))))
 
@@ -95,7 +95,7 @@
 			  (num-in-a-row value suit rcards)))))
   (if (or (= end-slot 0)
 	  (> end-slot 7))
-      (add-to-score! (list-length card-list)))
+      (add-to-score! (length card-list)))
   (move-n-cards! start-slot end-slot card-list)
   (if (not (empty-slot? start-slot)) 
       (make-visible-top-card start-slot))
@@ -188,10 +188,10 @@
   (game-over-helper 1 #t))
 
 (define (game-won)
-  (and (= 13 (list-length (get-cards 0)))
-       (= 13 (list-length (get-cards 8)))
-       (= 13 (list-length (get-cards 9)))
-       (= 13 (list-length (get-cards 10)))))
+  (and (= 13 (length (get-cards 0)))
+       (= 13 (length (get-cards 8)))
+       (= 13 (length (get-cards 9)))
+       (= 13 (length (get-cards 10)))))
 
 (define (get-hint)
   (game-over))

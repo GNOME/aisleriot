@@ -190,9 +190,7 @@ SCM scm_set_lambda(SCM start_game_lambda,
 		   SCM game_over_lambda,
 		   SCM winning_game_lambda,
 		   SCM hint_lambda,
-		   SCM get_options_lambda, 
-		   SCM apply_options_lambda, 
-		   SCM timeout_lambda)
+		   SCM rest) 
 {
   if (!game_data)
 	 game_data = malloc(sizeof(lambda_data));
@@ -204,9 +202,9 @@ SCM scm_set_lambda(SCM start_game_lambda,
   game_data->game_over_lambda = game_over_lambda;
   game_data->winning_game_lambda = winning_game_lambda;
   game_data->hint_lambda = hint_lambda;
-  game_data->get_options_lambda = get_options_lambda;
-  game_data->apply_options_lambda = apply_options_lambda;
-  game_data->timeout_lambda = timeout_lambda;
+  game_data->get_options_lambda = gh_car(rest);
+  game_data->apply_options_lambda = gh_cadr(rest);
+  game_data->timeout_lambda = gh_caddr(rest);
   return SCM_EOL;
 }
 
@@ -251,7 +249,7 @@ void cscm_init ()
      In my copy of guile, the first define in boot-9.scm is for "provide",
      and it looked as good a test as any  */
   gh_eval_str ("(if (not (defined? \'provide))\n"
-	       "  (primitive-load-path \"ice-9/boot-9.scm\"))");
+  	       "  (primitive-load-path \"ice-9/boot-9.scm\"))");
   gh_new_procedure0_0("get-card-width", scm_get_card_width);
   gh_new_procedure0_0("get-card-height", scm_get_card_height);
   gh_new_procedure0_0("get-horiz-offset",scm_get_horiz_offset);
@@ -263,7 +261,7 @@ void cscm_init ()
   gh_new_procedure1_0("add-slot", scm_add_slot);
   gh_new_procedure1_0("get-slot", scm_get_slot);  
   gh_new_procedure2_0("set-cards!", scm_set_cards);
-  gh_new_procedure("set-lambda", scm_set_lambda, 10, 0, 0);
+  gh_new_procedure("set-lambda", scm_set_lambda, 8, 0, 1);
   gh_new_procedure1_0("random", scm_random);
   gh_new_procedure0_0("get-score", scm_get_score);  
   gh_new_procedure1_0("set-score!", scm_set_score);

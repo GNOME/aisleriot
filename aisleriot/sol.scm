@@ -160,6 +160,21 @@
 	    (add-card! 0 (flip-card (remove-card 1)))
 	    (flip-cards-back flip-number)))))
 
+(define (flip-deck stock-slot waste-slot)
+  (and (not (empty-slot? waste-slot))
+       (add-card! stock-slot (flip-card (remove-card waste-slot)))
+       (flip-deck stock-slot waste-slot)))
+
+(define (flip-stock stock-slot waste-slot flip-limit . rest)
+  (if (empty-slot? stock-slot)
+      (and (< FLIP-COUNTER flip-limit)
+	   (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
+	   (flip-deck stock-slot waste-slot))
+      (let loop ((i (if (null? rest) 1 (car rest))))
+	(and (> i 0)
+	     (not (empty-slot? stock-slot))
+	     (add-card! waste-slot (flip-card (remove-card stock-slot)))
+	     (loop (- i 1))))))
 
 ;;playing area stuff
 ;;
@@ -185,6 +200,7 @@
 
 (define (initialize-playing-area)
   (reset-surface)
+  (set! FLIP-COUNTER 0)
   (set! SLOTS 0)
   (set! HORIZPOS (get-horiz-start))
   (set! VERTPOS (get-vert-start)))
@@ -316,14 +332,14 @@
   (add-card! slot-id (make-visible (remove-card slot-id))))
 
 (define (check-same-suit-list card-list)
-  (if (< (list-length card-list) 2)
+  (if (< (length card-list) 2)
       #t
       (if (= (get-suit (car card-list)) (get-suit (cadr card-list)))
 	  (check-same-suit-list (cdr card-list))
 	  #f)))
 
 (define (check-straight-descending-list card-list)
-  (if (< (list-length card-list) 2)
+  (if (< (length card-list) 2)
       #t
       (if (= (get-value (car card-list)) (- (get-value (cadr card-list)) 1))
 	  (check-straight-descending-list (cdr card-list))

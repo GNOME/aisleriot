@@ -15,7 +15,6 @@
 ; License along with this library; if not, write to the Free
 ; Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-(define FLIP-COUNTER 0)
 (define deal-three #f)
 
 (define (new-game)
@@ -50,7 +49,7 @@
   (flip-top-card 10)
   (flip-top-card 11)
   (flip-top-card 12)
-  (set! FLIP-COUNTER 0)
+
   (list 7 3)
 )
 
@@ -83,7 +82,7 @@
 			      (is-red? (car (reverse card-list)))))
 		    (= (get-value (get-top-card end-slot))
 		       (+ (get-value (car (reverse card-list))) 1))))
-	   (and (= 1 (list-length card-list))
+	   (and (= 1 (length card-list))
 		(if (empty-slot? end-slot)
 		    (= ace (get-value (car card-list)))
 		    (and (= (get-suit (get-top-card end-slot))
@@ -92,26 +91,9 @@
 				(- (get-value (car card-list)) 1))))))
        (complete-transaction start-slot card-list end-slot)))
 
-(define (flip-cards-back)
-  (if (not (empty-slot? 1))
-      (begin
-	(add-card! 0 (flip-card (remove-card 1)))
-	(flip-cards-back))))
-
 (define (button-clicked start-slot)
   (or (and (= start-slot 0)
-	   (if (empty-slot? start-slot)
-	       (and (< FLIP-COUNTER 3)
-		    (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
-		    (flip-cards-back))
-	       (begin
-		 (add-card! 1 (flip-card (remove-card start-slot)))
-		 (if deal-three
-		   (begin
-		     (and (not (empty-slot? start-slot))
-			  (add-card! 1 (flip-card (remove-card start-slot))))
-		     (and (not (empty-slot? start-slot))
-			  (add-card! 1 (flip-card (remove-card start-slot)))))))))
+	   (flip-stock 0 1 2 (if deal-three 3 1)))
       (and (or (> start-slot 5) (= start-slot 1))
 	   (not (empty-slot? start-slot))
 	   (let* ((card (get-top-card start-slot))
@@ -222,10 +204,10 @@
       (list 0 "Try moving cards down from the foundation")))
 
 (define (game-won)
-  (and (= 13 (list-length (get-cards 2)))
-       (= 13 (list-length (get-cards 3)))
-       (= 13 (list-length (get-cards 4)))
-       (= 13 (list-length (get-cards 5)))))
+  (and (= 13 (length (get-cards 2)))
+       (= 13 (length (get-cards 3)))
+       (= 13 (length (get-cards 4)))
+       (= 13 (length (get-cards 5)))))
 
 ; The hints still miss some useful reversible moves:
 ;

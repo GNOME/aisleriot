@@ -57,7 +57,7 @@
 
 (define (button-pressed slot-id card-list)
   (and (= slot-id 6)
-       (= (list-length card-list) 1)))
+       (= (length card-list) 1)))
 
 (define (transaction-good? end-slot card-list)
   (or (and (= end-slot 2)

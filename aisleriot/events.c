@@ -122,7 +122,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       press_data->status = STATUS_SHOW;
       press_data->moving_pixmap = get_card_picture (card->suit, card->value);
       press_data->moving_mask = mask;
-      
+
       gdk_window_set_back_pixmap (press_data->moving_cards, 
 				  press_data->moving_pixmap, 0);
       gdk_window_shape_combine_mask (press_data->moving_cards, 
@@ -174,6 +174,7 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
     gh_call1 (game_data->button_clicked_lambda, 
 	      gh_long2scm (press_data->hslot->id));
     refresh_screen();
+    end_of_game_test();
     break;
     
   case STATUS_IS_DRAG:
@@ -184,11 +185,6 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
   case STATUS_SHOW:
     press_data->status = STATUS_NONE;
     gdk_window_hide(press_data->moving_cards);
-    
-    if (press_data->moving_pixmap)
-      gdk_pixmap_unref(press_data->moving_pixmap);
-    if (press_data->moving_mask)
-      gdk_pixmap_unref(press_data->moving_mask);
     press_data->moving_pixmap = NULL;
     press_data->moving_mask = NULL;
     break;

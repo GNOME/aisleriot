@@ -15,8 +15,6 @@
 ; License along with this library; if not, write to the Free
 ; Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-(define FLIP-COUNTER 0)
-
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
@@ -44,13 +42,13 @@
 
   (deal-cards 8 '(0 2 4 6 0 2 4 6 0 2 4 6))
   (deal-cards-face-up 8 '(0 2 4 6 1))
-  (set! FLIP-COUNTER 0)
+
   (list 6 5)
 )
   
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
-       (= (list-length card-list) 1)
+       (= (length card-list) 1)
        (or (= slot-id 0) 
 	   (= slot-id 2)
 	   (= slot-id 4) 
@@ -86,19 +84,9 @@
 					    (get-value (car card-list))) )))
        (complete-transaction start-slot card-list end-slot)))
   
-(define (flip-cards-back)
-  (if (not (empty-slot? 9))
-      (begin
-	(add-card! 8 (flip-card (remove-card 9)))
-	(flip-cards-back))))
-
 (define (button-clicked slot-id)
   (and (= slot-id 8)
-      (if (empty-slot? 8)
-	  (and (< FLIP-COUNTER 3)
-	       (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
-	       (flip-cards-back))
-	  (add-card! 9 (flip-card (remove-card 8))))))
+       (flip-stock 8 9 2)))
 
 (define (check-to-move orig-slot end-slot above-list top-card)
   (if (not (null? above-list))
@@ -181,10 +169,10 @@
       (get-valid-move '(0 2 4 6 9))))
 
 (define (game-won)
-  (and (= 13 (list-length (get-cards 1)))
-       (= 13 (list-length (get-cards 3)))
-       (= 13 (list-length (get-cards 5)))
-       (= 13 (list-length (get-cards 7)))))
+  (and (= 13 (length (get-cards 1)))
+       (= 13 (length (get-cards 3)))
+       (= 13 (length (get-cards 5)))
+       (= 13 (length (get-cards 7)))))
 
 (define (get-hint)
   (or (get-valid-move '(0 2 4 6 9))

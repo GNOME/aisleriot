@@ -1,7 +1,6 @@
 ; Aisleriot - canfield.scm
 ; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
 
-(define FLIP-COUNTER 0)
 (define BASE-VAL 0)
 
 (define (new-game)
@@ -35,7 +34,6 @@
   (flip-top-card 10)
   (flip-top-card 2)
 
-  (set! FLIP-COUNTER 0)
   (set! BASE-VAL (get-value (get-top-card 2)))
 
   (add-to-score! 1)
@@ -49,7 +47,7 @@
       (if card-list
 	  (if (is-visible? (car (reverse card-list)))
 	      (if (and (= slot-id 2)
-		       (= (list-length (get-cards 2)) 1))
+		       (= (length (get-cards 2)) 1))
 		  #f
 		  #t)
 	      #f)
@@ -92,7 +90,7 @@
       (cond ((and (empty-slot? end-slot)
 		  (> end-slot 2) 
 		  (< end-slot 6) 
-		  (= 1 (list-length card-list))
+		  (= 1 (length card-list))
 		  (= BASE-VAL (get-value (car card-list))))
 	     (complete-transaction start-slot card-list end-slot))
 	    ((and (empty-slot? end-slot)
@@ -111,7 +109,7 @@
 	    ((and (> end-slot 1) 
 		  (< end-slot 6)
 		  (not (empty-slot? end-slot))
-		  (= 1 (list-length card-list))
+		  (= 1 (length card-list))
 		  (= (get-suit (get-top-card end-slot))
 		     (get-suit (car card-list)))
 		  (or (= (get-value (get-top-card end-slot))
@@ -124,16 +122,8 @@
 	    (else #f))))
 
 (define (button-clicked slot-id)
-  (if (= slot-id 0)
-      (if (empty-slot? 0)
-	  (begin
-	    (flip-cards-back 2)
-	    (set! FLIP-COUNTER (+ 1 FLIP-COUNTER)))
-	  (let ((top-card (remove-card 0)))
-	    (if (eq? top-card '())
-		#f
-		(add-card! 1 (flip-card top-card)))))
-      #f))
+  (and (= slot-id 0)
+       (flip-stock 0 1 2)))
 
 (define (place-ace card slot)
   (remove-card slot)

@@ -101,7 +101,7 @@
       (if (empty-slot? end-slot)
 	  (cond ((and (> end-slot 0) 
 		      (< end-slot 9) 
-		      (= 13 (list-length card-list)))
+		      (= 13 (length card-list)))
 		 (complete-transaction start-slot card-list end-slot))
 		((> end-slot 8) 
 		 (complete-transaction start-slot card-list end-slot))
