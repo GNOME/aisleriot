@@ -215,20 +215,33 @@
        (or (is-visible-king (get-cards slot-id))
 	   (find-king (+ 1 slot-id)))))
 
-(define (game-over-helper slot-id check-kings)
+; Checks to see if any moves can be made in the tableau
+(define (check-game-over-move slot-id check-kings)
   (and (< slot-id 8)
        (or (if (empty-slot? slot-id)
 	       (or (and check-kings (find-king 1))
-		   (game-over-helper (+ 1 slot-id) #f))		   
+		   (check-game-over-move (+ 1 slot-id) #f))		   
 	       (let* ((card (get-top-card slot-id))
 		      (suit (get-suit card))
 		      (value (- (get-value card) 1)))
-		 (or (is-extendable 1 slot-id card value suit)
-                     (is-ploppable card value suit))))
-	   (game-over-helper (+ 1 slot-id) check-kings))))
+		 (is-extendable 1 slot-id card value suit)))
+	   (check-game-over-move (+ 1 slot-id) check-kings))))
 
+; Check to see if any cards can be moved up to the foundation
+(define (check-game-over-foundation slot-id check-kings)
+  (and (< slot-id 8)
+       (or (let* ((card (get-top-card slot-id))
+		  (suit (get-suit card))
+		  (value (- (get-value card) 1)))
+	     (is-ploppable card value suit))
+	   (check-game-over-foundation (+ 1 slot-id) check-kings))))
+
+; We want to always check to see if moves can be moved among the
+; tableau before checking if cards can be moved up to the foundation,
+; as the former is a more useful hint, and gets a higher score
 (define (game-over)
-  (game-over-helper 1 #t))
+  (or (check-game-over-move 1 #t)
+      (check-game-over-foundation 1 #t)))
 
 (define (game-won)
   (and (= 13 (length (get-cards 0)))
