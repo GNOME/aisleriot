@@ -109,7 +109,7 @@
   (make-visible-top-card 6)
   (if (not (= end-slot 6))
       (add-to-score! 1)
-      #t)
+      #t))
 
 (define (button-released start-slot card-list end-slot)
   (if (transaction-good? end-slot card-list)

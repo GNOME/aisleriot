@@ -50,6 +50,8 @@
   (flip-top-card 2)
 
   (set! BASE-VAL (get-value (get-top-card 2)))
+  
+  ;(set-statusbar-message (string-append "Base Card:  " (string BASE-VAL)))
 
   (add-to-score! 1)
 

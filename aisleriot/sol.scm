@@ -74,6 +74,18 @@
       (set! DECK (append (make-standard-deck-list-ace-high 2 club) (make-standard-deck-list-ace-high 2 club)))
       (set! DECK (append (make-standard-deck-list-ace-low ace club) (make-standard-deck-list-ace-low ace club)))))
 
+; makes a deck from init-value to kings
+(define (make-deck-list-ace-low init-value value suit)
+   (if (eq? king value)
+      (if (eq? spade suit)
+	  (list (make-card king spade))
+	  (cons (make-card value suit) 
+		(make-deck-list-ace-low 
+		 init-value init-value (+ 1 suit))))
+      (cons (make-card value suit) 
+	    (make-deck-list-ace-low init-value (+ 1 value) suit))))
+
+
 ; shuffle the card list in DECK
 (define (shuffle-deck)
   (let* ((vec (list->vector DECK))
@@ -420,7 +432,9 @@
 			 slot-id 
 			 (list 'quote new_cards)
 			 (list 'quote old_cards)) MOVE)))
+;  (display MOVE)(display "\n\n"))
 
 ; called from C:
 (define (discard-move)
+;  (display HISTORY) (display "\n\n")
   (set! MOVE '()))

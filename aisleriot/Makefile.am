@@ -49,6 +49,7 @@ types_DATA  = 		\
 	beleaguered_castle.scm \
 	camelot.scm	\
 	canfield.scm	\
+	bristol.scm	\
 	clock.scm	\
 	eagle_wing.scm	\
 	elevator.scm	\
