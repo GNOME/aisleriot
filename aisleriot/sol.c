@@ -94,7 +94,7 @@ void create_sol_board ()
 
 	gtk_widget_set_events (playing_area, gtk_widget_get_events (playing_area) | GAME_EVENTS);
   
-	gtk_box_pack_start_defaults (GTK_BOX(vb), playing_area);
+	gtk_box_pack_start (GTK_BOX(vb), playing_area, TRUE, TRUE, 0);
 
 	gtk_widget_realize (playing_area);
 
@@ -109,13 +109,10 @@ void create_sol_board ()
 
 	blank_surface = gdk_pixmap_new (playing_area->window, SURFACE_WIDTH, SURFACE_HEIGHT,
 					gdk_window_get_visual (playing_area->window)->depth);
-
 	refresh_screen();
   
   
 	/* Set signals for X events... */
-	gtk_signal_connect (GTK_OBJECT (playing_area), "expose_event",
-			    (GtkSignalFunc) expose_event, NULL);
 	gtk_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
 			    (GtkSignalFunc) button_release_event, NULL);
 	gtk_signal_connect (GTK_OBJECT (playing_area), "motion_notify_event",
@@ -234,8 +231,8 @@ void main_prog(int argc, char *argv[])
   scorew = gtk_label_new ("0");
   
   /* put everything together */
-  gtk_box_pack_start_defaults (GTK_BOX(vb), hb);
-  gtk_box_pack_end   (GTK_BOX(hb), scorew, 0, 0, 10);
+  gtk_box_pack_start (GTK_BOX(vb), hb, FALSE, FALSE, 0);
+  gtk_box_pack_end   (GTK_BOX(hb), scorew, FALSE, FALSE, 10);
   gtk_box_pack_end   (GTK_BOX(hb), label,  0, 0, 0);
   
   /* and we're up...*/

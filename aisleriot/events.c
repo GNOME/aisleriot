@@ -43,9 +43,6 @@ void drop_moving_cards(gint x, gint y) {
   hslot_type slot;
   gint slotid, cardid;
  
-#ifdef DEBUG
-  printf("drop_moving_cards\n");
-#endif
   cardlist = SCM_EOL;
 
   slot_pressed(x, y, &slotid, &cardid);
@@ -76,8 +73,12 @@ void drop_moving_cards(gint x, gint y) {
   }
   press_data->cards = NULL;
   if (press_data->moving_pixmap)
-	 gdk_pixmap_unref(press_data->moving_pixmap);
+    gdk_pixmap_unref(press_data->moving_pixmap);
+  if (press_data->moving_mask)
+    gdk_pixmap_unref(press_data->moving_mask);
   press_data->moving_pixmap = NULL;
+  press_data->moving_mask = NULL;
+  
   
   gdk_window_move(press_data->moving_cards, 0 - get_card_width(), 0);
 
@@ -89,10 +90,6 @@ void button_up_not_moved(gint x, gint y) {
   SCM arglist;
   gint slotid, cardid;
  
-#ifdef DEBUG
-  printf("button_up\n");
-#endif
-
   slot_pressed(x, y, &slotid, &cardid);
  
   if (slotid == press_data->slot_id) {
@@ -105,19 +102,6 @@ void button_up_not_moved(gint x, gint y) {
 }
 
 /* event handlers */
-gint expose_event (GtkWidget *widget, GdkEventExpose *event, void *d)
-{
-#ifdef DEBUG
-  printf("expose_event\n");
-#endif
-  gdk_draw_pixmap(widget->window,
-						widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
-						surface,
-						event->area.x, event->area.y,
-						event->area.x, event->area.y,
-						event->area.width, event->area.height);
-  return TRUE;
-}
 
 gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
@@ -128,9 +112,6 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   gint slotid, cardid;
   hslot_type slot;
 
-#ifdef DEBUG
-  printf("button_press_event\n");
-#endif
   if (event->type == GDK_2BUTTON_PRESS) {
     if (press_data->moving) {
       press_data->moving = FALSE;
@@ -211,12 +192,6 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
 gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
-
-#ifdef DEBUG
-printf("button_release_event\n");
-#endif
-
-
   if (event->button == 1) {
 	 if (press_data->button_pressed == 1) {
 		press_data->button_pressed = 0;
@@ -240,9 +215,6 @@ printf("button_release_event\n");
 }
 
 gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
-#ifdef DEBUG
-printf("configure_event\n");
-#endif
   if (blank_surface) {
 	 gdk_pixmap_unref(blank_surface);
   }

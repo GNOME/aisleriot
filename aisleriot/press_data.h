@@ -24,6 +24,7 @@ typedef struct {
   gint xoffset;
   gint yoffset;
   GdkPixmap *moving_pixmap;
+  GdkBitmap *moving_mask;
   gint button_pressed;
   GList* cards;
   gint slot_id;

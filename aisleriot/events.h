@@ -26,7 +26,6 @@ gint button_press_event (GtkWidget*, GdkEventButton*, void* );
 gint button_release_event (GtkWidget*, GdkEventButton*, void* );
 gint configure_event (GtkWidget*, GdkEventConfigure* );
 gint motion_notify_event (GtkWidget*, GdkEventMotion* );
-gint expose_event (GtkWidget*, GdkEventExpose*, void* );
 void end_of_game_test();
 
 

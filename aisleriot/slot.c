@@ -25,10 +25,6 @@ void slot_pressed(gint x, gint y, gint *slotid, gint *cardid) {
   GList *tempPtr;
   gint i, length;
 
-#ifdef DEBUG
-  printf("slot_pressed\n");
-  printf ("\tx = %d\ty = %d\n",x,y);
-#endif
   for (tempPtr = g_list_last(slot_list); tempPtr; tempPtr = tempPtr->prev) 
 	 if ((((hslot_type) tempPtr->data)->x < x) && (((hslot_type) tempPtr->data)->y < y)
 		  && ((((hslot_type) tempPtr->data)->width +((hslot_type) tempPtr->data)->x) > x) && 
@@ -97,9 +93,6 @@ GList* get_slot_list() {
 
 hslot_type get_slot(gint slotid) {
   GList* temp;
-#ifdef DEBUG
-printf("get_slot\n");
-#endif
   
   for (temp = slot_list; temp; temp = temp->next)
 	 if (((hslot_type) temp->data)-> id == slotid)
@@ -108,9 +101,6 @@ printf("get_slot\n");
 }
 
 void add_slot(hslot_type new_slot) {
-#ifdef DEBUG
-printf("add_slot\n");
-#endif
   if (slot_list)
 	 g_list_append(slot_list, new_slot);
   else {
@@ -121,9 +111,6 @@ printf("add_slot\n");
 
 void update_slot_length(gint slotid) {
   hslot_type slot = get_slot(slotid);
-#ifdef DEBUG
-  printf("update_slot_length\n");
-#endif
  
   if (slot) {
 	 if (slot->type == EXPANDING_SLOT) {
@@ -177,9 +164,7 @@ void update_slot_length(gint slotid) {
 
 void add_cards_to_slot(GList* newcards, gint slotid) {
   hslot_type slot = get_slot(slotid);
-#ifdef DEBUG
-printf("add_cards_to_slot\n");
-#endif
+
   if (slot)
 	 slot->cards = g_list_concat(slot->cards, newcards);
   update_slot_length(slotid);

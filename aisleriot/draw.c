@@ -29,10 +29,6 @@ void draw_cards(GdkPixmap* pix) {
   GList* expanded_card_list;
   GdkGC* gc;
 
-#ifdef DEBUG
-  printf("draw_cards\n");
-#endif
-  
   gc = playing_area->style->fg_gc[GTK_STATE_NORMAL];
   
   gdk_gc_set_clip_mask(gc,mask); 
@@ -191,9 +187,6 @@ void draw_cards(GdkPixmap* pix) {
 
 void draw_normal_slot(int x, int y, GdkPixmap* pix) {
   GdkGC* gc;
-#ifdef DEBUG
-printf("draw_normal_slot\n");
-#endif
 
   gc = playing_area->style->fg_gc[GTK_STATE_NORMAL];
   gdk_gc_set_clip_mask(gc,mask); 
@@ -210,9 +203,7 @@ printf("draw_normal_slot\n");
 
 void draw_expanding_slot (int x, int y, GdkPixmap* pix) {
   GdkGC* gc;
-#ifdef DEBUG
-  printf("draw_expanding_slot\n");
-#endif
+
   gc = playing_area->style->fg_gc[GTK_STATE_NORMAL];
   gdk_gc_set_clip_mask(gc,mask); 
   gdk_gc_set_clip_origin(gc,x,y);
@@ -228,9 +219,7 @@ void draw_expanding_slot (int x, int y, GdkPixmap* pix) {
 
 void draw_slot_placements(GdkPixmap* pix) {
   GList* listptr;
-#ifdef DEBUG
-printf("draw_slot_placements\n");
-#endif
+
   for (listptr = get_slot_list(); listptr; listptr = listptr->next) {
 	 if (((hslot_type)listptr->data)->type ==NORMAL_SLOT)
 		draw_normal_slot(((hslot_type)listptr->data)->x, ((hslot_type)listptr->data)->y, pix);
@@ -251,9 +240,6 @@ void take_snapshot() {
   int snapshot_height;
   int surface_width;
   int surface_height;
-#ifdef DEBUG
-printf("take_snapshot\n");
-#endif
 
   gdk_window_get_size (surface, &surface_width, &surface_height);
 
@@ -278,9 +264,6 @@ void paint_blank_surface()
   int dbp_width, dbp_height;
   int bs_width, bs_height;
   int i, j;
-#ifdef DEBUG
-printf("paint_blank_surface\n");
-#endif
 
   gdk_window_get_size (get_background_pixmap(), &dbp_width, &dbp_height);
   gdk_window_get_size (blank_surface, &bs_width, &bs_height);
@@ -299,14 +282,12 @@ printf("paint_blank_surface\n");
 }
 
 void refresh_screen() {
-#ifdef DEBUG
-printf("refresh_screen\n");
-#endif
   paint_blank_surface();
   draw_slot_placements(blank_surface);
   gdk_draw_pixmap(surface,	playing_area->style->black_gc,blank_surface,0,0,0,0,-1,-1);
   draw_cards(surface);
-  gdk_draw_pixmap(playing_area->window, playing_area->style->black_gc,surface,0,0,0,0,-1,-1);
+  gdk_window_set_back_pixmap(playing_area->window, surface, 0);
+  gdk_window_clear(playing_area->window);
 }
 
 /* show_card stuff */
