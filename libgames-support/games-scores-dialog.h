@@ -27,7 +27,7 @@ extern "C" {
 
 
 
-#include <gnome.h>
+#include <gtk/gtk.h>
 
 
 /*

@@ -22,32 +22,32 @@ extern "C" {
 
 
 
-#include <gnome.h>
+#include <gtk/gtk.h>
 
 #line 23 "games-scores-dialog.gob"
 #line 29 "games-scores-dialog-private.h"
 struct _GamesScoresDialogPrivate {
-#line 35 "games-scores-dialog.gob"
-	GtkWidget * combo;
-#line 36 "games-scores-dialog.gob"
-	GtkWidget * label;
-#line 37 "games-scores-dialog.gob"
-	GtkListStore * list;
-#line 38 "games-scores-dialog.gob"
-	GtkTreeView * treeview;
-#line 39 "games-scores-dialog.gob"
-	GtkTreeViewColumn * column;
 #line 40 "games-scores-dialog.gob"
-	gchar * domain;
+	GtkWidget * combo;
 #line 41 "games-scores-dialog.gob"
-	GHashTable * categories;
+	GtkWidget * label;
 #line 42 "games-scores-dialog.gob"
-	GHashTable * catindices;
+	GtkListStore * list;
 #line 43 "games-scores-dialog.gob"
-	gint catcounter;
+	GtkTreeView * treeview;
 #line 44 "games-scores-dialog.gob"
-	gint hilight;
+	GtkTreeViewColumn * column;
+#line 45 "games-scores-dialog.gob"
+	gchar * domain;
+#line 46 "games-scores-dialog.gob"
+	GHashTable * categories;
 #line 47 "games-scores-dialog.gob"
+	GHashTable * catindices;
+#line 48 "games-scores-dialog.gob"
+	gint catcounter;
+#line 49 "games-scores-dialog.gob"
+	gint hilight;
+#line 52 "games-scores-dialog.gob"
 	gint style;
 #line 53 "games-scores-dialog-private.h"
 };
