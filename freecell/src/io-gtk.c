@@ -50,6 +50,7 @@ extern int card_image_top_height(void); /* In card-draw.c */
 #define FIELD_HEIGHT card_image_top_height() * 14
 
 static GtkWidget *main_window;
+static GtkWidget *mb;
 
 static GtkWidget *freecell_drawing_areas[4];
 static GtkWidget *destination_drawing_areas[4];
@@ -308,7 +309,8 @@ refresh_all (void)
 void
 callback_restart (GtkWidget *widget, GdkEvent *event)
 {
-   GtkWidget *mb;
+  if (mb)
+	  return;
 
   if (!stalled
       && freecellgame
@@ -341,6 +343,8 @@ callback_restart_lose (GtkWidget *widget, gpointer data)
       score_add_lose ();
       callback_restart_really ();
     }
+
+  mb = NULL;
 }
 
 static void
@@ -429,13 +433,15 @@ callback_new_with_seed_with_lose (GtkWidget *widget, gpointer data)
       score_add_lose();
       callback_new_with_seed_really();
     }
+  mb = NULL;
 }
 
 
 void
 callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
 {
-  GtkWidget *mb;
+  if (mb)
+	  return;
 
   if (!stalled
       && freecellgame
@@ -495,13 +501,15 @@ callback_new_with_lose (GtkWidget *widget, gpointer data)
       score_add_lose();
       callback_new_really();
     }
+  mb = NULL;
 }
 
 
 void
 callback_new (GtkWidget *widget, GdkEvent *event)
 {
-  GtkWidget *mb;
+  if (mb)
+	  return;
 
   if (!stalled
       && freecellgame
@@ -591,14 +599,16 @@ callback_exit_with_lose (GtkWidget *widget, gpointer data)
       score_add_lose();
       callback_exit_really();
     }
+  mb = NULL;
 }
 
 
 void
 callback_exit (GtkWidget *widget, GdkEvent *event)
 {
-  GtkWidget *mb;
-  
+  if (mb)
+	  return;
+
   if (!stalled
       && freecellgame
       && !freecellgame_is_finished(freecellgame))
