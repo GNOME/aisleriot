@@ -146,6 +146,34 @@ void draw_cards () {
   }
 }
 
+#if 0
+static void draw_hilite (hslot_type hslot)
+{
+  int x, y;
+  static GdkGC *gc = NULL;
+  static GdkBitmap *stipple = NULL;
+  const char stipple_data[] = { 0x08, 0x00, 0x02, 0x00 };
+
+  if (stipple == NULL) {
+    stipple = gdk_bitmap_create_from_data (surface, stipple_data, 4, 4);
+  }
+
+  if (gc == NULL) {
+    gc = gdk_gc_new (surface);
+    gdk_gc_copy (gc, playing_area->style->black_gc);
+    gdk_gc_set_stipple (gc, stipple);
+    gdk_gc_set_fill (gc, GDK_STIPPLED);
+    gdk_gc_set_clip_mask (gc, mask);
+  }
+
+  x = hslot->pixelx;
+  y = hslot->pixely;
+
+  gdk_gc_set_clip_origin (gc, x, y);
+  gdk_draw_rectangle (surface, gc, TRUE, x, y, card_width, card_height);
+}
+#endif
+
 void take_snapshot() {
   GList* slot;
   GdkPixmap *slot_pixmap;
@@ -163,6 +191,13 @@ void take_snapshot() {
 			 card_width, card_height);
     }
   draw_cards ();
+#if 0
+  /* This is the wrong place and the wrong way, but it is good for
+   * testing. */
+  if (click_to_move) {
+    draw_hilite (g_list_nth_data (get_slot_list (), 1));
+  } 
+#endif
   gdk_window_set_back_pixmap (playing_area->window, surface, 0);
 }
 
