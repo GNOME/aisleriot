@@ -6,10 +6,10 @@
 
 helpdir = $(datadir)/gnome/help/aisleriot/C
 
-help_DATA = aisleriot/index.html aisleriot/intro.html aisleriot/glossary.html aisleriot/gpl.html \
-	aisleriot/camelot.html aisleriot/canfield.html aisleriot/clock.html aisleriot/doublets.html \
-	aisleriot/eagle-wing.html aisleriot/fortunes.html aisleriot/klondike.html \
-	aisleriot/odessa.html aisleriot/osmosis.html aisleriot/spider.html aisleriot/yukon.html\
+help_DATA = index.html intro.html glossary.html gpl.html \
+	camelot.html canfield.html clock.html doublets.html \
+	eagle-wing.html fortunes.html klondike.html \
+	odessa.html osmosis.html spider.html yukon.html\
 	camelot-goal.gif clock-rules.gif docbook.css topic.dat
 
 # These are the sources:
@@ -28,5 +28,7 @@ EXTRA_DIST = $(help_DATA) $(help_SGML)
 DB_STYLESHEET=/usr/lib/sgml/stylesheets/cygnus-both.dsl\#html
 
 %.html: $(help_SGML)
-	-db2html aisleriot.sgml
+	-db2html aisleriot.sgml >/dev/null;\
+	mv aisleriot/*.html .;\
+	rm -rf aisleriot 
 
