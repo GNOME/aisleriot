@@ -11,6 +11,8 @@ SUBDIRS = intl po macros \
          gyahtzee gnobots gnothello $(guile_DIRS)
 #$(objc_DIRS)
 
+EXTRA_DIST = gnome-games.spec
+
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change
 @MAINT@include macros/macros.dep
