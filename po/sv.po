@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2001-07-11 17:36-0600\n"
-"PO-Revision-Date: 2001-07-07 12:25+0200\n"
+"POT-Creation-Date: 2001-07-18 22:23+0200\n"
+"PO-Revision-Date: 2001-07-18 22:50+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Agnes"
 
 #: aisleriot/translatable_game_names.h:8
 msgid "Auld lang syne"
-msgstr "Auld lang syne"
+msgstr "Godnattvalsen"
 
 # I brist på annat...
 #: aisleriot/translatable_game_names.h:9
@@ -224,10 +224,9 @@ msgstr "Poker"
 msgid "Quatorze"
 msgstr "Quatorze"
 
-# I brist på annat...
 #: aisleriot/translatable_game_names.h:54
 msgid "Royal east"
-msgstr "Kunglig Öster"
+msgstr "De fyra årstiderna"
 
 #: aisleriot/translatable_game_names.h:55
 msgid "Scorpion"
@@ -339,7 +338,8 @@ msgstr ""
 "\n"
 "Spelet är slut.\n"
 
-#: aisleriot/dialog.c:46
+#. XXXXX
+#: aisleriot/dialog.c:46 xbill/UI.cc:117
 msgid "New Game"
 msgstr "Nytt spel"
 
@@ -351,7 +351,7 @@ msgstr "Välj spel"
 msgid "Seed"
 msgstr "Slumptalsfrö"
 
-#: aisleriot/dialog.c:131
+#: aisleriot/dialog.c:131 xbill/UI.cc:129 xbill/x11-gtk.cc:34
 msgid "Rules"
 msgstr "Regler"
 
@@ -591,23 +591,23 @@ msgstr ":or"
 
 #: aisleriot/SCHEME_GAMES.h:14
 msgid "Base Card:  "
-msgstr "Baskort:  "
+msgstr "Grundkort:  "
 
 #: aisleriot/SCHEME_GAMES.h:15
 msgid "Base Card:  Ace"
-msgstr "Baskort:  Ess"
+msgstr "Grundkort:  Ess"
 
 #: aisleriot/SCHEME_GAMES.h:16
 msgid "Base Card:  Jack"
-msgstr "Baskort:  Knekt"
+msgstr "Grundkort:  Knekt"
 
 #: aisleriot/SCHEME_GAMES.h:17
 msgid "Base Card:  King"
-msgstr "Baskort:  Kung"
+msgstr "Grundkort:  Kung"
 
 #: aisleriot/SCHEME_GAMES.h:18
 msgid "Base Card:  Queen"
-msgstr "Baskort:  Dam"
+msgstr "Grundkort:  Dam"
 
 #: aisleriot/SCHEME_GAMES.h:19
 msgid "Consider moving something into an empty slot"
@@ -674,11 +674,11 @@ msgstr "Datorskärmar ger dig inte D-vitamin -- men det gör solljus..."
 
 #: aisleriot/SCHEME_GAMES.h:34
 msgid "Move card from Waste"
-msgstr "Flytta ett kastat kort"
+msgstr "Flytta kort från talongen"
 
 #: aisleriot/SCHEME_GAMES.h:35
 msgid "Move waste back to stock"
-msgstr "Flytta kastade kort tillbaka till lagret"
+msgstr "Flytta talong tillbaka till handen"
 
 #: aisleriot/SCHEME_GAMES.h:36
 msgid "Never blow in a dog's ear"
@@ -710,15 +710,15 @@ msgstr "Reserver kvar:  "
 
 #: aisleriot/SCHEME_GAMES.h:43
 msgid "Return cards to Stock"
-msgstr "Returnera korten till högen"
+msgstr "Returnera korten till handen"
 
 #: aisleriot/SCHEME_GAMES.h:44
 msgid "Stock left:  "
-msgstr "Kvar i högen:  "
+msgstr "Kvar på hand:  "
 
 #: aisleriot/SCHEME_GAMES.h:45
 msgid "Stock left:  0"
-msgstr "Kvar i högen:  0"
+msgstr "Kvar på hand:  0"
 
 #: aisleriot/SCHEME_GAMES.h:46
 msgid "Three card deals"
@@ -1003,6 +1003,7 @@ msgid "Start a new game with a different seed"
 msgstr "Starta ett nytt spel med annorlunda startvärde"
 
 #: freecell/src/menu.c:107 freecell/src/score-dialog.c:47 glines/glines.c:1165
+#: xbill/UI.cc:132
 msgid "Score"
 msgstr "Poäng"
 
@@ -1039,7 +1040,6 @@ msgid "Options"
 msgstr "Alternativ"
 
 #: freecell/src/score.c:56
-#, c-format
 msgid "This session: %d%%"
 msgstr "Den här omgången: %d%%"
 
@@ -1049,7 +1049,6 @@ msgid "won: %d, lost: %d"
 msgstr "vunna: %d, förlorade: %d"
 
 #: freecell/src/score.c:66
-#, c-format
 msgid "Total: %d%%"
 msgstr "Totalt: %d%%"
 
@@ -1285,7 +1284,7 @@ msgstr "Välkommen till Glinjer!"
 msgid "Next Balls"
 msgstr "Nästa bollar"
 
-#: gnibbles/gnibbles.c:97
+#: gnibbles/gnibbles.c:98
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -1298,7 +1297,7 @@ msgstr ""
 "\n"
 "Kontrollera din Gnibbles-installation"
 
-#: gnibbles/gnibbles.c:119
+#: gnibbles/gnibbles.c:124
 #, c-format
 msgid ""
 "Gnibbles Couldn't find pixmap file:\n"
@@ -1311,7 +1310,7 @@ msgstr ""
 "\n"
 "Kontrollera din Gnibbles-installation"
 
-#: gnibbles/gnibbles.c:152
+#: gnibbles/gnibbles.c:161
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -1983,7 +1982,7 @@ msgstr "Liv:"
 msgid "Set starting level (1-10)"
 msgstr "Sätt startnivå (1-10)"
 
-#: gnometris/main.cpp:37
+#: gnometris/main.cpp:37 xbill/Game.cc:218
 msgid "LEVEL"
 msgstr "NIVÅ"
 
@@ -2888,214 +2887,64 @@ msgstr "Välkommen till SameGnome!"
 msgid "Marked: "
 msgstr "Markerade: "
 
-#~ msgid "Not yet implemented!"
-#~ msgstr "Inte implementerat än!"
-
-#~ msgid "No comment for this program."
-#~ msgstr "Ingen kommentar för detta program."
-
-#~ msgid "States must be numbers. Move can only be 'r' or 'l'."
-#~ msgstr ""
-#~ "Tillstånd måste vara tal. Flyttar kan endast vara \"l\" eller \"r\"."
-
-#~ msgid "State"
-#~ msgstr "Tillstånd"
-
-#~ msgid "Read"
-#~ msgstr "Läs"
-
-#~ msgid "Write"
-#~ msgstr "Skriv"
-
-#~ msgid "Move"
-#~ msgstr "Flytta"
-
-#~ msgid "New State"
-#~ msgstr "Nytt tillstånd"
-
-#~ msgid "Editing is still alpha. Come back later or hack."
-#~ msgstr ""
-#~ "Redigering är fortfarande alfakvalitet. Kom tillbaka senare eller hacka."
-
-#~ msgid "Edit Or Create Row"
-#~ msgstr "Redigera eller skapa  rad"
-
-#~ msgid "Save"
-#~ msgstr "Spara"
-
-#~ msgid "Set"
-#~ msgstr "Omgång"
-
-#~ msgid "State: %d"
-#~ msgstr "Tillstånd: %d"
-
-#~ msgid "Stopped"
-#~ msgstr "Stoppad"
-
-#~ msgid "Save gTuring Program File"
-#~ msgstr "Spara gTuring-programfil"
-
-#~ msgid "Comment"
-#~ msgstr "Kommentar"
-
-#~ msgid "Open gTuring Program File"
-#~ msgstr "Öppna gTuring-programfil"
-
-#~ msgid "Tape Setting"
-#~ msgstr "Bandinställning"
-
-#~ msgid "Please enter the tape:"
-#~ msgstr "Ange bandet:"
-
-#~ msgid "Machine's states"
-#~ msgstr "Maskinens lägen"
-
-#~ msgid "Animation Speed"
-#~ msgstr "Animationshastighet"
-
-#~ msgid "Miliseconds between steps:"
-#~ msgstr "Millisekunder mellan steg:"
-
-#~ msgid "gturing"
-#~ msgstr "gturing"
-
-#~ msgid "A Turing Machine for GNOME"
-#~ msgstr "En Turingmaskin för GNOME"
-
-#~ msgid "_Comment..."
-#~ msgstr "_Kommentar..."
-
-#~ msgid "View the program's comment."
-#~ msgstr "Visa programmets kommentar."
-
-#~ msgid "_States..."
-#~ msgstr "_Tillstånd..."
-
-#~ msgid "Open a table with the machine's states."
-#~ msgstr "Öppna en tabell med maskinens lägen."
-
-#~ msgid "_Play Speed..."
-#~ msgstr "S_pelhastighet..."
-
-#~ msgid "Set playing speed."
-#~ msgstr "Ställ in spelhastigheten."
-
-#~ msgid "_Tape..."
-#~ msgstr "_Band..."
-
-#~ msgid "Set the machine's tape."
-#~ msgstr "Ställ in maskinens band."
-
-#~ msgid "Reset"
-#~ msgstr "Återställ"
-
-#~ msgid "Stop"
-#~ msgstr "Stanna"
-
-#~ msgid "Run"
-#~ msgstr "Kör"
-
-#~ msgid "Step"
-#~ msgstr "Stega"
-
-#~ msgid "Welcome to gTuring."
-#~ msgstr "Välkommen till gTuring."
-
-#~ msgid "^                   "
-#~ msgstr "^                       "
-
-#~ msgid "Nothing dropped.\n"
-#~ msgstr "Inget släpptes.\n"
-
-#~ msgid "What ? "
-#~ msgstr "Vad? "
-
-#~ msgid "It's beyond your power to do that.\n"
-#~ msgstr "Det står inte i din makt att göra det.\n"
-
-#~ msgid "It's beyond my power to do that.\n"
-#~ msgstr "Det står inte i min makt att göra det.\n"
-
-#~ msgid "OK"
-#~ msgstr "OK"
-
-#~ msgid "You use word(s) I don't know! "
-#~ msgstr "Du använder ord som jag inte förstår! "
-
-#~ msgid "I don't understand your command. "
-#~ msgstr "Jag förstår inte ditt kommando. "
-
-#~ msgid "I can't do that yet. "
-#~ msgstr "Jag kan inte göra det än. "
-
-#~ msgid "Light has run out! "
-#~ msgstr "Ljuset har slocknat! "
-
-#~ msgid "Your light has run out. "
-#~ msgstr "Ditt ljus har slocknat. "
-
-#~ msgid "Light runs out in "
-#~ msgstr "Ljuset tar slut om "
-
-#~ msgid " turns. "
-#~ msgstr " vändor."
-
-#~ msgid "Your light is growing dim. "
-#~ msgstr "Ditt ljus blir allt svagare. "
-
-#~ msgid "Copyright (C) 1997 Alan Cox"
-#~ msgstr "Copyright © 1997 Alan Cox"
-
-#~ msgid "North"
-#~ msgstr "Norr"
-
-#~ msgid "East"
-#~ msgstr "Öster"
-
-#~ msgid "South"
-#~ msgstr "Söder"
-
-#~ msgid "West"
-#~ msgstr "Väster"
-
-#~ msgid "Up"
-#~ msgstr "Upp"
-
-#~ msgid "Down"
-#~ msgstr "Ner"
-
-#~ msgid "List"
-#~ msgstr "Lista"
-
-#~ msgid "What am I carrying"
-#~ msgstr "Vad bär jag?"
-
-#~ msgid "_New"
-#~ msgstr "_Ny"
-
-#~ msgid "Could not find the '%s' theme for Glines\n"
-#~ msgstr "Kunde inte hitta \"%s\"-temat för Glines\n"
-
-#~ msgid "Couldn't find pixmap file!\n"
-#~ msgstr "Kunde inte hitta pixmapfil!\n"
-
-#~ msgid "Ack!  Couldn't load level file %s\n"
-#~ msgstr "Kunde inte läsa in nivåfilen %s\n"
-
-#~ msgid "Could not find the '%s' theme for gnometris\n"
-#~ msgstr "Kunde inte hitta \"%s\"-temat för gnometris\n"
-
-#~ msgid "."
-#~ msgstr "."
-
-#~ msgid " on "
-#~ msgstr " på "
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "  Set  "
-#~ msgstr "  Ställ in  "
-
-#~ msgid "_View States"
-#~ msgstr "_Visa tillstånd"
+#: xbill/UI.cc:119
+msgid "Pause Game"
+msgstr "Pausa spel"
+
+#: xbill/UI.cc:120
+msgid "Continue"
+msgstr "Fortsätt"
+
+#: xbill/UI.cc:121
+msgid "Quit"
+msgstr "Avsluta"
+
+#: xbill/UI.cc:123
+msgid "Warp To Level"
+msgstr "Hoppa till nivå"
+
+#: xbill/UI.cc:127
+msgid "About"
+msgstr "Om"
+
+#: xbill/UI.cc:128
+msgid "Ported to GNOME by James Henstridge <james@daa.com.au>"
+msgstr "Anpassad till GNOME av James Henstridge <james@daa.com.au>"
+
+#: xbill/UI.cc:130
+msgid "Story"
+msgstr "Historia"
+
+#: xbill/UI.cc:133
+msgid "Endgame"
+msgstr "Avsluta spel"
+
+#: xbill/Game.cc:62
+#, c-format
+msgid "Bill:%d/%d  System:%d/%d/%d  Level: %d Score:%d"
+msgstr "Bill:%d/%d  System:%d/%d/%d  Nivå: %d Poäng:%d"
+
+#: xbill/Game.cc:218
+msgid "Start at a different level"
+msgstr "Starta på en annan nivå"
+
+#: xbill/x11-gtk.cc:24
+msgid "Warp to level..."
+msgstr "Hoppa till nivå..."
+
+#: xbill/x11-gtk.cc:33
+msgid "Story of xBill"
+msgstr "Historien om xBill"
+
+#: xbill/x11-gtk.cc:168
+#, c-format
+msgid ""
+"After Level %d:     \n"
+"Your score: %d"
+msgstr ""
+"Efter nivå %d:      \n"
+"Din poäng: %d"
+
+#: xbill/x11-gtk.cc:174
+msgid "Gnome xBill Scores"
+msgstr "Gnome xBill-poäng"
