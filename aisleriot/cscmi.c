@@ -161,6 +161,18 @@ SCM scm_add_slot(SCM slot)
   return SCM_EOL;
 }
 
+SCM scm_set_slot_y_expansion(SCM scm_slot_id, SCM new_exp_val)
+{
+  hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
+  slot->dy = gh_scm2int(new_exp_val);
+}
+
+SCM scm_set_slot_x_expansion(SCM scm_slot_id, SCM new_exp_val)
+{
+  hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
+  slot->dx = gh_scm2int(new_exp_val);
+}
+
 SCM scm_get_slot(SCM scm_slot_id) 
 {
   SCM cards = SCM_EOL;
@@ -269,6 +281,8 @@ void cscm_init ()
   gh_new_procedure1_0("add-slot", scm_add_slot);
   gh_new_procedure1_0("get-slot", scm_get_slot);  
   gh_new_procedure2_0("set-cards-c!", scm_set_cards);
+  gh_new_procedure2_0("set-slot-y-expansion!", scm_set_slot_y_expansion);
+  gh_new_procedure2_0("set-slot-x-expansion!", scm_set_slot_x_expansion);
   gh_new_procedure("set-lambda", scm_set_lambda, 8, 0, 1);
   gh_new_procedure1_0("random", scm_myrandom);
   gh_new_procedure0_0("get-score", scm_get_score);  

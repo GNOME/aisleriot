@@ -101,6 +101,7 @@ types_DATA  = 		\
 	spiderette.scm	\
 	straight_up.scm	\
 	streets_and_alleys.scm	\
+	ten_across.scm  \
 	thieves.scm     \
 	thirteen.scm	\
 	thumb_and_pouch.scm	\

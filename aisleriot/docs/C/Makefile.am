@@ -65,6 +65,7 @@ sgml_ents = \
 	spiderette.sgml	\
 	straight_up.sgml	\
 	streets_and_alleys.sgml	\
+	ten_across.sgml \
 	thieves.sgml	\
 	thirteen.sgml	\
 	thumb_and_pouch.sgml	\
