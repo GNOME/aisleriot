@@ -1,5 +1,5 @@
 /* AisleRiot - sol.c
- * Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+ * Copyright (C) 1998, 2001 Jonathan Blandford <jrb@alum.mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -210,11 +210,11 @@ void new_game (gchar* file, guint *seedp )
   gdk_window_get_size (playing_area->window, &old_w, &old_h);
   gtk_widget_set_usize (playing_area, min_w, min_h);
 
-  if(old_w >= min_w && old_h >= min_h)
-    refresh_screen();
+  refresh_screen();
 
   game_over = FALSE;
   make_title();
+  end_of_game_test();
 }
 
 GtkWidget *score_value;
