@@ -69,13 +69,13 @@
 					(get-base-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left: ") 
+  (string-append (_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append (_"Base Card: ") (number->string BASE-VAL)))
+	 (string-append (_"Base Card:") " " (number->string BASE-VAL)))
 	((= BASE-VAL 1)
 	 (_"Base Card: Ace"))
 	((= BASE-VAL 11)
@@ -84,7 +84,7 @@
 	 (_"Base Card: Queen"))
 	((= BASE-VAL 13)
 	 (_"Base Card: King"))
-	(#t (_"melborp"))))
+	(#t #f)))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))

@@ -83,11 +83,11 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left: ")
+  (string-append (_"Stock left:") " "
 		 (number->string (length (get-cards 0)))))
 
 (define (get-reserve-no-string)
-  (string-append (_"Reserve left: ")
+  (string-append (_"Reserve left:") " "
 		 (number->string (length (get-cards 10)))))
 
 (define (get-base-string)
@@ -105,7 +105,7 @@
 	(#t #f)))
 
 (define (get-redeals-string)
-  (string-append (_"Redeals left: ")
+  (string-append (_"Redeals left:") " "
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)

@@ -1,6 +1,6 @@
 ; AisleRiot - ten-across.scm
 ;; base on klondike.scm
-; Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+; Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
 ; Copyright (C) 1999 James LewisMoss <dres@debian.org>
 ;
 ; This game is free software; you can redistribute it and/or modify
@@ -76,8 +76,8 @@
   (map (lambda (num-now) (deal-ten-across-int num-now)) '(1 2 3 4 5))))
 
 ;; testing functions
-;;(define deal-cards (lambda (num slot-list) (map (lambda (num1) (display (_"dealing face-down to "))(display num1)(display (_"\n"))) slot-list)))
-;;(define deal-cards-face-up (lambda (num slot-list) (map (lambda (num1) (display (_"dealing face-up to ")) (display num1) (display (_"\n"))) slot-list)))
+;;(define deal-cards (lambda (num slot-list) (map (lambda (num1) (display "dealing face-down to ")(display num1)(display "\n")) slot-list)))
+;;(define deal-cards-face-up (lambda (num slot-list) (map (lambda (num1) (display "dealing face-up to ") (display num1) (display "\n")) slot-list)))
 ;;(deal-ten-across-cards)
 
 (define (button-pressed slot-id card-list)
@@ -289,10 +289,7 @@
           (all-in-order-showing card-list)
           (has-no-hidden card-list))
       #f
-      (begin
-        (display (_"Testing ")) (display card-list) (display (_" for num "))
-        (display num) (newline)
-        (same-stack-smaller card-list num))))
+      (same-stack-smaller card-list num)))
 
           
           
@@ -303,7 +300,7 @@
           slot-list))
 
 (define (prepare-move-response card)
-  (list 2 (string-append (get-name card) (_" and all cards below it"))
+  (list 2 (string-append (get-name card) " " (_"and all cards below it"))
         (_"empty slot(s)")))
 
 ;; ** 4 **

@@ -426,11 +426,11 @@ static void main_prog(int argc, char *argv[])
   create_menus ();
 
   score_box = gtk_hbox_new(0, FALSE);
-  score_label = gtk_label_new (_("Score: "));
+  score_label = gtk_label_new (_("Score:"));
   gtk_box_pack_start (GTK_BOX(score_box), score_label, FALSE, FALSE, 0);
   score_value = gtk_label_new ("   0");
   gtk_box_pack_start (GTK_BOX(score_box), score_value, FALSE, FALSE, 0);
-  time_label = gtk_label_new (_("Time: "));
+  time_label = gtk_label_new (_("Time:"));
   gtk_box_pack_start (GTK_BOX(score_box), time_label, FALSE, FALSE, 0);
   time_value = games_clock_new ();
   gtk_box_pack_start (GTK_BOX(score_box), time_value, FALSE, FALSE, GNOME_PAD_SMALL);

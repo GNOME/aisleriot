@@ -83,7 +83,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left: ")
+  (string-append (_"Stock left:") " "
 		 (number->string (length (get-cards 0)))))
 
 (define (check-for-kings slot-id)

@@ -278,7 +278,7 @@ void show_hint_dialog()
 	gmessage = g_strdup_printf (_("Move %s %s."), str1, str2);
 	free (str1);
 	free (str2);
-        g_warning(_("This game uses a deprecated hint method (case 3).\n Please file a bug at http://bugzilla.gnome.org including this message and\n the name of the game you where playing (look in the title bar if you \naren't sure)."));
+        g_warning(_("This game uses a deprecated hint method (case 3).\nPlease file a bug at http://bugzilla.gnome.org including this message and\nthe name of the game you where playing (look in the title bar if you \naren't sure)."));
 	break;
 
       case 4:

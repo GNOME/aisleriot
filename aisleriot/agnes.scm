@@ -79,7 +79,7 @@
 
 (define (get-stock-no-string)
   (if (> (length (get-cards 0)) 1)
-      (string-append (_"Stock left: ")
+      (string-append (_"Stock left:") " "
 		     (number->string (length (get-cards 0))))
       (string-append (_"Stock left: 0")))) 
 
