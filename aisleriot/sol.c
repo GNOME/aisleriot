@@ -202,6 +202,23 @@ void new_game (gchar* file, guint *seedp )
 
     game_file = file;
 
+    /* Explicitly drop any dragged cards. This shouldn't happen, but it
+     * has in the past and it's best to be defensive. See bug 121762. */
+    /* Most of this is stolen from drop_moving_cards () */
+    /* FIXME: we haven't actually fixed the cause of this. This
+     * should also be factorised along with the code in drop_moving_cards.*/
+    if (press_data) {
+      gh_eval_str ("(discard-move)");
+      press_data->cards = NULL;
+      gdk_window_hide(press_data->moving_cards);
+      if (press_data->moving_pixmap)
+        g_object_unref(press_data->moving_pixmap);
+      if (press_data->moving_mask)
+        g_object_unref(press_data->moving_mask);
+      press_data->moving_pixmap = NULL;
+      press_data->moving_mask = NULL;
+    }
+    
     /* Although this line slows down game switching by a noticeable amount, we
      * add it here in order to make sure all the original functions are
      * "clean". */
