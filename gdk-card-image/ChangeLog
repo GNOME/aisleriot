@@ -1,3 +1,10 @@
+2003-05-16  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* gdk-card-image.c: Trying to solve multi-platform build problems
+	by using generic glib functions (and thereby making it glib's
+	problem to try and figure out whether to include dirent.h or
+	not). This should fix bug #111225 and several others.
+
 2003-05-14  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* Makefile.am: Added a generic card game icon (it had been floating

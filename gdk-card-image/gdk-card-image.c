@@ -27,25 +27,6 @@
 
 #include <config.h>
 #include <gnome.h>
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#if HAVE_DIRENT_H
-#include <dirent.h>
-#else
-#if defined HAVE_SYS_DIRENT_H
-#include <sys/dirent.h>
-#endif
-#ifdef HAVE_SYS_DIR_H
-#include <sys/dir.h>
-#else
-#include <dirent.h>
-#endif
-#endif
-
-#ifdef __osf__
-#undef HAVE_STRUCT_DIRECT
-#endif
 
 #include <gdk-card-image.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -233,9 +214,9 @@ gdk_card_deck_get_type ()
 }
 
 static int
-is_image (const struct dirent* dent)
+is_image (const gchar * name)
 {
-	const char *type = gnome_vfs_mime_type_from_name (dent->d_name);
+	const char *type = gnome_vfs_mime_type_from_name (name);
 
 	if (type == NULL ||
 	    strncmp (type, "image/", strlen ("image/")) != 0)
@@ -253,27 +234,38 @@ gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name)
   if (!dir->file) {
     gchar* dir_name = gnome_program_locate_file (NULL,
 		    GNOME_FILE_DOMAIN_APP_PIXMAP,  dir->name, TRUE, NULL);
-    struct dirent** de;
-    int records;
+    GDir * de;
+    GList * filelist = NULL;
+    GList * node;
+    const gchar * filename;
+    int records = 0;
 
     if (dir_name == NULL)
       return -1;
 
-    records = scandir (dir_name, &de, is_image, alphasort);
+    de = g_dir_open (dir_name, 0, NULL);
+    while (filename = g_dir_read_name (de)) {
+      if (is_image (filename)) {
+        filelist = g_list_prepend (filelist,
+                                   g_strconcat (dir_name, filename, NULL));
+        records++;
+      }
+    }
 
-    if (records == -1)
-      return -1;
+    filelist = g_list_sort (filelist, (GCompareFunc)g_utf8_collate);
     
     dir->nfiles = records;
     dir->file = g_new0 (GdkCardDeckFile, dir->nfiles);
+    node = filelist;
     for (i = 0; i < dir->nfiles; i++) {
-      dir->file[i].name = g_strconcat (dir_name, de[i]->d_name, NULL);
+      dir->file[i].name = node->data;
       dir->file[i].cols = dir->cols;
       dir->file[i].rows = dir->rows;
       dir->file[i].rotate = dir->rotate;
-      free (de[i]);
+      node = g_list_next (node);
     }
-    free (de);
+    g_dir_close (de);
+    g_list_free (filelist);
     g_free (dir_name);
   }
 

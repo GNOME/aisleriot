@@ -26,7 +26,6 @@
 #include "cscmi.h"
 #include "draw.h"
 #include "events.h"
-#include "scroll-menu.h"
 
 static GtkWidget *about = NULL;
 
