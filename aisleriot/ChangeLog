@@ -1,4 +1,18 @@
 Thu Oct 29 Felix Bellaby <felix@pooh.u-net.com>
+	* event.c: (drop_moving_cards) fixed bug in expanding slots.
+	(button_press_event) delay decision on what event means so that clicks
+	can be recognised on any slot.
+	(motion_notify_event) now initiates drag as well.
+	(button_up_not_moved) removed.
+	(button_release_event) incorporates button_up_not_moved function.
+	* slot.c: (slot_pressed) speeded up detection on long slots.
+	* press_data.c: (generate_press_data) fixed bugs in expanding slots.
+	* press_data.h: generate_press_data prototype changed.
+	* fortunes.scm: corrected requested board size.
+	* klondike.scm: replaced hint support to avoid crashes,
+	changed double clicks to single clicks, reintroduced expanding slot. 
+
+Thu Oct 29 Felix Bellaby <felix@pooh.u-net.com>
 	* sol.c: (new_game) game_over set to false.
 	* sol.h: game_over and game_won globals added.
 	* menu.c: menu structure changed.

@@ -16,7 +16,6 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#define PRESS_DATA_C
 #include <gdk/gdk.h>
 #include "press_data.h"
 #include "card.h"
@@ -26,32 +25,32 @@
 
 press_data_type* press_data; 
 
-void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
+void generate_press_data() {
   GList* tempptr;
   GdkPixmap* tempcard;
-  hslot_type slot = get_slot(slotid);
+  hslot_type slot = get_slot(press_data->slot_id);
   gint tempint;
-  gint length, height, width, dx, dy, x2, y2;
+  gint length, height, width, x, y, dx, dy, x2, y2;
   GdkGC *gc1, *gc2;
   GdkColor masked = {0, 0, 0, 0}, unmasked = {1, 65535, 65535, 65535};
-  
-  press_data->slot_id = slotid;
-  press_data->slot_location = cardid;
-  press_data->cards = g_list_nth(slot->cards, cardid - 1);
+
+  x = press_data->xoffset;
+  y = press_data->yoffset;
+  press_data->cards = g_list_nth(slot->cards, press_data->slot_location - 1);
   press_data->temporary_partial_hack = slot->expansion_depth;
-  g_assert(press_data->cards);
+
   if (press_data->cards->prev) 
     press_data->cards->prev->next = NULL;
   else 
     slot->cards = NULL;
   press_data->cards->prev = NULL;
-  update_slot_length(slotid);
+  update_slot_length(press_data->slot_id);
 
   length = g_list_length(press_data->cards);
   
   if (slot->type == NORMAL_SLOT) {
-    press_data->xoffset = (x - slot->x);
-    press_data->yoffset = (y - slot->y);
+    press_data->xoffset -= slot->x;
+    press_data->yoffset -= slot->y;
     width = get_card_width();
     height = get_card_height() + (length - 1)*EXPANDED_VERT_OFFSET;
     dx = 0; dy = EXPANDED_VERT_OFFSET;
@@ -60,8 +59,8 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
 	   (slot->type == PARTIALLY_EXPANDING_SLOT)) {
     if ((slot->type == PARTIALLY_EXPANDING_SLOT) &&
 	(g_list_length(slot->cards) + length > slot->expansion_depth)) {
-      tempint = length - slot->expansion_depth;
-      press_data->yoffset = (y - slot->y) + tempint*EXPANDED_VERT_OFFSET;
+      tempint = slot->expansion_depth - length;
+      press_data->yoffset -= slot->y + tempint*EXPANDED_VERT_OFFSET;
       if  (tempint == 0)
 	slot->expansion_depth = 1;
       else {
@@ -69,9 +68,10 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
       }
     } 
     else
-      press_data->yoffset = (y - slot->y) - (cardid - 1)*EXPANDED_VERT_OFFSET;
+      press_data->yoffset -= 
+	slot->y + (press_data->slot_location - 1)*EXPANDED_VERT_OFFSET;
 
-    press_data->xoffset = (x - slot->x);
+    press_data->xoffset -= slot->x;
     width = get_card_width();
     height = get_card_height() + (length - 1)*EXPANDED_VERT_OFFSET;
     dx = 0; dy = EXPANDED_VERT_OFFSET;
@@ -80,18 +80,19 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
 	   (slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT)) {
     if ((slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT) &&
         (g_list_length(slot->cards) + length > slot->expansion_depth)) {
-      tempint = length - slot->expansion_depth;
-      press_data->xoffset = (x - slot->x) + tempint*EXPANDED_VERT_OFFSET;
+      tempint = slot->expansion_depth - length;
+      press_data->xoffset -= slot->x + tempint*EXPANDED_VERT_OFFSET;
       
       if  (tempint == 0)
 	slot->expansion_depth = 1;
       else 
-	slot->expansion_depth = -tempint;
+	slot->expansion_depth = tempint;
     } 
     else
-      press_data->xoffset = (x - slot->x) - (cardid - 1)*EXPANDED_HORIZ_OFFSET;
+      press_data->xoffset -= 
+	slot->x + (press_data->slot_location - 1)*EXPANDED_HORIZ_OFFSET;
 
-    press_data->yoffset = (y - slot->y);
+    press_data->yoffset -= slot->y;
     height = get_card_height();
     width = get_card_width() + (length - 1)*EXPANDED_HORIZ_OFFSET;
     dx = EXPANDED_HORIZ_OFFSET; dy = 0;

@@ -16,7 +16,7 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
 
-  (list 4 3)
+  (list 6 3)
 )
 
 (define (button-pressed slot-id card-list)

@@ -68,8 +68,10 @@ void drop_moving_cards(gint x, gint y) {
     add_cards_to_slot(press_data->cards, slotid);
   }
 
+  get_slot(press_data->slot_id)->expansion_depth = 
+    press_data->temporary_partial_hack;
+
   slot = get_slot(slotid);
-  slot->expansion_depth = press_data->temporary_partial_hack;
   update_slot_length(slotid);
   press_data->cards = NULL;
 
@@ -92,126 +94,104 @@ void drop_moving_cards(gint x, gint y) {
   if(moved) end_of_game_test();
 }
 
-void button_up_not_moved(gint x, gint y) {
-  SCM arglist;
-  gint slotid, cardid;
- 
-  slot_pressed(x, y, &slotid, &cardid);
- 
-  if (slotid == press_data->slot_id) {
-	 arglist =  gh_cons(gh_long2scm(slotid), SCM_EOL);
-	 gh_apply(game_data->button_clicked_lambda, arglist);
-
-	 end_of_game_test();
-  }
-  return;
-}
-
 /* event handlers */
 
 gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
-  GList* temp;
-  SCM arglist;
-  SCM templist;
-  SCM cardlist = SCM_EOL;
   gint slotid, cardid;
   hslot_type slot;
 
-  if (game_over)
+  slot_pressed(event->x,event->y, &slotid, &cardid);
+
+  if (slotid == -1)
     return TRUE;
 
+  press_data->xoffset = event->x;
+  press_data->yoffset = event->y;
+  press_data->slot_id = slotid;
+  press_data->slot_location = cardid;
+
   if (event->type == GDK_2BUTTON_PRESS) {
+    SCM arglist;
+
     if (press_data->moving) {
       press_data->moving = FALSE;
       drop_moving_cards(event->x, event->y);
     }
-    slot_pressed(event->x,event->y, &slotid, &cardid);
-    if (slotid != -1) {
-      templist =  gh_cons(gh_long2scm(slotid), SCM_EOL);
-      gh_apply(game_data->button_double_clicked_lambda, templist);
-    }
+
+    arglist =  gh_cons(gh_long2scm(slotid), SCM_EOL);
+    gh_apply(game_data->button_double_clicked_lambda, arglist);
     return TRUE;
   }
-  
+  else if (press_data->button_pressed == 0) {
 
-  if (event->button == 1) {
-    
-    if (press_data->button_pressed == 1) {
-      return TRUE;
+    if (event->button == 1) {
+      press_data->button_pressed = 1;    
     }
-	 
-    slot_pressed(event->x,event->y, &slotid, &cardid);
+    else if (event->button == 3 && cardid > 0) {
 
-    if (slotid == -1)
-      return TRUE;
-
-    press_data->button_pressed = 1;    
-
-    /* ask scheme if we want to drag... */
-    slot = get_slot(slotid);
-    if (slot->cards)
-      for (temp = g_list_nth(slot->cards, cardid - 1); 
-	   temp; temp = temp->next) {
-	cardlist = gh_cons(make_card((hcard_type)temp->data), cardlist);
-      }
-    else
-      cardlist = SCM_BOOL_F;
-    arglist =  gh_cons(gh_long2scm(slotid), gh_cons(cardlist, SCM_EOL));
-    if (!gh_scm2bool(gh_apply(game_data->button_pressed_lambda, arglist))) {
-      press_data->slot_id = slotid;
-      press_data->moving = FALSE;
-      return TRUE;
-    }
-
-    /* we've found the card -- prepare to draw it */
-    generate_press_data(event->x, event->y, slotid, cardid);
-    press_data->moving = TRUE;
-
-    take_snapshot();
-  }
-  else if (event->button == 3) {
-
-    if (press_data->button_pressed == 0) {
-      hslot_type slot;
       hcard_type card;
-
-      slot_pressed (event->x,event->y, &slotid, &cardid);
-
-      if (slotid == -1)
-	return TRUE;
-
+      
       slot = get_slot(slotid);
       card = g_list_nth(slot->cards, cardid - 1)->data;
-
-      if (card->direction == DOWN)
-	return TRUE;
-
-      press_data->button_pressed = 3;
-      press_data->moving_pixmap = get_card_picture (card->suit, card->value);
-      press_data->moving_mask = mask;
-
-      gdk_window_set_back_pixmap (press_data->moving_cards, 
-				  press_data->moving_pixmap, 0);
-      gdk_window_shape_combine_mask (press_data->moving_cards, 
-				     press_data->moving_mask, 0, 0);
-      gdk_window_move(press_data->moving_cards, slot->x, 
-		      slot->y + (cardid - 1)*EXPANDED_VERT_OFFSET);
-      gdk_window_show(press_data->moving_cards);
+      
+      if (card->direction == UP) {      
+	press_data->button_pressed = 3;
+	press_data->moving_pixmap = get_card_picture (card->suit, card->value);
+	press_data->moving_mask = mask;
+	
+	gdk_window_set_back_pixmap (press_data->moving_cards, 
+				    press_data->moving_pixmap, 0);
+	gdk_window_shape_combine_mask (press_data->moving_cards, 
+				       press_data->moving_mask, 0, 0);
+	gdk_window_move(press_data->moving_cards, slot->x, 
+			slot->y + (cardid - 1)*EXPANDED_VERT_OFFSET);
+	gdk_window_show(press_data->moving_cards);
+      }
     }
   }
   
   return TRUE;
 }
 
-gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event) {
-
-  if ((press_data->button_pressed == 1) && (press_data->moving)) {
+gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
+{
+  if (press_data->moving) {
     gdk_window_move(press_data->moving_cards,  
 		    event->x - press_data->xoffset,
 		    event->y - press_data->yoffset);
   }
-	 
+  else if (press_data->button_pressed == 1 &&
+	   (abs(press_data->xoffset - event->x) > 2 ||
+	    abs(press_data->yoffset - event->y) > 2)) {
+    hslot_type slot;
+    GList* temp;
+    
+    slot = get_slot(press_data->slot_id);
+    press_data->button_pressed = 0;
+    
+    if (slot->cards) {
+      SCM arglist;
+      SCM cardlist = SCM_EOL;
+      
+      for (temp = g_list_nth(slot->cards, press_data->slot_location - 1); 
+	   temp; temp = temp->next) {
+	cardlist = gh_cons(make_card((hcard_type)temp->data), cardlist);
+      }
+      
+      arglist =  gh_cons(gh_long2scm(press_data->slot_id), 
+			 gh_cons(cardlist, SCM_EOL));
+      
+      press_data->moving = 
+	gh_scm2bool(gh_apply(game_data->button_pressed_lambda, arglist));
+      
+      if(press_data->moving) {
+	generate_press_data();
+	take_snapshot();
+	press_data->button_pressed = 1;
+      }
+    }
+  }
   return TRUE;
 }
 
@@ -225,7 +205,10 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 	drop_moving_cards(event->x, event->y);
       }
       else {
-	button_up_not_moved(event->x, event->y);
+	SCM arglist;
+ 
+	arglist =  gh_cons(gh_long2scm(press_data->slot_id), SCM_EOL);
+	gh_apply(game_data->button_clicked_lambda, arglist);
 	refresh_screen();
       } 
     }

@@ -19,15 +19,11 @@
 #ifndef SLOT_H
 #define SLOT_H
 
-#include <gtk/gtk.h>
-#include "card.h"
-
-//#define DEBUG
+#include "glib.h"
 
 /*
  * Data Structures
  */
-
 
 typedef struct {
   gint x;
@@ -39,8 +35,8 @@ typedef struct {
   gint id;
   gint expansion_depth;
 } slot_type;
-typedef slot_type* hslot_type;
 
+typedef slot_type* hslot_type;
 
 /*
  * Variables
@@ -55,9 +51,7 @@ typedef slot_type* hslot_type;
 #define PARTIALLY_EXPANDING_SLOT_RIGHT 4
 #define SCHEME_DEFINED_SLOT 5
 
-#ifndef SLOT_C
 extern GList *slot_list;
-#endif
 
 /*
  * Functions
@@ -65,12 +59,12 @@ extern GList *slot_list;
 
 void slot_pressed(gint, gint, gint*, gint*);
 GList* get_slot_list();
-
 void delete_surface();
 void add_slot(hslot_type);
 void delete_slot(hslot_type);
 hslot_type get_slot(gint);
 void update_slot_length(gint);
 void add_cards_to_slot(GList*, gint);
+
 #endif
 

@@ -16,74 +16,57 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#define SLOT_C
 #include "slot.h"
+#include <stdio.h>
+
 GList *slot_list = NULL;
 
-
 void slot_pressed(gint x, gint y, gint *slotid, gint *cardid) {
-  GList *tempPtr;
-  gint i, length;
+  GList *tempptr;
 
-  for (tempPtr = g_list_last(slot_list); tempPtr; tempPtr = tempPtr->prev) 
-	 if ((((hslot_type) tempPtr->data)->x < x) && (((hslot_type) tempPtr->data)->y < y)
-		  && ((((hslot_type) tempPtr->data)->width +((hslot_type) tempPtr->data)->x) > x) && 
-		  ((((hslot_type) tempPtr->data)->height +((hslot_type) tempPtr->data)->y) > y)) {
-		/* we are in a slot... */
-		/* which slot? */
-		*slotid = ((hslot_type) tempPtr->data)->id;
-
-		/* which card? */
-		length = g_list_length(((hslot_type) tempPtr->data)->cards);
-		if (((hslot_type) tempPtr->data)->type == NORMAL_SLOT) {
-		  *cardid = g_list_length(((hslot_type) tempPtr->data)->cards);
-		  return;
-		}
-		else if ((((hslot_type) tempPtr->data)->type == EXPANDING_SLOT)
-			 || ((((hslot_type) tempPtr->data)->type == PARTIALLY_EXPANDING_SLOT)
-			     && (length <= (((hslot_type) tempPtr->data)->expansion_depth)))){
-		  for (i = 0; i < length; i++) 
-			 if ((i* EXPANDED_VERT_OFFSET + ((hslot_type) tempPtr->data)->y) > y) {
-				*cardid = i;
-				return;
-			 }
-		  *cardid = length;
-		  return;
-		}
-		else if ((((hslot_type) tempPtr->data)->type == EXPANDING_SLOT_RIGHT)
-			 || ((((hslot_type) tempPtr->data)->type == PARTIALLY_EXPANDING_SLOT_RIGHT)
-			     && (length <= (((hslot_type) tempPtr->data)->expansion_depth)))){
-		  for (i = 0; i < length; i++) 
-			 if ((i* EXPANDED_HORIZ_OFFSET + ((hslot_type) tempPtr->data)->x) > x) {
-				*cardid = i;
-				return;
-			 }
-		  *cardid = length;
-		  return;
-		}
-		else if (((hslot_type) tempPtr->data)->type == PARTIALLY_EXPANDING_SLOT) {
-		  for (i = 0; i < ((hslot_type) tempPtr->data)->expansion_depth; i++) 
-		    
-		    if ((i* EXPANDED_VERT_OFFSET + ((hslot_type) tempPtr->data)->y) > y) {
-		      *cardid = length + i - ((hslot_type) tempPtr->data)->expansion_depth;
-		      return;
-		    }
-		  *cardid = length;
-		  return;
-		}
-		else if (((hslot_type) tempPtr->data)->type == PARTIALLY_EXPANDING_SLOT_RIGHT) {
-		  for (i = 0; i < ((hslot_type) tempPtr->data)->expansion_depth; i++) 
-		    if ((i* EXPANDED_HORIZ_OFFSET + ((hslot_type) tempPtr->data)->x) > x) {
-		      *cardid = length + i - ((hslot_type) tempPtr->data)->expansion_depth;
-		      return;
-		    }
-		  *cardid = length;
-		  return;
-		  }
-
-	 }
   *slotid = -1;
   *cardid = -1;
+
+  for (tempptr = slot_list; tempptr; tempptr = tempptr->next) {
+
+    hslot_type hslot = (hslot_type) tempptr->data;
+    gint depth, length;
+
+    if (hslot->x < x && x < hslot->x + hslot->width && 
+	hslot->y < y && y < hslot->y + hslot->height) {
+
+      *slotid = hslot->id;
+      
+      length = g_list_length(hslot->cards);
+
+      switch (hslot->type) {
+
+      case NORMAL_SLOT:
+	depth = length;
+	break;
+
+      case EXPANDING_SLOT:
+      case PARTIALLY_EXPANDING_SLOT:
+	depth = (y - hslot->y) / EXPANDED_VERT_OFFSET + 1;
+	break;
+
+      case EXPANDING_SLOT_RIGHT:
+      case PARTIALLY_EXPANDING_SLOT_RIGHT:
+	depth = (x - hslot->x) / EXPANDED_HORIZ_OFFSET + 1;
+	break;
+      }
+
+      if ((hslot->type == PARTIALLY_EXPANDING_SLOT ||
+	   hslot->type == PARTIALLY_EXPANDING_SLOT_RIGHT) &&
+	  length > hslot->expansion_depth) 
+	depth += length - hslot->expansion_depth;
+
+      if (depth > length) 
+	depth = length;
+
+      *cardid = depth;
+    }
+  }
   return;
 }
 
@@ -92,11 +75,11 @@ GList* get_slot_list() {
 }
 
 hslot_type get_slot(gint slotid) {
-  GList* temp;
+  GList* tempptr;
   
-  for (temp = slot_list; temp; temp = temp->next)
-	 if (((hslot_type) temp->data)-> id == slotid)
-		return temp->data;
+  for (tempptr = slot_list; tempptr; tempptr = tempptr->next)
+	 if (((hslot_type) tempptr->data)-> id == slotid)
+		return tempptr->data;
   return NULL;
 }
 
@@ -113,52 +96,52 @@ void update_slot_length(gint slotid) {
   hslot_type slot = get_slot(slotid);
  
   if (slot) {
-	 if (slot->type == EXPANDING_SLOT) {
-		slot->width = get_card_width();
-		if (slot->cards) { 
-		  slot->height = (get_card_height() + (g_list_length(slot->cards) - 1) * EXPANDED_VERT_OFFSET);
-		}
-		else {
-		  slot->height = get_card_height();
-		}
-	 }
-	 if (slot->type == EXPANDING_SLOT_RIGHT) {
-		slot->height = get_card_height();
-		if (slot->cards) { 
-		  slot->width = (get_card_width() + (g_list_length(slot->cards) - 1) * EXPANDED_HORIZ_OFFSET);
-		}
-		else {
-		  slot->width = get_card_width();
-		}
-	 }
-	 if (slot->type == PARTIALLY_EXPANDING_SLOT) {
-		slot->width = get_card_width();
-		if (slot->cards) { 
-		  if (g_list_length(slot->cards) > slot->expansion_depth)
-		    slot->height = (get_card_height() + (slot->expansion_depth - 1) * EXPANDED_VERT_OFFSET);
-		  else
-		    slot->height = (get_card_height() + (g_list_length(slot->cards) - 1) * EXPANDED_VERT_OFFSET);
-		}
-		else {
-		  slot->height = get_card_height();
-		}
-	 }
-	 if (slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT) {
-		slot->height = get_card_height();
-		if (slot->cards) { 
-		  if (g_list_length(slot->cards) > slot->expansion_depth)
-		    slot->width = (get_card_width() + (slot->expansion_depth - 1) * EXPANDED_HORIZ_OFFSET);
-		  else
-		    slot->width = (get_card_width() + (g_list_length(slot->cards) - 1) * EXPANDED_HORIZ_OFFSET);
-		}
-		else {
-		  slot->width = get_card_width();
-		}
-	 }
-	 else if (slot->type == NORMAL_SLOT) {
-		slot->width = get_card_width();
-		slot->height = get_card_height();
-	 }
+    if (slot->type == EXPANDING_SLOT) {
+      slot->width = get_card_width();
+      if (slot->cards) { 
+	slot->height = (get_card_height() + (g_list_length(slot->cards) - 1) * EXPANDED_VERT_OFFSET);
+      }
+      else {
+	slot->height = get_card_height();
+      }
+    }
+    if (slot->type == EXPANDING_SLOT_RIGHT) {
+      slot->height = get_card_height();
+      if (slot->cards) { 
+	slot->width = (get_card_width() + (g_list_length(slot->cards) - 1) * EXPANDED_HORIZ_OFFSET);
+      }
+      else {
+	slot->width = get_card_width();
+      }
+    }
+    if (slot->type == PARTIALLY_EXPANDING_SLOT) {
+      slot->width = get_card_width();
+      if (slot->cards) { 
+	if (g_list_length(slot->cards) > slot->expansion_depth)
+	  slot->height = (get_card_height() + (slot->expansion_depth - 1) * EXPANDED_VERT_OFFSET);
+	else
+	  slot->height = (get_card_height() + (g_list_length(slot->cards) - 1) * EXPANDED_VERT_OFFSET);
+      }
+      else {
+	slot->height = get_card_height();
+      }
+    }
+    if (slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT) {
+      slot->height = get_card_height();
+      if (slot->cards) { 
+	if (g_list_length(slot->cards) > slot->expansion_depth)
+	  slot->width = (get_card_width() + (slot->expansion_depth - 1) * EXPANDED_HORIZ_OFFSET);
+	else
+	  slot->width = (get_card_width() + (g_list_length(slot->cards) - 1) * EXPANDED_HORIZ_OFFSET);
+      }
+      else {
+	slot->width = get_card_width();
+      }
+    }
+    else if (slot->type == NORMAL_SLOT) {
+      slot->width = get_card_width();
+      slot->height = get_card_height();
+    }
   }
 }
 
