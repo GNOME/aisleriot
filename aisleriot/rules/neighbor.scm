@@ -77,7 +77,8 @@
 
 (define (button-pressed slot-id card-list)
   (and (not (= slot-id 0))
-       (not (empty-slot? slot-id))))
+       (not (empty-slot? slot-id))
+       (not (= (get-value (get-top-card slot-id)) king))))
 
 (define (fill-it-up slot-id spaces)
   (cond ((> (+ slot-id spaces) 25)

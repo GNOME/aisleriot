@@ -56,7 +56,8 @@
 (define (button-pressed slot-id card-list)
   (and (> slot-id 0)
        (not (empty-slot? slot-id))
-       (= (length card-list) 1)))
+       (= (length card-list) 1)
+       (not (= (get-value (get-top-card slot-id)) king))))
 
 (define (button-released start-slot card-list end-slot)
   (and (not (empty-slot? end-slot))
@@ -77,8 +78,10 @@
        (= (get-value (get-top-card slot-id)) king)
        (remove-card slot-id)
        (add-to-score! 1)
-       (or (empty-slot? 0)
-	   (deal-cards-face-up 0 (list slot-id)))))
+       ; This is slightly odd, but the return value is important
+       (and (or (empty-slot? 0)
+		(deal-cards-face-up 0 (list slot-id)))
+	    #t)))
 
 (define (button-double-clicked slot-id)
   #f)
