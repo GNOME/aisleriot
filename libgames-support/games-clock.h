@@ -2,43 +2,47 @@
  * clock.c: Clock widget.
  *
  * Copyright (C) 2001 Iain Holmes
+ *           (C) 2001 Mark McLoughlin
+ *
  * Authors: Iain Holmes <iain@ximian.com>
+ *          Mark McLoughlin <mark@skynet.ie>
  */
 
-#ifndef __CLOCK_H__
-#define __CLOCK_H__
+#ifndef __GAMES_CLOCK_H__
+#define __GAMES_CLOCK_H__
 
-#include <time.h>
+#include <glib/gmacros.h>
 #include <gtk/gtklabel.h>
+#include <time.h>
 
-#define GTK_TYPE_CLOCK			(clock_get_type ())
-#define CLOCK(obj)			(GTK_CHECK_CAST ((obj), GTK_TYPE_CLOCK, Clock))
-#define CLOCK_CLASS(klass)		(GTK_CHECK_CLASS_CAST ((klass), GTK_TYPE_CLOCK, ClockClass))
-#define IS_CLOCK(obj)			(GTK_CHECK_TYPE ((obj), GTK_TYPE_CLOCK))
-#define IS_CLOCK_CLASS(klass)   	(GTK_CHECK_CLASS_TYPE ((obj), GTK_TYPE_CLOCK))
-#define CLOCK_GET_CLASS(obj)    	(GTK_CHECK_GET_CLASS ((obj), GTK_TYPE_CLOCK, ClockClass))
+G_BEGIN_DECLS
 
+#define GAMES_TYPE_CLOCK            (games_clock_get_type ())
+#define GAMES_CLOCK(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CLOCK, GamesClock))
+#define GAMES_CLOCK_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CLOCK, GamesClockClass))
+#define GAMES_IS_CLOCK(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CLOCK))
+#define GAMES_IS_CLOCK_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CLOCK))
 
-G_BEGIN_DECLS		
-typedef struct _Clock {
-	GtkLabel label;
+typedef struct _GamesClock {
+	GtkLabel    label;
 
-	guint timer_id;
+	guint       timer_id;
 
-	time_t seconds, stopped;
-} Clock;
+	time_t      seconds;
+	time_t	    stopped;
+} GamesClock;
 
-typedef struct _ClockClass {
-	GtkLabelClass parent_class;
-} ClockClass;
+typedef struct _GamesClockClass {
+	GtkLabelClass      parent_class;
+} GamesClockClass;
 
-GType clock_get_type (void);
-GtkWidget *clock_new (void);
-void clock_start (Clock *clock);
-void clock_stop (Clock *clock);
-void clock_set_seconds (Clock *clock,
-			time_t seconds);
+GType         games_clock_get_type    (void);
+GtkWidget    *games_clock_new         (void);
+void          games_clock_start       (GamesClock *clock);
+void          games_clock_stop        (GamesClock *clock);
+void          games_clock_set_seconds (GamesClock *clock,
+				       time_t      seconds);
 
 G_END_DECLS
 
-#endif
+#endif /* __GAMES_CLOCK_H__ */

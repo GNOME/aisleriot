@@ -2,23 +2,29 @@
  * clock.c: 
  *
  * Copyright (C) 2001 Iain Holmes
+ *           (C) 2001 Mark McLoughlin
+ *
  * Authors: Iain Holmes <iain@ximian.com>
+ *          Mark McLoughlin <mark@skynet.ie>
  */
 
 #include <glib.h>
-#include "clock.h"
+
+#include "games-clock.h"
 
 static GtkLabelClass *parent_class = NULL;
 
 static void
-finalize (GObject *object)
+games_clock_finalize (GObject *object)
 {
-	Clock *clock;
+	GamesClock *clock;
 
-	clock = (Clock *) object;
+	g_return_if_fail (object && GAMES_IS_CLOCK (object));
+
+	clock = GAMES_CLOCK (object);
 
 	if (clock->timer_id != -1) {
-		gtk_timeout_remove (clock->timer_id);
+		g_source_remove (clock->timer_id);
 		clock->timer_id = -1;
 	}
 
@@ -26,93 +32,114 @@ finalize (GObject *object)
 }
 
 static void
-class_init (ClockClass *klass)
+games_clock_class_init (GamesClockClass *klass)
 {
-	GObjectClass *object_class;
+	GObjectClass *object_class = (GObjectClass *) klass;
 
-	object_class = G_OBJECT_CLASS (klass);
-	object_class->finalize = finalize;
+	object_class->finalize = games_clock_finalize;
 
 	parent_class = g_type_class_peek_parent (klass);
 }
 
 static void
-init (Clock *clock)
+games_clock_instance_init (GamesClock *clock)
 {
 	clock->timer_id = -1;
 	clock->seconds = 0;
+
+	gtk_label_set_text (GTK_LABEL (clock), "00 : 00 : 00");
 }
 
-/* API */
 GType
-clock_get_type (void)
+games_clock_get_type (void)
 {
 	static GType type = 0;
 
-	if (type == 0) {
+	if (!type) {
 		GTypeInfo info = {
-			sizeof (ClockClass),
-			NULL, NULL, (GClassInitFunc) class_init, NULL, NULL,
-			sizeof (Clock), 0, (GInstanceInitFunc) init,
+			sizeof (GamesClockClass),
+			NULL,
+			NULL,
+			(GClassInitFunc) games_clock_class_init,
+			NULL,
+			NULL,
+			sizeof (GamesClock),
+			0,
+			(GInstanceInitFunc) games_clock_instance_init,
 		};
 
-		type = g_type_register_static (GTK_TYPE_LABEL, "Clock", &info, 0);
+		type = g_type_register_static (GTK_TYPE_LABEL, "GamesClock", &info, 0);
 	}
 
 	return type;
 }
 
 GtkWidget *
-clock_new (void)
+games_clock_new (void)
 {
-	Clock *clock;
+	GamesClock *clock;
 
-	clock = g_object_new (clock_get_type(), NULL);
+	clock = g_object_new (games_clock_get_type(), NULL);
 
 	return GTK_WIDGET (clock);
 }
 
 static gboolean
-update_clock (gpointer data)
+games_clock_update (GamesClock *clock)
 {
-	Clock *clock = (Clock *) data;
-	char str[10];
-	struct tm *tm;
+	char *string;
+	int   secs;
+	int   mins;
+	int   hours;
+
+	g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
 
 	clock->seconds++;
-	tm = localtime (&clock->seconds);
 
-	strftime (str, 10, "%s", tm);
-	gtk_label_set (GTK_LABEL (clock), str);
+	secs  = clock->seconds;
+	mins  = clock->seconds / 60;
+	hours = clock->seconds / 3600;
+
+	string = g_strdup_printf ( "%.2d : %.2d : %.2d", hours, mins, secs);
+
+	gtk_label_set (GTK_LABEL (clock), string);
+
+	g_free (string);
 
 	return TRUE;
 }
 
 void
-clock_start (Clock *clock)
+games_clock_start (GamesClock *clock)
 {
-	if (clock->timer_id != -1) {
-		return;
-	}
+	g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
 
-	clock->timer_id = gtk_timeout_add (1000, update_clock, clock);
+	if (clock->timer_id != -1)
+		return;
+
+	clock->timer_id = g_timeout_add (1000,
+					 (GSourceFunc) games_clock_update,
+					 clock);
 }
 
 void
-clock_stop (Clock *clock)
+games_clock_stop (GamesClock *clock)
 {
-	if (clock->timer_id == -1) {
-		return;
-	}
+	g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
 
-	gtk_timeout_remove (clock->timer_id);
+	if (clock->timer_id == -1)
+		return;
+
+	g_source_remove (clock->timer_id);
 	clock->timer_id = -1;
 	clock->stopped = clock->seconds;
 }
 
 void
-clock_set_seconds (Clock *clock,
-		   time_t seconds)
+games_clock_set_seconds (GamesClock *clock,
+			 time_t      seconds)
 {
+	g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
+
 	clock->seconds = seconds;
 }
