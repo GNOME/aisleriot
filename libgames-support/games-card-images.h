@@ -56,6 +56,8 @@ typedef struct _GamesCardImages {
   gint width;
   gint height;
 
+  gchar * themename;
+
   gboolean rendered;
   GdkPixbuf ** pixbufs;
 } GamesCardImages;
@@ -68,7 +70,6 @@ typedef struct _GamesCardImagesClass {
 
 GType games_card_images_get_type (void);
 
-GamesCardImages * games_card_images_new_with_size (gint width, gint height);
 GamesCardImages * games_card_images_new (void);
 
 /* The real card routine. */
@@ -86,6 +87,7 @@ GdkPixbuf * games_card_images_get_back (GamesCardImages * images);
 
 void games_card_images_set_size (GamesCardImages * images, 
 				 gint width, gint height);
+void games_card_images_set_theme (GamesCardImages * images, gchar * name);
 
 G_END_DECLS
 

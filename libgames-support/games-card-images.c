@@ -25,24 +25,21 @@
 
 G_DEFINE_TYPE(GamesCardImages, games_card_images, G_TYPE_OBJECT);
 
-GamesCardImages * games_card_images_new_with_size (gint width, gint height)
+GamesCardImages * games_card_images_new (void)
 {
   GamesCardImages * images;
 
   images = g_object_new (GAMES_CARD_IMAGES_TYPE, NULL);
 
-  images->width = width;
-  images->height = height;
+  /* This is the size of the original gdk-card-images cards. */
+  images->width = 79;
+  images->height = 123;
+  images->themename = g_strdup ("bonded-new.png");
 
   images->rendered = FALSE;
   images->pixbufs = g_new0 (GdkPixbuf *, GAMES_CARDS_TOTAL);
 
   return images;
-}
-
-GamesCardImages * games_card_images_new (void)
-{
-  return games_card_images_new_with_size (0, 0);
 }
 
 static void games_card_images_render (GamesCardImages * images)
@@ -51,10 +48,14 @@ static void games_card_images_render (GamesCardImages * images)
   GdkPixbuf * source;
   GdkPixbuf * subpixbuf;
   gint subwidth, subheight;
+  gchar * fullname;
 
-  /* FIXME: This should not be hard-coded. */
-  source = gdk_pixbuf_new_from_file (DATADIR"/pixmaps/cards/bonded-new.png", NULL);
-  
+  /* FIXME: We should search a path. */
+  fullname = g_strconcat (DATADIR"/pixmaps/cards/", images->themename, NULL);
+  source = gdk_pixbuf_new_from_file (fullname, NULL);
+  /* FIXME: Find some way to alert the user of errors. */
+  g_free (fullname);
+
   subwidth = gdk_pixbuf_get_width (source)/13;
   subheight = gdk_pixbuf_get_height (source)/5;
 
@@ -97,6 +98,18 @@ static void games_card_images_render (GamesCardImages * images)
   g_object_unref (source);
 }
 
+static void games_card_images_purge (GamesCardImages * images)
+{
+  int i;
+
+  for (i=0; i<GAMES_CARDS_TOTAL; i++) {
+    if (images->pixbufs[i])
+      g_object_unref (images->pixbufs[i]);
+  }
+  
+  images->rendered = FALSE;
+}
+
 GdkPixbuf * games_card_images_get_card_by_id (GamesCardImages * images,
 					      gint cardid)
 {
@@ -130,20 +143,28 @@ GdkPixbuf * games_card_images_get_black_joker (GamesCardImages * images)
 void games_card_images_set_size (GamesCardImages * images, 
 				 gint width, gint height)
 {
-  int i;
-
   if ((width == images->width) && (height == images->height))
     return;
 
   images->width = width;
   images->height = height;
 
-  for (i=0; i<GAMES_CARDS_TOTAL; i++) {
-    if (images->pixbufs[i])
-      g_object_unref (images->pixbufs[i]);
-  }
-  
+  games_card_images_purge (images);
+}
+
+void games_card_images_set_theme (GamesCardImages * images, gchar * name)
+{
+  /* Ignore the two obvious problem cases silently. */
+  if ((!name) || (*name == '\0'))
+    return;
+
+  if (images->themename)
+    g_free (images->themename);
+
+  images->themename = g_strdup (name);
   images->rendered = FALSE;
+
+  games_card_images_purge (images);
 }
 
 static void games_card_images_finalize (GamesCardImages * images)

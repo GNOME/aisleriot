@@ -148,7 +148,9 @@ void set_card_size (gint width, gint height)
   g_object_unref (scaled);
 
   if (!images) {
-    images = games_card_images_new_with_size (width, height);
+    images = games_card_images_new ();
+    games_card_images_set_size (images, width, height);
+    games_card_images_set_theme (images, "dondorf-new.png"); 
   } else {
     for (i=0; i<GAMES_CARDS_TOTAL; i++)
       g_object_unref (pixmaps[i]);
