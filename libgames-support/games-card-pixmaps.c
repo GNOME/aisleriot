@@ -60,7 +60,7 @@ GdkPixmap * games_card_pixmaps_get_card_by_id (GamesCardPixmaps * images,
     gdk_draw_pixbuf (images->pixmaps[cardid], NULL, pixbuf, 0, 0, 0, 0, width, height, 
 		     GDK_RGB_DITHER_NORMAL, 0, 0);
   } else {
-    gdk_pixbuf_render_pixmap_and_mask (pixbuf, &(images->pixmaps[cardid]), &(images->mask), 255);
+    gdk_pixbuf_render_pixmap_and_mask (pixbuf, &(images->pixmaps[cardid]), &(images->mask), 127);
   }
 
   return images->pixmaps[cardid];
