@@ -1,5 +1,5 @@
 /* AisleRiot - events.c
- * Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+ * Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,11 @@
 #include "draw.h"
 #include "dialog.h"
 #include "slot.h"
+
+hslot_type last_hslot;
+gint last_cardid;
+GTimer * click_timer = NULL;
+gdouble dbl_click_time;
 
 static guint32
 get_current_time (void)
@@ -112,15 +117,14 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
   hslot_type hslot;
   gint cardid;
-  static guint dbl_click_time = 250;
-  static int first_press;
-
+  gboolean double_click;
+  
   /* We only want first mouse click*/
   if (event->button != 1)
 	  return TRUE;
   
   /* ignore the gdk synthetic click events */
-  if (event->type != GDK_BUTTON_PRESS && event->type != GDK_2BUTTON_PRESS)
+  if (event->type != GDK_BUTTON_PRESS)
     return TRUE;
   
   if (press_data->status == STATUS_IS_DRAG ||
@@ -131,12 +135,21 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
   if (!hslot)
     return TRUE;
+
+  /* We can't let Gdk do the double-click detection since the entire playing
+   * area is one big widget it can't distinguish between single-clicks on two
+   * cards and a double-click on one. */
+  double_click = (g_timer_elapsed(click_timer,NULL) < dbl_click_time)
+    && (last_cardid == cardid)
+    && (last_hslot->id == hslot->id);
+  g_timer_start(click_timer);
+  slot_pressed(event->x, event->y, &last_hslot, &last_cardid);
+
   press_data->xoffset = event->x;
   press_data->yoffset = event->y;
   press_data->hslot = hslot;
   press_data->cardid = cardid;
-  if (!(press_data->status == STATUS_CLICK && event->button == GDK_2BUTTON_PRESS)) {
-    first_press = get_current_time();
+  if (!(press_data->status == STATUS_CLICK && double_click)) {
     press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
   }
   if (cardid > 0 && press_data->status == STATUS_NONE) {
@@ -160,15 +173,15 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       gdk_window_show(press_data->moving_cards);
     }
   } 
-  else if (event->type == GDK_2BUTTON_PRESS) {
+  else if (double_click) {
     press_data->status = STATUS_NONE;
     gh_call2 (gh_eval_str ("record-move"), gh_long2scm (-1),
 	      SCM_EOL);
     if (gh_scm2bool (gh_call1 (game_data->button_double_clicked_lambda,
-		     gh_long2scm (hslot->id))))
-	    gh_call0 (gh_eval_str ("end-move"));
+                               gh_long2scm (hslot->id))))
+      gh_call0 (gh_eval_str ("end-move"));
     else
-	    gh_call0 (gh_eval_str ("discard-move"));
+      gh_call0 (gh_eval_str ("discard-move"));
     refresh_screen ();
     end_of_game_test ();
     return TRUE;
@@ -249,6 +262,9 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 }
 
 gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
+  gint tmptime;
+  GtkSettings * settings;
+
   if(surface) {
     gint old_w, old_h;
 
@@ -267,6 +283,13 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   
   refresh_screen();
 
+  /* Set up the double-click detection.*/
+  if (!click_timer)
+    click_timer = g_timer_new();
+  settings = gtk_settings_get_default();
+  g_object_get(G_OBJECT(settings),"gtk-double-click-time",&tmptime,NULL);
+  dbl_click_time = tmptime/1000.0;
+  
   return FALSE;
 }
 
