@@ -21,7 +21,19 @@ bin_SCRIPTS = games-server.py
 carddir = $(datadir)/pixmaps/gnome-games-common/cards
 card_DATA = bonded.png paris.svg
 
+GOB_FILES= \
+	games-scores-dialog.gob		\
+	$(NULL)
+
+GOB_SOURCE= \
+	games-scores-dialog.c		\
+	games-scores-dialog.h		\
+	games-scores-dialog-private.h	\
+	$(NULL)
+
 libgames_support_la_SOURCES =		\
+	$(GOB_FILES)			\
+	$(GOB_SOURCE)			\
 	games-clock.c			\
 	games-clock.h			\
 	games-gconf.c			\
@@ -49,9 +61,12 @@ libgames_support_la_SOURCES =		\
         games-preimage.h                \
 	$(NULL)
 
+%.c %.h %-private.h: %.gob
+	@GOB2@ $<
+
 install-data-local:
 if GCONF_SCHEMAS_INSTALL
         GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/libgames-support/$(schema_DATA)
 endif
 
-EXTRA_DIST = $(card_DATA) $(bin_SCRIPTS) $(schema_DATA)
+EXTRA_DIST = $(card_DATA) $(bin_SCRIPTS) $(schema_DATA) $(GOB_SOURCE)

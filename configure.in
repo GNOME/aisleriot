@@ -44,6 +44,8 @@ AM_CONDITIONAL([HAVE_GUILE], [test "x$GUILE_PRESENT" = xyes])
 GNOME_COMPILE_WARNINGS(yes)
 GNOME_CXX_WARNINGS(yes)
 
+# Find GOB. FIXME: This should only be needed for a build from CVS.
+GOB2_CHECK(2.0.0)
 
 AM_GCONF_SOURCE_2
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
