@@ -16,14 +16,15 @@ AM_PROG_LIBTOOL
 ## this should come after `AC_PROG_CC'
 GNOME_X_CHECKS
 
-AC_CHECK_PROG(ORBIT_CONFIG, orbit-config, orbit-config)
-if test -n "$ORBIT_CONFIG"; then
-	AC_CHECK_LIB(gnorba, gnome_CORBA_init, [
-		ORBIT_LIBS="-lgnorba `orbit-config --libs client server`"
-		ORBIT_CFLAGS="`orbit-config --cflags client server`"
-		AC_DEFINE(HAVE_ORBIT)
-	])
-fi
+GNORBA_LIBS=`gnome-config --libs gnorba gnomeui`
+AC_CHECK_LIB(gnorba, gnome_CORBA_init, [
+	ORBIT_LIBS=`gnome-config --libs gnorba gnomeui`
+	ORBIT_CFLAGS=`gnome-config --cflags gnorba gnomeui`
+	AC_SUBST(ORBIT_LIBS)
+	AC_SUBST(ORBIT_CFLAGS)
+	AC_DEFINE(HAVE_ORBIT)
+],[],$GNORBA_LIBS)
+
 AC_SUBST(ORBIT_CFLAGS)
 AC_SUBST(ORBIT_LIBS)
 AM_CONDITIONAL(ORBIT_INSTALLED, test -n "$ORBIT_LIBS")
@@ -53,6 +54,7 @@ AC_OUTPUT([
 Makefile
 po/Makefile.in
 macros/Makefile
+idl/Makefile
 gnomine/Makefile
 scottfree/Makefile
 same-gnome/Makefile
