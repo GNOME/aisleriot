@@ -1,41 +1,56 @@
 # Note that this is NOT a relocatable package
-%define ver      @VERSION@
-%define  RELEASE 1
-%define  rel     %{?CUSTOM_RELEASE} %{!?CUSTOM_RELEASE:%RELEASE}
-%define prefix   /usr
+%define ver      	@VERSION@
+%define RELEASE 	1
+%define rel     	%{?CUSTOM_RELEASE} %{!?CUSTOM_RELEASE:%RELEASE}
+%define prefix   	/usr
 
 Summary: GNOME games.
-Name: gnome-games
-Version: %ver
-Release: %rel
-Copyright: LGPL
-Group: System Environment/Libraries
-Source: ftp://ftp.gnome.org/pub/gnome-games-%{PACKAGE_VERSION}.tar.gz
-BuildRoot: /var/tmp/gnome-games-%{PACKAGE_VERSION}-root
-Obsoletes: gnome
-
-URL: http://www.gnome.org
-Docdir: %{prefix}/doc
+Name: 		gnome-games
+Version: 	%ver
+Release: 	%rel
+Copyright: 	GPL
+Group: 		Amusements/Games
+Source: ftp://ftp.gnome.org/pub/GNOME/sources/gnome-games-%{PACKAGE_VERSION}.tar.gz
+BuildRoot: 	/var/tmp/gnome-games-%{PACKAGE_VERSION}-root
+URL: 		http://www.gnome.org
+Docdir: 	%{prefix}/doc
+Requires:	gnome-libs >= 1.0.0
 
 %description
-GNOME is the GNU Network Object Model Environment. That's a fancy
-name, but really GNOME is a nice GUI desktop environment.
-Its powerful, friendly and easy-to-configure interface makes
-using your computer easy.
+GNOME (GNU Network Object Model Environment) is a user-friendly set of
+applications and desktop tools to be used in conjunction with a window
+manager for the X Window System.  GNOME is similar in purpose and scope
+to CDE and KDE, but GNOME is based completely on free software.
+The gnome-games package containes a collection of simple games for your
+amusement.
 
-This package installs some GNOME games on your system,
-such as gnothello, solitaire, tetris and others.
+You should install the gnome-games package if you would like to play the 
+included games. You will also need to install the gnome-libs package.
+If you would like to develop addtional games that utilize the GNOME
+games libraries then you should install the gnome-games-devel package.
 
 %package devel
 Summary: GNOME games development libraries.
-Group: Development/Libraries
-Requires: gnome-games
+Group: 		Development/Libraries
+Requires:	gnome-games
 
 %description devel
-This packages installs the libraries and files needed
-to develop some GNOME games.
+GNOME (GNU Network Object Model Environment) is a user-friendly set of
+applications and desktop tools to be used in conjunction with a window
+manager for the X Window System.  GNOME is similar in purpose and scope
+to CDE and KDE, but GNOME is based completely on free software.
+The gnome-games-devel package contains the libraries and include files
+needed for development of GNOME games.
+
+You should install the gnome-games package if you would like to play the
+included games. You will also need to install the gnome-libs package.
+If you would like to develop addtional games that utilize the GNOME
+games libraries then you should install the gnome-games-devel package.
 
 %changelog
+* Sun Aug 01 1999 Gregory McLean <gregm@comstar.net>
+
+- Updated with better descriptions and more consistant layout.
 
 * Sat Nov 21 1998 Michael Fulbright <drmike@redhat.com>
 
@@ -51,31 +66,48 @@ to develop some GNOME games.
 - Integrate into gnome-games CVS source tree
 
 %prep
-%setup
+%setup -q
 
 %build
 %ifarch alpha
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --host=alpha-redhat-linux --prefix=%prefix --localstatedir=/var/lib
-%else
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%prefix --localstatedir=/var/lib
+  MYARCH_FLAGS="--host=alpha-redhat-linux"
 %endif
 
-make
+CFLAGS="$RPM_OPT_FLAGS" ./configure --quiet $MYARCH_FLAGS --prefix=%prefix \
+	 --localstatedir=/var/lib --sysconfdir=/etc
+
+if [ "$SMP" != "" ]; then
+  (make "MAKE=make -k -j $SMP" >build.log 2>&1; exit 0)
+  make >build.log 2>&1
+else
+  make >build.log 2>&1
+fi
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make prefix=$RPM_BUILD_ROOT%{prefix} install
+make prefix=$RPM_BUILD_ROOT%{prefix} sysconfdir=$RPM_BUILD_ROOT/etc install >install.log 2>&1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post 
+if ! grep %{prefix}/lib /etc/ld.so.conf > /dev/null ; then
+  echo "%{prefix}/lib" >> /etc/ld.so.conf
+fi
+
+/sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
+
 
 %files
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
 %attr(-, root, games) %{prefix}/bin/*
-%{prefix}/etc/sound/events
+%config /etc/sound/events
 %{prefix}/share/gnome/apps/Games/*
 %{prefix}/share/gnibbles/*
 %{prefix}/share/gnobots2/*
