@@ -52,7 +52,7 @@ score_dialog (void)
   char *formatstring[20];	/* FIXME: is it enough? */
   int i;
 
-  dialog = gnome_dialog_new (_("Score"), "Button_Ok", _("Clear"), NULL);
+  dialog = gnome_dialog_new (_("Score"), GNOME_STOCK_BUTTON_OK, _("Clear"), NULL);
   gnome_dialog_set_default (GNOME_DIALOG (dialog), 0);
 
   gnome_dialog_button_connect (GNOME_DIALOG (dialog), 0,

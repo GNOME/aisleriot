@@ -25,6 +25,7 @@
 
 #include "io-gtk.h"
 #include "menu.h"
+#include "tb-xpms.h"
 
 GnomeUIInfo game_menuinfo[] =
 {
@@ -105,9 +106,9 @@ GnomeUIInfo main_toolbarinfo[] =
    callback_new, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("Seed"), NULL,
+  {GNOME_APP_UI_ITEM, N_("Seed"), N_("Start a new game after choosing the seed"),
    callback_new_with_seed, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+   GNOME_APP_PIXMAP_DATA, tb_new_seed_xpm, 0, 0, NULL},
 
   {GNOME_APP_UI_ITEM, N_("Undo"), N_("Cancel a last move"),
    callback_undo, NULL, NULL,
@@ -115,13 +116,13 @@ GnomeUIInfo main_toolbarinfo[] =
 
   {GNOME_APP_UI_ITEM, N_("Score"), N_("Show the score"),
    callback_score, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+   GNOME_APP_PIXMAP_DATA, tb_score_xpm, 0, 0, NULL},
   
   {GNOME_APP_UI_ITEM, N_("Props"), N_("Setup Freecell"),
    callback_option, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_PROPERTIES, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("Exit"), NULL,
+  {GNOME_APP_UI_ITEM, N_("Exit"), N_("Quit Freecell"),
    callback_exit, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
 
