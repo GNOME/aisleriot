@@ -1,3 +1,9 @@
+2003-06-05  William Jon McCann  <mccann@jhu.edu>
+
+	* games-gconf.c (games_gconf_sanity_check_string): Destroy dialog
+	after a response.  This wasn't noticed because it has always been
+	used right before a game exits with an error.
+
 2003-06-04  William Jon McCann  <mccann@jhu.edu>
 
 	* games-gconf.c: Use public API to set use-markup.
