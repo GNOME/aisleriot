@@ -27,14 +27,14 @@ void
 option_init (void)
 {
   option_inform_invalid_move
-    = gnome_config_get_int ("/Freecell/option/inform_invalid_move=1");
+    = gnome_config_get_int ("/freecell/option/inform_invalid_move=1");
 }
 
 
 void
 option_write (void)
 {
-  gnome_config_set_int ("/Freecell/option/inform_invalid_move",
+  gnome_config_set_int ("/freecell/option/inform_invalid_move",
 			option_inform_invalid_move);
   gnome_config_sync();
 }

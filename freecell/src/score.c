@@ -89,13 +89,13 @@ score_formatstring (char **strings)
 void
 score_init(void)
 {
-  win_number = gnome_config_get_int ("/Freecell/score/win_number=0");
-  lose_number = gnome_config_get_int ("/Freecell/score/lose_number=0");
-  streaks_win_number = gnome_config_get_int ("/Freecell/score/streaks_win_number=0");
+  win_number = gnome_config_get_int ("/freecell/score/win_number=0");
+  lose_number = gnome_config_get_int ("/freecell/score/lose_number=0");
+  streaks_win_number = gnome_config_get_int ("/freecell/score/streaks_win_number=0");
   streaks_lose_number = gnome_config_get_int
-    ("/Freecell/score/streaks_lose_number=0");
+    ("/freecell/score/streaks_lose_number=0");
   streaks_current = gnome_config_get_int
-    ("/Freecell/score/streaks_current=0");
+    ("/freecell/score/streaks_current=0");
 
   this_session_win_number = 0;
   this_session_lose_number = 0;
@@ -104,15 +104,15 @@ score_init(void)
 void
 score_write(void)
 {
-  gnome_config_set_int ("/Freecell/score/win_number",
+  gnome_config_set_int ("/freecell/score/win_number",
 			win_number);
-  gnome_config_set_int ("/Freecell/score/lose_number",
+  gnome_config_set_int ("/freecell/score/lose_number",
 			lose_number);
-  gnome_config_set_int ("/Freecell/score/streaks_win_number",
+  gnome_config_set_int ("/freecell/score/streaks_win_number",
 			streaks_win_number);
-  gnome_config_set_int ("/Freecell/score/streaks_lose_number",
+  gnome_config_set_int ("/freecell/score/streaks_lose_number",
 			streaks_lose_number);
-  gnome_config_set_int ("/Freecell/score/streaks_current",
+  gnome_config_set_int ("/freecell/score/streaks_current",
 			streaks_current);
   gnome_config_sync();
 }

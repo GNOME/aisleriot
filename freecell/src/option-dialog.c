@@ -125,7 +125,6 @@ option_dialog (void)
   gtk_widget_show (box);
   gtk_widget_show (all_boxes);
   gtk_widget_show(dialog);
-  gtk_grab_add (dialog);
 
   return dialog;
 }

@@ -101,7 +101,6 @@ score_dialog (void)
   gtk_widget_show(hbox);
   gtk_widget_show (all_boxes);
   gtk_widget_show(dialog);
-  gtk_grab_add (dialog);
 
   return dialog;
 }
