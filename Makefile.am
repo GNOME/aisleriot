@@ -7,7 +7,7 @@ guile_DIRS = aisleriot
 endif
 
 SUBDIRS = intl po macros \
-	 freecell gnomine same-gnome scottfree mahjongg \
+	 freecell gnomine same-gnome scottfree mahjongg gturing \
          gyahtzee gnobots gnothello $(guile_DIRS)
 #$(objc_DIRS)
 
