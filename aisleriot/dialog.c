@@ -36,7 +36,6 @@
 #include "events.h"
 
 static GtkWidget *hint_dlg = NULL;
-static GtkWidget* seed_entry;
 static GtkTreeIter selected_iter;
 
 void show_game_over_dialog() {
@@ -109,8 +108,7 @@ static void select_game (GtkWidget *app, gint response, gpointer data)
        if (filename == NULL)
 	    return;
 
-       seed = atoi (gtk_entry_get_text (GTK_ENTRY (seed_entry)));
-       new_game (filename, &seed);
+       new_game (filename, NULL);
   }
 
   gtk_widget_hide(app);
@@ -156,13 +154,11 @@ void show_select_game_dialog()
   GtkTreeIter iter;
   GtkTreePath * path;
   GamesFileList * files;
-  gchar buf[20];
 
   if (waiting_for_mouse_up()) return;
 
   if (!dialog) {
 
-    GtkWidget* label;
     GtkWidget* hbox;
 
     dialog = gtk_dialog_new_with_buttons (_("Select Game"),
@@ -172,18 +168,6 @@ void show_select_game_dialog()
                                           GTK_STOCK_OK, GTK_RESPONSE_OK,
                                           NULL);
     gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
-    hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
-    seed_entry = gtk_entry_new ();
-    label = gtk_label_new(_("Seed"));
-    
-    gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 
-			GNOME_PAD_SMALL );
-    gtk_box_pack_end (GTK_BOX (hbox), seed_entry, FALSE, FALSE, 
-		      GNOME_PAD_SMALL );
-    
-    gtk_box_pack_end (GTK_BOX (GTK_DIALOG (dialog)->vbox), 
-		      hbox, FALSE, FALSE, GNOME_PAD_SMALL );
-    
     hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
 
     list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
@@ -247,9 +231,6 @@ void show_select_game_dialog()
       gtk_tree_selection_select_iter (select, &selected_iter);    
   }
   
-  g_snprintf (buf, sizeof (buf), "%d", seed);
-  gtk_entry_set_text (GTK_ENTRY (seed_entry), buf);
-
   listp = &list;
   if (gtk_tree_selection_get_selected (select, (GtkTreeModel **)listp, &iter)) {
     path = gtk_tree_model_get_path (GTK_TREE_MODEL(list), &iter);

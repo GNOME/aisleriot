@@ -26,7 +26,6 @@
 #include <sys/types.h>
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
 #include <libguile.h>
 #include <guile/gh.h>
 #include <ctype.h>
@@ -134,7 +133,7 @@ void make_title ()
 {
   char *title;
 
-  title = g_strdup_printf (_("AisleRiot: %s (%d)"), game_name, seed);
+  title = g_strdup_printf (_("AisleRiot: %s"), game_name);
 
   gtk_window_set_title (GTK_WINDOW (app), title); 
 
@@ -195,7 +194,7 @@ save_state (GnomeClient *client)
   return TRUE;
 }
 
-void new_game (gchar* file, guint *seedp )
+void new_game (gchar* file, guint *seedp)
 {
   SCM size;
 
@@ -253,7 +252,7 @@ void new_game (gchar* file, guint *seedp )
   /* It is possible for some games to not have any moves right from the
    * start. If this happens we redeal. */
   if (!gh_scm2bool (gh_call0 (game_data->game_over_lambda))) {
-    new_game (file, seedp);
+    new_game (file, NULL);
   } else {
     if (surface)
       refresh_screen();
@@ -390,9 +389,6 @@ static void main_prog(int argc, char *argv[])
 {
   GtkWidget *score_label, *time_label, *score_box, *status_bar;
   
-  seed = time(NULL);
-  g_random_set_seed(seed);
-
   cscm_init();
 
   create_main_window ();
@@ -418,7 +414,7 @@ static void main_prog(int argc, char *argv[])
 
   install_menu_hints(GNOME_APP (app));
 
-  new_game (start_game, &seed);
+  new_game (start_game, NULL);
 
   gtk_widget_show_all (app);
 
