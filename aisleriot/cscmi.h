@@ -20,14 +20,10 @@
 #ifndef CSCMI_H
 #define CSCMI_H
 #include <libguile.h>
-#include <guile/gh.h>
 #include <math.h>
 #include <time.h>
 #include "card.h"
 #include "slot.h"
-
-/* missing from guile-1.2 library!: */
-#define gh_bool2scm(bool) ((SCM) (bool ? SCM_BOOL_T : SCM_BOOL_F))
 
 /* Generic game data */
 typedef struct {
@@ -45,18 +41,31 @@ typedef struct {
 } lambda_data;
 
 
-/* variables */
-extern lambda_data* game_data;
-
 /* Init function */
-void cscm_init( void );
+void       cscm_init (void);
 
 /* Scheme to C functions... */
-void add_slot(SCM);
-GList* new_deck(SCM);
-hcard_type new_card(SCM);
+void       add_slot  (SCM        slot_data);
+GList*     new_deck  (SCM        deck_data);
+hcard_type new_card  (SCM        card_data);
 
 /* C to Scheme functions... */
-SCM make_card(hcard_type);
+SCM        make_card (hcard_type card);
+
+SCM cscmi_start_game_lambda (void);
+SCM cscmi_button_pressed_lambda (SCM slot_id,
+				 SCM cards);
+SCM cscmi_button_released_lambda (SCM start_slot,
+				  SCM cards,
+				  SCM end_slot);
+SCM cscmi_button_clicked_lambda (SCM slot_id);
+SCM cscmi_button_double_clicked_lambda (SCM slot_id);
+SCM cscmi_game_over_lambda (void);
+SCM cscmi_winning_game_lambda (void);
+SCM cscmi_hint_lambda (void);
+SCM cscmi_get_options_lambda (void);
+SCM cscmi_apply_options_lambda (SCM options);
+SCM cscmi_timeout_lambda (void);
+
 
 #endif

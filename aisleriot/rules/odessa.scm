@@ -252,7 +252,8 @@
 (define (get-hint)
   (game-over))
 
-(define (get-options) #f)
+(define (get-options) 
+  #f)
 
 (define (apply-options options) #f)
 
