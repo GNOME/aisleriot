@@ -24,6 +24,21 @@ AM_CONDITIONAL(CXX_PRESENT, test "x$ac_cv_prog_cxx_works" != xno)
 GNOME_X_CHECKS
 GNOME_CHECK_GUILE
 
+## iagno2 needs this
+GNOME_PTHREAD_CHECK
+
+GDK_PIXBUF_CFLAGS=`$GNOME_CONFIG --cflags gdk_pixbuf`
+GDK_PIXBUF_LIBS=`$GNOME_CONFIG --libs gdk_pixbuf`
+AC_SUBST(GDK_PIXBUF_CFLAGS)
+AC_SUBST(GDK_PIXBUF_LIBS)
+HAS_GDK_PIXBUF='yes'
+if test "x$GDK_PIXBUF_CFLAGS" = x; then
+  AC_MSG_WARN(Couldn't find gdk-pixbuf, some games will not be built)
+  HAS_GDK_PIXBUF='no'
+fi
+
+AC_SUBST(HAS_GDK_PIXBUF)
+
 ## look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
 AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true)
@@ -54,42 +69,42 @@ ZVT_LIBS=`$GNOME_CONFIG --libs zvt`
 AC_SUBST(ZVT_LIBS)
 
 ## gnibbles needs gdk_pixbuf
-AC_MSG_CHECKING([for gdk-pixbuf >= 0.6.0])
+##AC_MSG_CHECKING([for gdk-pixbuf >= 0.6.0])
 
-if gnome-config --libs gdk_pixbuf > /dev/null 2>&1; then
-        vers=`gnome-config --modversion gdk_pixbuf | sed 's/^gdk-pixbuf-//'`
-        major=`echo "$vers" | sed 's/\([[0-9]]*\)\.[[0-9]]*\.[[0-9]]*/\1/'`
-        minor=`echo "$vers" | sed 's/[[0-9]]*\.\([[0-9]]*\)\.[[0-9]]*/\1/'`
+##if gnome-config --libs gdk_pixbuf > /dev/null 2>&1; then
+        ##vers=`gnome-config --modversion gdk_pixbuf | sed 's/^gdk-pixbuf-//'`
+        ##major=`echo "$vers" | sed 's/\([[0-9]]*\)\.[[0-9]]*\.[[0-9]]*/\1/'`
+        ##minor=`echo "$vers" | sed 's/[[0-9]]*\.\([[0-9]]*\)\.[[0-9]]*/\1/'`
+##
+        ##if [[ "x$major" = "x" ]] ; then
+                ##gdkpixbuf_ok=false
+        ##elif [[ "x$major" = "x0" ]] ; then
+                ##case "$minor" in
+                        ##[[012345]])
+                                ##gdkpixbuf_ok=false ;;
+                        ##*)
+                                ##gdkpixbuf_ok=true ;;
+                ##esac
+        ##else
+                ##gdkpixbuf_ok=true
+        ##fi
+        ##AC_MSG_RESULT([found ("$vers")])
+##else
+        ##gdkpixbuf_ok=false
+        ##AC_MSG_RESULT([not found])
+##fi
+##
+##if ! $gdkpixbuf_ok ; then
+        ##AC_MSG_WARN([gdk-pixbuf 0.6.0 or later is required to build Gnibbles.])
+##fi
 
-        if [[ "x$major" = "x" ]] ; then
-                gdkpixbuf_ok=false
-        elif [[ "x$major" = "x0" ]] ; then
-                case "$minor" in
-                        [[012345]])
-                                gdkpixbuf_ok=false ;;
-                        *)
-                                gdkpixbuf_ok=true ;;
-                esac
-        else
-                gdkpixbuf_ok=true
-        fi
-        AC_MSG_RESULT([found ("$vers")])
-else
-        gdkpixbuf_ok=false
-        AC_MSG_RESULT([not found])
-fi
+##GDK_PIXBUF_LIBS=`$GNOME_CONFIG --libs gdk_pixbuf`
+##GDK_PIXBUF_INCS=`$GNOME_CONFIG --cflags gdk_pixbuf`
 
-if ! $gdkpixbuf_ok ; then
-        AC_MSG_WARN([gdk-pixbuf 0.6.0 or later is required to build Gnibbles.])
-fi
+##AC_SUBST(GDK_PIXBUF_LIBS)
+##AC_SUBST(GDK_PIXBUF_INCS)
 
-GDK_PIXBUF_LIBS=`$GNOME_CONFIG --libs gdk_pixbuf`
-GDK_PIXBUF_INCS=`$GNOME_CONFIG --cflags gdk_pixbuf`
-
-AC_SUBST(GDK_PIXBUF_LIBS)
-AC_SUBST(GDK_PIXBUF_INCS)
-
-AM_CONDITIONAL(GDK_PIXBUF, test $gdkpixbuf_ok)
+##AM_CONDITIONAL(GDK_PIXBUF, test $gdkpixbuf_ok)
 
 AC_OUTPUT([
 gnome-games.spec
