@@ -110,7 +110,7 @@ clock_paint (GamesClock *clock)
 static gboolean
 games_clock_update (GamesClock *clock)
 {
-	g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
+	g_return_val_if_fail (clock && GAMES_IS_CLOCK (clock), FALSE);
 
 	clock->seconds++;
 
