@@ -67,8 +67,8 @@ void help_about_callback ()
 	  "Main program:  Jonathan Blandford (jrb@alum.mit.edu)",
 	  "                      Felix Bellaby (felix@pooh.u-net.com)",
 	  "Card Games:    Jonathan Blandford (jrb@alum.mit.edu)",
-	  "                      Robert Brady <rwb197@ecs.soton.ac.uk>",
-	  "                      Nick Lamb <njl195@zepler.org.uk>",
+	  "                      Robert Brady (rwb197@ecs.soton.ac.uk)",
+	  "                      Nick Lamb (njl195@zepler.org.uk)",
 	  "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)",
 	  "                      Rosanna Yuen (rwsy@mit.edu)",
 	  NULL

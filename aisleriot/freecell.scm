@@ -177,9 +177,11 @@
 	 (if (empty-slot? homecell-id)
 	     ; Put an Ace into an empty homecell
 	     (and (eq? (get-value card) ace)
+		  (add-to-score! 1)
 		  (add-card! homecell-id card))
 	     ; Put a +1 card into the homecell, whose suit is same.
 	     (and (homecell-join? (car (get-cards homecell-id)) card)
+		  (add-to-score! 1)
 		  (add-card! homecell-id card))))))
 
 (define (move-to-field card-list field-id)
