@@ -17,6 +17,10 @@
  * USA
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "splash.h"
 #include <gnome.h>
 #include <libgnomeui/gnome-window-icon.h>

@@ -17,10 +17,13 @@
  * USA
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <stdlib.h>
 #include <guile/gh.h>
 #include <dirent.h>
-#include "config.h"
 #include "gnome.h"
 #include "cscmi.h"
 #include "sol.h"
