@@ -1,3 +1,47 @@
+gnome-games "It's For Your Own Good" 2.3.6
+==========================================
+
+This release is in theory a good facsimile of what 2.4.0 will look
+like. The most obvious change will be that the documentation is now
+mostly up-to-date. 
+
+All games should now have state-sensitive undo and redo buttons as
+well as full keyboard navigation for the preferences.
+
+The bug count is now about a third of what it was at the start of the
+2.3 series.
+
+Changes by game:
+
+Gtali:
+  - Several dead options have been removed (or hidden as gconf keys).
+  - Undo doesn't corrupt the display.
+
+Gnotravex:
+  - Resizing code now works a bit better.
+
+Aisleriot:
+ - If you play spider then there is a subtle change: to finish the
+   game you have to move the completed piles up to the
+   foundation. This is now consistent with other games.
+
+Gnome-stones:
+ - The joystick dialog actually works now, although since I don't have
+   a joystick I have no idea if any of the joystick code actually works.
+
+Gataxx:
+ - The animation code actually does the right thing now. This is only
+   noticeable if using "partial" animation.
+
+Gnomine:
+ - It compiles with gcc 2.96 again.
+ - We now don't read all the pixmaps each time we recieve an expose
+   event. Oops.
+
+Gnobots:
+ - Be a bit more graceful about failing to find configuration files.
+ 
+
 gnome-games "Palm Cove" 2.3.5
 =============================
 

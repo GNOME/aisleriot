@@ -26,7 +26,7 @@ gnometris       f       N       Y       Y       Y       Y
 gnomine         Y       Y       Y       Y       Y       Y
 gnotravex       Y       Y       Y       Y       Y       Y
 gnotski         Y       e       Y       Y       Y       Y
-gtali           P       N       Y       Y       Y       Y
+gtali           Y       N       Y       Y       Y       Y
 iagno           Y       N       Y       Y       Y       Y
 mahjongg        Y       P       Y       Y       Y       Y
 same-gnome      Y       N       Y       Y       Y       Y
@@ -37,8 +37,6 @@ a) The preference and select dialogs are compliant, but there is
    debate about whether it is good UI. For the moment this counts as 
    a "good reason" since it really isn't high priority compared with 
    every other 2.4 issue.
-d) Yes, but check that the screenshots where done with the correct
-   theme.
 e) Doesn't have any preferences, but if we start remembering which
    games have been done we will.
 f) It turns out gnometris doesn't actually have any documentation.
@@ -46,11 +44,8 @@ f) It turns out gnometris doesn't actually have any documentation.
 2.4 Issues
 
 General:
-        - Make sure the build system is clean.
-	- Update debian files to be reasonable ?
 	- Update README and HACKING at the last minute to reflect
 	  reality. Also make a big all-of-2.3 NEWS entry for 2.4.0.
-        - Check the size of graphics in the documentation that's been updated.
 
 AisleRiot:
         - Odessa hint function (bug 51694)
@@ -61,7 +56,6 @@ Gataxx:
         - Share graphics with Iagno.
 
 Glines:
-        - Remove the ball theme, perhaps, maybe.
         
 Gnect:
 
@@ -69,10 +63,6 @@ Gnibbles:
         
 Gnobots2:
         - Fix no-moves issue (bug 107846).
-        - Since we can't change some settings mid-game an end-game option
-          would be good (also for bug 107846).
-        - Keep the preferences dialog open and start a new game. Oops. 
-          Also hiding things is not HIG compliant.
 
 Gnome-stones:
         - Check joystick support actually works ?
@@ -85,28 +75,16 @@ Gnomine:
           103125 is still possible.        
 
 Gnotravex:
-        - Replace x with a proper cross, if we can figure out the 
-          gettext issues. 
 
 Gnotski:
 
 Gtali:
-        - Some of the options can be removed.
-        - Anti-alias the dice if we have time (maybe remove the
-          built-in xpms) this can safely be left to 2.5.
 
 Iagno:
         - Share graphics with gataxx.
-        - Make defaults consistent with gataxx.
-        - Make sure the grid is always visible.
 
 Mahjongg:
         - Oddball crashes (bugs 82402, 100492, 102474, 116226).
-        - Fix shuffling bugs (91098, 94750).
-        - It takes too long to generate a new board (it seems to try randomly 
-          until it finds a solvable one). This is intolerable when simply 
-          building the game backwards does it trivially. Implement if time.
-          Can also be used to fix the shuffling bugs.
 
 Same-gnome:
         - Make the pixmap background transparent so that we don't have
@@ -124,6 +102,8 @@ General:
         - Seriously look at a11y for actually playing the games.
         - Look at network multi-player.
         - Consider how to handle the whole game seed thing.
+	- Update debian files to be reasonable
+        - Make the build system cleaner.
 
 AisleRiot:
         - Scalability of cards (bugs 80167, 104969, 105536) 
@@ -150,10 +130,11 @@ Gataxx:
         - Share a front-end with Iagno.
         - AI improvement.
 
-Gline:
+Glines:
         - Configure the playing field size and ball number (bug
           83532).
         - Scalability.
+        - Remove the ball theme, perhaps, maybe.
 
 Gnect:
         - Graphics (could we share some with iagno/gataxx)
@@ -166,6 +147,10 @@ Gnibbles:
 Gnobots2:
         - Graphics so they are viewable on large monitors.
         - Clean up the sounds.
+        - Since we can't change some settings mid-game an end-game option
+          would be good (also for bug 107846).
+        - Keep the preferences dialog open and start a new game. Oops. 
+          Also hiding things is not HIG compliant.
 
 Gnome-stones:
         - Definitely redo locations of score and the like.
@@ -190,6 +175,8 @@ Gnomine:
 
 Gnotravex:
         - Have a colour mode in addition to the numbers.
+        - Replace x with a proper cross, if we can figure out the 
+          gettext issues. 
 
 Gnotski:
         - Redo the game so that it records what have been completed
@@ -198,19 +185,30 @@ Gnotski:
         
 Gtali:
         - AI upgrade, but make it optional: see Phil Woodward. "Yahtzee®: 
-        The Solution", Chance 16(1):17-20 (Winter 2003). (bug 52635)
+          The Solution", Chance 16(1):17-20 (Winter 2003). (bug 52635)
+        - Anti-alias the dice (maybe remove the built-in xpms).
 
 Iagno:
         - Merge with Gataxx (see above)
         - High contrast theme ? Other a11y stuff.
         - See if the code causeing problems in bug 79180 can't be 
           glib-ised to make the portability problem glibs.
+        - Make defaults consistent with gataxx.
 
 Mahjongg:
         - Consider the usability bugs (83531 and 84837), the first can
           be solved via scalable tiles the second via cleaner themes
           (it can also be worked into a high-contrast things to).
+        - Fix shuffling bugs (91098, 94750).
+        - Finish off the "creeping horror" code, try reversing the process, 
+          build outside in.
         
 Same-gnome:
         - Add a seed (bug 86088) ?
         - Continue arguing bug 91778.
+
+libgames-support:
+        - Document
+
+gdk-card-image:
+        - Document
