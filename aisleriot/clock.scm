@@ -106,56 +106,18 @@
 	(complete-transaction (list top-card) slot))
       #f))
 
+(define (make-all-visible slot)
+  (if (< slot 13)
+      (begin
+	(make-visible (car (get-cards slot)))
+	(make-visible (cadr (get-cards slot)))
+	(make-visible (caddr (get-cards slot)))
+	(make-visible (cadddr (get-cards slot)))
+	(make-all-visible (+ slot 1)))))
 
-(define (game-won ugh)
-  (make-visible (car (get-cards 1)))
-  (make-visible (cadr (get-cards 1)))
-  (make-visible (caddr (get-cards 1)))
-  (make-visible (cadddr (get-cards 1)))
-  (make-visible (car (get-cards 2)))
-  (make-visible (cadr (get-cards 2)))
-  (make-visible (caddr (get-cards 2)))
-  (make-visible (cadddr (get-cards 2)))
-  (make-visible (car (get-cards 4)))
-  (make-visible (cadr (get-cards 4)))
-  (make-visible (caddr (get-cards 4)))
-  (make-visible (cadddr (get-cards 4)))
-  (make-visible (car (get-cards 7)))
-  (make-visible (cadr (get-cards 7)))
-  (make-visible (caddr (get-cards 7)))
-  (make-visible (cadddr (get-cards 7)))
-  (make-visible (car (get-cards 9)))
-  (make-visible (cadr (get-cards 9)))
-  (make-visible (caddr (get-cards 9)))
-  (make-visible (cadddr (get-cards 9)))
-  (make-visible (car (get-cards 12)))
-  (make-visible (cadr (get-cards 12)))
-  (make-visible (caddr (get-cards 12)))
-  (make-visible (cadddr (get-cards 12)))
-  (make-visible (car (get-cards 11)))
-  (make-visible (cadr (get-cards 11)))
-  (make-visible (caddr (get-cards 11)))
-  (make-visible (cadddr (get-cards 11)))
-  (make-visible (car (get-cards 10)))
-  (make-visible (cadr (get-cards 10)))
-  (make-visible (caddr (get-cards 10)))
-  (make-visible (cadddr (get-cards 10)))
-  (make-visible (car (get-cards 8)))
-  (make-visible (cadr (get-cards 8)))
-  (make-visible (caddr (get-cards 8)))
-  (make-visible (cadddr (get-cards 8)))
-  (make-visible (car (get-cards 5)))
-  (make-visible (cadr (get-cards 5)))
-  (make-visible (caddr (get-cards 5)))
-  (make-visible (cadddr (get-cards 5)))
-  (make-visible (car (get-cards 3)))
-  (make-visible (cadr (get-cards 3)))
-  (make-visible (caddr (get-cards 3)))
-  (make-visible (cadddr (get-cards 3)))
-  (make-visible (car (get-cards 0)))
-  (make-visible (cadr (get-cards 0)))
-  (make-visible (caddr (get-cards 0)))
-  (make-visible (cadddr (get-cards 0)))
+
+(define (game-won borp)
+  (make-all-visible 0)
   (if (and (= (get-value (car (get-cards 2))) 1)
 	   (= (get-value (cadr (get-cards 2))) 1)
 	   (= (get-value (caddr (get-cards 2))) 1)
@@ -208,14 +170,29 @@
       #t
       #f))
 
-
-
-(define (game-over ugh)
+(define (game-over borp)
   (not (and (is-visible? (car (reverse (get-cards 6))))
 	    (= (get-value (get-top-card 6)) king))))
 
-(define (get-hint ugh)
-#f)
+(define (nth-item list n)
+  (if (= 0 n)
+      (car list)
+      (nth-item (cdr list) (- n 1))))
 
+(define (get-hint borp)
+  (list 0 
+	(nth-item 
+	 (list "Just because a crosswalk looks like a hopscotch board doesn't mean it is one" 
+	       "Look both ways before you cross the street"
+	       "Have you read the help file?"
+	       "Odessa is a better game.  Really."
+	       "Tourniquets are not recommended unless in the direst emergency"
+	       "I could sure use a backrub right about now..."
+	       "Monitors won't give you Vitamin E -- but sunlight will..."
+	       "If you're ever lost and alone in the woods, hug a tree"
+	       "Fishing wire makes bad dental floss"
+	       "When without a stapler, a staple and a ruler will work"
+	       "Never blow in a dog's ear")
+	 (random 11))))
 
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)  
