@@ -59,6 +59,7 @@ types_DATA  = 		\
 	odessa.scm	\
 	osmosis.scm	\
 	plait.scm	\
+	royal_east.scm	\
 	sol.scm		\
 	spider.scm	\
 	thieves.scm     \
