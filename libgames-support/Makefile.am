@@ -9,7 +9,7 @@ INCLUDES =							\
 	$(GNOME_GAMES_CFLAGS)
 
 carddir = $(datadir)/pixmaps/gnome-games-common/cards
-card_DATA = bonded.png dondorf.png
+card_DATA = bonded.png dondorf.svg
 
 libgames_support_la_SOURCES =		\
 	games-clock.c			\
