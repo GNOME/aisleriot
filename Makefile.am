@@ -13,7 +13,7 @@ endif
 SUBDIRS = po macros \
 	  freecell gnomine same-gnome scottfree mahjongg gturing \
           gyahtzee gnobots gnobots2 gnothello gnotravex gnome-stones \
-	  $(guile_DIRS) $(cxx_DIRS) idl metatris gnibbles 
+	  $(guile_DIRS) $(cxx_DIRS) idl metatris gnibbles
 
 #$(objc_DIRS)
 
