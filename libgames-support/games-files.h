@@ -22,11 +22,19 @@
 
 G_BEGIN_DECLS
 
-#include <glib.h>
+#include <gtk/gtk.h>
 
-GList * games_get_file_list (gchar * glob, ...);
-GList * games_get_file_list_basename (gchar * glob, ...);
-GList * games_get_file_list_images (gchar * path1, ...);
+/* One day we should make this a proper GObject. */
+typedef GList GamesFileList;
+
+GamesFileList * games_file_list_new (gchar * glob, ...);
+GamesFileList * games_file_list_new_short (gchar * glob, ...);
+GamesFileList * games_file_list_new_images (gchar * path1, ...);
+void games_file_list_free (GamesFileList * list);
+
+void games_file_list_transform_basename (GamesFileList * list);
+
+GtkWidget * games_file_list_create_widget (GamesFileList * filelist, gchar * selection);
 
 G_END_DECLS
 

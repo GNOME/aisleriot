@@ -923,8 +923,9 @@ gtk_card_deck_options_edit_get (GtkCardDeckOptionsEdit* w)
 static void
 gdk_card_deck_options_edit_get_card_styles (GtkCardDeckOptionsEdit * w)
 {
-  GList * filelist = NULL;
-  GList * last;
+  /* FIXME: this abuses the knowledge that a GamesFileList is really
+   * a GList, but this is going to change. */
+  GamesFileList * filelist = NULL;
   gchar* dir_name;
 
   /* Only read the list once. */
@@ -935,17 +936,16 @@ gdk_card_deck_options_edit_get_card_styles (GtkCardDeckOptionsEdit * w)
 					GNOME_FILE_DOMAIN_APP_PIXMAP,  
 					"cards", TRUE, NULL);
 
-  filelist = games_get_file_list ("*.xml", dir_name, NULL);
+  filelist = games_file_list_new ("*.xml", dir_name, NULL);
   
   while (filelist) {
-    last = filelist;
     w->style_list = g_list_concat (w->style_list,
-				   card_style_file_parse (filelist->data));
-    filelist = g_list_next (filelist);
-    g_free (last->data);
-    g_list_free (last);
+				   card_style_file_parse (((GList *) filelist)->data));
+    filelist = g_list_next ((GList *) filelist);
   }
   
+  games_file_list_free (filelist);
+
   w->style_list = g_list_sort (w->style_list, card_style_compare);
 }
 

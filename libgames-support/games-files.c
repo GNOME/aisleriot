@@ -22,13 +22,13 @@
  * that a game might be interested in. I'm writing them as I perceive
  * and so some of them should be replaced or removed eventually. */
 
-#include <glib.h>
+#include <gtk/gtk.h>
 #include <stdarg.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 #include "games-files.h"
 
-static GList * games_get_file_list_internal (gchar * glob, va_list path)
+static GamesFileList * games_file_list_new_internal (gchar * glob, va_list path)
 {
   GPatternSpec * filespec = g_pattern_spec_new (glob);
   gchar * pathelement;
@@ -54,7 +54,7 @@ static GList * games_get_file_list_internal (gchar * glob, va_list path)
 
   g_pattern_spec_free (filespec);
 
-  return list;
+  return (GamesFileList *)list;
 }
 
 /* This function takes a glob and a NULL terminated list of paths 
@@ -63,38 +63,45 @@ static GList * games_get_file_list_internal (gchar * glob, va_list path)
 /* The arguments are the filespec followed by a null-terminated list 
  * of paths. */
 /* The caller must free the list. */
-GList * games_get_file_list (gchar * glob, ...)
+GamesFileList * games_file_list_new (gchar * glob, ...)
 {
-  GList * list;
+  GamesFileList * list;
   va_list paths;
 
   va_start (paths, glob);
-  list = games_get_file_list_internal (glob, paths);
+  list = games_file_list_new_internal (glob, paths);
   va_end (paths);
 
   return list;
 }
 
-/* The same as games_get_file_list, but returning a list of short names rather than 
- * the fully qualified version. */
-GList * games_get_file_list_basename (gchar * glob, ...)
+/* Transform the list of files to be only the basenames. */
+void games_file_list_transform_basename (GamesFileList * list)
 {
-  GList *list, *item;
+  GList * current;
   gchar * shortname;
+
+  current = (GList *)list;
+  while (current) {
+    shortname = g_path_get_basename ((gchar *) current->data);
+    g_free (current->data);
+    (gchar *) current->data = shortname;
+    current = g_list_next (current);
+  }
+}
+
+/* The same as games_file_list_new, but returning a list of short names rather than 
+ * the fully qualified version. */
+GamesFileList * games_file_list_new_short (gchar * glob, ...)
+{
+  GamesFileList *list;
   va_list paths;
   
   va_start (paths, glob);
-  list = games_get_file_list_internal (glob, paths);
+  list = games_file_list_new_internal (glob, paths);
   va_end (paths);
   
-  item = list;
-  while (item) {
-    shortname = g_path_get_basename ((gchar *) item->data);
-    g_free (item->data);
-    (gchar *) item->data = shortname;
-    
-    item = g_list_next (item);
-  }
+  games_file_list_transform_basename (list);
 
   return list;
 }
@@ -144,7 +151,7 @@ static void games_image_suffix_list_init (void)
   g_static_mutex_unlock (&image_suffix_mutex);
 }
 
-static GList * games_get_file_list_images_single (gchar * directory)
+static GList * games_file_list_new_images_single (gchar * directory)
 {
   GDir * dir;
   GList * list = NULL;
@@ -179,18 +186,55 @@ static GList * games_get_file_list_images_single (gchar * directory)
 
 /* Get a list of files in the NULL terminated list of directories which are loadable by 
  * GdkPixbuf. Files are identified by their extension. */
-GList * games_get_file_list_images (gchar * path1, ...)
+GamesFileList * games_file_list_new_images (gchar * path1, ...)
 {
   GList * list;
   gchar * pathentry;
   va_list paths;
 
-  list = games_get_file_list_images_single (path1);
+  list = games_file_list_new_images_single (path1);
   va_start (paths, path1);
   while ((pathentry = va_arg (paths, gchar *)) != NULL) {
-    list = g_list_concat (list, games_get_file_list_images_single (pathentry));
+    list = g_list_concat (list, games_file_list_new_images_single (pathentry));
   }
   va_end (paths);
 
-  return list;
+  return (GamesFileList *)list;
+}
+
+/* Free a file list.  */
+void games_file_list_free (GamesFileList * list)
+{
+  g_list_foreach ((GList *)list, (GFunc) g_free, NULL);
+  g_list_free (list);  
+}
+
+/* Create a gtk_combo_box with the given list of strings as the
+   entries. If selection is given and it matches a list item then that
+   item is selected as the default. If selection == NULL then nothing
+   is selected. */
+GtkWidget * games_file_list_create_widget (GamesFileList * gamesfilelist, gchar * selection)
+{
+  gint itemno;
+  GtkComboBox *widget;
+  gchar *visible, *string;
+  GList * filelist = (GList *) gamesfilelist;
+
+  widget = GTK_COMBO_BOX (gtk_combo_box_new_text ());
+
+  itemno = 0;
+  while (filelist) {
+    string = (gchar *) filelist->data;
+    visible = g_strdup (string);
+
+    gtk_combo_box_append_text (widget, visible);
+    if (selection && (! g_utf8_collate (string, selection))) {
+      gtk_combo_box_set_active (widget, itemno);      
+    }
+
+    itemno++;
+    filelist = g_list_next (filelist);
+  }
+
+  return GTK_WIDGET (widget);
 }
