@@ -3,6 +3,7 @@ NULL =
 noinst_LTLIBRARIES = libgames-support.la
 
 INCLUDES =							\
+	-I$(top_srcdir)/libgames-support			\
 	-DDATADIR=\""$(datadir)"\"				\
 	$(WARN_CFLAGS)						\
 	$(GNOME_GAMES_CFLAGS)
