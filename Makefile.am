@@ -22,6 +22,8 @@ always_built_SUBDIRS =		\
 	glines			\
 	iagno			\
 	gdk-card-image		\
+	gnobots2		\
+	gnibbles		\
 	freecell
 
 SUBDIRS = \
