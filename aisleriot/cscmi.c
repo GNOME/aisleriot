@@ -371,7 +371,7 @@ cscmi_write_exception_details (int error_fd,
   write (error_fd, message, strlen (message));
   g_free (message);
 
-  message = g_strdup_printf ("Seed: %ud\n", seed);
+  message = g_strdup_printf ("Seed: %u\n", seed);
   write (error_fd, message, strlen (message));
   g_free (message);
   
