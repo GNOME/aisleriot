@@ -3,7 +3,8 @@
 
 (define (new-game)
   (initialize-playing-area)
-  (set-ace-high)
+;  (set-ace-high)
+  (set-ace-low)
   (make-standard-deck)
   (shuffle-deck)
 
@@ -58,9 +59,6 @@
 (define (button-clicked slot-id)
   (if (empty-slot? slot-id)
       #f
-      (begin
-	(display (get-top-card slot-id))
-	(display "\n")
       (if (= slot-id 0)
 	  (begin 
 	    (deal-cards 0 '(1 2 3 4))
@@ -68,7 +66,7 @@
 	    (flip-top-card 2)
 	    (flip-top-card 3)
 	    (flip-top-card 4))
-	  (removable? slot-id 1)))))
+	  (removable? slot-id 1))))
   
 (define (button-double-clicked slot)
   #f)     
