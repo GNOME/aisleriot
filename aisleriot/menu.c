@@ -187,29 +187,29 @@ GnomeUIInfo top_menu[] = {
 
 GnomeUIInfo toolbar[] =
 {
-  GNOMEUIINFO_ITEM_STOCK(N_("New"), N_("Deal a new game."),
+  GNOMEUIINFO_ITEM_STOCK(N_("New"), N_("Deal a new game"),
 			 random_seed, GNOME_STOCK_PIXMAP_NEW),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Restart"), N_("Start this game over."),
+  GNOMEUIINFO_ITEM_STOCK(N_("Restart"), N_("Start this game over"),
 			 restart_game, GNOME_STOCK_PIXMAP_REFRESH),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Select"), N_("Select a new game."),
+  GNOMEUIINFO_ITEM_STOCK(N_("Select"), N_("Select a new game"),
 			 show_select_game_dialog, GNOME_STOCK_PIXMAP_OPEN),
 
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Hint"), N_("Suggest a move."),
+  GNOMEUIINFO_ITEM_STOCK(N_("Hint"), N_("Suggest a move"),
 			 show_hint_dialog, GNOME_STOCK_PIXMAP_JUMP_TO),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Undo"), N_("Undo the last move."),
+  GNOMEUIINFO_ITEM_STOCK(N_("Undo"), N_("Undo the last move"),
 			 undo_callback, GNOME_STOCK_PIXMAP_UNDO),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Redo"), N_("Redo the last move."),
+  GNOMEUIINFO_ITEM_STOCK(N_("Redo"), N_("Redo the last move"),
 			 redo_callback, GNOME_STOCK_PIXMAP_REDO),
 
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Exit"), N_("Quit Aisleriot."),
+  GNOMEUIINFO_ITEM_STOCK(N_("Exit"), N_("Quit Aisleriot"),
 			 quit_app, GNOME_STOCK_PIXMAP_EXIT),
   GNOMEUIINFO_END
 };
