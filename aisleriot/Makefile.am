@@ -64,6 +64,7 @@ types_DATA  = 		\
 	spider.scm	\
 	thieves.scm     \
 	thirteen.scm	\
+	thumb_and_pouch.scm \
 	union_square.scm \
 	westhaven.scm	\
 	yukon.scm

@@ -1,0 +1,255 @@
+; AisleRiot - thumb_and_pouch.scm
+; Copyright (C) 1999 Rosanna Yuen <rwsy@mit.edu>
+;
+; This game is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; either version 2, or (at your option)
+; any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program; if not, write to the Free Software
+; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+; USA
+
+(define tableau '(6 7 8 9 10 11 12))
+(define foundation '(2 3 4 5))
+
+(define (new-game)
+  (initialize-playing-area)
+  (set-ace-low)
+
+  (make-standard-deck)
+  (shuffle-deck)
+  
+  (add-normal-slot DECK)
+
+  (add-normal-slot '())
+
+  (add-blank-slot)
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-carriage-return-slot)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+
+  (deal-cards stock '(6 7 8 9 10 11 12 7 8 9 10 11 12 8 9 10 11 12 9 10 11 12 10 11 12 11 12 12))
+
+  (map flip-top-card tableau)
+
+  (give-status-message)
+
+  (list 7 3))
+
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
+
+(define (button-pressed slot-id card-list)
+  (and (or (> slot-id 1)
+	   (and (= slot-id 1)
+		(= (length card-list) 1)))
+       (is-visible? (car (reverse card-list)))))
+
+(define (complete-transaction start-slot card-list end-slot)
+  (move-n-cards! start-slot end-slot card-list)
+  (if (member start-slot foundation)
+      (add-to-score! -1))
+  (if (member end-slot foundation)
+      (add-to-score! 1))
+  (if (and (not (empty-slot? start-slot)) 
+	   (member start-slot tableau))
+      (make-visible-top-card start-slot))
+  #t)
+
+(define (button-released start-slot card-list end-slot)
+  (and (not (= start-slot end-slot))
+       (or (and (member end-slot tableau)
+		(or (empty-slot? end-slot)
+		    (and (not (eq? (get-suit (get-top-card end-slot))
+				   (get-suit (car (reverse card-list)))))
+			 (= (get-value (get-top-card end-slot))
+			    (+ 1 (get-value (car (reverse card-list))))))))
+	   (and (member end-slot foundation)
+		(= 1 (length card-list))
+		(or (and (empty-slot? end-slot)
+			 (= ace (get-value (car card-list))))
+		    (and (not (empty-slot? end-slot))
+			 (eq? (get-suit (get-top-card end-slot))
+			      (get-suit (car card-list)))
+			 (= (get-value (get-top-card end-slot))
+			    (- (get-value (car card-list)) 1))))))
+       (complete-transaction start-slot card-list end-slot)))
+
+(define (button-clicked slot-id)
+  (and (= slot-id 0)
+       (flip-stock 0 1 2 1)
+       (give-status-message)))
+
+(define (button-double-clicked slot-id)
+  (and (or (member slot-id tableau)
+	   (= slot-id 1))
+       (not (empty-slot? slot-id))
+       (let* ((card (get-top-card slot-id))
+	      (suit (get-suit card))
+	      (value (get-value card)))
+	 (let ((end-slot 
+		(cond ((if (empty-slot? 2)
+			   (= ace value)
+			   (= suit (get-suit (get-top-card 2)))) 2)
+		      ((if (empty-slot? 3)
+			   (= ace value)
+			   (= suit (get-suit (get-top-card 3)))) 3)
+		      ((if (empty-slot? 4)
+			   (= ace value)
+			   (= suit (get-suit (get-top-card 4)))) 4)
+		      ((if (empty-slot? 5)
+			   (= ace value)
+			   (= suit (get-suit (get-top-card 5)))) 5)
+		      (#t #f))))
+	   (and end-slot
+		(or (= ace value)
+		    (= (get-value (get-top-card end-slot)) (- value 1)))
+		(remove-card slot-id)
+		(complete-transaction slot-id (list card) end-slot))))))
+
+(define (game-continuable)
+  (not (game-won)))
+
+(define (game-won)
+  (and (= 13 (length (get-cards 2)))
+       (= 13 (length (get-cards 3)))
+       (= 13 (length (get-cards 4)))
+       (= 13 (length (get-cards 5)))))
+
+(define (dealable?)
+  (and (not (empty-slot? 0))
+       (list 0 "Deal another round")))
+
+(define (empty-exist? slot-id)
+  (cond ((= slot-id 13)
+	 #f)
+	((empty-slot? slot-id)
+	 #t)
+	(#t
+	 (empty-exist? (+ 1 slot-id)))))
+
+(define (check-waste-to-empty)
+  (and (not (empty-slot? 1))
+       (list 2 (get-name (get-top-card 1)) "an empty Tableau pile")))
+
+(define (stripped card-list)
+  (if (not (is-visible? (cadr card-list)))
+      (car card-list)
+      (stripped (cdr card-list))))
+
+(define (check-tableau-to-empty slot-id)
+  (cond ((= slot-id 13)
+	 #f)
+	((and (not (empty-slot? slot-id))
+	      (not (is-visible? (car (reverse (get-cards slot-id))))))
+	 (list 2 (get-name (stripped (get-cards slot-id))) "an empty Tableau pile"))
+	(#t (check-tableau-to-empty (+ 1 slot-id)))))
+
+
+(define (check-empty?)
+  (and (empty-exist? 6)
+       (or (check-tableau-to-empty 6)
+	   (check-waste-to-empty))))
+
+(define (check-a-foundation slot-id card f-slot)
+  (cond ((or (> f-slot 5)
+	     (empty-slot? slot-id))
+	 #f)
+	((and (empty-slot? f-slot)
+	      (= (get-value card) ace))
+	 (if (< slot-id 0)
+	     #t
+	     (list 2
+		   (get-name (get-top-card slot-id)) 
+		   "an empty Foundation pile")))
+	((and (not (empty-slot? f-slot))
+	      (eq? (get-suit (get-top-card f-slot))
+		   (get-suit card))
+	      (= (get-value card)
+		 (+ 1 (get-value (get-top-card f-slot)))))
+	 (if (< slot-id 0)
+	     #t
+	     (list 1
+		   (get-name (get-top-card slot-id))
+		   (get-name (get-top-card f-slot)))))
+	(#t
+	 (check-a-foundation slot-id card (+ 1 f-slot)))))
+
+(define (check-to-foundations slot-id)
+  (cond ((> slot-id 12)
+	 #f)
+	((= slot-id 2)
+	 (check-to-foundations 6))
+	(#t
+	 (or (check-a-foundation slot-id (get-top-card slot-id) 2)
+	     (check-to-foundations (+ 1 slot-id))))))
+
+(define (check-a-tslot card card-list)
+  (and (not (or (= (length card-list) 0)
+		(not (is-visible? (car card-list)))
+		(>= (get-value (car card-list)) (get-value card))))
+       (or (and (= (get-value card)
+		   (+ 1 (get-value (car card-list))))
+		(not (eq? (get-suit card)
+			  (get-suit (car card-list))))
+		(or (= (length card-list) 1)
+		    (not (is-visible? (cadr card-list)))
+		    (check-a-foundation -1 (cadr card-list) 2))
+		(list 1 (get-name (car card-list)) (get-name card)))
+	   (check-a-tslot card (cdr card-list)))))
+
+(define (check-tslot to-slot from-slot)
+  (cond ((> from-slot 12)
+	 #f)
+	((= from-slot 2)
+	 (check-tslot to-slot 6))
+	((empty-slot? to-slot)
+	 (check-tslot to-slot (+ 1 from-slot)))
+	(#t 
+	 (or (check-a-tslot (get-top-card to-slot)
+			    (get-cards from-slot))
+	     (check-tslot to-slot (+ 1 from-slot))))))
+
+(define (check-to-tableau slot-id)
+  (and (not (> slot-id 12))
+       (or (check-tslot slot-id 1)
+	   (check-to-tableau (+ 1 slot-id)))))
+
+(define (get-hint)
+  (or (check-to-foundations 1)
+      (check-to-tableau 6)
+      (check-empty?)
+      (dealable?)))
+
+(define (get-options) 
+  #f)
+
+(define (apply-options options) 
+  #f)
+
+(define (timeout) 
+  #f)
+
+(set-lambda new-game button-pressed button-released button-clicked
+button-double-clicked game-continuable game-won get-hint get-options
+apply-options timeout)

@@ -27,6 +27,7 @@
 
 (define (new-game)
   (initialize-playing-area)
+  (set-ace-low)
 
   (make-standard-deck)
   (shuffle-deck)
@@ -100,7 +101,7 @@
 		    (and (= (get-suit (get-top-card end-slot))
 			    (get-suit (car card-list)))
 			 (= (get-value (get-top-card end-slot)) 
-				(- (get-value (car card-list)) 1))))))
+			    (- (get-value (car card-list)) 1))))))
        (complete-transaction start-slot card-list end-slot)))
 
 (define (button-clicked start-slot)
