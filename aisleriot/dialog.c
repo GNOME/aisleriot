@@ -164,77 +164,79 @@ hint_destroy_callback (void)
 
 void show_hint_dialog() 
 {
-  GString* gmessage;
+  char *gmessage;
+  char *str1, *str2;
 
   if (waiting_for_mouse_up()) return;
 
   if (game_over) {
-    gmessage = g_string_new (_("The game is over.\nNo hints are available"));
+    gmessage = g_strdup (_("The game is over.\nNo hints are available"));
   }  
   else {
     SCM hint = gh_call0(game_data->hint_lambda);
 
     if (!gh_scm2bool(hint)) {
-      gmessage = g_string_new (_("This game does not have hint support yet."));
+      gmessage = g_strdup (_("This game does not have hint support yet."));
     }
     else {
       switch (gh_scm2int(gh_car(hint))) {
 
       case 0:
         /* This is discouraged, as it makes I18N a nightmare */
-	gmessage = g_string_new (_(gh_scm2newstr(gh_cadr(hint),NULL)));
+	gmessage = g_strdup (_(gh_scm2newstr(gh_cadr(hint),NULL)));
 	break;
 
       case 1:
-	gmessage = g_string_new (_("Move the "));
-	g_string_append (gmessage, gh_scm2newstr(gh_cadr(hint),NULL));
-	g_string_append (gmessage, _(" on the "));
-	g_string_append (gmessage, gh_scm2newstr(gh_caddr(hint),NULL));
-	g_string_append (gmessage, _("."));
+	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
+	str2 = gh_scm2newstr(gh_caddr(hint),NULL);
+	gmessage = g_strdup_printf (_("Move the %s on the %s."), str1, str2);
+	free (str1);
+	free (str2);
 	break;
 
       case 2:
-	gmessage = g_string_new (_("Move the "));
-	g_string_append (gmessage, gh_scm2newstr(gh_cadr(hint),NULL));
-	g_string_append (gmessage, _(" on "));
-	g_string_append (gmessage, gh_scm2newstr(gh_caddr(hint),NULL));
-	g_string_append (gmessage, _("."));
+	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
+	str2 = gh_scm2newstr(gh_caddr(hint),NULL);
+	gmessage = g_strdup_printf (_("Move the %s on %s."), str1, str2);
+	free (str1);
+	free (str2);
 	break;
 
       case 3:
-	gmessage = g_string_new (_("Move the "));
-	g_string_append (gmessage, gh_scm2newstr(gh_cadr(hint),NULL));
-	g_string_append (gmessage, _(" "));
-	g_string_append (gmessage, gh_scm2newstr(gh_caddr(hint),NULL));
-	g_string_append (gmessage, _("."));
+	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
+	str2 = gh_scm2newstr(gh_caddr(hint),NULL);
+	gmessage = g_strdup_printf (_("Move the %s %s."), str1, str2);
+	free (str1);
+	free (str2);
 	break;
 
       case 4:
-	gmessage = g_string_new (_("You are searching for a "));
-	g_string_append (gmessage, gh_scm2newstr(gh_cadr(hint),NULL));
-	g_string_append (gmessage, _("."));
+	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
+	gmessage = g_strdup_printf (_("You are searching for a %s."), str1);
+	free (str1);
 	break;
 
       default:
-	gmessage = g_string_new (_("This game is unable to provide a hint."));
+	gmessage = g_strdup (_("This game is unable to provide a hint."));
 	break;
       }
     }
   }
 
   if (hint_dlg) {
-   /* I _think_ that ok_dialogs are closed automatically on ok being pressed */
-   /*gtk_widget_unref (hint_dlg);*/
+   gnome_dialog_close (GNOME_DIALOG (hint_dlg));
 	  
   }
 
-  hint_dlg = gnome_ok_dialog_parented(gmessage->str,GTK_WINDOW(app));
+  hint_dlg = gnome_ok_dialog_parented (gmessage, GTK_WINDOW (app));
   if (hint_dlg) {
 	  gtk_signal_connect (GTK_OBJECT (hint_dlg),
 			      "destroy",
 			      (GtkSignalFunc) hint_destroy_callback,
 			      NULL);
   }
+
+  g_free (gmessage);
 }
 
 GtkWidget *
