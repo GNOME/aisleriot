@@ -62,6 +62,8 @@ void redo_callback ()
   if (waiting_for_mouse_up()) return;
   scm_c_eval_string ("(redo)");
   refresh_screen();
+  /* We need this now that you can undo a losing move. */
+  end_of_game_test ();
 }
 static void
 about_destroy_callback (void)

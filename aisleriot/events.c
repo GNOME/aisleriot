@@ -111,17 +111,16 @@ int waiting_for_mouse_up(void) {
 }
 
 void end_of_game_test() {
-
   scm_c_eval_string ("(end-move)");
   if(!game_over) { 
     game_over = !SCM_NFALSEP (cscmi_game_over_lambda ());
     
     if (game_over) {
       timer_stop ();
-      game_in_progress = FALSE;
       game_won = SCM_NFALSEP (cscmi_winning_game_lambda ());
       refresh_screen ();
-      update_statistics (game_won, timer_get ());
+      if (game_won) /* Because we can undo lost games. */
+	update_statistics (TRUE, timer_get ());
       show_game_over_dialog ();
     }
   }  

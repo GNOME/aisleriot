@@ -43,24 +43,28 @@ void show_game_over_dialog() {
 
   if (game_won)
     message = g_strdup_printf ("<b>%s\n\n%s</b>", _("Congratulations."),
-                                _("You won!!!"));
+                                _("You have won!!!"));
   else
-    message = g_strdup_printf ("<b>%s</b>", _("Game over."));
+    message = g_strdup_printf ("<b>%s</b>", _("There are no more moves."));
 
-  dialog = gtk_message_dialog_new (GTK_WINDOW (app),
-                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-                                   GTK_MESSAGE_INFO,
-                                   GTK_BUTTONS_NONE,
-                                   message);
+  dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (app),
+					       GTK_DIALOG_DESTROY_WITH_PARENT,
+					       GTK_MESSAGE_INFO,
+					       GTK_BUTTONS_NONE,
+					       message);
 
   g_free (message);
-  gtk_label_set_use_markup (GTK_LABEL (GTK_MESSAGE_DIALOG (dialog)->label),
-                            TRUE);
+
+  if (!game_won)
+    gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+			    GTK_STOCK_UNDO, GTK_RESPONSE_REJECT,
+			    NULL);
+  /* FIXME: New and New Game are both used. One is a stock item, the
+   * other is more descriptive. */
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                           _("New Game"), GTK_RESPONSE_ACCEPT,
-                          GTK_STOCK_QUIT, GTK_RESPONSE_REJECT,
                           NULL);
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
 
   /* add a stock icon? */ 
   switch (gtk_dialog_run (GTK_DIALOG (dialog)))
@@ -74,12 +78,14 @@ void show_game_over_dialog() {
     case GTK_RESPONSE_REJECT:
       {
         gtk_widget_destroy (dialog);
-        gtk_widget_destroy (app);
-        gtk_main_quit ();
+	game_over = FALSE;
+	undo_callback ();
       }
       break;
     default:
      {
+       /* The player closed the dialog window, just ignore this. */
+       game_over = FALSE;
        gtk_widget_destroy (dialog);
      }
   }
