@@ -56,7 +56,7 @@
       #f))
 
 (define (no-more-left? slot1 slot2)
-  (cond ((= slot-1 slot2)
+  (cond ((= slot1 slot2)
 	 #t)
 	((and (not (empty-slot? slot2))
 	      (= (get-value (get-top-card slot1))

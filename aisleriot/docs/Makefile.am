@@ -9,7 +9,7 @@ helpdir = $(datadir)/gnome/help/aisleriot/C
 help_DATA = index.html intro.html glossary.html gpl.html \
 	camelot.html canfield.html clock.html doublets.html \
 	eagle-wing.html elevator.html fortunes.html \
-	kansas.html klondike.html \
+	kansas.html klondike.html first-law.html \
 	fourteen.html pileon.html auld-lang-syne.html \
 	hopscotch.html scorpion.html thumb-and-pouch.html \
 	neighbor.html odessa.html osmosis.html spider.html \
@@ -23,7 +23,7 @@ help_DATA = index.html intro.html glossary.html gpl.html \
 help_SGML = aisleriot.sgml definitions.sgml gpl.sgml 
 	camelot.sgml canfield.sgml clock.sgml doublets.sgml \
 	eagle-wing.sgml elevator.sgml fortunes.sgml \
-	kansas.sgml pileon.sgml \
+	kansas.sgml pileon.sgml first_law.sgml \
 	fourteen.sgml klondike.sgml auld-lang-syne.sgml \
 	bristol.sgml hopscotch.sgml union_square.sgml\
 	neighbor.sgml odessa.sgml osmosis.sgml spider.sgml \
