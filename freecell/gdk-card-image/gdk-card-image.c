@@ -35,7 +35,7 @@
 #include <gdk-card-image.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <libgnomevfs/gnome-vfs-mime-utils.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
 
 /* An image file used in building the cards:
  * each file can contain multiple images and/or half images */
@@ -224,11 +224,8 @@ is_image (const struct direct* dent)
 is_image (const struct dirent* dent)
 #endif
 {
-	char *uri = gnome_vfs_get_uri_from_local_path (dent->d_name);
-	const char *type = NULL;
+	const char *type = gnome_vfs_mime_type_from_name (dent->d_name);
 
-	type = gnome_vfs_get_mime_type ((const char *) uri);
-	g_free (uri);
 	if (type == NULL ||
 	    strncmp (type, "image/", strlen ("image/")) != 0)
 		return FALSE;
