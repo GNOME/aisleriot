@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1998-03-20 12:22+0100\n"
+"POT-Creation-Date: 1998-04-13 05:20+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,36 +102,39 @@ msgstr "Vertikální:"
 msgid "Number of mines:"
 msgstr "Poèet min:"
 
-#: aisleriot/menu.c:197 gnomine/gnomine.c:418 mahjongg/mahjongg.c:267
-#: same-gnome/same-gnome.c:672 scottfree/GnomeScott.c:1518
+#: aisleriot/menu.c:197 freecell/src/menu.c:98 gnomine/gnomine.c:418
+#: mahjongg/mahjongg.c:266 same-gnome/same-gnome.c:684
+#: scottfree/GnomeScott.c:1519
 msgid "New"
 msgstr "Nová hra"
 
-#: gnomine/gnomine.c:421 same-gnome/same-gnome.c:675
+#: freecell/src/menu.c:45 gnomine/gnomine.c:421 same-gnome/same-gnome.c:687
 msgid "Properties..."
 msgstr "Vlastnosti ..."
 
-#: gnomine/gnomine.c:424 same-gnome/same-gnome.c:678
+#: gnomine/gnomine.c:424 same-gnome/same-gnome.c:690
+#, fuzzy
 msgid "Scores..."
 msgstr "Skóre ..."
 
-#: aisleriot/menu.c:201 gnomine/gnomine.c:427 mahjongg/mahjongg.c:269
-#: same-gnome/same-gnome.c:681 scottfree/GnomeScott.c:1527
+#: aisleriot/menu.c:201 freecell/src/menu.c:57 freecell/src/menu.c:114
+#: gnomine/gnomine.c:427 mahjongg/mahjongg.c:278 same-gnome/same-gnome.c:693
+#: scottfree/GnomeScott.c:1528
 msgid "Exit"
 msgstr "Konec"
 
-#: aisleriot/menu.c:190 gnomine/gnomine.c:438 same-gnome/same-gnome.c:691
-#: scottfree/GnomeScott.c:1538
+#: aisleriot/menu.c:190 freecell/src/menu.c:72 gnomine/gnomine.c:438
+#: same-gnome/same-gnome.c:703 scottfree/GnomeScott.c:1539
 msgid "About..."
 msgstr "O programu ..."
 
-#: aisleriot/menu.c:210 gnomine/gnomine.c:446 mahjongg/mahjongg.c:285
-#: same-gnome/same-gnome.c:699
+#: aisleriot/menu.c:210 freecell/src/menu.c:83 gnomine/gnomine.c:446
+#: mahjongg/mahjongg.c:295 same-gnome/same-gnome.c:711
 msgid "Game"
 msgstr "Hra"
 
-#: aisleriot/menu.c:212 gnomine/gnomine.c:449 mahjongg/mahjongg.c:287
-#: same-gnome/same-gnome.c:702
+#: aisleriot/menu.c:212 freecell/src/menu.c:87 gnomine/gnomine.c:449
+#: mahjongg/mahjongg.c:298 same-gnome/same-gnome.c:714
 msgid "Help"
 msgstr "Nápovìda"
 
@@ -189,26 +192,19 @@ msgstr ""
 msgid "Original idea from KDE's same game program."
 msgstr ""
 
-#: same-gnome/same-gnome.c:660
+#: same-gnome/same-gnome.c:669
 msgid "Do you really want to quit?"
 msgstr ""
 
-#: same-gnome/same-gnome.c:662
-msgid "Yes"
-msgstr ""
-
-#: same-gnome/same-gnome.c:662
-msgid "No"
-msgstr ""
-
-#: same-gnome/same-gnome.c:897
+#: same-gnome/same-gnome.c:909
 msgid "Same Gnome"
 msgstr ""
 
 #. create the scoring widget
-#: aisleriot/sol.c:228 same-gnome/same-gnome.c:909
+#: aisleriot/sol.c:229 same-gnome/same-gnome.c:924
+#, fuzzy
 msgid "Score: "
-msgstr ""
+msgstr "Skóre"
 
 #: aisleriot/menu.c:52
 msgid ""
@@ -260,9 +256,10 @@ msgstr ""
 msgid "Hint"
 msgstr ""
 
-#: aisleriot/menu.c:199
+#: aisleriot/menu.c:199 mahjongg/mahjongg.c:540
+#, fuzzy
 msgid "Select Game"
-msgstr ""
+msgstr "Nová hra"
 
 #: aisleriot/menu.c:208
 msgid "File"
@@ -285,12 +282,14 @@ msgid "Klondike"
 msgstr ""
 
 #: aisleriot/menu.c:228
+#, fuzzy
 msgid "Freecell"
-msgstr ""
+msgstr "Nastavit vlastnosti"
 
 #: aisleriot/menu.c:229
+#, fuzzy
 msgid "Camelot"
-msgstr ""
+msgstr "Zru¹"
 
 #: aisleriot/sol.c:135
 msgid "Solitaire"
@@ -302,12 +301,12 @@ msgid ""
 "initializing gnome/gdk...\n"
 msgstr ""
 
-#: aisleriot/sol.c:174 aisleriot/sol.c:194
+#: aisleriot/sol.c:173 aisleriot/sol.c:194
 msgid "Done.\n"
 msgstr ""
 
 #. generic startup...
-#: aisleriot/sol.c:180
+#: aisleriot/sol.c:179
 msgid "Creating App...\n"
 msgstr ""
 
@@ -316,30 +315,53 @@ msgstr ""
 msgid "loading pixmaps...\n"
 msgstr ""
 
-#: mahjongg/mahjongg.c:278
-msgid "About"
+#: mahjongg/mahjongg.c:269
+#, fuzzy
+msgid "Restart..."
+msgstr "Zaèít znovu"
+
+#: mahjongg/mahjongg.c:272
+msgid "Select game"
 msgstr ""
 
-#: mahjongg/mahjongg.c:550
+#: mahjongg/mahjongg.c:275
+#, fuzzy
+msgid "Properties"
+msgstr "Vlastnosti ..."
+
+#: mahjongg/mahjongg.c:288
+#, fuzzy
+msgid "About"
+msgstr "O programu ..."
+
+#: mahjongg/mahjongg.c:423
 msgid "Tiles don't match!"
 msgstr ""
 
-#: mahjongg/mahjongg.c:552 mahjongg/mahjongg.c:564
+#: mahjongg/mahjongg.c:425 mahjongg/mahjongg.c:460 mahjongg/mahjongg.c:473
 msgid "Ok"
 msgstr ""
 
-#: mahjongg/mahjongg.c:562
+#: mahjongg/mahjongg.c:458
+msgid "No more movements"
+msgstr ""
+
+#: mahjongg/mahjongg.c:471
 msgid "You won!"
 msgstr ""
 
-#: mahjongg/mahjongg.c:583 mahjongg/mahjongg.c:931
+#: mahjongg/mahjongg.c:492 mahjongg/mahjongg.c:814
 msgid "Gnome Mahjongg"
 msgstr ""
 
-#: mahjongg/mahjongg.c:586
+#: mahjongg/mahjongg.c:495
 msgid ""
 "Send comments and bug reports to: pancho@nuclecu.unam.mx\n"
 "Tiles under the General Public License."
+msgstr ""
+
+#: mahjongg/mahjongg.c:544
+msgid "Game Number:"
 msgstr ""
 
 #: scottfree/GnomeScott.c:1198
@@ -358,7 +380,10 @@ msgstr ""
 msgid "It's beyond my power to do that.\n"
 msgstr ""
 
-#: scottfree/GnomeScott.c:1216 scottfree/GnomeScott.c:1483
+#: freecell/src/io-gtk.c:408 freecell/src/io-gtk.c:541
+#: freecell/src/io-gtk.c:564 freecell/src/io-gtk.c:648
+#: freecell/src/io-gtk.c:1124 freecell/src/option-dialog.c:111
+#: freecell/src/score-dialog.c:88 scottfree/GnomeScott.c:1216
 msgid "OK"
 msgstr ""
 
@@ -371,8 +396,9 @@ msgid "I don't understand your command. "
 msgstr ""
 
 #: scottfree/GnomeScott.c:1278
+#, fuzzy
 msgid "I can't do that yet. "
-msgstr ""
+msgstr "Nemo¾ný tah"
 
 #: scottfree/GnomeScott.c:1292
 msgid "Light has run out! "
@@ -394,42 +420,196 @@ msgstr ""
 msgid "Your light is growing dim. "
 msgstr ""
 
-#: scottfree/GnomeScott.c:1491
+#: scottfree/GnomeScott.c:1485
+msgid "Copyright (C) 1997 Alan Cox"
+msgstr ""
+
+#: scottfree/GnomeScott.c:1492
 msgid "North"
 msgstr ""
 
-#: scottfree/GnomeScott.c:1494
+#: scottfree/GnomeScott.c:1495
 msgid "East"
 msgstr ""
 
-#: scottfree/GnomeScott.c:1497
+#: scottfree/GnomeScott.c:1498
 msgid "South"
 msgstr ""
 
-#: scottfree/GnomeScott.c:1500
+#: scottfree/GnomeScott.c:1501
 msgid "West"
 msgstr ""
 
-#: scottfree/GnomeScott.c:1503
+#: scottfree/GnomeScott.c:1504
 msgid "Up"
 msgstr ""
 
-#: scottfree/GnomeScott.c:1506
+#: scottfree/GnomeScott.c:1507
 msgid "Down"
 msgstr ""
 
-#: scottfree/GnomeScott.c:1509
+#: scottfree/GnomeScott.c:1510
 msgid "List"
 msgstr ""
 
-#: scottfree/GnomeScott.c:1509
+#: scottfree/GnomeScott.c:1510
 msgid "What am I carrying"
 msgstr ""
 
-#: scottfree/GnomeScott.c:1521
+#: scottfree/GnomeScott.c:1522
 msgid "Load..."
 msgstr ""
 
-#: scottfree/GnomeScott.c:1524
+#: scottfree/GnomeScott.c:1525
+#, fuzzy
 msgid "Save..."
+msgstr "Skóre ..."
+
+#: freecell/src/io-gtk.c:315 freecell/src/io-gtk.c:452
+#: freecell/src/io-gtk.c:510 freecell/src/io-gtk.c:599
+msgid "Exit this game?"
+msgstr "Skonèit hru ?"
+
+#: freecell/src/io-gtk.c:317 freecell/src/io-gtk.c:454
+#: freecell/src/io-gtk.c:512 freecell/src/io-gtk.c:601
+#: freecell/src/io-gtk.c:1136
+msgid "Yes"
+msgstr "Ano"
+
+#: freecell/src/io-gtk.c:317 freecell/src/io-gtk.c:454
+#: freecell/src/io-gtk.c:512 freecell/src/io-gtk.c:601
+#: freecell/src/io-gtk.c:1136
+msgid "No"
+msgstr "Ne"
+
+#: freecell/src/io-gtk.c:393 freecell/src/menu.c:102
+msgid "Seed"
+msgstr "Èíslo hry"
+
+#: freecell/src/io-gtk.c:397
+msgid "Enter the seed."
+msgstr "Zadej èíslo hry"
+
+#: freecell/src/io-gtk.c:418 freecell/src/option-dialog.c:118
+msgid "Cancel"
+msgstr "Zru¹"
+
+#: freecell/src/io-gtk.c:539 freecell/src/io-gtk.c:562
+msgid "Sorry, this feature is not implemented (yet)."
 msgstr ""
+
+#: freecell/src/io-gtk.c:619
+msgid "Changwoo Ryu."
+msgstr ""
+
+#: freecell/src/io-gtk.c:633
+msgid "FreeCell"
+msgstr ""
+
+#: freecell/src/io-gtk.c:634
+msgid "(C) 1997-1998 Changwoo Ryu"
+msgstr ""
+
+#: freecell/src/io-gtk.c:636
+msgid "Reimplement the popular solitaire card game."
+msgstr "Reimplementace populární karetní hry."
+
+#: freecell/src/io-gtk.c:646
+msgid "You can't move in that way."
+msgstr "Nemo¾ný tah"
+
+#: freecell/src/io-gtk.c:1122
+msgid "Sorry, there is no card to move."
+msgstr "Promiò, ¾ádná karta se ji¾ nedá pøemístit."
+
+#: freecell/src/io-gtk.c:1134
+msgid ""
+"Congraturations.  You won.\n"
+"Do you want to play again?"
+msgstr ""
+"Blahopøeji, vyhrál jsi\n"
+"Novou hru ?"
+
+#: freecell/src/menu.c:29
+msgid "New Game"
+msgstr "Nová hra"
+
+#: freecell/src/menu.c:33
+msgid "Restart Game"
+msgstr "Zaèít znovu"
+
+#: freecell/src/menu.c:37
+msgid "New Game with a seed..."
+msgstr "Nová hra podle èísla ..."
+
+#: freecell/src/menu.c:49
+msgid "Score..."
+msgstr "Skóre ..."
+
+#: freecell/src/menu.c:98
+msgid "Start a new game"
+msgstr "Zaèít novou hru"
+
+#: freecell/src/menu.c:106 freecell/src/score-dialog.c:68
+msgid "Score"
+msgstr "Skóre"
+
+#: freecell/src/menu.c:106
+msgid "Show the score"
+msgstr "Ukázat skóre"
+
+#: freecell/src/menu.c:110
+msgid "Props"
+msgstr "Vlastnosti"
+
+#: freecell/src/menu.c:110
+msgid "Setup Freecell"
+msgstr "Nastavit vlastnosti"
+
+#: freecell/src/score.c:55
+msgid "This session: %d%%"
+msgstr "Toto sezení (úspì¹nost): %d%%"
+
+#: freecell/src/score.c:56 freecell/src/score.c:66
+#, c-format
+msgid "won: %d, lost: %d"
+msgstr "výhry: %d  prohry: %d"
+
+#: freecell/src/score.c:65
+msgid "Total: %d%%"
+msgstr "Celkovì: %d%%"
+
+#: freecell/src/score.c:69
+msgid "Streaks"
+msgstr "Linie"
+
+#: freecell/src/score.c:70
+#, c-format
+msgid "wins: %d, losses: %d"
+msgstr "výhry: %d  prohry: %d"
+
+#: freecell/src/score.c:74
+#, c-format
+msgid "current: %d wins"
+msgstr "teï výher: %d"
+
+#: freecell/src/score.c:76
+#, c-format
+msgid "current: %d losses"
+msgstr "teï proher: %d"
+
+#: freecell/src/score-dialog.c:95
+msgid "Clear"
+msgstr "Vymazat"
+
+#: freecell/src/option-dialog.c:83
+msgid "Freecell Properties"
+msgstr "Vlastnosti FreeCellu"
+
+#: freecell/src/option-dialog.c:92
+msgid "Options"
+msgstr "Mo¾nosti"
+
+#: freecell/src/option-dialog.c:98
+msgid "Inform invalid move"
+msgstr "Hlásit nemo¾ný tah"
