@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-15 23:34-0500\n"
-"PO-Revision-Date: 2005-01-15 23:33-0500\n"
+"POT-Creation-Date: 2005-02-01 13:52-0500\n"
+"PO-Revision-Date: 2005-02-01 23:33-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: English/Canada <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -180,7 +180,7 @@ msgstr "FreeCell Solitaire"
 msgid "Play the popular FreeCell card game"
 msgstr "Play the popular FreeCell card game"
 
-#: aisleriot/menu.c:94 gnome-stones/main.c:1084 gnomine/gnomine.c:378
+#: aisleriot/menu.c:94 gnome-stones/main.c:1087 gnomine/gnomine.c:378
 #: mahjongg/mahjongg.c:986
 msgid "Main game:"
 msgstr "Main game:"
@@ -190,10 +190,10 @@ msgid "Card games:"
 msgstr "Card games:"
 
 #. Translator credits
-#: aisleriot/menu.c:115 blackjack/src/menu.cpp:157 gataxx/gataxx.c:369
+#: aisleriot/menu.c:115 blackjack/src/menu.cpp:157 gataxx/gataxx.c:372
 #: glines/glines.c:1093 gnect/src/main.c:821 gnibbles/main.c:184
-#: gnobots2/menu.c:224 gnome-stones/main.c:1095 gnometris/tetris.cpp:1431
-#: gnomine/gnomine.c:398 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1573
+#: gnobots2/menu.c:224 gnome-stones/main.c:1098 gnometris/tetris.cpp:1431
+#: gnomine/gnomine.c:398 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1586
 #: gtali/gyahtzee.c:455 iagno/gnothello.c:369 mahjongg/mahjongg.c:1010
 #: same-gnome/ui.c:122
 msgid "translator-credits"
@@ -211,9 +211,9 @@ msgstr ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
 
-#: aisleriot/menu.c:212 gnect/src/prefs.c:391 gnibbles/preferences.c:213
-#: gnome-stones/preferences.c:744 gnometris/tetris.cpp:775
-#: gnotski/gnotski.c:652 same-gnome/ui.c:429
+#: aisleriot/menu.c:212 blackjack/src/blackjack.cpp:306 gnect/src/prefs.c:391
+#: gnibbles/preferences.c:213 gnome-stones/preferences.c:744
+#: gnometris/tetris.cpp:775 gnotski/gnotski.c:652 same-gnome/ui.c:429
 msgid "_Game"
 msgstr "_Game"
 
@@ -221,11 +221,12 @@ msgstr "_Game"
 msgid "_View"
 msgstr "_View"
 
-#: aisleriot/menu.c:214
+#: aisleriot/menu.c:214 blackjack/src/blackjack.cpp:313
 msgid "_Control"
 msgstr "_Control"
 
-#: aisleriot/menu.c:215 gnotski/gnotski.c:653 same-gnome/ui.c:432
+#: aisleriot/menu.c:215 blackjack/src/blackjack.cpp:320 gnotski/gnotski.c:653
+#: same-gnome/ui.c:432
 msgid "_Help"
 msgstr "_Help"
 
@@ -257,15 +258,16 @@ msgstr "_Undo Move"
 msgid "_Redo Move"
 msgstr "_Redo Move"
 
-#: aisleriot/menu.c:227 gnotski/gnotski.c:665
+#: aisleriot/menu.c:227 blackjack/src/blackjack.cpp:309 gnotski/gnotski.c:665
 msgid "_Hint"
 msgstr "_Hint"
 
-#: aisleriot/menu.c:230 same-gnome/ui.c:442
+#: aisleriot/menu.c:230 blackjack/src/blackjack.cpp:321 same-gnome/ui.c:442
 msgid "_Contents"
 msgstr "_Contents"
 
-#: aisleriot/menu.c:237 gnect/src/main.c:1194 mahjongg/mahjongg.c:144
+#: aisleriot/menu.c:237 blackjack/src/blackjack.cpp:326 gnect/src/main.c:1194
+#: mahjongg/mahjongg.c:144
 msgid "_Toolbar"
 msgstr "_Toolbar"
 
@@ -1547,6 +1549,96 @@ msgstr "Use a quick deal with no delay between each card."
 msgid "Blackjack: %s"
 msgstr "Blackjack: %s"
 
+#: blackjack/src/blackjack.cpp:307
+msgid "_New game"
+msgstr "_New game"
+
+#: blackjack/src/blackjack.cpp:307 gnect/src/main.c:1221 gnobots2/menu.c:106
+msgid "Start a new game"
+msgstr "Start a new game"
+
+#: blackjack/src/blackjack.cpp:308
+msgid "_Restart game"
+msgstr "_Restart game"
+
+#: blackjack/src/blackjack.cpp:308
+msgid "Restart the current game"
+msgstr "Restart the current game"
+
+#: blackjack/src/blackjack.cpp:309
+msgid "Get a hint for the next action"
+msgstr "Get a hint for the next action"
+
+#: blackjack/src/blackjack.cpp:310
+msgid "Quit application"
+msgstr "Quit application"
+
+#: blackjack/src/blackjack.cpp:311
+msgid "_Settings"
+msgstr "_Settings"
+
+#: blackjack/src/blackjack.cpp:312
+msgid "Show game preferences"
+msgstr "Show game preferences"
+
+#: blackjack/src/blackjack.cpp:314
+msgid "Deal"
+msgstr "Deal"
+
+#: blackjack/src/blackjack.cpp:314 blackjack/src/dialog.cpp:100
+#: blackjack/src/dialog.cpp:103
+msgid "Deal a new hand"
+msgstr "Deal a new hand"
+
+#: blackjack/src/blackjack.cpp:315
+msgid "_Hit"
+msgstr "_Hit"
+
+#: blackjack/src/blackjack.cpp:315
+msgid "Add a card to the hand"
+msgstr "Add a card to the hand"
+
+#: blackjack/src/blackjack.cpp:316
+msgid "_Stand"
+msgstr "_Stand"
+
+#: blackjack/src/blackjack.cpp:316
+msgid "Stop adding cards to the hand"
+msgstr "Stop adding cards to the hand"
+
+#: blackjack/src/blackjack.cpp:317 blackjack/src/dialog.cpp:343
+#: blackjack/src/player.cpp:312
+msgid "Surrender"
+msgstr "Surrender"
+
+#: blackjack/src/blackjack.cpp:317
+msgid "Surrender the hand"
+msgstr "Surrender the hand"
+
+#: blackjack/src/blackjack.cpp:318
+msgid "_Double down"
+msgstr "_Double down"
+
+#: blackjack/src/blackjack.cpp:318
+msgid "Double down"
+msgstr "Double down"
+
+#: blackjack/src/blackjack.cpp:319
+msgid "Split the hand"
+msgstr "Split the hand"
+
+#: blackjack/src/blackjack.cpp:321
+msgid "Display help for this game"
+msgstr "Display help for this game"
+
+#: blackjack/src/blackjack.cpp:322
+msgid "About this game"
+msgstr "About this game"
+
+#: blackjack/src/blackjack.cpp:326
+msgid "Show toolbar"
+msgstr "Show toolbar"
+
 #: blackjack/src/blackjack.cpp:355
 msgid "Cards left:"
 msgstr "Cards left:"
@@ -1581,10 +1673,6 @@ msgstr ""
 "Insurance is a side wager of 50%% of the original wager that the dealer has "
 "a natural 21 (aka blackjack) that is offered when the dealer's face up card "
 "is an ace. If the dealer has a natural 21 then the player is paid double."
-
-#: blackjack/src/dialog.cpp:100 blackjack/src/dialog.cpp:103
-msgid "Deal a new hand"
-msgstr "Deal a new hand"
 
 #: blackjack/src/dialog.cpp:101
 msgid "Set your wager and click in the white outline to deal a new hand."
@@ -1653,10 +1741,6 @@ msgstr "Resplit"
 #: blackjack/src/dialog.cpp:338
 msgid "Resplit Aces"
 msgstr "Resplit Aces"
-
-#: blackjack/src/dialog.cpp:343 blackjack/src/player.cpp:312
-msgid "Surrender"
-msgstr "Surrender"
 
 #: blackjack/src/dialog.cpp:348
 msgid "Dealer Speed"
@@ -1849,15 +1933,15 @@ msgstr "Dark player wins!"
 msgid "The game was a draw."
 msgstr "The game was a draw."
 
-#: gataxx/gataxx.c:367
+#: gataxx/gataxx.c:370
 msgid "Based on code from Iagno by Ian Peters"
 msgstr "Based on code from Iagno by Ian Peters"
 
-#: gataxx/gataxx.c:384 gataxx/gataxx.desktop.in.h:1
+#: gataxx/gataxx.c:387 gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "Ataxx"
 
-#: gataxx/gataxx.c:387
+#: gataxx/gataxx.c:390
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr "A disk-flipping game where you attempt to dominate the board."
 
@@ -2325,10 +2409,6 @@ msgstr "New"
 #: gnect/src/main.c:1220 mahjongg/mahjongg.c:167
 msgid "New game"
 msgstr "New game"
-
-#: gnect/src/main.c:1221 gnobots2/menu.c:106
-msgid "Start a new game"
-msgstr "Start a new game"
 
 #: gnect/src/main.c:1223 mahjongg/mahjongg.c:183
 msgid "Undo"
@@ -3442,71 +3522,71 @@ msgstr ""
 "Please make sure, that GNOME Stones is correctly installed!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:205 gnome-stones/main.c:991 gnome-stones/main.c:1113
-#: gnome-stones/main.c:1338
+#: gnome-stones/main.c:208 gnome-stones/main.c:994 gnome-stones/main.c:1116
+#: gnome-stones/main.c:1341
 msgid "GNOME Stones"
 msgstr "GNOME Stones"
 
-#: gnome-stones/main.c:287 gnome-stones/preferences.c:682
+#: gnome-stones/main.c:290 gnome-stones/preferences.c:682
 msgid "Game title"
 msgstr "Game title"
 
-#: gnome-stones/main.c:288
+#: gnome-stones/main.c:291
 msgid "Start cave"
 msgstr "Start cave"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:431 gnome-stones/main.c:1041
+#: gnome-stones/main.c:434 gnome-stones/main.c:1044
 #: gnometris/gnometris.schemas.in.h:15 mahjongg/mahjongg.c:177
 msgid "Pause"
 msgstr "Pause"
 
-#: gnome-stones/main.c:683
+#: gnome-stones/main.c:686
 msgid "Congratulations, you win!"
 msgstr "Congratulations, you win!"
 
-#: gnome-stones/main.c:871 gtali/gyahtzee.c:136 same-gnome/ui.c:163
+#: gnome-stones/main.c:874 gtali/gyahtzee.c:136 same-gnome/ui.c:163
 msgid "Game over!"
 msgstr "Game over!"
 
-#: gnome-stones/main.c:1087
+#: gnome-stones/main.c:1090
 msgid "Sokoban levels:"
 msgstr "Sokoban levels:"
 
-#: gnome-stones/main.c:1115
+#: gnome-stones/main.c:1118
 msgid "Mine through dirt and collect gems."
 msgstr "Mine through dirt and collect gems."
 
-#: gnome-stones/main.c:1138
+#: gnome-stones/main.c:1141
 msgid "_Restart level"
 msgstr "_Restart level"
 
-#: gnome-stones/main.c:1138
+#: gnome-stones/main.c:1141
 msgid "Restart the current level"
 msgstr "Restart the current level"
 
-#: gnome-stones/main.c:1243
+#: gnome-stones/main.c:1246
 msgid "Scanning private object directory..."
 msgstr "Scanning private object directory..."
 
-#: gnome-stones/main.c:1247
+#: gnome-stones/main.c:1250
 msgid "Scanning public object directory..."
 msgstr "Scanning public object directory..."
 
-#: gnome-stones/main.c:1252
+#: gnome-stones/main.c:1255
 msgid "Filling game widget..."
 msgstr "Filling game widget..."
 
-#: gnome-stones/main.c:1257
+#: gnome-stones/main.c:1260
 msgid "Scanning private game directory..."
 msgstr "Scanning private game directory..."
 
-#: gnome-stones/main.c:1261
+#: gnome-stones/main.c:1264
 msgid "Scanning public game directory..."
 msgstr "Scanning public game directory..."
 
-#: gnome-stones/main.c:1265
+#: gnome-stones/main.c:1268
 msgid "Restoring preferences..."
 msgstr "Restoring preferences..."
 
@@ -3967,6 +4047,30 @@ msgstr "Set to true to be able to mark squares as unknown."
 msgid "Use the unknown flag"
 msgstr "Use the unknown flag"
 
+#: gnomine/minefield.c:161
+msgid ""
+"Unable to find required images.\n"
+"\n"
+"Please check your gnome-games installation."
+msgstr ""
+"Unable to find required images.\n"
+"\n"
+"Please check your gnome-games installation."
+
+#: gnomine/minefield.c:168
+msgid ""
+"Required images have been found, but refused to load.\n"
+"\n"
+"Please check your installation of gnome-games and its dependencies."
+msgstr ""
+"Required images have been found, but refused to load.\n"
+"\n"
+"Please check your installation of gnome-games and its dependencies."
+
+#: gnomine/minefield.c:178
+msgid "Could not load images"
+msgstr "Could not load images"
+
 #: gnotravex/gnotravex.c:166
 msgid "Sol_ve"
 msgstr "Sol_ve"
@@ -4342,11 +4446,11 @@ msgstr "_Scores"
 msgid "Level completed. Well done."
 msgstr "Level completed. Well done."
 
-#: gnotski/gnotski.c:1162
+#: gnotski/gnotski.c:1175
 msgid "Moves:"
 msgstr "Moves:"
 
-#: gnotski/gnotski.c:1196
+#: gnotski/gnotski.c:1209
 #, c-format
 msgid ""
 "Could not find the image: \n"
@@ -4359,19 +4463,19 @@ msgstr ""
 "\n"
 "Please check your gnome-games installation."
 
-#: gnotski/gnotski.c:1389
+#: gnotski/gnotski.c:1402
 #, c-format
 msgid "Level %d : %s"
 msgstr "Level %d : %s"
 
-#: gnotski/gnotski.c:1544
+#: gnotski/gnotski.c:1557
 #, c-format
 msgid "This puzzle is solvable in %d move."
 msgid_plural "This puzzle is solvable in %d moves."
 msgstr[0] "This puzzle is solvable in %d move."
 msgstr[1] "This puzzle is solvable in %d moves."
 
-#: gnotski/gnotski.c:1569
+#: gnotski/gnotski.c:1582
 msgid "Sliding Block Puzzles"
 msgstr "Sliding Block Puzzles"
 
