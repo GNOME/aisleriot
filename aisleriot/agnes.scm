@@ -225,7 +225,7 @@
 	((or (not (is-visible? (car (reverse card-list))))
 ;	     (eq? (is-red? (car (reverse card-list)))
 ;		  (is-black? (car card-list)))
-	     (not (check-same-color(card-list)))
+	     (not (check-same-color-list card-list))
 	     (not (check-straight-descending-list card-list)))
 	 (strip (reverse (cdr (reverse card-list)))))
 	(#t (car (reverse card-list)))))

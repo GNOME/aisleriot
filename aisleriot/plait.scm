@@ -248,15 +248,51 @@
 			    (plait-to-edge start-slot)))
 	((edge? end-slot) (move-to-cell start-slot card-list end-slot))
 	(else #f)))
-  
+
 (define (button-clicked slot)
-  (if (or (= slot deck)
-	  (= slot stock))
+  (if (= slot deck)
       (flip-stock deck stock 2)
       #f))
 
-;; TODO: Automatically move all possible cards on double-click
-(define (button-double-clicked slot) #f)
+;; On double-click, move a card (other than the deck) to a home slot, or
+;; else move a ``stock'' (waste-slot) card to a tableau (edge or
+;; ``free'') slot
+(define (button-double-clicked source) 
+  (let ((dc-slots (list home-1 home-3 home-5 home-7 home-2 home-4 home-6 home-8
+               free-4 free-8 free-3 free-7 free-2 free-6 free-1 free-5 
+               edge-2 edge-4 edge-1 edge-3)))
+    (if (not (home? source)) 
+	(let ((valid-slot (find-valid-move source dc-slots))) 
+	  (if valid-slot
+	      (if (home? valid-slot)
+		  (begin
+		    (move-to-home (list (remove-card source)) valid-slot)
+		    (plait-to-edge source)
+		    #t)
+		  (begin
+		    (add-cards! valid-slot (list (remove-card source)))
+		    #t))))
+	#f)))
+
+;; Helper for double-click: find the first valid move to a slot in slot-list.
+;; Any slot except deck can be moved to home.  Waste-pile cards can be moved 
+;; to the tableau (edge or free slots).  
+;; TODO: This should really be two separate functions, since the result is
+;;     used differently, depending on whether it's a home slot or not.
+(define (find-valid-move source slot-list)
+  (and (not (null? slot-list))
+       (let ((target (car slot-list)))
+            (cond ((and (home? target)
+                        (not (empty-slot? source))
+                        (move-possible? (get-top-card source) target))
+                     target)
+                  ((and  (or (free? target) (edge? target))
+                        (= source stock)
+                        (empty-slot? target))
+                     target)
+                  (else 
+                        (find-valid-move source (cdr slot-list)))))))
+
 
 ;; Is there something to do?
 (define (game-cont)
