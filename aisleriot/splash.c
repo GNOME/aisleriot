@@ -72,7 +72,7 @@ splash_new ()
   GtkWidget* vbox;
 
   image_file = gnome_program_locate_file (NULL,
-	                                        GNOME_FILE_DOMAIN_PIXMAP,
+	                                        GNOME_FILE_DOMAIN_APP_PIXMAP,
 																					"cards/splash.png", TRUE, NULL);
 
   if (image_file != NULL)

@@ -78,8 +78,8 @@ GdkPixmap* get_pixmap (const char* filename)
   GdkPixmap* ret;
   GdkPixbuf *im;
   char* fullname = gnome_program_locate_file (NULL,
-	                                            GNOME_FILE_DOMAIN_PIXMAP,
-	                                            filename, TRUE, NULL);
+		  GNOME_FILE_DOMAIN_APP_PIXMAP,
+		  filename, TRUE, NULL);
 
   if (fullname == NULL)
     return NULL; 

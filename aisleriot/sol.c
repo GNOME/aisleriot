@@ -137,7 +137,7 @@ void eval_installed_file (char *file)
   
   relative = g_strconcat (GAMESDIR, file, NULL);
   installed_filename = gnome_program_locate_file (NULL, 
-                                                  GNOME_FILE_DOMAIN_DATADIR,
+                                                  GNOME_FILE_DOMAIN_APP_DATADIR,
                                                   relative,
                                                   FALSE, NULL);
 
@@ -527,7 +527,7 @@ int main (int argc, char *argv [])
 
   retrieve_state (gnome_master_client ());
 
-  dir = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_DATADIR,
+  dir = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_DATADIR,
 	                                        GAMESDIR, FALSE, NULL);
 
   records = scandir (dir, &game_dents, is_game, alphasort);
