@@ -84,7 +84,7 @@ void show_game_over_dialog(gboolean won) {
 	 gtk_signal_connect (GTK_OBJECT (cancel_button), "clicked",
 								GTK_SIGNAL_FUNC (hide_game_over_box_callback), NULL);
 	 gtk_signal_connect (GTK_OBJECT (new_game_button), "clicked",
-								GTK_SIGNAL_FUNC (file_new_game_callback), NULL);
+								GTK_SIGNAL_FUNC (random_seed), NULL);
 
 	 gtk_widget_show (won_lost_label);
 	 gtk_widget_show (new_game_button);
