@@ -51,7 +51,10 @@ int file_new_game_callback (GtkWidget *app, void *data )
 {
   gh_apply(game_data->start_game_lambda, SCM_EOL);
   refresh_screen();
-  gtk_widget_hide(game_over_dialog_box);
+  if (game_over_dialog_box) {
+	 gtk_grab_remove(game_over_dialog_box);
+	 gtk_widget_hide(game_over_dialog_box);
+  }
   return TRUE;
 }
 

@@ -9,6 +9,7 @@ GtkWidget* won_lost_label = NULL;
 
 int hide_box_callback (GtkWidget *app, void *data )
 {
+  gtk_grab_remove(game_over_dialog_box);
   gtk_widget_hide(game_over_dialog_box);
   return TRUE;
 }
@@ -32,7 +33,7 @@ void show_game_over_dialog(gboolean won) {
 								TRUE, 0);
 
 	 new_game_button = gtk_button_new_with_label (_("New Game"));
-	 cancel_button = gtk_button_new_with_label (_("Cancel"));
+	 cancel_button = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
 
 	 gtk_box_pack_start (GTK_BOX (GTK_DIALOG (game_over_dialog_box)->action_area), new_game_button,
 								TRUE, TRUE, 0);
@@ -53,7 +54,7 @@ void show_game_over_dialog(gboolean won) {
 	 gtk_label_set ( won_lost_label, _("You Won!!!"));
   else
 	 gtk_label_set ( won_lost_label, _("You Lost."));
-  
+  gtk_grab_add (game_over_dialog_box);
   gtk_widget_show(game_over_dialog_box);
 }
 
