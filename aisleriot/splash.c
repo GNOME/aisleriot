@@ -75,10 +75,10 @@ splash_new ()
   image_file = gnome_program_locate_file (NULL,
 	                                        GNOME_FILE_DOMAIN_APP_PIXMAP,
 																					"cards/splash.png", TRUE, NULL);
-
+  
   if (image_file != NULL)
 	  splash_pixmap = gtk_image_new_from_file (image_file);
-
+  
   g_free (image_file);
 
   progress = gtk_progress_bar_new ();
@@ -99,18 +99,18 @@ splash_new ()
   
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 0);
 
-  if (splash_pixmap != NULL)
+  if (splash_pixmap != NULL) 
 	  gtk_box_pack_start (GTK_BOX (vbox), splash_pixmap, FALSE, FALSE, 
 			      GNOME_PAD_SMALL);
   gtk_box_pack_end (GTK_BOX (vbox), progress, FALSE, FALSE, GNOME_PAD_SMALL);
   gtk_box_pack_end (GTK_BOX (vbox), label, FALSE, FALSE, 0);
-  
+
   gtk_widget_show_all (splash);
 
   /* Give window manager time to map the window */
   if (splash_pixmap != NULL) {
-	  g_signal_connect (GTK_OBJECT (splash_pixmap), "expose_event",
-			      GTK_SIGNAL_FUNC (expose_event), NULL);
+	  g_signal_connect_after (GTK_OBJECT (splash_pixmap), "expose_event",
+                                  GTK_SIGNAL_FUNC (expose_event), NULL);
 	  waiting_for_expose = TRUE;
 	  gtk_main ();
 	  waiting_for_expose = FALSE;
