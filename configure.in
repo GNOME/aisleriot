@@ -48,10 +48,7 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-WARN_CFLAGS=
-if test "x$gcc" = xyes; then
-	WARN_CFLAGS="-Wall"
-fi
+WARN_CFLAGS= GNOME_COMPILE_WARNINGS(yes) GNOME_CXX_WARNINGS(yes)
 
 AC_SUBST(WARN_CFLAGS)
 
@@ -63,9 +60,6 @@ AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
 if test x$SCROLLKEEPER_CONFIG = xno; then
   AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the scrollkeeper packaga)
 fi
-
-# Used in gtali
-AC_CHECK_FUNCS(rename)
 
 sys_dir_h_found=no
 old_CPPFLAGS="$CPPFLAGS"
