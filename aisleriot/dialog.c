@@ -117,6 +117,7 @@ void show_select_game_dialog()
   GtkTreeViewColumn* column;
   GtkCellRenderer* renderer;
   GtkTreeIter iter;
+  GtkTreeIter selected_iter;
   GtkTreePath * path;
   
   guint i;
@@ -183,11 +184,10 @@ void show_select_game_dialog()
 		      GNOME_PAD_SMALL );
   
     gtk_box_pack_end (GTK_BOX (GTK_DIALOG (dialog)->vbox), 
-		      hbox, FALSE, FALSE, GNOME_PAD_SMALL );
-
-    gtk_widget_show_all (dialog);
+		      hbox, TRUE, TRUE, GNOME_PAD_SMALL );
 
     filename = NULL;
+    selected_iter.stamp = 0;
     
     for(i = 0; i < n_games; i++) {
 	    gchar *text;
@@ -198,7 +198,7 @@ void show_select_game_dialog()
                                &iter, 0, text, 1,
                                game_dents[i]->d_name, -1);
             if (g_utf8_collate(text,game_name) == 0) {
-              gtk_tree_selection_select_iter (select, &iter);
+                    memcpy (&selected_iter, &iter, sizeof(GtkTreeIter));
             }
     }
 
@@ -211,6 +211,10 @@ void show_select_game_dialog()
     g_signal_connect (GTK_WIDGET (dialog), "delete_event",
 		                  GTK_SIGNAL_FUNC(gtk_widget_hide), NULL);
 
+    gtk_widget_show_all (dialog);
+
+    if (selected_iter.stamp != 0)
+      gtk_tree_selection_select_iter (select, &selected_iter);    
   }
   
   g_snprintf (buf, sizeof (buf), "%d", seed);
