@@ -266,7 +266,9 @@
   (or (same-suit-check 9)
       (not-same-suit-check 9)
       (open-slots? 9)
-      (dealable?)))
+      (dealable?)
+; this isn't great, but it will get around the premature end-of-game call
+      (list 0 "Try moving card piles around")))
 
 (define (get-options) #f)
 
