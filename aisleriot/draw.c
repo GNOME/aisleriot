@@ -103,10 +103,14 @@ void take_snapshot() {
   gdk_draw_rectangle (surface, draw_gc, TRUE, 0, 0, -1, -1);
 
   for (slot = get_slot_list(); slot; slot = slot->next) {
+    gdk_gc_set_clip_mask(draw_gc,mask); 
+    gdk_gc_set_clip_origin(draw_gc, ((hslot_type)slot->data)->x, 
+			   ((hslot_type)slot->data)->y);
     gdk_draw_pixmap (surface, draw_gc,
 		     get_slot_pixmap(), 0, 0, 
 		     ((hslot_type)slot->data)->x, 
 		     ((hslot_type)slot->data)->y, -1, -1);
+    gdk_gc_set_clip_mask(draw_gc,NULL); 
   }
   draw_cards();
   gdk_window_set_back_pixmap(playing_area->window, surface, 0);

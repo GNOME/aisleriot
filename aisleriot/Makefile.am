@@ -52,7 +52,8 @@ types_DATA  = 		\
 	spider.scm	\
 	yukon.scm
 
-cardimage_DATA = Baize.xpm
+cardimage_DATA = Baize.xpm\
+	slot.xpm
 
 icon_DATA = gnome-aisleriot.png
 

@@ -88,7 +88,7 @@ void load_pixmaps(GtkWidget* app)
 {
   gdk_card_image_init (app->window);
   mask = gdk_card_image_mask (); 
-  slot_pixmap = get_pixmap ("cards/Cardback4.xpm");
+  slot_pixmap = get_pixmap ("cards/slot.xpm");
   default_background_pixmap = get_pixmap ("cards/Baize.xpm");
 }
 
