@@ -91,10 +91,13 @@
   (deal-cards 0 '( 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23))
   (deal-cards-face-up 0 '(24 25 26 27 28 29 30))
 
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
 
   (list 5 4)
 )
+
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -329,6 +332,7 @@
 	   (check-for-flips start-slot)
 	   (add-to-score! 1))
       (and (not (empty-slot? end-slot))
+	   (is-visible? (get-top-card end-slot))
 	   (= 13 (+ (get-value (car card-list))
 		    (get-value (get-top-card end-slot))))
 	   (remove-card end-slot)
@@ -379,7 +383,7 @@
   #f)
 
 (define (game-continuable)
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
   (and (not (game-won))
        (get-hint)))
 
