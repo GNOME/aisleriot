@@ -26,29 +26,53 @@ GList *slot_list = NULL;
 void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
   GList *tempptr;
 
+  gint num_cards;
+  gboolean got_slot = FALSE;
+
   *slot = NULL;
   *cardid = -1;
 
-  for (tempptr = slot_list; tempptr; tempptr = tempptr->next) {
+  for (tempptr = g_list_last(slot_list); tempptr; tempptr = tempptr->prev) {
 
     hslot_type hslot = (hslot_type) tempptr->data;
 
+    /* if point is within our rectangle */
     if (hslot->x < x && x < hslot->x + hslot->width && 
-	hslot->y < y && y < hslot->y + hslot->height) {
+	hslot->y < y && y < hslot->y + hslot->height) 
+    {
+	num_cards = hslot->length;
+       
+	if ( got_slot == FALSE || num_cards > 0 )
+	{  
+   		/* if we support exposing more than one card,
+		 * find the exact card  */
 
-      gint depth = 1;
+		gint depth = 1;
 
-      if (hslot->dx > 0)
-	depth += (x - hslot->x) / hslot->dx;
-      else if (hslot->dy > 0)
-	depth += (y - hslot->y) / hslot->dy;
+		if (hslot->dx > 0)		
+			depth += (x - hslot->x) / hslot->dx;
+		else if (hslot->dy > 0)
+			depth += (y - hslot->y) / hslot->dy;
+	    
+		/* account for the last card getting much more display area
+		 * or no cards */
 
-      if (depth > hslot->exposed) 
-	depth = hslot->exposed;
+		if (depth > hslot->exposed)
+			
+			depth = hslot->exposed;
+		*slot = hslot;
 
-      *slot = hslot;
-      *cardid = hslot->length + depth - hslot->exposed;
-      break;
+		/* card = #cards in slot + card chosen (indexed in # exposed cards) - # exposed cards */
+
+		*cardid = num_cards + depth - hslot->exposed;
+		
+		/* this is the topmost slot with a card */
+		/* take it and run*/
+		if ( num_cards > 0 )
+			break;
+
+		got_slot = TRUE;
+	}
     }
   }
 }
