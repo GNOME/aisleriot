@@ -43,7 +43,7 @@ splash_new ()
 
   splash = gtk_window_new(gnome_preferences_get_dialog_type());
   gtk_window_position (GTK_WINDOW(splash), 
-		       gnome_preferences_get_dialog_position());
+		       GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (splash), _("Aisleriot"));
   gtk_window_set_policy (GTK_WINDOW (splash), FALSE, FALSE, FALSE);
   
