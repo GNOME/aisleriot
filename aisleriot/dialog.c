@@ -33,6 +33,7 @@
 #include "events.h"
 
 static GtkWidget *hint_dlg = NULL;
+
 void show_game_over_dialog() {
   GtkWidget* dialog;
   gchar* message;
@@ -335,62 +336,59 @@ get_background_page (GtkWidget* dialog)
   return retval;
 }
 
-static GtkObject* deck_edit = NULL;
+static GtkWidget * deck_edit = NULL;
 
 static void 
-property_apply (GtkWidget *w, int response)
+property_apply (GtkWidget *w, gpointer data)
 {
+  gtk_object_destroy (card_deck);
+  deck_options =  
+    gtk_card_deck_options_edit_get (GTK_CARD_DECK_OPTIONS_EDIT (w));
+  card_deck = gdk_card_deck_new (app->window, deck_options);
+  gconf_client_set_string (gconf_client, "/apps/aisleriot/card_options",
+                           deck_options, NULL);
 
-	gtk_widget_hide(w);
-
-	if ( response != GTK_RESPONSE_OK )
-		return;
-			
-  if (gdk_card_deck_options_edit_dirty 
-      (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit))) {
-    gtk_object_destroy (card_deck);
-    deck_options =  
-      gdk_card_deck_options_edit_get (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit));
-    card_deck = gdk_card_deck_new (app->window, deck_options);
-    gconf_client_set_string (gconf_client, "/apps/aisleriot/card_options",
-                             deck_options, NULL);
-    refresh_screen();
-  }
+  refresh_screen();
 }
 
 void show_preferences_dialog () 
 {
   static GtkWidget* property_box = NULL;
-	static GtkWidget* notebook = NULL;
-
+  GtkWidget * frame;
+  gchar * frame_title;
+  
   if (!property_box) {
     property_box = gtk_dialog_new ();
-		notebook = gtk_notebook_new();
+    gtk_window_set_title (GTK_WINDOW (property_box), _("AisleRiot Preferences"));
+    gtk_dialog_add_buttons(GTK_DIALOG(property_box),
+                           GTK_STOCK_CLOSE, GTK_RESPONSE_OK, NULL);
+    gtk_window_set_transient_for (GTK_WINDOW(property_box), GTK_WINDOW (app));
 
-		gtk_container_add (GTK_CONTAINER(GTK_DIALOG(property_box)->vbox),
-		                   notebook);
-		
-		gtk_dialog_add_buttons(GTK_DIALOG(property_box),
-		                       GTK_STOCK_OK,
-													 GTK_RESPONSE_OK,
-													 GTK_STOCK_CANCEL,
-													 GTK_RESPONSE_CANCEL,
-													 NULL);
-
-		gtk_window_set_transient_for (GTK_WINDOW(property_box), GTK_WINDOW (app));
-		gtk_window_set_modal(GTK_WINDOW(property_box), TRUE);
-  
-    deck_edit = gdk_card_deck_options_edit_new (GTK_NOTEBOOK (notebook));
-
-    g_signal_connect (G_OBJECT (property_box), "response",
+    frame_title = g_strdup_printf ("<b>%s</b>",_("Card Style"));
+    frame = gtk_frame_new (frame_title);
+    g_free (frame_title);
+    gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
+    gtk_label_set_use_markup (GTK_LABEL (gtk_frame_get_label_widget(GTK_FRAME(frame))), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (gtk_frame_get_label_widget(GTK_FRAME(frame))), 0, 0.5);
+    
+    deck_edit = gtk_card_deck_options_edit_new ();
+    gtk_container_add (GTK_CONTAINER (frame), deck_edit);
+    
+    gtk_box_pack_start (GTK_BOX (GTK_DIALOG (property_box)->vbox), frame,
+                        TRUE, TRUE, GNOME_PAD_SMALL);
+    
+    g_signal_connect (G_OBJECT (deck_edit), "changed",
                       GTK_SIGNAL_FUNC (property_apply), NULL);
+    
+    g_signal_connect (G_OBJECT (property_box), "response",
+                      GTK_SIGNAL_FUNC (gtk_widget_hide), NULL);
 
     g_signal_connect(G_OBJECT (property_box), "delete_event",
                      GTK_SIGNAL_FUNC(gtk_widget_hide), NULL);
 
     gtk_widget_show_all (property_box);
   }
-  gdk_card_deck_options_edit_set (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit),
+  gtk_card_deck_options_edit_set (GTK_CARD_DECK_OPTIONS_EDIT (deck_edit),
                                   deck_options);
   gtk_window_present (GTK_WINDOW (property_box));
 }

@@ -1,3 +1,14 @@
+2003-06-07  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* gdk-card-image.h: 
+	* gdk-card-image.c:
+	I have made gdk_card_deck_options_edit a proper GTK widget (and it
+	is now called gtk_card_deck_options_edit) without the dependence
+	on having a notebook to fit into. Also used 2.0 API rather than
+	the 1.x one. I have also removed the "dirty" call since it was in
+	the way and we should be responding to the "changed" signal
+	anyway.
+	
 2003-06-03  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* Makefile.am (cardback_DATA): Added new pixmaps, including the

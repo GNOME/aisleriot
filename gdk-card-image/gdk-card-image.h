@@ -43,31 +43,28 @@ typedef enum
  * These remain opaque to an application using the deck. */
 typedef gchar* GdkCardDeckOptions;
 
-/* This GtkObject adds pages to a GtkNotebook to allow 
+/* This GtkWidget can used to allow 
  * the user to edit a GdkCardDeckOptions value:  
  * A "changed" signal is emitted when the user changes an option */
-typedef struct _GdkCardDeckOptionsEdit GdkCardDeckOptionsEdit;
-typedef struct _GdkCardDeckOptionsEditClass GdkCardDeckOptionsEditClass;
+typedef struct _GtkCardDeckOptionsEdit GtkCardDeckOptionsEdit;
+typedef struct _GtkCardDeckOptionsEditClass GtkCardDeckOptionsEditClass;
 
-guint gdk_card_deck_options_edit_get_type  (void);
+guint gtk_card_deck_options_edit_get_type  (void);
 
-#define GDK_CARD_DECK_OPTIONS_EDIT(obj)         GTK_CHECK_CAST (obj, \
-   gdk_card_deck_options_edit_get_type (), GdkCardDeckOptionsEdit)
-#define GDK_CARD_DECK_OPTIONS_EDIT_CLASS(klass) GTK_CHECK_CLASS_CAST (klass, \
-   gdk_card_deck_options_edit_get_type (), GdkCardDeckOptionsEditClass)
-#define GDK_IS_CARD_DECK_OPTIONS_EDIT(obj)      GTK_CHECK_TYPE (obj, \
-   gdk_card_deck_options_edit_get_type ())
+#define GTK_CARD_DECK_OPTIONS_EDIT(obj)         GTK_CHECK_CAST (obj, \
+   gtk_card_deck_options_edit_get_type (), GtkCardDeckOptionsEdit)
+#define GTK_CARD_DECK_OPTIONS_EDIT_CLASS(klass) GTK_CHECK_CLASS_CAST (klass, \
+   gtk_card_deck_options_edit_get_type (), GtkCardDeckOptionsEditClass)
+#define GTK_IS_CARD_DECK_OPTIONS_EDIT(obj)      GTK_CHECK_TYPE (obj, \
+   gtk_card_deck_options_edit_get_type ())
 
-/* Add the edit pages to the notebook */
-GtkObject*    gdk_card_deck_options_edit_new (GtkNotebook* notebook);
+/* Return a widget with the card options in it. */
+GtkWidget*    gtk_card_deck_options_edit_new (void);
 
 /* Set/Get the currently displayed deck options */
-void          gdk_card_deck_options_edit_set (GdkCardDeckOptionsEdit* w,
+void          gtk_card_deck_options_edit_set (GtkCardDeckOptionsEdit* w,
 					      GdkCardDeckOptions deck_options);
-GdkCardDeckOptions gdk_card_deck_options_edit_get (GdkCardDeckOptionsEdit* w);
-
-/* True when the user has made changes since the options were last set */
-gboolean      gdk_card_deck_options_edit_dirty (GdkCardDeckOptionsEdit* w);
+GdkCardDeckOptions gtk_card_deck_options_edit_get (GtkCardDeckOptionsEdit* w);
 
 /* This GdkObject contains GdkPixmaps representing a deck of cards */
 typedef struct _GdkCardDeck GdkCardDeck;
