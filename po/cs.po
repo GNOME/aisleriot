@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-14 11:23+0200\n"
-"PO-Revision-Date: 2004-10-14 14:24+0200\n"
+"POT-Creation-Date: 2004-10-18 11:24+0200\n"
+"PO-Revision-Date: 2004-10-18 11:44+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -75,8 +75,8 @@ msgstr "Rozdat více karet"
 #: aisleriot/osmosis.scm.h:3 aisleriot/peek.scm.h:3 aisleriot/quatorze.scm.h:1
 #: aisleriot/royal_east.scm.h:7 aisleriot/scuffle.scm.h:4
 #: aisleriot/sir_tommy.scm.h:3 aisleriot/spider.scm.h:4
-#: aisleriot/spiderette.scm.h:3 aisleriot/spider_one_suit.scm.h:4
-#: aisleriot/spider_two_suit.scm.h:4 aisleriot/straight_up.scm.h:5
+#: aisleriot/spider_one_suit.scm.h:4 aisleriot/spider_two_suit.scm.h:4
+#: aisleriot/spiderette.scm.h:3 aisleriot/straight_up.scm.h:5
 #: aisleriot/thieves.scm.h:2 aisleriot/thirteen.scm.h:2
 #: aisleriot/thumb_and_pouch.scm.h:4 aisleriot/treize.scm.h:2
 #: aisleriot/union_square.scm.h:2 aisleriot/westhaven.scm.h:2
@@ -4468,23 +4468,6 @@ msgstr "Úplná"
 msgid "Stagger flips"
 msgstr "Rovnoměrné otáčení"
 
-#: libgames-support/games-gconf.c:66
-#, c-format
-msgid "There was an error accessing GConf: %s"
-msgstr "Při přístupu k rozhraní GConf došlo k chybě: %s"
-
-#: libgames-support/games-gconf.c:79
-msgid "The default configuration values could not be retrieved correctly."
-msgstr "Implicitní hodnoty nastavení nemohly být úspěšně získány."
-
-#: libgames-support/games-gconf.c:80
-msgid ""
-"Please check your GConf configuration, specifically that the schemas have "
-"been installed correctly."
-msgstr ""
-"Zkontrolujte prosím své nastavení GConf, konkrétně jestli byla správně "
-"nainstalována schémata."
-
 #: libgames-support/games-card-selector.c:51
 msgid "Card Style"
 msgstr "Styl karet"
@@ -4501,6 +4484,23 @@ msgstr "<Stiskněte klávesu>"
 #: libgames-support/games-controls.c:390
 msgid "Unknown Command"
 msgstr "Neznámý příkaz"
+
+#: libgames-support/games-gconf.c:66
+#, c-format
+msgid "There was an error accessing GConf: %s"
+msgstr "Při přístupu k rozhraní GConf došlo k chybě: %s"
+
+#: libgames-support/games-gconf.c:79
+msgid "The default configuration values could not be retrieved correctly."
+msgstr "Implicitní hodnoty nastavení nemohly být úspěšně získány."
+
+#: libgames-support/games-gconf.c:80
+msgid ""
+"Please check your GConf configuration, specifically that the schemas have "
+"been installed correctly."
+msgstr ""
+"Zkontrolujte prosím své nastavení GConf, konkrétně jestli byla správně "
+"nainstalována schémata."
 
 #: libgames-support/games-gridframe.c:180
 #: libgames-support/games-gridframe.c:187
@@ -4530,6 +4530,46 @@ msgstr "Násobek výšky"
 #: libgames-support/games-gridframe.c:202
 msgid "What multiple to constrain the height to."
 msgstr "Na jaké násobky omezit výšku."
+
+#: libgames-support/games-network-dialog.c:105
+msgid "New Network Game"
+msgstr "Nová síťová hra"
+
+#. Create Network Status Frame.
+#: libgames-support/games-network-dialog.c:110
+msgid "Network Status:"
+msgstr "Stav sítě:"
+
+#: libgames-support/games-network-dialog.c:111
+msgid "No network game started."
+msgstr "Síťová hra nebyla spuštěna."
+
+#. Create Players list
+#: libgames-support/games-network-dialog.c:117
+msgid "Players:"
+msgstr "Hráči:"
+
+#. Create playername label and entry field.
+#: libgames-support/games-network-dialog.c:136
+msgid "Your playername:"
+msgstr "Vaše jméno hráče:"
+
+#: libgames-support/games-network-dialog.c:145
+msgid "Player"
+msgstr "Hráč"
+
+#. Create buttons.
+#: libgames-support/games-network-dialog.c:154
+msgid "_Connect"
+msgstr "_Připojit"
+
+#: libgames-support/games-network-dialog.c:156
+msgid "_Start game"
+msgstr "_Začít hru"
+
+#: libgames-support/games-network-dialog.c:187
+msgid "Invalid name"
+msgstr "Neplatné jméno"
 
 #: libgames-support/games-network.c:102
 msgid "Network initialization complete."
@@ -4572,45 +4612,14 @@ msgstr "Spojení selhalo"
 msgid "No game server defined"
 msgstr "Není definován herní server"
 
-#: libgames-support/games-network-dialog.c:105
-msgid "New Network Game"
-msgstr "Nová síťová hra"
+#: libgames-support/games-preimage.c:166 libgames-support/games-preimage.c:258
+msgid "Image rendering failed."
+msgstr "Vykreslování obrázku selhalo."
 
-#. Create Network Status Frame.
-#: libgames-support/games-network-dialog.c:110
-msgid "Network Status:"
-msgstr "Stav sítě:"
-
-#: libgames-support/games-network-dialog.c:111
-msgid "No network game started."
-msgstr "Síťová hra nebyla spuštěna."
-
-#. Create Players list
-#: libgames-support/games-network-dialog.c:117
-msgid "Players:"
-msgstr "Hráči:"
-
-#. Create playername label and entry field.
-#: libgames-support/games-network-dialog.c:136
-msgid "Your playername:"
-msgstr "Vaše jméno hráče:"
-
-#: libgames-support/games-network-dialog.c:145
-msgid "Player"
-msgstr "Hráč"
-
-#. Create buttons.
-#: libgames-support/games-network-dialog.c:154
-msgid "_Connect"
-msgstr "_Připojit"
-
-#: libgames-support/games-network-dialog.c:156
-msgid "_Start game"
-msgstr "_Začít hru"
-
-#: libgames-support/games-network-dialog.c:187
-msgid "Invalid name"
-msgstr "Neplatné jméno"
+#: mahjongg/drawing.c:422
+#, c-format
+msgid "Unable to locate theme file: %s"
+msgstr "Nemohu najít soubor tématu: %s"
 
 #: mahjongg/mahjongg.c:739
 msgid "Difficult"
