@@ -23,7 +23,6 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include <guile/gh.h>
 #include <dirent.h>
 #include <gnome.h>
 #include <games-frame.h>
@@ -258,47 +257,40 @@ void show_hint_dialog()
     gmessage = g_strdup (_("The game is over.\nNo hints are available"));
   }  
   else {
-    SCM hint = gh_call0(game_data->hint_lambda);
+    SCM hint = scm_call_0(game_data->hint_lambda);
 
-    if (!gh_scm2bool(hint)) {
+    if (!SCM_NFALSEP (hint)) {
       gmessage = g_strdup (_("This game does not have hint support yet."));
     }
     else {
-      switch (gh_scm2int(gh_car(hint))) {
+      switch (scm_num2int (SCM_CAR (hint), SCM_ARG1, NULL)) {
 
       case 0:
-	gmessage = g_strdup (gh_scm2newstr(gh_cadr(hint),NULL));
+	gmessage = g_strdup (SCM_STRING_CHARS (SCM_CADR(hint)));
 	break;
 
       case 1:
-	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
-	str2 = gh_scm2newstr(gh_caddr(hint),NULL);
+	str1 = SCM_STRING_CHARS (SCM_CADR (hint));
+	str2 = SCM_STRING_CHARS (SCM_CADDR (hint));
 	gmessage = g_strdup_printf (_("Move %s onto %s."), str1, str2);
-	free (str1);
-	free (str2);
 	break;
 
       case 2:
-	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
-	str2 = gh_scm2newstr(gh_caddr(hint),NULL);
+	str1 = SCM_STRING_CHARS (SCM_CADR (hint));
+	str2 = SCM_STRING_CHARS (SCM_CADDR (hint));
 	gmessage = g_strdup_printf (_("Move %s onto %s."), str1, str2);
-	free (str1);
-	free (str2);
 	break;
 
       case 3: /* This is deprecated (due to i18n issues) do not use.*/
-	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
-	str2 = gh_scm2newstr(gh_caddr(hint),NULL);
+	str1 = SCM_STRING_CHARS (SCM_CADR (hint));
+	str2 = SCM_STRING_CHARS (SCM_CADDR (hint));
 	gmessage = g_strdup_printf (_("Move %s %s."), str1, str2);
-	free (str1);
-	free (str2);
         g_warning(_("This game uses a deprecated hint method (case 3).\nPlease file a bug at http://bugzilla.gnome.org including this message and\nthe name of the game you where playing (look in the title bar if you \naren't sure)."));
 	break;
 
       case 4:
-	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
+	str1 = SCM_STRING_CHARS (SCM_CADR (hint));
 	gmessage = g_strdup_printf (_("You are searching for a %s."), str1);
-	free (str1);
 	break;
 
       default:
@@ -306,18 +298,17 @@ void show_hint_dialog()
 	break;
       }
     }
-	}
+  }
 
   if (hint_dlg) {
    gtk_widget_destroy (GTK_WIDGET (hint_dlg));
-	  
   }
 
   hint_dlg = gtk_message_dialog_new (GTK_WINDOW (app),
-	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-	                                   GTK_MESSAGE_INFO,
-	                                   GTK_BUTTONS_OK,
-	                                   gmessage);
+				     GTK_DIALOG_DESTROY_WITH_PARENT,
+				     GTK_MESSAGE_INFO,
+				     GTK_BUTTONS_OK,
+				     gmessage);
   if (hint_dlg) {
 	  g_signal_connect (GTK_OBJECT (hint_dlg),
 			      "destroy",
@@ -325,8 +316,8 @@ void show_hint_dialog()
 			      NULL);
   }
 
-	gtk_dialog_run(GTK_DIALOG(hint_dlg));
-	gtk_widget_destroy(hint_dlg);
+  gtk_dialog_run (GTK_DIALOG (hint_dlg));
+  gtk_widget_destroy (hint_dlg);
 
   g_free (gmessage);
 }
@@ -390,13 +381,13 @@ option_apply (GtkWidget *w, int response)
 		if ( response != GTK_RESPONSE_OK )
 			return;
 		
-    for(; opts != SCM_EOL; item = item->next, opts = gh_cdr (opts)) {
+    for(; opts != SCM_EOL; item = item->next, opts = SCM_CDR (opts)) {
       
-      SCM_SETCAR (gh_cdar(opts), 
-		gh_bool2scm (GTK_TOGGLE_BUTTON 
-			     (((GtkBoxChild *) item->data)->widget)->active));
+      SCM_SETCAR (SCM_CDAR(opts), 
+		  SCM_BOOL (GTK_TOGGLE_BUTTON 
+			    (((GtkBoxChild *) item->data)->widget)->active));
     }    
-    gh_call1(game_data->apply_options_lambda, options);
+    scm_call_1(game_data->apply_options_lambda, options);
 }
 
 static GtkWidget *
@@ -405,12 +396,11 @@ get_option_page (GtkWidget* option_dialog)
   SCM opts;
   GtkWidget* vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
 
-  for(opts = options; opts != SCM_EOL; opts = gh_cdr (opts)) {
+  for(opts = options; opts != SCM_EOL; opts = SCM_CDR (opts)) {
     GtkWidget *toggle = 
-      gtk_check_button_new_with_label (_(gh_scm2newstr(gh_caar(opts), 
-						       NULL)));
+      gtk_check_button_new_with_label (_(SCM_STRING_CHARS (SCM_CAAR(opts))));
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (toggle), 
-				 gh_scm2bool(gh_cadar(opts)));
+				 SCM_NFALSEP(SCM_CADAR(opts)));
     gtk_box_pack_end (GTK_BOX (vbox), toggle, 
 		      FALSE, FALSE, GNOME_PAD_SMALL);
   }
@@ -421,9 +411,9 @@ void show_rules_options_dialog ()
 {
 	static GtkWidget *notebook = NULL;
   /* Need to call this every time as it might be garbage collected ! */
-  options = gh_call0(game_data->get_options_lambda);
+  options = scm_call_0(game_data->get_options_lambda);
   
-  if (!option_dialog && gh_scm2bool(options)) {
+  if (!option_dialog && SCM_NFALSEP(options)) {
     option_dialog = gtk_dialog_new ();
     gtk_dialog_set_has_separator (GTK_DIALOG (option_dialog), FALSE);
 		notebook = gtk_notebook_new();

@@ -112,14 +112,14 @@ int waiting_for_mouse_up(void) {
 
 void end_of_game_test() {
 
-  gh_eval_str ("(end-move)");
+  scm_c_eval_string ("(end-move)");
   if(!game_over) { 
-    game_over = !gh_scm2bool (gh_call0 (game_data->game_over_lambda));
+    game_over = !SCM_NFALSEP (scm_call_0 (game_data->game_over_lambda));
     
     if (game_over) {
       timer_stop ();
       game_in_progress = FALSE;
-      game_won = gh_scm2bool (gh_call0 (game_data->winning_game_lambda));
+      game_won = SCM_NFALSEP (scm_call_0 (game_data->winning_game_lambda));
       refresh_screen ();
       update_statistics (game_won, timer_get ());
       show_game_over_dialog ();
@@ -141,18 +141,18 @@ void drop_moving_cards(gint x, gint y) {
   if (hslot) {
 
     for (temp = press_data->cards; temp; temp = temp->next)
-      cardlist = gh_cons(make_card(temp->data), cardlist);
-    moved = gh_scm2bool (gh_call3 (game_data->button_released_lambda, 
-				   gh_long2scm (press_data->hslot->id),
+      cardlist = scm_cons(make_card(temp->data), cardlist);
+    moved = SCM_NFALSEP (scm_call_3 (game_data->button_released_lambda, 
+				   scm_long2num (press_data->hslot->id),
 				   cardlist, 
-				   gh_long2scm (hslot->id)));
+				   scm_long2num (hslot->id)));
   }
 
   if (!moved) {
     hslot = press_data->hslot;
     add_cards_to_slot(press_data->cards, hslot);
 
-    gh_eval_str ("(discard-move)");
+    scm_c_eval_string ("(discard-move)");
   }
 
   update_slot_length(hslot);
@@ -253,10 +253,10 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
     /* Check if the cards are draggable, assuming we have any cards. */
     if (hslot->cards) {
       for (; glist; glist = glist->next)
-	cardlist = gh_cons(make_card((hcard_type)glist->data), cardlist);
+	cardlist = scm_cons(make_card((hcard_type)glist->data), cardlist);
       
-      if (!gh_scm2bool (gh_call2 (game_data->button_pressed_lambda,
-				  gh_long2scm (press_data->hslot->id), 
+      if (!SCM_NFALSEP (scm_call_2 (game_data->button_pressed_lambda,
+				  scm_long2num (press_data->hslot->id), 
 				  cardlist))) {
 	press_data->status = STATUS_NOT_DRAG;
 	clicked = FALSE;
@@ -266,13 +266,13 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
   if (double_click) {
     press_data->status = STATUS_NONE; 
-    gh_call2 (gh_eval_str ("record-move"), gh_long2scm (-1),
+    scm_call_2 (scm_c_eval_string ("record-move"), scm_long2num (-1),
 	      SCM_EOL);
-    if (gh_scm2bool (gh_call1 (game_data->button_double_clicked_lambda,
-                               gh_long2scm (hslot->id)))) 
-      gh_call0 (gh_eval_str ("end-move"));
+    if (SCM_NFALSEP (scm_call_1 (game_data->button_double_clicked_lambda,
+                               scm_long2num (hslot->id)))) 
+      scm_call_0 (scm_c_eval_string ("end-move"));
     else {
-      gh_call0 (gh_eval_str ("discard-move"));
+      scm_call_0 (scm_c_eval_string ("discard-move"));
       /* Allow for a drag on the second click if nothing else happened. */
       if (cardid > 0)
 	press_data->status = STATUS_MAYBE_DRAG; 
@@ -312,13 +312,13 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
   case STATUS_MAYBE_DRAG:
   case STATUS_NOT_DRAG:
     press_data->status = STATUS_CLICK;
-    gh_call2 (gh_eval_str ("record-move"), gh_long2scm (-1),
+    scm_call_2 (scm_c_eval_string ("record-move"), scm_long2num (-1),
 	      SCM_EOL);
-    if (gh_scm2bool (gh_call1 (game_data->button_clicked_lambda, 
-			       gh_long2scm (press_data->hslot->id))))
-	    gh_call0 (gh_eval_str ("end-move"));
+    if (SCM_NFALSEP (scm_call_1 (game_data->button_clicked_lambda, 
+			       scm_long2num (press_data->hslot->id))))
+	    scm_call_0 (scm_c_eval_string ("end-move"));
     else
-	    gh_call0 (gh_eval_str ("discard-move"));
+	    scm_call_0 (scm_c_eval_string ("discard-move"));
     refresh_screen();
     end_of_game_test();
     break;

@@ -20,14 +20,10 @@
 #ifndef CSCMI_H
 #define CSCMI_H
 #include <libguile.h>
-#include <guile/gh.h>
 #include <math.h>
 #include <time.h>
 #include "card.h"
 #include "slot.h"
-
-/* missing from guile-1.2 library!: */
-#define gh_bool2scm(bool) ((SCM) (bool ? SCM_BOOL_T : SCM_BOOL_F))
 
 /* Generic game data */
 typedef struct {
@@ -49,14 +45,15 @@ typedef struct {
 extern lambda_data* game_data;
 
 /* Init function */
-void cscm_init( void );
+void       cscm_init (void);
 
 /* Scheme to C functions... */
-void add_slot(SCM);
-GList* new_deck(SCM);
-hcard_type new_card(SCM);
+void       add_slot  (SCM        slot_data);
+GList*     new_deck  (SCM        deck_data);
+hcard_type new_card  (SCM        card_data);
 
 /* C to Scheme functions... */
-SCM make_card(hcard_type);
+SCM        make_card (hcard_type card);
+
 
 #endif
