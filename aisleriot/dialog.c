@@ -281,7 +281,7 @@ get_option_page (GtkWidget* option_dialog)
     GtkWidget *toggle = 
       gtk_check_button_new_with_label (_(gh_scm2newstr(gh_caar(opts), 
 						       NULL)));
-    gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (toggle), 
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (toggle), 
 				 gh_scm2bool(gh_cadar(opts)));
     gtk_signal_connect_object (GTK_OBJECT (toggle), "toggled",
 			       GTK_SIGNAL_FUNC (gnome_property_box_changed), 

@@ -57,7 +57,7 @@ option_dialog (void)
   option_data->inform_invalid_move_check = check;
   gtk_box_pack_start_defaults (GTK_BOX (box), check);
   if (option_inform_invalid_move)
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), TRUE);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check), TRUE);
   gtk_signal_connect (GTK_OBJECT (check), "toggled",
 		      GTK_SIGNAL_FUNC (option_dialog_changed_callback),
 		      propbox);
@@ -67,7 +67,7 @@ option_dialog (void)
   option_data->move_one_by_one_check = check;
   gtk_box_pack_start_defaults (GTK_BOX (box), check);
   if (option_move_one_by_one)
-    gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(check), TRUE);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check), TRUE);
   gtk_signal_connect (GTK_OBJECT (check), "toggled",
 		      GTK_SIGNAL_FUNC (option_dialog_changed_callback),
 		      propbox);
