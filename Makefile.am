@@ -4,7 +4,8 @@ guile_DIRS = aisleriot
 endif
 
 if CXX_PRESENT
-cxx_DIRS = gnometris
+cxx_DIRS = gnometris \
+	blackjack
 endif
 
 always_built_SUBDIRS =		\

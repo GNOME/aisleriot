@@ -1,6 +1,6 @@
 ;;; freecell.scm -- Free Cell game for AisleRiot.
 
-;; Copyright (C) 1998 Changwoo Ryu
+;; Copyright (C) 1998, 2003 Changwoo Ryu
 
 ;; Author: Changwoo Ryu <cwryu@adam.kaist.ac.kr>
 
@@ -404,3 +404,5 @@
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
 
 ;;; freecell.scm ends here
+
+
