@@ -117,7 +117,7 @@
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append (_"Base Card: ") (number->string BASE-VAL)))
+	 (string-append (_"Base Card:") " " (number->string BASE-VAL)))
 	((= BASE-VAL 1)
 	 (_"Base Card: Ace"))
 	((= BASE-VAL 11)
