@@ -132,7 +132,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   
   if ((event->button == 2) || 
       (event->button == 3 && (press_data->status == STATUS_IS_DRAG)) ||
-      (event->button == 1 && (press_data->status == STATUS_SHOW)))
+      (event->button == 1 && (press_data->status == STATUS_SHOW || press_data->status == STATUS_IS_DRAG)))
     return TRUE;
 
 #ifndef SINGLE_ACTION
