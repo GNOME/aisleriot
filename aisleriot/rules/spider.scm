@@ -24,7 +24,7 @@
   (initialize-playing-area)
   (make-standard-double-deck)
   (shuffle-deck)
-  
+
   ;set up the board
   (add-normal-slot DECK)
   (add-blank-slot)
@@ -61,7 +61,6 @@
 		 (number->string (length (get-cards 0)))))
 
 ;internal procedures/variables
-(define DEAL_COUNTER 1)
 
 (define (deal-initial-setup)
   (deal-cards 0 '(9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 12 15 18))
@@ -74,8 +73,7 @@
   (flip-top-card 15)
   (flip-top-card 16)
   (flip-top-card 17)
-  (flip-top-card 18)
-  (set! DEAL_COUNTER 1))
+  (flip-top-card 18))
 
 ;additional functions.
 
@@ -102,19 +100,22 @@
 
 (define (check-for-points slot-id)
   (if (> slot-id 18)
-     #t
-     (begin
-       (if (and (is-visible? (cadr (get-cards slot-id)))
-		(eq? (get-suit (get-top-card slot-id))
-		     (get-suit (cadr (get-cards slot-id))))
-		(= (+ 1 (get-value (get-top-card slot-id)))
-		   (get-value (cadr (get-cards slot-id)))))
-	   (add-to-score! 1))
-       (check-for-points (+ 1 slot-id)))))
+      #t
+      (begin
+	(if (and (is-visible? (cadr (get-cards slot-id)))
+		 (eq? (get-suit (get-top-card slot-id))
+		      (get-suit (cadr (get-cards slot-id))))
+		 (= (+ 1 (get-value (get-top-card slot-id)))
+		    (get-value (cadr (get-cards slot-id)))))
+	    (add-to-score! 1))
+	(check-for-points (+ 1 slot-id)))))
 
 (define (deal-new-cards)
-  (deal-cards-face-up 0 '(9 10 11 12 13 14 15 16 17 18))
-  (check-for-points 9))
+  (if (> (length (get-cards 0)) 0)
+      (begin
+	(deal-cards-face-up 0 '(9 10 11 12 13 14 15 16 17 18))
+	(check-for-points 9))
+      #f))
 
 (define (button-pressed slot card-list)
   (give-status-message)
@@ -140,7 +141,7 @@
 		      (< end-slot 9) 
 		      (= 13 (length card-list)))
 		 (complete-transaction start-slot card-list end-slot))
-		((> end-slot 8) 
+		((> end-slot 8)
 		 (complete-transaction start-slot card-list end-slot))
 		(#t #f))
 	  (cond ((and (> end-slot 8)
@@ -148,33 +149,29 @@
 			 (+ (get-value (car (reverse card-list))) 1)))
 		 (complete-transaction start-slot card-list end-slot))
 		(#t #f)))))
-      
 
+(define (any-slot-empty?)
+  (or (empty-slot? 9)
+      (empty-slot? 10)
+      (empty-slot? 11)
+      (empty-slot? 12)
+      (empty-slot? 13)
+      (empty-slot? 14)
+      (empty-slot? 15)
+      (empty-slot? 16)
+      (empty-slot? 17)
+      (empty-slot? 18)))
 
 (define (button-clicked slot)
-  (if (= 0 slot)
-      (if (not (or (empty-slot? 9)
-		   (empty-slot? 10)
-		   (empty-slot? 11)
-		   (empty-slot? 12)
-		   (empty-slot? 13)
-		   (empty-slot? 14)
-		   (empty-slot? 15)
-		   (empty-slot? 16)
-		   (empty-slot? 17)
-		   (empty-slot? 18)))
-	  (begin
-	    (set! DEAL_COUNTER (+ 1 DEAL_COUNTER))
-	    (cond ((> DEAL_COUNTER 6 )
-		   #f)
-		  (#t (deal-new-cards)))
-	    (give-status-message))
-	  (begin
-	    (set-statusbar-message "Please fill in empty pile first.")
-	    #f))
-      #f))
+  (and (= 0 slot)
+       (if (any-slot-empty?)
+	   ((set-statusbar-message "Please fill in empty pile first.")
+	    #f)
+	   (begin
+	     (deal-new-cards)
+	     (give-status-message)
+	     #t))))
 
-	      
 (define (button-double-clicked slot)
   #f)
 

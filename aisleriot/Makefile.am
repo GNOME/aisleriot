@@ -58,6 +58,7 @@ types_DATA  = 		\
 	kansas.scm	\
 	klondike.scm	\
 	lady_jane.scm	\
+	maze.scm	\
 	neighbor.scm	\
 	odessa.scm	\
 	osmosis.scm	\
