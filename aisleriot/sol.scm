@@ -318,3 +318,6 @@
 	  (check-straight-descending-list (cdr card-list))
 	  #f)))
 
+;not strictly solitaire, but sometimes useful.
+(define (display-list . objs)
+(map display objs))
