@@ -1,3 +1,16 @@
+2005-03-31  Richard Hoelscher  <rah@rahga.com>
+
+	* menu.h: Minor cleanup.
+	* menu.c: Use games-stock items. Switch to setting sensitivity on
+	actions rather than widgets where possible.
+	(help_about_callback): Use GtkAboutDialog rather than GnomeAbout
+	(set_fullscreen_actions, fullscreen_callback) 
+	(window_state_callback): Replace fullscreen_toggle_callback. This
+	adds icons for entering and leaving fullscreen, and watches the
+	state of the window for changes to and from fullscreen.
+	(undo_set_sensitive, redo_set_sensitive): Action updates.
+	(create_menus): Switch to actions, connect signal to window state cb.
+
 2005-03-28  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* slot.c: 

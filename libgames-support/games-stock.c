@@ -36,13 +36,13 @@ static GtkIconFactory *games_icon_factory = NULL;
 
 static GtkStockItem games_stock_items[] =
 {
-  { GAMES_STOCK_NEW_GAME, N_("_New Game"), GDK_CONTROL_MASK, 'n', NULL },
-  { GAMES_STOCK_PAUSE_GAME, N_("_Pause Game"), 0, GDK_Pause, NULL },
-  { GAMES_STOCK_RESTART_GAME, N_("_Restart Game"), 0, 0, NULL },
+  { GAMES_STOCK_NEW_GAME, N_("_New"), GDK_CONTROL_MASK, 'n', NULL },
+  { GAMES_STOCK_PAUSE_GAME, N_("_Pause"), 0, GDK_Pause, NULL },
+  { GAMES_STOCK_RESTART_GAME, N_("_Restart"), 0, 0, NULL },
   { GAMES_STOCK_UNDO_MOVE, N_("_Undo Move"), GDK_CONTROL_MASK, 'z', NULL },
   { GAMES_STOCK_REDO_MOVE, N_("_Redo Move"), GDK_CONTROL_MASK | GDK_SHIFT_MASK, 'z', NULL },
   { GAMES_STOCK_HINT, N_("_Hint"), GDK_CONTROL_MASK, 'h', NULL },
-  { GAMES_STOCK_SCORES, N_("_Scores..."), 0, 0, NULL },
+  { GAMES_STOCK_SCORES, N_("_Scores"), 0, 0, NULL },
   { GAMES_STOCK_FULLSCREEN, N_("_Fullscreen"), 0, GDK_F11, NULL },
   { GAMES_STOCK_LEAVE_FULLSCREEN, N_("_Leave Fullscreen"), 0, GDK_F11, NULL },
   { GAMES_STOCK_END_GAME, N_("_End Game"), 0, 0, NULL },

@@ -24,6 +24,8 @@
 #include <string.h>
 #include <gnome.h>
 
+#include <games-stock.h>
+
 #include "sol.h"
 #include "menu.h"
 #include "dialog.h"
@@ -35,20 +37,16 @@
 GtkUIManager *ui_manager;
 GtkActionGroup *action_group;
 
-/* Cached widgets which we alter the state of frequently. */
-GtkWidget *undomenuitem;
-GtkWidget *redomenuitem;
-GtkWidget *restartmenuitem;
-GtkWidget *undotoolbaritem;
-GtkWidget *redotoolbaritem;
-GtkWidget *restarttoolbaritem;
-GtkWidget *ctmtoggle;
-GtkWidget *toolbartoggle;
+/* Cached items which we alter the state of frequently. */
+GtkAction *undoaction;
+GtkAction *redoaction;
+GtkAction *restartaction;
+GtkAction *fullscreenaction;
+GtkAction *leavefullscreenaction;
 GtkWidget *helpitem;
 GtkWidget *menubar;
 GtkWidget *toolbar;
 
-static GtkWidget *about = NULL;
 static gchar * gamename = NULL;
 
 static void restart_game ()
@@ -81,23 +79,17 @@ void redo_callback ()
   /* We need this now that you can undo a losing move. */
   end_of_game_test ();
 }
-static void
-about_destroy_callback (void)
+
+static void help_about_callback (void)
 {
-	about = NULL;
-}
- 
-void help_about_callback ()
-{
-  GdkPixbuf *pixbuf = NULL;
   const gchar *authors[] = {
-	  N_("Main game:"),
+	  _("Main game:"),
 	  "Jonathan Blandford (jrb@redhat.com)",
 	  "Felix Bellaby (felix@pooh.u-net.com)",
 	  "Rosanna Yuen (zana@webwynk.net)",
 	  "Callum McKenzie (callum@physics.otago.ac.nz)",
 	  "",
-	  N_("Card games:"),
+	  _("Card games:"),
 	  "Jonathan Blandford (jrb@redhat.com)",
 	  "W. Borgert (debacle@debian.org)",
 	  "Robert Brady (rwb197@ecs.soton.ac.uk)",
@@ -108,51 +100,15 @@ void help_about_callback ()
 	  NULL
   };
 
-  const gchar *documenters[] = {
-	  NULL
-  };
-
-  const gchar *translator_credits = _("translator-credits");
-	char *filename = NULL;
-
-	filename = gnome_program_locate_file (NULL,
-		GNOME_FILE_DOMAIN_APP_PIXMAP,  ("gnome-aisleriot.png"),
-		TRUE, NULL);
-	if (filename != NULL)
-	{
-		pixbuf = gdk_pixbuf_new_from_file(filename, NULL);
-		g_free (filename);
-	}
-  
-  {
-	int i=0;
-	while (authors[i] != NULL) { authors[i]=_(authors[i]); i++; }
-  }
-
-  if (about) {
-    gtk_window_present (GTK_WINDOW (about));
-    return;
-  }
-  about = gnome_about_new ( _("AisleRiot"), VERSION,
-			    /* copyright notice */
-			    "Copyright \xc2\xa9 1998-2004 Jonathan Blandford",
-			    _("AisleRiot provides a rule-based solitaire card "
-			      "engine that allows many different games to be "
-			      "played."),
-			    (const char **)authors,
-			    (const char **)documenters,
-			    g_str_equal (translator_credits, "translator-credits") ? NULL : translator_credits,
-			    pixbuf);
-	
-	if (pixbuf != NULL)
-		gdk_pixbuf_unref (pixbuf);
-        gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (app));
-  g_signal_connect (GTK_OBJECT (about),
-		      "destroy",
-		      (GtkSignalFunc) about_destroy_callback,
-		      NULL);
-  gtk_widget_show (about);
-  return;
+  gtk_show_about_dialog (GTK_WINDOW (app),
+			 "name", _("AisleRiot"),
+			 "version", VERSION,
+			 "comments", _("AisleRiot provides a rule-based solitaire card engine"
+				       "that allows many different games to be played."),
+			 "copyright", "Copyright \xc2\xa9 1998-2005 Jonathan Blandford",
+			 "authors", authors,
+			 "translator_credits", _("translator-credits"),
+			 NULL);
 }
 
 static void general_help (void)
@@ -183,18 +139,32 @@ static void toolbar_toggle_callback(GtkToggleAction * togglebutton,
   }
 }
 
-static void fullscreen_toggle_callback(GtkToggleAction * togglebutton, 
-				       gpointer data)
+static void set_fullscreen_actions (gboolean is_fullscreen)
 {
-  gboolean state;
+  gtk_action_set_sensitive (leavefullscreenaction, is_fullscreen);
+  gtk_action_set_visible (leavefullscreenaction, is_fullscreen);
 
-  state = gtk_toggle_action_get_active (togglebutton);
+  gtk_action_set_sensitive (fullscreenaction, !is_fullscreen);
+  gtk_action_set_visible (fullscreenaction, !is_fullscreen);
+}
 
-  if (state) {
+static void
+fullscreen_callback (GtkAction *action)
+{
+  if (action == fullscreenaction)
     gtk_window_fullscreen (GTK_WINDOW (app));
-  } else {
+  else
     gtk_window_unfullscreen (GTK_WINDOW (app));
-  }
+}
+
+static void window_state_callback (GtkWidget *widget, 
+				   GdkEventWindowState *event)
+{
+  if (!(event->changed_mask & GDK_WINDOW_STATE_FULLSCREEN))
+    return;
+
+  set_fullscreen_actions (event->new_window_state &
+			  GDK_WINDOW_STATE_FULLSCREEN);
 }
 
 static void clickmove_toggle_callback(GtkToggleAction * 
@@ -208,18 +178,15 @@ static void clickmove_toggle_callback(GtkToggleAction *
 
 void undo_set_sensitive (gboolean state)
 {
-  gtk_widget_set_sensitive (undomenuitem, state);
-  gtk_widget_set_sensitive (undotoolbaritem, state); 
+  gtk_action_set_sensitive (undoaction, state);
 
   /* The restart game validity condition is the same as for undo. */
-  gtk_widget_set_sensitive (restartmenuitem, state);
-  gtk_widget_set_sensitive (restarttoolbaritem, state);
+  gtk_action_set_sensitive (restartaction, state);
 }
 
 void redo_set_sensitive (gboolean state)
 {
-  gtk_widget_set_sensitive (redomenuitem, state);
-  gtk_widget_set_sensitive (redotoolbaritem, state);
+  gtk_action_set_sensitive (redoaction, state);
 }
 
 const GtkActionEntry actions[] = {
@@ -229,19 +196,19 @@ const GtkActionEntry actions[] = {
   { "OptionsMenu", NULL, "Options" /* not translated on purpose */ },
   { "HelpMenu", NULL, N_("_Help") },
 
-  { "NewGame", GTK_STOCK_NEW, N_("_New Game"), "<control>N", NULL, G_CALLBACK (random_seed) },
-  { "RestartGame", GTK_STOCK_REFRESH, N_("_Restart Game"), "<control>R", NULL, G_CALLBACK (restart_game) },
+  { "NewGame", GAMES_STOCK_NEW_GAME, NULL, NULL, NULL, G_CALLBACK (random_seed) },
+  { "RestartGame", GAMES_STOCK_RESTART_GAME, NULL, NULL, NULL, G_CALLBACK (restart_game) },
   { "Select", GTK_STOCK_INDEX, N_("_Select Game..."), NULL, NULL, G_CALLBACK (show_select_game_dialog) },
-  { "Statistics", GTK_STOCK_ADD, N_("S_tatistics..."), NULL, NULL, G_CALLBACK (show_statistics_dialog) },
+  { "Statistics", GTK_STOCK_ADD, N_("S_tatistics"), NULL, NULL, G_CALLBACK (show_statistics_dialog) },
   { "Quit", GTK_STOCK_QUIT, NULL, NULL, NULL, G_CALLBACK (quit_app) },
-
+  { "Fullscreen", GAMES_STOCK_FULLSCREEN, NULL, NULL, NULL, G_CALLBACK (fullscreen_callback) },
+  { "LeaveFullscreen", GAMES_STOCK_LEAVE_FULLSCREEN, NULL, NULL, NULL, G_CALLBACK (fullscreen_callback) },
   { "Cards", NULL, N_("_Cards..."), NULL, NULL, G_CALLBACK (show_preferences_dialog) },
 
-  { "UndoMove", GTK_STOCK_UNDO, N_("_Undo Move"), "<control>Z", NULL, G_CALLBACK (undo_callback) },
-  { "RedoMove", GTK_STOCK_REDO, N_("_Redo Move"), "<shift><control>Z", NULL, G_CALLBACK (redo_callback) },
-  { "Hint", GTK_STOCK_HELP, N_("_Hint"), NULL, NULL, G_CALLBACK (show_hint_dialog) },
-
-  { "Contents", GTK_STOCK_HELP, N_("_Contents"), "F1", NULL, G_CALLBACK (general_help) },
+  { "UndoMove", GAMES_STOCK_UNDO_MOVE, NULL, NULL, NULL, G_CALLBACK (undo_callback) },
+  { "RedoMove", GAMES_STOCK_REDO_MOVE, NULL, NULL, NULL, G_CALLBACK (redo_callback) },
+  { "Hint", GAMES_STOCK_HINT, NULL, NULL, NULL, G_CALLBACK (show_hint_dialog) },
+  { "Contents", GAMES_STOCK_CONTENTS, NULL, NULL, NULL, G_CALLBACK (general_help) },
   { "Help", GTK_STOCK_HELP, "", "", NULL, G_CALLBACK (help_on_specific_game) },
   { "About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) },
 
@@ -250,7 +217,6 @@ const GtkActionEntry actions[] = {
 
 const GtkToggleActionEntry toggles[] = {
   { "Toolbar", NULL, N_("_Toolbar"), NULL, NULL, G_CALLBACK (toolbar_toggle_callback) },
-  { "Fullscreen", NULL, N_("_Fullscreen"), "F11", NULL, G_CALLBACK (fullscreen_toggle_callback) },
   { "ClickToMove", NULL, N_("_Click to Move"), NULL, NULL, G_CALLBACK (clickmove_toggle_callback) },
 };
 
@@ -267,6 +233,7 @@ const char *ui_description =
 "    </menu>"
 "    <menu action='ViewMenu'>"
 "      <menuitem action='Fullscreen'/>"
+"      <menuitem action='LeaveFullscreen'/>"
 "      <menuitem action='Toolbar'/>"
 "      <separator/>"
 "      <menuitem action='Cards'/>"
@@ -300,7 +267,10 @@ const char *ui_description =
 void create_menus ()
 {
   GtkAccelGroup *accel_group;
+  GtkWidget *ctmtoggle;
+  GtkWidget *toolbartoggle;
 
+  games_stock_init();
   action_group = gtk_action_group_new ("MenuActions");
   gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
   gtk_action_group_add_actions (action_group, actions, G_N_ELEMENTS (actions),
@@ -315,12 +285,12 @@ void create_menus ()
   accel_group = gtk_ui_manager_get_accel_group (ui_manager);
   gtk_window_add_accel_group (GTK_WINDOW (app), accel_group);
 
-  undomenuitem = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/ControlMenu/UndoMove");
-  redomenuitem = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/ControlMenu/RedoMove");
-  restartmenuitem = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/GameMenu/RestartGame");
-  undotoolbaritem = gtk_ui_manager_get_widget (ui_manager, "/Toolbar/UndoMove");
-  redotoolbaritem = gtk_ui_manager_get_widget (ui_manager, "/Toolbar/RedoMove");
-  restarttoolbaritem = gtk_ui_manager_get_widget (ui_manager, "/Toolbar/RestartGame");
+  undoaction = gtk_action_group_get_action (action_group, "UndoMove");
+  redoaction = gtk_action_group_get_action (action_group, "RedoMove");
+  restartaction = gtk_action_group_get_action (action_group, "RestartGame");
+  fullscreenaction = gtk_action_group_get_action (action_group, "Fullscreen");
+  leavefullscreenaction = gtk_action_group_get_action (action_group, "LeaveFullscreen");
+
   helpitem = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/HelpMenu/Help");
   ctmtoggle = gtk_ui_manager_get_widget (ui_manager, 
 					 "/MainMenu/ControlMenu/ClickToMove");
@@ -339,6 +309,9 @@ void create_menus ()
 						       "/apps/aisleriot/click_to_move",
 						       NULL));
 
+  g_signal_connect (G_OBJECT (app), "window_state_event",
+		    G_CALLBACK (window_state_callback), NULL);
+  set_fullscreen_actions (FALSE);
 }
 
 void help_update_game_name (gchar * name)
