@@ -1,0 +1,53 @@
+<gconfschemafile>
+    <schemalist>
+
+      <schema>
+        <key>/schemas/apps/gnome-games/network/gamename</key>
+        <applyto>/apps/gnome-games/network/gamename</applyto>
+        <owner>libgames-support</owner>
+        <type>string</type>
+        <default>gnomegames</default>
+        <locale name="C">
+          <short>The identifier for the game</short>
+          <long>This string identifies the default game to connect to or create (depending on mode).</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gnome-games/network/mode</key>
+        <applyto>/apps/gnome-games/network/mode</applyto>
+        <owner>libgames-support</owner>
+        <type>int</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Network game mode</short>
+          <long>The mode of network game to use. 1 = Server, 2 = LAN Host, 3 = LAN Client.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gnome-games/network/name</key>
+        <applyto>/apps/gnome-games/network/name</applyto>
+        <owner>libgames-support</owner>
+        <type>string</type>
+        <default></default>
+        <locale name="C">
+          <short>The players nickname</short>
+          <long>The players nickname.</long>
+        </locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/apps/gnome-games/network/server</key>
+        <applyto>/apps/gnome-games/network/server</applyto>
+        <owner>libgames-support</owner>
+        <type>string</type>
+        <default>localhost</default>
+        <locale name="C">
+          <short>The game server</short>
+          <long>When using server mode, which game server to contact. This accepts the usual hostname or dotted quad notation.</long>
+        </locale>
+      </schema>
+
+    </schemalist>
+<gconfschemafile>
