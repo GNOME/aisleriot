@@ -21,32 +21,36 @@
 #include <gtk/gtk.h>
 #include "press_data.h"
 
-
 /*
  * Constants
  */
-#define SURFACE_WIDTH 640
-#define SURFACE_HEIGHT 466
+#define GAMESDIR "sol-games/"
 #define GAME_EVENTS (GDK_EXPOSURE_MASK        |\
 		     GDK_BUTTON_PRESS_MASK    |\
 		     GDK_POINTER_MOTION_MASK  |\
 		     GDK_BUTTON_RELEASE_MASK)
+/*
+ * Global variables
+ */
+extern GtkWidget        *app;
+extern GtkWidget        *playing_area;
+extern GdkGC            *draw_gc;
+extern GdkPixmap        *surface;
+extern GdkPixmap        *moving_card_pixmap;
+extern guint            score;
+extern guint            game_time;
+extern guint            timeout;
+extern guint            seed;
+extern guint            n_games;
+extern struct dirent    **game_dents;
+extern gchar            *game_file;
+extern gchar            *game_name;
+extern press_data_type* press_data; 
 
-#ifndef SOL_C
-extern GtkWidget *playing_area;
-extern GtkWidget *app;
-extern GdkGC     *draw_gc;
-extern GdkPixmap *surface;
-extern GdkPixmap *moving_card_pixmap;
-extern gint      score;
-extern GtkWidget *scorew;
-extern gint      seed;
-extern GtkWidget *label;
-extern gchar     *game_file;
-extern gchar     *game_name;
-#endif
 gchar* game_file_to_name(const gchar* file);
 void set_score();
+void timer_start();
+void timer_stop();
 void make_title();
 void eval_installed_file(gchar *file);
 
