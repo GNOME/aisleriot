@@ -1,5 +1,5 @@
 ; AisleRiot - auld_lang_syne.scm
-; Copyright (C) 1999 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1999, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ")
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -112,7 +112,7 @@
 
 (define (dealable?)
   (and (not (empty-slot? 0))
-       (list 0 "Deal another round")))
+       (list 0 (gettext "Deal another round"))))
 
 (define (get-hint)
   (or (movable? 5 1)

@@ -1,5 +1,5 @@
 ; AisleRiot - first_law.scm
-; Copyright (C) 1999 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1999, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ")
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -124,7 +124,7 @@
 
 (define (dealable?)
   (and (not (empty-slot? 0))
-       (list 0 "Deal another round")))
+       (list 0 (gettext "Deal another round"))))
 
 (define (removable?)
   (and (not (empty-slot? 1))
@@ -135,18 +135,18 @@
 	  (get-value (get-top-card 2))
 	  (get-value (get-top-card 3))
 	  (get-value (get-top-card 4)))
-       (list 0 (string-append "Remove the "
+       (list 0 (string-append (gettext "Remove the ")
 			      (cond ((= (get-value (get-top-card 1)) 1)
-				     "aces")
+				     (gettext "aces"))
 				    ((= (get-value (get-top-card 1)) 11)
-				     "jacks")
+				     (gettext "jacks"))
 				    ((= (get-value (get-top-card 1)) 12)
-				     "queens")
+				     (gettext "queens"))
 				    ((= (get-value (get-top-card 1)) 13)
-				     "kings")
+				     (gettext "kings"))
 				    (#t
 				     (string-append (number->string (get-value (get-top-card 1)))
-						    "'s")))))))
+						    (gettext "'s"))))))))
 
 (define (move-leftable? slot1 slot2)
   (cond ((= slot1 4)
@@ -166,7 +166,7 @@
   (or (removable?)
       (move-leftable? 1 2)
       (dealable?)
-      (list 0 "Return cards to Stock")))
+      (list 0 (gettext "Return cards to Stock"))))
 
 (define (get-options) 
   #f)

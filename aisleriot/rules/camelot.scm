@@ -1,5 +1,5 @@
 ; AisleRiot - camelot.scm
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ")
 		 (number->string (length (get-cards 16)))))
 
 (define (button-pressed slot-id card-list)
@@ -178,7 +178,7 @@
 (define (find-match cards)
   (and (not (null? cards))
        (if (= 10 (get-value (car cards))) 
-	   (list 2 (get-name (car cards)) "itself") ; yuk..
+	   (list 2 (get-name (car cards)) (gettext "itself")) ; yuk..
 	   (let ((match (find-card-val-in-list? 
 			 (cdr cards)
 			 (- 10 (get-value (car cards))))))
@@ -192,22 +192,22 @@
 		  (empty-slot? 3)
 		  (empty-slot? 12)
 		  (empty-slot? 15))
-	      "an empty corner slot"))
+	      (gettext "an empty corner slot")))
 	 ((= (get-value card) queen)
 	  (or (and (or (empty-slot? 1)
 		       (empty-slot? 2))
-		   "an empty top slot")
+		   (gettext "an empty top slot")
 	      (and (or (empty-slot? 13)
 		       (empty-slot? 14))
-		   "an empty bottom slot")))
+		   (gettext "an empty bottom slot"))))
 	((= (get-value card) jack)
 	  (or (and (or (empty-slot? 4)
 		       (empty-slot? 8))
-		   "an empty left slot")
+		   (gettext "an empty left slot"))
 	      (and (or (empty-slot? 7)
 		       (empty-slot? 11))
-		   "an empty right slot")))
-	(#t "an empty slot")))
+		   (gettext "an empty right slot"))))
+	(#t (gettext "an empty slot"))))
 
 (define (game-over)
   (give-status-message)
@@ -225,7 +225,7 @@
 	       (list 2 (get-name (get-top-card 17))
 		     (placeable? (get-top-card 17))))
 	  (find-match (list-cards 0)))
-      (list 0 "Deal a new card from the deck")))
+      (list 0 (gettext "Deal a new card from the deck"))))
 
 (define (get-options) #f)
 

@@ -1,5 +1,5 @@
 ; AisleRiot - osmosis.scm
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -56,11 +56,11 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 8)))))
 
 (define (get-redeals-string)
-  (string-append "Redeals left:  "
+  (string-append (gettext "Redeals left:  ")
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)
@@ -165,7 +165,7 @@
        (or (if (empty-slot? slot-id)
 	       (and (= (get-value card) 
 		       (get-value (car (reverse (get-cards 1)))))
-		    (list 1 (get-name card) "an empty slot"))
+		    (list 1 (get-name card) (gettext "an empty slot")))
 	       (and (= (get-suit card) (get-suit (get-top-card slot-id)))
 		    (or (= slot-id 1)
 			(find-card-val-in-list? (get-cards (- slot-id 2)) 
@@ -195,7 +195,7 @@
 
 (define (get-hint)
   (or (get-valid-move '(0 2 4 6 9))
-      (list 0 "Deal a new card from the deck")))
+      (list 0 (gettext "Deal a new card from the deck"))))
 
 (define (get-options) #f)
 

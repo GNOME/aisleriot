@@ -76,8 +76,8 @@
   (map (lambda (num-now) (deal-ten-across-int num-now)) '(1 2 3 4 5))))
 
 ;; testing functions
-;;(define deal-cards (lambda (num slot-list) (map (lambda (num1) (display "dealing face-down to ")(display num1)(display "\n")) slot-list)))
-;;(define deal-cards-face-up (lambda (num slot-list) (map (lambda (num1) (display "dealing face-up to ") (display num1) (display "\n")) slot-list)))
+;;(define deal-cards (lambda (num slot-list) (map (lambda (num1) (display (gettext "dealing face-down to "))(display num1)(display (gettext "\n"))) slot-list)))
+;;(define deal-cards-face-up (lambda (num slot-list) (map (lambda (num1) (display (gettext "dealing face-up to ")) (display num1) (display (gettext "\n"))) slot-list)))
 ;;(deal-ten-across-cards)
 
 (define (button-pressed slot-id card-list)
@@ -175,7 +175,7 @@
   (if (have-empty-slot? slot-list)
       (let ((good-king (get-good-king-for-empty-move slot-list)))
         (if (list? good-king)
-            (list 2 (get-name good-king) "an empty slot")
+            (list 2 (get-name good-king) (gettext "an empty slot"))
             #f))
       #f))
 
@@ -222,7 +222,7 @@
                                     (cond ((and (null? card2)
                                                 (not (null? card1))
                                                 (king? card1))
-                                           (list card1 "an empty slot"))
+                                           (list card1 (gettext "an empty slot")))
                                           ((and (not (null? card1))
                                                 (not (null? card2))
                                                 (is-ok-to-place card1 card2))
@@ -290,7 +290,7 @@
           (has-no-hidden card-list))
       #f
       (begin
-        (display "Testing ") (display card-list) (display " for num ")
+        (display (gettext "Testing ")) (display card-list) (display (gettext " for num "))
         (display num) (newline)
         (same-stack-smaller card-list num))))
 
@@ -303,8 +303,8 @@
           slot-list))
 
 (define (prepare-move-response card)
-  (list 2 (string-append (get-name card) " and all cards below it")
-        "empty slot(s)"))
+  (list 2 (string-append (get-name card) (gettext " and all cards below it"))
+        (gettext "empty slot(s)")))
 
 ;; ** 4 **
 (define (test-for-good-tmp-move slot-list tmp-list)
@@ -328,9 +328,9 @@
    (if should-we-do-tmp-move-test
        (test-for-good-tmp-move tableau tmp-spots)
        (if (have-empty-slot? tmp-spots)
-           (list 0 "Move a card to an empty temporary slot")
-           (list 0 "No hint available")))
-   (list 0 "No hint available")))
+           (list 0 (gettext "Move a card to an empty temporary slot"))
+           (list 0 (gettext "No hint available"))))
+   (list 0 (gettext "No hint available"))))
 
 (define final-stack-helper
   (lambda (the-list num suit)
@@ -366,7 +366,7 @@
   (not (game-won)))
 
 (define (get-options)
-  (list (list "Allow temporary spots use" allow-two-spot-use)))
+  (list (list (gettext "Allow temporary spots use") allow-two-spot-use)))
 
 (define (apply-options options)
   (set! allow-two-spot-use (cadar options)))

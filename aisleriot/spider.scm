@@ -57,7 +57,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 ;internal procedures/variables
@@ -165,7 +165,7 @@
   (and (= 0 slot)
        (if (any-slot-empty?)
 	   (begin
-             (set-statusbar-message "Please fill in empty pile first.")
+             (set-statusbar-message (gettext "Please fill in empty pile first."))
              #f)
 	   (begin
 	     (deal-new-cards)
@@ -255,12 +255,12 @@
   (if (> slot-id 18)
       #f
       (if (empty-slot? slot-id)
-	  (list 0 "Place something on empty slot")
+	  (list 0 (gettext "Place something on empty slot"))
 	  (open-slots? (+ 1 slot-id)))))
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 "Deal another round")
+      (list 0 (gettext "Deal another round"))
       #f))
 
 (define (get-hint)
@@ -269,7 +269,7 @@
       (open-slots? 9)
       (dealable?)
 ; this isn't great, but it will get around the premature end-of-game call
-      (list 0 "Try moving card piles around")))
+      (list 0 (gettext "Try moving card piles around"))))
 
 (define (get-options) #f)
 

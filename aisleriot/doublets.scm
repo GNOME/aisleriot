@@ -1,5 +1,5 @@
 ; AisleRiot - doublets.scm
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -64,11 +64,11 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ")
 		 (number->string (length (get-cards 0)))))
 
 (define (get-redeals-string)
-  (string-append "Redeals left:  "
+  (string-append (gettext "Redeals left:  ")
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (check-kings slot-list)

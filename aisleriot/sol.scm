@@ -1,5 +1,5 @@
 ; AisleRiot - sol.scm
-; Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+; Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -254,7 +254,7 @@
 	((eq? (get-suit card) spade) black)
 	((eq? (get-suit card) heart) red)
 	((eq? (get-suit card) diamond) red)
-	(#t "Unknown color")))
+	(#t (gettext "Unknown color"))))
 
 (define (get-value card) 
   (car card))
@@ -320,36 +320,36 @@
 
 ; hint procedures: these will be superceeded shortly.
 (define (get-value-name value)
-  (cond ((eq? value ace) "ace")
-	((eq? value 2) "two")
-	((eq? value 3) "three")
-	((eq? value 4) "four")
-	((eq? value 5) "five")
-	((eq? value 6) "six")
-	((eq? value 7) "seven")
-	((eq? value 8) "eight")
-	((eq? value 9) "nine")
-	((eq? value 10) "ten")
-	((eq? value jack) "jack")
-	((eq? value queen) "queen")
-	((eq? value king) "king")
-	(#t "Unknown value")))
+  (cond ((eq? value ace) (gettext "ace"))
+	((eq? value 2) (gettext "two"))
+	((eq? value 3) (gettext "three"))
+	((eq? value 4) (gettext "four"))
+	((eq? value 5) (gettext "five"))
+	((eq? value 6) (gettext "six"))
+	((eq? value 7) (gettext "seven"))
+	((eq? value 8) (gettext "eight"))
+	((eq? value 9) (gettext "nine"))
+	((eq? value 10) (gettext "ten"))
+	((eq? value jack) (gettext "jack"))
+	((eq? value queen) (gettext "queen"))
+	((eq? value king) (gettext "king"))
+	(#t (gettext "Unknown value"))))
 
 (define (get-suit-name suit)
-  (cond ((eq? suit club) "clubs")
-	((eq? suit spade) "spades")
-	((eq? suit heart) "hearts")
-	((eq? suit diamond) "diamonds")
-	(#t "Unknown suit")))
+  (cond ((eq? suit club) (gettext "clubs"))
+	((eq? suit spade) (gettext "spades"))
+	((eq? suit heart) (gettext "hearts"))
+	((eq? suit diamond) (gettext "diamonds"))
+	(#t (gettext "Unknown suit"))))
 
 (define (get-joker-name card) 
-  (if (is-black? card) "black joker" "red joker"))
+  (if (is-black? card) (gettext "black joker") (gettext "red joker")))
 
 (define (get-name card)
   (if (is-joker? card)
       (get-joker-name card)
       (string-append (get-value-name (get-value card)) 
-		     " of "
+		     (gettext " of ")
 		     (get-suit-name (get-suit card)))))
 
 (define (move-n-cards! start-slot end-slot cards)

@@ -1,5 +1,5 @@
 ; AisleRiot - eagle_wing.scm
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -83,29 +83,29 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ")
 		 (number->string (length (get-cards 0)))))
 
 (define (get-reserve-no-string)
-  (string-append "Reserve left:  " 
+  (string-append (gettext "Reserve left:  ")
 		 (number->string (length (get-cards 10)))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append "Base Card:  " (number->string BASE-VAL)))
+	 (string-append (gettext "Base Card:  ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 "Base Card:  Ace")
+	 (gettext "Base Card:  Ace"))
 	((= BASE-VAL 11)
-	 "Base Card:  Jack")
+	 (gettext "Base Card:  Jack"))
 	((= BASE-VAL 12)
-	 "Base Card:  Queen")
+	 (gettext "Base Card:  Queen"))
 	((= BASE-VAL 13)
-	 "Base Card:  King")
+	 (gettext "Base Card:  King"))
 	(#t #f)))
 
 (define (get-redeals-string)
-  (string-append "Redeals left:  "
+  (string-append (gettext "Redeals left:  ")
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)
@@ -262,7 +262,7 @@
   (if (and (not (empty-slot? slot))
 	   (is-visible? (get-top-card slot)))
       (cond ((= (get-value (get-top-card slot)) BASE-VAL)
-	     (list 3 (get-name (get-top-card slot)) "to an empty foundation"))
+	     (list 3 (get-name (get-top-card slot)) (gettext "to an empty foundation")))
 	    ((check-a-foundation slot 2)
 	     (list 1 
 		   (get-name (get-top-card slot)) 
@@ -295,7 +295,7 @@
 	   (not (= slot 10)))
       (if (empty-slot? 1)
 	  #f
-	  (list 2 (get-name (get-top-card 1)) "an empty slot on tableau"))
+	  (list 2 (get-name (get-top-card 1)) (gettext "an empty slot on tableau")))
       (if (< slot 14)
 	  (check-empty-slot (+ 1 slot))
 	  #f)))
@@ -327,10 +327,10 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 "Deal a card")
+      (list 0 (gettext "Deal a card"))
       (if (and (not (empty-slot? 1))
 	       (< FLIP-COUNTER 2))
-	  (list 0 "Move waste back to stock")
+	  (list 0 (gettext "Move waste back to stock"))
 	  #f)))
 
 (define (get-hint)

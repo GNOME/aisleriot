@@ -1,5 +1,5 @@
 ; AisleRiot - fortress.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -162,7 +162,7 @@
 		 ace))
 	 (list 2
 	       (get-name (get-top-card slot))
-	       "an empty Foundation"))
+	       (gettext "an empty Foundation")))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card f-slot))
 		 (get-suit (get-top-card slot)))
@@ -211,7 +211,7 @@
 	   (empty-slot? 10)
 	   (empty-slot? 11)
 	   (empty-slot? 13))
-       (list 0 "Move something into the empty Tableau slot")))
+       (list 0 (gettext "Move something into the empty Tableau slot"))))
 
 (define (get-hint)
   (or (to-foundations? 0 3)

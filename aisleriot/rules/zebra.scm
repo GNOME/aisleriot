@@ -1,5 +1,5 @@
 ; AisleRiot - zebra.scm
-; Copyright (C) 1999 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1999, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -68,11 +68,11 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (get-redeals-string)
-  (string-append "Redeals left:  "
+  (string-append (gettext "Redeals left:  ")
 		 (number->string (- 1 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)
@@ -152,10 +152,10 @@
 
 (define (dealable?)
   (or (and (not (empty-slot? 0))
-	   (list 0 "Deal another round"))
+	   (list 0 (gettext "Deal another round")))
       (and (not (empty-slot? 1))
 	   (< FLIP-COUNTER 1)
-	   (list 0 "Move waste back to stock"))))
+	   (list 0 (gettext "Move waste back to stock")))))
 
 (define (check-a-foundation slot-id foundation-id)
   (cond ((= foundation-id 10)
@@ -177,7 +177,7 @@
 	      (check-a-foundation slot-id 2))
 	 (list 2 
 	       (get-name (get-top-card slot-id)) 
-	       "the appropriate Foundation pile"))
+	       (gettext "the appropriate Foundation pile")))
 	(#t
 	 (check-to-foundations (+ 1 slot-id)))))
 

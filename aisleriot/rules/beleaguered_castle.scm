@@ -1,5 +1,5 @@
 ; AisleRiot - Beleaguered Castle
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -186,7 +186,7 @@
 
 (define (get-hint)
   (or (check-to-foundation 0)
-      (list 0 "Try rearranging the cards")))
+      (list 0 (gettext "Try rearranging the cards"))))
 
 (define (get-options) 
   #f)

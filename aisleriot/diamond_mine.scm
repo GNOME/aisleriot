@@ -1,5 +1,5 @@
 ; AisleRiot - diamond_mine.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -265,7 +265,7 @@
 	 #f)
 	((and (empty-slot? slot)
 	      (possible-move-off? 0))
-	 (list 2 (get-name (possible-move-off? 0)) "an empty slot"))
+	 (list 2 (get-name (possible-move-off? 0)) (gettext "an empty slot")))
 	(#t (check-for-empties (+ 1 slot)))))
 
 (define (start-foundation slot)
@@ -274,7 +274,7 @@
 	 #f)
 	((and (not (empty-slot? slot))
 	      (= (get-suit (get-top-card slot)) diamond))
-	 (list 2 (get-name (get-top-card slot)) "the foundation pile"))
+	 (list 2 (get-name (get-top-card slot)) (gettext "the foundation pile")))
 	(#t (start-foundation (+ 1 slot)))))
 
 (define (any-empty? slot)
@@ -317,7 +317,7 @@
 	 #f)
 	((and (not (empty-slot? slot))
 	      (check-a-tab-slot (get-cards slot)))
-	 (list 2 (get-name (check-a-tab-slot (get-cards slot))) "an empty slot"))
+	 (list 2 (get-name (check-a-tab-slot (get-cards slot))) (gettext "an empty slot")))
 	(#t (check-tableau-suit-changes (+ 1 slot)))))
 
 (define (get-hint)

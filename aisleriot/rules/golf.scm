@@ -46,7 +46,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -82,7 +82,7 @@
 	   (add-to-score! 1))))
 
 (define (button-double-clicked slot-id)
-(display "bdc\n")
+(display (gettext "bdc\n"))
   (button-clicked slot-id))
 
 (define (game-continuable)
@@ -114,7 +114,7 @@
 
 (define (dealable?)
   (and (not (empty-slot? 0))
-       (list 0 "Deal another card")))
+       (list 0 (gettext "Deal another card"))))
 
 (define (get-hint)
   (or (check-slots 2)

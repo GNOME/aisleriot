@@ -140,7 +140,7 @@
   (not (game-won)))
 
 (define (get-hint)
-  (list 0 "Aim to place the suits in the order which fits the current layout most naturally."))
+  (list 0 (gettext "Aim to place the suits in the order which fits the current layout most naturally.")))
 
 (define (get-options) 
   #f)

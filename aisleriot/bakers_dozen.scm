@@ -1,5 +1,5 @@
 ; AisleRiot - bakers_dozen.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -150,7 +150,7 @@
 	     (empty-slot? t-slot))
 	 (foundation-possible? (+ 1 t-slot) 0))
 	((= (get-value (get-top-card t-slot)) ace)
-	 (list 2 (get-name (get-top-card t-slot)) "an empty foundation"))
+	 (list 2 (get-name (get-top-card t-slot)) (gettext "an empty foundation")))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card t-slot))
 		 (get-suit (get-top-card f-slot)))
@@ -191,7 +191,7 @@
 (define (get-hint)
   (or (foundation-possible? 4 0)
       (tableau-moves? 4 5)
-      (list 0 "Try rearranging the cards")))
+      (list 0 (gettext "Try rearranging the cards"))))
 
 (define (get-options) 
   #f)

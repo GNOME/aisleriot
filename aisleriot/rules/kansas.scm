@@ -1,5 +1,5 @@
 ; AisleRiot - kansas.scm
-; Copyright (C) 1999 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1999, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -69,25 +69,25 @@
 					(get-base-string))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (get-reserve-no-string)
-  (string-append "Reserve left:  " 
+  (string-append (gettext "Reserve left:  ") 
 		 (number->string (length (get-cards 6)))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append "Base Card:  " (number->string BASE-VAL)))
+	 (string-append (gettext "Base Card:  ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 "Base Card:  Ace")
+	 (gettext "Base Card:  Ace"))
 	((= BASE-VAL 11)
-	 "Base Card:  Jack")
+	 (gettext "Base Card:  Jack"))
 	((= BASE-VAL 12)
-	 "Base Card:  Queen")
+	 (gettext "Base Card:  Queen"))
 	((= BASE-VAL 13)
-	 "Base Card:  King")
+	 (gettext "Base Card:  King"))
 	(#t #f)))
 
 (define (button-pressed slot-id card-list)
@@ -218,7 +218,7 @@
 
 (define (dealable?)
   (and (not (empty-slot? 0))
-       (list 0 "Deal another card")))
+       (list 0 (gettext "Deal another card"))))
 
 (define (check-a-foundation card foundation-slot)
   (cond ((> foundation-slot 5)
@@ -242,7 +242,7 @@
 	((empty-slot? slot-id)
 	 (check-to-foundations (+ 1 slot-id)))
 	((= (get-value (get-top-card slot-id)) BASE-VAL)
-	 (list 2 (get-name (get-top-card slot-id)) "an empty Foundation"))
+	 (list 2 (get-name (get-top-card slot-id)) (gettext "an empty Foundation")))
 	((check-a-foundation (get-top-card slot-id) 2)
 	 (list 1 
 	       (get-name (get-top-card slot-id))
@@ -328,7 +328,7 @@
        (or (empty-slot? 7)
 	   (empty-slot? 8)
 	   (empty-slot? 9))
-       (list 2 (get-name (get-top-card 1)) "an empty Tableau slot")))
+       (list 2 (get-name (get-top-card 1)) (gettext "an empty Tableau slot"))))
 
 (define (get-hint)
   (or (check-to-foundations 1)

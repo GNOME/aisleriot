@@ -1,5 +1,5 @@
 ; AisleRiot - neighbor.scm
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -72,7 +72,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -184,7 +184,7 @@
 
 (define (king-check slot-id)
   (cond ((= king (get-value (get-top-card slot-id)))
-	 (list 2 (get-name (get-top-card slot-id)) "itself"))
+	 (list 2 (get-name (get-top-card slot-id)) (gettext "itself")))
 	((and (< slot-id 25)
 	      (not (empty-slot? (+ 1 slot-id))))
 	 (king-check (+ 1 slot-id)))

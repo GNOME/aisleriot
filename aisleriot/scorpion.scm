@@ -143,7 +143,7 @@
 
 (define (dealable?)
   (and (not (empty-slot? 0))
-       (list 0 "Deal the cards")))
+       (list 0 (gettext "Deal the cards"))))
 
 (define (check-slot-cards card card-list)
   (cond ((or (= (length card-list) 0)
@@ -182,7 +182,7 @@
 	     (not (is-visible? (car card-list))))
 	 #f)
 	((= (get-value (car card-list)) king)
-	 (list 2 (get-name (car card-list)) "an empty slot"))
+	 (list 2 (get-name (car card-list)) (gettext "an empty slot")))
 	(#t (here-kingy-kingy (cdr card-list)))))
 
 (define (king-avail? slot-id)

@@ -1,5 +1,5 @@
 ; AisleRiot - royal_east.scm
-; Copyright (C) 1999 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1999, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -69,22 +69,22 @@
 					(get-base-string))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append "Base Card:  " (number->string BASE-VAL)))
+	 (string-append (gettext "Base Card:  ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 "Base Card:  Ace")
+	 (gettext "Base Card:  Ace"))
 	((= BASE-VAL 11)
-	 "Base Card:  Jack")
+	 (gettext "Base Card:  Jack"))
 	((= BASE-VAL 12)
-	 "Base Card:  Queen")
+	 (gettext "Base Card:  Queen"))
 	((= BASE-VAL 13)
-	 "Base Card:  King")
-	(#t "melborp")))
+	 (gettext "Base Card:  King"))
+	(#t (gettext "melborp"))))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -141,7 +141,7 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 "Deal a card")
+      (list 0 (gettext "Deal a card"))
       #f))
 
 (define (check-a-foundation card f-slot)
@@ -171,7 +171,7 @@
 	((= BASE-VAL (get-value (get-top-card slot-id)))
 	 (list 2 
 	       (get-name (get-top-card slot-id)) 
-	       "an empty Foundation pile"))
+	       (gettext "an empty Foundation pile")))
 	((check-a-foundation (get-top-card slot-id) 2)
 	 (list 1
 	       (get-name (get-top-card slot-id))
@@ -186,7 +186,7 @@
 	     (= slot-id 8))
 	 (waste-to-tableau? (+ 1 slot-id)))
 	((empty-slot? slot-id)
-	 (list 2 (get-name (get-top-card 1)) "an empty Tableau pile"))
+	 (list 2 (get-name (get-top-card 1)) (gettext "an empty Tableau pile")))
 	((or (and (= (get-value (get-top-card 1)) king)
 		  (= (get-value (get-top-card slot-id)) ace))
 	     (= (+ 1 (get-value (get-top-card 1)))

@@ -1,5 +1,5 @@
 ; AisleRiot - glenwood.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -74,25 +74,25 @@
 					(get-base-string))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (get-redeals-string)
-  (string-append "Redeals left:  "
+  (string-append (gettext "Redeals left:  ")
 		 (number->string (- 1 FLIP-COUNTER))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append "Base Card:  " (number->string BASE-VAL)))
+	 (string-append (gettext "Base Card:  ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 "Base Card:  Ace")
+	 (gettext "Base Card:  Ace"))
 	((= BASE-VAL 11)
-	 "Base Card:  Jack")
+	 (gettext "Base Card:  Jack"))
 	((= BASE-VAL 12)
-	 "Base Card:  Queen")
+	 (gettext "Base Card:  Queen"))
 	((= BASE-VAL 13)
-	 "Base Card:  King")
+	 (gettext "Base Card:  King"))
 	(#t #f)))
 
 (define (button-pressed slot-id card-list)
@@ -255,15 +255,15 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 "Deal a new card from the deck")
+      (list 0 (gettext "Deal a new card from the deck"))
       (if (and (< FLIP-COUNTER 1)
 	       (not (empty-slot? 1)))
-	  (list 0 "Move waste back to stock")
+	  (list 0 (gettext "Move waste back to stock"))
 	  #f)))
 
 (define (base-not-set?)
   (and (empty-slot? 2)
-       (list 0 "Select a card from the reserve for first foundation pile")))
+       (list 0 (gettext "Select a card from the reserve for first foundation pile"))))
 
 (define (check-a-foundation slot-id foundation-id)
   (cond ((= foundation-id 6)
@@ -288,7 +288,7 @@
 	((and (not (empty-slot? slot-id))
 	      (= (get-value (get-top-card slot-id))
 		 BASE-VAL))
-	 (list 1 (get-name (get-top-card slot-id)) "empty slot on foundation"))
+	 (list 1 (get-name (get-top-card slot-id)) (gettext "empty slot on foundation")))
 	((and (not (empty-slot? slot-id))
 	      (check-a-foundation slot-id 2))
 	 (if (= (get-value (get-top-card slot-id)) ace)
@@ -364,9 +364,9 @@
 		 (not (empty-slot? 11))
 		 (not (empty-slot? 12))
 		 (not (empty-slot? 13)))
-	     (list 0 "Move a card from the reserve on to the empty tableau slot"))
+	     (list 0 (gettext "Move a card from the reserve on to the empty tableau slot")))
 	    ((not (empty-slot? 1))
-	     (list 1 (get-name (get-top-card 1)) "on to the empty tableau slot"))
+	     (list 1 (get-name (get-top-card 1)) (gettext "on to the empty tableau slot")))
 	    (#t #f))
       #f))
 

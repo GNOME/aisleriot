@@ -1,5 +1,5 @@
 ; AisleRiot - clock.scm
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -214,18 +214,18 @@
 (define (get-hint)
   (list 0 
 	(nth-item 
-	 (list "Just because a crosswalk looks like a hopscotch board doesn't mean it is one" 
-	       "Look both ways before you cross the street"
-	       "Have you read the help file?"
-	       "Odessa is a better game.  Really."
-	       "Tourniquets are not recommended unless in the direst emergency"
-	       "I could sure use a backrub right about now..."
-	       "Monitors won't give you Vitamin D -- but sunlight will..."
-	       "If you're ever lost and alone in the woods, hug a tree"
-	       "Fishing wire makes bad dental floss"
-	       "Consistency is key"
-	       "When without a stapler, a staple and a ruler will work"
-	       "Never blow in a dog's ear")
+	 (list (gettext "Just because a crosswalk looks like a hopscotch board doesn't mean it is one")
+	       (gettext "Look both ways before you cross the street")
+	       (gettext "Have you read the help file?")
+	       (gettext "Odessa is a better game.  Really.")
+	       (gettext "Tourniquets are not recommended unless in the direst emergency")
+	       (gettext "I could sure use a backrub right about now...")
+	       (gettext "Monitors won't give you Vitamin D -- but sunlight will...")
+	       (gettext "If you're ever lost and alone in the woods, hug a tree")
+	       (gettext "Fishing wire makes bad dental floss")
+	       (gettext "Consistency is key")
+	       (gettext "When without a stapler, a staple and a ruler will work")
+	       (gettext "Never blow in a dog's ear"))
 	 (random 12))))
 
 (define (get-options) #f)

@@ -197,7 +197,7 @@
 	     (not (is-visible? (car card-list))))
 	 #f)
 	((= (get-value (car card-list)) king)
-	 (list 2 (get-name (car card-list)) "an empty slot"))
+	 (list 2 (get-name (car card-list)) (gettext "an empty slot")))
 	(#t (here-kingy-kingy (cdr card-list)))))
 
 (define (king-avail? slot-id)
@@ -237,7 +237,7 @@
 	((empty-slot? slot-id)
 	 (check-to-foundations? (+ 1 slot-id)))
 	((= (get-value (get-top-card slot-id)) ace)
-	 (list 2 (get-name (get-top-card slot-id)) "an empty Foundation"))
+	 (list 2 (get-name (get-top-card slot-id)) (gettext "an empty Foundation")))
 	((check-a-foundation (get-top-card slot-id) 0)
 	 (list 1 
 	       (get-name (get-top-card slot-id))

@@ -1,5 +1,5 @@
 ; AisleRiot - chessboard.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -89,15 +89,15 @@
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append "Base Card:  " (number->string BASE-VAL)))
+	 (string-append (gettext "Base Card:  ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 "Base Card:  Ace")
+	 (gettext "Base Card:  Ace"))
 	((= BASE-VAL 11)
-	 "Base Card:  Jack")
+	 (gettext "Base Card:  Jack"))
 	((= BASE-VAL 12)
-	 "Base Card:  Queen")
+	 (gettext "Base Card:  Queen"))
 	((= BASE-VAL 13)
-	 "Base Card:  King")
+	 (gettext "Base Card:  King"))
 	(#t #f)))
 
 (define (button-pressed slot-id card-list)
@@ -194,7 +194,7 @@
   (cond ((= slot 14)
 	 #f)
 	((not base-set?)
-	 (list 0 "Move a card to the Foundation"))
+	 (list 0 (gettext "Move a card to the Foundation")))
 	((or (empty-slot? slot)
 	     (= slot 3)
 	     (= slot 6)
@@ -207,7 +207,7 @@
 		 BASE-VAL))
 	 (list 2
 	       (get-name (get-top-card slot))
-	       "an empty Foundation"))
+	       (gettext "an empty Foundation")))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card f-slot))
 		 (get-suit (get-top-card slot)))
@@ -262,7 +262,7 @@
 	   (empty-slot? 10)
 	   (empty-slot? 11)
 	   (empty-slot? 13))
-       (list 0 "Move something into the empty Tableau slot")))
+       (list 0 (gettext "Move something into the empty Tableau slot"))))
 
 (define (get-hint)
   (or (to-foundations? 0 3)

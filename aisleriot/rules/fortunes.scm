@@ -1,5 +1,5 @@
 ; AisleRiot - fortunes.scm
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ")
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -132,8 +132,8 @@
 		    (get-suit (get-top-card slot2))))
 	  (if (< (get-value (get-top-card slot1))
 		 (get-value (get-top-card slot2)))
-	      (list 3 (get-name (get-top-card slot1)) "off the board")
-	      (list 3 (get-name (get-top-card slot2)) "off the board"))
+	      (list 3 (get-name (get-top-card slot1)) (gettext "off the board"))
+	      (list 3 (get-name (get-top-card slot2)) (gettext "off the board")))
 	  (check-hint slot1 (+ 1 slot2)))))
 
 (define (get-hint)
@@ -152,10 +152,10 @@
 			(> (length (get-cards 3)) 1))
 		   (and (not (empty-slot? 4))
 			(> (length (get-cards 4)) 1))))
-	  (list 0 "Consider moving something into an empty slot")
+	  (list 0 (gettext "Consider moving something into an empty slot"))
 	  #f)
       (if (not (empty-slot? 0))
-	  (list 0 "Deal another round")
+	  (list 0 (gettext "Deal another round"))
 	  #f)))
 
 (define (get-options) #f)

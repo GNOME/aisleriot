@@ -1,5 +1,5 @@
 ; AisleRiot - agnes.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -66,22 +66,22 @@
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append "Base Card:  " (number->string BASE-VAL)))
+	 (string-append (gettext "Base Card:  ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 "Base Card:  Ace")
+	 (gettext "Base Card:  Ace"))
 	((= BASE-VAL 11)
-	 "Base Card:  Jack")
+	 (gettext "Base Card:  Jack"))
 	((= BASE-VAL 12)
-	 "Base Card:  Queen")
+	 (gettext "Base Card:  Queen"))
 	((= BASE-VAL 13)
-	 "Base Card:  King")
+	 (gettext "Base Card:  King"))
 	(#t #f)))
 
 (define (get-stock-no-string)
   (if (> (length (get-cards 0)) 1)
-      (string-append "Stock left:  " 
+      (string-append (gettext "Stock left:  ")
 		     (number->string (length (get-cards 0))))
-      (string-append "Stock left:  0"))) 
+      (string-append (gettext "Stock left:  0")))) 
 
 (define (check-straight-descending-list card-list)
   (or (< (length card-list) 2)
@@ -202,7 +202,7 @@
 		 BASE-VAL))
 	 (list 2
 	       (get-name (get-top-card slot))
-	       "an empty foundation pile"))
+	       (gettext "an empty foundation pile")))
 	((and (not (empty-slot? slot))
 	      (check-dc slot 1 #t))
 	 (list 1
@@ -246,13 +246,13 @@
 
 (define (dealable?)
   (and (not (empty-slot? 0))
-       (list 0 "Deal more cards")))
+       (list 0 (gettext "Deal more cards"))))
 
 (define (get-hint)
   (or (check-to-foundation? 5)
       (check-to-tableau? 5 6)
       (dealable?)
-      (list 0 "Try rearranging the cards")))
+      (list 0 (gettext "Try rearranging the cards"))))
 
 (define (get-options) 
   #f)

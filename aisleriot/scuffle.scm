@@ -1,5 +1,5 @@
 ; AisleRiot - scuffle.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -52,11 +52,11 @@
 					(get-redeals-string))))
 
 (define (get-redeals-string)
-  (string-append "Redeals left:  "
+  (string-append (gettext "Redeals left:  ")
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -132,9 +132,9 @@
 
 (define (dealable?)
   (or (and (not (empty-slot? 0))
-	   (list 0 "Deal another round"))
+	   (list 0 (gettext "Deal another round")))
       (and (< FLIP-COUNTER 2)
-	   (list 0 "Reshuffle cards"))))
+	   (list 0 (gettext "Reshuffle cards")))))
 
 (define (get-hint)
   (or (movable? 5 1)

@@ -1,5 +1,5 @@
 ; AisleRiot - jumbo.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -65,11 +65,11 @@
 					(get-redeals-string))))
 
 (define (get-redeals-string)
-  (string-append "Redeals left:  "
+  (string-append (gettext "Redeals left:  ")
 		 (number->string (- 1 FLIP-COUNTER))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -190,7 +190,7 @@
 	 (if (empty-slot? (check-plop (strip (get-cards t-slot)) 10))
 	     (list 2 
 		   (get-name (strip (get-cards t-slot)))
-		   "an empty tableau slot")
+		   (gettext "an empty tableau slot"))
 	     (list 1 
 		   (get-name (strip (get-cards t-slot)))
 		   (get-name (get-top-card (check-plop (strip (get-cards t-slot)) 
@@ -255,7 +255,7 @@
 	      (= (get-value (get-top-card 1)) king))
 	 (list 2
 	       (get-name (get-top-card 1))
-	       "an empty tableau slot"))
+	       (gettext "an empty tableau slot")))
 	((check-a-slot-to-foundations 1 2)
 	 (check-a-slot-to-foundations 1 2))
 	(#t (check-move-waste (+ 1 t-slot)))))
@@ -278,7 +278,7 @@
 	    ace)
 	 (list 2
 	       (get-name (get-top-card slot))
-	       "an empty foundation"))
+	       (gettext "an empty foundation")))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card slot))
 		 (get-suit (get-top-card f-slot)))
@@ -302,10 +302,10 @@
 
 (define (dealable?)
   (or (and (not (empty-slot? 0))
-	   (list 0 "Deal another card"))
+	   (list 0 (gettext "Deal another card")))
       (and (not (empty-slot? 1))
 	   (< FLIP-COUNTER 1)
-	   (list 0 "Move waste to stock"))))
+	   (list 0 (gettext "Move waste to stock")))))
 
 (define (get-min-happy-foundation fslot value)
   (cond ((= fslot 10)
@@ -339,7 +339,7 @@
       (check-foundation-for-waste 2)
       (dealable?)
       (check-to-foundations 1 2)
-      (list 0 "Try rearranging the cards")))
+      (list 0 (gettext "Try rearranging the cards"))))
 
 (define (get-options) 
   #f)

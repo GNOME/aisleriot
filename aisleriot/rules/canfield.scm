@@ -1,5 +1,5 @@
 ; AisleRiot - canfield.scm
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -68,29 +68,29 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ")
 		 (number->string (length (get-cards 0)))))
 
 (define (get-reserve-no-string)
-  (string-append "Reserve left:  " 
+  (string-append (gettext "Reserve left:  ")
 		 (number->string (length (get-cards 6)))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append "Base Card:  " (number->string BASE-VAL)))
+	 (string-append (gettext "Base Card:  ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 "Base Card:  Ace")
+	 (gettext "Base Card:  Ace"))
 	((= BASE-VAL 11)
-	 "Base Card:  Jack")
+	 (gettext "Base Card:  Jack"))
 	((= BASE-VAL 12)
-	 "Base Card:  Queen")
+	 (gettext "Base Card:  Queen"))
 	((= BASE-VAL 13)
-	 "Base Card:  King")
+	 (gettext "Base Card:  King"))
 	(#t #f)))
 
 (define (get-redeals-string)
-  (string-append "Redeals left:  "
+  (string-append (gettext "Redeals left:  ")
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)
@@ -230,17 +230,17 @@
 
 (define (deal-possible?)
   (if (not (empty-slot? 0))
-      (list 0 "Deal a new card from the deck")
+      (list 0 (gettext "Deal a new card from the deck"))
       (if (and (< FLIP-COUNTER 2)
 	       (not (empty-slot? 1)))
-	  (list 0 "Move waste back to stock")
+	  (list 0 (gettext "Move waste back to stock"))
 	  #f)))
 
 (define (move-up? card slot)
   (or (if (empty-slot? slot)
 	  (if (= (get-value card)
 		 BASE-VAL)
-	      (list 1 (get-name card) "empty slot on foundation")
+	      (list 1 (get-name card) (gettext "empty slot on foundation"))
 	      #f)
 	  (and (= (get-suit card)
 		  (get-suit (get-top-card slot)))
@@ -262,7 +262,7 @@
 
 (define (tabled card slot)
   (or (if (empty-slot? slot)
-	  (list 1 (get-name card) "empty space on tableau")
+	  (list 1 (get-name card) (gettext "empty space on tableau"))
 	  (and (eq? (is-black? card)
 		    (is-red? (get-top-card slot)))
 	       (or (and (= (get-value card) king)
@@ -311,7 +311,7 @@
       (to-tableau? '(6 1))
       (move-column? '(7 8 9 10))
       (deal-possible?)
-      (list 0 "Try rearranging the cards")))
+      (list 0 (gettext "Try rearranging the cards"))))
 
 (define (get-options) #f)
 

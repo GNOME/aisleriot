@@ -1,5 +1,5 @@
 ; AisleRiot - treize.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -99,7 +99,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -284,7 +284,7 @@
 	  (check-move (+ 1 slot1) (+ 2 slot1))
 	  #f)
       (if (= king (get-value (get-top-card slot1)))
-	  (list 2 (get-name (get-top-card slot1)) "itself")
+	  (list 2 (get-name (get-top-card slot1)) (gettext "itself"))
 	  (if (or (empty-slot? slot2)
 		  (not (available? slot2 0))
 		  (not (= 13 (+ (get-value (get-top-card slot1))
@@ -300,7 +300,7 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 "Deal a card")
+      (list 0 (gettext "Deal a card"))
       #f))
 
 (define (check-waste)
