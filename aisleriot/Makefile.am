@@ -48,6 +48,7 @@ types_DATA  = 		\
 	camelot.scm	\
 	canfield.scm	\
 	clock.scm	\
+	cover.scm	\
 	doublets.scm	\
 	eagle_wing.scm	\
 	elevator.scm	\
