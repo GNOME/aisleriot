@@ -79,6 +79,12 @@
 (define (button-pressed slot-id card-list)
   #t)
 
+(define (suit-next? first second)
+  (and (= (get-suit first)
+	  (get-suit second))
+       (= (+ 1 (get-value first))
+	  (get-value second))))
+
 (define (card-next? lower higher)
   (or (and (= ace (get-value higher))
 	   (= queen (get-value lower)))
