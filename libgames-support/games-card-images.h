@@ -59,7 +59,10 @@ typedef struct _GamesCardImages {
 
   gchar * themename;
 
-  gboolean rendered;
+  GdkPixbuf * source;
+  gint subwidth, subheight;
+  gboolean prerendered;
+  gboolean *rendered;
   GdkPixbuf ** pixbufs;
 } GamesCardImages;
 
