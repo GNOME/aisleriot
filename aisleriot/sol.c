@@ -357,6 +357,30 @@ void create_sol_board ()
 
 void quit_app (GtkWidget *app)
 {
+  GtkWidget *box;
+  gint response;
+
+  if (!game_over) {
+    box = gtk_message_dialog_new (GTK_WINDOW (app),
+            GTK_DIALOG_MODAL,
+            GTK_MESSAGE_QUESTION,
+            GTK_BUTTONS_NONE,
+            _("Really exit gataxx?"));
+    gtk_dialog_add_buttons (GTK_DIALOG (box),
+            GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
+            GTK_STOCK_QUIT, GTK_RESPONSE_ACCEPT,
+            NULL);
+
+    
+    gtk_dialog_set_default_response (GTK_DIALOG (box), GTK_RESPONSE_REJECT);
+
+    response = gtk_dialog_run (GTK_DIALOG (box));
+    gtk_widget_destroy (box);
+
+    if (response == GTK_RESPONSE_REJECT)
+        return TRUE;
+  }
+  
   gtk_widget_destroy (app);
   gtk_main_quit ();
 }
