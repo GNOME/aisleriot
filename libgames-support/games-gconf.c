@@ -9,7 +9,7 @@
 #include <glib/gstrfuncs.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
-#include <bonobo/bonobo-i18n.h> /* Yuck, this should be glib */
+#include <glib/gi18n.h> /* Yuck, this should be glib */
 
 #include <games-gconf.h>
 

@@ -65,7 +65,7 @@ static void games_card_images_prerender (GamesCardImages * images)
   /* FIXME: We should search a path. */
   fullname = g_strconcat (CARDDIR, images->themename, NULL);
   if (!images->preimage) {
-    images->preimage = games_preimage_new_from_uri (fullname, NULL);
+    images->preimage = games_preimage_new_from_file (fullname, NULL);
   }
 
   g_free (fullname);
@@ -73,7 +73,7 @@ static void games_card_images_prerender (GamesCardImages * images)
   if (!images->preimage) {
     g_warning ("Using a fallback card image set.");
     fullname = CARDDIR"bonded.png";
-    images->preimage = games_preimage_new_from_uri (fullname, NULL);    
+    images->preimage = games_preimage_new_from_file (fullname, NULL);    
   }
 
   if (!images->preimage) {

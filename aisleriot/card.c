@@ -89,7 +89,7 @@ static GamesPreimage* get_preimage (const char* filename)
   if (fullname == NULL)
     return NULL; 
 
-  im = games_preimage_new_from_uri (fullname, NULL);
+  im = games_preimage_new_from_file (fullname, NULL);
   g_free (fullname);
 
   return im;

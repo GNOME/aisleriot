@@ -27,7 +27,8 @@
 #include <fcntl.h>
 #include <pwd.h>
 #include <unistd.h>
-#include <gnome.h>
+#include <gtk/gtk.h>
+#include <glib/gi18n.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <errno.h>

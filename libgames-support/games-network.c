@@ -33,7 +33,8 @@
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <gnome.h>
+#include <gtk/gtk.h>
+#include <glib/gi18n.h>
 #include <sys/signal.h>
 #include <sys/socket.h>
 #include <netinet/in.h>

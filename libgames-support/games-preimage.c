@@ -24,7 +24,6 @@
 #include <glib.h>
 #include <glib/gi18n-lib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
 
 #include "games-preimage.h"
 
@@ -145,13 +144,13 @@ games_preimage_render (GamesPreimage * preimage,
     g_signal_connect (loader, "size-prepared", 
 		      G_CALLBACK (size_prepared_cb), &info);
     
-    if (!gdk_pixbuf_loader_write (loader, buffer, buffer_size, error)){
+    if (!gdk_pixbuf_loader_write (loader, buffer, buffer_size, error)) {
       gdk_pixbuf_loader_close (loader, NULL);
       g_object_unref (loader);
       return NULL;
     }
 
-    if (!gdk_pixbuf_loader_close (loader, error)){        	
+    if (!gdk_pixbuf_loader_close (loader, error)) {        	
       g_object_unref (loader);
       return NULL;
     }
@@ -180,12 +179,12 @@ games_preimage_render (GamesPreimage * preimage,
   return pixbuf;
 }
 
-/* games_preimage_new_from_uri:
+/* games_preimage_new_from_file:
  * Take a filename and use it to create a GamesPreimage, which can
  * be used to render a GdkPixbuf later. */
 GamesPreimage *
-games_preimage_new_from_uri (const gchar *uri, 
-			      GError **error)
+games_preimage_new_from_file (const gchar *filename, 
+			      GError     **error)
 {
   GamesPreimage   *preimage;
   GdkPixbufLoader *loader;
@@ -205,20 +204,19 @@ games_preimage_new_from_uri (const gchar *uri,
   
   info.scalable = FALSE;
   
-  g_return_val_if_fail (uri != NULL, NULL);
+  g_return_val_if_fail (filename != NULL, NULL);
   
-  if (gnome_vfs_read_entire_file (uri, &buffer_size, &buffer) != GNOME_VFS_OK){
+  if (!g_file_get_contents (filename, &buffer, &buffer_size, NULL))
     return NULL;
-  }
   
   loader = gdk_pixbuf_loader_new ();
   g_signal_connect (loader, "size-prepared", G_CALLBACK (size_info_cb), &info);
   
   /* write to the loader, breaking early if we find a vector image*/
-  while ( (buffer_size>offset) && !(info.scalable) ){
-    length=MIN(buffer_size-offset, LOAD_BUFFER_SIZE);
-    if (!gdk_pixbuf_loader_write (loader, buffer+offset, length, error)) {
-      gdk_pixbuf_loader_close  (loader, NULL);
+  while ((buffer_size>offset) && !(info.scalable)) {
+    length = MIN (buffer_size-offset, LOAD_BUFFER_SIZE);
+    if (!gdk_pixbuf_loader_write (loader, buffer + offset, length, error)) {
+      gdk_pixbuf_loader_close (loader, NULL);
       g_object_unref (loader);
       g_free (buffer);
       return NULL;
@@ -262,7 +260,7 @@ games_preimage_new_from_uri (const gchar *uri,
     g_object_ref (pixbuf);
     g_object_unref (loader);
     
-    preimage = games_preimage_new();
+    preimage = games_preimage_new ();
     
     preimage->scalable = info.scalable;
     preimage->pixbuf   = pixbuf;
@@ -301,7 +299,7 @@ games_preimage_render_unscaled_pixbuf (GamesPreimage * preimage)
   
   g_return_val_if_fail (preimage != NULL, NULL);
   
-  if ((unscaled_pixbuf = preimage->pixbuf)){
+  if ((unscaled_pixbuf = preimage->pixbuf)) {
     g_object_ref (unscaled_pixbuf);
   } else {
     unscaled_pixbuf = games_preimage_render (preimage, preimage->width,

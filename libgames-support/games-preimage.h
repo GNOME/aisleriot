@@ -55,8 +55,8 @@ GType games_preimage_get_type (void);
 
 GamesPreimage * games_preimage_new (void);
 
-GamesPreimage * games_preimage_new_from_uri (const gchar *uri,
-					      GError **error);
+GamesPreimage * games_preimage_new_from_file (const gchar *filename,
+					      GError     **error);
 
 GdkPixbuf * games_preimage_render (GamesPreimage * preimage,
 				   gint width, 

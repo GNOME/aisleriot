@@ -22,7 +22,8 @@
 /* A lot of this was written by following the sorce for GtkFrame and
  * GtkAspectFrame. */
 
-#include <gnome.h>
+#include <gtk/gtk.h>
+#include <glib/gi18n.h>
 
 #include "games-gridframe.h"
 
