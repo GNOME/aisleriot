@@ -53,6 +53,7 @@
  * Global Variables
  */
 GtkWidget        *app;
+GtkWidget        *vbox;
 GtkWidget        *playing_area;
 GtkWidget        *option_dialog = NULL;
 GdkGC            *draw_gc;
@@ -330,8 +331,8 @@ static void create_sol_board ()
    * window size. */
   gtk_widget_set_size_request (playing_area, BOARD_MIN_WIDTH, 
 			       BOARD_MIN_HEIGHT);
-  
-  gnome_app_set_contents (GNOME_APP (app), playing_area);
+
+  gtk_box_pack_start (GTK_BOX (vbox), playing_area, TRUE, TRUE, 0);
   
   gtk_widget_realize (playing_area);
 
@@ -392,11 +393,17 @@ static void main_prog(void *closure, int argc, char *argv[])
   cscm_init();
 
   create_main_window ();
+  vbox = gtk_vbox_new (FALSE, 0);
+  gnome_app_set_contents (GNOME_APP (app), vbox);
 
   load_pixmaps ();
 
-  create_sol_board ();
   create_menus ();
+
+  gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox), toolbar, FALSE, FALSE, 0);  
+
+  create_sol_board ();
 
   score_box = gtk_hbox_new(0, FALSE);
   score_label = gtk_label_new (_("Score:"));
@@ -412,15 +419,14 @@ static void main_prog(void *closure, int argc, char *argv[])
   gtk_box_pack_end (GTK_BOX(status_bar), score_box, FALSE, FALSE, 0);
   gnome_app_set_statusbar (GNOME_APP (app), status_bar);
 
-  install_menu_hints(GNOME_APP (app));
-
   new_game (start_game, NULL);
 
   gtk_widget_show_all (app);
 
   if (!gconf_client_get_bool (gconf_client,
                              "/apps/aisleriot/show_toolbar", NULL))
-    toolbar_hide();
+    gtk_widget_hide (toolbar);
+
   click_to_move = gconf_client_get_bool (gconf_client, 
 					 "/apps/aisleriot/click_to_move", 
 					 NULL);

@@ -32,6 +32,21 @@
 #include "events.h"
 #include "statistics.h"
 
+GtkUIManager *ui_manager;
+
+/* Cached widgets which we alter the state of frequently. */
+GtkWidget *undomenuitem;
+GtkWidget *redomenuitem;
+GtkWidget *restartmenuitem;
+GtkWidget *undotoolbaritem;
+GtkWidget *redotoolbaritem;
+GtkWidget *restarttoolbaritem;
+GtkWidget *ctmtoggle;
+GtkWidget *toolbartoggle;
+GtkWidget *helpitem;
+GtkWidget *menubar;
+GtkWidget *toolbar;
+
 static GtkWidget *about = NULL;
 static gchar * gamename = NULL;
 
@@ -140,217 +155,181 @@ void help_about_callback ()
   return;
 }
 
-static void help_on_specific_game ()
+static void general_help (void)
+{
+  gnome_help_display ("aisleriot.xml", NULL, NULL);
+}
+
+static void help_on_specific_game (void)
 {
   gnome_help_display ("aisleriot.xml", gamename, NULL);
 }
 
-static void toolbar_show (void)
-{
-  GtkWidget * toolbar;
-
-  toolbar = GTK_WIDGET(gnome_app_get_dock_item_by_name (GNOME_APP(app),
-                                                        GNOME_APP_TOOLBAR_NAME));
-  gtk_widget_show (toolbar);
-}
-
-void toolbar_hide (void)
-{
-  GtkWidget * toolbar;
-
-  toolbar = GTK_WIDGET(gnome_app_get_dock_item_by_name (GNOME_APP(app),
-                                                        GNOME_APP_TOOLBAR_NAME));
-  gtk_widget_hide (toolbar);
-}
-
-static void toolbar_toggle_callback(GtkWidget * togglebutton, gpointer data)
+static void toolbar_toggle_callback(GtkToggleAction * togglebutton, 
+				    gpointer data)
 {
   gboolean state;
   
-  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM (togglebutton));
+  state = gtk_toggle_action_get_active (togglebutton);
 
   if (state) {
-    toolbar_show();
+    gtk_widget_show (toolbar);
     gconf_client_set_bool (gconf_client, "/apps/aisleriot/show_toolbar", TRUE,
                            NULL);
   } else {
-    toolbar_hide();
+    gtk_widget_hide (toolbar);
     gconf_client_set_bool (gconf_client, "/apps/aisleriot/show_toolbar", FALSE,
                            NULL);
   }
 }
 
-static void clickmove_toggle_callback(GtkWidget * togglebutton, gpointer data)
+static void clickmove_toggle_callback(GtkToggleAction * 
+				      togglebutton, gpointer data)
 {
-  gboolean state;
-  
-  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM (togglebutton));
+  click_to_move = gtk_toggle_action_get_active (togglebutton);
 
-  click_to_move = state;
-  gconf_client_set_bool (gconf_client, "/apps/aisleriot/click_to_move", state,
-			 NULL);
+  gconf_client_set_bool (gconf_client, "/apps/aisleriot/click_to_move", 
+			 click_to_move, NULL);
 }
-
-GnomeUIInfo rules_sub_menu[] = {
-  GNOMEUIINFO_END
-};
-
-GnomeUIInfo view_menu[] = {
-
-#if 0
-  GNOMEUIINFO_ITEM_STOCK(N_("Game _options..."),
-			 N_("Modify the options for this game"),
-			 show_rules_options_dialog, GNOME_STOCK_MENU_PREF),
-
-  GNOMEUIINFO_SEPARATOR,
-#endif
-
-  GNOMEUIINFO_TOGGLEITEM (N_("_Toolbar"), N_("Show or hide the toolbar"),
-                          toolbar_toggle_callback, NULL),
-
-  GNOMEUIINFO_ITEM_STOCK (N_("_Cards..."), N_("Change the appearance of the cards"), 
-			  show_preferences_dialog, NULL),
-
-  GNOMEUIINFO_END
-};
-
-GnomeUIInfo help_menu[] = {
-  GNOMEUIINFO_HELP("aisleriot"),
-
-  GNOMEUIINFO_ITEM_STOCK ("", "", help_on_specific_game, 
-			  GNOME_STOCK_PIXMAP_HELP),
-
-  GNOMEUIINFO_MENU_ABOUT_ITEM(help_about_callback, NULL),
-
-  GNOMEUIINFO_END
-};
-
-GnomeUIInfo game_menu[] = {
-
-  GNOMEUIINFO_MENU_NEW_GAME_ITEM(random_seed, NULL),
-
-  GNOMEUIINFO_MENU_RESTART_GAME_ITEM(restart_game, NULL),
-
-  GNOMEUIINFO_ITEM_STOCK (N_("_Select..."), N_("Select a different game"), show_select_game_dialog, GTK_STOCK_OPEN),
-
-  GNOMEUIINFO_ITEM_STOCK (N_("S_tatistics..."), N_("Get statistics on the current game"), show_statistics_dialog, GTK_STOCK_ADD),
-
-  GNOMEUIINFO_SEPARATOR,
-
-  GNOMEUIINFO_MENU_EXIT_ITEM(quit_app, NULL),
-
-  GNOMEUIINFO_END
-};
-
-GnomeUIInfo control_menu[] = {
-  
-  GNOMEUIINFO_TOGGLEITEM (N_("_Click to move"), N_("Use clicks instead of drags to move cards"),
-                          clickmove_toggle_callback, NULL),
-
-  GNOMEUIINFO_SEPARATOR,
-
-  GNOMEUIINFO_MENU_UNDO_MOVE_ITEM(undo_callback, NULL),
-
-  GNOMEUIINFO_MENU_REDO_MOVE_ITEM(redo_callback, NULL),
-
-  GNOMEUIINFO_MENU_HINT_ITEM(show_hint_dialog, NULL),
-
-  GNOMEUIINFO_END
-};
-
-GnomeUIInfo top_menu[] = {
-
-  GNOMEUIINFO_MENU_GAME_TREE(game_menu),
-
-  GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
-
-  GNOMEUIINFO_SUBTREE (N_("_Control"), control_menu),
-
-  GNOMEUIINFO_MENU_HELP_TREE(help_menu),
-
-  GNOMEUIINFO_END
-};
-
-GnomeUIInfo toolbar[] =
-{
-  GNOMEUIINFO_ITEM_STOCK(N_("New"), N_("Start a new game"),
-			 random_seed, GTK_STOCK_NEW),
-
-  GNOMEUIINFO_ITEM_STOCK(N_("Restart"), N_("Restart the game"),
-			 restart_game, GTK_STOCK_REFRESH),
-
-  GNOMEUIINFO_ITEM_STOCK(N_("Select"), N_("Select a different game"),
-			 show_select_game_dialog, GTK_STOCK_OPEN),
-
-  GNOMEUIINFO_SEPARATOR,
-
-  GNOMEUIINFO_ITEM_STOCK(N_("Undo"), N_("Undo the last move"),
-			 undo_callback, GTK_STOCK_UNDO),
-
-  GNOMEUIINFO_ITEM_STOCK(N_("Redo"), N_("Redo the undone move"),
-			 redo_callback, GTK_STOCK_REDO),
-
-  GNOMEUIINFO_ITEM_STOCK(N_("Hint"), N_("Get a hint for your next move"),
-			 show_hint_dialog, GTK_STOCK_HELP),
-
-  GNOMEUIINFO_END
-};
 
 void undo_set_sensitive (gboolean state)
 {
-  gtk_widget_set_sensitive (control_menu[2].widget, state);
-  gtk_widget_set_sensitive (toolbar[4].widget, state);
+  gtk_widget_set_sensitive (undomenuitem, state);
+  gtk_widget_set_sensitive (undotoolbaritem, state); 
 
   /* The restart game validity condition is the same as for undo. */
-  gtk_widget_set_sensitive (game_menu[1].widget, state);
-  gtk_widget_set_sensitive (toolbar[1].widget, state);
+  gtk_widget_set_sensitive (restartmenuitem, state);
+  gtk_widget_set_sensitive (restarttoolbaritem, state);
 }
 
 void redo_set_sensitive (gboolean state)
 {
-  gtk_widget_set_sensitive (control_menu[3].widget, state);
-  gtk_widget_set_sensitive (toolbar[5].widget, state);
+  gtk_widget_set_sensitive (redomenuitem, state);
+  gtk_widget_set_sensitive (redotoolbaritem, state);
+}
+
+const GtkActionEntry actions[] = {
+  { "GameMenu", NULL, N_("_Game") },
+  { "ViewMenu", NULL, N_("_View") },
+  { "ControlMenu", NULL, N_("_Control") },
+  { "HelpMenu", NULL, N_("_Help") },
+
+  { "NewGame", GTK_STOCK_MEDIA_PLAY, N_("_New Game"), "<control>N", NULL, G_CALLBACK (random_seed) },
+  { "RestartGame", GTK_STOCK_REFRESH, N_("_Restart Game"), "<control>R", NULL, G_CALLBACK (restart_game) },
+  { "Select", GTK_STOCK_INDEX, N_("_Select Game..."), NULL, NULL, G_CALLBACK (show_select_game_dialog) },
+  { "Statistics", GTK_STOCK_ADD, N_("S_tatistics..."), NULL, NULL, G_CALLBACK (show_statistics_dialog) },
+  { "Quit", GTK_STOCK_QUIT, NULL, NULL, NULL, G_CALLBACK (quit_app) },
+
+  { "Cards", NULL, N_("_Cards..."), NULL, NULL, G_CALLBACK (show_preferences_dialog) },
+
+  { "UndoMove", GTK_STOCK_UNDO, N_("_Undo Move"), "<control>Z", NULL, G_CALLBACK (undo_callback) },
+  { "RedoMove", GTK_STOCK_REDO, N_("_Redo Move"), "<shift><control>Z", NULL, G_CALLBACK (redo_callback) },
+  { "Hint", GTK_STOCK_HELP, N_("_Hint"), NULL, NULL, G_CALLBACK (show_hint_dialog) },
+  
+  
+  { "Contents", GTK_STOCK_HELP, N_("_Contents"), "F1", NULL, G_CALLBACK (general_help) },
+  { "Help", GTK_STOCK_HELP, "", "", NULL, G_CALLBACK (help_on_specific_game) },
+  {"About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) }
+
+};
+
+const GtkToggleActionEntry toggles[] = {
+  { "Toolbar", NULL, N_("_Toolbar"), NULL, NULL, G_CALLBACK (toolbar_toggle_callback) },
+  { "ClickToMove", NULL, N_("_Click to Move"), NULL, NULL, G_CALLBACK (clickmove_toggle_callback) },
+};
+
+const char *ui_description = 
+"<ui>"
+"  <menubar name='MainMenu'>"
+"    <menu action='GameMenu'>"
+"      <menuitem action='NewGame'/>"
+"      <menuitem action='RestartGame'/>"
+"      <menuitem action='Select'/>"
+"      <menuitem action='Statistics'/>"
+"      <separator/>"
+"      <menuitem action='Quit'/>"
+"    </menu>"
+"    <menu action='ViewMenu'>"
+"      <menuitem action='Toolbar'/>"
+"      <menuitem action='Cards'/>"
+"    </menu>"
+"    <menu action='ControlMenu'>"
+"      <menuitem action='ClickToMove'/>"
+"      <separator/>"
+"      <menuitem action='UndoMove'/>"
+"      <menuitem action='RedoMove'/>"
+"      <menuitem action='Hint'/>"
+"    </menu>"
+"    <menu action='HelpMenu'>"
+"      <menuitem action='Contents'/>"
+"      <menuitem action='Help'/>"
+"      <menuitem action='About'/>"
+"    </menu>"
+"  </menubar>"
+"  <toolbar name='Toolbar'>"
+"    <toolitem action='NewGame'/>"
+"    <toolitem action='RestartGame'/>"
+"    <toolitem action='Select'/>"
+"    <separator/>"
+"    <toolitem action='UndoMove'/>"
+"    <toolitem action='RedoMove'/>"
+"    <toolitem action='Hint'/>"
+"  </toolbar>"
+"</ui>";
+
+void create_menus ()
+{
+  GtkAccelGroup *accel_group;
+  GtkActionGroup *action_group;
+
+  action_group = gtk_action_group_new ("MenuActions");
+  gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
+  gtk_action_group_add_actions (action_group, actions, G_N_ELEMENTS (actions),
+				NULL); 
+  gtk_action_group_add_toggle_actions (action_group, toggles, 
+				       G_N_ELEMENTS (toggles), NULL);
+
+  ui_manager = gtk_ui_manager_new ();
+  gtk_ui_manager_insert_action_group (ui_manager, action_group, 1); 
+  gtk_ui_manager_add_ui_from_string (ui_manager, ui_description, -1, NULL);
+
+  accel_group = gtk_ui_manager_get_accel_group (ui_manager);
+  gtk_window_add_accel_group (GTK_WINDOW (app), accel_group);
+
+  undomenuitem = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/ControlMenu/UndoMove");
+  redomenuitem = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/ControlMenu/RedoMove");
+  restartmenuitem = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/GameMenu/RestartGame");
+  undotoolbaritem = gtk_ui_manager_get_widget (ui_manager, "/Toolbar/UndoMove");
+  redotoolbaritem = gtk_ui_manager_get_widget (ui_manager, "/Toolbar/RedoMove");
+  restarttoolbaritem = gtk_ui_manager_get_widget (ui_manager, "/Toolbar/RestartGame");
+  helpitem = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/HelpMenu/Help");
+  ctmtoggle = gtk_ui_manager_get_widget (ui_manager, 
+					 "/MainMenu/ControlMenu/ClickToMove");
+  toolbartoggle = gtk_ui_manager_get_widget (ui_manager,
+					     "/MainMenu/ViewMenu/Toolbar");
+
+  menubar = gtk_ui_manager_get_widget (ui_manager, "/MainMenu");
+  toolbar = gtk_ui_manager_get_widget (ui_manager, "/Toolbar");
+  
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (toolbartoggle),
+				gconf_client_get_bool (gconf_client,
+						       "/apps/aisleriot/show_toolbar",
+						       NULL));
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (ctmtoggle),
+				gconf_client_get_bool (gconf_client,
+						       "/apps/aisleriot/click_to_move",
+						       NULL));
 }
 
 void help_update_game_name (gchar * name)
 {
-  static GnomeUIInfo newitems[] = { GNOMEUIINFO_ITEM_STOCK ("", 
-							  N_("View help for the current game"), 
-							  help_on_specific_game,
-							    GTK_STOCK_HELP),
-				    GNOMEUIINFO_END };
-  
+
   if (gamename)
     g_free (gamename);
 
   gamename = g_strdup (name);
 
-  newitems[0].label = gamename;
+  gtk_label_set_text (GTK_LABEL (GTK_BIN (helpitem)->child), gamename);
 
-  gnome_app_remove_menu_range (GNOME_APP(app), "_Help/_Contents", 1, 1);
-  gnome_app_insert_menus (GNOME_APP(app), "_Help/_Contents", &newitems[0]);
-  gnome_app_install_menu_hints(GNOME_APP (app), newitems);
-}
-
-void create_menus ()
-{
-  gnome_app_create_menus (GNOME_APP(app), top_menu);
-  gnome_app_create_toolbar (GNOME_APP(app), toolbar);
-
-  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (view_menu[0].widget),
-                                  gconf_client_get_bool (gconf_client,
-                                                         "/apps/aisleriot/show_toolbar",
-                                                         NULL));
-
-  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (control_menu[0].widget),
-                                  gconf_client_get_bool (gconf_client,
-                                                         "/apps/aisleriot/click_to_move",
-                                                         NULL));
-  
-}
-
-void install_menu_hints (GnomeApp *app)
-{
-  gnome_app_install_menu_hints(GNOME_APP (app), top_menu);
 }
 

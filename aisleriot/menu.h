@@ -31,4 +31,8 @@ void undo_set_sensitive (gboolean state);
 void redo_set_sensitive (gboolean state);
 void help_update_game_name (gchar * name);
 
+extern GtkUIManager *ui_manager;
+extern GtkWidget *menubar;
+extern GtkWidget *toolbar;
+
 #endif
