@@ -1,572 +1,895 @@
-/* card-image.c
-   Copyright (C) 1997 Ryu Changwoo
+/* gdk-card-image.c
+   Copyright 1998 Free Software Foundation, Inc.
 
-   This program is free software; you can redistribute it and'or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
+   This library is free software; you can redistribute it and'or modify
+   it under the terms of the GNU Library General Public License as published 
+   by the Free Software Foundation; either version 2, or (at your option)
    any later version.
 
-   This program is distributed in the hope that it will be useful,
+   This library is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+   GNU Library General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
+   You should have received a copy of the GNU Library General Public License
+   along with this library; if not, write to the Free Software
    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
-/* Written by Ryu Changwoo <cwryu@eve.kaist.ac.kr>. */
+/* Authors:   Felix Bellaby <felix@pooh.u-net.com>
+              Ryu Changwoo <cwryu@eve.kaist.ac.kr> */
 
-#include <gdk/gdk.h>
-#include <gdk_imlib.h>
+/* The library currently handles options as a collection of a set of
+ * integers which index image files within a set of directories holding
+ * specialist images that can be assembled to form a deck of cards.
+ * The user is presented with a table of option menus which list the 
+ * filenames of the images in each directory.
+ * This works but is not set in stone. */
 
-#include <string.h>
-#include <stdio.h>
+#include <gnome.h>
+#include <dirent.h>
+#include <gdk-card-image.h>
 
-static GdkPixmap **faces[4];
-static GdkPixmap *back;
-
-typedef struct CARD_BASE
+/* An image file used in building the cards:
+ * each file can contain multiple images and/or half images */
+typedef struct _GdkCardDeckFile
 {
-  GdkPixmap *background;
-  GdkBitmap *card_clip;
-  int w, h;
-
-  GdkPixmap *back;
-  GdkBitmap *back_clip;
-  int bw, bh;
-
-  GdkPixmap *ranks;
-  GdkBitmap *ranks_clip;
-  int rw, rh;
-  int r1w, r1h;
-  int rx, ry;
-
-  GdkPixmap *suits;
-  GdkBitmap *suits_clip;
-  int sw, sh;
-  int s1w, s1h, s1off;
-  int s2w, s2h, s2off;
-  int s3w, s3h, s3off;
-  int s4w, s4h, s4off;
-  int s4x, s4y;
-  
-  GdkPixmap *pictures;
-  GdkBitmap *pictures_clip;
-  int pw, ph;
-  int p1w, p1h;
-
-  int xdelta;
-  int ydelta;
-  int x0, x1, x2;	/* x-positions of the large suit symbols */
-  int y0, y1, y2, y3, y4, y5, y6, y7, y8;	/* y-positions */
-}
-CARD_BASE;
-static CARD_BASE card_base;
-
-static void read_base_image ();
-static void mirror_image (GdkGC *gc, GdkPixmap *p, int x, int y, int w, int h);
-static void draw_background (GdkGC *gc, GdkPixmap *p);
-static void draw_rank (GdkGC *gc, GdkPixmap *p, int suit, int rank);
-static void draw_small_suit (GdkGC *gc, GdkPixmap *p, int suit);
-static void draw_suit (GdkGC *gc, GdkPixmap *p, int suit, int rank);
-static void draw_picture (GdkGC *gc, GdkPixmap *p, int suit, int rank);
-static char *image_filename (char *basename);
-static GdkPixmap *load_image (GdkBitmap **mask, char *filename);
-
-  /* FIX ME: CARDIMAGEDIR should be passed as a parameter
-   * OR the images should be hardcoded into the library. Hard coding
-   * a directory is absurd. Linking libgnome is not much better */
-static char *
-image_filename (char *basename)
-{
-  char *str;
-
-  str = (char *)g_malloc(strlen(CARDIMAGEDIR) + 1 + strlen(basename) + 1);
-  sprintf (str, "%s/%s", CARDIMAGEDIR, basename);
-  return str;
-}
-
-static GdkPixmap* 
-load_image (GdkBitmap** mask, char* filename)
-{
-  GdkPixmap* ret;
-  GdkImlibImage *im;
-  char* fullname = image_filename (filename);
-
-  im = gdk_imlib_load_image (fullname);
-  gdk_imlib_render (im, im->rgb_width, im->rgb_height);
-  ret = gdk_imlib_copy_image (im);
-  if(mask)
-    *mask = gdk_imlib_copy_mask (im);
-  gdk_imlib_destroy_image (im);
-  g_free (fullname);
-
-  return ret;
-}
-
-
-static void
-read_base_image ()
-{
-  char *filename;
-
-  card_base.ranks = load_image (&card_base.ranks_clip, "Ranks.xpm");
-
-  gdk_window_get_size (card_base.ranks, &card_base.rw, &card_base.rh);
-  card_base.r1w = card_base.rw/13;
-  card_base.r1h = card_base.rh/4;
-  
-  card_base.background = load_image (&card_base.card_clip, "Background.xpm");
-
-  gdk_window_get_size (card_base.background, &card_base.w, &card_base.h);
-
-  card_base.back = load_image (&card_base.back_clip, "Cardback1.xpm");
-
-  gdk_window_get_size (card_base.back, &card_base.bw, &card_base.bh);
-
-  card_base.suits = load_image (&card_base.suits_clip, "Suits.xpm");
-
-  gdk_window_get_size (card_base.suits, &card_base.sw, &card_base.sh);
-
-  card_base.s1w = 21;
-  card_base.s1h = 25;
-  card_base.s1off = 0;
-  card_base.s2w = 18;
-  card_base.s2h = 21;
-  card_base.s2off = card_base.s1off + card_base.s1h;
-  card_base.s3w = 15;
-  card_base.s3h = 19;
-  card_base.s3off = card_base.s2off + card_base.s2h;
-  card_base.s4w = 9;
-  card_base.s4h = 10;
-  card_base.s4off = card_base.s3off + card_base.s3h;
-
-  card_base.pictures = load_image (&card_base.pictures_clip, "Pictures.xpm");
-
-  gdk_window_get_size (card_base.pictures, &card_base.pw, &card_base.ph);
-  card_base.p1w = card_base.pw/4;
-  card_base.p1h = card_base.ph/3;
-
-  card_base.xdelta = card_base.w / 5;
-  card_base.ydelta = card_base.h / 10;  
-
-  card_base.x1 = (card_base.w - card_base.s2w) / 2;
-  card_base.y3 = (card_base.h - card_base.s2h) / 2;
-
-  card_base.x0 = card_base.x1 - card_base.xdelta; 
-  card_base.x2 = card_base.x1 + card_base.xdelta; 
-
-  card_base.y0 = card_base.y3 - 3 * card_base.ydelta;
-  card_base.y1 = card_base.y3 - 2 * card_base.ydelta;
-  card_base.y2 = card_base.y3 - 1 * card_base.ydelta;
-  card_base.y4 = card_base.y3 + 1 * card_base.ydelta;
-  card_base.y5 = card_base.y3 + 2 * card_base.ydelta;
-  card_base.y6 = card_base.y3 + 3 * card_base.ydelta;
-
-  card_base.y7 = card_base.y3 - (3 * card_base.ydelta) / 2;
-  card_base.y8 = card_base.y3 + (3 * card_base.ydelta) / 2;
-
-  card_base.s4x = card_base.x0 + (card_base.s2w - card_base.s4w) / 2
-    - card_base.xdelta; 
-  card_base.s4y = card_base.y0 + (card_base.s2h - card_base.s4h) / 2;
-  card_base.rx = card_base.s4x + (card_base.s4w - card_base.r1w) / 2;
-  card_base.ry = card_base.s4y - card_base.r1h - 1;
-  if (card_base.ry < 6) {
-    card_base.ry = 6;
-    card_base.s4y = card_base.ry + card_base.r1h + 1;
-  }
-}
-
-
-static void
-draw_background (GdkGC *gc, GdkPixmap *p)
-{
-  gdk_window_copy_area((GdkWindow *)p,
-		       gc,
-		       0, 0,
-		       (GdkWindow *)card_base.background,
-		       0, 0, card_base.w, card_base.h);
-}
-
-
-static void
-draw_rank (GdkGC *gc, GdkPixmap *p, int suit, int rank)
-{
-  int x, y, cx, cy;
-
-  cx = card_base.w - card_base.rx - card_base.r1w;
-  cy = card_base.h - card_base.ry - card_base.r1h;
-
-  x = rank * card_base.r1w;
-  y = ((suit >> 1) ^ (suit & 1)) * card_base.r1h;
-
-  gdk_gc_set_clip_mask(gc, card_base.ranks_clip);
-
-  gdk_gc_set_clip_origin(gc, card_base.rx-x, card_base.ry-y);
-  gdk_window_copy_area((GdkWindow *)p, gc,
-		       card_base.rx, card_base.ry,
-		       (GdkWindow *)card_base.ranks,
-		       x, y, card_base.r1w, card_base.r1h);
-  
-  gdk_gc_set_clip_origin(gc, cx-x, card_base.ry-y);
-  gdk_window_copy_area((GdkWindow *)p, gc,
-		       cx, card_base.ry,
-		       (GdkWindow *)card_base.ranks,
-		       x, y, card_base.r1w, card_base.r1h);
-
-  x = card_base.rw - card_base.r1w - x;
-  y = card_base.rh - card_base.r1h - y;
-
-  gdk_gc_set_clip_origin(gc, card_base.rx-x, cy-y);
-  gdk_window_copy_area((GdkWindow *)p, gc,
-		       card_base.rx, cy,
-		       (GdkWindow *)card_base.ranks,
-		       x, y, card_base.r1w, card_base.r1h);
-
-  gdk_gc_set_clip_origin(gc, cx-x, cy-y);
-  gdk_window_copy_area((GdkWindow *)p, gc,
-		       cx, cy,
-		       (GdkWindow *)card_base.ranks,
-		       x, y, card_base.r1w, card_base.r1h);
-
-  gdk_gc_set_clip_mask(gc, NULL);
-}
-
-static void
-draw_small_suit (GdkGC *gc, GdkPixmap *p, int suit)
-{
-  int x, y, cx, cy;
-
-  cx = card_base.w - card_base.s4w - card_base.s4x;
-  cy = card_base.h - card_base.s4h - card_base.s4y;
-
-  x = suit*card_base.s4w;
-  y = card_base.s4off;
-
-  gdk_gc_set_clip_mask(gc, card_base.suits_clip);
-
-  gdk_gc_set_clip_origin(gc, card_base.s4x-x, card_base.s4y-y);
-  gdk_window_copy_area((GdkWindow *)p, gc,
-		       card_base.s4x, card_base.s4y,
-		       (GdkWindow *)card_base.suits,
-		       x, y, card_base.s4w, card_base.s4h);
-
-  gdk_gc_set_clip_origin(gc, cx-x, card_base.s4y-y);
-  gdk_window_copy_area((GdkWindow *)p, gc,
-		       cx, card_base.s4y,
-		       (GdkWindow *)card_base.suits,
-		       x, y, card_base.s4w, card_base.s4h);
-
-  x = x + 4 * card_base.s4w;
-
-  gdk_gc_set_clip_origin(gc, cx-x, cy-y);
-  gdk_window_copy_area((GdkWindow *)p, gc,
-		       cx, cy,
-		       (GdkWindow *)card_base.suits,
-		       x, y, card_base.s4w, card_base.s4h);
-
-  gdk_gc_set_clip_origin(gc, card_base.s4x-x, cy-y);
-  gdk_window_copy_area((GdkWindow *)p, gc,
-		       card_base.s4x, cy,
-		       (GdkWindow *)card_base.suits,
-		       x, y, card_base.s4w, card_base.s4h);
-
-  gdk_gc_set_clip_mask(gc, NULL);
-}
-
-#define PAINT_AT(xx, yy) \
-{ \
-  gdk_gc_set_clip_origin(gc, (xx)-x, (yy)-y); \
-  gdk_window_copy_area((GdkWindow *)p, gc, (xx), (yy), \
-		       (GdkWindow *)card_base.suits, x, y, \
-		       card_base.s2w, card_base.s2h); \
-}							    
-#define PAINT_RV(xx, yy) \
-{ \
-  gdk_gc_set_clip_origin(gc, (xx)-x, (yy)-y); \
-  gdk_window_copy_area((GdkWindow *)p, gc, (xx), (yy), \
-		       (GdkWindow *)card_base.suits, x, y, \
-		       card_base.s2w, card_base.s2h); \
-}							    
-		       
-
-static void
-draw_suit (GdkGC *gc, GdkPixmap *p, int suit, int rank)
-{
-  static const unsigned char suitflags[] =
-  {  /* 25 => 03 for different 8 */
-    0x80, 0x08, 0x88, 0x01, 0x81, 0x05, 0x45, 0x25, 0x83, 0x13, 0, 0, 0, 0
-  };
-  int x, y;
-
-  x = suit * card_base.s2w;
-  y = card_base.s2off;
-
-  gdk_gc_set_clip_mask(gc, card_base.suits_clip);
-
-  if (suitflags[rank] & 0x01)
-    {
-      PAINT_AT(card_base.x0, card_base.y0);
-      PAINT_AT(card_base.x2, card_base.y0);
-    }
-  if (suitflags[rank] & 0x02)
-    {
-      PAINT_AT(card_base.x0, card_base.y2);
-      PAINT_AT(card_base.x2, card_base.y2);
-    }
-  if (suitflags[rank] & 0x08)
-    {
-      PAINT_AT(card_base.x1, card_base.y0);
-    }
-  if (suitflags[rank] & 0x10)
-    {
-      PAINT_AT(card_base.x1, card_base.y1);
-    }
-  if (suitflags[rank] & 0x20)
-    {
-      PAINT_AT(card_base.x1, card_base.y7);
-    }
-  gdk_gc_set_clip_mask(gc, NULL);
-  /*  mirror_image (gc, p, 0, 0, card_base.w, card_base.h); */
-  gdk_gc_set_clip_mask(gc, card_base.suits_clip);
-  if (suitflags[rank] & 0x04)
-    {
-      PAINT_AT(card_base.x0, card_base.y3);
-      PAINT_AT(card_base.x2, card_base.y3);
-    }
-  if (suitflags[rank] & 0x40)
-    {
-      PAINT_AT(card_base.x1, card_base.y7);
-    }
-  if (suitflags[rank] & 0x80)
-    {
-      PAINT_AT(card_base.x1, card_base.y3);
-    }
-
-  /* draw all symbols which are upside-down */
-  x = (suit+4) * card_base.s2w;
-  if (suitflags[rank] & 0x01) {
-    PAINT_RV(card_base.x0, card_base.y6);
-    PAINT_RV(card_base.x2, card_base.y6);
-  }
-  if (suitflags[rank] & 0x02) {
-    PAINT_RV(card_base.x0, card_base.y4);
-    PAINT_RV(card_base.x2, card_base.y4);
-  }
-  if (suitflags[rank] & 0x08) {
-    PAINT_RV(card_base.x1, card_base.y6);
-  }
-  if (suitflags[rank] & 0x10) {
-    PAINT_RV(card_base.x1, card_base.y5);
-  }
-  if (suitflags[rank] & 0x20) {
-    PAINT_RV(card_base.x1, card_base.y8);
-  }
-  
-  gdk_gc_set_clip_mask(gc, NULL);
-}
-
-static void
-mirror_image (GdkGC *gc, GdkPixmap *p, int x, int y, int w, int h)
-{
-  int xi, yi;
-  int H = h/2;
-
-  /* first, build a left-right mirror */
-  for (xi = x; xi < x+w; ++xi)
-    gdk_window_copy_area((GdkWindow *)p, gc, (x+w)-1-xi, H+2,
-			 (GdkWindow *)p, xi, y+1, 1, H-1);
-
-  /* now mirror the lower half of the card upside-down */
-  for (yi = 0; yi < H/2; ++yi)
-    {
-      gdk_window_copy_area((GdkWindow *)p, gc, 0, H+1+yi,
-			   (GdkWindow *)p, 0, h-1-yi, w, 1);
-      gdk_window_copy_area((GdkWindow *)p, gc, 0, h-1-yi,
-			   (GdkWindow *)p, 0, H+2+yi, w, 1);
-    }
-  
-  /* shift one scan line */
-  gdk_window_copy_area((GdkWindow *)p, gc, 0, H+1+H/2,
-		       (GdkWindow *)p, 0, H+2+H/2, w, H/2);
-    
-  /* restore the bottom line which was overwritten */
-  gdk_window_copy_area((GdkWindow *)p, gc, 0, h-1,
-		       (GdkWindow *)p, 0, 0, w, 1);
-}
-
-
-static void
-draw_picture (GdkGC *gc, GdkPixmap *p, int suit, int rank)
-{
-  int x, y;
-
-  x = (card_base.w - card_base.p1w)/2;
-  y = (card_base.h + 1)/2 - card_base.p1h;
-
-  gdk_gc_set_clip_mask(gc, card_base.pictures_clip);
-
-  gdk_gc_set_clip_origin (gc,
-			  x-(suit*card_base.p1w), y-((rank-10)*card_base.p1h));
-  gdk_window_copy_area ((GdkWindow *)p, gc, x, y,
-			(GdkWindow *)card_base.pictures,
-			suit*card_base.p1w, (rank-10)*card_base.p1h,
-			card_base.p1w, card_base.p1h);
-  gdk_gc_set_clip_mask(gc, NULL);
-
-  mirror_image (gc, p, 0, 0, card_base.w, card_base.h);
-}
-
-void
-gdk_card_image_init (GdkWindow *window)
-{
-  GdkPixmap * pixmap;
-  GdkGC *gc;
-  int i, j;
-  
-  /* This costs nothing when imlib has already been initialized and
-     makes the library easier to use: */
-  gdk_imlib_init ();
-
-  read_base_image ();
-
-  gc = gdk_gc_new (card_base.background);
-
-  for (i = 0; i < 4; i++) {
-    faces[i] = (GdkPixmap**) calloc(13, sizeof(GdkPixmap*));
-
-    for (j = 0; j < 13; j++) {
-      pixmap =
-	gdk_pixmap_new (window, card_base.w, card_base.h, -1);
-
-      draw_background(gc, pixmap);
-      draw_rank(gc, pixmap, i, j);
-      draw_small_suit(gc, pixmap, i);
-      
-      if (j == 0) {
-	int x = i * card_base.s1w;
-	int y = card_base.s1off;
-	
-	int xx = (card_base.w - card_base.s1w) / 2;
-	int yy = (card_base.h - card_base.s1h) / 2;
-	
-	gdk_gc_set_clip_mask(gc, card_base.suits_clip);
-	gdk_gc_set_clip_origin(gc, (xx)-x, (yy)-y);
-	gdk_window_copy_area((GdkWindow *)pixmap, gc, (xx), (yy),
-			     (GdkWindow *)card_base.suits, x, y,
-			     card_base.s1w, card_base.s1h);
-	gdk_gc_set_clip_mask(gc, NULL);
-      }
-      else if (j <= 9)
-	draw_suit(gc, pixmap, i, j);
-      else
-	draw_picture(gc, pixmap, i, j);
-	  
-      faces[i][j] = pixmap;
-    }
-  }
-
-  {
-    int xx = (card_base.w - card_base.bw) / 2;
-    int yy = (card_base.h - card_base.bh) / 2;
-
-    back = gdk_pixmap_new (window, card_base.w, card_base.h, -1);
-    draw_background(gc, back);
-    gdk_gc_set_clip_mask(gc, card_base.back_clip);
-    gdk_gc_set_clip_origin(gc, (xx), (yy));
-    gdk_window_copy_area((GdkWindow *)back , gc, (xx), (yy),
-			 (GdkWindow *)card_base.back, 0, 0,
-			 card_base.bw, card_base.bh);
-    gdk_gc_set_clip_mask(gc, NULL);  
-  }
-
-  gdk_gc_unref(gc);
-}
-
-GdkPixmap*
-gdk_card_image_face (int suit, int value)
-{
-  return faces[suit][value];
-}
-
-GdkPixmap*
-gdk_card_image_back ()
-{
-  return back;
-}
-
-GdkBitmap*
-gdk_card_image_mask ()
-{
-  return card_base.card_clip;
-}
-
-void
-gdk_card_image_unref ()
-{
-  int i, j;
-  
-  gdk_pixmap_unref (card_base.ranks);
-  gdk_bitmap_unref (card_base.ranks_clip);
-  gdk_pixmap_unref (card_base.background);
-  gdk_bitmap_unref (card_base.card_clip);
-  gdk_pixmap_unref (card_base.suits);
-  gdk_bitmap_unref (card_base.suits_clip);
-  gdk_pixmap_unref (card_base.pictures);
-  gdk_bitmap_unref (card_base.pictures_clip);
-
-  for (i = 0; i < 4; i++)
-    for (j = 0; j < 13; j++)
-      gdk_pixmap_unref (faces[i][j]);
-
-  gdk_pixmap_unref (card_base.back);
-  gdk_bitmap_unref (card_base.back_clip);
-}
-
-/* Obsolete */
-void
-gdk_card_image (int old_id, GdkPixmap **pixmap, GdkBitmap **clip)
-{
-  if (pixmap)
-    *pixmap = faces[(4-(old_id/13))%4][old_id%13];
-  if (clip)
-    *clip = card_base.card_clip;
-}
-
-#ifdef TEST
-#include <gtk/gtk.h>
-
-int
-main (int argc, char **argv)
-{
-  GtkWidget *window;
-  GtkWidget *pixmap;
   GdkPixmap *p;
+  GdkBitmap *b;
+  GdkPixmap *pr;
+  GdkBitmap *br;
+  guint width;
+  guint height;
+
+  gchar* name;
+  guint cols;
+  guint rows;
+  gboolean rotate;
+
+  guint refs;
+} GdkCardDeckFile;
+
+/* A directory of image files:
+ * all the image files in a directory have the same internal structure */
+typedef struct _GdkCardDeckDir
+{
+  gboolean rotate;
+  guint cols;
+  guint rows;
+  gchar* name;
+  guint nfiles;
+  GdkCardDeckFile *file;
+} GdkCardDeckDir;
+
+enum {
+  DIR_BACK,
+  DIR_JOKER,
+  DIR_HONOR,
+  DIR_RANK,
+  DIR_SUIT,
+  DIR_NUM
+};
+
+/* The subdirectories of $(datadir)/pixmaps used by this library */
+GdkCardDeckDir dir[DIR_NUM] = {
+  {FALSE,  1, 1, "cards/backs/" , 0, NULL },
+  {TRUE,   1, 1, "cards/jokers/", 0, NULL },
+  {TRUE,   4, 3, "cards/honors/", 0, NULL },
+  {TRUE,  14, 2, "cards/ranks/" , 0, NULL },
+  {TRUE,   4, 1, "cards/suits/" , 0, NULL }
+};
+
+/* The user chooses which image files to use from each directory */
+typedef struct _GdkCardDeckOptionData
+{
+  gchar* description;
+  GdkCardDeckDir* dir;
+  gchar* def;
+} GdkCardDeckOptionData;
+
+enum {
+  OPT_BACK,
+  OPT_HONOR,
+  OPT_JOKER,
+  OPT_RANK,
+  OPT_SUIT_S,
+  OPT_SUIT_M,
+  OPT_SUIT_L,
+  OPT_NUM
+};
+
+GdkCardDeckOptionData option_data[] = {
+  {N_("Card back:"),          &dir[DIR_BACK],  "beige.png"},
+  {N_("Honor pictures:"),     &dir[DIR_HONOR], "bonded.png"},
+  {N_("Joker icon:"),         &dir[DIR_JOKER], "gnome.png"},
+  {N_("Rank font:"),          &dir[DIR_RANK],  "bold-09x14.png"},
+  {N_("Suit font (small):"),  &dir[DIR_SUIT],  "knuth-09x10.png"},
+  {N_("Suit font (medium):"), &dir[DIR_SUIT],  "knuth-18x21.png"},
+  {N_("Suit font (large):"),  &dir[DIR_SUIT],  "knuth-21x25.png"}
+};
+
+/* The deck of cards itself */
+struct _GdkCardDeck
+{
+  GtkObject object;
+
+  GdkPixmap **faces[4];
+  GdkPixmap *back;
   GdkBitmap *mask;
-  int i;
 
-  gtk_init (&argc, &argv);
+  guint width;
+  guint height;
+  guint corner;
 
-  i = atoi(argv[1]);
+  /* Private stuff used to build the images */
+  gint* index;
+  guint rx, ry;
+  guint sx, sy;
+  guint xdelta;
+  guint ydelta;
+  guint x0, x1, x2;
+  guint y0, y1, y2, y3, y4, y5, y6, y7, y8;
+};
 
-  /* create a new window */
-  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_widget_realize(window);
+struct _GdkCardDeckClass {
+  GtkObjectClass parent_class;
+};
 
-  card_image_init(window->window); 
+static GtkObjectClass *parent_class = NULL;
+
+static gint gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name);
+static gboolean gdk_card_deck_file_load (GdkCardDeckFile* file);
+static void gdk_card_file_unref (GdkCardDeckFile *file);
+static void gdk_card_file_draw (GdkCardDeckFile* file, GdkPixmap* p, 
+				GdkGC* gc, 
+				guint x, guint y, guint i, guint j);
+static void gdk_card_file_draw_r (GdkCardDeckFile* file, GdkPixmap* p, 
+				  GdkGC* gc,  
+				  guint x, guint y, guint i, guint j);
+
+static void gdk_imlib_rotate_image_180 (GdkImlibImage * im);
+
+static void 
+gdk_card_deck_destroy (GtkObject *o)
+{
+  GdkCardDeck* w;
+  guint i, j;
+
+  g_return_if_fail(o != NULL);
+  g_return_if_fail(GDK_IS_CARD_DECK(o));
+
+  w = GDK_CARD_DECK(o);
+
+  for (i = CLUB; i <= SPADE; i++)
+    for (j = JOKER; j <= KING; j++)
+      gdk_pixmap_unref (w->faces[i][j]);
+
+  gdk_pixmap_unref (w->back);
   
-  card_image(i, &p, &mask); 
+  for(i = 0; i < OPT_NUM; i++)
+    gdk_card_file_unref (&option_data[i].dir->file[w->index[i]]);
 
-  pixmap = gtk_pixmap_new (p, mask);
-  gtk_container_add (GTK_CONTAINER (window), pixmap);
+  g_free(w->index);
 
-  gtk_widget_show(pixmap);
-  gtk_widget_draw_default(pixmap);
-  gtk_widget_show(window);
-
-  gtk_main();
-
-  return 0;
+  (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
 }
-#endif /* TEST */
+
+static void
+gdk_card_deck_class_init (GdkCardDeckClass *klass)
+{
+  GtkObjectClass *object_class = (GtkObjectClass*) klass;
+
+  parent_class = gtk_type_class (gtk_object_get_type ());
+
+  object_class->destroy = gdk_card_deck_destroy;
+}
+
+GtkTypeInfo gdk_card_deck_info = 
+{
+  "GdkCardDeck",
+  sizeof (GdkCardDeck),
+  sizeof (GdkCardDeckClass),
+  (GtkClassInitFunc) gdk_card_deck_class_init,
+  (GtkObjectInitFunc) NULL,
+  (GtkArgSetFunc) NULL,
+  (GtkArgGetFunc) NULL,
+  (GtkClassInitFunc) NULL
+};
+
+guint
+gdk_card_deck_get_type ()
+{
+  static guint type = 0;
+
+  if (!type)
+    type = gtk_type_unique (gtk_object_get_type (), &gdk_card_deck_info);
+  return type;
+}
+
+static int
+is_image (struct dirent* dent)
+{
+  return g_is_image_filename(dent->d_name);
+}
+
+static gint
+gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name)
+{
+  guint i;
+
+  if (!dir->file) {
+    gchar* dir_name = gnome_pixmap_file (dir->name);
+    struct dirent** de;
+    dir->nfiles = scandir (dir_name, &de, is_image, alphasort);
+    dir->file = g_new0 (GdkCardDeckFile, dir->nfiles);
+    for (i = 0; i < dir->nfiles; i++) {
+      dir->file[i].name = g_copy_strings (dir_name, de[i]->d_name, NULL);
+      dir->file[i].cols = dir->cols;
+      dir->file[i].rows = dir->rows;
+      dir->file[i].rotate = dir->rotate;
+      g_free (de[i]);
+    }
+    g_free (de);
+  }
+
+  for (i = 0; i < dir->nfiles; i++)
+    if (!strcmp (name, g_basename (dir->file[i].name)))
+	return i;
+
+  return -1;
+}
+
+/* This is more efficient than using the imlib routines: */
+static void
+gdk_imlib_rotate_image_180 (GdkImlibImage * im)
+{
+  unsigned char      *ptr1, *ptr2, r, rr;
+  int                 w3;
+
+  if (!im)
+    return;
+
+  ptr1 = im->rgb_data;
+  ptr2 = im->rgb_data + im->rgb_height * im->rgb_width * 3 - 3;
+  for (; ptr1 < ptr2;  ptr2 -= 6)
+    {
+      r = *ptr1;
+      rr = *ptr2;
+      *ptr2++ = r;
+      *ptr1++ = rr;
+      r = *ptr1;
+      rr = *ptr2;
+      *ptr2++ = r;
+      *ptr1++ = rr;
+      r = *ptr1;
+      rr = *ptr2;
+      *ptr2++ = r;
+      *ptr1++ = rr;
+    }
+  w3 = im->border.top;
+  im->border.top = im->border.bottom;
+  im->border.bottom = w3;
+  gdirty_images(im);
+  gdirty_pixmaps(im);
+}
+
+static gboolean
+gdk_card_deck_file_load (GdkCardDeckFile* file)
+{
+  if (!file->refs) {
+    GdkImlibImage *im;
+    if (!(im = gdk_imlib_load_image (file->name))) 
+      return FALSE;
+    
+    file->width = im->rgb_width / file->cols;
+    file->height = im->rgb_height/ file->rows;
+    
+    if (!gdk_imlib_render (im, im->rgb_width, im->rgb_height))
+      return FALSE;
+    
+    file->p = gdk_imlib_copy_image (im);
+    file->b = gdk_imlib_copy_mask (im);
+    
+    if (file->rotate) {
+      gdk_imlib_rotate_image_180 (im);
+      gdk_imlib_render (im, im->rgb_width, im->rgb_height);
+      
+      file->pr = gdk_imlib_copy_image (im);
+      file->br = gdk_imlib_copy_mask (im);
+    }
+    
+    gdk_imlib_destroy_image (im);
+  }
+  file->refs++;
+  return TRUE;
+}
+
+static void
+gdk_card_file_unref (GdkCardDeckFile* file)
+{
+  if (!--file->refs) {
+    gdk_pixmap_unref (file->p);
+    gdk_bitmap_unref (file->b);
+
+    if (file->pr) {
+      gdk_pixmap_unref (file->pr);
+      gdk_bitmap_unref (file->br);
+    }
+  }
+}
+
+static void
+gdk_card_file_draw (GdkCardDeckFile* file, GdkPixmap* p, GdkGC* gc, 
+		    guint x, guint y, guint i, guint j)
+{
+  guint xp = i*file->width, yp = j*file->height; 
+
+  gdk_gc_set_clip_origin(gc, x - xp, y - yp);
+  gdk_gc_set_clip_mask(gc, file->b);
+  gdk_window_copy_area((GdkWindow *)p, gc, x, y, 
+		       (GdkWindow *)file->p, xp, yp, 
+		       file->width, file->height);
+}
+
+static void
+gdk_card_file_draw_r (GdkCardDeckFile* file, GdkPixmap* p, GdkGC* gc, 
+		      guint x, guint y, guint i, guint j)
+{
+  guint xp = (file->cols - i - 1)*file->width;
+  guint yp = (file->rows - j - 1)*file->height; 
+
+  gdk_gc_set_clip_origin(gc, x - xp, y - yp);
+  gdk_gc_set_clip_mask(gc, file->br);
+  gdk_window_copy_area((GdkWindow *)p, gc, x, y, 
+		       (GdkWindow *)file->pr, xp, yp, 
+		       file->width, file->height);
+}
+
+struct _GdkCardDeckOptionsEdit {
+  GtkObject object;
+  
+  GtkOptionMenu **menu;
+  gboolean dirty;
+};
+
+struct _GdkCardDeckOptionsEditClass {
+  GtkObjectClass parent_class;
+
+  void (* changed) (GdkCardDeckOptionsEdit* w);
+};
+
+enum {
+  CHANGED,
+  N_SIGNALS
+};
+
+static gint gdk_card_deck_options_edit_signals[N_SIGNALS] = { 0 };
+
+static void 
+gdk_card_deck_options_edit_destroy (GtkObject *o)
+{
+  GdkCardDeckOptionsEdit* w;
+  guint i;
+
+  g_return_if_fail(o != NULL);
+  g_return_if_fail(GDK_IS_CARD_DECK_OPTIONS_EDIT(o));
+
+  w = GDK_CARD_DECK_OPTIONS_EDIT(o);
+
+  for(i = 0; i < OPT_NUM; i++)
+    gtk_widget_destroy (GTK_WIDGET(w->menu[i]));
+  g_free(w->menu);
+
+  (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
+}
+
+static void
+gdk_card_deck_options_edit_class_init (GdkCardDeckOptionsEditClass *klass)
+{
+  GtkObjectClass *object_class = (GtkObjectClass*) klass;
+
+  parent_class = gtk_type_class (gtk_object_get_type ());
+  
+  gdk_card_deck_options_edit_signals[CHANGED] =
+    gtk_signal_new ("changed",
+		    GTK_RUN_LAST,
+		    object_class->type,
+		    GTK_SIGNAL_OFFSET (GdkCardDeckOptionsEditClass, changed),
+		    gtk_signal_default_marshaller,
+		    GTK_TYPE_NONE, 0);
+
+  gtk_object_class_add_signals (object_class, gdk_card_deck_options_edit_signals,
+				N_SIGNALS);
+
+  object_class->destroy = gdk_card_deck_options_edit_destroy;
+  klass->changed = NULL;
+}
+
+GtkTypeInfo gdk_card_deck_options_edit_info = 
+{
+  "GdkCardDeckOptionsEdit",
+  sizeof (GdkCardDeckOptionsEdit),
+  sizeof (GdkCardDeckOptionsEditClass),
+  (GtkClassInitFunc) gdk_card_deck_options_edit_class_init,
+  (GtkObjectInitFunc) NULL,
+  (GtkArgSetFunc) NULL,
+  (GtkArgGetFunc) NULL,
+  (GtkClassInitFunc) NULL
+};
+
+guint
+gdk_card_deck_options_edit_get_type ()
+{
+  static guint type = 0;
+
+  if (!type)
+    type = gtk_type_unique (gtk_object_get_type (), 
+			    &gdk_card_deck_options_edit_info);
+  return type;
+}
+
+static void calculate_dimensions (GdkCardDeck* deck, GdkCardDeckFile** file);
+static void make_rounded_rectangle (GdkWindow *window, GdkGC **gc, 
+				    GdkPixmap **pixmap, GdkBitmap **bitmap,
+				    guint w, guint h, guint c);
+static void draw_rank (GdkCardDeck* deck, GdkCardDeckFile* file, 
+		       GdkGC *gc, GdkPixmap *p, guint suit, guint rank);
+static void draw_small_suit (GdkCardDeck* deck, GdkCardDeckFile* file,
+			     GdkGC *gc, GdkPixmap *p, guint suit);
+static void make_suit (GdkCardDeck* deck, GdkCardDeckFile** file,
+		       GdkWindow *window, GdkGC *gc, 
+		       GdkPixmap ***sp, guint suit);
+
+static void
+calculate_dimensions (GdkCardDeck* deck, GdkCardDeckFile** file)
+{
+  deck->xdelta = (file[OPT_HONOR]->width-4)/3;
+  deck->width = file[OPT_HONOR]->width + 2*deck->xdelta;
+  deck->height = 2*file[OPT_HONOR]->height - 1 + 2*deck->xdelta;
+  deck->corner = ((2*deck->xdelta)/5)*2;
+
+  deck->ydelta = deck->height / 10;  
+
+  deck->x1 = (deck->width - file[OPT_SUIT_M]->width) / 2;
+  deck->y3 = (deck->height - file[OPT_SUIT_M]->height) / 2;
+
+  deck->x0 = deck->x1 - deck->xdelta; 
+  deck->x2 = deck->x1 + deck->xdelta; 
+
+  deck->y0 = deck->y3 - 3 * deck->ydelta;
+  deck->y1 = deck->y3 - 2 * deck->ydelta;
+  deck->y2 = deck->y3 - 1 * deck->ydelta;
+  deck->y4 = deck->y3 + 1 * deck->ydelta;
+  deck->y5 = deck->y3 + 2 * deck->ydelta;
+  deck->y6 = deck->y3 + 3 * deck->ydelta;
+
+  deck->y7 = deck->y3 - (3 * deck->ydelta) / 2;
+  deck->y8 = deck->y3 + (3 * deck->ydelta) / 2;
+
+  deck->sx = deck->x0 + (file[OPT_SUIT_M]->width - file[OPT_SUIT_S]->width) / 2 - deck->xdelta; 
+  deck->sy = deck->y0 + (file[OPT_SUIT_M]->width - file[OPT_SUIT_S]->width) / 2;
+  deck->rx = deck->sx + (file[OPT_SUIT_S]->width - file[OPT_RANK]->width) / 2;
+  deck->ry = deck->sy - file[OPT_RANK]->height - 1;
+  if (deck->ry < 6) {
+    deck->ry = 6;
+    deck->sy = deck->ry + file[OPT_RANK]->height + 1;
+  }
+}
+
+static void
+make_rounded_rectangle (GdkWindow *window, GdkGC **gc, 
+			GdkPixmap **pixmap, GdkBitmap **bitmap,
+			guint w, guint h, guint c)
+{
+  GdkColor masked = {0, 0, 0, 0}, unmasked = {1, 65535, 65535, 65535};
+  GdkColor white, black;
+
+  *bitmap = gdk_pixmap_new (window, w, h, 1);  
+  *gc = gdk_gc_new (*bitmap);
+  gdk_gc_set_foreground (*gc, &masked);
+  gdk_draw_rectangle (*bitmap, *gc, TRUE, 0, 0, -1, -1);
+  gdk_gc_set_foreground (*gc, &unmasked);
+  gdk_draw_arc (*bitmap, *gc, FALSE, w-c-1, 0, c, c, 0*64, 90*64);
+  gdk_draw_arc (*bitmap, *gc, FALSE, 0, 0, c, c, 90*64, 90*64);
+  gdk_draw_arc (*bitmap, *gc, FALSE, 0, h-c-1, c, c, 180*64, 90*64);
+  gdk_draw_arc (*bitmap, *gc, FALSE, w-c-1, h-c-1, c, c, 270*64, 90*64);
+  gdk_draw_arc (*bitmap, *gc, TRUE, w-c-1, 0, c, c, 0*64, 90*64);
+  gdk_draw_arc (*bitmap, *gc, TRUE, 0, 0, c, c, 90*64, 90*64);
+  gdk_draw_arc (*bitmap, *gc, TRUE, 0, h-c-1, c, c, 180*64, 90*64);
+  gdk_draw_arc (*bitmap, *gc, TRUE, w-c-1, h-c-1, c, c, 270*64, 90*64);
+  gdk_draw_rectangle (*bitmap, *gc, TRUE, c/2, 0, w-c, h);
+  gdk_draw_rectangle (*bitmap, *gc, TRUE, 0, c/2, w, h-c);
+  gdk_gc_unref(*gc);
+
+  gdk_color_white (gdk_window_get_colormap(window), &white);
+  gdk_color_black (gdk_window_get_colormap(window), &black);
+
+  *pixmap = gdk_pixmap_new (window, w, h, -1);  
+  *gc = gdk_gc_new (*pixmap);
+  gdk_gc_set_foreground (*gc, &white);
+  gdk_draw_rectangle (*pixmap, *gc, TRUE, 0, 0, -1, -1);
+  gdk_gc_set_foreground (*gc, &black);
+  gdk_draw_arc (*pixmap, *gc, FALSE, w-c-1, 0, c, c, 0*64, 90*64);
+  gdk_draw_arc (*pixmap, *gc, FALSE, 0, 0, c, c, 90*64, 90*64);
+  gdk_draw_arc (*pixmap, *gc, FALSE, 0, h-c-1, c, c, 180*64, 90*64);
+  gdk_draw_arc (*pixmap, *gc, FALSE, w-c-1, h-c-1, c, c, 270*64, 90*64);
+  gdk_draw_rectangle (*pixmap, *gc, FALSE, 0, 0, w - 1, h - 1);
+}
+
+static void
+copy_card (GdkCardDeck* deck, GdkWindow* w, GdkGC *gc, 
+	   GdkPixmap **p, GdkPixmap *q)
+{
+  *p = gdk_pixmap_new (w, deck->width, deck->height, -1);  
+  gdk_gc_set_clip_mask(gc, NULL);
+  gdk_window_copy_area((GdkWindow *)*p, gc, 0, 0,
+		       (GdkWindow *)q, 0, 0, deck->width, deck->height);
+}
+
+static void
+draw_rank (GdkCardDeck* deck, GdkCardDeckFile* file, 
+	   GdkGC *gc, GdkPixmap *p, guint color, guint rank)
+{
+  guint j, cx, cy;
+
+  cx = deck->width - deck->rx - file->width;
+  cy = deck->height - deck->ry - file->height;
+
+  gdk_card_file_draw (file, p, gc, deck->rx, deck->ry, rank, color);
+  gdk_card_file_draw_r (file, p, gc, cx, cy, rank, color);
+  gdk_card_file_draw (file, p, gc, cx, deck->ry, rank, color);
+  gdk_card_file_draw_r (file, p, gc, deck->rx, cy, rank, color);
+}
+
+static void
+draw_small_suit (GdkCardDeck* deck, GdkCardDeckFile* file, 
+		 GdkGC *gc, GdkPixmap *p, guint suit)
+{
+  guint cx, cy;
+
+  cx = deck->width - file->width - deck->sx;
+  cy = deck->height - file->height - deck->sy;
+
+  gdk_card_file_draw (file, p, gc, deck->sx, deck->sy, suit, 0);
+  gdk_card_file_draw_r (file, p, gc, cx, cy, suit, 0);
+  gdk_card_file_draw (file, p, gc, cx, deck->sy, suit, 0);
+  gdk_card_file_draw_r (file, p, gc, deck->sx, cy, suit, 0);
+}
+
+static void
+make_suit (GdkCardDeck* deck, GdkCardDeckFile** file, GdkWindow *window, 
+	   GdkGC *gc, GdkPixmap ***sp, guint suit)
+{
+  guint rank;
+
+  *sp = g_new0(GdkPixmap*, KING + 1);
+  
+  copy_card (deck, window, gc, &(*sp)[ACE], deck->back);
+  
+  draw_small_suit(deck, file[OPT_SUIT_S], gc, (*sp)[ACE], suit);
+  
+  copy_card (deck, window, gc, &(*sp)[TWO], (*sp)[ACE]);
+  copy_card (deck, window, gc, &(*sp)[FOUR], (*sp)[ACE]);
+  copy_card (deck, window, gc, &(*sp)[JACK], (*sp)[ACE]);
+  copy_card (deck, window, gc, &(*sp)[QUEEN], (*sp)[ACE]);
+  copy_card (deck, window, gc, &(*sp)[KING], (*sp)[ACE]);
+  copy_card (deck, window, gc, &(*sp)[JOKER], (*sp)[ACE]);
+  
+  gdk_card_file_draw (file[OPT_SUIT_L], (*sp)[ACE], gc, 
+		      (deck->width - file[OPT_SUIT_L]->width)/2, 
+		      (deck->height - file[OPT_SUIT_L]->height)/2, suit, 0);
+  
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[TWO], gc, 
+		      deck->x1, deck->y0, suit, 0);
+  gdk_card_file_draw_r (file[OPT_SUIT_M], (*sp)[TWO], gc, 
+			deck->x1, deck->y6, suit, 0);
+  
+  copy_card (deck, window, gc, &(*sp)[THREE], (*sp)[TWO]);
+  
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[THREE], gc, 
+		      deck->x1, deck->y3, suit, 0);
+  
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[FOUR], gc, 
+		      deck->x0, deck->y0, suit, 0);
+  gdk_card_file_draw_r (file[OPT_SUIT_M], (*sp)[FOUR], gc, 
+			deck->x2, deck->y6, suit, 0);
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[FOUR], gc, 
+		      deck->x2, deck->y0, suit, 0);
+  gdk_card_file_draw_r (file[OPT_SUIT_M], (*sp)[FOUR], gc, 
+			deck->x0, deck->y6, suit, 0);
+  
+  copy_card (deck, window, gc, &(*sp)[FIVE], (*sp)[FOUR]);
+  copy_card (deck, window, gc, &(*sp)[SIX], (*sp)[FOUR]);
+  copy_card (deck, window, gc, &(*sp)[NINE], (*sp)[FOUR]);
+  
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[FIVE], gc, 
+		      deck->x1, deck->y3, suit, 0);
+  
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[SIX], gc, 
+		      deck->x0, deck->y3, suit, 0);
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[SIX], gc, 
+		      deck->x2, deck->y3, suit, 0);
+  
+  copy_card (deck, window, gc, &(*sp)[SEVEN], (*sp)[SIX]);
+  
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[SEVEN], gc, 
+		      deck->x1, deck->y7, suit, 0);
+  
+  copy_card (deck, window, gc, &(*sp)[EIGHT], (*sp)[SEVEN]);
+  
+  gdk_card_file_draw_r (file[OPT_SUIT_M], (*sp)[EIGHT], gc, 
+			deck->x1, deck->y8, suit, 0);
+  
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[NINE], gc, 
+		      deck->x0, deck->y2, suit, 0);
+  gdk_card_file_draw_r (file[OPT_SUIT_M], (*sp)[NINE], gc, 
+			deck->x2, deck->y4, suit, 0);
+  
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[NINE], gc, 
+		      deck->x2, deck->y2, suit, 0);
+  gdk_card_file_draw_r (file[OPT_SUIT_M], (*sp)[NINE], gc, 
+			deck->x0, deck->y4, suit, 0);
+  
+  copy_card (deck, window, gc, &(*sp)[TEN], (*sp)[NINE]);    
+  
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[NINE], gc, 
+		      deck->x1, deck->y3, suit, 0);
+  
+  gdk_card_file_draw (file[OPT_SUIT_M], (*sp)[TEN], gc, 
+		      deck->x1, deck->y1, suit, 0);
+  gdk_card_file_draw_r (file[OPT_SUIT_M], (*sp)[TEN], gc, 
+			deck->x1, deck->y5, suit, 0);
+  
+  gdk_card_file_draw (file[OPT_HONOR], (*sp)[JACK], gc, 
+		      (deck->width - file[OPT_HONOR]->width)/2, 
+		      (deck->height + 1)/2 - file[OPT_HONOR]->height,
+		      suit, JACK-JACK);
+  gdk_card_file_draw_r (file[OPT_HONOR], (*sp)[JACK], gc, 
+			(deck->width - file[OPT_HONOR]->width)/2, 
+			(deck->height + 1)/2 - 1,
+			suit, JACK-JACK);
+  
+  gdk_card_file_draw (file[OPT_HONOR], (*sp)[QUEEN], gc, 
+		      (deck->width - file[OPT_HONOR]->width)/2, 
+		      (deck->height + 1)/2 - file[OPT_HONOR]->height,
+		      suit, QUEEN-JACK);
+  gdk_card_file_draw_r (file[OPT_HONOR], (*sp)[QUEEN], gc, 
+			(deck->width - file[OPT_HONOR]->width)/2, 
+			(deck->height + 1)/2 - 1,
+			suit, QUEEN-JACK);
+  
+  gdk_card_file_draw (file[OPT_HONOR], (*sp)[KING], gc, 
+		      (deck->width - file[OPT_HONOR]->width)/2, 
+		      (deck->height + 1)/2 - file[OPT_HONOR]->height,
+		      suit, KING-JACK);
+  gdk_card_file_draw_r (file[OPT_HONOR], (*sp)[KING], gc, 
+			(deck->width - file[OPT_HONOR]->width)/2, 
+			(deck->height + 1)/2 - 1,
+			suit, KING-JACK);
+  
+  gdk_card_file_draw (file[OPT_JOKER], (*sp)[JOKER], gc, 
+		      (deck->width - file[OPT_JOKER]->width)/2, 
+		      (deck->height + 1)/2 - file[OPT_JOKER]->height, 0, 0);
+  gdk_card_file_draw_r (file[OPT_JOKER], (*sp)[JOKER], gc, 
+			(deck->width - file[OPT_JOKER]->width)/2, 
+			(deck->height + 1)/2 - 1, 0, 0);
+  
+  for(rank = JOKER; rank <= KING; rank++)
+    draw_rank(deck, file[OPT_RANK], gc, (*sp)[rank], 
+	      (suit >> 1) ^ (suit & 1), rank);
+}
+
+static void
+resolve_options (GdkCardDeckOptionData* option_data, 
+		 GdkCardDeckOptions deck_options, 
+		 gint* index)
+{
+  gchar** name;
+  guint n, i;
+
+  if (deck_options) 
+    gnome_config_make_vector (deck_options, &n, &name);
+  else
+    n = 0;
+
+  for (i = 0; i < OPT_NUM; i++, index++, option_data++, name++) {
+    GdkCardDeckDir* dir = option_data->dir;
+
+    /* Compiling in the defaults would be safer but would break the 
+     * current configuration model. Hmm... */
+    if (i >= n || (*index = gdk_card_deck_dir_search (dir, *name)) == -1) 
+      *index = gdk_card_deck_dir_search (dir, option_data->def);
+  }
+}
+
+GtkObject *
+gdk_card_deck_new (GdkWindow *window, GdkCardDeckOptions deck_options)
+{
+  GdkCardDeck* w;
+  GdkCardDeckFile** file;
+  GdkGC* gc;
+  guint i;
+
+  g_return_val_if_fail (window != NULL, NULL);
+
+  w = gtk_type_new(gdk_card_deck_get_type());
+
+  w->index = g_new(gint, OPT_NUM);
+  file = g_new(GdkCardDeckFile*, OPT_NUM);
+  
+  resolve_options (option_data, deck_options, w->index);
+
+  for (i = 0; i < OPT_NUM; i++) {
+    file[i] = &option_data[i].dir->file[w->index[i]];
+    gdk_card_deck_file_load (file[i]);
+  }
+
+  calculate_dimensions (w, file);
+
+  make_rounded_rectangle (window, &gc, &w->back, &w->mask, 
+			  w->width, w->height, w->corner);
+
+  for (i = CLUB; i <= SPADE; i++) 
+    make_suit(w, file, window, gc, &w->faces[i], i);
+
+  gdk_card_file_draw (file[OPT_BACK], w->back, gc, 
+		      (w->width - file[OPT_BACK]->width)/2, 
+		      (w->height - file[OPT_BACK]->height)/2, 0, 0);
+  gdk_gc_unref(gc);
+
+  return GTK_OBJECT (w);
+}
+
+GdkCardDeckOptions 
+gdk_card_deck_get_options (GdkCardDeck* deck)
+{
+  guint i = 0;
+  gint* index = deck->index;
+  gchar** name = g_new0(gchar*, OPT_NUM);
+  GdkCardDeckOptions deck_options;
+
+  for(i = 0; i < OPT_NUM; i++, index++)
+    name[i] = g_strdup (g_basename (option_data[i].dir->file[*index].name));
+
+  deck_options = gnome_config_assemble_vector (OPT_NUM, 
+					       (const gchar* const*) name);
+  g_free (name);
+  return deck_options;
+}
+
+GdkPixmap* 
+gdk_card_deck_face (GdkCardDeck* deck, GdkCardSuit suit, GdkCardRank rank)
+{
+  return deck->faces[suit][rank];
+}
+
+GdkPixmap* 
+gdk_card_deck_joker (GdkCardDeck* deck, GdkCardSuit suit)
+{
+  return deck->faces[suit][0];
+}
+
+GdkPixmap* 
+gdk_card_deck_back (GdkCardDeck* deck)
+{
+  return deck->back;
+}
+
+GdkBitmap* 
+gdk_card_deck_mask (GdkCardDeck* deck)
+{
+  return deck->mask;
+}
+
+static GtkWidget*
+add_table(GtkWidget* notebook, const gchar* label, guint rows, guint cols)
+{
+  GtkWidget* frame = gtk_frame_new(NULL);
+  GtkWidget* page = gtk_table_new(rows, cols, FALSE);
+
+  gtk_container_border_width (GTK_CONTAINER (frame), GNOME_PAD_SMALL);
+  gtk_container_border_width (GTK_CONTAINER (page), GNOME_PAD_SMALL);
+
+  gtk_container_add (GTK_CONTAINER (frame), page);
+  gtk_notebook_append_page ( GTK_NOTEBOOK (notebook), frame, 
+			     gtk_label_new (label) );
+  gtk_widget_show(frame);
+
+  return page;
+} 
+
+static void 
+changed(GdkCardDeckOptionsEdit* w)
+{
+  w->dirty = TRUE;
+  gtk_signal_emit(GTK_OBJECT(w), 
+		  gdk_card_deck_options_edit_signals[CHANGED],
+		  NULL);
+}
+
+void          
+gdk_card_deck_options_edit_set (GdkCardDeckOptionsEdit* w,
+				GdkCardDeckOptions deck_options)
+{
+  guint i;
+  gint* index = g_new(gint, OPT_NUM);
+
+  resolve_options (option_data, deck_options, index);
+
+  for (i = 0; i < OPT_NUM; i++)
+    gtk_option_menu_set_history (w->menu[i], index[i]);
+  w->dirty = FALSE;
+}
+
+GdkCardDeckOptions 
+gdk_card_deck_options_edit_get (GdkCardDeckOptionsEdit* w)
+{
+  guint i;
+  gchar** name = g_new0(gchar*, OPT_NUM);
+  GdkCardDeckOptions deck_options;
+
+  for(i = 0; i < OPT_NUM; i++) {
+    name[i] = GTK_LABEL (GTK_BIN (w->menu[i])->child)->label;
+  }
+
+  deck_options = gnome_config_assemble_vector (OPT_NUM, 
+					       (const gchar* const*) name);
+  g_free (name);
+  return deck_options;
+}
+
+gboolean
+gdk_card_deck_options_edit_dirty (GdkCardDeckOptionsEdit* w)
+{
+  return w->dirty;
+}
+
+GtkObject* 
+gdk_card_deck_options_edit_new (GtkNotebook* notebook)
+{
+  GdkCardDeckOptionsEdit* w;
+  GtkWidget* table;
+  guint i, j;
+  
+  g_return_val_if_fail (notebook != NULL, NULL);
+  g_return_val_if_fail (GTK_IS_NOTEBOOK (notebook), NULL);
+
+  w = gtk_type_new(gdk_card_deck_options_edit_get_type());
+
+  w->menu = g_new(GtkOptionMenu*, OPT_NUM);
+
+  table = add_table(GTK_WIDGET(notebook), _("Cards"), OPT_NUM, 2);
+
+  for (i = 0; i < OPT_NUM; i++) {
+    GtkWidget* label = gtk_label_new(option_data[i].description);
+    GtkWidget* menu = gtk_menu_new();
+
+    w->menu[i] = GTK_OPTION_MENU (gtk_option_menu_new ());
+
+    gtk_table_attach(GTK_TABLE(table), label, 0, 1, i, i+1, 
+		     0, 0, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+    gtk_table_attach(GTK_TABLE(table), GTK_WIDGET (w->menu[i]), 1, 2, i, i+1, 
+		     GTK_EXPAND|GTK_FILL, GTK_EXPAND|GTK_FILL, 
+		     GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+    gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
+
+    for(j = 0; j < option_data[i].dir->nfiles; j++) {
+      gchar* filename = option_data[i].dir->file[j].name;
+      GtkWidget *menu_item = 
+	gtk_menu_item_new_with_label (g_basename (filename));
+      gtk_signal_connect_object (GTK_OBJECT(menu_item), "activate", 
+				 GTK_SIGNAL_FUNC (changed), GTK_OBJECT(w));
+      gtk_menu_shell_append (GTK_MENU_SHELL(menu), menu_item);
+    }
+    gtk_widget_show_all (menu);
+
+    gtk_option_menu_set_menu (GTK_OPTION_MENU (w->menu[i]), menu);
+  }
+  gdk_card_deck_options_edit_set (w, NULL);
+
+  gtk_widget_show_all(table);
+
+  gtk_signal_connect_object(GTK_OBJECT(notebook), "destroy",
+			    GTK_SIGNAL_FUNC(gtk_object_destroy),
+			    GTK_OBJECT(w));
+  return GTK_OBJECT (w);
+}
