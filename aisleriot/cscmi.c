@@ -128,6 +128,11 @@ SCM scm_get_vert_start()
 {
   return gh_long2scm(get_vert_start());
 }
+SCM scm_set_statusbar_message(SCM message)
+{
+  gnome_appbar_clear_stack (GNOME_APPBAR (GNOME_APP (app)->statusbar));
+  gnome_appbar_push (GNOME_APPBAR(GNOME_APP (app)->statusbar), _(gh_scm2newstr(message,NULL)));
+}
 
 SCM scm_set_surface_layout(SCM surface) 
 {
@@ -183,7 +188,6 @@ SCM scm_set_cards(SCM scm_slot_id, SCM new_cards)
 
   return SCM_BOOL_T;
 }
-
 SCM scm_set_lambda(SCM start_game_lambda, 
 		   SCM pressed_lambda, 
 		   SCM released_lambda, 
@@ -258,6 +262,7 @@ void cscm_init ()
   gh_new_procedure0_0("get-vert-offset", scm_get_vert_offset);
   gh_new_procedure0_0("get-horiz-start", scm_get_horiz_start);
   gh_new_procedure0_0("get-vert-start", scm_get_vert_start);
+  gh_new_procedure1_0("set-statusbar-message", scm_set_statusbar_message);
   gh_new_procedure1_0("set-surface-layout", scm_set_surface_layout);
   gh_new_procedure0_0("reset-surface", scm_reset_surface);
   gh_new_procedure1_0("add-slot", scm_add_slot);

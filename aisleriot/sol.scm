@@ -51,6 +51,7 @@
   (set! VERTPOS (get-vert-start))
   (set! IN-GAME #f)
   (set! MOVE '())
+  (set-statusbar-message "")
   (set! HISTORY '()))
 
 ; create a 52 card deck (puts list of cards into DECK)
@@ -310,6 +311,61 @@
 	(add-card! (car slot-list) (make-visible (car deck)))
 	(deal-cards-face-up-from-deck (cdr deck) (cdr slot-list)))))
 
+
+(define (set-cards! slot-id new_cards)
+  (if IN-GAME 
+      (record-move slot-id new_cards (get-cards slot-id)))
+  (set-cards-c! slot-id new_cards))
+
+(define (make-card value suit)
+  (list value suit #f))
+
+(define (make-standard-deck-list-ace-high value suit)
+  (if (eq? ace value)
+      (if (eq? spade suit)
+	  (list (make-card ace spade))
+	  (cons (make-card value suit) 
+		(make-standard-deck-list-ace-high 2 (+ 1 suit))))
+      (cons (make-card value suit) 
+	    (make-standard-deck-list-ace-high (+ 1 value) suit))))
+
+(define (make-standard-deck-list-ace-low value suit)
+  (if (eq? king value)
+      (if (eq? spade suit)
+	  (list (make-card king spade))
+	  (cons (make-card value suit) 
+		(make-standard-deck-list-ace-low 1 (+ 1 suit))))
+      (cons (make-card value suit) 
+	    (make-standard-deck-list-ace-low (+ 1 value) suit))))
+
+(define (shuffle-deck-helper deck ref1 len)
+  (if (zero? len)
+      '()
+      (let* ((ref2 (+ ref1 (random len)))
+	     (val-at-ref2 (vector-ref deck ref2)))
+	(vector-set! deck ref2 (vector-ref deck ref1))
+	(cons val-at-ref2 (shuffle-deck-helper deck (+ ref1 1) (- len 1))))))
+
+(define (new-slot deck placement)
+  (list #f deck placement))
+
+(define (set-tag! slot)
+  (set! SLOTS (+ 1 SLOTS))
+  (cons (- SLOTS 1) (cdr slot)))
+
+(define (get-and-increment-position)
+  (let ((retval (list HORIZPOS VERTPOS)))
+    (set! HORIZPOS (+ HORIZPOS (get-horiz-offset)))
+    retval))
+
+(define (linefeed-position)
+  (set! HORIZPOS (get-horiz-start))
+  (set! VERTPOS (+ VERTPOS (get-vert-offset))))
+
+; common lisp procedure not provided in guile 1.3
+(define (nthcdr n lst)
+  (if (zero? n) lst (nthcdr (+ -1 n) (cdr lst))))
+
 ;; INTERNAL procedures
 ; The procedures in the rest of this file should not be used by games!!!
 ; Perhaps they should be in a separate file ???
@@ -368,59 +424,3 @@
 ; called from C:
 (define (discard-move)
   (set! MOVE '()))
-
-; Used directly by some naughty code so we have to do redo / undo at
-; this level until that code is changed to use the proper API:
-(define (set-cards! slot-id new_cards)
-  (if IN-GAME 
-      (record-move slot-id new_cards (get-cards slot-id)))
-  (set-cards-c! slot-id new_cards))
-
-(define (make-card value suit)
-  (list value suit #f))
-
-(define (make-standard-deck-list-ace-high value suit)
-  (if (eq? ace value)
-      (if (eq? spade suit)
-	  (list (make-card ace spade))
-	  (cons (make-card value suit) 
-		(make-standard-deck-list-ace-high 2 (+ 1 suit))))
-      (cons (make-card value suit) 
-	    (make-standard-deck-list-ace-high (+ 1 value) suit))))
-
-(define (make-standard-deck-list-ace-low value suit)
-  (if (eq? king value)
-      (if (eq? spade suit)
-	  (list (make-card king spade))
-	  (cons (make-card value suit) 
-		(make-standard-deck-list-ace-low 1 (+ 1 suit))))
-      (cons (make-card value suit) 
-	    (make-standard-deck-list-ace-low (+ 1 value) suit))))
-
-(define (shuffle-deck-helper deck ref1 len)
-  (if (zero? len)
-      '()
-      (let* ((ref2 (+ ref1 (random len)))
-	     (val-at-ref2 (vector-ref deck ref2)))
-	(vector-set! deck ref2 (vector-ref deck ref1))
-	(cons val-at-ref2 (shuffle-deck-helper deck (+ ref1 1) (- len 1))))))
-
-(define (new-slot deck placement)
-  (list #f deck placement))
-
-(define (set-tag! slot)
-  (set! SLOTS (+ 1 SLOTS))
-  (cons (- SLOTS 1) (cdr slot)))
-
-(define (get-and-increment-position)
-  (let ((retval (list HORIZPOS VERTPOS)))
-    (set! HORIZPOS (+ HORIZPOS (get-horiz-offset)))
-    retval))
-
-(define (linefeed-position)
-  (set! HORIZPOS (get-horiz-start))
-  (set! VERTPOS (+ VERTPOS (get-vert-offset))))
-
-; common lisp procedure not provided in guile 1.3
-(define (nthcdr n lst)
-  (if (zero? n) lst (nthcdr (+ -1 n) (cdr lst))))
