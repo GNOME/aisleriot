@@ -54,6 +54,8 @@ types_DATA  = 		\
 	fortunes.scm	\
 	fourteen.scm	\
 	freecell.scm	\
+	glenwood.scm	\
+	gypsy.scm	\
 	hopscotch.scm	\
 	kansas.scm	\
 	klondike.scm	\
