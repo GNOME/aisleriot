@@ -659,6 +659,12 @@ callback_about (GtkWidget *widget, GdkEvent *event)
       authors[i] = _(authors[i]);
   }
 
+  const gchar *documenters[] = {
+	  NULL
+  };
+
+  const gchar *translator_credits = _("translator_credits");
+
   {
 	  char *filename = NULL;
 	  
@@ -673,8 +679,8 @@ callback_about (GtkWidget *widget, GdkEvent *event)
 			   "(C) 1998 Free Software Foundation, Inc.",
 			   _("Reimplement the popular solitaire card game."),
 			   (const char **)authors,
-			   NULL,
-			   NULL,
+			   (const char **)documenters,
+			   strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 			   pixbuf);
   gtk_widget_show (about);
 }
