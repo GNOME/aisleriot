@@ -28,6 +28,28 @@
 
 #include "games-files.h"
 
+/* Remove duplicate names form the list */
+static void games_file_list_remove_duplicates (GamesFileList *filelist)
+{
+  GList *l;
+
+  if (filelist == NULL)
+    return;
+
+  l = filelist->list;
+
+  if ((l == NULL) || (l->next == NULL))
+    return;
+
+  while (l && l->next) {
+    if (g_utf8_collate (l->data, l->next->data) == 0) {
+      g_free (l->next->data);
+      l = g_list_delete_link (l, l->next);
+    }
+    l = l->next;
+  }
+}
+
 static GList * games_file_list_new_internal (gchar * glob, va_list path)
 {
   GPatternSpec * filespec = g_pattern_spec_new (glob);
@@ -75,6 +97,7 @@ GamesFileList * games_file_list_new (gchar * glob, ...)
   va_end (paths);
 
   filelist->list = g_list_sort (filelist->list, (GCompareFunc) g_utf8_collate);
+  games_file_list_remove_duplicates (filelist);
 
   return filelist;
 }
@@ -91,6 +114,8 @@ void games_file_list_transform_basename (GamesFileList * filelist)
     current->data = (gpointer) shortname;
     current = g_list_next (current);
   }
+  
+  games_file_list_remove_duplicates (filelist);
 }
 
 GSList * image_suffix_list = NULL;
@@ -195,6 +220,7 @@ GamesFileList * games_file_list_new_images (gchar * path1, ...)
   va_end (paths);
 
   filelist->list = g_list_sort (filelist->list, (GCompareFunc) g_utf8_collate);
+  games_file_list_remove_duplicates (filelist);
 
   return filelist;
 }
