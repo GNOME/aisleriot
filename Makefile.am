@@ -26,15 +26,13 @@ SUBDIRS =			\
 	freecell 		\
 	$(cxx_DIRS)		\
 	$(guile_DIRS)		\
-	omf-install
 
 EXTRA_DIST = \
 	gnome-games.spec.in \
 	gnome-games.spec \
 	COPYING-DOCS \
-	sgmldocs.make \
 	xmldocs.make \
-	game-docs.make \
+	omf.make \
 	MAINTAINERS	\
 	HACKING		 \
 	intltool-extract.in \

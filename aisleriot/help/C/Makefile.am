@@ -1,6 +1,4 @@
-figs = \
-	figures/camelot-goal.png	\
-	figures/clock-rules.png
+figdir = figures
 docname = aisleriot
 lang = C
 omffile = aisleriot-C.omf
