@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 1.4.0\n"
-"POT-Creation-Date: 2001-07-11 17:36-0600\n"
-"PO-Revision-Date: 2001-05-27 22:48+03:00\n"
+"POT-Creation-Date: 2001-08-05 22:11+0300\n"
+"PO-Revision-Date: 2001-08-05 22:33+03:00\n"
 "Last-Translator: Sami Pesonen <spesonen@dlc.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Leipurien peli"
 
 #: aisleriot/translatable_game_names.h:11
 msgid "Beleaguered castle"
-msgstr "Beleagueren linna"
+msgstr "Saarrettu linna"
 
 #: aisleriot/translatable_game_names.h:12
 msgid "Block ten"
@@ -191,7 +191,7 @@ msgstr "Osmosis"
 
 #: aisleriot/translatable_game_names.h:49
 msgid "Peek"
-msgstr "Peek"
+msgstr "Tirkistys"
 
 #: aisleriot/translatable_game_names.h:50
 msgid "Pileon"
@@ -319,7 +319,8 @@ msgstr ""
 "\n"
 "Peli loppui.\n"
 
-#: aisleriot/dialog.c:46
+#. XXXXX
+#: aisleriot/dialog.c:46 xbill/UI.cc:117
 msgid "New Game"
 msgstr "Uusi peli"
 
@@ -331,7 +332,7 @@ msgstr "Valitse peli"
 msgid "Seed"
 msgstr "Pelinumero"
 
-#: aisleriot/dialog.c:131
+#: aisleriot/dialog.c:131 xbill/UI.cc:129 xbill/x11-gtk.cc:34
 msgid "Rules"
 msgstr "Säännöt"
 
@@ -516,6 +517,10 @@ msgid ""
 "\n"
 "Please check your Aisleriot installation"
 msgstr ""
+"Aisleriot ei voi ladata tiedostoa: \n"
+"%s\n"
+"\n"
+"Tarkista Aisleriot asennuksesi"
 
 #: aisleriot/sol.c:177 aisleriot/sol.c:193
 msgid "Help"
@@ -646,9 +651,8 @@ msgid "Look both ways before you cross the street"
 msgstr "Katso molempiin suuntiin, ennenkuin ylität tien"
 
 #: aisleriot/SCHEME_GAMES.h:33
-#, fuzzy
 msgid "Monitors won't give you Vitamin D -- but sunlight will..."
-msgstr "Monitorit eivät anna sinulle E-vitamiinia -- mutta aurinko antaa..."
+msgstr "Monitorit eivät anna sinulle D-vitamiinia -- mutta aurinko antaa..."
 
 #: aisleriot/SCHEME_GAMES.h:34
 msgid "Move card from Waste"
@@ -803,9 +807,8 @@ msgid "diamonds"
 msgstr "ruutu"
 
 #: aisleriot/SCHEME_GAMES.h:72
-#, fuzzy
 msgid "eight"
-msgstr "Valkoinen"
+msgstr "kasi"
 
 #: aisleriot/SCHEME_GAMES.h:73
 msgid "empty slot on foundation"
@@ -817,11 +820,11 @@ msgstr "tyhjä tila kuvaelmassa"
 
 #: aisleriot/SCHEME_GAMES.h:75
 msgid "five"
-msgstr "vitos"
+msgstr "vitonen"
 
 #: aisleriot/SCHEME_GAMES.h:76
 msgid "four"
-msgstr "nelos"
+msgstr "nelonen"
 
 #: aisleriot/SCHEME_GAMES.h:77
 msgid "hearts"
@@ -848,18 +851,16 @@ msgid "kings"
 msgstr "kuninkaat"
 
 #: aisleriot/SCHEME_GAMES.h:83
-#, fuzzy
 msgid "nine"
-msgstr "Valentine"
+msgstr "yhdeksän"
 
 #: aisleriot/SCHEME_GAMES.h:84
 msgid "off the board"
 msgstr "laudalta"
 
 #: aisleriot/SCHEME_GAMES.h:85
-#, fuzzy
 msgid "queen"
-msgstr "kuningattaret"
+msgstr "kuningatar"
 
 #: aisleriot/SCHEME_GAMES.h:86
 msgid "queens"
@@ -871,7 +872,7 @@ msgstr "seiska"
 
 #: aisleriot/SCHEME_GAMES.h:88
 msgid "six"
-msgstr "kuutos"
+msgstr "kuutonen"
 
 #: aisleriot/SCHEME_GAMES.h:89
 msgid "something"
@@ -890,9 +891,8 @@ msgid "the appropriate Foundation pile"
 msgstr "soveltuva perustus pino"
 
 #: aisleriot/SCHEME_GAMES.h:93
-#, fuzzy
 msgid "three"
-msgstr "Vaikea"
+msgstr "kolmonen"
 
 #: aisleriot/SCHEME_GAMES.h:94
 msgid "to an empty foundation"
@@ -900,7 +900,7 @@ msgstr "tyhjään perustukseen"
 
 #: aisleriot/SCHEME_GAMES.h:95
 msgid "two"
-msgstr "kakkos"
+msgstr "kakkonen"
 
 #: freecell/gdk-card-image/gdk-card-image.c:107
 msgid "Card back:"
@@ -987,6 +987,7 @@ msgid "Start a new game with a different seed"
 msgstr "Aloita uusi peli eri pelinumerolla"
 
 #: freecell/src/menu.c:107 freecell/src/score-dialog.c:47 glines/glines.c:1165
+#: xbill/UI.cc:132
 msgid "Score"
 msgstr "Pisteet"
 
@@ -1023,7 +1024,6 @@ msgid "Options"
 msgstr "Valinnat"
 
 #: freecell/src/score.c:56
-#, c-format
 msgid "This session: %d%%"
 msgstr "Tämä kierros: %d%%"
 
@@ -1033,7 +1033,6 @@ msgid "won: %d, lost: %d"
 msgstr "voitettu: %d, hävitty: %d"
 
 #: freecell/src/score.c:66
-#, c-format
 msgid "Total: %d%%"
 msgstr "Loppusumma: %d%%"
 
@@ -1203,6 +1202,10 @@ msgid ""
 "\n"
 "Please check your Glines installation"
 msgstr ""
+"Glines ei löytänyt kuvatiedostoa:\n"
+"%s\n"
+"\n"
+"Tarkista Glines asennuksesi"
 
 #: glines/glines.c:185
 msgid "Game Over!"
@@ -1268,7 +1271,7 @@ msgstr "Tervetuloa Glinesiin!"
 msgid "Next Balls"
 msgstr "Seuraavat pallot"
 
-#: gnibbles/gnibbles.c:97
+#: gnibbles/gnibbles.c:98
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -1276,8 +1279,12 @@ msgid ""
 "\n"
 "Please check your Gnibbles installation"
 msgstr ""
+"Gnibbles ei löytänyt kuvatiedostoa:\n"
+"%s\n"
+"\n"
+"Tarkista Gnibbles asennuksesi"
 
-#: gnibbles/gnibbles.c:119
+#: gnibbles/gnibbles.c:124
 #, c-format
 msgid ""
 "Gnibbles Couldn't find pixmap file:\n"
@@ -1285,8 +1292,12 @@ msgid ""
 "\n"
 "Please check your Gnibbles instalation"
 msgstr ""
+"Gnibbles ei löytänyt kuvatiedostoa:\n"
+"%s\n"
+"\n"
+"Tarkista Gnibbles asennuksesi"
 
-#: gnibbles/gnibbles.c:152
+#: gnibbles/gnibbles.c:161
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -1294,6 +1305,10 @@ msgid ""
 "\n"
 "Please check your Gnibbles installation"
 msgstr ""
+"Gnibbles ei voinut ladata tasotiedostoa:\n"
+"%s\n"
+"\n"
+"Tarkista Gnibbles asennuksesi"
 
 #: gnibbles/main.c:189
 msgid "Gnibbles"
@@ -1767,7 +1782,7 @@ msgstr "Odotus:"
 
 #: gnobots2/properties.c:1039
 msgid "Standard Robots Keys"
-msgstr "Vakiot Robotit-ohjaimet"
+msgstr "Vakio Robotit-ohjaus"
 
 #: gnobots2/properties.c:1045
 msgid "Predefined Set 1"
@@ -1957,7 +1972,7 @@ msgstr "Elämiä:"
 msgid "Set starting level (1-10)"
 msgstr "Aloitustaso (1-10)"
 
-#: gnometris/main.cpp:37
+#: gnometris/main.cpp:37 xbill/Game.cc:218
 msgid "LEVEL"
 msgstr "LEVEL"
 
@@ -2806,13 +2821,17 @@ msgid "The Same Gnome"
 msgstr "Same Gnome"
 
 #: same-gnome/same-gnome.c:405
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Could not find the theme:\n"
 "%s\n"
 "\n"
 "Please check you Same Gnome instalation"
-msgstr "Same Gnome -teemaa '%s' ei löytynyt\n"
+msgstr ""
+"Ei voinut löytää teemaa:\n"
+"%s\n"
+"\n"
+"Tarkista Same Gnome asennus"
 
 #: same-gnome/same-gnome.c:427
 #, c-format
@@ -2822,6 +2841,10 @@ msgid ""
 "\n"
 "Please check your Same Gnome installation"
 msgstr ""
+"Same Gnome ei voinut ladata kuvatiedostoa:\n"
+"%s\n"
+"\n"
+"Tarkista Same Gnome asennuksesi"
 
 #: same-gnome/same-gnome.c:589
 msgid "Scenario"
@@ -2854,201 +2877,67 @@ msgid "Welcome to Same Gnome!"
 msgstr "Tervetuloa Same Gnomeen!"
 
 #: same-gnome/same-gnome.c:864
-#, fuzzy
 msgid "Marked: "
-msgstr "Musta:"
-
-#~ msgid "Not yet implemented!"
-#~ msgstr "Ei vielä toteutettu!"
-
-#~ msgid "No comment for this program."
-#~ msgstr "Ei kommenttia tälle ohjelmalle."
-
-#~ msgid "States must be numbers. Move can only be 'r' or 'l'."
-#~ msgstr "Tilojen täytyy olla numeroita. Siirto voi olla vain 'r' tai 'l'."
-
-#~ msgid "State"
-#~ msgstr "Tila"
-
-#~ msgid "Read"
-#~ msgstr "Lue"
-
-#~ msgid "Write"
-#~ msgstr "Kirjoita"
-
-#~ msgid "Move"
-#~ msgstr "Siirry"
-
-#~ msgid "New State"
-#~ msgstr "Uusi tila"
-
-#~ msgid "Editing is still alpha. Come back later or hack."
-#~ msgstr "Muokkaus on alpha-tasoa. Kokeile myöhemmin uudestaan tai koodaa."
-
-#~ msgid "Edit Or Create Row"
-#~ msgstr "Muokkaa tai luo rivi"
-
-#~ msgid "Save"
-#~ msgstr "Tallenna"
-
-#~ msgid "Set"
-#~ msgstr "Valitse"
-
-#~ msgid "State: %d"
-#~ msgstr "Tila: %d"
-
-#~ msgid "Stopped"
-#~ msgstr "Pysäytetty"
-
-#~ msgid "Save gTuring Program File"
-#~ msgstr "Tallenna gTuring-ohjelmatiedosto"
-
-#~ msgid "Comment"
-#~ msgstr "Kommentti"
-
-#~ msgid "Open gTuring Program File"
-#~ msgstr "Avaa gTuring-ohjelmatiedosto"
-
-#~ msgid "Tape Setting"
-#~ msgstr "Nauhan asetus"
-
-#~ msgid "Please enter the tape:"
-#~ msgstr "Syötä nauha:"
-
-#~ msgid "Machine's states"
-#~ msgstr "Koneen tilat"
-
-#~ msgid "Animation Speed"
-#~ msgstr "Animaationopeus"
-
-#~ msgid "Miliseconds between steps:"
-#~ msgstr "Millisekunteja askelten välillä:"
-
-#~ msgid "gturing"
-#~ msgstr "gturing"
-
-#~ msgid "A Turing Machine for GNOME"
-#~ msgstr "GNOME:n Turingin kone"
-
-#~ msgid "_Comment..."
-#~ msgstr "_Kommentti..."
-
-#~ msgid "View the program's comment."
-#~ msgstr "Näytä ohjelman kommentti."
-
-#~ msgid "_States..."
-#~ msgstr "_Tilat..."
-
-#~ msgid "Open a table with the machine's states."
-#~ msgstr "Avaa taulukon, joka näyttää koneen tilat."
-
-#~ msgid "_Play Speed..."
-#~ msgstr "_Nopeus..."
-
-#~ msgid "Set playing speed."
-#~ msgstr "Aseta nopeus."
-
-#~ msgid "_Tape..."
-#~ msgstr "_Nauha..."
-
-#~ msgid "Set the machine's tape."
-#~ msgstr "Aseta koneen nauha."
-
-#~ msgid "Reset"
-#~ msgstr "Alusta"
-
-#~ msgid "Stop"
-#~ msgstr "Seis"
-
-#~ msgid "Run"
-#~ msgstr "Aja"
-
-#~ msgid "Step"
-#~ msgstr "Askel"
-
-#~ msgid "Welcome to gTuring."
-#~ msgstr "Tervetuloa gTuringiin."
-
-#~ msgid "^                   "
-#~ msgstr "^                      "
-
-#~ msgid "Nothing dropped.\n"
-#~ msgstr "Mitään ei pudonnut.\n"
-
-#~ msgid "What ? "
-#~ msgstr "Mitä ? "
-
-#~ msgid "It's beyond your power to do that.\n"
-#~ msgstr "Et kykene siihen.\n"
-
-#~ msgid "It's beyond my power to do that.\n"
-#~ msgstr "En kykene siihen.\n"
-
-#~ msgid "OK"
-#~ msgstr "OK"
-
-#~ msgid "You use word(s) I don't know! "
-#~ msgstr "Käytät sanoja joita en tunne! "
-
-#~ msgid "I don't understand your command. "
-#~ msgstr "En ymmärrä käskyäsi. "
-
-#~ msgid "I can't do that yet. "
-#~ msgstr "En voi tehdä sitä vielä. "
-
-#~ msgid "Light has run out! "
-#~ msgstr "Valo on sammunut! "
-
-#~ msgid "Your light has run out. "
-#~ msgstr "Valosi on sammunut. "
-
-#~ msgid "Light runs out in "
-#~ msgstr "Valo sammui "
-
-#~ msgid " turns. "
-#~ msgstr ":ssa vuorossa. "
-
-#~ msgid "Your light is growing dim. "
-#~ msgstr "Valosi himmenee. "
-
-#~ msgid "Copyright (C) 1997 Alan Cox"
-#~ msgstr "Copyright (C) 1997 Alan Cox"
-
-#~ msgid "North"
-#~ msgstr "Pohjoinen"
-
-#~ msgid "East"
-#~ msgstr "Itä"
-
-#~ msgid "South"
-#~ msgstr "Etelä"
-
-#~ msgid "West"
-#~ msgstr "Länsi"
-
-#~ msgid "Up"
-#~ msgstr "Ylös"
-
-#~ msgid "Down"
-#~ msgstr "Alas"
-
-#~ msgid "List"
-#~ msgstr "listaa"
-
-#~ msgid "What am I carrying"
-#~ msgstr "Mitä minulla on?"
-
-#~ msgid "_New"
-#~ msgstr "_Uusi"
-
-#~ msgid "Could not find the '%s' theme for Glines\n"
-#~ msgstr "Glines teemaa '%s' ei löytynyt\n"
-
-#~ msgid "Couldn't find pixmap file!\n"
-#~ msgstr "Kuvatiedostoa ei löytynyt!\n"
-
-#~ msgid "Ack!  Couldn't load level file %s\n"
-#~ msgstr "En voinut ladata tasotiedostoa %s\n"
-
-#~ msgid "Could not find the '%s' theme for gnometris\n"
-#~ msgstr "Gnometris-teemaa '%s' ei löytynyt\n"
+msgstr "Merkattu: "
+
+#: xbill/UI.cc:119
+msgid "Pause Game"
+msgstr "Keskeytä peli"
+
+#: xbill/UI.cc:120
+msgid "Continue"
+msgstr "Jatka"
+
+#: xbill/UI.cc:121
+msgid "Quit"
+msgstr "Lopeta"
+
+#: xbill/UI.cc:123
+msgid "Warp To Level"
+msgstr "Hyppää tasolle"
+
+#: xbill/UI.cc:127
+msgid "About"
+msgstr "Tietoja"
+
+#: xbill/UI.cc:128
+msgid "Ported to GNOME by James Henstridge <james@daa.com.au>"
+msgstr "Käänsi GNOME:lle James Henstridge <james@daa.com.au>"
+
+#: xbill/UI.cc:130
+msgid "Story"
+msgstr "Tarina"
+
+#: xbill/UI.cc:133
+msgid "Endgame"
+msgstr "Loppupeli"
+
+#: xbill/Game.cc:62
+#, c-format
+msgid "Bill:%d/%d  System:%d/%d/%d  Level: %d Score:%d"
+msgstr "Bill:%d/%d  Järjestelmä:%d/%d/%d  Taso: %d Pisteet:%d"
+
+#: xbill/Game.cc:218
+msgid "Start at a different level"
+msgstr "Aloita uusi peli eri tasolla"
+
+#: xbill/x11-gtk.cc:24
+msgid "Warp to level..."
+msgstr "Hyppää tasoon..."
+
+#: xbill/x11-gtk.cc:33
+msgid "Story of xBill"
+msgstr "xBillin tarina"
+
+#: xbill/x11-gtk.cc:168
+#, c-format
+msgid ""
+"After Level %d:     \n"
+"Your score: %d"
+msgstr ""
+"Tason %d jälkeen:     \n"
+"Tuloksesi: %d"
+
+#: xbill/x11-gtk.cc:174
+msgid "Gnome xBill Scores"
+msgstr "Gnome xBill pisteet"
