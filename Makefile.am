@@ -11,7 +11,7 @@ cxx_DIRS = gnometris xbill
 endif
 
 SUBDIRS = intl po macros \
-	  freecell gnomine same-gnome scottfree mahjongg gturing \
+	  freecell gnomine same-gnome mahjongg \
           gtali gnobots2 iagno gnotravex gnome-stones gnotski \
 	  $(guile_DIRS) $(cxx_DIRS) idl glines gataxx gnibbles omf-install
 
