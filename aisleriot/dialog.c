@@ -57,7 +57,7 @@ void show_game_over_dialog() {
                           _("New Game"), GTK_RESPONSE_ACCEPT,
                           GTK_STOCK_QUIT, GTK_RESPONSE_REJECT,
                           NULL);
-
+  gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
 
   /* add a stock icon? */ 
@@ -134,7 +134,7 @@ void show_select_game_dialog()
                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                                           GTK_STOCK_OK, GTK_RESPONSE_OK,
                                           NULL);
-
+    gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
     hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
     seed_entry = gtk_entry_new ();
     label = gtk_label_new(_("Seed"));
@@ -304,7 +304,7 @@ void show_hint_dialog()
 	                                   GTK_MESSAGE_INFO,
 	                                   GTK_BUTTONS_OK,
 	                                   gmessage);
-
+  gtk_dialog_set_has_separator (GTK_DIALOG (hint_dlg), FALSE);
   if (hint_dlg) {
 	  g_signal_connect (GTK_OBJECT (hint_dlg),
 			      "destroy",
@@ -359,6 +359,7 @@ void show_preferences_dialog ()
   
   if (!property_box) {
     property_box = gtk_dialog_new ();
+    gtk_dialog_set_has_separator (GTK_DIALOG (property_box), FALSE);
     gtk_window_set_title (GTK_WINDOW (property_box), _("AisleRiot Preferences"));
     gtk_dialog_add_buttons(GTK_DIALOG(property_box),
                            GTK_STOCK_CLOSE, GTK_RESPONSE_OK, NULL);
@@ -440,6 +441,7 @@ void show_rules_options_dialog ()
   
   if (!option_dialog && gh_scm2bool(options)) {
     option_dialog = gtk_dialog_new ();
+    gtk_dialog_set_has_separator (GTK_DIALOG (option_dialog), FALSE);
 		notebook = gtk_notebook_new();
 
 		gtk_container_add (GTK_CONTAINER(GTK_DIALOG(option_dialog)->vbox),

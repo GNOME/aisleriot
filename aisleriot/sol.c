@@ -161,6 +161,7 @@ void eval_installed_file (char *file)
                                        GTK_BUTTONS_OK,
                                        message);
 
+    gtk_dialog_set_has_separator (GTK_DIALOG (w), FALSE);
     gtk_dialog_run (GTK_DIALOG(w));
 		gtk_widget_destroy(w);
     g_free (message);
