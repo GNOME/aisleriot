@@ -29,12 +29,10 @@
 int
 main (int argc, char **argv)
 {
-  argp_program_version = VERSION;
-
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init("freecell", NULL, argc, argv, 0, NULL);
+  gnome_init("freecell", VERSION, argc, argv);
 
   option_init();
   score_init();

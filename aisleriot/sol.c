@@ -333,7 +333,7 @@ void main_prog(int argc, char *argv[])
   n_games = scandir (dir, &game_dents, is_game, alphasort);
   g_free(dir);
 
-  gnome_init ("aisleriot", NULL, argc, argv, 0, NULL);
+  gnome_init ("aisleriot", VERSION, argc, argv);
 
   seed = time(NULL);
   srandom(seed);
