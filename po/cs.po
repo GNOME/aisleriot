@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-18 11:53+0100\n"
-"PO-Revision-Date: 2004-11-18 14:50+0100\n"
+"POT-Creation-Date: 2004-11-27 19:49+0100\n"
+"PO-Revision-Date: 2004-11-27 20:08+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -338,27 +338,27 @@ msgid "Congratulations."
 msgstr "Gratuluji."
 
 #: aisleriot/dialog.c:46
-msgid "You won!!!"
+msgid "You have won!!!"
 msgstr "Vyhráli jste!!!"
 
-#: aisleriot/dialog.c:48
-msgid "Game over."
-msgstr "Konec hry."
+#: aisleriot/dialog.c:48 mahjongg/mahjongg.c:696
+msgid "There are no more moves."
+msgstr "Nejsou možné žádné další tahy."
 
-#: aisleriot/dialog.c:60
+#: aisleriot/dialog.c:65
 msgid "New Game"
 msgstr "Nová hra"
 
-#: aisleriot/dialog.c:163
+#: aisleriot/dialog.c:169
 msgid "Select Game"
 msgstr "Vybrat hru"
 
 #. Rules Tab
-#: aisleriot/dialog.c:178 blackjack/src/dialog.cpp:268
+#: aisleriot/dialog.c:184 blackjack/src/dialog.cpp:268
 msgid "Rules"
 msgstr "Pravidla"
 
-#: aisleriot/dialog.c:257
+#: aisleriot/dialog.c:263
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -366,21 +366,21 @@ msgstr ""
 "Hra již skončila.\n"
 "Žádné rady nejsou k dispozici"
 
-#: aisleriot/dialog.c:263
+#: aisleriot/dialog.c:269
 msgid "This game does not have hint support yet."
 msgstr "Tato hra zatím nepodporuje rady."
 
-#: aisleriot/dialog.c:275 aisleriot/dialog.c:281
+#: aisleriot/dialog.c:281 aisleriot/dialog.c:287
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Přesunout %s na %s."
 
-#: aisleriot/dialog.c:287
+#: aisleriot/dialog.c:293
 #, c-format
 msgid "Move %s %s."
 msgstr "Přesuňte %s %s."
 
-#: aisleriot/dialog.c:288
+#: aisleriot/dialog.c:294
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -392,16 +392,16 @@ msgstr ""
 "a název hry, kterou jste hráli (podívejte se do lišty nadpisu, pokud si\n"
 "nejste jisti)."
 
-#: aisleriot/dialog.c:293
+#: aisleriot/dialog.c:299
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Hledáte %s."
 
-#: aisleriot/dialog.c:297
+#: aisleriot/dialog.c:303
 msgid "This game is unable to provide a hint."
 msgstr "Tato hra nemůže poskytnout radu."
 
-#: aisleriot/dialog.c:348
+#: aisleriot/dialog.c:354
 msgid "AisleRiot Cards"
 msgstr "Karty AisleRiot"
 
@@ -592,21 +592,21 @@ msgstr ""
 "Snažte se umístit barvy v pořadí, které nejpřirozeněji odpovídá aktuálnímu "
 "rozložení."
 
-#: aisleriot/menu.c:77 gnome-stones/main.c:1083 gnomine/gnomine.c:521
+#: aisleriot/menu.c:79 gnome-stones/main.c:1083 gnomine/gnomine.c:521
 #: mahjongg/mahjongg.c:961
 msgid "Main game:"
 msgstr "Hlavní hra:"
 
-#: aisleriot/menu.c:83
+#: aisleriot/menu.c:85
 msgid "Card games:"
 msgstr "Karetní hry:"
 
 #. Translator credits
-#: aisleriot/menu.c:98 blackjack/src/menu.cpp:157 gataxx/gataxx.c:369
-#: glines/glines.c:1072 gnect/src/main.c:816 gnibbles/main.c:184
+#: aisleriot/menu.c:100 blackjack/src/menu.cpp:157 gataxx/gataxx.c:369
+#: glines/glines.c:1072 gnect/src/main.c:821 gnibbles/main.c:184
 #: gnobots2/menu.c:224 gnome-stones/main.c:1094 gnometris/tetris.cpp:1425
 #: gnomine/gnomine.c:541 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1532
-#: gtali/gyahtzee.c:447 iagno/gnothello.c:369 mahjongg/mahjongg.c:985
+#: gtali/gyahtzee.c:455 iagno/gnothello.c:369 mahjongg/mahjongg.c:985
 #: same-gnome/same-gnome.c:707
 msgid "translator-credits"
 msgstr ""
@@ -614,11 +614,11 @@ msgstr ""
 "Michal Bukovjan\n"
 "Miloslav Trmač"
 
-#: aisleriot/menu.c:119
+#: aisleriot/menu.c:121
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
-#: aisleriot/menu.c:122
+#: aisleriot/menu.c:124
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -626,104 +626,104 @@ msgstr ""
 "AisleRiot poskytuje na pravidlech založený engine pro karetní hry typu "
 "Solitaire, který umožňuje hrát mnoho různých her."
 
-#: aisleriot/menu.c:199
+#: aisleriot/menu.c:201
 msgid "Game _options..."
 msgstr "M_ožnosti hry..."
 
-#: aisleriot/menu.c:200
+#: aisleriot/menu.c:202
 msgid "Modify the options for this game"
 msgstr "Upravit možnosti pro tuto hru"
 
-#: aisleriot/menu.c:206 gnect/src/main.c:1189 mahjongg/mahjongg.c:144
+#: aisleriot/menu.c:208 gnect/src/main.c:1194 mahjongg/mahjongg.c:144
 msgid "_Toolbar"
 msgstr "_Lišta nástrojů"
 
-#: aisleriot/menu.c:206 mahjongg/mahjongg.c:145
+#: aisleriot/menu.c:208 mahjongg/mahjongg.c:145
 msgid "Show or hide the toolbar"
 msgstr "Zobrazit nebo skrýt lištu nástrojů"
 
-#: aisleriot/menu.c:209
+#: aisleriot/menu.c:211
 msgid "_Cards..."
 msgstr "_Karty..."
 
-#: aisleriot/menu.c:209
+#: aisleriot/menu.c:211
 msgid "Change the appearance of the cards"
 msgstr "Změnit vzhled karet"
 
-#: aisleriot/menu.c:232
+#: aisleriot/menu.c:234
 msgid "_Select..."
 msgstr "_Vybrat..."
 
-#: aisleriot/menu.c:232 aisleriot/menu.c:280
+#: aisleriot/menu.c:234 aisleriot/menu.c:282
 msgid "Select a different game"
 msgstr "Vybrat jinou hru"
 
-#: aisleriot/menu.c:234
+#: aisleriot/menu.c:236
 msgid "S_tatistics..."
 msgstr "_Statistiky..."
 
-#: aisleriot/menu.c:234
+#: aisleriot/menu.c:236
 msgid "Get statistics on the current game"
 msgstr "Získat statistiky o aktuální hře"
 
-#: aisleriot/menu.c:245
+#: aisleriot/menu.c:247
 msgid "_Click to move"
 msgstr "_Přesouvat kliknutími"
 
-#: aisleriot/menu.c:245
+#: aisleriot/menu.c:247
 msgid "Use clicks instead of drags to move cards"
 msgstr "Používat pro přesun karet kliknutí místo přetahování"
 
-#: aisleriot/menu.c:265
+#: aisleriot/menu.c:267
 msgid "_Control"
 msgstr "_Ovládání"
 
-#: aisleriot/menu.c:274 gnect/src/main.c:1213 gnobots2/menu.c:106
+#: aisleriot/menu.c:276 gnect/src/main.c:1220 gnobots2/menu.c:106
 #: mahjongg/mahjongg.c:167
 msgid "New"
 msgstr "Nová hra"
 
-#: aisleriot/menu.c:274 gnect/src/main.c:1214 gnobots2/menu.c:106
+#: aisleriot/menu.c:276 gnect/src/main.c:1221 gnobots2/menu.c:106
 msgid "Start a new game"
 msgstr "Začít novou hru"
 
-#: aisleriot/menu.c:277 mahjongg/mahjongg.c:171
+#: aisleriot/menu.c:279 mahjongg/mahjongg.c:171
 msgid "Restart"
 msgstr "Začít znovu"
 
-#: aisleriot/menu.c:277
+#: aisleriot/menu.c:279
 msgid "Restart the game"
 msgstr "Začít hru znovu"
 
-#: aisleriot/menu.c:280
+#: aisleriot/menu.c:282
 msgid "Select"
 msgstr "Vybrat"
 
-#: aisleriot/menu.c:285 gnect/src/main.c:1216 mahjongg/mahjongg.c:183
+#: aisleriot/menu.c:287 gnect/src/main.c:1223 mahjongg/mahjongg.c:183
 msgid "Undo"
 msgstr "Zpět"
 
-#: aisleriot/menu.c:285 gnect/src/main.c:1216
+#: aisleriot/menu.c:287 gnect/src/main.c:1223
 msgid "Undo the last move"
 msgstr "Vrátit poslední tah"
 
-#: aisleriot/menu.c:288 mahjongg/mahjongg.c:187
+#: aisleriot/menu.c:290 mahjongg/mahjongg.c:187
 msgid "Redo"
 msgstr "Znovu"
 
-#: aisleriot/menu.c:288
+#: aisleriot/menu.c:290
 msgid "Redo the undone move"
 msgstr "Zopakovat vrácený tah"
 
-#: aisleriot/menu.c:291 gnect/src/main.c:1217 mahjongg/mahjongg.c:189
+#: aisleriot/menu.c:293 gnect/src/main.c:1224 mahjongg/mahjongg.c:189
 msgid "Hint"
 msgstr "Rada"
 
-#: aisleriot/menu.c:291 gnect/src/main.c:1217
+#: aisleriot/menu.c:293 gnect/src/main.c:1224
 msgid "Get a hint for your next move"
 msgstr "Získat radu pro váš další tah"
 
-#: aisleriot/menu.c:316
+#: aisleriot/menu.c:318
 msgid "View help for the current game"
 msgstr "Zobrazit nápovědu o aktuální hře"
 
@@ -1892,7 +1892,7 @@ msgid "Animate"
 msgstr "Animace"
 
 #. flip tiles button
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:395 iagno/properties.c:683
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:400 iagno/properties.c:683
 msgid "Flip final results"
 msgstr "Převrátit konečné výsledky"
 
@@ -1945,73 +1945,73 @@ msgstr "Nastavení Ataxx"
 
 #. Players tab
 #. FIXME mnemonic doesn't seem to work
-#: gataxx/properties.c:319 iagno/properties.c:505
+#: gataxx/properties.c:324 iagno/properties.c:505
 msgid "_Players"
 msgstr "_Hráči"
 
-#: gataxx/properties.c:331
+#: gataxx/properties.c:336
 msgid "Quick Moves"
 msgstr "Rychlé tahy"
 
-#: gataxx/properties.c:332
+#: gataxx/properties.c:337
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "Zkrátí čas, který počítač čeká před provedením tahu"
 
 #. Dark level select
-#: gataxx/properties.c:341 gnect/src/theme.c:55 iagno/properties.c:528
+#: gataxx/properties.c:346 gnect/src/theme.c:55 iagno/properties.c:528
 msgid "Dark"
 msgstr "Černé"
 
-#: gataxx/properties.c:346 gnect/src/prefs.c:344 gtali/yahtzee.c:63
+#: gataxx/properties.c:351 gnect/src/prefs.c:344 gtali/yahtzee.c:62
 #: iagno/properties.c:534 iagno/properties.c:581
 msgid "Human"
 msgstr "Člověk"
 
-#: gataxx/properties.c:347 gataxx/properties.c:366
+#: gataxx/properties.c:352 gataxx/properties.c:371
 msgid "Very Easy"
 msgstr "Velmi jednoduché"
 
-#: gataxx/properties.c:348 gataxx/properties.c:367 mahjongg/maps.c:534
+#: gataxx/properties.c:353 gataxx/properties.c:372 mahjongg/maps.c:534
 msgid "Easy"
 msgstr "Jednoduché"
 
-#: gataxx/properties.c:349 gataxx/properties.c:368 gnomine/gnomine.c:88
+#: gataxx/properties.c:354 gataxx/properties.c:373 gnomine/gnomine.c:88
 #: gnomine/gnomine.c:728
 msgid "Medium"
 msgstr "Střední"
 
-#: gataxx/properties.c:350 gataxx/properties.c:369
+#: gataxx/properties.c:355 gataxx/properties.c:374
 msgid "Hard"
 msgstr "Těžké"
 
-#: gataxx/properties.c:351 gataxx/properties.c:370
+#: gataxx/properties.c:356 gataxx/properties.c:375
 msgid "Very Hard"
 msgstr "Velmi těžké"
 
 #. Light level select
-#: gataxx/properties.c:360 gnect/src/theme.c:55 iagno/properties.c:575
+#: gataxx/properties.c:365 gnect/src/theme.c:55 iagno/properties.c:575
 msgid "Light"
 msgstr "Bílé"
 
 #. Appearance tab
-#: gataxx/properties.c:379 iagno/properties.c:625
+#: gataxx/properties.c:384 iagno/properties.c:625
 msgid "_Appearance"
 msgstr "_Vzhled"
 
-#: gataxx/properties.c:382 gnect/src/prefs.c:423 gnobots2/properties.c:888
+#: gataxx/properties.c:387 gnect/src/prefs.c:423 gnobots2/properties.c:888
 msgid "Appearance"
 msgstr "Vzhled"
 
 #. animation button
-#: gataxx/properties.c:387 iagno/properties.c:630
+#: gataxx/properties.c:392 iagno/properties.c:630
 msgid "Animation"
 msgstr "Animace"
 
-#: gataxx/properties.c:391
+#: gataxx/properties.c:396
 msgid "Flip the pieces with some visual effects"
 msgstr "Obracet kameny s vizuálními efekty"
 
-#: gataxx/properties.c:399
+#: gataxx/properties.c:404
 msgid ""
 "Put all the white pieces at the bottom and all the black pieces on the top "
 "of the board when a game is over"
@@ -2020,19 +2020,19 @@ msgstr ""
 "všechny černé kameny do horní části"
 
 #. show grid button
-#: gataxx/properties.c:403 iagno/properties.c:675
+#: gataxx/properties.c:408 iagno/properties.c:675
 msgid "Show grid"
 msgstr "Zobrazit mřížku"
 
-#: gataxx/properties.c:407
+#: gataxx/properties.c:412
 msgid "Whether the grid should be shown"
 msgstr "Jestli se má zobrazovat mřížka"
 
-#: gataxx/properties.c:414 iagno/properties.c:693
+#: gataxx/properties.c:419 iagno/properties.c:693
 msgid "Tile set:"
 msgstr "Sada kamenů:"
 
-#: gataxx/properties.c:419
+#: gataxx/properties.c:424
 msgid "The appearance of the pieces"
 msgstr "Vzhled kamenů"
 
@@ -2152,7 +2152,7 @@ msgstr "Čas mezi tahy v milisekundách."
 msgid "Compete to make lines of the same color"
 msgstr "Soutěžit ve tvorbě úseček stejné barvy"
 
-#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:1240
+#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:1247
 msgid "Four-in-a-row"
 msgstr "Čtyři-v-řadě"
 
@@ -2246,7 +2246,7 @@ msgstr "Nerozhodná hra!"
 msgid "Gnect"
 msgstr "Gnect"
 
-#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:546
+#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:551
 msgid "I win!"
 msgstr "Vyhrál jsem!"
 
@@ -2258,7 +2258,7 @@ msgstr "Hráč vyhrál!"
 msgid "Sorry, full column"
 msgstr "Promiňte, plný sloupec"
 
-#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:542
+#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:547
 msgid "You win!"
 msgstr "Vyhráli jste!"
 
@@ -2271,50 +2271,50 @@ msgstr ""
 "Nemohu načíst obrázek:\n"
 "%s"
 
-#: gnect/src/main.c:534
+#: gnect/src/main.c:539
 msgid "It's a draw!"
 msgstr "Je to nerozhodně!"
 
-#: gnect/src/main.c:543
+#: gnect/src/main.c:548
 msgid "Your move..."
 msgstr "Váš tah..."
 
-#: gnect/src/main.c:547 gnect/src/main.c:640
+#: gnect/src/main.c:552 gnect/src/main.c:645
 msgid "Thinking..."
 msgstr "Přemýšlím..."
 
-#: gnect/src/main.c:555
+#: gnect/src/main.c:560
 #, c-format
 msgid "%s wins!"
 msgstr "%s vyhrál!"
 
-#: gnect/src/main.c:556
+#: gnect/src/main.c:561
 #, c-format
 msgid "%s..."
 msgstr "%s..."
 
-#: gnect/src/main.c:657
+#: gnect/src/main.c:662
 #, c-format
 msgid "Hint: Column %d"
 msgstr "Rada: Sloupec %d"
 
-#: gnect/src/main.c:685 gnect/src/main.c:690
+#: gnect/src/main.c:690 gnect/src/main.c:695
 msgid "You"
 msgstr "Vy"
 
-#: gnect/src/main.c:686 gnect/src/main.c:689
+#: gnect/src/main.c:691 gnect/src/main.c:694
 msgid "Me"
 msgstr "Já"
 
-#: gnect/src/main.c:736
+#: gnect/src/main.c:741
 msgid "Scores"
 msgstr "Skóre"
 
-#: gnect/src/main.c:783
+#: gnect/src/main.c:788
 msgid "Drawn"
 msgstr "Nerozhodně"
 
-#: gnect/src/main.c:829
+#: gnect/src/main.c:834
 msgid ""
 "\"Four in a row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -2322,27 +2322,27 @@ msgstr ""
 "Hra \"Čtyři v řadě\" pro prostředí GNOME, s počítačovým hráčem řízeným "
 "systémem Velena od Giuliano Bertolettiho"
 
-#: gnect/src/main.c:1136 gnect/src/main.c:1163
+#: gnect/src/main.c:1141 gnect/src/main.c:1168
 msgid "Select \"New game\" from the \"Game\" menu to begin."
 msgstr "Začněte zvolením \"Nová hra\" z menu \"Hra\"."
 
-#: gnect/src/main.c:1190
+#: gnect/src/main.c:1195
 msgid "Show or hide the tool bar"
 msgstr "Zobrazit nebo skrýt lištu nástrojů"
 
-#: gnect/src/main.c:1192
+#: gnect/src/main.c:1198
 msgid "Enable _sound"
 msgstr "_Zapnout zvuk"
 
-#: gnect/src/main.c:1193
+#: gnect/src/main.c:1199
 msgid "Enable or disable sound"
 msgstr "Zapnout nebo vypnout zvuk"
 
-#: gnect/src/main.c:1213 mahjongg/mahjongg.c:167
+#: gnect/src/main.c:1220 mahjongg/mahjongg.c:167
 msgid "New game"
 msgstr "Nová hra"
 
-#: gnect/src/main.c:1307
+#: gnect/src/main.c:1314
 msgid "Welcome to Gnect!"
 msgstr "Vítejte ve hře Gnect!"
 
@@ -2474,7 +2474,8 @@ msgstr ""
 msgid "Guide a worm around a maze"
 msgstr "Vést červa v bludišti"
 
-#: gnibbles/gnibbles.desktop.in.h:2 gnibbles/main.c:204
+#: gnibbles/gnibbles.desktop.in.h:2 gnibbles/gnibbles.soundlist.in.h:6
+#: gnibbles/main.c:204
 msgid "Nibbles"
 msgstr "Nibbles"
 
@@ -2616,10 +2617,6 @@ msgstr "Extra život"
 #: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:281
 msgid "Game Over"
 msgstr "Konec hry"
-
-#: gnibbles/gnibbles.soundlist.in.h:6
-msgid "Gnibbles"
-msgstr "Gnibbles"
 
 #: gnibbles/gnibbles.soundlist.in.h:7
 msgid "Worm Death"
@@ -2803,7 +2800,7 @@ msgstr ""
 msgid "Avoid the robots and make them crash into each other"
 msgstr "Unikat robotům a nechat je navzájem do sebe narážet"
 
-#: gnobots2/gnobots2.desktop.in.h:2
+#: gnobots2/gnobots2.desktop.in.h:2 gnobots2/gnobots2.soundlist.in.h:6
 msgid "Robots"
 msgstr "Roboti"
 
@@ -3006,22 +3003,18 @@ msgid "Bad Move"
 msgstr "Špatný tah"
 
 #: gnobots2/gnobots2.soundlist.in.h:2
-msgid "GNOME Robots II"
-msgstr "GNOME Robots II"
-
-#: gnobots2/gnobots2.soundlist.in.h:3
 msgid "Level Complete"
 msgstr "Úroveň dokončena"
 
-#: gnobots2/gnobots2.soundlist.in.h:4
+#: gnobots2/gnobots2.soundlist.in.h:3
 msgid "Player Dead"
 msgstr "Hráč mrtev"
 
-#: gnobots2/gnobots2.soundlist.in.h:5
+#: gnobots2/gnobots2.soundlist.in.h:4
 msgid "Player Teleport"
 msgstr "Teleportovat hráče"
 
-#: gnobots2/gnobots2.soundlist.in.h:6
+#: gnobots2/gnobots2.soundlist.in.h:5
 msgid "Robot has been Splatted!"
 msgstr "Robot byl rozmáčknut!"
 
@@ -3479,7 +3472,7 @@ msgstr "Pauza"
 msgid "Congratulations, you win!"
 msgstr "Gratuluji, vyhráli jste!"
 
-#: gnome-stones/main.c:870 gtali/gyahtzee.c:123
+#: gnome-stones/main.c:870 gtali/gyahtzee.c:136
 msgid "Game over!"
 msgstr "Konec hry!"
 
@@ -4473,7 +4466,11 @@ msgstr "[Člověk,Josef,Pavel,Anna,Eva,Jana]"
 msgid "GNOME Tali"
 msgstr "GNOME Tali"
 
-#: gtali/gyahtzee.c:118
+#: gtali/gyahtzee.c:116
+msgid "The game is a draw!"
+msgstr "Hra skončila nerozhodně!"
+
+#: gtali/gyahtzee.c:131
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
@@ -4481,47 +4478,43 @@ msgstr[0] "%s vyhrává hru s %d bodem"
 msgstr[1] "%s vyhrává hru s %d body"
 msgstr[2] "%s vyhrává hru s %d body"
 
-#: gtali/gyahtzee.c:186
+#: gtali/gyahtzee.c:198
 #, c-format
 msgid "Computer playing for %s"
 msgstr "Počítač hraje pro %s"
 
-#: gtali/gyahtzee.c:189
+#: gtali/gyahtzee.c:201
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- Jste na řadě."
 
-#: gtali/gyahtzee.c:285 gtali/gyahtzee.c:623
+#: gtali/gyahtzee.c:295 gtali/gyahtzee.c:611
 msgid "Select dice to re-roll, press Roll!, or select score slot."
 msgstr ""
 "Vyberte kostku, kterou chcete znovu házet, stiskněte tlačítko Házet!, nebo "
 "vyberte místo s body."
 
-#: gtali/gyahtzee.c:315
+#: gtali/gyahtzee.c:323
 msgid "Roll"
 msgstr "Házet"
 
-#: gtali/gyahtzee.c:371 gtali/gyahtzee.c:394 gtali/yahtzee.c:176
+#: gtali/gyahtzee.c:379 gtali/gyahtzee.c:402 gtali/yahtzee.c:171
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "Jsou povoleny pouze tři hody! Vyberte oddíl s body."
 
-#: gtali/gyahtzee.c:437
+#: gtali/gyahtzee.c:445
 msgid "GNOME version (1998):"
 msgstr "Verze pro GNOME (1998):"
 
-#: gtali/gyahtzee.c:439
+#: gtali/gyahtzee.c:447
 msgid "Curses version (1992):"
 msgstr "Verze pro curses (1992):"
 
-#: gtali/gyahtzee.c:469
+#: gtali/gyahtzee.c:477
 msgid "A sort of poker with dice and less money."
 msgstr "Typ pokeru s kostkami a méně penězi."
 
-#: gtali/gyahtzee.c:513
-msgid "Cheater! Any high scores will not be recorded."
-msgstr "Podvodník! Nejvyšší skóre nebudou zaznamenána."
-
-#: gtali/gyahtzee.c:669
+#: gtali/gyahtzee.c:657
 msgid "Roll!"
 msgstr "Házet!"
 
@@ -4574,94 +4567,94 @@ msgstr "Počet protivníků:"
 msgid "Player Names"
 msgstr "Jména hráčů"
 
-#: gtali/yahtzee.c:71
+#: gtali/yahtzee.c:70
 msgid "1s [total of 1s]"
 msgstr "jedničky [celkem jedniček]"
 
-#: gtali/yahtzee.c:72
+#: gtali/yahtzee.c:71
 msgid "2s [total of 2s]"
 msgstr "dvojky [celkem dvojek]"
 
-#: gtali/yahtzee.c:73
+#: gtali/yahtzee.c:72
 msgid "3s [total of 3s]"
 msgstr "trojky [celkem trojek]"
 
-#: gtali/yahtzee.c:74
+#: gtali/yahtzee.c:73
 msgid "4s [total of 4s]"
 msgstr "čtyřky [celkem čtyřek]"
 
-#: gtali/yahtzee.c:75
+#: gtali/yahtzee.c:74
 msgid "5s [total of 5s]"
 msgstr "pětky [celkem pětek]"
 
-#: gtali/yahtzee.c:76
+#: gtali/yahtzee.c:75
 msgid "6s [total of 6s]"
 msgstr "šestky [celkem šestek]"
 
 #. End of upper panel
-#: gtali/yahtzee.c:78
+#: gtali/yahtzee.c:77
 msgid "3 of a Kind [total]"
 msgstr "Trojice [celkem]"
 
-#: gtali/yahtzee.c:79
+#: gtali/yahtzee.c:78
 msgid "4 of a Kind [total]"
 msgstr "Čtveřice [celkem]"
 
-#: gtali/yahtzee.c:80
+#: gtali/yahtzee.c:79
 msgid "Full House [25]"
 msgstr "Full House [25]"
 
-#: gtali/yahtzee.c:81
+#: gtali/yahtzee.c:80
 msgid "Small Straight [30]"
 msgstr "Malá postupka [30]"
 
-#: gtali/yahtzee.c:82
+#: gtali/yahtzee.c:81
 msgid "Large Straight [40]"
 msgstr "Velká postupka [40]"
 
-#: gtali/yahtzee.c:83
+#: gtali/yahtzee.c:82
 msgid "Yahtzee [50]"
 msgstr "Yahtzee [50]"
 
-#: gtali/yahtzee.c:84
+#: gtali/yahtzee.c:83
 msgid "Chance [total]"
 msgstr "Šance [celkem]"
 
 #. End of lower panel
-#: gtali/yahtzee.c:86
+#: gtali/yahtzee.c:85
 msgid "Lower Total"
 msgstr "Nižší součet"
 
-#: gtali/yahtzee.c:87
+#: gtali/yahtzee.c:86
 msgid "Grand Total"
 msgstr "Celkový součet"
 
 #. Need to squish between upper and lower pannel
-#: gtali/yahtzee.c:89
+#: gtali/yahtzee.c:88
 msgid "Upper total"
 msgstr "Vyšší součet"
 
-#: gtali/yahtzee.c:90
+#: gtali/yahtzee.c:89
 msgid "Bonus if >62"
 msgstr "Bonus pokud >62"
 
-#: gtali/yahtzee.c:497
+#: gtali/yahtzee.c:452
 msgid "How many times do you wish to roll?"
 msgstr "Kolikrát si přejete házet?"
 
-#: gtali/yahtzee.c:502
+#: gtali/yahtzee.c:457
 msgid "Generating ..."
 msgstr "Generuji ..."
 
-#: gtali/yahtzee.c:537
+#: gtali/yahtzee.c:492
 msgid "Results"
 msgstr "Výsledky"
 
-#: gtali/yahtzee.c:537
+#: gtali/yahtzee.c:492
 msgid "Num Rolls"
 msgstr "Počet hodů"
 
-#: gtali/yahtzee.c:537
+#: gtali/yahtzee.c:492
 msgid "Total"
 msgstr "Celkem"
 
@@ -5011,10 +5004,6 @@ msgstr "_Dokončit"
 msgid "These tiles don't match."
 msgstr "Tyto kameny k sobě nepasují."
 
-#: mahjongg/mahjongg.c:696
-msgid "There are no more moves."
-msgstr "Nejsou možné žádné další tahy."
-
 #: mahjongg/mahjongg.c:700
 msgid "Shuffle"
 msgstr "Zamíchat"
@@ -5205,6 +5194,18 @@ msgstr "Vítejte ve hře Same GNOME!"
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Odstraňovat skupiny míčků pro vymazání obrazovky"
+
+#~ msgid "Game over."
+#~ msgstr "Konec hry."
+
+#~ msgid "Gnibbles"
+#~ msgstr "Gnibbles"
+
+#~ msgid "GNOME Robots II"
+#~ msgstr "GNOME Robots II"
+
+#~ msgid "Cheater! Any high scores will not be recorded."
+#~ msgstr "Podvodník! Nejvyšší skóre nebudou zaznamenána."
 
 #~ msgid "_Novice"
 #~ msgstr "_Nováček"
