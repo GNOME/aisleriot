@@ -55,7 +55,7 @@ GdkPixmap* get_background_pixmap ();
 GdkPixmap* get_card_back_pixmap ();
 
 void load_pixmaps (GtkWidget*, GdkCardDeckOptions);
-void free_fixmaps ();
+void free_pixmaps (void);
 
 int get_card_width ();
 int get_card_height ();

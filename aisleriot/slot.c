@@ -16,7 +16,10 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include <stdlib.h>
+
 #include "slot.h"
+#include "card.h"
 
 GList *slot_list = NULL;
 

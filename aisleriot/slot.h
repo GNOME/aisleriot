@@ -58,6 +58,7 @@ hslot_type get_slot(gint);
 void increase_slot_length(hslot_type);
 void reduce_slot_length(hslot_type);
 void add_cards_to_slot(GList*, hslot_type hslot);
+void update_slot_length(hslot_type hslot);
 
 #endif
 

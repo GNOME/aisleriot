@@ -22,6 +22,8 @@
 #include "sol.h"
 #include "menu.h"
 #include "dialog.h"
+#include "cscmi.h"
+#include "draw.h"
 
 void restart_game ()
 {

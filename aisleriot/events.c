@@ -21,6 +21,7 @@
 #include "cscmi.h"
 #include "draw.h"
 #include "dialog.h"
+#include "slot.h"
 
 /* Defining SINGLE_ACTION prevents scheme from being called twice when
  * a double click occurs but delays the single_click action by 250ms */
@@ -121,7 +122,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   hslot_type hslot;
   gint cardid;
   static guint dbl_click_time = 250;
-  static first_press;
+  static int first_press;
 
   /* ignore the gdk synthetic click events */
   if (event->type != GDK_BUTTON_PRESS)

@@ -28,6 +28,7 @@
 #include <gnome.h>
 #include <dirent.h>
 #include <gdk-card-image.h>
+#include <gdk_imlib_private.h>
 
 /* An image file used in building the cards:
  * each file can contain multiple images and/or half images */
@@ -529,7 +530,7 @@ static void
 draw_rank (GdkCardDeck* deck, GdkCardDeckFile* file, 
 	   GdkGC *gc, GdkPixmap *p, guint color, guint rank)
 {
-  guint j, cx, cy;
+  guint cx, cy;
 
   cx = deck->width - deck->rx - file->width;
   cy = deck->height - deck->ry - file->height;

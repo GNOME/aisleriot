@@ -25,6 +25,7 @@
 #include <dirent.h>
 #include <libguile.h>
 #include <guile/gh.h>
+#include <ctype.h>
 #include "sol.h"
 #include "events.h"
 #include "draw.h"
@@ -106,11 +107,13 @@ gpointer* game_file_to_help_entry (const gchar* file)
 
 void make_title () 
 {
-  gint old_w, old_h;
-  GString* title = g_string_new (game_name);
-  g_string_sprintfa (title, "  ( %d )", seed);
+  char *title;
 
-  gtk_window_set_title (GTK_WINDOW (app), title->str); 
+  title = alloca(strlen(game_name) + 20);
+  
+  sprintf(title, "%s  ( %d )", game_name, seed);
+
+  gtk_window_set_title (GTK_WINDOW (app), title); 
 }
 
 void eval_installed_file (char *file)
@@ -383,7 +386,6 @@ static int
 save_state (GnomeClient *client)
 {
   gchar *prefix = gnome_client_get_config_prefix (client);
-  gchar *argv[2];
 
   gnome_config_push_prefix (prefix);
   gnome_config_set_string ("Variation/Default File", game_file);

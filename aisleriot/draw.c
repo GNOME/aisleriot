@@ -23,7 +23,7 @@
 
 void draw_cards () {
   GList* slot;
-  gint x, y, dx, dy;
+  gint x, y;
   GList* card_list;
   GdkPixmap *image;
 

@@ -6,6 +6,7 @@
 #include "sol.h"
 #include "menu.h"
 #include "dialog.h"
+#include "draw.h"
 
 void show_game_over_dialog() {
   GtkWidget* dialog;
@@ -131,7 +132,6 @@ void show_select_game_dialog()
 
 void show_hint_dialog() 
 {
-  GtkWidget* dialog;
   GString* gmessage;
 
   if (game_over) {
@@ -191,8 +191,6 @@ void show_hint_dialog()
   gnome_app_message (GNOME_APP (app), gmessage->str);
 }
 
-static guint main_page_num;
-
 GtkWidget *
 get_main_page (GtkWidget* dialog)
 {
@@ -201,8 +199,6 @@ get_main_page (GtkWidget* dialog)
   gtk_widget_show_all (retval);
   return retval;
 }
-
-static guint backgound_page_num;
 
 GtkWidget *
 get_background_page (GtkWidget* dialog)

@@ -18,6 +18,7 @@
 
 #include "cscmi.h"
 #include "sol.h"
+#include "slot.h"
 
 lambda_data* game_data = NULL;
 
