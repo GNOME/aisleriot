@@ -107,16 +107,13 @@ static void select_game (GtkWidget *app, gint response, gpointer data)
   gtk_widget_hide(app);
 }
 
-static gboolean 
-select_double_click (GtkWidget * widget, GdkEventButton * event, gpointer dialog)
+static void
+select_double_click (GtkWidget *widget, GtkTreePath *path,
+                     GtkTreeViewColumn *column, gpointer dialog)
 {
   /* Handle a double click by faking a click on the OK button. */
-  if (event->type == GDK_2BUTTON_PRESS) {
-    select_game (GTK_WIDGET (dialog), GTK_RESPONSE_OK, NULL);
-  }
-
-  return FALSE;
-} 
+  select_game (GTK_WIDGET (dialog), GTK_RESPONSE_OK, NULL);
+}
 
 void show_select_game_dialog() 
 {
@@ -137,7 +134,7 @@ void show_select_game_dialog()
 
   if (waiting_for_mouse_up()) return;
 
-  if(!dialog) {
+  if (!dialog) {
 
     GtkWidget* label;
     GtkWidget* hbox;
@@ -174,15 +171,15 @@ void show_select_game_dialog()
                                                       "text", 0,
                                                       NULL);
     
-    gtk_tree_view_append_column(GTK_TREE_VIEW (list_view), column);
+    gtk_tree_view_append_column (GTK_TREE_VIEW (list_view), column);
     
     select = gtk_tree_view_get_selection(GTK_TREE_VIEW (list_view));
     gtk_tree_selection_set_mode (select, GTK_SELECTION_BROWSE); 
 
     g_signal_connect (G_OBJECT (select), "changed", 
                       G_CALLBACK (select_rules), NULL);
-    g_signal_connect (G_OBJECT (list_view), "button_press_event",
-		      G_CALLBACK (select_double_click), (gpointer) dialog);
+    g_signal_connect (G_OBJECT (list_view), "row-activated",
+		      G_CALLBACK (select_double_click), dialog);
 
     scrolled_window = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
