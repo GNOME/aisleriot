@@ -149,6 +149,8 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
 							   &attributes,
 							   (GDK_WA_X || GDK_WA_Y || GDK_WA_VISUAL || GDK_WA_COLORMAP));
 		gdk_window_set_back_pixmap(press_data->moving_cards, press_data->moving_pixmap, 0);
+		gdk_window_shape_combine_mask (press_data->moving_cards, mask, 0, 0);
+
 		gdk_window_move(press_data->moving_cards,  
 				x - press_data->xoffset,
 				y - press_data->yoffset);

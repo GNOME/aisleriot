@@ -26,7 +26,6 @@
 #include <time.h>
 #include <dirent.h>
 #include <libguile.h>
-#include <gdk_imlib.h>
 #include <guile/gh.h>
 
 #include "sol.h"
@@ -87,9 +86,12 @@ void create_sol_board ()
 	/* Here we create the actual playing surface */
 	gtk_widget_push_colormap (gdk_imlib_get_colormap ());
 	gtk_widget_push_visual (gdk_imlib_get_visual ());
+
 	playing_area = gtk_drawing_area_new ();
+
 	gtk_widget_pop_visual ();
 	gtk_widget_pop_colormap ();
+
 	gtk_widget_set_events (playing_area, gtk_widget_get_events (playing_area) | GAME_EVENTS);
   
 	gtk_box_pack_start_defaults (GTK_BOX(vb), playing_area);
