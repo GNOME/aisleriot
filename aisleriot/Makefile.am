@@ -1,5 +1,5 @@
-SUBDIRS = pixmaps
-
+scoredir=$(localstatedir)/games
+cardimagedir = $(datadir)/pixmaps/cards
 Gamesdir  = $(datadir)/apps/Games
 typesdir  = $(datadir)/sol-games
 
@@ -31,6 +31,7 @@ sol_SOURCES = 		\
 	card.c
 
 sol_LDADD = $(GUILE_LIBS) -lgdk_imlib $(GNOME_LIBDIR) $(GNOMEUI_LIBS) \
+	../freecell/gdk-card-image/libgdkcardimage.la \
 	$(INTLLIBS) 
 
 types_DATA  = 		\
@@ -42,13 +43,11 @@ types_DATA  = 		\
 	sol.scm		\
 	spider.scm
 
-EXTRA_DIST = TODO FIXME RULES AUTHORS $(types_DATA) sol.desktop
+cardimage_DATA = Baize.xpm
+
+EXTRA_DIST = TODO FIXME RULES AUTHORS $(types_DATA) $(cardimage_DATA) \
+	sol.desktop
 
 sysdir = $(datadir)/apps/Games
 sys_DATA = sol.desktop
 
-dist-hook:
-	mkdir $(distdir)/pixmaps
-	cp $(srcdir)/pixmaps/*.xpm $(distdir)/pixmaps
-	cp $(srcdir)/pixmaps/*.h $(distdir)/pixmaps
-	cp $(srcdir)/pixmaps/*.xbm $(distdir)/pixmaps
