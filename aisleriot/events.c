@@ -230,8 +230,11 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       if (press_data->moving_pixmap != NULL)
         gdk_window_set_back_pixmap (press_data->moving_cards, 
 				    press_data->moving_pixmap, 0);
+
       gdk_window_shape_combine_mask (press_data->moving_cards, 
 				     press_data->moving_mask, 0, 0);
+
+      gdk_window_resize(press_data->moving_cards, card_width, card_height);
       gdk_window_move(press_data->moving_cards, x, y); 
       gdk_window_show(press_data->moving_cards);
     }
