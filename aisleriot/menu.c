@@ -1,5 +1,5 @@
 /* AisleRiot - menu.c
- * Copyright (C) 1998 Jonathan Blandford <jrb@alum.mit.edu>
+ * Copyright (C) 1998, 2003 Jonathan Blandford <jrb@alum.mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -166,7 +166,7 @@ GnomeUIInfo game_menu[] = {
 
   GNOMEUIINFO_MENU_NEW_GAME_ITEM(random_seed, NULL),
 
-  GNOMEUIINFO_ITEM_STOCK (N_("New _game of..."), N_("Start a new game of a different variation"), show_select_game_dialog, GTK_STOCK_OPEN),
+  GNOMEUIINFO_ITEM_STOCK (N_("_Select..."), N_("Choose a different variation of solitaire"), show_select_game_dialog, GTK_STOCK_OPEN),
 
   GNOMEUIINFO_MENU_RESTART_GAME_ITEM(restart_game, NULL),
 

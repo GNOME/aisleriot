@@ -1,5 +1,5 @@
 /* AisleRiot - dialog.c
- * Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+ * Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -127,13 +127,13 @@ void show_select_game_dialog()
 
     GtkWidget* label;
     GtkWidget* hbox;
-    gchar* message = _("Select Game");
 
-    dialog = gtk_message_dialog_new (GTK_WINDOW(app),
-                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-                                     GTK_MESSAGE_QUESTION,
-                                     GTK_BUTTONS_OK_CANCEL,
-                                     message);
+    dialog = gtk_dialog_new_with_buttons (_("Select Game"),
+                                          GTK_WINDOW(app),
+                                          GTK_DIALOG_DESTROY_WITH_PARENT,
+                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                          GTK_STOCK_OK, GTK_RESPONSE_OK,
+                                          NULL);
 
     hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
     seed_entry = gtk_entry_new ();
