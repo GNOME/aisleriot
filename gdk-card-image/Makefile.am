@@ -28,7 +28,9 @@ cardslotdir = $(datadir)/pixmaps/cards/slots
 cardslot_DATA = hand.png plain.png
 
 cardmiscdir = $(datadir)/pixmaps/cards
-cardmisc_DATA = card-styles.xml
+cardmisc_in_files = card-styles.xml.in
+cardmisc_DATA = $(cardmisc_in_files:.xml.in=.xml)
+@INTLTOOL_XML_RULE@
 
 INCLUDES =  $(GNOME_GAMES_CFLAGS) @UCB_CFLAGS@
 EXTRA_DIST = $(cardback_DATA) $(cardhonor_DATA) $(cardjoker_DATA) \

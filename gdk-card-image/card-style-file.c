@@ -64,6 +64,15 @@ card_style_file_parse_start (GMarkupParseContext *context,
   style = (CardDeckStyle *)(ctxt->style_list->data);
 
   if (g_utf8_collate ("name", element) == 0) {
+    /* This is a really ugly hack, we know the only attribute should be 
+     * xml:lang and that there is a deafult with no xml:lang attribute.
+     * We also know that all these are translated in the po database
+     * so we just take the default and translate it later ignoring the
+     * defaults stored in the rest of the file. This saves a lot of
+     * mucking about with finding locales and languages when gettext
+     * can do it all for us. */
+    if (attribute_values && *attribute_values)
+      return;
     ctxt->current_string = &(style->name);
     return;
   }

@@ -880,7 +880,7 @@ gtk_card_deck_options_edit_set (GtkCardDeckOptionsEdit* w,
 
   /* Search for a matching options set in our list of predefined
    * styles. This is all to allow backwards compatibility of the
-   * interface and a users existing options. */
+   * interface and a user's existing options. */
   if (i >= OPT_NUM) {
     possibles = w->style_list;
     while (possibles) {
@@ -955,14 +955,14 @@ gtk_card_deck_options_edit_create_list (GtkCardDeckOptionsEdit * w)
   GtkTreeIter iter;
   CardDeckStyle * style;
 
-  list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_POINTER);
+  list = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_POINTER);
 
   stylelist = w->style_list;
 
   while (stylelist) {
     style = (CardDeckStyle *) stylelist->data;
     gtk_list_store_append (list, &iter);
-    gtk_list_store_set (list, &iter, 0, style->name, 
+    gtk_list_store_set (list, &iter, 0, _(style->name), 
 			1, style, -1);
     stylelist = g_list_next (stylelist);
   }
