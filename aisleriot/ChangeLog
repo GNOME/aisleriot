@@ -1,3 +1,9 @@
+2003-06-21  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* menu.c: Remove the dirent.h include since we don't need it
+	anymore and it can upset FreeBSD if we don't also include
+	sys/types.h which is also unneeded.
+
 2003-06-20  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* sol.c (new_game): Fix Jon's crash-at-start bug. If the game was

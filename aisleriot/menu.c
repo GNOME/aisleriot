@@ -18,7 +18,6 @@
  */
 
 #include <config.h>
-#include <dirent.h>
 #include "gnome.h"
 #include "sol.h"
 #include "menu.h"

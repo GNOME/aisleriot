@@ -169,9 +169,9 @@ gdk_card_deck_destroy (GtkObject *o)
 
   for (i = CLUB; i <= SPADE; i++)
     for (j = JOKER; j <= KING; j++)
-      gdk_pixmap_unref (w->faces[i][j]);
+      g_object_unref (w->faces[i][j]);
 
-  gdk_pixmap_unref (w->back);
+  g_object_unref (w->back);
   
   for(i = 0; i < OPT_NUM; i++)
     gdk_card_file_unref (&option_data[i].dir->file[w->index[i]]);
@@ -344,12 +344,12 @@ static void
 gdk_card_file_unref (GdkCardDeckFile* file)
 {
   if (!--file->refs) {
-    gdk_pixmap_unref (file->p);
-    gdk_bitmap_unref (file->b);
+    g_object_unref (file->p);
+    g_object_unref (file->b);
 
     if (file->pr) {
-      gdk_pixmap_unref (file->pr);
-      gdk_bitmap_unref (file->br);
+      g_object_unref (file->pr);
+      g_object_unref (file->br);
     }
   }
 }
@@ -423,7 +423,6 @@ static void
 gtk_card_deck_options_edit_class_init (GtkCardDeckOptionsEditClass *klass)
 {
   GtkObjectClass *object_class = (GtkObjectClass*) klass;
-  GtkWidgetClass *widget_class = (GtkWidgetClass*) klass;
     
   options_parent_class = gtk_type_class (gtk_widget_get_type ());
   
@@ -820,23 +819,6 @@ gdk_card_deck_mask (GdkCardDeck* deck)
 {
   return deck->mask;
 }
-
-static GtkWidget*
-add_table(GtkWidget* notebook, const gchar* label, guint rows, guint cols)
-{
-  GtkWidget* frame = gtk_frame_new(NULL);
-  GtkWidget* page = gtk_table_new(rows, cols, FALSE);
-
-  gtk_container_border_width (GTK_CONTAINER (frame), GNOME_PAD_SMALL);
-  gtk_container_border_width (GTK_CONTAINER (page), GNOME_PAD_SMALL);
-
-  gtk_container_add (GTK_CONTAINER (frame), page);
-  gtk_notebook_append_page ( GTK_NOTEBOOK (notebook), frame, 
-			     gtk_label_new (label) );
-  gtk_widget_show(frame);
-
-  return page;
-} 
 
 static void 
 changed(GtkCardDeckOptionsEdit* w)
