@@ -9,26 +9,26 @@ General 2.4 cleanups:
 6. Builds without warnings (make sure they are enabled).
 
 Y = OK., N = probably needs work, P = partial, ? = maybe, 
-lower case letter = note.
+lower case letter = note. - = not applicable
 
 These should all become yes or have a good reason why not.
 
                 1.      2.      3.      4.      5.      6.
 aisleriot       P       Y       a       Y       Y       ?
 blackjack       d       ?       ?       ?       Y       ?
-gataxx          N       N       Y       N       N       ?
+gataxx          N       N       Y       N       Y       ?
 glines          N       N       Y       Y       Y       ?
-gnect           N       Y       Y       Y       N       ?
-gnibbles        N       b       c       Y       N       ?
-gnobots2        N       N       c       Y       N       ?
+gnect           N       Y       Y       Y       Y       ?
+gnibbles        N       b       c       Y       Y       ?
+gnobots2        N       N       c       Y       Y       ?
 gnome-stones    N       N       Y       N       Y       ?
 gnometris       N       N       Y       Y       Y       ?
-gnomine         N       Y       Y       Y       Y       ?
+gnomine         N       Y       Y       Y       Y       N
 gnotravex       N       Y       Y       N       Y       ?
 gnotski         N       e       Y       Y       Y       ?
 gtali           P       N       Y       N       Y       ?
-iagno           N       N       f       N       N       ?
-mahjongg        N       P       g       N       N       ?
+iagno           N       N       f       N       Y       ?
+mahjongg        N       P       g       N       Y       ?
 same-gnome      N       N       Y       Y       Y       ?
 libgame-support N       -       -       -       -       ?
 gdk-card-image  N       -       -       -       -       ?
@@ -131,6 +131,10 @@ Mahjongg:
         - Fix shuffling bugs (91098, 94750).
         - GConf key fixes (no '-' character), see if it can be made
           backwards compatible.
+        - It takes too long to generate a new board (it seems to try randomly 
+          until it finds a solvable one). This is intolerable when simply 
+          building the game backwards does it trivially. Implement if time.
+          Can also be used to fix the shuffling bugs.
 
 Same-gnome:
         - Highlight the current theme in the prefs dialog.
