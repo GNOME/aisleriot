@@ -118,11 +118,7 @@ card_draw_init(GtkWidget *widget)
 {
   GdkPixmap *clip;
 
-  gtk_widget_push_visual (gdk_imlib_get_visual ());
-  gtk_widget_push_colormap (gdk_imlib_get_colormap ());
   card_deck = gdk_card_deck_new(widget->window, NULL);
-  gtk_widget_pop_colormap ();
-  gtk_widget_pop_visual ();
   clip = gdk_card_deck_mask (GDK_CARD_DECK (card_deck));
   card_width = W_WIDTH(clip);
   card_height = W_HEIGHT(clip);
