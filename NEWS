@@ -1,3 +1,54 @@
+gnome-games "Limiting Factor" 2.5.6
+===================================
+
+This release is for testing. No new features have been added since
+2.5.5 but there have been a lot of bugs fixed and there is some
+revised code that needs testing. 
+
+*** Now is the time ot file bug reports ! ***
+
+If you see any bugs in this release, report them. It's too late for UI
+changes (although they will be considered for 2.7) but anything that
+crashes these games needs to be reported. Please try and give a
+precise summary of how to reproduce the bug. Getting stack traces in
+gnome-games is hard, but worth it (try running the games as the user
+that installed them, e.g. root).
+
+What other excuse do you need to play solitaire all day ?
+
+What has changed:
+
+- blackjack caches its calculations better. Now all game types are
+cached (you should only see the progress dialog the first time you
+play a rule set). Be warned that this can store up to a megabyte of
+data in your home directory. Sharing of the cached files will not be
+implemented for 2.6.
+
+- gnomine, gnome-stones, gnotravex and gnometris use a new algorithm
+(OK, ugly hack) to set the size of their writing. The old way was
+doing bad things whith some systems (especially those with a high
+dpi).
+
+- The hint menu item in gnomine is now only available when it can be
+used.
+
+- In Ailseriot dragging after a double-click works.
+
+- Aisleriot documentation has been updated to mention the statistics
+dialog.
+
+- Some old Spanish and Danish documentation for gnobots and gtali has
+been updated from the old html format to docbook. The content hasn't
+changed, contributions that fix this are welcome.
+
+- gnibbles: key presses are now buffered so that fast turns are
+guaranteed to work.
+
+- Various SVG files have been slimmed down (Thanks to Richard
+Hoelscher).
+
+And of course it will crash less often. 
+
 gnome-games "The Ends of Invention" 2.5.5
 =========================================
 
