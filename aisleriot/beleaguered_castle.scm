@@ -1,0 +1,125 @@
+; AisleRiot - Beleaguered Castle
+; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+;
+; This game is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; either version 2, or (at your option)
+; any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program; if not, write to the Free Software
+; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+; USA
+
+(define (new-game)
+  (initialize-playing-area)
+  (set-ace-low)
+  (set! DECK (make-deck-list-ace-low 2 2 club))
+  (shuffle-deck)
+  (add-extended-slot '() right)
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-normal-slot DECK)
+  (add-extended-slot '() right)
+  (add-carriage-return-slot)
+  (add-extended-slot '() right)
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-normal-slot '())
+  (add-extended-slot '() right)
+  (add-carriage-return-slot)
+  (add-extended-slot '() right)
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-normal-slot '())
+  (add-extended-slot '() right)
+  (add-carriage-return-slot)
+  (add-extended-slot '() right)
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-normal-slot '())
+  (add-extended-slot '() right)
+  (deal-cards-face-up 1 '(0 2 3 5 6 8 9 11 0 2 3 5 6 8 9 11 
+			  0 2 3 5 6 8 9 11 0 2 3 5 6 8 9 11 
+			  0 2 3 5 6 8 9 11 0 2 3 5 6 8 9 11))
+  (add-card! 1 (make-visible (make-card ace club)))
+  (add-card! 4 (make-visible (make-card ace diamond)))
+  (add-card! 7 (make-visible (make-card ace heart)))
+  (add-card! 10 (make-visible (make-card ace spade)))
+
+  (list 6 4)
+)
+
+(define (make-deck-list-ace-low init-value value suit)
+   (if (eq? king value)
+      (if (eq? spade suit)
+	  (list (make-card king spade))
+	  (cons (make-card value suit) 
+		(make-deck-list-ace-low 
+		 init-value init-value (+ 1 suit))))
+      (cons (make-card value suit) 
+	    (make-deck-list-ace-low init-value (+ 1 value) suit))))
+
+(define (button-pressed slot-id card-list)
+  (and (= (length card-list) 1)
+       (not (= ace (get-value (car card-list))))))
+
+(define (button-released start-slot card-list end-slot)
+  (cond ((= start-slot end-slot)
+	 #f)
+	((or (= end-slot 1)
+	     (= end-slot 4)
+	     (= end-slot 7)
+	     (= end-slot 10))
+	 (cond ((empty-slot? end-slot)
+		(if (= (get-value (car card-list)) 1)
+		    (move-n-cards! start-slot end-slot card-list)
+		    #f))
+	       ((and (= (get-suit (get-top-card end-slot))
+			(get-suit (car card-list)))
+		     (= (+ 1 (get-value (get-top-card end-slot)))
+			(get-value (car card-list))))
+		(move-n-cards! start-slot end-slot card-list))
+	       (#t #f)))
+	((empty-slot? end-slot)
+	 (move-n-cards! start-slot end-slot card-list))
+	((= (get-value (get-top-card end-slot))
+	    (+ 1 (get-value (car card-list))))
+	 (move-n-cards! start-slot end-slot card-list))
+	(#t #f)))
+	
+(define (button-clicked slot-id) 
+  #f)
+
+(define (button-double-clicked slot-id)
+  #f)
+
+(define (game-continuable)
+  (not (game-won)))
+
+(define (game-won)
+  (and (= (length (get-cards 1)) 13)
+       (= (length (get-cards 4)) 13)
+       (= (length (get-cards 7)) 13)
+       (= (length (get-cards 10)) 13)))
+
+(define (get-hint)
+  #f)
+
+(define (get-options) 
+  #f)
+
+(define (apply-options options) 
+  #f)
+
+(define (timeout) 
+  #f)
+
+(set-lambda new-game button-pressed button-released button-clicked
+button-double-clicked game-continuable game-won get-hint get-options
+apply-options timeout)
