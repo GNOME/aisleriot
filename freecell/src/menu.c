@@ -34,7 +34,7 @@ GnomeUIInfo game_menuinfo[] =
   GNOMEUIINFO_MENU_RESTART_GAME_ITEM(callback_restart, NULL),
 
   GNOMEUIINFO_ITEM_STOCK(N_("New Game with a seed..."),
-			 N_("Start a new game with a different random number generator seed"),
+			 N_("Start a new game with a different random number generator seed."),
 			 callback_new_with_seed, GNOME_STOCK_MENU_OPEN),
 
   GNOMEUIINFO_SEPARATOR,
@@ -93,7 +93,8 @@ GnomeUIInfo main_toolbarinfo[] =
   GNOMEUIINFO_ITEM_STOCK(N_("Restart"), N_("Start this game over."),
 			 callback_restart, GNOME_STOCK_PIXMAP_REFRESH),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Seed"), N_("Start a new game after choosing the seed."),
+  GNOMEUIINFO_ITEM_STOCK(N_("Seed"),
+			 N_("Start a new game with a different random number generator seed."),
 			 callback_new_with_seed, GNOME_STOCK_PIXMAP_PREFERENCES),
 
   GNOMEUIINFO_SEPARATOR,

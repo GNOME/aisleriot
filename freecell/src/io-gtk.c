@@ -396,7 +396,9 @@ callback_new_with_seed_really (void)
 {
   GtkWidget *dialog, *entry, *label;
 
-  dialog = gnome_dialog_new (_("Seed"), _("OK"), _("Cancel"), NULL);
+  dialog = gnome_dialog_new (_("Seed"),
+			     GNOME_STOCK_BUTTON_OK,
+			     GNOME_STOCK_BUTTON_CANCEL, NULL);
 
   label = gtk_label_new (_("Enter the seed."));
   gtk_box_pack_start_defaults (GTK_BOX(GNOME_DIALOG(dialog)->vbox), label);
