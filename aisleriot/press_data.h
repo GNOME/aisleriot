@@ -34,6 +34,6 @@ typedef struct {
   GdkWindow *moving_cards;
 } press_data_type;
 
-void generate_press_data ();
+void generate_press_data ( void );
 
 #endif

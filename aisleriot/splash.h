@@ -26,7 +26,7 @@
  * Currently tailored for use with Aisleriot.
  */
 
-void splash_new ();
-void splash_destroy ();
+void splash_new ( void );
+void splash_destroy ( void );
 
 void splash_update (gchar* text, gfloat percent);

@@ -223,7 +223,7 @@
 	       "Monitors won't give you Vitamin E -- but sunlight will..."
 	       "If you're ever lost and alone in the woods, hug a tree"
 	       "Fishing wire makes bad dental floss"
-	       "Consistancy is key"
+	       "Consistency is key"
 	       "When without a stapler, a staple and a ruler will work"
 	       "Never blow in a dog's ear")
 	 (random 12))))

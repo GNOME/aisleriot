@@ -25,32 +25,39 @@
 #include "dialog.h"
 #include "cscmi.h"
 #include "draw.h"
+#include "events.h"
+
 static GtkWidget *about = NULL;
 
 
 void restart_game ()
 {
+  if (waiting_for_mouse_up()) return;
   new_game (NULL, &seed);
 };
 
 void random_seed ()
 {
+  if (waiting_for_mouse_up()) return;
   new_game (NULL, NULL);
 };
 
 void new_rules (GtkWidget* w, gchar* file) 
 {
+  if (waiting_for_mouse_up()) return;
   new_game (file, NULL);
 };
 
 void undo_callback ()
 {
+  if (waiting_for_mouse_up()) return;
   gh_eval_str ("(undo)");
   refresh_screen();
 }
 
 void redo_callback ()
 {
+  if (waiting_for_mouse_up()) return;
   gh_eval_str ("(redo)");
   refresh_screen();
 }

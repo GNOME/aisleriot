@@ -49,7 +49,7 @@ typedef struct {
 extern lambda_data* game_data;
 
 /* Init function */
-void cscm_init();
+void cscm_init( void );
 
 /* Scheme to C functions... */
 void add_slot(SCM);

@@ -445,7 +445,7 @@ retrieve_state (GnomeClient *client)
 }
 
 int
-is_game (struct dirent* dent)
+is_game (const struct dirent* dent)
 {
   return (!strcmp (g_extension_pointer (dent->d_name),"scm") &&
 	  strcmp (dent->d_name,"sol.scm"));

@@ -27,6 +27,8 @@
 #include "menu.h"
 #include "dialog.h"
 #include "draw.h"
+#include "events.h"
+
 static GtkWidget *hint_dlg = NULL;
 void show_game_over_dialog() {
   GtkWidget* dialog;
@@ -74,6 +76,8 @@ void show_select_game_dialog()
   static GtkWidget* option_menu;
   guint i;
   gchar buf[20];
+
+  if (waiting_for_mouse_up()) return;
 
   if(!dialog) {
 
@@ -161,6 +165,8 @@ hint_destroy_callback (void)
 void show_hint_dialog() 
 {
   GString* gmessage;
+
+  if (waiting_for_mouse_up()) return;
 
   if (game_over) {
     gmessage = g_string_new (_("The game is over.\nNo hints are available"));

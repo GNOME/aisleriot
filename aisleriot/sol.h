@@ -63,10 +63,10 @@ extern guint            y_expanded_offset;
 gchar* game_file_to_name(const gchar* file);
 void new_game(gchar* file, guint *seed);
 void quit_app (GtkWidget*);
-void set_score();
-void timer_start();
-void timer_stop();
-void make_title();
+void set_score( void );
+void timer_start( void );
+void timer_stop( void );
+void make_title( void );
 void eval_installed_file(gchar *file);
 
 #endif

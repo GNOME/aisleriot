@@ -21,8 +21,8 @@
 #define DRAW_H
 #include <gtk/gtk.h>
 
-void draw_cards();
-void take_snapshot();
-void refresh_screen();
+void draw_cards( void );
+void take_snapshot( void );
+void refresh_screen( void );
 
 #endif

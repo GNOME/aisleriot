@@ -24,20 +24,19 @@
 #include "dialog.h"
 #include "slot.h"
 
+int waiting_for_mouse_up(void) {
+  if (!press_data) return 0;
+  if (press_data->status == STATUS_IS_DRAG) return 1;
+  if (press_data->status == STATUS_SHOW) return 1;
+  return 0;
+}
+
 /* Defining SINGLE_ACTION prevents scheme from being called twice when
  * a double click occurs but delays the single_click action by 250ms */
 /*#define SINGLE_ACTION */
 /* I don't like this, so it's commented out -jrb */
 
 /* Button press statuses */
-enum {
-  STATUS_NONE,
-  STATUS_MAYBE_DRAG,
-  STATUS_NOT_DRAG,
-  STATUS_IS_DRAG,
-  STATUS_CLICK,
-  STATUS_SHOW
-};
 
 void end_of_game_test() {
 
@@ -132,7 +131,8 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
     return TRUE;
   
   if ((event->button == 2) || 
-      (event->button == 3 && (press_data->status == STATUS_IS_DRAG)))
+      (event->button == 3 && (press_data->status == STATUS_IS_DRAG)) ||
+      (event->button == 1 && (press_data->status == STATUS_SHOW)))
     return TRUE;
 
 #ifndef SINGLE_ACTION

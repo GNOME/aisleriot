@@ -20,11 +20,11 @@
 #ifndef MENU_H
 #define MENU_H
 
-void random_seed ();
-void undo_callback ();
-void redo_callback ();
-void help_about_callback ();
-void create_menus ();
-void install_menu_hints ();
+void random_seed ( void );
+void undo_callback ( void );
+void redo_callback ( void );
+void help_about_callback ( void );
+void create_menus ( void );
+void install_menu_hints ( GnomeApp * );
 
 #endif

@@ -1,3 +1,18 @@
+1999-06-15  Robert Brady  <rwb197@ecs.soton.ac.uk>
+
+	* card.h, cscmi.h, dialog.h, events.h, menu.h, press_data.h, sol.h, splash.h: Use
+	ANSI C prototypes for functions with no parameters.
+
+	* events.h, events.c: Moved STATUS_* things into the header.
+
+	* events.c (waiting_for_mouse_up): Added.
+
+	* menu.c, dialog.c: Inserted calls to waiting_for_mouse_up where needed.
+
+	* sol.c: (is_game) Fixed warning.
+
+	* clock.scm: Fix typo.
+
 1999-06-13  Robert Brady  <rwb197@ecs.soton.ac.uk>
 
 	* cscmi.c (scm_set_statusbar_message): Return a value.

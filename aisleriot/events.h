@@ -27,7 +27,16 @@ gint button_press_event (GtkWidget*, GdkEventButton*, void* );
 gint button_release_event (GtkWidget*, GdkEventButton*, void* );
 gint configure_event (GtkWidget*, GdkEventConfigure* );
 gint motion_notify_event (GtkWidget*, GdkEventMotion* );
-void end_of_game_test();
+void end_of_game_test(void);
+int waiting_for_mouse_up(void);
 
+enum {
+  STATUS_NONE,
+  STATUS_MAYBE_DRAG,
+  STATUS_NOT_DRAG,
+  STATUS_IS_DRAG,
+  STATUS_CLICK,
+  STATUS_SHOW
+};
 
 #endif
