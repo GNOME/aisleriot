@@ -39,7 +39,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ")
+  (string-append (_"Stock left:  ")
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -124,7 +124,7 @@
 
 (define (dealable?)
   (and (not (empty-slot? 0))
-       (list 0 (gettext "Deal another round"))))
+       (list 0 (_"Deal another round"))))
 
 (define (removable?)
   (and (not (empty-slot? 1))
@@ -135,18 +135,18 @@
 	  (get-value (get-top-card 2))
 	  (get-value (get-top-card 3))
 	  (get-value (get-top-card 4)))
-       (list 0 (string-append (gettext "Remove the ")
+       (list 0 (string-append (_"Remove the ")
 			      (cond ((= (get-value (get-top-card 1)) 1)
-				     (gettext "aces"))
+				     (_"aces"))
 				    ((= (get-value (get-top-card 1)) 11)
-				     (gettext "jacks"))
+				     (_"jacks"))
 				    ((= (get-value (get-top-card 1)) 12)
-				     (gettext "queens"))
+				     (_"queens"))
 				    ((= (get-value (get-top-card 1)) 13)
-				     (gettext "kings"))
+				     (_"kings"))
 				    (#t
 				     (string-append (number->string (get-value (get-top-card 1)))
-						    (gettext "'s"))))))))
+						    (_"'s"))))))))
 
 (define (move-leftable? slot1 slot2)
   (cond ((= slot1 4)
@@ -166,7 +166,7 @@
   (or (removable?)
       (move-leftable? 1 2)
       (dealable?)
-      (list 0 (gettext "Return cards to Stock"))))
+      (list 0 (_"Return cards to Stock"))))
 
 (define (get-options) 
   #f)

@@ -129,7 +129,7 @@
 
 (define (get-hint)
   (or (tableau-move? 1 2)
-      (list 0 (gettext "Deal more cards"))))
+      (list 0 (_"Deal more cards"))))
 
 
 

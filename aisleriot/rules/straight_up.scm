@@ -61,15 +61,15 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ")
+  (string-append (_"Stock left:  ")
 		  (number->string (length (get-cards 0)))))
 
 (define (get-reserve-no-string)
-  (string-append (gettext "Reserve left:  ")
+  (string-append (_"Reserve left:  ")
 		 (number->string (length (get-cards 6)))))
 
 (define (get-redeals-string)
-  (string-append (gettext "Redeals left:  ")
+  (string-append (_"Redeals left:  ")
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)
@@ -148,10 +148,10 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 (gettext "Deal a new card from the deck"))
+      (list 0 (_"Deal a new card from the deck"))
       (if (and (< FLIP-COUNTER 2)
 	       (not (empty-slot? 1)))
-	  (list 0 (gettext "Move waste back to stock"))
+	  (list 0 (_"Move waste back to stock"))
 	  #f)))
 
 (define (check-a-foundation slot-id foundation-id)
@@ -229,7 +229,7 @@
 	     (> slot-id 10))
 	 #f)
 	((empty-slot? slot-id)
-	 (list 2 (get-name (get-top-card 1)) (gettext "an empty Tableau slot")))
+	 (list 2 (get-name (get-top-card 1)) (_"an empty Tableau slot")))
 	(#t (empty-tableau? (+ 1 slot-id)))))
 
 (define (get-hint)

@@ -105,7 +105,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ") 
+  (string-append (_"Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -302,7 +302,7 @@
 	  (check-move (+ 1 slot1) (+ 2 slot1))
 	  #f)
       (if (= king (get-value (get-top-card slot1)))
-	  (list 2 (get-name (get-top-card slot1)) (gettext "itself"))
+	  (list 2 (get-name (get-top-card slot1)) (_"itself"))
 	  (if (or (empty-slot? slot2)
 		  (not (available? slot2 0))
 		  (not (= 13 (+ (get-value (get-top-card slot1))
@@ -318,7 +318,7 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 (gettext "Deal a card"))
+      (list 0 (_"Deal a card"))
       #f))
 
 (define (check-waste)

@@ -92,7 +92,7 @@
 	   (if (not (empty-slot? (car home-list)))
 	       (list 1 (get-name (get-top-card slot))
 		     (get-name (get-top-card (car home-list))))
-	       (list 3 (get-name (get-top-card slot)) (gettext "to an empty field")))
+	       (list 3 (get-name (get-top-card slot)) (_"to an empty field")))
 	   (get-valid-move slot (cdr home-list)))))
 
 (define (get-valid-moves slot-list home-list)
@@ -102,10 +102,10 @@
 
 (define (deal-possible?)
   (if (not (empty-slot? deck))
-      (list 0 (gettext "Deal a new card from the deck"))
+      (list 0 (_"Deal a new card from the deck"))
       (if (and (< FLIP-COUNTER 2)
 	       (not (empty-slot? stock)))
-	  (list 0 (gettext "Move waste back to stock"))
+	  (list 0 (_"Move waste back to stock"))
 	  #f)))
 
 (define (move-upwards-possible? top-card-value new-card-value)
@@ -279,7 +279,7 @@
   (or (get-valid-moves '(1 0 2 19 20 9 5 6 7 8 13 14 15 16)
 		       '(3 4 11 12 17 18 21 22))
       (deal-possible?)
-      (list 0 (gettext "Try a new game"))))
+      (list 0 (_"Try a new game"))))
  
 (define (get-options) #f)
 

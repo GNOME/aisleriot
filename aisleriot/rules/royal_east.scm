@@ -69,22 +69,22 @@
 					(get-base-string))))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ") 
+  (string-append (_"Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append (gettext "Base Card:  ") (number->string BASE-VAL)))
+	 (string-append (_"Base Card:  ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 (gettext "Base Card:  Ace"))
+	 (_"Base Card:  Ace"))
 	((= BASE-VAL 11)
-	 (gettext "Base Card:  Jack"))
+	 (_"Base Card:  Jack"))
 	((= BASE-VAL 12)
-	 (gettext "Base Card:  Queen"))
+	 (_"Base Card:  Queen"))
 	((= BASE-VAL 13)
-	 (gettext "Base Card:  King"))
-	(#t (gettext "melborp"))))
+	 (_"Base Card:  King"))
+	(#t (_"melborp"))))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -141,7 +141,7 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 (gettext "Deal a card"))
+      (list 0 (_"Deal a card"))
       #f))
 
 (define (check-a-foundation card f-slot)
@@ -171,7 +171,7 @@
 	((= BASE-VAL (get-value (get-top-card slot-id)))
 	 (list 2 
 	       (get-name (get-top-card slot-id)) 
-	       (gettext "an empty Foundation pile")))
+	       (_"an empty Foundation pile")))
 	((check-a-foundation (get-top-card slot-id) 2)
 	 (list 1
 	       (get-name (get-top-card slot-id))
@@ -186,7 +186,7 @@
 	     (= slot-id 8))
 	 (waste-to-tableau? (+ 1 slot-id)))
 	((empty-slot? slot-id)
-	 (list 2 (get-name (get-top-card 1)) (gettext "an empty Tableau pile")))
+	 (list 2 (get-name (get-top-card 1)) (_"an empty Tableau pile")))
 	((or (and (= (get-value (get-top-card 1)) king)
 		  (= (get-value (get-top-card slot-id)) ace))
 	     (= (+ 1 (get-value (get-top-card 1)))

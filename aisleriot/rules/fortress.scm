@@ -162,7 +162,7 @@
 		 ace))
 	 (list 2
 	       (get-name (get-top-card slot))
-	       (gettext "an empty Foundation")))
+	       (_"an empty Foundation")))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card f-slot))
 		 (get-suit (get-top-card slot)))
@@ -211,7 +211,7 @@
 	   (empty-slot? 10)
 	   (empty-slot? 11)
 	   (empty-slot? 13))
-       (list 0 (gettext "Move something into the empty Tableau slot"))))
+       (list 0 (_"Move something into the empty Tableau slot"))))
 
 (define (get-hint)
   (or (to-foundations? 0 3)

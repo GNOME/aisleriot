@@ -311,6 +311,6 @@ void cscm_init ()
   gh_new_procedure0_0("get-timeout", scm_get_timeout);  
   gh_new_procedure1_0("set-timeout!", scm_set_timeout);
   gh_new_procedure1_0("add-to-score!", scm_add_to_score);
-  gh_new_procedure("gettext", scm_gettext, 1, 0, 0);
+  gh_new_procedure("_", scm_gettext, 1, 0, 0);
   eval_installed_file ("sol.scm");
 }

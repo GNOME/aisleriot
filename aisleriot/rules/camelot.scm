@@ -74,7 +74,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ")
+  (string-append (_"Stock left:  ")
 		 (number->string (length (get-cards 16)))))
 
 (define (button-pressed slot-id card-list)
@@ -178,7 +178,7 @@
 (define (find-match cards)
   (and (not (null? cards))
        (if (= 10 (get-value (car cards))) 
-	   (list 2 (get-name (car cards)) (gettext "itself")) ; yuk..
+	   (list 2 (get-name (car cards)) (_"itself")) ; yuk..
 	   (let ((match (find-card-val-in-list? 
 			 (cdr cards)
 			 (- 10 (get-value (car cards))))))
@@ -192,22 +192,22 @@
 		  (empty-slot? 3)
 		  (empty-slot? 12)
 		  (empty-slot? 15))
-	      (gettext "an empty corner slot")))
+	      (_"an empty corner slot")))
 	 ((= (get-value card) queen)
 	  (or (and (or (empty-slot? 1)
 		       (empty-slot? 2))
-		   (gettext "an empty top slot"))
+		   (_"an empty top slot"))
 	      (and (or (empty-slot? 13)
 		       (empty-slot? 14))
-		   (gettext "an empty bottom slot"))))
+		   (_"an empty bottom slot"))))
 	((= (get-value card) jack)
 	  (or (and (or (empty-slot? 4)
 		       (empty-slot? 8))
-		   (gettext "an empty left slot"))
+		   (_"an empty left slot"))
 	      (and (or (empty-slot? 7)
 		       (empty-slot? 11))
-		   (gettext "an empty right slot"))))
-	(#t (gettext "an empty slot"))))
+		   (_"an empty right slot"))))
+	(#t (_"an empty slot"))))
 
 (define (game-over)
   (give-status-message)
@@ -225,7 +225,7 @@
 	       (list 2 (get-name (get-top-card 17))
 		     (placeable? (get-top-card 17))))
 	  (find-match (list-cards 0)))
-      (list 0 (gettext "Deal a new card from the deck"))))
+      (list 0 (_"Deal a new card from the deck"))))
 
 (define (get-options) #f)
 

@@ -184,7 +184,7 @@
 	     (= f-slot 8))
 	 (check-to-foundations? (+ 1 slot) 0))
 	((= (get-value (get-top-card slot)) ace)
-	 (list 2 (get-name (get-top-card slot)) (gettext "an empty Foundation")))
+	 (list 2 (get-name (get-top-card slot)) (_"an empty Foundation")))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card slot))
 		 (get-suit (get-top-card f-slot)))
@@ -239,7 +239,7 @@
 	      (check-for-king (get-cards slot) free-reserves slot))
 	 (list 2 
 	       (check-for-king (get-cards slot) free-reserves slot) 
-	       (gettext "an empty Tableau")))
+	       (_"an empty Tableau")))
 	((and (not (= slot t-slot))
 	      (not (empty-slot? t-slot))
 	      (= (get-suit (get-top-card slot))
@@ -255,7 +255,7 @@
 
 (define (check-for-empty-reserve)
   (and (> free-reserves 0)
-       (list 0 (gettext "Move something on to an empty reserve"))))
+       (list 0 (_"Move something on to an empty reserve"))))
 
 (define (get-hint)
   (or (check-to-foundations? 2 0)

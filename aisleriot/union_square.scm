@@ -88,7 +88,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ") 
+  (string-append (_"Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 
@@ -204,7 +204,7 @@
 	      (= slot-id 16)
 	      (not (check-a-foundation (list (get-top-card slot-id)) 6)))
 	  (check-to-foundations (+ 1 slot-id))
-	  (list 2 (get-name (get-top-card slot-id)) (gettext "appropriate Foundation pile")))))
+	  (list 2 (get-name (get-top-card slot-id)) (_"appropriate Foundation pile")))))
 
 (define (check-imbedded card-list foundation-id)
   (if (> (length card-list) 0)
@@ -419,17 +419,17 @@
       #f
       (cond ((contents-check 2)
 	     (list 2 (get-name (get-top-card (contents-check 2)))
-		   (gettext "an empty slot")))
+		   (_"an empty slot")))
 	    ((check-for-bottom 2)
 	     (list 2 (get-name (get-top-card (check-for-bottom 2)))
-		   (gettext "an empty slot")))
+		   (_"an empty slot")))
 	    ((not (empty-slot? 1))
-	     (list 2 (get-name (get-top-card 1)) (gettext "an empty slot")))
+	     (list 2 (get-name (get-top-card 1)) (_"an empty slot")))
 	    (#t #f))))
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 (gettext "Deal a card"))
+      (list 0 (_"Deal a card"))
       #f))
 
 (define (get-hint)

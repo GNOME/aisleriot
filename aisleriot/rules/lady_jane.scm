@@ -117,22 +117,22 @@
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append (gettext "Base Card:  ") (number->string BASE-VAL)))
+	 (string-append (_"Base Card:  ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 (gettext "Base Card:  Ace"))
+	 (_"Base Card:  Ace"))
 	((= BASE-VAL 11)
-	 (gettext "Base Card:  Jack"))
+	 (_"Base Card:  Jack"))
 	((= BASE-VAL 12)
-	 (gettext "Base Card:  Queen"))
+	 (_"Base Card:  Queen"))
 	((= BASE-VAL 13)
-	 (gettext "Base Card:  King"))
+	 (_"Base Card:  King"))
 	(#t #f)))
 
 (define (get-stock-no-string)
   (if (> (length (get-cards 0)) 1)
-      (string-append (gettext "Stock left:  ") 
+      (string-append (_"Stock left:  ") 
 		     (number->string (length (get-cards 0))))
-      (string-append (gettext "Stock left:  0")))) 
+      (string-append (_"Stock left:  0")))) 
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -238,7 +238,7 @@
 
 (define (dealable?)
   (and (> (length (get-cards 0)) 1)
-       (list 0 (gettext "Deal another round"))))
+       (list 0 (_"Deal another round"))))
 
 (define (check-a-foundation slot1 slot2)
   (if (< slot2 6)
@@ -258,7 +258,7 @@
 	 (or (and (= (get-value (get-top-card slot-id)) BASE-VAL)
 		  (list 2 
 			(get-name (get-top-card slot-id)) 
-			(gettext "an empty Foundation pile")))
+			(_"an empty Foundation pile")))
 	     (list 1 
 		   (get-name (get-top-card slot-id))
 		   (get-name 
@@ -402,7 +402,7 @@
 		       (= BASE-VAL ace))))
 	 (list 2
 	       (get-name (get-top-visible-card (get-cards slot)))
-	       (gettext "an empty Tableau slot")))
+	       (_"an empty Tableau slot")))
 	((and (not (empty-slot? slot))
 	      (or (> slot 12)
 		  (< slot 2))
@@ -414,7 +414,7 @@
 		       (= BASE-VAL ace))))
 	 (list 2
 	       (get-name (get-top-card slot))
-	       (gettext "an empty Tableau slot")))
+	       (_"an empty Tableau slot")))
 	(#t (find-high-value (+ 1 slot)))))
 
 (define (empty-tableau?)
@@ -433,7 +433,7 @@
       (check-to-tableau? 0 6)
       (empty-tableau?)
       (dealable?)
-      (list 0 (gettext "Try rearranging the cards"))))    
+      (list 0 (_"Try rearranging the cards"))))    
 
 (define (get-options) 
   #f)

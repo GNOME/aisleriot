@@ -296,7 +296,7 @@
   (> (get-score) 74))
 
 (define (get-hint)
-  (list 0 (gettext "Place cards on to the Tableau to form poker hands")))
+  (list 0 (_"Place cards on to the Tableau to form poker hands")))
 
 (define (get-options) 
   #f)

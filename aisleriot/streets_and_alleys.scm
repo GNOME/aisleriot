@@ -163,7 +163,7 @@
 	 #f)
 	((empty-slot? slot2)
 	 (and (= (get-value (get-top-card slot1)) ace)
-	      (list 2 (get-name (get-top-card slot1)) (gettext "an empty Foundation"))))
+	      (list 2 (get-name (get-top-card slot1)) (_"an empty Foundation"))))
 	((and (= (get-suit (get-top-card slot1))
 		 (get-suit (get-top-card slot2)))
 	      (= (get-value (get-top-card slot1))
@@ -187,7 +187,7 @@
 
 (define (get-hint)
   (or (check-to-foundation 0)
-      (list 0 (gettext "Try rearranging the cards"))))
+      (list 0 (_"Try rearranging the cards"))))
 
 (define (get-options) 
   #f)

@@ -83,29 +83,29 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ")
+  (string-append (_"Stock left:  ")
 		 (number->string (length (get-cards 0)))))
 
 (define (get-reserve-no-string)
-  (string-append (gettext "Reserve left:  ")
+  (string-append (_"Reserve left:  ")
 		 (number->string (length (get-cards 10)))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append (gettext "Base Card:  ") (number->string BASE-VAL)))
+	 (string-append (_"Base Card:  ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 (gettext "Base Card:  Ace"))
+	 (_"Base Card:  Ace"))
 	((= BASE-VAL 11)
-	 (gettext "Base Card:  Jack"))
+	 (_"Base Card:  Jack"))
 	((= BASE-VAL 12)
-	 (gettext "Base Card:  Queen"))
+	 (_"Base Card:  Queen"))
 	((= BASE-VAL 13)
-	 (gettext "Base Card:  King"))
+	 (_"Base Card:  King"))
 	(#t #f)))
 
 (define (get-redeals-string)
-  (string-append (gettext "Redeals left:  ")
+  (string-append (_"Redeals left:  ")
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)
@@ -262,7 +262,7 @@
   (if (and (not (empty-slot? slot))
 	   (is-visible? (get-top-card slot)))
       (cond ((= (get-value (get-top-card slot)) BASE-VAL)
-	     (list 3 (get-name (get-top-card slot)) (gettext "to an empty foundation")))
+	     (list 3 (get-name (get-top-card slot)) (_"to an empty foundation")))
 	    ((check-a-foundation slot 2)
 	     (list 1 
 		   (get-name (get-top-card slot)) 
@@ -295,7 +295,7 @@
 	   (not (= slot 10)))
       (if (empty-slot? 1)
 	  #f
-	  (list 2 (get-name (get-top-card 1)) (gettext "an empty slot on tableau")))
+	  (list 2 (get-name (get-top-card 1)) (_"an empty slot on tableau")))
       (if (< slot 14)
 	  (check-empty-slot (+ 1 slot))
 	  #f)))
@@ -327,10 +327,10 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 (gettext "Deal a card"))
+      (list 0 (_"Deal a card"))
       (if (and (not (empty-slot? 1))
 	       (< FLIP-COUNTER 2))
-	  (list 0 (gettext "Move waste back to stock"))
+	  (list 0 (_"Move waste back to stock"))
 	  #f)))
 
 (define (get-hint)

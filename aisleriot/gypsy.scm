@@ -60,7 +60,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ") 
+  (string-append (_"Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -224,7 +224,7 @@
 	   (empty-slot? 14)
 	   (empty-slot? 15)
 	   (empty-slot? 16))
-      (list 0 (gettext "Move a card or build of cards on to the empty slot"))
+      (list 0 (_"Move a card or build of cards on to the empty slot"))
       #f))
        
 
@@ -245,7 +245,7 @@
 	((empty-slot? slot-id)
 	 (check-to-foundations? (+ 1 slot-id)))
 	((= (get-value (get-top-card slot-id)) ace)
-	 (list 2 (get-name (get-top-card slot-id)) (gettext "an empty Foundation")))
+	 (list 2 (get-name (get-top-card slot-id)) (_"an empty Foundation")))
 	((check-a-foundation (get-top-card slot-id) 1)
 	 (list 1 
 	       (get-name (get-top-card slot-id))
@@ -335,7 +335,7 @@
 
 (define (check-for-deal)
   (if (not (empty-slot? 0))
-      (list 0 (gettext "Deal another hand"))
+      (list 0 (_"Deal another hand"))
       #f))
 
 (define (get-hint)

@@ -53,7 +53,7 @@
   (set-statusbar-message (string-append (get-stock-no-string))))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ") 
+  (string-append (_"Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -142,7 +142,7 @@
 	((and (not (empty-slot? slot))
 	      (check-to-foundation (get-top-card slot) 2))
 	 (if (= (get-value (get-top-card slot)) ace)
-	     (list 2 (get-name (get-top-card slot)) (gettext "an empty Foundation"))
+	     (list 2 (get-name (get-top-card slot)) (_"an empty Foundation"))
 	     (list 1
 		   (get-name (get-top-card slot))
 		   (get-name (get-top-card (check-to-foundation (get-top-card slot) 2))))))
@@ -225,12 +225,12 @@
 		  (and (not (empty-slot? 12))
 		       (or (not (check-same-suit-list (get-cards 12)))
 			   (not (check-straight-descending-list (get-cards 12))))))
-	      (list 0 (gettext "Move a build of cards on to the empty Tableau slot"))))
+	      (list 0 (_"Move a build of cards on to the empty Tableau slot"))))
 	(#t (empty-tab? (+ 1 slot)))))
 
 (define (dealable?)
   (and (not (empty-slot? 0))
-       (list 0 (gettext "Deal another card"))))
+       (list 0 (_"Deal another card"))))
 
 (define (get-hint)
   (or (check-foundations 1)

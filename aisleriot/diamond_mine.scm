@@ -265,7 +265,7 @@
 	 #f)
 	((and (empty-slot? slot)
 	      (possible-move-off? 0))
-	 (list 2 (get-name (possible-move-off? 0)) (gettext "an empty slot")))
+	 (list 2 (get-name (possible-move-off? 0)) (_"an empty slot")))
 	(#t (check-for-empties (+ 1 slot)))))
 
 (define (start-foundation slot)
@@ -274,7 +274,7 @@
 	 #f)
 	((and (not (empty-slot? slot))
 	      (= (get-suit (get-top-card slot)) diamond))
-	 (list 2 (get-name (get-top-card slot)) (gettext "the foundation pile")))
+	 (list 2 (get-name (get-top-card slot)) (_"the foundation pile")))
 	(#t (start-foundation (+ 1 slot)))))
 
 (define (any-empty? slot)
@@ -317,7 +317,7 @@
 	 #f)
 	((and (not (empty-slot? slot))
 	      (check-a-tab-slot (get-cards slot)))
-	 (list 2 (get-name (check-a-tab-slot (get-cards slot))) (gettext "an empty slot")))
+	 (list 2 (get-name (check-a-tab-slot (get-cards slot))) (_"an empty slot")))
 	(#t (check-tableau-suit-changes (+ 1 slot)))))
 
 (define (get-hint)

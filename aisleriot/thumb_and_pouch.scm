@@ -58,11 +58,11 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ") 
+  (string-append (_"Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (get-redeals-string)
-  (string-append (gettext "Redeals left:  ")
+  (string-append (_"Redeals left:  ")
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)
@@ -144,10 +144,10 @@
 
 (define (dealable?)
   (or (and (not (empty-slot? 0))
-	   (list 0 (gettext "Deal another round")))
+	   (list 0 (_"Deal another round")))
       (and (not (empty-slot? 1))
 	   (< FLIP-COUNTER 2)
-	   (list 0 (gettext "Move waste back to stock")))))
+	   (list 0 (_"Move waste back to stock")))))
 
 (define (empty-exist? slot-id)
   (cond ((= slot-id 13)
@@ -159,7 +159,7 @@
 
 (define (check-waste-to-empty)
   (and (not (empty-slot? 1))
-       (list 2 (get-name (get-top-card 1)) (gettext "an empty Tableau pile"))))
+       (list 2 (get-name (get-top-card 1)) (_"an empty Tableau pile"))))
 
 (define (stripped card-list)
   (if (not (is-visible? (cadr card-list)))
@@ -171,7 +171,7 @@
 	 #f)
 	((and (not (empty-slot? slot-id))
 	      (not (is-visible? (car (reverse (get-cards slot-id))))))
-	 (list 2 (get-name (stripped (get-cards slot-id))) (gettext "an empty Tableau pile")))
+	 (list 2 (get-name (stripped (get-cards slot-id))) (_"an empty Tableau pile")))
 	(#t (check-tableau-to-empty (+ 1 slot-id)))))
 
 
@@ -191,7 +191,7 @@
 	     #t
 	     (list 2
 		   (get-name (get-top-card slot-id)) 
-		   (gettext "an empty Foundation pile"))))
+		   (_"an empty Foundation pile"))))
 	((and (not (empty-slot? f-slot))
 	      (eq? (get-suit (get-top-card f-slot))
 		   (get-suit card))

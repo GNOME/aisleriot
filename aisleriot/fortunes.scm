@@ -40,7 +40,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ")
+  (string-append (_"Stock left:  ")
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -132,8 +132,8 @@
 		    (get-suit (get-top-card slot2))))
 	  (if (< (get-value (get-top-card slot1))
 		 (get-value (get-top-card slot2)))
-	      (list 3 (get-name (get-top-card slot1)) (gettext "off the board"))
-	      (list 3 (get-name (get-top-card slot2)) (gettext "off the board")))
+	      (list 3 (get-name (get-top-card slot1)) (_"off the board"))
+	      (list 3 (get-name (get-top-card slot2)) (_"off the board")))
 	  (check-hint slot1 (+ 1 slot2)))))
 
 (define (get-hint)
@@ -152,10 +152,10 @@
 			(> (length (get-cards 3)) 1))
 		   (and (not (empty-slot? 4))
 			(> (length (get-cards 4)) 1))))
-	  (list 0 (gettext "Consider moving something into an empty slot"))
+	  (list 0 (_"Consider moving something into an empty slot"))
 	  #f)
       (if (not (empty-slot? 0))
-	  (list 0 (gettext "Deal another round"))
+	  (list 0 (_"Deal another round"))
 	  #f)))
 
 (define (get-options) #f)

@@ -136,14 +136,3 @@ sys_DATA = $(sys_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 CLEANFILES = $(sys_DATA)
-
-SCHEME_GAMES.h: $(types_DATA)
-	-echo "/* This is an automatically generated file, please do not edit it. " >SCHEME_GAMES.h
-	-echo " *" >> SCHEME_GAMES.h
-	-echo " * This file is never compiled and is merely a repository of" >> SCHEME_GAMES.h
-	-echo " * strings extracted from the *.scm files in a form easily" >>SCHEME_GAMES.h
-	-echo " * digestible by xgettext. No, this isn't a good way to do it. */" >> SCHEME_GAMES.h
-	-echo "" >>SCHEME_GAMES.h
-	-echo "char only_a_place_holder[] = {" >>SCHEME_GAMES.h
-	-perl -ne 'foreach (/\(gettext\W*("[^"]*")\W*\)/g) { print "N_($$_),\n"; }' *.scm >>SCHEME_GAMES.h
-	-echo "};" >>SCHEME_GAMES.h

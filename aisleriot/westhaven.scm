@@ -58,7 +58,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (gettext "Stock left:  ") 
+  (string-append (_"Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (next-card card-list number)
@@ -194,7 +194,7 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 (gettext "Deal a card"))
+      (list 0 (_"Deal a card"))
       #f))
 
 (define (to-foundations? slot-id)
@@ -205,7 +205,7 @@
 	((empty-slot? slot-id)
 	 (to-foundations? (+ 1 slot-id)))
 	((= (get-value (get-top-card slot-id)) ace)
-	 (list 2 (get-name (get-top-card slot-id)) (gettext "an empty Foundation")))
+	 (list 2 (get-name (get-top-card slot-id)) (_"an empty Foundation")))
 	((and (not (empty-slot? 2))
 	      (eq? (get-suit (get-top-card 2))
 		   (get-suit (get-top-card slot-id)))
@@ -309,11 +309,11 @@
       (cond ((check-invisible 6)
 	     (list 2 
 		   (get-name (check-invisible 6))
-		   (gettext "an empty Tableau pile")))
+		   (_"an empty Tableau pile")))
 	    ((not (empty-slot? 1))
 	     (list 2
 		   (get-name (get-top-card 1))
-		   (gettext "an empty Tableau pile")))
+		   (_"an empty Tableau pile")))
 	    (#t #f))))
 
 (define (get-hint)

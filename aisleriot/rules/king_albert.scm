@@ -208,7 +208,7 @@
 	 (if (empty-slot? (check-plop (strip (get-cards t-slot)) 4))
 	     (list 2 
 		   (get-name (strip (get-cards t-slot)))
-		   (gettext "an empty tableau slot"))
+		   (_"an empty tableau slot"))
 	     (list 1 
 		   (get-name (strip (get-cards t-slot)))
 		   (get-name (get-top-card (check-plop (strip (get-cards t-slot)) 
@@ -273,7 +273,7 @@
 	    ace)
 	 (list 2
 	       (get-name (get-top-card slot))
-	       (gettext "an empty foundation")))
+	       (_"an empty foundation")))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card slot))
 		 (get-suit (get-top-card f-slot)))
@@ -307,7 +307,7 @@
       (check-empty-tslot 4)
       (check-foundation-for-uncover 4)
       (check-to-foundations 4 0)
-      (list 0 (gettext "Try rearranging the cards"))))
+      (list 0 (_"Try rearranging the cards"))))
 
 (define (get-options) 
   #f)

@@ -173,7 +173,7 @@
 
 (define (is-ploppable card value suit)
   (or (and (= ace (get-value card))
-	   (list 2 (get-name card) (gettext "an empty slot") ))
+	   (list 2 (get-name card) (_"an empty slot") ))
       (and (or (and (not (empty-slot? 0))
 		    (= value (get-value (get-top-card 0)))
 		    (= suit (get-suit (get-top-card 0))))
@@ -207,7 +207,7 @@
        (or (and (= (get-value (car cards)) king)
 		(is-visible? (car cards))
 		(not (null? (cdr cards)))
-		(list 2 (get-name (car cards)) (gettext "an empty slot")))
+		(list 2 (get-name (car cards)) (_"an empty slot")))
 	   (is-visible-king (cdr cards)))))
 
 (define (find-king slot-id)

@@ -1,3 +1,13 @@
+2003-05-20  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* Makefile.am: Removed the code to generate SCHEME_GAMES.h, we
+	don't need it anymore.
+
+	* cscmi.c (cscm_init): gettext -> _
+
+	* *.scm: Changed all the "gettext" calls to "_" so we don't have
+	to alter intltools.
+
 2003-05-18  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* Makefile.am: Arranged for the autogeneration of SCHEME_GAMES.h
