@@ -25,7 +25,7 @@ SUBDIRS =			\
 	iagno			\
 	freecell 		\
 	$(cxx_DIRS)		\
-	$(guile_DIRS)		\
+	$(guile_DIRS)
 
 EXTRA_DIST = \
 	gnome-games.spec.in \
