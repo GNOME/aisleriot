@@ -21,8 +21,14 @@
 #include <gnome.h>
 #include <locale.h>
 
+#include <getopt.h>
+#include <long-options.h>
 
 #include "io-gtk.h"
+#include "option.h"
+#include "score.h"
+
+static void parse_args (int argc, char *argv[]);
 
 /* The name this program invoked with.  */
 char *program_name;
@@ -33,11 +39,65 @@ main (int argc, char **argv)
 {
   program_name = argv[0];
 
-  setlocale (LC_ALL, "");
+  gnome_init(&argc, &argv);
   bindtextdomain (PACKAGE, LOCALEDIR);
   textdomain (PACKAGE);
 
-  io_gtk_init (&argc, &argv);
+  parse_args(argc, argv);
+
+  option_init();
+  score_init();
+
+  io_gtk_init ();
   io_gtk_loop ();
   return 0;
 }
+
+
+static void
+parse_args (int argc, char *argv[])
+{
+  gint ch;
+
+  struct option options[] =
+  {
+    /* Default args */
+    { "help", 			no_argument,            NULL,   'h'     },
+    { "version",	 	no_argument,            NULL,   'v'     },
+    { NULL, 0, NULL, 0 }
+  };
+
+  /* initialize getopt */
+  optarg = NULL;
+  optind = 0;
+  optopt = 0;
+
+  while( (ch = getopt_long(argc, argv, "hv", options, NULL)) != EOF )
+  {
+    switch(ch)
+    {
+      case 'h':
+        g_print ( 
+      	  _("%s: FreeCell solitaire card game\n\n"
+      	    "Usage: %s [--help] [--version]\n\n"
+      	    "Options:\n"
+      	    "        --help     display this help and exit\n"
+      	    "        --version  output version information and exit\n"),
+      	    argv[0], argv[0]);
+        exit(0);
+        break;
+      case 'v':
+        g_print (_("FreeCell %s.\n"), VERSION);
+        exit(0);
+        break;
+      case ':':
+      case '?':
+        g_print (_("Options error\n"));
+        exit(0);
+        break;
+    }
+  }
+
+  return;
+}
+

@@ -1,2 +1,2 @@
-SUBDIRS = image intl po src 
+SUBDIRS = image intl po lib src 
 

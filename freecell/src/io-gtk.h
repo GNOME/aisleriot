@@ -29,7 +29,7 @@
 
 extern GtkWidget *main_window;
 
-void io_gtk_init (int *argc, char ***argv);
+void io_gtk_init (void);
 void io_gtk_loop (void);
 
 void callback_new (GtkWidget *widget, GdkEvent *event);

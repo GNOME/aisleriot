@@ -103,19 +103,12 @@ static void callback_field_expose (GtkWidget *widget, GdkEventExpose *event, gpo
 
 
 void
-io_gtk_init (int *argc, char ***argv)
+io_gtk_init (void)
 {
   GtkWidget *vbox, *hbox;
 
   int i;
   GtkWidget *w;
-
-  
-  gnome_init(argc, argv);
-  textdomain (PACKAGE);
-
-  option_init();
-  score_init();
 
   
   /* make main window.  */

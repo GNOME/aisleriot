@@ -116,6 +116,6 @@ AC_FUNC_MMAP
 AC_FUNC_VPRINTF
 AC_CHECK_FUNCS(getcwd getwd putenv strerror)
 
-AC_OUTPUT([Makefile src/Makefile 
+AC_OUTPUT([Makefile src/Makefile lib/Makefile
 	   image/Makefile intl/Makefile po/Makefile.in],
 [sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])

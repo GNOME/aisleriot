@@ -24,10 +24,12 @@ if IN_GNOME_TREE
 	../../../libgnomeui/libgnomeui.la \
 	../../../libgnome/libgnome.la \
 	$(DL_LIB) \
-	$(GTK_LIBS) $(x_libs) $(INTLLIBS)
+	$(GTK_LIBS) $(x_libs) $(INTLLIBS) \
+	../lib/libfc.a
 else
   freecell_LDADD = $(X_LIBS) $(GNOME_LIBS) \
-	$(GTK_LIBS) $(x_libs) $(INTLLIBS)
+	$(GTK_LIBS) $(x_libs) $(INTLLIBS) \
+	../lib/libfc.a
 endif
 
 EXTRA_DIST = freecell.desktop
