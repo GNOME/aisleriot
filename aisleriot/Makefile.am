@@ -40,29 +40,30 @@ sol_LDADD = -lgdk_imlib $(GNOME_LIBDIR) $(GNOMEUI_LIBS) \
 	$(INTLLIBS) $(GUILE_LIBS)
 
 types_DATA  = 		\
+	auld_lang_syne.scm \
+	beleaguered_castle.scm \
+	bristol.scm	\
+	camelot.scm	\
+	canfield.scm	\
+	clock.scm	\
+	doublets.scm	\
+	eagle_wing.scm	\
+	elevator.scm	\
 	first_law.scm	\
 	fortunes.scm	\
 	fourteen.scm	\
 	freecell.scm	\
-	doublets.scm	\
 	hopscotch.scm	\
-	auld_lang_syne.scm \
-	beleaguered_castle.scm \
-	camelot.scm	\
-	canfield.scm	\
-	bristol.scm	\
-	clock.scm	\
-	eagle_wing.scm	\
-	elevator.scm	\
 	kansas.scm	\
 	klondike.scm	\
-	pileon.scm	\
+	lady_jane.scm	\
 	neighbor.scm	\
 	odessa.scm	\
 	osmosis.scm	\
+	pileon.scm	\
 	royal_east.scm	\
-	sol.scm		\
 	scorpion.scm	\
+	sol.scm		\
 	spider.scm	\
 	straight_up.scm	\
 	thieves.scm     \

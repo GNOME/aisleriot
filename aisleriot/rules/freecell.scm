@@ -207,12 +207,10 @@
 ;; Callbacks & Initialize the game
 ;;
 
-;; Set up the deck
-(set-ace-low)
-
 ;; Set up a new game.
 (define (new-game)
   (initialize-playing-area)
+  (set-ace-low)
   (make-standard-deck)
   (shuffle-deck)
   

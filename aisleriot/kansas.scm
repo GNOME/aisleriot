@@ -55,9 +55,9 @@
 
   (set! BASE-VAL (get-value (get-top-card 2)))
 
-  (give-status-message)
-
   (add-to-score! 1)
+
+  (give-status-message)
 
   (list 7 4))
 
