@@ -215,10 +215,6 @@ GnomeUIInfo toolbar[] =
   GNOMEUIINFO_ITEM_STOCK(N_("Redo"), N_("Redo the last move"),
 			 redo_callback, GTK_STOCK_REDO),
 
-  GNOMEUIINFO_SEPARATOR,
-
-  GNOMEUIINFO_ITEM_STOCK(N_("Exit"), N_("Quit Aisleriot"),
-			 quit_app, GTK_STOCK_QUIT),
   GNOMEUIINFO_END
 };
 
