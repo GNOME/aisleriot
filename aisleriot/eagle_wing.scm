@@ -121,11 +121,7 @@
 	   (empty-slot? start-slot)
 	   (not (empty-slot? 10)))
       (deal-cards-face-up 10 (cons start-slot '())))
-  (set-statusbar-message (string-append (get-stock-no-string)
-					"   "
-					(get-reserve-no-string)
-					"   "
-					(get-base-string))))
+  (give-status-message))
 
 (define (button-released start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
