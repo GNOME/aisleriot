@@ -68,7 +68,7 @@ GnomeUIInfo settings_menuinfo[] = {
 
 GnomeUIInfo help_menuinfo[] =
 {
-  GNOMEUIINFO_HELP("freecell"),
+/* FIXME  GNOMEUIINFO_HELP("freecell"), */
 
   GNOMEUIINFO_MENU_ABOUT_ITEM(callback_about, NULL),
 
@@ -110,11 +110,6 @@ GnomeUIInfo main_toolbarinfo[] =
 
   GNOMEUIINFO_ITEM_STOCK(N_("Preferences"), N_("Configure Freecell"),
 			 callback_option, GTK_STOCK_PREFERENCES),
-
-  GNOMEUIINFO_SEPARATOR,
-
-  GNOMEUIINFO_ITEM_STOCK(N_("Exit"), N_("Quit Freecell"),
-			 callback_exit, GTK_STOCK_QUIT),
 
   GNOMEUIINFO_END
 };
