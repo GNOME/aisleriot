@@ -7,13 +7,28 @@
 # cxx_DIRS = gnometris xbill
 # endif
 
-SUBDIRS = po\
-	  gnomine same-gnome mahjongg gtali idl \
-	  gnobots2 gnome-stones gataxx  gnotravex  gnotski \
-	  gnibbles glines omf-install  \
-	  iagno
-##	  $(guile_DIRS) $(cxx_DIRS) freecell 
+SUBDIRS =			\
+	po			\
+	libgames-support	\
+	gnomine			\
+	same-gnome		\
+	mahjongg		\
+	gtali			\
+	gnobots2		\
+	gnome-stones		\
+	gataxx			\
+	gnotravex		\
+	gnotski			\
+	gnibbles		\
+	glines			\
+	iagno			\
+	freecell 		\
+	omf-install
 
+# Not ported yet
+EXTRA_SUBDIRS =		\
+	$(guile_DIRS)	\
+	$(cxx_DIRS)
 
 EXTRA_DIST = \
 	gnome-games.spec.in \
