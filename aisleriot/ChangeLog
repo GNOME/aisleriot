@@ -1,3 +1,36 @@
+2004-04-11  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* sol.c: Tweak the card spacing so that suits are visible
+	too. Fixes bug 80167.
+
+	* events.c:
+	* draw.c:
+	* slot.h:	
+	* slot.c: 
+	* press_data.c:
+	* draw.c: Add pixeldx and pixeldy to the slot structure to cache
+	the pixel offsets. Also fixed the length calculation code to 
+	be less reliant on past (and potentially wrong) calcualtions.
+	
+	* cscmi.c: 
+	* sol.c:
+	* sol.h:
+	* slot.h: Make dx, dy resolution independent
+	doubles rather than pixel-scaled ints.
+
+	* ten_across.scm: Set the slot expansion in ten_across to be a
+	real number (and a normalised to one) rather than a pixel
+	height.
+
+	* streets_and_alleys.scm (new-game): 
+	* plait.scm (new-game): 
+	* peek.scm (new-game): 
+	* lady_jane.scm (new-game): 
+	* king_albert.scm (new-game): 
+	* thirteen.scm (new-game): 
+	* yield.scm (new-game): 
+	* treize.scm (new-game): Switch from pixel units to scaled units.
+
 2004-04-10  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* events.c:	

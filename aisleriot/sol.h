@@ -63,8 +63,8 @@ extern gboolean         game_won;
 
 extern guint            x_spacing;
 extern guint            y_spacing;
-extern guint            x_expanded_offset;
-extern guint            y_expanded_offset;
+extern double            x_expanded_offset;
+extern double            y_expanded_offset;
 
 extern GConfClient * gconf_client;
 

@@ -55,7 +55,7 @@ void add_slot(SCM slot_data)
   else if (!strcmp("partially-expanded", 
 		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
     hslot->dy = y_expanded_offset;
-    hslot->expansion_depth = SCM_INUM(SCM_CADDR(SCM_CADDR(slot_data)));
+    hslot->expansion_depth = SCM_INUM (SCM_CADDR(SCM_CADDR(slot_data)));
   }
   else if (!strcmp("partially-expanded-right", 
 		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
@@ -180,14 +180,14 @@ static SCM gg_scm_add_slot(SCM slot)
 static SCM scm_set_slot_y_expansion(SCM scm_slot_id, SCM new_exp_val)
 {
   hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
-  slot->dy = gh_scm2int(new_exp_val);
+  slot->dy = gh_scm2double (new_exp_val);
   return SCM_EOL;
 }
 
 static SCM scm_set_slot_x_expansion(SCM scm_slot_id, SCM new_exp_val)
 {
   hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
-  slot->dx = gh_scm2int(new_exp_val);
+  slot->dx = gh_scm2double (new_exp_val);
   return SCM_EOL;
 }
 

@@ -51,10 +51,10 @@ void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
 
 		gint depth = 1;
 
-		if (hslot->dx > 0)		
-			depth += (x - hslot->pixelx) / hslot->dx;
-		else if (hslot->dy > 0)
-			depth += (y - hslot->pixely) / hslot->dy;
+		if (hslot->pixeldx > 0)		
+			depth += (x - hslot->pixelx) / hslot->pixeldx;
+		else if (hslot->pixeldy > 0)
+			depth += (y - hslot->pixely) / hslot->pixeldy;
 	    
 		/* account for the last card getting much more display area
 		 * or no cards */
@@ -81,22 +81,22 @@ void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
 
 void update_slot_length(hslot_type hslot) 
 {
-  gint delta = g_list_length(hslot->cards) - hslot->length;
+  gint delta;
 
-  hslot->length += delta;
-  hslot->exposed += delta;
+  hslot->length = g_list_length (hslot->cards);
+  hslot->exposed = hslot->length;
 
   if (0 < hslot->expansion_depth && hslot->expansion_depth < hslot->exposed)
     hslot->exposed = hslot->expansion_depth;
 
-  if ((hslot->dx == 0 && hslot->dy == 0 && hslot->exposed > 1) ||
+  if ((hslot->pixeldx == 0 && hslot->pixeldy == 0 && hslot->exposed > 1) ||
       (hslot->length > 0 && hslot->exposed < 1))
     hslot->exposed = 1;
 
   delta = hslot->exposed ? hslot->exposed - 1 : 0;
 
-  hslot->width = get_card_width() + delta * hslot->dx;
-  hslot->height = get_card_height() + delta * hslot->dy;
+  hslot->width = get_card_width() + delta * hslot->pixeldx;
+  hslot->height = get_card_height() + delta * hslot->pixeldy;
 }
 
 GList* get_slot_list() {

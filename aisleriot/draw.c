@@ -39,6 +39,10 @@ static void calculate_card_location (hslot_type hslot)
 {
   hslot->pixelx = xslotstep*(hslot->x + 0.5) - get_card_width () / 2;
   hslot->pixely = yslotstep*(hslot->y + 0.5) - get_card_height () / 2;
+  hslot->pixeldx = hslot->dx*get_card_width ();
+  hslot->pixeldy = hslot->dy*get_card_height ();
+
+  update_slot_length (hslot);
 }
 
 /* Work out new sizes and spacings for the cards. */
@@ -89,7 +93,7 @@ void draw_cards () {
 	if (image != NULL)
 	  gdk_draw_drawable (surface, draw_gc, image, 0, 0, x, y, -1, -1);
 	
-	x += hslot->dx; y += hslot->dy;
+	x += hslot->pixeldx; y += hslot->pixeldy;
       }
     }
   }

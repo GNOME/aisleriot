@@ -42,59 +42,41 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
 
-  (set! HORIZPOS (get-horiz-start))
-  (set! VERTPOS (get-vert-start))
+  (set! HORIZPOS 0)
+  (set! VERTPOS 0)
 
   (add-carriage-return-slot)
 
-  (set! VERTPOS (inexact->exact (truncate (+ VERTPOS
-					     (/ (get-card-height) 2)))))
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* 10
-						 (get-card-width))))))
+  (set! VERTPOS (+ VERTPOS 0.5))
+  (set! HORIZPOS (+ HORIZPOS 9))
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* 10 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 9))
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* 10 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 9))
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* 10 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 9))
 
-
-  (set! HORIZPOS (get-horiz-start))
-  (set! VERTPOS (get-vert-start))
+  (set! HORIZPOS 0)
+  (set! VERTPOS 0)
 
   (add-carriage-return-slot)
 
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* 10 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 9))
   (add-blank-slot)
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* 10 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 9))
   (add-blank-slot)
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* 10 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 9))
   (add-blank-slot)
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* 10 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 9))
   (add-blank-slot)
   (add-normal-slot '())
 
@@ -104,7 +86,7 @@
 
   (map flip-top-card '(4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19))
 
-  (list 12 5))
+  (list 11 5))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))

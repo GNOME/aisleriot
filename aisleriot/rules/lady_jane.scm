@@ -44,55 +44,38 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
 
-  (set! HORIZPOS (get-horiz-start))
-  (set! VERTPOS (get-vert-start))
+  (set! HORIZPOS 0)
+  (set! VERTPOS 0)
 
-  (set! VERTPOS (inexact->exact (truncate (+ VERTPOS
-					     (/ (get-card-height) 2)))))
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* (/ 15 2) 
-						 (get-card-width))))))
+  (set! VERTPOS (+ VERTPOS 0.5))
+  (set! HORIZPOS (+ HORIZPOS 7))
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* (/ 15 2) 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 7))
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* (/ 15 2) 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 7))
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* (/ 15 2) 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 7))
 
 
-  (set! HORIZPOS (get-horiz-start))
-  (set! VERTPOS (get-vert-start))
+  (set! HORIZPOS 0)
+  (set! VERTPOS 0)
 
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* (/ 15 2) 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 7))
   (add-blank-slot)
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* (/ 15 2) 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 7))
   (add-blank-slot)
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* (/ 15 2) 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 7))
   (add-blank-slot)
   (add-normal-slot '())
   (add-carriage-return-slot)
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (* (/ 15 2) 
-						 (get-card-width))))))
+  (set! HORIZPOS (+ HORIZPOS 7))
   (add-blank-slot)
   (add-normal-slot '())
 

@@ -143,8 +143,8 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
     if (card->direction == UP) {      
       guint delta = hslot->exposed - (hslot->length - cardid) - 1;
-      int x = hslot->pixelx + delta * hslot->dx;
-      int y = hslot->pixely + delta * hslot->dy;
+      int x = hslot->pixelx + delta * hslot->pixeldx;
+      int y = hslot->pixely + delta * hslot->pixeldy;
 
       press_data->status = STATUS_SHOW;
       press_data->moving_pixmap = get_card_picture (card->suit, card->value);

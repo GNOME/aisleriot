@@ -153,7 +153,7 @@
 ;; find the center between two slots horizontally
 (define (get-and-increment-position-half)
   (let ((retval (list HORIZPOS VERTPOS)))
-    (set! HORIZPOS (+ HORIZPOS (/ (get-horiz-offset) 2)))
+    (set! HORIZPOS (+ HORIZPOS 0.5))
     retval))
 
 ;; Set up a new game.
@@ -181,10 +181,10 @@
   (add-blank-slot)
   (add-normal-slot '())
   (add-normal-slot '())
-  (set! VERTPOS (+ VERTPOS (/ (get-vert-offset) 2)))
+  (set! VERTPOS (+ VERTPOS 0.5))
   (add-normal-slot '())
   (add-normal-slot DECK)
-  (set! VERTPOS (- VERTPOS (/ (get-vert-offset) 2)))
+  (set! VERTPOS (- VERTPOS 0.5))
   (add-normal-slot '())
   (add-normal-slot '())
   (add-carriage-return-slot)

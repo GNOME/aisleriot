@@ -42,8 +42,8 @@
   (add-extended-slot '() right)      ;Slot 7
   (add-carriage-return-slot)
 
-  (set! HORIZPOS (get-horiz-start))
-  (set! VERTPOS (get-vert-start))
+  (set! HORIZPOS 0)
+  (set! VERTPOS 0)
 
   (add-normal-slot DECK)             ;Slot 8
   (add-normal-slot '())              ;Slot 9

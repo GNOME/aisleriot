@@ -24,7 +24,7 @@
 
   (add-normal-slot DECK)
   (add-normal-slot '())
-  (set! HORIZPOS (- HORIZPOS 60))
+  (set! HORIZPOS (- HORIZPOS (/ 2 3)))
   (add-extended-slot '() right)
 
   (add-carriage-return-slot)
@@ -38,8 +38,8 @@
   (add-normal-slot '())
 
   (add-carriage-return-slot)
-  (set! VERTPOS (- VERTPOS 80))
-  (set! HORIZPOS (+ HORIZPOS 42))
+  (set! VERTPOS (- VERTPOS 0.5))
+  (set! HORIZPOS (+ HORIZPOS 0.5))
 
   (add-normal-slot '())
   (add-normal-slot '())
@@ -49,7 +49,7 @@
   (add-normal-slot '())
 
   (add-carriage-return-slot)
-  (set! VERTPOS (- VERTPOS 80))
+  (set! VERTPOS (- VERTPOS 0.5))
 
   (add-blank-slot)
   (add-normal-slot '())
@@ -59,8 +59,8 @@
   (add-normal-slot '())
 
   (add-carriage-return-slot)
-  (set! VERTPOS (- VERTPOS 80))
-  (set! HORIZPOS (+ HORIZPOS 42))
+  (set! VERTPOS (- VERTPOS 0.5))
+  (set! HORIZPOS (+ HORIZPOS 0.5))
 
   (add-blank-slot)
   (add-normal-slot '())
@@ -69,7 +69,7 @@
   (add-normal-slot '())
 
   (add-carriage-return-slot)
-  (set! VERTPOS (- VERTPOS 80))
+  (set! VERTPOS (- VERTPOS 0.5))
 
   (add-blank-slot)
   (add-blank-slot)
@@ -78,8 +78,8 @@
   (add-normal-slot '())
 
   (add-carriage-return-slot)
-  (set! VERTPOS (- VERTPOS 80))
-  (set! HORIZPOS (+ HORIZPOS 42))
+  (set! VERTPOS (- VERTPOS 0.5))
+  (set! HORIZPOS (+ HORIZPOS 0.5))
 
   (add-blank-slot)
   (add-blank-slot)
@@ -87,7 +87,7 @@
   (add-normal-slot '())
 
   (add-carriage-return-slot)
-  (set! VERTPOS (- VERTPOS 80))
+  (set! VERTPOS (- VERTPOS 0.5))
 
   (add-blank-slot)
   (add-blank-slot)

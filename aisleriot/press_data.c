@@ -58,12 +58,12 @@ void generate_press_data ( ) {
     old_cards = gh_cons(make_card(tempptr->data), old_cards);
 
   delta = hslot->exposed - (hslot->length - press_data->cardid) - 1;
-  press_data->xoffset -= x = hslot->pixelx + delta * hslot->dx;
-  press_data->yoffset -= y = hslot->pixely + delta * hslot->dy;
+  press_data->xoffset -= x = hslot->pixelx + delta * hslot->pixeldx;
+  press_data->yoffset -= y = hslot->pixely + delta * hslot->pixeldy;
 
   press_data->cards = g_list_nth(hslot->cards, press_data->cardid - 1);
-  width = get_card_width() + (hslot->length - press_data->cardid) * hslot->dx;
-  height= get_card_height() + (hslot->length - press_data->cardid) * hslot->dy;
+  width = get_card_width() + (hslot->length - press_data->cardid) * hslot->pixeldx;
+  height= get_card_height() + (hslot->length - press_data->cardid) * hslot->pixeldy;
   
   gdk_window_resize(press_data->moving_cards, width, height);
   gdk_window_move(press_data->moving_cards, x, y);
@@ -103,7 +103,7 @@ void generate_press_data ( ) {
     gdk_draw_rectangle (press_data->moving_mask, gc2, TRUE, 
 			x, y, width, height);
     
-    x += hslot->dx; y += hslot->dy;
+    x += hslot->pixeldx; y += hslot->pixeldy;
   }
   g_object_unref (gc1);
   g_object_unref (gc2);

@@ -82,8 +82,8 @@ gboolean         game_won;
 
 guint            x_spacing = 5;
 guint            y_spacing = 15;
-guint            x_expanded_offset = 20;
-guint            y_expanded_offset = 20;
+double           x_expanded_offset = 0.21;
+double           y_expanded_offset = 0.21;
 GConfClient      *gconf_client = NULL;
 
 #define DEFAULT_VARIATION "klondike.scm"

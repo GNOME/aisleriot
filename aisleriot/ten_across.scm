@@ -40,8 +40,7 @@
   (map (lambda (ignore) (add-extended-slot '() down)) tableau)
   (map (lambda (slot)
          (set-slot-y-expansion!
-          slot
-          (inexact->exact  (truncate (/ (get-card-height) 4)))))
+          slot 0.25))
        tableau)
   (deal-ten-across-cards)
 

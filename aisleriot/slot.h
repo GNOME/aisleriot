@@ -33,11 +33,13 @@ typedef struct {
   /* The location in slot co-ordinates. Filled in by the game code. */
   double x;
   double y;
-  gint dx;
-  gint dy;
+  double dx;
+  double dy;
   /* The location in pixel units. Filled in by the scaling code. */
   gint pixelx;
   gint pixely;
+  gint pixeldx;
+  gint pixeldy;
   gint length;
   gint exposed;
   gint expansion_depth;
