@@ -47,7 +47,7 @@ guint            timeout;
 guint            seed;
 guint            n_games;
 struct dirent    **game_dents;
-gchar            *game_file;
+gchar            *game_file = "";
 gchar            *game_name;
 press_data_type* press_data; 
 
@@ -69,6 +69,120 @@ gchar* game_file_to_name (const gchar* file)
   return p;
 }
 
+/*
+ * This function assumes that xxx.scm has a HTML help file xxx.html
+ * located in the gnome/help/aisleriot/C/ directory (or a LANG directory).
+ */
+gpointer* game_file_to_help_entry (const gchar* file)
+{
+  GnomeHelpMenuEntry* entry;
+  char* p;
+  GString* help = g_string_new (g_filename_pointer(file));
+
+  if ((p = strrchr (help->str, '.'))) 
+    g_string_truncate (help, p - help->str);
+  g_string_append (help, ".html");
+
+  entry = g_new (GnomeHelpMenuEntry, 1);
+  entry->name = g_strdup ("aisleriot");
+  entry->path = g_strdup(help->str);
+
+  g_string_free(help, TRUE);
+  return (gpointer *) entry;
+}
+
+void make_title () 
+{
+  gint old_w, old_h;
+  GString* title = g_string_new (game_name);
+  g_string_sprintfa (title, "  ( %d )", seed);
+
+  gtk_window_set_title (GTK_WINDOW (app), title->str); 
+}
+
+void eval_installed_file (char *file)
+{
+  char *installed_filename;
+  char *relative;
+  
+  if (g_file_exists (file)){
+    gh_eval_file (file);
+    return;
+  }
+  
+  relative = g_copy_strings (GAMESDIR, file, NULL);
+  installed_filename = gnome_datadir_file (relative);
+  gh_eval_file (installed_filename);
+  g_free (installed_filename);
+  g_free (relative);
+}
+
+GnomeUIInfo rules_help[] = {
+  GNOMEUIINFO_ITEM_NONE(NULL, NULL, gnome_help_display),
+
+  GNOMEUIINFO_END
+};
+
+void new_game (gchar* file, guint *seedp )
+{
+  SCM size;
+  gint old_w, old_h, min_w, min_h;
+
+  if (file && strcmp (file, game_file)) {
+    gchar buf[100];
+    GtkWidget *ms;
+    guint pos;
+
+    game_file = file;
+    eval_installed_file (file);
+    if(game_name) {
+      sprintf(buf, "%s/%s", N_("Help"), game_name);
+      gnome_app_remove_menus (GNOME_APP (app), buf, 1);
+      if(rules_help[0].user_data) {
+	GnomeHelpMenuEntry *entry = 
+	  (GnomeHelpMenuEntry *) rules_help[0].user_data;
+	g_free (entry->name);
+	g_free (entry->path);
+	g_free (entry);
+      }
+    }
+    game_name = game_file_to_name (file);
+
+    rules_help[0].label = game_name;
+    rules_help[0].user_data = game_file_to_help_entry(file);
+    sprintf(buf, "%s/%s", N_("Help"), N_("Aisleriot"));
+
+    ms = gnome_app_find_menu_pos(GNOME_APP (app)->menubar, buf, &pos);
+    gnome_app_fill_menu (GTK_MENU_SHELL(ms), rules_help, 
+			 GNOME_APP (app)->accel_group, TRUE, TRUE, pos);
+  }
+
+  if (seedp) {
+    seed = *seedp;
+  }
+  else {
+    seed = random();
+  }
+  srandom(seed);
+  score = 0;
+  set_score();
+
+  if(surface) 
+    timer_start();
+
+  size = gh_apply (game_data->start_game_lambda, SCM_EOL);
+  min_w = gh_scm2int (gh_car (size))*get_horiz_offset() + 2*get_horiz_start();
+  min_h = gh_scm2int (gh_cadr (size))*get_vert_offset() + 2*get_vert_start();
+
+  gdk_window_get_size (playing_area->window, &old_w, &old_h);
+  gtk_widget_set_usize (playing_area, min_w, min_h);
+
+  if(old_w >= min_w && old_h >= min_h)
+    refresh_screen();
+
+  make_title();
+}
+
 GtkWidget *score_value;
 
 void set_score () 
@@ -87,15 +201,6 @@ void set_time ()
   sprintf (b, "%3d:%02d ", game_seconds / 60, game_seconds % 60);
 
   gtk_label_set(GTK_LABEL(time_value), b);
-}
-
-void make_title () 
-{
-  gint old_w, old_h;
-  GString* title = g_string_new (game_name);
-  g_string_sprintfa (title, "  ( %d )", seed);
-
-  gtk_window_set_title (GTK_WINDOW (app), title->str); 
 }
 
 gint timer_cb ()
@@ -192,23 +297,6 @@ void create_press_data ()
 					    (GDK_WA_VISUAL | GDK_WA_COLORMAP));
 }
 
-void eval_installed_file (char *file)
-{
-  char *installed_filename;
-  char *relative;
-  
-  if (g_file_exists (file)){
-    gh_eval_file (file);
-    return;
-  }
-  
-  relative = g_copy_strings (GAMESDIR, file, NULL);
-  installed_filename = gnome_datadir_file (relative);
-  gh_eval_file (installed_filename);
-  g_free (installed_filename);
-  g_free (relative);
-}
-
 int
 is_game (struct dirent* dent)
 {
@@ -263,7 +351,7 @@ void main_prog(int argc, char *argv[])
   gtk_box_pack_end (GTK_BOX(status_bar), score_box, FALSE, FALSE, 0);
   gnome_app_set_statusbar (GNOME_APP (app), status_bar);
 
-  game_load_game_callback (app, "klondike.scm" );
+  new_game ("klondike.scm", &seed);
 
   gtk_widget_show (app);
   create_press_data ();
@@ -272,8 +360,6 @@ void main_prog(int argc, char *argv[])
 
   free_pixmaps();
   gdk_pixmap_unref (surface);
-  gdk_pixmap_unref (press_data->moving_pixmap);
-  gdk_bitmap_unref (press_data->moving_mask);
   gdk_window_unref (press_data->moving_cards);
 }
 
