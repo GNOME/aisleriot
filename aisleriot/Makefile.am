@@ -59,7 +59,7 @@ cardimage_DATA = baize.png splash.png
 
 icon_DATA = gnome-aisleriot.png
 
-EXTRA_DIST = TODO FIXME RULES AUTHORS $(types_DATA) $(cardimage_DATA) \
+EXTRA_DIST = TODO FIXME  AUTHORS $(types_DATA) $(cardimage_DATA) \
 	$(icon_DATA) sol.desktop
 
 sysdir = $(datadir)/apps/Games
