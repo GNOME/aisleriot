@@ -23,8 +23,7 @@ always_built_SUBDIRS =		\
 	iagno			\
 	gdk-card-image		\
 	gnobots2		\
-	gnibbles		\
-	freecell
+	gnibbles		
 
 SUBDIRS = \
 	$(always_built_SUBDIRS)	\

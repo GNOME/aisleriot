@@ -121,15 +121,15 @@ types_DATA  = 		\
 
 cardimage_DATA = baize.png splash.png
 
-icon_DATA = gnome-aisleriot.png
+icon_DATA = gnome-aisleriot.png gnome-cardgame.png
 
 EXTRA_DIST = AUTHORS $(types_DATA) $(cardimage_DATA) \
-	$(icon_DATA) sol.desktop.in SCHEME_GAMES.h \
+	$(icon_DATA) sol.desktop.in freecell.desktop.in SCHEME_GAMES.h \
 	template.scm translatable_game_names.h
 
 
 sysdir = $(datadir)/applications/
-sys_in_files = sol.desktop.in
+sys_in_files = sol.desktop.in freecell.desktop.in
 sys_DATA = $(sys_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
