@@ -383,91 +383,6 @@ gdk_card_file_draw_r (GdkCardDeckFile* file, GdkPixmap* p, GdkGC* gc,
 		       file->width, file->height);
 }
 
-struct _GtkCardDeckOptionsEdit {
-  GtkAlignment container;
-  
-  CardDeckStyle * selected_style;
-  GList * style_list;
-};
-
-struct _GtkCardDeckOptionsEditClass {
-  GtkAlignmentClass parent_class;
-
-  void (* changed) (GtkCardDeckOptionsEdit* w);
-};
-
-enum {
-  CHANGED,
-  N_SIGNALS
-};
-
-static GtkAlignmentClass * options_parent_class = NULL;
-static gint gtk_card_deck_options_edit_signals[N_SIGNALS] = { 0 };
-
-static void 
-gtk_card_deck_options_edit_destroy (GtkObject *o)
-{
-  GtkCardDeckOptionsEdit* w;
-
-  g_return_if_fail(o != NULL);
-  g_return_if_fail(GTK_IS_CARD_DECK_OPTIONS_EDIT(o));
-
-  w = GTK_CARD_DECK_OPTIONS_EDIT(o);
-
-  g_list_foreach (w->style_list, (GFunc)g_free, NULL);
-  g_list_free (w->style_list);
-
-  (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
-}
-
-static void
-gtk_card_deck_options_edit_class_init (GtkCardDeckOptionsEditClass *klass)
-{
-  GtkObjectClass *object_class = (GtkObjectClass*) klass;
-    
-  options_parent_class = gtk_type_class (gtk_widget_get_type ());
-  
-  gtk_card_deck_options_edit_signals[CHANGED] =
-    g_signal_new ("changed",
-                  G_OBJECT_CLASS_TYPE (object_class),
-                  G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (GtkCardDeckOptionsEditClass, changed),
-                  NULL,
-                  NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE,
-                  0);
-
-  object_class->destroy = gtk_card_deck_options_edit_destroy;
-  
-  klass->changed = NULL;
-}
-
-GTypeInfo gtk_card_deck_options_edit_info = 
-{
-  sizeof (GtkCardDeckOptionsEditClass),
-  NULL,
-  NULL,
-  (GClassInitFunc) gtk_card_deck_options_edit_class_init,
-  NULL,
-  NULL,
-  sizeof (GtkCardDeckOptionsEdit),
-  0,
-  NULL,
-  NULL
-};
-
-guint
-gtk_card_deck_options_edit_get_type ()
-{
-  static guint type = 0;
-
-  if (!type)
-    type = g_type_register_static (GTK_TYPE_ALIGNMENT, "GtkCardDeckOptionsEdit",
-                                   &gtk_card_deck_options_edit_info, 0);
-  return type;
-}
-
 static void calculate_dimensions (GdkCardDeck* deck, GdkCardDeckFile** file);
 static void make_rounded_rectangle (GdkWindow *window, GdkGC **gc, 
 				    GdkPixmap **pixmap, GdkBitmap **bitmap,
@@ -742,6 +657,7 @@ resolve_options (GdkCardDeckOptionData* option_data,
   }
 }
 
+
 GtkObject *
 gdk_card_deck_new (GdkWindow *window, GdkCardDeckOptions deck_options)
 {
@@ -820,6 +736,93 @@ GdkBitmap*
 gdk_card_deck_mask (GdkCardDeck* deck)
 {
   return deck->mask;
+}
+
+/* Below here is the GtkCardDeckOptionsEdit widget. */
+
+struct _GtkCardDeckOptionsEdit {
+  GtkAlignment container;
+  
+  CardDeckStyle * selected_style;
+  GList * style_list;
+};
+
+struct _GtkCardDeckOptionsEditClass {
+  GtkAlignmentClass parent_class;
+
+  void (* changed) (GtkCardDeckOptionsEdit* w);
+};
+
+enum {
+  CHANGED,
+  N_SIGNALS
+};
+
+static GtkAlignmentClass * options_parent_class = NULL;
+static gint gtk_card_deck_options_edit_signals[N_SIGNALS] = { 0 };
+
+static void 
+gtk_card_deck_options_edit_destroy (GtkObject *o)
+{
+  GtkCardDeckOptionsEdit* w;
+
+  g_return_if_fail(o != NULL);
+  g_return_if_fail(GTK_IS_CARD_DECK_OPTIONS_EDIT(o));
+
+  w = GTK_CARD_DECK_OPTIONS_EDIT(o);
+
+  g_list_foreach (w->style_list, (GFunc)g_free, NULL);
+  g_list_free (w->style_list);
+
+  (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
+}
+
+static void
+gtk_card_deck_options_edit_class_init (GtkCardDeckOptionsEditClass *klass)
+{
+  GtkObjectClass *object_class = (GtkObjectClass*) klass;
+    
+  options_parent_class = gtk_type_class (gtk_widget_get_type ());
+  
+  gtk_card_deck_options_edit_signals[CHANGED] =
+    g_signal_new ("changed",
+                  G_OBJECT_CLASS_TYPE (object_class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GtkCardDeckOptionsEditClass, changed),
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  object_class->destroy = gtk_card_deck_options_edit_destroy;
+  
+  klass->changed = NULL;
+}
+
+GTypeInfo gtk_card_deck_options_edit_info = 
+{
+  sizeof (GtkCardDeckOptionsEditClass),
+  NULL,
+  NULL,
+  (GClassInitFunc) gtk_card_deck_options_edit_class_init,
+  NULL,
+  NULL,
+  sizeof (GtkCardDeckOptionsEdit),
+  0,
+  NULL,
+  NULL
+};
+
+guint
+gtk_card_deck_options_edit_get_type ()
+{
+  static guint type = 0;
+
+  if (!type)
+    type = g_type_register_static (GTK_TYPE_ALIGNMENT, "GtkCardDeckOptionsEdit",
+                                   &gtk_card_deck_options_edit_info, 0);
+  return type;
 }
 
 void          
