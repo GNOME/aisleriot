@@ -18,26 +18,23 @@ doc_DATA = \
 	topic.dat \
 	$(figs)
 
-sgml_files = \
-	$(sgml_ents) \
-	$(game).sgml
+#sgml_files = \
+#	$(sgml_ents) \
+#	$(game).sgml
 
 # automake does not know anything about .sgml files yet -> EXTRA_DIST
-EXTRA_DIST = $(sgml_files) $(doc_DATA)
+# EXTRA_DIST = $(game).sgml $(doc_DATA)
+EXTRA_DIST = index.html topic.dat $(figs) $(game).sgml
 
 all: index.html
 
-index.html: $(game)/index.html
+#index.html: $(game)/index.html
+#	-cp $(game)/index.html .
+
+index.html: $(srcdir)/$(game).sgml
+	cd $(srcdir)
+	db2html $(game).sgml
 	-cp $(game)/index.html .
-
-$(game).sgml: $(sgml_ents)
-	-ourdir=`pwd`; \
-	cd $(srcdir); \
-	cp $(sgml_ents) $$ourdir
-
-$(game)/index.html: $(game).sgml
-	-srcdir=`cd $(srcdir) && pwd`; \
-	db2html $$srcdir/$(game).sgml
 
 $(game)-dist-hook: index.html
 	-$(mkinstalldirs) $(distdir)/$(game)/stylesheet-images

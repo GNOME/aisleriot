@@ -23,7 +23,9 @@ SUBDIRS = intl po macros \
 
 #$(objc_DIRS)
 
-EXTRA_DIST = gnome-games.spec.in
+EXTRA_DIST = \
+	gnome-games.spec.in \
+	game-docs.make
 
 dist-hook:
 	cp gnome-games.spec $(distdir)
