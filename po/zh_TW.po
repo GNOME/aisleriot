@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games 2.3.2\n"
-"POT-Creation-Date: 2003-05-31 18:27+0800\n"
-"PO-Revision-Date: 2003-05-31 18:43+0800\n"
+"Project-Id-Version: gnome-games 2.3.3\n"
+"POT-Creation-Date: 2003-06-04 05:48+0800\n"
+"PO-Revision-Date: 2003-06-04 07:35+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -72,8 +72,8 @@ msgstr "繼續發牌"
 #: aisleriot/monte_carlo.scm.h:2 aisleriot/neighbor.scm.h:1
 #: aisleriot/osmosis.scm.h:3 aisleriot/peek.scm.h:3 aisleriot/quatorze.scm.h:1
 #: aisleriot/royal_east.scm.h:7 aisleriot/scuffle.scm.h:4
-#: aisleriot/sir_tommy.scm.h:3 aisleriot/spiderette.scm.h:3
-#: aisleriot/spider.scm.h:4 aisleriot/straight_up.scm.h:5
+#: aisleriot/sir_tommy.scm.h:3 aisleriot/spider.scm.h:4
+#: aisleriot/spiderette.scm.h:3 aisleriot/straight_up.scm.h:5
 #: aisleriot/thieves.scm.h:2 aisleriot/thirteen.scm.h:2
 #: aisleriot/thumb_and_pouch.scm.h:4 aisleriot/treize.scm.h:2
 #: aisleriot/union_square.scm.h:2 aisleriot/westhaven.scm.h:2
@@ -293,7 +293,8 @@ msgstr "選擇遊戲"
 msgid "Seed"
 msgstr "隨機數種子"
 
-#: aisleriot/dialog.c:159
+#: aisleriot/dialog.c:159 blackjack/src/dialog.cpp:268
+#: blackjack/src/dialog.cpp:279
 msgid "Rules"
 msgstr "規則"
 
@@ -541,9 +542,9 @@ msgid "                      Matthew Wilcox (matthew@wil.cx)"
 msgstr "                      Matthew Wilcox (matthew@wil.cx)"
 
 #. Translator credits
-#: aisleriot/menu.c:92 gataxx/gataxx.c:411 glines/glines.c:764
+#: aisleriot/menu.c:92 gataxx/gataxx.c:428 glines/glines.c:764
 #: gnect/src/dialog.c:48 gnibbles/main.c:199 gnobots2/menu.c:210
-#: gnome-stones/main.c:1049 gnometris/tetris.cpp:1000 gnomine/gnomine.c:303
+#: gnome-stones/main.c:1054 gnometris/tetris.cpp:1052 gnomine/gnomine.c:303
 #: gnotravex/gnotravex.c:1108 gnotski/gnotski.c:1018 gtali/gyahtzee.c:361
 #: iagno/gnothello.c:409 mahjongg/mahjongg.c:1346 same-gnome/same-gnome.c:659
 msgid "translator_credits"
@@ -585,21 +586,22 @@ msgstr "選擇(_S)..."
 msgid "Choose a different variation of solitaire"
 msgstr "選擇另一種接龍遊戲"
 
-#: aisleriot/menu.c:209 gnect/src/gui.c:87 mahjongg/mahjongg.c:402
+#: aisleriot/menu.c:209 blackjack/src/menu.cpp:199 gnect/src/gui.c:87
+#: mahjongg/mahjongg.c:402
 msgid "New"
 msgstr "開新局"
 
-#: aisleriot/menu.c:209
+#: aisleriot/menu.c:209 blackjack/src/menu.cpp:199
 msgid "Deal a new game"
 msgstr "重新發牌"
 
-#: aisleriot/menu.c:212 mahjongg/mahjongg.c:406
+#: aisleriot/menu.c:212 blackjack/src/menu.cpp:202 mahjongg/mahjongg.c:406
 msgid "Restart"
-msgstr "重玩此局"
+msgstr "再玩此局"
 
-#: aisleriot/menu.c:212
+#: aisleriot/menu.c:212 blackjack/src/menu.cpp:202
 msgid "Start this game over"
-msgstr "重玩此局"
+msgstr "重新再玩這一局"
 
 #: aisleriot/menu.c:215
 msgid "Select"
@@ -609,11 +611,12 @@ msgstr "選擇"
 msgid "Select a new game"
 msgstr "選擇另一種遊戲"
 
-#: aisleriot/menu.c:220 gnect/src/gui.c:89 mahjongg/mahjongg.c:410
+#: aisleriot/menu.c:220 blackjack/src/menu.cpp:206 gnect/src/gui.c:89
+#: mahjongg/mahjongg.c:410
 msgid "Hint"
 msgstr "提示"
 
-#: aisleriot/menu.c:220
+#: aisleriot/menu.c:220 blackjack/src/menu.cpp:206
 msgid "Suggest a move"
 msgstr "建議下一步"
 
@@ -697,9 +700,9 @@ msgstr "Aisleriot"
 
 #: aisleriot/sol.c:374
 msgid "Are you sure you want to quit Aisleriot?"
-msgstr "是否確定要離開 Aisleriot？"
+msgstr "是否確定要結束 Aisleriot？"
 
-#: aisleriot/sol.c:443
+#: aisleriot/sol.c:443 blackjack/src/blackjack.cpp:314
 msgid "Loading images..."
 msgstr "正在載入圖像..."
 
@@ -715,18 +718,22 @@ msgstr "得分："
 msgid "Time: "
 msgstr "時間："
 
-#: aisleriot/sol.c:530
+#: aisleriot/sol.c:530 blackjack/src/blackjack.cpp:612
 msgid "Variation on game rules"
 msgstr "遊戲規則的變化"
 
-#: aisleriot/sol.c:531 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
-#: same-gnome/same-gnome.c:839
+#: aisleriot/sol.c:531 blackjack/src/blackjack.cpp:613 gnobots2/gnobots.c:58
+#: gnobots2/gnobots.c:60 same-gnome/same-gnome.c:839
 msgid "NAME"
 msgstr "名稱"
 
 #: aisleriot/sol.c:550
 msgid "Initializing scheme..."
 msgstr "正在初始化 scheme..."
+
+#: aisleriot/sol.desktop.in.h:2
+msgid "Card-based solitaire suite"
+msgstr "紙牌接龍遊戲系列"
 
 #: aisleriot/sol.scm.h:1
 msgid "Unknown color"
@@ -1028,10 +1035,6 @@ msgstr "3"
 msgid "two"
 msgstr "2"
 
-#: aisleriot/spiderette.scm.h:2 aisleriot/will_o_the_wisp.scm.h:2
-msgid "Place something on to the empty Tableau slot"
-msgstr "將一些牌移至排列區空位"
-
 #: aisleriot/spider.scm.h:2
 msgid "Place something on empty slot"
 msgstr "將一些牌移至任何空位"
@@ -1042,11 +1045,11 @@ msgstr "請先將牌移進空位。"
 
 #: aisleriot/spider.scm.h:5
 msgid "Try moving card piles around"
-msgstr ""
+msgstr "嘗試移動一些牌"
 
-#: aisleriot/sol.desktop.in.h:2
-msgid "Card-based solitaire suite"
-msgstr "紙牌接龍遊戲系列"
+#: aisleriot/spiderette.scm.h:2 aisleriot/will_o_the_wisp.scm.h:2
+msgid "Place something on to the empty Tableau slot"
+msgstr "將一些牌移至排列區空位"
 
 #: aisleriot/ten_across.scm.h:1
 msgid " and all cards below it"
@@ -1062,7 +1065,7 @@ msgstr ""
 
 #: aisleriot/ten_across.scm.h:4
 msgid "Move a card to an empty temporary slot"
-msgstr ""
+msgstr "將一張牌移至暫時放牌的空位"
 
 #: aisleriot/ten_across.scm.h:5
 msgid "No hint available"
@@ -1399,50 +1402,254 @@ msgstr ""
 msgid "the appropriate Foundation pile"
 msgstr "適當的基礎牌堆"
 
-#: gataxx/ataxx.c:135 gataxx/gataxx.c:334 gataxx/gataxx.c:693
+#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:249
+#: blackjack/src/menu.cpp:107 blackjack/src/player.cpp:454
+#: blackjack/src/splash.cpp:95
+msgid "Blackjack"
+msgstr "21 點"
+
+#: blackjack/src/blackjack.cpp:89
+#, c-format
+msgid "Blackjack:  %s  ( %d )"
+msgstr "21 點：  %s  ( %d )"
+
+#: blackjack/src/blackjack.cpp:208
+msgid "Are you sure you want to quit Blackjack?"
+msgstr "是否確定結束 21 點？"
+
+#: blackjack/src/blackjack.cpp:321 blackjack/src/player.cpp:63
+msgid "Computing basic strategy..."
+msgstr "正在考慮基本策略..."
+
+#: blackjack/src/blackjack.cpp:333
+msgid "Place your wager or deal a hand"
+msgstr "指定押注或者派一手牌"
+
+#: blackjack/src/blackjack.cpp:336
+msgid "Cards left:"
+msgstr "剩餘紙牌："
+
+#: blackjack/src/blackjack.cpp:344
+msgid "Wager:"
+msgstr "押注："
+
+#: blackjack/src/blackjack.cpp:356
+msgid "Balance:"
+msgstr "戶口："
+
+#: blackjack/src/blackjack.cpp:634
+msgid "Initializing..."
+msgstr "正在初始化..."
+
+#: blackjack/src/dialog.cpp:51
+msgid "Would you like insurance?"
+msgstr "買不買保險？"
+
+#: blackjack/src/dialog.cpp:109
+msgid "Set your wager and click in the white outline to deal a new hand."
+msgstr "請您指定押注，然後點選白色框線來派一手牌。"
+
+#: blackjack/src/dialog.cpp:112
+msgid "Set your wager or click on the cards to deal a new hand."
+msgstr "您可以指定押注，或者點選紙牌來派另一手牌。"
+
+#: blackjack/src/dialog.cpp:225
+msgid "Blackjack Preferences"
+msgstr "21 點偏好設定"
+
+#: blackjack/src/dialog.cpp:238 gnibbles/preferences.c:306
+#: gnome-stones/preferences.c:688
+msgid "Game"
+msgstr "遊戲"
+
+#: blackjack/src/dialog.cpp:245
+msgid "Display hand probabilities"
+msgstr "顯示牌底可能性"
+
+#: blackjack/src/dialog.cpp:256
+msgid "Quick deals (no delay between each card)"
+msgstr "快速派牌 (派每張牌都不會拖延時間)"
+
+#: blackjack/src/events.cpp:493
+msgid "Click to deal another card; drag card to split pair"
+msgstr "按下這裡可以派另一張牌；拖曳紙牌則可以分開押注"
+
+#: blackjack/src/events.cpp:495
+msgid "Click to deal another card"
+msgstr "按下這裡可以派另一張牌"
+
+#: blackjack/src/events.cpp:497
+msgid "Click to finish adding cards to your hand"
+msgstr "按下這裡可以停止要牌"
+
+#: blackjack/src/events.cpp:500
+msgid "Click to deal a new hand"
+msgstr "按下這裡可以派另一手牌"
+
+#: blackjack/src/events.cpp:516
+msgid "Click to double your wager"
+msgstr "按下這裡可以加倍押注"
+
+#: blackjack/src/events.cpp:522
+#, c-format
+msgid "Double click to increase your wager by %.2f"
+msgstr "雙擊這裡可以將押注增加 %.2f"
+
+#: blackjack/src/events.cpp:536
+#, c-format
+msgid "Double click to decrease your wager by %.2f"
+msgstr "雙擊這裡可以將押注減少 %.2f"
+
+#: blackjack/src/game.cpp:283
+#, c-format
+msgid ""
+"Blackjack can't load the file: \n"
+"%s\n"
+"\n"
+"Please check your Blackjack installation"
+msgstr ""
+"「21 點」無法載入檔案：\n"
+"%s\n"
+"\n"
+"請檢查是否已正確安裝 21 點"
+
+#: blackjack/src/hand.cpp:83
+msgid "The best option is to stand"
+msgstr "最好選擇停止要牌"
+
+#: blackjack/src/hand.cpp:85
+msgid "The best option is to hit"
+msgstr "最好選擇要牌"
+
+#: blackjack/src/hand.cpp:87
+msgid "The best option is to double down"
+msgstr "最好選擇加倍押注"
+
+#: blackjack/src/hand.cpp:89
+msgid "The best option is to split"
+msgstr "最好選擇分牌"
+
+#: blackjack/src/hand.cpp:91
+msgid "The best option is to surrender"
+msgstr "最好選擇投降"
+
+#: blackjack/src/menu.cpp:78
+msgid "Main program:  William Jon McCann (mccann@jhu.edu)"
+msgstr "主程式：William Jon McCann (mccann@jhu.edu)"
+
+#: blackjack/src/menu.cpp:79
+msgid "                      Eric Farmer (erfarmer201@comcast.net)"
+msgstr "                      Eric Farmer (erfarmer201@comcast.net)"
+
+#. copyright notice
+#: blackjack/src/menu.cpp:109
+msgid ""
+"(C) 2003 William Jon McCann <mccann@jhu.edu>\n"
+"Eric Farmer <erfarmer201@comcast.net>"
+msgstr ""
+"版權所有 © 2003 William Jon McCann <mccann@jhu.edu>\n"
+"Eric Farmer <erfarmer201@comcast.net>"
+
+#: blackjack/src/menu.cpp:111
+msgid "Blackjack provides a casino-style blackjack card game"
+msgstr "「21 點」是類似賭場方式的 21 點紙牌遊戲"
+
+#: blackjack/src/menu.cpp:151 gnect/src/gui.c:64
+msgid "Show _tool bar"
+msgstr "顯示工具列(_T)"
+
+#: blackjack/src/menu.cpp:152 gnect/src/gui.c:64
+msgid "Show or hide the toolbar"
+msgstr "顯示或隱藏工具列"
+
+#: blackjack/src/player.cpp:186 blackjack/src/player.cpp:446
+msgid "Bust"
+msgstr ""
+
+#: blackjack/src/player.cpp:190
+msgid "Blackjack!"
+msgstr "Blackjack!"
+
+#: blackjack/src/player.cpp:195
+msgid "Soft"
+msgstr ""
+
+#: blackjack/src/player.cpp:203
+msgid "Win"
+msgstr "勝利"
+
+#: blackjack/src/player.cpp:204
+msgid "Push"
+msgstr ""
+
+#: blackjack/src/player.cpp:205
+msgid "Lose"
+msgstr "失敗"
+
+#: blackjack/src/player.cpp:268
+msgid "Stand"
+msgstr "不要"
+
+#: blackjack/src/player.cpp:277
+msgid "Hit"
+msgstr "要牌"
+
+#: blackjack/src/player.cpp:289
+msgid "Double"
+msgstr "加倍"
+
+#: blackjack/src/player.cpp:304
+msgid "Split"
+msgstr "分開"
+
+#: blackjack/src/player.cpp:317
+msgid "Surr."
+msgstr "投降"
+
+#: gataxx/ataxx.c:135 gataxx/gataxx.c:341 gataxx/gataxx.c:716
 #: iagno/gnothello.c:331 iagno/gnothello.c:702 iagno/othello.c:213
 msgid "Dark's move"
 msgstr "輪到黑子移動"
 
-#: gataxx/ataxx.c:143 gataxx/gataxx.c:332 iagno/gnothello.c:329
+#: gataxx/ataxx.c:143 gataxx/gataxx.c:339 iagno/gnothello.c:329
 #: iagno/othello.c:221
 msgid "Light's move"
 msgstr "輪到白子移動"
 
-#: gataxx/ataxx.c:588 iagno/othello.c:617
+#: gataxx/ataxx.c:586 iagno/othello.c:617
 msgid "Light player wins!"
 msgstr "白子贏！"
 
-#: gataxx/ataxx.c:590 iagno/othello.c:619
+#: gataxx/ataxx.c:588 iagno/othello.c:619
 msgid "Dark player wins!"
 msgstr "黑子贏！"
 
-#: gataxx/ataxx.c:592 iagno/othello.c:621
+#: gataxx/ataxx.c:590 iagno/othello.c:621
 msgid "The game was a draw."
 msgstr "此局平手。"
 
-#: gataxx/ataxx.c:601 iagno/othello.c:631
+#: gataxx/ataxx.c:599 iagno/othello.c:631
 msgid "Light must pass, Dark's move"
 msgstr "白子無棋可走，黑子下"
 
-#: gataxx/ataxx.c:613 iagno/othello.c:643
+#: gataxx/ataxx.c:611 iagno/othello.c:643
 msgid "Dark must pass, Light's move"
 msgstr "黑子無棋可走，白子下"
 
-#: gataxx/gataxx.c:236
+#: gataxx/gataxx.c:234
 msgid "Are you sure you want to quit Gataxx?"
-msgstr "是否確定離開 Gataxx？"
+msgstr "是否確定結束 Gataxx？"
 
-#: gataxx/gataxx.c:281 gnect/src/gui.c:180 gnibbles/main.c:159
+#: gataxx/gataxx.c:285 gnect/src/gui.c:180 gnibbles/main.c:159
 #: gnobots2/menu.c:100 mahjongg/mahjongg.c:1473
 msgid "Are you sure you want to start a new game?"
 msgstr "是否確定開始新的遊戲？"
 
-#: gataxx/gataxx.c:431 gataxx/gataxx.c:716 gataxx/gataxx.soundlist.in.h:3
+#: gataxx/gataxx.c:448 gataxx/gataxx.c:739 gataxx/gataxx.soundlist.in.h:3
 msgid "gataxx"
 msgstr "gataxx"
 
-#: gataxx/gataxx.c:432
+#: gataxx/gataxx.c:449
 msgid ""
 "gataxx is a GNOME port of the old game ataxx.  It is derived from Ian "
 "Peters' iagno code."
@@ -1450,24 +1657,24 @@ msgstr ""
 "gataxx 是將舊遊戲 ataxx 移植到 GNOME 上。它是建基於 Ian Peters 的 iagno 黑白"
 "棋的程式碼發展的。"
 
-#: gataxx/gataxx.c:571
+#: gataxx/gataxx.c:588
 #, c-format
 msgid "Could not find '%s' pixmap file for gataxx\n"
 msgstr "找不到 gataxx 使用的‘%s’pixmap 圖形檔\n"
 
-#: gataxx/gataxx.c:741 iagno/gnothello.c:754
+#: gataxx/gataxx.c:764 iagno/gnothello.c:754
 msgid "Dark:"
 msgstr "黑："
 
-#: gataxx/gataxx.c:756 iagno/gnothello.c:769
+#: gataxx/gataxx.c:779 iagno/gnothello.c:769
 msgid "Light:"
 msgstr "白："
 
-#: gataxx/gataxx.c:781
+#: gataxx/gataxx.c:804
 msgid "Welcome to gataxx!"
 msgstr "歡迎來玩 gataxx！"
 
-#: gataxx/gataxx.c:788 gataxx/gataxx.c:790 iagno/gnothello.c:801
+#: gataxx/gataxx.c:811 gataxx/gataxx.c:813 iagno/gnothello.c:801
 #: iagno/gnothello.c:803
 #, c-format
 msgid "%.2d"
@@ -1700,11 +1907,11 @@ msgstr "快速移動"
 
 #: glines/glines.c:985
 msgid "Ask confirmation when quitting"
-msgstr "離開前先確定"
+msgstr "結束前必須先得到玩者確定"
 
 #: glines/glines.c:1030
 msgid "Are you sure you want to quit Glines?"
-msgstr "是否確定離開 Glines？"
+msgstr "是否確定結束 Glines？"
 
 #: glines/glines.c:1248
 msgid "Welcome to Glines!"
@@ -1797,7 +2004,7 @@ msgstr "確認"
 
 #: gnect/data/gnect.schemas.in.h:18
 msgid "Whether or not to ask before quitting an unfinished game."
-msgstr "如果未完成遊戲，是否要得到玩者確認方可離開。"
+msgstr "如果未完成遊戲，是否要得到玩者確認方可結束。"
 
 #: gnect/data/gnect.schemas.in.h:19
 msgid "Whether or not to display grid lines on the game board."
@@ -1894,14 +2101,6 @@ msgstr " 抱歉，此欄已經滿了"
 msgid " Hint: Column %d"
 msgstr " 提示：第 %d 欄"
 
-#: gnect/src/gui.c:64
-msgid "Show _tool bar"
-msgstr "顯示工具列(_T)"
-
-#: gnect/src/gui.c:64
-msgid "Show or hide the toolbar"
-msgstr "顯示或隱藏工具列"
-
 #: gnect/src/gui.c:65
 msgid "Enable _sound"
 msgstr "啟用音效(_S)"
@@ -1928,7 +2127,7 @@ msgstr "給下一步的提示"
 
 #: gnect/src/gui.c:137
 msgid "Are you sure you want to quit Gnect?"
-msgstr "是否確定離開 Gnect？"
+msgstr "是否確定結束 Gnect？"
 
 #: gnect/src/gui.c:471
 msgid " It's a draw!"
@@ -2217,7 +2416,7 @@ msgstr "獲得獎勵"
 msgid "Extra Life"
 msgstr "額外生命"
 
-#: gnibbles/gnibbles.soundlist.in.h:5
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:197
 msgid "Game Over"
 msgstr "玩完了"
 
@@ -2235,7 +2434,7 @@ msgstr "蟲蟲進行空間轉移"
 
 #: gnibbles/main.c:165
 msgid "Are you sure you want to quit Gnibbles?"
-msgstr "是否確定離開 GNOME 貪食蛇？"
+msgstr "是否確定結束 GNOME 貪食蛇？"
 
 #: gnibbles/main.c:221
 msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
@@ -2244,10 +2443,6 @@ msgstr "建議及問題回報請寄給：sjm@acm.org、itp@gnu.org"
 #: gnibbles/preferences.c:295
 msgid "Gnibbles Preferences"
 msgstr "GNOME 貪食蛇偏好設定"
-
-#: gnibbles/preferences.c:306 gnome-stones/preferences.c:688
-msgid "Game"
-msgstr "遊戲"
 
 #: gnibbles/preferences.c:313
 msgid "Speed"
@@ -2449,7 +2644,7 @@ msgstr "找不到 GNOME 機械人用的 pixmap 圖形檔‘%s’\n"
 
 #: gnobots2/menu.c:169
 msgid "Are you sure you want to quit GNOME Robots?"
-msgstr "是否確定離開 GNOME 機械人？"
+msgstr "是否確定結束 GNOME 機械人？"
 
 #: gnobots2/menu.c:231
 msgid "GNOME Robots Game"
@@ -2777,7 +2972,7 @@ msgstr "準備載入的洞穴版圖太大了。"
 #: gnome-stones/io.c:349
 #, c-format
 msgid "The cave is corrupted: %s is missing."
-msgstr ""
+msgstr "版圖資料已損毀：缺少了 %s。"
 
 #. An object was requested in this cave, that was not
 #. declared in the game file's Object section.
@@ -2829,48 +3024,56 @@ msgstr "恭喜，您贏了！"
 msgid "Game over!"
 msgstr "玩完了！"
 
-#: gnome-stones/main.c:1041
+#: gnome-stones/main.c:1046
 msgid "Main program: Carsten Schaar <nhadcasc@fs-maphy.uni-hannover.de>"
-msgstr ""
+msgstr "主程式：Carsten Schaar <nhadcasc@fs-maphy.uni-hannover.de>"
 
-#: gnome-stones/main.c:1042
+#: gnome-stones/main.c:1047
 msgid "Sokoban levels: Herman Mansilla"
-msgstr ""
+msgstr "倉庫番版圖：Herman Mansilla"
 
-#: gnome-stones/main.c:1067
+#: gnome-stones/main.c:1072
 msgid "GNOME-STONES"
 msgstr "GNOME 寶石"
 
-#: gnome-stones/main.c:1069
+#: gnome-stones/main.c:1074
 msgid "A game."
 msgstr "一個遊戲。"
 
-#: gnome-stones/main.c:1187
+#: gnome-stones/main.c:1097
+msgid "_Restart level"
+msgstr "再玩此局(_R)"
+
+#: gnome-stones/main.c:1097
+msgid "Restart the current level"
+msgstr "重新再玩目前的版圖"
+
+#: gnome-stones/main.c:1193
 msgid "Scanning private object directory..."
 msgstr "正在掃描內部物件目錄..."
 
-#: gnome-stones/main.c:1191
+#: gnome-stones/main.c:1197
 msgid "Scanning public object directory..."
 msgstr "正在掃描公共物件目錄..."
 
-#: gnome-stones/main.c:1196
+#: gnome-stones/main.c:1202
 msgid "Filling game widget..."
 msgstr "正在填上遊戲視窗元件..."
 
-#: gnome-stones/main.c:1201
+#: gnome-stones/main.c:1207
 msgid "Scanning private game directory..."
 msgstr "正在掃描內部遊戲目錄..."
 
-#: gnome-stones/main.c:1205
+#: gnome-stones/main.c:1211
 msgid "Scanning public game directory..."
 msgstr "正在掃描公共遊戲目錄..."
 
-#: gnome-stones/main.c:1209
+#: gnome-stones/main.c:1215
 msgid "Restoring preferences..."
 msgstr "還原偏好設定..."
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:1284
+#: gnome-stones/main.c:1290
 msgid "GNOME-Stones"
 msgstr "GNOME 寶石"
 
@@ -2971,7 +3174,7 @@ msgstr "生命："
 msgid "Tutorial caves"
 msgstr "練習洞穴"
 
-#: gnometris/gnometris.desktop.in.h:1 gnometris/tetris.cpp:79
+#: gnometris/gnometris.desktop.in.h:1 gnometris/tetris.cpp:80
 msgid "Gnometris"
 msgstr "GNOME 俄羅斯方塊"
 
@@ -3023,7 +3226,11 @@ msgstr "行數："
 msgid "Level: "
 msgstr "級數："
 
-#: gnometris/tetris.cpp:231
+#: gnometris/tetris.cpp:185
+msgid "Paused"
+msgstr "暫停"
+
+#: gnometris/tetris.cpp:258
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3036,7 +3243,7 @@ msgstr ""
 "\n"
 "請檢查 gnome-games 是否已正確安裝"
 
-#: gnometris/tetris.cpp:246
+#: gnometris/tetris.cpp:273
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3049,44 +3256,44 @@ msgstr ""
 "\n"
 "請檢查 gnome-games 是否已正確安裝"
 
-#: gnometris/tetris.cpp:539
+#: gnometris/tetris.cpp:578
 msgid "Gnometris preferences"
 msgstr "GNOME 俄羅斯方塊偏好設定"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:567
+#: gnometris/tetris.cpp:606
 msgid "Number of pre-filled rows:"
 msgstr "預先填充的行數："
 
-#: gnometris/tetris.cpp:588
+#: gnometris/tetris.cpp:627
 msgid "Density of blocks in a pre-filled row:"
 msgstr "預先填充時每行的密度："
 
-#: gnometris/tetris.cpp:609
+#: gnometris/tetris.cpp:648
 msgid "Starting Level:"
 msgstr "開始的級數："
 
-#: gnometris/tetris.cpp:626
+#: gnometris/tetris.cpp:665
 msgid "Preview next block"
 msgstr "預覽下個方塊"
 
-#: gnometris/tetris.cpp:636
+#: gnometris/tetris.cpp:675
 msgid "Random block colors"
 msgstr "隨機的方塊顏色"
 
-#: gnometris/tetris.cpp:648
+#: gnometris/tetris.cpp:687
 msgid "Rotate counterclockwise"
 msgstr "逆時針方向旋轉"
 
-#: gnometris/tetris.cpp:664
+#: gnometris/tetris.cpp:703
 msgid "Block Pixmap: "
 msgstr "方塊 Pixmap 圖案："
 
-#: gnometris/tetris.cpp:681
+#: gnometris/tetris.cpp:720
 msgid "Background Pixmap: "
 msgstr "背景 Pixmap 圖案："
 
-#: gnometris/tetris.cpp:1023
+#: gnometris/tetris.cpp:1075
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -3486,7 +3693,7 @@ msgstr "延遲電腦的動作"
 
 #: gtali/setup.c:79
 msgid "Show high scores and exit"
-msgstr "顯示積分排行榜並離開"
+msgstr "顯示積分排行榜並結束"
 
 #: gtali/setup.c:80
 msgid "Display computer thoughts"
@@ -3652,7 +3859,7 @@ msgstr "重新開始網路遊戲(_W)"
 
 #: iagno/gnothello.c:255
 msgid "Are you sure you want to quit Iagno?"
-msgstr "是否確定離開 Iagno？"
+msgstr "是否確定結束 Iagno？"
 
 #: iagno/gnothello.c:429 iagno/gnothello.c:725 iagno/iagno.desktop.in.h:1
 #: iagno/iagno.soundlist.in.h:2
@@ -3806,7 +4013,7 @@ msgstr "開新遊戲"
 
 #: mahjongg/mahjongg.c:406
 msgid "Restart game"
-msgstr "重玩此局"
+msgstr "再玩此局"
 
 #: mahjongg/mahjongg.c:410
 msgid "Get a hint"
@@ -3907,7 +4114,7 @@ msgstr "是否確定重新開始這局遊戲？"
 #. GNOME IS AN ACRONYM, DAMNIT!
 #: mahjongg/mahjongg.c:1469
 msgid "Are you sure you want to quit GNOME Mahjongg?"
-msgstr "是否確定離開 GNOME 上海麻將？"
+msgstr "是否確定結束 GNOME 上海麻將？"
 
 #: mahjongg/mahjongg.c:1476
 msgid "Serious internal error"
@@ -4070,7 +4277,7 @@ msgstr "GNOME SameGame"
 #~ msgstr "抱歉，此功能尚未完成。"
 
 #~ msgid "Are you sure you want to quit Freecell?"
-#~ msgstr "是否確定要離開 Freecell？"
+#~ msgstr "是否確定要結束 Freecell？"
 
 #~ msgid "Reimplement the popular solitaire card game."
 #~ msgstr "重新撰寫此受歡迎的紙牌接龍遊戲。"
@@ -4162,7 +4369,7 @@ msgstr "GNOME SameGame"
 #~ msgstr "選取外觀："
 
 #~ msgid "Are you sure you want to quit Same GNOME?"
-#~ msgstr "是否確定離開 Same GNOME 遊戲？"
+#~ msgstr "是否確定結束 Same GNOME 遊戲？"
 
 #~ msgid "Marked: "
 #~ msgstr "準備移除的棋子數目："
@@ -4208,9 +4415,6 @@ msgstr "GNOME SameGame"
 
 #~ msgid "Bill:%d/%d  System:%d/%d/%d  Level: %d Score:%d"
 #~ msgstr "Bill：%d/%d  系統：%d/%d/%d  版圖：%d 分數：%d"
-
-#~ msgid "Start at a different level"
-#~ msgstr "跳到其它版圖開始新遊戲"
 
 #~ msgid ""
 #~ "             The Story:\n"
@@ -4308,7 +4512,7 @@ msgstr "GNOME SameGame"
 #~ msgstr "跳到哪一版？"
 
 #~ msgid "Quit Game?"
-#~ msgstr "離開遊戲？"
+#~ msgstr "結束遊戲？"
 
 #~ msgid "New Game?"
 #~ msgstr "玩新遊戲？"
@@ -4363,13 +4567,13 @@ msgstr "GNOME SameGame"
 #~ msgstr "GNOME xBill 分數"
 
 #~ msgid "Are you sure you want to quit GNOME xBill?"
-#~ msgstr "是否確定離開 GNOME xBill？"
+#~ msgstr "是否確定結束 GNOME xBill？"
 
 #~ msgid "GNOME xBill"
 #~ msgstr "GNOME xBill"
 
 #~ msgid "Exit this game?"
-#~ msgstr "要離開這個遊戲嗎？"
+#~ msgstr "要結束這個遊戲嗎？"
 
 #~ msgid "Configure Freecell"
 #~ msgstr "設定 Freecell"
@@ -4378,13 +4582,13 @@ msgstr "GNOME SameGame"
 #~ msgstr "顯示得分"
 
 #~ msgid "Quit"
-#~ msgstr "離開"
+#~ msgstr "結束"
 
 #~ msgid "Exit the program"
-#~ msgstr "離開此程式"
+#~ msgstr "結束此程式"
 
 #~ msgid "Exit gnect and end the current game?"
-#~ msgstr "是否終止此局並離開 gnect？"
+#~ msgstr "是否終止此局並結束 gnect？"
 
 #~ msgid "End the current game?"
 #~ msgstr "是否終止此局？"
@@ -4399,7 +4603,7 @@ msgstr "GNOME SameGame"
 #~ msgstr "真的要重新開始這一局遊戲？"
 
 #~ msgid "Really exit GNOME Mahjongg?"
-#~ msgstr "真的要離開 GNOME 上海麻將？"
+#~ msgstr "真的要結束 GNOME 上海麻將？"
 
 #~ msgid "Really start a new game?"
 #~ msgstr "真的要開始另一局遊戲？"
@@ -4437,7 +4641,7 @@ msgstr "GNOME SameGame"
 #~ msgstr "選擇牌面背景圖案："
 
 #~ msgid "Confirm before quitting game"
-#~ msgstr "離開前要先確定"
+#~ msgstr "結束前要先確定"
 
 #~ msgid "Make it the default scenario"
 #~ msgstr "把它定為預設外觀"
@@ -4453,9 +4657,6 @@ msgstr "GNOME SameGame"
 
 #~ msgid "East"
 #~ msgstr "東"
-
-#~ msgid "South"
-#~ msgstr "南"
 
 #~ msgid "West"
 #~ msgstr "西"
