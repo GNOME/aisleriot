@@ -59,7 +59,7 @@
 const char *player_name;
 const char *opponent_name;
 
-static char *game_server; 
+char *game_server; 
 static char *game_port;
 static pid_t server_pid = - 1;
 
