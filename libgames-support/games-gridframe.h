@@ -39,6 +39,9 @@ typedef struct _GamesGridFrame {
   gint xmult;
   gint ymult;
 
+  gint xpadding;
+  gint ypadding;
+
   GtkAllocation old_allocation;
 } GamesGridFrame;
 
@@ -49,9 +52,9 @@ typedef struct _GamesGridFrameClass {
 GType games_grid_frame_get_type (void);
 
 GtkWidget *games_grid_frame_new (gint width, gint height);
-/* We don't do this yet, but it would be useful. e.g. for games that
-   change their grid size. */
-/* void games_grid_frame_set (gint width, gint height); */
+void games_grid_frame_set (GamesGridFrame *frame, gint width, gint height);
+void games_grid_frame_set_padding (GamesGridFrame *frame, gint xpadding, 
+				   gint ypadding);
 
 G_END_DECLS
 

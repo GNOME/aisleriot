@@ -22,7 +22,93 @@
 /* A lot of this was written by following the sorce for GtkFrame and
  * GtkAspectFrame. */
 
+#include <gnome.h>
+
 #include "games-gridframe.h"
+
+enum {
+  PROP_0,
+  PROP_X_PADDING,
+  PROP_Y_PADDING,
+  PROP_WIDTH,
+  PROP_HEIGHT
+};
+
+void
+games_grid_frame_set (GamesGridFrame *frame, gint newxmult, gint newymult)
+{
+  if (newxmult > 0)
+    frame->xmult = newxmult;
+  if (newymult > 0)
+    frame->ymult = newymult;
+
+  gtk_widget_queue_resize (GTK_WIDGET (frame));
+}
+
+void
+games_grid_frame_set_padding (GamesGridFrame *frame, gint newxpadding,
+			      gint newypadding)
+{
+  if (newxpadding >= 0)
+    frame->xpadding = newxpadding;
+
+  if (newypadding >= 0)
+    frame->ypadding = newypadding;
+
+  gtk_widget_queue_resize (GTK_WIDGET (frame));
+}
+
+static void
+games_grid_frame_set_property (GObject *object, guint prop_id, 
+			       const GValue *value, GParamSpec *pspec)
+{
+  GamesGridFrame *frame = GAMES_GRID_FRAME (object);
+
+  switch (prop_id)
+    {
+    case PROP_X_PADDING:
+      games_grid_frame_set_padding (frame, g_value_get_int (value), -1);
+      break;
+    case PROP_Y_PADDING:
+      games_grid_frame_set_padding (frame, -1, g_value_get_int (value));
+      break;
+    case PROP_WIDTH:
+      games_grid_frame_set (frame, g_value_get_int (value), -1);
+      break;
+    case PROP_HEIGHT:
+      games_grid_frame_set (frame, -1, g_value_get_int (value));
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
+}
+
+static void
+games_grid_frame_get_property (GObject *object, guint prop_id, 
+			       GValue *value, GParamSpec *pspec)
+{
+  GamesGridFrame *frame = GAMES_GRID_FRAME (object);
+
+  switch (prop_id)
+    {
+    case PROP_X_PADDING:
+      g_value_set_int (value, frame->xpadding);
+      break;
+    case PROP_Y_PADDING:
+      g_value_set_int (value, frame->ypadding);
+      break;
+    case PROP_WIDTH:
+      g_value_set_int (value, frame->xmult);
+      break;
+    case PROP_HEIGHT:
+      g_value_set_int (value, frame->ymult);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
+}
 
 static void
 games_grid_frame_size_request (GtkWidget * widget,
@@ -48,16 +134,16 @@ games_grid_frame_size_allocate (GtkWidget * widget,
   gint xsize, ysize, size;
 
   widget->allocation = *allocation;
-  
-  xsize = MAX (1, allocation->width/frame->xmult);
-  ysize = MAX (1, allocation->height/frame->ymult);
+
+  xsize = MAX (1, (allocation->width - frame->xpadding)/frame->xmult);
+  ysize = MAX (1, (allocation->height - frame->ypadding)/frame->ymult);
 
   size = MIN (xsize, ysize);
 
-  child_allocation.width = size*frame->xmult;
+  child_allocation.width = size*frame->xmult + frame->xpadding;
   child_allocation.x = (allocation->width - child_allocation.width)/2
     + allocation->x;
-  child_allocation.height = size*frame->ymult;
+  child_allocation.height = size*frame->ymult + frame->ypadding;
   child_allocation.y = (allocation->height - child_allocation.height)/2
     + allocation->y;
 
@@ -77,12 +163,46 @@ games_grid_frame_size_allocate (GtkWidget * widget,
 static void
 games_grid_frame_class_init (GamesGridFrameClass * class)
 {
+  GObjectClass *object_class;
   GtkWidgetClass *widget_class;
 
+  object_class = G_OBJECT_CLASS (class);
   widget_class = GTK_WIDGET_CLASS (class);
+
+  object_class->set_property = games_grid_frame_set_property;
+  object_class->get_property = games_grid_frame_get_property;
 
   widget_class->size_allocate = games_grid_frame_size_allocate;
   widget_class->size_request = games_grid_frame_size_request;
+
+  g_object_class_install_property (object_class, PROP_X_PADDING,
+				   g_param_spec_int ("x_padding",
+						     _("X Padding"),
+						     _("Extra space to add to the width allocation."),
+						     0, G_MAXINT, 0,
+						     G_PARAM_READABLE |
+						     G_PARAM_WRITABLE));
+  g_object_class_install_property (object_class, PROP_Y_PADDING,
+				   g_param_spec_int ("y_padding",
+						     _("X Padding"),
+						     _("Extra space to add to the height allocation."),
+						     0, G_MAXINT, 0,
+						     G_PARAM_READABLE |
+						     G_PARAM_WRITABLE));
+  g_object_class_install_property (object_class, PROP_WIDTH,
+				   g_param_spec_int ("width_multiple",
+						     _("Width Multiple"),
+						     _("What multiple to constrain the width to."),
+						     1, G_MAXINT, 1,
+						     G_PARAM_READABLE |
+						     G_PARAM_WRITABLE));
+  g_object_class_install_property (object_class, PROP_HEIGHT,
+				   g_param_spec_int ("height_multiple",
+						     _("Height Multiple"),
+						     _("What multiple to constrain the height to."),
+						     1, G_MAXINT, 1,
+						     G_PARAM_READABLE |
+						     G_PARAM_WRITABLE));
 }
 
 static void
