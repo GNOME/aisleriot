@@ -41,6 +41,7 @@
 #include "cscmi.h"
 #include "menu.h"
 #include "splash.h"
+#include <games-clock.h>
 
 /*
  * Global Variables
@@ -76,7 +77,7 @@ guint            y_expanded_offset = 20;
 
 gchar* game_file_to_name (const gchar* file)
 {
-  char* p, *buf = g_strdup (g_filename_pointer(file));
+  char* p, *buf = g_strdup (g_basename(file));
 
   if ((p = strrchr (buf, '.'))) *p = '\0';
   for(p = buf; p = strchr(p, '_'), p && *p;) *p = ' ';
@@ -94,9 +95,10 @@ gchar* game_file_to_name (const gchar* file)
  */
 gpointer* game_file_to_help_entry (const gchar* file)
 {
+#if 0
   GnomeHelpMenuEntry* entry;
   char* p;
-  GString* help = g_string_new (g_filename_pointer(file));
+  GString* help = g_string_new (g_basename(file));
 
   if ((p = strrchr (help->str, '.'))) 
     g_string_truncate (help, p - help->str);
@@ -109,6 +111,7 @@ gpointer* game_file_to_help_entry (const gchar* file)
 
   g_string_free(help, TRUE);
   return (gpointer *) entry;
+#endif
 }
 
 void make_title () 
@@ -177,11 +180,13 @@ void new_game (gchar* file, guint *seedp )
       g_snprintf(buf, sizeof (buf), "%s/%s", _("Help"), game_name);
       gnome_app_remove_menus (GNOME_APP (app), buf, 1);
       if(rules_help[0].user_data) {
+#if 0
 	GnomeHelpMenuEntry *entry = 
 	  (GnomeHelpMenuEntry *) rules_help[0].user_data;
 	g_free (entry->name);
 	g_free (entry->path);
 	g_free (entry);
+#endif
       }
     }
     game_name = game_file_to_name (file);
@@ -278,19 +283,19 @@ void timer_start ()
 /*    timer_stop();
  *  game_seconds = 0;
  */
-  gtk_clock_stop (GTK_CLOCK (time_value));
+  games_clock_stop (GAMES_CLOCK (time_value));
   timeout = 3600;
 /*  set_time();
  *  timer_timeout = gtk_timeout_add (1000, (GtkFunction) (timer_cb), NULL);
  */
-  gtk_clock_set_seconds (GTK_CLOCK (time_value), 0);
-  gtk_clock_start (GTK_CLOCK (time_value));
+  games_clock_set_seconds (GAMES_CLOCK (time_value), 0);
+  games_clock_start (GAMES_CLOCK (time_value));
   timer_timeout = gtk_timeout_add (timeout * 1000, (GtkFunction) (timer_cb), NULL);
 }
 
 void timer_stop ()
 {
-  gtk_clock_stop (GTK_CLOCK (time_value));
+  games_clock_stop (GAMES_CLOCK (time_value));
   gtk_timeout_remove (timer_timeout);
   timer_timeout = 0;
 }
@@ -397,7 +402,7 @@ void main_prog(int argc, char *argv[])
   gtk_box_pack_start (GTK_BOX(score_box), score_value, FALSE, FALSE, 0);
   time_label = gtk_label_new (_("Time: "));
   gtk_box_pack_start (GTK_BOX(score_box), time_label, FALSE, FALSE, 0);
-  time_value = gtk_clock_new (GTK_CLOCK_INCREASING);
+  time_value = games_clock_new ();
   gtk_box_pack_start (GTK_BOX(score_box), time_value, FALSE, FALSE, GNOME_PAD_SMALL);
 
   gtk_widget_show (score_label);
@@ -508,7 +513,7 @@ int main (int argc, char *argv [])
 
   gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "save_yourself",
 		      GTK_SIGNAL_FUNC (save_state), 
-		      (gpointer) program_invocation_name);
+		      (gpointer) g_basename(argv[0]));
   gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
 		      GTK_SIGNAL_FUNC (quit_app), NULL);
 

@@ -82,7 +82,7 @@ GdkPixmap* get_pixmap (const char* filename)
   if (fullname == NULL)
     return NULL; 
 
-  im = gdk_pixbuf_new_from_file (fullname);
+  im = gdk_pixbuf_new_from_file (fullname, NULL);
   if (im != NULL) {
     gdk_pixbuf_render_pixmap_and_mask (im, &ret, NULL, 127);
     gdk_pixbuf_unref (im);

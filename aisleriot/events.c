@@ -24,6 +24,16 @@
 #include "dialog.h"
 #include "slot.h"
 
+static guint32
+get_current_time (void)
+{
+	GTimeVal tval;
+
+	g_get_current_time (&tval);
+
+	return tval.tv_sec;
+}
+
 int waiting_for_mouse_up(void) {
   if (!press_data) return 0;
   if (press_data->status == STATUS_IS_DRAG) return 1;
@@ -135,7 +145,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
     return TRUE;
 
 #ifndef SINGLE_ACTION
-  if (gdk_time_get() > first_press + dbl_click_time)
+  if (get_current_time() > first_press + dbl_click_time)
     press_data->status = STATUS_NONE;
 #endif
   slot_pressed(event->x, event->y, &hslot, &cardid);
@@ -165,7 +175,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       return TRUE;
     }
     else {
-      first_press = gdk_time_get();
+      first_press = get_current_time();
       press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
 #ifdef SINGLE_ACTION
       timer_click = 

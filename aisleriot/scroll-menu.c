@@ -451,9 +451,9 @@ scroll_menu_size_allocate (GtkWidget *widget,
 
 	if (menu_shell->children) {
 		child_allocation.x = (GTK_CONTAINER (menu)->border_width +
-				      widget->style->klass->xthickness);
+				      widget->style->xthickness);
 		child_allocation.y = (GTK_CONTAINER (menu)->border_width +
-				      widget->style->klass->ythickness) - self->offset + top_scroller_height;
+				      widget->style->ythickness) - self->offset + top_scroller_height;
 		child_allocation.width = MAX (1, (gint)allocation->width - child_allocation.x * 2);
 
 		children = menu_shell->children;
@@ -519,11 +519,11 @@ adjust_item (ScrollMenu *self, GtkWidget *widget)
 		return;
 
 	top = (GTK_CONTAINER (self)->border_width +
-	       menu->style->klass->ythickness);
+	       menu->style->ythickness);
 
 	bottom = menu->allocation.height -
 		(GTK_CONTAINER (self)->border_width +
-		 menu->style->klass->ythickness);
+		 menu->style->ythickness);
 
 	gtk_widget_get_child_requisition (self->up_scroll, &requisition);
 	top += requisition.height;

@@ -85,6 +85,12 @@ void help_about_callback ()
 	  NULL
   };
 
+  const gchar *documenters[] = {
+	  NULL
+  };
+
+  const gchar *translator_credits = _("");
+
 #ifdef ENABLE_NLS
   {
 	int i=0;
@@ -99,10 +105,11 @@ void help_about_callback ()
   about = gnome_about_new ( _("AisleRiot"), VERSION,
 			    /* copyright notice */
 			    _("(C) 1998 Jonathan Blandford (jrb@redhat.com)"),
-			    (const char **)authors,
-			    /* another comments */
 			    _("AisleRiot provides a rule-based "
-			      "solitaire card engine that allows many different games to be played"),
+			    "solitaire card engine that allows many different games to be played"),
+			    (const char **)authors,
+			    (const char **)documenters,
+			    (const char *)translator_credits,
 			    NULL);
   gtk_signal_connect (GTK_OBJECT (about),
 		      "destroy",

@@ -74,12 +74,11 @@ splash_new ()
 
   g_free (image_file);
 
-  vbox = gtk_vbox_new(FALSE, GNOME_PAD);
-
   progress = gtk_progress_bar_new ();
   label = gtk_label_new ("");
 
-  splash = gtk_window_new(gnome_preferences_get_dialog_type());
+  splash = gtk_dialog_new ();
+
   gtk_window_position (GTK_WINDOW(splash), 
 		       GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (splash), _("AisleRiot"));
@@ -88,9 +87,10 @@ splash_new ()
   gtk_signal_connect (GTK_OBJECT (splash), "destroy",
 		      GTK_SIGNAL_FUNC (splash_destroyed),
 		      NULL);
+
+  vbox = GTK_DIALOG(splash)->vbox;
   
   gtk_container_border_width (GTK_CONTAINER (vbox), 0);
-  gtk_container_add(GTK_CONTAINER(splash), vbox);
 
   if (splash_pixmap != NULL)
 	  gtk_box_pack_start (GTK_BOX (vbox), splash_pixmap, FALSE, FALSE, 
