@@ -1,11 +1,11 @@
 
-#if GUILE
-#guile_DIRS = aisleriot
-#endif
+if GUILE
+guile_DIRS = aisleriot
+endif
 
-# if CXX_PRESENT
-# cxx_DIRS = gnometris xbill
-# endif
+if CXX_PRESENT
+cxx_DIRS = gnometris xbill
+endif
 
 SUBDIRS =			\
 	po			\
@@ -23,12 +23,9 @@ SUBDIRS =			\
 	glines			\
 	iagno			\
 	freecell 		\
+	$(cxx_DIRS)		\
+	$(guile_DIRS)		\
 	omf-install
-
-# Not ported yet
-EXTRA_SUBDIRS =		\
-	$(guile_DIRS)	\
-	$(cxx_DIRS)
 
 EXTRA_DIST = \
 	gnome-games.spec.in \

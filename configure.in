@@ -16,17 +16,9 @@ AC_PROG_CC
 AC_STDC_HEADERS
 AM_PROG_LIBTOOL
 
-## FIXME: get this to work with autoconf 1.5 (complains about AC_REQUIRE)
-## failure of 'AC_PRG_CXX' causes automake to abort
-# see if a C++ compiler exists and works
-dnl AC_REQUIRE([AC_PROG_CXX])dnl
-dnl if test "x$ac_cv_prog_cxx_works" = xno; then
-dnl  AC_MSG_WARN(ifelse([$1], , "No C++ compiler", [$1]))
-dnl fi
-dnl AM_CONDITIONAL(CXX_PRESENT, test "x$ac_cv_prog_cxx_works" != xno)
+GAMES_CHECK_CXX
 
-## FIXME: Guile should install a macro to aclocal/gnome2-macros?
-dnl GNOME_CHECK_GUILE
+GAMES_CHECK_GUILE
 
 LIBGNOMEUI_REQUIRED=1.105.0
 LIBGNOME_REQUIRED=1.105.0
@@ -149,20 +141,18 @@ glines/Makefile
 freecell/Makefile
 freecell/src/Makefile
 freecell/gdk-card-image/Makefile
+gnometris/Makefile
+gnometris/pix/Makefile
+xbill/Makefile
+xbill/pixmaps/Makefile
+xbill/cursors/Makefile
+aisleriot/Makefile
+aisleriot/docs/Makefile
+aisleriot/docs/C/Makefile
+aisleriot/docs/it/Makefile
+aisleriot/pixmaps/Makefile
 omf-install/Makefile 
 ])
-dnl gnometris/Makefile 
-dnl gnometris/pix/Makefile
-dnl xbill/Makefile
-dnl xbill/pixmaps/Makefile
-dnl xbill/cursors/Makefile
-dnl aisleriot/Makefile
-dnl aisleriot/docs/Makefile
-dnl aisleriot/docs/C/Makefile
-dnl aisleriot/docs/it/Makefile
-dnl aisleriot/pixmaps/Makefile
-
-
 ## iagno2/Makefile
 ## iagno2/reversi-iagno2/Makefile
 ## iagno2/plugins/Makefile
