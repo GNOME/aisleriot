@@ -61,13 +61,27 @@
 
   (list 10 4))
 
+(define (sequence-matches-slot? card-list slot)
+  (and (not (empty-slot? slot))
+       (= (get-suit (car card-list))
+	  (get-suit (get-top-card slot)))
+       (= (get-value (car card-list))
+	  (+ 1 (get-value (get-top-card slot))))))
+
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
        (or (= (length card-list) 1)
 	   (and (> slot-id 7)
 		(< (length card-list) (+ 2 free-reserves))
 		(check-same-suit-list card-list)
-		(check-straight-descending-list card-list)))))
+		(check-straight-descending-list card-list))
+	   (and (> slot-id 7) ; Move an entire sequence to the foundation
+		(check-same-suit-list card-list)
+		(check-straight-descending-list card-list)
+		(or (sequence-matches-slot? card-list 0)
+		    (sequence-matches-slot? card-list 1)
+		    (sequence-matches-slot? card-list 6)
+		    (sequence-matches-slot? card-list 7))))))
 
 (define (button-released start-slot card-list end-slot)
   (cond ((= start-slot end-slot)
@@ -115,6 +129,15 @@
 		       (set! free-reserves (+ free-reserves 1))
 		       (add-to-score! 1))
 		  #t)))
+	((and (or (< end-slot 2) ; Move an entire sequence to the foundation
+		  (= end-slot 6)
+		  (= end-slot 7))
+	      (check-same-suit-list card-list)
+	      (check-straight-descending-list card-list)
+	      (sequence-matches-slot? card-list end-slot)) 
+	 (and (move-n-cards! start-slot end-slot (reverse card-list))
+	      (add-to-score! (length card-list))
+	      #t))
 	(#t #f)))
 
 (define (button-clicked slot-id)
