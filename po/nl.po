@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-11 20:08+0200\n"
-"PO-Revision-Date: 2004-06-12 01:27+0200\n"
+"POT-Creation-Date: 2004-06-18 03:45+0200\n"
+"PO-Revision-Date: 2004-06-18 06:34+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: nl <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -363,7 +363,7 @@ msgstr "Spel voorbij."
 msgid "New Game"
 msgstr "Nieuw Spel"
 
-#: aisleriot/dialog.c:161 mahjongg/mahjongg.c:1888
+#: aisleriot/dialog.c:161 mahjongg/mahjongg.c:1898
 msgid "Select Game"
 msgstr "Spel kiezen"
 
@@ -524,6 +524,27 @@ msgstr "FreeCell Solitaire"
 msgid "Play the popular FreeCell card game"
 msgstr "Het populaire FreeCell kaartspel"
 
+#: aisleriot/freecell.scm.h:1
+msgid "No moves available"
+msgstr "Geen zetten over"
+
+#: aisleriot/freecell.scm.h:2
+msgid "an empty reserve"
+msgstr "een lege reserve"
+
+#: aisleriot/freecell.scm.h:3
+msgid "an open tableau"
+msgstr "een lege tafelplaats"
+
+#: aisleriot/freecell.scm.h:4
+msgid "game has no solution"
+msgstr "spel heeft geen oplossing"
+
+# stapel
+#: aisleriot/freecell.scm.h:5
+msgid "the foundation"
+msgstr "de basisplaats"
+
 #: aisleriot/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
 msgstr "Verplaats een kaart van de reserve naar het lege tafelvak"
@@ -592,7 +613,7 @@ msgstr ""
 "layout past"
 
 #: aisleriot/menu.c:77 gnome-stones/main.c:1083 gnomine/gnomine.c:526
-#: mahjongg/mahjongg.c:1628
+#: mahjongg/mahjongg.c:1638
 msgid "Main game:"
 msgstr "Hoofdspel:"
 
@@ -605,7 +626,7 @@ msgstr "Kaartspellen:"
 #: glines/glines.c:945 gnect/src/main.c:811 gnibbles/main.c:182
 #: gnobots2/menu.c:194 gnome-stones/main.c:1094 gnometris/tetris.cpp:1226
 #: gnomine/gnomine.c:546 gnotravex/gnotravex.c:1486 gtali/gyahtzee.c:415
-#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1652 same-gnome/same-gnome.c:707
+#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1662 same-gnome/same-gnome.c:707
 msgid "translator-credits"
 msgstr ""
 "Hein-Jan Leliveld <h.j.leliveld@student.tn.tudelft.nl>\n"
@@ -785,7 +806,7 @@ msgid "Score:"
 msgstr "Score:"
 
 #: aisleriot/sol.c:407 gnomine/gnomine.c:1094 gnotravex/gnotravex.c:1019
-#: mahjongg/mahjongg.c:2185
+#: mahjongg/mahjongg.c:2195
 msgid "Time:"
 msgstr "Tijd:"
 
@@ -3954,7 +3975,7 @@ msgstr "Puzzel opgelost! Goed gedaan!"
 msgid "Puzzle solved!"
 msgstr "Puzzel opgelost!"
 
-#: gnotravex/gnotravex.c:1139 mahjongg/mahjongg.c:1710
+#: gnotravex/gnotravex.c:1139 mahjongg/mahjongg.c:1720
 msgid "Game paused"
 msgstr "Spel gepauseerd"
 
@@ -4478,42 +4499,52 @@ msgstr "Laatste zet ongedaan maken"
 msgid "Get a hint"
 msgstr "Vraag een hint"
 
-#: mahjongg/mahjongg.c:1088
+#: mahjongg/mahjongg.c:1090
 msgid ""
-"This new mapset will take effect when you start a new game, or when Mahjongg "
-"is restarted."
-msgstr ""
-"Deze nieuwe verzameling treedt in werking als u een nieuw spel opstart, of "
-"als Mahjongg wordt herstart."
+"Do you want to finish the current game or start playing with the new map "
+"immediately ?"
+msgstr "Wilt u het huidige spel afmaken of meteen met de nieuwe stapelwijze beginnen?"
 
-#: mahjongg/mahjongg.c:1340 mahjongg/mahjongg.c:1345
+#: mahjongg/mahjongg.c:1091
+msgid ""
+"If you choose to finish with the old map then the next game will use the new "
+"map."
+msgstr "Indien kiest om het huidige spel af te maken, zal het volgende spel de nieuwe stapelwijze gebruiken."
+
+# Eigenlijk voltooien, maar een spelletje voltooien klinkt minder mooi
+# dan een spelletje afmaken.
+#: mahjongg/mahjongg.c:1093
+msgid "_Finish"
+msgstr "_Afmaken"
+
+#: mahjongg/mahjongg.c:1350 mahjongg/mahjongg.c:1355
 msgid "These tiles don't match."
 msgstr "Deze stenen passen niet bij elkaar."
 
-#: mahjongg/mahjongg.c:1377
+#: mahjongg/mahjongg.c:1387
 msgid "There are no more moves."
 msgstr "Er zijn geen geldige zetten meer."
 
-#: mahjongg/mahjongg.c:1381
+#: mahjongg/mahjongg.c:1391
 msgid "Shuffle"
 msgstr "Schudden"
 
-#: mahjongg/mahjongg.c:1444
+#: mahjongg/mahjongg.c:1454
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: mahjongg/mahjongg.c:1463
+#: mahjongg/mahjongg.c:1473
 msgid "Tiles"
 msgstr "Stenen"
 
-#: mahjongg/mahjongg.c:1471
+#: mahjongg/mahjongg.c:1481
 msgid "Tile Set"
 msgstr "Stenenverzameling:"
 
 # na bugreport van Jeroen vd Vegt veranderd in Stapelwijze.
 # Het frame-label: "Maps" behandeld de manier waarop de stenen
 # op elkaar worden gelegd.
-#: mahjongg/mahjongg.c:1484
+#: mahjongg/mahjongg.c:1494
 msgid "Maps"
 msgstr "Stapelwijze"
 
@@ -4521,66 +4552,66 @@ msgstr "Stapelwijze"
 # Je moet kiezen voor een stapelwijze.
 # Je kunt hierna kiezen voor moeilijk of eenvoudig, dus het
 # geeft een moeilijkheidsgraad aan.
-#: mahjongg/mahjongg.c:1492
+#: mahjongg/mahjongg.c:1502
 msgid "Select Map"
 msgstr "Moeilijkheidsgraad"
 
-#: mahjongg/mahjongg.c:1505
+#: mahjongg/mahjongg.c:1515
 msgid "Colors"
 msgstr "Kleuren"
 
-#: mahjongg/mahjongg.c:1513
+#: mahjongg/mahjongg.c:1523
 msgid "Background Color"
 msgstr "Achtergrondkleur"
 
-#: mahjongg/mahjongg.c:1527
+#: mahjongg/mahjongg.c:1537
 msgid "Warnings"
 msgstr "Waarschuwingen"
 
-#: mahjongg/mahjongg.c:1533
+#: mahjongg/mahjongg.c:1543
 msgid "Warn when tiles don't match"
 msgstr "Waarschuwen als stenen niet bij elkaar passen"
 
 # na bugreport van Jeroen vd Vegt veranderd in Stapelwijze.
 # Het frame-label: "Maps" behandeld de manier waarop de stenen
 # op elkaar worden gelegd.
-#: mahjongg/mahjongg.c:1636
+#: mahjongg/mahjongg.c:1646
 msgid "Maps:"
 msgstr "Stapelwijze:"
 
-#: mahjongg/mahjongg.c:1640
+#: mahjongg/mahjongg.c:1650
 msgid "Tiles:"
 msgstr "Stenen:"
 
-#: mahjongg/mahjongg.c:1672
+#: mahjongg/mahjongg.c:1682
 msgid "GNOME Mahjongg"
 msgstr "GNOME Mahjongg"
 
-#: mahjongg/mahjongg.c:1675
+#: mahjongg/mahjongg.c:1685
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "GNOME-versie van het Oosterse spel: Mahjongg."
 
-#: mahjongg/mahjongg.c:1904
+#: mahjongg/mahjongg.c:1914
 msgid "Game Number:"
 msgstr "Spelnummer:"
 
-#: mahjongg/mahjongg.c:1982 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1992 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:2102
+#: mahjongg/mahjongg.c:2112
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Sorry, kan geen speelbare configuratie vinden."
 
-#: mahjongg/mahjongg.c:2167
+#: mahjongg/mahjongg.c:2177
 msgid "Tiles Left:"
 msgstr "Stenen over:"
 
-#: mahjongg/mahjongg.c:2176
+#: mahjongg/mahjongg.c:2186
 msgid "Moves Left:"
 msgstr "Zetten over:"
 
-#: mahjongg/mahjongg.c:2241
+#: mahjongg/mahjongg.c:2251
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "Welkom bij Gnome Mahjongg"
 
@@ -4665,6 +4696,13 @@ msgstr "Welkom bij Same GNOME!"
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
+
+#~ msgid ""
+#~ "This new mapset will take effect when you start a new game, or when "
+#~ "Mahjongg is restarted."
+#~ msgstr ""
+#~ "Deze nieuwe verzameling treedt in werking als u een nieuw spel opstart, "
+#~ "of als Mahjongg wordt herstart."
 
 #~ msgid "Default"
 #~ msgstr "Standaard"
