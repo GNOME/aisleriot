@@ -1,5 +1,32 @@
+2004-04-10  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* press_data.c: 
+	* slot.c: 
+	* slot.h:	
+	* draw.c: Add a "pixelx" and "pixely" coordinate to the slot
+	structure so that we can cache the real locations. This also
+	allows all the clicking and dragging code to work with minimal
+	modification. This is step 3 of the scaling code.
+
+2004-04-08  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* draw.c: Fix the card locations up. Stage 2 is now complete.
+
 2004-04-06  Callum McKenzie  <callum@physics.otago.ac.nz>
 
+	* sol.scm: 
+	* cscmi.c: 
+	* card.c:
+	* card.h:
+        * draw.c:
+	* draw.h:
+	* event.c: Step 2: Position the cards correctly (but with the wrong
+	sizes). This involves a major reshuffling of geometry code. The 
+	scheme position data is now in slots rather than pixels. The geometry 
+	code has been dragged back into draw.c rather than card.c. Unused
+	stuff has been dropped from cscmi.c.
+
+	
 	* aisleriot.schemas.in: 
 	* sol.c:
 	* events.c:

@@ -221,7 +221,7 @@ void new_game (gchar* file, guint *seedp )
   size = gh_call0(game_data->start_game_lambda);
   gh_eval_str ("(start-game)");
 
-  rescale_cards (gh_scm2int (gh_car (size)), gh_scm2int (gh_cadr (size)));
+  set_geometry (gh_scm2int (gh_car (size)), gh_scm2int (gh_cadr (size)));
 
   /* It is possible for some games to not have any moves right from the
    * start. If this happens we redeal. */
@@ -335,14 +335,13 @@ void quit_app (GtkMenuItem *menuitem)
 
 static void create_main_window ()
 {
-  gint width, height;
   GConfClient * gconf_client = gconf_client_get_default ();
 
-  width = gconf_client_get_int (gconf_client, WIDTH_GCONF_KEY, NULL);
-  height = gconf_client_get_int (gconf_client, HEIGHT_GCONF_KEY, NULL);
+  window_width = gconf_client_get_int (gconf_client, WIDTH_GCONF_KEY, NULL);
+  window_height = gconf_client_get_int (gconf_client, HEIGHT_GCONF_KEY, NULL);
 
   app = gnome_app_new ("aisleriot", _("Aisleriot"));
-  gtk_window_set_default_size (GTK_WINDOW (app), width, height);
+  gtk_window_set_default_size (GTK_WINDOW (app), window_width, window_height);
 
   gtk_widget_realize (app);
 

@@ -57,22 +57,6 @@ int get_card_height () {
   return height;
 }
 
-int get_horiz_offset () {
-  return get_card_width() + x_spacing;
-}
-
-int get_vert_offset () {
-  return get_card_height() + y_spacing;
-}
-
-int get_vert_start () {
-  return 30;
-}
-
-int get_horiz_start () {
-  return 30;
-}
-
 static GdkPixmap* get_pixmap (const char* filename)
 {
   GdkPixmap* ret;

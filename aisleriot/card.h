@@ -60,10 +60,6 @@ void free_pixmaps (void);
 
 int get_card_width ( void );
 int get_card_height ( void );
-int get_horiz_offset ( void );
-int get_vert_offset ( void );
-int get_vert_start ( void );
-int get_horiz_start ( void );
 
 void add_card (GList**, hcard_type);
 #endif

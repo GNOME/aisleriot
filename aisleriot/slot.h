@@ -30,10 +30,14 @@ typedef struct {
 
   gint id;
   GList* cards;
+  /* The location in slot co-ordinates. Filled in by the game code. */
   gint x;
   gint y;
   gint dx;
   gint dy;
+  /* The location in pixel units. Filled in by the scaling code. */
+  gint pixelx;
+  gint pixely;
   gint length;
   gint exposed;
   gint expansion_depth;

@@ -65,8 +65,8 @@
   (reset-surface)
   (set! FLIP-COUNTER 0)
   (set! SLOTS 0)
-  (set! HORIZPOS (get-horiz-start))
-  (set! VERTPOS (get-vert-start))
+  (set! HORIZPOS 0)
+  (set! VERTPOS 0)
   (set! IN-GAME #f)
   (set! MOVE '())
   (set-statusbar-message " ")
@@ -483,12 +483,12 @@
 
 (define (get-and-increment-position)
   (let ((retval (list HORIZPOS VERTPOS)))
-    (set! HORIZPOS (+ HORIZPOS (get-horiz-offset)))
+    (set! HORIZPOS (+ HORIZPOS 1))
     retval))
 
 (define (linefeed-position)
-  (set! HORIZPOS (get-horiz-start))
-  (set! VERTPOS (+ VERTPOS (get-vert-offset))))
+  (set! HORIZPOS 0)
+  (set! VERTPOS (+ VERTPOS 1)))
 
 (define (register-undo-function function data)
   (set! MOVE (cons '(function data) (cdr MOVE))))

@@ -19,9 +19,13 @@
 
 #ifndef DRAW_H
 #define DRAW_H
-#include <gtk/gtk.h>
 
-void rescale_cards (int new_width, int new_height);
+/* The size of the drawing area. */
+extern int window_width;
+extern int window_height;
+
+void rescale_cards (void);
+void set_geometry (int new_width, int new_height);
 void draw_cards( void );
 void take_snapshot( void );
 void refresh_screen( void );

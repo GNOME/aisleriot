@@ -58,8 +58,8 @@ void generate_press_data ( ) {
     old_cards = gh_cons(make_card(tempptr->data), old_cards);
 
   delta = hslot->exposed - (hslot->length - press_data->cardid) - 1;
-  press_data->xoffset -= x = hslot->x + delta * hslot->dx;
-  press_data->yoffset -= y = hslot->y + delta * hslot->dy;
+  press_data->xoffset -= x = hslot->pixelx + delta * hslot->dx;
+  press_data->yoffset -= y = hslot->pixely + delta * hslot->dy;
 
   press_data->cards = g_list_nth(hslot->cards, press_data->cardid - 1);
   width = get_card_width() + (hslot->length - press_data->cardid) * hslot->dx;

@@ -17,14 +17,46 @@
  * USA
  */
 
+#include <glib.h>
+
 #include "draw.h"
 #include "sol.h"
 #include "slot.h"
 #include "card.h"
 
-void rescale_cards (int new_width, int new_height) {
-  static int width = 0;
-  static int height = 0;
+/* The size of the drawing area. */
+int window_width = 0;
+int window_height = 0;
+
+gint xoffset = 0;
+gint yoffset = 0;
+gint xslotstep = 0;
+gint yslotstep = 0;
+
+static int width = 0;
+static int height = 0;
+
+static void calculate_card_location (hslot_type hslot)
+{
+  hslot->pixelx = xslotstep*(hslot->x + 0.5) + xoffset - get_card_width () / 2;
+  hslot->pixely = yslotstep*(hslot->y + 0.5) + yoffset 
+    - get_card_height () / 2;
+}
+
+/* Work out new sizes and spacings for the cards. */
+void rescale_cards (void) {
+  xslotstep = window_width/width;
+  yslotstep = window_height/height;
+  xoffset = (window_width % width)/2;
+  yoffset = (window_height % height)/2;
+
+  /* FIXME: Resize the cards in here. */
+
+  /* Recalculate the slot locations. */
+  g_list_foreach (get_slot_list (), (GFunc) calculate_card_location, NULL);
+}
+
+void set_geometry (int new_width, int new_height) {
 
   if ((new_width == width) && (new_height == height))
     return;
@@ -32,8 +64,7 @@ void rescale_cards (int new_width, int new_height) {
   width = new_width;
   height = new_height;
 
-  /* FIXME: Resize the cards in here. */
-
+  rescale_cards ();
 }
 
 void draw_cards () {
@@ -51,8 +82,8 @@ void draw_cards () {
 
       card_list = g_list_nth (card_list, hslot->length - hslot->exposed);
 
-      x = hslot->x;
-      y = hslot->y;
+      x = hslot->pixelx;
+      y = hslot->pixely;
 
       for (; card_list; card_list = card_list->next) {
 	card_type *card = card_list->data;
@@ -85,9 +116,9 @@ void take_snapshot() {
     if (slot_pixbuf != NULL)
       gdk_draw_pixbuf (surface, draw_gc,
 		       slot_pixbuf, 0, 0, 
-		       ((hslot_type)slot->data)->x, 
-		       ((hslot_type)slot->data)->y, -1, -1,
-                       GDK_RGB_DITHER_MAX,
+		       ((hslot_type)slot->data)->pixelx,
+		       ((hslot_type)slot->data)->pixely,
+		       -1, -1, GDK_RGB_DITHER_MAX,
                        0, 0);
   }
   draw_cards ();

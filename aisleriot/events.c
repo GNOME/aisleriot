@@ -86,8 +86,8 @@ void drop_moving_cards(gint x, gint y) {
 
   gdk_drawable_get_size(press_data->moving_cards, &width, &height);
   gdk_window_move(press_data->moving_cards, 
-		  hslot->x + hslot->width - width, 
-		  hslot->y + hslot->height - height);
+		  hslot->pixelx + hslot->width - width, 
+		  hslot->pixely + hslot->height - height);
 
   refresh_screen();
 
@@ -143,8 +143,8 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
     if (card->direction == UP) {      
       guint delta = hslot->exposed - (hslot->length - cardid) - 1;
-      int x = hslot->x + delta * hslot->dx;
-      int y = hslot->y + delta * hslot->dy;
+      int x = hslot->pixelx + delta * hslot->dx;
+      int y = hslot->pixely + delta * hslot->dy;
 
       press_data->status = STATUS_SHOW;
       press_data->moving_pixmap = get_card_picture (card->suit, card->value);
@@ -262,18 +262,18 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   GConfClient * gconf_client = gconf_client_get_default ();
 
   if(surface) {
-    gint old_w, old_h;
-
-    gdk_drawable_get_size(surface, &old_w, &old_h);
-    if(old_w == event->width && old_h == event->height)
+    if(window_width == event->width && window_height == event->height)
       return TRUE;
     g_object_unref(surface);
   }
 
+  window_width = event->width;
+  window_height = event->height;
+
   surface =
-    gdk_pixmap_new (playing_area->window, event->width, event->height,
-		    gdk_drawable_get_visual (playing_area->window)->depth);
-  
+    gdk_pixmap_new (playing_area->window, window_width, window_height, -1);
+
+  rescale_cards ();
   refresh_screen();
 
   /* Set up the double-click detection.*/
@@ -283,8 +283,8 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   g_object_get(G_OBJECT(settings),"gtk-double-click-time",&tmptime,NULL);
   dbl_click_time = tmptime/1000.0;
 
-  gconf_client_set_int (gconf_client, WIDTH_GCONF_KEY, event->width, NULL);
-  gconf_client_set_int (gconf_client, HEIGHT_GCONF_KEY, event->height, NULL);
+  gconf_client_set_int (gconf_client, WIDTH_GCONF_KEY, window_width, NULL);
+  gconf_client_set_int (gconf_client, HEIGHT_GCONF_KEY, window_height, NULL);
   
   return FALSE;
 }

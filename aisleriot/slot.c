@@ -39,8 +39,8 @@ void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
     hslot_type hslot = (hslot_type) tempptr->data;
 
     /* if point is within our rectangle */
-    if (hslot->x < x && x < hslot->x + hslot->width && 
-	hslot->y < y && y < hslot->y + hslot->height) 
+    if (hslot->pixelx < x && x < hslot->pixelx + hslot->width && 
+	hslot->pixely < y && y < hslot->pixely + hslot->height) 
     {
 	num_cards = hslot->length;
        
@@ -52,9 +52,9 @@ void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
 		gint depth = 1;
 
 		if (hslot->dx > 0)		
-			depth += (x - hslot->x) / hslot->dx;
+			depth += (x - hslot->pixelx) / hslot->dx;
 		else if (hslot->dy > 0)
-			depth += (y - hslot->y) / hslot->dy;
+			depth += (y - hslot->pixely) / hslot->dy;
 	    
 		/* account for the last card getting much more display area
 		 * or no cards */

@@ -27,6 +27,7 @@
 #include "sol.h"
 #include "slot.h"
 #include "menu.h"
+#include "draw.h"
 
 lambda_data* game_data = NULL;
 
@@ -141,36 +142,6 @@ static SCM scm_redo_set_sensitive (SCM in_state)
   redo_set_sensitive (state);
 
   return SCM_EOL;
-}
-
-static SCM scm_get_card_width() 
-{
-  return gh_long2scm(get_card_width());
-}
-
-static SCM scm_get_card_height() 
-{
-  return gh_long2scm(get_card_height());
-}
-
-static SCM scm_get_horiz_offset() 
-{
-  return gh_long2scm(get_horiz_offset());
-}
-
-static SCM scm_get_vert_offset() 
-{
-  return gh_long2scm(get_vert_offset());
-}
-
-static SCM scm_get_horiz_start() 
-{
-  return gh_long2scm(get_horiz_start());
-}
-
-static SCM scm_get_vert_start() 
-{
-  return gh_long2scm(get_vert_start());
 }
 
 static SCM scm_set_statusbar_message(SCM message)
@@ -317,12 +288,6 @@ void cscm_init ()
      and it looked as good a test as any  */
   gh_eval_str ("(if (not (defined? \'provide))\n"
   	       "  (primitive-load-path \"ice-9/boot-9.scm\"))");
-  gh_new_procedure0_0("get-card-width", scm_get_card_width);
-  gh_new_procedure0_0("get-card-height", scm_get_card_height);
-  gh_new_procedure0_0("get-horiz-offset",scm_get_horiz_offset);
-  gh_new_procedure0_0("get-vert-offset", scm_get_vert_offset);
-  gh_new_procedure0_0("get-horiz-start", scm_get_horiz_start);
-  gh_new_procedure0_0("get-vert-start", scm_get_vert_start);
   gh_new_procedure1_0("set-statusbar-message", scm_set_statusbar_message);
   gh_new_procedure1_0("set-surface-layout", scm_set_surface_layout);
   gh_new_procedure0_0("reset-surface", scm_reset_surface);
