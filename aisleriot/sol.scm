@@ -1,4 +1,4 @@
-; Aisleriot - sol.scm
+; AisleRiot - sol.scm
 ; Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify

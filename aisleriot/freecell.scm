@@ -1,4 +1,4 @@
-;;; freecell.scm -- Free Cell game for Aisleriot.
+;;; freecell.scm -- Free Cell game for AisleRiot.
 
 ;; Copyright (C) 1998 Changwoo Ryu
 

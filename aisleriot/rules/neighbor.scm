@@ -1,4 +1,4 @@
-; Aisleriot - neighbor.scm
+; AisleRiot - neighbor.scm
 ; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify

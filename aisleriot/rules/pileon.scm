@@ -1,5 +1,20 @@
-; Aisleriot - pileon.scm
+; AisleRiot - pileon.scm
 ; Copyright (C) 1998 Nick Lamb <njl195@zepler.org.uk>
+;
+; This game is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; either version 2, or (at your option)
+; any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program; if not, write to the Free Software
+; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+; USA
 
 (define (new-game)
   (initialize-playing-area)
@@ -78,7 +93,9 @@
 
 (define (button-double-clicked slot) #f)
 
-(define (game-over) (not (game-won)))
+(define (game-over) 
+  (and (not (game-won))
+       (get-hint)))
 
 (define (done-or-empty slot-id)
   (or (empty-slot? slot-id)
@@ -102,7 +119,69 @@
        (done-or-empty 14))
 )
 
-(define (get-hint)  #f)
+(define (check-number slot-id)
+  (display "check-number: ")
+  (display slot-id)
+  (display "\n")
+  (cond ((and (> (length (get-cards slot-id)) 1)
+	      (display "1\n")
+	      (not (= (get-value (get-top-card slot-id))
+		      (get-value (cadr (get-cards slot-id))))))
+	 1)
+	((and (> (length (get-cards slot-id)) 2)
+	      (display "2\n")
+	      (not (= (get-value (get-top-card slot-id))
+		      (get-value (caddr (get-cards slot-id))))))
+	 2)
+	((and (> (length (get-cards slot-id)) 3)
+	      (display "3\n")
+	      (not (= (get-value (get-top-card slot-id))
+		      (get-value (cadddr (get-cards slot-id))))))
+	 3)
+	(#t 1)))
+
+(define (check-a-slot slot-id number-to-move to-slot)
+  (display "check-a-slot: ")
+  (display slot-id)
+  (display "  ")
+  (display number-to-move)
+  (display "  ")
+  (display to-slot)
+  (display "\n")
+  (if (> to-slot 14)
+      #f
+      (if (= slot-id to-slot)
+	  (check-a-slot slot-id number-to-move (+ 1 to-slot))
+	  (cond ((empty-slot? slot-id)
+		 (list 2 "something" "an empty slot"))
+		((empty-slot? to-slot)
+		 (list 2 "something" "an empty slot"))
+		((= 4 (length (get-cards to-slot)))
+		 (check-a-slot slot-id number-to-move (+ 1 to-slot)))
+		((= (get-value (get-top-card to-slot))
+		    (get-value (get-top-card slot-id)))
+		 (if (> number-to-move (- 4 (length (get-cards to-slot))))
+		     (check-a-slot slot-id 
+				   (- number-to-move 
+				      (- 4 (length (get-cards to-slot))))
+				   (+ 1 to-slot))
+		     (list 2 (get-name (get-top-card slot-id))
+			   (get-name (get-top-card to-slot)))))
+		(#t (check-a-slot slot-id number-to-move (+ 1 to-slot)))))))
+
+(define (check-slots slot-id to-slot)
+  (display "check-slots: ")
+  (display slot-id)
+  (display "  ")
+  (display to-slot)
+  (display "\n")
+  (if (> slot-id 14)
+      #f
+      (or (check-a-slot slot-id (check-number slot-id) to-slot)
+	  (check-slots (+ 1 slot-id) 0))))
+
+(define (get-hint)
+  (check-slots 0 1))
 
 (define (get-options) #f)
 

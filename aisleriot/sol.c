@@ -1,19 +1,20 @@
-/* Aisleriot - sol.c
+/* AisleRiot - sol.c
  * Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
  *
- * This game is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * This game is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
- * This library is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the Free
- * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+ * USA
  */
 
 #include <config.h>
@@ -109,9 +110,9 @@ void make_title ()
 {
   char *title;
 
-  title = alloca(strlen(game_name) + 20);
+  title = alloca(strlen(game_name) + 34);
   
-  sprintf(title, "%s  ( %d )", game_name, seed);
+  sprintf(title, "AisleRiot:  %s  ( %d )", game_name, seed);
 
   gtk_window_set_title (GTK_WINDOW (app), title); 
 }

@@ -1,19 +1,21 @@
-; Aisleriot - osmosis.scm
+; AisleRiot - osmosis.scm
 ; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
 ;
-; This game is free software; you can redistribute it and/or
-; modify it under the terms of the GNU Library General Public
-; License as published by the Free Software Foundation; either
-; version 2 of the License, or (at your option) any later version.
+; This game is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; either version 2, or (at your option)
+; any later version.
 ;
-; This library is distributed in the hope that it will be useful,
+; This program is distributed in the hope that it will be useful,
 ; but WITHOUT ANY WARRANTY; without even the implied warranty of
-; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-; Library General Public License for more details.
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
 ;
-; You should have received a copy of the GNU Library General Public
-; License along with this library; if not, write to the Free
-; Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+; You should have received a copy of the GNU General Public License
+; along with this program; if not, write to the Free Software
+; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+; USA
+
 
 (define (new-game)
   (initialize-playing-area)
@@ -42,7 +44,7 @@
 
   (deal-cards 8 '(0 2 4 6 0 2 4 6 0 2 4 6))
   (deal-cards-face-up 8 '(0 2 4 6 1))
-
+  (add-to-score! 1)
   (list 6 5)
 )
   
@@ -57,6 +59,7 @@
 		
 (define (complete-transaction start-slot card-list end-slot)
   (move-n-cards! start-slot end-slot card-list)
+  (add-to-score! 1)
   (if (not (empty-slot? start-slot))
       (make-visible-top-card start-slot))
   #t)
