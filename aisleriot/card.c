@@ -115,6 +115,18 @@ static GdkPixbuf* get_pixbuf (const char* filename)
 void load_pixmaps (GtkWidget* app, GdkCardDeckOptions deck_options) 
 {
   card_deck = gdk_card_deck_new (app->window, deck_options);
+  if (card_deck == NULL) {
+    GtkWidget * error_dialog;
+    
+    error_dialog = gtk_message_dialog_new(GTK_WINDOW (app), GTK_DIALOG_MODAL,
+                                          GTK_MESSAGE_ERROR,
+                                          GTK_BUTTONS_CLOSE,
+                                          N_("AisleRiot could not load its deck images.\n\nAisleRiot will now exit."));
+    gtk_dialog_run (GTK_DIALOG (error_dialog));
+    gtk_widget_destroy(error_dialog);
+    exit(1);
+  }
+  
   mask = gdk_card_deck_mask (GDK_CARD_DECK (card_deck)); 
   slot_pixbuf = get_pixbuf ("cards/slots/plain.png");
   default_background_pixmap = get_pixmap ("cards/baize.png");

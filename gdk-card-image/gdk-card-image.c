@@ -759,6 +759,7 @@ gdk_card_deck_new (GdkWindow *window, GdkCardDeckOptions deck_options)
   resolve_options (option_data, deck_options, w->index);
 
   for (i = 0; i < OPT_NUM; i++) {
+    g_return_val_if_fail(w->index[i] != -1, NULL);
     file[i] = &option_data[i].dir->file[w->index[i]];
     gdk_card_deck_file_load (file[i]);
   }
