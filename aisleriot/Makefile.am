@@ -4,7 +4,7 @@ icondir = $(datadir)/pixmaps
 Gamesdir  = $(datadir)/applications
 typesdir  = $(datadir)/sol-games
 
-SUBDIRS=docs pixmaps
+SUBDIRS=docs pixmaps help
 
 INCLUDES =  \
 	-I$(top_srcdir)/libgames-support           \

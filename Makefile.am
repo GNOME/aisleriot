@@ -32,6 +32,7 @@ EXTRA_DIST = \
 	gnome-games.spec \
 	COPYING-DOCS \
 	sgmldocs.make \
+	xmldocs.make \
 	game-docs.make \
 	MAINTAINERS	\
 	HACKING		 \
