@@ -5,38 +5,60 @@ This package contains games for your GNOME desktop. It requires normal GNOME
 2 packges plus guile for aisleriot and a c++ compiler to build GNOME Tetris.
 
 The goal of these games is to amuse hackers and GNOME users during its
-normal and productive work.
+normal and productive work. They are also useful for avoiding normal
+and productive work.
 
-The xbill game has been removed since a more up-to-date version can be
-found at www.xbill.org . Those people who want to look at the gnome
-sources can find them in the gnome-games-deprecated module in CVS.
-
-Games included in this package:
-===============================
-Glines: color lines game, aka fiveormore
-Gataxx: another disc-flipping game
-Gnect: four in a row game
-Gnibbles: A "worm" game.
+The Games:
+==========
+AisleRiot: Solitaire card games, lots of them. Klondike, Freecell,
+           Spider, take your pick. Over 70 variations.
+Glines: Align balls into coloured lines. AKA fiveormore.
+Gataxx: A disc-flipping game similar to Othello (which we call Iagno).
+Gnect: The classic four in a row game. You don't get to dump all the
+       pieces out the bottom when you're finished though.
+Gnibbles: The "worm" game. Made popular again by cell phones.
 Gnobots: The classic BSD robots game. Mac users might remember a similar 
          "daleks" game.
-GNOME-Stones: game based on very old arcade where you have to collect gems
-Gnometris: GNOME version of the popular russian game Tetris
-GNOME Mine: popular logic puzzle minesweeper
-GNOME Klotski: game based on the not so popular Klotski
-GNOME Tali: sort of poker with dice and less money
-Iagno: Gnome version of the popular Othello
-Mahjongg: GNOME version of the classic Eastern tile game, Mahjongg
-Same GNOME: game which goal is to remove as many balls in as few moves as
-            possible
+GNOME-Stones: Mine through dirt and collect gems: but don't get
+              squashed by the boulders. Also has a Sokoban mode.
+Gnometris: The Russian game Tetris. Need I say more ?
+GNOME Mine: The popular logic puzzle minesweeper.
+GNOME Klotski: A sliding blocks game.
+GNOME Tali: Sort of poker with dice and less money.
+Iagno: Gnome version of the popular Othello disk flipping game.
+Mahjongg: GNOME version of the Eastern tile game, Mahjongg.
+Same GNOME: Remove as many balls in as few moves as possible.
 
+Security
+========
 
-We hope you enjoy them!
+Some of these games take advantage of the Unix setgid feature to
+control access to the high score tables. Specifically: the programs
+that record high scores gain the privileges of the games group for
+this purpose. For most people this is fine and safe. However, in some
+cases this is not appropriate (e.g. the games group is used for other
+purposes, or it doesn't exist) . If it isn't there are several options:
+ - Change the group with the --with-scores-group option to configure.
+   This sets the group for both the score files and the
+   binaries. There is also a --with-scores-user option as well, but
+   it is largely irrelevant. Both default to `games'.
+ - Disable setgid support altogether with the --disable-setgid
+   option. The scores files are still installed and you can control
+   the user and group as above. Depending on how you set the
+   permissions on the scores files this will either disable high
+   score support or make cheating trivial. By default it will disable
+   high score support.
+
+Bugs
+====
 
 If you find any bugs please report them using either bug-buddy or
 by going to the web-based gnome bug tracking system at:
 
 http://bugzilla.gnome.org
 
+Contact Information
+===================
 
 The current maintainers are:
 
