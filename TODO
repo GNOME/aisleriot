@@ -1,13 +1,4 @@
-
-Things that really need to be done before code-freeze
-
-Mahjongg single pile shuffle problem.
-Threading support for freecell hint generation.
-SVG card deck for aisleriot.
-
---------------------------------------------------------------------------
-
-Priorities for 2.7/2.8:
+Priorities :
 
   iagno (to match gataxx)
   gnobots2, especially drawing code and mouse use
@@ -16,23 +7,29 @@ Priorities for 2.7/2.8:
 
 --------------------------------------------------------------------------
 
-All bugs.
+After 2.10:
+
+  - Pango will support pixel font size specification (bug 119081), remove 
+    workarounds found in Tetravex, Stones, Gnometris, and Blackjack.
+
+--------------------------------------------------------------------------
 
 General:
         - Make games respond to the gconf key change signals.
         - Move more common code into the libgames-support library.
         - Make as much as possible scalable so we can have full-screen
-          modes. (80204)
+          modes (bug 80204).
         - Seriously look at a11y for actually playing the games.
-        - Make games playable by keyboard (126284)
+        - Make games playable by keyboard (bug 126284).
         - Look at network multi-player.
 	- Update debian files to be reasonable
         - Make session management work.
         - Redo the scoring code (example front-end done).
         - Make the build system cleaner.
-        - Naming issues: "Stones" (117191)
+        - Naming issues: "Stones" (bug 117191)
 
 AisleRiot:
+	- Freecell hint threading (bug 134798)
         - Better klondike hint (bug 85712)
         - 3-card flip-over (possibly reinstate the game-specific
           options, bug 50704).
@@ -40,19 +37,18 @@ AisleRiot:
         - Be able to automatically drag lists of cards to the
           foundation and have them distributed (like at the end of
           klondike) this is less surprising than auto-move (bug 2845).
-        - Pretty show at the end (bug 2845)
         - Be better at capturing cards (bug 91595)
         - Descriptions of games in Select dialog (bug 110730)
         - Find out what's wrong with block-ten.
-        - Final missing features from stand-alone freecell (124522).
-        - Find the root cause of 121762.
+        - Final missing features from stand-alone freecell (bug 124522).
+        - Find the root cause of bug 121762.
 	- Merge card.c into draw.c.
 
 Blackjack:
         - Eliminate the splash screen (and hopefully any recalculation).
-        - Multiplayer (129639)
-        - Training mode (129638)
-        - Rules dialog clean-up (124613)
+        - Multiplayer (bug 129639)
+        - Training mode (bug 129638)
+        - Rules dialog clean-up (bug 124613)
 
 Gataxx:
         - Grid option : There should b a gconf key (and schema).
@@ -60,8 +56,7 @@ Gataxx:
 	- Fix the drawing issues with the grid hilight.
 
 Glines:
-        - Configure the playing field size and ball number (bug
-          83532).
+        - Configure the playing field size and ball number (bug 83532).
 	- Add an "alignment" property to games_grid_frame so that we
           can do away with the alignment for the "next balls" pixmaps
           and also avoid the "shrinking balls" problem at small window
@@ -82,16 +77,16 @@ Gnibbles:
 Gnobots2:
         - Fix no-moves issue (bug 107846).
         - Graphics so they are viewable on large monitors.
-        - Clean up the sounds (152107).
+        - Clean up the sounds (bug 152107).
         - Since we can't change some settings mid-game an end-game option
-          would be good (also for bug 107846).
+          would be good (bug 107846).
         - Keep the preferences dialog open and start a new game. Oops. 
           Also hiding things is not HIG compliant.
 	- Icon theme for custom icons ?
-        - UI review (132387).
+        - UI review (bug 132387).
 
 Gnome-stones:
-        - Repair joystick support (152651).
+        - Repair joystick support (bug 152651).
         - Definitely redo locations of score and the like.
         - Fix "jerkiness", make the game "feel" better.
         - Separate the two games to be started separately (using the
@@ -100,21 +95,20 @@ Gnome-stones:
           the chosen and default games have failed to load ?
 	- Re-examine the semantics for which game to start with.
 	- Separate desktop entry for sokoban.
-	- Sounds (152107).
+	- Sounds (bug 152107).
 
 Gnometris:
-	- Rewrite drawing code. After that, back out 130654.
-        - Have another go at tracking down bug 103787.
+	- Rewrite drawing code. After that, back out bug 130654.
+        - Have another go at tracking down slow blocks (bug 103787).
         - Make the pieces scalable.
         - Drag and drop backgrounds:
           - Use heuristic to select tiled/scaled.
 	  - Accept images from eog/konqueror etc.
 	  - Accepts colours/gradients.
-        - Revisit slow block bugs ? (103787)
 
 Gnomine:
         - Figure out bug 119043. Was it solved with 103125 ? I don't think so.
-        - Try and fix the colour issue (part of 112571, the bit where
+        - Try and fix the colour issue (part of bug 112571, the bit where
           I misunderstand).
 	- Make drawing more efficient, cache the blended pixbufs on
 	  the server.
@@ -128,7 +122,7 @@ Gnotravex:
 	- Make the numbers translatable.
 
 Gnotski:
-        - Record completed puzzles (111543)
+        - Record completed puzzles (bug 111543)
 
 Gtali:
         - AI upgrade, but make it optional: see Phil Woodward. "Yahtzee®: 
@@ -136,7 +130,7 @@ Gtali:
         - Remove that space from gtali.schemas.in once intltool has
           had a few more releases (and upgrade the required version to 0.31
           or whatever it becomes.
-	- Select all/select none, almost like bug #137104.
+	- Select all/select none, almost like (bug 137104).
 
 Iagno:
 	- Add an "I'm thinking" message, especially for level 3 AI.
@@ -145,21 +139,13 @@ Iagno:
         - See if the code causeing problems in bug 79180 can't be 
           glib-ised to make the portability problem glibs.
         - Make defaults consistent with gataxx.
-        - Make selecting side in a network game better (119195).
-        - Make moves more obvious (118996)
+        - Make selecting side in a network game better (bug 119195).
+        - Make moves more obvious (bug 118996)
 
 Mahjongg:
-        - Finish off scaling support.
-          - Fix up the tile search function for speed.
-          - Make resizing a bit snappier (check the graphics scaling code, I
-            think this is the bottleneck).
+        - Fix up the tile search function for speed.
+        - Make resizing a bit snappier.
         - Level editor and external level files.
-        
-Same-gnome:
-        - Make the pixmap background transparent so that we don't have
-          the rotate theme background problems (not urgent). We should 
-          also let the background be set (or steal it from an outer pixel
-          of the pixmap).
 
 libgames-support:
 	- Widgets other than the combo box for the GamesFileList.
