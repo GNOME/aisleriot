@@ -53,3 +53,6 @@ CLEANFILES = \
 	intltool-extract \
 	intltool-merge \
 	intltool-update
+
+# Ignore score files, these *should* be left behind.
+distuninstallcheck_listfiles = find . -type f -print | grep -v '.scores' | grep-v scrollkeeper

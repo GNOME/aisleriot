@@ -167,6 +167,11 @@
       (and (field-join? (car card-list) (cadr card-list))
 	   (field-sequence? (cdr card-list)))))
 
+(define (empty-field-number)
+  (do ((i field-1 (+ i 1))
+       (sum 0 (+ sum (if (empty-slot? i) 1 0))))
+      ((> i field-8) sum)))
+
 ;;
 ;; How to move cards
 ;;
@@ -200,9 +205,14 @@
 	)
 )
 
-(define (move-to-field card-list field-id)
+(define (move-to-field start-slot card-list field-id)
   (and (field-sequence? card-list)
-       (<= (length card-list) (+ (empty-freecell-number) 1))
+       (<= (length card-list) 
+	   (* (+ (empty-freecell-number) 1)
+	      ($expt 2 (max (- (empty-field-number)
+			       (if (empty-slot? field-id) 1 0)
+			       (if (empty-slot? start-slot) 1 0))
+			    0))))
        (if (empty-slot? field-id)
 	   (add-cards! field-id card-list)
 	   (let ((dest-top (car (get-cards field-id))))
@@ -346,7 +356,7 @@
 		(not (= start-slot end-slot))
 		(cond
 			((homecell? end-slot) (move-to-homecell card-list end-slot))
-			((field?    end-slot) (move-to-field    card-list end-slot))
+			((field?    end-slot) (move-to-field    start-slot card-list end-slot))
 			((freecell? end-slot) (move-to-freecell card-list end-slot))
 		)
 		(move-low-cards 0)
