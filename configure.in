@@ -138,6 +138,9 @@ AC_ARG_WITH(scores-user,
 scores_user="$withval",scores_user="games")
 AC_SUBST(scores_user)
 
+scoredir='${localstatedir}/games'
+AC_SUBST(scoredir)
+
 AC_OUTPUT([
 gnome-games.spec
 Makefile
@@ -226,4 +229,17 @@ echo "Warning: The $scores_group group does not exist. Installation will"
 echo "         succeed, but high score logging will not work. To specify a"
 echo "         different group use the --with-scores-group option."
 echo
+fi
+
+libgnomeprefix=`pkg-config libgnome-2.0 --variable=prefix`
+if test x$libgnomeprefix = x$prefix -o x$libgnomeprefix = x$prefix/ ; then
+:;
+else
+echo "Warning: This package is not being installed with the same prefix"
+echo "         as libgnome. This may lead to problems with the high"
+echo "         score tables not being found correctly. The solution"
+echo "         is to use the --localstatedir option. For example,"
+echo "         Red Hat 9 needs --localstatedir=/var/lib if you are"
+echo "         using the default libgnome package since scores are stored"
+echo "         in /var/lib/games/."
 fi
