@@ -8,7 +8,7 @@ endif
 
 SUBDIRS = po intl macros \
 	 freecell gnomine same-gnome scottfree mahjongg gturing \
-         gyahtzee gnobots gnothello gnome-stones $(guile_DIRS) idl
+         gyahtzee gnobots gnothello gnotravex gnome-stones $(guile_DIRS) idl
 	 
 #$(objc_DIRS)
 
