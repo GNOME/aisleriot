@@ -1,6 +1,6 @@
 # Note that this is NOT a relocatable package
 %define ver      0.99.1
-%define rel      1
+%define rel      2
 %define prefix   /usr
 
 Summary: GNOME games
@@ -78,7 +78,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
-%{prefix}/bin/*
+%attr(-, root, games) %{prefix}/bin/*
 %{prefix}/share/apps/Games/*
 %{prefix}/share/gnome/help/*
 %{prefix}/share/gnome-stones/*
