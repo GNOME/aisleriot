@@ -82,43 +82,49 @@ void make_title()
 void create_sol_board ()
 {
 #ifdef DEBUG
-printf("create_sol_board\n");
+	printf("create_sol_board\n");
 #endif
-  /* Here we create the actual playing surface */
-  playing_area = gtk_drawing_area_new ();
-  gtk_widget_set_events (playing_area, gtk_widget_get_events (playing_area) | GAME_EVENTS);
+	/* Here we create the actual playing surface */
+	gtk_widget_push_colormap (gdk_imlib_get_colormap ());
+	gtk_widget_push_visual (gdk_imlib_get_visual ());
+	playing_area = gtk_drawing_area_new ();
+	gtk_widget_pop_visual ();
+	gtk_widget_pop_colormap ();
+	gtk_widget_set_events (playing_area, gtk_widget_get_events (playing_area) | GAME_EVENTS);
   
-  gtk_box_pack_start_defaults (GTK_BOX(vb), playing_area);
+	gtk_box_pack_start_defaults (GTK_BOX(vb), playing_area);
 
-  gtk_widget_realize (playing_area);
+	gtk_widget_realize (playing_area);
 
-  /* Setup the surface */
-  gtk_drawing_area_size (GTK_DRAWING_AREA (playing_area),
-								 SURFACE_WIDTH,
-								 SURFACE_HEIGHT);
+	/* Setup the surface */
+	gtk_drawing_area_size (GTK_DRAWING_AREA (playing_area),
+			       SURFACE_WIDTH,
+			       SURFACE_HEIGHT);
 
-  /* Set up the pixmaps */
-  surface = gdk_pixmap_new (playing_area->window, SURFACE_WIDTH, SURFACE_HEIGHT, gtk_widget_get_visual (playing_area)->depth);
+	/* Set up the pixmaps */
+	surface = gdk_pixmap_new (playing_area->window, SURFACE_WIDTH, SURFACE_HEIGHT,
+				  gtk_widget_get_visual (playing_area)->depth);
 
-  blank_surface = gdk_pixmap_new (playing_area->window, SURFACE_WIDTH, SURFACE_HEIGHT, gtk_widget_get_visual (playing_area)->depth);
+	blank_surface = gdk_pixmap_new (playing_area->window, SURFACE_WIDTH, SURFACE_HEIGHT,
+					gtk_widget_get_visual (playing_area)->depth);
 
-  refresh_screen();
+	refresh_screen();
   
   
-  /* Set signals for X events... */
-  gtk_signal_connect (GTK_OBJECT (playing_area), "expose_event",
-							 (GtkSignalFunc) expose_event, NULL);
-  gtk_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
-							 (GtkSignalFunc) button_release_event, NULL);
-  gtk_signal_connect (GTK_OBJECT (playing_area), "motion_notify_event",
-							 (GtkSignalFunc) motion_notify_event, NULL);
-  gtk_signal_connect (GTK_OBJECT (playing_area), "button_press_event",
-							 (GtkSignalFunc) button_press_event, NULL);
-  gtk_signal_connect (GTK_OBJECT (app), "configure_event",
-							 (GtkSignalFunc) configure_event, NULL);
+	/* Set signals for X events... */
+	gtk_signal_connect (GTK_OBJECT (playing_area), "expose_event",
+			    (GtkSignalFunc) expose_event, NULL);
+	gtk_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
+			    (GtkSignalFunc) button_release_event, NULL);
+	gtk_signal_connect (GTK_OBJECT (playing_area), "motion_notify_event",
+			    (GtkSignalFunc) motion_notify_event, NULL);
+	gtk_signal_connect (GTK_OBJECT (playing_area), "button_press_event",
+			    (GtkSignalFunc) button_press_event, NULL);
+	gtk_signal_connect (GTK_OBJECT (app), "configure_event",
+			    (GtkSignalFunc) configure_event, NULL);
 
-  /* and, we're off and running... */
-  gtk_widget_show (playing_area);
+	/* and, we're off and running... */
+	gtk_widget_show (playing_area);
 
 }
 
@@ -172,9 +178,6 @@ void main_prog(int argc, char *argv[])
   gnome_init ("aisleriot", NULL, argc, argv, 0, NULL);
   /*  printf(_("Done.\n"));*/
 
-  gtk_widget_push_colormap (gdk_imlib_get_colormap ());
-  gtk_widget_push_visual (gdk_imlib_get_visual ());
-  
   /* generic startup... */
   /*  printf(_("Creating App...\n"));*/
   seed = time(NULL);

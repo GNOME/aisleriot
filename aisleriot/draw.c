@@ -286,12 +286,12 @@ printf("paint_blank_surface\n");
   /* tile the surface with the default background */
   for (i = 0; i < bs_width; i += dbp_width)
 	 for (j = 0; j < bs_height; j += dbp_height)
-		gdk_draw_pixmap(blank_surface,
-							 playing_area->style->black_gc,
-							 get_background_pixmap(),
-							 0,0,
-							 i,j,
-							 -1, -1);
+		 gdk_draw_pixmap(blank_surface,
+				 playing_area->style->black_gc,
+				 get_background_pixmap(),
+				 0,0,
+				 i,j,
+				 -1, -1);
   
   
 }

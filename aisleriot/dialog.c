@@ -31,7 +31,8 @@ void hide_select_box()
 	 gtk_widget_hide(select_game_dialog_box);
   }
 }
-int hide_select_box_callback (GtkWidget *app, void *data )
+
+void hide_select_box_callback (GtkWidget *app, void *data )
 {
   hide_select_box();
 }

@@ -247,16 +247,16 @@ printf("configure_event\n");
 	 gdk_pixmap_unref(blank_surface);
   }
   blank_surface = gdk_pixmap_new(playing_area->window,
-											event->width,
-											event->height,
-											gtk_widget_get_visual (playing_area)->depth);
+				 event->width,
+				 event->height,
+				 gtk_widget_get_visual (playing_area)->depth);
   if (surface) {
 	 gdk_pixmap_unref(surface);
   }
   surface = gdk_pixmap_new(playing_area->window,
-									event->width,
-									event->height,
-									gtk_widget_get_visual (playing_area)->depth);
+			   event->width,
+			   event->height,
+			   gtk_widget_get_visual (playing_area)->depth);
   
   refresh_screen();
   return TRUE;
