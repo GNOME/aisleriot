@@ -55,7 +55,6 @@ extern gchar*           game_name;
 extern gboolean         game_in_progress;
 extern gboolean         game_over;
 extern gboolean         game_won;
-extern press_data_type* press_data; 
 
 extern guint            x_spacing;
 extern guint            y_spacing;

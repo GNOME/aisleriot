@@ -28,6 +28,24 @@
 
 press_data_type* press_data; 
 
+void create_press_data (GdkWindow * window)
+{
+  GdkWindowAttr attributes;
+
+  attributes.wclass = GDK_INPUT_OUTPUT;
+  attributes.window_type = GDK_WINDOW_CHILD;
+  attributes.event_mask = 0;
+  attributes.width = get_card_width();
+  attributes.height = get_card_height();
+  attributes.colormap = gdk_drawable_get_colormap (GDK_DRAWABLE(window));
+  attributes.visual = gdk_drawable_get_visual (GDK_DRAWABLE(window));
+  
+  press_data = g_malloc0(sizeof(press_data_type));
+  press_data->moving_cards = gdk_window_new(window, &attributes,
+					    (GDK_WA_VISUAL | GDK_WA_COLORMAP));
+  press_data->status = 0;
+}
+
 void generate_press_data ( ) {
   GList* tempptr;
   SCM old_cards = SCM_EOL; 

@@ -19,7 +19,7 @@
 
 #ifndef PRESS_DATA_H
 #define PRESS_DATA_H
-#include <gtk/gtk.h>
+#include <gdk/gdk.h>
 #include "slot.h"
 
 typedef struct {
@@ -34,6 +34,9 @@ typedef struct {
   GdkWindow *moving_cards;
 } press_data_type;
 
+extern press_data_type* press_data; 
+
+void create_press_data (GdkWindow * window);
 void generate_press_data ( void );
 void free_press_data ( void );
 #endif

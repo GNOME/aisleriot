@@ -74,7 +74,6 @@ gchar            *game_name;
 gboolean         game_in_progress = FALSE;
 gboolean         game_over;
 gboolean         game_won;
-press_data_type* press_data; 
 
 guint            x_spacing = 5;
 guint            y_spacing = 15;
@@ -394,24 +393,6 @@ static void create_main_window ()
 		      GTK_SIGNAL_FUNC (configure_event), NULL);
 }
 
-static void create_press_data ()
-{
-  GdkWindowAttr attributes;
-
-  attributes.wclass = GDK_INPUT_OUTPUT;
-  attributes.window_type = GDK_WINDOW_CHILD;
-  attributes.event_mask = 0;
-  attributes.width = get_card_width();
-  attributes.height = get_card_height();
-  attributes.colormap = gdk_drawable_get_colormap (GDK_DRAWABLE(playing_area->window));
-  attributes.visual = gdk_drawable_get_visual (GDK_DRAWABLE(playing_area->window));
-  
-  press_data = g_malloc0(sizeof(press_data_type));
-  press_data->moving_cards = gdk_window_new(playing_area->window, &attributes,
-					    (GDK_WA_VISUAL | GDK_WA_COLORMAP));
-  press_data->status = 0;
-}
-
 gchar* start_game;
 
 static void main_prog(int argc, char *argv[])
@@ -454,13 +435,12 @@ static void main_prog(int argc, char *argv[])
                              "/apps/aisleriot/show_toolbar", NULL))
     toolbar_hide();
 
-  create_press_data ();
+  create_press_data (playing_area->window);
 
   gtk_main ();
 
   free_pixmaps();
   g_object_unref (surface);
-  g_object_unref (press_data->moving_cards);
 }
 
 static void
