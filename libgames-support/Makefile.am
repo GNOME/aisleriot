@@ -3,7 +3,6 @@ NULL =
 noinst_LTLIBRARIES = libgames-support.la
 
 INCLUDES =							\
-	-I$(top_srcdir)/libgames-support			\
 	-DDATADIR=\""$(datadir)"\"				\
 	$(WARN_CFLAGS)						\
 	$(GNOME_GAMES_CFLAGS)
@@ -22,6 +21,7 @@ libgames_support_la_SOURCES =		\
 	games-files.h			\
 	games-gridframe.c		\
 	games-gridframe.h		\
+	games-card-common.h		\
 	games-card-images.c		\
 	games-card-images.h		\
 	games-card-pixmaps.c		\
