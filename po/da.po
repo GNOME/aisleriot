@@ -1,9 +1,9 @@
 # Danish translation of gnome-games.
-# Copyright (C) 1998, 2001, 02, 03 Free Software Foundation, Inc.
+# Copyright (C) 1998, 2001, 02, 03, 04 Free Software Foundation, Inc.
 # Anders Wegge Jakobsen <wegge@wegge.dk>, 1998.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1998-2001
 # Keld Simonsen <keld@dkuug.dk>, 2000-2002.
-# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
 #
 # RETMIG: en eller anden med forstand på kabaler skal have oversat
 # navnene på spillene. Der er en kommentar til hver af dem der
@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 1.4.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-17 23:31+0100\n"
-"PO-Revision-Date: 2003-11-17 23:31+0100\n"
+"POT-Creation-Date: 2004-02-23 23:14+0100\n"
+"PO-Revision-Date: 2004-02-23 23:10+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,16 @@ msgstr "Prøv at omfordele kortene"
 msgid "an empty foundation pile"
 msgstr "en tom fundamentbunke"
 
-#: aisleriot/aisleriot.schemas.in.h:1 blackjack/data/blackjack.schemas.in.h:1
+#: aisleriot/aisleriot.schemas.in.h:1
+msgid ""
+"A list of strings that come in the form of a quintuple: name, wins, total "
+"games played, best time (in seconds) and worst time (also in seconds). "
+"Unplayed games do not need to be represented."
+msgstr ""
+"En liste af strenge udformet som en femtuppel: navn, vundne, totalt spillede "
+"spil, bedste tid (i sekunder) og dårligste tid (også i sekunder)."
+
+#: aisleriot/aisleriot.schemas.in.h:2 blackjack/data/blackjack.schemas.in.h:1
 msgid ""
 "A string containing a list of files to use to describe the cards. The format "
 "is obscure and defined by the gdk-card-image library"
@@ -120,23 +129,27 @@ msgstr ""
 "En streng der definerer en liste af filer der bruges til at beskrive "
 "kortene. Formatet er obskurt og defineret af gdk-card-image-biblioteket."
 
-#: aisleriot/aisleriot.schemas.in.h:2
+#: aisleriot/aisleriot.schemas.in.h:3
+msgid "Statistics of games played"
+msgstr "Statistik for spillede spil"
+
+#: aisleriot/aisleriot.schemas.in.h:4
 msgid "The game file to use"
 msgstr "Spilfil der skal benyttes"
 
-#: aisleriot/aisleriot.schemas.in.h:3
+#: aisleriot/aisleriot.schemas.in.h:5
 msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "Navnet på den Scheme-fil der indeholder kortspillet der skal spilles."
 
-#: aisleriot/aisleriot.schemas.in.h:4 blackjack/data/blackjack.schemas.in.h:10
+#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:10
 msgid "What card style to use"
 msgstr "Hvilken kortstil der skal benyttes"
 
-#: aisleriot/aisleriot.schemas.in.h:5 blackjack/data/blackjack.schemas.in.h:11
+#: aisleriot/aisleriot.schemas.in.h:7 blackjack/data/blackjack.schemas.in.h:11
 msgid "Whether or not to show the toolbar"
 msgstr "Om værktøjslinjen skal vises"
 
-#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:12
+#: aisleriot/aisleriot.schemas.in.h:8 blackjack/data/blackjack.schemas.in.h:12
 msgid "Whether or not to show the toolbar."
 msgstr "Om værktøjslinjen skal vises."
 
@@ -318,35 +331,35 @@ msgid "When without a stapler, a staple and a ruler will work"
 msgstr ""
 "Når du ikke har en hæftemaskine, vil en klips og en lineal kunne bruges"
 
-#: aisleriot/dialog.c:44
+#: aisleriot/dialog.c:45
 msgid "Congratulations."
 msgstr "Tillykke."
 
-#: aisleriot/dialog.c:45
+#: aisleriot/dialog.c:46
 msgid "You won!!!"
 msgstr "Du vandt!!!"
 
-#: aisleriot/dialog.c:47
+#: aisleriot/dialog.c:48
 msgid "Game over."
 msgstr "Spillet er slut."
 
-#: aisleriot/dialog.c:59
+#: aisleriot/dialog.c:60
 msgid "New Game"
 msgstr "Nyt spil"
 
-#: aisleriot/dialog.c:135 mahjongg/mahjongg.c:1393
+#: aisleriot/dialog.c:145 mahjongg/mahjongg.c:1857
 msgid "Select Game"
 msgstr "Vælg spil"
 
-#: aisleriot/dialog.c:144
+#: aisleriot/dialog.c:154
 msgid "Seed"
 msgstr "Startværdi"
 
-#: aisleriot/dialog.c:162
+#: aisleriot/dialog.c:172
 msgid "Rules"
 msgstr "Regler"
 
-#: aisleriot/dialog.c:249
+#: aisleriot/dialog.c:260
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -354,21 +367,21 @@ msgstr ""
 "Spillet er slut.\n"
 "Ingen fif er tilgængelige."
 
-#: aisleriot/dialog.c:255
+#: aisleriot/dialog.c:266
 msgid "This game does not have hint support yet."
 msgstr "Dette spil kan ikke give fif endnu."
 
-#: aisleriot/dialog.c:267 aisleriot/dialog.c:275
+#: aisleriot/dialog.c:278 aisleriot/dialog.c:286
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Læg %s på %s. "
 
-#: aisleriot/dialog.c:283
+#: aisleriot/dialog.c:294
 #, c-format
 msgid "Move %s %s."
 msgstr "Flyt %s %s."
 
-#: aisleriot/dialog.c:286
+#: aisleriot/dialog.c:297
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -379,20 +392,20 @@ msgstr ""
 "Rapportér venligst en fejl på http://bugzilla.gnome.org med denne besked og\n"
 "navnet på det spil du spiller (kig i menulinjen hvis du ikke er sikker)."
 
-#: aisleriot/dialog.c:291
+#: aisleriot/dialog.c:302
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Du leder efter en %s."
 
-#: aisleriot/dialog.c:296
+#: aisleriot/dialog.c:307
 msgid "This game is unable to provide a hint."
 msgstr "Dette spil kan ikke give fif."
 
-#: aisleriot/dialog.c:349
-msgid "AisleRiot Preferences"
-msgstr "Indstillinger for Kabale"
+#: aisleriot/dialog.c:359
+msgid "AisleRiot Cards"
+msgstr "Kabalekort"
 
-#: aisleriot/dialog.c:354
+#: aisleriot/dialog.c:364
 msgid "Card Style"
 msgstr "Kortstil"
 
@@ -568,29 +581,30 @@ msgstr ""
 "Forsøg at placere farvene i den orden som passer mest naturligt til det "
 "aktuelle layout."
 
-#: aisleriot/menu.c:72 blackjack/src/menu.cpp:73 gnome-stones/main.c:1074
-#: gnomine/gnomine.c:374 mahjongg/mahjongg.c:1154
+#: aisleriot/menu.c:76 gnome-stones/main.c:1084 gnomine/gnomine.c:382
+#: mahjongg/mahjongg.c:1618
 msgid "Main game:"
 msgstr "Hovedspil:"
 
-#: aisleriot/menu.c:77
+#: aisleriot/menu.c:81
 msgid "Card games:"
 msgstr "Kortspil:"
 
 #. Translator credits
-#: aisleriot/menu.c:92 gataxx/gataxx.c:398 glines/glines.c:811
-#: gnect/src/dialog.c:63 gnibbles/main.c:167 gnobots2/menu.c:194
-#: gnome-stones/main.c:1085 gnometris/tetris.cpp:1101 gnomine/gnomine.c:387
-#: gnotravex/gnotravex.c:1460 gnotski/gnotski.c:1137 gtali/gyahtzee.c:390
-#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1171 same-gnome/same-gnome.c:714
+#: aisleriot/menu.c:96 blackjack/src/menu.cpp:84 gataxx/gataxx.c:398
+#: glines/glines.c:878 gnect/src/main.c:812 gnibbles/main.c:181
+#: gnobots2/menu.c:194 gnome-stones/main.c:1095 gnometris/tetris.cpp:1124
+#: gnomine/gnomine.c:395 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1136
+#: gtali/gyahtzee.c:390 iagno/gnothello.c:369 mahjongg/mahjongg.c:1635
+#: same-gnome/same-gnome.c:707
 msgid "translator-credits"
 msgstr "Ole Laursen <olau@hardworking.dk>"
 
-#: aisleriot/menu.c:113 aisleriot/splash.c:91
+#: aisleriot/menu.c:117
 msgid "AisleRiot"
 msgstr "Kabale"
 
-#: aisleriot/menu.c:116
+#: aisleriot/menu.c:120
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -606,67 +620,82 @@ msgstr "Spil_indstillinger..."
 msgid "Modify the options for this game"
 msgstr "Ændr indstillingerne for dette spil "
 
-#: aisleriot/menu.c:188 blackjack/src/menu.cpp:148 gnect/src/gui.c:76
-#: mahjongg/mahjongg.c:355
+#: aisleriot/menu.c:188 blackjack/src/menu.cpp:150 gnect/src/main.c:1164
+#: mahjongg/mahjongg.c:815
 msgid "_Toolbar"
 msgstr "_Værktøjslinje"
 
-#: aisleriot/menu.c:188 blackjack/src/menu.cpp:149 gnect/src/gui.c:76
-#: mahjongg/mahjongg.c:356
+#: aisleriot/menu.c:188 blackjack/src/menu.cpp:151 mahjongg/mahjongg.c:816
 msgid "Show or hide the toolbar"
 msgstr "Vis eller skjul værktøjslinjen"
 
-#: aisleriot/menu.c:210
+#: aisleriot/menu.c:191
+msgid "_Cards..."
+msgstr "_Kort..."
+
+#: aisleriot/menu.c:191
+msgid "Change the appearance of the cards"
+msgstr "Skift udseendet af kortene"
+
+#: aisleriot/menu.c:211
 msgid "_Select..."
 msgstr "_Vælg..."
 
-#: aisleriot/menu.c:210 aisleriot/menu.c:255
+#: aisleriot/menu.c:211 aisleriot/menu.c:258
 msgid "Select a different game"
 msgstr "Vælg et andet spil"
 
-#: aisleriot/menu.c:249 blackjack/src/menu.cpp:196 gnect/src/gui.c:99
-#: mahjongg/mahjongg.c:380
+#: aisleriot/menu.c:213
+msgid "S_tatistics..."
+msgstr "S_tatistik..."
+
+#: aisleriot/menu.c:213
+msgid "Get statistics on the current game"
+msgstr "Vis statistik for det aktuelle spil"
+
+#: aisleriot/menu.c:252 blackjack/src/menu.cpp:198 gnect/src/main.c:1188
+#: mahjongg/mahjongg.c:838
 msgid "New"
 msgstr "Nyt spil"
 
-#: aisleriot/menu.c:249 gnect/src/gui.c:99
+#: aisleriot/menu.c:252 gnect/src/main.c:1189
 msgid "Start a new game"
 msgstr "Start et nyt spil"
 
-#: aisleriot/menu.c:252 blackjack/src/menu.cpp:199 mahjongg/mahjongg.c:384
+#: aisleriot/menu.c:255 blackjack/src/menu.cpp:201 mahjongg/mahjongg.c:842
 msgid "Restart"
 msgstr "Genstart"
 
-#: aisleriot/menu.c:252
+#: aisleriot/menu.c:255
 msgid "Restart the game"
 msgstr "Genstart spillet"
 
-#: aisleriot/menu.c:255
+#: aisleriot/menu.c:258
 msgid "Select"
 msgstr "Vælg"
 
-#: aisleriot/menu.c:260 gnect/src/gui.c:100 mahjongg/mahjongg.c:396
+#: aisleriot/menu.c:263 gnect/src/main.c:1191 mahjongg/mahjongg.c:854
 msgid "Undo"
 msgstr "Fortryd"
 
-#: aisleriot/menu.c:260 gnect/src/gui.c:100
+#: aisleriot/menu.c:263 gnect/src/main.c:1191
 msgid "Undo the last move"
 msgstr "Fortryd sidste træk"
 
-#: aisleriot/menu.c:263 mahjongg/mahjongg.c:400
+#: aisleriot/menu.c:266 mahjongg/mahjongg.c:858
 msgid "Redo"
 msgstr "Omgør"
 
-#: aisleriot/menu.c:263
+#: aisleriot/menu.c:266
 msgid "Redo the undone move"
 msgstr "Omgør det fortrudte træk"
 
-#: aisleriot/menu.c:266 blackjack/src/menu.cpp:203 gnect/src/gui.c:101
-#: mahjongg/mahjongg.c:402
+#: aisleriot/menu.c:269 blackjack/src/menu.cpp:205 gnect/src/main.c:1192
+#: mahjongg/mahjongg.c:860
 msgid "Hint"
 msgstr "Fif"
 
-#: aisleriot/menu.c:266 gnect/src/gui.c:101
+#: aisleriot/menu.c:269 gnect/src/main.c:1192
 msgid "Get a hint for your next move"
 msgstr "Få et tip til dit næste træk"
 
@@ -707,12 +736,12 @@ msgstr "Flyt affald til en reserveplads"
 msgid "empty foundation"
 msgstr "tomt fundament"
 
-#: aisleriot/sol.c:131
+#: aisleriot/sol.c:137
 #, c-format
 msgid "AisleRiot: %s (%d)"
 msgstr "Kabale: %s (%d)"
 
-#: aisleriot/sol.c:158
+#: aisleriot/sol.c:164
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -725,45 +754,33 @@ msgstr ""
 "\n"
 "Kontrollér installationen af Kabale."
 
-#: aisleriot/sol.c:216 aisleriot/sol.c:235
+#: aisleriot/sol.c:229 aisleriot/sol.c:249
 msgid "Help"
 msgstr "Hjælp"
 
-#: aisleriot/sol.c:235 aisleriot/sol.c:383
+#: aisleriot/sol.c:249 aisleriot/sol.c:387
 msgid "Aisleriot"
 msgstr "Kabale"
 
-#: aisleriot/sol.c:422
-msgid "Loading images..."
-msgstr "Henter billeder..."
-
-#: aisleriot/sol.c:428
-msgid "Dealing game..."
-msgstr "Blander..."
-
-#: aisleriot/sol.c:434 gnobots2/statusbar.c:65 gnome-stones/status.c:71
-#: gnometris/scoreframe.cpp:57 gnomine/gnomine.c:380
-#: same-gnome/same-gnome.c:964
+#: aisleriot/sol.c:434 glines/glines.c:1493 gnobots2/statusbar.c:65
+#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:57 gnomine/gnomine.c:388
+#: same-gnome/same-gnome.c:957
 msgid "Score:"
 msgstr "Stilling:"
 
-#: aisleriot/sol.c:438 gnomine/gnomine.c:933 gnotravex/gnotravex.c:993
-#: mahjongg/mahjongg.c:1691
+#: aisleriot/sol.c:438 gnomine/gnomine.c:941 gnotravex/gnotravex.c:1019
+#: mahjongg/mahjongg.c:2157
 msgid "Time:"
 msgstr "Tid:"
 
-#: aisleriot/sol.c:505 blackjack/src/blackjack.cpp:588
+#: aisleriot/sol.c:495 blackjack/src/blackjack.cpp:580
 msgid "Variation on game rules"
 msgstr "Variant af spilregler"
 
-#: aisleriot/sol.c:506 blackjack/src/blackjack.cpp:589 gnobots2/gnobots.c:60
-#: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:894
+#: aisleriot/sol.c:496 blackjack/src/blackjack.cpp:581 gnobots2/gnobots.c:60
+#: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:887
 msgid "NAME"
 msgstr "NAVN"
-
-#: aisleriot/sol.c:526
-msgid "Initializing scheme..."
-msgstr "Klargører scheme..."
 
 #: aisleriot/sol.desktop.in.h:1
 msgid "AisleRiot Solitaire"
@@ -1088,6 +1105,59 @@ msgstr "Prøv at flytte kortbunkerne omkring"
 #: aisleriot/spiderette.scm.h:2 aisleriot/will_o_the_wisp.scm.h:2
 msgid "Place something on to the empty Tableau slot"
 msgstr "Placér noget på den tomme bordplads"
+
+#. For translators: N/A means "Not Applicable", use whatever
+#. * abbreviation you have for a value that has no meaning.
+#: aisleriot/statistics.c:95 aisleriot/statistics.c:104
+#: aisleriot/statistics.c:113
+msgid "N/A"
+msgstr "-"
+
+#. Translators: this represents minutes:seconds.
+#: aisleriot/statistics.c:99 aisleriot/statistics.c:108
+#, c-format
+msgid "%d:%02d"
+msgstr "%d:%02d"
+
+#: aisleriot/statistics.glade.h:1
+msgid "<b>Time</b>"
+msgstr "<b>Tid</b>"
+
+#: aisleriot/statistics.glade.h:2
+msgid "<b>Wins</b>"
+msgstr "<b>Vundet</b>"
+
+#: aisleriot/statistics.glade.h:3
+msgid "Best:"
+msgstr "Bedste:"
+
+#: aisleriot/statistics.glade.h:4
+msgid "Do not translate this"
+msgstr "    "
+
+#: aisleriot/statistics.glade.h:5
+msgid "Percentage:"
+msgstr "Procentdel:"
+
+#: aisleriot/statistics.glade.h:6
+msgid "Statistics"
+msgstr "Statistik"
+
+#: aisleriot/statistics.glade.h:7
+msgid "Total:"
+msgstr "Total:"
+
+#: aisleriot/statistics.glade.h:8
+msgid "Wins:"
+msgstr "Vundet:"
+
+#: aisleriot/statistics.glade.h:9
+msgid "Worst:"
+msgstr "Dårligste:"
+
+#: aisleriot/statistics.glade.h:10
+msgid "_Reset"
+msgstr "_Nulstil"
 
 #: aisleriot/ten_across.scm.h:1
 msgid "Allow temporary spots use"
@@ -1425,8 +1495,8 @@ msgstr "Flyt en opbygning af kort til den tomme bordplads"
 msgid "the appropriate Foundation pile"
 msgstr "den relevante fundamentbunke"
 
-#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:235
-#: blackjack/src/menu.cpp:103 blackjack/src/splash.cpp:96
+#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:228
+#: blackjack/src/menu.cpp:106 blackjack/src/splash.cpp:96
 msgid "Blackjack"
 msgstr "Blackjack"
 
@@ -1478,230 +1548,238 @@ msgstr "Benyt hurtig kortgivning uden pause mellem hvert kort."
 msgid "Blackjack: %s (%d)"
 msgstr "Blackjack: %s (%d)"
 
-#: blackjack/src/blackjack.cpp:313
+#: blackjack/src/blackjack.cpp:306
 msgid "Place your wager or deal a hand"
 msgstr "Afgiv din satsning eller giv en hånd"
 
-#: blackjack/src/blackjack.cpp:316
+#: blackjack/src/blackjack.cpp:309
 msgid "Cards left:"
 msgstr "Kort tilbage:"
 
-#: blackjack/src/blackjack.cpp:324
+#: blackjack/src/blackjack.cpp:317
 msgid "Wager:"
 msgstr "Satsning:"
 
-#: blackjack/src/blackjack.cpp:336
+#: blackjack/src/blackjack.cpp:329
 msgid "Balance:"
 msgstr "Balance:"
+
+#: blackjack/src/card.cpp:156
+msgid "Could not load the card deck images."
+msgstr "Kunne ikke indlæse kortspilbillederne."
+
+#: blackjack/src/card.cpp:157
+msgid "Blackjack will now exit."
+msgstr "Blackjack vil nu afslutte."
 
 #: blackjack/src/dialog.cpp:50
 msgid "Would you like insurance?"
 msgstr "Ønsker du forsikring?"
 
-#: blackjack/src/dialog.cpp:93
+#: blackjack/src/dialog.cpp:92
 msgid "Set your wager and click in the white outline to deal a new hand."
 msgstr "Angiv din satsning og klik på det hvide omrids for at give en ny hånd."
 
-#: blackjack/src/dialog.cpp:96
+#: blackjack/src/dialog.cpp:95
 msgid "Set your wager or click on the cards to deal a new hand."
 msgstr "Angiv din satsning eller klik på kortene for at give en ny hånd."
 
-#: blackjack/src/dialog.cpp:220
+#: blackjack/src/dialog.cpp:216
 msgid "Blackjack Preferences"
 msgstr "Indstillinger for blackjack"
 
-#: blackjack/src/dialog.cpp:235 gnibbles/preferences.c:356
-#: gnobots2/properties.c:875 gnome-stones/preferences.c:740
+#: blackjack/src/dialog.cpp:231 gnect/src/prefs.c:452
+#: gnibbles/preferences.c:327 gnome-stones/preferences.c:740
 msgid "_Game"
 msgstr "_Spil"
 
-#: blackjack/src/dialog.cpp:242
+#: blackjack/src/dialog.cpp:238
 msgid "Display hand probabilities"
 msgstr "Vis sandsynligheder for hånd"
 
-#: blackjack/src/dialog.cpp:253
+#: blackjack/src/dialog.cpp:249
 msgid "Quick deals (no delay between each card)"
 msgstr "Hurtige kortgivninger (ingen pause mellem hvert kort)"
 
-#: blackjack/src/dialog.cpp:265
+#: blackjack/src/dialog.cpp:261
 msgid "_Rules"
 msgstr "_Regler"
 
-#: blackjack/src/dialog.cpp:289
+#: blackjack/src/dialog.cpp:285
 msgid "Name"
 msgstr "Navn"
 
-#: blackjack/src/dialog.cpp:294
+#: blackjack/src/dialog.cpp:290
 msgid "Decks"
 msgstr "Bunke"
 
-#: blackjack/src/dialog.cpp:299
+#: blackjack/src/dialog.cpp:295
 msgid "Hit Soft 17"
 msgstr "Rammer blød 17"
 
-#: blackjack/src/dialog.cpp:304
+#: blackjack/src/dialog.cpp:300
 msgid "Double Any Total"
 msgstr "Fordobl ethvert total"
 
-#: blackjack/src/dialog.cpp:309
+#: blackjack/src/dialog.cpp:305
 msgid "Double 9"
 msgstr "Dobbelt 9"
 
-#: blackjack/src/dialog.cpp:314
+#: blackjack/src/dialog.cpp:310
 msgid "Double Soft"
 msgstr "Dobbelt blød"
 
-#: blackjack/src/dialog.cpp:319
+#: blackjack/src/dialog.cpp:315
 msgid "Double After Hit"
 msgstr "Dobbelt efter ramt"
 
-#: blackjack/src/dialog.cpp:324
+#: blackjack/src/dialog.cpp:320
 msgid "Double After Split"
 msgstr "Dobbelt efter split"
 
-#: blackjack/src/dialog.cpp:329
+#: blackjack/src/dialog.cpp:325
 msgid "Resplit"
 msgstr "Gensplit"
 
-#: blackjack/src/dialog.cpp:334
+#: blackjack/src/dialog.cpp:330
 msgid "Resplit Aces"
 msgstr "Gensplit esser"
 
-#: blackjack/src/dialog.cpp:339 blackjack/src/player.cpp:321
+#: blackjack/src/dialog.cpp:335 blackjack/src/player.cpp:328
 msgid "Surrender"
 msgstr "Giv op"
 
-#: blackjack/src/dialog.cpp:344
+#: blackjack/src/dialog.cpp:340
 msgid "Dealer Speed"
 msgstr "Kortgiverhastighed"
 
-#: blackjack/src/dialog.cpp:408
+#: blackjack/src/dialog.cpp:403
 msgid "Card _Deck"
 msgstr "Kort_bunke"
 
-#: blackjack/src/events.cpp:493
+#: blackjack/src/events.cpp:490
 msgid "Click to deal another card; drag card to split pair"
 msgstr "Klik for at give en kort til; træk kort for at dele par"
 
-#: blackjack/src/events.cpp:495
+#: blackjack/src/events.cpp:492
 msgid "Click to deal another card"
 msgstr "Klik for at give et kort til"
 
-#: blackjack/src/events.cpp:497
+#: blackjack/src/events.cpp:494
 msgid "Click to finish adding cards to your hand"
 msgstr "Klik for at afslutte tilføjelse af kort til hånden"
 
-#: blackjack/src/events.cpp:500
+#: blackjack/src/events.cpp:497
 msgid "Click to deal a new hand"
 msgstr "Klik for at give en ny hånd"
 
-#: blackjack/src/events.cpp:516
+#: blackjack/src/events.cpp:513
 msgid "Click to double your wager"
 msgstr "Klik for fordoble satsningen"
 
-#: blackjack/src/events.cpp:522
+#: blackjack/src/events.cpp:519
 #, c-format
 msgid "Double click to increase your wager by %.2f"
 msgstr "Dobbeltklik for at forøge satsningen med %.2f"
 
-#: blackjack/src/events.cpp:536
+#: blackjack/src/events.cpp:533
 #, c-format
 msgid "Double click to decrease your wager by %.2f"
 msgstr "Dobbeltklik for at formindske satsningen med %.2f"
 
-#: blackjack/src/game.cpp:363
+#: blackjack/src/game.cpp:390
 msgid "Blackjack can't load the requested file"
 msgstr "Blackjack kan ikke indlæse den forespurgte fil"
 
-#: blackjack/src/game.cpp:365
+#: blackjack/src/game.cpp:392
 msgid "Please check your Blackjack installation"
 msgstr "Kontrollér installationen af Blackjack"
 
-#: blackjack/src/hand.cpp:85
+#: blackjack/src/hand.cpp:89
 msgid "The best option is to stand"
 msgstr "Den bedste mulighed er at blive"
 
-#: blackjack/src/hand.cpp:87
+#: blackjack/src/hand.cpp:91
 msgid "The best option is to hit"
 msgstr "Den bedste mulighed er at ramme"
 
-#: blackjack/src/hand.cpp:89
+#: blackjack/src/hand.cpp:93
 msgid "The best option is to double down"
 msgstr "Den bedste mulighed er doble ned"
 
-#: blackjack/src/hand.cpp:91
+#: blackjack/src/hand.cpp:95
 msgid "The best option is to split"
 msgstr "Den bedste mulighed er at splitte"
 
-#: blackjack/src/hand.cpp:93
+#: blackjack/src/hand.cpp:97
 msgid "The best option is to surrender"
 msgstr "Den bedste mulighed er at give fortabt"
 
-#: blackjack/src/menu.cpp:108
+#: blackjack/src/menu.cpp:110
 msgid "Blackjack provides a casino-style blackjack card game."
 msgstr "Blackjack er et kasinoagtigt blackjack-kortspil."
 
-#: blackjack/src/menu.cpp:196
+#: blackjack/src/menu.cpp:198
 msgid "Deal a new game"
 msgstr "Giv kort op til et nyt spil"
 
-#: blackjack/src/menu.cpp:199
+#: blackjack/src/menu.cpp:201
 msgid "Start this game over"
 msgstr "Start spillet forfra"
 
-#: blackjack/src/menu.cpp:203
+#: blackjack/src/menu.cpp:205
 msgid "Suggest a move"
 msgstr "Foreslå træk"
 
-#: blackjack/src/player.cpp:64
+#: blackjack/src/player.cpp:67
 msgid "Computing basic strategy..."
 msgstr "Beregner basal strategi..."
 
-#: blackjack/src/player.cpp:187 blackjack/src/player.cpp:455
+#: blackjack/src/player.cpp:190 blackjack/src/player.cpp:468
 msgid "Bust"
 msgstr "Flad"
 
-#: blackjack/src/player.cpp:191
+#: blackjack/src/player.cpp:194
 msgid "Blackjack!"
 msgstr "Blackjack!"
 
-#: blackjack/src/player.cpp:196
+#: blackjack/src/player.cpp:199
 msgid "Soft"
 msgstr "Blød"
 
-#: blackjack/src/player.cpp:204
+#: blackjack/src/player.cpp:207
 msgid "Win"
 msgstr "Vundet"
 
-#: blackjack/src/player.cpp:205
+#: blackjack/src/player.cpp:208
 msgid "Push"
 msgstr "Skub"
 
-#: blackjack/src/player.cpp:206
+#: blackjack/src/player.cpp:209
 msgid "Lose"
 msgstr "Tabt"
 
-#: blackjack/src/player.cpp:266
+#: blackjack/src/player.cpp:269
 msgid "Player expected values"
 msgstr "Forventede værdier for spiller"
 
-#: blackjack/src/player.cpp:272
+#: blackjack/src/player.cpp:275
 msgid "Stand"
 msgstr "Stå"
 
-#: blackjack/src/player.cpp:281
+#: blackjack/src/player.cpp:285
 msgid "Hit"
 msgstr "Ram"
 
-#: blackjack/src/player.cpp:293
+#: blackjack/src/player.cpp:298
 msgid "Double"
 msgstr "Dobbel"
 
-#: blackjack/src/player.cpp:308
+#: blackjack/src/player.cpp:314
 msgid "Split"
 msgstr "Split"
 
-#: blackjack/src/player.cpp:454
+#: blackjack/src/player.cpp:467
 msgid "Dealer hand probabilities"
 msgstr "Sandsynligheder for kortgiverhånd"
 
@@ -1778,11 +1856,11 @@ msgstr "%.2d"
 msgid "Compete to dominate the board in a Reversi-like game"
 msgstr "Kæmp for at dominere brættet i et Othello-lignende spil"
 
-#: gataxx/gataxx.schemas.in.h:1 gnect/data/gnect.schemas.in.h:1
+#: gataxx/gataxx.schemas.in.h:1 gnect/data/gnect.schemas.in.h:2
 msgid "Animate"
 msgstr "Animér"
 
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:523 iagno/properties.c:711
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:523 iagno/properties.c:710
 msgid "Flip final results"
 msgstr "Vend brikker om til slut"
 
@@ -1822,7 +1900,7 @@ msgstr ""
 "0 svarer til ingen animeringer, 1 er delvise animeringer, 2 er fuldstændige "
 "animeringer."
 
-#: gataxx/gataxx.schemas.in.h:11
+#: gataxx/gataxx.schemas.in.h:11 gnect/data/gnect.schemas.in.h:17
 msgid ""
 "Zero is human; one through three correspond to the level of the computer "
 "player."
@@ -1841,7 +1919,7 @@ msgid "Gataxx Preferences"
 msgstr "Indstillinger for Ataxx"
 
 #. Players tab
-#: gataxx/properties.c:364 iagno/properties.c:533
+#: gataxx/properties.c:364 iagno/properties.c:532
 msgid "_Players"
 msgstr "_Spillere"
 
@@ -1849,91 +1927,110 @@ msgstr "_Spillere"
 msgid "Quick Moves (cut computer delay in half)"
 msgstr "Hurtige træk (halverer maskintiden)"
 
-#: gataxx/properties.c:384 gnect/src/theme.c:386 iagno/properties.c:556
+#: gataxx/properties.c:384 gnect/src/theme.c:55 iagno/properties.c:555
 msgid "Dark"
 msgstr "Sort"
 
-#: gataxx/properties.c:389 gataxx/properties.c:437 gnect/src/prefs.c:737
-#: gtali/yahtzee.c:63 iagno/properties.c:562 iagno/properties.c:609
+#: gataxx/properties.c:389 gataxx/properties.c:437 gnect/src/prefs.c:404
+#: gtali/yahtzee.c:63 iagno/properties.c:561 iagno/properties.c:608
 msgid "Human"
 msgstr "Menneske"
 
-#: gataxx/properties.c:399 gataxx/properties.c:445 iagno/properties.c:572
-#: iagno/properties.c:619
+#: gataxx/properties.c:399 gataxx/properties.c:445 gnect/src/prefs.c:406
+#: iagno/properties.c:571 iagno/properties.c:618
 msgid "Level one"
 msgstr "Første sværhedsgrad"
 
-#: gataxx/properties.c:408 gataxx/properties.c:453 iagno/properties.c:582
-#: iagno/properties.c:629
+#: gataxx/properties.c:408 gataxx/properties.c:453 gnect/src/prefs.c:408
+#: iagno/properties.c:581 iagno/properties.c:628
 msgid "Level two"
 msgstr "Anden sværhedsgrad"
 
-#: gataxx/properties.c:417 gataxx/properties.c:461 iagno/properties.c:592
-#: iagno/properties.c:640
+#: gataxx/properties.c:417 gataxx/properties.c:461 gnect/src/prefs.c:410
+#: iagno/properties.c:591 iagno/properties.c:639
 msgid "Level three"
 msgstr "Tredje sværhedsgrad"
 
-#: gataxx/properties.c:432 gnect/src/theme.c:383 iagno/properties.c:603
+#: gataxx/properties.c:432 gnect/src/theme.c:55 iagno/properties.c:602
 msgid "Light"
 msgstr "Hvid"
 
 #. Appearance tab
-#: gataxx/properties.c:477 gnibbles/preferences.c:505
-#: gnobots2/properties.c:913 iagno/properties.c:653
+#: gataxx/properties.c:477 gnibbles/preferences.c:476 iagno/properties.c:652
 msgid "_Appearance"
 msgstr "_Udseende"
 
-#: gataxx/properties.c:487 iagno/properties.c:662
+#: gataxx/properties.c:487 iagno/properties.c:661
 msgid "None"
 msgstr "Ingen"
 
-#: gataxx/properties.c:497 iagno/properties.c:671
+#: gataxx/properties.c:497 iagno/properties.c:670
 msgid "Partial"
 msgstr "Delvis"
 
-#: gataxx/properties.c:506 iagno/properties.c:680
+#: gataxx/properties.c:506 iagno/properties.c:679
 msgid "Complete"
 msgstr "Fuld"
 
 #. Options
-#: gataxx/properties.c:518 gnibbles/preferences.c:416
-#: gnibbles/preferences.c:673 gnobots2/properties.c:836 iagno/properties.c:692
+#: gataxx/properties.c:518 gnibbles/preferences.c:387
+#: gnibbles/preferences.c:644 gnobots2/properties.c:843 iagno/properties.c:691
 msgid "Options"
 msgstr "Indstillinger"
 
-#: gataxx/properties.c:532 iagno/properties.c:721
+#: gataxx/properties.c:532 iagno/properties.c:720
 msgid "Tile set:"
 msgstr "Brikker:"
 
-#: gdk-card-image/gdk-card-image.c:109
+#: gdk-card-image/card-styles.xml.in.h:1
+msgid "Default"
+msgstr "Standard"
+
+#: gdk-card-image/card-styles.xml.in.h:2
+msgid "Dondorf"
+msgstr "Dondorf"
+
+#: gdk-card-image/card-styles.xml.in.h:3
+msgid "Dondorf Red"
+msgstr "Dondorf rød"
+
+#: gdk-card-image/card-styles.xml.in.h:4 gnibbles/preferences.c:668
+msgid "Gray"
+msgstr "Grå"
+
+#: gdk-card-image/card-styles.xml.in.h:5
+msgid "xpat"
+msgstr "xpat"
+
+#: gdk-card-image/gdk-card-image.c:113
 msgid "Card back:"
 msgstr "Kort-bagside:"
 
-#: gdk-card-image/gdk-card-image.c:110
+#: gdk-card-image/gdk-card-image.c:114
 msgid "Honor pictures:"
 msgstr "Billedkort:"
 
-#: gdk-card-image/gdk-card-image.c:111
+#: gdk-card-image/gdk-card-image.c:115
 msgid "Joker icon:"
 msgstr "Joker-ikon:"
 
-#: gdk-card-image/gdk-card-image.c:112
+#: gdk-card-image/gdk-card-image.c:116
 msgid "Rank font:"
 msgstr "Værdi-skrift:"
 
-#: gdk-card-image/gdk-card-image.c:113
+#: gdk-card-image/gdk-card-image.c:117
 msgid "Suit font (small):"
 msgstr "Kulør-skrift (lille):"
 
-#: gdk-card-image/gdk-card-image.c:114
+#: gdk-card-image/gdk-card-image.c:118
 msgid "Suit font (medium):"
 msgstr "Kulør-skrift (mellem):"
 
-#: gdk-card-image/gdk-card-image.c:115
+#: gdk-card-image/gdk-card-image.c:119
 msgid "Suit font (large):"
 msgstr "Kulør-skrift (stor):"
 
-#: glines/glines.c:108
+#: glines/glines.c:143
 #, c-format
 msgid ""
 "Glines couldn't find image file:\n"
@@ -1946,67 +2043,63 @@ msgstr ""
 "\n"
 "Kontrollér installationen af Linjer."
 
-#: glines/glines.c:192
+#: glines/glines.c:311
 msgid "Match five balls of the same color in a row to score!"
 msgstr "Få fem kugler af den samme farve på stribe for at få point!"
 
-#: glines/glines.c:234 glines/glines.c:830
+#: glines/glines.c:360 glines/glines.c:897
 msgid "Glines"
 msgstr "Linjer"
 
-#: glines/glines.c:263
+#: glines/glines.c:389
 msgid "Game Over!"
 msgstr "Spillet er slut!"
 
 #. Can't move there!
-#: glines/glines.c:425
+#: glines/glines.c:549
 msgid "Can't move there!"
 msgstr "Kan ikke flytte dertil!"
 
-#: glines/glines.c:833
+#: glines/glines.c:900
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "Gnome-udgave af det engang så populære Color Lines-spil"
 
-#: glines/glines.c:999
+#: glines/glines.c:1037
 msgid "Glines Preferences"
 msgstr "Indstillinger for Linjer"
 
-#: glines/glines.c:1011
+#: glines/glines.c:1049
 msgid "Themes"
 msgstr "Temaer"
 
-#: glines/glines.c:1020
+#: glines/glines.c:1058
 msgid "Ball image"
 msgstr "Kuglebillede"
 
-#: glines/glines.c:1031 glines/glines.schemas.in.h:1
+#: glines/glines.c:1068 glines/glines.schemas.in.h:1
 #: gnobots2/gnobots2.schemas.in.h:1
 msgid "Background color"
 msgstr "Baggrundsfarve"
 
-#: glines/glines.c:1045
+#: glines/glines.c:1082
 msgid "General"
 msgstr "Generelt"
 
-#: glines/glines.c:1053
+#: glines/glines.c:1090
 msgid "Use fast moves"
 msgstr "Benyt hurtige træk"
 
-#: glines/glines.c:1374 glines/glines.desktop.in.h:1
+#: glines/glines.c:1436 glines/glines.desktop.in.h:1
 msgid "Lines"
 msgstr "Linjer"
 
-#: glines/glines.c:1386
+#: glines/glines.c:1449
 msgid "Welcome to Glines!"
 msgstr "Velkommen til Linjer!"
 
-#: glines/glines.c:1397
-msgid "Next Balls"
-msgstr "Næste bolde"
-
-#: glines/glines.c:1413
-msgid "Score"
-msgstr "Stilling"
+#: glines/glines.c:1463
+msgid "Next Balls:"
+msgstr "Næste bolde:"
 
 #: glines/glines.desktop.in.h:2
 msgid "Remove colored balls from the board by forming lines"
@@ -2049,24 +2142,40 @@ msgid "Game score from last saved session."
 msgstr "Spilpoint fra sidste gemte session."
 
 #: glines/glines.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Højden af hovedvinduet."
+
+#: glines/glines.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "Bredden af hovedvinduet."
+
+#: glines/glines.schemas.in.h:13
 msgid "Time between moves"
 msgstr "Tid mellem flytninger"
 
-#: glines/glines.schemas.in.h:12
+#: glines/glines.schemas.in.h:14
 msgid "Time between moves in milliseconds."
 msgstr "Tid mellem flytninger i millisekunder."
+
+#: glines/glines.schemas.in.h:15
+msgid "Window height"
+msgstr "Vindueshøjde"
+
+#: glines/glines.schemas.in.h:16
+msgid "Window width"
+msgstr "Vinduesbredde"
 
 #: gnect/data/gnect.desktop.in.h:1
 msgid "Compete to make lines of the same color"
 msgstr "Kæmp for at danne linjer med den samme farve"
 
-#: gnect/data/gnect.desktop.in.h:2
+#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:1204
 msgid "Four-in-a-row"
 msgstr "Fire på stribe"
 
-#: gnect/data/gnect.schemas.in.h:2
-msgid "Draw grid"
-msgstr "Tegn gitter"
+#: gnect/data/gnect.schemas.in.h:1
+msgid "A number specifying the preferred theme."
+msgstr "En tal der angiver det foretrukne tema."
 
 #: gnect/data/gnect.schemas.in.h:3
 msgid "Drop marble"
@@ -2092,69 +2201,37 @@ msgstr "Niveau for spiller en"
 msgid "Level of Player Two"
 msgstr "Niveau for spiller to"
 
-#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:937
+#: gnect/data/gnect.schemas.in.h:9
 msgid "Move left"
 msgstr "Træk til venstre"
 
-#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:943
+#: gnect/data/gnect.schemas.in.h:10
 msgid "Move right"
 msgstr "Træk til højre"
 
 #: gnect/data/gnect.schemas.in.h:11
-msgid "Name of the theme file to use."
-msgstr "Navn på temafil der skal benyttes."
-
-#: gnect/data/gnect.schemas.in.h:12
-msgid "One corresponds to speaker beeps, two to audio files."
-msgstr "1 svarer til højtalerbip, 2 til lydfiler."
-
-#: gnect/data/gnect.schemas.in.h:13
 msgid "Show tool bar"
 msgstr "Vis værktøjslinje"
 
-#: gnect/data/gnect.schemas.in.h:14 gnome-stones/preferences.c:850
+#: gnect/data/gnect.schemas.in.h:12 gnome-stones/preferences.c:850
 msgid "Sound"
 msgstr "Lyd"
 
-#: gnect/data/gnect.schemas.in.h:15
-msgid "Sound type"
-msgstr "Lydtype"
+#: gnect/data/gnect.schemas.in.h:13
+msgid "Theme ID"
+msgstr "Tema-id"
 
-#: gnect/data/gnect.schemas.in.h:16
-msgid "Theme file"
-msgstr "Temafil"
-
-#: gnect/data/gnect.schemas.in.h:17
-msgid "Whether or not to display grid lines on the game board."
-msgstr "Om gitterlinjer skal tegnes."
-
-#: gnect/data/gnect.schemas.in.h:18
+#: gnect/data/gnect.schemas.in.h:14
 msgid "Whether or not to play event sounds."
 msgstr "Om lydhændelser skal afspilles."
 
-#: gnect/data/gnect.schemas.in.h:19
+#: gnect/data/gnect.schemas.in.h:15
 msgid "Whether or not to show the tool bar."
 msgstr "Om værktøjslinjen skal vises."
 
-#: gnect/data/gnect.schemas.in.h:20
+#: gnect/data/gnect.schemas.in.h:16
 msgid "Whether or not to use animation."
 msgstr "Om animering skal benyttes."
-
-#: gnect/data/gnect.schemas.in.h:21
-msgid "Who starts"
-msgstr "Hvem starter"
-
-#: gnect/data/gnect.schemas.in.h:22
-msgid ""
-"Zero is Player One, one is Player Two and two corresponds to players taking "
-"turns."
-msgstr "0 er spille et, 1 er spiller to og 2 svarer til at spillerne skifter."
-
-#: gnect/data/gnect.schemas.in.h:23
-msgid ""
-"Zero is human; one through four correspond to the level of the computer "
-"player."
-msgstr "0 er menneske; 1-4 svarer til computerspillerens sværhedsgrad."
 
 #: gnect/data/gnect.soundlist.in.h:1
 msgid "A counter drops"
@@ -2168,7 +2245,7 @@ msgstr "Uafgjort"
 msgid "Gnect"
 msgstr "Gnect"
 
-#: gnect/data/gnect.soundlist.in.h:4 gnect/src/gui.c:442
+#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:542
 msgid "I win!"
 msgstr "Computerspiller vandt"
 
@@ -2176,15 +2253,67 @@ msgstr "Computerspiller vandt"
 msgid "Player wins!"
 msgstr "Spiller vandt"
 
-#: gnect/data/gnect.soundlist.in.h:6 gnect/src/gnect.c:533
+#: gnect/data/gnect.soundlist.in.h:6
 msgid "Sorry, full column"
 msgstr "Desværre, fuld kolonne"
 
-#: gnect/data/gnect.soundlist.in.h:7 gnect/src/gui.c:438
+#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:538
 msgid "You win!"
 msgstr "Du vandt"
 
-#: gnect/src/dialog.c:78
+#: gnect/src/gfx.c:192
+#, c-format
+msgid ""
+"Unable to load image:\n"
+"%s"
+msgstr ""
+"Kunne ikke indlæse billede:\n"
+"%s"
+
+#: gnect/src/main.c:530
+msgid "It's a draw!"
+msgstr "Det står lige!"
+
+#: gnect/src/main.c:539
+msgid "Your move..."
+msgstr "Dit træk..."
+
+#: gnect/src/main.c:543 gnect/src/main.c:636
+msgid "Thinking..."
+msgstr "Tænker..."
+
+#: gnect/src/main.c:551
+#, c-format
+msgid "%s wins!"
+msgstr "%s vinder!"
+
+#: gnect/src/main.c:552
+#, c-format
+msgid "%s..."
+msgstr "%s..."
+
+#: gnect/src/main.c:653
+#, c-format
+msgid "Hint: Column %d"
+msgstr "Tip: Søjle %d"
+
+#: gnect/src/main.c:681 gnect/src/main.c:686
+msgid "You"
+msgstr "Dig"
+
+#: gnect/src/main.c:682 gnect/src/main.c:685
+msgid "Me"
+msgstr "Mig"
+
+#: gnect/src/main.c:732
+msgid "Scores"
+msgstr "Stillinger"
+
+#: gnect/src/main.c:779
+msgid "Drawn"
+msgstr "Uafgjort"
+
+#: gnect/src/main.c:825
 msgid ""
 "\"Four in a row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -2195,269 +2324,127 @@ msgstr ""
 "Gnect: http://homepages.ihug.co.nz/~trmusson/gnect.html\n"
 "Velena: http://www.ce.unipr.it/~gbe/velena.html"
 
-#: gnect/src/dialog.c:113 gnect/src/dialog.c:118
-msgid "You"
-msgstr "Dig"
-
-#: gnect/src/dialog.c:114 gnect/src/dialog.c:117
-msgid "Me"
-msgstr "Mig"
-
-#: gnect/src/dialog.c:162
-msgid "Gnect Scores"
-msgstr "Stilling for fire på stribe"
-
-#. drawn games
-#: gnect/src/dialog.c:215
-msgid "Drawn"
-msgstr "Uafgjort"
-
-#. Velena Engine
-#: gnect/src/gnect.c:291 gnect/src/gnect.c:550
-msgid "Thinking..."
-msgstr "Tænker..."
-
-#: gnect/src/gnect.c:554
-#, c-format
-msgid "Hint: Column %d"
-msgstr "Tip: Søjle %d"
-
-#: gnect/src/gui.c:77
-msgid "Enable _sound"
-msgstr "Aktivér _lyd"
-
-#: gnect/src/gui.c:77
-msgid "Enable or disable sound"
-msgstr "Aktivér eller deaktivér lyd"
-
-#: gnect/src/gui.c:78
-msgid "Draw _grid"
-msgstr "Tegn _gitter"
-
-#: gnect/src/gui.c:78
-msgid "Show or hide the grid"
-msgstr "Vis eller skjul gitter"
-
-#: gnect/src/gui.c:427
-msgid "It's a draw!"
-msgstr "Det står lige!"
-
-#: gnect/src/gui.c:453 gnect/src/gui.c:454
-#, c-format
-msgid "%s wins!"
-msgstr "%s vinder!"
-
-#: gnect/src/gui.c:483
-msgid "Your move..."
-msgstr "Dit træk..."
-
-#: gnect/src/gui.c:508
+#: gnect/src/main.c:1102 gnect/src/main.c:1136
 msgid "Select \"New game\" from the \"Game\" menu to begin."
 msgstr "Vælg \"Nyt spil\" fra spilmenuen for at begynde."
 
-#: gnect/src/gui.c:640
+#: gnect/src/main.c:1165
+msgid "Show or hide the tool bar"
+msgstr "Vis eller skjul værktøjslinjen"
+
+#: gnect/src/main.c:1167
+msgid "Enable _sound"
+msgstr "Aktivér _lyd"
+
+#: gnect/src/main.c:1168
+msgid "Enable or disable sound"
+msgstr "Aktivér eller deaktivér lyd"
+
+#: gnect/src/main.c:1188 mahjongg/mahjongg.c:838
+msgid "New game"
+msgstr "Nyt spil"
+
+#: gnect/src/main.c:1263
 msgid "Welcome to Gnect!"
 msgstr "Velkommen til fire på stribe!"
 
-#: gnect/src/main.c:50
-msgid "Initial window placement"
-msgstr "Begyndelsesplacering af vindue"
-
-#: gnect/src/main.c:51
-msgid "GEOMETRY"
-msgstr "GEOMETRI"
-
-#: gnect/src/main.c:57
-msgid "Random number seed"
-msgstr "Frø til tilfældighedsgenerering"
-
-#: gnect/src/main.c:58
-msgid "SEED"
-msgstr "FRØ"
-
-#: gnect/src/main.c:64
-msgid "Initial theme file (excluding path)"
-msgstr "Begyndelsefil for tema (uden sti)"
-
-#: gnect/src/main.c:65 gnome-stones/main.c:74
-msgid "FILENAME"
-msgstr "FILNAVN"
-
-#: gnect/src/main.c:71
-msgid "Debugging level (4 for random seed)"
-msgstr "Fejlsøgningsniveau (4 for tilfældighedsfrø)"
-
-#: gnect/src/main.c:105
+#: gnect/src/prefs.c:160
 #, c-format
-msgid "%s: no themes available\n"
-msgstr "%s: ingen temaer tilgængelige\n"
-
-#: gnect/src/prefs.c:325
-#, c-format
-msgid "Player 1: %s"
-msgstr "Spiller 1: %s"
-
-#: gnect/src/prefs.c:326
-#, c-format
-msgid "Player 2: %s"
-msgstr "Spiller 2: %s"
-
-#: gnect/src/prefs.c:349
 msgid ""
-"Applying this change to Player Selection\n"
-"will end the current game"
+"Player One:\n"
+"%s"
 msgstr ""
-"Udførelse af denne ændring til udvalg af spillere\n"
-"vil afslutte det nuværende spil"
+"Første spiller:\n"
+"%s"
 
-#: gnect/src/prefs.c:589
-msgid "Error loading theme"
-msgstr "Fejl ved indlæsning af tema"
+#: gnect/src/prefs.c:164
+#, c-format
+msgid ""
+"Player Two:\n"
+"%s"
+msgstr ""
+"Anden spiller:\n"
+"%s"
 
-#: gnect/src/prefs.c:740
-msgid "Non-Velena / Simple"
-msgstr "Ikke-Velena/simpel"
-
-#: gnect/src/prefs.c:743
-msgid "Velena / Weak"
-msgstr "Velena/svag"
-
-#: gnect/src/prefs.c:746
-msgid "Velena / Medium"
-msgstr "Velena/mellem"
-
-#: gnect/src/prefs.c:749
-msgid "Velena / Strong"
-msgstr "Velena/stærk"
-
-#: gnect/src/prefs.c:762
-msgid "Always Player 1"
-msgstr "Altid spiller 1"
-
-#: gnect/src/prefs.c:765
-msgid "Always Player 2"
-msgstr "Altid spiller 1"
-
-#: gnect/src/prefs.c:768
-msgid "Take turns"
-msgstr "Foretag træk"
-
-#: gnect/src/prefs.c:793
+#: gnect/src/prefs.c:435
 msgid "Four-in-a-row Preferences"
 msgstr "Indstillinger for fire på stribe"
 
-#: gnect/src/prefs.c:810
-msgid "_Player Selection"
-msgstr "_Spillervalg"
+#: gnect/src/prefs.c:484 gnobots2/properties.c:932
+msgid "Appearance"
+msgstr "Udseende"
 
-#. who starts?
-#: gnect/src/prefs.c:849
-msgid "Who starts?"
-msgstr "Hvem starter?"
+#: gnect/src/prefs.c:493
+msgid "_Theme:"
+msgstr "_Tema:"
 
-#. theme
-#: gnect/src/prefs.c:863
-msgid "Appearance and Behaviour"
-msgstr "Udseende og opførsel"
+#: gnect/src/prefs.c:507
+msgid "Enable _animation"
+msgstr "Aktivér _animering"
 
-#: gnect/src/prefs.c:870 gnometris/tetris.cpp:752 same-gnome/same-gnome.c:637
-#: same-gnome/same-gnome.c:690
-msgid "Theme"
-msgstr "Tema"
-
-#: gnect/src/prefs.c:880
-msgid "Theme Selection:"
-msgstr "Temavalg:"
-
-#. animation
-#: gnect/src/prefs.c:892 iagno/properties.c:658
-msgid "Animation"
-msgstr "Animering"
-
-#: gnect/src/prefs.c:899
-msgid "Enable animation"
-msgstr "Aktivér animering"
-
-#. sound
-#: gnect/src/prefs.c:904
-msgid "Sound Type"
-msgstr "Lydtype"
-
-#: gnect/src/prefs.c:909
-msgid "Speaker beep"
-msgstr "Højtalerbip"
-
-#: gnect/src/prefs.c:913
-msgid "GNOME sound"
-msgstr "Gnome-lyd"
-
-#: gnect/src/prefs.c:915
-msgid "This can be set up using the GNOME Control Center"
-msgstr "Dette kan indstilles ved hjælp af Gnomes kontrolcenter"
-
-#. keyboard
-#: gnect/src/prefs.c:920
+#: gnect/src/prefs.c:514
 msgid "Controls"
 msgstr "Kontroller"
 
-#: gnect/src/prefs.c:924
-msgid "Keyboard Control"
-msgstr "Tastaturkontrol"
+#: gnect/src/prefs.c:517
+msgid "Keyboard control"
+msgstr "Taster"
 
-# RETMIG: rigtigt?
-#: gnect/src/prefs.c:950
-msgid "Drop counter"
-msgstr "Slip mønt"
+#: gnect/src/prefs.c:526
+msgid "Move _Left"
+msgstr "Flyt _venstre"
 
-#: gnect/src/theme.c:389
-msgid "Black"
-msgstr "Sort"
+#: gnect/src/prefs.c:531
+msgid "Move _Right"
+msgstr "Flyt _højre"
 
-#: gnect/src/theme.c:392
-msgid "White"
-msgstr "Hvid"
+#: gnect/src/prefs.c:536
+msgid "_Drop"
+msgstr "_Tab"
 
-#: gnect/src/theme.c:395
-msgid "Grey"
-msgstr "Grå"
+#: gnect/src/theme.c:42
+msgid "Classic"
+msgstr "Klassisk"
 
-#: gnect/src/theme.c:398 gnibbles/preferences.c:694
-msgid "Yellow"
-msgstr "Gul"
-
-#: gnect/src/theme.c:401 gnibbles/preferences.c:691
+#: gnect/src/theme.c:47 gnect/src/theme.c:63 gnect/src/theme.c:71
+#: gnect/src/theme.c:79 gnibbles/preferences.c:662
 msgid "Red"
 msgstr "Rød"
 
-#: gnect/src/theme.c:404 gnibbles/preferences.c:693
+#: gnect/src/theme.c:47 gnect/src/theme.c:79 gnibbles/preferences.c:665
+msgid "Yellow"
+msgstr "Gul"
+
+#: gnect/src/theme.c:50
+msgid "High Contrast"
+msgstr "Højkontrast"
+
+#: gnect/src/theme.c:58
+msgid "Marbles"
+msgstr "Kugler"
+
+#: gnect/src/theme.c:63 gnect/src/theme.c:71 gnect/src/theme.c:87
+#: gnibbles/preferences.c:664
 msgid "Blue"
 msgstr "Blå"
 
-#: gnect/src/theme.c:407 gnibbles/preferences.c:692
-msgid "Green"
-msgstr "Grøn"
+#: gnect/src/theme.c:66
+msgid "More Marbles"
+msgstr "Flere kugler"
 
-#: gnect/src/theme.c:410
+#: gnect/src/theme.c:74
+msgid "Nightfall"
+msgstr "Nattetide"
+
+#: gnect/src/theme.c:82
+msgid "Blocks"
+msgstr "Blokke"
+
+#: gnect/src/theme.c:87
 msgid "Orange"
 msgstr "Orange"
 
-#: gnect/src/theme.c:413 gnibbles/preferences.c:696
-msgid "Purple"
-msgstr "Lilla"
-
-#: gnect/src/theme.c:416
-msgid "Pink"
-msgstr "Pink"
-
-#: gnect/src/theme.c:419
-msgid "Violet"
-msgstr "Violet"
-
-#: gnect/src/theme.c:422
-msgid "Brown"
-msgstr "brun"
-
-#: gnibbles/gnibbles.c:123
+#: gnibbles/gnibbles.c:122
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -2470,7 +2457,7 @@ msgstr ""
 "\n"
 "Kontrollér installationen af Orme."
 
-#: gnibbles/gnibbles.c:147
+#: gnibbles/gnibbles.c:146
 #, c-format
 msgid ""
 "Gnibbles Couldn't find pixmap file:\n"
@@ -2483,7 +2470,7 @@ msgstr ""
 "\n"
 "Kontrollér installationen af Orme."
 
-#: gnibbles/gnibbles.c:183
+#: gnibbles/gnibbles.c:182
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -2512,7 +2499,7 @@ msgstr "Farve der skal bruges til orm"
 msgid "Color to use for worm."
 msgstr "Farve der skal bruges til orm."
 
-#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:434
+#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:405
 msgid "Enable fake bonuses"
 msgstr "Aktivér falske bonuser"
 
@@ -2520,8 +2507,8 @@ msgstr "Aktivér falske bonuser"
 msgid "Enable fake bonuses."
 msgstr "Aktivér falske bonuser."
 
-#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:445
-#: gnobots2/properties.c:858
+#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:416
+#: gnobots2/properties.c:871
 msgid "Enable sounds"
 msgstr "Aktivér lyde"
 
@@ -2585,7 +2572,7 @@ msgstr "Antal spillere"
 msgid "Number of players."
 msgstr "Antal spillere."
 
-#: gnibbles/gnibbles.schemas.in.h:21 gnibbles/preferences.c:423
+#: gnibbles/gnibbles.schemas.in.h:21 gnibbles/preferences.c:394
 msgid "Play levels in random order"
 msgstr "Spil baner i tilfældig rækkefølge"
 
@@ -2601,7 +2588,7 @@ msgstr "Størrelse af spilfliser"
 msgid "Size of game tiles."
 msgstr "Størrelse af spilfliser."
 
-#: gnibbles/gnibbles.schemas.in.h:25 gnibbles/preferences.c:680
+#: gnibbles/gnibbles.schemas.in.h:25 gnibbles/preferences.c:651
 msgid "Use relative movement"
 msgstr "Benyt relativ bevægelse"
 
@@ -2626,11 +2613,11 @@ msgstr "Bonus ædes"
 msgid "Extra Life"
 msgstr "Ekstraliv"
 
-#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:210
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:231
 msgid "Game Over"
 msgstr "Spillet er slut"
 
-#: gnibbles/gnibbles.soundlist.in.h:6 gnibbles/main.c:187
+#: gnibbles/gnibbles.soundlist.in.h:6 gnibbles/main.c:201
 msgid "Gnibbles"
 msgstr "Orme"
 
@@ -2646,105 +2633,109 @@ msgstr "Ormevending"
 msgid "Worm Teleport"
 msgstr "Ormeteleportering"
 
-#: gnibbles/main.c:190
+#: gnibbles/main.c:204
 msgid "A worm game for GNOME."
 msgstr "Et ormespil til Gnome."
 
-#: gnibbles/preferences.c:347
+#: gnibbles/preferences.c:318
 msgid "Gnibbles Preferences"
 msgstr "Indstillinger for Orme"
 
-#: gnibbles/preferences.c:364
+#: gnibbles/preferences.c:335
 msgid "Speed"
 msgstr "Hastighed"
 
-#: gnibbles/preferences.c:374
+#: gnibbles/preferences.c:345
 msgid "Nibbles newbie"
 msgstr "Nybegynder"
 
-#: gnibbles/preferences.c:384
+#: gnibbles/preferences.c:355
 msgid "My second day"
 msgstr "Min anden dag"
 
-#: gnibbles/preferences.c:394
+#: gnibbles/preferences.c:365
 msgid "Not too shabby"
 msgstr "Ikke så dårligt"
 
-#: gnibbles/preferences.c:405
+#: gnibbles/preferences.c:376
 msgid "Finger-twitching good"
 msgstr "Fingervridende god"
 
-#: gnibbles/preferences.c:458
+#: gnibbles/preferences.c:429
 msgid "Starting level:"
 msgstr "Starter bane:"
 
-#: gnibbles/preferences.c:485 gtali/setup.c:267
+#: gnibbles/preferences.c:456 gtali/setup.c:266
 msgid "Number of players:"
 msgstr "Antal spillere:"
 
-#: gnibbles/preferences.c:510
+#: gnibbles/preferences.c:481
 msgid "Board size"
 msgstr "Banestørrelse"
 
-#: gnibbles/preferences.c:515
+#: gnibbles/preferences.c:486
 msgid "Tiny  (184 x 132)"
 msgstr "Bitte (184 x 132)"
 
-#: gnibbles/preferences.c:525
+#: gnibbles/preferences.c:496
 msgid "Small  (368 x 264)"
 msgstr "Lille (368 x 264)"
 
-#: gnibbles/preferences.c:534
+#: gnibbles/preferences.c:505
 msgid "Medium  (460 x 330)"
 msgstr "Mellem (460 x 330)"
 
-#: gnibbles/preferences.c:543
+#: gnibbles/preferences.c:514
 msgid "Large  (736 x 528)"
 msgstr "Stor (736 x 528)"
 
-#: gnibbles/preferences.c:552
+#: gnibbles/preferences.c:523
 msgid "Extra large  (920 x 660)"
 msgstr "Ekstra stor (920 x 660)"
 
-#: gnibbles/preferences.c:561
+#: gnibbles/preferences.c:532
 msgid "Huge  (1840 x 1320)"
 msgstr "Enorm (1840 x 1320)"
 
-#: gnibbles/preferences.c:577
+#: gnibbles/preferences.c:548
 msgid "Worm"
 msgstr "Orm"
 
-#: gnibbles/preferences.c:586
+#: gnibbles/preferences.c:557
 msgid "Keyboard controls"
 msgstr "Tastaturkontroller"
 
-#: gnibbles/preferences.c:597
+#: gnibbles/preferences.c:568
 msgid "Up"
 msgstr "Op"
 
-#: gnibbles/preferences.c:617
+#: gnibbles/preferences.c:588
 msgid "Down"
 msgstr "Ned"
 
-#: gnibbles/preferences.c:637
+#: gnibbles/preferences.c:608
 msgid "Left"
 msgstr "Venstre"
 
-#: gnibbles/preferences.c:656
+#: gnibbles/preferences.c:627
 msgid "Right"
 msgstr "Højre"
 
-#: gnibbles/preferences.c:686
+#: gnibbles/preferences.c:657
 msgid "Worm color:"
 msgstr "Ormefarve:"
 
-#: gnibbles/preferences.c:695
+#: gnibbles/preferences.c:663
+msgid "Green"
+msgstr "Grøn"
+
+#: gnibbles/preferences.c:666
 msgid "Cyan"
 msgstr "Cyan"
 
-#: gnibbles/preferences.c:697
-msgid "Gray"
-msgstr "Grå"
+#: gnibbles/preferences.c:667
+msgid "Purple"
+msgstr "Lilla"
 
 #: gnibbles/scoreboard.c:45
 #, c-format
@@ -2777,7 +2768,7 @@ msgstr "Der er ingen teleporteringssteder tilbage!"
 msgid "There are no safe locations to teleport to!!"
 msgstr "Der er ingen sikre steder at teleportere til!"
 
-#: gnobots2/gnobots.c:60 same-gnome/same-gnome.c:894
+#: gnobots2/gnobots.c:60 same-gnome/same-gnome.c:887
 msgid "Set game scenario"
 msgstr "Vælg scenario"
 
@@ -2785,11 +2776,11 @@ msgstr "Vælg scenario"
 msgid "Set game configuration"
 msgstr "Konfigurér spilindstillinger"
 
-#: gnobots2/gnobots.c:63 gnomine/gnomine.c:763 gnomine/gnomine.c:767
+#: gnobots2/gnobots.c:63 gnomine/gnomine.c:771 gnomine/gnomine.c:775
 msgid "X"
 msgstr "x"
 
-#: gnobots2/gnobots.c:64 gnomine/gnomine.c:764 gnomine/gnomine.c:768
+#: gnobots2/gnobots.c:64 gnomine/gnomine.c:772 gnomine/gnomine.c:776
 msgid "Y"
 msgstr "y"
 
@@ -2826,7 +2817,7 @@ msgstr "Aktivér spillyde"
 msgid "Enable game sounds. Play sounds for various events throughout the game."
 msgstr "Aktivér spillyde. Afspil lyde for forskellige hændelser i spillet."
 
-#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:864
+#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:880
 msgid "Enable splats"
 msgstr "Aktivér splat"
 
@@ -2843,18 +2834,146 @@ msgid "Game type. The name of the game variation to use."
 msgstr "Spiltype. Navnet på den spilvariation der skal bruges."
 
 #: gnobots2/gnobots2.schemas.in.h:9
+msgid "Key to hold"
+msgstr "Tast at trykke"
+
+#: gnobots2/gnobots2.schemas.in.h:10
+msgid "Key to move E"
+msgstr "Tast til at flytte Ø"
+
+#: gnobots2/gnobots2.schemas.in.h:11
+msgid "Key to move N"
+msgstr "Tast til at flytte N"
+
+#: gnobots2/gnobots2.schemas.in.h:12
+msgid "Key to move NE"
+msgstr "Tast til at flytte NØ"
+
+#: gnobots2/gnobots2.schemas.in.h:13
+msgid "Key to move NW"
+msgstr "Tast til at flytte NV"
+
+#: gnobots2/gnobots2.schemas.in.h:14
+msgid "Key to move S"
+msgstr "Tast til at flytte S"
+
+#: gnobots2/gnobots2.schemas.in.h:15
+msgid "Key to move SE"
+msgstr "Tast til at flytte SØ"
+
+#: gnobots2/gnobots2.schemas.in.h:16
+msgid "Key to move SW"
+msgstr "Tast til at flytte SV"
+
+#: gnobots2/gnobots2.schemas.in.h:17
+msgid "Key to move W"
+msgstr "Tast til at flytte V"
+
+#: gnobots2/gnobots2.schemas.in.h:18
+msgid "Key to teleport"
+msgstr "Tast til teleport"
+
+#: gnobots2/gnobots2.schemas.in.h:19
+msgid "Key to teleport randomly"
+msgstr "Tast til at teleportere tilfældigt"
+
+#: gnobots2/gnobots2.schemas.in.h:20
+msgid "Key to wait"
+msgstr "Tast til at vente"
+
+#: gnobots2/gnobots2.schemas.in.h:21
 msgid "Robot image theme"
 msgstr "Robotbilledtema"
 
-#: gnobots2/gnobots2.schemas.in.h:10
+#: gnobots2/gnobots2.schemas.in.h:22
 msgid "Robot image theme. The theme of the images to use for the robots."
 msgstr "Robotbilledtema. Det tema for billeder der skal bruges til robotterne."
 
-#: gnobots2/gnobots2.schemas.in.h:11 gnobots2/properties.c:846
+#: gnobots2/gnobots2.schemas.in.h:23
+msgid ""
+"The name of the key used to hold still. The name is a standard X key name."
+msgstr "Navnet på tasten til at stå stille. Navnet er et standard X-tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:24
+msgid ""
+"The name of the key used to move east. The name is a standard X key name."
+msgstr ""
+"Navnet på tasten til at flytte mod øst. Navnet er et standard X-tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:25
+msgid ""
+"The name of the key used to move north-east. The name is a standard X key "
+"name."
+msgstr ""
+"Navnet på tasten til at flytte mod nordøst. Navnet er et standard X-"
+"tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:26
+msgid ""
+"The name of the key used to move north-west. The name is a standard X key "
+"name."
+msgstr ""
+"Navnet på tasten til at flytte mod nordvest. Navnet er et standard X-"
+"tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:27
+msgid ""
+"The name of the key used to move north. The name is a standard X key name."
+msgstr ""
+"Navnet på tasten til at flytte mod nord. Navnet er et standard X-tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:28
+msgid ""
+"The name of the key used to move south-east. The name is a standard X key "
+"name."
+msgstr ""
+"Navnet på tasten til at flytte mod sydøst. Navnet er et standard X-tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:29
+msgid ""
+"The name of the key used to move south-west. The name is a standard X key "
+"name."
+msgstr ""
+"Navnet på tasten til at flytte mod sydvest. Navnet er et standard X-"
+"tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:30
+msgid ""
+"The name of the key used to move south. The name is a standard X key name."
+msgstr ""
+"Navnet på tasten til at flytte mod syd. Navnet er et standard X-tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:31
+msgid ""
+"The name of the key used to move west. The name is a standard X key name."
+msgstr ""
+"Navnet på tasten til at flytte mod vest. Navnet er et standard X-tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:32
+msgid ""
+"The name of the key used to teleport randomly. The name is a standard X key "
+"name."
+msgstr ""
+"Navnet på tasten til at teleportere tilfældigt. Navnet er et standard X-"
+"tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:33
+msgid ""
+"The name of the key used to teleport safely (if possible). The name is a "
+"standard X key name."
+msgstr ""
+"Navnet på tasten til at teleportere sikkert (om muligt). Navnet er et "
+"standard X-tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:34
+msgid "The name of the key used to wait. The name is a standard X key name."
+msgstr "Navnet på tasten til at vente. Navnet er et standard X-tastenavn."
+
+#: gnobots2/gnobots2.schemas.in.h:35 gnobots2/properties.c:853
 msgid "Use safe moves"
 msgstr "Benyt sikre træk"
 
-#: gnobots2/gnobots2.schemas.in.h:12
+#: gnobots2/gnobots2.schemas.in.h:36
 msgid ""
 "Use safe moves. The safe moves option will help you to avoid being killed "
 "due to a mistake. If you try to make a move that would lead to your death "
@@ -2865,11 +2984,11 @@ msgstr ""
 "forårsage din død når der er et sikkert træk tilgængeligt, vil du ikke få "
 "lov til at fortsætte."
 
-#: gnobots2/gnobots2.schemas.in.h:13 gnobots2/properties.c:852
+#: gnobots2/gnobots2.schemas.in.h:37 gnobots2/properties.c:862
 msgid "Use super safe moves"
 msgstr "Benyt supersikre træk"
 
-#: gnobots2/gnobots2.schemas.in.h:14
+#: gnobots2/gnobots2.schemas.in.h:38
 msgid ""
 "Use super safe moves. The player is alerted when there is no safe move and "
 "the only option is to teleport out."
@@ -2914,221 +3033,260 @@ msgstr "Kunne ikke finde billedfilen '%s' til Robotter\n"
 msgid "GNOME Robots Game"
 msgstr "Robotspil til Gnome"
 
-#: gnobots2/properties.c:223
+#: gnobots2/properties.c:227
 msgid "Initial Number of Type 1 Robots"
 msgstr "Begyndelsesantal af type 1-robotter"
 
-#: gnobots2/properties.c:225
+#: gnobots2/properties.c:229
 msgid "Initial Number of Robots"
 msgstr "Begyndelsesantal af robotter:"
 
-#: gnobots2/properties.c:239
+#: gnobots2/properties.c:243
 msgid "Initial Number of Type 2 Robots"
 msgstr "Begyndelsesantal af type 2-robotter"
 
-#: gnobots2/properties.c:252
+#: gnobots2/properties.c:256
 msgid "Increasing Number of Type 1 Robots per Level"
 msgstr "Voksende antal af type 1-robotter per bane"
 
-#: gnobots2/properties.c:254
+#: gnobots2/properties.c:258
 msgid "Increasing Number of Robots per Level"
 msgstr "Voksende antal af robotter per bane"
 
-#: gnobots2/properties.c:267
+#: gnobots2/properties.c:271
 msgid "Increasing Number of Type 2 Robots per Level"
 msgstr "Voksende antal af type 2-robotter per bane"
 
-#: gnobots2/properties.c:280
+#: gnobots2/properties.c:284
 msgid "Maximum Number of Type 1 Robots"
 msgstr "Maksimalt antal af type 1-robotter"
 
-#: gnobots2/properties.c:282
+#: gnobots2/properties.c:286
 msgid "Maximum Number of Robots"
 msgstr "Maximalt antal af robotter:"
 
-#: gnobots2/properties.c:285 gnobots2/properties.c:301
+#: gnobots2/properties.c:289 gnobots2/properties.c:305
+#, c-format
 msgid "Fill Screen"
 msgstr "Fyld skærm"
 
-#: gnobots2/properties.c:299
+#: gnobots2/properties.c:303
 msgid "Maximum Number of Type 2 Robots"
 msgstr "Maximalt antal af type 2-robotter"
 
-#: gnobots2/properties.c:316
+#: gnobots2/properties.c:320
 msgid "Type 1 Robot Score"
 msgstr "Type 1-robotstilling"
 
-#: gnobots2/properties.c:318
+#: gnobots2/properties.c:322
 msgid "Robot Score"
 msgstr "Robotstilling"
 
-#: gnobots2/properties.c:331
+#: gnobots2/properties.c:335
 msgid "Type 2 Robot Score"
 msgstr "Type 2-robotstilling"
 
-#: gnobots2/properties.c:344
+#: gnobots2/properties.c:348
 msgid "Type 1 Robot Score When Waiting"
 msgstr "Type 1-robotstilling mens ventende"
 
-#: gnobots2/properties.c:346
+#: gnobots2/properties.c:350
 msgid "Robot Score When Waiting"
 msgstr "Robotstilling mens ventende"
 
-#: gnobots2/properties.c:359
+#: gnobots2/properties.c:363
 msgid "Type 2 Robot Score When Waiting"
 msgstr "Type 2-robot stilling mens ventende"
 
-#: gnobots2/properties.c:372
+#: gnobots2/properties.c:376
 msgid "Type 1 Robot Score When Splatted"
 msgstr "Type 1-robotstilling mens udsplattet"
 
-#: gnobots2/properties.c:374
+#: gnobots2/properties.c:378
 msgid "Robot Score When Splatted"
 msgstr "Robotstilling mens udsplattet"
 
-#: gnobots2/properties.c:387
+#: gnobots2/properties.c:391
 msgid "Type 2 Robot Score When Splatted"
 msgstr "Type 2-robotstilling mens udsplattet"
 
-#: gnobots2/properties.c:399
+#: gnobots2/properties.c:403
 msgid "Initial Number of Safe Teleports"
 msgstr "Begyndelsesantal af sikre teleporteringer"
 
-#: gnobots2/properties.c:410
+#: gnobots2/properties.c:414
 msgid "Number of Free Safe Teleports per Level"
 msgstr "Antal gratis sikre teleporteringer per bane"
 
-#: gnobots2/properties.c:421
+#: gnobots2/properties.c:425
 msgid "Kills Required While Waiting to Get A Safe Teleport"
 msgstr "Drab nødvendige ved venten på at få en sikker teleflytning"
 
-#: gnobots2/properties.c:432
+#: gnobots2/properties.c:436
 msgid "Score Required To Get A Safe Teleport"
 msgstr "Points nødvendige for at få en sikker teleflytning"
 
-#: gnobots2/properties.c:443
+#: gnobots2/properties.c:447
 msgid "Maximum Number of Safe Teleports"
 msgstr "Maksimalt antal sikre teleflytninger"
 
-#: gnobots2/properties.c:454
+#: gnobots2/properties.c:458
 msgid "Moveable Junkheaps"
 msgstr "Flytbare skrotbunker"
 
-#: gnobots2/properties.c:456
+#: gnobots2/properties.c:460
 msgid "Yes"
 msgstr "Ja"
 
-#: gnobots2/properties.c:458
+#: gnobots2/properties.c:462
 msgid "No"
 msgstr "Nej"
 
-#: gnobots2/properties.c:650
+#: gnobots2/properties.c:654
 msgid "classic robots"
 msgstr "klassiske robotter"
 
-#: gnobots2/properties.c:651
+#: gnobots2/properties.c:655
 msgid "robots2"
 msgstr "robotter 2"
 
-#: gnobots2/properties.c:652
+#: gnobots2/properties.c:656
 msgid "robots2 easy"
 msgstr "robotter 2 nem"
 
-#: gnobots2/properties.c:653
+#: gnobots2/properties.c:657
 msgid "robots with safe teleport"
 msgstr "robotter med sikker teleportering"
 
-#: gnobots2/properties.c:654
+#: gnobots2/properties.c:658
 msgid "nightmare"
 msgstr "Mareridt"
 
-#: gnobots2/properties.c:683
+#: gnobots2/properties.c:687
 msgid "robots"
 msgstr "robotter"
 
-#: gnobots2/properties.c:684
+#: gnobots2/properties.c:688
 msgid "cows"
 msgstr "køer"
 
-#: gnobots2/properties.c:685
+#: gnobots2/properties.c:689
 msgid "eggs"
 msgstr "æg"
 
-#: gnobots2/properties.c:686
+#: gnobots2/properties.c:690
 msgid "gnomes"
 msgstr "gnomer"
 
-#: gnobots2/properties.c:687
+#: gnobots2/properties.c:691
 msgid "mice"
 msgstr "mus"
 
-#: gnobots2/properties.c:688
+#: gnobots2/properties.c:692
 msgid "windows"
 msgstr "vinduer"
 
-#: gnobots2/properties.c:756
+#: gnobots2/properties.c:763
 msgid "GNOME Robots Preferences"
 msgstr "Indstillinger for Robotter"
 
-#: gnobots2/properties.c:773
+#: gnobots2/properties.c:780
 msgid "Game Type"
 msgstr "Spiltype"
 
-#: gnobots2/properties.c:798
+#: gnobots2/properties.c:805
 msgid "Property"
 msgstr "Egenskab"
 
-#: gnobots2/properties.c:805
+#: gnobots2/properties.c:812
 msgid "Value"
 msgstr "Værdi"
 
-#: gnobots2/properties.c:871
+#: gnobots2/properties.c:859
+msgid "Prevent some dangerous moves"
+msgstr "Forhindr nogle farlige træk"
+
+#: gnobots2/properties.c:860
+msgid "Prevent accidental moves that result in getting killed."
+msgstr "Forhindr træk som ved et uheld forårsager at man bliver slået ihjel."
+
+#: gnobots2/properties.c:868
+msgid "Prevent all dangerous moves"
+msgstr "Forhindr alle farlige træk"
+
+#: gnobots2/properties.c:869
+msgid "Prevents all moves that result in getting killed."
+msgstr "Forhindr alle træk som forårsager at man bliver slået ihjel."
+
+#: gnobots2/properties.c:877
+msgid "Play sounds for major events"
+msgstr "Afspil lyd ved større hændelser"
+
+#: gnobots2/properties.c:878
+msgid "Play sounds for events like winning a level and dying."
+msgstr ""
+"Afspil lyd ved større hændelser som når et bane gennemføres eller når man "
+"dør."
+
+#: gnobots2/properties.c:886
+msgid "Play a sound when two robots collide"
+msgstr "Afspil en lyd når to robotter støder sammen"
+
+#: gnobots2/properties.c:887
+msgid "Play the most common, and potentially the most annoying, sound."
+msgstr "Afspil den mest almindelige og potentielt mest irriterede lyd."
+
+#: gnobots2/properties.c:890
 msgid "You Cannot Change the Game Type When Playing"
 msgstr "Du kan ikke ændre spiltypen mens du spiller"
 
-#: gnobots2/properties.c:883
+#: gnobots2/properties.c:894
+msgid "Game"
+msgstr "Spil"
+
+#: gnobots2/properties.c:902
 msgid "Graphics Theme"
 msgstr "Grafiktema"
 
-#: gnobots2/properties.c:892
+#: gnobots2/properties.c:911
 msgid "Image theme:"
 msgstr "Billedtema"
 
-#: gnobots2/properties.c:902
-msgid "Background Color:"
+#: gnobots2/properties.c:921
+msgid "Background color:"
 msgstr "Baggrundsfarve:"
 
-#: gnobots2/properties.c:920
+#: gnobots2/properties.c:939
 msgid "Keyboard Controls"
 msgstr "Tastaturkontroller"
 
-#: gnobots2/properties.c:954
+#: gnobots2/properties.c:973
 msgid "Teleport"
 msgstr "Teleport"
 
-#: gnobots2/properties.c:968
+#: gnobots2/properties.c:987
 msgid "Random Teleport"
 msgstr "Tilfældig teleport"
 
-#: gnobots2/properties.c:982
+#: gnobots2/properties.c:1001
 msgid "Wait"
 msgstr "Vent"
 
-#: gnobots2/properties.c:1001
-msgid "Use Standard Robots Keys"
-msgstr "Benyt standardrobottaster"
-
-#: gnobots2/properties.c:1006
-msgid "Use Left Hand Keys"
-msgstr "Benyt venstrehåndstaster"
-
-#: gnobots2/properties.c:1011
+#: gnobots2/properties.c:1020
 msgid "Use the Keypad"
 msgstr "Benyt det numeriske tastatur"
 
-#: gnobots2/properties.c:1016
-msgid "_Keyboard"
-msgstr "_Tastatur"
+#: gnobots2/properties.c:1025
+msgid "Use Left Hand Keys"
+msgstr "Benyt venstrehåndstaster"
+
+#: gnobots2/properties.c:1030
+msgid "Use Original Robots Keys"
+msgstr "Benyt originale robottaster"
+
+#: gnobots2/properties.c:1035
+msgid "Keyboard"
+msgstr "Tastatur"
 
 #: gnobots2/statusbar.c:75
 msgid "Safe Teleports:"
@@ -3266,6 +3424,10 @@ msgstr "Dette er Sten"
 msgid "Game to play"
 msgstr "Spiltitel"
 
+#: gnome-stones/main.c:74
+msgid "FILENAME"
+msgstr "FILNAVN"
+
 #: gnome-stones/main.c:124
 #, c-format
 msgid ""
@@ -3276,70 +3438,70 @@ msgstr ""
 "Kontrollér at Sten er korrekt installeret!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:190 gnome-stones/main.c:980 gnome-stones/main.c:1103
-#: gnome-stones/main.c:1343
+#: gnome-stones/main.c:204 gnome-stones/main.c:990 gnome-stones/main.c:1113
+#: gnome-stones/main.c:1338
 msgid "GNOME Stones"
 msgstr "Sten"
 
-#: gnome-stones/main.c:279 gnome-stones/preferences.c:678
+#: gnome-stones/main.c:286 gnome-stones/preferences.c:678
 msgid "Game title"
 msgstr "Spiltitel"
 
-#: gnome-stones/main.c:280
+#: gnome-stones/main.c:287
 msgid "Start cave"
 msgstr "Startgrotte"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:423 gnome-stones/main.c:1031 mahjongg/mahjongg.c:390
+#: gnome-stones/main.c:430 gnome-stones/main.c:1041 mahjongg/mahjongg.c:848
 msgid "Pause"
 msgstr "Pause"
 
-#: gnome-stones/main.c:675
+#: gnome-stones/main.c:682
 msgid "Congratulations, you win!"
 msgstr "Tillykke, du vandt!"
 
-#: gnome-stones/main.c:863 gtali/gyahtzee.c:130
+#: gnome-stones/main.c:870 gtali/gyahtzee.c:130
 msgid "Game over!"
 msgstr "Spillet er slut!"
 
-#: gnome-stones/main.c:1077
+#: gnome-stones/main.c:1087
 msgid "Sokoban levels:"
 msgstr "Sokobanbaner:"
 
-#: gnome-stones/main.c:1105
+#: gnome-stones/main.c:1115
 msgid "Mine through dirt and collect gems."
 msgstr "Grav gennem skidt og saml juveler."
 
-#: gnome-stones/main.c:1128
+#: gnome-stones/main.c:1138
 msgid "_Restart level"
 msgstr "_Genstart bane"
 
-#: gnome-stones/main.c:1128
+#: gnome-stones/main.c:1138
 msgid "Restart the current level"
 msgstr "Start den aktuelle bane igen"
 
-#: gnome-stones/main.c:1233
+#: gnome-stones/main.c:1243
 msgid "Scanning private object directory..."
 msgstr "Undersøger privat objektmappe..."
 
-#: gnome-stones/main.c:1237
+#: gnome-stones/main.c:1247
 msgid "Scanning public object directory..."
 msgstr "Undersøger offentlig objektmappe..."
 
-#: gnome-stones/main.c:1242
+#: gnome-stones/main.c:1252
 msgid "Filling game widget..."
 msgstr "Udfylder spilområde..."
 
-#: gnome-stones/main.c:1247
+#: gnome-stones/main.c:1257
 msgid "Scanning private game directory..."
 msgstr "Undersøger privat spilmappe..."
 
-#: gnome-stones/main.c:1251
+#: gnome-stones/main.c:1261
 msgid "Scanning public game directory..."
 msgstr "Undersøger offentlig spilmappe..."
 
-#: gnome-stones/main.c:1255
+#: gnome-stones/main.c:1265
 msgid "Restoring preferences..."
 msgstr "Genskaber indstillinger..."
 
@@ -3352,15 +3514,15 @@ msgstr "Du fik et ekstra liv!"
 msgid "Seconds left: %d"
 msgstr "Sekunder tilbage: %d"
 
-#: gnome-stones/preferences.c:460
+#: gnome-stones/preferences.c:461
 msgid "Neither your chosen game nor the default game could be loaded."
 msgstr "Hverken det valgte spil eller standardspillet kunne indlæses."
 
-#: gnome-stones/preferences.c:461
+#: gnome-stones/preferences.c:462
 msgid "Please make sure that GNOME Stones is correctly installed."
 msgstr "Kontrollér at Sten er korrekt installeret."
 
-#: gnome-stones/preferences.c:462
+#: gnome-stones/preferences.c:463
 msgid "You may be able to select a different game from the preferences dialog."
 msgstr "Du kan muligvis vælge et andet spil fra vinduet med indstillinger."
 
@@ -3448,7 +3610,7 @@ msgstr "Begyndergrotter"
 msgid "Fit falling blocks together"
 msgstr "Anbring faldende blokke så de passer sammen"
 
-#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:92
+#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:96
 msgid "Gnometris"
 msgstr "Gnometris"
 
@@ -3535,11 +3697,11 @@ msgstr "BANE"
 msgid "Lines:"
 msgstr "Linjer:"
 
-#: gnometris/tetris.cpp:198
+#: gnometris/tetris.cpp:203
 msgid "Paused"
 msgstr "Pause"
 
-#: gnometris/tetris.cpp:290
+#: gnometris/tetris.cpp:318
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3552,7 +3714,7 @@ msgstr ""
 "\n"
 "Tjek venligst din gnome-games-installation."
 
-#: gnometris/tetris.cpp:306
+#: gnometris/tetris.cpp:333
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3565,60 +3727,65 @@ msgstr ""
 "\n"
 "Kontroller installationen af gnome-games."
 
-#: gnometris/tetris.cpp:619 gnometris/tetris.cpp:620
+#: gnometris/tetris.cpp:634 gnometris/tetris.cpp:635
 msgid "<none>"
 msgstr "<ingen>"
 
-#: gnometris/tetris.cpp:647
+#: gnometris/tetris.cpp:660
 msgid "Gnometris preferences"
 msgstr "Indstillinger til Gnometris"
 
-#: gnometris/tetris.cpp:659
+#: gnometris/tetris.cpp:672
 msgid "Setup"
 msgstr "Opsætning"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:666
+#: gnometris/tetris.cpp:679
 msgid "Number of pre-filled rows:"
 msgstr "Antal foropfyldte rækker:"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:681
+#: gnometris/tetris.cpp:694
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Tæthed af blokke i en foropfyldt række"
 
 #. starting level
-#: gnometris/tetris.cpp:696
+#: gnometris/tetris.cpp:709
 msgid "Starting Level:"
 msgstr "Start i bane:"
 
-#: gnometris/tetris.cpp:713
+#: gnometris/tetris.cpp:726
 msgid "Operation"
 msgstr "Operation"
 
-#: gnometris/tetris.cpp:719
+#: gnometris/tetris.cpp:732
 msgid "Preview next block"
 msgstr "Vis næste blok"
 
-#: gnometris/tetris.cpp:728
+#: gnometris/tetris.cpp:741
 msgid "Use random block colors"
 msgstr "Benyt tilfældige blokfarver"
 
-#: gnometris/tetris.cpp:739
+#: gnometris/tetris.cpp:752
 msgid "Rotate blocks counterclockwise"
 msgstr "Rotér blokke mod uret"
 
+#: gnometris/tetris.cpp:765 same-gnome/same-gnome.c:630
+#: same-gnome/same-gnome.c:683
+msgid "Theme"
+msgstr "Tema"
+
 #. Block pixmap
-#: gnometris/tetris.cpp:759
+#: gnometris/tetris.cpp:772
 msgid "Block image:"
 msgstr "Blokbillede:"
 
 #. background pixmap
-#: gnometris/tetris.cpp:770
+#: gnometris/tetris.cpp:783
 msgid "Background image:"
 msgstr "Baggrundsbillede:"
 
-#: gnometris/tetris.cpp:1124
+#: gnometris/tetris.cpp:1147
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -3626,100 +3793,100 @@ msgstr ""
 "Skrevet til min kone, Matylda.\n"
 "Send kommentarer og fejlrapporter til: janusz.gorycki@intel.com"
 
-#: gnomine/gnomine.c:84 gnomine/gnomine.c:564
+#: gnomine/gnomine.c:87 gnomine/gnomine.c:572
 msgid "Small"
 msgstr "Lille"
 
-#: gnomine/gnomine.c:85 gnomine/gnomine.c:574
+#: gnomine/gnomine.c:88 gnomine/gnomine.c:582
 msgid "Medium"
 msgstr "Mellem"
 
-#: gnomine/gnomine.c:86 gnomine/gnomine.c:584
+#: gnomine/gnomine.c:89 gnomine/gnomine.c:592
 msgid "Large"
 msgstr "Stor"
 
-#: gnomine/gnomine.c:87 gnomine/gnomine.c:594
+#: gnomine/gnomine.c:90 gnomine/gnomine.c:602
 msgid "Custom"
 msgstr "Selvvalgt"
 
-#: gnomine/gnomine.c:176 gnomine/gnomine.c:411 gnomine/gnomine.c:838
+#: gnomine/gnomine.c:182 gnomine/gnomine.c:419 gnomine/gnomine.c:846
 msgid "GNOME Mines"
 msgstr "Minestryger"
 
-#: gnomine/gnomine.c:243
+#: gnomine/gnomine.c:249
 msgid "Click a square, any square"
 msgstr "Klik på en firkant, enhver firkant"
 
-#: gnomine/gnomine.c:245
+#: gnomine/gnomine.c:251
 msgid "Maybe they're all mines ..."
 msgstr "Måske er de alle miner..."
 
-#: gnomine/gnomine.c:377
+#: gnomine/gnomine.c:385
 msgid "Faces:"
 msgstr "Ansigter:"
 
 # engelsk tekst meningsløs i oversættelse (eftersom programmet kaldes 'Minestryger')
-#: gnomine/gnomine.c:414
+#: gnomine/gnomine.c:422
 msgid "A Minesweeper clone."
 msgstr "Kortlæg minerne i et dødsensfarligt minefelt."
 
-#: gnomine/gnomine.c:559
+#: gnomine/gnomine.c:567
 msgid "Field size"
 msgstr "Feltstørrelse"
 
-#: gnomine/gnomine.c:607
+#: gnomine/gnomine.c:615
 msgid "Custom size"
 msgstr "Anden størrelse"
 
-#: gnomine/gnomine.c:614
+#: gnomine/gnomine.c:622
 msgid "Number of mines:"
 msgstr "Antal miner:"
 
-#: gnomine/gnomine.c:626
+#: gnomine/gnomine.c:634
 msgid "Horizontal:"
 msgstr "Vandret:"
 
-#: gnomine/gnomine.c:638
+#: gnomine/gnomine.c:646
 msgid "Vertical:"
 msgstr "Lodret:"
 
-#: gnomine/gnomine.c:655
+#: gnomine/gnomine.c:663
 msgid "Use \"I'm not sure\" flags."
 msgstr "Benyt \"Jeg er ikke sikker\"-flag."
 
-#: gnomine/gnomine.c:664
+#: gnomine/gnomine.c:672
 msgid "GNOME Mines Preferences"
 msgstr "Indstillinger for Minestryger"
 
-#: gnomine/gnomine.c:763
+#: gnomine/gnomine.c:771
 msgid "Width of grid"
 msgstr "Gitterbredde"
 
-#: gnomine/gnomine.c:764
+#: gnomine/gnomine.c:772
 msgid "Height of grid"
 msgstr "Gitterhøjde"
 
-#: gnomine/gnomine.c:765
+#: gnomine/gnomine.c:773
 msgid "Number of mines"
 msgstr "Antal miner"
 
-#: gnomine/gnomine.c:765 gtali/setup.c:85 gtali/setup.c:86
+#: gnomine/gnomine.c:773 gtali/setup.c:85 gtali/setup.c:86
 msgid "NUMBER"
 msgstr "ANTAL"
 
-#: gnomine/gnomine.c:766
+#: gnomine/gnomine.c:774
 msgid "Size of the board (1=small, 3=large)"
 msgstr "Størrelsen af brætter (1 = lille, 3 = stor)"
 
-#: gnomine/gnomine.c:767
+#: gnomine/gnomine.c:775
 msgid "X location of window"
 msgstr "Vandret placering af vindue"
 
-#: gnomine/gnomine.c:768
+#: gnomine/gnomine.c:776
 msgid "Y location of window"
 msgstr "Lodret placering af vindue"
 
-#: gnomine/gnomine.c:925
+#: gnomine/gnomine.c:933
 msgid "Flags:"
 msgstr "Flag:"
 
@@ -3831,24 +3998,24 @@ msgstr "Størrelse af bræt (2-6)"
 msgid "SIZE"
 msgstr "STØRRELSE"
 
-#: gnotravex/gnotravex.c:713
+#: gnotravex/gnotravex.c:739
 msgid "Puzzle solved! Well done!"
 msgstr "Puslespillet er løst! Godt gået!"
 
-#: gnotravex/gnotravex.c:716
+#: gnotravex/gnotravex.c:742
 msgid "Puzzle solved!"
 msgstr "Puslespillet er løst!"
 
-#: gnotravex/gnotravex.c:1113
+#: gnotravex/gnotravex.c:1139
 msgid "Game paused"
 msgstr "Spil på pause"
 
-#: gnotravex/gnotravex.c:1235
+#: gnotravex/gnotravex.c:1261
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "Spiller på %d×%d-bræt"
 
-#: gnotravex/gnotravex.c:1482
+#: gnotravex/gnotravex.c:1508
 msgid "A Tetravex clone."
 msgstr "Tetravex-tænkespil."
 
@@ -3949,16 +4116,16 @@ msgstr "Træk:"
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Kunne ikke finde billedfilen '%s'\n"
 
-#: gnotski/gnotski.c:1021
+#: gnotski/gnotski.c:1020
 msgid "Welcome to GNOME Klotski"
 msgstr "Velkommen til Klotski"
 
-#: gnotski/gnotski.c:1045
+#: gnotski/gnotski.c:1044
 #, c-format
 msgid "Playing level %s"
 msgstr "Start i bane %s"
 
-#: gnotski/gnotski.c:1159
+#: gnotski/gnotski.c:1158
 msgid "A Klotski clone"
 msgstr "En Klotski-klon"
 
@@ -3997,7 +4164,7 @@ msgstr ""
 "spilleren kan følge hvad der sker."
 
 #. --- Button ---
-#: gtali/gtali.schemas.in.h:2 gtali/setup.c:289
+#: gtali/gtali.schemas.in.h:2 gtali/setup.c:288
 msgid "Delay between rolls"
 msgstr "Pause mellem kast"
 
@@ -4040,6 +4207,10 @@ msgstr "%s! - det er din tur."
 #: gtali/gyahtzee.c:316 gtali/gyahtzee.c:339 gtali/yahtzee.c:184
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "Du har kun tre kast! Vælg en scoreboks."
+
+#: gtali/gyahtzee.c:380
+msgid "GNOME version (1998):"
+msgstr "Gnome-udgave (1998):"
 
 #: gtali/gyahtzee.c:382
 msgid "Curses version (1992):"
@@ -4090,24 +4261,24 @@ msgstr "Antal menneskemodstandere"
 msgid "Current game will complete with original number of players."
 msgstr "Nuværende spil vil fortsætte med det originale antal spillere."
 
-#: gtali/setup.c:232
+#: gtali/setup.c:231
 msgid "GTali Preferences"
 msgstr "Indstillinger for Yatzy"
 
-#: gtali/setup.c:256
+#: gtali/setup.c:255
 msgid "Human Players"
 msgstr "Menneskespillere"
 
-#: gtali/setup.c:281
+#: gtali/setup.c:280
 msgid "Computer Opponents"
 msgstr "Computermodstandere"
 
-#: gtali/setup.c:299
+#: gtali/setup.c:298
 msgid "Number of opponents:"
 msgstr "Antal modstandere:"
 
 #. --- PLAYER NAMES FRAME ----
-#: gtali/setup.c:314
+#: gtali/setup.c:313
 msgid "Player Names"
 msgstr "Spillernavne"
 
@@ -4294,19 +4465,23 @@ msgstr "Tilkobling mislykkedes"
 msgid "No game server defined"
 msgstr "Ingen spilserver angivet"
 
-#: iagno/properties.c:526
+#: iagno/properties.c:525
 msgid "Iagno Preferences"
 msgstr "Indstillinger for Iagno"
 
-#: iagno/properties.c:547
+#: iagno/properties.c:546
 msgid "Use quick moves"
 msgstr "Benyt hurtige træk"
 
-#: iagno/properties.c:695
+#: iagno/properties.c:657
+msgid "Animation"
+msgstr "Animering"
+
+#: iagno/properties.c:694
 msgid "Stagger flips"
 msgstr "Dominovendinger"
 
-#: iagno/properties.c:703
+#: iagno/properties.c:702
 msgid "Show grid"
 msgstr "Vis gitter"
 
@@ -4327,47 +4502,75 @@ msgstr ""
 "Kontrollér din GConf-installering, specifikt om skemaerne er korrekt "
 "installeret."
 
-#: mahjongg/mahjongg.c:324
+#: mahjongg/mahjongg.c:714
+msgid "Easy"
+msgstr "Let"
+
+#: mahjongg/mahjongg.c:715
+msgid "Difficult"
+msgstr "Svært"
+
+#: mahjongg/mahjongg.c:716
+msgid "Confounding Cross"
+msgstr "Sammenblandet kors"
+
+#: mahjongg/mahjongg.c:717
+msgid "Pyramid's Walls"
+msgstr "Pyramidens vægge"
+
+#: mahjongg/mahjongg.c:718
+msgid "Tic-Tac-Toe"
+msgstr "Tre på stribe"
+
+#: mahjongg/mahjongg.c:719
+msgid "Cloud"
+msgstr "Sky"
+
+#: mahjongg/mahjongg.c:720
+msgid "Red Dragon"
+msgstr "Rød drage"
+
+#: mahjongg/mahjongg.c:721
+msgid "Four Bridges"
+msgstr "Fire broer"
+
+#: mahjongg/mahjongg.c:784
 msgid "New game with _seed..."
 msgstr "Nyt spil med _startværdi..."
 
-#: mahjongg/mahjongg.c:325
+#: mahjongg/mahjongg.c:785
 msgid "Start a new game giving a seed number..."
 msgstr "Start et nyt spil med en ny startværdi..."
 
-#: mahjongg/mahjongg.c:340
+#: mahjongg/mahjongg.c:800
 msgid "Shu_ffle tiles"
 msgstr "_Bland brikker"
 
-#: mahjongg/mahjongg.c:340 mahjongg/mahjongg.c:406
+#: mahjongg/mahjongg.c:800 mahjongg/mahjongg.c:864
 msgid "Shuffle tiles"
 msgstr "Bland brikker"
 
-#: mahjongg/mahjongg.c:380
-msgid "New game"
-msgstr "Nyt spil"
-
-#: mahjongg/mahjongg.c:384
+#: mahjongg/mahjongg.c:842
 msgid "Restart game"
 msgstr "Genstart spil"
 
-#: mahjongg/mahjongg.c:390
+#: mahjongg/mahjongg.c:848
 msgid "Pause game"
 msgstr "Pause spil"
 
-#: mahjongg/mahjongg.c:396
+#: mahjongg/mahjongg.c:854
 msgid "Undo previous move"
 msgstr "Fortryd sidste træk"
 
-#: mahjongg/mahjongg.c:402
+#: mahjongg/mahjongg.c:860
 msgid "Get a hint"
 msgstr "Få et råd"
 
-#: mahjongg/mahjongg.c:406
+#: mahjongg/mahjongg.c:864 mahjongg/mahjongg.c:1366
 msgid "Shuffle"
 msgstr "Bland"
 
-#: mahjongg/mahjongg.c:617
+#: mahjongg/mahjongg.c:1075
 msgid ""
 "This new mapset will take effect when you start a new game, or when Mahjongg "
 "is restarted."
@@ -4375,87 +4578,87 @@ msgstr ""
 "Dette nye kortsæt træder i kraft når du starter et nyt spil eller Mahjongg "
 "genstartes."
 
-#: mahjongg/mahjongg.c:870 mahjongg/mahjongg.c:876
+#: mahjongg/mahjongg.c:1327 mahjongg/mahjongg.c:1332
 msgid "These tiles don't match."
 msgstr "Disse brikker er ikke ens"
 
-#: mahjongg/mahjongg.c:908
+#: mahjongg/mahjongg.c:1364
 msgid "There are no more moves."
 msgstr "Der er ikke flere mulige træk tilbage."
 
-#: mahjongg/mahjongg.c:966
+#: mahjongg/mahjongg.c:1430
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: mahjongg/mahjongg.c:985
+#: mahjongg/mahjongg.c:1449
 msgid "Tiles"
 msgstr "Brikker"
 
-#: mahjongg/mahjongg.c:993
+#: mahjongg/mahjongg.c:1457
 msgid "Tile Set"
 msgstr "Brikker"
 
-#: mahjongg/mahjongg.c:1006
+#: mahjongg/mahjongg.c:1470
 msgid "Maps"
 msgstr "Kort"
 
-#: mahjongg/mahjongg.c:1014
+#: mahjongg/mahjongg.c:1478
 msgid "Select Map"
 msgstr "Vælg kort"
 
-#: mahjongg/mahjongg.c:1027
+#: mahjongg/mahjongg.c:1491
 msgid "Colors"
 msgstr "Farver"
 
-#: mahjongg/mahjongg.c:1035
+#: mahjongg/mahjongg.c:1499
 msgid "Background Color"
 msgstr "Baggrundsfarve"
 
-#: mahjongg/mahjongg.c:1049
+#: mahjongg/mahjongg.c:1513
 msgid "Warnings"
 msgstr "Advarsler"
 
-#: mahjongg/mahjongg.c:1055
+#: mahjongg/mahjongg.c:1519
 msgid "Warn when tiles don't match"
 msgstr "Advar når brikkerne ikke er ens"
 
-#: mahjongg/mahjongg.c:1162
+#: mahjongg/mahjongg.c:1626
 msgid "Tiles:"
 msgstr "Brikker:"
 
-#: mahjongg/mahjongg.c:1191
+#: mahjongg/mahjongg.c:1655
 msgid "GNOME Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:1194
+#: mahjongg/mahjongg.c:1658
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "Gnome-udgave af Østens brikfjerningsspil, Mahjongg."
 
-#: mahjongg/mahjongg.c:1218
+#: mahjongg/mahjongg.c:1682
 msgid "... Game paused ..."
 msgstr "... Spil sat på pause ..."
 
-#: mahjongg/mahjongg.c:1409
+#: mahjongg/mahjongg.c:1873
 msgid "Game Number:"
 msgstr "Spilnummer:"
 
-#: mahjongg/mahjongg.c:1487 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1951 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:1610
+#: mahjongg/mahjongg.c:2072
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Desværre, jeg kan ikke finde en brugbar konfiguration."
 
-#: mahjongg/mahjongg.c:1673
+#: mahjongg/mahjongg.c:2139
 msgid "Tiles Left:"
 msgstr "Brikker tilbage:"
 
-#: mahjongg/mahjongg.c:1682
+#: mahjongg/mahjongg.c:2148
 msgid "Moves Left:"
 msgstr "Træk tilbage:"
 
-#: mahjongg/mahjongg.c:1747
+#: mahjongg/mahjongg.c:2213
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "Velkommen til Mahjongg!"
 
@@ -4479,22 +4682,22 @@ msgstr ""
 "Den foresprugte bredde af hovedvinduet i punkter. Bemærk at kontrollerne som "
 "vinduet indeholder, er mindst 320 punkter bred."
 
-#: same-gnome/same-gnome.c:204
+#: same-gnome/same-gnome.c:205
 #, c-format
 msgid "%d stone selected"
 msgid_plural "%d stones selected"
 msgstr[0] "%d sten valgt"
 msgstr[1] "%d sten valgt"
 
-#: same-gnome/same-gnome.c:209
+#: same-gnome/same-gnome.c:210
 msgid "No stones selected"
 msgstr "Ingen sten valgt"
 
-#: same-gnome/same-gnome.c:287
+#: same-gnome/same-gnome.c:288
 msgid "The Same GNOME"
 msgstr "Samspil"
 
-#: same-gnome/same-gnome.c:440
+#: same-gnome/same-gnome.c:441
 #, c-format
 msgid ""
 "Could not find the theme:\n"
@@ -4520,20 +4723,20 @@ msgstr ""
 "\n"
 "Kontrollér installationen af Samspil."
 
-#: same-gnome/same-gnome.c:621
+#: same-gnome/same-gnome.c:614
 msgid "Same GNOME Preferences"
 msgstr "Indstillinger for Samspil"
 
-#: same-gnome/same-gnome.c:734 same-gnome/same-gnome.c:933
+#: same-gnome/same-gnome.c:727 same-gnome/same-gnome.c:926
 #: same-gnome/same-gnome.desktop.in.h:2
 msgid "Same GNOME"
 msgstr "Samspil"
 
-#: same-gnome/same-gnome.c:737
+#: same-gnome/same-gnome.c:730
 msgid "Original idea from KDE's same game program."
 msgstr "Oprindelig idé fra KDE's Samspil."
 
-#: same-gnome/same-gnome.c:943
+#: same-gnome/same-gnome.c:936
 msgid "Welcome to Same GNOME!"
 msgstr "Velkommen til Samspil!"
 
@@ -4541,14 +4744,171 @@ msgstr "Velkommen til Samspil!"
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Fjern grupper af bolde for at rydde skærmen"
 
+#~ msgid "AisleRiot Preferences"
+#~ msgstr "Indstillinger for Kabale"
+
+#~ msgid "Loading images..."
+#~ msgstr "Henter billeder..."
+
+#~ msgid "Dealing game..."
+#~ msgstr "Blander..."
+
+#~ msgid "Initializing scheme..."
+#~ msgstr "Klargører scheme..."
+
+#~ msgid "Draw grid"
+#~ msgstr "Tegn gitter"
+
+#~ msgid "Name of the theme file to use."
+#~ msgstr "Navn på temafil der skal benyttes."
+
+#~ msgid "One corresponds to speaker beeps, two to audio files."
+#~ msgstr "1 svarer til højtalerbip, 2 til lydfiler."
+
+#~ msgid "Sound type"
+#~ msgstr "Lydtype"
+
+#~ msgid "Theme file"
+#~ msgstr "Temafil"
+
+#~ msgid "Whether or not to display grid lines on the game board."
+#~ msgstr "Om gitterlinjer skal tegnes."
+
+#~ msgid "Who starts"
+#~ msgstr "Hvem starter"
+
+#~ msgid ""
+#~ "Zero is Player One, one is Player Two and two corresponds to players "
+#~ "taking turns."
+#~ msgstr ""
+#~ "0 er spille et, 1 er spiller to og 2 svarer til at spillerne skifter."
+
+#~ msgid ""
+#~ "Zero is human; one through four correspond to the level of the computer "
+#~ "player."
+#~ msgstr "0 er menneske; 1-4 svarer til computerspillerens sværhedsgrad."
+
+#~ msgid "Gnect Scores"
+#~ msgstr "Stilling for fire på stribe"
+
+#~ msgid "Draw _grid"
+#~ msgstr "Tegn _gitter"
+
+#~ msgid "Show or hide the grid"
+#~ msgstr "Vis eller skjul gitter"
+
+#~ msgid "Initial window placement"
+#~ msgstr "Begyndelsesplacering af vindue"
+
+#~ msgid "GEOMETRY"
+#~ msgstr "GEOMETRI"
+
+#~ msgid "Random number seed"
+#~ msgstr "Frø til tilfældighedsgenerering"
+
+#~ msgid "SEED"
+#~ msgstr "FRØ"
+
+#~ msgid "Initial theme file (excluding path)"
+#~ msgstr "Begyndelsefil for tema (uden sti)"
+
+#~ msgid "Debugging level (4 for random seed)"
+#~ msgstr "Fejlsøgningsniveau (4 for tilfældighedsfrø)"
+
+#~ msgid "%s: no themes available\n"
+#~ msgstr "%s: ingen temaer tilgængelige\n"
+
+#~ msgid "Player 2: %s"
+#~ msgstr "Spiller 2: %s"
+
+#~ msgid ""
+#~ "Applying this change to Player Selection\n"
+#~ "will end the current game"
+#~ msgstr ""
+#~ "Udførelse af denne ændring til udvalg af spillere\n"
+#~ "vil afslutte det nuværende spil"
+
+#~ msgid "Error loading theme"
+#~ msgstr "Fejl ved indlæsning af tema"
+
+#~ msgid "Non-Velena / Simple"
+#~ msgstr "Ikke-Velena/simpel"
+
+#~ msgid "Velena / Weak"
+#~ msgstr "Velena/svag"
+
+#~ msgid "Velena / Medium"
+#~ msgstr "Velena/mellem"
+
+#~ msgid "Velena / Strong"
+#~ msgstr "Velena/stærk"
+
+#~ msgid "Always Player 1"
+#~ msgstr "Altid spiller 1"
+
+#~ msgid "Always Player 2"
+#~ msgstr "Altid spiller 1"
+
+#~ msgid "Take turns"
+#~ msgstr "Foretag træk"
+
+#~ msgid "_Player Selection"
+#~ msgstr "_Spillervalg"
+
+#~ msgid "Who starts?"
+#~ msgstr "Hvem starter?"
+
+#~ msgid "Appearance and Behaviour"
+#~ msgstr "Udseende og opførsel"
+
+#~ msgid "Theme Selection:"
+#~ msgstr "Temavalg:"
+
+#~ msgid "Sound Type"
+#~ msgstr "Lydtype"
+
+#~ msgid "Speaker beep"
+#~ msgstr "Højtalerbip"
+
+#~ msgid "GNOME sound"
+#~ msgstr "Gnome-lyd"
+
+#~ msgid "This can be set up using the GNOME Control Center"
+#~ msgstr "Dette kan indstilles ved hjælp af Gnomes kontrolcenter"
+
+#~ msgid "Keyboard Control"
+#~ msgstr "Tastaturkontrol"
+
+# RETMIG: rigtigt?
+#~ msgid "Drop counter"
+#~ msgstr "Slip mønt"
+
+#~ msgid "Black"
+#~ msgstr "Sort"
+
+#~ msgid "White"
+#~ msgstr "Hvid"
+
+#~ msgid "Grey"
+#~ msgstr "Grå"
+
+#~ msgid "Pink"
+#~ msgstr "Pink"
+
+#~ msgid "Violet"
+#~ msgstr "Violet"
+
+#~ msgid "Brown"
+#~ msgstr "brun"
+
+#~ msgid "Background Color:"
+#~ msgstr "Baggrundsfarve:"
+
 #~ msgid "Game Status"
 #~ msgstr "Spilstatus:"
 
 #~ msgid "Players"
 #~ msgstr "Spillere"
-
-#~ msgid "Appearance"
-#~ msgstr "Udseende"
 
 #~ msgid "Toggle sound"
 #~ msgstr "Aktivér/deaktivér lyd"
