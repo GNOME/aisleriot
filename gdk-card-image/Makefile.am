@@ -1,8 +1,8 @@
 cardbackdir = $(datadir)/pixmaps/cards/backs/
-cardback_DATA = beige.png face.png rods.png grey.png
+cardback_DATA = beige.png face.png rods.png grey.png tux.png antique-red.png dondorf-flower.png
 
 cardhonordir = $(datadir)/pixmaps/cards/honors/
-cardhonor_DATA = bonded.png xpat.png
+cardhonor_DATA = bonded.png xpat.png dondorf.png
 
 cardjokerdir = $(datadir)/pixmaps/cards/jokers/
 cardjoker_DATA = gnome.png
