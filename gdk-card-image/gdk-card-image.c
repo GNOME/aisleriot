@@ -115,6 +115,19 @@ GdkCardDeckOptionData option_data[] = {
   {N_("Suit font (large):"),  &dir[DIR_SUIT_LARGE],  "knuth-21x25.png"}
 };
 
+typedef struct _GdkCardDeckStyle {
+  gchar * name;
+  gchar * components[OPT_NUM];
+} GdkCardDeckStyle;
+
+GList * gdk_card_deck_style_list = NULL;
+GdkCardDeckStyle * selected_style = NULL;
+
+/* This is used by the XML parser to point to the next string to 
+ * be filled in by the parser code. This is a horrible hack. */
+gchar ** current_string = NULL;
+
+
 /* The deck of cards itself */
 struct _GdkCardDeck
 {
@@ -821,14 +834,6 @@ gdk_card_deck_mask (GdkCardDeck* deck)
   return deck->mask;
 }
 
-static void 
-changed(GtkCardDeckOptionsEdit* w)
-{
-  gtk_signal_emit(GTK_OBJECT(w), 
-		  gtk_card_deck_options_edit_signals[CHANGED],
-		  NULL);
-}
-
 void          
 gtk_card_deck_options_edit_set (GtkCardDeckOptionsEdit* w,
 				GdkCardDeckOptions deck_options)
@@ -838,75 +843,254 @@ gtk_card_deck_options_edit_set (GtkCardDeckOptionsEdit* w,
 
   resolve_options (option_data, deck_options, index);
 
-  for (i = 0; i < OPT_NUM; i++)
-    gtk_option_menu_set_history (w->menu[i], index[i]);
+  /* FIXME: Find some way to set the style menu selection from this. */
 }
 
 GdkCardDeckOptions 
 gtk_card_deck_options_edit_get (GtkCardDeckOptionsEdit* w)
 {
-  guint i,j;
-  gchar** name = g_new0(gchar*, OPT_NUM);
   GdkCardDeckOptions deck_options;
 
-  for(i = 0; i < OPT_NUM; i++) {
-    j = gtk_option_menu_get_history (GTK_OPTION_MENU (w->menu[i]));
-    g_free (name[i]); 
-    name[i] = g_strdup ( g_basename (option_data[i].dir->file[j].name));
-  }
+  if (selected_style == NULL)
+    return NULL;
+
+  g_print ("%s %s %s %s %s %s %s\n", selected_style->name, 
+	   selected_style->components[0], selected_style->components[1],
+	   selected_style->components[2], selected_style->components[3],
+	   selected_style->components[4], selected_style->components[5]);
 
   deck_options = gnome_config_assemble_vector (OPT_NUM, 
-					       (const gchar* const*) name);
-  g_free (name);
+					       (const gchar* const*) selected_style->components); 
+
+  g_print ("(%s)\n", deck_options);
+
   return deck_options;
 }
+
+/* This should be moved elsewhere, but it is here for development and
+ * testing. */
+/* This function takes a glob and a set of paths and finds all files in the 
+ * path matching the glob. Only regular files are returned. */
+/* The arguments are the filespec followed by a null-terminated list 
+ * of paths. */
+/* The caller must free the list. */
+static GList * gnome_games_get_file_list (gchar * glob, ...)
+{
+  GPatternSpec * filespec = g_pattern_spec_new (glob);
+  gchar * pathelement;
+  va_list path;
+  GList * list = NULL;
+  GDir * dir;
+  const gchar * filename;
+  gchar * fullname;
+
+  va_start (path, glob);
+  
+  while ((pathelement = va_arg (path, gchar *)) != NULL) {
+    dir = g_dir_open (pathelement, 0, NULL);
+    if (dir != NULL) {
+      while ((filename = g_dir_read_name (dir)) != NULL) {
+	if (g_pattern_match_string (filespec, filename)) {
+	  fullname = g_strdup_printf ("%s/%s", pathelement, filename);
+	  if (g_file_test (fullname, G_FILE_TEST_IS_REGULAR)) {
+	    list = g_list_append (list, fullname);
+	  } else g_free (fullname);
+	}
+      }
+      g_dir_close (dir);
+    }
+  }
+
+  va_end (path);
+
+  g_pattern_spec_free (filespec);
+
+  return list;
+}
+
+static void
+parse_card_style_file_start (GMarkupParseContext *context,
+			     const gchar *element,
+			     const gchar **attribute_names,
+			     const gchar **attribute_values,
+			     gpointer data,
+			     GError **error)
+{
+  GdkCardDeckStyle * style;
+  int i;
+  gchar * element_names[] = {"back", "honor", "joker", "rankfont",
+			     "smallfont", "mediumfont", "largefont" };
+
+  if (g_utf8_collate ("cardstyle", element) == 0) {
+    style = g_malloc0 (sizeof (GdkCardDeckStyle));
+    gdk_card_deck_style_list = g_list_prepend (gdk_card_deck_style_list, style);
+    return;
+  }
+
+  if ((gdk_card_deck_style_list == NULL) ||
+      (gdk_card_deck_style_list->data == NULL))
+    return;
+
+  style = (GdkCardDeckStyle *)(gdk_card_deck_style_list->data);
+
+  if (g_utf8_collate ("name", element) == 0) {
+    current_string = &(style->name);
+    return;
+  }
+
+  for (i = 0; i<OPT_NUM; i++) {
+    if (g_utf8_collate (element_names[i], element) == 0) {
+      current_string = &(style->components[i]);
+      g_print ("%d, %s, %s\n", i, element_names[i], element);
+      return;
+    }
+  }
+}
+
+static void
+parse_card_style_file_stop (GMarkupParseContext * context,
+			    const gchar * element,
+			    gpointer data,
+			    GError ** error)
+{
+  /* Ignore text that is not enclosed in the right tags. */
+  current_string = NULL;
+}
+
+static void
+parse_card_style_file_text (GMarkupParseContext * context,
+			    const gchar * text,
+			    gsize length,
+			    gpointer data,
+			    GError ** error)
+{
+  if (current_string == NULL)
+    return;
+
+  *current_string = g_malloc (length + 1);
+  g_memmove (*current_string, text, length);
+  *((*current_string)+length) = '\0';
+}
+
+static void
+parse_card_style_file (gchar * filename)
+{
+  GMarkupParser parser = { parse_card_style_file_start, 
+			   parse_card_style_file_stop, 
+			   parse_card_style_file_text, 
+			   NULL, NULL };
+  GMarkupParseContext * parse_context;
+  gchar * file;
+  gint length;
+  gboolean ok;
+
+  ok = g_file_get_contents (filename, &file, &length, NULL);
+  if (!ok)
+    return;
+
+  parse_context = g_markup_parse_context_new (&parser, 0, NULL, NULL);
+  g_markup_parse_context_parse (parse_context, file, length, NULL);
+  g_markup_parse_context_free (parse_context);
+
+  g_free (file);
+}
+
+static void
+gdk_card_deck_get_card_styles (void)
+{
+  GList * filelist = NULL;
+  GList * last;
+  gchar* dir_name;
+
+  dir_name = gnome_program_locate_file (NULL,
+					GNOME_FILE_DOMAIN_APP_PIXMAP,  
+					"cards", TRUE, NULL);
+
+  filelist = gnome_games_get_file_list ("*.xml", dir_name, NULL);
+  
+  while (filelist) {
+    last = filelist;
+    parse_card_style_file (filelist->data);
+    filelist = g_list_next (filelist);
+    g_free (last->data);
+    g_list_free (last);
+  }
+}
+
+static GtkListStore *
+gtk_card_deck_options_edit_create_list (void)
+{
+  GtkListStore * list;
+  GList * stylelist;
+  GtkTreeIter iter;
+  GdkCardDeckStyle * style;
+
+  list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+
+  stylelist = gdk_card_deck_style_list;
+
+  while (stylelist) {
+    style = (GdkCardDeckStyle *) stylelist->data;
+    gtk_list_store_append (list, &iter);
+    gtk_list_store_set (list, &iter, 0, style->name, 
+			1, style, -1);
+    stylelist = g_list_next (stylelist);
+  }
+
+  return list;
+}
+
+static void
+gtk_card_deck_options_edit_changed (GtkWidget * w, GObject * o)
+{
+  GtkTreeIter iter;
+  GtkTreeModel * tree;
+
+  gtk_tree_selection_get_selected (GTK_TREE_SELECTION (w), &tree, &iter);
+  gtk_tree_model_get (tree , &iter, 1, &selected_style, -1);
+
+  g_signal_emit(G_OBJECT(o), 
+		gtk_card_deck_options_edit_signals[CHANGED],
+		0);
+} 
 
 GtkWidget* 
 gtk_card_deck_options_edit_new (void)
 {
   GtkCardDeckOptionsEdit* w;
+  GtkListStore * list;
+  GtkTreeViewColumn * column;
+  GtkTreeSelection * select;
+  GtkWidget * listview;
   GtkAlignment * a;
-  GtkWidget *table;
-  guint i, j;
   
+
   w = gtk_type_new(gtk_card_deck_options_edit_get_type());
   a = GTK_ALIGNMENT (w);
 
   gtk_alignment_set (a, 0.5, 0.5, 1.0, 1.0);
+
+  gdk_card_deck_get_card_styles ();
+
+  list = gtk_card_deck_options_edit_create_list ();
+
+  listview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list));
   
-  w->menu = g_new(GtkOptionMenu*, OPT_NUM);
+  column = gtk_tree_view_column_new_with_attributes (NULL,
+						     gtk_cell_renderer_text_new (),
+						     "text", 0,
+						     NULL);
+  gtk_tree_view_append_column (GTK_TREE_VIEW (listview),
+			       GTK_TREE_VIEW_COLUMN (column));
 
-  table = gtk_table_new(OPT_NUM, 2, FALSE);
-  gtk_container_border_width (GTK_CONTAINER (table), GNOME_PAD_SMALL);
+  select = gtk_tree_view_get_selection (GTK_TREE_VIEW (listview));
+  gtk_tree_selection_set_mode (select, GTK_SELECTION_BROWSE);
 
-  gtk_container_add (GTK_CONTAINER (w), table);
-  
-  for (i = 0; i < OPT_NUM; i++) {
-    GtkWidget* label = gtk_label_new(_(option_data[i].description));
-    GtkWidget* menu = gtk_menu_new();
+  g_signal_connect (G_OBJECT (select), "changed",
+		    G_CALLBACK (gtk_card_deck_options_edit_changed), 
+		    G_OBJECT(w));
 
-    w->menu[i] = GTK_OPTION_MENU (gtk_option_menu_new ());
-
-    gtk_table_attach(GTK_TABLE(table), label, 0, 1, i, i+1, 
-		     0, 0, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
-    gtk_table_attach(GTK_TABLE(table), GTK_WIDGET (w->menu[i]), 1, 2, i, i+1, 
-		     GTK_EXPAND|GTK_FILL, GTK_EXPAND|GTK_FILL, 
-		     GNOME_PAD_SMALL, GNOME_PAD_SMALL);
-    gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
-
-    for(j = 0; j < option_data[i].dir->nfiles; j++) {
-      gchar* filename = option_data[i].dir->file[j].name;
-      GtkWidget *menu_item = 
-	gtk_menu_item_new_with_label (g_basename (filename));
-      gtk_signal_connect_object (GTK_OBJECT(menu_item), "activate", 
-				 GTK_SIGNAL_FUNC (changed), GTK_OBJECT(w));
-      gtk_menu_shell_append (GTK_MENU_SHELL(menu), menu_item);
-    }
-    gtk_widget_show_all (menu);
-
-    gtk_option_menu_set_menu (GTK_OPTION_MENU (w->menu[i]), menu);
-  }
-  gtk_card_deck_options_edit_set (w, NULL);
+  gtk_container_add (GTK_CONTAINER (w), listview);
 
   return GTK_WIDGET (w);
 }

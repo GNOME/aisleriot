@@ -27,10 +27,13 @@ cardsuitlarge_DATA = \
 cardslotdir = $(datadir)/pixmaps/cards/slots
 cardslot_DATA = hand.png plain.png
 
+cardmiscdir = $(datadir)/pixmaps/cards
+cardmisc_DATA = card-styles.xml
+
 INCLUDES =  $(GNOME_GAMES_CFLAGS) @UCB_CFLAGS@
 EXTRA_DIST = $(cardback_DATA) $(cardhonor_DATA) $(cardjoker_DATA) \
 	$(cardrank_DATA) $(cardsuitsmall_DATA) $(cardsuitlarge_DATA)\
-	$(cardsuitmedium_DATA) $(cardslot_DATA)
+	$(cardsuitmedium_DATA) $(cardslot_DATA) $(cardmisc_DATA)
 
 lib_LTLIBRARIES = libgdkcardimage.la
 libgdkcardimage_la_SOURCES = gdk-card-image.c
