@@ -91,9 +91,6 @@ void games_file_list_transform_basename (GamesFileList * filelist)
     (gchar *) current->data = shortname;
     current = g_list_next (current);
   }
-
-  filelist->list = g_list_sort (filelist->list, (GCompareFunc) g_utf8_collate);
-
 }
 
 GSList * image_suffix_list = NULL;
