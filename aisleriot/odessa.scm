@@ -135,7 +135,7 @@
   (cond ((= f-slot 11)
 	 #f)
 	((= f-slot 1)
-	 (move-to-foundations? card 8))
+	 (move-to-foundations? slot 8))
 	((and (not (empty-slot? f-slot))
 	      (eq? (get-suit (get-top-card slot))
 		   (get-suit (get-top-card f-slot)))
@@ -143,7 +143,11 @@
 		 (+ 1 (get-value (get-top-card f-slot)))))
 	 (begin
 	   (add-to-score! 1)
-	   (deal-cards slot f-slot)))
+	   (deal-cards slot (list f-slot))
+	   (if (and (not (empty-slot? slot))
+		    (not (is-visible? (get-top-card slot))))
+	       (flip-top-card slot))))
+
 	(#t
 	 (move-to-foundations? slot (+ 1 f-slot)))))
 
@@ -161,7 +165,9 @@
 		  ((empty-slot? 9)
 		   (deal-cards slot '(9)))
 		  (#t
-		   (deal-cards slot '(10)))))
+		   (deal-cards slot '(10))))
+	    (if (not (empty-slot? slot))
+		(make-visible-top-card slot)))
 	  (move-to-foundations? slot 0))
       #f))
 
