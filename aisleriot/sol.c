@@ -126,7 +126,7 @@ void make_title ()
 {
   char *title;
 
-  title = g_strdup_printf ("AisleRiot:  %s  ( %d )", game_name, seed);
+  title = g_strdup_printf (_("AisleRiot: %s (%d)"), game_name, seed);
 
   gtk_window_set_title (GTK_WINDOW (app), title); 
 

@@ -71,16 +71,19 @@ void help_about_callback ()
 {
   GdkPixbuf *pixbuf = NULL;
   const gchar *authors[] = {
-	  N_("Main program:  Jonathan Blandford (jrb@redhat.com)"),
-	  N_("                      Felix Bellaby (felix@pooh.u-net.com)"),
-	  N_("                      Rosanna Yuen (zana@webwynk.net)"),
-	  N_("Card Games:    Jonathan Blandford (jrb@redhat.com)"),
-	  N_("                      W. Borgert (debacle@debian.org)"),
-	  N_("                      Robert Brady (rwb197@ecs.soton.ac.uk)"),
-	  N_("                      Nick Lamb (njl195@zepler.org.uk)"),
-	  N_("                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"),
-          N_("                      Matthew Wilcox (matthew@wil.cx)"),
-	  N_("                      Rosanna Yuen (zana@webwynk.net)"),
+	  N_("Main game:"),
+	  "Jonathan Blandford (jrb@redhat.com)",
+	  "Felix Bellaby (felix@pooh.u-net.com)",
+	  "Rosanna Yuen (zana@webwynk.net)",
+	  "",
+	  N_("Card games:"),
+	  "Jonathan Blandford (jrb@redhat.com)",
+	  "W. Borgert (debacle@debian.org)",
+	  "Robert Brady (rwb197@ecs.soton.ac.uk)",
+	  "Nick Lamb (njl195@zepler.org.uk)",
+	  "Changwoo Ryu (cwryu@adam.kaist.ac.kr)",
+	  "Matthew Wilcox (matthew@wil.cx)",
+	  "Rosanna Yuen (zana@webwynk.net)",
 	  NULL
   };
 
@@ -111,9 +114,10 @@ void help_about_callback ()
   }
   about = gnome_about_new ( _("AisleRiot"), VERSION,
 			    /* copyright notice */
-			    _("(C) 1998 Jonathan Blandford (jrb@redhat.com)"),
-			    _("AisleRiot provides a rule-based "
-			    "solitaire card engine that allows many different games to be played"),
+			    "Copyright \xc2\xa9 1998-2003 Jonathan Blandford",
+			    _("AisleRiot provides a rule-based solitaire card "
+			      "engine that allows many different games to be "
+			      "played."),
 			    (const char **)authors,
 			    (const char **)documenters,
 			    strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
