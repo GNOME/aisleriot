@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-01 16:33+0900\n"
-"PO-Revision-Date: 2003-10-31 01:33+0900\n"
-"Last-Translator: KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
+"POT-Creation-Date: 2003-12-21 01:13+0900\n"
+"PO-Revision-Date: 2003-12-21 01:09+0900\n"
+"Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -236,6 +236,16 @@ msgstr "空の組札のスロット"
 msgid "empty space on tableau"
 msgstr "空の絵札の場所"
 
+#: aisleriot/card.c:124
+msgid ""
+"AisleRiot could not load its deck images.\n"
+"\n"
+"AisleRiot will now exit."
+msgstr ""
+"AisleRiot はデッキの画像を読み込めませんでした。\n"
+"\n"
+"AisleRiot は強制終了します。"
+
 #: aisleriot/chessboard.scm.h:6
 msgid "Move a card to the Foundation"
 msgstr "カードを組み札に置きなさい"
@@ -311,7 +321,7 @@ msgstr "ゲームオーバーです"
 msgid "New Game"
 msgstr "新規ゲーム"
 
-#: aisleriot/dialog.c:135 mahjongg/mahjongg.c:1393
+#: aisleriot/dialog.c:135 mahjongg/mahjongg.c:1402
 msgid "Select Game"
 msgstr "ゲームの選択"
 
@@ -367,8 +377,8 @@ msgid "This game is unable to provide a hint."
 msgstr "このゲームはヒントを提供できません。"
 
 #: aisleriot/dialog.c:349
-msgid "AisleRiot Preferences"
-msgstr "AisleRiot の設定"
+msgid "AisleRiot Cards"
+msgstr "AisleRiot カード"
 
 #: aisleriot/dialog.c:354
 msgid "Card Style"
@@ -545,8 +555,8 @@ msgstr ""
 "カードを、最も自然なレイアウトに合うような順番に配置することを目標にして下さ"
 "い。"
 
-#: aisleriot/menu.c:72 blackjack/src/menu.cpp:73 gnome-stones/main.c:1074
-#: gnomine/gnomine.c:374 mahjongg/mahjongg.c:1154
+#: aisleriot/menu.c:72 gnome-stones/main.c:1074 gnomine/gnomine.c:374
+#: mahjongg/mahjongg.c:1163
 msgid "Main game:"
 msgstr "メイン・ゲーム:"
 
@@ -555,11 +565,11 @@ msgid "Card games:"
 msgstr "カード・ゲーム:"
 
 #. Translator credits
-#: aisleriot/menu.c:92 gataxx/gataxx.c:398 glines/glines.c:811
-#: gnect/src/dialog.c:63 gnibbles/main.c:167 gnobots2/menu.c:194
-#: gnome-stones/main.c:1085 gnometris/tetris.cpp:1105 gnomine/gnomine.c:387
-#: gnotravex/gnotravex.c:1460 gnotski/gnotski.c:1137 gtali/gyahtzee.c:372
-#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1171 same-gnome/same-gnome.c:713
+#: aisleriot/menu.c:92 gataxx/gataxx.c:398 glines/glines.c:801
+#: gnect/src/dialog.c:63 gnibbles/main.c:181 gnobots2/menu.c:194
+#: gnome-stones/main.c:1085 gnometris/tetris.cpp:1111 gnomine/gnomine.c:387
+#: gnotravex/gnotravex.c:1460 gnotski/gnotski.c:1137 gtali/gyahtzee.c:390
+#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1180 same-gnome/same-gnome.c:713
 msgid "translator_credits"
 msgstr ""
 "Yukihiro Nakai <Nakai@technologist.com>\n"
@@ -589,67 +599,75 @@ msgstr "オプション(_O)..."
 msgid "Modify the options for this game"
 msgstr "このゲームのオプションを設定します"
 
-#: aisleriot/menu.c:188 blackjack/src/menu.cpp:148 gnect/src/gui.c:76
+#: aisleriot/menu.c:188 blackjack/src/menu.cpp:146 gnect/src/gui.c:76
 #: mahjongg/mahjongg.c:355
 msgid "_Toolbar"
 msgstr "ツールバー(_T)"
 
-#: aisleriot/menu.c:188 blackjack/src/menu.cpp:149 gnect/src/gui.c:76
+#: aisleriot/menu.c:188 blackjack/src/menu.cpp:147 gnect/src/gui.c:76
 #: mahjongg/mahjongg.c:356
 msgid "Show or hide the toolbar"
 msgstr "ツールバーの表示/非表示を切り替えます"
 
-#: aisleriot/menu.c:210
+#: aisleriot/menu.c:191
+msgid "_Cards..."
+msgstr "カード(_C)..."
+
+#: aisleriot/menu.c:191
+msgid "Change the appearance of the cards"
+msgstr "カードの外観を変更します"
+
+#: aisleriot/menu.c:211
 msgid "_Select..."
 msgstr "選択(_S)..."
 
-#: aisleriot/menu.c:210 aisleriot/menu.c:255
+#: aisleriot/menu.c:211 aisleriot/menu.c:256
 msgid "Select a different game"
 msgstr "別のゲームを選択します"
 
-#: aisleriot/menu.c:249 blackjack/src/menu.cpp:196 gnect/src/gui.c:99
+#: aisleriot/menu.c:250 blackjack/src/menu.cpp:194 gnect/src/gui.c:99
 #: mahjongg/mahjongg.c:380
 msgid "New"
 msgstr "新規"
 
-#: aisleriot/menu.c:249 gnect/src/gui.c:99
+#: aisleriot/menu.c:250 gnect/src/gui.c:99
 msgid "Start a new game"
 msgstr "新しいゲームを開始します"
 
-#: aisleriot/menu.c:252 blackjack/src/menu.cpp:199 mahjongg/mahjongg.c:384
+#: aisleriot/menu.c:253 blackjack/src/menu.cpp:197 mahjongg/mahjongg.c:384
 msgid "Restart"
 msgstr "最初から"
 
-#: aisleriot/menu.c:252
+#: aisleriot/menu.c:253
 msgid "Restart the game"
 msgstr "ゲームをやり直します"
 
-#: aisleriot/menu.c:255
+#: aisleriot/menu.c:256
 msgid "Select"
 msgstr "選択"
 
-#: aisleriot/menu.c:260 gnect/src/gui.c:100 mahjongg/mahjongg.c:396
+#: aisleriot/menu.c:261 gnect/src/gui.c:100 mahjongg/mahjongg.c:396
 msgid "Undo"
 msgstr "戻す"
 
-#: aisleriot/menu.c:260 gnect/src/gui.c:100
+#: aisleriot/menu.c:261 gnect/src/gui.c:100
 msgid "Undo the last move"
 msgstr "直前の操作を取り消します"
 
-#: aisleriot/menu.c:263 mahjongg/mahjongg.c:400
+#: aisleriot/menu.c:264 mahjongg/mahjongg.c:400
 msgid "Redo"
 msgstr "やり直す"
 
-#: aisleriot/menu.c:263
+#: aisleriot/menu.c:264
 msgid "Redo the undone move"
 msgstr "取り消した操作を再び実行します"
 
-#: aisleriot/menu.c:266 blackjack/src/menu.cpp:203 gnect/src/gui.c:101
+#: aisleriot/menu.c:267 blackjack/src/menu.cpp:201 gnect/src/gui.c:101
 #: mahjongg/mahjongg.c:402
 msgid "Hint"
 msgstr "ヒント"
 
-#: aisleriot/menu.c:266 gnect/src/gui.c:101
+#: aisleriot/menu.c:267 gnect/src/gui.c:101
 msgid "Get a hint for your next move"
 msgstr "次のアクションのためのヒントを得ます"
 
@@ -725,13 +743,13 @@ msgid "Dealing game..."
 msgstr "札の配布中..."
 
 #: aisleriot/sol.c:434 gnobots2/statusbar.c:65 gnome-stones/status.c:71
-#: gnometris/scoreframe.cpp:58 gnomine/gnomine.c:380
+#: gnometris/scoreframe.cpp:57 gnomine/gnomine.c:380
 #: same-gnome/same-gnome.c:963
 msgid "Score:"
 msgstr "スコア:"
 
-#: aisleriot/sol.c:438 gnomine/gnomine.c:931 gnotravex/gnotravex.c:993
-#: mahjongg/mahjongg.c:1691
+#: aisleriot/sol.c:438 gnomine/gnomine.c:933 gnotravex/gnotravex.c:993
+#: mahjongg/mahjongg.c:1710
 msgid "Time:"
 msgstr "タイム:"
 
@@ -1402,8 +1420,7 @@ msgid "the appropriate Foundation pile"
 msgstr "適切な組札の山"
 
 #: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:235
-#: blackjack/src/menu.cpp:103 blackjack/src/player.cpp:456
-#: blackjack/src/splash.cpp:96
+#: blackjack/src/menu.cpp:102 blackjack/src/splash.cpp:96
 msgid "Blackjack"
 msgstr "ブラックジャック"
 
@@ -1484,7 +1501,7 @@ msgstr "賭け金のチップをおくか、新しい手札を配るためにカ
 msgid "Blackjack Preferences"
 msgstr "ブラックジャックの設定"
 
-#: blackjack/src/dialog.cpp:235 gnibbles/preferences.c:356
+#: blackjack/src/dialog.cpp:235 gnibbles/preferences.c:327
 #: gnobots2/properties.c:875 gnome-stones/preferences.c:740
 msgid "_Game"
 msgstr "ゲーム(_G)"
@@ -1541,7 +1558,7 @@ msgstr "Resplit"
 msgid "Resplit Aces"
 msgstr "Resplit Aces"
 
-#: blackjack/src/dialog.cpp:339 blackjack/src/player.cpp:319
+#: blackjack/src/dialog.cpp:339 blackjack/src/player.cpp:321
 msgid "Surrender"
 msgstr "サレンダー"
 
@@ -1593,40 +1610,40 @@ msgstr "ブラックジャックは指定したファイルを読み込めませ
 msgid "Please check your Blackjack installation"
 msgstr "ブラックジャックのインストールを確認して下さい"
 
-#: blackjack/src/hand.cpp:84
+#: blackjack/src/hand.cpp:85
 msgid "The best option is to stand"
 msgstr "スタンドすることが最善のオプションです"
 
-#: blackjack/src/hand.cpp:86
+#: blackjack/src/hand.cpp:87
 msgid "The best option is to hit"
 msgstr "ヒットすることが最善のオプションです"
 
-#: blackjack/src/hand.cpp:88
+#: blackjack/src/hand.cpp:89
 msgid "The best option is to double down"
 msgstr "ダブル・ダウンすることが最善のオプションです"
 
-#: blackjack/src/hand.cpp:90
+#: blackjack/src/hand.cpp:91
 msgid "The best option is to split"
 msgstr "スプリットすることが最善のオプションです"
 
-#: blackjack/src/hand.cpp:92
+#: blackjack/src/hand.cpp:93
 msgid "The best option is to surrender"
 msgstr "サレンダーすることが最善のオプションです"
 
-#: blackjack/src/menu.cpp:108
+#: blackjack/src/menu.cpp:106
 msgid "Blackjack provides a casino-style blackjack card game."
 msgstr ""
 "ブラックジャックはカジノ・スタイルのブラックジャック・カード・ゲームです。"
 
-#: blackjack/src/menu.cpp:196
+#: blackjack/src/menu.cpp:194
 msgid "Deal a new game"
 msgstr "新しいゲームを開始します"
 
-#: blackjack/src/menu.cpp:199
+#: blackjack/src/menu.cpp:197
 msgid "Start this game over"
 msgstr "ゲームを最初からやりなおします"
 
-#: blackjack/src/menu.cpp:203
+#: blackjack/src/menu.cpp:201
 msgid "Suggest a move"
 msgstr "次の一手についてヒントを提供します"
 
@@ -1634,7 +1651,7 @@ msgstr "次の一手についてヒントを提供します"
 msgid "Computing basic strategy..."
 msgstr "基本戦略の思考中..."
 
-#: blackjack/src/player.cpp:187 blackjack/src/player.cpp:448
+#: blackjack/src/player.cpp:187 blackjack/src/player.cpp:455
 msgid "Bust"
 msgstr "バースト"
 
@@ -1658,21 +1675,29 @@ msgstr "プッシュ"
 msgid "Lose"
 msgstr "ルーズ"
 
-#: blackjack/src/player.cpp:270
+#: blackjack/src/player.cpp:266
+msgid "Player expected values"
+msgstr "プレイヤーが予想した値"
+
+#: blackjack/src/player.cpp:272
 msgid "Stand"
 msgstr "スタンド"
 
-#: blackjack/src/player.cpp:279
+#: blackjack/src/player.cpp:281
 msgid "Hit"
 msgstr "ヒット"
 
-#: blackjack/src/player.cpp:291
+#: blackjack/src/player.cpp:293
 msgid "Double"
 msgstr "ダブル"
 
-#: blackjack/src/player.cpp:306
+#: blackjack/src/player.cpp:308
 msgid "Split"
 msgstr "スプリット"
+
+#: blackjack/src/player.cpp:454
+msgid "Dealer hand probabilities"
+msgstr "確率を表示する"
 
 #: gataxx/ataxx.c:150 gataxx/gataxx.c:306 gataxx/gataxx.c:736
 #: iagno/gnothello.c:288 iagno/gnothello.c:699 iagno/othello.c:220
@@ -1751,7 +1776,7 @@ msgstr "Reversi ライクなゲームでボードを支配しながら競い合�
 msgid "Animate"
 msgstr "アニメーション"
 
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:523 iagno/properties.c:711
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:523 iagno/properties.c:710
 msgid "Flip final results"
 msgstr "最終結果を石で表示する"
 
@@ -1810,7 +1835,7 @@ msgid "Gataxx Preferences"
 msgstr "Gataxx の設定"
 
 #. Players tab
-#: gataxx/properties.c:364 iagno/properties.c:533
+#: gataxx/properties.c:364 iagno/properties.c:532
 msgid "_Players"
 msgstr "プレイヤー(_P)"
 
@@ -1818,87 +1843,87 @@ msgstr "プレイヤー(_P)"
 msgid "Quick Moves (cut computer delay in half)"
 msgstr "素早い移動を有効にする (コンピュータの思考時間を半分にします)"
 
-#: gataxx/properties.c:384 gnect/src/theme.c:386 iagno/properties.c:556
+#: gataxx/properties.c:384 gnect/src/theme.c:386 iagno/properties.c:555
 msgid "Dark"
 msgstr "黒"
 
 #: gataxx/properties.c:389 gataxx/properties.c:437 gnect/src/prefs.c:737
-#: gtali/yahtzee.c:63 iagno/properties.c:562 iagno/properties.c:609
+#: gtali/yahtzee.c:63 iagno/properties.c:561 iagno/properties.c:608
 msgid "Human"
 msgstr "人間"
 
-#: gataxx/properties.c:399 gataxx/properties.c:445 iagno/properties.c:572
-#: iagno/properties.c:619
+#: gataxx/properties.c:399 gataxx/properties.c:445 iagno/properties.c:571
+#: iagno/properties.c:618
 msgid "Level one"
 msgstr "レベル１"
 
-#: gataxx/properties.c:408 gataxx/properties.c:453 iagno/properties.c:582
-#: iagno/properties.c:629
+#: gataxx/properties.c:408 gataxx/properties.c:453 iagno/properties.c:581
+#: iagno/properties.c:628
 msgid "Level two"
 msgstr "レベル２"
 
-#: gataxx/properties.c:417 gataxx/properties.c:461 iagno/properties.c:592
-#: iagno/properties.c:640
+#: gataxx/properties.c:417 gataxx/properties.c:461 iagno/properties.c:591
+#: iagno/properties.c:639
 msgid "Level three"
 msgstr "レベル３"
 
-#: gataxx/properties.c:432 gnect/src/theme.c:383 iagno/properties.c:603
+#: gataxx/properties.c:432 gnect/src/theme.c:383 iagno/properties.c:602
 msgid "Light"
 msgstr "白"
 
 #. Appearance tab
-#: gataxx/properties.c:477 gnibbles/preferences.c:505
-#: gnobots2/properties.c:913 iagno/properties.c:653
+#: gataxx/properties.c:477 gnibbles/preferences.c:476
+#: gnobots2/properties.c:913 iagno/properties.c:652
 msgid "_Appearance"
 msgstr "外観(_A)"
 
-#: gataxx/properties.c:487 iagno/properties.c:662
+#: gataxx/properties.c:487 iagno/properties.c:661
 msgid "None"
 msgstr "無し"
 
-#: gataxx/properties.c:497 iagno/properties.c:671
+#: gataxx/properties.c:497 iagno/properties.c:670
 msgid "Partial"
 msgstr "部分的に"
 
-#: gataxx/properties.c:506 iagno/properties.c:680
+#: gataxx/properties.c:506 iagno/properties.c:679
 msgid "Complete"
 msgstr "全て"
 
 #. Options
-#: gataxx/properties.c:518 gnibbles/preferences.c:416
-#: gnibbles/preferences.c:673 gnobots2/properties.c:836 iagno/properties.c:692
+#: gataxx/properties.c:518 gnibbles/preferences.c:387
+#: gnibbles/preferences.c:644 gnobots2/properties.c:836 iagno/properties.c:691
 msgid "Options"
 msgstr "オプション"
 
-#: gataxx/properties.c:532 iagno/properties.c:721
+#: gataxx/properties.c:532 iagno/properties.c:720
 msgid "Tile set:"
 msgstr "絵柄:"
 
-#: gdk-card-image/gdk-card-image.c:109
+#: gdk-card-image/gdk-card-image.c:113
 msgid "Card back:"
 msgstr "カードの模様:"
 
-#: gdk-card-image/gdk-card-image.c:110
+#: gdk-card-image/gdk-card-image.c:114
 msgid "Honor pictures:"
 msgstr "絵札の絵柄:"
 
-#: gdk-card-image/gdk-card-image.c:111
+#: gdk-card-image/gdk-card-image.c:115
 msgid "Joker icon:"
 msgstr "ジョーカーのアイコン:"
 
-#: gdk-card-image/gdk-card-image.c:112
+#: gdk-card-image/gdk-card-image.c:116
 msgid "Rank font:"
 msgstr "数字のフォント:"
 
-#: gdk-card-image/gdk-card-image.c:113
+#: gdk-card-image/gdk-card-image.c:117
 msgid "Suit font (small):"
 msgstr "マークのフォント(小):"
 
-#: gdk-card-image/gdk-card-image.c:114
+#: gdk-card-image/gdk-card-image.c:118
 msgid "Suit font (medium):"
 msgstr "マークのフォント(中):"
 
-#: gdk-card-image/gdk-card-image.c:115
+#: gdk-card-image/gdk-card-image.c:119
 msgid "Suit font (large):"
 msgstr "マークのフォント(大):"
 
@@ -1915,65 +1940,65 @@ msgstr ""
 "\n"
 "Gline のインストールを確認して下さい。"
 
-#: glines/glines.c:192
+#: glines/glines.c:182
 msgid "Match five balls of the same color in a row to score!"
 msgstr "列にある 5 個の石を同じ色にすると得点が入ります！"
 
-#: glines/glines.c:234 glines/glines.c:830
+#: glines/glines.c:224 glines/glines.c:820
 msgid "Glines"
 msgstr "Glines"
 
-#: glines/glines.c:263
+#: glines/glines.c:253
 msgid "Game Over!"
 msgstr "ゲームオーバー！"
 
 #. Can't move there!
-#: glines/glines.c:425
+#: glines/glines.c:415
 msgid "Can't move there!"
 msgstr "そこに移動する事は出来ません！"
 
-#: glines/glines.c:833
+#: glines/glines.c:823
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "一世を風靡したカラーライン・ゲームの GNOME 版"
 
-#: glines/glines.c:999
+#: glines/glines.c:959
 msgid "Glines Preferences"
 msgstr "Glines の設定"
 
-#: glines/glines.c:1011
+#: glines/glines.c:971
 msgid "Themes"
 msgstr "テーマ"
 
-#: glines/glines.c:1020
+#: glines/glines.c:980
 msgid "Ball image"
 msgstr "ボールの画像"
 
-#: glines/glines.c:1031 glines/glines.schemas.in.h:1
+#: glines/glines.c:990 glines/glines.schemas.in.h:1
 #: gnobots2/gnobots2.schemas.in.h:1
 msgid "Background color"
 msgstr "背景色"
 
-#: glines/glines.c:1045
+#: glines/glines.c:1004
 msgid "General"
 msgstr "全般"
 
-#: glines/glines.c:1053
+#: glines/glines.c:1012
 msgid "Use fast moves"
 msgstr "素早く移動する"
 
-#: glines/glines.c:1374 glines/glines.desktop.in.h:1
+#: glines/glines.c:1333 glines/glines.desktop.in.h:1
 msgid "Lines"
 msgstr "Lines"
 
-#: glines/glines.c:1386
+#: glines/glines.c:1345
 msgid "Welcome to Glines!"
 msgstr "Glines へようこそ！"
 
-#: glines/glines.c:1397
+#: glines/glines.c:1356
 msgid "Next Balls"
 msgstr "次のボール"
 
-#: glines/glines.c:1413
+#: glines/glines.c:1372
 msgid "Score"
 msgstr "スコア"
 
@@ -2326,7 +2351,7 @@ msgstr "誰から開始する？"
 msgid "Appearance and Behaviour"
 msgstr "外観と動作"
 
-#: gnect/src/prefs.c:870 gnometris/tetris.cpp:754 same-gnome/same-gnome.c:636
+#: gnect/src/prefs.c:870 gnometris/tetris.cpp:753 same-gnome/same-gnome.c:636
 #: same-gnome/same-gnome.c:689
 msgid "Theme"
 msgstr "テーマ:"
@@ -2336,7 +2361,7 @@ msgid "Theme Selection:"
 msgstr "テーマの選択:"
 
 #. animation
-#: gnect/src/prefs.c:892 iagno/properties.c:658
+#: gnect/src/prefs.c:892 iagno/properties.c:657
 msgid "Animation"
 msgstr "アニメーション"
 
@@ -2386,19 +2411,19 @@ msgstr "白色"
 msgid "Grey"
 msgstr "灰色"
 
-#: gnect/src/theme.c:398 gnibbles/preferences.c:694
+#: gnect/src/theme.c:398 gnibbles/preferences.c:665
 msgid "Yellow"
 msgstr "黄色"
 
-#: gnect/src/theme.c:401 gnibbles/preferences.c:691
+#: gnect/src/theme.c:401 gnibbles/preferences.c:662
 msgid "Red"
 msgstr "赤色"
 
-#: gnect/src/theme.c:404 gnibbles/preferences.c:693
+#: gnect/src/theme.c:404 gnibbles/preferences.c:664
 msgid "Blue"
 msgstr "青色"
 
-#: gnect/src/theme.c:407 gnibbles/preferences.c:692
+#: gnect/src/theme.c:407 gnibbles/preferences.c:663
 msgid "Green"
 msgstr "緑色"
 
@@ -2406,7 +2431,7 @@ msgstr "緑色"
 msgid "Orange"
 msgstr "オレンジ色"
 
-#: gnect/src/theme.c:413 gnibbles/preferences.c:696
+#: gnect/src/theme.c:413 gnibbles/preferences.c:667
 msgid "Purple"
 msgstr "紫色"
 
@@ -2477,7 +2502,7 @@ msgstr "いも虫の色"
 msgid "Color to use for worm."
 msgstr "いも虫の色です。"
 
-#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:434
+#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:405
 msgid "Enable fake bonuses"
 msgstr "偽物のボーナスを有効にする"
 
@@ -2485,7 +2510,7 @@ msgstr "偽物のボーナスを有効にする"
 msgid "Enable fake bonuses."
 msgstr "偽物のボーナスを出します。"
 
-#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:445
+#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:416
 #: gnobots2/properties.c:858
 msgid "Enable sounds"
 msgstr "サウンドを有効にする"
@@ -2550,7 +2575,7 @@ msgstr "プレイヤーの人数"
 msgid "Number of players."
 msgstr "プレイする人の数です。"
 
-#: gnibbles/gnibbles.schemas.in.h:21 gnibbles/preferences.c:423
+#: gnibbles/gnibbles.schemas.in.h:21 gnibbles/preferences.c:394
 msgid "Play levels in random order"
 msgstr "プレイするレベルをランダムに切り替える"
 
@@ -2566,7 +2591,7 @@ msgstr "ゲーム盤のサイズ"
 msgid "Size of game tiles."
 msgstr "プレイするゲーム盤の大きさです。"
 
-#: gnibbles/gnibbles.schemas.in.h:25 gnibbles/preferences.c:680
+#: gnibbles/gnibbles.schemas.in.h:25 gnibbles/preferences.c:651
 msgid "Use relative movement"
 msgstr "相対移動にする"
 
@@ -2590,11 +2615,11 @@ msgstr "ボーナスを食べた"
 msgid "Extra Life"
 msgstr "ライフが追加された"
 
-#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:212
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:211
 msgid "Game Over"
 msgstr "ゲームオーバー"
 
-#: gnibbles/gnibbles.soundlist.in.h:6 gnibbles/main.c:187
+#: gnibbles/gnibbles.soundlist.in.h:6 gnibbles/main.c:201
 msgid "Gnibbles"
 msgstr "Gnibbles"
 
@@ -2610,103 +2635,103 @@ msgstr "いも虫が反転した"
 msgid "Worm Teleport"
 msgstr "いも虫がテレポートした"
 
-#: gnibbles/main.c:190
+#: gnibbles/main.c:204
 msgid "A worm game for GNOME."
 msgstr "GNOME 番のいも虫ゲームです。"
 
-#: gnibbles/preferences.c:347
+#: gnibbles/preferences.c:318
 msgid "Gnibbles Preferences"
 msgstr "Gnibbles の設定"
 
-#: gnibbles/preferences.c:364
+#: gnibbles/preferences.c:335
 msgid "Speed"
 msgstr "スピード"
 
-#: gnibbles/preferences.c:374
+#: gnibbles/preferences.c:345
 msgid "Nibbles newbie"
 msgstr "Nibbles の初心者向け"
 
-#: gnibbles/preferences.c:384
+#: gnibbles/preferences.c:355
 msgid "My second day"
 msgstr "遊び初めて二日目"
 
-#: gnibbles/preferences.c:394
+#: gnibbles/preferences.c:365
 msgid "Not too shabby"
 msgstr "ちょっと自慢できます"
 
-#: gnibbles/preferences.c:405
+#: gnibbles/preferences.c:376
 msgid "Finger-twitching good"
 msgstr "指の動きは最高です"
 
-#: gnibbles/preferences.c:458
+#: gnibbles/preferences.c:429
 msgid "Starting level:"
 msgstr "開始レベル:"
 
-#: gnibbles/preferences.c:485 gtali/setup.c:267
+#: gnibbles/preferences.c:456 gtali/setup.c:267
 msgid "Number of players:"
 msgstr "プレイヤーの人数:"
 
-#: gnibbles/preferences.c:510
+#: gnibbles/preferences.c:481
 msgid "Board size"
 msgstr "盤面の大きさ"
 
-#: gnibbles/preferences.c:515
+#: gnibbles/preferences.c:486
 msgid "Tiny  (184 x 132)"
 msgstr "極小 (184 x 132)"
 
-#: gnibbles/preferences.c:525
+#: gnibbles/preferences.c:496
 msgid "Small  (368 x 264)"
 msgstr "小さい (368 x 264)"
 
-#: gnibbles/preferences.c:534
+#: gnibbles/preferences.c:505
 msgid "Medium  (460 x 330)"
 msgstr "中ぐらい (460 x 330)"
 
-#: gnibbles/preferences.c:543
+#: gnibbles/preferences.c:514
 msgid "Large  (736 x 528)"
 msgstr "大きい (736 x 528)"
 
-#: gnibbles/preferences.c:552
+#: gnibbles/preferences.c:523
 msgid "Extra large  (920 x 660)"
 msgstr "極大 (920 x 660)"
 
-#: gnibbles/preferences.c:561
+#: gnibbles/preferences.c:532
 msgid "Huge  (1840 x 1320)"
 msgstr "巨大 (1840 x 1320)"
 
-#: gnibbles/preferences.c:577
+#: gnibbles/preferences.c:548
 msgid "Worm"
 msgstr "いも虫"
 
-#: gnibbles/preferences.c:586
+#: gnibbles/preferences.c:557
 msgid "Keyboard controls"
 msgstr "キーボード操作"
 
-#: gnibbles/preferences.c:597
+#: gnibbles/preferences.c:568
 msgid "Up"
 msgstr "上"
 
-#: gnibbles/preferences.c:617
+#: gnibbles/preferences.c:588
 msgid "Down"
 msgstr "下"
 
-#: gnibbles/preferences.c:637
+#: gnibbles/preferences.c:608
 msgid "Left"
 msgstr "左"
 
-#: gnibbles/preferences.c:656
+#: gnibbles/preferences.c:627
 msgid "Right"
 msgstr "右"
 
-#: gnibbles/preferences.c:686
+#: gnibbles/preferences.c:657
 msgid "Worm color:"
 msgstr "いも虫の色:"
 
-#: gnibbles/preferences.c:695
+#: gnibbles/preferences.c:666
 msgid "Cyan"
 msgstr "シアン"
 
-#: gnibbles/preferences.c:697
+#: gnibbles/preferences.c:668
 msgid "Gray"
 msgstr "灰色"
 
@@ -2914,6 +2939,7 @@ msgid "Maximum Number of Robots"
 msgstr "ロボットの最大数"
 
 #: gnobots2/properties.c:285 gnobots2/properties.c:301
+#, c-format
 msgid "Fill Screen"
 msgstr "フルスクリーン"
 
@@ -3101,7 +3127,7 @@ msgstr "キーボード(_K)"
 msgid "Safe Teleports:"
 msgstr "セーフ・テレポート数:"
 
-#: gnobots2/statusbar.c:85 gnometris/scoreframe.cpp:66
+#: gnobots2/statusbar.c:85 gnometris/scoreframe.cpp:78
 msgid "Level:"
 msgstr "レベル:"
 
@@ -3414,7 +3440,7 @@ msgstr "初心者向けの洞窟"
 msgid "Fit falling blocks together"
 msgstr "落ちてくるブロックを共に合わせて消し去って下さい"
 
-#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:92
+#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:93
 msgid "Gnometris"
 msgstr "GNOMEトリス"
 
@@ -3496,19 +3522,15 @@ msgstr "開始レベル (1-10)"
 msgid "LEVEL"
 msgstr "レベル"
 
-#: gnometris/scoreframe.cpp:55
-msgid "Game Status"
-msgstr "ステータス"
-
-#: gnometris/scoreframe.cpp:62
+#: gnometris/scoreframe.cpp:67
 msgid "Lines:"
 msgstr "ライン:"
 
-#: gnometris/tetris.cpp:200
+#: gnometris/tetris.cpp:199
 msgid "Paused"
 msgstr "一時停止"
 
-#: gnometris/tetris.cpp:292
+#: gnometris/tetris.cpp:291
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3521,7 +3543,7 @@ msgstr ""
 "\n"
 "gnome-games のインストールを確認して下さい。"
 
-#: gnometris/tetris.cpp:308
+#: gnometris/tetris.cpp:307
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3534,60 +3556,60 @@ msgstr ""
 "\n"
 "gnome-games のインストールを確認して下さい。"
 
-#: gnometris/tetris.cpp:621 gnometris/tetris.cpp:622
+#: gnometris/tetris.cpp:620 gnometris/tetris.cpp:621
 msgid "<none>"
 msgstr "<なし>"
 
-#: gnometris/tetris.cpp:649
+#: gnometris/tetris.cpp:648
 msgid "Gnometris preferences"
 msgstr "GNOME トリスの設定"
 
-#: gnometris/tetris.cpp:661
+#: gnometris/tetris.cpp:660
 msgid "Setup"
 msgstr "事前設定"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:668
+#: gnometris/tetris.cpp:667
 msgid "Number of pre-filled rows:"
 msgstr "最初から埋められたブロックの高さ:"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:683
+#: gnometris/tetris.cpp:682
 msgid "Density of blocks in a pre-filled row:"
 msgstr "最初から埋められたブロックの密度:"
 
 #. starting level
-#: gnometris/tetris.cpp:698
+#: gnometris/tetris.cpp:697
 msgid "Starting Level:"
 msgstr "開始レベル:"
 
-#: gnometris/tetris.cpp:715
+#: gnometris/tetris.cpp:714
 msgid "Operation"
 msgstr "操作"
 
-#: gnometris/tetris.cpp:721
+#: gnometris/tetris.cpp:720
 msgid "Preview next block"
 msgstr "次のブロックを表示する"
 
-#: gnometris/tetris.cpp:730
+#: gnometris/tetris.cpp:729
 msgid "Use random block colors"
 msgstr "ブロックの色をランダムにする"
 
-#: gnometris/tetris.cpp:741
+#: gnometris/tetris.cpp:740
 msgid "Rotate blocks counterclockwise"
 msgstr "半時計周りに回転させる"
 
 #. Block pixmap
-#: gnometris/tetris.cpp:761
+#: gnometris/tetris.cpp:760
 msgid "Block image:"
 msgstr "ブロックの画像:"
 
 #. background pixmap
-#: gnometris/tetris.cpp:772
+#: gnometris/tetris.cpp:771
 msgid "Background image:"
 msgstr "背景の画像:"
 
-#: gnometris/tetris.cpp:1128
+#: gnometris/tetris.cpp:1134
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -3611,7 +3633,7 @@ msgstr "大きい"
 msgid "Custom"
 msgstr "カスタム"
 
-#: gnomine/gnomine.c:176 gnomine/gnomine.c:411 gnomine/gnomine.c:839
+#: gnomine/gnomine.c:176 gnomine/gnomine.c:411 gnomine/gnomine.c:838
 msgid "GNOME Mines"
 msgstr "GNOME マインスィーパ"
 
@@ -3687,7 +3709,7 @@ msgstr "ウィンドウの X 座標"
 msgid "Y location of window"
 msgstr "ウィンドウの Y 座標"
 
-#: gnomine/gnomine.c:923
+#: gnomine/gnomine.c:925
 msgid "Flags:"
 msgstr "フラグ:"
 
@@ -4005,27 +4027,27 @@ msgstr "%s (コンピュータ)の番です。"
 msgid "%s! -- You're up."
 msgstr "%s！ -- あなたの番です。"
 
-#: gtali/gyahtzee.c:298 gtali/gyahtzee.c:321 gtali/yahtzee.c:184
+#: gtali/gyahtzee.c:316 gtali/gyahtzee.c:339 gtali/yahtzee.c:184
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "３回までしかサイを振れません！ 役を選択して下さい。"
 
-#: gtali/gyahtzee.c:364
+#: gtali/gyahtzee.c:382
 msgid "Curses version (1992):"
 msgstr "Curses version (1992):"
 
-#: gtali/gyahtzee.c:394
+#: gtali/gyahtzee.c:412
 msgid "A sort of poker with dice and less money."
 msgstr "サイコロと少ないお金を使ったポーカーの一種です。"
 
-#: gtali/gyahtzee.c:438
+#: gtali/gyahtzee.c:456
 msgid "Cheater! Any high scores will not be recorded."
 msgstr "いんちきだ〜。スコアは記録されません。"
 
-#: gtali/gyahtzee.c:558
+#: gtali/gyahtzee.c:578
 msgid "Select dice to re-roll, press Roll!, or select score slot."
 msgstr "振りなおすサイを選んでボタンを押すか、役を選んで下さい。"
 
-#: gtali/gyahtzee.c:599
+#: gtali/gyahtzee.c:618
 msgid "Roll!"
 msgstr " サイを振る！ "
 
@@ -4260,19 +4282,19 @@ msgstr "接続に失敗しました。"
 msgid "No game server defined"
 msgstr "ゲーム・サーバが定義されていません。"
 
-#: iagno/properties.c:526
+#: iagno/properties.c:525
 msgid "Iagno Preferences"
 msgstr "Iagno の設定"
 
-#: iagno/properties.c:547
+#: iagno/properties.c:546
 msgid "Use quick moves"
 msgstr "素早く移動する"
 
-#: iagno/properties.c:695
+#: iagno/properties.c:694
 msgid "Stagger flips"
 msgstr "交互にめくる"
 
-#: iagno/properties.c:703
+#: iagno/properties.c:702
 msgid "Show grid"
 msgstr "グリッドを表示する"
 
@@ -4329,7 +4351,7 @@ msgstr "直前の一手を取り消します"
 msgid "Get a hint"
 msgstr "ヒントを得ます"
 
-#: mahjongg/mahjongg.c:406
+#: mahjongg/mahjongg.c:406 mahjongg/mahjongg.c:910
 msgid "Shuffle"
 msgstr "牌をシャッフルします"
 
@@ -4349,79 +4371,79 @@ msgstr "牌が一致しません。"
 msgid "There are no more moves."
 msgstr "残念ながら、手詰まりです。"
 
-#: mahjongg/mahjongg.c:966
+#: mahjongg/mahjongg.c:975
 msgid "Preferences"
 msgstr "設定"
 
-#: mahjongg/mahjongg.c:985
+#: mahjongg/mahjongg.c:994
 msgid "Tiles"
 msgstr "タイル"
 
-#: mahjongg/mahjongg.c:993
+#: mahjongg/mahjongg.c:1002
 msgid "Tile Set"
 msgstr "絵柄:"
 
-#: mahjongg/mahjongg.c:1006
+#: mahjongg/mahjongg.c:1015
 msgid "Maps"
 msgstr "マップ"
 
-#: mahjongg/mahjongg.c:1014
+#: mahjongg/mahjongg.c:1023
 msgid "Select Map"
 msgstr "マップの選択"
 
-#: mahjongg/mahjongg.c:1027
+#: mahjongg/mahjongg.c:1036
 msgid "Colors"
 msgstr "色"
 
-#: mahjongg/mahjongg.c:1035
+#: mahjongg/mahjongg.c:1044
 msgid "Background Color"
 msgstr "背景色"
 
-#: mahjongg/mahjongg.c:1049
+#: mahjongg/mahjongg.c:1058
 msgid "Warnings"
 msgstr "警告メッセージ"
 
-#: mahjongg/mahjongg.c:1055
+#: mahjongg/mahjongg.c:1064
 msgid "Warn when tiles don't match"
 msgstr "牌が一致しない場合に警告する"
 
-#: mahjongg/mahjongg.c:1162
+#: mahjongg/mahjongg.c:1171
 msgid "Tiles:"
 msgstr "タイル:"
 
-#: mahjongg/mahjongg.c:1191
+#: mahjongg/mahjongg.c:1200
 msgid "GNOME Mahjongg"
 msgstr "GNOME 上海"
 
-#: mahjongg/mahjongg.c:1194
+#: mahjongg/mahjongg.c:1203
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "東洋のタイル・ゲーム、麻雀の GNOME 版です。"
 
-#: mahjongg/mahjongg.c:1218
+#: mahjongg/mahjongg.c:1227
 msgid "... Game paused ..."
 msgstr "... 一時停止 ..."
 
-#: mahjongg/mahjongg.c:1409
+#: mahjongg/mahjongg.c:1418
 msgid "Game Number:"
 msgstr "乱数の種:"
 
-#: mahjongg/mahjongg.c:1487 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1496 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "GNOME 上海"
 
-#: mahjongg/mahjongg.c:1610
+#: mahjongg/mahjongg.c:1629
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "すみません。プレイ可能な設定が見つかりませんでした。"
 
-#: mahjongg/mahjongg.c:1673
+#: mahjongg/mahjongg.c:1692
 msgid "Tiles Left:"
 msgstr "牌の残り:"
 
-#: mahjongg/mahjongg.c:1682
+#: mahjongg/mahjongg.c:1701
 msgid "Moves Left:"
 msgstr "取れる牌:"
 
-#: mahjongg/mahjongg.c:1747
+#: mahjongg/mahjongg.c:1766
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "GNOME 上海 へようこそ！"
 
@@ -4445,22 +4467,22 @@ msgstr ""
 "メイン・ウィンドウの要求された幅です。ウィンドウが保持するウィジェットは最低"
 "でも 320 ピクセルの幅があることに注意してください。"
 
-#: same-gnome/same-gnome.c:203
+#: same-gnome/same-gnome.c:205
 #, c-format
 msgid "%d stone selected"
 msgid_plural "%d stones selected"
 msgstr[0] "%d 個の石を選択しました"
 msgstr[1] "%d 個の石を選択しました"
 
-#: same-gnome/same-gnome.c:208
+#: same-gnome/same-gnome.c:210
 msgid "No stones selected"
 msgstr "ストーンが選択されていません"
 
-#: same-gnome/same-gnome.c:286
+#: same-gnome/same-gnome.c:288
 msgid "The Same GNOME"
 msgstr "さめ GNOME"
 
-#: same-gnome/same-gnome.c:439
+#: same-gnome/same-gnome.c:441
 #, c-format
 msgid ""
 "Could not find the theme:\n"
@@ -4473,7 +4495,7 @@ msgstr ""
 "\n"
 "さめ GNOME のインストールを確認して下さい。"
 
-#: same-gnome/same-gnome.c:470
+#: same-gnome/same-gnome.c:472
 #, c-format
 msgid ""
 "Same GNOME can't load the image file:\n"
@@ -4506,18 +4528,3 @@ msgstr "さめ GNOME へようこそ！"
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "画面をクリアするためにボールの集まりを取り去って下さい"
-
-#~ msgid "Players"
-#~ msgstr "プレイヤー"
-
-#~ msgid "Appearance"
-#~ msgstr "外観"
-
-#~ msgid "Toggle sound"
-#~ msgstr "サウンドを切り替えます"
-
-#~ msgid "Tile Background"
-#~ msgstr "牌の背景:"
-
-#~ msgid "Could not find file %s"
-#~ msgstr "ファイル %s が見付かりません"
