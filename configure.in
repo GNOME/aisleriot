@@ -5,8 +5,6 @@ AM_INIT_AUTOMAKE(gnome-games, 0.27)
 AM_MAINTAINER_MODE
 AM_ACLOCAL_INCLUDE(macros)
 GNOME_INIT
-#GNOME_CHECK_OBJC
-#GNOME_INIT_OBJC
 GNOME_CHECK_GUILE
 
 AC_ISC_POSIX
@@ -20,8 +18,11 @@ GNOME_X_CHECKS
 
 AC_CHECK_PROG(ORBIT_CONFIG, orbit-config, orbit-config)
 if test -n "$ORBIT_CONFIG"; then
-	ORBIT_LIBS="`orbit-config --libs client server`"
-	ORBIT_CFLAGS="`orbit-config --cflags client server`"
+	AC_CHECH_LIB(gnorba, gnome_CORBA_init, [
+		ORBIT_LIBS="-lgnorba `orbit-config --libs client server`"
+		ORBIT_CFLAGS="`orbit-config --cflags client server`"
+		AC_DEFINE(HAVE_ORBIT)
+	]
 fi
 AC_SUBST(ORBIT_CFLAGS)
 AC_SUBST(ORBIT_LIBS)
