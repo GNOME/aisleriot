@@ -71,7 +71,7 @@ gboolean      gdk_card_deck_options_edit_dirty (GdkCardDeckOptionsEdit* w);
 typedef struct _GdkCardDeck GdkCardDeck;
 typedef struct _GdkCardDeckClass GdkCardDeckClass;
 
-guint gdk_card_deck_get_type  (void);
+GtkType gdk_card_deck_get_type  (void);
 
 #define GDK_CARD_DECK(obj)         GTK_CHECK_CAST (obj, \
    gdk_card_deck_get_type (), GdkCardDeck)

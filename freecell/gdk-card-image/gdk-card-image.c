@@ -34,6 +34,8 @@
 #endif
 #include <gdk-card-image.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <libgnomevfs/gnome-vfs.h>
+#include <libgnomevfs/gnome-vfs-mime-utils.h>
 
 /* An image file used in building the cards:
  * each file can contain multiple images and/or half images */
@@ -205,10 +207,10 @@ GtkTypeInfo gdk_card_deck_info =
   (GtkClassInitFunc) NULL
 };
 
-guint
+GtkType
 gdk_card_deck_get_type ()
 {
-  static guint type = 0;
+  static GtkType type = 0;
 
   if (!type)
     type = gtk_type_unique (gtk_object_get_type (), &gdk_card_deck_info);
@@ -222,7 +224,11 @@ is_image (const struct direct* dent)
 is_image (const struct dirent* dent)
 #endif
 {
-	const char *type = gnome_vfs_mime_type_from_name (dent->d_name);
+	char *uri = gnome_vfs_get_uri_from_local_path (dent->d_name);
+	const char *type = NULL;
+
+	type = gnome_vfs_get_mime_type ((const char *) uri);
+	g_free (uri);
 	if (type == NULL ||
 	    strncmp (type, "image/", strlen ("image/")) != 0)
 		return FALSE;
