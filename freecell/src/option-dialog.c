@@ -80,7 +80,7 @@ option_dialog (void)
   data->dialog = dialog;
   gtk_container_border_width (GTK_CONTAINER(dialog), 10);
   GTK_WINDOW(dialog)->position = GTK_WIN_POS_MOUSE;
-  gtk_window_set_title(GTK_WINDOW(dialog), _("Freecell Setup"));
+  gtk_window_set_title(GTK_WINDOW(dialog), _("Freecell Properties"));
   gtk_signal_connect (GTK_OBJECT (dialog), "delete_event",
                       GTK_SIGNAL_FUNC (option_dialog_callback_cancel),
                       (gpointer)data);

@@ -26,20 +26,26 @@
 
 GnomeUIInfo game_menuinfo[] =
 {
-  {GNOME_APP_UI_ITEM, N_("New"), NULL, callback_new,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 0, 0, NULL},
-
-  {GNOME_APP_UI_ITEM, N_("Properties..."), NULL, callback_option,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP, 0, 0, NULL},
-
-  {GNOME_APP_UI_ITEM, N_("Score"), NULL, callback_score,
+  {GNOME_APP_UI_ITEM, N_("New Game"), NULL, callback_new,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
+  
+  {GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-
+  
+  {GNOME_APP_UI_ITEM, N_("Properties..."), NULL, callback_option,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_PROPERTIES, 0, 0, NULL},
+  
+  {GNOME_APP_UI_ITEM, N_("Score..."), NULL, callback_score,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  
+  {GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  
   {GNOME_APP_UI_ITEM, N_("Exit"), NULL, callback_exit,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
 
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
 };
 
 GnomeUIInfo help_menuinfo[] =
@@ -48,31 +54,40 @@ GnomeUIInfo help_menuinfo[] =
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 
   {GNOME_APP_UI_ITEM, N_("About..."), NULL, callback_about,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
 };
   
 GnomeUIInfo main_menuinfo[] =
 {
   {GNOME_APP_UI_SUBTREE, N_("Game"), NULL, game_menuinfo,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-
+  
   {GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menuinfo,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-
+  
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
 };
 
 GnomeUIInfo main_toolbarinfo[] =
 {
-  {GNOME_APP_UI_ITEM, N_("New"), N_("Start a new game"), callback_new, 
+  {GNOME_APP_UI_ITEM, N_("New"), N_("Start a new game"), callback_new,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
+  
+  {GNOME_APP_UI_ITEM, N_("Score"), N_("Show the score"), callback_score,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  
+  {GNOME_APP_UI_ITEM, N_("Props"), N_("Setup Freecell"), callback_option,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_PROPERTIES, 0, 0, NULL},
+  
+  {GNOME_APP_UI_ITEM, N_("Exit"), NULL, callback_exit,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
 
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
 };
 
 #define ELEMENTS(x) (sizeof(x)/sizeof(x[0]))
@@ -83,8 +98,9 @@ static GtkWidget *window;
 void
 create_menus (GnomeApp *app)
 {
-  window = (GtkWidget *)app;
-  
   gnome_app_create_menus (app, main_menuinfo);
   gnome_app_create_toolbar (app, main_toolbarinfo);
 }
+
+
+
