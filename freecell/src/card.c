@@ -258,10 +258,8 @@ deck_shuffle (DECK *deck)
   while (deck_number(deck) != 0)
     {
       number = deck_number(deck_temp);
-      if (number == 0)
-	index = 0;
-      else 
-	index = (rand ()) % number;
+
+      index = (rand ()) % (number + 1);
       
       deck_insert (deck_temp, index, deck_remove_top (deck));
     }  
@@ -269,10 +267,8 @@ deck_shuffle (DECK *deck)
   while (deck_number(deck_temp) != 0)
     {
       number = deck_number(deck);
-      if (number == 0)
-	index = 0;
-      else 
-	index = (rand ()) % number;
+
+      index = (rand ()) % (number + 1);
       
       deck_insert (deck, index, deck_remove_top (deck_temp));
     }
