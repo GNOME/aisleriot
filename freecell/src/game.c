@@ -33,13 +33,15 @@ int last_seed;
 FREECELLGAME *
 freecellgame_new (int freecells_number, int fields_number)
 { 
-  freecellgame_new_with_seed (freecells_number, fields_number, time (NULL));
+  return freecellgame_new_with_seed (freecells_number, fields_number, 
+				     time (NULL));
 }  
 
 FREECELLGAME *
 freecellgame_restart (int freecells_number, int fields_number)
 {
-  freecellgame_new_with_seed (freecells_number, fields_number, last_seed);
+  return freecellgame_new_with_seed (freecells_number, fields_number, 
+				     last_seed);
 }
 
 FREECELLGAME *
