@@ -61,6 +61,7 @@ types_DATA  = 		\
 	hopscotch.scm	\
 	kansas.scm	\
 	klondike.scm	\
+	labyrinth.scm	\
 	lady_jane.scm	\
 	maze.scm	\
 	monte_carlo.scm \
