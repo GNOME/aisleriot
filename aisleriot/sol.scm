@@ -16,6 +16,8 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
+(use-modules (ice-9 format))
+
 ;; Constants:
 
 (define jack 11)
@@ -348,8 +350,9 @@
 (define (get-name card)
   (if (is-joker? card)
       (get-joker-name card)
-      (string-append (get-value-name (get-value card)) 
-		     (_" of ")
+      ; Translators: The ~a behaves like printf's %s. If you need to
+      ; reverse the arguments, use something like "~1*~a of ~@*~a~1*"
+      (format (_"~a of ~a") (get-value-name (get-value card)) 
 		     (get-suit-name (get-suit card)))))
 
 (define (move-n-cards! start-slot end-slot cards)

@@ -1,6 +1,6 @@
 ;;; plait.scm
 
-;; Copyright (C) 1999 W. Borgert
+;; Copyright (C) 1999, 2003 W. Borgert
 
 ;; Author: W. Borgert <debacle@debian.org>
 
@@ -92,7 +92,7 @@
 	   (if (not (empty-slot? (car home-list)))
 	       (list 1 (get-name (get-top-card slot))
 		     (get-name (get-top-card (car home-list))))
-	       (list 3 (get-name (get-top-card slot)) (_"to an empty field")))
+	       (list 0 (format (_"Move the ~a to an empty field") (get-name (get-top-card slot)))))
 	   (get-valid-move slot (cdr home-list)))))
 
 (define (get-valid-moves slot-list home-list)

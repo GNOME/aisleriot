@@ -132,8 +132,10 @@
 		    (get-suit (get-top-card slot2))))
 	  (if (< (get-value (get-top-card slot1))
 		 (get-value (get-top-card slot2)))
-	      (list 3 (get-name (get-top-card slot1)) (_"off the board"))
-	      (list 3 (get-name (get-top-card slot2)) (_"off the board")))
+	      (list 0 (format (_"Move the ~a off the board") 
+                              (get-name (get-top-card slot1))))
+	      (list 0 (format (_"Move the ~a off the board") 
+                              (get-name (get-top-card slot2)))))
 	  (check-hint slot1 (+ 1 slot2)))))
 
 (define (get-hint)
