@@ -130,9 +130,40 @@
 
 (define (button-clicked slot)
   #f)
-	      
+
+(define (move-to-foundations? slot f-slot)
+  (cond ((= f-slot 11)
+	 #f)
+	((= f-slot 1)
+	 (move-to-foundations? card 8))
+	((and (not (empty-slot? f-slot))
+	      (eq? (get-suit (get-top-card slot))
+		   (get-suit (get-top-card f-slot)))
+	      (= (get-value (get-top-card slot))
+		 (+ 1 (get-value (get-top-card f-slot)))))
+	 (begin
+	   (add-to-score! 1)
+	   (deal-cards slot f-slot)))
+	(#t
+	 (move-to-foundations? slot (+ 1 f-slot)))))
+
 (define (button-double-clicked slot)
-  #f)
+  (if (and (> slot 0)
+	   (< slot 8)
+	   (not (empty-slot? slot)))
+      (if (= ace (get-value (get-top-card slot)))
+	  (begin
+	    (add-to-score! 1)
+	    (cond ((empty-slot? 0)
+		   (deal-cards slot '(0)))
+		  ((empty-slot? 8)
+		   (deal-cards slot '(8)))
+		  ((empty-slot? 9)
+		   (deal-cards slot '(9)))
+		  (#t
+		   (deal-cards slot '(10)))))
+	  (move-to-foundations? slot 0))
+      #f))
 
 (define (is-ploppable card value suit)
   (or (and (= ace (get-value card))
