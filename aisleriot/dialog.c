@@ -73,6 +73,7 @@ void show_game_over_dialog() {
       new_game (NULL, NULL);
       break;
     case GTK_RESPONSE_REJECT:
+      timer_restart ();
       gtk_widget_destroy (dialog);
       game_over = FALSE;
       undo_callback ();

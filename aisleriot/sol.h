@@ -74,12 +74,13 @@ extern GConfClient * gconf_client;
 gchar* game_file_to_name(const gchar* file);
 void new_game(gchar* file, guint *seed);
 void quit_app (GtkMenuItem*);
-void set_score( void );
-void timer_start( void );
-void timer_stop( void );
+void set_score (void);
+void timer_start (void);
+void timer_restart (void);
+void timer_stop (void);
 void timer_reset (void);
 guint timer_get (void);
-void make_title( void );
+void make_title (void);
 void eval_installed_file(gchar *file);
 
 #endif

@@ -289,17 +289,23 @@ static gint timer_cb ()
 
 guint timer_timeout = 0;
 
-void timer_start ()
+void timer_restart (void)
+{
+  games_clock_start (GAMES_CLOCK (time_value));
+  timer_timeout = g_timeout_add (timeout*1000 - timer_get (), (GSourceFunc) (timer_cb), NULL);
+}
+
+void timer_start (void)
 {
   if (timer_timeout)
-  games_clock_stop (GAMES_CLOCK (time_value));
+    games_clock_stop (GAMES_CLOCK (time_value));
   timeout = 3600;
   games_clock_set_seconds (GAMES_CLOCK (time_value), 0);
   games_clock_start (GAMES_CLOCK (time_value));
   timer_timeout = g_timeout_add (timeout * 1000, (GSourceFunc) (timer_cb), NULL);
 }
 
-void timer_stop ()
+void timer_stop (void)
 {
   games_clock_stop (GAMES_CLOCK (time_value));
   if (timer_timeout)

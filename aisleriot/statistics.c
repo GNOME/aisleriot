@@ -211,6 +211,10 @@ void load_statistics (void)
   update_statistics_display ();
 }
 
+/* Yes, there is a gconf race condition here, but since this is all
+   per user they're going to have to be either playing impossibly fast
+   or using sharing an account. In the later case they won't be caring
+   about the statistics. */
 void update_statistics (gboolean won, guint time)
 {
   locate_current_stats ();

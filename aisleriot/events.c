@@ -119,8 +119,10 @@ void end_of_game_test() {
       timer_stop ();
       game_won = SCM_NFALSEP (cscmi_winning_game_lambda ());
       refresh_screen ();
-      if (game_won) /* Because we can undo lost games. */
+      if (game_won) { /* Check because we can undo lost games. */
+	game_in_progress = FALSE;
 	update_statistics (TRUE, timer_get ());
+      }
       show_game_over_dialog ();
     }
   }  
