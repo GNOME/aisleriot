@@ -71,6 +71,7 @@ about_destroy_callback (void)
  
 void help_about_callback ()
 {
+  GdkPixbuf *pixbuf = NULL;
   const gchar *authors[] = {
 	  N_("Main program:  Jonathan Blandford (jrb@redhat.com)"),
 	  N_("                      Felix Bellaby (felix@pooh.u-net.com)"),
@@ -90,7 +91,17 @@ void help_about_callback ()
   };
 
   const gchar *translator_credits = _("translator_credits");
+	char *filename = NULL;
 
+	filename = gnome_program_locate_file (NULL,
+		GNOME_FILE_DOMAIN_APP_PIXMAP,  ("gnome-aisleriot.png"),
+		TRUE, NULL);
+	if (filename != NULL)
+	{
+		pixbuf = gdk_pixbuf_new_from_file(filename, NULL);
+		g_free (filename);
+	}
+  
   {
 	int i=0;
 	while (authors[i] != NULL) { authors[i]=_(authors[i]); i++; }
@@ -108,7 +119,11 @@ void help_about_callback ()
 			    (const char **)authors,
 			    (const char **)documenters,
 			    strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
-			    NULL);
+			    pixbuf);
+	
+	if (pixbuf != NULL)
+		gdk_pixbuf_unref (pixbuf);
+  
   g_signal_connect (GTK_OBJECT (about),
 		      "destroy",
 		      (GtkSignalFunc) about_destroy_callback,
