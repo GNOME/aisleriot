@@ -1,3 +1,11 @@
+2003-08-28  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* configure.in: Switch to -gnu89 if we are using gcc. This is
+	instead of setting -ansi. The goal is to make sure code developed
+	with gcc 3.x will compile with gcc 2.9x, not to ensure
+	portability.(not right now anyway, it's an admirable goal, but I
+	have seen Iagno's networking code).
+
 2003-08-27  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* configure.in: Added -ansi to CFLAGS so I catch C99 code before I
