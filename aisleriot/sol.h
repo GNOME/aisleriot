@@ -62,7 +62,7 @@ extern guint            y_expanded_offset;
 
 gchar* game_file_to_name(const gchar* file);
 void new_game(gchar* file, guint *seed);
-void quit_app (GtkWidget*);
+gboolean quit_app (GtkMenuItem*);
 void set_score( void );
 void timer_start( void );
 void timer_stop( void );

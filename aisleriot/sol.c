@@ -355,7 +355,7 @@ void create_sol_board ()
 		      GTK_SIGNAL_FUNC (button_press_event), NULL);
 }
 
-void quit_app (GtkWidget *app)
+gboolean quit_app (GtkMenuItem *menuitem)
 {
   GtkWidget *box;
   gint response;
@@ -365,7 +365,7 @@ void quit_app (GtkWidget *app)
             GTK_DIALOG_MODAL,
             GTK_MESSAGE_QUESTION,
             GTK_BUTTONS_NONE,
-            _("Really exit gataxx?"));
+            _("Really exit Aisleriot?"));
     gtk_dialog_add_buttons (GTK_DIALOG (box),
             GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
             GTK_STOCK_QUIT, GTK_RESPONSE_ACCEPT,
