@@ -229,15 +229,15 @@ games_frame_add (GtkContainer *container,
       return;
     }
 
-  hbox = gtk_hbox_new (FALSE, FALSE);
+  hbox = gtk_hbox_new (FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 6);
   indent = GAMES_FRAME (container)->indent;
 
   label_string = g_strnfill (indent, ' ');
   space_label = gtk_label_new (label_string);
   g_free (label_string);
-  gtk_box_pack_start (GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX(hbox), child, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), space_label, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), child, TRUE, TRUE, 0);
 
   gtk_widget_unparent (GTK_WIDGET (hbox));
   gtk_widget_set_parent (GTK_WIDGET (hbox), GTK_WIDGET (bin));

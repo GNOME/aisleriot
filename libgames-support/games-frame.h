@@ -58,7 +58,7 @@ GType      games_frame_get_type   (void) G_GNUC_CONST;
 GtkWidget* games_frame_new        (const gchar *label);
 void       games_frame_set        (GamesFrame  *bold_frame,
                                    gint         indent);
-void       games_frame_set_label  (GamesFrame    *frame,
+void       games_frame_set_label  (GamesFrame  *frame,
                                    const gchar *label);
 
 #ifdef __cplusplus
