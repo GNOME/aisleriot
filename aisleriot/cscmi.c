@@ -214,7 +214,7 @@ SCM scm_set_lambda(SCM start_game_lambda,
   return SCM_EOL;
 }
 
-SCM scm_random(SCM range) 
+SCM scm_myrandom(SCM range) 
 {
   return gh_long2scm(random()%SCM_INUM(range));
 }
@@ -269,7 +269,7 @@ void cscm_init ()
   gh_new_procedure1_0("get-slot", scm_get_slot);  
   gh_new_procedure2_0("set-cards-c!", scm_set_cards);
   gh_new_procedure("set-lambda", scm_set_lambda, 8, 0, 1);
-  gh_new_procedure1_0("random", scm_random);
+  gh_new_procedure1_0("random", scm_myrandom);
   gh_new_procedure0_0("get-score", scm_get_score);  
   gh_new_procedure1_0("set-score!", scm_set_score);
   gh_new_procedure0_0("get-timeout", scm_get_timeout);  
