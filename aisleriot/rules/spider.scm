@@ -179,33 +179,18 @@
   (and (not (game-won))
        (get-hint)))
 
-(define (check-empty-or-full slot-id)
-  (if (> slot-id 18)
-      #t
-      (and (or (empty-slot? slot-id)
-	       (= (length (get-cards slot-id)) 13))
-	   (check-empty-or-full (+ 1 slot-id)))))
-
-(define (visible-order? card-list)
-  (if (= (length card-list) 1)
-      #t
-      (and (eq? (get-suit (car card-list))
-		(get-suit (cadr card-list)))
-	   (= (+ 1 (get-value (car card-list)))
-	      (get-value (cadr card-list)))
-	   (visible-order? (cdr card-list)))))
-
-(define (check-sequence slot-id)
-  (if (> slot-id 18)
-      #t
-      (and (or (empty-slot? slot-id)
-	       (visible-order? (get-cards slot-id)))
-	   (check-sequence (+ 1 slot-id)))))
-
 (define (game-won)
   (and (empty-slot? 0)
-       (check-empty-or-full 1)
-       (check-sequence 9)))
+       (empty-slot? 9)
+       (empty-slot? 10)
+       (empty-slot? 11)
+       (empty-slot? 12)
+       (empty-slot? 13)
+       (empty-slot? 14)
+       (empty-slot? 15)
+       (empty-slot? 16)
+       (empty-slot? 17)
+       (empty-slot? 18)))
 
 (define (depth-card card-list)
   (if (and (> (length card-list) 1)
