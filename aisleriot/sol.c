@@ -38,6 +38,7 @@
  */
 GtkWidget        *app;
 GtkWidget        *playing_area;
+GtkWidget        *option_dialog = NULL;
 GdkGC            *draw_gc;
 GdkPixmap        *surface;
 GdkPixmap        *moving_card_pixmap;
@@ -164,6 +165,10 @@ void new_game (gchar* file, guint *seedp )
     ms = gnome_app_find_menu_pos(GNOME_APP (app)->menubar, buf, &pos);
     gnome_app_fill_menu (GTK_MENU_SHELL(ms), rules_help, 
 			 GNOME_APP (app)->accel_group, TRUE, TRUE, pos);
+    if(option_dialog) {
+      gtk_widget_destroy(option_dialog);
+      option_dialog = NULL;
+    }
   }
 
   if (seedp) {
@@ -179,7 +184,7 @@ void new_game (gchar* file, guint *seedp )
   if(surface) 
     timer_start();
 
-  size = gh_apply (game_data->start_game_lambda, SCM_EOL);
+  size = gh_call0(game_data->start_game_lambda);
   min_w = gh_scm2int (gh_car (size))*get_horiz_offset() + 2*get_horiz_start();
   min_h = gh_scm2int (gh_cadr (size))*get_vert_offset() + 2*get_vert_start();
 
@@ -219,7 +224,7 @@ gint timer_cb ()
   set_time();
   if (game_seconds > timeout) {
     timeout = 3600;
-    gh_apply(game_data->timeout_lambda, SCM_EOL);
+    gh_call0(game_data->timeout_lambda);
     end_of_game_test();
   }
   return game_seconds < 3599; /* give up at end of one hour */
@@ -308,7 +313,6 @@ void create_press_data ()
   attributes.visual = gdk_window_get_visual (playing_area->window);
   
   press_data = malloc(sizeof(press_data_type));
-  press_data->button_pressed = 0;
   press_data->moving_cards = gdk_window_new(playing_area->window, &attributes,
 					    (GDK_WA_VISUAL | GDK_WA_COLORMAP));
 }

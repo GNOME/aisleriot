@@ -91,14 +91,9 @@ GList* new_deck(SCM deck_data)
 /* C to Scheme functions... */
 SCM make_card(hcard_type card) 
 {
-  if (card->direction)
-    return gh_cons(gh_long2scm(card->value),
-		   gh_cons(gh_long2scm(card->suit),
-			   gh_cons(SCM_BOOL_F, SCM_EOL)));
-  else
-    return gh_cons(gh_long2scm(card->value),
-		   gh_cons(gh_long2scm(card->suit),
-			   gh_cons(SCM_BOOL_T, SCM_EOL)));
+  return gh_cons(gh_long2scm(card->value),
+		 gh_cons(gh_long2scm(card->suit),
+			 gh_cons(gh_bool2scm(!card->direction), SCM_EOL)));
 }
 
 /* Scheme functions */
@@ -195,7 +190,9 @@ SCM scm_set_lambda(SCM start_game_lambda,
 		   SCM game_over_lambda,
 		   SCM winning_game_lambda,
 		   SCM hint_lambda,
-		   SCM timeout_lambda) 
+		   SCM get_options_lambda, 
+		   SCM apply_options_lambda, 
+		   SCM timeout_lambda)
 {
   if (!game_data)
 	 game_data = malloc(sizeof(lambda_data));
@@ -207,6 +204,8 @@ SCM scm_set_lambda(SCM start_game_lambda,
   game_data->game_over_lambda = game_over_lambda;
   game_data->winning_game_lambda = winning_game_lambda;
   game_data->hint_lambda = hint_lambda;
+  game_data->get_options_lambda = get_options_lambda;
+  game_data->apply_options_lambda = apply_options_lambda;
   game_data->timeout_lambda = timeout_lambda;
   return SCM_EOL;
 }
@@ -264,7 +263,7 @@ void cscm_init ()
   gh_new_procedure1_0("add-slot", scm_add_slot);
   gh_new_procedure1_0("get-slot", scm_get_slot);  
   gh_new_procedure2_0("set-cards!", scm_set_cards);
-  gh_new_procedure("set-lambda", scm_set_lambda, 8, 0, 0);
+  gh_new_procedure("set-lambda", scm_set_lambda, 10, 0, 0);
   gh_new_procedure1_0("random", scm_random);
   gh_new_procedure0_0("get-score", scm_get_score);  
   gh_new_procedure1_0("set-score!", scm_set_score);

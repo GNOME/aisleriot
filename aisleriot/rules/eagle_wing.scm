@@ -231,11 +231,11 @@
 		 (= (list-length (get-cards 10)) 1))
 	    (flip-top-card 10)))))
 
-(define (game-over borp)
-  (and (not (game-won borp))
-       (get-hint borp)))
+(define (game-over)
+  (and (not (game-won))
+       (get-hint)))
 
-(define (game-won borp)
+(define (game-won)
   (and (empty-slot? 0)
        (empty-slot? 1)
        (empty-slot? 6)
@@ -324,7 +324,7 @@
       (check-to-tableau slot (get-top-card slot) 6)
       #f))
 
-(define (dealable? borp)
+(define (dealable?)
   (if (not (empty-slot? 0))
       (list 0 "Deal a card")
       (if (and (not (empty-slot? 1))
@@ -332,7 +332,7 @@
 	  (list 0 "Move waste back to stock")
 	  #f)))
 
-(define (get-hint borp)
+(define (get-hint)
   (or (check-to-foundation 1)
       (check-empty-slot 6)
       (check-tableau 1)
@@ -345,6 +345,12 @@
       (check-tableau 12)
       (check-tableau 13)
       (check-tableau 14)
-      (dealable? borp)))
+      (dealable?)))
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
+(define (get-options) #f)
+
+(define (apply-options options) #f)
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)

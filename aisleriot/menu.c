@@ -136,7 +136,7 @@ GnomeUIInfo move_menu[] = {
 GnomeUIInfo top_menu[] = {
   GNOMEUIINFO_SUBTREE(N_("_Game"), game_menu),
 
-  GNOMEUIINFO_SUBTREE(N_("_Rules"), rules_menu),
+  GNOMEUIINFO_SUBTREE(N_("_Variation"), rules_menu),
 
   GNOMEUIINFO_SUBTREE(N_("_Move"), move_menu),
 

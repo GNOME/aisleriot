@@ -90,7 +90,7 @@
 (define (button-double-clicked slot)
   #f)     
 
-(define (game-won ugh)
+(define (game-won)
   (and (empty-slot? 16)
        (empty-slot? 17)
        (empty-slot? 5)
@@ -147,7 +147,7 @@
 		   "an empty right slot")))
 	(#t "an empty slot")))
 
-(define (game-over ugh)
+(define (game-over)
   (if (or (= fill-count 16)
 	  (and (empty-slot? 16) (empty-slot? 17)))
       (begin 
@@ -156,12 +156,18 @@
       (or (empty-slot? 17)
 	  (placeable? (get-top-card 17)))))
 
-(define (get-hint ugh)
+(define (get-hint)
   (or (if add-stage
 	  (and (not (empty-slot? 17))
 	       (list 2 (get-name (get-top-card 17))
 		     (placeable? (get-top-card 17))))
 	  (find-match (list-cards 0)))
-      (list 0 "Deal a new card from the deck"))) ; Should be (list 3 ... )
+      (list 0 "Deal a new card from the deck")))
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)  
+(define (get-options) #f)
+
+(define (apply-options options) #f)
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)

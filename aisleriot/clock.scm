@@ -118,7 +118,7 @@
 	(make-all-visible (+ slot 1)))))
 
 
-(define (game-won borp)
+(define (game-won)
   (make-all-visible 0)
   (if (and (= (get-value (car (get-cards 2))) 1)
 	   (= (get-value (cadr (get-cards 2))) 1)
@@ -172,7 +172,7 @@
       #t
       #f))
 
-(define (game-over borp)
+(define (game-over)
   (not (and (is-visible? (car (reverse (get-cards 6))))
 	    (= (get-value (get-top-card 6)) king))))
 
@@ -181,7 +181,7 @@
       (car list)
       (nth-item (cdr list) (- n 1))))
 
-(define (get-hint borp)
+(define (get-hint)
   (list 0 
 	(nth-item 
 	 (list "Just because a crosswalk looks like a hopscotch board doesn't mean it is one" 
@@ -198,4 +198,10 @@
 	       "Never blow in a dog's ear")
 	 (random 12))))
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)  
+(define (get-options) #f)
+
+(define (apply-options options) #f)
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)

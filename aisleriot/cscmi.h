@@ -24,6 +24,10 @@
 #include <time.h>
 #include "card.h"
 #include "slot.h"
+
+/* missing from guile-1.2 library!: */
+#define gh_bool2scm(bool) ((SCM) (bool ? SCM_BOOL_T : SCM_BOOL_F))
+
 /* Generic game data */
 typedef struct {
   SCM start_game_lambda;
@@ -34,6 +38,8 @@ typedef struct {
   SCM game_over_lambda;
   SCM winning_game_lambda;
   SCM hint_lambda;
+  SCM get_options_lambda;
+  SCM apply_options_lambda;
   SCM timeout_lambda;
 } lambda_data;
 

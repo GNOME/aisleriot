@@ -72,14 +72,14 @@
 (define (button-double-clicked slot)
   (button-clicked slot))     
 	  
-(define (game-won borp)
+(define (game-won)
   (and (empty-slot? 0)
        (= 1 (list-length (get-cards 1)))
        (= 1 (list-length (get-cards 2)))
        (= 1 (list-length (get-cards 3)))
        (= 1 (list-length (get-cards 4)))))
      
-(define (game-over borp)
+(define (game-over)
   (not (and (empty-slot? 0)
 	    (and (not (empty-slot? 1))
 		     (not (empty-slot? 2))
@@ -111,7 +111,7 @@
 	      (list 3 (get-name (get-top-card slot2)) "off the board"))
 	  (check-hint slot1 (+ 1 slot2)))))
 
-(define (get-hint borp)
+(define (get-hint)
   (or (check-hint 1 2)
       (check-hint 2 3)
       (check-hint 3 4)
@@ -129,4 +129,10 @@
 	  (list 0 "Deal another round")
 	  #f)))
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
+(define (get-options) #f)
+
+(define (apply-options options) #f)
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)

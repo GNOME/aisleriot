@@ -32,8 +32,10 @@
 /*
  * Global variables
  */
+
 extern GtkWidget        *app;
 extern GtkWidget        *playing_area;
+extern GtkWidget        *option_dialog;
 extern GdkGC            *draw_gc;
 extern GdkPixmap        *surface;
 extern GdkPixmap        *moving_card_pixmap;

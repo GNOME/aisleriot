@@ -164,7 +164,7 @@
 	   (complete-transaction slot (list top-card) 10)))
 	(#t #f)))
 
-(define (game-over borp)
+(define (game-over)
   (if (and (= 13 (list-length (get-cards 0)))
 	   (= 13 (list-length (get-cards 8)))
 	   (= 13 (list-length (get-cards 9)))
@@ -172,7 +172,7 @@
       #f
       #t))
 
-(define (game-won borp)
+(define (game-won)
   (if (and (= 13 (list-length (get-cards 0)))
 	   (= 13 (list-length (get-cards 8)))
 	   (= 13 (list-length (get-cards 9)))
@@ -180,7 +180,13 @@
       #t
       #f))
 
-(define (get-hint borp)
+(define (get-hint)
   #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
+(define (get-options) #f)
+
+(define (apply-options options) #f)
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)

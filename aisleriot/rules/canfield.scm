@@ -167,7 +167,7 @@
 	    (place-ace top-card slot)
 	    (place-found slot top-card 2)))))
 
-(define (game-over borp)
+(define (game-over)
   (if (and (empty-slot? 0)
 	   (empty-slot? 1)
 	   (empty-slot? 6)
@@ -178,7 +178,7 @@
       #f
       #t))
 
-(define (game-won borp)
+(define (game-won)
   (if (and (empty-slot? 0)
 	   (empty-slot? 1)
 	   (empty-slot? 6)
@@ -267,11 +267,17 @@
 			   (car check-list) 7))
 	   (move-column? (cdr check-list)))))
 
-(define (get-hint borp)
+(define (get-hint)
   (or (get-valid-move '(6 7 8 9 10 1))
       (to-tableau? '(6 1))
       (move-column? '(7 8 9 10))
       (deal-possible?)
       (list 0 "Try rearranging the cards")))
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
+(define (get-options) #f)
+
+(define (apply-options options) #f)
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)

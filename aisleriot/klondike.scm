@@ -16,6 +16,7 @@
 ; Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 (define FLIP-COUNTER 0)
+(define deal-three #f)
 
 (define (new-game)
   (initialize-playing-area)
@@ -103,7 +104,14 @@
 	       (and (< FLIP-COUNTER 3)
 		    (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
 		    (flip-cards-back))
-	       (add-card! 1 (flip-card (remove-card start-slot)))))
+	       (begin
+		 (add-card! 1 (flip-card (remove-card start-slot)))
+		 (if deal-three
+		   (begin
+		     (and (not (empty-slot? start-slot))
+			  (add-card! 1 (flip-card (remove-card start-slot))))
+		     (and (not (empty-slot? start-slot))
+			  (add-card! 1 (flip-card (remove-card start-slot)))))))))
       (and (or (> start-slot 5) (= start-slot 1))
 	   (not (empty-slot? start-slot))
 	   (let* ((card (get-top-card start-slot))
@@ -199,7 +207,7 @@
 	   (not (= (get-color (get-top-card slot-id)) (get-color card)))
 	   (list 1 (get-name card) (get-name (get-top-card slot-id))))))
 
-(define (get-hint ugh)
+(define (get-hint)
   (or (or-map is-ace? (cons waste tableau))
       (or-map shiftable-iter tableau)
       (and (not (empty-slot? waste))
@@ -213,7 +221,7 @@
 ; FIXME: need to give proper hints for this case too ...
       (list 0 "Try moving cards down from the foundation")))
 
-(define (game-won ugh)
+(define (game-won)
   (and (= 13 (list-length (get-cards 2)))
        (= 13 (list-length (get-cards 3)))
        (= 13 (list-length (get-cards 4)))
@@ -227,7 +235,15 @@
 ;
 ; so we must NOT report game-over when they run out.
 
-(define (game-over ugh)
-  (not (game-won ugh)))
+(define (game-over)
+  (not (game-won)))
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
+(define (get-options)
+  (list (list "Three card deals" deal-three)))
+
+(define (apply-options options)
+  (set! deal-three (cadar options)))
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)

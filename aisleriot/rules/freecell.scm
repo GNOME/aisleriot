@@ -153,16 +153,19 @@
 (define (button-double-clicked slot-id)
   #f)
 
-(define (game-over ugh)
+(define (game-over)
   #t)
 
-(define (game-won ugh)
+(define (game-won)
   #f)
 
-(define (get-hint ugh)
+(define (get-hint)
   #f)
-
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
-
-
  
+(define (get-options) #f)
+
+(define (apply-options options) #f)
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)

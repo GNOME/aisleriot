@@ -174,21 +174,26 @@
 		(placeable? (get-top-card (car id-list)) 1))
 	   (get-valid-move (cdr id-list)))))
 
-(define (game-over not-used)
+(define (game-over)
   (or (and (< FLIP-COUNTER 3)
 	   (not (empty-slot? 9)))
       (not (empty-slot? 8))
       (get-valid-move '(0 2 4 6 9))))
 
-(define (game-won not-used)
+(define (game-won)
   (and (= 13 (list-length (get-cards 1)))
        (= 13 (list-length (get-cards 3)))
        (= 13 (list-length (get-cards 5)))
        (= 13 (list-length (get-cards 7)))))
 
-(define (get-hint not-used)
+(define (get-hint)
   (or (get-valid-move '(0 2 4 6 9))
       (list 0 "Deal a new card from the deck"))) ; Should be (list 3 ...)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
+(define (get-options) #f)
 
+(define (apply-options options) #f)
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)

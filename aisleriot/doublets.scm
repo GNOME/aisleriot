@@ -118,17 +118,23 @@
 	  (check-move (+ 1 slot))
 	  #f)))
 
-(define (game-over borp)
+(define (game-over)
   (or (< FLIP-COUNTER 2)
       (not (empty-slot? 0))
       (check-move 1)))
 
-(define (game-won borp)
+(define (game-won)
   (= 48 (list-length (get-cards 8))))
 
-(define (get-hint borp)
+(define (get-hint)
   (let ((wanted (modulo (* 2 (get-value (get-top-card 8))) 
 			13)))
     (list 4 (get-value-name wanted))))
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
+(define (get-options) #f)
+
+(define (apply-options options) #f)
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)

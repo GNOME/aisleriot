@@ -184,16 +184,22 @@
 		       (is-extendable 1 slot-id card value suit))))
 	   (game-over-helper (+ 1 slot-id) check-kings))))
 
-(define (game-over ugh)
+(define (game-over)
   (game-over-helper 1 #t))
 
-(define (game-won ugh)
+(define (game-won)
   (and (= 13 (list-length (get-cards 0)))
        (= 13 (list-length (get-cards 8)))
        (= 13 (list-length (get-cards 9)))
        (= 13 (list-length (get-cards 10)))))
 
-(define (get-hint ugh)
-  (game-over ugh))
+(define (get-hint)
+  (game-over))
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
+(define (get-options) #f)
+
+(define (apply-options options) #f)
+
+(define (timeout) #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
