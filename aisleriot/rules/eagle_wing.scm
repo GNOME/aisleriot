@@ -57,7 +57,7 @@
 
 (define (button-pressed slot-id card-list)
   (and card-list
-       (not (member end-slot '(2 3 4 5)))
+       (not (member slot-id '(2 3 4 5)))
        (visible (car (card-list)))))
 
 (define (complete-transaction start-slot card-list end-slot)
