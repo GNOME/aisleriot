@@ -1,5 +1,6 @@
 ; Aisleriot - Thieves
-; Copyright (C) 1999 Robert Brady <rwb197@ecs.soton.ac.uk>
+; Copyright (C) 2001 Robert Brady <rwb197@ecs.soton.ac.uk>
+;                    Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -22,18 +23,19 @@
   (make-joker-deck)
   
   (shuffle-deck)
-  (add-partially-extended-slot '() down 5)
-  (add-partially-extended-slot '() down 5)
-  (add-partially-extended-slot '() down 5)
-  (add-partially-extended-slot '() down 5)
-  (add-partially-extended-slot '() down 5)
-  (add-partially-extended-slot '() down 5)
-  (add-partially-extended-slot '() down 5)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
   (add-carriage-return-slot)
   (add-carriage-return-slot)
-  (add-partially-extended-slot DECK right 10 )
+  (add-normal-slot DECK)
   (add-normal-slot '())
-  (deal-cards-face-up 7 '(0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6 8))
+  (deal-cards-face-up 7 '(0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6 0
+			    1 2 3 4 5 6 0 1 2 3 4 5 6 8))
 
   (give-status-message)
 
@@ -88,45 +90,45 @@
        (= (length card-list) 1)))
 
 (define (button-released start-slot card-list end-slot) 
-  (if (values-match? (car card-list) (get-top-card 8))
-      (begin
-	(add-to-score! (score-for (get-value (car card-list))))
-	(add-card! 8 (car card-list))
-	#t)
-      #f))
+  (and (= end-slot 8)
+       (values-match? (car card-list) (get-top-card 8))
+       (add-to-score! (score-for (get-value (car card-list))))
+       (move-n-cards! start-slot 8 card-list)))
 
 (define (button-clicked slot-id) 
   (if (eq? slot-id 7)
-      (if (empty-slot? slot-id)
-	  #f
-	  (add-card! 8 (flip-card (remove-card 7))))
-      (if (and (< slot-id 7)
-	       (not (empty-slot? slot-id)))
-	  (if (values-match? (get-top-card slot-id) (get-top-card 8))
-              (begin
-		(add-to-score! (score-for (get-value (get-top-card slot-id))))
-		(add-card! 8 (remove-card slot-id)))))))
+      (and (not (empty-slot? slot-id))
+	   (deal-cards-face-up 7 '(8)))
+      (and (< slot-id 7)
+	   (not (empty-slot? slot-id))
+	   (values-match? (get-top-card slot-id) (get-top-card 8))
+	   (add-to-score! (score-for (get-value (get-top-card slot-id))))
+	   (deal-cards slot-id '(8)))))
 
-(define (button-double-clicked slot) #f)
+(define (button-double-clicked slot)
+  (button-clicked slot))
 
-(define (game-won) (and (empty-slot? 0) (empty-slot? 1) (empty-slot? 2) 
-                        (empty-slot? 3) (empty-slot? 4) (empty-slot? 5) 
-                       (empty-slot? 6)))
+(define (game-won) 
+  (and (empty-slot? 0) 
+       (empty-slot? 1) 
+       (empty-slot? 2) 
+       (empty-slot? 3) 
+       (empty-slot? 4)
+       (empty-slot? 5) 
+       (empty-slot? 6)))
 
 (define (game-over) 
   (give-status-message)
   (if (game-won) 
     #f
     (if (empty-slot? 7) 
-	(if (move-possible)
-	    #t 
-	    #f)
+	(move-possible)
 	#t)))
 
 (define (hint-move-from where)
   (if (or (empty-slot? where)
           (empty-slot? where)
-         (not (values-match? (get-top-card where) (get-top-card 8))))
+	  (not (values-match? (get-top-card where) (get-top-card 8))))
       #f
       (list 1 (get-name (get-top-card where))
              (get-name (get-top-card 8)))))

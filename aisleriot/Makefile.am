@@ -54,6 +54,7 @@ types_DATA  = 		\
 	canfield.scm	\
 	clock.scm	\
 	cover.scm	\
+	diamond_mine.scm	\
 	doublets.scm	\
 	eagle_wing.scm	\
 	eight_off.scm	\
@@ -65,6 +66,7 @@ types_DATA  = 		\
 	freecell.scm	\
 	gay_gordons.scm	\
 	glenwood.scm	\
+	golf.scm	\
 	gypsy.scm	\
 	hopscotch.scm	\
 	isabel.scm	\

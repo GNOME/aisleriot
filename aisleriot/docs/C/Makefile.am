@@ -24,6 +24,7 @@ help_DATA = index.html	\
 	canfield.html	\
 	clock.html	\
 	cover.html	\
+	diamond-mine.html	\
 	doublets.html	\
 	eagle-wing.html	\
 	eight-off.html	\
@@ -35,6 +36,7 @@ help_DATA = index.html	\
 	freecell.html	\
 	gay-gordons.html	\
 	glenwood.html	\
+	golf.html	\
 	gypsy.html	\
 	hopscotch.html	\
 	isabel.html	\
@@ -87,6 +89,7 @@ help_SGML = \
 	canfield.sgml	\
 	clock.sgml	\
 	cover.sgml	\
+	diamond_mine.sgml	\
 	doublets.sgml	\
 	eagle-wing.sgml	\
 	eight_off.sgml	\
@@ -98,6 +101,7 @@ help_SGML = \
 	freecell.sgml	\
 	gay_gordons.sgml	\
 	glenwood.sgml	\
+	golf.sgml	\
 	gypsy.sgml	\
 	hopscotch.sgml	\
 	isabel.sgml	\
