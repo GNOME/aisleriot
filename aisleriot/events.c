@@ -174,15 +174,12 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       press_data->moving = FALSE;
       return TRUE;
     }
-    
-    
+
     /* we've found the card -- prepare to draw it */
     generate_press_data(event->x, event->y, slotid, cardid);
     press_data->moving = TRUE;
-    
+
     take_snapshot();
-    gdk_draw_pixmap(surface, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
-    gdk_draw_pixmap(playing_area->window, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
   }
   else if (event->button == 3) {
     if (press_data->button_pressed == 3)
@@ -197,41 +194,33 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
   if (event->button == 1) {
-	 if (press_data->button_pressed == 1) {
-		press_data->button_pressed = 0;
-		if (press_data->moving) {
-		  press_data->moving = FALSE;
-		  drop_moving_cards(event->x, event->y);
-		}
-		else {
-		  button_up_not_moved(event->x, event->y);
-		  refresh_screen();
-		} 
-	 }
+    if (press_data->button_pressed == 1) {
+      press_data->button_pressed = 0;
+      if (press_data->moving) {
+	press_data->moving = FALSE;
+	drop_moving_cards(event->x, event->y);
+      }
+      else {
+	button_up_not_moved(event->x, event->y);
+	refresh_screen();
+      } 
+    }
   }
   else if (event->button == 3) {
-	 if (press_data->button_pressed == 3)
-		press_data->button_pressed = 0;
-	 stop_show_card();
+    if (press_data->button_pressed == 3)
+      press_data->button_pressed = 0;
+    stop_show_card();
   }
   return TRUE;
 }
 
 gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
-  if (blank_surface) {
-	 gdk_pixmap_unref(blank_surface);
-  }
-  blank_surface = gdk_pixmap_new(playing_area->window,
-				 event->width,
-				 event->height,
-				 gdk_window_get_visual (playing_area->window)->depth);
-  if (surface) {
-	 gdk_pixmap_unref(surface);
-  }
-  surface = gdk_pixmap_new(playing_area->window,
-			   event->width,
-			   event->height,
-			   gdk_window_get_visual (playing_area->window)->depth);
+
+  if (surface) 
+    gdk_pixmap_unref(surface);
+  surface =
+    gdk_pixmap_new(playing_area->window, event->width, event->height,
+		   gdk_window_get_visual (playing_area->window)->depth);
   
   refresh_screen();
   return TRUE;
@@ -239,18 +228,12 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
 }
 
 gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event) {
+
   if ((press_data->button_pressed == 1) && (press_data->moving)) {
-	 /*	 gdk_draw_pixmap(surface, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
-	 gdk_draw_pixmap(surface, playing_area->style->black_gc,press_data->moving_pixmap,0,0,
-						  event->x - press_data->xoffset,
-						  event->y - press_data->yoffset,-1,-1);
-						  gdk_draw_pixmap(playing_area->window, playing_area->style->black_gc,surface,0,0,0,0,-1,-1);*/
-	 gdk_window_move(press_data->moving_cards,  
-						  event->x - press_data->xoffset,
-						  event->y - press_data->yoffset);
-
+    gdk_window_move(press_data->moving_cards,  
+		    event->x - press_data->xoffset,
+		    event->y - press_data->yoffset);
   }
-
 	 
   return TRUE;
 }
