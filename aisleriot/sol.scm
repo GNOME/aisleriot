@@ -74,7 +74,7 @@
       (set! DECK (append (make-standard-deck-list-ace-high 2 club) (make-standard-deck-list-ace-high 2 club)))
       (set! DECK (append (make-standard-deck-list-ace-low ace club) (make-standard-deck-list-ace-low ace club)))))
 
-; makes a deck from init-value to kings
+ ; makes a deck from init-value to kings
 (define (make-deck-list-ace-low init-value value suit)
    (if (eq? king value)
       (if (eq? spade suit)
@@ -84,6 +84,18 @@
 		 init-value init-value (+ 1 suit))))
       (cons (make-card value suit) 
 	    (make-deck-list-ace-low init-value (+ 1 value) suit))))
+ 
+ ; makes a deck from init-value to aces
+(define (make-deck-list-ace-high init-value value suit)
+   (if (eq? 14 value)
+      (if (eq? spade suit)
+	  (list (make-card ace spade))
+	  (cons (make-card value suit) 
+		(make-deck-list-ace-high 
+		 init-value init-value (+ 1 suit))))
+      (cons (make-card value suit) 
+	    (make-deck-list-ace-high init-value (+ 1 value) suit))))
+ 
 
 
 ; shuffle the card list in DECK

@@ -83,6 +83,7 @@
 
 (define (button-released start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
+       (not (= end-slot 0))
        (or (and (empty-slot? end-slot)
 		(= (get-value (car (reverse card-list))) king))
 	   (and (not (empty-slot? end-slot))
@@ -105,10 +106,24 @@
 	   (not (correct-sequence (get-cards start-slot)))
 	   (add-to-score! 4))))
 
+(define (check-for-points slot-id)
+  (if (> slot-id 3)
+      (give-status-message)
+      (begin
+	(if (and (> (length (get-cards slot-id)) 1)
+		 (eq? (get-suit (get-top-card slot-id))
+		      (get-suit (cadr (get-cards slot-id))))
+		 (= (+ 1 (get-value (get-top-card slot-id)))
+		    (get-value  (cadr (get-cards slot-id)))))
+	    (add-to-score! 1)
+	    #t)
+	(check-for-points (+ 1 slot-id)))))
+
 (define (button-clicked slot-id)
   (and (= slot-id 0)
        (not (empty-slot? 0))
-       (deal-cards-face-up 0 '(1 2 3))))
+       (deal-cards-face-up 0 '(1 2 3))
+       (check-for-points 1)))
 
 (define (button-double-clicked slot-id)
   #f)

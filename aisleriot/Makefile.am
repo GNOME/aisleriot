@@ -64,6 +64,7 @@ types_DATA  = 		\
 	sol.scm		\
 	scorpion.scm	\
 	spider.scm	\
+	straight_up.scm	\
 	thieves.scm     \
 	thirteen.scm	\
 	thumb_and_pouch.scm \

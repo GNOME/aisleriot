@@ -44,7 +44,7 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
 
-  (deal-cards stock '(6 7 8 9 10 11 12 7 8 9 10 11 12 8 9 10 11 12 9 10 11 12 10 11 12 11 12 12))
+  (deal-cards 0 '(6 7 8 9 10 11 12 7 8 9 10 11 12 8 9 10 11 12 9 10 11 12 10 11 12 11 12 12))
 
   (map flip-top-card tableau)
 

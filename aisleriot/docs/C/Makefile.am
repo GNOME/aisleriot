@@ -16,7 +16,8 @@ help_DATA = index.html intro.html glossary.html gpl.html \
 	yukon.html westhaven.html royal-east.html \
 	beleaguered-castle.html thirteen.html thieves.html \
 	freecell.html bristol.html union-square.html \
-	camelot-goal.gif clock-rules.gif docbook.css topic.dat
+	camelot-goal.gif clock-rules.gif docbook.css \
+	topic.dat straight-up.html
 
 # These are the sources:
 
@@ -29,7 +30,8 @@ help_SGML = aisleriot.sgml definitions.sgml gpl.sgml
 	neighbor.sgml odessa.sgml osmosis.sgml spider.sgml \
 	yukon.sgml westhaven.sgml royal-east.sgml \
 	beleaguered-castle.sgml thirteen.sgml thieves.sgml \
-	freecell.sgml scorpion.sgml thumb-and-pouch.sgml
+	freecell.sgml scorpion.sgml thumb-and-pouch.sgml \
+	straight_up.sgml
 
 EXTRA_DIST = $(help_DATA) $(help_SGML)
 
