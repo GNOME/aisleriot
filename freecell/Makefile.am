@@ -1,3 +1,3 @@
-SUBDIRS = gdk-card-image src
+SUBDIRS = src
 
 EXTRA_DIST = AUTHORS NEWS README TODO

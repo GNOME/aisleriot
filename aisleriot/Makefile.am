@@ -7,6 +7,7 @@ typesdir  = $(datadir)/sol-games
 SUBDIRS=pixmaps help
 
 INCLUDES =  \
+	-I$(top_srcdir)/gdk-card-image	 	   \
 	-I$(top_srcdir)/libgames-support           \
 	-DDATADIR=\""$(datadir)"\"		   \
 	$(GNOME_GAMES_CFLAGS)			   \
@@ -43,7 +44,7 @@ sol_SOURCES = 		\
 	card.c
 
 sol_LDADD = $(GNOME_GAMES_LIBS) \
-	../freecell/gdk-card-image/libgdkcardimage.la \
+	../gdk-card-image/libgdkcardimage.la \
 	../libgames-support/libgames-support.la \
 	@UCB_LDFLAGS@ \
 	$(GUILE_LIBS) 

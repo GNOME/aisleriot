@@ -21,6 +21,7 @@ always_built_SUBDIRS =		\
 	gnotski			\
 	glines			\
 	iagno			\
+	gdk-card-image		\
 	freecell
 
 SUBDIRS = \

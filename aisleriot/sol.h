@@ -1,5 +1,5 @@
 /* Aisleriot - sol.h
- * Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+ * Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
  *
  * This game is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -20,7 +20,7 @@
 #define SOL_H
 #include <gtk/gtk.h>
 #include "press_data.h"
-#include "../freecell/gdk-card-image/gdk-card-image.h"
+#include "gdk-card-image.h"
 
 /*
  * Constants

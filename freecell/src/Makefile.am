@@ -4,7 +4,7 @@ INCLUDES = \
 	$(GNOME_GAMES_CFLAGS)				\
 	-DDATADIR=\""$(datadir)"\"		   \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-I$(srcdir)/../gdk-card-image			\
+	-I$(top_srcdir)/gdk-card-image			\
 	-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED \
 	-DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED
 
@@ -17,7 +17,7 @@ noinst_HEADERS = card.h game.h io-gtk.h card-draw.h score.h	\
 score-dialog.h option.h option-dialog.h menu.h tb-xpms.h
 
 freecell_LDADD = \
-	../gdk-card-image/libgdkcardimage.la	\
+	../../gdk-card-image/libgdkcardimage.la	\
 	$(GNOME_GAMES_LIBS) \
 	$(INTLLIBS)
 
