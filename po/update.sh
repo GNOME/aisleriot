@@ -15,7 +15,7 @@ echo ./update.sh da -- created new pot file and updated the da.po file
 elif [ "x$1" = "x--missing" ]; then
 
 echo "Searching for files containing _( ) but missing in POTFILES.in..."
-find ../ -name "*.c" | xargs grep _\( | cut -d: -f1 | uniq | cut -d/ -f2- > POTFILES.in.new
+find ../ -regex '.*\.[c|y|cc|c++|h]' | xargs grep _\( | cut -d: -f1 | uniq | cut -d/ -f2- > POTFILES.in.new
 
 echo Sorting... comparing...
 sort -d POTFILES.in -o POTFILES.in
