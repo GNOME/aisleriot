@@ -1,4 +1,8 @@
 /*
+ * games-stock.h: games stock items and icon registation
+ *
+ * Copyright (C) 2005 Richard Hoelscher
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -12,10 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *
+ * Authors:
+ *      Richard Hoelscher <rah@rahga.com>
  */
 
 #ifndef __GAMES_STOCK_H__
 #define __GAMES_STOCK_H__
+
+#include <glib/gmacros.h>
+
+G_BEGIN_DECLS
 
 /* These uses new icons */
 #define GAMES_STOCK_SCORES           "games-scores"
@@ -33,5 +44,7 @@
 #define GAMES_STOCK_CONTENTS         "games-contents"
 
 void games_stock_init (void);
+
+G_END_DECLS
 
 #endif /* __GAMES_STOCK_H__ */
