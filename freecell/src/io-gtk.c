@@ -62,16 +62,16 @@ static enum
   SELECTED_NONE, SELECTED_FREECELL, SELECTED_FIELD
 }
 selected = SELECTED_NONE;
-static int selected_index = 0;
+static gint selected_index = 0;
 
-static int inverted = 0;
-static int inverted_index = 0;
-static int inverted_card_index = 0;
+static gint inverted = 0;
+static gint inverted_index = 0;
+static gint inverted_card_index = 0;
 
 static GdkCursor *normal_cursor;
 static GdkCursor *up_cursor;
 
-static int stalled = 0;
+static gint stalled = 0;
 
 
 static void callback_new_really_callback (GtkWidget *widget, gpointer data);
@@ -80,9 +80,9 @@ static void to_destination_auto(void);
 
 static void update_cursors(void);
 
-static void refresh_freecell (int index);
-static void refresh_field (int index);
-static void refresh_destination (int index);
+static void refresh_freecell (gint index);
+static void refresh_field (gint index);
+static void refresh_destination (gint index);
 
 static void refresh_all (void);
 
@@ -111,7 +111,7 @@ io_gtk_init (void)
 {
   GtkWidget *vbox, *hbox;
 
-  int i;
+  gint i;
   GtkWidget *w;
 
   
@@ -136,11 +136,11 @@ io_gtk_init (void)
       gtk_signal_connect (GTK_OBJECT(freecell_drawing_areas[i]),
 			  "expose_event",
 			  GTK_SIGNAL_FUNC (callback_freecell_expose),
-			  (gpointer)i);
+			  GINT_TO_POINTER (i));
       gtk_signal_connect (GTK_OBJECT(freecell_drawing_areas[i]),
 			  "button_press_event",
 			  GTK_SIGNAL_FUNC (callback_freecell_press),
-			  (gpointer)i);
+			  GINT_TO_POINTER (i));
       
       gtk_drawing_area_size (GTK_DRAWING_AREA(freecell_drawing_areas[i]),
 			     card_image_width(), card_image_height());
@@ -159,11 +159,11 @@ io_gtk_init (void)
       gtk_signal_connect (GTK_OBJECT(destination_drawing_areas[i]),
 			  "expose_event",
 			  GTK_SIGNAL_FUNC (callback_destination_expose),
-			  (gpointer)i);
+			  GINT_TO_POINTER (i));
       gtk_signal_connect (GTK_OBJECT(destination_drawing_areas[i]),
 			  "button_press_event",
 			  GTK_SIGNAL_FUNC (callback_destination_press),
-			  (gpointer)i);
+			  GINT_TO_POINTER (i));
       gtk_drawing_area_size (GTK_DRAWING_AREA(destination_drawing_areas[i]),
 			     card_image_width(), card_image_height());
       gtk_widget_set_events (destination_drawing_areas[i],
@@ -188,15 +188,15 @@ io_gtk_init (void)
       gtk_signal_connect (GTK_OBJECT(field_drawing_areas[i]),
 			  "expose_event",
 			  GTK_SIGNAL_FUNC (callback_field_expose),
-			  (gpointer)i);
+			  GINT_TO_POINTER (i));
       gtk_signal_connect (GTK_OBJECT(field_drawing_areas[i]),
 			  "button_press_event",
 			  GTK_SIGNAL_FUNC (callback_field_press),
-			  (gpointer)i);
+			  GINT_TO_POINTER (i));
       gtk_signal_connect (GTK_OBJECT(field_drawing_areas[i]),
 			  "button_release_event",
 			  GTK_SIGNAL_FUNC (callback_field_release),
-			  (gpointer)i);
+			  GINT_TO_POINTER (i));
       gtk_drawing_area_size (GTK_DRAWING_AREA(field_drawing_areas[i]),
 			     FIELD_WIDTH,
 			     FIELD_HEIGHT);
@@ -232,7 +232,7 @@ io_gtk_loop (void)
 
 /* Refresh functions.  */
 static void
-refresh_freecell (int index)
+refresh_freecell (gint index)
 {
   CARD *card;
   
@@ -249,7 +249,7 @@ refresh_freecell (int index)
 }
 
 static void
-refresh_destination (int index)
+refresh_destination (gint index)
 {
   CARD *card;
       
@@ -262,7 +262,7 @@ refresh_destination (int index)
 
 
 static void
-refresh_field (int index)
+refresh_field (gint index)
 {
   DECK *deck;
   
@@ -294,7 +294,7 @@ refresh_field (int index)
 static void
 refresh_all (void)
 {
-  int i;
+  gint i;
 
   for (i = 0; i < 4; i++)
     refresh_freecell(i);
@@ -335,7 +335,7 @@ callback_restart (GtkWidget *widget, GdkEvent *event)
 static void
 callback_restart_lose (GtkWidget *widget, gpointer data)
 {
-  if ((int)data == 0)
+  if (GPOINTER_TO_INT (data) == 0)
     {
       score_add_lose ();
       callback_restart_really ();
@@ -419,7 +419,7 @@ callback_new_with_seed_really (void)
 static void
 callback_new_with_seed_with_lose (GtkWidget *widget, gpointer data)
 {
-  if ((int)data == 0)
+  if ( GPOINTER_TO_INT (data) == 0)
     {
       score_add_lose();
       callback_new_with_seed_really();
@@ -456,7 +456,7 @@ callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
 static void
 callback_new_really_callback (GtkWidget *widget, gpointer data)
 {
-  if ((int)data == 0)
+  if (GPOINTER_TO_INT (data) == 0)
     callback_new_really ();
 }
 
@@ -484,7 +484,7 @@ callback_new_really (void)
 static void
 callback_new_with_lose (GtkWidget *widget, gpointer data)
 {
-  if ((int)data == 0)
+  if (GPOINTER_TO_INT (data) == 0)
     {
       score_add_lose();
       callback_new_really();
@@ -576,7 +576,7 @@ callback_exit_really (void)
 static void
 callback_exit_with_lose (GtkWidget *widget, gpointer data)
 {
-  if ((int)data == 0)
+  if (GPOINTER_TO_INT (data) == 0)
     {
       score_add_lose();
       callback_exit_really();
@@ -658,13 +658,13 @@ static void
 callback_freecell_press (GtkWidget *widget, GdkEventButton *event,
 			 gpointer client_data)
 {
-  int index;
+  gint index;
 
   
   if (!freecellgame || stalled)
     return;
 
-  index = (int)client_data;
+  index = GPOINTER_TO_INT (client_data);
 	
   if (event->type == GDK_BUTTON_PRESS)
     {
@@ -754,12 +754,12 @@ static void
 callback_destination_press (GtkWidget *widget, GdkEventButton *event,
 			    gpointer client_data)
 {
-  int index;
+  gint index;
   
   if (!freecellgame || stalled)
     return;
 
-  index = (int)client_data;
+  index = GPOINTER_TO_INT (client_data);
 
   if (event->type == GDK_BUTTON_PRESS)
     {
@@ -836,14 +836,14 @@ static void
 callback_field_press (GtkWidget *widget, GdkEventButton *event,
 		      gpointer client_data)
 {
-  int index;
+  gint index;
   
   int tmp, tmp2;
 
   if (!freecellgame || stalled)
     return;
 
-  index = (int)client_data;
+  index = GPOINTER_TO_INT (client_data);
 
   if (event->type == GDK_BUTTON_PRESS)
     {
@@ -977,13 +977,13 @@ static void
 callback_field_release (GtkWidget *widget, GdkEventButton *event,
 			gpointer client_data)
 {
-  int index;
+  gint index;
 
   
   if (!freecellgame || stalled)
     return;
 
-  index = (int)client_data;
+  index = GPOINTER_TO_INT (client_data);
 
   if (event->type == GDK_BUTTON_RELEASE)
     {
@@ -1092,7 +1092,7 @@ static void
 callback_freecell_expose (GtkWidget *widget, GdkEventExpose *event,
 			  gpointer client_data)
 {
-  refresh_freecell((int)client_data);
+  refresh_freecell(GPOINTER_TO_INT (client_data));
   return;
 }
 
@@ -1100,7 +1100,7 @@ static void
 callback_destination_expose (GtkWidget *widget, GdkEventExpose *event,
 			     gpointer client_data)
 {
-  refresh_destination((int)client_data);
+  refresh_destination(GPOINTER_TO_INT (client_data));
   return;
 }
 
@@ -1108,7 +1108,7 @@ static void
 callback_field_expose (GtkWidget *widget, GdkEventExpose *event,
 		       gpointer client_data)
 {
-  refresh_field((int)client_data);
+  refresh_field(GPOINTER_TO_INT (client_data));
   return;
 }
 

@@ -95,7 +95,7 @@ option_dialog_apply_callback (GtkWidget *w, gpointer data1, gpointer data2)
 
   g_return_if_fail (data2 != NULL);
 
-  switch ((int)data1)
+  switch (GPOINTER_TO_INT (data1))
     {
     case 0:
       check = ((OPTION_DATA *)data2)->inform_invalid_move_check;
