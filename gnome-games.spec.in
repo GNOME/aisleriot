@@ -1,5 +1,5 @@
 # Note that this is NOT a relocatable package
-%define ver      0.99.8
+%define ver      @VERSION@
 %define rel      1
 %define prefix   /usr
 
@@ -12,7 +12,7 @@ Group: X11/Libraries
 Source: ftp://ftp.gnome.org/pub/gnome-games-%{PACKAGE_VERSION}.tar.gz
 BuildRoot: /var/tmp/gnome-games-%{PACKAGE_VERSION}-root
 Obsoletes: gnome
-Packager: Marc Ewing <marc@redhat.com>
+
 URL: http://www.gnome.org
 Docdir: %{prefix}/doc
 
@@ -52,19 +52,8 @@ Right now this is just stuff to develop care games.  I think.
 %setup
 
 %build
-# Needed for snapshot releases.
-if [ ! -f configure ]; then
-  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%prefix --localstatedir=/var/lib
-else
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%prefix --localstatedir=/var/lib
-fi
-
-if [ "$SMP" != "" ]; then
-  (make "MAKE=make -k -j $SMP"; exit 0)
-  make
-else
-  make
-fi
+CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%prefix --localstatedir=/var/lib
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -79,13 +68,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %doc AUTHORS COPYING ChangeLog NEWS README
 %attr(-, root, games) %{prefix}/bin/*
+%{prefix}/etc/sound/events
 %{prefix}/share/apps/Games/*
+%{prefix}/share/gnibbles/*
+%{prefix}/share/gnobots2/*
 %{prefix}/share/gnome/help/*
 %{prefix}/share/gnome-stones/*
+%{prefix}/share/gturing/*
 %{prefix}/share/locale/*/*/*
+%{prefix}/share/metatris/*
 %{prefix}/share/pixmaps/*
-
-#%{prefix}/share/sol-games
+%{prefix}/share/sol-games/*
+%{prefix}/share/sounds/*
 
 %{prefix}/lib/lib*.so.*
 %{prefix}/lib/gnome-stones/objects/lib*.so.*

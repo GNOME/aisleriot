@@ -17,7 +17,10 @@ SUBDIRS = po macros \
 
 #$(objc_DIRS)
 
-EXTRA_DIST = gnome-games.spec
+EXTRA_DIST = gnome-games.spec.in
+
+dist-hook:
+	cp gnome-games.spec $(distdir)
 
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change
