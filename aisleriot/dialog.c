@@ -59,35 +59,31 @@ void show_game_over_dialog() {
     gtk_dialog_add_buttons (GTK_DIALOG (dialog),
 			    GTK_STOCK_UNDO, GTK_RESPONSE_REJECT,
 			    NULL);
-  /* FIXME: New and New Game are both used. One is a stock item, the
-   * other is more descriptive. */
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                           _("New Game"), GTK_RESPONSE_ACCEPT,
+			  GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
                           NULL);
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_CLOSE);
 
   /* add a stock icon? */ 
   switch (gtk_dialog_run (GTK_DIALOG (dialog)))
-  {
+    {
     case GTK_RESPONSE_ACCEPT: 
-      {
-        gtk_widget_destroy (dialog);
-        new_game (NULL, NULL);
-      }
+      gtk_widget_destroy (dialog);
+      new_game (NULL, NULL);
       break;
     case GTK_RESPONSE_REJECT:
-      {
-        gtk_widget_destroy (dialog);
-	game_over = FALSE;
-	undo_callback ();
-      }
+      gtk_widget_destroy (dialog);
+      game_over = FALSE;
+      undo_callback ();
+      break;
+    case GTK_RESPONSE_CLOSE:
+      gtk_main_quit ();
       break;
     default:
-     {
-       /* The player closed the dialog window, just ignore this. */
-       game_over = FALSE;
-       gtk_widget_destroy (dialog);
-     }
+      /* The player closed the dialog window, just ignore this. */
+      game_over = FALSE;
+      gtk_widget_destroy (dialog);
   }
 }
 
