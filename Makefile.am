@@ -6,7 +6,7 @@ if GUILE
 guile_DIRS = aisleriot
 endif
 
-SUBDIRS = po intl macros \
+SUBDIRS = po macros \
 	 freecell gnomine same-gnome scottfree mahjongg gturing \
          gyahtzee gnobots gnothello gnotravex gnome-stones $(guile_DIRS) idl
 	 

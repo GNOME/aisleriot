@@ -1,6 +1,6 @@
 # Note that this is NOT a relocatable package
-%define ver      0.30
-%define rel      1998112019
+%define ver      0.99.1
+%define rel      1
 %define prefix   /usr
 
 Summary: GNOME games
