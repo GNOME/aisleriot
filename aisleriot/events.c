@@ -154,6 +154,8 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 #endif
       gh_call1 (game_data->button_double_clicked_lambda, 
 		gh_long2scm (hslot->id));
+      refresh_screen ();
+      end_of_game_test ();
       return TRUE;
     }
     else {

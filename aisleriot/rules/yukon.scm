@@ -180,12 +180,8 @@
 	(#t #f)))
 
 (define (game-over)
-  (if (and (= 13 (length (get-cards 0)))
-	   (= 13 (length (get-cards 8)))
-	   (= 13 (length (get-cards 9)))
-	   (= 13 (length (get-cards 10))))
-      #f
-      #t))
+  (and (not (game-won))
+       (get-hint)))
 
 (define (game-won)
   (if (and (= 13 (length (get-cards 0)))
@@ -195,8 +191,153 @@
       #t
       #f))
 
+(define (here-kingy-kingy card-list)
+  (cond ((or (= (length card-list) 0)
+	     (= (length card-list) 1)
+	     (not (is-visible? (car card-list))))
+	 #f)
+	((= (get-value (car card-list)) king)
+	 (list 2 (get-name (car card-list)) "an empty slot"))
+	(#t (here-kingy-kingy (cdr card-list)))))
+
+(define (king-avail? slot-id)
+  (cond ((= slot-id 8)
+	 #f)
+	((and (not (empty-slot? slot-id))
+	      (here-kingy-kingy (get-cards slot-id)))
+	 (here-kingy-kingy (get-cards slot-id)))
+	(#t (king-avail? (+ 1 slot-id)))))
+
+(define (check-for-empty)
+  (and (or (empty-slot? 1)
+	   (empty-slot? 2)
+	   (empty-slot? 3)
+	   (empty-slot? 4)
+	   (empty-slot? 5)
+	   (empty-slot? 6)
+	   (empty-slot? 7))
+       (king-avail? 1)))
+
+(define (check-a-foundation card slot-id)
+(display "caf\n")
+  (cond ((= slot-id 11)
+	 #f)
+	((= slot-id 1)
+	 (check-a-foundation card 8))
+	((and (not (empty-slot? slot-id))
+	      (eq? (get-suit card)
+		   (get-suit (get-top-card slot-id)))
+	      (= (get-value card)
+		 (+ 1 (get-value (get-top-card slot-id)))))
+	 #t)
+	(#t (check-a-foundation card (+ 1 slot-id)))))
+
+(define (check-to-foundations? slot-id)
+(display "ctf\n")
+  (cond ((= slot-id 8)
+	 #f)
+	((empty-slot? slot-id)
+	 (check-to-foundations? (+ 1 slot-id)))
+	((= (get-value (get-top-card slot-id)) ace)
+	 (list 2 (get-name (get-top-card slot-id)) "an empty Foundation"))
+	((check-a-foundation (get-top-card slot-id) 0)
+	 (list 1 
+	       (get-name (get-top-card slot-id))
+	       (get-name (make-card (- (get-value (get-top-card slot-id)) 1)
+				    (get-suit (get-top-card slot-id))))))
+	(#t (check-to-foundations? (+ 1 slot-id)))))
+
+(define (stripped card-list card)
+  (display "stripped:  ")
+  (display card-list)
+  (display "  ")
+  (display card)
+  (newline)
+  (display (length card-list))
+  (display "  ")
+  (display (<= (length card-list) 1))
+  (newline)
+  (if (<= (length card-list) 1)
+      (begin
+	(display "stripped to null\n")
+	'())
+      (begin
+	(display "borp!\n")
+	(if (eq? card (car card-list))
+	    (begin (display "stripped to:  ")
+		   (display card-list)
+		   (newline)
+		   (cdr card-list))
+	    (if (= (length card-list) 2)
+		(begin
+		  (display "also stripped to null\n")
+		  '())
+		(stripped (cdr card-list) card))))))
+
+(define (check-a-tableau card slot1 card-list slot2 imbedded?)
+  (cond ((or (= (length card-list) 0)
+	     (not (is-visible? (car card-list))))
+	 #f)
+	((and (not (eq? (is-red? (car card-list))
+			(is-red? card)))
+	      (= (+ 1 (get-value (car card-list)))
+		 (get-value card)))
+	 (if (or  (= (length card-list) 1)
+		  (eq? (is-red? (car card-list))
+		       (is-red? (cadr card-list)))
+		  imbedded?
+		  (not (= (+ 1 (get-value (car card-list)))
+			  (get-value (cadr card-list)))))
+	     (list 1 (get-name (car card-list)) (get-name card))
+	     (if (= 0 
+		    (length 
+		     (stripped 
+		      (reverse (get-cards slot1))
+		      (car card-list))))
+		 (if (check-a-tableau (cadr card-list)
+				      slot1
+				      (get-cards slot2)
+				      slot2
+				      #t)
+		     (list 1 (get-name (car card-list)) (get-name card))
+		     #f)
+		 (if (check-a-tableau (cadr card-list) 
+				      slot1 
+				      (append (stripped 
+					       (reverse (get-cards slot1)) 
+					       (car card-list))
+					      (get-cards slot2)) 
+				      slot2 
+				      #t)
+		     (list 1 (get-name (car card-list)) (get-name card))
+		     #f))))
+	(imbedded? #f)
+	(#t (check-a-tableau card slot1 (cdr card-list) slot2 imbedded?))))
+
+(define (check-to-tableau? slot1 slot2)
+(display "ctt\n")
+  (cond ((= slot1 8)
+	 #f)
+	((or (= slot2 8)
+	     (empty-slot? slot1))
+	 (check-to-tableau? (+ 1 slot1) 1))
+	((and (not (= slot1 slot2))
+	      (check-a-tableau (get-top-card slot1) 
+			       slot1 
+			       (get-cards slot2) 
+			       slot2 
+			       #f))
+	 (check-a-tableau (get-top-card slot1) 
+			  slot1 
+			  (get-cards slot2) 
+			  slot2 
+			  #f))
+	(#t (check-to-tableau? slot1 (+ 1 slot2)))))
+
 (define (get-hint)
-  #f)
+  (or (check-to-foundations? 1)
+      (check-to-tableau? 1 2)
+      (check-for-empty)))
 
 (define (get-options) #f)
 
