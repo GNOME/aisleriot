@@ -320,4 +320,5 @@
 
 ;not strictly solitaire, but sometimes useful.
 (define (display-list . objs)
-(map display objs))
+  (map display objs))
+
