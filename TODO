@@ -1,4 +1,74 @@
-2.5 Issues
+To be done before 2.5 code freeze (23 February 2004):
+
+Aisleriot:
+        - Occasional crashes with seahaven: have they been fixed.
+        - Document statistics dialog.
+        - Crasher (133367)
+        - Dragging issue (133198)
+
+Blackjack:
+        - Make sure the caching works properly (132486)
+        - Crasher (125523)
+
+Gataxx:
+        - Crasher (132438) if info comes through.
+        
+Glines:
+        - Check the "next balls" display for pathological behaviour.
+
+Gnect:
+
+Gnibbles:
+        - Key buffering problems (128639)
+
+Gnobots2:
+	- Restore the es, it and da help docs translation. Convert html->xml.
+        - Change default keymap. Remove redundent widgets. (132387).
+
+Gnome-stones:
+        - Intro screen text size (132387).
+
+Gnometris:
+        - Write some documentation.
+        - Level ten crasher (120444).
+
+Gnomine:
+        - Make the hint item insensitive when we're in the "hide"
+          mode and when the game is over and before a new game.
+        - Number dpi drawing issues (131829).
+
+Gnotravex:
+        - Number size (131829)
+
+Gnotski:
+
+Gtali:
+        - Restore the danish docs
+
+Iagno:
+
+Mahjongg:
+	- Check solvability algorithm, it seems a bit easier now (130962).
+
+Same-gnome:
+
+libgames-support:
+
+gdk-card-image:
+
+--------------------------------------------------------------------------
+
+Priorities for 2.7/2.8:
+
+  gataxx (Sjoerd's code)
+  iagno (to match gataxx)
+  gnobots2, especially drawing code and mouse use
+  aisleriot rescaling (again).
+  rework aisleriot statistics code (cleanliness).
+
+--------------------------------------------------------------------------
+
+All bugs.
 
 General:
         - Make games respond to the gconf key change signals.
@@ -6,10 +76,14 @@ General:
         - Make as much as possible scalable so we can have full-screen
           modes. 
         - Seriously look at a11y for actually playing the games.
+        - Make games playable by keyboard (126284)
         - Look at network multi-player.
         - Consider how to handle the whole game seed thing.
 	- Update debian files to be reasonable
+        - Make session management work.
+        - Redo the scoring code.
         - Make the build system cleaner.
+        - Naming issues (117191)
 
 AisleRiot:
         - Scalability of cards (bugs 80167, 104969, 105536) 
@@ -27,11 +101,16 @@ AisleRiot:
         - Speed up the loading of pixmaps from gdk_card_image.
         - Find out what's wrong with block-ten.
 	- Seahaven still crashes occasionally with the new code.
-	- The undo button is occasionally deselected (visually)
-	  when it shouldn't be. This may be a GTK+ issue.
+        - Final missing features from stand-alone freecell (124522).
+        - Click moves instead of drag moves (123329)
+        - Find the root cause of 121726.
 
 Blackjack:
         - Eliminate the splash screen (and hopefully any recalculation).
+        - Multiplayer (129639)
+        - Training mode (129638)
+        - Resetting the balance (124629)
+        - Rules dialog clean-up (124613)
 
 Gataxx:
         - Grid options in prefs (like iagno, see also the next item)
@@ -61,6 +140,8 @@ Gnobots2:
         - Keep the preferences dialog open and start a new game. Oops. 
           Also hiding things is not HIG compliant.
 	- Restore the es, it and da help docs translation. Convert html->xml.
+        - Make game playable with a mouse.
+        - UI review (132387).
 
 Gnome-stones:
         - Check joystick support actually works ?
@@ -85,7 +166,7 @@ Gnometris:
 
 Gnomine:
         - Check flag counting code and whether this is in fact bug
-          103125 is still possible.        
+          103125 is still possible (also 119043).        
         - Try and fix the colour issue (part of 112571, the bit where
           I misunderstand).
         - Make the hint item insensitive when we're in the "hide"
@@ -94,6 +175,10 @@ Gnomine:
 	  the server.
 	- Make the cross-out for bad guesses in a failed game better (i.e.
           heavier when the window is large).
+        - Rendering improvements as per 132423.
+        - Better access to other scores (128235)
+        - Session-management related segfault (120461)
+        - Other misc crasher (120459) ?
 
 Gnotravex:
         - Have a colour mode in addition to the numbers.
@@ -108,6 +193,9 @@ Gtali:
           The Solution", Chance 16(1):17-20 (Winter 2003). (bug 52635)
         - Anti-alias the dice (maybe remove the built-in xpms).
 	- Restore the Danish help docs translation.
+        - Remove that space from gtali.schemas.in once intltool has
+          had a few more releases (and upgrade the required version to 0.31
+          or whatever it becomes.
 
 Iagno:
         - Merge with Gataxx (see above)
@@ -115,9 +203,13 @@ Iagno:
         - See if the code causeing problems in bug 79180 can't be 
           glib-ised to make the portability problem glibs.
         - Make defaults consistent with gataxx.
+        - Possibly fixed crasher (123351).
+        - Make selecting side in a network game better (119195).
+        - Make moves more obvious (118996)
+        - Undo has problems in a network game (118995)
 
 Mahjongg:
-        - Finish off scaling support. Make new themes.
+        - Finish off scaling support.
           - Rebuild seta.png
           - Fix up the tile search function for speed.
           - Make resizing a bit snappier (check the graphics scaling code, I
