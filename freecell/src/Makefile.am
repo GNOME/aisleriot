@@ -1,4 +1,6 @@
 # process this file with automake to produce Makefile.in
+Gamesdir = $(datadir)/apps/Games
+
 bin_PROGRAMS=freecell
 freecell_SOURCES= card.c game.c io-gtk.c freecell.c \
 card-image.c card-draw.c \
@@ -17,4 +19,9 @@ CFLAGS = -Wall @CFLAGS@
 
 freecell_LDADD = $(X_LIBS) $(GNOME_LIBS) $(GTK_LIBS) $(x_libs) $(INTLLIBS)
 
+EXTRA_DIST = freecell.desktop
+
+install-data-local:
+	$(mkinstalldirs) $(Gamesdir)
+	$(INSTALL_DATA) $(srcdir)/freecell.desktop $(datadir)/apps/Games/"FreeCell.desktop"
 
