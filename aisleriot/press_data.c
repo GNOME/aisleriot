@@ -24,6 +24,7 @@
 #include "slot.h"
 #include "sol.h"
 #include "cscmi.h"
+#include "events.h"
 
 press_data_type* press_data; 
 
@@ -105,4 +106,28 @@ void generate_press_data ( ) {
 
   press_data->cards->prev = NULL;
   update_slot_length(press_data->hslot);
+}
+
+/* This does slightly more than free data, it also hides the window for
+ * instance, but it is certainly in the correct spirit. */
+void free_press_data (void)
+{
+  if (press_data == NULL)
+    return;
+  
+  gdk_window_hide (press_data->moving_cards);
+  
+  if (press_data->moving_pixmap) {
+    g_object_unref (press_data->moving_pixmap);
+    press_data->moving_pixmap = NULL;
+  }
+  if (press_data->moving_mask) {
+    g_object_unref (press_data->moving_mask);
+    press_data->moving_mask = NULL;
+  }
+  press_data->status = STATUS_NONE;
+  /* FIXME: I think there is a memory leak here, but I haven't managed
+   * to figure out where the list is extracted from yet. This is what
+   * most of the rest of the code does. */
+  press_data->cards = NULL;
 }

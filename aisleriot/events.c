@@ -82,7 +82,6 @@ void drop_moving_cards(gint x, gint y) {
   }
 
   update_slot_length(hslot);
-  press_data->cards = NULL;
 
   gdk_drawable_get_size(press_data->moving_cards, &width, &height);
   gdk_window_move(press_data->moving_cards, 
@@ -91,14 +90,7 @@ void drop_moving_cards(gint x, gint y) {
 
   refresh_screen();
 
-  gdk_window_hide(press_data->moving_cards);
-
-  if (press_data->moving_pixmap)
-    g_object_unref(press_data->moving_pixmap);
-  if (press_data->moving_mask)
-    g_object_unref(press_data->moving_mask);
-  press_data->moving_pixmap = NULL;
-  press_data->moving_mask = NULL;
+  free_press_data ();
 
   if(moved) end_of_game_test();
 }
