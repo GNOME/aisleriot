@@ -3,7 +3,7 @@
 #endif
 
 if GUILE
-guile_DIRS = aisleriot trypeaks
+guile_DIRS = aisleriot
 endif
 
 if CXX_PRESENT
