@@ -3,9 +3,10 @@ cardimage_DATA = Background.xpm Cardback2.xpm Cardback4.xpm \
 Pictures.xpm Suits.xpm Cardback1.xpm Cardback3.xpm Cardback5.xpm \
 Ranks.xpm
 
-LINK = $(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o $@
+#LINK = $(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o $@
 
-INCLUDES = -I$(includedir) -DCARDIMAGEDIR=\"$(cardimagedir)\" $(X_CFLAGS)
+INCLUDES = -I$(includedir) -DCARDIMAGEDIR=\"$(cardimagedir)\" \
+	$(GNOME_INCLUDEDIR)
 
 EXTRA_DIST = $(cardimage_DATA)
 
