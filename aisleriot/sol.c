@@ -344,6 +344,7 @@ void create_press_data ()
   press_data = malloc(sizeof(press_data_type));
   press_data->moving_cards = gdk_window_new(playing_area->window, &attributes,
 					    (GDK_WA_VISUAL | GDK_WA_COLORMAP));
+  press_data->status = 0;
 }
 
 gchar* start_game;

@@ -132,6 +132,7 @@ SCM scm_set_statusbar_message(SCM message)
 {
   gnome_appbar_clear_stack (GNOME_APPBAR (GNOME_APP (app)->statusbar));
   gnome_appbar_push (GNOME_APPBAR(GNOME_APP (app)->statusbar), _(gh_scm2newstr(message,NULL)));
+  return SCM_EOL;
 }
 
 SCM scm_set_surface_layout(SCM surface) 

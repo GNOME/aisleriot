@@ -27,7 +27,7 @@
 
 press_data_type* press_data; 
 
-void generate_press_data (SCM old_cards) {
+void generate_press_data ( ) {
   GList* tempptr;
   SCM old_cards = SCM_EOL; 
   hslot_type hslot = press_data->hslot;

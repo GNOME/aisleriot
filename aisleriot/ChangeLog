@@ -1,3 +1,17 @@
+1999-06-13  Robert Brady  <rwb197@ecs.soton.ac.uk>
+
+	* cscmi.c (scm_set_statusbar_message): Return a value.
+
+	* press.data.c (generate_press_data): Make definition agree with the prototype.
+
+	* sol.c (create_press_data): Initialise press_data->status.
+
+	* events.c (button_press_event): Ignore button 3 presses whilst a card is 
+	being dragged, fixing bug #1469.
+	(button_release_event):	Ignore buttons releases if the button that caused 
+	the current state is still down (i.e. no more button3 click, button1 click,
+	button1 release causing STATUS_SHOW to end.)
+	
 1999-05-24  Brandon S. Allbery" <allbery@ece.cmu.edu>
 
 	* cscmi.c (cscm_init): Renamed scm_random to scm_myrandom, since
