@@ -372,7 +372,7 @@ callback_seed_input (GtkWidget *widget, gpointer data)
   int seed;
   char buffer[64];
 
-  seed = atoi (GTK_ENTRY(data)->text);
+  seed = atoi (gtk_entry_get_text (GTK_ENTRY (data)));
   
   if (freecellgame)
     freecellgame_delete (freecellgame);
