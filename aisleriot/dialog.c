@@ -257,7 +257,7 @@ void show_hint_dialog()
       case 1:
 	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
 	str2 = gh_scm2newstr(gh_caddr(hint),NULL);
-	gmessage = g_strdup_printf (_("Move the %s onto the %s."), str1, str2);
+	gmessage = g_strdup_printf (_("Move %s onto %s."), str1, str2);
 	free (str1);
 	free (str2);
 	break;
@@ -265,7 +265,7 @@ void show_hint_dialog()
       case 2:
 	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
 	str2 = gh_scm2newstr(gh_caddr(hint),NULL);
-	gmessage = g_strdup_printf (_("Move the %s onto %s."), str1, str2);
+	gmessage = g_strdup_printf (_("Move %s onto %s."), str1, str2);
 	free (str1);
 	free (str2);
 	break;
@@ -273,7 +273,7 @@ void show_hint_dialog()
       case 3: /* This is deprecated (due to i18n issues) do not use.*/
 	str1 = gh_scm2newstr(gh_cadr(hint),NULL);
 	str2 = gh_scm2newstr(gh_caddr(hint),NULL);
-	gmessage = g_strdup_printf (_("Move the %s %s."), str1, str2);
+	gmessage = g_strdup_printf (_("Move %s %s."), str1, str2);
 	free (str1);
 	free (str2);
         g_warning(_("This game uses a deprecated hint method (case 3).\n Please file a bug at http://bugzilla.gnome.org including this message and\n the name of the game you where playing (look in the title bar if you \naren't sure)."));
