@@ -1,3 +1,12 @@
+2004-06-11  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* sol.c:
+	* sol.h:
+	* dialog.c: Delay scanning the games directory until we need to.
+	Also replace the scan of filenames with a name->filename routine
+	and a single lookup when selecting the variation on the command 
+	line. Fixes bug #143331 the hard way.
+
 Sat Jun  5 01:22:47 2004  Jonathan Blandford  <jrb@gnome.org>
 
 	* odessa.scm (game-over): Fix a bug in odessa that has been

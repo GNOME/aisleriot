@@ -27,7 +27,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include <dirent.h>
 #include <libguile.h>
 #include <guile/gh.h>
 #include <ctype.h>
@@ -43,8 +42,9 @@
 #include "cscmi.h"
 #include "menu.h"
 #include "statistics.h"
-#include "games-clock.h"
-#include "games-gconf.h"
+#include <games-clock.h>
+#include <games-gconf.h>
+#include <games-files.h>
 
 /* The minimum size for the playing area. Almost completely arbitrary. */
 #define BOARD_MIN_WIDTH 300
@@ -74,12 +74,13 @@ guint            score;
 guint            timeout;
 guint32          seed;
 guint            n_games;
-struct dirent    **game_dents;
 gchar            *game_file = "";
 gchar            *game_name;
 gboolean         game_in_progress = FALSE;
 gboolean         game_over;
 gboolean         game_won;
+gchar            *variation = "";
+gchar            *gamesdir;
 
 guint            x_spacing = 5;
 guint            y_spacing = 15;
@@ -103,6 +104,28 @@ gchar* game_file_to_name (const gchar* file)
   g_free(buf);
   return p;
 }
+
+static gchar * game_name_to_file (const gchar *name)
+{
+  char *p, *s;
+
+  s = g_strdup (name);
+  p = s;
+  while (*p) {
+    if (*p == ' ')
+      *p = '_';
+    *p = g_ascii_tolower (*p);
+    p++;
+  }
+
+  p = g_strconcat (s, ".scm", NULL);
+  g_free (s);
+
+  p = g_build_filename (gamesdir, p, NULL);
+
+  return p;
+}
+
 
 void make_title () 
 {
@@ -419,22 +442,13 @@ retrieve_state (GnomeClient *client)
 				       "bonded-new.png");
 }
 
-static int
-is_game (const struct dirent* dent)
-{
-  return (!strcmp (g_extension_pointer (dent->d_name),"scm") &&
-	  strcmp (dent->d_name,"sol.scm"));
-}
-
 int main (int argc, char *argv [])
 {
-  gchar* variation = "";
   struct poptOption aisleriot_opts[] = {
     {"variation", '\0', POPT_ARG_STRING, NULL, 0, NULL, NULL},
     {NULL, '\0', 0, NULL, 0, NULL, NULL}
   };
-  gint i, records;
-  gchar* dir;
+  gchar * var_file;
 
   aisleriot_opts[0].arg = &variation;
   aisleriot_opts[0].descrip = N_("Variation on game rules");
@@ -469,28 +483,20 @@ int main (int argc, char *argv [])
 
   retrieve_state (gnome_master_client ());
 
-  dir = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_DATADIR,
-	                                        GAMESDIR, FALSE, NULL);
+  gamesdir = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_DATADIR,
+	                                GAMESDIR, FALSE, NULL);
 
-  records = scandir (dir, &game_dents, is_game, alphasort);
-  g_free(dir);
-
-  if (records >= 0)
-	  n_games = records;
-  else
-	  n_games = 0;
-
-  for (i = 0; i < n_games; i++) {
-    gchar *game_name = game_file_to_name (game_dents[i]->d_name);
-    if (!strcasecmp (variation, game_name)) {
+  /* If we are asked for a specific game, check that it is valid. */
+  if (variation && *variation) {
+    var_file = game_name_to_file (variation);
+    if (g_file_test (var_file, G_FILE_TEST_EXISTS 
+                              | G_FILE_TEST_IS_REGULAR)) {
       dont_save = TRUE;
-      start_game = g_strdup ((gchar*) game_dents[i]->d_name);
-      g_free (game_name);
-      break;
+      start_game = g_path_get_basename (var_file);
     }
-    g_free (game_name);
+    g_free (var_file);
   }
-  
+
   gh_enter(argc, argv, main_prog);
   return 0;
 }

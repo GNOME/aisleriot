@@ -37,6 +37,7 @@
 
 static GtkWidget *hint_dlg = NULL;
 static GtkWidget* seed_entry;
+static GtkTreeIter selected_iter;
 
 void show_game_over_dialog() {
   GtkWidget* dialog;
@@ -116,6 +117,25 @@ select_double_click (GtkWidget *widget, GtkTreePath *path,
   select_game (GTK_WIDGET (dialog), GTK_RESPONSE_OK, NULL);
 }
 
+static void build_list (gchar * filename, GtkWidget * list)
+{
+  gchar *text;
+  GtkTreeIter iter;
+
+  if (g_utf8_collate (filename, "sol.scm") == 0)
+    return;
+
+  text = game_file_to_name (filename);
+  gtk_list_store_append (GTK_LIST_STORE (list), &iter);
+  gtk_list_store_set(GTK_LIST_STORE (list), 
+                     &iter, 0, text, 1,
+                     filename, -1);
+  if (g_utf8_collate(text,game_name) == 0) {
+    memcpy (&selected_iter, &iter, sizeof(GtkTreeIter));
+  }
+  g_free (text);
+}
+
 void show_select_game_dialog() 
 {
   static GtkWidget* dialog = NULL;
@@ -127,10 +147,8 @@ void show_select_game_dialog()
   GtkTreeViewColumn* column;
   GtkCellRenderer* renderer;
   GtkTreeIter iter;
-  GtkTreeIter selected_iter;
   GtkTreePath * path;
-  
-  guint i;
+  GamesFileList * files;
   gchar buf[20];
 
   if (waiting_for_mouse_up()) return;
@@ -200,18 +218,12 @@ void show_select_game_dialog()
     filename = NULL;
     selected_iter.stamp = 0;
     
-    for(i = 0; i < n_games; i++) {
-	    gchar *text;
-	    text = game_file_to_name (game_dents[i]->d_name);
-	    gtk_list_store_append (GTK_LIST_STORE (list), &iter);
-            gtk_list_store_set(GTK_LIST_STORE (list), 
-                               &iter, 0, text, 1,
-                               game_dents[i]->d_name, -1);
-            if (g_utf8_collate(text,game_name) == 0) {
-                    memcpy (&selected_iter, &iter, sizeof(GtkTreeIter));
-            }
-            g_free (text);
-    }
+    files = games_file_list_new ("*.scm", gamesdir, NULL);
+    games_file_list_transform_basename (files);
+ 
+    games_file_list_for_each (files, (GFunc) build_list, list);
+
+    g_free (files);
 
     gtk_dialog_set_default_response ( GTK_DIALOG (dialog), GTK_RESPONSE_OK );
 
