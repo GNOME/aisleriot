@@ -161,7 +161,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
     }
   } 
   else if (event->type == GDK_2BUTTON_PRESS) {
-    press_data->status == STATUS_NONE;
+    press_data->status = STATUS_NONE;
     gh_call2 (gh_eval_str ("record-move"), gh_long2scm (-1),
 	      SCM_EOL);
     if (gh_scm2bool (gh_call1 (game_data->button_double_clicked_lambda,
