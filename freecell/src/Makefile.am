@@ -17,11 +17,10 @@ DEFS = -DLOCALEDIR=\"$(localedir)\" -DPKGDATADIR=\"$(pkgdatadir)\" \
 	@DEFS@
 CFLAGS = -Wall @CFLAGS@
 
-freecell_LDADD = $(X_LIBS) $(GNOME_LIBS) $(GTK_LIBS) $(x_libs) $(INTLLIBS)
+freecell_LDADD = $(X_LIBS) $(GNOME_LIBS) $(GTK_LIBS) $(x_libs) $(INTLLIBS) -ldl
 
 EXTRA_DIST = freecell.desktop
 
 install-data-local:
 	$(mkinstalldirs) $(Gamesdir)
 	$(INSTALL_DATA) $(srcdir)/freecell.desktop $(datadir)/apps/Games/"FreeCell.desktop"
-
