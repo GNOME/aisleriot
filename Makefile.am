@@ -34,6 +34,7 @@ SUBDIRS = \
 DIST_SUBDIRS = \
 	$(always_built_SUBDIRS)	\
 	aisleriot		\
+	blackjack		\
 	gnometris
 
 EXTRA_DIST = \
