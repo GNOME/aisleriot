@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 1.1.0\n"
-"POT-Creation-Date: 2000-06-22 15:28+0300\n"
+"POT-Creation-Date: 2000-08-11 17:19+0300\n"
 "PO-Revision-Date: 2000-04-25 08:57+0200\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -684,7 +684,7 @@ msgstr "Нова гра з певною базою..."
 msgid "Start a new game with a different seed"
 msgstr "Розпочати нову гру з вказаною базою"
 
-#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:846
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:1148
 msgid "Score"
 msgstr "Рахунок"
 
@@ -786,7 +786,7 @@ msgstr "Св╕тл╕ пропускають х╕д, темн╕ ходять"
 msgid "Dark must pass, Light's move"
 msgstr "Темн╕ пропускають х╕д, св╕тл╕ ходять"
 
-#: gataxx/gataxx.c:248 glines/glines.c:643 iagno/gnothello.c:246
+#: gataxx/gataxx.c:248 glines/glines.c:908 iagno/gnothello.c:246
 #: same-gnome/same-gnome.c:639
 msgid "Do you really want to quit?"
 msgstr "Ви справд╕ хочете вийти?"
@@ -890,29 +890,66 @@ msgstr "Переворот в к╕нц╕ гри"
 msgid "Tile set:"
 msgstr "Наб╕р ф╕шок:"
 
-#: glines/glines.c:111
+#: glines/glines.c:68
+#, c-format
+msgid "Could not find the '%s' theme for Glines\n"
+msgstr "Не вдалося знайти тему '%s' для гри Glines\n"
+
+#: glines/glines.c:175
 msgid "Game Over!"
 msgstr "Гру зак╕нчено!"
 
-#: glines/glines.c:113 glines/glines.c:604 glines/glines.c:627
-#: glines/glines.c:812
+#: glines/glines.c:177 glines/glines.c:670 glines/glines.c:693
+#: glines/glines.c:1114
 msgid "Glines"
 msgstr "Glines"
 
-#. Can't go there!
-#: glines/glines.c:318
-msgid "Can't go there!"
+#. Can't move there!
+#: glines/glines.c:384
+msgid "Can't move there!"
 msgstr "Неможливо туди потрапити!"
 
-#: glines/glines.c:630
+#: glines/glines.c:688
+msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
+msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
+
+#: glines/glines.c:689
+msgid "Szabolcs Ban <shooby@gnome.hu>"
+msgstr "Szabolcs Ban <shooby@gnome.hu>"
+
+#: glines/glines.c:694
+msgid "(C) 1997-2000 the Free Software Foundation"
+msgstr "© 1997-2000 Free Software Foundation"
+
+#: glines/glines.c:696
 msgid "Gnome port of the once-popular Color Lines game"
 msgstr "Вар╕ант популярно╖ гри Color Lines для GNOME"
 
-#: glines/glines.c:822
+#: glines/glines.c:826 mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:554
+msgid "Preferences"
+msgstr "Налаштування"
+
+#: glines/glines.c:846
+msgid "Theme"
+msgstr "Тема"
+
+#: glines/glines.c:852
+msgid "Select theme:"
+msgstr "Вибер╕ть тему:"
+
+#: glines/glines.c:866
+msgid "Select background:"
+msgstr "Вибер╕ть тло:"
+
+#: glines/glines.c:875
+msgid "Ask confirmation when quitting"
+msgstr "Перепитувати перед виходом"
+
+#: glines/glines.c:1124
 msgid "Welcome to Glines!"
 msgstr "Ласкаво просимо Glines!"
 
-#: glines/glines.c:833
+#: glines/glines.c:1135
 msgid "Next Balls"
 msgstr "Наступн╕ кул╕"
 
@@ -2473,10 +2510,6 @@ msgstr "Кольори:"
 #: mahjongg/mahjongg.c:1081 mahjongg/mahjongg.c:1244
 msgid "Background:"
 msgstr "Тло:"
-
-#: mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:554
-msgid "Preferences"
-msgstr "Установки"
 
 #: mahjongg/mahjongg.c:1190
 msgid "Tile Background"
