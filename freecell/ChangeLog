@@ -1,3 +1,9 @@
+2000-04-20  Ian Peters  <itp@gnu.org>
+
+	* src/io-gtk.c (io_gtk_init): wrap most of this function in
+	  gtk_widget_[pusph|pop]_[visual|colormap], to fix BadMatch on
+	  multi-depth displays.
+
 1999-04-01  Tuomas Kuosmanen  <tigert@gimp.org>
 
 	* src/freecell.desktop (Icon): Changed the icon to point 
