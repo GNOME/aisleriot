@@ -19,6 +19,7 @@
 
 #include <config.h>
 
+#include <time.h>
 #include <stdlib.h>
 #include <assert.h>
 
@@ -30,6 +31,12 @@
 /* Allocate memory and initialize game data.  */
 FREECELLGAME *
 freecellgame_new (int freecells_number, int fields_number)
+{
+  freecellgame_new_with_seed (freecells_number, fields_number, time(NULL));
+}  
+
+FREECELLGAME *
+freecellgame_new_with_seed (int freecells_number, int fields_number, int seed)
 {
   int i;
   FREECELLGAME *new_game;
@@ -54,8 +61,11 @@ freecellgame_new (int freecells_number, int fields_number)
   for (i = 0; i < fields_number; i++)
     new_game->fields[i] = deck_new (DECK_OPTION_NO_CARD);
 
+  new_game->seed = seed;
+  
   /* 2) Initialize game.  */
   tmp_deck = deck_new (DECK_OPTION_NO_JOKER);
+  srand (seed);
   deck_shuffle(tmp_deck);
 
   i = 0;

@@ -32,12 +32,14 @@ typedef struct __FREECELLGAME
   
   int fields_number;
   DECK **fields;
-  
+
+  int seed;
 } FREECELLGAME;
 
 
 /* constructor/destructor.  */
 extern FREECELLGAME *freecellgame_new (int freecells_number, int fields_number);
+extern FREECELLGAME *freecellgame_new_with_seed (int freecells_number, int fields_number, int seed);
 extern void freecellgame_delete (FREECELLGAME *game);
 
 /* for getting game's current information */

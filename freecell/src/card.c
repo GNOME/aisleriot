@@ -21,7 +21,6 @@
 #include <config.h>
 #endif /* HAVE_CONFIG_H */
 
-#include <time.h>
 #include <stdlib.h>
 #include <glib.h>
 
@@ -255,7 +254,6 @@ deck_shuffle (DECK *deck)
   int number;
 
   deck_temp = deck_new (DECK_OPTION_NO_CARD);
-  srand (time(NULL));
 
   while (deck_number(deck) != 0)
     {

@@ -301,6 +301,114 @@ refresh_all (void)
 
 
 static void
+callback_cancel (GtkWidget *widget, gpointer data)
+{
+  gtk_widget_destroy (GTK_WIDGET(data));
+}
+
+static void
+callback_seed_input (GtkWidget *widget, gpointer data)
+{
+  int seed;
+
+  seed = atoi (GTK_ENTRY(data)->text);
+  
+  if (freecellgame)
+    freecellgame_delete (freecellgame);
+
+  freecellgame = freecellgame_new_with_seed (4, 8, seed);
+
+  stalled = 0;
+  selected = SELECTED_NONE;
+  inverted = 0;
+
+  refresh_all();
+  update_cursors();
+}
+
+
+static void
+callback_new_with_seed_really (void)
+{
+  GtkWidget *dialog, *entry, *label, *button, *vbox;
+
+  dialog = gtk_dialog_new ();
+  GTK_WINDOW(dialog)->position = GTK_WIN_POS_MOUSE;
+  gtk_window_set_title (GTK_WINDOW(dialog), _("Seed"));
+  gtk_signal_connect (GTK_OBJECT (dialog), "delete_event",
+                      GTK_SIGNAL_FUNC (callback_cancel),
+                      (gpointer)dialog);
+  label = gtk_label_new (_("Enter the seed."));
+  gtk_box_pack_start_defaults (GTK_BOX(GTK_DIALOG(dialog)->vbox), label);
+  gtk_widget_show (label);
+  
+  entry = gtk_entry_new ();
+  gtk_box_pack_start_defaults (GTK_BOX(GTK_DIALOG(dialog)->vbox), entry);
+  gtk_widget_show (entry);
+
+  vbox = gtk_hbox_new (TRUE, 4);
+  gtk_container_add (GTK_CONTAINER(GTK_DIALOG(dialog)->action_area), vbox);
+  
+  button = gtk_button_new_with_label (_("OK"));
+  gtk_signal_connect (GTK_OBJECT (button), "clicked",
+                      GTK_SIGNAL_FUNC (callback_seed_input),
+                      (gpointer)entry);
+  gtk_signal_connect (GTK_OBJECT (button), "clicked",
+                      GTK_SIGNAL_FUNC (callback_cancel),
+                      (gpointer)dialog);
+  gtk_box_pack_start_defaults (GTK_BOX(vbox), button);
+  gtk_widget_show(button);
+  
+  button = gtk_button_new_with_label (_("Cancel"));
+  gtk_signal_connect (GTK_OBJECT (button), "clicked",
+                      GTK_SIGNAL_FUNC (gtk_widget_destroy),
+                      (gpointer)dialog);
+  gtk_box_pack_start_defaults (GTK_BOX(vbox), button);
+  gtk_widget_show(button);
+  
+  gtk_widget_show(vbox);
+  
+  gtk_grab_add (dialog);
+  gtk_widget_show (dialog);
+}
+
+
+static void
+callback_new_with_seed_with_lose (GtkWidget *widget, gpointer data)
+{
+  if ((int)data == 1)
+    {
+      score_add_lose();
+      callback_new_with_seed_really();
+    }
+}
+
+
+void
+callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
+{
+  GtkWidget *mb;
+
+  if (!stalled
+      && freecellgame
+      && !freecellgame_is_finished(freecellgame))
+    {
+      mb = gnome_messagebox_new (_("Exit this game?"),
+				 GNOME_MESSAGEBOX_QUESTION,
+				 _("Yes"), _("No"), NULL);
+      GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
+      gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+      gtk_signal_connect_object(GTK_OBJECT(mb),
+				"clicked",
+				GTK_SIGNAL_FUNC(callback_new_with_seed_with_lose),
+				NULL);
+      gtk_widget_show (mb);
+    }
+  else
+    callback_new_with_seed_really();
+}
+
+static void
 callback_new_really (void)
 {
   if (freecellgame)
@@ -326,7 +434,6 @@ callback_new_with_lose (GtkWidget *widget, gpointer data)
       callback_new_really();
     }
 }
-
 
 
 void

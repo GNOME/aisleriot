@@ -29,6 +29,9 @@ GnomeUIInfo game_menuinfo[] =
   {GNOME_APP_UI_ITEM, N_("New Game"), NULL, callback_new,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
   
+  {GNOME_APP_UI_ITEM, N_("New Game with a seed..."), NULL, callback_new_with_seed,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+
   {GNOME_APP_UI_SEPARATOR, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
@@ -77,6 +80,9 @@ GnomeUIInfo main_toolbarinfo[] =
   {GNOME_APP_UI_ITEM, N_("New"), N_("Start a new game"), callback_new,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
   
+  {GNOME_APP_UI_ITEM, N_("Seed"), NULL, callback_new_with_seed,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+
   {GNOME_APP_UI_ITEM, N_("Score"), N_("Show the score"), callback_score,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
