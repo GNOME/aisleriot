@@ -161,7 +161,7 @@
 		 (get-value (get-top-card (+ 5 slot-id)))))
 	 (list 1 (get-name (get-top-card slot-id))
 	       (get-name (get-top-card (+ 5 slot-id)))))
-	((< slot-id 19)
+	((< slot-id 20)
 	 (vertical-check (+ 1 slot-id)))
 	(#t #f)))	       
 
@@ -173,7 +173,7 @@
 		 (get-value (get-top-card (+ 6 slot-id)))))
 	 (list 1 (get-name (get-top-card slot-id))
 	       (get-name (get-top-card (+ 6 slot-id)))))
-	((< slot-id 18)
+	((< slot-id 19)
 	 (backslash-check (+ 1 slot-id)))
 	(#t #f)))
 
@@ -185,7 +185,7 @@
 		 (get-value (get-top-card (+ 4 slot-id)))))
 	 (list 1 (get-name (get-top-card slot-id))
 	       (get-name (get-top-card (+ 4 slot-id)))))
-	((< slot-id 19)
+	((< slot-id 20)
 	 (slash-check (+ 1 slot-id)))
 	(#t #f)))
 

@@ -42,6 +42,7 @@ sol_LDADD = -lgdk_imlib $(GNOME_LIBDIR) $(GNOMEUI_LIBS) \
 
 types_DATA  = 		\
 	auld_lang_syne.scm \
+	bakers_dozen.scm \
 	beleaguered_castle.scm \
 	bristol.scm	\
 	camelot.scm	\
