@@ -153,6 +153,7 @@ io_gtk_init (void)
       gtk_widget_show(freecell_drawing_areas[i]);
     }
   w = gtk_vseparator_new();
+  gtk_widget_set_size_request(w, 16, -1);
   gtk_box_pack_start_defaults (GTK_BOX(hbox), w);
   gtk_widget_show (w);
   for (i = 0; i < 4; i++)
@@ -180,6 +181,7 @@ io_gtk_init (void)
   gtk_widget_show(hbox);
   
   w = gtk_hseparator_new();
+  gtk_widget_set_size_request(w, -1, 16);
   gtk_box_pack_start (GTK_BOX (vbox), w, FALSE, FALSE, 0);
   gtk_widget_show (w);
   
