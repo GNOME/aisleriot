@@ -7,7 +7,7 @@ if CXX_PRESENT
 cxx_DIRS = gnometris xbill
 endif
 
-SUBDIRS =			\
+always_built_SUBDIRS =		\
 	po			\
 	libgames-support	\
 	gnect                   \
@@ -23,9 +23,17 @@ SUBDIRS =			\
 	gnibbles		\
 	glines			\
 	iagno			\
-	freecell 		\
+	freecell
+
+SUBDIRS = \
+	$(always_built_SUBDIRS)	\
 	$(cxx_DIRS)		\
 	$(guile_DIRS)
+
+DIST_SUBDIRS = \
+	$(always_built_SUBDIRS)	\
+	aisleriot		\
+	gnometris xbill
 
 EXTRA_DIST = \
 	gnome-games.spec.in \
