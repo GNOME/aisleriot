@@ -1,3 +1,10 @@
+2005-02-01  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* dialog.c (show_rules_options_dialog): Fix a call to
+	gtk_dialog_add_buttons by adding a NULL. Of course the function it
+	is in never gets called but this is still a good idea. Thanks to
+	meissner@suse.de (bug #165903).
+
 2005-01-24  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* menu.c: Back out the menubar icon experiments.

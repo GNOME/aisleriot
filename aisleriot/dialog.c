@@ -423,9 +423,9 @@ void show_rules_options_dialog ()
 		
 		gtk_dialog_add_buttons(GTK_DIALOG(option_dialog),
 		                       GTK_STOCK_OK,
-													 GTK_RESPONSE_OK,
-													 GTK_STOCK_CANCEL,
-													 GTK_RESPONSE_CANCEL);
+				       GTK_RESPONSE_OK,
+				       GTK_STOCK_CANCEL,
+				       GTK_RESPONSE_CANCEL, NULL);
 
     gtk_window_set_transient_for (GTK_WINDOW (option_dialog), GTK_WINDOW (app));
 		gtk_window_set_modal(GTK_WINDOW(option_dialog), TRUE);
