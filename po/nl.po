@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-14 15:08+0200\n"
+"POT-Creation-Date: 2004-05-26 03:52+0200\n"
 "PO-Revision-Date: 2004-05-14 20:28+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: nl <vertaling@nl.linux.org>\n"
@@ -145,7 +145,7 @@ msgstr "Naam van het spel-bestand"
 msgid "The height of the main window."
 msgstr "De hoogte van het hoofdvenster."
 
-#: aisleriot/aisleriot.schemas.in.h:5
+#: aisleriot/aisleriot.schemas.in.h:5 blackjack/data/blackjack.schemas.in.h:5
 msgid "The name of the file with the graphics for the cards."
 msgstr "De naam van het bestand met de plaatjes van de kaarten."
 
@@ -158,7 +158,7 @@ msgstr ""
 msgid "The width of the main window."
 msgstr "De breedte van het hoofdvenster."
 
-#: aisleriot/aisleriot.schemas.in.h:8
+#: aisleriot/aisleriot.schemas.in.h:8 blackjack/data/blackjack.schemas.in.h:8
 msgid "Theme file name"
 msgstr "Thema-bestandsnaam"
 
@@ -371,7 +371,8 @@ msgstr "Spel kiezen"
 msgid "Seed"
 msgstr "Nummer"
 
-#: aisleriot/dialog.c:170
+#. Rules Tab
+#: aisleriot/dialog.c:170 blackjack/src/dialog.cpp:250
 msgid "Rules"
 msgstr "Regels"
 
@@ -632,12 +633,12 @@ msgstr "Spel_opties..."
 msgid "Modify the options for this game"
 msgstr "Verander de opties voor dit spel"
 
-#: aisleriot/menu.c:194 blackjack/src/menu.cpp:150 gnect/src/main.c:1163
+#: aisleriot/menu.c:194 blackjack/src/menu.cpp:155 gnect/src/main.c:1163
 #: mahjongg/mahjongg.c:841
 msgid "_Toolbar"
 msgstr "_Werkbalk"
 
-#: aisleriot/menu.c:194 blackjack/src/menu.cpp:151 mahjongg/mahjongg.c:842
+#: aisleriot/menu.c:194 blackjack/src/menu.cpp:156 mahjongg/mahjongg.c:842
 msgid "Show or hide the toolbar"
 msgstr "De werkbalk tonen of verbergen"
 
@@ -665,7 +666,7 @@ msgstr "S_tatistieken..."
 msgid "Get statistics on the current game"
 msgstr "Statistieken voor het huidige spel berekenen"
 
-#: aisleriot/menu.c:255 blackjack/src/menu.cpp:198 gnect/src/main.c:1187
+#: aisleriot/menu.c:255 blackjack/src/menu.cpp:203 gnect/src/main.c:1187
 #: mahjongg/mahjongg.c:864
 msgid "New"
 msgstr "Nieuw"
@@ -674,7 +675,7 @@ msgstr "Nieuw"
 msgid "Start a new game"
 msgstr "Een nieuw spel beginnen"
 
-#: aisleriot/menu.c:258 blackjack/src/menu.cpp:201 mahjongg/mahjongg.c:868
+#: aisleriot/menu.c:258 blackjack/src/menu.cpp:206 mahjongg/mahjongg.c:868
 msgid "Restart"
 msgstr "Herstarten"
 
@@ -704,7 +705,7 @@ msgstr "Opnieuw"
 msgid "Redo the undone move"
 msgstr "De laatste zet herhalen"
 
-#: aisleriot/menu.c:272 blackjack/src/menu.cpp:205 gnect/src/main.c:1191
+#: aisleriot/menu.c:272 blackjack/src/menu.cpp:210 gnect/src/main.c:1191
 #: mahjongg/mahjongg.c:886
 msgid "Hint"
 msgstr "Hint"
@@ -788,11 +789,11 @@ msgstr "Score:"
 msgid "Time:"
 msgstr "Tijd:"
 
-#: aisleriot/sol.c:440 blackjack/src/blackjack.cpp:580
+#: aisleriot/sol.c:440 blackjack/src/blackjack.cpp:588
 msgid "Variation on game rules"
 msgstr "Variatie op spelregels"
 
-#: aisleriot/sol.c:441 blackjack/src/blackjack.cpp:581 gnobots2/gnobots.c:60
+#: aisleriot/sol.c:441 blackjack/src/blackjack.cpp:589 gnobots2/gnobots.c:60
 #: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:887
 msgid "NAME"
 msgstr "NAAM"
@@ -1514,8 +1515,8 @@ msgstr "Verplaats een stapel kaarten naar het lege Tafelvak"
 msgid "the appropriate Foundation pile"
 msgstr "de passende Basisstapel"
 
-#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:228
-#: blackjack/src/menu.cpp:106 blackjack/src/splash.cpp:96
+#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:231
+#: blackjack/src/menu.cpp:107 blackjack/src/splash.cpp:95
 msgid "Blackjack"
 msgstr "Blackjack"
 
@@ -1523,33 +1524,23 @@ msgstr "Blackjack"
 msgid "Play the casino card game Blackjack"
 msgstr "Het casino-kaartspel Blackjack"
 
-# obsure = vaag, onbekend, onduidelijk, afwijkend, slecht gedocumenteerd.
 #: blackjack/data/blackjack.schemas.in.h:1
-msgid ""
-"A string containing a list of files to use to describe the cards. The format "
-"is obscure and defined by the gdk-card-image library"
-msgstr ""
-"Een tekenreeks die een lijst bevat van bestanden die gebruikt worden om de "
-"kaarten te beschrijven. Het formaat is vrij onbekend en gedefinieerd door de "
-"gdk-kaartafbeelding bibliotheek"
-
-#: blackjack/data/blackjack.schemas.in.h:2
 msgid "Display probabilities"
 msgstr "Kansen tonen"
 
-#: blackjack/data/blackjack.schemas.in.h:3
+#: blackjack/data/blackjack.schemas.in.h:2
 msgid ""
 "Display the probabilities of each dealer hand outcome and the expected value "
 "of your hand."
 msgstr ""
 "Toon de kansen van elke gevershand en de verwachte waarde van uw kaarten."
 
-#: blackjack/data/blackjack.schemas.in.h:4
+#: blackjack/data/blackjack.schemas.in.h:3
 msgid "The amount of money in your bank"
 msgstr "De hoeveelheid geld in uw bank"
 
 # BUG, twee keer dezelfde zin, een keer met, een keer zonder punt.
-#: blackjack/data/blackjack.schemas.in.h:5
+#: blackjack/data/blackjack.schemas.in.h:4
 msgid "The amount of money in your bank."
 msgstr "De hoeveelhied geld in uw bank."
 
@@ -1564,266 +1555,249 @@ msgstr ""
 msgid "The variation of the rules file to use"
 msgstr "Naam van het 'variatie-op-de-spelregels'-bestand"
 
-#: blackjack/data/blackjack.schemas.in.h:8
+#: blackjack/data/blackjack.schemas.in.h:9
 msgid "Use a quick deal"
 msgstr "Een snelle deal gebruiken"
 
-#: blackjack/data/blackjack.schemas.in.h:9
+#: blackjack/data/blackjack.schemas.in.h:10
 msgid "Use a quick deal with no delay between each card."
 msgstr "Gebruik een snelle deal zonder pauze tussen elke kaart."
 
-#: blackjack/data/blackjack.schemas.in.h:10
-msgid "What card style to use"
-msgstr "Welke kaartstijl moet worden gebruikt"
-
-#: blackjack/src/blackjack.cpp:98
+#: blackjack/src/blackjack.cpp:94
 #, c-format
 msgid "Blackjack: %s (%d)"
 msgstr "Blackjack: %s (%d)"
 
 # hand - kaart?
 # gok ipv bod? weddenschap?
-#: blackjack/src/blackjack.cpp:306
+#: blackjack/src/blackjack.cpp:313
 msgid "Place your wager or deal a hand"
 msgstr "Maak uw bod of geef kaarten"
 
-#: blackjack/src/blackjack.cpp:309
+#: blackjack/src/blackjack.cpp:316
 msgid "Cards left:"
 msgstr "Kaarten over:"
 
 # Weddenschap, Gok
-#: blackjack/src/blackjack.cpp:317
+#: blackjack/src/blackjack.cpp:324
 msgid "Wager:"
 msgstr "Bod:"
 
-#: blackjack/src/blackjack.cpp:329
+#: blackjack/src/blackjack.cpp:338
 msgid "Balance:"
 msgstr "Balans:"
 
-#: blackjack/src/card.cpp:156
-msgid "Could not load the card deck images."
-msgstr "Kon de afbeeldingen op de kaarten niet laden."
-
-#: blackjack/src/card.cpp:157
-msgid "Blackjack will now exit."
-msgstr "Blackjack wordt nu afgesloten"
-
-#: blackjack/src/dialog.cpp:50
+#: blackjack/src/dialog.cpp:51
 msgid "Would you like insurance?"
 msgstr "Wilt u verzekering?"
 
 # Deal a hand: kaarten delen of geven?
-#: blackjack/src/dialog.cpp:92
+#: blackjack/src/dialog.cpp:89
 msgid "Set your wager and click in the white outline to deal a new hand."
 msgstr "Maar uw bod en klik op de witte rand om opnieuw te delen."
 
-#: blackjack/src/dialog.cpp:95
+#: blackjack/src/dialog.cpp:91
 msgid "Set your wager or click on the cards to deal a new hand."
 msgstr "Maak uw bod of klik op de kaarten om opnieuw te delen"
 
-#: blackjack/src/dialog.cpp:216
+#: blackjack/src/dialog.cpp:205
 msgid "Blackjack Preferences"
 msgstr "Blackjack voorkeuren"
 
-#: blackjack/src/dialog.cpp:231 gnect/src/prefs.c:452
-#: gnibbles/preferences.c:306 gnome-stones/preferences.c:740
-msgid "_Game"
-msgstr "_Spel"
+#: blackjack/src/dialog.cpp:219 gnobots2/properties.c:894
+msgid "Game"
+msgstr "Spel"
 
-#: blackjack/src/dialog.cpp:238
+#: blackjack/src/dialog.cpp:226
 msgid "Display hand probabilities"
 msgstr "Hand-kansen tonen"
 
-#: blackjack/src/dialog.cpp:249
+#: blackjack/src/dialog.cpp:236
 msgid "Quick deals (no delay between each card)"
 msgstr "Snel delen (geen pauze tussen elke afzonderlijke kaart)"
 
-#: blackjack/src/dialog.cpp:261
-msgid "_Rules"
-msgstr "_Regels"
+#: blackjack/src/dialog.cpp:243
+msgid "Reset balance"
+msgstr ""
 
-#: blackjack/src/dialog.cpp:285 gnomine/gnomine.c:293
+#: blackjack/src/dialog.cpp:275 gnomine/gnomine.c:293
 msgid "Name"
 msgstr "Naam"
 
-#: blackjack/src/dialog.cpp:290
+#: blackjack/src/dialog.cpp:280
 msgid "Decks"
 msgstr "Dekken"
 
 # vertalen of niet?
-#: blackjack/src/dialog.cpp:295
+#: blackjack/src/dialog.cpp:285
 msgid "Hit Soft 17"
 msgstr "Hit Soft 17"
 
-#: blackjack/src/dialog.cpp:300
+#: blackjack/src/dialog.cpp:290
 msgid "Double Any Total"
 msgstr "Elk totaal dubbelen"
 
-#: blackjack/src/dialog.cpp:305
+#: blackjack/src/dialog.cpp:295
 msgid "Double 9"
 msgstr "Dubbel 9"
 
 # Moet dit vertaald worden?
-#: blackjack/src/dialog.cpp:310
+#: blackjack/src/dialog.cpp:300
 msgid "Double Soft"
 msgstr "Dubbel zacht"
 
-#: blackjack/src/dialog.cpp:315
+#: blackjack/src/dialog.cpp:305
 msgid "Double After Hit"
 msgstr "Dubbelen na slaan"
 
-#: blackjack/src/dialog.cpp:320
+#: blackjack/src/dialog.cpp:310
 msgid "Double After Split"
 msgstr "Dubbelen na splitsen"
 
 # is dit goed?
-#: blackjack/src/dialog.cpp:325
+#: blackjack/src/dialog.cpp:315
 msgid "Resplit"
 msgstr "Hersplitsen"
 
 # Is dit goed?
-#: blackjack/src/dialog.cpp:330
+#: blackjack/src/dialog.cpp:320
 msgid "Resplit Aces"
 msgstr "Azen hersplitsen"
 
-#: blackjack/src/dialog.cpp:335 blackjack/src/player.cpp:328
+#: blackjack/src/dialog.cpp:325 blackjack/src/player.cpp:312
 msgid "Surrender"
 msgstr "Overgeven"
 
-#: blackjack/src/dialog.cpp:340
+#: blackjack/src/dialog.cpp:330
 msgid "Dealer Speed"
 msgstr "Snelheid van geven"
 
-#: blackjack/src/dialog.cpp:403
-msgid "Card _Deck"
-msgstr "Kaart-_dek"
-
-#: blackjack/src/events.cpp:490
-msgid "Click to deal another card; drag card to split pair"
-msgstr "Klikken om nog een kaart te delen, kaart slepen om paar te splitsen"
-
-#: blackjack/src/events.cpp:492
-msgid "Click to deal another card"
-msgstr "Klikken om nog een kaart te delen"
-
-#: blackjack/src/events.cpp:494
-msgid "Click to finish adding cards to your hand"
-msgstr "Klikken om geen kaarten meer aan uw hand toe te voegen."
-
-#: blackjack/src/events.cpp:497
-msgid "Click to deal a new hand"
-msgstr "Klikken om opnieuw te delen"
-
-#: blackjack/src/events.cpp:513
+#: blackjack/src/events.cpp:462
 msgid "Click to double your wager"
 msgstr "Klikken om uw bod te verdubbelen"
 
-#: blackjack/src/events.cpp:519
+#: blackjack/src/events.cpp:467
 #, c-format
 msgid "Double click to increase your wager by %.2f"
 msgstr "Dubbelklikken om uw bod met %.2f te vermeerderen"
 
-#: blackjack/src/events.cpp:533
+#: blackjack/src/events.cpp:477
 #, c-format
 msgid "Double click to decrease your wager by %.2f"
 msgstr "Dubbelklikken om uw bod met %.2f te verminderen"
 
+#: blackjack/src/events.cpp:494
+msgid "Click to deal another card; drag card to split pair"
+msgstr "Klikken om nog een kaart te delen, kaart slepen om paar te splitsen"
+
+#: blackjack/src/events.cpp:496
+msgid "Click to deal another card"
+msgstr "Klikken om nog een kaart te delen"
+
+#: blackjack/src/events.cpp:498
+msgid "Click to finish adding cards to your hand"
+msgstr "Klikken om geen kaarten meer aan uw hand toe te voegen."
+
+#: blackjack/src/events.cpp:501
+msgid "Click to deal a new hand"
+msgstr "Klikken om opnieuw te delen"
+
 # ook mooi: het betreffende bestand
-#: blackjack/src/game.cpp:390
+#: blackjack/src/game.cpp:379
 msgid "Blackjack can't load the requested file"
 msgstr "Blackjack kan het gevraagde bestand niet laden"
 
-#: blackjack/src/game.cpp:392
+#: blackjack/src/game.cpp:381
 msgid "Please check your Blackjack installation"
 msgstr "Controleer uw installatie van Blackjack"
 
-#: blackjack/src/hand.cpp:118
+#: blackjack/src/hand.cpp:115
 msgid "The best option is to stand"
 msgstr "De beste optie is een \"stand\""
 
-#: blackjack/src/hand.cpp:120
+#: blackjack/src/hand.cpp:117
 msgid "The best option is to hit"
 msgstr "De beste optie is een \"hit\""
 
-#: blackjack/src/hand.cpp:122
+#: blackjack/src/hand.cpp:119
 msgid "The best option is to double down"
 msgstr "De beste optie is een \"double down\""
 
-#: blackjack/src/hand.cpp:124
+#: blackjack/src/hand.cpp:121
 msgid "The best option is to split"
 msgstr "De beste optie is een \"split\""
 
-#: blackjack/src/hand.cpp:126
+#: blackjack/src/hand.cpp:123
 msgid "The best option is to surrender"
 msgstr "De beste optie is op te geven"
 
-#: blackjack/src/menu.cpp:110
+#: blackjack/src/menu.cpp:111
 msgid "Blackjack provides a casino-style blackjack card game."
 msgstr "Blackjack is het blackjack kaartspel in casino-stijl."
 
-#: blackjack/src/menu.cpp:198
+#: blackjack/src/menu.cpp:203
 msgid "Deal a new game"
 msgstr "Een nieuw spel geven"
 
-#: blackjack/src/menu.cpp:201
+#: blackjack/src/menu.cpp:206
 msgid "Start this game over"
 msgstr "Dit spel opnieuw doen"
 
-#: blackjack/src/menu.cpp:205
+#: blackjack/src/menu.cpp:210
 msgid "Suggest a move"
 msgstr "Stel een zet voor"
 
 # bepalen hier mooier dan berekenen
-#: blackjack/src/player.cpp:67
+#: blackjack/src/player.cpp:66
 msgid "Computing basic strategy..."
 msgstr "Basisstrategie wordt nu bepaald..."
 
 # De bank is leeg?
-#: blackjack/src/player.cpp:190 blackjack/src/player.cpp:468
+#: blackjack/src/player.cpp:187 blackjack/src/player.cpp:442
 msgid "Bust"
 msgstr "Kapot"
 
-#: blackjack/src/player.cpp:194
+#: blackjack/src/player.cpp:189
 msgid "Blackjack!"
 msgstr "Blackjack!"
 
-#: blackjack/src/player.cpp:199
+#: blackjack/src/player.cpp:192
 msgid "Soft"
 msgstr "Zacht"
 
-#: blackjack/src/player.cpp:207
+#: blackjack/src/player.cpp:198
 msgid "Win"
 msgstr "Winnen"
 
-#: blackjack/src/player.cpp:208
+#: blackjack/src/player.cpp:199
 msgid "Push"
 msgstr "Push"
 
-#: blackjack/src/player.cpp:209
+#: blackjack/src/player.cpp:200
 msgid "Lose"
 msgstr "Verliezen"
 
-#: blackjack/src/player.cpp:269
+#: blackjack/src/player.cpp:260
 msgid "Player expected values"
 msgstr "Speler verwachte waarden"
 
-#: blackjack/src/player.cpp:275
+#: blackjack/src/player.cpp:266
 msgid "Stand"
 msgstr "Stand"
 
-#: blackjack/src/player.cpp:285
+#: blackjack/src/player.cpp:275
 msgid "Hit"
 msgstr "Hit"
 
-#: blackjack/src/player.cpp:298
+#: blackjack/src/player.cpp:286
 msgid "Double"
 msgstr "Double"
 
-#: blackjack/src/player.cpp:314
+#: blackjack/src/player.cpp:300
 msgid "Split"
 msgstr "Split"
 
-#: blackjack/src/player.cpp:467
+#: blackjack/src/player.cpp:441
 msgid "Dealer hand probabilities"
 msgstr "Gevershand kansen"
 
@@ -1866,7 +1840,9 @@ msgstr "Ataxx"
 
 #: gataxx/gataxx.c:380
 msgid "A disk-flipping game where you attempt to dominate the board."
-msgstr "Een spel van stenen die omgedraaid worden en waarbij u probeert het bord te veroveren."
+msgstr ""
+"Een spel van stenen die omgedraaid worden en waarbij u probeert het bord te "
+"veroveren."
 
 #: gataxx/gataxx.desktop.in.h:2
 msgid "Compete to dominate the board in a Reversi-like game"
@@ -2002,7 +1978,9 @@ msgstr "De stenen omdraaien met enkele visuele effecten"
 msgid ""
 "Put all the white pieces at the bottom and all the black pieces on the top "
 "of the board when a game is over"
-msgstr "Alle witte stenen onderaan en alle zwarte stenen bovenaan het bord zetten bij het einde van het spel"
+msgstr ""
+"Alle witte stenen onderaan en alle zwarte stenen bovenaan het bord zetten "
+"bij het einde van het spel"
 
 #. show grid button
 #: gataxx/properties.c:402 iagno/properties.c:675
@@ -2382,19 +2360,24 @@ msgstr ""
 
 #: gnect/src/prefs.c:406 iagno/properties.c:544 iagno/properties.c:591
 msgid "Level one"
-msgstr "Level een"
+msgstr "Niveau een"
 
 #: gnect/src/prefs.c:408 iagno/properties.c:554 iagno/properties.c:601
 msgid "Level two"
-msgstr "Level twee"
+msgstr "Niveau twee"
 
 #: gnect/src/prefs.c:410 iagno/properties.c:564 iagno/properties.c:612
 msgid "Level three"
-msgstr "Level drie"
+msgstr "Niveau drie"
 
 #: gnect/src/prefs.c:435
 msgid "Four-in-a-row Preferences"
 msgstr "Vier-op-een-rij voorkeuren"
+
+#: gnect/src/prefs.c:452 gnibbles/preferences.c:306
+#: gnome-stones/preferences.c:740
+msgid "_Game"
+msgstr "_Spel"
 
 #: gnect/src/prefs.c:493
 msgid "_Theme:"
@@ -2488,9 +2471,9 @@ msgid ""
 "\n"
 "Please check your Gnibbles installation"
 msgstr ""
-"Gnibbles kon het volgende level niet laden:\n"
+"Gnibbles kon het volgende niveau niet laden:\n"
 "%s\n"
-"Controleer uw Gnibbles installatie"
+"Controleer uw Gnibbles-installatie"
 
 #: gnibbles/gnibbles.desktop.in.h:1
 msgid "Guide a worm around a maze"
@@ -2531,11 +2514,11 @@ msgstr "Geluid aanzetten"
 # BUG
 #: gnibbles/gnibbles.schemas.in.h:7
 msgid "Game level to start on"
-msgstr "Begin-level"
+msgstr "Begin-niveau"
 
 #: gnibbles/gnibbles.schemas.in.h:8
 msgid "Game level to start on."
-msgstr "Begin-level"
+msgstr "Begin-niveau."
 
 #: gnibbles/gnibbles.schemas.in.h:9
 msgid "Game speed"
@@ -2553,7 +2536,9 @@ msgstr "De hoogte van het GNibbles venster"
 msgid ""
 "Height of the GNibbles window, used to restore the window size between "
 "sessions."
-msgstr "Hoogte van het GNibbles venster, gebruikt om het venster te herstellen tussen sessies."
+msgstr ""
+"Hoogte van het GNibbles venster, gebruikt om het venster te herstellen "
+"tussen sessies."
 
 # BUG
 #: gnibbles/gnibbles.schemas.in.h:13
@@ -2603,11 +2588,11 @@ msgstr "Aantal spelers"
 # BUG
 #: gnibbles/gnibbles.schemas.in.h:23 gnibbles/preferences.c:373
 msgid "Play levels in random order"
-msgstr "Levels in willekeurige volgorde"
+msgstr "Niveaus in willekeurige volgorde spelen"
 
 #: gnibbles/gnibbles.schemas.in.h:24
 msgid "Play levels in random order."
-msgstr "Levels in willekeurige volgorde"
+msgstr "Niveaus in willekeurige volgorde spelen."
 
 # BUG
 #: gnibbles/gnibbles.schemas.in.h:25
@@ -2634,7 +2619,9 @@ msgstr "De breedte van het GNibbles venster"
 msgid ""
 "Width of the GNibbles window, used to restore the window size between "
 "sessions."
-msgstr "Breedte van het GNibbles venster, gebruikt om het venster te herstellen tussen sessies."
+msgstr ""
+"Breedte van het GNibbles venster, gebruikt om het venster te herstellen "
+"tussen sessies."
 
 #: gnibbles/gnibbles.soundlist.in.h:1
 msgid "Bonus"
@@ -2708,7 +2695,7 @@ msgstr "Opties"
 
 #: gnibbles/preferences.c:408
 msgid "Starting level:"
-msgstr "Begin-level:"
+msgstr "Begin-niveau:"
 
 #: gnibbles/preferences.c:435 gtali/setup.c:266
 msgid "Number of players:"
@@ -3034,7 +3021,7 @@ msgstr "GNOME Robots II"
 
 #: gnobots2/gnobots2.soundlist.in.h:3
 msgid "Level Complete"
-msgstr "Level Compleet"
+msgstr "Niveau voltooid"
 
 #: gnobots2/gnobots2.soundlist.in.h:4
 msgid "Player Dead"
@@ -3075,15 +3062,15 @@ msgstr "Begin-aantal van Type 2 Robots"
 
 #: gnobots2/properties.c:256
 msgid "Increasing Number of Type 1 Robots per Level"
-msgstr "Toename van aantal Type 1 Robots per Level"
+msgstr "Toename van aantal Type 1 Robots per niveau"
 
 #: gnobots2/properties.c:258
 msgid "Increasing Number of Robots per Level"
-msgstr "Toename van aantal Robots per Level"
+msgstr "Toename van aantal Robots per niveau"
 
 #: gnobots2/properties.c:271
 msgid "Increasing Number of Type 2 Robots per Level"
-msgstr "Toename van aantal Type 2 Robots per Level"
+msgstr "Toename van aantal Type 2 Robots per niveau"
 
 #: gnobots2/properties.c:284
 msgid "Maximum Number of Type 1 Robots"
@@ -3144,7 +3131,7 @@ msgstr "Begin Aantal veilige Teleports"
 
 #: gnobots2/properties.c:414
 msgid "Number of Free Safe Teleports per Level"
-msgstr "Toename veilige Teleports per Level"
+msgstr "Toename veilige Teleports per niveau"
 
 #: gnobots2/properties.c:425
 msgid "Kills Required While Waiting to Get A Safe Teleport"
@@ -3253,7 +3240,7 @@ msgstr "Geluiden geven bij alle belangrijke gebeurtenissen"
 #: gnobots2/properties.c:878
 msgid "Play sounds for events like winning a level and dying."
 msgstr ""
-"Geluiden geven bij gebeurtenissen zoals het voltooien van een level of bij "
+"Geluiden geven bij gebeurtenissen zoals het voltooien van een niveau of bij "
 "doodgaan."
 
 # Moet waarschijnlijk zijn 'collided'?
@@ -3268,10 +3255,6 @@ msgstr "Het meest gewone en potentieel meest irritante geluid geven."
 #: gnobots2/properties.c:890
 msgid "You Cannot Change the Game Type When Playing"
 msgstr "Het speltype is niet te wijzigen tijdens het spelen"
-
-#: gnobots2/properties.c:894
-msgid "Game"
-msgstr "Spel"
 
 #: gnobots2/properties.c:902
 msgid "Graphics Theme"
@@ -3324,7 +3307,7 @@ msgstr "Veilige Teleports:"
 
 #: gnobots2/statusbar.c:85 gnometris/scoreframe.cpp:78
 msgid "Level:"
-msgstr "Level:"
+msgstr "Niveau:"
 
 #: gnobots2/statusbar.c:95
 msgid "Remaining:"
@@ -3503,7 +3486,7 @@ msgstr "Spel voorbij!"
 
 #: gnome-stones/main.c:1086
 msgid "Sokoban levels:"
-msgstr "Sobokan levels:"
+msgstr "Sobokan niveaus:"
 
 #: gnome-stones/main.c:1114
 msgid "Mine through dirt and collect gems."
@@ -3511,11 +3494,11 @@ msgstr "In de aarde graven en diamanten verzamelen."
 
 #: gnome-stones/main.c:1137
 msgid "_Restart level"
-msgstr "Level _herstarten"
+msgstr "Niveau _herstarten"
 
 #: gnome-stones/main.c:1137
 msgid "Restart the current level"
-msgstr "Het huidige level opnieuw doen"
+msgstr "Het huidige niveau opnieuw doen"
 
 #: gnome-stones/main.c:1242
 msgid "Scanning private object directory..."
@@ -3589,7 +3572,7 @@ msgstr "Digitale joystick emulatie"
 
 #: gnome-stones/preferences.c:817
 msgid "Switch level:"
-msgstr "Verander level:"
+msgstr "Niveau veranderen:"
 
 #: gnome-stones/preferences.c:840
 msgid "_Joystick"
@@ -3662,11 +3645,11 @@ msgstr "Afbeelding voor de blokken"
 # BUG
 #: gnometris/gnometris.schemas.in.h:3
 msgid "Level to start with"
-msgstr "Begin-level"
+msgstr "Begin-niveau"
 
 #: gnometris/gnometris.schemas.in.h:4
 msgid "Level to start with."
-msgstr "Begin-level"
+msgstr "Begin-niveau."
 
 #: gnometris/gnometris.schemas.in.h:5
 msgid ""
@@ -3722,11 +3705,11 @@ msgstr "Of tegen de klok in mag worden gedraaid"
 
 #: gnometris/main.cpp:38
 msgid "Set starting level (1-10)"
-msgstr "Begin-level instellen (1-10)"
+msgstr "Begin-niveau instellen (1-10)"
 
 #: gnometris/main.cpp:38
 msgid "LEVEL"
-msgstr "LEVEL"
+msgstr "NIVEAU"
 
 #: gnometris/scoreframe.cpp:67
 msgid "Lines:"
@@ -3787,7 +3770,7 @@ msgstr "Dichtheid van blokken in een voorgevulde rij:"
 #. starting level
 #: gnometris/tetris.cpp:678
 msgid "Starting Level:"
-msgstr "Begin-level:"
+msgstr "Begin-niveau:"
 
 # Operatie
 #: gnometris/tetris.cpp:695
@@ -4508,6 +4491,10 @@ msgstr ""
 "Controleer uw GConf-configuratie, in het bijzonder of de schemas juist zijn "
 "geïnstalleerd"
 
+#: libgames-support/games-card-selector.c:51
+msgid "Card Style"
+msgstr "Kaartstijl"
+
 #: mahjongg/mahjongg.c:741
 msgid "Difficult"
 msgstr "Moeilijk"
@@ -4766,6 +4753,30 @@ msgstr "Welkom bij Same GNOME!"
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
 
+# obsure = vaag, onbekend, onduidelijk, afwijkend, slecht gedocumenteerd.
+#~ msgid ""
+#~ "A string containing a list of files to use to describe the cards. The "
+#~ "format is obscure and defined by the gdk-card-image library"
+#~ msgstr ""
+#~ "Een tekenreeks die een lijst bevat van bestanden die gebruikt worden om "
+#~ "de kaarten te beschrijven. Het formaat is vrij onbekend en gedefinieerd "
+#~ "door de gdk-kaartafbeelding bibliotheek"
+
+#~ msgid "What card style to use"
+#~ msgstr "Welke kaartstijl moet worden gebruikt"
+
+#~ msgid "Could not load the card deck images."
+#~ msgstr "Kon de afbeeldingen op de kaarten niet laden."
+
+#~ msgid "Blackjack will now exit."
+#~ msgstr "Blackjack wordt nu afgesloten"
+
+#~ msgid "_Rules"
+#~ msgstr "_Regels"
+
+#~ msgid "Card _Deck"
+#~ msgstr "Kaart-_dek"
+
 #~ msgid ""
 #~ "AisleRiot could not load its deck images.\n"
 #~ "\n"
@@ -4774,9 +4785,6 @@ msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
 #~ "AisleRiot kon de plaatjes van de kaarten niet laden\n"
 #~ "\n"
 #~ "AisleRiot wordt nu afgesloten."
-
-#~ msgid "Card Style"
-#~ msgstr "Kaartstijl"
 
 #~ msgid "bdc\n"
 #~ msgstr "bdc\n"
@@ -4902,7 +4910,7 @@ msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
 #~ msgstr "Ge_avanceerd"
 
 #~ msgid "Level completed. Well done."
-#~ msgstr "Level klaar. Goed gedaan!"
+#~ msgstr "Niveau klaar. Goed gedaan!"
 
 #~ msgid "Moves:"
 #~ msgstr "Zetten:"
@@ -4998,7 +5006,7 @@ msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
 #~ msgstr "Beginthema-bestand (zonder pad)"
 
 #~ msgid "Debugging level (4 for random seed)"
-#~ msgstr "Debug level (4 voor willekeurig getal)"
+#~ msgstr "Debugniveau (4 voor willekeurig getal)"
 
 #~ msgid "%s: no themes available\n"
 #~ msgstr "%s: geen themas beschikbaar\n"
@@ -5408,7 +5416,7 @@ msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
 #~ msgstr "Geluid aan/uitzetten is nog niet geïmplementeerd!"
 
 #~ msgid "Level: "
-#~ msgstr "Level: "
+#~ msgstr "Niveau: "
 
 #~ msgid "Code: Pista"
 #~ msgstr "Code: Pista"
@@ -5762,7 +5770,7 @@ msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
 #~ "   Onze excuses voor deze problemen."
 
 #~ msgid "Warp to level?"
-#~ msgstr "Verplaats naar level? "
+#~ msgstr "Springen naar niveau? "
 
 #~ msgid "Quit Game?"
 #~ msgstr "Spel afsluiten?"
@@ -5785,7 +5793,7 @@ msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
 #~ msgstr "Verdergaan"
 
 #~ msgid "Warp To Level"
-#~ msgstr "Begin bij level: "
+#~ msgstr "Begin bij niveau: "
 
 #~ msgid "Story"
 #~ msgstr "Verhaal"
@@ -5794,7 +5802,7 @@ msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
 #~ msgstr "Eindspel"
 
 #~ msgid "Warp to level..."
-#~ msgstr "Springen naar level..."
+#~ msgstr "Springen naar niveau..."
 
 #~ msgid ""
 #~ "Copyright (C) 1994, Psychosoft\n"
@@ -5807,7 +5815,7 @@ msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
 #~ "After Level %d:     \n"
 #~ "Your score: %d"
 #~ msgstr ""
-#~ "Na level: %d      \n"
+#~ "Na niveau: %d      \n"
 #~ "Je score: %d"
 
 #~ msgid "Are you sure you want to quit GNOME xBill?"
