@@ -37,10 +37,12 @@ option_dialog (GtkWidget *parent)
   GtkWidget *check1;
   GtkWidget *check2;
 
-  propbox = gnome_dialog_new (_("Freecell Properties"),
-			GNOME_STOCK_BUTTON_CLOSE, NULL);
-  gnome_dialog_set_parent (GNOME_DIALOG (propbox), GTK_WINDOW (parent));
-  g_signal_connect (G_OBJECT (propbox), "clicked",
+  propbox = gtk_dialog_new_with_buttons (_("Freecell Properties"),
+		  GTK_WINDOW (parent),
+		  0,
+		  GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
+		  NULL);
+  g_signal_connect (G_OBJECT (propbox), "response",
 			G_CALLBACK (gtk_widget_destroy), propbox);
 
 
@@ -64,7 +66,7 @@ option_dialog (GtkWidget *parent)
 		      NULL);
   gtk_widget_show(check2);
 
-  gtk_box_pack_start_defaults (GTK_BOX (GNOME_DIALOG (propbox)->vbox), box);
+  gtk_box_pack_start_defaults (GTK_BOX (GTK_DIALOG (propbox)->vbox), box);
 
   gtk_widget_show (box);
 

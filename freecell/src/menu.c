@@ -36,7 +36,7 @@ GnomeUIInfo game_menuinfo[] =
 
   GNOMEUIINFO_ITEM_STOCK(N_("New game with seed..."),
 			 N_("Start a new game with a different seed"),
-			 callback_new_with_seed, GNOME_STOCK_MENU_OPEN),
+			 callback_new_with_seed, GTK_STOCK_OPEN),
 
   GNOMEUIINFO_SEPARATOR,
 
@@ -89,31 +89,32 @@ GnomeUIInfo main_menuinfo[] =
 GnomeUIInfo main_toolbarinfo[] =
 {
   GNOMEUIINFO_ITEM_STOCK(N_("New"), N_("Deal a new game"),
-			 callback_new, GNOME_STOCK_PIXMAP_NEW),
+			 callback_new, GTK_STOCK_NEW),
 
   GNOMEUIINFO_ITEM_STOCK(N_("Restart"), N_("Start this game over"),
-			 callback_restart, GNOME_STOCK_PIXMAP_REFRESH),
+			 callback_restart, GTK_STOCK_REFRESH),
 
   GNOMEUIINFO_ITEM_STOCK(N_("Seed"),
 			 N_("Start a new game with a different seed"),
-			 callback_new_with_seed, GNOME_STOCK_PIXMAP_OPEN),
+			 callback_new_with_seed, GTK_STOCK_OPEN),
 
   GNOMEUIINFO_SEPARATOR,
 
   GNOMEUIINFO_ITEM_STOCK(N_("Undo"), N_("Undo the last move"),
-			 callback_undo, GNOME_STOCK_PIXMAP_UNDO),
+			 callback_undo, GTK_STOCK_UNDO),
 
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_MENU_SCORES_ITEM(callback_score, NULL),
+  GNOMEUIINFO_ITEM_STOCK(N_("Scores"), N_("Scores"),
+		  callback_score, GTK_STOCK_INDEX),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Props"), N_("Configure Freecell"),
-			 callback_option, GNOME_STOCK_PIXMAP_PROPERTIES),
+  GNOMEUIINFO_ITEM_STOCK(N_("Preferences"), N_("Configure Freecell"),
+			 callback_option, GTK_STOCK_PREFERENCES),
 
   GNOMEUIINFO_SEPARATOR,
 
   GNOMEUIINFO_ITEM_STOCK(N_("Exit"), N_("Quit Freecell"),
-			 callback_exit, GNOME_STOCK_PIXMAP_EXIT),
+			 callback_exit, GTK_STOCK_QUIT),
 
   GNOMEUIINFO_END
 };

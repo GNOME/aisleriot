@@ -1,10 +1,11 @@
-## process this file with automake to produce Makefile.in
 Gamesdir = $(datadir)/applications
 
 INCLUDES = \
-	$(GNOME_GAMES_CFLAGS)		\
+	$(GNOME_GAMES_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-I$(srcdir)/../gdk-card-image
+	-I$(srcdir)/../gdk-card-image			\
+	-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED \
+	-DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED
 
 bin_PROGRAMS = freecell
 

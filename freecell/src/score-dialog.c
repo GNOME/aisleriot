@@ -29,10 +29,12 @@
 
 
 static void
-score_dialog_callback(GnomeDialog *dialog, gint button, gpointer data)
+score_dialog_callback(GtkDialog *dialog, gint arg1, gpointer data)
 {
-  if (button == 1)
+  if (arg1 == GTK_RESPONSE_REJECT)
     score_clear();
+  else
+	  gtk_widget_destroy (GTK_WIDGET(dialog));
 }
 
 GtkWidget *
@@ -44,20 +46,25 @@ score_dialog (void)
   char *formatstring[20];	/* FIXME: is it enough? */
   int i;
 
-  dialog = gnome_dialog_new (_("Score"), GNOME_STOCK_BUTTON_OK, NULL);
-  gnome_dialog_append_button_with_pixmap (GNOME_DIALOG (dialog), _("Clear"),
-					  GNOME_STOCK_PIXMAP_CLEAR);
-  gnome_dialog_set_default (GNOME_DIALOG (dialog), 0);
-  gnome_dialog_set_close (GNOME_DIALOG (dialog), TRUE);
+  dialog = gtk_dialog_new_with_buttons (_("Score"),
+		  NULL,
+		  0,
+		  GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
+		  NULL);
+		  
+  gtk_dialog_add_buttons (GTK_DIALOG (dialog), GTK_STOCK_CLEAR,
+		  GTK_RESPONSE_REJECT, NULL);
+  
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
 
-  gtk_signal_connect (GTK_OBJECT (dialog), "clicked",
+  g_signal_connect (GTK_OBJECT (dialog), "response",
 	              GTK_SIGNAL_FUNC (score_dialog_callback), NULL);
   
   score_formatstring(formatstring);
   for (i = 0; formatstring[i]; i++)
     {
       label = gtk_label_new (formatstring[i]);
-      gtk_box_pack_start (GTK_BOX(GNOME_DIALOG(dialog)->vbox),
+      gtk_box_pack_start (GTK_BOX(GTK_DIALOG(dialog)->vbox),
 			  label, TRUE, TRUE, 0);
       gtk_widget_show(label);
     }

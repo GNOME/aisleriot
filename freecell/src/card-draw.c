@@ -69,7 +69,7 @@ draw_card (GdkWindow *window, GdkGC *gc, int x, int y, CARD *card)
 
   gdk_gc_set_clip_origin (gc, x, y);
   gdk_gc_set_clip_mask(gc, clip);
-  gdk_draw_pixmap(window, gc,
+  gdk_draw_drawable(window, gc,
 		  pixmap,
 		  0, 0,
 		  x, y,
@@ -106,7 +106,7 @@ static void
 draw_background(GdkWindow *window, GdkGC *bg_gc)
 {
   gint width, height;
-  gdk_window_get_geometry (window, NULL, NULL, &width, &height, NULL);
+  gdk_drawable_get_size (window, &width, &height);
   gdk_draw_rectangle((GdkDrawable *)window, bg_gc, TRUE,
 		     0, 0, width, height);
 }
@@ -118,7 +118,7 @@ card_draw_init(GtkWidget *widget)
 
   card_deck = gdk_card_deck_new(widget->window, NULL);
   clip = gdk_card_deck_mask (GDK_CARD_DECK (card_deck));
-  gdk_window_get_geometry (GDK_WINDOW (clip), NULL, NULL, &card_width, &card_height, NULL);
+  gdk_drawable_get_size (GDK_DRAWABLE (clip), &card_width, &card_height);
   
   d_pixmap = gdk_pixmap_new(widget->window,
 			    card_width + 10, 5 * card_height,
@@ -182,10 +182,15 @@ card_draw_card_general (GtkWidget *widget, int x, int y,
 
   gdk_gc_set_clip_mask(widget->style->fg_gc[GTK_STATE_NORMAL],
 		       NULL);
+  gdk_draw_drawable (widget->window, widget->style->fg_gc[GTK_STATE_NORMAL],
+		  (GdkWindow *)c_pixmap, 0, 0, 0, 0,
+		  card_image_width(), card_image_height());
+#if 0
   gdk_window_copy_area(widget->window, widget->style->fg_gc[GTK_STATE_NORMAL],
 		       0, 0,
 		       (GdkWindow *)c_pixmap, 0, 0,
 		       card_image_width(), card_image_height());
+#endif
 }
 
 
@@ -235,10 +240,15 @@ card_draw_deck_general(GtkWidget *widget, int x, int y,
 
   gdk_gc_set_clip_mask(widget->style->fg_gc[GTK_STATE_NORMAL],
 		       NULL);
+
+  gdk_draw_drawable (widget->window, widget->style->fg_gc[GTK_STATE_NORMAL],
+		  (GdkWindow *)d_pixmap, 0, 0, 0, 0,
+		  w, h);
+		  
+#if 0
   gdk_window_copy_area(widget->window, widget->style->fg_gc[GTK_STATE_NORMAL],
 		       0, 0,
 		       (GdkWindow *)d_pixmap, 0, 0, w, h);
+#endif
 }
 
-
-		       

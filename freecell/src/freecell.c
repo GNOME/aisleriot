@@ -45,9 +45,11 @@ main (int argc, char **argv)
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  gnome_init("freecell", VERSION, argc, argv);
+  gnome_program_init ("freecell", VERSION,
+		  LIBGNOMEUI_MODULE,
+		  argc, argv,
+		  NULL);
 
-  gconf_init (argc, argv, NULL);
   freecell_gconf_client = gconf_client_get_default ();
   gconf_client_add_dir (freecell_gconf_client, "/apps/freecell/option",
     GCONF_CLIENT_PRELOAD_NONE, NULL);
