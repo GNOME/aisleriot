@@ -30,7 +30,7 @@ schema_in_files = freecell.schemas.in
 schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
-EXTRA_DIST = $(Games_in_files) $(schema_DATA)
+EXTRA_DIST = $(Games_in_files) $(schema_in_files)
 
 install-data-local:
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
