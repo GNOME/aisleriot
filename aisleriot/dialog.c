@@ -60,10 +60,10 @@ void show_game_over_dialog() {
 			    GTK_STOCK_UNDO, GTK_RESPONSE_REJECT,
 			    NULL);
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                          _("New Game"), GTK_RESPONSE_ACCEPT,
 			  GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
+                          _("New Game"), GTK_RESPONSE_ACCEPT,
                           NULL);
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_CLOSE);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
 
   /* add a stock icon? */ 
   switch (gtk_dialog_run (GTK_DIALOG (dialog)))
