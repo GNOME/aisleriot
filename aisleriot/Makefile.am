@@ -48,6 +48,7 @@ types_DATA  = 		\
 	clock.scm	\
 	eagle_wing.scm	\
 	klondike.scm	\
+	pileon.scm	\
 	odessa.scm	\
 	osmosis.scm	\
 	sol.scm		\
