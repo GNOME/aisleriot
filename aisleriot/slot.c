@@ -17,57 +17,57 @@
  */
 
 #include "slot.h"
-#include <stdio.h>
 
 GList *slot_list = NULL;
 
-void slot_pressed(gint x, gint y, gint *slotid, gint *cardid) {
+void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
   GList *tempptr;
 
-  *slotid = -1;
+  *slot = NULL;
   *cardid = -1;
 
   for (tempptr = slot_list; tempptr; tempptr = tempptr->next) {
 
     hslot_type hslot = (hslot_type) tempptr->data;
-    gint depth, length;
 
     if (hslot->x < x && x < hslot->x + hslot->width && 
 	hslot->y < y && y < hslot->y + hslot->height) {
 
-      *slotid = hslot->id;
-      
-      length = g_list_length(hslot->cards);
+      gint depth = 1;
 
-      switch (hslot->type) {
+      if (hslot->dx > 0)
+	depth += (x - hslot->x) / hslot->dx;
+      else if (hslot->dy > 0)
+	depth += (y - hslot->y) / hslot->dy;
 
-      case NORMAL_SLOT:
-	depth = length;
-	break;
+      if (depth > hslot->exposed) 
+	depth = hslot->exposed;
 
-      case EXPANDING_SLOT:
-      case PARTIALLY_EXPANDING_SLOT:
-	depth = (y - hslot->y) / EXPANDED_VERT_OFFSET + 1;
-	break;
-
-      case EXPANDING_SLOT_RIGHT:
-      case PARTIALLY_EXPANDING_SLOT_RIGHT:
-	depth = (x - hslot->x) / EXPANDED_HORIZ_OFFSET + 1;
-	break;
-      }
-
-      if ((hslot->type == PARTIALLY_EXPANDING_SLOT ||
-	   hslot->type == PARTIALLY_EXPANDING_SLOT_RIGHT) &&
-	  length > hslot->expansion_depth) 
-	depth += length - hslot->expansion_depth;
-
-      if (depth > length) 
-	depth = length;
-
-      *cardid = depth;
+      *slot = hslot;
+      *cardid = hslot->length + depth - hslot->exposed;
+      break;
     }
   }
-  return;
+}
+
+void update_slot_length(hslot_type hslot) 
+{
+  gint delta = g_list_length(hslot->cards) - hslot->length;
+
+  hslot->length += delta;
+  hslot->exposed += delta;
+
+  if (0 < hslot->expansion_depth && hslot->expansion_depth < hslot->exposed)
+    hslot->exposed = hslot->expansion_depth;
+
+  if ((hslot->dx == 0 && hslot->dy == 0 && hslot->exposed > 1) ||
+      (hslot->length > 0 && hslot->exposed < 1))
+    hslot->exposed = 1;
+
+  delta = hslot->exposed ? hslot->exposed - 1 : 0;
+
+  hslot->width = get_card_width() + delta * hslot->dx;
+  hslot->height = get_card_height() + delta * hslot->dy;
 }
 
 GList* get_slot_list() {
@@ -83,91 +83,27 @@ hslot_type get_slot(gint slotid) {
   return NULL;
 }
 
-void add_slot(hslot_type new_slot) {
-  if (slot_list)
-	 g_list_append(slot_list, new_slot);
-  else {
-	 slot_list = g_list_alloc();
-	 slot_list->data = new_slot;
-  }
+void add_cards_to_slot(GList* newcards, hslot_type hslot) {
+
+  hslot->cards = g_list_concat(hslot->cards, newcards);
+  update_slot_length(hslot);
 }
 
-void update_slot_length(gint slotid) {
-  hslot_type slot = get_slot(slotid);
- 
-  if (slot) {
-    if (slot->type == EXPANDING_SLOT) {
-      slot->width = get_card_width();
-      if (slot->cards) { 
-	slot->height = (get_card_height() + (g_list_length(slot->cards) - 1) * EXPANDED_VERT_OFFSET);
-      }
-      else {
-	slot->height = get_card_height();
-      }
-    }
-    if (slot->type == EXPANDING_SLOT_RIGHT) {
-      slot->height = get_card_height();
-      if (slot->cards) { 
-	slot->width = (get_card_width() + (g_list_length(slot->cards) - 1) * EXPANDED_HORIZ_OFFSET);
-      }
-      else {
-	slot->width = get_card_width();
-      }
-    }
-    if (slot->type == PARTIALLY_EXPANDING_SLOT) {
-      slot->width = get_card_width();
-      if (slot->cards) { 
-	if (g_list_length(slot->cards) > slot->expansion_depth)
-	  slot->height = (get_card_height() + (slot->expansion_depth - 1) * EXPANDED_VERT_OFFSET);
-	else
-	  slot->height = (get_card_height() + (g_list_length(slot->cards) - 1) * EXPANDED_VERT_OFFSET);
-      }
-      else {
-	slot->height = get_card_height();
-      }
-    }
-    if (slot->type == PARTIALLY_EXPANDING_SLOT_RIGHT) {
-      slot->height = get_card_height();
-      if (slot->cards) { 
-	if (g_list_length(slot->cards) > slot->expansion_depth)
-	  slot->width = (get_card_width() + (slot->expansion_depth - 1) * EXPANDED_HORIZ_OFFSET);
-	else
-	  slot->width = (get_card_width() + (g_list_length(slot->cards) - 1) * EXPANDED_HORIZ_OFFSET);
-      }
-      else {
-	slot->width = get_card_width();
-      }
-    }
-    else if (slot->type == NORMAL_SLOT) {
-      slot->width = get_card_width();
-      slot->height = get_card_height();
-    }
-  }
-}
-
-void add_cards_to_slot(GList* newcards, gint slotid) {
-  hslot_type slot = get_slot(slotid);
-
-  if (slot)
-	 slot->cards = g_list_concat(slot->cards, newcards);
-  update_slot_length(slotid);
-}
-
-void delete_slot(hslot_type slot) {
+void delete_slot(hslot_type hslot) {
   GList* temptr;
   
-  for (temptr = slot->cards; temptr; temptr = temptr->next)
-	 free(temptr->data);
-  g_list_free(slot->cards);
-  free(slot);
+  for (temptr = hslot->cards; temptr; temptr = temptr->next)
+    free(temptr->data);
+  g_list_free(hslot->cards);
+  free(hslot);
 }
 
 void delete_surface() {
   GList* temptr;
 
   for(temptr = slot_list; temptr; temptr = temptr->next) {
-	 delete_slot(temptr->data);
-	 temptr->data = NULL;
+    delete_slot(temptr->data);
+    temptr->data = NULL;
   }
   g_list_free(slot_list);
   slot_list = NULL;
