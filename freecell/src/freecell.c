@@ -33,6 +33,8 @@ main (int argc, char **argv)
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
+  gnome_score_init("freecell");
+
   gnome_init("freecell", VERSION, argc, argv);
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-cardgame.png");
   option_init();
