@@ -18,6 +18,7 @@ sgml_ents = \
 	bristol.sgml	\
 	camelot.sgml	\
 	canfield.sgml	\
+	chessboard.sgml	\
 	clock.sgml	\
 	cover.sgml	\
 	diamond_mine.sgml	\

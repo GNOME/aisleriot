@@ -52,6 +52,7 @@ types_DATA  = 		\
 	bristol.scm	\
 	camelot.scm	\
 	canfield.scm	\
+	chessboard.scm	\
 	clock.scm	\
 	cover.scm	\
 	diamond_mine.scm	\

@@ -199,7 +199,6 @@
 (define (move-to-foundation start-slot card-list end-slot)
   (deal-cards start-slot (list end-slot))
   (add-to-score! 1))
-  
 
 (define (place-ace card slot)
   (if (empty-slot? 2)
