@@ -116,13 +116,28 @@ freecellgame_new_with_seed (int freecells_number, int fields_number, int seed)
   return new_game;
 }
 
+void
+freecellgame_delete_history(FREECELLGAME *freecellgame)
+{
+  GSList *list;
+
+  list = freecellgame->history;
+  while (list)
+    {
+      g_free (list->data);
+      list = list->next;
+    }
+
+  g_slist_free (freecellgame->history);
+  
+  freecellgame->history = NULL;
+}
 
 /* Deallocate all allocated memory.  */
 void
 freecellgame_delete(FREECELLGAME *freecellgame)
 {
   int i;
-  GSList *list;
 
   for (i = 0; i < freecellgame->freecells_number; i++)
     if (freecellgame->freecells[i] != NULL)
@@ -137,14 +152,8 @@ freecellgame_delete(FREECELLGAME *freecellgame)
     deck_delete (freecellgame->fields[i]);
   g_free (freecellgame->fields);
 
-  list = freecellgame->history;
-  while (list)
-    {
-      g_free (list->data);
-      list = list->next;
-    }
-  g_slist_free (freecellgame->history);
-  
+  freecellgame_delete_history(freecellgame);
+
   g_free(freecellgame);
 }
 
