@@ -19,18 +19,10 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include <gtk/gtk.h>
-#include <gnome.h>
-
-#define ELEMENTS(x) (sizeof (x) / sizeof (x [0]))
-
-/* Call backs... */
-int file_quit_callback (GtkWidget*, void* );
 void random_seed ();
-int game_hint_callback (GtkWidget*, void* );
-int undo_callback (GtkWidget*, void* );
-int redo_callback (GtkWidget*, void* );
-void help_about_callback (GtkWidget*, void* );
+void undo_callback ();
+void redo_callback ();
+void help_about_callback ();
+void create_menus ();
 
-void create_menus(GnomeApp *app);
 #endif

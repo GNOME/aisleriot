@@ -49,6 +49,8 @@ guint            n_games;
 struct dirent    **game_dents;
 gchar            *game_file = "";
 gchar            *game_name;
+gboolean         game_over;
+gboolean         game_won;
 press_data_type* press_data; 
 
 /*
@@ -180,6 +182,7 @@ void new_game (gchar* file, guint *seedp )
   if(old_w >= min_w && old_h >= min_h)
     refresh_screen();
 
+  game_over = FALSE;
   make_title();
 }
 
@@ -266,13 +269,19 @@ void create_sol_board ()
 		      GTK_SIGNAL_FUNC (button_press_event), NULL);
 }
 
+void quit_app (GtkWidget *app)
+{
+  gtk_widget_destroy (app);
+  gtk_main_quit ();
+}
+
 void create_main_window ()
 {
   app = gnome_app_new ("AisleRiot", _("AisleRiot"));
   gtk_widget_realize (app);
 
   gtk_signal_connect (GTK_OBJECT (app), "delete_event", 
-		      GTK_SIGNAL_FUNC (file_quit_callback), NULL);
+		      GTK_SIGNAL_FUNC (quit_app), NULL);
   gtk_signal_connect (GTK_OBJECT (app), "configure_event",
 		      GTK_SIGNAL_FUNC (configure_event), NULL);
 
@@ -329,7 +338,7 @@ void main_prog(int argc, char *argv[])
   load_pixmaps (app);
  
   create_sol_board ();
-  create_menus (GNOME_APP(app));
+  create_menus ();
 
   score_box = gtk_hbox_new(0, FALSE);
   score_label = gtk_label_new (_("Score:"));
@@ -362,7 +371,6 @@ void main_prog(int argc, char *argv[])
   gdk_pixmap_unref (surface);
   gdk_window_unref (press_data->moving_cards);
 }
-
 
 int main (int argc, char *argv [])
 {

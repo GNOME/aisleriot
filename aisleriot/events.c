@@ -23,13 +23,17 @@
 #include "dialog.h"
 
 void end_of_game_test() {
-  SCM testval = gh_apply(game_data->game_over_lambda, 
-			 gh_cons(SCM_EOL,SCM_EOL));
 
-  if (!gh_scm2bool(testval)) {
-    timer_stop();
-    show_game_over_dialog(gh_scm2bool(gh_apply(game_data->winning_game_lambda, 
-					       gh_cons(SCM_EOL,SCM_EOL))));
+  if(!game_over) { 
+    game_over = !gh_scm2bool(gh_apply(game_data->game_over_lambda, 
+				      gh_cons(SCM_EOL,SCM_EOL)));
+    
+    if (game_over) {
+      timer_stop ();
+      game_won = gh_scm2bool(gh_apply(game_data->winning_game_lambda, 
+				      gh_cons(SCM_EOL,SCM_EOL)));
+      show_game_over_dialog ();
+    }
   }  
 }
 
@@ -113,6 +117,9 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   SCM cardlist = SCM_EOL;
   gint slotid, cardid;
   hslot_type slot;
+
+  if (game_over)
+    return TRUE;
 
   if (event->type == GDK_2BUTTON_PRESS) {
     if (press_data->moving) {

@@ -1,160 +1,190 @@
-#define DIALOG_C
 #include <stdlib.h>
 #include <guile/gh.h>
-#include "dialog.h"
+#include <dirent.h>
+#include "gnome.h"
+#include "cscmi.h"
 #include "sol.h"
 #include "menu.h"
-#include "cscmi.h"
-#include "draw.h"
+#include "dialog.h"
 
-GtkWidget* game_over_dialog_box = NULL;
-GtkWidget* select_game_dialog_box = NULL;
-GtkWidget* dialog_box = NULL;
-GtkWidget* won_lost_label = NULL;
-GtkWidget* game_number_box;
-GtkWidget *property_dialog = NULL;
-void hide_game_over_box()
-{
-  if (game_over_dialog_box) {
-	 gtk_grab_remove(game_over_dialog_box);
-	 gtk_widget_hide(game_over_dialog_box);
-  }
-}
+void show_game_over_dialog() {
+  GtkWidget* dialog;
+  gchar* message;
 
-void hide_game_over_box_callback (GtkWidget *app, void *data )
-{
-  hide_game_over_box();
-}
-
-void hide_select_box()
-{
-  if (select_game_dialog_box){
-	 gtk_grab_remove(select_game_dialog_box);
-	 gtk_widget_hide(select_game_dialog_box);
-  }
-}
-
-void hide_select_box_callback (GtkWidget *app, void *data )
-{
-  hide_select_box();
-}
-
-int select_game_callback (GtkWidget *app, void *data )
-{
-  score = 0;
-  set_score();
-  seed = atoi(gtk_entry_get_text(GTK_ENTRY(game_number_box)));
-  srandom(seed);
-
-
-  gh_apply(game_data->start_game_lambda, SCM_EOL);
-  refresh_screen();
-
-  if(surface) 
-    timer_start();
-
-  hide_select_box();
-  make_title();
-
-  return TRUE;
-}
-
-void show_game_over_dialog(gboolean won) {
-  GtkWidget* new_game_button;
-  GtkWidget* cancel_button;
-
-  if (won_lost_label == NULL)
-	 won_lost_label = gtk_label_new("");
-
-  /* Create the dialog box if it doesn't already exist */
-  if (!game_over_dialog_box) {
-	 game_over_dialog_box = gtk_dialog_new();
-
-	 gtk_box_pack_start (GTK_BOX (GTK_DIALOG (game_over_dialog_box)->vbox), won_lost_label, TRUE,
-								TRUE, 0);
-
-	 new_game_button = gtk_button_new_with_label (_("New Game"));
-	 cancel_button = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
-
-	 gtk_box_pack_start (GTK_BOX (GTK_DIALOG (game_over_dialog_box)->action_area), new_game_button,
-								TRUE, TRUE, 0);
-	 gtk_box_pack_start (GTK_BOX (GTK_DIALOG (game_over_dialog_box)->action_area), cancel_button,
-								TRUE, TRUE, 0);
-
-	 gtk_signal_connect (GTK_OBJECT (cancel_button), "clicked",
-								GTK_SIGNAL_FUNC (hide_game_over_box_callback), NULL);
-	 gtk_signal_connect (GTK_OBJECT (new_game_button), "clicked",
-								GTK_SIGNAL_FUNC (random_seed), NULL);
-
-	 gtk_widget_show (won_lost_label);
-	 gtk_widget_show (new_game_button);
-	 gtk_widget_show (cancel_button);
-  }
-  if (won)
-	 gtk_label_set ( GTK_LABEL(won_lost_label), _("Congratulations\n\nYou Won!!!"));
+  if (game_won)
+    message = _("Congratulations\n\nYou Won!!!");
   else
-	 gtk_label_set ( GTK_LABEL(won_lost_label), _("\nGame Over.\n"));
-  gtk_grab_add (game_over_dialog_box);
-  gtk_widget_show(game_over_dialog_box);
+    message = _("\nGame Over.\n");
+
+#if 1
+  dialog = gnome_message_box_new (message, GNOME_MESSAGE_BOX_QUESTION,
+				  _("New Game"), GNOME_STOCK_BUTTON_CANCEL, 
+				  NULL);
+  gnome_dialog_set_default ( GNOME_DIALOG (dialog), 0 );
+  if (gnome_dialog_run_modal (GNOME_DIALOG (dialog)) == 0) 
+    new_game (NULL, NULL);
+#else
+  gnome_app_question_modal ( GNOME_APP (app), message, random_seed, NULL);
+#endif
+
 }
 
-void show_select_game_dialog() {
-  GtkWidget* label;
-  GtkWidget* ok_button;
-  GtkWidget* cancel_button;
-  GString* seed_string;
-  GtkWidget* hbox;
+gchar *filename;
 
-  if (!select_game_dialog_box) {
-	 select_game_dialog_box = gtk_dialog_new();
-	 label =  gtk_label_new("Select game number:\n");
-	 hbox = gtk_hbox_new (FALSE, 0);
-	 gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
-	 gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	 gtk_container_border_width (GTK_CONTAINER(GTK_DIALOG (select_game_dialog_box)->vbox), GNOME_PAD);
-	 gtk_box_pack_start (GTK_BOX (GTK_DIALOG (select_game_dialog_box)->vbox), hbox, TRUE,
-			     TRUE, 0);
+void select_rules (GtkWidget* menu_item, gchar* file)
+{
+  filename = file;
+}
 
-	 /*set the entry box to be the score */
-	 game_number_box = gtk_entry_new();
-	 seed_string = g_string_new(NULL);
-	 g_string_sprintf (seed_string, "%5d", seed);
-	 
-	 gtk_entry_set_text(GTK_ENTRY(game_number_box), seed_string->str);
-	 gtk_entry_set_editable(GTK_ENTRY(game_number_box), TRUE);
-	 gtk_box_pack_start (GTK_BOX (GTK_DIALOG (select_game_dialog_box)->vbox), game_number_box, FALSE,
-			     FALSE, 0);
-	 /* buttons */
-	 ok_button = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
-	 cancel_button = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
-
-	 gtk_box_pack_start (GTK_BOX (GTK_DIALOG (select_game_dialog_box)->action_area), ok_button,
-			     TRUE, TRUE, 0);
-	 gtk_box_pack_start (GTK_BOX (GTK_DIALOG (select_game_dialog_box)->action_area), cancel_button,
-			     TRUE, TRUE, 0);
-
-	 gtk_signal_connect (GTK_OBJECT (ok_button), "clicked",
-			     GTK_SIGNAL_FUNC (select_game_callback), NULL);
-	 gtk_signal_connect (GTK_OBJECT (cancel_button), "clicked",
-			     GTK_SIGNAL_FUNC (hide_select_box_callback), NULL);
-
-	 gtk_widget_show_all (GTK_DIALOG (select_game_dialog_box)->vbox);
-
-
+void select_game (GtkWidget *app, gint button, GtkWidget* entry)
+{
+  if(button == 0) {
+    seed = atoi (gtk_entry_get_text (GTK_ENTRY (entry)));
+    new_game (filename, &seed);
   }
-  /*GTK_WINDOW(select_game_dialog_box)->position = GTK_WIN_POS_MOUSE;*/
-  gtk_window_set_modal (GTK_WINDOW (select_game_dialog_box), TRUE);
-  gtk_widget_show(select_game_dialog_box);
 }
 
-void show_hint_dialog(char* message) {
-  GtkWidget* hint_dialog;
+void show_select_game_dialog() 
+{
+  static GtkWidget* dialog = NULL;
+  static GtkWidget* seed_entry;
+  static GtkWidget* option_menu;
+  guint i;
+  gchar buf[20];
 
-  hint_dialog = gnome_message_box_new (message,GNOME_MESSAGE_BOX_QUESTION,
-				       _("Ok"), NULL);
-  /*GTK_WINDOW(hint_dialog)->position = GTK_WIN_POS_MOUSE;*/
-	gtk_window_set_modal (GTK_WINDOW (hint_dialog), TRUE);
-	gtk_widget_show (hint_dialog);
+  if(!dialog) {
+
+    GtkWidget* menu;
+    GtkWidget* menu_item;
+    GtkWidget* label;
+    GtkWidget* hbox;
+    gchar* message = _("Select Game");
+
+    dialog = gnome_message_box_new (message, GNOME_MESSAGE_BOX_QUESTION,
+				    GNOME_STOCK_BUTTON_OK, 
+				    GNOME_STOCK_BUTTON_CANCEL,
+				    NULL );
+    gnome_dialog_set_default ( GNOME_DIALOG (dialog), 0 );
+
+    hbox = gtk_hbox_new(0,FALSE);
+    seed_entry = gtk_entry_new ();
+    label = gtk_label_new(_("Seed"));
+    
+    gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 
+			GNOME_PAD_SMALL );
+    gtk_box_pack_end (GTK_BOX (hbox), seed_entry, FALSE, FALSE, 
+		      GNOME_PAD_SMALL );
+    
+    gtk_box_pack_end (GTK_BOX (GNOME_DIALOG (dialog)->vbox), 
+		      hbox, FALSE, FALSE, GNOME_PAD_SMALL );
+    
+    hbox = gtk_hbox_new(0,FALSE);
+    option_menu = gtk_option_menu_new ();
+    label = gtk_label_new(_("Rules"));
+    
+    gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 
+			GNOME_PAD_SMALL );
+    gtk_box_pack_end (GTK_BOX (hbox), option_menu, FALSE, FALSE, 
+		      GNOME_PAD_SMALL );
+    
+    gtk_box_pack_end (GTK_BOX (GNOME_DIALOG (dialog)->vbox), 
+		      hbox, FALSE, FALSE, GNOME_PAD_SMALL );
+        
+    filename = NULL;
+    menu = gtk_menu_new();
+    
+    for(i = 0; i < n_games; i++) {
+      menu_item = gtk_menu_item_new_with_label 
+	(game_file_to_name (game_dents[i]->d_name));
+      gtk_signal_connect (GTK_OBJECT(menu_item), "activate", 
+			  (GtkSignalFunc) select_rules,
+			  (gpointer) game_dents[i]->d_name);
+      gtk_menu_shell_append (GTK_MENU_SHELL(menu), menu_item);
+    }
+    gtk_widget_show_all (menu);
+    
+    gtk_option_menu_set_menu (GTK_OPTION_MENU (option_menu), menu);
+
+    gnome_dialog_editable_enters (GNOME_DIALOG (dialog), 
+				  GTK_EDITABLE (seed_entry));
+    
+    gtk_signal_connect (GTK_OBJECT (dialog), "clicked", 
+			GTK_SIGNAL_FUNC (select_game), seed_entry);
+
+    gtk_widget_show_all (dialog);
+    
+    gnome_dialog_close_hides (GNOME_DIALOG (dialog), TRUE);
+  }
+
+  for(i = 0; i < n_games; i++)
+    if (!strcmp (game_dents[i]->d_name, game_file))
+      gtk_option_menu_set_history (GTK_OPTION_MENU (option_menu), i);
+  
+  sprintf (buf, "%d", seed);
+  gtk_entry_set_text (GTK_ENTRY (seed_entry), buf);
+
+  gnome_dialog_run_modal (GNOME_DIALOG (dialog));
+}
+
+void show_hint_dialog() 
+{
+  GtkWidget* dialog;
+  GString* gmessage;
+
+  if (game_over) {
+    gmessage = g_string_new (_("The game is over.\nNo hints are available"));
+  }  
+  else {
+    SCM hint = gh_apply(game_data->hint_lambda, gh_cons(SCM_EOL,SCM_EOL));
+
+    if (!gh_scm2bool(hint)) {
+      gmessage = g_string_new (_("This game does not have hint support yet."));
+    }
+    else {
+      switch (gh_scm2int(gh_car(hint))) {
+
+      case 0:
+	gmessage = g_string_new (gh_scm2newstr(gh_cadr(hint),NULL));
+	break;
+
+      case 1:
+	gmessage = g_string_new (_("Move the "));
+	g_string_append (gmessage, gh_scm2newstr(gh_cadr(hint),NULL));
+	g_string_append (gmessage, _(" on the "));
+	g_string_append (gmessage, gh_scm2newstr(gh_caddr(hint),NULL));
+	g_string_append (gmessage, _("."));
+	break;
+
+      case 2:
+	gmessage = g_string_new (_("Move the "));
+	g_string_append (gmessage, gh_scm2newstr(gh_cadr(hint),NULL));
+	g_string_append (gmessage, _(" on "));
+	g_string_append (gmessage, gh_scm2newstr(gh_caddr(hint),NULL));
+	g_string_append (gmessage, _("."));
+	break;
+
+      case 3:
+	gmessage = g_string_new (_("Move the "));
+	g_string_append (gmessage, gh_scm2newstr(gh_cadr(hint),NULL));
+	g_string_append (gmessage, _(" "));
+	g_string_append (gmessage, gh_scm2newstr(gh_caddr(hint),NULL));
+	g_string_append (gmessage, _("."));
+	break;
+
+      case 4:
+	gmessage = g_string_new (_("You are searching for a "));
+	g_string_append (gmessage, gh_scm2newstr(gh_cadr(hint),NULL));
+	g_string_append (gmessage, _("."));
+	break;
+
+      default:
+	gmessage = g_string_new (_("This game is unable to provide a hint."));
+	break;
+      }
+    }
+  }
+
+  gnome_app_message (GNOME_APP (app), gmessage->str);
 }
 
 GtkWidget *
@@ -168,24 +198,41 @@ get_main_prefs ()
   return retval;
 
 }
+
 GtkWidget *
 get_card_prefs ()
 {
   GtkWidget *retval;
 }
+
 GtkWidget *
 get_background_prefs ()
 {
   GtkWidget *retval;
   
 }
-void show_property_dialog () {
-  if (property_dialog == NULL) {
-    property_dialog = gnome_property_box_new ();
+void show_property_dialog () 
+{
+  static GtkWidget* dialog = NULL;
+
+  if (!dialog) {
+    dialog = gnome_property_box_new ();
     /*    gnome_property_box_append_page (get_main_prefs ());
     gnome_property_box_append_page (get_card_prefs ());
     gnome_property_box_append_page (get_background_prefs ());*/
   }
   
-  gtk_widget_show_all (property_dialog);
+  gtk_widget_show_all (dialog);
+}
+
+void show_rules_options_dialog () 
+{
+}
+
+void show_global_stats_dialog () 
+{
+}
+
+void show_rules_stats_dialog () 
+{
 }

@@ -45,11 +45,14 @@ extern guint            n_games;
 extern struct dirent    **game_dents;
 extern gchar            *game_file;
 extern gchar            *game_name;
+extern gboolean         game_over;
+extern gboolean         game_won;
 extern press_data_type* press_data; 
 
 
 gchar* game_file_to_name(const gchar* file);
 void new_game(gchar* file, guint *seed);
+void quit_app (GtkWidget*);
 void set_score();
 void timer_start();
 void timer_stop();

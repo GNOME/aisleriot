@@ -19,7 +19,7 @@
 #ifndef CARD_H
 #define CARD_H
 
-#include "gnome.h"
+#include <gnome.h>
 
 /*
  * Constants
@@ -29,6 +29,7 @@
 #define DOWN TRUE
 #define HORIZ_SPACING 5
 #define VERT_SPACING 15
+
 /*
  * Data Structures
  */

@@ -16,28 +16,19 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#define MENU_C
 #include <config.h>
 #include <dirent.h>
-#include <guile/gh.h>
+#include "gnome.h"
 #include "sol.h"
 #include "menu.h"
-#include "draw.h"
-#include "cscmi.h"
 #include "dialog.h"
-#include "pixmaps/tb-xpms.h"
-/*
- * Menu stuff...
- */
 
-/* Call backs... */
-
-void restart_game() 
+void restart_game ()
 {
   new_game (NULL, &seed);
 };
 
-void random_seed() 
+void random_seed ()
 {
   new_game (NULL, NULL);
 };
@@ -47,130 +38,15 @@ void new_rules (GtkWidget* w, gchar* file)
   new_game (file, NULL);
 };
 
-
-int file_quit_callback (GtkWidget *app, void *data )
+void undo_callback ()
 {
-  gtk_widget_destroy (app);
-  gtk_main_quit ();
-  
-  return TRUE;
-}
-int game_hint_callback (GtkWidget *app, void *data)
-{
-  SCM hint;
-  int hint_type; 
-  char hint_message[100]; //GString appears to be broken?  hack for now...
-  char* temp_string;
-
-  /* check to see if the game is over... */
-  hint = gh_apply(game_data->game_over_lambda, gh_cons(SCM_EOL,SCM_EOL));
-
-  if (!gh_scm2bool(hint)) {
-	 show_hint_dialog(_("The game is over.\nNo hints are available"));
-	 return TRUE;
-  }  
-
-  /* get the hint... */
-  hint = gh_apply(game_data->hint_lambda, gh_cons(SCM_EOL,SCM_EOL));
-
-  if (!gh_scm2bool(hint)) {
-	 show_hint_dialog(_("This game does not have hint support yet."));
-	 return TRUE;
-  }
-  hint_type = (gh_scm2int(gh_car(hint)));
-  if (hint_type == 0) {
-	 temp_string = gh_scm2newstr(gh_cadr(hint),NULL);
-	 /* 'A' (not recommended, as i18n is less likely to work... */
-	 strcpy(hint_message, temp_string);
-	 show_hint_dialog(_((char*) hint_message));
-	 free (temp_string);
-  }
-  else if (hint_type == 1) {
-	 int offset = strlen(_("Move the "));
-	 /* Move the 'A' on the 'B' */
-	 temp_string = gh_scm2newstr(gh_cadr(hint),NULL);
-	 strcpy(hint_message, _("Move the "));
-	 strcpy(hint_message + offset, temp_string);
-	 offset += strlen(temp_string);
-	 free (temp_string);
-
-	 temp_string = gh_scm2newstr(gh_caddr(hint),NULL);
-	 strcpy(hint_message+offset, _(" on the "));
-	 offset += strlen(_(" on the "));
-	 strcpy(hint_message+offset, temp_string);
-	 offset += strlen(temp_string);
-	 free (temp_string);
-	 strcpy(hint_message+offset, _("."));
-	 show_hint_dialog(_((char*) hint_message));
-  }
-  else if (hint_type == 2) {
-	 int offset = strlen(_("Move the "));
-	 /* Move the 'A' on 'B' */
-	 temp_string = gh_scm2newstr(gh_cadr(hint),NULL);
-	 strcpy(hint_message, _("Move the "));
-	 strcpy(hint_message + offset, temp_string);
-	 offset += strlen(temp_string);
-	 free (temp_string);
-
-	 temp_string = gh_scm2newstr(gh_caddr(hint),NULL);
-	 strcpy(hint_message+offset, _(" on "));
-	 offset += strlen(_(" on "));
-	 strcpy(hint_message+offset, temp_string);
-	 offset += strlen(temp_string);
-	 free (temp_string);
-	 strcpy(hint_message+offset, _("."));
-	 show_hint_dialog(_((char*) hint_message));
-  }
-  else if (hint_type == 3) {
-	 int offset = strlen(_("Move the "));
-	 /* Move the 'A' on 'B' */
-	 temp_string = gh_scm2newstr(gh_cadr(hint),NULL);
-	 strcpy(hint_message, _("Move the "));
-	 strcpy(hint_message + offset, temp_string);
-	 offset += strlen(temp_string);
-	 free (temp_string);
-
-	 temp_string = gh_scm2newstr(gh_caddr(hint),NULL);
-	 strcpy(hint_message+offset, _(" "));
-	 offset += strlen(_(" "));
-	 strcpy(hint_message+offset, temp_string);
-	 offset += strlen(temp_string);
-	 free (temp_string);
-	 strcpy(hint_message+offset, _("."));
-	 show_hint_dialog(_((char*) hint_message));
-  }
-  else if (hint_type == 4) {
-	 int offset = strlen(_("You are searching for a "));
-
-	 temp_string = gh_scm2newstr(gh_cadr(hint),NULL);
-	 strcpy(hint_message, _("You are searching for a "));
-	 strcpy(hint_message + offset, temp_string);
-	 offset += strlen(temp_string);
-	 free (temp_string);
-	 strcpy(hint_message+offset, _("."));
-	 show_hint_dialog(_((char*) hint_message));
-  }
-  else {
-	 show_hint_dialog(_("This game is unable to provide a hint."));
-  }
-  return TRUE;
 }
 
-int file_select_game_callback (GtkWidget *app, void *data )
+void redo_callback ()
 {
-  show_select_game_dialog();
-  return TRUE;
-}
-int undo_callback (GtkWidget *app, void *data)
-{
-  return TRUE;
-}
-int redo_callback (GtkWidget *app, void *data)
-{
-  return TRUE;
 }
 
-void help_about_callback (GtkWidget *widget, void *data)
+void help_about_callback ()
 {
   GtkWidget *about;
   const gchar *authors[] = {
@@ -195,21 +71,20 @@ void help_about_callback (GtkWidget *widget, void *data)
   return;
 }
 
-/* We fill the items in at runtime... */
-GnomeUIInfo variation_sub_menu[] = {
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+GnomeUIInfo rules_sub_menu[] = {
+  GNOMEUIINFO_END
 };
 
-GnomeUIInfo variation_menu[] = {
-  {GNOME_APP_UI_SUBTREE, N_("Game Type"), NULL, variation_sub_menu, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  {GNOME_APP_UI_ITEM, N_("Game Seed..."), NULL, file_select_game_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN, 'n', GDK_CONTROL_MASK, NULL},
-  {GNOME_APP_UI_ITEM, N_("Hint"), NULL, game_hint_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 'h', GDK_CONTROL_MASK, NULL},
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+GnomeUIInfo rules_menu[] = {
+  GNOMEUIINFO_SUBTREE(N_("_Select"), rules_sub_menu),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("_Options..."), NULL, 
+			 show_rules_options_dialog, GNOME_STOCK_MENU_PREF),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("S_tatistics..."), NULL, 
+			 show_rules_stats_dialog, GNOME_STOCK_MENU_BOOK_BLUE),
+
+  GNOMEUIINFO_END
 };
 
 GnomeUIInfo help_menu[] = {
@@ -223,23 +98,47 @@ GnomeUIInfo help_menu[] = {
 };
 
 GnomeUIInfo game_menu[] = {
-  {GNOME_APP_UI_ITEM, N_("New"), NULL, random_seed, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'n', GDK_CONTROL_MASK, NULL},
-  {GNOME_APP_UI_ITEM, N_("Properties..."), NULL, show_property_dialog, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 0, 0, NULL},
-  {GNOME_APP_UI_ITEM, N_("Statistics..."), NULL, NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 0, 0, NULL},
-  {GNOME_APP_UI_SEPARATOR},
-  {GNOME_APP_UI_ITEM, N_("Exit"), NULL, file_quit_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  GNOMEUIINFO_ITEM_STOCK(N_("_New"), NULL, 
+			 random_seed, GNOME_STOCK_MENU_NEW),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("_Restart"), NULL,
+			 restart_game, GNOME_STOCK_MENU_REFRESH),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("_Select..."), NULL, 
+			 show_select_game_dialog, GNOME_STOCK_MENU_OPEN),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("_Properties..."), NULL, 
+			 show_property_dialog, GNOME_STOCK_MENU_PREF),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("S_tatistics..."), NULL, 
+			 show_global_stats_dialog, GNOME_STOCK_MENU_BOOK_BLUE),
+
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_ITEM_STOCK(N_("_Exit"), NULL, 
+			 quit_app, GNOME_STOCK_MENU_EXIT),
+  GNOMEUIINFO_END
+};
+
+GnomeUIInfo move_menu[] = {
+  GNOMEUIINFO_ITEM_STOCK(N_("_Hint"), NULL, 
+			 show_hint_dialog, GNOME_STOCK_MENU_JUMP_TO),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("_Undo"), NULL, 
+			 undo_callback, GNOME_STOCK_MENU_UNDO),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("_Redo"), NULL, 
+			 redo_callback, GNOME_STOCK_MENU_REDO),
+
+  GNOMEUIINFO_END
 };
 
 GnomeUIInfo top_menu[] = {
-  GNOMEUIINFO_SUBTREE(N_("Game"), game_menu),
+  GNOMEUIINFO_SUBTREE(N_("_Game"), game_menu),
 
-  GNOMEUIINFO_SUBTREE(N_("Variation"), variation_menu),
+  GNOMEUIINFO_SUBTREE(N_("_Rules"), rules_menu),
+
+  GNOMEUIINFO_SUBTREE(N_("_Move"), move_menu),
 
   GNOMEUIINFO_JUSTIFY_RIGHT,
 
@@ -247,55 +146,49 @@ GnomeUIInfo top_menu[] = {
 
   GNOMEUIINFO_END
 };
+
 GnomeUIInfo toolbar[] =
 {
-  {GNOME_APP_UI_ITEM, N_("New"), N_("Start a new game."),
-   random_seed, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
-  
-  {GNOME_APP_UI_ITEM, N_("Restart"), N_("Start this game over."),
-   restart_game, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_REFRESH, 0, 0, NULL},
-  
-  {GNOME_APP_UI_ITEM, N_("Seed"), N_("Start a new game after choosing the seed."),
-   file_select_game_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_DATA, tb_new_seed_xpm, 0, 0, NULL},
-  {GNOME_APP_UI_SEPARATOR},
-  
-  {GNOME_APP_UI_ITEM, N_("Hint"), N_("Give a hint."),
-   game_hint_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_HELP, 0, 0, NULL},
+  GNOMEUIINFO_ITEM_STOCK(N_("New"), N_("Deal a new game."),
+			 random_seed, GNOME_STOCK_PIXMAP_NEW),
 
-  {GNOME_APP_UI_ITEM, N_("Undo"), N_("Undo the last move."),
-   undo_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_UNDO, 0, 0, NULL},
+  GNOMEUIINFO_ITEM_STOCK(N_("Restart"), N_("Start this game over."),
+			 restart_game, GNOME_STOCK_PIXMAP_REFRESH),
 
-  {GNOME_APP_UI_ITEM, N_("Redo"), N_("Redo the last move"),
-   redo_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_REDO, 0, 0, NULL},
-  {GNOME_APP_UI_SEPARATOR},
+  GNOMEUIINFO_ITEM_STOCK(N_("Select"), N_("Select a new game."),
+			 show_select_game_dialog, GNOME_STOCK_PIXMAP_OPEN),
 
-  {GNOME_APP_UI_ITEM, N_("Exit"), N_("Quit Aisleriot"),
-   file_quit_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_EXIT, 0, 0, NULL},
+  GNOMEUIINFO_SEPARATOR,
 
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
-   NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
+  GNOMEUIINFO_ITEM_STOCK(N_("Hint"), N_("Suggest a move."),
+			 show_hint_dialog, GNOME_STOCK_PIXMAP_JUMP_TO),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("Undo"), N_("Undo the last move."),
+			 undo_callback, GNOME_STOCK_PIXMAP_UNDO),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("Redo"), N_("Redo the last move."),
+			 redo_callback, GNOME_STOCK_PIXMAP_REDO),
+
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_ITEM_STOCK(N_("Exit"), N_("Quit Aisleriot."),
+			 quit_app, GNOME_STOCK_PIXMAP_EXIT),
+
+  GNOMEUIINFO_END
 };
 
-void create_menus(GnomeApp *app)
+void create_menus ()
 {
   int i;
   GtkWidget *w;
-  gnome_app_create_menus(app, top_menu);
-  gnome_app_create_toolbar(app, toolbar);
+  gnome_app_create_menus (GNOME_APP(app), top_menu);
+  gnome_app_create_toolbar (GNOME_APP(app), toolbar);
 
   for(i = 0; i < n_games; i++) {
     w = gtk_menu_item_new_with_label 
       (game_file_to_name (game_dents[i]->d_name));
     gtk_widget_show(w);
-    gtk_menu_shell_append (GTK_MENU_SHELL(variation_sub_menu[0].widget), w);
+    gtk_menu_shell_append (GTK_MENU_SHELL(rules_sub_menu[0].widget), w);
     gtk_signal_connect (GTK_OBJECT(w), "activate", 
 			(GtkSignalFunc) new_rules,
 			(gpointer) game_dents[i]->d_name);

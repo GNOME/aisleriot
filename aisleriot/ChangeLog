@@ -1,3 +1,15 @@
+Thu Oct 29 Felix Bellaby <felix@pooh.u-net.com>
+	* sol.c: (new_game) game_over set to false.
+	* sol.h: game_over and game_won globals added.
+	* menu.c: menu structure changed.
+	(game_hint_callback) moved to dialog.c
+	* menu.h: tidied the contents.
+	* dialog.c: (show_select_game_dialog) allows rules to be set as well.
+	(show_hint_dialog)  use g_string / gnome_app_message
+	(show_game_over_dialog) use gnome_message_box
+	* dialog.h: tidied the contents.
+	* event.c: prevent card moves when game over
+	
 Tue Oct 27 Felix Bellaby <felix@pooh.u-net.com>
 	* sol.c: (new_game) relocates new game creation into one place, 
 	updates help menu to reflect any change in game rules.
