@@ -5,6 +5,7 @@ AM_INIT_AUTOMAKE(gnome-games, 0.13)
 AM_MAINTAINER_MODE
 GNOME_INIT
 GNOME_CHECK_OBJC
+GNOME_INIT_OBJC
 
 AC_ISC_POSIX
 AC_PROG_CC
@@ -30,5 +31,6 @@ phaser-chess/Makefile
 freecell/Makefile
 scottfree/Makefile
 same-gnome/Makefile
+intl/Makefile
 version.h
 stamp.h],[sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])

@@ -72,13 +72,14 @@ if test -z "$*"; then
     echo \`$0\'" command line."
     echo
 fi
+top=`pwd`
 
 for i in . freecell
 do 
     echo processing $srcdir/$i
     (cd $srcdir/$i; \
     libtoolize --copy --force; \
-    if test -d macros; then aclocal -I macros; else aclocal; fi; \
+    aclocal -I $top/macros;  \
     autoheader; \
     automake --add-missing; \
     automake --gnu; autoheader; autoconf)

@@ -50,8 +50,10 @@ dnl GNOME's configure export USE_GNOME when freecell is built in GNOME tree.
 if test "$gnome_cv_use_gnome" = "yes"
 then
   AC_MSG_RESULT([OK, built in GNOME tree.])
+  GNOME_INIT
   in_gnome_tree="yes"
-  GTK_LIBS="$GNOMEUI_LIBS $GNOMELIB_DIR $GNOMEINCLUDE_DIR"
+  GTK_LIBS="$GNOMEUI_LIBS $GNOME_LIBDIR $GNOME_INCLUDEDIR"
+  AC_SUBST(GTK_LIBS)
 else
   AC_MSG_RESULT([OK, built out of GNOME tree.])
   in_gnome_tree="no"
