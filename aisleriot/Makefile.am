@@ -53,6 +53,7 @@ types_DATA  = 		\
 	clock.scm	\
 	eagle_wing.scm	\
 	elevator.scm	\
+	kansas.scm	\
 	klondike.scm	\
 	pileon.scm	\
 	neighbor.scm	\

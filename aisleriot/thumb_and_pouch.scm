@@ -173,7 +173,8 @@
 
 (define (check-a-foundation slot-id card f-slot)
   (cond ((or (> f-slot 5)
-	     (empty-slot? slot-id))
+	     (or (< slot-id 0)
+		 (empty-slot? slot-id)))
 	 #f)
 	((and (empty-slot? f-slot)
 	      (= (get-value card) ace))
@@ -226,7 +227,11 @@
 	((empty-slot? to-slot)
 	 (check-tslot to-slot (+ 1 from-slot)))
 	(#t 
-	 (or (check-a-tslot (get-top-card to-slot)
+	 (or (and (= from-slot 1)
+		  (not (empty-slot? 1))
+		  (check-a-tslot (get-top-card to-slot)
+				 (list (get-top-card from-slot))))
+	     (check-a-tslot (get-top-card to-slot)
 			    (get-cards from-slot))
 	     (check-tslot to-slot (+ 1 from-slot))))))
 
