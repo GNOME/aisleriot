@@ -1,3 +1,33 @@
+Sat May 04 18:44:16 2002  Kristian Rietveld  <kris@gtk.org>
+
+	* freecell/src/menu.c, gataxx/gataxx.c, glines/glines.c,
+	gnect/src/gui.c, gnibbles/main.c, gnome-stones/main.c,
+	gnomine/gnomine.c, gnotravex/gnotravex.c, gnotski/gnotski.c,
+	gtali/gyahtzee.c, iagno/gnothello.c, mahjongg/mahjongg.c,
+	same-gnome/same-gnome.c, xbill/x11-gtk.cc: s/EXIT_ITEM/QUIT_ITEM/.
+
+Sat May 04 18:44:02 2002  Kristain Rietveld  <kris@gtk.org>
+
+	Made gnometris compile with _DISABLE_DEPRECATED, added gconf support.
+
+	* gnometris/Makefile.am: add _DISABLE_DEPRECATED flags, add rules to
+	install	the schema
+
+	* gnometris/gnometris.schemas: new file
+
+	* gnometris/field.cpp, gnometris/main.cpp, gnometris/preview.cpp,
+	gnometris/scoreframe.cpp: remove deprecated stuff, remove unndeed
+	newlines at the bottom (apparently written by a non-vi user).
+
+	* gnometris/preview.{cpp,h}: add clear method
+
+	* gnometris/gnome-canvas-pimage.c: unref DISABLE_DEPRECATED flags
+
+	* gnometris/tetris.{cpp,h}: add gconf code, remove deprecated stuff,
+	make code more readable at some places, remove unneeded newlines at
+	the bottom, etc.
+	(Tetris::endOfGame): clear preview
+
 2002-05-03  Laszlo Peter  <laca@sun.com>
 
 	Some portability fixes.
