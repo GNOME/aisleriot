@@ -1,31 +1,65 @@
-# require autoconf 2.52
-AC_PREREQ(2.52)
-
-AC_INIT(gnomine)
-
-AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-games, 2.5.0.1)
-
-AC_PROG_INTLTOOL([0.27.2])
-
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+                                                                              
+                                                                              
+AC_PREREQ([2.53])
+AC_INIT([gnome-games], [2.5.0],
+        [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games])
+AM_INIT_AUTOMAKE
+AC_CONFIG_SRCDIR([gnomine/gnomine.c])
+AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE
-
-SCROLLKEEPER_REQUIRED=0.3.8
-AC_SUBST(SCROLLKEEPER_REQUIRED)
-
+                                                                              
+# Checks for programs.
+AC_PROG_INTLTOOL([0.27.2])
 AC_ISC_POSIX
 AC_PROG_CC
-AC_STDC_HEADERS
-AM_PROG_LIBTOOL
-
 GNOME_CHECK_CXX
-
+AC_PROG_LIBTOOL
 GAMES_CHECK_GUILE
+                                                                              
+                                                                              
+GNOME_COMPILE_WARNINGS(yes)
+GNOME_CXX_WARNINGS(yes)
+                                                                              
+                                                                              
+CFLAGS="$CFLAGS $GNOME_GAMES_CFLAGS $WARN_CFLAGS"
+## This should make sure that developers using gcc 3.x will write something
+## that compiles using gcc 2.9x. Straight -ansi is a little tough given the
+## current code base, although what breaks is probably not that portable.
+if test x$CC=xgcc ; then
+  CFLAGS="-std=gnu89 $CFLAGS"
+fi
+                                                                              
+                                                                              
+AC_SUBST(CFLAGS)
+AC_SUBST(CPPFLAGS)
+AC_SUBST(LDFLAGS)
+                                                                              
+                                                                              
+AM_GCONF_SOURCE_2
+AC_PATH_PROG(GCONFTOOL, gconftool-2)
+                                                                              
+                                                                              
+## Begin tests for scrollkeeper
+# SCROLLKEEPER_REQUIRED is never used?
+SCROLLKEEPER_REQUIRED=0.3.8
+AC_SUBST(SCROLLKEEPER_REQUIRED)
+                                                                              
+                                                                              
+AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
+if test x$SCROLLKEEPER_CONFIG = xno; then
+  AC_MSG_ERROR([Couldn't find scrollkeeper-config, please install the scrollkeeper package])
+fi
 
+# Checks for libraries.
 LIBGNOMEUI_REQUIRED=1.105.0
 LIBGNOME_REQUIRED=1.105.0
+GTK_REQUIRED=2.3
+GCONF_REQUIRED=1.1.5
+GNOME_VFS_REQUIRED=1.9.11
 
-PKG_CHECK_MODULES(GNOME_GAMES, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gconf-2.0 >= 1.1.5 gnome-vfs-module-2.0 >= 1.9.11 gtk+-2.0 >= 2.3)
+PKG_CHECK_MODULES(GNOME_GAMES, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gconf-2.0 >= $GTK_REQUIRED gnome-vfs-module-2.0 >= $GNOME_VFS_REQUIRED gtk+-2.0 >= $GTK_REQUIRED)
 AC_SUBST(GNOME_GAMES_CFLAGS)
 AC_SUBST(GNOME_GAMES_LIBS)
 
@@ -44,29 +78,8 @@ AM_GLIB_GNU_GETTEXT
 # Since there is controversy over using it, we will check for it.
 AC_CHECK_FUNCS(ngettext)
 
-GNOME_COMPILE_WARNINGS(yes) 
-GNOME_CXX_WARNINGS(yes)
-
-CFLAGS="$CFLAGS $GNOME_GAMES_CFLAGS $WARN_CFLAGS"  
-## This should make sure that developers using gcc 3.x will write something
-## that compiles using gcc 2.9x. Straight -ansi is a little tough given the
-## current code base, although what breaks is probably not that portable.
-if test x$CC=xgcc ; then
-  CFLAGS="-std=gnu89 $CFLAGS"
-fi
-
-AC_SUBST(CFLAGS)
-AC_SUBST(CPPFLAGS)
-AC_SUBST(LDFLAGS)
-
-AM_GCONF_SOURCE_2
-AC_PATH_PROG(GCONFTOOL, gconftool-2)
-
-## Begin tests for scrollkeeper
-AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
-if test x$SCROLLKEEPER_CONFIG = xno; then
-  AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the scrollkeeper packaga)
-fi
+# Check for header files
+AC_HEADER_STDC
 
 sys_dir_h_found=no
 old_CPPFLAGS="$CPPFLAGS"
