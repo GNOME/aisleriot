@@ -13,4 +13,6 @@ libgames_support_la_SOURCES =		\
 	games-clock.h			\
 	games-gconf.c			\
 	games-gconf.h			\
+	games-frame.c			\
+	games-frame.h			\
 	$(NULL)
