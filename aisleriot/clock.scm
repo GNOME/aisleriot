@@ -220,7 +220,7 @@
 	       "Odessa is a better game.  Really."
 	       "Tourniquets are not recommended unless in the direst emergency"
 	       "I could sure use a backrub right about now..."
-	       "Monitors won't give you Vitamin E -- but sunlight will..."
+	       "Monitors won't give you Vitamin D -- but sunlight will..."
 	       "If you're ever lost and alone in the woods, hug a tree"
 	       "Fishing wire makes bad dental floss"
 	       "Consistency is key"
