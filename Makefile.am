@@ -31,7 +31,7 @@ SUBDIRS = \
 DIST_SUBDIRS = \
 	$(always_built_SUBDIRS)	\
 	aisleriot		\
-	gnometris xbill
+	gnometris
 
 EXTRA_DIST = \
 	gnome-games.spec.in \
