@@ -274,9 +274,16 @@ gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name)
     g_free (dir_name);
   }
 
-  for (i = 0; i < dir->nfiles; i++)
-    if (!strcmp (name, g_basename (dir->file[i].name)))
-	return i;
+  for (i = 0; i < dir->nfiles; i++) {
+    gchar *filename = g_path_get_basename (dir->file[i].name);
+
+    if (!strcmp (name, filename)) {
+      g_free (filename);
+      return i;
+    }
+
+    g_free (filename);
+  }
 
   return -1;
 }
@@ -708,7 +715,7 @@ gdk_card_deck_get_options (GdkCardDeck* deck)
   GdkCardDeckOptions deck_options;
 
   for(i = 0; i < OPT_NUM; i++, index++)
-    name[i] = g_strdup (g_basename (option_data[i].dir->file[*index].name));
+    name[i] = g_path_get_basename (option_data[i].dir->file[*index].name);
 
   deck_options = gnome_config_assemble_vector (OPT_NUM, 
 					       (const gchar* const*) name);

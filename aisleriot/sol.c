@@ -107,8 +107,12 @@ static gpointer* game_file_to_help_entry (const gchar* file)
 {
 #if 0
   GnomeHelpMenuEntry* entry;
-  char* p;
-  GString* help = g_string_new (g_basename(file));
+  char* p, *filename;
+  GString* help;
+
+  filename = g_path_get_basename (file);
+  help = g_string_new (filename);
+  g_free (filename);
 
   if ((p = strrchr (help->str, '.'))) 
     g_string_truncate (help, p - help->str);
