@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: freecell VERSION\n"
-"POT-Creation-Date: 1998-09-22 23:16-0500\n"
+"POT-Creation-Date: 1998-11-17 18:29-0500\n"
 "PO-Revision-Date: 1998-02-20 17:30+0100\n"
 "Last-Translator: Tuomas Lukka <lukka@iki.fi>\n"
 "Language-Team: Tuomas Lukka <lukka@iki.fi>\n"
@@ -14,11 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: aisleriot/dialog.c:72 freecell/src/menu.c:32 gnothello/gnothello.c:96
-msgid "New Game"
-msgstr "Uusi peli"
-
-#: aisleriot/dialog.c:90
+#: aisleriot/dialog.c:15
 msgid ""
 "Congratulations\n"
 "\n"
@@ -28,7 +24,7 @@ msgstr ""
 "\n"
 "Voitit!!!"
 
-#: aisleriot/dialog.c:92
+#: aisleriot/dialog.c:17
 msgid ""
 "\n"
 "Game Over.\n"
@@ -36,12 +32,25 @@ msgstr ""
 "\n"
 "Loppu tuli.\n"
 
-#: aisleriot/dialog.c:148 mahjongg/mahjongg.c:696 mahjongg/mahjongg.c:719
-#: mahjongg/mahjongg.c:745
-msgid "Ok"
-msgstr "OK"
+#: aisleriot/dialog.c:23 freecell/src/menu.c:32
+msgid "New Game"
+msgstr "Uusi peli"
 
-#: aisleriot/menu.c:53
+#: aisleriot/dialog.c:62 mahjongg/mahjongg.c:1142
+#, fuzzy
+msgid "Select Game"
+msgstr "Valitse peli"
+
+#: aisleriot/dialog.c:72 freecell/src/io-gtk.c:399 freecell/src/menu.c:109
+msgid "Seed"
+msgstr "Alkuarvo?"
+
+#: aisleriot/dialog.c:84
+#, fuzzy
+msgid "Rules"
+msgstr "Reset"
+
+#: aisleriot/dialog.c:138
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -49,37 +58,45 @@ msgstr ""
 "Peli on lopussa.\n"
 "Vinkkejä ei enää ole."
 
-#: aisleriot/menu.c:61
+#: aisleriot/dialog.c:144
 msgid "This game does not have hint support yet."
 msgstr "Tähän peliin ei vielä ole vinkkejä."
 
-#: aisleriot/menu.c:73 aisleriot/menu.c:76 aisleriot/menu.c:91
-#: aisleriot/menu.c:94
+#: aisleriot/dialog.c:154 aisleriot/dialog.c:162 aisleriot/dialog.c:170
 msgid "Move the "
 msgstr "Siirrä "
 
-#: aisleriot/menu.c:82 aisleriot/menu.c:83
+#: aisleriot/dialog.c:156
 msgid " on the "
 msgstr " "
 
-#: aisleriot/menu.c:87 aisleriot/menu.c:105
+#: aisleriot/dialog.c:158 aisleriot/dialog.c:166 aisleriot/dialog.c:174
+#: aisleriot/dialog.c:180
 msgid "."
 msgstr ":lle ."
 
-#: aisleriot/menu.c:100 aisleriot/menu.c:101
+#: aisleriot/dialog.c:164
 msgid " on "
 msgstr " "
 
-#: aisleriot/menu.c:112
+#: aisleriot/dialog.c:172
+msgid " "
+msgstr ":lle"
+
+#: aisleriot/dialog.c:178
+msgid "You are searching for a "
+msgstr "Olet etsimässä "
+
+#: aisleriot/dialog.c:184
 msgid "This game is unable to provide a hint."
 msgstr "Peli ei osaa antaa vinkkiä."
 
-#: aisleriot/menu.c:192
+#: aisleriot/menu.c:61
 msgid "GNOME Solitaire"
 msgstr "GNOME-Pasianssi"
 
 #. another comments
-#: aisleriot/menu.c:197
+#: aisleriot/menu.c:66
 msgid ""
 "The GNOME Generic Solitaire provides a rule-based solitaire engine that "
 "allows many different games to be played"
@@ -87,152 +104,209 @@ msgstr ""
 "GNOME-Pasianssissa on sääntöpohjainen pasianssikone, joka mahdollistaa "
 "useitten eri pelien pelaamisen."
 
-#: aisleriot/menu.c:212
+#: aisleriot/menu.c:79
 #, fuzzy
-msgid "Game Type"
-msgstr "Peli"
+msgid "_Select"
+msgstr "_Valitse kartta:"
 
-#: aisleriot/menu.c:214
+#: aisleriot/menu.c:81
 #, fuzzy
-msgid "Game Seed..."
-msgstr "Pelin alkuarvo"
+msgid "_Options..."
+msgstr "_Asetukset"
 
-#: aisleriot/menu.c:216 mahjongg/mahjongg.c:370 mahjongg/mahjongg.c:433
-msgid "Hint"
+#: aisleriot/menu.c:84 aisleriot/menu.c:113
+#, fuzzy
+msgid "S_tatistics..."
+msgstr "T_ilastoja..."
+
+#: aisleriot/menu.c:91 gnomine/gnomine.c:439 gnothello/gnothello.c:164
+#: same-gnome/same-gnome.c:680 scottfree/GnomeScott.c:1549
+#, fuzzy
+msgid "_About..."
+msgstr "_Tietoja..."
+
+#: aisleriot/menu.c:101 gnomine/gnomine.c:419 same-gnome/same-gnome.c:661
+#: scottfree/GnomeScott.c:1529
+#, fuzzy
+msgid "_New"
+msgstr "_Uusi"
+
+# , fuzzy
+#: aisleriot/menu.c:104
+#, fuzzy
+msgid "_Restart"
+msgstr "_Aloita uudestaan"
+
+#: aisleriot/menu.c:107
+msgid "_Select..."
+msgstr "_Valitse"
+
+#: aisleriot/menu.c:110 gnomine/gnomine.c:422 same-gnome/same-gnome.c:664
+#, fuzzy
+msgid "_Properties..."
+msgstr "Asetukset..."
+
+#: aisleriot/menu.c:118
+#, fuzzy
+msgid "_Exit"
+msgstr "Pois"
+
+#: aisleriot/menu.c:124
+#, fuzzy
+msgid "_Hint"
 msgstr "Vinkki"
 
-#: aisleriot/menu.c:222
-msgid "Help with Aisleriot..."
-msgstr "Apua Aisleriot-peliin..."
+#: aisleriot/menu.c:127 gnothello/gnothello.c:103
+#, fuzzy
+msgid "_Undo"
+msgstr "Peru"
 
-#: aisleriot/menu.c:224
-msgid "Help with Klondike..."
-msgstr "Apua Klondikeen..."
+#: aisleriot/menu.c:130
+#, fuzzy
+msgid "_Redo"
+msgstr "Tee uudestaan"
 
-#: aisleriot/menu.c:227 freecell/src/menu.c:79 gnobots/gnobots.c:161
-#: gnomine/gnomine.c:467 gnothello/gnothello.c:150 gturing/gturing.c:456
-#: gyahtzee/gyahtzee.c:406 same-gnome/same-gnome.c:703
-#: scottfree/GnomeScott.c:1539
-msgid "About..."
-msgstr "Tietoja..."
+#: aisleriot/menu.c:137 gnomine/gnomine.c:447 gnothello/gnothello.c:169
+#: same-gnome/same-gnome.c:688
+#, fuzzy
+msgid "_Game"
+msgstr "_Peli"
 
-#: aisleriot/menu.c:234 freecell/src/menu.c:105 gnobots/gnobots.c:142
-#: gnome-stones/main.c:1138 gnomine/gnomine.c:447 gyahtzee/gyahtzee.c:373
-#: mahjongg/mahjongg.c:359 mahjongg/mahjongg.c:424 same-gnome/same-gnome.c:684
-#: scottfree/GnomeScott.c:1519
+#: aisleriot/menu.c:139
+#, fuzzy
+msgid "_Variation"
+msgstr "_Muunnelma"
+
+#: aisleriot/menu.c:141
+#, fuzzy
+msgid "_Move"
+msgstr "_Siirry"
+
+#: aisleriot/menu.c:145 gnomine/gnomine.c:450 gnothello/gnothello.c:173
+#: same-gnome/same-gnome.c:691
+#, fuzzy
+msgid "_Help"
+msgstr "_Apua"
+
+#: aisleriot/menu.c:152 freecell/src/menu.c:105 gnobots/gnobots.c:128
+#: gnome-stones/main.c:1140 gyahtzee/gyahtzee.c:406 mahjongg/mahjongg.c:369
+#: mahjongg/mahjongg.c:434
 msgid "New"
 msgstr "Uusi"
 
-#: aisleriot/menu.c:236 freecell/src/menu.c:52 gnobots/gnobots.c:145
-#: gnomine/gnomine.c:450 gyahtzee/gyahtzee.c:377 gyahtzee/gyahtzee.c:392
-#: mahjongg/mahjongg.c:393 same-gnome/same-gnome.c:687
-msgid "Properties..."
-msgstr "Asetukset..."
-
-#: aisleriot/menu.c:238
-msgid "Statistics..."
-msgstr "Tilastoja..."
-
-#: aisleriot/menu.c:241 aisleriot/menu.c:275 freecell/src/menu.c:64
-#: freecell/src/menu.c:125 gnobots/gnobots.c:151 gnome-stones/main.c:1161
-#: gnomine/gnomine.c:456 gturing/gturing.c:429 gyahtzee/gyahtzee.c:383
-#: mahjongg/mahjongg.c:378 same-gnome/same-gnome.c:693
-#: scottfree/GnomeScott.c:1528
-msgid "Exit"
-msgstr "Pois"
-
-#: aisleriot/menu.c:248 freecell/src/menu.c:90 gnobots/gnobots.c:174
-#: gnome-stones/main.c:1184 gnomine/gnomine.c:475 gnothello/gnothello.c:155
-#: gyahtzee/gyahtzee.c:414 mahjongg/mahjongg.c:411 same-gnome/same-gnome.c:711
-msgid "Game"
-msgstr "Peli"
-
-#: aisleriot/menu.c:250
-msgid "Variation"
-msgstr "Muunnelma"
-
-#: aisleriot/menu.c:252 freecell/src/menu.c:94 gnobots/gnobots.c:177
-#: gnome-stones/main.c:1185 gnomine/gnomine.c:478 gnothello/gnothello.c:159
-#: gturing/gturing.c:472 gyahtzee/gyahtzee.c:420 mahjongg/mahjongg.c:417
-#: same-gnome/same-gnome.c:714
-msgid "Help"
-msgstr "Apua"
+#: aisleriot/menu.c:152
+#, fuzzy
+msgid "Deal a new game."
+msgstr "Aloita uusi peli"
 
 # , fuzzy
-#: aisleriot/menu.c:259 mahjongg/mahjongg.c:365 mahjongg/mahjongg.c:430
+#: aisleriot/menu.c:155 mahjongg/mahjongg.c:375 mahjongg/mahjongg.c:440
 #, fuzzy
 msgid "Restart"
 msgstr "Aloita uudestaan"
 
-#: aisleriot/menu.c:259
+#: aisleriot/menu.c:155
 #, fuzzy
 msgid "Start this game over."
 msgstr "Aloitetaanko alusta?"
 
-#: aisleriot/menu.c:263 freecell/src/io-gtk.c:399 freecell/src/menu.c:109
-msgid "Seed"
-msgstr "Alkuarvo?"
+#: aisleriot/menu.c:158
+#, fuzzy
+msgid "Select"
+msgstr "Valitse kartta:"
 
-#: aisleriot/menu.c:263
-msgid "Start a new game after choosing the seed."
-msgstr "Aloita uusi peli valittuasi alkuarvon."
+#: aisleriot/menu.c:158
+#, fuzzy
+msgid "Select a new game."
+msgstr "Aloita uusi peli"
 
-#: aisleriot/menu.c:267 freecell/src/menu.c:46 freecell/src/menu.c:113
-#: gyahtzee/gyahtzee.c:395 mahjongg/mahjongg.c:373 mahjongg/mahjongg.c:436
+#: aisleriot/menu.c:163 mahjongg/mahjongg.c:380 mahjongg/mahjongg.c:443
+msgid "Hint"
+msgstr "Vinkki"
+
+#: aisleriot/menu.c:163
+msgid "Suggest a move."
+msgstr "Ehdota siirtoa."
+
+#: aisleriot/menu.c:166 freecell/src/menu.c:46 freecell/src/menu.c:113
+#: gyahtzee/gyahtzee.c:428 mahjongg/mahjongg.c:383 mahjongg/mahjongg.c:446
 msgid "Undo"
 msgstr "Peru"
 
-#: aisleriot/menu.c:267
+#: aisleriot/menu.c:166
 msgid "Undo the last move."
 msgstr "Ota takaisin edellinen siirto"
 
-#: aisleriot/menu.c:271
+#: aisleriot/menu.c:169
 msgid "Redo"
 msgstr "Tee uudestaan"
 
-#: aisleriot/menu.c:271
-msgid "Redo the last move"
+#: aisleriot/menu.c:169
+#, fuzzy
+msgid "Redo the last move."
 msgstr "Tee edellinen siirto uudestaan"
 
-#: aisleriot/menu.c:275
-msgid "Quit Aisleriot"
+#: aisleriot/menu.c:174 freecell/src/menu.c:64 freecell/src/menu.c:125
+#: gnobots/gnobots.c:137 gnome-stones/main.c:1163 gturing/gturing.c:426
+#: gyahtzee/gyahtzee.c:416 mahjongg/mahjongg.c:388
+msgid "Exit"
+msgstr "Pois"
+
+#: aisleriot/menu.c:174
+#, fuzzy
+msgid "Quit Aisleriot."
 msgstr "Poistu Aisleriotista"
 
-#: aisleriot/menu.c:292
-msgid "Spider"
-msgstr "Spider"
+#: aisleriot/sol.c:147 aisleriot/sol.c:161 freecell/src/menu.c:94
+#: gnobots/gnobots.c:163 gnome-stones/main.c:1187 gturing/gturing.c:452
+#: gyahtzee/gyahtzee.c:455 mahjongg/mahjongg.c:427
+msgid "Help"
+msgstr "Apua"
 
-#: aisleriot/menu.c:293
-msgid "Osmosis"
-msgstr "Osmosis"
+#: aisleriot/sol.c:161 aisleriot/sol.c:290 aisleriot/splash.c:47
+#, fuzzy
+msgid "Aisleriot"
+msgstr "Poistu Aisleriotista"
 
-#: aisleriot/menu.c:294
-msgid "Odessa"
-msgstr "Odessa"
+#: aisleriot/sol.c:332
+#, fuzzy
+msgid "Loading images..."
+msgstr "Luen kuvia..."
 
-#: aisleriot/menu.c:295
-msgid "Klondike"
-msgstr "klondike"
+#: aisleriot/sol.c:338
+#, fuzzy
+msgid "Dealing game..."
+msgstr "Täytän peli-ikkunaa..."
+
+#: aisleriot/sol.c:344 gnobots/gnobots.c:1307 gnome-stones/status.c:66
+#, fuzzy
+msgid "Score:"
+msgstr "Pisteet:"
+
+#: aisleriot/sol.c:348 gnomine/gnomine.c:662
+msgid "Time:"
+msgstr "Aika:"
+
+#: aisleriot/sol.c:429
+msgid "Variation on game rules"
+msgstr "Muunnelma pelin säännöistä"
+
+#: aisleriot/sol.c:429 gnobots/gnobots.c:118 same-gnome/same-gnome.c:842
+msgid "NAME"
+msgstr "NIMI"
+
+#: aisleriot/sol.c:443
+#, fuzzy
+msgid "Initializing scheme..."
+msgstr ""
+"Fertig.\n"
+"Initialisiere gnome/gdk...\n"
 
 #. make main window.
-#: aisleriot/menu.c:296 freecell/src/io-gtk.c:119 freecell/src/io-gtk.c:635
+#: freecell/src/io-gtk.c:119 freecell/src/io-gtk.c:635
 #, fuzzy
 msgid "Freecell"
 msgstr "FreeCell"
-
-#: aisleriot/menu.c:297
-#, fuzzy
-msgid "Camelot"
-msgstr "Camelot"
-
-#: aisleriot/sol.c:126
-msgid "Solitaire"
-msgstr "Solitaire"
-
-#: aisleriot/sol.c:219 same-gnome/same-gnome.c:924
-#, fuzzy
-msgid "Score: "
-msgstr "Pisteet: "
 
 #: freecell/src/io-gtk.c:317 freecell/src/io-gtk.c:439
 #: freecell/src/io-gtk.c:504 freecell/src/io-gtk.c:596
@@ -244,7 +318,7 @@ msgstr "Haluatko lopettaa tämän pelin?"
 msgid "Freecell #%d"
 msgstr "FreeCell"
 
-#: freecell/src/io-gtk.c:399 scottfree/GnomeScott.c:1216
+#: freecell/src/io-gtk.c:399 scottfree/GnomeScott.c:1222
 msgid "OK"
 msgstr "OK"
 
@@ -266,7 +340,7 @@ msgstr "Changwoo Ryu"
 
 #: freecell/src/io-gtk.c:638
 msgid "Reimplement the popular solitaire card game."
-msgstr ""
+msgstr "Uudelleen tehty pasianssi"
 
 #: freecell/src/io-gtk.c:648
 msgid "You can't move in that way."
@@ -294,11 +368,27 @@ msgstr "Aloita peli alusta"
 msgid "New Game with a seed..."
 msgstr "Uusi peli alkuarvolla..."
 
+#: freecell/src/menu.c:52 gnobots/gnobots.c:131 gyahtzee/gyahtzee.c:410
+#: gyahtzee/gyahtzee.c:425 mahjongg/mahjongg.c:403
+msgid "Properties..."
+msgstr "Asetukset..."
+
 #: freecell/src/menu.c:56
 msgid "Score..."
 msgstr "Pisteet..."
 
-#: freecell/src/menu.c:105 gnome-stones/main.c:1138
+#: freecell/src/menu.c:79 gnobots/gnobots.c:147 gturing/gturing.c:443
+#: gyahtzee/gyahtzee.c:436
+msgid "About..."
+msgstr "Tietoja..."
+
+#: freecell/src/menu.c:90 gnobots/gnobots.c:160 gnome-stones/main.c:1186
+#: gnome-stones/preferences.c:505 gyahtzee/gyahtzee.c:449
+#: mahjongg/mahjongg.c:421
+msgid "Game"
+msgstr "Peli"
+
+#: freecell/src/menu.c:105 gnome-stones/main.c:1140
 msgid "Start a new game"
 msgstr "Aloita uusi peli"
 
@@ -343,8 +433,8 @@ msgstr "Kerro kielletyt siirrot"
 msgid "Move one by one"
 msgstr "Siirrä yksi kerrallaan"
 
-#: freecell/src/option-dialog.c:78 gturing/gturing.c:467
-#: mahjongg/mahjongg.c:414
+#: freecell/src/option-dialog.c:78 gturing/gturing.c:450
+#: mahjongg/mahjongg.c:424
 msgid "Options"
 msgstr "Asetukset"
 
@@ -388,84 +478,88 @@ msgstr "nyt: %d voittoa"
 msgid "current: %d losses"
 msgstr "nyt: %d häviötä"
 
-#: gnobots/gnobots.c:120 same-gnome/same-gnome.c:39
-msgid "NAME"
-msgstr "NIMI"
-
-#: gnobots/gnobots.c:120 same-gnome/same-gnome.c:39
+#: gnobots/gnobots.c:118 same-gnome/same-gnome.c:842
 msgid "Set game scenario"
 msgstr "Peliskenaario"
 
-#: gnobots/gnobots.c:121 gnomine/gnomine.c:26 gnomine/gnomine.c:31
-#: gnothello/gnothello.c:81
+#: gnobots/gnobots.c:119 gnomine/gnomine.c:509 gnomine/gnomine.c:514
 msgid "X"
 msgstr "X"
 
-#: gnobots/gnobots.c:122 gnomine/gnomine.c:27 gnomine/gnomine.c:32
-#: gnothello/gnothello.c:82
+#: gnobots/gnobots.c:120 gnomine/gnomine.c:510 gnomine/gnomine.c:515
 msgid "Y"
 msgstr "Y"
 
-#: gnobots/gnobots.c:148 gnomine/gnomine.c:453 gyahtzee/gyahtzee.c:380
-#: same-gnome/same-gnome.c:690
+#: gnobots/gnobots.c:134 gyahtzee/gyahtzee.c:413
 #, fuzzy
 msgid "Scores..."
 msgstr "Pisteet..."
 
-#: gnobots/gnobots.c:605 gnobots/gnobots.c:621 gnobots/gnobots.c:651
+#: gnobots/gnobots.c:591 gnobots/gnobots.c:607 gnobots/gnobots.c:637
 #, fuzzy, c-format
 msgid "Could not find '%s' pixmap file for Gnome Robots\n"
 msgstr "Sama-Gnome skenaariota '%s' ei löytynyt\n"
 
-#: gnobots/gnobots.c:706
+#: gnobots/gnobots.c:692
 #, fuzzy
 msgid "Do you really want to start a new game?"
 msgstr "Tosissaan uusi peli?"
 
-#: gnobots/gnobots.c:731 same-gnome/same-gnome.c:669
+#: gnobots/gnobots.c:717 same-gnome/same-gnome.c:646
 msgid "Do you really want to quit?"
 msgstr "Tosissaan ulos?"
 
-#: gnobots/gnobots.c:777
+#: gnobots/gnobots.c:763
 msgid "Gnobots"
 msgstr "Gnobotit"
 
-#: gnobots/gnobots.c:780
+#: gnobots/gnobots.c:766
 msgid "Gnome Robots game"
 msgstr "Gnome-robottipeli"
 
-#: gnobots/gnobots.c:792
+#: gnobots/gnobots.c:778
 msgid "Gnome Robots - Safe Teleports"
 msgstr "Gnome-robotit - turvallinen teleporttaus"
 
-#: gnobots/gnobots.c:795 gnobots/gnobots.c:1259
+#: gnobots/gnobots.c:781 gnobots/gnobots.c:1279
 #, fuzzy
 msgid "Gnome Robots"
 msgstr "Gnome Robotit"
 
-#: gnobots/gnobots.c:1287 gnome-stones/status.c:66
-#, fuzzy
-msgid "Score:"
-msgstr "Pisteet:"
+#: gnobots/gnobots.c:1210
+msgid "No Locations Available For Safe Teleport"
+msgstr "Ei paikkoja turvalliselle teleporttaukselle"
 
-#: gnobots/gnobots.c:1297
+#: gnobots/gnobots.c:1215
+msgid "No Locations Available For Teleport"
+msgstr "Ei paikkoja teleporttaukselle"
+
+#: gnobots/gnobots.c:1232
+msgid ""
+"Congratulations, you have defeated the Robots!\n"
+"But can you do it again?"
+msgstr ""
+"Onnittelut, voitit robotit!\n"
+"Mutta osaatko tehdä sen uudestaan?"
+
+#: gnobots/gnobots.c:1317
 msgid "Safe Teleports:"
 msgstr "Turvallinen teleporttaus:"
 
-#: gnobots/gnobots.c:1307
+#: gnobots/gnobots.c:1327
 msgid "Level:"
 msgstr "Taso:"
 
-#: gnobots/properties.c:194 mahjongg/mahjongg.c:445
+#: gnobots/properties.c:194 mahjongg/mahjongg.c:455
 #, fuzzy
 msgid "Properties"
 msgstr "Asetukset..."
 
-#: gnobots/properties.c:204 same-gnome/same-gnome.c:597
+#: gnobots/properties.c:204 same-gnome/same-gnome.c:574
 msgid "Select scenario:"
 msgstr "Skenaario:"
 
-#: gnobots/properties.c:223 same-gnome/same-gnome.c:603
+#: gnobots/properties.c:223 same-gnome/same-gnome.c:580
 msgid "Make it the default scenario"
 msgstr "tee tästä oletusskenaario."
 
@@ -478,19 +572,20 @@ msgstr "Sama-Gnome"
 msgid "Safe Teleports"
 msgstr "Turvallinen teleporttaus"
 
-#: gnobots/properties.c:247 mahjongg/mahjongg.c:390 mahjongg/mahjongg.c:442
+#: gnobots/properties.c:247 gnome-stones/preferences.c:639
+#: mahjongg/mahjongg.c:400 mahjongg/mahjongg.c:452
 #, fuzzy
 msgid "Sound"
 msgstr "Ääni"
 
 #. This cave is to big to be played with gnome-stones.
-#: gnome-stones/cave.c:1459
+#: gnome-stones/game.c:167 gnome-stones/io.c:310
 msgid "The cave you are trying to load it to big for this game."
 msgstr "Liian suuri luola."
 
 #. An object was requested in this cave, that was not
 #. declared in the game file's Object section.
-#: gnome-stones/cave.c:1490
+#: gnome-stones/game.c:202 gnome-stones/io.c:344
 msgid ""
 "The cave you are trying to load includes an object, that wasn't declared."
 msgstr "Luolassa oli tuntematon esine."
@@ -499,97 +594,105 @@ msgstr "Luolassa oli tuntematon esine."
 #. Some constants.
 #. This message will be printed in the statusline, if no message was
 #. specified in a game file.
-#: gnome-stones/main.c:85
+#: gnome-stones/main.c:87
 msgid "Gnome-Stones (c) 1998 Carsten Schaar"
 msgstr ""
 
-#: gnome-stones/main.c:300
+#: gnome-stones/main.c:302
 msgid "Game title:"
 msgstr "Pelin otsikko:"
 
 # , fuzzy
-#: gnome-stones/main.c:301
+#: gnome-stones/main.c:303
 #, fuzzy
 msgid "Start cave:"
 msgstr "Aloita luola:"
 
-#: gnome-stones/main.c:434
+#: gnome-stones/main.c:436
 msgid "Pause"
 msgstr "Paussi"
 
-#: gnome-stones/main.c:793
+#: gnome-stones/main.c:795
 msgid "Congratulations, you win!"
 msgstr "Onnittelut, voitit!"
 
-#: gnome-stones/main.c:964 gyahtzee/cyahtzee.c:552 gyahtzee/gyahtzee.c:117
+#: gnome-stones/main.c:966 gyahtzee/cyahtzee.c:552 gyahtzee/gyahtzee.c:117
 #, fuzzy
 msgid "Game over!"
 msgstr "Peli loppu!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:1121 gnome-stones/main.c:1301
+#: gnome-stones/main.c:1123 gnome-stones/main.c:1335
 #, fuzzy
 msgid "Gnome-Stones"
 msgstr "Gnome-Stones"
 
-#: gnome-stones/main.c:1124
+#: gnome-stones/main.c:1126
 msgid "A game."
 msgstr "Peli."
 
-#: gnome-stones/main.c:1145
+#: gnome-stones/main.c:1147
 #, fuzzy
 msgid "Scores"
 msgstr "Pisteet"
 
-#: gnome-stones/main.c:1145
+#: gnome-stones/main.c:1147
 #, fuzzy
 msgid "Show highscore table"
 msgstr "Näytä parhaat pisteet"
 
-#: gnome-stones/main.c:1153
+#: gnome-stones/main.c:1155
 #, fuzzy
 msgid "Preferences..."
 msgstr "Asetukset..."
 
-#: gnome-stones/main.c:1153
+#: gnome-stones/main.c:1155
 msgid "Change Gnome-Stones preferences"
 msgstr "Muuta Gnome-Stones:in asetuksia"
 
-#: gnome-stones/main.c:1161
+#: gnome-stones/main.c:1163
 #, fuzzy
 msgid "Exit Gnome Stones"
 msgstr "Poistu"
 
-#: gnome-stones/main.c:1172
+#: gnome-stones/main.c:1174
 msgid "About Gnome-Stones"
 msgstr "Tietoja..."
 
-#: gnome-stones/main.c:1172
+#: gnome-stones/main.c:1174
 msgid "Info about Gnome Stones"
 msgstr "Tietoa Gnome Stones:ista"
 
-#: gnome-stones/main.c:1227
+#: gnome-stones/main.c:1257
 #, fuzzy
 msgid "Loading curtain image..."
 msgstr "Luen kuvia..."
 
-#: gnome-stones/main.c:1232
+#: gnome-stones/main.c:1261
+#, fuzzy
+msgid "Scanning private object directory..."
+msgstr "Käyn läpi yksityisiä pelihakemistoja..."
+
+#: gnome-stones/main.c:1265
+#, fuzzy
+msgid "Scanning public object directory..."
+msgstr "Käyn läpi julkisia pelihakemistoja..."
+
+#: gnome-stones/main.c:1270
 msgid "Filling game widget..."
 msgstr "Täytän peli-ikkunaa..."
 
-#: gnome-stones/main.c:1237
-msgid "Registering game objects..."
-msgstr "Rekisteröin esineitä..."
-
-#: gnome-stones/main.c:1241
-msgid "Scanning private game directories..."
+#: gnome-stones/main.c:1275
+#, fuzzy
+msgid "Scanning private game directory..."
 msgstr "Käyn läpi yksityisiä pelihakemistoja..."
 
-#: gnome-stones/main.c:1245
-msgid "Scanning public game directories..."
+#: gnome-stones/main.c:1279
+#, fuzzy
+msgid "Scanning public game directory..."
 msgstr "Käyn läpi julkisia pelihakemistoja..."
 
-#: gnome-stones/main.c:1249
+#: gnome-stones/main.c:1283
 msgid "Restoring preferences..."
 msgstr "Palautan asetuksia..."
 
@@ -603,6 +706,56 @@ msgstr "Sait uuden elämän!"
 msgid "Seconds left: %d"
 msgstr "Sekunteja jäljellä: %d"
 
+#: gnome-stones/preferences.c:443
+#, fuzzy
+msgid "Gnome-Stones Preferences"
+msgstr "Muuta Gnome-Stones:in asetuksia"
+
+#: gnome-stones/preferences.c:452
+#, fuzzy
+msgid "Game title"
+msgstr "Pelin otsikko:"
+
+#: gnome-stones/preferences.c:454
+#, fuzzy
+msgid "Caves"
+msgstr "Luola:"
+
+#: gnome-stones/preferences.c:457
+#, fuzzy
+msgid "Filename"
+msgstr "Tiedosto"
+
+#: gnome-stones/preferences.c:529
+msgid "Device"
+msgstr "Laite"
+
+#: gnome-stones/preferences.c:541
+msgid "Joystick device:"
+msgstr "Joystick-laite"
+
+#. We definatly have a "disable" entry.
+#: gnome-stones/preferences.c:548
+#, fuzzy
+msgid "disabled"
+msgstr "Estetty"
+
+#: gnome-stones/preferences.c:587
+msgid "Binary joytick emulation"
+msgstr "Binaarisen joystickin matkiminen"
+
+#: gnome-stones/preferences.c:599
+msgid "Switch level:"
+msgstr "Kytkennän taso"
+
+#: gnome-stones/preferences.c:625
+msgid "Joystick"
+msgstr ""
+
+#: gnome-stones/preferences.c:633
+msgid "Not yet implemented!"
+msgstr "Ei vielä ohjelmoitu"
+
 #: gnome-stones/status.c:76
 msgid "Diamonds:"
 msgstr "Timantteja:"
@@ -612,212 +765,262 @@ msgid "Cave:"
 msgstr "Luola:"
 
 #: gnome-stones/status.c:100
-msgid "Lifes:"
+#, fuzzy
+msgid "Lives:"
 msgstr "Elämiä"
 
-#: gnomine/gnomine.c:26
-msgid "Width of grid"
-msgstr "Pelikentän leveys"
-
-#: gnomine/gnomine.c:27
-msgid "Height of grid"
-msgstr "Pelikentän korkeus"
-
-#: gnomine/gnomine.c:28
-msgid "SIZE"
-msgstr "KOKO"
-
-#: gnomine/gnomine.c:28
-msgid "Size of mines"
-msgstr "Kaivosten koko"
-
-#: gnomine/gnomine.c:29 gyahtzee/setup.c:52 gyahtzee/setup.c:53
-msgid "NUMBER"
-msgstr "LUKU"
-
-#: gnomine/gnomine.c:29
-msgid "Number of mines"
-msgstr "Kaivosten lukumäärä"
-
-#: gnomine/gnomine.c:30
-msgid "F?"
-msgstr "F?"
-
-#: gnomine/gnomine.c:69 gnomine/gnomine.c:321
+#: gnomine/gnomine.c:41 gnomine/gnomine.c:293
 msgid "Tiny"
 msgstr "Pieni"
 
-#: gnomine/gnomine.c:70 gnomine/gnomine.c:329
+#: gnomine/gnomine.c:42 gnomine/gnomine.c:301
 msgid "Medium"
 msgstr "Keskikokoinen"
 
-#: gnomine/gnomine.c:71 gnomine/gnomine.c:337
+#: gnomine/gnomine.c:43 gnomine/gnomine.c:309
 msgid "Biiiig"
 msgstr "Iiiiiso"
 
-#: gnomine/gnomine.c:72 gnomine/gnomine.c:345
+#: gnomine/gnomine.c:44 gnomine/gnomine.c:317
 msgid "Custom"
 msgstr "Oma"
 
-#: gnomine/gnomine.c:110 gnomine/gnomine.c:273
+#: gnomine/gnomine.c:82 gnomine/gnomine.c:245
 msgid "Gnome Mines"
 msgstr "Gnome Mines"
 
-#: gnomine/gnomine.c:276
+#: gnomine/gnomine.c:248
 msgid "Minesweeper clone"
 msgstr "\"Minesweeper\" -klooni"
 
-#: gnomine/gnomine.c:304
+#: gnomine/gnomine.c:276
 msgid "Gnome Mines setup"
 msgstr "Gnome Mines -asetukset "
 
-#: gnomine/gnomine.c:313
+#: gnomine/gnomine.c:285
 msgid "Custom size"
 msgstr "Koko"
 
-#: gnomine/gnomine.c:315
+#: gnomine/gnomine.c:287
 msgid "Field size"
 msgstr "Kentän koko"
 
-#: gnomine/gnomine.c:357
+#: gnomine/gnomine.c:329
 msgid "Mine Size:"
 msgstr "Miinan koko:"
 
-#: gnomine/gnomine.c:384
+#: gnomine/gnomine.c:356
 msgid "Horizontal:"
 msgstr "Vaaka:"
 
-#: gnomine/gnomine.c:397
+#: gnomine/gnomine.c:369
 msgid "Vertical:"
 msgstr "Pysty:"
 
-#: gnomine/gnomine.c:410
+#: gnomine/gnomine.c:382
 msgid "Number of mines:"
 msgstr "Miinojen määrä:"
 
-#: gnomine/gnomine.c:649
-msgid "Gnome mines"
-msgstr "Gnome mines"
+#: gnomine/gnomine.c:425 same-gnome/same-gnome.c:667
+#, fuzzy
+msgid "_Scores..."
+msgstr "Pisteet..."
 
-#: gnomine/gnomine.c:726
-msgid "Flags:"
-msgstr "Lippuja:"
-
-#: gnomine/gnomine.c:737
-msgid "Time:"
-msgstr "Aika:"
-
-#: gnothello/gnothello.c:84
-msgid "IOR"
-msgstr ""
-
-#: gnothello/gnothello.c:84
-msgid "IOR of remote Gnothello server"
-msgstr "Gnothello-serverin IOR"
-
-#: gnothello/gnothello.c:97
+#: gnomine/gnomine.c:428
 msgid "Quit"
 msgstr "Poistu"
 
-#: gnothello/gnothello.c:102 gnothello/gnothello.c:110
-msgid "Disabled"
-msgstr "Estetty"
+#: gnomine/gnomine.c:509
+msgid "Width of grid"
+msgstr "Pelikentän leveys"
 
-#: gnothello/gnothello.c:103 gnothello/gnothello.c:111
-msgid "Level One"
-msgstr "Ensimmäinen taso"
+#: gnomine/gnomine.c:510
+msgid "Height of grid"
+msgstr "Pelikentän korkeus"
 
-#: gnothello/gnothello.c:104 gnothello/gnothello.c:112
-msgid "Level Two"
-msgstr "Toinen taso"
+#: gnomine/gnomine.c:511
+msgid "Size of mines"
+msgstr "Kaivosten koko"
 
-#: gnothello/gnothello.c:105 gnothello/gnothello.c:113
-msgid "Level Three"
-msgstr "Kolmas taso"
+#: gnomine/gnomine.c:511
+msgid "SIZE"
+msgstr "KOKO"
 
-#: gnothello/gnothello.c:128
-msgid "Black"
-msgstr "Musta"
+#: gnomine/gnomine.c:512
+msgid "Number of mines"
+msgstr "Kaivosten lukumäärä"
 
-#: gnothello/gnothello.c:129
-msgid "White"
-msgstr "Valkea"
+#: gnomine/gnomine.c:512 gyahtzee/setup.c:74 gyahtzee/setup.c:75
+msgid "NUMBER"
+msgstr "LUKU"
 
-#: gnothello/gnothello.c:131
-msgid "Quick Moves"
-msgstr "Nopeat siirrot"
+#: gnomine/gnomine.c:574
+msgid "Gnome mines"
+msgstr "Gnome mines"
+
+#: gnomine/gnomine.c:651
+msgid "Flags:"
+msgstr "Lippuja:"
+
+#: gnothello/gnothello.c:95
+msgid "IOR of remote Gnothello server"
+msgstr "Gnothello-serverin IOR"
+
+#: gnothello/gnothello.c:96
+msgid "IOR"
+msgstr ""
+
+#: gnothello/gnothello.c:102
+#, fuzzy
+msgid "_New..."
+msgstr "_Uusi"
+
+#: gnothello/gnothello.c:104
+#, fuzzy
+msgid "_Exit..."
+msgstr "_Pois"
+
+#: gnothello/gnothello.c:109 gnothello/gnothello.c:117
+#, fuzzy
+msgid "_Disabled"
+msgstr "_Estetty"
+
+#: gnothello/gnothello.c:110 gnothello/gnothello.c:118
+#, fuzzy
+msgid "Level _One"
+msgstr "_Helppo"
+
+#: gnothello/gnothello.c:111 gnothello/gnothello.c:119
+#, fuzzy
+msgid "Level _Two"
+msgstr "_Keskitasoinne"
+
+#: gnothello/gnothello.c:112 gnothello/gnothello.c:120
+#, fuzzy
+msgid "Level Th_ree"
+msgstr "_Vaikea"
+
+#: gnothello/gnothello.c:135
+#, fuzzy
+msgid "_Black"
+msgstr "_Musta"
 
 #: gnothello/gnothello.c:136
-msgid "No Animation"
-msgstr "Ei animaatiota"
-
-#: gnothello/gnothello.c:137
-msgid "Some Animation"
-msgstr "Vähän animaatiota"
+#, fuzzy
+msgid "_White"
+msgstr "_Valkea"
 
 #: gnothello/gnothello.c:138
-msgid "Full Animation"
-msgstr "Täysi animaatio"
+#, fuzzy
+msgid "_Quick Moves"
+msgstr "_Nopeat siirrot"
+
+#: gnothello/gnothello.c:143
+#, fuzzy
+msgid "_No Animation"
+msgstr "_Ei animaatiota"
+
+#: gnothello/gnothello.c:144
+#, fuzzy
+msgid "_Some Animation"
+msgstr "_Vähän animaatiota"
 
 #: gnothello/gnothello.c:145
-msgid "Stagger Flips"
-msgstr "Vaihda kääntöjä"
-
-#: gnothello/gnothello.c:156
-msgid "Computer"
-msgstr "Tietokone"
+#, fuzzy
+msgid "_Full Animation"
+msgstr "_Kaikki animaatio"
 
 #: gnothello/gnothello.c:157
 #, fuzzy
-msgid "Animation"
-msgstr "Liike"
+msgid "_Stagger Flips"
+msgstr "_Vaihda kääntöjä"
 
-#: gnothello/gnothello.c:269 gnothello/gnothello.c:498
+#: gnothello/gnothello.c:159
+#, fuzzy
+msgid "_Load Tiles..."
+msgstr "_Avaa..."
+
+#: gnothello/gnothello.c:170
+#, fuzzy
+msgid "_Computer"
+msgstr "_Tietokone"
+
+#: gnothello/gnothello.c:171
+#, fuzzy
+msgid "_Animation"
+msgstr "_Liike"
+
+#: gnothello/gnothello.c:203
+msgid "Quit Gnothello?"
+msgstr "Haluatko poistua Gnothellosta?"
+
+#: gnothello/gnothello.c:222
+#, fuzzy
+msgid "Start a new game?"
+msgstr "Haluatko aloittaa uuden pelin?"
+
+#: gnothello/gnothello.c:317 gnothello/gnothello.c:648
 msgid "Gnome Othello"
 msgstr ""
 
-#: gnothello/gnothello.c:269
+#: gnothello/gnothello.c:317
 #, fuzzy
 msgid ""
 "Send comments and bug reports to: ipeters@acm.org\n"
 "Tiles under the General Public License."
-msgstr "Lähetä kommentit ja vikailmoitukset\n"
+msgstr ""
+"Lähetä kommentit ja vikailmoitukset\n"
 "(englanniksi) osoitteeseen ipeters@acm.org\n"
 
-#: gnothello/gnothello.c:386
+#: gnothello/gnothello.c:371
+#, fuzzy
+msgid "Load Tile Set"
+msgstr " Hae laatat "
+
+#: gnothello/gnothello.c:380
+#, fuzzy
+msgid "Tile Set"
+msgstr " Laatat "
+
+#: gnothello/gnothello.c:387
+#, fuzzy
+msgid "Select Tile Set: "
+msgstr "Valitse Laatat:"
+
+#: gnothello/gnothello.c:538
 #, fuzzy, c-format
 msgid "Could not find '%s' pixmap file for Gnothello\n"
 msgstr "Same-Gnome skenaariota '%s' ei löytynyt\n"
 
-#: gnothello/gnothello.c:493 gnothello/othello.c:179
+#: gnothello/gnothello.c:643 gnothello/othello.c:191
 msgid "  Black's turn..."
 msgstr " Mustan vuoro..."
 
-#: gnothello/gnothello.c:539
+#: gnothello/gnothello.c:689
 msgid "  Welcome to Gnome Othello!"
 msgstr "  Tervetuloa Gnome-Othelloon!"
 
-#: gnothello/othello.c:182
+#: gnothello/othello.c:194
 msgid "  White's turn..."
 msgstr "  Valkean vuoro..."
 
-#: gnothello/othello.c:526
+#: gnothello/othello.c:538
 msgid "  White player wins!"
 msgstr "  Valkoinen voittaa!"
 
-#: gnothello/othello.c:528
+#: gnothello/othello.c:540
 msgid "  Black player wins!"
 msgstr "  Musta voittaa!"
 
-#: gnothello/othello.c:530
+#: gnothello/othello.c:542
 msgid "  The game was a draw."
 msgstr "  Tasapeli."
 
-#: gnothello/othello.c:538
+#: gnothello/othello.c:550
 msgid "  White must pass...Black's turn..."
 msgstr "  Valkoinen ei voi siirtää mitään... Mustan vuoro..."
 
-#: gnothello/othello.c:544
+#: gnothello/othello.c:556
 msgid "  Black must pass...White's turn..."
 msgstr "  Musta ei voi siirtää mitään... Valkoisen vuoro..."
 
@@ -892,65 +1095,66 @@ msgstr "Avaa..."
 msgid "Open a program file."
 msgstr "Avaa ohjelmatiedosto."
 
-#: gturing/gturing.c:429
+#: gturing/gturing.c:426
 msgid "Close the program."
 msgstr "Sulje ohjelma."
 
-#: gturing/gturing.c:437
+#: gturing/gturing.c:432
 msgid "Play Speed..."
 msgstr "Nopeus..."
 
-#: gturing/gturing.c:437
+#: gturing/gturing.c:432
 msgid "Set playing speed."
 msgstr "Aseta nopeus."
 
-#: gturing/gturing.c:441
+#: gturing/gturing.c:434
 #, fuzzy
 msgid "Tape..."
 msgstr "Nauha..."
 
-#: gturing/gturing.c:441
+#: gturing/gturing.c:434
 msgid "Set the machine's tape."
 msgstr "Aseta koneen nauha."
 
-#: gturing/gturing.c:445
+#: gturing/gturing.c:436
 msgid "View States"
 msgstr "Näytä tilat"
 
-#: gturing/gturing.c:445
+#: gturing/gturing.c:436
 msgid "Open a table with the machine's states."
-msgstr ""
+msgstr "Avaa taulukon, joka näyttää koneen tilat."
 
-#: gturing/gturing.c:456
+#: gturing/gturing.c:443
 msgid "Version, credits, etc."
 msgstr "Versio, tekijät jne."
 
-#: gturing/gturing.c:464
+#: gturing/gturing.c:449
 msgid "File"
 msgstr "Tiedosto"
 
-#: gturing/gturing.c:479
+#: gturing/gturing.c:457
 #, fuzzy
 msgid "Reset"
 msgstr "Reset"
 
-#: gturing/gturing.c:483
+#: gturing/gturing.c:459
 msgid "Stop"
 msgstr "Seis"
 
-#: gturing/gturing.c:487
+#: gturing/gturing.c:461
 msgid "Run"
 msgstr "Aja"
 
-#: gturing/gturing.c:491
+#: gturing/gturing.c:463
 msgid "Step"
 msgstr "Askel"
 
-#: gturing/gturing.c:503
-msgid "Wellcome to gTuring."
+#: gturing/gturing.c:473
+#, fuzzy
+msgid "Welcome to gTuring."
 msgstr "Tervetuloa gTuring:iin."
 
-#: gyahtzee/clist.c:166 gyahtzee/clist.c:215
+#: gyahtzee/clist.c:179 gyahtzee/clist.c:228
 msgid "Already used! Where do you want to put that?"
 msgstr "Jo käytössä! Mihin haluat laittaa tämän?"
 
@@ -960,11 +1164,11 @@ msgstr "Päätteessäsi ei ole tarpeeksi rivejä"
 
 #: gyahtzee/cyahtzee.c:449
 msgid "What dice to roll again (<RETURN> for none)? "
-msgstr ""
+msgstr "Mitkä nopat haluat heittää uudestaan (<RETURN> = ei mitään)?"
 
 #: gyahtzee/cyahtzee.c:472
 msgid "Where do you want to put that? "
-msgstr ""
+msgstr "Mihin haluat laittaa sen?"
 
 #: gyahtzee/cyahtzee.c:480
 msgid "No good! Where do you want to put that? "
@@ -1033,276 +1237,275 @@ msgstr ""
 msgid "Gyahtzee"
 msgstr ""
 
-#: gyahtzee/gyahtzee.c:139
+#: gyahtzee/gyahtzee.c:138
 #, c-format
 msgid "Computer playing for %s"
-msgstr ""
+msgstr "Tietokone pelaa %s:a"
 
-#: gyahtzee/gyahtzee.c:142
+#: gyahtzee/gyahtzee.c:141
 #, c-format
 msgid "%s! -- You're up."
-msgstr ""
+msgstr "%s! -- Sinun vuorosi."
 
-#: gyahtzee/gyahtzee.c:291 gyahtzee/yahtzee.c:184
+#: gyahtzee/gyahtzee.c:299 gyahtzee/gyahtzee.c:323 gyahtzee/yahtzee.c:184
 msgid "You're only allowed three rolls! Select a score box."
-msgstr ""
+msgstr "Saat ainoastaan kolme heittoa! Valitse loota."
 
-#: gyahtzee/gyahtzee.c:339
+#: gyahtzee/gyahtzee.c:372
 msgid "Gnomified Yahtzee"
-msgstr ""
+msgstr "Yatzy gnomena"
 
-#: gyahtzee/gyahtzee.c:365
+#: gyahtzee/gyahtzee.c:398
 msgid "Cheater! Any high scores will not be recorded."
-msgstr ""
+msgstr "Huijari! Et pääse listoille."
 
-#: gyahtzee/gyahtzee.c:417
+#: gyahtzee/gyahtzee.c:452
 #, fuzzy
 msgid "Edit"
-msgstr "Beenden"
+msgstr "Muokkaa"
 
-#: gyahtzee/gyahtzee.c:514
+#: gyahtzee/gyahtzee.c:549
 msgid "Select dice to re-roll, press Roll!, or select score slot."
-msgstr ""
+msgstr "Valitse uudelleen heitettävä noppa, paina Heitä!, tai valitse pisteloota."
 
-#: gyahtzee/gyahtzee.c:553
+#: gyahtzee/gyahtzee.c:588
 msgid " Roll ! "
-msgstr ""
+msgstr " Heitä ! "
 
-#: gyahtzee/setup.c:49
+#: gyahtzee/setup.c:65
+msgid "Calculate random die throws (debug)"
+msgstr "Laske satunnaisia nopanheittoja (debuggausta varten)"
+
+#: gyahtzee/setup.c:71
 msgid "Delay computer moves"
-msgstr ""
+msgstr "Hidasta tietokoneen siirtoja"
 
-#: gyahtzee/setup.c:50
+#: gyahtzee/setup.c:72
 #, fuzzy
 msgid "Show high scores and exit"
-msgstr "Punktzahl anzeigen"
+msgstr "Näytä top ten ja poistu"
 
-#: gyahtzee/setup.c:51
-msgid "Calculate random die throws (debug)"
-msgstr ""
+#: gyahtzee/setup.c:73
+msgid "Display computer thoughts"
+msgstr "Näytä koneen ajatukset"
 
-#: gyahtzee/setup.c:52
+#: gyahtzee/setup.c:74
 #, fuzzy
 msgid "Number of computer opponents"
-msgstr "Anzahl der Minen"
+msgstr "Konevastustajien määrä"
 
-#: gyahtzee/setup.c:53
+#: gyahtzee/setup.c:75
 #, fuzzy
 msgid "Number of human opponents"
-msgstr "Anzahl der Minen"
+msgstr "Ihmispelaajien määrä"
 
-#: gyahtzee/setup.c:54
-msgid "Display computer thoughts"
-msgstr ""
-
-#: gyahtzee/setup.c:122 gyahtzee/setup.c:125
+#: gyahtzee/setup.c:85 gyahtzee/setup.c:88
 msgid "Current game will complete with original number of players."
-msgstr ""
+msgstr "Tämänhetkinen peli pelataan loppuun alkuperäisellä pelaajien määrällä."
 
-#: gyahtzee/setup.c:224
+#: gyahtzee/setup.c:187
 msgid "Gyahtzee setup"
-msgstr ""
+msgstr "Gyatzy:n asetukset"
 
-#: gyahtzee/setup.c:233
+#: gyahtzee/setup.c:196
 msgid "Computer Opponents"
-msgstr ""
+msgstr "Tietokonevastustajat"
 
-#: gyahtzee/setup.c:241
+#: gyahtzee/setup.c:204
 msgid "Delay between rolls"
-msgstr ""
+msgstr "Viive heittojen välillä"
 
-#: gyahtzee/setup.c:250
+#: gyahtzee/setup.c:213
 msgid "Show thoughts during turn"
-msgstr ""
+msgstr "Näytä ajatukset vuoron aikana"
 
-#: gyahtzee/setup.c:263
+#: gyahtzee/setup.c:226
 #, fuzzy
 msgid "Number of opponents:"
-msgstr "Anzahl der Minen:"
+msgstr "Vastustajien lukumäärä:"
 
-#: gyahtzee/setup.c:291
+#: gyahtzee/setup.c:254
 msgid "Human Players"
-msgstr ""
+msgstr "Ihmispelaajia"
 
-#: gyahtzee/setup.c:301
+#: gyahtzee/setup.c:264
 #, fuzzy
 msgid "Number of players:"
-msgstr "Anzahl der Minen:"
+msgstr "Pelaajien määrä:"
 
 #: gyahtzee/yahtzee.c:63
 msgid "Human"
-msgstr ""
+msgstr "Ihminen"
 
 #: gyahtzee/yahtzee.c:71
 msgid "1's [total of 1s]"
-msgstr ""
+msgstr "Ykköset"
 
 #: gyahtzee/yahtzee.c:72
 msgid "2's [total of 2s]"
-msgstr ""
+msgstr "Kakkoset"
 
 #: gyahtzee/yahtzee.c:73
 msgid "3's [total of 3s]"
-msgstr ""
+msgstr "Kolmoset"
 
 #: gyahtzee/yahtzee.c:74
 msgid "4's [total of 4s]"
-msgstr ""
+msgstr "Neloset"
 
 #: gyahtzee/yahtzee.c:75
 msgid "5's [total of 5s]"
-msgstr ""
+msgstr "Viitoset"
 
 #: gyahtzee/yahtzee.c:76
 msgid "6's [total of 6s]"
-msgstr ""
+msgstr "Kuutoset"
 
 #. End of upper panel
 #: gyahtzee/yahtzee.c:78
 msgid "3 of a Kind [total]"
-msgstr ""
+msgstr "Kolme samaa"
 
 #: gyahtzee/yahtzee.c:79
 msgid "4 of a Kind [total]"
-msgstr ""
+msgstr "Neljä samaa"
 
 #: gyahtzee/yahtzee.c:80
 msgid "Full House [25]"
-msgstr ""
+msgstr "Täyskäsi [25]"
 
 #: gyahtzee/yahtzee.c:81
 msgid "Small Straight [30]"
-msgstr ""
+msgstr "Pieni suora [30]"
 
 #: gyahtzee/yahtzee.c:82
 msgid "Large Straight [40]"
-msgstr ""
+msgstr "Suuri suora [40]"
 
 #: gyahtzee/yahtzee.c:83
 msgid "Yahtzee [50]"
-msgstr ""
+msgstr "Yatzy [50]"
 
 #: gyahtzee/yahtzee.c:84
 #, fuzzy
 msgid "Chance [total]"
-msgstr "Abbrechen"
+msgstr "Sattuma"
 
 #. End of lower panel
 #: gyahtzee/yahtzee.c:86
 msgid "Lower Total"
-msgstr ""
+msgstr "Alasumma"
 
 #: gyahtzee/yahtzee.c:87
 msgid "Grand Total"
-msgstr ""
+msgstr "Summa"
 
 #. Need to squish between upper and lower pannel
 #: gyahtzee/yahtzee.c:89
 msgid "Upper total"
-msgstr ""
+msgstr "Yläsumma"
 
 #: gyahtzee/yahtzee.c:90
 msgid "Bonus"
-msgstr ""
+msgstr "Boonus"
 
-#: gyahtzee/yahtzee.c:503
+#: gyahtzee/yahtzee.c:514
 msgid "How many times to you wish to roll? "
-msgstr ""
+msgstr "Montako kertaa haluat heittää? "
 
-#: gyahtzee/yahtzee.c:508
+#: gyahtzee/yahtzee.c:519
 msgid "Generating"
-msgstr ""
+msgstr "Rakennan"
 
-#: gyahtzee/yahtzee.c:543
+#: gyahtzee/yahtzee.c:554
 msgid "Results"
-msgstr ""
+msgstr "Tulokset"
 
-#: gyahtzee/yahtzee.c:543
+#: gyahtzee/yahtzee.c:554
 msgid "Num Rolls"
-msgstr ""
+msgstr "Heittojen määrä"
 
-#: gyahtzee/yahtzee.c:543
+#: gyahtzee/yahtzee.c:554
 #, fuzzy
 msgid "Total"
-msgstr "Insgesamt:"
+msgstr "Summa"
 
-#: mahjongg/mahjongg.c:362
+#: mahjongg/mahjongg.c:372
 msgid "New Seed..."
-msgstr ""
+msgstr "Uusi alkuarvo..."
 
-#: mahjongg/mahjongg.c:385
+#: mahjongg/mahjongg.c:395
 msgid "Show Tool Bar"
-msgstr ""
+msgstr "Näytä työkalulaatikko"
 
-#: mahjongg/mahjongg.c:404
+#: mahjongg/mahjongg.c:414
 #, fuzzy
 msgid "About"
 msgstr "Tietoja..."
 
-#: mahjongg/mahjongg.c:427
+#: mahjongg/mahjongg.c:437
 #, fuzzy
 msgid "New Seed"
 msgstr "Uusi alkuarvo"
 
-#: mahjongg/mahjongg.c:439
+#: mahjongg/mahjongg.c:449
 msgid "Re-do"
 msgstr "Uudestaan"
 
-#: mahjongg/mahjongg.c:694
+#: mahjongg/mahjongg.c:759
 msgid "Tiles don't match!"
 msgstr "Laatat eivät ole samoja!"
 
-#: mahjongg/mahjongg.c:717
+#: mahjongg/mahjongg.c:761 mahjongg/mahjongg.c:784 mahjongg/mahjongg.c:797
+msgid "Ok"
+msgstr "OK"
+
+#: mahjongg/mahjongg.c:782
 msgid "No more movements"
 msgstr "Ei enää siirtoja"
 
-#: mahjongg/mahjongg.c:743
+#: mahjongg/mahjongg.c:795
 msgid "You won!"
 msgstr "Voitit!"
 
-#: mahjongg/mahjongg.c:790
+#: mahjongg/mahjongg.c:843
 #, fuzzy
 msgid "Tiles"
 msgstr "Laatat"
 
-#: mahjongg/mahjongg.c:796
+#: mahjongg/mahjongg.c:849
 #, fuzzy
 msgid "Select Tiles:"
 msgstr "Valitse Laatat:"
 
-#: mahjongg/mahjongg.c:802
+#: mahjongg/mahjongg.c:855
 #, fuzzy
 msgid "Make it the default tile set"
 msgstr "Tee tästä oletuslaatasto"
 
-#: mahjongg/mahjongg.c:824
+#: mahjongg/mahjongg.c:877
 msgid "Maps"
 msgstr "Kartat"
 
-#: mahjongg/mahjongg.c:830
+#: mahjongg/mahjongg.c:883
 #, fuzzy
 msgid "Select Map:"
 msgstr "Valitse kartta:"
 
-#: mahjongg/mahjongg.c:836
+#: mahjongg/mahjongg.c:889
 #, fuzzy
 msgid "Make it the default map"
 msgstr "Tee tästä oletuskartta"
 
-#: mahjongg/mahjongg.c:862
+#: mahjongg/mahjongg.c:917
 msgid "Background colour"
 msgstr "Taustaväri"
 
-#: mahjongg/mahjongg.c:930
-msgid "Click to continue"
-msgstr "Paina jatkaaksesi"
-
-#: mahjongg/mahjongg.c:961 mahjongg/mahjongg.c:1457
+#: mahjongg/mahjongg.c:1020 mahjongg/mahjongg.c:1386
 msgid "Gnome Mahjongg"
 msgstr "Gnome Mahjongg"
 
-#: mahjongg/mahjongg.c:964
-#, fuzzy
+#: mahjongg/mahjongg.c:1023
 msgid ""
 "Send comments and bug reports to:\n"
 "        pancho@nuclecu.unam.mx or\n"
@@ -1311,154 +1514,206 @@ msgid ""
 "Tiles under the General Public License."
 msgstr ""
 
-#: mahjongg/mahjongg.c:1081
-#, fuzzy
-msgid "Select Game"
-msgstr "Valitse peli"
-
-#: mahjongg/mahjongg.c:1085
+#: mahjongg/mahjongg.c:1146
 msgid "Game Number:"
 msgstr "Pelin numero:"
 
-#: mahjongg/mahjongg.c:1472
+#: mahjongg/mahjongg.c:1401
 msgid " Tiles "
 msgstr " Laatat "
 
-#: mahjongg/mahjongg.c:1476
+#: mahjongg/mahjongg.c:1405
 msgid " Remaining: "
 msgstr " Jäljellä: "
 
-#: same-gnome/same-gnome.c:37
-msgid "Enable debugging"
-msgstr "Näytä debuggausviestit"
-
-#: same-gnome/same-gnome.c:38
-msgid "ID"
-msgstr "ID"
-
-#: same-gnome/same-gnome.c:285 same-gnome/same-gnome.c:317
-#: same-gnome/same-gnome.c:320 same-gnome/same-gnome.c:644
+#: same-gnome/same-gnome.c:262 same-gnome/same-gnome.c:294
+#: same-gnome/same-gnome.c:297 same-gnome/same-gnome.c:621
 msgid "The Same Gnome"
 msgstr "Same Gnome"
 
-#: same-gnome/same-gnome.c:419
+#: same-gnome/same-gnome.c:396
 #, c-format
 msgid "Could not find the '%s' theme for SameGnome\n"
 msgstr "Same Gnome skenaariota '%s' ei löytynyt!\n"
 
-#: same-gnome/same-gnome.c:591
+#: same-gnome/same-gnome.c:568
 msgid "Scenario"
 msgstr "Skenaario"
 
-#: same-gnome/same-gnome.c:647
+#: same-gnome/same-gnome.c:624
 msgid "Original idea from KDE's same game program."
 msgstr "Alkuperäinen ajatus KDE:n samanlaisesta pelistä"
 
-#: same-gnome/same-gnome.c:909
+#: same-gnome/same-gnome.c:670 scottfree/GnomeScott.c:1538
+#, fuzzy
+msgid "_Quit"
+msgstr "Poistu"
+
+#: same-gnome/same-gnome.c:840
+msgid "Debugging mode"
+msgstr "Debuggausmoodi"
+
+#: same-gnome/same-gnome.c:841
+#, fuzzy
+msgid "Discard session"
+msgstr "Tämä kierros: %d%%"
+
+#: same-gnome/same-gnome.c:841
+msgid "ID"
+msgstr "ID"
+
+#: same-gnome/same-gnome.c:883
 #, fuzzy
 msgid "Same Gnome"
 msgstr "Same Gnome"
 
-#: scottfree/GnomeScott.c:1198
+#: same-gnome/same-gnome.c:898
+#, fuzzy
+msgid "Score: "
+msgstr "Pisteet: "
+
+#: scottfree/GnomeScott.c:1204
 msgid "Nothing dropped.\n"
 msgstr "Mitään ei pudonnut.\n"
 
-#: scottfree/GnomeScott.c:1203
+#: scottfree/GnomeScott.c:1209
 msgid "What ? "
 msgstr "Mitä ? "
 
-#: scottfree/GnomeScott.c:1210
+#: scottfree/GnomeScott.c:1216
 msgid "It's beyond your power to do that.\n"
 msgstr "Sinulla ei ole voimia siihen.\n"
 
-#: scottfree/GnomeScott.c:1212
+#: scottfree/GnomeScott.c:1218
 msgid "It's beyond my power to do that.\n"
 msgstr "Minulla ei ole voimia siihen.\n"
 
-#: scottfree/GnomeScott.c:1269
+#: scottfree/GnomeScott.c:1275
 msgid "You use word(s) I don't know! "
 msgstr "Käytät sanoja joita en tiedä! "
 
-#: scottfree/GnomeScott.c:1276
+#: scottfree/GnomeScott.c:1282
 msgid "I don't understand your command. "
-msgstr ""
+msgstr "En ymmärrä käskyäsi"
 
-#: scottfree/GnomeScott.c:1278
+#: scottfree/GnomeScott.c:1284
 #, fuzzy
 msgid "I can't do that yet. "
 msgstr "En voi tehdä sitä vielä."
 
-#: scottfree/GnomeScott.c:1292
+#: scottfree/GnomeScott.c:1298
 msgid "Light has run out! "
 msgstr "Valo on sammunut! "
 
-#: scottfree/GnomeScott.c:1294
+#: scottfree/GnomeScott.c:1300
 msgid "Your light has run out. "
 msgstr "Sinun valosi on sammunut. "
 
-#: scottfree/GnomeScott.c:1307
+#: scottfree/GnomeScott.c:1313
 msgid "Light runs out in "
 msgstr "Valo sammui "
 
-#: scottfree/GnomeScott.c:1309
+#: scottfree/GnomeScott.c:1315
 msgid " turns. "
 msgstr ":ssa vuorossa. "
 
-#: scottfree/GnomeScott.c:1314
+#: scottfree/GnomeScott.c:1320
 msgid "Your light is growing dim. "
 msgstr "Valosi himmenee. "
 
-#: scottfree/GnomeScott.c:1485
+#: scottfree/GnomeScott.c:1495
 msgid "Copyright (C) 1997 Alan Cox"
 msgstr ""
 
-#: scottfree/GnomeScott.c:1492
+#: scottfree/GnomeScott.c:1502
 msgid "North"
 msgstr "Pohjoinen"
 
-#: scottfree/GnomeScott.c:1495
+#: scottfree/GnomeScott.c:1505
 msgid "East"
 msgstr "Itä"
 
-#: scottfree/GnomeScott.c:1498
+#: scottfree/GnomeScott.c:1508
 msgid "South"
 msgstr "Etelä"
 
-#: scottfree/GnomeScott.c:1501
+#: scottfree/GnomeScott.c:1511
 msgid "West"
 msgstr "Länsi"
 
-#: scottfree/GnomeScott.c:1504
+#: scottfree/GnomeScott.c:1514
 msgid "Up"
 msgstr "Ylös"
 
-#: scottfree/GnomeScott.c:1507
+#: scottfree/GnomeScott.c:1517
 msgid "Down"
 msgstr "Alas"
 
-#: scottfree/GnomeScott.c:1510
+#: scottfree/GnomeScott.c:1520
 msgid "List"
 msgstr "listaa"
 
-#: scottfree/GnomeScott.c:1510
+#: scottfree/GnomeScott.c:1520
 msgid "What am I carrying"
 msgstr "Mitä minulla on?"
 
-#: scottfree/GnomeScott.c:1522
-msgid "Load..."
+#: scottfree/GnomeScott.c:1532
+#, fuzzy
+msgid "_Load..."
 msgstr "Avaa..."
 
-#: scottfree/GnomeScott.c:1525
+#: scottfree/GnomeScott.c:1535
 #, fuzzy
-msgid "Save..."
+msgid "_Save..."
 msgstr "Talleta..."
 
-#~ msgid ""
-#~ "Done.\n"
-#~ "initializing gnome/gdk...\n"
-#~ msgstr ""
-#~ "Fertig.\n"
-#~ "Initialisiere gnome/gdk...\n"
+#, fuzzy
+#~ msgid "Game Type"
+#~ msgstr "Peli"
+
+#, fuzzy
+#~ msgid "Game Seed..."
+#~ msgstr "Pelin alkuarvo"
+
+#~ msgid "Help with Aisleriot..."
+#~ msgstr "Apua Aisleriot-peliin..."
+
+#~ msgid "Help with Klondike..."
+#~ msgstr "Apua Klondikeen..."
+
+#~ msgid "Start a new game after choosing the seed."
+#~ msgstr "Aloita uusi peli valittuasi alkuarvon."
+
+#~ msgid "Spider"
+#~ msgstr "Spider"
+
+#~ msgid "Osmosis"
+#~ msgstr "Osmosis"
+
+#~ msgid "Odessa"
+#~ msgstr "Odessa"
+
+#~ msgid "Klondike"
+#~ msgstr "klondike"
+
+#, fuzzy
+#~ msgid "Camelot"
+#~ msgstr "Camelot"
+
+#~ msgid "Solitaire"
+#~ msgstr "Solitaire"
+
+#~ msgid "Registering game objects..."
+#~ msgstr "Rekisteröin esineitä..."
+
+#~ msgid "F?"
+#~ msgstr "F?"
+
+#~ msgid "Click to continue"
+#~ msgstr "Paina jatkaaksesi"
+
+#~ msgid "Enable debugging"
+#~ msgstr "Näytä debuggausviestit"
 
 #~ msgid "Done.\n"
 #~ msgstr "Fertig.\n"
