@@ -47,7 +47,9 @@ extern gchar            *game_file;
 extern gchar            *game_name;
 extern press_data_type* press_data; 
 
+
 gchar* game_file_to_name(const gchar* file);
+void new_game(gchar* file, guint *seed);
 void set_score();
 void timer_start();
 void timer_stop();
