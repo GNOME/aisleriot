@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 0.99.1\n"
-"POT-Creation-Date: 1998-12-17 01:47-0500\n"
+"POT-Creation-Date: 1999-02-10 10:33-0500\n"
 "PO-Revision-Date: 1999-01-13 20:32+0100\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
@@ -45,7 +45,7 @@ msgstr "Nuevo Juego"
 msgid "Select Game"
 msgstr "Elegir un juego"
 
-#: aisleriot/dialog.c:73 freecell/src/io-gtk.c:399 freecell/src/menu.c:109
+#: aisleriot/dialog.c:73 freecell/src/io-gtk.c:399 freecell/src/menu.c:96
 #: mahjongg/mahjongg.c:418
 msgid "Seed"
 msgstr "Parámetro"
@@ -135,19 +135,19 @@ msgstr "_Seleccionar..."
 msgid "Select a new game variation"
 msgstr "Seleccionar un nuevo juego."
 
-#: aisleriot/menu.c:166 freecell/src/menu.c:105 mahjongg/mahjongg.c:415
+#: aisleriot/menu.c:166 freecell/src/menu.c:90 mahjongg/mahjongg.c:415
 msgid "New"
 msgstr "Nuevo"
 
-#: aisleriot/menu.c:166
+#: aisleriot/menu.c:166 freecell/src/menu.c:90
 msgid "Deal a new game."
 msgstr "Barajar de nuevo."
 
-#: aisleriot/menu.c:169 mahjongg/mahjongg.c:421
+#: aisleriot/menu.c:169 freecell/src/menu.c:93 mahjongg/mahjongg.c:421
 msgid "Restart"
 msgstr "Recomenzar"
 
-#: aisleriot/menu.c:169
+#: aisleriot/menu.c:169 freecell/src/menu.c:93
 msgid "Start this game over."
 msgstr "Empezar este juego acabado."
 
@@ -167,11 +167,11 @@ msgstr "Sugestión"
 msgid "Suggest a move."
 msgstr "Sugerir un movimiento."
 
-#: aisleriot/menu.c:180 freecell/src/menu.c:113 mahjongg/mahjongg.c:427
+#: aisleriot/menu.c:180 freecell/src/menu.c:102 mahjongg/mahjongg.c:427
 msgid "Undo"
 msgstr "Anular"
 
-#: aisleriot/menu.c:180
+#: aisleriot/menu.c:180 freecell/src/menu.c:102
 msgid "Undo the last move."
 msgstr "Anular el último movimiento"
 
@@ -183,7 +183,7 @@ msgstr "Re-hacer"
 msgid "Redo the last move."
 msgstr "Re-hacer el último movimiento"
 
-#: aisleriot/menu.c:188 freecell/src/menu.c:125
+#: aisleriot/menu.c:188 freecell/src/menu.c:115
 msgid "Exit"
 msgstr "Salir"
 
@@ -263,52 +263,45 @@ msgid "Cards"
 msgstr "Borrar"
 
 #. make main window.
-#: freecell/src/io-gtk.c:119 freecell/src/io-gtk.c:635
+#: freecell/src/io-gtk.c:119 freecell/src/io-gtk.c:637
 msgid "Freecell"
 msgstr "Freecell"
 
-#: freecell/src/io-gtk.c:317 freecell/src/io-gtk.c:439
-#: freecell/src/io-gtk.c:504 freecell/src/io-gtk.c:596
+#: freecell/src/io-gtk.c:317 freecell/src/io-gtk.c:441
+#: freecell/src/io-gtk.c:506 freecell/src/io-gtk.c:598
 msgid "Exit this game?"
 msgstr "¿Salir de este juego?"
 
-#: freecell/src/io-gtk.c:381 freecell/src/io-gtk.c:472
+#: freecell/src/io-gtk.c:381 freecell/src/io-gtk.c:474
+#, c-format
 msgid "Freecell #%d"
 msgstr "Freecell #%d"
 
-#: freecell/src/io-gtk.c:399 scottfree/GnomeScott.c:1222
-msgid "OK"
-msgstr "OK"
-
-#: freecell/src/io-gtk.c:399
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: freecell/src/io-gtk.c:401
+#: freecell/src/io-gtk.c:403
 msgid "Enter the seed."
 msgstr "Entre un parámetro."
 
-#: freecell/src/io-gtk.c:558
+#: freecell/src/io-gtk.c:560
 msgid "Sorry, this feature is not implemented (yet)."
 msgstr "Disculpe, pero esta funcionalidad no está implementada (todavía)."
 
-#: freecell/src/io-gtk.c:619
+#: freecell/src/io-gtk.c:621
 msgid "Changwoo Ryu."
 msgstr "Changwoo Ryu."
 
-#: freecell/src/io-gtk.c:638
+#: freecell/src/io-gtk.c:640
 msgid "Reimplement the popular solitaire card game."
 msgstr "Reimplementación del clasico juego del solitario."
 
-#: freecell/src/io-gtk.c:648
+#: freecell/src/io-gtk.c:650
 msgid "You can't move in that way."
 msgstr "Ese movimiento no está permitido."
 
-#: freecell/src/io-gtk.c:1135
+#: freecell/src/io-gtk.c:1137
 msgid "Sorry, there is no card to move."
 msgstr "Disculpe, pero no hay ninguna carta que se pueda mover."
 
-#: freecell/src/io-gtk.c:1149
+#: freecell/src/io-gtk.c:1151
 msgid ""
 "Congraturations.  You won.\n"
 "Do you want to play again?"
@@ -316,76 +309,36 @@ msgstr ""
 "Felicitaciones. Vd. ganó.\n"
 "¿Quiere jugar de vuelta?"
 
-#: freecell/src/menu.c:32
-msgid "_New Game"
-msgstr "_Nuevo Juego"
-
 #: freecell/src/menu.c:36
-msgid "_Restart Game"
-msgstr "_Reiniciar Juego"
-
-#: freecell/src/menu.c:40
 msgid "New Game with a seed..."
 msgstr "Nuevo juego con un parámetro..."
 
-#: freecell/src/menu.c:46
-msgid "_Undo"
-msgstr "_Deshacer"
-
-#: freecell/src/menu.c:52 gnometris/tetris.cpp:55
-msgid "_Properties..."
-msgstr "_Propiedades..."
-
-#: freecell/src/menu.c:56
-msgid "_Score..."
-msgstr "_Puntuación..."
-
-#: freecell/src/menu.c:64 gnometris/tetris.cpp:59
-msgid "E_xit"
-msgstr "_Salir"
-
-#: freecell/src/menu.c:79 scottfree/GnomeScott.c:1547
-msgid "_About..."
-msgstr "_Acerca..."
-
-#: freecell/src/menu.c:90 gnometris/tetris.cpp:74
-msgid "_Game"
-msgstr "_Juego"
-
-#: freecell/src/menu.c:94 gnometris/tetris.cpp:75
-msgid "_Help"
-msgstr "A_yuda"
-
-#: freecell/src/menu.c:105
-msgid "Start a new game"
-msgstr "Empezar un juego nuevo"
-
-#: freecell/src/menu.c:109
-msgid "Start a new game after choosing the seed"
+#: freecell/src/menu.c:37 freecell/src/menu.c:97
+#, fuzzy
+msgid "Start a new game with a different random number generator seed."
 msgstr "Empezar un juego nuevo después de elegir el parámetro"
 
-#: freecell/src/menu.c:113
-msgid "Cancel a last move"
-msgstr "Cancelar el último movimiento"
-
-#: freecell/src/menu.c:117 freecell/src/score-dialog.c:54
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54
 msgid "Score"
 msgstr "Puntuación"
 
-#: freecell/src/menu.c:117
-msgid "Show the score"
+#: freecell/src/menu.c:107
+#, fuzzy
+msgid "Show the score."
 msgstr "Afichar la puntuación"
 
-#: freecell/src/menu.c:121
+#: freecell/src/menu.c:110
 msgid "Props"
 msgstr "Propiedades"
 
-#: freecell/src/menu.c:121
-msgid "Setup Freecell"
+#: freecell/src/menu.c:110
+#, fuzzy
+msgid "Setup Freecell."
 msgstr "Configuración de Freecell"
 
-#: freecell/src/menu.c:125
-msgid "Quit Freecell"
+#: freecell/src/menu.c:115
+#, fuzzy
+msgid "Quit Freecell."
 msgstr "Salir de Freecell"
 
 #: freecell/src/option-dialog.c:51
@@ -413,6 +366,7 @@ msgid "This session: %d%%"
 msgstr "Esta sesión: %d%%"
 
 #: freecell/src/score.c:57 freecell/src/score.c:67
+#, c-format
 msgid "won: %d, lost: %d"
 msgstr "ganados: %d, perdidos: %d"
 
@@ -425,14 +379,17 @@ msgid "Streaks"
 msgstr "Estadísticas"
 
 #: freecell/src/score.c:71
+#, c-format
 msgid "wins: %d, losses: %d"
 msgstr "victorias: %d%%, derrotas: %d%%"
 
 #: freecell/src/score.c:75
+#, c-format
 msgid "current: %d wins"
 msgstr "actualmente: %d victorias"
 
 #: freecell/src/score.c:77
+#, c-format
 msgid "current: %d losses"
 msgstr "actualmente: %d pérdidas"
 
@@ -452,6 +409,7 @@ msgstr "Y"
 
 #: gnobots/gnobots.c:590 gnobots/gnobots.c:606 gnobots/gnobots.c:636
 #: gnobots2/graphics.c:88
+#, c-format
 msgid "Could not find '%s' pixmap file for Gnome Robots\n"
 msgstr "No puedo encontrar el pixmap '%s' para Gnome Robots\n"
 
@@ -459,7 +417,7 @@ msgstr "No puedo encontrar el pixmap '%s' para Gnome Robots\n"
 msgid "Do you really want to start a new game?"
 msgstr "¿Quiere realmente empezar un nuevo juego?"
 
-#: gnobots/gnobots.c:717 gnothello/gnothello.c:269 same-gnome/same-gnome.c:641
+#: gnobots/gnobots.c:717 gnothello/gnothello.c:242 same-gnome/same-gnome.c:641
 msgid "Do you really want to quit?"
 msgstr "¿Quiere realmente salir?"
 
@@ -750,77 +708,84 @@ msgstr ""
 msgid "Remaining:"
 msgstr ""
 
-#: gnome-stones/io.c:323
+#. This cave is to big to be played with gnome-stones.
+#: gnome-stones/io.c:325
 msgid "The cave you are trying to load it to big for this game."
 msgstr ""
 "La cueva a la cual trata de cargarlo es demasiado grande para este juego."
 
-#: gnome-stones/io.c:357
+#. An object was requested in this cave, that was not
+#. declared in the game file's Object section.
+#: gnome-stones/io.c:359
 msgid ""
 "The cave you are trying to load includes an object, that wasn't declared."
 msgstr "La cueva que trata de cargar incluye un objet que no fué declarado."
 
+#. **************************************************************************
+#. Some constants.
 #. This message will be printed in the statusline, if no message was
 #. specified in a game file.
-#: gnome-stones/main.c:87
+#: gnome-stones/main.c:88
 msgid "Gnome-Stones (c) 1998 Carsten Schaar"
 msgstr "Gnome-Stones © 1998 Carsten Schaar"
 
-#: gnome-stones/main.c:313
+#: gnome-stones/main.c:139
+#, c-format
+msgid ""
+"An error occured while loading the image file \"%s\".\n"
+"Please make sure, that Gnome-Stones is correctly installed!"
+msgstr ""
+
+#: gnome-stones/main.c:241
 msgid "Game title:"
 msgstr "Título del Juego:"
 
-#: gnome-stones/main.c:314
+#: gnome-stones/main.c:242
 msgid "Start cave:"
 msgstr "Cueva de partida:"
 
-#: gnome-stones/main.c:445
+#: gnome-stones/main.c:373 gnome-stones/main.c:898
 msgid "Pause"
 msgstr "Pausa"
 
-#: gnome-stones/main.c:799
+#: gnome-stones/main.c:593
 msgid "Congratulations, you win!"
 msgstr "¡Felicitaciones usted ganó!"
 
-#: gnome-stones/main.c:970 gyahtzee/cyahtzee.c:552 gyahtzee/gyahtzee.c:116
+#: gnome-stones/main.c:764 gyahtzee/cyahtzee.c:552 gyahtzee/gyahtzee.c:116
 msgid "Game over!"
 msgstr "¡Juego terminado!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:1129 gnome-stones/main.c:1320
+#: gnome-stones/main.c:938 gnome-stones/main.c:1122
 msgid "Gnome-Stones"
 msgstr "Gnome-Stones"
 
-#: gnome-stones/main.c:1132
+#: gnome-stones/main.c:941
 msgid "A game."
 msgstr "Un juego."
 
-#: gnome-stones/main.c:1242
-msgid "Loading curtain image..."
-msgstr "CArgando telón de fondo..."
-
-#: gnome-stones/main.c:1246
+#: gnome-stones/main.c:1048
 msgid "Scanning private object directory..."
 msgstr "Revisando directorio de objetos privados..."
 
-#: gnome-stones/main.c:1250
+#: gnome-stones/main.c:1052
 msgid "Scanning public object directory..."
 msgstr "Revisando directorio de objetos públicos..."
 
-#: gnome-stones/main.c:1255
+#: gnome-stones/main.c:1057
 msgid "Filling game widget..."
 msgstr "Rellenando widget del juego..."
 
-#. USE_GNOME_CANVAS
-#: gnome-stones/main.c:1260
+#: gnome-stones/main.c:1062
 msgid "Scanning private game directory..."
 msgstr "Revisando directorio de juegos privado..."
 
-#: gnome-stones/main.c:1264
+#: gnome-stones/main.c:1066
 msgid "Scanning public game directory..."
 msgstr "Revisando directorio de juegos público..."
 
-#: gnome-stones/main.c:1268
+#: gnome-stones/main.c:1070
 msgid "Restoring preferences..."
 msgstr "Restaurando preferencias..."
 
@@ -829,6 +794,7 @@ msgid "You gained an extra life!"
 msgstr "¡Ganó una vida suplementaria!"
 
 #: gnome-stones/player.c:116
+#, c-format
 msgid "Seconds left: %d"
 msgstr "Tiempo disponible: %d segundos"
 
@@ -909,7 +875,6 @@ msgstr "Graaande"
 msgid "Custom"
 msgstr "Personalizado"
 
-#. ENABLE_NLS
 #: gnomine/gnomine.c:77 gnomine/gnomine.c:244 gnomine/gnomine.c:557
 msgid "Gnome Mines"
 msgstr "Gnome Minas"
@@ -974,151 +939,32 @@ msgstr "CANTIDAD"
 msgid "Flags:"
 msgstr "Banderas:"
 
-#: gnothello/gnothello.c:102
+#: gnothello/gnothello.c:103
 #, fuzzy
-msgid "IOR of remote Reversi server"
+msgid "IOR of remote Iagno server"
 msgstr "IOR del servidor Gnothello remoto"
 
-#: gnothello/gnothello.c:103
+#: gnothello/gnothello.c:104
 msgid "IOR"
 msgstr ""
 
-#: gnothello/gnothello.c:123 gnothello/gnothello.c:143
-msgid "_Disabled"
-msgstr "_Desactivado"
-
-#: gnothello/gnothello.c:124 gnothello/gnothello.c:144
-msgid "Disable the computer player"
-msgstr ""
-
-#: gnothello/gnothello.c:127 gnothello/gnothello.c:147
-msgid "Level _One"
-msgstr "Nivel _1"
-
-#: gnothello/gnothello.c:128 gnothello/gnothello.c:148
-msgid "Enable the level 1 computer player"
-msgstr ""
-
-#: gnothello/gnothello.c:131 gnothello/gnothello.c:151
-msgid "Level _Two"
-msgstr "Nivel _2"
-
-#: gnothello/gnothello.c:132 gnothello/gnothello.c:152
-msgid "Enable the level 2 computer player"
-msgstr ""
-
-#: gnothello/gnothello.c:135 gnothello/gnothello.c:155
-msgid "Level Th_ree"
-msgstr "Nivel _3"
-
-#: gnothello/gnothello.c:136 gnothello/gnothello.c:156
-msgid "Enable the level 3 computer player"
-msgstr ""
-
-#: gnothello/gnothello.c:175
-msgid "_No Animation"
-msgstr "_Sin Animaciones"
-
-#: gnothello/gnothello.c:175
-#, fuzzy
-msgid "Turn animation off"
-msgstr "Animación _Total"
-
-#: gnothello/gnothello.c:177
-msgid "_Some Animation"
-msgstr "_Algunas Animaciones"
-
-#: gnothello/gnothello.c:178
-msgid "Turn partial animation on"
-msgstr ""
-
-#: gnothello/gnothello.c:180
-msgid "_Full Animation"
-msgstr "Animación _Total"
-
-#: gnothello/gnothello.c:181
-#, fuzzy
-msgid "Turn full animation on"
-msgstr "Animación _Total"
-
-#: gnothello/gnothello.c:187
-msgid "_Dark"
-msgstr "_Negras"
-
-#: gnothello/gnothello.c:188
-msgid "Configure the dark computer player"
-msgstr ""
-
-#: gnothello/gnothello.c:190
-msgid "_Light"
-msgstr "_Blancas"
-
-#: gnothello/gnothello.c:191
-msgid "Configure the light computer player"
-msgstr ""
-
-#: gnothello/gnothello.c:196
-#, fuzzy
-msgid "_Quick moves"
-msgstr "Movimientos _Rápidos"
-
-#: gnothello/gnothello.c:197
-#, fuzzy
-msgid "Turn on quick computer moves"
-msgstr "Demorar movimientos de la computadora"
-
-#: gnothello/gnothello.c:207
-#, fuzzy
-msgid "Sta_gger Flips"
-msgstr "_Caída de las Piezas"
-
-#: gnothello/gnothello.c:207
-#, fuzzy
-msgid "Stagger flips"
-msgstr "_Caída de las Piezas"
-
-#: gnothello/gnothello.c:212
-msgid "_Load Tiles..."
-msgstr "Cargar _Piezas..."
-
-#: gnothello/gnothello.c:212
-#, fuzzy
-msgid "Change the tile set"
-msgstr "Juego de piezas por omisión"
-
-#: gnothello/gnothello.c:219
-msgid "_Animation"
-msgstr "_Animación"
-
-#: gnothello/gnothello.c:220
-msgid "Configure the animation"
-msgstr ""
-
-#: gnothello/gnothello.c:222
-msgid "_Computer"
-msgstr "_Computadora"
-
-#: gnothello/gnothello.c:223
-msgid "Configure the computer player"
-msgstr ""
-
-#: gnothello/gnothello.c:293
+#: gnothello/gnothello.c:266
 msgid "Do you really want to end this game?"
 msgstr "¿Quiere realmente terminar este juego?"
 
-#: gnothello/gnothello.c:341 gnothello/othello.c:218
+#: gnothello/gnothello.c:314 gnothello/othello.c:217
 msgid "Light's move"
 msgstr "Juegan las blancas"
 
-#: gnothello/gnothello.c:343 gnothello/gnothello.c:797 gnothello/othello.c:212
+#: gnothello/gnothello.c:316 gnothello/gnothello.c:600 gnothello/othello.c:211
 msgid "Dark's move"
 msgstr "Juegan las negras"
 
-#: gnothello/gnothello.c:445 gnothello/gnothello.c:820
-msgid "Reversi"
+#: gnothello/gnothello.c:397 gnothello/gnothello.c:623
+msgid "Iagno"
 msgstr ""
 
-#: gnothello/gnothello.c:445
+#: gnothello/gnothello.c:397
 msgid ""
 "Send comments and bug reports to: ipeters@acm.org\n"
 "Tiles under the General Public License."
@@ -1126,51 +972,110 @@ msgstr ""
 "Envie sus comentarios y reportes de bugs a: ipeters@acm.org\n"
 "Los juegos de piezas están bajo licencia GPL."
 
-#: gnothello/gnothello.c:503
-msgid "Load Tile Set"
-msgstr "Cargar Juego de Piezas"
+#: gnothello/gnothello.c:478
+#, fuzzy, c-format
+msgid "Could not find '%s' pixmap file for Iagno\n"
+msgstr "No pude encontrar el archivo pixmap '%s'\n"
 
-#: gnothello/gnothello.c:513
-msgid "Tile Set"
-msgstr "Juego de Piezas"
-
-#: gnothello/gnothello.c:520
-msgid "Select Tile Set: "
-msgstr "Seleccionar Juego de Piezas: "
-
-#: gnothello/gnothello.c:675
+#: gnothello/gnothello.c:697
 #, fuzzy
-msgid "Could not find '%s' pixmap file for Reversi\n"
-msgstr "No pude encontrar el archivo pixmap '%s' para Gnothello\n"
+msgid "Welcome to Iagno!"
+msgstr "¡Bienvenido a Gnome Othello!"
 
-#: gnothello/gnothello.c:900
-#, fuzzy
-msgid "Welcome to Reversi!"
-msgstr "Bienvenido a gTuring."
-
-#: gnothello/gnothello.c:907 gnothello/gnothello.c:909
+#: gnothello/gnothello.c:704 gnothello/gnothello.c:706
+#, c-format
 msgid "%.2d"
 msgstr "%.2d"
 
-#: gnothello/othello.c:613
+#: gnothello/othello.c:609
 msgid "Light player wins!"
 msgstr "¡Ganan las blancas!"
 
-#: gnothello/othello.c:615
+#: gnothello/othello.c:611
 msgid "Dark player wins!"
 msgstr "¡Ganan las negras!"
 
-#: gnothello/othello.c:617
+#: gnothello/othello.c:613
 msgid "The game was a draw."
 msgstr "Empate"
 
-#: gnothello/othello.c:625
+#: gnothello/othello.c:623
 msgid "Light must pass, Dark's move"
 msgstr "Las blancas pasan un turno, a las negras de jugar"
 
-#: gnothello/othello.c:637
+#: gnothello/othello.c:635
 msgid "Dark must pass, Light's move"
 msgstr "Las negras pasan un turno, a las blancas de jugar"
+
+#: gnothello/properties.c:315
+#, fuzzy
+msgid "Computer"
+msgstr "_Computadora"
+
+#: gnothello/properties.c:322
+#, fuzzy
+msgid "Quick Moves"
+msgstr "Movimientos _Rápidos"
+
+#: gnothello/properties.c:333
+#, fuzzy
+msgid "Dark"
+msgstr "_Negras"
+
+#: gnothello/properties.c:340 gnothello/properties.c:393
+#: gnothello/properties.c:456
+#, fuzzy
+msgid "Disabled"
+msgstr "_Desactivado"
+
+#: gnothello/properties.c:350 gnothello/properties.c:403
+#, fuzzy
+msgid "Level one"
+msgstr "Nivel _1"
+
+#: gnothello/properties.c:360 gnothello/properties.c:413
+#, fuzzy
+msgid "Level two"
+msgstr "Nivel _2"
+
+#: gnothello/properties.c:370 gnothello/properties.c:423
+#, fuzzy
+msgid "Level three"
+msgstr "Nivel _3"
+
+#: gnothello/properties.c:386
+#, fuzzy
+msgid "Light"
+msgstr "_Blancas"
+
+#: gnothello/properties.c:442
+#, fuzzy
+msgid "Animation"
+msgstr "_Animación"
+
+#: gnothello/properties.c:465
+#, fuzzy
+msgid "Partial"
+msgstr "Vertical:"
+
+#: gnothello/properties.c:474
+#, fuzzy
+msgid "Complete"
+msgstr "_Computadora"
+
+#: gnothello/properties.c:492
+#, fuzzy
+msgid "Stagger flips"
+msgstr "_Caída de las Piezas"
+
+#: gnothello/properties.c:501
+msgid "Flip final results"
+msgstr ""
+
+#: gnothello/properties.c:513
+#, fuzzy
+msgid "Tile set:"
+msgstr "Juego de Piezas"
 
 #: gnotravex/gnotravex.c:120
 #, fuzzy
@@ -1285,6 +1190,7 @@ msgid "Puzzle solved!"
 msgstr "¡Puzzle resuleto!"
 
 #: gnotravex/gnotravex.c:652
+#, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "No pude encontrar el archivo pixmap '%s'\n"
 
@@ -1293,6 +1199,7 @@ msgid "... Game paused ..."
 msgstr "... Juego suspendido ..."
 
 #: gnotravex/gnotravex.c:774
+#, c-format
 msgid "Playing %dx%d board"
 msgstr "Jugando con tablero de %dx%d"
 
@@ -1304,110 +1211,112 @@ msgstr ""
 "Clónico Tetravex\n"
 "(Comentarios a: Lars.Rydlinge@HIG.SE)"
 
-#: gturing/gturing.c:177
+#: gturing/gturing.c:189
+#, c-format
 msgid "State: %d"
 msgstr "Estado: %d"
 
-#: gturing/gturing.c:180 gturing/gturing.c:260
+#: gturing/gturing.c:192 gturing/gturing.c:272
 msgid "Stopped"
 msgstr "Parado"
 
-#: gturing/gturing.c:305
+#: gturing/gturing.c:317
 msgid "Open gTuring Program File"
 msgstr "Abrir Archivo de Programa gTuring"
 
-#: gturing/gturing.c:318
+#: gturing/gturing.c:330
 msgid "Tape Setting"
 msgstr "Configuración Cinta"
 
-#: gturing/gturing.c:318
+#: gturing/gturing.c:330
 msgid "Please enter the tape:"
 msgstr "Entre una cinta:"
 
-#: gturing/gturing.c:359
+#: gturing/gturing.c:371
 msgid "State"
 msgstr "Estado"
 
-#: gturing/gturing.c:359
+#: gturing/gturing.c:371
 msgid "Read"
 msgstr "Leer"
 
-#: gturing/gturing.c:359
+#: gturing/gturing.c:371
 msgid "Write"
 msgstr "Escribir"
 
-#: gturing/gturing.c:359
+#: gturing/gturing.c:371
 msgid "Move"
 msgstr "Mover"
 
-#: gturing/gturing.c:360
+#: gturing/gturing.c:372
 msgid "New State"
 msgstr "Nuevo estado"
 
-#: gturing/gturing.c:368
+#: gturing/gturing.c:380
 msgid "Machine's states"
 msgstr "Estados de la máquina"
 
-#: gturing/gturing.c:407
+#: gturing/gturing.c:419
 msgid "Animation Speed"
 msgstr "Velocidad animación"
 
-#: gturing/gturing.c:407
+#: gturing/gturing.c:419
 msgid "Miliseconds between steps:"
 msgstr "Milisegundos entre dos pasos:"
 
-#: gturing/gturing.c:424
-msgid "gTuring"
+#: gturing/gturing.c:436
+#, fuzzy
+msgid "gturing"
 msgstr "gTuring"
 
-#: gturing/gturing.c:427
+#: gturing/gturing.c:439
 msgid "A Turing Machine for GNOME"
 msgstr "Una máquina de Turing para GNOME"
 
-#: gturing/gturing.c:445
+#: gturing/gturing.c:457
 #, fuzzy
 msgid "_Play Speed..."
 msgstr "Velocidad Juego..."
 
-#: gturing/gturing.c:445
+#: gturing/gturing.c:457
 msgid "Set playing speed."
 msgstr "Definir la velocidad del juego."
 
-#: gturing/gturing.c:447
+#: gturing/gturing.c:459
 #, fuzzy
 msgid "_Tape..."
 msgstr "Cinta..."
 
-#: gturing/gturing.c:447
+#: gturing/gturing.c:459
 msgid "Set the machine's tape."
 msgstr "Configurar la cinta de la máquina."
 
-#: gturing/gturing.c:449
+#: gturing/gturing.c:461
 #, fuzzy
 msgid "_View States"
 msgstr "Ver estados"
 
-#: gturing/gturing.c:450
+#: gturing/gturing.c:462
 msgid "Open a table with the machine's states."
 msgstr "Abrir una tabla con los estados de la máquina."
 
-#: gturing/gturing.c:469
+#: gturing/gturing.c:481
 msgid "Reset"
 msgstr "Recomenzar"
 
-#: gturing/gturing.c:471
+#: gturing/gturing.c:483
 msgid "Stop"
 msgstr "Parar"
 
-#: gturing/gturing.c:473
+#: gturing/gturing.c:485
 msgid "Run"
 msgstr "Lanzar"
 
-#: gturing/gturing.c:475
+#: gturing/gturing.c:487
 msgid "Step"
 msgstr "Paso"
 
-#: gturing/gturing.c:485
+#: gturing/gturing.c:497
 msgid "Welcome to gTuring."
 msgstr "Bienvenido a gTuring."
 
@@ -1436,10 +1345,12 @@ msgid "Already used! Where do you want to put that? "
 msgstr "¡Ya está en uso! ¿Donde desea ponerlo?"
 
 #: gyahtzee/cyahtzee.c:508
+#, c-format
 msgid "Rolling for %s"
 msgstr "Lanzando para %s"
 
 #: gyahtzee/cyahtzee.c:548 gyahtzee/gyahtzee.c:112
+#, c-format
 msgid "%s wins the game with %d points"
 msgstr "%s gana el juego con %d puntos"
 
@@ -1464,10 +1375,12 @@ msgid "Welcome to the game of Yahtzee"
 msgstr "Bienvenido al juego de Yahtzee"
 
 #: gyahtzee/cyahtzee.c:665
+#, c-format
 msgid "How many wish to play (max of %d)? "
 msgstr "¿Cuantas personas desean jugar (máx de %d)?"
 
 #: gyahtzee/cyahtzee.c:683
+#, c-format
 msgid "What is the name of player #%d ? "
 msgstr "¿ Cual es el nombre del jugador nº %d ?"
 
@@ -1476,6 +1389,7 @@ msgid "Boo hoo... I can't play...\n"
 msgstr "Buááá... No puedo jugar...\n"
 
 #: gyahtzee/cyahtzee.c:702
+#, c-format
 msgid "How many computers to play (max of %d) ? "
 msgstr "¿ Cuantos jugadores electrónicos (máx de %d) ?"
 
@@ -1492,10 +1406,12 @@ msgid "Gyahtzee"
 msgstr "Gyahtzee"
 
 #: gyahtzee/gyahtzee.c:137
+#, c-format
 msgid "Computer playing for %s"
 msgstr "Computadora jugando para %s"
 
 #: gyahtzee/gyahtzee.c:140
+#, c-format
 msgid "%s! -- You're up."
 msgstr "¡%s! -- Está al tanto."
 
@@ -1545,7 +1461,6 @@ msgstr "Cantidad de oponentes electrónicos"
 msgid "Number of human opponents"
 msgstr "Cantidad de oponentes humanos"
 
-#. Message box crashes my system!!!!!!!!!!!!
 #: gyahtzee/setup.c:85 gyahtzee/setup.c:88
 msgid "Current game will complete with original number of players."
 msgstr "El juego actual será terminado con la cantidad de jugadores original."
@@ -1606,6 +1521,7 @@ msgstr "5's [total de 5s]"
 msgid "6's [total of 6s]"
 msgstr "6's [total de 6s]"
 
+#. End of upper panel
 #: gyahtzee/yahtzee.c:78
 msgid "3 of a Kind [total]"
 msgstr "3 del mismo tipo [total]"
@@ -1764,7 +1680,7 @@ msgid "Game Number:"
 msgstr "Número de Juego:"
 
 #: mahjongg/mahjongg.c:1284
-#, fuzzy
+#, fuzzy, c-format
 msgid "Could not find file %s"
 msgstr "No pude encontrar el archivo pixmap '%s'\n"
 
@@ -1795,6 +1711,7 @@ msgid "The Same Gnome"
 msgstr "The Same Gnome"
 
 #: same-gnome/same-gnome.c:396
+#, c-format
 msgid "Could not find the '%s' theme for SameGnome\n"
 msgstr "Imposible de encontrar el tema '%s' para SameGnome\n"
 
@@ -1844,6 +1761,10 @@ msgstr "No puede hacerlo.\n"
 msgid "It's beyond my power to do that.\n"
 msgstr "No puedo hacerlo.\n"
 
+#: scottfree/GnomeScott.c:1222
+msgid "OK"
+msgstr "OK"
+
 #: scottfree/GnomeScott.c:1275
 msgid "You use word(s) I don't know! "
 msgstr "¡Usa palabras que no conozco! "
@@ -1884,75 +1805,62 @@ msgstr "Copyright © 1997 Alan Cox"
 msgid "North"
 msgstr "Norte"
 
-#: scottfree/GnomeScott.c:1503
+#: scottfree/GnomeScott.c:1501
 msgid "East"
 msgstr "Este"
 
-#: scottfree/GnomeScott.c:1506
+#: scottfree/GnomeScott.c:1502
 msgid "South"
 msgstr "Sur"
 
-#: scottfree/GnomeScott.c:1509
+#: scottfree/GnomeScott.c:1503
 msgid "West"
 msgstr "Oeste"
 
-#: scottfree/GnomeScott.c:1512
+#: scottfree/GnomeScott.c:1504
 msgid "Up"
 msgstr "Arriba"
 
-#: scottfree/GnomeScott.c:1515
+#: scottfree/GnomeScott.c:1505
 msgid "Down"
 msgstr "Abajo"
 
-#: scottfree/GnomeScott.c:1518
+#: scottfree/GnomeScott.c:1506
 msgid "List"
 msgstr "Lista"
 
-#: scottfree/GnomeScott.c:1518
+#: scottfree/GnomeScott.c:1506
 msgid "What am I carrying"
 msgstr "Que estoy llevando"
 
-#: gnometris/tetris.cpp:53 scottfree/GnomeScott.c:1527
+#: scottfree/GnomeScott.c:1511
 msgid "_New"
 msgstr "_Nuevo"
 
-#: scottfree/GnomeScott.c:1530
-msgid "_Load..."
-msgstr "_Cargar..."
-
-#: scottfree/GnomeScott.c:1533
-msgid "_Save..."
-msgstr "_Guardar..."
-
-#: scottfree/GnomeScott.c:1536
-msgid "_Quit"
-msgstr "_Salir"
-
-#: gnometris/tetris.cpp:47
+#: gnometris/tetris.cpp:56
 #, fuzzy
 msgid "Gnometris"
 msgstr "Gnome Minas"
 
-#: gnometris/tetris.cpp:57
-msgid "_Scores"
-msgstr "Pun_tuación"
-
-#: gnometris/tetris.cpp:67
-#, fuzzy
-msgid "_About Gnometris"
-msgstr "_Acerca de Gnobots"
-
-#: gnometris/tetris.cpp:159
+#: gnometris/tetris.cpp:188
 #, fuzzy
 msgid "Gnometris setup"
 msgstr "Configuración de Gnome Minas"
 
-#: gnometris/tetris.cpp:178
+#: gnometris/tetris.cpp:207
 #, fuzzy
 msgid "Starting Level:"
 msgstr "Cueva de partida:"
 
-#: gnometris/tetris.cpp:403
+#: gnometris/tetris.cpp:230
+msgid "Preview next block"
+msgstr ""
+
+#: gnometris/tetris.cpp:236
+msgid "Random block colors"
+msgstr ""
+
+#: gnometris/tetris.cpp:453
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: mgo@olicom.dk"
@@ -1967,9 +1875,14 @@ msgid "LEVEL"
 msgstr ""
 
 #: gnometris/main.cpp:55
-#, fuzzy
+#, fuzzy, c-format
 msgid "Could not find the '%s' theme for gnometris\n"
 msgstr "Imposible de encontrar el tema '%s' para SameGnome\n"
+
+#: gnometris/scoreframe.cpp:31
+#, fuzzy
+msgid "Game Status"
+msgstr "Título del juego"
 
 #: gnometris/scoreframe.cpp:37
 #, fuzzy
@@ -1980,6 +1893,107 @@ msgstr "Vidas:"
 #, fuzzy
 msgid "Level: "
 msgstr "Nivel:"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgid "_New Game"
+#~ msgstr "_Nuevo Juego"
+
+#~ msgid "_Restart Game"
+#~ msgstr "_Reiniciar Juego"
+
+#~ msgid "_Undo"
+#~ msgstr "_Deshacer"
+
+#~ msgid "_Properties..."
+#~ msgstr "_Propiedades..."
+
+#~ msgid "_Score..."
+#~ msgstr "_Puntuación..."
+
+#~ msgid "E_xit"
+#~ msgstr "_Salir"
+
+#~ msgid "_About..."
+#~ msgstr "_Acerca..."
+
+#~ msgid "_Game"
+#~ msgstr "_Juego"
+
+#~ msgid "_Help"
+#~ msgstr "A_yuda"
+
+#~ msgid "Start a new game"
+#~ msgstr "Empezar un juego nuevo"
+
+#~ msgid "Cancel a last move"
+#~ msgstr "Cancelar el último movimiento"
+
+#~ msgid "Loading curtain image..."
+#~ msgstr "CArgando telón de fondo..."
+
+#~ msgid "_No Animation"
+#~ msgstr "_Sin Animaciones"
+
+#, fuzzy
+#~ msgid "Turn animation off"
+#~ msgstr "Animación _Total"
+
+#~ msgid "_Some Animation"
+#~ msgstr "_Algunas Animaciones"
+
+#~ msgid "_Full Animation"
+#~ msgstr "Animación _Total"
+
+#, fuzzy
+#~ msgid "Turn full animation on"
+#~ msgstr "Animación _Total"
+
+#, fuzzy
+#~ msgid "Turn on quick computer moves"
+#~ msgstr "Demorar movimientos de la computadora"
+
+#, fuzzy
+#~ msgid "Sta_gger Flips"
+#~ msgstr "_Caída de las Piezas"
+
+#~ msgid "_Load Tiles..."
+#~ msgstr "Cargar _Piezas..."
+
+#, fuzzy
+#~ msgid "Change the tile set"
+#~ msgstr "Juego de piezas por omisión"
+
+#~ msgid "Load Tile Set"
+#~ msgstr "Cargar Juego de Piezas"
+
+#~ msgid "Select Tile Set: "
+#~ msgstr "Seleccionar Juego de Piezas: "
+
+#, fuzzy
+#~ msgid "Could not find '%s' pixmap file for Reversi\n"
+#~ msgstr "No pude encontrar el archivo pixmap '%s' para Gnothello\n"
+
+#, fuzzy
+#~ msgid "Welcome to Reversi!"
+#~ msgstr "Bienvenido a gTuring."
+
+#~ msgid "_Load..."
+#~ msgstr "_Cargar..."
+
+#~ msgid "_Save..."
+#~ msgstr "_Guardar..."
+
+#~ msgid "_Quit"
+#~ msgstr "_Salir"
+
+#~ msgid "_Scores"
+#~ msgstr "Pun_tuación"
+
+#, fuzzy
+#~ msgid "_About Gnometris"
+#~ msgstr "_Acerca de Gnobots"
 
 #~ msgid "_Select"
 #~ msgstr "_Seleccionar"

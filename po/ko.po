@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 0.99.5\n"
-"POT-Creation-Date: 1999-02-05 19:09+0900\n"
+"POT-Creation-Date: 1999-02-10 10:33-0500\n"
 "PO-Revision-Date: 1999-02-03 14:28+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@adam.kaist.ac.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -685,13 +685,13 @@ msgid "Remaining:"
 msgstr "남은 수:"
 
 #. This cave is to big to be played with gnome-stones.
-#: gnome-stones/io.c:323
+#: gnome-stones/io.c:325
 msgid "The cave you are trying to load it to big for this game."
 msgstr "읽어 들이여른 ㄴ동굴은 이 게임에서 너무 큽니다."
 
 #. An object was requested in this cave, that was not
 #. declared in the game file's Object section.
-#: gnome-stones/io.c:357
+#: gnome-stones/io.c:359
 msgid ""
 "The cave you are trying to load includes an object, that wasn't declared."
 msgstr "읽어들이려는 동굴에 선언되지 않은 오브젝트가 있습니다."
@@ -700,64 +700,67 @@ msgstr "읽어들이려는 동굴에 선언되지 않은 오브젝트가 있습니다."
 #. Some constants.
 #. This message will be printed in the statusline, if no message was
 #. specified in a game file.
-#: gnome-stones/main.c:87
+#: gnome-stones/main.c:88
 msgid "Gnome-Stones (c) 1998 Carsten Schaar"
 msgstr "Gnome-Stones (c) 1998 Carsten Schaar"
 
-#: gnome-stones/main.c:313
+#: gnome-stones/main.c:139
+#, c-format
+msgid ""
+"An error occured while loading the image file \"%s\".\n"
+"Please make sure, that Gnome-Stones is correctly installed!"
+msgstr ""
+
+#: gnome-stones/main.c:241
 msgid "Game title:"
 msgstr "게임 제목:"
 
-#: gnome-stones/main.c:314
+#: gnome-stones/main.c:242
 msgid "Start cave:"
 msgstr "시작 동굴:"
 
-#: gnome-stones/main.c:445
+#: gnome-stones/main.c:373 gnome-stones/main.c:898
 msgid "Pause"
 msgstr "정지"
 
-#: gnome-stones/main.c:799
+#: gnome-stones/main.c:593
 msgid "Congratulations, you win!"
 msgstr "축하합니다.  이겼습니다!"
 
-#: gnome-stones/main.c:970 gyahtzee/cyahtzee.c:552 gyahtzee/gyahtzee.c:116
+#: gnome-stones/main.c:764 gyahtzee/cyahtzee.c:552 gyahtzee/gyahtzee.c:116
 msgid "Game over!"
 msgstr "게임 종료!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:1129 gnome-stones/main.c:1320
+#: gnome-stones/main.c:938 gnome-stones/main.c:1122
 msgid "Gnome-Stones"
 msgstr "Gnome-Stones"
 
-#: gnome-stones/main.c:1132
+#: gnome-stones/main.c:941
 msgid "A game."
 msgstr "게임."
 
-#: gnome-stones/main.c:1242
-msgid "Loading curtain image..."
-msgstr "커튼 그림을 읽고 있습니다..."
-
-#: gnome-stones/main.c:1246
+#: gnome-stones/main.c:1048
 msgid "Scanning private object directory..."
 msgstr "개인 오브젝트 디렉토리 검색..."
 
-#: gnome-stones/main.c:1250
+#: gnome-stones/main.c:1052
 msgid "Scanning public object directory..."
 msgstr "공용 오브젝트 디렉토리 검색..."
 
-#: gnome-stones/main.c:1255
+#: gnome-stones/main.c:1057
 msgid "Filling game widget..."
 msgstr "게임 위젯 만들기..."
 
-#: gnome-stones/main.c:1260
+#: gnome-stones/main.c:1062
 msgid "Scanning private game directory..."
 msgstr "개인 게임 디렉토리 검색..."
 
-#: gnome-stones/main.c:1264
+#: gnome-stones/main.c:1066
 msgid "Scanning public game directory..."
 msgstr "공용 게임 디렉토리 검색..."
 
-#: gnome-stones/main.c:1268
+#: gnome-stones/main.c:1070
 msgid "Restoring preferences..."
 msgstr "선택사항 저장..."
 
@@ -1032,6 +1035,11 @@ msgstr "엇갈리게 뒤집기"
 msgid "Flip final results"
 msgstr "마지막 결과를 뒤집어서 보여줌"
 
+#: gnothello/properties.c:513
+#, fuzzy
+msgid "Tile set:"
+msgstr "타일"
+
 #: gnotravex/gnotravex.c:120
 msgid "Sol_ve"
 msgstr "풀이"
@@ -1204,7 +1212,8 @@ msgid "Miliseconds between steps:"
 msgstr "각 단계 사이에 천분의 일초:"
 
 #: gturing/gturing.c:436
-msgid "gTuring"
+#, fuzzy
+msgid "gturing"
 msgstr "gTuring"
 
 #: gturing/gturing.c:439
@@ -1734,95 +1743,55 @@ msgstr "Copyright (C) 1997 Alan Cox"
 msgid "North"
 msgstr "북"
 
-#: scottfree/GnomeScott.c:1503
+#: scottfree/GnomeScott.c:1501
 msgid "East"
 msgstr "동"
 
-#: scottfree/GnomeScott.c:1506
+#: scottfree/GnomeScott.c:1502
 msgid "South"
 msgstr "남"
 
-#: scottfree/GnomeScott.c:1509
+#: scottfree/GnomeScott.c:1503
 msgid "West"
 msgstr "서"
 
-#: scottfree/GnomeScott.c:1512
+#: scottfree/GnomeScott.c:1504
 msgid "Up"
 msgstr "위"
 
-#: scottfree/GnomeScott.c:1515
+#: scottfree/GnomeScott.c:1505
 msgid "Down"
 msgstr "아래"
 
-#: scottfree/GnomeScott.c:1518
+#: scottfree/GnomeScott.c:1506
 msgid "List"
 msgstr "목록"
 
-#: scottfree/GnomeScott.c:1518
+#: scottfree/GnomeScott.c:1506
 msgid "What am I carrying"
 msgstr "무엇을 가지고 있나"
 
-#: gnometris/tetris.cpp:62 scottfree/GnomeScott.c:1527
+#: scottfree/GnomeScott.c:1511
 msgid "_New"
 msgstr "새 게임 (_N)"
-
-#: scottfree/GnomeScott.c:1530
-msgid "_Load..."
-msgstr "읽기... (_L)"
-
-#: scottfree/GnomeScott.c:1533
-msgid "_Save..."
-msgstr "저장... (_S)"
-
-#: scottfree/GnomeScott.c:1536
-msgid "_Quit"
-msgstr "종료 (_Q)"
-
-#: scottfree/GnomeScott.c:1547
-msgid "_About..."
-msgstr "이 프로그램은... (_A)"
 
 #: gnometris/tetris.cpp:56
 msgid "Gnometris"
 msgstr "Gnometris"
 
-#: gnometris/tetris.cpp:64
-msgid "_Properties..."
-msgstr "속성(_P)..."
-
-#: gnometris/tetris.cpp:66
-msgid "_Scores"
-msgstr "점수(_S)"
-
-#: gnometris/tetris.cpp:68
-msgid "E_xit"
-msgstr "끝내기(_X)"
-
-#: gnometris/tetris.cpp:76
-msgid "_About Gnometris"
-msgstr "Gnometris는(_A)"
-
-#: gnometris/tetris.cpp:83
-msgid "_Game"
-msgstr "게임 (_G)"
-
-#: gnometris/tetris.cpp:84
-msgid "_Help"
-msgstr "도움말 (_H)"
-
-#: gnometris/tetris.cpp:193
+#: gnometris/tetris.cpp:188
 msgid "Gnometris setup"
 msgstr "Gnometris 설정"
 
-#: gnometris/tetris.cpp:212
+#: gnometris/tetris.cpp:207
 msgid "Starting Level:"
 msgstr "시작 단계:"
 
-#: gnometris/tetris.cpp:235
+#: gnometris/tetris.cpp:230
 msgid "Preview next block"
 msgstr "다음 블럭 미리 보기"
 
-#: gnometris/tetris.cpp:241
+#: gnometris/tetris.cpp:236
 msgid "Random block colors"
 msgstr "블럭 색상 마음대로"
 
@@ -1858,3 +1827,36 @@ msgstr "줄 수:"
 #: gnometris/scoreframe.cpp:41
 msgid "Level: "
 msgstr "난이도:"
+
+#~ msgid "Loading curtain image..."
+#~ msgstr "커튼 그림을 읽고 있습니다..."
+
+#~ msgid "_Load..."
+#~ msgstr "읽기... (_L)"
+
+#~ msgid "_Save..."
+#~ msgstr "저장... (_S)"
+
+#~ msgid "_Quit"
+#~ msgstr "종료 (_Q)"
+
+#~ msgid "_About..."
+#~ msgstr "이 프로그램은... (_A)"
+
+#~ msgid "_Properties..."
+#~ msgstr "속성(_P)..."
+
+#~ msgid "_Scores"
+#~ msgstr "점수(_S)"
+
+#~ msgid "E_xit"
+#~ msgstr "끝내기(_X)"
+
+#~ msgid "_About Gnometris"
+#~ msgstr "Gnometris는(_A)"
+
+#~ msgid "_Game"
+#~ msgstr "게임 (_G)"
+
+#~ msgid "_Help"
+#~ msgstr "도움말 (_H)"
