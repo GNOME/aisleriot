@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2001-07-07 12:16+0200\n"
+"POT-Creation-Date: 2001-07-11 17:36-0600\n"
 "PO-Revision-Date: 2001-07-07 12:25+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -343,7 +343,7 @@ msgstr ""
 msgid "New Game"
 msgstr "Nytt spel"
 
-#: aisleriot/dialog.c:94 mahjongg/mahjongg.c:1651
+#: aisleriot/dialog.c:94 mahjongg/mahjongg.c:1667
 msgid "Select Game"
 msgstr "Välj spel"
 
@@ -469,7 +469,7 @@ msgstr "_Välj..."
 msgid "Select a new game variation"
 msgstr "Välj en ny spelvariant"
 
-#: aisleriot/menu.c:193 freecell/src/menu.c:90 mahjongg/mahjongg.c:404
+#: aisleriot/menu.c:193 freecell/src/menu.c:90 mahjongg/mahjongg.c:407
 msgid "New"
 msgstr "Ny"
 
@@ -479,7 +479,7 @@ msgstr "Lägg ut ett nytt parti"
 
 #. {GNOME_APP_UI_ITEM, N_("Seed"), NULL, exit_game_callback, (gpointer)SELECT_GAME, NULL,
 #. GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
-#: aisleriot/menu.c:196 freecell/src/menu.c:93 mahjongg/mahjongg.c:410
+#: aisleriot/menu.c:196 freecell/src/menu.c:93 mahjongg/mahjongg.c:413
 msgid "Restart"
 msgstr "Starta om"
 
@@ -495,7 +495,7 @@ msgstr "Välj"
 msgid "Select a new game"
 msgstr "Välj ett nytt spel"
 
-#: aisleriot/menu.c:204 mahjongg/mahjongg.c:413
+#: aisleriot/menu.c:204 mahjongg/mahjongg.c:416
 msgid "Hint"
 msgstr "Tips"
 
@@ -503,7 +503,7 @@ msgstr "Tips"
 msgid "Suggest a move"
 msgstr "Föreslå ett drag"
 
-#: aisleriot/menu.c:207 freecell/src/menu.c:102 mahjongg/mahjongg.c:416
+#: aisleriot/menu.c:207 freecell/src/menu.c:102 mahjongg/mahjongg.c:419
 msgid "Undo"
 msgstr "Ångra"
 
@@ -511,7 +511,7 @@ msgstr "Ångra"
 msgid "Undo the last move"
 msgstr "Ångrar det senaste draget"
 
-#: aisleriot/menu.c:210 mahjongg/mahjongg.c:419
+#: aisleriot/menu.c:210 mahjongg/mahjongg.c:422
 msgid "Redo"
 msgstr "Gör om"
 
@@ -1039,6 +1039,7 @@ msgid "Options"
 msgstr "Alternativ"
 
 #: freecell/src/score.c:56
+#, c-format
 msgid "This session: %d%%"
 msgstr "Den här omgången: %d%%"
 
@@ -1048,6 +1049,7 @@ msgid "won: %d, lost: %d"
 msgstr "vunna: %d, förlorade: %d"
 
 #: freecell/src/score.c:66
+#, c-format
 msgid "Total: %d%%"
 msgstr "Totalt: %d%%"
 
@@ -1251,7 +1253,7 @@ msgstr "© 1997-2000 Free Software Foundation"
 msgid "Gnome port of the once-popular Color Lines game"
 msgstr "Gnome-portering av det en gång populära färglinjespelet"
 
-#: glines/glines.c:839 mahjongg/mahjongg.c:1145 same-gnome/same-gnome.c:576
+#: glines/glines.c:839 mahjongg/mahjongg.c:1161 same-gnome/same-gnome.c:576
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -1718,8 +1720,7 @@ msgstr "Säkra förflyttningar"
 msgid "Super Safe Moves"
 msgstr "Supersäkra förflyttningar"
 
-#: gnobots2/properties.c:795 gnome-stones/preferences.c:694
-#: mahjongg/mahjongg.c:428
+#: gnobots2/properties.c:795 mahjongg/mahjongg.c:431
 msgid "Sound"
 msgstr "Ljud"
 
@@ -1861,17 +1862,17 @@ msgstr ""
 "Ett fel inträffade under inläsningen av bildfilen \"%s\".\n"
 "Kontrollera att Gnome-stenar är korrekt installerat."
 
-#: gnome-stones/main.c:243
+#: gnome-stones/main.c:244
 msgid "Game title:"
 msgstr "Speltitel:"
 
-#: gnome-stones/main.c:244
+#: gnome-stones/main.c:245
 msgid "Start cave:"
 msgstr "Startgrotta:"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:375 gnome-stones/main.c:900 mahjongg/mahjongg.c:424
+#: gnome-stones/main.c:376 gnome-stones/main.c:900 mahjongg/mahjongg.c:427
 msgid "Pause"
 msgstr "Paus"
 
@@ -1966,10 +1967,6 @@ msgstr "Brytpunkt:"
 msgid "Joystick"
 msgstr "Styrspak"
 
-#: gnome-stones/preferences.c:688
-msgid "Not yet implemented!"
-msgstr "Inte implementerat än!"
-
 #: gnome-stones/status.c:76
 msgid "Diamonds:"
 msgstr "Diamanter:"
@@ -2006,43 +2003,43 @@ msgstr "Nivå: "
 msgid "Gnometris"
 msgstr "Gnometris"
 
-#: gnometris/tetris.cpp:448
+#: gnometris/tetris.cpp:451
 msgid "Gnometris setup"
 msgstr "Inställningar för Gnometris"
 
-#: gnometris/tetris.cpp:473
+#: gnometris/tetris.cpp:476
 msgid "Number of pre-filled rows:"
 msgstr "Antal förifyllda rader:"
 
-#: gnometris/tetris.cpp:494
+#: gnometris/tetris.cpp:497
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Densiteten av block i en förifylld rad:"
 
-#: gnometris/tetris.cpp:515
+#: gnometris/tetris.cpp:518
 msgid "Starting Level:"
 msgstr "Startnivå:"
 
-#: gnometris/tetris.cpp:543
+#: gnometris/tetris.cpp:546
 msgid "Preview next block"
 msgstr "Förhandsgranska nästa kloss"
 
-#: gnometris/tetris.cpp:549
+#: gnometris/tetris.cpp:552
 msgid "Random block colors"
 msgstr "Slumpmässiga klossfärger"
 
-#: gnometris/tetris.cpp:555
+#: gnometris/tetris.cpp:558
 msgid "Rotate counterclockwise"
 msgstr "Rotera moturs"
 
-#: gnometris/tetris.cpp:568
+#: gnometris/tetris.cpp:571
 msgid "Block Pixmap: "
 msgstr "Klosspixmap: "
 
-#: gnometris/tetris.cpp:583
+#: gnometris/tetris.cpp:586
 msgid "Background Pixmap: "
 msgstr "Bakgrundspixmap: "
 
-#: gnometris/tetris.cpp:882
+#: gnometris/tetris.cpp:885
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -2143,11 +2140,11 @@ msgstr "Antal minor"
 msgid "NUMBER"
 msgstr "ANTAL"
 
-#: gnomine/gnomine.c:734
+#: gnomine/gnomine.c:735
 msgid "Flags:"
 msgstr "Flaggor:"
 
-#: gnomine/gnomine.c:745 gnotravex/gnotravex.c:604 mahjongg/mahjongg.c:2008
+#: gnomine/gnomine.c:746 gnotravex/gnotravex.c:604 mahjongg/mahjongg.c:2027
 msgid "Time:"
 msgstr "Tid:"
 
@@ -2252,7 +2249,7 @@ msgstr "Pusslet är löst!"
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Kunde inte hitta pixmapfilen \"%s\"\n"
 
-#: gnotravex/gnotravex.c:740 mahjongg/mahjongg.c:1427
+#: gnotravex/gnotravex.c:740 mahjongg/mahjongg.c:1443
 msgid "... Game paused ..."
 msgstr "... spelpaus ..."
 
@@ -2633,157 +2630,6 @@ msgstr "Antal kast"
 msgid "Total"
 msgstr "Totalt"
 
-#: gturing/gturing.c:131
-msgid "No comment for this program."
-msgstr "Ingen kommentar för detta program."
-
-#: gturing/gturing.c:271
-msgid "States must be numbers. Move can only be 'r' or 'l'."
-msgstr "Tillstånd måste vara tal. Flyttar kan endast vara \"l\" eller \"r\"."
-
-#: gturing/gturing.c:332 gturing/gturing.c:669
-msgid "State"
-msgstr "Tillstånd"
-
-#: gturing/gturing.c:332 gturing/gturing.c:669
-msgid "Read"
-msgstr "Läs"
-
-#: gturing/gturing.c:332 gturing/gturing.c:669
-msgid "Write"
-msgstr "Skriv"
-
-#: gturing/gturing.c:332 gturing/gturing.c:669
-msgid "Move"
-msgstr "Flytta"
-
-#: gturing/gturing.c:332 gturing/gturing.c:670
-msgid "New State"
-msgstr "Nytt tillstånd"
-
-#: gturing/gturing.c:334
-msgid "Editing is still alpha. Come back later or hack."
-msgstr ""
-"Redigering är fortfarande alfakvalitet. Kom tillbaka senare eller hacka."
-
-#: gturing/gturing.c:346
-msgid "Edit Or Create Row"
-msgstr "Redigera eller skapa  rad"
-
-#: gturing/gturing.c:355
-msgid "Save"
-msgstr "Spara"
-
-#: gturing/gturing.c:364
-msgid "Set"
-msgstr "Omgång"
-
-#: gturing/gturing.c:422
-#, c-format
-msgid "State: %d"
-msgstr "Tillstånd: %d"
-
-#: gturing/gturing.c:425 gturing/gturing.c:511
-msgid "Stopped"
-msgstr "Stoppad"
-
-#: gturing/gturing.c:559
-msgid "Save gTuring Program File"
-msgstr "Spara gTuring-programfil"
-
-#: gturing/gturing.c:561
-msgid "Comment"
-msgstr "Kommentar"
-
-#: gturing/gturing.c:594
-msgid "Open gTuring Program File"
-msgstr "Öppna gTuring-programfil"
-
-#: gturing/gturing.c:611
-msgid "Tape Setting"
-msgstr "Bandinställning"
-
-#: gturing/gturing.c:611
-msgid "Please enter the tape:"
-msgstr "Ange bandet:"
-
-#: gturing/gturing.c:678
-msgid "Machine's states"
-msgstr "Maskinens lägen"
-
-#: gturing/gturing.c:734
-msgid "Animation Speed"
-msgstr "Animationshastighet"
-
-#: gturing/gturing.c:734
-msgid "Miliseconds between steps:"
-msgstr "Millisekunder mellan steg:"
-
-#: gturing/gturing.c:751
-msgid "gturing"
-msgstr "gturing"
-
-#: gturing/gturing.c:754
-msgid "A Turing Machine for GNOME"
-msgstr "En Turingmaskin för GNOME"
-
-#: gturing/gturing.c:773
-msgid "_Comment..."
-msgstr "_Kommentar..."
-
-#: gturing/gturing.c:773
-msgid "View the program's comment."
-msgstr "Visa programmets kommentar."
-
-#: gturing/gturing.c:775
-msgid "_States..."
-msgstr "_Tillstånd..."
-
-#: gturing/gturing.c:776
-msgid "Open a table with the machine's states."
-msgstr "Öppna en tabell med maskinens lägen."
-
-#: gturing/gturing.c:783
-msgid "_Play Speed..."
-msgstr "S_pelhastighet..."
-
-#: gturing/gturing.c:783
-msgid "Set playing speed."
-msgstr "Ställ in spelhastigheten."
-
-#: gturing/gturing.c:785
-msgid "_Tape..."
-msgstr "_Band..."
-
-#: gturing/gturing.c:785
-msgid "Set the machine's tape."
-msgstr "Ställ in maskinens band."
-
-#: gturing/gturing.c:805
-msgid "Reset"
-msgstr "Återställ"
-
-#: gturing/gturing.c:807
-msgid "Stop"
-msgstr "Stanna"
-
-#: gturing/gturing.c:809
-msgid "Run"
-msgstr "Kör"
-
-#: gturing/gturing.c:811
-msgid "Step"
-msgstr "Stega"
-
-#: gturing/gturing.c:835
-msgid "Welcome to gTuring."
-msgstr "Välkommen till gTuring."
-
-#. This string is supposed to have the same length as the welcoming string.
-#: gturing/gturing.c:837
-msgid "^                   "
-msgstr "^                       "
-
 #: iagno/gnothello.c:108
 msgid "IOR of remote Iagno server"
 msgstr "IOR för motståndarens Iagno-server"
@@ -2830,115 +2676,115 @@ msgstr "Stegvisa vändningar"
 msgid "Show grid"
 msgstr "Visa rutnät"
 
-#: mahjongg/mahjongg.c:346
+#: mahjongg/mahjongg.c:349
 msgid "New game with _seed..."
 msgstr "Nytt spel med _startvärde..."
 
-#: mahjongg/mahjongg.c:346
+#: mahjongg/mahjongg.c:349
 msgid "Start a new game giving a seed number..."
 msgstr "Starta ett nytt spel med ett startvärde..."
 
-#: mahjongg/mahjongg.c:359
+#: mahjongg/mahjongg.c:362
 msgid "Shu_ffle tiles"
 msgstr "Blanda _brickor"
 
-#: mahjongg/mahjongg.c:359
+#: mahjongg/mahjongg.c:362
 msgid "Shuffle tiles"
 msgstr "Blanda brickor"
 
-#: mahjongg/mahjongg.c:374
+#: mahjongg/mahjongg.c:377
 msgid "Show _Tool Bar"
 msgstr "Visa _verktygsrad"
 
-#: mahjongg/mahjongg.c:375
+#: mahjongg/mahjongg.c:378
 msgid "Toggle display of the toolbar"
 msgstr "Växla visning av verktygsraden"
 
-#: mahjongg/mahjongg.c:381
+#: mahjongg/mahjongg.c:384
 msgid "_Sound"
 msgstr "_Ljud"
 
-#: mahjongg/mahjongg.c:432
+#: mahjongg/mahjongg.c:435
 msgid "Shuffle"
 msgstr "Blanda"
 
-#: mahjongg/mahjongg.c:435
+#: mahjongg/mahjongg.c:438
 msgid "Prefs"
 msgstr "Inst"
 
-#: mahjongg/mahjongg.c:887
+#: mahjongg/mahjongg.c:903
 msgid "Tiles don't match!"
 msgstr "Brickorna stämmer inte överens!"
 
-#: mahjongg/mahjongg.c:920
+#: mahjongg/mahjongg.c:936
 msgid "No more moves"
 msgstr "Inga fler flyttningar"
 
-#: mahjongg/mahjongg.c:990 mahjongg/mahjongg.c:1165
+#: mahjongg/mahjongg.c:1006 mahjongg/mahjongg.c:1181
 msgid "Tiles"
 msgstr "Brickor"
 
-#: mahjongg/mahjongg.c:996 mahjongg/mahjongg.c:1170
+#: mahjongg/mahjongg.c:1012 mahjongg/mahjongg.c:1186
 msgid "Select Tiles:"
 msgstr "Välj brickor:"
 
-#: mahjongg/mahjongg.c:1002 mahjongg/mahjongg.c:1036 mahjongg/mahjongg.c:1067
-#: mahjongg/mahjongg.c:1097 mahjongg/mahjongg.c:1175 mahjongg/mahjongg.c:1203
-#: mahjongg/mahjongg.c:1230 mahjongg/mahjongg.c:1260
+#: mahjongg/mahjongg.c:1018 mahjongg/mahjongg.c:1052 mahjongg/mahjongg.c:1083
+#: mahjongg/mahjongg.c:1113 mahjongg/mahjongg.c:1191 mahjongg/mahjongg.c:1219
+#: mahjongg/mahjongg.c:1246 mahjongg/mahjongg.c:1276
 msgid "Make it the default"
 msgstr "Sätt som standard"
 
-#: mahjongg/mahjongg.c:1024
+#: mahjongg/mahjongg.c:1040
 msgid "Tile Background:"
 msgstr "Bakgrund på brickor:"
 
-#: mahjongg/mahjongg.c:1030
+#: mahjongg/mahjongg.c:1046
 msgid "Select Background Tiles:"
 msgstr "Välj bakgrundsbrickor:"
 
-#: mahjongg/mahjongg.c:1058 mahjongg/mahjongg.c:1221
+#: mahjongg/mahjongg.c:1074 mahjongg/mahjongg.c:1237
 msgid "Maps"
 msgstr "Banor"
 
-#: mahjongg/mahjongg.c:1062 mahjongg/mahjongg.c:1225
+#: mahjongg/mahjongg.c:1078 mahjongg/mahjongg.c:1241
 msgid "Select Map:"
 msgstr "Välj bana:"
 
 #. The colour
-#: mahjongg/mahjongg.c:1080 mahjongg/mahjongg.c:1243
+#: mahjongg/mahjongg.c:1096 mahjongg/mahjongg.c:1259
 msgid "Colours"
 msgstr "Färger"
 
-#: mahjongg/mahjongg.c:1084 mahjongg/mahjongg.c:1247
+#: mahjongg/mahjongg.c:1100 mahjongg/mahjongg.c:1263
 msgid "Background:"
 msgstr "Bakgrund:"
 
-#: mahjongg/mahjongg.c:1193
+#: mahjongg/mahjongg.c:1209
 msgid "Tile Background"
 msgstr "Brickbakgrund"
 
-#: mahjongg/mahjongg.c:1198
+#: mahjongg/mahjongg.c:1214
 msgid "Select Tile Background:"
 msgstr "Välj bakgrund på brickor:"
 
 #. Warning submenu
-#: mahjongg/mahjongg.c:1273
+#: mahjongg/mahjongg.c:1289
 msgid "Warnings"
 msgstr "Varningar"
 
-#: mahjongg/mahjongg.c:1279
+#: mahjongg/mahjongg.c:1295
 msgid "Warn when tiles don't match"
 msgstr "Varna om brickorna inte stämmer överens"
 
-#: mahjongg/mahjongg.c:1285
+#: mahjongg/mahjongg.c:1301
 msgid "Confirm before quitting game"
 msgstr "Bekräfta innan avslut"
 
-#: mahjongg/mahjongg.c:1395
+#: mahjongg/mahjongg.c:1411
 msgid "Gnome Mahjongg"
 msgstr "Gnome Mah Jong"
 
-#: mahjongg/mahjongg.c:1398
+#: mahjongg/mahjongg.c:1414
 msgid ""
 "Send comments and bug reports to:\n"
 "        pancho@nuclecu.unam.mx or\n"
@@ -2954,16 +2800,16 @@ msgstr ""
 "\n"
 "Brickorna är licensierade under General Public License."
 
-#: mahjongg/mahjongg.c:1656
+#: mahjongg/mahjongg.c:1672
 msgid "Game Number:"
 msgstr "Spelnummer:"
 
-#: mahjongg/mahjongg.c:1822 mahjongg/mahjongg.c:1831
+#: mahjongg/mahjongg.c:1846 mahjongg/mahjongg.c:1855
 #, c-format
 msgid "Could not find file %s"
 msgstr "Kunde inte hitta filen %s"
 
-#: mahjongg/mahjongg.c:1961
+#: mahjongg/mahjongg.c:1980
 msgid ""
 "Sorry, I can't find\n"
 "a playable configuration."
@@ -2971,11 +2817,11 @@ msgstr ""
 "Ledsen, jag kan inte hitta\n"
 "en spelbar konfiguration."
 
-#: mahjongg/mahjongg.c:2028
+#: mahjongg/mahjongg.c:2047
 msgid "Tiles Left: "
 msgstr "Brickor kvar: "
 
-#: mahjongg/mahjongg.c:2038
+#: mahjongg/mahjongg.c:2057
 msgid "Moves Left: "
 msgstr "Steg kvar: "
 
@@ -3042,97 +2888,190 @@ msgstr "Välkommen till SameGnome!"
 msgid "Marked: "
 msgstr "Markerade: "
 
-#: scottfree/GnomeScott.c:1204
-msgid "Nothing dropped.\n"
-msgstr "Inget släpptes.\n"
+#~ msgid "Not yet implemented!"
+#~ msgstr "Inte implementerat än!"
 
-#: scottfree/GnomeScott.c:1209
-msgid "What ? "
-msgstr "Vad? "
+#~ msgid "No comment for this program."
+#~ msgstr "Ingen kommentar för detta program."
 
-#: scottfree/GnomeScott.c:1216
-msgid "It's beyond your power to do that.\n"
-msgstr "Det står inte i din makt att göra det.\n"
+#~ msgid "States must be numbers. Move can only be 'r' or 'l'."
+#~ msgstr ""
+#~ "Tillstånd måste vara tal. Flyttar kan endast vara \"l\" eller \"r\"."
 
-#: scottfree/GnomeScott.c:1218
-msgid "It's beyond my power to do that.\n"
-msgstr "Det står inte i min makt att göra det.\n"
+#~ msgid "State"
+#~ msgstr "Tillstånd"
 
-#: scottfree/GnomeScott.c:1222
-msgid "OK"
-msgstr "OK"
+#~ msgid "Read"
+#~ msgstr "Läs"
 
-#: scottfree/GnomeScott.c:1275
-msgid "You use word(s) I don't know! "
-msgstr "Du använder ord som jag inte förstår! "
+#~ msgid "Write"
+#~ msgstr "Skriv"
 
-#: scottfree/GnomeScott.c:1282
-msgid "I don't understand your command. "
-msgstr "Jag förstår inte ditt kommando. "
+#~ msgid "Move"
+#~ msgstr "Flytta"
 
-#: scottfree/GnomeScott.c:1284
-msgid "I can't do that yet. "
-msgstr "Jag kan inte göra det än. "
+#~ msgid "New State"
+#~ msgstr "Nytt tillstånd"
 
-#: scottfree/GnomeScott.c:1298
-msgid "Light has run out! "
-msgstr "Ljuset har slocknat! "
+#~ msgid "Editing is still alpha. Come back later or hack."
+#~ msgstr ""
+#~ "Redigering är fortfarande alfakvalitet. Kom tillbaka senare eller hacka."
 
-#: scottfree/GnomeScott.c:1300
-msgid "Your light has run out. "
-msgstr "Ditt ljus har slocknat. "
+#~ msgid "Edit Or Create Row"
+#~ msgstr "Redigera eller skapa  rad"
 
-#: scottfree/GnomeScott.c:1313
-msgid "Light runs out in "
-msgstr "Ljuset tar slut om "
+#~ msgid "Save"
+#~ msgstr "Spara"
 
-#: scottfree/GnomeScott.c:1315
-msgid " turns. "
-msgstr " vändor."
+#~ msgid "Set"
+#~ msgstr "Omgång"
 
-#: scottfree/GnomeScott.c:1320
-msgid "Your light is growing dim. "
-msgstr "Ditt ljus blir allt svagare. "
+#~ msgid "State: %d"
+#~ msgstr "Tillstånd: %d"
 
-#: scottfree/GnomeScott.c:1493
-msgid "Copyright (C) 1997 Alan Cox"
-msgstr "Copyright © 1997 Alan Cox"
+#~ msgid "Stopped"
+#~ msgstr "Stoppad"
 
-#: scottfree/GnomeScott.c:1500
-msgid "North"
-msgstr "Norr"
+#~ msgid "Save gTuring Program File"
+#~ msgstr "Spara gTuring-programfil"
 
-#: scottfree/GnomeScott.c:1501
-msgid "East"
-msgstr "Öster"
+#~ msgid "Comment"
+#~ msgstr "Kommentar"
 
-#: scottfree/GnomeScott.c:1502
-msgid "South"
-msgstr "Söder"
+#~ msgid "Open gTuring Program File"
+#~ msgstr "Öppna gTuring-programfil"
 
-#: scottfree/GnomeScott.c:1503
-msgid "West"
-msgstr "Väster"
+#~ msgid "Tape Setting"
+#~ msgstr "Bandinställning"
 
-#: scottfree/GnomeScott.c:1504
-msgid "Up"
-msgstr "Upp"
+#~ msgid "Please enter the tape:"
+#~ msgstr "Ange bandet:"
 
-#: scottfree/GnomeScott.c:1505
-msgid "Down"
-msgstr "Ner"
+#~ msgid "Machine's states"
+#~ msgstr "Maskinens lägen"
 
-#: scottfree/GnomeScott.c:1506
-msgid "List"
-msgstr "Lista"
+#~ msgid "Animation Speed"
+#~ msgstr "Animationshastighet"
 
-#: scottfree/GnomeScott.c:1506
-msgid "What am I carrying"
-msgstr "Vad bär jag?"
+#~ msgid "Miliseconds between steps:"
+#~ msgstr "Millisekunder mellan steg:"
 
-#: scottfree/GnomeScott.c:1511
-msgid "_New"
-msgstr "_Ny"
+#~ msgid "gturing"
+#~ msgstr "gturing"
+
+#~ msgid "A Turing Machine for GNOME"
+#~ msgstr "En Turingmaskin för GNOME"
+
+#~ msgid "_Comment..."
+#~ msgstr "_Kommentar..."
+
+#~ msgid "View the program's comment."
+#~ msgstr "Visa programmets kommentar."
+
+#~ msgid "_States..."
+#~ msgstr "_Tillstånd..."
+
+#~ msgid "Open a table with the machine's states."
+#~ msgstr "Öppna en tabell med maskinens lägen."
+
+#~ msgid "_Play Speed..."
+#~ msgstr "S_pelhastighet..."
+
+#~ msgid "Set playing speed."
+#~ msgstr "Ställ in spelhastigheten."
+
+#~ msgid "_Tape..."
+#~ msgstr "_Band..."
+
+#~ msgid "Set the machine's tape."
+#~ msgstr "Ställ in maskinens band."
+
+#~ msgid "Reset"
+#~ msgstr "Återställ"
+
+#~ msgid "Stop"
+#~ msgstr "Stanna"
+
+#~ msgid "Run"
+#~ msgstr "Kör"
+
+#~ msgid "Step"
+#~ msgstr "Stega"
+
+#~ msgid "Welcome to gTuring."
+#~ msgstr "Välkommen till gTuring."
+
+#~ msgid "^                   "
+#~ msgstr "^                       "
+
+#~ msgid "Nothing dropped.\n"
+#~ msgstr "Inget släpptes.\n"
+
+#~ msgid "What ? "
+#~ msgstr "Vad? "
+
+#~ msgid "It's beyond your power to do that.\n"
+#~ msgstr "Det står inte i din makt att göra det.\n"
+
+#~ msgid "It's beyond my power to do that.\n"
+#~ msgstr "Det står inte i min makt att göra det.\n"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "You use word(s) I don't know! "
+#~ msgstr "Du använder ord som jag inte förstår! "
+
+#~ msgid "I don't understand your command. "
+#~ msgstr "Jag förstår inte ditt kommando. "
+
+#~ msgid "I can't do that yet. "
+#~ msgstr "Jag kan inte göra det än. "
+
+#~ msgid "Light has run out! "
+#~ msgstr "Ljuset har slocknat! "
+
+#~ msgid "Your light has run out. "
+#~ msgstr "Ditt ljus har slocknat. "
+
+#~ msgid "Light runs out in "
+#~ msgstr "Ljuset tar slut om "
+
+#~ msgid " turns. "
+#~ msgstr " vändor."
+
+#~ msgid "Your light is growing dim. "
+#~ msgstr "Ditt ljus blir allt svagare. "
+
+#~ msgid "Copyright (C) 1997 Alan Cox"
+#~ msgstr "Copyright © 1997 Alan Cox"
+
+#~ msgid "North"
+#~ msgstr "Norr"
+
+#~ msgid "East"
+#~ msgstr "Öster"
+
+#~ msgid "South"
+#~ msgstr "Söder"
+
+#~ msgid "West"
+#~ msgstr "Väster"
+
+#~ msgid "Up"
+#~ msgstr "Upp"
+
+#~ msgid "Down"
+#~ msgstr "Ner"
+
+#~ msgid "List"
+#~ msgstr "Lista"
+
+#~ msgid "What am I carrying"
+#~ msgstr "Vad bär jag?"
+
+#~ msgid "_New"
+#~ msgstr "_Ny"
 
 #~ msgid "Could not find the '%s' theme for Glines\n"
 #~ msgstr "Kunde inte hitta \"%s\"-temat för Glines\n"
