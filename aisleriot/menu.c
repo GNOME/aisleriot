@@ -124,6 +124,17 @@ int game_hint_callback (GtkWidget *app, void *data)
 	 strcpy(hint_message+offset, _("."));
 	 show_hint_dialog(_((char*) hint_message));
   }
+  else if (hint_type == 4) {
+	 int offset = strlen(_("You are searching for a "));
+
+	 temp_string = gh_scm2newstr(gh_cadr(hint),NULL);
+	 strcpy(hint_message, _("You are searching for a "));
+	 strcpy(hint_message + offset, temp_string);
+	 offset += strlen(temp_string);
+	 free (temp_string);
+	 strcpy(hint_message+offset, _("."));
+	 show_hint_dialog(_((char*) hint_message));
+  }
   else {
 	 show_hint_dialog(_("This game is unable to provide a hint."));
   }

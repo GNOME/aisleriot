@@ -40,6 +40,7 @@ sol_LDADD = $(GUILE_LIBS) -lgdk_imlib $(GNOME_LIBDIR) $(GNOMEUI_LIBS) \
 types_DATA  = 		\
 	fortunes.scm	\
 	freecell.scm	\
+	doublets.scm	\
 	camelot.scm	\
 	canfield.scm	\
 	clock.scm	\

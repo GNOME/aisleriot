@@ -110,6 +110,8 @@
 
 (define DECK '())
 
+(define FLIP-COUNTER 0)
+
 (define (make-standard-deck-list-ace-high value suit)
   (if (eq? ace value)
       (if (eq? spade suit)
@@ -148,6 +150,15 @@
 	  (vector-set! deck num (vector-ref deck replacement-slot))
 	  (vector-set! deck replacement-slot val-at-num))
 	(shuffle-deck-helper deck (+ 1 num) len))))
+
+(define (flip-cards-back flip-number)
+  (if (> FLIP-COUNTER flip-number)
+      #f
+      (if (empty-slot? 1)
+	  #f
+	  (begin
+	    (add-card! 0 (flip-card (remove-card 1)))
+	    (flip-cards-back flip-number)))))
 
 
 ;;playing area stuff

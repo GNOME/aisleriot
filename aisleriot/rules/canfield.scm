@@ -123,20 +123,11 @@
 	     (complete-transaction start-slot card-list end-slot))
 	    (else #f))))
 
-(define (flip-cards-back)
-  (if (> FLIP-COUNTER 2)
-      #f
-      (if (empty-slot? 1)
-	  #f
-	  (begin
-	    (add-card! 0 (flip-card (remove-card 1)))
-	    (flip-cards-back)))))
-
 (define (button-clicked slot-id)
   (if (= slot-id 0)
       (if (empty-slot? 0)
 	  (begin
-	    (flip-cards-back)
+	    (flip-cards-back 2)
 	    (set! FLIP-COUNTER (+ 1 FLIP-COUNTER)))
 	  (let ((top-card (remove-card 0)))
 	    (if (eq? top-card '())
