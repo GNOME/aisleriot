@@ -1,6 +1,8 @@
 Gamesdir  = $(datadir)/apps/Games
 typesdir  = $(datadir)/sol-games
 
+INCLUDES = -I$(includedir)
+
 SUBDIRS = pixmaps
 
 bin_PROGRAMS = sol

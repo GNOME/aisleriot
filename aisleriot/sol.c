@@ -146,6 +146,9 @@ void main_prog(int argc, char *argv[])
   gnome_init ("aisleriot", &argc, &argv);
   gdk_imlib_init();
   printf(_("Done.\n"));
+
+  gtk_widget_push_colormap (gdk_imlib_get_colormap ());
+  gtk_widget_push_visual (gdk_imlib_get_visual ());
   
   /* generic startup... */
   printf(_("Creating App...\n"));
