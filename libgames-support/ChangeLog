@@ -1,3 +1,12 @@
+2003-12-17  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* games-files.c:	
+	* games-files.h: Convert games_files_list to a proper gobject.
+	Added games_file_list_get_nth and games_file_list_for_each.
+	Removed games_file_list_new_short and games_file_list_free (use
+	g_object_unref). Also added file name transformation flags to
+	*_create_widget.
+
 2003-12-04  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* games-files.c:	

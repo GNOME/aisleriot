@@ -920,12 +920,16 @@ gtk_card_deck_options_edit_get (GtkCardDeckOptionsEdit* w)
   return deck_options;
 }
 
+static void collect_card_styles (gchar * filename, GtkCardDeckOptionsEdit * w)
+{
+   w->style_list = g_list_concat (w->style_list,
+				   card_style_file_parse (filename));
+}
+
 static void
 gdk_card_deck_options_edit_get_card_styles (GtkCardDeckOptionsEdit * w)
 {
-  /* FIXME: this abuses the knowledge that a GamesFileList is really
-   * a GList, but this is going to change. */
-  GamesFileList * filelist = NULL;
+  GamesFileList * filelist;
   gchar* dir_name;
 
   /* Only read the list once. */
@@ -937,14 +941,8 @@ gdk_card_deck_options_edit_get_card_styles (GtkCardDeckOptionsEdit * w)
 					"cards", TRUE, NULL);
 
   filelist = games_file_list_new ("*.xml", dir_name, NULL);
-  
-  while (filelist) {
-    w->style_list = g_list_concat (w->style_list,
-				   card_style_file_parse (((GList *) filelist)->data));
-    filelist = g_list_next ((GList *) filelist);
-  }
-  
-  games_file_list_free (filelist);
+  games_file_list_for_each (filelist, (GFunc) collect_card_styles, w);
+  g_object_unref (filelist);
 
   w->style_list = g_list_sort (w->style_list, card_style_compare);
 }

@@ -24,17 +24,39 @@ G_BEGIN_DECLS
 
 #include <gtk/gtk.h>
 
-/* One day we should make this a proper GObject. */
-typedef GList GamesFileList;
+typedef struct _GamesFileList GamesFileList;
+typedef struct _GamesFileListClass GamesFileListClass;
+
+struct _GamesFileList {
+  GObject parent;
+
+  GList * list;
+};
+
+struct _GamesFileListClass {
+  GObjectClass parent;
+};
+
+#define GAMES_FILE_LIST_TYPE (games_file_list_get_type ())
+
+GType games_file_list_get_type (void);
 
 GamesFileList * games_file_list_new (gchar * glob, ...);
-GamesFileList * games_file_list_new_short (gchar * glob, ...);
 GamesFileList * games_file_list_new_images (gchar * path1, ...);
-void games_file_list_free (GamesFileList * list);
 
 void games_file_list_transform_basename (GamesFileList * list);
 
-GtkWidget * games_file_list_create_widget (GamesFileList * filelist, gchar * selection);
+void games_file_list_for_each (GamesFileList * filelist, GFunc function, 
+			       gpointer userdata);
+
+gchar * games_file_list_get_nth (GamesFileList * filelist, gint n);
+
+enum {
+  GAMES_FILE_LIST_REMOVE_EXTENSION    = 1 << 0,
+  GAMES_FILE_LIST_REPLACE_UNDERSCORES = 1 << 1,
+};
+
+GtkWidget * games_file_list_create_widget (GamesFileList * filelist, gchar * selection, guint flags);
 
 G_END_DECLS
 
