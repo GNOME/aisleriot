@@ -124,7 +124,7 @@ card_style_file_parse (gchar * filename)
 			   NULL, NULL };
   GMarkupParseContext * parse_context;
   gchar * file;
-  gint length;
+  gsize length;
   gboolean ok;
   CardStyleFileContext * ctxt;
 

@@ -111,7 +111,7 @@ static SCM scm_gettext(SCM message)
 {
   static char * input = NULL;
   char * output;
-  int len;
+  size_t len;
 
   /* This is needed because we can't free the string before returning
    * if it isn't translated. This way we have a permanent one-string

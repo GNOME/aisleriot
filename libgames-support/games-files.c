@@ -88,7 +88,7 @@ void games_file_list_transform_basename (GamesFileList * filelist)
   while (current) {
     shortname = g_path_get_basename ((gchar *) current->data);
     g_free (current->data);
-    (gchar *) current->data = shortname;
+    current->data = (gpointer) shortname;
     current = g_list_next (current);
   }
 }

@@ -3,7 +3,7 @@
 
 
 AC_PREREQ([2.53])
-AC_INIT([gnome-games], [2.7.1],
+AC_INIT([gnome-games], [2.7.2],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([gnomine/gnomine.c])
@@ -67,14 +67,14 @@ GNOME_GAMES_LIBS="$GNOME_GAMES_LIBS \$(top_builddir)/libgames-support/libgames-s
 
 ## Use a separate set of flags for C++ (so we can exclude -std=gnu89 for
 ## example, it doesn't make sense under C++).
-GNOME_GAMES_CXXFLAGS=$GNOME_GAMES_CFLAGS
+GNOME_GAMES_CXXFLAGS="-Werror $GNOME_GAMES_CFLAGS"
 AC_SUBST(GNOME_GAMES_CXXFLAGS)
 
 ## This should make sure that developers using gcc 3.x will write something
 ## that compiles using gcc 2.9x. Straight -ansi is a little tough given the
 ## current code base, although what breaks is probably not that portable.
 if test x$CC=xgcc ; then
-  GNOME_GAMES_CFLAGS="-std=gnu89 $GNOME_GAMES_CFLAGS"
+  GNOME_GAMES_CFLAGS="-std=gnu89 -Werror $GNOME_GAMES_CFLAGS"
 fi
 
 PKG_CHECK_MODULES(ESD, esound)
