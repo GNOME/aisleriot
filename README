@@ -21,29 +21,20 @@ Contents
 
 !!! IMPORTANT !!!
 
-Migrating from 2.6 to 2.7.
+Migrating from 2.8 to 2.10.
 
-The 2.7 series of gnome-games is a development version and has some
-quite radical changes which will undoubtedly produce bugs. All bugs
-should of course be reported to http://bugzilla.gnome.org/ but here
-are also a few gotchas that are not bugs.
+There is almost nothing you need to know, almost everything should
+Just Work. The major source of problems will be in Same GNOME, which
+has been completely rewritten. The theme format is different and
+your old custom themes will not be recognised. Standard themes that
+have been migrated may also look different. Anything else is a bug,
+report it to http://bugzilla.gnome.org/. 
 
- - Themes for Aisleriot have changed completely. Your old theme may
-   not be available any more. Also, the new themes are not yet high
-   quality.
-
- - In Aisleriot, if the cards dissappear off the bottom then they can 
-   be seen again by *narrowing* the window. It is the aspect ratio of the 
-   window that is important. We are looking at ways of making this more
-   intuitive.
-
- - The backgrounds for gnometris have been removed. Instead you set
-   the theme by dragging your favourite image file into the gnometris
-   window. Dragging from nautilus should work, but there are many bugs
-   in this code and not everything is handled well. Currently the image
-   is scaled to fit the window. Tiled images will be supported in the
-   future along with solid colors. If the file is corrupt or not 
-   supported the drag is ignored.
+People with 64-bit machines need to ensure they have guile version
+1.6.5 or later. This is to avoid a 64-bit bug in guile. The configure
+scripts should detect this, but the test is a little dodgy and the
+response is simply to not build aisleriot. If aisleriot is not being
+built, check your version of guile.
 
 ========================================================================
 
@@ -90,7 +81,7 @@ Iagno           Gnome version of the popular Othello (R) disk flipping
 
 Klotski         A series of sliding block puzzles. (gnotski)
 
-Lines           You move balls around the grid and try and form lines
+Five or More    You move balls around the grid and try and form lines
                 of the same colour to make them disappear. Unfortunately 
                 more balls keep dropping in ... (glines)
 
@@ -185,7 +176,7 @@ Maintainers
 The current maintainers are:
 
  Callum McKenzie <callum@physics.otago.ac.nz>.
- Jon McCann <mccann@jhu.edu>.
+ Jon McCann <mccann@jhu.edu> (blackjack).
 
 While you can email them with suggestions and bug reports it is better
 to use either the bug tracking system (see below) or the mailing
@@ -225,17 +216,16 @@ have.
 Requirements
 ------------
 
-To compile these packages you need at least the baseline GNOME 2.4
-development packages. You really, really, need GTK+ 2.3. You also need
+To compile these packages you need at least the baseline GNOME 2.10
+development packages. You really, really, need GTK+ 2.6. You also need
 gettext 0.12 or newer. If you are building from CVS then you also need
 the CVS version of intltool.
 
 In addition it is useful to have a working C++ compiler (e.g. g++,
 part of the gcc suite) and the guile implementation of the Scheme
-programming language (http://www.gnu.org/software/guile/guile.html). 
-Both version 1.3 and 1.6 of guile are known to work. If either of
-these is missing then the games that rely on them will simply not be
-built.
+programming language version 1.6 or later
+(http://www.gnu.org/software/guile/guile.html). If either of these is
+missing then the games that rely on them will simply not be built.
 
 The games that require additional packages are:
  scheme: AisleRiot
@@ -315,9 +305,16 @@ group (and user) used via the --with-scores-group and
 The Future
 ----------
 
-The 2.6 release of gnome-games has been an incremental improvement over 2.4. 2.8 will be a similar incremental improvement. Once again I hope to concentrate on only a few games to bring them kicking and screaming into the 21st century. The following goals are still important in the long run:
+The 2.10 release of gnome-games has been an incremental improvement
+over 2.8. 2.12 will be a similar incremental improvement. Once again I
+hope to concentrate on only a few games to bring them kicking and
+screaming into the 21st century. The following goals are still
+important in the long run:
  - Making it easier for individual players to introduce their own themes.
  - Scalability of the game graphics so that the game can be resized
    to suit the player, for examples of this see gnomine and gnotravex.
- - Networking. Iagno already does it, there are several other games
-   with two-player options that are just begging to be networked.
+ - Networking. Iagno and Nibbles already does it, there are several
+   other games with two-player options that are just begging to be 
+   networked.
+ - A new high scores back-end. This resolves some synchronization
+   issues between libgnome and gnome-games.
