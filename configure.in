@@ -41,6 +41,8 @@ LIBS=$LIBS_save
 
 AM_PATH_GDK_PIXBUF(0.9.0, ,AC_MSG_ERROR([Need gdk-pixbuf-0.9.0 or later!]))
 
+CFLAGS="`gnome-config --cflags gdk_pixbuf`${CFLAGS}"
+
 ## look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
 AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true)

@@ -155,7 +155,7 @@ SCM scm_reset_surface()
   return SCM_EOL;
 }
 
-SCM scm_add_slot(SCM slot) 
+SCM gg_scm_add_slot(SCM slot) 
 {
   add_slot(slot);
   return SCM_EOL;
@@ -278,7 +278,7 @@ void cscm_init ()
   gh_new_procedure1_0("set-statusbar-message", scm_set_statusbar_message);
   gh_new_procedure1_0("set-surface-layout", scm_set_surface_layout);
   gh_new_procedure0_0("reset-surface", scm_reset_surface);
-  gh_new_procedure1_0("add-slot", scm_add_slot);
+  gh_new_procedure1_0("add-slot", gg_scm_add_slot);
   gh_new_procedure1_0("get-slot", scm_get_slot);  
   gh_new_procedure2_0("set-cards-c!", scm_set_cards);
   gh_new_procedure2_0("set-slot-y-expansion!", scm_set_slot_y_expansion);
