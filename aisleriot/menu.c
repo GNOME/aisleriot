@@ -226,6 +226,7 @@ const GtkActionEntry actions[] = {
   { "GameMenu", NULL, N_("_Game") },
   { "ViewMenu", NULL, N_("_View") },
   { "ControlMenu", NULL, N_("_Control") },
+  { "OptionsMenu", NULL, "Options" /* not translated on purpose */ },
   { "HelpMenu", NULL, N_("_Help") },
 
   { "NewGame", GTK_STOCK_NEW, N_("_New Game"), "<control>N", NULL, G_CALLBACK (random_seed) },
@@ -239,10 +240,10 @@ const GtkActionEntry actions[] = {
   { "UndoMove", GTK_STOCK_UNDO, N_("_Undo Move"), "<control>Z", NULL, G_CALLBACK (undo_callback) },
   { "RedoMove", GTK_STOCK_REDO, N_("_Redo Move"), "<shift><control>Z", NULL, G_CALLBACK (redo_callback) },
   { "Hint", GTK_STOCK_HELP, N_("_Hint"), NULL, NULL, G_CALLBACK (show_hint_dialog) },
-  
+
   { "Contents", GTK_STOCK_HELP, N_("_Contents"), "F1", NULL, G_CALLBACK (general_help) },
   { "Help", GTK_STOCK_HELP, "", "", NULL, G_CALLBACK (help_on_specific_game) },
-  {"About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) },
+  { "About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) },
 
   /*  { "Hidden", GTK_STOCK_NEW, "This should be hidden", NULL, NULL, NULL }, */
 };
@@ -277,7 +278,7 @@ const char *ui_description =
 "      <menuitem action='RedoMove'/>"
 "      <menuitem action='Hint'/>"
 "    </menu>"
-"    <placeholder name='OptionMenuPlaceHolder'/>"
+"    <menu action='OptionsMenu'/>"
 "    <menu action='HelpMenu'>"
 "      <menuitem action='Contents'/>"
 "      <menuitem action='Help'/>"
@@ -481,31 +482,30 @@ static void option_cb (GtkToggleAction *action, gint n)
 void install_options_menu (gchar *name)
 {
   static int merge_id = 0;
-  static GtkAction *menuaction = NULL;
+  static GtkActionGroup *options_group = NULL;
+  GtkAction *menuaction;
   SCM options_list;
   gint l, i;
-  gchar *uistring;
-  gchar *strtemp;
-
-  if (menuaction) {
-    gtk_action_group_remove_action (action_group, menuaction);
-    g_object_unref (menuaction);
-    menuaction = NULL;
-  }
 
   if (merge_id) {
     gtk_ui_manager_remove_ui (ui_manager, merge_id);
     merge_id = 0;
   }
 
+  if (options_group) {
+    gtk_ui_manager_remove_action_group (ui_manager, options_group);
+    options_group = NULL;
+  }
+
   if (has_options ()) {
-    menuaction = gtk_action_new ("OptionMenu", _(name), NULL, NULL);
-    gtk_action_group_add_action (action_group, menuaction);
-    g_object_set (menuaction, "is-important", TRUE, NULL);
+    menuaction = gtk_action_group_get_action (action_group, "OptionsMenu");
+    g_object_set (G_OBJECT (menuaction), "label", _(name), NULL);
+
+    options_group = gtk_action_group_new ("OptionsActions");
+    gtk_ui_manager_insert_action_group (ui_manager, options_group, -1);
+    g_object_unref (options_group);
 
     merge_id = gtk_ui_manager_new_merge_id (ui_manager);
-
-    uistring = g_strdup ("<ui><menubar name='MainMenu'><placeholder name='OptionMenuPlaceHolder'><menu action='OptionMenu'>");
     
     options_list = cscmi_get_options_lambda ();
     load_option_list (options_list);
@@ -516,7 +516,7 @@ void install_options_menu (gchar *name)
       gchar *entryname;
       gboolean entrystate;
       GtkToggleAction *itemaction;
-      gchar *actionname;
+      gchar actionname[20];
 
       /* Each entry in the options list is a list consisting of a name and 
 	 a variable. */
@@ -524,30 +524,19 @@ void install_options_menu (gchar *name)
       entryname = SCM_STRING_CHARS (scm_list_ref (entry, SCM_MAKINUM (0)));
       entrystate = SCM_NFALSEP (scm_list_ref (entry, SCM_MAKINUM (1)));
 
-      actionname = g_strdup_printf ("option_%d", i);
-      
+      g_snprintf (actionname, sizeof (actionname), "Option%d", i);
+
       itemaction = gtk_toggle_action_new (actionname, entryname, 
 					  NULL, NULL);
       g_signal_connect (G_OBJECT (itemaction), "toggled",
 			G_CALLBACK (option_cb), GINT_TO_POINTER (i));
       gtk_action_group_add_action (action_group, GTK_ACTION (itemaction));
       gtk_toggle_action_set_active (itemaction, entrystate);
+      g_object_unref (itemaction);
 
-      strtemp = uistring;
-      uistring = g_strdup_printf ("%s<menuitem action='%s'/>", uistring,
-				  actionname);
-      g_free (strtemp);
-
-      g_free (actionname);
-			     
+      gtk_ui_manager_add_ui (ui_manager, merge_id, "/MainMenu/OptionsMenu",
+			     actionname, actionname,
+			     GTK_UI_MANAGER_MENUITEM, FALSE);
     }
-
-    strtemp = uistring;
-    uistring = g_strconcat (uistring, "</menu></placeholder></menubar></ui>", NULL);
-    g_free (strtemp);
-
-    merge_id = gtk_ui_manager_add_ui_from_string (ui_manager,
-						  uistring, -1, NULL);
-    g_free (uistring);
   } 
 }

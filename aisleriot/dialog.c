@@ -169,7 +169,10 @@ void show_select_game_dialog (void)
                                           GTK_STOCK_OK, GTK_RESPONSE_OK,
                                           NULL);
     gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
-    hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
+    gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+    gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
+    hbox = gtk_hbox_new (FALSE, 12);
+    gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
 
     list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
     list_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(list));
@@ -202,10 +205,10 @@ void show_select_game_dialog (void)
 				    GTK_POLICY_AUTOMATIC);
     
     gtk_box_pack_end (GTK_BOX (hbox), scrolled_window, TRUE, TRUE,
-		      GNOME_PAD_SMALL );
+		      0 );
   
     gtk_box_pack_end (GTK_BOX (GTK_DIALOG (dialog)->vbox), 
-		      hbox, TRUE, TRUE, GNOME_PAD_SMALL );
+		      hbox, TRUE, TRUE, 0 );
 
     filename = NULL;
     selected_iter.stamp = 0;
@@ -346,14 +349,19 @@ void show_preferences_dialog ()
   if (!property_box) {
     property_box = gtk_dialog_new ();
     gtk_dialog_set_has_separator (GTK_DIALOG (property_box), FALSE);
+    gtk_widget_set_size_request (property_box, 220, -1);
+    gtk_window_set_resizable (GTK_WINDOW (property_box), FALSE);
+    gtk_container_set_border_width (GTK_CONTAINER (property_box), 5);
+    gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (property_box)->vbox), 2);
     gtk_window_set_title (GTK_WINDOW (property_box), _("AisleRiot Cards"));
     gtk_dialog_add_buttons(GTK_DIALOG(property_box),
                            GTK_STOCK_CLOSE, GTK_RESPONSE_OK, NULL);
     gtk_window_set_transient_for (GTK_WINDOW(property_box), GTK_WINDOW (app));
      
     deck_edit = games_card_selector_new (card_style);
+    gtk_container_set_border_width (GTK_CONTAINER (deck_edit), 5);
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (property_box)->vbox), deck_edit,
-                        TRUE, TRUE, GNOME_PAD_SMALL);
+                        TRUE, TRUE, 0);
     
     g_signal_connect (G_OBJECT (deck_edit), "changed",
                       GTK_SIGNAL_FUNC (property_apply), NULL);
