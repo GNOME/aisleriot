@@ -44,3 +44,7 @@ EXTRA_DIST = TODO FIXME RULES AUTHORS $(types_DATA) sol.desktop
 
 sysdir = $(datadir)/apps/Games
 sys_DATA = sol.desktop
+
+dist-hook:
+	mkdir $(distdir)/pixmaps
+	cp $(srcdir)/pixmaps/* $(distdir)/pixmaps
