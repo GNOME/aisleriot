@@ -3,12 +3,14 @@
 # Szabolcs Ban <shooby@gnome.hu>, 1999-2001
 # Greg Nagy <greg@gnome.hu>, 2001
 # Emese Kovacs <emese@gnome.hu>, 2002
+# Andras Timar <timar@gnome.hu>, 2002
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
-"POT-Creation-Date: 2002-11-04 11:28+0100\n"
-"PO-Revision-Date: 2002-11-04 11:27+0100\n"
-"Last-Translator: Emese Kovacs <emese@gnome.hu>\n"
+"POT-Creation-Date: 2002-12-12 10:46+0100\n"
+"PO-Revision-Date: 2002-12-12 11:44+0100\n"
+"Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -250,7 +252,7 @@ msgstr "fekete joker"
 #. borp = melborp
 #: aisleriot/SCHEME_GAMES.h:70
 msgid "melborp"
-msgstr "böff"
+msgstr "amélborp"
 
 #: aisleriot/SCHEME_GAMES.h:71
 msgid "clubs"
@@ -374,28 +376,27 @@ msgstr ""
 "\n"
 "Vége a játéknak.\n"
 
-#. XXXXX
-#: aisleriot/dialog.c:54 xbill/UI.cc:124
+#: aisleriot/dialog.c:55
 msgid "New Game"
 msgstr "Új játék"
 
-#: aisleriot/dialog.c:109 mahjongg/mahjongg.c:1637
+#: aisleriot/dialog.c:130 mahjongg/mahjongg.c:1637
 msgid "Select Game"
 msgstr "Játék kiválasztása"
 
 # aisleriot/dialog.c:100
 # freecell/src/io-gtk.c:409
 # freecell/src/menu.c:96
-#: aisleriot/dialog.c:119 freecell/src/io-gtk.c:407 freecell/src/menu.c:97
+#: aisleriot/dialog.c:140 freecell/src/io-gtk.c:407 freecell/src/menu.c:97
 msgid "Seed"
 msgstr "Véletlen"
 
 # aisleriot/dialog.c:112
-#: aisleriot/dialog.c:136 xbill/UI.cc:136
+#: aisleriot/dialog.c:157 xbill/UI.cc:129
 msgid "Rules"
 msgstr "Szabályok"
 
-#: aisleriot/dialog.c:228
+#: aisleriot/dialog.c:249
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -403,31 +404,31 @@ msgstr ""
 "A játéknak vége.\n"
 "Nincs súgás."
 
-#: aisleriot/dialog.c:234
+#: aisleriot/dialog.c:255
 msgid "This game does not have hint support yet."
 msgstr "Ebben a játékban nincs súgás. Egyelőre."
 
-#: aisleriot/dialog.c:247
+#: aisleriot/dialog.c:268
 #, c-format
 msgid "Move the %s on the %s."
 msgstr "Mozgasd a %s-t a %s-ra."
 
-#: aisleriot/dialog.c:255
+#: aisleriot/dialog.c:276
 #, c-format
 msgid "Move the %s on %s."
 msgstr "Mozgasd a %s-t a %s-ra"
 
-#: aisleriot/dialog.c:263
+#: aisleriot/dialog.c:284
 #, c-format
 msgid "Move the %s %s."
 msgstr "Mozgasd a %s %s."
 
-#: aisleriot/dialog.c:270
+#: aisleriot/dialog.c:291
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Keresel egy %s-t"
 
-#: aisleriot/dialog.c:275
+#: aisleriot/dialog.c:296
 msgid "This game is unable to provide a hint."
 msgstr "Ebben a játékban nincs súgás."
 
@@ -468,17 +469,18 @@ msgid "                      Matthew Wilcox (matthew@wil.cx)"
 msgstr "                      Matthew Wilcox (matthew@wil.cx)"
 
 #. Translator credits
-#: aisleriot/menu.c:92 freecell/src/io-gtk.c:662 gataxx/gataxx.c:409
-#: glines/glines.c:755 gnect/src/dialog.c:48 gnibbles/main.c:184
-#: gnobots2/menu.c:210 gnome-stones/main.c:1038 gnometris/tetris.cpp:978
-#: gnomine/gnomine.c:294 gnotravex/gnotravex.c:1081 gnotski/gnotski.c:1007
+#: aisleriot/menu.c:92 freecell/src/io-gtk.c:656 gataxx/gataxx.c:410
+#: glines/glines.c:767 gnect/src/dialog.c:48 gnibbles/main.c:199
+#: gnobots2/menu.c:210 gnome-stones/main.c:1052 gnometris/tetris.cpp:986
+#: gnomine/gnomine.c:294 gnotravex/gnotravex.c:1092 gnotski/gnotski.c:1018
 #: gtali/gyahtzee.c:364 iagno/gnothello.c:409 mahjongg/mahjongg.c:1365
-#: same-gnome/same-gnome.c:599
+#: same-gnome/same-gnome.c:605 xbill/x11-gtk.cc:197
 msgid "translator_credits"
 msgstr ""
 "Bán Szabolcs (Shooby) <shooby@gnome.hu>\n"
 "Kovács Emese <emese@gnome.hu>\n"
-"Nagy Gergely <greg@gnome.hu>"
+"Nagy Gergely <greg@gnome.hu>\n"
+"Tímár András <timar@gnome.hu>"
 
 #: aisleriot/menu.c:103 aisleriot/sol.desktop.in.h:1 aisleriot/splash.c:90
 msgid "AisleRiot"
@@ -494,8 +496,8 @@ msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played"
 msgstr ""
-"Az AisleRiot egy meghatározott szabályokon alapuló pasziánsz-motor, ami sok "
-"különböző játékot tud"
+"Az AisleRiot egy meghatározott szabályokon alapuló pasziánsz-motor, amely "
+"sok különböző játékot tud"
 
 # aisleriot/menu.c:124
 #: aisleriot/menu.c:131
@@ -595,8 +597,8 @@ msgid "Aisleriot"
 msgstr "Aisleriot"
 
 #: aisleriot/sol.c:368
-msgid "Really exit Aisleriot?"
-msgstr "Tényleg kilépsz az Aisleriot-ból?"
+msgid "Are you sure you want to quit Aisleriot?"
+msgstr "Tényleg ki akarsz lépni az Aisleriot játékból?"
 
 #: aisleriot/sol.c:437
 msgid "Loading images..."
@@ -606,11 +608,11 @@ msgstr "Képek betöltése..."
 msgid "Dealing game..."
 msgstr "Keverés..."
 
-#: aisleriot/sol.c:449 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:872
+#: aisleriot/sol.c:449 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:878
 msgid "Score: "
 msgstr "Pontszám:"
 
-#: aisleriot/sol.c:453 mahjongg/mahjongg.c:2092
+#: aisleriot/sol.c:453 mahjongg/mahjongg.c:2091
 msgid "Time: "
 msgstr "Idő:"
 
@@ -619,7 +621,7 @@ msgid "Variation on game rules"
 msgstr "Variációk a játékra"
 
 #: aisleriot/sol.c:525 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
-#: same-gnome/same-gnome.c:800
+#: same-gnome/same-gnome.c:806
 msgid "NAME"
 msgstr "NÉV"
 
@@ -730,7 +732,7 @@ msgid "Fourteen"
 msgstr "Tizennégy"
 
 #: aisleriot/translatable_game_names.h:30 freecell/src/io-gtk.c:121
-#: freecell/src/io-gtk.c:684
+#: freecell/src/io-gtk.c:686
 msgid "Freecell"
 msgstr "Freecell"
 
@@ -971,71 +973,67 @@ msgid "FreeCell game"
 msgstr "FreeCell játék"
 
 #: freecell/src/freecell.schemas.in.h:1
-#, fuzzy
 msgid "Current streaks"
-msgstr "jelenleg: %d vesztett"
+msgstr "Jelenlegi sorozat"
 
 #: freecell/src/freecell.schemas.in.h:2
 msgid "Current streaks."
-msgstr ""
+msgstr "Jelenlegi sorozat."
 
 #: freecell/src/freecell.schemas.in.h:3
-#, fuzzy
 msgid "Inform users of invalid moves"
-msgstr "Rossz lépés esetén szólj"
+msgstr "Felhasználó figyelmeztetése rossz lépés esetén"
 
 #: freecell/src/freecell.schemas.in.h:4
-#, fuzzy
 msgid "Inform users of invalid moves."
-msgstr "Rossz lépés esetén szólj"
+msgstr "Felhasználó figyelmeztetése rossz lépés esetén."
 
 #: freecell/src/freecell.schemas.in.h:5
-#, fuzzy
 msgid "Lose number"
-msgstr "Játék száma:"
+msgstr "Vesztések száma"
 
 #: freecell/src/freecell.schemas.in.h:6
 msgid "Lose number - streaks"
-msgstr ""
+msgstr "Vesztések száma - sorozatban"
 
 #: freecell/src/freecell.schemas.in.h:7
 msgid "Lose number - streaks."
-msgstr ""
+msgstr "Vesztések száma - sorozatban."
 
 #: freecell/src/freecell.schemas.in.h:8
 msgid "Lose number."
-msgstr ""
+msgstr "Vesztések száma."
 
 #: freecell/src/freecell.schemas.in.h:9
-#, fuzzy
 msgid "Move cards one at a time"
-msgstr "Kártya levétele a szemétdombról"
+msgstr "Egyszerre egy kártya mozgatása"
 
 #: freecell/src/freecell.schemas.in.h:10
-#, fuzzy
 msgid "Move cards one at a time."
-msgstr "Kártya levétele a szemétdombról"
+msgstr "Egyszerre egy kártya mozgatása."
 
 #: freecell/src/freecell.schemas.in.h:11
 msgid "Win number"
-msgstr ""
+msgstr "Nyerések száma"
 
 #: freecell/src/freecell.schemas.in.h:12
 msgid "Win number - streaks"
-msgstr ""
+msgstr "Nyerések száma - sorozatban"
 
 #: freecell/src/freecell.schemas.in.h:13
 msgid "Win number - streaks."
-msgstr ""
+msgstr "Nyerések száma - sorozatban."
 
 #: freecell/src/freecell.schemas.in.h:14
 msgid "Win number."
-msgstr ""
+msgstr "Nyerések száma."
 
 #: freecell/src/io-gtk.c:330 freecell/src/io-gtk.c:462
-#: freecell/src/io-gtk.c:529
-msgid "Exit this game?"
-msgstr "Kilépsz?"
+#: freecell/src/io-gtk.c:529 gataxx/gataxx.c:280 gnect/src/gui.c:180
+#: gnibbles/main.c:159 gnobots2/menu.c:100 mahjongg/mahjongg.c:1474
+#: xbill/x11-gtk.cc:316
+msgid "Are you sure you want to start a new game?"
+msgstr "Tényleg új játékot akarsz kezdeni?"
 
 #: freecell/src/io-gtk.c:388 freecell/src/io-gtk.c:494
 #, c-format
@@ -1048,32 +1046,31 @@ msgid "Seed value:"
 msgstr "Véletlenszám-generálás kiindulóértéke:"
 
 # freecell/src/io-gtk.c:580
-#: freecell/src/io-gtk.c:587
+#: freecell/src/io-gtk.c:581
 msgid "Sorry, this feature is not (yet) implemented."
 msgstr "Bocs. Ez a funkció (még) nincs kész."
 
-#: freecell/src/io-gtk.c:625
-#, fuzzy
-msgid "Really exit GNOME Freecell?"
-msgstr "Tényleg kilépsz a GNOME Mahjonggból?"
+#: freecell/src/io-gtk.c:619
+msgid "Are you sure you want to quit Freecell?"
+msgstr "Tényleg ki akarsz lépni a Freecell játékból?"
 
-#: freecell/src/io-gtk.c:654
+#: freecell/src/io-gtk.c:648
 msgid "Changwoo Ryu."
 msgstr "Changwoo Ryu."
 
-#: freecell/src/io-gtk.c:686
+#: freecell/src/io-gtk.c:688
 msgid "Reimplement the popular solitaire card game."
 msgstr "A népszerű pasziánsz klónja."
 
-#: freecell/src/io-gtk.c:704
+#: freecell/src/io-gtk.c:708
 msgid "That move is invalid."
 msgstr "Ez a lépés nem szabályos."
 
-#: freecell/src/io-gtk.c:1196
+#: freecell/src/io-gtk.c:1200
 msgid "Sorry, there are no more valid moves."
 msgstr "Nincs olyan lap, ami mozgathatnál."
 
-#: freecell/src/io-gtk.c:1217
+#: freecell/src/io-gtk.c:1221
 msgid ""
 "Congratulations.  You won.\n"
 "Do you want to play again?"
@@ -1089,75 +1086,63 @@ msgstr "Új játék adott véletlennel..."
 msgid "Start a new game with a different seed"
 msgstr "Új játék indítása más variációban"
 
-#: freecell/src/menu.c:108 gnect/src/dialog.c:148
-msgid "Scores"
-msgstr "Pontok"
-
-#: freecell/src/menu.c:111 glines/glines.c:907 same-gnome/same-gnome.c:552
-msgid "Preferences"
-msgstr "Beállítások"
-
-#: freecell/src/menu.c:111
-msgid "Configure Freecell"
-msgstr "A Freecell beállítása"
-
-#: freecell/src/option-dialog.c:40
+#: freecell/src/option-dialog.c:44
 msgid "Freecell Properties"
 msgstr "Freecell tulajdonságai"
 
-#: freecell/src/option-dialog.c:51
+#: freecell/src/option-dialog.c:56
 msgid "Warn on invalid moves"
 msgstr "Rossz lépés esetén szólj"
 
-#: freecell/src/option-dialog.c:60
+#: freecell/src/option-dialog.c:65
 msgid "Move stacks one by one"
 msgstr "Egyesével mozgass"
 
-#: freecell/src/score-dialog.c:49 glines/glines.c:1252 xbill/UI.cc:139
+#: freecell/src/score-dialog.c:70 glines/glines.c:1271 xbill/UI.cc:132
 msgid "Score"
 msgstr "Pont"
 
 # freecell/src/score.c:56
-#: freecell/src/score.c:60
+#: freecell/src/score.c:61
 #, c-format
 msgid "This session: %d%%"
 msgstr "Ebben a sorozatban: %d%%"
 
-#: freecell/src/score.c:61 freecell/src/score.c:71
+#: freecell/src/score.c:62 freecell/src/score.c:72
 #, c-format
 msgid "won: %d, lost: %d"
 msgstr "nyert: %d, vesztett: %d"
 
-#: freecell/src/score.c:70
+#: freecell/src/score.c:71
 #, c-format
 msgid "Total: %d%%"
 msgstr "Összesen: %d%%"
 
-#: freecell/src/score.c:74
-msgid "Streaks"
-msgstr "Szeletek"
-
 #: freecell/src/score.c:75
+msgid "Streaks"
+msgstr "Nyertes/vesztes sorozatok"
+
+#: freecell/src/score.c:76
 #, c-format
 msgid "wins: %d, losses: %d"
 msgstr "nyert: %d, vesztett: %d"
 
-#: freecell/src/score.c:79
+#: freecell/src/score.c:80
 #, c-format
 msgid "current: %d wins"
 msgstr "jelenleg: %d nyert"
 
-#: freecell/src/score.c:81
+#: freecell/src/score.c:82
 #, c-format
 msgid "current: %d losses"
 msgstr "jelenleg: %d vesztett"
 
-#: gataxx/ataxx.c:135 gataxx/gataxx.c:332 gataxx/gataxx.c:689
-#: iagno/gnothello.c:331 iagno/gnothello.c:693 iagno/othello.c:213
+#: gataxx/ataxx.c:135 gataxx/gataxx.c:333 gataxx/gataxx.c:689
+#: iagno/gnothello.c:331 iagno/gnothello.c:701 iagno/othello.c:213
 msgid "Dark's move"
 msgstr "A sötét lép"
 
-#: gataxx/ataxx.c:143 gataxx/gataxx.c:330 iagno/gnothello.c:329
+#: gataxx/ataxx.c:143 gataxx/gataxx.c:331 iagno/gnothello.c:329
 #: iagno/othello.c:221
 msgid "Light's move"
 msgstr "A világos lép"
@@ -1183,13 +1168,8 @@ msgid "Dark must pass, Light's move"
 msgstr "A sötét nem tud lépni, a világos jön"
 
 #: gataxx/gataxx.c:235
-#, fuzzy
-msgid "Really exit Gataxx?"
-msgstr "Tényleg kilépsz a GNOME Mahjonggból?"
-
-#: gataxx/gataxx.c:280 gnibbles/main.c:156
-msgid "Do you really want to end this game?"
-msgstr "Tényleg ki szeretnél lépni a játékból?"
+msgid "Are you sure you want to quit Gataxx?"
+msgstr "Tényleg ki akarsz lépni a Gataxx játékból?"
 
 #: gataxx/gataxx.c:430 gataxx/gataxx.c:712 gataxx/gataxx.soundlist.in.h:3
 msgid "gataxx"
@@ -1197,21 +1177,21 @@ msgstr "gataxx"
 
 #: gataxx/gataxx.c:431
 msgid ""
-"gataxx is a Gnome port of the old game ataxx.  It is derived from Ian "
+"gataxx is a GNOME port of the old game ataxx.  It is derived from Ian "
 "Peters' iagno code."
 msgstr ""
-"A gataxx az ataxx játék gnome klónja. Ian Peter iango kódjából lett írva."
+"A gataxx a régi ataxx játék GNOME-átitara. Ian Peter iango kódján alapul."
 
 #: gataxx/gataxx.c:567
 #, c-format
 msgid "Could not find '%s' pixmap file for gataxx\n"
 msgstr "Nincs meg a '%s' kép a gataxx-hoz\n"
 
-#: gataxx/gataxx.c:737 iagno/gnothello.c:745
+#: gataxx/gataxx.c:737 iagno/gnothello.c:753
 msgid "Dark:"
 msgstr "Sötét:"
 
-#: gataxx/gataxx.c:752 iagno/gnothello.c:760
+#: gataxx/gataxx.c:752 iagno/gnothello.c:768
 msgid "Light:"
 msgstr "Világos:"
 
@@ -1219,8 +1199,8 @@ msgstr "Világos:"
 msgid "Welcome to gataxx!"
 msgstr "Üdv a gataxx-ban!"
 
-#: gataxx/gataxx.c:784 gataxx/gataxx.c:786 iagno/gnothello.c:792
-#: iagno/gnothello.c:794
+#: gataxx/gataxx.c:784 gataxx/gataxx.c:786 iagno/gnothello.c:800
+#: iagno/gnothello.c:802
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
@@ -1234,26 +1214,24 @@ msgid "Gataxx"
 msgstr "Gataxx"
 
 #: gataxx/gataxx.schemas.in.h:1 gnect/data/gnect.schemas.in.h:1
-#, fuzzy
 msgid "Animate"
 msgstr "Animáció"
 
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:507 iagno/properties.c:666
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:511 iagno/properties.c:666
 msgid "Flip final results"
 msgstr "A végeredmény felcserélése"
 
 #: gataxx/gataxx.schemas.in.h:3
 msgid "Level of black player"
-msgstr ""
+msgstr "A fekete játékos szintje"
 
 #: gataxx/gataxx.schemas.in.h:4
 msgid "Level of white player"
-msgstr ""
+msgstr "A fehér játékos szintje"
 
 #: gataxx/gataxx.schemas.in.h:5
-#, fuzzy
 msgid "Quick moves"
-msgstr "Gyors mozgatás"
+msgstr "Gyors lépések"
 
 #: gataxx/gataxx.schemas.in.h:6
 msgid "Tileset"
@@ -1264,26 +1242,28 @@ msgid "Tileset to use."
 msgstr "Használandó elemkészlet"
 
 #: gataxx/gataxx.schemas.in.h:8
-#, fuzzy
 msgid "Whether or not to flip final results."
-msgstr "A végeredmény felcserélése"
+msgstr "Felcserélje-e a végeredményt."
 
 #: gataxx/gataxx.schemas.in.h:9
-#, fuzzy
 msgid "Whether or not to use quick moves."
-msgstr "Nincs olyan lap, ami mozgathatnál."
+msgstr "Gyorsak legyenek-e a lépések."
 
 #: gataxx/gataxx.schemas.in.h:10
 msgid ""
 "Zero corresponds to no animations, one is partial animations, two is "
 "complete animations."
 msgstr ""
+"A nulla azt jelenti, hogy nincs animáció, az egy részleges, a kettő teljes "
+"animációt jelent."
 
 #: gataxx/gataxx.schemas.in.h:11
 msgid ""
 "Zero is human; one through three correspond to the level of the computer "
 "player."
 msgstr ""
+"A nulla az ember, az egytől háromig terjedő értékek a számítógépes játékos "
+"szintjét jelentik."
 
 #: gataxx/gataxx.soundlist.in.h:1 iagno/iagno.soundlist.in.h:1
 msgid "Game over"
@@ -1293,65 +1273,65 @@ msgstr "A játéknak vége!"
 msgid "Piece flipping"
 msgstr "Elem megfordítása"
 
-#: gataxx/properties.c:310
+#: gataxx/properties.c:314
 msgid "Properties"
 msgstr "Tulajdonságok"
 
 #. Players tab
-#: gataxx/properties.c:329 iagno/properties.c:471
+#: gataxx/properties.c:333 iagno/properties.c:471
 msgid "Players"
 msgstr "Játékosok"
 
-#: gataxx/properties.c:336
+#: gataxx/properties.c:340
 msgid "Quick Moves (cut computer delay in half)"
 msgstr "Gyors lépések (a gép várakozását felezi)"
 
-#: gataxx/properties.c:347 gnect/src/theme.c:386 iagno/properties.c:490
+#: gataxx/properties.c:351 gnect/src/theme.c:386 iagno/properties.c:490
 msgid "Dark"
 msgstr "Sötét"
 
-#: gataxx/properties.c:354 gataxx/properties.c:408 gnect/src/prefs.c:760
+#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:760
 #: gtali/yahtzee.c:66 iagno/properties.c:497 iagno/properties.c:549
 msgid "Human"
 msgstr "Ember"
 
-#: gataxx/properties.c:365 gataxx/properties.c:417 iagno/properties.c:507
+#: gataxx/properties.c:369 gataxx/properties.c:421 iagno/properties.c:507
 #: iagno/properties.c:559
 msgid "Level one"
 msgstr "Első szint"
 
-#: gataxx/properties.c:375 gataxx/properties.c:426 iagno/properties.c:517
+#: gataxx/properties.c:379 gataxx/properties.c:430 iagno/properties.c:517
 #: iagno/properties.c:569
 msgid "Level two"
 msgstr "Második szint"
 
-#: gataxx/properties.c:385 gataxx/properties.c:435 iagno/properties.c:527
+#: gataxx/properties.c:389 gataxx/properties.c:439 iagno/properties.c:527
 #: iagno/properties.c:579
 msgid "Level three"
 msgstr "Harmadik szint"
 
-#: gataxx/properties.c:401 gnect/src/theme.c:383 iagno/properties.c:542
+#: gataxx/properties.c:405 gnect/src/theme.c:383 iagno/properties.c:542
 msgid "Light"
 msgstr "Világos"
 
 #. Animation tab
-#: gataxx/properties.c:454 iagno/properties.c:597
+#: gataxx/properties.c:458 iagno/properties.c:597
 msgid "Animation"
 msgstr "Animáció"
 
-#: gataxx/properties.c:468 iagno/properties.c:613
+#: gataxx/properties.c:472 iagno/properties.c:613
 msgid "None"
 msgstr "Semmi"
 
-#: gataxx/properties.c:479 iagno/properties.c:622
+#: gataxx/properties.c:483 iagno/properties.c:622
 msgid "Partial"
 msgstr "Részleges"
 
-#: gataxx/properties.c:489 iagno/properties.c:631
+#: gataxx/properties.c:493 iagno/properties.c:631
 msgid "Complete"
 msgstr "Teljes"
 
-#: gataxx/properties.c:518 iagno/properties.c:678 mahjongg/mahjongg.c:1169
+#: gataxx/properties.c:522 iagno/properties.c:678 mahjongg/mahjongg.c:1169
 msgid "Tile set:"
 msgstr "Elemkészlet:"
 
@@ -1372,65 +1352,69 @@ msgstr ""
 msgid "Match five balls of the same color in a row to score!"
 msgstr "Helyezz el öt egyszínű labdát egy sorba!"
 
-#: glines/glines.c:216
-msgid "Game Over!"
-msgstr "Vége a játéknak!"
-
-#: glines/glines.c:218 glines/glines.c:727 glines/glines.c:770
-#: glines/glines.c:1218 glines/glines.desktop.in.h:2
+#: glines/glines.c:198 glines/glines.c:786 glines/glines.c:1237
+#: glines/glines.desktop.in.h:2
 msgid "Glines"
 msgstr "Glines"
 
+#: glines/glines.c:228
+msgid "Game Over!"
+msgstr "Vége a játéknak!"
+
 #. Can't move there!
-#: glines/glines.c:393
+#: glines/glines.c:405
 msgid "Can't move there!"
 msgstr "Nem léphetsz oda!"
 
-#: glines/glines.c:746
+#: glines/glines.c:758
 msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
 msgstr "Szokovács Róbert <szo@appaloosacorp.hu>"
 
-#: glines/glines.c:747
+#: glines/glines.c:759
 msgid "Szabolcs Ban <shooby@gnome.hu>"
 msgstr "Bán Szabolcs <shooby@gnome.hu>"
 
-#: glines/glines.c:771
+#: glines/glines.c:787
 msgid "(C) 1997-2000 the Free Software Foundation"
 msgstr "(C) 1997-2000 the Free Software Foundation"
 
-#: glines/glines.c:772
-msgid "Gnome port of the once-popular Color Lines game"
+#: glines/glines.c:788
+msgid "GNOME port of the once-popular Color Lines game"
 msgstr "A népszerű Color Lines játék GNOME-os változata"
 
-#: glines/glines.c:932
+#: glines/glines.c:925 same-gnome/same-gnome.c:558
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: glines/glines.c:950
 msgid "Theme"
 msgstr "Téma"
 
-#: glines/glines.c:937
+#: glines/glines.c:955
 msgid "Select theme:"
 msgstr "Válassz témát:"
 
-#: glines/glines.c:949
+#: glines/glines.c:967
 msgid "Select background:"
 msgstr "Válassz hátteret:"
 
-#: glines/glines.c:957
+#: glines/glines.c:975
 msgid "Fast moves"
 msgstr "Gyors mozgások"
 
-#: glines/glines.c:966
+#: glines/glines.c:984
 msgid "Ask confirmation when quitting"
 msgstr "Kilépéskor kérdezzen"
 
-#: glines/glines.c:1011
-msgid "Do you really want to quit?"
-msgstr "Tényleg ki akarsz lépni?"
+#: glines/glines.c:1029
+msgid "Are you sure you want to quit Glines?"
+msgstr "Tényleg ki akarsz lépni a Glines játékból?"
 
-#: glines/glines.c:1228
+#: glines/glines.c:1247
 msgid "Welcome to Glines!"
 msgstr "Üdv a Glinesben!"
 
-#: glines/glines.c:1239
+#: glines/glines.c:1258
 msgid "Next Balls"
 msgstr "Következő labdák"
 
@@ -1447,34 +1431,32 @@ msgid "Gnect"
 msgstr "Gnect"
 
 #: gnect/data/gnect.schemas.in.h:2
-#, fuzzy
 msgid "Draw grid"
-msgstr "_Rács mutatása"
+msgstr "Rács mutatása"
 
 #: gnect/data/gnect.schemas.in.h:3
 msgid "Drop marble"
-msgstr ""
+msgstr "Üveggolyó leejtése"
 
 #: gnect/data/gnect.schemas.in.h:4
 msgid "Key press to drop a marble."
-msgstr ""
+msgstr "Billentyű az üveggolyó leejtéséhez."
 
 #: gnect/data/gnect.schemas.in.h:5
 msgid "Key press to move left."
-msgstr ""
+msgstr "Billentyű a balra mozgáshoz."
 
 #: gnect/data/gnect.schemas.in.h:6
 msgid "Key press to move right."
-msgstr ""
+msgstr "Billentyű a jobbra mozgáshoz."
 
 #: gnect/data/gnect.schemas.in.h:7
-#, fuzzy
 msgid "Level of Player One"
-msgstr "Első szint"
+msgstr "Első játékos szintje"
 
 #: gnect/data/gnect.schemas.in.h:8
 msgid "Level of Player Two"
-msgstr ""
+msgstr "Második játékos szintje"
 
 #: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:960
 msgid "Move left"
@@ -1486,16 +1468,16 @@ msgstr "Lépés jobbra"
 
 #: gnect/data/gnect.schemas.in.h:11
 msgid "Name of the theme file to use."
-msgstr ""
+msgstr "A használandó témafájl neve."
 
 #: gnect/data/gnect.schemas.in.h:12
 msgid "One corresponds to speaker beeps, two to audio files."
 msgstr ""
+"Az egy a beépített hangszóró csipogása, a kettő a hangfájlok használata."
 
 #: gnect/data/gnect.schemas.in.h:13
-#, fuzzy
 msgid "Show tool bar"
-msgstr "_Eszköztár mutatása"
+msgstr "Eszköztár megjelenítése"
 
 #: gnect/data/gnect.schemas.in.h:14 gnobots2/properties.c:952
 #: gnome-stones/preferences.c:853 mahjongg/mahjongg.c:429
@@ -1503,14 +1485,12 @@ msgid "Sound"
 msgstr "Hang"
 
 #: gnect/data/gnect.schemas.in.h:15
-#, fuzzy
 msgid "Sound type"
 msgstr "Hang típusa"
 
 #: gnect/data/gnect.schemas.in.h:16
-#, fuzzy
 msgid "Theme file"
-msgstr "Téma"
+msgstr "Témafájl"
 
 #: gnect/data/gnect.schemas.in.h:17
 msgid "Verify"
@@ -1518,23 +1498,23 @@ msgstr "Ellenőrzés"
 
 #: gnect/data/gnect.schemas.in.h:18
 msgid "Whether or not to ask before quitting an unfinished game."
-msgstr ""
+msgstr "Kérdezzen-e a játékból való kilépés előtt."
 
 #: gnect/data/gnect.schemas.in.h:19
 msgid "Whether or not to display grid lines on the game board."
-msgstr ""
+msgstr "Jelenjen-e meg a rács a játéktáblán."
 
 #: gnect/data/gnect.schemas.in.h:20
 msgid "Whether or not to play event sounds."
-msgstr ""
+msgstr "Legyen-e az eseményeknek hangjuk."
 
 #: gnect/data/gnect.schemas.in.h:21
 msgid "Whether or not to show the tool bar."
-msgstr ""
+msgstr "Jelenjen-e meg az eszköztár."
 
 #: gnect/data/gnect.schemas.in.h:22
 msgid "Whether or not to use animation."
-msgstr ""
+msgstr "Legyen-e animáció."
 
 #: gnect/data/gnect.schemas.in.h:23
 msgid "Who starts"
@@ -1545,12 +1525,16 @@ msgid ""
 "Zero is Player One, one is Player Two and two corresponds to players taking "
 "turns."
 msgstr ""
+"A nulla az első játékos, az egy a második játékos, a kettő a felváltva "
+"kezdés."
 
 #: gnect/data/gnect.schemas.in.h:25
 msgid ""
 "Zero is human; one through four correspond to the level of the computer "
 "player."
 msgstr ""
+"A nulla az ember, az egytől négyig terjedő számok a számítógépes játékos "
+"szintjét adják meg."
 
 #: gnect/data/gnect.soundlist.in.h:1
 msgid "A counter drops"
@@ -1592,6 +1576,10 @@ msgstr "Te"
 msgid "Me"
 msgstr "Én"
 
+#: gnect/src/dialog.c:148
+msgid "Scores"
+msgstr "Pontok"
+
 #. drawn games
 #: gnect/src/dialog.c:209
 msgid "Drawn"
@@ -1613,11 +1601,11 @@ msgstr " Tipp: %d. oszlop"
 
 #: gnect/src/gui.c:64
 msgid "Show _tool bar"
-msgstr "_Eszköztár mutatása"
+msgstr "_Eszköztár megjelenítése"
 
 #: gnect/src/gui.c:64
 msgid "Show or hide the toolbar"
-msgstr "Eszközsor megjelenítése vagy elrejtése"
+msgstr "Eszköztár megjelenítése vagy elrejtése"
 
 #: gnect/src/gui.c:65
 msgid "Enable _sound"
@@ -1643,40 +1631,36 @@ msgstr "Új játék indítása"
 msgid "Get a hint for your next move"
 msgstr "Tipp a következő lépéshez"
 
-#: gnect/src/gui.c:144
-msgid "Exit gnect and end the current game?"
-msgstr "Kilépsz a Gnectből és befejezed a játékot?"
+#: gnect/src/gui.c:137
+msgid "Are you sure you want to quit Gnect?"
+msgstr "Tényleg ki akarsz lépni a Gnect játékból?"
 
-#: gnect/src/gui.c:190
-msgid "End the current game?"
-msgstr "Befejezed az aktuális játékot?"
-
-#: gnect/src/gui.c:489
+#: gnect/src/gui.c:471
 msgid " It's a draw!"
 msgstr "Döntetlen!"
 
-#: gnect/src/gui.c:500
+#: gnect/src/gui.c:482
 msgid " You win!"
 msgstr " Te nyertél!"
 
-#: gnect/src/gui.c:504
+#: gnect/src/gui.c:486
 msgid " I win!"
 msgstr " Én nyertem!"
 
-#: gnect/src/gui.c:515 gnect/src/gui.c:516
+#: gnect/src/gui.c:497 gnect/src/gui.c:498
 #, c-format
 msgid " %s wins!"
 msgstr " %s nyert!"
 
-#: gnect/src/gui.c:545
+#: gnect/src/gui.c:527
 msgid " Your move..."
 msgstr " Te jössz..."
 
-#: gnect/src/gui.c:570
+#: gnect/src/gui.c:552
 msgid " \"Game->New game\" to begin"
-msgstr " Új játékhoz \"Game->New game\""
+msgstr " Új játékhoz \"Játék->Új játék\""
 
-#: gnect/src/gui.c:699
+#: gnect/src/gui.c:681
 msgid " Welcome to Gnect!"
 msgstr "Üdvözöl a Gnect!"
 
@@ -1737,7 +1721,7 @@ msgstr "Hiba a téma betöltése közben"
 
 #: gnect/src/prefs.c:763
 msgid "Non-Velena / Simple"
-msgstr "Nem-Velena / Egyszerű"
+msgstr "Nem Velena / Egyszerű"
 
 #: gnect/src/prefs.c:766
 msgid "Velena / Weak"
@@ -1753,11 +1737,11 @@ msgstr "Velena / Erős"
 
 #: gnect/src/prefs.c:785
 msgid "Always Player 1"
-msgstr "Mindig első játékos"
+msgstr "Mindig az első játékos"
 
 #: gnect/src/prefs.c:788
 msgid "Always Player 2"
-msgstr "Mindig második játékos"
+msgstr "Mindig a második játékos"
 
 #: gnect/src/prefs.c:791
 msgid "Take turns"
@@ -1765,7 +1749,7 @@ msgstr "Felváltva"
 
 #: gnect/src/prefs.c:816
 msgid "Gnect Preferences"
-msgstr "Gnect beállítások"
+msgstr "Gnect beállításai"
 
 #: gnect/src/prefs.c:896
 msgid "Who starts?"
@@ -1803,15 +1787,15 @@ msgstr "Hang típusa"
 
 #: gnect/src/prefs.c:1038
 msgid "Speaker beep"
-msgstr "Hangszóró csipogás"
+msgstr "Hangszórócsipogás"
 
 #: gnect/src/prefs.c:1043
 msgid "GNOME sound"
-msgstr "GNOME hang"
+msgstr "GNOME-hang"
 
 #: gnect/src/prefs.c:1046
 msgid "This can be set up using the GNOME Control Center"
-msgstr "Ezt a GNOME vezérlőpulton állíthatod be"
+msgstr "Ezt a GNOME Vezérlőpulton állíthatod be"
 
 #. verify
 #: gnect/src/prefs.c:1056
@@ -1820,7 +1804,7 @@ msgstr "Ha befejezetlen játék leállítására kerül sor:"
 
 #: gnect/src/prefs.c:1061
 msgid "Ask me first"
-msgstr "Kérdezz meg"
+msgstr "Megerősítés kérése"
 
 #: gnect/src/prefs.c:1065
 msgid "Appearance and Behaviour"
@@ -1914,7 +1898,7 @@ msgstr ""
 "Ellenőrizd a Gnibbles telepítést!"
 
 #: gnibbles/gnibbles.desktop.in.h:1 gnibbles/gnibbles.soundlist.in.h:6
-#: gnibbles/main.c:205
+#: gnibbles/main.c:219
 msgid "Gnibbles"
 msgstr "Gnibbles"
 
@@ -1954,7 +1938,11 @@ msgstr "Féreg visszafordítása"
 msgid "Worm Teleport"
 msgstr "Féreg teleport"
 
-#: gnibbles/main.c:207
+#: gnibbles/main.c:165
+msgid "Are you sure you want to quit Gnibbles?"
+msgstr "Tényleg ki akarsz lépni a Gnibbles játékból?"
+
+#: gnibbles/main.c:221
 msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
 msgstr "Megjegyzéseket és hibákat ide küldj:  sjm@acm.org, itp@gnu.org"
 
@@ -2080,17 +2068,17 @@ msgstr "Relatív mozgatás"
 msgid "Worm %d:"
 msgstr "Féreg %d:"
 
-#: gnobots2/game.c:118
+#: gnobots2/game.c:119
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "'%s' tuti-biztos mozgásokkal"
 
-#: gnobots2/game.c:121
+#: gnobots2/game.c:122
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "'%s' biztonságos mozgásokkal"
 
-#: gnobots2/game.c:339 gnobots2/game.c:354
+#: gnobots2/game.c:347 gnobots2/game.c:362
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -2098,15 +2086,15 @@ msgstr ""
 "Gratulálok, legyőzted a robotokat!!\n"
 "De meg tudod-e csinálni még egyszer?"
 
-#: gnobots2/game.c:1175
+#: gnobots2/game.c:1183
 msgid "There are no teleport locations left!!"
 msgstr "Nem maradt több teleport hely!"
 
-#: gnobots2/game.c:1243
+#: gnobots2/game.c:1251
 msgid "There are no safe locations to teleport to!!"
 msgstr "Nincs több biztonságos teleport hely!"
 
-#: gnobots2/gnobots.c:58 same-gnome/same-gnome.c:800
+#: gnobots2/gnobots.c:58 same-gnome/same-gnome.c:806
 msgid "Set game scenario"
 msgstr "Pálya beállítása"
 
@@ -2123,13 +2111,13 @@ msgid "Y"
 msgstr "Y"
 
 #: gnobots2/gnobots.c:194 gnobots2/gnobots2.soundlist.in.h:2
-msgid "Gnome Robots II"
-msgstr "Gnome Robots II"
+msgid "GNOME Robots II"
+msgstr "GNOME Robots II"
 
 #. ********************************************************************
-#: gnobots2/gnobots2.desktop.in.h:1 gnobots2/menu.c:225
-msgid "Gnobots II"
-msgstr "Gnobots II"
+#: gnobots2/gnobots2.desktop.in.h:1 gnobots2/menu.c:229
+msgid "GNOME Robots"
+msgstr "GNOME Robots"
 
 #: gnobots2/gnobots2.desktop.in.h:2
 msgid "Robots game"
@@ -2161,20 +2149,16 @@ msgstr "Győzelem!"
 
 #: gnobots2/graphics.c:89
 #, c-format
-msgid "Could not find '%s' pixmap file for Gnome Robots\n"
-msgstr "Nincs meg a '%s' állomány a Gnome Robots-hoz\n"
-
-#: gnobots2/menu.c:100
-msgid "Do you really want to restart the current game?"
-msgstr "Tényleg újraindítod a mostani játékot?"
+msgid "Could not find '%s' pixmap file for GNOME Robots\n"
+msgstr "Nincs meg a(z) '%s' képállomány a GNOME Robots játékhoz\n"
 
 #: gnobots2/menu.c:169
-msgid "Do you really want to quit the game?"
-msgstr "Tényleg ki szeretnél lépni a játékból?"
+msgid "Are you sure you want to quit GNOME Robots?"
+msgstr "Tényleg ki szeretnél lépni a GNOME Robots játékból?"
 
-#: gnobots2/menu.c:227
-msgid "Gnome Robots Game"
-msgstr "Gnome Robots játék"
+#: gnobots2/menu.c:231
+msgid "GNOME Robots Game"
+msgstr "GNOME Robots játék"
 
 #: gnobots2/properties.c:331
 msgid "Initial Number of Type 1 Robots"
@@ -2266,7 +2250,7 @@ msgstr "Egy biztonságos teleporthoz szükséges várakozás közbeni ölések"
 
 #: gnobots2/properties.c:540
 msgid "Score Required To Get A Safe Teleport"
-msgstr "Egy biztosnágos teleporthoz szükséges pontszám"
+msgstr "Egy biztonságos teleporthoz szükséges pontszám"
 
 #: gnobots2/properties.c:551
 msgid "Maximum Number of Safe Teleports"
@@ -2329,8 +2313,8 @@ msgid "windows"
 msgstr "ablakok"
 
 #: gnobots2/properties.c:845
-msgid "GnobotsII Preferences"
-msgstr "GnobotsII beállítások"
+msgid "GNOME Robots Preferences"
+msgstr "GNOME Robots beállításai"
 
 #: gnobots2/properties.c:869
 msgid "Game Type:"
@@ -2508,76 +2492,80 @@ msgstr ""
 #. This message will be printed in the statusline, if no message was
 #. specified in a game file.
 #: gnome-stones/main.c:94
-msgid "Gnome-Stones (c) 1998 Carsten Schaar"
-msgstr "Gnome-Stones (c) 1998 Carsten Schaar"
+msgid "GNOME-Stones (c) 1998 Carsten Schaar"
+msgstr "GNOME-Stones (c) 1998 Carsten Schaar"
 
 #: gnome-stones/main.c:103
 msgid "Game to play"
 msgstr "A játszandó játék"
 
-#: gnome-stones/main.c:154
+#: gnome-stones/main.c:157
 #, c-format
 msgid ""
 "An error occured while loading the image file \"%s\".\n"
-"Please make sure, that Gnome-Stones is correctly installed!"
+"Please make sure, that GNOME-Stones is correctly installed!"
 msgstr ""
-"Hiba történt a \"%s\" képfájl betöltése közben.\n"
-"Ellenőrizd, hogy a játék megfelelően lett-e telepítve."
+"Hiba történt a(z) \"%s\" képfájl betöltése közben.\n"
+"Ellenőrizd, hogy a GNOME-Stones játék megfelelően lett-e telepítve."
 
-#: gnome-stones/main.c:263
+#: gnome-stones/main.c:266
 msgid "Game title:"
 msgstr "Játék címe:"
 
-#: gnome-stones/main.c:264
+#: gnome-stones/main.c:267
 msgid "Start cave:"
 msgstr "Induló barlang:"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:403 gnome-stones/main.c:993 mahjongg/mahjongg.c:424
+#: gnome-stones/main.c:406 gnome-stones/main.c:1007 mahjongg/mahjongg.c:424
 msgid "Pause"
 msgstr "Felfüggeszt"
 
-#: gnome-stones/main.c:654
+#: gnome-stones/main.c:656
 msgid "Congratulations, you win!"
 msgstr "Gratulálok, nyertél!"
 
-#: gnome-stones/main.c:845 gtali/cyahtzee.c:552 gtali/gyahtzee.c:121
+#: gnome-stones/main.c:846 gtali/cyahtzee.c:552 gtali/gyahtzee.c:121
 msgid "Game over!"
 msgstr "A játéknak vége!"
 
-#. That's what a gnome application needs:
-#: gnome-stones/main.c:1052 gnome-stones/main.c:1264
-msgid "Gnome-Stones"
-msgstr "Gnome-Stones"
+#: gnome-stones/main.c:1070
+msgid "GNOME-STONES"
+msgstr "GNOME-STONES"
 
-#: gnome-stones/main.c:1054
+#: gnome-stones/main.c:1072
 msgid "A game."
 msgstr "Egy játék."
 
-#: gnome-stones/main.c:1167
+#: gnome-stones/main.c:1186
 msgid "Scanning private object directory..."
 msgstr "Privát objektumok könyvtár beolvasása..."
 
-#: gnome-stones/main.c:1171
+#: gnome-stones/main.c:1190
 msgid "Scanning public object directory..."
 msgstr "Publikus objektumok könyvtár beolvasása..."
 
-#: gnome-stones/main.c:1176
+#: gnome-stones/main.c:1195
 msgid "Filling game widget..."
 msgstr "Játékmező feltöltése..."
 
-#: gnome-stones/main.c:1181
+#: gnome-stones/main.c:1200
 msgid "Scanning private game directory..."
 msgstr "Keresés a privát játékkönyvtárban..."
 
-#: gnome-stones/main.c:1185
+#: gnome-stones/main.c:1204
 msgid "Scanning public game directory..."
 msgstr "Keresés a publikus játék könyvtárban... "
 
-#: gnome-stones/main.c:1189
+#: gnome-stones/main.c:1208
 msgid "Restoring preferences..."
 msgstr "Beállítások visszatöltése..."
+
+#. That's what a gnome application needs:
+#: gnome-stones/main.c:1283
+msgid "GNOME-Stones"
+msgstr "GNOME-Stones"
 
 #: gnome-stones/player.c:77
 msgid "You gained an extra life!"
@@ -2589,8 +2577,8 @@ msgid "Seconds left: %d"
 msgstr "%d másodperc van hátra"
 
 #: gnome-stones/preferences.c:593
-msgid "Gnome-Stones Preferences"
-msgstr "Gnome-Stones beállítások"
+msgid "GNOME-Stones Preferences"
+msgstr "GNOME-Stones beállításai"
 
 #: gnome-stones/preferences.c:649
 msgid "Game title"
@@ -2686,29 +2674,27 @@ msgstr "Tetrisz játék"
 
 #: gnometris/gnometris.schemas.in.h:1
 msgid "Image to use as background."
-msgstr ""
+msgstr "Háttérként használt kép."
 
 #: gnometris/gnometris.schemas.in.h:2
 msgid "Image to use for drawing blocks."
-msgstr ""
+msgstr "A síkidomok rajzolásához használt kép."
 
 #: gnometris/gnometris.schemas.in.h:3
 msgid "Level to start with."
-msgstr ""
+msgstr "Kezdőszint."
 
 #: gnometris/gnometris.schemas.in.h:4
 msgid "Whether to give blocks random colors."
-msgstr ""
+msgstr "Legyen-e véletlenszerű színe a síkidomoknak."
 
 #: gnometris/gnometris.schemas.in.h:5
-#, fuzzy
 msgid "Whether to preview the next block."
-msgstr "A következő blokk előnézete"
+msgstr "Lehessen-e előre látni a következő síkidomot."
 
 #: gnometris/gnometris.schemas.in.h:6
-#, fuzzy
 msgid "Whether to rotate counter clock wise."
-msgstr "Óramutató járásával ellentétes irányba forgat"
+msgstr "A forgatás az óramutató járásával ellentétes irányba történjen-e."
 
 #: gnometris/main.cpp:38
 msgid "Set starting level (1-10)"
@@ -2756,44 +2742,44 @@ msgstr ""
 "\n"
 "Ellenőrizd a gnome-games telepítést"
 
-#: gnometris/tetris.cpp:533
+#: gnometris/tetris.cpp:535
 msgid "Gnometris preferences"
 msgstr "Gnometris beállítások"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:561
+#: gnometris/tetris.cpp:563
 msgid "Number of pre-filled rows:"
 msgstr "Az előre kitöltött sorok száma:"
 
-#: gnometris/tetris.cpp:582
+#: gnometris/tetris.cpp:584
 msgid "Density of blocks in a pre-filled row:"
 msgstr "A blokkok sűrűsége egy előre feltöltött sorban:"
 
-#: gnometris/tetris.cpp:603
+#: gnometris/tetris.cpp:605
 msgid "Starting Level:"
 msgstr "Kezdő szint:"
 
-#: gnometris/tetris.cpp:620
+#: gnometris/tetris.cpp:622
 msgid "Preview next block"
 msgstr "A következő blokk előnézete"
 
-#: gnometris/tetris.cpp:630
+#: gnometris/tetris.cpp:632
 msgid "Random block colors"
 msgstr "Véletlen blokkszínek"
 
-#: gnometris/tetris.cpp:642
+#: gnometris/tetris.cpp:644
 msgid "Rotate counterclockwise"
 msgstr "Óramutató járásával ellentétes irányba forgat"
 
-#: gnometris/tetris.cpp:658
+#: gnometris/tetris.cpp:660
 msgid "Block Pixmap: "
 msgstr "Blokk képe:"
 
-#: gnometris/tetris.cpp:675
+#: gnometris/tetris.cpp:677
 msgid "Background Pixmap: "
 msgstr "Háttérkép:"
 
-#: gnometris/tetris.cpp:997
+#: gnometris/tetris.cpp:1009
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -3002,25 +2988,25 @@ msgstr "A puzzle-t kiraktad! Nagyon jó!"
 msgid "Puzzle solved!"
 msgstr "A puzzle-t kiraktad!"
 
-#: gnotravex/gnotravex.c:646
+#: gnotravex/gnotravex.c:657
 msgid "Time : "
 msgstr "Idő : "
 
-#: gnotravex/gnotravex.c:695 gnotski/gnotski.c:731
+#: gnotravex/gnotravex.c:706 gnotski/gnotski.c:742
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Nem találom a %s pixmap fájlt\n"
 
-#: gnotravex/gnotravex.c:782 mahjongg/mahjongg.c:1409
+#: gnotravex/gnotravex.c:793 mahjongg/mahjongg.c:1409
 msgid "... Game paused ..."
 msgstr "... Játék felfüggesztve ..."
 
-#: gnotravex/gnotravex.c:898
+#: gnotravex/gnotravex.c:909
 #, c-format
 msgid "Playing %dx%d board"
 msgstr "A tábla mérete: %dx%d"
 
-#: gnotravex/gnotravex.c:1100
+#: gnotravex/gnotravex.c:1115
 msgid ""
 "Tetravex clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
@@ -3029,8 +3015,8 @@ msgstr ""
 "(Megjegyzéseket várja: Lars.Rydlinge@HIG.SE)"
 
 #: gnotravex/gnotravex.desktop.in.h:1
-msgid "Gnotravex"
-msgstr "Gnotravex"
+msgid "GNOME Tetravex"
+msgstr "GNOME Tetravex"
 
 #: gnotravex/gnotravex.desktop.in.h:2
 msgid "Tetravex game"
@@ -3088,20 +3074,20 @@ msgstr "_Haladó"
 msgid "Level completed. Well done."
 msgstr "Szint teljesítve. Bravó!"
 
-#: gnotski/gnotski.c:692
+#: gnotski/gnotski.c:703
 msgid "Moves:"
 msgstr "Lépések:"
 
-#: gnotski/gnotski.c:908
-msgid "Welcome to Gnome Klotski"
-msgstr "Üdv a Gnome Klotski-ban"
+#: gnotski/gnotski.c:919
+msgid "Welcome to GNOME Klotski"
+msgstr "Üdv a GNOME Klotski-ban"
 
-#: gnotski/gnotski.c:925
+#: gnotski/gnotski.c:936
 #, c-format
 msgid "Playing level %s"
 msgstr "Játék a %s szinten"
 
-#: gnotski/gnotski.c:1025
+#: gnotski/gnotski.c:1040
 msgid ""
 "Klotski clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
@@ -3204,15 +3190,15 @@ msgstr ""
 #.
 #: gtali/gtali.desktop.in.h:1
 msgid "Dice game"
-msgstr "Kocka játék"
+msgstr "Kockajáték"
 
 #: gtali/gtali.desktop.in.h:2
 msgid "GTali"
 msgstr "GTali"
 
-#: gtali/gyahtzee.c:60 gtali/gyahtzee.c:377
-msgid "Gnome Tali"
-msgstr "Gnome Tali"
+#: gtali/gyahtzee.c:60 gtali/gyahtzee.c:382
+msgid "GNOME Tali"
+msgstr "GNOME Tali"
 
 #: gtali/gyahtzee.c:142
 #, c-format
@@ -3236,19 +3222,20 @@ msgstr "Scott Heavner"
 msgid "Orest Zborowski - Curses Version (C) 1992"
 msgstr "Orest Zborowski - Curses Version (C) 1992"
 
-#: gtali/gyahtzee.c:376
+#: gtali/gyahtzee.c:381
 msgid "(C) 1998 the Free Software Fundation"
 msgstr "(C) 1998 the Free Software Fundation"
 
-#: gtali/gyahtzee.c:407
+#: gtali/gyahtzee.c:419
 msgid "Cheater! Any high scores will not be recorded."
 msgstr "Csaló! A pontszámok nem kerülnek be a legjobbak közé."
 
-#: gtali/gyahtzee.c:521
+#: gtali/gyahtzee.c:533
 msgid "Select dice to re-roll, press Roll!, or select score slot."
-msgstr "Az újradobáshoz kattints a Dobás!-ra, vagy válassz egy pont rubrikát."
+msgstr ""
+"Az újradobáshoz kattints a Dobás! gombra, vagy válassz egy pont rubrikát."
 
-#: gtali/gyahtzee.c:560
+#: gtali/gyahtzee.c:572
 msgid " Roll ! "
 msgstr " Dobás!"
 
@@ -3423,11 +3410,10 @@ msgid "New net_work game"
 msgstr "Új _hálózati játék"
 
 #: iagno/gnothello.c:255
-#, fuzzy
-msgid "Really quit GNOME Iagno?"
-msgstr "Tényleg kilépsz a GNOME Mahjonggból?"
+msgid "Are you sure you want to quit Iagno?"
+msgstr "Tényleg ki akarsz lépni az Iagno játékból?"
 
-#: iagno/gnothello.c:430 iagno/gnothello.c:716 iagno/iagno.desktop.in.h:1
+#: iagno/gnothello.c:430 iagno/gnothello.c:724 iagno/iagno.desktop.in.h:1
 #: iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Iagno"
@@ -3444,12 +3430,12 @@ msgstr ""
 "Megjegyzéseket és hibajelentést ide: itp@gnu.org\n"
 "A General Public License alatt jelent meg."
 
-#: iagno/gnothello.c:536
+#: iagno/gnothello.c:544
 #, c-format
 msgid "Could not find '%s' pixmap file for Iagno\n"
 msgstr "Nem találom az %s pixmap fájlt az Iango-hoz\n"
 
-#: iagno/gnothello.c:785
+#: iagno/gnothello.c:793
 msgid "Welcome to Iagno!"
 msgstr "Üdv az Iagno-ban!"
 
@@ -3689,18 +3675,13 @@ msgstr ""
 "GNU GPL-es program (a grafikák is)."
 
 #: mahjongg/mahjongg.c:1466
-msgid "Really restart this game?"
-msgstr "Tényleg újrakezded a játékot?"
+msgid "Are you sure you want to restart this game?"
+msgstr "Tényleg újra akarod indítani ezt a játékot??"
 
 #. GNOME IS AN ACRONYM, DAMNIT!
 #: mahjongg/mahjongg.c:1470
-#, fuzzy
 msgid "Are you sure you want to quit GNOME Mahjongg?"
-msgstr "Tényleg ki szeretnél lépni a játékból?"
-
-#: mahjongg/mahjongg.c:1474
-msgid "Really start a new game?"
-msgstr "Tényleg új játékot kezdesz?"
+msgstr "Tényleg ki szeretnél lépni a GNOME Mahjongg játékból?"
 
 #: mahjongg/mahjongg.c:1477
 msgid "Serious internal error"
@@ -3730,19 +3711,21 @@ msgid ""
 "check your GConf configuration, specifically that the schemas are installed "
 "correctly"
 msgstr ""
+"Az alapértelmezett konfigurációs értékeket nem lehetett helyesen betölteni. "
+"Ellenőrizd a GConf beállításait, különösen a sémát megfelelő telepítését."
 
-#: mahjongg/mahjongg.c:2078
+#: mahjongg/mahjongg.c:2077
 msgid "Tiles Left: "
 msgstr "Elem hátra:"
 
-#: mahjongg/mahjongg.c:2085
+#: mahjongg/mahjongg.c:2084
 msgid "Moves Left: "
 msgstr "Lépés hátra:"
 
 # aisleriot/dialog.c:100
 # freecell/src/io-gtk.c:409
 # freecell/src/menu.c:96
-#: mahjongg/mahjongg.c:2099
+#: mahjongg/mahjongg.c:2098
 msgid "Seed: "
 msgstr "Véletlen: "
 
@@ -3758,68 +3741,63 @@ msgstr "Mahjongg"
 msgid "Mahjongg game"
 msgstr "Mahjongg játék"
 
-#: same-gnome/same-gnome.c:263 same-gnome/same-gnome.c:619
-msgid "The Same Gnome"
-msgstr "A Same Gnome"
+#: same-gnome/same-gnome.c:265 same-gnome/same-gnome.c:625
+msgid "The Same GNOME"
+msgstr "Same GNOME"
 
-#: same-gnome/same-gnome.c:404
+#: same-gnome/same-gnome.c:410
 #, c-format
 msgid ""
 "Could not find the theme:\n"
 "%s\n"
 "\n"
-"Please check you Same Gnome instalation"
+"Please check you Same GNOME installation."
 msgstr ""
 "A következő téma nem található:\n"
 "%s\n"
 "\n"
-"Ellenőrizd a Same Gnome telepítést"
+"Ellenőrizd a Same GNOME telepítést"
 
-#: same-gnome/same-gnome.c:428
+#: same-gnome/same-gnome.c:434
 #, c-format
 msgid ""
-"Same Gnome can't load the image file:\n"
+"Same GNOME can't load the image file:\n"
 "%s\n"
 "\n"
-"Please check your Same Gnome installation"
+"Please check your Same GNOME installation"
 msgstr ""
 "A következő képfájlt nem lehet betölteni:\n"
 "%s\n"
 "\n"
-"Ellenőrizd a Same Gnome telepítést"
+"Ellenőrizd a Same GNOME telepítést"
 
-#: same-gnome/same-gnome.c:573
+#: same-gnome/same-gnome.c:579
 msgid "Select scenario:"
 msgstr "Válassz pályát:"
 
-#: same-gnome/same-gnome.c:621
+#: same-gnome/same-gnome.c:627
 msgid "Original idea from KDE's same game program."
 msgstr "Az ötletet a KDE same game programja adta."
 
-#: same-gnome/same-gnome.c:646
-#, fuzzy
-msgid "Are you sure you want to quit?"
-msgstr "Tényleg ki akarsz lépni?"
+#: same-gnome/same-gnome.c:652
+msgid "Are you sure you want to quit Same GNOME?"
+msgstr "Tényleg ki akarsz lépni a Same GNOME játékból?"
 
-#: same-gnome/same-gnome.c:836
-msgid "Same Gnome"
-msgstr "Same Gnome"
+#: same-gnome/same-gnome.c:842 same-gnome/same-gnome.desktop.in.h:2
+msgid "Same GNOME"
+msgstr "Same GNOME"
 
-#: same-gnome/same-gnome.c:846
-msgid "Welcome to Same Gnome!"
-msgstr "Üdvözöl a Same Gnome!"
+#: same-gnome/same-gnome.c:852
+msgid "Welcome to Same GNOME!"
+msgstr "Üdvözöl a Same GNOME!"
 
-#: same-gnome/same-gnome.c:865
+#: same-gnome/same-gnome.c:871
 msgid "Marked: "
 msgstr "Kijelölt:"
 
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "GNOME SameGame"
 msgstr "GNOME SameGame"
-
-#: same-gnome/same-gnome.desktop.in.h:2
-msgid "Same GNOME"
-msgstr "Same GNOME"
 
 #: xbill/Game.cc:62
 #, c-format
@@ -3860,7 +3838,7 @@ msgstr ""
 "legveszélyesebb vírust. A vírus annyira \n"
 "veszélyes, hogy képes átváltoztatni a \n"
 "számítógépedet kenyérpirítóvá! 'Bill' \n"
-"klónozta magát többmillió példányban. \n"
+"klónozta magát több millió példányban. \n"
 "Mindegyiküknek csak egy a célja: minél \n"
 "több gépet megfertőzni a vírussal, \n"
 "amelyet zseniális módon egy ismert \n"
@@ -3951,43 +3929,44 @@ msgstr ""
 "Felkerültél a dicsőségtáblára.\n"
 "Írd be a neved:"
 
-#: xbill/UI.cc:126
+#. XXXXX
+#: xbill/UI.cc:124
 msgid "Pause Game"
 msgstr "Játék felfüggesztése"
 
-#: xbill/UI.cc:127
+#: xbill/UI.cc:125
 msgid "Continue"
 msgstr "Folytatás"
 
-#: xbill/UI.cc:128
-msgid "Quit"
-msgstr "Kilépés"
-
-#: xbill/UI.cc:130
+#: xbill/UI.cc:126
 msgid "Warp To Level"
 msgstr "Ugrás a megadott szintre"
 
-#: xbill/UI.cc:134
-msgid "About"
-msgstr "Névjegy"
-
-#: xbill/UI.cc:135
-msgid "Ported to GNOME by James Henstridge <james@daa.com.au>"
-msgstr "GNOME-ra portolta James Henstridge <james@daa.com.au>"
-
-#: xbill/UI.cc:137
+#: xbill/UI.cc:130
 msgid "Story"
 msgstr "Történet"
 
-#: xbill/UI.cc:140
+#: xbill/UI.cc:134
 msgid "Endgame"
 msgstr "Végkifejlet"
 
-#: xbill/x11-gtk.cc:32
+#: xbill/x11-gtk.cc:35
 msgid "Warp to level..."
 msgstr "Ugrás a megadott szintre..."
 
-#: xbill/x11-gtk.cc:193
+#: xbill/x11-gtk.cc:220
+msgid ""
+"Copyright (C) 1994, Psychosoft\n"
+"Computer logos, etc., copyright their respective owners"
+msgstr ""
+"Copyright (C) 1994, Psychosoft\n"
+"A számítógéplogók stb. a megfelelő jogtulajdonosok védjegyei."
+
+#: xbill/x11-gtk.cc:221 xbill/xbill.desktop.in.h:1
+msgid "GNOME version of the popular xBill game"
+msgstr "A népszerű xBill játék GNOME-os változata"
+
+#: xbill/x11-gtk.cc:249
 #, c-format
 msgid ""
 "After Level %d:     \n"
@@ -3996,26 +3975,14 @@ msgstr ""
 "%d. szint után        \n"
 "a pontszámod: %d"
 
-#: xbill/x11-gtk.cc:199
-msgid "Gnome xBill Scores"
+#: xbill/x11-gtk.cc:257
+msgid "GNOME xBill Scores"
 msgstr "GNOME xBill eredmények"
 
-#: xbill/xbill.desktop.in.h:1
-msgid "GNOME version of the popular xBill game"
-msgstr "A népszerű xBill játék GNOME-os változata"
+#: xbill/x11-gtk.cc:319
+msgid "Are you sure you want to quit GNOME xBill?"
+msgstr "Tényleg ki szeretnél lépni a GNOME xBill játékból?"
 
 #: xbill/xbill.desktop.in.h:2
 msgid "GNOME xBill"
 msgstr "GNOME xBill"
-
-#~ msgid "Tiny"
-#~ msgstr "Kicsi"
-
-#~ msgid "Biiiig"
-#~ msgstr "Naaaagy"
-
-#~ msgid "Gnome Mines"
-#~ msgstr "Gnome Mines"
-
-#~ msgid "Scenario"
-#~ msgstr "Pálya"
