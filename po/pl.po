@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-22 08:39+0100\n"
-"PO-Revision-Date: 2004-01-13 10:41+0100\n"
+"POT-Creation-Date: 2004-01-28 09:52+0100\n"
+"PO-Revision-Date: 2004-01-28 10:07+0100\n"
 "Last-Translator: Gnome PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,17 @@ msgstr "Spróbuj ponownie rozdać karty"
 msgid "an empty foundation pile"
 msgstr "pusty stos podkładu"
 
-#: aisleriot/aisleriot.schemas.in.h:1 blackjack/data/blackjack.schemas.in.h:1
+#: aisleriot/aisleriot.schemas.in.h:1
+msgid ""
+"A list of strings that come in the form of a quintuple: name, wins, total "
+"games played, best time (in seconds) and worst time (also in seconds). "
+"Unplayed games do not need to be represented."
+msgstr ""
+"Lista napisów przychdząca w formie pięciokrotnej: nazwa, zwycięstwa, liczba "
+"rozegranych gier, najlepszy czas (w sekundach) i najgorszy czas (również w "
+"sekundach). Gry nierozegrane nie są przedstawiane."
+
+#: aisleriot/aisleriot.schemas.in.h:2 blackjack/data/blackjack.schemas.in.h:1
 msgid ""
 "A string containing a list of files to use to describe the cards. The format "
 "is obscure and defined by the gdk-card-image library"
@@ -109,23 +119,27 @@ msgstr ""
 "Ciąg znaków zawierający listę plików używanych do opisu kart. Format jest "
 "mętny i zdefiniowany przez bibliotekę gdk-card-image"
 
-#: aisleriot/aisleriot.schemas.in.h:2
+#: aisleriot/aisleriot.schemas.in.h:3
+msgid "Statistics of games played"
+msgstr "Statystyki rozegranych gier"
+
+#: aisleriot/aisleriot.schemas.in.h:4
 msgid "The game file to use"
 msgstr "Plik gry do wykorzystania"
 
-#: aisleriot/aisleriot.schemas.in.h:3
+#: aisleriot/aisleriot.schemas.in.h:5
 msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "Nazwa pliku schamatu z aktualną grą karcianą."
 
-#: aisleriot/aisleriot.schemas.in.h:4 blackjack/data/blackjack.schemas.in.h:10
+#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:10
 msgid "What card style to use"
 msgstr "Wzór używanych kart"
 
-#: aisleriot/aisleriot.schemas.in.h:5 blackjack/data/blackjack.schemas.in.h:11
+#: aisleriot/aisleriot.schemas.in.h:7 blackjack/data/blackjack.schemas.in.h:11
 msgid "Whether or not to show the toolbar"
 msgstr "Przełącza wyświetlanie paska narzędziowego"
 
-#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:12
+#: aisleriot/aisleriot.schemas.in.h:8 blackjack/data/blackjack.schemas.in.h:12
 msgid "Whether or not to show the toolbar."
 msgstr "Przełącza wyświetlanie paska narzędziowego."
 
@@ -321,7 +335,7 @@ msgstr "Koniec gry."
 msgid "New Game"
 msgstr "Nowa gra"
 
-#: aisleriot/dialog.c:146 mahjongg/mahjongg.c:1402
+#: aisleriot/dialog.c:146 mahjongg/mahjongg.c:1861
 msgid "Select Game"
 msgstr "Wybierz grę"
 
@@ -555,7 +569,7 @@ msgid ""
 msgstr "Umieść karty w porządku najbardziej pasującym do obecnego układu."
 
 #: aisleriot/menu.c:73 gnome-stones/main.c:1077 gnomine/gnomine.c:374
-#: mahjongg/mahjongg.c:1163
+#: mahjongg/mahjongg.c:1622
 msgid "Main game:"
 msgstr "Główna gra:"
 
@@ -568,7 +582,7 @@ msgstr "Gry karciane:"
 #: gnect/src/main.c:814 gnibbles/main.c:181 gnobots2/menu.c:194
 #: gnome-stones/main.c:1088 gnometris/tetris.cpp:1110 gnomine/gnomine.c:387
 #: gnotravex/gnotravex.c:1460 gnotski/gnotski.c:1137 gtali/gyahtzee.c:390
-#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1180 same-gnome/same-gnome.c:709
+#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1639 same-gnome/same-gnome.c:709
 msgid "translator_credits"
 msgstr "GNOME PL Team <translators@gnome.pl>"
 
@@ -593,11 +607,11 @@ msgid "Modify the options for this game"
 msgstr "Zmienia opcje gry"
 
 #: aisleriot/menu.c:185 blackjack/src/menu.cpp:146 gnect/src/main.c:1166
-#: mahjongg/mahjongg.c:355
+#: mahjongg/mahjongg.c:814
 msgid "_Toolbar"
 msgstr "Pasek narzędzio_wy"
 
-#: aisleriot/menu.c:185 blackjack/src/menu.cpp:147 mahjongg/mahjongg.c:356
+#: aisleriot/menu.c:185 blackjack/src/menu.cpp:147 mahjongg/mahjongg.c:815
 msgid "Show or hide the toolbar"
 msgstr "Przełącza wyświetlanie paska narzędziowego"
 
@@ -626,7 +640,7 @@ msgid "Get statistics on the current game"
 msgstr "Pobranie statystyk bieżącej gry"
 
 #: aisleriot/menu.c:249 blackjack/src/menu.cpp:194 gnect/src/main.c:1190
-#: mahjongg/mahjongg.c:380
+#: mahjongg/mahjongg.c:839
 msgid "New"
 msgstr "Nowa gra"
 
@@ -634,7 +648,7 @@ msgstr "Nowa gra"
 msgid "Start a new game"
 msgstr "Rozpoczyna nową grę"
 
-#: aisleriot/menu.c:252 blackjack/src/menu.cpp:197 mahjongg/mahjongg.c:384
+#: aisleriot/menu.c:252 blackjack/src/menu.cpp:197 mahjongg/mahjongg.c:843
 msgid "Restart"
 msgstr "Od początku"
 
@@ -646,7 +660,7 @@ msgstr "Ponownie rozpoczyna grę"
 msgid "Select"
 msgstr "Wybierz"
 
-#: aisleriot/menu.c:260 gnect/src/main.c:1193 mahjongg/mahjongg.c:396
+#: aisleriot/menu.c:260 gnect/src/main.c:1193 mahjongg/mahjongg.c:855
 msgid "Undo"
 msgstr "Cofnij"
 
@@ -654,7 +668,7 @@ msgstr "Cofnij"
 msgid "Undo the last move"
 msgstr "Cofa ostatni ruch"
 
-#: aisleriot/menu.c:263 mahjongg/mahjongg.c:400
+#: aisleriot/menu.c:263 mahjongg/mahjongg.c:859
 msgid "Redo"
 msgstr "Ponów"
 
@@ -663,7 +677,7 @@ msgid "Redo the undone move"
 msgstr "Ponawia ostatni ruch"
 
 #: aisleriot/menu.c:266 blackjack/src/menu.cpp:201 gnect/src/main.c:1194
-#: mahjongg/mahjongg.c:402
+#: mahjongg/mahjongg.c:861
 msgid "Hint"
 msgstr "Podpowiedź"
 
@@ -712,12 +726,12 @@ msgstr "Odłóż wykorzystane na miejsce zapasu"
 msgid "empty foundation"
 msgstr "pusty podkład"
 
-#: aisleriot/sol.c:132
+#: aisleriot/sol.c:133
 #, c-format
 msgid "AisleRiot: %s (%d)"
 msgstr "AisleRiot: %s (%d)"
 
-#: aisleriot/sol.c:159
+#: aisleriot/sol.c:160
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -730,30 +744,30 @@ msgstr ""
 "\n"
 "Upewnij się, że gra Aisleriot została poprawnie zainstalowana."
 
-#: aisleriot/sol.c:217 aisleriot/sol.c:237
+#: aisleriot/sol.c:226 aisleriot/sol.c:246
 msgid "Help"
 msgstr "Pomoc"
 
-#: aisleriot/sol.c:237 aisleriot/sol.c:360
+#: aisleriot/sol.c:246 aisleriot/sol.c:379
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: aisleriot/sol.c:407 glines/glines.c:1494 gnobots2/statusbar.c:65
+#: aisleriot/sol.c:426 glines/glines.c:1494 gnobots2/statusbar.c:65
 #: gnome-stones/status.c:71 gnometris/scoreframe.cpp:57 gnomine/gnomine.c:380
 #: same-gnome/same-gnome.c:959
 msgid "Score:"
 msgstr "Punkty:"
 
-#: aisleriot/sol.c:411 gnomine/gnomine.c:933 gnotravex/gnotravex.c:993
-#: mahjongg/mahjongg.c:1686
+#: aisleriot/sol.c:430 gnomine/gnomine.c:933 gnotravex/gnotravex.c:993
+#: mahjongg/mahjongg.c:2145
 msgid "Time:"
 msgstr "Czas:"
 
-#: aisleriot/sol.c:468 blackjack/src/blackjack.cpp:587
+#: aisleriot/sol.c:487 blackjack/src/blackjack.cpp:587
 msgid "Variation on game rules"
 msgstr "Typ gry (reguł gry)"
 
-#: aisleriot/sol.c:469 blackjack/src/blackjack.cpp:588 gnobots2/gnobots.c:60
+#: aisleriot/sol.c:488 blackjack/src/blackjack.cpp:588 gnobots2/gnobots.c:60
 #: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:889
 msgid "NAME"
 msgstr "NAZWA"
@@ -1081,6 +1095,19 @@ msgstr "Spróbuj poprzesuwać kupki kart"
 #: aisleriot/spiderette.scm.h:2 aisleriot/will_o_the_wisp.scm.h:2
 msgid "Place something on to the empty Tableau slot"
 msgstr "Umieść coś w pustym miejscu tableau"
+
+#. For translators: N/A means "Not Applicable", use whatever
+#. * abbreviation you have for a value that has no meaning.
+#: aisleriot/statistics.c:95 aisleriot/statistics.c:104
+#: aisleriot/statistics.c:113
+msgid "N/A"
+msgstr "Nie dotyczy"
+
+#. Translators: this represents minutes:seconds.
+#: aisleriot/statistics.c:99 aisleriot/statistics.c:108
+#, c-format
+msgid "%d:%02d"
+msgstr "%d:%02d"
 
 #: aisleriot/statistics.glade.h:1
 msgid "<b>Time</b>"
@@ -1523,6 +1550,14 @@ msgstr "Zakład:"
 #: blackjack/src/blackjack.cpp:336
 msgid "Balance:"
 msgstr "Bilans:"
+
+#: blackjack/src/card.cpp:156
+msgid "Could not load the card deck images."
+msgstr "Nie można wczytać obrazów talii kart."
+
+#: blackjack/src/card.cpp:157
+msgid "Blackjack will now exit."
+msgstr "Gra oczko zakończy teraz pracę."
 
 #: blackjack/src/dialog.cpp:50
 msgid "Would you like insurance?"
@@ -2274,7 +2309,7 @@ msgstr "_Dźwięki"
 msgid "Enable or disable sound"
 msgstr "Przełącza używanie dźwięków"
 
-#: gnect/src/main.c:1190 mahjongg/mahjongg.c:380
+#: gnect/src/main.c:1190 mahjongg/mahjongg.c:839
 msgid "New game"
 msgstr "Rozpoczyna nową grę"
 
@@ -3225,7 +3260,7 @@ msgstr "Plansza początkowa"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:423 gnome-stones/main.c:1034 mahjongg/mahjongg.c:390
+#: gnome-stones/main.c:423 gnome-stones/main.c:1034 mahjongg/mahjongg.c:849
 msgid "Pause"
 msgstr "Pauza"
 
@@ -4283,43 +4318,75 @@ msgstr ""
 "Sprawdź konfigurację GConf, a w szczególności poprawność zainstalowanych "
 "schematów."
 
-#: mahjongg/mahjongg.c:324
+#: mahjongg/mahjongg.c:713
+msgid "Easy"
+msgstr "Prosty"
+
+#: mahjongg/mahjongg.c:714
+msgid "Difficult"
+msgstr "Trudny"
+
+#: mahjongg/mahjongg.c:715
+msgid "Confounding Cross"
+msgstr "Zagmatwany krzyż"
+
+#: mahjongg/mahjongg.c:716
+msgid "Pyramid's Walls"
+msgstr "Ściany piramidy"
+
+#: mahjongg/mahjongg.c:717
+msgid "Tic-Tac-Toe"
+msgstr "Kółko i krzyżyk"
+
+#: mahjongg/mahjongg.c:718
+msgid "Cloud"
+msgstr "Chmura"
+
+#: mahjongg/mahjongg.c:719
+msgid "Red Dragon"
+msgstr "Czerwony smok"
+
+#: mahjongg/mahjongg.c:720
+msgid "Four Bridges"
+msgstr "Cztery mosty"
+
+#: mahjongg/mahjongg.c:783
 msgid "New game with _seed..."
 msgstr "Nowa gra z ciągiem losującym..."
 
-#: mahjongg/mahjongg.c:325
+#: mahjongg/mahjongg.c:784
 msgid "Start a new game giving a seed number..."
 msgstr "Rozpoczyna nową grę z podanym ciągiem losującym..."
 
-#: mahjongg/mahjongg.c:340
+#: mahjongg/mahjongg.c:799
 msgid "Shu_ffle tiles"
 msgstr "Wymieszaj kafle"
 
-#: mahjongg/mahjongg.c:340 mahjongg/mahjongg.c:406
+#: mahjongg/mahjongg.c:799 mahjongg/mahjongg.c:865
 msgid "Shuffle tiles"
 msgstr "Miesza kafle"
 
-#: mahjongg/mahjongg.c:384
+#: mahjongg/mahjongg.c:843
 msgid "Restart game"
 msgstr "Ponownie rozpoczyna grę"
 
-#: mahjongg/mahjongg.c:390
+#: mahjongg/mahjongg.c:849
 msgid "Pause game"
 msgstr "Wstrzymuje grę"
 
-#: mahjongg/mahjongg.c:396
+#: mahjongg/mahjongg.c:855
 msgid "Undo previous move"
 msgstr "Cofa ostatni ruch"
 
-#: mahjongg/mahjongg.c:402
+#: mahjongg/mahjongg.c:861
 msgid "Get a hint"
 msgstr "Podpowiada ruch"
 
-#: mahjongg/mahjongg.c:406 mahjongg/mahjongg.c:910
+#: mahjongg/mahjongg.c:865 mahjongg/mahjongg.c:1369
 msgid "Shuffle"
 msgstr "Wymieszaj"
 
-#: mahjongg/mahjongg.c:617
+#: mahjongg/mahjongg.c:1076
 msgid ""
 "This new mapset will take effect when you start a new game, or when Mahjongg "
 "is restarted."
@@ -4327,87 +4394,87 @@ msgstr ""
 "Nowy zestaw map zostanie użyty przy rozpoczęciu kolejnej gry lub po ponownym "
 "uruchomieniu gry Mahjongg."
 
-#: mahjongg/mahjongg.c:870 mahjongg/mahjongg.c:876
+#: mahjongg/mahjongg.c:1329 mahjongg/mahjongg.c:1335
 msgid "These tiles don't match."
 msgstr "Te kafle nie pasują."
 
-#: mahjongg/mahjongg.c:908
+#: mahjongg/mahjongg.c:1367
 msgid "There are no more moves."
 msgstr "Brak możliwości ruchu."
 
-#: mahjongg/mahjongg.c:975
+#: mahjongg/mahjongg.c:1434
 msgid "Preferences"
 msgstr "Preferencje"
 
-#: mahjongg/mahjongg.c:994
+#: mahjongg/mahjongg.c:1453
 msgid "Tiles"
 msgstr "Kafle"
 
-#: mahjongg/mahjongg.c:1002
+#: mahjongg/mahjongg.c:1461
 msgid "Tile Set"
 msgstr "Zestaw kafli"
 
-#: mahjongg/mahjongg.c:1015
+#: mahjongg/mahjongg.c:1474
 msgid "Maps"
 msgstr "Mapy"
 
-#: mahjongg/mahjongg.c:1023
+#: mahjongg/mahjongg.c:1482
 msgid "Select Map"
 msgstr "Wybór mapy"
 
-#: mahjongg/mahjongg.c:1036
+#: mahjongg/mahjongg.c:1495
 msgid "Colors"
 msgstr "Kolory"
 
-#: mahjongg/mahjongg.c:1044
+#: mahjongg/mahjongg.c:1503
 msgid "Background Color"
 msgstr "Kolor tła"
 
-#: mahjongg/mahjongg.c:1058
+#: mahjongg/mahjongg.c:1517
 msgid "Warnings"
 msgstr "Ostrzeżenia"
 
-#: mahjongg/mahjongg.c:1064
+#: mahjongg/mahjongg.c:1523
 msgid "Warn when tiles don't match"
 msgstr "Ostrzeganie o niezgodności kafli"
 
-#: mahjongg/mahjongg.c:1171
+#: mahjongg/mahjongg.c:1630
 msgid "Tiles:"
 msgstr "Kafle:"
 
-#: mahjongg/mahjongg.c:1200
+#: mahjongg/mahjongg.c:1659
 msgid "GNOME Mahjongg"
 msgstr "Mahjongg dla GNOME"
 
-#: mahjongg/mahjongg.c:1203
+#: mahjongg/mahjongg.c:1662
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "Mahjongg, dalekowshodnia gra kaflowa w wersji dla GNOME."
 
-#: mahjongg/mahjongg.c:1227
+#: mahjongg/mahjongg.c:1686
 msgid "... Game paused ..."
 msgstr "... Gra zatrzymana ..."
 
-#: mahjongg/mahjongg.c:1418
+#: mahjongg/mahjongg.c:1877
 msgid "Game Number:"
 msgstr "Ciąg losujący:"
 
-#: mahjongg/mahjongg.c:1496 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1955 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:1600
+#: mahjongg/mahjongg.c:2059
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Nie można odnaleźć użytecznej konfiguracji."
 
-#: mahjongg/mahjongg.c:1668
+#: mahjongg/mahjongg.c:2127
 msgid "Tiles Left:"
 msgstr "Pozostało kafli:"
 
-#: mahjongg/mahjongg.c:1677
+#: mahjongg/mahjongg.c:2136
 msgid "Moves Left:"
 msgstr "Pozostało ruchów:"
 
-#: mahjongg/mahjongg.c:1742
+#: mahjongg/mahjongg.c:2201
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "Witaj w grze GNOME Mahjongg"
 
@@ -4493,205 +4560,3 @@ msgstr "Witaj w Same GNOME!"
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Oczyszczanie planszy poprzez usuwanie grup kul"
-
-#~ msgid "<b>Game Name</b>"
-#~ msgstr "<b>Nazwa gry</b>"
-
-#~ msgid "Loading images..."
-#~ msgstr "Wczytywanie obrazów..."
-
-#~ msgid "Dealing game..."
-#~ msgstr "Rozdanie..."
-
-#~ msgid "Initializing scheme..."
-#~ msgstr "Inicjowanie schematu..."
-
-#~ msgid "Draw grid"
-#~ msgstr "Wyświetlanie siatki"
-
-#~ msgid "Name of the theme file to use."
-#~ msgstr "Nazwa użytego pliku z motywem."
-
-#~ msgid "One corresponds to speaker beeps, two to audio files."
-#~ msgstr "Jeden odpowiada piskom głośnika, dwa plikom dźwiękowym."
-
-#~ msgid "Sound type"
-#~ msgstr "Typ dźwięku"
-
-#~ msgid "Theme file"
-#~ msgstr "Plik z motywem"
-
-#~ msgid "Whether or not to display grid lines on the game board."
-#~ msgstr "Przełącza wyświetlenie linii siatki na planszy."
-
-#~ msgid "Who starts"
-#~ msgstr "Kto rozpoczyna"
-
-#~ msgid ""
-#~ "Zero is Player One, one is Player Two and two corresponds to players "
-#~ "taking turns."
-#~ msgstr ""
-#~ "Zero odpowiada graczowi pierwszemu, jeden graczowi drugiemu, dwa "
-#~ "odpowiada ruchom na zmianę."
-
-#~ msgid ""
-#~ "Zero is human; one through four correspond to the level of the computer "
-#~ "player."
-#~ msgstr ""
-#~ "Zero odpowiada człowiekowi; wartości od jeden do czterech określają "
-#~ "poziom gry komputera."
-
-#~ msgid "Gnect Scores"
-#~ msgstr "Punktacja Gnect"
-
-#~ msgid "Draw _grid"
-#~ msgstr "Wyświetlanie _siatki"
-
-#~ msgid "Show or hide the grid"
-#~ msgstr "Przełącza wyświetlanie siatki"
-
-#~ msgid "Initial window placement"
-#~ msgstr "Początkowe położenie okna"
-
-#~ msgid "GEOMETRY"
-#~ msgstr "ROZMIARY"
-
-#~ msgid "Random number seed"
-#~ msgstr "Losowe ziarno"
-
-#~ msgid "SEED"
-#~ msgstr "ZIARNO"
-
-#~ msgid "Initial theme file (excluding path)"
-#~ msgstr "Początkowy plik motywu (bez ścieżki)"
-
-#~ msgid "Debugging level (4 for random seed)"
-#~ msgstr "Poziom debugowania (4 dla losowego ziarna)"
-
-#~ msgid "%s: no themes available\n"
-#~ msgstr "%s: brak dostępnych motywów\n"
-
-#~ msgid "Player 2: %s"
-#~ msgstr "2. gracz : %s"
-
-#~ msgid ""
-#~ "Applying this change to Player Selection\n"
-#~ "will end the current game"
-#~ msgstr ""
-#~ "Zastosowanie tej zmiany do wyboru gracza\n"
-#~ "zakończy bieżącą grę"
-
-#~ msgid "Error loading theme"
-#~ msgstr "Przy odczytywaniu motywu wystąpił błąd"
-
-# Pytanie czy Velena mozna odmieniać?
-#~ msgid "Non-Velena / Simple"
-#~ msgstr "Prosty / bez Velena"
-
-#~ msgid "Velena / Weak"
-#~ msgstr "Słaby / Velena"
-
-#~ msgid "Velena / Medium"
-#~ msgstr "Średni / Velena"
-
-#~ msgid "Velena / Strong"
-#~ msgstr "Mocny / Velena"
-
-#~ msgid "Always Player 1"
-#~ msgstr "Zawsze gracz 1"
-
-#~ msgid "Always Player 2"
-#~ msgstr "Zawsze gracz 2"
-
-#~ msgid "Take turns"
-#~ msgstr "Na zmianę"
-
-#~ msgid "_Player Selection"
-#~ msgstr "Wybór g_racza"
-
-#~ msgid "Who starts?"
-#~ msgstr "Kto zaczyna?"
-
-#~ msgid "Appearance and Behaviour"
-#~ msgstr "Wygląd i zachowanie"
-
-#~ msgid "Theme Selection:"
-#~ msgstr "Wybór motywu:"
-
-#~ msgid "Sound Type"
-#~ msgstr "Typ dźwięku"
-
-#~ msgid "Speaker beep"
-#~ msgstr "Dźwięki z głośniczka"
-
-#~ msgid "GNOME sound"
-#~ msgstr "Dźwięk GNOME"
-
-#~ msgid "This can be set up using the GNOME Control Center"
-#~ msgstr "Można to ustawić za pomocą Centrum Sterowania GNOME"
-
-#~ msgid "Keyboard Control"
-#~ msgstr "Sterowanie przy użyciu klawiatury"
-
-#~ msgid "Drop counter"
-#~ msgstr "Upuszczenie kuli"
-
-#~ msgid "Black"
-#~ msgstr "Czarny"
-
-#~ msgid "White"
-#~ msgstr "Biały"
-
-#~ msgid "Grey"
-#~ msgstr "Szary"
-
-#~ msgid "Pink"
-#~ msgstr "Różowy"
-
-#~ msgid "Violet"
-#~ msgstr "Fioletowy"
-
-#~ msgid "Brown"
-#~ msgstr "Brązowy"
-
-#~ msgid "AisleRiot Preferences"
-#~ msgstr "Preferencje gry AisleRiot"
-
-#~ msgid "Game Status"
-#~ msgstr "Stan gry"
-
-#~ msgid "Players"
-#~ msgstr "Gracze"
-
-#~ msgid "Toggle sound"
-#~ msgstr "Przełącza użycie dźwięków"
-
-#~ msgid "Tile Background"
-#~ msgstr "Tło kafli"
-
-#~ msgid "Could not find file %s"
-#~ msgstr "Nie można odnaleźć pliku %s"
-
-#~ msgid ""
-#~ "The side length of an individual game tile. The minimum is 40, the "
-#~ "maximum is set depending on screen height. The correct way to set this is "
-#~ "by resizing the window."
-#~ msgstr ""
-#~ "Długość boku pojedynczego elementu. Minimalna wartość to 40, wartość "
-#~ "maksymalna zależy od wysokości ekranu. Ustawienie tej opcji, odbywa się "
-#~ "poprzez zmianę rozmiaru okna gry."
-
-#~ msgid "The size of a tile"
-#~ msgstr "Rozmiar kafla"
-
-#~ msgid "Show thoughts during turn"
-#~ msgstr "Wyświetlanie komentarzy podczas tury"
-
-#~ msgid "Optional Rules"
-#~ msgstr "Opcjonalne zasady"
-
-#~ msgid "Extra Yahtzee Bonus"
-#~ msgstr "Premia Yahtzee"
-
-#~ msgid "Enforce Joker Rules"
-#~ msgstr "Wymuszenie zasad Jokera"
