@@ -1,5 +1,5 @@
 /* AisleRiot - sol.c
- * Copyright (C) 1998, 2001 Jonathan Blandford <jrb@alum.mit.edu>
+ * Copyright (C) 1998, 2001, 2003 Jonathan Blandford <jrb@alum.mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -150,7 +150,7 @@ void eval_installed_file (char *file)
     GtkWidget *w = gtk_message_dialog_new (GTK_WINDOW(app),
                                        GTK_DIALOG_DESTROY_WITH_PARENT,
                                        GTK_MESSAGE_ERROR,
-                                       GTK_BUTTONS_CLOSE,
+                                       GTK_BUTTONS_OK,
                                        message);
 
     gtk_dialog_run (GTK_DIALOG(w));

@@ -62,7 +62,7 @@ games_gconf_sanity_check_string (GConfClient *client, const gchar* key)
     dialog = gtk_message_dialog_new (NULL,
                                      0,
                                      GTK_MESSAGE_ERROR,
-                                     GTK_BUTTONS_CLOSE,
+                                     GTK_BUTTONS_OK,
                                      _("There was an error accessing GConf: %s"),
                                      error->message);
     gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
@@ -74,8 +74,10 @@ games_gconf_sanity_check_string (GConfClient *client, const gchar* key)
     dialog = gtk_message_dialog_new (NULL,
                                      0,
                                      GTK_MESSAGE_ERROR,
-                                     GTK_BUTTONS_CLOSE,
-                                     _("<b>The default configuration values could not be retrieved correctly</b>.\n\nPlease check your GConf configuration, specifically that the schemas have been installed correctly."));
+                                     GTK_BUTTONS_OK,
+                                     "<span weight=\"bold\" size=\"larger\">%s</span>\n\n%s",
+                                     _("The default configuration values could not be retrieved correctly."),
+                                     _("Please check your GConf configuration, specifically that the schemas have been installed correctly."));
     /* I know this uses a private field, so give me an easy way to set it. */
     g_object_set (GTK_MESSAGE_DIALOG (dialog)->label, "use-markup", TRUE, NULL);
     gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
