@@ -321,8 +321,18 @@
       (list 0 "Deal a card")
       #f))
 
+(define (check-waste)
+  (and (not (empty-slot? 2))
+       (> (length (get-cards 2)) 1)
+       (= 13 (+ (get-value (get-top-card 2))
+		(get-value (cadr (get-cards 2)))))
+       (list 1
+	     (get-name (get-top-card 2))
+	     (get-name (cadr (get-cards 2))))))
+
 (define (get-hint)
   (or (check-move 1 2)
+      (check-waste)
       (dealable?)))
 
 (define (get-options) 

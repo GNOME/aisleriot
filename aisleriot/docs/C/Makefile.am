@@ -13,6 +13,7 @@ help_DATA = index.html	\
 	docbook.css	\
 	camelot-goal.png	\
 	clock-rules.png	\
+	agnes.html	\
 	auld-lang-syne.html	\
 	bakers-dozen.html	\
 	bakers-game.html	\
@@ -75,6 +76,7 @@ help_DATA = index.html	\
 help_SGML = \
 	aisleriot.sgml	\
 	definitions.sgml	\
+	agnes.sgml	\
 	auld_lang_syne.sgml	\
 	bakers_dozen.sgml	\
 	bakers_game.sgml	\

@@ -338,7 +338,8 @@
       (check-foundation-for-uncover 10)
       (check-foundation-for-waste 2)
       (dealable?)
-      (check-to-foundations 1 2)))
+      (check-to-foundations 1 2)
+      (list 0 "Try rearranging the cards")))
 
 (define (get-options) 
   #f)
