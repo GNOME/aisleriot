@@ -1,7 +1,7 @@
 figs = \
 	figures/camelot-goal.png	\
 	figures/clock-rules.png
-docname = aisleriot 
+docname = aisleriot
 lang = C
 omffile = aisleriot-C.omf
 include $(top_srcdir)/sgmldocs.make
