@@ -24,9 +24,6 @@ AM_CONDITIONAL(CXX_PRESENT, test "x$ac_cv_prog_cxx_works" != xno)
 GNOME_X_CHECKS
 GNOME_CHECK_GUILE
 
-## iagno2 needs this
-GNOME_PTHREAD_CHECK
-
 GDK_PIXBUF_CFLAGS=`$GNOME_CONFIG --cflags gdk_pixbuf`
 GDK_PIXBUF_LIBS=`$GNOME_CONFIG --libs gdk_pixbuf`
 AC_SUBST(GDK_PIXBUF_CFLAGS)
@@ -117,6 +114,7 @@ iagno2/Makefile
 iagno2/reversi-iagno2/Makefile
 iagno2/plugins/Makefile
 iagno2/plugins/random/Makefile
+iagno2/plugins/swedishchef/Makefile
 iagno2/src/Makefile
 iagno2/tiles/Makefile
 gnomine/Makefile
