@@ -30,8 +30,23 @@
  * Menu stuff...
  */
 
-
 /* Call backs... */
+
+void restart_game() 
+{
+  new_game (NULL, &seed);
+};
+
+void random_seed() 
+{
+  new_game (NULL, NULL);
+};
+
+void new_rules (GtkWidget* w, gchar* file) 
+{
+  new_game (file, NULL);
+};
+
 
 int file_quit_callback (GtkWidget *app, void *data )
 {
@@ -141,45 +156,6 @@ int game_hint_callback (GtkWidget *app, void *data)
   return TRUE;
 }
 
-int game_load_game_callback (GtkWidget *app, void *file )
-{
-  eval_installed_file((char*) file);
-  game_file = file;
-  game_name = game_file_to_name((char*) file);
-
-  return file_new_game_callback (app, NULL);
-}
-
-int file_new_game_callback (GtkWidget *app, void *data )
-{
-  SCM size;
-  gint old_w, old_h, min_w, min_h;
-
-  hide_game_over_box();
-  hide_select_box();
-
-  seed = random();
-  srandom(seed);
-  score = 0;
-  set_score();
-
-  if(surface) 
-    timer_start();
-
-  size = gh_apply(game_data->start_game_lambda, SCM_EOL);
-  min_w = gh_scm2int(gh_car(size))*get_horiz_offset() + 2*get_horiz_start();
-  min_h = gh_scm2int(gh_cadr(size))*get_vert_offset() + 2*get_vert_start();
-
-  gdk_window_get_size(playing_area->window, &old_w, &old_h);
-  gtk_widget_set_usize (playing_area, min_w, min_h);
-
-  if(old_w >= min_w && old_h >= min_h)
-    refresh_screen();
-
-  make_title();
-  return TRUE;
-}
-
 int file_select_game_callback (GtkWidget *app, void *data )
 {
   show_select_game_dialog();
@@ -191,22 +167,6 @@ int undo_callback (GtkWidget *app, void *data)
 }
 int redo_callback (GtkWidget *app, void *data)
 {
-  return TRUE;
-}
-int restart_callback (GtkWidget *app, void *data)
-{
-  srandom(seed);
-
-  score = 0;
-  set_score();
-
-  if(surface) 
-    timer_start();
-
-  gh_apply(game_data->start_game_lambda, SCM_EOL);
-  refresh_screen();
-  make_title();
-
   return TRUE;
 }
 
@@ -263,7 +223,7 @@ GnomeUIInfo help_menu[] = {
 };
 
 GnomeUIInfo game_menu[] = {
-  {GNOME_APP_UI_ITEM, N_("New"), NULL, file_new_game_callback, NULL, NULL,
+  {GNOME_APP_UI_ITEM, N_("New"), NULL, random_seed, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'n', GDK_CONTROL_MASK, NULL},
   {GNOME_APP_UI_ITEM, N_("Properties..."), NULL, show_property_dialog, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 0, 0, NULL},
@@ -290,11 +250,11 @@ GnomeUIInfo top_menu[] = {
 GnomeUIInfo toolbar[] =
 {
   {GNOME_APP_UI_ITEM, N_("New"), N_("Start a new game."),
-   file_new_game_callback, NULL, NULL,
+   random_seed, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
   
   {GNOME_APP_UI_ITEM, N_("Restart"), N_("Start this game over."),
-   restart_callback, NULL, NULL,
+   restart_game, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_REFRESH, 0, 0, NULL},
   
   {GNOME_APP_UI_ITEM, N_("Seed"), N_("Start a new game after choosing the seed."),
@@ -337,7 +297,7 @@ void create_menus(GnomeApp *app)
     gtk_widget_show(w);
     gtk_menu_shell_append (GTK_MENU_SHELL(variation_sub_menu[0].widget), w);
     gtk_signal_connect (GTK_OBJECT(w), "activate", 
-			(GtkSignalFunc) game_load_game_callback,
+			(GtkSignalFunc) new_rules,
 			(gpointer) game_dents[i]->d_name);
   }
 }

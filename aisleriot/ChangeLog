@@ -1,3 +1,12 @@
+Tue Oct 27 Felix Bellaby <felix@pooh.u-net.com>
+	* sol.c: (new_game) relocates new game creation into one place, 
+	updates help menu to reflect any change in game rules.
+	(game_file_to_help_entry) converts a game file to a help entry. 
+	* sol.h: new_game added.
+	* menu.c: game change callbacks replaced with calls to new_game.
+	* menu.h: random_seed added.
+	* dialog.c: updated to use new_game via random_seed.
+	
 1998-10-27  Jens Lautenbacher  <jens@tellux.de>
 
 	* menu.c (toolbar): GNOME_STOCK_PIXMAP_EXIT instead of
