@@ -110,14 +110,17 @@ types_DATA  = 		\
 	will_o_the_wisp.scm	\
 	yield.scm	\
 	yukon.scm	\
-	zebra.scm
+	zebra.scm	\
+	plait.scm
 
 cardimage_DATA = baize.png splash.png
 
 icon_DATA = gnome-aisleriot.png
 
 EXTRA_DIST = AUTHORS $(types_DATA) $(cardimage_DATA) \
-	$(icon_DATA) sol.desktop SCHEME_GAMES.h
+	$(icon_DATA) sol.desktop SCHEME_GAMES.h \
+	template.scm translatable_game_names.h
+
 
 sysdir = $(datadir)/gnome/apps/Games
 sys_DATA = sol.desktop

@@ -186,6 +186,8 @@ void new_game (gchar* file, guint *seedp )
     }
     game_name = game_file_to_name (file);
 
+    save_state (gnome_master_client ());
+
     rules_help[0].label = game_name;
     rules_help[0].user_data = game_file_to_help_entry(file);
     g_snprintf(buf, sizeof (buf), "%s/%s", _("Help"), _("Aisleriot"));
