@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-games-1.0.51\n"
-"POT-Creation-Date: 2000-06-08 23:49+0000\n"
-"PO-Revision-Date: 2000-06-08 23:51+00:00\n"
+"POT-Creation-Date: 2000-08-02 20:32+0000\n"
+"PO-Revision-Date: 2000-08-02 20:40+00:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -685,7 +685,7 @@ msgstr "Новая игра с зерном..."
 msgid "Start a new game with a different seed"
 msgstr "Начать игру с другим зерном"
 
-#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:846
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:1072
 msgid "Score"
 msgstr "Счет"
 
@@ -787,7 +787,7 @@ msgstr "Светлые пропускают ход, тёмные ходят"
 msgid "Dark must pass, Light's move"
 msgstr "Тёмные пропускают ход, светлые ходят"
 
-#: gataxx/gataxx.c:248 glines/glines.c:643 iagno/gnothello.c:246
+#: gataxx/gataxx.c:248 glines/glines.c:861 iagno/gnothello.c:246
 #: same-gnome/same-gnome.c:639
 msgid "Do you really want to quit?"
 msgstr "Вы действительно хотите закончить?"
@@ -891,29 +891,62 @@ msgstr "Переворот в конце игры"
 msgid "Tile set:"
 msgstr "Набор фишек:"
 
-#: glines/glines.c:111
+#: glines/glines.c:63
+#, c-format
+msgid "Could not find the '%s' theme for Glines\n"
+msgstr "Тема '%s' для Glines не найдена\n"
+
+#: glines/glines.c:159
 msgid "Game Over!"
 msgstr "Игра закончена!"
 
-#: glines/glines.c:113 glines/glines.c:604 glines/glines.c:627
-#: glines/glines.c:812
+#: glines/glines.c:161 glines/glines.c:654 glines/glines.c:677
+#: glines/glines.c:1038
 msgid "Glines"
 msgstr "Glines"
 
-#. Can't go there!
-#: glines/glines.c:318
-msgid "Can't go there!"
+#. Can't move there!
+#: glines/glines.c:368
+msgid "Can't move there!"
 msgstr "Невозможно пройти туда!"
 
-#: glines/glines.c:630
+#: glines/glines.c:672
+msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
+msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
+
+#: glines/glines.c:673
+msgid "Szabolcs Ban <shooby@gnome.hu>"
+msgstr "Szabolcs Ban <shooby@gnome.hu>"
+
+#: glines/glines.c:678
+msgid "(C) 1997-1998 the Free Software Foundation"
+msgstr "(C) 1997-1998 Фонд Свободного Программного Обеспечения"
+
+#: glines/glines.c:680
 msgid "Gnome port of the once-popular Color Lines game"
 msgstr "Версия для Gnome популярной игры \"Color Lines\""
 
-#: glines/glines.c:822
+#: glines/glines.c:796 mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:554
+msgid "Preferences"
+msgstr "Настройки"
+
+#: glines/glines.c:815
+msgid "Theme"
+msgstr "Тема"
+
+#: glines/glines.c:821
+msgid "Select theme:"
+msgstr "Выбрать тему:"
+
+#: glines/glines.c:835
+msgid "Select background:"
+msgstr "Выбрать фон фишек:"
+
+#: glines/glines.c:1048
 msgid "Welcome to Glines!"
 msgstr "Добро пожаловать в Glines!"
 
-#: glines/glines.c:833
+#: glines/glines.c:1059
 msgid "Next Balls"
 msgstr "Следующие шарики"
 
@@ -2140,7 +2173,7 @@ msgstr "Дополнительная премия за Yahtzee"
 #. --- Button ---
 #: gtali/setup.c:357
 msgid "Enforce Joker Rules"
-msgstr ""
+msgstr "Применить правила джокера"
 
 #. --- PLAYER NAMES FRAME ----
 #: gtali/setup.c:372
@@ -2476,10 +2509,6 @@ msgstr "Цвета"
 msgid "Background:"
 msgstr "Фон:"
 
-#: mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:554
-msgid "Preferences"
-msgstr "Настройки"
-
 #: mahjongg/mahjongg.c:1190
 msgid "Tile Background"
 msgstr "Фон фишек"
@@ -2584,7 +2613,7 @@ msgstr "Добро пожаловать в 'Тот же Gnome'!"
 
 #: scottfree/GnomeScott.c:1204
 msgid "Nothing dropped.\n"
-msgstr ""
+msgstr "Ничего не сброшено.\n"
 
 #: scottfree/GnomeScott.c:1209
 msgid "What ? "
@@ -2616,23 +2645,23 @@ msgstr "Этого ещё нельзя сделать. "
 
 #: scottfree/GnomeScott.c:1298
 msgid "Light has run out! "
-msgstr ""
+msgstr "Огонь погас! "
 
 #: scottfree/GnomeScott.c:1300
 msgid "Your light has run out. "
-msgstr ""
+msgstr "Ваш огонь погас. "
 
 #: scottfree/GnomeScott.c:1313
 msgid "Light runs out in "
-msgstr ""
+msgstr "Огонь погас на "
 
 #: scottfree/GnomeScott.c:1315
 msgid " turns. "
-msgstr ""
+msgstr " ходу."
 
 #: scottfree/GnomeScott.c:1320
 msgid "Your light is growing dim. "
-msgstr ""
+msgstr "Ваш огонь затухает. "
 
 #: scottfree/GnomeScott.c:1493
 msgid "Copyright (C) 1997 Alan Cox"
