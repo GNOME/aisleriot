@@ -91,12 +91,10 @@ void help_about_callback ()
 
   const gchar *translator_credits = _("translator_credits");
 
-#ifdef ENABLE_NLS
   {
 	int i=0;
 	while (authors[i] != NULL) { authors[i]=_(authors[i]); i++; }
   }
-#endif
 
   if (about) {
     gdk_window_raise (about->window);
