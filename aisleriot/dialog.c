@@ -23,7 +23,7 @@ void show_game_over_dialog() {
 				  _("New Game"), GNOME_STOCK_BUTTON_CANCEL, 
 				  NULL);
   gnome_dialog_set_default ( GNOME_DIALOG (dialog), 0 );
-  if (gnome_dialog_run_modal (GNOME_DIALOG (dialog)) == 0) 
+  if (gnome_dialog_run (GNOME_DIALOG (dialog)) == 0) 
     new_game (NULL, NULL);
 #else
   gnome_app_question_modal ( GNOME_APP (app), message, random_seed, NULL);
@@ -126,7 +126,7 @@ void show_select_game_dialog()
   sprintf (buf, "%d", seed);
   gtk_entry_set_text (GTK_ENTRY (seed_entry), buf);
 
-  gnome_dialog_run_modal (GNOME_DIALOG (dialog));
+  gnome_dialog_run (GNOME_DIALOG (dialog));
 }
 
 void show_hint_dialog() 
