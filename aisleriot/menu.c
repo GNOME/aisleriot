@@ -115,7 +115,7 @@ GnomeUIInfo game_menu[] = {
 
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_ITEM_STOCK(N_("_Exit"), NULL, 
+  GNOMEUIINFO_ITEM_STOCK(N_("E_xit"), NULL, 
 			 quit_app, GNOME_STOCK_MENU_EXIT),
   GNOMEUIINFO_END
 };
