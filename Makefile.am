@@ -7,7 +7,8 @@ guile_DIRS = aisleriot
 endif
 
 SUBDIRS = intl po macros \
-	 freecell gnomine same-gnome scottfree mahjongg $(guile_DIRS) $(objc_DIRS)
+	 freecell gnomine same-gnome scottfree mahjongg \
+         gyahtzee $(guile_DIRS) $(objc_DIRS)
 
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change
