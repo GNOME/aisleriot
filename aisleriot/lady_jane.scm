@@ -129,8 +129,10 @@
 	(#t #f)))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
-		 (number->string (length (get-cards 0)))))
+  (if (> (length (get-cards 0)) 1)
+      (string-append "Stock left:  " 
+		     (number->string (length (get-cards 0))))
+      (string-append "Stock left:  0"))) 
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))

@@ -59,11 +59,17 @@
 )
 
 (define (give-status-message)
-  (set-statusbar-message (get-stock-no-string)))
+  (set-statusbar-message (string-append (get-stock-no-string)
+					"   "
+					(get-redeals-string))))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
 		 (number->string (length (get-cards 0)))))
+
+(define (get-redeals-string)
+  (string-append "Redeals left:  "
+		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (check-kings slot-list)
   (if (= (get-value (get-top-card (car slot-list))) king)

@@ -273,9 +273,9 @@
 	 (if (eq? (get-value card) ace)
 	     ; move the Ace to an empty homecell
 	     (begin (remove-card slot)
+		    (add-to-score! 1)
 		    (add-card! (any-empty-homecell) card))
 	     ; move if the same suit and -1 value card is in a homecell.
-	     ; (FIXME)
 	     #f))))
 
 ;; Condition for fail -- no more cards to move

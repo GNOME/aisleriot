@@ -51,12 +51,18 @@
   (list 6 5))
 
 (define (give-status-message)
-  (set-statusbar-message (get-stock-no-string)))
+  (set-statusbar-message (string-append (get-stock-no-string)
+					"   "
+					(get-redeals-string))))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
 		 (number->string (length (get-cards 8)))))
-  
+
+(define (get-redeals-string)
+  (string-append "Redeals left:  "
+		 (number->string (- 2 FLIP-COUNTER))))
+
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
        (= (length card-list) 1)
@@ -176,7 +182,7 @@
 
 (define (game-over)
   (give-status-message)
-  (or (and (< FLIP-COUNTER 3)
+  (or (and (< FLIP-COUNTER 2)
 	   (not (empty-slot? 9)))
       (not (empty-slot? 8))
       (get-valid-move '(0 2 4 6 9))))
@@ -189,7 +195,7 @@
 
 (define (get-hint)
   (or (get-valid-move '(0 2 4 6 9))
-      (list 0 "Deal a new card from the deck"))) ; Should be (list 3 ...)
+      (list 0 "Deal a new card from the deck")))
 
 (define (get-options) #f)
 
