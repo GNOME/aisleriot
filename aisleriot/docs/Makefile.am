@@ -9,7 +9,8 @@ helpdir = $(datadir)/gnome/help/aisleriot/C
 help_DATA = index.html intro.html glossary.html gpl.html \
 	camelot.html canfield.html clock.html doublets.html \
 	eagle-wing.html fortunes.html klondike.html pileon.html \
-	odessa.html osmosis.html spider.html yukon.html\
+	neighbor.html odessa.html osmosis.html spider.html yukon.html\
+	beleaguered-castle.html\
 	camelot-goal.gif clock-rules.gif docbook.css topic.dat
 
 # These are the sources:
@@ -17,7 +18,8 @@ help_DATA = index.html intro.html glossary.html gpl.html \
 help_SGML = aisleriot.sgml definitions.sgml gpl.sgml 
 	camelot.sgml canfield.sgml clock.sgml doublets.sgml \
 	eagle-wing.sgml fortunes.sgml pileon.sgml klondike.sgml \
-	odessa.sgml osmosis.sgml spider.sgml yukon.sgml
+	neighbor.sgml odessa.sgml osmosis.sgml spider.sgml yukon.sgml\
+	beleaguered-castle.sgml
 
 EXTRA_DIST = $(help_DATA) $(help_SGML)
 

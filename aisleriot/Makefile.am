@@ -43,12 +43,14 @@ types_DATA  = 		\
 	fortunes.scm	\
 	freecell.scm	\
 	doublets.scm	\
+	beleaguered_castle.scm \
 	camelot.scm	\
 	canfield.scm	\
 	clock.scm	\
 	eagle_wing.scm	\
 	klondike.scm	\
 	pileon.scm	\
+	neighbor.scm	\
 	odessa.scm	\
 	osmosis.scm	\
 	sol.scm		\

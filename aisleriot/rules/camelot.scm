@@ -6,6 +6,7 @@
 
 (define (new-game)
   (initialize-playing-area)
+  (set-ace-low)
   (make-standard-deck)
   (shuffle-deck)
  
