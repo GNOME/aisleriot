@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-16 16:54-0700\n"
-"PO-Revision-Date: 2004-05-16 16:55-0700\n"
-"Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
+"POT-Creation-Date: 2004-05-22 21:18-0400\n"
+"PO-Revision-Date: 2004-05-22 21:19-0400\n"
+"Last-Translator: Alexander Winston <alexander.winston@comcast.net>\n"
 "Language-Team: English/Canada <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: aisleriot/agnes.scm.h:1 aisleriot/canfield.scm.h:1
 #: aisleriot/chessboard.scm.h:1 aisleriot/eagle_wing.scm.h:1
@@ -121,7 +121,7 @@ msgstr "The game file to use"
 msgid "The height of the main window."
 msgstr "The height of the main window."
 
-#: aisleriot/aisleriot.schemas.in.h:5
+#: aisleriot/aisleriot.schemas.in.h:5 blackjack/data/blackjack.schemas.in.h:5
 msgid "The name of the file with the graphics for the cards."
 msgstr "The name of the file with the graphics for the cards."
 
@@ -133,7 +133,7 @@ msgstr "The name of the scheme file containing the solitaire game to play."
 msgid "The width of the main window."
 msgstr "The width of the main window."
 
-#: aisleriot/aisleriot.schemas.in.h:8
+#: aisleriot/aisleriot.schemas.in.h:8 blackjack/data/blackjack.schemas.in.h:8
 msgid "Theme file name"
 msgstr "Theme file name"
 
@@ -344,7 +344,8 @@ msgstr "Select Game"
 msgid "Seed"
 msgstr "Seed"
 
-#: aisleriot/dialog.c:170
+#. Rules Tab
+#: aisleriot/dialog.c:170 blackjack/src/dialog.cpp:250
 msgid "Rules"
 msgstr "Rules"
 
@@ -578,7 +579,8 @@ msgstr "Card games:"
 #: gnomine/gnomine.c:546 gnotravex/gnotravex.c:1486 gtali/gyahtzee.c:415
 #: iagno/gnothello.c:369 mahjongg/mahjongg.c:1664 same-gnome/same-gnome.c:707
 msgid "translator-credits"
-msgstr "Maintainer: Adam Weinberger <adamw@gnome.org>\n"
+msgstr ""
+"Maintainer: Adam Weinberger <adamw@gnome.org>\n"
 "Alexander Winston <alexander.winston@comcast.net>"
 
 #: aisleriot/menu.c:118
@@ -754,11 +756,11 @@ msgstr "Score:"
 msgid "Time:"
 msgstr "Time:"
 
-#: aisleriot/sol.c:440 blackjack/src/blackjack.cpp:578
+#: aisleriot/sol.c:440 blackjack/src/blackjack.cpp:588
 msgid "Variation on game rules"
 msgstr "Variation on game rules"
 
-#: aisleriot/sol.c:441 blackjack/src/blackjack.cpp:579 gnobots2/gnobots.c:60
+#: aisleriot/sol.c:441 blackjack/src/blackjack.cpp:589 gnobots2/gnobots.c:60
 #: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:887
 msgid "NAME"
 msgstr "NAME"
@@ -1476,7 +1478,7 @@ msgstr "Move a build of cards on to the empty Tableau slot"
 msgid "the appropriate Foundation pile"
 msgstr "the appropriate Foundation pile"
 
-#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:228
+#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:231
 #: blackjack/src/menu.cpp:107 blackjack/src/splash.cpp:95
 msgid "Blackjack"
 msgstr "Blackjack"
@@ -1486,18 +1488,10 @@ msgid "Play the casino card game Blackjack"
 msgstr "Play the casino card game Blackjack"
 
 #: blackjack/data/blackjack.schemas.in.h:1
-msgid ""
-"A string containing a list of files to use to describe the cards. The format "
-"is obscure and defined by the gdk-card-image library"
-msgstr ""
-"A string containing a list of files to use to describe the cards. The format "
-"is obscure and defined by the gdk-card-image library"
-
-#: blackjack/data/blackjack.schemas.in.h:2
 msgid "Display probabilities"
 msgstr "Display probabilities"
 
-#: blackjack/data/blackjack.schemas.in.h:3
+#: blackjack/data/blackjack.schemas.in.h:2
 msgid ""
 "Display the probabilities of each dealer hand outcome and the expected value "
 "of your hand."
@@ -1505,11 +1499,11 @@ msgstr ""
 "Display the probabilities of each dealer hand outcome and the expected value "
 "of your hand."
 
-#: blackjack/data/blackjack.schemas.in.h:4
+#: blackjack/data/blackjack.schemas.in.h:3
 msgid "The amount of money in your bank"
 msgstr "The amount of money in your bank"
 
-#: blackjack/data/blackjack.schemas.in.h:5
+#: blackjack/data/blackjack.schemas.in.h:4
 msgid "The amount of money in your bank."
 msgstr "The amount of money in your bank."
 
@@ -1523,48 +1517,36 @@ msgstr ""
 msgid "The variation of the rules file to use"
 msgstr "The variation of the rules file to use"
 
-#: blackjack/data/blackjack.schemas.in.h:8
+#: blackjack/data/blackjack.schemas.in.h:9
 msgid "Use a quick deal"
 msgstr "Use a quick deal"
 
-#: blackjack/data/blackjack.schemas.in.h:9
+#: blackjack/data/blackjack.schemas.in.h:10
 msgid "Use a quick deal with no delay between each card."
 msgstr "Use a quick deal with no delay between each card."
 
-#: blackjack/data/blackjack.schemas.in.h:10
-msgid "What card style to use"
-msgstr "What card style to use"
-
-#: blackjack/src/blackjack.cpp:98
+#: blackjack/src/blackjack.cpp:94
 #, c-format
 msgid "Blackjack: %s (%d)"
 msgstr "Blackjack: %s (%d)"
 
-#: blackjack/src/blackjack.cpp:306
+#: blackjack/src/blackjack.cpp:313
 msgid "Place your wager or deal a hand"
 msgstr "Place your wager or deal a hand"
 
-#: blackjack/src/blackjack.cpp:309
+#: blackjack/src/blackjack.cpp:316
 msgid "Cards left:"
 msgstr "Cards left:"
 
-#: blackjack/src/blackjack.cpp:317
+#: blackjack/src/blackjack.cpp:324
 msgid "Wager:"
 msgstr "Wager:"
 
-#: blackjack/src/blackjack.cpp:329
+#: blackjack/src/blackjack.cpp:338
 msgid "Balance:"
 msgstr "Balance:"
 
-#: blackjack/src/card.cpp:156
-msgid "Could not load the card deck images."
-msgstr "Could not load the card deck images."
-
-#: blackjack/src/card.cpp:157
-msgid "Blackjack will now exit."
-msgstr "Blackjack will now exit."
-
-#: blackjack/src/dialog.cpp:50
+#: blackjack/src/dialog.cpp:51
 msgid "Would you like insurance?"
 msgstr "Would you like insurance?"
 
@@ -1580,104 +1562,99 @@ msgstr "Set your wager or click on the cards to deal a new hand."
 msgid "Blackjack Preferences"
 msgstr "Blackjack Preferences"
 
-#: blackjack/src/dialog.cpp:220 gnect/src/prefs.c:452
-#: gnibbles/preferences.c:306 gnome-stones/preferences.c:740
-msgid "_Game"
-msgstr "_Game"
+#: blackjack/src/dialog.cpp:219 gnobots2/properties.c:894
+msgid "Game"
+msgstr "Game"
 
-#: blackjack/src/dialog.cpp:227
+#: blackjack/src/dialog.cpp:226
 msgid "Display hand probabilities"
 msgstr "Display hand probabilities"
 
-#: blackjack/src/dialog.cpp:238
+#: blackjack/src/dialog.cpp:236
 msgid "Quick deals (no delay between each card)"
 msgstr "Quick deals (no delay between each card)"
 
-#: blackjack/src/dialog.cpp:250
-msgid "_Rules"
-msgstr "_Rules"
+#: blackjack/src/dialog.cpp:243
+msgid "Reset balance"
+msgstr "Reset balance"
 
-#: blackjack/src/dialog.cpp:274 gnomine/gnomine.c:293
+#: blackjack/src/dialog.cpp:275 gnomine/gnomine.c:293
 msgid "Name"
 msgstr "Name"
 
-#: blackjack/src/dialog.cpp:279
+#: blackjack/src/dialog.cpp:280
 msgid "Decks"
 msgstr "Decks"
 
-#: blackjack/src/dialog.cpp:284
+#: blackjack/src/dialog.cpp:285
 msgid "Hit Soft 17"
 msgstr "Hit Soft 17"
 
-#: blackjack/src/dialog.cpp:289
+#: blackjack/src/dialog.cpp:290
 msgid "Double Any Total"
 msgstr "Double Any Total"
 
-#: blackjack/src/dialog.cpp:294
+#: blackjack/src/dialog.cpp:295
 msgid "Double 9"
 msgstr "Double 9"
 
-#: blackjack/src/dialog.cpp:299
+#: blackjack/src/dialog.cpp:300
 msgid "Double Soft"
 msgstr "Double Soft"
 
-#: blackjack/src/dialog.cpp:304
+#: blackjack/src/dialog.cpp:305
 msgid "Double After Hit"
 msgstr "Double After Hit"
 
-#: blackjack/src/dialog.cpp:309
+#: blackjack/src/dialog.cpp:310
 msgid "Double After Split"
 msgstr "Double After Split"
 
-#: blackjack/src/dialog.cpp:314
+#: blackjack/src/dialog.cpp:315
 msgid "Resplit"
 msgstr "Resplit"
 
-#: blackjack/src/dialog.cpp:319
+#: blackjack/src/dialog.cpp:320
 msgid "Resplit Aces"
 msgstr "Resplit Aces"
 
-#: blackjack/src/dialog.cpp:324 blackjack/src/player.cpp:312
+#: blackjack/src/dialog.cpp:325 blackjack/src/player.cpp:312
 msgid "Surrender"
 msgstr "Surrender"
 
-#: blackjack/src/dialog.cpp:329
+#: blackjack/src/dialog.cpp:330
 msgid "Dealer Speed"
 msgstr "Dealer Speed"
 
-#: blackjack/src/dialog.cpp:389
-msgid "Card _Deck"
-msgstr "Card _Deck"
-
-#: blackjack/src/events.cpp:465
-msgid "Click to deal another card; drag card to split pair"
-msgstr "Click to deal another card; drag card to split pair"
-
-#: blackjack/src/events.cpp:467
-msgid "Click to deal another card"
-msgstr "Click to deal another card"
-
-#: blackjack/src/events.cpp:469
-msgid "Click to finish adding cards to your hand"
-msgstr "Click to finish adding cards to your hand"
-
-#: blackjack/src/events.cpp:472
-msgid "Click to deal a new hand"
-msgstr "Click to deal a new hand"
-
-#: blackjack/src/events.cpp:485
+#: blackjack/src/events.cpp:462
 msgid "Click to double your wager"
 msgstr "Click to double your wager"
 
-#: blackjack/src/events.cpp:490
+#: blackjack/src/events.cpp:467
 #, c-format
 msgid "Double click to increase your wager by %.2f"
 msgstr "Double click to increase your wager by %.2f"
 
-#: blackjack/src/events.cpp:503
+#: blackjack/src/events.cpp:477
 #, c-format
 msgid "Double click to decrease your wager by %.2f"
 msgstr "Double click to decrease your wager by %.2f"
+
+#: blackjack/src/events.cpp:494
+msgid "Click to deal another card; drag card to split pair"
+msgstr "Click to deal another card; drag card to split pair"
+
+#: blackjack/src/events.cpp:496
+msgid "Click to deal another card"
+msgstr "Click to deal another card"
+
+#: blackjack/src/events.cpp:498
+msgid "Click to finish adding cards to your hand"
+msgstr "Click to finish adding cards to your hand"
+
+#: blackjack/src/events.cpp:501
+msgid "Click to deal a new hand"
+msgstr "Click to deal a new hand"
 
 #: blackjack/src/game.cpp:379
 msgid "Blackjack can't load the requested file"
@@ -2344,6 +2321,11 @@ msgstr "Level three"
 #: gnect/src/prefs.c:435
 msgid "Four-in-a-row Preferences"
 msgstr "Four-in-a-row Preferences"
+
+#: gnect/src/prefs.c:452 gnibbles/preferences.c:306
+#: gnome-stones/preferences.c:740
+msgid "_Game"
+msgstr "_Game"
 
 #: gnect/src/prefs.c:493
 msgid "_Theme:"
@@ -3198,10 +3180,6 @@ msgstr "Play the most common, and potentially the most annoying, sound."
 #: gnobots2/properties.c:890
 msgid "You Cannot Change the Game Type When Playing"
 msgstr "You Cannot Change the Game Type When Playing"
-
-#: gnobots2/properties.c:894
-msgid "Game"
-msgstr "Game"
 
 #: gnobots2/properties.c:902
 msgid "Graphics Theme"
@@ -4664,6 +4642,28 @@ msgstr "Welcome to Same GNOME!"
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Remove groups of balls to try and clear the screen"
+
+#~ msgid ""
+#~ "A string containing a list of files to use to describe the cards. The "
+#~ "format is obscure and defined by the gdk-card-image library"
+#~ msgstr ""
+#~ "A string containing a list of files to use to describe the cards. The "
+#~ "format is obscure and defined by the gdk-card-image library"
+
+#~ msgid "What card style to use"
+#~ msgstr "What card style to use"
+
+#~ msgid "Could not load the card deck images."
+#~ msgstr "Could not load the card deck images."
+
+#~ msgid "Blackjack will now exit."
+#~ msgstr "Blackjack will now exit."
+
+#~ msgid "_Rules"
+#~ msgstr "_Rules"
+
+#~ msgid "Card _Deck"
+#~ msgstr "Card _Deck"
 
 #~ msgid ""
 #~ "AisleRiot could not load its deck images.\n"
