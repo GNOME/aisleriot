@@ -19,6 +19,7 @@ always_built_SUBDIRS =		\
 	gnome-stones		\
 	gataxx			\
 	gnotravex		\
+	gnotski			\
 	glines			\
 	iagno			\
 	gnobots2		\
