@@ -26,6 +26,7 @@
 
 enum {
   PROP_0,
+  PROP_LABEL,
   PROP_INDENT
 };
 
@@ -130,9 +131,11 @@ games_frame_set_property (GObject         *object,
   switch (prop_id)
     {
       /* g_object_notify is handled by the _frame_set function */
-    case PROP_INDENT:
-      games_frame_set (frame,
-                          g_value_get_int (value));
+    case PROP_LABEL:
+      games_frame_set_label (frame, g_value_get_string (value));
+      break;
+     case PROP_INDENT:
+      games_frame_set (frame, g_value_get_int (value));
       break;
     default:
        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -240,3 +243,28 @@ games_frame_add (GtkContainer *container,
   gtk_widget_set_parent (GTK_WIDGET (hbox), GTK_WIDGET (bin));
   bin->child = hbox;
 }
+
+void
+games_frame_set_label (GamesFrame *frame,
+                       const gchar *label)
+{
+  gchar *markup;
+
+  g_return_if_fail (GTK_IS_FRAME (frame));
+
+  if (!label)
+    {
+      gtk_frame_set_label_widget (frame, NULL);
+    }
+  else
+    {
+      markup = g_strdup_printf ("<span weight=\"bold\">%s</span>", label);
+      GtkWidget *child = gtk_label_new (markup);
+      g_free (markup);
+      gtk_label_set_use_markup (GTK_LABEL (child), TRUE);
+      gtk_misc_set_alignment (GTK_MISC (child), 0, 0.5);
+      gtk_widget_show (child);
+      gtk_frame_set_label_widget (frame, child);
+    }
+}
+
