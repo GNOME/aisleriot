@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
-"POT-Creation-Date: 2002-12-15 17:43+0100\n"
-"PO-Revision-Date: 2002-12-15 17:44+0100\n"
+"POT-Creation-Date: 2003-01-03 12:42+0100\n"
+"PO-Revision-Date: 2003-01-03 12:43+0100\n"
 "Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -1290,7 +1290,7 @@ msgstr "Gyors lépések (a gép várakozását felezi)"
 msgid "Dark"
 msgstr "Sötét"
 
-#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:760
+#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:795
 #: gtali/yahtzee.c:66 iagno/properties.c:497 iagno/properties.c:549
 msgid "Human"
 msgstr "Ember"
@@ -1458,11 +1458,11 @@ msgstr "Első játékos szintje"
 msgid "Level of Player Two"
 msgstr "Második játékos szintje"
 
-#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:960
+#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:995
 msgid "Move left"
 msgstr "Lépés balra"
 
-#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:968
+#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:1003
 msgid "Move right"
 msgstr "Lépés jobbra"
 
@@ -1697,17 +1697,31 @@ msgstr "Hibakeresési szint (4-es a véletlenhez)"
 msgid "%s: no themes available\n"
 msgstr "%s: nincs elérhető téma\n"
 
-#: gnect/src/prefs.c:330
+#: gnect/src/prefs.c:281 mahjongg/mahjongg.c:2024
+#, c-format
+msgid "There was an error accessing GConf: %s"
+msgstr "Hiba történt a GConf elérése közben: %s"
+
+#: gnect/src/prefs.c:292 mahjongg/mahjongg.c:2035
+msgid ""
+"The default configuration values could not be retrieved correctly. Please "
+"check your GConf configuration, specifically that the schemas are installed "
+"correctly"
+msgstr ""
+"Az alapértelmezett konfigurációs értékeket nem lehetett helyesen betölteni. "
+"Ellenőrizd a GConf beállításait, különösen a sémát megfelelő telepítését."
+
+#: gnect/src/prefs.c:365
 #, c-format
 msgid "Player 1 : %s"
 msgstr "1. játékos : %s"
 
-#: gnect/src/prefs.c:331
+#: gnect/src/prefs.c:366
 #, c-format
 msgid "Player 2 : %s"
 msgstr "2. játékos : %s"
 
-#: gnect/src/prefs.c:354
+#: gnect/src/prefs.c:389
 msgid ""
 "Applying this change to Player Selection\n"
 "will end the current game"
@@ -1715,98 +1729,98 @@ msgstr ""
 "A változtatás alkalmazása befejezi\n"
 "az aktuális játékot"
 
-#: gnect/src/prefs.c:603
+#: gnect/src/prefs.c:638
 msgid "Error loading theme"
 msgstr "Hiba a téma betöltése közben"
 
-#: gnect/src/prefs.c:763
+#: gnect/src/prefs.c:798
 msgid "Non-Velena / Simple"
 msgstr "Nem Velena / Egyszerű"
 
-#: gnect/src/prefs.c:766
+#: gnect/src/prefs.c:801
 msgid "Velena / Weak"
 msgstr "Velena / Gyenge"
 
-#: gnect/src/prefs.c:769
+#: gnect/src/prefs.c:804
 msgid "Velena / Medium"
 msgstr "Velena / Közepes"
 
-#: gnect/src/prefs.c:772
+#: gnect/src/prefs.c:807
 msgid "Velena / Strong"
 msgstr "Velena / Erős"
 
-#: gnect/src/prefs.c:785
+#: gnect/src/prefs.c:820
 msgid "Always Player 1"
 msgstr "Mindig az első játékos"
 
-#: gnect/src/prefs.c:788
+#: gnect/src/prefs.c:823
 msgid "Always Player 2"
 msgstr "Mindig a második játékos"
 
-#: gnect/src/prefs.c:791
+#: gnect/src/prefs.c:826
 msgid "Take turns"
 msgstr "Felváltva"
 
-#: gnect/src/prefs.c:816
+#: gnect/src/prefs.c:851
 msgid "Gnect Preferences"
 msgstr "Gnect beállításai"
 
-#: gnect/src/prefs.c:896
+#: gnect/src/prefs.c:931
 msgid "Who starts?"
 msgstr "Ki kezd?"
 
-#: gnect/src/prefs.c:914
+#: gnect/src/prefs.c:949
 msgid "Player Selection"
 msgstr "Játékosok kiválasztása"
 
-#: gnect/src/prefs.c:932
+#: gnect/src/prefs.c:967
 msgid "Theme selection:"
 msgstr "Téma kiválasztása:"
 
 #. keyboard
-#: gnect/src/prefs.c:949
+#: gnect/src/prefs.c:984
 msgid "Keyboard control:"
 msgstr "Vezérlés billentyűzetről"
 
-#: gnect/src/prefs.c:976
+#: gnect/src/prefs.c:1011
 msgid "Drop counter"
 msgstr "Ejtés"
 
-#: gnect/src/prefs.c:1017
+#: gnect/src/prefs.c:1052
 msgid "Animation:"
 msgstr "Animáció:"
 
-#: gnect/src/prefs.c:1022
+#: gnect/src/prefs.c:1057
 msgid "Yes please!"
 msgstr "Igen, kérem!"
 
 #. sound
-#: gnect/src/prefs.c:1033
+#: gnect/src/prefs.c:1068
 msgid "Sound type:"
 msgstr "Hang típusa"
 
-#: gnect/src/prefs.c:1038
+#: gnect/src/prefs.c:1073
 msgid "Speaker beep"
 msgstr "Hangszórócsipogás"
 
-#: gnect/src/prefs.c:1043
+#: gnect/src/prefs.c:1078
 msgid "GNOME sound"
 msgstr "GNOME-hang"
 
-#: gnect/src/prefs.c:1046
+#: gnect/src/prefs.c:1081
 msgid "This can be set up using the GNOME Control Center"
 msgstr "Ezt a GNOME Vezérlőpulton állíthatod be"
 
 #. verify
-#: gnect/src/prefs.c:1056
+#: gnect/src/prefs.c:1091
 msgid "If stopping an unfinished game:"
 msgstr "Ha befejezetlen játék leállítására kerül sor:"
 
-#: gnect/src/prefs.c:1061
+#: gnect/src/prefs.c:1096
 msgid "Ask me first"
 msgstr "Megerősítés kérése"
 
-#: gnect/src/prefs.c:1065
+#: gnect/src/prefs.c:1100
 msgid "Appearance and Behaviour"
 msgstr "Kinézet és viselkedés"
 
@@ -3700,20 +3714,6 @@ msgstr "Nem találom a %s fájlt"
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Bocs, nem találok egy játszható konfigurációt sem."
 
-#: mahjongg/mahjongg.c:2024
-#, c-format
-msgid "There was an error accessing GConf: %s"
-msgstr "Hiba történt a GConf elérése közben: %s"
-
-#: mahjongg/mahjongg.c:2035
-msgid ""
-"The default configuration values could not be retrieved correctly. Please "
-"check your GConf configuration, specifically that the schemas are installed "
-"correctly"
-msgstr ""
-"Az alapértelmezett konfigurációs értékeket nem lehetett helyesen betölteni. "
-"Ellenőrizd a GConf beállításait, különösen a sémát megfelelő telepítését."
-
 #: mahjongg/mahjongg.c:2077
 msgid "Tiles Left: "
 msgstr "Elem hátra:"
@@ -3751,12 +3751,12 @@ msgid ""
 "Could not find the theme:\n"
 "%s\n"
 "\n"
-"Please check you Same GNOME installation."
+"Please check your Same GNOME installation."
 msgstr ""
 "A következő téma nem található:\n"
 "%s\n"
 "\n"
-"Ellenőrizd a Same GNOME telepítést"
+"Ellenőrizd a Same GNOME telepítést."
 
 #: same-gnome/same-gnome.c:434
 #, c-format
