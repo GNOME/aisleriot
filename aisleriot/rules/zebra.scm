@@ -26,7 +26,7 @@
   (add-normal-slot DECK)
   (add-normal-slot '())
 
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) 3)))))
+  (set! HORIZPOS (+ HORIZPOS (/ 1 3)))
 
   (add-normal-slot (list (make-visible (make-card ace club))))
   (add-normal-slot (list (make-visible (make-card ace diamond))))
@@ -40,26 +40,26 @@
   (add-carriage-return-slot)
 
   (add-extended-slot '() down)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) (/ 58 21))))))
-  (add-extended-slot '() down)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) (/ 58 21))))))
-  (add-extended-slot '() down)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) (/ 58 21))))))
-  (add-extended-slot '() down)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) (/ 58 21))))))
-  (add-extended-slot '() down)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) (/ 58 21))))))
-  (add-extended-slot '() down)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) (/ 58 21))))))
-  (add-extended-slot '() down)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) (/ 58 21))))))
+  (set! HORIZPOS (+ HORIZPOS (/ 7 21)))
+  (add-extended-slot '() down)	7 21
+  (set! HORIZPOS (+ HORIZPOS (/ 7 21)))
+  (add-extended-slot '() down)	7 21
+  (set! HORIZPOS (+ HORIZPOS (/ 7 21)))
+  (add-extended-slot '() down)	7 21
+  (set! HORIZPOS (+ HORIZPOS (/ 7 21)))
+  (add-extended-slot '() down)	7 21
+  (set! HORIZPOS (+ HORIZPOS (/ 7 21)))
+  (add-extended-slot '() down)	7 21
+  (set! HORIZPOS (+ HORIZPOS (/ 7 21)))
+  (add-extended-slot '() down)	7 21
+  (set! HORIZPOS (+ HORIZPOS (/ 7 21)))
   (add-extended-slot '() down)
 
   (deal-cards-face-up 0 '(10 11 12 13 14 15 16 17))
 
   (give-status-message)
 
-  (list 10 3)
+  (list (+ 10 (/ 1 3)) 3)
 )
 
 (define (give-status-message)

@@ -18,6 +18,7 @@
  */
 
 #include <glib.h>
+#include <math.h>
 
 #include "draw.h"
 #include "sol.h"
@@ -28,27 +29,25 @@
 int window_width = 0;
 int window_height = 0;
 
-gint xoffset = 0;
-gint yoffset = 0;
-gint xslotstep = 0;
-gint yslotstep = 0;
+double xslotstep = 0;
+double yslotstep = 0;
 
-static int width = 0;
-static int height = 0;
+static double width = 0.0;
+static double height = 0.0;
 
 static void calculate_card_location (hslot_type hslot)
 {
-  hslot->pixelx = xslotstep*(hslot->x + 0.5) + xoffset - get_card_width () / 2;
-  hslot->pixely = yslotstep*(hslot->y + 0.5) + yoffset 
-    - get_card_height () / 2;
+  hslot->pixelx = xslotstep*(hslot->x + 0.5) - get_card_width () / 2;
+  hslot->pixely = yslotstep*(hslot->y + 0.5) - get_card_height () / 2;
 }
 
 /* Work out new sizes and spacings for the cards. */
-void rescale_cards (void) {
-  xslotstep = window_width/width;
-  yslotstep = window_height/height;
-  xoffset = (window_width % width)/2;
-  yoffset = (window_height % height)/2;
+void set_geometry (double new_width, double new_height) {
+  width = new_width;
+  height = new_height;
+
+  xslotstep = 1.0*window_width/width;
+  yslotstep = 1.0*window_height/height;
 
   /* FIXME: Resize the cards in here. */
 
@@ -56,11 +55,8 @@ void rescale_cards (void) {
   g_list_foreach (get_slot_list (), (GFunc) calculate_card_location, NULL);
 }
 
-void set_geometry (int new_width, int new_height) {
-  width = new_width;
-  height = new_height;
-
-  rescale_cards ();
+void rescale_cards (void) {
+  set_geometry (width, height);
 }
 
 void draw_cards () {

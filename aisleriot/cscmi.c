@@ -39,8 +39,8 @@ void add_slot(SCM slot_data)
 
   hslot->id = SCM_INUM(SCM_CAR(slot_data));
   hslot->cards = new_deck(SCM_CADR(slot_data));
-  hslot->x = SCM_INUM(SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))));
-  hslot->y = SCM_INUM(SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))));
+  hslot->x = gh_scm2double (SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))));
+  hslot->y = gh_scm2double (SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))));
   
   hslot->dx = hslot->dy = 0;
   hslot->expansion_depth = 0;

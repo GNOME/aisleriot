@@ -221,7 +221,7 @@ void new_game (gchar* file, guint *seedp )
   size = gh_call0(game_data->start_game_lambda);
   gh_eval_str ("(start-game)");
 
-  set_geometry (gh_scm2int (gh_car (size)), gh_scm2int (gh_cadr (size)));
+  set_geometry (gh_scm2double (gh_car (size)), gh_scm2double (gh_cadr (size)));
 
   /* It is possible for some games to not have any moves right from the
    * start. If this happens we redeal. */
