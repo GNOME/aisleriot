@@ -42,7 +42,7 @@ EXTRA_DIST = $(help_DATA) $(help_SGML)
 DB_STYLESHEET=/usr/lib/sgml/stylesheets/cygnus-both.dsl\#html
 
 %.html: $(help_SGML)
-	-db2html aisleriot.sgml >/dev/null;\
+	-db2html $(srcdir)/aisleriot.sgml >/dev/null;\
 	mv aisleriot/*.html .;\
 	rm -rf aisleriot 
 
