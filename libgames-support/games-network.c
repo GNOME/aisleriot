@@ -233,6 +233,7 @@ network_handle_read (GIOChannel *source, GIOCondition cond, gpointer data)
  errout:     
   /* Shut down the connection, either it was broken or someone is messing with us */
   network_set_status (ng, DISCONNECTED, _("The remote player disconnected"));
+  game_clear_cb ();
   return network_io_setup (ng, CALLER_READ_CB);
 }
 
