@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2003-06-02 11:00+0200\n"
-"PO-Revision-Date: 2003-06-02 11:26+0200\n"
+"POT-Creation-Date: 2003-06-02 19:51+0200\n"
+"PO-Revision-Date: 2003-06-02 19:52+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -76,8 +76,8 @@ msgstr "Ge fler kort"
 #: aisleriot/monte_carlo.scm.h:2 aisleriot/neighbor.scm.h:1
 #: aisleriot/osmosis.scm.h:3 aisleriot/peek.scm.h:3 aisleriot/quatorze.scm.h:1
 #: aisleriot/royal_east.scm.h:7 aisleriot/scuffle.scm.h:4
-#: aisleriot/sir_tommy.scm.h:3 aisleriot/spiderette.scm.h:3
-#: aisleriot/spider.scm.h:4 aisleriot/straight_up.scm.h:5
+#: aisleriot/sir_tommy.scm.h:3 aisleriot/spider.scm.h:4
+#: aisleriot/spiderette.scm.h:3 aisleriot/straight_up.scm.h:5
 #: aisleriot/thieves.scm.h:2 aisleriot/thirteen.scm.h:2
 #: aisleriot/thumb_and_pouch.scm.h:4 aisleriot/treize.scm.h:2
 #: aisleriot/union_square.scm.h:2 aisleriot/westhaven.scm.h:2
@@ -298,7 +298,8 @@ msgstr "Välj spel"
 msgid "Seed"
 msgstr "Slumptalsfrö"
 
-#: aisleriot/dialog.c:159
+#: aisleriot/dialog.c:159 blackjack/src/dialog.cpp:270
+#: blackjack/src/dialog.cpp:281
 msgid "Rules"
 msgstr "Regler"
 
@@ -597,19 +598,20 @@ msgstr "_Välj..."
 msgid "Choose a different variation of solitaire"
 msgstr "Välj en annan variant av patiens"
 
-#: aisleriot/menu.c:209 gnect/src/gui.c:87 mahjongg/mahjongg.c:402
+#: aisleriot/menu.c:209 blackjack/src/menu.cpp:199 gnect/src/gui.c:87
+#: mahjongg/mahjongg.c:402
 msgid "New"
 msgstr "Ny"
 
-#: aisleriot/menu.c:209
+#: aisleriot/menu.c:209 blackjack/src/menu.cpp:199
 msgid "Deal a new game"
 msgstr "Lägg ut ett nytt parti"
 
-#: aisleriot/menu.c:212 mahjongg/mahjongg.c:406
+#: aisleriot/menu.c:212 blackjack/src/menu.cpp:202 mahjongg/mahjongg.c:406
 msgid "Restart"
 msgstr "Starta om"
 
-#: aisleriot/menu.c:212
+#: aisleriot/menu.c:212 blackjack/src/menu.cpp:202
 msgid "Start this game over"
 msgstr "Starta om det här spelet"
 
@@ -621,11 +623,12 @@ msgstr "Välj"
 msgid "Select a new game"
 msgstr "Välj ett nytt spel"
 
-#: aisleriot/menu.c:220 gnect/src/gui.c:89 mahjongg/mahjongg.c:410
+#: aisleriot/menu.c:220 blackjack/src/menu.cpp:206 gnect/src/gui.c:89
+#: mahjongg/mahjongg.c:410
 msgid "Hint"
 msgstr "Tips"
 
-#: aisleriot/menu.c:220
+#: aisleriot/menu.c:220 blackjack/src/menu.cpp:206
 msgid "Suggest a move"
 msgstr "Föreslå ett drag"
 
@@ -712,7 +715,7 @@ msgstr "Aisleriot"
 msgid "Are you sure you want to quit Aisleriot?"
 msgstr "Vill du verkligen avsluta Aisleriot?"
 
-#: aisleriot/sol.c:443
+#: aisleriot/sol.c:443 blackjack/src/blackjack.cpp:314
 msgid "Loading images..."
 msgstr "Läser in bilder..."
 
@@ -728,18 +731,23 @@ msgstr "Poäng: "
 msgid "Time: "
 msgstr "Tid: "
 
-#: aisleriot/sol.c:530
+#: aisleriot/sol.c:530 blackjack/src/blackjack.cpp:612
 msgid "Variation on game rules"
 msgstr "Variant av spelreglerna"
 
-#: aisleriot/sol.c:531 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
-#: same-gnome/same-gnome.c:839
+#: aisleriot/sol.c:531 blackjack/src/blackjack.cpp:613 gnobots2/gnobots.c:58
+#: gnobots2/gnobots.c:60 same-gnome/same-gnome.c:839
 msgid "NAME"
 msgstr "NAMN"
 
 #: aisleriot/sol.c:550
 msgid "Initializing scheme..."
 msgstr "Initierar scheme..."
+
+# aisleriot/sol.desktop.in.h:
+#: aisleriot/sol.desktop.in.h:2
+msgid "Card-based solitaire suite"
+msgstr "Kortbaserad patiensspelssamling"
 
 #: aisleriot/sol.scm.h:1
 msgid "Unknown color"
@@ -1041,10 +1049,6 @@ msgstr "tre"
 msgid "two"
 msgstr "två"
 
-#: aisleriot/spiderette.scm.h:2 aisleriot/will_o_the_wisp.scm.h:2
-msgid "Place something on to the empty Tableau slot"
-msgstr "Placera någonting på den tomma bordplatsen"
-
 #: aisleriot/spider.scm.h:2
 msgid "Place something on empty slot"
 msgstr "Placera någonting på tom plats"
@@ -1057,10 +1061,9 @@ msgstr "Fyll den tomma högen först."
 msgid "Try moving card piles around"
 msgstr "Försök flytta runt korthögar"
 
-# aisleriot/sol.desktop.in.h:
-#: aisleriot/sol.desktop.in.h:2
-msgid "Card-based solitaire suite"
-msgstr "Kortbaserad patiensspelssamling"
+#: aisleriot/spiderette.scm.h:2 aisleriot/will_o_the_wisp.scm.h:2
+msgid "Place something on to the empty Tableau slot"
+msgstr "Placera någonting på den tomma bordplatsen"
 
 #: aisleriot/ten_across.scm.h:1
 msgid " and all cards below it"
@@ -1426,6 +1429,201 @@ msgstr "Flytta en hög med kort till den tomma bordplatsen"
 #: aisleriot/zebra.scm.h:5
 msgid "the appropriate Foundation pile"
 msgstr "den lämpliga grundhögen"
+
+#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:249
+#: blackjack/src/menu.cpp:107 blackjack/src/player.cpp:454
+#: blackjack/src/splash.cpp:95
+msgid "Blackjack"
+msgstr "Tjugoett"
+
+#: blackjack/src/blackjack.cpp:208
+msgid "Are you sure you want to quit Blackjack?"
+msgstr "Vill du verkligen avsluta Tjugoett?"
+
+#: blackjack/src/blackjack.cpp:321 blackjack/src/player.cpp:63
+msgid "Computing basic strategy..."
+msgstr "Beräknar grundläggande strategi..."
+
+#: blackjack/src/blackjack.cpp:333
+msgid "Place your wager or deal a hand"
+msgstr "Placera din insats eller ge en hand"
+
+#: blackjack/src/blackjack.cpp:336
+msgid "Cards left: "
+msgstr "Återstående kort: "
+
+#: blackjack/src/blackjack.cpp:344
+msgid "Wager: "
+msgstr "Insats: "
+
+#: blackjack/src/blackjack.cpp:349
+msgid "5.00"
+msgstr "5,00"
+
+#: blackjack/src/blackjack.cpp:356
+msgid "Balance: "
+msgstr "Balans: "
+
+#: blackjack/src/blackjack.cpp:636
+msgid "Initializing..."
+msgstr "Initierar..."
+
+#: blackjack/src/dialog.cpp:51
+msgid "Would you like insurance? "
+msgstr "Vill du ha försäkring? "
+
+#: blackjack/src/dialog.cpp:109
+msgid "Set your wager and click in the white outline to deal a new hand."
+msgstr "Ställ in din insats och klicka i den vita ramen för att ge en ny hand."
+
+#: blackjack/src/dialog.cpp:112
+msgid "Set your wager or click on the cards to deal a new hand."
+msgstr "Ställ in din insats och klicka på korten för att ge en ny hand."
+
+#: blackjack/src/dialog.cpp:116
+#, c-format
+msgid "The best option is to %s"
+msgstr "Det bästa alternativet är att %s"
+
+#: blackjack/src/dialog.cpp:227
+msgid "Blackjack Preferences"
+msgstr "Inställningar för Tjugoett"
+
+#: blackjack/src/dialog.cpp:240 gnibbles/preferences.c:306
+#: gnome-stones/preferences.c:688
+msgid "Game"
+msgstr "Spel"
+
+#: blackjack/src/dialog.cpp:247
+msgid "Display hand probabilities"
+msgstr "Visa handsannolikheter"
+
+#: blackjack/src/dialog.cpp:258
+msgid "Quick deals (no delay between each card)"
+msgstr "Snabba givar (ingen fördröjning mellan varje kort)"
+
+#: blackjack/src/events.cpp:491
+msgid "Click to deal another card"
+msgstr "Klicka för att ge ett annat kort"
+
+#: blackjack/src/events.cpp:493
+msgid "Click to stand on your hand"
+msgstr "Klicka för att stanna med din hand"
+
+#: blackjack/src/events.cpp:496
+msgid "Click to deal a new hand"
+msgstr "Klicka för att ge en ny hand"
+
+#: blackjack/src/events.cpp:512
+msgid "Click to double your wager"
+msgstr "Klicka för att dubbla din insats"
+
+#: blackjack/src/game.cpp:283
+#, c-format
+msgid ""
+"Blackjack can't load the file: \n"
+"%s\n"
+"\n"
+"Please check your Blackjack installation"
+msgstr ""
+"Tjugoett kan inte läsa in filen: \n"
+"%s\n"
+"\n"
+"Kontrollera din Tjugoettinstallation"
+
+#: blackjack/src/hand.cpp:83
+msgid "stand"
+msgstr "stanna"
+
+#: blackjack/src/hand.cpp:85
+msgid "hit"
+msgstr "dra kort"
+
+# Osäker
+#: blackjack/src/hand.cpp:87
+msgid "double down"
+msgstr "dubbla ned"
+
+#: blackjack/src/hand.cpp:89
+msgid "split"
+msgstr "dela"
+
+#: blackjack/src/hand.cpp:91
+msgid "surrender"
+msgstr "ge upp"
+
+#: blackjack/src/menu.cpp:78
+msgid "Main program:  William Jon McCann (mccann@jhu.edu)"
+msgstr "Huvudprogram:  William Jon McCann (mccann@jhu.edu)"
+
+#: blackjack/src/menu.cpp:79
+msgid "                      Eric Farmer (erfarmer201@comcast.net)"
+msgstr "                      Eric Farmer (erfarmer201@comcast.net)"
+
+#. copyright notice
+#: blackjack/src/menu.cpp:109
+msgid ""
+"(C) 2003 William Jon McCann <mccann@jhu.edu>\n"
+"Eric Farmer <erfarmer201@comcast.net>"
+msgstr ""
+"© 2003 William Jon McCann <mccann@jhu.edu>\n"
+"Eric Farmer <erfarmer201@comcast.net>"
+
+#: blackjack/src/menu.cpp:111
+msgid "Blackjack provides a casino-style blackjack card game"
+msgstr "Tjugoett tillhandahåller ett tjugoettkortspel av casinotyp"
+
+#: blackjack/src/menu.cpp:151 gnect/src/gui.c:64
+msgid "Show _tool bar"
+msgstr "Visa _verktygsrad"
+
+#: blackjack/src/menu.cpp:152 gnect/src/gui.c:64
+msgid "Show or hide the toolbar"
+msgstr "Visa eller dölj verktygsraden"
+
+#: blackjack/src/player.cpp:186 blackjack/src/player.cpp:446
+msgid "Bust"
+msgstr "Tjock"
+
+#: blackjack/src/player.cpp:190
+msgid "Blackjack!"
+msgstr "Tjugoett!"
+
+#: blackjack/src/player.cpp:195
+msgid "Soft"
+msgstr "Mjuk"
+
+#: blackjack/src/player.cpp:203
+msgid "Win"
+msgstr "Vinst"
+
+#: blackjack/src/player.cpp:204
+msgid "Push"
+msgstr "Oavgjort"
+
+#: blackjack/src/player.cpp:205
+msgid "Lose"
+msgstr "Förlust"
+
+#: blackjack/src/player.cpp:268
+msgid "Stand"
+msgstr "Stanna"
+
+#: blackjack/src/player.cpp:277
+msgid "Hit"
+msgstr "Dra kort"
+
+#: blackjack/src/player.cpp:289
+msgid "Double"
+msgstr "Dubblera"
+
+#: blackjack/src/player.cpp:304
+msgid "Split"
+msgstr "Dela"
+
+#: blackjack/src/player.cpp:317
+msgid "Surr."
+msgstr "Ge upp"
 
 #: gataxx/ataxx.c:135 gataxx/gataxx.c:341 gataxx/gataxx.c:716
 #: iagno/gnothello.c:331 iagno/gnothello.c:702 iagno/othello.c:213
@@ -1925,14 +2123,6 @@ msgstr " Tyvärr, full kolumn"
 msgid " Hint: Column %d"
 msgstr " Tips: Kolumn %d"
 
-#: gnect/src/gui.c:64
-msgid "Show _tool bar"
-msgstr "Visa _verktygsrad"
-
-#: gnect/src/gui.c:64
-msgid "Show or hide the toolbar"
-msgstr "Visa eller dölj verktygsraden"
-
 #: gnect/src/gui.c:65
 msgid "Enable _sound"
 msgstr "Aktivera _ljud"
@@ -2277,10 +2467,6 @@ msgstr ""
 #: gnibbles/preferences.c:295
 msgid "Gnibbles Preferences"
 msgstr "Inställningar för Gnibbles"
-
-#: gnibbles/preferences.c:306 gnome-stones/preferences.c:688
-msgid "Game"
-msgstr "Spel"
 
 #: gnibbles/preferences.c:313
 msgid "Speed"
@@ -4059,6 +4245,55 @@ msgstr "Välkommen till SameGNOME!"
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "GNOME SameGame"
 msgstr "SameGame för GNOME"
+
+#~ msgid "Cards left:"
+#~ msgstr "Återstående kort:"
+
+#~ msgid "Wager:"
+#~ msgstr "Insats:"
+
+#~ msgid "Wager"
+#~ msgstr "Insats"
+
+#~ msgid "Balance:"
+#~ msgstr "Balans:"
+
+#~ msgid "Balance"
+#~ msgstr "Balans"
+
+#~ msgid "Would you like insurance?"
+#~ msgstr "Vill du ha försäkring?"
+
+#~ msgid "The best option is to stand"
+#~ msgstr "Det bästa alternativet är att stanna"
+
+#~ msgid "The best option is to hit"
+#~ msgstr "Det bästa alternativet är att ta kort"
+
+#~ msgid "The best option is to draw"
+#~ msgstr "Det bästa alternativet är att ta kort"
+
+# Osäker
+#~ msgid "The best option is to double down"
+#~ msgstr "Det bästa alternativet är att dubbla ned"
+
+#~ msgid "The best option is to split"
+#~ msgstr "Det bästa alternativet är att dela"
+
+#~ msgid "The best option is to surrender"
+#~ msgstr "Det bästa alternativet är att ge upp"
+
+#~ msgid "Display probabilities"
+#~ msgstr "Visa sannolikheter"
+
+#~ msgid "Quick deals"
+#~ msgstr "Snabba givar"
+
+#~ msgid "Draw"
+#~ msgstr "Dra kort"
+
+#~ msgid "Surrender"
+#~ msgstr "Ge upp"
 
 #~ msgid "unknown card"
 #~ msgstr "okänt kort"
