@@ -123,7 +123,7 @@ void help_about_callback ()
 	
 	if (pixbuf != NULL)
 		gdk_pixbuf_unref (pixbuf);
-  
+        gtk_window_set_transient_for (about, app);
   g_signal_connect (GTK_OBJECT (about),
 		      "destroy",
 		      (GtkSignalFunc) about_destroy_callback,
@@ -166,12 +166,9 @@ GnomeUIInfo game_menu[] = {
 
   GNOMEUIINFO_MENU_NEW_GAME_ITEM(random_seed, NULL),
 
-  GNOMEUIINFO_ITEM (N_("New _game of..."), N_("Start a new game of a different variation"), NULL, NULL),
+  GNOMEUIINFO_ITEM_STOCK (N_("New _game of..."), N_("Start a new game of a different variation"), show_select_game_dialog, GTK_STOCK_OPEN),
 
   GNOMEUIINFO_MENU_RESTART_GAME_ITEM(restart_game, NULL),
-
-  GNOMEUIINFO_ITEM_STOCK(N_("_Select..."), N_("Select a new game variation"),
-			 show_select_game_dialog, GTK_STOCK_OPEN),
 
   GNOMEUIINFO_SEPARATOR,
 
@@ -235,32 +232,8 @@ GnomeUIInfo toolbar[] =
 
 void create_menus ()
 {
-  int i;
-  GtkWidget *w;
-  GtkWidget *menu_item;
-  GtkWidget *menu;
   gnome_app_create_menus (GNOME_APP(app), top_menu);
   gnome_app_create_toolbar (GNOME_APP(app), toolbar);
-
-  /* Kids, don't try this at home */
-  menu_item = game_menu [1].widget;
-  menu = gtk_menu_new ();
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), menu);
-  w = gtk_tearoff_menu_item_new ();
-  gtk_widget_show(w);
-  gtk_menu_shell_append (GTK_MENU_SHELL(menu), w);
-
-  for(i = 0; i < n_games; i++) {
-    gchar *game_name = game_file_to_name(game_dents[i]->d_name);
-    w = gtk_menu_item_new_with_label(game_name);
-    g_free(game_name);
-    gtk_widget_show(w);
-    gtk_menu_shell_append (GTK_MENU_SHELL(menu), w);
-    g_signal_connect (GTK_OBJECT(w), "activate", 
-			(GtkSignalFunc) new_rules,
-			(gpointer) game_dents[i]->d_name);
-  }
-  gtk_widget_show_all (menu);
 }
 
 void install_menu_hints (GnomeApp *app)

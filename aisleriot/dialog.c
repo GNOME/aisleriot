@@ -113,10 +113,10 @@ void show_select_game_dialog()
   static GtkListStore* list;
   static GtkWidget* list_view;
   GtkWidget* scrolled_window;
-	GtkTreeViewColumn* column;
-	GtkCellRenderer* renderer;
-	GtkTreeSelection* select;
-	GtkTreeIter iter;
+  GtkTreeViewColumn* column;
+  GtkCellRenderer* renderer;
+  GtkTreeSelection* select;
+  GtkTreeIter iter;
   
   guint i;
   gchar buf[20];
@@ -130,10 +130,10 @@ void show_select_game_dialog()
     gchar* message = _("Select Game");
 
     dialog = gtk_message_dialog_new (GTK_WINDOW(app),
-		                                 GTK_DIALOG_DESTROY_WITH_PARENT,
-																		 GTK_MESSAGE_QUESTION,
-																		 GTK_BUTTONS_OK_CANCEL,
-		                                 message);
+                                     GTK_DIALOG_DESTROY_WITH_PARENT,
+                                     GTK_MESSAGE_QUESTION,
+                                     GTK_BUTTONS_OK_CANCEL,
+                                     message);
 
     hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
     seed_entry = gtk_entry_new ();
@@ -150,32 +150,34 @@ void show_select_game_dialog()
     hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
 
     list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
-		list_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(list));
-		g_object_unref (G_OBJECT (list));
-
-		renderer = gtk_cell_renderer_text_new();
-		column = gtk_tree_view_column_new_with_attributes(_("Rules"),
-		                                                  renderer,
-		                                                  "text", 0,
-		                                                  NULL);
-
-		gtk_tree_view_append_column(GTK_TREE_VIEW (list_view), column);
-
-		select = gtk_tree_view_get_selection(GTK_TREE_VIEW (list_view));
+    list_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(list));
+    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list_view), FALSE);
+    g_object_unref (G_OBJECT (list));
+    
+    renderer = gtk_cell_renderer_text_new();
+    column = gtk_tree_view_column_new_with_attributes(_("Rules"),
+                                                      renderer,
+                                                      "text", 0,
+                                                      NULL);
+    
+    gtk_tree_view_append_column(GTK_TREE_VIEW (list_view), column);
+    
+    select = gtk_tree_view_get_selection(GTK_TREE_VIEW (list_view));
     gtk_tree_selection_set_mode (select, GTK_SELECTION_BROWSE); 
 
     g_signal_connect (G_OBJECT (select), "changed", 
-		                  GTK_SIGNAL_FUNC (select_rules), NULL);
+                      GTK_SIGNAL_FUNC (select_rules), NULL);
 		
 
     scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
     gtk_widget_set_size_request (scrolled_window, 300, 250);
     gtk_container_add (GTK_CONTAINER (scrolled_window), list_view);
 
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
 				    GTK_POLICY_NEVER,
 				    GTK_POLICY_AUTOMATIC);
-				    
+    
     gtk_box_pack_end (GTK_BOX (hbox), scrolled_window, TRUE, TRUE,
 		      GNOME_PAD_SMALL );
   
