@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-16 03:51+0200\n"
-"PO-Revision-Date: 2004-06-16 13:02+0200\n"
+"POT-Creation-Date: 2004-06-24 04:41+0200\n"
+"PO-Revision-Date: 2004-06-24 14:39+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -597,7 +597,7 @@ msgstr "Karetní hry:"
 #. Translator credits
 #: aisleriot/menu.c:97 blackjack/src/menu.cpp:84 gataxx/gataxx.c:364
 #: glines/glines.c:945 gnect/src/main.c:811 gnibbles/main.c:182
-#: gnobots2/menu.c:194 gnome-stones/main.c:1094 gnometris/tetris.cpp:1226
+#: gnobots2/menu.c:215 gnome-stones/main.c:1094 gnometris/tetris.cpp:1226
 #: gnomine/gnomine.c:546 gnotravex/gnotravex.c:1486 gtali/gyahtzee.c:415
 #: iagno/gnothello.c:369 mahjongg/mahjongg.c:1662 same-gnome/same-gnome.c:707
 msgid "translator-credits"
@@ -660,11 +660,11 @@ msgid "Get statistics on the current game"
 msgstr "Získat statistiky o aktuální hře"
 
 #: aisleriot/menu.c:255 blackjack/src/menu.cpp:203 gnect/src/main.c:1187
-#: mahjongg/mahjongg.c:860
+#: gnobots2/menu.c:106 mahjongg/mahjongg.c:860
 msgid "New"
 msgstr "Nová hra"
 
-#: aisleriot/menu.c:255 gnect/src/main.c:1188
+#: aisleriot/menu.c:255 gnect/src/main.c:1188 gnobots2/menu.c:106
 msgid "Start a new game"
 msgstr "Začít novou hru"
 
@@ -2617,17 +2617,17 @@ msgstr "Šedá"
 msgid "Worm %d:"
 msgstr "Červ %d:"
 
-#: gnobots2/game.c:141
+#: gnobots2/game.c:142
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "'%s' se super-bezpečnými pohyby"
 
-#: gnobots2/game.c:144
+#: gnobots2/game.c:145
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "'%s' s bezpečnými pohyby"
 
-#: gnobots2/game.c:320 gnobots2/game.c:335
+#: gnobots2/game.c:321 gnobots2/game.c:336
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -2635,11 +2635,11 @@ msgstr ""
 "Blahopřeji, porazili jste roboty!! \n"
 "Povede se vám to znovu?"
 
-#: gnobots2/game.c:1149
+#: gnobots2/game.c:1157
 msgid "There are no teleport locations left!!"
 msgstr "Nezbývá žádné umístění teleportu!!"
 
-#: gnobots2/game.c:1218
+#: gnobots2/game.c:1226
 msgid "There are no safe locations to teleport to!!"
 msgstr "Neexistují bezpečná umístění, kam se teleportovat!!"
 
@@ -2659,7 +2659,7 @@ msgstr "X"
 msgid "Y"
 msgstr "Y"
 
-#: gnobots2/gnobots.c:199 gnobots2/menu.c:213
+#: gnobots2/gnobots.c:199 gnobots2/menu.c:234
 msgid "GNOME Robots"
 msgstr "GNOME Robots"
 
@@ -2911,7 +2911,35 @@ msgstr "Vítězství!!"
 msgid "Could not find '%s' image file for GNOME Robots\n"
 msgstr "Nemohu nalézt soubor obrázku '%s' pro GNOME Robots\n"
 
-#: gnobots2/menu.c:215
+#: gnobots2/menu.c:65 gnobots2/menu.c:109 gnobots2/properties.c:973
+msgid "Teleport"
+msgstr "Teleport"
+
+#: gnobots2/menu.c:65 gnobots2/menu.c:109
+msgid "Teleport, safely if possible"
+msgstr "Teleportovat se, pokud možno bezpečně"
+
+#: gnobots2/menu.c:66 gnobots2/menu.c:110
+msgid "Random"
+msgstr "Náhodně"
+
+#: gnobots2/menu.c:66 gnobots2/menu.c:110
+msgid "Teleport randomly"
+msgstr "Náhodně se teleportovat"
+
+#: gnobots2/menu.c:67 gnobots2/menu.c:111 gnobots2/properties.c:1001
+msgid "Wait"
+msgstr "Čekat"
+
+#: gnobots2/menu.c:67 gnobots2/menu.c:111
+msgid "Wait for the robots"
+msgstr "Čekat na roboty"
+
+#: gnobots2/menu.c:98 gnotravex/gnotravex.c:229
+msgid "_Move"
+msgstr "Posu_nout"
+
+#: gnobots2/menu.c:236
 msgid "GNOME Robots Game"
 msgstr "Hra GNOME Robots"
 
@@ -3136,17 +3164,9 @@ msgstr "Barva pozadí:"
 msgid "Keyboard Controls"
 msgstr "Ovládání klávesnicí"
 
-#: gnobots2/properties.c:973
-msgid "Teleport"
-msgstr "Teleport"
-
 #: gnobots2/properties.c:987
 msgid "Random Teleport"
 msgstr "Náhodný teleport"
-
-#: gnobots2/properties.c:1001
-msgid "Wait"
-msgstr "Čekat"
 
 #: gnobots2/properties.c:1020
 msgid "Use the Keypad"
@@ -3870,10 +3890,6 @@ msgstr "_Dolů"
 msgid "Move the pieces down"
 msgstr "Posunout kousky dolů"
 
-#: gnotravex/gnotravex.c:229
-msgid "_Move"
-msgstr "Posu_nout"
-
 #: gnotravex/gnotravex.c:239
 msgid "Size of board (2-6)"
 msgstr "Velikost desky (2-6)"
@@ -4418,7 +4434,8 @@ msgstr "Chcete dokončit aktuální hru nebo hned začít hrát s novou mapou?"
 msgid ""
 "If you choose to finish with the old map then the next game will use the new "
 "map."
-msgstr "Pokud se rozhodnete dokončit starou mapu, použije další hra novou mapu."
+msgstr ""
+"Pokud se rozhodnete dokončit starou mapu, použije další hra novou mapu."
 
 #: mahjongg/mahjongg.c:1093
 msgid "_Finish"
