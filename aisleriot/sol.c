@@ -210,7 +210,8 @@ void new_game (gchar* file, guint *seedp )
   gdk_window_get_size (playing_area->window, &old_w, &old_h);
   gtk_widget_set_usize (playing_area, min_w, min_h);
 
-  refresh_screen();
+  if (surface)
+    refresh_screen();
 
   game_over = FALSE;
   make_title();
