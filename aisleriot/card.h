@@ -20,6 +20,7 @@
 #define CARD_H
 
 #include <gnome.h>
+#include "../freecell/gdk-card-image/gdk-card-image.h"
 
 /*
  * Constants
@@ -53,7 +54,7 @@ GdkPixmap* get_slot_pixmap ();
 GdkPixmap* get_background_pixmap ();
 GdkPixmap* get_card_back_pixmap ();
 
-void load_pixmaps (GtkWidget*);
+void load_pixmaps (GtkWidget*, GdkCardDeckOptions);
 void free_fixmaps ();
 
 int get_card_width ();

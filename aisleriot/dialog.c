@@ -191,43 +191,67 @@ void show_hint_dialog()
   gnome_app_message (GNOME_APP (app), gmessage->str);
 }
 
+static guint main_page_num;
+
 GtkWidget *
-get_main_prefs ()
+get_main_page (GtkWidget* dialog)
 {
-  GtkWidget *retval;
-  
-  retval = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
+  GtkWidget *retval = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
 
   gtk_widget_show_all (retval);
   return retval;
-
 }
 
-GtkWidget *
-get_card_prefs ()
-{
-  GtkWidget *retval;
-}
+static guint backgound_page_num;
 
 GtkWidget *
-get_background_prefs ()
+get_background_page (GtkWidget* dialog)
 {
-  GtkWidget *retval;
-  
+  GtkWidget *retval = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
+
+  gtk_widget_show_all (retval);
+  return retval;
+}
+
+static GtkObject* deck_edit = NULL;
+
+static void 
+property_apply (GtkWidget *w, int page)
+{
+  if (gdk_card_deck_options_edit_dirty 
+      (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit))) {
+    gtk_object_destroy (card_deck);
+    deck_options =  
+      gdk_card_deck_options_edit_get (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit));
+    card_deck = gdk_card_deck_new (app->window, deck_options);
+    gnome_config_set_string ("Deck/Options", deck_options);
+    refresh_screen();
+  }
 }
 
 void show_property_dialog () 
 {
-  static GtkWidget* dialog = NULL;
+  static GtkWidget* property_box = NULL;
 
-  if (!dialog) {
-    dialog = gnome_property_box_new ();
-    /*    gnome_property_box_append_page (get_main_prefs ());
-    gnome_property_box_append_page (get_card_prefs ());
-    gnome_property_box_append_page (get_background_prefs ());*/
-  }
+  if (!property_box) {
+    property_box = gnome_property_box_new ();
   
-  gtk_widget_show_all (dialog);
+    deck_edit = gdk_card_deck_options_edit_new 
+      (GTK_NOTEBOOK (GNOME_PROPERTY_BOX (property_box)->notebook));
+
+    gtk_signal_connect_object (GTK_OBJECT (deck_edit), "changed",
+			       GTK_SIGNAL_FUNC (gnome_property_box_changed), 
+			       GTK_OBJECT (property_box));
+
+    gtk_signal_connect (GTK_OBJECT (property_box), "apply",
+			GTK_SIGNAL_FUNC (property_apply), NULL);
+    gnome_dialog_close_hides (GNOME_DIALOG (property_box), TRUE);
+  }
+  if (property_box && !GTK_WIDGET_VISIBLE (property_box)) {
+    gdk_card_deck_options_edit_set (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit),
+				    deck_options);
+    gtk_widget_show_all(property_box);
+  }
 }
 
 SCM options = SCM_BOOL_F;
@@ -252,7 +276,7 @@ option_apply (GtkWidget *w, int page)
 }
 
 GtkWidget *
-get_option_page ()
+get_option_page (GtkWidget* option_dialog)
 {
   SCM opts;
   GtkWidget* vbox = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
@@ -280,7 +304,7 @@ void show_rules_options_dialog ()
   if (!option_dialog && gh_scm2bool(options)) {
     option_dialog = gnome_property_box_new ();
  
-    option_page = get_option_page();
+    option_page = get_option_page(option_dialog);
 
     option_page_num = 
       gnome_property_box_append_page (GNOME_PROPERTY_BOX (option_dialog), 

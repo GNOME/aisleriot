@@ -20,6 +20,7 @@
 #define SOL_H
 #include <gtk/gtk.h>
 #include "press_data.h"
+#include "../freecell/gdk-card-image/gdk-card-image.h"
 
 /*
  * Constants
@@ -33,20 +34,23 @@
  * Global variables
  */
 
-extern GtkWidget        *app;
-extern GtkWidget        *playing_area;
-extern GtkWidget        *option_dialog;
-extern GdkGC            *draw_gc;
-extern GdkPixmap        *surface;
-extern GdkPixmap        *moving_card_pixmap;
+extern GtkWidget*       app;
+extern GtkWidget*       playing_area;
+extern GtkWidget*       option_dialog;
+extern GdkGC*           draw_gc;
+extern GdkPixmap*       surface;
+extern GdkPixmap*       moving_card_pixmap;
+extern GtkObject*       card_deck;
+extern GdkCardDeckOptions deck_options;
+
 extern guint            score;
 extern guint            game_time;
 extern guint            timeout;
 extern guint            seed;
 extern guint            n_games;
-extern struct dirent    **game_dents;
-extern gchar            *game_file;
-extern gchar            *game_name;
+extern struct dirent**  game_dents;
+extern gchar*           game_file;
+extern gchar*           game_name;
 extern gboolean         game_over;
 extern gboolean         game_won;
 extern press_data_type* press_data; 

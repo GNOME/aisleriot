@@ -34,6 +34,7 @@
 #include "cscmi.h"
 #include "menu.h"
 #include "splash.h"
+
 /*
  * Global Variables
  */
@@ -43,6 +44,9 @@ GtkWidget        *option_dialog = NULL;
 GdkGC            *draw_gc;
 GdkPixmap        *surface;
 GdkPixmap        *moving_card_pixmap;
+GtkObject*       card_deck;
+GdkCardDeckOptions deck_options = NULL;
+
 guint            score;
 guint            game_seconds;
 guint            timeout;
@@ -61,6 +65,7 @@ guint            x_expanded_offset = 20;
 guint            y_expanded_offset = 20;
 
 #define DEFAULT_VARIATION "klondike.scm"
+#define GNOME_SESSION_BUG
 
 gchar* game_file_to_name (const gchar* file)
 {
@@ -287,9 +292,15 @@ void quit_app (GtkWidget *app)
 
 void create_main_window ()
 {
-  app = gnome_app_new ("sol", _("Aisleriot"));
-  GNOME_APP (app)->prefix = 
+  /* This is the prefix used to retrieve the state when NOT restarted: */
+  gchar* prefix = 
     gnome_client_get_global_config_prefix (gnome_master_client ());
+
+  app = gnome_app_new ("sol", _("Aisleriot"));
+  /* Use "prefix" as the default config location ... */
+  gnome_config_push_prefix (prefix);
+  /* ... and use it for the menubar and toolbar aw well: */
+  GNOME_APP (app)->prefix = prefix;
 
   gtk_widget_realize (app);
 
@@ -318,7 +329,7 @@ void create_press_data ()
 					    (GDK_WA_VISUAL | GDK_WA_COLORMAP));
 }
 
-char* start_game;
+gchar* start_game;
 
 void main_prog(int argc, char *argv[])
 {
@@ -333,7 +344,7 @@ void main_prog(int argc, char *argv[])
 
   create_main_window ();
 
-  load_pixmaps (app);
+  load_pixmaps (app, deck_options);
  
   splash_update (_("Dealing game..."), 0.90);
 
@@ -375,23 +386,22 @@ void main_prog(int argc, char *argv[])
 }
 
 static int
-save_state (GnomeClient *client, gint phase, GnomeSaveStyle save_style,
-	    gint shutdown, GnomeInteractStyle interact_style, 
-	    gint fast, gpointer client_data)
+save_state (GnomeClient *client)
 {
   gchar *prefix = gnome_client_get_config_prefix (client);
   gchar *argv[2];
 
   gnome_config_push_prefix (prefix);
   gnome_config_set_string ("Variation/Default File", game_file);
+  gnome_config_set_string ("Deck/Options", deck_options);
   gnome_config_pop_prefix ();
   gnome_config_sync();
 
-  /* Need to fix gnome-session before using a sensible discard command !! */
-  argv[0] = "echo";
+#ifndef GNOME_SESSION_BUG
+  argv[0] = "rm";
   argv[1] = gnome_config_get_real_path (prefix);
   gnome_client_set_discard_command (client, 2, argv);
-  
+#endif  
   return TRUE;
 }
 
@@ -402,16 +412,17 @@ retrieve_state (GnomeClient *client)
 
   gnome_config_push_prefix (prefix);
   start_game = gnome_config_get_string_with_default 
-    ( "Variation/Default File=" DEFAULT_VARIATION, NULL);
+    ("Variation/Default File=" DEFAULT_VARIATION, NULL);
+  deck_options = gnome_config_get_string ("Deck/Options");
   gnome_config_pop_prefix ();
 
-  /* Should be done by discard command but this is broken in gnome! */
+#ifdef GNOME_SESSION_BUG
   if (strcmp (prefix, gnome_client_get_global_config_prefix (client))) {
-    fprintf(stderr, "\nunlinking %s\n", gnome_config_get_real_path (prefix));
     prefix = gnome_config_get_real_path (prefix);
     prefix[ strlen (prefix) - 1] = '\0';
     unlink (prefix);
   }
+#endif  
 }
 
 int

@@ -16,7 +16,6 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include "../freecell/gdk-card-image/gdk-card-image.h"
 #include "sol.h"
 #include "card.h"
 
@@ -24,9 +23,9 @@ GdkPixmap *default_background_pixmap;
 GdkPixmap *slot_pixmap;
 GdkBitmap *mask;
 
-GdkPixmap* get_card_picture (gint suit, gint value ) 
+GdkPixmap* get_card_picture (gint suit, gint rank ) 
 {
-  return gdk_card_image_face (suit, (value - 1) % 13);
+  return gdk_card_deck_face (GDK_CARD_DECK (card_deck), suit, rank);
 }
 
 GdkPixmap* get_background_pixmap() {
@@ -39,18 +38,20 @@ GdkPixmap* get_slot_pixmap() {
 }
 
 GdkPixmap* get_card_back_pixmap () {
-  return gdk_card_image_back ();
+  return gdk_card_deck_back (GDK_CARD_DECK (card_deck));
 }
 
 int get_card_width() {
   int width, height;
-  gdk_window_get_size(gdk_card_image_back (), &width, &height);
+  gdk_window_get_size(gdk_card_deck_back (GDK_CARD_DECK (card_deck)), 
+		      &width, &height);
   return width;
 }
 
 int get_card_height() {
   int width, height;
-  gdk_window_get_size(gdk_card_image_back (), &width, &height);
+  gdk_window_get_size(gdk_card_deck_back (GDK_CARD_DECK (card_deck)), 
+		      &width, &height);
   return height;
 }
 
@@ -85,17 +86,17 @@ GdkPixmap* get_pixmap (char* filename)
   return ret;
 }
 
-void load_pixmaps(GtkWidget* app) 
+void load_pixmaps(GtkWidget* app, GdkCardDeckOptions deck_options) 
 {
-  gdk_card_image_init (app->window);
-  mask = gdk_card_image_mask (); 
-  slot_pixmap = get_pixmap ("cards/slot.xpm");
-  default_background_pixmap = get_pixmap ("cards/Baize.xpm");
+  card_deck = gdk_card_deck_new (app->window, deck_options);
+  mask = gdk_card_deck_mask (GDK_CARD_DECK (card_deck)); 
+  slot_pixmap = get_pixmap ("cards/slots/plain.png");
+  default_background_pixmap = get_pixmap ("cards/baize.png");
 }
 
 void free_pixmaps() 
 {
-  gdk_card_image_unref ();
+  gtk_object_destroy (card_deck);
   gdk_pixmap_unref (slot_pixmap);
   gdk_pixmap_unref (default_background_pixmap);
 }
