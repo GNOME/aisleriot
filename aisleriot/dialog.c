@@ -60,7 +60,6 @@ void show_game_over_dialog() {
                           _("New Game"), GTK_RESPONSE_ACCEPT,
                           GTK_STOCK_QUIT, GTK_RESPONSE_REJECT,
                           NULL);
-  gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
 
   /* add a stock icon? */ 
@@ -321,7 +320,6 @@ void show_hint_dialog()
 	                                   GTK_MESSAGE_INFO,
 	                                   GTK_BUTTONS_OK,
 	                                   gmessage);
-  gtk_dialog_set_has_separator (GTK_DIALOG (hint_dlg), FALSE);
   if (hint_dlg) {
 	  g_signal_connect (GTK_OBJECT (hint_dlg),
 			      "destroy",
