@@ -1,5 +1,5 @@
 /* GTK - The GIMP Toolkit
- * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
+ * Copyright (C) 1995-1997, 2003 Peter Mattis, Spencer Kimball and Josh MacDonald
  *
  * GamesFrame: Create a bold-titled, indented frame
  *
@@ -249,22 +249,23 @@ games_frame_set_label (GamesFrame *frame,
                        const gchar *label)
 {
   gchar *markup;
-
+  GtkWidget * child;
+  
   g_return_if_fail (GTK_IS_FRAME (frame));
 
   if (!label)
     {
-      gtk_frame_set_label_widget (frame, NULL);
+      gtk_frame_set_label_widget (GTK_FRAME (frame), NULL);
     }
   else
     {
       markup = g_strdup_printf ("<span weight=\"bold\">%s</span>", label);
-      GtkWidget *child = gtk_label_new (markup);
+      child = gtk_label_new (markup);
       g_free (markup);
       gtk_label_set_use_markup (GTK_LABEL (child), TRUE);
       gtk_misc_set_alignment (GTK_MISC (child), 0, 0.5);
       gtk_widget_show (child);
-      gtk_frame_set_label_widget (frame, child);
+      gtk_frame_set_label_widget (GTK_FRAME (frame), child);
     }
 }
 
