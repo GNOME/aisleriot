@@ -29,106 +29,92 @@
 
 GnomeUIInfo game_menuinfo[] =
 {
-  {GNOME_APP_UI_ITEM, N_("_New Game"), NULL,
-   callback_new, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 0, 0, NULL},
+  GNOMEUIINFO_MENU_NEW_GAME_ITEM(callback_new, NULL),
 
-  {GNOME_APP_UI_ITEM, N_("_Restart Game"), NULL,
-   callback_restart, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  
-  {GNOME_APP_UI_ITEM, N_("New Game with a seed..."), NULL,
-   callback_new_with_seed, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  GNOMEUIINFO_MENU_RESTART_GAME_ITEM(callback_restart, NULL),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("New Game with a seed..."),
+			 N_("Start a new game with a different random number generator seed"),
+			 callback_new_with_seed, GNOME_STOCK_MENU_OPEN),
 
   GNOMEUIINFO_SEPARATOR,
 
-  {GNOME_APP_UI_ITEM, N_("_Undo"), NULL,
-   callback_undo, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_UNDO, 0, 0, NULL},
+  GNOMEUIINFO_MENU_UNDO_MOVE_ITEM(callback_undo, NULL),
   
   GNOMEUIINFO_SEPARATOR,
+  
+  GNOMEUIINFO_MENU_SCORES_ITEM(callback_score, NULL),
 
-  {GNOME_APP_UI_ITEM, N_("_Properties..."), NULL,
-   callback_option, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP, 0, 0, NULL},
-  
-  {GNOME_APP_UI_ITEM, N_("_Score..."), NULL,
-   callback_score, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  
-  {GNOME_APP_UI_SEPARATOR, NULL, NULL,
-   NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  
-  {GNOME_APP_UI_ITEM, N_("E_xit"), NULL,
-   callback_exit, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
+  GNOMEUIINFO_SEPARATOR,
 
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
-   NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
+  GNOMEUIINFO_MENU_EXIT_ITEM(callback_exit, NULL),
+
+  GNOMEUIINFO_END
+};
+
+GnomeUIInfo settings_menuinfo[] = {
+  
+  /* GNOMEUIINFO_ITEM_STOCK(N_("Game _options..."),
+			 N_("Modify the options for this game"),
+			 show_rules_options_dialog, GNOME_STOCK_MENU_PREF),
+
+			 GNOMEUIINFO_SEPARATOR,*/
+
+  GNOMEUIINFO_MENU_PREFERENCES_ITEM(callback_option, NULL),
+
+  GNOMEUIINFO_END
 };
 
 GnomeUIInfo help_menuinfo[] =
 {
-  {GNOME_APP_UI_HELP, NULL, NULL,
-   NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  GNOMEUIINFO_HELP("freecell"),
 
-  {GNOME_APP_UI_ITEM, N_("_About..."), NULL,
-   callback_about, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-  
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
-   NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
+  GNOMEUIINFO_MENU_ABOUT_ITEM(callback_about, NULL),
+
+  GNOMEUIINFO_END
 };
   
 GnomeUIInfo main_menuinfo[] =
 {
-  {GNOME_APP_UI_SUBTREE, N_("_Game"), NULL,
-   game_menuinfo, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  
-  {GNOME_APP_UI_SUBTREE, N_("_Help"), NULL,
-   help_menuinfo, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
-   NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
+  GNOMEUIINFO_MENU_GAME_TREE(game_menuinfo),
+
+  GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menuinfo),
+
+  GNOMEUIINFO_MENU_HELP_TREE(help_menuinfo),
+
+  GNOMEUIINFO_END
 };
 
 GnomeUIInfo main_toolbarinfo[] =
 {
-  {GNOME_APP_UI_ITEM, N_("New"), N_("Start a new game"),
-   callback_new, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
-  
-  {GNOME_APP_UI_ITEM, N_("Seed"), N_("Start a new game after choosing the seed"),
-   callback_new_with_seed, NULL, NULL,
-   GNOME_APP_PIXMAP_DATA, tb_new_seed_xpm, 0, 0, NULL},
+  GNOMEUIINFO_ITEM_STOCK(N_("New"), N_("Deal a new game."),
+			 callback_new, GNOME_STOCK_PIXMAP_NEW),
 
-  {GNOME_APP_UI_ITEM, N_("Undo"), N_("Cancel a last move"),
-   callback_undo, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_UNDO, 0, 0, NULL},
+  GNOMEUIINFO_ITEM_STOCK(N_("Restart"), N_("Start this game over."),
+			 callback_restart, GNOME_STOCK_PIXMAP_REFRESH),
 
-  {GNOME_APP_UI_ITEM, N_("Score"), N_("Show the score"),
-   callback_score, NULL, NULL,
-   GNOME_APP_PIXMAP_DATA, tb_score_xpm, 0, 0, NULL},
-  
-  {GNOME_APP_UI_ITEM, N_("Props"), N_("Setup Freecell"),
-   callback_option, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_PROPERTIES, 0, 0, NULL},
-  
-  {GNOME_APP_UI_ITEM, N_("Exit"), N_("Quit Freecell"),
-   callback_exit, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
+  GNOMEUIINFO_ITEM_STOCK(N_("Seed"), N_("Start a new game after choosing the seed."),
+			 callback_new_with_seed, GNOME_STOCK_PIXMAP_PREFERENCES),
 
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
-   NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_ITEM_STOCK(N_("Undo"), N_("Undo the last move."),
+			 callback_undo, GNOME_STOCK_PIXMAP_UNDO),
+
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_ITEM_STOCK(N_("Score"), N_("Show the score."),
+			 callback_score, GNOME_STOCK_PIXMAP_SCORES),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("Props"), N_("Setup Freecell."),
+			 callback_option, GNOME_STOCK_PIXMAP_PROPERTIES),
+
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_ITEM_STOCK(N_("Exit"), N_("Quit Freecell."),
+			 callback_exit, GNOME_STOCK_PIXMAP_EXIT),
+
+  GNOMEUIINFO_END
 };
 
 #define ELEMENTS(x) (sizeof(x)/sizeof(x[0]))
