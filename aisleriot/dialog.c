@@ -46,8 +46,12 @@ int select_game_callback (GtkWidget *app, void *data )
   seed = atoi(gtk_entry_get_text(GTK_ENTRY(game_number_box)));
   srandom(seed);
 
+
   gh_apply(game_data->start_game_lambda, SCM_EOL);
   refresh_screen();
+
+  if(surface) 
+    timer_start();
 
   hide_select_box();
   make_title();

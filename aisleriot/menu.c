@@ -133,6 +133,7 @@ int file_new_game_callback (GtkWidget *app, void *data )
   hide_select_box();
 
   seed = random();
+  srandom(seed);
   score = 0;
   set_score();
 
@@ -170,8 +171,16 @@ int restart_callback (GtkWidget *app, void *data)
 {
   srandom(seed);
 
+  score = 0;
+  set_score();
+
+  if(surface) 
+    timer_start();
+
   gh_apply(game_data->start_game_lambda, SCM_EOL);
   refresh_screen();
+  make_title();
+
   return TRUE;
 }
 
@@ -180,6 +189,7 @@ void help_about_callback (GtkWidget *widget, void *data)
   GtkWidget *about;
   const gchar *authors[] = {
 	  "Main program:  Jonathan Blandford (jrb@mit.edu)",
+	  "                      Felix Bellaby (felix@pooh.u-net.com)",
 	  "Card Games:    Jonathan Blandford (jrb@mit.edu)",
 	  "                      Ryu Changwoo (cwryu@eve.kaist.ac.kr)",
 	  "                      Rosanna Yuen (rwsy@mit.edu)",
@@ -253,6 +263,10 @@ GnomeUIInfo top_menu[] = {
 };
 GnomeUIInfo toolbar[] =
 {
+  {GNOME_APP_UI_ITEM, N_("New"), N_("Start a new game."),
+   file_new_game_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
+  
   {GNOME_APP_UI_ITEM, N_("Restart"), N_("Start this game over."),
    restart_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_REFRESH, 0, 0, NULL},
