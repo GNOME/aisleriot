@@ -39,17 +39,7 @@ AC_MSG_ERROR(gnome-libs 1.0.59 or higher is required.)])
 CFLAGS=$CFLAGS_save
 LIBS=$LIBS_save
 
-## GDK_PIXBUF_CFLAGS=`$GNOME_CONFIG --cflags gdk_pixbuf`
-## GDK_PIXBUF_LIBS=`$GNOME_CONFIG --libs gdk_pixbuf`
-## AC_SUBST(GDK_PIXBUF_CFLAGS)
-## AC_SUBST(GDK_PIXBUF_LIBS)
-## HAS_GDK_PIXBUF='yes'
-## if test "x$GDK_PIXBUF_CFLAGS" = x; then
-##   AC_MSG_WARN(Couldn't find gdk-pixbuf, some games will not be built)
-##   HAS_GDK_PIXBUF='no'
-## fi
-
-## AM_CONDITIONAL(HAS_GDK_PIXBUF, test "$HAS_GDK_PIXBUF" = yes)
+AM_PATH_GDK_PIXBUF(0.9.0, ,AC_MSG_ERROR([Need gdk-pixbuf-0.9.0 or later!]))
 
 ## look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
@@ -211,7 +201,13 @@ xbill/cursors/Makefile
 ## iagno2/src/Makefile
 ## iagno2/tiles/Makefile
 
+echo "
+Configuration:
 
+	Source code location:	  ${srcdir}
+	Compiler:		  ${CC}
 
-
+	Have c++ compiler:	  ${ac_cv_prog_cxx_works}
+	Have guile:		  ${ac_cv_guile_found}
+"
 
