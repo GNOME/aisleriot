@@ -77,7 +77,7 @@ guint            y_expanded_offset = 20;
 
 gchar* game_file_to_name (const gchar* file)
 {
-  char* p, *buf = g_strdup (g_path_get_basename(file));
+  char* p, *buf = g_path_get_basename(file);
 
   if ((p = strrchr (buf, '.'))) *p = '\0';
   for(p = buf; p = strchr(p, '_'), p && *p;) *p = ' ';
@@ -562,12 +562,16 @@ int main (int argc, char *argv [])
   else
 	  n_games = 0;
 
-  for (i = 0; i < n_games; i++)
-    if (!strcasecmp (variation, game_file_to_name (game_dents[i]->d_name))) {
+  for (i = 0; i < n_games; i++) {
+    gchar *game_name = game_file_to_name (game_dents[i]->d_name);
+    if (!strcasecmp (variation, game_name)) {
       start_game = g_strdup ((gchar*) game_dents[i]->d_name);
+      g_free (game_name);
       break;
     }
-
+    g_free (game_name);
+  }
+  
   gh_enter(argc, argv, main_prog);
   return 0;
 }

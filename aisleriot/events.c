@@ -221,6 +221,7 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
     gdk_window_move(press_data->moving_cards,  
 		    event->x - press_data->xoffset,
 		    event->y - press_data->yoffset);
+    gdk_window_clear(press_data->moving_cards);
   }
   else if (press_data->status == STATUS_MAYBE_DRAG &&
 	   (abs(press_data->xoffset - event->x) > 2 ||

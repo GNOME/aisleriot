@@ -236,8 +236,9 @@ void create_menus ()
   gtk_menu_shell_append (GTK_MENU_SHELL(menu), w);
 
   for(i = 0; i < n_games; i++) {
-    w = gtk_menu_item_new_with_label 
-      (game_file_to_name (game_dents[i]->d_name));
+    gchar *game_name = game_file_to_name(game_dents[i]->d_name);
+    w = gtk_menu_item_new_with_label(game_name);
+    g_free(game_name);
     gtk_widget_show(w);
     gtk_menu_shell_append (GTK_MENU_SHELL(menu), w);
     g_signal_connect (GTK_OBJECT(w), "activate", 
