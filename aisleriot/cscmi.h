@@ -63,6 +63,9 @@ SCM scm_reset_surface();
 SCM scm_add_slot(SCM);
 SCM scm_get_slot(SCM);  
 SCM scm_set_cards(SCM, SCM);
+SCM scm_add_to_score(SCM);
+SCM scm_get_score();  
+SCM scm_set_score(SCM);  
 
 SCM scm_set_lambda(SCM, SCM, SCM, SCM, SCM, SCM, SCM, SCM);
 SCM scm_random(SCM);

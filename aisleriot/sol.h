@@ -41,8 +41,9 @@ extern GdkPixmap *blank_surface;
 extern GdkPixmap *surface;
 extern GdkPixmap *moving_card_pixmap;
 gint score;
+extern GtkWidget *scorew;
 #endif
-
+void set_score();
 
 
 #endif

@@ -57,6 +57,7 @@
 
 
 (define (complete-transaction start-slot card-list end-slot)
+  (add-to-score! 1)
   (move-n-cards! start-slot end-slot card-list)
   (if (not (empty-slot? start-slot)) 
       (make-visible-top-card start-slot)

@@ -1,6 +1,7 @@
 #define DIALOG_C
 #include "dialog.h"
 #include "menu.h"
+#include <stdlib.h>
 
 GtkWidget* game_over_dialog_box = NULL;
 GtkWidget* load_game_dialog_box = NULL;
@@ -26,9 +27,6 @@ void show_game_over_dialog(gboolean won) {
   if (!game_over_dialog_box) {
 	 game_over_dialog_box = gtk_dialog_new();
 
-	 label = gtk_label_new (_("Game Over"));
-	 gtk_box_pack_start (GTK_BOX (GTK_DIALOG (game_over_dialog_box)->vbox), label, TRUE,
-								TRUE, 0);
 	 gtk_box_pack_start (GTK_BOX (GTK_DIALOG (game_over_dialog_box)->vbox), won_lost_label, TRUE,
 								TRUE, 0);
 
@@ -45,15 +43,14 @@ void show_game_over_dialog(gboolean won) {
 	 gtk_signal_connect (GTK_OBJECT (new_game_button), "clicked",
 								GTK_SIGNAL_FUNC (file_new_game_callback), NULL);
 
-	 gtk_widget_show (label);
 	 gtk_widget_show (won_lost_label);
 	 gtk_widget_show (new_game_button);
 	 gtk_widget_show (cancel_button);
   }
   if (won)
-	 gtk_label_set ( won_lost_label, _("You Won!!!"));
+	 gtk_label_set ( GTK_LABEL(won_lost_label), _("Congratulations\n\nYou Won!!!"));
   else
-	 gtk_label_set ( won_lost_label, _("You Lost."));
+	 gtk_label_set ( GTK_LABEL(won_lost_label), _("\nGame Over.\n"));
   gtk_grab_add (game_over_dialog_box);
   gtk_widget_show(game_over_dialog_box);
 }

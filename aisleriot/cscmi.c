@@ -19,7 +19,7 @@
 #define CSCMI_C
 
 #include "cscmi.h"
-
+#include "sol.h"
 
 lambda_data* game_data = NULL;
 
@@ -213,4 +213,20 @@ SCM scm_set_lambda(SCM start_game_lambda,
 
 SCM scm_random(SCM range) {
   return gh_long2scm(random()%SCM_INUM(range));
+}
+
+SCM scm_get_score() {
+  return gh_int2scm(score);
+}
+
+SCM scm_set_score(SCM new) {
+  score = gh_scm2int(new);
+  set_score();
+  return gh_int2scm(score);
+}
+
+SCM scm_add_to_score(SCM new) {
+  score += gh_scm2int(new);
+  set_score();
+  return gh_int2scm(score);
 }

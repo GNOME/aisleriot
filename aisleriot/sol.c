@@ -57,6 +57,13 @@ press_data_type* press_data = NULL;
 
 
 
+void set_score() 
+{
+  char b [20];
+
+  sprintf (b, "%5d", score);
+  gtk_label_set(GTK_LABEL(scorew), b);
+}
 
 void create_sol_board ()
 {
@@ -185,6 +192,9 @@ void main_prog(int argc, char *argv[])
   gh_new_procedure1_0("add-slot", scm_add_slot);
   gh_new_procedure1_0("get-slot", scm_get_slot);  
   gh_new_procedure2_0("set-cards!", scm_set_cards);
+  gh_new_procedure0_0("get-score", scm_get_score);  
+  gh_new_procedure1_0("set-score!", scm_set_score);
+  gh_new_procedure1_0("add-to-score!", scm_add_to_score);
   gh_new_procedure("set-lambda", scm_set_lambda, 8, 0, 0);
   gh_new_procedure1_0("random", scm_random);
   eval_installed_file ("sol.scm");

@@ -41,6 +41,7 @@ int file_quit_callback (GtkWidget *app, void *data )
 
 int game_load_game_callback (GtkWidget *app, void *data )
 {
+  score = 0;
   eval_installed_file((char*) data);
   gh_apply(game_data->start_game_lambda, SCM_EOL);
   refresh_screen();
@@ -49,6 +50,8 @@ int game_load_game_callback (GtkWidget *app, void *data )
 
 int file_new_game_callback (GtkWidget *app, void *data )
 {
+  score = 0;
+  set_score();
   gh_apply(game_data->start_game_lambda, SCM_EOL);
   refresh_screen();
   if (game_over_dialog_box) {
@@ -62,10 +65,10 @@ int help_about_callback (GtkWidget *widget, void *data)
 {
   GtkWidget *about;
   gchar *authors[] = {
-	  "Main program:  Jonathan Blandford (jrb@MIT.EDU)",
-	  "Card Games:    Jonathan Blandford (jrb@MIT.EDU)",
-	  "                      Ryu Changwoo (cwryu@EVE.KAIST.AC.KR)",
-	  "                      Rosanna Yuen (rwsy@MIT.EDU)",
+	  "Main program:  Jonathan Blandford (jrb@mit.edu)",
+	  "Card Games:    Jonathan Blandford (jrb@mit.edu)",
+	  "                      Ryu Changwoo (cwryu@eve.kaist.ac.kr)",
+	  "                      Rosanna Yuen (rwsy@mit.edu)",
           NULL
           };
 
