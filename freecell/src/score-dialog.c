@@ -29,18 +29,11 @@
 
 
 static void
-score_dialog_callback_close(GtkWidget *w, gpointer data)
+score_dialog_callback(GnomeDialog *dialog, gint button, gpointer data)
 {
-  gtk_widget_destroy ((GtkWidget *)data);
+  if (button == 1)
+    score_clear();
 }
-
-static void
-score_dialog_callback_clear(GtkWidget *w, gpointer data)
-{
-  score_clear();
-  gtk_widget_destroy ((GtkWidget *)data);
-}
-
 
 GtkWidget *
 score_dialog (void)
@@ -51,15 +44,14 @@ score_dialog (void)
   char *formatstring[20];	/* FIXME: is it enough? */
   int i;
 
-  dialog = gnome_dialog_new (_("Score"), GNOME_STOCK_BUTTON_OK, _("Clear"), NULL);
+  dialog = gnome_dialog_new (_("Score"), GNOME_STOCK_BUTTON_OK, NULL);
+  gnome_dialog_append_button_with_pixmap (GNOME_DIALOG (dialog), _("Clear"),
+					  GNOME_STOCK_PIXMAP_CLEAR);
   gnome_dialog_set_default (GNOME_DIALOG (dialog), 0);
+  gnome_dialog_set_close (GNOME_DIALOG (dialog), TRUE);
 
-  gnome_dialog_button_connect (GNOME_DIALOG (dialog), 0,
-			       GTK_SIGNAL_FUNC (score_dialog_callback_close),
-			       dialog);
-  gnome_dialog_button_connect (GNOME_DIALOG (dialog), 1,
-			       GTK_SIGNAL_FUNC (score_dialog_callback_clear),
-			       dialog);
+  gtk_signal_connect (GTK_OBJECT (dialog), "clicked",
+	              GTK_SIGNAL_FUNC (score_dialog_callback), NULL);
   
   score_formatstring(formatstring);
   for (i = 0; formatstring[i]; i++)
