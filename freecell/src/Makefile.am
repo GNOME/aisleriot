@@ -10,13 +10,11 @@ score.h score-dialog.h option.h option-dialog.h
 datadir = $(prefix)/@DATADIRNAME@
 localedir = $(datadir)/locale
 
-INCLUDES = -I. -I.. -I../../.. -I../lib -I$(top_srcdir) -I$(top_srcdir)/intl \
-	@INCLUDES@
+INCLUDES = -I. -I.. -I../../.. -I../lib -I$(top_srcdir) -I$(top_srcdir)/intl
 DEFS = -DLOCALEDIR=\"$(localedir)\" -DPKGDATADIR=\"$(pkgdatadir)\" \
 	@DEFS@
 CFLAGS = -Wall @CFLAGS@
 
-freecell_LDADD = @INTLLIBS@ \
-	        $(X_LIBS) $(GNOME_LIBS) $(GTK_LIBS) $(x_libs)
+freecell_LDADD = $(X_LIBS) $(GNOME_LIBS) $(GTK_LIBS) $(x_libs) $(INTLLIBS)
 
 

@@ -56,7 +56,8 @@ dnl GNOME's configure kindly passes X11, GTK library paths.
   AC_SUBST(x_libs)
   GTK_LIBS=$xGTK_LIBS
   AC_SUBST(GTK_LIBS)
-  GNOME_LIBS="-L../../libgnome -L../../libgnomeui -lgnome -lgnomeui -lSM -lICE"
+  GNOME_LIBS="-L../../../libgnome/_libs -lgnome \
+-L../../../libgnomeui/_libs/ -lgnomeui -lSM -lICE"
   AC_SUBST(GNOME_LIBS)
 else
   dnl **************** Find the X11. ****************
