@@ -267,8 +267,8 @@ const char *ui_description =
 void create_menus ()
 {
   GtkAccelGroup *accel_group;
-  GtkWidget *ctmtoggle;
-  GtkWidget *toolbartoggle;
+  GtkAction *ctmtoggle;
+  GtkAction *toolbartoggle;
 
   games_stock_init();
   action_group = gtk_action_group_new ("MenuActions");
@@ -290,21 +290,19 @@ void create_menus ()
   restartaction = gtk_action_group_get_action (action_group, "RestartGame");
   fullscreenaction = gtk_action_group_get_action (action_group, "Fullscreen");
   leavefullscreenaction = gtk_action_group_get_action (action_group, "LeaveFullscreen");
+  ctmtoggle = gtk_action_group_get_action (action_group, "ClickToMove");
+  toolbartoggle = gtk_action_group_get_action (action_group, "Toolbar");
 
   helpitem = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/HelpMenu/Help");
-  ctmtoggle = gtk_ui_manager_get_widget (ui_manager, 
-					 "/MainMenu/ControlMenu/ClickToMove");
-  toolbartoggle = gtk_ui_manager_get_widget (ui_manager,
-					     "/MainMenu/ViewMenu/Toolbar");
 
   menubar = gtk_ui_manager_get_widget (ui_manager, "/MainMenu");
   toolbar = gtk_ui_manager_get_widget (ui_manager, "/Toolbar");
   
-  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (toolbartoggle),
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (toolbartoggle),
 				gconf_client_get_bool (gconf_client,
 						       "/apps/aisleriot/show_toolbar",
 						       NULL));
-  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (ctmtoggle),
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (ctmtoggle),
 				gconf_client_get_bool (gconf_client,
 						       "/apps/aisleriot/click_to_move",
 						       NULL));

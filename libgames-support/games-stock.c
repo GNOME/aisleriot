@@ -36,8 +36,10 @@ static GtkIconFactory *games_icon_factory = NULL;
 
 static GtkStockItem games_stock_items[] =
 {
+/* i18n: This "_New" is for the menu item 'Game->New', implies "New Game" */
   { GAMES_STOCK_NEW_GAME, N_("_New"), GDK_CONTROL_MASK, 'n', NULL },
   { GAMES_STOCK_PAUSE_GAME, N_("_Pause"), 0, GDK_Pause, NULL },
+/* i18n: "_Restart" is the menu item 'Game->Restart', implies "Restart Game" */
   { GAMES_STOCK_RESTART_GAME, N_("_Restart"), 0, 0, NULL },
   { GAMES_STOCK_UNDO_MOVE, N_("_Undo Move"), GDK_CONTROL_MASK, 'z', NULL },
   { GAMES_STOCK_REDO_MOVE, N_("_Redo Move"), GDK_CONTROL_MASK | GDK_SHIFT_MASK, 'z', NULL },
