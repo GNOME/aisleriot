@@ -51,15 +51,14 @@ extern GdkBitmap *mask;
  * Functions
  */
 GdkPixmap* get_card_picture (gint, gint);
-GdkPixbuf* get_slot_pixbuf ( void );
+GdkPixmap* get_slot_pixmap ( void );
 GdkPixmap* get_background_pixmap ( void );
 GdkPixmap* get_card_back_pixmap ( void );
 
+void set_card_size (gint width, gint height);
+
 void load_pixmaps (GtkWidget*, GdkCardDeckOptions);
 void free_pixmaps (void);
-
-int get_card_width ( void );
-int get_card_height ( void );
 
 void add_card (GList**, hcard_type);
 #endif

@@ -44,6 +44,8 @@ extern GtkWidget*       app;
 extern GtkWidget*       playing_area;
 extern GtkWidget*       option_dialog;
 extern GdkGC*           draw_gc;
+extern GdkGC*           slot_gc;
+extern GdkGC*           bg_gc;
 extern GdkPixmap*       surface;
 extern GdkPixmap*       moving_card_pixmap;
 extern GtkObject*       card_deck;

@@ -20,14 +20,20 @@
 #include "sol.h"
 #include "card.h"
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <games-card-images.h>
 
 GdkPixmap *default_background_pixmap; 
 GdkPixbuf *slot_pixbuf;
-GdkBitmap *mask;
+GdkPixmap *slot_pixmap = NULL;
+GdkBitmap *mask = NULL;
+GdkBitmap *slot_mask = NULL;
+
+GamesCardImages * images = NULL;
+GdkPixmap * pixmaps[GAMES_CARDS_TOTAL];
 
 GdkPixmap* get_card_picture (gint suit, gint rank ) 
 {
-  return gdk_card_deck_face (GDK_CARD_DECK (card_deck), suit, (rank == 14)?1:rank);
+  return pixmaps[GAMES_CARD_ID (suit, rank)];
 }
 
 GdkPixmap* get_background_pixmap () {
@@ -35,26 +41,12 @@ GdkPixmap* get_background_pixmap () {
   return default_background_pixmap;
 }
 
-GdkPixbuf* get_slot_pixbuf () {
-  return slot_pixbuf;
+GdkPixmap* get_slot_pixmap () {
+  return slot_pixmap;
 }
 
 GdkPixmap* get_card_back_pixmap () {
-  return gdk_card_deck_back (GDK_CARD_DECK (card_deck));
-}
-
-int get_card_width () {
-  int width, height;
-  gdk_drawable_get_size(gdk_card_deck_back (GDK_CARD_DECK (card_deck)), 
-		      &width, &height);
-  return width;
-}
-
-int get_card_height () {
-  int width, height;
-  gdk_drawable_get_size(gdk_card_deck_back (GDK_CARD_DECK (card_deck)), 
-		      &width, &height);
-  return height;
+  return pixmaps[GAMES_CARD_BACK];
 }
 
 static GdkPixmap* get_pixmap (const char* filename)
@@ -132,4 +124,46 @@ void add_card(GList** card_list, hcard_type temp_card) {
 	 *card_list = g_list_alloc();
 	 (*card_list)->data = temp_card;
   }
+}
+
+void set_card_size (gint width, gint height)
+{
+  GdkPixbuf *scaled;
+  int i;
+
+  if (slot_pixmap)
+    g_object_unref (slot_pixmap);
+  if (mask)
+    g_object_unref (mask);
+  if (slot_mask)
+    g_object_unref (slot_mask);
+
+  scaled = gdk_pixbuf_scale_simple (slot_pixbuf, width, height, 
+				    GDK_INTERP_BILINEAR);
+
+  gdk_pixbuf_render_pixmap_and_mask (scaled, &slot_pixmap, &slot_mask, 255);
+
+  gdk_gc_set_clip_mask (slot_gc, slot_mask); 
+
+  g_object_unref (scaled);
+
+  if (!images) {
+    images = games_card_images_new_with_size (width, height);
+  } else {
+    for (i=0; i<GAMES_CARDS_TOTAL; i++)
+      g_object_unref (pixmaps[i]);
+    games_card_images_set_size (images, width, height);
+  }
+
+  gdk_pixbuf_render_pixmap_and_mask (games_card_images_get_card_by_id (images, 0),
+				     &pixmaps[0], &mask, 255);
+  gdk_gc_set_clip_mask (draw_gc, mask);  
+
+  for (i=1; i<GAMES_CARDS_TOTAL; i++) {
+    pixmaps[i] = gdk_pixmap_new (playing_area->window, width, height, -1);
+    gdk_draw_pixbuf (pixmaps[i], NULL, 
+		     games_card_images_get_card_by_id (images, i),
+		     0, 0, 0, 0, width, height, GDK_RGB_DITHER_NORMAL, 0, 0);
+  }
+  
 }

@@ -58,6 +58,8 @@ GtkWidget        *app;
 GtkWidget        *playing_area;
 GtkWidget        *option_dialog = NULL;
 GdkGC            *draw_gc;
+GdkGC            *bg_gc;
+GdkGC            *slot_gc;
 GdkPixmap        *surface;
 GdkPixmap        *moving_card_pixmap;
 GtkObject*       card_deck;
@@ -309,11 +311,14 @@ static void create_sol_board ()
   
   gtk_widget_realize (playing_area);
 
-  draw_gc = gdk_gc_new(playing_area->window);
-  if (get_background_pixmap ())
-    gdk_gc_set_tile (draw_gc, get_background_pixmap());
-  gdk_gc_set_fill (draw_gc, GDK_TILED);
+  draw_gc = gdk_gc_new (playing_area->window);
   
+  bg_gc = gdk_gc_new (playing_area->window);
+  if (get_background_pixmap ())
+    gdk_gc_set_tile (bg_gc, get_background_pixmap());
+  gdk_gc_set_fill (bg_gc, GDK_TILED);  
+
+  slot_gc = gdk_gc_new (playing_area->window);
 
   g_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
 		      GTK_SIGNAL_FUNC (button_release_event), NULL);

@@ -61,8 +61,8 @@ void drop_moving_cards(gint x, gint y) {
   gint cardid, moved = 0;
   gint width, height;
 
-  slot_pressed(x + get_card_width() / 2 - press_data->xoffset, 
-	       y + get_card_height() / 2 - press_data->yoffset, 
+  slot_pressed(x + card_width / 2 - press_data->xoffset, 
+	       y + card_height / 2 - press_data->yoffset, 
 	       &hslot, &cardid);
 
   if (hslot) {

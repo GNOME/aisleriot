@@ -29,7 +29,7 @@ cardslot_DATA = hand.png plain.png
 
 cardmiscdir = $(datadir)/pixmaps/cards
 cardmisc_in_files = card-styles.xml.in
-cardmisc_DATA = $(cardmisc_in_files:.xml.in=.xml)
+cardmisc_DATA = $(cardmisc_in_files:.xml.in=.xml) dondorf-new.png bonded-new.png
 @INTLTOOL_XML_RULE@
 
 INCLUDES =  $(GNOME_GAMES_CFLAGS) @UCB_CFLAGS@

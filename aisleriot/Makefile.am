@@ -12,7 +12,7 @@ schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 SUBDIRS=help
 
 INCLUDES =  \
-	-I$(top_srcdir)/gdk-card-image	 	   \
+        -I$(top_srcdir)/gdk-card-image             \
 	-I$(top_srcdir)/libgames-support           \
 	-DDATADIR=\""$(datadir)"\"		   \
 	$(GNOME_GAMES_CFLAGS)			   \
@@ -46,8 +46,8 @@ sol_SOURCES = 		\
 	statistics.h
 
 sol_LDADD = $(GNOME_GAMES_LIBS) \
-	../gdk-card-image/libgdkcardimage.la \
 	../libgames-support/libgames-support.la \
+        ../gdk-card-image/libgdkcardimage.la \
 	@UCB_LDFLAGS@ \
 	$(GUILE_LIBS) 
 

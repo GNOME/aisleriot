@@ -35,8 +35,8 @@ void create_press_data (GdkWindow * window)
   attributes.wclass = GDK_INPUT_OUTPUT;
   attributes.window_type = GDK_WINDOW_CHILD;
   attributes.event_mask = 0;
-  attributes.width = get_card_width();
-  attributes.height = get_card_height();
+  attributes.width = card_width;
+  attributes.height = card_height;
   attributes.colormap = gdk_drawable_get_colormap (GDK_DRAWABLE(window));
   attributes.visual = gdk_drawable_get_visual (GDK_DRAWABLE(window));
   
@@ -62,8 +62,8 @@ void generate_press_data ( ) {
   press_data->yoffset -= y = hslot->pixely + delta * hslot->pixeldy;
 
   press_data->cards = g_list_nth(hslot->cards, press_data->cardid - 1);
-  width = get_card_width() + (hslot->length - press_data->cardid) * hslot->pixeldx;
-  height= get_card_height() + (hslot->length - press_data->cardid) * hslot->pixeldy;
+  width = card_width + (hslot->length - press_data->cardid) * hslot->pixeldx;
+  height= card_height + (hslot->length - press_data->cardid) * hslot->pixeldy;
   
   gdk_window_resize(press_data->moving_cards, width, height);
   gdk_window_move(press_data->moving_cards, x, y);
@@ -84,7 +84,7 @@ void generate_press_data ( ) {
   gdk_gc_set_clip_mask (gc1, mask); 
   gdk_gc_set_clip_mask (gc2, mask); 
 
-  x = y = 0; width = get_card_width(); height = get_card_height();
+  x = y = 0; width = card_width; height = card_height;
 
   for (tempptr = press_data->cards; tempptr; tempptr = tempptr->next) {
     hcard_type hcard = (hcard_type) tempptr->data; 

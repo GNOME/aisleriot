@@ -24,6 +24,10 @@
 extern int window_width;
 extern int window_height;
 
+/* The size of a card. */
+extern int card_width;
+extern int card_height;
+
 void rescale_cards (void);
 void set_geometry (double new_width, double new_height);
 void draw_cards( void );

@@ -22,6 +22,7 @@
 
 #include "slot.h"
 #include "card.h"
+#include "draw.h"
 
 GList *slot_list = NULL;
 
@@ -95,8 +96,8 @@ void update_slot_length(hslot_type hslot)
 
   delta = hslot->exposed ? hslot->exposed - 1 : 0;
 
-  hslot->width = get_card_width() + delta * hslot->pixeldx;
-  hslot->height = get_card_height() + delta * hslot->pixeldy;
+  hslot->width = card_width + delta * hslot->pixeldx;
+  hslot->height = card_height + delta * hslot->pixeldy;
 }
 
 GList* get_slot_list() {

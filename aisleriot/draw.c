@@ -25,35 +25,84 @@
 #include "slot.h"
 #include "card.h"
 
+/* The ratio of height to width for a card. */
+#define CARD_HW_RATIO (0.65)
+
+/* The proportion of a slot dedicated to the card (horiz or vert). */
+#define CARD_SLOT_PROP (0.8)
+
 /* The size of the drawing area. */
 int window_width = 0;
 int window_height = 0;
 
-double xslotstep = 0;
-double yslotstep = 0;
+/* The size of a slot in pixels. */
+static double xslotstep = 0;
+static double yslotstep = 0;
 
+/* The size of a slot in scaled units. */
 static double width = 0.0;
 static double height = 0.0;
 
+/* The size of a card. */
+int card_width;
+int card_height;
+
+/* The offset of the cards within the slot. */ 
+int xoffset, yoffset;
+
 static void calculate_card_location (hslot_type hslot)
 {
-  hslot->pixelx = xslotstep*(hslot->x + 0.5) - get_card_width () / 2;
-  hslot->pixely = yslotstep*(hslot->y + 0.5) - get_card_height () / 2;
-  hslot->pixeldx = hslot->dx*get_card_width ();
-  hslot->pixeldy = hslot->dy*get_card_height ();
+  int xofs, yofs;
+
+  xofs = xoffset;
+  yofs = yoffset;
+
+  /* If this is an extended slot, position the cards to one side. */
+  if (hslot->dx > 0.0)
+    xofs = yofs;
+  if (hslot->dy > 0.0)
+    yofs = xofs;
+
+  hslot->pixelx = xslotstep*hslot->x + xofs;
+  hslot->pixely = yslotstep*hslot->y + yofs;
+  hslot->pixeldx = hslot->dx*card_width;
+  hslot->pixeldy = hslot->dy*card_height;
 
   update_slot_length (hslot);
 }
 
 /* Work out new sizes and spacings for the cards. */
 void set_geometry (double new_width, double new_height) {
+  double twidth, theight;
+
   width = new_width;
   height = new_height;
+
+  /* We are called for two reasons: if the logical size of the board
+   * has changed and if the physical size of the board has changed.
+   * This catches the case where the logical size is set before the
+   * physical size. In that case we ignore anything that needs
+   * knowledge of the physical size. Yes, this probably is a sign that
+   * the code needs reorganising. */
+  if ((window_height == 0) || (window_width == 0))
+    return;
 
   xslotstep = window_width/width;
   yslotstep = window_height/height;
 
-  /* FIXME: Resize the cards in here. */
+  twidth = CARD_SLOT_PROP*xslotstep;
+  theight = CARD_SLOT_PROP*yslotstep;
+  if (twidth/theight < CARD_HW_RATIO) {
+    card_height = twidth/CARD_HW_RATIO;
+    card_width = twidth;
+  } else {
+    card_width = CARD_HW_RATIO*theight;
+    card_height = theight;
+  }
+  xoffset = (xslotstep - twidth)/2;
+  yoffset = (yslotstep - theight)/2;
+
+  set_card_size (card_width, card_height);
 
   /* Recalculate the slot locations. */
   g_list_foreach (get_slot_list (), (GFunc) calculate_card_location, NULL);
@@ -69,8 +118,6 @@ void draw_cards () {
   GList* card_list;
   GdkPixmap *image;
 
-  gdk_gc_set_clip_mask (draw_gc,mask); 
-  
   for (slot = get_slot_list (); slot; slot = slot->next) {
     hslot_type hslot = (hslot_type)slot->data;
 
@@ -92,31 +139,29 @@ void draw_cards () {
 	gdk_gc_set_clip_origin (draw_gc, x, y);
 	if (image != NULL)
 	  gdk_draw_drawable (surface, draw_gc, image, 0, 0, x, y, -1, -1);
-	
+
 	x += hslot->pixeldx; y += hslot->pixeldy;
       }
     }
   }
-  gdk_gc_set_clip_mask (draw_gc,NULL); 
 }
 
 void take_snapshot() {
   GList* slot;
+  GdkPixmap *slot_pixmap;
+  gint x,y;
 
-  gdk_draw_rectangle (surface, draw_gc, TRUE, 0, 0, -1, -1);
+  gdk_draw_rectangle (surface, bg_gc, TRUE, 0, 0, -1, -1);
+  slot_pixmap = get_slot_pixmap ();
 
-  for (slot = get_slot_list (); slot; slot = slot->next) {
-    GdkPixbuf *slot_pixbuf;
-
-    slot_pixbuf = get_slot_pixbuf ();
-    if (slot_pixbuf != NULL)
-      gdk_draw_pixbuf (surface, draw_gc,
-		       slot_pixbuf, 0, 0, 
-		       ((hslot_type)slot->data)->pixelx,
-		       ((hslot_type)slot->data)->pixely,
-		       -1, -1, GDK_RGB_DITHER_MAX,
-                       0, 0);
-  }
+  if (slot_pixmap != NULL)
+    for (slot = get_slot_list (); slot; slot = slot->next) {
+      x = ((hslot_type)slot->data)->pixelx;
+      y = ((hslot_type)slot->data)->pixely;
+      gdk_gc_set_clip_origin (slot_gc, x, y);
+      gdk_draw_drawable (surface, slot_gc, slot_pixmap, 0, 0, x, y,
+			 card_width, card_height);
+    }
   draw_cards ();
   gdk_window_set_back_pixmap (playing_area->window, surface, 0);
 }

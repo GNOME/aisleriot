@@ -1,3 +1,41 @@
+2004-04-18  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* draw.c:
+	* card.c:
+	* sol.c: Use separate masks for the slots and the cards. 
+
+2004-04-17  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* card.c: Add support for the new games-card-images routines. The
+	routines don't draw anything aside from a white rectangle, but
+	they do work in all other respects.
+
+	* draw.c (CARD_HW_RATIO): Adjust the ratio to match a real card.
+	(draw_card): Removed the rectangle I'd been using for debugging.
+
+2004-04-15  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* golf.scm: Remove debuging code. See bug #140050.
+
+2004-04-14  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* draw.c:	
+	* sol.c:
+	* sol.h:	
+	* card.c: Make the empty slot image scale. Split the draw_gc into
+	a clipping mask one and a background since the two operations are
+	logically separate.
+
+	
+	* events.c: 
+	* press_data.c:
+	* card.c:
+	* card.h:	
+	* draw.h: Allow for the size of the card to change. Also position
+	the cards so that "expanded slots" sit at one end of their
+	allocated space. This makes sure that resizing the window reveals
+	more cards if they extend off the end.
+
 2004-04-11  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* dialog.c: Applied Paolo's double-click patch. Bug #139649.

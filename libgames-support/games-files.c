@@ -1,4 +1,4 @@
-/* gdk-card-image.c
+/* games-files.c
    Copyright 2003 Callum McKenzie
 
    This library is free software; you can redistribute it and'or modify

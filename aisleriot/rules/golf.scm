@@ -82,7 +82,6 @@
 	   (add-to-score! 1))))
 
 (define (button-double-clicked slot-id)
-(display (_"bdc\n"))
   (button-clicked slot-id))
 
 (define (game-continuable)
