@@ -22,7 +22,8 @@ EXTRA_DIST = \
 	COPYING-DOCS \
 	sgmldocs.make \
 	game-docs.make \
-	MAINTAINERS
+	MAINTAINERS	\
+	HACKING
 
 dist-hook:
 	cp gnome-games.spec $(distdir)
