@@ -365,7 +365,7 @@ void main_prog(int argc, char *argv[])
   gtk_widget_show (time_value);
   gtk_widget_show (score_box);
 
-  status_bar = gnome_appbar_new (FALSE, TRUE, TRUE);
+  status_bar = gnome_appbar_new (FALSE, TRUE, FALSE);
   gtk_box_pack_end (GTK_BOX(status_bar), score_box, FALSE, FALSE, 0);
   gnome_app_set_statusbar (GNOME_APP (app), status_bar);
 

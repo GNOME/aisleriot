@@ -262,7 +262,12 @@
 	((= slot-id 5)
 	 (if (empty-slot? 4)
 	     (flip-top-card 3)
-	     ))))
+	     ))
+	((= slot-id 4)
+	 (if (empty-slot? 5)
+	     (flip-top-card 3)
+	     ))
+	))
 
 (define (check-double-flips start-slot end-slot)
   (if (= 1 (- (max start-slot end-slot) (min start-slot end-slot)))

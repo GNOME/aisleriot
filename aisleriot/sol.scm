@@ -22,6 +22,7 @@
 (define queen 12)
 (define king 13)
 (define ace 1)
+(define joker 0)
 
 (define club 0)
 (define diamond 1)
@@ -58,6 +59,14 @@
       (set! DECK (make-standard-deck-list-ace-high 2 club))
       (set! DECK (make-standard-deck-list-ace-low ace club))))
 
+; create a 54 card deck with 2 jokers.
+(define (make-joker-deck)
+  (if (= ace 14)
+     (set! DECK (cons (make-card joker club) (cons (make-card joker diamond) 
+		 (make-standard-deck-list-ace-high 2 club))))
+     (set! DECK (cons (make-card joker club) (cons (make-card joker diamond) 
+		 (make-standard-deck-list-ace-low ace club))))))
+     
 ; create a double deck of 104 cards (puts list of cards into DECK)
 (define (make-standard-double-deck)
   (if (= ace 14)
@@ -232,6 +241,10 @@
 (define (is-black? card)
   (eq? black (get-color card)))
 
+(define (set-ace-low)  (set! ace 1))
+
+(define (set-ace-high) (set! ace 14))
+
 ; use to compare two cards when aces are treated as high:
 (define (ace-high-order value)
   (remainder (+ 11 value) 13))
@@ -279,20 +292,12 @@
 		 " of "
 		 (get-suit-name (get-suit card))))
 
-;; Deprecated procedures:
-; probably better to stick with ace = 1 to avoid confusion.
-(define (set-ace-low)  (set! ace 1))
-(define (set-ace-high) (set! ace 14))
-
-; use add-cards! instead - the name of this procedure is misleading
 (define (move-n-cards! start-slot end-slot cards)
   (add-cards! end-slot cards))
 
-; you probably do not want to use this as it throws away the cards:
 (define (remove-n-cards slot-id n)
   (set-cards! slot-id (nthcdr n (get-cards slot-id))))
 
-; use deal-cards instead, it is more consistent with the rest of the API.
 (define (deal-cards-from-deck deck slot-list)
   (if (not (null? slot-list))
       (begin 

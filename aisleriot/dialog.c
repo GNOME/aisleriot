@@ -26,7 +26,7 @@
 #include "menu.h"
 #include "dialog.h"
 #include "draw.h"
-
+static GtkWidget *hint_dlg = NULL;
 void show_game_over_dialog() {
   GtkWidget* dialog;
   gchar* message;
@@ -148,6 +148,11 @@ void show_select_game_dialog()
 
   gnome_dialog_run (GNOME_DIALOG (dialog));
 }
+static void
+hint_destroy_callback (void)
+{
+  hint_dlg = NULL;
+}
 
 void show_hint_dialog() 
 {
@@ -166,7 +171,8 @@ void show_hint_dialog()
       switch (gh_scm2int(gh_car(hint))) {
 
       case 0:
-	gmessage = g_string_new (gh_scm2newstr(gh_cadr(hint),NULL));
+        /* This is discouraged, as it makes I18N a nightmare */
+	gmessage = g_string_new (_(gh_scm2newstr(gh_cadr(hint),NULL)));
 	break;
 
       case 1:
@@ -206,8 +212,19 @@ void show_hint_dialog()
     }
   }
 
-  /* Respects user prefs on status bar for hints: */
-  gnome_app_message (GNOME_APP (app), gmessage->str);
+  if (hint_dlg) {
+   /* I _think_ that ok_dialogs are closed automatically on ok being pressed */
+   /*gtk_widget_unref (hint_dlg);*/
+	  
+  }
+
+  hint_dlg = gnome_ok_dialog_parented(gmessage->str,GTK_WINDOW(app));
+  if (hint_dlg) {
+	  gtk_signal_connect (GTK_OBJECT (hint_dlg),
+			      "destroy",
+			      (GtkSignalFunc) hint_destroy_callback,
+			      NULL);
+  }
 }
 
 GtkWidget *

@@ -26,7 +26,8 @@
 
 /* Defining SINGLE_ACTION prevents scheme from being called twice when
  * a double click occurs but delays the single_click action by 250ms */
-#define SINGLE_ACTION 
+/*#define SINGLE_ACTION */
+/* I don't like this, so it's commented out -jrb */
 
 /* Button press statuses */
 enum {
@@ -128,7 +129,9 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   /* ignore the gdk synthetic click events */
   if (event->type != GDK_BUTTON_PRESS)
     return TRUE;
-
+  if (event->button == 2)
+    return TRUE;
+  
 #ifndef SINGLE_ACTION
   if (gdk_time_get() > first_press + dbl_click_time)
     press_data->status = STATUS_NONE;
@@ -138,12 +141,10 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
   if (!hslot)
     return TRUE;
-
   press_data->xoffset = event->x;
   press_data->yoffset = event->y;
   press_data->hslot = hslot;
   press_data->cardid = cardid;
-
   if (event->button == 1) {
     if (press_data->status == STATUS_CLICK) {
       /* double click */
@@ -189,6 +190,9 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
 gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
+  if (event->button == 2)
+    return TRUE;
+
   switch (press_data->status) {
   case STATUS_IS_DRAG:
     press_data->status = STATUS_NONE;

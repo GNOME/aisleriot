@@ -26,7 +26,7 @@ GdkBitmap *mask;
 
 GdkPixmap* get_card_picture (gint suit, gint rank ) 
 {
-  return gdk_card_deck_face (GDK_CARD_DECK (card_deck), suit, rank);
+  return gdk_card_deck_face (GDK_CARD_DECK (card_deck), suit, (rank == 14)?1:rank);
 }
 
 GdkPixmap* get_background_pixmap() {

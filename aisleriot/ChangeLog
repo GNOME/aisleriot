@@ -1,5 +1,27 @@
 1999-02-20  Rosanna Yuen  <rwsy@mit.edu>
 
+	* fortunes.scm (get-hint): made it so the hints don't tell you to
+	move something into an empty slot if there isn't anything to move.
+
+	* camelot.scm: (button-released) disallows matching with wastepile
+	(button-clicked): disallows more than one card in wastepile;
+	allows clicking on 10's to work better. 
+	(new-game): rearranged layout for more pleasant viewing.
+
+1999-02-20  Jonathan Blandford  <jrb@redhat.com>
+
+	* card.c (get_card_picture): this bug has been annoying me for a
+	while.  You can now set-ace high.
+
+1999-02-20  Rosanna Yuen  <rwsy@mit.edu>
+
+	* beleaguered_castle.scm (new-game): fixed spacing so that
+	hopefully cards will no longer overlap.
+	
+	* thirteen.scm (check-for-flips): fixed bug in flipping code
+
+1999-02-20  Rosanna Yuen  <rwsy@mit.edu>
+
 	* thirteen.scm: added another new game =)
 
 1999-02-19  Rosanna Yuen  <rwsy@mit.edu>
@@ -478,3 +500,18 @@ Fri Feb 13 13:04:27 1998  Miguel de Icaza  <miguel@nuclecu.unam.mx>
 	installation directory.
 
 	* Makefile.am: integrate into build process.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

@@ -25,6 +25,8 @@
 #include "dialog.h"
 #include "cscmi.h"
 #include "draw.h"
+static GtkWidget *about = NULL;
+
 
 void restart_game ()
 {
@@ -52,29 +54,43 @@ void redo_callback ()
   gh_eval_str ("(redo)");
   refresh_screen();
 }
+static void
+about_destroy_callback (void)
+{
+	about = NULL;
+}
 
+ 
 void help_about_callback ()
 {
-  GtkWidget *about;
   const gchar *authors[] = {
-	  "Main program:  Jonathan Blandford (jrb@mit.edu)",
+	  "Main program:  Jonathan Blandford (jrb@alum.mit.edu)",
 	  "                      Felix Bellaby (felix@pooh.u-net.com)",
-	  "Card Games:    Jonathan Blandford (jrb@mit.edu)",
+	  "Card Games:    Jonathan Blandford (jrb@alum.mit.edu)",
+	  "                      Robert Brady <rwb197@ecs.soton.ac.uk>",
+	  "                      Nick Lamb <njl195@zepler.org.uk>",
 	  "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)",
 	  "                      Rosanna Yuen (rwsy@mit.edu)",
-          NULL
-          };
+	  NULL
+  };
 
-  about = gnome_about_new ( _("GNOME Solitaire"), VERSION,
-        		/* copyright notice */
-                        "(C) 1998 Jonathan Blandford (jrb@MIT.EDU)",
-                        (const char **)authors,
-                        /* another comments */
-                        _("The GNOME Generic Solitaire provides a rule-based "
-			  "solitaire engine that allows many different games to be played"),
-                        NULL);
+  if (about) {
+    gdk_window_raise (about->window);
+    return;
+  }
+  about = gnome_about_new ( _("AisleRiot"), VERSION,
+			    /* copyright notice */
+			    "(C) 1998 Jonathan Blandford (jrb@alum.mit.edu)",
+			    (const char **)authors,
+			    /* another comments */
+			    _("AisleRiot provides a rule-based, "
+			      "solitaire, card engine that allows many different games to be played"),
+			    NULL);
+  gtk_signal_connect (GTK_OBJECT (about),
+		      "destroy",
+		      (GtkSignalFunc) about_destroy_callback,
+		      NULL);
   gtk_widget_show (about);
-
   return;
 }
 

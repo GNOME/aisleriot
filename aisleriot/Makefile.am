@@ -56,6 +56,7 @@ types_DATA  = 		\
 	osmosis.scm	\
 	sol.scm		\
 	spider.scm	\
+	thieves.scm     \
 	thirteen.scm	\
 	yukon.scm
 

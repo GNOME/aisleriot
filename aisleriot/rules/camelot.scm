@@ -25,32 +25,46 @@
   (make-standard-deck)
   (shuffle-deck)
  
+  (add-blank-slot)
+  (add-blank-slot)
+  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) 2)))))
   (add-normal-slot '())           ; Slot 0
   (add-normal-slot '())           ; Slot 1
   (add-normal-slot '())           ; Slot 2
   (add-normal-slot '())           ; Slot 3
   (add-carriage-return-slot)
+  (add-blank-slot)
+  (add-blank-slot)
+  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) 2)))))
   (add-normal-slot '())           ; Slot 4
   (add-normal-slot '())           ; Slot 5
   (add-normal-slot '())           ; Slot 6
   (add-normal-slot '())           ; Slot 7
   (add-carriage-return-slot)
+  (add-blank-slot)
+  (add-blank-slot)
+  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) 2)))))
   (add-normal-slot '())           ; Slot 8
   (add-normal-slot '())           ; Slot 9
   (add-normal-slot '())           ; Slot 10
   (add-normal-slot '())           ; Slot 11
   (add-carriage-return-slot)
+  (add-blank-slot)
+  (add-blank-slot)
+  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) 2)))))
   (add-normal-slot '())           ; Slot 12
   (add-normal-slot '())           ; Slot 13
   (add-normal-slot '())           ; Slot 14
   (add-normal-slot '())           ; Slot 15
-  (add-carriage-return-slot)
-  (add-blank-slot)
+
+  (set! HORIZPOS (get-horiz-start))
+  (set! VERTPOS (get-vert-start))
+
   (add-normal-slot DECK)          ; Slot 16
   (add-normal-slot '())           ; Slot 17
   (set! add-stage #t)
   (set! fill-count 0)
-  (list 4 5)
+  (list 6 4)
 )
 
 (define (button-pressed slot-id card-list)
@@ -91,14 +105,39 @@
 	  (and (= (get-value (car card-list)) 10)
 	       (set! fill-count (- fill-count 1)))	       
 	  (and (not (empty-slot? end-slot))
+	       (not (= end-slot 17))
 	       (= 10 (+ (get-value (car card-list))
 			(get-value (car (get-cards end-slot)))))
 	       (remove-card end-slot)
 	       (set! fill-count (- fill-count 2))))))
 
 (define (button-clicked slot-id)  
-  (and (= slot-id 16)
-       (flip-stock 16 17 0)))
+  (if (= slot-id 16)
+      (and (empty-slot? 17)
+	   (or (empty-slot? 0)
+	       (empty-slot? 1)
+	       (empty-slot? 2)
+	       (empty-slot? 3)
+	       (empty-slot? 4)
+	       (empty-slot? 5)
+	       (empty-slot? 6)
+	       (empty-slot? 7)
+	       (empty-slot? 8)
+	       (empty-slot? 9)
+	       (empty-slot? 10)
+	       (empty-slot? 11)
+	       (empty-slot? 12)
+	       (empty-slot? 13)
+	       (empty-slot? 14)
+	       (empty-slot? 15))
+	   (set! add-stage #t)
+	   (flip-stock 16 17 0))
+      (and (not add-stage)
+	   (not (empty-slot? slot-id))
+	   (is-visible? (get-top-card slot-id))
+	   (= 10 (get-value (get-top-card slot-id)))
+	   (set! fill-count (- fill-count 1))
+	   (remove-card slot-id))))
 
 (define (button-double-clicked slot)
   #f)     
@@ -184,3 +223,5 @@
 (define (timeout) #f)
 
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+
+
