@@ -352,6 +352,88 @@ void help_update_game_name (gchar * name)
 
 }
 
+static gchar * make_option_gconf_key (void)
+{
+  static gchar *basekey = "/apps/aisleriot/rules/";
+  gchar *name, *s, *r;
+
+  name = g_strdup (gamename);
+  s = name;
+  while (*s) {
+    if (*s == ' ')
+      *s = '_';
+    s++;
+  }
+    
+  r = g_strconcat (basekey, name, NULL);
+  g_free(name);
+
+  return r;
+}
+
+/* Make something that gconf can easily deal with. */
+static gint compress_options_to_int (SCM options_list)
+{
+  gint l, i;
+  guint bits;
+  SCM entry;
+
+  bits = 0;
+  l = SCM_INUM (scm_length (options_list));
+  for (i=0; i<l; i++) {
+    entry  = scm_list_ref (options_list, SCM_MAKINUM (i));
+    bits <<= 1;
+    bits |= SCM_NFALSEP (scm_list_ref (entry, SCM_MAKINUM (1))) ? 1 : 0;
+  }
+
+  return bits;
+}
+
+/* Take the gconf bit-string value and set the option list from it. */
+static void expand_options_from_int (SCM options_list, guint bits)
+{
+  gint l, i;
+  SCM entry;
+
+  l = SCM_INUM (scm_length (options_list));
+  for (i=0; i<l; i++) {
+    entry  = scm_list_ref (options_list, SCM_MAKINUM (i));
+    scm_list_set_x (entry, SCM_MAKINUM (1), bits & 1 ? SCM_BOOL_T : SCM_BOOL_F);
+    bits >>= 1;
+  }
+}
+
+/* FIXME: There isn't a schema for these automatically generated keys.
+ * Maybe we should automatically generate those too. */
+
+static void save_option_list (SCM options_list)
+{
+  gchar *keyname;
+
+  keyname = make_option_gconf_key ();
+
+  gconf_client_set_int (gconf_client, keyname, 
+			compress_options_to_int (options_list), 
+			NULL);
+			
+  g_free (keyname);
+}
+
+static void load_option_list (SCM options_list)
+{
+  gchar *keyname;
+  guint r;
+
+  keyname = make_option_gconf_key ();
+
+  r = gconf_client_get_int (gconf_client, keyname, 
+			    NULL);
+			
+  g_free (keyname);
+
+  expand_options_from_int (options_list, r);
+}
+
 static void option_cb (GtkToggleAction *action, gint n)
 {
   SCM options_list;
@@ -366,16 +448,13 @@ static void option_cb (GtkToggleAction *action, gint n)
 
   scm_list_set_x (entry, SCM_MAKINUM(1), statec ? SCM_BOOL_T : SCM_BOOL_F);
 
+  save_option_list (options_list);
   cscmi_apply_options_lambda (options_list);
-  
-  /* FIXME: We do not save state between games. */
 }
 
 /* FIXME: This does not add an appropriate underscore. Is this easy? 
  * Maybe underscore the first letter that isn't underscored in another
  * menu. */
-/* FIXME: We do not set the toggle state correctly (because it isn't saved
- * yet). */
 void install_options_menu (gchar *name)
 {
   static int merge_id = 0;
@@ -406,6 +485,7 @@ void install_options_menu (gchar *name)
     uistring = g_strdup ("<ui><menubar name='MainMenu'><placeholder name='OptionMenuPlaceHolder'><menu action='OptionMenu'>");
     
     options_list = cscmi_get_options_lambda ();
+    load_option_list (options_list);
     l = SCM_INUM (scm_length (options_list));
     /* FIXME: We still leak a little here, especially actions. */
     for (i=0; i<l; i++) {
@@ -428,6 +508,7 @@ void install_options_menu (gchar *name)
       g_signal_connect (G_OBJECT (itemaction), "toggled",
 			G_CALLBACK (option_cb), GINT_TO_POINTER (i));
       gtk_action_group_add_action (action_group, GTK_ACTION (itemaction));
+      gtk_toggle_action_set_active (itemaction, entrystate);
 
       strtemp = uistring;
       uistring = g_strdup_printf ("%s<menuitem action='%s'/>", uistring,
