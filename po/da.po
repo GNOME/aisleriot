@@ -6,13 +6,60 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 1.20\n"
-"POT-Creation-Date: 2000-05-10 14:44+0200\n"
+"POT-Creation-Date: 2000-05-22 00:35+0200\n"
 "PO-Revision-Date: 2000-05-07 19:48+02:00\n"
 "Last-Translator: Keld Simonsen <keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: glines/glines.c:111
+msgid "Game Over!"
+msgstr "Spillet er slut!"
+
+#: glines/glines.c:113 glines/glines.c:604 glines/glines.c:627
+#: glines/glines.c:812
+msgid "Glines"
+msgstr "GLinjer"
+
+#. Can't go there!
+#: glines/glines.c:318
+msgid "Can't go there!"
+msgstr "Kan ikke gå der!"
+
+#: glines/glines.c:630
+msgid "Gnome port of the once-popular Color Lines game"
+msgstr "Gnome portering af det engang populære Color Lines spil"
+
+#: gataxx/gataxx.c:248 glines/glines.c:643 iagno/gnothello.c:246
+#: same-gnome/same-gnome.c:639
+msgid "Do you really want to quit?"
+msgstr "Ønsker du at slutte?"
+
+#: glines/glines.c:822 
+msgid "Welcome to Glines!" 
+msgstr "Velkommen til GLinjer!"
+
+#: glines/glines.c:833
+msgid "Next Balls"
+msgstr "Næste bolde"
+
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:846
+msgid "Score"
+msgstr "Stilling"
+
+#: metatris/metatris.c:82 metatris/metatris.c:334 metatris/metatris.c:989
+msgid "Metatris"
+msgstr "Metatris"
+
+#: metatris/metatris.c:990
+msgid "Copyright (C) 1999, Christopher James Lahey"
+msgstr "Ophavsret (C) 1999, Christopher James Lahey"
+
+#: metatris/metatris.c:992
+msgid "Metatris, the Gnome Pattern Matching System.  Enjoy."
+msgstr "Metatris, Gnome mønstre matche systemet. Hyg dig!"
 
 #: aisleriot/SCHEME_GAMES.h:11
 msgid "   "
@@ -579,7 +626,7 @@ msgstr "Henter billeder..."
 msgid "Dealing game..."
 msgstr "Blander..."
 
-#: aisleriot/sol.c:378 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:847
+#: aisleriot/sol.c:378 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:841
 msgid "Score: "
 msgstr "Stilling: "
 
@@ -592,7 +639,7 @@ msgid "Variation on game rules"
 msgstr "Variant af spilregler"
 
 #: aisleriot/sol.c:474 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
-#: same-gnome/same-gnome.c:776
+#: same-gnome/same-gnome.c:771
 msgid "NAME"
 msgstr "NAME"
 
@@ -686,10 +733,6 @@ msgstr "Nyt spil med startværdi..."
 msgid "Start a new game with a different seed"
 msgstr "Start et nyt spil af en anden variant"
 
-#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54
-msgid "Score"
-msgstr "Stilling"
-
 #: freecell/src/menu.c:107
 msgid "View the scores"
 msgstr "Vis stilling"
@@ -721,10 +764,6 @@ msgstr "Flyt stakke en for en"
 #: freecell/src/option-dialog.c:78
 msgid "Options"
 msgstr "Indstillinger"
-
-#: freecell/src/score-dialog.c:54
-msgid "Clear"
-msgstr "Nulstil"
 
 #: freecell/src/score.c:56
 msgid "This session: %d%%"
@@ -758,23 +797,43 @@ msgstr "aktuelt: %d sejre"
 msgid "current: %d losses"
 msgstr "aktuelt: %d nederlag"
 
-#: gataxx/gataxx.c:248 iagno/gnothello.c:246 same-gnome/same-gnome.c:644
-msgid "Do you really want to quit?"
-msgstr "Ønsker du at slutte?"
+#: freecell/src/score-dialog.c:54
+msgid "Clear"
+msgstr "Nulstil"
 
-#: gataxx/gataxx.c:271 gnibbles/main.c:133 iagno/gnothello.c:270
-msgid "Do you really want to end this game?"
-msgstr "Ønsker du at slutte?"
+#: gataxx/ataxx.c:133 gataxx/gataxx.c:321 gataxx/gataxx.c:663
+#: iagno/gnothello.c:320 iagno/gnothello.c:631 iagno/othello.c:212
+msgid "Dark's move"
+msgstr "Sorts træk"
 
 #: gataxx/ataxx.c:139 gataxx/gataxx.c:319 iagno/gnothello.c:318
 #: iagno/othello.c:218
 msgid "Light's move"
 msgstr "Hvids træk "
 
-#: gataxx/ataxx.c:133 gataxx/gataxx.c:321 gataxx/gataxx.c:663
-#: iagno/gnothello.c:320 iagno/gnothello.c:631 iagno/othello.c:212
-msgid "Dark's move"
-msgstr "Sorts træk"
+#: gataxx/ataxx.c:582 iagno/othello.c:610
+msgid "Light player wins!"
+msgstr "Hvid spiller vandt!"
+
+#: gataxx/ataxx.c:584 iagno/othello.c:612
+msgid "Dark player wins!"
+msgstr "Sort spiller vandt!"
+
+#: gataxx/ataxx.c:586 iagno/othello.c:614
+msgid "The game was a draw."
+msgstr "Spillet blev uafgjort."
+
+#: gataxx/ataxx.c:595 iagno/othello.c:624
+msgid "Light must pass, Dark's move"
+msgstr "Hvid må sidde over, Sort trækker"
+
+#: gataxx/ataxx.c:607 iagno/othello.c:636
+msgid "Dark must pass, Light's move"
+msgstr "Sort må sidde over, Hvid trækker"
+
+#: gataxx/gataxx.c:271 gnibbles/main.c:133 iagno/gnothello.c:270
+msgid "Do you really want to end this game?"
+msgstr "Ønsker du at slutte?"
 
 #: gataxx/gataxx.c:401 gataxx/gataxx.c:689
 msgid "gataxx"
@@ -810,26 +869,6 @@ msgstr "Velkommen til gataxx!"
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
-
-#: gataxx/ataxx.c:582 iagno/othello.c:610
-msgid "Light player wins!"
-msgstr "Hvid spiller vandt!"
-
-#: gataxx/ataxx.c:584 iagno/othello.c:612
-msgid "Dark player wins!"
-msgstr "Sort spiller vandt!"
-
-#: gataxx/ataxx.c:586 iagno/othello.c:614
-msgid "The game was a draw."
-msgstr "Spillet blev uafgjort."
-
-#: gataxx/ataxx.c:595 iagno/othello.c:624
-msgid "Light must pass, Dark's move"
-msgstr "Hvid må sidde over, Sort trækker"
-
-#: gataxx/ataxx.c:607 iagno/othello.c:636
-msgid "Dark must pass, Light's move"
-msgstr "Sort må sidde over, Hvid trækker"
 
 #: gataxx/properties.c:320 iagno/properties.c:357
 msgid "Players"
@@ -891,6 +930,166 @@ msgstr "Flip slutresultater"
 msgid "Tile set:"
 msgstr "Brikset:"
 
+#: gnibbles/gnibbles.c:96 gnibbles/gnibbles.c:113
+msgid "Couldn't find pixmap file!\n"
+msgstr "Kunne ikke finde billedfil!\n"
+
+#: gnibbles/gnibbles.c:141
+#, c-format
+msgid "Ack!  Couldn't load level file %s\n"
+msgstr "Argh! Kunne ikke indlæse banefil %s\n"
+
+#: gnibbles/main.c:168
+msgid "Gnibbles"
+msgstr "Gnibbles"
+
+#: gnibbles/main.c:171
+msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
+msgstr "Send kommentarer og fejlrapporter til: sjm@acm.org, itp@gnu.org"
+
+#: gnibbles/preferences.c:305
+msgid "Gnibbles Preferences"
+msgstr "Gnibbles indstillinger"
+
+#: gnibbles/preferences.c:311 gnome-stones/preferences.c:558
+#: gnomine/gnomine.c:298
+msgid "Game"
+msgstr "Spil"
+
+#: gnibbles/preferences.c:318
+msgid "Speed"
+msgstr "Hastighed"
+
+#: gnibbles/preferences.c:328
+msgid "Nibbles newbie"
+msgstr "Nibbles nybegynder"
+
+#: gnibbles/preferences.c:338
+msgid "My second day"
+msgstr "Min anden dag"
+
+#: gnibbles/preferences.c:348
+msgid "Not too shabby"
+msgstr "Ikke så dårligt"
+
+#: gnibbles/preferences.c:359
+msgid "Finger-twitching good"
+msgstr "Finger-tvistende god"
+
+#: gnibbles/preferences.c:376
+msgid "Starting level: "
+msgstr "Start i bane:"
+
+#: gnibbles/preferences.c:401
+msgid "Levels in random order"
+msgstr "Baner i tilfældig rækkeorden"
+
+#: gnibbles/preferences.c:413
+msgid "Fake bonuses"
+msgstr "Falske bonuser"
+
+#: gnibbles/preferences.c:425
+msgid "Sounds"
+msgstr "Lyd"
+
+#: gnibbles/preferences.c:435
+msgid "Number of players: "
+msgstr "Antal spillere: "
+
+#: gnibbles/preferences.c:461 gnobots2/properties.c:859
+msgid "Graphics"
+msgstr "Grafik"
+
+#: gnibbles/preferences.c:468
+msgid "Board size"
+msgstr "Banestørrelse"
+
+#: gnibbles/preferences.c:476
+msgid "Tiny (184x132)"
+msgstr "Bitte (184x132)"
+
+#: gnibbles/preferences.c:486
+msgid "Small (368x264)"
+msgstr "Lille (368x264)"
+
+#: gnibbles/preferences.c:496
+msgid "Medium (460x330)"
+msgstr "Mellem (460x330)"
+
+#: gnibbles/preferences.c:506
+msgid "Large (736x528)"
+msgstr "Stor (736x528)"
+
+#: gnibbles/preferences.c:516
+msgid "Extra large (920x660)"
+msgstr "Ekstra stor (920x660)"
+
+#: gnibbles/preferences.c:526
+msgid "Huge (1840x1320)"
+msgstr "Enorm (1840x1320)"
+
+#: gnibbles/preferences.c:543
+#, c-format
+msgid "Worm %d"
+msgstr "Orm %d"
+
+#: gnibbles/preferences.c:556
+msgid "Up:"
+msgstr "Op:"
+
+#: gnibbles/preferences.c:574
+msgid "Down:"
+msgstr "Ned:"
+
+#: gnibbles/preferences.c:592
+msgid "Left:"
+msgstr "Tilbage:"
+
+#: gnibbles/preferences.c:610
+msgid "Right:"
+msgstr "Højre:"
+
+#: gnibbles/preferences.c:628
+msgid "Color:"
+msgstr "Farve:"
+
+#: gnibbles/preferences.c:637
+msgid "Red"
+msgstr "Rød"
+
+#: gnibbles/preferences.c:643
+msgid "Green"
+msgstr "Grøn"
+
+#: gnibbles/preferences.c:649
+msgid "Blue"
+msgstr "Blå"
+
+#: gnibbles/preferences.c:655
+msgid "Yellow"
+msgstr "Gul"
+
+#: gnibbles/preferences.c:661
+msgid "Cyan"
+msgstr "Cyan"
+
+#: gnibbles/preferences.c:667
+msgid "Purple"
+msgstr "Lilla"
+
+#: gnibbles/preferences.c:673
+msgid "Gray"
+msgstr "Grå"
+
+#: gnibbles/preferences.c:690
+msgid "Relative movement"
+msgstr "Relativ bevægelse"
+
+#: gnibbles/scoreboard.c:49
+#, c-format
+msgid "Worm %d:"
+msgstr "Orm %d:"
+
 #: gnobots2/game.c:120
 #, c-format
 msgid "'%s' with super-safe moves"
@@ -917,7 +1116,7 @@ msgstr "Der er ingen teleporteringssteder tilbage!!"
 msgid "There are no safe locations to teleport to!!"
 msgstr "Der er ingen sikre steder at teleportere til!!"
 
-#: gnobots2/gnobots.c:58 same-gnome/same-gnome.c:776
+#: gnobots2/gnobots.c:58 same-gnome/same-gnome.c:771
 msgid "Set game scenario"
 msgstr "Vælg scenario"
 
@@ -1155,10 +1354,6 @@ msgstr "Konfiguration"
 msgid "Graphics:"
 msgstr "Grafik:"
 
-#: gnibbles/preferences.c:461 gnobots2/properties.c:859
-msgid "Graphics"
-msgstr "Grafik"
-
 #. North West
 #: gnobots2/properties.c:874
 msgid "NW"
@@ -1360,11 +1555,6 @@ msgstr "Grotter"
 msgid "Filename"
 msgstr "Filnavn"
 
-#: gnibbles/preferences.c:311 gnome-stones/preferences.c:558
-#: gnomine/gnomine.c:298
-msgid "Game"
-msgstr "Spil"
-
 #: gnome-stones/preferences.c:583
 msgid "Device"
 msgstr "Enhed"
@@ -1405,6 +1595,79 @@ msgstr "Grotte:"
 #: gnome-stones/status.c:100
 msgid "Lives:"
 msgstr "Liv:"
+
+#: gnometris/main.cpp:36
+msgid "Set starting level (1-10)"
+msgstr "Sæt startbane (1-10)"
+
+#: gnometris/main.cpp:36
+msgid "LEVEL"
+msgstr "LEVEL"
+
+#: gnometris/scoreframe.cpp:31
+msgid "Game Status"
+msgstr "Spil status:"
+
+#: gnometris/scoreframe.cpp:37
+msgid "Lines: "
+msgstr "Linjer: "
+
+#: gnometris/scoreframe.cpp:41
+msgid "Level: "
+msgstr "Bane: "
+
+#: gnometris/tetris.cpp:80
+msgid "Gnometris"
+msgstr "Gnometris"
+
+#: gnometris/tetris.cpp:214
+#, c-format
+msgid "Could not find the '%s' theme for gnometris\n"
+msgstr "SammeGnome-scenariet '%s' kan ikke findes\n"
+
+#: gnometris/tetris.cpp:432
+msgid "Gnometris setup"
+msgstr "Gnometris indstillinger"
+
+#: gnometris/tetris.cpp:457
+msgid "Number of pre-filled rows:"
+msgstr "Antal foropfyldte rækker:"
+
+#: gnometris/tetris.cpp:478
+msgid "Density of blocks in a pre-filled row:"
+msgstr "Tæthed af blokke i en foropfyldt række"
+
+#: gnometris/tetris.cpp:499
+msgid "Starting Level:"
+msgstr "Start i bane:"
+
+#: gnometris/tetris.cpp:527
+msgid "Preview next block"
+msgstr "Vis næste blok"
+
+#: gnometris/tetris.cpp:533
+msgid "Random block colors"
+msgstr "Tilfældige blok farver"
+
+#: gnometris/tetris.cpp:539
+msgid "Rotate counterclockwise"
+msgstr "Rotér mod uret"
+
+#: gnometris/tetris.cpp:552
+msgid "Block Pixmap: "
+msgstr "Blokbillede: "
+
+#: gnometris/tetris.cpp:567
+msgid "Background Pixmap: "
+msgstr "Baggrundsbillede: "
+
+#: gnometris/tetris.cpp:859
+msgid ""
+"Written for my wife, Matylda\n"
+"Send comments and bug reports to: marcin.gorycki@intel.com"
+msgstr ""
+"Skrevet for min kone, Matylda\n"
+"Send kommentarer og fejlrapporter til: marcin.gorycki@intel.com"
 
 #: gnomine/gnomine.c:42 gnomine/gnomine.c:315
 msgid "Tiny"
@@ -1506,129 +1769,6 @@ msgstr "Flag:"
 msgid "Time:"
 msgstr "Tid:"
 
-#: gnotski/gnotski.c:93 gnotski/gnotski.c:214 gnotski/gnotski.c:326
-msgid "1"
-msgstr "1"
-
-#: gnotski/gnotski.c:108 gnotski/gnotski.c:228 gnotski/gnotski.c:349
-msgid "2"
-msgstr "2"
-
-#. Tiles mismatch
-#. { GNOME_APP_UI_ITEM, N_("X"), NULL, level_cb,
-#. "14#20#12#"     "a     bbbbbb  cccccc"     "a     bbbbbb  cccccc"     "a   -##-#######     "     "    -AAAAABBCC#     "     "   d-   DEFGHI#     "     "    #   DEFGJI#     "     "  e #   KEFGLI#     "     "  e #   KEFG*I#     "     "    #   MM****#     "     "fff ###########     "     "fff  ggghhhiiiii  .j"     "kkkkkggg   iiiii....",
-#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
-#: gnotski/gnotski.c:123 gnotski/gnotski.c:242 gnotski/gnotski.c:380
-msgid "3"
-msgstr "3"
-
-#: gnotski/gnotski.c:138 gnotski/gnotski.c:257 gnotski/gnotski.c:395
-msgid "4"
-msgstr "4"
-
-#: gnotski/gnotski.c:153 gnotski/gnotski.c:268 gnotski/gnotski.c:410
-msgid "5"
-msgstr "5"
-
-#: gnotski/gnotski.c:168 gnotski/gnotski.c:281 gnotski/gnotski.c:424
-msgid "6"
-msgstr "6"
-
-#. Tiles mismatch
-#. { GNOME_APP_UI_ITEM, N_("7"), NULL, level_cb,
-#. "14#13#11#"     "         ... "     "          .  "     " ########    "     " #abcdde-    "     " #ffcddg-    "     " #hhijkl#    "     " #***jml#    "     " #n*op q#    "     " #nrr s #    "     " ########    "     "             ",
-#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
-#: gnotski/gnotski.c:183 gnotski/gnotski.c:309
-msgid "7"
-msgstr "7"
-
-#: gnotski/gnotski.c:444
-msgid "_Novice"
-msgstr "_Rekut"
-
-#: gnotski/gnotski.c:447
-msgid "_Medium"
-msgstr "_Mellem"
-
-#: gnotski/gnotski.c:450
-msgid "_Advanced"
-msgstr "_Avanceret"
-
-#: gnotski/gnotski.c:570
-msgid "Level completed. Well done."
-msgstr "Banen er løst! Godt gået!"
-
-#: gnotski/gnotski.c:666
-msgid "Moves:"
-msgstr "Træk:"
-
-#: gnotravex/gnotravex.c:655 gnotski/gnotski.c:695
-#, c-format
-msgid "Could not find '%s' pixmap file\n"
-msgstr "Kunne ikke finde '%s' billedfil\n"
-
-#: gnotski/gnotski.c:877
-msgid "Welcome to Gnome Klotski"
-msgstr "Velkommen til Gnome klotski"
-
-#: gnotski/gnotski.c:894
-#, c-format
-msgid "Playing level %s"
-msgstr "Start i bane %s"
-
-#: gnotski/gnotski.c:980
-msgid ""
-"Klotski clone\n"
-"(Comments to: Lars.Rydlinge@HIG.SE)"
-msgstr ""
-"Klotski-klon\n"
-"(Kommentarer til: lars.rydlinge@hig.se)"
-
-#: iagno/gnothello.c:107
-msgid "IOR of remote Iagno server"
-msgstr "IOR af fremmed Iagno-tjener"
-
-#: iagno/gnothello.c:108
-msgid "IOR"
-msgstr "IOR"
-
-#: iagno/gnothello.c:401 iagno/gnothello.c:654
-msgid "Iagno"
-msgstr "Iagno"
-
-#: iagno/gnothello.c:401
-msgid "(C) 1998 Ian Peters"
-msgstr "(C) 1998 Ian Peters"
-
-#: iagno/gnothello.c:402
-msgid ""
-"Send comments and bug reports to: itp@gnu.org\n"
-"Tiles under the General Public License."
-msgstr ""
-"Send kommentarer og fejlmeldinger til: itp@gnu.org\n"
-"Brikker under \"General Public License\"."
-
-#: iagno/gnothello.c:498
-#, c-format
-msgid "Could not find '%s' pixmap file for Iagno\n"
-msgstr "Kunne ikke finde '%s' billedfil for Iagno\n"
-
-#: iagno/gnothello.c:726
-msgid "Welcome to Iagno!"
-msgstr "Velkommen til Iagno!"
-
-#: iagno/properties.c:366
-msgid "Quick Moves"
-msgstr "Hurtige træk"
-
-#: iagno/properties.c:534
-msgid "Stagger flips"
-msgstr "Vakleflip"
-
-#: iagno/properties.c:543
-msgid "Show grid"
-msgstr "Vis gitter"
-
 #: gnotravex/gnotravex.c:122
 msgid "Sol_ve"
 msgstr "Løs"
@@ -1725,6 +1865,11 @@ msgstr "Gåden er løst! Godt gået!"
 msgid "Puzzle solved!"
 msgstr "Gåden er løst!"
 
+#: gnotravex/gnotravex.c:655 gnotski/gnotski.c:695
+#, c-format
+msgid "Could not find '%s' pixmap file\n"
+msgstr "Kunne ikke finde '%s' billedfil\n"
+
 #: gnotravex/gnotravex.c:745 mahjongg/mahjongg.c:1424
 msgid "... Game paused ..."
 msgstr "... Spil sat på pause ..."
@@ -1742,110 +1887,78 @@ msgstr ""
 "Tetravex klon\n"
 "(Kommentarer til: lars.rydlinge@hig.se)"
 
-#: gturing/gturing.c:189
+#: gnotski/gnotski.c:93 gnotski/gnotski.c:214 gnotski/gnotski.c:326
+msgid "1"
+msgstr "1"
+
+#: gnotski/gnotski.c:108 gnotski/gnotski.c:228 gnotski/gnotski.c:349
+msgid "2"
+msgstr "2"
+
+#. Tiles mismatch
+#. { GNOME_APP_UI_ITEM, N_("X"), NULL, level_cb,
+#. "14#20#12#"     "a     bbbbbb  cccccc"     "a     bbbbbb  cccccc"     "a   -##-#######     "     "    -AAAAABBCC#     "     "   d-   DEFGHI#     "     "    #   DEFGJI#     "     "  e #   KEFGLI#     "     "  e #   KEFG*I#     "     "    #   MM****#     "     "fff ###########     "     "fff  ggghhhiiiii  .j"     "kkkkkggg   iiiii....",
+#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
+#: gnotski/gnotski.c:123 gnotski/gnotski.c:242 gnotski/gnotski.c:380
+msgid "3"
+msgstr "3"
+
+#: gnotski/gnotski.c:138 gnotski/gnotski.c:257 gnotski/gnotski.c:395
+msgid "4"
+msgstr "4"
+
+#: gnotski/gnotski.c:153 gnotski/gnotski.c:268 gnotski/gnotski.c:410
+msgid "5"
+msgstr "5"
+
+#: gnotski/gnotski.c:168 gnotski/gnotski.c:281 gnotski/gnotski.c:424
+msgid "6"
+msgstr "6"
+
+#. Tiles mismatch
+#. { GNOME_APP_UI_ITEM, N_("7"), NULL, level_cb,
+#. "14#13#11#"     "         ... "     "          .  "     " ########    "     " #abcdde-    "     " #ffcddg-    "     " #hhijkl#    "     " #***jml#    "     " #n*op q#    "     " #nrr s #    "     " ########    "     "             ",
+#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
+#: gnotski/gnotski.c:183 gnotski/gnotski.c:309
+msgid "7"
+msgstr "7"
+
+#: gnotski/gnotski.c:444
+msgid "_Novice"
+msgstr "_Rekut"
+
+#: gnotski/gnotski.c:447
+msgid "_Medium"
+msgstr "_Mellem"
+
+#: gnotski/gnotski.c:450
+msgid "_Advanced"
+msgstr "_Avanceret"
+
+#: gnotski/gnotski.c:570
+msgid "Level completed. Well done."
+msgstr "Banen er løst! Godt gået!"
+
+#: gnotski/gnotski.c:666
+msgid "Moves:"
+msgstr "Træk:"
+
+#: gnotski/gnotski.c:877
+msgid "Welcome to Gnome Klotski"
+msgstr "Velkommen til Gnome klotski"
+
+#: gnotski/gnotski.c:894
 #, c-format
-msgid "State: %d"
-msgstr "Status: %d"
+msgid "Playing level %s"
+msgstr "Start i bane %s"
 
-#: gturing/gturing.c:192 gturing/gturing.c:272
-msgid "Stopped"
-msgstr "Stoppet"
-
-#: gturing/gturing.c:317
-msgid "Open gTuring Program File"
-msgstr "Åbn gTuring programfil"
-
-#: gturing/gturing.c:330
-msgid "Tape Setting"
-msgstr "Båndindstillinger"
-
-#: gturing/gturing.c:330
-msgid "Please enter the tape:"
-msgstr "Indtast venligst båndet:"
-
-#: gturing/gturing.c:371
-msgid "State"
-msgstr "Stadie"
-
-#: gturing/gturing.c:371
-msgid "Read"
-msgstr "Læs"
-
-#: gturing/gturing.c:371
-msgid "Write"
-msgstr "Skriv"
-
-#: gturing/gturing.c:371
-msgid "Move"
-msgstr "Flyt"
-
-#: gturing/gturing.c:372
-msgid "New State"
-msgstr "Nyt stadie"
-
-#: gturing/gturing.c:380
-msgid "Machine's states"
-msgstr "Maskines stadier"
-
-#: gturing/gturing.c:426
-msgid "Animation Speed"
-msgstr "Animations hastighed"
-
-#: gturing/gturing.c:426
-msgid "Miliseconds between steps:"
-msgstr "Millisekunder mellem trin:"
-
-#: gturing/gturing.c:443
-msgid "gturing"
-msgstr "gTuring"
-
-#: gturing/gturing.c:446
-msgid "A Turing Machine for GNOME"
-msgstr "En turing maskine til Gnome"
-
-#: gturing/gturing.c:464
-msgid "_Play Speed..."
-msgstr "S_pillehastighed..."
-
-#: gturing/gturing.c:464
-msgid "Set playing speed."
-msgstr "Indstil spillehastighed"
-
-#: gturing/gturing.c:466
-msgid "_Tape..."
-msgstr "_Bånd..."
-
-#: gturing/gturing.c:466
-msgid "Set the machine's tape."
-msgstr "Sæt maskinens bånd"
-
-#: gturing/gturing.c:468
-msgid "_View States"
-msgstr "_Vis stadier"
-
-#: gturing/gturing.c:469
-msgid "Open a table with the machine's states."
-msgstr "Åbn en tabel med maskinens tilstande."
-
-#: gturing/gturing.c:488
-msgid "Reset"
-msgstr "Nulstil"
-
-#: gturing/gturing.c:490
-msgid "Stop"
-msgstr "Stop"
-
-#: gturing/gturing.c:492
-msgid "Run"
-msgstr "Kør"
-
-#: gturing/gturing.c:494
-msgid "Step"
-msgstr "Trin"
-
-#: gturing/gturing.c:504
-msgid "Welcome to gTuring."
-msgstr "Velkommen til gTuring"
+#: gnotski/gnotski.c:980
+msgid ""
+"Klotski clone\n"
+"(Comments to: Lars.Rydlinge@HIG.SE)"
+msgstr ""
+"Klotski-klon\n"
+"(Kommentarer til: lars.rydlinge@hig.se)"
 
 #: gtali/clist.c:121
 msgid "Already used! Where do you want to put that?"
@@ -2117,6 +2230,156 @@ msgstr "Antal kast"
 msgid "Total"
 msgstr "Ialt"
 
+#: gturing/gturing.c:189
+#, c-format
+msgid "State: %d"
+msgstr "Status: %d"
+
+#: gturing/gturing.c:192 gturing/gturing.c:272
+msgid "Stopped"
+msgstr "Stoppet"
+
+#: gturing/gturing.c:317
+msgid "Open gTuring Program File"
+msgstr "Åbn gTuring programfil"
+
+#: gturing/gturing.c:330
+msgid "Tape Setting"
+msgstr "Båndindstillinger"
+
+#: gturing/gturing.c:330
+msgid "Please enter the tape:"
+msgstr "Indtast venligst båndet:"
+
+#: gturing/gturing.c:371
+msgid "State"
+msgstr "Stadie"
+
+#: gturing/gturing.c:371
+msgid "Read"
+msgstr "Læs"
+
+#: gturing/gturing.c:371
+msgid "Write"
+msgstr "Skriv"
+
+#: gturing/gturing.c:371
+msgid "Move"
+msgstr "Flyt"
+
+#: gturing/gturing.c:372
+msgid "New State"
+msgstr "Nyt stadie"
+
+#: gturing/gturing.c:380
+msgid "Machine's states"
+msgstr "Maskines stadier"
+
+#: gturing/gturing.c:426
+msgid "Animation Speed"
+msgstr "Animations hastighed"
+
+#: gturing/gturing.c:426
+msgid "Miliseconds between steps:"
+msgstr "Millisekunder mellem trin:"
+
+#: gturing/gturing.c:443
+msgid "gturing"
+msgstr "gTuring"
+
+#: gturing/gturing.c:446
+msgid "A Turing Machine for GNOME"
+msgstr "En turing maskine til Gnome"
+
+#: gturing/gturing.c:464
+msgid "_Play Speed..."
+msgstr "S_pillehastighed..."
+
+#: gturing/gturing.c:464
+msgid "Set playing speed."
+msgstr "Indstil spillehastighed"
+
+#: gturing/gturing.c:466
+msgid "_Tape..."
+msgstr "_Bånd..."
+
+#: gturing/gturing.c:466
+msgid "Set the machine's tape."
+msgstr "Sæt maskinens bånd"
+
+#: gturing/gturing.c:468
+msgid "_View States"
+msgstr "_Vis stadier"
+
+#: gturing/gturing.c:469
+msgid "Open a table with the machine's states."
+msgstr "Åbn en tabel med maskinens tilstande."
+
+#: gturing/gturing.c:488
+msgid "Reset"
+msgstr "Nulstil"
+
+#: gturing/gturing.c:490
+msgid "Stop"
+msgstr "Stop"
+
+#: gturing/gturing.c:492
+msgid "Run"
+msgstr "Kør"
+
+#: gturing/gturing.c:494
+msgid "Step"
+msgstr "Trin"
+
+#: gturing/gturing.c:504
+msgid "Welcome to gTuring."
+msgstr "Velkommen til gTuring"
+
+#: iagno/gnothello.c:107
+msgid "IOR of remote Iagno server"
+msgstr "IOR af fremmed Iagno-tjener"
+
+#: iagno/gnothello.c:108
+msgid "IOR"
+msgstr "IOR"
+
+#: iagno/gnothello.c:401 iagno/gnothello.c:654
+msgid "Iagno"
+msgstr "Iagno"
+
+#: iagno/gnothello.c:401
+msgid "(C) 1998 Ian Peters"
+msgstr "(C) 1998 Ian Peters"
+
+#: iagno/gnothello.c:402
+msgid ""
+"Send comments and bug reports to: itp@gnu.org\n"
+"Tiles under the General Public License."
+msgstr ""
+"Send kommentarer og fejlmeldinger til: itp@gnu.org\n"
+"Brikker under \"General Public License\"."
+
+#: iagno/gnothello.c:498
+#, c-format
+msgid "Could not find '%s' pixmap file for Iagno\n"
+msgstr "Kunne ikke finde '%s' billedfil for Iagno\n"
+
+#: iagno/gnothello.c:726
+msgid "Welcome to Iagno!"
+msgstr "Velkommen til Iagno!"
+
+#: iagno/properties.c:366
+msgid "Quick Moves"
+msgstr "Hurtige træk"
+
+#: iagno/properties.c:534
+msgid "Stagger flips"
+msgstr "Vakleflip"
+
+#: iagno/properties.c:543
+msgid "Show grid"
+msgstr "Vis gitter"
+
 #: mahjongg/mahjongg.c:346
 msgid "New game with _seed..."
 msgstr "Nyt spil med _startværdi..."
@@ -2200,7 +2463,7 @@ msgstr "Farver"
 msgid "Background:"
 msgstr "Baggrund:"
 
-#: mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:560
+#: mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:554
 msgid "Preferences"
 msgstr "Præferencer"
 
@@ -2269,7 +2532,7 @@ msgid "Moves Left: "
 msgstr "Træk tilbage: "
 
 #: same-gnome/same-gnome.c:263 same-gnome/same-gnome.c:295
-#: same-gnome/same-gnome.c:298 same-gnome/same-gnome.c:618
+#: same-gnome/same-gnome.c:298 same-gnome/same-gnome.c:613
 msgid "The Same Gnome"
 msgstr "SammeGnome"
 
@@ -2278,31 +2541,31 @@ msgstr "SammeGnome"
 msgid "Could not find the '%s' theme for SameGnome\n"
 msgstr "SammeGnome-scenariet '%s' kan ikke findes\n"
 
-#: same-gnome/same-gnome.c:572
+#: same-gnome/same-gnome.c:567
 msgid "Scenario"
 msgstr "Scenario"
 
-#: same-gnome/same-gnome.c:578
+#: same-gnome/same-gnome.c:573
 msgid "Select scenario:"
 msgstr "Vælg scenario:"
 
-#: same-gnome/same-gnome.c:584
+#: same-gnome/same-gnome.c:579
 msgid "Make it the default scenario"
 msgstr "Gør dette til standardscenariet"
 
-#: same-gnome/same-gnome.c:621
+#: same-gnome/same-gnome.c:616
 msgid "Original idea from KDE's same game program."
 msgstr "Original idé: KDEs same game"
 
-#: same-gnome/same-gnome.c:775
+#: same-gnome/same-gnome.c:770
 msgid "Debugging mode"
 msgstr "Aflusningstilstand"
 
-#: same-gnome/same-gnome.c:821
+#: same-gnome/same-gnome.c:815
 msgid "Same Gnome"
 msgstr "SammeGnome"
 
-#: same-gnome/same-gnome.c:831
+#: same-gnome/same-gnome.c:825
 msgid "Welcome to Same Gnome!"
 msgstr "Velkommen til SammeGnome!"
 
@@ -2398,226 +2661,3 @@ msgstr "Hvad bærer jeg på"
 msgid "_New"
 msgstr "_Ny"
 
-#: gnometris/tetris.cpp:80
-msgid "Gnometris"
-msgstr "Gnometris"
-
-#: gnometris/tetris.cpp:214
-#, c-format
-msgid "Could not find the '%s' theme for gnometris\n"
-msgstr "SammeGnome-scenariet '%s' kan ikke findes\n"
-
-#: gnometris/tetris.cpp:432
-msgid "Gnometris setup"
-msgstr "Gnometris indstillinger"
-
-#: gnometris/tetris.cpp:457
-msgid "Number of pre-filled rows:"
-msgstr "Antal foropfyldte rækker:"
-
-#: gnometris/tetris.cpp:478
-msgid "Density of blocks in a pre-filled row:"
-msgstr "Tæthed af blokke i en foropfyldt række"
-
-#: gnometris/tetris.cpp:499
-msgid "Starting Level:"
-msgstr "Start i bane:"
-
-#: gnometris/tetris.cpp:527
-msgid "Preview next block"
-msgstr "Vis næste blok"
-
-#: gnometris/tetris.cpp:533
-msgid "Random block colors"
-msgstr "Tilfældige blok farver"
-
-#: gnometris/tetris.cpp:539
-msgid "Rotate counterclockwise"
-msgstr "Rotér mod uret"
-
-#: gnometris/tetris.cpp:552
-msgid "Block Pixmap: "
-msgstr "Blokbillede: "
-
-#: gnometris/tetris.cpp:567
-msgid "Background Pixmap: "
-msgstr "Baggrundsbillede: "
-
-#: gnometris/tetris.cpp:859
-msgid ""
-"Written for my wife, Matylda\n"
-"Send comments and bug reports to: marcin.gorycki@intel.com"
-msgstr ""
-"Skrevet for min kone, Matylda\n"
-"Send kommentarer og fejlrapporter til: marcin.gorycki@intel.com"
-
-#: gnometris/main.cpp:36
-msgid "Set starting level (1-10)"
-msgstr "Sæt startbane (1-10)"
-
-#: gnometris/main.cpp:36
-msgid "LEVEL"
-msgstr "LEVEL"
-
-#: gnometris/scoreframe.cpp:31
-msgid "Game Status"
-msgstr "Spil status:"
-
-#: gnometris/scoreframe.cpp:37
-msgid "Lines: "
-msgstr "Linjer: "
-
-#: gnometris/scoreframe.cpp:41
-msgid "Level: "
-msgstr "Bane: "
-
-#: gnibbles/gnibbles.c:96 gnibbles/gnibbles.c:113
-msgid "Couldn't find pixmap file!\n"
-msgstr "Kunne ikke finde billedfil!\n"
-
-#: gnibbles/gnibbles.c:141
-#, c-format
-msgid "Ack!  Couldn't load level file %s\n"
-msgstr "Argh! Kunne ikke indlæse banefil %s\n"
-
-#: gnibbles/main.c:168
-msgid "Gnibbles"
-msgstr "Gnibbles"
-
-#: gnibbles/main.c:171
-msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
-msgstr "Send kommentarer og fejlrapporter til: sjm@acm.org, itp@gnu.org"
-
-#: gnibbles/preferences.c:305
-msgid "Gnibbles Preferences"
-msgstr "Gnibbles indstillinger"
-
-#: gnibbles/preferences.c:318
-msgid "Speed"
-msgstr "Hastighed"
-
-#: gnibbles/preferences.c:328
-msgid "Nibbles newbie"
-msgstr "Nibbles nybegynder"
-
-#: gnibbles/preferences.c:338
-msgid "My second day"
-msgstr "Min anden dag"
-
-#: gnibbles/preferences.c:348
-msgid "Not too shabby"
-msgstr "Ikke så dårligt"
-
-#: gnibbles/preferences.c:359
-msgid "Finger-twitching good"
-msgstr "Finger-tvistende god"
-
-#: gnibbles/preferences.c:376
-msgid "Starting level: "
-msgstr "Start i bane:"
-
-#: gnibbles/preferences.c:401
-msgid "Levels in random order"
-msgstr "Baner i tilfældig rækkeorden"
-
-#: gnibbles/preferences.c:413
-msgid "Fake bonuses"
-msgstr "Falske bonuser"
-
-#: gnibbles/preferences.c:425
-msgid "Sounds"
-msgstr "Lyd"
-
-#: gnibbles/preferences.c:435
-msgid "Number of players: "
-msgstr "Antal spillere: "
-
-#: gnibbles/preferences.c:468
-msgid "Board size"
-msgstr "Banestørrelse"
-
-#: gnibbles/preferences.c:476
-msgid "Tiny (184x132)"
-msgstr "Bitte (184x132)"
-
-#: gnibbles/preferences.c:486
-msgid "Small (368x264)"
-msgstr "Lille (368x264)"
-
-#: gnibbles/preferences.c:496
-msgid "Medium (460x330)"
-msgstr "Mellem (460x330)"
-
-#: gnibbles/preferences.c:506
-msgid "Large (736x528)"
-msgstr "Stor (736x528)"
-
-#: gnibbles/preferences.c:516
-msgid "Extra large (920x660)"
-msgstr "Ekstra stor (920x660)"
-
-#: gnibbles/preferences.c:526
-msgid "Huge (1840x1320)"
-msgstr "Enorm (1840x1320)"
-
-#: gnibbles/preferences.c:543
-#, c-format
-msgid "Worm %d"
-msgstr "Orm %d"
-
-#: gnibbles/preferences.c:556
-msgid "Up:"
-msgstr "Op:"
-
-#: gnibbles/preferences.c:574
-msgid "Down:"
-msgstr "Ned:"
-
-#: gnibbles/preferences.c:592
-msgid "Left:"
-msgstr "Tilbage:"
-
-#: gnibbles/preferences.c:610
-msgid "Right:"
-msgstr "Højre:"
-
-#: gnibbles/preferences.c:628
-msgid "Color:"
-msgstr "Farve:"
-
-#: gnibbles/preferences.c:637
-msgid "Red"
-msgstr "Rød"
-
-#: gnibbles/preferences.c:643
-msgid "Green"
-msgstr "Grøn"
-
-#: gnibbles/preferences.c:649
-msgid "Blue"
-msgstr "Blå"
-
-#: gnibbles/preferences.c:655
-msgid "Yellow"
-msgstr "Gul"
-
-#: gnibbles/preferences.c:661
-msgid "Cyan"
-msgstr "Cyan"
-
-#: gnibbles/preferences.c:667
-msgid "Purple"
-msgstr "Lilla"
-
-#: gnibbles/preferences.c:673
-msgid "Gray"
-msgstr "Grå"
-
-#: gnibbles/preferences.c:690
-msgid "Relative movement"
-msgstr "Relativ bevægelse"
-
-#: gnibbles/scoreboard.c:49
-#, c-format
-msgid "Worm %d:"
-msgstr "Orm %d:"
