@@ -1,5 +1,5 @@
 ## process this file with automake to produce Makefile.in
-Gamesdir = $(datadir)/gnome/apps/Games
+Gamesdir = $(datadir)/applications
 
 INCLUDES = \
 	$(GNOME_GAMES_CFLAGS)		\
