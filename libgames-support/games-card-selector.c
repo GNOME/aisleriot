@@ -67,7 +67,6 @@ GtkWidget * games_card_selector_new (gchar * current)
 static void games_card_selector_finalize (GamesCardSelector * selector)
 {
   g_object_unref (selector->files);
-  g_object_unref (selector->combobox);
 }
 
 static void games_card_selector_init (GamesCardSelector *selector)
