@@ -66,6 +66,46 @@ close_statistics_dialog (GtkWidget * widget)
   return FALSE;
 }
 
+static void update_labels (void) {
+  gchar * text;
+  
+  text = g_strdup_printf ("%d", current_stats->wins);
+  gtk_label_set_text (GTK_LABEL (wins_label), text);
+  g_free (text);
+
+  text = g_strdup_printf ("%d", current_stats->total);
+  gtk_label_set_text (GTK_LABEL (total_label), text);
+  g_free (text);
+
+  if (current_stats->total != 0) {
+    text = g_strdup_printf ("% 3d%%", 
+			    (100*current_stats->wins)/current_stats->total);
+    gtk_label_set_text (GTK_LABEL (percentage_label), text);
+    g_free (text);
+  } else 
+    /* For translators: N/A means "Not Applicable", use whatever
+     * abbreviation you have for a value that has no meaning. */
+    gtk_label_set_text (GTK_LABEL (percentage_label), _("N/A"));
+
+  if (current_stats->best != 0) {
+    /* Translators: this represents minutes:seconds. */
+    text = g_strdup_printf (_("%d:%02d"), current_stats->best / 60,
+			    current_stats->best % 60);
+    gtk_label_set_text (GTK_LABEL (best_label), text);
+    g_free (text);
+  } else
+    gtk_label_set_text (GTK_LABEL (best_label), _("N/A"));    
+
+  if (current_stats->worst != 0) {
+    /* Translators: this represents minutes:seconds. */
+    text = g_strdup_printf (_("%d:%02d"), current_stats->worst / 60,
+			    current_stats->worst % 60);
+    gtk_label_set_text (GTK_LABEL (worst_label), text);
+    g_free (text);
+  } else
+    gtk_label_set_text (GTK_LABEL (worst_label), _("N/A"));    
+}
+
 void update_statistics_display (void)
 {
   gchar * text;
@@ -94,34 +134,24 @@ void update_statistics_display (void)
     g_hash_table_insert (stats, game_name, current_stats);
   }
 
-  text = g_strdup_printf ("%d", current_stats->wins);
-  gtk_label_set_text (GTK_LABEL (wins_label), text);
-  g_free (text);
+  update_labels ();
+}
 
-  text = g_strdup_printf ("%d", current_stats->total);
-  gtk_label_set_text (GTK_LABEL (total_label), text);
-  g_free (text);
-
-  if (current_stats->total != 0)
-    text = g_strdup_printf ("% 3d%%", 
-			    (100*current_stats->wins)/current_stats->total);
-  else
-    /* For translators: N/A means "Not Applicable", use whatever
-     * abbreviation you have for a value that has no meaning. */
-    text = g_strdup (_("N/A"));
-  gtk_label_set_text (GTK_LABEL (percentage_label), text);
-  g_free (text);
-
-  /* FIXME: Make these two pritn actual times. */
-  text = g_strdup_printf ("%d", current_stats->best);
-  gtk_label_set_text (GTK_LABEL (best_label), text);
-  g_free (text);
-
-  text = g_strdup_printf ("%d", current_stats->worst);
-  gtk_label_set_text (GTK_LABEL (worst_label), text);
-  g_free (text);
-
-
+void update_statistics (gboolean won, guint time)
+{
+  current_stats->total++;
+  if (won) {
+    current_stats->wins++;
+    if (time > 0) {
+      if ((current_stats->best == 0) || (time < current_stats->best))
+	current_stats->best = time;
+      if (time > current_stats->worst)
+	current_stats->worst = time;
+    }
+  }
+  
+  if (statistics_dialog)
+    update_labels ();
 }
 
 void

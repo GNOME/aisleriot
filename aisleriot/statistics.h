@@ -22,8 +22,11 @@
 
 G_BEGIN_DECLS
 
+#include <glib.h>
+
 void show_statistics_dialog (void);
 void update_statistics_display (void);
+void update_statistics (gboolean won, guint time);
 
 G_END_DECLS
 

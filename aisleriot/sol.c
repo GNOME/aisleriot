@@ -71,6 +71,7 @@ guint            n_games;
 struct dirent    **game_dents;
 gchar            *game_file = "";
 gchar            *game_name;
+gboolean         game_in_progress = FALSE;
 gboolean         game_over;
 gboolean         game_won;
 press_data_type* press_data; 
@@ -196,6 +197,14 @@ void new_game (gchar* file, guint *seedp )
   SCM size;
   gint min_w, min_h;
 
+  /* If we're aborting an old game count it as a failure for
+   * statistical purposes. */
+  if (game_in_progress) {
+    update_statistics (FALSE, 0);
+  }
+  /* The game isn't actually in progress until the user makes a move. */
+  game_in_progress = FALSE;
+
   if (file && strcmp (file, game_file)) {
     gchar buf[100];
     GtkWidget *ms;
@@ -255,9 +264,7 @@ void new_game (gchar* file, guint *seedp )
   g_random_set_seed(seed);
   score = 0;
   set_score();
-
-  if(surface) 
-    timer_start();
+  timer_reset ();
 
   size = gh_call0(game_data->start_game_lambda);
   gh_eval_str ("(start-game)");
@@ -317,8 +324,20 @@ void timer_start ()
 void timer_stop ()
 {
   games_clock_stop (GAMES_CLOCK (time_value));
-  g_source_remove (timer_timeout);
+  if (timer_timeout)
+    g_source_remove (timer_timeout);
   timer_timeout = 0;
+}
+
+void timer_reset (void)
+{
+  timer_stop ();
+  games_clock_set_seconds (GAMES_CLOCK (time_value), 0);
+}
+
+guint timer_get (void)
+{
+  return (guint) games_clock_get_seconds (GAMES_CLOCK (time_value));
 }
 
 /*

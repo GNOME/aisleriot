@@ -155,6 +155,14 @@ games_clock_set_seconds (GamesClock *clock,
 	clock_paint (clock);
 }
 
+time_t
+games_clock_get_seconds (GamesClock * clock)
+{
+  g_return_val_if_fail (clock && GAMES_IS_CLOCK (clock), 0);
+
+  return clock->seconds;
+}
+
 void
 games_clock_add_seconds (GamesClock *clock,
 			 time_t      seconds)

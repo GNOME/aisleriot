@@ -52,6 +52,7 @@ extern guint            n_games;
 extern struct dirent**  game_dents;
 extern gchar*           game_file;
 extern gchar*           game_name;
+extern gboolean         game_in_progress;
 extern gboolean         game_over;
 extern gboolean         game_won;
 extern press_data_type* press_data; 
@@ -69,6 +70,8 @@ void quit_app (GtkMenuItem*);
 void set_score( void );
 void timer_start( void );
 void timer_stop( void );
+void timer_reset (void);
+guint timer_get (void);
 void make_title( void );
 void eval_installed_file(gchar *file);
 

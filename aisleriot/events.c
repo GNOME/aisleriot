@@ -23,6 +23,7 @@
 #include "draw.h"
 #include "dialog.h"
 #include "slot.h"
+#include "statistics.h"
 
 hslot_type last_hslot;
 gint last_cardid;
@@ -46,8 +47,10 @@ void end_of_game_test() {
     
     if (game_over) {
       timer_stop ();
+      game_in_progress = FALSE;
       game_won = gh_scm2bool (gh_call0 (game_data->winning_game_lambda));
       refresh_screen ();
+      update_statistics (game_won, timer_get ());
       show_game_over_dialog ();
     }
   }  
@@ -100,6 +103,11 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   hslot_type hslot;
   gint cardid;
   gboolean double_click;
+
+  if (!game_in_progress) {
+    game_in_progress = TRUE;
+    timer_start ();
+  }
 
   if (event->button != 1 && event->button != 3)
     return TRUE;
@@ -256,9 +264,6 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
     if(old_w == event->width && old_h == event->height)
       return TRUE;
     g_object_unref(surface);
-  }
-  else {
-    timer_start();
   }
 
   surface =

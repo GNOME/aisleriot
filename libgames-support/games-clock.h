@@ -1,5 +1,5 @@
 /*
- * clock.c: Clock widget.
+ * clock.h: Clock widget.
  *
  * Copyright (C) 2001, 2003 Iain Holmes
  *           (C) 2001 Mark McLoughlin
@@ -42,6 +42,7 @@ void          games_clock_start       (GamesClock *clock);
 void          games_clock_stop        (GamesClock *clock);
 void          games_clock_set_seconds (GamesClock *clock,
 				       time_t      seconds);
+time_t        games_clock_get_seconds (GamesClock *clock);
 void          games_clock_add_seconds (GamesClock *clock,
 				       time_t      seconds);
 
