@@ -1,78 +1,281 @@
-Gnome-Games
-===========
+===============================================================================
+                             Gnome-Games
+===============================================================================
 
-This package contains games for your GNOME desktop. It requires normal GNOME
-2 packges plus guile for aisleriot and a c++ compiler to build GNOME Tetris.
+Contents
+--------
 
-The goal of these games is to amuse hackers and GNOME users during its
-normal and productive work. They are also useful for avoiding normal
-and productive work.
+- Overview
+- The Games
+- License
+- Mailing List
+- Maintainers
+- Bug Reports
+- Requirements
+- Building Gnome-Games
+- Security Issues
+- The Future
 
-The Games:
-==========
-AisleRiot: Solitaire card games, lots of them. Klondike, Freecell,
-           Spider, take your pick. Over 70 variations.
-Blackjack: The casino card game without all the hassle of actually 
-           owing money when you lose.
-Lines: Align balls into coloured lines. AKA fiveormore.
-Ataxx: A disc-flipping game similar to Othello (which we call Iagno).
-Four-in-a-row: The classic four in a row game. You don't get to dump all the
-               pieces out the bottom when you're finished though.
-Nibbles: The "worm" game. Made popular again by cell phones.
-Robots: The classic BSD robots game. Mac users might remember a similar 
-        "daleks" game.
-Stones: Mine through dirt and collect gems: but don't get
-        squashed by the boulders. Also has a Sokoban mode.
-Gnometris: The Russian game Tetris. Need I say more ?
-Mines: The popular logic puzzle minesweeper.
-Klotski: A sliding blocks game.
-Tali: Sort of poker with dice and less money.
-Iagno: Gnome version of the popular Othello disk flipping game.
-Mahjongg: GNOME version of the Eastern tile game, Mahjongg.
-Same GNOME: Remove as many balls in as few moves as possible.
+Overview
+--------
 
-Security
-========
+Gnome-games is a collection of simple, but addictive, games from the
+GNOME desktop project. They represent many of the popular games and
+include card games, puzzle games and arcade games. They are meant to
+be the sort of game that can be played in five minutes or so. They are
+also meant to be fun enough that you will play them again and
+again. Of course we can't be held responsible for the time and
+productivity lost while playing them.
 
-Some of these games take advantage of the Unix setgid feature to
-control access to the high score tables. Specifically: the programs
-that record high scores gain the privileges of the games group for
-this purpose. For most people this is fine and safe. However, in some
-cases this is not appropriate (e.g. the games group is used for other
-purposes, or it doesn't exist) . If it isn't there are several options:
- - Change the group with the --with-scores-group option to configure.
-   This sets the group for both the score files and the
-   binaries. There is also a --with-scores-user option as well, but
-   it is largely irrelevant. Both default to `games'.
- - Disable setgid support altogether with the --disable-setgid
-   option. The scores files are still installed and you can control
-   the user and group as above. Depending on how you set the
-   permissions on the scores files this will either disable high
-   score support or make cheating trivial. By default it will disable
-   high score support.
+The Games
+---------
 
-Bugs
-====
+Here is a list of the games in this compilation along with a brief
+description. The names in brackets are the program names you use from the
+command line.
 
-If you find any bugs please report them using either bug-buddy or
-by going to the web-based gnome bug tracking system at:
+AisleRiot       A compilation of seventy different solitaire card games.
+                (sol)
 
-http://bugzilla.gnome.org
+Ataxx           A disk-flipping game where players try and control the
+                most disks. This is similar to Iagno, another game in
+                this suite. (gataxx)
 
-Contact Information
-===================
+Blackjack       The casino card game without any need to actually pay
+                your gambling debts. (blackjack)
+
+Four-in-a-row   The classic game where each player tries to make a line
+                of four disks before their opponent. There is a very
+                popular version of this in the real world called
+                Connect Four. (gnect)
+
+Gnometris       That Russian game of fitting falling geometric
+                shapes. Need I say more ? (gnometris)
+
+Iagno           Gnome version of the popular Othello (R) disk flipping
+                game. The goal is to control all the disks on the
+                board by trapping your opponents disks between two of
+                yours. (iagno)
+
+Klotski         A series of sliding block puzzles. (gnotski)
+
+Lines           You move balls around the grid and try and form lines
+                of the same colour to make them disappear. Unfortunately 
+                more balls keep dropping in ... (glines)
+
+Mahjongg        A tile-based solitaire game with an oriental
+                flavor. Remove tiles in matching pairs from a pile to
+                try and dismantle it. (mahjongg)
+
+Mines           The popular logic puzzle minesweeper. Clear mines from
+                a board using hints from squares you have already
+                uncovered. (gnomine)
+
+Nibbles         The "worm" game. You pilot a worm around a maze trying
+                to collect diamonds. With each diamond your worm grows
+                and navigation becomes ever more difficult. (gnibbles)
+
+Robots          The classic BSD robots game where you have to avoid a
+                hoard of robots who are trying to kill you. Mac users
+                might remember a similar "daleks" game. (gnobots2)
+
+Same GNOME      You start with a grid of stones of different
+                colors. You can only remove stones where two or more
+                of the same colour touch each other. The goal is to
+                remove as many as possible. You score more points by
+                removing them in bigger groups.
+
+Stones          Mine through dirt and collect gems: but don't get
+                squashed by the boulders. Also has a Sokoban mode.
+                (gnome-stones)
+
+Tali            Sort of poker with dice and less money. An ancient
+                Roman game, this variant is similar to Yahtzee (R).
+                (gtali)
+
+
+License
+-------
+
+This is Free Software and there are no restrictions on your use and
+enjoyment of it. In most countries copyright law would prevent you
+from sharing these programs, either as is or in a modified
+form. However we provide a license to allow you to modify and
+redistribute this code. This is the GNU General Public License and it
+can be found in the file COPYING. This allows you to do almost
+anything you would like with this software, including selling
+it. There are only two catches, firstly you can't restrict anyone else
+from copying the code, you have to give them the same freedoms you
+received (including access to the source code). Secondly, because the
+code may have been modified and we have no idea what state it will be
+in when it reaches you we cannot provide a warranty. All the details
+can be found in the file COPYING which should have accompanied this
+software. If it didn't you can find a copy at
+
+http://www.gnu.org/copyleft/gpl.html 
+
+or write to the Free Software Foundation, Inc., 59 Temple Place, Suite
+330, Boston, MA 02111-1307 USA
+
+Mailing List
+------------
+
+Gnome-games has a mailing list at <games-list@gnome.org>. You can
+subscribe to the list at:
+
+ http://mail.gnome.org/mailman/listinfo/games-list
+
+and browse the archives at:
+
+ http://mail.gnome.org/archives/games-list/
+
+The mailing list is for announcements and discussion about games
+written for the GNOME environment. It is moderated and low volume.
+
+Maintainers
+-----------
 
 The current maintainers are:
 
  Callum McKenzie <callum@physics.otago.ac.nz>.
- Ross Burton <ross@burtonini.com>
+ Jon McCann <mccann@jhu.edu>.
 
-The mailing list for discussing gnome-games is:
- <games-list@gnome.org>
+While you can email them with suggestions and bug reports it is better
+to use either the bug tracking system (see below) or the mailing
+list. Even for suggestions the bug tracking system is better because
+it ensures that there is an archive of the discussion and it is harder
+for the maintainer to loose suggestions. For more general discussion,
+policy issues and issues that many people will be interested in, the
+mailing list is the best place.
 
-You can subscribe using the following link:
- http://mail.gnome.org/mailman/listinfo/games-list
-To browse the archive of previous messages go to:
- http://mail.gnome.org/archives/games-list/
+Reporting Bugs
+--------------
 
-The list is moderated and low volume.
+If you find any bugs in gnome-games, or even just have a suggestion
+for an improvement to the games then please submit a bug report. There
+are two ways to do this, either by using the web-based interface to
+the GNOME bug tracking system at
+
+http://bugs.gnome.org/simple-bug-guide.cgi
+
+or use the bug reporting tool, which you can find under the Development
+sub-menu of the GNOME menu. The bug reporting tool can also be launched
+from the command line via the bug-buddy command.
+
+If a game crashes then the bug reporting tool will be automatically
+launched.
+
+There is one problem with the standard bug reporting tools and
+gnome-games. Because gnome-games uses setgid bit to give the programs
+extra privileges the ordinary bug reporting tools don't do a complete
+job because a stack trace cannot be made. Stack traces are very useful
+in determining what went wrong. To get a proper stack trace with
+gnome-games binaries then you should try and recreate your crash while
+running as the root use, or, with the setgid bit temporarily removed
+from the file. Both these require root privileges which you may not
+have.
+
+Requirements
+------------
+
+To compile these packages you need at least the baseline GNOME 2
+development packages. This version of gnome-games was developed using
+version 2.4, but the package has been tested with version 2.2. The
+package has *not* been tested using GNOME 2.0.
+
+In addition it is useful to have a working C++ compiler (e.g. g++,
+part of the gcc suite) and the guile implementation of the Scheme
+programming language (http://www.gnu.org/software/guile/guile.html). 
+Both version 1.3 and 1.6 of guile are known to work. If either of
+these is missing then the games that rely on them will simply not be
+built.
+
+The games that require additional packages are:
+ scheme: AisleRiot
+ C++:    Blackjack, Gnometris            
+
+
+Building Gnome-Games
+--------------------
+
+Gnome-games uses the GNU automake system and installation may be as
+easy as:
+
+$ ./configure
+$ make install
+
+Generic, but detailed, instructions can be found in the file INSTALL.
+
+There are several gnome-games specific options you can pass to
+configure. These are:
+
+--disable-setgid                Do not set the setgid bit on the
+                                installed binaries.
+--with-scores-group=group       If you are using setgid binaries, set
+                                the group for the programs. The
+                                default is games.
+--with-scores-user=user         If you are using setgid binaries, set
+                                the user for the programs. The default
+                                is games.
+
+For a discussion of the details behind these options and why you might
+want to change them see the "Security" section. In general you will
+not need to change any of them.
+
+Security Issues
+---------------
+
+It might seem a little strange that a collection of games needs to
+talk about security issues, but it all stems from an attempt to avoid
+cheating. To stop people writing arbitrary scores into the score file
+without actually having played the game, the games are given special
+privileges and the score files are set to be only writable by programs
+with these privileges. In this case the privilege is being part of the
+games group.
+
+The potential problem comes when there are bugs in the games that
+allow someone to get the program to do something else (like classic
+buffer overruns). This gives the (supposedly) evil user a way to do
+things with the same privileges as the game, but not necessarily the
+things that were intended. This is generally considered to be bad.
+
+There are two mitigating factors here:
+a) The programs open the score files and drop privileges very shortly
+   after they have been started. This severely reduces the scope for an
+   exploitable to occur.
+b) On most systems having the privileges of the games group should
+   allow you to do no more than change high score files.
+
+The problem is that in a) the probability is small, but not zero, and
+in b) "most systems" is not "all systems". If you are using a
+typical Linux distribution then you should have no problems. If you
+don't have a typical system and the "games" group is somewhat more
+special than a way of maintaining the high scores then you may need to
+change things.
+
+If you need to change things, here are your options:
+
+1) Do not use setgid binaries. This means that high score tracking
+won't work (although you can make the files world-writable and
+therefore open to use/abuse by everyone). Use the --disable-setgid at
+configuration time to do this.
+
+2) Change the group used. Creating a new, unique, group for
+gnome-games (e.g. gnomegames) is the best solution. You can change the
+group (and user) used via the --with-scores-group and
+--with-scores-user options to configure at compile time.
+
+The Future
+----------
+
+The 2.4 release of gnome-games has focused on bug-fixing, stability
+and the use of modern GNOME techniques (like GConf). Future releases
+will continue to have this goal in mind, but now that the code is
+in better shape there is room for more radical improvements. Those
+planned include:
+ - A replacement for the awkward setgid system for keeping track of
+   scores.
+ - Scalability of the game graphics so that the game can be resized
+   to suit the player, for examples of this see gnomine and gnotravex.
+ - Networking. Iagno already does it, there are several other games
+   with two-player options that are just begging to be networked.

@@ -17,12 +17,12 @@ These should all become yes or have a good reason why not.
 aisleriot       Y       Y       a       Y       Y       Y
 blackjack       Y       Y       a       Y       Y       Y
 gataxx          Y       Y       Y       Y       Y       Y
-glines          Y       P       Y       Y       Y       Y
+glines          Y       Y       Y       Y       Y       Y
 gnect           Y       Y       Y       Y       Y       Y
 gnibbles        Y       Y       Y       Y       Y       Y
 gnobots2        Y       Y       Y       Y       Y       Y
 gnome-stones    Y       Y       Y       Y       Y       Y
-gnometris       f       N       Y       Y       Y       Y
+gnometris       f       Y       Y       Y       Y       Y
 gnomine         Y       Y       Y       Y       Y       Y
 gnotravex       Y       Y       Y       Y       Y       Y
 gnotski         Y       e       Y       Y       Y       Y
@@ -44,8 +44,9 @@ f) It turns out gnometris doesn't actually have any documentation.
 2.4 Issues
 
 General:
-	- Update README and HACKING at the last minute to reflect
-	  reality. Also make a big all-of-2.3 NEWS entry for 2.4.0.
+	- Update HACKING at the last minute to reflect
+	  reality. Also make a big all-of-2.3 NEWS entry for
+          2.4.0. Also reread README.
 
 AisleRiot:
         - Odessa hint function (bug 51694)
@@ -85,8 +86,6 @@ Mahjongg:
         - Oddball crashes (bugs 82402, 100492, 102474, 116226).
 
 Same-gnome:
-        - Make the pixmap background transparent so that we don't have
-          the rotate theme background problems (not urgent).
 
 2.5 Issues
 
@@ -170,6 +169,7 @@ Gnomine:
         - Try and fix the colour issue (part of 112571, the bit where
           I misunderstand).
         - Consider bug 97833, but probably not.
+        - Hint option
 
 Gnotravex:
         - Have a colour mode in addition to the numbers.
@@ -200,10 +200,15 @@ Mahjongg:
         - Fix shuffling bugs (91098, 94750).
         - Finish off the "creeping horror" code, try reversing the process, 
           build outside in.
+        - Editor, extra levels
         
 Same-gnome:
         - Add a seed (bug 86088) ?
         - Continue arguing bug 91778.
+        - Make the pixmap background transparent so that we don't have
+          the rotate theme background problems (not urgent). We should 
+          also let the background be set (or steal it from an outer pixel
+          of the pixmap).
 
 libgames-support:
         - Document
