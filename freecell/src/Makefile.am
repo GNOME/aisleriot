@@ -3,9 +3,8 @@ Gamesdir = $(datadir)/apps/Games
 
 INCLUDES = -I$(includedir) \
 	-DLOCALEDIR=\""$(datadir)/locale"\" \
-	-I$(srcdir)/../lib \
 	-I$(srcdir)/../gdk-card-image \
-	$(GNOME_INCLUDEDIR) $(X_CFLAGS)
+	$(GNOME_INCLUDEDIR)
 
 bin_PROGRAMS = freecell
 freecell_SOURCES = card.c game.c io-gtk.c freecell.c \

@@ -467,7 +467,8 @@ callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
 static void
 callback_new_really_callback (GtkWidget *widget, gpointer data)
 {
-	callback_new_really ();
+  if ((int)data == 0)
+    callback_new_really ();
 }
 
 static void
@@ -550,7 +551,10 @@ callback_option (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *dialog;
 
-  dialog = option_dialog ();
+  dialog = gnome_property_box_new ();
+
+  gtk_widget_show (dialog);
+  /*  dialog = option_dialog (); */
 }
 
 
