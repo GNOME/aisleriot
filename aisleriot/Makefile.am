@@ -69,6 +69,7 @@ types_DATA  = 		\
 	pileon.scm	\
 	royal_east.scm	\
 	scorpion.scm	\
+	seahaven.scm	\
 	sol.scm		\
 	spider.scm	\
 	straight_up.scm	\

@@ -19,7 +19,7 @@ help_DATA = index.html intro.html glossary.html \
 	camelot-goal.png clock-rules.png docbook.css \
 	topic.dat straight-up.html zebra.html lady-jane.html \
 	maze.html glenwood.html gypsy.html monte-carlo.html \
-	bakers-dozen.html
+	bakers-dozen.html seahaven.html
 
 # These are the sources:
 
@@ -35,7 +35,7 @@ help_SGML = aisleriot.sgml definitions.sgml \
 	freecell.sgml scorpion.sgml thumb_and_pouch.sgml \
 	straight_up.sgml zebra.sgml lady_jane.sgml \
 	maze.sgml glenwood.sgml gypsy.sgml monte_carlo.sgml \
-	bakers_dozen.sgml
+	bakers_dozen.sgml seahaven.sgml
 
 EXTRA_DIST = $(help_DATA) $(help_SGML)
 
