@@ -8,6 +8,7 @@ SUBDIRS=pixmaps help
 
 INCLUDES =  \
 	-I$(top_srcdir)/libgames-support           \
+	-DDATADIR=\""$(datadir)"\"		   \
 	$(GNOME_GAMES_CFLAGS)			   \
 	@UCB_CFLAGS@				   \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"   \

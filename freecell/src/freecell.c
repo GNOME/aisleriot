@@ -48,7 +48,8 @@ main (int argc, char **argv)
   gnome_program_init ("freecell", VERSION,
 		  LIBGNOMEUI_MODULE,
 		  argc, argv,
-		  NULL);
+		      GNOME_PARAM_POPT_TABLE, NULL,
+		      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
   freecell_gconf_client = gconf_client_get_default ();
   gconf_client_add_dir (freecell_gconf_client, "/apps/freecell/option",

@@ -506,8 +506,11 @@ int main (int argc, char *argv [])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  gnome_init_with_popt_table ("Aisleriot", VERSION, argc, argv,
-			      aisleriot_opts, 0, NULL);
+   gnome_program_init ("aisleriot", VERSION,
+ 		      LIBGNOMEUI_MODULE, 
+ 		      argc, argv,
+ 		      GNOME_PARAM_POPT_TABLE, aisleriot_opts,
+ 		      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
   gtk_widget_push_colormap (gdk_rgb_get_colormap ());
 

@@ -2,6 +2,7 @@ Gamesdir = $(datadir)/applications
 
 INCLUDES = \
 	$(GNOME_GAMES_CFLAGS)				\
+	-DDATADIR=\""$(datadir)"\"		   \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-I$(srcdir)/../gdk-card-image			\
 	-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED \
