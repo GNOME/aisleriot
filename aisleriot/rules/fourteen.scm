@@ -30,8 +30,7 @@
   (add-extended-slot '() down)
 
   (add-carriage-return-slot)
-  (set! VERTPOS (inexact->exact (truncate (+ VERTPOS 
-					     (* 3 (/ (get-card-height) 4))))))
+  (set! VERTPOS (+ VERTPOS 0.75))
 
   (add-extended-slot '() down)
   (add-extended-slot '() down)

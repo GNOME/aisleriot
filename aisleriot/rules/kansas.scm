@@ -28,8 +28,7 @@
 
   (add-normal-slot '())
 
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (/ (get-card-width) 2)))))
+  (set! HORIZPOS (+ HORIZPOS 0.5))
 
   (add-normal-slot '())
   (add-normal-slot '())
@@ -43,8 +42,7 @@
   (add-blank-slot)
   (add-blank-slot)
 
-  (set! HORIZPOS (inexact->exact (truncate (+ HORIZPOS 
-					      (/ (get-card-width) 2)))))
+  (set! HORIZPOS (+ HORIZPOS 0.5))
 
   (add-extended-slot '() down)
   (add-extended-slot '() down)

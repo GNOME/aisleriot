@@ -27,7 +27,7 @@
  
   (add-blank-slot)
   (add-blank-slot)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) 2)))))
+  (set! HORIZPOS (+ HORIZPOS 0.5))
   (add-normal-slot '())           ; Slot 0
   (add-normal-slot '())           ; Slot 1
   (add-normal-slot '())           ; Slot 2
@@ -35,7 +35,7 @@
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) 2)))))
+  (set! HORIZPOS (+ HORIZPOS 0.5))
   (add-normal-slot '())           ; Slot 4
   (add-normal-slot '())           ; Slot 5
   (add-normal-slot '())           ; Slot 6
@@ -43,7 +43,7 @@
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) 2)))))
+  (set! HORIZPOS (+ HORIZPOS 0.5))
   (add-normal-slot '())           ; Slot 8
   (add-normal-slot '())           ; Slot 9
   (add-normal-slot '())           ; Slot 10
@@ -51,14 +51,14 @@
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
-  (set! HORIZPOS (inexact->exact  (truncate (+ HORIZPOS (/ (get-card-width) 2)))))
+  (set! HORIZPOS (+ HORIZPOS 0.5))
   (add-normal-slot '())           ; Slot 12
   (add-normal-slot '())           ; Slot 13
   (add-normal-slot '())           ; Slot 14
   (add-normal-slot '())           ; Slot 15
 
-  (set! HORIZPOS (get-horiz-start))
-  (set! VERTPOS (get-vert-start))
+  (set! HORIZPOS 0)
+  (set! VERTPOS 0)
 
   (add-normal-slot DECK)          ; Slot 16
   (add-normal-slot '())           ; Slot 17

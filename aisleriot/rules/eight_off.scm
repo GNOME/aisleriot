@@ -33,7 +33,7 @@
   (add-normal-slot '())
 
 
-  (set! VERTPOS (get-vert-start))
+  (set! VERTPOS 0)
 
   (add-blank-slot)
   (add-normal-slot '())

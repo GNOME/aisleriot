@@ -39,10 +39,8 @@
   (add-blank-slot)
   (add-normal-slot '())
 
-  (set! HORIZPOS (get-horiz-start))
-  (set! VERTPOS (get-vert-start))
-
-  (set! VERTPOS (+ VERTPOS 80))
+  (set! HORIZPOS 0)
+  (set! VERTPOS 0.5)
 
   (add-blank-slot)
   (add-normal-slot '())

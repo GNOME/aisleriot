@@ -311,7 +311,7 @@
   (add-normal-slot '())			; 1
   (add-normal-slot '())			; 2
   (add-normal-slot '())			; 3
-  (set! HORIZPOS (+ 21 HORIZPOS))
+  (set! HORIZPOS (+ HORIZPOS 0.25))
 
   ; homecells
   (add-normal-slot '())			; 4
@@ -322,19 +322,19 @@
 
   ; fields
   (add-extended-slot '() down)		; 8
-  (set! HORIZPOS (+ 3 HORIZPOS))
+  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 9
-  (set! HORIZPOS (+ 3 HORIZPOS))
+  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 10
-  (set! HORIZPOS (+ 3 HORIZPOS))
+  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 11
-  (set! HORIZPOS (+ 3 HORIZPOS))
+  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 12
-  (set! HORIZPOS (+ 3 HORIZPOS))
+  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 13
-  (set! HORIZPOS (+ 3 HORIZPOS))
+  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 14
-  (set! HORIZPOS (+ 3 HORIZPOS))
+  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 15
 
   (add-blank-slot)
@@ -343,7 +343,7 @@
   (update-auto diamond 0)
   (update-auto heart 0)
   (update-auto spade 0)
-  (list 8 3)
+  (list 8.25 3)
 )
 
 (define (button-pressed slot card-list)
