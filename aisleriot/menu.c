@@ -277,13 +277,13 @@ GnomeUIInfo toolbar[] =
 
 void undo_set_sensitive (gboolean state)
 {
-  gtk_widget_set_sensitive (game_menu[4].widget, state);
+  gtk_widget_set_sensitive (game_menu[5].widget, state);
   gtk_widget_set_sensitive (toolbar[4].widget, state);
 }
 
 void redo_set_sensitive (gboolean state)
 {
-  gtk_widget_set_sensitive (game_menu[5].widget, state);
+  gtk_widget_set_sensitive (game_menu[6].widget, state);
   gtk_widget_set_sensitive (toolbar[5].widget, state);
 }
 
