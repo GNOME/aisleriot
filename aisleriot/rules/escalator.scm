@@ -1,0 +1,257 @@
+; AisleRiot - treize.scm
+; Copyright (C) 2001 Rosanna Yuen <rwsy@mit.edu>
+;
+; This game is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; either version 2, or (at your option)
+; any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program; if not, write to the Free Software
+; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+; USA
+
+(define (new-game)
+  (initialize-playing-area)
+  (set-ace-low)
+  (make-standard-deck)
+  (shuffle-deck)
+
+  (add-normal-slot DECK)
+  (add-normal-slot '())
+
+  (add-blank-slot)
+  (add-normal-slot '())
+
+  (add-carriage-return-slot)
+  (set! VERTPOS (- VERTPOS 80))
+  (set! HORIZPOS (+ HORIZPOS 42))
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-normal-slot '())
+  (add-normal-slot '())
+
+  (add-carriage-return-slot)
+  (set! VERTPOS (- VERTPOS 80))
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+
+  (add-carriage-return-slot)
+  (set! VERTPOS (- VERTPOS 80))
+  (set! HORIZPOS (+ HORIZPOS 42))
+  (add-blank-slot)
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+
+  (add-carriage-return-slot)
+  (set! VERTPOS (- VERTPOS 80))
+  (add-blank-slot)
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+
+  (add-carriage-return-slot)
+  (set! VERTPOS (- VERTPOS 80))
+  (set! HORIZPOS (+ HORIZPOS 42))
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+
+  (add-carriage-return-slot)
+  (set! VERTPOS (- VERTPOS 80))
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+
+  (deal-cards-face-up 0 '(2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18
+			    19 20 21 22 23 24 25 26 27 28 29))
+
+  (give-status-message)
+
+  (list 7 4))
+
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
+
+(define (get-stock-no-string)
+  (string-append "Stock left:  " 
+		 (number->string (length (get-cards 0)))))
+
+(define (button-pressed slot-id card-list)
+  (and (not (empty-slot? slot-id))
+       (available? slot-id)
+       (= (length card-list) 1)))
+
+(define (available? slot-id)
+  (cond ((or (= slot-id 0)
+	     (= slot-id 1))
+	 #f)
+	((= slot-id 22)
+	 (and (empty-slot? 28)
+	      (empty-slot? 28)))
+	((= slot-id 21)
+	 (and (empty-slot? 27)
+	      (empty-slot? 28)))
+	((= slot-id 20)
+	 (and (empty-slot? 26)
+	      (empty-slot? 27)))
+	((= slot-id 19)
+	 (and (empty-slot? 25)
+	      (empty-slot? 26)))
+	((= slot-id 18)
+	 (and (empty-slot? 24)
+	      (empty-slot? 25)))
+	((= slot-id 17)
+	 (and (empty-slot? 23)
+	      (empty-slot? 24)))
+	((= slot-id 16)
+	 (and (empty-slot? 21)
+	      (empty-slot? 22)))
+	((= slot-id 15)
+	 (and (empty-slot? 20)
+	      (empty-slot? 21)))
+	((= slot-id 14)
+	 (and (empty-slot? 19)
+	      (empty-slot? 20)))
+	((= slot-id 13)
+	 (and (empty-slot? 18)
+	      (empty-slot? 19)))
+	((= slot-id 12)
+	 (and (empty-slot? 17)
+	      (empty-slot? 18)))
+	((= slot-id 11)
+	 (and (empty-slot? 15)
+	      (empty-slot? 16)))
+	((= slot-id 10)
+	 (and (empty-slot? 14)
+	      (empty-slot? 15)))
+	((= slot-id 9)
+	 (and (empty-slot? 13)
+	      (empty-slot? 14)))
+	((= slot-id 8)
+	 (and (empty-slot? 12)
+	      (empty-slot? 13)))
+	((= slot-id 7)
+	 (and (empty-slot? 10)
+	      (empty-slot? 11)))
+	((= slot-id 6)
+	 (and (empty-slot? 9)
+	      (empty-slot? 10)))
+	((= slot-id 5)
+	 (and (empty-slot? 8)
+	      (empty-slot? 9)))
+	((= slot-id 4)
+	 (and (empty-slot? 6)
+	      (empty-slot? 7)))
+	((= slot-id 3)
+	 (and (empty-slot? 5)
+	      (empty-slot? 6)))
+	((= slot-id 2)
+	 (and (empty-slot? 3)
+	      (empty-slot? 4)))))
+
+(define (button-released start-slot card-list end-slot)
+  (if (and (= end-slot 1)
+	   (not (empty-slot? 1))
+	   (or (= (get-value (get-top-card 1))
+		  (+ 1 (get-value (car card-list))))
+	       (= (+ 1 (get-value (get-top-card 1)))
+		  (get-value (car card-list)))
+	       (and (= king (get-value (get-top-card 1)))
+		    (= ace (get-value (car card-list))))
+	       (and (= ace (get-value (get-top-card 1)))
+		    (= king (get-value (car card-list))))))
+      (and (add-to-score! 1)
+	   (move-n-cards! start-slot end-slot card-list))
+      #f))
+
+(define (button-clicked slot-id)
+  (cond ((= slot-id 0)
+	 (if (not (empty-slot? 0))
+	     (deal-cards-face-up 0 '(1))
+	     #f))
+	((and (not (= slot-id 1))
+	      (not (empty-slot? slot-id))
+	      (available? slot-id)
+	      (not (empty-slot? 1))
+	      (or (= (get-value (get-top-card 1))
+		     (+ 1 (get-value (get-top-card slot-id))))
+		  (= (+ 1 (get-value (get-top-card 1)))
+		     (get-value (get-top-card slot-id)))
+		  (and (= king (get-value (get-top-card 1)))
+		       (= ace (get-value (get-top-card slot-id))))
+		  (and (= ace (get-value (get-top-card 1)))
+		       (= king (get-value (get-top-card slot-id))))))
+	 (and (add-to-score! 1)
+	      (deal-cards slot-id '(1))))
+	(#t #f)))
+
+(define (button-double-clicked slot-id)
+  (button-clicked slot-id))
+
+(define (game-continuable)
+  (give-status-message)
+  (and (not (game-won))
+       (get-hint)))
+
+(define (game-won)
+  (empty-slot? 2))
+
+(define (playable? check-slot)
+  (if (or (> check-slot 29)
+	  (empty-slot? 1))
+      #f
+      (if (and (not (empty-slot? check-slot))
+	       (available? check-slot)
+	       (or (= (get-value (get-top-card 1))
+		      (+ 1 (get-value (get-top-card check-slot))))
+		   (= (+ 1 (get-value (get-top-card 1)))
+		      (get-value (get-top-card check-slot)))
+		   (and (= king (get-value (get-top-card 1)))
+			(= ace (get-value (get-top-card check-slot))))
+		   (and (= ace (get-value (get-top-card 1)))
+			(= king (get-value (get-top-card check-slot)))0)))
+	  (list 1 
+		(get-name (get-top-card check-slot))
+		(get-name (get-top-card 1)))
+	  (playable? (+ 1 check-slot)))))
+
+(define (dealable?)
+  (and (not (empty-slot? 0))
+       (list 0 "Deal a card")))
+
+(define (get-hint)
+  (or (playable? 2)
+      (dealable?)))
+
+(define (get-options) 
+  #f)
+
+(define (apply-options options) 
+  #f)
+
+(define (timeout) 
+  #f)
+
+(set-lambda new-game button-pressed button-released button-clicked
+button-double-clicked game-continuable game-won get-hint get-options
+apply-options timeout)

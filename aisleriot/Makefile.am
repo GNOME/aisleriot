@@ -52,6 +52,7 @@ types_DATA  = 		\
 	doublets.scm	\
 	eagle_wing.scm	\
 	elevator.scm	\
+	escalator.scm	\
 	first_law.scm	\
 	fortunes.scm	\
 	fourteen.scm	\
@@ -68,10 +69,13 @@ types_DATA  = 		\
 	neighbor.scm	\
 	odessa.scm	\
 	osmosis.scm	\
+	peek.scm	\
 	pileon.scm	\
 	poker.scm	\
+	quatorze.scm	\
 	royal_east.scm	\
 	scorpion.scm	\
+	scuffle.scm	\
 	seahaven.scm	\
 	sol.scm		\
 	spider.scm	\
@@ -79,6 +83,7 @@ types_DATA  = 		\
 	thieves.scm     \
 	thirteen.scm	\
 	thumb_and_pouch.scm \
+	treize.scm	\
 	union_square.scm \
 	valentine.scm	\
 	westhaven.scm	\
