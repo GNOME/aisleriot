@@ -65,7 +65,8 @@
 		(is-visible? (car (reverse card-list)))))))
 
 (define (button-released start-slot card-list end-slot)
-  (cond ((> end-slot 4)
+  (cond ((eq? start-slot end-slot) #f)
+	((> end-slot 4)
 	 (and (or (empty-slot? end-slot)
 		  (and (= (get-value (get-top-card end-slot))
 			  (+ 1 (get-value (car (reverse card-list)))))

@@ -239,6 +239,7 @@ void new_game (gchar* file, guint *seedp)
   else {
     seed = g_random_int();
   }
+
   g_random_set_seed(seed);
   score = 0;
   set_score();
