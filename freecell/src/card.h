@@ -20,33 +20,10 @@
 
 #ifndef __FREECELL_CARD_H
 #define __FREECELL_CARD_H
+#include <gdk-card-image.h>
 
-typedef enum __CARD_SUIT
-{
-  CLUB = 1,
-  SPADE,
-  HEART,
-  DIAMOND,
-  JOKER,
-} CARD_SUIT;
-
-typedef enum __CARD_RANK
-{
-  ACE = 1,
-  TWO,
-  THREE,
-  FOUR,
-  FIVE,
-  SIX,
-  SEVEN,
-  EIGHT,
-  NINE,
-  TEN,
-  JACK = 11,
-  QUEEN,
-  KING
-} CARD_RANK;
-
+typedef GdkCardSuit CARD_SUIT;
+typedef GdkCardRank CARD_RANK;
 /* Don't modify this structure directly.  */
 typedef struct __CARD
 {

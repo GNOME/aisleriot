@@ -78,7 +78,7 @@ card_is_black (CARD *card)
 int
 card_is_joker (CARD *card)
 {
-  return (card_suit(card) == JOKER);
+  return (card_rank(card) == JOKER);
 }
 
 /* Examine two cards are the same card.  */
@@ -91,7 +91,6 @@ card_is_equal (CARD *card1, CARD *card2)
 
 
 #ifdef DEBUG
-#include <stdio.h>
 
 void
 card_dump (CARD *card)
@@ -136,19 +135,19 @@ deck_new (unsigned int option)
     return new_deck;
 
   k = 0;
-  for (i = 1; i <= 4; i++)
-    for (j = 1; j <= 13; j++)
+  for (i = CLUB; i <= SPADE; i++)
+    for (j = ACE; j <= KING; j++)
       new_deck->cards[k++] = card_new (i, j);
 
   if (option == DECK_OPTION_NO_JOKER)
     return new_deck;
 
-  new_deck->cards[k++] = card_new (JOKER, 1);
+  new_deck->cards[k++] = card_new (0, JOKER);
 
   if (option == DECK_OPTION_ONE_JOKER)
     return new_deck;
 
-  new_deck->cards[k++] = card_new (JOKER, 2);
+  new_deck->cards[k++] = card_new (1, JOKER);
 
   return new_deck;
 }
