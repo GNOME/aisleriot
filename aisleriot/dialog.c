@@ -124,7 +124,7 @@ void show_select_game_dialog()
     gtk_container_add (GTK_CONTAINER (scrolled_window), list);
 
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
-				    GTK_POLICY_AUTOMATIC,
+				    GTK_POLICY_NEVER,
 				    GTK_POLICY_AUTOMATIC);
 				    
     
