@@ -1,5 +1,5 @@
 ; AisleRiot - yukon.scm
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
 ; the Free Software Foundation; either version 2, or (at your option)
@@ -263,6 +263,7 @@
 	      (= (+ 1 (get-value (car card-list)))
 		 (get-value card)))
 	 (if (or  (= (length card-list) 1)
+                  (not (is-visible? (cadr card-list)))
 		  (eq? (is-red? (car card-list))
 		       (is-red? (cadr card-list)))
 		  imbedded?
