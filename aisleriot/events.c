@@ -23,15 +23,13 @@
 #include "dialog.h"
 
 void end_of_game_test() {
-  SCM testval;
-
-  testval = gh_apply(game_data->game_over_lambda, gh_cons(SCM_EOL,SCM_EOL));
+  SCM testval = gh_apply(game_data->game_over_lambda, 
+			 gh_cons(SCM_EOL,SCM_EOL));
 
   if (!gh_scm2bool(testval)) {
-	 if (gh_scm2bool(gh_apply(game_data->winning_game_lambda, gh_cons(SCM_EOL,SCM_EOL))))
-		show_game_over_dialog(TRUE);
-	 else
-		show_game_over_dialog(FALSE);
+    timer_stop();
+    show_game_over_dialog(gh_scm2bool(gh_apply(game_data->winning_game_lambda, 
+					       gh_cons(SCM_EOL,SCM_EOL))));
   }  
 }
 
@@ -199,6 +197,17 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   return TRUE;
 }
 
+gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event) {
+
+  if ((press_data->button_pressed == 1) && (press_data->moving)) {
+    gdk_window_move(press_data->moving_cards,  
+		    event->x - press_data->xoffset,
+		    event->y - press_data->yoffset);
+  }
+	 
+  return TRUE;
+}
+
 gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
   if (event->button == 1) {
@@ -236,6 +245,10 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
       return TRUE;
     gdk_pixmap_unref(surface);
   }
+  else {
+    /* hack to get first timer started after gtkmain is entered */
+    timer_start();
+  }
 
   surface =
     gdk_pixmap_new (playing_area->window, event->width, event->height,
@@ -246,13 +259,3 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   return TRUE;
 }
 
-gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event) {
-
-  if ((press_data->button_pressed == 1) && (press_data->moving)) {
-    gdk_window_move(press_data->moving_cards,  
-		    event->x - press_data->xoffset,
-		    event->y - press_data->yoffset);
-  }
-	 
-  return TRUE;
-}
