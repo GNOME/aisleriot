@@ -19,7 +19,8 @@
 
 /* Manage a set of pixbufs containing a deck of cards. */
 
-#include <gtk/gtk.h>
+#include <glib.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 
 #include "games-card-images.h"
 
@@ -27,19 +28,7 @@ G_DEFINE_TYPE(GamesCardImages, games_card_images, G_TYPE_OBJECT);
 
 GamesCardImages * games_card_images_new (void)
 {
-  GamesCardImages * images;
-
-  images = g_object_new (GAMES_CARD_IMAGES_TYPE, NULL);
-
-  /* This is the size of the original gdk-card-image cards. */
-  images->width = 79;
-  images->height = 123;
-  images->themename = g_strdup ("bonded-new.png");
-
-  images->rendered = FALSE;
-  images->pixbufs = g_new0 (GdkPixbuf *, GAMES_CARDS_TOTAL);
-
-  return images;
+  return g_object_new (GAMES_TYPE_CARD_IMAGES, NULL);
 }
 
 static void games_card_images_render (GamesCardImages * images)
@@ -157,12 +146,7 @@ void games_card_images_set_theme (GamesCardImages * images, gchar * name)
 
 static void games_card_images_finalize (GamesCardImages * images)
 {
-  int i;
-
-  for (i=0; i<GAMES_CARDS_TOTAL; i++) {
-    if (images->pixbufs[i])
-      g_object_unref (images->pixbufs[i]);
-  } 
+  games_card_images_purge (images);
 }
 
 static void games_card_images_class_init (GamesCardImagesClass *class)
@@ -174,5 +158,11 @@ static void games_card_images_class_init (GamesCardImagesClass *class)
 
 static void games_card_images_init (GamesCardImages *cardimages)
 {
- 
+  /* This is the size of the original gdk-card-image cards. */
+  cardimages->width = 79;
+  cardimages->height = 123;
+  cardimages->themename = g_strdup ("bonded-new.png");
+
+  cardimages->rendered = FALSE;
+  cardimages->pixbufs = g_new0 (GdkPixbuf *, GAMES_CARDS_TOTAL); 
 }

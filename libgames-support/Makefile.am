@@ -20,4 +20,6 @@ libgames_support_la_SOURCES =		\
 	games-gridframe.h		\
 	games-card-images.c		\
 	games-card-images.h		\
+	games-card-pixmaps.c		\
+	games-card-pixmaps.h		\
 	$(NULL)

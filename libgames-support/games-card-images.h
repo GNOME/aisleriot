@@ -24,7 +24,8 @@
 
 G_BEGIN_DECLS
 
-#include <gtk/gtk.h>
+#include <glib.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 
 enum {
   GAMES_CARD_ACE         = 1,
@@ -66,7 +67,12 @@ typedef struct _GamesCardImagesClass {
   GObjectClass parent;
 } GamesCardImagesClass;
 
-#define GAMES_CARD_IMAGES_TYPE (games_card_images_get_type ())
+#define GAMES_TYPE_CARD_IMAGES (games_card_images_get_type ())
+#define GAMES_CARD_IMAGES(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_IMAGES, GamesCardImages))
+#define GAMES_CARD_IMAGES_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_IMAGES, GamesCardImagesClass))
+#define GAMES_IS_CARD_IMAGES(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_IMAGES))
+#define GAMES_IS_CARD_IMAGES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_IMAGES))
+#define GAMES_CARD_IMAGES_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_IMAGES))
 
 GType games_card_images_get_type (void);
 

@@ -20,7 +20,7 @@
 #include "sol.h"
 #include "card.h"
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <games-card-images.h>
+#include <games-card-pixmaps.h>
 
 GdkPixmap *default_background_pixmap; 
 GdkPixbuf *slot_pixbuf;
@@ -28,12 +28,11 @@ GdkPixmap *slot_pixmap = NULL;
 GdkBitmap *mask = NULL;
 GdkBitmap *slot_mask = NULL;
 
-GamesCardImages * images = NULL;
-GdkPixmap * pixmaps[GAMES_CARDS_TOTAL];
+GamesCardPixmaps * images = NULL;
 
 GdkPixmap* get_card_picture (gint suit, gint rank ) 
 {
-  return pixmaps[GAMES_CARD_ID (suit, rank)];
+  return games_card_pixmaps_get_card (images, suit, rank);
 }
 
 GdkPixmap* get_background_pixmap () {
@@ -46,7 +45,7 @@ GdkPixmap* get_slot_pixmap () {
 }
 
 GdkPixmap* get_card_back_pixmap () {
-  return pixmaps[GAMES_CARD_BACK];
+  return games_card_pixmaps_get_back (images);
 }
 
 static GdkPixmap* get_pixmap (const char* filename)
@@ -114,12 +113,9 @@ void add_card(GList** card_list, hcard_type temp_card) {
 void set_card_size (gint width, gint height)
 {
   GdkPixbuf *scaled;
-  int i;
 
   if (slot_pixmap)
     g_object_unref (slot_pixmap);
-  if (mask)
-    g_object_unref (mask);
   if (slot_mask)
     g_object_unref (slot_mask);
 
@@ -133,24 +129,10 @@ void set_card_size (gint width, gint height)
   g_object_unref (scaled);
 
   if (!images) {
-    images = games_card_images_new ();
-    games_card_images_set_size (images, width, height);
-    games_card_images_set_theme (images, "dondorf-new.png"); 
-  } else {
-    for (i=0; i<GAMES_CARDS_TOTAL; i++)
-      g_object_unref (pixmaps[i]);
-    games_card_images_set_size (images, width, height);
+    images = games_card_pixmaps_new (playing_area->window);
+    games_card_pixmaps_set_theme (images, "dondorf-new.png"); 
   }
-
-  gdk_pixbuf_render_pixmap_and_mask (games_card_images_get_card_by_id (images, 0),
-				     &pixmaps[0], &mask, 255);
-  gdk_gc_set_clip_mask (draw_gc, mask);  
-
-  for (i=1; i<GAMES_CARDS_TOTAL; i++) {
-    pixmaps[i] = gdk_pixmap_new (playing_area->window, width, height, -1);
-    gdk_draw_pixbuf (pixmaps[i], NULL, 
-		     games_card_images_get_card_by_id (images, i),
-		     0, 0, 0, 0, width, height, GDK_RGB_DITHER_NORMAL, 0, 0);
-  }
-  
+  games_card_pixmaps_set_size (images, width, height);  
+  mask = games_card_pixmaps_get_mask (images);
+  gdk_gc_set_clip_mask (draw_gc, mask);
 }

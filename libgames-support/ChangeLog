@@ -1,3 +1,21 @@
+2004-04-27  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* games-card-images.c (games_card_images_new): 
+
+	* Makefile.am (libgames_support_la_SOURCES):
+	* games-card-pixmaps.c:
+	* games-card-pixmaps.h: Add an object to manage pixmaps of cards.
+
+	* games-card-images.c (games_card_images_finalize): Just call
+	purge rather than repeating code. Also reorganise the _new and
+	_init code so that variables get initialised properly by
+	subclasses.
+
+	* games-card-images.h: Implement the standard casting macros. 
+	
+	* games-card-images.h: 
+	* games-card-images.c: Reduce dependencies to only glib and gdk-pixbuf.
+
 2004-04-25  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* games-card-images.c (games_card_images_render): Wrap up the
