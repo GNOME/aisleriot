@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 2.0\n"
-"POT-Creation-Date: 2002-12-12 18:49+0100\n"
-"PO-Revision-Date: 2002-12-12 18:53+0100\n"
+"POT-Creation-Date: 2003-01-04 16:02+0100\n"
+"PO-Revision-Date: 2003-01-04 21:09+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -581,40 +581,36 @@ msgstr ""
 msgid "Help"
 msgstr "Hjelp"
 
-#: aisleriot/sol.c:226 aisleriot/sol.c:394
+#: aisleriot/sol.c:226 aisleriot/sol.c:370
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: aisleriot/sol.c:368
-msgid "Are you sure you want to quit Aisleriot?"
-msgstr "Er du sikker på at du vil avslutte Aisleriot?"
-
-#: aisleriot/sol.c:437
+#: aisleriot/sol.c:413
 msgid "Loading images..."
 msgstr "Laster bilder..."
 
-#: aisleriot/sol.c:443
+#: aisleriot/sol.c:419
 msgid "Dealing game..."
 msgstr "Deler ut spillet"
 
-#: aisleriot/sol.c:449 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:878
+#: aisleriot/sol.c:425 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:878
 msgid "Score: "
 msgstr "Poeng:"
 
-#: aisleriot/sol.c:453 mahjongg/mahjongg.c:2092
+#: aisleriot/sol.c:429 mahjongg/mahjongg.c:2091
 msgid "Time: "
 msgstr "Tid: "
 
-#: aisleriot/sol.c:524
+#: aisleriot/sol.c:500
 msgid "Variation on game rules"
 msgstr "Variasjon av spillreglene"
 
-#: aisleriot/sol.c:525 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
+#: aisleriot/sol.c:501 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
 #: same-gnome/same-gnome.c:806
 msgid "NAME"
 msgstr "NAVN"
 
-#: aisleriot/sol.c:544
+#: aisleriot/sol.c:520
 msgid "Initializing scheme..."
 msgstr "Initialiserer planen..."
 
@@ -1160,7 +1156,9 @@ msgstr "gataxx"
 msgid ""
 "gataxx is a GNOME port of the old game ataxx.  It is derived from Ian "
 "Peters' iagno code."
-msgstr "gataxx er en GNOME-versjon av det gamle spillet ataxx. Det er bygget på koden fra Ian Peters' iagno."
+msgstr ""
+"gataxx er en GNOME-versjon av det gamle spillet ataxx. Det er bygget på "
+"koden fra Ian Peters' iagno."
 
 #: gataxx/gataxx.c:567
 #, c-format
@@ -1266,7 +1264,7 @@ msgstr "Raske trekk (halver datamaskinens ventetid)"
 msgid "Dark"
 msgstr "Mørk"
 
-#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:760
+#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:795
 #: gtali/yahtzee.c:66 iagno/properties.c:497 iagno/properties.c:549
 msgid "Human"
 msgstr "Menneske"
@@ -1434,11 +1432,11 @@ msgstr "Nivå for spiller en"
 msgid "Level of Player Two"
 msgstr ""
 
-#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:960
+#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:995
 msgid "Move left"
 msgstr "Flytt til venstre"
 
-#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:968
+#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:1003
 msgid "Move right"
 msgstr "Flytt til høyre"
 
@@ -1668,17 +1666,31 @@ msgstr "Feilsøkingsnivå (4 for tilfeldig utgangsverdi)"
 msgid "%s: no themes available\n"
 msgstr "%s: ingen tema tilgjengelig\n"
 
-#: gnect/src/prefs.c:330
+#: gnect/src/prefs.c:281 mahjongg/mahjongg.c:2024
+#, c-format
+msgid "There was an error accessing GConf: %s"
+msgstr "Det oppsto en feil ved aksessering av GConf: %s"
+
+#: gnect/src/prefs.c:292 mahjongg/mahjongg.c:2035
+msgid ""
+"The default configuration values could not be retrieved correctly. Please "
+"check your GConf configuration, specifically that the schemas are installed "
+"correctly"
+msgstr ""
+"Forvalgte konfigurasjonsverdier kunne ikke hentes. Vennligst sjekk om GConf "
+"er konfigurert riktig, og også at schemaene er installert på en korrekt måte"
+
+#: gnect/src/prefs.c:365
 #, c-format
 msgid "Player 1 : %s"
 msgstr "Spiller 1 : %s"
 
-#: gnect/src/prefs.c:331
+#: gnect/src/prefs.c:366
 #, c-format
 msgid "Player 2 : %s"
 msgstr "Spiller 2 : %s"
 
-#: gnect/src/prefs.c:354
+#: gnect/src/prefs.c:389
 msgid ""
 "Applying this change to Player Selection\n"
 "will end the current game"
@@ -1686,98 +1698,98 @@ msgstr ""
 "Aktivering av denne endringen i spillervalg\n"
 "vil avslutte dette spillet"
 
-#: gnect/src/prefs.c:603
+#: gnect/src/prefs.c:638
 msgid "Error loading theme"
 msgstr "Feil under lasting av tema"
 
-#: gnect/src/prefs.c:763
+#: gnect/src/prefs.c:798
 msgid "Non-Velena / Simple"
 msgstr "Ikke-Velena / Enkel"
 
-#: gnect/src/prefs.c:766
+#: gnect/src/prefs.c:801
 msgid "Velena / Weak"
 msgstr "Velena / Svak"
 
-#: gnect/src/prefs.c:769
+#: gnect/src/prefs.c:804
 msgid "Velena / Medium"
 msgstr "Velena / Middels"
 
-#: gnect/src/prefs.c:772
+#: gnect/src/prefs.c:807
 msgid "Velena / Strong"
 msgstr "Velena / Sterk"
 
-#: gnect/src/prefs.c:785
+#: gnect/src/prefs.c:820
 msgid "Always Player 1"
 msgstr "Alltid spiller 1"
 
-#: gnect/src/prefs.c:788
+#: gnect/src/prefs.c:823
 msgid "Always Player 2"
 msgstr "Alltid spiller 2"
 
-#: gnect/src/prefs.c:791
+#: gnect/src/prefs.c:826
 msgid "Take turns"
 msgstr "Bytt på"
 
-#: gnect/src/prefs.c:816
+#: gnect/src/prefs.c:851
 msgid "Gnect Preferences"
 msgstr "Brukervalg for Gnect"
 
-#: gnect/src/prefs.c:896
+#: gnect/src/prefs.c:931
 msgid "Who starts?"
 msgstr "Hvem starter?"
 
-#: gnect/src/prefs.c:914
+#: gnect/src/prefs.c:949
 msgid "Player Selection"
 msgstr "Spillervalg"
 
-#: gnect/src/prefs.c:932
+#: gnect/src/prefs.c:967
 msgid "Theme selection:"
 msgstr "Temavalg:"
 
 #. keyboard
-#: gnect/src/prefs.c:949
+#: gnect/src/prefs.c:984
 msgid "Keyboard control:"
 msgstr "Tastaturkontroll:"
 
-#: gnect/src/prefs.c:976
+#: gnect/src/prefs.c:1011
 msgid "Drop counter"
 msgstr "Slippteller"
 
-#: gnect/src/prefs.c:1017
+#: gnect/src/prefs.c:1052
 msgid "Animation:"
 msgstr "Animasjon:"
 
-#: gnect/src/prefs.c:1022
+#: gnect/src/prefs.c:1057
 msgid "Yes please!"
 msgstr "Ja takk!"
 
 #. sound
-#: gnect/src/prefs.c:1033
+#: gnect/src/prefs.c:1068
 msgid "Sound type:"
 msgstr "Lydtype:"
 
-#: gnect/src/prefs.c:1038
+#: gnect/src/prefs.c:1073
 msgid "Speaker beep"
 msgstr "Høyttalerpip"
 
-#: gnect/src/prefs.c:1043
+#: gnect/src/prefs.c:1078
 msgid "GNOME sound"
 msgstr "GNOME lyd"
 
-#: gnect/src/prefs.c:1046
+#: gnect/src/prefs.c:1081
 msgid "This can be set up using the GNOME Control Center"
 msgstr "Dette kan settes opp i GNOME kontrollsenter"
 
 #. verify
-#: gnect/src/prefs.c:1056
+#: gnect/src/prefs.c:1091
 msgid "If stopping an unfinished game:"
 msgstr "Hvis et uferdig spill stoppes:"
 
-#: gnect/src/prefs.c:1061
+#: gnect/src/prefs.c:1096
 msgid "Ask me first"
 msgstr "Spør meg først"
 
-#: gnect/src/prefs.c:1065
+#: gnect/src/prefs.c:1100
 msgid "Appearance and Behaviour"
 msgstr "Utseende og oppførsel"
 
@@ -2081,14 +2093,14 @@ msgstr "X"
 msgid "Y"
 msgstr "Y"
 
-#: gnobots2/gnobots.c:194
+#: gnobots2/gnobots.c:194 gnobots2/gnobots2.soundlist.in.h:2
 msgid "GNOME Robots II"
 msgstr "GNOME Robots II"
 
 #. ********************************************************************
 #: gnobots2/gnobots2.desktop.in.h:1 gnobots2/menu.c:229
-msgid "Gnobots II"
-msgstr "Gnobots II"
+msgid "GNOME Robots"
+msgstr "GNOME Robots"
 
 #: gnobots2/gnobots2.desktop.in.h:2
 msgid "Robots game"
@@ -2097,10 +2109,6 @@ msgstr "Robotspill"
 #: gnobots2/gnobots2.soundlist.in.h:1
 msgid "Bad Move"
 msgstr "Ugyldig trekk"
-
-#: gnobots2/gnobots2.soundlist.in.h:2
-msgid "Gnome Robots II"
-msgstr "Gnome Roboter II"
 
 #: gnobots2/gnobots2.soundlist.in.h:3
 msgid "Level Complete"
@@ -2128,8 +2136,8 @@ msgid "Could not find '%s' pixmap file for GNOME Robots\n"
 msgstr "Kunne ikke finne bildefilen «%s» for GNOME Robots\n"
 
 #: gnobots2/menu.c:169
-msgid "Are you sure you want to quit Gnobots II?"
-msgstr "Er du sikker på at du vil avslutte Gnobots II?"
+msgid "Are you sure you want to quit GNOME Robots?"
+msgstr "Er du sikker på at du vil avslutte GNOME Robots?"
 
 #: gnobots2/menu.c:231
 msgid "GNOME Robots Game"
@@ -2288,8 +2296,8 @@ msgid "windows"
 msgstr "vinduer"
 
 #: gnobots2/properties.c:845
-msgid "GnobotsII Preferences"
-msgstr "Instillinger for GnobotsII"
+msgid "GNOME Robots Preferences"
+msgstr "Brukervalg for GNOME Robots"
 
 #: gnobots2/properties.c:869
 msgid "Game Type:"
@@ -2989,8 +2997,8 @@ msgstr ""
 "(Kommetarer til: Lars.Rydlinge@HIG.SE)"
 
 #: gnotravex/gnotravex.desktop.in.h:1
-msgid "Gnotravex"
-msgstr "Gnotravex"
+msgid "GNOME Tetravex"
+msgstr "GNOME Tetravex"
 
 #: gnotravex/gnotravex.desktop.in.h:2
 msgid "Tetravex game"
@@ -3674,29 +3682,15 @@ msgstr "Kunne ikke finne filen %s"
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Beklager, kunne ikke finne en spillbar konfigurasjon."
 
-#: mahjongg/mahjongg.c:2024
-#, c-format
-msgid "There was an error accessing GConf: %s"
-msgstr "Det oppsto en feil ved aksessering av GConf: %s"
-
-#: mahjongg/mahjongg.c:2035
-msgid ""
-"The default configuration values could not be retrieved correctly. Please "
-"check your GConf configuration, specifically that the schemas are installed "
-"correctly"
-msgstr ""
-"Forvalgte konfigurasjonsverdier kunne ikke hentes. Vennligst sjekk om GConf "
-"er konfigurert riktig, og også at schemaene er installert på en korrekt måte"
-
-#: mahjongg/mahjongg.c:2078
+#: mahjongg/mahjongg.c:2077
 msgid "Tiles Left: "
 msgstr "Steiner igjen:"
 
-#: mahjongg/mahjongg.c:2085
+#: mahjongg/mahjongg.c:2084
 msgid "Moves Left: "
 msgstr "Trekk igjen:"
 
-#: mahjongg/mahjongg.c:2099
+#: mahjongg/mahjongg.c:2098
 msgid "Seed: "
 msgstr "Utgangsverdi: "
 
@@ -3713,8 +3707,8 @@ msgid "Mahjongg game"
 msgstr "Mahjongg-spill"
 
 #: same-gnome/same-gnome.c:265 same-gnome/same-gnome.c:625
-msgid "The Same Gnome"
-msgstr "The Same Gnome"
+msgid "The Same GNOME"
+msgstr "The Same GNOME"
 
 #: same-gnome/same-gnome.c:410
 #, c-format
@@ -3722,22 +3716,22 @@ msgid ""
 "Could not find the theme:\n"
 "%s\n"
 "\n"
-"Please check you Same GNOME installation."
+"Please check your Same GNOME installation."
 msgstr ""
 "Kunne ikke finne tema:\n"
 "%s\n"
 "\n"
-"Vennligst sjekk din Same GNOME-installasjon"
+"Vennligst sjekk din Same GNOME-installasjon."
 
 #: same-gnome/same-gnome.c:434
 #, c-format
 msgid ""
-"Same Gnome can't load the image file:\n"
+"Same GNOME can't load the image file:\n"
 "%s\n"
 "\n"
-"Please check your Same Gnome installation"
+"Please check your Same GNOME installation"
 msgstr ""
-"Same Gnome kan ikke laste bildefilen:\n"
+"Same GNOME kan ikke laste bildefilen:\n"
 "%s\n"
 "\n"
 "Vennligst sjekk din Same Gnome installasjon"
@@ -3751,16 +3745,16 @@ msgid "Original idea from KDE's same game program."
 msgstr "Original ide fra KDE's same game program"
 
 #: same-gnome/same-gnome.c:652
-msgid "Are you sure you want to quit Same Gnome?"
-msgstr "Er du sikker på at du vil avslutte Same Gnome?"
+msgid "Are you sure you want to quit Same GNOME?"
+msgstr "Er du sikker på at du vil avslutte Same GNOME?"
 
-#: same-gnome/same-gnome.c:842
-msgid "Same Gnome"
-msgstr "Same Gnome"
+#: same-gnome/same-gnome.c:842 same-gnome/same-gnome.desktop.in.h:2
+msgid "Same GNOME"
+msgstr "Same GNOME"
 
 #: same-gnome/same-gnome.c:852
-msgid "Welcome to Same Gnome!"
-msgstr "Velkommen til Same Gnome!"
+msgid "Welcome to Same GNOME!"
+msgstr "Velkommen til Same GNOME!"
 
 #: same-gnome/same-gnome.c:871
 msgid "Marked: "
@@ -3769,10 +3763,6 @@ msgstr "Markert: "
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "GNOME SameGame"
 msgstr "GNOME SameGame"
-
-#: same-gnome/same-gnome.desktop.in.h:2
-msgid "Same GNOME"
-msgstr "Same GNOME"
 
 #: xbill/Game.cc:62
 #, c-format
