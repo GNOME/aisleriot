@@ -294,11 +294,10 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
     else
       press_data->status = STATUS_NOT_DRAG;      
   }
-  return TRUE;
+  return FALSE;
 }
 
 gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
-
   if(surface) {
     gint old_w, old_h;
 
@@ -317,6 +316,6 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   
   refresh_screen();
 
-  return TRUE;
+  return FALSE;
 }
 

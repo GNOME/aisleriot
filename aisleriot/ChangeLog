@@ -1,3 +1,12 @@
+Sat Apr 13 09:56:29 2002  Jonathan Blandford  <jrb@gnome.org>
+
+	* sol.c (create_main_window): set_policy is no longer needed, #72217
+
+	* events.c: Return FALSE instead of TRUE.  This code predates GTK
+	1.0, #74002
+
+	* cscmi.c (scm_myrandom): use g_rand* functions, #60427
+
 2002-02-16  Chris Lyttle  <chris@wilddev.net>
 
 	* docs/C: removed sgml files from build and cvs

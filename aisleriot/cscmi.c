@@ -233,7 +233,7 @@ SCM scm_set_lambda(SCM start_game_lambda,
 
 SCM scm_myrandom(SCM range) 
 {
-  return gh_long2scm(random()%SCM_INUM(range));
+  return gh_long2scm(g_random_int_range(0,SCM_INUM(range)));
 }
 
 SCM scm_get_score() 

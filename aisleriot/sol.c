@@ -58,7 +58,7 @@ GdkCardDeckOptions deck_options = NULL;
 guint            score;
 /* guint            game_seconds;*/
 guint            timeout;
-guint            seed;
+guint32          seed;
 guint            n_games;
 struct dirent    **game_dents;
 gchar            *game_file = "";
@@ -162,7 +162,7 @@ GnomeUIInfo rules_help[] = {
 void new_game (gchar* file, guint *seedp )
 {
   SCM size;
-  gint old_w, old_h, min_w, min_h;
+  gint min_w, min_h;
 
   if (file && strcmp (file, game_file)) {
     gchar buf[100];
@@ -211,9 +211,9 @@ void new_game (gchar* file, guint *seedp )
     seed = *seedp;
   }
   else {
-    seed = random();
+    seed = g_random_int();
   }
-  srandom(seed);
+  g_random_set_seed(seed);
   score = 0;
   set_score();
 
@@ -225,9 +225,7 @@ void new_game (gchar* file, guint *seedp )
   min_w = gh_scm2int (gh_car (size))*get_horiz_offset() + 2*get_horiz_start();
   min_h = gh_scm2int (gh_cadr (size))*get_vert_offset() + 2*get_vert_start();
 
-  gdk_window_get_size (playing_area->window, &old_w, &old_h);
-  gtk_widget_set_usize (playing_area, min_w, min_h);
-
+  gtk_widget_set_size_request (playing_area, min_w, min_h);
   if (surface)
     refresh_screen();
 
@@ -304,6 +302,7 @@ void timer_stop ()
  * setup suff
  */
 
+
 void create_sol_board ()
 {
   playing_area = gtk_drawing_area_new ();
@@ -319,6 +318,7 @@ void create_sol_board ()
     gdk_gc_set_tile (draw_gc, get_background_pixmap());
   gdk_gc_set_fill (draw_gc, GDK_TILED);
   
+
   gtk_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
 		      GTK_SIGNAL_FUNC (button_release_event), NULL);
   gtk_signal_connect (GTK_OBJECT (playing_area), "motion_notify_event",
@@ -351,8 +351,6 @@ void create_main_window ()
 		      GTK_SIGNAL_FUNC (quit_app), NULL);
   gtk_signal_connect (GTK_OBJECT (app), "configure_event",
 		      GTK_SIGNAL_FUNC (configure_event), NULL);
-
-  gtk_window_set_policy (GTK_WINDOW (app), TRUE, TRUE, FALSE);
 }
 
 void create_press_data ()
@@ -380,7 +378,7 @@ void main_prog(int argc, char *argv[])
   GtkWidget *score_label, *time_label, *score_box, *status_bar;
 
   seed = time(NULL);
-  srandom(seed);
+  g_random_set_seed(seed);
 
   cscm_init();
 

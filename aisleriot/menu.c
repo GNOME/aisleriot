@@ -235,7 +235,7 @@ void create_menus ()
 
   /* Kids, don't try this at home */
   menu_item = game_menu [1].widget;
-  menu = scroll_menu_new ();
+  menu = gtk_menu_new ();
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), menu);
   w = gtk_tearoff_menu_item_new ();
   gtk_widget_show(w);
