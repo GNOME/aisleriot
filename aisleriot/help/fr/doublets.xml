@@ -10,93 +10,111 @@
     <address>
       <email>rwsy@mit.edu</email>
     </address>
+		<copyright>
+			<year>2004</year>
+			<holder>Damien Laniel</holder>
+		</copyright>
+		<author>
+			<firstname>Damien</firstname>
+			<surname>Laniel</surname>
+		</author>
+		<address><email>heretik@tuxfamily.org</email></address>
   </sect1info>-->
 
   <title>Doublets</title>
-  <para>written by Rosanna Yuen</para>
-  <sect2>Setup</sect2>
+
+  <para>Ecrit par Rosanna Yuen</para>
+  <para>Traduit en français par Damien Laniel</para>
+
+  <sect2>Configuration</sect2>
 
   <informaltable>
     <tgroup cols="2">
       <tbody>
 	<row>
-	  <entry>Type of Deck</entry>
+		<entry>Type de Paquet</entry>
+		<entry>Paquet Standard</entry>
+	</row>
+	<row>
+	  <entry>Pioche</entry>
 	  <entry>
-	    Standard Deck
+	  	Pile en haut à gauche. Le reste du paquet est placé ici après la
+	  	distribution.
+	  	Les cartes sont retournées une par une vers le rebut.
+	  	Deux redistributions.
 	  </entry>
 	</row>
 	<row>
-	  <entry>Stock</entry>
+	  <entry>Rebut</entry>
 	  <entry>
-	    Top left pile.  The rest of the deck is placed here after
-	    dealing.  Cards are turned over one at a time to Waste.  Two
-	    redeals.
+	  	Directement à droite de la pioche. A prendre depuis la pioche.
+	  	La carte du dessus est disponible pour être jouée.
 	  </entry>
 	</row>
 	<row>
-	  <entry>Waste</entry>
+	  <entry>Réserves</entry>
 	  <entry>
-	    Directly to the right of Stock.  To be taken from Stock.
-	    Top card available for play.
+	  	Sept piles, formant une arche (un U à l'endroit et à l'envers) à droite.
+	  	On distribue une carte face visible sur chaque pile.
+	  	Pendant la distribution, si un Roi est distribué, on l'enlève et on le
+	  	place au bas du paquet, et on distribue une autre carte sur cette pile.
+	  	Chaque réserve peut contenir une seule carte. Quand une réserve est vide,
+	  	elle est automatiquement remplie depuis le rebut, ou, si le rebut est vide,
+	  	depuis la pioche.
+	  	Une fois que la distribution initiale est terminée, quand un Roi est plac
+	  	sur une réserve, cette pile est bloquée car les Rois ne peuvent pas être
+	  	déplacés.
 	  </entry>
 	</row>
 	<row>
-	  <entry>Reserve</entry>
+	  <entry>Fondation</entry>
 	  <entry>
-	    Seven piles, forming an arch shape (upside down U) to the
-	    right.  Deal one card face up on each pile.  During this
-	    deal, if a King is dealt, remove the King and place it on
-	    the bottom of the deck.  Deal another card into this pile.
-	    Each Reserve pile can only hold one card.  When a Reserve
-	    pile is empty, it is automatically filled by the Waste, or,
-	    if the Waste is empty, from the Stock.  Once original deal
-	    is over, when a King is placed in a pile of the Reserve,
-	    this pile is frozen as Kings cannot be moved.
-	  </entry>
-	</row>
-	<row>
-	  <entry>Foundation</entry>
-	  <entry>
-	    One pile, the center pile on the bottom row of the Reserve
-	    slots.  To be built on from original card by doubling,
-	    regardless of suit or color.
+	  	Une pile, la pile du milieu de la ligne du bas des réserves.
+	  	A construire à partir de la carte de base en doublant la valeur,
+	  	quelque	soit la suite ou la couleur.
 	  </entry>
 	</row>
       </tbody>
     </tgroup>
   </informaltable>
 
-  <sect2>Goal</sect2>
+  <sect2>Objectif</sect2>
   <para>
-    Move all cards to the Foundation pile.
+  	Déplacer toutes les cartes vers la fondation.
   </para>
-  <sect2>Rules</sect2>
+
+	<sect2>Règles</sect2>
   <para>
-    Cards can be put in the Foundation pile if they are twice the value
-    of the card currently on top of the Foundation.  Jacks and Queens
-    are eleven and twelve, in that order.  If the doubled number exceeds
-    thirteen, subtract thirteen to find next needed card.  The series
-    goes:
+  	Les cartes peuvent être placées sur la fondation si leur valeur est deux
+  	fois la valeur de la carte actuellement sur le dessus de la fondation. Les
+  	Valets et les Dames valent onze et douze, respectivement.
+  	Si les nombres doublées dépassent treize, soustrayez treize à la valeur
+  	obtenue pour connaître de la valeur de la prochaine carte nécessaire.
+  	Les séries font :
   </para>
   <para>
-    A, 2, 4, 8, 3, 6, Q, J, 9, 5, 10, 7, repeat...
+    As, 2, 4, 8, 3, 6, Dame, Valet, 9, 5, 10, 7, As, etc ...
   </para>
   <para>
-    Cards are flipped from the Stock to the Waste by one.  When the
-    Stock is empty, move all cards in Waste back to the Stock,
-    maintaining order.  You can go through the deck three times.
+  	Les cartes sont retournées depuis la pioche vers le rebut une par une.
+  	Quand la pioche est vide, cliquez sur l'emplacement de la pioche pour la
+  	retourner depuis le rebut, en présevant l'ordre des cartes.
+  	Vous pouvez parcourir la pioche trois fois.
   </para>
+
   <sect2>Options</sect2>
-  <para>None</para>
-  <sect2>Scoring</sect2>
-  <para>
-    Each card in the Foundation pile scores one point.
+  <para>Aucune</para>
+
+  <sect2>Score</sect2>
+	<para>
+   	Chaque carte dans les fondations compte un point.
   </para>
   <para>
-    Maximum possible score:  48
+  	Score maximum possible : 48
   </para>
-  <sect2>Strategy</sect2>
+
+  <sect2>Stratégie</sect2>
   <para>
-    Without a King, you can't have regicide.  Avoid them.
+		Evitez les Rois.
   </para>
 </sect1>

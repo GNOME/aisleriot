@@ -1,72 +1,65 @@
 <sect1 id="Maze"><!--<sect1info>
-  <copyright>
-   <year>2000</year>
-   <holder>Telsa Gwynne</holder>
-  </copyright>
-  <author>
-   <firstname>Telsa</firstname>
-   <surname>Gwynne</surname>
-  </author>
-  <address><email>telsa@linuxchix.org</email></address>
-</sect1info>-->
+		<copyright>
+			<year>2000</year>
+			<holder>Telsa Gwynne</holder>
+		</copyright>
+		<author>
+			<firstname>Telsa</firstname>
+			<surname>Gwynne</surname>
+		</author>
+		<address><email>telsa@linuxchix.org</email></address>
+	</sect1info>-->
 
-<title>Maze</title>
+	<title>Maze</title>
+
   <para>written by Matthew Wilcox</para>
+
   <sect2>Setup</sect2>
 
-  <informaltable>
-   <tgroup cols="2">
-    <tbody>
-     <row>
-      <entry>Type of Deck</entry>
-      <entry>48 cards: Standard Deck without the kings</entry>
-     </row>
+	<informaltable>
+		<tgroup cols="2">
+			<tbody>
+	<row>
+		<entry>Type of Deck</entry>
+		<entry>48 cards: Standard Deck without the kings</entry>
+	</row>
 
-     <row>
-      <entry>Reserves</entry>
-      <entry>None</entry>
-     </row>
-
-     <row>
-      <entry>Foundations</entry>
-      <entry>None</entry>
-     </row>
-
-     <row>
-      <entry>Tableau</entry>
-      <entry>Fifty-four spaces in six rows of nine each. Deal cards into
-        spaces one to eight. Leave space nine blank. Deal cards into spaces
-        ten to seventeen. Leave space eighteen blank. Deal the remaining
-        cards similarly. Then remove all the kings (which play no further 
-        part in the game), so that six empty spaces remain in total. Any 
-        card can be moved into a space to the left of another card of the 
-        same suit and face value one one higher. Any card can be moved 
-        into a space to the right of another card of the same suit and 
-        face value one lower. An ace may be moved to the right of a
-	queen or in the top left space. A queen may be moved to the left
-	of an ace or in the bottom right space.  
-      </entry>
-     </row>
-    </tbody>
-   </tgroup>
-  </informaltable>
+	<row>
+		<entry>Tableau</entry>
+		<entry>
+			Fifty-four spaces in six rows of nine each. Deal cards into
+			spaces one to eight. Leave space nine blank. Deal cards into spaces
+			ten to seventeen. Leave space eighteen blank. Deal the remaining
+			cards similarly. Then remove all the kings (which play no further
+			part in the game), so that six empty spaces remain in total. Any
+			card can be moved into a space to the left of another card of the
+			same suit and face value one one higher. Any card can be moved
+			into a space to the right of another card of the same suit and
+			face value one lower. An ace may be moved to the right of a
+			queen or in the top left space. A queen may be moved to the left
+			of an ace or in the bottom right space.
+		</entry>
+	</row>
+			</tbody>
+		</tgroup>
+	</informaltable>
 
   <sect2>Goal</sect2>
   <para>
     Put each suit of cards into ascending order, with an ace in the
-    top left corner, to create a run of cards: Ace to Queen of one suit, 
+    top left corner, to create a run of cards: Ace to Queen of one suit,
     Ace to Queen of another, Ace to Queen of the third, Ace to Queen
     of the fourth.
   </para>
 
   <sect2>Rules</sect2>
   <para>
-    Cards are moved singly. Any card can be moved into a space to the 
+    Cards are moved singly. Any card can be moved into a space to the
     left of another card of face value one higher in the same suit. Any
     card can be moved into a space to the right of another card of face
     value one lower in the same suit.  An ace may be moved to the right
     of a queen or in the top left space. A queen may be moved to the left
-    of an ace or in the bottom right space. 
+    of an ace or in the bottom right space.
   </para>
 
   <sect2>Options</sect2>
@@ -85,6 +78,6 @@
   <para>
     Multiple adjacent spaces enable you to generate long sequences of
     cards. Beware of getting trapped into a situation where you move
-    one card endlessly between two points. 
+    one card endlessly between two points.
   </para>
 </sect1>

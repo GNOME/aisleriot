@@ -1,62 +1,105 @@
-<sect1 id="Freecell"><!--<sect1info><copyright><year>1999</year><holder>Rosanna Yuen</holder></copyright>
-<author><firstname>Rosanna</firstname><surname>Yuen</surname></author>
-<address><email>rwsy@mit.edu</email></address></sect1info>-->
-<title>Freecell</title>
-<para>written by Changwoo Ryu</para>
-<sect2>Setup</sect2>
+<sect1 id="Freecell"><!--<sect1info>
+		<copyright>
+			<year>1999</year>
+			<holder>Rosanna Yuen</holder>
+		</copyright>
+		<author>
+			<firstname>Rosanna</firstname>
+			<surname>Yuen</surname>
+		</author>
+		<address><email>rwsy@mit.edu</email></address>
+		<copyright>
+			<year>2004</year>
+			<holder>Damien Laniel</holder>
+		</copyright>
+		<author>
+			<firstname>Damien</firstname>
+			<surname>Laniel</surname>
+		</author>
+		<address><email>heretik@tuxfamily.org</email></address>
+	</sect1info>-->
 
-<informaltable><tgroup cols="2"><tbody>
-<row><entry>Type of Deck</entry><entry>
-Standard Deck</entry></row>
-<row><entry>Reserves</entry><entry>
-Four left piles on top row.  Each Reserve pile can only hold one card.
-</entry></row>
-<row><entry>Foundations</entry><entry>
-Four piles top right.  To be built up in suit from Ace to
-King.  Cards in Foundations are no longer in play.
-</entry></row>
-<row><entry>Tableau</entry><entry>
-Eight piles.  Deal all cards face up on to these eight piles, ending
-up with seven cards in each of the first four piles and six cards in
-the last four piles.  Tableau can be built down in alternating
-colors.  Cards can only be moved singly, but as a shortcut, if there
-are enough Reserve piles free to allow it, cards in sequence can be
-moved together.
-</entry></row>
-</tbody></tgroup></informaltable>
+	<title>Freecell</title>
 
-<sect2>Goal</sect2>
-<para>
-Move all cards to the Foundation piles.
-</para>
-<sect2>Rules</sect2>
-<para>
-Cards in the Tableau are built down by alternating color.  Groups of
-cards can be moved if there are enough Reserve piles free to allow the
-move if the cards were moved singly.  An empty pile in the Tableau can
-be filled with any card or group of cards.
-</para>
-<para>
-Foundations are built up in suit from Ace to King.  Cards in Foundations
-are not in play.  Double clicking on a card will move it to the
-appropriate Foundation pile if such a move is possible.
-</para>
-<para>
-Cards in Reserve piles can be played back on to Tableau or on to the
-Foundation.
-</para>
-<sect2>Options</sect2>
-<para>None</para>
-<sect2>Scoring</sect2>
-<para>
-Each card in the Foundation piles scores one point.
-</para>
-<para>
-Maximum possible score:  52
-</para>
-<sect2>Strategy</sect2>
-<para>
-Space is a valuable commodity.  Keep as many of the Reserve piles free
-as possible.
-</para>
+	<para>Ecrit par Changwoo Ryu</para>
+	<para>Traduit en français par Damien Laniel</para>
+
+	<sect2>Configuration</sect2>
+
+	<informaltable>
+		<tgroup cols="2">
+			<tbody>
+	<row>
+		<entry>Type de Paquet</entry>
+		<entry>Paquet Standard</entry>
+	</row>
+	<row>
+		<entry>Réserves</entry>
+		<entry>
+			Quatre piles en haut à gauche. Chaque réserve peut contenir une seule carte.
+		</entry>
+	</row>
+	<row>
+		<entry>Fondations</entry>
+		<entry>
+			Quatre piles en haut à droite. A construire par suite de l'As au Roi.
+			Les cartes dans les fondations ne sont plus en jeu.
+		</entry>
+	</row>
+	<row>
+		<entry>Tableau</entry>
+		<entry>
+			Huit piles. On distribue toutes les cartes face visible sur ces huit piles,
+			finnissant avec sept cartes sur chacune des quatre premières piles et six
+			cartes sur chacune des quatre dernières piles. Le tableau peut être construit
+			en descendant par couleur alternée. Les cartes ne peuvent être déplacées
+			qu'individuellement, mais comme raccourci, s'il y a assez de réserves
+			libres pour faire la transition, les cartes en séquence peuvent être déplacées
+			ensemble.
+		</entry>
+	</row>
+			</tbody>
+		</tgroup>
+	</informaltable>
+
+	<sect2>Objectif</sect2>
+	<para>
+		Déplacer toutes les cartes vers les fondations.
+	</para>
+
+	<sect2>Règles</sect2>
+	<para>
+		Les cartes dans le tableau sont construites en descendant par couleur alternée.
+		Les groupes de cartes peuvent être déplacés s'il y a assez de réserves
+		libres pour permettre de déplacer les cartes comme si elles étaient déplacées
+		individuellement. Une pile vide dans le tableau peut être remplie avec n'importe
+		quel carte ou groupe de cartes.
+	</para>
+	<para>
+		Les fondations sont construites par suite de l'As au Roi.
+		Les cartes dans les fondations ne sont plus en jeu.
+		Double-cliquer sur une carte la déplacera vers la fondation appropriée
+		si un tel déplacement est possible.
+	</para>
+	<para>
+		Les cartes dans les réserves peuvent être rejouées sur le tableau
+		ou sur les fondations.
+	</para>
+
+	<sect2>Options</sect2>
+	<para>Aucune</para>
+
+	<sect2>Score</sect2>
+	<para>
+		Chaque carte dans les fondations compte un point.
+	</para>
+	<para>
+		Score maximum possible : 52
+	</para>
+
+	<sect2>Stratégie</sect2>
+	<para>
+		L'espace est une commodité de grande valeur.
+		Gardez libre autant de réserves que possible.
+	</para>
 </sect1>

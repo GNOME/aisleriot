@@ -1,71 +1,113 @@
-<sect1 id="Clock"><!--<sect1info><copyright><year>1998</year><holder>Rosanna Yuen</holder></copyright>
-<author><firstname>Rosanna</firstname><surname>Yuen</surname></author>
-<address><email>rwsy@mit.edu</email></address></sect1info>-->
-<title>Clock</title>
-<para>written by Rosanna Yuen </para>
-<sect2>Setup</sect2>
+<sect1 id="Clock"><!--<sect1info>
+		<copyright>
+			<year>1998</year>
+			<holder>Rosanna Yuen</holder>
+		</copyright>
+		<author>
+			<firstname>Rosanna</firstname>
+			<surname>Yuen</surname>
+		</author>
+		<address><email>rwsy@mit.edu</email></address>
+		<copyright>
+			<year>2004</year>
+			<holder>Damien Laniel</holder>
+		</copyright>
+		<author>
+			<firstname>Damien</firstname>
+			<surname>Laniel</surname>
+		</author>
+		<address><email>heretik@tuxfamily.org</email></address>
+	</sect1info>-->
 
-<informaltable><tgroup cols="2"><tbody>
-<row><entry>Type of Deck</entry><entry>
-Standard Deck</entry></row>
-<row><entry>Tableau</entry><entry>
-Deal cards in a clock shape, for a total of twelve piles with
-four cards each.</entry></row>
-<row><entry>Stock</entry><entry>
-Place last four cards in the Stock pile (middle of the Tableau)
-Flip over top card.</entry></row>
-</tbody></tgroup></informaltable>
+	<title>Horloge</title>
 
-<sect2>Goal</sect2>
-<para>
-To have all four cards in each pile be the rank corresponding to the
-number on a clock face.
-</para>
-<sect2>Rules</sect2>
-<para>
-Move the top card in the middle to the appropriate pile.  The Tableau is
-in the shape of a clock, and so the numbered cards go where they would
-on an analog clock.  Aces go where the ones go, and the Jacks and
-Queens go where the elevens and twelves go respectively.  For all the
-people who have never had an analog watch/clock, this is the pattern:
-</para>
-<screenshot>
- <mediaobject> 
-    <imageobject>
-  <imagedata fileref="figures/clock-rules.png" format="PNG"/>
-    </imageobject>
-    <textobject> 
-      <phrase>Clock Layout.</phrase> 
-    </textobject> 
-  </mediaobject>
-</screenshot>
-<para>
-Kings are kept in the middle pile.  When a card is moved to a new pile
-(or made to stay in the same pile, as the case is with the King, the
-bottom card in the new pile is taken and placed on top of the middle
-pile face up.  This new card is ready for play.  To move a card to the
-appropriate pile, either drag the card over or click on the appropriate
-receptor pile.
-</para>
-<para>
-Game is over when there are four kings in the middle.  At this point,
-you've won if goal is achieved.  Note that if a card in a pile is in the
-right place it is okay even if it is faced down.
-</para>
-<sect2>Options</sect2>
-<para>None</para>
-<sect2>Scoring</sect2>
-<para>
-Each card in the appropriate pile of the clock (not counting Kings, as
-there are no Kings on real clocks) scores one point.
-</para>
-<para>
-Maximum possible score: 48
-</para>
-<sect2>Strategy</sect2>
-<para>
-Find a way to automate this game.  There are no decisions ever to be
-made.  If you lose it's not your fault.  (Contrariwise, if you win, it's
-just luck!)
-</para>
+  <para>Ecrit par Rosanna Yuen</para>
+  <para>Traduit en français par Damien Laniel</para>
+
+  <sect2>Configuration</sect2>
+
+	<informaltable>
+		<tgroup cols="2">
+			<tbody>
+	<row>
+		<entry>Type de Paquet</entry>
+		<entry>Paquet Standard</entry>
+	</row>
+	<row>
+		<entry>Tableau</entry>
+		<entry>
+			On distribue les cartes en forme d'horloge, pour un total de douze piles
+			de quatre cartes chacune.
+		</entry>
+	</row>
+	<row>
+		<entry>Pioche</entry>
+		<entry>
+			On place quatre cartes dans la pioche (au milieu du tableau)
+			On retourne la première carte.
+		</entry>
+	</row>
+			</tbody>
+		</tgroup>
+	</informaltable>
+
+	<sect2>Objectif</sect2>
+	<para>
+		Les quatre cartes de chaque pile doivent être du rang du nombre correspondant
+		à leur position sur une horloge.
+	</para>
+
+	<sect2>Règles</sect2>
+	<para>
+		Déplacez la carte du dessus de la pioche vers la pile appropriée.
+		Le tableau a la forme d'une horloge, donc les cartes avec des nombres vont
+		où irait leur nombre sur une horloge analogique.
+		Les As vont où va le Un, et les Valets et les Dames vont sur le Onze et
+		le Douze respectivement.
+		Pour les gens qui n'ont jamais eu une montre ou horloge analogique, voici
+		ce que ça donne :
+	</para>
+	<screenshot>
+		<mediaobject>
+			<imageobject>
+				<imagedata fileref="figures/clock-rules.png" format="PNG"/>
+			</imageobject>
+			<textobject>
+				<phrase>Disposition de l'horloge.</phrase>
+			</textobject>
+		</mediaobject>
+	</screenshot>
+	<para>
+		Les Rois sont gardés dans la pile du milieu. Quand une carte est déplacée
+		vers une nouvelle pile (ou qu'elle reste sur la même pile, comme pour le Roi),
+		la carte du dessous de cette pile est prise et placée sur le dessus
+		de la pile du milieu, face visible.
+		Cette nouvelle carte est prête à être jouée.
+		Pour déplacer une carte vers la pile appropriée, soit vous la faites glisser
+		vers cette pile, ou soit vous double-cliquez sur cette pile.
+	</para>
+	<para>
+		La partie est terminée quand il y a quatre Rois au milieu. A ce moment là,
+		Vous avez gagnée si l'objectif est accompli. Notez que si une carte d'une
+		pile est à la bonne place, c'est bon même si elle est face cachée.
+	</para>
+
+	<sect2>Options</sect2>
+	<para>Aucune</para>
+
+	<sect2>Score</sect2>
+	<para>
+		Chaque carte dans la pile appropriée de l'horloge (sans compter les Rois,
+		vu qu'il n'y a pas de Rois sur les vrais horloges) comptent un point.
+	</para>
+	<para>
+  	Score maximum possible : 48
+	</para>
+
+	<sect2>Stratégie</sect2>
+	<para>
+		Trouvez un moyen d'automatiser ce jeu. il n'y a aucune décision à prendre.
+		Si vous perdez, ce n'est pas votre faute. (Et à l'inverse, si vous gagnez,
+		c'est juste de la chance !)
+	</para>
 </sect1>
