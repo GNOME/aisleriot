@@ -569,7 +569,8 @@ make_suit (GdkCardDeck* deck, GdkCardDeckFile** file, GdkWindow *window,
   *sp = g_new0(GdkPixmap*, KING + 1);
   
   copy_card (deck, window, gc, &(*sp)[ACE], deck->back);
-  
+  /* we don't want the small_suit on the JOKER */
+  copy_card (deck, window, gc, &(*sp)[JOKER], (*sp)[ACE]);
   draw_small_suit(deck, file[OPT_SUIT_S], gc, (*sp)[ACE], suit);
   
   copy_card (deck, window, gc, &(*sp)[TWO], (*sp)[ACE]);
@@ -577,7 +578,6 @@ make_suit (GdkCardDeck* deck, GdkCardDeckFile** file, GdkWindow *window,
   copy_card (deck, window, gc, &(*sp)[JACK], (*sp)[ACE]);
   copy_card (deck, window, gc, &(*sp)[QUEEN], (*sp)[ACE]);
   copy_card (deck, window, gc, &(*sp)[KING], (*sp)[ACE]);
-  copy_card (deck, window, gc, &(*sp)[JOKER], (*sp)[ACE]);
   
   gdk_card_file_draw (file[OPT_SUIT_L], (*sp)[ACE], gc, 
 		      (deck->width - file[OPT_SUIT_L]->width)/2, 
@@ -867,7 +867,7 @@ gdk_card_deck_options_edit_new (GtkNotebook* notebook)
   table = gtk_table_new(OPT_NUM, 2, FALSE);
   gtk_container_border_width (GTK_CONTAINER (frame), GNOME_PAD_SMALL);
   gtk_container_border_width (GTK_CONTAINER (table), GNOME_PAD_SMALL);
-  hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL)
+  hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
   gtk_container_add (GTK_CONTAINER (frame), table);
   gtk_notebook_append_page ( GTK_NOTEBOOK (notebook), hbox, 
 			     gtk_label_new (_("Cards")) );
