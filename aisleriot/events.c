@@ -172,6 +172,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   hslot_type hslot;
   gint cardid;
   gboolean double_click;
+  gboolean drag_valid;
 
   if (!game_in_progress) {
     game_in_progress = TRUE;
@@ -241,23 +242,27 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
   clicked = TRUE;
 
-  if (!(press_data->status == STATUS_CLICK && double_click)) {
+  /* Check if the cards are draggable, assuming we have any cards. */
+  if (hslot->cards) {
     hslot_type hslot = press_data->hslot;
     GList* glist = g_list_nth(hslot->cards, press_data->cardid - 1); 
     SCM cardlist = SCM_EOL;
 
+    for (; glist; glist = glist->next)
+      cardlist = scm_cons(make_card((hcard_type)glist->data), cardlist);
+    
+    drag_valid = SCM_NFALSEP (cscmi_button_pressed_lambda (scm_long2num (press_data->hslot->id), 
+							   cardlist));
+  } else {
+    drag_valid = FALSE;
+  }
+
+  if (!(press_data->status == STATUS_CLICK && double_click)) {
     press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
     
-    /* Check if the cards are draggable, assuming we have any cards. */
-    if (hslot->cards) {
-      for (; glist; glist = glist->next)
-	cardlist = scm_cons(make_card((hcard_type)glist->data), cardlist);
-      
-      if (!SCM_NFALSEP (cscmi_button_pressed_lambda (scm_long2num (press_data->hslot->id), 
-						     cardlist))) {
+    if (!drag_valid) {
 	press_data->status = STATUS_NOT_DRAG;
 	clicked = FALSE;
-      }
     }
   } 
 
@@ -270,8 +275,11 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
     else {
       scm_call_0 (scm_c_eval_string ("discard-move"));
       /* Allow for a drag on the second click if nothing else happened. */
-      if (cardid > 0)
+      if ((cardid > 0) && drag_valid) {
 	press_data->status = STATUS_MAYBE_DRAG; 
+      } else {
+	press_data->status = STATUS_NOT_DRAG;
+      }
     }
     set_cursor (CURSOR_OPEN);
     refresh_screen ();
