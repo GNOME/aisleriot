@@ -62,7 +62,12 @@ PKG_CHECK_MODULES(GNOME_GAMES, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0
 GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CFLAGS"
 GNOME_GAMES_LIBS="$GNOME_GAMES_LIBS \$(top_builddir)/libgames-support/libgames-support.la"
 
-## This should make sure that developers using gcc 3.x will write somethingA
+## Use a separate set of flags for C++ (so we can exclude -std=gnu89 for 
+## example, it doesn't make sense under C++). 
+GNOME_GAMES_CXXFLAGS=$GNOME_GAMES_CFLAGS
+AC_SUBST(GNOME_GAMES_CXXFLAGS)
+
+## This should make sure that developers using gcc 3.x will write something
 ## that compiles using gcc 2.9x. Straight -ansi is a little tough given the
 ## current code base, although what breaks is probably not that portable.
 if test x$CC=xgcc ; then
