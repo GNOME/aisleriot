@@ -4,7 +4,7 @@ icondir = $(datadir)/pixmaps
 Gamesdir  = $(datadir)/applications
 typesdir  = $(datadir)/sol-games
 
-SUBDIRS=pixmaps help
+SUBDIRS=help
 
 INCLUDES =  \
 	-I$(top_srcdir)/gdk-card-image	 	   \
