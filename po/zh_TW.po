@@ -5,11 +5,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games-1.90.1\n"
-"POT-Creation-Date: 2002-03-08 13:42-0600\n"
-"PO-Revision-Date: 2002-02-07 19:21+0800\n"
+"Project-Id-Version: gnome-games 1.90.2\n"
+"POT-Creation-Date: 2002-04-12 14:46+0800\n"
+"PO-Revision-Date: 2002-04-12 16:39+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
-"Language-Team: traditional chinese <zh-l10n@linux.org.tw>\n"
+"Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -513,7 +513,8 @@ msgstr "選擇(_S)..."
 msgid "Select a new game variation"
 msgstr "選另一種遊戲"
 
-#: aisleriot/menu.c:200 freecell/src/menu.c:91 mahjongg/mahjongg.c:389
+#: aisleriot/menu.c:200 freecell/src/menu.c:91 gnect/src/gui.c:104
+#: mahjongg/mahjongg.c:389
 msgid "New"
 msgstr "重新發牌"
 
@@ -537,7 +538,7 @@ msgstr "選擇"
 msgid "Select a new game"
 msgstr "選擇另一種遊戲"
 
-#: aisleriot/menu.c:211 mahjongg/mahjongg.c:395
+#: aisleriot/menu.c:211 gnect/src/gui.c:106 mahjongg/mahjongg.c:395
 msgid "Hint"
 msgstr "提示"
 
@@ -545,11 +546,12 @@ msgstr "提示"
 msgid "Suggest a move"
 msgstr "建議下一步"
 
-#: aisleriot/menu.c:214 freecell/src/menu.c:103 mahjongg/mahjongg.c:398
+#: aisleriot/menu.c:214 freecell/src/menu.c:103 gnect/src/gui.c:105
+#: mahjongg/mahjongg.c:398
 msgid "Undo"
 msgstr "還原"
 
-#: aisleriot/menu.c:214 freecell/src/menu.c:103
+#: aisleriot/menu.c:214 freecell/src/menu.c:103 gnect/src/gui.c:105
 msgid "Undo the last move"
 msgstr "還原上一步"
 
@@ -1181,12 +1183,12 @@ msgstr "人數"
 msgid "Quick Moves (cut computer delay in half)"
 msgstr "快速動作（電腦延遲時間減半）"
 
-#: gataxx/properties.c:329 iagno/properties.c:474
+#: gataxx/properties.c:329 gnect/src/theme.c:398 iagno/properties.c:474
 msgid "Dark"
 msgstr "黑"
 
-#: gataxx/properties.c:336 gataxx/properties.c:390 gtali/yahtzee.c:66
-#: iagno/properties.c:481 iagno/properties.c:533
+#: gataxx/properties.c:336 gataxx/properties.c:390 gnect/src/prefs.c:540
+#: gtali/yahtzee.c:66 iagno/properties.c:481 iagno/properties.c:533
 msgid "Human"
 msgstr "人"
 
@@ -1205,7 +1207,7 @@ msgstr "第二級"
 msgid "Level three"
 msgstr "第三級"
 
-#: gataxx/properties.c:383 iagno/properties.c:526
+#: gataxx/properties.c:383 gnect/src/theme.c:395 iagno/properties.c:526
 msgid "Light"
 msgstr "白"
 
@@ -1307,7 +1309,7 @@ msgstr "離開前先確定"
 
 #: glines/glines.c:1175
 msgid "Welcome to Glines!"
-msgstr "觀迎來玩 Glines！"
+msgstr "歡迎來玩 Glines！"
 
 #: glines/glines.c:1186
 msgid "Next Balls"
@@ -1316,6 +1318,337 @@ msgstr "下次的顏色"
 #: glines/glines.desktop.in.h:2
 msgid "Gnome color lines"
 msgstr "Gnome 顏色排列遊戲"
+
+#: gnect/src/dialog.c:71
+msgid ""
+"\"Four In A Row\" for GNOME, with a computer player driven by Giuliano "
+"Bertoletti's Velena Engine.\n"
+" \n"
+"Gnect: http://homepages.ihug.co.nz/~trmusson/gnect.html\n"
+"Velena: http://www.ce.unipr.it/~gbe/velena.html"
+msgstr ""
+
+#: gnect/src/dialog.c:100 gnect/src/dialog.c:105
+msgid "You"
+msgstr "玩者"
+
+#: gnect/src/dialog.c:101 gnect/src/dialog.c:104
+msgid "Me"
+msgstr "電腦"
+
+#: gnect/src/dialog.c:144 gnect/src/dialog.c:218 gnect/src/gui.c:107
+msgid "Scores"
+msgstr "分數"
+
+#. drawn games
+#: gnect/src/dialog.c:198
+msgid "Drawn"
+msgstr "平手"
+
+#. Velena Engine
+#: gnect/src/gnect.c:274 gnect/src/gnect.c:533
+msgid " Thinking..."
+msgstr " 考慮中..."
+
+#: gnect/src/gnect.c:517
+msgid " Sorry, full column"
+msgstr " 抱歉，此欄已經滿了"
+
+#: gnect/src/gnect.c:537
+#, c-format
+msgid " Hint: Column %d"
+msgstr " 提示：第 %d 欄"
+
+#: gnect/src/gui.c:81
+msgid "Show _tool bar"
+msgstr "顯示工具列(_T)"
+
+#: gnect/src/gui.c:81
+msgid "Show or hide the toolbar"
+msgstr "顯示或隱藏工具列"
+
+#: gnect/src/gui.c:82
+msgid "Enable _sound"
+msgstr "啟用音效(_S)"
+
+#: gnect/src/gui.c:82
+msgid "Enable or disable sound"
+msgstr "啟用或停用音效"
+
+#: gnect/src/gui.c:83
+msgid "Draw _grid"
+msgstr "顯示方格(_G)"
+
+#: gnect/src/gui.c:83
+msgid "Show or hide the grid"
+msgstr "顯示或隱藏方格"
+
+#: gnect/src/gui.c:104
+msgid "Start a new game"
+msgstr "開始另一局"
+
+#: gnect/src/gui.c:106
+msgid "Get a hint for your next move"
+msgstr "給下一步的提示"
+
+#: gnect/src/gui.c:107
+msgid "View the scores"
+msgstr "顯示得分"
+
+#: gnect/src/gui.c:108 xbill/UI.cc:121
+msgid "Quit"
+msgstr "離開"
+
+#: gnect/src/gui.c:108
+msgid "Exit the program"
+msgstr "離開此程式"
+
+#: gnect/src/gui.c:160
+msgid "Exit gnect and end the current game?"
+msgstr "是否終止此局並離開 gnect？"
+
+#: gnect/src/gui.c:207
+msgid "End the current game?"
+msgstr "是否終止此局？"
+
+#: gnect/src/gui.c:437
+msgid " It's a draw!"
+msgstr " 平手！"
+
+#: gnect/src/gui.c:448
+msgid " You win!"
+msgstr " 你贏了！"
+
+#: gnect/src/gui.c:452
+msgid " I win!"
+msgstr " 我贏了！"
+
+#: gnect/src/gui.c:463 gnect/src/gui.c:464
+#, c-format
+msgid " %s wins!"
+msgstr " %s 贏了！"
+
+#: gnect/src/gui.c:492
+msgid " Your move..."
+msgstr " 到你了..."
+
+#: gnect/src/gui.c:516
+msgid " \"Game->New game\" to begin"
+msgstr " 請選擇「遊戲→新遊戲」開始"
+
+#: gnect/src/gui.c:652
+msgid " Welcome to Gnect!"
+msgstr " 歡迎來玩 Gnect！"
+
+#: gnect/src/main.c:49
+msgid "Initial window placement (size is ignored)"
+msgstr "開始時視窗的位置（會忽略大小）"
+
+#: gnect/src/main.c:50
+msgid "GEOMETRY"
+msgstr "位置及大小"
+
+#: gnect/src/main.c:56
+msgid "Random number seed"
+msgstr "隨機亂數種子"
+
+#: gnect/src/main.c:57
+msgid "SEED"
+msgstr "亂數種子"
+
+#: gnect/src/main.c:63
+msgid "Initial theme file (excluding path)"
+msgstr "開始時使用的佈景主題檔案（不包括路徑）"
+
+#: gnect/src/main.c:64 gnome-stones/main.c:102
+msgid "FILENAME"
+msgstr "檔案名稱"
+
+#: gnect/src/main.c:70
+msgid "Debugging level (if N is 4, shows the random number seed used)"
+msgstr "偵錯詳細程度（如果 N 是 4，則會顯示使用的隨機亂數種子）"
+
+#: gnect/src/main.c:101
+#, c-format
+msgid "%s: no themes available\n"
+msgstr "%s：無法提供任何佈景主題\n"
+
+#: gnect/src/prefs.c:184
+#, c-format
+msgid "Player 1 : %s"
+msgstr "玩者 1：%s"
+
+#: gnect/src/prefs.c:185
+#, c-format
+msgid "Player 2 : %s"
+msgstr "玩者 2：%s"
+
+#: gnect/src/prefs.c:293
+msgid "Error loading theme"
+msgstr "載入佈景主題時發生錯誤"
+
+#: gnect/src/prefs.c:365
+msgid ""
+"Applying this change to Player Selection\n"
+"will end the current game"
+msgstr ""
+"更改此項有關選擇玩者\n"
+"的選項會終止此局遊戲"
+
+#: gnect/src/prefs.c:543
+msgid "Non-Velena / Simple"
+msgstr "不使用 Velena / 非常簡單"
+
+#: gnect/src/prefs.c:546
+msgid "Velena / Weak"
+msgstr "Velena / 初級"
+
+#: gnect/src/prefs.c:549
+msgid "Velena / Medium"
+msgstr "Velena / 中級"
+
+#: gnect/src/prefs.c:552
+msgid "Velena / Strong"
+msgstr "Velena / 高級"
+
+#: gnect/src/prefs.c:564
+msgid "Player 1"
+msgstr "玩者 1"
+
+#: gnect/src/prefs.c:567
+msgid "Player 2"
+msgstr "玩者 2"
+
+#: gnect/src/prefs.c:570
+msgid "Take turns"
+msgstr "輸流開始"
+
+#: gnect/src/prefs.c:573
+msgid "Surprise me"
+msgstr "隨便"
+
+#: gnect/src/prefs.c:597
+msgid "Gnect Preferences"
+msgstr "Gnect 偏好設定"
+
+#: gnect/src/prefs.c:675
+msgid "Who starts?"
+msgstr "哪一位走第一步？"
+
+#: gnect/src/prefs.c:693
+msgid "Player Selection"
+msgstr "選擇玩者"
+
+#: gnect/src/prefs.c:711
+msgid "Theme selection:"
+msgstr "選擇佈景主題："
+
+#. keyboard
+#: gnect/src/prefs.c:729
+msgid "Keyboard control:"
+msgstr "鍵盤控制："
+
+#: gnect/src/prefs.c:740
+msgid "Move left"
+msgstr "向左移動"
+
+#: gnect/src/prefs.c:748
+msgid "Move right"
+msgstr "向右移動"
+
+#: gnect/src/prefs.c:756
+msgid "Drop counter"
+msgstr ""
+
+#: gnect/src/prefs.c:794
+msgid "Animation:"
+msgstr "動畫："
+
+#: gnect/src/prefs.c:799
+msgid "Yes please!"
+msgstr "我要！"
+
+#: gnect/src/prefs.c:803
+msgid "Between games, too"
+msgstr ""
+
+#. sound
+#: gnect/src/prefs.c:814
+msgid "Sound type:"
+msgstr "音效類型："
+
+#: gnect/src/prefs.c:819
+msgid "Speaker beep"
+msgstr "揚聲器發聲"
+
+#: gnect/src/prefs.c:824
+msgid "GNOME sound"
+msgstr "GNOME 音效"
+
+#: gnect/src/prefs.c:827
+msgid "This can be set up using the GNOME Control Center"
+msgstr "在 GNOME 控制中心裡可以設定有關選項"
+
+#. verify
+#: gnect/src/prefs.c:837
+msgid "If stopping an unfinished game:"
+msgstr "如果要終止一局未完成的遊戲："
+
+#: gnect/src/prefs.c:842
+msgid "Ask me first"
+msgstr "必須先詢問我"
+
+#: gnect/src/prefs.c:846
+msgid "Appearance and Behaviour"
+msgstr ""
+
+#: gnect/src/theme.c:401
+msgid "Black"
+msgstr "黑"
+
+#: gnect/src/theme.c:404
+msgid "White"
+msgstr "白"
+
+#: gnect/src/theme.c:407
+msgid "Grey"
+msgstr "灰"
+
+#: gnect/src/theme.c:410 gnibbles/preferences.c:659
+msgid "Yellow"
+msgstr "黃"
+
+#: gnect/src/theme.c:413 gnibbles/preferences.c:641
+msgid "Red"
+msgstr "紅"
+
+#: gnect/src/theme.c:416 gnibbles/preferences.c:653
+msgid "Blue"
+msgstr "藍"
+
+#: gnect/src/theme.c:419 gnibbles/preferences.c:647
+msgid "Green"
+msgstr "綠"
+
+#: gnect/src/theme.c:422
+msgid "Orange"
+msgstr "橙"
+
+#: gnect/src/theme.c:425 gnibbles/preferences.c:671
+msgid "Purple"
+msgstr "紫"
+
+#: gnect/src/theme.c:428
+msgid "Pink"
+msgstr "粉紅"
+
+#: gnect/src/theme.c:431
+msgid "Violet"
+msgstr "淺紫"
+
+#: gnect/src/theme.c:434
+msgid "Brown"
+msgstr "啡"
 
 #: gnibbles/gnibbles.c:110
 #, c-format
@@ -1507,29 +1840,9 @@ msgstr "右："
 msgid "Color:"
 msgstr "顏色："
 
-#: gnibbles/preferences.c:641
-msgid "Red"
-msgstr "紅"
-
-#: gnibbles/preferences.c:647
-msgid "Green"
-msgstr "綠"
-
-#: gnibbles/preferences.c:653
-msgid "Blue"
-msgstr "藍"
-
-#: gnibbles/preferences.c:659
-msgid "Yellow"
-msgstr "黃"
-
 #: gnibbles/preferences.c:665
 msgid "Cyan"
 msgstr "原色藍"
-
-#: gnibbles/preferences.c:671
-msgid "Purple"
-msgstr "紫"
 
 #: gnibbles/preferences.c:677
 msgid "Gray"
@@ -1978,10 +2291,6 @@ msgstr "Gnome 寶石遊戲 (c) 1998 Carsten Schaar"
 #: gnome-stones/main.c:102
 msgid "Game to play"
 msgstr "遊戲標題"
-
-#: gnome-stones/main.c:102
-msgid "FILENAME"
-msgstr "檔案名稱"
 
 #: gnome-stones/main.c:145
 #, c-format
@@ -2485,14 +2794,14 @@ msgstr "歡迎來玩 Gnome 華容道"
 #: gnotski/gnotski.c:888
 #, c-format
 msgid "Playing level %s"
-msgstr "正在玩級數 %s"
+msgstr "正在玩第 %s 級"
 
 #: gnotski/gnotski.c:979
 msgid ""
 "Klotski clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
 msgstr ""
-"模仿華容道遊戲\n"
+"仿華容道遊戲\n"
 "（任何建議請寄：Lars.Rydlinge@HIG.SE）"
 
 #: gnotski/gnotski.desktop.in.h:1
@@ -2990,16 +3299,14 @@ msgstr ""
 "是否再玩一次？"
 
 #: mahjongg/mahjongg.c:973
-#, fuzzy
 msgid "Mahjongg - Preferences"
-msgstr "偏好設定"
+msgstr "上海麻將 ─ 偏好設定"
 
 #: mahjongg/mahjongg.c:995
 msgid "Tiles"
 msgstr "牌面圖案"
 
 #: mahjongg/mahjongg.c:1026
-#, fuzzy
 msgid "Tile background:"
 msgstr "牌面背景圖案："
 
@@ -3090,9 +3397,8 @@ msgid "Moves Left: "
 msgstr "剩餘步數："
 
 #: mahjongg/mahjongg.c:1876
-#, fuzzy
 msgid "Welcome to GNOME Mahjongg!"
-msgstr "真的要離開 GNOME 上海麻將？"
+msgstr "歡迎來玩 GNOME 上海麻將！"
 
 #: mahjongg/mahjongg.desktop.in.h:1
 msgid "Gnome Mahjongg program"
@@ -3150,7 +3456,7 @@ msgstr "Same Gnome"
 
 #: same-gnome/same-gnome.c:815
 msgid "Welcome to Same Gnome!"
-msgstr "觀迎來玩 Same Gnome！"
+msgstr "歡迎來玩 Same Gnome！"
 
 #: same-gnome/same-gnome.c:833
 msgid "Marked: "
@@ -3190,13 +3496,13 @@ msgid ""
 "your job is to keep Bill from succeeding\n"
 "at his task."
 msgstr ""
-"            故事：\n"
+"          故事大綱：\n"
 "\n"
 "世界的未來再次控制在你手上了！\n"
-"有一個被稱為「Bill」的邪惡電腦\n"
+"有一個被稱為“Bill”的邪惡電腦\n"
 "駭客，建立了終極的電腦病毒。這種\n"
 "病毒厲害得可以將電腦變成多士爐。\n"
-"（噢！）「Bill」將自己複製成\n"
+"（噢！）“Bill”將自己複製成\n"
 "無數的小型 Bill。它們唯一的目的\n"
 "就是散佈這隻假扮成一款流行作業\n"
 "系統的邪惡病毒。\n"
@@ -3296,10 +3602,6 @@ msgstr "暫停遊戲"
 msgid "Continue"
 msgstr "繼續"
 
-#: xbill/UI.cc:121
-msgid "Quit"
-msgstr "離開"
-
 #: xbill/UI.cc:123
 msgid "Warp To Level"
 msgstr "跳到版圖"
@@ -3364,9 +3666,6 @@ msgstr "Gnome xBill"
 #~ msgid "Shuffle"
 #~ msgstr "重新分配"
 
-#~ msgid "No more moves"
-#~ msgstr "沒有下一步可走了"
-
 #~ msgid "Make it the default"
 #~ msgstr "套用為預設設定"
 
@@ -3382,9 +3681,6 @@ msgstr "Gnome xBill"
 #~ msgid "Debugging mode"
 #~ msgstr "除錯模式"
 
-#~ msgid "View the scores"
-#~ msgstr "顯示得分"
-
 #~ msgid "Not yet implemented!"
 #~ msgstr "未完成此功能！"
 
@@ -3399,12 +3695,6 @@ msgstr "Gnome xBill"
 
 #~ msgid "Read"
 #~ msgstr "讀取"
-
-#~ msgid "Write"
-#~ msgstr "寫入"
-
-#~ msgid "Move"
-#~ msgstr "移動"
 
 #~ msgid "New State"
 #~ msgstr "新的狀態"
@@ -3468,9 +3758,6 @@ msgstr "Gnome xBill"
 
 #~ msgid "Up"
 #~ msgstr "上"
-
-#~ msgid "Down"
-#~ msgstr "下"
 
 #~ msgid "List"
 #~ msgstr "列出"
