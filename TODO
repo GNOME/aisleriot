@@ -48,8 +48,6 @@ Same-gnome:
 
 General:
         - Make games respond to the gconf key change signals.
-        - Remove the need for setgid binaries (needs a setgid launcher
-          and back-end modifications to libgnome).
         - Move more common code into the libgames-support library.
         - Make as much as possible scalable so we can have full-screen
           modes. 
@@ -152,9 +150,7 @@ Iagno:
         - Make defaults consistent with gataxx.
 
 Mahjongg:
-        - Consider the usability bugs (83531 and 84837), the first can
-          be solved via scalable tiles the second via cleaner themes
-          (it can also be worked into a high-contrast things to).
+        - Finish off scaling support. Make new themes.
         - Fix shuffling bugs (91098, 94750), probably using the new
           generation algorithm, it should only require a few tweaks to
           replace shuffle.
