@@ -53,7 +53,7 @@ option_dialog (void)
   /* the first option frame. */
   box = gtk_vbox_new (TRUE, 4);
 
-  check = gtk_check_button_new_with_label (_("Inform invalid move"));
+  check = gtk_check_button_new_with_label (_("Warn on invalid moves"));
   option_data->inform_invalid_move_check = check;
   gtk_box_pack_start_defaults (GTK_BOX (box), check);
   if (option_inform_invalid_move)
@@ -63,7 +63,7 @@ option_dialog (void)
 		      propbox);
   gtk_widget_show(check);
 
-  check = gtk_check_button_new_with_label (_("Move one by one"));
+  check = gtk_check_button_new_with_label (_("Move stacks one by one"));
   option_data->move_one_by_one_check = check;
   gtk_box_pack_start_defaults (GTK_BOX (box), check);
   if (option_move_one_by_one)

@@ -1,5 +1,18 @@
 1999-03-11  Ian Peters  <itp@gnu.org>
 
+	* io-gtk.c: Added lots of calls to gnome_dialog_set_parent.  Some
+	dialogs were modal that didn't need to be, fixed.  Spelling
+	corrections.  Stopped setting dialog's position, as this is set
+	globally for GNOME in a capplet.
+
+	* menu.c: Removed .'s from the tooltips on the toolbar.  Cleaned up
+	some of the tooltips/menuitems.  Made the "New with seed" menu and
+	toolbar pixmaps consistant.
+
+	* option-dialog.c: Tweaked the labels in the option dialog a little.
+
+1999-03-11  Ian Peters  <itp@gnu.org>
+
 	* card.c: (deck_shuffle): Hopefully fixed the "King of Spades is always
 	in the top left" bug.
 

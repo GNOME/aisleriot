@@ -319,12 +319,13 @@ callback_restart (GtkWidget *widget, GdkEvent *event)
 				  GNOME_STOCK_BUTTON_YES,
 				  GNOME_STOCK_BUTTON_NO,
 				  NULL);
-      GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gtk_window_set_modal(GTK_WINDOW (mb), TRUE);
+/*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
+/*    gtk_window_set_modal(GTK_WINDOW (mb), TRUE); */
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_restart_lose),
 				NULL);
+      gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
     }
   else
@@ -400,7 +401,9 @@ callback_new_with_seed_really (void)
 			     GNOME_STOCK_BUTTON_OK,
 			     GNOME_STOCK_BUTTON_CANCEL, NULL);
 
-  label = gtk_label_new (_("Enter the seed."));
+  gnome_dialog_set_parent (GNOME_DIALOG (dialog), GTK_WINDOW (main_window));
+
+  label = gtk_label_new (_("Seed value:"));
   gtk_box_pack_start_defaults (GTK_BOX(GNOME_DIALOG(dialog)->vbox), label);
   gtk_widget_show (label);
   
@@ -443,12 +446,13 @@ callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
 				  GNOME_STOCK_BUTTON_YES,
 				  GNOME_STOCK_BUTTON_NO,
 				  NULL);
-      GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gtk_window_set_modal(GTK_WINDOW(mb), TRUE);
+/*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
+/*    gtk_window_set_modal(GTK_WINDOW(mb), TRUE); */
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_new_with_seed_with_lose),
 				NULL);
+      gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
     }
   else
@@ -508,12 +512,13 @@ callback_new (GtkWidget *widget, GdkEvent *event)
 				  GNOME_STOCK_BUTTON_YES,
 				  GNOME_STOCK_BUTTON_NO,
 				  NULL);
-      GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gtk_window_set_modal(GTK_WINDOW(mb), TRUE);
+/*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
+/*    gtk_window_set_modal(GTK_WINDOW(mb), TRUE); */
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_new_with_lose),
 				NULL);
+      gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
     }
   else
@@ -548,6 +553,8 @@ callback_option (GtkWidget *widget, GdkEvent *event)
 
   dialog = option_dialog ();
 
+  gnome_dialog_set_parent (GNOME_DIALOG (dialog), GTK_WINDOW (main_window));
+
   gtk_widget_show (dialog);
 }
 
@@ -557,12 +564,13 @@ callback_rule (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *mb;
 
-  mb = gnome_message_box_new (_("Sorry, this feature is not implemented (yet)."),
+  mb = gnome_message_box_new (_("Sorry, this feature is not (yet) implemented."),
 			      GNOME_MESSAGE_BOX_INFO,
 			      GNOME_STOCK_BUTTON_OK,
 			      NULL);
-  GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
+  /*GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;*/
   gtk_window_set_modal (GTK_WINDOW(mb), TRUE);
+  gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
   gtk_widget_show (mb);
 }
 
@@ -601,12 +609,13 @@ callback_exit (GtkWidget *widget, GdkEvent *event)
 				  GNOME_STOCK_BUTTON_NO,
 				  NULL);
 
-      GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gtk_window_set_modal(GTK_WINDOW(mb), TRUE);
+/*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
+/*    gtk_window_set_modal(GTK_WINDOW(mb), TRUE); */
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_exit_with_lose),
 				NULL);
+      gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
     }
   else
@@ -647,12 +656,13 @@ inform_invalid_move (void)
 {
   GtkWidget *mb;
 
-  mb = gnome_message_box_new (_("You can't move in that way."),
+  mb = gnome_message_box_new (_("That move is invalid."),
 			      GNOME_MESSAGE_BOX_ERROR,
 			      GNOME_STOCK_BUTTON_OK,
 			      NULL);
-  GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
+  /*GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;*/
   gtk_window_set_modal(GTK_WINDOW(mb), TRUE);
+  gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
   gtk_widget_show (mb);
 }
 
@@ -1139,8 +1149,9 @@ to_destination_auto(void)
 				  GNOME_STOCK_BUTTON_OK,
 				  NULL);
 
-      GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
+/*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
       gtk_window_set_modal(GTK_WINDOW(mb), TRUE);
+      gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_widget_show (mb);
       score_add_lose();
       stalled = 1;
@@ -1148,13 +1159,14 @@ to_destination_auto(void)
   
   if (freecellgame_is_finished(freecellgame))
     {
-      mb = gnome_message_box_new (_("Congraturations.  You won.\nDo you want to play again?"),
+      mb = gnome_message_box_new (_("Congratulations.  You won.\nDo you want to play again?"),
 				  GNOME_MESSAGE_BOX_QUESTION,
 				  GNOME_STOCK_BUTTON_YES,
 				  GNOME_STOCK_BUTTON_NO,
 				  NULL);
-      GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
+/*    GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE; */
       gtk_window_set_modal(GTK_WINDOW(mb), TRUE);
+      gnome_dialog_set_parent (GNOME_DIALOG (mb), GTK_WINDOW (main_window));
       gtk_signal_connect_object (GTK_OBJECT (mb),
 				 "clicked",
 				 GTK_SIGNAL_FUNC(callback_new_really_callback),
