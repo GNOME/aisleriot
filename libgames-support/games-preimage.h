@@ -22,10 +22,10 @@
 #ifndef GAMES_PREIMAGE_H
 #define GAMES_PREIMAGE_H
 
-G_BEGIN_DECLS
-
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+
+G_BEGIN_DECLS
 
 #define GAMES_TYPE_PREIMAGE             (games_preimage_get_type ())
 #define GAMES_PREIMAGE(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), GAMES_TYPE_PREIMAGE, GamesPreimage))

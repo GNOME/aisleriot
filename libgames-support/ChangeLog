@@ -1,3 +1,10 @@
+2004-11-08  Richard Hoelscher  <rah@rahga.com>
+
+	* games-preimage.h: Move G_BEGIN_DECLS below #include glib.h
+	* games-preimage.c (games_preimage_render): scale pixbufs using
+	GDK_INTERP_BILINEAR rather than GDK_INTERP_HYPER... Better overall
+	image quality meant off-center tiled images with unclean edges.
+
 2004-11-02  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* libgnomegames.schemas.in: Fix closing tag.

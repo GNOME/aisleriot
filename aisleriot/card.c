@@ -20,10 +20,11 @@
 #include "sol.h"
 #include "card.h"
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <games-preimage.h>
 #include <games-card-pixmaps.h>
 
 GdkPixmap *default_background_pixmap; 
-GdkPixbuf *slot_pixbuf;
+GamesPreimage *slot_preimage;
 GdkPixmap *slot_pixmap = NULL;
 GdkBitmap *mask = NULL;
 GdkBitmap *slot_mask = NULL;
@@ -78,9 +79,9 @@ static GdkPixmap* get_pixmap (const char* filename)
   return ret;
 }
 
-static GdkPixbuf* get_pixbuf (const char* filename)
+static GamesPreimage* get_preimage (const char* filename)
 {
-  GdkPixbuf *im;
+  GamesPreimage *im;
   char* fullname = gnome_program_locate_file (NULL,
                                               GNOME_FILE_DOMAIN_APP_PIXMAP,
                                               filename, TRUE, NULL);
@@ -88,7 +89,7 @@ static GdkPixbuf* get_pixbuf (const char* filename)
   if (fullname == NULL)
     return NULL; 
 
-  im = gdk_pixbuf_new_from_file (fullname, NULL);
+  im = games_preimage_new_from_uri (fullname, NULL);
   g_free (fullname);
 
   return im;
@@ -96,14 +97,14 @@ static GdkPixbuf* get_pixbuf (const char* filename)
 
 void load_pixmaps (void) 
 {
-  slot_pixbuf = get_pixbuf ("cards/slot.png");
+  slot_preimage = get_preimage ("cards/slot.svg");
   default_background_pixmap = get_pixmap ("cards/baize.png");
 }
 
 void free_pixmaps () 
 {
-  if (slot_pixbuf != NULL)
-    gdk_pixbuf_unref (slot_pixbuf);
+  if (slot_preimage != NULL)
+    g_object_unref (slot_preimage);
   if (default_background_pixmap != NULL)
     g_object_unref (default_background_pixmap);
 }
@@ -126,8 +127,8 @@ void set_card_size (gint width, gint height)
   if (slot_mask)
     g_object_unref (slot_mask);
 
-  scaled = gdk_pixbuf_scale_simple (slot_pixbuf, width, height, 
-				    GDK_INTERP_BILINEAR);
+  scaled = games_preimage_render (slot_preimage, width, height, 
+				  NULL);
 
   gdk_pixbuf_render_pixmap_and_mask (scaled, &slot_pixmap, &slot_mask, 255);
 

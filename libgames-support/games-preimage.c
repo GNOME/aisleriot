@@ -174,7 +174,7 @@ games_preimage_render (GamesPreimage * preimage,
 
     pixbuf = gdk_pixbuf_scale_simple (preimage->pixbuf,
 				      width, height,
-				      GDK_INTERP_HYPER);
+				      GDK_INTERP_BILINEAR);
   } 
   
   return pixbuf;
