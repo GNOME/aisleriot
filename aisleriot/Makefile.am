@@ -56,6 +56,7 @@ types_DATA  = 		\
 	osmosis.scm	\
 	sol.scm		\
 	spider.scm	\
+	thirteen.scm	\
 	yukon.scm
 
 cardimage_DATA = baize.png splash.png
