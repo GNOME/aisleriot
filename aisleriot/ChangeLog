@@ -1,4 +1,17 @@
+2003-05-17  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* sol.c: Changed the code so that using --variation to select a
+	game only works for that one session. This is an awful hack, but I
+	can't see a better way to do it.
+
 2003-05-16  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* klondike.scm (get-options): 
+	* poker.scm (get-hint): Added gettext calls in the scheme code.
+
+	* dialog.c (show_hint_dialog): 
+	* cscmi.c (scm_gettext): Added a scheme wrapper for gettext. Now
+	if only we could extract the strings from the schemes files ...
 
 	* Makefile.am: Created a freecell emulation desktop entry.
 

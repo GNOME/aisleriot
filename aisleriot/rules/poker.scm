@@ -1,5 +1,5 @@
 ; AisleRiot - poker.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -296,7 +296,7 @@
   (> (get-score) 74))
 
 (define (get-hint)
-  (list 0 "Place cards on to the Tableau to form poker hands"))
+  (list 0 (gettext "Place cards on to the Tableau to form poker hands")))
 
 (define (get-options) 
   #f)

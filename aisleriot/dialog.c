@@ -260,8 +260,7 @@ void show_hint_dialog()
       switch (gh_scm2int(gh_car(hint))) {
 
       case 0:
-        /* This is discouraged, as it makes I18N a nightmare */
-	gmessage = g_strdup (_(gh_scm2newstr(gh_cadr(hint),NULL)));
+	gmessage = g_strdup (gh_scm2newstr(gh_cadr(hint),NULL));
 	break;
 
       case 1:

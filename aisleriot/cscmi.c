@@ -1,5 +1,5 @@
 /* AisleRiot - cscmi.h
- * Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+ * Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -103,6 +103,23 @@ SCM make_card(hcard_type card)
 }
 
 /* Scheme functions */
+SCM scm_gettext(SCM message)
+{
+  static char * input = NULL;
+  char * output;
+  int len;
+
+  /* This is needed because we can't free the string before returning
+   * if it isn't translated. This way we have a permanent one-string
+   * memory leak and nothing more. */
+  if (!input)
+    free (input);
+  
+  input = gh_scm2newstr (message, &len);
+  output = gettext (input);
+  return gh_str02scm (output);
+}
+
 SCM scm_get_card_width() 
 {
   return gh_long2scm(get_card_width());
@@ -294,5 +311,6 @@ void cscm_init ()
   gh_new_procedure0_0("get-timeout", scm_get_timeout);  
   gh_new_procedure1_0("set-timeout!", scm_set_timeout);
   gh_new_procedure1_0("add-to-score!", scm_add_to_score);
+  gh_new_procedure("gettext", scm_gettext, 1, 0, 0);
   eval_installed_file ("sol.scm");
 }

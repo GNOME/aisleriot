@@ -54,6 +54,11 @@ GdkPixmap        *surface;
 GdkPixmap        *moving_card_pixmap;
 GtkObject*       card_deck;
 GdkCardDeckOptions deck_options = NULL;
+gboolean         dont_save = FALSE; /* If the game is selected on the
+                                     * command line we assume that it is
+                                     * special and don't save the state.
+                                     * This is essential for Freecell
+                                     * emulation.*/
 
 guint            score;
 /* guint            game_seconds;*/
@@ -219,7 +224,8 @@ void new_game (gchar* file, guint *seedp )
     }
     game_name = game_file_to_name (file);
 
-    save_state (gnome_master_client ());
+    if (!dont_save)
+      save_state (gnome_master_client ());
 
     rules_help[0].label = game_name;
     rules_help[0].user_data = game_file_to_help_entry(file);
@@ -565,6 +571,7 @@ int main (int argc, char *argv [])
   for (i = 0; i < n_games; i++) {
     gchar *game_name = game_file_to_name (game_dents[i]->d_name);
     if (!strcasecmp (variation, game_name)) {
+      dont_save = TRUE;
       start_game = g_strdup ((gchar*) game_dents[i]->d_name);
       g_free (game_name);
       break;

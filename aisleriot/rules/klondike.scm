@@ -1,5 +1,5 @@
 ; AisleRiot - klondike.scm
-; Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+; Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -67,11 +67,11 @@
 					(get-redeals-string))))
 
 (define (get-redeals-string)
-  (string-append "Redeals left:  "
+  (string-append (gettext "Redeals left:  ")
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (get-stock-no-string)
-  (string-append "Stock left:  " 
+  (string-append (gettext "Stock left:  ") 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -165,13 +165,13 @@
 (define (is-ace? slot-id)
   (and (not (empty-slot? slot-id))
        (= ace (get-value (get-top-card slot-id)))
-       (list 2 (get-name (get-top-card slot-id)) "an empty slot" )))
+       (list 2 (get-name (get-top-card slot-id)) (gettext "an empty slot" ))))
 
 (define (shiftable? slot-id2)
   (and (not (= slot-id2 slot-id1))
        (if (empty-slot? slot-id2)
 	   (and (= value king)
-		(list 2 (get-name card) "an empty slot"))
+		(list 2 (get-name card) (gettext "an empty slot")))
 	   (and (= (get-value (get-top-card slot-id2)) (+ 1 value))
 		(not (= (get-color (get-top-card slot-id2)) color))
 		(list 1 (get-name card) (get-name (get-top-card slot-id2)))))))
@@ -193,7 +193,7 @@
 (define (addable? slot-id)
   (if (empty-slot? slot-id)
       (and (= (get-value card) king)
-	   (list 2 (get-name card) "an empty slot" ))
+	   (list 2 (get-name card) (gettext "an empty slot" )))
       (and (= (get-value (get-top-card slot-id)) (+ 1 (get-value card)))
 	   (not (= (get-color (get-top-card slot-id)) (get-color card)))
 	   (list 1 (get-name card) (get-name (get-top-card slot-id))))))
@@ -208,11 +208,11 @@
       (and (or (and (< FLIP-COUNTER 2)
 		    (not (empty-slot? waste)))
 	       (not (empty-slot? stock))) 
-	   (list 0 "Deal a new card from the deck"))
+	   (list 0 (gettext "Deal a new card from the deck")))
 ; FIXME: need to give proper hints for this case too ...
       (and (not (and-map empty-slot? '(2 3 4 5)))
-           (list 0 "Try moving cards down from the foundation"))
-      (list 0 "No hint available right now")))
+           (list 0 (gettext "Try moving cards down from the foundation")))
+      (list 0 (gettext "No hint available right now"))))
 
 (define (game-won)
   (and (= 13 (length (get-cards 2)))
@@ -233,7 +233,7 @@
   (not (game-won)))
 
 (define (get-options)
-  (list (list "Three card deals" deal-three)))
+  (list (list (gettext "Three card deals") deal-three)))
 
 (define (apply-options options)
   (set! deal-three (cadar options)))
