@@ -15,4 +15,6 @@ libgames_support_la_SOURCES =		\
 	games-frame.h			\
 	games-files.c			\
 	games-files.h			\
+	games-gridframe.c		\
+	games-gridframe.h		\
 	$(NULL)
