@@ -1,4 +1,16 @@
-2003-11-02  Callum McKenzie  <callum@localhost.localdomain>
+2003-11-03  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* configure.in: Changed the version to 2.5.1 since Steve's patch
+	had put it back to 2.5.0.
+
+	* acinclude.m4:
+	* Makefile.am:	
+	* configure.in: Rearranged the C++ checking to use standard
+	autoconf/automake macros. Also removed the AC_ISC_POSIX macro;
+	since it was in the wrong place and no one noticed, I think it's
+	safe to remove it.
+
+2003-11-02  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* autogen.sh: Require automake >= 1.7. It may work with earlier
 	automakes, but I haven't tested them properly. The configure.in

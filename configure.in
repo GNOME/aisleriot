@@ -3,19 +3,25 @@
                                                                               
                                                                               
 AC_PREREQ([2.53])
-AC_INIT([gnome-games], [2.5.0],
+AC_INIT([gnome-games], [2.5.1],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([gnomine/gnomine.c])
 AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE
                                                                               
-# Checks for programs.
-AC_PROG_INTLTOOL([0.27.2])
-AC_ISC_POSIX
+# Locate various programs
 AC_PROG_CC
-GNOME_CHECK_CXX
+AC_PROG_CXX
+AC_PROG_INTLTOOL([0.27.2])
 AC_PROG_LIBTOOL
+
+# See if C++ support is actually there and tell automake about it
+# so we can conditionally compile.
+AC_CHECK_PROG(CXX_PRESENT, $CXX, yes, no)
+AM_CONDITIONAL([HAVE_CXX], [test "x$CXX_PRESENT" == xyes])
+
+# See if we have guile
 GAMES_CHECK_GUILE
                                                                               
                                                                               
@@ -240,7 +246,7 @@ Configuration:
 	Compiler:		  	   ${CC}
 
 	Compile Gnometris
-	(Have c++ compiler):		   ${ac_cv_prog_cxx_works}
+	(Have c++ compiler):		   ${CXX_PRESENT}
 	Compile AisleRiot (Have guile):	   ${ac_cv_guile_found}
 
         Use setgid binaries                $setgid

@@ -3,7 +3,7 @@ if GUILE
 guile_DIRS = aisleriot
 endif
 
-if CXX_PRESENT
+if HAVE_CXX
 cxx_DIRS = gnometris \
 	blackjack
 endif
