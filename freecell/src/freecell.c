@@ -1,5 +1,5 @@
 /* freecell.c
-   Copyright (C) 1997 Ryu Changwoo
+   Copyright (C) 1997, 1998 Ryu Changwoo
 
    This program is free software; you can redistribute it and'or modify
    it under the terms of the GNU General Public License as published by
@@ -28,22 +28,16 @@
 #include "option.h"
 #include "score.h"
 
-static void parse_args (int argc, char *argv[]);
-
-/* The name this program invoked with.  */
-char *program_name;
-
 /* The entry of this program.  */
 int
 main (int argc, char **argv)
 {
-  program_name = argv[0];
+  argp_program_version = VERSION;
 
-  gnome_init("freecell", &argc, &argv);
   bindtextdomain (PACKAGE, LOCALEDIR);
   textdomain (PACKAGE);
 
-  parse_args(argc, argv);
+  gnome_init("freecell", NULL, argc, argv, 0, NULL);
 
   option_init();
   score_init();
@@ -52,52 +46,3 @@ main (int argc, char **argv)
   io_gtk_loop ();
   return 0;
 }
-
-
-static void
-parse_args (int argc, char *argv[])
-{
-  gint ch;
-
-  struct option options[] =
-  {
-    /* Default args */
-    { "help", 			no_argument,            NULL,   'h'     },
-    { "version",	 	no_argument,            NULL,   'v'     },
-    { NULL, 0, NULL, 0 }
-  };
-
-  /* initialize getopt */
-  optarg = NULL;
-  optind = 0;
-  optopt = 0;
-
-  while( (ch = getopt_long(argc, argv, "hv", options, NULL)) != EOF )
-  {
-    switch(ch)
-    {
-      case 'h':
-        g_print ( 
-      	  _("%s: FreeCell solitaire card game\n\n"
-      	    "Usage: %s [--help] [--version]\n\n"
-      	    "Options:\n"
-      	    "        --help     display this help and exit\n"
-      	    "        --version  output version information and exit\n"),
-      	    argv[0], argv[0]);
-        exit(0);
-        break;
-      case 'v':
-        g_print (_("FreeCell %s.\n"), VERSION);
-        exit(0);
-        break;
-      case ':':
-      case '?':
-        g_print (_("Options error\n"));
-        exit(0);
-        break;
-    }
-  }
-
-  return;
-}
-
