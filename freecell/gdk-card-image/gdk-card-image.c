@@ -214,15 +214,13 @@ gdk_card_deck_get_type ()
 static int
 is_image (const struct dirent* dent)
 {
-       /* FIXME: need to find out if file is an image
-       * Probably use some gnome_vfs functions
-       */
-	const char *type = gnome_mime_type (dent->d_name);
+	const char *type = gnome_vfs_mime_type_from_name (dent->d_name);
 	if (type == NULL ||
 	    strncmp (type, "image/", strlen ("image/")) != 0)
 		return FALSE;
 	else
 		return TRUE;
+
 }
 
 static gint
