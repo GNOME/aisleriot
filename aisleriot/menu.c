@@ -78,6 +78,7 @@ void help_about_callback ()
 	  "Jonathan Blandford (jrb@redhat.com)",
 	  "Felix Bellaby (felix@pooh.u-net.com)",
 	  "Rosanna Yuen (zana@webwynk.net)",
+	  "Callum McKenzie (callum@physics.otago.ac.nz)",
 	  "",
 	  N_("Card games:"),
 	  "Jonathan Blandford (jrb@redhat.com)",
@@ -177,6 +178,20 @@ static void toolbar_toggle_callback(GtkWidget * togglebutton, gpointer data)
   }
 }
 
+static void clickmove_toggle_callback(GtkWidget * togglebutton, gpointer data)
+{
+  gboolean state;
+  
+  state = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM (togglebutton));
+
+  click_to_move = state;
+  gconf_client_set_bool (gconf_client, "/apps/aisleriot/click_to_move", state,
+			 NULL);
+
+  if (!state)
+    set_hilite (NULL);
+}
+
 GnomeUIInfo rules_sub_menu[] = {
   GNOMEUIINFO_END
 };
@@ -223,27 +238,34 @@ GnomeUIInfo game_menu[] = {
 
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_MENU_UNDO_MOVE_ITEM(undo_callback, NULL),
-
-  GNOMEUIINFO_MENU_REDO_MOVE_ITEM(redo_callback, NULL),
-
-  GNOMEUIINFO_MENU_HINT_ITEM(show_hint_dialog, NULL),
-  /*  GNOMEUIINFO_ITEM_STOCK(N_("_Properties..."), NULL, 
-      show_property_dialog, GNOME_STOCK_MENU_PREF), */
-
-  GNOMEUIINFO_SEPARATOR,
-
   GNOMEUIINFO_MENU_EXIT_ITEM(quit_app, NULL),
 
   GNOMEUIINFO_END
 };
 
+GnomeUIInfo control_menu[] = {
+  
+  GNOMEUIINFO_TOGGLEITEM (N_("_Click to move"), N_("Use clicks instead of drags to move cards"),
+                          clickmove_toggle_callback, NULL),
+
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_MENU_UNDO_MOVE_ITEM(undo_callback, NULL),
+
+  GNOMEUIINFO_MENU_REDO_MOVE_ITEM(redo_callback, NULL),
+
+  GNOMEUIINFO_MENU_HINT_ITEM(show_hint_dialog, NULL),
+
+  GNOMEUIINFO_END
+};
 
 GnomeUIInfo top_menu[] = {
 
   GNOMEUIINFO_MENU_GAME_TREE(game_menu),
 
   GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
+
+  GNOMEUIINFO_SUBTREE (N_("_Control"), control_menu),
 
   GNOMEUIINFO_MENU_HELP_TREE(help_menu),
 
@@ -277,13 +299,13 @@ GnomeUIInfo toolbar[] =
 
 void undo_set_sensitive (gboolean state)
 {
-  gtk_widget_set_sensitive (game_menu[5].widget, state);
+  gtk_widget_set_sensitive (control_menu[2].widget, state);
   gtk_widget_set_sensitive (toolbar[4].widget, state);
 }
 
 void redo_set_sensitive (gboolean state)
 {
-  gtk_widget_set_sensitive (game_menu[6].widget, state);
+  gtk_widget_set_sensitive (control_menu[3].widget, state);
   gtk_widget_set_sensitive (toolbar[5].widget, state);
 }
 
@@ -315,6 +337,12 @@ void create_menus ()
                                   gconf_client_get_bool (gconf_client,
                                                          "/apps/aisleriot/show_toolbar",
                                                          NULL));
+
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (control_menu[0].widget),
+                                  gconf_client_get_bool (gconf_client,
+                                                         "/apps/aisleriot/click_to_move",
+                                                         NULL));
+  
 }
 
 void install_menu_hints (GnomeApp *app)

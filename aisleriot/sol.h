@@ -61,6 +61,7 @@ extern gchar*           game_name;
 extern gboolean         game_in_progress;
 extern gboolean         game_over;
 extern gboolean         game_won;
+extern gboolean         click_to_move;
 extern gchar            *gamesdir;
 
 extern guint            x_spacing;

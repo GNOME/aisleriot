@@ -20,6 +20,8 @@
 #ifndef DRAW_H
 #define DRAW_H
 
+#include "slot.h"
+
 /* The size of the drawing area. */
 extern int window_width;
 extern int window_height;
@@ -33,5 +35,6 @@ void set_geometry (double new_width, double new_height);
 void draw_cards( void );
 void take_snapshot( void );
 void refresh_screen( void );
+void set_hilite (hslot_type hslot);
 
 #endif

@@ -50,6 +50,9 @@ int card_height;
 /* The offset of the cards within the slot. */ 
 int xoffset, yoffset;
 
+/* The slot we are high-lighting. */
+hslot_type hilite = NULL;
+
 static void calculate_card_location (hslot_type hslot)
 {
   int xofs, yofs;
@@ -146,7 +149,6 @@ void draw_cards () {
   }
 }
 
-#if 0
 static void draw_hilite (hslot_type hslot)
 {
   int x, y;
@@ -172,7 +174,12 @@ static void draw_hilite (hslot_type hslot)
   gdk_gc_set_clip_origin (gc, x, y);
   gdk_draw_rectangle (surface, gc, TRUE, x, y, card_width, card_height);
 }
-#endif
+
+void set_hilite (hslot_type hslot)
+{
+  hilite = hslot;
+  refresh_screen ();
+}
 
 void take_snapshot() {
   GList* slot;
@@ -191,13 +198,9 @@ void take_snapshot() {
 			 card_width, card_height);
     }
   draw_cards ();
-#if 0
-  /* This is the wrong place and the wrong way, but it is good for
-   * testing. */
-  if (click_to_move) {
-    draw_hilite (g_list_nth_data (get_slot_list (), 1));
+  if (click_to_move && hilite) {
+    draw_hilite (hilite);
   } 
-#endif
   gdk_window_set_back_pixmap (playing_area->window, surface, 0);
 }
 

@@ -29,6 +29,7 @@ hslot_type last_hslot;
 gint last_cardid;
 GTimer * click_timer = NULL;
 gdouble dbl_click_time;
+gint clicked = FALSE; /* Auxilary status for click-to-move. */
 
 int waiting_for_mouse_up(void) {
   if (!press_data) return 0;
@@ -137,6 +138,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   press_data->hslot = hslot;
   press_data->cardid = cardid;
 
+  /* The right-button-reveals-card action. */
   if (cardid > 0 && (press_data->status == STATUS_NONE || press_data->status == STATUS_CLICK)
       && event->button == 3) {
     hcard_type card = g_list_nth(hslot->cards, cardid - 1)->data;
@@ -160,9 +162,26 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
     }
     return TRUE;
   } 
-  
+
+  clicked = TRUE;
+
   if (!(press_data->status == STATUS_CLICK && double_click)) {
+    hslot_type hslot = press_data->hslot;
+    GList* glist = g_list_nth(hslot->cards, press_data->cardid - 1); 
+    SCM cardlist = SCM_EOL;
+
     press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
+    
+    for (; glist; glist = glist->next)
+      cardlist = gh_cons(make_card((hcard_type)glist->data), cardlist);
+    
+    if (!gh_scm2bool (gh_call2 (game_data->button_pressed_lambda,
+			       gh_long2scm (press_data->hslot->id), 
+			       cardlist))) {
+      press_data->status = STATUS_NOT_DRAG;
+      clicked = FALSE;
+    }
+
   } 
 
   if (double_click) {
@@ -192,6 +211,11 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
     gdk_window_hide(press_data->moving_cards);
     press_data->moving_pixmap = NULL;
     press_data->moving_mask = NULL;
+    return TRUE;
+  }
+
+  if (click_to_move && clicked && (press_data->status != STATUS_NOT_DRAG)) {
+    clicked = FALSE;
     return TRUE;
   }
 
@@ -235,23 +259,10 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
   else if (press_data->status == STATUS_MAYBE_DRAG &&
 	   (abs(press_data->xoffset - event->x) > 2 ||
 	    abs(press_data->yoffset - event->y) > 2)) {
-
-    hslot_type hslot = press_data->hslot;
-    GList* glist = g_list_nth(hslot->cards, press_data->cardid - 1); 
-    SCM cardlist = SCM_EOL;
-    
-    for (; glist; glist = glist->next)
-      cardlist = gh_cons(make_card((hcard_type)glist->data), cardlist);
-    
-    if (gh_scm2bool (gh_call2 (game_data->button_pressed_lambda,
-			       gh_long2scm (press_data->hslot->id), 
-			       cardlist))) {
-      press_data->status = STATUS_IS_DRAG;
-      generate_press_data ();
-      take_snapshot();
-    }
-    else
-      press_data->status = STATUS_NOT_DRAG;      
+    press_data->status = STATUS_IS_DRAG;
+    clicked = FALSE;
+    generate_press_data ();
+    take_snapshot();
   }
   return FALSE;
 }

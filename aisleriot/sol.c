@@ -79,6 +79,7 @@ gchar            *game_name;
 gboolean         game_in_progress = FALSE;
 gboolean         game_over;
 gboolean         game_won;
+gboolean         click_to_move = FALSE;
 gchar            *variation = "";
 gchar            *gamesdir;
 
@@ -422,6 +423,9 @@ static void main_prog(int argc, char *argv[])
   if (!gconf_client_get_bool (gconf_client,
                              "/apps/aisleriot/show_toolbar", NULL))
     toolbar_hide();
+  click_to_move = gconf_client_get_bool (gconf_client, 
+					 "/apps/aisleriot/click_to_move", 
+					 NULL);
 
   create_press_data (playing_area->window);
 
