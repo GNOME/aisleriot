@@ -20,12 +20,8 @@
 #define DRAW_H
 #include <gtk/gtk.h>
 
-void draw_cards(GdkPixmap* );
-void draw_normal_slot(int, int, GdkPixmap* );
-void draw_expanding_slot (int, int, GdkPixmap* );
-void draw_slot_placements(GdkPixmap* );
+void draw_cards();
 void take_snapshot();
-void paint_blank_surface();
 void refresh_screen();
 void stop_show_card();
 
