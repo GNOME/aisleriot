@@ -15,8 +15,9 @@ card-draw.h \
 score.h score-dialog.h option.h option-dialog.h menu.h
 
 freecell_LDADD = \
-	$(srcdir)/../gdk-card-image/libgdkcardimage.la \
+	../gdk-card-image/libgdkcardimage.la \
 	$(GNOMEUI_LIBS) $(INTLLIBS)
 
 EXTRA_DIST = freecell.desktop
 
+Games_DATA = freecell.desktop
