@@ -68,6 +68,7 @@ types_DATA  = 		\
 	odessa.scm	\
 	osmosis.scm	\
 	pileon.scm	\
+	poker.scm	\
 	royal_east.scm	\
 	scorpion.scm	\
 	seahaven.scm	\
