@@ -173,11 +173,11 @@ io_gtk_init (void)
 				   destination_drawing_areas[i]);
       gtk_widget_show(destination_drawing_areas[i]);
     }
-  gtk_box_pack_start_defaults (GTK_BOX(vbox), hbox);
+  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
   gtk_widget_show(hbox);
   
   w = gtk_hseparator_new();
-  gtk_box_pack_start_defaults (GTK_BOX(vbox), w);
+  gtk_box_pack_start (GTK_BOX (vbox), w, FALSE, FALSE, 0);
   gtk_widget_show (w);
   
   hbox = gtk_hbox_new (FALSE, 2);
@@ -319,7 +319,7 @@ callback_restart (GtkWidget *widget, GdkEvent *event)
 				  GNOME_STOCK_BUTTON_NO,
 				  NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
+      gnome_dialog_set_modal (GNOME_DIALOG(mb));
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_restart_lose),
@@ -441,7 +441,7 @@ callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
 				  GNOME_STOCK_BUTTON_NO,
 				  NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
+      gnome_dialog_set_modal (GNOME_DIALOG(mb));
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_new_with_seed_with_lose),
@@ -506,7 +506,7 @@ callback_new (GtkWidget *widget, GdkEvent *event)
 				  GNOME_STOCK_BUTTON_NO,
 				  NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
+      gnome_dialog_set_modal (GNOME_DIALOG(mb));
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_new_with_lose),
@@ -559,7 +559,7 @@ callback_rule (GtkWidget *widget, GdkEvent *event)
 			      GNOME_STOCK_BUTTON_OK,
 			      NULL);
   GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-  gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
+  gnome_dialog_set_modal (GNOME_DIALOG(mb));
   gtk_widget_show (mb);
 }
 
@@ -599,7 +599,7 @@ callback_exit (GtkWidget *widget, GdkEvent *event)
 				  NULL);
 
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
+      gnome_dialog_set_modal (GNOME_DIALOG(mb));
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_exit_with_lose),
@@ -649,7 +649,7 @@ inform_invalid_move (void)
 			      GNOME_STOCK_BUTTON_OK,
 			      NULL);
   GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-  gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
+  gnome_dialog_set_modal (GNOME_DIALOG(mb));
   gtk_widget_show (mb);
 }
 
@@ -1137,7 +1137,7 @@ to_destination_auto(void)
 				  NULL);
 
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
+      gnome_dialog_set_modal (GNOME_DIALOG(mb));
       gtk_widget_show (mb);
       score_add_lose();
       stalled = 1;
@@ -1151,7 +1151,7 @@ to_destination_auto(void)
 				  GNOME_STOCK_BUTTON_NO,
 				  NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
+      gnome_dialog_set_modal (GNOME_DIALOG(mb));
       gtk_signal_connect_object (GTK_OBJECT (mb),
 				 "clicked",
 				 GTK_SIGNAL_FUNC(callback_new_really_callback),
