@@ -284,6 +284,11 @@
       (and (= (get-suit (car card-list)) (get-suit (cadr card-list)))
 	   (check-same-suit-list (cdr card-list)))))
 
+(define (check-alternating-color-list card-list)
+  (or (< (length card-list) 2)
+      (and (eq? (is-black? (car card-list)) (is-red? (cadr card-list)))
+	   (check-alternating-color-list (cdr card-list)))))
+
 (define (check-straight-descending-list card-list)
   (or (< (length card-list) 2)
       (and (= (get-value (car card-list)) (- (get-value (cadr card-list)) 1))

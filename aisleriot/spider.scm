@@ -119,19 +119,18 @@
 
 (define (button-pressed slot card-list)
   (give-status-message)
-  (if (empty-slot? slot)
+  (if (or (empty-slot? slot)
+	  (< slot 9))
       #f
-      (if (< slot 9)
-	  #f
-	  (if (not (eq? '() card-list))
-	      (if (is-visible? (car (reverse card-list)))
-		  (if (check-same-suit-list card-list)
-		      (if (check-straight-descending-list card-list)
-			  #t
-			  #f)
+      (if (not (eq? '() card-list))
+	  (if (is-visible? (car (reverse card-list)))
+	      (if (check-same-suit-list card-list)
+		  (if (check-straight-descending-list card-list)
+		      #t
 		      #f)
 		  #f)
-	      #f))))
+	      #f)
+	  #f)))
 
 (define (button-released start-slot card-list end-slot)
   (if (= start-slot end-slot)
