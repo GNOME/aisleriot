@@ -962,7 +962,7 @@ gtk_card_deck_options_edit_create_list (GtkCardDeckOptionsEdit * w)
   GtkTreeIter iter;
   CardDeckStyle * style;
 
-  list = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_POINTER);
+  list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_POINTER);
 
   stylelist = w->style_list;
 
