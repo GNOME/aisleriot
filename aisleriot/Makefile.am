@@ -17,6 +17,8 @@ bin_PROGRAMS = sol
 sol_SOURCES = 		\
 	card.h		\
 	cscmi.h		\
+	scroll-menu.c	\
+	scroll-menu.h	\
 	dialog.h	\
 	draw.h		\
 	events.h	\

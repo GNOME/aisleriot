@@ -26,6 +26,7 @@
 #include "cscmi.h"
 #include "draw.h"
 #include "events.h"
+#include "scroll-menu.h"
 
 static GtkWidget *about = NULL;
 
@@ -133,11 +134,6 @@ GnomeUIInfo settings_menu[] = {
   GNOMEUIINFO_END
 };
 
-GnomeUIInfo rules_menu[] = {
-
-  GNOMEUIINFO_END
-};
-
 GnomeUIInfo help_menu[] = {
   GNOMEUIINFO_HELP("aisleriot"),
 
@@ -150,11 +146,8 @@ GnomeUIInfo game_menu[] = {
 
   GNOMEUIINFO_MENU_NEW_GAME_ITEM(random_seed, NULL),
 
-  { GNOME_APP_UI_SUBTREE, N_("New _game of..."),
-    N_("Start a new game of a different variation"),
-    rules_sub_menu, NULL, NULL, GNOME_APP_PIXMAP_STOCK,
-    GNOME_STOCK_MENU_NEW, 0, 0, NULL },
-  
+  GNOMEUIINFO_ITEM (N_("New _game of..."), N_("Start a new game of a different variation"), NULL, NULL),
+
   GNOMEUIINFO_MENU_RESTART_GAME_ITEM(restart_game, NULL),
 
   GNOMEUIINFO_ITEM_STOCK(N_("_Select..."), N_("Select a new game variation"),
@@ -228,18 +221,29 @@ void create_menus ()
 {
   int i;
   GtkWidget *w;
+  GtkWidget *menu_item;
+  GtkWidget *menu;
   gnome_app_create_menus (GNOME_APP(app), top_menu);
   gnome_app_create_toolbar (GNOME_APP(app), toolbar);
+
+  /* Kids, don't try this at home */
+  menu_item = game_menu [1].widget;
+  menu = scroll_menu_new ();
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), menu);
+  w = gtk_tearoff_menu_item_new ();
+  gtk_widget_show(w);
+  gtk_menu_shell_append (GTK_MENU_SHELL(menu), w);
 
   for(i = 0; i < n_games; i++) {
     w = gtk_menu_item_new_with_label 
       (game_file_to_name (game_dents[i]->d_name));
     gtk_widget_show(w);
-    gtk_menu_shell_append (GTK_MENU_SHELL(rules_sub_menu[0].widget), w);
+    gtk_menu_shell_append (GTK_MENU_SHELL(menu), w);
     gtk_signal_connect (GTK_OBJECT(w), "activate", 
 			(GtkSignalFunc) new_rules,
 			(gpointer) game_dents[i]->d_name);
   }
+  gtk_widget_show_all (menu);
 }
 
 void install_menu_hints (GnomeApp *app)
