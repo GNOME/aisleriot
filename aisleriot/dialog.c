@@ -94,16 +94,23 @@ static void select_rules(GtkTreeSelection *select, gpointer data)
 	GtkTreeModel *model;
         GtkTreeIter iter;
 
-	gtk_tree_selection_get_selected(select, &model, &iter);
-        g_free (filename);
-	gtk_tree_model_get(model, &iter, 1, &filename, -1);
+	if (gtk_tree_selection_get_selected(select, &model, &iter)) {
+	     g_free (filename);
+	     gtk_tree_model_get(model, &iter, 1, &filename, -1);
+	} else {
+	     g_free (filename);
+	     filename = NULL;
+	}
 }
 
 static void select_game (GtkWidget *app, gint response, gpointer data)
 {
   if(response == GTK_RESPONSE_OK) {
-    seed = atoi (gtk_entry_get_text (GTK_ENTRY (seed_entry)));
-    new_game (filename, &seed);
+       if (filename == NULL)
+	    return;
+
+       seed = atoi (gtk_entry_get_text (GTK_ENTRY (seed_entry)));
+       new_game (filename, &seed);
   }
 
   gtk_widget_hide(app);
