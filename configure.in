@@ -18,6 +18,15 @@ AM_PROG_LIBTOOL
 ## this should come after `AC_PROG_CC'
 GNOME_X_CHECKS
 
+AC_CHECK_PROG(ORBIT_CONFIG, orbit-config, orbit-config)
+if test -n "$ORBIT_CONFIG"; then
+	ORBIT_LIBS="`orbit-config --libs client server`"
+	ORBIT_CFLAGS="`orbit-config --cflags client server`"
+fi
+AC_SUBST(ORBIT_CFLAGS)
+AC_SUBST(ORBIT_LIBS)
+AM_CONDITIONAL(ORBIT_INSTALLED, test -n "$ORBIT_LIBS")
+
 ## look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
 AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true)
