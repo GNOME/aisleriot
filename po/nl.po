@@ -4,7 +4,7 @@
 # Almer S. Tigelaar <almer1@dds.nl>, 2000.
 # Taco Witte <T.C.Witte@phys.uu.nl>, 2002.
 # Erik Kruijswijk <e.kruijswijk@ictro.drp.minjus.nl>, 2002.
-# Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003
+# Tino Meinen <a.t.meinen@chello.nl>, 2002-2004.
 # ----------------------------------------
 # Nog te doen:
 # De Blackjack-terminologie controleren.
@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-13 04:34+0100\n"
-"PO-Revision-Date: 2003-11-29 11:03+0100\n"
+"POT-Creation-Date: 2004-01-14 04:08+0100\n"
+"PO-Revision-Date: 2004-01-14 17:28+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: nl <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -650,12 +650,11 @@ msgstr "Een ander spel selecteren"
 
 #: aisleriot/menu.c:210
 msgid "S_tatistics..."
-msgstr ""
+msgstr "S_tatistieken..."
 
 #: aisleriot/menu.c:210
-#, fuzzy
 msgid "Get statistics on the current game"
-msgstr "Het huidige level opnieuw doen"
+msgstr "Statistieken voor het huidige spel berekenen"
 
 #: aisleriot/menu.c:249 blackjack/src/menu.cpp:194 gnect/src/main.c:1190
 #: mahjongg/mahjongg.c:380
@@ -1114,51 +1113,48 @@ msgid "Place something on to the empty Tableau slot"
 msgstr "Plaats iets in het lege Tafelvak"
 
 #: aisleriot/statistics.glade.h:1
-#, fuzzy
 msgid "<b>Game Name</b>"
-msgstr "Spelnaam"
+msgstr "<b>Spelnaam</b>"
 
 #: aisleriot/statistics.glade.h:2
 msgid "<b>Time</b>"
 msgstr "<b>Tijd</b>"
 
+# Ok, dit is dus geen werkwoord.
+# maar het aantal gewonnen<
 #: aisleriot/statistics.glade.h:3
 msgid "<b>Wins</b>"
-msgstr ""
+msgstr "<b>Gewonnen</b>"
 
-# De bank is leeg?
 #: aisleriot/statistics.glade.h:4
-#, fuzzy
 msgid "Best:"
-msgstr "Kapot"
+msgstr "Beste:"
 
 #: aisleriot/statistics.glade.h:5
 msgid "Percentage:"
-msgstr ""
+msgstr "Percentage:"
 
 #: aisleriot/statistics.glade.h:6
 msgid "Statistics"
 msgstr "Statistieken"
 
 #: aisleriot/statistics.glade.h:7
-#, fuzzy
 msgid "Total:"
-msgstr "Totaal"
+msgstr "Totaal:"
 
+# Ok, dit is dus geen werkwoord.
+# maar het aantal gewonnen
 #: aisleriot/statistics.glade.h:8
-#, fuzzy
 msgid "Wins:"
-msgstr "Winnen"
+msgstr "Gewonnen:"
 
 #: aisleriot/statistics.glade.h:9
-#, fuzzy
 msgid "Worst:"
-msgstr "Slang"
+msgstr "Slechste:"
 
 #: aisleriot/statistics.glade.h:10
-#, fuzzy
 msgid "_Reset"
-msgstr "_Regels"
+msgstr "_Resetten"
 
 #: aisleriot/ten_across.scm.h:1
 msgid "Allow temporary spots use"
@@ -2079,9 +2075,8 @@ msgid "Welcome to Glines!"
 msgstr "Welkom bij Glines!"
 
 #: glines/glines.c:1459
-#, fuzzy
 msgid "Next Balls:"
-msgstr "Volgende knikkers"
+msgstr "Volgende knikkers:"
 
 #: glines/glines.desktop.in.h:2
 msgid "Remove colored balls from the board by forming lines"
@@ -2124,14 +2119,12 @@ msgid "Game score from last saved session."
 msgstr "Score van de laatst bewaarde sessie."
 
 #: glines/glines.schemas.in.h:11
-#, fuzzy
 msgid "The height of the main window."
-msgstr "De hoogte van het venster"
+msgstr "De hoogte van het hoofdvenster."
 
 #: glines/glines.schemas.in.h:12
-#, fuzzy
 msgid "The width of the main window."
-msgstr "De breedte van het venster"
+msgstr "De breedte van het hoofdvenster."
 
 #: glines/glines.schemas.in.h:13
 msgid "Time between moves"
@@ -2159,7 +2152,7 @@ msgstr "Vier-op-een-rij"
 
 #: gnect/data/gnect.schemas.in.h:1
 msgid "A number specifying the preferred theme."
-msgstr ""
+msgstr "Een getal dat met het gekozen thema overeenkomt."
 
 #: gnect/data/gnect.schemas.in.h:3
 msgid "Drop marble"
@@ -2202,9 +2195,8 @@ msgid "Sound"
 msgstr "Geluid"
 
 #: gnect/data/gnect.schemas.in.h:13
-#, fuzzy
 msgid "Theme ID"
-msgstr "Thema"
+msgstr "Thema-id"
 
 #: gnect/data/gnect.schemas.in.h:14
 msgid "Whether or not to play event sounds."
@@ -2252,6 +2244,8 @@ msgid ""
 "Unable to load image:\n"
 "%s"
 msgstr ""
+"Niet in staat de afbeelding te laden:\n"
+"%s"
 
 #: gnect/src/main.c:532
 msgid "It's a draw!"
@@ -2273,7 +2267,7 @@ msgstr "%s heeft gewonnen!"
 #: gnect/src/main.c:554
 #, c-format
 msgid "%s..."
-msgstr ""
+msgstr "%s..."
 
 #: gnect/src/main.c:655
 #, c-format
@@ -2284,14 +2278,14 @@ msgstr "Hint: Kolom %d"
 msgid "You"
 msgstr "U"
 
+# 'computer' ipv 'ik' zou hier beter zijn denk ik.
 #: gnect/src/main.c:684 gnect/src/main.c:687
 msgid "Me"
 msgstr "Ik"
 
 #: gnect/src/main.c:734
-#, fuzzy
 msgid "Scores"
-msgstr "Score"
+msgstr "Scores"
 
 #: gnect/src/main.c:781
 msgid "Drawn"
@@ -2310,13 +2304,12 @@ msgid "Select \"New game\" from the \"Game\" menu to begin."
 msgstr "\"Nieuw spel\" selecteren uit het menu \"Spel\" om te beginnen."
 
 #: gnect/src/main.c:1167
-#, fuzzy
 msgid "Show or hide the tool bar"
 msgstr "De werkbalk tonen of verbergen"
 
 #: gnect/src/main.c:1169
 msgid "Enable _sound"
-msgstr "Geluid aanzetten"
+msgstr "_Geluid aanzetten"
 
 #: gnect/src/main.c:1170
 msgid "Enable or disable sound"
@@ -2331,18 +2324,22 @@ msgid "Welcome to Gnect!"
 msgstr "Welkom bij Gnect!"
 
 #: gnect/src/prefs.c:161
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Player One:\n"
 "%s"
-msgstr "Speler 1: %s"
+msgstr ""
+"Speler 1:\n"
+"%s"
 
 #: gnect/src/prefs.c:165
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Player Two:\n"
 "%s"
-msgstr "Speler 1: %s"
+msgstr ""
+"Speler 2:\n"
+"%s"
 
 #: gnect/src/prefs.c:447
 msgid "Four-in-a-row Preferences"
@@ -2353,38 +2350,33 @@ msgid "Appearance"
 msgstr "Uiterlijk"
 
 #: gnect/src/prefs.c:505
-#, fuzzy
 msgid "_Theme:"
-msgstr "Thema"
+msgstr "_Thema:"
 
 #: gnect/src/prefs.c:518
-#, fuzzy
 msgid "Enable _animation"
-msgstr "Animatie gebruiken"
+msgstr "_Animatie gebruiken"
 
 #: gnect/src/prefs.c:525
 msgid "Controls"
 msgstr "Elementen"
 
+# Bedieningstoetsen<
 #: gnect/src/prefs.c:528
-#, fuzzy
 msgid "Keyboard control"
-msgstr "Bedieningstoetsen"
+msgstr "Toetsenbordbediening"
 
 #: gnect/src/prefs.c:537
-#, fuzzy
 msgid "Move _Left"
-msgstr "Zetten over:"
+msgstr "Naar _links"
 
 #: gnect/src/prefs.c:542
-#, fuzzy
 msgid "Move _Right"
-msgstr "Naar rechts"
+msgstr "Naar _rechts"
 
 #: gnect/src/prefs.c:547
-#, fuzzy
 msgid "_Drop"
-msgstr "_Omlaag"
+msgstr "_Laten vallen"
 
 #: gnect/src/theme.c:42
 msgid "Classic"
@@ -2405,7 +2397,7 @@ msgstr "Hoog Contrast"
 
 #: gnect/src/theme.c:58
 msgid "Marbles"
-msgstr ""
+msgstr "Knikkers"
 
 #: gnect/src/theme.c:63 gnect/src/theme.c:71 gnect/src/theme.c:87
 #: gnibbles/preferences.c:664
@@ -2413,18 +2405,16 @@ msgid "Blue"
 msgstr "Blauw"
 
 #: gnect/src/theme.c:66
-#, fuzzy
 msgid "More Marbles"
-msgstr "Monte Carlo"
+msgstr "Meer knikkers"
 
 #: gnect/src/theme.c:74
 msgid "Nightfall"
-msgstr ""
+msgstr "Zonsondergang"
 
 #: gnect/src/theme.c:82
-#, fuzzy
 msgid "Blocks"
-msgstr "Klok"
+msgstr "Blokken"
 
 #: gnect/src/theme.c:87
 msgid "Orange"
@@ -4328,13 +4318,14 @@ msgstr "Snelle zetten gebruiken"
 msgid "Animation"
 msgstr "Animatie"
 
+# huh? Wat is stagger?
 #: iagno/properties.c:694
 msgid "Stagger flips"
 msgstr "Stagger keren"
 
 #: iagno/properties.c:702
 msgid "Show grid"
-msgstr "Toon raster"
+msgstr "Raster tonen"
 
 #: libgames-support/games-gconf.c:66
 #, c-format
