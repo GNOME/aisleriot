@@ -9,3 +9,7 @@
 #undef HAVE_PROGRAM_INVOCATION_NAME
 #undef HAVE_PROGRAM_INVOCATION_SHORT_NAME
 #undef HAVE_GUILE
+
+/* Define this if you want to compile against the development branch of gtk */
+#undef HAVE_DEVGTK
+
