@@ -64,6 +64,7 @@ types_DATA  = 		\
 	thieves.scm     \
 	thirteen.scm	\
 	union_square.scm \
+	westhaven.scm	\
 	yukon.scm
 
 cardimage_DATA = baize.png splash.png
