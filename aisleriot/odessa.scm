@@ -43,9 +43,30 @@
   
   (deal-cards 0 '(1 2 3 4 5 6 7 1 2 3 4 5 6 7  1 2 3 4 5 6 7 ))
   (deal-cards-face-up 0 '(1 2 3 4 5 6 7 1 2 3 4 5 6 7  1 2 3 4 5 6 7 2 3 4 5 6 2 3 4 5 6))
+
+  (begin-score (reverse (get-cards 1)))
+  (begin-score (reverse (get-cards 2)))
+  (begin-score (reverse (get-cards 3)))
+  (begin-score (reverse (get-cards 4)))
+  (begin-score (reverse (get-cards 5)))
+  (begin-score (reverse (get-cards 6)))
+  (begin-score (reverse (get-cards 7)))
+
   (list 8 4)
 )
 
+(define (begin-score card-list)
+  (if (not (is-visible? (car card-list)))
+      (begin-score (cdr card-list))
+      (begin
+	(if (and (= (get-suit (car card-list))
+		    (get-suit (cadr card-list)))
+		 (= (get-value (car card-list))
+		    (+ (get-value (cadr card-list)) 1)))
+	    (add-to-score! 1))
+	(if (> (list-length card-list) 2)
+	    (begin-score (cdr card-list))
+	    #f))))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -62,13 +83,19 @@
       0))
 
 (define (complete-transaction start-slot card-list rcards end-slot)
-  (if (not (empty-slot? end-slot)) ;prevents earning easy points moving kings!
+                         ;prevents earning easy points moving kings!
+  (if (and (not (empty-slot? end-slot))
+	   (> end-slot 0)
+	   (< end-slot 8))
       (let* ((cards (get-cards end-slot))
 	     (value (get-value (car cards)))
 	     (suit  (get-suit  (car cards))))
 	(add-to-score! (+ 1
 			  (num-in-a-row value suit (cdr cards))
 			  (num-in-a-row value suit rcards)))))
+  (if (or (= end-slot 0)
+	  (> end-slot 7))
+      (add-to-score! (list-length card-list)))
   (move-n-cards! start-slot end-slot card-list)
   (if (not (empty-slot? start-slot)) 
       (make-visible-top-card start-slot))
