@@ -64,7 +64,8 @@
   (flip-top-card 15)
   (flip-top-card 16)
   (flip-top-card 17)
-  (flip-top-card 18))
+  (flip-top-card 18)
+  (set! DEAL_COUNTER 1))
 
 ;additional functions.
 
