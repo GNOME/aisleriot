@@ -356,7 +356,7 @@ static void option_cb (GtkToggleAction *action, gint n)
 {
   SCM options_list;
   SCM entry;
-  SCM statescm;
+  gboolean statec;
 
   options_list = cscmi_get_options_lambda ();
 

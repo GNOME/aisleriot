@@ -1,3 +1,9 @@
+2005-03-22  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* statistics.c (load_statistics): Fix a memory leak when freeing
+	the list read from gconf. Names which aren't storeed in the hash
+	table are now freed.
+
 2005-03-21  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* menu.c (option_cb): Connect the game-specific menu to the scheme

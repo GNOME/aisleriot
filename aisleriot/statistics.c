@@ -180,9 +180,10 @@ void load_statistics (void)
       new_stats->wins = 0; new_stats->total = 0;
       new_stats->best = 0; new_stats->worst = 0;
       g_hash_table_insert (stats, raw_list->data, new_stats);
+    } else {
+      g_free (raw_list->data);
     }
 
-    /* We don't free the string, it belongs to the hash table now. */
     raw_list = g_slist_delete_link (raw_list, raw_list);
 
     if (!raw_list) break;
