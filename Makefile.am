@@ -1,6 +1,6 @@
-if OBJECTIVE_C
-objc_DIRS = 
-endif
+#if OBJECTIVE_C
+#objc_DIRS = 
+#endif
 
 if GUILE
 guile_DIRS = aisleriot
@@ -8,7 +8,8 @@ endif
 
 SUBDIRS = intl po macros \
 	 freecell gnomine same-gnome scottfree mahjongg \
-         gyahtzee gnobots gnothello $(guile_DIRS) $(objc_DIRS)
+         gyahtzee gnobots gnothello $(guile_DIRS)
+#$(objc_DIRS)
 
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change
