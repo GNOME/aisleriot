@@ -8,7 +8,7 @@ endif
 
 SUBDIRS = intl po macros \
 	 freecell gnomine same-gnome scottfree mahjongg gturing \
-         gyahtzee gnobots gnothello $(guile_DIRS)
+         gyahtzee gnobots gnothello gnome-stones $(guile_DIRS)
 #$(objc_DIRS)
 
 EXTRA_DIST = gnome-games.spec
