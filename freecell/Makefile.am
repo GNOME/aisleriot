@@ -1,2 +1,2 @@
-SUBDIRS = intl po lib gdk-card-image src
+SUBDIRS = gdk-card-image src
 

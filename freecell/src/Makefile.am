@@ -17,7 +17,6 @@ score.h score-dialog.h option.h option-dialog.h menu.h
 
 freecell_LDADD = \
 	../gdk-card-image/libgdkcardimage.la \
-	../lib/libfc.a \
 	$(GNOME_LIBDIR)	$(GNOMEUI_LIBS) $(INTLLIBS)
 
 EXTRA_DIST = freecell.desktop

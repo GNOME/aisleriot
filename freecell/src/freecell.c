@@ -21,9 +21,6 @@
 #include <gnome.h>
 #include <locale.h>
 
-#include <getopt.h>
-#include <long-options.h>
-
 #include "io-gtk.h"
 #include "option.h"
 #include "score.h"
