@@ -10,7 +10,8 @@ AC_PREREQ(2.12)
 AM_INIT_AUTOMAKE([freecell], [0.7])
 
 dnl **************** Set available languages. ****************
-ALL_LINGUAS="ko fr"
+dnl ALL_LINGUAS="ko fr"
+ALL_LINGUAS="ko"
 
 dnl **************** Checks for programs. ****************
 AC_PROG_CC
@@ -23,15 +24,9 @@ dnl **************** I18N matters ****************
 AM_GNU_GETTEXT
 AC_LINK_FILES($nls_cv_header_libgt, $nls_cv_header_intl)
 
-dnl * FIXME: GNOME library needs HAVE_LIBINTL_H.  Is it correct?
-if test GT_YES="#YES#"
-then
-  AC_DEFINE(HAVE_LIBINTL_H, 1)
-fi
-
 dnl **************** Checks for header files. ****************
 AC_HEADER_STDC
-AC_CHECK_HEADERS(fcntl.h limits.h malloc.h strings.h unistd.h)
+AC_CHECK_HEADERS(fcntl.h limits.h malloc.h unistd.h)
 
 dnl **************** Checks for typedefs, structures, ****************
 dnl **************** and compiler characteristics. ****************
@@ -56,7 +51,7 @@ dnl GNOME's configure kindly passes X11, GTK library paths.
   AC_SUBST(x_libs)
   GTK_LIBS=$xGTK_LIBS
   AC_SUBST(GTK_LIBS)
-  GNOME_LIBS="-L../../../libgnome/.libs -lgnome \
+  GNOME_LIBS="-L../../../libgnome/.libs -lgnome -ldl \
 -L../../../libgnomeui/.libs/ -lgnomeui -lSM -lICE"
   AC_SUBST(GNOME_LIBS)
 else
@@ -92,7 +87,7 @@ else
                ,
                [AC_MSG_ERROR(Can not find GNOME.)]
 	       ,
-               -lgnome $GTK_LIBS $x_libs -lSM -lICE)
+               -lgnome -ldl $GTK_LIBS $x_libs -lSM -lICE)
   AC_SUBST(GNOME_LIBS)
   LDFLAGS=$saved_LDFLAGS
 fi
