@@ -16,6 +16,7 @@ INCLUDES =							\
 
 libgames_support_la_LDFLAGS= $(HOWL_LIBS)
 
+
 bin_SCRIPTS = games-server.py
 
 carddir = $(datadir)/pixmaps/gnome-games-common/cards
@@ -59,6 +60,8 @@ libgames_support_la_SOURCES =		\
         games-network-dialog.h          \
         games-preimage.c                \
         games-preimage.h                \
+	games-stock.c			\
+	games-stock.h			\
 	$(NULL)
 
 %.c %.h %-private.h: %.gob
