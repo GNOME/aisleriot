@@ -196,6 +196,21 @@ empty_freecells_number (FREECELLGAME *game)
 }
 
 static int
+empty_fields_number (FREECELLGAME *game)
+{
+  int count = 0;
+
+  int i;
+
+  for (i = 0; i < game->fields_number; i++)
+    {
+      if (deck_number (freecellgame_get_field (game, i)) == 0)
+        count++;
+    }
+  return count;
+}
+
+static int
 can_be_on_in_field (CARD *a, CARD *b)
 {
   if (!b)
@@ -523,6 +538,16 @@ freecellgame_field_to_empty_freecell (FREECELLGAME *game,
   return -1;
 }
 
+static int
+max_moveable_cards (int cells,
+		    int fields)
+{
+  int blocks;
+  int size; 
+  blocks=(1+(fields*(fields+1))/2);
+  size=(cells+1);
+  return blocks*size;
+}
 
 int
 freecellgame_can_move_field_to_field_sequence (FREECELLGAME *game,
@@ -531,6 +556,7 @@ freecellgame_can_move_field_to_field_sequence (FREECELLGAME *game,
 {
   int count;
   int empty_fcs;
+  int empty_flds;
   DECK *from_deck, *to_deck;
   CARD *to_card;
 
@@ -540,6 +566,7 @@ freecellgame_can_move_field_to_field_sequence (FREECELLGAME *game,
   assert (to >= 0 && to < game->fields_number);
 
   empty_fcs = empty_freecells_number (game);
+  empty_flds = empty_fields_number (game);
 
   from_deck = game->fields[from];
   if (deck_number(from_deck) == 0)
@@ -551,7 +578,7 @@ freecellgame_can_move_field_to_field_sequence (FREECELLGAME *game,
       count = 1;
       for (i = 0; i < deck_number(from_deck); i++)
 	{
-	  if (count == (empty_fcs + 1))
+	  if (count == max_moveable_cards (empty_fcs, empty_flds-1))
 	    return count;
 
 	  if ((i == (deck_number(from_deck) - 1))
@@ -571,7 +598,7 @@ freecellgame_can_move_field_to_field_sequence (FREECELLGAME *game,
 	{
 	  if (can_be_on_in_field (deck_view(from_deck, i), to_card))
 	    {
-	      if (count > (empty_fcs + 1))
+	      if (count > max_moveable_cards (empty_fcs, empty_flds))
 		return 0;
 	      else
 		return count;
