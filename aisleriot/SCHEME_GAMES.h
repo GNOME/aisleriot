@@ -8,7 +8,6 @@
  */
 
 char only_a_place_holder[]={ 
-N_(""),
 N_("   "),
 N_(" of "),
 N_("'s"),
