@@ -30,10 +30,8 @@ sol_SOURCES = 		\
 	menu.h		\
 	press_data.h	\
 	slot.h		\
-	splash.h	\
 	sol.h		\
 	sol.c		\
-	splash.c	\
 	slot.c		\
 	dialog.c	\
 	cscmi.c		\
@@ -121,7 +119,7 @@ types_DATA  = 		\
 	zebra.scm	\
 	plait.scm
 
-cardimage_DATA = baize.png splash.png
+cardimage_DATA = baize.png
 
 icon_DATA = gnome-aisleriot.png gnome-cardgame.png
 

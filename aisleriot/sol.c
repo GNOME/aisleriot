@@ -41,7 +41,6 @@
 #include "card.h"
 #include "cscmi.h"
 #include "menu.h"
-#include "splash.h"
 #include "games-clock.h"
 #include "games-gconf.h"
 
@@ -292,27 +291,8 @@ void set_score ()
 
 GtkWidget *time_value;
 
-/* void set_time () 
- *{
- *  char b [10];
- *  sprintf (b, "%3d:%02d ", game_seconds / 60, game_seconds % 60);
- *
- *  gtk_label_set(GTK_LABEL(time_value), b);
- *}
- */
-
 static gint timer_cb ()
 {
-#if 0
-/*  game_seconds++;
- *  set_time();
- *  if (game_seconds > timeout) {
- *    timeout = 3600;
- *    gh_call0(game_data->timeout_lambda);
- *    end_of_game_test();
- *  }
- *  return game_seconds < 3599; *//* give up at end of one hour */
-#endif
   timeout = 3600;
   gh_call0(game_data->timeout_lambda);
   end_of_game_test();
@@ -324,14 +304,8 @@ guint timer_timeout = 0;
 void timer_start ()
 {
   if (timer_timeout)
-/*    timer_stop();
- *  game_seconds = 0;
- */
   games_clock_stop (GAMES_CLOCK (time_value));
   timeout = 3600;
-/*  set_time();
- *  timer_timeout = gtk_timeout_add (1000, (GtkFunction) (timer_cb), NULL);
- */
   games_clock_set_seconds (GAMES_CLOCK (time_value), 0);
   games_clock_start (GAMES_CLOCK (time_value));
   timer_timeout = g_timeout_add (timeout * 1000, (GSourceFunc) (timer_cb), NULL);
@@ -345,7 +319,7 @@ void timer_stop ()
 }
 
 /*
- * setup suff
+ * setup stuff
  */
 
 
@@ -383,7 +357,7 @@ static void create_main_window ()
   app = gnome_app_new ("aisleriot", _("Aisleriot"));
 
   gtk_widget_realize (app);
-  
+
   g_signal_connect (GTK_OBJECT (app), "delete_event", 
 		      GTK_SIGNAL_FUNC (quit_app), NULL);
   g_signal_connect (GTK_OBJECT (app), "configure_event",
@@ -419,13 +393,9 @@ static void main_prog(int argc, char *argv[])
 
   cscm_init();
 
-  splash_update (_("Loading images..."), 0.70);
-
   create_main_window ();
 
   load_pixmaps (app, deck_options);
- 
-  splash_update (_("Dealing game..."), 0.90);
 
   create_sol_board ();
   create_menus ();
@@ -440,12 +410,6 @@ static void main_prog(int argc, char *argv[])
   time_value = games_clock_new ();
   gtk_box_pack_start (GTK_BOX(score_box), time_value, FALSE, FALSE, GNOME_PAD_SMALL);
 
-  gtk_widget_show (score_label);
-  gtk_widget_show (score_value);
-  gtk_widget_show (time_label);
-  gtk_widget_show (time_value);
-  gtk_widget_show (score_box);
-
   status_bar = gnome_appbar_new (FALSE, TRUE, FALSE);
   gtk_box_pack_end (GTK_BOX(status_bar), score_box, FALSE, FALSE, 0);
   gnome_app_set_statusbar (GNOME_APP (app), status_bar);
@@ -454,17 +418,13 @@ static void main_prog(int argc, char *argv[])
 
   new_game (start_game, &seed);
 
-  splash_destroy ();
-
-  gtk_widget_show (app);
+  gtk_widget_show_all (app);
 
   if (!gconf_client_get_bool (gconf_client,
                              "/apps/aisleriot/show_toolbar", NULL))
     toolbar_hide();
 
   create_press_data ();
-
-  gtk_widget_pop_colormap ();
 
   gtk_main ();
 
@@ -518,13 +478,7 @@ int main (int argc, char *argv [])
   gconf_client = gconf_client_get_default ();
   games_gconf_sanity_check_string (gconf_client, "/apps/aisleriot/game_file");
   
-  gtk_widget_push_colormap (gdk_rgb_get_colormap ());
-
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-aisleriot.png");
-  splash_new ();
-
-  splash_update (_("Initializing scheme..."), 0.20);
-
   g_signal_connect (GTK_OBJECT (gnome_master_client ()), "save_yourself",
 		      GTK_SIGNAL_FUNC (save_state), 
 		      (gpointer) g_path_get_basename(argv[0]));
