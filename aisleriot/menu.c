@@ -160,7 +160,7 @@ int help_about_callback (GtkWidget *widget, void *data)
           };
 
   about = gnome_about_new ( _("GNOME Solitaire"), VERSION,
-        		/* copyrigth notice */
+        		/* copyright notice */
                         "(C) 1998 Jonathan Blandford (jrb@MIT.EDU)",
                         authors,
                         /* another comments */
