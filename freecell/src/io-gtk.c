@@ -123,6 +123,7 @@ io_gtk_init (int *argc, char ***argv)
 
   
   gnome_init(argc, argv);
+  textdomain (PACKAGE);
 
   option_init();
   score_init();
