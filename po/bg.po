@@ -1,18 +1,18 @@
 # Bulgarian translation for gnome-games.
 # Copyright (C) 2002,2003 Free Software Foundation, Inc.
 # Evgeni Boevski <linkej@yahoo.com>, 2002,2003.
-
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2003-08-13 01:10+0300\n"
-"PO-Revision-Date: 2003-08-12 21:54+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-06-12 02:44+0200\n"
+"PO-Revision-Date: 2004-06-12 14:23+0300\n"
 "Last-Translator: Evgeni Boevski <e_boevski@abv.bg>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
 
 #: aisleriot/agnes.scm.h:1 aisleriot/canfield.scm.h:1
 #: aisleriot/chessboard.scm.h:1 aisleriot/eagle_wing.scm.h:1
@@ -95,7 +95,17 @@ msgstr "Пробвате да пренаредите картите"
 msgid "an empty foundation pile"
 msgstr "празен куп"
 
-#: aisleriot/aisleriot.schemas.in.h:1 blackjack/data/blackjack.schemas.in.h:1
+#: aisleriot/aisleriot.schemas.in.h:1
+msgid ""
+"A list of strings that come in the form of a quintuple: name, wins, total "
+"games played, best time (in seconds) and worst time (also in seconds). "
+"Unplayed games do not need to be represented."
+msgstr ""
+"Списък от низове, който идва под формата на петица: име, победи, "
+"общ брой играни игри, най-добро време (в секунди) и най-лошо време "
+"(отново в секунди). Неиграните игри не е нужно да бъдат представяни."
+
+#: aisleriot/aisleriot.schemas.in.h:2 blackjack/data/blackjack.schemas.in.h:1
 msgid ""
 "A string containing a list of files to use to describe the cards. The format "
 "is obscure and defined by the gdk-card-image library"
@@ -103,23 +113,27 @@ msgstr ""
 "Стринг със списък от файлове за описание на картите. Форматът е неизвестен и "
 "се задава от библиотека gdk-card-image library"
 
-#: aisleriot/aisleriot.schemas.in.h:2
+#: aisleriot/aisleriot.schemas.in.h:3
+msgid "Statistics of games played"
+msgstr "Статистика за играните игри"
+
+#: aisleriot/aisleriot.schemas.in.h:4
 msgid "The game file to use"
 msgstr "Използван файл с игра"
 
-#: aisleriot/aisleriot.schemas.in.h:3
+#: aisleriot/aisleriot.schemas.in.h:5
 msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "Името на схемен файл съдържащ пасиансите."
 
-#: aisleriot/aisleriot.schemas.in.h:4 blackjack/data/blackjack.schemas.in.h:10
+#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:10
 msgid "What card style to use"
 msgstr "Кой стил на картите да се използва"
 
-#: aisleriot/aisleriot.schemas.in.h:5 blackjack/data/blackjack.schemas.in.h:11
+#: aisleriot/aisleriot.schemas.in.h:7 blackjack/data/blackjack.schemas.in.h:11
 msgid "Whether or not to show the toolbar"
 msgstr "Показва или скрива лентата с инструменти"
 
-#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:12
+#: aisleriot/aisleriot.schemas.in.h:8 blackjack/data/blackjack.schemas.in.h:12
 msgid "Whether or not to show the toolbar."
 msgstr "Показва или скрива лентата с инструменти."
 
@@ -230,6 +244,17 @@ msgstr "празно място в основата"
 msgid "empty space on tableau"
 msgstr "празно място на таблото"
 
+#: aisleriot/card.c:124
+msgid ""
+"AisleRiot could not load its deck images.\n"
+"\n"
+"AisleRiot will now exit."
+msgstr ""
+"AisleRiot не може да зареди изображенията\n"
+"за гърба на картите.\n"
+"\n"
+"AisleRiot сега ще се затвори."
+
 #: aisleriot/chessboard.scm.h:6
 msgid "Move a card to the Foundation"
 msgstr "Премести карта на основата"
@@ -287,35 +312,35 @@ msgstr "Турникетите не се препоръчват освен в к
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr "Ако нямате машинка за телбод, работа ще свършат скоба и линия"
 
-#: aisleriot/dialog.c:44
+#: aisleriot/dialog.c:45
 msgid "Congratulations."
 msgstr "Поздравления."
 
-#: aisleriot/dialog.c:45
+#: aisleriot/dialog.c:46
 msgid "You won!!!"
 msgstr "Вие печелите!!!"
 
-#: aisleriot/dialog.c:47
+#: aisleriot/dialog.c:48
 msgid "Game over."
 msgstr "Край на играта."
 
-#: aisleriot/dialog.c:59
+#: aisleriot/dialog.c:60
 msgid "New Game"
 msgstr "Нова игра"
 
-#: aisleriot/dialog.c:134 mahjongg/mahjongg.c:1580
+#: aisleriot/dialog.c:145 mahjongg/mahjongg.c:1862
 msgid "Select Game"
 msgstr "Избери игра"
 
-#: aisleriot/dialog.c:143
+#: aisleriot/dialog.c:154
 msgid "Seed"
 msgstr "Вариант"
 
-#: aisleriot/dialog.c:161
+#: aisleriot/dialog.c:172
 msgid "Rules"
 msgstr "Правила"
 
-#: aisleriot/dialog.c:247
+#: aisleriot/dialog.c:260
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -323,21 +348,21 @@ msgstr ""
 "Играта приключи.\n"
 "Съвети няма"
 
-#: aisleriot/dialog.c:253
+#: aisleriot/dialog.c:266
 msgid "This game does not have hint support yet."
 msgstr "Играта все още няма съвети."
 
-#: aisleriot/dialog.c:265 aisleriot/dialog.c:273
+#: aisleriot/dialog.c:278 aisleriot/dialog.c:286
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Премести %s върху %s."
 
-#: aisleriot/dialog.c:281
+#: aisleriot/dialog.c:294
 #, c-format
 msgid "Move %s %s."
 msgstr "Премести %s %s."
 
-#: aisleriot/dialog.c:284
+#: aisleriot/dialog.c:297
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -349,20 +374,20 @@ msgstr ""
 "съобщение и името на играта която играехте (погледнете в\n"
 "заглавната лента ако не сте сигурни)."
 
-#: aisleriot/dialog.c:289
+#: aisleriot/dialog.c:302
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Търсите %s."
 
-#: aisleriot/dialog.c:294
+#: aisleriot/dialog.c:307
 msgid "This game is unable to provide a hint."
 msgstr "Играта няма съвети."
 
-#: aisleriot/dialog.c:347
-msgid "AisleRiot Preferences"
-msgstr "Настройки на Игри с карти"
+#: aisleriot/dialog.c:359
+msgid "AisleRiot Cards"
+msgstr "Игри с карти"
 
-#: aisleriot/dialog.c:352
+#: aisleriot/dialog.c:364
 msgid "Card Style"
 msgstr "Стил на картите"
 
@@ -537,29 +562,31 @@ msgstr ""
 "Стремете се да поставяте цветовете в такъв ред, който да съответства на "
 "сегашното положение най естествено."
 
-#: aisleriot/menu.c:72 blackjack/src/menu.cpp:73 gnome-stones/main.c:1074
-#: gnomine/gnomine.c:374 mahjongg/mahjongg.c:1325
+#: aisleriot/menu.c:76 gnome-stones/main.c:1083 gnomine/gnomine.c:388
+#: mahjongg/mahjongg.c:1618
 msgid "Main game:"
 msgstr "Главна игра:"
 
-#: aisleriot/menu.c:77
+#: aisleriot/menu.c:81
 msgid "Card games:"
 msgstr "Игри с карти:"
 
 #. Translator credits
-#: aisleriot/menu.c:92 gataxx/gataxx.c:398 glines/glines.c:809
-#: gnect/src/dialog.c:63 gnibbles/main.c:167 gnobots2/menu.c:193
-#: gnome-stones/main.c:1085 gnometris/tetris.cpp:1096 gnomine/gnomine.c:387
-#: gnotravex/gnotravex.c:1460 gnotski/gnotski.c:1137 gtali/gyahtzee.c:372
-#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1341 same-gnome/same-gnome.c:713
+#: aisleriot/menu.c:96 blackjack/src/menu.cpp:84 gataxx/gataxx.c:398
+#: glines/glines.c:878 gnect/src/main.c:812 gnibbles/main.c:181
+#: gnobots2/menu.c:194 gnome-stones/main.c:1094 gnometris/tetris.cpp:1124
+#: gnomine/gnomine.c:401 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1136
+#: gtali/gyahtzee.c:390 iagno/gnothello.c:369 mahjongg/mahjongg.c:1640
+#: same-gnome/same-gnome.c:707
 msgid "translator-credits"
 msgstr "Евгени Боевски <e_boevski@abv.bg>"
+"Ростислав Райков <zbrox@i-space.org>"
 
-#: aisleriot/menu.c:113 aisleriot/splash.c:91
+#: aisleriot/menu.c:117
 msgid "AisleRiot"
 msgstr "Игри с карти"
 
-#: aisleriot/menu.c:116
+#: aisleriot/menu.c:120
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -575,67 +602,82 @@ msgstr "Настр_ойки на игра..."
 msgid "Modify the options for this game"
 msgstr "Промяна настройките на тази игра"
 
-#: aisleriot/menu.c:188 blackjack/src/menu.cpp:148 gnect/src/gui.c:76
-#: mahjongg/mahjongg.c:375
+#: aisleriot/menu.c:188 blackjack/src/menu.cpp:150 gnect/src/main.c:1164
+#: mahjongg/mahjongg.c:815
 msgid "_Toolbar"
 msgstr "Лента с инс_трументи"
 
-#: aisleriot/menu.c:188 blackjack/src/menu.cpp:149 gnect/src/gui.c:76
-#: mahjongg/mahjongg.c:376
+#: aisleriot/menu.c:188 blackjack/src/menu.cpp:151 mahjongg/mahjongg.c:816
 msgid "Show or hide the toolbar"
 msgstr "Показва или скрива лентата с инструменти"
 
-#: aisleriot/menu.c:210
+#: aisleriot/menu.c:191
+msgid "_Cards..."
+msgstr "Карти..."
+
+#: aisleriot/menu.c:191
+msgid "Change the appearance of the cards"
+msgstr "Променя външния вид на картите"
+
+#: aisleriot/menu.c:211
 msgid "_Select..."
 msgstr "И_збор..."
 
-#: aisleriot/menu.c:210 aisleriot/menu.c:255
+#: aisleriot/menu.c:211 aisleriot/menu.c:258
 msgid "Select a different game"
 msgstr "Избор на различна игра"
 
-#: aisleriot/menu.c:249 blackjack/src/menu.cpp:196 gnect/src/gui.c:99
-#: mahjongg/mahjongg.c:405
+#: aisleriot/menu.c:213
+msgid "S_tatistics..."
+msgstr "Статистика..."
+
+#: aisleriot/menu.c:213
+msgid "Get statistics on the current game"
+msgstr "Показва статистика за текущата игра"
+
+#: aisleriot/menu.c:252 blackjack/src/menu.cpp:198 gnect/src/main.c:1188
+#: mahjongg/mahjongg.c:838
 msgid "New"
 msgstr "Нова"
 
-#: aisleriot/menu.c:249 gnect/src/gui.c:99
+#: aisleriot/menu.c:252 gnect/src/main.c:1189
 msgid "Start a new game"
 msgstr "Започни нова игра"
 
-#: aisleriot/menu.c:252 blackjack/src/menu.cpp:199 mahjongg/mahjongg.c:409
+#: aisleriot/menu.c:255 blackjack/src/menu.cpp:201 mahjongg/mahjongg.c:842
 msgid "Restart"
 msgstr "Отначало"
 
-#: aisleriot/menu.c:252
+#: aisleriot/menu.c:255
 msgid "Restart the game"
 msgstr "Започни отново същия вариант"
 
-#: aisleriot/menu.c:255
+#: aisleriot/menu.c:258
 msgid "Select"
 msgstr "Избор"
 
-#: aisleriot/menu.c:260 gnect/src/gui.c:100 mahjongg/mahjongg.c:421
+#: aisleriot/menu.c:263 gnect/src/main.c:1191 mahjongg/mahjongg.c:854
 msgid "Undo"
 msgstr "Отмени"
 
-#: aisleriot/menu.c:260 gnect/src/gui.c:100
+#: aisleriot/menu.c:263 gnect/src/main.c:1191
 msgid "Undo the last move"
 msgstr "Отменя последния ход"
 
-#: aisleriot/menu.c:263 mahjongg/mahjongg.c:425
+#: aisleriot/menu.c:266 mahjongg/mahjongg.c:858
 msgid "Redo"
 msgstr "Повтори"
 
-#: aisleriot/menu.c:263
+#: aisleriot/menu.c:266
 msgid "Redo the undone move"
 msgstr "Повтаря отменен ход"
 
-#: aisleriot/menu.c:266 blackjack/src/menu.cpp:203 gnect/src/gui.c:101
-#: mahjongg/mahjongg.c:427
+#: aisleriot/menu.c:269 blackjack/src/menu.cpp:205 gnect/src/main.c:1192
+#: mahjongg/mahjongg.c:860
 msgid "Hint"
 msgstr "Съвет"
 
-#: aisleriot/menu.c:266 gnect/src/gui.c:101
+#: aisleriot/menu.c:269 gnect/src/main.c:1192
 msgid "Get a hint for your next move"
 msgstr "Съвет за следващия ход"
 
@@ -676,12 +718,12 @@ msgstr "Премести боклука на резервно място"
 msgid "empty foundation"
 msgstr "празна основа"
 
-#: aisleriot/sol.c:131
+#: aisleriot/sol.c:137
 #, c-format
 msgid "AisleRiot: %s (%d)"
 msgstr "Игри с карти: %s (%d)"
 
-#: aisleriot/sol.c:158
+#: aisleriot/sol.c:164
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -694,45 +736,33 @@ msgstr ""
 "\n"
 "Моля, проверете инсталацията на Игри с карти"
 
-#: aisleriot/sol.c:211 aisleriot/sol.c:230
+#: aisleriot/sol.c:229 aisleriot/sol.c:249
 msgid "Help"
 msgstr "Помощ"
 
-#: aisleriot/sol.c:230 aisleriot/sol.c:378
+#: aisleriot/sol.c:249 aisleriot/sol.c:387
 msgid "Aisleriot"
 msgstr "Игри с карти"
 
-#: aisleriot/sol.c:417
-msgid "Loading images..."
-msgstr "Зареждане на изображения..."
-
-#: aisleriot/sol.c:423
-msgid "Dealing game..."
-msgstr "Раздаване..."
-
-#: aisleriot/sol.c:429 gnobots2/statusbar.c:65 gnome-stones/status.c:71
-#: gnometris/scoreframe.cpp:58 gnomine/gnomine.c:380
-#: same-gnome/same-gnome.c:963
+#: aisleriot/sol.c:434 glines/glines.c:1493 gnobots2/statusbar.c:65
+#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:57 gnomine/gnomine.c:394
+#: same-gnome/same-gnome.c:957
 msgid "Score:"
 msgstr "Резултат:"
 
-#: aisleriot/sol.c:433 gnomine/gnomine.c:942 gnotravex/gnotravex.c:993
-#: mahjongg/mahjongg.c:2045
+#: aisleriot/sol.c:438 gnomine/gnomine.c:949 gnotravex/gnotravex.c:1019
+#: mahjongg/mahjongg.c:2164
 msgid "Time:"
 msgstr "Време:"
 
-#: aisleriot/sol.c:500 blackjack/src/blackjack.cpp:588
+#: aisleriot/sol.c:495 blackjack/src/blackjack.cpp:580
 msgid "Variation on game rules"
 msgstr "Различни правила на играта"
 
-#: aisleriot/sol.c:501 blackjack/src/blackjack.cpp:589 gnobots2/gnobots.c:60
-#: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:893
+#: aisleriot/sol.c:496 blackjack/src/blackjack.cpp:581 gnobots2/gnobots.c:60
+#: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:887
 msgid "NAME"
 msgstr "ИМЕ"
-
-#: aisleriot/sol.c:521
-msgid "Initializing scheme..."
-msgstr "Установяване на схемата..."
 
 #: aisleriot/sol.desktop.in.h:1
 msgid "AisleRiot Solitaire"
@@ -1057,6 +1087,55 @@ msgstr "Пробвай да разместиш куповете с карти"
 #: aisleriot/spiderette.scm.h:2 aisleriot/will_o_the_wisp.scm.h:2
 msgid "Place something on to the empty Tableau slot"
 msgstr "Постави нещо на празно място на таблото"
+
+#. For translators: N/A means "Not Applicable", use whatever
+#. * abbreviation you have for a value that has no meaning.
+#: aisleriot/statistics.c:95 aisleriot/statistics.c:104
+#: aisleriot/statistics.c:113
+msgid "N/A"
+msgstr "няма"
+
+#. Translators: this represents minutes:seconds.
+#: aisleriot/statistics.c:99 aisleriot/statistics.c:108
+#, c-format
+msgid "%d:%02d"
+msgstr "%d:%02d"
+
+#: aisleriot/statistics.glade.h:1
+msgid "<b>Time</b>"
+msgstr "<b>Време</b>"
+
+#: aisleriot/statistics.glade.h:2
+msgid "<b>Wins</b>"
+msgstr "<b>Победи</b>"
+
+#: aisleriot/statistics.glade.h:3
+msgid "Best:"
+msgstr "Най-добре:"
+
+#: aisleriot/statistics.glade.h:4
+msgid "Percentage:"
+msgstr "Процент:"
+
+#: aisleriot/statistics.glade.h:5
+msgid "Statistics"
+msgstr "Статистика"
+
+#: aisleriot/statistics.glade.h:6
+msgid "Total:"
+msgstr "Общо:"
+
+#: aisleriot/statistics.glade.h:7
+msgid "Wins:"
+msgstr "Победи:"
+
+#: aisleriot/statistics.glade.h:8
+msgid "Worst:"
+msgstr "Най-зле:"
+
+#: aisleriot/statistics.glade.h:9
+msgid "_Reset"
+msgstr "Рестартира"
 
 #: aisleriot/ten_across.scm.h:1
 msgid "Allow temporary spots use"
@@ -1387,9 +1466,8 @@ msgstr "Премести колона от карти на празното мя
 msgid "the appropriate Foundation pile"
 msgstr "подходящият куп"
 
-#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:235
-#: blackjack/src/menu.cpp:103 blackjack/src/player.cpp:456
-#: blackjack/src/splash.cpp:96
+#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:228
+#: blackjack/src/menu.cpp:106 blackjack/src/splash.cpp:96
 msgid "Blackjack"
 msgstr "Блекджек"
 
@@ -1439,226 +1517,242 @@ msgstr "Не прави паузи между две карти при разд�
 msgid "Blackjack: %s (%d)"
 msgstr "Блекджек: %s (%d)"
 
-#: blackjack/src/blackjack.cpp:313
+#: blackjack/src/blackjack.cpp:306
 msgid "Place your wager or deal a hand"
 msgstr "Обявете своя облог или поискайте ново раздаване"
 
-#: blackjack/src/blackjack.cpp:316
+#: blackjack/src/blackjack.cpp:309
 msgid "Cards left:"
 msgstr "Оставащи карти:"
 
-#: blackjack/src/blackjack.cpp:324
+#: blackjack/src/blackjack.cpp:317
 msgid "Wager:"
 msgstr "Облог:"
 
-#: blackjack/src/blackjack.cpp:336
+#: blackjack/src/blackjack.cpp:329
 msgid "Balance:"
 msgstr "Баланс:"
+
+#: blackjack/src/card.cpp:156
+msgid "Could not load the card deck images."
+msgstr "Не може да се заредят образите за гърба на картите"
+
+#: blackjack/src/card.cpp:157
+msgid "Blackjack will now exit."
+msgstr "Сега се излиза от Блек Джек"
 
 #: blackjack/src/dialog.cpp:50
 msgid "Would you like insurance?"
 msgstr "Желаете ли застраховка?"
 
-#: blackjack/src/dialog.cpp:93
+#: blackjack/src/dialog.cpp:92
 msgid "Set your wager and click in the white outline to deal a new hand."
 msgstr "Изберете облог и посочете в бялото очертание за ново раздаване."
 
-#: blackjack/src/dialog.cpp:96
+#: blackjack/src/dialog.cpp:95
 msgid "Set your wager or click on the cards to deal a new hand."
 msgstr "Изберете облог и посочете картите за ново раздаване."
 
-#: blackjack/src/dialog.cpp:220
+#: blackjack/src/dialog.cpp:216
 msgid "Blackjack Preferences"
 msgstr "Настройки на блекджек"
 
-#: blackjack/src/dialog.cpp:235 gnibbles/preferences.c:358
-#: gnobots2/properties.c:892 gnome-stones/preferences.c:738
+#: blackjack/src/dialog.cpp:231 gnect/src/prefs.c:452
+#: gnibbles/preferences.c:327 gnome-stones/preferences.c:740
 msgid "_Game"
 msgstr "И_гра"
 
-#: blackjack/src/dialog.cpp:242
+#: blackjack/src/dialog.cpp:238
 msgid "Display hand probabilities"
 msgstr "Показвай вероятните раздавания"
 
-#: blackjack/src/dialog.cpp:253
+#: blackjack/src/dialog.cpp:249
 msgid "Quick deals (no delay between each card)"
 msgstr "Бързо раздаване (без паузи между картите)"
 
-#: blackjack/src/dialog.cpp:265
+#: blackjack/src/dialog.cpp:261
 msgid "_Rules"
 msgstr "П_равила"
 
-#: blackjack/src/dialog.cpp:289
+#: blackjack/src/dialog.cpp:285
 msgid "Name"
 msgstr "Име"
 
-#: blackjack/src/dialog.cpp:294
+#: blackjack/src/dialog.cpp:290
 msgid "Decks"
 msgstr "Тестета"
 
-#: blackjack/src/dialog.cpp:299
+#: blackjack/src/dialog.cpp:295
 msgid "Hit Soft 17"
 msgstr "Hit Soft 17"
 
-#: blackjack/src/dialog.cpp:304
+#: blackjack/src/dialog.cpp:300
 msgid "Double Any Total"
 msgstr "Double Any Total"
 
-#: blackjack/src/dialog.cpp:309
+#: blackjack/src/dialog.cpp:305
 msgid "Double 9"
 msgstr "Double 9"
 
-#: blackjack/src/dialog.cpp:314
+#: blackjack/src/dialog.cpp:310
 msgid "Double Soft"
 msgstr "Double Soft"
 
-#: blackjack/src/dialog.cpp:319
+#: blackjack/src/dialog.cpp:315
 msgid "Double After Hit"
 msgstr "Double After Hit"
 
-#: blackjack/src/dialog.cpp:324
+#: blackjack/src/dialog.cpp:320
 msgid "Double After Split"
 msgstr "Double After Split"
 
-#: blackjack/src/dialog.cpp:329
+#: blackjack/src/dialog.cpp:325
 msgid "Resplit"
 msgstr "Resplit"
 
-#: blackjack/src/dialog.cpp:334
+#: blackjack/src/dialog.cpp:330
 msgid "Resplit Aces"
 msgstr "Resplit Aces"
 
-#: blackjack/src/dialog.cpp:339 blackjack/src/player.cpp:319
+#: blackjack/src/dialog.cpp:335 blackjack/src/player.cpp:328
 msgid "Surrender"
 msgstr "Предай се"
 
-#: blackjack/src/dialog.cpp:344
+#: blackjack/src/dialog.cpp:340
 msgid "Dealer Speed"
 msgstr "Скорост на раздаване"
 
-#: blackjack/src/dialog.cpp:408
+#: blackjack/src/dialog.cpp:403
 msgid "Card _Deck"
 msgstr "Card _Deck"
 
-#: blackjack/src/events.cpp:493
+#: blackjack/src/events.cpp:490
 msgid "Click to deal another card; drag card to split pair"
 msgstr "Натиснете за нова карта; завлачете карта за да разделите двойка"
 
-#: blackjack/src/events.cpp:495
+#: blackjack/src/events.cpp:492
 msgid "Click to deal another card"
 msgstr "Раздай още една карта"
 
-#: blackjack/src/events.cpp:497
+#: blackjack/src/events.cpp:494
 msgid "Click to finish adding cards to your hand"
 msgstr "Натиснете за край на добавянето на карти към ръката Ви"
 
-#: blackjack/src/events.cpp:500
+#: blackjack/src/events.cpp:497
 msgid "Click to deal a new hand"
 msgstr "Натиснете за раздаване на нова ръка"
 
-#: blackjack/src/events.cpp:516
+#: blackjack/src/events.cpp:513
 msgid "Click to double your wager"
 msgstr "Натиснете за да удвоите облога си"
 
-#: blackjack/src/events.cpp:522
+#: blackjack/src/events.cpp:519
 #, c-format
 msgid "Double click to increase your wager by %.2f"
 msgstr "Натиснете 2 пъти за да увеличите обога с %.2f"
 
-#: blackjack/src/events.cpp:536
+#: blackjack/src/events.cpp:533
 #, c-format
 msgid "Double click to decrease your wager by %.2f"
 msgstr "Натиснете 2 пъти за да намалите обога с %.2f"
 
-#: blackjack/src/game.cpp:363
+#: blackjack/src/game.cpp:390
 msgid "Blackjack can't load the requested file"
 msgstr "Блекджек не може да зареди файла"
 
-#: blackjack/src/game.cpp:365
+#: blackjack/src/game.cpp:392
 msgid "Please check your Blackjack installation"
 msgstr "Моля, проверете инсталацията на Блекджек"
 
-#: blackjack/src/hand.cpp:84
+#: blackjack/src/hand.cpp:118
 msgid "The best option is to stand"
 msgstr "The best option is to stand"
 
-#: blackjack/src/hand.cpp:86
+#: blackjack/src/hand.cpp:120
 msgid "The best option is to hit"
 msgstr "The best option is to hit"
 
-#: blackjack/src/hand.cpp:88
+#: blackjack/src/hand.cpp:122
 msgid "The best option is to double down"
 msgstr "The best option is to double down"
 
-#: blackjack/src/hand.cpp:90
+#: blackjack/src/hand.cpp:124
 msgid "The best option is to split"
 msgstr "The best option is to split"
 
-#: blackjack/src/hand.cpp:92
+#: blackjack/src/hand.cpp:126
 msgid "The best option is to surrender"
 msgstr "The best option is to surrender"
 
-#: blackjack/src/menu.cpp:108
+#: blackjack/src/menu.cpp:110
 msgid "Blackjack provides a casino-style blackjack card game."
 msgstr "Блекджек предоставя игра на блекджек в стил казино"
 
-#: blackjack/src/menu.cpp:196
+#: blackjack/src/menu.cpp:198
 msgid "Deal a new game"
 msgstr "Раздай за нова игра"
 
-#: blackjack/src/menu.cpp:199
+#: blackjack/src/menu.cpp:201
 msgid "Start this game over"
 msgstr "Започни играта отначало"
 
-#: blackjack/src/menu.cpp:203
+#: blackjack/src/menu.cpp:205
 msgid "Suggest a move"
 msgstr "Предложи ход"
 
-#: blackjack/src/player.cpp:64
+#: blackjack/src/player.cpp:67
 msgid "Computing basic strategy..."
 msgstr "Изчисляване на основната стратегия..."
 
-#: blackjack/src/player.cpp:187 blackjack/src/player.cpp:448
+#: blackjack/src/player.cpp:190 blackjack/src/player.cpp:468
 msgid "Bust"
 msgstr "Bust"
 
-#: blackjack/src/player.cpp:191
+#: blackjack/src/player.cpp:194
 msgid "Blackjack!"
 msgstr "Блекджек!"
 
-#: blackjack/src/player.cpp:196
+#: blackjack/src/player.cpp:199
 msgid "Soft"
 msgstr "Soft"
 
-#: blackjack/src/player.cpp:204
+#: blackjack/src/player.cpp:207
 msgid "Win"
 msgstr "Win"
 
-#: blackjack/src/player.cpp:205
+#: blackjack/src/player.cpp:208
 msgid "Push"
 msgstr "Push"
 
-#: blackjack/src/player.cpp:206
+#: blackjack/src/player.cpp:209
 msgid "Lose"
 msgstr "Lose"
 
-#: blackjack/src/player.cpp:270
+#: blackjack/src/player.cpp:269
+msgid "Player expected values"
+msgstr ""
+
+#: blackjack/src/player.cpp:275
 msgid "Stand"
 msgstr "Stand"
 
-#: blackjack/src/player.cpp:279
+#: blackjack/src/player.cpp:285
 msgid "Hit"
 msgstr "Hit"
 
-#: blackjack/src/player.cpp:291
+#: blackjack/src/player.cpp:298
 msgid "Double"
 msgstr "Double"
 
-#: blackjack/src/player.cpp:306
+#: blackjack/src/player.cpp:314
 msgid "Split"
 msgstr "Split"
 
-#: gataxx/ataxx.c:150 gataxx/gataxx.c:306 gataxx/gataxx.c:734
+#: blackjack/src/player.cpp:467
+msgid "Dealer hand probabilities"
+msgstr ""
+
+#: gataxx/ataxx.c:150 gataxx/gataxx.c:306 gataxx/gataxx.c:736
 #: iagno/gnothello.c:288 iagno/gnothello.c:699 iagno/othello.c:220
 msgid "Dark's move"
 msgstr "Ход на тъмните"
@@ -1700,28 +1794,28 @@ msgstr ""
 "gataxx е базирана на старата игра ataxx. Изградена е върху кода на iagno от "
 "Ян Петер."
 
-#: gataxx/gataxx.c:613
+#: gataxx/gataxx.c:615
 #, c-format
 msgid "Could not find '%s' pixmap file for gataxx\n"
 msgstr "Графичен файл '%s' за gataxx липсва\n"
 
-#: gataxx/gataxx.c:758 gataxx/gataxx.desktop.in.h:1
+#: gataxx/gataxx.c:760 gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "Ataxx"
 
-#: gataxx/gataxx.c:789 iagno/gnothello.c:757
+#: gataxx/gataxx.c:791 iagno/gnothello.c:757
 msgid "Dark:"
 msgstr "Тъмни:"
 
-#: gataxx/gataxx.c:795 iagno/gnothello.c:767
+#: gataxx/gataxx.c:797 iagno/gnothello.c:767
 msgid "Light:"
 msgstr "Светли:"
 
-#: gataxx/gataxx.c:811
+#: gataxx/gataxx.c:813
 msgid "Welcome to gataxx!"
 msgstr "Добре дошли в gataxx!"
 
-#: gataxx/gataxx.c:819 gataxx/gataxx.c:821 iagno/gnothello.c:798
+#: gataxx/gataxx.c:821 gataxx/gataxx.c:823 iagno/gnothello.c:798
 #: iagno/gnothello.c:800
 #, c-format
 msgid "%.2d"
@@ -1731,11 +1825,11 @@ msgstr "%.2d"
 msgid "Compete to dominate the board in a Reversi-like game"
 msgstr "Съревнование за доминиране на дъската в игра, подобна на Reversi"
 
-#: gataxx/gataxx.schemas.in.h:1 gnect/data/gnect.schemas.in.h:1
+#: gataxx/gataxx.schemas.in.h:1 gnect/data/gnect.schemas.in.h:2
 msgid "Animate"
 msgstr "Анимация"
 
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:515 iagno/properties.c:706
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:536 iagno/properties.c:723
 msgid "Flip final results"
 msgstr "Обърни крайните резултати"
 
@@ -1775,7 +1869,7 @@ msgstr ""
 "Нула отговаря на изключена анимация, едно - на частична, две - на пълна "
 "анимация."
 
-#: gataxx/gataxx.schemas.in.h:11
+#: gataxx/gataxx.schemas.in.h:11 gnect/data/gnect.schemas.in.h:17
 msgid ""
 "Zero is human; one through three correspond to the level of the computer "
 "player."
@@ -1789,104 +1883,123 @@ msgstr "Край на играта"
 msgid "Piece flipping"
 msgstr "Обръщане на пуловете"
 
-#: gataxx/properties.c:337
+#: gataxx/properties.c:358
 msgid "Gataxx Preferences"
 msgstr "Настройки на Gataxx"
 
 #. Players tab
-#: gataxx/properties.c:356 iagno/properties.c:528
+#: gataxx/properties.c:377 iagno/properties.c:545
 msgid "_Players"
 msgstr "_Играчи"
 
-#: gataxx/properties.c:368
+#: gataxx/properties.c:389
 msgid "Quick Moves (cut computer delay in half)"
 msgstr "Бързи ходове (намалява забавянето на компютъра наполовина)"
 
-#: gataxx/properties.c:376 gnect/src/theme.c:386 iagno/properties.c:551
+#: gataxx/properties.c:397 gnect/src/theme.c:55 iagno/properties.c:568
 msgid "Dark"
 msgstr "Тъмен"
 
-#: gataxx/properties.c:381 gataxx/properties.c:429 gnect/src/prefs.c:738
-#: gtali/yahtzee.c:63 iagno/properties.c:557 iagno/properties.c:604
+#: gataxx/properties.c:402 gataxx/properties.c:450 gnect/src/prefs.c:404
+#: gtali/yahtzee.c:63 iagno/properties.c:574 iagno/properties.c:621
 msgid "Human"
 msgstr "Човек"
 
-#: gataxx/properties.c:391 gataxx/properties.c:437 iagno/properties.c:567
-#: iagno/properties.c:614
+#: gataxx/properties.c:412 gataxx/properties.c:458 gnect/src/prefs.c:406
+#: iagno/properties.c:584 iagno/properties.c:631
 msgid "Level one"
 msgstr "Първо ниво"
 
-#: gataxx/properties.c:400 gataxx/properties.c:445 iagno/properties.c:577
-#: iagno/properties.c:624
+#: gataxx/properties.c:421 gataxx/properties.c:466 gnect/src/prefs.c:408
+#: iagno/properties.c:594 iagno/properties.c:641
 msgid "Level two"
 msgstr "Второ ниво"
 
-#: gataxx/properties.c:409 gataxx/properties.c:453 iagno/properties.c:587
-#: iagno/properties.c:635
+#: gataxx/properties.c:430 gataxx/properties.c:474 gnect/src/prefs.c:410
+#: iagno/properties.c:604 iagno/properties.c:652
 msgid "Level three"
 msgstr "Трето ниво"
 
-#: gataxx/properties.c:424 gnect/src/theme.c:383 iagno/properties.c:598
+#: gataxx/properties.c:445 gnect/src/theme.c:55 iagno/properties.c:615
 msgid "Light"
 msgstr "Светъл"
 
 #. Appearance tab
-#: gataxx/properties.c:469 gnibbles/preferences.c:507
-#: gnobots2/properties.c:934 iagno/properties.c:648
+#: gataxx/properties.c:490 gnibbles/preferences.c:476 iagno/properties.c:665
 msgid "_Appearance"
 msgstr "_Изглед"
 
-#: gataxx/properties.c:479 iagno/properties.c:657
+#: gataxx/properties.c:500 iagno/properties.c:674
 msgid "None"
 msgstr "Без"
 
-#: gataxx/properties.c:489 iagno/properties.c:666
+#: gataxx/properties.c:510 iagno/properties.c:683
 msgid "Partial"
 msgstr "Частична"
 
-#: gataxx/properties.c:498 iagno/properties.c:675
+#: gataxx/properties.c:519 iagno/properties.c:692
 msgid "Complete"
 msgstr "Пълна"
 
 #. Options
-#: gataxx/properties.c:510 gnibbles/preferences.c:418
-#: gnibbles/preferences.c:675 gnobots2/properties.c:853 iagno/properties.c:687
+#: gataxx/properties.c:531 gnibbles/preferences.c:387
+#: gnibbles/preferences.c:644 gnobots2/properties.c:843 iagno/properties.c:704
 msgid "Options"
 msgstr "Настройки"
 
-#: gataxx/properties.c:524 iagno/properties.c:716
+#: gataxx/properties.c:545 iagno/properties.c:733
 msgid "Tile set:"
 msgstr "Вид пулове:"
 
-#: gdk-card-image/gdk-card-image.c:109
+#: gdk-card-image/card-styles.xml.in.h:1
+msgid "Default"
+msgstr "Стандартни"
+
+#: gdk-card-image/card-styles.xml.in.h:2
+msgid "Dondorf"
+msgstr "Дондорф"
+
+#: gdk-card-image/card-styles.xml.in.h:3
+msgid "Dondorf Red"
+msgstr "Дондорф-червено"
+
+#: gdk-card-image/card-styles.xml.in.h:4 gnibbles/preferences.c:668
+msgid "Gray"
+msgstr "Сиво"
+
+#: gdk-card-image/card-styles.xml.in.h:5
+msgid "xpat"
+msgstr "xpat"
+
+#: gdk-card-image/gdk-card-image.c:113
 msgid "Card back:"
 msgstr "Гръб на картите:"
 
-#: gdk-card-image/gdk-card-image.c:110
+#: gdk-card-image/gdk-card-image.c:114
 msgid "Honor pictures:"
 msgstr "Изображения на оньорите:"
 
-#: gdk-card-image/gdk-card-image.c:111
+#: gdk-card-image/gdk-card-image.c:115
 msgid "Joker icon:"
 msgstr "Икона за Джокер:"
 
-#: gdk-card-image/gdk-card-image.c:112
+#: gdk-card-image/gdk-card-image.c:116
 msgid "Rank font:"
 msgstr "Шрифт за класацията:"
 
-#: gdk-card-image/gdk-card-image.c:113
+#: gdk-card-image/gdk-card-image.c:117
 msgid "Suit font (small):"
 msgstr "Шрифт за картите (малък):"
 
-#: gdk-card-image/gdk-card-image.c:114
+#: gdk-card-image/gdk-card-image.c:118
 msgid "Suit font (medium):"
 msgstr "Шрифт за картите (среден):"
 
-#: gdk-card-image/gdk-card-image.c:115
+#: gdk-card-image/gdk-card-image.c:119
 msgid "Suit font (large):"
 msgstr "Шрифт за картите (голям):"
 
-#: glines/glines.c:106
+#: glines/glines.c:143
 #, c-format
 msgid ""
 "Glines couldn't find image file:\n"
@@ -1899,67 +2012,63 @@ msgstr ""
 "\n"
 "Моля, проверете правилната инсталация на Glines"
 
-#: glines/glines.c:190
+#: glines/glines.c:311
 msgid "Match five balls of the same color in a row to score!"
 msgstr "Подреди в редица пет топчета от един цвят! "
 
-#: glines/glines.c:232 glines/glines.c:828
+#: glines/glines.c:360 glines/glines.c:897
 msgid "Glines"
 msgstr "Glines"
 
-#: glines/glines.c:261
+#: glines/glines.c:389
 msgid "Game Over!"
 msgstr "Край на Играта!"
 
 #. Can't move there!
-#: glines/glines.c:423
+#: glines/glines.c:549
 msgid "Can't move there!"
 msgstr "Непозволен ход!"
 
-#: glines/glines.c:831
+#: glines/glines.c:900
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "Версия за GNOME на популярната в миналото игра Цветни линии"
 
-#: glines/glines.c:1001
+#: glines/glines.c:1037
 msgid "Glines Preferences"
 msgstr "Настройки на Glines"
 
-#: glines/glines.c:1013
+#: glines/glines.c:1049
 msgid "Themes"
 msgstr "Теми"
 
-#: glines/glines.c:1022
+#: glines/glines.c:1058
 msgid "Ball image"
 msgstr "Изглед на топчетата"
 
-#: glines/glines.c:1033 glines/glines.schemas.in.h:1
+#: glines/glines.c:1068 glines/glines.schemas.in.h:1
 #: gnobots2/gnobots2.schemas.in.h:1
 msgid "Background color"
 msgstr "Цвят на фона"
 
-#: glines/glines.c:1050
+#: glines/glines.c:1082
 msgid "General"
 msgstr "Общи"
 
-#: glines/glines.c:1058
+#: glines/glines.c:1090
 msgid "Use fast moves"
 msgstr "Използвай бързи ходове"
 
-#: glines/glines.c:1379 glines/glines.desktop.in.h:1
+#: glines/glines.c:1436 glines/glines.desktop.in.h:1
 msgid "Lines"
 msgstr "Редове"
 
-#: glines/glines.c:1391
+#: glines/glines.c:1449
 msgid "Welcome to Glines!"
 msgstr "Добре дошли в Glines!"
 
-#: glines/glines.c:1402
-msgid "Next Balls"
-msgstr "Следващи топчета"
-
-#: glines/glines.c:1418
-msgid "Score"
-msgstr "Резултат"
+#: glines/glines.c:1463
+msgid "Next Balls:"
+msgstr "Следващи топчета:"
 
 #: glines/glines.desktop.in.h:2
 msgid "Remove colored balls from the board by forming lines"
@@ -2004,24 +2113,40 @@ msgid "Game score from last saved session."
 msgstr "Резултат от последната записана сесия."
 
 #: glines/glines.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "Височината на главния прозорец."
+
+#: glines/glines.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "Ширината на главния прозорец."
+
+#: glines/glines.schemas.in.h:13
 msgid "Time between moves"
 msgstr "Време между ходовете"
 
-#: glines/glines.schemas.in.h:12
+#: glines/glines.schemas.in.h:14
 msgid "Time between moves in milliseconds."
 msgstr "Време между движенията в милисекунди."
+
+#: glines/glines.schemas.in.h:15
+msgid "Window height"
+msgstr "Височина на прозореца"
+
+#: glines/glines.schemas.in.h:16
+msgid "Window width"
+msgstr "Ширина на прозореца"
 
 #: gnect/data/gnect.desktop.in.h:1
 msgid "Compete to make lines of the same color"
 msgstr "Съревнование за образуване на линии от един цвят"
 
-#: gnect/data/gnect.desktop.in.h:2
+#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:1204
 msgid "Four-in-a-row"
 msgstr "Четири в линия"
 
-#: gnect/data/gnect.schemas.in.h:2
-msgid "Draw grid"
-msgstr "Показвай мрежа"
+#: gnect/data/gnect.schemas.in.h:1
+msgid "A number specifying the preferred theme."
+msgstr "Номер определящ предпочитаната тема."
 
 #: gnect/data/gnect.schemas.in.h:3
 msgid "Drop marble"
@@ -2047,72 +2172,37 @@ msgstr "Ниво на играч #1"
 msgid "Level of Player Two"
 msgstr "Ниво на играч #2"
 
-#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:939
+#: gnect/data/gnect.schemas.in.h:9
 msgid "Move left"
 msgstr "Движение наляво"
 
-#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:945
+#: gnect/data/gnect.schemas.in.h:10
 msgid "Move right"
 msgstr "Движение надясно"
 
 #: gnect/data/gnect.schemas.in.h:11
-msgid "Name of the theme file to use."
-msgstr "Име на файл с тема, която ще се използва."
-
-#: gnect/data/gnect.schemas.in.h:12
-msgid "One corresponds to speaker beeps, two to audio files."
-msgstr "Едно отговаря на звуци от вгр. говорител, две - на аудио файлове."
-
-#: gnect/data/gnect.schemas.in.h:13
 msgid "Show tool bar"
 msgstr "Показвай лента с инструмени"
 
-#: gnect/data/gnect.schemas.in.h:14 gnome-stones/preferences.c:853
-#: mahjongg/mahjongg.c:436
+#: gnect/data/gnect.schemas.in.h:12 gnome-stones/preferences.c:850
 msgid "Sound"
 msgstr "Звук"
 
-#: gnect/data/gnect.schemas.in.h:15
-msgid "Sound type"
-msgstr "Тип звук"
+#: gnect/data/gnect.schemas.in.h:13
+msgid "Theme ID"
+msgstr "Тема"
 
-#: gnect/data/gnect.schemas.in.h:16
-msgid "Theme file"
-msgstr "Файл с тема"
-
-#: gnect/data/gnect.schemas.in.h:17
-msgid "Whether or not to display grid lines on the game board."
-msgstr "Дали да показва мрежа на игралното поле или не."
-
-#: gnect/data/gnect.schemas.in.h:18
+#: gnect/data/gnect.schemas.in.h:14
 msgid "Whether or not to play event sounds."
 msgstr "Дали да просвирва звуци или не."
 
-#: gnect/data/gnect.schemas.in.h:19
+#: gnect/data/gnect.schemas.in.h:15
 msgid "Whether or not to show the tool bar."
 msgstr "Да показва или не лентата с инструменти."
 
-#: gnect/data/gnect.schemas.in.h:20
+#: gnect/data/gnect.schemas.in.h:16
 msgid "Whether or not to use animation."
 msgstr "Да използва ли анимация или не."
-
-#: gnect/data/gnect.schemas.in.h:21
-msgid "Who starts"
-msgstr "Кой започва"
-
-#: gnect/data/gnect.schemas.in.h:22
-msgid ""
-"Zero is Player One, one is Player Two and two corresponds to players taking "
-"turns."
-msgstr ""
-"Нула е играч #1, едно е играч #2, две отговаря на двама редуващи се играчи."
-
-#: gnect/data/gnect.schemas.in.h:23
-msgid ""
-"Zero is human; one through four correspond to the level of the computer "
-"player."
-msgstr ""
-"Нула е за човек; едно до четири отговарят на нивото на компютърен играч."
 
 #: gnect/data/gnect.soundlist.in.h:1
 msgid "A counter drops"
@@ -2126,7 +2216,7 @@ msgstr "Без победител!"
 msgid "Gnect"
 msgstr "Gnect"
 
-#: gnect/data/gnect.soundlist.in.h:4 gnect/src/gui.c:442
+#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:542
 msgid "I win!"
 msgstr "Печеля!"
 
@@ -2134,15 +2224,67 @@ msgstr "Печеля!"
 msgid "Player wins!"
 msgstr "Играча печели!"
 
-#: gnect/data/gnect.soundlist.in.h:6 gnect/src/gnect.c:533
+#: gnect/data/gnect.soundlist.in.h:6
 msgid "Sorry, full column"
 msgstr "Съжалявам, пълна колона"
 
-#: gnect/data/gnect.soundlist.in.h:7 gnect/src/gui.c:438
+#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:538
 msgid "You win!"
 msgstr "Вие печелите!"
 
-#: gnect/src/dialog.c:78
+#: gnect/src/gfx.c:192
+#, c-format
+msgid ""
+"Unable to load image:\n"
+"%s"
+msgstr ""
+"Не може да се зареди изображение:\n"
+"%s"
+
+#: gnect/src/main.c:530
+msgid "It's a draw!"
+msgstr "Равенство!"
+
+#: gnect/src/main.c:539
+msgid "Your move..."
+msgstr "Вие сте на ход..."
+
+#: gnect/src/main.c:543 gnect/src/main.c:636
+msgid "Thinking..."
+msgstr "Мисля..."
+
+#: gnect/src/main.c:551
+#, c-format
+msgid "%s wins!"
+msgstr " %s победи!"
+
+#: gnect/src/main.c:552
+#, c-format
+msgid "%s..."
+msgstr "%s..."
+
+#: gnect/src/main.c:653
+#, c-format
+msgid "Hint: Column %d"
+msgstr "Съвет: Колона %d"
+
+#: gnect/src/main.c:681 gnect/src/main.c:686
+msgid "You"
+msgstr "Вие"
+
+#: gnect/src/main.c:682 gnect/src/main.c:685
+msgid "Me"
+msgstr "Аз"
+
+#: gnect/src/main.c:732
+msgid "Scores"
+msgstr "Резултати"
+
+#: gnect/src/main.c:779
+msgid "Drawn"
+msgstr "Равенство"
+
+#: gnect/src/main.c:825
 msgid ""
 "\"Four in a row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -2150,268 +2292,127 @@ msgstr ""
 "\"Четири в линия\" за GNOME, компютъра се управлява от алгоритъм Велена от "
 "Джулиано Берторети"
 
-#: gnect/src/dialog.c:113 gnect/src/dialog.c:118
-msgid "You"
-msgstr "Вие"
-
-#: gnect/src/dialog.c:114 gnect/src/dialog.c:117
-msgid "Me"
-msgstr "Аз"
-
-#: gnect/src/dialog.c:162
-msgid "Gnect Scores"
-msgstr "Резултати от Gnect"
-
-#. drawn games
-#: gnect/src/dialog.c:215
-msgid "Drawn"
-msgstr "Равенство"
-
-#. Velena Engine
-#: gnect/src/gnect.c:291 gnect/src/gnect.c:550
-msgid "Thinking..."
-msgstr "Мисля..."
-
-#: gnect/src/gnect.c:554
-#, c-format
-msgid "Hint: Column %d"
-msgstr "Съвет: Колона %d"
-
-#: gnect/src/gui.c:77
-msgid "Enable _sound"
-msgstr "Разреши _звук"
-
-#: gnect/src/gui.c:77
-msgid "Enable or disable sound"
-msgstr "Разрешава или забранява звуците"
-
-#: gnect/src/gui.c:78
-msgid "Draw _grid"
-msgstr "Покажи мре_жа"
-
-#: gnect/src/gui.c:78
-msgid "Show or hide the grid"
-msgstr "Показва или скрива мрежа"
-
-#: gnect/src/gui.c:427
-msgid "It's a draw!"
-msgstr "Равенство!"
-
-#: gnect/src/gui.c:453 gnect/src/gui.c:454
-#, c-format
-msgid "%s wins!"
-msgstr " %s победи!"
-
-#: gnect/src/gui.c:483
-msgid "Your move..."
-msgstr "Вие сте на ход..."
-
-#: gnect/src/gui.c:508
+#: gnect/src/main.c:1102 gnect/src/main.c:1136
 msgid "Select \"New game\" from the \"Game\" menu to begin."
 msgstr "Изберете \"Нова\" от меню \"Игра\" за начало."
 
-#: gnect/src/gui.c:642
+#: gnect/src/main.c:1165
+msgid "Show or hide the tool bar"
+msgstr "Показва или скрива лентата с инструменти"
+
+#: gnect/src/main.c:1167
+msgid "Enable _sound"
+msgstr "Разреши _звук"
+
+#: gnect/src/main.c:1168
+msgid "Enable or disable sound"
+msgstr "Разрешава или забранява звуците"
+
+#: gnect/src/main.c:1188 mahjongg/mahjongg.c:838
+msgid "New game"
+msgstr "Нова игра"
+
+#: gnect/src/main.c:1263
 msgid "Welcome to Gnect!"
 msgstr "Добре дошли в Gnect!"
 
-#: gnect/src/main.c:50
-msgid "Initial window placement"
-msgstr "Първоначално разполагане на прозореца"
-
-#: gnect/src/main.c:51
-msgid "GEOMETRY"
-msgstr "ГЕОМЕТРИЯ"
-
-#: gnect/src/main.c:57
-msgid "Random number seed"
-msgstr "Случаен вариант"
-
-#: gnect/src/main.c:58
-msgid "SEED"
-msgstr "ВАРИАНТ"
-
-#: gnect/src/main.c:64
-msgid "Initial theme file (excluding path)"
-msgstr "Файл с първоначална тема (без път)"
-
-#: gnect/src/main.c:65 gnome-stones/main.c:74
-msgid "FILENAME"
-msgstr "ИМЕ НА ФАЙЛ"
-
-#: gnect/src/main.c:71
-msgid "Debugging level (4 for random seed)"
-msgstr "Debugging level (4 за случаен вариант)"
-
-#: gnect/src/main.c:105
+#: gnect/src/prefs.c:160
 #, c-format
-msgid "%s: no themes available\n"
-msgstr "%s: няма налични теми\n"
-
-#: gnect/src/prefs.c:326
-#, c-format
-msgid "Player 1: %s"
-msgstr "Играч #1: %s"
-
-#: gnect/src/prefs.c:327
-#, c-format
-msgid "Player 2: %s"
-msgstr "Играч #2 : %s"
-
-#: gnect/src/prefs.c:350
 msgid ""
-"Applying this change to Player Selection\n"
-"will end the current game"
+"Player One:\n"
+"%s"
 msgstr ""
-"Прилагането на промените в Избор на играч\n"
-"ще прекрати текущата игра"
+"Играч едно:\n"
+"%s"
 
-#: gnect/src/prefs.c:581
-msgid "Error loading theme"
-msgstr "Грешка при зареждане на тема"
+#: gnect/src/prefs.c:164
+#, c-format
+msgid ""
+"Player Two:\n"
+"%s"
+msgstr ""
+"Играч·две:\n"
+"%s"
 
-#: gnect/src/prefs.c:741
-msgid "Non-Velena / Simple"
-msgstr "Без Велена / Много Слаба"
-
-#: gnect/src/prefs.c:744
-msgid "Velena / Weak"
-msgstr "Велена/Слаба"
-
-#: gnect/src/prefs.c:747
-msgid "Velena / Medium"
-msgstr "Велена/Средно силна"
-
-#: gnect/src/prefs.c:750
-msgid "Velena / Strong"
-msgstr "Велена/Силна"
-
-#: gnect/src/prefs.c:763
-msgid "Always Player 1"
-msgstr "Винаги Играч 1"
-
-#: gnect/src/prefs.c:766
-msgid "Always Player 2"
-msgstr "Винаги Играч 2"
-
-#: gnect/src/prefs.c:769
-msgid "Take turns"
-msgstr "Редуване"
-
-#: gnect/src/prefs.c:794
+#: gnect/src/prefs.c:435
 msgid "Four-in-a-row Preferences"
 msgstr "Настройки на Четири в линия"
 
-#: gnect/src/prefs.c:811
-msgid "_Player Selection"
-msgstr "_Избор на играч"
+#: gnect/src/prefs.c:484 gnobots2/properties.c:932
+msgid "Appearance"
+msgstr "Изглед"
 
-#. who starts?
-#: gnect/src/prefs.c:850
-msgid "Who starts?"
-msgstr "Кой започва?"
+#: gnect/src/prefs.c:493
+msgid "_Theme:"
+msgstr "Тема:"
 
-#. theme
-#: gnect/src/prefs.c:864
-msgid "Appearance and Behaviour"
-msgstr "Външен вид и поведение"
+#: gnect/src/prefs.c:507
+msgid "Enable _animation"
+msgstr "Включва анимациите"
 
-#: gnect/src/prefs.c:871 gnometris/tetris.cpp:742 same-gnome/same-gnome.c:636
-#: same-gnome/same-gnome.c:689
-msgid "Theme"
-msgstr "Тема"
-
-#: gnect/src/prefs.c:881
-msgid "Theme Selection:"
-msgstr "Избор на тема:"
-
-#. animation
-#: gnect/src/prefs.c:894 iagno/properties.c:653
-msgid "Animation"
-msgstr "Анимация"
-
-#: gnect/src/prefs.c:901
-msgid "Enable animation"
-msgstr "Разреши анимацията"
-
-#. sound
-#: gnect/src/prefs.c:906
-msgid "Sound Type"
-msgstr "Тип звук"
-
-#: gnect/src/prefs.c:911
-msgid "Speaker beep"
-msgstr "Вграден говорител"
-
-#: gnect/src/prefs.c:915
-msgid "GNOME sound"
-msgstr "Звуци на GNOME"
-
-#: gnect/src/prefs.c:917
-msgid "This can be set up using the GNOME Control Center"
-msgstr "Може да се настрои чрез Контролния център на GNOME"
-
-#. keyboard
-#: gnect/src/prefs.c:922
+#: gnect/src/prefs.c:514
 msgid "Controls"
 msgstr "Клавиши"
 
-#: gnect/src/prefs.c:926
-msgid "Keyboard Control"
+#: gnect/src/prefs.c:517
+msgid "Keyboard control"
 msgstr "Управление с клавиатура"
 
-#: gnect/src/prefs.c:952
-msgid "Drop counter"
-msgstr "Пусни пул"
+#: gnect/src/prefs.c:526
+msgid "Move _Left"
+msgstr "Мести наляво"
 
-#: gnect/src/theme.c:389
-msgid "Black"
-msgstr "Черно"
+#: gnect/src/prefs.c:531
+msgid "Move _Right"
+msgstr "Мести надясно"
 
-#: gnect/src/theme.c:392
-msgid "White"
-msgstr "Бяло"
+#: gnect/src/prefs.c:536
+msgid "_Drop"
+msgstr "Пуска"
 
-#: gnect/src/theme.c:395
-msgid "Grey"
-msgstr "Сиво"
+#: gnect/src/theme.c:42
+msgid "Classic"
+msgstr "Класически"
 
-#: gnect/src/theme.c:398 gnibbles/preferences.c:709
-msgid "Yellow"
-msgstr "Жълто"
-
-#: gnect/src/theme.c:401 gnibbles/preferences.c:694
+#: gnect/src/theme.c:47 gnect/src/theme.c:63 gnect/src/theme.c:71
+#: gnect/src/theme.c:79 gnibbles/preferences.c:662
 msgid "Red"
 msgstr "Червено"
 
-#: gnect/src/theme.c:404 gnibbles/preferences.c:704
+#: gnect/src/theme.c:47 gnect/src/theme.c:79 gnibbles/preferences.c:665
+msgid "Yellow"
+msgstr "Жълто"
+
+#: gnect/src/theme.c:50
+msgid "High Contrast"
+msgstr "Висок контраст"
+
+#: gnect/src/theme.c:58
+msgid "Marbles"
+msgstr "Плочки"
+
+#: gnect/src/theme.c:63 gnect/src/theme.c:71 gnect/src/theme.c:87
+#: gnibbles/preferences.c:664
 msgid "Blue"
 msgstr "Синьо"
 
-#: gnect/src/theme.c:407 gnibbles/preferences.c:699
-msgid "Green"
-msgstr "Зелено"
+#: gnect/src/theme.c:66
+msgid "More Marbles"
+msgstr "Повече плочки"
 
-#: gnect/src/theme.c:410
+#: gnect/src/theme.c:74
+msgid "Nightfall"
+msgstr "На залез слънце"
+
+#: gnect/src/theme.c:82
+msgid "Blocks"
+msgstr "Плочки"
+
+#: gnect/src/theme.c:87
 msgid "Orange"
 msgstr "Оранжево"
 
-#: gnect/src/theme.c:413 gnibbles/preferences.c:719
-msgid "Purple"
-msgstr "Пурпурно"
-
-#: gnect/src/theme.c:416
-msgid "Pink"
-msgstr "Розово"
-
-#: gnect/src/theme.c:419
-msgid "Violet"
-msgstr "Лилаво"
-
-#: gnect/src/theme.c:422
-msgid "Brown"
-msgstr "Кафяво"
-
-#: gnibbles/gnibbles.c:123
+#: gnibbles/gnibbles.c:122
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -2424,7 +2425,7 @@ msgstr ""
 "\n"
 "Моля, проверете правилната инсталация на Gnibbles"
 
-#: gnibbles/gnibbles.c:147
+#: gnibbles/gnibbles.c:146
 #, c-format
 msgid ""
 "Gnibbles Couldn't find pixmap file:\n"
@@ -2437,7 +2438,7 @@ msgstr ""
 "\n"
 "Моля, проверете правилната инсталация на Gnibbles"
 
-#: gnibbles/gnibbles.c:183
+#: gnibbles/gnibbles.c:182
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -2466,7 +2467,7 @@ msgstr "Цвят на червея"
 msgid "Color to use for worm."
 msgstr "Цвят на червея."
 
-#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:436
+#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:405
 msgid "Enable fake bonuses"
 msgstr "Разреши фалшиви бонуси"
 
@@ -2474,8 +2475,8 @@ msgstr "Разреши фалшиви бонуси"
 msgid "Enable fake bonuses."
 msgstr "Разрешава фалшиви бонуси."
 
-#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:447
-#: gnobots2/properties.c:875
+#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:416
+#: gnobots2/properties.c:871
 msgid "Enable sounds"
 msgstr "Разреши звук"
 
@@ -2539,7 +2540,7 @@ msgstr "Брой играчи"
 msgid "Number of players."
 msgstr "Брой играчи."
 
-#: gnibbles/gnibbles.schemas.in.h:21 gnibbles/preferences.c:425
+#: gnibbles/gnibbles.schemas.in.h:21 gnibbles/preferences.c:394
 msgid "Play levels in random order"
 msgstr "Случаен ред на нивата"
 
@@ -2555,7 +2556,7 @@ msgstr "Размер на плочките"
 msgid "Size of game tiles."
 msgstr "Размер на плочките."
 
-#: gnibbles/gnibbles.schemas.in.h:25 gnibbles/preferences.c:682
+#: gnibbles/gnibbles.schemas.in.h:25 gnibbles/preferences.c:651
 msgid "Use relative movement"
 msgstr "Използвай свързани движения"
 
@@ -2579,11 +2580,11 @@ msgstr "Изяж бонуса"
 msgid "Extra Life"
 msgstr "Допълнителен живот"
 
-#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:209
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:231
 msgid "Game Over"
 msgstr "Край на играта"
 
-#: gnibbles/gnibbles.soundlist.in.h:6 gnibbles/main.c:187
+#: gnibbles/gnibbles.soundlist.in.h:6 gnibbles/main.c:201
 msgid "Gnibbles"
 msgstr "Gnibbles"
 
@@ -2599,105 +2600,109 @@ msgstr "Обръщане на червей"
 msgid "Worm Teleport"
 msgstr "Телепортиране на червей"
 
-#: gnibbles/main.c:190
+#: gnibbles/main.c:204
 msgid "A worm game for GNOME."
 msgstr "Игра с червеи за GNOME."
 
-#: gnibbles/preferences.c:349
+#: gnibbles/preferences.c:318
 msgid "Gnibbles Preferences"
 msgstr "Настройки на Gnibbles"
 
-#: gnibbles/preferences.c:366
+#: gnibbles/preferences.c:335
 msgid "Speed"
 msgstr "Скорост"
 
-#: gnibbles/preferences.c:376
+#: gnibbles/preferences.c:345
 msgid "Nibbles newbie"
 msgstr "Новак"
 
-#: gnibbles/preferences.c:386
+#: gnibbles/preferences.c:355
 msgid "My second day"
 msgstr "Вторият ми ден"
 
-#: gnibbles/preferences.c:396
+#: gnibbles/preferences.c:365
 msgid "Not too shabby"
 msgstr "Не много зле"
 
-#: gnibbles/preferences.c:407
+#: gnibbles/preferences.c:376
 msgid "Finger-twitching good"
 msgstr "Много бързи пръсти"
 
-#: gnibbles/preferences.c:460
+#: gnibbles/preferences.c:429
 msgid "Starting level:"
 msgstr "Начално ниво:"
 
-#: gnibbles/preferences.c:487 gtali/setup.c:267
+#: gnibbles/preferences.c:456 gtali/setup.c:266
 msgid "Number of players:"
 msgstr "Брой играчи:"
 
-#: gnibbles/preferences.c:512
+#: gnibbles/preferences.c:481
 msgid "Board size"
 msgstr "Размер на дъската"
 
-#: gnibbles/preferences.c:517
+#: gnibbles/preferences.c:486
 msgid "Tiny  (184 x 132)"
 msgstr "Миниатюрна (184x132)"
 
-#: gnibbles/preferences.c:527
+#: gnibbles/preferences.c:496
 msgid "Small  (368 x 264)"
 msgstr "Малка (368x264)"
 
-#: gnibbles/preferences.c:536
+#: gnibbles/preferences.c:505
 msgid "Medium  (460 x 330)"
 msgstr "Средна (460x330)"
 
-#: gnibbles/preferences.c:545
+#: gnibbles/preferences.c:514
 msgid "Large  (736 x 528)"
 msgstr "Голяма (736x528)"
 
-#: gnibbles/preferences.c:554
+#: gnibbles/preferences.c:523
 msgid "Extra large  (920 x 660)"
 msgstr "Много голяма (920x660)"
 
-#: gnibbles/preferences.c:563
+#: gnibbles/preferences.c:532
 msgid "Huge  (1840 x 1320)"
 msgstr "Огромна (1840x1320)"
 
-#: gnibbles/preferences.c:579
+#: gnibbles/preferences.c:548
 msgid "Worm"
 msgstr "Червей"
 
-#: gnibbles/preferences.c:588
+#: gnibbles/preferences.c:557
 msgid "Keyboard controls"
 msgstr "Управление с клавиатура"
 
-#: gnibbles/preferences.c:599
+#: gnibbles/preferences.c:568
 msgid "Up"
 msgstr "Нагоре"
 
-#: gnibbles/preferences.c:619
+#: gnibbles/preferences.c:588
 msgid "Down"
 msgstr "Надолу"
 
-#: gnibbles/preferences.c:639
+#: gnibbles/preferences.c:608
 msgid "Left"
 msgstr "Наляво"
 
-#: gnibbles/preferences.c:658
+#: gnibbles/preferences.c:627
 msgid "Right"
 msgstr "Надясно"
 
-#: gnibbles/preferences.c:688
+#: gnibbles/preferences.c:657
 msgid "Worm color:"
 msgstr "Цвят на червея"
 
-#: gnibbles/preferences.c:714
+#: gnibbles/preferences.c:663
+msgid "Green"
+msgstr "Зелено"
+
+#: gnibbles/preferences.c:666
 msgid "Cyan"
 msgstr "Циан:"
 
-#: gnibbles/preferences.c:724
-msgid "Gray"
-msgstr "Сиво"
+#: gnibbles/preferences.c:667
+msgid "Purple"
+msgstr "Пурпурно"
 
 #: gnibbles/scoreboard.c:45
 #, c-format
@@ -2730,7 +2735,7 @@ msgstr "Няма повече места за телепортиране!!"
 msgid "There are no safe locations to teleport to!!"
 msgstr "Вече няма безопасни места за телепортиране!!"
 
-#: gnobots2/gnobots.c:60 same-gnome/same-gnome.c:893
+#: gnobots2/gnobots.c:60 same-gnome/same-gnome.c:887
 msgid "Set game scenario"
 msgstr "Установи сценария на играта"
 
@@ -2738,15 +2743,15 @@ msgstr "Установи сценария на играта"
 msgid "Set game configuration"
 msgstr "Установи настройките на играта"
 
-#: gnobots2/gnobots.c:63 gnomine/gnomine.c:763 gnomine/gnomine.c:767
+#: gnobots2/gnobots.c:63 gnomine/gnomine.c:777 gnomine/gnomine.c:781
 msgid "X"
 msgstr "X"
 
-#: gnobots2/gnobots.c:64 gnomine/gnomine.c:764 gnomine/gnomine.c:768
+#: gnobots2/gnobots.c:64 gnomine/gnomine.c:778 gnomine/gnomine.c:782
 msgid "Y"
 msgstr "Y"
 
-#: gnobots2/gnobots.c:199 gnobots2/menu.c:212
+#: gnobots2/gnobots.c:199 gnobots2/menu.c:213
 msgid "GNOME Robots"
 msgstr "Роботи за GNOME"
 
@@ -2780,7 +2785,7 @@ msgid "Enable game sounds. Play sounds for various events throughout the game."
 msgstr ""
 "Разрешава звука. Просвирва звуци за различни събития по време на играта."
 
-#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:881
+#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:880
 msgid "Enable splats"
 msgstr "Разреши размазвания"
 
@@ -2798,19 +2803,143 @@ msgid "Game type. The name of the game variation to use."
 msgstr "Тип на играта. Името на варианта, който ще се използва."
 
 #: gnobots2/gnobots2.schemas.in.h:9
+msgid "Key to hold"
+msgstr "Клавиш за задържане"
+
+#: gnobots2/gnobots2.schemas.in.h:10
+msgid "Key to move E"
+msgstr "Клавиш за движение надясно"
+
+#: gnobots2/gnobots2.schemas.in.h:11
+msgid "Key to move N"
+msgstr "Клавиш за движение нагоре"
+
+#: gnobots2/gnobots2.schemas.in.h:12
+msgid "Key to move NE"
+msgstr "Клавиш за движение надясно и нагоре"
+
+#: gnobots2/gnobots2.schemas.in.h:13
+msgid "Key to move NW"
+msgstr "Клавиш за движение наляво и нагоре"
+
+#: gnobots2/gnobots2.schemas.in.h:14
+msgid "Key to move S"
+msgstr "Клавиш за движение надолу"
+
+#: gnobots2/gnobots2.schemas.in.h:15
+msgid "Key to move SE"
+msgstr "Клавиш за движение надясно и надолу"
+
+#: gnobots2/gnobots2.schemas.in.h:16
+msgid "Key to move SW"
+msgstr "Клавиш за движение наляво и надолу"
+
+#: gnobots2/gnobots2.schemas.in.h:17
+msgid "Key to move W"
+msgstr "Клавиш за движение наляво."
+
+#: gnobots2/gnobots2.schemas.in.h:18
+msgid "Key to teleport"
+msgstr "Клавиш за телепортиране"
+
+#: gnobots2/gnobots2.schemas.in.h:19
+msgid "Key to teleport randomly"
+msgstr "Ключ за произволно телепортиране"
+
+#: gnobots2/gnobots2.schemas.in.h:20
+msgid "Key to wait"
+msgstr "Клавиш за изчакване"
+
+#: gnobots2/gnobots2.schemas.in.h:21
 msgid "Robot image theme"
 msgstr "Изглед на роботите"
 
-#: gnobots2/gnobots2.schemas.in.h:10
+#: gnobots2/gnobots2.schemas.in.h:22
 msgid "Robot image theme. The theme of the images to use for the robots."
 msgstr ""
 "Тема за роботите. Тема с изображения, които ще се използват за роботите."
 
-#: gnobots2/gnobots2.schemas.in.h:11 gnobots2/properties.c:863
+#: gnobots2/gnobots2.schemas.in.h:23
+msgid ""
+"The name of the key used to hold still. The name is a standard X key name."
+msgstr ""
+"Името на клавиша за стоене на едно място. Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:24
+msgid ""
+"The name of the key used to move east. The name is a standard X key name."
+msgstr ""
+"Името·на·клавиша·за·движение на изток.·Името·е·стандартно·Х·име·за·клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:25
+msgid ""
+"The name of the key used to move north-east. The name is a standard X key "
+"name."
+msgstr ""
+"Името на клавиша за движение·на·северо-изток. Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:26
+msgid ""
+"The name of the key used to move north-west. The name is a standard X key "
+"name."
+msgstr ""
+"Името на клавиша за движение·на·северо-запад. Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:27
+msgid ""
+"The name of the key used to move north. The name is a standard X key name."
+msgstr ""
+"Името на клавиша за движение·на·север. Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:28
+msgid ""
+"The name of the key used to move south-east. The name is a standard X key "
+"name."
+msgstr ""
+"Името на клавиша за движение·на·юго-изток. Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:29
+msgid ""
+"The name of the key used to move south-west. The name is a standard X key "
+"name."
+msgstr ""
+"Името на клавиша за движение·на·юго-запад. Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:30
+msgid ""
+"The name of the key used to move south. The name is a standard X key name."
+msgstr ""
+"Името на клавиша за движение·на·юг. Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:31
+msgid ""
+"The name of the key used to move west. The name is a standard X key name."
+msgstr ""
+"Името на клавиша за движение·на·запад. Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:32
+msgid ""
+"The name of the key used to teleport randomly. The name is a standard X key "
+"name."
+msgstr ""
+"Името на клавиша за произволно телепортиране. Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:33
+msgid ""
+"The name of the key used to teleport safely (if possible). The name is a "
+"standard X key name."
+msgstr ""
+"Името на клавиша за безопасно телепортиране (ако е възможно). Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:34
+msgid "The name of the key used to wait. The name is a standard X key name."
+msgstr "Името на клавиша за изчакване. Името е стандартно Х име за клавиш."
+
+#: gnobots2/gnobots2.schemas.in.h:35 gnobots2/properties.c:853
 msgid "Use safe moves"
 msgstr "Използвай сигурни ходове"
 
-#: gnobots2/gnobots2.schemas.in.h:12
+#: gnobots2/gnobots2.schemas.in.h:36
 msgid ""
 "Use safe moves. The safe moves option will help you to avoid being killed "
 "due to a mistake. If you try to make a move that would lead to your death "
@@ -2820,11 +2949,11 @@ msgstr ""
 "грешки. Ако опитате да направите смъртоносен ход, при положение, че има "
 "сигурен ход, няма да Ви бъде позволено да го направите."
 
-#: gnobots2/gnobots2.schemas.in.h:13 gnobots2/properties.c:869
+#: gnobots2/gnobots2.schemas.in.h:37 gnobots2/properties.c:862
 msgid "Use super safe moves"
 msgstr "Използвай изключително сигурни ходове"
 
-#: gnobots2/gnobots2.schemas.in.h:14
+#: gnobots2/gnobots2.schemas.in.h:38
 msgid ""
 "Use super safe moves. The player is alerted when there is no safe move and "
 "the only option is to teleport out."
@@ -2865,231 +2994,268 @@ msgstr "Победа!!"
 msgid "Could not find '%s' image file for GNOME Robots\n"
 msgstr "Липсва графичен файл '%s' за Роботи за GNOME\n"
 
-#: gnobots2/menu.c:214
+#: gnobots2/menu.c:215
 msgid "GNOME Robots Game"
 msgstr "Игра с роботи за GNOME"
 
-#: gnobots2/properties.c:222
+#: gnobots2/properties.c:227
 msgid "Initial Number of Type 1 Robots"
 msgstr "Начален брой роботи Тип 1"
 
-#: gnobots2/properties.c:224
+#: gnobots2/properties.c:229
 msgid "Initial Number of Robots"
 msgstr "Начален брой роботи"
 
-#: gnobots2/properties.c:238
+#: gnobots2/properties.c:243
 msgid "Initial Number of Type 2 Robots"
 msgstr "Начален брой роботи Тип 2"
 
-#: gnobots2/properties.c:251
+#: gnobots2/properties.c:256
 msgid "Increasing Number of Type 1 Robots per Level"
 msgstr "Увеличаване на броя роботи Тип 1 с всяко ниво"
 
-#: gnobots2/properties.c:253
+#: gnobots2/properties.c:258
 msgid "Increasing Number of Robots per Level"
 msgstr "Увеличаване на броя роботи с всяко ниво"
 
-#: gnobots2/properties.c:266
+#: gnobots2/properties.c:271
 msgid "Increasing Number of Type 2 Robots per Level"
 msgstr "Увеличаване на броя роботи Тип 2 с всяко ниво"
 
-#: gnobots2/properties.c:279
+#: gnobots2/properties.c:284
 msgid "Maximum Number of Type 1 Robots"
 msgstr "Максимален брой роботи Тип 1"
 
-#: gnobots2/properties.c:281
+#: gnobots2/properties.c:286
 msgid "Maximum Number of Robots"
 msgstr "Максимален брой роботи"
 
-#: gnobots2/properties.c:284 gnobots2/properties.c:300
+#: gnobots2/properties.c:289 gnobots2/properties.c:305
+#, c-format
 msgid "Fill Screen"
 msgstr "Цял екран"
 
-#: gnobots2/properties.c:298
+#: gnobots2/properties.c:303
 msgid "Maximum Number of Type 2 Robots"
 msgstr "Максимален брой роботи Тип 2"
 
-#: gnobots2/properties.c:315
+#: gnobots2/properties.c:320
 msgid "Type 1 Robot Score"
 msgstr "Резултат на роботи Тип 1"
 
-#: gnobots2/properties.c:317
+#: gnobots2/properties.c:322
 msgid "Robot Score"
 msgstr "Резултат на роботи"
 
-#: gnobots2/properties.c:330
+#: gnobots2/properties.c:335
 msgid "Type 2 Robot Score"
 msgstr "Резултат на роботи Тип 2"
 
-#: gnobots2/properties.c:343
+#: gnobots2/properties.c:348
 msgid "Type 1 Robot Score When Waiting"
 msgstr "Type 1 Robot Score When Waiting"
 
-#: gnobots2/properties.c:345
+#: gnobots2/properties.c:350
 msgid "Robot Score When Waiting"
 msgstr "Robot Score When Waiting"
 
-#: gnobots2/properties.c:358
+#: gnobots2/properties.c:363
 msgid "Type 2 Robot Score When Waiting"
 msgstr "Type 2 Robot Score When Waiting"
 
-#: gnobots2/properties.c:371
+#: gnobots2/properties.c:376
 msgid "Type 1 Robot Score When Splatted"
 msgstr "Type 1 Robot Score When Splatted"
 
-#: gnobots2/properties.c:373
+#: gnobots2/properties.c:378
 msgid "Robot Score When Splatted"
 msgstr "Robot Score When Splatted"
 
-#: gnobots2/properties.c:386
+#: gnobots2/properties.c:391
 msgid "Type 2 Robot Score When Splatted"
 msgstr "Type 2 Robot Score When Splatted"
 
-#: gnobots2/properties.c:398
+#: gnobots2/properties.c:403
 msgid "Initial Number of Safe Teleports"
 msgstr "Начален брой сигурни телепортирания"
 
-#: gnobots2/properties.c:409
+#: gnobots2/properties.c:414
 msgid "Number of Free Safe Teleports per Level"
 msgstr "Брой безплатни сигурни телепортирания за ниво"
 
-#: gnobots2/properties.c:420
+#: gnobots2/properties.c:425
 msgid "Kills Required While Waiting to Get A Safe Teleport"
 msgstr "Тряба да се направят убийства докато чакате за сигурно телепортиране"
 
-#: gnobots2/properties.c:431
+#: gnobots2/properties.c:436
 msgid "Score Required To Get A Safe Teleport"
 msgstr "Трябва да стигнете определен резултат за сигурно телепортиране"
 
-#: gnobots2/properties.c:442
+#: gnobots2/properties.c:447
 msgid "Maximum Number of Safe Teleports"
 msgstr "Максимален брой сигурни телепортирания"
 
-#: gnobots2/properties.c:453
+#: gnobots2/properties.c:458
 msgid "Moveable Junkheaps"
 msgstr "Местещи се отпадъци"
 
-#: gnobots2/properties.c:455
+#: gnobots2/properties.c:460
 msgid "Yes"
 msgstr "Да"
 
-#: gnobots2/properties.c:457
+#: gnobots2/properties.c:462
 msgid "No"
 msgstr "Не"
 
-#: gnobots2/properties.c:650
+#: gnobots2/properties.c:654
 msgid "classic robots"
 msgstr "класически роботи"
 
-#: gnobots2/properties.c:651
+#: gnobots2/properties.c:655
 msgid "robots2"
 msgstr "роботи2"
 
-#: gnobots2/properties.c:652
+#: gnobots2/properties.c:656
 msgid "robots2 easy"
 msgstr "роботи2 лесно"
 
-#: gnobots2/properties.c:653
+#: gnobots2/properties.c:657
 msgid "robots with safe teleport"
 msgstr "роботи със сигурен телепорт"
 
-#: gnobots2/properties.c:654
+#: gnobots2/properties.c:658
 msgid "nightmare"
 msgstr "кошмар"
 
-#: gnobots2/properties.c:688
+#: gnobots2/properties.c:687
 msgid "robots"
 msgstr "роботи"
 
-#: gnobots2/properties.c:689
+#: gnobots2/properties.c:688
 msgid "cows"
 msgstr "крави"
 
-#: gnobots2/properties.c:690
+#: gnobots2/properties.c:689
 msgid "eggs"
 msgstr "яйца"
 
-#: gnobots2/properties.c:691
+#: gnobots2/properties.c:690
 msgid "gnomes"
 msgstr "гномове"
 
-#: gnobots2/properties.c:692
+#: gnobots2/properties.c:691
 msgid "mice"
 msgstr "мишки"
 
-#: gnobots2/properties.c:693
+#: gnobots2/properties.c:692
 msgid "windows"
 msgstr "прозорци"
 
-#: gnobots2/properties.c:773
+#: gnobots2/properties.c:763
 msgid "GNOME Robots Preferences"
 msgstr "Настройки на Роботи за GNOME"
 
-#: gnobots2/properties.c:790
+#: gnobots2/properties.c:780
 msgid "Game Type"
 msgstr "Тип игра"
 
-#: gnobots2/properties.c:815
+#: gnobots2/properties.c:805
 msgid "Property"
 msgstr "Свойство"
 
-#: gnobots2/properties.c:822
+#: gnobots2/properties.c:812
 msgid "Value"
 msgstr "Стойност"
 
-#: gnobots2/properties.c:888
+#: gnobots2/properties.c:859
+msgid "Prevent some dangerous moves"
+msgstr "Предпазва от някои опасни местения"
+
+#: gnobots2/properties.c:860
+msgid "Prevent accidental moves that result in getting killed."
+msgstr "Предпазва от инцидентни ходове, които водят до смърт."
+
+#: gnobots2/properties.c:868
+msgid "Prevent all dangerous moves"
+msgstr "Предпазва от всички опасни ходове"
+
+#: gnobots2/properties.c:869
+msgid "Prevents all moves that result in getting killed."
+msgstr "Предпазва от всички ходове водещи до смърт."
+
+#: gnobots2/properties.c:877
+msgid "Play sounds for major events"
+msgstr "Пуска звуци за големи събития"
+
+#: gnobots2/properties.c:878
+msgid "Play sounds for events like winning a level and dying."
+msgstr "Пуска звуци за събития като спечелване на ниво или умиране."
+
+#: gnobots2/properties.c:886
+msgid "Play a sound when two robots collide"
+msgstr "Пуска звук, когато два робота се сблъскат"
+
+#: gnobots2/properties.c:887
+msgid "Play the most common, and potentially the most annoying, sound."
+msgstr "Пуска най-срещаният и възможно най-досадният звук."
+
+#: gnobots2/properties.c:890
 msgid "You Cannot Change the Game Type When Playing"
 msgstr "Не можете да променяте типа докато играете"
 
-#: gnobots2/properties.c:900
+#: gnobots2/properties.c:894
+msgid "Game"
+msgstr "Игра"
+
+#: gnobots2/properties.c:902
 msgid "Graphics Theme"
 msgstr "Графична тема"
 
-#: gnobots2/properties.c:909
+#: gnobots2/properties.c:911
 msgid "Image theme:"
 msgstr "Тема на изображенията"
 
-#: gnobots2/properties.c:919
-msgid "Background Color:"
-msgstr "Цвят на фона"
+#: gnobots2/properties.c:921
+msgid "Background color:"
+msgstr "Цвят на фона:"
 
-#: gnobots2/properties.c:941
+#: gnobots2/properties.c:939
 msgid "Keyboard Controls"
 msgstr "Управление с клавиатура"
 
-#: gnobots2/properties.c:975
+#: gnobots2/properties.c:973
 msgid "Teleport"
 msgstr "Телепортиране"
 
-#: gnobots2/properties.c:989
+#: gnobots2/properties.c:987
 msgid "Random Teleport"
 msgstr "Случайно телепортиране"
 
-#: gnobots2/properties.c:1003
+#: gnobots2/properties.c:1001
 msgid "Wait"
 msgstr "Изчакване"
 
-#: gnobots2/properties.c:1022
-msgid "Use Standard Robots Keys"
-msgstr "Използвай стандартните бутони"
-
-#: gnobots2/properties.c:1027
-msgid "Use Left Hand Keys"
-msgstr "Използвай клавиши за левичари"
-
-#: gnobots2/properties.c:1032
+#: gnobots2/properties.c:1020
 msgid "Use the Keypad"
 msgstr "Използвай малката клавиатура"
 
-#: gnobots2/properties.c:1037
-msgid "_Keyboard"
-msgstr "_Клавиатура"
+#: gnobots2/properties.c:1025
+msgid "Use Left Hand Keys"
+msgstr "Използвай клавиши за левичари"
+
+#: gnobots2/properties.c:1030
+msgid "Use Original Robots Keys"
+msgstr "Използвай стандартните бутони"
+
+#: gnobots2/properties.c:1035
+msgid "Keyboard"
+msgstr "Клавиатура"
 
 #: gnobots2/statusbar.c:75
 msgid "Safe Teleports:"
 msgstr "Сигурни телепортирания:"
 
-#: gnobots2/statusbar.c:85 gnometris/scoreframe.cpp:66
+#: gnobots2/statusbar.c:85 gnometris/scoreframe.cpp:78
 msgid "Level:"
 msgstr "Ниво:"
 
@@ -3159,7 +3325,7 @@ msgstr "Джойстик"
 msgid "Joystick switch level"
 msgstr "Ново на превключване на джойстик"
 
-#: gnome-stones/gnome-stones.schemas.in.h:9 gnome-stones/preferences.c:895
+#: gnome-stones/gnome-stones.schemas.in.h:9 gnome-stones/preferences.c:889
 msgid "Scroll method"
 msgstr "Метод за местене на екрана"
 
@@ -3220,6 +3386,10 @@ msgstr "GNOME Камъни"
 msgid "Game to play"
 msgstr "Игра"
 
+#: gnome-stones/main.c:74
+msgid "FILENAME"
+msgstr "ИМЕ НА ФАЙЛ"
+
 #: gnome-stones/main.c:124
 #, c-format
 msgid ""
@@ -3230,70 +3400,70 @@ msgstr ""
 "Проверете инсталацията на GNOME Камъни!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:190 gnome-stones/main.c:980 gnome-stones/main.c:1103
-#: gnome-stones/main.c:1343
+#: gnome-stones/main.c:204 gnome-stones/main.c:990 gnome-stones/main.c:1112
+#: gnome-stones/main.c:1337
 msgid "GNOME Stones"
 msgstr "GNOME Камъни"
 
-#: gnome-stones/main.c:279 gnome-stones/preferences.c:676
+#: gnome-stones/main.c:286 gnome-stones/preferences.c:678
 msgid "Game title"
 msgstr "Заглавие на игра"
 
-#: gnome-stones/main.c:280
+#: gnome-stones/main.c:287
 msgid "Start cave"
 msgstr "Започни пещера"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:423 gnome-stones/main.c:1031 mahjongg/mahjongg.c:415
+#: gnome-stones/main.c:430 gnome-stones/main.c:1040 mahjongg/mahjongg.c:848
 msgid "Pause"
 msgstr "Пауза"
 
-#: gnome-stones/main.c:675
+#: gnome-stones/main.c:682
 msgid "Congratulations, you win!"
 msgstr "Поздравления, спечелихте!!!"
 
-#: gnome-stones/main.c:863 gtali/gyahtzee.c:130
+#: gnome-stones/main.c:870 gtali/gyahtzee.c:130
 msgid "Game over!"
 msgstr "Край на играта!"
 
-#: gnome-stones/main.c:1077
+#: gnome-stones/main.c:1086
 msgid "Sokoban levels:"
 msgstr "Нива на Сокобан"
 
-#: gnome-stones/main.c:1105
+#: gnome-stones/main.c:1114
 msgid "Mine through dirt and collect gems."
 msgstr "Копаене в почва и събиране на съкровища."
 
-#: gnome-stones/main.c:1128
+#: gnome-stones/main.c:1137
 msgid "_Restart level"
 msgstr "_Започни отначало"
 
-#: gnome-stones/main.c:1128
+#: gnome-stones/main.c:1137
 msgid "Restart the current level"
 msgstr "Рестартира текущото ниво"
 
-#: gnome-stones/main.c:1233
+#: gnome-stones/main.c:1242
 msgid "Scanning private object directory..."
 msgstr "Scanning private object directory..."
 
-#: gnome-stones/main.c:1237
+#: gnome-stones/main.c:1246
 msgid "Scanning public object directory..."
 msgstr "Scanning public object directory..."
 
-#: gnome-stones/main.c:1242
+#: gnome-stones/main.c:1251
 msgid "Filling game widget..."
 msgstr "Запълване джаджа на играта..."
 
-#: gnome-stones/main.c:1247
+#: gnome-stones/main.c:1256
 msgid "Scanning private game directory..."
 msgstr "Претърсване на лична директория на играта..."
 
-#: gnome-stones/main.c:1251
+#: gnome-stones/main.c:1260
 msgid "Scanning public game directory..."
 msgstr "Претърсване на обща директория на играта"
 
-#: gnome-stones/main.c:1255
+#: gnome-stones/main.c:1264
 msgid "Restoring preferences..."
 msgstr "Възстановяване на настройките..."
 
@@ -3306,25 +3476,25 @@ msgstr "Получихте допълнителен живот!"
 msgid "Seconds left: %d"
 msgstr "Оставащи секунди: %d"
 
-#: gnome-stones/preferences.c:460
+#: gnome-stones/preferences.c:461
 msgid "Neither your chosen game nor the default game could be loaded."
 msgstr "Нито избраната игра, нито играта по подразбиране могат да се заредят."
 
-#: gnome-stones/preferences.c:461
+#: gnome-stones/preferences.c:462
 msgid "Please make sure that GNOME Stones is correctly installed."
 msgstr ""
 "Грешка при зареждане на графичен файл \"%s\".\n"
 "Проверете инсталацията на GNOME Камъни!"
 
-#: gnome-stones/preferences.c:462
+#: gnome-stones/preferences.c:463
 msgid "You may be able to select a different game from the preferences dialog."
 msgstr "Пробвайте да изберете различна игра от Настройки."
 
-#: gnome-stones/preferences.c:626
+#: gnome-stones/preferences.c:628
 msgid "GNOME Stones Preferences"
 msgstr "Настройки на GNOME Камъни"
 
-#: gnome-stones/preferences.c:683
+#: gnome-stones/preferences.c:685
 msgid "Caves"
 msgstr "Пещери"
 
@@ -3341,39 +3511,39 @@ msgstr "Джойстик:"
 msgid "disabled"
 msgstr "забранен"
 
-#: gnome-stones/preferences.c:811
+#: gnome-stones/preferences.c:808
 msgid "Digital joystick emulation"
 msgstr "Симулиране на цифров джойстик"
 
-#: gnome-stones/preferences.c:820
+#: gnome-stones/preferences.c:817
 msgid "Switch level:"
 msgstr "Смени нивото:"
 
-#: gnome-stones/preferences.c:843
+#: gnome-stones/preferences.c:840
 msgid "_Joystick"
 msgstr "_Джойстик"
 
-#: gnome-stones/preferences.c:861
+#: gnome-stones/preferences.c:858
 msgid "Enable sound"
 msgstr "Разреши звук"
 
-#: gnome-stones/preferences.c:873 mahjongg/mahjongg.c:382
+#: gnome-stones/preferences.c:870
 msgid "_Sound"
 msgstr "_Звук"
 
-#: gnome-stones/preferences.c:914
+#: gnome-stones/preferences.c:909
 msgid "Atari like scrolling"
 msgstr "Стил Атари"
 
-#: gnome-stones/preferences.c:927
+#: gnome-stones/preferences.c:913
 msgid "Smooth scrolling"
 msgstr "Плавно"
 
-#: gnome-stones/preferences.c:938
+#: gnome-stones/preferences.c:917
 msgid "Always in the center"
 msgstr "Централно"
 
-#: gnome-stones/preferences.c:953
+#: gnome-stones/preferences.c:929
 msgid "_Misc."
 msgstr "_Разни"
 
@@ -3404,7 +3574,7 @@ msgstr "Тренировъчни пещери"
 msgid "Fit falling blocks together"
 msgstr "Нареждане на падащи блокчета"
 
-#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:92
+#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:96
 msgid "Gnometris"
 msgstr "Gnome тетрис"
 
@@ -3486,19 +3656,15 @@ msgstr "Задай начално ниво (1-10)"
 msgid "LEVEL"
 msgstr "НИВО"
 
-#: gnometris/scoreframe.cpp:55
-msgid "Game Status"
-msgstr "Състояние на играта"
-
-#: gnometris/scoreframe.cpp:62
+#: gnometris/scoreframe.cpp:67
 msgid "Lines:"
 msgstr "Редове:"
 
-#: gnometris/tetris.cpp:197
+#: gnometris/tetris.cpp:203
 msgid "Paused"
 msgstr "На пауза"
 
-#: gnometris/tetris.cpp:289
+#: gnometris/tetris.cpp:318
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3511,7 +3677,7 @@ msgstr ""
 "\n"
 "Моля, проверете инсталацията на гном-игри"
 
-#: gnometris/tetris.cpp:305
+#: gnometris/tetris.cpp:333
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3524,56 +3690,65 @@ msgstr ""
 "\n"
 "Моля, проверете инсталацията на гном-игри"
 
-#: gnometris/tetris.cpp:637
+#: gnometris/tetris.cpp:634 gnometris/tetris.cpp:635
+msgid "<none>"
+msgstr "<няма>"
+
+#: gnometris/tetris.cpp:660
 msgid "Gnometris preferences"
 msgstr "Настройки на Gnome тетрис"
 
-#: gnometris/tetris.cpp:649
+#: gnometris/tetris.cpp:672
 msgid "Setup"
 msgstr "Настройки"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:656
+#: gnometris/tetris.cpp:679
 msgid "Number of pre-filled rows:"
 msgstr "Брой запълнени при старта редици:"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:671
+#: gnometris/tetris.cpp:694
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Плътност на кубчетата в запълнените редици:"
 
 #. starting level
-#: gnometris/tetris.cpp:686
+#: gnometris/tetris.cpp:709
 msgid "Starting Level:"
 msgstr "Начално ниво:"
 
-#: gnometris/tetris.cpp:703
+#: gnometris/tetris.cpp:726
 msgid "Operation"
 msgstr "Действие"
 
-#: gnometris/tetris.cpp:709
+#: gnometris/tetris.cpp:732
 msgid "Preview next block"
 msgstr "Показвай следващата фигура"
 
-#: gnometris/tetris.cpp:718
+#: gnometris/tetris.cpp:741
 msgid "Use random block colors"
 msgstr "Използвай произволни цветове на фигурите"
 
-#: gnometris/tetris.cpp:729
+#: gnometris/tetris.cpp:752
 msgid "Rotate blocks counterclockwise"
 msgstr "Върти фигурите обратно на часовниковата стрелка"
 
+#: gnometris/tetris.cpp:765 same-gnome/same-gnome.c:630
+#: same-gnome/same-gnome.c:683
+msgid "Theme"
+msgstr "Тема"
+
 #. Block pixmap
-#: gnometris/tetris.cpp:749
+#: gnometris/tetris.cpp:772
 msgid "Block image:"
 msgstr "Вид на блокчетата"
 
 #. background pixmap
-#: gnometris/tetris.cpp:762
+#: gnometris/tetris.cpp:783
 msgid "Background image:"
 msgstr "Фон:"
 
-#: gnometris/tetris.cpp:1119
+#: gnometris/tetris.cpp:1147
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -3581,87 +3756,99 @@ msgstr ""
 "Написано за жена ми, Матилда\n"
 "Изпращайте коментари и открити грешки на: janusz.gorycki@intel.com"
 
-#: gnomine/gnomine.c:84 gnomine/gnomine.c:564
+#: gnomine/gnomine.c:87 gnomine/gnomine.c:578
 msgid "Small"
 msgstr "Малко"
 
-#: gnomine/gnomine.c:85 gnomine/gnomine.c:574
+#: gnomine/gnomine.c:88 gnomine/gnomine.c:588
 msgid "Medium"
 msgstr "Средно"
 
-#: gnomine/gnomine.c:86 gnomine/gnomine.c:584
+#: gnomine/gnomine.c:89 gnomine/gnomine.c:598
 msgid "Large"
 msgstr "Голямо"
 
-#: gnomine/gnomine.c:87 gnomine/gnomine.c:594
+#: gnomine/gnomine.c:90 gnomine/gnomine.c:608
 msgid "Custom"
 msgstr "Задаване"
 
-#: gnomine/gnomine.c:176 gnomine/gnomine.c:411 gnomine/gnomine.c:850
+#: gnomine/gnomine.c:182 gnomine/gnomine.c:425 gnomine/gnomine.c:852
 msgid "GNOME Mines"
 msgstr "GNOME Мини"
 
-#: gnomine/gnomine.c:243
+#: gnomine/gnomine.c:255
 msgid "Click a square, any square"
 msgstr "Натиснете квадратче - което и да е квадратче"
 
-#: gnomine/gnomine.c:245
+#: gnomine/gnomine.c:257
 msgid "Maybe they're all mines ..."
 msgstr "Може би всички са мини ..."
 
-#: gnomine/gnomine.c:377
+#: gnomine/gnomine.c:391
 msgid "Faces:"
 msgstr "Лица:"
 
-#: gnomine/gnomine.c:414
+#: gnomine/gnomine.c:428
 msgid "A Minesweeper clone."
 msgstr "Разновидност на Миночистач."
 
-#: gnomine/gnomine.c:559
+#: gnomine/gnomine.c:573
 msgid "Field size"
 msgstr "Размер на полето"
 
-#: gnomine/gnomine.c:607
+#: gnomine/gnomine.c:621
 msgid "Custom size"
 msgstr "Задай размер"
 
-#: gnomine/gnomine.c:614
+#: gnomine/gnomine.c:628
 msgid "Number of mines:"
 msgstr "Брой мини:"
 
-#: gnomine/gnomine.c:626
+#: gnomine/gnomine.c:640
 msgid "Horizontal:"
 msgstr "Хоризонтално:"
 
-#: gnomine/gnomine.c:638
+#: gnomine/gnomine.c:652
 msgid "Vertical:"
 msgstr "Вертикално:"
 
-#: gnomine/gnomine.c:655
+#: gnomine/gnomine.c:669
 msgid "Use \"I'm not sure\" flags."
 msgstr "Use \"I'm not sure\" flags."
 
-#: gnomine/gnomine.c:664
+#: gnomine/gnomine.c:678
 msgid "GNOME Mines Preferences"
 msgstr "Настройки на GNOME Мини"
 
-#: gnomine/gnomine.c:763
+#: gnomine/gnomine.c:777
 msgid "Width of grid"
 msgstr "Ширина на решетката"
 
-#: gnomine/gnomine.c:764
+#: gnomine/gnomine.c:778
 msgid "Height of grid"
 msgstr "Височина на решетката"
 
-#: gnomine/gnomine.c:765
+#: gnomine/gnomine.c:779
 msgid "Number of mines"
 msgstr "Брой мини"
 
-#: gnomine/gnomine.c:765 gtali/setup.c:85 gtali/setup.c:86
+#: gnomine/gnomine.c:779 gtali/setup.c:85 gtali/setup.c:86
 msgid "NUMBER"
 msgstr "БРОЙ"
 
-#: gnomine/gnomine.c:934
+#: gnomine/gnomine.c:780
+msgid "Size of the board (1=small, 3=large)"
+msgstr "Големина на дъската (1=малка, 3=голяма)"
+
+#: gnomine/gnomine.c:781
+msgid "X location of window"
+msgstr "X·позиция·на·прозореца"
+
+#: gnomine/gnomine.c:782
+msgid "Y location of window"
+msgstr "Y позиция на прозореца"
+
+#: gnomine/gnomine.c:941
 msgid "Flags:"
 msgstr "Знамена:"
 
@@ -3692,44 +3879,44 @@ msgid "Solve the game"
 msgstr "Реши играта"
 
 #: gnotravex/gnotravex.c:182
-msgid "_2x2"
+msgid "_2×2"
 msgstr "_2х2"
 
 #: gnotravex/gnotravex.c:182
-msgid "Play on a 2x2 board"
-msgstr "Играй на дъска 2х2"
+msgid "Play on a 2×2 board"
+msgstr "Игра на дъска 2х2"
 
 #: gnotravex/gnotravex.c:185
-msgid "_3x3"
-msgstr "_3x3"
+msgid "_3×3"
+msgstr "_3×3"
 
 #: gnotravex/gnotravex.c:185
-msgid "Play on a 3x3 board"
-msgstr "Играй на дъска 3х3"
+msgid "Play on a 3×3 board"
+msgstr "Игра на дъска 3х3"
 
 #: gnotravex/gnotravex.c:188
-msgid "_4x4"
-msgstr "_4x4"
+msgid "_4×4"
+msgstr "_4×4"
 
 #: gnotravex/gnotravex.c:188
-msgid "Play on a 4x4 board"
-msgstr "Играй на дъска 4х4"
+msgid "Play on a 4×4 board"
+msgstr "Игра на дъска 4х4"
 
 #: gnotravex/gnotravex.c:191
-msgid "_5x5"
-msgstr "_5x5"
+msgid "_5×5"
+msgstr "_5×5"
 
 #: gnotravex/gnotravex.c:191
-msgid "Play on a 5x5 board"
-msgstr "Играй на дъска 5х5"
+msgid "Play on a 5×5 board"
+msgstr "Игра на дъска 5х5"
 
 #: gnotravex/gnotravex.c:194
-msgid "_6x6"
-msgstr "_6x6"
+msgid "_6×6"
+msgstr "_6×6"
 
 #: gnotravex/gnotravex.c:194
-msgid "Play on a 6x6 board"
-msgstr "Играй на дъска 6х6"
+msgid "Play on a 6×6 board"
+msgstr "Игра на дъска 6х6"
 
 #: gnotravex/gnotravex.c:201
 msgid "_Up"
@@ -3775,24 +3962,24 @@ msgstr "Размер на дъската (2-6)"
 msgid "SIZE"
 msgstr "РАЗМЕР"
 
-#: gnotravex/gnotravex.c:713
+#: gnotravex/gnotravex.c:739
 msgid "Puzzle solved! Well done!"
 msgstr "Наредихте пъзела! Браво!"
 
-#: gnotravex/gnotravex.c:716
+#: gnotravex/gnotravex.c:742
 msgid "Puzzle solved!"
 msgstr "Наредихте пъзела!"
 
-#: gnotravex/gnotravex.c:1113
+#: gnotravex/gnotravex.c:1139
 msgid "Game paused"
 msgstr "Играта е на пауза"
 
-#: gnotravex/gnotravex.c:1235
+#: gnotravex/gnotravex.c:1261
 #, c-format
-msgid "Playing %dx%d board"
+msgid "Playing %d×%d board"
 msgstr "Дъската е %dx%d"
 
-#: gnotravex/gnotravex.c:1482
+#: gnotravex/gnotravex.c:1508
 msgid "A Tetravex clone."
 msgstr "Разновидност на Tetravex."
 
@@ -3809,7 +3996,7 @@ msgid ""
 "The height of the playing window in pixels. At minimum it should be 240."
 msgstr "Височина на прозореца за игра в пиксели. Минимум - 240."
 
-#: gnotravex/gnotravex.schemas.in.h:2
+#: gnotravex/gnotravex.schemas.in.h:2 mahjongg/mahjongg.schemas.in.h:1
 msgid "The height of the window"
 msgstr "Височината на прозореца"
 
@@ -3829,7 +4016,7 @@ msgstr ""
 msgid "The width of the playing window in pixels. At minimum it should be 320."
 msgstr "Ширина на прозореца за игра в пиксели. Минимум - 320."
 
-#: gnotravex/gnotravex.schemas.in.h:6
+#: gnotravex/gnotravex.schemas.in.h:6 mahjongg/mahjongg.schemas.in.h:4
 msgid "The width of the window"
 msgstr "Ширината на прозореца"
 
@@ -3895,16 +4082,16 @@ msgstr "Движения:"
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Липсва графичен файл '%s'\n"
 
-#: gnotski/gnotski.c:1021
+#: gnotski/gnotski.c:1020
 msgid "Welcome to GNOME Klotski"
 msgstr "Добре дошли в GNOME Klotski"
 
-#: gnotski/gnotski.c:1045
+#: gnotski/gnotski.c:1044
 #, c-format
 msgid "Playing level %s"
 msgstr "Играете ниво %s"
 
-#: gnotski/gnotski.c:1159
+#: gnotski/gnotski.c:1158
 msgid "A Klotski clone"
 msgstr "Разновидност на Klotski"
 
@@ -3916,7 +4103,7 @@ msgstr "Klotski"
 msgid "Solve puzzles by sliding blocks"
 msgstr "Разрешаване на пъзел чрез плъзгане на блокчета"
 
-#: gtali/clist.c:138
+#: gtali/clist.c:139
 msgid "Already used! Where do you want to put that?"
 msgstr "Вече е използвано! Къде искате да го поставите?"
 
@@ -3943,7 +4130,7 @@ msgstr ""
 "следи играча какво прави той."
 
 #. --- Button ---
-#: gtali/gtali.schemas.in.h:2 gtali/setup.c:289
+#: gtali/gtali.schemas.in.h:2 gtali/setup.c:288
 msgid "Delay between rolls"
 msgstr "Закъснения между хвърлянията"
 
@@ -3983,29 +4170,33 @@ msgstr "Компютърът играе вместо %s"
 msgid "%s! -- You're up."
 msgstr "%s! -- Твой ред е."
 
-#: gtali/gyahtzee.c:298 gtali/gyahtzee.c:321 gtali/yahtzee.c:184
+#: gtali/gyahtzee.c:316 gtali/gyahtzee.c:339 gtali/yahtzee.c:184
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "Позволени са само три хвърляния! Посочете комбинация."
 
-#: gtali/gyahtzee.c:364
+#: gtali/gyahtzee.c:380
+msgid "GNOME version (1998):"
+msgstr "GNOME версия (1998)"
+
+#: gtali/gyahtzee.c:382
 msgid "Curses version (1992):"
 msgstr "Версия използваща Curses (1992):"
 
-#: gtali/gyahtzee.c:394
+#: gtali/gyahtzee.c:412
 msgid "A sort of poker with dice and less money."
 msgstr "Вид покер със зарове и по-малко пари."
 
-#: gtali/gyahtzee.c:438
+#: gtali/gyahtzee.c:456
 msgid "Cheater! Any high scores will not be recorded."
 msgstr "Измамник! Постигнатите рекорди няма да бъдат записани."
 
-#: gtali/gyahtzee.c:558
+#: gtali/gyahtzee.c:578
 msgid "Select dice to re-roll, press Roll!, or select score slot."
 msgstr ""
 "Изберете зарове, които ще хвърляте отново и натиснете Хвърли! или изберете "
 "комбинация."
 
-#: gtali/gyahtzee.c:599
+#: gtali/gyahtzee.c:618
 msgid "Roll!"
 msgstr "Хвърли!"
 
@@ -4037,24 +4228,24 @@ msgstr "Брой човешки противници"
 msgid "Current game will complete with original number of players."
 msgstr "Текущата игра ще завърши с началния брой играчи."
 
-#: gtali/setup.c:232
+#: gtali/setup.c:231
 msgid "GTali Preferences"
 msgstr "Настройки на Генерал"
 
-#: gtali/setup.c:256
+#: gtali/setup.c:255
 msgid "Human Players"
 msgstr "Човешки играчи"
 
-#: gtali/setup.c:281
+#: gtali/setup.c:280
 msgid "Computer Opponents"
 msgstr "Компютърни противници"
 
-#: gtali/setup.c:299
+#: gtali/setup.c:298
 msgid "Number of opponents:"
 msgstr "Брой противници:"
 
 #. --- PLAYER NAMES FRAME ----
-#: gtali/setup.c:314
+#: gtali/setup.c:313
 msgid "Player Names"
 msgstr "Имена на играчите"
 
@@ -4134,8 +4325,8 @@ msgid "How many times do you wish to roll?"
 msgstr "Колко пъти желаете да хвърляте?"
 
 #: gtali/yahtzee.c:509
-msgid "Generating"
-msgstr "Генериране"
+msgid "Generating ..."
+msgstr "Генерира се..."
 
 #: gtali/yahtzee.c:544
 msgid "Results"
@@ -4240,19 +4431,23 @@ msgstr "Свързване неуспешно"
 msgid "No game server defined"
 msgstr "Не е посочен сървър за игра"
 
-#: iagno/properties.c:521
+#: iagno/properties.c:538
 msgid "Iagno Preferences"
 msgstr "Настройки на Iagno"
 
-#: iagno/properties.c:542
+#: iagno/properties.c:559
 msgid "Use quick moves"
 msgstr "Използвай бързи ходове"
 
-#: iagno/properties.c:690
+#: iagno/properties.c:670
+msgid "Animation"
+msgstr "Анимация"
+
+#: iagno/properties.c:707
 msgid "Stagger flips"
 msgstr "Stagger flips"
 
-#: iagno/properties.c:698
+#: iagno/properties.c:715
 msgid "Show grid"
 msgstr "Показвай мрежа"
 
@@ -4273,147 +4468,162 @@ msgstr ""
 "Моля проверете настройките в GConf, и по-специално правилната инсталация на "
 "темите."
 
-#: mahjongg/mahjongg.c:344
+#: mahjongg/mahjongg.c:714
+msgid "Easy"
+msgstr "Лесно"
+
+#: mahjongg/mahjongg.c:715
+msgid "Difficult"
+msgstr "Трудно"
+
+#: mahjongg/mahjongg.c:716
+msgid "Confounding Cross"
+msgstr "Смесен кръст"
+
+#: mahjongg/mahjongg.c:717
+msgid "Pyramid's Walls"
+msgstr "Стените на пирамидите"
+
+#: mahjongg/mahjongg.c:718
+msgid "Tic-Tac-Toe"
+msgstr "Морски шах"
+
+#: mahjongg/mahjongg.c:719
+msgid "Cloud"
+msgstr "Облак"
+
+#: mahjongg/mahjongg.c:720
+msgid "Red Dragon"
+msgstr "Червения дракон"
+
+#: mahjongg/mahjongg.c:721
+msgid "Four Bridges"
+msgstr "Четири моста"
+
+#: mahjongg/mahjongg.c:784
 msgid "New game with _seed..."
 msgstr "Избери нова _игра..."
 
-#: mahjongg/mahjongg.c:345
+#: mahjongg/mahjongg.c:785
 msgid "Start a new game giving a seed number..."
 msgstr "Започни нова игра и задай вариант..."
 
-#: mahjongg/mahjongg.c:360
+#: mahjongg/mahjongg.c:800
 msgid "Shu_ffle tiles"
 msgstr "Използвай _случайни плочки"
 
-#: mahjongg/mahjongg.c:360 mahjongg/mahjongg.c:431
+#: mahjongg/mahjongg.c:800 mahjongg/mahjongg.c:864
 msgid "Shuffle tiles"
 msgstr "Използвай случайни плочки"
 
-#: mahjongg/mahjongg.c:405
-msgid "New game"
-msgstr "Нова игра"
-
-#: mahjongg/mahjongg.c:409
+#: mahjongg/mahjongg.c:842
 msgid "Restart game"
 msgstr "Започни отначало"
 
-#: mahjongg/mahjongg.c:415
+#: mahjongg/mahjongg.c:848
 msgid "Pause game"
 msgstr "Пауза"
 
-#: mahjongg/mahjongg.c:421
+#: mahjongg/mahjongg.c:854
 msgid "Undo previous move"
 msgstr "Отмени предишния ход"
 
-#: mahjongg/mahjongg.c:427
+#: mahjongg/mahjongg.c:860
 msgid "Get a hint"
 msgstr "Поискай съвет"
 
-#: mahjongg/mahjongg.c:431
+#: mahjongg/mahjongg.c:864 mahjongg/mahjongg.c:1366
 msgid "Shuffle"
 msgstr "Случайна"
 
-#: mahjongg/mahjongg.c:436
-msgid "Toggle sound"
-msgstr "Вкл/изкл звука"
-
-#: mahjongg/mahjongg.c:677
+#: mahjongg/mahjongg.c:1075
 msgid ""
 "This new mapset will take effect when you start a new game, or when Mahjongg "
 "is restarted."
 msgstr ""
 "Новият изглед ще се приложи при нова игра или при рестартиране на Махджонг."
 
-#: mahjongg/mahjongg.c:1025 mahjongg/mahjongg.c:1031
+#: mahjongg/mahjongg.c:1327 mahjongg/mahjongg.c:1332
 msgid "These tiles don't match."
 msgstr "Избраните плочки не съвпадат."
 
-#: mahjongg/mahjongg.c:1063
+#: mahjongg/mahjongg.c:1364
 msgid "There are no more moves."
 msgstr "Няма повече ходове."
 
-#: mahjongg/mahjongg.c:1121
+#: mahjongg/mahjongg.c:1430
 msgid "Preferences"
 msgstr "Настройки"
 
-#: mahjongg/mahjongg.c:1140
+#: mahjongg/mahjongg.c:1449
 msgid "Tiles"
 msgstr "Плочки"
 
-#: mahjongg/mahjongg.c:1148
+#: mahjongg/mahjongg.c:1457
 msgid "Tile Set"
 msgstr "Вид плочки"
 
-#: mahjongg/mahjongg.c:1159
-msgid "Tile Background"
-msgstr "Фон на плочките"
-
-#: mahjongg/mahjongg.c:1172
+#: mahjongg/mahjongg.c:1470
 msgid "Maps"
 msgstr "Изгледи"
 
-#: mahjongg/mahjongg.c:1180
+#: mahjongg/mahjongg.c:1478
 msgid "Select Map"
 msgstr "Избери шаблон"
 
-#: mahjongg/mahjongg.c:1193
+#: mahjongg/mahjongg.c:1491
 msgid "Colors"
 msgstr "Цветове"
 
-#: mahjongg/mahjongg.c:1201
+#: mahjongg/mahjongg.c:1499
 msgid "Background Color"
 msgstr "Цвят на фона"
 
-#: mahjongg/mahjongg.c:1220
+#: mahjongg/mahjongg.c:1513
 msgid "Warnings"
 msgstr "Предупреждения"
 
-#: mahjongg/mahjongg.c:1226
+#: mahjongg/mahjongg.c:1519
 msgid "Warn when tiles don't match"
 msgstr "Предупреждавай ако плочките не съвпадат"
 
-#: mahjongg/mahjongg.c:1332
+#: mahjongg/mahjongg.c:1628
 msgid "Tiles:"
 msgstr "Плочки:"
 
-#: mahjongg/mahjongg.c:1361
+#: mahjongg/mahjongg.c:1660
 msgid "GNOME Mahjongg"
 msgstr "Махджонг за GNOME"
 
-#: mahjongg/mahjongg.c:1364
+#: mahjongg/mahjongg.c:1663
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "Версия за GNOME на източната игра с плочки - Махджонг."
 
-#: mahjongg/mahjongg.c:1391
+#: mahjongg/mahjongg.c:1687
 msgid "... Game paused ..."
 msgstr "... Играта е на пауза ..."
 
-#: mahjongg/mahjongg.c:1596
+#: mahjongg/mahjongg.c:1878
 msgid "Game Number:"
 msgstr "Игра номер:"
 
-#: mahjongg/mahjongg.c:1777 mahjongg/mahjongg.c:1792
-#, c-format
-msgid "Could not find file %s"
-msgstr "Липсва файл %s"
-
-#: mahjongg/mahjongg.c:1832 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1956 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Махджонг"
 
-#: mahjongg/mahjongg.c:1962
+#: mahjongg/mahjongg.c:2077
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Не е открита конфигурация, подходяща за игра."
 
-#: mahjongg/mahjongg.c:2027
+#: mahjongg/mahjongg.c:2146
 msgid "Tiles Left:"
 msgstr "Оставащи плочки:"
 
-#: mahjongg/mahjongg.c:2036
+#: mahjongg/mahjongg.c:2155
 msgid "Moves Left:"
 msgstr "Оставащи ходове:"
 
-#: mahjongg/mahjongg.c:2097
+#: mahjongg/mahjongg.c:2220
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "Добре дошли в GNOME Махджонг!"
 
@@ -4421,22 +4631,38 @@ msgstr "Добре дошли в GNOME Махджонг!"
 msgid "Disassemble a pile of tiles by removing matching pairs"
 msgstr "Разрушаване на купчина плочки чрез групирането им по двойки"
 
-#: same-gnome/same-gnome.c:203
+#: mahjongg/mahjongg.schemas.in.h:2
+msgid ""
+"The requested height of the main window in pixels. Note that the widgets the "
+"window contains are at least 200 pixels high."
+msgstr ""
+"Исканата височина на главния прозорец в пискели. Забележете, че уиджетите, "
+"които съдържа прозореца са поне 200 пиксела високи."
+
+#: mahjongg/mahjongg.schemas.in.h:3
+msgid ""
+"The requested width of the main window in pixels. Note that the widgets the "
+"window contains are at least 320 pixels wide."
+msgstr ""
+"Исканата·ширина·на·главния·прозорец·в·пискели.·Забележете,·че·уиджетите,·"
+"които·съдържа·прозореца·са·поне·200·пиксела·високи."
+
+#: same-gnome/same-gnome.c:205
 #, c-format
 msgid "%d stone selected"
 msgid_plural "%d stones selected"
 msgstr[0] "%d избран камък"
 msgstr[1] "%d избрани камъни"
 
-#: same-gnome/same-gnome.c:208
+#: same-gnome/same-gnome.c:210
 msgid "No stones selected"
 msgstr "Няма избрани камъни"
 
-#: same-gnome/same-gnome.c:286
+#: same-gnome/same-gnome.c:288
 msgid "The Same GNOME"
 msgstr "Еднакви за GNOME"
 
-#: same-gnome/same-gnome.c:439
+#: same-gnome/same-gnome.c:441
 #, c-format
 msgid ""
 "Could not find the theme:\n"
@@ -4449,7 +4675,7 @@ msgstr ""
 "\n"
 "Проверете инсталацията на Еднакви за GNOME"
 
-#: same-gnome/same-gnome.c:470
+#: same-gnome/same-gnome.c:471
 #, c-format
 msgid ""
 "Same GNOME can't load the image file:\n"
@@ -4462,20 +4688,20 @@ msgstr ""
 "\n"
 "Проверете инсталацията на Еднакви за GNOME"
 
-#: same-gnome/same-gnome.c:620
+#: same-gnome/same-gnome.c:614
 msgid "Same GNOME Preferences"
 msgstr "Настройки на Еднакви за GNOME"
 
-#: same-gnome/same-gnome.c:733 same-gnome/same-gnome.c:932
+#: same-gnome/same-gnome.c:727 same-gnome/same-gnome.c:926
 #: same-gnome/same-gnome.desktop.in.h:2
 msgid "Same GNOME"
 msgstr "Еднакви за GNOME"
 
-#: same-gnome/same-gnome.c:736
+#: same-gnome/same-gnome.c:730
 msgid "Original idea from KDE's same game program."
 msgstr "Оригиналната идея е от играта Еднакви от KDE ."
 
-#: same-gnome/same-gnome.c:942
+#: same-gnome/same-gnome.c:936
 msgid "Welcome to Same GNOME!"
 msgstr "Добре дошли в Еднакви за GNOME!"
 
@@ -4483,8 +4709,178 @@ msgstr "Добре дошли в Еднакви за GNOME!"
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Премахване на групи от топчета за да изчистите екрана"
 
+#~ msgid "AisleRiot Preferences"
+#~ msgstr "Настройки на Игри с карти"
+
+#~ msgid "Loading images..."
+#~ msgstr "Зареждане на изображения..."
+
+#~ msgid "Dealing game..."
+#~ msgstr "Раздаване..."
+
+#~ msgid "Initializing scheme..."
+#~ msgstr "Установяване на схемата..."
+
+#~ msgid "Draw grid"
+#~ msgstr "Показвай мрежа"
+
+#~ msgid "Name of the theme file to use."
+#~ msgstr "Име на файл с тема, която ще се използва."
+
+#~ msgid "One corresponds to speaker beeps, two to audio files."
+#~ msgstr "Едно отговаря на звуци от вгр. говорител, две - на аудио файлове."
+
+#~ msgid "Sound type"
+#~ msgstr "Тип звук"
+
+#~ msgid "Theme file"
+#~ msgstr "Файл с тема"
+
+#~ msgid "Whether or not to display grid lines on the game board."
+#~ msgstr "Дали да показва мрежа на игралното поле или не."
+
+#~ msgid "Who starts"
+#~ msgstr "Кой започва"
+
+#~ msgid ""
+#~ "Zero is Player One, one is Player Two and two corresponds to players "
+#~ "taking turns."
+#~ msgstr ""
+#~ "Нула е играч #1, едно е играч #2, две отговаря на двама редуващи се "
+#~ "играчи."
+
+#~ msgid ""
+#~ "Zero is human; one through four correspond to the level of the computer "
+#~ "player."
+#~ msgstr ""
+#~ "Нула е за човек; едно до четири отговарят на нивото на компютърен играч."
+
+#~ msgid "Gnect Scores"
+#~ msgstr "Резултати от Gnect"
+
+#~ msgid "Draw _grid"
+#~ msgstr "Покажи мре_жа"
+
+#~ msgid "Show or hide the grid"
+#~ msgstr "Показва или скрива мрежа"
+
+#~ msgid "Initial window placement"
+#~ msgstr "Първоначално разполагане на прозореца"
+
+#~ msgid "GEOMETRY"
+#~ msgstr "ГЕОМЕТРИЯ"
+
+#~ msgid "Random number seed"
+#~ msgstr "Случаен вариант"
+
+#~ msgid "SEED"
+#~ msgstr "ВАРИАНТ"
+
+#~ msgid "Initial theme file (excluding path)"
+#~ msgstr "Файл с първоначална тема (без път)"
+
+#~ msgid "Debugging level (4 for random seed)"
+#~ msgstr "Debugging level (4 за случаен вариант)"
+
+#~ msgid "%s: no themes available\n"
+#~ msgstr "%s: няма налични теми\n"
+
+#~ msgid "Player 2: %s"
+#~ msgstr "Играч #2 : %s"
+
+#~ msgid ""
+#~ "Applying this change to Player Selection\n"
+#~ "will end the current game"
+#~ msgstr ""
+#~ "Прилагането на промените в Избор на играч\n"
+#~ "ще прекрати текущата игра"
+
+#~ msgid "Error loading theme"
+#~ msgstr "Грешка при зареждане на тема"
+
+#~ msgid "Non-Velena / Simple"
+#~ msgstr "Без Велена / Много Слаба"
+
+#~ msgid "Velena / Weak"
+#~ msgstr "Велена/Слаба"
+
+#~ msgid "Velena / Medium"
+#~ msgstr "Велена/Средно силна"
+
+#~ msgid "Velena / Strong"
+#~ msgstr "Велена/Силна"
+
+#~ msgid "Always Player 1"
+#~ msgstr "Винаги Играч 1"
+
+#~ msgid "Always Player 2"
+#~ msgstr "Винаги Играч 2"
+
+#~ msgid "Take turns"
+#~ msgstr "Редуване"
+
+#~ msgid "_Player Selection"
+#~ msgstr "_Избор на играч"
+
+#~ msgid "Who starts?"
+#~ msgstr "Кой започва?"
+
+#~ msgid "Appearance and Behaviour"
+#~ msgstr "Външен вид и поведение"
+
+#~ msgid "Theme Selection:"
+#~ msgstr "Избор на тема:"
+
+#~ msgid "Sound Type"
+#~ msgstr "Тип звук"
+
+#~ msgid "Speaker beep"
+#~ msgstr "Вграден говорител"
+
+#~ msgid "GNOME sound"
+#~ msgstr "Звуци на GNOME"
+
+#~ msgid "This can be set up using the GNOME Control Center"
+#~ msgstr "Може да се настрои чрез Контролния център на GNOME"
+
+#~ msgid "Keyboard Control"
+#~ msgstr "Управление с клавиатура"
+
+#~ msgid "Drop counter"
+#~ msgstr "Пусни пул"
+
+#~ msgid "Black"
+#~ msgstr "Черно"
+
+#~ msgid "White"
+#~ msgstr "Бяло"
+
+#~ msgid "Grey"
+#~ msgstr "Сиво"
+
+#~ msgid "Pink"
+#~ msgstr "Розово"
+
+#~ msgid "Violet"
+#~ msgstr "Лилаво"
+
+#~ msgid "Brown"
+#~ msgstr "Кафяво"
+
+#~ msgid "Background Color:"
+#~ msgstr "Цвят на фона"
+
+#~ msgid "Game Status"
+#~ msgstr "Състояние на играта"
+
+#~ msgid "Toggle sound"
+#~ msgstr "Вкл/изкл звука"
+
+#~ msgid "Tile Background"
+#~ msgstr "Фон на плочките"
+
+#~ msgid "Could not find file %s"
+#~ msgstr "Липсва файл %s"
+
 #~ msgid "Players"
 #~ msgstr "Играчи"
-
-#~ msgid "Appearance"
-#~ msgstr "Изглед"
