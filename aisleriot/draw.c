@@ -182,56 +182,13 @@ void draw_cards(GdkPixmap* pix) {
   gdk_gc_set_clip_mask(gc,NULL); 
 }
 
-
-
-
-void draw_normal_slot(int x, int y, GdkPixmap* pix) {
-  GdkGC* gc;
-
-  gc = playing_area->style->fg_gc[GTK_STATE_NORMAL];
-  gdk_gc_set_clip_mask(gc,mask); 
-  gdk_gc_set_clip_origin(gc,x,y);
-  gdk_draw_pixmap(pix,
-						playing_area->style->black_gc,
-						get_slot_pixmap(),
-						0,0,
-						x, y,
-						-1, -1);
-  gdk_gc_set_clip_mask(gc,NULL); 
-  return;
-}
-
-void draw_expanding_slot (int x, int y, GdkPixmap* pix) {
-  GdkGC* gc;
-
-  gc = playing_area->style->fg_gc[GTK_STATE_NORMAL];
-  gdk_gc_set_clip_mask(gc,mask); 
-  gdk_gc_set_clip_origin(gc,x,y);
-  gdk_draw_pixmap(pix,
-						playing_area->style->black_gc,
-						get_slot_pixmap(),
-						0,0,
-						x,y,
-						-1, -1);
-  gdk_gc_set_clip_mask(gc,NULL); 
-  return;
-}
-
 void draw_slot_placements(GdkPixmap* pix) {
   GList* listptr;
+  GdkGC* gc = playing_area->style->fg_gc[GTK_STATE_NORMAL];
 
   for (listptr = get_slot_list(); listptr; listptr = listptr->next) {
-	 if (((hslot_type)listptr->data)->type ==NORMAL_SLOT)
-		draw_normal_slot(((hslot_type)listptr->data)->x, ((hslot_type)listptr->data)->y, pix);
-	 else if (((hslot_type)listptr->data)->type ==EXPANDING_SLOT)
-		draw_expanding_slot(((hslot_type)listptr->data)->x, ((hslot_type)listptr->data)->y, pix);
-	 else if (((hslot_type)listptr->data)->type ==EXPANDING_SLOT_RIGHT)
-		draw_expanding_slot(((hslot_type)listptr->data)->x, ((hslot_type)listptr->data)->y, pix);
-	 else if (((hslot_type)listptr->data)->type ==PARTIALLY_EXPANDING_SLOT)
-		draw_expanding_slot(((hslot_type)listptr->data)->x, ((hslot_type)listptr->data)->y, pix);
-	 else if (((hslot_type)listptr->data)->type ==PARTIALLY_EXPANDING_SLOT_RIGHT)
-		draw_expanding_slot(((hslot_type)listptr->data)->x, ((hslot_type)listptr->data)->y, pix);
-
+    gdk_draw_pixmap (pix, playing_area->style->black_gc,
+		     get_slot_pixmap(), 0, 0, x, y, -1, -1);
   }
 }
 
