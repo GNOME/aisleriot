@@ -21,7 +21,7 @@ glines          N       N       Y       Y       Y       Y
 gnect           N       Y       Y       Y       Y       Y
 gnibbles        N       Y       Y       Y       Y       Y
 gnobots2        N       N       c       Y       Y       Y
-gnome-stones    N       P       Y       Y       Y       Y
+gnome-stones    N       Y       Y       Y       Y       Y
 gnometris       N       N       Y       Y       Y       Y
 gnomine         N       Y       Y       Y       Y       Y
 gnotravex       N       Y       Y       N       Y       Y
@@ -82,10 +82,7 @@ Gnome-stones:
         - Also the joystick tab.
         - Rearrange location of scores, etc., if it seems serious
           (must play it some more). Otherwise this can be left to 2.5.
-        - Try and track down bug 106623, it may be because they have
-          never selected a game (in which case it is a real bug) or it
-          is misinstalled and there is nothing to load (in which case
-          there should be an error dialog).
+        - Check joystick support actually works ?
 
 Gnometris:
         - Update xtris backgrounds to give the current name (perhaps
@@ -195,6 +192,8 @@ Gnome-stones:
         - Fix "jerkiness", make the game "feel" better.
         - Separate the two games to be started separately (using the
           same shared code).
+        - Fall back to any available game rather than giving up after 
+          the chosen and default games have failed to load ?
 
 Gnometris:
         - Make the pieces scalable.
