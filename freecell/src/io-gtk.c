@@ -1144,7 +1144,7 @@ to_destination_auto(void)
 
   if (freecellgame_is_there_no_way(freecellgame))
     {
-      mb = gnome_message_box_new (_("Sorry, there is no card to move."),
+      mb = gnome_message_box_new (_("Sorry, there are no more valid moves."),
 				  GNOME_MESSAGE_BOX_INFO,
 				  GNOME_STOCK_BUTTON_OK,
 				  NULL);
