@@ -44,4 +44,6 @@ extern void card_draw_deck_general(GtkWidget *widget, int x, int y, DECK *deck, 
 
 extern void card_draw_card_general(GtkWidget *widget, int x, int y, CARD *card, int is_selected);
 
+int card_image_width(void);
+int card_image_height(void);
 #endif /* __FREECELL_CARD_DRAW_H */

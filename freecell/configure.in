@@ -6,6 +6,7 @@ AM_CONFIG_HEADER(config.h)
 AC_PREREQ(2.12)
 AM_INIT_AUTOMAKE([freecell], [0.7])
 
+AM_SANITY_CHECK
 AM_MAINTAINER_MODE
 
 dnl built in gnome-game tree, or not?
@@ -16,12 +17,17 @@ else
 fi
 
 GNOME_INIT
+AC_SUBST(X_LIBS)
+AC_SUBST(x_libs)
+
 
 AC_ISC_POSIX
 AC_PROG_CC
 AC_STDC_HEADERS
 AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
+AC_PROG_MAKE_SET
+AC_PROG_INSTALL
 
 ALL_LINGUAS="ko"
 AM_GNU_GETTEXT
@@ -48,6 +54,6 @@ AC_FUNC_MMAP
 AC_CHECK_FUNCS(getcwd getwd putenv strdup)
 
 
-AC_OUTPUT([Makefile src/Makefile lib/Makefile
-	   image/Makefile intl/Makefile po/Makefile.in],
+AC_OUTPUT([Makefile src/Makefile lib/Makefile gdk-card-image/Makefile
+	  intl/Makefile po/Makefile.in],
 [sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])

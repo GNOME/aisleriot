@@ -21,26 +21,49 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkprivate.h>
 #include "card.h"
-#include "card-image.h"
+#include "gdk-card-image.h"
 
 /* used for double buffering. */
 static GdkPixmap *d_pixmap;
 static GdkPixmap *c_pixmap;
+static card_width = 79;
+static card_height = 123;
 
 
 static void draw_card (GdkWindow *window, GdkGC *gc, int x, int y, CARD *card);
 static void draw_hash(GdkWindow *window, GdkGC *gc, int x, int y);
 static void draw_background(GdkWindow *window, GdkGC *gc);
 
+#define CARD_ID(c) ((card_suit(c)-1)*13 + (card_rank(c) -1 ))
+#define W_WIDTH(w) ((GdkWindowPrivate *)w)->width
+#define W_HEIGHT(w) ((GdkWindowPrivate *)w)->height
 
+int
+card_image_width(void)
+{
+  return card_width;
+}
+
+int
+card_image_height(void)
+{
+  return card_height;
+}
+
+int
+card_image_top_height(void)
+{
+  return card_height/5;
+}
+
+     
 static void
 draw_card (GdkWindow *window, GdkGC *gc, int x, int y, CARD *card)
 {
   GdkPixmap *pixmap;
   GdkBitmap *clip;
 
-  pixmap = card_image(card);
-  clip = card_image_clip();
+  gdk_card_image(CARD_ID(card), &pixmap, &clip);
 
   gdk_gc_set_clip_origin (gc, x, y);
   gdk_gc_set_clip_mask(gc, clip);
@@ -48,7 +71,7 @@ draw_card (GdkWindow *window, GdkGC *gc, int x, int y, CARD *card)
 		  pixmap,
 		  0, 0,
 		  x, y,
-		  card_image_width(), card_image_height());
+		  card_width, card_height);
   gdk_gc_set_clip_mask(gc, NULL);
 }
 
@@ -59,9 +82,9 @@ draw_hash(GdkWindow *window, GdkGC *gc, int x, int y)
   int w, h;
   int i;
 
-  clip = card_image_clip();
-  w = card_image_width();
-  h = card_image_height();
+  gdk_card_image(0, NULL, &clip);
+  w = card_width;
+  h = card_height;
 
   gdk_gc_set_clip_origin (gc, x, y);
   gdk_gc_set_clip_mask(gc, clip);
@@ -89,12 +112,18 @@ draw_background(GdkWindow *window, GdkGC *bg_gc)
 void
 card_draw_init(GtkWidget *widget)
 {
-  card_image_init(widget);
+  GdkPixmap *p;
+
+  gdk_card_image_init(widget->window);
+  gdk_card_image(0, &p, NULL);
+  card_width = W_WIDTH(p);
+  card_height = W_HEIGHT(p);
+  
   d_pixmap = gdk_pixmap_new(widget->window,
-			    card_image_width() + 10, 5 * card_image_height(),
+			    card_width + 10, 5 * card_height,
 			    -1);
   c_pixmap = gdk_pixmap_new(widget->window,
-			    card_image_width(), card_image_height(),
+			    card_width , card_height,
 			    -1);
 }
 

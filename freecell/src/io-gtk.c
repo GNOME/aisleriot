@@ -42,7 +42,6 @@
 
 #include "io-gtk.h"
 #include "card-draw.h"
-#include "card-image.h"
 
 
 #define FIELD_WIDTH card_image_width()
