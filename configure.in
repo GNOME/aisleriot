@@ -25,15 +25,15 @@ GNOME_X_CHECKS
 GNOME_CHECK_GUILE
 
 dnl Check for new enough gnome-libs
-CPPFLAGS_save=$CPPFLAGS
+CFLAGS_save=$CFLAGS
 LDFLAGS_save=$LDFLAGS
-CPPFLAGS=`gnome-config --cflags gnomeui`
+CFLAGS=`gnome-config --cflags gnomeui`
 LDFLAGS=`gnome-config --libs gnomeui`
 
 AC_CHECK_LIB(gnomeui, gnome_window_icon_set_default_from_file, ,[
 AC_MSG_ERROR(gnome-libs 1.0.59 or higher is required.)])
 
-CPPFLAGS=$CPPFLAGS_save
+CFLAGS=$CFLAGS_save
 LDFLAGS=$LDFLAGS_save
 
 ## GDK_PIXBUF_CFLAGS=`$GNOME_CONFIG --cflags gdk_pixbuf`
