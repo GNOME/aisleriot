@@ -59,6 +59,9 @@ LIBRSVG_REQUIRED=2.0
 
 PKG_CHECK_MODULES(GNOME_GAMES, libglade-2.0 libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gconf-2.0 >= $GTK_REQUIRED gnome-vfs-module-2.0 >= $GNOME_VFS_REQUIRED gtk+-2.0 >= $GTK_REQUIRED librsvg-2.0 >= $LIBRSVG_REQUIRED)
 
+AC_SUBST(GNOME_GAMES_CFLAGS)
+AC_SUBST(GNOME_GAMES_LIBS)
+
 GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CFLAGS"
 GNOME_GAMES_LIBS="$GNOME_GAMES_LIBS \$(top_builddir)/libgames-support/libgames-support.la"
 
@@ -247,6 +250,7 @@ gnobots2/help/it/Makefile
 gnibbles/Makefile
 gnibbles/help/Makefile
 gnibbles/help/C/Makefile
+gnibbles/pix/Makefile
 gnibbles/sounds/Makefile
 aisleriot/Makefile
 aisleriot/help/Makefile

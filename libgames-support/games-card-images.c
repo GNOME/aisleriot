@@ -31,7 +31,7 @@ GamesCardImages * games_card_images_new (void)
 
   images = g_object_new (GAMES_CARD_IMAGES_TYPE, NULL);
 
-  /* This is the size of the original gdk-card-images cards. */
+  /* This is the size of the original gdk-card-image cards. */
   images->width = 79;
   images->height = 123;
   images->themename = g_strdup ("bonded-new.png");
@@ -59,43 +59,31 @@ static void games_card_images_render (GamesCardImages * images)
   subwidth = gdk_pixbuf_get_width (source)/13;
   subheight = gdk_pixbuf_get_height (source)/5;
 
+#define GENERATE_PIXBUF(target,x,y) do { \
+  subpixbuf = gdk_pixbuf_new_subpixbuf (source, (x)*subwidth, (y)*subheight,\
+					subwidth, subheight);\
+  images->pixbufs[(target)] = gdk_pixbuf_scale_simple (subpixbuf, images->width, \
+						    images->height, GDK_INTERP_BILINEAR); \
+  g_object_unref (subpixbuf); \
+  } while (0);
+
   n = 0;
   for (i=0; i<4; i++) {
     for (j=0; j<13; j++) {
-      subpixbuf = gdk_pixbuf_new_subpixbuf (source, j*subwidth, i*subheight,
-					    subwidth, subheight);
-      images->pixbufs[n] = gdk_pixbuf_scale_simple (subpixbuf, images->width, 
-						    images->height,  
-						    GDK_INTERP_BILINEAR);
-      g_object_unref (subpixbuf);
+      GENERATE_PIXBUF(n,j,i);
       n++;
     }
   }
-  subpixbuf = gdk_pixbuf_new_subpixbuf (source, 0, 4*subheight,
-					subwidth, subheight);
-  images->pixbufs[GAMES_CARD_BLACK_JOKER] = gdk_pixbuf_scale_simple (subpixbuf,
-								     images->width, 
-								     images->height,  
-								     GDK_INTERP_BILINEAR);
-  g_object_unref (subpixbuf);
-  subpixbuf = gdk_pixbuf_new_subpixbuf (source, subwidth, 4*subheight,
-					subwidth, subheight);
-  images->pixbufs[GAMES_CARD_RED_JOKER] = gdk_pixbuf_scale_simple (subpixbuf,
-								   images->width, 
-								   images->height,  
-								   GDK_INTERP_BILINEAR);
-  g_object_unref (subpixbuf);
-  subpixbuf = gdk_pixbuf_new_subpixbuf (source, 2*subwidth, 4*subheight,
-					subwidth, subheight);
-  images->pixbufs[GAMES_CARD_BACK] = gdk_pixbuf_scale_simple (subpixbuf,
-							      images->width, 
-							      images->height,  
-							      GDK_INTERP_BILINEAR);
-  g_object_unref (subpixbuf);
+
+  GENERATE_PIXBUF(GAMES_CARD_BLACK_JOKER,0,4);
+  GENERATE_PIXBUF(GAMES_CARD_RED_JOKER,1,4);
+  GENERATE_PIXBUF(GAMES_CARD_BACK,2,4);
 
   images->rendered = TRUE;
 
   g_object_unref (source);
+
+#undef GENERATE_PIXBUF
 }
 
 static void games_card_images_purge (GamesCardImages * images)
