@@ -1,3 +1,12 @@
+2000-05-09  Martin Baulig  <baulig@suse.de>
+
+	Triple checked all games for gnome_score_init () related
+	security problems:
+
+	- All games which are sgid now call gnome_score_init ()
+	first; also moved all gnome_score_init () calls in front
+	of bindtextdomain () etc.
+
 2000-05-06  Ian Peters  <itp@gnu.org>
 
 	* gnome-games.spec.in: now requires gnome-libs 1.0.60

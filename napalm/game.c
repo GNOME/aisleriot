@@ -125,11 +125,11 @@ void redraw_screen(NapalmGame *game, gint x1, gint y1, gint width, gint height)
 
 int main(int argc, char *argv[])
 {
+    gnome_score_init("napalm");
+    
     bindtextdomain(PACKAGE, GNOMELOCALEDIR);
     textdomain(PACKAGE);
         
-    gnome_score_init("napalm");
-    
     gnome_init("Napalm Fire", "0.0", argc, argv);
 
     gdk_rgb_set_verbose (TRUE);
