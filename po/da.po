@@ -15,6 +15,7 @@
 #
 #   AisleRiot -> Kabale
 #   cave -> grotte
+#   hint -> fif
 #   GNOME Robots II -> Robotter
 #   Same Gnome (parodi på Same Game i KDE) -> Samspil 
 #
@@ -25,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-22 16:57+0100\n"
-"PO-Revision-Date: 2004-11-22 16:52+0100\n"
+"POT-Creation-Date: 2004-11-28 10:23+0100\n"
+"PO-Revision-Date: 2004-11-28 14:14+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -357,27 +358,27 @@ msgid "Congratulations."
 msgstr "Tillykke."
 
 #: aisleriot/dialog.c:46
-msgid "You won!!!"
+msgid "You have won!!!"
 msgstr "Du vandt!!!"
 
-#: aisleriot/dialog.c:48
-msgid "Game over."
-msgstr "Spillet er slut."
+#: aisleriot/dialog.c:48 mahjongg/mahjongg.c:696
+msgid "There are no more moves."
+msgstr "Der er ikke flere mulige træk tilbage."
 
-#: aisleriot/dialog.c:60
+#: aisleriot/dialog.c:65
 msgid "New Game"
 msgstr "Nyt spil"
 
-#: aisleriot/dialog.c:163
+#: aisleriot/dialog.c:169
 msgid "Select Game"
-msgstr "Vælg spil"
+msgstr "Vælg kabale"
 
 #. Rules Tab
-#: aisleriot/dialog.c:178 blackjack/src/dialog.cpp:268
+#: aisleriot/dialog.c:184 blackjack/src/dialog.cpp:268
 msgid "Rules"
 msgstr "Regler"
 
-#: aisleriot/dialog.c:257
+#: aisleriot/dialog.c:263
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -385,21 +386,21 @@ msgstr ""
 "Spillet er slut.\n"
 "Ingen fif er tilgængelige."
 
-#: aisleriot/dialog.c:263
+#: aisleriot/dialog.c:269
 msgid "This game does not have hint support yet."
 msgstr "Dette spil kan ikke give fif endnu."
 
-#: aisleriot/dialog.c:275 aisleriot/dialog.c:281
+#: aisleriot/dialog.c:281 aisleriot/dialog.c:287
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Læg %s på %s. "
 
-#: aisleriot/dialog.c:287
+#: aisleriot/dialog.c:293
 #, c-format
 msgid "Move %s %s."
 msgstr "Flyt %s %s."
 
-#: aisleriot/dialog.c:288
+#: aisleriot/dialog.c:294
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -410,16 +411,16 @@ msgstr ""
 "Rapportér venligst en fejl på http://bugzilla.gnome.org med denne besked og\n"
 "navnet på det spil du spiller (kig i menulinjen hvis du ikke er sikker)."
 
-#: aisleriot/dialog.c:293
+#: aisleriot/dialog.c:299
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Du leder efter en %s."
 
-#: aisleriot/dialog.c:297
+#: aisleriot/dialog.c:303
 msgid "This game is unable to provide a hint."
 msgstr "Dette spil kan ikke give fif."
 
-#: aisleriot/dialog.c:348
+#: aisleriot/dialog.c:354
 msgid "AisleRiot Cards"
 msgstr "Kabalekort"
 
@@ -518,11 +519,11 @@ msgstr "Flyt ~a væk fra bordet"
 # o.k.
 #: aisleriot/freecell.desktop.in.h:1
 msgid "FreeCell Solitaire"
-msgstr "Napoleon - kabale"
+msgstr "Napoleon"
 
 #: aisleriot/freecell.desktop.in.h:2
 msgid "Play the popular FreeCell card game"
-msgstr "Spil det populære kortspil Napoleon"
+msgstr "Spil den populære kabale Napoleon"
 
 #: aisleriot/freecell.scm.h:1
 msgid "No moves available"
@@ -589,7 +590,7 @@ msgstr "en tom bordplads"
 
 #: aisleriot/klondike.scm.h:2
 msgid "No hint available right now"
-msgstr "Intet råd tilgængeligt i øjeblikket"
+msgstr "Intet fif tilgængeligt i øjeblikket"
 
 #: aisleriot/klondike.scm.h:5
 msgid "Three card deals"
@@ -611,17 +612,17 @@ msgstr ""
 "Forsøg at placere farvene i den orden som passer mest naturligt til det "
 "aktuelle layout."
 
-#: aisleriot/menu.c:77 gnome-stones/main.c:1083 gnomine/gnomine.c:521
+#: aisleriot/menu.c:79 gnome-stones/main.c:1083 gnomine/gnomine.c:521
 #: mahjongg/mahjongg.c:961
 msgid "Main game:"
 msgstr "Hovedspil:"
 
-#: aisleriot/menu.c:83
+#: aisleriot/menu.c:85
 msgid "Card games:"
 msgstr "Kortspil:"
 
 #. Translator credits
-#: aisleriot/menu.c:98 blackjack/src/menu.cpp:157 gataxx/gataxx.c:369
+#: aisleriot/menu.c:100 blackjack/src/menu.cpp:157 gataxx/gataxx.c:369
 #: glines/glines.c:1072 gnect/src/main.c:821 gnibbles/main.c:184
 #: gnobots2/menu.c:224 gnome-stones/main.c:1094 gnometris/tetris.cpp:1425
 #: gnomine/gnomine.c:541 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1532
@@ -638,11 +639,11 @@ msgstr ""
 "Dansk-gruppen <dansk@klid.dk>\n"
 "Mere info: http://www.klid.dk/dansk/"
 
-#: aisleriot/menu.c:119
+#: aisleriot/menu.c:121
 msgid "AisleRiot"
 msgstr "Kabale"
 
-#: aisleriot/menu.c:122
+#: aisleriot/menu.c:124
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -650,104 +651,104 @@ msgstr ""
 "Kabale indeholder en regelbaseret kabalemotor der giver mulighed for mange "
 "forskellige typer spil."
 
-#: aisleriot/menu.c:199
+#: aisleriot/menu.c:201
 msgid "Game _options..."
 msgstr "Spil_indstillinger..."
 
-#: aisleriot/menu.c:200
+#: aisleriot/menu.c:202
 msgid "Modify the options for this game"
 msgstr "Ændr indstillingerne for dette spil "
 
-#: aisleriot/menu.c:206 gnect/src/main.c:1194 mahjongg/mahjongg.c:144
+#: aisleriot/menu.c:208 gnect/src/main.c:1194 mahjongg/mahjongg.c:144
 msgid "_Toolbar"
 msgstr "_Værktøjslinje"
 
-#: aisleriot/menu.c:206 mahjongg/mahjongg.c:145
+#: aisleriot/menu.c:208 mahjongg/mahjongg.c:145
 msgid "Show or hide the toolbar"
 msgstr "Vis eller skjul værktøjslinjen"
 
-#: aisleriot/menu.c:209
+#: aisleriot/menu.c:211
 msgid "_Cards..."
 msgstr "_Kort..."
 
-#: aisleriot/menu.c:209
+#: aisleriot/menu.c:211
 msgid "Change the appearance of the cards"
 msgstr "Skift udseendet af kortene"
 
-#: aisleriot/menu.c:232
+#: aisleriot/menu.c:234
 msgid "_Select..."
 msgstr "_Vælg..."
 
-#: aisleriot/menu.c:232 aisleriot/menu.c:280
+#: aisleriot/menu.c:234 aisleriot/menu.c:282
 msgid "Select a different game"
 msgstr "Vælg et andet spil"
 
-#: aisleriot/menu.c:234
+#: aisleriot/menu.c:236
 msgid "S_tatistics..."
 msgstr "S_tatistik..."
 
-#: aisleriot/menu.c:234
+#: aisleriot/menu.c:236
 msgid "Get statistics on the current game"
 msgstr "Vis statistik for det aktuelle spil"
 
-#: aisleriot/menu.c:245
+#: aisleriot/menu.c:247
 msgid "_Click to move"
 msgstr "_Klik for at flytte"
 
-#: aisleriot/menu.c:245
+#: aisleriot/menu.c:247
 msgid "Use clicks instead of drags to move cards"
 msgstr "Brug klik istedet træk for at flytte kort"
 
-#: aisleriot/menu.c:265
+#: aisleriot/menu.c:267
 msgid "_Control"
 msgstr "_Kontrol"
 
-#: aisleriot/menu.c:274 gnect/src/main.c:1220 gnobots2/menu.c:106
+#: aisleriot/menu.c:276 gnect/src/main.c:1220 gnobots2/menu.c:106
 #: mahjongg/mahjongg.c:167
 msgid "New"
 msgstr "Nyt spil"
 
-#: aisleriot/menu.c:274 gnect/src/main.c:1221 gnobots2/menu.c:106
+#: aisleriot/menu.c:276 gnect/src/main.c:1221 gnobots2/menu.c:106
 msgid "Start a new game"
 msgstr "Start et nyt spil"
 
-#: aisleriot/menu.c:277 mahjongg/mahjongg.c:171
+#: aisleriot/menu.c:279 mahjongg/mahjongg.c:171
 msgid "Restart"
 msgstr "Genstart"
 
-#: aisleriot/menu.c:277
+#: aisleriot/menu.c:279
 msgid "Restart the game"
 msgstr "Genstart spillet"
 
-#: aisleriot/menu.c:280
+#: aisleriot/menu.c:282
 msgid "Select"
-msgstr "Vælg"
+msgstr "Vælg kabale"
 
-#: aisleriot/menu.c:285 gnect/src/main.c:1223 mahjongg/mahjongg.c:183
+#: aisleriot/menu.c:287 gnect/src/main.c:1223 mahjongg/mahjongg.c:183
 msgid "Undo"
 msgstr "Fortryd"
 
-#: aisleriot/menu.c:285 gnect/src/main.c:1223
+#: aisleriot/menu.c:287 gnect/src/main.c:1223
 msgid "Undo the last move"
 msgstr "Fortryd sidste træk"
 
-#: aisleriot/menu.c:288 mahjongg/mahjongg.c:187
+#: aisleriot/menu.c:290 mahjongg/mahjongg.c:187
 msgid "Redo"
 msgstr "Omgør"
 
-#: aisleriot/menu.c:288
+#: aisleriot/menu.c:290
 msgid "Redo the undone move"
 msgstr "Omgør det fortrudte træk"
 
-#: aisleriot/menu.c:291 gnect/src/main.c:1224 mahjongg/mahjongg.c:189
+#: aisleriot/menu.c:293 gnect/src/main.c:1224 mahjongg/mahjongg.c:189
 msgid "Hint"
 msgstr "Fif"
 
-#: aisleriot/menu.c:291 gnect/src/main.c:1224
+#: aisleriot/menu.c:293 gnect/src/main.c:1224
 msgid "Get a hint for your next move"
-msgstr "Få et tip til dit næste træk"
+msgstr "Få et fif til dit næste træk"
 
-#: aisleriot/menu.c:316
+#: aisleriot/menu.c:318
 msgid "View help for the current game"
 msgstr "Vis hjælp til det aktuelle spil"
 
@@ -789,9 +790,9 @@ msgid "empty foundation"
 msgstr "tomt fundament"
 
 #: aisleriot/sol.c:135
-#, fuzzy, c-format
+#, c-format
 msgid "AisleRiot: %s"
-msgstr "Kabale: %s (%d)"
+msgstr "Kabale: %s"
 
 #: aisleriot/sol.c:162
 #, c-format
@@ -1216,7 +1217,7 @@ msgstr "Flyt et kort til en tom midlertidig plads"
 
 #: aisleriot/ten_across.scm.h:3
 msgid "No hint available"
-msgstr "Ingen råd tilgængelige"
+msgstr "Ingen fif tilgængelige"
 
 #: aisleriot/ten_across.scm.h:5
 msgid "and all cards below it"
@@ -1556,7 +1557,7 @@ msgstr "Blackjack"
 
 #: blackjack/data/blackjack.desktop.in.h:2
 msgid "Play the casino card game Blackjack"
-msgstr "Spil kasinospillet blackjack"
+msgstr "Spil kasinospillet Blackjack"
 
 #: blackjack/data/blackjack.schemas.in.h:1
 msgid "Display probabilities"
@@ -1598,30 +1599,29 @@ msgid "Use a quick deal with no delay between each card."
 msgstr "Benyt hurtig kortgivning uden pause mellem hvert kort."
 
 #: blackjack/src/blackjack.cpp:102
-#, fuzzy, c-format
+#, c-format
 msgid "Blackjack: %s"
-msgstr "Blackjack: %s (%d)"
+msgstr "Blackjack: %s"
 
 #: blackjack/src/blackjack.cpp:356
 msgid "Cards left:"
-msgstr "Kort tilbage:"
+msgstr "Kort tilbage: "
 
 #: blackjack/src/blackjack.cpp:365
 msgid "Wager:"
-msgstr "Satsning:"
+msgstr "Satsning: "
 
 #: blackjack/src/blackjack.cpp:378
 msgid "Balance:"
-msgstr "Balance:"
+msgstr "Balance: "
 
 #: blackjack/src/blackjack.cpp:422
 msgid "Place your wager or deal a hand"
 msgstr "Afgiv din satsning eller giv en hånd"
 
 #: blackjack/src/blackjack.cpp:660
-#, fuzzy
 msgid "Blackjack rule set to use"
-msgstr "Blackjack vil nu afslutte."
+msgstr "Blackjack-regel sat til brug"
 
 #: blackjack/src/dialog.cpp:53
 msgid "Would you like insurance?"
@@ -1634,9 +1634,12 @@ msgid ""
 "a natural 21 (aka blackjack) that is offered when the dealer's face up card "
 "is an ace. If the dealer has a natural 21 then the player is paid double."
 msgstr ""
+"Forsikring er en sideindsats på 50%% af den originale indsats, på at "
+"kortgiveren har en naturlig 21 (Blackjack). Muligheden for dette er tilstede "
+"når kortgiverens første kort er et es. Hvis kortgiveren har en naturlig 21 "
+"så bliver spilleren betalt dobelt."
 
 #: blackjack/src/dialog.cpp:100 blackjack/src/dialog.cpp:103
-#, fuzzy
 msgid "Deal a new hand"
 msgstr "Giv en ny hånd"
 
@@ -1678,7 +1681,7 @@ msgstr "Bunke"
 
 #: blackjack/src/dialog.cpp:303
 msgid "Hit Soft 17"
-msgstr "Rammer blød 17"
+msgstr "Køb blødt 17"
 
 #: blackjack/src/dialog.cpp:308
 msgid "Double Any Total"
@@ -1694,7 +1697,7 @@ msgstr "Dobbelt blød"
 
 #: blackjack/src/dialog.cpp:323
 msgid "Double After Hit"
-msgstr "Dobbelt efter ramt"
+msgstr "Dobbelt efter køb"
 
 #: blackjack/src/dialog.cpp:328
 msgid "Double After Split"
@@ -1756,23 +1759,28 @@ msgstr "Kontrollér installationen af Blackjack"
 
 #: blackjack/src/hand.cpp:118
 msgid "The best option is to stand"
-msgstr "Den bedste mulighed er at blive"
+msgstr "Den bedste mulighed er at stå"
 
 #: blackjack/src/hand.cpp:120
 msgid ""
 "To stand means to stop adding cards to your hand.  Do this by clicking on "
 "the dealer's cards or by selecting the option from the Control menu."
 msgstr ""
+"At stå betyder et stop for tilføjelse af kort til din hånd. Gør dette ved "
+"at klikke på kortgiverens kort eller ved at vælge valgmuligheden i "
+"kontrolmenuen."
 
 #: blackjack/src/hand.cpp:123
 msgid "The best option is to hit"
-msgstr "Den bedste mulighed er at ramme"
+msgstr "Den bedste mulighed er at købe"
 
 #: blackjack/src/hand.cpp:125
 msgid ""
 "To hit means to add another card to your hand.  Do this by clicking once on "
 "your cards or by selecting the option from the Control menu."
 msgstr ""
+"At købe betyder at et nyt kort tilføjes din hånd. Gør dette ved at "
+"klikke på dine kort eller ved at vælge valgmuligheden i kontrolmenuen."
 
 #: blackjack/src/hand.cpp:128
 msgid "The best option is to double down"
@@ -1784,6 +1792,10 @@ msgid ""
 "more card.  Do this by clicking once on the chips at the bottom of the "
 "window or by selecting the option from the Control menu."
 msgstr ""
+"At doble ned betyder at den oprindelige satsning fordobles og "
+"modtagelsen af præcist ét kort mere. Gør dette ved at klikke en enkelt "
+"gang på jetonerne i bunden af vinduet eller ved at vælge valgmuligheden "
+"i kontrolmenuen."
 
 #: blackjack/src/hand.cpp:133
 msgid "The best option is to split"
@@ -1795,6 +1807,9 @@ msgid ""
 "by dragging one of your cards and dropping it off to the side or by "
 "selecting the option from the Control menu."
 msgstr ""
+"At splitte betyder at opdele din nuværende hånd i to seperate hænder. Gør "
+"dette ved at trække et af dine kort ud til siden eller ved at vælge "
+"valgmuligheden i kontrolmenuen."
 
 #: blackjack/src/hand.cpp:137
 msgid "The best option is to surrender"
@@ -1805,6 +1820,8 @@ msgid ""
 "To surrender means to give up half your wager and not complete the hand.  Do "
 "this by selecting the option from the Control menu."
 msgstr ""
+"At give fortabt betyder at du opgiver halvdelen af din satsning og ikke "
+"færdiggøre hånden. Gør dette ved at vælge valgmuligheden fra kontrolmenuen."
 
 #: blackjack/src/menu.cpp:179
 msgid "Blackjack provides a casino-style blackjack card game."
@@ -1848,7 +1865,7 @@ msgstr "Stå"
 
 #: blackjack/src/player.cpp:275
 msgid "Hit"
-msgstr "Ram"
+msgstr "Køb"
 
 #: blackjack/src/player.cpp:286
 msgid "Double"
@@ -1912,7 +1929,7 @@ msgid "Animate"
 msgstr "Animér"
 
 #. flip tiles button
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:395 iagno/properties.c:683
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:400 iagno/properties.c:683
 msgid "Flip final results"
 msgstr "Vend brikker om til slut"
 
@@ -1930,7 +1947,7 @@ msgstr "Hurtige træk"
 
 #: gataxx/gataxx.schemas.in.h:6
 msgid "Tileset"
-msgstr "Brikker"
+msgstr "Briksæt"
 
 #: gataxx/gataxx.schemas.in.h:7
 msgid "Tileset to use."
@@ -1965,73 +1982,73 @@ msgstr "Indstillinger for Ataxx"
 
 #. Players tab
 #. FIXME mnemonic doesn't seem to work
-#: gataxx/properties.c:319 iagno/properties.c:505
+#: gataxx/properties.c:324 iagno/properties.c:505
 msgid "_Players"
 msgstr "_Spillere"
 
-#: gataxx/properties.c:331
+#: gataxx/properties.c:336
 msgid "Quick Moves"
 msgstr "Hurtige træk"
 
-#: gataxx/properties.c:332
+#: gataxx/properties.c:337
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "Nedsætter tiden en computerspiller venter, før den tager et træk"
 
 #. Dark level select
-#: gataxx/properties.c:341 gnect/src/theme.c:55 iagno/properties.c:528
+#: gataxx/properties.c:346 gnect/src/theme.c:55 iagno/properties.c:528
 msgid "Dark"
 msgstr "Sort"
 
-#: gataxx/properties.c:346 gnect/src/prefs.c:344 gtali/yahtzee.c:62
+#: gataxx/properties.c:351 gnect/src/prefs.c:344 gtali/yahtzee.c:62
 #: iagno/properties.c:534 iagno/properties.c:581
 msgid "Human"
 msgstr "Menneske"
 
-#: gataxx/properties.c:347 gataxx/properties.c:366
+#: gataxx/properties.c:352 gataxx/properties.c:371
 msgid "Very Easy"
 msgstr "Meget let"
 
-#: gataxx/properties.c:348 gataxx/properties.c:367 mahjongg/maps.c:534
+#: gataxx/properties.c:353 gataxx/properties.c:372 mahjongg/maps.c:534
 msgid "Easy"
 msgstr "Let"
 
-#: gataxx/properties.c:349 gataxx/properties.c:368 gnomine/gnomine.c:88
+#: gataxx/properties.c:354 gataxx/properties.c:373 gnomine/gnomine.c:88
 #: gnomine/gnomine.c:728
 msgid "Medium"
 msgstr "Mellem"
 
-#: gataxx/properties.c:350 gataxx/properties.c:369
+#: gataxx/properties.c:355 gataxx/properties.c:374
 msgid "Hard"
-msgstr "Svært"
+msgstr "Svær"
 
-#: gataxx/properties.c:351 gataxx/properties.c:370
+#: gataxx/properties.c:356 gataxx/properties.c:375
 msgid "Very Hard"
-msgstr "Meget svært"
+msgstr "Meget svær"
 
 #. Light level select
-#: gataxx/properties.c:360 gnect/src/theme.c:55 iagno/properties.c:575
+#: gataxx/properties.c:365 gnect/src/theme.c:55 iagno/properties.c:575
 msgid "Light"
 msgstr "Hvid"
 
 #. Appearance tab
-#: gataxx/properties.c:379 iagno/properties.c:625
+#: gataxx/properties.c:384 iagno/properties.c:625
 msgid "_Appearance"
 msgstr "_Udseende"
 
-#: gataxx/properties.c:382 gnect/src/prefs.c:423 gnobots2/properties.c:888
+#: gataxx/properties.c:387 gnect/src/prefs.c:423 gnobots2/properties.c:888
 msgid "Appearance"
 msgstr "Udseende"
 
 #. animation button
-#: gataxx/properties.c:387 iagno/properties.c:630
+#: gataxx/properties.c:392 iagno/properties.c:630
 msgid "Animation"
-msgstr "Animering"
+msgstr "Animation"
 
-#: gataxx/properties.c:391
+#: gataxx/properties.c:396
 msgid "Flip the pieces with some visual effects"
 msgstr "Brug visuelle effekter ved brikvending"
 
-#: gataxx/properties.c:399
+#: gataxx/properties.c:404
 msgid ""
 "Put all the white pieces at the bottom and all the black pieces on the top "
 "of the board when a game is over"
@@ -2040,19 +2057,19 @@ msgstr ""
 "når spillet er forbi"
 
 #. show grid button
-#: gataxx/properties.c:403 iagno/properties.c:675
+#: gataxx/properties.c:408 iagno/properties.c:675
 msgid "Show grid"
 msgstr "Vis gitter"
 
-#: gataxx/properties.c:407
+#: gataxx/properties.c:412
 msgid "Whether the grid should be shown"
 msgstr "Om gitteret vises"
 
-#: gataxx/properties.c:414 iagno/properties.c:693
+#: gataxx/properties.c:419 iagno/properties.c:693
 msgid "Tile set:"
 msgstr "Brikker:"
 
-#: gataxx/properties.c:419
+#: gataxx/properties.c:424
 msgid "The appearance of the pieces"
 msgstr "Brikkernes udseende"
 
@@ -2185,9 +2202,8 @@ msgid "Drop marble"
 msgstr "Slip kugle"
 
 #: gnect/data/gnect.schemas.in.h:4
-#, fuzzy
 msgid "Height of the main window"
-msgstr "Højden af hovedvinduet."
+msgstr "Højden af hovedvinduet"
 
 #: gnect/data/gnect.schemas.in.h:5
 msgid "Key press to drop a marble."
@@ -2228,14 +2244,12 @@ msgid "Sound"
 msgstr "Lyd"
 
 #: gnect/data/gnect.schemas.in.h:14
-#, fuzzy
 msgid "The height of the main window, in pixels, at start-up."
-msgstr "Højden af hovedvinduet."
+msgstr "Højden af hovedvinduet i billedpunkter, ved opstart."
 
 #: gnect/data/gnect.schemas.in.h:15
-#, fuzzy
 msgid "The width of the main window, in pixels, at start-up."
-msgstr "Bredden af hovedvinduet."
+msgstr "Bredden af hovedvinduet i billedpunkter, ved opstart."
 
 #: gnect/data/gnect.schemas.in.h:16
 msgid "Theme ID"
@@ -2254,9 +2268,8 @@ msgid "Whether or not to use animation."
 msgstr "Om animering skal benyttes."
 
 #: gnect/data/gnect.schemas.in.h:20
-#, fuzzy
 msgid "Width of the main window"
-msgstr "Bredden af hovedvinduet."
+msgstr "Bredden af hovedvinduet"
 
 #: gnect/data/gnect.soundlist.in.h:1
 msgid "A counter drops"
@@ -2320,7 +2333,7 @@ msgstr "%s..."
 #: gnect/src/main.c:662
 #, c-format
 msgid "Hint: Column %d"
-msgstr "Tip: Søjle %d"
+msgstr "Fif: Søjle %d"
 
 #: gnect/src/main.c:690 gnect/src/main.c:695
 msgid "You"
@@ -2343,11 +2356,8 @@ msgid ""
 "\"Four in a row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
 msgstr ""
-"Fire på stribe-spil til Gnome, med en maskinspiller drevet af Giuliano "
-"Bertolettis Velena-motor.\n"
-" \n"
-"Gnect: http://homepages.ihug.co.nz/~trmusson/gnect.html\n"
-"Velena: http://www.ce.unipr.it/~gbe/velena.html"
+"\"Fire på stribe\" til Gnome, med en computerspiller drevet af en "
+"Giuliano Bertolettis Velena-motor."
 
 #: gnect/src/main.c:1141 gnect/src/main.c:1168
 msgid "Select \"New game\" from the \"Game\" menu to begin."
@@ -2423,11 +2433,11 @@ msgstr "Aktivér _animering"
 
 #: gnect/src/prefs.c:453
 msgid "Controls"
-msgstr "Kontroller"
+msgstr "Styreenheder"
 
 #: gnect/src/prefs.c:456 gnibbles/preferences.c:376 gnometris/tetris.cpp:900
 msgid "Keyboard controls"
-msgstr "Tastaturkontroller"
+msgstr "Tastaturstyreenheder"
 
 #: gnect/src/theme.c:42
 msgid "Classic"
@@ -2686,14 +2696,12 @@ msgid "Invalid game data (move)"
 msgstr "Ugyldige spildata (move)"
 
 #: gnibbles/network.c:215
-#, fuzzy
 msgid "Invalid game data (add_bonus)"
-msgstr "Ugyldige spildata (move)"
+msgstr "Ugyldig spildata (add_bonus)"
 
 #: gnibbles/network.c:225
-#, fuzzy
 msgid "Invalid game data (remove_bonus)"
-msgstr "Ugyldige spildata (move)"
+msgstr "Ugyldig spildata (remove_bonus)"
 
 #: gnibbles/network.c:239 iagno/network.c:139
 msgid "New game ready to be started"
@@ -2735,7 +2743,7 @@ msgstr "Indstillinger"
 
 #: gnibbles/preferences.c:315
 msgid "Starting level:"
-msgstr "Starter bane:"
+msgstr "Startbane:"
 
 #: gnibbles/preferences.c:342 gtali/setup.c:266
 msgid "Number of players:"
@@ -2831,7 +2839,7 @@ msgstr ""
 #. ********************************************************************
 #: gnobots2/gnobots2.desktop.in.h:1
 msgid "Avoid the robots and make them crash into each other"
-msgstr "Undgå robotterne og få dem til at smadre ind i hinanden"
+msgstr "Undgå robotterne og få dem til at støde ind i hinanden"
 
 #: gnobots2/gnobots2.desktop.in.h:2 gnobots2/gnobots2.soundlist.in.h:6
 msgid "Robots"
@@ -3213,7 +3221,7 @@ msgstr "robotter med sikker teleportering"
 
 #: gnobots2/properties.c:625
 msgid "nightmare"
-msgstr "Mareridt"
+msgstr "mareridt"
 
 #: gnobots2/properties.c:654
 msgid "robots"
@@ -3307,7 +3315,7 @@ msgstr "Baggrundsfarve:"
 
 #: gnobots2/properties.c:895
 msgid "Keyboard Controls"
-msgstr "Tastaturkontroller"
+msgstr "Tastaturstyreenheder"
 
 #: gnobots2/properties.c:921
 msgid "Use the Keypad"
@@ -3509,7 +3517,7 @@ msgstr "Sokobanbaner:"
 
 #: gnome-stones/main.c:1114
 msgid "Mine through dirt and collect gems."
-msgstr "Grav gennem skidt og saml juveler."
+msgstr "Grav gennem jord og saml juveler."
 
 #: gnome-stones/main.c:1137
 msgid "_Restart level"
@@ -3870,7 +3878,7 @@ msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
 msgstr ""
-"Skrevet til min kone, Matylda.\n"
+"Skrevet til min kone Matylda.\n"
 "Send kommentarer og fejlrapporter til: janusz.gorycki@intel.com"
 
 #: gnomine/gnomine.c:87 gnomine/gnomine.c:718
@@ -4157,13 +4165,12 @@ msgstr "Bredden af vinduet"
 #. puzzle name
 #: gnotski/gnotski.c:138
 msgid "Only 18 Steps"
-msgstr ""
+msgstr "Kun 18 skridt"
 
 #. puzzle name
 #: gnotski/gnotski.c:151
-#, fuzzy
 msgid "Daisy"
-msgstr "Let"
+msgstr "Tusindfryd"
 
 #. puzzle name
 #: gnotski/gnotski.c:164
@@ -4172,235 +4179,217 @@ msgstr "Violet"
 
 #. puzzle name
 #: gnotski/gnotski.c:177
-#, fuzzy
 msgid "Poppy"
-msgstr "Egenskab"
+msgstr "Valmue"
 
 #. puzzle name
 #: gnotski/gnotski.c:190
-#, fuzzy
 msgid "Pansy"
-msgstr "Let"
+msgstr "Stedmoderblomst"
 
 #. puzzle name
 #: gnotski/gnotski.c:203
 msgid "Snowdrop"
-msgstr ""
+msgstr "Snefald"
 
 #. puzzle name
 #: gnotski/gnotski.c:216
-#, fuzzy
 msgid "Red Donkey"
-msgstr "Rød drage"
+msgstr "Røde æsel"
 
 #. puzzle name
 #: gnotski/gnotski.c:229
-#, fuzzy
 msgid "Trail"
-msgstr "Yatzy"
+msgstr "Kæde"
 
 #. puzzle name
 #: gnotski/gnotski.c:242
-#, fuzzy
 msgid "Ambush"
-msgstr "Skub"
+msgstr "Bagholdsangreb"
 
 #. puzzle name
 #: gnotski/gnotski.c:255
-#, fuzzy
 msgid "Agatka"
-msgstr "Ataxx"
+msgstr "Agatka"
 
 #. puzzle name
 #: gnotski/gnotski.c:266
-#, fuzzy
 msgid "Success"
-msgstr "Stillinger"
+msgstr "Succes"
 
 #. puzzle name
 #: gnotski/gnotski.c:276
-#, fuzzy
 msgid "Bone"
-msgstr "Ingen"
+msgstr "Knogle"
 
 #. puzzle name
 #: gnotski/gnotski.c:289
-#, fuzzy
 msgid "Fortune"
 msgstr "Lykke"
 
 #. puzzle name
 #: gnotski/gnotski.c:303
 msgid "Fool"
-msgstr ""
+msgstr "Fjols"
 
 #. puzzle name
 #: gnotski/gnotski.c:313
-#, fuzzy
 msgid "Solomon"
-msgstr "Sol"
+msgstr "Salomon"
 
 #. puzzle name
 #: gnotski/gnotski.c:326
 msgid "Cleopatra"
-msgstr ""
+msgstr "Kleopatra"
 
 #. puzzle name
 #: gnotski/gnotski.c:338
-#, fuzzy
 msgid "Shark"
-msgstr "Sort"
+msgstr "Haj"
 
 #. puzzle name
 #: gnotski/gnotski.c:350
-#, fuzzy
 msgid "Rome"
-msgstr "Rotér"
+msgstr "Rom"
 
 #. puzzle name
 #: gnotski/gnotski.c:362
 msgid "Pennant Puzzle"
-msgstr ""
+msgstr "Vimpel"
 
 #. puzzle name
 #: gnotski/gnotski.c:375
 msgid "Ithaca"
-msgstr ""
+msgstr "Ithaca"
 
 #. puzzle name
 #: gnotski/gnotski.c:398
 msgid "Pelopones"
-msgstr ""
+msgstr "Pelopones"
 
 #. puzzle name
 #: gnotski/gnotski.c:412
 msgid "Transeuropa"
-msgstr ""
+msgstr "Transeuropa"
 
 #. puzzle name
 #: gnotski/gnotski.c:424
 msgid "Lodzianka"
-msgstr ""
+msgstr "Lodzianka"
 
 #. puzzle name
 #: gnotski/gnotski.c:435
 msgid "Polonaise"
-msgstr ""
+msgstr "Polonaise"
 
 #. puzzle name
 #: gnotski/gnotski.c:448
 msgid "Baltic Sea"
-msgstr ""
+msgstr "Det baltiske hav"
 
 #. puzzle name
 #: gnotski/gnotski.c:462
 msgid "American Pie"
-msgstr ""
+msgstr "Amerikansk tærte"
 
 #. puzzle name
 #: gnotski/gnotski.c:478
 msgid "Traffic Jam"
-msgstr ""
+msgstr "Trafikprop"
 
 #. puzzle name
 #: gnotski/gnotski.c:489
-#, fuzzy
 msgid "Sunshine"
-msgstr "ni"
+msgstr "Solskind"
 
 #. puzzle name
 #: gnotski/gnotski.c:528
-#, fuzzy
 msgid "Block 10"
-msgstr "Blokke"
+msgstr "Blok 10"
 
 #. puzzle name
 #: gnotski/gnotski.c:539
 msgid "Block 10 Pro"
-msgstr ""
+msgstr "Blok 10 pro"
 
 #. puzzle name
 #: gnotski/gnotski.c:550
 msgid "Climb 12"
-msgstr ""
+msgstr "Klatre 12"
 
 #. puzzle name
 #: gnotski/gnotski.c:561
 msgid "Climb 12 Pro"
-msgstr ""
+msgstr "Klatre 12 pro"
 
 #. puzzle name
 #: gnotski/gnotski.c:572
 msgid "Climb 15 Winter"
-msgstr ""
+msgstr "Klatre 15 vinter"
 
 #. puzzle name
 #: gnotski/gnotski.c:585
 msgid "Climb 15 Spring"
-msgstr ""
+msgstr "Klatre 15 forår"
 
 #. puzzle name
 #: gnotski/gnotski.c:598
 msgid "Climb 15 Summer"
-msgstr ""
+msgstr "Klatre 15 sommer"
 
 #. puzzle name
 #: gnotski/gnotski.c:611
 msgid "Climb 15 Fall"
-msgstr ""
+msgstr "Klatre 15 efterår"
 
 #. puzzle name
 #: gnotski/gnotski.c:624
 msgid "Climb 24 Pro"
-msgstr ""
+msgstr "Klatre 24 pro"
 
 #: gnotski/gnotski.c:653
-#, fuzzy
 msgid "_Help"
-msgstr "Hjælp"
+msgstr "_Hjælp"
 
 #. set of puzzles
 #: gnotski/gnotski.c:655
 msgid "HuaRong Trail"
-msgstr ""
+msgstr "HuaRong-sporet"
 
 #. set of puzzles
 #: gnotski/gnotski.c:657
 msgid "Challenge Pack"
-msgstr ""
+msgstr "Udfordringspakken"
 
 #. set of puzzles
 #: gnotski/gnotski.c:659
 msgid "Skill Pack"
-msgstr ""
+msgstr "Kvalifikationspakken"
 
 #. set of puzzles
 #: gnotski/gnotski.c:661
 msgid "Minoru Climb"
-msgstr ""
+msgstr "Minoru-klatring"
 
 #: gnotski/gnotski.c:662
-#, fuzzy
 msgid "_New Game"
-msgstr "Nyt spil"
+msgstr "_Nyt spil"
 
 #: gnotski/gnotski.c:663
 msgid "Next Puzzle"
-msgstr ""
+msgstr "Næste puslespil"
 
 #: gnotski/gnotski.c:664
 msgid "Previous Puzzle"
-msgstr ""
+msgstr "Forrige puslespil"
 
 #: gnotski/gnotski.c:665
-#, fuzzy
 msgid "_Hint"
-msgstr "Fif"
+msgstr "_Fif"
 
 #: gnotski/gnotski.c:669
-#, fuzzy
 msgid "_Scores"
-msgstr "Stillinger"
+msgstr "_Pointgivelser"
 
 #: gnotski/gnotski.c:841
 msgid "Level completed. Well done."
@@ -4411,20 +4400,20 @@ msgid "Moves:"
 msgstr "Træk:"
 
 #: gnotski/gnotski.c:1347
-#, fuzzy, c-format
+#, c-format
 msgid "Level %d : %s"
-msgstr "Bane:"
+msgstr "Bane %d : %s"
 
 #: gnotski/gnotski.c:1503
 #, c-format
 msgid "This puzzle is solvable in %d move."
 msgid_plural "This puzzle is solvable in %d moves."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Dette puslespil kan løses i %d træk."
+msgstr[1] "Dette puslespil kan løses i %d træk."
 
 #: gnotski/gnotski.c:1528
 msgid "Sliding Block Puzzles"
-msgstr ""
+msgstr "Glidendeblokke-puslespil"
 
 #: gnotski/gnotski.desktop.in.h:1
 msgid "Klotski"
@@ -4435,31 +4424,28 @@ msgid "Solve puzzles by sliding blocks"
 msgstr "Løs gåder ved at skubbe blokke"
 
 #: gnotski/gnotski.schemas.in.h:2
-#, fuzzy
 msgid "The number of the puzzle being played."
-msgstr "Størrelsen af spillefeltet"
+msgstr "Spillets nummer."
 
 #: gnotski/gnotski.schemas.in.h:3
 msgid "The puzzle in play"
-msgstr ""
+msgstr "Det igangværende puslespil"
 
 #: gnotski/gnotski.schemas.in.h:4
-#, fuzzy
 msgid ""
 "The requested height of the main window in pixels. If this isn't big enough "
 "it will be ignored."
 msgstr ""
-"Den foresprugte højde af hovedvinduet i punkter. Bemærk at kontrollerne som "
-"vinduet indeholder, er mindst 200 punkter høj."
+"Den foresprugte højde af hovedvinduet i punkter. Hvis dette ikke er højt nok "
+"vil det blive ignoreret."
 
 #: gnotski/gnotski.schemas.in.h:5
-#, fuzzy
 msgid ""
 "The requested width of the main window in pixels. If this isn't big enough "
 "it will be ignored."
 msgstr ""
-"Den foresprugte bredde af hovedvinduet i punkter. Bemærk at kontrollerne som "
-"vinduet indeholder, er mindst 320 punkter bred."
+"Den foresprugte bredde af hovedvinduet i punkter. Hvis dette ikke er højt nok "
+"vil det blive ignoreret."
 
 #: gtali/clist.c:141
 msgid "Already used! Where do you want to put that?"
@@ -4513,9 +4499,8 @@ msgid "GNOME Tali"
 msgstr "Yatzy"
 
 #: gtali/gyahtzee.c:116
-#, fuzzy
 msgid "The game is a draw!"
-msgstr "Spillet blev uafgjort."
+msgstr "Spillet blev uafgjort!"
 
 #: gtali/gyahtzee.c:131
 #, c-format
@@ -4557,7 +4542,7 @@ msgstr "Curses-udgave (1992):"
 
 #: gtali/gyahtzee.c:477
 msgid "A sort of poker with dice and less money."
-msgstr "En slags pker med terning og færre penge."
+msgstr "En slags poker med terninger og færre penge."
 
 #: gtali/gyahtzee.c:657
 msgid "Roll!"
@@ -4727,7 +4712,7 @@ msgstr "%.2d"
 
 #: iagno/iagno.desktop.in.h:2
 msgid "Play a game of Reversi"
-msgstr "Spil et spil Othello"
+msgstr "Spil Othello"
 
 #: iagno/iagno.soundlist.in.h:1
 msgid "Game over"
@@ -4806,36 +4791,36 @@ msgstr ""
 #: libgames-support/games-gridframe.c:180
 #: libgames-support/games-gridframe.c:187
 msgid "X Padding"
-msgstr ""
+msgstr "x-fyld"
 
 #: libgames-support/games-gridframe.c:181
 msgid "Extra space to add to the width allocation."
-msgstr ""
+msgstr "Ekstra plads at føje til breddetildelelsen."
 
 #: libgames-support/games-gridframe.c:188
 msgid "Extra space to add to the height allocation."
-msgstr ""
+msgstr "Ekstra plads at føje til højdetildelelsen."
 
 #: libgames-support/games-gridframe.c:194
 msgid "Width Multiple"
-msgstr ""
+msgstr "Bredde-multiple"
 
 #: libgames-support/games-gridframe.c:195
 msgid "What multiple to constrain the width to."
-msgstr ""
+msgstr "Hvilken multiple skal afgrænse bredden."
 
 #: libgames-support/games-gridframe.c:201
 msgid "Height Multiple"
-msgstr ""
+msgstr "Højemultiple"
 
 #: libgames-support/games-gridframe.c:202
 msgid "What multiple to constrain the height to."
-msgstr ""
+msgstr "Hvilken multipleskal afgrænse højden."
 
 #: libgames-support/games-network-dialog.c:109
 #, c-format
 msgid "The player %s joined the game."
-msgstr ""
+msgstr "Spilleren %s kom med i spillet."
 
 #: libgames-support/games-network-dialog.c:137
 msgid "New Network Game"
@@ -4847,9 +4832,8 @@ msgid "Network Status:"
 msgstr "Netværksstatus:"
 
 #: libgames-support/games-network-dialog.c:157
-#, fuzzy
 msgid "Please start a new network game.\n"
-msgstr "Start et nyt spil"
+msgstr "Vær venlig at starte et nyt netværksspil.\n"
 
 #: libgames-support/games-network-dialog.c:161
 msgid "_Connect"
@@ -4865,12 +4849,11 @@ msgstr "Ugyldigt navn"
 
 #: libgames-support/games-network-dialog.c:217
 msgid "A new gnome games server was successfully started."
-msgstr ""
+msgstr "En ny Gnome-spilserver blev startet."
 
 #: libgames-support/games-network-dialog.c:260
-#, fuzzy
 msgid "Network Configuration"
-msgstr "Konfigurér spilindstillinger"
+msgstr "Netværksindstillinger"
 
 #: libgames-support/games-network-dialog.c:266
 msgid "Your playername:"
@@ -4882,38 +4865,35 @@ msgstr "Spiller"
 
 #: libgames-support/games-network-dialog.c:290
 msgid "Network connection method"
-msgstr ""
+msgstr "Netværksforbindelsesmetode"
 
 #: libgames-support/games-network-dialog.c:295
 msgid "Gnome Games Server"
-msgstr ""
+msgstr "Gnome-spilserver"
 
 #: libgames-support/games-network-dialog.c:301
 msgid "Host Local Game"
-msgstr ""
+msgstr "Bevært lokalt spil"
 
 #: libgames-support/games-network-dialog.c:319
-#, fuzzy
 msgid "Game name:"
-msgstr "Spilnavn"
+msgstr "Spilnavn:"
 
 #: libgames-support/games-network-dialog.c:330
 msgid "Join Local Game"
-msgstr ""
+msgstr "Deltag i lokalt spil"
 
 #: libgames-support/games-network-dialog.c:347
 msgid "Hostname:"
-msgstr ""
+msgstr "Værtsnavn:"
 
 #: libgames-support/games-network-dialog.c:359
-#, fuzzy
 msgid "Local Games:"
-msgstr "Kortspil:"
+msgstr "Lokale spil:"
 
 #: libgames-support/games-network-dialog.c:440
-#, fuzzy
 msgid "No local game selected."
-msgstr "Ingen sten valgt"
+msgstr "Intet lokalt spil valgt."
 
 #: libgames-support/games-network.c:120
 msgid "Network initialization complete."
@@ -4962,58 +4942,58 @@ msgid ""
 "Local Area Network game could not be started. \n"
 "Try running mDNSResponder."
 msgstr ""
+"Lokalnetværksspil kunne ikke startes. \n"
+"Prøv at køre mDNSResponder."
 
 #: libgames-support/games-preimage.c:166 libgames-support/games-preimage.c:258
 msgid "Image rendering failed."
-msgstr ""
+msgstr "Billedoptegning mislykkedes"
 
 #: libgames-support/libgnomegames.schemas.in.h:1
-#, fuzzy
 msgid "Network game mode"
-msgstr "Nyt net_værksspil"
+msgstr "Netværksspil-tilstand"
 
 #: libgames-support/libgnomegames.schemas.in.h:2
-#, fuzzy
 msgid "The game server"
-msgstr "Ingen spilserver angivet"
+msgstr "Spilserveren"
 
 #: libgames-support/libgnomegames.schemas.in.h:3
 msgid "The identifier for the game"
-msgstr ""
+msgstr "Spillets identitet"
 
 #: libgames-support/libgnomegames.schemas.in.h:4
 msgid ""
 "The mode of network game to use. 1 = Server, 2 = LAN Host, 3 = LAN Client."
-msgstr ""
+msgstr "Tilstande for netværksspil. 1 = server, 2 = LAN-vært, 3 = LAN-klient."
 
 #: libgames-support/libgnomegames.schemas.in.h:5
-#, fuzzy
 msgid "The players nickname"
-msgstr "Temafilnavn"
+msgstr "Spillerens kælenavn"
 
 #: libgames-support/libgnomegames.schemas.in.h:6
-#, fuzzy
 msgid "The players nickname."
-msgstr "Temafilnavn"
+msgstr "Spillerens kælenavn."
 
 #: libgames-support/libgnomegames.schemas.in.h:7
 msgid ""
 "This string identifies the default game to connect to or create (depending "
 "on mode)."
 msgstr ""
+"Denne streng identificere standardspillet der skal oprettes eller forbindes "
+"til (afhængig af tilstand)."
 
 #: libgames-support/libgnomegames.schemas.in.h:8
 msgid ""
 "When using server mode, which game server to contact. This accepts the usual "
 "hostname or dotted quad notation."
 msgstr ""
+"Hvilken spil-server der skal kontaktes, når server-tilstanden er i brug. "
+"Værtsnavn- eller IP-adresse-notation er tilladt."
 
 #: mahjongg/drawing.c:422
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to locate theme file: %s"
-msgstr ""
-"Kunne ikke indlæse billede:\n"
-"%s"
+msgstr "Kunne ikke finde tema-filen: %s"
 
 #: mahjongg/mahjongg.c:171
 msgid "Restart game"
@@ -5029,10 +5009,9 @@ msgstr "Fortryd sidste træk"
 
 #: mahjongg/mahjongg.c:189
 msgid "Get a hint"
-msgstr "Få et råd"
+msgstr "Få et fif"
 
 #: mahjongg/mahjongg.c:399
-#, fuzzy
 msgid ""
 "Do you want to finish the current game or start playing with the new map "
 "immediately?"
@@ -5056,10 +5035,6 @@ msgstr "_Afslut"
 msgid "These tiles don't match."
 msgstr "Disse brikker er ikke ens"
 
-#: mahjongg/mahjongg.c:696
-msgid "There are no more moves."
-msgstr "Der er ikke flere mulige træk tilbage."
-
 #: mahjongg/mahjongg.c:700
 msgid "Shuffle"
 msgstr "Bland"
@@ -5074,7 +5049,7 @@ msgstr "Brikker"
 
 #: mahjongg/mahjongg.c:790
 msgid "Tile Set"
-msgstr "Brikker"
+msgstr "Briksæt"
 
 #: mahjongg/mahjongg.c:803
 msgid "Maps"
@@ -5126,11 +5101,11 @@ msgstr "Mahjongg"
 
 #: mahjongg/mahjongg.c:1446
 msgid "Tiles Left:"
-msgstr "Brikker tilbage:"
+msgstr "Tilbageværende brikker:"
 
 #: mahjongg/mahjongg.c:1455
 msgid "Moves Left:"
-msgstr "Træk tilbage:"
+msgstr "Tilbageværende træk:"
 
 #: mahjongg/mahjongg.c:1520
 msgid "Welcome to GNOME Mahjongg!"
@@ -5249,6 +5224,9 @@ msgstr "Velkommen til Samspil!"
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Fjern grupper af bolde for at rydde skærmen"
+
+#~ msgid "Game over."
+#~ msgstr "Spillet er slut."
 
 #~ msgid "Seed"
 #~ msgstr "Startværdi"
