@@ -64,15 +64,22 @@ about_destroy_callback (void)
 void help_about_callback ()
 {
   const gchar *authors[] = {
-	  "Main program:  Jonathan Blandford (jrb@alum.mit.edu)",
-	  "                      Felix Bellaby (felix@pooh.u-net.com)",
-	  "Card Games:    Jonathan Blandford (jrb@alum.mit.edu)",
-	  "                      Robert Brady (rwb197@ecs.soton.ac.uk)",
-	  "                      Nick Lamb (njl195@zepler.org.uk)",
-	  "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)",
-	  "                      Rosanna Yuen (rwsy@mit.edu)",
+	  N_("Main program:  Jonathan Blandford (jrb@alum.mit.edu)"),
+	  N_("                      Felix Bellaby (felix@pooh.u-net.com)"),
+	  N_("Card Games:    Jonathan Blandford (jrb@alum.mit.edu)"),
+	  N_("                      Robert Brady <rwb197@ecs.soton.ac.uk>"),
+	  N_("                      Nick Lamb <njl195@zepler.org.uk>"),
+	  N_("                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"),
+	  N_("                      Rosanna Yuen (rwsy@mit.edu)"),
 	  NULL
   };
+
+#ifdef ENABLE_NLS
+  {
+	int i=0;
+	while (authors[i] != NULL) { authors[i]=_(authors[i]); i++; }
+  }
+#endif
 
   if (about) {
     gdk_window_raise (about->window);
@@ -80,7 +87,7 @@ void help_about_callback ()
   }
   about = gnome_about_new ( _("AisleRiot"), VERSION,
 			    /* copyright notice */
-			    "(C) 1998 Jonathan Blandford (jrb@alum.mit.edu)",
+			    _("(C) 1998 Jonathan Blandford (jrb@alum.mit.edu)"),
 			    (const char **)authors,
 			    /* another comments */
 			    _("AisleRiot provides a rule-based, "

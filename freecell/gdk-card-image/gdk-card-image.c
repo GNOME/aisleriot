@@ -25,6 +25,7 @@
  * filenames of the images in each directory.
  * This works but is not set in stone. */
 
+#include <config.h>
 #include <gnome.h>
 #include <dirent.h>
 #include <gdk-card-image.h>
@@ -875,7 +876,7 @@ gdk_card_deck_options_edit_new (GtkNotebook* notebook)
   gtk_box_pack_start (GTK_BOX (hbox), frame, FALSE, FALSE, 0);
 
   for (i = 0; i < OPT_NUM; i++) {
-    GtkWidget* label = gtk_label_new(option_data[i].description);
+    GtkWidget* label = gtk_label_new(_(option_data[i].description));
     GtkWidget* menu = gtk_menu_new();
 
     w->menu[i] = GTK_OPTION_MENU (gtk_option_menu_new ());

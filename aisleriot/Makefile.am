@@ -70,7 +70,7 @@ cardimage_DATA = baize.png splash.png
 icon_DATA = gnome-aisleriot.png
 
 EXTRA_DIST = TODO FIXME  AUTHORS $(types_DATA) $(cardimage_DATA) \
-	$(icon_DATA) sol.desktop
+	$(icon_DATA) sol.desktop SCHEME_GAMES.h
 
 sysdir = $(datadir)/gnome/apps/Games
 sys_DATA = sol.desktop
