@@ -1,3 +1,28 @@
+2004-10-31  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* games-network-dialog.c:
+	* games-network.c: Fix some compiler warnings.
+
+	* Makefile.am: Include the libhowl flags.
+
+	* games-network-dialog.c (config_cb): Make the local networking
+	options insensitive if we don't have libhowl available.
+
+	* games-network.c: Made support for libhowl optional at
+	compile-time. Search for NO_HOWL for the details.	
+	(games_start_server): Removed the altternative paths to
+	games-server.py. They are only usefil for developers who are quite
+	capable of setting PATH for themselves.
+
+2004-10-04  Andreas Røsdal <andrearo@stud.ntnu.no>
+
+	* Makefile.am: Install games-server in bin directory.
+	* games-network-dialog.[c|h]: Implement GUI support for howl.
+	* games-network.[c|h]: Implement howl support for discovering. 
+	Implement support for starting the games-server.	
+	* games-server.py: Allow python server to run without a
+	standard-input.
+	
 2004-10-13  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* games-card-images.c: Revert Richard's last patch since it

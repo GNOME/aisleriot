@@ -7,6 +7,8 @@ extern const char *player_name;
 extern const char *opponent_name;
 extern guint game_in_progress;
 
+#define NETWORK_HOWL_TYPE "gnomegames._udp"
+
 typedef struct {
   char inbuf[1024];
   int inpos;
@@ -28,7 +30,7 @@ extern void games_network_new (char *server, char *port,
                                GtkWidget *parent_window);
 extern void games_network_start (void);
 extern void games_network_stop (void);
-extern void games_network_connect (const char *id);
+extern void games_network_connect (const char *server, const char *id);
 void games_send_gamedata (const gchar *msg);
 
 extern void network_set_status (NetworkGame *ng,
@@ -39,8 +41,9 @@ int get_mycolor (void);
 extern void set_game_input_cb (void (*game_input_cb)(NetworkGame *ng, char *buf));
 extern void set_game_clear_cb (void (*func)(void)); 
 extern void set_game_move_cb (gint (*func)(guint x, guint y, guint me)); 
-
-
+extern gboolean games_host_lan_game (char *name);
+extern gboolean games_find_lan_game (void);
+extern void games_kill_server (void);
 
 #endif
 

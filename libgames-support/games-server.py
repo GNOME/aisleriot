@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 
 import select
 import socket
@@ -88,7 +88,6 @@ class Server(Thread):
         self.cnxlist = {}
         self.waitlist = []
         self.ccount = 0
-	self.setDaemon(1)
 
         self.poller.register(self.asock.fileno(), select.POLLIN)
 
@@ -141,22 +140,10 @@ class Server(Thread):
             self.waitlist.remove(cli)
         self.ccount -= 1
      
-class MetaServer(Thread):
-    def __init__(self):
-        Thread.__init__(self)
-    def run(self):
-	while 1:
-		input = raw_input("$")	
-		if input == "quit":
-			print("Bye.")
-		 	sys.exit(0)	
-
 iagno1 = Server(26478)
 iagno1.start()
 
 gnibbles1 = Server(26479)
 gnibbles1.start()
 
-
-MetaServer().start()
 

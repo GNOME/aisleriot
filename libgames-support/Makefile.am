@@ -5,8 +5,13 @@ noinst_LTLIBRARIES = libgames-support.la
 INCLUDES =							\
 	-DDATADIR=\""$(datadir)"\"				\
 	-DGCONF_SCHEMA_CONFIG_SOURCE=\""$(GCONF_SCHEMA_CONFIG_SOURCE)"\" \
+	$(HOWL_CFLAGS) \
 	$(WARN_CFLAGS)						\
 	$(GNOME_GAMES_CFLAGS)
+
+libgames_support_la_LDFLAGS= $(HOWL_LIBS)
+
+bin_SCRIPTS = games-server.py
 
 carddir = $(datadir)/pixmaps/gnome-games-common/cards
 card_DATA = bonded.png paris.svg
@@ -39,4 +44,4 @@ libgames_support_la_SOURCES =		\
         games-preimage.h                \
 	$(NULL)
 
-EXTRA_DIST = $(card_DATA)
+EXTRA_DIST = $(card_DATA) $(bin_SCRIPTS)

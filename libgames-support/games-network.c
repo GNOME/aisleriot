@@ -34,10 +34,25 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <gnome.h>
+#include <sys/signal.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <errno.h>
 #include <netdb.h>
+
+
+#ifndef NO_HOWL
+/* Workaround broken howl including config.h */
+#undef PACKAGE
+#undef PACKAGE_BUGREPORT
+#undef PACKAGE_NAME
+#undef PACKAGE_STRING
+#undef PACKAGE_TARNAME
+#undef PACKAGE_VERSION
+#undef VERSION
+#include <howl.h>
+#endif
+
 #include "games-network.h"
 #include "games-network-dialog.h"
 
@@ -46,9 +61,12 @@ const char *opponent_name;
 
 static char *game_server; 
 static char *game_port;
+static pid_t server_pid = - 1;
 
 guint game_in_progress = 0;
 guint whose_turn;
+
+
 
 /* Callback functions  */
 void (*game_input_cb)(NetworkGame *ng, char *buf);
@@ -234,6 +252,7 @@ network_handle_read (GIOChannel *source, GIOCondition cond, gpointer data)
   /* Shut down the connection, either it was broken or someone is messing with us */
   network_set_status (ng, DISCONNECTED, _("The remote player disconnected"));
   game_clear_cb ();
+  games_kill_server ();
   return network_io_setup (ng, CALLER_READ_CB);
 }
 
@@ -347,9 +366,9 @@ network_connect (void)
 }
 
 void 
-games_network_connect(const char *id) 
+games_network_connect (const char *server, const char *id) 
 {
-
+  
   if (!id) {
     g_string_append_printf (netgame->outbuf, "start_game\n");
     netgame->sent_startgame = 1;
@@ -360,6 +379,7 @@ games_network_connect(const char *id)
   player_name = id;
   games_network_start (); 
 
+  game_server = (char *)server;
   if (!game_server) {
     network_set_status (netgame, DISCONNECTED, _("No game server defined"));
     return;
@@ -387,3 +407,159 @@ games_network_new (char *server, char *port, GtkWidget *parent_window)
   network_game_dialog_show (parent_window);
 }
 
+void
+games_kill_server (void)
+{
+  if (server_pid != -1) {
+    kill (server_pid, SIGTERM);
+    server_pid = - 1;
+  }
+}
+
+#ifndef NO_HOWL
+static void
+games_start_server (char *name) 
+{
+  int fd;
+ 
+  games_kill_server ();
+ 
+  /* Fork a new thread. One thread starts a new server,
+     while the other thread continues handling the game. */
+
+  server_pid = fork();
+
+  if (server_pid == 0) {
+    fclose(stdout);
+    fclose(stderr);
+    fclose(stdin);
+
+    fd = open("/dev/null", O_RDONLY);
+    if (fd != 0) {
+      dup2(fd, 0);
+    }
+    /* Execute the server.  */
+    execvp("games-server.py", NULL);
+    /* This point will not be reached unless no server can be started. */
+    network_gui_message ("Failed to fork server.");
+    exit(1);
+  }
+  /* Make sure the server has started, before trying to connect to it.  */
+  sleep(1);
+  games_network_connect ("localhost", name);
+}
+#endif
+
+gboolean
+games_host_lan_game (char *name)
+{
+#ifdef NO_HOWL
+  return FALSE;
+#else
+  sw_discovery discovery;
+  sw_result result;
+  sw_discovery_publish_id id;
+  static char mtype[256];
+        
+  if (sw_discovery_init (&discovery) != SW_OKAY) {
+    network_gui_message (_("Local Area Network game could not be started. \nTry running mDNSResponder."));
+    return FALSE;
+  }
+        
+  snprintf (mtype, sizeof (mtype), "_%s%s", game_port, NETWORK_HOWL_TYPE);
+
+  if ((result = sw_discovery_publish (discovery, 0, name, mtype,
+       NULL, NULL, atoi(game_port), NULL, 0, NULL, NULL, &id)) != SW_OKAY) {
+    return FALSE;
+  }
+
+  games_start_server (name);
+  return TRUE;
+#endif
+}
+
+#ifndef NO_HOWL
+static sw_result HOWL_API
+games_get_server (sw_discovery discovery, sw_discovery_oid oid,
+     sw_uint32 interface_index, sw_const_string name, sw_const_string type,
+     sw_const_string domain, sw_ipv4_address address, sw_port  port,
+     sw_octets text_record, sw_uint32 text_record_len, sw_opaque_t extra)
+{
+  sw_int8 name_buf[16];
+
+  sw_discovery_cancel (discovery, oid);
+  network_gui_add_server ((char *)name, 
+	         (char *)sw_ipv4_address_name(address, name_buf, 16));
+
+  return SW_OKAY;
+}
+
+static sw_result HOWL_API
+games_browser (sw_discovery discovery, sw_discovery_oid oid,
+               sw_discovery_browse_status status, sw_uint32 interface_index,
+               sw_const_string name, sw_const_string type,
+               sw_const_string domain, sw_opaque_t extra)
+{
+  sw_discovery_resolve_id resolve_id;
+
+  if (status == SW_DISCOVERY_BROWSE_ADD_SERVICE)  {
+    if (sw_discovery_resolve (discovery, interface_index, name, 
+		type, domain, games_get_server, NULL, &resolve_id) != SW_OKAY) {
+      network_gui_message ("resolve failed\n");
+    }
+  }
+  return SW_OKAY;
+}
+#endif
+
+#ifndef NO_HOWL
+static gboolean
+games_howl_input (GIOChannel *io_channel, GIOCondition cond, 
+		  gpointer callback_data)
+{
+  sw_discovery session;
+  sw_salt salt;
+
+  session = callback_data;
+  if (sw_discovery_salt (session, &salt) == SW_OKAY) {
+    sw_salt_lock (salt);
+    sw_discovery_read_socket (session);
+    sw_salt_unlock (salt);
+  }
+  return TRUE;
+}
+#endif
+
+gboolean
+games_find_lan_game (void)
+{
+#ifdef NO_HOWL
+  return FALSE;
+#else
+  sw_discovery discovery;
+  sw_discovery_oid discovery_oid;
+  GIOChannel *channel;
+  static char mtype[256];
+  int fd;
+
+  if (sw_discovery_init(&discovery) != SW_OKAY) {
+    network_gui_message (_("Local Area Network game could not be started. \nTry running mDNSResponder."));
+    return FALSE;
+  }
+
+  snprintf (mtype, sizeof (mtype), "_%s%s", game_port, NETWORK_HOWL_TYPE);
+
+  if (sw_discovery_browse (discovery, 0, mtype, NULL, 
+			  games_browser, NULL, &discovery_oid) != SW_OKAY) {
+    network_gui_message (_("Local Area Network game could not be started. \nTry running mDNSResponder."));
+    return FALSE;
+  }
+
+  fd = sw_discovery_socket (discovery);
+  channel = g_io_channel_unix_new (fd);
+  g_io_add_watch (channel, G_IO_IN, games_howl_input, discovery);
+  g_io_channel_unref (channel);
+
+  return TRUE;
+#endif
+}

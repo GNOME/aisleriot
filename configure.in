@@ -62,6 +62,12 @@ PKG_CHECK_MODULES(GNOME_GAMES, libglade-2.0 libgnome-2.0 >= $LIBGNOME_REQUIRED l
 AC_SUBST(GNOME_GAMES_CFLAGS)
 AC_SUBST(GNOME_GAMES_LIBS)
 
+PKG_CHECK_MODULES(HOWL, howl >= 0.9.6, [ HOWL_PRESENT="yes" ],
+		  [ CFLAGS="$CFLAGS -DNO_HOWL"
+	            HOWL_PRESENT="no" ])
+AC_SUBST(HOWL_CFLAGS)
+AC_SUBST(HOWL_LIBS)
+
 GNOME_GAMES_CXXFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CXXFLAGS"
 GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CFLAGS"
 GNOME_GAMES_LIBS="$GNOME_GAMES_LIBS \$(top_builddir)/libgames-support/libgames-support.la"
@@ -78,12 +84,9 @@ if test x$CC=xgcc ; then
   GNOME_GAMES_CFLAGS="-std=gnu89 $GNOME_GAMES_CFLAGS"
 fi
 
-PKG_CHECK_MODULES(ESD, esound)
+PKG_CHECK_MODULES(ESD, esound, , [ CFLAGS="$CFLAGS -DNO_ESD" ])
 AC_SUBST(ESD_CFLAGS)
 AC_SUBST(ESD_LIBS)
-if test "x$ESD_CFLAGS" = "x" ; then
-	CFLAGS="$CFLAGS -DNO_ESD"
-fi
 
 GETTEXT_PACKAGE=gnome-games
 AC_SUBST(GETTEXT_PACKAGE)
@@ -268,10 +271,13 @@ Configuration:
 	(Have c++ compiler):		   ${CXX_PRESENT}
 	Compile AisleRiot (Have guile):	   ${ac_cv_guile_found}
 
-        Use setgid binaries                $setgid
-        Scores user                        $scores_user
-        Scores & setgid group              $scores_group
+        Use setgid binaries                ${setgid}
+        Scores user                        ${scores_user}
+        Scores & setgid group              ${scores_group}
+
+        Zeroconf support (libhowl):	   ${HOWL_PRESENT}
 "
+
 if grep -q "$scores_group:" /etc/group ; then
 :;
 else
