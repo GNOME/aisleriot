@@ -29,7 +29,7 @@
 #include <gnome.h>
 #include <dirent.h>
 #include <gdk-card-image.h>
-#include <gdk_imlib_private.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 
 /* An image file used in building the cards:
  * each file can contain multiple images and/or half images */
@@ -152,7 +152,7 @@ static void gdk_card_file_draw_r (GdkCardDeckFile* file, GdkPixmap* p,
 				  GdkGC* gc,  
 				  guint x, guint y, guint i, guint j);
 
-static void gdk_imlib_rotate_image_180 (GdkImlibImage * im);
+static GdkPixbuf *gdk_pixbuf_rotate_image_180 (GdkPixbuf * im);
 
 static void 
 gdk_card_deck_destroy (GtkObject *o)
@@ -260,66 +260,62 @@ gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name)
   return -1;
 }
 
-/* This is more efficient than using the imlib routines: */
-static void
-gdk_imlib_rotate_image_180 (GdkImlibImage * im)
+/* Stolen from gdeck */
+GdkPixbuf *
+gdk_pixbuf_rotate_image_180 (GdkPixbuf *pixbuf)
 {
-  unsigned char      *ptr1, *ptr2, r, rr;
-  int                 w3;
+  GdkPixbuf *result;
+  const int height = gdk_pixbuf_get_height(pixbuf);
+  const int rowstride = gdk_pixbuf_get_rowstride(pixbuf);
+  const int width = gdk_pixbuf_get_width(pixbuf);
+  const int channels = gdk_pixbuf_get_n_channels(pixbuf);
+  const int bits_per_sample = gdk_pixbuf_get_bits_per_sample(pixbuf);
+  const int bytes_per_pixel = (gdk_pixbuf_get_n_channels(pixbuf)*gdk_pixbuf_get_bits_per_sample(pixbuf))/8;
+  guchar *pixels = gdk_pixbuf_get_pixels(pixbuf);
+  guchar *result_pixels;
+  int i, j;
+  int row_size;
 
-  if (!im)
-    return;
+  result = gdk_pixbuf_new(gdk_pixbuf_get_colorspace(pixbuf),
+                          gdk_pixbuf_get_has_alpha(pixbuf),
+                          gdk_pixbuf_get_bits_per_sample(pixbuf),
+                          width,
+                          height);
 
-  ptr1 = im->rgb_data;
-  ptr2 = im->rgb_data + im->rgb_height * im->rgb_width * 3 - 3;
-  for (; ptr1 < ptr2;  ptr2 -= 6)
-    {
-      r = *ptr1;
-      rr = *ptr2;
-      *ptr2++ = r;
-      *ptr1++ = rr;
-      r = *ptr1;
-      rr = *ptr2;
-      *ptr2++ = r;
-      *ptr1++ = rr;
-      r = *ptr1;
-      rr = *ptr2;
-      *ptr2++ = r;
-      *ptr1++ = rr;
+  result_pixels = gdk_pixbuf_get_pixels(result);
+
+  row_size = width * ((channels * bits_per_sample + 7) / 8);
+
+  for(i = 0; i < height; i++) {
+    for (j = 0; j < width; j++) {
+      memcpy(result_pixels+(((height-1)-i)*rowstride) + ((width-1)-j)*bytes_per_pixel, pixels+(i*rowstride) + j*bytes_per_pixel,  bytes_per_pixel);
     }
-  w3 = im->border.top;
-  im->border.top = im->border.bottom;
-  im->border.bottom = w3;
-  _gdk_imlib_dirty_images(im);
-  _gdk_imlib_dirty_pixmaps(im);
+  }
+  return result;
 }
 
 static gboolean
 gdk_card_deck_file_load (GdkCardDeckFile* file)
 {
   if (!file->refs) {
-    GdkImlibImage *im;
-    if (!(im = gdk_imlib_load_image (file->name))) 
+    GdkPixbuf *im;
+    if (!(im = gdk_pixbuf_new_from_file (file->name))) 
       return FALSE;
     
-    file->width = im->rgb_width / file->cols;
-    file->height = im->rgb_height/ file->rows;
+    file->width = gdk_pixbuf_get_width (im) / file->cols;
+    file->height = gdk_pixbuf_get_height (im) / file->rows;
     
-    if (!gdk_imlib_render (im, im->rgb_width, im->rgb_height))
+    gdk_pixbuf_render_pixmap_and_mask (im, &file->p, &file->b, 127);
+    if (!file->p || !file->b)
       return FALSE;
-    
-    file->p = gdk_imlib_copy_image (im);
-    file->b = gdk_imlib_copy_mask (im);
     
     if (file->rotate) {
-      gdk_imlib_rotate_image_180 (im);
-      gdk_imlib_render (im, im->rgb_width, im->rgb_height);
-      
-      file->pr = gdk_imlib_copy_image (im);
-      file->br = gdk_imlib_copy_mask (im);
+      GdkPixbuf *imr = gdk_pixbuf_rotate_image_180 (im);
+      gdk_pixbuf_render_pixmap_and_mask (imr, &file->pr, &file->br, 127);
+      gdk_pixbuf_unref (imr);	
     }
     
-    gdk_imlib_destroy_image (im);
+    gdk_pixbuf_unref (im);
   }
   file->refs++;
   return TRUE;
