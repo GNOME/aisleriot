@@ -1,7 +1,7 @@
 AC_INIT(gnomine)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-games, 1.0.51)
+AM_INIT_AUTOMAKE(gnome-games, 1.1.0)
 AM_MAINTAINER_MODE
 AM_ACLOCAL_INCLUDE(macros)
 GNOME_INIT
@@ -24,17 +24,17 @@ AM_CONDITIONAL(CXX_PRESENT, test "x$ac_cv_prog_cxx_works" != xno)
 GNOME_X_CHECKS
 GNOME_CHECK_GUILE
 
-GDK_PIXBUF_CFLAGS=`$GNOME_CONFIG --cflags gdk_pixbuf`
-GDK_PIXBUF_LIBS=`$GNOME_CONFIG --libs gdk_pixbuf`
-AC_SUBST(GDK_PIXBUF_CFLAGS)
-AC_SUBST(GDK_PIXBUF_LIBS)
-HAS_GDK_PIXBUF='yes'
-if test "x$GDK_PIXBUF_CFLAGS" = x; then
-  AC_MSG_WARN(Couldn't find gdk-pixbuf, some games will not be built)
-  HAS_GDK_PIXBUF='no'
-fi
+## GDK_PIXBUF_CFLAGS=`$GNOME_CONFIG --cflags gdk_pixbuf`
+## GDK_PIXBUF_LIBS=`$GNOME_CONFIG --libs gdk_pixbuf`
+## AC_SUBST(GDK_PIXBUF_CFLAGS)
+## AC_SUBST(GDK_PIXBUF_LIBS)
+## HAS_GDK_PIXBUF='yes'
+## if test "x$GDK_PIXBUF_CFLAGS" = x; then
+##   AC_MSG_WARN(Couldn't find gdk-pixbuf, some games will not be built)
+##   HAS_GDK_PIXBUF='no'
+## fi
 
-AM_CONDITIONAL(HAS_GDK_PIXBUF, test "$HAS_GDK_PIXBUF" = yes)
+## AM_CONDITIONAL(HAS_GDK_PIXBUF, test "$HAS_GDK_PIXBUF" = yes)
 
 ## look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
@@ -110,13 +110,6 @@ po/Makefile.in
 macros/Makefile
 intl/Makefile
 idl/Makefile
-iagno2/Makefile
-iagno2/reversi-iagno2/Makefile
-iagno2/plugins/Makefile
-iagno2/plugins/random/Makefile
-iagno2/plugins/swedishchef/Makefile
-iagno2/src/Makefile
-iagno2/tiles/Makefile
 gnomine/Makefile
 scottfree/Makefile
 same-gnome/Makefile
@@ -161,3 +154,10 @@ xbill/Makefile
 xbill/pixmaps/Makefile
 xbill/cursors/Makefile
 ])
+## iagno2/Makefile
+## iagno2/reversi-iagno2/Makefile
+## iagno2/plugins/Makefile
+## iagno2/plugins/random/Makefile
+## iagno2/plugins/swedishchef/Makefile
+## iagno2/src/Makefile
+## iagno2/tiles/Makefile

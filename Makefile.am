@@ -10,18 +10,16 @@ if CXX_PRESENT
 cxx_DIRS = gnometris xbill
 endif
 
-if HAS_GDK_PIXBUF
-gdk_pixbuf_DIRS = gnibbles
-endif
-
 #if GDK_PIXBUF
 #gdk_pixbuf_DIRS = gnibbles
 #endif
 
+#$(gdk_pixbuf_DIRS) \
+
 SUBDIRS = intl po macros \
 	  freecell gnomine same-gnome scottfree mahjongg gturing \
           gtali gnobots2 iagno gnotravex gnome-stones gnotski \
-	  $(guile_DIRS) $(cxx_DIRS) idl $(gdk_pixbuf_DIRS) glines gataxx
+	  $(guile_DIRS) $(cxx_DIRS) idl glines gataxx gnibbles
 
 #$(objc_DIRS)
 
