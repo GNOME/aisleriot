@@ -34,50 +34,10 @@ void draw_cards () {
 
     if ((card_list = hslot->cards)) {
 
-      switch(hslot->type) {
-
-      case NORMAL_SLOT:
-
-	card_list = g_list_last (card_list);
-	break;
-
-      case PARTIALLY_EXPANDING_SLOT:
-      case PARTIALLY_EXPANDING_SLOT_RIGHT:
-
-	if (g_list_length(card_list) > hslot->expansion_depth)
-	  card_list = g_list_nth(card_list, 
-				 g_list_length(card_list) - 
-				 hslot->expansion_depth);
-	break;
-
-      case EXPANDING_SLOT:
-      case EXPANDING_SLOT_RIGHT:
-
-	break;
-      }
+      card_list = g_list_nth(card_list, hslot->length - hslot->exposed);
 
       x = hslot->x;
       y = hslot->y;
-      dx = dy = 0; 
-
-      switch(hslot->type) {
-
-      case NORMAL_SLOT:
-
-	break;
-
-      case PARTIALLY_EXPANDING_SLOT:
-      case EXPANDING_SLOT:
-
-	dy = EXPANDED_VERT_OFFSET;
-	break;
-
-      case PARTIALLY_EXPANDING_SLOT_RIGHT:
-      case EXPANDING_SLOT_RIGHT:
-
-	dx = EXPANDED_HORIZ_OFFSET;
-	break;
-      }
 
       for (; card_list; card_list = card_list->next) {
 	card_type *card = card_list->data;
@@ -90,7 +50,7 @@ void draw_cards () {
 	gdk_gc_set_clip_origin(draw_gc, x, y);
 	gdk_draw_pixmap(surface, draw_gc, image, 0, 0, x, y, -1, -1);
 	
-	x += dx; y += dy;
+	x += hslot->dx; y += hslot->dy;
       }
     }
   }
