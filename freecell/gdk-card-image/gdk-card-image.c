@@ -27,7 +27,9 @@
 
 #include <config.h>
 #include <gnome.h>
-#ifdef HAVE_SYS_DIR_H
+#ifdef HAVE_SYS_DIRENT_H
+#include <sys/dirent.h>
+#elif defined(HAVE_SYS_DIR_H)
 #include <sys/dir.h>
 #else
 #include <dirent.h>

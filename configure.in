@@ -105,6 +105,8 @@ AC_CHECK_HEADER(sys/dir.h, [sys_dir_h_found=yes],
   ])
 AC_SUBST(UCB_CFLAGS)
 
+AC_CHECK_HEADERS(sys/dirent.h)
+
 if test x$sys_dir_h_found = xyes; then
   AC_DEFINE(HAVE_SYS_DIR_H)
   AC_MSG_CHECKING([if sys/dir.h defines struct direct or dirent])
