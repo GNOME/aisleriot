@@ -286,4 +286,15 @@ echo "         is to use the --localstatedir option. For example,"
 echo "         Red Hat 9 and Fedora need --localstatedir=/var/lib if you"
 echo "         are using the default libgnome package since scores are"
 echo "         stored in /var/lib/games/."
+echo
 fi
+
+if echo foo | xgettext --from-code=UTF-8 -LC -o - - 2>/dev/null ; then 
+:; 
+else 
+echo "Warning: Your version of gettext does not support --from-code."
+echo "         This will cause translation of some strings in non US-English"
+echo "         locales to fail. For full support please upgrade to GNU"
+echo "         gettext 0.12 or later."
+echo
+fi 
