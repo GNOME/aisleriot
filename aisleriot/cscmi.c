@@ -29,6 +29,21 @@
 #include "menu.h"
 #include "draw.h"
 
+/* Generic game data */
+typedef struct {
+  SCM start_game_lambda;
+  SCM button_pressed_lambda;
+  SCM button_released_lambda;
+  SCM button_clicked_lambda;
+  SCM button_double_clicked_lambda;
+  SCM game_over_lambda;
+  SCM winning_game_lambda;
+  SCM hint_lambda;
+  SCM get_options_lambda;
+  SCM apply_options_lambda;
+  SCM timeout_lambda;
+} lambda_data;
+
 lambda_data* game_data = NULL;
 
 /* Scheme to C functions... */

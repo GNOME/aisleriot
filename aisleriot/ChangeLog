@@ -1,3 +1,7 @@
+Mon Nov 15 01:54:31 2004  Jonathan Blandford  <jrb@redhat.com>
+
+	* cscmi.[ch]: Minor cleanups
+
 Sat Nov 13 02:29:28 2004  Jonathan Blandford  <jrb@redhat.com>
 
 	* cscmi.c: (add_slot), (make_card), (scm_gettext),
@@ -18,7 +22,7 @@ Sat Nov 13 02:29:28 2004  Jonathan Blandford  <jrb@redhat.com>
 	(main_prog), (main): Kill all gh_ calls in favor of scm_ calls in
 	preparation for guile dropping all the gh_ calls.
 
-	* card.c: Replace all direct calls to the scheme lambdas with
+	* cscmi.c: Replace all direct calls to the scheme lambdas with
 	indirect calls that catch exceptions.  We don't do anything w/ the
 	exceptions yet, but we no longer exit immediately.
 

@@ -25,47 +25,30 @@
 #include "card.h"
 #include "slot.h"
 
-/* Generic game data */
-typedef struct {
-  SCM start_game_lambda;
-  SCM button_pressed_lambda;
-  SCM button_released_lambda;
-  SCM button_clicked_lambda;
-  SCM button_double_clicked_lambda;
-  SCM game_over_lambda;
-  SCM winning_game_lambda;
-  SCM hint_lambda;
-  SCM get_options_lambda;
-  SCM apply_options_lambda;
-  SCM timeout_lambda;
-} lambda_data;
-
 
 /* Init function */
-void       cscm_init (void);
+void       cscm_init                          (void);
 
 /* Scheme to C functions... */
-void       add_slot  (SCM        slot_data);
-GList*     new_deck  (SCM        deck_data);
-hcard_type new_card  (SCM        card_data);
+void       add_slot                           (SCM        slot_data);
+GList*     new_deck                           (SCM        deck_data);
+hcard_type new_card                           (SCM        card_data);
 
 /* C to Scheme functions... */
-SCM        make_card (hcard_type card);
-
-SCM cscmi_start_game_lambda (void);
-SCM cscmi_button_pressed_lambda (SCM slot_id,
-				 SCM cards);
-SCM cscmi_button_released_lambda (SCM start_slot,
-				  SCM cards,
-				  SCM end_slot);
-SCM cscmi_button_clicked_lambda (SCM slot_id);
-SCM cscmi_button_double_clicked_lambda (SCM slot_id);
-SCM cscmi_game_over_lambda (void);
-SCM cscmi_winning_game_lambda (void);
-SCM cscmi_hint_lambda (void);
-SCM cscmi_get_options_lambda (void);
-SCM cscmi_apply_options_lambda (SCM options);
-SCM cscmi_timeout_lambda (void);
-
+SCM        make_card                          (hcard_type card);
+SCM        cscmi_start_game_lambda            (void);
+SCM        cscmi_button_pressed_lambda        (SCM        slot_id,
+					       SCM        cards);
+SCM        cscmi_button_released_lambda       (SCM        start_slot,
+					       SCM        cards,
+					       SCM        end_slot);
+SCM        cscmi_button_clicked_lambda        (SCM        slot_id);
+SCM        cscmi_button_double_clicked_lambda (SCM        slot_id);
+SCM        cscmi_game_over_lambda             (void);
+SCM        cscmi_winning_game_lambda          (void);
+SCM        cscmi_hint_lambda                  (void);
+SCM        cscmi_get_options_lambda           (void);
+SCM        cscmi_apply_options_lambda         (SCM        options);
+SCM        cscmi_timeout_lambda               (void);
 
 #endif
