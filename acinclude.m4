@@ -9,7 +9,7 @@ AC_DEFUN([GAMES_CHECK_GUILE],
 [
 dnl	AC_MSG_WARN([Withval is: $withval])
 	guile_msg='Huh?'
-if test x$withval = xno ; then
+if test x$with_guile = xno ; then
 	guile_msg='disabled'
 	GUILE_LIBS=
 	GUILE_INCS=
