@@ -263,6 +263,15 @@
 (define (timeout) 
   #f)
 
+(define (undo-func data)
+  (set-score! (car data))
+  (set! free-reserves (cadr data)))
+
+(define (record-move slot-id old-cards)
+  (set! MOVE (list undo-func
+                   (list (get-score) free-reserves)
+                   (snapshot-board 0 slot-id old-cards))))
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
 apply-options timeout)
