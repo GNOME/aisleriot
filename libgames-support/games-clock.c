@@ -101,7 +101,7 @@ clock_paint (GamesClock *clock)
         
         string = g_strdup_printf ( "%.2d:%.2d:%.2d", hours, mins, secs);
         
-        gtk_label_set (GTK_LABEL (clock), string);
+        gtk_label_set_text (GTK_LABEL (clock), string);
                                          
         g_free (string);
 }

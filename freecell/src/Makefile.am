@@ -23,5 +23,5 @@ Games_in_files = freecell.desktop.in
 Games_DATA = $(Games_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-EXTRA_DIST = $(Games_DATA)
+EXTRA_DIST = $(Games_in_files)
 
