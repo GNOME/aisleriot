@@ -237,6 +237,7 @@ gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name)
     GDir * de;
     GList * filelist = NULL;
     GList * node;
+    gchar * path;
     const gchar * filename;
     int records = 0;
 
@@ -244,10 +245,10 @@ gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name)
       return -1;
 
     de = g_dir_open (dir_name, 0, NULL);
-    while (filename = g_dir_read_name (de)) {
+    while ((filename = g_dir_read_name (de))) {
       if (is_image (filename)) {
-        filelist = g_list_prepend (filelist,
-                                   g_strconcat (dir_name, filename, NULL));
+        path = g_build_filename (dir_name, filename, NULL);
+        filelist = g_list_prepend (filelist, path);
         records++;
       }
     }
