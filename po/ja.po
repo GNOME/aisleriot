@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-12 19:09+0900\n"
-"PO-Revision-Date: 2004-01-12 19:05+0900\n"
+"POT-Creation-Date: 2004-01-26 22:04+0900\n"
+"PO-Revision-Date: 2004-01-26 22:00+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,16 @@ msgstr "カードの並びを整理してみよう"
 msgid "an empty foundation pile"
 msgstr "空の組札の山"
 
-#: aisleriot/aisleriot.schemas.in.h:1 blackjack/data/blackjack.schemas.in.h:1
+#: aisleriot/aisleriot.schemas.in.h:1
+msgid ""
+"A list of strings that come in the form of a quintuple: name, wins, total "
+"games played, best time (in seconds) and worst time (also in seconds). "
+"Unplayed games do not need to be represented."
+msgstr ""
+"５つからなる文字列のリスト: 名前、勝ち数、プレイ数、ベスト・タイム (秒)、と"
+"ワースト・タイム(秒) です。プレイしていない数は示す必要はありません。"
+
+#: aisleriot/aisleriot.schemas.in.h:2 blackjack/data/blackjack.schemas.in.h:1
 msgid ""
 "A string containing a list of files to use to describe the cards. The format "
 "is obscure and defined by the gdk-card-image library"
@@ -109,23 +118,27 @@ msgstr ""
 "カードの描写に使用するファイル一覧を示す文字列です。その書式はラッピングされ"
 "ており、gdk-card-image ライブラリにて定義してあります。"
 
-#: aisleriot/aisleriot.schemas.in.h:2
+#: aisleriot/aisleriot.schemas.in.h:3
+msgid "Statistics of games played"
+msgstr "プレイしたゲームの統計"
+
+#: aisleriot/aisleriot.schemas.in.h:4
 msgid "The game file to use"
 msgstr "使用するゲーム・ファイル"
 
-#: aisleriot/aisleriot.schemas.in.h:3
+#: aisleriot/aisleriot.schemas.in.h:5
 msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "プレイするソリティア・ゲームを格納したスキーマ・ファイルの名前です。"
 
-#: aisleriot/aisleriot.schemas.in.h:4 blackjack/data/blackjack.schemas.in.h:10
+#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:10
 msgid "What card style to use"
 msgstr "使用するカードの絵柄"
 
-#: aisleriot/aisleriot.schemas.in.h:5 blackjack/data/blackjack.schemas.in.h:11
+#: aisleriot/aisleriot.schemas.in.h:7 blackjack/data/blackjack.schemas.in.h:11
 msgid "Whether or not to show the toolbar"
 msgstr "ツールバーの表示/非表示"
 
-#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:12
+#: aisleriot/aisleriot.schemas.in.h:8 blackjack/data/blackjack.schemas.in.h:12
 msgid "Whether or not to show the toolbar."
 msgstr "ツールバーの表示/非表示を決定します"
 
@@ -321,7 +334,7 @@ msgstr "ゲームオーバーです"
 msgid "New Game"
 msgstr "新規ゲーム"
 
-#: aisleriot/dialog.c:146 mahjongg/mahjongg.c:1402
+#: aisleriot/dialog.c:146 mahjongg/mahjongg.c:1861
 msgid "Select Game"
 msgstr "ゲームの選択"
 
@@ -555,8 +568,8 @@ msgstr ""
 "カードを、最も自然なレイアウトに合うような順番に配置することを目標にして下さ"
 "い。"
 
-#: aisleriot/menu.c:73 gnome-stones/main.c:1074 gnomine/gnomine.c:374
-#: mahjongg/mahjongg.c:1163
+#: aisleriot/menu.c:73 gnome-stones/main.c:1077 gnomine/gnomine.c:374
+#: mahjongg/mahjongg.c:1622
 msgid "Main game:"
 msgstr "メイン・ゲーム:"
 
@@ -565,19 +578,20 @@ msgid "Card games:"
 msgstr "カード・ゲーム:"
 
 #. Translator credits
-#: aisleriot/menu.c:93 gataxx/gataxx.c:398 glines/glines.c:874
+#: aisleriot/menu.c:93 gataxx/gataxx.c:398 glines/glines.c:879
 #: gnect/src/main.c:814 gnibbles/main.c:181 gnobots2/menu.c:194
-#: gnome-stones/main.c:1085 gnometris/tetris.cpp:1110 gnomine/gnomine.c:387
+#: gnome-stones/main.c:1088 gnometris/tetris.cpp:1110 gnomine/gnomine.c:387
 #: gnotravex/gnotravex.c:1460 gnotski/gnotski.c:1137 gtali/gyahtzee.c:390
-#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1180 same-gnome/same-gnome.c:709
+#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1639 same-gnome/same-gnome.c:709
 msgid "translator_credits"
 msgstr ""
-"Yukihiro Nakai <Nakai@technologist.com>\n"
-"Akira Higuchi <a-higuti@math.sci.hokudai.ac.jp>\n"
-"Yuusuke Tahara <tahara@gnome.gr.jp>\n"
+"相花 毅 <aihana@gnome.gr.jp>\n"
+"KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
 "Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
-"Takeshi Aihana <aihana@gnome.gr.jp>\n"
-"KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>"
+"Yuusuke Tahara <tahara@gnome.gr.jp>\n"
+"Akira Higuchi <a-higuti@math.sci.hokudai.ac.jp>\n"
+"Yukihiro Nakai <Nakai@technologist.com>\n"
+"日本GNOMEユーザー会 <http://www.gnome.gr.jp>"
 
 #: aisleriot/menu.c:114
 msgid "AisleRiot"
@@ -600,11 +614,11 @@ msgid "Modify the options for this game"
 msgstr "このゲームのオプションを設定します"
 
 #: aisleriot/menu.c:185 blackjack/src/menu.cpp:146 gnect/src/main.c:1166
-#: mahjongg/mahjongg.c:355
+#: mahjongg/mahjongg.c:814
 msgid "_Toolbar"
 msgstr "ツールバー(_T)"
 
-#: aisleriot/menu.c:185 blackjack/src/menu.cpp:147 mahjongg/mahjongg.c:356
+#: aisleriot/menu.c:185 blackjack/src/menu.cpp:147 mahjongg/mahjongg.c:815
 msgid "Show or hide the toolbar"
 msgstr "ツールバーの表示/非表示を切り替えます"
 
@@ -633,7 +647,7 @@ msgid "Get statistics on the current game"
 msgstr "このゲームでの統計情報を取得します"
 
 #: aisleriot/menu.c:249 blackjack/src/menu.cpp:194 gnect/src/main.c:1190
-#: mahjongg/mahjongg.c:380
+#: mahjongg/mahjongg.c:839
 msgid "New"
 msgstr "新規"
 
@@ -641,7 +655,7 @@ msgstr "新規"
 msgid "Start a new game"
 msgstr "新しいゲームを開始します"
 
-#: aisleriot/menu.c:252 blackjack/src/menu.cpp:197 mahjongg/mahjongg.c:384
+#: aisleriot/menu.c:252 blackjack/src/menu.cpp:197 mahjongg/mahjongg.c:843
 msgid "Restart"
 msgstr "最初から"
 
@@ -653,7 +667,7 @@ msgstr "ゲームをやり直します"
 msgid "Select"
 msgstr "選択"
 
-#: aisleriot/menu.c:260 gnect/src/main.c:1193 mahjongg/mahjongg.c:396
+#: aisleriot/menu.c:260 gnect/src/main.c:1193 mahjongg/mahjongg.c:855
 msgid "Undo"
 msgstr "戻す"
 
@@ -661,7 +675,7 @@ msgstr "戻す"
 msgid "Undo the last move"
 msgstr "直前の操作を取り消します"
 
-#: aisleriot/menu.c:263 mahjongg/mahjongg.c:400
+#: aisleriot/menu.c:263 mahjongg/mahjongg.c:859
 msgid "Redo"
 msgstr "やり直す"
 
@@ -670,7 +684,7 @@ msgid "Redo the undone move"
 msgstr "取り消した操作を再び実行します"
 
 #: aisleriot/menu.c:266 blackjack/src/menu.cpp:201 gnect/src/main.c:1194
-#: mahjongg/mahjongg.c:402
+#: mahjongg/mahjongg.c:861
 msgid "Hint"
 msgstr "ヒント"
 
@@ -715,12 +729,12 @@ msgstr "ゴミ箱から場に戻しなさい"
 msgid "empty foundation"
 msgstr "空の組札"
 
-#: aisleriot/sol.c:132
+#: aisleriot/sol.c:133
 #, c-format
 msgid "AisleRiot: %s (%d)"
 msgstr "AisleRiot: %s (%d)"
 
-#: aisleriot/sol.c:159
+#: aisleriot/sol.c:160
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -733,30 +747,30 @@ msgstr ""
 "\n"
 "Aisleriot のインストールを確認して下さい。"
 
-#: aisleriot/sol.c:217 aisleriot/sol.c:237
+#: aisleriot/sol.c:226 aisleriot/sol.c:246
 msgid "Help"
 msgstr "ヘルプ"
 
-#: aisleriot/sol.c:237 aisleriot/sol.c:360
+#: aisleriot/sol.c:246 aisleriot/sol.c:379
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: aisleriot/sol.c:407 glines/glines.c:1489 gnobots2/statusbar.c:65
+#: aisleriot/sol.c:426 glines/glines.c:1494 gnobots2/statusbar.c:65
 #: gnome-stones/status.c:71 gnometris/scoreframe.cpp:57 gnomine/gnomine.c:380
 #: same-gnome/same-gnome.c:959
 msgid "Score:"
 msgstr "スコア:"
 
-#: aisleriot/sol.c:411 gnomine/gnomine.c:933 gnotravex/gnotravex.c:993
-#: mahjongg/mahjongg.c:1686
+#: aisleriot/sol.c:430 gnomine/gnomine.c:933 gnotravex/gnotravex.c:993
+#: mahjongg/mahjongg.c:2145
 msgid "Time:"
 msgstr "タイム:"
 
-#: aisleriot/sol.c:468 blackjack/src/blackjack.cpp:587
+#: aisleriot/sol.c:487 blackjack/src/blackjack.cpp:587
 msgid "Variation on game rules"
 msgstr "ゲームの種類"
 
-#: aisleriot/sol.c:469 blackjack/src/blackjack.cpp:588 gnobots2/gnobots.c:60
+#: aisleriot/sol.c:488 blackjack/src/blackjack.cpp:588 gnobots2/gnobots.c:60
 #: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:889
 msgid "NAME"
 msgstr "NAME"
@@ -1085,21 +1099,34 @@ msgstr "カードの山を他の場に移動してみよう"
 msgid "Place something on to the empty Tableau slot"
 msgstr "空の絵札のスロットに何か置きなさい"
 
-#: aisleriot/statistics.glade.h:1
-msgid "<b>Game Name</b>"
-msgstr "<b>ゲームの名前</b>"
+#. For translators: N/A means "Not Applicable", use whatever
+#. * abbreviation you have for a value that has no meaning.
+#: aisleriot/statistics.c:95 aisleriot/statistics.c:104
+#: aisleriot/statistics.c:113
+msgid "N/A"
+msgstr "N/A"
 
-#: aisleriot/statistics.glade.h:2
+#. Translators: this represents minutes:seconds.
+#: aisleriot/statistics.c:99 aisleriot/statistics.c:108
+#, c-format
+msgid "%d:%02d"
+msgstr "%d:%02d"
+
+#: aisleriot/statistics.glade.h:1
 msgid "<b>Time</b>"
 msgstr "<b>タイム</b>"
 
-#: aisleriot/statistics.glade.h:3
+#: aisleriot/statistics.glade.h:2
 msgid "<b>Wins</b>"
 msgstr "<b>勝ち数</b>"
 
-#: aisleriot/statistics.glade.h:4
+#: aisleriot/statistics.glade.h:3
 msgid "Best:"
 msgstr "ベスト:"
+
+#: aisleriot/statistics.glade.h:4
+msgid "Do not translate this"
+msgstr ""
 
 #: aisleriot/statistics.glade.h:5
 msgid "Percentage:"
@@ -1519,6 +1546,14 @@ msgstr "チップ:"
 msgid "Balance:"
 msgstr "バランス:"
 
+#: blackjack/src/card.cpp:156
+msgid "Could not load the card deck images."
+msgstr "カードの模様を表す画像を読み込めませんでした。"
+
+#: blackjack/src/card.cpp:157
+msgid "Blackjack will now exit."
+msgstr "Blackjack は強制終了します。"
+
 #: blackjack/src/dialog.cpp:50
 msgid "Would you like insurance?"
 msgstr "保険に興味がありますか？"
@@ -1538,7 +1573,7 @@ msgstr "ブラックジャックの設定"
 
 #: blackjack/src/dialog.cpp:233 gnect/src/prefs.c:464
 #: gnibbles/preferences.c:327 gnobots2/properties.c:875
-#: gnome-stones/preferences.c:740
+#: gnome-stones/preferences.c:741
 msgid "_Game"
 msgstr "ゲーム(_G)"
 
@@ -1980,7 +2015,7 @@ msgstr ""
 msgid "Match five balls of the same color in a row to score!"
 msgstr "列にある 5 個の石を同じ色にすると得点が入ります！"
 
-#: glines/glines.c:361 glines/glines.c:893
+#: glines/glines.c:361 glines/glines.c:898
 msgid "Glines"
 msgstr "Glines"
 
@@ -1989,48 +2024,48 @@ msgid "Game Over!"
 msgstr "ゲーム・オーバー！"
 
 #. Can't move there!
-#: glines/glines.c:545
+#: glines/glines.c:550
 msgid "Can't move there!"
 msgstr "そこへ移動できません！"
 
-#: glines/glines.c:896
+#: glines/glines.c:901
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "一世を風靡したカラーライン・ゲームの GNOME 版です。"
 
-#: glines/glines.c:1033
+#: glines/glines.c:1038
 msgid "Glines Preferences"
 msgstr "Glines の設定"
 
-#: glines/glines.c:1045
+#: glines/glines.c:1050
 msgid "Themes"
 msgstr "テーマ"
 
-#: glines/glines.c:1054
+#: glines/glines.c:1059
 msgid "Ball image"
 msgstr "ボールの画像"
 
-#: glines/glines.c:1064 glines/glines.schemas.in.h:1
+#: glines/glines.c:1069 glines/glines.schemas.in.h:1
 #: gnobots2/gnobots2.schemas.in.h:1
 msgid "Background color"
 msgstr "背景色"
 
-#: glines/glines.c:1078
+#: glines/glines.c:1083
 msgid "General"
 msgstr "全般"
 
-#: glines/glines.c:1086
+#: glines/glines.c:1091
 msgid "Use fast moves"
 msgstr "素早く移動する"
 
-#: glines/glines.c:1432 glines/glines.desktop.in.h:1
+#: glines/glines.c:1437 glines/glines.desktop.in.h:1
 msgid "Lines"
 msgstr "Lines"
 
-#: glines/glines.c:1445
+#: glines/glines.c:1450
 msgid "Welcome to Glines!"
 msgstr "Glines へようこそ！"
 
-#: glines/glines.c:1459
+#: glines/glines.c:1464
 msgid "Next Balls:"
 msgstr "次のボール:"
 
@@ -2146,7 +2181,7 @@ msgstr "右に移動"
 msgid "Show tool bar"
 msgstr "ツールバーの表示"
 
-#: gnect/data/gnect.schemas.in.h:12 gnome-stones/preferences.c:850
+#: gnect/data/gnect.schemas.in.h:12 gnome-stones/preferences.c:851
 msgid "Sound"
 msgstr "効果音"
 
@@ -2270,7 +2305,7 @@ msgstr "サウンドを有効にする(_S)"
 msgid "Enable or disable sound"
 msgstr "サウンドの有効/無効を切り替えます"
 
-#: gnect/src/main.c:1190 mahjongg/mahjongg.c:380
+#: gnect/src/main.c:1190 mahjongg/mahjongg.c:839
 msgid "New game"
 msgstr "新規にゲームを開始します"
 
@@ -3132,7 +3167,7 @@ msgstr "ジョイスティックのデバイス"
 msgid "Joystick switch level"
 msgstr "ジョイスティックの切り替えレベル"
 
-#: gnome-stones/gnome-stones.schemas.in.h:9 gnome-stones/preferences.c:889
+#: gnome-stones/gnome-stones.schemas.in.h:9 gnome-stones/preferences.c:890
 msgid "Scroll method"
 msgstr "画面スクロール"
 
@@ -3207,12 +3242,12 @@ msgstr ""
 "GNOME ストーンが正しくインストールされているか確認して下さい！"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:190 gnome-stones/main.c:980 gnome-stones/main.c:1103
-#: gnome-stones/main.c:1343
+#: gnome-stones/main.c:190 gnome-stones/main.c:983 gnome-stones/main.c:1106
+#: gnome-stones/main.c:1331
 msgid "GNOME Stones"
 msgstr "GNOME ストーン"
 
-#: gnome-stones/main.c:279 gnome-stones/preferences.c:678
+#: gnome-stones/main.c:279 gnome-stones/preferences.c:679
 msgid "Game title"
 msgstr "ゲームのタイトル"
 
@@ -3222,7 +3257,7 @@ msgstr "開始する洞窟"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:423 gnome-stones/main.c:1031 mahjongg/mahjongg.c:390
+#: gnome-stones/main.c:423 gnome-stones/main.c:1034 mahjongg/mahjongg.c:849
 msgid "Pause"
 msgstr "一時停止"
 
@@ -3234,43 +3269,43 @@ msgstr "おめでとう。あなたの勝利です！"
 msgid "Game over!"
 msgstr "ゲームオーバー！"
 
-#: gnome-stones/main.c:1077
+#: gnome-stones/main.c:1080
 msgid "Sokoban levels:"
 msgstr "倉庫番のレベル:"
 
-#: gnome-stones/main.c:1105
+#: gnome-stones/main.c:1108
 msgid "Mine through dirt and collect gems."
 msgstr "洞窟を採掘しながら宝石を集めて下さい。"
 
-#: gnome-stones/main.c:1128
+#: gnome-stones/main.c:1131
 msgid "_Restart level"
 msgstr "レベルの再スタート(_R)"
 
-#: gnome-stones/main.c:1128
+#: gnome-stones/main.c:1131
 msgid "Restart the current level"
 msgstr "このレベルをもう一度スタートします"
 
-#: gnome-stones/main.c:1233
+#: gnome-stones/main.c:1236
 msgid "Scanning private object directory..."
 msgstr "個人のオブジェクトディレクトリを調べています..."
 
-#: gnome-stones/main.c:1237
+#: gnome-stones/main.c:1240
 msgid "Scanning public object directory..."
 msgstr "共有のオブジェクトディレクトリを調べています..."
 
-#: gnome-stones/main.c:1242
+#: gnome-stones/main.c:1245
 msgid "Filling game widget..."
 msgstr "物体を描画しています..."
 
-#: gnome-stones/main.c:1247
+#: gnome-stones/main.c:1250
 msgid "Scanning private game directory..."
 msgstr "個人のゲームディレクトリを調べています..."
 
-#: gnome-stones/main.c:1251
+#: gnome-stones/main.c:1254
 msgid "Scanning public game directory..."
 msgstr "共有のゲームディレクトリを調べています..."
 
-#: gnome-stones/main.c:1255
+#: gnome-stones/main.c:1258
 msgid "Restoring preferences..."
 msgstr "設定を読み込んでいます..."
 
@@ -3283,72 +3318,72 @@ msgstr "残機が増えました！"
 msgid "Seconds left: %d"
 msgstr "残り時間： %d"
 
-#: gnome-stones/preferences.c:460
+#: gnome-stones/preferences.c:461
 msgid "Neither your chosen game nor the default game could be loaded."
 msgstr "指定したゲームまたはデフォルトのゲームを読み込めませんでした。"
 
-#: gnome-stones/preferences.c:461
+#: gnome-stones/preferences.c:462
 msgid "Please make sure that GNOME Stones is correctly installed."
 msgstr "GNOME ストーンが正しくインストールされているか確認して下さい。"
 
-#: gnome-stones/preferences.c:462
+#: gnome-stones/preferences.c:463
 msgid "You may be able to select a different game from the preferences dialog."
 msgstr "設定ダイアログから別のゲームを選択できるかもしれません。"
 
-#: gnome-stones/preferences.c:628
+#: gnome-stones/preferences.c:629
 msgid "GNOME Stones Preferences"
 msgstr "GNOME ストーンの設定"
 
-#: gnome-stones/preferences.c:685
+#: gnome-stones/preferences.c:686
 msgid "Caves"
 msgstr "洞窟の数"
 
-#: gnome-stones/preferences.c:762
+#: gnome-stones/preferences.c:763
 msgid "Device"
 msgstr "デバイス"
 
-#: gnome-stones/preferences.c:771
+#: gnome-stones/preferences.c:772
 msgid "Joystick device:"
 msgstr "ジョイスティック:"
 
 #. We definatly have a "disable" entry.
-#: gnome-stones/preferences.c:777
+#: gnome-stones/preferences.c:778
 msgid "disabled"
 msgstr "使用しない"
 
-#: gnome-stones/preferences.c:808
+#: gnome-stones/preferences.c:809
 msgid "Digital joystick emulation"
 msgstr "デジタル式ジョイスティックのエミュレート"
 
-#: gnome-stones/preferences.c:817
+#: gnome-stones/preferences.c:818
 msgid "Switch level:"
 msgstr "閾値:"
 
-#: gnome-stones/preferences.c:840
+#: gnome-stones/preferences.c:841
 msgid "_Joystick"
 msgstr "ジョイスティック(_J)"
 
-#: gnome-stones/preferences.c:858
+#: gnome-stones/preferences.c:859
 msgid "Enable sound"
 msgstr "サウンドを有効にする"
 
-#: gnome-stones/preferences.c:870
+#: gnome-stones/preferences.c:871
 msgid "_Sound"
 msgstr "サウンド(_S)"
 
-#: gnome-stones/preferences.c:909
+#: gnome-stones/preferences.c:910
 msgid "Atari like scrolling"
 msgstr "Atari のようなスクロール"
 
-#: gnome-stones/preferences.c:913
+#: gnome-stones/preferences.c:914
 msgid "Smooth scrolling"
 msgstr "スムーズなスクロール"
 
-#: gnome-stones/preferences.c:917
+#: gnome-stones/preferences.c:918
 msgid "Always in the center"
 msgstr "画面中央を固定する"
 
-#: gnome-stones/preferences.c:929
+#: gnome-stones/preferences.c:930
 msgid "_Misc."
 msgstr "その他(_M)"
 
@@ -3975,9 +4010,13 @@ msgstr "%s！ -- あなたの番です。"
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "３回までしかサイを振れません！ 役を選択して下さい。"
 
+#: gtali/gyahtzee.c:380
+msgid "GNOME version (1998):"
+msgstr "GNOME バージョン (1998):"
+
 #: gtali/gyahtzee.c:382
 msgid "Curses version (1992):"
-msgstr "Curses version (1992):"
+msgstr "Curses バージョン (1992):"
 
 #: gtali/gyahtzee.c:412
 msgid "A sort of poker with dice and less money."
@@ -4263,131 +4302,163 @@ msgstr ""
 "お使いの GConf の設定、特にスキーマが正しくインストールされているか確認して下"
 "さい。"
 
-#: mahjongg/mahjongg.c:324
+#: mahjongg/mahjongg.c:713
+msgid "Easy"
+msgstr "イージー"
+
+#: mahjongg/mahjongg.c:714
+msgid "Difficult"
+msgstr "デフィカルト"
+
+#: mahjongg/mahjongg.c:715
+msgid "Confounding Cross"
+msgstr "Confounding Cross"
+
+#: mahjongg/mahjongg.c:716
+msgid "Pyramid's Walls"
+msgstr "Pyramid's Walls"
+
+#: mahjongg/mahjongg.c:717
+msgid "Tic-Tac-Toe"
+msgstr "Tic-Tac-Toe"
+
+#: mahjongg/mahjongg.c:718
+msgid "Cloud"
+msgstr "Cloud"
+
+#: mahjongg/mahjongg.c:719
+msgid "Red Dragon"
+msgstr "レッド・ドラゴン"
+
+#: mahjongg/mahjongg.c:720
+msgid "Four Bridges"
+msgstr "四つの橋"
+
+#: mahjongg/mahjongg.c:783
 msgid "New game with _seed..."
 msgstr "乱数の種を指定して新規ゲーム(_S)"
 
-#: mahjongg/mahjongg.c:325
+#: mahjongg/mahjongg.c:784
 msgid "Start a new game giving a seed number..."
 msgstr "乱数の種を指定してから新規ゲームを開始します"
 
-#: mahjongg/mahjongg.c:340
+#: mahjongg/mahjongg.c:799
 msgid "Shu_ffle tiles"
 msgstr "シャッフル(_F)"
 
-#: mahjongg/mahjongg.c:340 mahjongg/mahjongg.c:406
+#: mahjongg/mahjongg.c:799 mahjongg/mahjongg.c:865
 msgid "Shuffle tiles"
 msgstr "牌をシャッフルします"
 
-#: mahjongg/mahjongg.c:384
+#: mahjongg/mahjongg.c:843
 msgid "Restart game"
 msgstr "ゲームをやり直します"
 
-#: mahjongg/mahjongg.c:390
+#: mahjongg/mahjongg.c:849
 msgid "Pause game"
 msgstr "ゲームを一時停止します"
 
-#: mahjongg/mahjongg.c:396
+#: mahjongg/mahjongg.c:855
 msgid "Undo previous move"
 msgstr "直前の一手を取り消します"
 
-#: mahjongg/mahjongg.c:402
+#: mahjongg/mahjongg.c:861
 msgid "Get a hint"
 msgstr "ヒントを得ます"
 
-#: mahjongg/mahjongg.c:406 mahjongg/mahjongg.c:910
+#: mahjongg/mahjongg.c:865 mahjongg/mahjongg.c:1369
 msgid "Shuffle"
 msgstr "牌をシャッフルします"
 
-#: mahjongg/mahjongg.c:617
+#: mahjongg/mahjongg.c:1076
 msgid ""
 "This new mapset will take effect when you start a new game, or when Mahjongg "
 "is restarted."
 msgstr ""
-"設定した新しい配置は、ゲームを新規に開始する、または Mahjongg を再起動すると"
-"適用されます。"
+"設定した新しい配置は、ゲームを新規に開始するか Mahjongg を再起動すると適用さ"
+"れます。"
 
-#: mahjongg/mahjongg.c:870 mahjongg/mahjongg.c:876
+#: mahjongg/mahjongg.c:1329 mahjongg/mahjongg.c:1335
 msgid "These tiles don't match."
 msgstr "牌が一致しません。"
 
-#: mahjongg/mahjongg.c:908
+#: mahjongg/mahjongg.c:1367
 msgid "There are no more moves."
 msgstr "残念ながら、手詰まりです。"
 
-#: mahjongg/mahjongg.c:975
+#: mahjongg/mahjongg.c:1434
 msgid "Preferences"
 msgstr "設定"
 
-#: mahjongg/mahjongg.c:994
+#: mahjongg/mahjongg.c:1453
 msgid "Tiles"
 msgstr "タイル"
 
-#: mahjongg/mahjongg.c:1002
+#: mahjongg/mahjongg.c:1461
 msgid "Tile Set"
 msgstr "絵柄:"
 
-#: mahjongg/mahjongg.c:1015
+#: mahjongg/mahjongg.c:1474
 msgid "Maps"
 msgstr "マップ"
 
-#: mahjongg/mahjongg.c:1023
+#: mahjongg/mahjongg.c:1482
 msgid "Select Map"
 msgstr "マップの選択"
 
-#: mahjongg/mahjongg.c:1036
+#: mahjongg/mahjongg.c:1495
 msgid "Colors"
 msgstr "色"
 
-#: mahjongg/mahjongg.c:1044
+#: mahjongg/mahjongg.c:1503
 msgid "Background Color"
 msgstr "背景色"
 
-#: mahjongg/mahjongg.c:1058
+#: mahjongg/mahjongg.c:1517
 msgid "Warnings"
 msgstr "警告メッセージ"
 
-#: mahjongg/mahjongg.c:1064
+#: mahjongg/mahjongg.c:1523
 msgid "Warn when tiles don't match"
 msgstr "牌が一致しない場合に警告する"
 
-#: mahjongg/mahjongg.c:1171
+#: mahjongg/mahjongg.c:1630
 msgid "Tiles:"
 msgstr "タイル:"
 
-#: mahjongg/mahjongg.c:1200
+#: mahjongg/mahjongg.c:1659
 msgid "GNOME Mahjongg"
 msgstr "GNOME 上海"
 
-#: mahjongg/mahjongg.c:1203
+#: mahjongg/mahjongg.c:1662
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "東洋のタイル・ゲーム、麻雀の GNOME 版です。"
 
-#: mahjongg/mahjongg.c:1227
+#: mahjongg/mahjongg.c:1686
 msgid "... Game paused ..."
 msgstr "... 一時停止 ..."
 
-#: mahjongg/mahjongg.c:1418
+#: mahjongg/mahjongg.c:1877
 msgid "Game Number:"
 msgstr "乱数の種:"
 
-#: mahjongg/mahjongg.c:1496 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1955 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "GNOME 上海"
 
-#: mahjongg/mahjongg.c:1600
+#: mahjongg/mahjongg.c:2059
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "すみません。プレイ可能な設定が見つかりませんでした。"
 
-#: mahjongg/mahjongg.c:1668
+#: mahjongg/mahjongg.c:2127
 msgid "Tiles Left:"
 msgstr "牌の残り:"
 
-#: mahjongg/mahjongg.c:1677
+#: mahjongg/mahjongg.c:2136
 msgid "Moves Left:"
 msgstr "取れる牌:"
 
-#: mahjongg/mahjongg.c:1742
+#: mahjongg/mahjongg.c:2201
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "GNOME 上海 へようこそ！"
 
