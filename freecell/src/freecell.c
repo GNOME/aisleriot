@@ -1,5 +1,5 @@
-/* freecell.c
-   Copyright (C) 1997, 1998 Ryu Changwoo
+/* freecell.c --
+   Copyright (C) 1998 Free Software Foundation, Inc.
 
    This program is free software; you can redistribute it and'or modify
    it under the terms of the GNU General Public License as published by
@@ -13,13 +13,13 @@
 
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software
-   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+   USA */
 
-/* Written by Ryu Changwoo <cwryu@eve.kaist.ac.kr>. */
+/* Written by Changwoo Ryu <cwryu@adam.kaist.ac.kr>. */
 
 #include <config.h>
 #include <gnome.h>
-#include <locale.h>
 
 #include "io-gtk.h"
 #include "option.h"
@@ -31,7 +31,7 @@ main (int argc, char **argv)
 {
   argp_program_version = VERSION;
 
-  bindtextdomain (PACKAGE, LOCALEDIR);
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
   gnome_init("freecell", NULL, argc, argv, 0, NULL);

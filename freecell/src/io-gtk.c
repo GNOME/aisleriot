@@ -551,10 +551,9 @@ callback_option (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *dialog;
 
-  dialog = gnome_property_box_new ();
+  dialog = option_dialog ();
 
   gtk_widget_show (dialog);
-  /*  dialog = option_dialog (); */
 }
 
 
