@@ -46,8 +46,8 @@ void set_geometry (double new_width, double new_height) {
   width = new_width;
   height = new_height;
 
-  xslotstep = 1.0*window_width/width;
-  yslotstep = 1.0*window_height/height;
+  xslotstep = window_width/width;
+  yslotstep = window_height/height;
 
   /* FIXME: Resize the cards in here. */
 

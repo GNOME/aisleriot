@@ -256,10 +256,18 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
   return FALSE;
 }
 
+gint app_configure_event (GtkWidget *widget, GdkEventConfigure *event) {
+  GConfClient * gconf_client = gconf_client_get_default ();
+
+  gconf_client_set_int (gconf_client, WIDTH_GCONF_KEY, event->width, NULL);
+  gconf_client_set_int (gconf_client, HEIGHT_GCONF_KEY, event->height, NULL);
+
+  return FALSE;
+}
+
 gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   gint tmptime;
   GtkSettings * settings;
-  GConfClient * gconf_client = gconf_client_get_default ();
 
   if(surface) {
     if(window_width == event->width && window_height == event->height)
@@ -282,10 +290,7 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   settings = gtk_settings_get_default();
   g_object_get(G_OBJECT(settings),"gtk-double-click-time",&tmptime,NULL);
   dbl_click_time = tmptime/1000.0;
-
-  gconf_client_set_int (gconf_client, WIDTH_GCONF_KEY, window_width, NULL);
-  gconf_client_set_int (gconf_client, HEIGHT_GCONF_KEY, window_height, NULL);
-  
+ 
   return FALSE;
 }
 

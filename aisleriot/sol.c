@@ -321,6 +321,8 @@ static void create_sol_board ()
 		      GTK_SIGNAL_FUNC (motion_notify_event), NULL);
   g_signal_connect (GTK_OBJECT (playing_area), "button_press_event",
 		      GTK_SIGNAL_FUNC (button_press_event), NULL);
+  g_signal_connect (GTK_OBJECT (playing_area), "configure_event",
+		      GTK_SIGNAL_FUNC (configure_event), NULL);
 }
 
 void quit_app (GtkMenuItem *menuitem)
@@ -336,19 +338,20 @@ void quit_app (GtkMenuItem *menuitem)
 static void create_main_window ()
 {
   GConfClient * gconf_client = gconf_client_get_default ();
+  gint width, height;
 
-  window_width = gconf_client_get_int (gconf_client, WIDTH_GCONF_KEY, NULL);
-  window_height = gconf_client_get_int (gconf_client, HEIGHT_GCONF_KEY, NULL);
+  width = gconf_client_get_int (gconf_client, WIDTH_GCONF_KEY, NULL);
+  height = gconf_client_get_int (gconf_client, HEIGHT_GCONF_KEY, NULL);
 
   app = gnome_app_new ("aisleriot", _("Aisleriot"));
-  gtk_window_set_default_size (GTK_WINDOW (app), window_width, window_height);
+  gtk_window_set_default_size (GTK_WINDOW (app), width, height);
 
   gtk_widget_realize (app);
 
   g_signal_connect (GTK_OBJECT (app), "delete_event", 
 		      GTK_SIGNAL_FUNC (quit_app), NULL);
   g_signal_connect (GTK_OBJECT (app), "configure_event",
-		      GTK_SIGNAL_FUNC (configure_event), NULL);
+		      GTK_SIGNAL_FUNC (app_configure_event), NULL);
 }
 
 gchar* start_game;

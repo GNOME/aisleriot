@@ -24,6 +24,8 @@
   (make-standard-deck)
   (shuffle-deck)
 
+  ; A lot of this is an awful hack because someone seems to have
+  ; rearranged the cards at some point without renumbering them.
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
@@ -34,7 +36,7 @@
   (add-normal-slot '())
 
 
-  (set! HORIZPOS (get-horiz-start))
+  (set! HORIZPOS 0)
   (add-normal-slot '())
   (add-normal-slot '())
   (add-normal-slot '())
@@ -49,7 +51,7 @@
 
   (add-carriage-return-slot)
 
-  (set! HORIZPOS (+ HORIZPOS 40))
+  (set! HORIZPOS 0.5)
 
   (add-extended-slot '() down)
   (add-extended-slot '() down)
