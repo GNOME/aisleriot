@@ -7,7 +7,7 @@
  */
 
 #include <glib/gstrfuncs.h>
-#include <gtk/gtkmessagedialog.h>
+#include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 #include <bonobo/bonobo-i18n.h> /* Yuck, this should be glib */
 
@@ -78,8 +78,7 @@ games_gconf_sanity_check_string (GConfClient *client, const gchar* key)
                                      "<span weight=\"bold\" size=\"larger\">%s</span>\n\n%s",
                                      _("The default configuration values could not be retrieved correctly."),
                                      _("Please check your GConf configuration, specifically that the schemas have been installed correctly."));
-    /* I know this uses a private field, so give me an easy way to set it. */
-    g_object_set (GTK_MESSAGE_DIALOG (dialog)->label, "use-markup", TRUE, NULL);
+    gtk_label_set_use_markup (GTK_LABEL (GTK_MESSAGE_DIALOG (dialog)->label), TRUE);
     gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
     gtk_dialog_run(GTK_DIALOG(dialog));
     return FALSE;
