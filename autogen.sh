@@ -19,5 +19,4 @@ which gnome-autogen.sh || {
     exit 1
 }
 
-ACLOCAL_FLAGS="-I $srcdir/games-macros $ACLOCAL_FLAGS"
 USE_GNOME2_MACROS=1 . gnome-autogen.sh
