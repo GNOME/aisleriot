@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 0.99.5\n"
-"POT-Creation-Date: 1999-02-22 03:27+0900\n"
+"POT-Creation-Date: 1999-02-24 20:00-0600\n"
 "PO-Revision-Date: 1999-02-20 23:25+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@adam.kaist.ac.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -13,7 +13,21 @@ msgstr ""
 "Content-Type: text/plain; charset=EUC-KR\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: aisleriot/dialog.c:16
+#. From freecell.scm
+#: aisleriot/SCHEME_GAMES.h:13
+msgid "Auto move to homecell"
+msgstr ""
+
+#: aisleriot/SCHEME_GAMES.h:14 freecell/src/option-dialog.c:66
+msgid "Move one by one"
+msgstr "카드 한개씩 움직이기"
+
+#. From klondike.scm
+#: aisleriot/SCHEME_GAMES.h:17
+msgid "Three card deals"
+msgstr ""
+
+#: aisleriot/dialog.c:36
 msgid ""
 "Congratulations\n"
 "\n"
@@ -23,7 +37,7 @@ msgstr ""
 "\n"
 "이겼습니다!!!"
 
-#: aisleriot/dialog.c:18
+#: aisleriot/dialog.c:38
 msgid ""
 "\n"
 "Game Over.\n"
@@ -31,24 +45,24 @@ msgstr ""
 "\n"
 "게임 종료\n"
 
-#: aisleriot/dialog.c:24
+#: aisleriot/dialog.c:44
 msgid "New Game"
 msgstr "새 게임"
 
-#: aisleriot/dialog.c:63 mahjongg/mahjongg.c:1127
+#: aisleriot/dialog.c:83 mahjongg/mahjongg.c:1127
 msgid "Select Game"
 msgstr "게임 선택"
 
-#: aisleriot/dialog.c:73 freecell/src/io-gtk.c:399 freecell/src/menu.c:96
+#: aisleriot/dialog.c:93 freecell/src/io-gtk.c:399 freecell/src/menu.c:96
 #: mahjongg/mahjongg.c:418
 msgid "Seed"
 msgstr "게임번호"
 
-#: aisleriot/dialog.c:85
+#: aisleriot/dialog.c:105
 msgid "Rules"
 msgstr "규칙"
 
-#: aisleriot/dialog.c:138
+#: aisleriot/dialog.c:163
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -56,199 +70,234 @@ msgstr ""
 "게임이 끝났습니다.\n"
 "힌트는 없습니다."
 
-#: aisleriot/dialog.c:144
+#: aisleriot/dialog.c:169
 msgid "This game does not have hint support yet."
 msgstr "이 게임은 아직 힌트가 지원되지 않습니다."
 
-#: aisleriot/dialog.c:154 aisleriot/dialog.c:162 aisleriot/dialog.c:170
+#: aisleriot/dialog.c:180 aisleriot/dialog.c:188 aisleriot/dialog.c:196
 msgid "Move the "
 msgstr "이동:"
 
-#: aisleriot/dialog.c:156
+#: aisleriot/dialog.c:182
 msgid " on the "
 msgstr ",다음 카드위: "
 
-#: aisleriot/dialog.c:158 aisleriot/dialog.c:166 aisleriot/dialog.c:174
-#: aisleriot/dialog.c:180
+#: aisleriot/dialog.c:184 aisleriot/dialog.c:192 aisleriot/dialog.c:200
+#: aisleriot/dialog.c:206
 msgid "."
 msgstr "."
 
-#: aisleriot/dialog.c:164
+#: aisleriot/dialog.c:190
 msgid " on "
 msgstr ", 다음 위:"
 
-#: aisleriot/dialog.c:172
+#: aisleriot/dialog.c:198
 msgid " "
 msgstr " "
 
-#: aisleriot/dialog.c:178
+#: aisleriot/dialog.c:204
 msgid "You are searching for a "
 msgstr "다음을 찾고있음: "
 
-#: aisleriot/dialog.c:184
+#: aisleriot/dialog.c:210
 msgid "This game is unable to provide a hint."
 msgstr "이 게임은 힌트를 제공할 수 없음."
 
 #: aisleriot/menu.c:67
-msgid "GNOME Solitaire"
-msgstr "GNOME 솔리테어"
+msgid "Main program:  Jonathan Blandford (jrb@alum.mit.edu)"
+msgstr ""
+
+#: aisleriot/menu.c:68
+msgid "                      Felix Bellaby (felix@pooh.u-net.com)"
+msgstr ""
+
+#: aisleriot/menu.c:69
+msgid "Card Games:    Jonathan Blandford (jrb@alum.mit.edu)"
+msgstr ""
+
+#: aisleriot/menu.c:70
+msgid "                      Robert Brady <rwb197@ecs.soton.ac.uk>"
+msgstr ""
+
+#: aisleriot/menu.c:71
+msgid "                      Nick Lamb <njl195@zepler.org.uk>"
+msgstr ""
+
+#: aisleriot/menu.c:72
+msgid "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"
+msgstr ""
+
+#: aisleriot/menu.c:73
+msgid "                      Rosanna Yuen (rwsy@mit.edu)"
+msgstr ""
+
+#: aisleriot/menu.c:88 aisleriot/splash.c:48
+#, fuzzy
+msgid "AisleRiot"
+msgstr "Aisleriot"
+
+#. copyright notice
+#: aisleriot/menu.c:90
+msgid "(C) 1998 Jonathan Blandford (jrb@alum.mit.edu)"
+msgstr ""
 
 #. another comments
-#: aisleriot/menu.c:72
+#: aisleriot/menu.c:93
+#, fuzzy
 msgid ""
-"The GNOME Generic Solitaire provides a rule-based solitaire engine that "
-"allows many different games to be played"
+"AisleRiot provides a rule-based, solitaire, card engine that allows many "
+"different games to be played"
 msgstr ""
 "GNOME 솔리테어는 규칙을 기초로 한 솔리테어 엔진을 제공하여 여러가지 종류의 "
 "게임을 할 수 있도록 합니다"
 
-#: aisleriot/menu.c:91
+#: aisleriot/menu.c:115
 msgid "Game _options..."
 msgstr "게임 옵션(_O)..."
 
-#: aisleriot/menu.c:92
+#: aisleriot/menu.c:116
 msgid "Modify the options for this game"
 msgstr "이 게임의 옵션 바꾸기"
 
-#: aisleriot/menu.c:119
+#: aisleriot/menu.c:143
 msgid "New _game of..."
 msgstr "새로운 게임번호..."
 
-#: aisleriot/menu.c:120
+#: aisleriot/menu.c:144
 msgid "Start a new game of a different variation"
 msgstr "다른 종류의 게임을 새로 시작"
 
-#: aisleriot/menu.c:126
+#: aisleriot/menu.c:150
 msgid "_Select..."
 msgstr "선택... (_S)"
 
-#: aisleriot/menu.c:126
+#: aisleriot/menu.c:150
 msgid "Select a new game variation"
 msgstr "새로운 게임 종류를 선택하십시오"
 
-#: aisleriot/menu.c:166 freecell/src/menu.c:90 mahjongg/mahjongg.c:415
+#: aisleriot/menu.c:190 freecell/src/menu.c:90 mahjongg/mahjongg.c:415
 msgid "New"
 msgstr "새 게임"
 
-#: aisleriot/menu.c:166 freecell/src/menu.c:90
+#: aisleriot/menu.c:190 freecell/src/menu.c:90
 msgid "Deal a new game."
 msgstr "새로운 게임을 시작합니다."
 
-#: aisleriot/menu.c:169 freecell/src/menu.c:93 mahjongg/mahjongg.c:421
+#: aisleriot/menu.c:193 freecell/src/menu.c:93 mahjongg/mahjongg.c:421
 msgid "Restart"
 msgstr "다시 시작"
 
-#: aisleriot/menu.c:169 freecell/src/menu.c:93
+#: aisleriot/menu.c:193 freecell/src/menu.c:93
 msgid "Start this game over."
 msgstr "이 게임을 다시 시작합니다."
 
-#: aisleriot/menu.c:172
+#: aisleriot/menu.c:196
 msgid "Select"
 msgstr "선택"
 
-#: aisleriot/menu.c:172
+#: aisleriot/menu.c:196
 msgid "Select a new game."
 msgstr "새로운 게임을 선택하시오"
 
-#: aisleriot/menu.c:177 mahjongg/mahjongg.c:424
+#: aisleriot/menu.c:201 mahjongg/mahjongg.c:424
 msgid "Hint"
 msgstr "힌트"
 
-#: aisleriot/menu.c:177
+#: aisleriot/menu.c:201
 msgid "Suggest a move."
 msgstr "움직임 추천"
 
-#: aisleriot/menu.c:180 freecell/src/menu.c:102 mahjongg/mahjongg.c:427
+#: aisleriot/menu.c:204 freecell/src/menu.c:102 mahjongg/mahjongg.c:427
 msgid "Undo"
 msgstr "실행 취소"
 
-#: aisleriot/menu.c:180 freecell/src/menu.c:102
+#: aisleriot/menu.c:204 freecell/src/menu.c:102
 msgid "Undo the last move."
 msgstr "마지막 움직임 취소"
 
-#: aisleriot/menu.c:183
+#: aisleriot/menu.c:207
 msgid "Redo"
 msgstr "다시 실행"
 
-#: aisleriot/menu.c:183
+#: aisleriot/menu.c:207
 msgid "Redo the last move."
 msgstr "마지막 움직임 다시"
 
-#: aisleriot/menu.c:188 freecell/src/menu.c:115
+#: aisleriot/menu.c:212 freecell/src/menu.c:115
 msgid "Exit"
 msgstr "끝내기"
 
-#: aisleriot/menu.c:188
+#: aisleriot/menu.c:212
 msgid "Quit Aisleriot."
 msgstr "Aisleriot 종료"
 
-#: aisleriot/sol.c:155 aisleriot/sol.c:169
+#: aisleriot/sol.c:156 aisleriot/sol.c:170
 msgid "Help"
 msgstr "도움말"
 
-#: aisleriot/sol.c:169 aisleriot/sol.c:296 aisleriot/splash.c:47
+#: aisleriot/sol.c:170 aisleriot/sol.c:297
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: aisleriot/sol.c:340
+#: aisleriot/sol.c:341
 msgid "Loading images..."
 msgstr "그림을 읽고 있습니다..."
 
-#: aisleriot/sol.c:346
+#: aisleriot/sol.c:347
 msgid "Dealing game..."
 msgstr "카드를 돌리고 있습니다..."
 
-#: aisleriot/sol.c:352 gnobots/gnobots.c:1313 gnobots2/statusbar.c:44
+#: aisleriot/sol.c:353 gnobots/gnobots.c:1313 gnobots2/statusbar.c:44
 #: gnome-stones/status.c:66
 msgid "Score:"
 msgstr "점수:"
 
-#: aisleriot/sol.c:356 gnomine/gnomine.c:645 gnotravex/gnotravex.c:602
+#: aisleriot/sol.c:357 gnomine/gnomine.c:652 gnotravex/gnotravex.c:602
 msgid "Time:"
 msgstr "시간:"
 
-#: aisleriot/sol.c:438
+#: aisleriot/sol.c:439
 msgid "Variation on game rules"
 msgstr "여러가지 게임 규칙"
 
-#: aisleriot/sol.c:438 gnobots/gnobots.c:118 gnobots2/gnobots.c:57
+#: aisleriot/sol.c:439 gnobots/gnobots.c:118 gnobots2/gnobots.c:57
 #: gnobots2/gnobots.c:59 same-gnome/same-gnome.c:773
 msgid "NAME"
 msgstr "이름"
 
-#: aisleriot/sol.c:455
+#: aisleriot/sol.c:456
 msgid "Initializing scheme..."
 msgstr "scheme 초기화..."
 
-#: freecell/gdk-card-image/gdk-card-image.c:102
+#: freecell/gdk-card-image/gdk-card-image.c:107
 msgid "Card back:"
 msgstr "카드 뒷면:"
 
-#: freecell/gdk-card-image/gdk-card-image.c:103
+#: freecell/gdk-card-image/gdk-card-image.c:108
 msgid "Honor pictures:"
 msgstr "상징 그림:"
 
-#: freecell/gdk-card-image/gdk-card-image.c:104
+#: freecell/gdk-card-image/gdk-card-image.c:109
 msgid "Joker icon:"
 msgstr "조커 아이콘:"
 
-#: freecell/gdk-card-image/gdk-card-image.c:105
+#: freecell/gdk-card-image/gdk-card-image.c:110
 msgid "Rank font:"
 msgstr "숫자 폰트:"
 
-#: freecell/gdk-card-image/gdk-card-image.c:106
+#: freecell/gdk-card-image/gdk-card-image.c:111
 msgid "Suit font (small):"
 msgstr "모양 폰트 (작음):"
 
-#: freecell/gdk-card-image/gdk-card-image.c:107
+#: freecell/gdk-card-image/gdk-card-image.c:112
 msgid "Suit font (medium):"
 msgstr "모양 폰트 (중간):"
 
-#: freecell/gdk-card-image/gdk-card-image.c:108
+#: freecell/gdk-card-image/gdk-card-image.c:113
 msgid "Suit font (large):"
 msgstr "모양 폰트 (큼):"
 
-#: freecell/gdk-card-image/gdk-card-image.c:861
+#: freecell/gdk-card-image/gdk-card-image.c:874
 msgid "Cards"
 msgstr "카드"
 
@@ -335,10 +384,6 @@ msgstr "프리셀 속성"
 msgid "Inform invalid move"
 msgstr "잘못 움직였을 때 알려주기"
 
-#: freecell/src/option-dialog.c:66
-msgid "Move one by one"
-msgstr "카드 한개씩 움직이기"
-
 #: freecell/src/option-dialog.c:78
 msgid "Options"
 msgstr "옵션"
@@ -391,13 +436,13 @@ msgstr "현재: %d패"
 msgid "Set game scenario"
 msgstr "시나리오 선택"
 
-#: gnobots/gnobots.c:119 gnobots2/gnobots.c:60 gnomine/gnomine.c:490
-#: gnomine/gnomine.c:495
+#: gnobots/gnobots.c:119 gnobots2/gnobots.c:60 gnomine/gnomine.c:497
+#: gnomine/gnomine.c:502
 msgid "X"
 msgstr "X"
 
-#: gnobots/gnobots.c:120 gnobots2/gnobots.c:61 gnomine/gnomine.c:491
-#: gnomine/gnomine.c:496
+#: gnobots/gnobots.c:120 gnobots2/gnobots.c:61 gnomine/gnomine.c:498
+#: gnomine/gnomine.c:503
 msgid "Y"
 msgstr "Y"
 
@@ -475,15 +520,10 @@ msgstr "안전 모드"
 msgid "Safe Teleports"
 msgstr "안전 순간이동"
 
-#: gnobots/properties.c:247 gnobots2/properties.c:742
-#: gnome-stones/preferences.c:682 mahjongg/mahjongg.c:434
+#: gnobots/properties.c:247 gnobots2/properties.c:768
+#: gnome-stones/preferences.c:693 mahjongg/mahjongg.c:434
 msgid "Sound"
 msgstr "소리"
-
-#: gnobots2/game.c:112
-#, c-format
-msgid "%s-safe"
-msgstr "%s-안전"
 
 #: gnobots2/game.c:118
 #, c-format
@@ -634,106 +674,157 @@ msgstr "예"
 msgid "No"
 msgstr "아니오"
 
-#: gnobots2/properties.c:678
+#: gnobots2/properties.c:614
+msgid "classic robots"
+msgstr ""
+
+#: gnobots2/properties.c:615
+#, fuzzy
+msgid "robots2"
+msgstr "Gnobots"
+
+#: gnobots2/properties.c:616
+msgid "robots2 easy"
+msgstr ""
+
+#: gnobots2/properties.c:617
+#, fuzzy
+msgid "robots with safe teleport"
+msgstr "Gnome Robots - 안전한 순간이동"
+
+#: gnobots2/properties.c:652
+#, fuzzy
+msgid "robots"
+msgstr "Gnobots"
+
+#: gnobots2/properties.c:653
+msgid "cows"
+msgstr ""
+
+#: gnobots2/properties.c:654
+msgid "eggs"
+msgstr ""
+
+#: gnobots2/properties.c:655
+#, fuzzy
+msgid "gnomes"
+msgstr "Gnometris"
+
+#: gnobots2/properties.c:656
+#, fuzzy
+msgid "mice"
+msgstr "장치"
+
+#: gnobots2/properties.c:657
+msgid "windows"
+msgstr ""
+
+#: gnobots2/properties.c:704
 msgid "GnobotsII Preferences"
 msgstr "GnobotsII 선택사항"
 
-#: gnobots2/properties.c:689
+#: gnobots2/properties.c:715
 msgid "Game Type:"
 msgstr "게임 타입:"
 
-#: gnobots2/properties.c:708
+#: gnobots2/properties.c:734
 msgid "Property"
 msgstr "속성"
 
-#: gnobots2/properties.c:710
+#: gnobots2/properties.c:736
 msgid "Value"
 msgstr "값"
 
-#: gnobots2/properties.c:735
+#: gnobots2/properties.c:761
 msgid "Safe Moves"
 msgstr "안전 모드"
 
-#: gnobots2/properties.c:749
+#: gnobots2/properties.c:775
 msgid "Splats"
 msgstr "Splats"
 
-#: gnobots2/properties.c:760
+#: gnobots2/properties.c:786
 msgid "You Cannot Change the Game Type When Playing"
 msgstr "게임중에 게임 타입을 바꿀 수 없습니다"
 
-#: gnobots2/properties.c:767
+#: gnobots2/properties.c:793
 msgid "Configuration"
 msgstr "설정"
 
-#: gnobots2/properties.c:780
+#: gnobots2/properties.c:806
 msgid "Graphics:"
 msgstr "그래픽스:"
 
-#: gnobots2/properties.c:806
+#: gnobots2/properties.c:832
 msgid "Graphics"
 msgstr "그래픽스"
 
 #. North West
-#: gnobots2/properties.c:821
+#: gnobots2/properties.c:847
 msgid "NW"
 msgstr "북서"
 
 #. North
-#: gnobots2/properties.c:834
+#: gnobots2/properties.c:860
 msgid "N"
 msgstr "북"
 
 #. North East
-#: gnobots2/properties.c:847
+#: gnobots2/properties.c:873
 msgid "NE"
 msgstr "북동"
 
+#. West
+#: gnobots2/properties.c:886
+#, fuzzy
+msgid "W"
+msgstr "북서"
+
 #. East
-#: gnobots2/properties.c:883
+#: gnobots2/properties.c:908
 msgid "E"
 msgstr "동"
 
 #. South West
-#: gnobots2/properties.c:897
+#: gnobots2/properties.c:921
 msgid "SW"
 msgstr "남서"
 
 #. South
-#: gnobots2/properties.c:910
+#: gnobots2/properties.c:934
 msgid "S"
 msgstr "남"
 
 #. South East
-#: gnobots2/properties.c:923
+#: gnobots2/properties.c:947
 msgid "SE"
 msgstr "남동"
 
-#: gnobots2/properties.c:943
+#: gnobots2/properties.c:967
 msgid "Teleport:"
 msgstr "순간이동:"
 
-#: gnobots2/properties.c:955
+#: gnobots2/properties.c:979
 msgid "Random Teleport:"
 msgstr "마구잡이 순간이동:"
 
-#: gnobots2/properties.c:967
+#: gnobots2/properties.c:991
 msgid "Wait:"
 msgstr "기다림:"
 
-#: gnobots2/properties.c:988
+#: gnobots2/properties.c:1012
 msgid "Standard Robots Keys"
 msgstr "표준 로보트 키"
 
-#: gnobots2/properties.c:994
+#: gnobots2/properties.c:1018
 msgid "Predefined Set 1"
 msgstr "미리 정의된 모듬 1"
 
-#: gnobots2/properties.c:1000
+#: gnobots2/properties.c:1024
 msgid "Predefined Set 2"
 msgstr "미리 정의된 모듬 2"
 
-#: gnobots2/properties.c:1009
+#: gnobots2/properties.c:1033
 msgid "Keyboard"
 msgstr "키보드"
 
@@ -834,52 +925,65 @@ msgstr "추가 턴을 얻었습니다!"
 msgid "Seconds left: %d"
 msgstr "남은 시간(초): %d"
 
-#: gnome-stones/preferences.c:477
+#: gnome-stones/preferences.c:95
+msgid "Tutorial caves"
+msgstr ""
+
+#: gnome-stones/preferences.c:96
+msgid "Default caves"
+msgstr ""
+
+#: gnome-stones/preferences.c:97
+#, fuzzy
+msgid "Gnomekoban"
+msgstr "Gnome 로봇"
+
+#: gnome-stones/preferences.c:488
 msgid "Gnome-Stones Preferences"
 msgstr "Gnome-Stones 선택사항"
 
-#: gnome-stones/preferences.c:490
+#: gnome-stones/preferences.c:501
 msgid "Game title"
 msgstr "게임 제목"
 
-#: gnome-stones/preferences.c:492
+#: gnome-stones/preferences.c:503
 msgid "Caves"
 msgstr "동굴"
 
-#: gnome-stones/preferences.c:495
+#: gnome-stones/preferences.c:506
 msgid "Filename"
 msgstr "파일이름"
 
-#: gnibbles/preferences.c:199 gnome-stones/preferences.c:546
+#: gnibbles/preferences.c:199 gnome-stones/preferences.c:557
 msgid "Game"
 msgstr "게임"
 
-#: gnome-stones/preferences.c:571
+#: gnome-stones/preferences.c:582
 msgid "Device"
 msgstr "장치"
 
-#: gnome-stones/preferences.c:583
+#: gnome-stones/preferences.c:594
 msgid "Joystick device:"
 msgstr "조이스틱 장치:"
 
 #. We definatly have a "disable" entry.
-#: gnome-stones/preferences.c:590
+#: gnome-stones/preferences.c:601
 msgid "disabled"
 msgstr "없음"
 
-#: gnome-stones/preferences.c:629
+#: gnome-stones/preferences.c:640
 msgid "Digital joytick emulation"
 msgstr "디지탈 조이스틱 에뮬레이션"
 
-#: gnome-stones/preferences.c:641
+#: gnome-stones/preferences.c:652
 msgid "Switch level:"
 msgstr "레벨 바꾸기:"
 
-#: gnome-stones/preferences.c:667
+#: gnome-stones/preferences.c:678
 msgid "Joystick"
 msgstr "조이스틱"
 
-#: gnome-stones/preferences.c:676
+#: gnome-stones/preferences.c:687
 msgid "Not yet implemented!"
 msgstr "아직 만들어지지 않음!"
 
@@ -895,83 +999,100 @@ msgstr "동굴:"
 msgid "Lives:"
 msgstr "살아있는 숫자:"
 
-#: gnomine/gnomine.c:41 gnomine/gnomine.c:292
+#: gnomine/gnomine.c:41 gnomine/gnomine.c:299
 msgid "Tiny"
 msgstr "작게"
 
-#: gnomine/gnomine.c:42 gnomine/gnomine.c:300
+#: gnomine/gnomine.c:42 gnomine/gnomine.c:307
 msgid "Medium"
 msgstr "중간 크기"
 
-#: gnomine/gnomine.c:43 gnomine/gnomine.c:308
+#: gnomine/gnomine.c:43 gnomine/gnomine.c:315
 msgid "Biiiig"
 msgstr "거대하게"
 
-#: gnomine/gnomine.c:44 gnomine/gnomine.c:316
+#: gnomine/gnomine.c:44 gnomine/gnomine.c:323
 msgid "Custom"
 msgstr "지정하기"
 
-#: gnomine/gnomine.c:77 gnomine/gnomine.c:244 gnomine/gnomine.c:557
+#: gnomine/gnomine.c:77 gnomine/gnomine.c:251 gnomine/gnomine.c:564
 msgid "Gnome Mines"
 msgstr "그놈 지뢰"
 
-#: gnomine/gnomine.c:247
+#: gnomine/gnomine.c:238
+msgid "Code: Pista"
+msgstr ""
+
+#: gnomine/gnomine.c:239
+msgid "Faces: tigert"
+msgstr ""
+
+#: gnomine/gnomine.c:240
+#, fuzzy
+msgid "Score: HoraPe"
+msgstr "점수:"
+
+#: gnomine/gnomine.c:252
+msgid "(C) 1997-1999 the Free Software Foundation"
+msgstr ""
+
+#: gnomine/gnomine.c:254
 msgid "Minesweeper clone"
 msgstr "지뢰찾기 클론"
 
-#: gnomine/gnomine.c:271
+#: gnomine/gnomine.c:278
 msgid "Gnome Mines setup"
 msgstr "그놈 지뢰 셋업"
 
-#: gnomine/gnomine.c:284
+#: gnomine/gnomine.c:291
 msgid "Custom size"
 msgstr "크기 지정"
 
-#: gnomine/gnomine.c:286
+#: gnomine/gnomine.c:293
 msgid "Field size"
 msgstr "판 크기"
 
-#: gnomine/gnomine.c:328
+#: gnomine/gnomine.c:335
 msgid "Mine Size:"
 msgstr "지뢰 크기"
 
-#: gnomine/gnomine.c:355
+#: gnomine/gnomine.c:362
 msgid "Horizontal:"
 msgstr "가로:"
 
-#: gnomine/gnomine.c:368
+#: gnomine/gnomine.c:375
 msgid "Vertical:"
 msgstr "세로:"
 
-#: gnomine/gnomine.c:381
+#: gnomine/gnomine.c:388
 msgid "Number of mines:"
 msgstr "지뢰의 갯수:"
 
-#: gnomine/gnomine.c:490
+#: gnomine/gnomine.c:497
 msgid "Width of grid"
 msgstr "격자 폭"
 
-#: gnomine/gnomine.c:491
+#: gnomine/gnomine.c:498
 msgid "Height of grid"
 msgstr "격자 높이"
 
-#: gnomine/gnomine.c:492
+#: gnomine/gnomine.c:499
 msgid "Size of mines"
 msgstr "지뢰의 크기"
 
-#: gnomine/gnomine.c:492 gnotravex/gnotravex.c:192
+#: gnomine/gnomine.c:499 gnotravex/gnotravex.c:192
 msgid "SIZE"
 msgstr "크기"
 
-#: gnomine/gnomine.c:493
+#: gnomine/gnomine.c:500
 msgid "Number of mines"
 msgstr "지뢰의 갯수"
 
-#: gnomine/gnomine.c:493 gyahtzee/setup.c:74 gyahtzee/setup.c:75
+#: gnomine/gnomine.c:500 gyahtzee/setup.c:74 gyahtzee/setup.c:75
 msgid "NUMBER"
 msgstr "갯수"
 
-#: gnomine/gnomine.c:634
+#: gnomine/gnomine.c:641
 msgid "Flags:"
 msgstr "깃발:"
 
@@ -987,11 +1108,11 @@ msgstr "IOR"
 msgid "Do you really want to end this game?"
 msgstr "정말로 이 게임을 끝낼까요?"
 
-#: gnothello/gnothello.c:314 gnothello/othello.c:217
+#: gnothello/gnothello.c:314 gnothello/othello.c:218
 msgid "Light's move"
 msgstr "밝은 쪽 차례"
 
-#: gnothello/gnothello.c:316 gnothello/gnothello.c:600 gnothello/othello.c:211
+#: gnothello/gnothello.c:316 gnothello/gnothello.c:600 gnothello/othello.c:212
 msgid "Dark's move"
 msgstr "어두운 쪽 차례"
 
@@ -1012,6 +1133,16 @@ msgstr ""
 msgid "Could not find '%s' pixmap file for Iagno\n"
 msgstr "Iagno의 '%s' 픽스맵 파일을 찾을 수 없습니다\n"
 
+#: gnothello/gnothello.c:654
+#, fuzzy
+msgid "Dark:"
+msgstr "어두운 쪽"
+
+#: gnothello/gnothello.c:669
+#, fuzzy
+msgid "Light:"
+msgstr "밝은 쪽"
+
 #: gnothello/gnothello.c:695
 msgid "Welcome to Iagno!"
 msgstr "Iagno에 오신 것을 환영합니다!"
@@ -1021,23 +1152,23 @@ msgstr "Iagno에 오신 것을 환영합니다!"
 msgid "%.2d"
 msgstr "%.2d"
 
-#: gnothello/othello.c:609
+#: gnothello/othello.c:610
 msgid "Light player wins!"
 msgstr "밝은 플레이어가 이겼습니다!"
 
-#: gnothello/othello.c:611
+#: gnothello/othello.c:612
 msgid "Dark player wins!"
 msgstr "어두운 플레이어가 이겼습니다!"
 
-#: gnothello/othello.c:613
+#: gnothello/othello.c:614
 msgid "The game was a draw."
 msgstr "게임이 무승부입니다."
 
-#: gnothello/othello.c:623
+#: gnothello/othello.c:624
 msgid "Light must pass, Dark's move"
 msgstr "밝은 쪽은 패스해야 하고, 어두운 쪽 차례입니다"
 
-#: gnothello/othello.c:635
+#: gnothello/othello.c:636
 msgid "Dark must pass, Light's move"
 msgstr "어두운 쪽은 패스해야 하고, 밝은 쪽 차례입니다"
 
@@ -1261,63 +1392,63 @@ msgstr "새 상태"
 msgid "Machine's states"
 msgstr "기계의 상태"
 
-#: gturing/gturing.c:419
+#: gturing/gturing.c:426
 msgid "Animation Speed"
 msgstr "애니메이션 속도"
 
-#: gturing/gturing.c:419
+#: gturing/gturing.c:426
 msgid "Miliseconds between steps:"
 msgstr "각 단계 사이에 천분의 일초:"
 
-#: gturing/gturing.c:436
+#: gturing/gturing.c:443
 msgid "gturing"
 msgstr "gturing"
 
-#: gturing/gturing.c:439
+#: gturing/gturing.c:446
 msgid "A Turing Machine for GNOME"
 msgstr "GNOME을 위한 Turing Maching"
 
-#: gturing/gturing.c:457
+#: gturing/gturing.c:464
 msgid "_Play Speed..."
 msgstr "플레이 속도(_P)..."
 
-#: gturing/gturing.c:457
+#: gturing/gturing.c:464
 msgid "Set playing speed."
 msgstr "플레이 속도 결정."
 
-#: gturing/gturing.c:459
+#: gturing/gturing.c:466
 msgid "_Tape..."
 msgstr "테이프(_T)..."
 
-#: gturing/gturing.c:459
+#: gturing/gturing.c:466
 msgid "Set the machine's tape."
 msgstr "기계의 테이프 결정."
 
-#: gturing/gturing.c:461
+#: gturing/gturing.c:468
 msgid "_View States"
 msgstr "상태 보기(_V)"
 
-#: gturing/gturing.c:462
+#: gturing/gturing.c:469
 msgid "Open a table with the machine's states."
 msgstr "기계의 상태와 테이블 열기"
 
-#: gturing/gturing.c:481
+#: gturing/gturing.c:488
 msgid "Reset"
 msgstr "리셋"
 
-#: gturing/gturing.c:483
+#: gturing/gturing.c:490
 msgid "Stop"
 msgstr "정지"
 
-#: gturing/gturing.c:485
+#: gturing/gturing.c:492
 msgid "Run"
 msgstr "실행"
 
-#: gturing/gturing.c:487
+#: gturing/gturing.c:494
 msgid "Step"
 msgstr "다음단계"
 
-#: gturing/gturing.c:497
+#: gturing/gturing.c:504
 msgid "Welcome to gTuring."
 msgstr "gTuring에 오신 것을 환영합니다."
 
@@ -1402,7 +1533,7 @@ msgstr ""
 "음, 어쨌거나 왜 실행했죠?\n"
 "\n"
 
-#: gyahtzee/gyahtzee.c:58 gyahtzee/gyahtzee.c:367
+#: gyahtzee/gyahtzee.c:58 gyahtzee/gyahtzee.c:374
 msgid "Gnome Tali"
 msgstr "그놈 Tali"
 
@@ -1420,15 +1551,27 @@ msgstr "%s! -- 당신이 이겼음."
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "세번만 굴릴 수 있습니다! 점수 상자를 선택하세요."
 
-#: gyahtzee/gyahtzee.c:393
+#: gyahtzee/gyahtzee.c:359
+msgid "Scott Heavner"
+msgstr ""
+
+#: gyahtzee/gyahtzee.c:360
+msgid "Orest Zborowski - Curses Version (C) 1992"
+msgstr ""
+
+#: gyahtzee/gyahtzee.c:372
+msgid "(C) 1998 the Free Software Fundation"
+msgstr ""
+
+#: gyahtzee/gyahtzee.c:400
 msgid "Cheater! Any high scores will not be recorded."
 msgstr "속임수! 최고 점수는 기록되지 않을 것입니다."
 
-#: gyahtzee/gyahtzee.c:513
+#: gyahtzee/gyahtzee.c:520
 msgid "Select dice to re-roll, press Roll!, or select score slot."
 msgstr "주사위를 다시 굴리려면, 굴리기!를 누르거나, 점수보기를 선택하세요."
 
-#: gyahtzee/gyahtzee.c:554
+#: gyahtzee/gyahtzee.c:561
 msgid " Roll ! "
 msgstr " 굴리기! "
 
@@ -1857,7 +2000,7 @@ msgstr "블록 픽스맵: "
 msgid "Background Pixmap: "
 msgstr "배경 픽스맵: "
 
-#: gnometris/tetris.cpp:680
+#: gnometris/tetris.cpp:691
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: mgo@olicom.dk"
@@ -1995,6 +2138,12 @@ msgstr "회색"
 #, c-format
 msgid "Worm %d:"
 msgstr "벌레 %d"
+
+#~ msgid "GNOME Solitaire"
+#~ msgstr "GNOME 솔리테어"
+
+#~ msgid "%s-safe"
+#~ msgstr "%s-안전"
 
 #~ msgid "Gyahtzee"
 #~ msgstr "Gyahtzee"
