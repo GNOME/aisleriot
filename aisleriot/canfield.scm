@@ -210,7 +210,11 @@
 	    (place-found slot top-card 2)))))
 
 (define (game-over)
-  (and (give-status-message)
+  (and (or (get-valid-move '(6 7 8 9 10 1))
+	   (to-tableau? '(6 1))
+	   (move-column? '(7 8 9 10))
+	   (deal-possible?))
+       (give-status-message)
        (not (game-won))))
 
 (define (game-won)
@@ -227,7 +231,7 @@
 (define (deal-possible?)
   (if (not (empty-slot? 0))
       (list 0 "Deal a new card from the deck")
-      (if (and (< FLIP-COUNTER 3)
+      (if (and (< FLIP-COUNTER 2)
 	       (not (empty-slot? 1)))
 	  (list 0 "Move waste back to stock")
 	  #f)))
