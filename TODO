@@ -28,7 +28,7 @@ General:
         - Consider how to handle the whole game seed thing.
 	- Update debian files to be reasonable
         - Make session management work.
-        - Redo the scoring code.
+        - Redo the scoring code (example front-end done).
         - Make the build system cleaner.
         - Naming issues (117191)
 
@@ -75,9 +75,9 @@ Gnect:
         - Sound improvements
 
 Gnibbles:
-        - Redo the graphics. The code is there, make it look good. (Themable ?)
 	- Have another look at the preferences: some are disabled during
 	  game play, others are enabled, but restart the game. Be consistent.
+	- AI worms.
 
 Gnobots2:
         - Fix no-moves issue (bug 107846).
@@ -121,8 +121,6 @@ Gnomine:
           I misunderstand).
 	- Make drawing more efficient, cache the blended pixbufs on
 	  the server.
-	- Make the cross-out for bad guesses in a failed game better (i.e.
-          heavier when the window is large).
         - Rendering improvements as per 132423.
         - Better access to other scores (128235)
         - Session-management related segfault (120461)
@@ -191,11 +189,3 @@ libgames-support:
 	- Use a second thread for pre-generating card images (I think
           this was shaunm's idea so he could take advantage of works' dual 
 	  opteron).
-
-gdk-card-image:
-	- Pretty much deprectaed, see what Jon wants to do.
-	- Finish off the replacement in libgames.
-	- When a "custom" style is used make sure that there is no selection.
- 	  Currently the default is selected, this may be a limit in the GtkTreeView
-	  widget.
-        - Document
