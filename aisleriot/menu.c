@@ -89,7 +89,7 @@ void help_about_callback ()
 	  NULL
   };
 
-  const gchar *translator_credits = _("");
+  const gchar *translator_credits = _("translator_credits");
 
 #ifdef ENABLE_NLS
   {
@@ -109,7 +109,7 @@ void help_about_callback ()
 			    "solitaire card engine that allows many different games to be played"),
 			    (const char **)authors,
 			    (const char **)documenters,
-			    (const char *)translator_credits,
+			    strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 			    NULL);
   gtk_signal_connect (GTK_OBJECT (about),
 		      "destroy",
