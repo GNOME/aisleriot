@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
-                                                                              
-                                                                              
+
+
 AC_PREREQ([2.53])
 AC_INIT([gnome-games], [2.5.6],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games])
@@ -9,7 +9,7 @@ AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([gnomine/gnomine.c])
 AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE
-                                                                              
+
 # Locate various programs
 AC_PROG_CC
 AC_PROG_CPP
@@ -25,22 +25,22 @@ AM_CONDITIONAL([HAVE_CXX], [test "x$CXX_PRESENT" = xyes])
 
 # See if we have guile
 GAMES_CHECK_GUILE
-                                                                              
-                                                                              
+
+
 GNOME_COMPILE_WARNINGS(yes)
 GNOME_CXX_WARNINGS(yes)
-                                                                              
+
 
 AM_GCONF_SOURCE_2
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
-                                                                              
-                                                                              
+
+
 ## Begin tests for scrollkeeper
 # SCROLLKEEPER_REQUIRED is never used?
 SCROLLKEEPER_REQUIRED=0.3.8
 AC_SUBST(SCROLLKEEPER_REQUIRED)
-                                                                              
-                                                                              
+
+
 AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
 if test x$SCROLLKEEPER_CONFIG = xno; then
   AC_MSG_ERROR([Couldn't find scrollkeeper-config, please install the scrollkeeper package])
@@ -58,8 +58,8 @@ PKG_CHECK_MODULES(GNOME_GAMES, libglade-2.0 libgnome-2.0 >= $LIBGNOME_REQUIRED l
 GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CFLAGS"
 GNOME_GAMES_LIBS="$GNOME_GAMES_LIBS \$(top_builddir)/libgames-support/libgames-support.la"
 
-## Use a separate set of flags for C++ (so we can exclude -std=gnu89 for 
-## example, it doesn't make sense under C++). 
+## Use a separate set of flags for C++ (so we can exclude -std=gnu89 for
+## example, it doesn't make sense under C++).
 GNOME_GAMES_CXXFLAGS=$GNOME_GAMES_CFLAGS
 AC_SUBST(GNOME_GAMES_CXXFLAGS)
 
@@ -262,7 +262,7 @@ Configuration:
         Scores user                        $scores_user
         Scores & setgid group              $scores_group
 "
-if grep -q "$scores_group:" /etc/group ; then 
+if grep -q "$scores_group:" /etc/group ; then
 :;
 else
 echo
