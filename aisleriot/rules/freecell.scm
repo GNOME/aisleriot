@@ -103,7 +103,7 @@
 ;; Utilities for the homecells
 ;;
 
-;; homecell id which holds the suit or an empty slot if there is no slot
+;; homecell id which holds the suit or an empty slot if there is no slot.
 (define (homecell-by-suit suit)
   (define (p? slot)
     (and (not (empty-slot? slot))
@@ -172,29 +172,32 @@
 ;;
 
 (define (move-to-homecell card-list homecell-id)
-  (and (= (length card-list) 1)
-       (move-card-to-homecell (car card-list) homecell-id)))
+	(and
+		(= (length card-list) 1)
+		(move-card-to-homecell (car card-list) homecell-id)
+	)
+)
 
 (define (move-card-to-homecell card homecell-id)
-      (cond
-              ; if the homecell is empty, we can add an ace to it.
-              ((and
-                      (empty-slot? homecell-id)
-                      (eq? (get-value card) ace)
-                      (add-to-score! 1)
-                      (add-card! homecell-id card)
-                      (update-auto (get-suit card) (get-value card)))
-              #t)
-              ; Put a +1 card into the homecell, whose suit is same.
-              ((and
-                      (not (empty-slot? homecell-id))
-                      (homecell-join? (car (get-cards homecell-id)) card)
-                      (add-to-score! 1)
-                      (add-card! homecell-id card)
-                      (update-auto (get-suit card) (get-value card)))
-              #t)
-              (#t #f)
-      )
+	(cond
+		; if the homecell is empty, we can add an ace to it.
+		((and
+			(empty-slot? homecell-id)
+			(eq? (get-value card) ace)
+			(add-to-score! 1)
+			(add-card! homecell-id card)
+			(update-auto (get-suit card) (get-value card)))
+		#t)
+		; Put a +1 card into the homecell, whose suit is same.
+		((and
+			(not (empty-slot? homecell-id))
+			(homecell-join? (car (get-cards homecell-id)) card)
+			(add-to-score! 1)
+			(add-card! homecell-id card)
+			(update-auto (get-suit card) (get-value card)))
+		#t)
+		(#t #f)
+	)
 )
 
 (define (move-to-field card-list field-id)
@@ -207,9 +210,19 @@
 		  (add-cards! field-id card-list))))))
 
 (define (move-to-freecell card-list freecell-id)
-  (and (= (length card-list) 1)
-       (empty-slot? freecell-id)
-       (add-cards! freecell-id card-list)))
+	(and
+		(= (length card-list) 1)
+		(move-card-to-freecell (car card-list) freecell-id)
+	)
+)
+
+(define (move-card-to-freecell card freecell-id)
+	(and
+		(not (boolean? freecell-id))
+		(empty-slot? freecell-id)
+		(add-card! freecell-id card)
+	)
+)
 
 ;;
 ;; Auto move stuffs
@@ -221,41 +234,54 @@
 (define highest-spade 0)
 
 (define (update-auto suit value)
-  (cond
-   ((eq? suit club) (set! highest-club value))
-   ((eq? suit diamond) (set! highest-diamond value))
-   ((eq? suit heart) (set! highest-heart value))
-   ((eq? suit spade) (set! highest-spade value))))
+	(cond
+		((eq? suit club) (set! highest-club value))
+		((eq? suit diamond) (set! highest-diamond value))
+		((eq? suit heart) (set! highest-heart value))
+		((eq? suit spade) (set! highest-spade value))
+	)
+)
 
 (define (max-auto-red)
-  (min
-   (+ 2 (min highest-club highest-spade))
-   (+ 3 (min highest-diamond highest-heart))))
+	(min
+		(+ 2 (min highest-club highest-spade))
+		(+ 3 (min highest-diamond highest-heart))
+	)
+)
 
 (define (max-auto-black)
-  (min
-   (+ 2 (min highest-diamond highest-heart))
-   (+ 3 (min highest-club highest-spade))))
+	(min
+		(+ 2 (min highest-diamond highest-heart))
+		(+ 3 (min highest-club highest-spade))
+	)
+)
 
 (define (move-low-cards slot)
-  (and
-   (not (homecell? slot))
-   (not (empty-slot? slot))
-   (let ((card (get-top-card slot)))
-     (if (= (get-color card) red)
-	 (and
-	  (<= (get-value card) (max-auto-red))
-	  (move-card-to-homecell card (homecell-by-suit (get-suit card)))
-	  (remove-card slot)
-	  (move-low-cards 0))
-	 (and
-	  (<= (get-value card) (max-auto-black))
-	  (move-card-to-homecell card (homecell-by-suit (get-suit card)))
-	  (remove-card slot)
-	  (move-low-cards 0)))))
-  (if (< slot field-8)
-      (move-low-cards (+ 1 slot))
-      #t))
+	(and
+		(not (homecell? slot))
+		(not (empty-slot? slot))
+		(let ((card (get-top-card slot)))
+			(if (= (get-color card) red)
+				(and
+					(<= (get-value card) (max-auto-red))
+					(move-card-to-homecell card (homecell-by-suit (get-suit card)))
+					(remove-card slot)
+					(move-low-cards 0)
+				)
+				(and
+					(<= (get-value card) (max-auto-black))
+					(move-card-to-homecell card (homecell-by-suit (get-suit card)))
+					(remove-card slot)
+					(move-low-cards 0)
+				)
+			)
+		)
+	)
+	(if (< slot field-8)
+		(move-low-cards (+ 1 slot))
+		#t
+	)
+)
 
 ;;
 ;; Callbacks & Initialize the game
@@ -302,12 +328,11 @@
   (add-extended-slot '() down)		; 15
 
   (add-blank-slot)
+  (deal-initial-setup)
   (update-auto club 0)
   (update-auto diamond 0)
   (update-auto heart 0)
   (update-auto spade 0)
-
-  (deal-initial-setup)
   (list 8 3)
 )
 
@@ -317,23 +342,34 @@
 	((freecell?   slot) #t)))
 
 (define (button-released start-slot card-list end-slot)
-  (and
-   (not (= start-slot end-slot))
-   (cond ((homecell? end-slot) (move-to-homecell card-list end-slot))
-	 ((field?    end-slot) (move-to-field    card-list end-slot))
-	 ((freecell? end-slot) (move-to-freecell card-list end-slot)))
-   (move-low-cards 0)))
+	(and
+		(not (= start-slot end-slot))
+		(cond
+			((homecell? end-slot) (move-to-homecell card-list end-slot))
+			((field?    end-slot) (move-to-field    card-list end-slot))
+			((freecell? end-slot) (move-to-freecell card-list end-slot))
+		)
+		(move-low-cards 0)
+	)
+)
   
 (define (button-clicked slot)
   ; (FIXME)
   #f)
 
 (define (button-double-clicked slot)
-  (and (not (empty-slot? slot))
-       (let ((card (get-top-card slot)))
-	 (and (move-card-to-homecell card (homecell-by-suit (get-suit card)))
-	      (remove-card slot)
-	      (move-low-cards 0)))))
+	(and
+		(not (empty-slot? slot))
+		(let ((card (get-top-card slot)))
+			(and
+;				(move-card-to-homecell card (homecell-by-suit (get-suit card)))
+				(move-card-to-freecell card (any-empty-freecell))
+				(remove-card slot)
+				(move-low-cards 0)
+			)
+		)
+	)
+)
 
 ;; Condition for fail -- no more cards to move
 (define (game-over)
@@ -368,6 +404,3 @@
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
 
 ;;; freecell.scm ends here
-
-
-
