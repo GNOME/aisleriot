@@ -310,9 +310,17 @@
 	(#t
 	 (check-tableau (+ 1 slot-id)))))
 
+(define (empty-tableau?)
+  (and (not (empty-slot? 1))
+       (or (empty-slot? 7)
+	   (empty-slot? 8)
+	   (empty-slot? 9))
+       (list 2 (get-name (get-top-card 1)) "an empty Tableau slot")))
+
 (define (get-hint)
   (or (check-to-foundations 1)
       (check-tableau 7)
+      (empty-tableau?)
       (dealable?)))
 
 (define (get-options) 
