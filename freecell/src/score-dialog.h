@@ -21,5 +21,5 @@
 #ifndef __FREECELLGAME_SCORE_DIALOG_H
 #define __FREECELLGAME_SCORE_DIALOG_H
 
-GtkWidget *score_dialog(void);
+GtkWidget *score_dialog(GtkWindow *parent);
 #endif /* __FREECELLGAME_SCORE_DIALOG_H */

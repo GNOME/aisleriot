@@ -1,3 +1,11 @@
+2002-10-21  Ross Burton  <ross@burtonini.com>
+
+	* score-dialog.c (score_dialog):
+	* score-dialog.h (score_dialog):
+	* io-gtk.c (callback_score): Take a pointer to the parent
+	window. The window should now be correctly on-top as the
+	transitive parent is set. Closes #89273.
+
 2002-09-19  Ross Burton  <ross@burtonini.com>
 
 	* io-gtk.h: Remove the main_window declaration, which disagrees

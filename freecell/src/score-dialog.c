@@ -38,7 +38,7 @@ score_dialog_callback(GtkDialog *dialog, gint arg1, gpointer data)
 }
 
 GtkWidget *
-score_dialog (void)
+score_dialog (GtkWindow *parent)
 {
   GtkWidget *dialog;
   GtkWidget *label;
@@ -47,11 +47,11 @@ score_dialog (void)
   int i;
 
   dialog = gtk_dialog_new_with_buttons (_("Score"),
-		  NULL,
-		  0,
-		  GTK_STOCK_CLEAR, GTK_RESPONSE_REJECT,
-		  GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
-		  NULL);
+                                        parent,
+                                        GTK_DIALOG_DESTROY_WITH_PARENT /*| GTK_DIALOG_MODAL*/,
+                                        GTK_STOCK_CLEAR, GTK_RESPONSE_REJECT,
+                                        GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
+                                        NULL);
 		  
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
 

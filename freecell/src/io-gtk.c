@@ -549,7 +549,7 @@ callback_score (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *dialog;
 
-  dialog = score_dialog(); 
+  dialog = score_dialog(GTK_WINDOW (main_window)); 
 }
 
 void
