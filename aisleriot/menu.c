@@ -18,6 +18,7 @@
 
 #define MENU_C
 #include <config.h>
+#include <dirent.h>
 #include <guile/gh.h>
 #include "sol.h"
 #include "menu.h"
@@ -116,17 +117,29 @@ int game_hint_callback (GtkWidget *app, void *data)
 
 int game_load_game_callback (GtkWidget *app, void *file )
 {
-  SCM size;
-  gint old_w, old_h, min_w, min_h;
-
   eval_installed_file((char*) file);
   game_file = file;
   game_name = game_file_to_name((char*) file);
+
+  return file_new_game_callback (app, NULL);
+}
+
+int file_new_game_callback (GtkWidget *app, void *data )
+{
+  SCM size;
+  gint old_w, old_h, min_w, min_h;
+
+  hide_game_over_box();
+  hide_select_box();
+
   seed = random();
   score = 0;
   set_score();
-  size = gh_apply(game_data->start_game_lambda, SCM_EOL);
 
+  if(surface) 
+    timer_start();
+
+  size = gh_apply(game_data->start_game_lambda, SCM_EOL);
   min_w = gh_scm2int(gh_car(size))*get_horiz_offset() + 2*get_horiz_start();
   min_h = gh_scm2int(gh_cadr(size))*get_vert_offset() + 2*get_vert_start();
 
@@ -137,25 +150,9 @@ int game_load_game_callback (GtkWidget *app, void *file )
     refresh_screen();
 
   make_title();
-
   return TRUE;
 }
 
-int file_new_game_callback (GtkWidget *app, void *data )
-{
-  score = 0;
-  set_score();
-  seed = random();
-  srandom(seed);
-  gh_apply(game_data->start_game_lambda, SCM_EOL);
-  refresh_screen();
-
-  hide_game_over_box();
-  hide_select_box();
-
-  make_title();
-  return TRUE;
-}
 int file_select_game_callback (GtkWidget *app, void *data )
 {
   show_select_game_dialog();
@@ -281,34 +278,20 @@ GnomeUIInfo toolbar[] =
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
 };
 
-
-
-typedef struct {
-  char *desc, *filename;
-} AGame;
-
-/* These should be in *reverse* alphabetical order */
-AGame gamelist[] = {
-  {N_("Spider"), "spider.scm"},
-  {N_("Osmosis"), "osmosis.scm"},
-  {N_("Odessa"), "odessa.scm"},
-  {N_("Klondike"), "klondike.scm"},
-  {N_("Freecell"), "freecell.scm"},
-  {N_("Camelot"), "camelot.scm"},
-  {NULL, NULL}
-};
-
 void create_menus(GnomeApp *app)
 {
   int i;
   GtkWidget *w;
   gnome_app_create_menus(app, top_menu);
   gnome_app_create_toolbar(app, toolbar);
-  for(i = 0; gamelist[i].desc; i++) {
-      w = gtk_menu_item_new_with_label(_(gamelist[i].desc));
-      gtk_widget_show(w);
-      gtk_menu_shell_prepend(GTK_MENU_SHELL(variation_sub_menu[0].widget), w);
-      gtk_signal_connect(GTK_OBJECT(w), "activate", (GtkSignalFunc) game_load_game_callback,
-			 (gpointer)gamelist[i].filename);
-    }
+
+  for(i = 0; i < n_games; i++) {
+    w = gtk_menu_item_new_with_label 
+      (game_file_to_name (game_dents[i]->d_name));
+    gtk_widget_show(w);
+    gtk_menu_shell_append (GTK_MENU_SHELL(variation_sub_menu[0].widget), w);
+    gtk_signal_connect (GTK_OBJECT(w), "activate", 
+			(GtkSignalFunc) game_load_game_callback,
+			(gpointer) game_dents[i]->d_name);
+  }
 }
