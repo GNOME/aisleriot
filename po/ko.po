@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME games 0.14\n"
-"POT-Creation-Date: 1998-12-15 12:06-0500\n"
+"POT-Creation-Date: 1998-12-17 01:47-0500\n"
 "PO-Revision-Date: 1998-04-14 07:26+0900\n"
 "Last-Translator: Ryu, Changwoo <cwryu@adam.kaist.ac.kr>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -40,6 +40,7 @@ msgid "Select Game"
 msgstr "게임 선택"
 
 #: aisleriot/dialog.c:72 freecell/src/io-gtk.c:399 freecell/src/menu.c:109
+#: mahjongg/mahjongg.c:430
 msgid "Seed"
 msgstr "게임번호"
 
@@ -118,7 +119,7 @@ msgid "_About..."
 msgstr "이 프로그램은... (_A)"
 
 #: aisleriot/menu.c:105 gnobots/gnobots.c:128 gnome-stones/main.c:1171
-#: gnomine/gnomine.c:420 gnothello/gnothello.c:110 gyahtzee/gyahtzee.c:406
+#: gnomine/gnomine.c:415 gnothello/gnothello.c:110 gyahtzee/gyahtzee.c:406
 #: mahjongg/mahjongg.c:362 same-gnome/same-gnome.c:663
 #: scottfree/GnomeScott.c:1529
 msgid "_New"
@@ -133,13 +134,13 @@ msgid "_Select..."
 msgstr "선택... (_S)"
 
 #: aisleriot/menu.c:114 freecell/src/menu.c:52 gnobots/gnobots.c:131
-#: gnomine/gnomine.c:423 gyahtzee/gyahtzee.c:410 gyahtzee/gyahtzee.c:425
+#: gnomine/gnomine.c:418 gyahtzee/gyahtzee.c:410 gyahtzee/gyahtzee.c:425
 #: mahjongg/mahjongg.c:396 same-gnome/same-gnome.c:666
 msgid "_Properties..."
 msgstr "속성... (_P)"
 
 #: aisleriot/menu.c:122 freecell/src/menu.c:64 gnobots/gnobots.c:137
-#: gnome-stones/main.c:1194 gnomine/gnomine.c:429 gnothello/gnothello.c:112
+#: gnome-stones/main.c:1194 gnomine/gnomine.c:424 gnothello/gnothello.c:112
 #: gyahtzee/gyahtzee.c:416 mahjongg/mahjongg.c:381 same-gnome/same-gnome.c:672
 #, fuzzy
 msgid "E_xit"
@@ -159,7 +160,7 @@ msgid "_Redo"
 msgstr "다시실행 (_R)"
 
 #: aisleriot/menu.c:141 freecell/src/menu.c:90 gnobots/gnobots.c:160
-#: gnome-stones/main.c:1217 gnomine/gnomine.c:448 gnothello/gnothello.c:177
+#: gnome-stones/main.c:1217 gnomine/gnomine.c:443 gnothello/gnothello.c:177
 #: gyahtzee/gyahtzee.c:449 mahjongg/mahjongg.c:414 same-gnome/same-gnome.c:690
 msgid "_Game"
 msgstr "게임 (_G)"
@@ -173,7 +174,7 @@ msgid "_Move"
 msgstr "이동 (_M)"
 
 #: aisleriot/menu.c:147 freecell/src/menu.c:94 gnobots/gnobots.c:163
-#: gnome-stones/main.c:1218 gnomine/gnomine.c:451 gnothello/gnothello.c:180
+#: gnome-stones/main.c:1218 gnomine/gnomine.c:446 gnothello/gnothello.c:180
 #: gyahtzee/gyahtzee.c:455 mahjongg/mahjongg.c:420 same-gnome/same-gnome.c:693
 msgid "_Help"
 msgstr "도움말 (_H)"
@@ -254,7 +255,7 @@ msgstr "카드를 돌리고 있습니다..."
 msgid "Score:"
 msgstr "점수:"
 
-#: aisleriot/sol.c:360 gnomine/gnomine.c:662
+#: aisleriot/sol.c:360 gnomine/gnomine.c:657
 msgid "Time:"
 msgstr "시간:"
 
@@ -440,15 +441,15 @@ msgstr "현재: %d패"
 msgid "Set game scenario"
 msgstr "시나리오 선택"
 
-#: gnobots/gnobots.c:119 gnomine/gnomine.c:510 gnomine/gnomine.c:515
+#: gnobots/gnobots.c:119 gnomine/gnomine.c:505 gnomine/gnomine.c:510
 msgid "X"
 msgstr "X"
 
-#: gnobots/gnobots.c:120 gnomine/gnomine.c:511 gnomine/gnomine.c:516
+#: gnobots/gnobots.c:120 gnomine/gnomine.c:506 gnomine/gnomine.c:511
 msgid "Y"
 msgstr "Y"
 
-#: gnobots/gnobots.c:134 gnomine/gnomine.c:426 gyahtzee/gyahtzee.c:413
+#: gnobots/gnobots.c:134 gnomine/gnomine.c:421 gyahtzee/gyahtzee.c:413
 #: same-gnome/same-gnome.c:669
 #, fuzzy
 msgid "_Scores"
@@ -512,7 +513,7 @@ msgstr "안전한 순간이동:"
 msgid "Level:"
 msgstr "난이도:"
 
-#: gnobots/properties.c:194 mahjongg/mahjongg.c:448
+#: gnobots/properties.c:194
 msgid "Properties"
 msgstr "속성"
 
@@ -729,88 +730,88 @@ msgstr "동굴:"
 msgid "Lives:"
 msgstr "살아있는 숫자:"
 
-#: gnomine/gnomine.c:41 gnomine/gnomine.c:294
+#: gnomine/gnomine.c:41 gnomine/gnomine.c:289
 msgid "Tiny"
 msgstr "작게"
 
-#: gnomine/gnomine.c:42 gnomine/gnomine.c:302
+#: gnomine/gnomine.c:42 gnomine/gnomine.c:297
 msgid "Medium"
 msgstr "중간 크기"
 
-#: gnomine/gnomine.c:43 gnomine/gnomine.c:310
+#: gnomine/gnomine.c:43 gnomine/gnomine.c:305
 msgid "Biiiig"
 msgstr "거대하게"
 
-#: gnomine/gnomine.c:44 gnomine/gnomine.c:318
+#: gnomine/gnomine.c:44 gnomine/gnomine.c:313
 msgid "Custom"
 msgstr "지정하기"
 
-#: gnomine/gnomine.c:82 gnomine/gnomine.c:246 gnomine/gnomine.c:575
+#: gnomine/gnomine.c:77 gnomine/gnomine.c:241 gnomine/gnomine.c:570
 msgid "Gnome Mines"
 msgstr "그놈 지뢰"
 
-#: gnomine/gnomine.c:249
+#: gnomine/gnomine.c:244
 msgid "Minesweeper clone"
 msgstr "지뢰찾기 클론"
 
-#: gnomine/gnomine.c:277
+#: gnomine/gnomine.c:272
 msgid "Gnome Mines setup"
 msgstr "그놈 지뢰 셋업"
 
-#: gnomine/gnomine.c:286
+#: gnomine/gnomine.c:281
 msgid "Custom size"
 msgstr "크기 지정"
 
-#: gnomine/gnomine.c:288
+#: gnomine/gnomine.c:283
 msgid "Field size"
 msgstr "판 크기"
 
-#: gnomine/gnomine.c:330
+#: gnomine/gnomine.c:325
 msgid "Mine Size:"
 msgstr "지뢰 크기"
 
-#: gnomine/gnomine.c:357
+#: gnomine/gnomine.c:352
 msgid "Horizontal:"
 msgstr "가로:"
 
-#: gnomine/gnomine.c:370
+#: gnomine/gnomine.c:365
 msgid "Vertical:"
 msgstr "세로:"
 
-#: gnomine/gnomine.c:383
+#: gnomine/gnomine.c:378
 msgid "Number of mines:"
 msgstr "지뢰의 갯수:"
 
-#: gnomine/gnomine.c:440
+#: gnomine/gnomine.c:435
 #, fuzzy
 msgid "_About Gnome Mines"
 msgstr "Gnome-Stone은"
 
-#: gnomine/gnomine.c:510
+#: gnomine/gnomine.c:505
 msgid "Width of grid"
 msgstr "격자 폭"
 
-#: gnomine/gnomine.c:511
+#: gnomine/gnomine.c:506
 msgid "Height of grid"
 msgstr "격자 높이"
 
-#: gnomine/gnomine.c:512
+#: gnomine/gnomine.c:507
 msgid "Size of mines"
 msgstr "지뢰의 크기"
 
-#: gnomine/gnomine.c:512
+#: gnomine/gnomine.c:507
 msgid "SIZE"
 msgstr "크기"
 
-#: gnomine/gnomine.c:513
+#: gnomine/gnomine.c:508
 msgid "Number of mines"
 msgstr "지뢰의 갯수"
 
-#: gnomine/gnomine.c:513 gyahtzee/setup.c:74 gyahtzee/setup.c:75
+#: gnomine/gnomine.c:508 gyahtzee/setup.c:74 gyahtzee/setup.c:75
 msgid "NUMBER"
 msgstr "갯수"
 
-#: gnomine/gnomine.c:651
+#: gnomine/gnomine.c:646
 msgid "Flags:"
 msgstr "깃발:"
 
@@ -1391,13 +1392,14 @@ msgstr "Gnome 마작"
 msgid "_Options"
 msgstr "옵션"
 
-#: mahjongg/mahjongg.c:430
-msgid "New Seed"
-msgstr "새로운 게임번호"
-
 #: mahjongg/mahjongg.c:442
 msgid "Re-do"
 msgstr "다시 실행"
+
+#: mahjongg/mahjongg.c:448
+#, fuzzy
+msgid "Prop."
+msgstr "속성"
 
 #: mahjongg/mahjongg.c:754
 msgid "Tiles don't match!"
@@ -1415,7 +1417,7 @@ msgstr "더이상 움직일 게 없습니다"
 msgid "You won!"
 msgstr "이겼습니다!"
 
-#: mahjongg/mahjongg.c:838
+#: mahjongg/mahjongg.c:838 mahjongg/mahjongg.c:1408
 msgid "Tiles"
 msgstr "타일"
 
@@ -1443,7 +1445,7 @@ msgstr "기본 맵으로 하기"
 msgid "Background colour"
 msgstr "배경 색"
 
-#: mahjongg/mahjongg.c:1015 mahjongg/mahjongg.c:1386
+#: mahjongg/mahjongg.c:1015 mahjongg/mahjongg.c:1394
 msgid "Gnome Mahjongg"
 msgstr "Gnome 마작"
 
@@ -1465,13 +1467,9 @@ msgstr ""
 msgid "Game Number:"
 msgstr "게임 번호:"
 
-#: mahjongg/mahjongg.c:1400
-msgid " Tiles "
-msgstr " 타일 "
-
-#: mahjongg/mahjongg.c:1404
-msgid " Remaining: "
-msgstr " 남은 갯수: "
+#: mahjongg/mahjongg.c:1412
+msgid " Left: "
+msgstr ""
 
 #: same-gnome/same-gnome.c:262 same-gnome/same-gnome.c:294
 #: same-gnome/same-gnome.c:297 same-gnome/same-gnome.c:621
@@ -1611,6 +1609,15 @@ msgstr "저장... (_S)"
 #: scottfree/GnomeScott.c:1538
 msgid "_Quit"
 msgstr "종료 (_Q)"
+
+#~ msgid "New Seed"
+#~ msgstr "새로운 게임번호"
+
+#~ msgid " Tiles "
+#~ msgstr " 타일 "
+
+#~ msgid " Remaining: "
+#~ msgstr " 남은 갯수: "
 
 #~ msgid "_Exit"
 #~ msgstr "끝내기 (_X)"
