@@ -164,8 +164,9 @@
 (define (button-clicked slot)
   (and (= 0 slot)
        (if (any-slot-empty?)
-	   ((set-statusbar-message "Please fill in empty pile first.")
-	    #f)
+	   (begin
+             (set-statusbar-message "Please fill in empty pile first.")
+             #f)
 	   (begin
 	     (deal-new-cards)
 	     (give-status-message)

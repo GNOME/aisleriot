@@ -49,8 +49,6 @@
 
   (flip-top-card stock)
   
-  (give-status-message)
-
   (list 10 4))
 
 (define (deal-ten-across-cards)
@@ -81,10 +79,6 @@
 ;;(define deal-cards (lambda (num slot-list) (map (lambda (num1) (display "dealing face-down to ")(display num1)(display "\n")) slot-list)))
 ;;(define deal-cards-face-up (lambda (num slot-list) (map (lambda (num1) (display "dealing face-up to ") (display num1) (display "\n")) slot-list)))
 ;;(deal-ten-across-cards)
-
-(define (give-status-message)
-  (set-statusbar-message (get-stock-no-string)))
-
 
 (define (button-pressed slot-id card-list)
   (and (or (> slot-id 1)
@@ -369,7 +363,6 @@
   (won-tester tableau))
 
 (define (game-over)
-  (give-status-message)
   (not (game-won)))
 
 (define (get-options)
