@@ -1,3 +1,6 @@
+; Aisleriot - canfield.scm
+; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+
 (define FLIP-COUNTER 0)
 (define BASE-VAL 0)
 
@@ -45,18 +48,28 @@
       #f
       (if card-list
 	  (if (is-visible? (car (reverse card-list)))
-	      #t
+	      (if (and (= slot-id 2)
+		       (= (list-length (get-cards 2)) 1))
+		  #f
+		  #t)
 	      #f)
 	  #f)))
 
 (define (complete-transaction start-slot card-list end-slot)
-  (move-n-cards! start-slot end-slot card-list)
   (if (and (> start-slot 1)
 	   (< start-slot 6))
-      (add-to-score! -1))
+      (begin
+	(if (= (get-value (car card-list))
+	       BASE-VAL)
+	    (if (empty-slot? 3)
+		(set! end-slot 3)
+		(if (empty-slot? 4)
+		    (set! end-slot 4))))
+	(add-to-score! -1)))
   (if (and (> end-slot 1)
 	   (< end-slot 6))
       (add-to-score! 1))
+  (move-n-cards! start-slot end-slot card-list)
   (if (and (empty-slot? start-slot) 
 	   (> start-slot 6)
 	   (not (empty-slot? 6)))
@@ -185,7 +198,89 @@
       #t
       #f))
 
+(define (deal-possible?)
+  (if (not (empty-slot? 0))
+      (list 0 "Deal a new card from the deck")
+      (if (and (< FLIP-COUNTER 3)
+	       (not (empty-slot? 1)))
+	  (list 0 "Move waste back to stock")
+	  #f)))
+
+(define (move-up? card slot)
+  (or (if (empty-slot? slot)
+	  (if (= (get-value card)
+		 BASE-VAL)
+	      (list 1 (get-name card) "empty slot on foundation")
+	      #f)
+	  (and (= (get-suit card)
+		  (get-suit (get-top-card slot)))
+	       (or (and (= (get-value card) ace)
+			(= (get-value (get-top-card slot)) king))
+		   (= (get-value card)
+		      (+ 1 (get-value (get-top-card slot)))))
+	       (list 2 (get-name card)
+		     (get-name (get-top-card slot)))))
+      (if (< slot 5)
+	  (move-up? card (+ 1 slot))
+	  #f)))
+
+(define (get-valid-move check-list)
+  (and (not (null? check-list))
+       (or (and (not (empty-slot? (car check-list)))
+		(move-up? (get-top-card (car check-list)) 2))
+	   (get-valid-move (cdr check-list)))))
+
+(define (tabled card slot)
+  (or (if (empty-slot? slot)
+	  (list 1 (get-name card) "empty space on tableau")
+	  (and (eq? (is-black? card)
+		    (is-red? (get-top-card slot)))
+	       (or (and (= (get-value card) king)
+			(= (get-value (get-top-card slot)) ace))
+		   (= (get-value card)
+		      (- (get-value (get-top-card slot)) 1)))
+	       (list 2 (get-name card)
+		     (get-name (get-top-card slot)))))
+      (if (< slot 10)
+	  (tabled card (+ 1 slot))
+	  #f)))
+
+(define (to-tableau? check-list)
+  (and (not (null? check-list))
+       (or (and (not (empty-slot? (car check-list)))
+		(tabled (get-top-card (car check-list)) 7))
+	   (to-tableau? (cdr check-list)))))
+
+(define (col-check card start-slot check-slot)
+  (if (> check-slot 10)
+      #f
+      (or 
+       (if (= start-slot check-slot)
+	   (col-check card start-slot (+ 1 check-slot))
+	   (and (not (empty-slot? check-slot))
+		(eq? (is-black? card)
+		     (is-red? (get-top-card check-slot)))
+		(or (and (= (get-value card) king)
+			 (= (get-value (get-top-card check-slot)) ace))
+		    (= (get-value card)
+		       (- (get-value (get-top-card check-slot)) 1)))
+		(list 2 (get-name card)
+		      (get-name (get-top-card check-slot)))))
+       (col-check card start-slot (+ 1 check-slot)))))
+
+(define (move-column? check-list)
+  (and (not (null? check-list))
+       (or (and (not (empty-slot? (car check-list)))
+		(col-check (car
+			    (reverse (get-cards (car check-list)))) 
+			   (car check-list) 7))
+	   (move-column? (cdr check-list)))))
+
 (define (get-hint borp)
-  #f)
+  (or (get-valid-move '(6 7 8 9 10 1))
+      (to-tableau? '(6 1))
+      (move-column? '(7 8 9 10))
+      (deal-possible?)
+      (list 0 "Try rearranging the cards")))
 
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
