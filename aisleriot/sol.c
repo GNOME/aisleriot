@@ -161,14 +161,15 @@ void eval_installed_file (char *file)
 	g_free (installed_filename);
 	g_free (relative);
 }
-			  
+
 void main_prog(int argc, char *argv[])
 {
   
-  printf(_("Done.\ninitializing gnome/gdk...\n"));
-  gnome_init ("aisleriot", &argc, &argv);
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
+
+  printf(_("Done.\ninitializing gnome/gdk...\n"));
+  gnome_init ("aisleriot", NULL, argc, argv, 0, NULL);
   gdk_imlib_init();
   printf(_("Done.\n"));
 
