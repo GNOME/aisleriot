@@ -258,14 +258,7 @@ void timer_stop ()
 
 void create_sol_board ()
 {
-  gtk_widget_push_colormap (gdk_imlib_get_colormap ());
-  gtk_widget_push_visual (gdk_imlib_get_visual ());
-  
   playing_area = gtk_drawing_area_new ();
-  
-  gtk_widget_pop_visual ();
-  gtk_widget_pop_colormap ();
-  
   gtk_widget_set_events (playing_area, 
 			 gtk_widget_get_events (playing_area) | GAME_EVENTS);
   
@@ -450,6 +443,9 @@ int main (int argc, char *argv [])
   gnome_init_with_popt_table ("Aisleriot", VERSION, argc, argv,
 			      aisleriot_opts, 0, NULL);
 
+  gtk_widget_push_colormap (gdk_imlib_get_colormap ());
+  gtk_widget_push_visual (gdk_imlib_get_visual ());
+  
   splash_new ();
 
   splash_update (_("Initializing scheme..."), 0.20);
