@@ -48,6 +48,7 @@ types_DATA  = 		\
 	canfield.scm	\
 	clock.scm	\
 	eagle_wing.scm	\
+	elevator.scm	\
 	klondike.scm	\
 	pileon.scm	\
 	neighbor.scm	\
