@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-19 12:24+0100\n"
-"PO-Revision-Date: 2004-12-19 12:56+0100\n"
+"POT-Creation-Date: 2004-12-24 20:19+0100\n"
+"PO-Revision-Date: 2004-12-25 15:48+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -47,6 +47,7 @@ msgid "The game file to use"
 msgstr "Soubor hry, který používat"
 
 #: aisleriot/aisleriot.schemas.in.h:6 glines/glines.schemas.in.h:11
+#: same-gnome/same-gnome.schemas.in.h:5
 msgid "The height of the main window."
 msgstr "Výška hlavního okna."
 
@@ -59,6 +60,7 @@ msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "Název souboru scheme obsahujícího hru solitaire, kterou hrát."
 
 #: aisleriot/aisleriot.schemas.in.h:9 glines/glines.schemas.in.h:12
+#: same-gnome/same-gnome.schemas.in.h:9
 msgid "The width of the main window."
 msgstr "Šířka hlavního okna."
 
@@ -105,7 +107,7 @@ msgstr "Gratuluji."
 msgid "You have won!!!"
 msgstr "Vyhráli jste!!!"
 
-#: aisleriot/dialog.c:48 mahjongg/mahjongg.c:696
+#: aisleriot/dialog.c:48 mahjongg/mahjongg.c:717
 msgid "There are no more moves."
 msgstr "Nejsou možné žádné další tahy."
 
@@ -169,8 +171,16 @@ msgstr "Tato hra nemůže poskytnout radu."
 msgid "AisleRiot Cards"
 msgstr "Karty AisleRiot"
 
+#: aisleriot/freecell.desktop.in.h:1
+msgid "FreeCell Solitaire"
+msgstr "Solitaire FreeCell"
+
+#: aisleriot/freecell.desktop.in.h:2
+msgid "Play the popular FreeCell card game"
+msgstr "Hrát populární karetní hru FreeCell"
+
 #: aisleriot/menu.c:94 gnome-stones/main.c:1084 gnomine/gnomine.c:521
-#: mahjongg/mahjongg.c:961
+#: mahjongg/mahjongg.c:982
 msgid "Main game:"
 msgstr "Hlavní hra:"
 
@@ -180,11 +190,11 @@ msgstr "Karetní hry:"
 
 #. Translator credits
 #: aisleriot/menu.c:115 blackjack/src/menu.cpp:157 gataxx/gataxx.c:369
-#: glines/glines.c:1092 gnect/src/main.c:821 gnibbles/main.c:184
+#: glines/glines.c:1093 gnect/src/main.c:821 gnibbles/main.c:184
 #: gnobots2/menu.c:224 gnome-stones/main.c:1095 gnometris/tetris.cpp:1431
 #: gnomine/gnomine.c:541 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1573
-#: gtali/gyahtzee.c:455 iagno/gnothello.c:369 mahjongg/mahjongg.c:985
-#: same-gnome/same-gnome.c:712
+#: gtali/gyahtzee.c:455 iagno/gnothello.c:369 mahjongg/mahjongg.c:1006
+#: same-gnome/same-gnome.c:222
 msgid "translator-credits"
 msgstr ""
 "Jirka Lébl\n"
@@ -205,11 +215,11 @@ msgstr ""
 
 #: aisleriot/menu.c:212 gnect/src/prefs.c:391 gnibbles/preferences.c:213
 #: gnome-stones/preferences.c:744 gnometris/tetris.cpp:775
-#: gnotski/gnotski.c:652
+#: gnotski/gnotski.c:652 same-gnome/same-gnome.c:267
 msgid "_Game"
 msgstr "_Hra"
 
-#: aisleriot/menu.c:213
+#: aisleriot/menu.c:213 same-gnome/same-gnome.c:268
 msgid "_View"
 msgstr "_Zobrazit"
 
@@ -217,11 +227,11 @@ msgstr "_Zobrazit"
 msgid "_Control"
 msgstr "_Ovládání"
 
-#: aisleriot/menu.c:215 gnotski/gnotski.c:653
+#: aisleriot/menu.c:215 gnotski/gnotski.c:653 same-gnome/same-gnome.c:270
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: aisleriot/menu.c:217
+#: aisleriot/menu.c:217 same-gnome/same-gnome.c:272
 msgid "_New Game"
 msgstr "_Nová hra"
 
@@ -241,11 +251,11 @@ msgstr "_Statistiky..."
 msgid "_Cards..."
 msgstr "_Karty..."
 
-#: aisleriot/menu.c:225
+#: aisleriot/menu.c:225 same-gnome/same-gnome.c:274
 msgid "_Undo Move"
 msgstr "Tah _zpět"
 
-#: aisleriot/menu.c:226
+#: aisleriot/menu.c:226 same-gnome/same-gnome.c:275
 msgid "_Redo Move"
 msgstr "Tah zn_ovu"
 
@@ -253,11 +263,11 @@ msgstr "Tah zn_ovu"
 msgid "_Hint"
 msgstr "_Rada"
 
-#: aisleriot/menu.c:230
+#: aisleriot/menu.c:230 same-gnome/same-gnome.c:281
 msgid "_Contents"
 msgstr "_Obsah"
 
-#: aisleriot/menu.c:237 gnect/src/main.c:1194 mahjongg/mahjongg.c:144
+#: aisleriot/menu.c:237 gnect/src/main.c:1194 mahjongg/mahjongg.c:145
 msgid "_Toolbar"
 msgstr "_Lišta nástrojů"
 
@@ -812,14 +822,13 @@ msgstr ""
 msgid "Aisleriot"
 msgstr "AisleRiot"
 
-#: aisleriot/sol.c:410 glines/glines.c:1699 gnobots2/statusbar.c:65
+#: aisleriot/sol.c:410 glines/glines.c:1700 gnobots2/statusbar.c:65
 #: gnome-stones/status.c:71 gnometris/scoreframe.cpp:58 gnomine/gnomine.c:530
-#: same-gnome/same-gnome.c:962
 msgid "Score:"
 msgstr "Skóre:"
 
 #: aisleriot/sol.c:414 gnomine/gnomine.c:1088 gnotravex/gnotravex.c:1019
-#: mahjongg/mahjongg.c:1464
+#: mahjongg/mahjongg.c:1487
 msgid "Time:"
 msgstr "Čas:"
 
@@ -828,7 +837,7 @@ msgid "Variation on game rules"
 msgstr "Variace pravidel hry"
 
 #: aisleriot/sol.c:464 gnobots2/gnobots.c:61 gnobots2/gnobots.c:63
-#: same-gnome/same-gnome.c:892
+#: same-gnome/same-gnome.c:409 same-gnome/same-gnome.c:411
 msgid "NAME"
 msgstr "JMÉNO"
 
@@ -2007,7 +2016,7 @@ msgstr "Sada kamenů:"
 msgid "The appearance of the pieces"
 msgstr "Vzhled kamenů"
 
-#: glines/glines.c:143
+#: glines/glines.c:144
 #, c-format
 msgid ""
 "Five or More could not find image file:\n"
@@ -2020,54 +2029,54 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím, že je Pět nebo víc správně nainstalováno."
 
-#: glines/glines.c:304
+#: glines/glines.c:305
 msgid "Match five balls of the same color in a row to score!"
 msgstr "Seřazením pěti koulí stejné barvy do řady získáte body!"
 
-#: glines/glines.c:359 glines/glines.c:1111 glines/glines.c:1645
+#: glines/glines.c:360 glines/glines.c:1112 glines/glines.c:1646
 #: glines/glines.desktop.in.h:1
 msgid "Five or More"
 msgstr "Pět nebo víc"
 
-#: glines/glines.c:392
+#: glines/glines.c:393
 msgid "Game Over!"
 msgstr "Konec hry!"
 
 #. Can't move there!
-#: glines/glines.c:550
+#: glines/glines.c:551
 msgid "Can't move there!"
 msgstr "Tam nelze táhnout!"
 
-#: glines/glines.c:1114
+#: glines/glines.c:1115
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "Port kdysi známé hry Barevné linie pro prostředí GNOME"
 
-#: glines/glines.c:1251
+#: glines/glines.c:1252
 msgid "Five or More Preferences"
 msgstr "Nastavení Pět nebo víc"
 
-#: glines/glines.c:1263
+#: glines/glines.c:1264
 msgid "Themes"
 msgstr "Témata"
 
-#: glines/glines.c:1272
+#: glines/glines.c:1273
 msgid "Ball image"
 msgstr "Obrázek koule"
 
-#: glines/glines.c:1282 glines/glines.schemas.in.h:1
+#: glines/glines.c:1283 glines/glines.schemas.in.h:1
 #: gnobots2/gnobots2.schemas.in.h:1
 msgid "Background color"
 msgstr "Barva pozadí"
 
-#: glines/glines.c:1296
+#: glines/glines.c:1297
 msgid "General"
 msgstr "Obecné"
 
-#: glines/glines.c:1304
+#: glines/glines.c:1305
 msgid "Use fast moves"
 msgstr "Používat rychlé tahy"
 
-#: glines/glines.c:1669
+#: glines/glines.c:1670
 msgid "Next:"
 msgstr "Následující:"
 
@@ -2309,11 +2318,11 @@ msgstr "_Zapnout zvuk"
 msgid "Enable or disable sound"
 msgstr "Zapnout nebo vypnout zvuk"
 
-#: gnect/src/main.c:1220 gnobots2/menu.c:106 mahjongg/mahjongg.c:167
+#: gnect/src/main.c:1220 gnobots2/menu.c:106 mahjongg/mahjongg.c:168
 msgid "New"
 msgstr "Nová hra"
 
-#: gnect/src/main.c:1220 mahjongg/mahjongg.c:167
+#: gnect/src/main.c:1220 mahjongg/mahjongg.c:168
 msgid "New game"
 msgstr "Nová hra"
 
@@ -2321,7 +2330,7 @@ msgstr "Nová hra"
 msgid "Start a new game"
 msgstr "Začít novou hru"
 
-#: gnect/src/main.c:1223 mahjongg/mahjongg.c:183
+#: gnect/src/main.c:1223 mahjongg/mahjongg.c:184
 msgid "Undo"
 msgstr "Zpět"
 
@@ -2329,7 +2338,7 @@ msgstr "Zpět"
 msgid "Undo the last move"
 msgstr "Vrátit poslední tah"
 
-#: gnect/src/main.c:1224 mahjongg/mahjongg.c:189
+#: gnect/src/main.c:1224 mahjongg/mahjongg.c:190
 msgid "Hint"
 msgstr "Rada"
 
@@ -2752,7 +2761,7 @@ msgstr "Nezbývá žádné umístění teleportu!!"
 msgid "There are no safe locations to teleport to!!"
 msgstr "Neexistují bezpečná umístění, kam se teleportovat!!"
 
-#: gnobots2/gnobots.c:61 same-gnome/same-gnome.c:892
+#: gnobots2/gnobots.c:61
 msgid "Set game scenario"
 msgstr "Nastavit scénář hry"
 
@@ -3453,7 +3462,7 @@ msgstr "Počáteční jeskyně"
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
 #: gnome-stones/main.c:431 gnome-stones/main.c:1041
-#: gnometris/gnometris.schemas.in.h:15 mahjongg/mahjongg.c:177
+#: gnometris/gnometris.schemas.in.h:15 mahjongg/mahjongg.c:178
 msgid "Pause"
 msgstr "Pauza"
 
@@ -3811,8 +3820,7 @@ msgstr "Používat náhodné barvy bloků"
 msgid "Rotate blocks counterclockwise"
 msgstr "Rotovat bloky proti směru hodinových ručiček"
 
-#: gnometris/tetris.cpp:880 same-gnome/same-gnome.c:635
-#: same-gnome/same-gnome.c:688
+#: gnometris/tetris.cpp:880
 msgid "Theme"
 msgstr "Téma"
 
@@ -3932,6 +3940,7 @@ msgid "Number of mines"
 msgstr "Počet min"
 
 #: gnomine/gnomine.c:919 gtali/setup.c:85 gtali/setup.c:86
+#: same-gnome/same-gnome.c:413
 msgid "NUMBER"
 msgstr "ČÍSLO"
 
@@ -4063,7 +4072,7 @@ msgstr "Hlavolam vyřešen! Výborně!"
 msgid "Puzzle solved!"
 msgstr "Hlavolam vyřešen!"
 
-#: gnotravex/gnotravex.c:1139 mahjongg/mahjongg.c:1050
+#: gnotravex/gnotravex.c:1139 mahjongg/mahjongg.c:1071
 msgid "Game paused"
 msgstr "Hra pozastavena"
 
@@ -4674,7 +4683,7 @@ msgstr "%.2d"
 msgid "Play a game of Reversi"
 msgstr "Hrát hru Reversi"
 
-#: iagno/iagno.soundlist.in.h:1
+#: iagno/iagno.soundlist.in.h:1 same-gnome/same-gnome.c:252
 msgid "Game over"
 msgstr "Konec hry"
 
@@ -4952,133 +4961,141 @@ msgstr ""
 "Který server hry kontaktovat při používání režimu serveru. Přijímá obvyklý "
 "zápis jmen počítačů nebo čtveřice oddělené tečkami."
 
-#: mahjongg/drawing.c:422
-#, c-format
-msgid "Unable to locate theme file: %s"
-msgstr "Nemohu najít soubor tématu: %s"
+#: mahjongg/drawing.c:292
+msgid "The selected image may be corrupt. Please choose another tile set."
+msgstr "Zvolený obrázek je možná poškozen. Zvolte prosím jinou sadu kamenů."
 
-#: mahjongg/mahjongg.c:145
+#: mahjongg/drawing.c:416
+#, c-format
+msgid "Unable to locate file '%s'. Please choose another tile set."
+msgstr "Nemohu najít soubor '%s'. Zvolte prosím jinou sadu kamenů."
+
+#: mahjongg/mahjongg.c:146
 msgid "Show or hide the toolbar"
 msgstr "Zobrazit nebo skrýt lištu nástrojů"
 
-#: mahjongg/mahjongg.c:171
+#: mahjongg/mahjongg.c:172
 msgid "Restart"
 msgstr "Začít znovu"
 
-#: mahjongg/mahjongg.c:171
+#: mahjongg/mahjongg.c:172
 msgid "Restart game"
 msgstr "Začít hru znovu"
 
-#: mahjongg/mahjongg.c:177
+#: mahjongg/mahjongg.c:178
 msgid "Pause game"
 msgstr "Pozastavit hru"
 
-#: mahjongg/mahjongg.c:183
+#: mahjongg/mahjongg.c:184
 msgid "Undo previous move"
 msgstr "Vrátit předchozí tah"
 
-#: mahjongg/mahjongg.c:187
+#: mahjongg/mahjongg.c:188
 msgid "Redo"
 msgstr "Znovu"
 
-#: mahjongg/mahjongg.c:189
+#: mahjongg/mahjongg.c:190
 msgid "Get a hint"
 msgstr "Získat radu"
 
-#: mahjongg/mahjongg.c:399
+#: mahjongg/mahjongg.c:209
+msgid "Could not load tile set"
+msgstr "Nemohu načíst sadu kamenů"
+
+#: mahjongg/mahjongg.c:420
 msgid ""
 "Do you want to finish the current game or start playing with the new map "
 "immediately?"
 msgstr "Chcete dokončit aktuální hru nebo hned začít hrát s novou mapou?"
 
-#: mahjongg/mahjongg.c:400
+#: mahjongg/mahjongg.c:421
 msgid ""
 "If you choose to finish with the old map then the next game will use the new "
 "map."
 msgstr ""
 "Pokud se rozhodnete dokončit starou mapu, použije další hra novou mapu."
 
-#: mahjongg/mahjongg.c:402
+#: mahjongg/mahjongg.c:423
 msgid "_Finish"
 msgstr "_Dokončit"
 
-#: mahjongg/mahjongg.c:659 mahjongg/mahjongg.c:664
+#: mahjongg/mahjongg.c:680 mahjongg/mahjongg.c:685
 msgid "These tiles don't match."
 msgstr "Tyto kameny k sobě nepasují."
 
-#: mahjongg/mahjongg.c:700
+#: mahjongg/mahjongg.c:721
 msgid "Shuffle"
 msgstr "Zamíchat"
 
-#: mahjongg/mahjongg.c:763
+#: mahjongg/mahjongg.c:784
 msgid "Preferences"
 msgstr "Nastavení"
 
-#: mahjongg/mahjongg.c:782
+#: mahjongg/mahjongg.c:803
 msgid "Tiles"
 msgstr "Kameny"
 
-#: mahjongg/mahjongg.c:790
+#: mahjongg/mahjongg.c:811
 msgid "Tile Set"
 msgstr "Sada kamenů"
 
-#: mahjongg/mahjongg.c:803
+#: mahjongg/mahjongg.c:824
 msgid "Maps"
 msgstr "Mapy"
 
-#: mahjongg/mahjongg.c:811
+#: mahjongg/mahjongg.c:832
 msgid "Select Map"
 msgstr "Vyberte mapu"
 
-#: mahjongg/mahjongg.c:824
+#: mahjongg/mahjongg.c:845
 msgid "Colors"
 msgstr "Barvy"
 
-#: mahjongg/mahjongg.c:832
+#: mahjongg/mahjongg.c:853
 msgid "Background Color"
 msgstr "Barva pozadí"
 
-#: mahjongg/mahjongg.c:846
+#: mahjongg/mahjongg.c:867
 msgid "Warnings"
 msgstr "Varování"
 
-#: mahjongg/mahjongg.c:852
+#: mahjongg/mahjongg.c:873
 msgid "Warn when tiles don't match"
 msgstr "Varovat, pokud kameny nepasují"
 
-#: mahjongg/mahjongg.c:969
+#: mahjongg/mahjongg.c:990
 msgid "Maps:"
 msgstr "Mapy:"
 
-#: mahjongg/mahjongg.c:973
+#: mahjongg/mahjongg.c:994
 msgid "Tiles:"
 msgstr "Kameny:"
 
-#: mahjongg/mahjongg.c:1005
+#: mahjongg/mahjongg.c:1026
 msgid "GNOME Mahjongg"
 msgstr "GNOME Mahjongg"
 
-#: mahjongg/mahjongg.c:1008
+#: mahjongg/mahjongg.c:1029
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "Verze GNOME východní hry s kameny, Mahjongg."
 
-#: mahjongg/mahjongg.c:1380
+#: mahjongg/mahjongg.c:1401
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Promiňte, nepodařilo se nalézt hratelné nastavení."
 
-#: mahjongg/mahjongg.c:1438 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1461 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:1446
+#: mahjongg/mahjongg.c:1469
 msgid "Tiles Left:"
 msgstr "Zbývá kamenů:"
 
-#: mahjongg/mahjongg.c:1455
+#: mahjongg/mahjongg.c:1478
 msgid "Moves Left:"
 msgstr "Zbývá tahů:"
 
-#: mahjongg/mahjongg.c:1520
+#: mahjongg/mahjongg.c:1543
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "Vítejte ve hře GNOME Mahjongg!"
 
@@ -5134,74 +5151,151 @@ msgstr "Čtyři mosty"
 msgid "The Ziggurat"
 msgstr "Ziggurat"
 
-#: same-gnome/same-gnome.c:205
+#: same-gnome/same-gnome.c:153
 #, c-format
-msgid "%d stone selected"
-msgid_plural "%d stones selected"
-msgstr[0] "Vybrán %d kámen"
-msgstr[1] "Vybrány %d kameny"
-msgstr[2] "Vybráno %d kamenů"
+msgid "Score: %d"
+msgstr "Skóre: %d"
 
-#: same-gnome/same-gnome.c:210
-msgid "No stones selected"
-msgstr "Nevybrány žádné kameny"
+#: same-gnome/same-gnome.c:219
+msgid ""
+"I want to play that game! You know, they all go whirly-round and you click "
+"on them and they vanish!"
+msgstr "Chci hrát tu hru! Víte, všechny se točí a vy na ně klikáte a ony mizí!"
+
+#: same-gnome/same-gnome.c:269
+msgid "_Size"
+msgstr "_Velikost"
+
+#: same-gnome/same-gnome.c:273
+msgid "_Scores..."
+msgstr "_Skóre..."
+
+#: same-gnome/same-gnome.c:278
+msgid "_Fullscreen"
+msgstr "_Celá obrazovka"
+
+#: same-gnome/same-gnome.c:279
+msgid "_Theme..."
+msgstr "_Téma..."
 
 #: same-gnome/same-gnome.c:288
-msgid "The Same GNOME"
-msgstr "Same GNOME"
+msgid "_Small"
+msgstr "_Malá"
 
-#: same-gnome/same-gnome.c:446
-#, c-format
-msgid ""
-"Could not find the theme:\n"
-"%s\n"
-"\n"
-"Please check your Same GNOME installation."
-msgstr ""
-"Nelze nalézt téma:\n"
-"%s\n"
-"\n"
-"Zkontrolujte prosím svou instalaci Same GNOME."
+#: same-gnome/same-gnome.c:289
+msgid "_Medium"
+msgstr "_Střední"
 
-#: same-gnome/same-gnome.c:476
-#, c-format
-msgid ""
-"Same GNOME can't load the image file:\n"
-"%s\n"
-"\n"
-"Please check your Same GNOME installation"
-msgstr ""
-"Same GNOME nemůže načíst soubor s obrázkem:\n"
-"%s\n"
-"\n"
-"Zkontrolujte prosím svou instalaci Same GNOME"
+#: same-gnome/same-gnome.c:290
+msgid "_Large"
+msgstr "_Velká"
 
-#: same-gnome/same-gnome.c:619
-msgid "Same GNOME Preferences"
-msgstr "Nastavení Same GNOME"
+#: same-gnome/same-gnome.c:408
+msgid "Set the theme"
+msgstr "Nastavit hru"
 
-#: same-gnome/same-gnome.c:732 same-gnome/same-gnome.c:931
-#: same-gnome/same-gnome.desktop.in.h:2
-msgid "Same GNOME"
-msgstr "Same GNOME"
+#: same-gnome/same-gnome.c:411
+msgid "For backwards compatibility"
+msgstr "Pro zpětnou komptibilitu"
 
-#: same-gnome/same-gnome.c:735
-msgid "Original idea from KDE's same game program."
-msgstr "Původní nápad pochází z hry KDE Same Game."
-
-#: same-gnome/same-gnome.c:941
-msgid "Welcome to Same GNOME!"
-msgstr "Vítejte ve hře Same GNOME!"
+#: same-gnome/same-gnome.c:413
+msgid "Game size (1=small, 3=large)"
+msgstr "Velikost hry (1=malá, 3=velká)"
 
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Odstraňovat skupiny míčků pro vymazání obrazovky"
 
-#~ msgid "FreeCell Solitaire"
-#~ msgstr "Solitaire FreeCell"
+#: same-gnome/same-gnome.desktop.in.h:2
+msgid "Same GNOME"
+msgstr "Same GNOME"
 
-#~ msgid "Play the popular FreeCell card game"
-#~ msgstr "Hrát populární karetní hru FreeCell"
+#: same-gnome/same-gnome.schemas.in.h:1
+msgid "Height of the custom board"
+msgstr "Výška vlastní desky"
+
+#: same-gnome/same-gnome.schemas.in.h:2
+msgid "The board size"
+msgstr "Velikost desky"
+
+#: same-gnome/same-gnome.schemas.in.h:3
+msgid "The filename of the theme to use."
+msgstr "Název souboru tématu, které používat."
+
+#: same-gnome/same-gnome.schemas.in.h:4
+msgid "The height of the custom board, 101 &gt; height &gt; 3."
+msgstr "Výška vlastní desky, 101 &gt; výška &gt; 3."
+
+#: same-gnome/same-gnome.schemas.in.h:6
+msgid ""
+"The size of the board to use. 1 = Custom, 2 = Small 3 = Medium 4 = Large."
+msgstr "Velikost desky, kterou používat. 1 = vlastní, 2 = malá 3 = střední 4 = velká."
+
+#: same-gnome/same-gnome.schemas.in.h:7
+msgid "The theme to use"
+msgstr "Téma, které používat"
+
+#: same-gnome/same-gnome.schemas.in.h:8
+msgid "The width of the custom board, 101 &gt; width &gt; 3."
+msgstr "Šířka vlastní desky, 101 &gt; šířka &gt; 3."
+
+#: same-gnome/same-gnome.schemas.in.h:10
+msgid "The window height"
+msgstr "Výška okna"
+
+#: same-gnome/same-gnome.schemas.in.h:11
+msgid "The window width"
+msgstr "Šířka okna"
+
+#: same-gnome/same-gnome.schemas.in.h:12
+msgid "Width of the custom board"
+msgstr "Šířka vlastní desky"
+
+#~ msgid "Unable to locate theme file: %s"
+#~ msgstr "Nemohu najít soubor tématu: %s"
+
+#~ msgid "%d stone selected"
+#~ msgid_plural "%d stones selected"
+#~ msgstr[0] "Vybrán %d kámen"
+#~ msgstr[1] "Vybrány %d kameny"
+#~ msgstr[2] "Vybráno %d kamenů"
+
+#~ msgid "No stones selected"
+#~ msgstr "Nevybrány žádné kameny"
+
+#~ msgid "The Same GNOME"
+#~ msgstr "Same GNOME"
+
+#~ msgid ""
+#~ "Could not find the theme:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your Same GNOME installation."
+#~ msgstr ""
+#~ "Nelze nalézt téma:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Zkontrolujte prosím svou instalaci Same GNOME."
+
+#~ msgid ""
+#~ "Same GNOME can't load the image file:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your Same GNOME installation"
+#~ msgstr ""
+#~ "Same GNOME nemůže načíst soubor s obrázkem:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Zkontrolujte prosím svou instalaci Same GNOME"
+
+#~ msgid "Same GNOME Preferences"
+#~ msgstr "Nastavení Same GNOME"
+
+#~ msgid "Original idea from KDE's same game program."
+#~ msgstr "Původní nápad pochází z hry KDE Same Game."
+
+#~ msgid "Welcome to Same GNOME!"
+#~ msgstr "Vítejte ve hře Same GNOME!"
 
 #~ msgid "Game _options..."
 #~ msgstr "M_ožnosti hry..."
@@ -5250,9 +5344,6 @@ msgstr "Odstraňovat skupiny míčků pro vymazání obrazovky"
 
 #~ msgid "_Novice"
 #~ msgstr "_Nováček"
-
-#~ msgid "_Medium"
-#~ msgstr "_Střední"
 
 #~ msgid "_Advanced"
 #~ msgstr "_Pokročilý"
