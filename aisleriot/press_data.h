@@ -36,8 +36,4 @@ typedef struct {
 
 void generate_press_data(gint, gint, gint, gint);
 
-#ifndef PRESS_DATA_C
-extern press_data_type* press_data; 
-#endif
-
 #endif
