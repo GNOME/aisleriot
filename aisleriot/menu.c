@@ -113,7 +113,7 @@ void help_about_callback ()
 			      "played."),
 			    (const char **)authors,
 			    (const char **)documenters,
-			    strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
+			    g_str_equal (translator_credits, "translator_credits") ? NULL : translator_credits,
 			    pixbuf);
 	
 	if (pixbuf != NULL)

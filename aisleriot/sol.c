@@ -368,7 +368,7 @@ static void create_sol_board ()
 		      GTK_SIGNAL_FUNC (button_press_event), NULL);
 }
 
-gboolean quit_app (GtkMenuItem *menuitem)
+void quit_app (GtkMenuItem *menuitem)
 {
   gtk_main_quit ();
 }

@@ -65,7 +65,7 @@ extern GConfClient * gconf_client;
 
 gchar* game_file_to_name(const gchar* file);
 void new_game(gchar* file, guint *seed);
-gboolean quit_app (GtkMenuItem*);
+void quit_app (GtkMenuItem*);
 void set_score( void );
 void timer_start( void );
 void timer_stop( void );

@@ -110,6 +110,7 @@ void show_select_game_dialog()
   static GtkWidget* dialog = NULL;
   static GtkWidget* seed_entry;
   static GtkListStore* list;
+  GtkListStore ** listp;
   static GtkWidget* list_view;
   static GtkTreeSelection* select;
   GtkWidget* scrolled_window;
@@ -218,7 +219,8 @@ void show_select_game_dialog()
   g_snprintf (buf, sizeof (buf), "%d", seed);
   gtk_entry_set_text (GTK_ENTRY (seed_entry), buf);
 
-  if (gtk_tree_selection_get_selected (select, (GtkTreeModel **)(&list), &iter)) {
+  listp = &list;
+  if (gtk_tree_selection_get_selected (select, (GtkTreeModel **)listp, &iter)) {
     path = gtk_tree_model_get_path (GTK_TREE_MODEL(list), &iter);
     gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (list_view), path, NULL, TRUE, 0.5, 0.0);
     gtk_tree_path_free (path);
