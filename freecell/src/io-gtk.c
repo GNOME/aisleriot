@@ -1213,14 +1213,14 @@ to_destination_auto(void)
 		      _("Congratulations.  You won.\nDo you want to play again?"),
 		      NULL);
 
-      gtk_dialog_run (GTK_DIALOG(mb));
+      response = gtk_dialog_run (GTK_DIALOG(mb));
       gtk_widget_destroy (mb);
+
+      score_add_win();
+      stalled = 1;
 
       if (response == GTK_RESPONSE_YES)
 	      callback_new_really_callback();
-      
-      score_add_win();
-      stalled = 1;
     }
   
 
