@@ -9,7 +9,8 @@ SUBDIRS=docs pixmaps
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	-I$(includedir)				 \
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_INCLUDEDIR)                      \
+	$(GUILE_INCS)
 
 bin_PROGRAMS = sol
 
