@@ -48,6 +48,8 @@ GdkPixmap * games_card_pixmaps_get_card_by_id (GamesCardPixmaps * images,
   GdkPixbuf * pixbuf;
   gint width, height;
 
+  g_return_if_fail ((cardid >= 0) && (cardid < GAMES_CARDS_TOTAL));
+
   if (images->pixmaps[cardid])
     return images->pixmaps[cardid];
 
@@ -80,6 +82,11 @@ GdkBitmap * games_card_pixmaps_get_mask (GamesCardPixmaps * images)
 GdkPixmap * games_card_pixmaps_get_card (GamesCardPixmaps * images, gint suit, 
 					gint rank)
 {
+  g_return_if_fail ((suit >= GAMES_CARDS_CLUBS) && 
+		    (suit <= GAMES_CARDS_SPADES));
+  g_return_if_fail ((rank >= GAMES_CARD_ACE) && 
+		    (rank <= GAMES_CARD_ACE_HIGH));
+
   return games_card_pixmaps_get_card_by_id (images, GAMES_CARD_ID(suit, rank));
 }
 

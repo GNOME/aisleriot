@@ -43,6 +43,7 @@ enum {
   GAMES_CARD_JACK        = 11,
   GAMES_CARD_QUEEN       = 12,
   GAMES_CARD_KING        = 13,
+  GAMES_CARD_ACE_HIGH    = 14,
   GAMES_CARDS_CLUBS      = 0,
   GAMES_CARDS_HEARTS     = 1,
   GAMES_CARDS_DIAMONDS   = 2,
@@ -91,7 +92,7 @@ GdkPixbuf * games_card_images_get_card_by_id (GamesCardImages * images,
 					      gint cardid);
 
 /* The convenience functions. */
-#define GAMES_CARD_ID(suit, rank) ((13*(suit)) + (rank-1))
+#define GAMES_CARD_ID(suit, rank) ((13*(suit)) + ((rank-1)%13))
 
 GdkPixbuf * games_card_images_get_card (GamesCardImages * images, gint suit, 
 					gint rank);

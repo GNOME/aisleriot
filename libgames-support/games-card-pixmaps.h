@@ -58,8 +58,6 @@ GdkPixmap * games_card_pixmaps_get_card_by_id (GamesCardPixmaps * images,
 GdkBitmap * games_card_pixmaps_get_mask (GamesCardPixmaps * images);
 
 /* The convenience functions. */
-#define GAMES_CARD_ID(suit, rank) ((13*(suit)) + (rank-1))
-
 GdkPixmap * games_card_pixmaps_get_card (GamesCardPixmaps * images, gint suit, 
 					gint rank);
 GdkPixmap * games_card_pixmaps_get_red_joker (GamesCardPixmaps * images);

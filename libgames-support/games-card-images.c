@@ -116,6 +116,8 @@ static void games_card_images_purge (GamesCardImages * images)
 GdkPixbuf * games_card_images_get_card_by_id (GamesCardImages * images,
 					      gint cardid)
 {
+  g_return_if_fail ((cardid >= 0) && (cardid < GAMES_CARDS_TOTAL));
+
   if (!images->prerendered)
     games_card_images_prerender (images);
 
@@ -128,6 +130,11 @@ GdkPixbuf * games_card_images_get_card_by_id (GamesCardImages * images,
 GdkPixbuf * games_card_images_get_card (GamesCardImages * images, gint suit,
 					gint rank)
 {
+  g_return_if_fail ((suit >= GAMES_CARDS_CLUBS) && 
+		    (suit <= GAMES_CARDS_SPADES));
+  g_return_if_fail ((rank >= GAMES_CARD_ACE) && 
+		    (rank <= GAMES_CARD_ACE_HIGH));
+
   return games_card_images_get_card_by_id (images, GAMES_CARD_ID(suit, rank));
 }
 
