@@ -59,7 +59,7 @@ void help_about_callback ()
 	  "Main program:  Jonathan Blandford (jrb@mit.edu)",
 	  "                      Felix Bellaby (felix@pooh.u-net.com)",
 	  "Card Games:    Jonathan Blandford (jrb@mit.edu)",
-	  "                      Ryu Changwoo (cwryu@eve.kaist.ac.kr)",
+	  "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)",
 	  "                      Rosanna Yuen (rwsy@mit.edu)",
           NULL
           };
