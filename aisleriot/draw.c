@@ -28,14 +28,14 @@ void draw_cards () {
   GList* card_list;
   GdkPixmap *image;
 
-  gdk_gc_set_clip_mask(draw_gc,mask); 
+  gdk_gc_set_clip_mask (draw_gc,mask); 
   
-  for (slot = get_slot_list(); slot; slot = slot->next) {
+  for (slot = get_slot_list (); slot; slot = slot->next) {
     hslot_type hslot = (hslot_type)slot->data;
 
     if ((card_list = hslot->cards)) {
 
-      card_list = g_list_nth(card_list, hslot->length - hslot->exposed);
+      card_list = g_list_nth (card_list, hslot->length - hslot->exposed);
 
       x = hslot->x;
       y = hslot->y;
@@ -44,19 +44,19 @@ void draw_cards () {
 	card_type *card = card_list->data;
 
 	if (card->direction == DOWN) 
-	  image = get_card_back_pixmap();
+	  image = get_card_back_pixmap ();
 	else 
-	  image = get_card_picture(card->suit, card->value);
+	  image = get_card_picture (card->suit, card->value);
 	
-	gdk_gc_set_clip_origin(draw_gc, x, y);
+	gdk_gc_set_clip_origin (draw_gc, x, y);
 	if (image != NULL)
-	  gdk_draw_drawable(surface, draw_gc, image, 0, 0, x, y, -1, -1);
+	  gdk_draw_drawable (surface, draw_gc, image, 0, 0, x, y, -1, -1);
 	
 	x += hslot->dx; y += hslot->dy;
       }
     }
   }
-  gdk_gc_set_clip_mask(draw_gc,NULL); 
+  gdk_gc_set_clip_mask (draw_gc,NULL); 
 }
 
 void take_snapshot() {
@@ -64,24 +64,23 @@ void take_snapshot() {
 
   gdk_draw_rectangle (surface, draw_gc, TRUE, 0, 0, -1, -1);
 
-  for (slot = get_slot_list(); slot; slot = slot->next) {
-    GdkPixmap *slot_pixmap;
-    gdk_gc_set_clip_mask(draw_gc,mask); 
-    gdk_gc_set_clip_origin(draw_gc, ((hslot_type)slot->data)->x, 
-			   ((hslot_type)slot->data)->y);
-    slot_pixmap = get_slot_pixmap();
-    if (slot_pixmap != NULL)
-      gdk_draw_drawable (surface, draw_gc,
-		       slot_pixmap, 0, 0, 
+  for (slot = get_slot_list (); slot; slot = slot->next) {
+    GdkPixbuf *slot_pixbuf;
+
+    slot_pixbuf = get_slot_pixbuf ();
+    if (slot_pixbuf != NULL)
+      gdk_draw_pixbuf (surface, draw_gc,
+		       slot_pixbuf, 0, 0, 
 		       ((hslot_type)slot->data)->x, 
-		       ((hslot_type)slot->data)->y, -1, -1);
-    gdk_gc_set_clip_mask(draw_gc,NULL); 
+		       ((hslot_type)slot->data)->y, -1, -1,
+                       GDK_RGB_DITHER_MAX,
+                       0, 0);
   }
-  draw_cards();
-  gdk_window_set_back_pixmap(playing_area->window, surface, 0);
+  draw_cards ();
+  gdk_window_set_back_pixmap (playing_area->window, surface, 0);
 }
 
-void refresh_screen() {
-  take_snapshot();
-  gdk_window_clear(playing_area->window);
+void refresh_screen () {
+  take_snapshot ();
+  gdk_window_clear (playing_area->window);
 }

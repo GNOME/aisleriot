@@ -22,7 +22,7 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 GdkPixmap *default_background_pixmap; 
-GdkPixmap *slot_pixmap;
+GdkPixbuf *slot_pixbuf;
 GdkBitmap *mask;
 
 GdkPixmap* get_card_picture (gint suit, gint rank ) 
@@ -30,46 +30,46 @@ GdkPixmap* get_card_picture (gint suit, gint rank )
   return gdk_card_deck_face (GDK_CARD_DECK (card_deck), suit, (rank == 14)?1:rank);
 }
 
-GdkPixmap* get_background_pixmap() {
+GdkPixmap* get_background_pixmap () {
   
   return default_background_pixmap;
 }
 
-GdkPixmap* get_slot_pixmap() {
-  return slot_pixmap;
+GdkPixbuf* get_slot_pixbuf () {
+  return slot_pixbuf;
 }
 
 GdkPixmap* get_card_back_pixmap () {
   return gdk_card_deck_back (GDK_CARD_DECK (card_deck));
 }
 
-int get_card_width() {
+int get_card_width () {
   int width, height;
   gdk_drawable_get_size(gdk_card_deck_back (GDK_CARD_DECK (card_deck)), 
 		      &width, &height);
   return width;
 }
 
-int get_card_height() {
+int get_card_height () {
   int width, height;
   gdk_drawable_get_size(gdk_card_deck_back (GDK_CARD_DECK (card_deck)), 
 		      &width, &height);
   return height;
 }
 
-int get_horiz_offset() {
+int get_horiz_offset () {
   return get_card_width() + x_spacing;
 }
 
-int get_vert_offset() {
+int get_vert_offset () {
   return get_card_height() + y_spacing;
 }
 
-int get_vert_start() {
+int get_vert_start () {
   return 30;
 }
 
-int get_horiz_start() {
+int get_horiz_start () {
   return 30;
 }
 
@@ -96,19 +96,35 @@ GdkPixmap* get_pixmap (const char* filename)
   return ret;
 }
 
-void load_pixmaps(GtkWidget* app, GdkCardDeckOptions deck_options) 
+GdkPixbuf* get_pixbuf (const char* filename)
+{
+  GdkPixbuf *im;
+  char* fullname = gnome_program_locate_file (NULL,
+                                              GNOME_FILE_DOMAIN_APP_PIXMAP,
+                                              filename, TRUE, NULL);
+
+  if (fullname == NULL)
+    return NULL; 
+
+  im = gdk_pixbuf_new_from_file (fullname, NULL);
+  g_free (fullname);
+
+  return im;
+}
+
+void load_pixmaps (GtkWidget* app, GdkCardDeckOptions deck_options) 
 {
   card_deck = gdk_card_deck_new (app->window, deck_options);
   mask = gdk_card_deck_mask (GDK_CARD_DECK (card_deck)); 
-  slot_pixmap = get_pixmap ("cards/slots/plain.png");
+  slot_pixbuf = get_pixbuf ("cards/slots/plain.png");
   default_background_pixmap = get_pixmap ("cards/baize.png");
 }
 
-void free_pixmaps() 
+void free_pixmaps () 
 {
   gtk_object_destroy (card_deck);
-  if (slot_pixmap != NULL)
-    gdk_drawable_unref (slot_pixmap);
+  if (slot_pixbuf != NULL)
+    gdk_pixbuf_unref (slot_pixbuf);
   if (default_background_pixmap != NULL)
     gdk_drawable_unref (default_background_pixmap);
 }

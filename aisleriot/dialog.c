@@ -24,7 +24,8 @@
 #include <stdlib.h>
 #include <guile/gh.h>
 #include <dirent.h>
-#include "gnome.h"
+#include <gnome.h>
+#include <games-frame.h>
 #include "cscmi.h"
 #include "sol.h"
 #include "menu.h"
