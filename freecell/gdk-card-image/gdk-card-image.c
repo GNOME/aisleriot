@@ -66,7 +66,9 @@ enum {
   DIR_JOKER,
   DIR_HONOR,
   DIR_RANK,
-  DIR_SUIT,
+  DIR_SUIT_SMALL,
+  DIR_SUIT_MEDIUM,
+  DIR_SUIT_LARGE,
   DIR_NUM
 };
 
@@ -76,7 +78,9 @@ GdkCardDeckDir dir[DIR_NUM] = {
   {TRUE,   1, 1, "cards/jokers/", 0, NULL },
   {TRUE,   4, 3, "cards/honors/", 0, NULL },
   {TRUE,  14, 2, "cards/ranks/" , 0, NULL },
-  {TRUE,   4, 1, "cards/suits/" , 0, NULL }
+  {TRUE,   4, 1, "cards/suits_small/" , 0, NULL },
+  {TRUE,   4, 1, "cards/suits_medium/" , 0, NULL },
+  {TRUE,   4, 1, "cards/suits_large/" , 0, NULL }
 };
 
 /* The user chooses which image files to use from each directory */
@@ -99,13 +103,13 @@ enum {
 };
 
 GdkCardDeckOptionData option_data[] = {
-  {N_("Card back:"),          &dir[DIR_BACK],  "beige.png"},
-  {N_("Honor pictures:"),     &dir[DIR_HONOR], "bonded.png"},
-  {N_("Joker icon:"),         &dir[DIR_JOKER], "gnome.png"},
-  {N_("Rank font:"),          &dir[DIR_RANK],  "bold-09x14.png"},
-  {N_("Suit font (small):"),  &dir[DIR_SUIT],  "knuth-09x10.png"},
-  {N_("Suit font (medium):"), &dir[DIR_SUIT],  "knuth-18x21.png"},
-  {N_("Suit font (large):"),  &dir[DIR_SUIT],  "knuth-21x25.png"}
+  {N_("Card back:"),          &dir[DIR_BACK],        "beige.png"},
+  {N_("Honor pictures:"),     &dir[DIR_HONOR],       "bonded.png"},
+  {N_("Joker icon:"),         &dir[DIR_JOKER],       "gnome.png"},
+  {N_("Rank font:"),          &dir[DIR_RANK],        "bold-09x14.png"},
+  {N_("Suit font (small):"),  &dir[DIR_SUIT_SMALL],  "knuth-09x10.png"},
+  {N_("Suit font (medium):"), &dir[DIR_SUIT_MEDIUM], "knuth-18x21.png"},
+  {N_("Suit font (large):"),  &dir[DIR_SUIT_LARGE],  "knuth-21x25.png"}
 };
 
 /* The deck of cards itself */
@@ -848,7 +852,9 @@ GtkObject*
 gdk_card_deck_options_edit_new (GtkNotebook* notebook)
 {
   GdkCardDeckOptionsEdit* w;
-  GtkWidget* table;
+  GtkWidget *table;
+  GtkWidget *hbox;
+  GtkWidget* frame = gtk_frame_new(NULL);
   guint i, j;
   
   g_return_val_if_fail (notebook != NULL, NULL);
@@ -858,7 +864,15 @@ gdk_card_deck_options_edit_new (GtkNotebook* notebook)
 
   w->menu = g_new(GtkOptionMenu*, OPT_NUM);
 
-  table = add_table(GTK_WIDGET(notebook), _("Cards"), OPT_NUM, 2);
+  table = gtk_table_new(OPT_NUM, 2, FALSE);
+  gtk_container_border_width (GTK_CONTAINER (frame), GNOME_PAD_SMALL);
+  gtk_container_border_width (GTK_CONTAINER (table), GNOME_PAD_SMALL);
+  hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL)
+  gtk_container_add (GTK_CONTAINER (frame), table);
+  gtk_notebook_append_page ( GTK_NOTEBOOK (notebook), hbox, 
+			     gtk_label_new (_("Cards")) );
+  gtk_widget_show(frame);
+  gtk_box_pack_start (GTK_BOX (hbox), frame, FALSE, FALSE, 0);
 
   for (i = 0; i < OPT_NUM; i++) {
     GtkWidget* label = gtk_label_new(option_data[i].description);
