@@ -146,8 +146,36 @@
 	  (deal-cards-face-up 0 '(1)))
       #f))
 
+(define (move-to-foundations? slot-id f-slot)
+  (cond ((= f-slot 8)
+	 #f)
+	((and (not (empty-slot? f-slot))
+	      (= (get-value (get-top-card slot-id))
+		 (+ 1 (get-value (get-top-card f-slot)))))
+	 (begin
+	   (add-to-score! 1)
+	   (deal-cards slot-id (list f-slot))))
+	(#t
+	 (move-to-foundations? slot-id (+ 1 f-slot)))))
+
 (define (button-double-clicked slot-id)
-  #f)
+  (if (and (> slot-id 0)
+	   (or (< slot-id 4)
+	       (> slot-id 7))
+	   (not (empty-slot? slot-id)))
+      (if (= ace  (get-value (get-top-card slot-id)))
+	  (begin
+	    (add-to-score! 1)
+	    (cond ((empty-slot? 4)
+		   (deal-cards slot-id '(4)))
+		  ((empty-slot? 5)
+		   (deal-cards slot-id '(5)))
+		  ((empty-slot? 6)
+		   (deal-cards slot-id '(6)))
+		  (#t
+		   (deal-cards slot-id '(7)))))
+	  (move-to-foundations? slot-id 4))
+      #f))
 
 (define (game-continuable)
   (give-status-message)
