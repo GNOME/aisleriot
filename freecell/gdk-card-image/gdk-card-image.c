@@ -218,11 +218,7 @@ gdk_card_deck_get_type ()
 }
 
 static int
-#ifdef HAVE_STRUCT_DIRECT
-is_image (const struct direct* dent)
-#else
 is_image (const struct dirent* dent)
-#endif
 {
 	const char *type = gnome_vfs_mime_type_from_name (dent->d_name);
 
@@ -240,12 +236,9 @@ gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name)
   guint i;
 
   if (!dir->file) {
-    gchar* dir_name = gnome_pixmap_file (dir->name);
-#ifdef HAVE_STRUCT_DIRECT
-    struct direct** de;
-#else
+    gchar* dir_name = gnome_program_locate_file (NULL,
+		    GNOME_FILE_DOMAIN_APP_PIXMAP,  dir->name, TRUE, NULL);
     struct dirent** de;
-#endif
     int records;
 
     if (dir_name == NULL)
@@ -313,6 +306,8 @@ gdk_pixbuf_rotate_image_180 (GdkPixbuf *pixbuf)
 static gboolean
 gdk_card_deck_file_load (GdkCardDeckFile* file)
 {
+  g_return_val_if_fail (file != NULL, FALSE);
+ 
   if (!file->refs) {
     GdkPixbuf *im;
     if (!(im = gdk_pixbuf_new_from_file (file->name, NULL))) 

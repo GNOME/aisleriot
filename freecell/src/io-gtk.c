@@ -669,7 +669,7 @@ callback_about (GtkWidget *widget, GdkEvent *event)
 	  char *filename = NULL;
 	  
 	  filename = gnome_program_locate_file (NULL,
-			  GNOME_FILE_DOMAIN_PIXMAP,
+			  GNOME_FILE_DOMAIN_APP_PIXMAP,
 			  "gnome-cardgame.png", FALSE, NULL);
 
 	  pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
@@ -682,6 +682,7 @@ callback_about (GtkWidget *widget, GdkEvent *event)
 			   (const char **)documenters,
 			   strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 			   pixbuf);
+  gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (main_window));
   gtk_widget_show (about);
 }
 
