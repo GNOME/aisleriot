@@ -331,7 +331,7 @@ callback_restart (GtkWidget *widget, GdkEvent *event)
 static void
 callback_restart_lose (GtkWidget *widget, gpointer data)
 {
-  if ((int)data == 1)
+  if ((int)data == 0)
     {
       score_add_lose ();
       callback_restart_really ();
@@ -432,7 +432,7 @@ callback_new_with_seed_really (void)
 static void
 callback_new_with_seed_with_lose (GtkWidget *widget, gpointer data)
 {
-  if ((int)data == 1)
+  if ((int)data == 0)
     {
       score_add_lose();
       callback_new_with_seed_really();
@@ -490,7 +490,7 @@ callback_new_really (void)
 static void
 callback_new_with_lose (GtkWidget *widget, gpointer data)
 {
-  if ((int)data == 1)
+  if ((int)data == 0)
     {
       score_add_lose();
       callback_new_really();
@@ -579,7 +579,7 @@ callback_exit_really (void)
 static void
 callback_exit_with_lose (GtkWidget *widget, gpointer data)
 {
-  if ((int)data == 1)
+  if ((int)data == 0)
     {
       score_add_lose();
       callback_exit_really();
