@@ -72,6 +72,7 @@ static GdkCursor *up_cursor;
 static int stalled = 0;
 
 
+void callback_new_really_callback (GtkWidget *widget, gpointer data);
 
 static void to_destination_auto(void);
 
@@ -84,6 +85,8 @@ static void refresh_destination (int index);
 static void refresh_all (void);
 
 
+static void callback_restart_lose (GtkWidget *widget, gpointer data);
+static void callback_restart_really (void);
 static void callback_new_with_lose (GtkWidget *widget, gpointer data);
 static void callback_new_really (void);
 static void callback_exit_with_lose (GtkWidget *widget, gpointer data);
@@ -300,6 +303,59 @@ refresh_all (void)
 }
 
 
+void
+callback_restart (GtkWidget *widget, GdkEvent *event)
+{
+   GtkWidget *mb;
+
+  if (!stalled
+      && freecellgame
+      && !freecellgame_is_finished(freecellgame))
+    {
+      mb = gnome_messagebox_new (_("Exit this game?"),
+				 GNOME_MESSAGEBOX_QUESTION,
+				 _("Yes"), _("No"), NULL);
+      GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
+      gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+      gtk_signal_connect_object(GTK_OBJECT(mb),
+				"clicked",
+				GTK_SIGNAL_FUNC(callback_restart_lose),
+				NULL);
+      gtk_widget_show (mb);
+    }
+  else
+    callback_restart_really();
+}
+
+
+static void
+callback_restart_lose (GtkWidget *widget, gpointer data)
+{
+  if ((int)data == 1)
+    {
+      score_add_lose ();
+      callback_restart_really ();
+    }
+}
+
+static void
+callback_restart_really (void)
+{
+  if (freecellgame)
+    {
+      freecellgame_delete (freecellgame);
+
+      freecellgame = freecellgame_restart (4, 8);
+
+      stalled = 0;
+      selected = SELECTED_NONE;
+      inverted = 0;
+
+      refresh_all ();
+      update_cursors ();
+    }
+}
+
 static void
 callback_cancel (GtkWidget *widget, gpointer data)
 {
@@ -406,6 +462,12 @@ callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
     }
   else
     callback_new_with_seed_really();
+}
+
+static void
+callback_new_really_callback (GtkWidget *widget, gpointer data)
+{
+	callback_new_really ();
 }
 
 static void
@@ -1069,11 +1131,15 @@ to_destination_auto(void)
   
   if (freecellgame_is_finished(freecellgame))
     {
-      mb = gnome_messagebox_new (_("Congraturations.  You won."),
+      mb = gnome_messagebox_new (_("Congraturations.  You won.\nDo you want to play again?"),
 				 GNOME_MESSAGEBOX_INFO,
-				 _("OK"), NULL, NULL);
+				 _("Yes"), _("No"), NULL, NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
       gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+      gtk_signal_connect_object (GTK_OBJECT (mb),
+				 "clicked",
+				 GTK_SIGNAL_FUNC(callback_new_really_callback),
+				 NULL);
       gtk_widget_show (mb);
       score_add_win();
     }

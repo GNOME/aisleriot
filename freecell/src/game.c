@@ -27,13 +27,20 @@
 #include "card.h"
 #include "game.h"
 
+int last_seed;
 
 /* Allocate memory and initialize game data.  */
 FREECELLGAME *
 freecellgame_new (int freecells_number, int fields_number)
-{
-  freecellgame_new_with_seed (freecells_number, fields_number, time(NULL));
+{ 
+  freecellgame_new_with_seed (freecells_number, fields_number, time (NULL));
 }  
+
+FREECELLGAME *
+freecellgame_restart (int freecells_number, int fields_number)
+{
+  freecellgame_new_with_seed (freecells_number, fields_number, last_seed);
+}
 
 FREECELLGAME *
 freecellgame_new_with_seed (int freecells_number, int fields_number, int seed)
@@ -43,6 +50,7 @@ freecellgame_new_with_seed (int freecells_number, int fields_number, int seed)
   DECK *tmp_deck;
   int destinations_number = 4;
 
+  last_seed = seed;
   /* 1) Allocate memory.  */
   new_game = (FREECELLGAME *)g_malloc (sizeof(FREECELLGAME));
   

@@ -38,6 +38,7 @@ typedef struct __FREECELLGAME
 
 
 /* constructor/destructor.  */
+extern FREECELLGAME *freecellgame_restart (int freecells_number, int fields_number);
 extern FREECELLGAME *freecellgame_new (int freecells_number, int fields_number);
 extern FREECELLGAME *freecellgame_new_with_seed (int freecells_number, int fields_number, int seed);
 extern void freecellgame_delete (FREECELLGAME *game);

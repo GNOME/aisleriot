@@ -28,6 +28,9 @@ GnomeUIInfo game_menuinfo[] =
 {
   {GNOME_APP_UI_ITEM, N_("New Game"), NULL, callback_new,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
+
+  {GNOME_APP_UI_ITEM, N_("Restart Game"), NULL, callback_restart,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
   {GNOME_APP_UI_ITEM, N_("New Game with a seed..."), NULL, callback_new_with_seed,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
