@@ -22,8 +22,10 @@ sol_SOURCES = 		\
 	menu.h		\
 	press_data.h	\
 	slot.h		\
+	splash.h	\
 	sol.h		\
 	sol.c		\
+	splash.c	\
 	slot.c		\
 	dialog.c	\
 	cscmi.c		\
@@ -52,8 +54,7 @@ types_DATA  = 		\
 	spider.scm	\
 	yukon.scm
 
-cardimage_DATA = Baize.xpm\
-	slot.xpm
+cardimage_DATA = Baize.xpm slot.xpm splash.png
 
 icon_DATA = gnome-aisleriot.png
 

@@ -17,6 +17,13 @@
 
 (define deal-three #f)
 
+; The set up:
+
+(define tableau '(6 7 8 9 10 11 12))
+(define foundation '(2 3 4 5))
+(define stock 0)
+(define waste 1)
+
 (define (new-game)
   (initialize-playing-area)
 
@@ -25,7 +32,6 @@
   
   (add-normal-slot DECK)
   (add-partially-extended-slot '() right 3)
-;  (add-normal-slot '())
   (add-blank-slot)
   (add-normal-slot '())
   (add-normal-slot '())
@@ -40,15 +46,9 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
 
-  (deal-cards 0 '(6 7 8 9 10 11 12 7 8 9 10 11 12 8 9 10 11 12 9 10 11 12 10 11 12 11 12 12))
+  (deal-cards stock '(6 7 8 9 10 11 12 7 8 9 10 11 12 8 9 10 11 12 9 10 11 12 10 11 12 11 12 12))
   
-  (flip-top-card 6)
-  (flip-top-card 7)
-  (flip-top-card 8)
-  (flip-top-card 9)
-  (flip-top-card 10)
-  (flip-top-card 11)
-  (flip-top-card 12)
+  (map flip-top-card tableau)
 
   (list 7 3)
 )
@@ -61,28 +61,26 @@
 
 (define (complete-transaction start-slot card-list end-slot)
   (move-n-cards! start-slot end-slot card-list)
-  (if (and (> start-slot 1)
-	   (< start-slot 6))
+  (if (member start-slot foundation)
       (add-to-score! -1))
-  (if (and (> end-slot 1)
-	   (< end-slot 6))
+  (if (member end-slot foundation)
       (add-to-score! 1))
   (if (and (not (empty-slot? start-slot)) 
-	   (> start-slot 5))
+	   (member start-slot tableau))
       (make-visible-top-card start-slot))
   #t)
 
 (define (button-released start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
-       (> end-slot 1)
-       (if (> end-slot 5)
-	   (if (empty-slot? end-slot)
-	       (= king (get-value (car (reverse card-list))))
-	       (and (not (eq? (is-red? (get-top-card end-slot))
-			      (is-red? (car (reverse card-list)))))
-		    (= (get-value (get-top-card end-slot))
-		       (+ (get-value (car (reverse card-list))) 1))))
-	   (and (= 1 (length card-list))
+       (or (and (member end-slot tableau)
+		(if (empty-slot? end-slot)
+		    (= king (get-value (car (reverse card-list))))
+		    (and (not (eq? (is-red? (get-top-card end-slot))
+				   (is-red? (car (reverse card-list)))))
+			 (= (get-value (get-top-card end-slot))
+			    (+ (get-value (car (reverse card-list))) 1)))))
+	   (and (member end-slot foundation)
+		(= 1 (length card-list))
 		(if (empty-slot? end-slot)
 		    (= ace (get-value (car card-list)))
 		    (and (= (get-suit (get-top-card end-slot))
@@ -92,9 +90,9 @@
        (complete-transaction start-slot card-list end-slot)))
 
 (define (button-clicked start-slot)
-  (or (and (= start-slot 0)
-	   (flip-stock 0 1 2 (if deal-three 3 1)))
-      (and (or (> start-slot 5) (= start-slot 1))
+  (or (and (= start-slot stock)
+	   (flip-stock stock waste 2 (if deal-three 3 1)))
+      (and (member start-slot (cons waste tableau))
 	   (not (empty-slot? start-slot))
 	   (let* ((card (get-top-card start-slot))
 		  (suit (get-suit card))
@@ -116,21 +114,13 @@
 	       (and end-slot
 		    (or (= ace value)
 			(= (get-value (get-top-card end-slot)) (- value 1)))
-		    (add-card! end-slot (remove-card start-slot))
-		    (not (empty-slot? start-slot))
-		    (make-visible-top-card start-slot)))))))
+		    (remove-card start-slot)
+		    (complete-transaction start-slot (list card) end-slot)))))))
 
 ; The C still has problems detecting button double clicks ... 
 					 
 (define (button-double-clicked slot)
   #f)
-
-; The set up:
-
-(define tableau '(6 7 8 9 10 11 12))
-(define foundation '(2 3 4 5))
-(define stock 0)
-(define waste 1)
 
 ; Global variables used in searching (keeping it simple):
 

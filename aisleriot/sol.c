@@ -33,6 +33,7 @@
 #include "card.h"
 #include "cscmi.h"
 #include "menu.h"
+#include "splash.h"
 /*
  * Global Variables
  */
@@ -59,10 +60,7 @@ guint            y_spacing = 15;
 guint            x_expanded_offset = 20;
 guint            y_expanded_offset = 20;
 
-/*
- * This function does i18n on game files using the convention that
- * filenames are LC_MESSAGES with mechanical changes:
- */
+#define DEFAULT_VARIATION "klondike.scm"
 
 gchar* game_file_to_name (const gchar* file)
 {
@@ -289,7 +287,10 @@ void quit_app (GtkWidget *app)
 
 void create_main_window ()
 {
-  app = gnome_app_new ("AisleRiot", _("AisleRiot"));
+  /* Give consistent names to property files: */
+  app = gnome_app_new (gnome_client_get_global_config_prefix 
+		       (gnome_master_client ()),
+		       _("Aisleriot"));
   gtk_widget_realize (app);
 
   gtk_signal_connect (GTK_OBJECT (app), "delete_event", 
@@ -317,37 +318,25 @@ void create_press_data ()
 					    (GDK_WA_VISUAL | GDK_WA_COLORMAP));
 }
 
-int
-is_game (struct dirent* dent)
-{
-  return (!strcmp (g_extension_pointer (dent->d_name),"scm") &&
-	  strcmp (dent->d_name,"sol.scm"));
-}
+char* start_game;
 
 void main_prog(int argc, char *argv[])
 {
   GtkWidget *score_label, *time_label, *score_box, *status_bar;
-  char* dir;
-  
-  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-  textdomain (PACKAGE);
-  //argp_program_version = VERSION;
-
-  dir = gnome_datadir_file (GAMESDIR);
-  n_games = scandir (dir, &game_dents, is_game, alphasort);
-  g_free(dir);
-
-  gnome_init ("aisleriot", VERSION, argc, argv);
 
   seed = time(NULL);
   srandom(seed);
 
   cscm_init();
 
+  splash_update (_("Loading images..."), 0.70);
+
   create_main_window ();
 
   load_pixmaps (app);
  
+  splash_update (_("Dealing game..."), 0.90);
+
   create_sol_board ();
   create_menus ();
 
@@ -371,7 +360,9 @@ void main_prog(int argc, char *argv[])
   gtk_box_pack_end (GTK_BOX(status_bar), score_box, FALSE, FALSE, 0);
   gnome_app_set_statusbar (GNOME_APP (app), status_bar);
 
-  new_game ("klondike.scm", &seed);
+  new_game (start_game, &seed);
+
+  splash_destroy ();
 
   gtk_widget_show (app);
   create_press_data ();
@@ -383,8 +374,81 @@ void main_prog(int argc, char *argv[])
   gdk_window_unref (press_data->moving_cards);
 }
 
+static int
+save_state (GnomeClient *client, gint phase, GnomeSaveStyle save_style,
+	    gint shutdown, GnomeInteractStyle interact_style, 
+	    gint fast, gpointer client_data)
+{
+  gchar *prefix = gnome_client_get_config_prefix (client);
+  gchar *argv[2];
+  
+  gnome_config_push_prefix (prefix);
+  gnome_config_set_string ("Variation/Default", game_name);
+  gnome_config_pop_prefix ();
+  gnome_config_sync();
+
+  argv[0] = "rm";
+  argv[1] = gnome_config_get_real_path (prefix);
+  gnome_client_set_discard_command (client, 2, argv);
+  
+  return TRUE;
+}
+
+static void
+retrieve_state (GnomeClient *client)
+{
+  gnome_config_push_prefix ( gnome_client_get_config_prefix (client));
+  start_game = gnome_config_get_string_with_default 
+    ( "Variation/Default/=" DEFAULT_VARIATION, NULL);
+  gnome_config_pop_prefix ();
+}
+
+int
+is_game (struct dirent* dent)
+{
+  return (!strcmp (g_extension_pointer (dent->d_name),"scm") &&
+	  strcmp (dent->d_name,"sol.scm"));
+}
+
 int main (int argc, char *argv [])
 {
+  gchar* variation = "";
+  struct poptOption aisleriot_opts[] = {
+    {"variation", '\0', POPT_ARG_STRING, &variation, 0,
+     N_("Variation on game rules"), N_("NAME")},
+    {NULL, '\0', 0, NULL}
+  };
+  gint i;
+  gchar* dir;
+
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+  textdomain (PACKAGE);
+
+  gnome_init_with_popt_table ("Aisleriot", VERSION, argc, argv,
+			      aisleriot_opts, 0, NULL);
+
+  splash_new ();
+
+  splash_update (_("Initializing scheme..."), 0.20);
+
+  gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "save_yourself",
+		      GTK_SIGNAL_FUNC (save_state), 
+		      (gpointer) program_invocation_name);
+  gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
+		      GTK_SIGNAL_FUNC (quit_app), NULL);
+
+  retrieve_state (gnome_cloned_client ());
+
+  dir = gnome_datadir_file (GAMESDIR);
+  n_games = scandir (dir, &game_dents, is_game, alphasort);
+  g_free(dir);
+
+  for (i = 0; i < n_games; i++)
+    if (!strcasecmp (variation, game_file_to_name (game_dents[i]->d_name))) {
+      start_game = g_strdup ((gchar*) game_dents[i]->d_name);
+      break;
+    }
+
   gh_enter(argc, argv, main_prog);
   return 0;
 }
