@@ -10,7 +10,8 @@ score.h score-dialog.h option.h option-dialog.h
 datadir = $(prefix)/@DATADIRNAME@
 localedir = $(datadir)/locale
 
-INCLUDES = -I. -I.. -I../lib -I$(top_srcdir) -I$(top_srcdir)/intl 
+INCLUDES = -I. -I.. -I../../.. -I../lib -I$(top_srcdir) -I$(top_srcdir)/intl \
+	@INCLUDES@
 DEFS = -DLOCALEDIR=\"$(localedir)\" -DPKGDATADIR=\"$(pkgdatadir)\" \
 	@DEFS@
 CFLAGS = -Wall @CFLAGS@
