@@ -16,12 +16,6 @@ AM_PROG_LIBTOOL
 GNOME_X_CHECKS
 GNOME_CHECK_GUILE
 
-ORBIT_LIBS=`gnome-config --libs gnorba gnomeui`
-ORBIT_CFLAGS=`gnome-config --cflags gnorba gnomeui`
-AC_SUBST(ORBIT_CFLAGS)
-AC_SUBST(ORBIT_LIBS)
-AM_CONDITIONAL(ORBIT_INSTALLED, test -n "$ORBIT_LIBS")
-
 ## look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
 AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true)
