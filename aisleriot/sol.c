@@ -259,15 +259,20 @@ void new_game (gchar* file, guint *seedp )
   min_h = gh_scm2int (gh_cadr (size))*get_vert_offset() + 2*get_vert_start();
   gtk_widget_set_size_request (playing_area, min_w, min_h);
 
-  if (surface)
-    refresh_screen();
-
-  undo_set_sensitive (FALSE);
-  redo_set_sensitive (FALSE);
-  
-  game_over = FALSE;
-  make_title();
-  end_of_game_test();
+  /* It is possible for some games to not have any moves right from the
+   * start. If this happens we redeal. */
+  if (!gh_scm2bool (gh_call0 (game_data->game_over_lambda))) {
+    new_game (file, seedp);
+  } else {
+    if (surface)
+      refresh_screen();
+    
+    undo_set_sensitive (FALSE);
+    redo_set_sensitive (FALSE);
+    
+    game_over = FALSE;
+    make_title();
+  }
 }
 
 GtkWidget *score_value;
