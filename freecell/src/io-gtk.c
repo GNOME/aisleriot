@@ -19,9 +19,7 @@
 
 #include <config.h>
 
-#include <sys/param.h>
 #include <string.h>
-
 #include <gnome.h>
 
 #include <gtk/gtk.h>
@@ -257,26 +255,27 @@ create_main_menu (void)
 {
   static GtkMenuEntry main_menu [] =
   {
-    {N_("Game/New"), "<control>N", (GtkMenuCallback)callback_new, NULL},
-    {N_("Game/Option"), "<control>O",
+    {N_("Game/New"), N_("<control>N"), (GtkMenuCallback)callback_new, NULL},
+    {N_("Game/Option"), N_("<control>O"),
      (GtkMenuCallback)callback_option, NULL}, 
-    {N_("Game/Score"), "<control>S",
+    {N_("Game/Score"), N_("<control>S"),
      (GtkMenuCallback)callback_score, NULL}, 
     {N_("Game/<separator>"), NULL, NULL, NULL},
-    {N_("Game/Quit"), "<control>Q", (GtkMenuCallback)callback_quit, NULL}, 
+    {N_("Game/Exit"), N_("<control>X"), (GtkMenuCallback)callback_quit, NULL}, 
     {N_("Help/About"), NULL, (GtkMenuCallback)callback_about, NULL}, 
   };
 #define ELEMENTS(x) (sizeof(x) / sizeof(x[0]))
 
   GtkMenuFactory *subfactory;
   
-#ifdef ENABLE_NLS
   {
     int i;
     for (i = 0; i < ELEMENTS(main_menu); i++)
-      main_menu[i].path = gettext(main_menu[i].path);
+      {
+	main_menu[i].path = _(main_menu[i].path);
+	main_menu[i].accelerator = _(main_menu[i].accelerator);
+      }
   }
-#endif /* ENABLE_NLS */
   
   subfactory = gtk_menu_factory_new (GTK_MENU_FACTORY_MENU_BAR);
   gtk_menu_factory_add_entries (subfactory, main_menu, ELEMENTS(main_menu));
@@ -397,7 +396,7 @@ callback_new (GtkWidget *widget, GdkEvent *event)
       && freecellgame
       && !freecellgame_is_finished(freecellgame))
     {
-      mb = gnome_messagebox_new (_("Quit this game?"),
+      mb = gnome_messagebox_new (_("Exit this game?"),
 				 GNOME_MESSAGEBOX_QUESTION,
 				 _("Yes"), _("No"), NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
@@ -486,7 +485,7 @@ callback_quit (GtkWidget *widget, GdkEvent *event)
       && freecellgame
       && !freecellgame_is_finished(freecellgame))
     {
-      mb = gnome_messagebox_new (_("Quit this game?"),
+      mb = gnome_messagebox_new (_("Exit this game?"),
 				 GNOME_MESSAGEBOX_QUESTION,
 				 _("Yes"), _("No"), NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
