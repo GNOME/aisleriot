@@ -29,11 +29,11 @@
 
 GnomeUIInfo game_menuinfo[] =
 {
-  {GNOME_APP_UI_ITEM, N_("New Game"), NULL,
+  {GNOME_APP_UI_ITEM, N_("_New Game"), NULL,
    callback_new, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 0, 0, NULL},
 
-  {GNOME_APP_UI_ITEM, N_("Restart Game"), NULL,
+  {GNOME_APP_UI_ITEM, N_("_Restart Game"), NULL,
    callback_restart, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
@@ -43,17 +43,17 @@ GnomeUIInfo game_menuinfo[] =
 
   GNOMEUIINFO_SEPARATOR,
 
-  {GNOME_APP_UI_ITEM, N_("Undo"), NULL,
+  {GNOME_APP_UI_ITEM, N_("_Undo"), NULL,
    callback_undo, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_UNDO, 0, 0, NULL},
   
   GNOMEUIINFO_SEPARATOR,
 
-  {GNOME_APP_UI_ITEM, N_("Properties..."), NULL,
+  {GNOME_APP_UI_ITEM, N_("_Properties..."), NULL,
    callback_option, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("Score..."), NULL,
+  {GNOME_APP_UI_ITEM, N_("_Score..."), NULL,
    callback_score, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
@@ -61,7 +61,7 @@ GnomeUIInfo game_menuinfo[] =
    NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
-  {GNOME_APP_UI_ITEM, N_("Exit"), NULL,
+  {GNOME_APP_UI_ITEM, N_("E_xit"), NULL,
    callback_exit, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
 
@@ -76,7 +76,7 @@ GnomeUIInfo help_menuinfo[] =
    NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 
-  {GNOME_APP_UI_ITEM, N_("About..."), NULL,
+  {GNOME_APP_UI_ITEM, N_("_About..."), NULL,
    callback_about, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
   
@@ -87,11 +87,11 @@ GnomeUIInfo help_menuinfo[] =
   
 GnomeUIInfo main_menuinfo[] =
 {
-  {GNOME_APP_UI_SUBTREE, N_("Game"), NULL,
+  {GNOME_APP_UI_SUBTREE, N_("_Game"), NULL,
    game_menuinfo, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
-  {GNOME_APP_UI_SUBTREE, N_("Help"), NULL,
+  {GNOME_APP_UI_SUBTREE, N_("_Help"), NULL,
    help_menuinfo, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   
