@@ -1,17 +1,18 @@
-# gnome-games fi.po
-# Copyright (C) 1998 Free Software Foundation, Inc.
-# Tuomas Lukka <lukka@iki.fi>, 1998.
+# gnome-games Finnish Translation
+# http://gnome-fi.sourceforge.net/
+# Copyright (C) 1998-2000 Free Software Foundation, Inc.
+# Tuomas Lukka <lukka@iki.fi>, 1998-1999.
 # Sami Pesonen <spesonen@dlc.fi>, 2000.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2000-05-23 00:37+0300\n"
-"PO-Revision-Date: 2000-05-23 00:40+0100\n"
+"Project-Id-Version: gnome-games 1.2.0\n"
+"POT-Creation-Date: 2000-11-09 22:22+0200\n"
+"PO-Revision-Date: 2000-11-09 22:26+02:00\n"
 "Last-Translator: Sami Pesonen <spesonen@dlc.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: aisleriot/SCHEME_GAMES.h:11
@@ -687,7 +688,7 @@ msgstr "Uusi peli, numerolla..."
 msgid "Start a new game with a different seed"
 msgstr "Aloita uusi peli eri pelinumerolla"
 
-#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:846
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:1149
 msgid "Score"
 msgstr "Pisteet"
 
@@ -789,7 +790,7 @@ msgstr "Valkoisen t‰ytyy passata, mustan siirto"
 msgid "Dark must pass, Light's move"
 msgstr "Mustan t‰ytyy passata, valkoisen siirto"
 
-#: gataxx/gataxx.c:248 glines/glines.c:643 iagno/gnothello.c:246
+#: gataxx/gataxx.c:248 glines/glines.c:909 iagno/gnothello.c:246
 #: same-gnome/same-gnome.c:639
 msgid "Do you really want to quit?"
 msgstr "Haluatko todella lopettaa?"
@@ -845,7 +846,7 @@ msgstr "Pika siirrot (puolita tietokoneen laskenta-aika)"
 msgid "Dark"
 msgstr "Musta"
 
-#: gataxx/properties.c:345 gataxx/properties.c:398 gtali/yahtzee.c:63
+#: gataxx/properties.c:345 gataxx/properties.c:398 gtali/yahtzee.c:66
 #: iagno/properties.c:383 iagno/properties.c:435
 msgid "Human"
 msgstr "Ihminen"
@@ -893,29 +894,66 @@ msgstr "Asettele lopputulos siististi"
 msgid "Tile set:"
 msgstr "Laatat:"
 
-#: glines/glines.c:111
+#: glines/glines.c:68
+#, c-format
+msgid "Could not find the '%s' theme for Glines\n"
+msgstr "Glines teemaa '%s' ei lˆytynyt\n"
+
+#: glines/glines.c:175
 msgid "Game Over!"
 msgstr "Peli loppu!"
 
-#: glines/glines.c:113 glines/glines.c:604 glines/glines.c:627
-#: glines/glines.c:812
+#: glines/glines.c:177 glines/glines.c:670 glines/glines.c:693
+#: glines/glines.c:1115
 msgid "Glines"
 msgstr "Glines"
 
-#. Can't go there!
-#: glines/glines.c:318
-msgid "Can't go there!"
+#. Can't move there!
+#: glines/glines.c:384
+msgid "Can't move there!"
 msgstr "Ei voi menn‰ sinne!"
 
-#: glines/glines.c:630
+#: glines/glines.c:688
+msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
+msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
+
+#: glines/glines.c:689
+msgid "Szabolcs Ban <shooby@gnome.hu>"
+msgstr "Szabolcs Ban <shooby@gnome.hu>"
+
+#: glines/glines.c:694
+msgid "(C) 1997-2000 the Free Software Foundation"
+msgstr "(C) 1997-2000 Free Software Foundation"
+
+#: glines/glines.c:696
 msgid "Gnome port of the once-popular Color Lines game"
 msgstr "Gnome k‰‰nnˆs kerran kuuluisasta Color Lines -pelist‰"
 
-#: glines/glines.c:822
+#: glines/glines.c:826 mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:554
+msgid "Preferences"
+msgstr "Asetukset"
+
+#: glines/glines.c:847
+msgid "Theme"
+msgstr "Teema"
+
+#: glines/glines.c:853
+msgid "Select theme:"
+msgstr "Valitse teema:"
+
+#: glines/glines.c:867
+msgid "Select background:"
+msgstr "Valitse tausta:"
+
+#: glines/glines.c:876
+msgid "Ask confirmation when quitting"
+msgstr "Varmista lopetettaessa"
+
+#: glines/glines.c:1125
 msgid "Welcome to Glines!"
 msgstr "Tervetuloa Glinesiin!"
 
-#: glines/glines.c:833
+#: glines/glines.c:1136
 msgid "Next Balls"
 msgstr "Seuraavat pallot"
 
@@ -1587,11 +1625,11 @@ msgstr "Luola:"
 msgid "Lives:"
 msgstr "El‰mi‰:"
 
-#: gnometris/main.cpp:36
+#: gnometris/main.cpp:37
 msgid "Set starting level (1-10)"
 msgstr "Aloitustaso (1-10)"
 
-#: gnometris/main.cpp:36
+#: gnometris/main.cpp:37
 msgid "LEVEL"
 msgstr "LEVEL"
 
@@ -1652,14 +1690,13 @@ msgstr "Palikan kuvio: "
 msgid "Background Pixmap: "
 msgstr "Taustakuvio: "
 
-#: gnometris/tetris.cpp:859
+#: gnometris/tetris.cpp:865
 msgid ""
 "Written for my wife, Matylda\n"
-"Send comments and bug reports to: marcin.gorycki@intel.com"
+"Send comments and bug reports to: janusz.gorycki@intel.com"
 msgstr ""
 "Omistettu vaimolleni, Matyldalle\n"
-"L‰het‰ kommentit ja virheraportit (englanniksi) osoitteeseen: "
-"marcin.gorycki@intel.com"
+"L‰het‰ kommentit ja virheraportit (englanniksi): janusz.gorycki@intel.com"
 
 #: gnomine/gnomine.c:42 gnomine/gnomine.c:315
 msgid "Tiny"
@@ -1749,7 +1786,7 @@ msgstr "KOKO"
 msgid "Number of mines"
 msgstr "Miinojen lukum‰‰r‰"
 
-#: gnomine/gnomine.c:553 gtali/setup.c:74 gtali/setup.c:75
+#: gnomine/gnomine.c:553 gtali/setup.c:78 gtali/setup.c:79
 msgid "NUMBER"
 msgstr "LUKU"
 
@@ -2047,7 +2084,7 @@ msgstr "Tietokone pelaa %s:aa"
 msgid "%s! -- You're up."
 msgstr "%s! -- Sinun vuorosi."
 
-#: gtali/gyahtzee.c:295 gtali/gyahtzee.c:319 gtali/yahtzee.c:184
+#: gtali/gyahtzee.c:295 gtali/gyahtzee.c:319 gtali/yahtzee.c:187
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "Saat ainoastaan kolme heittoa! Valitse kategoria."
 
@@ -2076,150 +2113,174 @@ msgstr ""
 msgid " Roll ! "
 msgstr " Heit‰ ! "
 
-#: gtali/setup.c:65
+#: gtali/setup.c:69
 msgid "Calculate random die throws (debug)"
 msgstr "Laske satunnaisia nopanheittoja (vianm‰‰rityst‰ varten)"
 
-#: gtali/setup.c:71
+#: gtali/setup.c:75
 msgid "Delay computer moves"
 msgstr "Hidasta tietokoneen siirtoja"
 
-#: gtali/setup.c:72
+#: gtali/setup.c:76
 msgid "Show high scores and exit"
 msgstr "N‰yt‰ tuloslista ja poistu"
 
-#: gtali/setup.c:73
+#: gtali/setup.c:77
 msgid "Display computer thoughts"
 msgstr "N‰yt‰ koneen ajatukset"
 
-#: gtali/setup.c:74
+#: gtali/setup.c:78
 msgid "Number of computer opponents"
 msgstr "Konevastustajien m‰‰r‰"
 
-#: gtali/setup.c:75
+#: gtali/setup.c:79
 msgid "Number of human opponents"
 msgstr "Ihmispelaajien m‰‰r‰"
 
-#: gtali/setup.c:85 gtali/setup.c:88
+#: gtali/setup.c:88
 msgid "Current game will complete with original number of players."
 msgstr "T‰m‰nhetkinen peli pelataan loppuun alkuper‰isell‰ pelaajien m‰‰r‰ll‰."
 
-#: gtali/setup.c:187
+#: gtali/setup.c:213
 msgid "GTali setup"
 msgstr "Gnome-jatsin asetukset"
 
-#: gtali/setup.c:196
+#: gtali/setup.c:222
 msgid "Computer Opponents"
 msgstr "Tietokonevastustajat"
 
-#: gtali/setup.c:204
+#: gtali/setup.c:230
 msgid "Delay between rolls"
 msgstr "Viive heittojen v‰lill‰"
 
-#: gtali/setup.c:213
+#: gtali/setup.c:240
 msgid "Show thoughts during turn"
 msgstr "N‰yt‰ ajatukset vuoron aikana"
 
-#: gtali/setup.c:226
+#: gtali/setup.c:254
 msgid "Number of opponents:"
 msgstr "Vastustajien lukum‰‰r‰:"
 
-#: gtali/setup.c:254
+#: gtali/setup.c:282
 msgid "Human Players"
 msgstr "Ihmispelaajat"
 
-#: gtali/setup.c:264
+#: gtali/setup.c:292
 msgid "Number of players:"
 msgstr "Pelaajien m‰‰r‰:"
 
-#: gtali/yahtzee.c:71
+#. --- OPTIONAL RULES FRAME ----
+#: gtali/setup.c:321
+msgid "Optional Rules"
+msgstr "Valinnaiset s‰‰nnˆt"
+
+#: gtali/setup.c:331
+msgid "Extra Yahtzee Bonus"
+msgstr "Ylim‰‰r‰inen Yatzi bonus"
+
+#. --- Button ---
+#: gtali/setup.c:357
+msgid "Enforce Joker Rules"
+msgstr "Pakota jokeri s‰‰nnˆt"
+
+#. --- PLAYER NAMES FRAME ----
+#: gtali/setup.c:372
+msgid "Player Names"
+msgstr "Pelaajien nimet"
+
+#: gtali/setup.c:389
+#, c-format
+msgid "PlayerName%1d"
+msgstr "PelaajanNimi%1d"
+
+#: gtali/yahtzee.c:74
 msgid "1's [total of 1s]"
 msgstr "Ykkˆset"
 
-#: gtali/yahtzee.c:72
+#: gtali/yahtzee.c:75
 msgid "2's [total of 2s]"
 msgstr "Kakkoset"
 
-#: gtali/yahtzee.c:73
+#: gtali/yahtzee.c:76
 msgid "3's [total of 3s]"
 msgstr "Kolmoset"
 
-#: gtali/yahtzee.c:74
+#: gtali/yahtzee.c:77
 msgid "4's [total of 4s]"
 msgstr "Neloset"
 
-#: gtali/yahtzee.c:75
+#: gtali/yahtzee.c:78
 msgid "5's [total of 5s]"
 msgstr "Viitoset"
 
-#: gtali/yahtzee.c:76
+#: gtali/yahtzee.c:79
 msgid "6's [total of 6s]"
 msgstr "Kuutoset"
 
 #. End of upper panel
-#: gtali/yahtzee.c:78
+#: gtali/yahtzee.c:81
 msgid "3 of a Kind [total]"
 msgstr "Kolme samaa"
 
-#: gtali/yahtzee.c:79
+#: gtali/yahtzee.c:82
 msgid "4 of a Kind [total]"
 msgstr "Nelj‰ samaa"
 
-#: gtali/yahtzee.c:80
+#: gtali/yahtzee.c:83
 msgid "Full House [25]"
 msgstr "T‰ysk‰si [25]"
 
-#: gtali/yahtzee.c:81
+#: gtali/yahtzee.c:84
 msgid "Small Straight [30]"
 msgstr "Pieni suora [30]"
 
-#: gtali/yahtzee.c:82
+#: gtali/yahtzee.c:85
 msgid "Large Straight [40]"
 msgstr "Suuri suora [40]"
 
-#: gtali/yahtzee.c:83
+#: gtali/yahtzee.c:86
 msgid "Yahtzee [50]"
 msgstr "Jatsi [50]"
 
-#: gtali/yahtzee.c:84
+#: gtali/yahtzee.c:87
 msgid "Chance [total]"
 msgstr "Sattuma"
 
 #. End of lower panel
-#: gtali/yahtzee.c:86
+#: gtali/yahtzee.c:89
 msgid "Lower Total"
 msgstr "Alisumma"
 
-#: gtali/yahtzee.c:87
+#: gtali/yahtzee.c:90
 msgid "Grand Total"
 msgstr "Summa"
 
 #. Need to squish between upper and lower pannel
-#: gtali/yahtzee.c:89
+#: gtali/yahtzee.c:92
 msgid "Upper total"
 msgstr "Alisumma"
 
-#: gtali/yahtzee.c:90
+#: gtali/yahtzee.c:93
 msgid "Bonus"
 msgstr "Bonus"
 
-#: gtali/yahtzee.c:514
+#: gtali/yahtzee.c:517
 msgid "How many times to you wish to roll? "
 msgstr "Montako kertaa haluat heitt‰‰? "
 
-#: gtali/yahtzee.c:519
+#: gtali/yahtzee.c:522
 msgid "Generating"
 msgstr "Rakennan"
 
-#: gtali/yahtzee.c:554
+#: gtali/yahtzee.c:557
 msgid "Results"
 msgstr "Tulokset"
 
-#: gtali/yahtzee.c:554
+#: gtali/yahtzee.c:557
 msgid "Num Rolls"
 msgstr "Heittojen m‰‰r‰"
 
-#: gtali/yahtzee.c:554
+#: gtali/yahtzee.c:557
 msgid "Total"
 msgstr "Summa"
 
@@ -2455,10 +2516,6 @@ msgstr "V‰rit"
 #: mahjongg/mahjongg.c:1081 mahjongg/mahjongg.c:1244
 msgid "Background:"
 msgstr "Tausta:"
-
-#: mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:554
-msgid "Preferences"
-msgstr "Asetukset"
 
 #: mahjongg/mahjongg.c:1190
 msgid "Tile Background"
