@@ -75,7 +75,8 @@
 
 (define (correct-sequence card-list)
   (or (= (length card-list) 1)
-      (and (eq? (get-suit (car card-list))
+      (and (is-visible? (cadr card-list))
+	   (eq? (get-suit (car card-list))
 		(get-suit (cadr card-list)))
 	   (= (+ 1 (get-value (car card-list)))
 	      (get-value (cadr card-list)))
@@ -131,15 +132,8 @@
 (define (game-continuable)
   (get-hint))
 
-(define (check-wonness slot-id)
-  (or (= slot-id 8)
-      (and (or (empty-slot? slot-id)
-	       (and (= (length (get-cards slot-id)) 13)
-		    (correct-sequence (get-cards slot-id))))
-	   (check-wonness (+ 1 slot-id)))))
-
 (define (game-won)
-  (check-wonness 1))
+  (eq? (get-score) 100))
 
 (define (dealable?)
   (and (not (empty-slot? 0))
