@@ -25,6 +25,8 @@
 
 #include <gtk/gtk.h>
 
+G_BEGIN_DECLS
+
 typedef enum
 {
   CLUB  =  0, DIAMOND, HEART, SPADE
@@ -101,5 +103,7 @@ GdkBitmap* gdk_card_deck_mask (GdkCardDeck* deck);
  * (under cards/.../...) which it uses to build the card images.
  * You may add further, similar image files to these directories
  * to extend the range of decks that the library can produce... */
+
+G_END_DECLS
 
 #endif /* __GDK_CARD_IMAGE_H */
