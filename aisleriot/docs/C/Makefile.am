@@ -32,6 +32,7 @@ help_DATA = index.html	\
 	elevator.html	\
 	escalator.html	\
 	first-law.html	\
+	fortress.html	\
 	fortunes.html	\
 	fourteen.html	\
 	freecell.html	\
@@ -66,6 +67,7 @@ help_DATA = index.html	\
 	spider.html	\
 	spiderette.html	\
 	straight-up.html	\
+	streets-and-alleys.html	\
 	thieves.html	\
 	thirteen.html	\
 	thumb-and-pouch.html	\
@@ -103,6 +105,7 @@ help_SGML = \
 	elevator.sgml	\
 	escalator.sgml	\
 	first_law.sgml	\
+	fortress.sgml	\
 	fortunes.sgml	\
 	fourteen.sgml	\
 	freecell.sgml	\
@@ -137,6 +140,7 @@ help_SGML = \
 	spider.sgml	\
 	spiderette.sgml	\
 	straight_up.sgml	\
+	streets_and_alleys.sgml	\
 	thieves.sgml	\
 	thirteen.sgml	\
 	thumb_and_pouch.sgml	\

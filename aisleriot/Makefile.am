@@ -62,6 +62,7 @@ types_DATA  = 		\
 	elevator.scm	\
 	escalator.scm	\
 	first_law.scm	\
+	fortress.scm	\
 	fortunes.scm	\
 	fourteen.scm	\
 	freecell.scm	\
@@ -97,6 +98,7 @@ types_DATA  = 		\
 	spider.scm	\
 	spiderette.scm	\
 	straight_up.scm	\
+	streets_and_alleys.scm	\
 	thieves.scm     \
 	thirteen.scm	\
 	thumb_and_pouch.scm	\
