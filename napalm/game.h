@@ -1,3 +1,4 @@
+
 #ifndef _NAPALM_GAME_H_
 #define _NAPALM_GAME_H_
 
@@ -53,7 +54,7 @@ struct _NapalmWeaponDef
                                      buf[((y)*3)*(640)+((x)*3)+1] = (g); \
                                      buf[((y)*3)*(640)+((x)*3)+2] = (b);
 
-void redraw_screen(NapalmGame *game, gint x1, gint y1, gint x2, gint y2);
+void redraw_screen(NapalmGame *game, gint, gint, gint, gint);
 void add_players(NapalmGame *game, gchar **names, gint num);
 void draw_players(NapalmGame *game);
 

@@ -49,6 +49,7 @@ static void napalm_game_destroy(GtkWidget *widget, NapalmGame *game)
 
 static void napalm_game_new(void)
 {
+    guint i;
     gchar *names[] = {"John", "Frank", "Julie", "Tim", "Fred", "Lola", "Maria", "Matt", "David", "Rebecca"};
     GtkWidget *app;
     NapalmGame *game = g_new0(NapalmGame, 1);
@@ -60,7 +61,14 @@ static void napalm_game_new(void)
     
     vbox = gtk_vbox_new(FALSE, 0);
 
-    game->buffer = g_malloc0(640 * 480 * 3 * sizeof(gchar));
+    game->buffer = g_malloc0(640 * 480 * 3);
+    for(i=0; i < (640*480*3); i+=3)
+    {
+    	game->buffer[i] = 0x00;
+    	game->buffer[i+1] = 0x00;
+    	game->buffer[i+2] = 0xaa;
+    }
+
 /* create drawing area */
     game->field = gtk_drawing_area_new();
     gtk_widget_set_usize(game->field, 640, 480);
@@ -99,18 +107,20 @@ static gint drawing_area_configure_event(GtkWidget *da, GdkEventConfigure *ev, N
 
 static  gint drawing_area_expose_event(GtkWidget *widget, GdkEventExpose *ev, NapalmGame *game)
 {
-    redraw_screen(game, 0, 0, 640, 480);
+    redraw_screen(game, ev->area.x,
+    			ev->area.y,
+    			ev->area.width,
+    			ev->area.height);
     return FALSE;
 }
 
-/* this is broken unlses you pass 0,0,640,480 as the last params. must talk to raph */
-void redraw_screen(NapalmGame *game, gint x1, gint y1, gint x2, gint y2)
+void redraw_screen(NapalmGame *game, gint x1, gint y1, gint width, gint height)
 {
-       gdk_draw_rgb_image(game->field->window,
+    gdk_draw_rgb_image(game->field->window,
 		       game->field->style->white_gc,
-		       x1, y1, x2, y2,
+		       x1, y1, width, height,
 		       GDK_RGB_DITHER_NONE,
-		       game->buffer + (((y1)*3)*(640)+((x1)*3)), 640*3);
+		       game->buffer + (y1 * (640*3) + x1 * 3), 640*3);
 }
 
 int main(int argc, char *argv[])

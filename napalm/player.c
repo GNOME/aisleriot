@@ -88,7 +88,8 @@ static gint fire_timer(Fire *f)
 	    f->y--;
 	    f->index++;
 	    setpixel(g->buffer, f->x, f->y, 0xff,0xff,0xff);
-	    if(gtk_events_pending()) gtk_main_iteration();
+	    redraw_screen(g, f->x-1, f->y-1, 2, 2);
+//	    while(gtk_events_pending()) gtk_main_iteration();
 	}
 	else
 	{
@@ -96,8 +97,6 @@ static gint fire_timer(Fire *f)
 	    return FALSE;
 	}
     }
-    /* this will be slow until redraw_screen works */
-    redraw_screen(g, 0, 0, 640, 480);
     return TRUE;
 }
 
@@ -115,5 +114,5 @@ static void fire_weapon(GtkWidget *widget, NapalmGame *game)
     f->y = f->player->y_pos;
     f->index = 0;
 
-    gtk_timeout_add(50, (GtkFunction)fire_timer, f);
+    gtk_timeout_add(20, (GtkFunction)fire_timer, f);
 }
