@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-11 03:58+0200\n"
-"PO-Revision-Date: 2004-05-11 13:04+0200\n"
+"POT-Creation-Date: 2004-05-27 03:52+0200\n"
+"PO-Revision-Date: 2004-05-27 14:03+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -122,7 +122,7 @@ msgstr "Soubor hry, který používat"
 msgid "The height of the main window."
 msgstr "Výška hlavního okna."
 
-#: aisleriot/aisleriot.schemas.in.h:5
+#: aisleriot/aisleriot.schemas.in.h:5 blackjack/data/blackjack.schemas.in.h:5
 msgid "The name of the file with the graphics for the cards."
 msgstr "Název souboru s grafikou karet."
 
@@ -134,7 +134,7 @@ msgstr "Název souboru scheme obsahujícího hru solitaire, kterou hrát."
 msgid "The width of the main window."
 msgstr "Šířka hlavního okna."
 
-#: aisleriot/aisleriot.schemas.in.h:8
+#: aisleriot/aisleriot.schemas.in.h:8 blackjack/data/blackjack.schemas.in.h:8
 msgid "Theme file name"
 msgstr "Název souboru tématu"
 
@@ -346,7 +346,8 @@ msgstr "Vybrat hru"
 msgid "Seed"
 msgstr "Číslo hry"
 
-#: aisleriot/dialog.c:170
+#. Rules Tab
+#: aisleriot/dialog.c:170 blackjack/src/dialog.cpp:250
 msgid "Rules"
 msgstr "Pravidla"
 
@@ -574,7 +575,7 @@ msgid "Card games:"
 msgstr "Karetní hry:"
 
 #. Translator credits
-#: aisleriot/menu.c:97 blackjack/src/menu.cpp:84 gataxx/gataxx.c:362
+#: aisleriot/menu.c:97 blackjack/src/menu.cpp:84 gataxx/gataxx.c:364
 #: glines/glines.c:878 gnect/src/main.c:811 gnibbles/main.c:182
 #: gnobots2/menu.c:194 gnome-stones/main.c:1094 gnometris/tetris.cpp:1226
 #: gnomine/gnomine.c:546 gnotravex/gnotravex.c:1486 gtali/gyahtzee.c:415
@@ -605,12 +606,12 @@ msgstr "M_ožnosti hry..."
 msgid "Modify the options for this game"
 msgstr "Upravit možnosti pro tuto hru"
 
-#: aisleriot/menu.c:194 blackjack/src/menu.cpp:150 gnect/src/main.c:1163
+#: aisleriot/menu.c:194 blackjack/src/menu.cpp:155 gnect/src/main.c:1163
 #: mahjongg/mahjongg.c:841
 msgid "_Toolbar"
 msgstr "_Lišta nástrojů"
 
-#: aisleriot/menu.c:194 blackjack/src/menu.cpp:151 mahjongg/mahjongg.c:842
+#: aisleriot/menu.c:194 blackjack/src/menu.cpp:156 mahjongg/mahjongg.c:842
 msgid "Show or hide the toolbar"
 msgstr "Zobrazit nebo skrýt lištu nástrojů"
 
@@ -638,7 +639,7 @@ msgstr "_Statistiky..."
 msgid "Get statistics on the current game"
 msgstr "Získat statistiky o aktuální hře"
 
-#: aisleriot/menu.c:255 blackjack/src/menu.cpp:198 gnect/src/main.c:1187
+#: aisleriot/menu.c:255 blackjack/src/menu.cpp:203 gnect/src/main.c:1187
 #: mahjongg/mahjongg.c:864
 msgid "New"
 msgstr "Nová hra"
@@ -647,7 +648,7 @@ msgstr "Nová hra"
 msgid "Start a new game"
 msgstr "Začít novou hru"
 
-#: aisleriot/menu.c:258 blackjack/src/menu.cpp:201 mahjongg/mahjongg.c:868
+#: aisleriot/menu.c:258 blackjack/src/menu.cpp:206 mahjongg/mahjongg.c:868
 msgid "Restart"
 msgstr "Začít znovu"
 
@@ -675,7 +676,7 @@ msgstr "Znovu"
 msgid "Redo the undone move"
 msgstr "Zopakovat vrácený tah"
 
-#: aisleriot/menu.c:272 blackjack/src/menu.cpp:205 gnect/src/main.c:1191
+#: aisleriot/menu.c:272 blackjack/src/menu.cpp:210 gnect/src/main.c:1191
 #: mahjongg/mahjongg.c:886
 msgid "Hint"
 msgstr "Rada"
@@ -758,11 +759,11 @@ msgstr "Skóre:"
 msgid "Time:"
 msgstr "Čas:"
 
-#: aisleriot/sol.c:440 blackjack/src/blackjack.cpp:580
+#: aisleriot/sol.c:440 blackjack/src/blackjack.cpp:588
 msgid "Variation on game rules"
 msgstr "Variace pravidel hry"
 
-#: aisleriot/sol.c:441 blackjack/src/blackjack.cpp:581 gnobots2/gnobots.c:60
+#: aisleriot/sol.c:441 blackjack/src/blackjack.cpp:589 gnobots2/gnobots.c:60
 #: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:887
 msgid "NAME"
 msgstr "JMÉNO"
@@ -1480,8 +1481,8 @@ msgstr "Přesunout sadu karet na prázdné stolní místo"
 msgid "the appropriate Foundation pile"
 msgstr "odpovídající základní hromádka"
 
-#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:228
-#: blackjack/src/menu.cpp:106 blackjack/src/splash.cpp:96
+#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:231
+#: blackjack/src/menu.cpp:107 blackjack/src/splash.cpp:95
 msgid "Blackjack"
 msgstr "Blackjack"
 
@@ -1490,18 +1491,10 @@ msgid "Play the casino card game Blackjack"
 msgstr "Hrát karetní hru Blackjack"
 
 #: blackjack/data/blackjack.schemas.in.h:1
-msgid ""
-"A string containing a list of files to use to describe the cards. The format "
-"is obscure and defined by the gdk-card-image library"
-msgstr ""
-"Řetězec obsahující seznam souborů, které použít pro popsání karet. Formát je "
-"obskurní a definovaný knihovnou gdk-card-image"
-
-#: blackjack/data/blackjack.schemas.in.h:2
 msgid "Display probabilities"
 msgstr "Zobrazovat pravděpodobnosti"
 
-#: blackjack/data/blackjack.schemas.in.h:3
+#: blackjack/data/blackjack.schemas.in.h:2
 msgid ""
 "Display the probabilities of each dealer hand outcome and the expected value "
 "of your hand."
@@ -1509,11 +1502,11 @@ msgstr ""
 "Zobrazovat pravděpodobnosti každého výsledku rozdávajícího a očekávanou "
 "hodnotu vašich karet."
 
-#: blackjack/data/blackjack.schemas.in.h:4
+#: blackjack/data/blackjack.schemas.in.h:3
 msgid "The amount of money in your bank"
 msgstr "Peněžní částka ve vašem banku"
 
-#: blackjack/data/blackjack.schemas.in.h:5
+#: blackjack/data/blackjack.schemas.in.h:4
 msgid "The amount of money in your bank."
 msgstr "Peněžní částka ve vašem banku."
 
@@ -1526,255 +1519,238 @@ msgstr "Název souboru pravidel obsahujícího variaci pravidel, kterou hrát."
 msgid "The variation of the rules file to use"
 msgstr "Soubor variace pravidel, který používat"
 
-#: blackjack/data/blackjack.schemas.in.h:8
+#: blackjack/data/blackjack.schemas.in.h:9
 msgid "Use a quick deal"
 msgstr "Použít rychlé rozdávání"
 
-#: blackjack/data/blackjack.schemas.in.h:9
+#: blackjack/data/blackjack.schemas.in.h:10
 msgid "Use a quick deal with no delay between each card."
 msgstr "Použít rychlé rozdávání bez zpoždění mezi kartami."
 
-#: blackjack/data/blackjack.schemas.in.h:10
-msgid "What card style to use"
-msgstr "Který styl karet používat"
-
-#: blackjack/src/blackjack.cpp:98
+#: blackjack/src/blackjack.cpp:94
 #, c-format
 msgid "Blackjack: %s (%d)"
 msgstr "Blackjack: %s (%d)"
 
-#: blackjack/src/blackjack.cpp:306
+#: blackjack/src/blackjack.cpp:313
 msgid "Place your wager or deal a hand"
 msgstr "Oznamte sázku nebo rozdávejte karty"
 
-#: blackjack/src/blackjack.cpp:309
+#: blackjack/src/blackjack.cpp:316
 msgid "Cards left:"
 msgstr "Zbylé karty:"
 
-#: blackjack/src/blackjack.cpp:317
+#: blackjack/src/blackjack.cpp:324
 msgid "Wager:"
 msgstr "Sázka:"
 
-#: blackjack/src/blackjack.cpp:329
+#: blackjack/src/blackjack.cpp:338
 msgid "Balance:"
 msgstr "Zůstatek:"
 
-#: blackjack/src/card.cpp:156
-msgid "Could not load the card deck images."
-msgstr "Nemohu načíst obrázky karet."
-
-#: blackjack/src/card.cpp:157
-msgid "Blackjack will now exit."
-msgstr "Blackjack nyní skončí."
-
-#: blackjack/src/dialog.cpp:50
+#: blackjack/src/dialog.cpp:51
 msgid "Would you like insurance?"
 msgstr "Chcete pojištění?"
 
-#: blackjack/src/dialog.cpp:92
+#: blackjack/src/dialog.cpp:89
 msgid "Set your wager and click in the white outline to deal a new hand."
 msgstr "Nastavte svou sázku a rozdejte nové karty kliknutím na bílý obrys."
 
-#: blackjack/src/dialog.cpp:95
+#: blackjack/src/dialog.cpp:91
 msgid "Set your wager or click on the cards to deal a new hand."
 msgstr "Nastavte svou sázku nebo rozdejte nové karty kliknutím na karty."
 
-#: blackjack/src/dialog.cpp:216
+#: blackjack/src/dialog.cpp:205
 msgid "Blackjack Preferences"
 msgstr "Nastavení Blackjacku"
 
-#: blackjack/src/dialog.cpp:231 gnect/src/prefs.c:452
-#: gnibbles/preferences.c:306 gnome-stones/preferences.c:740
-msgid "_Game"
-msgstr "_Hra"
+#: blackjack/src/dialog.cpp:219 gnobots2/properties.c:894
+msgid "Game"
+msgstr "Hra"
 
-#: blackjack/src/dialog.cpp:238
+#: blackjack/src/dialog.cpp:226
 msgid "Display hand probabilities"
 msgstr "Zobrazovat pravděpodobnosti karet"
 
-#: blackjack/src/dialog.cpp:249
+#: blackjack/src/dialog.cpp:236
 msgid "Quick deals (no delay between each card)"
 msgstr "Rychlé rozdávání (žádné zpoždění mezi kartami)"
 
-#: blackjack/src/dialog.cpp:261
-msgid "_Rules"
-msgstr "_Pravidla"
+#: blackjack/src/dialog.cpp:243
+msgid "Reset balance"
+msgstr "Vynulovat zůstatek"
 
-#: blackjack/src/dialog.cpp:285 gnomine/gnomine.c:293
+#: blackjack/src/dialog.cpp:275 gnomine/gnomine.c:293
 msgid "Name"
 msgstr "Název"
 
-#: blackjack/src/dialog.cpp:290
+#: blackjack/src/dialog.cpp:280
 msgid "Decks"
 msgstr "Balíky"
 
-#: blackjack/src/dialog.cpp:295
+#: blackjack/src/dialog.cpp:285
 msgid "Hit Soft 17"
 msgstr "Hit Soft 17"
 
-#: blackjack/src/dialog.cpp:300
+#: blackjack/src/dialog.cpp:290
 msgid "Double Any Total"
 msgstr "Double Any Total"
 
-#: blackjack/src/dialog.cpp:305
+#: blackjack/src/dialog.cpp:295
 msgid "Double 9"
 msgstr "Double 9"
 
-#: blackjack/src/dialog.cpp:310
+#: blackjack/src/dialog.cpp:300
 msgid "Double Soft"
 msgstr "Double Soft"
 
-#: blackjack/src/dialog.cpp:315
+#: blackjack/src/dialog.cpp:305
 msgid "Double After Hit"
 msgstr "Double After Hit"
 
-#: blackjack/src/dialog.cpp:320
+#: blackjack/src/dialog.cpp:310
 msgid "Double After Split"
 msgstr "Double After Split"
 
-#: blackjack/src/dialog.cpp:325
+#: blackjack/src/dialog.cpp:315
 msgid "Resplit"
 msgstr "Resplit"
 
-#: blackjack/src/dialog.cpp:330
+#: blackjack/src/dialog.cpp:320
 msgid "Resplit Aces"
 msgstr "Resplit Aces"
 
-#: blackjack/src/dialog.cpp:335 blackjack/src/player.cpp:328
+#: blackjack/src/dialog.cpp:325 blackjack/src/player.cpp:312
 msgid "Surrender"
 msgstr "Surrender"
 
-#: blackjack/src/dialog.cpp:340
+#: blackjack/src/dialog.cpp:330
 msgid "Dealer Speed"
 msgstr "Rychlost rozdávajícího"
 
-#: blackjack/src/dialog.cpp:403
-msgid "Card _Deck"
-msgstr "_Balík karet"
-
-#: blackjack/src/events.cpp:490
-msgid "Click to deal another card; drag card to split pair"
-msgstr "Lízněte si další kartu kliknutím; split pair tažením karty"
-
-#: blackjack/src/events.cpp:492
-msgid "Click to deal another card"
-msgstr "Lízněte si další kartu kliknutím"
-
-#: blackjack/src/events.cpp:494
-msgid "Click to finish adding cards to your hand"
-msgstr "Dokončete přidávání karet kliknutím"
-
-#: blackjack/src/events.cpp:497
-msgid "Click to deal a new hand"
-msgstr "Rozdejte nové karty kliknutím"
-
-#: blackjack/src/events.cpp:513
+#: blackjack/src/events.cpp:462
 msgid "Click to double your wager"
 msgstr "Zdvojnásobte svou sázku kliknutím"
 
-#: blackjack/src/events.cpp:519
+#: blackjack/src/events.cpp:467
 #, c-format
 msgid "Double click to increase your wager by %.2f"
 msgstr "Zvyšte svou sázku o %.2f kliknutím"
 
-#: blackjack/src/events.cpp:533
+#: blackjack/src/events.cpp:477
 #, c-format
 msgid "Double click to decrease your wager by %.2f"
 msgstr "Snižte svou sázku o %.2f kliknutím"
 
-#: blackjack/src/game.cpp:390
+#: blackjack/src/events.cpp:494
+msgid "Click to deal another card; drag card to split pair"
+msgstr "Lízněte si další kartu kliknutím; split pair tažením karty"
+
+#: blackjack/src/events.cpp:496
+msgid "Click to deal another card"
+msgstr "Lízněte si další kartu kliknutím"
+
+#: blackjack/src/events.cpp:498
+msgid "Click to finish adding cards to your hand"
+msgstr "Dokončete přidávání karet kliknutím"
+
+#: blackjack/src/events.cpp:501
+msgid "Click to deal a new hand"
+msgstr "Rozdejte nové karty kliknutím"
+
+#: blackjack/src/game.cpp:379
 msgid "Blackjack can't load the requested file"
 msgstr "Blackjack nemůže načíst požadovaný soubor"
 
-#: blackjack/src/game.cpp:392
+#: blackjack/src/game.cpp:381
 msgid "Please check your Blackjack installation"
 msgstr "Zkontrolujte prosím svou instalaci Blackjack"
 
-#: blackjack/src/hand.cpp:118
+#: blackjack/src/hand.cpp:115
 msgid "The best option is to stand"
 msgstr "Nejlepší volba je stand"
 
-#: blackjack/src/hand.cpp:120
+#: blackjack/src/hand.cpp:117
 msgid "The best option is to hit"
 msgstr "Nejlepší volba je hit"
 
-#: blackjack/src/hand.cpp:122
+#: blackjack/src/hand.cpp:119
 msgid "The best option is to double down"
 msgstr "Nejlepší volba je double down"
 
-#: blackjack/src/hand.cpp:124
+#: blackjack/src/hand.cpp:121
 msgid "The best option is to split"
 msgstr "Nejlepší volba je split"
 
-#: blackjack/src/hand.cpp:126
+#: blackjack/src/hand.cpp:123
 msgid "The best option is to surrender"
 msgstr "Nejlepší volba je surrender"
 
-#: blackjack/src/menu.cpp:110
+#: blackjack/src/menu.cpp:111
 msgid "Blackjack provides a casino-style blackjack card game."
 msgstr "Blackjack poskytuje karetní hru blackjack jako v casinu."
 
-#: blackjack/src/menu.cpp:198
+#: blackjack/src/menu.cpp:203
 msgid "Deal a new game"
 msgstr "Rozdat novou hru"
 
-#: blackjack/src/menu.cpp:201
+#: blackjack/src/menu.cpp:206
 msgid "Start this game over"
 msgstr "Začít tuto hru znovu"
 
-#: blackjack/src/menu.cpp:205
+#: blackjack/src/menu.cpp:210
 msgid "Suggest a move"
 msgstr "Poradit tah"
 
-#: blackjack/src/player.cpp:67
+#: blackjack/src/player.cpp:66
 msgid "Computing basic strategy..."
 msgstr "Počítám základní strategii..."
 
-#: blackjack/src/player.cpp:190 blackjack/src/player.cpp:468
+#: blackjack/src/player.cpp:187 blackjack/src/player.cpp:442
 msgid "Bust"
 msgstr "Bust"
 
-#: blackjack/src/player.cpp:194
+#: blackjack/src/player.cpp:189
 msgid "Blackjack!"
 msgstr "Blackjack!"
 
-#: blackjack/src/player.cpp:199
+#: blackjack/src/player.cpp:192
 msgid "Soft"
 msgstr "Soft"
 
-#: blackjack/src/player.cpp:207
+#: blackjack/src/player.cpp:198
 msgid "Win"
 msgstr "Výhra"
 
-#: blackjack/src/player.cpp:208
+#: blackjack/src/player.cpp:199
 msgid "Push"
 msgstr "Push"
 
-#: blackjack/src/player.cpp:209
+#: blackjack/src/player.cpp:200
 msgid "Lose"
 msgstr "Prohra"
 
-#: blackjack/src/player.cpp:269
+#: blackjack/src/player.cpp:260
 msgid "Player expected values"
 msgstr "Očekávané hodnoty hráče"
 
-#: blackjack/src/player.cpp:275
+#: blackjack/src/player.cpp:266
 msgid "Stand"
 msgstr "Stand"
 
-#: blackjack/src/player.cpp:285
+#: blackjack/src/player.cpp:275
 msgid "Hit"
 msgstr "Hit"
 
-#: blackjack/src/player.cpp:298
+#: blackjack/src/player.cpp:286
 msgid "Double"
 msgstr "Double"
 
-#: blackjack/src/player.cpp:314
+#: blackjack/src/player.cpp:300
 msgid "Split"
 msgstr "Split"
 
-#: blackjack/src/player.cpp:467
+#: blackjack/src/player.cpp:441
 msgid "Dealer hand probabilities"
 msgstr "Pravděpodobnosti karet rozdávajícího"
 
@@ -1795,27 +1771,27 @@ msgstr "Tah bílého"
 msgid "Dark's move"
 msgstr "Tah černého"
 
-#: gataxx/gataxx.c:162 iagno/othello.c:702
+#: gataxx/gataxx.c:163 iagno/othello.c:702
 msgid "Light player wins!"
 msgstr "Bílý hráč vyhrává!"
 
-#: gataxx/gataxx.c:164 iagno/othello.c:704
+#: gataxx/gataxx.c:165 iagno/othello.c:704
 msgid "Dark player wins!"
 msgstr "Černý hráč vyhrává!"
 
-#: gataxx/gataxx.c:166 iagno/othello.c:706
+#: gataxx/gataxx.c:167 iagno/othello.c:706
 msgid "The game was a draw."
 msgstr "Hra skončila nerozhodně."
 
-#: gataxx/gataxx.c:360
+#: gataxx/gataxx.c:362
 msgid "Based on code from Iagno by Ian Peters"
 msgstr "Založeno na kódu Iagno od Iana Peterse"
 
-#: gataxx/gataxx.c:377 gataxx/gataxx.desktop.in.h:1
+#: gataxx/gataxx.c:379 gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "Ataxx"
 
-#: gataxx/gataxx.c:380
+#: gataxx/gataxx.c:382
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr "Hra s převracením kamenů, kde se snažíte ovládnout desku."
 
@@ -1828,7 +1804,7 @@ msgid "Animate"
 msgstr "Animace"
 
 #. flip tiles button
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:394 iagno/properties.c:683
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:395 iagno/properties.c:683
 msgid "Flip final results"
 msgstr "Převrátit konečné výsledky"
 
@@ -1875,98 +1851,100 @@ msgid ""
 msgstr "Nula znamená člověk; jedna až tři odpovídá úrovni počítačového hráče."
 
 #. create window
-#: gataxx/properties.c:297
+#: gataxx/properties.c:298
 msgid "Ataxx Preferences"
 msgstr "Nastavení Ataxx"
 
 #. Players tab
 #. FIXME mnemonic doesn't seem to work
-#: gataxx/properties.c:318 iagno/properties.c:505
+#: gataxx/properties.c:319 iagno/properties.c:505
 msgid "_Players"
 msgstr "_Hráči"
 
-#: gataxx/properties.c:330
+#: gataxx/properties.c:331
 msgid "Quick Moves"
 msgstr "Rychlé tahy"
 
-#: gataxx/properties.c:331
+#: gataxx/properties.c:332
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "Zkrátí čas, který počítač čeká před provedením tahu"
 
 #. Dark level select
-#: gataxx/properties.c:340 gnect/src/theme.c:55 iagno/properties.c:528
+#: gataxx/properties.c:341 gnect/src/theme.c:55 iagno/properties.c:528
 msgid "Dark"
 msgstr "Černé"
 
-#: gataxx/properties.c:345 gnect/src/prefs.c:404 gtali/yahtzee.c:63
+#: gataxx/properties.c:346 gnect/src/prefs.c:406 gtali/yahtzee.c:63
 #: iagno/properties.c:534 iagno/properties.c:581
 msgid "Human"
 msgstr "Člověk"
 
-#: gataxx/properties.c:346 gataxx/properties.c:365
+#: gataxx/properties.c:347 gataxx/properties.c:366
 msgid "Very Easy"
 msgstr "Velmi jednoduché"
 
-#: gataxx/properties.c:347 gataxx/properties.c:366 mahjongg/mahjongg.c:740
+#: gataxx/properties.c:348 gataxx/properties.c:367 mahjongg/mahjongg.c:740
 msgid "Easy"
 msgstr "Jednoduché"
 
-#: gataxx/properties.c:348 gataxx/properties.c:367 gnomine/gnomine.c:88
+#: gataxx/properties.c:349 gataxx/properties.c:368 gnomine/gnomine.c:88
 #: gnomine/gnomine.c:733
 msgid "Medium"
 msgstr "Střední"
 
-#: gataxx/properties.c:349 gataxx/properties.c:368
+#: gataxx/properties.c:350 gataxx/properties.c:369
 msgid "Hard"
 msgstr "Těžké"
 
-#: gataxx/properties.c:350 gataxx/properties.c:369
+#: gataxx/properties.c:351 gataxx/properties.c:370
 msgid "Very Hard"
 msgstr "Velmi těžké"
 
 #. Light level select
-#: gataxx/properties.c:359 gnect/src/theme.c:55 iagno/properties.c:575
+#: gataxx/properties.c:360 gnect/src/theme.c:55 iagno/properties.c:575
 msgid "Light"
 msgstr "Bílé"
 
 #. Appearance tab
-#: gataxx/properties.c:378 iagno/properties.c:625
+#: gataxx/properties.c:379 iagno/properties.c:625
 msgid "_Appearance"
 msgstr "_Vzhled"
 
-#: gataxx/properties.c:381 gnect/src/prefs.c:484 gnobots2/properties.c:932
+#: gataxx/properties.c:382 gnect/src/prefs.c:486 gnobots2/properties.c:932
 msgid "Appearance"
 msgstr "Vzhled"
 
 #. animation button
-#: gataxx/properties.c:386 iagno/properties.c:630
+#: gataxx/properties.c:387 iagno/properties.c:630
 msgid "Animation"
 msgstr "Animace"
 
-#: gataxx/properties.c:390
+#: gataxx/properties.c:391
 msgid "Flip the pieces with some visual effects"
 msgstr "Obracet kameny s vizuálními efekty"
 
-#: gataxx/properties.c:398
+#: gataxx/properties.c:399
 msgid ""
 "Put all the white pieces at the bottom and all the black pieces on the top "
 "of the board when a game is over"
-msgstr "Když hra skončí, přesunout všechny bílé kameny do spodní části desky a všechny černé kameny do horní části"
+msgstr ""
+"Když hra skončí, přesunout všechny bílé kameny do spodní části desky a "
+"všechny černé kameny do horní části"
 
 #. show grid button
-#: gataxx/properties.c:402 iagno/properties.c:675
+#: gataxx/properties.c:403 iagno/properties.c:675
 msgid "Show grid"
 msgstr "Zobrazit mřížku"
 
-#: gataxx/properties.c:406
+#: gataxx/properties.c:407
 msgid "Whether the grid should be shown"
 msgstr "Jestli se má zobrazovat mřížka"
 
-#: gataxx/properties.c:413 iagno/properties.c:693
+#: gataxx/properties.c:414 iagno/properties.c:693
 msgid "Tile set:"
 msgstr "Sada kamenů:"
 
-#: gataxx/properties.c:418
+#: gataxx/properties.c:419
 msgid "The appearance of the pieces"
 msgstr "Vzhled kamenů"
 
@@ -1982,7 +1960,7 @@ msgstr "Dondorf"
 msgid "Dondorf Red"
 msgstr "Dondorf Red"
 
-#: gdk-card-image/card-styles.xml.in.h:4 gnibbles/preferences.c:575
+#: gdk-card-image/card-styles.xml.in.h:4 gnibbles/preferences.c:576
 msgid "Gray"
 msgstr "Šedá"
 
@@ -2328,47 +2306,52 @@ msgstr ""
 "Hráč 2:\n"
 "%s"
 
-#: gnect/src/prefs.c:406 iagno/properties.c:544 iagno/properties.c:591
+#: gnect/src/prefs.c:408 iagno/properties.c:544 iagno/properties.c:591
 msgid "Level one"
 msgstr "První úroveň"
 
-#: gnect/src/prefs.c:408 iagno/properties.c:554 iagno/properties.c:601
+#: gnect/src/prefs.c:410 iagno/properties.c:554 iagno/properties.c:601
 msgid "Level two"
 msgstr "Druhá úroveň"
 
-#: gnect/src/prefs.c:410 iagno/properties.c:564 iagno/properties.c:612
+#: gnect/src/prefs.c:412 iagno/properties.c:564 iagno/properties.c:612
 msgid "Level three"
 msgstr "Třetí úroveň"
 
-#: gnect/src/prefs.c:435
+#: gnect/src/prefs.c:437
 msgid "Four-in-a-row Preferences"
 msgstr "Nastavení Čtyř-v-řadě"
 
-#: gnect/src/prefs.c:493
+#: gnect/src/prefs.c:454 gnibbles/preferences.c:307
+#: gnome-stones/preferences.c:740
+msgid "_Game"
+msgstr "_Hra"
+
+#: gnect/src/prefs.c:495
 msgid "_Theme:"
 msgstr "_Téma:"
 
-#: gnect/src/prefs.c:507
+#: gnect/src/prefs.c:509
 msgid "Enable _animation"
 msgstr "Povolit _animace"
 
-#: gnect/src/prefs.c:514
+#: gnect/src/prefs.c:516
 msgid "Controls"
 msgstr "Ovládání"
 
-#: gnect/src/prefs.c:517
+#: gnect/src/prefs.c:519
 msgid "Keyboard control"
 msgstr "Ovládání klávesnicí"
 
-#: gnect/src/prefs.c:526
+#: gnect/src/prefs.c:528
 msgid "Move _Left"
 msgstr "Posunout do_leva"
 
-#: gnect/src/prefs.c:531
+#: gnect/src/prefs.c:533
 msgid "Move _Right"
 msgstr "Posunout do_prava"
 
-#: gnect/src/prefs.c:536
+#: gnect/src/prefs.c:538
 msgid "_Drop"
 msgstr "_Upustit"
 
@@ -2377,11 +2360,11 @@ msgid "Classic"
 msgstr "Klasické"
 
 #: gnect/src/theme.c:47 gnect/src/theme.c:63 gnect/src/theme.c:71
-#: gnect/src/theme.c:79 gnibbles/preferences.c:569
+#: gnect/src/theme.c:79 gnibbles/preferences.c:570
 msgid "Red"
 msgstr "Červená"
 
-#: gnect/src/theme.c:47 gnect/src/theme.c:79 gnibbles/preferences.c:572
+#: gnect/src/theme.c:47 gnect/src/theme.c:79 gnibbles/preferences.c:573
 msgid "Yellow"
 msgstr "Žlutá"
 
@@ -2394,7 +2377,7 @@ msgid "Marbles"
 msgstr "Kuličky"
 
 #: gnect/src/theme.c:63 gnect/src/theme.c:71 gnect/src/theme.c:87
-#: gnibbles/preferences.c:571
+#: gnibbles/preferences.c:572
 msgid "Blue"
 msgstr "Modrá"
 
@@ -2456,7 +2439,7 @@ msgstr "Barva, kterou použít pro červa"
 msgid "Color to use for worm."
 msgstr "Barva, kterou použít pro červa."
 
-#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:384
+#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:385
 msgid "Enable fake bonuses"
 msgstr "Povolit falešné bonusy"
 
@@ -2464,7 +2447,7 @@ msgstr "Povolit falešné bonusy"
 msgid "Enable fake bonuses."
 msgstr "Povolit falešné bonusy."
 
-#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:395
+#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:396
 #: gnobots2/properties.c:871
 msgid "Enable sounds"
 msgstr "Povolit zvuky"
@@ -2497,7 +2480,8 @@ msgstr "Výška okna GNibbles"
 msgid ""
 "Height of the GNibbles window, used to restore the window size between "
 "sessions."
-msgstr "Výška okna GNibbles používaná pro obnovení velikosti okna mezi sezeními."
+msgstr ""
+"Výška okna GNibbles používaná pro obnovení velikosti okna mezi sezeními."
 
 #: gnibbles/gnibbles.schemas.in.h:13
 msgid "Key to use for motion down"
@@ -2539,7 +2523,7 @@ msgstr "Počet hráčů"
 msgid "Number of players."
 msgstr "Počet hráčů."
 
-#: gnibbles/gnibbles.schemas.in.h:23 gnibbles/preferences.c:373
+#: gnibbles/gnibbles.schemas.in.h:23 gnibbles/preferences.c:374
 msgid "Play levels in random order"
 msgstr "Hrát úrovně v náhodném pořadí"
 
@@ -2555,7 +2539,7 @@ msgstr "Velikost dlaždic hry"
 msgid "Size of game tiles."
 msgstr "Velikost dlaždic hry."
 
-#: gnibbles/gnibbles.schemas.in.h:27 gnibbles/preferences.c:558
+#: gnibbles/gnibbles.schemas.in.h:27 gnibbles/preferences.c:559
 msgid "Use relative movement"
 msgstr "Používat relativní pohyb"
 
@@ -2571,7 +2555,8 @@ msgstr "Šířka okna GNibbles"
 msgid ""
 "Width of the GNibbles window, used to restore the window size between "
 "sessions."
-msgstr "Šířka okna GNibbles používaná pro obnovení velikosti okna mezi sezeními."
+msgstr ""
+"Šířka okna GNibbles používaná pro obnovení velikosti okna mezi sezeními."
 
 #: gnibbles/gnibbles.soundlist.in.h:1
 msgid "Bonus"
@@ -2613,81 +2598,81 @@ msgstr "Teleport červa"
 msgid "A worm game for GNOME."
 msgstr "Hra s červem pro GNOME."
 
-#: gnibbles/preferences.c:297
+#: gnibbles/preferences.c:298
 msgid "Gnibbles Preferences"
 msgstr "Nastavení Gnibbles"
 
-#: gnibbles/preferences.c:314
+#: gnibbles/preferences.c:315
 msgid "Speed"
 msgstr "Rychlost"
 
-#: gnibbles/preferences.c:324
+#: gnibbles/preferences.c:325
 msgid "Nibbles newbie"
 msgstr "Nováček v nibbles"
 
-#: gnibbles/preferences.c:334
+#: gnibbles/preferences.c:335
 msgid "My second day"
 msgstr "Můj druhý den"
 
-#: gnibbles/preferences.c:344
+#: gnibbles/preferences.c:345
 msgid "Not too shabby"
 msgstr "Ne moc špatný"
 
-#: gnibbles/preferences.c:355
+#: gnibbles/preferences.c:356
 msgid "Finger-twitching good"
 msgstr "Tak dobrý, že má křeč v prstech"
 
 #. Options
-#: gnibbles/preferences.c:366 gnibbles/preferences.c:551
+#: gnibbles/preferences.c:367 gnibbles/preferences.c:552
 #: gnobots2/properties.c:843 iagno/properties.c:664
 msgid "Options"
 msgstr "Nastavení"
 
-#: gnibbles/preferences.c:408
+#: gnibbles/preferences.c:409
 msgid "Starting level:"
 msgstr "Počáteční úroveň:"
 
-#: gnibbles/preferences.c:435 gtali/setup.c:266
+#: gnibbles/preferences.c:436 gtali/setup.c:266
 msgid "Number of players:"
 msgstr "Počet hráčů:"
 
-#: gnibbles/preferences.c:455
+#: gnibbles/preferences.c:456
 msgid "Worm"
 msgstr "Červ"
 
-#: gnibbles/preferences.c:464
+#: gnibbles/preferences.c:465
 msgid "Keyboard controls"
 msgstr "Ovládání klávesnicí"
 
-#: gnibbles/preferences.c:475
+#: gnibbles/preferences.c:476
 msgid "Up"
 msgstr "Nahoru"
 
-#: gnibbles/preferences.c:495
+#: gnibbles/preferences.c:496
 msgid "Down"
 msgstr "Dolů"
 
-#: gnibbles/preferences.c:515
+#: gnibbles/preferences.c:516
 msgid "Left"
 msgstr "Doleva"
 
-#: gnibbles/preferences.c:534
+#: gnibbles/preferences.c:535
 msgid "Right"
 msgstr "Doprava"
 
-#: gnibbles/preferences.c:564
+#: gnibbles/preferences.c:565
 msgid "Worm color:"
 msgstr "Barva červa:"
 
-#: gnibbles/preferences.c:570
+#: gnibbles/preferences.c:571
 msgid "Green"
 msgstr "Zelená"
 
-#: gnibbles/preferences.c:573
+#: gnibbles/preferences.c:574
 msgid "Cyan"
 msgstr "Modrozelená"
 
-#: gnibbles/preferences.c:574
+#: gnibbles/preferences.c:575
 msgid "Purple"
 msgstr "Purpurová"
 
@@ -3198,10 +3183,6 @@ msgstr "Přehrávat nejčastější a potenciálně nejvíce otravný zvuk."
 #: gnobots2/properties.c:890
 msgid "You Cannot Change the Game Type When Playing"
 msgstr "Nemůžete změnit typ hry, když hrajete"
-
-#: gnobots2/properties.c:894
-msgid "Game"
-msgstr "Hra"
 
 #: gnobots2/properties.c:902
 msgid "Graphics Theme"
@@ -4418,6 +4399,10 @@ msgstr ""
 "Zkontrolujte prosím své nastavení GConf, konkrétně jestli byla správně "
 "nainstalována schémata."
 
+#: libgames-support/games-card-selector.c:51
+msgid "Card Style"
+msgstr "Styl karet"
+
 #: mahjongg/mahjongg.c:741
 msgid "Difficult"
 msgstr "Těžké"
@@ -4666,6 +4651,28 @@ msgid "Remove groups of balls to try and clear the screen"
 msgstr "Odstraňovat skupiny míčků pro vymazání obrazovky"
 
 #~ msgid ""
+#~ "A string containing a list of files to use to describe the cards. The "
+#~ "format is obscure and defined by the gdk-card-image library"
+#~ msgstr ""
+#~ "Řetězec obsahující seznam souborů, které použít pro popsání karet. Formát "
+#~ "je obskurní a definovaný knihovnou gdk-card-image"
+
+#~ msgid "What card style to use"
+#~ msgstr "Který styl karet používat"
+
+#~ msgid "Could not load the card deck images."
+#~ msgstr "Nemohu načíst obrázky karet."
+
+#~ msgid "Blackjack will now exit."
+#~ msgstr "Blackjack nyní skončí."
+
+#~ msgid "_Rules"
+#~ msgstr "_Pravidla"
+
+#~ msgid "Card _Deck"
+#~ msgstr "_Balík karet"
+
+#~ msgid ""
 #~ "AisleRiot could not load its deck images.\n"
 #~ "\n"
 #~ "AisleRiot will now exit."
@@ -4673,9 +4680,6 @@ msgstr "Odstraňovat skupiny míčků pro vymazání obrazovky"
 #~ "AisleRiot nemohl načíst své obrázky karet.\n"
 #~ "\n"
 #~ "AisleRiot nyní skončí."
-
-#~ msgid "Card Style"
-#~ msgstr "Styl karet"
 
 #~ msgid "Try a new game"
 #~ msgstr "Zkusit novou hru"
