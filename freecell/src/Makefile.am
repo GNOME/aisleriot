@@ -33,4 +33,4 @@ EXTRA_DIST = freecell.desktop
 
 install-data-local:
 	$(mkinstalldirs) $(Gamesdir)
-	$(INSTALL_DATA) $(srcdir)/freecell.desktop $(datadir)/apps/Games/"FreeCell.desktop"
+	$(INSTALL_DATA) $(srcdir)/freecell.desktop $(Gamesdir)/freecell.desktop
