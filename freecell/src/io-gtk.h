@@ -32,6 +32,14 @@ extern GtkWidget *main_window;
 void io_gtk_init (int *argc, char ***argv);
 void io_gtk_loop (void);
 
+void callback_new (GtkWidget *widget, GdkEvent *event);
+void callback_score (GtkWidget *widget, GdkEvent *event);
+void callback_undo (GtkWidget *widget, GdkEvent *event);
+void callback_option (GtkWidget *widget, GdkEvent *event);
+void callback_exit (GtkWidget *widget, GdkEvent *event);
+void callback_rule (GtkWidget *widget, GdkEvent *event);
+void callback_about (GtkWidget *widget, GdkEvent *event);
+
 #endif /* __FREECELL_IO_GTK_H */
 
 

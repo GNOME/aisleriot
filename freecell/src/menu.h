@@ -1,5 +1,4 @@
 /* menu.h
-   Copyright (C) 1998 Free Software Foundation, Inc.
 
    This program is free software; you can redistribute it and'or modify
    it under the terms of the GNU General Public License as published by
@@ -20,8 +19,8 @@
 #ifndef __FREECELL__MENU_H
 #define __FREECELL__MENU_H
 
-#include <gtk/gtk.h>
+#include <gnome.h>
 
-GtkMenuFactory *create_main_menu (void);
+void create_menus (GnomeApp *app);
 
 #endif /* __FREECELL__MENU_H */

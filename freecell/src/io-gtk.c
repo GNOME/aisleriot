@@ -1,5 +1,4 @@
 /* io-gtk.c
-   Copyright (C) 1997 Ryu Changwoo
 
    This program is free software; you can redistribute it and'or modify
    it under the terms of the GNU General Public License as published by
@@ -86,18 +85,10 @@ static void refresh_destination (int index);
 static void refresh_all (void);
 
 
-static void callback_new (GtkWidget *widget, GdkEvent *event);
 static void callback_new_with_lose (GtkWidget *widget, gpointer data);
 static void callback_new_really (void);
-static void callback_score (GtkWidget *widget, GdkEvent *event);
-static void callback_undo (GtkWidget *widget, GdkEvent *event);
-static void callback_option (GtkWidget *widget, GdkEvent *event);
-static void callback_quit (GtkWidget *widget, GdkEvent *event);
-static void callback_quit_with_lose (GtkWidget *widget, gpointer data);
-static void callback_quit_really (void);
-
-static void callback_rule (GtkWidget *widget, GdkEvent *event);
-static void callback_about (GtkWidget *widget, GdkEvent *event);
+static void callback_exit_with_lose (GtkWidget *widget, gpointer data);
+static void callback_exit_really (void);
 
 static void inform_invalid_move (void);
 
@@ -128,19 +119,14 @@ io_gtk_init (int *argc, char ***argv)
 
   
   /* make main window.  */
-  main_window = gnome_app_new ("freecell", "Freecell");
+  main_window = gnome_app_new ("freecell", "FreeCell");
   gtk_signal_connect (GTK_OBJECT(main_window), "delete_event",
-		      GTK_SIGNAL_FUNC(callback_quit), NULL);
+		      GTK_SIGNAL_FUNC(callback_exit), NULL);
   gtk_widget_realize(main_window);
 
   card_draw_init(main_window);
   
-  {
-    GtkMenuFactory *mf;
-
-    mf = create_main_menu ();
-    gnome_app_set_menus (GNOME_APP(main_window), GTK_MENU_BAR(mf->widget));
-  }
+  create_menus (GNOME_APP(main_window));
 
   /* vbox -- menubar, freecells & destinations, separator, fields.  */
   vbox = gtk_vbox_new (FALSE, 2);
@@ -244,42 +230,6 @@ void
 io_gtk_loop (void)
 {
   gtk_main();
-}
-
-
-/*----------------------------------------------------------------------
-  io_gtk_menu_bar
-  ----------------------------------------------------------------------*/
-static GtkMenuFactory *
-create_main_menu (void)
-{
-  static GtkMenuEntry main_menu [] =
-  {
-    {N_("Game/New"), N_("<control>N"), (GtkMenuCallback)callback_new, NULL},
-    {N_("Game/Option"), N_("<control>O"),
-     (GtkMenuCallback)callback_option, NULL}, 
-    {N_("Game/Score"), N_("<control>S"),
-     (GtkMenuCallback)callback_score, NULL}, 
-    {N_("Game/<separator>"), NULL, NULL, NULL},
-    {N_("Game/Exit"), N_("<control>X"), (GtkMenuCallback)callback_quit, NULL}, 
-    {N_("Help/About"), NULL, (GtkMenuCallback)callback_about, NULL}, 
-  };
-#define ELEMENTS(x) (sizeof(x) / sizeof(x[0]))
-
-  GtkMenuFactory *subfactory;
-  
-  {
-    int i;
-    for (i = 0; i < ELEMENTS(main_menu); i++)
-      {
-	main_menu[i].path = _(main_menu[i].path);
-	main_menu[i].accelerator = _(main_menu[i].accelerator);
-      }
-  }
-  
-  subfactory = gtk_menu_factory_new (GTK_MENU_FACTORY_MENU_BAR);
-  gtk_menu_factory_add_entries (subfactory, main_menu, ELEMENTS(main_menu));
-  return subfactory;
 }
 
 
@@ -387,7 +337,7 @@ callback_new_with_lose (GtkWidget *widget, gpointer data)
 
 
 
-static void
+void
 callback_new (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *mb;
@@ -412,7 +362,7 @@ callback_new (GtkWidget *widget, GdkEvent *event)
   
 }
 
-static void
+void
 callback_score (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *dialog;
@@ -420,7 +370,7 @@ callback_score (GtkWidget *widget, GdkEvent *event)
   dialog = score_dialog(); 
 }
 
-static void
+void
 callback_undo (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *mb;
@@ -434,7 +384,7 @@ callback_undo (GtkWidget *widget, GdkEvent *event)
 }
 
 
-static void
+void
 callback_option (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *dialog;
@@ -443,7 +393,7 @@ callback_option (GtkWidget *widget, GdkEvent *event)
 }
 
 
-static void
+void
 callback_rule (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *mb;
@@ -458,7 +408,7 @@ callback_rule (GtkWidget *widget, GdkEvent *event)
 
 
 static void
-callback_quit_really (void)
+callback_exit_really (void)
 {
   score_write();
   option_write();
@@ -466,18 +416,18 @@ callback_quit_really (void)
 }
 
 static void
-callback_quit_with_lose (GtkWidget *widget, gpointer data)
+callback_exit_with_lose (GtkWidget *widget, gpointer data)
 {
   if ((int)data == 1)
     {
       score_add_lose();
-      callback_quit_really();
+      callback_exit_really();
     }
 }
 
 
-static void
-callback_quit (GtkWidget *widget, GdkEvent *event)
+void
+callback_exit (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *mb;
   
@@ -492,17 +442,39 @@ callback_quit (GtkWidget *widget, GdkEvent *event)
       gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
-				GTK_SIGNAL_FUNC(callback_quit_with_lose),
+				GTK_SIGNAL_FUNC(callback_exit_with_lose),
 				NULL);
       gtk_widget_show (mb);
     }
   else
-    callback_quit_really();
+    callback_exit_really();
 }
 
-static void
+void
 callback_about (GtkWidget *widget, GdkEvent *event)
 {
+  GtkWidget *about;
+  gchar *authors[] = {
+    N_("Changwoo Ryu."),
+    NULL
+  };
+#ifndef ELEMENTS  
+#define ELEMENTS(x) (sizeof(x) / sizeof(x[0]))
+#endif
+
+  {
+    int i;
+
+    for (i = 0; i < (ELEMENTS(authors) - 1); i++)
+      authors[i] = _(authors[i]);
+  }  
+  
+  about = gnome_about_new (_("FreeCell"), VERSION,
+			   _("(C) 1997-1998 Changwoo Ryu"),
+			   authors,
+			   _("Reimplement the popular solitaire card game."),
+			   NULL);
+  gtk_widget_show (about);
 }
 
 static void
