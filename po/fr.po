@@ -7,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games 2.1.3\n"
-"POT-Creation-Date: 2002-12-07 18:16+0100\n"
-"PO-Revision-Date: 2002-12-07 18:10+0100\n"
-"Last-Translator: Guy CLOTILDE <guy.clotilde@wanadoo.fr>\n"
+"Project-Id-Version: gnome-games 2.1.4\n"
+"POT-Creation-Date: 2002-12-20 12:17+0100\n"
+"PO-Revision-Date: 2002-12-20 12:13+0100\n"
+"Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -382,23 +382,23 @@ msgstr ""
 "\n"
 "Perdu !\n"
 
-#: aisleriot/dialog.c:54
+#: aisleriot/dialog.c:55
 msgid "New Game"
 msgstr "Nouveau jeu"
 
-#: aisleriot/dialog.c:109 mahjongg/mahjongg.c:1637
+#: aisleriot/dialog.c:130 mahjongg/mahjongg.c:1637
 msgid "Select Game"
 msgstr "Choix d'un jeu"
 
-#: aisleriot/dialog.c:119 freecell/src/io-gtk.c:407 freecell/src/menu.c:97
+#: aisleriot/dialog.c:140 freecell/src/io-gtk.c:407 freecell/src/menu.c:97
 msgid "Seed"
 msgstr "Paramètre"
 
-#: aisleriot/dialog.c:136 xbill/UI.cc:129
+#: aisleriot/dialog.c:157 xbill/UI.cc:129
 msgid "Rules"
 msgstr "Règles du jeu"
 
-#: aisleriot/dialog.c:228
+#: aisleriot/dialog.c:249
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -406,31 +406,31 @@ msgstr ""
 "Le jeu est terminé.\n"
 "Pas de suggestion disponible"
 
-#: aisleriot/dialog.c:234
+#: aisleriot/dialog.c:255
 msgid "This game does not have hint support yet."
 msgstr "Les suggestions ne sont pas encore implémentées dans ce jeu."
 
-#: aisleriot/dialog.c:247
+#: aisleriot/dialog.c:268
 #, c-format
 msgid "Move the %s on the %s."
 msgstr "Déplace le %s sur le %s."
 
-#: aisleriot/dialog.c:255
+#: aisleriot/dialog.c:276
 #, c-format
 msgid "Move the %s on %s."
 msgstr "Mettre le %s sur %s."
 
-#: aisleriot/dialog.c:263
+#: aisleriot/dialog.c:284
 #, c-format
 msgid "Move the %s %s."
 msgstr "Déplace le %s %s."
 
-#: aisleriot/dialog.c:270
+#: aisleriot/dialog.c:291
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Vous recherchez un %s."
 
-#: aisleriot/dialog.c:275
+#: aisleriot/dialog.c:296
 msgid "This game is unable to provide a hint."
 msgstr "Ce jeu ne peut fournir de suggestion."
 
@@ -612,7 +612,7 @@ msgstr "Distribution des cartes..."
 msgid "Score: "
 msgstr "Score : "
 
-#: aisleriot/sol.c:453 mahjongg/mahjongg.c:2092
+#: aisleriot/sol.c:453 mahjongg/mahjongg.c:2091
 msgid "Time: "
 msgstr "Temps : "
 
@@ -1289,7 +1289,7 @@ msgstr "Mouvements rapides (divise les délais de l'ordinateur par deux)"
 msgid "Dark"
 msgstr "Noir"
 
-#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:760
+#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:795
 #: gtali/yahtzee.c:66 iagno/properties.c:497 iagno/properties.c:549
 msgid "Human"
 msgstr "Humain"
@@ -1459,11 +1459,11 @@ msgstr "Niveau du Joueur Un"
 msgid "Level of Player Two"
 msgstr "Niveau du deuxième joueur"
 
-#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:960
+#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:995
 msgid "Move left"
 msgstr "Déplacer à gauche"
 
-#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:968
+#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:1003
 msgid "Move right"
 msgstr "Déplacer à droite"
 
@@ -1698,17 +1698,32 @@ msgstr "Niveau de débogage (choix 4 pour nombres aléatoires)"
 msgid "%s: no themes available\n"
 msgstr "%s : pas de thème disponible\n"
 
-#: gnect/src/prefs.c:330
+#: gnect/src/prefs.c:281 mahjongg/mahjongg.c:2024
+#, c-format
+msgid "There was an error accessing GConf: %s"
+msgstr "Il y a eu une erreur lors de l'accès à GConf: %s"
+
+#: gnect/src/prefs.c:292 mahjongg/mahjongg.c:2035
+msgid ""
+"The default configuration values could not be retrieved correctly. Please "
+"check your GConf configuration, specifically that the schemas are installed "
+"correctly"
+msgstr ""
+"Les valeurs de configuration par défaut ne peuvent être remises "
+"correctement. Vérifiez SVP votre configuration de GConf, en particulier que "
+"les schéma sont installés correctement"
+
+#: gnect/src/prefs.c:365
 #, c-format
 msgid "Player 1 : %s"
 msgstr "Joueurs 1 : %s"
 
-#: gnect/src/prefs.c:331
+#: gnect/src/prefs.c:366
 #, c-format
 msgid "Player 2 : %s"
 msgstr "Joueur 2 : %s"
 
-#: gnect/src/prefs.c:354
+#: gnect/src/prefs.c:389
 msgid ""
 "Applying this change to Player Selection\n"
 "will end the current game"
@@ -1716,98 +1731,98 @@ msgstr ""
 "Appliquer ce changement à la Sélection\n"
 "terminera le jeu en cours."
 
-#: gnect/src/prefs.c:603
+#: gnect/src/prefs.c:638
 msgid "Error loading theme"
 msgstr "Erreur lors du chargement du thème"
 
-#: gnect/src/prefs.c:763
+#: gnect/src/prefs.c:798
 msgid "Non-Velena / Simple"
 msgstr "Non-Velena / Simple"
 
-#: gnect/src/prefs.c:766
+#: gnect/src/prefs.c:801
 msgid "Velena / Weak"
 msgstr "Velena / Faible"
 
-#: gnect/src/prefs.c:769
+#: gnect/src/prefs.c:804
 msgid "Velena / Medium"
 msgstr "Velena / Moyen"
 
-#: gnect/src/prefs.c:772
+#: gnect/src/prefs.c:807
 msgid "Velena / Strong"
 msgstr "Véléna / Fort"
 
-#: gnect/src/prefs.c:785
+#: gnect/src/prefs.c:820
 msgid "Always Player 1"
 msgstr "Toujours joueur 1"
 
-#: gnect/src/prefs.c:788
+#: gnect/src/prefs.c:823
 msgid "Always Player 2"
 msgstr "Toujours Joueur 2"
 
-#: gnect/src/prefs.c:791
+#: gnect/src/prefs.c:826
 msgid "Take turns"
 msgstr "Prendre les tours"
 
-#: gnect/src/prefs.c:816
+#: gnect/src/prefs.c:851
 msgid "Gnect Preferences"
 msgstr "Préférences de Gnect"
 
-#: gnect/src/prefs.c:896
+#: gnect/src/prefs.c:931
 msgid "Who starts?"
 msgstr "Qui démarre ?"
 
-#: gnect/src/prefs.c:914
+#: gnect/src/prefs.c:949
 msgid "Player Selection"
 msgstr "Sélection du joueur"
 
-#: gnect/src/prefs.c:932
+#: gnect/src/prefs.c:967
 msgid "Theme selection:"
 msgstr "Sélection du thème :"
 
 #. keyboard
-#: gnect/src/prefs.c:949
+#: gnect/src/prefs.c:984
 msgid "Keyboard control:"
 msgstr "Contrôles au clavier :"
 
-#: gnect/src/prefs.c:976
+#: gnect/src/prefs.c:1011
 msgid "Drop counter"
 msgstr "Remise à zéro du compteur"
 
-#: gnect/src/prefs.c:1017
+#: gnect/src/prefs.c:1052
 msgid "Animation:"
 msgstr "Animation :"
 
-#: gnect/src/prefs.c:1022
+#: gnect/src/prefs.c:1057
 msgid "Yes please!"
 msgstr "Oui s'il vous plait !"
 
 #. sound
-#: gnect/src/prefs.c:1033
+#: gnect/src/prefs.c:1068
 msgid "Sound type:"
 msgstr "Types de sons :"
 
-#: gnect/src/prefs.c:1038
+#: gnect/src/prefs.c:1073
 msgid "Speaker beep"
 msgstr "Sons des hauts parleurs"
 
-#: gnect/src/prefs.c:1043
+#: gnect/src/prefs.c:1078
 msgid "GNOME sound"
 msgstr "Sons de GNOME"
 
-#: gnect/src/prefs.c:1046
+#: gnect/src/prefs.c:1081
 msgid "This can be set up using the GNOME Control Center"
 msgstr "Vous pouvez régler cela en utilisant le centre de contrôle de GNOME"
 
 #. verify
-#: gnect/src/prefs.c:1056
+#: gnect/src/prefs.c:1091
 msgid "If stopping an unfinished game:"
 msgstr "Si arrêt d'un jeu non terminé :"
 
-#: gnect/src/prefs.c:1061
+#: gnect/src/prefs.c:1096
 msgid "Ask me first"
 msgstr "Demandez-moi d'abord"
 
-#: gnect/src/prefs.c:1065
+#: gnect/src/prefs.c:1100
 msgid "Appearance and Behaviour"
 msgstr "Apparence et Comportement"
 
@@ -2112,14 +2127,14 @@ msgstr "X"
 msgid "Y"
 msgstr "Y"
 
-#: gnobots2/gnobots.c:194
+#: gnobots2/gnobots.c:194 gnobots2/gnobots2.soundlist.in.h:2
 msgid "GNOME Robots II"
 msgstr "GNOME Robots II"
 
 #. ********************************************************************
 #: gnobots2/gnobots2.desktop.in.h:1 gnobots2/menu.c:229
-msgid "Gnobots II"
-msgstr "Gnobots II"
+msgid "GNOME Robots"
+msgstr "GNOME Robots"
 
 #: gnobots2/gnobots2.desktop.in.h:2
 msgid "Robots game"
@@ -2128,10 +2143,6 @@ msgstr "Jeu de Robots"
 #: gnobots2/gnobots2.soundlist.in.h:1
 msgid "Bad Move"
 msgstr "Mauvais déplacement"
-
-#: gnobots2/gnobots2.soundlist.in.h:2
-msgid "Gnome Robots II"
-msgstr "Gnome Robots II"
 
 #: gnobots2/gnobots2.soundlist.in.h:3
 msgid "Level Complete"
@@ -2159,8 +2170,8 @@ msgid "Could not find '%s' pixmap file for GNOME Robots\n"
 msgstr "Ne peut trouver l'image « %s » pour GNOME Robots\n"
 
 #: gnobots2/menu.c:169
-msgid "Are you sure you want to quit Gnobots II?"
-msgstr "Voulez-vous vraiment quitter ce jeu Gnobots II?"
+msgid "Are you sure you want to quit GNOME Robots?"
+msgstr "Êtes-vous sûr de vouloir quitter GNOME Robots ?"
 
 #: gnobots2/menu.c:231
 msgid "GNOME Robots Game"
@@ -2319,8 +2330,8 @@ msgid "windows"
 msgstr "fenêtres"
 
 #: gnobots2/properties.c:845
-msgid "GnobotsII Preferences"
-msgstr "Préférences GnobotsII"
+msgid "GNOME Robots Preferences"
+msgstr "Préférences de GNOME Robots"
 
 #: gnobots2/properties.c:869
 msgid "Game Type:"
@@ -3026,8 +3037,8 @@ msgstr ""
 "(Envoyez vos commentaires à Lars.Rydlinge@HIG.SE)"
 
 #: gnotravex/gnotravex.desktop.in.h:1
-msgid "Gnotravex"
-msgstr "Gnotravex"
+msgid "GNOME Tetravex"
+msgstr "GNOME Tetravex"
 
 #: gnotravex/gnotravex.desktop.in.h:2
 msgid "Tetravex game"
@@ -3719,30 +3730,15 @@ msgstr "Ne peut trouver le fichier %s"
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Désolé, je ne peut pas trouver une configuration jouable"
 
-#: mahjongg/mahjongg.c:2024
-#, c-format
-msgid "There was an error accessing GConf: %s"
-msgstr "Il y a eu une erreur lors de l'accès à GConf: %s"
-
-#: mahjongg/mahjongg.c:2035
-msgid ""
-"The default configuration values could not be retrieved correctly. Please "
-"check your GConf configuration, specifically that the schemas are installed "
-"correctly"
-msgstr ""
-"Les valeurs de configuration par défaut ne peuvent être remises "
-"correctement. Vérifiez SVP votre configuration de GConf, en particulier que "
-"les schéma sont installés correctement"
-
-#: mahjongg/mahjongg.c:2078
+#: mahjongg/mahjongg.c:2077
 msgid "Tiles Left: "
 msgstr "Tuiles restantes : "
 
-#: mahjongg/mahjongg.c:2085
+#: mahjongg/mahjongg.c:2084
 msgid "Moves Left: "
 msgstr "Mouvements restants : "
 
-#: mahjongg/mahjongg.c:2099
+#: mahjongg/mahjongg.c:2098
 msgid "Seed: "
 msgstr "Paramètre:"
 
@@ -3759,8 +3755,8 @@ msgid "Mahjongg game"
 msgstr "Jeu de Mahjongg"
 
 #: same-gnome/same-gnome.c:265 same-gnome/same-gnome.c:625
-msgid "The Same Gnome"
-msgstr "Gnome-Same"
+msgid "The Same GNOME"
+msgstr "Le Same GNOME"
 
 #: same-gnome/same-gnome.c:410
 #, c-format
@@ -3768,25 +3764,25 @@ msgid ""
 "Could not find the theme:\n"
 "%s\n"
 "\n"
-"Please check you Same GNOME installation."
+"Please check your Same GNOME installation."
 msgstr ""
-"Je ne peux trouver le thème:\n"
+"Ne peux trouver le thème :\n"
 "%s\n"
 "\n"
-"SVP vérifier l'installation de Same GNOME."
+"Veuillez vérifier votre installation de Same GNOME."
 
 #: same-gnome/same-gnome.c:434
 #, c-format
 msgid ""
-"Same Gnome can't load the image file:\n"
+"Same GNOME can't load the image file:\n"
 "%s\n"
 "\n"
-"Please check your Same Gnome installation"
+"Please check your Same GNOME installation"
 msgstr ""
-"SameGnome n'a pu trouver l'image :\n"
+"Same GNOME ne peut charger le fichier d'image :\n"
 "%s\n"
 "\n"
-"SVP vérifier l'installation de SameGnome"
+"Veuillez vérifier votre installation de Same GNOME"
 
 #: same-gnome/same-gnome.c:579
 msgid "Select scenario:"
@@ -3797,16 +3793,16 @@ msgid "Original idea from KDE's same game program."
 msgstr "Idée originale venant du programme Same Game de KDE."
 
 #: same-gnome/same-gnome.c:652
-msgid "Are you sure you want to quit Same Gnome?"
-msgstr "Voulez-vous vraiment quitter Same GNOME ?"
+msgid "Are you sure you want to quit Same GNOME?"
+msgstr "Êtes-vous sûr de vouloir quitter Same GNOME ?"
 
-#: same-gnome/same-gnome.c:842
-msgid "Same Gnome"
-msgstr "GNOME Same"
+#: same-gnome/same-gnome.c:842 same-gnome/same-gnome.desktop.in.h:2
+msgid "Same GNOME"
+msgstr "Same GNOME"
 
 #: same-gnome/same-gnome.c:852
-msgid "Welcome to Same Gnome!"
-msgstr "Bienvenue à GNOME Same !"
+msgid "Welcome to Same GNOME!"
+msgstr "Bienvenue à Same GNOME !"
 
 #: same-gnome/same-gnome.c:871
 msgid "Marked: "
@@ -3815,10 +3811,6 @@ msgstr "Marqués :"
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "GNOME SameGame"
 msgstr "Jeu Same de GNOME"
-
-#: same-gnome/same-gnome.desktop.in.h:2
-msgid "Same GNOME"
-msgstr "Jeu GNOME Same"
 
 #: xbill/Game.cc:62
 #, c-format
@@ -4001,3 +3993,21 @@ msgstr "Voulez-vous vraiment quitter GNOME xBill?"
 #: xbill/xbill.desktop.in.h:2
 msgid "GNOME xBill"
 msgstr "GNOME xBill"
+
+#~ msgid "Gnobots II"
+#~ msgstr "Gnobots II"
+
+#~ msgid "Gnome Robots II"
+#~ msgstr "Gnome Robots II"
+
+#~ msgid "GnobotsII Preferences"
+#~ msgstr "Préférences GnobotsII"
+
+#~ msgid "Gnotravex"
+#~ msgstr "Gnotravex"
+
+#~ msgid "The Same Gnome"
+#~ msgstr "Gnome-Same"
+
+#~ msgid "Same Gnome"
+#~ msgstr "GNOME Same"
