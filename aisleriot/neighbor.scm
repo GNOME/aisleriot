@@ -64,10 +64,12 @@
   (deal-cards-face-up 0 '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18
 			    19 20 21 22 23 24 25))
 
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
 
-  (list 6 5)
-)
+  (list 6 5))
+
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -176,7 +178,7 @@
   (empty-slot? 1))
 
 (define (game-over)
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
   (and (not (game-won))
        (get-hint)))
 

@@ -49,10 +49,12 @@
   (add-extended-slot '() down)
   (deal-initial-setup)
 
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
 
-  (list 10 4)  
-)
+  (list 10 4))
+
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -115,7 +117,7 @@
   (check-for-points 9))
 
 (define (button-pressed slot card-list)
-  (set-statusbar-message "")
+  (give-status-message)
   (if (empty-slot? slot)
       #f
       (if (< slot 9)
@@ -165,7 +167,8 @@
 	    (set! DEAL_COUNTER (+ 1 DEAL_COUNTER))
 	    (cond ((> DEAL_COUNTER 6 )
 		   #f)
-		  (#t (deal-new-cards))))
+		  (#t (deal-new-cards)))
+	    (give-status-message))
 	  (begin
 	    (set-statusbar-message "Please fill in empty pile first.")
 	    #f))
@@ -176,7 +179,6 @@
   #f)
 
 (define (game-over)
-  (set-statusbar-message (get-stock-no-string))
   (and (not (game-won))
        (get-hint)))
 

@@ -297,12 +297,14 @@
   #f)
  
 (define (get-options) 
-  '(("Auto move to homecell" option-auto-move)
-    ("Move one by one" option-one-by-one)))
+  #f)
+;  '(("Auto move to homecell" option-auto-move)
+;    ("Move one by one" option-one-by-one)))
 
 (define (apply-options options) 
-  (set! option-auto-move (cadar options))
-  (set! option-auto-move (cadadr options)))
+  #f)
+;  (set! option-auto-move (cadar options))
+;  (set! option-auto-move (cadadr options)))
 
 (define (timeout) 
   ; (FIXME)

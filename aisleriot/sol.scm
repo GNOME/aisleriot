@@ -188,17 +188,19 @@
       (and (< FLIP-COUNTER flip-limit)
 	   (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
 	   (flip-deck stock-slot waste-slot))
-      (let loop ((i (if (null? rest) 1 (car rest))))
-	(and (> i 0)
-	     (not (empty-slot? stock-slot))
-	     (add-card! waste-slot (flip-card (remove-card stock-slot)))
-	     (loop (- i 1))))))
+      (or (let loop ((i (if (null? rest) 1 (car rest))))
+	    (and (> i 0)
+		 (not (empty-slot? stock-slot))
+		 (add-card! waste-slot (flip-card (remove-card stock-slot)))
+		 (loop (- i 1))))
+	  #t)))
 
 ; turn the cards in the waste slot over and add them to the stock-slot.
 (define (flip-deck stock-slot waste-slot)
   (and (not (empty-slot? waste-slot))
        (add-card! stock-slot (flip-card (remove-card waste-slot)))
-       (flip-deck stock-slot waste-slot)))
+       (or (flip-deck stock-slot waste-slot)
+	   #t)))
 
 ;; Procedures for manipulating cards:
 
@@ -254,6 +256,9 @@
 (define (is-black? card)
   (eq? black (get-color card)))
 
+(define (is-joker? card)
+  (= (get-value card) joker))
+
 (define (set-ace-low)  (set! ace 1))
 
 (define (set-ace-high) (set! ace 14))
@@ -300,10 +305,15 @@
 	((eq? suit diamond) "diamonds")
 	(#t "Unknown suit")))
 
+(define (get-joker-name card) 
+  (if (is-black? card) "black joker" "red joker"))
+
 (define (get-name card)
-  (string-append (get-value-name (get-value card)) 
-		 " of "
-		 (get-suit-name (get-suit card))))
+  (if (is-joker? card)
+      (get-joker-name card)
+      (string-append (get-value-name (get-value card)) 
+		     " of "
+		     (get-suit-name (get-suit card)))))
 
 (define (move-n-cards! start-slot end-slot cards)
   (add-cards! end-slot cards))
@@ -325,8 +335,8 @@
 
 
 (define (set-cards! slot-id new_cards)
-  (if IN-GAME 
-      (record-move slot-id new_cards (get-cards slot-id)))
+;  (if IN-GAME 
+;      (record-move slot-id new_cards (get-cards slot-id)))
   (set-cards-c! slot-id new_cards))
 
 (define (make-card value suit)
@@ -374,13 +384,14 @@
   (set! HORIZPOS (get-horiz-start))
   (set! VERTPOS (+ VERTPOS (get-vert-offset))))
 
+(define (register-undo-function function data)
+  (set! MOVE (cons '(function data) (cdr MOVE))))
+
 ; common lisp procedure not provided in guile 1.3
 (define (nthcdr n lst)
   (if (zero? n) lst (nthcdr (+ -1 n) (cdr lst))))
 
 ;; INTERNAL procedures
-; The procedures in the rest of this file should not be used by games!!!
-; Perhaps they should be in a separate file ???
 
 ; global variables
 (define FLIP-COUNTER 0)
@@ -391,7 +402,6 @@
 (define HISTORY '())
 (define FUTURE '())
 (define IN-GAME #f)
-(define MOVE-MODE '())
 
 ; called from C:
 (define (start-game)
@@ -399,42 +409,64 @@
 
 ; called from C:
 (define (end-move)
-  (set! HISTORY (cons MOVE HISTORY))
-  (set! FUTURE '())
-  (set! MOVE '()))
+  (if (not (= 0 (length MOVE)))
+      (begin
+	(set! HISTORY (cons MOVE HISTORY))
+	(set! FUTURE '())
+	(set! MOVE '()))))
+
+(define (return-cards card-positions slot-id)
+  (and (not (= 0 (length card-positions)))
+       (set-cards! slot-id (car card-positions))
+       (return-cards (cdr card-positions) (+ 1 slot-id))))
+
+(define (give-status-message)
+  #t)
+
+(define (eval-move move)
+  (return-cards (caddr move) 0)
+  ((car move) (cadr move))
+  (give-status-message))
 
 ; called from C:
 (define (undo)
-  (if (not (null? HISTORY))
-      (let ((move (car HISTORY)))
-	(set! MOVE-MODE 'undo)
-	(eval (cons 'begin move))
-	(set! FUTURE (cons move FUTURE)) 
-	(set! HISTORY (cdr HISTORY))))) 
-	
+  (and (not (null? HISTORY))
+       (record-move -1 '())
+       (eval-move (car HISTORY))
+       (set! FUTURE (cons MOVE FUTURE))
+       (set! HISTORY (cdr HISTORY))
+       (set! MOVE '())))
+
 ; called from C:
 (define (redo)
-  (if (not (null? FUTURE))
-      (let ((move (car FUTURE)))
-	(set! MOVE-MODE 'redo)
-	(eval (cons 'begin (reverse move)))
-	(set! HISTORY (cons move HISTORY)) 
-	(set! FUTURE (cdr FUTURE))))) 
+  (and (not (null? FUTURE))
+       (record-move -1 '())
+       (eval-move (car FUTURE))
+       (set! HISTORY (cons MOVE HISTORY))
+       (set! FUTURE (cdr FUTURE))
+       (set! MOVE '())))
 
-(define (sub-move slot-id cards1 cards2)
-  (if (eq? MOVE-MODE 'redo)
-      (set-cards-c! slot-id cards1)
-      (set-cards-c! slot-id cards2)))
+(define (undo-func data)
+  (set-score! (car data))
+  (set! FLIP-COUNTER (cadr data)))
+;(register-undo-function undo-func '(score FLIP-COUNTER))
+	     
+(define (snapshot-board slot-id moving-slot old-cards)
+  (cond ((>= slot-id SLOTS)
+	 '())
+	((= slot-id moving-slot)
+	 (cons old-cards 
+	       (snapshot-board (+ 1 slot-id) moving-slot old-cards)))
+	(#t
+	 (cons (get-cards slot-id) 
+	       (snapshot-board (+ 1 slot-id) moving-slot old-cards)))))
 
 ; called from C:
-(define (record-move slot-id new_cards old_cards)
-  (set! MOVE (cons (list 'sub-move 
-			 slot-id 
-			 (list 'quote new_cards)
-			 (list 'quote old_cards)) MOVE)))
-;  (display MOVE)(display "\n\n"))
+(define (record-move slot-id old-cards)
+  (set! MOVE (list undo-func 
+		   (list (get-score) FLIP-COUNTER)
+		   (snapshot-board 0 slot-id old-cards))))
 
 ; called from C:
 (define (discard-move)
-;  (display HISTORY) (display "\n\n")
   (set! MOVE '()))

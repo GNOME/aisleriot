@@ -45,11 +45,13 @@
   (deal-cards 8 '(0 2 4 6 0 2 4 6 0 2 4 6))
   (deal-cards-face-up 8 '(0 2 4 6 1))
 
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
 
   (add-to-score! 1)
-  (list 6 5)
-)
+  (list 6 5))
+
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -173,7 +175,7 @@
 	   (get-valid-move (cdr id-list)))))
 
 (define (game-over)
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
   (or (and (< FLIP-COUNTER 3)
 	   (not (empty-slot? 9)))
       (not (empty-slot? 8))

@@ -50,7 +50,7 @@ GtkObject*       card_deck;
 GdkCardDeckOptions deck_options = NULL;
 
 guint            score;
-guint            game_seconds;
+/* guint            game_seconds;*/
 guint            timeout;
 guint            seed;
 guint            n_games;
@@ -151,6 +151,11 @@ void new_game (gchar* file, guint *seedp )
     guint pos;
 
     game_file = file;
+
+    /* Although this line slows down game switching by a noticeable amount, we
+     * add it here in order to make sure all the original functions are
+     * "clean". */
+    eval_installed_file ("sol.scm");
     eval_installed_file (file);
     if(game_name) {
       sprintf(buf, "%s/%s", N_("Help"), game_name);
@@ -218,24 +223,31 @@ void set_score ()
 
 GtkWidget *time_value;
 
-void set_time () 
-{
-  char b [10];
-  sprintf (b, "%3d:%02d ", game_seconds / 60, game_seconds % 60);
-
-  gtk_label_set(GTK_LABEL(time_value), b);
-}
+/* void set_time () 
+ *{
+ *  char b [10];
+ *  sprintf (b, "%3d:%02d ", game_seconds / 60, game_seconds % 60);
+ *
+ *  gtk_label_set(GTK_LABEL(time_value), b);
+ *}
+ */
 
 gint timer_cb ()
 {
-  game_seconds++;
-  set_time();
-  if (game_seconds > timeout) {
-    timeout = 3600;
-    gh_call0(game_data->timeout_lambda);
-    end_of_game_test();
-  }
-  return game_seconds < 3599; /* give up at end of one hour */
+#if 0
+/*  game_seconds++;
+ *  set_time();
+ *  if (game_seconds > timeout) {
+ *    timeout = 3600;
+ *    gh_call0(game_data->timeout_lambda);
+ *    end_of_game_test();
+ *  }
+ *  return game_seconds < 3599; *//* give up at end of one hour */
+#endif
+  timeout = 3600;
+  gh_call0(game_data->timeout_lambda);
+  end_of_game_test();
+  return 0;	
 }
 
 guint timer_timeout = 0;
@@ -243,15 +255,22 @@ guint timer_timeout = 0;
 void timer_start ()
 {
   if (timer_timeout)
-    timer_stop();
-  game_seconds = 0;
+/*    timer_stop();
+ *  game_seconds = 0;
+ */
+  gtk_clock_stop (GTK_CLOCK (time_value));
   timeout = 3600;
-  set_time();
-  timer_timeout = gtk_timeout_add (1000, (GtkFunction) (timer_cb), NULL); 
+/*  set_time();
+ *  timer_timeout = gtk_timeout_add (1000, (GtkFunction) (timer_cb), NULL);
+ */
+  gtk_clock_set_seconds (GTK_CLOCK (time_value), 0);
+  gtk_clock_start (GTK_CLOCK (time_value));
+  timer_timeout = gtk_timeout_add (timeout * 1000, (GtkFunction) (timer_cb), NULL);
 }
 
 void timer_stop ()
 {
+  gtk_clock_stop (GTK_CLOCK (time_value));
   gtk_timeout_remove (timer_timeout);
   timer_timeout = 0;
 }
@@ -350,14 +369,14 @@ void main_prog(int argc, char *argv[])
   create_menus ();
 
   score_box = gtk_hbox_new(0, FALSE);
-  score_label = gtk_label_new (_("Score:"));
+  score_label = gtk_label_new (_("Score: "));
   gtk_box_pack_start (GTK_BOX(score_box), score_label, FALSE, FALSE, 0);
-  score_value = gtk_label_new ("     0  ");
+  score_value = gtk_label_new ("   0");
   gtk_box_pack_start (GTK_BOX(score_box), score_value, FALSE, FALSE, 0);
-  time_label = gtk_label_new (_("Time:"));
+  time_label = gtk_label_new (_("Time: "));
   gtk_box_pack_start (GTK_BOX(score_box), time_label, FALSE, FALSE, 0);
-  time_value = gtk_label_new ("  0:00 ");
-  gtk_box_pack_start (GTK_BOX(score_box), time_value, FALSE, FALSE, 0);
+  time_value = gtk_clock_new (GTK_CLOCK_INCREASING);
+  gtk_box_pack_start (GTK_BOX(score_box), time_value, FALSE, FALSE, GNOME_PAD_SMALL);
 
   gtk_widget_show (score_label);
   gtk_widget_show (score_value);

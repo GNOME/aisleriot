@@ -44,9 +44,12 @@
   (add-card! 4 (make-visible (make-card 3 club)))
   (add-card! 5 (make-visible (make-card 4 club)))
 
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
 
   (list 7 4))
+
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -107,7 +110,7 @@
   #f)
 
 (define (game-continuable)
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
   (and (not (game-won))
        (get-hint)))
 

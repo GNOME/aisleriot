@@ -21,9 +21,9 @@
 ;; @(#) $Id$
 
 ;; Constants
-(define gate-1  0)
+(define edge-1  0)
 (define plait   1)
-(define gate-2  2)
+(define edge-2  2)
 (define home-1  3)
 (define home-2  4)
 (define free-1  5)
@@ -40,19 +40,19 @@
 (define free-8 16)
 (define home-5 17)
 (define home-6 18)
-(define gate-3 19)
-(define gate-4 20)
+(define edge-3 19)
+(define edge-4 20)
 (define home-7 21)
 (define home-8 22)
 (define direc 0)
 (define start-value 0)
 
 ;; Utilities
-(define (gate? slot)
-  (or (= slot gate-1)
-      (= slot gate-2)
-      (= slot gate-3)
-      (= slot gate-4)))
+(define (edge? slot)
+  (or (= slot edge-1)
+      (= slot edge-2)
+      (= slot edge-3)
+      (= slot edge-4)))
 
 (define (home? slot)
   (or (= slot home-1)
@@ -220,9 +220,9 @@
 
   (list 10 4))
 
-;; Move cards automatically from the plait to one of the gate slots
-(define (plait-to-gate start-slot)
-  (if (and (gate? start-slot)
+;; Move cards automatically from the plait to one of the edge slots
+(define (plait-to-edge start-slot)
+  (if (and (edge? start-slot)
 	   (not (empty-slot? plait)))
       (let ((top-card (remove-card plait)))
 	(add-card! start-slot top-card))
@@ -244,7 +244,7 @@
 
 (define (button-pressed slot card-list)
   (if (or (free? slot)
-	  (gate? slot)
+	  (edge? slot)
 	  (= stock slot)
 	  (= plait slot))
       (begin
@@ -256,9 +256,9 @@
   (cond ((free? end-slot) (move-to-cell start-slot card-list end-slot))
 	((home? end-slot) (and
 			    (move-to-home card-list end-slot)
-			    (plait-to-gate start-slot)
+			    (plait-to-edge start-slot)
 			    (undo-direc)))
-	((gate? end-slot) (move-to-cell start-slot card-list end-slot))
+	((edge? end-slot) (move-to-cell start-slot card-list end-slot))
 	(else #f)))
   
 (define (button-clicked slot)

@@ -69,13 +69,16 @@
   (add-to-score! 1)
   (set! BASE-VAL (get-value (get-top-card 2)))
 
+  (give-status-message)
+
+  (list 9 3))
+
+(define (give-status-message)
   (set-statusbar-message (string-append (get-stock-no-string)
 					"   "
 					(get-reserve-no-string)
 					"   "
-					(get-base-string)))
-
-  (list 9 3))
+					(get-base-string))))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -149,11 +152,7 @@
   (if (= slot-id 0)
       (begin
 	(flip-stock 0 1 2)
-	(set-statusbar-message (string-append (get-stock-no-string)
-					      "   "
-					      (get-reserve-no-string)
-					      "   "
-					      (get-base-string))))
+	(give-status-message))
       #f))
 
 (define (button-double-clicked slot)

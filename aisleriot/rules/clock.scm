@@ -126,7 +126,8 @@
       #f))
 
 (define (button-double-clicked slot)
-  (if (transaction-good? slot (get-cards 6))
+  (if (and (not (= slot 6))
+	   (transaction-good? slot (get-cards 6)))
       (if (= slot 6)
 	  (set-cards! 6 (cons (car (reverse (get-cards 6))) 
 			      (reverse (cdr (reverse (get-cards 6))))))
@@ -202,7 +203,8 @@
 
 (define (game-over)
   (not (and (is-visible? (car (reverse (get-cards 6))))
-	    (= (get-value (get-top-card 6)) king))))
+	    (= (get-value (get-top-card 6)) king)
+	    (make-all-visible 0))))
 
 (define (nth-item list n)
   (if (= 0 n)

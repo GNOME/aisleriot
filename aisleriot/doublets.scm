@@ -53,10 +53,13 @@
 
   (add-to-score! 1)
 
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
 
   (list 6 3)
 )
+
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -130,7 +133,7 @@
 	  #f)))
 
 (define (game-over)
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
   (or (< FLIP-COUNTER 2)
       (not (empty-slot? 0))
       (check-move 1)))

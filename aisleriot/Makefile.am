@@ -58,7 +58,6 @@ types_DATA  = 		\
 	neighbor.scm	\
 	odessa.scm	\
 	osmosis.scm	\
-	plait.scm	\
 	royal_east.scm	\
 	sol.scm		\
 	scorpion.scm	\
@@ -73,7 +72,7 @@ cardimage_DATA = baize.png splash.png
 
 icon_DATA = gnome-aisleriot.png
 
-EXTRA_DIST = TODO FIXME  AUTHORS $(types_DATA) $(cardimage_DATA) \
+EXTRA_DIST = AUTHORS $(types_DATA) $(cardimage_DATA) \
 	$(icon_DATA) sol.desktop SCHEME_GAMES.h
 
 sysdir = $(datadir)/gnome/apps/Games

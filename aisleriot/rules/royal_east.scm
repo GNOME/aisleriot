@@ -56,12 +56,16 @@
 
   (add-to-score! 1)
 
+  (give-status-message)
+
   (set! BASE-VAL (get-value (get-top-card 2)))
-  (set-statusbar-message (string-append (get-stock-no-string)
-					"   "
-					(get-base-string)))
   (list 6 3)
 )
+
+(define (give-status-message)
+  (set-statusbar-message (string-append (get-stock-no-string)
+					"   "
+					(get-base-string))))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -124,9 +128,7 @@
   #f)
 
 (define (game-continuable)
-  (set-statusbar-message (string-append (get-stock-no-string)
-					"   "
-					(get-base-string)))
+  (give-status-message)
   (and (not (game-won))
        (get-hint)))
 

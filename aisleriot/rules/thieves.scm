@@ -1,5 +1,20 @@
 ; Aisleriot - Thieves
 ; Copyright (C) 1999 Robert Brady <rwb197@ecs.soton.ac.uk>
+;
+; This game is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; either version 2, or (at your option)
+; any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program; if not, write to the Free Software
+; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+; USA
 
 (define (new-game)
   (initialize-playing-area)
@@ -20,10 +35,12 @@
   (add-normal-slot '())
   (deal-cards-face-up 7 '(0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6 8))
 
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
 
-  (list 7 3)
-)
+  (list 7 3))
+
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -33,24 +50,23 @@
   (or (eq? (get-value c1) joker)
       (eq? (get-value c2) joker)
       (eq? (+ 1 (get-value c1)) (get-value c2))
-      (eq? (get-value c1) (+ 1 (get-value c2))))
-)
+      (eq? (get-value c1) (+ 1 (get-value c2)))))
 
 (define (score-for card)
-  (if (eq? card ace) 8
-  (if (eq? card 2) 6
-  (if (eq? card 3) 6
-  (if (eq? card 4) 4
-  (if (eq? card 5) 4
-  (if (eq? card 6) 2
-  (if (eq? card 7) 2
-  (if (eq? card 8) 2
-  (if (eq? card 9) 4
-  (if (eq? card 10) 4
-  (if (eq? card jack) 6
-  (if (eq? card queen) 6
-  (if (eq? card king) 8
-  0))))))))))))))
+  (cond ((eq? card ace) 8)
+	((eq? card 2) 6)
+	((eq? card 3) 6)
+	((eq? card 4) 4)
+	((eq? card 5) 4)
+	((eq? card 6) 2)
+	((eq? card 7) 2)
+	((eq? card 8) 2)
+	((eq? card 9) 4)
+	((eq? card 10) 4)
+	((eq? card jack) 6)
+	((eq? card queen) 6)
+	((eq? card king) 8)
+	(#t 0)))
 
 (define (can-move-from where)
   (and (not (empty-slot? where))
@@ -66,42 +82,63 @@
       (can-move-from 5)
       (can-move-from 6)))
 
-(define (button-pressed slot-id card-list) #f)
-(define (button-released start-slot card-list end-slot) #f)
+(define (button-pressed slot-id card-list) 
+  (and (< slot-id 7)
+       (= (length card-list) 1)))
+
+(define (button-released start-slot card-list end-slot) 
+  (if (values-match? (car card-list) (get-top-card 8))
+      (begin
+	(add-to-score! (score-for (get-value (car card-list))))
+	(add-card! 8 (car card-list))
+	#t)
+      #f))
+
 (define (button-clicked slot-id) 
   (if (eq? slot-id 7)
       (if (empty-slot? slot-id)
 	  #f
-	  (add-card! 8 (flip-card (remove-card 7)))
-      )
+	  (add-card! 8 (flip-card (remove-card 7))))
       (if (< slot-id 7)
 	  (if (values-match? (get-top-card slot-id) (get-top-card 8))
               (begin
 		(add-to-score! (score-for (get-value (get-top-card slot-id))))
-		(add-card! 8 (remove-card slot-id))
-              )
-          )
-      )
-  )
-)
+		(add-card! 8 (remove-card slot-id)))))))
+
 (define (button-double-clicked slot) #f)
+
 (define (game-won) (and (empty-slot? 0) (empty-slot? 1) (empty-slot? 2) 
                         (empty-slot? 3) (empty-slot? 4) (empty-slot? 5) 
                        (empty-slot? 6)))
 
 (define (game-over) 
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
   (if (game-won) 
     #f
     (if (empty-slot? 7) 
 	(if (move-possible)
 	    #t 
 	    #f)
-	#t)
-    )
-)
+	#t)))
 
-(define (get-hint) (list 0 "Try clicking somewhere"))
+(define (hint-move-from where)
+  (if (or (empty-slot? where)
+          (empty-slot? where)
+         (not (values-match? (get-top-card where) (get-top-card 8))))
+      #f
+      (list 1 (get-name (get-top-card where))
+             (get-name (get-top-card 8)))))
+
+(define (get-hint)
+  (or (hint-move-from 0)
+      (hint-move-from 1)
+      (hint-move-from 2)
+      (hint-move-from 3)
+      (hint-move-from 4)
+      (hint-move-from 5)
+      (hint-move-from 6)
+      (list 0 "Deal a card from the deck")))
+
 (define (get-options) #f)
 (define (apply-options options) #f)
 (define (timeout) #f)

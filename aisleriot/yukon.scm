@@ -219,7 +219,6 @@
        (king-avail? 1)))
 
 (define (check-a-foundation card slot-id)
-(display "caf\n")
   (cond ((= slot-id 11)
 	 #f)
 	((= slot-id 1)
@@ -233,7 +232,6 @@
 	(#t (check-a-foundation card (+ 1 slot-id)))))
 
 (define (check-to-foundations? slot-id)
-(display "ctf\n")
   (cond ((= slot-id 8)
 	 #f)
 	((empty-slot? slot-id)
@@ -248,31 +246,13 @@
 	(#t (check-to-foundations? (+ 1 slot-id)))))
 
 (define (stripped card-list card)
-  (display "stripped:  ")
-  (display card-list)
-  (display "  ")
-  (display card)
-  (newline)
-  (display (length card-list))
-  (display "  ")
-  (display (<= (length card-list) 1))
-  (newline)
   (if (<= (length card-list) 1)
-      (begin
-	(display "stripped to null\n")
-	'())
-      (begin
-	(display "borp!\n")
-	(if (eq? card (car card-list))
-	    (begin (display "stripped to:  ")
-		   (display card-list)
-		   (newline)
-		   (cdr card-list))
-	    (if (= (length card-list) 2)
-		(begin
-		  (display "also stripped to null\n")
-		  '())
-		(stripped (cdr card-list) card))))))
+      '()
+      (if (eq? card (car card-list))
+	  (cdr card-list)
+	  (if (= (length card-list) 2)
+	      '()
+	      (stripped (cdr card-list) card)))))
 
 (define (check-a-tableau card slot1 card-list slot2 imbedded?)
   (cond ((or (= (length card-list) 0)
@@ -287,35 +267,35 @@
 		       (is-red? (cadr card-list)))
 		  imbedded?
 		  (not (= (+ 1 (get-value (car card-list)))
-			  (get-value (cadr card-list)))))
+			  (get-value (cadr card-list))))
+		  (check-a-foundation (cadr card-list) 0)
+		  (check-a-tableau (get-top-card slot2)
+				   slot1	
+				   (cdr card-list)
+				   slot2
+				   #t)
+		  (check-a-tableau (cadr card-list)
+				   slot2
+				   (get-cards slot1)
+				   slot1
+				   #t)
+		  (check-a-tableau (cadr card-list)
+				   slot2
+				   (stripped (get-cards slot2)
+					     (car card-list))
+				   slot2
+				   #t))
 	     (list 1 (get-name (car card-list)) (get-name card))
-	     (if (= 0 
-		    (length 
-		     (stripped 
-		      (reverse (get-cards slot1))
-		      (car card-list))))
-		 (if (check-a-tableau (cadr card-list)
-				      slot1
-				      (get-cards slot2)
-				      slot2
-				      #t)
-		     (list 1 (get-name (car card-list)) (get-name card))
-		     #f)
-		 (if (check-a-tableau (cadr card-list) 
-				      slot1 
-				      (append (stripped 
-					       (reverse (get-cards slot1)) 
-					       (car card-list))
-					      (get-cards slot2)) 
-				      slot2 
-				      #t)
-		     (list 1 (get-name (car card-list)) (get-name card))
-		     #f))))
+	     (and (not imbedded?)
+		  (check-a-tableau card 
+				   slot1 
+				   (cdr card-list) 
+				   slot2 
+				   imbedded?))))
 	(imbedded? #f)
 	(#t (check-a-tableau card slot1 (cdr card-list) slot2 imbedded?))))
 
 (define (check-to-tableau? slot1 slot2)
-(display "ctt\n")
   (cond ((= slot1 8)
 	 #f)
 	((or (= slot2 8)

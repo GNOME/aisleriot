@@ -51,16 +51,19 @@
 
   (set! BASE-VAL (get-value (get-top-card 2)))
   
-  (set-statusbar-message (string-append (get-stock-no-string)
-					"   "
-					(get-reserve-no-string)
-					"   "
-					(get-base-string)))
+  (give-status-message)
 
   (add-to-score! 1)
 
   (list 7 4)
 )
+
+(define (give-status-message)
+  (set-statusbar-message (string-append (get-stock-no-string)
+					"   "
+					(get-reserve-no-string)
+					"   "
+					(get-base-string))))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -201,11 +204,7 @@
 	    (place-found slot top-card 2)))))
 
 (define (game-over)
-  (set-statusbar-message (string-append (get-stock-no-string)
-					"   "
-					(get-reserve-no-string)
-					"   "
-					(get-base-string)))
+  (give-status-message)
   (if (and (empty-slot? 0)
 	   (empty-slot? 1)
 	   (empty-slot? 6)

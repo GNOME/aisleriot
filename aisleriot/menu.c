@@ -68,8 +68,9 @@ void help_about_callback ()
 	  N_("                      Felix Bellaby (felix@pooh.u-net.com)"),
 	  N_("                      Rosanna Yuen (rwsy@mit.edu)"),
 	  N_("Card Games:    Jonathan Blandford (jrb@alum.mit.edu)"),
-	  N_("                      Robert Brady <rwb197@ecs.soton.ac.uk>"),
-	  N_("                      Nick Lamb <njl195@zepler.org.uk>"),
+	  N_("                      W. Borgert (debacle@debian.org)"),
+	  N_("                      Robert Brady (rwb197@ecs.soton.ac.uk)"),
+	  N_("                      Nick Lamb (njl195@zepler.org.uk)"),
 	  N_("                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"),
 	  N_("                      Rosanna Yuen (rwsy@mit.edu)"),
 	  NULL
@@ -91,8 +92,8 @@ void help_about_callback ()
 			    _("(C) 1998 Jonathan Blandford (jrb@alum.mit.edu)"),
 			    (const char **)authors,
 			    /* another comments */
-			    _("AisleRiot provides a rule-based, "
-			      "solitaire, card engine that allows many different games to be played"),
+			    _("AisleRiot provides a rule-based "
+			      "solitaire card engine that allows many different games to be played"),
 			    NULL);
   gtk_signal_connect (GTK_OBJECT (about),
 		      "destroy",
@@ -112,13 +113,13 @@ GnomeUIInfo file_menu[] = {
 
 GnomeUIInfo settings_menu[] = {
 
-  
+#if 0
   GNOMEUIINFO_ITEM_STOCK(N_("Game _options..."),
 			 N_("Modify the options for this game"),
 			 show_rules_options_dialog, GNOME_STOCK_MENU_PREF),
 
   GNOMEUIINFO_SEPARATOR,
-
+#endif
   GNOMEUIINFO_MENU_PREFERENCES_ITEM(show_preferences_dialog, NULL),
 
   GNOMEUIINFO_END
@@ -162,13 +163,13 @@ GnomeUIInfo game_menu[] = {
       show_property_dialog, GNOME_STOCK_MENU_PREF), */
 
   GNOMEUIINFO_SEPARATOR,
-
+#if 0
   GNOMEUIINFO_MENU_SCORES_ITEM(show_global_stats_dialog, NULL),
   /*  GNOMEUIINFO_ITEM_STOCK(N_("S_tatistics..."), NULL, 
       show_global_stats_dialog, GNOME_STOCK_MENU_BOOK_BLUE), */
 
   GNOMEUIINFO_SEPARATOR,
-
+#endif
   GNOMEUIINFO_MENU_EXIT_ITEM(quit_app, NULL),
 
   GNOMEUIINFO_END

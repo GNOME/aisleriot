@@ -29,7 +29,7 @@ press_data_type* press_data;
 
 void generate_press_data (SCM old_cards) {
   GList* tempptr;
-  SCM new_cards = old_cards = SCM_EOL; 
+  SCM old_cards = SCM_EOL; 
   hslot_type hslot = press_data->hslot;
   gint delta, height, width, x, y;
   GdkGC *gc1, *gc2;
@@ -99,11 +99,8 @@ void generate_press_data (SCM old_cards) {
   else 
     hslot->cards = NULL;
 
-  for (tempptr = hslot->cards; tempptr; tempptr = tempptr->next)
-    new_cards = gh_cons(make_card(tempptr->data), new_cards);
-  
-  gh_call3 (gh_eval_str ("record-move"), gh_long2scm (hslot->id), 
-	    new_cards, old_cards);
+  gh_call2 (gh_eval_str ("record-move"), gh_long2scm (hslot->id), 
+	   old_cards);
 
   press_data->cards->prev = NULL;
   update_slot_length(press_data->hslot);

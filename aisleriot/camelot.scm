@@ -65,15 +65,17 @@
   (set! add-stage #t)
   (set! fill-count 0)
 
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
 
   (list 6 4)
 )
 
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
+
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
 		 (number->string (length (get-cards 16)))))
-
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -208,7 +210,7 @@
 	(#t "an empty slot")))
 
 (define (game-over)
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
   (if (or (= fill-count 16)
 	  (and (empty-slot? 16) (empty-slot? 17)))
       (begin 
@@ -224,6 +226,16 @@
 		     (placeable? (get-top-card 17))))
 	  (find-match (list-cards 0)))
       (list 0 "Deal a new card from the deck")))
+
+(define (undo-func data)
+  (set-score! (car data))
+  (set! add-stage (cadr data))
+  (set! fill-count (caddr data)))
+
+(define (record-move slot-id old-cards)
+  (set! MOVE (list undo-func
+		   (list (get-score) add-stage fill-count)
+		   (snapshot-board 0 slot-id old-cards))))
 
 (define (get-options) #f)
 

@@ -41,10 +41,13 @@
   (add-card! 3 (make-visible (make-card ace heart)))
   (add-card! 4 (make-visible (make-card ace spade)))
 
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
 
   (list 6 2)
 )
+
+(define (give-status-message)
+  (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
@@ -77,7 +80,6 @@
       (if (< slot2 4)
 	  (check-end-slot? slot1 (+ 1 slot2))
 	  #f)))
-	   
 
 (define (button-double-clicked slot-id)
   (and (> slot-id 4)
@@ -88,7 +90,7 @@
        (get-hint)))
 
 (define (game-won)
-  (set-statusbar-message (get-stock-no-string))
+  (give-status-message)
   (and (empty-slot? 0)
        (empty-slot? 5)
        (empty-slot? 6)

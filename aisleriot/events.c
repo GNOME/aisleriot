@@ -48,6 +48,7 @@ void end_of_game_test() {
     if (game_over) {
       timer_stop ();
       game_won = gh_scm2bool (gh_call0 (game_data->winning_game_lambda));
+      refresh_screen ();
       show_game_over_dialog ();
     }
   }  
@@ -136,7 +137,6 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   if (gdk_time_get() > first_press + dbl_click_time)
     press_data->status = STATUS_NONE;
 #endif
-
   slot_pressed(event->x, event->y, &hslot, &cardid);
 
   if (!hslot)
@@ -152,8 +152,13 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 #ifdef SINGLE_ACTION
       gtk_timeout_remove (timer_click);
 #endif
-      gh_call1 (game_data->button_double_clicked_lambda, 
-		gh_long2scm (hslot->id));
+      gh_call2 (gh_eval_str ("record-move"), gh_long2scm (-1),
+		SCM_EOL);
+      if (gh_scm2bool (gh_call1 (game_data->button_double_clicked_lambda, 
+				 gh_long2scm (hslot->id))))
+	      gh_call0 (gh_eval_str ("end-move"));
+      else
+	      gh_call0 (gh_eval_str ("discard-move"));
       refresh_screen ();
       end_of_game_test ();
       return TRUE;
@@ -167,7 +172,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 #endif
     }
   }
-  else if (event->button == 3 && cardid > 0) {
+  else if (event->button == 3 && cardid > 0 && press_data->status == STATUS_NONE) {
     hcard_type card = g_list_nth(hslot->cards, cardid - 1)->data;
     
     if (card->direction == UP) {      
@@ -212,8 +217,13 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
   case STATUS_NOT_DRAG:
     press_data->status = STATUS_CLICK;
 #ifndef SINGLE_ACTION
-    gh_call1 (game_data->button_clicked_lambda, 
-	      gh_long2scm (press_data->hslot->id));
+    gh_call2 (gh_eval_str ("record-move"), gh_long2scm (-1),
+	      SCM_EOL);
+    if (gh_scm2bool (gh_call1 (game_data->button_clicked_lambda, 
+			       gh_long2scm (press_data->hslot->id))))
+	    gh_call0 (gh_eval_str ("end-move"));
+    else
+	    gh_call0 (gh_eval_str ("discard-move"));
     refresh_screen();
     end_of_game_test();
 #endif
@@ -228,7 +238,9 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
 gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 {
+/*g_print ("move\n");*/
   if (press_data->status == STATUS_IS_DRAG) {
+/*g_print ("keep movin\n");*/
     gdk_window_move(press_data->moving_cards,  
 		    event->x - press_data->xoffset,
 		    event->y - press_data->yoffset);
@@ -240,6 +252,7 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
     hslot_type hslot = press_data->hslot;
     GList* glist = g_list_nth(hslot->cards, press_data->cardid - 1); 
     SCM cardlist = SCM_EOL;
+/*g_print ("maybe move\n");*/
     
     for (; glist; glist = glist->next)
       cardlist = gh_cons(make_card((hcard_type)glist->data), cardlist);

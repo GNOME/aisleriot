@@ -27,7 +27,7 @@ help_SGML = aisleriot.sgml definitions.sgml gpl.sgml
 	neighbor.sgml odessa.sgml osmosis.sgml spider.sgml \
 	yukon.sgml westhaven.sgml royal-east.sgml \
 	beleaguered-castle.sgml thirteen.sgml thieves.sgml \
-	freecell.sgml scorpion.sgml
+	freecell.sgml scorpion.sgml 
 
 EXTRA_DIST = $(help_DATA) $(help_SGML)
 
