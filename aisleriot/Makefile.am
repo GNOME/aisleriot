@@ -1,4 +1,3 @@
-scoredir=$(localstatedir)/games
 cardimagedir = $(datadir)/pixmaps/cards
 icondir = $(datadir)/pixmaps
 Gamesdir  = $(datadir)/applications
