@@ -180,9 +180,9 @@ save_state (GnomeClient *client)
 {
   const gchar *prefix = gnome_client_get_config_prefix (client);
 
-  gconf_client_set_string (gconf_client, "/apps/aisleriot/game-file",
+  gconf_client_set_string (gconf_client, "/apps/aisleriot/game_file",
                            game_file, NULL);
-  gconf_client_set_string (gconf_client, "/apps/aisleriot/card-options",
+  gconf_client_set_string (gconf_client, "/apps/aisleriot/card_options",
                            deck_options, NULL);
 
   return TRUE;
@@ -445,7 +445,7 @@ void main_prog(int argc, char *argv[])
   gtk_widget_show (app);
 
   if (!gconf_client_get_bool (gconf_client,
-                             "/apps/aisleriot/show-toolbar", NULL))
+                             "/apps/aisleriot/show_toolbar", NULL))
     toolbar_hide();
 
   create_press_data ();
@@ -462,12 +462,12 @@ void main_prog(int argc, char *argv[])
 static void
 retrieve_state (GnomeClient *client)
 {
-  start_game = gconf_client_get_string (gconf_client, "/apps/aisleriot/game-file",
+  start_game = gconf_client_get_string (gconf_client, "/apps/aisleriot/game_file",
                                         NULL);
   if (start_game == NULL)
     start_game = "klondike.scm";
   deck_options = gconf_client_get_string (gconf_client,
-                                          "/apps/aisleriot/card-options",
+                                          "/apps/aisleriot/card_options",
                                           NULL);
   if (deck_options == NULL)
     deck_options = "beige.png bonded.png gnome.png bold-09x14.png knuth-09x10.png 

@@ -156,11 +156,11 @@ void toolbar_toggle_callback(GtkWidget * togglebutton, gpointer data)
 
   if (state) {
     toolbar_show();
-    gconf_client_set_bool (gconf_client, "/apps/aisleriot/show-toolbar", TRUE,
+    gconf_client_set_bool (gconf_client, "/apps/aisleriot/show_toolbar", TRUE,
                            NULL);
   } else {
     toolbar_hide();
-    gconf_client_set_bool (gconf_client, "/apps/aisleriot/show-toolbar", FALSE,
+    gconf_client_set_bool (gconf_client, "/apps/aisleriot/show_toolbar", FALSE,
                            NULL);
   }
 }
@@ -274,7 +274,7 @@ void create_menus ()
 
   gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (settings_menu[0].widget),
                                   gconf_client_get_bool (gconf_client,
-                                                         "/apps/aisleriot/show-toolbar",
+                                                         "/apps/aisleriot/show_toolbar",
                                                          NULL));
 }
 
