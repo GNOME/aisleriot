@@ -70,15 +70,39 @@
 ;additional functions.
 
 (define (complete-transaction start-slot card-list end-slot)
+  (if (and (is-visible? (get-top-card start-slot))
+	   (eq? (get-suit (get-top-card start-slot))
+		(get-suit (car (reverse card-list))))
+	   (= (get-value (get-top-card start-slot))
+	      (+ 1 (get-value (car (reverse card-list))))))
+      (add-to-score! -1))
+  (if (and (is-visible? (get-top-card end-slot))
+	   (eq? (get-suit (get-top-card end-slot))
+		(get-suit (car (reverse card-list))))
+	   (= (get-value (get-top-card end-slot))
+	      (+ 1 (get-value (car (reverse card-list))))))
+      (add-to-score! 1))
   (move-n-cards! start-slot end-slot card-list)
   (if (and (not (empty-slot? start-slot)) (> start-slot 5))
       (make-visible-top-card start-slot)
       #f)
   #t)
 
-(define (deal-new-cards)
-  (deal-cards-face-up 0 '(9 10 11 12 13 14 15 16 17 18)))
+(define (check-for-points slot-id)
+  (if (> slot-id 18)
+     #t
+     (begin
+       (if (and (is-visible? (cadr (get-cards slot-id)))
+		(eq? (get-suit (get-top-card slot-id))
+		     (get-suit (cadr (get-cards slot-id))))
+		(= (+ 1 (get-value (get-top-card slot-id)))
+		   (get-value (cadr (get-cards slot-id)))))
+	   (add-to-score! 1))
+       (check-for-points (+ 1 slot-id)))))
 
+(define (deal-new-cards)
+  (deal-cards-face-up 0 '(9 10 11 12 13 14 15 16 17 18))
+  (check-for-points 9))
 
 (define (button-pressed slot card-list)
   (if (empty-slot? slot)
