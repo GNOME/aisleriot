@@ -10,6 +10,7 @@ endif
 SUBDIRS =			\
 	po			\
 	libgames-support	\
+	gnect                   \
 	gnomine			\
 	same-gnome		\
 	mahjongg		\
