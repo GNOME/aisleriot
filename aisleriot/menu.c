@@ -321,8 +321,9 @@ void help_update_game_name (gchar * name)
 
   newitems[0].label = gamename;
 
-  gnome_app_remove_menu_range (GNOME_APP(app), "Help/Contents", 1, 1);
-  gnome_app_insert_menus (GNOME_APP(app), "Help/Contents", &newitems[0]);
+  gnome_app_remove_menu_range (GNOME_APP(app), "_Help/_Contents", 1, 1);
+  gnome_app_insert_menus (GNOME_APP(app), "_Help/_Contents", &newitems[0]);
+  gnome_app_install_menu_hints(GNOME_APP (app), newitems);
 }
 
 void create_menus ()

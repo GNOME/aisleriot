@@ -100,10 +100,8 @@ gchar* game_file_to_name (const gchar* file)
   for(p = buf; p = strchr(p, '_'), p && *p;) *p = ' ';
   for(p = buf; p = strchr(p, '-'), p && *p;) *p = ' ';
   buf[0] = toupper(buf[0]);
-  p = g_strdup(_(buf));
 
-  g_free(buf);
-  return p;
+  return buf;
 }
 
 static gchar * game_name_to_file (const gchar *name)
