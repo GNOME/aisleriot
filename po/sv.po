@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2002-11-10 17:33+0100\n"
-"PO-Revision-Date: 2002-11-10 17:34+0100\n"
+"POT-Creation-Date: 2002-11-27 05:07+0100\n"
+"PO-Revision-Date: 2002-11-27 05:08+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -380,8 +380,7 @@ msgstr ""
 "\n"
 "Spelet är slut.\n"
 
-#. XXXXX
-#: aisleriot/dialog.c:54 xbill/UI.cc:124
+#: aisleriot/dialog.c:54
 msgid "New Game"
 msgstr "Nytt spel"
 
@@ -393,7 +392,7 @@ msgstr "Välj spel"
 msgid "Seed"
 msgstr "Slumptalsfrö"
 
-#: aisleriot/dialog.c:136 xbill/UI.cc:136
+#: aisleriot/dialog.c:136 xbill/UI.cc:129
 msgid "Rules"
 msgstr "Regler"
 
@@ -470,12 +469,12 @@ msgid "                      Matthew Wilcox (matthew@wil.cx)"
 msgstr "                      Matthew Wilcox (matthew@wil.cx)"
 
 #. Translator credits
-#: aisleriot/menu.c:92 freecell/src/io-gtk.c:662 gataxx/gataxx.c:409
-#: glines/glines.c:755 gnect/src/dialog.c:48 gnibbles/main.c:184
-#: gnobots2/menu.c:210 gnome-stones/main.c:1038 gnometris/tetris.cpp:978
-#: gnomine/gnomine.c:294 gnotravex/gnotravex.c:1081 gnotski/gnotski.c:1007
+#: aisleriot/menu.c:92 freecell/src/io-gtk.c:656 gataxx/gataxx.c:410
+#: glines/glines.c:767 gnect/src/dialog.c:48 gnibbles/main.c:199
+#: gnobots2/menu.c:210 gnome-stones/main.c:1052 gnometris/tetris.cpp:986
+#: gnomine/gnomine.c:294 gnotravex/gnotravex.c:1092 gnotski/gnotski.c:1018
 #: gtali/gyahtzee.c:364 iagno/gnothello.c:409 mahjongg/mahjongg.c:1365
-#: same-gnome/same-gnome.c:599
+#: same-gnome/same-gnome.c:605 xbill/x11-gtk.cc:197
 msgid "translator_credits"
 msgstr ""
 "Christian Rose\n"
@@ -597,7 +596,7 @@ msgid "Aisleriot"
 msgstr "Aisleriot"
 
 #: aisleriot/sol.c:368
-msgid "Really exit Aisleriot?"
+msgid "Are you sure you want to quit Aisleriot?"
 msgstr "Vill du verkligen avsluta Aisleriot?"
 
 #: aisleriot/sol.c:437
@@ -608,7 +607,7 @@ msgstr "Läser in bilder..."
 msgid "Dealing game..."
 msgstr "Delar ut..."
 
-#: aisleriot/sol.c:449 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:872
+#: aisleriot/sol.c:449 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:878
 msgid "Score: "
 msgstr "Poäng: "
 
@@ -621,7 +620,7 @@ msgid "Variation on game rules"
 msgstr "Variant av spelreglerna"
 
 #: aisleriot/sol.c:525 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
-#: same-gnome/same-gnome.c:800
+#: same-gnome/same-gnome.c:806
 msgid "NAME"
 msgstr "NAMN"
 
@@ -741,7 +740,7 @@ msgid "Fourteen"
 msgstr "Fjorton"
 
 #: aisleriot/translatable_game_names.h:30 freecell/src/io-gtk.c:121
-#: freecell/src/io-gtk.c:684
+#: freecell/src/io-gtk.c:686
 msgid "Freecell"
 msgstr "Napoleon på S:t Helena"
 
@@ -1041,9 +1040,11 @@ msgid "Win number."
 msgstr "Vinstnummer."
 
 #: freecell/src/io-gtk.c:330 freecell/src/io-gtk.c:462
-#: freecell/src/io-gtk.c:529
-msgid "Exit this game?"
-msgstr "Avsluta det här spelet?"
+#: freecell/src/io-gtk.c:529 gataxx/gataxx.c:280 gnect/src/gui.c:180
+#: gnibbles/main.c:159 gnobots2/menu.c:100 mahjongg/mahjongg.c:1474
+#: xbill/x11-gtk.cc:316
+msgid "Are you sure you want to start a new game?"
+msgstr "Vill du verkligen starta ett nytt spel?"
 
 #: freecell/src/io-gtk.c:388 freecell/src/io-gtk.c:494
 #, c-format
@@ -1054,31 +1055,31 @@ msgstr "Napoleon på S:t Helena nummer %d"
 msgid "Seed value:"
 msgstr "Startvärde:"
 
-#: freecell/src/io-gtk.c:587
+#: freecell/src/io-gtk.c:581
 msgid "Sorry, this feature is not (yet) implemented."
 msgstr "Ledsen, denna funktion är (ännu) inte implementerad."
 
-#: freecell/src/io-gtk.c:625
-msgid "Really exit GNOME Freecell?"
-msgstr "Vill du verkligen avsluta GNOME Napoleon på S:t Helena?"
+#: freecell/src/io-gtk.c:619
+msgid "Are you sure you want to quit Freecell?"
+msgstr "Vill du verkligen avsluta Napoleon på S:t Helena?"
 
-#: freecell/src/io-gtk.c:654
+#: freecell/src/io-gtk.c:648
 msgid "Changwoo Ryu."
 msgstr "Changwoo Ruy."
 
-#: freecell/src/io-gtk.c:686
+#: freecell/src/io-gtk.c:688
 msgid "Reimplement the popular solitaire card game."
 msgstr "Återimplementation av det populära kortspelet patiens."
 
-#: freecell/src/io-gtk.c:704
+#: freecell/src/io-gtk.c:708
 msgid "That move is invalid."
 msgstr "Den förflyttningen är ogiltig."
 
-#: freecell/src/io-gtk.c:1196
+#: freecell/src/io-gtk.c:1200
 msgid "Sorry, there are no more valid moves."
 msgstr "Tyvärr, det finns inga fler giltiga drag."
 
-#: freecell/src/io-gtk.c:1217
+#: freecell/src/io-gtk.c:1221
 msgid ""
 "Congratulations.  You won.\n"
 "Do you want to play again?"
@@ -1094,74 +1095,62 @@ msgstr "Nytt spel med startvärde..."
 msgid "Start a new game with a different seed"
 msgstr "Starta ett nytt spel med annorlunda startvärde"
 
-#: freecell/src/menu.c:108 gnect/src/dialog.c:148
-msgid "Scores"
-msgstr "Poäng"
-
-#: freecell/src/menu.c:111 glines/glines.c:907 same-gnome/same-gnome.c:552
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: freecell/src/menu.c:111
-msgid "Configure Freecell"
-msgstr "Konfigurera Napoleon på S:t Helena"
-
-#: freecell/src/option-dialog.c:40
+#: freecell/src/option-dialog.c:44
 msgid "Freecell Properties"
 msgstr "Egenskaper för Napoleon på S:t Helena"
 
-#: freecell/src/option-dialog.c:51
+#: freecell/src/option-dialog.c:56
 msgid "Warn on invalid moves"
 msgstr "Varna vid ogiltiga förflyttningar"
 
-#: freecell/src/option-dialog.c:60
+#: freecell/src/option-dialog.c:65
 msgid "Move stacks one by one"
 msgstr "Flytta högar en och en"
 
-#: freecell/src/score-dialog.c:49 glines/glines.c:1252 xbill/UI.cc:139
+#: freecell/src/score-dialog.c:70 glines/glines.c:1271 xbill/UI.cc:132
 msgid "Score"
 msgstr "Poäng"
 
-#: freecell/src/score.c:60
+#: freecell/src/score.c:61
 #, c-format
 msgid "This session: %d%%"
 msgstr "Den här omgången: %d%%"
 
-#: freecell/src/score.c:61 freecell/src/score.c:71
+#: freecell/src/score.c:62 freecell/src/score.c:72
 #, c-format
 msgid "won: %d, lost: %d"
 msgstr "vunna: %d, förlorade: %d"
 
-#: freecell/src/score.c:70
+#: freecell/src/score.c:71
 #, c-format
 msgid "Total: %d%%"
 msgstr "Totalt: %d%%"
 
-#: freecell/src/score.c:74
+#: freecell/src/score.c:75
 msgid "Streaks"
 msgstr "Raddor"
 
-#: freecell/src/score.c:75
+#: freecell/src/score.c:76
 #, c-format
 msgid "wins: %d, losses: %d"
 msgstr "vinster: %d, förluster: %d"
 
-#: freecell/src/score.c:79
+#: freecell/src/score.c:80
 #, c-format
 msgid "current: %d wins"
 msgstr "nu: %d vinster"
 
-#: freecell/src/score.c:81
+#: freecell/src/score.c:82
 #, c-format
 msgid "current: %d losses"
 msgstr "nu: %d förluster"
 
-#: gataxx/ataxx.c:135 gataxx/gataxx.c:332 gataxx/gataxx.c:689
-#: iagno/gnothello.c:331 iagno/gnothello.c:693 iagno/othello.c:213
+#: gataxx/ataxx.c:135 gataxx/gataxx.c:333 gataxx/gataxx.c:689
+#: iagno/gnothello.c:331 iagno/gnothello.c:701 iagno/othello.c:213
 msgid "Dark's move"
 msgstr "Mörkt drag"
 
-#: gataxx/ataxx.c:143 gataxx/gataxx.c:330 iagno/gnothello.c:329
+#: gataxx/ataxx.c:143 gataxx/gataxx.c:331 iagno/gnothello.c:329
 #: iagno/othello.c:221
 msgid "Light's move"
 msgstr "Ljust drag"
@@ -1187,12 +1176,8 @@ msgid "Dark must pass, Light's move"
 msgstr "Mörk måste stå över, ljust drag"
 
 #: gataxx/gataxx.c:235
-msgid "Really exit Gataxx?"
+msgid "Are you sure you want to quit Gataxx?"
 msgstr "Vill du verkligen avsluta Gataxx?"
-
-#: gataxx/gataxx.c:280 gnibbles/main.c:156
-msgid "Do you really want to end this game?"
-msgstr "Vill du verkligen avsluta det här spelet?"
 
 #: gataxx/gataxx.c:430 gataxx/gataxx.c:712 gataxx/gataxx.soundlist.in.h:3
 msgid "gataxx"
@@ -1211,11 +1196,11 @@ msgstr ""
 msgid "Could not find '%s' pixmap file for gataxx\n"
 msgstr "Kunde inte hitta pixmapfilen \"%s\" för gataxx\n"
 
-#: gataxx/gataxx.c:737 iagno/gnothello.c:745
+#: gataxx/gataxx.c:737 iagno/gnothello.c:753
 msgid "Dark:"
 msgstr "Mörk:"
 
-#: gataxx/gataxx.c:752 iagno/gnothello.c:760
+#: gataxx/gataxx.c:752 iagno/gnothello.c:768
 msgid "Light:"
 msgstr "Ljus:"
 
@@ -1223,8 +1208,8 @@ msgstr "Ljus:"
 msgid "Welcome to gataxx!"
 msgstr "Välkommen till gataxx!"
 
-#: gataxx/gataxx.c:784 gataxx/gataxx.c:786 iagno/gnothello.c:792
-#: iagno/gnothello.c:794
+#: gataxx/gataxx.c:784 gataxx/gataxx.c:786 iagno/gnothello.c:800
+#: iagno/gnothello.c:802
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
@@ -1241,7 +1226,7 @@ msgstr "Gataxx"
 msgid "Animate"
 msgstr "Animera"
 
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:507 iagno/properties.c:666
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:511 iagno/properties.c:666
 msgid "Flip final results"
 msgstr "Vänd på slutet"
 
@@ -1295,65 +1280,65 @@ msgstr "Spelet är över"
 msgid "Piece flipping"
 msgstr "Stenvändning"
 
-#: gataxx/properties.c:310
+#: gataxx/properties.c:314
 msgid "Properties"
 msgstr "Egenskaper"
 
 #. Players tab
-#: gataxx/properties.c:329 iagno/properties.c:471
+#: gataxx/properties.c:333 iagno/properties.c:471
 msgid "Players"
 msgstr "Spelare"
 
-#: gataxx/properties.c:336
+#: gataxx/properties.c:340
 msgid "Quick Moves (cut computer delay in half)"
 msgstr "Snabba drag (halvera datorns betänketid)"
 
-#: gataxx/properties.c:347 gnect/src/theme.c:386 iagno/properties.c:490
+#: gataxx/properties.c:351 gnect/src/theme.c:386 iagno/properties.c:490
 msgid "Dark"
 msgstr "Mörk"
 
-#: gataxx/properties.c:354 gataxx/properties.c:408 gnect/src/prefs.c:760
+#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:760
 #: gtali/yahtzee.c:66 iagno/properties.c:497 iagno/properties.c:549
 msgid "Human"
 msgstr "Mänsklig"
 
-#: gataxx/properties.c:365 gataxx/properties.c:417 iagno/properties.c:507
+#: gataxx/properties.c:369 gataxx/properties.c:421 iagno/properties.c:507
 #: iagno/properties.c:559
 msgid "Level one"
 msgstr "Nivå ett"
 
-#: gataxx/properties.c:375 gataxx/properties.c:426 iagno/properties.c:517
+#: gataxx/properties.c:379 gataxx/properties.c:430 iagno/properties.c:517
 #: iagno/properties.c:569
 msgid "Level two"
 msgstr "Nivå två"
 
-#: gataxx/properties.c:385 gataxx/properties.c:435 iagno/properties.c:527
+#: gataxx/properties.c:389 gataxx/properties.c:439 iagno/properties.c:527
 #: iagno/properties.c:579
 msgid "Level three"
 msgstr "Nivå tre"
 
-#: gataxx/properties.c:401 gnect/src/theme.c:383 iagno/properties.c:542
+#: gataxx/properties.c:405 gnect/src/theme.c:383 iagno/properties.c:542
 msgid "Light"
 msgstr "Ljus"
 
 #. Animation tab
-#: gataxx/properties.c:454 iagno/properties.c:597
+#: gataxx/properties.c:458 iagno/properties.c:597
 msgid "Animation"
 msgstr "Animationer"
 
-#: gataxx/properties.c:468 iagno/properties.c:613
+#: gataxx/properties.c:472 iagno/properties.c:613
 msgid "None"
 msgstr "Inga"
 
-#: gataxx/properties.c:479 iagno/properties.c:622
+#: gataxx/properties.c:483 iagno/properties.c:622
 msgid "Partial"
 msgstr "Delvis"
 
-#: gataxx/properties.c:489 iagno/properties.c:631
+#: gataxx/properties.c:493 iagno/properties.c:631
 msgid "Complete"
 msgstr "Kompletta"
 
-#: gataxx/properties.c:518 iagno/properties.c:678 mahjongg/mahjongg.c:1169
+#: gataxx/properties.c:522 iagno/properties.c:678 mahjongg/mahjongg.c:1169
 msgid "Tile set:"
 msgstr "Bricksamling:"
 
@@ -1374,65 +1359,69 @@ msgstr ""
 msgid "Match five balls of the same color in a row to score!"
 msgstr "Matcha fem bollar på rad med samma färg för att få poäng!"
 
-#: glines/glines.c:216
-msgid "Game Over!"
-msgstr "Spelet är slut!"
-
-#: glines/glines.c:218 glines/glines.c:727 glines/glines.c:770
-#: glines/glines.c:1218 glines/glines.desktop.in.h:2
+#: glines/glines.c:198 glines/glines.c:786 glines/glines.c:1237
+#: glines/glines.desktop.in.h:2
 msgid "Glines"
 msgstr "Glinjer"
 
+#: glines/glines.c:228
+msgid "Game Over!"
+msgstr "Spelet är slut!"
+
 #. Can't move there!
-#: glines/glines.c:393
+#: glines/glines.c:405
 msgid "Can't move there!"
 msgstr "Kan inte flytta dit!"
 
-#: glines/glines.c:746
+#: glines/glines.c:758
 msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
 msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
 
-#: glines/glines.c:747
+#: glines/glines.c:759
 msgid "Szabolcs Ban <shooby@gnome.hu>"
 msgstr "Szabolcs Ban <shooby@gnome.hu>"
 
-#: glines/glines.c:771
+#: glines/glines.c:787
 msgid "(C) 1997-2000 the Free Software Foundation"
 msgstr "© 1997-2000 Free Software Foundation"
 
-#: glines/glines.c:772
+#: glines/glines.c:788
 msgid "Gnome port of the once-popular Color Lines game"
 msgstr "Gnome-portering av det en gång populära färglinjespelet"
 
-#: glines/glines.c:932
+#: glines/glines.c:925 same-gnome/same-gnome.c:558
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: glines/glines.c:950
 msgid "Theme"
 msgstr "Tema"
 
-#: glines/glines.c:937
+#: glines/glines.c:955
 msgid "Select theme:"
 msgstr "Välj tema:"
 
-#: glines/glines.c:949
+#: glines/glines.c:967
 msgid "Select background:"
 msgstr "Välj bakgrund:"
 
-#: glines/glines.c:957
+#: glines/glines.c:975
 msgid "Fast moves"
 msgstr "Snabba drag"
 
-#: glines/glines.c:966
+#: glines/glines.c:984
 msgid "Ask confirmation when quitting"
 msgstr "Fråga efter bekräftelse vid avslut"
 
-#: glines/glines.c:1011
-msgid "Do you really want to quit?"
-msgstr "Vill du verkligen avsluta?"
+#: glines/glines.c:1029
+msgid "Are you sure you want to quit Glines?"
+msgstr "Vill du verkligen avsluta Glinjer?"
 
-#: glines/glines.c:1228
+#: glines/glines.c:1247
 msgid "Welcome to Glines!"
 msgstr "Välkommen till Glinjer!"
 
-#: glines/glines.c:1239
+#: glines/glines.c:1258
 msgid "Next Balls"
 msgstr "Nästa bollar"
 
@@ -1590,6 +1579,10 @@ msgstr "Du"
 msgid "Me"
 msgstr "Jag"
 
+#: gnect/src/dialog.c:148
+msgid "Scores"
+msgstr "Poäng"
+
 #. drawn games
 #: gnect/src/dialog.c:209
 msgid "Drawn"
@@ -1641,40 +1634,36 @@ msgstr "Starta ett nytt spel"
 msgid "Get a hint for your next move"
 msgstr "Få tips angående ditt nästa drag"
 
-#: gnect/src/gui.c:144
-msgid "Exit gnect and end the current game?"
-msgstr "Avsluta gnect och det aktuella spelet?"
+#: gnect/src/gui.c:137
+msgid "Are you sure you want to quit Gnect?"
+msgstr "Vill du verkligen avsluta Gnect?"
 
-#: gnect/src/gui.c:190
-msgid "End the current game?"
-msgstr "Avsluta det aktuella spelet?"
-
-#: gnect/src/gui.c:489
+#: gnect/src/gui.c:471
 msgid " It's a draw!"
 msgstr " Det är oavgjort!"
 
-#: gnect/src/gui.c:500
+#: gnect/src/gui.c:482
 msgid " You win!"
 msgstr " Du vinner!"
 
-#: gnect/src/gui.c:504
+#: gnect/src/gui.c:486
 msgid " I win!"
 msgstr " Jag vinner!"
 
-#: gnect/src/gui.c:515 gnect/src/gui.c:516
+#: gnect/src/gui.c:497 gnect/src/gui.c:498
 #, c-format
 msgid " %s wins!"
 msgstr " %s vinner!"
 
-#: gnect/src/gui.c:545
+#: gnect/src/gui.c:527
 msgid " Your move..."
 msgstr " Ditt drag..."
 
-#: gnect/src/gui.c:570
+#: gnect/src/gui.c:552
 msgid " \"Game->New game\" to begin"
 msgstr " \"Spel->Nytt spel\" för att börja"
 
-#: gnect/src/gui.c:699
+#: gnect/src/gui.c:681
 msgid " Welcome to Gnect!"
 msgstr " Välkommen till Gnect!"
 
@@ -1912,7 +1901,7 @@ msgstr ""
 "Kontrollera din Gnibbles-installation"
 
 #: gnibbles/gnibbles.desktop.in.h:1 gnibbles/gnibbles.soundlist.in.h:6
-#: gnibbles/main.c:205
+#: gnibbles/main.c:219
 msgid "Gnibbles"
 msgstr "Gnibbles"
 
@@ -1952,7 +1941,11 @@ msgstr "Backande mask"
 msgid "Worm Teleport"
 msgstr "Maskteleport"
 
-#: gnibbles/main.c:207
+#: gnibbles/main.c:165
+msgid "Are you sure you want to quit Gnibbles?"
+msgstr "Vill du verkligen avsluta Gnibbles?"
+
+#: gnibbles/main.c:221
 msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
 msgstr ""
 "Skicka kommentarer och buggrapporter till: sjm@acm.org, itp@gnu.org\n"
@@ -2080,17 +2073,17 @@ msgstr "Relativ rörelse"
 msgid "Worm %d:"
 msgstr "Orm %d:"
 
-#: gnobots2/game.c:118
+#: gnobots2/game.c:119
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "\"%s\" med supersäkra förflyttningar"
 
-#: gnobots2/game.c:121
+#: gnobots2/game.c:122
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "\"%s\" med säkra förflyttningar"
 
-#: gnobots2/game.c:339 gnobots2/game.c:354
+#: gnobots2/game.c:347 gnobots2/game.c:362
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -2098,15 +2091,15 @@ msgstr ""
 "Gratulerar, du har besegrat robotarna!!\n"
 "Men kan du göra om det?"
 
-#: gnobots2/game.c:1175
+#: gnobots2/game.c:1183
 msgid "There are no teleport locations left!!"
 msgstr "Det finns inte några teleportplatser kvar!!"
 
-#: gnobots2/game.c:1243
+#: gnobots2/game.c:1251
 msgid "There are no safe locations to teleport to!!"
 msgstr "Det inte några säkra teleportplatser kvar!!"
 
-#: gnobots2/gnobots.c:58 same-gnome/same-gnome.c:800
+#: gnobots2/gnobots.c:58 same-gnome/same-gnome.c:806
 msgid "Set game scenario"
 msgstr "Sätt spelscenario"
 
@@ -2127,7 +2120,7 @@ msgid "Gnome Robots II"
 msgstr "Gnome-robotar II"
 
 #. ********************************************************************
-#: gnobots2/gnobots2.desktop.in.h:1 gnobots2/menu.c:225
+#: gnobots2/gnobots2.desktop.in.h:1 gnobots2/menu.c:229
 msgid "Gnobots II"
 msgstr "Gnobots II"
 
@@ -2164,15 +2157,11 @@ msgstr "Seger!!"
 msgid "Could not find '%s' pixmap file for Gnome Robots\n"
 msgstr "Kunde inte hitta pixmapfilen \"%s\" för Gnome-robotar\n"
 
-#: gnobots2/menu.c:100
-msgid "Do you really want to restart the current game?"
-msgstr "Vill du verkligen starta om det aktuella spelet?"
-
 #: gnobots2/menu.c:169
-msgid "Do you really want to quit the game?"
-msgstr "Vill du verkligen avsluta spelet?"
+msgid "Are you sure you want to quit Gnobots II?"
+msgstr "Vill du verkligen avsluta Gnobots II?"
 
-#: gnobots2/menu.c:227
+#: gnobots2/menu.c:231
 msgid "Gnome Robots Game"
 msgstr "Spelet Gnome-robotar"
 
@@ -2515,7 +2504,7 @@ msgstr "Gnome-stenar © 1998 Carsten Schaar"
 msgid "Game to play"
 msgstr "Spel som ska spelas"
 
-#: gnome-stones/main.c:154
+#: gnome-stones/main.c:157
 #, c-format
 msgid ""
 "An error occured while loading the image file \"%s\".\n"
@@ -2524,58 +2513,58 @@ msgstr ""
 "Ett fel inträffade under inläsningen av bildfilen \"%s\".\n"
 "Kontrollera att Gnome-stenar är korrekt installerat."
 
-#: gnome-stones/main.c:263
+#: gnome-stones/main.c:266
 msgid "Game title:"
 msgstr "Speltitel:"
 
-#: gnome-stones/main.c:264
+#: gnome-stones/main.c:267
 msgid "Start cave:"
 msgstr "Startgrotta:"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:403 gnome-stones/main.c:993 mahjongg/mahjongg.c:424
+#: gnome-stones/main.c:406 gnome-stones/main.c:1007 mahjongg/mahjongg.c:424
 msgid "Pause"
 msgstr "Paus"
 
-#: gnome-stones/main.c:654
+#: gnome-stones/main.c:656
 msgid "Congratulations, you win!"
 msgstr "Gratulerar, du vinner!"
 
-#: gnome-stones/main.c:845 gtali/cyahtzee.c:552 gtali/gyahtzee.c:121
+#: gnome-stones/main.c:846 gtali/cyahtzee.c:552 gtali/gyahtzee.c:121
 msgid "Game over!"
 msgstr "Spelet är över!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:1052 gnome-stones/main.c:1264
+#: gnome-stones/main.c:1070 gnome-stones/main.c:1283
 msgid "Gnome-Stones"
 msgstr "Gnome-stenar"
 
-#: gnome-stones/main.c:1054
+#: gnome-stones/main.c:1072
 msgid "A game."
 msgstr "Ett spel."
 
-#: gnome-stones/main.c:1167
+#: gnome-stones/main.c:1186
 msgid "Scanning private object directory..."
 msgstr "Avsöker den privata objektkatalogen..."
 
-#: gnome-stones/main.c:1171
+#: gnome-stones/main.c:1190
 msgid "Scanning public object directory..."
 msgstr "Avsöker den allmänna objektkatalogen..."
 
-#: gnome-stones/main.c:1176
+#: gnome-stones/main.c:1195
 msgid "Filling game widget..."
 msgstr "Fyller spelplan..."
 
-#: gnome-stones/main.c:1181
+#: gnome-stones/main.c:1200
 msgid "Scanning private game directory..."
 msgstr "Avsöker den privata spelkatalogen..."
 
-#: gnome-stones/main.c:1185
+#: gnome-stones/main.c:1204
 msgid "Scanning public game directory..."
 msgstr "Avsöker den allmänna spelkatalogen..."
 
-#: gnome-stones/main.c:1189
+#: gnome-stones/main.c:1208
 msgid "Restoring preferences..."
 msgstr "Återställer inställningar..."
 
@@ -2754,44 +2743,44 @@ msgstr ""
 "\n"
 "Kontrollera din gnome-games-installation"
 
-#: gnometris/tetris.cpp:533
+#: gnometris/tetris.cpp:535
 msgid "Gnometris preferences"
 msgstr "Inställningar för Gnometris"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:561
+#: gnometris/tetris.cpp:563
 msgid "Number of pre-filled rows:"
 msgstr "Antal förifyllda rader:"
 
-#: gnometris/tetris.cpp:582
+#: gnometris/tetris.cpp:584
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Densiteten av klossar i en förifylld rad:"
 
-#: gnometris/tetris.cpp:603
+#: gnometris/tetris.cpp:605
 msgid "Starting Level:"
 msgstr "Startnivå:"
 
-#: gnometris/tetris.cpp:620
+#: gnometris/tetris.cpp:622
 msgid "Preview next block"
 msgstr "Förhandsgranska nästa kloss"
 
-#: gnometris/tetris.cpp:630
+#: gnometris/tetris.cpp:632
 msgid "Random block colors"
 msgstr "Slumpmässiga klossfärger"
 
-#: gnometris/tetris.cpp:642
+#: gnometris/tetris.cpp:644
 msgid "Rotate counterclockwise"
 msgstr "Rotera moturs"
 
-#: gnometris/tetris.cpp:658
+#: gnometris/tetris.cpp:660
 msgid "Block Pixmap: "
 msgstr "Klosspixmap: "
 
-#: gnometris/tetris.cpp:675
+#: gnometris/tetris.cpp:677
 msgid "Background Pixmap: "
 msgstr "Bakgrundspixmap: "
 
-#: gnometris/tetris.cpp:997
+#: gnometris/tetris.cpp:1009
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -3001,25 +2990,25 @@ msgstr "Pusslet är löst! Bra gjort!"
 msgid "Puzzle solved!"
 msgstr "Pusslet är löst!"
 
-#: gnotravex/gnotravex.c:646
+#: gnotravex/gnotravex.c:657
 msgid "Time : "
 msgstr "Tid: "
 
-#: gnotravex/gnotravex.c:695 gnotski/gnotski.c:731
+#: gnotravex/gnotravex.c:706 gnotski/gnotski.c:742
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Kunde inte hitta pixmapfilen \"%s\"\n"
 
-#: gnotravex/gnotravex.c:782 mahjongg/mahjongg.c:1409
+#: gnotravex/gnotravex.c:793 mahjongg/mahjongg.c:1409
 msgid "... Game paused ..."
 msgstr "... spelpaus ..."
 
-#: gnotravex/gnotravex.c:898
+#: gnotravex/gnotravex.c:909
 #, c-format
 msgid "Playing %dx%d board"
 msgstr "Spelar %d×%d bräde"
 
-#: gnotravex/gnotravex.c:1100
+#: gnotravex/gnotravex.c:1115
 msgid ""
 "Tetravex clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
@@ -3088,20 +3077,20 @@ msgstr "_Svår"
 msgid "Level completed. Well done."
 msgstr "Nivån avklarad. Bra gjort!"
 
-#: gnotski/gnotski.c:692
+#: gnotski/gnotski.c:703
 msgid "Moves:"
 msgstr "Drag:"
 
-#: gnotski/gnotski.c:908
+#: gnotski/gnotski.c:919
 msgid "Welcome to Gnome Klotski"
 msgstr "Välkommen till Gnome Klotski"
 
-#: gnotski/gnotski.c:925
+#: gnotski/gnotski.c:936
 #, c-format
 msgid "Playing level %s"
 msgstr "Spelar nivån %s"
 
-#: gnotski/gnotski.c:1025
+#: gnotski/gnotski.c:1040
 msgid ""
 "Klotski clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
@@ -3215,7 +3204,7 @@ msgstr "GTali"
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr "[Mänsklig,Göran,Bengt,Monica,Kenneth,Jeanette]"
 
-#: gtali/gyahtzee.c:60 gtali/gyahtzee.c:377
+#: gtali/gyahtzee.c:60 gtali/gyahtzee.c:382
 msgid "Gnome Tali"
 msgstr "Gnome Tali"
 
@@ -3241,19 +3230,19 @@ msgstr "Scott Heavner"
 msgid "Orest Zborowski - Curses Version (C) 1992"
 msgstr "Orest Zborowski - Curses-version © 1992"
 
-#: gtali/gyahtzee.c:376
+#: gtali/gyahtzee.c:381
 msgid "(C) 1998 the Free Software Fundation"
 msgstr "© 1998 Free Software Foundation"
 
-#: gtali/gyahtzee.c:407
+#: gtali/gyahtzee.c:419
 msgid "Cheater! Any high scores will not be recorded."
 msgstr "Fuskare! Inga rekord kommer att sparas."
 
-#: gtali/gyahtzee.c:521
+#: gtali/gyahtzee.c:533
 msgid "Select dice to re-roll, press Roll!, or select score slot."
 msgstr "Välj tärning för omkast, tryck på Kasta!, eller välj poängruta."
 
-#: gtali/gyahtzee.c:560
+#: gtali/gyahtzee.c:572
 msgid " Roll ! "
 msgstr "Kasta!"
 
@@ -3428,10 +3417,10 @@ msgid "New net_work game"
 msgstr "Nytt nätverksspel"
 
 #: iagno/gnothello.c:255
-msgid "Really quit GNOME Iagno?"
-msgstr "Vill du verkligen avsluta GNOME Iagno?"
+msgid "Are you sure you want to quit Iagno?"
+msgstr "Vill du verkligen avsluta Iagno?"
 
-#: iagno/gnothello.c:430 iagno/gnothello.c:716 iagno/iagno.desktop.in.h:1
+#: iagno/gnothello.c:430 iagno/gnothello.c:724 iagno/iagno.desktop.in.h:1
 #: iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Iagno"
@@ -3449,12 +3438,12 @@ msgstr ""
 "Skicka synpunkter på översättningen till: sv@li.org\n"
 "Brickorna är licensierade under General Public License"
 
-#: iagno/gnothello.c:536
+#: iagno/gnothello.c:544
 #, c-format
 msgid "Could not find '%s' pixmap file for Iagno\n"
 msgstr "Kunde inte hitta pixmapfilen \"%s\" för Iagno\n"
 
-#: iagno/gnothello.c:785
+#: iagno/gnothello.c:793
 msgid "Welcome to Iagno!"
 msgstr "Välkommen till Iagno!"
 
@@ -3696,17 +3685,13 @@ msgstr ""
 "Brickorna är licensierade under General Public License."
 
 #: mahjongg/mahjongg.c:1466
-msgid "Really restart this game?"
-msgstr "Vill du verkligen starta om det här spelet?"
+msgid "Are you sure you want to restart this game?"
+msgstr "Vill du verkligen starta om detta spel?"
 
 #. GNOME IS AN ACRONYM, DAMNIT!
 #: mahjongg/mahjongg.c:1470
 msgid "Are you sure you want to quit GNOME Mahjongg?"
 msgstr "Vill du verkligen avsluta GNOME Mah Jong?"
-
-#: mahjongg/mahjongg.c:1474
-msgid "Really start a new game?"
-msgstr "Vill du verkligen starta ett nytt spel?"
 
 #: mahjongg/mahjongg.c:1477
 msgid "Serious internal error"
@@ -3763,11 +3748,11 @@ msgstr "Mah Jong"
 msgid "Mahjongg game"
 msgstr "Mah Jong-spel"
 
-#: same-gnome/same-gnome.c:263 same-gnome/same-gnome.c:619
+#: same-gnome/same-gnome.c:265 same-gnome/same-gnome.c:625
 msgid "The Same Gnome"
 msgstr "SameGnome"
 
-#: same-gnome/same-gnome.c:404
+#: same-gnome/same-gnome.c:410
 #, c-format
 msgid ""
 "Could not find the theme:\n"
@@ -3780,7 +3765,7 @@ msgstr ""
 "\n"
 "Kontrollera din SameGnome-installation"
 
-#: same-gnome/same-gnome.c:428
+#: same-gnome/same-gnome.c:434
 #, c-format
 msgid ""
 "Same Gnome can't load the image file:\n"
@@ -3793,27 +3778,27 @@ msgstr ""
 "\n"
 "Kontrollera din SameGnome-installation"
 
-#: same-gnome/same-gnome.c:573
+#: same-gnome/same-gnome.c:579
 msgid "Select scenario:"
 msgstr "Välj scenario:"
 
-#: same-gnome/same-gnome.c:621
+#: same-gnome/same-gnome.c:627
 msgid "Original idea from KDE's same game program."
 msgstr "Originalidé från KDEs same game-program."
 
-#: same-gnome/same-gnome.c:646
-msgid "Are you sure you want to quit?"
-msgstr "Vill du verkligen avsluta?"
+#: same-gnome/same-gnome.c:652
+msgid "Are you sure you want to quit Same Gnome?"
+msgstr "Vill du verkligen avsluta SameGnome?"
 
-#: same-gnome/same-gnome.c:836
+#: same-gnome/same-gnome.c:842
 msgid "Same Gnome"
 msgstr "SameGnome"
 
-#: same-gnome/same-gnome.c:846
+#: same-gnome/same-gnome.c:852
 msgid "Welcome to Same Gnome!"
 msgstr "Välkommen till SameGnome!"
 
-#: same-gnome/same-gnome.c:865
+#: same-gnome/same-gnome.c:871
 msgid "Marked: "
 msgstr "Markerade: "
 
@@ -3958,43 +3943,44 @@ msgstr ""
 "Du fick ett poängrekord.\n"
 "Ange ditt namn:"
 
-#: xbill/UI.cc:126
+#. XXXXX
+#: xbill/UI.cc:124
 msgid "Pause Game"
 msgstr "Pausa spel"
 
-#: xbill/UI.cc:127
+#: xbill/UI.cc:125
 msgid "Continue"
 msgstr "Fortsätt"
 
-#: xbill/UI.cc:128
-msgid "Quit"
-msgstr "Avsluta"
-
-#: xbill/UI.cc:130
+#: xbill/UI.cc:126
 msgid "Warp To Level"
 msgstr "Hoppa till nivå"
 
-#: xbill/UI.cc:134
-msgid "About"
-msgstr "Om"
-
-#: xbill/UI.cc:135
-msgid "Ported to GNOME by James Henstridge <james@daa.com.au>"
-msgstr "Anpassad till GNOME av James Henstridge <james@daa.com.au>"
-
-#: xbill/UI.cc:137
+#: xbill/UI.cc:130
 msgid "Story"
 msgstr "Historia"
 
-#: xbill/UI.cc:140
+#: xbill/UI.cc:134
 msgid "Endgame"
 msgstr "Avsluta spel"
 
-#: xbill/x11-gtk.cc:32
+#: xbill/x11-gtk.cc:35
 msgid "Warp to level..."
 msgstr "Hoppa till nivå..."
 
-#: xbill/x11-gtk.cc:193
+#: xbill/x11-gtk.cc:220
+msgid ""
+"Copyright (C) 1994, Psychosoft\n"
+"Computer logos, etc., copyright their respective owners"
+msgstr ""
+"Copyright © 1994, Psychosoft\n"
+"Datorlogotyper osv. är copyright deras respektive ägare"
+
+#: xbill/x11-gtk.cc:221 xbill/xbill.desktop.in.h:1
+msgid "GNOME version of the popular xBill game"
+msgstr "GNOME-version av det populära xBill-spelet"
+
+#: xbill/x11-gtk.cc:249
 #, c-format
 msgid ""
 "After Level %d:     \n"
@@ -4003,17 +3989,68 @@ msgstr ""
 "Efter nivå %d:      \n"
 "Din poäng: %d"
 
-#: xbill/x11-gtk.cc:199
+#: xbill/x11-gtk.cc:257
 msgid "Gnome xBill Scores"
 msgstr "Gnome xBill-poäng"
 
-#: xbill/xbill.desktop.in.h:1
-msgid "GNOME version of the popular xBill game"
-msgstr "GNOME-version av det populära xBill-spelet"
+#: xbill/x11-gtk.cc:319
+msgid "Are you sure you want to quit GNOME xBill?"
+msgstr "Vill du verkligen avsluta GNOME xBill?"
 
 #: xbill/xbill.desktop.in.h:2
 msgid "GNOME xBill"
 msgstr "GNOME xBill"
+
+#~ msgid "Really exit Aisleriot?"
+#~ msgstr "Vill du verkligen avsluta Aisleriot?"
+
+#~ msgid "Exit this game?"
+#~ msgstr "Avsluta det här spelet?"
+
+#~ msgid "Really exit GNOME Freecell?"
+#~ msgstr "Vill du verkligen avsluta GNOME Napoleon på S:t Helena?"
+
+#~ msgid "Configure Freecell"
+#~ msgstr "Konfigurera Napoleon på S:t Helena"
+
+#~ msgid "Really exit Gataxx?"
+#~ msgstr "Vill du verkligen avsluta Gataxx?"
+
+#~ msgid "Do you really want to end this game?"
+#~ msgstr "Vill du verkligen avsluta det här spelet?"
+
+#~ msgid "Do you really want to quit?"
+#~ msgstr "Vill du verkligen avsluta?"
+
+#~ msgid "Exit gnect and end the current game?"
+#~ msgstr "Avsluta gnect och det aktuella spelet?"
+
+#~ msgid "End the current game?"
+#~ msgstr "Avsluta det aktuella spelet?"
+
+#~ msgid "Do you really want to restart the current game?"
+#~ msgstr "Vill du verkligen starta om det aktuella spelet?"
+
+#~ msgid "Do you really want to quit the game?"
+#~ msgstr "Vill du verkligen avsluta spelet?"
+
+#~ msgid "Really quit GNOME Iagno?"
+#~ msgstr "Vill du verkligen avsluta GNOME Iagno?"
+
+#~ msgid "Really restart this game?"
+#~ msgstr "Vill du verkligen starta om det här spelet?"
+
+#~ msgid "Really start a new game?"
+#~ msgstr "Vill du verkligen starta ett nytt spel?"
+
+#~ msgid "Quit"
+#~ msgstr "Avsluta"
+
+#~ msgid "About"
+#~ msgstr "Om"
+
+#~ msgid "Ported to GNOME by James Henstridge <james@daa.com.au>"
+#~ msgstr "Anpassad till GNOME av James Henstridge <james@daa.com.au>"
 
 #~ msgid "Field size"
 #~ msgstr "Banstorlek"
