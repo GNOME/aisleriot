@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games-0.13\n"
-"POT-Creation-Date: 1998-11-07 00:16+0100\n"
+"POT-Creation-Date: 1998-11-21 15:45+0100\n"
 "PO-Revision-Date: 1998-10-25 01:47+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@fib.hl.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -29,13 +29,13 @@ msgid ""
 "Game Over.\n"
 msgstr ""
 "\n"
-"Spillet over.\n"
+"Spillet er over.\n"
 
-#: aisleriot/dialog.c:23 freecell/src/menu.c:32
+#: aisleriot/dialog.c:23
 msgid "New Game"
 msgstr "Nytt spill"
 
-#: aisleriot/dialog.c:62 mahjongg/mahjongg.c:1086
+#: aisleriot/dialog.c:62 mahjongg/mahjongg.c:1138
 msgid "Select Game"
 msgstr "Velg spill"
 
@@ -113,12 +113,13 @@ msgstr "_Alternativer"
 msgid "S_tatistics..."
 msgstr "S_tatistikk..."
 
-#: aisleriot/menu.c:91 gnomine/gnomine.c:439 gnothello/gnothello.c:170
-#: same-gnome/same-gnome.c:680 scottfree/GnomeScott.c:1549
+#: aisleriot/menu.c:91 freecell/src/menu.c:79 gnobots/gnobots.c:147
+#: gnomine/gnomine.c:439 gnothello/gnothello.c:168 same-gnome/same-gnome.c:680
+#: scottfree/GnomeScott.c:1549
 msgid "_About..."
 msgstr "_Om..."
 
-#: aisleriot/menu.c:101 gnomine/gnomine.c:419 gnothello/gnothello.c:97
+#: aisleriot/menu.c:101 gnobots/gnobots.c:128 gnomine/gnomine.c:419
 #: same-gnome/same-gnome.c:661 scottfree/GnomeScott.c:1529
 msgid "_New"
 msgstr "_Nytt"
@@ -131,20 +132,20 @@ msgstr "Sta_rt på nytt"
 msgid "_Select..."
 msgstr "_Velg..."
 
-#: aisleriot/menu.c:110 gnomine/gnomine.c:422 same-gnome/same-gnome.c:664
+#: aisleriot/menu.c:110 freecell/src/menu.c:52 gnobots/gnobots.c:131
+#: gnomine/gnomine.c:422 same-gnome/same-gnome.c:664
 msgid "_Properties..."
 msgstr "_Egenskaper..."
 
-#: aisleriot/menu.c:118
-msgid "_Exit"
-msgstr "_Avslutt"
+#: aisleriot/menu.c:118 freecell/src/menu.c:64 gnobots/gnobots.c:137
+msgid "E_xit"
+msgstr "A_vslutt"
 
 #: aisleriot/menu.c:124
 msgid "_Hint"
 msgstr "_Hint"
 
-#: aisleriot/menu.c:127
-#, fuzzy
+#: aisleriot/menu.c:127 freecell/src/menu.c:46 gnothello/gnothello.c:107
 msgid "_Undo"
 msgstr "_Angre"
 
@@ -152,8 +153,8 @@ msgstr "_Angre"
 msgid "_Redo"
 msgstr "Gjenopprett"
 
-#: aisleriot/menu.c:137 gnomine/gnomine.c:447 gnothello/gnothello.c:175
-#: same-gnome/same-gnome.c:688
+#: aisleriot/menu.c:137 freecell/src/menu.c:90 gnobots/gnobots.c:160
+#: gnomine/gnomine.c:447 gnothello/gnothello.c:173 same-gnome/same-gnome.c:688
 msgid "_Game"
 msgstr "_Spill"
 
@@ -165,14 +166,13 @@ msgstr "_Variasjon"
 msgid "_Move"
 msgstr "_Flytt"
 
-#: aisleriot/menu.c:145 gnomine/gnomine.c:450 gnothello/gnothello.c:179
-#: same-gnome/same-gnome.c:691
+#: aisleriot/menu.c:145 freecell/src/menu.c:94 gnobots/gnobots.c:163
+#: gnomine/gnomine.c:450 gnothello/gnothello.c:177 same-gnome/same-gnome.c:691
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: aisleriot/menu.c:152 freecell/src/menu.c:105 gnobots/gnobots.c:128
-#: gnome-stones/main.c:1138 gyahtzee/gyahtzee.c:406 mahjongg/mahjongg.c:362
-#: mahjongg/mahjongg.c:427
+#: aisleriot/menu.c:152 freecell/src/menu.c:105 gnome-stones/main.c:1140
+#: gyahtzee/gyahtzee.c:406 mahjongg/mahjongg.c:362 mahjongg/mahjongg.c:427
 msgid "New"
 msgstr "Nytt"
 
@@ -202,10 +202,10 @@ msgstr "Hint"
 
 #: aisleriot/menu.c:163
 msgid "Suggest a move."
-msgstr ""
+msgstr "Foreslå et trekk."
 
-#: aisleriot/menu.c:166 freecell/src/menu.c:46 freecell/src/menu.c:113
-#: gyahtzee/gyahtzee.c:428 mahjongg/mahjongg.c:376 mahjongg/mahjongg.c:439
+#: aisleriot/menu.c:166 freecell/src/menu.c:113 gyahtzee/gyahtzee.c:428
+#: mahjongg/mahjongg.c:376 mahjongg/mahjongg.c:439
 msgid "Undo"
 msgstr "Angre"
 
@@ -221,9 +221,8 @@ msgstr "Gjenopprett"
 msgid "Redo the last move."
 msgstr "Gjenta forrige trekk"
 
-#: aisleriot/menu.c:174 freecell/src/menu.c:64 freecell/src/menu.c:125
-#: gnobots/gnobots.c:137 gnome-stones/main.c:1161 gturing/gturing.c:426
-#: gyahtzee/gyahtzee.c:416 mahjongg/mahjongg.c:381
+#: aisleriot/menu.c:174 freecell/src/menu.c:125 gnome-stones/main.c:1163
+#: gturing/gturing.c:426 gyahtzee/gyahtzee.c:416 mahjongg/mahjongg.c:381
 msgid "Exit"
 msgstr "Avslutt"
 
@@ -231,19 +230,22 @@ msgstr "Avslutt"
 msgid "Quit Aisleriot."
 msgstr "Avslutt Aisleriot"
 
-#: aisleriot/sol.c:149 aisleriot/sol.c:163 freecell/src/menu.c:94
-#: gnobots/gnobots.c:163 gnome-stones/main.c:1185 gturing/gturing.c:452
-#: gyahtzee/gyahtzee.c:455 mahjongg/mahjongg.c:420
+#: aisleriot/sol.c:152 aisleriot/sol.c:166 gnome-stones/main.c:1187
+#: gturing/gturing.c:452 gyahtzee/gyahtzee.c:455 mahjongg/mahjongg.c:420
 msgid "Help"
 msgstr "Hjelp"
 
-#: aisleriot/sol.c:163
+#: aisleriot/sol.c:166 aisleriot/sol.c:299 aisleriot/splash.c:47
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: aisleriot/sol.c:292
-msgid "AisleRiot"
-msgstr "AisleRiot"
+#: aisleriot/sol.c:343
+msgid "Loading images..."
+msgstr "Laster bilder..."
+
+#: aisleriot/sol.c:349
+msgid "Dealing game..."
+msgstr "Deler ut spillet"
 
 #: aisleriot/sol.c:355 gnobots/gnobots.c:1307 gnome-stones/status.c:66
 msgid "Score:"
@@ -253,55 +255,22 @@ msgstr "Poeng:"
 msgid "Time:"
 msgstr "Tid:"
 
-#: aisleriot/scheme_messages:1
-msgid "Spider"
-msgstr "Edderkopp"
+#: aisleriot/sol.c:440
+msgid "Variation on game rules"
+msgstr "Variasjon av spillreglene"
 
-#: aisleriot/scheme_messages:2
-msgid "Osmosis"
-msgstr "Osmose"
+#: aisleriot/sol.c:440 gnobots/gnobots.c:118 same-gnome/same-gnome.c:842
+msgid "NAME"
+msgstr "NAVN"
 
-#: aisleriot/scheme_messages:3
-msgid "Odessa"
-msgstr "Odessa"
-
-#: aisleriot/scheme_messages:4
-msgid "Klondike"
-msgstr "Klondike"
+#: aisleriot/sol.c:454
+msgid "Initializing scheme..."
+msgstr "Initialiserer planen..."
 
 #. make main window.
-#: aisleriot/scheme_messages:5 freecell/src/io-gtk.c:119
-#: freecell/src/io-gtk.c:635
+#: freecell/src/io-gtk.c:119 freecell/src/io-gtk.c:635
 msgid "Freecell"
 msgstr "Freecell"
-
-#: aisleriot/scheme_messages:6
-msgid "Camelot"
-msgstr "Camelot"
-
-#: aisleriot/scheme_messages:7
-msgid "Canfield"
-msgstr "Boksfelt"
-
-#: aisleriot/scheme_messages:8
-msgid "Clock"
-msgstr "Klokke"
-
-#: aisleriot/scheme_messages:9
-msgid "Doublets"
-msgstr "Dubletter"
-
-#: aisleriot/scheme_messages:10
-msgid "Eagle wing"
-msgstr "Ørnevinge"
-
-#: aisleriot/scheme_messages:11
-msgid "Fortunes"
-msgstr "Lykketegn"
-
-#: aisleriot/scheme_messages:12
-msgid "Yukon"
-msgstr "Yukon"
 
 #: freecell/src/io-gtk.c:317 freecell/src/io-gtk.c:439
 #: freecell/src/io-gtk.c:504 freecell/src/io-gtk.c:596
@@ -353,34 +322,23 @@ msgstr ""
 "Gratulerer. Du vant.\n"
 "Vil du spille en gang til?"
 
+#: freecell/src/menu.c:32
+msgid "_New Game"
+msgstr "_Nytt spill"
+
 #: freecell/src/menu.c:36
-msgid "Restart Game"
-msgstr "Start på nytt"
+msgid "_Restart Game"
+msgstr "Sta_rt spillet på nytt"
 
 #: freecell/src/menu.c:40
 msgid "New Game with a seed..."
 msgstr "Nytt spill med seed..."
 
-#: freecell/src/menu.c:52 gnobots/gnobots.c:131 gyahtzee/gyahtzee.c:410
-#: gyahtzee/gyahtzee.c:425 mahjongg/mahjongg.c:396
-msgid "Properties..."
-msgstr "Egenskaper..."
-
 #: freecell/src/menu.c:56
-msgid "Score..."
-msgstr "Poeng..."
+msgid "_Score..."
+msgstr "_Poeng..."
 
-#: freecell/src/menu.c:79 gnobots/gnobots.c:147 gturing/gturing.c:443
-#: gyahtzee/gyahtzee.c:436
-msgid "About..."
-msgstr "Om..."
-
-#: freecell/src/menu.c:90 gnobots/gnobots.c:160 gnome-stones/main.c:1184
-#: gyahtzee/gyahtzee.c:449 mahjongg/mahjongg.c:414
-msgid "Game"
-msgstr "Spill"
-
-#: freecell/src/menu.c:105 gnome-stones/main.c:1138
+#: freecell/src/menu.c:105 gnome-stones/main.c:1140
 msgid "Start a new game"
 msgstr "Start et nytt spill"
 
@@ -469,10 +427,6 @@ msgstr "nåværende: %d tap"
 msgid "Set game scenario"
 msgstr "Sett spillscenario"
 
-#: gnobots/gnobots.c:118 same-gnome/same-gnome.c:842
-msgid "NAME"
-msgstr "NAVN"
-
 #: gnobots/gnobots.c:119 gnomine/gnomine.c:509 gnomine/gnomine.c:514
 msgid "X"
 msgstr "X"
@@ -481,9 +435,9 @@ msgstr "X"
 msgid "Y"
 msgstr "Y"
 
-#: gnobots/gnobots.c:134 gyahtzee/gyahtzee.c:413
-msgid "Scores..."
-msgstr "Poeng..."
+#: gnobots/gnobots.c:134 gnomine/gnomine.c:425 same-gnome/same-gnome.c:667
+msgid "_Scores..."
+msgstr "_Poeng..."
 
 #: gnobots/gnobots.c:591 gnobots/gnobots.c:607 gnobots/gnobots.c:637
 #, c-format
@@ -558,18 +512,19 @@ msgstr "Trygg modus"
 msgid "Safe Teleports"
 msgstr "Trygge teleporteringer"
 
-#: gnobots/properties.c:247 mahjongg/mahjongg.c:393 mahjongg/mahjongg.c:445
+#: gnobots/properties.c:247 gnome-stones/preferences.c:639
+#: mahjongg/mahjongg.c:393 mahjongg/mahjongg.c:445
 msgid "Sound"
 msgstr "Lyd"
 
 #. This cave is to big to be played with gnome-stones.
-#: gnome-stones/cave.c:1459
+#: gnome-stones/game.c:167 gnome-stones/io.c:310
 msgid "The cave you are trying to load it to big for this game."
 msgstr "Hulen du prøver å laste er for stor for dette spillet."
 
 #. An object was requested in this cave, that was not
 #. declared in the game file's Object section.
-#: gnome-stones/cave.c:1490
+#: gnome-stones/game.c:202 gnome-stones/io.c:344
 msgid ""
 "The cave you are trying to load includes an object, that wasn't declared."
 msgstr "Hulen du prøver å lastte inneholder et objekt som ikke var deklarert."
@@ -578,88 +533,97 @@ msgstr "Hulen du prøver å lastte inneholder et objekt som ikke var deklarert."
 #. Some constants.
 #. This message will be printed in the statusline, if no message was
 #. specified in a game file.
-#: gnome-stones/main.c:85
+#: gnome-stones/main.c:87
 msgid "Gnome-Stones (c) 1998 Carsten Schaar"
 msgstr "Gnome-Stones (c) 1998 Carsten Schaar"
 
-#: gnome-stones/main.c:300
+#: gnome-stones/main.c:302
 msgid "Game title:"
 msgstr "Tittel på spill:"
 
-#: gnome-stones/main.c:301
+#: gnome-stones/main.c:303
 msgid "Start cave:"
 msgstr "Starthule:"
 
-#: gnome-stones/main.c:434
+#: gnome-stones/main.c:436
 msgid "Pause"
 msgstr "Pause"
 
-#: gnome-stones/main.c:793
+#: gnome-stones/main.c:795
 msgid "Congratulations, you win!"
 msgstr "Gratulerer, du vant!"
 
-#: gnome-stones/main.c:964 gyahtzee/cyahtzee.c:552 gyahtzee/gyahtzee.c:117
+#: gnome-stones/main.c:966 gyahtzee/cyahtzee.c:552 gyahtzee/gyahtzee.c:117
 msgid "Game over!"
 msgstr "Spillet over!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:1121 gnome-stones/main.c:1301
+#: gnome-stones/main.c:1123 gnome-stones/main.c:1335
 msgid "Gnome-Stones"
 msgstr "Gnome-steiner"
 
-#: gnome-stones/main.c:1124
+#: gnome-stones/main.c:1126
 msgid "A game."
 msgstr "Et spill."
 
-#: gnome-stones/main.c:1145
+#: gnome-stones/main.c:1147
 msgid "Scores"
 msgstr "Poeng"
 
-#: gnome-stones/main.c:1145
+#: gnome-stones/main.c:1147
 msgid "Show highscore table"
 msgstr "Vis poengtabell"
 
-#: gnome-stones/main.c:1153
+#: gnome-stones/main.c:1155
 msgid "Preferences..."
 msgstr "Innstillinger..."
 
-#: gnome-stones/main.c:1153
+#: gnome-stones/main.c:1155
 msgid "Change Gnome-Stones preferences"
 msgstr "Endre instillinger for Gnome-steiner"
 
-#: gnome-stones/main.c:1161
+#: gnome-stones/main.c:1163
 msgid "Exit Gnome Stones"
 msgstr "Avslutt Gnome-steiner"
 
-#: gnome-stones/main.c:1172
+#: gnome-stones/main.c:1174
 msgid "About Gnome-Stones"
 msgstr "Om Gnome-steiner"
 
-#: gnome-stones/main.c:1172
+#: gnome-stones/main.c:1174
 msgid "Info about Gnome Stones"
 msgstr "Info om Gnome-steiner"
 
-#: gnome-stones/main.c:1227
+#: gnome-stones/main.c:1186 gnome-stones/preferences.c:505
+#: gyahtzee/gyahtzee.c:449 mahjongg/mahjongg.c:414
+msgid "Game"
+msgstr "Spill"
+
+#: gnome-stones/main.c:1257
 msgid "Loading curtain image..."
 msgstr "Laster bilde for bakgrunn..."
 
-#: gnome-stones/main.c:1232
+#: gnome-stones/main.c:1261
+msgid "Scanning private object directory..."
+msgstr "Gjennomsøker privat objektkatalog..."
+
+#: gnome-stones/main.c:1265
+msgid "Scanning public object directory..."
+msgstr "Gjennomsøker offentlig objektkatalog..."
+
+#: gnome-stones/main.c:1270
 msgid "Filling game widget..."
 msgstr "Fyller ut spillets widget..."
 
-#: gnome-stones/main.c:1237
-msgid "Registering game objects..."
-msgstr "Registrerer spillobjekter..."
+#: gnome-stones/main.c:1275
+msgid "Scanning private game directory..."
+msgstr "Gjennomsøker privat spillkatalog..."
 
-#: gnome-stones/main.c:1241
-msgid "Scanning private game directories..."
-msgstr "Gjennomslker private spillkataloger..."
+#: gnome-stones/main.c:1279
+msgid "Scanning public game directory..."
+msgstr "Gjennomsøker offentlig spillkatalog..."
 
-#: gnome-stones/main.c:1245
-msgid "Scanning public game directories..."
-msgstr "Gjennomsøker offentlige spillkataloger..."
-
-#: gnome-stones/main.c:1249
+#: gnome-stones/main.c:1283
 msgid "Restoring preferences..."
 msgstr "Gjeninnfører instillinger..."
 
@@ -672,6 +636,51 @@ msgstr "Du fikk et ekstra liv!"
 msgid "Seconds left: %d"
 msgstr "Sekunder igjen: %d"
 
+#: gnome-stones/preferences.c:443
+msgid "Gnome-Stones Preferences"
+msgstr "Instillinger for Gnome-steiner"
+
+#: gnome-stones/preferences.c:452
+msgid "Game title"
+msgstr "Tittel på spill"
+
+#: gnome-stones/preferences.c:454
+msgid "Caves"
+msgstr "Huler"
+
+#: gnome-stones/preferences.c:457
+msgid "Filename"
+msgstr "Filnavn"
+
+#: gnome-stones/preferences.c:529
+msgid "Device"
+msgstr "Enhet"
+
+#: gnome-stones/preferences.c:541
+msgid "Joystick device:"
+msgstr "Joystick-enhet:"
+
+#. We definatly have a "disable" entry.
+#: gnome-stones/preferences.c:548
+msgid "disabled"
+msgstr "avslått"
+
+#: gnome-stones/preferences.c:587
+msgid "Binary joytick emulation"
+msgstr "Binær joystick emulering"
+
+#: gnome-stones/preferences.c:599
+msgid "Switch level:"
+msgstr "Bytt nivå:"
+
+#: gnome-stones/preferences.c:625
+msgid "Joystick"
+msgstr "Joystick"
+
+#: gnome-stones/preferences.c:633
+msgid "Not yet implemented!"
+msgstr "Ennå ikke implementert!"
+
 #: gnome-stones/status.c:76
 msgid "Diamonds:"
 msgstr "Diamanter:"
@@ -681,7 +690,7 @@ msgid "Cave:"
 msgstr "Hule:"
 
 #: gnome-stones/status.c:100
-msgid "Lifes:"
+msgid "Lives:"
 msgstr "Liv:"
 
 #: gnomine/gnomine.c:41 gnomine/gnomine.c:293
@@ -736,10 +745,6 @@ msgstr "Vertikal:"
 msgid "Number of mines:"
 msgstr "Antall miner:"
 
-#: gnomine/gnomine.c:425 same-gnome/same-gnome.c:667
-msgid "_Scores..."
-msgstr "_Poeng..."
-
 #: gnomine/gnomine.c:428
 msgid "Quit"
 msgstr "Avslutt"
@@ -764,7 +769,7 @@ msgstr "STØRRELSE"
 msgid "Number of mines"
 msgstr "Antall miner"
 
-#: gnomine/gnomine.c:512 gyahtzee/setup.c:73 gyahtzee/setup.c:74
+#: gnomine/gnomine.c:512 gyahtzee/setup.c:74 gyahtzee/setup.c:75
 msgid "NUMBER"
 msgstr "ANTALL"
 
@@ -776,88 +781,99 @@ msgstr "Gnome miner"
 msgid "Flags:"
 msgstr "Flagg:"
 
-#: gnothello/gnothello.c:90
+#: gnothello/gnothello.c:99
 msgid "IOR of remote Gnothello server"
 msgstr "Gnothello fjernvertens IOR"
 
-#: gnothello/gnothello.c:91
+#: gnothello/gnothello.c:100
 msgid "IOR"
 msgstr "IOR"
 
-#: gnothello/gnothello.c:99 same-gnome/same-gnome.c:670
-#: scottfree/GnomeScott.c:1538
-msgid "_Quit"
-msgstr "_Avslutt"
+#: gnothello/gnothello.c:106
+msgid "_New..."
+msgstr "_Nytt..."
 
-#: gnothello/gnothello.c:105 gnothello/gnothello.c:113
+#: gnothello/gnothello.c:108
+msgid "_Exit..."
+msgstr "_Avslutt..."
+
+#: gnothello/gnothello.c:113 gnothello/gnothello.c:121
 msgid "_Disabled"
 msgstr "_Avslått"
 
-#: gnothello/gnothello.c:106 gnothello/gnothello.c:114
+#: gnothello/gnothello.c:114 gnothello/gnothello.c:122
 msgid "Level _One"
 msgstr "Nivå _en"
 
-#: gnothello/gnothello.c:107 gnothello/gnothello.c:115
+#: gnothello/gnothello.c:115 gnothello/gnothello.c:123
 msgid "Level _Two"
 msgstr "Nivå _to"
 
-#: gnothello/gnothello.c:108 gnothello/gnothello.c:116
-msgid "Level _Three"
-msgstr "Nivå _tre"
+#: gnothello/gnothello.c:116 gnothello/gnothello.c:124
+msgid "Level Th_ree"
+msgstr "Nivå t_re"
 
-#: gnothello/gnothello.c:131 gnothello/gnothello.c:133
+#: gnothello/gnothello.c:139
 msgid "_Black"
 msgstr "_Sort"
 
-#: gnothello/gnothello.c:132 gnothello/gnothello.c:135
+#: gnothello/gnothello.c:140
 msgid "_White"
 msgstr "_Hvit"
 
-#: gnothello/gnothello.c:138
+#: gnothello/gnothello.c:142
 msgid "_Quick Moves"
 msgstr "_Hurtige trekk"
 
-#: gnothello/gnothello.c:143
+#: gnothello/gnothello.c:147
 msgid "_No Animation"
 msgstr "_Ingen animasjon"
 
-#: gnothello/gnothello.c:144
+#: gnothello/gnothello.c:148
 msgid "_Some Animation"
 msgstr "_Noe animasjon"
 
-#: gnothello/gnothello.c:145
+#: gnothello/gnothello.c:149
 msgid "_Full Animation"
 msgstr "_Full animasjon"
 
-#: gnothello/gnothello.c:155 gnothello/gnothello.c:156
-msgid "_Type"
-msgstr "_Type"
-
-#: gnothello/gnothello.c:160
+#: gnothello/gnothello.c:161
 msgid "_Stagger Flips"
 msgstr "_Stagger Flips"
 
-#: gnothello/gnothello.c:162 gnothello/gnothello.c:163
-msgid "_Change Tiles"
-msgstr "_Endre steiner"
+#: gnothello/gnothello.c:163
+msgid "_Load Tiles..."
+msgstr "_Last steiner..."
 
-#: gnothello/gnothello.c:164
-msgid "_Load Tiles"
-msgstr "_Last steiner"
-
-#: gnothello/gnothello.c:176
+#: gnothello/gnothello.c:174
 msgid "_Computer"
 msgstr "_Datamaskin"
 
-#: gnothello/gnothello.c:177
+#: gnothello/gnothello.c:175
 msgid "_Animation"
 msgstr "_Animasjon"
 
-#: gnothello/gnothello.c:266 gnothello/gnothello.c:596
+#: gnothello/gnothello.c:206
+msgid "Quit Gnothello?"
+msgstr "Avslutt Gnothello?"
+
+#: gnothello/gnothello.c:225
+msgid "Start a new game?"
+msgstr "Starte et nytt spill?"
+
+#: gnothello/gnothello.c:264 gnothello/othello.c:208
+msgid "White's move"
+msgstr "Hvits trekk"
+
+#: gnothello/gnothello.c:266 gnothello/gnothello.c:670 gnothello/othello.c:205
+msgid "Black's move"
+msgstr "Sorts trekk"
+
+#: gnothello/gnothello.c:339 gnothello/gnothello.c:680
 msgid "Gnome Othello"
 msgstr "Gnome Othello"
 
-#: gnothello/gnothello.c:266
+#: gnothello/gnothello.c:339
 msgid ""
 "Send comments and bug reports to: ipeters@acm.org\n"
 "Tiles under the General Public License."
@@ -865,53 +881,61 @@ msgstr ""
 "Send kommentarer og feilrapporter til: ipeters@acm.org\n"
 "Tiles er under General Public License."
 
-#: gnothello/gnothello.c:320
+#: gnothello/gnothello.c:393
 msgid "Load Tile Set"
 msgstr "Last steinsett"
 
-#: gnothello/gnothello.c:329
+#: gnothello/gnothello.c:402
 msgid "Tile Set"
 msgstr "Steinsett"
 
-#: gnothello/gnothello.c:336
+#: gnothello/gnothello.c:409
 msgid "Select Tile Set: "
 msgstr "Velg steinsett:"
 
-#: gnothello/gnothello.c:487
+#: gnothello/gnothello.c:560
 #, c-format
 msgid "Could not find '%s' pixmap file for Gnothello\n"
 msgstr "Kunne ikke finne bildefilen '%s' for Gnothello\n"
 
-#: gnothello/gnothello.c:591 gnothello/othello.c:179
-msgid "  Black's turn..."
-msgstr "  Sort trekk..."
+#: gnothello/gnothello.c:738 gnothello/gnothello.c:782
+#, c-format
+msgid "  Black: %.2d  "
+msgstr "  Sort: %.2d  "
 
-#: gnothello/gnothello.c:637
-msgid "  Welcome to Gnome Othello!"
-msgstr "  Velkommen til Gnome Othello!"
+#: gnothello/gnothello.c:751 gnothello/gnothello.c:784
+#, c-format
+msgid "  White: %.2d  "
+msgstr "  Hvit: %.2d  "
 
-#: gnothello/othello.c:182
-msgid "  White's turn..."
-msgstr "  Hvitt trekk..."
+#: gnothello/gnothello.c:764
+#, c-format
+msgid "  %.2d:%.2d:%.2d  "
+msgstr "  %.2d:%.2d:%.2s  "
 
-#: gnothello/othello.c:526
-msgid "  White player wins!"
-msgstr "  Hvit spiller vinner!"
+#: gnothello/gnothello.c:775
+msgid "Welcome to Gnome Othello!"
+msgstr "Velkommen til Gnome Othello!"
 
-#: gnothello/othello.c:528
-msgid "  Black player wins!"
-msgstr "  Sort spiller vinner!"
+#: gnothello/othello.c:594
+msgid "White player wins!"
+msgstr "Hvit spiller vinner!"
 
-#: gnothello/othello.c:530
-msgid "  The game was a draw."
-msgstr "  Spillet endte uavgjort."
+#: gnothello/othello.c:596
+msgid "Black player wins!"
+msgstr "Sort spiller vinner!"
 
-#: gnothello/othello.c:538
-msgid "  White must pass...Black's turn..."
-msgstr "  Hvit må stå over...sort trekk..."
+#: gnothello/othello.c:598
+msgid "The game was a draw."
+msgstr "Spillet endte uavgjort."
 
-#: gnothello/othello.c:544
-msgid "  Black must pass...White's turn..."
+#: gnothello/othello.c:606
+msgid "White must pass, Black's move"
+msgstr "Hvit må stå over...sort trekk..."
+
+#: gnothello/othello.c:612
+#, fuzzy
+msgid "Black must pass, White's move"
 msgstr "  Sort må stå over...hvitt trekk..."
 
 #: gturing/gturing.c:176
@@ -1010,6 +1034,10 @@ msgstr "Vis tilstander"
 #: gturing/gturing.c:436
 msgid "Open a table with the machine's states."
 msgstr "Åpne en tabell med maskinens tilstander."
+
+#: gturing/gturing.c:443 gyahtzee/gyahtzee.c:436
+msgid "About..."
+msgstr "Om..."
 
 #: gturing/gturing.c:443
 msgid "Version, credits, etc."
@@ -1146,6 +1174,14 @@ msgstr "Gnomifisert Yahtzee"
 msgid "Cheater! Any high scores will not be recorded."
 msgstr "Juksepave! Poengsummen vil ikke bli lagret."
 
+#: gyahtzee/gyahtzee.c:410 gyahtzee/gyahtzee.c:425 mahjongg/mahjongg.c:396
+msgid "Properties..."
+msgstr "Egenskaper..."
+
+#: gyahtzee/gyahtzee.c:413
+msgid "Scores..."
+msgstr "Poeng..."
+
 #: gyahtzee/gyahtzee.c:452
 msgid "Edit"
 msgstr "Rediger"
@@ -1158,60 +1194,60 @@ msgstr "Velg terning som skal kastes om igjen, trykk kast!, eller velg."
 msgid " Roll ! "
 msgstr " Kast ! "
 
-#: gyahtzee/setup.c:64
+#: gyahtzee/setup.c:65
 msgid "Calculate random die throws (debug)"
 msgstr "Kalkuler vilkårlige terningkast (debug)"
 
-#: gyahtzee/setup.c:70
+#: gyahtzee/setup.c:71
 msgid "Delay computer moves"
 msgstr "Forsink datamaskinens trekk"
 
-#: gyahtzee/setup.c:71
+#: gyahtzee/setup.c:72
 msgid "Show high scores and exit"
 msgstr "Vis poengene og avslutt"
 
-#: gyahtzee/setup.c:72
+#: gyahtzee/setup.c:73
 msgid "Display computer thoughts"
 msgstr "Vis datamaskinens tanker"
 
-#: gyahtzee/setup.c:73
+#: gyahtzee/setup.c:74
 msgid "Number of computer opponents"
 msgstr "Antall datamaskinmotstandere"
 
-#: gyahtzee/setup.c:74
+#: gyahtzee/setup.c:75
 msgid "Number of human opponents"
 msgstr "Antall menneskelige motstandere"
 
-#: gyahtzee/setup.c:84 gyahtzee/setup.c:87
+#: gyahtzee/setup.c:85 gyahtzee/setup.c:88
 msgid "Current game will complete with original number of players."
 msgstr ""
 "Nåværende spill vil spilles ferdig med det opprinnelige antall spillere."
 
-#: gyahtzee/setup.c:186
+#: gyahtzee/setup.c:187
 msgid "Gyahtzee setup"
 msgstr "Gyahtzee oppsett"
 
-#: gyahtzee/setup.c:195
+#: gyahtzee/setup.c:196
 msgid "Computer Opponents"
 msgstr "Datamaskinmotstandere"
 
-#: gyahtzee/setup.c:203
+#: gyahtzee/setup.c:204
 msgid "Delay between rolls"
 msgstr "Pause mellom omganger"
 
-#: gyahtzee/setup.c:212
+#: gyahtzee/setup.c:213
 msgid "Show thoughts during turn"
 msgstr "Vis tanker under tur"
 
-#: gyahtzee/setup.c:225
+#: gyahtzee/setup.c:226
 msgid "Number of opponents:"
 msgstr "Antall motstandere:"
 
-#: gyahtzee/setup.c:253
+#: gyahtzee/setup.c:254
 msgid "Human Players"
 msgstr "Menneskelige spillere"
 
-#: gyahtzee/setup.c:263
+#: gyahtzee/setup.c:264
 msgid "Number of players:"
 msgstr "Antall spillere:"
 
@@ -1318,6 +1354,8 @@ msgstr "Nytt seed..."
 msgid "Show Tool Bar"
 msgstr "Vis verktøylinje"
 
+#. {GNOME_APP_UI_HELP, NULL, NULL, NULL, NULL, NULL,
+#. GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 #: mahjongg/mahjongg.c:407
 msgid "About"
 msgstr "Om"
@@ -1330,59 +1368,55 @@ msgstr "Nytt seed"
 msgid "Re-do"
 msgstr "Gjenopprett"
 
-#: mahjongg/mahjongg.c:697
+#: mahjongg/mahjongg.c:754
 msgid "Tiles don't match!"
 msgstr "Steinene er ikke like!"
 
-#: mahjongg/mahjongg.c:699 mahjongg/mahjongg.c:722 mahjongg/mahjongg.c:748
+#: mahjongg/mahjongg.c:756 mahjongg/mahjongg.c:779 mahjongg/mahjongg.c:792
 msgid "Ok"
 msgstr "Ok"
 
-#: mahjongg/mahjongg.c:720
+#: mahjongg/mahjongg.c:777
 msgid "No more movements"
 msgstr "Ingen flere trekk"
 
-#: mahjongg/mahjongg.c:746
+#: mahjongg/mahjongg.c:790
 msgid "You won!"
 msgstr "Du vant!"
 
-#: mahjongg/mahjongg.c:794
+#: mahjongg/mahjongg.c:838
 msgid "Tiles"
 msgstr "Steiner"
 
-#: mahjongg/mahjongg.c:800
+#: mahjongg/mahjongg.c:844
 msgid "Select Tiles:"
 msgstr "Velg steiner:"
 
-#: mahjongg/mahjongg.c:806
+#: mahjongg/mahjongg.c:850
 msgid "Make it the default tile set"
 msgstr "Sett som standard steinsett"
 
-#: mahjongg/mahjongg.c:828
+#: mahjongg/mahjongg.c:872
 msgid "Maps"
 msgstr "Kart"
 
-#: mahjongg/mahjongg.c:834
+#: mahjongg/mahjongg.c:878
 msgid "Select Map:"
 msgstr "Velg kart:"
 
-#: mahjongg/mahjongg.c:840
+#: mahjongg/mahjongg.c:884
 msgid "Make it the default map"
 msgstr "Sett som standard kart"
 
-#: mahjongg/mahjongg.c:868
+#: mahjongg/mahjongg.c:912
 msgid "Background colour"
 msgstr "Bakgrunnsfarge"
 
-#: mahjongg/mahjongg.c:935
-msgid "Click to continue"
-msgstr "Klikk for å fortsette"
-
-#: mahjongg/mahjongg.c:966 mahjongg/mahjongg.c:1470
+#: mahjongg/mahjongg.c:1015 mahjongg/mahjongg.c:1386
 msgid "Gnome Mahjongg"
 msgstr "Gnome Mahjongg"
 
-#: mahjongg/mahjongg.c:969
+#: mahjongg/mahjongg.c:1018
 msgid ""
 "Send comments and bug reports to:\n"
 "        pancho@nuclecu.unam.mx or\n"
@@ -1396,15 +1430,15 @@ msgstr ""
 "\n"
 "Tiles er under General Public License."
 
-#: mahjongg/mahjongg.c:1090
+#: mahjongg/mahjongg.c:1142
 msgid "Game Number:"
 msgstr "Spill nummer:"
 
-#: mahjongg/mahjongg.c:1485
+#: mahjongg/mahjongg.c:1401
 msgid " Tiles "
 msgstr " Fliser "
 
-#: mahjongg/mahjongg.c:1489
+#: mahjongg/mahjongg.c:1405
 msgid " Remaining: "
 msgstr " som gjenstår: "
 
@@ -1425,6 +1459,10 @@ msgstr "Scenario"
 #: same-gnome/same-gnome.c:624
 msgid "Original idea from KDE's same game program."
 msgstr "Original ide fra KDE's same game program"
+
+#: same-gnome/same-gnome.c:670 scottfree/GnomeScott.c:1538
+msgid "_Quit"
+msgstr "_Avslutt"
 
 #: same-gnome/same-gnome.c:840
 msgid "Debugging mode"
@@ -1537,3 +1575,60 @@ msgstr "_Last..."
 #: scottfree/GnomeScott.c:1535
 msgid "_Save..."
 msgstr "_Lagre..."
+
+#~ msgid "AisleRiot"
+#~ msgstr "AisleRiot"
+
+#~ msgid "Spider"
+#~ msgstr "Edderkopp"
+
+#~ msgid "Osmosis"
+#~ msgstr "Osmose"
+
+#~ msgid "Odessa"
+#~ msgstr "Odessa"
+
+#~ msgid "Klondike"
+#~ msgstr "Klondike"
+
+#~ msgid "Camelot"
+#~ msgstr "Camelot"
+
+#~ msgid "Canfield"
+#~ msgstr "Boksfelt"
+
+#~ msgid "Clock"
+#~ msgstr "Klokke"
+
+#~ msgid "Doublets"
+#~ msgstr "Dubletter"
+
+#~ msgid "Eagle wing"
+#~ msgstr "Ørnevinge"
+
+#~ msgid "Fortunes"
+#~ msgstr "Lykketegn"
+
+#~ msgid "Yukon"
+#~ msgstr "Yukon"
+
+#~ msgid "Score..."
+#~ msgstr "Poeng..."
+
+#~ msgid "Registering game objects..."
+#~ msgstr "Registrerer spillobjekter..."
+
+#~ msgid "_Type"
+#~ msgstr "_Type"
+
+#~ msgid "_Change Tiles"
+#~ msgstr "_Endre steiner"
+
+#~ msgid "  Black's turn..."
+#~ msgstr "  Sort trekk..."
+
+#~ msgid "  White's turn..."
+#~ msgstr "  Hvitt trekk..."
+
+#~ msgid "Click to continue"
+#~ msgstr "Klikk for å fortsette"
