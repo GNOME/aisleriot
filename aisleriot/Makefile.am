@@ -61,6 +61,7 @@ types_DATA  = 		\
 	plait.scm	\
 	royal_east.scm	\
 	sol.scm		\
+	scorpion.scm	\
 	spider.scm	\
 	thieves.scm     \
 	thirteen.scm	\
