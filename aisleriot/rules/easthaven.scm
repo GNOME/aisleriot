@@ -218,9 +218,9 @@
 (define (fill-empties slot)
   (cond ((= slot 12)
 	 #f)
-	((empty-slot? slot)
-	 (and (kings-avail 5)
-	      (list 0 (_"Move a King on to the empty Tableau slot"))))
+	((and (empty-slot? slot)
+	      (kings-avail 5))
+	      (list 0 (_"Move a King on to the empty Tableau slot")))
 	(#t (fill-empties (+ 1 slot)))))
 
 (define (dealable?)
