@@ -126,7 +126,7 @@ types_DATA  = 		\
 	zebra.scm	\
 	plait.scm
 
-cardimage_DATA = baize.png
+cardimage_DATA = baize.png slot.png
 
 icon_DATA = gnome-aisleriot.png gnome-cardgame.png
 

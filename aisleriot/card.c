@@ -89,7 +89,7 @@ static GdkPixbuf* get_pixbuf (const char* filename)
 
 void load_pixmaps (void) 
 {
-  slot_pixbuf = get_pixbuf ("cards/slots/plain.png");
+  slot_pixbuf = get_pixbuf ("cards/slot.png");
   default_background_pixmap = get_pixmap ("cards/baize.png");
 }
 
