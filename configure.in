@@ -93,11 +93,11 @@ sys_dir_h_found=no
 old_CPPFLAGS="$CPPFLAGS"
 UCB_CFLAGS=
 AC_CHECK_HEADER(sys/dir.h, [sys_dir_h_found=yes],
-  [AC_MSG_CHECKING([for sys/dir.h in /usr/ucbinclude])
-   CPPFLAGS="-I /usr/ucbinclude"
+  [AC_MSG_CHECKING([for sys/dir.h in /usr/ucbinclude or /usr/ucblib/sparcv9])
+   CPPFLAGS="-I /usr/ucbinclude -I /usr/ucblib/sparcv9"
    AC_TRY_COMPILE([#include <sys/dir.h>],
      [scandir(".", 0, 0, 0);],
-     [UCB_CFLAGS="-I/usr/ucbinclude"
+     [UCB_CFLAGS="-I/usr/ucbinclude -I/usr/ucblib/sparcv9"
       AC_MSG_RESULT(yes)
       sys_dir_h_found=yes
      ],
