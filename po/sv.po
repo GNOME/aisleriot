@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2003-06-09 00:07+0200\n"
-"PO-Revision-Date: 2003-06-09 00:08+0200\n"
+"POT-Creation-Date: 2003-06-09 00:43+0200\n"
+"PO-Revision-Date: 2003-06-09 00:43+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -579,7 +579,7 @@ msgstr "                      Matthew Wilcox (matthew@wil.cx)"
 #. Translator credits
 #: aisleriot/menu.c:91 gataxx/gataxx.c:428 glines/glines.c:829
 #: gnect/src/dialog.c:48 gnibbles/main.c:199 gnobots2/menu.c:210
-#: gnome-stones/main.c:1054 gnometris/tetris.cpp:1057 gnomine/gnomine.c:303
+#: gnome-stones/main.c:1054 gnometris/tetris.cpp:1099 gnomine/gnomine.c:303
 #: gnotravex/gnotravex.c:1108 gnotski/gnotski.c:1018 gtali/gyahtzee.c:361
 #: iagno/gnothello.c:409 mahjongg/mahjongg.c:1346 same-gnome/same-gnome.c:659
 msgid "translator_credits"
@@ -750,7 +750,7 @@ msgstr "Läser in bilder..."
 msgid "Dealing game..."
 msgstr "Delar ut..."
 
-#: aisleriot/sol.c:425 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:906
+#: aisleriot/sol.c:425 gnometris/scoreframe.cpp:42 same-gnome/same-gnome.c:906
 msgid "Score: "
 msgstr "Poäng: "
 
@@ -2551,7 +2551,7 @@ msgstr "Ätbonus"
 msgid "Extra Life"
 msgstr "Extraliv"
 
-#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:196
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:197
 msgid "Game Over"
 msgstr "Spelet är slut"
 
@@ -3352,23 +3352,23 @@ msgstr "Sätt startnivå (1-10)"
 msgid "LEVEL"
 msgstr "NIVÅ"
 
-#: gnometris/scoreframe.cpp:31
+#: gnometris/scoreframe.cpp:33
 msgid "Game Status"
 msgstr "Spelstatus"
 
-#: gnometris/scoreframe.cpp:37
+#: gnometris/scoreframe.cpp:46
 msgid "Lines: "
 msgstr "Linjer: "
 
-#: gnometris/scoreframe.cpp:41
+#: gnometris/scoreframe.cpp:50
 msgid "Level: "
 msgstr "Nivå: "
 
-#: gnometris/tetris.cpp:184
+#: gnometris/tetris.cpp:185
 msgid "Paused"
 msgstr "Gör paus"
 
-#: gnometris/tetris.cpp:257
+#: gnometris/tetris.cpp:277
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3381,7 +3381,7 @@ msgstr ""
 "\n"
 "Kontrollera din gnome-games-installation"
 
-#: gnometris/tetris.cpp:272
+#: gnometris/tetris.cpp:292
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3394,44 +3394,61 @@ msgstr ""
 "\n"
 "Kontrollera din gnome-games-installation"
 
-#: gnometris/tetris.cpp:583
+#: gnometris/tetris.cpp:606
 msgid "Gnometris preferences"
 msgstr "Inställningar för Gnometris"
 
+#: gnometris/tetris.cpp:618
+msgid "Setup"
+msgstr "Konfiguration"
+
 #. pre-filled rows
-#: gnometris/tetris.cpp:611
+#: gnometris/tetris.cpp:632
 msgid "Number of pre-filled rows:"
 msgstr "Antal förifyllda rader:"
 
-#: gnometris/tetris.cpp:632
+#. pre-filled rows density
+#: gnometris/tetris.cpp:647
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Densiteten av klossar i en förifylld rad:"
 
-#: gnometris/tetris.cpp:653
+#. starting level
+#: gnometris/tetris.cpp:662
 msgid "Starting Level:"
 msgstr "Startnivå:"
 
-#: gnometris/tetris.cpp:670
+#: gnometris/tetris.cpp:684
+msgid "Operation"
+msgstr "Åtgärd"
+
+#: gnometris/tetris.cpp:697
 msgid "Preview next block"
 msgstr "Förhandsgranska nästa kloss"
 
-#: gnometris/tetris.cpp:680
+#: gnometris/tetris.cpp:706
 msgid "Random block colors"
 msgstr "Slumpmässiga klossfärger"
 
-#: gnometris/tetris.cpp:692
+#: gnometris/tetris.cpp:717
 msgid "Rotate counterclockwise"
 msgstr "Rotera moturs"
 
-#: gnometris/tetris.cpp:708
-msgid "Block Pixmap: "
-msgstr "Klosspixmap: "
+#: gnometris/tetris.cpp:735 same-gnome/same-gnome.c:610
+#: same-gnome/same-gnome.c:634
+msgid "Theme"
+msgstr "Tema"
 
-#: gnometris/tetris.cpp:725
-msgid "Background Pixmap: "
-msgstr "Bakgrundspixmap: "
+#. Block pixmap
+#: gnometris/tetris.cpp:749
+msgid "Block Image: "
+msgstr "Blockbild: "
 
-#: gnometris/tetris.cpp:1080
+#. background pixmap
+#: gnometris/tetris.cpp:762
+msgid "Background Image: "
+msgstr "Bakgrundsbild: "
+
+#: gnometris/tetris.cpp:1122
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -4347,10 +4364,6 @@ msgstr ""
 msgid "Same GNOME Preferences"
 msgstr "Inställningar för SameGNOME"
 
-#: same-gnome/same-gnome.c:610 same-gnome/same-gnome.c:634
-msgid "Theme"
-msgstr "Tema"
-
 #: same-gnome/same-gnome.c:681
 msgid "Original idea from KDE's same game program."
 msgstr "Originalidé från KDEs same game-program."
@@ -4367,6 +4380,18 @@ msgstr "Välkommen till SameGNOME!"
 msgid "GNOME SameGame"
 msgstr "SameGame för GNOME"
 
+#~ msgid "Block Image:"
+#~ msgstr "Blockbild:"
+
+#~ msgid "Background Image:"
+#~ msgstr "Bakgrundsbild:"
+
+#~ msgid "Background Image"
+#~ msgstr "Bakgrundsbild"
+
+#~ msgid "Background Pixmap: "
+#~ msgstr "Bakgrundspixmap: "
+
 #~ msgid "Card Style:"
 #~ msgstr "Kortstil:"
 
@@ -4378,9 +4403,6 @@ msgstr "SameGame för GNOME"
 
 #~ msgid "Surr."
 #~ msgstr "Ge upp"
-
-#~ msgid "Background image"
-#~ msgstr "Bakgrundsbild"
 
 #~ msgid "Show _Tool Bar"
 #~ msgstr "Visa _verktygsrad"
@@ -5090,9 +5112,6 @@ msgstr "SameGame för GNOME"
 
 #~ msgid "Props"
 #~ msgstr "Egenskaper"
-
-#~ msgid "Options"
-#~ msgstr "Alternativ"
 
 #~ msgid "Clear"
 #~ msgstr "Rensa"
