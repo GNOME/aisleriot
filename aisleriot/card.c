@@ -15,21 +15,17 @@
  * License along with this library; if not, write to the Free
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-#define CARD_C
 
 #include "../freecell/gdk-card-image/gdk-card-image.h"
 #include "card.h"
 
 GdkPixmap *default_background_pixmap; 
 GdkPixmap *slot_pixmap;
-GdkPixmap *card_back_pixmap;
 GdkBitmap *mask;
 
-GdkPixmap* get_card_picture(gint suit, gint value ) {
-  GdkPixmap *ret;
-  gdk_card_image(13*((4-suit)%4)+value-1, &ret, NULL); 
-
-  return ret;
+GdkPixmap* get_card_picture (gint suit, gint value ) 
+{
+  return gdk_card_image_face (suit, (value - 1) % 13);
 }
 
 GdkPixmap* get_background_pixmap() {
@@ -41,19 +37,19 @@ GdkPixmap* get_slot_pixmap() {
   return slot_pixmap;
 }
 
-GdkPixmap* get_card_back_pixmap() {
-  return card_back_pixmap;
+GdkPixmap* get_card_back_pixmap () {
+  return gdk_card_image_back ();
 }
 
 int get_card_width() {
   int width, height;
-  gdk_window_get_size(card_back_pixmap, &width, &height);
+  gdk_window_get_size(gdk_card_image_back (), &width, &height);
   return width;
 }
 
 int get_card_height() {
   int width, height;
-  gdk_window_get_size(card_back_pixmap, &width, &height);
+  gdk_window_get_size(gdk_card_image_back (), &width, &height);
   return height;
 }
 
@@ -90,13 +86,17 @@ GdkPixmap* get_pixmap (char* filename)
 
 void load_pixmaps(GtkWidget* app) 
 {
-
+  gdk_card_image_init (app->window);
+  mask = gdk_card_image_mask (); 
   slot_pixmap = get_pixmap ("cards/Cardback4.xpm");
-  card_back_pixmap = get_pixmap ("cards/Cardback1.xpm");
   default_background_pixmap = get_pixmap ("cards/Baize.xpm");
+}
 
-  gdk_card_image_init(app->window);
-  gdk_card_image(0, NULL, &mask); 
+void free_pixmaps() 
+{
+  gdk_card_image_unref ();
+  gdk_pixmap_unref (slot_pixmap);
+  gdk_pixmap_unref (default_background_pixmap);
 }
 
 void add_card(GList** card_list, hcard_type temp_card) {

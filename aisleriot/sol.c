@@ -270,9 +270,11 @@ void main_prog(int argc, char *argv[])
 
   gtk_main ();
 
-  /* clean up (needs some work ): */
-  delete_surface();
-  free(press_data);
+  free_pixmaps();
+  gdk_pixmap_unref (surface);
+  gdk_pixmap_unref (press_data->moving_pixmap);
+  gdk_bitmap_unref (press_data->moving_mask);
+  gdk_window_unref (press_data->moving_cards);
 }
 
 

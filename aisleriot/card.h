@@ -44,29 +44,25 @@ typedef card_type* hcard_type;
 /*
  * Variables
  */
-#ifndef CARD_C
-extern GdkPixmap *default_background_pixmap; 
-extern GdkPixmap *slot_pixmap;
-extern GdkPixmap *card_back_pixmap;
-extern GdkPixmap card_pixmaps[52];
 extern GdkBitmap *mask;
-#endif
+
 /*
  * Functions
  */
-GdkPixmap* get_card_picture(gint, gint);
-GdkPixmap* get_slot_pixmap();
-GdkPixmap* get_background_pixmap();
-GdkPixmap* get_card_back_pixmap();
+GdkPixmap* get_card_picture (gint, gint);
+GdkPixmap* get_slot_pixmap ();
+GdkPixmap* get_background_pixmap ();
+GdkPixmap* get_card_back_pixmap ();
 
-void load_pixmaps(GtkWidget*);
+void load_pixmaps (GtkWidget*);
+void free_fixmaps ();
 
-int get_card_width();
-int get_card_height();
-int get_horiz_offset();
-int get_vert_offset();
-int get_vert_start();
-int get_horiz_start();
+int get_card_width ();
+int get_card_height ();
+int get_horiz_offset ();
+int get_vert_offset ();
+int get_vert_start ();
+int get_horiz_start ();
 
-void add_card(GList**, hcard_type);
+void add_card (GList**, hcard_type);
 #endif

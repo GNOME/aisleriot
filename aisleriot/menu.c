@@ -251,11 +251,15 @@ GnomeUIInfo variation_menu[] = {
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
+
 GnomeUIInfo help_menu[] = {
-  {GNOME_APP_UI_ITEM, N_("About..."), NULL, help_about_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  GNOMEUIINFO_ITEM_STOCK(N_("_About..."), NULL, 
+			 help_about_callback, GNOME_STOCK_MENU_ABOUT),
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_HELP("aisleriot"),
+
+  GNOMEUIINFO_END
 };
 
 GnomeUIInfo game_menu[] = {
@@ -273,14 +277,15 @@ GnomeUIInfo game_menu[] = {
 };
 
 GnomeUIInfo top_menu[] = {
-  {GNOME_APP_UI_SUBTREE, N_("Game"), NULL, game_menu, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  {GNOME_APP_UI_SUBTREE, N_("Variation"), NULL, variation_menu, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  {GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  GNOMEUIINFO_SUBTREE(N_("Game"), game_menu),
+
+  GNOMEUIINFO_SUBTREE(N_("Variation"), variation_menu),
+
+  GNOMEUIINFO_JUSTIFY_RIGHT,
+
+  GNOMEUIINFO_SUBTREE(N_("_Help"), help_menu),
+
+  GNOMEUIINFO_END
 };
 GnomeUIInfo toolbar[] =
 {
