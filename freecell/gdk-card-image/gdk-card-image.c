@@ -30,9 +30,9 @@
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
-#ifdef __FreeBSD__
+#if HAVE_DIRENT_H
 #include <dirent.h>
-#endif
+#else
 #if defined HAVE_SYS_DIRENT_H
 #include <sys/dirent.h>
 #endif
@@ -40,6 +40,7 @@
 #include <sys/dir.h>
 #else
 #include <dirent.h>
+#endif
 #endif
 
 #ifdef __osf__
