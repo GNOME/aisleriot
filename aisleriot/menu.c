@@ -298,6 +298,10 @@ void undo_set_sensitive (gboolean state)
 {
   gtk_widget_set_sensitive (control_menu[2].widget, state);
   gtk_widget_set_sensitive (toolbar[4].widget, state);
+
+  /* The restart game validity condition is the same as for undo. */
+  gtk_widget_set_sensitive (game_menu[1].widget, state);
+  gtk_widget_set_sensitive (toolbar[1].widget, state);
 }
 
 void redo_set_sensitive (gboolean state)

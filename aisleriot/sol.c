@@ -259,7 +259,7 @@ void new_game (gchar* file, guint *seedp)
     
     undo_set_sensitive (FALSE);
     redo_set_sensitive (FALSE);
-    
+
     game_over = FALSE;
     make_title();
   }
