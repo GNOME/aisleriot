@@ -35,6 +35,7 @@
 #include "events.h"
 
 static GtkWidget *hint_dlg = NULL;
+static GtkWidget* seed_entry;
 
 void show_game_over_dialog() {
   GtkWidget* dialog;
@@ -97,20 +98,30 @@ static void select_rules(GtkTreeSelection *select, gpointer data)
 	gtk_tree_model_get(model, &iter, 1, &filename, -1);
 }
 
-static void select_game (GtkWidget *app, gint response, GtkWidget* entry)
+static void select_game (GtkWidget *app, gint response, gpointer data)
 {
   if(response == GTK_RESPONSE_OK) {
-    seed = atoi (gtk_entry_get_text (GTK_ENTRY (entry)));
+    seed = atoi (gtk_entry_get_text (GTK_ENTRY (seed_entry)));
     new_game (filename, &seed);
   }
 
-	gtk_widget_hide(app);
+  gtk_widget_hide(app);
 }
+
+static gboolean 
+select_double_click (GtkWidget * widget, GdkEventButton * event, gpointer dialog)
+{
+  /* Handle a double click by faking a click on the OK button. */
+  if (event->type == GDK_2BUTTON_PRESS) {
+    select_game (GTK_WIDGET (dialog), GTK_RESPONSE_OK, NULL);
+  }
+
+  return FALSE;
+} 
 
 void show_select_game_dialog() 
 {
   static GtkWidget* dialog = NULL;
-  static GtkWidget* seed_entry;
   static GtkListStore* list;
   GtkListStore ** listp;
   static GtkWidget* list_view;
@@ -171,7 +182,8 @@ void show_select_game_dialog()
 
     g_signal_connect (G_OBJECT (select), "changed", 
                       G_CALLBACK (select_rules), NULL);
-		
+    g_signal_connect (G_OBJECT (list_view), "button_press_event",
+		      G_CALLBACK (select_double_click), (gpointer) dialog);
 
     scrolled_window = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
@@ -207,7 +219,7 @@ void show_select_game_dialog()
     gtk_dialog_set_default_response ( GTK_DIALOG (dialog), GTK_RESPONSE_OK );
 
     g_signal_connect (G_OBJECT (dialog), "response", 
-                      G_CALLBACK (select_game), seed_entry);
+                      G_CALLBACK (select_game), NULL);
 
     
     g_signal_connect (G_OBJECT (dialog), "delete_event",
