@@ -1,4 +1,53 @@
+gnome-games "Shiny Things Revenge" 2.3.3
+========================================
+
+13% Fewer bugs, 15% less fat and 7% more games.
+
+We now have a blackjack game courtesy of Jon McCann.
+
+The package has also lost 1.5 Mb due to the judicious use of jpeg
+compression.
+
+For the paranoid system administrator there are now the
+--disable-setgid, --with-scores-group and --with-scores-user options
+for configure to help you manage those pesky setgid binaries.
+
+The major changes, game by game:
+
+aisleriot:
+ * Should stop crashing if you have libguile >1.5.
+
+gataxx:
+ * The corruption when using the undo button has been fixed.
+ * Don't crash after 128 turns.
+ * Gataxx is now bug-free (TM).
+
+gdk-card-image:
+ * Some extra card images. Look for the "Dondorf" images.
+
+gnome-stones:
+ * There are now some sokoban levels to play. Thanks go to Alberto
+   Manuel Brandao Simoes for convering the levels from Herman
+   Mansilla's Yakoban game. Select the Gnomekoban levels from the
+   preferences dialog.
+
+gnometris:
+ * "Paused" and "Game over" messages.
+ * Key behaviour fixes when a new piece appears.
+ * Scoring consistency: dropping the blocks now scores as much as
+   using fast-fall with the down arrow. 
+ * Big PNG backgrounds converted to jpeg. The transition should happen
+   automatically and not be noticeable.
+
+mahjongg:
+ * The multiple score dialogs problem might have been fixed this time.
+
+Lots of fixes for behaviour and i18n all over the place, thanks should
+especially go to Steve Chaplin and Christian Rose for their patience
+in making sure I did things properly.
+
 gnome-games "The Freecell Players Will Lynch Me" 2.3.2
+======================================================
 
 There have been some major changes with gnome-games. Gnobots2 and
 Gnibbles are back, but Freecell has been removed. There are also 30%
