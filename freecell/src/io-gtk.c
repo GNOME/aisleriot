@@ -683,8 +683,10 @@ callback_about (GtkWidget *widget, GdkEvent *event)
   
   about = gnome_about_new (_("Freecell"), VERSION,
 			   "(C) 1998 Free Software Foundation, Inc.",
-			   (const char **)authors,
 			   _("Reimplement the popular solitaire card game."),
+			   (const char **)authors,
+			   NULL,
+			   NULL,
 			   NULL);
   gtk_widget_show (about);
 }

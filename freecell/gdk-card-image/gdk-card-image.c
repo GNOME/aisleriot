@@ -214,6 +214,9 @@ gdk_card_deck_get_type ()
 static int
 is_image (const struct dirent* dent)
 {
+       /* FIXME: need to find out if file is an image
+       * Probably use some gnome_vfs functions
+       * /
 	const char *type = gnome_mime_type (dent->d_name);
 	if (type == NULL ||
 	    strncmp (type, "image/", strlen ("image/")) != 0)
@@ -414,9 +417,10 @@ gdk_card_deck_options_edit_class_init (GdkCardDeckOptionsEditClass *klass)
 		    GTK_SIGNAL_OFFSET (GdkCardDeckOptionsEditClass, changed),
 		    gtk_signal_default_marshaller,
 		    GTK_TYPE_NONE, 0);
-
+#ifdef FIXME /* This seems to have no use in gtk now? */
   gtk_object_class_add_signals (object_class, gdk_card_deck_options_edit_signals,
 				N_SIGNALS);
+#endif
 
   object_class->destroy = gdk_card_deck_options_edit_destroy;
   klass->changed = NULL;

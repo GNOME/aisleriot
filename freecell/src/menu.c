@@ -104,8 +104,7 @@ GnomeUIInfo main_toolbarinfo[] =
 
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_ITEM_STOCK(N_("Score"), N_("View the scores"),
-			 callback_score, GNOME_STOCK_PIXMAP_SCORES),
+  GNOMEUIINFO_MENU_SCORES_ITEM(callback_score, NULL),
 
   GNOMEUIINFO_ITEM_STOCK(N_("Props"), N_("Configure Freecell"),
 			 callback_option, GNOME_STOCK_PIXMAP_PROPERTIES),

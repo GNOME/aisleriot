@@ -1,3 +1,14 @@
+2001-11-24  Kevin Vandersloot <kfv101@psu.edu>
+
+	Freecell doesn't compile yet. The problem now is g
+	gdk-card-image.c. Some updates though
+
+	* src/menu.c: GNOME_STOCK_PIXMAP_SCORES not defined anymore,
+	just use GNOMEUIINFO_MENU_SCORES_ITEM
+
+	* src/card-draw.c: (GdkWindowPrivate *)win->width no longer
+	defined, use gdk_window_get_geometry instead
+
 2001-05-30  Gediminas Paulauskas <menesis@delfi.lt>
 
 	* src/score-dialog.c: stock pixmap for clear button.

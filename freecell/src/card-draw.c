@@ -37,8 +37,6 @@ static void draw_hash(GdkWindow *window, GdkGC *gc, int x, int y);
 static void draw_background(GdkWindow *window, GdkGC *gc);
 
 #define CARD_ID(c) ((card_suit(c)-1)*13 + (card_rank(c) -1 ))
-#define W_WIDTH(w) ((GdkWindowPrivate *)w)->width
-#define W_HEIGHT(w) ((GdkWindowPrivate *)w)->height
 
 int
 card_image_width(void)
@@ -107,10 +105,10 @@ draw_hash(GdkWindow *window, GdkGC *gc, int x, int y)
 static void
 draw_background(GdkWindow *window, GdkGC *bg_gc)
 {
+  gint width, height;
+  gdk_window_get_geometry (window, NULL, NULL, &width, &height, NULL);
   gdk_draw_rectangle((GdkDrawable *)window, bg_gc, TRUE,
-		     0, 0,
-		     ((GdkWindowPrivate *)window)->width, 
-		     ((GdkWindowPrivate *)window)->height);
+		     0, 0, width, height);
 }
 
 void
@@ -120,8 +118,7 @@ card_draw_init(GtkWidget *widget)
 
   card_deck = gdk_card_deck_new(widget->window, NULL);
   clip = gdk_card_deck_mask (GDK_CARD_DECK (card_deck));
-  card_width = W_WIDTH(clip);
-  card_height = W_HEIGHT(clip);
+  gdk_window_get_geometry (GDK_WINDOW (clip), NULL, NULL, &card_width, &card_height, NULL);
   
   d_pixmap = gdk_pixmap_new(widget->window,
 			    card_width + 10, 5 * card_height,
