@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-16 15:45+0200\n"
-"PO-Revision-Date: 2004-07-16 17:38+0200\n"
+"POT-Creation-Date: 2004-07-19 03:56+0200\n"
+"PO-Revision-Date: 2004-07-19 14:58+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -608,7 +608,7 @@ msgstr "Karetní hry:"
 #. Translator credits
 #: aisleriot/menu.c:98 blackjack/src/menu.cpp:84 gataxx/gataxx.c:364
 #: glines/glines.c:945 gnect/src/main.c:811 gnibbles/main.c:182
-#: gnobots2/menu.c:224 gnome-stones/main.c:1094 gnometris/tetris.cpp:1282
+#: gnobots2/menu.c:224 gnome-stones/main.c:1094 gnometris/tetris.cpp:1425
 #: gnomine/gnomine.c:550 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1136
 #: gtali/gyahtzee.c:415 iagno/gnothello.c:369 mahjongg/mahjongg.c:1662
 #: same-gnome/same-gnome.c:707
@@ -793,7 +793,7 @@ msgid "Aisleriot"
 msgstr "AisleRiot"
 
 #: aisleriot/sol.c:404 glines/glines.c:1557 gnobots2/statusbar.c:65
-#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:57 gnomine/gnomine.c:539
+#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:58 gnomine/gnomine.c:539
 #: same-gnome/same-gnome.c:957
 msgid "Score:"
 msgstr "Skóre:"
@@ -803,11 +803,11 @@ msgstr "Skóre:"
 msgid "Time:"
 msgstr "Čas:"
 
-#: aisleriot/sol.c:458 blackjack/src/blackjack.cpp:596
+#: aisleriot/sol.c:458 blackjack/src/blackjack.cpp:592
 msgid "Variation on game rules"
 msgstr "Variace pravidel hry"
 
-#: aisleriot/sol.c:459 blackjack/src/blackjack.cpp:597 gnobots2/gnobots.c:61
+#: aisleriot/sol.c:459 blackjack/src/blackjack.cpp:593 gnobots2/gnobots.c:61
 #: gnobots2/gnobots.c:63 same-gnome/same-gnome.c:887
 msgid "NAME"
 msgstr "JMÉNO"
@@ -1525,7 +1525,7 @@ msgstr "Přesunout sadu karet na prázdné stolní místo"
 msgid "the appropriate Foundation pile"
 msgstr "odpovídající základní hromádka"
 
-#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:232
+#: blackjack/data/blackjack.desktop.in.h:1 blackjack/src/blackjack.cpp:231
 #: blackjack/src/menu.cpp:107 blackjack/src/splash.cpp:95
 msgid "Blackjack"
 msgstr "Blackjack"
@@ -1576,19 +1576,19 @@ msgstr "Použít rychlé rozdávání bez zpoždění mezi kartami."
 msgid "Blackjack: %s (%d)"
 msgstr "Blackjack: %s (%d)"
 
-#: blackjack/src/blackjack.cpp:316
+#: blackjack/src/blackjack.cpp:312
 msgid "Cards left:"
 msgstr "Zbylé karty:"
 
-#: blackjack/src/blackjack.cpp:325
+#: blackjack/src/blackjack.cpp:321
 msgid "Wager:"
 msgstr "Sázka:"
 
-#: blackjack/src/blackjack.cpp:338
+#: blackjack/src/blackjack.cpp:334
 msgid "Balance:"
 msgstr "Zůstatek:"
 
-#: blackjack/src/blackjack.cpp:353
+#: blackjack/src/blackjack.cpp:349
 msgid "Place your wager or deal a hand"
 msgstr "Oznamte sázku nebo rozdávejte karty"
 
@@ -1608,7 +1608,7 @@ msgstr "Nastavte svou sázku nebo rozdejte nové karty kliknutím na karty."
 msgid "Blackjack Preferences"
 msgstr "Nastavení Blackjacku"
 
-#: blackjack/src/dialog.cpp:219 gnobots2/properties.c:894
+#: blackjack/src/dialog.cpp:219 gnobots2/properties.c:850
 msgid "Game"
 msgstr "Hra"
 
@@ -1954,7 +1954,7 @@ msgstr "Bílé"
 msgid "_Appearance"
 msgstr "_Vzhled"
 
-#: gataxx/properties.c:382 gnect/src/prefs.c:424 gnobots2/properties.c:932
+#: gataxx/properties.c:382 gnect/src/prefs.c:424 gnobots2/properties.c:888
 msgid "Appearance"
 msgstr "Vzhled"
 
@@ -2124,11 +2124,11 @@ msgstr "Položení kamene"
 msgid "Key press to drop a marble."
 msgstr "Klávesa pro položení kamene."
 
-#: gnect/data/gnect.schemas.in.h:5
+#: gnect/data/gnect.schemas.in.h:5 gnometris/gnometris.schemas.in.h:6
 msgid "Key press to move left."
 msgstr "Klávesa pro přesun doleva."
 
-#: gnect/data/gnect.schemas.in.h:6
+#: gnect/data/gnect.schemas.in.h:6 gnometris/gnometris.schemas.in.h:7
 msgid "Key press to move right."
 msgstr "Klávesa pro přesun doprava."
 
@@ -2141,10 +2141,12 @@ msgid "Level of Player Two"
 msgstr "Úroveň Hráče 2"
 
 #: gnect/data/gnect.schemas.in.h:9 gnibbles/gnibbles.schemas.in.h:18
+#: gnometris/gnometris.schemas.in.h:13
 msgid "Move left"
 msgstr "Pohyb doleva"
 
 #: gnect/data/gnect.schemas.in.h:10 gnibbles/gnibbles.schemas.in.h:19
+#: gnometris/gnometris.schemas.in.h:14
 msgid "Move right"
 msgstr "Pohyb doprava"
 
@@ -2152,7 +2154,7 @@ msgstr "Pohyb doprava"
 msgid "Show tool bar"
 msgstr "Zobrazit lištu nástrojů"
 
-#: gnect/data/gnect.schemas.in.h:12 gnome-stones/preferences.c:850
+#: gnect/data/gnect.schemas.in.h:12 gnome-stones/preferences.c:854
 msgid "Sound"
 msgstr "Zvuk"
 
@@ -2319,7 +2321,7 @@ msgid "Four-in-a-row Preferences"
 msgstr "Nastavení Čtyř-v-řadě"
 
 #: gnect/src/prefs.c:392 gnibbles/preferences.c:213
-#: gnome-stones/preferences.c:740
+#: gnome-stones/preferences.c:744 gnometris/tetris.cpp:768
 msgid "_Game"
 msgstr "_Hra"
 
@@ -2335,7 +2337,7 @@ msgstr "Povolit _animace"
 msgid "Controls"
 msgstr "Ovládání"
 
-#: gnect/src/prefs.c:457 gnibbles/preferences.c:376
+#: gnect/src/prefs.c:457 gnibbles/preferences.c:376 gnometris/tetris.cpp:899
 msgid "Keyboard controls"
 msgstr "Ovládání klávesnicí"
 
@@ -2432,7 +2434,7 @@ msgid "Enable fake bonuses."
 msgstr "Povolit falešné bonusy."
 
 #: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:302
-#: gnobots2/properties.c:871
+#: gnobots2/properties.c:827 gnometris/tetris.cpp:830
 msgid "Enable sounds"
 msgstr "Povolit zvuky"
 
@@ -2483,7 +2485,7 @@ msgstr "Klávesa, kterou použít pro pohyb doprava."
 msgid "Key to use for motion up."
 msgstr "Klávesa, kterou použít pro pohyb nahoru."
 
-#: gnibbles/gnibbles.schemas.in.h:17
+#: gnibbles/gnibbles.schemas.in.h:17 gnometris/gnometris.schemas.in.h:12
 msgid "Move down"
 msgstr "Posunout dolů"
 
@@ -2550,7 +2552,7 @@ msgstr "Sníst bonus"
 msgid "Extra Life"
 msgstr "Extra život"
 
-#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:252
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:280
 msgid "Game Over"
 msgstr "Konec hry"
 
@@ -2600,7 +2602,7 @@ msgstr "Tak dobrý, že má křeč v prstech"
 
 #. Options
 #: gnibbles/preferences.c:273 gnibbles/preferences.c:395
-#: gnobots2/properties.c:843 iagno/properties.c:664
+#: gnobots2/properties.c:799 iagno/properties.c:664
 msgid "Options"
 msgstr "Nastavení"
 
@@ -2716,7 +2718,7 @@ msgstr "Povolit zvuky hry"
 msgid "Enable game sounds. Play sounds for various events throughout the game."
 msgstr "Povolit zvuky hry. Přehrávat zvuky pro různé události ve hře."
 
-#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:880
+#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:836
 msgid "Enable splats"
 msgstr "Povolit rozmáčknutí"
 
@@ -2876,7 +2878,7 @@ msgid "The name of the key used to wait. The name is a standard X key name."
 msgstr ""
 "Název klávesy používané pro čekání. Název je standardní název klávesy v X."
 
-#: gnobots2/gnobots2.schemas.in.h:35 gnobots2/properties.c:853
+#: gnobots2/gnobots2.schemas.in.h:35 gnobots2/properties.c:809
 msgid "Use safe moves"
 msgstr "Používat bezpečné pohyby"
 
@@ -2890,7 +2892,7 @@ msgstr ""
 "smrti omylem. Pokud se pokusíte provést tah, který by vedl k vaší smrti, a "
 "existuje bezpečný tah, nebude vám dovoleno pokračovat."
 
-#: gnobots2/gnobots2.schemas.in.h:37 gnobots2/properties.c:862
+#: gnobots2/gnobots2.schemas.in.h:37 gnobots2/properties.c:818
 msgid "Use super safe moves"
 msgstr "Používat super-bezpečné pohyby"
 
@@ -2936,7 +2938,7 @@ msgid "Could not find '%s' image file for GNOME Robots\n"
 msgstr "Nemohu nalézt soubor obrázku '%s' pro GNOME Robots\n"
 
 #. FIXME: Someday these should be part of a gnome-games icon theme.
-#: gnobots2/menu.c:65 gnobots2/menu.c:112 gnobots2/properties.c:973
+#: gnobots2/menu.c:65 gnobots2/menu.c:112
 msgid "Teleport"
 msgstr "Teleport"
 
@@ -2952,7 +2954,7 @@ msgstr "Náhodně"
 msgid "Teleport randomly"
 msgstr "Náhodně se teleportovat"
 
-#: gnobots2/menu.c:67 gnobots2/menu.c:120 gnobots2/properties.c:1001
+#: gnobots2/menu.c:67 gnobots2/menu.c:120
 msgid "Wait"
 msgstr "Čekat"
 
@@ -2968,244 +2970,240 @@ msgstr "Posu_nout"
 msgid "GNOME Robots Game"
 msgstr "Hra GNOME Robots"
 
-#: gnobots2/properties.c:227
+#: gnobots2/properties.c:225
 msgid "Initial Number of Type 1 Robots"
 msgstr "Počáteční počet robotů typu 1"
 
-#: gnobots2/properties.c:229
+#: gnobots2/properties.c:227
 msgid "Initial Number of Robots"
 msgstr "Počáteční počet robotů:"
 
-#: gnobots2/properties.c:243
+#: gnobots2/properties.c:241
 msgid "Initial Number of Type 2 Robots"
 msgstr "Počáteční počet robotů typu 2"
 
-#: gnobots2/properties.c:256
+#: gnobots2/properties.c:254
 msgid "Increasing Number of Type 1 Robots per Level"
 msgstr "Zvýšení počtu robotů typu 1 na úroveň"
 
-#: gnobots2/properties.c:258
+#: gnobots2/properties.c:256
 msgid "Increasing Number of Robots per Level"
 msgstr "Zvýšení počtu robotů na úroveň"
 
-#: gnobots2/properties.c:271
+#: gnobots2/properties.c:269
 msgid "Increasing Number of Type 2 Robots per Level"
 msgstr "Zvýšení počtu robotů typu 2 na úroveň"
 
-#: gnobots2/properties.c:284
+#: gnobots2/properties.c:282
 msgid "Maximum Number of Type 1 Robots"
 msgstr "Maximální počet robotů typu 1"
 
-#: gnobots2/properties.c:286
+#: gnobots2/properties.c:284
 msgid "Maximum Number of Robots"
 msgstr "Maximální počet robotů"
 
-#: gnobots2/properties.c:289 gnobots2/properties.c:305
+#: gnobots2/properties.c:287 gnobots2/properties.c:303
 #, c-format
 msgid "Fill Screen"
 msgstr "Vyplnit obrazovku"
 
-#: gnobots2/properties.c:303
+#: gnobots2/properties.c:301
 msgid "Maximum Number of Type 2 Robots"
 msgstr "Maximální počet robotů typu 1"
 
-#: gnobots2/properties.c:320
+#: gnobots2/properties.c:318
 msgid "Type 1 Robot Score"
 msgstr "Skóre robota typu 1"
 
-#: gnobots2/properties.c:322
+#: gnobots2/properties.c:320
 msgid "Robot Score"
 msgstr "Skóre robota"
 
-#: gnobots2/properties.c:335
+#: gnobots2/properties.c:333
 msgid "Type 2 Robot Score"
 msgstr "Skóre robota typu 2"
 
-#: gnobots2/properties.c:348
+#: gnobots2/properties.c:346
 msgid "Type 1 Robot Score When Waiting"
 msgstr "Skóre robota typu 1 při čekání"
 
-#: gnobots2/properties.c:350
+#: gnobots2/properties.c:348
 msgid "Robot Score When Waiting"
 msgstr "Skóre robota při čekání"
 
-#: gnobots2/properties.c:363
+#: gnobots2/properties.c:361
 msgid "Type 2 Robot Score When Waiting"
 msgstr "Skóre robota typu 2 při čekání"
 
-#: gnobots2/properties.c:376
+#: gnobots2/properties.c:374
 msgid "Type 1 Robot Score When Splatted"
 msgstr "Skóre robota typu 1 při rozmáčknutí"
 
-#: gnobots2/properties.c:378
+#: gnobots2/properties.c:376
 msgid "Robot Score When Splatted"
 msgstr "Skóre robota při rozmáčknutí"
 
-#: gnobots2/properties.c:391
+#: gnobots2/properties.c:389
 msgid "Type 2 Robot Score When Splatted"
 msgstr "Skóre robota typu 2 při rozmáčknutí"
 
-#: gnobots2/properties.c:403
+#: gnobots2/properties.c:401
 msgid "Initial Number of Safe Teleports"
 msgstr "Počáteční počet bezpečných teleportů"
 
-#: gnobots2/properties.c:414
+#: gnobots2/properties.c:412
 msgid "Number of Free Safe Teleports per Level"
 msgstr "Počet bezpečných teleportů na úroveň"
 
-#: gnobots2/properties.c:425
+#: gnobots2/properties.c:423
 msgid "Kills Required While Waiting to Get A Safe Teleport"
 msgstr "Vyžadovaný počet zabití při čekání pro získání bezpečného teleportu"
 
-#: gnobots2/properties.c:436
+#: gnobots2/properties.c:434
 msgid "Score Required To Get A Safe Teleport"
 msgstr "Skóre vyžadované pro získání bezpečného teleportu"
 
-#: gnobots2/properties.c:447
+#: gnobots2/properties.c:445
 msgid "Maximum Number of Safe Teleports"
 msgstr "Maximální počet bezpečných teleportů"
 
-#: gnobots2/properties.c:458
+#: gnobots2/properties.c:456
 msgid "Moveable Junkheaps"
 msgstr "Přesouvatelné hromady smetí"
 
-#: gnobots2/properties.c:460
+#: gnobots2/properties.c:458
 msgid "Yes"
 msgstr "Ano"
 
-#: gnobots2/properties.c:462
+#: gnobots2/properties.c:460
 msgid "No"
 msgstr "Ne"
 
-#: gnobots2/properties.c:654
+#: gnobots2/properties.c:621
 msgid "classic robots"
 msgstr "klasičtí roboti"
 
-#: gnobots2/properties.c:655
+#: gnobots2/properties.c:622
 msgid "robots2"
 msgstr "roboti2"
 
-#: gnobots2/properties.c:656
+#: gnobots2/properties.c:623
 msgid "robots2 easy"
 msgstr "roboti2 snadní"
 
-#: gnobots2/properties.c:657
+#: gnobots2/properties.c:624
 msgid "robots with safe teleport"
 msgstr "roboti s bezpečným teleportem"
 
-#: gnobots2/properties.c:658
+#: gnobots2/properties.c:625
 msgid "nightmare"
 msgstr "noční můra"
 
-#: gnobots2/properties.c:687
+#: gnobots2/properties.c:654
 msgid "robots"
 msgstr "roboti"
 
-#: gnobots2/properties.c:688
+#: gnobots2/properties.c:655
 msgid "cows"
 msgstr "krávy"
 
-#: gnobots2/properties.c:689
+#: gnobots2/properties.c:656
 msgid "eggs"
 msgstr "vejce"
 
-#: gnobots2/properties.c:690
+#: gnobots2/properties.c:657
 msgid "gnomes"
 msgstr "trpaslíci"
 
-#: gnobots2/properties.c:691
+#: gnobots2/properties.c:658
 msgid "mice"
 msgstr "myši"
 
-#: gnobots2/properties.c:692
+#: gnobots2/properties.c:659
 msgid "windows"
 msgstr "okna"
 
-#: gnobots2/properties.c:763
+#: gnobots2/properties.c:719
 msgid "GNOME Robots Preferences"
 msgstr "Nastavení GNOME Robots"
 
-#: gnobots2/properties.c:780
+#: gnobots2/properties.c:736
 msgid "Game Type"
 msgstr "Typ hry"
 
-#: gnobots2/properties.c:805
+#: gnobots2/properties.c:761
 msgid "Property"
 msgstr "Vlastnost"
 
-#: gnobots2/properties.c:812
+#: gnobots2/properties.c:768
 msgid "Value"
 msgstr "Hodnota"
 
-#: gnobots2/properties.c:859
+#: gnobots2/properties.c:815
 msgid "Prevent some dangerous moves"
 msgstr "Bránit některým nebezpečným tahům"
 
-#: gnobots2/properties.c:860
+#: gnobots2/properties.c:816
 msgid "Prevent accidental moves that result in getting killed."
 msgstr "Bránit náhodným tahům, které způsobí smrt."
 
-#: gnobots2/properties.c:868
+#: gnobots2/properties.c:824
 msgid "Prevent all dangerous moves"
 msgstr "Bránit všem nebezpečným tahům"
 
-#: gnobots2/properties.c:869
+#: gnobots2/properties.c:825
 msgid "Prevents all moves that result in getting killed."
 msgstr "Bránit všem tahům, které způsobí smrt."
 
-#: gnobots2/properties.c:877
+#: gnobots2/properties.c:833
 msgid "Play sounds for major events"
 msgstr "Přehrávat zvuky pro hlavní události"
 
-#: gnobots2/properties.c:878
+#: gnobots2/properties.c:834
 msgid "Play sounds for events like winning a level and dying."
 msgstr "Přehrávat zvuky pro události jako výhra úrovně a smrt."
 
-#: gnobots2/properties.c:886
+#: gnobots2/properties.c:842
 msgid "Play a sound when two robots collide"
 msgstr "Přehrávat zvuk, když se dva roboti srazí"
 
-#: gnobots2/properties.c:887
+#: gnobots2/properties.c:843
 msgid "Play the most common, and potentially the most annoying, sound."
 msgstr "Přehrávat nejčastější a potenciálně nejvíce otravný zvuk."
 
-#: gnobots2/properties.c:890
+#: gnobots2/properties.c:846
 msgid "You Cannot Change the Game Type When Playing"
 msgstr "Nemůžete změnit typ hry, když hrajete"
 
-#: gnobots2/properties.c:902
+#: gnobots2/properties.c:858
 msgid "Graphics Theme"
 msgstr "Téma grafiky"
 
-#: gnobots2/properties.c:911
+#: gnobots2/properties.c:867
 msgid "Image theme:"
 msgstr "Téma obrázků:"
 
-#: gnobots2/properties.c:921
+#: gnobots2/properties.c:877
 msgid "Background color:"
 msgstr "Barva pozadí:"
 
-#: gnobots2/properties.c:939
+#: gnobots2/properties.c:895
 msgid "Keyboard Controls"
 msgstr "Ovládání klávesnicí"
 
-#: gnobots2/properties.c:987
-msgid "Random Teleport"
-msgstr "Náhodný teleport"
-
-#: gnobots2/properties.c:1020
+#: gnobots2/properties.c:921
 msgid "Use the Keypad"
 msgstr "Používat numerickou klávesnici"
 
-#: gnobots2/properties.c:1025
+#: gnobots2/properties.c:926
 msgid "Use Left Hand Keys"
 msgstr "Používat klávesy pro levou ruku"
 
-#: gnobots2/properties.c:1030
+#: gnobots2/properties.c:931
 msgid "Use Original Robots Keys"
 msgstr "Používat původní klávesy robots"
 
-#: gnobots2/properties.c:1035
+#: gnobots2/properties.c:936
 msgid "Keyboard"
 msgstr "Klávesnice"
 
@@ -3213,7 +3211,7 @@ msgstr "Klávesnice"
 msgid "Safe Teleports:"
 msgstr "Bezpečné teleporty:"
 
-#: gnobots2/statusbar.c:85 gnometris/scoreframe.cpp:78
+#: gnobots2/statusbar.c:85 gnometris/scoreframe.cpp:79
 msgid "Level:"
 msgstr "Úroveň:"
 
@@ -3283,7 +3281,7 @@ msgstr "Zařízení joysticku"
 msgid "Joystick switch level"
 msgstr "Úroveň přepnutí joysticku"
 
-#: gnome-stones/gnome-stones.schemas.in.h:9 gnome-stones/preferences.c:889
+#: gnome-stones/gnome-stones.schemas.in.h:9 gnome-stones/preferences.c:894
 msgid "Scroll method"
 msgstr "Metoda posunování"
 
@@ -3365,7 +3363,7 @@ msgstr ""
 msgid "GNOME Stones"
 msgstr "GNOME Stones"
 
-#: gnome-stones/main.c:286 gnome-stones/preferences.c:678
+#: gnome-stones/main.c:286 gnome-stones/preferences.c:682
 msgid "Game title"
 msgstr "Titul hry"
 
@@ -3375,7 +3373,8 @@ msgstr "Počáteční jeskyně"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:430 gnome-stones/main.c:1040 mahjongg/mahjongg.c:870
+#: gnome-stones/main.c:430 gnome-stones/main.c:1040
+#: gnometris/gnometris.schemas.in.h:15 mahjongg/mahjongg.c:870
 msgid "Pause"
 msgstr "Pauza"
 
@@ -3448,60 +3447,60 @@ msgstr "Ujistěte se prosím že je GNOME Stones správně nainstalována."
 msgid "You may be able to select a different game from the preferences dialog."
 msgstr "Možná budete moci vybrat jinou hru v dialogu nastavení."
 
-#: gnome-stones/preferences.c:628
+#: gnome-stones/preferences.c:632
 msgid "GNOME Stones Preferences"
 msgstr "Nastavení GNOME Stones"
 
-#: gnome-stones/preferences.c:685
+#: gnome-stones/preferences.c:689
 msgid "Caves"
 msgstr "Jeskyně"
 
-#: gnome-stones/preferences.c:762
+#: gnome-stones/preferences.c:766
 msgid "Device"
 msgstr "Zařízení"
 
-#: gnome-stones/preferences.c:771
+#: gnome-stones/preferences.c:775
 msgid "Joystick device:"
 msgstr "Zařízení joysticku:"
 
 #. We definatly have a "disable" entry.
-#: gnome-stones/preferences.c:777
+#: gnome-stones/preferences.c:781
 msgid "disabled"
 msgstr "vypnuté"
 
-#: gnome-stones/preferences.c:808
+#: gnome-stones/preferences.c:812
 msgid "Digital joystick emulation"
 msgstr "Emulace digitálního joysticku"
 
-#: gnome-stones/preferences.c:817
+#: gnome-stones/preferences.c:821
 msgid "Switch level:"
 msgstr "Úroveň přepnutí:"
 
-#: gnome-stones/preferences.c:840
+#: gnome-stones/preferences.c:844
 msgid "_Joystick"
 msgstr "_Joystick"
 
-#: gnome-stones/preferences.c:858
+#: gnome-stones/preferences.c:862
 msgid "Enable sound"
 msgstr "Povolit zvuk"
 
-#: gnome-stones/preferences.c:870
+#: gnome-stones/preferences.c:874
 msgid "_Sound"
 msgstr "_Zvuk"
 
-#: gnome-stones/preferences.c:909
+#: gnome-stones/preferences.c:914
 msgid "Atari like scrolling"
 msgstr "Posunování podle Atari"
 
-#: gnome-stones/preferences.c:913
+#: gnome-stones/preferences.c:918
 msgid "Smooth scrolling"
 msgstr "Hladké posunování"
 
-#: gnome-stones/preferences.c:917
+#: gnome-stones/preferences.c:922
 msgid "Always in the center"
 msgstr "Vždy uprostřed"
 
-#: gnome-stones/preferences.c:929
+#: gnome-stones/preferences.c:934
 msgid "_Misc."
 msgstr "_Různé"
 
@@ -3532,27 +3531,59 @@ msgstr "Trénovací jeskyně"
 msgid "Fit falling blocks together"
 msgstr "Skládat padací bloky dohromady"
 
-#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:114
+#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:138
 msgid "Gnometris"
 msgstr "Gnometris"
 
 #: gnometris/gnometris.schemas.in.h:1
+msgid "Drop"
+msgstr "Upustit"
+
+#: gnometris/gnometris.schemas.in.h:2
 msgid "Image to use for drawing blocks"
 msgstr "Obrázek, který používat pro kreslení kostek"
 
-#: gnometris/gnometris.schemas.in.h:2
+#: gnometris/gnometris.schemas.in.h:3
 msgid "Image to use for drawing blocks."
 msgstr "Obrázek, který používat pro kreslení kostek."
 
-#: gnometris/gnometris.schemas.in.h:3
+#: gnometris/gnometris.schemas.in.h:4
+msgid "Key press to drop."
+msgstr "Klávesa pro upuštění."
+
+#: gnometris/gnometris.schemas.in.h:5
+msgid "Key press to move down."
+msgstr "Klávesa pro přesun dolů."
+
+#: gnometris/gnometris.schemas.in.h:8
+msgid "Key press to pause."
+msgstr "Klávesa pro pozastavení."
+
+#: gnometris/gnometris.schemas.in.h:9
+msgid "Key press to rotate."
+msgstr "Klávesa pro rotaci."
+
+#: gnometris/gnometris.schemas.in.h:10
 msgid "Level to start with"
 msgstr "Počáteční úroveň"
 
-#: gnometris/gnometris.schemas.in.h:4
+#: gnometris/gnometris.schemas.in.h:11
 msgid "Level to start with."
 msgstr "Počáteční úroveň."
 
-#: gnometris/gnometris.schemas.in.h:5
+#: gnometris/gnometris.schemas.in.h:16
+msgid "Rotate"
+msgstr "Rotovat"
+
+#: gnometris/gnometris.schemas.in.h:17
+msgid "The background color"
+msgstr "Barva pozadí"
+
+#: gnometris/gnometris.schemas.in.h:18
+msgid "The background color, in a format gdk_color_parse understands."
+msgstr "Barva pozadí ve formátu, kterému rozumí gdk_color_parse."
+
+#: gnometris/gnometris.schemas.in.h:19
 msgid ""
 "The density of blocks in rows filled at the start of the game. The value is "
 "between 0 (for no blocks) and 10 (for a completely filled row)."
@@ -3560,43 +3591,61 @@ msgstr ""
 "Hustota bloků v řádcích vyplněných při startu hry. Hodnota je mezi 0 (žádné "
 "bloky) a 10 (úplně vyplněný řádek)."
 
-#: gnometris/gnometris.schemas.in.h:6
+#: gnometris/gnometris.schemas.in.h:20
 msgid "The density of filled rows"
 msgstr "Hustota vyplněných řádků"
 
-#: gnometris/gnometris.schemas.in.h:7
+#: gnometris/gnometris.schemas.in.h:21
 msgid ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
 msgstr "Počet řádků, které jsou vyplněny náhodnými bloky na začátku hry."
 
-#: gnometris/gnometris.schemas.in.h:8
+#: gnometris/gnometris.schemas.in.h:22
 msgid "The number of rows to fill"
 msgstr "Počet řádků, které vyplnit"
 
-#: gnometris/gnometris.schemas.in.h:9
+#: gnometris/gnometris.schemas.in.h:23
+msgid ""
+"This selects whether or not to draw the background image over thebackground "
+"color."
+msgstr "Toto určuje, jestli kreslit obrázek na pozadí přes barvu pozadí."
+
+#: gnometris/gnometris.schemas.in.h:24
 msgid "Whether to give blocks random colors"
 msgstr "Jestli dávat blokům náhodné barvy"
 
-#: gnometris/gnometris.schemas.in.h:10
+#: gnometris/gnometris.schemas.in.h:25
 msgid "Whether to give blocks random colors."
 msgstr "Jestli mají mít bloky náhodnou barvu."
 
-#: gnometris/gnometris.schemas.in.h:11
+#: gnometris/gnometris.schemas.in.h:26
 msgid "Whether to preview the next block"
 msgstr "Jestli zobrazovat náhled dalšího bloku"
 
-#: gnometris/gnometris.schemas.in.h:12
+#: gnometris/gnometris.schemas.in.h:27
 msgid "Whether to preview the next block."
 msgstr "Jestli zobrazovat náhled dalšího bloku."
 
-#: gnometris/gnometris.schemas.in.h:13
+#: gnometris/gnometris.schemas.in.h:28
 msgid "Whether to rotate counter clock wise"
 msgstr "Jestli rotovat proti směru hodinových ručiček"
 
-#: gnometris/gnometris.schemas.in.h:14
+#: gnometris/gnometris.schemas.in.h:29
 msgid "Whether to rotate counter clock wise."
 msgstr "Jestli rotovat proti směru hodinových ručiček."
+
+#: gnometris/gnometris.schemas.in.h:30
+msgid "Whether to use sound"
+msgstr "Jestli používat zvuk"
+
+#: gnometris/gnometris.schemas.in.h:31
+msgid "Whether to use sound."
+msgstr "Jestli používat zvuk."
+
+#: gnometris/gnometris.schemas.in.h:32
+msgid "Whether to use the background image"
+msgstr "Jestli používat obrázek na pozadí"
 
 #: gnometris/main.cpp:38
 msgid "Set starting level (1-10)"
@@ -3606,15 +3655,15 @@ msgstr "Nastavte počáteční úroveň (1-10)"
 msgid "LEVEL"
 msgstr "ÚROVEŇ"
 
-#: gnometris/scoreframe.cpp:67
+#: gnometris/scoreframe.cpp:68
 msgid "Lines:"
 msgstr "Řad:"
 
-#: gnometris/tetris.cpp:224
+#: gnometris/tetris.cpp:252
 msgid "Paused"
 msgstr "Pozastaveno"
 
-#: gnometris/tetris.cpp:338
+#: gnometris/tetris.cpp:365
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3627,7 +3676,7 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím svou instalaci této hry"
 
-#: gnometris/tetris.cpp:353
+#: gnometris/tetris.cpp:380
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3640,60 +3689,64 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím svou instalaci této hry"
 
-#: gnometris/tetris.cpp:649 gnometris/tetris.cpp:650
+#: gnometris/tetris.cpp:721 gnometris/tetris.cpp:722
 msgid "<none>"
 msgstr "<žádný>"
 
-#: gnometris/tetris.cpp:675
+#: gnometris/tetris.cpp:750
 msgid "Gnometris preferences"
 msgstr "Nastavení Gnometris"
 
-#: gnometris/tetris.cpp:687
+#: gnometris/tetris.cpp:771
 msgid "Setup"
 msgstr "Nastavení"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:694
+#: gnometris/tetris.cpp:778
 msgid "Number of pre-filled rows:"
 msgstr "Počet předvyplněných řad:"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:709
+#: gnometris/tetris.cpp:793
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Hustota kostek v předvyplněné řadě:"
 
 #. starting level
-#: gnometris/tetris.cpp:724
+#: gnometris/tetris.cpp:808
 msgid "Starting Level:"
 msgstr "počáteční úroveň:"
 
-#: gnometris/tetris.cpp:741
+#: gnometris/tetris.cpp:825
 msgid "Operation"
 msgstr "Operace"
 
-#: gnometris/tetris.cpp:747
+#: gnometris/tetris.cpp:840
 msgid "Preview next block"
 msgstr "Náhled dalšího bloku"
 
-#: gnometris/tetris.cpp:756
+#: gnometris/tetris.cpp:849
 msgid "Use random block colors"
 msgstr "Používat náhodné barvy bloků"
 
-#: gnometris/tetris.cpp:767
+#: gnometris/tetris.cpp:860
 msgid "Rotate blocks counterclockwise"
 msgstr "Rotovat bloky proti směru hodinových ručiček"
 
-#: gnometris/tetris.cpp:780 same-gnome/same-gnome.c:630
+#: gnometris/tetris.cpp:873 same-gnome/same-gnome.c:630
 #: same-gnome/same-gnome.c:683
 msgid "Theme"
 msgstr "Téma"
 
 #. Block pixmap
-#: gnometris/tetris.cpp:787
+#: gnometris/tetris.cpp:880
 msgid "Block image:"
 msgstr "Obrázek bloku:"
 
-#: gnometris/tetris.cpp:1305
+#: gnometris/tetris.cpp:896
+msgid "_Controls"
+msgstr "_Ovládání"
+
+#: gnometris/tetris.cpp:1448
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -4720,6 +4773,9 @@ msgstr "Vítejte ve hře Same GNOME!"
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Odstraňovat skupiny míčků pro vymazání obrazovky"
 
+#~ msgid "Random Teleport"
+#~ msgstr "Náhodný teleport"
+
 #~ msgid "Shu_ffle tiles"
 #~ msgstr "Zamí_chat kameny"
 
@@ -4758,9 +4814,6 @@ msgstr "Odstraňovat skupiny míčků pro vymazání obrazovky"
 
 #~ msgid "Move _Right"
 #~ msgstr "Posunout do_prava"
-
-#~ msgid "_Drop"
-#~ msgstr "_Upustit"
 
 #~ msgid "Key to use for motion down"
 #~ msgstr "Klávesa, kterou použít pro pohyb dolů"
@@ -4863,9 +4916,6 @@ msgstr "Odstraňovat skupiny míčků pro vymazání obrazovky"
 
 #~ msgid "Huge  (1840 x 1320)"
 #~ msgstr "Obrovská  (1840 × 1320)"
-
-#~ msgid "Image to use as background"
-#~ msgstr "Obrázek, který používat jako pozadí"
 
 #~ msgid "Image to use as background."
 #~ msgstr "Obrázek, který používat jako pozadí."
