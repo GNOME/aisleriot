@@ -4,7 +4,7 @@ guile_DIRS = aisleriot
 endif
 
 if CXX_PRESENT
-cxx_DIRS = gnometris xbill
+cxx_DIRS = gnometris
 endif
 
 always_built_SUBDIRS =		\
@@ -15,12 +15,10 @@ always_built_SUBDIRS =		\
 	same-gnome		\
 	mahjongg		\
 	gtali			\
-	gnobots2		\
 	gnome-stones		\
 	gataxx			\
 	gnotravex		\
 	gnotski			\
-	gnibbles		\
 	glines			\
 	iagno			\
 	freecell
