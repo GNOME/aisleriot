@@ -402,6 +402,9 @@ void main_prog(int argc, char *argv[])
   gtk_widget_show (app);
   create_press_data ();
 
+  gtk_widget_pop_visual ();
+  gtk_widget_pop_colormap ();
+
   gtk_main ();
 
   free_pixmaps();
