@@ -18,7 +18,7 @@ GNOME_X_CHECKS
 
 AC_CHECK_PROG(ORBIT_CONFIG, orbit-config, orbit-config)
 if test -n "$ORBIT_CONFIG"; then
-	AC_CHECH_LIB(gnorba, gnome_CORBA_init, [
+	AC_CHECK_LIB(gnorba, gnome_CORBA_init, [
 		ORBIT_LIBS="-lgnorba `orbit-config --libs client server`"
 		ORBIT_CFLAGS="`orbit-config --cflags client server`"
 		AC_DEFINE(HAVE_ORBIT)
