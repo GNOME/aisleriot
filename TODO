@@ -22,22 +22,20 @@ General:
         - Make games respond to the gconf key change signals.
         - Move more common code into the libgames-support library.
         - Make as much as possible scalable so we can have full-screen
-          modes. 
+          modes. (80204)
         - Seriously look at a11y for actually playing the games.
         - Make games playable by keyboard (126284)
         - Look at network multi-player.
-        - Consider how to handle the whole game seed thing.
 	- Update debian files to be reasonable
         - Make session management work.
         - Redo the scoring code (example front-end done).
         - Make the build system cleaner.
-        - Naming issues (117191)
+        - Naming issues: "Stones" (117191)
 
 AisleRiot:
         - Better klondike hint (bug 85712)
         - 3-card flip-over (possibly reinstate the game-specific
           options, bug 50704).
-        - Documentation for one and two suit spider.
         - Scheme clean-ups (see bug 51016 for suggestions)
         - Be able to automatically drag lists of cards to the
           foundation and have them distributed (like at the end of
@@ -47,17 +45,13 @@ AisleRiot:
         - Descriptions of games in Select dialog (bug 110730)
         - Find out what's wrong with block-ten.
         - Final missing features from stand-alone freecell (124522).
-        - Find the root cause of 121726.
+        - Find the root cause of 121762.
 	- Merge card.c into draw.c.
-	- Make the right-click thing use the correct mask. Start
-	  aisleriot at a small size, maximize and right click to see
-	  this bug.
 
 Blackjack:
         - Eliminate the splash screen (and hopefully any recalculation).
         - Multiplayer (129639)
         - Training mode (129638)
-        - Resetting the balance (124629)
         - Rules dialog clean-up (124613)
 
 Gataxx:
@@ -72,8 +66,6 @@ Glines:
           can do away with the alignment for the "next balls" pixmaps
           and also avoid the "shrinking balls" problem at small window
 	  sizes.
-	- Handle the case where the background is white and we try and use 
-	  the keyboard cursor (which is also white).
 
 Gnect:
         - Graphics (could we share some with iagno/gataxx)
@@ -90,7 +82,7 @@ Gnibbles:
 Gnobots2:
         - Fix no-moves issue (bug 107846).
         - Graphics so they are viewable on large monitors.
-        - Clean up the sounds.
+        - Clean up the sounds (152107).
         - Since we can't change some settings mid-game an end-game option
           would be good (also for bug 107846).
         - Keep the preferences dialog open and start a new game. Oops. 
@@ -99,7 +91,7 @@ Gnobots2:
         - UI review (132387).
 
 Gnome-stones:
-        - Check joystick support actually works ?
+        - Repair joystick support (152651).
         - Definitely redo locations of score and the like.
         - Fix "jerkiness", make the game "feel" better.
         - Separate the two games to be started separately (using the
@@ -108,19 +100,16 @@ Gnome-stones:
           the chosen and default games have failed to load ?
 	- Re-examine the semantics for which game to start with.
 	- Separate desktop entry for sokoban.
+	- Sounds (152107).
 
 Gnometris:
+	- Rewrite drawing code. After that, back out 130654.
         - Have another go at tracking down bug 103787.
-        - Update xtris backgrounds to give the current name (perhaps
-          replace the x with a foot). 
         - Make the pieces scalable.
         - Drag and drop backgrounds:
           - Use heuristic to select tiled/scaled.
 	  - Accept images from eog/konqueror etc.
 	  - Accepts colours/gradients.
-        - Sound (see bug 80665 <- new sounds) ?               
-	- Back out bug 130654 when the drawing code is rewritten (and
-	  also make the preferences universally enabled).
         - Revisit slow block bugs ? (103787)
 
 Gnomine:
@@ -129,9 +118,6 @@ Gnomine:
           I misunderstand).
 	- Make drawing more efficient, cache the blended pixbufs on
 	  the server.
-        - Rendering improvements as per 132423.
-        - Session-management related segfault (120461)
-        - Other misc crasher (120459) ?
 	- Fix up the hint_used signal so that all states get returned this 
 	  way (or something else that doesn't look completely awful like the 
 	  current system).
@@ -142,19 +128,14 @@ Gnotravex:
 	- Make the numbers translatable.
 
 Gnotski:
-        - Redo the game so that it records what have been completed
-          and also has a next game option (as well as a retry game
-          option). See bug 111543.
-        
+        - Record completed puzzles (111543)
+
 Gtali:
         - AI upgrade, but make it optional: see Phil Woodward. "Yahtzee®: 
           The Solution", Chance 16(1):17-20 (Winter 2003). (bug 52635)
-        - Anti-alias the dice (maybe remove the built-in xpms).
         - Remove that space from gtali.schemas.in once intltool has
           had a few more releases (and upgrade the required version to 0.31
           or whatever it becomes.
-	- Make "new game" and "move once then undo" give the same
-          visual result (i.e. draw the zeros on new game).
 	- Select all/select none, almost like bug #137104.
 
 Iagno:
@@ -164,23 +145,17 @@ Iagno:
         - See if the code causeing problems in bug 79180 can't be 
           glib-ised to make the portability problem glibs.
         - Make defaults consistent with gataxx.
-        - Possibly fixed crasher (123351).
         - Make selecting side in a network game better (119195).
         - Make moves more obvious (118996)
-        - Undo has problems in a network game (118995)
 
 Mahjongg:
         - Finish off scaling support.
-          - Rebuild seta.png
           - Fix up the tile search function for speed.
           - Make resizing a bit snappier (check the graphics scaling code, I
             think this is the bottleneck).
         - Level editor and external level files.
-        - Oddball crashes (bugs 82402, 100492, 102474, 116226).
         
 Same-gnome:
-        - Add a seed (bug 86088) ?
-        - Continue arguing bug 91778.
         - Make the pixmap background transparent so that we don't have
           the rotate theme background problems (not urgent). We should 
           also let the background be set (or steal it from an outer pixel

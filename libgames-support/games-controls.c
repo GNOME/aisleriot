@@ -222,6 +222,7 @@ games_controls_list_init (GamesControlsList *list)
 	g_object_unref (G_OBJECT (list->store));
 
 	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list->view), FALSE);
+	gtk_tree_view_set_enable_search (GTK_TREE_VIEW (list->view), FALSE);	
 
 	/* label column */
 	label_renderer = gtk_cell_renderer_text_new ();
