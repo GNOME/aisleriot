@@ -26,7 +26,7 @@ gnometris       N       N       Y       Y       Y       Y
 gnomine         N       Y       Y       Y       Y       Y
 gnotravex       N       Y       Y       N       Y       Y
 gnotski         N       e       Y       Y       Y       Y
-gtali           P       N       Y       N       Y       Y
+gtali           P       N       Y       Y       Y       Y
 iagno           N       N       f       Y       Y       Y
 mahjongg        N       P       g       N       Y       Y
 same-gnome      N       N       Y       Y       Y       Y
@@ -113,7 +113,8 @@ Gtali:
         - Some of the options can be removed.
         - Anti-alias the dice if we have time (maybe remove the
           built-in xpms) this can safely be left to 2.5.
-        - Stripe the lines if possible.
+        - Undo doesn't erase the previous moves score (although it isn't
+          used in the calculation).
 
 Iagno:
         - Share graphics with gataxx.
@@ -126,8 +127,6 @@ Mahjongg:
         - Oddball crashes (bugs 82402, 100492, 102474).
         - Move the seed to the title (or whatever is consistent).
         - Fix shuffling bugs (91098, 94750).
-        - GConf key fixes (no '-' character), see if it can be made
-          backwards compatible.
         - It takes too long to generate a new board (it seems to try randomly 
           until it finds a solvable one). This is intolerable when simply 
           building the game backwards does it trivially. Implement if time.
