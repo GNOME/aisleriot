@@ -43,6 +43,7 @@ types_DATA  = 		\
 	camelot.scm	\
 	canfield.scm	\
 	clock.scm	\
+	eagle_wing.scm	\
 	klondike.scm	\
 	odessa.scm	\
 	osmosis.scm	\

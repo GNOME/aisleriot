@@ -71,8 +71,8 @@
 (define (complete-transaction start-slot card-list end-slot)
   (move-n-cards! start-slot end-slot card-list)
   (if (and (not (empty-slot? start-slot)) (> start-slot 5))
-		(make-visible-top-card start-slot)
-		#f)
+      (make-visible-top-card start-slot)
+      #f)
   #t)
 
 (define (deal-new-cards)
@@ -81,35 +81,35 @@
 
 (define (button-pressed slot card-list)
   (if (empty-slot? slot)
-		#f
-		(if (< slot 9)
-			 #f
-			 (if (not (eq? '() card-list))
-				  (if (is-visible? (car (reverse card-list)))
-						(if (check-same-suit-list card-list)
-							 (if (check-straight-descending-list card-list)
-								  #t
-								  #f)
-							 #f)
-						#f)
-				  #f))))
+      #f
+      (if (< slot 9)
+	  #f
+	  (if (not (eq? '() card-list))
+	      (if (is-visible? (car (reverse card-list)))
+		  (if (check-same-suit-list card-list)
+		      (if (check-straight-descending-list card-list)
+			  #t
+			  #f)
+		      #f)
+		  #f)
+	      #f))))
 
 (define (button-released start-slot card-list end-slot)
   (if (= start-slot end-slot)
       #f
       (if (empty-slot? end-slot)
-			 (cond ((and (> end-slot 0) 
-							 (< end-slot 9) 
-							 (= 13 (list-length card-list)))
-					  (complete-transaction start-slot card-list end-slot))
-					 ((> end-slot 8) 
-					  (complete-transaction start-slot card-list end-slot))
-					 (#t #f))
-			 (cond ((and (> end-slot 8)
-							 (= (get-value (get-top-card end-slot))
-								 (+ (get-value (car (reverse card-list))) 1)))
-					  (complete-transaction start-slot card-list end-slot))
-					 (#t #f)))))
+	  (cond ((and (> end-slot 0) 
+		      (< end-slot 9) 
+		      (= 13 (list-length card-list)))
+		 (complete-transaction start-slot card-list end-slot))
+		((> end-slot 8) 
+		 (complete-transaction start-slot card-list end-slot))
+		(#t #f))
+	  (cond ((and (> end-slot 8)
+		      (= (get-value (get-top-card end-slot))
+			 (+ (get-value (car (reverse card-list))) 1)))
+		 (complete-transaction start-slot card-list end-slot))
+		(#t #f)))))
       
 
 

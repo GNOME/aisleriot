@@ -1,4 +1,4 @@
-; Aisleriot - camelot.scm
+; Aisleriot - fortunes.scm
 ; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
 
 (define (new-game)
@@ -20,7 +20,8 @@
 )
 
 (define (button-pressed slot-id card-list)
-  (and (> slot-id 0)
+  (and card-list
+       (> slot-id 0)
        (or (empty-slot? 1)
 	   (empty-slot? 2)
 	   (empty-slot? 3)
