@@ -268,8 +268,8 @@ gdk_imlib_rotate_image_180 (GdkImlibImage * im)
   w3 = im->border.top;
   im->border.top = im->border.bottom;
   im->border.bottom = w3;
-  gdirty_images(im);
-  gdirty_pixmaps(im);
+  _gdk_imlib_dirty_images(im);
+  _gdk_imlib_dirty_pixmaps(im);
 }
 
 static gboolean
