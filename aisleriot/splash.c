@@ -21,17 +21,44 @@
 #include <gnome.h>
 #include <libgnomeui/gnome-window-icon.h>
 
-GtkWidget* progress;
-GtkWidget* label;
-GtkWidget* splash = NULL;
+static GtkWidget* progress = NULL;
+static GtkWidget* label = NULL;
+static GtkWidget* splash = NULL;
+static gboolean waiting_for_expose = FALSE;
 
 void 
 splash_update (gchar* text, gfloat percent)
 {
-  gtk_label_set (GTK_LABEL (label), text);
-  gtk_progress_set_percentage (GTK_PROGRESS (progress), percent); 
-  while (gtk_events_pending ()) gtk_main_iteration ();
+	if (label != NULL &&
+	    progress != NULL) {
+		gtk_label_set (GTK_LABEL (label), text);
+		gtk_progress_set_percentage (GTK_PROGRESS (progress), percent); 
+		while (gtk_events_pending ())
+			gtk_main_iteration ();
+	}
 }
+
+static void
+splash_destroyed (GtkWidget *w)
+{
+	splash = NULL;
+	label = NULL;
+	progress = NULL;
+	if (waiting_for_expose) {
+		waiting_for_expose = FALSE;
+		gtk_main_quit ();
+	}
+}
+
+static gboolean
+expose_event (GtkWidget *w, GdkEventExpose *event)
+{
+	if (waiting_for_expose) {
+		waiting_for_expose = FALSE;
+		gtk_main_quit ();
+	}
+}
+
 
 void 
 splash_new ()
@@ -59,8 +86,8 @@ splash_new ()
   gtk_window_set_policy (GTK_WINDOW (splash), FALSE, FALSE, FALSE);
   gnome_window_icon_set_from_default (GTK_WINDOW (splash));
   gtk_signal_connect (GTK_OBJECT (splash), "destroy",
-		      GTK_SIGNAL_FUNC (gtk_widget_destroyed),
-		      &splash);
+		      GTK_SIGNAL_FUNC (splash_destroyed),
+		      NULL);
   
   gtk_container_border_width (GTK_CONTAINER (vbox), 0);
   gtk_container_add(GTK_CONTAINER(splash), vbox);
@@ -76,8 +103,10 @@ splash_new ()
   /* Give window manager time to map the window */
   if (splash_pixmap != NULL) {
 	  gtk_signal_connect (GTK_OBJECT (splash_pixmap), "expose_event",
-			      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+			      GTK_SIGNAL_FUNC (expose_event), NULL);
+	  waiting_for_expose = TRUE;
 	  gtk_main ();
+	  waiting_for_expose = FALSE;
   }
 }
 
