@@ -186,8 +186,9 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       press_data->moving_pixmap = get_card_picture (card->suit, card->value);
       press_data->moving_mask = mask;
 
-      gdk_window_set_back_pixmap (press_data->moving_cards, 
-				  press_data->moving_pixmap, 0);
+      if (press_data->moving_pixmap != NULL)
+        gdk_window_set_back_pixmap (press_data->moving_cards, 
+				    press_data->moving_pixmap, 0);
       gdk_window_shape_combine_mask (press_data->moving_cards, 
 				     press_data->moving_mask, 0, 0);
       gdk_window_move(press_data->moving_cards, x, y); 

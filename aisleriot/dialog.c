@@ -151,7 +151,7 @@ void show_select_game_dialog()
     if (!strcmp (game_dents[i]->d_name, game_file))
       gtk_option_menu_set_history (GTK_OPTION_MENU (option_menu), i);
   
-  sprintf (buf, "%d", seed);
+  g_snprintf (buf, sizeof (buf), "%d", seed);
   gtk_entry_set_text (GTK_ENTRY (seed_entry), buf);
 
   gnome_dialog_run (GNOME_DIALOG (dialog));

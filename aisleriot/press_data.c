@@ -78,8 +78,9 @@ void generate_press_data ( ) {
 
     gdk_gc_set_clip_origin (gc1, x, y);
     gdk_gc_set_clip_origin (gc2, x, y);
-    gdk_draw_pixmap (press_data->moving_pixmap, gc1, cardpix,
-		     0, 0, x, y, width, height);
+    if (cardpix != NULL)
+      gdk_draw_pixmap (press_data->moving_pixmap, gc1, cardpix,
+		       0, 0, x, y, width, height);
     gdk_draw_rectangle (press_data->moving_mask, gc2, TRUE, 
 			x, y, width, height);
     

@@ -115,11 +115,11 @@ void make_title ()
 {
   char *title;
 
-  title = alloca(strlen(game_name) + 34);
-  
-  sprintf(title, "AisleRiot:  %s  ( %d )", game_name, seed);
+  title = g_strdup_printf ("AisleRiot:  %s  ( %d )", game_name, seed);
 
   gtk_window_set_title (GTK_WINDOW (app), title); 
+
+  g_free (title);
 }
 
 void eval_installed_file (char *file)
@@ -163,7 +163,7 @@ void new_game (gchar* file, guint *seedp )
     eval_installed_file ("sol.scm");
     eval_installed_file (file);
     if(game_name) {
-      sprintf(buf, "%s/%s", N_("Help"), game_name);
+      g_snprintf(buf, sizeof (buf), "%s/%s", _("Help"), game_name);
       gnome_app_remove_menus (GNOME_APP (app), buf, 1);
       if(rules_help[0].user_data) {
 	GnomeHelpMenuEntry *entry = 
@@ -177,11 +177,12 @@ void new_game (gchar* file, guint *seedp )
 
     rules_help[0].label = game_name;
     rules_help[0].user_data = game_file_to_help_entry(file);
-    sprintf(buf, "%s/%s", N_("Help"), N_("Aisleriot"));
+    g_snprintf(buf, sizeof (buf), "%s/%s", _("Help"), _("Aisleriot"));
 
     ms = gnome_app_find_menu_pos(GNOME_APP (app)->menubar, buf, &pos);
-    gnome_app_fill_menu (GTK_MENU_SHELL(ms), rules_help, 
-			 GNOME_APP (app)->accel_group, TRUE, pos);
+    if (ms != NULL)
+      gnome_app_fill_menu (GTK_MENU_SHELL(ms), rules_help, 
+			   GNOME_APP (app)->accel_group, TRUE, pos);
     if(option_dialog) {
       gtk_widget_destroy(option_dialog);
       option_dialog = NULL;
@@ -221,7 +222,7 @@ GtkWidget *score_value;
 void set_score () 
 {
   char b [10];
-  sprintf (b, "%6d  ", score);
+  g_snprintf (b, sizeof (b), "%6d  ", score);
 
   gtk_label_set(GTK_LABEL(score_value), b);
 }
@@ -295,7 +296,8 @@ void create_sol_board ()
   gtk_widget_realize (playing_area);
 
   draw_gc = gdk_gc_new(playing_area->window);
-  gdk_gc_set_tile (draw_gc, get_background_pixmap());
+  if (get_background_pixmap ())
+    gdk_gc_set_tile (draw_gc, get_background_pixmap());
   gdk_gc_set_fill (draw_gc, GDK_TILED);
   
   gtk_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
@@ -466,7 +468,7 @@ int main (int argc, char *argv [])
     {"variation", '\0', POPT_ARG_STRING, NULL, 0, NULL, NULL},
     {NULL, '\0', 0, NULL, 0, NULL, NULL}
   };
-  gint i;
+  gint i, records;
   gchar* dir;
 
   aisleriot_opts[0].arg = &variation;
@@ -498,8 +500,13 @@ int main (int argc, char *argv [])
   retrieve_state (gnome_master_client ());
 
   dir = gnome_unconditional_datadir_file (GAMESDIR);
-  n_games = scandir (dir, &game_dents, is_game, alphasort);
+  records = scandir (dir, &game_dents, is_game, alphasort);
   g_free(dir);
+
+  if (records >= 0)
+	  n_games = records;
+  else
+	  n_games = 0;
 
   for (i = 0; i < n_games; i++)
     if (!strcasecmp (variation, game_file_to_name (game_dents[i]->d_name))) {

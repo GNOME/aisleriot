@@ -23,7 +23,7 @@
 
 GtkWidget* progress;
 GtkWidget* label;
-GtkWidget* splash;
+GtkWidget* splash = NULL;
 
 void 
 splash_update (gchar* text, gfloat percent)
@@ -36,9 +36,18 @@ splash_update (gchar* text, gfloat percent)
 void 
 splash_new ()
 {
-  gchar* image_file = gnome_pixmap_file ("cards/splash.png");
-  GtkWidget* splash_pixmap = gnome_pixmap_new_from_file (image_file);
-  GtkWidget* vbox = gtk_vbox_new(FALSE, GNOME_PAD);
+  gchar* image_file;
+  GtkWidget* splash_pixmap = NULL;
+  GtkWidget* vbox;
+
+  image_file = gnome_pixmap_file ("cards/splash.png");
+
+  if (image_file != NULL)
+	  splash_pixmap = gnome_pixmap_new_from_file (image_file);
+
+  g_free (image_file);
+
+  vbox = gtk_vbox_new(FALSE, GNOME_PAD);
 
   progress = gtk_progress_bar_new ();
   label = gtk_label_new ("");
@@ -49,27 +58,35 @@ splash_new ()
   gtk_window_set_title (GTK_WINDOW (splash), _("AisleRiot"));
   gtk_window_set_policy (GTK_WINDOW (splash), FALSE, FALSE, FALSE);
   gnome_window_icon_set_from_default (GTK_WINDOW (splash));
+  gtk_signal_connect (GTK_OBJECT (splash), "destroy",
+		      GTK_SIGNAL_FUNC (gtk_widget_destroyed),
+		      &splash);
   
   gtk_container_border_width (GTK_CONTAINER (vbox), 0);
   gtk_container_add(GTK_CONTAINER(splash), vbox);
 
-  gtk_box_pack_start (GTK_BOX (vbox), splash_pixmap, FALSE, FALSE, 
-		      GNOME_PAD_SMALL);
+  if (splash_pixmap != NULL)
+	  gtk_box_pack_start (GTK_BOX (vbox), splash_pixmap, FALSE, FALSE, 
+			      GNOME_PAD_SMALL);
   gtk_box_pack_end (GTK_BOX (vbox), progress, FALSE, FALSE, GNOME_PAD_SMALL);
   gtk_box_pack_end (GTK_BOX (vbox), label, FALSE, FALSE, 0);
   
   gtk_widget_show_all (splash);
 
   /* Give window manager time to map the window */
-  gtk_signal_connect (GTK_OBJECT (splash_pixmap), "expose_event",
-		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
-  gtk_main ();
+  if (splash_pixmap != NULL) {
+	  gtk_signal_connect (GTK_OBJECT (splash_pixmap), "expose_event",
+			      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+	  gtk_main ();
+  }
 }
 
 void 
 splash_destroy ()
 {
-  gtk_widget_hide (splash);
-  gtk_widget_destroy (splash);
+	if (splash != NULL) {
+		gtk_widget_hide (splash);
+		gtk_widget_destroy (splash);
+	}
 }
 
