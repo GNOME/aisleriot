@@ -17,9 +17,6 @@ else
 fi
 
 GNOME_INIT
-AC_SUBST(X_LIBS)
-AC_SUBST(x_libs)
-
 
 AC_ISC_POSIX
 AC_PROG_CC
@@ -28,6 +25,19 @@ AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
 AC_PROG_MAKE_SET
 AC_PROG_INSTALL
+
+## this should come after `AC_PROG_CC'
+if test x$gnome_cv_use_gnome = xyes; then
+	X_LIBS=$gnome_cv_passdown_X_LIBS
+	x_libs=$gnome_cv_passdown_x_libs
+	X_CFLAGS=$gnome_cv_passdown_X_CFLAGS
+else
+	GNOME_X_CHECKS
+fi
+
+AC_SUBST(X_LIBS)
+AC_SUBST(x_libs)
+AC_SUBST(X_CFLAGS)
 
 ALL_LINGUAS="ko"
 AM_GNU_GETTEXT

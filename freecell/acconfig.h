@@ -8,3 +8,4 @@
 #undef HAVE_GNOME
 #undef HAVE_GTK_REFCOUNTING
 #undef HAVE_LIBINTL_H
+#undef HAVE_LIBSM

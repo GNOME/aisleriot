@@ -5,7 +5,7 @@ Ranks.xpm
 
 LINK = $(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o $@
 
-INCLUDES = -I$(includedir) -DCARDIMAGEDIR=\"$(cardimagedir)\"
+INCLUDES = -I$(includedir) -DCARDIMAGEDIR=\"$(cardimagedir)\" $(X_CFLAGS)
 
 lib_LTLIBRARIES = libgdkcardimage.la
 libgdkcardimage_la_SOURCES = gdk-card-image.c

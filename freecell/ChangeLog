@@ -1,3 +1,13 @@
+1998-02-15  Raja R Harinath  <harinath@cs.umn.edu>
+
+	* gdk-card-image/Makefile.am (INCLUDES): Include $(X_LIBS).
+	* src/Makefile.am (INCLUDES): Likewise.
+
+	* configure.in (X_LIBS,x_libs,X_CFLAGS): Get either from topdir
+	configure.in or from GNOME_X_CHECKS.
+
+	* acconfig.h (HAVE_LIBSM): New tag.
+
 Sat Feb 14 09:31:09 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* src/Makefile.am (freecell_LDADD): Find libgdkcardimage in build
