@@ -19,6 +19,10 @@
 
 #include <config.h>
 
+#ifdef HAVE_ALLOCA_H
+#include <alloca.h>
+#endif
+
 #include <sys/types.h>
 #include <string.h>
 #include <stdlib.h>
@@ -455,12 +459,15 @@ int main (int argc, char *argv [])
 {
   gchar* variation = "";
   struct poptOption aisleriot_opts[] = {
-    {"variation", '\0', POPT_ARG_STRING, &variation, 0,
-     N_("Variation on game rules"), N_("NAME")},
-    {NULL, '\0', 0, NULL}
+    {"variation", '\0', POPT_ARG_STRING, NULL, 0, NULL, NULL},
+    {NULL, '\0', 0, NULL, 0, NULL, NULL}
   };
   gint i;
   gchar* dir;
+
+  aisleriot_opts[0].arg = &variation;
+  aisleriot_opts[0].descrip = N_("Variation on game rules");
+  aisleriot_opts[0].argDescrip = N_("NAME");
 
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
