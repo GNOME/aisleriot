@@ -30,16 +30,6 @@ GAMES_CHECK_GUILE
 GNOME_COMPILE_WARNINGS(yes)
 GNOME_CXX_WARNINGS(yes)
                                                                               
-                                                                              
-CFLAGS="$CFLAGS $GNOME_GAMES_CFLAGS $WARN_CFLAGS"
-## This should make sure that developers using gcc 3.x will write something
-## that compiles using gcc 2.9x. Straight -ansi is a little tough given the
-## current code base, although what breaks is probably not that portable.
-if test x$CC=xgcc ; then
-  CFLAGS="-std=gnu89 $CFLAGS"
-fi
-                                                                              
-                                                                              
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
@@ -68,8 +58,16 @@ GCONF_REQUIRED=1.1.5
 GNOME_VFS_REQUIRED=1.9.11
 
 PKG_CHECK_MODULES(GNOME_GAMES, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gconf-2.0 >= $GTK_REQUIRED gnome-vfs-module-2.0 >= $GNOME_VFS_REQUIRED gtk+-2.0 >= $GTK_REQUIRED)
-AC_SUBST(GNOME_GAMES_CFLAGS)
-AC_SUBST(GNOME_GAMES_LIBS)
+
+GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CFLAGS"
+GNOME_GAMES_LIBS="$GNOME_GAMES_LIBS \$(top_builddir)/libgames-support/libgames-support.la"
+
+## This should make sure that developers using gcc 3.x will write somethingA
+## that compiles using gcc 2.9x. Straight -ansi is a little tough given the
+## current code base, although what breaks is probably not that portable.
+if test x$CC=xgcc ; then
+  GNOME_GAMES_CFLAGS="-std=gnu89 $GNOME_GAMES_CFLAGS"
+fi
 
 PKG_CHECK_MODULES(ESD, esound)
 AC_SUBST(ESD_CFLAGS)

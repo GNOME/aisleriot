@@ -13,7 +13,7 @@ General:
 
 AisleRiot:
         - Scalability of cards (bugs 80167, 104969, 105536) 
-        - Clean up the new card style dialog. (bug 110729)
+        - Clean up the prefs dialog ?
         - Better klondike hint (bug 85712)
         - 3-card flip-over (possibly reinstate the game-specific
           options, bug 50704).
@@ -25,7 +25,8 @@ AisleRiot:
         - Pretty show at the end (bug 2845)
         - Be better at capturing cards (bug 91595)
         - Descriptions of games in Select dialog (bug 110730)
-        - Can we eliminate the splash screen (bug 110731)
+        - Can we eliminate the splash screen (bug 110731) (i.e. speed up the loading of pixmaps from
+	  gdk_card_image).
         - Find out what's wrong with block-ten.
 
 Blackjack:
@@ -88,8 +89,6 @@ Gnomine:
 
 Gnotravex:
         - Have a colour mode in addition to the numbers.
-        - Replace x with a proper cross, if we can figure out the 
-          gettext issues. 
 
 Gnotski:
         - Redo the game so that it records what have been completed
@@ -136,4 +135,6 @@ libgames-support:
 gdk-card-image:
 	- Make card-styles.xml generated so we can do i18n.
 	- When a "custom" style is used make sure that there is no selection.
+ 	  Currently the default is selected, this may be a limit in the GtkTreeView
+	  widget.
         - Document

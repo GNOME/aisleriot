@@ -33,6 +33,8 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 
+#include "games-files.h"
+
 #include "card-style-file.h"
 
 /* An image file used in building the cards:
@@ -687,7 +689,7 @@ gdk_card_deck_new (GdkWindow *window, GdkCardDeckOptions deck_options)
 			  w->width, w->height, w->corner);
 
   for (i = CLUB; i <= SPADE; i++) 
-    make_suit(w, file, window, gc, &w->faces[i], i);
+    make_suit(w, file, window, gc, &w->faces[i], i); 
 
   gdk_card_file_draw (file[OPT_BACK], w->back, gc, 
 		      (w->width - file[OPT_BACK]->width)/2, 
@@ -839,6 +841,9 @@ static void gtk_card_deck_options_edit_set_selection (GtkCardDeckOptionsEdit *w)
   if (!w->selected_style)
     return;
 
+  w->ignore_changed = TRUE;
+  gtk_tree_selection_unselect_all (select);
+
   i = 0;
   list = w->style_list;
   while (list) {
@@ -846,7 +851,6 @@ static void gtk_card_deck_options_edit_set_selection (GtkCardDeckOptionsEdit *w)
      * disturbed. */
     if (list->data == w->selected_style) {
       /* So we don't signal on a program-requested change. */
-      w->ignore_changed = TRUE;
       path = gtk_tree_path_new_from_indices (i, -1);
       gtk_tree_selection_select_path (select, path);
       gtk_tree_view_set_cursor (GTK_TREE_VIEW (w->listview), path, 
@@ -857,8 +861,6 @@ static void gtk_card_deck_options_edit_set_selection (GtkCardDeckOptionsEdit *w)
     i++;
     list= g_list_next (list);
   }
-
-  gtk_tree_selection_unselect_all (select);
 }
 
 void          
@@ -918,47 +920,6 @@ gtk_card_deck_options_edit_get (GtkCardDeckOptionsEdit* w)
   return deck_options;
 }
 
-/* This should be moved elsewhere, but it is here for development and
- * testing. */
-/* This function takes a glob and a set of paths and finds all files in the 
- * path matching the glob. Only regular files are returned. */
-/* The arguments are the filespec followed by a null-terminated list 
- * of paths. */
-/* The caller must free the list. */
-static GList * gnome_games_get_file_list (gchar * glob, ...)
-{
-  GPatternSpec * filespec = g_pattern_spec_new (glob);
-  gchar * pathelement;
-  va_list path;
-  GList * list = NULL;
-  GDir * dir;
-  const gchar * filename;
-  gchar * fullname;
-
-  va_start (path, glob);
-  
-  while ((pathelement = va_arg (path, gchar *)) != NULL) {
-    dir = g_dir_open (pathelement, 0, NULL);
-    if (dir != NULL) {
-      while ((filename = g_dir_read_name (dir)) != NULL) {
-	if (g_pattern_match_string (filespec, filename)) {
-	  fullname = g_strdup_printf ("%s/%s", pathelement, filename);
-	  if (g_file_test (fullname, G_FILE_TEST_IS_REGULAR)) {
-	    list = g_list_append (list, fullname);
-	  } else g_free (fullname);
-	}
-      }
-      g_dir_close (dir);
-    }
-  }
-
-  va_end (path);
-
-  g_pattern_spec_free (filespec);
-
-  return list;
-}
-
 static void
 gdk_card_deck_options_edit_get_card_styles (GtkCardDeckOptionsEdit * w)
 {
@@ -974,7 +935,7 @@ gdk_card_deck_options_edit_get_card_styles (GtkCardDeckOptionsEdit * w)
 					GNOME_FILE_DOMAIN_APP_PIXMAP,  
 					"cards", TRUE, NULL);
 
-  filelist = gnome_games_get_file_list ("*.xml", dir_name, NULL);
+  filelist = games_get_file_list ("*.xml", dir_name, NULL);
   
   while (filelist) {
     last = filelist;
@@ -1073,8 +1034,6 @@ gtk_card_deck_options_edit_new (void)
 
   select = gtk_tree_view_get_selection (GTK_TREE_VIEW (w->listview));
   gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
-
-  gtk_card_deck_options_edit_set_selection (w);
 
   g_signal_connect (G_OBJECT (select), "changed",
 		    G_CALLBACK (gtk_card_deck_options_edit_changed), 

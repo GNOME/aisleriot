@@ -346,7 +346,7 @@ void show_preferences_dialog ()
   if (!property_box) {
     property_box = gtk_dialog_new ();
     gtk_dialog_set_has_separator (GTK_DIALOG (property_box), FALSE);
-    gtk_window_set_title (GTK_WINDOW (property_box), _("AisleRiot Preferences"));
+    gtk_window_set_title (GTK_WINDOW (property_box), _("AisleRiot Cards"));
     gtk_dialog_add_buttons(GTK_DIALOG(property_box),
                            GTK_STOCK_CLOSE, GTK_RESPONSE_OK, NULL);
     gtk_window_set_transient_for (GTK_WINDOW(property_box), GTK_WINDOW (app));

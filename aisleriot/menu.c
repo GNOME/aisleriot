@@ -188,7 +188,8 @@ GnomeUIInfo view_menu[] = {
   GNOMEUIINFO_TOGGLEITEM (N_("_Toolbar"), N_("Show or hide the toolbar"),
                           toolbar_toggle_callback, NULL),
 
-  GNOMEUIINFO_MENU_PREFERENCES_ITEM(show_preferences_dialog, NULL),
+  GNOMEUIINFO_ITEM_STOCK (N_("_Cards..."), N_("Change the appearance of the cards"), 
+			  show_preferences_dialog, NULL),
 
   GNOMEUIINFO_END
 };
