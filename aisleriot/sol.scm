@@ -18,6 +18,14 @@
 
 (use-modules (ice-9 format))
 
+;; Compatibility code so we run on both guile 1.3 and 1.5
+
+(define (eval-1 code)
+  (if (string<? (version) "1.5")
+      (eval code)
+      (eval code (current-module))))
+        
+
 ;; Constants:
 
 (define jack 11)
@@ -578,7 +586,7 @@
   (lambda (names)
     (if (equal? '() names)
         '()
-        (cons (eval (car names)) 
+        (cons (eval-1 (car names)) 
               (save-variables (cdr names))))))
 
 ; Restore all the state variables for a game
@@ -586,7 +594,7 @@
   (lambda (names values)
     (or (equal? '() names)
         (begin
-          (eval (list 'set! (car names) (car values)))
+          (eval-1 (list 'set! (car names) (car values)))
           (restore-variables (cdr names) (cdr values))
           ))))
 
