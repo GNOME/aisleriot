@@ -65,6 +65,7 @@ GtkMenuEntry same_menu [] = {
 	{ _("Game/Variation/Odessa"),NULL, (GtkMenuCallback) game_load_game_callback, "odessa.scm" },
 	{ _("Game/Variation/Osmosis"),NULL, (GtkMenuCallback) game_load_game_callback, "osmosis.scm" },
 	{ _("Game/Variation/Spider"),NULL, (GtkMenuCallback) game_load_game_callback, "spider.scm" },
+	{ _("Game/Variation/Free Cell"),NULL, (GtkMenuCallback) game_load_game_callback, "freecell.scm" },
 	{ _("Game/Variation/<separator>"), NULL, NULL, NULL},
 	{ _("Game/Variation/Other..."),NULL, NULL, NULL },
 	{ _("Game/New Game"),"<control>N", (GtkMenuCallback) file_new_game_callback, NULL },

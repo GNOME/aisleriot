@@ -27,12 +27,13 @@ sol_SOURCES = 		\
 sol_LDADD = $(GUILE_LIBS) -lgdk_imlib $(GNOMEUI_LIBS)
 
 types_DATA  = 		\
+	freecell.scm	\
 	helper.scm	\
 	klondike.scm	\
 	odessa.scm	\
 	osmosis.scm	\
 	sol.scm		\
 	spider.scm
-	
+
 EXTRA_DIST = TODO FIXME RULES AUTHORS $(types_DATA) sol.desktop
 
