@@ -141,7 +141,7 @@ sys_in_files = sol.desktop.in freecell.desktop.in
 sys_DATA = $(sys_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-CLEANFILES = $(sys_DATA) $(schema_DATA)
+DISTCLEANFILES = $(sys_DATA) $(schema_DATA)
 
 if GCONF_SCHEMAS_INSTALL
 install-data-local:

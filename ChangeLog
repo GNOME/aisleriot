@@ -1,3 +1,12 @@
+2004-03-28  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* */Makefile.am: Change CLEANFILES -> DISTCLEANFILES so that we
+	conform with automake's guideleines (and so make clean doesn't
+	force a rerun of ./configure). See bug #138295.
+
+	* configure.in: Add an explicit dependence on librsvg (see bug
+	#138297 for why).
+
 2004-03-25  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* configure.in: Remove the sounds directory from gataxx.
