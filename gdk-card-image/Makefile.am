@@ -1,3 +1,6 @@
+sharedpixmapdir = $(datadir)/pixmaps/
+sharedpixmap_DATA = gnome-cardgame.png
+
 cardbackdir = $(datadir)/pixmaps/cards/backs/
 cardback_DATA = beige.png face.png rods.png grey.png
 
