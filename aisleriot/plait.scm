@@ -271,7 +271,8 @@
 		    #t)
 		  (begin
 		    (add-cards! valid-slot (list (remove-card source)))
-		    #t))))
+		    #t)) 
+	      #f)) 
 	#f)))
 
 ;; Helper for double-click: find the first valid move to a slot in slot-list.
@@ -293,14 +294,6 @@
                   (else 
                         (find-valid-move source (cdr slot-list)))))))
 
-
-;; Is there something to do?
-(define (game-cont)
-  (and (not (game-won))
-       (or (deal-possible?)
-	   (get-valid-moves '(1 0 2 19 20 9 5 6 7 8 13 14 15 16)
-			    '(3 4 11 12 17 18 21 22)))))
-
 ;; Condition for win -- all the cards in homecells
 (define (game-won)
   (and (= 13 (length (get-cards home-1)))
@@ -312,12 +305,23 @@
        (= 13 (length (get-cards home-7)))
        (= 13 (length (get-cards home-8)))))
 
+;; Check for, in order:
+;; 1) A move to the fields.
+;; 2) A card can be dealt from the deck
+;; 3) A card can be moved from the stock to the edges ot tableau.
 (define (get-hint)
   (or (get-valid-moves '(1 0 2 19 20 9 5 6 7 8 13 14 15 16)
 		       '(3 4 11 12 17 18 21 22))
       (deal-possible?)
-      (list 0 (_"Try a new game"))))
- 
+      (if (find-valid-move stock '(0 2 5 6 7 8 13 14 15 16 19 20))
+	  (list 0 (format (_"Move ~a from the stock to an empty edge or tableau slot") 
+		  (get-name (get-top-card stock))))
+	  #f)))
+
+(define (game-cont)
+  (and (not (game-won))
+       (get-hint)))
+       
 (define (get-options) #f)
 
 (define (apply-options options) #f)
