@@ -1,30 +1,30 @@
-cardbackdir = $(datadir)/pixmaps/cards/backs/
+cardbackdir = $(datadir)/pixmaps/cards/backs
 cardback_DATA = beige.png face.png rods.png grey.png tux.png antique-red.png dondorf-flower.png
 
-cardhonordir = $(datadir)/pixmaps/cards/honors/
+cardhonordir = $(datadir)/pixmaps/cards/honors
 cardhonor_DATA = bonded.png xpat.png dondorf.png
 
-cardjokerdir = $(datadir)/pixmaps/cards/jokers/
+cardjokerdir = $(datadir)/pixmaps/cards/jokers
 cardjoker_DATA = gnome.png
 
-cardrankdir = $(datadir)/pixmaps/cards/ranks/
+cardrankdir = $(datadir)/pixmaps/cards/ranks
 cardrank_DATA = bold-09x14.png fine-07x12.png
 
-cardsuitsmalldir = $(datadir)/pixmaps/cards/suits_small/
+cardsuitsmalldir = $(datadir)/pixmaps/cards/suits_small
 cardsuitsmall_DATA = \
 	knuth-09x10.png xpat-11x11.png xpat-15x15.png
 
-cardsuitmediumdir = $(datadir)/pixmaps/cards/suits_medium/
+cardsuitmediumdir = $(datadir)/pixmaps/cards/suits_medium
 cardsuitmedium_DATA = \
 	knuth-09x10.png knuth-15x19.png knuth-18x21.png knuth-21x25.png \
 	xpat-11x11.png xpat-15x15.png xpat-21x21.png
 
-cardsuitlargedir = $(datadir)/pixmaps/cards/suits_large/
+cardsuitlargedir = $(datadir)/pixmaps/cards/suits_large
 cardsuitlarge_DATA = \
 	knuth-09x10.png knuth-15x19.png knuth-18x21.png knuth-21x25.png \
 	xpat-11x11.png xpat-15x15.png xpat-21x21.png xpat-41x41.png
 
-cardslotdir = $(datadir)/pixmaps/cards/slots/
+cardslotdir = $(datadir)/pixmaps/cards/slots
 cardslot_DATA = hand.png plain.png
 
 INCLUDES =  $(GNOME_GAMES_CFLAGS) @UCB_CFLAGS@

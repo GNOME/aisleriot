@@ -1,3 +1,9 @@
+2003-07-26  Steve Chaplin
+
+	* Makefile.am: Remove trailing '/' on directories so we install to 
+	<dir>/<file> rather than <dir>//<file>. Automake already knows we need 
+	a '/' between the directory and filename.
+
 2003-06-21  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* gdk-card-image.c: Compile warning cleanups and deprecated

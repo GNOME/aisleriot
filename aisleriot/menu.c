@@ -17,8 +17,13 @@
  * USA
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
-#include "gnome.h"
+#endif
+
+#include <string.h>
+#include <gnome.h>
+
 #include "sol.h"
 #include "menu.h"
 #include "dialog.h"
