@@ -117,10 +117,14 @@ static gchar * game_name_to_file (const gchar *name)
     p++;
   }
 
-  p = g_strconcat (s, ".scm", NULL);
-  g_free (s);
+  if (!g_str_has_suffix (s, ".scm")) { /* We may have been given a filename. */
+    p = s;
+    s = g_strconcat (s, ".scm", NULL);
+    g_free (p);
+  }
 
-  p = g_build_filename (gamesdir, p, NULL);
+  p = g_build_filename (gamesdir, s, NULL);
+  g_free (s);
 
   return p;
 }
