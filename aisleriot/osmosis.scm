@@ -44,137 +44,99 @@
 
   (deal-cards 8 '(0 2 4 6 0 2 4 6 0 2 4 6))
   (deal-cards-face-up 8 '(0 2 4 6 1))
+  (set! FLIP-COUNTER 0)
 )
   
 (define (button-pressed slot-id card-list)
-  (if (empty-slot? slot-id)
-		#f
-		(if (or (= slot-id 8)
-				  (odd?  slot-id )
-				  (> (list-length card-list) 1))
-			 (if (= slot-id 9)
-				  #t
-				  #f)
-			 #t)))
+  (and (not (empty-slot? slot-id))
+       (= (list-length card-list) 1)
+       (or (= slot-id 0) 
+	   (= slot-id 2)
+	   (= slot-id 4) 
+	   (= slot-id 6)
+	   (= slot-id 9))))
 		
 (define (complete-transaction start-slot card-list end-slot)
   (move-n-cards! start-slot end-slot card-list)
   (if (not (empty-slot? start-slot))
-		(make-visible-top-card start-slot)
-		#f)
+      (make-visible-top-card start-slot))
   #t)
 
-(define (find-card-val-in-list? search-list search-val)
-  (if (null? search-list)
-		#f
-		(if (= search-val
-				 (get-value (car search-list)))
-			 #t
-			 (find-card-val-in-list? (cdr search-list) search-val))))
+(define (find-card-val-in-list? cards value)
+  (and (not (null? cards))
+       (or (= value (get-value (car cards)))
+	   (find-card-val-in-list? (cdr cards) value))))
 
 (define (button-released start-slot card-list end-slot)
-  (if (or (= start-slot end-slot)
-			 (even? end-slot)
-			 (= end-slot 9))
-		#f
-		(cond ((and (empty-slot? end-slot)
-						(= (get-value (car (reverse (get-cards 1))))
-							(get-value (car card-list))))
-				 (begin
-					(if (and (> end-slot 3) 
-								(empty-slot? (- end-slot 2)))
-						 (begin
-							(set! end-slot (- end-slot 2))
-							(if (empty-slot? (- end-slot 2))
-								 (set! end-slot (- end-slot 2))))
-						 #f)
-					(complete-transaction start-slot card-list end-slot)))
-				((empty-slot? end-slot) #f)
-				((= (get-suit (get-top-card end-slot))
-							(get-suit (car card-list)))
-				 (if (= end-slot 1)
-					  (complete-transaction start-slot card-list end-slot)
-					  (if (find-card-val-in-list? (get-cards (- end-slot 2))
-															(get-value (car card-list))) 
-							(complete-transaction start-slot card-list end-slot)
-							#f)))
-				(#t #f))
-		)
-)
+  (and (not (= start-slot end-slot))
+       (or (= end-slot 1)
+	   (= end-slot 3)
+	   (= end-slot 5)
+	   (= end-slot 7))
+       (if (empty-slot? end-slot)
+	   (and (= (get-value (car (reverse (get-cards 1))))
+		   (get-value (car card-list)))
+		(while (empty-slot? (- end-slot 2)) 
+		       (set! end-slot (- end-slot 2))))
+	   (and (= (get-suit (get-top-card end-slot))
+		   (get-suit (car card-list)))
+		(or (= end-slot 1)
+		    (find-card-val-in-list? (get-cards (- end-slot 2))
+					    (get-value (car card-list))) )))
+       (complete-transaction start-slot card-list end-slot)))
   
 (define (flip-cards-back)
-  (if (> FLIP-COUNTER 2)
-		#f
-		(if (empty-slot? 9)
-			 #f
-			 (begin
-				(add-card! 8 (flip-card (remove-card 9)))
-				(flip-cards-back)))))
+  (if (not (empty-slot? 9))
+      (begin
+	(add-card! 8 (flip-card (remove-card 9)))
+	(flip-cards-back))))
 
 (define (button-clicked slot-id)
-  (if (= slot-id 8)
+  (and (= slot-id 8)
       (if (empty-slot? 8)
-			 (begin
-				(flip-cards-back)
-				(set! FLIP-COUNTER (+ 1 FLIP-COUNTER)))
-			 (let ((top-card (remove-card 8)))
-				(if (eq? top-card '())
-					 #f
-					 (add-card! 9 (flip-card top-card)))))
-      #f))
-
+	  (and (< FLIP-COUNTER 3)
+	       (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
+	       (flip-cards-back))
+	  (add-card! 9 (flip-card (remove-card 8))))))
 	      
 (define (button-double-clicked slot)
   #f)
 
-
 (define (placeable? card slot-id)
-  (if (empty-slot? slot-id)
-		(= (get-value card) (get-value (car (reverse (get-cards 1)))))
-		(if (= (get-suit card) (get-suit (get-top-card slot-id)))
-				(if (= slot-id 1)
-					 #t
-					 (if (find-card-val-in-list? (get-cards (- slot-id 2)) (get-value card))
-						  #t
-						  #f))
-			 (placeable? card (+ 2 slot-id)))))
-  
+  (and (< slot-id 9)
+       (or (if (empty-slot? slot-id)
+	       (and (= (get-value card) 
+		       (get-value (car (reverse (get-cards 1)))))
+		    (list 1 (get-name card) "an empty slot"))
+	       (and (= (get-suit card) (get-suit (get-top-card slot-id)))
+		    (or (= slot-id 1)
+			(find-card-val-in-list? (get-cards (- slot-id 2)) 
+						(get-value card)))
+		    (list 2 (get-name card) 
+			  (get-name (get-top-card slot-id)))))
+	   (placeable? card (+ slot-id 2)))))
 
-
-(define (get-valid-move id)
-  (if (> id 9)
-		#f
-		(if (not (empty-slot? id))
-			 (let ((test-card (get-top-card id)))
-				(if (placeable? test-card 1)
-					 test-card
-					 (if (= id 6)
-						  (get-valid-move 9)
-						  (get-valid-move (+ 2 id)))))
-			 (if (= id 6)
-				  (get-valid-move 9)
-				  (get-valid-move (+ 2 id))))))
-			 
-
+(define (get-valid-move id-list)
+  (and (not (null? id-list))
+       (or (and (not (empty-slot? (car id-list)))
+		(placeable? (get-top-card (car id-list)) 1))
+	   (get-valid-move (cdr id-list)))))
 
 (define (game-over not-used)
-  (if (and (or (> FLIP-COUNTER 2)
-					(empty-slot? 9))
-			  (empty-slot? 8)
-			  (not (get-valid-move 0)))
-		#f
-		#t))
+  (or (and (< FLIP-COUNTER 3)
+	   (not (empty-slot? 9)))
+      (not (empty-slot? 8))
+      (get-valid-move '(0 2 4 6 9))))
 
 (define (game-won not-used)
-  (if (and (= 13 (list-length (get-cards 1)))
-			  (= 13 (list-length (get-cards 3)))
-			  (= 13 (list-length (get-cards 5)))
-			  (= 13 (list-length (get-cards 7))))
-		#t
-		#f))
+  (and (= 13 (list-length (get-cards 1)))
+       (= 13 (list-length (get-cards 3)))
+       (= 13 (list-length (get-cards 5)))
+       (= 13 (list-length (get-cards 7)))))
 
 (define (get-hint not-used)
-  #f)
+  (or (get-valid-move '(0 2 4 6 9))
+      (list 0 "Deal a new card from the deck"))) ; Should be (list 3 ...)
 
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
 
