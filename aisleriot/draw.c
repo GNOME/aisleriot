@@ -57,10 +57,6 @@ void rescale_cards (void) {
 }
 
 void set_geometry (int new_width, int new_height) {
-
-  if ((new_width == width) && (new_height == height))
-    return;
-
   width = new_width;
   height = new_height;
 
