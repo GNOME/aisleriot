@@ -21,6 +21,7 @@ sol_SOURCES = 		\
 	sol.h		\
 	sol.c		\
 	slot.c		\
+	dialog.c	\
 	cscmi.c		\
 	events.c	\
 	press_data.c	\
@@ -33,7 +34,7 @@ sol_LDADD = $(GUILE_LIBS) -lgdk_imlib $(GNOME_LIBDIR) $(GNOMEUI_LIBS) \
 
 types_DATA  = 		\
 	freecell.scm	\
-	helper.scm	\
+	camelot.scm	\
 	klondike.scm	\
 	odessa.scm	\
 	osmosis.scm	\

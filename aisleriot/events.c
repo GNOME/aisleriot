@@ -20,8 +20,7 @@
 #include "sol.h"
 #include "cscmi.h"
 #include "draw.h"
-
-
+#include "dialog.h"
 
 void end_of_game_test() {
   SCM testval;
@@ -30,9 +29,9 @@ void end_of_game_test() {
 
   if (!gh_scm2bool(testval)) {
 	 if (gh_scm2bool(gh_apply(game_data->winning_game_lambda, gh_cons(SCM_EOL,SCM_EOL))))
-		printf("you won!!!\n");
+		show_game_over_dialog(TRUE);
 	 else
-		printf("you lost!!!\n");
+		show_game_over_dialog(FALSE);
   }  
 }
 

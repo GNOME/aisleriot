@@ -26,7 +26,8 @@
   
 					;set up the board
   (add-normal-slot DECK)
-  (add-partially-extended-slot '() right 3)
+;  (add-partially-extended-slot '() right 3)
+  (add-normal-slot '())
   (add-blank-slot)
   (add-normal-slot '())
   (add-normal-slot '())

@@ -48,6 +48,7 @@ GdkPixmap *surface, *blank_surface;
 GdkPixmap *snapshot = NULL;
 GdkPixmap *moving_card_pixmap;
 gint score;
+gint seed;
 
 press_data_type* press_data = NULL; 
 
@@ -172,7 +173,7 @@ void main_prog(int argc, char *argv[])
      In my copy of guile, the first define in boot-9.scm is for "provide",
      and it looked as good a test as any  */
   gh_eval_str ("(if (not (procedure? \'provide))\n"
-	       "  (primitive-load-path \"ice-9/boot-9.scm\"))");
+					"  (primitive-load-path \"ice-9/boot-9.scm\"))");
   gh_new_procedure0_0("get-card-width", scm_get_card_width);
   gh_new_procedure0_0("get-card-height", scm_get_card_height);
   gh_new_procedure0_0("get-horiz-offset",scm_get_horiz_offset);

@@ -23,7 +23,7 @@
 #include "menu.h"
 #include "draw.h"
 #include "cscmi.h"
-
+#include "dialog.h"
 /*
  * Menu stuff...
  */
@@ -51,6 +51,7 @@ int file_new_game_callback (GtkWidget *app, void *data )
 {
   gh_apply(game_data->start_game_lambda, SCM_EOL);
   refresh_screen();
+  gtk_widget_hide(game_over_dialog_box);
   return TRUE;
 }
 
@@ -59,8 +60,9 @@ int help_about_callback (GtkWidget *widget, void *data)
   GtkWidget *about;
   gchar *authors[] = {
 	  "Main program:  Jonathan Blandford (jrb@MIT.EDU)",
-	  "Freecell game: ",
-	  "Extra games:   ",
+	  "Card Games:    Jonathan Blandford (jrb@MIT.EDU)",
+	  "                      Ryu Changwoo (cwryu@EVE.KAIST.AC.KR)",
+	  "                      Rosanna Yuen (rwsy@MIT.EDU)",
           NULL
           };
 
@@ -121,6 +123,7 @@ AGame gamelist[] = {
   {N_("Odessa"), "odessa.scm"},
   {N_("Klondike"), "klondike.scm"},
   {N_("Freecell"), "freecell.scm"},
+  {N_("Camelot"), "camelot.scm"},
   {NULL, NULL}
 };
 
