@@ -117,7 +117,7 @@ void help_about_callback ()
   }
   about = gnome_about_new ( _("AisleRiot"), VERSION,
 			    /* copyright notice */
-			    "Copyright \xc2\xa9 1998-2003 Jonathan Blandford",
+			    "Copyright \xc2\xa9 1998-2004 Jonathan Blandford",
 			    _("AisleRiot provides a rule-based solitaire card "
 			      "engine that allows many different games to be "
 			      "played."),
