@@ -1192,6 +1192,7 @@ to_destination_auto(void)
 				 NULL);
       gtk_widget_show (mb);
       score_add_win();
+      stalled = 1;
     }
   
 

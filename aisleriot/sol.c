@@ -133,8 +133,19 @@ void eval_installed_file (char *file)
   }
   
   relative = g_strconcat (GAMESDIR, file, NULL);
-  installed_filename = gnome_datadir_file (relative);
-  gh_eval_file (installed_filename);
+  installed_filename = gnome_unconditional_datadir_file (relative);
+
+  if (g_file_exists(installed_filename)){
+    gh_eval_file (installed_filename);
+  } else {
+    char *message = g_strdup_printf (
+         _("Aisleriot can't load the file: \n%s\n\n"
+           "Please check you Aisleriot instalation"), installed_filename);
+    GtkWidget *w = gnome_error_dialog (message);
+    gnome_dialog_run_and_close (GNOME_DIALOG(w));
+    g_free (message);
+    exit (1);
+  }
   g_free (installed_filename);
   g_free (relative);
 }

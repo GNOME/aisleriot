@@ -164,7 +164,7 @@ score_add_lose(void)
   else
     streaks_current = -1;
 
-  if (streaks_current < streaks_lose_number)
+  if (-streaks_current > streaks_lose_number)
     {
       streaks_lose_number = - streaks_current;
     }
