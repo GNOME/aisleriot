@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-30 03:02+0200\n"
-"PO-Revision-Date: 2005-01-30 03:02+0200\n"
+"POT-Creation-Date: 2005-02-01 17:16+0200\n"
+"PO-Revision-Date: 2005-02-01 17:22+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -219,9 +219,9 @@ msgstr ""
 "AisleRiot pateikia taisyklėmis paremtą pasjanso kortų variklį, kuris leidžia "
 "žaisti daug skirtingų žaidimų."
 
-#: aisleriot/menu.c:212 gnect/src/prefs.c:391 gnibbles/preferences.c:213
-#: gnome-stones/preferences.c:744 gnometris/tetris.cpp:775
-#: gnotski/gnotski.c:652 same-gnome/ui.c:429
+#: aisleriot/menu.c:212 blackjack/src/blackjack.cpp:306 gnect/src/prefs.c:391
+#: gnibbles/preferences.c:213 gnome-stones/preferences.c:744
+#: gnometris/tetris.cpp:775 gnotski/gnotski.c:652 same-gnome/ui.c:429
 msgid "_Game"
 msgstr "Ž_aidimas"
 
@@ -229,11 +229,12 @@ msgstr "Ž_aidimas"
 msgid "_View"
 msgstr "_Vaizdas"
 
-#: aisleriot/menu.c:214
+#: aisleriot/menu.c:214 blackjack/src/blackjack.cpp:313
 msgid "_Control"
 msgstr "V_aldymas"
 
-#: aisleriot/menu.c:215 gnotski/gnotski.c:653 same-gnome/ui.c:432
+#: aisleriot/menu.c:215 blackjack/src/blackjack.cpp:320 gnotski/gnotski.c:653
+#: same-gnome/ui.c:432
 msgid "_Help"
 msgstr "_Pagalba"
 
@@ -265,15 +266,16 @@ msgstr "_Atšaukti ėjimą"
 msgid "_Redo Move"
 msgstr "A_tstatyti ėjimą"
 
-#: aisleriot/menu.c:227 gnotski/gnotski.c:665
+#: aisleriot/menu.c:227 blackjack/src/blackjack.cpp:309 gnotski/gnotski.c:665
 msgid "_Hint"
 msgstr "Pata_rimas"
 
-#: aisleriot/menu.c:230 same-gnome/ui.c:442
+#: aisleriot/menu.c:230 blackjack/src/blackjack.cpp:321 same-gnome/ui.c:442
 msgid "_Contents"
 msgstr "_Turinys"
 
-#: aisleriot/menu.c:237 gnect/src/main.c:1194 mahjongg/mahjongg.c:144
+#: aisleriot/menu.c:237 blackjack/src/blackjack.cpp:326 gnect/src/main.c:1194
+#: mahjongg/mahjongg.c:144
 msgid "_Toolbar"
 msgstr "Įrankių _juosta"
 
@@ -1552,6 +1554,96 @@ msgstr "Naudoti greitą dalijimą be pauzių tarp pateikiamų kortų."
 msgid "Blackjack: %s"
 msgstr "Blackjack: %s"
 
+#: blackjack/src/blackjack.cpp:307
+msgid "_New game"
+msgstr "_Naujas žaidimas"
+
+#: blackjack/src/blackjack.cpp:307 gnect/src/main.c:1221 gnobots2/menu.c:106
+msgid "Start a new game"
+msgstr "Pradėti naują žaidimą"
+
+#: blackjack/src/blackjack.cpp:308
+msgid "_Restart game"
+msgstr "Ž_aisti iš naujo"
+
+#: blackjack/src/blackjack.cpp:308
+msgid "Restart the current game"
+msgstr "Žaisti šį žaidimą iš naujo"
+
+#: blackjack/src/blackjack.cpp:309
+msgid "Get a hint for the next action"
+msgstr "Gauti užuominą kitam veiksmui"
+
+#: blackjack/src/blackjack.cpp:310
+msgid "Quit application"
+msgstr "Uždaryti programą"
+
+#: blackjack/src/blackjack.cpp:311
+msgid "_Settings"
+msgstr "_Nustatymai"
+
+#: blackjack/src/blackjack.cpp:312
+msgid "Show game preferences"
+msgstr "Rodyti žaidimo nustatymus"
+
+#: blackjack/src/blackjack.cpp:314
+msgid "Deal"
+msgstr "Dalinti"
+
+#: blackjack/src/blackjack.cpp:314 blackjack/src/dialog.cpp:100
+#: blackjack/src/dialog.cpp:103
+msgid "Deal a new hand"
+msgstr "Dalinti naują rinkinį"
+
+#: blackjack/src/blackjack.cpp:315
+msgid "_Hit"
+msgstr "_Statyti"
+
+#: blackjack/src/blackjack.cpp:315
+msgid "Add a card to the hand"
+msgstr "Pridėti kortą į rinkinį"
+
+#: blackjack/src/blackjack.cpp:316
+msgid "_Stand"
+msgstr "_Pasuoti"
+
+#: blackjack/src/blackjack.cpp:316
+msgid "Stop adding cards to the hand"
+msgstr "Baigti rinkti kortas į rinkinį"
+
+#: blackjack/src/blackjack.cpp:317 blackjack/src/dialog.cpp:343
+#: blackjack/src/player.cpp:312
+msgid "Surrender"
+msgstr "Pasiduoti"
+
+#: blackjack/src/blackjack.cpp:317
+msgid "Surrender the hand"
+msgstr "Pasiduoti"
+
+#: blackjack/src/blackjack.cpp:318
+msgid "_Double down"
+msgstr "_Dvigubinti"
+
+#: blackjack/src/blackjack.cpp:318
+msgid "Double down"
+msgstr "Dvigubinti"
+
+#: blackjack/src/blackjack.cpp:319
+msgid "Split the hand"
+msgstr "Padalinti rinkinį"
+
+#: blackjack/src/blackjack.cpp:321
+msgid "Display help for this game"
+msgstr "Rodyti žaidimo pagalbą"
+
+#: blackjack/src/blackjack.cpp:322
+msgid "About this game"
+msgstr "Apie šį žaidimą"
+
+#: blackjack/src/blackjack.cpp:326
+msgid "Show toolbar"
+msgstr "Rodyti įrankių juostą"
+
 #: blackjack/src/blackjack.cpp:355
 msgid "Cards left:"
 msgstr "Liko kortų:"
@@ -1587,10 +1679,6 @@ msgstr ""
 "sumos, kad dalintojas turi natūralų 21 (t.y. blackjack), kuris buvo "
 "pasiūlytas, kai dalintojo atversta korta yra tūzas. Jeigu dalintojas turi "
 "natūralų 21, tada žaidėjui sumokama dviguba suma."
-
-#: blackjack/src/dialog.cpp:100 blackjack/src/dialog.cpp:103
-msgid "Deal a new hand"
-msgstr "Dalinti naują ranką"
 
 #: blackjack/src/dialog.cpp:101
 msgid "Set your wager and click in the white outline to deal a new hand."
@@ -1663,10 +1751,6 @@ msgstr "Išskaidyti"
 #: blackjack/src/dialog.cpp:338
 msgid "Resplit Aces"
 msgstr "Išskaidyti tūzus"
-
-#: blackjack/src/dialog.cpp:343 blackjack/src/player.cpp:312
-msgid "Surrender"
-msgstr "Pasiduoti"
 
 #: blackjack/src/dialog.cpp:348
 msgid "Dealer Speed"
@@ -2336,10 +2420,6 @@ msgstr "Naujas"
 #: gnect/src/main.c:1220 mahjongg/mahjongg.c:167
 msgid "New game"
 msgstr "Naujas žaidimas"
-
-#: gnect/src/main.c:1221 gnobots2/menu.c:106
-msgid "Start a new game"
-msgstr "Pradėti naują žaidimą"
 
 #: gnect/src/main.c:1223 mahjongg/mahjongg.c:183
 msgid "Undo"
@@ -3964,6 +4044,30 @@ msgstr ""
 #: gnomine/gnomine.schemas.in.h:2
 msgid "Use the unknown flag"
 msgstr "Naudoti unknown požymį"
+
+#: gnomine/minefield.c:161
+msgid ""
+"Unable to find required images.\n"
+"\n"
+"Please check your gnome-games installation."
+msgstr ""
+"Nepavyko rasti reikalingų paveikslėlių.\n"
+"\n"
+"Patikrinkite savo gnome-games instaliaciją."
+
+#: gnomine/minefield.c:168
+msgid ""
+"Required images have been found, but refused to load.\n"
+"\n"
+"Please check your installation of gnome-games and its dependencies."
+msgstr ""
+"Reikiami paveikslėliai buvo rasti, bet jų įkelti nepavyko.\n"
+"\n"
+"Prašau, patikrinkite Jūsų gnome-games instaliaciją bei jos priklsausomybes."
+
+#: gnomine/minefield.c:178
+msgid "Could not load images"
+msgstr "Nepavyko įkelti paveikslėlių"
 
 #: gnotravex/gnotravex.c:166
 msgid "Sol_ve"
