@@ -547,9 +547,7 @@ callback_new (GtkWidget *widget, GdkEvent *event)
 void
 callback_score (GtkWidget *widget, GdkEvent *event)
 {
-  GtkWidget *dialog;
-
-  dialog = score_dialog(GTK_WINDOW (main_window)); 
+  score_dialog(GTK_WINDOW (main_window)); 
 }
 
 void
@@ -567,11 +565,7 @@ callback_undo (GtkWidget *widget, GdkEvent *event)
 void
 callback_option (GtkWidget *widget, GdkEvent *event)
 {
-  GtkWidget *dialog;
-
-  dialog = option_dialog (main_window);
-
-  gtk_widget_show (dialog);
+  option_dialog (main_window);
 }
 
 
@@ -649,7 +643,7 @@ void
 callback_about (GtkWidget *widget, GdkEvent *event)
 {
   GdkPixbuf *pixbuf = NULL;
-  GtkWidget *about;
+  static GtkWidget *about = NULL;
   gchar *authors[] = {
     N_("Changwoo Ryu."),
     NULL
@@ -660,6 +654,11 @@ callback_about (GtkWidget *widget, GdkEvent *event)
   };
 
   const gchar *translator_credits = _("translator_credits");
+
+  if (about != NULL) {
+    gtk_window_present (GTK_WINDOW(about));
+    return;
+  }
 
 #ifndef ELEMENTS  
 #define ELEMENTS(x) (sizeof(x) / sizeof(x[0]))
@@ -672,13 +671,16 @@ callback_about (GtkWidget *widget, GdkEvent *event)
   }
 
   {
-	  char *filename = NULL;
+	  char *filename;
 	  
 	  filename = gnome_program_locate_file (NULL,
 			  GNOME_FILE_DOMAIN_APP_PIXMAP,
 			  "gnome-cardgame.png", FALSE, NULL);
 
-	  pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
+	  if (filename != NULL) {
+	    pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
+	    g_free (filename);
+	  }
   }
 
   about = gnome_about_new (_("Freecell"), VERSION,
@@ -689,6 +691,8 @@ callback_about (GtkWidget *widget, GdkEvent *event)
 			   strcmp (translator_credits, "translator_credits") != 0 ? translator_credits : NULL,
 			   pixbuf);
   gtk_window_set_transient_for (GTK_WINDOW (about), GTK_WINDOW (main_window));
+  g_signal_connect (G_OBJECT(about), "destroy", G_CALLBACK(gtk_widget_destroyed), &about);
+  if (pixbuf != NULL) g_object_unref (pixbuf);
   gtk_widget_show (about);
 }
 

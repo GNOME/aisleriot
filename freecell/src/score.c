@@ -27,6 +27,7 @@
 #include <gnome.h>
 #include <gconf/gconf-client.h>
 #include "option.h"
+#include "score-dialog.h"
 
 extern GConfClient *freecell_gconf_client;
 
@@ -136,6 +137,7 @@ score_clear(void)
   streaks_win_number = 0;
   streaks_lose_number = 0;
   streaks_current = 0;
+  score_dialog_update ();
 }
 
 
@@ -156,6 +158,7 @@ score_add_win(void)
     {
       streaks_win_number = streaks_current;
     }
+  score_dialog_update ();
 }
 
   
@@ -176,6 +179,7 @@ score_add_lose(void)
     {
       streaks_lose_number = - streaks_current;
     }
+  score_dialog_update ();
 }
 
 

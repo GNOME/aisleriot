@@ -28,23 +28,44 @@
 #include "score.h"
 
 
+static char      *formatstring[20];	/* FIXME: is it enough? */
+static GtkWidget *score_label[20];
+static GtkWidget *dialog = NULL;
+
+
 static void
 score_dialog_callback(GtkDialog *dialog, gint arg1, gpointer data)
 {
   if (arg1 == GTK_RESPONSE_REJECT)
     score_clear();
   else
-	  gtk_widget_destroy (GTK_WIDGET(dialog));
+    gtk_widget_hide (GTK_WIDGET(dialog));
 }
 
-GtkWidget *
+
+void
+score_dialog_update (void)
+{
+  int i;
+
+  if (dialog == NULL) return;
+  score_formatstring (formatstring);
+  for (i = 0; formatstring[i]; i++) {
+    gtk_label_set_text (GTK_LABEL(score_label[i]), formatstring[i]);
+  }
+}
+
+
+void
 score_dialog (GtkWindow *parent)
 {
-  GtkWidget *dialog;
-  GtkWidget *label;
-
-  char *formatstring[20];	/* FIXME: is it enough? */
   int i;
+
+  if (dialog != NULL) {
+    score_dialog_update ();
+    gtk_window_present (GTK_WINDOW(dialog));
+    return;
+  }
 
   dialog = gtk_dialog_new_with_buttons (_("Score"),
                                         parent,
@@ -52,22 +73,23 @@ score_dialog (GtkWindow *parent)
                                         GTK_STOCK_CLEAR, GTK_RESPONSE_REJECT,
                                         GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
                                         NULL);
-		  
+
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
 
   g_signal_connect (GTK_OBJECT (dialog), "response",
 	              GTK_SIGNAL_FUNC (score_dialog_callback), NULL);
-  
+
+  g_signal_connect (G_OBJECT(dialog), "destroy",
+                      G_CALLBACK(gtk_widget_destroyed), &dialog);
+
   score_formatstring(formatstring);
   for (i = 0; formatstring[i]; i++)
     {
-      label = gtk_label_new (formatstring[i]);
+      score_label[i] = gtk_label_new (formatstring[i]);
       gtk_box_pack_start (GTK_BOX(GTK_DIALOG(dialog)->vbox),
-			  label, TRUE, TRUE, 0);
-      gtk_widget_show(label);
+			  score_label[i], TRUE, TRUE, 0);
+      gtk_widget_show(score_label[i]);
     }
   gtk_widget_show (dialog);
-
-  return dialog;
 }
 

@@ -27,15 +27,19 @@
 
 static void check1_changed_callback (GtkWidget *check, gpointer data);
 static void check2_changed_callback (GtkWidget *check, gpointer data);
-static gint option_dialog_close_callback (GtkWidget *w, gpointer data);
 
-GtkWidget *
+void
 option_dialog (GtkWidget *parent)
 {
-  GtkWidget *propbox;
+  static GtkWidget *propbox = NULL;
   GtkWidget *box;
   GtkWidget *check1;
   GtkWidget *check2;
+
+  if (propbox != NULL) {
+    gtk_window_present (GTK_WINDOW(propbox));
+    return;
+  }
 
   propbox = gtk_dialog_new_with_buttons (_("Freecell Properties"),
 		  GTK_WINDOW (parent),
@@ -44,7 +48,8 @@ option_dialog (GtkWidget *parent)
 		  NULL);
   g_signal_connect (G_OBJECT (propbox), "response",
 			G_CALLBACK (gtk_widget_destroy), propbox);
-
+  g_signal_connect (G_OBJECT(propbox), "destroy",
+                        G_CALLBACK(gtk_widget_destroyed), &propbox);
 
   box = gtk_vbox_new (TRUE, 4);
 
@@ -69,11 +74,7 @@ option_dialog (GtkWidget *parent)
   gtk_box_pack_start_defaults (GTK_BOX (GTK_DIALOG (propbox)->vbox), box);
 
   gtk_widget_show (box);
-
-  g_signal_connect (G_OBJECT (propbox), "delete_event",
-			G_CALLBACK (option_dialog_close_callback),
-			NULL);
-  return propbox;
+  gtk_widget_show (propbox);
 }
 
 
@@ -93,12 +94,4 @@ check2_changed_callback (GtkWidget *check, gpointer data)
 			(GTK_TOGGLE_BUTTON (check));
   option_write ();
 }
-
-
-static gint
-option_dialog_close_callback (GtkWidget *w, gpointer data)
-{
-  return FALSE;
-}
-
 

@@ -365,7 +365,7 @@ gboolean quit_app (GtkMenuItem *menuitem)
             GTK_DIALOG_MODAL,
             GTK_MESSAGE_QUESTION,
             GTK_BUTTONS_NONE,
-            _("Really exit Aisleriot?"));
+            _("Are you sure you want to quit Aisleriot?"));
     gtk_dialog_add_buttons (GTK_DIALOG (box),
             GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
             GTK_STOCK_QUIT, GTK_RESPONSE_ACCEPT,
