@@ -1,5 +1,5 @@
 ; AisleRiot - odessa.scm
-; Copyright (C) 1998 Rosanna Yuen <rwsy@mit.edu>
+; Copyright (C) 1998, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;                    Felix Bellaby <felix@pooh.u-net.com>
 ;
 ; This game is free software; you can redistribute it and/or modify
@@ -223,8 +223,8 @@
 	       (let* ((card (get-top-card slot-id))
 		      (suit (get-suit card))
 		      (value (- (get-value card) 1)))
-		 (or (is-ploppable card value suit)
-		     (is-extendable 1 slot-id card value suit))))
+		 (or (is-extendable 1 slot-id card value suit)
+                     (is-ploppable card value suit))))
 	   (game-over-helper (+ 1 slot-id) check-kings))))
 
 (define (game-over)
