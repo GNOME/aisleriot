@@ -312,11 +312,11 @@ callback_restart (GtkWidget *widget, GdkEvent *event)
       && freecellgame
       && !freecellgame_is_finished(freecellgame))
     {
-      mb = gnome_messagebox_new (_("Exit this game?"),
-				 GNOME_MESSAGEBOX_QUESTION,
+      mb = gnome_message_box_new (_("Exit this game?"),
+				 GNOME_MESSAGE_BOX_QUESTION,
 				 _("Yes"), _("No"), NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_restart_lose),
@@ -449,11 +449,11 @@ callback_new_with_seed (GtkWidget *widget, GdkEvent *event)
       && freecellgame
       && !freecellgame_is_finished(freecellgame))
     {
-      mb = gnome_messagebox_new (_("Exit this game?"),
-				 GNOME_MESSAGEBOX_QUESTION,
+      mb = gnome_message_box_new (_("Exit this game?"),
+				 GNOME_MESSAGE_BOX_QUESTION,
 				 _("Yes"), _("No"), NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_new_with_seed_with_lose),
@@ -507,11 +507,11 @@ callback_new (GtkWidget *widget, GdkEvent *event)
       && freecellgame
       && !freecellgame_is_finished(freecellgame))
     {
-      mb = gnome_messagebox_new (_("Exit this game?"),
-				 GNOME_MESSAGEBOX_QUESTION,
+      mb = gnome_message_box_new (_("Exit this game?"),
+				 GNOME_MESSAGE_BOX_QUESTION,
 				 _("Yes"), _("No"), NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_new_with_lose),
@@ -536,11 +536,11 @@ callback_undo (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *mb;
 
-  mb = gnome_messagebox_new (_("Sorry, this feature is not implemented (yet)."),
-			     GNOME_MESSAGEBOX_INFO,
+  mb = gnome_message_box_new (_("Sorry, this feature is not implemented (yet)."),
+			     GNOME_MESSAGE_BOX_INFO,
 			     _("OK"), NULL, NULL);
   GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-  gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+  gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
   gtk_widget_show (mb);
 }
 
@@ -559,11 +559,11 @@ callback_rule (GtkWidget *widget, GdkEvent *event)
 {
   GtkWidget *mb;
 
-  mb = gnome_messagebox_new (_("Sorry, this feature is not implemented (yet)."),
-			     GNOME_MESSAGEBOX_INFO,
+  mb = gnome_message_box_new (_("Sorry, this feature is not implemented (yet)."),
+			     GNOME_MESSAGE_BOX_INFO,
 			     _("OK"), NULL, NULL);
   GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-  gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+  gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
   gtk_widget_show (mb);
 }
 
@@ -596,11 +596,11 @@ callback_exit (GtkWidget *widget, GdkEvent *event)
       && freecellgame
       && !freecellgame_is_finished(freecellgame))
     {
-      mb = gnome_messagebox_new (_("Exit this game?"),
-				 GNOME_MESSAGEBOX_QUESTION,
+      mb = gnome_message_box_new (_("Exit this game?"),
+				 GNOME_MESSAGE_BOX_QUESTION,
 				 _("Yes"), _("No"), NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
       gtk_signal_connect_object(GTK_OBJECT(mb),
 				"clicked",
 				GTK_SIGNAL_FUNC(callback_exit_with_lose),
@@ -643,11 +643,11 @@ inform_invalid_move (void)
 {
   GtkWidget *mb;
 
-  mb = gnome_messagebox_new (_("You can't move in that way."),
-			     GNOME_MESSAGEBOX_ERROR,
+  mb = gnome_message_box_new (_("You can't move in that way."),
+			     GNOME_MESSAGE_BOX_ERROR,
 			     _("OK"), NULL, NULL);
   GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-  gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+  gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
   gtk_widget_show (mb);
 }
 
@@ -1119,11 +1119,11 @@ to_destination_auto(void)
 
   if (freecellgame_is_there_no_way(freecellgame))
     {
-      mb = gnome_messagebox_new (_("Sorry, there is no card to move."),
-				 GNOME_MESSAGEBOX_INFO,
+      mb = gnome_message_box_new (_("Sorry, there is no card to move."),
+				 GNOME_MESSAGE_BOX_INFO,
 				 _("OK"), NULL, NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
       gtk_widget_show (mb);
       score_add_lose();
       stalled = 1;
@@ -1131,11 +1131,11 @@ to_destination_auto(void)
   
   if (freecellgame_is_finished(freecellgame))
     {
-      mb = gnome_messagebox_new (_("Congraturations.  You won.\nDo you want to play again?"),
-				 GNOME_MESSAGEBOX_INFO,
+      mb = gnome_message_box_new (_("Congraturations.  You won.\nDo you want to play again?"),
+				 GNOME_MESSAGE_BOX_INFO,
 				 _("Yes"), _("No"), NULL, NULL);
       GTK_WINDOW(mb)->position = GTK_WIN_POS_MOUSE;
-      gnome_messagebox_set_modal (GNOME_MESSAGEBOX(mb));
+      gnome_message_box_set_modal (GNOME_MESSAGE_BOX(mb));
       gtk_signal_connect_object (GTK_OBJECT (mb),
 				 "clicked",
 				 GTK_SIGNAL_FUNC(callback_new_really_callback),
