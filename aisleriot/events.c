@@ -423,7 +423,7 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   settings = gtk_settings_get_default();
   g_object_get(G_OBJECT(settings),"gtk-double-click-time",&tmptime,NULL);
   dbl_click_time = tmptime/1000.0;
- 
+
   return FALSE;
 }
 

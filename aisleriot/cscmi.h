@@ -33,6 +33,7 @@ void       cscm_init                          (void);
 void       add_slot                           (SCM        slot_data);
 GList*     new_deck                           (SCM        deck_data);
 hcard_type new_card                           (SCM        card_data);
+gboolean   has_options                        (void);
 
 /* C to Scheme functions... */
 SCM        make_card                          (hcard_type card);

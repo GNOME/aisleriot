@@ -55,7 +55,6 @@
 GtkWidget        *app;
 GtkWidget        *vbox;
 GtkWidget        *playing_area;
-GtkWidget        *option_dialog = NULL;
 GdkGC            *draw_gc;
 GdkGC            *bg_gc;
 GdkGC            *slot_gc;
@@ -223,14 +222,11 @@ void new_game (gchar* file, guint *seedp)
     game_name = game_file_to_name (file);
     update_statistics_display ();
     help_update_game_name (game_name);
+    install_options_menu (game_name);
 
     if (!dont_save)
       save_state (gnome_master_client ());
 
-    if(option_dialog) {
-      gtk_widget_destroy(option_dialog);
-      option_dialog = NULL;
-    }
   }
 
   if (seedp) {

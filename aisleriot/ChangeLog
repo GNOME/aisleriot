@@ -1,3 +1,26 @@
+2005-03-17  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* menu.c (install_options_menu): The game-specific menu is now
+	placed in the correct part of the menubar and is properly
+	populated. Nothing is done with the data yet (and it certainly
+	isn't saved across sessions, it is also a little slow when the
+	game switches since it happens after the cards are rendered).
+
+2005-03-16  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* cscmi.[ch]:
+	* menu.c (install_options_menu): Only display the game-specific 
+	options menu if there actually are game-specific options. Still 
+	no actual options in the menu.
+
+2005-03-15  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* menu.c: Start work on a game-specific menu. Currently just makes
+	the top-level menu and doesn't populate it.
+
+	* sol.c:
+	* dialog.c: Remvoe the old options_dialog code.
+
 2005-03-08  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* menu.c: Fullscreen mode from Paolo Borelli.

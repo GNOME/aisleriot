@@ -648,6 +648,7 @@ SCM
 cscmi_get_options_lambda (void)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->get_options_lambda;
@@ -657,9 +658,19 @@ cscmi_get_options_lambda (void)
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
+}
+
+gboolean
+has_options (void)
+{
+  SCM options;
+
+  options = cscmi_get_options_lambda ();
+  return SCM_NFALSEP (options);
 }
 
 SCM

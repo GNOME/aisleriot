@@ -30,6 +30,7 @@ void toolbar_hide ( void );
 void undo_set_sensitive (gboolean state);
 void redo_set_sensitive (gboolean state);
 void help_update_game_name (gchar * name);
+void install_options_menu (gchar *name);
 
 extern GtkUIManager *ui_manager;
 extern GtkWidget *menubar;

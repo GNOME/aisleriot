@@ -33,6 +33,7 @@
 #include "statistics.h"
 
 GtkUIManager *ui_manager;
+GtkActionGroup *action_group;
 
 /* Cached widgets which we alter the state of frequently. */
 GtkWidget *undomenuitem;
@@ -241,7 +242,9 @@ const GtkActionEntry actions[] = {
   
   { "Contents", GTK_STOCK_HELP, N_("_Contents"), "F1", NULL, G_CALLBACK (general_help) },
   { "Help", GTK_STOCK_HELP, "", "", NULL, G_CALLBACK (help_on_specific_game) },
-  {"About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) }
+  {"About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) },
+
+  /*  { "Hidden", GTK_STOCK_NEW, "This should be hidden", NULL, NULL, NULL }, */
 };
 
 const GtkToggleActionEntry toggles[] = {
@@ -274,6 +277,7 @@ const char *ui_description =
 "      <menuitem action='RedoMove'/>"
 "      <menuitem action='Hint'/>"
 "    </menu>"
+"    <placeholder name='OptionMenuPlaceHolder'/>"
 "    <menu action='HelpMenu'>"
 "      <menuitem action='Contents'/>"
 "      <menuitem action='Help'/>"
@@ -287,14 +291,14 @@ const char *ui_description =
 "    <separator/>"
 "    <toolitem action='UndoMove'/>"
 "    <toolitem action='RedoMove'/>"
-"    <toolitem action='Hint'/>"
+"    <toolitem action='Hint'/>" 
+/* "    <toolitem action='Hidden'/>" */
 "  </toolbar>"
 "</ui>";
 
 void create_menus ()
 {
   GtkAccelGroup *accel_group;
-  GtkActionGroup *action_group;
 
   action_group = gtk_action_group_new ("MenuActions");
   gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
@@ -333,6 +337,7 @@ void create_menus ()
 				gconf_client_get_bool (gconf_client,
 						       "/apps/aisleriot/click_to_move",
 						       NULL));
+
 }
 
 void help_update_game_name (gchar * name)
@@ -347,3 +352,75 @@ void help_update_game_name (gchar * name)
 
 }
 
+/* FIXME: This does not add an appropriate underscore. Is this easy? 
+ * Maybe underscore the first letter that isn't underscored in another
+ * menu. */
+void install_options_menu (gchar *name)
+{
+  static int merge_id = 0;
+  static GtkAction *menuaction = NULL;
+  SCM options_list;
+  gint l, i;
+  gchar *uistring;
+  gchar *strtemp;
+
+  if (menuaction) {
+    gtk_action_group_remove_action (action_group, menuaction);
+    g_object_unref (menuaction);
+    menuaction = NULL;
+  }
+
+  if (merge_id) {
+    gtk_ui_manager_remove_ui (ui_manager, merge_id);
+    merge_id = 0;
+  }
+
+  if (has_options ()) {
+    menuaction = gtk_action_new ("OptionMenu", _(name), NULL, NULL);
+    gtk_action_group_add_action (action_group, menuaction);
+    g_object_set (menuaction, "is-important", TRUE, NULL);
+
+    merge_id = gtk_ui_manager_new_merge_id (ui_manager);
+
+    uistring = g_strdup ("<ui><menubar name='MainMenu'><placeholder name='OptionMenuPlaceHolder'><menu action='OptionMenu'>");
+    
+    options_list = cscmi_get_options_lambda ();
+    l = SCM_INUM (scm_length (options_list));
+    /* FIXME: We still leak a little here, especially actions. */
+    for (i=0; i<l; i++) {
+      SCM entry;
+      gchar *entryname;
+      gboolean entrystate;
+      GtkToggleAction *itemaction;
+      gchar *actionname;
+
+      /* Each entry in the options list is a list consisting of a name and 
+	 a variable. */
+      entry = scm_list_ref (options_list, SCM_MAKINUM (i));
+      entryname = SCM_STRING_CHARS (scm_list_ref (entry, SCM_MAKINUM (0)));
+      entrystate = SCM_NFALSEP (scm_list_ref (entry, SCM_MAKINUM (1)));
+
+      actionname = g_strdup_printf ("option_%d", i);
+      
+      itemaction = gtk_toggle_action_new (actionname, entryname, 
+					  NULL, NULL);
+      gtk_action_group_add_action (action_group, GTK_ACTION (itemaction));
+
+      strtemp = uistring;
+      uistring = g_strdup_printf ("%s<menuitem action='%s'/>", uistring,
+				  actionname);
+      g_free (strtemp);
+
+      g_free (actionname);
+			     
+    }
+
+    strtemp = uistring;
+    uistring = g_strconcat (uistring, "</menu></placeholder></menubar></ui>", NULL);
+    g_free (strtemp);
+
+    merge_id = gtk_ui_manager_add_ui_from_string (ui_manager,
+						  uistring, -1, NULL);
+    g_free (uistring);
+  } 
+}

@@ -370,6 +370,8 @@ void show_preferences_dialog ()
   gtk_window_present (GTK_WINDOW (property_box));
 }
 
+#if 0
+
 SCM options = SCM_BOOL_F;
 GtkWidget *option_page;
 
@@ -445,6 +447,8 @@ void show_rules_options_dialog ()
   } 
   gtk_window_present (GTK_WINDOW (option_dialog));
 }
+
+#endif
 
 void show_global_stats_dialog () 
 {
