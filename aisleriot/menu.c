@@ -82,7 +82,6 @@ GnomeUIInfo rules_sub_menu[] = {
 };
 
 GnomeUIInfo file_menu[] = {
-  GNOMEUIINFO_MENU_EXIT_ITEM(quit_app, NULL),
   GNOMEUIINFO_END
 };
 
@@ -143,14 +142,15 @@ GnomeUIInfo game_menu[] = {
   /*  GNOMEUIINFO_ITEM_STOCK(N_("S_tatistics..."), NULL, 
       show_global_stats_dialog, GNOME_STOCK_MENU_BOOK_BLUE), */
 
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_MENU_EXIT_ITEM(quit_app, NULL),
+
   GNOMEUIINFO_END
 };
 
 
 GnomeUIInfo top_menu[] = {
-
-  GNOMEUIINFO_MENU_FILE_TREE(file_menu),
-
 
   GNOMEUIINFO_MENU_GAME_TREE(game_menu),
 
