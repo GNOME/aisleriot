@@ -1,3 +1,5 @@
+SUBDIRS = pixmaps
+
 Gamesdir  = $(datadir)/apps/Games
 typesdir  = $(datadir)/sol-games
 
