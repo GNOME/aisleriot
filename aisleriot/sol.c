@@ -388,14 +388,14 @@ gboolean quit_app (GtkMenuItem *menuitem)
 void create_main_window ()
 {
   /* This is the prefix used to retrieve the state when NOT restarted: */
-  gchar* prefix = 
+  const gchar* prefix = 
     gnome_client_get_global_config_prefix (gnome_master_client ());
 
   app = gnome_app_new ("sol", _("Aisleriot"));
   /* Use "prefix" as the default config location ... */
   gnome_config_push_prefix (prefix);
   /* ... and use it for the menubar and toolbar aw well: */
-  GNOME_APP (app)->prefix = prefix;
+  GNOME_APP (app)->prefix = (gchar*)prefix;
 
   gtk_widget_realize (app);
 
@@ -486,7 +486,7 @@ void main_prog(int argc, char *argv[])
 static void
 retrieve_state (GnomeClient *client)
 {
-  gchar *prefix = gnome_client_get_config_prefix (client);
+  const gchar *prefix = gnome_client_get_config_prefix (client);
 
   gnome_config_push_prefix (prefix);
   start_game = gnome_config_get_string_with_default 
@@ -496,7 +496,7 @@ retrieve_state (GnomeClient *client)
 
 #ifdef GNOME_SESSION_BUG
   if (strcmp (prefix, gnome_client_get_global_config_prefix (client))) {
-    prefix = gnome_config_get_real_path (prefix);
+    gchar *prefix = gnome_config_get_real_path (prefix);
     prefix[ strlen (prefix) - 1] = '\0';
     unlink (prefix);
   }
