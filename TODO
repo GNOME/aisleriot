@@ -151,11 +151,13 @@ Iagno:
 
 Mahjongg:
         - Finish off scaling support. Make new themes.
-          - Make the background colour work.
           - Make the geometry generation occur before the configure
-            callback so that it is a) quicker and b) adapts to the
-            change in the tile layout.
+            callback so that it is a) quicker b) adapts to the
+            change in the tile layout and c) makes sure the tile layout
+            is in fact auto-apply.
           - Rebuild seta.png
+          - Fix up the tile search function for speed.
+          - Make resizing a bit snappier.
           - Finish the SVG tileset.
         - Fix shuffling bugs (91098, 94750), probably using the new
           generation algorithm, it should only require a few tweaks to
