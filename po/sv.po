@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"POT-Creation-Date: 2002-12-11 19:36+0100\n"
-"PO-Revision-Date: 2002-12-11 19:40+0100\n"
+"POT-Creation-Date: 2002-12-22 10:57+0100\n"
+"PO-Revision-Date: 2002-12-22 10:57+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1297,7 +1297,7 @@ msgstr "Snabba drag (halvera datorns betänketid)"
 msgid "Dark"
 msgstr "Mörk"
 
-#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:760
+#: gataxx/properties.c:358 gataxx/properties.c:412 gnect/src/prefs.c:795
 #: gtali/yahtzee.c:66 iagno/properties.c:497 iagno/properties.c:549
 msgid "Human"
 msgstr "Mänsklig"
@@ -1465,11 +1465,11 @@ msgstr "Nivå för spelare ett"
 msgid "Level of Player Two"
 msgstr "Nivå för spelare två"
 
-#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:960
+#: gnect/data/gnect.schemas.in.h:9 gnect/src/prefs.c:995
 msgid "Move left"
 msgstr "Flytta vänster"
 
-#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:968
+#: gnect/data/gnect.schemas.in.h:10 gnect/src/prefs.c:1003
 msgid "Move right"
 msgstr "Flytta höger"
 
@@ -1700,17 +1700,31 @@ msgstr "Felsökningsnivå (4 för slumpfrö)"
 msgid "%s: no themes available\n"
 msgstr "%s: inga teman tillgängliga\n"
 
-#: gnect/src/prefs.c:330
+#: gnect/src/prefs.c:281 mahjongg/mahjongg.c:2024
+#, c-format
+msgid "There was an error accessing GConf: %s"
+msgstr "Ett fel uppstod vid åtkomst av GConf: %s"
+
+#: gnect/src/prefs.c:292 mahjongg/mahjongg.c:2035
+msgid ""
+"The default configuration values could not be retrieved correctly. Please "
+"check your GConf configuration, specifically that the schemas are installed "
+"correctly"
+msgstr ""
+"Standardkonfigurationsvärdena kunde inte hämtas korrekt. Kontrollera din "
+"GConf-konfiguration, och speciellt att schemafilerna är installerade korrekt"
+
+#: gnect/src/prefs.c:365
 #, c-format
 msgid "Player 1 : %s"
 msgstr "Spelare 1: %s"
 
-#: gnect/src/prefs.c:331
+#: gnect/src/prefs.c:366
 #, c-format
 msgid "Player 2 : %s"
 msgstr "Spelare 2: %s"
 
-#: gnect/src/prefs.c:354
+#: gnect/src/prefs.c:389
 msgid ""
 "Applying this change to Player Selection\n"
 "will end the current game"
@@ -1718,98 +1732,98 @@ msgstr ""
 "Att verkställa denna ändring på spelarvalet\n"
 "kommer att avsluta det aktuella spelet"
 
-#: gnect/src/prefs.c:603
+#: gnect/src/prefs.c:638
 msgid "Error loading theme"
 msgstr "Fel vid inläsning av tema"
 
-#: gnect/src/prefs.c:763
+#: gnect/src/prefs.c:798
 msgid "Non-Velena / Simple"
 msgstr "Icke-Velena / Enkel"
 
-#: gnect/src/prefs.c:766
+#: gnect/src/prefs.c:801
 msgid "Velena / Weak"
 msgstr "Velena / Svag"
 
-#: gnect/src/prefs.c:769
+#: gnect/src/prefs.c:804
 msgid "Velena / Medium"
 msgstr "Velena / Mellan"
 
-#: gnect/src/prefs.c:772
+#: gnect/src/prefs.c:807
 msgid "Velena / Strong"
 msgstr "Velena / Stark"
 
-#: gnect/src/prefs.c:785
+#: gnect/src/prefs.c:820
 msgid "Always Player 1"
 msgstr "Alltid spelare 1"
 
-#: gnect/src/prefs.c:788
+#: gnect/src/prefs.c:823
 msgid "Always Player 2"
 msgstr "Alltid spelare 2"
 
-#: gnect/src/prefs.c:791
+#: gnect/src/prefs.c:826
 msgid "Take turns"
 msgstr "Ta drag"
 
-#: gnect/src/prefs.c:816
+#: gnect/src/prefs.c:851
 msgid "Gnect Preferences"
 msgstr "Inställningar för Gnect"
 
-#: gnect/src/prefs.c:896
+#: gnect/src/prefs.c:931
 msgid "Who starts?"
 msgstr "Vem börjar?"
 
-#: gnect/src/prefs.c:914
+#: gnect/src/prefs.c:949
 msgid "Player Selection"
 msgstr "Spelarval"
 
-#: gnect/src/prefs.c:932
+#: gnect/src/prefs.c:967
 msgid "Theme selection:"
 msgstr "Temaval:"
 
 #. keyboard
-#: gnect/src/prefs.c:949
+#: gnect/src/prefs.c:984
 msgid "Keyboard control:"
 msgstr "Tangentbordsstyrning:"
 
-#: gnect/src/prefs.c:976
+#: gnect/src/prefs.c:1011
 msgid "Drop counter"
 msgstr "Släpp markör"
 
-#: gnect/src/prefs.c:1017
+#: gnect/src/prefs.c:1052
 msgid "Animation:"
 msgstr "Animation:"
 
-#: gnect/src/prefs.c:1022
+#: gnect/src/prefs.c:1057
 msgid "Yes please!"
 msgstr "Ja tack!"
 
 #. sound
-#: gnect/src/prefs.c:1033
+#: gnect/src/prefs.c:1068
 msgid "Sound type:"
 msgstr "Ljudtyp:"
 
-#: gnect/src/prefs.c:1038
+#: gnect/src/prefs.c:1073
 msgid "Speaker beep"
 msgstr "Högtalarpip"
 
-#: gnect/src/prefs.c:1043
+#: gnect/src/prefs.c:1078
 msgid "GNOME sound"
 msgstr "GNOME-ljud"
 
-#: gnect/src/prefs.c:1046
+#: gnect/src/prefs.c:1081
 msgid "This can be set up using the GNOME Control Center"
 msgstr "Detta kan ställas in genom att använda GNOME-kontrollpanelen"
 
 #. verify
-#: gnect/src/prefs.c:1056
+#: gnect/src/prefs.c:1091
 msgid "If stopping an unfinished game:"
 msgstr "Om ett oavslutat spel stoppas:"
 
-#: gnect/src/prefs.c:1061
+#: gnect/src/prefs.c:1096
 msgid "Ask me first"
 msgstr "Fråga mig först"
 
-#: gnect/src/prefs.c:1065
+#: gnect/src/prefs.c:1100
 msgid "Appearance and Behaviour"
 msgstr "Utseende och beteende"
 
@@ -3710,20 +3724,6 @@ msgstr "Kunde inte hitta filen %s"
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Ledsen, jag kunde inte hitta en spelbar konfiguration."
 
-#: mahjongg/mahjongg.c:2024
-#, c-format
-msgid "There was an error accessing GConf: %s"
-msgstr "Ett fel uppstod vid åtkomst av GConf: %s"
-
-#: mahjongg/mahjongg.c:2035
-msgid ""
-"The default configuration values could not be retrieved correctly. Please "
-"check your GConf configuration, specifically that the schemas are installed "
-"correctly"
-msgstr ""
-"Standardkonfigurationsvärdena kunde inte hämtas korrekt. Kontrollera din "
-"GConf-konfiguration, och speciellt att schemafilerna är installerade korrekt"
-
 #: mahjongg/mahjongg.c:2077
 msgid "Tiles Left: "
 msgstr "Brickor kvar: "
@@ -3758,12 +3758,12 @@ msgid ""
 "Could not find the theme:\n"
 "%s\n"
 "\n"
-"Please check you Same GNOME installation."
+"Please check your Same GNOME installation."
 msgstr ""
 "Kunde inte hitta temat:\n"
 "%s\n"
 "\n"
-"Kontrollera din SameGNOME-installation"
+"Kontrollera din SameGNOME-installation."
 
 #: same-gnome/same-gnome.c:434
 #, c-format
