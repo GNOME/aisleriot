@@ -178,7 +178,7 @@
 (define (game-over)
   (set-statusbar-message (get-stock-no-string))
   (and (not (game-won))
-      (get-hint))
+       (get-hint)))
 
 (define (check-empty-or-full slot-id)
   (if (> slot-id 18)
