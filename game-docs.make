@@ -51,11 +51,11 @@ install-data-am: index.html
 	-$(mkinstalldirs) $(DESTDIR)$(docdir)/stylesheet-images
 	-cp $(srcdir)/topic.dat $(DESTDIR)$(docdir)
 	-for file in \
-			$(game)/*.html \
-			$(game)/*.css \
-			$(srcdir)/*.png do\
-		basefile=`echo $$file | sed -e 's,^.*/,,'`; \
-		$(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$$basefile; \
+		$(game)/*.html \
+		$(game)/*.css \
+		$(srcdir)/*.png; do\
+	  basefile=`echo $$file | sed -e 's,^.*/,,'`; \
+	  $(INSTALL_DATA) $$file $(DESTDIR)$(docdir)/$$basefile; \
 	done
 	-for file in \
 			$(game)/stylesheet-images/*; do \
