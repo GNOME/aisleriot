@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-20 16:04-0400\n"
-"PO-Revision-Date: 2004-06-20 16:05-0400\n"
+"POT-Creation-Date: 2004-06-25 21:48-0400\n"
+"PO-Revision-Date: 2004-06-25 21:49-0400\n"
 "Last-Translator: Gareth Owen <gowen72@yahoo.com>\n"
 "Language-Team: British English\n"
 "MIME-Version: 1.0\n"
@@ -594,7 +594,7 @@ msgstr "Card games:"
 #. Translator credits
 #: aisleriot/menu.c:97 blackjack/src/menu.cpp:84 gataxx/gataxx.c:364
 #: glines/glines.c:945 gnect/src/main.c:811 gnibbles/main.c:182
-#: gnobots2/menu.c:194 gnome-stones/main.c:1094 gnometris/tetris.cpp:1226
+#: gnobots2/menu.c:215 gnome-stones/main.c:1094 gnometris/tetris.cpp:1226
 #: gnomine/gnomine.c:546 gnotravex/gnotravex.c:1486 gtali/gyahtzee.c:415
 #: iagno/gnothello.c:369 mahjongg/mahjongg.c:1662 same-gnome/same-gnome.c:707
 msgid "translator-credits"
@@ -654,11 +654,11 @@ msgid "Get statistics on the current game"
 msgstr "Get statistics on the current game"
 
 #: aisleriot/menu.c:255 blackjack/src/menu.cpp:203 gnect/src/main.c:1187
-#: mahjongg/mahjongg.c:860
+#: gnobots2/menu.c:106 mahjongg/mahjongg.c:860
 msgid "New"
 msgstr "New"
 
-#: aisleriot/menu.c:255 gnect/src/main.c:1188
+#: aisleriot/menu.c:255 gnect/src/main.c:1188 gnobots2/menu.c:106
 msgid "Start a new game"
 msgstr "Start a new game"
 
@@ -2616,17 +2616,17 @@ msgstr "Grey"
 msgid "Worm %d:"
 msgstr "Worm %d:"
 
-#: gnobots2/game.c:141
+#: gnobots2/game.c:142
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "'%s' with super-safe moves"
 
-#: gnobots2/game.c:144
+#: gnobots2/game.c:145
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "'%s' with safe moves"
 
-#: gnobots2/game.c:320 gnobots2/game.c:335
+#: gnobots2/game.c:321 gnobots2/game.c:336
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -2634,11 +2634,11 @@ msgstr ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
 
-#: gnobots2/game.c:1149
+#: gnobots2/game.c:1157
 msgid "There are no teleport locations left!!"
 msgstr "There are no teleport locations left!!"
 
-#: gnobots2/game.c:1218
+#: gnobots2/game.c:1226
 msgid "There are no safe locations to teleport to!!"
 msgstr "There are no safe locations to teleport to!!"
 
@@ -2658,7 +2658,7 @@ msgstr "X"
 msgid "Y"
 msgstr "Y"
 
-#: gnobots2/gnobots.c:199 gnobots2/menu.c:213
+#: gnobots2/gnobots.c:199 gnobots2/menu.c:234
 msgid "GNOME Robots"
 msgstr "GNOME Robots"
 
@@ -2905,7 +2905,35 @@ msgstr "Victory!!"
 msgid "Could not find '%s' image file for GNOME Robots\n"
 msgstr "Could not find '%s' image file for GNOME Robots\n"
 
-#: gnobots2/menu.c:215
+#: gnobots2/menu.c:65 gnobots2/menu.c:109 gnobots2/properties.c:973
+msgid "Teleport"
+msgstr "Teleport"
+
+#: gnobots2/menu.c:65 gnobots2/menu.c:109
+msgid "Teleport, safely if possible"
+msgstr "Teleport, safely if possible"
+
+#: gnobots2/menu.c:66 gnobots2/menu.c:110
+msgid "Random"
+msgstr "Random"
+
+#: gnobots2/menu.c:66 gnobots2/menu.c:110
+msgid "Teleport randomly"
+msgstr "Teleport randomly"
+
+#: gnobots2/menu.c:67 gnobots2/menu.c:111 gnobots2/properties.c:1001
+msgid "Wait"
+msgstr "Wait"
+
+#: gnobots2/menu.c:67 gnobots2/menu.c:111
+msgid "Wait for the robots"
+msgstr "Wait for the robots"
+
+#: gnobots2/menu.c:98 gnotravex/gnotravex.c:229
+msgid "_Move"
+msgstr "_Move"
+
+#: gnobots2/menu.c:236
 msgid "GNOME Robots Game"
 msgstr "GNOME Robots Game"
 
@@ -3129,17 +3157,9 @@ msgstr "Background colour:"
 msgid "Keyboard Controls"
 msgstr "Keyboard Controls"
 
-#: gnobots2/properties.c:973
-msgid "Teleport"
-msgstr "Teleport"
-
 #: gnobots2/properties.c:987
 msgid "Random Teleport"
 msgstr "Random Teleport"
-
-#: gnobots2/properties.c:1001
-msgid "Wait"
-msgstr "Wait"
 
 #: gnobots2/properties.c:1020
 msgid "Use the Keypad"
@@ -3864,10 +3884,6 @@ msgstr "_Down"
 #: gnotravex/gnotravex.c:210
 msgid "Move the pieces down"
 msgstr "Move the pieces down"
-
-#: gnotravex/gnotravex.c:229
-msgid "_Move"
-msgstr "_Move"
 
 #: gnotravex/gnotravex.c:239
 msgid "Size of board (2-6)"
