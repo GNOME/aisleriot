@@ -47,7 +47,7 @@ games_clock_instance_init (GamesClock *clock)
 	clock->timer_id = -1;
 	clock->seconds = 0;
 
-	gtk_label_set_text (GTK_LABEL (clock), "00 : 00 : 00");
+	gtk_label_set_text (GTK_LABEL (clock), "00:00:00");
 }
 
 GType
@@ -84,27 +84,36 @@ games_clock_new (void)
 	return GTK_WIDGET (clock);
 }
 
+static void
+clock_paint (GamesClock *clock)
+{
+        char *string;
+        int   secs;
+        int   mins;
+        int   hours;
+        
+        g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
+ 
+        secs  = clock->seconds;
+        mins  = clock->seconds / 60;
+        hours = clock->seconds / 3600;
+        
+        string = g_strdup_printf ( "%.2d:%.2d:%.2d", hours, mins, secs);
+        
+        gtk_label_set (GTK_LABEL (clock), string);
+                                         
+        g_free (string);
+}
+
+
 static gboolean
 games_clock_update (GamesClock *clock)
 {
-	char *string;
-	int   secs;
-	int   mins;
-	int   hours;
-
 	g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
 
 	clock->seconds++;
 
-	secs  = clock->seconds;
-	mins  = clock->seconds / 60;
-	hours = clock->seconds / 3600;
-
-	string = g_strdup_printf ( "%.2d : %.2d : %.2d", hours, mins, secs);
-
-	gtk_label_set (GTK_LABEL (clock), string);
-
-	g_free (string);
+	clock_paint (clock);
 
 	return TRUE;
 }
@@ -142,4 +151,5 @@ games_clock_set_seconds (GamesClock *clock,
 	g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
 
 	clock->seconds = seconds;
+	clock_paint (clock);
 }
