@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-22 12:12+0200\n"
-"PO-Revision-Date: 2003-07-23 16:48+0200\n"
+"POT-Creation-Date: 2003-07-24 12:19+0200\n"
+"PO-Revision-Date: 2003-07-24 23:56+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -307,7 +307,7 @@ msgstr "Konec hry."
 msgid "New Game"
 msgstr "Nová hra"
 
-#: aisleriot/dialog.c:132 mahjongg/mahjongg.c:1585
+#: aisleriot/dialog.c:132 mahjongg/mahjongg.c:1586
 msgid "Select Game"
 msgstr "Vybrat hru"
 
@@ -543,7 +543,7 @@ msgstr ""
 "rozložení."
 
 #: aisleriot/menu.c:67 blackjack/src/menu.cpp:73 gnome-stones/main.c:1074
-#: gnomine/gnomine.c:334 mahjongg/mahjongg.c:1330
+#: gnomine/gnomine.c:334 mahjongg/mahjongg.c:1331
 msgid "Main game:"
 msgstr "Hlavní hra:"
 
@@ -556,7 +556,7 @@ msgstr "Karetní hry:"
 #: gnect/src/dialog.c:63 gnibbles/main.c:167 gnobots2/menu.c:193
 #: gnome-stones/main.c:1085 gnometris/tetris.cpp:1086 gnomine/gnomine.c:347
 #: gnotravex/gnotravex.c:1483 gnotski/gnotski.c:1140 gtali/gyahtzee.c:372
-#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1346 same-gnome/same-gnome.c:714
+#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1347 same-gnome/same-gnome.c:714
 msgid "translator_credits"
 msgstr "Jirka Lébl, Michal Bukovjan"
 
@@ -722,7 +722,7 @@ msgid "Score:"
 msgstr "Skóre:"
 
 #: aisleriot/sol.c:433 gnomine/gnomine.c:901 gnotravex/gnotravex.c:1011
-#: mahjongg/mahjongg.c:2032
+#: mahjongg/mahjongg.c:2033
 msgid "Time:"
 msgstr "Čas:"
 
@@ -1476,8 +1476,8 @@ msgstr "Nastavte svou sázku nebo rozdejte nové karty kliknutím na karty."
 msgid "Blackjack Preferences"
 msgstr "Nastavení Blackjacku"
 
-#: blackjack/src/dialog.cpp:235 gnobots2/properties.c:876
-#: gnome-stones/preferences.c:738
+#: blackjack/src/dialog.cpp:235 gnibbles/preferences.c:358
+#: gnobots2/properties.c:876 gnome-stones/preferences.c:738
 msgid "_Game"
 msgstr "_Hra"
 
@@ -1740,7 +1740,7 @@ msgstr "Soutěžit o dominaci nad hrací deskou ve hře podobné Reversi"
 msgid "Animate"
 msgstr "Animace"
 
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:499 iagno/properties.c:693
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:499 iagno/properties.c:685
 msgid "Flip final results"
 msgstr "Převrátit konečné výsledky"
 
@@ -1799,66 +1799,67 @@ msgid "Gataxx Preferences"
 msgstr "Nastavení Gataxx"
 
 #. Players tab
-#: gataxx/properties.c:340 iagno/properties.c:515
-msgid "Players"
-msgstr "Hráči"
+#: gataxx/properties.c:340
+msgid "_Players"
+msgstr "_Hráči"
 
 #: gataxx/properties.c:352
 msgid "Quick Moves (cut computer delay in half)"
 msgstr "Rychlé tahy (zkrátí prodlevu počítače na polovinu)"
 
-#: gataxx/properties.c:360 gnect/src/theme.c:386 iagno/properties.c:538
+#: gataxx/properties.c:360 gnect/src/theme.c:386 iagno/properties.c:530
 msgid "Dark"
 msgstr "Černé"
 
 #: gataxx/properties.c:365 gataxx/properties.c:413 gnect/src/prefs.c:738
-#: gtali/yahtzee.c:66 iagno/properties.c:544 iagno/properties.c:591
+#: gtali/yahtzee.c:66 iagno/properties.c:536 iagno/properties.c:583
 msgid "Human"
 msgstr "Člověk"
 
-#: gataxx/properties.c:375 gataxx/properties.c:421 iagno/properties.c:554
-#: iagno/properties.c:601
+#: gataxx/properties.c:375 gataxx/properties.c:421 iagno/properties.c:546
+#: iagno/properties.c:593
 msgid "Level one"
 msgstr "První úroveň"
 
-#: gataxx/properties.c:384 gataxx/properties.c:429 iagno/properties.c:564
-#: iagno/properties.c:611
+#: gataxx/properties.c:384 gataxx/properties.c:429 iagno/properties.c:556
+#: iagno/properties.c:603
 msgid "Level two"
 msgstr "Druhá úroveň"
 
-#: gataxx/properties.c:393 gataxx/properties.c:437 iagno/properties.c:574
-#: iagno/properties.c:622
+#: gataxx/properties.c:393 gataxx/properties.c:437 iagno/properties.c:566
+#: iagno/properties.c:614
 msgid "Level three"
 msgstr "Třetí úroveň"
 
-#: gataxx/properties.c:408 gnect/src/theme.c:383 iagno/properties.c:585
+#: gataxx/properties.c:408 gnect/src/theme.c:383 iagno/properties.c:577
 msgid "Light"
 msgstr "Bílé"
 
 #. Appearance tab
-#: gataxx/properties.c:453 gnibbles/preferences.c:507 iagno/properties.c:635
-msgid "Appearance"
-msgstr "Vzhled"
+#: gataxx/properties.c:453 gnibbles/preferences.c:507
+#: gnobots2/properties.c:918
+msgid "_Appearance"
+msgstr "_Vzhled"
 
-#: gataxx/properties.c:463 iagno/properties.c:644
+#: gataxx/properties.c:463 iagno/properties.c:636
 msgid "None"
 msgstr "Žádná"
 
-#: gataxx/properties.c:473 iagno/properties.c:653
+#: gataxx/properties.c:473 iagno/properties.c:645
 msgid "Partial"
 msgstr "Částečná"
 
-#: gataxx/properties.c:482 iagno/properties.c:662
+#: gataxx/properties.c:482 iagno/properties.c:654
 msgid "Complete"
 msgstr "Úplná"
 
 #. Options
 #: gataxx/properties.c:494 gnibbles/preferences.c:418
-#: gnibbles/preferences.c:675 gnobots2/properties.c:837 iagno/properties.c:674
+#: gnibbles/preferences.c:675 gnobots2/properties.c:837 iagno/properties.c:666
 msgid "Options"
 msgstr "Nastavení"
 
-#: gataxx/properties.c:508 iagno/properties.c:703
+#: gataxx/properties.c:508 iagno/properties.c:695
 msgid "Tile set:"
 msgstr "Sada kamenů:"
 
@@ -2325,7 +2326,7 @@ msgid "Theme Selection:"
 msgstr "Výběr tématu:"
 
 #. animation
-#: gnect/src/prefs.c:894 iagno/properties.c:640
+#: gnect/src/prefs.c:894 iagno/properties.c:632
 msgid "Animation"
 msgstr "Animace"
 
@@ -2606,10 +2607,6 @@ msgstr "Hra s červem pro GNOME."
 #: gnibbles/preferences.c:349
 msgid "Gnibbles Preferences"
 msgstr "Nastavení Gnibbles"
-
-#: gnibbles/preferences.c:358
-msgid "Game"
-msgstr "Hra"
 
 #: gnibbles/preferences.c:366
 msgid "Speed"
@@ -3042,10 +3039,6 @@ msgstr "Téma obrázků:"
 #: gnobots2/properties.c:903
 msgid "Background Color:"
 msgstr "Barva pozadí:"
-
-#: gnobots2/properties.c:918
-msgid "_Appearance"
-msgstr "_Vzhled"
 
 #: gnobots2/properties.c:925
 msgid "Keyboard Controls"
@@ -4258,19 +4251,27 @@ msgstr "Spojení selhalo"
 msgid "No game server defined"
 msgstr "Není definován herní server"
 
-#: iagno/properties.c:508
+#: iagno/properties.c:500
 msgid "Iagno Preferences"
 msgstr "Nastavení Iagno"
 
-#: iagno/properties.c:529
+#: iagno/properties.c:507
+msgid "Players"
+msgstr "Hráči"
+
+#: iagno/properties.c:521
 msgid "Use quick moves"
 msgstr "Používat rychlé tahy"
 
-#: iagno/properties.c:677
+#: iagno/properties.c:627
+msgid "Appearance"
+msgstr "Vzhled"
+
+#: iagno/properties.c:669
 msgid "Stagger flips"
 msgstr "Rovnoměrné otáčení"
 
-#: iagno/properties.c:685
+#: iagno/properties.c:677
 msgid "Show grid"
 msgstr "Ukázat mřížku"
 
@@ -4391,48 +4392,48 @@ msgstr "Varování"
 msgid "Warn when tiles don't match"
 msgstr "Varování pokud kameny nepasují"
 
-#: mahjongg/mahjongg.c:1337
+#: mahjongg/mahjongg.c:1338
 msgid "Tiles:"
 msgstr "Kameny:"
 
-#: mahjongg/mahjongg.c:1366
+#: mahjongg/mahjongg.c:1367
 msgid "GNOME Mahjongg"
 msgstr "GNOME Mahjongg"
 
-#: mahjongg/mahjongg.c:1369
+#: mahjongg/mahjongg.c:1370
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "Verze GNOME východní hry s kameny, Mahjongg."
 
-#: mahjongg/mahjongg.c:1396
+#: mahjongg/mahjongg.c:1397
 msgid "... Game paused ..."
 msgstr "... Hra pozastavena ..."
 
-#: mahjongg/mahjongg.c:1601
+#: mahjongg/mahjongg.c:1602
 msgid "Game Number:"
 msgstr "Číslo hry:"
 
-#: mahjongg/mahjongg.c:1769 mahjongg/mahjongg.c:1784
+#: mahjongg/mahjongg.c:1770 mahjongg/mahjongg.c:1785
 #, c-format
 msgid "Could not find file %s"
 msgstr "Nemohu najít soubor %s"
 
-#: mahjongg/mahjongg.c:1824 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1825 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:1949
+#: mahjongg/mahjongg.c:1950
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Promiňte, nepodařilo se nalézt hratelné nastavení."
 
-#: mahjongg/mahjongg.c:2014
+#: mahjongg/mahjongg.c:2015
 msgid "Tiles Left:"
 msgstr "Zbývá kamenů:"
 
-#: mahjongg/mahjongg.c:2023
+#: mahjongg/mahjongg.c:2024
 msgid "Moves Left:"
 msgstr "Zbývá tahů:"
 
-#: mahjongg/mahjongg.c:2084
+#: mahjongg/mahjongg.c:2085
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "Vítejte ve hře GNOME Mahjongg!"
 
@@ -4502,6 +4503,9 @@ msgstr "Vítejte ve hře Same GNOME!"
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Odstraňovat skupiny míčků pro vymazání obrazovky"
+
+#~ msgid "Game"
+#~ msgstr "Hra"
 
 #~ msgid "Card-based solitaire suite"
 #~ msgstr "Sada karetních her typu Solitaire"
