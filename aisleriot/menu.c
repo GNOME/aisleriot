@@ -71,10 +71,10 @@ about_destroy_callback (void)
 void help_about_callback ()
 {
   const gchar *authors[] = {
-	  N_("Main program:  Jonathan Blandford (jrb@alum.mit.edu)"),
+	  N_("Main program:  Jonathan Blandford (jrb@redhat.com)"),
 	  N_("                      Felix Bellaby (felix@pooh.u-net.com)"),
 	  N_("                      Rosanna Yuen (rwsy@mit.edu)"),
-	  N_("Card Games:    Jonathan Blandford (jrb@alum.mit.edu)"),
+	  N_("Card Games:    Jonathan Blandford (jrb@redhat.com)"),
 	  N_("                      W. Borgert (debacle@debian.org)"),
 	  N_("                      Robert Brady (rwb197@ecs.soton.ac.uk)"),
 	  N_("                      Nick Lamb (njl195@zepler.org.uk)"),
@@ -96,7 +96,7 @@ void help_about_callback ()
   }
   about = gnome_about_new ( _("AisleRiot"), VERSION,
 			    /* copyright notice */
-			    _("(C) 1998 Jonathan Blandford (jrb@alum.mit.edu)"),
+			    _("(C) 1998 Jonathan Blandford (jrb@redhat.com)"),
 			    (const char **)authors,
 			    /* another comments */
 			    _("AisleRiot provides a rule-based "
