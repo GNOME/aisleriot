@@ -1,0 +1,28 @@
+These images are from Xpat2.  Look makecards/ directory and
+src/X-gfx2.c directory.
+
+
+Q. How to generate from xpat2 source tree?
+
+1) Uncomment #define SAVE_IMAGES in X-gfx2.c.
+- /* #define SAVE_IMAGES */
++ #define SAVE_IMAGES
+
+2) Call write_xpmfile in X-gfx2.c like this (for transparent color):  
+- 	write_xpmfile(name, card_map[c], 0);
++ 	write_xpmfile(name, card_map[c], card_clip);
+
+3) Add ".xpm" suffix in X-gfx2.c.
+- 	sprintf(name, "%s.%s", US_rank_name[RANK(c)],
+- 		US_suit_name[SUIT(c)]);
++ 	sprintf(name, "%s.%s.xpm", US_rank_name[RANK(c)],
++ 		US_suit_name[SUIT(c)]);
+
+4) Rebuild the executable & Install original pixmaps.
+
+5) Execute xpat2.
+
+{Ace|Duce|Three|...|King}.{Clubs|Diamonds|Hearts|Spades} images (total 52).
+
+  
+
