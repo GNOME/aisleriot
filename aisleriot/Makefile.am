@@ -41,8 +41,6 @@ sol_SOURCES = 		\
 	menu.c		\
 	card.c
 
-BUILT_SOURCES = SCHEME_GAMES.h
-
 sol_LDADD = $(GNOME_GAMES_LIBS) \
 	../gdk-card-image/libgdkcardimage.la \
 	../libgames-support/libgames-support.la \
@@ -126,7 +124,7 @@ cardimage_DATA = baize.png splash.png
 icon_DATA = gnome-aisleriot.png gnome-cardgame.png
 
 EXTRA_DIST = AUTHORS $(types_DATA) $(cardimage_DATA) \
-	$(icon_DATA) sol.desktop.in freecell.desktop.in SCHEME_GAMES.h \
+	$(icon_DATA) sol.desktop.in freecell.desktop.in \
 	template.scm translatable_game_names.h
 
 
