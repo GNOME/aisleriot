@@ -19,6 +19,8 @@
 
 #include <string.h>
 
+#include "config.h"
+
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf.h>
