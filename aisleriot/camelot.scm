@@ -82,10 +82,7 @@
 
 (define (button-clicked slot-id)  
   (and (= slot-id 16)
-       (empty-slot? 17)
-       (not (empty-slot? 16))
-       (add-card! 17 (flip-card (remove-card 16)))
-       #t))
+       (flip-stock 16 17 0)))
 
 (define (button-double-clicked slot)
   #f)     
