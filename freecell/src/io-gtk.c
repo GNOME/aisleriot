@@ -621,24 +621,28 @@ callback_exit (GtkWidget *widget, GdkEvent *event)
       mb = gtk_message_dialog_new (GTK_WINDOW (main_window),
 		      GTK_DIALOG_MODAL,
 		      GTK_MESSAGE_QUESTION,
-		      GTK_BUTTONS_YES_NO,
-		      _("Exit this game?"),
+		      GTK_BUTTONS_NONE,
+		      _("Really exit GNOME Freecell?"),
 		      NULL);
-
+      gtk_dialog_add_buttons (GTK_DIALOG (mb),
+			      GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
+			      GTK_STOCK_QUIT, GTK_RESPONSE_ACCEPT, 
+			      NULL);
       gtk_dialog_set_default_response (GTK_DIALOG (mb),
-		      GTK_RESPONSE_YES);
+		      GTK_RESPONSE_REJECT);
       response = gtk_dialog_run (GTK_DIALOG(mb));
       gtk_widget_destroy (mb);
 
-      if (response == GTK_RESPONSE_YES)
+      if (response == GTK_RESPONSE_REJECT)
       {
-	      callback_exit_with_lose();
-      } else {
-        return TRUE;
+	return TRUE;
       }
+      callback_exit_with_lose();
     }
   else
+  {
     callback_exit_really();
+  }
 }
 
 void
