@@ -32,6 +32,13 @@ GamesCardPixmaps * images = NULL;
 
 GdkPixmap* get_card_picture (gint suit, gint rank ) 
 {
+  if (rank == 0) { /* A joker */
+    if (suit == 0) /* A black joker. */
+      return games_card_pixmaps_get_black_joker (images);
+    else /* A red joker. */
+      return games_card_pixmaps_get_red_joker (images);
+  }
+
   return games_card_pixmaps_get_card (images, suit, rank);
 }
 
