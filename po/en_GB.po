@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-13 21:38+0000\n"
-"PO-Revision-Date: 2004-12-13 21:39+0100\n"
+"POT-Creation-Date: 2005-02-07 12:23+0000\n"
+"PO-Revision-Date: 2005-02-07 12:29+0100\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: British English\n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,7 @@ msgstr "The game file to use"
 
 #: aisleriot/aisleriot.schemas.in.h:6
 #: glines/glines.schemas.in.h:11
+#: same-gnome/same-gnome.schemas.in.h:5
 msgid "The height of the main window."
 msgstr "The height of the main window."
 
@@ -48,10 +49,11 @@ msgstr "The name of the file with the graphics for the cards."
 
 #: aisleriot/aisleriot.schemas.in.h:8
 msgid "The name of the scheme file containing the solitaire game to play."
-msgstr "The name of the scheme file containing the solitaire game to play."
+msgstr "The name of the scheme file containing the patience game to play."
 
 #: aisleriot/aisleriot.schemas.in.h:9
 #: glines/glines.schemas.in.h:12
+#: same-gnome/same-gnome.schemas.in.h:9
 msgid "The width of the main window."
 msgstr "The width of the main window."
 
@@ -100,11 +102,13 @@ msgid "You have won!!!"
 msgstr "You have won!!!"
 
 #: aisleriot/dialog.c:48
-#: mahjongg/mahjongg.c:696
+#: mahjongg/mahjongg.c:721
 msgid "There are no more moves."
 msgstr "There are no more moves."
 
-#: aisleriot/dialog.c:63
+#: aisleriot/dialog.c:64
+#: same-gnome/ui.c:168
+#: same-gnome/ui.c:187
 msgid "New Game"
 msgstr "New Game"
 
@@ -166,10 +170,18 @@ msgstr "This game is unable to provide a hint."
 msgid "AisleRiot Cards"
 msgstr "AisleRiot Cards"
 
+#: aisleriot/freecell.desktop.in.h:1
+msgid "FreeCell Solitaire"
+msgstr "FreeCell Patience"
+
+#: aisleriot/freecell.desktop.in.h:2
+msgid "Play the popular FreeCell card game"
+msgstr "Play the popular FreeCell card game"
+
 #: aisleriot/menu.c:94
-#: gnome-stones/main.c:1084
-#: gnomine/gnomine.c:521
-#: mahjongg/mahjongg.c:961
+#: gnome-stones/main.c:1087
+#: gnomine/gnomine.c:378
+#: mahjongg/mahjongg.c:986
 msgid "Main game:"
 msgstr "Main game:"
 
@@ -180,20 +192,20 @@ msgstr "Card games:"
 #. Translator credits
 #: aisleriot/menu.c:115
 #: blackjack/src/menu.cpp:157
-#: gataxx/gataxx.c:369
-#: glines/glines.c:1092
+#: gataxx/gataxx.c:372
+#: glines/glines.c:1093
 #: gnect/src/main.c:821
 #: gnibbles/main.c:184
 #: gnobots2/menu.c:224
-#: gnome-stones/main.c:1095
-#: gnometris/tetris.cpp:1425
-#: gnomine/gnomine.c:541
+#: gnome-stones/main.c:1098
+#: gnometris/tetris.cpp:1431
+#: gnomine/gnomine.c:398
 #: gnotravex/gnotravex.c:1486
-#: gnotski/gnotski.c:1532
+#: gnotski/gnotski.c:1573
 #: gtali/gyahtzee.c:455
 #: iagno/gnothello.c:369
-#: mahjongg/mahjongg.c:985
-#: same-gnome/same-gnome.c:707
+#: mahjongg/mahjongg.c:1010
+#: same-gnome/ui.c:122
 msgid "translator-credits"
 msgstr "Gareth Owen <gowen72@yahoo.com>"
 
@@ -206,29 +218,35 @@ msgid "AisleRiot provides a rule-based solitaire card engine that allows many di
 msgstr "AisleRiot provides a rule-based solitaire card engine that allows many different games to be played"
 
 #: aisleriot/menu.c:212
+#: blackjack/src/blackjack.cpp:306
 #: gnect/src/prefs.c:391
 #: gnibbles/preferences.c:213
 #: gnome-stones/preferences.c:744
-#: gnometris/tetris.cpp:769
-#: gnotski/gnotski.c:652
+#: gnometris/tetris.cpp:775
+#: gnotski/gnotski.c:639
+#: same-gnome/ui.c:429
 msgid "_Game"
 msgstr "_Game"
 
 #: aisleriot/menu.c:213
+#: same-gnome/ui.c:430
 msgid "_View"
 msgstr "_View"
 
 #: aisleriot/menu.c:214
+#: blackjack/src/blackjack.cpp:313
 msgid "_Control"
 msgstr "_Control"
 
 #: aisleriot/menu.c:215
-#: gnotski/gnotski.c:653
+#: blackjack/src/blackjack.cpp:320
+#: gnotski/gnotski.c:640
+#: same-gnome/ui.c:432
 msgid "_Help"
 msgstr "_Help"
 
 #: aisleriot/menu.c:217
-#: gnotski/gnotski.c:662
+#: same-gnome/ui.c:434
 msgid "_New Game"
 msgstr "_New Game"
 
@@ -249,23 +267,29 @@ msgid "_Cards..."
 msgstr "_Cards..."
 
 #: aisleriot/menu.c:225
+#: same-gnome/ui.c:436
 msgid "_Undo Move"
 msgstr "_Undo Move"
 
 #: aisleriot/menu.c:226
+#: same-gnome/ui.c:437
 msgid "_Redo Move"
 msgstr "_Redo Move"
 
 #: aisleriot/menu.c:227
-#: gnotski/gnotski.c:665
+#: blackjack/src/blackjack.cpp:309
+#: gnotski/gnotski.c:652
 msgid "_Hint"
 msgstr "_Hint"
 
 #: aisleriot/menu.c:230
+#: blackjack/src/blackjack.cpp:321
+#: same-gnome/ui.c:442
 msgid "_Contents"
 msgstr "_Contents"
 
 #: aisleriot/menu.c:237
+#: blackjack/src/blackjack.cpp:326
 #: gnect/src/main.c:1194
 #: mahjongg/mahjongg.c:144
 msgid "_Toolbar"
@@ -915,35 +939,35 @@ msgstr ""
 "\n"
 "Please check your Aisleriot installation"
 
-#: aisleriot/sol.c:376
+#: aisleriot/sol.c:377
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: aisleriot/sol.c:409
-#: glines/glines.c:1699
+#: aisleriot/sol.c:410
+#: glines/glines.c:1700
 #: gnobots2/statusbar.c:65
 #: gnome-stones/status.c:71
 #: gnometris/scoreframe.cpp:58
-#: gnomine/gnomine.c:530
-#: same-gnome/same-gnome.c:957
+#: gnomine/gnomine.c:387
 msgid "Score:"
 msgstr "Score:"
 
-#: aisleriot/sol.c:413
-#: gnomine/gnomine.c:1088
+#: aisleriot/sol.c:414
+#: gnomine/gnomine.c:945
 #: gnotravex/gnotravex.c:1019
-#: mahjongg/mahjongg.c:1464
+#: mahjongg/mahjongg.c:1491
 msgid "Time:"
 msgstr "Time:"
 
-#: aisleriot/sol.c:462
+#: aisleriot/sol.c:463
 msgid "Variation on game rules"
 msgstr "Variation on game rules"
 
-#: aisleriot/sol.c:463
+#: aisleriot/sol.c:464
 #: gnobots2/gnobots.c:61
 #: gnobots2/gnobots.c:63
-#: same-gnome/same-gnome.c:887
+#: same-gnome/same-gnome.c:123
+#: same-gnome/same-gnome.c:125
 msgid "NAME"
 msgstr "NAME"
 
@@ -1649,6 +1673,100 @@ msgstr "Use a quick deal with no delay between each card."
 msgid "Blackjack: %s"
 msgstr "Blackjack: %s"
 
+#: blackjack/src/blackjack.cpp:307
+msgid "_New game"
+msgstr "_New game"
+
+#: blackjack/src/blackjack.cpp:307
+#: gnect/src/main.c:1221
+#: gnobots2/menu.c:106
+msgid "Start a new game"
+msgstr "Start a new game"
+
+#: blackjack/src/blackjack.cpp:308
+msgid "_Restart game"
+msgstr "_Restart game"
+
+#: blackjack/src/blackjack.cpp:308
+msgid "Restart the current game"
+msgstr "Restart the current game"
+
+#: blackjack/src/blackjack.cpp:309
+msgid "Get a hint for the next action"
+msgstr "Get a hint for the next action"
+
+#: blackjack/src/blackjack.cpp:310
+msgid "Quit application"
+msgstr "Quit application"
+
+#: blackjack/src/blackjack.cpp:311
+msgid "_Settings"
+msgstr "_Settings"
+
+#: blackjack/src/blackjack.cpp:312
+msgid "Show game preferences"
+msgstr "Show game preferences"
+
+#: blackjack/src/blackjack.cpp:314
+msgid "Deal"
+msgstr "Deal"
+
+#: blackjack/src/blackjack.cpp:314
+#: blackjack/src/dialog.cpp:100
+#: blackjack/src/dialog.cpp:103
+msgid "Deal a new hand"
+msgstr "Deal a new hand"
+
+#: blackjack/src/blackjack.cpp:315
+msgid "_Hit"
+msgstr "_Hit"
+
+#: blackjack/src/blackjack.cpp:315
+msgid "Add a card to the hand"
+msgstr "Add a card to the hand"
+
+#: blackjack/src/blackjack.cpp:316
+msgid "_Stand"
+msgstr "_Stand"
+
+#: blackjack/src/blackjack.cpp:316
+msgid "Stop adding cards to the hand"
+msgstr "Stop adding cards to the hand"
+
+#: blackjack/src/blackjack.cpp:317
+#: blackjack/src/dialog.cpp:343
+#: blackjack/src/player.cpp:312
+msgid "Surrender"
+msgstr "Surrender"
+
+#: blackjack/src/blackjack.cpp:317
+msgid "Surrender the hand"
+msgstr "Surrender the hand"
+
+#: blackjack/src/blackjack.cpp:318
+msgid "_Double down"
+msgstr "_Double down"
+
+#: blackjack/src/blackjack.cpp:318
+msgid "Double down"
+msgstr "Double down"
+
+#: blackjack/src/blackjack.cpp:319
+msgid "Split the hand"
+msgstr "Split the hand"
+
+#: blackjack/src/blackjack.cpp:321
+msgid "Display help for this game"
+msgstr "Display help for this game"
+
+#: blackjack/src/blackjack.cpp:322
+msgid "About this game"
+msgstr "About this game"
+
+#: blackjack/src/blackjack.cpp:326
+msgid "Show toolbar"
+msgstr "Show toolbar"
+
 #: blackjack/src/blackjack.cpp:355
 msgid "Cards left:"
 msgstr "Cards left:"
@@ -1677,11 +1795,6 @@ msgstr "Would you like insurance?"
 #, c-format
 msgid "Insurance is a side wager of 50%% of the original wager that the dealer has a natural 21 (aka blackjack) that is offered when the dealer's face up card is an ace. If the dealer has a natural 21 then the player is paid double."
 msgstr "Insurance is a side wager of 50%% of the original wager that the dealer has a natural 21 (aka blackjack) that is offered when the dealer's face up card is an ace. If the dealer has a natural 21 then the player is paid double."
-
-#: blackjack/src/dialog.cpp:100
-#: blackjack/src/dialog.cpp:103
-msgid "Deal a new hand"
-msgstr "Deal a new hand"
 
 #: blackjack/src/dialog.cpp:101
 msgid "Set your wager and click in the white outline to deal a new hand."
@@ -1713,7 +1826,7 @@ msgid "Reset balance"
 msgstr "Reset balance"
 
 #: blackjack/src/dialog.cpp:293
-#: gnomine/gnomine.c:299
+#: libgames-support/games-scores-dialog.gob:213
 msgid "Name"
 msgstr "Name"
 
@@ -1752,11 +1865,6 @@ msgstr "Resplit"
 #: blackjack/src/dialog.cpp:338
 msgid "Resplit Aces"
 msgstr "Resplit Aces"
-
-#: blackjack/src/dialog.cpp:343
-#: blackjack/src/player.cpp:312
-msgid "Surrender"
-msgstr "Surrender"
 
 #: blackjack/src/dialog.cpp:348
 msgid "Dealer Speed"
@@ -1898,25 +2006,25 @@ msgid "Dealer hand probabilities"
 msgstr "Dealer hand probabilities"
 
 #: gataxx/appbar.c:39
-#: iagno/gnothello.c:769
+#: iagno/gnothello.c:778
 msgid "Light:"
 msgstr "Light:"
 
 #: gataxx/appbar.c:45
-#: iagno/gnothello.c:759
+#: iagno/gnothello.c:768
 msgid "Dark:"
 msgstr "Dark:"
 
 #: gataxx/appbar.c:79
 #: iagno/gnothello.c:286
-#: iagno/othello.c:228
+#: iagno/othello.c:222
 msgid "Light's move"
 msgstr "Light's move"
 
 #: gataxx/appbar.c:79
 #: iagno/gnothello.c:288
-#: iagno/gnothello.c:701
-#: iagno/othello.c:220
+#: iagno/gnothello.c:710
+#: iagno/othello.c:214
 msgid "Dark's move"
 msgstr "Dark's move"
 
@@ -1935,16 +2043,16 @@ msgstr "Dark player wins!"
 msgid "The game was a draw."
 msgstr "The game was a draw."
 
-#: gataxx/gataxx.c:367
+#: gataxx/gataxx.c:370
 msgid "Based on code from Iagno by Ian Peters"
 msgstr "Based on code from Iagno by Ian Peters"
 
-#: gataxx/gataxx.c:384
+#: gataxx/gataxx.c:387
 #: gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "Ataxx"
 
-#: gataxx/gataxx.c:387
+#: gataxx/gataxx.c:390
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr "A disc-flipping game where you attempt to dominate the board."
 
@@ -2048,8 +2156,9 @@ msgstr "Easy"
 
 #: gataxx/properties.c:354
 #: gataxx/properties.c:373
-#: gnomine/gnomine.c:88
-#: gnomine/gnomine.c:728
+#: gnomine/gnomine.c:89
+#: gnomine/gnomine.c:584
+#: same-gnome/game.c:49
 msgid "Medium"
 msgstr "Medium"
 
@@ -2115,7 +2224,7 @@ msgstr "Tile set:"
 msgid "The appearance of the pieces"
 msgstr "The appearance of the pieces"
 
-#: glines/glines.c:143
+#: glines/glines.c:144
 #, c-format
 msgid ""
 "Five or More could not find image file:\n"
@@ -2128,57 +2237,57 @@ msgstr ""
 "\n"
 "Please check Five or More is installed correctly."
 
-#: glines/glines.c:304
+#: glines/glines.c:305
 msgid "Match five balls of the same color in a row to score!"
 msgstr "Match five balls of the same colour in a row to score!"
 
-#: glines/glines.c:359
-#: glines/glines.c:1111
-#: glines/glines.c:1645
+#: glines/glines.c:360
+#: glines/glines.c:1112
+#: glines/glines.c:1646
 #: glines/glines.desktop.in.h:1
 msgid "Five or More"
 msgstr "Five or More"
 
-#: glines/glines.c:392
+#: glines/glines.c:393
 msgid "Game Over!"
 msgstr "Game Over!"
 
 #. Can't move there!
-#: glines/glines.c:550
+#: glines/glines.c:551
 msgid "Can't move there!"
 msgstr "Can't move there!"
 
-#: glines/glines.c:1114
+#: glines/glines.c:1115
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "GNOME port of the once-popular Colour Lines game"
 
-#: glines/glines.c:1251
+#: glines/glines.c:1252
 msgid "Five or More Preferences"
 msgstr "Five or More Preferences"
 
-#: glines/glines.c:1263
+#: glines/glines.c:1264
 msgid "Themes"
 msgstr "Themes"
 
-#: glines/glines.c:1272
+#: glines/glines.c:1273
 msgid "Ball image"
 msgstr "Ball image"
 
-#: glines/glines.c:1282
+#: glines/glines.c:1283
 #: glines/glines.schemas.in.h:1
 #: gnobots2/gnobots2.schemas.in.h:1
 msgid "Background color"
 msgstr "Background colour"
 
-#: glines/glines.c:1296
+#: glines/glines.c:1297
 msgid "General"
 msgstr "General"
 
-#: glines/glines.c:1304
+#: glines/glines.c:1305
 msgid "Use fast moves"
 msgstr "Use fast moves"
 
-#: glines/glines.c:1669
+#: glines/glines.c:1670
 msgid "Next:"
 msgstr "Next:"
 
@@ -2440,11 +2549,6 @@ msgstr "New"
 msgid "New game"
 msgstr "New game"
 
-#: gnect/src/main.c:1221
-#: gnobots2/menu.c:106
-msgid "Start a new game"
-msgstr "Start a new game"
-
 #: gnect/src/main.c:1223
 #: mahjongg/mahjongg.c:183
 msgid "Undo"
@@ -2521,7 +2625,7 @@ msgstr "Controls"
 
 #: gnect/src/prefs.c:456
 #: gnibbles/preferences.c:376
-#: gnometris/tetris.cpp:900
+#: gnometris/tetris.cpp:906
 msgid "Keyboard controls"
 msgstr "Keyboard controls"
 
@@ -2630,7 +2734,7 @@ msgstr "Enable fake bonuses."
 #: gnibbles/gnibbles.schemas.in.h:5
 #: gnibbles/preferences.c:302
 #: gnobots2/properties.c:827
-#: gnometris/tetris.cpp:831
+#: gnometris/tetris.cpp:837
 msgid "Enable sounds"
 msgstr "Enable sounds"
 
@@ -2908,7 +3012,6 @@ msgid "There are no safe locations to teleport to!!"
 msgstr "There are no safe locations to teleport to!!"
 
 #: gnobots2/gnobots.c:61
-#: same-gnome/same-gnome.c:887
 msgid "Set game scenario"
 msgstr "Set game scenario"
 
@@ -2917,14 +3020,14 @@ msgid "Set game configuration"
 msgstr "Set game configuration"
 
 #: gnobots2/gnobots.c:64
-#: gnomine/gnomine.c:917
-#: gnomine/gnomine.c:921
+#: gnomine/gnomine.c:774
+#: gnomine/gnomine.c:778
 msgid "X"
 msgstr "X"
 
 #: gnobots2/gnobots.c:65
-#: gnomine/gnomine.c:918
-#: gnomine/gnomine.c:922
+#: gnomine/gnomine.c:775
+#: gnomine/gnomine.c:779
 msgid "Y"
 msgstr "Y"
 
@@ -2940,6 +3043,14 @@ msgstr "No game data could be found."
 #: gnobots2/gnobots.c:236
 msgid "The program GNOME Robots was unable to find any valid game configuration files. Please check that the program is installed correctly."
 msgstr "The program GNOME Robots was unable to find any valid game configuration files. Please check that the program is installed correctly."
+
+#: gnobots2/gnobots.c:252
+msgid "Some graphics files are missing or corrupt."
+msgstr "Some graphics files are missing or corrupt."
+
+#: gnobots2/gnobots.c:253
+msgid "The program GNOME Robots was unable to load all the necessary graphics files. Please check that the program is installed correctly."
+msgstr "The program GNOME Robots was unable to load all the necessary graphics files. Please check that the program is installed correctly."
 
 #. ********************************************************************
 #: gnobots2/gnobots2.desktop.in.h:1
@@ -3123,8 +3234,7 @@ msgid "Victory!!"
 msgstr "Victory!!"
 
 #: gnobots2/graphics.c:104
-#: gnotski/gnotski.c:1154
-#: iagno/gnothello.c:537
+#: iagno/gnothello.c:545
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Could not find '%s' pixmap file\n"
@@ -3548,76 +3658,77 @@ msgstr ""
 "Please make sure, that GNOME Stones is correctly installed!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:205
-#: gnome-stones/main.c:991
-#: gnome-stones/main.c:1113
-#: gnome-stones/main.c:1338
+#: gnome-stones/main.c:208
+#: gnome-stones/main.c:994
+#: gnome-stones/main.c:1116
+#: gnome-stones/main.c:1341
 msgid "GNOME Stones"
 msgstr "GNOME Stones"
 
-#: gnome-stones/main.c:287
+#: gnome-stones/main.c:290
 #: gnome-stones/preferences.c:682
 msgid "Game title"
 msgstr "Game title"
 
-#: gnome-stones/main.c:288
+#: gnome-stones/main.c:291
 msgid "Start cave"
 msgstr "Start cave"
 
 #. If you change the place for this button, change the index in
-#: gnome-stones/main.c:431
-#: gnome-stones/main.c:1041
+#: gnome-stones/main.c:434
+#: gnome-stones/main.c:1044
 #: gnometris/gnometris.schemas.in.h:15
 #: mahjongg/mahjongg.c:177
 msgid "Pause"
 msgstr "Pause"
 
-#: gnome-stones/main.c:683
+#: gnome-stones/main.c:686
 msgid "Congratulations, you win!"
 msgstr "Congratulations, you win!"
 
-#: gnome-stones/main.c:871
+#: gnome-stones/main.c:874
 #: gtali/gyahtzee.c:136
+#: same-gnome/ui.c:163
 msgid "Game over!"
 msgstr "Game over!"
 
-#: gnome-stones/main.c:1087
+#: gnome-stones/main.c:1090
 msgid "Sokoban levels:"
 msgstr "Sokoban levels:"
 
-#: gnome-stones/main.c:1115
+#: gnome-stones/main.c:1118
 msgid "Mine through dirt and collect gems."
 msgstr "Mine through dirt and collect gems."
 
-#: gnome-stones/main.c:1138
+#: gnome-stones/main.c:1141
 msgid "_Restart level"
 msgstr "_Restart level"
 
-#: gnome-stones/main.c:1138
+#: gnome-stones/main.c:1141
 msgid "Restart the current level"
 msgstr "Restart the current level"
 
-#: gnome-stones/main.c:1243
+#: gnome-stones/main.c:1246
 msgid "Scanning private object directory..."
 msgstr "Scanning private object directory..."
 
-#: gnome-stones/main.c:1247
+#: gnome-stones/main.c:1250
 msgid "Scanning public object directory..."
 msgstr "Scanning public object directory..."
 
-#: gnome-stones/main.c:1252
+#: gnome-stones/main.c:1255
 msgid "Filling game widget..."
 msgstr "Filling game widget..."
 
-#: gnome-stones/main.c:1257
+#: gnome-stones/main.c:1260
 msgid "Scanning private game directory..."
 msgstr "Scanning private game directory..."
 
-#: gnome-stones/main.c:1261
+#: gnome-stones/main.c:1264
 msgid "Scanning public game directory..."
 msgstr "Scanning public game directory..."
 
-#: gnome-stones/main.c:1265
+#: gnome-stones/main.c:1268
 msgid "Restoring preferences..."
 msgstr "Restoring preferences..."
 
@@ -3848,7 +3959,7 @@ msgstr "Lines:"
 msgid "Paused"
 msgstr "Paused"
 
-#: gnometris/tetris.cpp:366
+#: gnometris/tetris.cpp:372
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3861,7 +3972,7 @@ msgstr ""
 "\n"
 "Please check your gnome-games installation"
 
-#: gnometris/tetris.cpp:381
+#: gnometris/tetris.cpp:387
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3874,66 +3985,65 @@ msgstr ""
 "\n"
 "Please check your gnome-games installation"
 
-#: gnometris/tetris.cpp:722
-#: gnometris/tetris.cpp:723
+#: gnometris/tetris.cpp:728
+#: gnometris/tetris.cpp:729
 msgid "<none>"
 msgstr "<none>"
 
-#: gnometris/tetris.cpp:751
+#: gnometris/tetris.cpp:757
 msgid "Gnometris preferences"
 msgstr "Gnometris preferences"
 
-#: gnometris/tetris.cpp:772
+#: gnometris/tetris.cpp:778
 msgid "Setup"
 msgstr "Setup"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:779
+#: gnometris/tetris.cpp:785
 msgid "Number of pre-filled rows:"
 msgstr "Number of pre-filled rows:"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:794
+#: gnometris/tetris.cpp:800
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Density of blocks in a pre-filled row:"
 
 #. starting level
-#: gnometris/tetris.cpp:809
+#: gnometris/tetris.cpp:815
 msgid "Starting Level:"
 msgstr "Starting Level:"
 
-#: gnometris/tetris.cpp:826
+#: gnometris/tetris.cpp:832
 msgid "Operation"
 msgstr "Operation"
 
-#: gnometris/tetris.cpp:841
+#: gnometris/tetris.cpp:847
 msgid "Preview next block"
 msgstr "Preview next block"
 
-#: gnometris/tetris.cpp:850
+#: gnometris/tetris.cpp:856
 msgid "Use random block colors"
 msgstr "Use random block colours"
 
-#: gnometris/tetris.cpp:861
+#: gnometris/tetris.cpp:867
 msgid "Rotate blocks counterclockwise"
 msgstr "Rotate blocks counterclockwise"
 
-#: gnometris/tetris.cpp:874
-#: same-gnome/same-gnome.c:630
-#: same-gnome/same-gnome.c:683
+#: gnometris/tetris.cpp:880
+#: same-gnome/ui.c:315
 msgid "Theme"
 msgstr "Theme"
 
 #. Block pixmap
-#: gnometris/tetris.cpp:881
+#: gnometris/tetris.cpp:887
 msgid "Block image:"
 msgstr "Block image:"
 
-#: gnometris/tetris.cpp:897
+#: gnometris/tetris.cpp:903
 msgid "_Controls"
 msgstr "_Controls"
 
-#: gnometris/tetris.cpp:1448
+#: gnometris/tetris.cpp:1454
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -3941,127 +4051,121 @@ msgstr ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
 
-#: gnomine/gnomine.c:87
-#: gnomine/gnomine.c:718
+#: gnomine/gnomine.c:88
+#: gnomine/gnomine.c:574
+#: same-gnome/game.c:48
 msgid "Small"
 msgstr "Small"
 
-#: gnomine/gnomine.c:89
-#: gnomine/gnomine.c:738
+#: gnomine/gnomine.c:90
+#: gnomine/gnomine.c:594
+#: same-gnome/game.c:50
 msgid "Large"
 msgstr "Large"
 
-#: gnomine/gnomine.c:90
-#: gnomine/gnomine.c:748
+#: gnomine/gnomine.c:91
+#: gnomine/gnomine.c:604
 msgid "Custom"
 msgstr "Custom"
 
-#. Translators: this is for a minutes, seconds time display.
-#: gnomine/gnomine.c:208
-#, c-format
-msgid "%dm %ds"
-msgstr "%dm %ds"
-
-#: gnomine/gnomine.c:247
+#: gnomine/gnomine.c:170
 msgid "GNOME Mines Scores"
 msgstr "GNOME Mines Scores"
 
-#: gnomine/gnomine.c:264
+#: gnomine/gnomine.c:179
+#: same-gnome/ui.c:142
 msgid "Size:"
 msgstr "Size:"
 
-#: gnomine/gnomine.c:306
-msgid "Time"
-msgstr "Time"
-
-#: gnomine/gnomine.c:399
+#: gnomine/gnomine.c:260
 msgid "Click a square, any square"
 msgstr "Click a square, any square"
 
-#: gnomine/gnomine.c:401
+#: gnomine/gnomine.c:262
 msgid "Maybe they're all mines ..."
 msgstr "Maybe they're all mines ..."
 
-#: gnomine/gnomine.c:524
+#: gnomine/gnomine.c:381
 msgid "Faces:"
 msgstr "Faces:"
 
-#: gnomine/gnomine.c:527
+#: gnomine/gnomine.c:384
 msgid "Graphics:"
 msgstr "Graphics:"
 
-#: gnomine/gnomine.c:533
+#: gnomine/gnomine.c:390
 msgid "Resizing and SVG support:"
 msgstr "Resizing and SVG support:"
 
-#: gnomine/gnomine.c:565
-#: gnomine/gnomine.c:994
+#: gnomine/gnomine.c:422
+#: gnomine/gnomine.c:851
 msgid "GNOME Mines"
 msgstr "GNOME Mines"
 
-#: gnomine/gnomine.c:568
+#: gnomine/gnomine.c:425
 msgid "A Minesweeper clone."
 msgstr "A Minesweeper clone."
 
-#: gnomine/gnomine.c:713
+#: gnomine/gnomine.c:569
 msgid "Field size"
 msgstr "Field size"
 
-#: gnomine/gnomine.c:761
+#: gnomine/gnomine.c:617
 msgid "Custom size"
 msgstr "Custom size"
 
-#: gnomine/gnomine.c:768
+#: gnomine/gnomine.c:624
 msgid "Number of mines:"
 msgstr "Number of mines:"
 
-#: gnomine/gnomine.c:780
+#: gnomine/gnomine.c:637
 msgid "Horizontal:"
 msgstr "Horizontal:"
 
-#: gnomine/gnomine.c:792
+#: gnomine/gnomine.c:649
 msgid "Vertical:"
 msgstr "Vertical:"
 
-#: gnomine/gnomine.c:809
+#: gnomine/gnomine.c:666
 msgid "Use \"I'm not sure\" flags."
 msgstr "Use \"I'm not sure\" flags."
 
-#: gnomine/gnomine.c:818
+#: gnomine/gnomine.c:675
 msgid "GNOME Mines Preferences"
 msgstr "GNOME Mines Preferences"
 
-#: gnomine/gnomine.c:917
+#: gnomine/gnomine.c:774
 msgid "Width of grid"
 msgstr "Width of grid"
 
-#: gnomine/gnomine.c:918
+#: gnomine/gnomine.c:775
 msgid "Height of grid"
 msgstr "Height of grid"
 
-#: gnomine/gnomine.c:919
+#: gnomine/gnomine.c:776
 msgid "Number of mines"
 msgstr "Number of mines"
 
-#: gnomine/gnomine.c:919
+#: gnomine/gnomine.c:776
 #: gtali/setup.c:85
 #: gtali/setup.c:86
+#: same-gnome/same-gnome.c:127
 msgid "NUMBER"
 msgstr "NUMBER"
 
-#: gnomine/gnomine.c:920
+#: gnomine/gnomine.c:777
 msgid "Size of the board (1=small, 3=large)"
 msgstr "Size of the board (1=small, 3=large)"
 
-#: gnomine/gnomine.c:921
+#: gnomine/gnomine.c:778
 msgid "X location of window"
 msgstr "X location of window"
 
-#: gnomine/gnomine.c:922
+#: gnomine/gnomine.c:779
 msgid "Y location of window"
 msgstr "Y location of window"
 
-#: gnomine/gnomine.c:1080
+#: gnomine/gnomine.c:937
 msgid "Flags:"
 msgstr "Flags:"
 
@@ -4080,6 +4184,30 @@ msgstr "Set to true to be able to mark squares as unknown."
 #: gnomine/gnomine.schemas.in.h:2
 msgid "Use the unknown flag"
 msgstr "Use the unknown flag"
+
+#: gnomine/minefield.c:161
+msgid ""
+"Unable to find required images.\n"
+"\n"
+"Please check your gnome-games installation."
+msgstr ""
+"Unable to find required images.\n"
+"\n"
+"Please check your gnome-games installation."
+
+#: gnomine/minefield.c:168
+msgid ""
+"Required images have been found, but refused to load.\n"
+"\n"
+"Please check your installation of gnome-games and its dependencies."
+msgstr ""
+"Required images have been found, but refused to load.\n"
+"\n"
+"Please check your installation of gnome-games and its dependencies."
+
+#: gnomine/minefield.c:178
+msgid "Could not load images"
+msgstr "Could not load images"
 
 #: gnotravex/gnotravex.c:166
 msgid "Sol_ve"
@@ -4178,7 +4306,7 @@ msgid "Puzzle solved!"
 msgstr "Puzzle solved!"
 
 #: gnotravex/gnotravex.c:1139
-#: mahjongg/mahjongg.c:1050
+#: mahjongg/mahjongg.c:1075
 msgid "Game paused"
 msgstr "Game paused"
 
@@ -4368,103 +4496,120 @@ msgid "Sunshine"
 msgstr "Sunshine"
 
 #. puzzle name
-#: gnotski/gnotski.c:528
+#: gnotski/gnotski.c:515
 msgid "Block 10"
 msgstr "Block 10"
 
 #. puzzle name
-#: gnotski/gnotski.c:539
+#: gnotski/gnotski.c:526
 msgid "Block 10 Pro"
 msgstr "Block 10 Pro"
 
 #. puzzle name
-#: gnotski/gnotski.c:550
+#: gnotski/gnotski.c:537
 msgid "Climb 12"
 msgstr "Climb 12"
 
 #. puzzle name
-#: gnotski/gnotski.c:561
+#: gnotski/gnotski.c:548
 msgid "Climb 12 Pro"
 msgstr "Climb 12 Pro"
 
 #. puzzle name
-#: gnotski/gnotski.c:572
+#: gnotski/gnotski.c:559
 msgid "Climb 15 Winter"
 msgstr "Climb 15 Winter"
 
 #. puzzle name
-#: gnotski/gnotski.c:585
+#: gnotski/gnotski.c:572
 msgid "Climb 15 Spring"
 msgstr "Climb 15 Spring"
 
 #. puzzle name
-#: gnotski/gnotski.c:598
+#: gnotski/gnotski.c:585
 msgid "Climb 15 Summer"
 msgstr "Climb 15 Summer"
 
 #. puzzle name
-#: gnotski/gnotski.c:611
+#: gnotski/gnotski.c:598
 msgid "Climb 15 Fall"
 msgstr "Climb 15 Fall"
 
 #. puzzle name
-#: gnotski/gnotski.c:624
+#: gnotski/gnotski.c:611
 msgid "Climb 24 Pro"
 msgstr "Climb 24 Pro"
 
 #. set of puzzles
-#: gnotski/gnotski.c:655
+#: gnotski/gnotski.c:642
 msgid "HuaRong Trail"
 msgstr "HuaRong Trail"
 
 #. set of puzzles
-#: gnotski/gnotski.c:657
+#: gnotski/gnotski.c:644
 msgid "Challenge Pack"
 msgstr "Challenge Pack"
 
 #. set of puzzles
-#: gnotski/gnotski.c:659
+#: gnotski/gnotski.c:646
 msgid "Skill Pack"
 msgstr "Skill Pack"
 
 #. set of puzzles
-#: gnotski/gnotski.c:661
+#: gnotski/gnotski.c:648
 msgid "Minoru Climb"
 msgstr "Minoru Climb"
 
-#: gnotski/gnotski.c:663
+#: gnotski/gnotski.c:649
+msgid "_Restart Puzzle"
+msgstr "_Restart Puzzle"
+
+#: gnotski/gnotski.c:650
 msgid "Next Puzzle"
 msgstr "Next Puzzle"
 
-#: gnotski/gnotski.c:664
+#: gnotski/gnotski.c:651
 msgid "Previous Puzzle"
 msgstr "Previous Puzzle"
 
-#: gnotski/gnotski.c:669
+#: gnotski/gnotski.c:656
 msgid "_Scores"
 msgstr "_Scores"
 
-#: gnotski/gnotski.c:841
+#: gnotski/gnotski.c:825
 msgid "Level completed. Well done."
 msgstr "Level completed. Well done."
 
-#: gnotski/gnotski.c:1121
+#: gnotski/gnotski.c:1162
 msgid "Moves:"
 msgstr "Moves:"
 
-#: gnotski/gnotski.c:1347
+#: gnotski/gnotski.c:1196
+#, c-format
+msgid ""
+"Could not find the image: \n"
+"%s\n"
+"\n"
+"Please check your gnome-games installation."
+msgstr ""
+"Could not find the image: \n"
+"%s\n"
+"\n"
+"Please check your gnome-games installation."
+
+#: gnotski/gnotski.c:1389
 #, c-format
 msgid "Level %d : %s"
 msgstr "Level %d : %s"
 
-#: gnotski/gnotski.c:1503
+#: gnotski/gnotski.c:1544
 #, c-format
 msgid "This puzzle is solvable in %d move."
 msgid_plural "This puzzle is solvable in %d moves."
 msgstr[0] "This puzzle is solvable in %d move."
 msgstr[1] "This puzzle is solvable in %d moves."
 
-#: gnotski/gnotski.c:1528
+#: gnotski/gnotski.c:1569
 msgid "Sliding Block Puzzles"
 msgstr "Sliding Block Puzzles"
 
@@ -4730,7 +4875,7 @@ msgid "Iagno server to use"
 msgstr "Iagno server to use"
 
 #: iagno/gnothello.c:390
-#: iagno/gnothello.c:724
+#: iagno/gnothello.c:733
 #: iagno/iagno.desktop.in.h:1
 #: iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
@@ -4740,12 +4885,12 @@ msgstr "Iagno"
 msgid "GNOME version of the popular Othello disk flipping game."
 msgstr "GNOME version of the popular Othello disk flipping game."
 
-#: iagno/gnothello.c:792
+#: iagno/gnothello.c:801
 msgid "Welcome to Iagno!"
 msgstr "Welcome to Iagno!"
 
-#: iagno/gnothello.c:800
-#: iagno/gnothello.c:802
+#: iagno/gnothello.c:809
+#: iagno/gnothello.c:811
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
@@ -4794,13 +4939,13 @@ msgstr "Complete"
 msgid "Stagger flips"
 msgstr "Stagger flips"
 
-#: libgames-support/games-card-selector.c:51
+#: libgames-support/games-card-selector.c:52
 msgid "Card Style"
 msgstr "Card Style"
 
 #: libgames-support/games-controls.c:158
-#: libgames-support/games-controls.c:331
-#: libgames-support/games-controls.c:403
+#: libgames-support/games-controls.c:332
+#: libgames-support/games-controls.c:404
 msgid "No key"
 msgstr "No key"
 
@@ -4808,7 +4953,7 @@ msgstr "No key"
 msgid "<Press a Key>"
 msgstr "<Press a Key>"
 
-#: libgames-support/games-controls.c:390
+#: libgames-support/games-controls.c:391
 msgid "Unknown Command"
 msgstr "Unknown Command"
 
@@ -4825,158 +4970,158 @@ msgstr "The default configuration values could not be retrieved correctly."
 msgid "Please check your GConf configuration, specifically that the schemas have been installed correctly."
 msgstr "Please check your GConf configuration, specifically that the schemas have been installed correctly."
 
-#: libgames-support/games-gridframe.c:180
-#: libgames-support/games-gridframe.c:187
+#: libgames-support/games-gridframe.c:181
+#: libgames-support/games-gridframe.c:188
 msgid "X Padding"
 msgstr "X Padding"
 
-#: libgames-support/games-gridframe.c:181
+#: libgames-support/games-gridframe.c:182
 msgid "Extra space to add to the width allocation."
 msgstr "Extra space to add to the width allocation."
 
-#: libgames-support/games-gridframe.c:188
+#: libgames-support/games-gridframe.c:189
 msgid "Extra space to add to the height allocation."
 msgstr "Extra space to add to the height allocation."
 
-#: libgames-support/games-gridframe.c:194
+#: libgames-support/games-gridframe.c:195
 msgid "Width Multiple"
 msgstr "Width Multiple"
 
-#: libgames-support/games-gridframe.c:195
+#: libgames-support/games-gridframe.c:196
 msgid "What multiple to constrain the width to."
 msgstr "What multiple to constrain the width to."
 
-#: libgames-support/games-gridframe.c:201
+#: libgames-support/games-gridframe.c:202
 msgid "Height Multiple"
 msgstr "Height Multiple"
 
-#: libgames-support/games-gridframe.c:202
+#: libgames-support/games-gridframe.c:203
 msgid "What multiple to constrain the height to."
 msgstr "What multiple to constrain the height to."
 
-#: libgames-support/games-network-dialog.c:109
+#: libgames-support/games-network-dialog.c:110
 #, c-format
 msgid "The player %s joined the game."
 msgstr "The player %s joined the game."
 
-#: libgames-support/games-network-dialog.c:137
+#: libgames-support/games-network-dialog.c:138
 msgid "New Network Game"
 msgstr "New Network Game"
 
 #. Create Network Status Frame.
-#: libgames-support/games-network-dialog.c:143
+#: libgames-support/games-network-dialog.c:144
 msgid "Network Status:"
 msgstr "Network Status:"
 
-#: libgames-support/games-network-dialog.c:157
+#: libgames-support/games-network-dialog.c:158
 msgid "Please start a new network game.\n"
 msgstr "Please start a new network game.\n"
 
-#: libgames-support/games-network-dialog.c:161
+#: libgames-support/games-network-dialog.c:162
 msgid "_Connect"
 msgstr "_Connect"
 
-#: libgames-support/games-network-dialog.c:163
+#: libgames-support/games-network-dialog.c:164
 msgid "_Start game"
 msgstr "_Start game"
 
-#: libgames-support/games-network-dialog.c:201
+#: libgames-support/games-network-dialog.c:202
 msgid "Invalid name"
 msgstr "Invalid name"
 
-#: libgames-support/games-network-dialog.c:217
+#: libgames-support/games-network-dialog.c:218
 msgid "A new gnome games server was successfully started."
 msgstr "A new gnome games server was successfully started."
 
-#: libgames-support/games-network-dialog.c:260
+#: libgames-support/games-network-dialog.c:261
 msgid "Network Configuration"
 msgstr "Network Configuration"
 
-#: libgames-support/games-network-dialog.c:266
+#: libgames-support/games-network-dialog.c:267
 msgid "Your playername:"
 msgstr "Your playername:"
 
-#: libgames-support/games-network-dialog.c:278
+#: libgames-support/games-network-dialog.c:279
 msgid "Player"
 msgstr "Player"
 
-#: libgames-support/games-network-dialog.c:290
+#: libgames-support/games-network-dialog.c:291
 msgid "Network connection method"
 msgstr "Network connection method"
 
-#: libgames-support/games-network-dialog.c:295
+#: libgames-support/games-network-dialog.c:296
 msgid "Gnome Games Server"
 msgstr "Gnome Games Server"
 
-#: libgames-support/games-network-dialog.c:301
+#: libgames-support/games-network-dialog.c:302
 msgid "Host Local Game"
 msgstr "Host Local Game"
 
-#: libgames-support/games-network-dialog.c:319
+#: libgames-support/games-network-dialog.c:320
 msgid "Game name:"
 msgstr "Game name:"
 
-#: libgames-support/games-network-dialog.c:330
+#: libgames-support/games-network-dialog.c:331
 msgid "Join Local Game"
 msgstr "Join Local Game"
 
-#: libgames-support/games-network-dialog.c:347
+#: libgames-support/games-network-dialog.c:348
 msgid "Hostname:"
 msgstr "Hostname:"
 
-#: libgames-support/games-network-dialog.c:359
+#: libgames-support/games-network-dialog.c:360
 msgid "Local Games:"
 msgstr "Local Games:"
 
-#: libgames-support/games-network-dialog.c:440
+#: libgames-support/games-network-dialog.c:441
 msgid "No local game selected."
 msgstr "No local game selected."
 
-#: libgames-support/games-network.c:120
+#: libgames-support/games-network.c:121
 msgid "Network initialization complete."
 msgstr "Network initialisation complete."
 
-#: libgames-support/games-network.c:130
+#: libgames-support/games-network.c:131
 msgid "Network shutdown in progress."
 msgstr "Network shutdown in progress."
 
 #. Shut down the connection, either it was broken or someone is messing with us
-#: libgames-support/games-network.c:253
+#: libgames-support/games-network.c:254
 msgid "The remote player disconnected"
 msgstr "The remote player disconnected"
 
-#: libgames-support/games-network.c:273
+#: libgames-support/games-network.c:274
 msgid "Error occurred during connect attempt."
 msgstr "Error occurred during connect attempt."
 
-#: libgames-support/games-network.c:275
-#: libgames-support/games-network.c:361
+#: libgames-support/games-network.c:276
+#: libgames-support/games-network.c:362
 msgid "Connection succeeded, waiting for opponent"
 msgstr "Connection succeeded, waiting for opponent"
 
-#: libgames-support/games-network.c:285
+#: libgames-support/games-network.c:286
 msgid "Error occurred during write."
 msgstr "Error occurred during write."
 
-#: libgames-support/games-network.c:340
+#: libgames-support/games-network.c:341
 msgid "Cleaning up connection"
 msgstr "Cleaning up connection"
 
-#: libgames-support/games-network.c:352
+#: libgames-support/games-network.c:353
 msgid "Connection in progress..."
 msgstr "Connection in progress..."
 
-#: libgames-support/games-network.c:356
+#: libgames-support/games-network.c:357
 msgid "Connection failed"
 msgstr "Connection failed"
 
-#: libgames-support/games-network.c:384
+#: libgames-support/games-network.c:385
 msgid "No game server defined"
 msgstr "No game server defined"
 
-#: libgames-support/games-network.c:465
-#: libgames-support/games-network.c:546
-#: libgames-support/games-network.c:554
+#: libgames-support/games-network.c:466
+#: libgames-support/games-network.c:547
+#: libgames-support/games-network.c:555
 msgid ""
 "Local Area Network game could not be started. \n"
 "Try running mDNSResponder."
@@ -4984,10 +5129,26 @@ msgstr ""
 "Local Area Network game could not be started. \n"
 "Try running mDNSResponder."
 
-#: libgames-support/games-preimage.c:166
-#: libgames-support/games-preimage.c:258
+#: libgames-support/games-preimage.c:165
+#: libgames-support/games-preimage.c:256
 msgid "Image rendering failed."
 msgstr "Image rendering failed."
+
+#. Translators: this is for a minutes, seconds time display.
+#: libgames-support/games-scores-dialog.gob:115
+#, c-format
+msgid "%dm %ds"
+msgstr "%dm %ds"
+
+#. Note that this assumes the default style is plain.
+#: libgames-support/games-scores-dialog.gob:221
+#: libgames-support/games-scores-dialog.gob:304
+msgid "Score"
+msgstr "Score"
+
+#: libgames-support/games-scores-dialog.gob:300
+msgid "Time"
+msgstr "Time"
 
 #: libgames-support/libgnomegames.schemas.in.h:1
 msgid "Network game mode"
@@ -5021,10 +5182,42 @@ msgstr "This string identifies the default game to connect to or create (dependi
 msgid "When using server mode, which game server to contact. This accepts the usual hostname or dotted quad notation."
 msgstr "When using server mode, which game server to contact. This accepts the usual hostname or dotted quad notation."
 
-#: mahjongg/drawing.c:422
+#: mahjongg/drawing.c:286
+msgid "This image may be corrupt."
+msgstr "This image may be corrupt."
+
+#: mahjongg/drawing.c:428
 #, c-format
-msgid "Unable to locate theme file: %s"
-msgstr "Unable to locate theme file: %s"
+msgid ""
+"Unable to locate file: '%s'\n"
+"\n"
+"Also, the default tile set could not be found."
+msgstr ""
+"Unable to locate file: '%s'\n"
+"\n"
+"Also, the default tile set could not be found."
+
+#: mahjongg/drawing.c:430
+#, c-format
+msgid ""
+"Unable to locate file: '%s'\n"
+"\n"
+"The default tile set will be loaded instead."
+msgstr ""
+"Unable to locate file: '%s'\n"
+"\n"
+"The default tile set will be loaded instead."
+
+#: mahjongg/drawing.c:446
+#, c-format
+msgid ""
+"Unable to load file: '%s'\n"
+"\n"
+"This tile set was found but did not load."
+msgstr ""
+"Unable to load file: '%s'\n"
+"\n"
+"This tile set was found but did not load."
 
 #: mahjongg/mahjongg.c:145
 msgid "Show or hide the toolbar"
@@ -5054,97 +5247,102 @@ msgstr "Redo"
 msgid "Get a hint"
 msgstr "Get a hint"
 
-#: mahjongg/mahjongg.c:399
-msgid "Do you want to finish the current game or start playing with the new map immediately?"
-msgstr "Do you want to finish the current game or start playing with the new map immediately?"
+#: mahjongg/mahjongg.c:208
+msgid "Could not load tile set"
+msgstr "Could not load tile set"
 
-#: mahjongg/mahjongg.c:400
-msgid "If you choose to finish with the old map then the next game will use the new map."
-msgstr "If you choose to finish with the old map then the next game will use the new map."
-
-#: mahjongg/mahjongg.c:402
-msgid "_Finish"
-msgstr "_Finish"
-
-#: mahjongg/mahjongg.c:659
-#: mahjongg/mahjongg.c:664
-msgid "These tiles don't match."
-msgstr "These tiles don't match."
-
-#: mahjongg/mahjongg.c:700
-msgid "Shuffle"
-msgstr "Shuffle"
-
-#: mahjongg/mahjongg.c:763
+#: mahjongg/mahjongg.c:212
+#: mahjongg/mahjongg.c:788
 msgid "Preferences"
 msgstr "Preferences"
 
-#: mahjongg/mahjongg.c:782
+#: mahjongg/mahjongg.c:424
+msgid "Do you want to finish the current game or start playing with the new map immediately?"
+msgstr "Do you want to finish the current game or start playing with the new map immediately?"
+
+#: mahjongg/mahjongg.c:425
+msgid "If you choose to finish with the old map then the next game will use the new map."
+msgstr "If you choose to finish with the old map then the next game will use the new map."
+
+#: mahjongg/mahjongg.c:427
+msgid "_Finish"
+msgstr "_Finish"
+
+#: mahjongg/mahjongg.c:684
+#: mahjongg/mahjongg.c:689
+msgid "These tiles don't match."
+msgstr "These tiles don't match."
+
+#: mahjongg/mahjongg.c:725
+msgid "Shuffle"
+msgstr "Shuffle"
+
+#: mahjongg/mahjongg.c:807
 msgid "Tiles"
 msgstr "Tiles"
 
-#: mahjongg/mahjongg.c:790
+#: mahjongg/mahjongg.c:815
 msgid "Tile Set"
 msgstr "Tile Set"
 
-#: mahjongg/mahjongg.c:803
+#: mahjongg/mahjongg.c:828
 msgid "Maps"
 msgstr "Maps"
 
-#: mahjongg/mahjongg.c:811
+#: mahjongg/mahjongg.c:836
 msgid "Select Map"
 msgstr "Select Map"
 
-#: mahjongg/mahjongg.c:824
+#: mahjongg/mahjongg.c:849
 msgid "Colors"
 msgstr "Colours"
 
-#: mahjongg/mahjongg.c:832
+#: mahjongg/mahjongg.c:857
 msgid "Background Color"
 msgstr "Background Colour"
 
-#: mahjongg/mahjongg.c:846
+#: mahjongg/mahjongg.c:871
 msgid "Warnings"
 msgstr "Warnings"
 
-#: mahjongg/mahjongg.c:852
+#: mahjongg/mahjongg.c:877
 msgid "Warn when tiles don't match"
 msgstr "Warn when tiles don't match"
 
-#: mahjongg/mahjongg.c:969
+#: mahjongg/mahjongg.c:994
 msgid "Maps:"
 msgstr "Maps:"
 
-#: mahjongg/mahjongg.c:973
+#: mahjongg/mahjongg.c:998
 msgid "Tiles:"
 msgstr "Tiles:"
 
-#: mahjongg/mahjongg.c:1005
+#: mahjongg/mahjongg.c:1030
 msgid "GNOME Mahjongg"
 msgstr "GNOME Mahjongg"
 
-#: mahjongg/mahjongg.c:1008
+#: mahjongg/mahjongg.c:1033
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "GNOME version of the Eastern tile game, Mahjongg."
 
-#: mahjongg/mahjongg.c:1380
+#: mahjongg/mahjongg.c:1405
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Sorry, I was unable to find a playable configuration."
 
-#: mahjongg/mahjongg.c:1438
+#: mahjongg/mahjongg.c:1465
 #: mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:1446
+#: mahjongg/mahjongg.c:1473
 msgid "Tiles Left:"
 msgstr "Tiles Left:"
 
-#: mahjongg/mahjongg.c:1455
+#: mahjongg/mahjongg.c:1482
 msgid "Moves Left:"
 msgstr "Moves Left:"
 
-#: mahjongg/mahjongg.c:1520
+#: mahjongg/mahjongg.c:1547
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "Welcome to GNOME Mahjongg!"
 
@@ -5192,66 +5390,168 @@ msgstr "Four Bridges"
 msgid "The Ziggurat"
 msgstr "The Ziggurat"
 
-#: same-gnome/same-gnome.c:205
-#, c-format
-msgid "%d stone selected"
-msgid_plural "%d stones selected"
-msgstr[0] "%d stone selected"
-msgstr[1] "%d stones seleted"
+#. FIXME: This is long enough to resize the window upwards when
+#: same-gnome/game.c:362
+msgid "1000 point bonus for clearing the board!"
+msgstr "1000 point bonus for clearing the board!"
 
-#: same-gnome/same-gnome.c:210
-msgid "No stones selected"
-msgstr "No stones selected"
+#: same-gnome/same-gnome.c:122
+msgid "Set the theme"
+msgstr "Set the theme"
 
-#: same-gnome/same-gnome.c:288
-msgid "The Same GNOME"
-msgstr "The Same GNOME"
+#: same-gnome/same-gnome.c:125
+msgid "For backwards compatibility"
+msgstr "For backwards compatibility"
 
-#: same-gnome/same-gnome.c:441
-#, c-format
-msgid ""
-"Could not find the theme:\n"
-"%s\n"
-"\n"
-"Please check your Same GNOME installation."
-msgstr ""
-"Could not find the theme:\n"
-"%s\n"
-"\n"
-"Please check your Same GNOME installation."
-
-#: same-gnome/same-gnome.c:471
-#, c-format
-msgid ""
-"Same GNOME can't load the image file:\n"
-"%s\n"
-"\n"
-"Please check your Same GNOME installation"
-msgstr ""
-"Same GNOME can't load the image file:\n"
-"%s\n"
-"\n"
-"Please check your Same GNOME installation"
-
-#: same-gnome/same-gnome.c:614
-msgid "Same GNOME Preferences"
-msgstr "Same GNOME Preferences"
-
-#: same-gnome/same-gnome.c:727
-#: same-gnome/same-gnome.c:926
-#: same-gnome/same-gnome.desktop.in.h:2
-msgid "Same GNOME"
-msgstr "Same GNOME"
-
-#: same-gnome/same-gnome.c:730
-msgid "Original idea from KDE's same game program."
-msgstr "Original idea from KDE's same game program."
-
-#: same-gnome/same-gnome.c:936
-msgid "Welcome to Same GNOME!"
-msgstr "Welcome to Same GNOME!"
+#: same-gnome/same-gnome.c:127
+msgid "Game size (1=small, 3=large)"
+msgstr "Game size (1=small, 3=large)"
 
 #: same-gnome/same-gnome.desktop.in.h:1
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Remove groups of balls to try and clear the screen"
+
+#: same-gnome/same-gnome.desktop.in.h:2
+msgid "Same GNOME"
+msgstr "Same GNOME"
+
+#: same-gnome/same-gnome.schemas.in.h:1
+msgid "Height of the custom board"
+msgstr "Height of the custom board"
+
+#: same-gnome/same-gnome.schemas.in.h:2
+msgid "The board size"
+msgstr "The board size"
+
+#: same-gnome/same-gnome.schemas.in.h:3
+msgid "The filename of the theme to use."
+msgstr "The filename of the theme to use."
+
+#: same-gnome/same-gnome.schemas.in.h:4
+msgid "The height of the custom board, 101 &gt; height &gt; 3."
+msgstr "The height of the custom board, 101 &gt; height &gt; 3."
+
+#: same-gnome/same-gnome.schemas.in.h:6
+msgid "The size of the board to use. 1 = Custom, 2 = Small 3 = Medium 4 = Large."
+msgstr "The size of the board to use. 1 = Custom, 2 = Small 3 = Medium 4 = Large."
+
+#: same-gnome/same-gnome.schemas.in.h:7
+msgid "The theme to use"
+msgstr "The theme to use"
+
+#: same-gnome/same-gnome.schemas.in.h:8
+msgid "The width of the custom board, 101 &gt; width &gt; 3."
+msgstr "The width of the custom board, 101 &gt; width &gt; 3."
+
+#: same-gnome/same-gnome.schemas.in.h:10
+msgid "The window height"
+msgstr "The window height"
+
+#: same-gnome/same-gnome.schemas.in.h:11
+msgid "The window width"
+msgstr "The window width"
+
+#: same-gnome/same-gnome.schemas.in.h:12
+msgid "Width of the custom board"
+msgstr "Width of the custom board"
+
+#: same-gnome/ui.c:62
+#, c-format
+msgid "%d object selected"
+msgid_plural "%d objects selected"
+msgstr[0] "%d object selected"
+msgstr[1] "%d objects selected"
+
+#: same-gnome/ui.c:64
+#, c-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d point"
+msgstr[1] "%d points"
+
+#. Translators: the previous messages get merged into this
+#: same-gnome/ui.c:67
+#, c-format
+msgid "%s (%s)"
+msgstr "%s (%s)"
+
+#: same-gnome/ui.c:71
+msgid "No objects selected"
+msgstr "No objects selected"
+
+#: same-gnome/ui.c:81
+msgid "No points"
+msgstr "No points"
+
+#: same-gnome/ui.c:86
+#, c-format
+msgid "%d point !"
+msgid_plural "%d points !"
+msgstr[0] "%d point!"
+msgstr[1] "%d points!"
+
+#: same-gnome/ui.c:100
+#, c-format
+msgid "Score: %d"
+msgstr "Score: %d"
+
+#: same-gnome/ui.c:119
+msgid "I want to play that game! You know, they all go whirly-round and you click on them and they vanish!"
+msgstr "I want to play that game! You know, they all go whirly-round and you click on them and they vanish!"
+
+#: same-gnome/ui.c:132
+msgid "Same GNOME Scores"
+msgstr "Same GNOME Scores"
+
+#: same-gnome/ui.c:165
+msgid "Unfortunately your score did not make the top ten."
+msgstr "Unfortunately your score did not make the top ten."
+
+#: same-gnome/ui.c:193
+msgid "Congratulations!"
+msgstr "Congratulations!"
+
+#: same-gnome/ui.c:194
+msgid "Your score has made the top 10."
+msgstr "Your score has made the top 10."
+
+#: same-gnome/ui.c:283
+msgid "Same GNOME Theme"
+msgstr "Same GNOME Theme"
+
+#: same-gnome/ui.c:431
+msgid "_Size"
+msgstr "_Size"
+
+#: same-gnome/ui.c:435
+msgid "_Scores..."
+msgstr "_Scores..."
+
+#: same-gnome/ui.c:440
+msgid "_Theme..."
+msgstr "_Theme..."
+
+#: same-gnome/ui.c:448
+msgid "_Small"
+msgstr "_Small"
+
+#: same-gnome/ui.c:449
+msgid "_Medium"
+msgstr "_Medium"
+
+#: same-gnome/ui.c:450
+msgid "_Large"
+msgstr "_Large"
+
+#: same-gnome/ui.c:454
+msgid "_Fullscreen"
+msgstr "_Fullscreen"
+
+#: same-gnome/drawing.c:291
+msgid "No theme data was found."
+msgstr "No theme data was found."
+
+#: same-gnome/drawing.c:295
+msgid "It is impossible to play the game. Please check that the game has been installed correctly and try again."
+msgstr "It is impossible to play the game. Please check that the game has been installed correctly and try again."
 
