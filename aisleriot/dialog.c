@@ -355,7 +355,6 @@ void show_preferences_dialog ()
 {
   static GtkWidget* property_box = NULL;
   GtkWidget * frame;
-  gchar * frame_title;
   
   if (!property_box) {
     property_box = gtk_dialog_new ();
@@ -365,12 +364,7 @@ void show_preferences_dialog ()
                            GTK_STOCK_CLOSE, GTK_RESPONSE_OK, NULL);
     gtk_window_set_transient_for (GTK_WINDOW(property_box), GTK_WINDOW (app));
 
-    frame_title = g_strdup_printf ("<b>%s</b>",_("Card Style"));
-    frame = gtk_frame_new (frame_title);
-    g_free (frame_title);
-    gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
-    gtk_label_set_use_markup (GTK_LABEL (gtk_frame_get_label_widget(GTK_FRAME(frame))), TRUE);
-    gtk_misc_set_alignment (GTK_MISC (gtk_frame_get_label_widget(GTK_FRAME(frame))), 0, 0.5);
+    frame = games_frame_new (_("Card Style"));
     
     deck_edit = gtk_card_deck_options_edit_new ();
     gtk_container_add (GTK_CONTAINER (frame), deck_edit);

@@ -1,5 +1,5 @@
 ; AisleRiot - valentine.scm
-; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
+; Copyright (C) 2001, 2003 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by
@@ -93,10 +93,10 @@
 				    (reverse (get-cards 4))
 				    (reverse (get-cards 3))
 				    (reverse (get-cards 2))))
-	      (set-cards! 2 ())
-	      (set-cards! 3 ())
-	      (set-cards! 4 ())
-	      (set-cards! 5 ())	      
+	      (set-cards! 2 '())
+	      (set-cards! 3 '())
+	      (set-cards! 4 '())
+	      (set-cards! 5 '())	      
 	      (deal-cards 1 '(2))
 	      (deal-cards-face-up 0 '(3 4 5))))))
 
