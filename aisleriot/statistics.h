@@ -23,6 +23,7 @@
 G_BEGIN_DECLS
 
 void show_statistics_dialog (void);
+void update_statistics_display (void);
 
 G_END_DECLS
 

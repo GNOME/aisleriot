@@ -42,6 +42,7 @@
 #include "card.h"
 #include "cscmi.h"
 #include "menu.h"
+#include "statistics.h"
 #include "games-clock.h"
 #include "games-gconf.h"
 
@@ -226,6 +227,7 @@ void new_game (gchar* file, guint *seedp )
       }
     }
     game_name = game_file_to_name (file);
+    update_statistics_display ();
 
     if (!dont_save)
       save_state (gnome_master_client ());

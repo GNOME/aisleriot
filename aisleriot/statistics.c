@@ -24,6 +24,7 @@
 #include "statistics.h"
 
 GtkWidget * statistics_dialog = NULL;
+GtkWidget * name_label;
 
 /* To remove some warnings, these are linked in at run time by libglade. */
 gboolean close_statistics_dialog (GtkWidget * widget);
@@ -50,6 +51,19 @@ close_statistics_dialog (GtkWidget * widget)
   return FALSE;
 }
 
+void update_statistics_display (void)
+{
+  gchar * name;
+
+  if (!statistics_dialog || !GTK_WIDGET_VISIBLE (statistics_dialog))
+    return;
+
+  name = g_strdup_printf ("<b>%s</b>", game_name);
+  gtk_label_set_text (GTK_LABEL (name_label), name);
+  gtk_label_set_use_markup (GTK_LABEL (name_label), TRUE);
+  g_free (name);
+}
+
 void
 show_statistics_dialog (void)
 {
@@ -59,8 +73,10 @@ show_statistics_dialog (void)
     dialog = glade_xml_new (GLADEDIR "/statistics.glade", NULL, NULL);
     glade_xml_signal_autoconnect (dialog);
     statistics_dialog = glade_xml_get_widget (dialog, "Statistics");
+    name_label = glade_xml_get_widget (dialog, "name_label");
   } else {
     gtk_window_present (GTK_WINDOW (statistics_dialog));
   }
 
+  update_statistics_display ();
 }
