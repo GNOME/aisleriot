@@ -6,6 +6,10 @@
 # Erik Kruijswijk <e.kruijswijk@ictro.drp.minjus.nl>, 2002.
 # Tino Meinen <a.t.meinen@chello.nl>, 2002
 # ----------------------------------------
+# Nog te doen:
+# De Blackjack-terminologie controleren.
+# ---------------------------------------
+#
 # pile		stapel
 # tableau	tafel
 # slot		vak/stapel
@@ -20,14 +24,16 @@
 # jack		boer
 # ace		aas
 #
-# Square		vak
+# Square	vak
 # block		blok
+# Tile		Tegel/spelvak
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-04 20:09+0200\n"
-"PO-Revision-Date: 2003-08-05 05:21+0200\n"
+"POT-Creation-Date: 2003-08-05 20:10+0200\n"
+"PO-Revision-Date: 2003-08-06 02:45+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: nl <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -492,7 +498,7 @@ msgstr "FreeCell Solitaire"
 
 #: aisleriot/freecell.desktop.in.h:2
 msgid "Play the popular FreeCell card game"
-msgstr "Het populaire FreeCell kaartspel spelen"
+msgstr "Het populaire FreeCell kaartspel"
 
 #: aisleriot/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
@@ -775,7 +781,7 @@ msgstr "AisleRiot Solitaire"
 
 #: aisleriot/sol.desktop.in.h:2
 msgid "Play many different solitaire games"
-msgstr "Heel veel verschillende vormen van solitaire spelen"
+msgstr "Heel veel verschillende vormen van solitaire"
 
 #: aisleriot/sol.scm.h:1
 msgid "Unknown color"
@@ -1430,7 +1436,7 @@ msgstr "Blackjack"
 
 #: blackjack/data/blackjack.desktop.in.h:2
 msgid "Play the casino card game Blackjack"
-msgstr "Het casino-kaartspel Blackjack spelen"
+msgstr "Het casino-kaartspel Blackjack"
 
 #: blackjack/data/blackjack.schemas.in.h:2
 msgid "Display probabilities"
@@ -1537,13 +1543,14 @@ msgstr "Naam"
 msgid "Decks"
 msgstr "Dekken"
 
+# vertalen of niet?
 #: blackjack/src/dialog.cpp:299
 msgid "Hit Soft 17"
-msgstr ""
+msgstr "Hit Soft 17"
 
 #: blackjack/src/dialog.cpp:304
 msgid "Double Any Total"
-msgstr ""
+msgstr "Elk totaal dubbelen"
 
 #: blackjack/src/dialog.cpp:309
 msgid "Double 9"
@@ -1562,13 +1569,15 @@ msgstr "Dubbelen na slaan"
 msgid "Double After Split"
 msgstr "Dubbelen na splitsen"
 
+# is dit goed?
 #: blackjack/src/dialog.cpp:329
 msgid "Resplit"
-msgstr ""
+msgstr "Hersplitsen"
 
+# Is dit goed?
 #: blackjack/src/dialog.cpp:334
 msgid "Resplit Aces"
-msgstr ""
+msgstr "Azen hersplitsen"
 
 #: blackjack/src/dialog.cpp:339 blackjack/src/player.cpp:319
 msgid "Surrender"
@@ -1662,9 +1671,10 @@ msgstr "Stel een zet voor"
 msgid "Computing basic strategy..."
 msgstr "Basisstrategie wordt nu bepaald..."
 
+# De bank is leeg?
 #: blackjack/src/player.cpp:187 blackjack/src/player.cpp:448
 msgid "Bust"
-msgstr ""
+msgstr "Kapot"
 
 #: blackjack/src/player.cpp:191
 msgid "Blackjack!"
@@ -1773,13 +1783,13 @@ msgstr "%.2d"
 
 #: gataxx/gataxx.desktop.in.h:2
 msgid "Compete to dominate the board in a Reversi-like game"
-msgstr ""
+msgstr "Probeer het bord te domineren in dit Reversi-achtige spel"
 
 #: gataxx/gataxx.schemas.in.h:1 gnect/data/gnect.schemas.in.h:1
 msgid "Animate"
 msgstr "Animatie"
 
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:515 iagno/properties.c:685
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:515 iagno/properties.c:706
 msgid "Flip final results"
 msgstr "Eindresultaat omdraaien"
 
@@ -1848,31 +1858,31 @@ msgstr "_Spelers"
 msgid "Quick Moves (cut computer delay in half)"
 msgstr "Snelle Zetten (halfveer computer vertraging)"
 
-#: gataxx/properties.c:376 gnect/src/theme.c:386 iagno/properties.c:530
+#: gataxx/properties.c:376 gnect/src/theme.c:386 iagno/properties.c:551
 msgid "Dark"
 msgstr "Zwart"
 
 #: gataxx/properties.c:381 gataxx/properties.c:429 gnect/src/prefs.c:738
-#: gtali/yahtzee.c:63 iagno/properties.c:536 iagno/properties.c:583
+#: gtali/yahtzee.c:63 iagno/properties.c:557 iagno/properties.c:604
 msgid "Human"
 msgstr "Mens"
 
-#: gataxx/properties.c:391 gataxx/properties.c:437 iagno/properties.c:546
-#: iagno/properties.c:593
+#: gataxx/properties.c:391 gataxx/properties.c:437 iagno/properties.c:567
+#: iagno/properties.c:614
 msgid "Level one"
 msgstr "Level een"
 
-#: gataxx/properties.c:400 gataxx/properties.c:445 iagno/properties.c:556
-#: iagno/properties.c:603
+#: gataxx/properties.c:400 gataxx/properties.c:445 iagno/properties.c:577
+#: iagno/properties.c:624
 msgid "Level two"
 msgstr "Level twee"
 
-#: gataxx/properties.c:409 gataxx/properties.c:453 iagno/properties.c:566
-#: iagno/properties.c:614
+#: gataxx/properties.c:409 gataxx/properties.c:453 iagno/properties.c:587
+#: iagno/properties.c:635
 msgid "Level three"
 msgstr "Level drie"
 
-#: gataxx/properties.c:424 gnect/src/theme.c:383 iagno/properties.c:577
+#: gataxx/properties.c:424 gnect/src/theme.c:383 iagno/properties.c:598
 msgid "Light"
 msgstr "Wit"
 
@@ -1882,25 +1892,25 @@ msgstr "Wit"
 msgid "_Appearance"
 msgstr "_Beeld"
 
-#: gataxx/properties.c:479 iagno/properties.c:636
+#: gataxx/properties.c:479 iagno/properties.c:657
 msgid "None"
 msgstr "Geen"
 
-#: gataxx/properties.c:489 iagno/properties.c:645
+#: gataxx/properties.c:489 iagno/properties.c:666
 msgid "Partial"
 msgstr "Gedeeltelijk"
 
-#: gataxx/properties.c:498 iagno/properties.c:654
+#: gataxx/properties.c:498 iagno/properties.c:675
 msgid "Complete"
 msgstr "Compleet"
 
 #. Options
 #: gataxx/properties.c:510 gnibbles/preferences.c:418
-#: gnibbles/preferences.c:675 gnobots2/properties.c:853 iagno/properties.c:666
+#: gnibbles/preferences.c:675 gnobots2/properties.c:853 iagno/properties.c:687
 msgid "Options"
 msgstr "Opties"
 
-#: gataxx/properties.c:524 iagno/properties.c:695
+#: gataxx/properties.c:524 iagno/properties.c:716
 msgid "Tile set:"
 msgstr "Stenen set:"
 
@@ -2057,7 +2067,7 @@ msgstr "De tijd tussen zetten in miliseconden."
 
 #: gnect/data/gnect.desktop.in.h:1
 msgid "Compete to make lines of the same color"
-msgstr ""
+msgstr "Probeer lijnen van dezelfde kleur te maken"
 
 #: gnect/data/gnect.desktop.in.h:2
 msgid "Four-in-a-row"
@@ -2372,7 +2382,7 @@ msgid "Theme Selection:"
 msgstr "Themaselectie:"
 
 #. animation
-#: gnect/src/prefs.c:894 iagno/properties.c:632
+#: gnect/src/prefs.c:894 iagno/properties.c:653
 msgid "Animation"
 msgstr "Animatie"
 
@@ -2808,18 +2818,20 @@ msgstr "GNOME Robots"
 
 #: gnobots2/gnobots.c:230
 msgid "No game data could be found."
-msgstr ""
+msgstr "Er zijn geen spelgegevens gevonden."
 
 #: gnobots2/gnobots.c:231
 msgid ""
 "The program GNOME Robots was unable to find any valid game configuration "
 "files. Please check that the program is installed correctly."
 msgstr ""
+"Het programma GNOME Robots kon geen geldige spelconfiguratiebestanden "
+"vinden. Controleer of het programma goed is geïnstalleerd."
 
 #. ********************************************************************
 #: gnobots2/gnobots2.desktop.in.h:1
 msgid "Avoid the robots and make them crash into each other"
-msgstr ""
+msgstr "Vermijd de robots en laat ze op elkaar botsen"
 
 #: gnobots2/gnobots2.desktop.in.h:2
 msgid "Robots"
@@ -3128,13 +3140,13 @@ msgid "Use Standard Robots Keys"
 msgstr "Standaard Robot-toetsen gebruiken"
 
 #: gnobots2/properties.c:1027
-#, fuzzy
 msgid "Use Left Hand Keys"
-msgstr "Straten en steegjes"
+msgstr "Linkerhand-toetsen gebruiken"
 
+# Hebben we hier een woord voor?
 #: gnobots2/properties.c:1032
 msgid "Use the Keypad"
-msgstr ""
+msgstr "Het keypad gebruiken"
 
 #: gnobots2/properties.c:1037
 msgid "_Keyboard"
@@ -3462,7 +3474,7 @@ msgstr "Tutorial caves"
 
 #: gnometris/gnometris.desktop.in.h:1
 msgid "Fit falling blocks together"
-msgstr ""
+msgstr "De vallende blokken goed op elkaar stapelen"
 
 #: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:92
 msgid "Gnometris"
@@ -3859,7 +3871,7 @@ msgstr "Een Tetravex-kloon."
 
 #: gnotravex/gnotravex.desktop.in.h:1
 msgid "Play a puzzle game matching tiles together"
-msgstr ""
+msgstr "Een puzzel waarbij de tegels aan elkaar moeten passen"
 
 #: gnotravex/gnotravex.desktop.in.h:2
 msgid "Tetravex"
@@ -3981,6 +3993,7 @@ msgstr "Puzzels oplossen door blokken te verschuiven"
 msgid "Already used! Where do you want to put that?"
 msgstr "Al in gebruik! Waar moet het ingevuld worden?"
 
+# play hier niet vertaald
 #. Arrgh - lets all use the same tabs under emacs:
 #. Local Variables:
 #. tab-width: 8
@@ -3989,7 +4002,7 @@ msgstr "Al in gebruik! Waar moet het ingevuld worden?"
 #.
 #: gtali/gtali.desktop.in.h:1
 msgid "Play a poker-style dice game"
-msgstr "Een dobbelspel in pokerstijl spelen"
+msgstr "Een dobbelspel in pokerstijl"
 
 #: gtali/gtali.desktop.in.h:2
 msgid "Tali"
@@ -4000,6 +4013,8 @@ msgid ""
 "Choose whether or not to insert a delay between the computer's dice rolls so "
 "the player can follow what it is doing."
 msgstr ""
+"Geef aan of er een vertraging moet zijn tussen de worpen van de computer "
+"zodat de speler kan volgen wat de computer doet."
 
 #. --- Button ---
 #: gtali/gtali.schemas.in.h:2 gtali/setup.c:289
@@ -4010,14 +4025,16 @@ msgstr "Vertraging tussen worpen"
 msgid "Display the computer's thoughts"
 msgstr "Gedachten van de computer tonen"
 
+# lekker duidelijk :(
 #: gtali/gtali.schemas.in.h:4
 msgid ""
 "If set to true, a dump of the AI's working will be done to standard output."
 msgstr ""
+"Indien waar, wordt een dump van de AI naar de 'standard output' geschreven."
 
 #: gtali/gtali.schemas.in.h:5
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
-msgstr ""
+msgstr "[Menselijke,Henk,Rene,Nadia,Appie,Karin]"
 
 #: gtali/gyahtzee.c:68
 msgid "GNOME Tali"
@@ -4233,9 +4250,10 @@ msgstr "Kan het '%s' bestand voor Iagno niet vinden\n"
 msgid "Welcome to Iagno!"
 msgstr "Welkom bij Iagno!"
 
+# play hier niet vertaald
 #: iagno/iagno.desktop.in.h:2
 msgid "Play a game of Reversi"
-msgstr "Reversi spelen"
+msgstr "Reversi"
 
 #: iagno/network.c:74
 msgid "Network initialization complete."
@@ -4298,27 +4316,27 @@ msgstr "Verbinding mislukt"
 msgid "No game server defined"
 msgstr "Geen spel-server ingesteld"
 
-#: iagno/properties.c:500
+#: iagno/properties.c:521
 msgid "Iagno Preferences"
 msgstr "Iagno voorkeuren"
 
-#: iagno/properties.c:507
+#: iagno/properties.c:528
 msgid "Players"
 msgstr "Spelers"
 
-#: iagno/properties.c:521
+#: iagno/properties.c:542
 msgid "Use quick moves"
 msgstr "Snelle zetten gebruiken"
 
-#: iagno/properties.c:627
+#: iagno/properties.c:648
 msgid "Appearance"
 msgstr "Uiterlijk"
 
-#: iagno/properties.c:669
+#: iagno/properties.c:690
 msgid "Stagger flips"
 msgstr "Stagger keren"
 
-#: iagno/properties.c:677
+#: iagno/properties.c:698
 msgid "Show grid"
 msgstr "Toon raster"
 
