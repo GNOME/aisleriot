@@ -143,7 +143,7 @@ void main_prog(int argc, char *argv[])
   GtkWidget *label, *hb;
 
   printf(_("Done.\ninitializing gnome/gdk...\n"));
-  gnome_init (&argc, &argv);
+  gnome_init ("aisleriot", &argc, &argv);
   gdk_imlib_init();
   printf(_("Done.\n"));
   

@@ -39,7 +39,7 @@ main (int argc, char **argv)
 {
   program_name = argv[0];
 
-  gnome_init(&argc, &argv);
+  gnome_init("freecell", &argc, &argv);
   bindtextdomain (PACKAGE, LOCALEDIR);
   textdomain (PACKAGE);
 
