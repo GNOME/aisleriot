@@ -134,9 +134,10 @@
 
 (define (game-over)
   (give-status-message)
-  (or (< FLIP-COUNTER 2)
-      (not (empty-slot? 0))
-      (check-move 1)))
+  (and (not (game-won))
+       (or (< FLIP-COUNTER 2)
+	   (not (empty-slot? 0))
+	   (check-move 1))))
 
 (define (game-won)
   (= 48 (length (get-cards 8))))

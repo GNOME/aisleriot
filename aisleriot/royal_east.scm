@@ -56,9 +56,10 @@
 
   (add-to-score! 1)
 
+  (set! BASE-VAL (get-value (get-top-card 2)))
+
   (give-status-message)
 
-  (set! BASE-VAL (get-value (get-top-card 2)))
   (list 6 3)
 )
 
@@ -83,7 +84,7 @@
 	 "Base Card:  Queen")
 	((= BASE-VAL 13)
 	 "Base Card:  King")
-	(#t #f)))
+	(#t "borp")))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))

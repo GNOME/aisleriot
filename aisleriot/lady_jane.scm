@@ -191,10 +191,12 @@
 (define (button-clicked slot-id)
   (if (= slot-id 0)
       (cond ((> (length (get-cards slot-id)) 7)
-	     (deal-cards-face-up 0 '(13 14 15 16 17 18 19)))
+	     (and (deal-cards-face-up 0 '(13 14 15 16 17 18 19))
+		  (give-status-message)))
 	    ((> (length (get-cards slot-id)) 1)
 	     (and (deal-cards-face-up 0 '(1))
-		  (make-visible-top-card 0)))
+		  (make-visible-top-card 0)
+		  (give-status-message)))
 	    (#t #f))
       #f))
 
@@ -255,12 +257,12 @@
 	     (list 1 
 		   (get-name (get-top-card slot-id))
 		   (get-name 
-		    (make-card (get-suit (get-top-card slot-id))
-			       (if (= ace 
+		    (make-card (if (= ace 
 				      (get-value (get-top-card slot-id)))
 				   king
 				   (- (get-value (get-top-card slot-id))
-				      1)))))))
+				      1))
+			       (get-suit (get-top-card slot-id)))))))
 	(#t
 	 (check-to-foundations (+ 1 slot-id)))))
 
