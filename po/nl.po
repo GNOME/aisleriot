@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-24 04:44+0100\n"
-"PO-Revision-Date: 2004-02-26 11:34+0100\n"
+"POT-Creation-Date: 2004-05-14 15:08+0200\n"
+"PO-Revision-Date: 2004-05-14 20:28+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: nl <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,8 @@ msgstr "Geef nomaals"
 #: aisleriot/osmosis.scm.h:3 aisleriot/peek.scm.h:3 aisleriot/quatorze.scm.h:1
 #: aisleriot/royal_east.scm.h:7 aisleriot/scuffle.scm.h:4
 #: aisleriot/sir_tommy.scm.h:3 aisleriot/spider.scm.h:4
-#: aisleriot/spiderette.scm.h:3 aisleriot/straight_up.scm.h:5
+#: aisleriot/spiderette.scm.h:3 aisleriot/spider_one_suit.scm.h:4
+#: aisleriot/spider_two_suit.scm.h:4 aisleriot/straight_up.scm.h:5
 #: aisleriot/thieves.scm.h:2 aisleriot/thirteen.scm.h:2
 #: aisleriot/thumb_and_pouch.scm.h:4 aisleriot/treize.scm.h:2
 #: aisleriot/union_square.scm.h:2 aisleriot/westhaven.scm.h:2
@@ -132,46 +133,58 @@ msgstr ""
 "gespeeld, beste tijd (in seconden) en slechtste tijd (ook in seconden).  "
 "Niet gepeelde spellen hoeven worden weergegeven."
 
-# obsure = vaag, onbekend, onduidelijk, afwijkend, slecht gedocumenteerd.
-#: aisleriot/aisleriot.schemas.in.h:2 blackjack/data/blackjack.schemas.in.h:1
-msgid ""
-"A string containing a list of files to use to describe the cards. The format "
-"is obscure and defined by the gdk-card-image library"
-msgstr ""
-"Een tekenreeks die een lijst bevat van bestanden die gebruikt worden om de "
-"kaarten te beschrijven. Het formaat is vrij onbekend en gedefinieerd door de "
-"gdk-kaartafbeelding bibliotheek"
-
-#: aisleriot/aisleriot.schemas.in.h:3
+#: aisleriot/aisleriot.schemas.in.h:2
 msgid "Statistics of games played"
 msgstr "Statistieken van de gespeelde spellen"
 
-#: aisleriot/aisleriot.schemas.in.h:4
+#: aisleriot/aisleriot.schemas.in.h:3
 msgid "The game file to use"
 msgstr "Naam van het spel-bestand"
 
+#: aisleriot/aisleriot.schemas.in.h:4 glines/glines.schemas.in.h:11
+msgid "The height of the main window."
+msgstr "De hoogte van het hoofdvenster."
+
 #: aisleriot/aisleriot.schemas.in.h:5
+msgid "The name of the file with the graphics for the cards."
+msgstr "De naam van het bestand met de plaatjes van de kaarten."
+
+#: aisleriot/aisleriot.schemas.in.h:6
 msgid "The name of the scheme file containing the solitaire game to play."
 msgstr ""
 "De naam van het scheme-bestand dat het betreffende solitaire-spel bevat."
 
-#: aisleriot/aisleriot.schemas.in.h:6 blackjack/data/blackjack.schemas.in.h:10
-msgid "What card style to use"
-msgstr "Welke kaartstijl moet worden gebruikt"
+#: aisleriot/aisleriot.schemas.in.h:7 glines/glines.schemas.in.h:12
+msgid "The width of the main window."
+msgstr "De breedte van het hoofdvenster."
 
-#: aisleriot/aisleriot.schemas.in.h:7 blackjack/data/blackjack.schemas.in.h:11
+#: aisleriot/aisleriot.schemas.in.h:8
+msgid "Theme file name"
+msgstr "Thema-bestandsnaam"
+
+#: aisleriot/aisleriot.schemas.in.h:9 blackjack/data/blackjack.schemas.in.h:11
 msgid "Whether or not to show the toolbar"
 msgstr "Of de werkbalk moet worden getoond of niet"
 
 # BUG: Twee keer dezelfde zin, een keer met een punt een een keer zonder.
-#: aisleriot/aisleriot.schemas.in.h:8 blackjack/data/blackjack.schemas.in.h:12
+#: aisleriot/aisleriot.schemas.in.h:10
+#: blackjack/data/blackjack.schemas.in.h:12
 msgid "Whether or not to show the toolbar."
 msgstr "Of de werkbalk moet worden getoond of niet."
+
+#: aisleriot/aisleriot.schemas.in.h:11 glines/glines.schemas.in.h:15
+msgid "Window height"
+msgstr "Vensterhoogte"
+
+#: aisleriot/aisleriot.schemas.in.h:12 glines/glines.schemas.in.h:16
+msgid "Window width"
+msgstr "Vensterbreedte"
 
 #: aisleriot/auld_lang_syne.scm.h:1 aisleriot/bristol.scm.h:1
 #: aisleriot/first_law.scm.h:1 aisleriot/fortunes.scm.h:2
 #: aisleriot/lady_jane.scm.h:6 aisleriot/scuffle.scm.h:1
-#: aisleriot/spider.scm.h:1 aisleriot/thumb_and_pouch.scm.h:1
+#: aisleriot/spider.scm.h:1 aisleriot/spider_one_suit.scm.h:1
+#: aisleriot/spider_two_suit.scm.h:1 aisleriot/thumb_and_pouch.scm.h:1
 #: aisleriot/zebra.scm.h:1
 msgid "Deal another round"
 msgstr "Geef nog een keer"
@@ -275,16 +288,6 @@ msgstr "leeg basisvak"
 msgid "empty space on tableau"
 msgstr "lege plaats op tafel"
 
-#: aisleriot/card.c:124
-msgid ""
-"AisleRiot could not load its deck images.\n"
-"\n"
-"AisleRiot will now exit."
-msgstr ""
-"AisleRiot kon de plaatjes van de kaarten niet laden\n"
-"\n"
-"AisleRiot wordt nu afgesloten."
-
 #: aisleriot/chessboard.scm.h:6
 msgid "Move a card to the Foundation"
 msgstr "Verplaats een kaart naar de Basis"
@@ -343,36 +346,36 @@ msgid "When without a stapler, a staple and a ruler will work"
 msgstr ""
 "Als er geen nietmachine is, moet een nietje en een meetlat ook werken. Ofzo."
 
-#: aisleriot/dialog.c:45
+#: aisleriot/dialog.c:46
 msgid "Congratulations."
 msgstr "Gefeliciteerd."
 
-#: aisleriot/dialog.c:46
+#: aisleriot/dialog.c:47
 msgid "You won!!!"
 msgstr "U heeft gewonnen!"
 
 # Einde spel?
-#: aisleriot/dialog.c:48
+#: aisleriot/dialog.c:49
 msgid "Game over."
 msgstr "Spel voorbij."
 
-#: aisleriot/dialog.c:60
+#: aisleriot/dialog.c:61
 msgid "New Game"
 msgstr "Nieuw Spel"
 
-#: aisleriot/dialog.c:145 mahjongg/mahjongg.c:1857
+#: aisleriot/dialog.c:143 mahjongg/mahjongg.c:1886
 msgid "Select Game"
 msgstr "Spel kiezen"
 
-#: aisleriot/dialog.c:154
+#: aisleriot/dialog.c:152
 msgid "Seed"
 msgstr "Nummer"
 
-#: aisleriot/dialog.c:172
+#: aisleriot/dialog.c:170
 msgid "Rules"
 msgstr "Regels"
 
-#: aisleriot/dialog.c:260
+#: aisleriot/dialog.c:258
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -380,21 +383,21 @@ msgstr ""
 "Het spel is voorbij.\n"
 "Geen hints meer beschikbaar"
 
-#: aisleriot/dialog.c:266
+#: aisleriot/dialog.c:264
 msgid "This game does not have hint support yet."
 msgstr "Dit spel heeft nog geen hints"
 
-#: aisleriot/dialog.c:278 aisleriot/dialog.c:286
+#: aisleriot/dialog.c:276 aisleriot/dialog.c:284
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Verplaats de %s naar de %s"
 
-#: aisleriot/dialog.c:294
+#: aisleriot/dialog.c:292
 #, c-format
 msgid "Move %s %s."
 msgstr "Verplaats de %s %s"
 
-#: aisleriot/dialog.c:297
+#: aisleriot/dialog.c:295
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -406,22 +409,18 @@ msgstr ""
 "bericht en de naam van het spel dat u aan het spelen was\n"
 "(kijk naar de venstertitel als u dit niet weet)."
 
-#: aisleriot/dialog.c:302
+#: aisleriot/dialog.c:300
 #, c-format
 msgid "You are searching for a %s."
 msgstr "U zoekt naar %s"
 
-#: aisleriot/dialog.c:307
+#: aisleriot/dialog.c:305
 msgid "This game is unable to provide a hint."
 msgstr "Dit spel kan geen hint geven"
 
-#: aisleriot/dialog.c:359
+#: aisleriot/dialog.c:357
 msgid "AisleRiot Cards"
 msgstr "AisleRiot kaarten"
-
-#: aisleriot/dialog.c:364
-msgid "Card Style"
-msgstr "Kaartstijl"
 
 # stapel
 #: aisleriot/diamond_mine.scm.h:2
@@ -542,10 +541,6 @@ msgstr "naar het lege Tafelvak"
 msgid "Deal another card"
 msgstr "Geef nog een kaart"
 
-#: aisleriot/golf.scm.h:3
-msgid "bdc\n"
-msgstr "bdc\n"
-
 #: aisleriot/gypsy.scm.h:1
 msgid "Deal another hand"
 msgstr "Geef nog een keer"
@@ -595,22 +590,21 @@ msgstr ""
 "Probeer de series te plaatsen in de volgorde die het beste bij de huidige "
 "layout past"
 
-#: aisleriot/menu.c:76 gnome-stones/main.c:1084 gnomine/gnomine.c:382
-#: mahjongg/mahjongg.c:1618
+#: aisleriot/menu.c:77 gnome-stones/main.c:1083 gnomine/gnomine.c:526
+#: mahjongg/mahjongg.c:1640
 msgid "Main game:"
 msgstr "Hoofdspel:"
 
-#: aisleriot/menu.c:81
+#: aisleriot/menu.c:82
 msgid "Card games:"
 msgstr "Kaartspellen:"
 
 #. Translator credits
-#: aisleriot/menu.c:96 blackjack/src/menu.cpp:84 gataxx/gataxx.c:398
-#: glines/glines.c:878 gnect/src/main.c:812 gnibbles/main.c:181
-#: gnobots2/menu.c:194 gnome-stones/main.c:1095 gnometris/tetris.cpp:1124
-#: gnomine/gnomine.c:395 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1136
-#: gtali/gyahtzee.c:390 iagno/gnothello.c:369 mahjongg/mahjongg.c:1635
-#: same-gnome/same-gnome.c:707
+#: aisleriot/menu.c:97 blackjack/src/menu.cpp:84 gataxx/gataxx.c:362
+#: glines/glines.c:878 gnect/src/main.c:811 gnibbles/main.c:182
+#: gnobots2/menu.c:194 gnome-stones/main.c:1094 gnometris/tetris.cpp:1226
+#: gnomine/gnomine.c:546 gnotravex/gnotravex.c:1486 gtali/gyahtzee.c:415
+#: iagno/gnothello.c:369 mahjongg/mahjongg.c:1664 same-gnome/same-gnome.c:707
 msgid "translator-credits"
 msgstr ""
 "Hein-Jan Leliveld <h.j.leliveld@student.tn.tudelft.nl>\n"
@@ -619,118 +613,122 @@ msgstr ""
 "Erik Kruijswijk <e.kruijswijk@ictro.drp.minjus.nl>\n"
 "Tino Meinen <a.t.meinen@chello.nl>"
 
-#: aisleriot/menu.c:117
+#: aisleriot/menu.c:118
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
 # wat moet een gebruiker nou met de term rule-based solitaire card engine?
-#: aisleriot/menu.c:120
+#: aisleriot/menu.c:121
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
 msgstr "Met AisleRiot kunt u veel verschillende soorten solitaire spelen."
 
-#: aisleriot/menu.c:181
+#: aisleriot/menu.c:187
 msgid "Game _options..."
 msgstr "Spel_opties..."
 
-#: aisleriot/menu.c:182
+#: aisleriot/menu.c:188
 msgid "Modify the options for this game"
 msgstr "Verander de opties voor dit spel"
 
-#: aisleriot/menu.c:188 blackjack/src/menu.cpp:150 gnect/src/main.c:1164
-#: mahjongg/mahjongg.c:815
+#: aisleriot/menu.c:194 blackjack/src/menu.cpp:150 gnect/src/main.c:1163
+#: mahjongg/mahjongg.c:841
 msgid "_Toolbar"
 msgstr "_Werkbalk"
 
-#: aisleriot/menu.c:188 blackjack/src/menu.cpp:151 mahjongg/mahjongg.c:816
+#: aisleriot/menu.c:194 blackjack/src/menu.cpp:151 mahjongg/mahjongg.c:842
 msgid "Show or hide the toolbar"
 msgstr "De werkbalk tonen of verbergen"
 
-#: aisleriot/menu.c:191
+#: aisleriot/menu.c:197
 msgid "_Cards..."
 msgstr "_Kaarten..."
 
-#: aisleriot/menu.c:191
+#: aisleriot/menu.c:197
 msgid "Change the appearance of the cards"
 msgstr "Het uiterlijk van de kaarten aanpassen"
 
-#: aisleriot/menu.c:211
+#: aisleriot/menu.c:220
 msgid "_Select..."
 msgstr "_Selecteren..."
 
-#: aisleriot/menu.c:211 aisleriot/menu.c:258
+#: aisleriot/menu.c:220 aisleriot/menu.c:261
 msgid "Select a different game"
 msgstr "Een ander spel selecteren"
 
-#: aisleriot/menu.c:213
+#: aisleriot/menu.c:222
 msgid "S_tatistics..."
 msgstr "S_tatistieken..."
 
-#: aisleriot/menu.c:213
+#: aisleriot/menu.c:222
 msgid "Get statistics on the current game"
 msgstr "Statistieken voor het huidige spel berekenen"
 
-#: aisleriot/menu.c:252 blackjack/src/menu.cpp:198 gnect/src/main.c:1188
-#: mahjongg/mahjongg.c:838
+#: aisleriot/menu.c:255 blackjack/src/menu.cpp:198 gnect/src/main.c:1187
+#: mahjongg/mahjongg.c:864
 msgid "New"
 msgstr "Nieuw"
 
-#: aisleriot/menu.c:252 gnect/src/main.c:1189
+#: aisleriot/menu.c:255 gnect/src/main.c:1188
 msgid "Start a new game"
 msgstr "Een nieuw spel beginnen"
 
-#: aisleriot/menu.c:255 blackjack/src/menu.cpp:201 mahjongg/mahjongg.c:842
+#: aisleriot/menu.c:258 blackjack/src/menu.cpp:201 mahjongg/mahjongg.c:868
 msgid "Restart"
 msgstr "Herstarten"
 
-#: aisleriot/menu.c:255
+#: aisleriot/menu.c:258
 msgid "Restart the game"
 msgstr "Het spel opnieuw spelen"
 
-#: aisleriot/menu.c:258
+#: aisleriot/menu.c:261
 msgid "Select"
 msgstr "Selecteren"
 
-#: aisleriot/menu.c:263 gnect/src/main.c:1191 mahjongg/mahjongg.c:854
+#: aisleriot/menu.c:266 gnect/src/main.c:1190 mahjongg/mahjongg.c:880
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: aisleriot/menu.c:263 gnect/src/main.c:1191
+#: aisleriot/menu.c:266 gnect/src/main.c:1190
 msgid "Undo the last move"
 msgstr "De laatste zet ongedaan maken"
 
-#: aisleriot/menu.c:266 mahjongg/mahjongg.c:858
+#: aisleriot/menu.c:269 mahjongg/mahjongg.c:884
 msgid "Redo"
 msgstr "Opnieuw"
 
 # hoe je het ook vertaald, het blijft altijd een beetje dubbelzinnig.
 # maar zo, op z'n simpelst is het voor iedereen toch wel duidelijk
-#: aisleriot/menu.c:266
+#: aisleriot/menu.c:269
 msgid "Redo the undone move"
 msgstr "De laatste zet herhalen"
 
-#: aisleriot/menu.c:269 blackjack/src/menu.cpp:205 gnect/src/main.c:1192
-#: mahjongg/mahjongg.c:860
+#: aisleriot/menu.c:272 blackjack/src/menu.cpp:205 gnect/src/main.c:1191
+#: mahjongg/mahjongg.c:886
 msgid "Hint"
 msgstr "Hint"
 
-#: aisleriot/menu.c:269 gnect/src/main.c:1192
+#: aisleriot/menu.c:272 gnect/src/main.c:1191
 msgid "Get a hint for your next move"
 msgstr "Vraag een hint voor uw volgende zet"
+
+#: aisleriot/menu.c:293
+msgid "View help for the current game"
+msgstr "Hulp voor het huidige spel weergeven"
 
 #: aisleriot/pileon.scm.h:2
 msgid "something"
 msgstr "iets"
 
-# ~a word gevuld met een kaartnaam
 #: aisleriot/plait.scm.h:3
+msgid "Move ~a from the stock to an empty edge or tableau slot"
+msgstr "~a van de reserve naar een lege rand of tafelvak verplaatsen"
+
+# ~a word gevuld met een kaartnaam
+#: aisleriot/plait.scm.h:4
 msgid "Move ~a to an empty field"
 msgstr "~a verplaatsen naar een lege plaats"
-
-#: aisleriot/plait.scm.h:4
-msgid "Try a new game"
-msgstr "Een nieuw spel beginnen"
 
 #: aisleriot/poker.scm.h:1
 msgid "Place cards on to the Tableau to form poker hands"
@@ -757,12 +755,12 @@ msgstr "Verplaats gebruikte kaarten naar een reserve-vak"
 msgid "empty foundation"
 msgstr "lege Basis"
 
-#: aisleriot/sol.c:137
+#: aisleriot/sol.c:111
 #, c-format
 msgid "AisleRiot: %s (%d)"
 msgstr "AisleRiot: %s (%d)"
 
-#: aisleriot/sol.c:164
+#: aisleriot/sol.c:138
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -775,30 +773,26 @@ msgstr ""
 "\n"
 "Controleer uw Aisleriot installatie"
 
-#: aisleriot/sol.c:229 aisleriot/sol.c:249
-msgid "Help"
-msgstr "Hulp"
-
-#: aisleriot/sol.c:249 aisleriot/sol.c:387
+#: aisleriot/sol.c:350
 msgid "Aisleriot"
 msgstr "AisleRiot"
 
-#: aisleriot/sol.c:434 glines/glines.c:1493 gnobots2/statusbar.c:65
-#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:57 gnomine/gnomine.c:388
+#: aisleriot/sol.c:380 glines/glines.c:1490 gnobots2/statusbar.c:65
+#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:57 gnomine/gnomine.c:535
 #: same-gnome/same-gnome.c:957
 msgid "Score:"
 msgstr "Score:"
 
-#: aisleriot/sol.c:438 gnomine/gnomine.c:941 gnotravex/gnotravex.c:1019
-#: mahjongg/mahjongg.c:2157
+#: aisleriot/sol.c:384 gnomine/gnomine.c:1094 gnotravex/gnotravex.c:1019
+#: mahjongg/mahjongg.c:2183
 msgid "Time:"
 msgstr "Tijd:"
 
-#: aisleriot/sol.c:495 blackjack/src/blackjack.cpp:580
+#: aisleriot/sol.c:440 blackjack/src/blackjack.cpp:580
 msgid "Variation on game rules"
 msgstr "Variatie op spelregels"
 
-#: aisleriot/sol.c:496 blackjack/src/blackjack.cpp:581 gnobots2/gnobots.c:60
+#: aisleriot/sol.c:441 blackjack/src/blackjack.cpp:581 gnobots2/gnobots.c:60
 #: gnobots2/gnobots.c:62 same-gnome/same-gnome.c:887
 msgid "NAME"
 msgstr "NAAM"
@@ -1111,15 +1105,18 @@ msgstr "drie"
 msgid "two"
 msgstr "twee"
 
-#: aisleriot/spider.scm.h:2
+#: aisleriot/spider.scm.h:2 aisleriot/spider_one_suit.scm.h:2
+#: aisleriot/spider_two_suit.scm.h:2
 msgid "Place something on empty slot"
 msgstr "Plaats een kaart in een leeg vak"
 
-#: aisleriot/spider.scm.h:3
+#: aisleriot/spider.scm.h:3 aisleriot/spider_one_suit.scm.h:3
+#: aisleriot/spider_two_suit.scm.h:3
 msgid "Please fill in empty pile first."
 msgstr "Vul eerst een lege plaats."
 
-#: aisleriot/spider.scm.h:5
+#: aisleriot/spider.scm.h:5 aisleriot/spider_one_suit.scm.h:5
+#: aisleriot/spider_two_suit.scm.h:5
 msgid "Try moving card piles around"
 msgstr "Probeer kaarten te verplaatsen"
 
@@ -1154,42 +1151,29 @@ msgstr "<b>Gewonnen</b>"
 msgid "Best:"
 msgstr "Beste:"
 
-# Dit behoort niet vertaald worden:
-# "No, it shouldn't be translated. These strings will be replaced
-# with text generated with either numbers or other text which has
-# already been translated. Unfortunately I couldn't find a way to
-# tell glade not to mark a label for translation or how to provide
-# a comment for translatorsin glade. Any better solutions about how
-# to handle this are welcome."
-#
-# Als het toch wordt vervangen kun je net zo goed een spatie neerzetten
 #: aisleriot/statistics.glade.h:4
-msgid "Do not translate this"
-msgstr " "
-
-#: aisleriot/statistics.glade.h:5
 msgid "Percentage:"
 msgstr "Percentage:"
 
-#: aisleriot/statistics.glade.h:6
+#: aisleriot/statistics.glade.h:5
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: aisleriot/statistics.glade.h:7
+#: aisleriot/statistics.glade.h:6
 msgid "Total:"
 msgstr "Totaal:"
 
 # Ok, dit is dus geen werkwoord.
 # maar het aantal gewonnen
-#: aisleriot/statistics.glade.h:8
+#: aisleriot/statistics.glade.h:7
 msgid "Wins:"
 msgstr "Gewonnen:"
 
-#: aisleriot/statistics.glade.h:9
+#: aisleriot/statistics.glade.h:8
 msgid "Worst:"
 msgstr "Slechste:"
 
-#: aisleriot/statistics.glade.h:10
+#: aisleriot/statistics.glade.h:9
 msgid "_Reset"
 msgstr "_Resetten"
 
@@ -1447,66 +1431,74 @@ msgid "Spider"
 msgstr "Spin"
 
 #: aisleriot/translatable_game_names.h:63
+msgid "Spider two suit"
+msgstr "Spin met twee kaartspelen"
+
+#: aisleriot/translatable_game_names.h:64
+msgid "Spider one suit"
+msgstr "Spin met één kaartspel"
+
+#: aisleriot/translatable_game_names.h:65
 msgid "Straight up"
 msgstr "Recht toe recht aan"
 
-#: aisleriot/translatable_game_names.h:64
+#: aisleriot/translatable_game_names.h:66
 msgid "Streets and alleys"
 msgstr "Straten en steegjes"
 
-#: aisleriot/translatable_game_names.h:65
+#: aisleriot/translatable_game_names.h:67
 msgid "Template"
 msgstr "Sjabloon"
 
-#: aisleriot/translatable_game_names.h:66
+#: aisleriot/translatable_game_names.h:68
 msgid "Ten across"
 msgstr "Tien over"
 
-#: aisleriot/translatable_game_names.h:67
+#: aisleriot/translatable_game_names.h:69
 msgid "Thieves"
 msgstr "Dieven"
 
-#: aisleriot/translatable_game_names.h:68
+#: aisleriot/translatable_game_names.h:70
 msgid "Thirteen"
 msgstr "Dertien"
 
-#: aisleriot/translatable_game_names.h:69
+#: aisleriot/translatable_game_names.h:71
 msgid "Thumb and pouch"
 msgstr "Duim in het zakje"
 
-#: aisleriot/translatable_game_names.h:70
+#: aisleriot/translatable_game_names.h:72
 msgid "Treize"
 msgstr "Treize"
 
-#: aisleriot/translatable_game_names.h:71
+#: aisleriot/translatable_game_names.h:73
 msgid "Union square"
 msgstr "Union Square"
 
-#: aisleriot/translatable_game_names.h:72
+#: aisleriot/translatable_game_names.h:74
 msgid "Valentine"
 msgstr "Valentijn"
 
-#: aisleriot/translatable_game_names.h:73
+#: aisleriot/translatable_game_names.h:75
 msgid "Westhaven"
 msgstr "Westhaven"
 
-#: aisleriot/translatable_game_names.h:74
+#: aisleriot/translatable_game_names.h:76
 msgid "Whitehead"
 msgstr "Withoofd"
 
-#: aisleriot/translatable_game_names.h:75
+#: aisleriot/translatable_game_names.h:77
 msgid "Will o the wisp"
 msgstr "Dwaallicht"
 
-#: aisleriot/translatable_game_names.h:76
+#: aisleriot/translatable_game_names.h:78
 msgid "Yield"
 msgstr "Yield"
 
-#: aisleriot/translatable_game_names.h:77
+#: aisleriot/translatable_game_names.h:79
 msgid "Yukon"
 msgstr "Yukon"
 
-#: aisleriot/translatable_game_names.h:78
+#: aisleriot/translatable_game_names.h:80
 msgid "Zebra"
 msgstr "Zebra"
 
@@ -1530,6 +1522,16 @@ msgstr "Blackjack"
 #: blackjack/data/blackjack.desktop.in.h:2
 msgid "Play the casino card game Blackjack"
 msgstr "Het casino-kaartspel Blackjack"
+
+# obsure = vaag, onbekend, onduidelijk, afwijkend, slecht gedocumenteerd.
+#: blackjack/data/blackjack.schemas.in.h:1
+msgid ""
+"A string containing a list of files to use to describe the cards. The format "
+"is obscure and defined by the gdk-card-image library"
+msgstr ""
+"Een tekenreeks die een lijst bevat van bestanden die gebruikt worden om de "
+"kaarten te beschrijven. Het formaat is vrij onbekend en gedefinieerd door de "
+"gdk-kaartafbeelding bibliotheek"
 
 #: blackjack/data/blackjack.schemas.in.h:2
 msgid "Display probabilities"
@@ -1569,6 +1571,10 @@ msgstr "Een snelle deal gebruiken"
 #: blackjack/data/blackjack.schemas.in.h:9
 msgid "Use a quick deal with no delay between each card."
 msgstr "Gebruik een snelle deal zonder pauze tussen elke kaart."
+
+#: blackjack/data/blackjack.schemas.in.h:10
+msgid "What card style to use"
+msgstr "Welke kaartstijl moet worden gebruikt"
 
 #: blackjack/src/blackjack.cpp:98
 #, c-format
@@ -1620,7 +1626,7 @@ msgid "Blackjack Preferences"
 msgstr "Blackjack voorkeuren"
 
 #: blackjack/src/dialog.cpp:231 gnect/src/prefs.c:452
-#: gnibbles/preferences.c:327 gnome-stones/preferences.c:740
+#: gnibbles/preferences.c:306 gnome-stones/preferences.c:740
 msgid "_Game"
 msgstr "_Spel"
 
@@ -1636,7 +1642,7 @@ msgstr "Snel delen (geen pauze tussen elke afzonderlijke kaart)"
 msgid "_Rules"
 msgstr "_Regels"
 
-#: blackjack/src/dialog.cpp:285
+#: blackjack/src/dialog.cpp:285 gnomine/gnomine.c:293
 msgid "Name"
 msgstr "Naam"
 
@@ -1731,23 +1737,23 @@ msgstr "Blackjack kan het gevraagde bestand niet laden"
 msgid "Please check your Blackjack installation"
 msgstr "Controleer uw installatie van Blackjack"
 
-#: blackjack/src/hand.cpp:89
+#: blackjack/src/hand.cpp:118
 msgid "The best option is to stand"
 msgstr "De beste optie is een \"stand\""
 
-#: blackjack/src/hand.cpp:91
+#: blackjack/src/hand.cpp:120
 msgid "The best option is to hit"
 msgstr "De beste optie is een \"hit\""
 
-#: blackjack/src/hand.cpp:93
+#: blackjack/src/hand.cpp:122
 msgid "The best option is to double down"
 msgstr "De beste optie is een \"double down\""
 
-#: blackjack/src/hand.cpp:95
+#: blackjack/src/hand.cpp:124
 msgid "The best option is to split"
 msgstr "De beste optie is een \"split\""
 
-#: blackjack/src/hand.cpp:97
+#: blackjack/src/hand.cpp:126
 msgid "The best option is to surrender"
 msgstr "De beste optie is op te geven"
 
@@ -1821,74 +1827,46 @@ msgstr "Split"
 msgid "Dealer hand probabilities"
 msgstr "Gevershand kansen"
 
-#: gataxx/ataxx.c:150 gataxx/gataxx.c:306 gataxx/gataxx.c:736
-#: iagno/gnothello.c:288 iagno/gnothello.c:699 iagno/othello.c:220
-msgid "Dark's move"
-msgstr "Zwart is aan zet"
-
-#: gataxx/ataxx.c:158 gataxx/gataxx.c:304 iagno/gnothello.c:286
-#: iagno/othello.c:228
-msgid "Light's move"
-msgstr "Wit is aan zet"
-
-#: gataxx/ataxx.c:610 iagno/othello.c:632
-msgid "Light player wins!"
-msgstr "Wit heeft gewonnen!"
-
-#: gataxx/ataxx.c:612 iagno/othello.c:634
-msgid "Dark player wins!"
-msgstr "Zwart heeft gewonnen!"
-
-#: gataxx/ataxx.c:614 iagno/othello.c:636
-msgid "The game was a draw."
-msgstr "Het is gelijkspel"
-
-#: gataxx/ataxx.c:623 iagno/othello.c:647
-msgid "Light must pass, Dark's move"
-msgstr "Wit moet passen, Zwart is aan zet"
-
-#: gataxx/ataxx.c:635 iagno/othello.c:659
-msgid "Dark must pass, Light's move"
-msgstr "Zwart moet passen, Wit is aan zet"
-
-#: gataxx/gataxx.c:418 gataxx/gataxx.soundlist.in.h:3
-msgid "gataxx"
-msgstr "gataxx"
-
-#: gataxx/gataxx.c:420
-msgid ""
-"gataxx is a GNOME port of the old game ataxx. It is derived from Ian Peters' "
-"iagno code."
-msgstr ""
-"gataxx is een GNOME-versie van het oude ataxx-spel. Het is afgeleid van de "
-"iagno-code van Ian Peters."
-
-#: gataxx/gataxx.c:615
-#, c-format
-msgid "Could not find '%s' pixmap file for gataxx\n"
-msgstr "Kan het '%s' bestand voor gataxx niet vinden\n"
-
-#: gataxx/gataxx.c:760 gataxx/gataxx.desktop.in.h:1
-msgid "Ataxx"
-msgstr "Ataxx"
-
-#: gataxx/gataxx.c:791 iagno/gnothello.c:757
-msgid "Dark:"
-msgstr "Zwart:"
-
-#: gataxx/gataxx.c:797 iagno/gnothello.c:767
+#: gataxx/appbar.c:39 iagno/gnothello.c:767
 msgid "Light:"
 msgstr "Wit:"
 
-#: gataxx/gataxx.c:813
-msgid "Welcome to gataxx!"
-msgstr "Welkom bij gataxx!"
+#: gataxx/appbar.c:45 iagno/gnothello.c:757
+msgid "Dark:"
+msgstr "Zwart:"
 
-#: gataxx/gataxx.c:821 gataxx/gataxx.c:823 iagno/gnothello.c:798
-#: iagno/gnothello.c:800
-#, c-format
-msgid "%.2d"
-msgstr "%.2d"
+#: gataxx/appbar.c:79 iagno/gnothello.c:286 iagno/othello.c:228
+msgid "Light's move"
+msgstr "Wit is aan zet"
+
+#: gataxx/appbar.c:79 iagno/gnothello.c:288 iagno/gnothello.c:699
+#: iagno/othello.c:220
+msgid "Dark's move"
+msgstr "Zwart is aan zet"
+
+#: gataxx/gataxx.c:162 iagno/othello.c:702
+msgid "Light player wins!"
+msgstr "Wit heeft gewonnen!"
+
+#: gataxx/gataxx.c:164 iagno/othello.c:704
+msgid "Dark player wins!"
+msgstr "Zwart heeft gewonnen!"
+
+#: gataxx/gataxx.c:166 iagno/othello.c:706
+msgid "The game was a draw."
+msgstr "Het is gelijkspel"
+
+#: gataxx/gataxx.c:360
+msgid "Based on code from Iagno by Ian Peters"
+msgstr "Gebaseerd op code van Iagno van Ian Peters"
+
+#: gataxx/gataxx.c:377 gataxx/gataxx.desktop.in.h:1
+msgid "Ataxx"
+msgstr "Ataxx"
+
+#: gataxx/gataxx.c:380
+msgid "A disk-flipping game where you attempt to dominate the board."
+msgstr "Een spel van stenen die omgedraaid worden en waarbij u probeert het bord te veroveren."
 
 #: gataxx/gataxx.desktop.in.h:2
 msgid "Compete to dominate the board in a Reversi-like game"
@@ -1898,7 +1876,8 @@ msgstr "Probeer het bord te domineren in dit Reversi-achtige spel"
 msgid "Animate"
 msgstr "Animatie"
 
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:523 iagno/properties.c:710
+#. flip tiles button
+#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:394 iagno/properties.c:683
 msgid "Flip final results"
 msgstr "Eindresultaat omdraaien"
 
@@ -1946,81 +1925,101 @@ msgstr ""
 "Nul is menselijk; een tot drie correspondeert met het niveau van de "
 "computeropponent"
 
-#: gataxx/gataxx.soundlist.in.h:1 iagno/iagno.soundlist.in.h:1
-msgid "Game over"
-msgstr "Spel voorbij"
-
-#: gataxx/gataxx.soundlist.in.h:2 iagno/iagno.soundlist.in.h:3
-msgid "Piece flipping"
-msgstr "Piece flipping"
-
-#: gataxx/properties.c:345
-msgid "Gataxx Preferences"
-msgstr "Gataxx voorkeuren"
+#. create window
+#: gataxx/properties.c:297
+msgid "Ataxx Preferences"
+msgstr "Ataxx voorkeuren"
 
 #. Players tab
-#: gataxx/properties.c:364 iagno/properties.c:532
+#. FIXME mnemonic doesn't seem to work
+#: gataxx/properties.c:318 iagno/properties.c:505
 msgid "_Players"
 msgstr "_Spelers"
 
-#: gataxx/properties.c:376
-msgid "Quick Moves (cut computer delay in half)"
-msgstr "Snelle Zetten (halfveer computer vertraging)"
+#: gataxx/properties.c:330
+msgid "Quick Moves"
+msgstr "Snelle Zetten"
 
-#: gataxx/properties.c:384 gnect/src/theme.c:55 iagno/properties.c:555
+#: gataxx/properties.c:331
+msgid "Shortens the time a computer waits before doing a move"
+msgstr "Dit verkort te wachttijd van de computer voordat een zet wordt gedaan"
+
+#. Dark level select
+#: gataxx/properties.c:340 gnect/src/theme.c:55 iagno/properties.c:528
 msgid "Dark"
 msgstr "Zwart"
 
-#: gataxx/properties.c:389 gataxx/properties.c:437 gnect/src/prefs.c:404
-#: gtali/yahtzee.c:63 iagno/properties.c:561 iagno/properties.c:608
+#: gataxx/properties.c:345 gnect/src/prefs.c:404 gtali/yahtzee.c:63
+#: iagno/properties.c:534 iagno/properties.c:581
 msgid "Human"
 msgstr "Mens"
 
-#: gataxx/properties.c:399 gataxx/properties.c:445 gnect/src/prefs.c:406
-#: iagno/properties.c:571 iagno/properties.c:618
-msgid "Level one"
-msgstr "Level een"
+#: gataxx/properties.c:346 gataxx/properties.c:365
+msgid "Very Easy"
+msgstr "Zeer makkelijk"
 
-#: gataxx/properties.c:408 gataxx/properties.c:453 gnect/src/prefs.c:408
-#: iagno/properties.c:581 iagno/properties.c:628
-msgid "Level two"
-msgstr "Level twee"
+#: gataxx/properties.c:347 gataxx/properties.c:366 mahjongg/mahjongg.c:740
+msgid "Easy"
+msgstr "Makkelijk"
 
-#: gataxx/properties.c:417 gataxx/properties.c:461 gnect/src/prefs.c:410
-#: iagno/properties.c:591 iagno/properties.c:639
-msgid "Level three"
-msgstr "Level drie"
+#: gataxx/properties.c:348 gataxx/properties.c:367 gnomine/gnomine.c:88
+#: gnomine/gnomine.c:733
+msgid "Medium"
+msgstr "Gemiddeld"
 
-#: gataxx/properties.c:432 gnect/src/theme.c:55 iagno/properties.c:602
+#: gataxx/properties.c:349 gataxx/properties.c:368
+msgid "Hard"
+msgstr "Moeilijk"
+
+#: gataxx/properties.c:350 gataxx/properties.c:369
+msgid "Very Hard"
+msgstr "Zeer moeilijk"
+
+#. Light level select
+#: gataxx/properties.c:359 gnect/src/theme.c:55 iagno/properties.c:575
 msgid "Light"
 msgstr "Wit"
 
 #. Appearance tab
-#: gataxx/properties.c:477 gnibbles/preferences.c:476 iagno/properties.c:652
+#: gataxx/properties.c:378 iagno/properties.c:625
 msgid "_Appearance"
 msgstr "_Beeld"
 
-#: gataxx/properties.c:487 iagno/properties.c:661
-msgid "None"
-msgstr "Geen"
+#: gataxx/properties.c:381 gnect/src/prefs.c:484 gnobots2/properties.c:932
+msgid "Appearance"
+msgstr "Uiterlijk"
 
-#: gataxx/properties.c:497 iagno/properties.c:670
-msgid "Partial"
-msgstr "Gedeeltelijk"
+#. animation button
+#: gataxx/properties.c:386 iagno/properties.c:630
+msgid "Animation"
+msgstr "Animatie"
 
-#: gataxx/properties.c:506 iagno/properties.c:679
-msgid "Complete"
-msgstr "Compleet"
+#: gataxx/properties.c:390
+msgid "Flip the pieces with some visual effects"
+msgstr "De stenen omdraaien met enkele visuele effecten"
 
-#. Options
-#: gataxx/properties.c:518 gnibbles/preferences.c:387
-#: gnibbles/preferences.c:644 gnobots2/properties.c:843 iagno/properties.c:691
-msgid "Options"
-msgstr "Opties"
+#: gataxx/properties.c:398
+msgid ""
+"Put all the white pieces at the bottom and all the black pieces on the top "
+"of the board when a game is over"
+msgstr "Alle witte stenen onderaan en alle zwarte stenen bovenaan het bord zetten bij het einde van het spel"
 
-#: gataxx/properties.c:532 iagno/properties.c:720
+#. show grid button
+#: gataxx/properties.c:402 iagno/properties.c:675
+msgid "Show grid"
+msgstr "Raster tonen"
+
+#: gataxx/properties.c:406
+msgid "Whether the grid should be shown"
+msgstr "Of het rooster moet worden getoond"
+
+#: gataxx/properties.c:413 iagno/properties.c:693
 msgid "Tile set:"
 msgstr "Stenen set:"
+
+#: gataxx/properties.c:418
+msgid "The appearance of the pieces"
+msgstr "Het uiterlijk van de stukken"
 
 #: gdk-card-image/card-styles.xml.in.h:1
 msgid "Default"
@@ -2034,7 +2033,7 @@ msgstr "Dondorf"
 msgid "Dondorf Red"
 msgstr "Dondorf Red"
 
-#: gdk-card-image/card-styles.xml.in.h:4 gnibbles/preferences.c:668
+#: gdk-card-image/card-styles.xml.in.h:4 gnibbles/preferences.c:575
 msgid "Gray"
 msgstr "Grijs"
 
@@ -2073,23 +2072,24 @@ msgstr "Kaart lettertype (groot):"
 #: glines/glines.c:143
 #, c-format
 msgid ""
-"Glines couldn't find image file:\n"
+"Five or More could not find image file:\n"
 "%s\n"
 "\n"
-"Please check your Glines installation"
+"Please check Five or More is installed correctly."
 msgstr ""
-"Glines kon het afbeeldingsbestand niet vinden:\n"
+"Vijf of meer kon het afbeeldingsbestand niet vinden:\n"
 "%s\n"
 "\n"
-"Controleer uw Glines installatie"
+"Controleer of 'Vijf of meer' juist is geïnstalleerd"
 
 #: glines/glines.c:311
 msgid "Match five balls of the same color in a row to score!"
 msgstr "Plaats vijf ballen van dezelfde kleur in een rij om te scoren!"
 
-#: glines/glines.c:360 glines/glines.c:897
-msgid "Glines"
-msgstr "GLines"
+#: glines/glines.c:360 glines/glines.c:897 glines/glines.c:1436
+#: glines/glines.desktop.in.h:1
+msgid "Five or More"
+msgstr "Vijf of meer"
 
 #: glines/glines.c:389
 msgid "Game Over!"
@@ -2105,8 +2105,8 @@ msgid "GNOME port of the once-popular Color Lines game"
 msgstr "GNOME-versie van het eens zo populaire spel: Kleurlijnen"
 
 #: glines/glines.c:1037
-msgid "Glines Preferences"
-msgstr "Gnect Voorkeuren"
+msgid "Five or More Preferences"
+msgstr "'Vijf of meer' voorkeuren"
 
 #: glines/glines.c:1049
 msgid "Themes"
@@ -2129,15 +2129,7 @@ msgstr "Algemeen"
 msgid "Use fast moves"
 msgstr "Snelle zetten gebruiken"
 
-#: glines/glines.c:1436 glines/glines.desktop.in.h:1
-msgid "Lines"
-msgstr "Lijnen"
-
-#: glines/glines.c:1449
-msgid "Welcome to Glines!"
-msgstr "Welkom bij Glines!"
-
-#: glines/glines.c:1463
+#: glines/glines.c:1460
 msgid "Next Balls:"
 msgstr "Volgende knikkers:"
 
@@ -2181,14 +2173,6 @@ msgstr "Score"
 msgid "Game score from last saved session."
 msgstr "Score van de laatst bewaarde sessie."
 
-#: glines/glines.schemas.in.h:11
-msgid "The height of the main window."
-msgstr "De hoogte van het hoofdvenster."
-
-#: glines/glines.schemas.in.h:12
-msgid "The width of the main window."
-msgstr "De breedte van het hoofdvenster."
-
 #: glines/glines.schemas.in.h:13
 msgid "Time between moves"
 msgstr "Tijd tussen zetten"
@@ -2197,19 +2181,11 @@ msgstr "Tijd tussen zetten"
 msgid "Time between moves in milliseconds."
 msgstr "De tijd tussen zetten in miliseconden."
 
-#: glines/glines.schemas.in.h:15
-msgid "Window height"
-msgstr "Vensterhoogte"
-
-#: glines/glines.schemas.in.h:16
-msgid "Window width"
-msgstr "Vensterbreedte"
-
 #: gnect/data/gnect.desktop.in.h:1
 msgid "Compete to make lines of the same color"
 msgstr "Probeer lijnen van dezelfde kleur te maken"
 
-#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:1204
+#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:1203
 msgid "Four-in-a-row"
 msgstr "Vier-op-een-rij"
 
@@ -2285,7 +2261,7 @@ msgstr "Gelijkspel!"
 msgid "Gnect"
 msgstr "Gnect"
 
-#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:542
+#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:541
 msgid "I win!"
 msgstr "Ik heb gewonnen!"
 
@@ -2297,11 +2273,11 @@ msgstr "Speler heeft gewonnen!"
 msgid "Sorry, full column"
 msgstr "Sorry, kolom is vol"
 
-#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:538
+#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:537
 msgid "You win!"
 msgstr "U heeft gewonnen!"
 
-#: gnect/src/gfx.c:192
+#: gnect/src/gfx.c:191
 #, c-format
 msgid ""
 "Unable to load image:\n"
@@ -2310,51 +2286,51 @@ msgstr ""
 "Niet in staat de afbeelding te laden:\n"
 "%s"
 
-#: gnect/src/main.c:530
+#: gnect/src/main.c:529
 msgid "It's a draw!"
 msgstr "Het is gelijkspel!"
 
-#: gnect/src/main.c:539
+#: gnect/src/main.c:538
 msgid "Your move..."
 msgstr "U bent aan zet..."
 
-#: gnect/src/main.c:543 gnect/src/main.c:636
+#: gnect/src/main.c:542 gnect/src/main.c:635
 msgid "Thinking..."
 msgstr "Aan het denken..."
 
-#: gnect/src/main.c:551
+#: gnect/src/main.c:550
 #, c-format
 msgid "%s wins!"
 msgstr "%s heeft gewonnen!"
 
-#: gnect/src/main.c:552
+#: gnect/src/main.c:551
 #, c-format
 msgid "%s..."
 msgstr "%s..."
 
-#: gnect/src/main.c:653
+#: gnect/src/main.c:652
 #, c-format
 msgid "Hint: Column %d"
 msgstr "Hint: Kolom %d"
 
-#: gnect/src/main.c:681 gnect/src/main.c:686
+#: gnect/src/main.c:680 gnect/src/main.c:685
 msgid "You"
 msgstr "U"
 
 # 'computer' ipv 'ik' zou hier beter zijn denk ik.
-#: gnect/src/main.c:682 gnect/src/main.c:685
+#: gnect/src/main.c:681 gnect/src/main.c:684
 msgid "Me"
 msgstr "Ik"
 
-#: gnect/src/main.c:732
+#: gnect/src/main.c:731
 msgid "Scores"
 msgstr "Scores"
 
-#: gnect/src/main.c:779
+#: gnect/src/main.c:778
 msgid "Drawn"
 msgstr "Onbeslist"
 
-#: gnect/src/main.c:825
+#: gnect/src/main.c:824
 msgid ""
 "\"Four in a row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -2362,27 +2338,27 @@ msgstr ""
 "\"Vier op een rij\" voor GNOME, met als computerspeler de Velena-methonde "
 "van Giuliano Beroletti."
 
-#: gnect/src/main.c:1102 gnect/src/main.c:1136
+#: gnect/src/main.c:1101 gnect/src/main.c:1135
 msgid "Select \"New game\" from the \"Game\" menu to begin."
 msgstr "\"Nieuw spel\" selecteren uit het menu \"Spel\" om te beginnen."
 
-#: gnect/src/main.c:1165
+#: gnect/src/main.c:1164
 msgid "Show or hide the tool bar"
 msgstr "De werkbalk tonen of verbergen"
 
-#: gnect/src/main.c:1167
+#: gnect/src/main.c:1166
 msgid "Enable _sound"
 msgstr "_Geluid aanzetten"
 
-#: gnect/src/main.c:1168
+#: gnect/src/main.c:1167
 msgid "Enable or disable sound"
 msgstr "Geluid aan of uitzetten"
 
-#: gnect/src/main.c:1188 mahjongg/mahjongg.c:838
+#: gnect/src/main.c:1187 mahjongg/mahjongg.c:864
 msgid "New game"
 msgstr "Nieuw spel"
 
-#: gnect/src/main.c:1263
+#: gnect/src/main.c:1262
 msgid "Welcome to Gnect!"
 msgstr "Welkom bij Gnect!"
 
@@ -2404,13 +2380,21 @@ msgstr ""
 "Speler 2:\n"
 "%s"
 
+#: gnect/src/prefs.c:406 iagno/properties.c:544 iagno/properties.c:591
+msgid "Level one"
+msgstr "Level een"
+
+#: gnect/src/prefs.c:408 iagno/properties.c:554 iagno/properties.c:601
+msgid "Level two"
+msgstr "Level twee"
+
+#: gnect/src/prefs.c:410 iagno/properties.c:564 iagno/properties.c:612
+msgid "Level three"
+msgstr "Level drie"
+
 #: gnect/src/prefs.c:435
 msgid "Four-in-a-row Preferences"
 msgstr "Vier-op-een-rij voorkeuren"
-
-#: gnect/src/prefs.c:484 gnobots2/properties.c:932
-msgid "Appearance"
-msgstr "Uiterlijk"
 
 #: gnect/src/prefs.c:493
 msgid "_Theme:"
@@ -2446,11 +2430,11 @@ msgid "Classic"
 msgstr "Klassiek"
 
 #: gnect/src/theme.c:47 gnect/src/theme.c:63 gnect/src/theme.c:71
-#: gnect/src/theme.c:79 gnibbles/preferences.c:662
+#: gnect/src/theme.c:79 gnibbles/preferences.c:569
 msgid "Red"
 msgstr "Rood"
 
-#: gnect/src/theme.c:47 gnect/src/theme.c:79 gnibbles/preferences.c:665
+#: gnect/src/theme.c:47 gnect/src/theme.c:79 gnibbles/preferences.c:572
 msgid "Yellow"
 msgstr "Geel"
 
@@ -2463,7 +2447,7 @@ msgid "Marbles"
 msgstr "Knikkers"
 
 #: gnect/src/theme.c:63 gnect/src/theme.c:71 gnect/src/theme.c:87
-#: gnibbles/preferences.c:664
+#: gnibbles/preferences.c:571
 msgid "Blue"
 msgstr "Blauw"
 
@@ -2483,7 +2467,7 @@ msgstr "Blokken"
 msgid "Orange"
 msgstr "Oranje"
 
-#: gnibbles/gnibbles.c:122
+#: gnibbles/gnibbles.c:83
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -2496,19 +2480,7 @@ msgstr ""
 "\n"
 "Controleer uw Gnibbles installatie"
 
-#: gnibbles/gnibbles.c:146
-#, c-format
-msgid ""
-"Gnibbles Couldn't find pixmap file:\n"
-"%s\n"
-"\n"
-"Please check your Gnibbles instalation"
-msgstr ""
-"Gnibbles kon het volgende bitmap bestand niet vinden:\n"
-"%s\n"
-"Controleer uw Gnibbles installatie"
-
-#: gnibbles/gnibbles.c:182
+#: gnibbles/gnibbles.c:232
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -2538,7 +2510,7 @@ msgid "Color to use for worm."
 msgstr "De kleur voor de slang"
 
 # BUG
-#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:405
+#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:384
 msgid "Enable fake bonuses"
 msgstr "Nepbonussen gebruiken"
 
@@ -2547,7 +2519,7 @@ msgid "Enable fake bonuses."
 msgstr "Nepbonussen gebruiken"
 
 # BUG
-#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:416
+#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:395
 #: gnobots2/properties.c:871
 msgid "Enable sounds"
 msgstr "Geluid aanzetten"
@@ -2573,76 +2545,96 @@ msgstr "Spelsnelheid"
 msgid "Game speed (1=fast, 4=slow)."
 msgstr "Spelsnelheid (1=snel, 4=langzaam)"
 
-# BUG
 #: gnibbles/gnibbles.schemas.in.h:11
+msgid "Height of the GNibbles window"
+msgstr "De hoogte van het GNibbles venster"
+
+#: gnibbles/gnibbles.schemas.in.h:12
+msgid ""
+"Height of the GNibbles window, used to restore the window size between "
+"sessions."
+msgstr "Hoogte van het GNibbles venster, gebruikt om het venster te herstellen tussen sessies."
+
+# BUG
+#: gnibbles/gnibbles.schemas.in.h:13
 msgid "Key to use for motion down"
 msgstr "Toets voor beweging naar beneden"
 
-#: gnibbles/gnibbles.schemas.in.h:12
+#: gnibbles/gnibbles.schemas.in.h:14
 msgid "Key to use for motion down."
 msgstr "Toets voor beweging naar beneden"
 
 # BUG
-#: gnibbles/gnibbles.schemas.in.h:13
+#: gnibbles/gnibbles.schemas.in.h:15
 msgid "Key to use for motion left"
 msgstr "Toets voor beweging naar links"
 
-#: gnibbles/gnibbles.schemas.in.h:14
+#: gnibbles/gnibbles.schemas.in.h:16
 msgid "Key to use for motion left."
 msgstr "Toets voor beweging naar links"
 
 # BUG
-#: gnibbles/gnibbles.schemas.in.h:15
+#: gnibbles/gnibbles.schemas.in.h:17
 msgid "Key to use for motion right"
 msgstr "Toets voor beweging naar rechts"
 
-#: gnibbles/gnibbles.schemas.in.h:16
+#: gnibbles/gnibbles.schemas.in.h:18
 msgid "Key to use for motion right."
 msgstr "Toets voor beweging naar rechts"
 
 # BUG
-#: gnibbles/gnibbles.schemas.in.h:17
+#: gnibbles/gnibbles.schemas.in.h:19
 msgid "Key to use for motion up"
 msgstr "Toets voor beweging naar boven"
 
-#: gnibbles/gnibbles.schemas.in.h:18
+#: gnibbles/gnibbles.schemas.in.h:20
 msgid "Key to use for motion up."
 msgstr "Toets voor beweging naar boven"
 
 # BUG
-#: gnibbles/gnibbles.schemas.in.h:19
+#: gnibbles/gnibbles.schemas.in.h:21
 msgid "Number of players"
 msgstr "Aantal spelers"
 
-#: gnibbles/gnibbles.schemas.in.h:20
+#: gnibbles/gnibbles.schemas.in.h:22
 msgid "Number of players."
 msgstr "Aantal spelers"
 
 # BUG
-#: gnibbles/gnibbles.schemas.in.h:21 gnibbles/preferences.c:394
+#: gnibbles/gnibbles.schemas.in.h:23 gnibbles/preferences.c:373
 msgid "Play levels in random order"
 msgstr "Levels in willekeurige volgorde"
 
-#: gnibbles/gnibbles.schemas.in.h:22
+#: gnibbles/gnibbles.schemas.in.h:24
 msgid "Play levels in random order."
 msgstr "Levels in willekeurige volgorde"
 
 # BUG
-#: gnibbles/gnibbles.schemas.in.h:23
+#: gnibbles/gnibbles.schemas.in.h:25
 msgid "Size of game tiles"
 msgstr "Grootte van de tegels"
 
-#: gnibbles/gnibbles.schemas.in.h:24
+#: gnibbles/gnibbles.schemas.in.h:26
 msgid "Size of game tiles."
 msgstr "Grootte van de tegels"
 
-#: gnibbles/gnibbles.schemas.in.h:25 gnibbles/preferences.c:651
+#: gnibbles/gnibbles.schemas.in.h:27 gnibbles/preferences.c:558
 msgid "Use relative movement"
 msgstr "Relatieve beweging gebruiken"
 
-#: gnibbles/gnibbles.schemas.in.h:26
+#: gnibbles/gnibbles.schemas.in.h:28
 msgid "Use relative movement (ie. left or right only)."
 msgstr "Relatieve bewegingen gebruiken (dus alleen links of rechts)"
+
+#: gnibbles/gnibbles.schemas.in.h:29
+msgid "Width of the GNibbles window"
+msgstr "De breedte van het GNibbles venster"
+
+#: gnibbles/gnibbles.schemas.in.h:30
+msgid ""
+"Width of the GNibbles window, used to restore the window size between "
+"sessions."
+msgstr "Breedte van het GNibbles venster, gebruikt om het venster te herstellen tussen sessies."
 
 #: gnibbles/gnibbles.soundlist.in.h:1
 msgid "Bonus"
@@ -2660,11 +2652,11 @@ msgstr "Eet Bonus"
 msgid "Extra Life"
 msgstr "Extra Leven"
 
-#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:231
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:249
 msgid "Game Over"
 msgstr "Spel voorbij"
 
-#: gnibbles/gnibbles.soundlist.in.h:6 gnibbles/main.c:201
+#: gnibbles/gnibbles.soundlist.in.h:6 gnibbles/main.c:202
 msgid "Gnibbles"
 msgstr "Gnibbles"
 
@@ -2680,107 +2672,85 @@ msgstr "Slang Omdraaien"
 msgid "Worm Teleport"
 msgstr "Willekeurige Teleport"
 
-#: gnibbles/main.c:204
+#: gnibbles/main.c:205
 msgid "A worm game for GNOME."
 msgstr "Een slang-spel voor GNOME"
 
-#: gnibbles/preferences.c:318
+#: gnibbles/preferences.c:297
 msgid "Gnibbles Preferences"
 msgstr "Gnibbles Voorkeuren"
 
-#: gnibbles/preferences.c:335
+#: gnibbles/preferences.c:314
 msgid "Speed"
 msgstr "Snelheid"
 
-#: gnibbles/preferences.c:345
+#: gnibbles/preferences.c:324
 msgid "Nibbles newbie"
 msgstr "Nibbles beginneling"
 
-#: gnibbles/preferences.c:355
+#: gnibbles/preferences.c:334
 msgid "My second day"
 msgstr "Mijn tweede dag"
 
-#: gnibbles/preferences.c:365
+#: gnibbles/preferences.c:344
 msgid "Not too shabby"
 msgstr "Best wel pittig"
 
-#: gnibbles/preferences.c:376
+#: gnibbles/preferences.c:355
 msgid "Finger-twitching good"
 msgstr "Vingers in de knoop"
 
-#: gnibbles/preferences.c:429
+#. Options
+#: gnibbles/preferences.c:366 gnibbles/preferences.c:551
+#: gnobots2/properties.c:843 iagno/properties.c:664
+msgid "Options"
+msgstr "Opties"
+
+#: gnibbles/preferences.c:408
 msgid "Starting level:"
 msgstr "Begin-level:"
 
-#: gnibbles/preferences.c:456 gtali/setup.c:266
+#: gnibbles/preferences.c:435 gtali/setup.c:266
 msgid "Number of players:"
 msgstr "Aantal spelers:"
 
-#: gnibbles/preferences.c:481
-msgid "Board size"
-msgstr "Bordgrootte"
-
-#: gnibbles/preferences.c:486
-msgid "Tiny  (184 x 132)"
-msgstr "Miniatuur (184 x 132)"
-
-#: gnibbles/preferences.c:496
-msgid "Small  (368 x 264)"
-msgstr "Klein (368 x 264)"
-
-#: gnibbles/preferences.c:505
-msgid "Medium  (460 x 330)"
-msgstr "Middel (460 x 330)"
-
-#: gnibbles/preferences.c:514
-msgid "Large  (736 x 528)"
-msgstr "Groot (736 x 528)"
-
-#: gnibbles/preferences.c:523
-msgid "Extra large  (920 x 660)"
-msgstr "Extra groot (920 x 660)"
-
-#: gnibbles/preferences.c:532
-msgid "Huge  (1840 x 1320)"
-msgstr "Enorm (1840 x 1320)"
-
-#: gnibbles/preferences.c:548
+#: gnibbles/preferences.c:455
 msgid "Worm"
 msgstr "Slang"
 
-#: gnibbles/preferences.c:557
+#: gnibbles/preferences.c:464
 msgid "Keyboard controls"
 msgstr "Bedieningstoetsen"
 
-#: gnibbles/preferences.c:568
+#: gnibbles/preferences.c:475
 msgid "Up"
 msgstr "Omhoog"
 
-#: gnibbles/preferences.c:588
+#: gnibbles/preferences.c:495
 msgid "Down"
 msgstr "Omlaag"
 
-#: gnibbles/preferences.c:608
+#: gnibbles/preferences.c:515
 msgid "Left"
 msgstr "Links"
 
-#: gnibbles/preferences.c:627
+#: gnibbles/preferences.c:534
 msgid "Right"
 msgstr "Rechts"
 
-#: gnibbles/preferences.c:657
+#: gnibbles/preferences.c:564
 msgid "Worm color:"
 msgstr "Slangkleur:"
 
-#: gnibbles/preferences.c:663
+#: gnibbles/preferences.c:570
 msgid "Green"
 msgstr "Groen"
 
-#: gnibbles/preferences.c:666
+#: gnibbles/preferences.c:573
 msgid "Cyan"
 msgstr "Lichtblauw"
 
-#: gnibbles/preferences.c:667
+#: gnibbles/preferences.c:574
 msgid "Purple"
 msgstr "Paars"
 
@@ -2823,11 +2793,11 @@ msgstr "Spelscenario instellen"
 msgid "Set game configuration"
 msgstr "Spelconfiguratie instellen"
 
-#: gnobots2/gnobots.c:63 gnomine/gnomine.c:771 gnomine/gnomine.c:775
+#: gnobots2/gnobots.c:63 gnomine/gnomine.c:922 gnomine/gnomine.c:926
 msgid "X"
 msgstr "X"
 
-#: gnobots2/gnobots.c:64 gnomine/gnomine.c:772 gnomine/gnomine.c:776
+#: gnobots2/gnobots.c:64 gnomine/gnomine.c:923 gnomine/gnomine.c:927
 msgid "Y"
 msgstr "Y"
 
@@ -3503,8 +3473,8 @@ msgstr ""
 "Controleer of GNOME-Stones goed geïnstalleerd is!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:204 gnome-stones/main.c:990 gnome-stones/main.c:1113
-#: gnome-stones/main.c:1338
+#: gnome-stones/main.c:204 gnome-stones/main.c:990 gnome-stones/main.c:1112
+#: gnome-stones/main.c:1337
 msgid "GNOME Stones"
 msgstr "GNOME Stones"
 
@@ -3519,7 +3489,7 @@ msgstr "Begin-grot"
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:430 gnome-stones/main.c:1041 mahjongg/mahjongg.c:848
+#: gnome-stones/main.c:430 gnome-stones/main.c:1040 mahjongg/mahjongg.c:874
 msgid "Pause"
 msgstr "Pauzeren"
 
@@ -3527,47 +3497,47 @@ msgstr "Pauzeren"
 msgid "Congratulations, you win!"
 msgstr "Gefeliciteerd, u heeft gewonnen!"
 
-#: gnome-stones/main.c:870 gtali/gyahtzee.c:130
+#: gnome-stones/main.c:870 gtali/gyahtzee.c:132
 msgid "Game over!"
 msgstr "Spel voorbij!"
 
-#: gnome-stones/main.c:1087
+#: gnome-stones/main.c:1086
 msgid "Sokoban levels:"
 msgstr "Sobokan levels:"
 
-#: gnome-stones/main.c:1115
+#: gnome-stones/main.c:1114
 msgid "Mine through dirt and collect gems."
 msgstr "In de aarde graven en diamanten verzamelen."
 
-#: gnome-stones/main.c:1138
+#: gnome-stones/main.c:1137
 msgid "_Restart level"
 msgstr "Level _herstarten"
 
-#: gnome-stones/main.c:1138
+#: gnome-stones/main.c:1137
 msgid "Restart the current level"
 msgstr "Het huidige level opnieuw doen"
 
-#: gnome-stones/main.c:1243
+#: gnome-stones/main.c:1242
 msgid "Scanning private object directory..."
 msgstr "Prive objectmap wordt nu gescanned..."
 
-#: gnome-stones/main.c:1247
+#: gnome-stones/main.c:1246
 msgid "Scanning public object directory..."
 msgstr "Publieke objectmap wordt nu gescanned..."
 
-#: gnome-stones/main.c:1252
+#: gnome-stones/main.c:1251
 msgid "Filling game widget..."
 msgstr "Spel-widget aan het vullen..."
 
-#: gnome-stones/main.c:1257
+#: gnome-stones/main.c:1256
 msgid "Scanning private game directory..."
 msgstr "Prive spelmap wordt nu gescanned..."
 
-#: gnome-stones/main.c:1261
+#: gnome-stones/main.c:1260
 msgid "Scanning public game directory..."
 msgstr "Publieke spelmap wordt nu gescanned..."
 
-#: gnome-stones/main.c:1265
+#: gnome-stones/main.c:1264
 msgid "Restoring preferences..."
 msgstr "Instellingen aan het herstellen..."
 
@@ -3676,38 +3646,29 @@ msgstr "Tutorial caves"
 msgid "Fit falling blocks together"
 msgstr "De vallende blokken goed op elkaar stapelen"
 
-#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:96
+#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:111
 msgid "Gnometris"
 msgstr "Gnometris"
 
 # BUG
 #: gnometris/gnometris.schemas.in.h:1
-msgid "Image to use as background"
-msgstr "Achtergrondafbeelding"
-
-#: gnometris/gnometris.schemas.in.h:2
-msgid "Image to use as background."
-msgstr "Achtergrondafbeelding"
-
-# BUG
-#: gnometris/gnometris.schemas.in.h:3
 msgid "Image to use for drawing blocks"
 msgstr "Afbeelding voor de blokken"
 
-#: gnometris/gnometris.schemas.in.h:4
+#: gnometris/gnometris.schemas.in.h:2
 msgid "Image to use for drawing blocks."
 msgstr "Afbeelding voor de blokken"
 
 # BUG
-#: gnometris/gnometris.schemas.in.h:5
+#: gnometris/gnometris.schemas.in.h:3
 msgid "Level to start with"
 msgstr "Begin-level"
 
-#: gnometris/gnometris.schemas.in.h:6
+#: gnometris/gnometris.schemas.in.h:4
 msgid "Level to start with."
 msgstr "Begin-level"
 
-#: gnometris/gnometris.schemas.in.h:7
+#: gnometris/gnometris.schemas.in.h:5
 msgid ""
 "The density of blocks in rows filled at the start of the game. The value is "
 "between 0 (for no blocks) and 10 (for a completely filled row)."
@@ -3716,11 +3677,11 @@ msgstr ""
 "waarde ligt tussen 0 (voor geen blokken) en 10 (voor een compleet gevulde "
 "rij)."
 
-#: gnometris/gnometris.schemas.in.h:8
+#: gnometris/gnometris.schemas.in.h:6
 msgid "The density of filled rows"
 msgstr "De dichtheid van voorgevulde rijen"
 
-#: gnometris/gnometris.schemas.in.h:9
+#: gnometris/gnometris.schemas.in.h:7
 msgid ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
@@ -3728,34 +3689,34 @@ msgstr ""
 "Het aantal rijen aan het begin van het spel die met willekeurige blokken "
 "zijn voorgevuld."
 
-#: gnometris/gnometris.schemas.in.h:10
+#: gnometris/gnometris.schemas.in.h:8
 msgid "The number of rows to fill"
 msgstr "Het aantal te vullen rijen"
 
 # BUG
-#: gnometris/gnometris.schemas.in.h:11
+#: gnometris/gnometris.schemas.in.h:9
 msgid "Whether to give blocks random colors"
 msgstr "Of de blokken een willekeurig kleur krijgen"
 
-#: gnometris/gnometris.schemas.in.h:12
+#: gnometris/gnometris.schemas.in.h:10
 msgid "Whether to give blocks random colors."
 msgstr "Of de blokken een willekeurige kleur krijgen"
 
 # BUG
-#: gnometris/gnometris.schemas.in.h:13
+#: gnometris/gnometris.schemas.in.h:11
 msgid "Whether to preview the next block"
 msgstr "Of het volgende blok moet worden getoond"
 
-#: gnometris/gnometris.schemas.in.h:14
+#: gnometris/gnometris.schemas.in.h:12
 msgid "Whether to preview the next block."
 msgstr "Of het volgende blok moet worden getoond"
 
 # BUG
-#: gnometris/gnometris.schemas.in.h:15
+#: gnometris/gnometris.schemas.in.h:13
 msgid "Whether to rotate counter clock wise"
 msgstr "Of tegen de klok in mag worden gedraaid"
 
-#: gnometris/gnometris.schemas.in.h:16
+#: gnometris/gnometris.schemas.in.h:14
 msgid "Whether to rotate counter clock wise."
 msgstr "Of tegen de klok in mag worden gedraaid"
 
@@ -3771,11 +3732,11 @@ msgstr "LEVEL"
 msgid "Lines:"
 msgstr "Lijnen:"
 
-#: gnometris/tetris.cpp:203
+#: gnometris/tetris.cpp:221
 msgid "Paused"
 msgstr "Gepauzeerd"
 
-#: gnometris/tetris.cpp:318
+#: gnometris/tetris.cpp:335
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3788,7 +3749,7 @@ msgstr ""
 "\n"
 "Controleer uw gnome-games installatie"
 
-#: gnometris/tetris.cpp:333
+#: gnometris/tetris.cpp:350
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3801,66 +3762,61 @@ msgstr ""
 "\n"
 "Controleer uw gnome-games installatie"
 
-#: gnometris/tetris.cpp:634 gnometris/tetris.cpp:635
+#: gnometris/tetris.cpp:603 gnometris/tetris.cpp:604
 msgid "<none>"
 msgstr "<geen>"
 
-#: gnometris/tetris.cpp:660
+#: gnometris/tetris.cpp:629
 msgid "Gnometris preferences"
 msgstr "Gnometris voorkeuren"
 
-#: gnometris/tetris.cpp:672
+#: gnometris/tetris.cpp:641
 msgid "Setup"
 msgstr "Instellen"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:679
+#: gnometris/tetris.cpp:648
 msgid "Number of pre-filled rows:"
 msgstr "Aantal voorgevulde rijen:"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:694
+#: gnometris/tetris.cpp:663
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Dichtheid van blokken in een voorgevulde rij:"
 
 #. starting level
-#: gnometris/tetris.cpp:709
+#: gnometris/tetris.cpp:678
 msgid "Starting Level:"
 msgstr "Begin-level:"
 
 # Operatie
-#: gnometris/tetris.cpp:726
+#: gnometris/tetris.cpp:695
 msgid "Operation"
 msgstr "Bewerking"
 
-#: gnometris/tetris.cpp:732
+#: gnometris/tetris.cpp:701
 msgid "Preview next block"
 msgstr "volgend blok tonen"
 
-#: gnometris/tetris.cpp:741
+#: gnometris/tetris.cpp:710
 msgid "Use random block colors"
 msgstr "Willekeurige blokkleuren gebruiken"
 
-#: gnometris/tetris.cpp:752
+#: gnometris/tetris.cpp:721
 msgid "Rotate blocks counterclockwise"
 msgstr "Blokken tegen de klok in draaien"
 
-#: gnometris/tetris.cpp:765 same-gnome/same-gnome.c:630
+#: gnometris/tetris.cpp:734 same-gnome/same-gnome.c:630
 #: same-gnome/same-gnome.c:683
 msgid "Theme"
 msgstr "Thema"
 
 #. Block pixmap
-#: gnometris/tetris.cpp:772
+#: gnometris/tetris.cpp:741
 msgid "Block image:"
 msgstr "Blok-afbeelding:"
 
-#. background pixmap
-#: gnometris/tetris.cpp:783
-msgid "Background image:"
-msgstr "Achtergrondafbeelding:"
-
-#: gnometris/tetris.cpp:1147
+#: gnometris/tetris.cpp:1249
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -3868,99 +3824,121 @@ msgstr ""
 "Geschreven voor mijn vrouw, Matylda\n"
 "Stuur commentaar en bug-rapportages naar: janusz.gorycki@intel.com"
 
-#: gnomine/gnomine.c:87 gnomine/gnomine.c:572
+#: gnomine/gnomine.c:87 gnomine/gnomine.c:723
 msgid "Small"
 msgstr "Klein"
 
-#: gnomine/gnomine.c:88 gnomine/gnomine.c:582
-msgid "Medium"
-msgstr "Middel"
-
-#: gnomine/gnomine.c:89 gnomine/gnomine.c:592
+#: gnomine/gnomine.c:89 gnomine/gnomine.c:743
 msgid "Large"
 msgstr "Groot"
 
-#: gnomine/gnomine.c:90 gnomine/gnomine.c:602
+#: gnomine/gnomine.c:90 gnomine/gnomine.c:753
 msgid "Custom"
 msgstr "Aangepast"
 
-#: gnomine/gnomine.c:182 gnomine/gnomine.c:419 gnomine/gnomine.c:846
-msgid "GNOME Mines"
-msgstr "GNOME Mijnenveger"
+#. Translators: this is for a minutes, seconds time display.
+#: gnomine/gnomine.c:201
+#, c-format
+msgid "%dm %ds"
+msgstr "%dm %ds"
 
-#: gnomine/gnomine.c:249
+#: gnomine/gnomine.c:241
+msgid "GNOME Mines Scores"
+msgstr "GNOME Mijnen scores"
+
+#: gnomine/gnomine.c:258
+msgid "Size:"
+msgstr "Grootte:"
+
+#: gnomine/gnomine.c:300
+msgid "Time"
+msgstr "Tijd"
+
+#: gnomine/gnomine.c:393
 msgid "Click a square, any square"
 msgstr "Klik op een willekeurig vierkant"
 
-#: gnomine/gnomine.c:251
+#: gnomine/gnomine.c:395
 msgid "Maybe they're all mines ..."
 msgstr "Misschien zijn het allemaal mijnen..."
 
-#: gnomine/gnomine.c:385
+#: gnomine/gnomine.c:529
 msgid "Faces:"
 msgstr "Gezichten:"
 
-#: gnomine/gnomine.c:422
+#: gnomine/gnomine.c:532
+msgid "Graphics:"
+msgstr "Graphics:"
+
+#: gnomine/gnomine.c:538
+msgid "Resizing and SVG support:"
+msgstr "Schalen en SVG ondersteuning:"
+
+#: gnomine/gnomine.c:570 gnomine/gnomine.c:997
+msgid "GNOME Mines"
+msgstr "GNOME Mijnenveger"
+
+#: gnomine/gnomine.c:573
 msgid "A Minesweeper clone."
 msgstr "Een Mijnenvegerkloon"
 
-#: gnomine/gnomine.c:567
+#: gnomine/gnomine.c:718
 msgid "Field size"
 msgstr "Veldgrootte"
 
-#: gnomine/gnomine.c:615
+#: gnomine/gnomine.c:766
 msgid "Custom size"
 msgstr "Aangepaste grootte"
 
-#: gnomine/gnomine.c:622
+#: gnomine/gnomine.c:773
 msgid "Number of mines:"
 msgstr "Aantal mijnen:"
 
-#: gnomine/gnomine.c:634
+#: gnomine/gnomine.c:785
 msgid "Horizontal:"
 msgstr "Horizontaal:"
 
-#: gnomine/gnomine.c:646
+#: gnomine/gnomine.c:797
 msgid "Vertical:"
 msgstr "Vertikaal:"
 
-#: gnomine/gnomine.c:663
+#: gnomine/gnomine.c:814
 msgid "Use \"I'm not sure\" flags."
 msgstr "\"Ik twijfel\"-vlaggen gebruiken"
 
-#: gnomine/gnomine.c:672
+#: gnomine/gnomine.c:823
 msgid "GNOME Mines Preferences"
 msgstr "GNOME Mijnenveger voorkeuren"
 
-#: gnomine/gnomine.c:771
+#: gnomine/gnomine.c:922
 msgid "Width of grid"
 msgstr "Breedte van raster"
 
-#: gnomine/gnomine.c:772
+#: gnomine/gnomine.c:923
 msgid "Height of grid"
 msgstr "Hoogte van raster"
 
-#: gnomine/gnomine.c:773
+#: gnomine/gnomine.c:924
 msgid "Number of mines"
 msgstr "Aantal mijnen"
 
-#: gnomine/gnomine.c:773 gtali/setup.c:85 gtali/setup.c:86
+#: gnomine/gnomine.c:924 gtali/setup.c:85 gtali/setup.c:86
 msgid "NUMBER"
 msgstr "NUMMER"
 
-#: gnomine/gnomine.c:774
+#: gnomine/gnomine.c:925
 msgid "Size of the board (1=small, 3=large)"
 msgstr "Grootte van het bord (1=klein, 3=groot)"
 
-#: gnomine/gnomine.c:775
+#: gnomine/gnomine.c:926
 msgid "X location of window"
 msgstr "X locatie van het venster"
 
-#: gnomine/gnomine.c:776
+#: gnomine/gnomine.c:927
 msgid "Y location of window"
 msgstr "Y locatie van het venster"
 
-#: gnomine/gnomine.c:933
+#: gnomine/gnomine.c:1086
 msgid "Flags:"
 msgstr "Vlaggen:"
 
@@ -4131,89 +4109,6 @@ msgstr "De breedte van het speelveld in beeldpunten. Minimaal 320."
 msgid "The width of the window"
 msgstr "De breedte van het venster"
 
-#: gnotski/gnotski.c:98 gnotski/gnotski.c:219 gnotski/gnotski.c:331
-msgid "1"
-msgstr "1"
-
-#: gnotski/gnotski.c:113 gnotski/gnotski.c:233 gnotski/gnotski.c:354
-msgid "2"
-msgstr "2"
-
-#. Tiles mismatch
-#. { GNOME_APP_UI_ITEM, N_("X"), NULL, level_cb,
-#. "14#20#12#"     "a     bbbbbb  cccccc"     "a     bbbbbb  cccccc"     "a   -##-#######     "     "    -AAAAABBCC#     "     "   d-   DEFGHI#     "     "    #   DEFGJI#     "     "  e #   KEFGLI#     "     "  e #   KEFG*I#     "     "    #   MM****#     "     "fff ###########     "     "fff  ggghhhiiiii  .j"     "kkkkkggg   iiiii....",
-#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
-#.
-#: gnotski/gnotski.c:128 gnotski/gnotski.c:247 gnotski/gnotski.c:386
-msgid "3"
-msgstr "3"
-
-#: gnotski/gnotski.c:143 gnotski/gnotski.c:262 gnotski/gnotski.c:401
-msgid "4"
-msgstr "4"
-
-#: gnotski/gnotski.c:158 gnotski/gnotski.c:273 gnotski/gnotski.c:416
-msgid "5"
-msgstr "5"
-
-#: gnotski/gnotski.c:173 gnotski/gnotski.c:286 gnotski/gnotski.c:430
-msgid "6"
-msgstr "6"
-
-#. Tiles mismatch
-#. { GNOME_APP_UI_ITEM, N_("7"), NULL, level_cb,
-#. "14#13#11#"     "         ... "     "          .  "     " ########    "     " #abcdde-    "     " #ffcddg-    "     " #hhijkl#    "     " #***jml#    "     " #n*op q#    "     " #nrr s #    "     " ########    "     "             ",
-#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
-#: gnotski/gnotski.c:188 gnotski/gnotski.c:314
-msgid "7"
-msgstr "7"
-
-#: gnotski/gnotski.c:450
-msgid "_Novice"
-msgstr "_Beginner"
-
-#: gnotski/gnotski.c:453
-msgid "_Medium"
-msgstr "_Middel"
-
-#: gnotski/gnotski.c:456
-msgid "_Advanced"
-msgstr "Ge_avanceerd"
-
-#: gnotski/gnotski.c:608
-msgid "Level completed. Well done."
-msgstr "Level klaar. Goed gedaan!"
-
-#: gnotski/gnotski.c:771
-msgid "Moves:"
-msgstr "Zetten:"
-
-#: gnotski/gnotski.c:806
-#, c-format
-msgid "Could not find '%s' pixmap file\n"
-msgstr "Kan het '%s' pixmap bestand niet vinden\n"
-
-#: gnotski/gnotski.c:1020
-msgid "Welcome to GNOME Klotski"
-msgstr "Welkom bij GNOME Klotski"
-
-#: gnotski/gnotski.c:1044
-#, c-format
-msgid "Playing level %s"
-msgstr "Speelniveau %s"
-
-#: gnotski/gnotski.c:1158
-msgid "A Klotski clone"
-msgstr "Een Klotski-kloon"
-
-#: gnotski/gnotski.desktop.in.h:1
-msgid "Klotski"
-msgstr "Klotski"
-
-#: gnotski/gnotski.desktop.in.h:2
-msgid "Solve puzzles by sliding blocks"
-msgstr "Puzzels oplossen door blokken te verschuiven"
-
 #: gtali/clist.c:139
 msgid "Already used! Where do you want to put that?"
 msgstr "Al in gebruik! Waar moet het ingevuld worden?"
@@ -4224,6 +4119,7 @@ msgstr "Al in gebruik! Waar moet het ingevuld worden?"
 #. tab-width: 8
 #. c-basic-offset: 8
 #. indent-tabs-mode: nil
+#. End:
 #.
 #: gtali/gtali.desktop.in.h:1
 msgid "Play a poker-style dice game"
@@ -4265,50 +4161,54 @@ msgstr "[Menselijke,Henk,Rene,Nadia,Appie,Karin]"
 msgid "GNOME Tali"
 msgstr "GNOME Tali"
 
-#: gtali/gyahtzee.c:125
+#: gtali/gyahtzee.c:127
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
 msgstr[0] "%s wint het spel met %d punt!"
 msgstr[1] "%s wint het spel met %d punten!"
 
-#: gtali/gyahtzee.c:158
+#: gtali/gyahtzee.c:160
 #, c-format
 msgid "Computer playing for %s"
 msgstr "Computer speelt voor %s"
 
-#: gtali/gyahtzee.c:161
+#: gtali/gyahtzee.c:163
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- Uw beurt."
 
-#: gtali/gyahtzee.c:316 gtali/gyahtzee.c:339 gtali/yahtzee.c:184
-msgid "You're only allowed three rolls! Select a score box."
-msgstr "Er mag maar drie keer gegooid worden! Selecteer een score plaats."
-
-#: gtali/gyahtzee.c:380
-msgid "GNOME version (1998):"
-msgstr "GNOME-versie (1998):"
-
-#: gtali/gyahtzee.c:382
-msgid "Curses version (1992):"
-msgstr "Curses-versie (1992):"
-
-#: gtali/gyahtzee.c:412
-msgid "A sort of poker with dice and less money."
-msgstr "Een soort pokeren met dobbelstenen en minder geld."
-
-#: gtali/gyahtzee.c:456
-msgid "Cheater! Any high scores will not be recorded."
-msgstr "Valsspeler! De scores zullen niet bewaard worden."
-
-#: gtali/gyahtzee.c:578
+#: gtali/gyahtzee.c:252 gtali/gyahtzee.c:602
 msgid "Select dice to re-roll, press Roll!, or select score slot."
 msgstr ""
 "Selecteer dobbelstenen om nog een keer te gooien, of selecteer een score "
 "plaats."
 
-#: gtali/gyahtzee.c:618
+#: gtali/gyahtzee.c:288
+msgid "Roll"
+msgstr "Gooien"
+
+#: gtali/gyahtzee.c:339 gtali/gyahtzee.c:362 gtali/yahtzee.c:184
+msgid "You're only allowed three rolls! Select a score box."
+msgstr "Er mag maar drie keer gegooid worden! Selecteer een score plaats."
+
+#: gtali/gyahtzee.c:405
+msgid "GNOME version (1998):"
+msgstr "GNOME-versie (1998):"
+
+#: gtali/gyahtzee.c:407
+msgid "Curses version (1992):"
+msgstr "Curses-versie (1992):"
+
+#: gtali/gyahtzee.c:437
+msgid "A sort of poker with dice and less money."
+msgstr "Een soort pokeren met dobbelstenen en minder geld."
+
+#: gtali/gyahtzee.c:481
+msgid "Cheater! Any high scores will not be recorded."
+msgstr "Valsspeler! De scores zullen niet bewaard worden."
+
+#: gtali/gyahtzee.c:648
 msgid "Roll!"
 msgstr "Gooien!"
 
@@ -4479,10 +4379,23 @@ msgstr "Kan het '%s' bestand voor Iagno niet vinden\n"
 msgid "Welcome to Iagno!"
 msgstr "Welkom bij Iagno!"
 
+#: iagno/gnothello.c:798 iagno/gnothello.c:800
+#, c-format
+msgid "%.2d"
+msgstr "%.2d"
+
 # play hier niet vertaald
 #: iagno/iagno.desktop.in.h:2
 msgid "Play a game of Reversi"
 msgstr "Reversi"
+
+#: iagno/iagno.soundlist.in.h:1
+msgid "Game over"
+msgstr "Spel voorbij"
+
+#: iagno/iagno.soundlist.in.h:3
+msgid "Piece flipping"
+msgstr "Piece flipping"
 
 #: iagno/network.c:74
 msgid "Network initialization complete."
@@ -4545,26 +4458,38 @@ msgstr "Verbinding mislukt"
 msgid "No game server defined"
 msgstr "Geen spel-server ingesteld"
 
-#: iagno/properties.c:525
+#: iagno/othello.c:717
+msgid "Light must pass, Dark's move"
+msgstr "Wit moet passen, Zwart is aan zet"
+
+#: iagno/othello.c:729
+msgid "Dark must pass, Light's move"
+msgstr "Zwart moet passen, Wit is aan zet"
+
+#: iagno/properties.c:495
 msgid "Iagno Preferences"
 msgstr "Iagno voorkeuren"
 
-#: iagno/properties.c:546
+#: iagno/properties.c:519
 msgid "Use quick moves"
 msgstr "Snelle zetten gebruiken"
 
-#: iagno/properties.c:657
-msgid "Animation"
-msgstr "Animatie"
+#: iagno/properties.c:634
+msgid "None"
+msgstr "Geen"
+
+#: iagno/properties.c:643
+msgid "Partial"
+msgstr "Gedeeltelijk"
+
+#: iagno/properties.c:652
+msgid "Complete"
+msgstr "Compleet"
 
 # huh? Wat is stagger?
-#: iagno/properties.c:694
+#: iagno/properties.c:667
 msgid "Stagger flips"
 msgstr "Stagger keren"
-
-#: iagno/properties.c:702
-msgid "Show grid"
-msgstr "Raster tonen"
 
 #: libgames-support/games-gconf.c:66
 #, c-format
@@ -4583,77 +4508,77 @@ msgstr ""
 "Controleer uw GConf-configuratie, in het bijzonder of de schemas juist zijn "
 "geïnstalleerd"
 
-#: mahjongg/mahjongg.c:714
-msgid "Easy"
-msgstr "Makkelijk"
-
-#: mahjongg/mahjongg.c:715
+#: mahjongg/mahjongg.c:741
 msgid "Difficult"
 msgstr "Moeilijk"
 
 # Woordenboek: confound: verwarrden, beschamen, verijdelen
 # Confounded: verduiveld
-#: mahjongg/mahjongg.c:716
+#: mahjongg/mahjongg.c:742
 msgid "Confounding Cross"
 msgstr "Duivels kruis"
 
-#: mahjongg/mahjongg.c:717
+#: mahjongg/mahjongg.c:743
 msgid "Pyramid's Walls"
 msgstr "Piramidemuren"
 
-#: mahjongg/mahjongg.c:718
+#: mahjongg/mahjongg.c:744
 msgid "Tic-Tac-Toe"
 msgstr "Boter-kaas-eieren"
 
-#: mahjongg/mahjongg.c:719
+#: mahjongg/mahjongg.c:745
 msgid "Cloud"
 msgstr "Wold"
 
-#: mahjongg/mahjongg.c:720
+#: mahjongg/mahjongg.c:746
 msgid "Red Dragon"
 msgstr "Rode draak"
 
-#: mahjongg/mahjongg.c:721
+#: mahjongg/mahjongg.c:747
 msgid "Four Bridges"
 msgstr "Vier bruggen"
 
-#: mahjongg/mahjongg.c:784
+#: mahjongg/mahjongg.c:748
+msgid "The Ziggurat"
+msgstr "De Ziggurat"
+
+#: mahjongg/mahjongg.c:810
 msgid "New game with _seed..."
 msgstr "Nieuw spel met _nummer..."
 
-#: mahjongg/mahjongg.c:785
+#: mahjongg/mahjongg.c:811
 msgid "Start a new game giving a seed number..."
 msgstr "Start een nieuw spel met nummer..."
 
-#: mahjongg/mahjongg.c:800
+#: mahjongg/mahjongg.c:826
 msgid "Shu_ffle tiles"
 msgstr "_Stenen schudden"
 
-#: mahjongg/mahjongg.c:800 mahjongg/mahjongg.c:864
+#: mahjongg/mahjongg.c:826 mahjongg/mahjongg.c:890
 msgid "Shuffle tiles"
 msgstr "Stenen schudden"
 
-#: mahjongg/mahjongg.c:842
+#: mahjongg/mahjongg.c:868
 msgid "Restart game"
 msgstr "Spel opnieuw spelen"
 
-#: mahjongg/mahjongg.c:848
+#: mahjongg/mahjongg.c:874
 msgid "Pause game"
 msgstr "Spel pauzeren"
 
-#: mahjongg/mahjongg.c:854
+#: mahjongg/mahjongg.c:880
 msgid "Undo previous move"
 msgstr "Laatste zet ongedaan maken"
 
-#: mahjongg/mahjongg.c:860
+#: mahjongg/mahjongg.c:886
 msgid "Get a hint"
 msgstr "Vraag een hint"
 
-#: mahjongg/mahjongg.c:864 mahjongg/mahjongg.c:1366
+#: mahjongg/mahjongg.c:890 mahjongg/mahjongg.c:1392
 msgid "Shuffle"
 msgstr "Schudden"
 
-#: mahjongg/mahjongg.c:1075
+#: mahjongg/mahjongg.c:1101
 msgid ""
 "This new mapset will take effect when you start a new game, or when Mahjongg "
 "is restarted."
@@ -4661,30 +4586,30 @@ msgstr ""
 "Deze nieuwe verzameling treedt in werking als u een nieuw spel opstart, of "
 "als Mahjongg wordt herstart."
 
-#: mahjongg/mahjongg.c:1327 mahjongg/mahjongg.c:1332
+#: mahjongg/mahjongg.c:1353 mahjongg/mahjongg.c:1358
 msgid "These tiles don't match."
 msgstr "Deze stenen passen niet bij elkaar."
 
-#: mahjongg/mahjongg.c:1364
+#: mahjongg/mahjongg.c:1390
 msgid "There are no more moves."
 msgstr "Er zijn geen geldige zetten meer."
 
-#: mahjongg/mahjongg.c:1430
+#: mahjongg/mahjongg.c:1456
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: mahjongg/mahjongg.c:1449
+#: mahjongg/mahjongg.c:1475
 msgid "Tiles"
 msgstr "Stenen"
 
-#: mahjongg/mahjongg.c:1457
+#: mahjongg/mahjongg.c:1483
 msgid "Tile Set"
 msgstr "Stenenverzameling:"
 
 # na bugreport van Jeroen vd Vegt veranderd in Stapelwijze.
 # Het frame-label: "Maps" behandeld de manier waarop de stenen
 # op elkaar worden gelegd.
-#: mahjongg/mahjongg.c:1470
+#: mahjongg/mahjongg.c:1496
 msgid "Maps"
 msgstr "Stapelwijze"
 
@@ -4692,63 +4617,70 @@ msgstr "Stapelwijze"
 # Je moet kiezen voor een stapelwijze.
 # Je kunt hierna kiezen voor moeilijk of eenvoudig, dus het
 # geeft een moeilijkheidsgraad aan.
-#: mahjongg/mahjongg.c:1478
+#: mahjongg/mahjongg.c:1504
 msgid "Select Map"
 msgstr "Moeilijkheidsgraad"
 
-#: mahjongg/mahjongg.c:1491
+#: mahjongg/mahjongg.c:1517
 msgid "Colors"
 msgstr "Kleuren"
 
-#: mahjongg/mahjongg.c:1499
+#: mahjongg/mahjongg.c:1525
 msgid "Background Color"
 msgstr "Achtergrondkleur"
 
-#: mahjongg/mahjongg.c:1513
+#: mahjongg/mahjongg.c:1539
 msgid "Warnings"
 msgstr "Waarschuwingen"
 
-#: mahjongg/mahjongg.c:1519
+#: mahjongg/mahjongg.c:1545
 msgid "Warn when tiles don't match"
 msgstr "Waarschuwen als stenen niet bij elkaar passen"
 
-#: mahjongg/mahjongg.c:1626
+# na bugreport van Jeroen vd Vegt veranderd in Stapelwijze.
+# Het frame-label: "Maps" behandeld de manier waarop de stenen
+# op elkaar worden gelegd.
+#: mahjongg/mahjongg.c:1648
+msgid "Maps:"
+msgstr "Stapelwijze:"
+
+#: mahjongg/mahjongg.c:1652
 msgid "Tiles:"
 msgstr "Stenen:"
 
-#: mahjongg/mahjongg.c:1655
+#: mahjongg/mahjongg.c:1684
 msgid "GNOME Mahjongg"
 msgstr "GNOME Mahjongg"
 
-#: mahjongg/mahjongg.c:1658
+#: mahjongg/mahjongg.c:1687
 msgid "GNOME version of the Eastern tile game, Mahjongg."
 msgstr "GNOME-versie van het Oosterse spel: Mahjongg."
 
-#: mahjongg/mahjongg.c:1682
+#: mahjongg/mahjongg.c:1711
 msgid "... Game paused ..."
 msgstr "... Spel gepauseerd ..."
 
-#: mahjongg/mahjongg.c:1873
+#: mahjongg/mahjongg.c:1902
 msgid "Game Number:"
 msgstr "Spelnummer:"
 
-#: mahjongg/mahjongg.c:1951 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1980 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: mahjongg/mahjongg.c:2072
+#: mahjongg/mahjongg.c:2100
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Sorry, kan geen speelbare configuratie vinden."
 
-#: mahjongg/mahjongg.c:2139
+#: mahjongg/mahjongg.c:2165
 msgid "Tiles Left:"
 msgstr "Stenen over:"
 
-#: mahjongg/mahjongg.c:2148
+#: mahjongg/mahjongg.c:2174
 msgid "Moves Left:"
 msgstr "Zetten over:"
 
-#: mahjongg/mahjongg.c:2213
+#: mahjongg/mahjongg.c:2239
 msgid "Welcome to GNOME Mahjongg!"
 msgstr "Welkom bij Gnome Mahjongg"
 
@@ -4834,904 +4766,1049 @@ msgstr "Welkom bij Same GNOME!"
 msgid "Remove groups of balls to try and clear the screen"
 msgstr "Groepen ballen verwijderen en proberen het scherm schoon te maken"
 
-msgid "Background Color:"
-msgstr "Achtergrondkleur:"
+#~ msgid ""
+#~ "AisleRiot could not load its deck images.\n"
+#~ "\n"
+#~ "AisleRiot will now exit."
+#~ msgstr ""
+#~ "AisleRiot kon de plaatjes van de kaarten niet laden\n"
+#~ "\n"
+#~ "AisleRiot wordt nu afgesloten."
 
-msgid "<b>Game Name</b>"
-msgstr "<b>Spelnaam</b>"
+#~ msgid "Card Style"
+#~ msgstr "Kaartstijl"
 
-msgid "Loading images..."
-msgstr "Figuren aan het laden..."
+#~ msgid "bdc\n"
+#~ msgstr "bdc\n"
 
-msgid "Dealing game..."
-msgstr "Spel geven..."
+#~ msgid "Try a new game"
+#~ msgstr "Een nieuw spel beginnen"
 
-msgid "Initializing scheme..."
-msgstr "Schema initialiseren..."
+#~ msgid "Help"
+#~ msgstr "Hulp"
 
-msgid "Draw grid"
-msgstr "Raster tonen"
+# Dit behoort niet vertaald worden:
+# "No, it shouldn't be translated. These strings will be replaced
+# with text generated with either numbers or other text which has
+# already been translated. Unfortunately I couldn't find a way to
+# tell glade not to mark a label for translation or how to provide
+# a comment for translatorsin glade. Any better solutions about how
+# to handle this are welcome."
+#
+# Als het toch wordt vervangen kun je net zo goed een spatie neerzetten
+#~ msgid "Do not translate this"
+#~ msgstr " "
 
-msgid "Name of the theme file to use."
-msgstr "Naam van het thema-bestand"
+#~ msgid "gataxx"
+#~ msgstr "gataxx"
 
-msgid "One corresponds to speaker beeps, two to audio files."
-msgstr ""
-"Een correspondeert met piepjes uit de speaker, twee met geluidsbestanden"
+#~ msgid ""
+#~ "gataxx is a GNOME port of the old game ataxx. It is derived from Ian "
+#~ "Peters' iagno code."
+#~ msgstr ""
+#~ "gataxx is een GNOME-versie van het oude ataxx-spel. Het is afgeleid van "
+#~ "de iagno-code van Ian Peters."
 
-msgid "Sound type"
-msgstr "Geluidstype:"
+#~ msgid "Could not find '%s' pixmap file for gataxx\n"
+#~ msgstr "Kan het '%s' bestand voor gataxx niet vinden\n"
 
-msgid "Theme file"
-msgstr "Thema-bestand"
+#~ msgid "Welcome to gataxx!"
+#~ msgstr "Welkom bij gataxx!"
 
-msgid "Whether or not to display grid lines on the game board."
-msgstr "Of er een raster op het bord wordt getoond"
+#~ msgid "Quick Moves (cut computer delay in half)"
+#~ msgstr "Snelle Zetten (halfveer computer vertraging)"
 
-msgid "Who starts"
-msgstr "Wie er begint"
+#~ msgid "Glines"
+#~ msgstr "GLines"
 
-msgid ""
-"Zero is Player One, one is Player Two and two corresponds to players taking "
-"turns."
-msgstr ""
-"Nul is Speler Een, een is Speler Twee en twee correspondeert met twee "
-"spelers die afwisselend hun beurt hebben"
+#~ msgid "Glines Preferences"
+#~ msgstr "Gnect Voorkeuren"
 
-msgid ""
-"Zero is human; one through four correspond to the level of the computer "
-"player."
-msgstr ""
-"Nul is menselijk; een tot vier correspondeert met het niveau van de "
-"computeropponent"
+#~ msgid "Lines"
+#~ msgstr "Lijnen"
 
-msgid "Gnect Scores"
-msgstr "Gnect scores"
+#~ msgid "Welcome to Glines!"
+#~ msgstr "Welkom bij Glines!"
 
-msgid "Draw _grid"
-msgstr "Toon _raster"
+#~ msgid ""
+#~ "Gnibbles Couldn't find pixmap file:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your Gnibbles instalation"
+#~ msgstr ""
+#~ "Gnibbles kon het volgende bitmap bestand niet vinden:\n"
+#~ "%s\n"
+#~ "Controleer uw Gnibbles installatie"
 
-msgid "Show or hide the grid"
-msgstr "Toon of verberg het raster"
+#~ msgid "Board size"
+#~ msgstr "Bordgrootte"
 
-msgid "Initial window placement"
-msgstr "Beginposiste venster"
+#~ msgid "Tiny  (184 x 132)"
+#~ msgstr "Miniatuur (184 x 132)"
 
-msgid "GEOMETRY"
-msgstr "GEOMETRIE"
+#~ msgid "Small  (368 x 264)"
+#~ msgstr "Klein (368 x 264)"
 
-msgid "Random number seed"
-msgstr "Willekeurig getal"
+#~ msgid "Medium  (460 x 330)"
+#~ msgstr "Middel (460 x 330)"
 
-msgid "SEED"
-msgstr "NUMMER"
+#~ msgid "Large  (736 x 528)"
+#~ msgstr "Groot (736 x 528)"
 
-msgid "Initial theme file (excluding path)"
-msgstr "Beginthema-bestand (zonder pad)"
+#~ msgid "Extra large  (920 x 660)"
+#~ msgstr "Extra groot (920 x 660)"
 
-msgid "Debugging level (4 for random seed)"
-msgstr "Debug level (4 voor willekeurig getal)"
+#~ msgid "Huge  (1840 x 1320)"
+#~ msgstr "Enorm (1840 x 1320)"
 
-msgid "%s: no themes available\n"
-msgstr "%s: geen themas beschikbaar\n"
+# BUG
+#~ msgid "Image to use as background"
+#~ msgstr "Achtergrondafbeelding"
 
-msgid "Player 2: %s"
-msgstr "Speler 2: %s"
+#~ msgid "Image to use as background."
+#~ msgstr "Achtergrondafbeelding"
 
-msgid ""
-"Applying this change to Player Selection\n"
-"will end the current game"
-msgstr ""
-"Deze aanpassing aan de Spelerselectie\n"
-"zal het huidige spel beëindigen"
+#~ msgid "Background image:"
+#~ msgstr "Achtergrondafbeelding:"
 
-msgid "Error loading theme"
-msgstr "Fout bij laden thema"
+#~ msgid "1"
+#~ msgstr "1"
 
-msgid "Non-Velena / Simple"
-msgstr "Niet-Velena / Simpel"
+#~ msgid "2"
+#~ msgstr "2"
 
-msgid "Velena / Weak"
-msgstr "Velena / Zwak"
+#~ msgid "3"
+#~ msgstr "3"
 
-msgid "Velena / Medium"
-msgstr "Velena / Medium"
+#~ msgid "4"
+#~ msgstr "4"
 
-msgid "Velena / Strong"
-msgstr "Velena / Sterk"
+#~ msgid "5"
+#~ msgstr "5"
 
-msgid "Always Player 1"
-msgstr "Altijd Speler 1"
+#~ msgid "6"
+#~ msgstr "6"
 
-msgid "Always Player 2"
-msgstr "Altijd Speler 2"
+#~ msgid "7"
+#~ msgstr "7"
 
-msgid "Take turns"
-msgstr "Ombeurten aan zet"
+#~ msgid "_Novice"
+#~ msgstr "_Beginner"
 
-msgid "_Player Selection"
-msgstr "_Spelerselectie"
+#~ msgid "_Medium"
+#~ msgstr "_Middel"
 
-msgid "Who starts?"
-msgstr "Wie begint?"
+#~ msgid "_Advanced"
+#~ msgstr "Ge_avanceerd"
 
-msgid "Appearance and Behaviour"
-msgstr "Weergave en gedrag"
+#~ msgid "Level completed. Well done."
+#~ msgstr "Level klaar. Goed gedaan!"
 
-msgid "Theme Selection:"
-msgstr "Themaselectie:"
+#~ msgid "Moves:"
+#~ msgstr "Zetten:"
 
-msgid "Sound Type"
-msgstr "Geluidstype"
+#~ msgid "Could not find '%s' pixmap file\n"
+#~ msgstr "Kan het '%s' pixmap bestand niet vinden\n"
 
-msgid "Speaker beep"
-msgstr "Speakerpiepje"
+#~ msgid "Welcome to GNOME Klotski"
+#~ msgstr "Welkom bij GNOME Klotski"
 
-msgid "GNOME sound"
-msgstr "GNOME geluid"
+#~ msgid "Playing level %s"
+#~ msgstr "Speelniveau %s"
 
-msgid "This can be set up using the GNOME Control Center"
-msgstr "Dit kan ingesteld worden in het GNOME Controlecentrum"
+#~ msgid "A Klotski clone"
+#~ msgstr "Een Klotski-kloon"
 
-msgid "Keyboard Control"
-msgstr "Bedieningstoetsen"
+#~ msgid "Klotski"
+#~ msgstr "Klotski"
 
-msgid "Drop counter"
-msgstr "Geen teller"
+#~ msgid "Solve puzzles by sliding blocks"
+#~ msgstr "Puzzels oplossen door blokken te verschuiven"
 
-msgid "Black"
-msgstr "Zwart"
+#~ msgid "Background Color:"
+#~ msgstr "Achtergrondkleur:"
 
-msgid "White"
-msgstr "Wit"
+#~ msgid "<b>Game Name</b>"
+#~ msgstr "<b>Spelnaam</b>"
 
-msgid "Grey"
-msgstr "Grijs"
+#~ msgid "Loading images..."
+#~ msgstr "Figuren aan het laden..."
 
-msgid "Pink"
-msgstr "Roze"
+#~ msgid "Dealing game..."
+#~ msgstr "Spel geven..."
 
-msgid "Violet"
-msgstr "Violet"
+#~ msgid "Initializing scheme..."
+#~ msgstr "Schema initialiseren..."
 
-msgid "Brown"
-msgstr "Bruin"
+#~ msgid "Draw grid"
+#~ msgstr "Raster tonen"
 
-msgid "AisleRiot Preferences"
-msgstr "AisleRiot voorkeuren"
+#~ msgid "Name of the theme file to use."
+#~ msgstr "Naam van het thema-bestand"
 
-msgid "Game Status"
-msgstr "Spel-status"
+#~ msgid "One corresponds to speaker beeps, two to audio files."
+#~ msgstr ""
+#~ "Een correspondeert met piepjes uit de speaker, twee met geluidsbestanden"
 
-msgid "Players"
-msgstr "Spelers"
+#~ msgid "Sound type"
+#~ msgstr "Geluidstype:"
 
-msgid "Toggle sound"
-msgstr "Geluid schakelen"
+#~ msgid "Whether or not to display grid lines on the game board."
+#~ msgstr "Of er een raster op het bord wordt getoond"
 
-msgid "Tile Background"
-msgstr "Stenen, achtergrond"
+#~ msgid "Who starts"
+#~ msgstr "Wie er begint"
 
-msgid "Could not find file %s"
-msgstr "Kan het bestand %s niet vinden"
+#~ msgid ""
+#~ "Zero is Player One, one is Player Two and two corresponds to players "
+#~ "taking turns."
+#~ msgstr ""
+#~ "Nul is Speler Een, een is Speler Twee en twee correspondeert met twee "
+#~ "spelers die afwisselend hun beurt hebben"
 
-msgid "NW"
-msgstr "NW"
+#~ msgid ""
+#~ "Zero is human; one through four correspond to the level of the computer "
+#~ "player."
+#~ msgstr ""
+#~ "Nul is menselijk; een tot vier correspondeert met het niveau van de "
+#~ "computeropponent"
 
-msgid "N"
-msgstr "N"
+#~ msgid "Gnect Scores"
+#~ msgstr "Gnect scores"
 
-msgid "NE"
-msgstr "NO"
+#~ msgid "Draw _grid"
+#~ msgstr "Toon _raster"
 
-msgid "W"
-msgstr "W"
+#~ msgid "Show or hide the grid"
+#~ msgstr "Toon of verberg het raster"
 
-msgid "E"
-msgstr "O"
+#~ msgid "Initial window placement"
+#~ msgstr "Beginposiste venster"
 
-msgid "SW"
-msgstr "ZW"
+#~ msgid "GEOMETRY"
+#~ msgstr "GEOMETRIE"
 
-msgid "S"
-msgstr "Z"
+#~ msgid "Random number seed"
+#~ msgstr "Willekeurig getal"
 
-msgid "SE"
-msgstr "ZO"
+#~ msgid "SEED"
+#~ msgstr "NUMMER"
 
-msgid "Predefined Set 1"
-msgstr "Voorgeprogrammeerde Set 1"
+#~ msgid "Initial theme file (excluding path)"
+#~ msgstr "Beginthema-bestand (zonder pad)"
 
-msgid "Predefined Set 2"
-msgstr "Voorgeprogrameerde Set 2"
+#~ msgid "Debugging level (4 for random seed)"
+#~ msgstr "Debug level (4 voor willekeurig getal)"
+
+#~ msgid "%s: no themes available\n"
+#~ msgstr "%s: geen themas beschikbaar\n"
+
+#~ msgid "Player 2: %s"
+#~ msgstr "Speler 2: %s"
+
+#~ msgid ""
+#~ "Applying this change to Player Selection\n"
+#~ "will end the current game"
+#~ msgstr ""
+#~ "Deze aanpassing aan de Spelerselectie\n"
+#~ "zal het huidige spel beëindigen"
+
+#~ msgid "Error loading theme"
+#~ msgstr "Fout bij laden thema"
+
+#~ msgid "Non-Velena / Simple"
+#~ msgstr "Niet-Velena / Simpel"
+
+#~ msgid "Velena / Weak"
+#~ msgstr "Velena / Zwak"
+
+#~ msgid "Velena / Medium"
+#~ msgstr "Velena / Medium"
+
+#~ msgid "Velena / Strong"
+#~ msgstr "Velena / Sterk"
+
+#~ msgid "Always Player 1"
+#~ msgstr "Altijd Speler 1"
+
+#~ msgid "Always Player 2"
+#~ msgstr "Altijd Speler 2"
+
+#~ msgid "Take turns"
+#~ msgstr "Ombeurten aan zet"
+
+#~ msgid "_Player Selection"
+#~ msgstr "_Spelerselectie"
+
+#~ msgid "Who starts?"
+#~ msgstr "Wie begint?"
+
+#~ msgid "Appearance and Behaviour"
+#~ msgstr "Weergave en gedrag"
+
+#~ msgid "Theme Selection:"
+#~ msgstr "Themaselectie:"
+
+#~ msgid "Sound Type"
+#~ msgstr "Geluidstype"
+
+#~ msgid "Speaker beep"
+#~ msgstr "Speakerpiepje"
+
+#~ msgid "GNOME sound"
+#~ msgstr "GNOME geluid"
+
+#~ msgid "This can be set up using the GNOME Control Center"
+#~ msgstr "Dit kan ingesteld worden in het GNOME Controlecentrum"
+
+#~ msgid "Keyboard Control"
+#~ msgstr "Bedieningstoetsen"
+
+#~ msgid "Drop counter"
+#~ msgstr "Geen teller"
+
+#~ msgid "Black"
+#~ msgstr "Zwart"
+
+#~ msgid "White"
+#~ msgstr "Wit"
+
+#~ msgid "Grey"
+#~ msgstr "Grijs"
+
+#~ msgid "Pink"
+#~ msgstr "Roze"
+
+#~ msgid "Violet"
+#~ msgstr "Violet"
+
+#~ msgid "Brown"
+#~ msgstr "Bruin"
+
+#~ msgid "Game Status"
+#~ msgstr "Spel-status"
+
+#~ msgid "Players"
+#~ msgstr "Spelers"
+
+#~ msgid "Toggle sound"
+#~ msgstr "Geluid schakelen"
+
+#~ msgid "Tile Background"
+#~ msgstr "Stenen, achtergrond"
+
+#~ msgid "Could not find file %s"
+#~ msgstr "Kan het bestand %s niet vinden"
+
+#~ msgid "NW"
+#~ msgstr "NW"
+
+#~ msgid "N"
+#~ msgstr "N"
+
+#~ msgid "NE"
+#~ msgstr "NO"
+
+#~ msgid "W"
+#~ msgstr "W"
+
+#~ msgid "E"
+#~ msgstr "O"
+
+#~ msgid "SW"
+#~ msgstr "ZW"
+
+#~ msgid "S"
+#~ msgstr "Z"
+
+#~ msgid "SE"
+#~ msgstr "ZO"
+
+#~ msgid "Predefined Set 1"
+#~ msgstr "Voorgeprogrammeerde Set 1"
+
+#~ msgid "Predefined Set 2"
+#~ msgstr "Voorgeprogrameerde Set 2"
 
 # het venster aanpassen is niet helemaal 1 op 1 maar wel duidelijk
-msgid ""
-"The side length of an individual game tile. The minimum is 40, the maximum "
-"is set depending on screen height. The correct way to set this is by "
-"resizing the window."
-msgstr ""
-"De zijlengte van een enkele spel-tegel. Het minimum is 40, het maximum is "
-"afhankelijk van de schermhoogte. De juiste manier om dit in te stellen is "
-"door het venster aan te passen."
+#~ msgid ""
+#~ "The side length of an individual game tile. The minimum is 40, the "
+#~ "maximum is set depending on screen height. The correct way to set this is "
+#~ "by resizing the window."
+#~ msgstr ""
+#~ "De zijlengte van een enkele spel-tegel. Het minimum is 40, het maximum is "
+#~ "afhankelijk van de schermhoogte. De juiste manier om dit in te stellen is "
+#~ "door het venster aan te passen."
 
-msgid "The size of a tile"
-msgstr "De grootte van een tegel"
+#~ msgid "The size of a tile"
+#~ msgstr "De grootte van een tegel"
 
-msgid "Show thoughts during turn"
-msgstr "Toon gedachten tijdens zet"
+#~ msgid "Show thoughts during turn"
+#~ msgstr "Toon gedachten tijdens zet"
 
-msgid "Optional Rules"
-msgstr "Optionele Regels"
+#~ msgid "Optional Rules"
+#~ msgstr "Optionele Regels"
 
-msgid "Extra Yahtzee Bonus"
-msgstr "Extra Yathzee Bonus"
+#~ msgid "Extra Yahtzee Bonus"
+#~ msgstr "Extra Yathzee Bonus"
 
-msgid "Enforce Joker Rules"
-msgstr "Forceer Joker Regels"
+#~ msgid "Enforce Joker Rules"
+#~ msgstr "Forceer Joker Regels"
 
-msgid "FreeCell"
-msgstr "FreeCell"
+#~ msgid "FreeCell"
+#~ msgstr "FreeCell"
 
-msgid "Card-based solitaire suite"
-msgstr "Patience kaartspellen"
+#~ msgid "Card-based solitaire suite"
+#~ msgstr "Patience kaartspellen"
 
-msgid "Ataxx game"
-msgstr "Ataxx"
+#~ msgid "Ataxx game"
+#~ msgstr "Ataxx"
 
-msgid "Gataxx"
-msgstr "Gataxx"
+#~ msgid "Gataxx"
+#~ msgstr "Gataxx"
 
-msgid "Color lines game"
-msgstr "Kleurlijnen"
+#~ msgid "Color lines game"
+#~ msgstr "Kleurlijnen"
 
-msgid "Gnect Preferences"
-msgstr "Gnect Instellingen"
+#~ msgid "Gnect Preferences"
+#~ msgstr "Gnect Instellingen"
 
-msgid "Nibbles game"
-msgstr "Nibbles Spel"
+#~ msgid "Nibbles game"
+#~ msgstr "Nibbles Spel"
 
-msgid "Robots game"
-msgstr "Robots-spel"
+#~ msgid "Robots game"
+#~ msgstr "Robots-spel"
 
-msgid "GNOME Stones game"
-msgstr "GNOME Stones"
+#~ msgid "GNOME Stones game"
+#~ msgstr "GNOME Stones"
 
-msgid "Tetris game"
-msgstr "Tetris"
+#~ msgid "Tetris game"
+#~ msgstr "Tetris"
 
-msgid "Mine size:"
-msgstr "Mijngrootte:"
+#~ msgid "Mine size:"
+#~ msgstr "Mijngrootte:"
 
-msgid "Size of mines"
-msgstr "Grootte van de mijnen"
+#~ msgid "Size of mines"
+#~ msgstr "Grootte van de mijnen"
 
-msgid "Mines game"
-msgstr "Mijnenveger"
+#~ msgid "Mines game"
+#~ msgstr "Mijnenveger"
 
-msgid "GNOME Tetravex"
-msgstr "GNOME Tetravex"
+#~ msgid "GNOME Tetravex"
+#~ msgstr "GNOME Tetravex"
 
-msgid "Gnotski"
-msgstr "Gnotski"
+#~ msgid "Gnotski"
+#~ msgstr "Gnotski"
 
-msgid "Dice game"
-msgstr "Dobbelstenen"
+#~ msgid "Dice game"
+#~ msgstr "Dobbelstenen"
 
-msgid "Reversi game"
-msgstr "Reversi"
+#~ msgid "Reversi game"
+#~ msgstr "Reversi"
 
-msgid "Mahjongg game"
-msgstr "Mahjongg"
+#~ msgid "Mahjongg game"
+#~ msgstr "Mahjongg"
 
-msgid "GNOME SameGame"
-msgstr "GNOME SameGame"
+#~ msgid "GNOME SameGame"
+#~ msgstr "GNOME SameGame"
 
-msgid ""
-"Congratulations\n"
-"\n"
-"You Won!!!"
-msgstr ""
-"Gefeliciteerd\n"
-"\n"
-"U heeft gewonnen!!!"
+#~ msgid ""
+#~ "Congratulations\n"
+#~ "\n"
+#~ "You Won!!!"
+#~ msgstr ""
+#~ "Gefeliciteerd\n"
+#~ "\n"
+#~ "U heeft gewonnen!!!"
 
-msgid ""
-"\n"
-"Game Over.\n"
-msgstr ""
-"\n"
-"Spel Voorbij.\n"
+#~ msgid ""
+#~ "\n"
+#~ "Game Over.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Spel Voorbij.\n"
 
-msgid "Main program:  Jonathan Blandford (jrb@redhat.com)"
-msgstr "Hoofdprogramma: Jonathan Blandford (jrb@redhat.com)"
+#~ msgid "Main program:  Jonathan Blandford (jrb@redhat.com)"
+#~ msgstr "Hoofdprogramma: Jonathan Blandford (jrb@redhat.com)"
 
-msgid "                      Felix Bellaby (felix@pooh.u-net.com)"
-msgstr "                      Felix Bellaby (felix@pooh.u-net.com)"
+#~ msgid "                      Felix Bellaby (felix@pooh.u-net.com)"
+#~ msgstr "                      Felix Bellaby (felix@pooh.u-net.com)"
 
-msgid "                      Rosanna Yuen (zana@webwynk.net)"
-msgstr "                      Rosanna Yuen (zana@webwynk.net)"
+#~ msgid "                      Rosanna Yuen (zana@webwynk.net)"
+#~ msgstr "                      Rosanna Yuen (zana@webwynk.net)"
 
-msgid "Card Games:    Jonathan Blandford (jrb@redhat.com)"
-msgstr "Kaartspellen:    Jonathan Blandford (jrb@redhat.com)"
+#~ msgid "Card Games:    Jonathan Blandford (jrb@redhat.com)"
+#~ msgstr "Kaartspellen:    Jonathan Blandford (jrb@redhat.com)"
 
-msgid "                      W. Borgert (debacle@debian.org)"
-msgstr "                      W. Borgert (debacle@debian.org)"
+#~ msgid "                      W. Borgert (debacle@debian.org)"
+#~ msgstr "                      W. Borgert (debacle@debian.org)"
 
-msgid "                      Robert Brady (rwb197@ecs.soton.ac.uk)"
-msgstr "                      Robert Brady (rwb197@ecs.soton.ac.uk)"
+#~ msgid "                      Robert Brady (rwb197@ecs.soton.ac.uk)"
+#~ msgstr "                      Robert Brady (rwb197@ecs.soton.ac.uk)"
 
-msgid "                      Nick Lamb (njl195@zepler.org.uk)"
-msgstr "                      Nick Lamb (njl195@zepler.org.uk)"
+#~ msgid "                      Nick Lamb (njl195@zepler.org.uk)"
+#~ msgstr "                      Nick Lamb (njl195@zepler.org.uk)"
 
-msgid "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"
-msgstr "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"
+#~ msgid "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"
+#~ msgstr "                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"
 
-msgid "                      Matthew Wilcox (matthew@wil.cx)"
-msgstr "                      Matthew Wilcox (matthew@wil.cx)"
+#~ msgid "                      Matthew Wilcox (matthew@wil.cx)"
+#~ msgstr "                      Matthew Wilcox (matthew@wil.cx)"
 
-msgid "(C) 1998 Jonathan Blandford (jrb@redhat.com)"
-msgstr "(©) 1998 Jonathan Blandford (jrb@redhat.com)"
+#~ msgid "(C) 1998 Jonathan Blandford (jrb@redhat.com)"
+#~ msgstr "(©) 1998 Jonathan Blandford (jrb@redhat.com)"
 
-msgid "Choose a different variation of solitaire"
-msgstr "Een andere variatie van solitaire kiezen"
+#~ msgid "Choose a different variation of solitaire"
+#~ msgstr "Een andere variatie van solitaire kiezen"
 
-msgid "melborp"
-msgstr "melborp"
+#~ msgid "melborp"
+#~ msgstr "melborp"
 
-msgid "Are you sure you want to quit Aisleriot?"
-msgstr "Wilt u echt stoppen met Aisleriot?"
+#~ msgid "Are you sure you want to quit Aisleriot?"
+#~ msgstr "Wilt u echt stoppen met Aisleriot?"
 
-msgid "Score: "
-msgstr "Score: "
+#~ msgid "Score: "
+#~ msgstr "Score: "
 
-msgid "Time: "
-msgstr "Tijd: "
+#~ msgid "Time: "
+#~ msgstr "Tijd: "
 
-msgid " for num "
-msgstr " voor nummer "
+#~ msgid " for num "
+#~ msgstr " voor nummer "
 
-msgid "Testing "
-msgstr "Testen"
+#~ msgid "Testing "
+#~ msgstr "Testen"
 
-msgid "\n"
-msgstr "\n"
+#~ msgid "\n"
+#~ msgstr "\n"
 
-msgid "dealing face-down to "
-msgstr "gesloten kaarten delen voor "
+#~ msgid "dealing face-down to "
+#~ msgstr "gesloten kaarten delen voor "
 
-msgid "dealing face-up to "
-msgstr "open kaarten delen voor "
+#~ msgid "dealing face-up to "
+#~ msgstr "open kaarten delen voor "
 
-msgid "Are you sure you want to quit Gataxx?"
-msgstr "Wilt u echt stoppen met Gataxx?"
+#~ msgid "Are you sure you want to quit Gataxx?"
+#~ msgstr "Wilt u echt stoppen met Gataxx?"
 
-msgid "Are you sure you want to start a new game?"
-msgstr "Wilt u echt met een nieuw spel beginnen?"
+#~ msgid "Are you sure you want to start a new game?"
+#~ msgstr "Wilt u echt met een nieuw spel beginnen?"
 
-msgid "Properties"
-msgstr "Eigenschappen"
+#~ msgid "Properties"
+#~ msgstr "Eigenschappen"
 
-msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
-msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
+#~ msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
+#~ msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
 
-msgid "Szabolcs Ban <shooby@gnome.hu>"
-msgstr "Szabolcs Ban <shooby@gnome.hu>"
+#~ msgid "Szabolcs Ban <shooby@gnome.hu>"
+#~ msgstr "Szabolcs Ban <shooby@gnome.hu>"
 
-msgid "(C) 1997-2000 the Free Software Foundation"
-msgstr "(©) 1997-2000 the Free Software Foundation"
+#~ msgid "(C) 1997-2000 the Free Software Foundation"
+#~ msgstr "(©) 1997-2000 the Free Software Foundation"
 
-msgid "Select background:"
-msgstr "Achtergrond bordspel:"
+#~ msgid "Select background:"
+#~ msgstr "Achtergrond bordspel:"
 
-msgid "Ask confirmation when quitting"
-msgstr "Vraag bevestiging alvorens te stoppen"
+#~ msgid "Ask confirmation when quitting"
+#~ msgstr "Vraag bevestiging alvorens te stoppen"
 
-msgid "Are you sure you want to quit Glines?"
-msgstr "Wilt u echt stoppen met Glines?"
+#~ msgid "Are you sure you want to quit Glines?"
+#~ msgstr "Wilt u echt stoppen met Glines?"
 
-msgid "Verify"
-msgstr "Verifiëren"
+#~ msgid "Verify"
+#~ msgstr "Verifiëren"
 
-msgid "Whether or not to ask before quitting an unfinished game."
-msgstr "Of er om toestemming wordt gevraagd voordat een spel wordt beëindigd"
+#~ msgid "Whether or not to ask before quitting an unfinished game."
+#~ msgstr ""
+#~ "Of er om toestemming wordt gevraagd voordat een spel wordt beëindigd"
 
-msgid " Sorry, full column"
-msgstr "Sorry, kolom is vol"
+#~ msgid " Sorry, full column"
+#~ msgstr "Sorry, kolom is vol"
 
-msgid "Are you sure you want to quit Gnect?"
-msgstr "Wilt u echt stoppen met Gnect?"
+#~ msgid "Are you sure you want to quit Gnect?"
+#~ msgstr "Wilt u echt stoppen met Gnect?"
 
-msgid " You win!"
-msgstr "U heeft gewonnen!"
+#~ msgid " You win!"
+#~ msgstr "U heeft gewonnen!"
 
-msgid " I win!"
-msgstr "Ik heb gewonnen!"
+#~ msgid " I win!"
+#~ msgstr "Ik heb gewonnen!"
 
-msgid " \"Game->New game\" to begin"
-msgstr "\"Spel->Nieuw spel\" om te starten"
+#~ msgid " \"Game->New game\" to begin"
+#~ msgstr "\"Spel->Nieuw spel\" om te starten"
 
-msgid "Animation:"
-msgstr "Animatie:"
+#~ msgid "Animation:"
+#~ msgstr "Animatie:"
 
-msgid "Yes please!"
-msgstr "Ja graag!"
+#~ msgid "Yes please!"
+#~ msgstr "Ja graag!"
 
-msgid "Sound type:"
-msgstr "Geluidtype:"
+#~ msgid "Sound type:"
+#~ msgstr "Geluidtype:"
 
-msgid "If stopping an unfinished game:"
-msgstr "Als een niet uitgespeeld spel wordt afgesloten:"
+#~ msgid "If stopping an unfinished game:"
+#~ msgstr "Als een niet uitgespeeld spel wordt afgesloten:"
 
-msgid "Ask me first"
-msgstr "Eerst vragen"
+#~ msgid "Ask me first"
+#~ msgstr "Eerst vragen"
 
-msgid "Are you sure you want to quit Gnibbles?"
-msgstr "Wilt u echt stoppen met Gnibbles?"
+#~ msgid "Are you sure you want to quit Gnibbles?"
+#~ msgstr "Wilt u echt stoppen met Gnibbles?"
 
-msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
-msgstr ""
-"Opmerkingen en foutrapportages opsturen naar: sjm@acm.org of itp@gnu.org"
+#~ msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
+#~ msgstr ""
+#~ "Opmerkingen en foutrapportages opsturen naar: sjm@acm.org of itp@gnu.org"
 
-msgid "Sounds"
-msgstr "Geluiden"
+#~ msgid "Sounds"
+#~ msgstr "Geluiden"
 
-msgid "Number of players: "
-msgstr "Aantal spelers: "
+#~ msgid "Number of players: "
+#~ msgstr "Aantal spelers: "
 
-msgid "Down:"
-msgstr "Omlaag:"
+#~ msgid "Down:"
+#~ msgstr "Omlaag:"
 
-msgid "Left:"
-msgstr "Links:"
+#~ msgid "Left:"
+#~ msgstr "Links:"
 
-msgid "Right:"
-msgstr "Rechts:"
+#~ msgid "Right:"
+#~ msgstr "Rechts:"
 
-msgid "Color:"
-msgstr "Kleur:"
+#~ msgid "Color:"
+#~ msgstr "Kleur:"
 
-msgid "Are you sure you want to quit GNOME Robots?"
-msgstr "Wilt u echt stoppen met GNOME Robots?"
+#~ msgid "Are you sure you want to quit GNOME Robots?"
+#~ msgstr "Wilt u echt stoppen met GNOME Robots?"
 
-msgid "Safe Moves"
-msgstr "Veilige zetten"
+#~ msgid "Safe Moves"
+#~ msgstr "Veilige zetten"
 
-msgid "Super Safe Moves"
-msgstr "Superveilige zetten"
+#~ msgid "Super Safe Moves"
+#~ msgstr "Superveilige zetten"
 
-msgid "Configuration"
-msgstr "Configuratie"
+#~ msgid "Configuration"
+#~ msgstr "Configuratie"
 
-msgid "Graphics:"
-msgstr "Graphics:"
+#~ msgid "GNOME-Stones (c) 1998 Carsten Schaar"
+#~ msgstr "GNOME-Stones (©) 1998 Carsten Schaar"
 
-msgid "GNOME-Stones (c) 1998 Carsten Schaar"
-msgstr "GNOME-Stones (©) 1998 Carsten Schaar"
+#~ msgid "Game title:"
+#~ msgstr "Speltitel:"
 
-msgid "Game title:"
-msgstr "Speltitel:"
+#~ msgid "GNOME-STONES"
+#~ msgstr "GNOME-STONES"
 
-msgid "GNOME-STONES"
-msgstr "GNOME-STONES"
+#~ msgid "A game."
+#~ msgstr "Een spel"
 
-msgid "A game."
-msgstr "Een spel"
+#~ msgid "Filename"
+#~ msgstr "Bestandsnaam"
 
-msgid "Filename"
-msgstr "Bestandsnaam"
+#~ msgid "Sound enable/disable. Not yet implemented!"
+#~ msgstr "Geluid aan/uitzetten is nog niet geïmplementeerd!"
 
-msgid "Sound enable/disable. Not yet implemented!"
-msgstr "Geluid aan/uitzetten is nog niet geïmplementeerd!"
+#~ msgid "Level: "
+#~ msgstr "Level: "
 
-msgid "Level: "
-msgstr "Level: "
+#~ msgid "Code: Pista"
+#~ msgstr "Code: Pista"
 
-msgid "Code: Pista"
-msgstr "Code: Pista"
+#~ msgid "Faces: tigert"
+#~ msgstr "Gezichten: tigert"
 
-msgid "Faces: tigert"
-msgstr "Gezichten: tigert"
+#~ msgid "Score: HoraPe"
+#~ msgstr "Score: HoraPe"
 
-msgid "Score: HoraPe"
-msgstr "Score: HoraPe"
+#~ msgid "(C) 1997-1999 the Free Software Foundation"
+#~ msgstr "(©) 1997-1999 the Free Software Foundation"
 
-msgid "(C) 1997-1999 the Free Software Foundation"
-msgstr "(©) 1997-1999 the Free Software Foundation"
+#~ msgid "Time : "
+#~ msgstr "Tijd :"
 
-msgid "Time : "
-msgstr "Tijd :"
+#~ msgid ""
+#~ "Tetravex clone\n"
+#~ "(Comments to: Lars.Rydlinge@HIG.SE)"
+#~ msgstr ""
+#~ "Tetravex kloon\n"
+#~ "(Commentaar naar: Lars.Rydlinge@HIG.SE)"
 
-msgid ""
-"Tetravex clone\n"
-"(Comments to: Lars.Rydlinge@HIG.SE)"
-msgstr ""
-"Tetravex kloon\n"
-"(Commentaar naar: Lars.Rydlinge@HIG.SE)"
+#~ msgid ""
+#~ "Klotski clone\n"
+#~ "(Comments to: Lars.Rydlinge@HIG.SE)"
+#~ msgstr ""
+#~ "Klotski-kloon\n"
+#~ "(Opmerkingen naar: Lars.Rydlinge@HIG.SE)"
 
-msgid ""
-"Klotski clone\n"
-"(Comments to: Lars.Rydlinge@HIG.SE)"
-msgstr ""
-"Klotski-kloon\n"
-"(Opmerkingen naar: Lars.Rydlinge@HIG.SE)"
+#~ msgid "Scott Heavner"
+#~ msgstr "Scott Heavner"
 
-msgid "Scott Heavner"
-msgstr "Scott Heavner"
+#~ msgid "(C) 1998 the Free Software Fundation"
+#~ msgstr "(©) 1998 the Free Software Fundation"
 
-msgid "(C) 1998 the Free Software Fundation"
-msgstr "(©) 1998 the Free Software Fundation"
+#~ msgid "GTali setup"
+#~ msgstr "GTali instellingen"
 
-msgid "GTali setup"
-msgstr "GTali instellingen"
+#~ msgid "Are you sure you want to quit Iagno?"
+#~ msgstr "Wilt u echt stoppen met Iagno?"
 
-msgid "Are you sure you want to quit Iagno?"
-msgstr "Wilt u echt stoppen met Iagno?"
+#~ msgid "(C) 1998 Ian Peters"
+#~ msgstr "(©) 1998 Ian Peters"
 
-msgid "(C) 1998 Ian Peters"
-msgstr "(©) 1998 Ian Peters"
+#~ msgid ""
+#~ "Send comments and bug reports to: itp@gnu.org\n"
+#~ "Tiles under the General Public License."
+#~ msgstr ""
+#~ "Stuur commentaar en bug-verslagen naar: itp@gnu.org\n"
+#~ "Tegels onde de General Public License."
 
-msgid ""
-"Send comments and bug reports to: itp@gnu.org\n"
-"Tiles under the General Public License."
-msgstr ""
-"Stuur commentaar en bug-verslagen naar: itp@gnu.org\n"
-"Tegels onde de General Public License."
+#~ msgid "Toggle display of the toolbar"
+#~ msgstr "Schakel zichtbaarheid van de menubalk"
 
-msgid "Quick Moves"
-msgstr "Snelle Zetten"
+#~ msgid "Show confirmation dialogs"
+#~ msgstr "Laat bevestigings dialogen zien"
 
-msgid "Toggle display of the toolbar"
-msgstr "Schakel zichtbaarheid van de menubalk"
+#~ msgid ""
+#~ "Send comments and bug reports to:\n"
+#~ "        pancho@nuclecu.unam.mx or\n"
+#~ "        mmeeks@gnu.org\n"
+#~ "\n"
+#~ "Tiles under the General Public License."
+#~ msgstr ""
+#~ "Stuur commentaar en bug-verslagen naar:\n"
+#~ "        pancho@nuclecu.unam.mx of\n"
+#~ "        mmeeks@gnu.org\n"
+#~ "\n"
+#~ "Tegels onder de General Public License."
 
-msgid "Show confirmation dialogs"
-msgstr "Laat bevestigings dialogen zien"
+#~ msgid "Are you sure you want to restart this game?"
+#~ msgstr "Wilt u echt dit spel echt overnieuw doen?"
 
-msgid ""
-"Send comments and bug reports to:\n"
-"        pancho@nuclecu.unam.mx or\n"
-"        mmeeks@gnu.org\n"
-"\n"
-"Tiles under the General Public License."
-msgstr ""
-"Stuur commentaar en bug-verslagen naar:\n"
-"        pancho@nuclecu.unam.mx of\n"
-"        mmeeks@gnu.org\n"
-"\n"
-"Tegels onder de General Public License."
+#~ msgid "Are you sure you want to quit GNOME Mahjongg?"
+#~ msgstr "Wilt u echt stoppen met GNOME Mahjongg?"
 
-msgid "Are you sure you want to restart this game?"
-msgstr "Wilt u echt dit spel echt overnieuw doen?"
+#~ msgid "Serious internal error"
+#~ msgstr "Ernstige interne fout"
 
-msgid "Are you sure you want to quit GNOME Mahjongg?"
-msgstr "Wilt u echt stoppen met GNOME Mahjongg?"
+#~ msgid "Seed: "
+#~ msgstr "Nummer:"
 
-msgid "Serious internal error"
-msgstr "Ernstige interne fout"
+#~ msgid "Current streaks."
+#~ msgstr "Huidige slagen"
 
-msgid "Seed: "
-msgstr "Nummer:"
+#~ msgid "Inform users of invalid moves"
+#~ msgstr "Waarschuwen bij ongeldige zetten"
 
-msgid "Current streaks."
-msgstr "Huidige slagen"
+#~ msgid "Inform users of invalid moves."
+#~ msgstr "Waarschuwen bij ongeldige zetten"
 
-msgid "Inform users of invalid moves"
-msgstr "Waarschuwen bij ongeldige zetten"
+#~ msgid "Lose number"
+#~ msgstr "Verliesgetal"
 
-msgid "Inform users of invalid moves."
-msgstr "Waarschuwen bij ongeldige zetten"
+#~ msgid "Lose number."
+#~ msgstr "Verliesgetal"
 
-msgid "Lose number"
-msgstr "Verliesgetal"
+#~ msgid "Move cards one at a time"
+#~ msgstr "De kaarten één voor één verplaatsen"
 
-msgid "Lose number."
-msgstr "Verliesgetal"
+#~ msgid "Move cards one at a time."
+#~ msgstr "De kaarten één voor één verplaatsen"
 
-msgid "Move cards one at a time"
-msgstr "De kaarten één voor één verplaatsen"
+#~ msgid "Win number"
+#~ msgstr "Wingetal"
 
-msgid "Move cards one at a time."
-msgstr "De kaarten één voor één verplaatsen"
+#~ msgid "Win number - streaks"
+#~ msgstr "Wingestal - slagen"
 
-msgid "Win number"
-msgstr "Wingetal"
+#~ msgid "Win number - streaks."
+#~ msgstr "Wingetal - slagen"
 
-msgid "Win number - streaks"
-msgstr "Wingestal - slagen"
+#~ msgid "Win number."
+#~ msgstr "Wingetal"
 
-msgid "Win number - streaks."
-msgstr "Wingetal - slagen"
+#~ msgid "Freecell #%d"
+#~ msgstr "Freecell #%d"
 
-msgid "Win number."
-msgstr "Wingetal"
+#~ msgid "Seed value:"
+#~ msgstr "Nummer:"
 
-msgid "Freecell #%d"
-msgstr "Freecell #%d"
+#~ msgid "Sorry, this feature is not (yet) implemented."
+#~ msgstr "Sorry, deze optie is (nog) niet geimplementeerd."
 
-msgid "Seed value:"
-msgstr "Nummer:"
+#~ msgid "Are you sure you want to quit Freecell?"
+#~ msgstr "Wilt u echt stoppen met Freecell?"
 
-msgid "Sorry, this feature is not (yet) implemented."
-msgstr "Sorry, deze optie is (nog) niet geimplementeerd."
+#~ msgid "Changwoo Ryu."
+#~ msgstr "Changwoo Ryu"
 
-msgid "Are you sure you want to quit Freecell?"
-msgstr "Wilt u echt stoppen met Freecell?"
+#~ msgid "That move is invalid."
+#~ msgstr "Deze zet is ongeldig"
 
-msgid "Changwoo Ryu."
-msgstr "Changwoo Ryu"
+#~ msgid "Sorry, there are no more valid moves."
+#~ msgstr "Sorry, er zijn geen geldige zetten meer"
 
-msgid "That move is invalid."
-msgstr "Deze zet is ongeldig"
+#~ msgid ""
+#~ "Congratulations.  You won.\n"
+#~ "Do you want to play again?"
+#~ msgstr ""
+#~ "Gefeliciteerd! U heeft gewonnen.\n"
+#~ "Wilt u nog een keer spelen?"
 
-msgid "Sorry, there are no more valid moves."
-msgstr "Sorry, er zijn geen geldige zetten meer"
+#~ msgid "New game with seed..."
+#~ msgstr "Nieuw spel met nummer..."
 
-msgid ""
-"Congratulations.  You won.\n"
-"Do you want to play again?"
-msgstr ""
-"Gefeliciteerd! U heeft gewonnen.\n"
-"Wilt u nog een keer spelen?"
+#~ msgid "Start a new game with a different seed"
+#~ msgstr "Start een nieuw spel met een ander nummer"
 
-msgid "New game with seed..."
-msgstr "Nieuw spel met nummer..."
+#~ msgid "Freecell Properties"
+#~ msgstr "Freecell Instellingen"
 
-msgid "Start a new game with a different seed"
-msgstr "Start een nieuw spel met een ander nummer"
+#~ msgid "Warn on invalid moves"
+#~ msgstr "Waarschuw bij ongeldige zetten"
 
-msgid "Freecell Properties"
-msgstr "Freecell Instellingen"
+#~ msgid "Move stacks one by one"
+#~ msgstr "Verplaats de stapels een voor een"
 
-msgid "Warn on invalid moves"
-msgstr "Waarschuw bij ongeldige zetten"
+#~ msgid "This session: %d%%"
+#~ msgstr "Deze sessie: %d%%"
 
-msgid "Move stacks one by one"
-msgstr "Verplaats de stapels een voor een"
+#~ msgid "won: %d, lost: %d"
+#~ msgstr "gewonnen: %d, verloren: %d"
 
-msgid "This session: %d%%"
-msgstr "Deze sessie: %d%%"
+#~ msgid "Total: %d%%"
+#~ msgstr "Totaal: %d%%"
 
-msgid "won: %d, lost: %d"
-msgstr "gewonnen: %d, verloren: %d"
+#~ msgid "Streaks"
+#~ msgstr "Streaks"
 
-msgid "Total: %d%%"
-msgstr "Totaal: %d%%"
+#~ msgid "wins: %d, losses: %d"
+#~ msgstr "gewonnen: %d, verloren: %d"
 
-msgid "Streaks"
-msgstr "Streaks"
+#~ msgid "current: %d wins"
+#~ msgstr "huidige: %d gewonnen"
 
-msgid "wins: %d, losses: %d"
-msgstr "gewonnen: %d, verloren: %d"
+#~ msgid "current: %d losses"
+#~ msgstr "huidige: %d verloren"
 
-msgid "current: %d wins"
-msgstr "huidige: %d gewonnen"
+#~ msgid "Not enough lines on the terminal"
+#~ msgstr "Niet genoeg lijnen op de terminal"
 
-msgid "current: %d losses"
-msgstr "huidige: %d verloren"
+#~ msgid "What dice to roll again (<RETURN> for none)? "
+#~ msgstr "Welke dobbelsteen moet opniew gegooid worden (<RETURN> voor geen)? "
 
-msgid "Not enough lines on the terminal"
-msgstr "Niet genoeg lijnen op de terminal"
+#~ msgid "Where do you want to put that? "
+#~ msgstr "Waar moet het ingevuld worden? "
 
-msgid "What dice to roll again (<RETURN> for none)? "
-msgstr "Welke dobbelsteen moet opniew gegooid worden (<RETURN> voor geen)? "
+#~ msgid "No good! Where do you want to put that? "
+#~ msgstr "Niet goed! Waar moet het ingevuld worden? "
 
-msgid "Where do you want to put that? "
-msgstr "Waar moet het ingevuld worden? "
+#~ msgid "Rolling for %s"
+#~ msgstr "Gooien voor %s"
 
-msgid "No good! Where do you want to put that? "
-msgstr "Niet goed! Waar moet het ingevuld worden? "
+#~ msgid "Tali top scores"
+#~ msgstr "Tali top scores"
 
-msgid "Rolling for %s"
-msgstr "Gooien voor %s"
+#~ msgid "Can't get at score file."
+#~ msgstr "Kan niet bij score bestand."
 
-msgid "Tali top scores"
-msgstr "Tali top scores"
+#~ msgid "Hit Return"
+#~ msgstr "Toets Return"
 
-msgid "Can't get at score file."
-msgstr "Kan niet bij score bestand."
+#~ msgid "obsolete function - delay turned off by default)"
+#~ msgstr "overbodige functie - vertraging standaard uitgezet"
 
-msgid "Hit Return"
-msgstr "Toets Return"
+#~ msgid "Welcome to the game of Tali"
+#~ msgstr "Welkom bij het spel Tali"
 
-msgid "obsolete function - delay turned off by default)"
-msgstr "overbodige functie - vertraging standaard uitgezet"
+#~ msgid "How many wish to play (max of %d)? "
+#~ msgstr "Hoeveel spelers (maximaal %d)?"
 
-msgid "Welcome to the game of Tali"
-msgstr "Welkom bij het spel Tali"
+#~ msgid "What is the name of player #%d ? "
+#~ msgstr "Wat is de naam van speler #%d ? "
 
-msgid "How many wish to play (max of %d)? "
-msgstr "Hoeveel spelers (maximaal %d)?"
+#~ msgid "Boo hoo... I can't play...\n"
+#~ msgstr "Gemeen... Ik kan niet spelen...\n"
 
-msgid "What is the name of player #%d ? "
-msgstr "Wat is de naam van speler #%d ? "
+#~ msgid "How many computers to play (max of %d) ? "
+#~ msgstr "Hoeveel computer spelers (maximaal %d) ? "
 
-msgid "Boo hoo... I can't play...\n"
-msgstr "Gemeen... Ik kan niet spelen...\n"
+#~ msgid ""
+#~ "Well, why did you run this anyways???\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Tja, waarom heeft u dit eigenlijk opgestart???\n"
+#~ "\n"
 
-msgid "How many computers to play (max of %d) ? "
-msgstr "Hoeveel computer spelers (maximaal %d) ? "
+#~ msgid ""
+#~ "Fantastic!  %.2f!\n"
+#~ "You have reached #%d in the Top Ten.\n"
+#~ "\n"
+#~ "Another game?"
+#~ msgstr ""
+#~ "Fantastisch! %.2f!\n"
+#~ "Je bent nummer #%d geworden in de Top Tien.\n"
+#~ "\n"
+#~ "Nog een spel?"
 
-msgid ""
-"Well, why did you run this anyways???\n"
-"\n"
-msgstr ""
-"Tja, waarom heeft u dit eigenlijk opgestart???\n"
-"\n"
+#~ msgid ""
+#~ "Great!\n"
+#~ "You made it in %.2f.\n"
+#~ "\n"
+#~ "Another game?"
+#~ msgstr ""
+#~ "Geweldig!\n"
+#~ "Je hebt het gehaald tot %.2f.\n"
+#~ "\n"
+#~ "Nog een spel?"
+
+#~ msgid "Select scenario:"
+#~ msgstr "Selecteer scenario:"
+
+#~ msgid "Are you sure you want to quit Same GNOME?"
+#~ msgstr "Wilt u echt stoppen met Same GNOME?"
+
+#~ msgid ""
+#~ "             The Story:\n"
+#~ "\n"
+#~ "Yet again, the fate of the world rests\n"
+#~ "in your hands!  An evil computer hacker,\n"
+#~ "known only by his handle 'Bill', has\n"
+#~ "created the ultimate computer virus.  A\n"
+#~ "virus so powerful that it has the power\n"
+#~ "to transmute an ordinary computer into\n"
+#~ "a toaster oven.  (oooh!) 'Bill' has\n"
+#~ "cloned himself into a billion-jillion\n"
+#~ "micro-Bills.  Their sole purpose is to\n"
+#~ "deliver the nefarious virus, which has\n"
+#~ "been cleverly diguised as a popular\n"
+#~ "operating system.\n"
+#~ "\n"
+#~ "As System Administrator/Exterminator,\n"
+#~ "your job is to keep Bill from succeeding\n"
+#~ "at his task."
+#~ msgstr ""
+#~ "             Het verhaal:\n"
+#~ "\n"
+#~ "Wederom ligt het lot van de wereld\n"
+#~ "in jou handen! Een gemene computerkraker,\n"
+#~ "alleen bekend onder, de naam \"Bill\",\n"
+#~ "heeft het ultieme computervirus gemaakt.\n"
+#~ "Een virus zo krachtig, dat het de kracht\n"
+#~ "heeft om een gewone computer te\n"
+#~ "transformeren in een electrische oven.\n"
+#~ "  (oooh!) 'Bill' heeft zichzekf gekloond in\n"
+#~ "miljarden micro-Bills. Met als enige doel,\n"
+#~ "het verschrikkelijke virus af te leveren,\n"
+#~ "welke op een slimme manier is\n"
+#~ "verborgen in een populair besturingssysteem.\n"
+#~ "\n"
+#~ "Als systeembeheerder, is het jouw taak\n"
+#~ "om Bill tegen te houden, zijn taak af te maken."
 
-msgid ""
-"Fantastic!  %.2f!\n"
-"You have reached #%d in the Top Ten.\n"
-"\n"
-"Another game?"
-msgstr ""
-"Fantastisch! %.2f!\n"
-"Je bent nummer #%d geworden in de Top Tien.\n"
-"\n"
-"Nog een spel?"
-
-msgid ""
-"Great!\n"
-"You made it in %.2f.\n"
-"\n"
-"Another game?"
-msgstr ""
-"Geweldig!\n"
-"Je hebt het gehaald tot %.2f.\n"
-"\n"
-"Nog een spel?"
-
-msgid "Select scenario:"
-msgstr "Selecteer scenario:"
-
-msgid "Are you sure you want to quit Same GNOME?"
-msgstr "Wilt u echt stoppen met Same GNOME?"
-
-msgid ""
-"             The Story:\n"
-"\n"
-"Yet again, the fate of the world rests\n"
-"in your hands!  An evil computer hacker,\n"
-"known only by his handle 'Bill', has\n"
-"created the ultimate computer virus.  A\n"
-"virus so powerful that it has the power\n"
-"to transmute an ordinary computer into\n"
-"a toaster oven.  (oooh!) 'Bill' has\n"
-"cloned himself into a billion-jillion\n"
-"micro-Bills.  Their sole purpose is to\n"
-"deliver the nefarious virus, which has\n"
-"been cleverly diguised as a popular\n"
-"operating system.\n"
-"\n"
-"As System Administrator/Exterminator,\n"
-"your job is to keep Bill from succeeding\n"
-"at his task."
-msgstr ""
-"             Het verhaal:\n"
-"\n"
-"Wederom ligt het lot van de wereld\n"
-"in jou handen! Een gemene computerkraker,\n"
-"alleen bekend onder, de naam \"Bill\",\n"
-"heeft het ultieme computervirus gemaakt.\n"
-"Een virus zo krachtig, dat het de kracht\n"
-"heeft om een gewone computer te\n"
-"transformeren in een electrische oven.\n"
-"  (oooh!) 'Bill' heeft zichzekf gekloond in\n"
-"miljarden micro-Bills. Met als enige doel,\n"
-"het verschrikkelijke virus af te leveren,\n"
-"welke op een slimme manier is\n"
-"verborgen in een populair besturingssysteem.\n"
-"\n"
-"Als systeembeheerder, is het jouw taak\n"
-"om Bill tegen te houden, zijn taak af te maken."
-
-msgid ""
-"             The Rules:\n"
-"\n"
-"xBill has been painstakingly designed and\n"
-"researched in order to make it as easy to use\n"
-"for the whole family as it is for little Sally.\n"
-"Years - nay - days of beta testing and \n"
-"consulting with the cheapest of human interface\n"
-"designers have resulted in a game that is easy\n"
-"to use, yet nothing at all like a Macintosh.\n"
-"\n"
-"I.   Whack the Bills (click)\n"
-"II.  Restart the computer (click)\n"
-"III. Pick up stolen OSes & return(drag)\n"
-"     them to their respective computers\n"
-"IV.  Drag the bucket to extinguish sparks\n"
-"V.   Scoring is based on total uptime,\n"
-"     with bonuses for killing Bills.\n"
-"\n"
-"As for the rest, you can probably figure\n"
-"it out.  We did, so it can't be too hard."
-msgstr ""
-"           De regels:\n"
-"\n"
-"xBill is ontworpen na veel nadenken\n"
-"en onderzoeken om het gebruik voor\n"
-"de gehele famillie zo makkelijk\n"
-"mogelijk te maken.\n"
-"Jaren, nou ja, dagen zijn er besteed aan\n"
-"het testen, en overleggen met de\n"
-"goedkoopste ontwerpers, om tot een spel\n"
-"te komen dat makkelijk te gebruiken is.\n"
-"Echter nog niet zo makkelijk als een Macintosh.\n"
-"\n"
-"I.   Plet de 'Bills' (klik)\n"
-"II.  Herstart de computer (klik)\n"
-"III. Pak de gestolen besturingssystemen op(sleep),\n"
-"     en geef ze terug aan hun eigen computers\n"
-"IV. Sleep de emmer om de vonken te doven\n"
-"V.  Het scoren van punten wordt gebaseerd op\n"
-"     de totale 'uptime', met een bonus voor het\n"
-"     vermoorden van 'Bills'.\n"
-"\n"
-"De rest kan je waarschijnlijk zelf wel uitvogelen,\n"
-"wij konden het, dus erg moeilijk kan het niet zijn."
-
-msgid ""
-"Module xBill has caused a segmentation fault\n"
-"at memory address 097E:F1A0.  Core dumped.\n"
-"\n"
-"    We apologize for the inconvenience."
-msgstr ""
-"Module xBill heeft een segmentatiefout gemaakt\n"
-"in geheugenadres 097E:F1A0.  Geheugen weggeschreven.\n"
-"\n"
-"   Onze excuses voor deze problemen."
-
-msgid "Warp to level?"
-msgstr "Verplaats naar level? "
-
-msgid "Quit Game?"
-msgstr "Spel afsluiten?"
-
-msgid "New Game?"
-msgstr "Nieuw Spel?"
-
-msgid "Game paused.  Press Continue to continue."
-msgstr "Spel gepauzeerd. Druk op een toets om verder te gaan"
-
-msgid ""
-"You earned a high score.\n"
-"Enter your name:"
-msgstr "Voer uw naam in"
-
-msgid "Pause Game"
-msgstr "Spel pauzeren"
-
-msgid "Continue"
-msgstr "Verdergaan"
-
-msgid "Warp To Level"
-msgstr "Begin bij level: "
-
-msgid "Story"
-msgstr "Verhaal"
-
-msgid "Endgame"
-msgstr "Eindspel"
-
-msgid "Warp to level..."
-msgstr "Springen naar level..."
-
-msgid ""
-"Copyright (C) 1994, Psychosoft\n"
-"Computer logos, etc., copyright their respective owners"
-msgstr ""
-"Copyright (©) 1994, Psychosoft\n"
-"Computer logos, etc., copyright van de eigenaren"
-
-msgid ""
-"After Level %d:     \n"
-"Your score: %d"
-msgstr ""
-"Na level: %d      \n"
-"Je score: %d"
-
-msgid "GNOME xBill Scores"
-msgstr "GNOME xBill scores"
-
-msgid "Are you sure you want to quit GNOME xBill?"
-msgstr "Wilt u echt stoppen met GNOME xBill?"
+#~ msgid ""
+#~ "             The Rules:\n"
+#~ "\n"
+#~ "xBill has been painstakingly designed and\n"
+#~ "researched in order to make it as easy to use\n"
+#~ "for the whole family as it is for little Sally.\n"
+#~ "Years - nay - days of beta testing and \n"
+#~ "consulting with the cheapest of human interface\n"
+#~ "designers have resulted in a game that is easy\n"
+#~ "to use, yet nothing at all like a Macintosh.\n"
+#~ "\n"
+#~ "I.   Whack the Bills (click)\n"
+#~ "II.  Restart the computer (click)\n"
+#~ "III. Pick up stolen OSes & return(drag)\n"
+#~ "     them to their respective computers\n"
+#~ "IV.  Drag the bucket to extinguish sparks\n"
+#~ "V.   Scoring is based on total uptime,\n"
+#~ "     with bonuses for killing Bills.\n"
+#~ "\n"
+#~ "As for the rest, you can probably figure\n"
+#~ "it out.  We did, so it can't be too hard."
+#~ msgstr ""
+#~ "           De regels:\n"
+#~ "\n"
+#~ "xBill is ontworpen na veel nadenken\n"
+#~ "en onderzoeken om het gebruik voor\n"
+#~ "de gehele famillie zo makkelijk\n"
+#~ "mogelijk te maken.\n"
+#~ "Jaren, nou ja, dagen zijn er besteed aan\n"
+#~ "het testen, en overleggen met de\n"
+#~ "goedkoopste ontwerpers, om tot een spel\n"
+#~ "te komen dat makkelijk te gebruiken is.\n"
+#~ "Echter nog niet zo makkelijk als een Macintosh.\n"
+#~ "\n"
+#~ "I.   Plet de 'Bills' (klik)\n"
+#~ "II.  Herstart de computer (klik)\n"
+#~ "III. Pak de gestolen besturingssystemen op(sleep),\n"
+#~ "     en geef ze terug aan hun eigen computers\n"
+#~ "IV. Sleep de emmer om de vonken te doven\n"
+#~ "V.  Het scoren van punten wordt gebaseerd op\n"
+#~ "     de totale 'uptime', met een bonus voor het\n"
+#~ "     vermoorden van 'Bills'.\n"
+#~ "\n"
+#~ "De rest kan je waarschijnlijk zelf wel uitvogelen,\n"
+#~ "wij konden het, dus erg moeilijk kan het niet zijn."
+
+#~ msgid ""
+#~ "Module xBill has caused a segmentation fault\n"
+#~ "at memory address 097E:F1A0.  Core dumped.\n"
+#~ "\n"
+#~ "    We apologize for the inconvenience."
+#~ msgstr ""
+#~ "Module xBill heeft een segmentatiefout gemaakt\n"
+#~ "in geheugenadres 097E:F1A0.  Geheugen weggeschreven.\n"
+#~ "\n"
+#~ "   Onze excuses voor deze problemen."
+
+#~ msgid "Warp to level?"
+#~ msgstr "Verplaats naar level? "
+
+#~ msgid "Quit Game?"
+#~ msgstr "Spel afsluiten?"
+
+#~ msgid "New Game?"
+#~ msgstr "Nieuw Spel?"
+
+#~ msgid "Game paused.  Press Continue to continue."
+#~ msgstr "Spel gepauzeerd. Druk op een toets om verder te gaan"
+
+#~ msgid ""
+#~ "You earned a high score.\n"
+#~ "Enter your name:"
+#~ msgstr "Voer uw naam in"
+
+#~ msgid "Pause Game"
+#~ msgstr "Spel pauzeren"
+
+#~ msgid "Continue"
+#~ msgstr "Verdergaan"
+
+#~ msgid "Warp To Level"
+#~ msgstr "Begin bij level: "
+
+#~ msgid "Story"
+#~ msgstr "Verhaal"
+
+#~ msgid "Endgame"
+#~ msgstr "Eindspel"
+
+#~ msgid "Warp to level..."
+#~ msgstr "Springen naar level..."
+
+#~ msgid ""
+#~ "Copyright (C) 1994, Psychosoft\n"
+#~ "Computer logos, etc., copyright their respective owners"
+#~ msgstr ""
+#~ "Copyright (©) 1994, Psychosoft\n"
+#~ "Computer logos, etc., copyright van de eigenaren"
+
+#~ msgid ""
+#~ "After Level %d:     \n"
+#~ "Your score: %d"
+#~ msgstr ""
+#~ "Na level: %d      \n"
+#~ "Je score: %d"
+
+#~ msgid "Are you sure you want to quit GNOME xBill?"
+#~ msgstr "Wilt u echt stoppen met GNOME xBill?"
