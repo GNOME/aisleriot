@@ -15,23 +15,23 @@ These should all become yes or have a good reason why not.
 
                 1.      2.      3.      4.      5.      6.
 aisleriot       P       Y       a       Y       Y       N
-blackjack       d       ?       ?       ?       Y       ?
-gataxx          N       N       Y       N       Y       ?
-glines          N       N       Y       Y       Y       ?
+blackjack       d       Y       a       Y       Y       Y
+gataxx          N       N       Y       N       Y       h
+glines          N       N       Y       Y       Y       h
 gnect           N       Y       Y       Y       Y       N
-gnibbles        N       Y       Y       Y       Y       ?
-gnobots2        N       N       c       Y       Y       ?
-gnome-stones    N       P       Y       Y       Y       ?
-gnometris       N       N       Y       Y       Y       ?
-gnomine         N       Y       Y       Y       Y       N
-gnotravex       N       Y       Y       N       Y       ?
-gnotski         N       e       Y       Y       Y       ?
-gtali           P       N       Y       N       Y       ?
-iagno           N       N       f       N       Y       ?
-mahjongg        N       P       g       N       Y       ?
-same-gnome      N       N       Y       Y       Y       ?
-libgame-support N       -       -       -       -       ?
-gdk-card-image  N       -       -       -       -       ?
+gnibbles        N       Y       Y       Y       Y       h
+gnobots2        N       N       c       Y       Y       N
+gnome-stones    N       P       Y       Y       Y       h
+gnometris       N       N       Y       Y       Y       Y
+gnomine         N       Y       Y       Y       Y       Y
+gnotravex       N       Y       Y       N       Y       h
+gnotski         N       e       Y       Y       Y       N
+gtali           P       N       Y       N       Y       N
+iagno           N       N       f       N       Y       N
+mahjongg        N       P       g       N       Y       Y
+same-gnome      N       N       Y       Y       Y       h
+libgame-support N       -       -       -       -       N
+gdk-card-image  N       -       -       -       -       Y
 
 a) The preference and select dialogs are compliant, but there is
    debate about whether it is good UI. For the moment this counts as 
@@ -44,6 +44,8 @@ e) Doesn't have any preferences, but if we start remembering which
    games have been done we will.
 f) Not auto-apply.
 g) Yes, but it is too high for a 480 pixel high screen.
+h) Yes, except for deprecated string functions (strcmp, stlen)
+   and possibly gtk_widget_set_uposition.
 
 2.4 Issues
 
