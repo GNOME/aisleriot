@@ -1,5 +1,5 @@
 /* AisleRiot - splash.c
- * Copyright (C) 1998 Felix Bellaby <felix@pooh.u-net.com>
+ * Copyright (C) 1998, 2003 Felix Bellaby <felix@pooh.u-net.com>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,6 +61,7 @@ expose_event (GtkWidget *w, GdkEventExpose *event)
 		waiting_for_expose = FALSE;
 		gtk_main_quit ();
 	}
+        return TRUE;
 }
 
 
@@ -88,7 +89,7 @@ splash_new ()
   gtk_window_set_position (GTK_WINDOW(splash), 
 		       GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (splash), _("AisleRiot"));
-  gtk_window_set_policy (GTK_WINDOW (splash), FALSE, FALSE, FALSE);
+  gtk_window_set_resizable (GTK_WINDOW (splash), FALSE);
   gnome_window_icon_set_from_default (GTK_WINDOW (splash));
   g_signal_connect (GTK_OBJECT (splash), "destroy",
 		      GTK_SIGNAL_FUNC (splash_destroyed),

@@ -86,8 +86,8 @@ void generate_press_data ( ) {
     
     x += hslot->dx; y += hslot->dy;
   }
-  gdk_gc_unref (gc1);
-  gdk_gc_unref (gc2);
+  g_object_unref (gc1);
+  g_object_unref (gc2);
   
   gdk_window_set_back_pixmap (press_data->moving_cards, 
 			      press_data->moving_pixmap, 0);

@@ -1,5 +1,5 @@
 /* AisleRiot - slot.h
- * Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+ * Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #ifndef SLOT_H
 #define SLOT_H
 
-#include "glib.h"
+#include <glib.h>
 
 /*
  * Data Structures
@@ -52,8 +52,8 @@ extern GList *slot_list;
 
 void slot_pressed (gint, gint, hslot_type *, gint*);
 void card_offset (hslot_type, gint, gint*, gint*);
-GList* get_slot_list();
-void delete_surface();
+GList* get_slot_list(void);
+void delete_surface(void);
 void delete_slot(hslot_type);
 hslot_type get_slot(gint);
 void increase_slot_length(hslot_type);

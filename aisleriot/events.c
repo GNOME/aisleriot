@@ -29,16 +29,6 @@ gint last_cardid;
 GTimer * click_timer = NULL;
 gdouble dbl_click_time;
 
-static guint32
-get_current_time (void)
-{
-	GTimeVal tval;
-
-	g_get_current_time (&tval);
-
-	return tval.tv_sec;
-}
-
 int waiting_for_mouse_up(void) {
   if (!press_data) return 0;
   if (press_data->status == STATUS_IS_DRAG) return 1;
@@ -104,9 +94,9 @@ void drop_moving_cards(gint x, gint y) {
   gdk_window_hide(press_data->moving_cards);
 
   if (press_data->moving_pixmap)
-    gdk_drawable_unref(press_data->moving_pixmap);
+    g_object_unref(press_data->moving_pixmap);
   if (press_data->moving_mask)
-    gdk_drawable_unref(press_data->moving_mask);
+    g_object_unref(press_data->moving_mask);
   press_data->moving_pixmap = NULL;
   press_data->moving_mask = NULL;
 
@@ -273,7 +263,7 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
     gdk_drawable_get_size(surface, &old_w, &old_h);
     if(old_w == event->width && old_h == event->height)
       return TRUE;
-    gdk_drawable_unref(surface);
+    g_object_unref(surface);
   }
   else {
     timer_start();

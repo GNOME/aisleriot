@@ -86,7 +86,7 @@ void show_game_over_dialog() {
 
 gchar *filename = NULL;
 
-void select_rules(GtkTreeSelection *select, gpointer data)
+static void select_rules(GtkTreeSelection *select, gpointer data)
 {
 	GtkTreeModel *model;
         GtkTreeIter iter;
@@ -95,7 +95,7 @@ void select_rules(GtkTreeSelection *select, gpointer data)
 	gtk_tree_model_get(model, &iter, 1, &filename, -1);
 }
 
-void select_game (GtkWidget *app, gint response, GtkWidget* entry)
+static void select_game (GtkWidget *app, gint response, GtkWidget* entry)
 {
   if(response == GTK_RESPONSE_OK) {
     seed = atoi (gtk_entry_get_text (GTK_ENTRY (entry)));
@@ -190,7 +190,6 @@ void show_select_game_dialog()
     
     for(i = 0; i < n_games; i++) {
 	    gchar *text;
-	    gint row;
 	    text = game_file_to_name (game_dents[i]->d_name);
 	    gtk_list_store_append (GTK_LIST_STORE (list), &iter);
             gtk_list_store_set(GTK_LIST_STORE (list), 
@@ -319,24 +318,6 @@ void show_hint_dialog()
   g_free (gmessage);
 }
 
-GtkWidget *
-get_main_page (GtkWidget* dialog)
-{
-  GtkWidget *retval = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
-
-  gtk_widget_show_all (retval);
-  return retval;
-}
-
-GtkWidget *
-get_background_page (GtkWidget* dialog)
-{
-  GtkWidget *retval = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
-
-  gtk_widget_show_all (retval);
-  return retval;
-}
-
 static GtkWidget * deck_edit = NULL;
 
 static void 
@@ -410,7 +391,7 @@ option_apply (GtkWidget *w, int response)
     gh_call1(game_data->apply_options_lambda, options);
 }
 
-GtkWidget *
+static GtkWidget *
 get_option_page (GtkWidget* option_dialog)
 {
   SCM opts;

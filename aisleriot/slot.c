@@ -1,5 +1,5 @@
 /* AisleRiot - slot.c
- * Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+ * Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
  */
 
 #include <stdlib.h>
+#include <glib.h>
 
 #include "slot.h"
 #include "card.h"

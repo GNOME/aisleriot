@@ -39,7 +39,7 @@ games_gconf_get_string(GConfClient *client, const gchar* key, const gchar* def)
 
   /* check value type */
   if (value->type != GCONF_VALUE_STRING) {
-    g_warning ("Key %s was expected to be a string, is a %s", key, gconf_value_type_to_string(value->type));
+    g_warning ("Key %s is not of type string, using the default instead.", key);
     return g_strdup (def);
   }
 

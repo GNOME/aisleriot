@@ -104,7 +104,7 @@ SCM make_card(hcard_type card)
 }
 
 /* Scheme functions */
-SCM scm_gettext(SCM message)
+static SCM scm_gettext(SCM message)
 {
   static char * input = NULL;
   char * output;
@@ -121,7 +121,7 @@ SCM scm_gettext(SCM message)
   return gh_str02scm (output);
 }
 
-SCM scm_undo_set_sensitive (SCM in_state)
+static SCM scm_undo_set_sensitive (SCM in_state)
 {
   gboolean state;
 
@@ -131,7 +131,7 @@ SCM scm_undo_set_sensitive (SCM in_state)
   return SCM_EOL;
 }
 
-SCM scm_redo_set_sensitive (SCM in_state)
+static SCM scm_redo_set_sensitive (SCM in_state)
 {
   gboolean state;
 
@@ -141,43 +141,44 @@ SCM scm_redo_set_sensitive (SCM in_state)
   return SCM_EOL;
 }
 
-SCM scm_get_card_width() 
+static SCM scm_get_card_width() 
 {
   return gh_long2scm(get_card_width());
 }
 
-SCM scm_get_card_height() 
+static SCM scm_get_card_height() 
 {
   return gh_long2scm(get_card_height());
 }
 
-SCM scm_get_horiz_offset() 
+static SCM scm_get_horiz_offset() 
 {
   return gh_long2scm(get_horiz_offset());
 }
 
-SCM scm_get_vert_offset() 
+static SCM scm_get_vert_offset() 
 {
   return gh_long2scm(get_vert_offset());
 }
 
-SCM scm_get_horiz_start() 
+static SCM scm_get_horiz_start() 
 {
   return gh_long2scm(get_horiz_start());
 }
 
-SCM scm_get_vert_start() 
+static SCM scm_get_vert_start() 
 {
   return gh_long2scm(get_vert_start());
 }
-SCM scm_set_statusbar_message(SCM message)
+
+static SCM scm_set_statusbar_message(SCM message)
 {
   gnome_appbar_clear_stack (GNOME_APPBAR (GNOME_APP (app)->statusbar));
   gnome_appbar_push (GNOME_APPBAR(GNOME_APP (app)->statusbar), _(gh_scm2newstr(message,NULL)));
   return SCM_EOL;
 }
 
-SCM scm_set_surface_layout(SCM surface) 
+static SCM scm_set_surface_layout(SCM surface) 
 {
   if (surface != SCM_EOL) {
     SCM list_el;
@@ -191,31 +192,33 @@ SCM scm_set_surface_layout(SCM surface)
 }
 
 
-SCM scm_reset_surface() 
+static SCM scm_reset_surface() 
 {
   delete_surface();
   return SCM_EOL;
 }
 
-SCM gg_scm_add_slot(SCM slot) 
+static SCM gg_scm_add_slot(SCM slot) 
 {
   add_slot(slot);
   return SCM_EOL;
 }
 
-SCM scm_set_slot_y_expansion(SCM scm_slot_id, SCM new_exp_val)
+static SCM scm_set_slot_y_expansion(SCM scm_slot_id, SCM new_exp_val)
 {
   hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
   slot->dy = gh_scm2int(new_exp_val);
+  return SCM_EOL;
 }
 
-SCM scm_set_slot_x_expansion(SCM scm_slot_id, SCM new_exp_val)
+static SCM scm_set_slot_x_expansion(SCM scm_slot_id, SCM new_exp_val)
 {
   hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
   slot->dx = gh_scm2int(new_exp_val);
+  return SCM_EOL;
 }
 
-SCM scm_get_slot(SCM scm_slot_id) 
+static SCM scm_get_slot(SCM scm_slot_id) 
 {
   SCM cards = SCM_EOL;
   hslot_type slot = get_slot(gh_scm2int(scm_slot_id));
@@ -230,7 +233,7 @@ SCM scm_get_slot(SCM scm_slot_id)
   return cards; 
 }
 
-SCM scm_set_cards(SCM scm_slot_id, SCM new_cards) 
+static SCM scm_set_cards(SCM scm_slot_id, SCM new_cards) 
 {
   hslot_type hslot = get_slot(gh_scm2int(scm_slot_id));
   GList* tempptr;
@@ -243,15 +246,16 @@ SCM scm_set_cards(SCM scm_slot_id, SCM new_cards)
 
   return SCM_BOOL_T;
 }
-SCM scm_set_lambda(SCM start_game_lambda, 
-		   SCM pressed_lambda, 
-		   SCM released_lambda, 
-		   SCM clicked_lambda, 
-		   SCM dbl_clicked_lambda,
-		   SCM game_over_lambda,
-		   SCM winning_game_lambda,
-		   SCM hint_lambda,
-		   SCM rest) 
+
+static SCM scm_set_lambda(SCM start_game_lambda, 
+                          SCM pressed_lambda, 
+                          SCM released_lambda, 
+                          SCM clicked_lambda, 
+                          SCM dbl_clicked_lambda,
+                          SCM game_over_lambda,
+                          SCM winning_game_lambda,
+                          SCM hint_lambda,
+                          SCM rest) 
 {
   if (!game_data)
 	 game_data = malloc(sizeof(lambda_data));
@@ -269,37 +273,37 @@ SCM scm_set_lambda(SCM start_game_lambda,
   return SCM_EOL;
 }
 
-SCM scm_myrandom(SCM range) 
+static SCM scm_myrandom(SCM range) 
 {
   return gh_long2scm(g_random_int_range(0,SCM_INUM(range)));
 }
 
-SCM scm_get_score() 
+static SCM scm_get_score() 
 {
   return gh_int2scm(score);
 }
 
-SCM scm_set_score(SCM new) 
+static SCM scm_set_score(SCM new) 
 {
   score = gh_scm2int(new);
   set_score();
   return gh_int2scm(score);
 }
 
-SCM scm_add_to_score(SCM new) 
+static SCM scm_add_to_score(SCM new) 
 {
   score += gh_scm2int(new);
   set_score();
   return gh_int2scm(score);
 }
 
-SCM scm_set_timeout (SCM new) 
+static SCM scm_set_timeout (SCM new) 
 {
   timeout = gh_scm2int(new);
   return new;
 }
 
-SCM scm_get_timeout () 
+static SCM scm_get_timeout () 
 {
   return gh_int2scm(timeout);
 }

@@ -29,7 +29,7 @@
 
 static GtkWidget *about = NULL;
 
-void restart_game ()
+static void restart_game ()
 {
   if (waiting_for_mouse_up()) return;
   new_game (NULL, &seed);
@@ -39,12 +39,6 @@ void random_seed ()
 {
   if (waiting_for_mouse_up()) return;
   new_game (NULL, NULL);
-};
-
-void new_rules (GtkWidget* w, gchar* file) 
-{
-  if (waiting_for_mouse_up()) return;
-  new_game (file, NULL);
 };
 
 void undo_callback ()
@@ -134,7 +128,7 @@ void help_about_callback ()
   return;
 }
 
-void toolbar_show (void)
+static void toolbar_show (void)
 {
   GtkWidget * toolbar;
 
@@ -152,7 +146,7 @@ void toolbar_hide (void)
   gtk_widget_hide (toolbar);
 }
 
-void toolbar_toggle_callback(GtkWidget * togglebutton, gpointer data)
+static void toolbar_toggle_callback(GtkWidget * togglebutton, gpointer data)
 {
   gboolean state;
   

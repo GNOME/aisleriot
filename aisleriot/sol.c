@@ -101,7 +101,7 @@ gchar* game_file_to_name (const gchar* file)
  * This function assumes that xxx.scm has a HTML help file xxx.html
  * located in the gnome/help/aisleriot/../ dir (nb '_' -> '-' for DocBook).
  */
-gpointer* game_file_to_help_entry (const gchar* file)
+static gpointer* game_file_to_help_entry (const gchar* file)
 {
 #if 0
   GnomeHelpMenuEntry* entry;
@@ -119,6 +119,8 @@ gpointer* game_file_to_help_entry (const gchar* file)
 
   g_string_free(help, TRUE);
   return (gpointer *) entry;
+#else
+  return NULL;
 #endif
 }
 
@@ -180,8 +182,6 @@ GnomeUIInfo rules_help[] = {
 static int
 save_state (GnomeClient *client)
 {
-  const gchar *prefix = gnome_client_get_config_prefix (client);
-
   gconf_client_set_string (gconf_client, "/apps/aisleriot/game_file",
                            game_file, NULL);
   gconf_client_set_string (gconf_client, "/apps/aisleriot/card_options",
@@ -291,7 +291,7 @@ GtkWidget *time_value;
  *}
  */
 
-gint timer_cb ()
+static gint timer_cb ()
 {
 #if 0
 /*  game_seconds++;
@@ -339,7 +339,7 @@ void timer_stop ()
  */
 
 
-void create_sol_board ()
+static void create_sol_board ()
 {
   playing_area = gtk_drawing_area_new ();
   gtk_widget_set_events (playing_area, 
@@ -368,7 +368,7 @@ gboolean quit_app (GtkMenuItem *menuitem)
   gtk_main_quit ();
 }
 
-void create_main_window ()
+static void create_main_window ()
 {
   app = gnome_app_new ("aisleriot", _("Aisleriot"));
 
@@ -380,7 +380,7 @@ void create_main_window ()
 		      GTK_SIGNAL_FUNC (configure_event), NULL);
 }
 
-void create_press_data ()
+static void create_press_data ()
 {
   GdkWindowAttr attributes;
 
@@ -400,11 +400,9 @@ void create_press_data ()
 
 gchar* start_game;
 
-void main_prog(int argc, char *argv[])
+static void main_prog(int argc, char *argv[])
 {
   GtkWidget *score_label, *time_label, *score_box, *status_bar;
-  GtkWidget * toolbar_widget;
-  gboolean toolbar_state;
   
   seed = time(NULL);
   g_random_set_seed(seed);
@@ -461,8 +459,8 @@ void main_prog(int argc, char *argv[])
   gtk_main ();
 
   free_pixmaps();
-  gdk_drawable_unref (surface);
-  gdk_drawable_unref (press_data->moving_cards);
+  g_object_unref (surface);
+  g_object_unref (press_data->moving_cards);
 }
 
 static void
@@ -476,7 +474,7 @@ retrieve_state (GnomeClient *client)
                                          "beige.png bonded.png gnome.png bold-09x14.png knuth-09x10.png knuth-18x21.png knuth-21x25.png");
 }
 
-int
+static int
 is_game (const struct dirent* dent)
 {
   return (!strcmp (g_extension_pointer (dent->d_name),"scm") &&
@@ -519,7 +517,7 @@ int main (int argc, char *argv [])
 
   g_signal_connect (GTK_OBJECT (gnome_master_client ()), "save_yourself",
 		      GTK_SIGNAL_FUNC (save_state), 
-		      (gpointer) g_basename(argv[0]));
+		      (gpointer) g_path_get_basename(argv[0]));
   g_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
 		      GTK_SIGNAL_FUNC (quit_app), NULL);
 

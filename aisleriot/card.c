@@ -1,5 +1,5 @@
 /* AisleRiot - card.c
- * Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+ * Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ int get_horiz_start () {
   return 30;
 }
 
-GdkPixmap* get_pixmap (const char* filename)
+static GdkPixmap* get_pixmap (const char* filename)
 {
   GdkPixmap* ret;
   GdkPixbuf *im;
@@ -96,7 +96,7 @@ GdkPixmap* get_pixmap (const char* filename)
   return ret;
 }
 
-GdkPixbuf* get_pixbuf (const char* filename)
+static GdkPixbuf* get_pixbuf (const char* filename)
 {
   GdkPixbuf *im;
   char* fullname = gnome_program_locate_file (NULL,
@@ -126,7 +126,7 @@ void free_pixmaps ()
   if (slot_pixbuf != NULL)
     gdk_pixbuf_unref (slot_pixbuf);
   if (default_background_pixmap != NULL)
-    gdk_drawable_unref (default_background_pixmap);
+    g_object_unref (default_background_pixmap);
 }
 
 void add_card(GList** card_list, hcard_type temp_card) {
