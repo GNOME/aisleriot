@@ -225,7 +225,7 @@ property_apply (GtkWidget *w, int page)
   }
 }
 
-void show_property_dialog () 
+void show_preferences_dialog () 
 {
   static GtkWidget* property_box = NULL;
 

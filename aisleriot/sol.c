@@ -368,6 +368,8 @@ void main_prog(int argc, char *argv[])
   gtk_box_pack_end (GTK_BOX(status_bar), score_box, FALSE, FALSE, 0);
   gnome_app_set_statusbar (GNOME_APP (app), status_bar);
 
+  install_menu_hints(GNOME_APP (app));
+
   new_game (start_game, &seed);
 
   splash_destroy ();

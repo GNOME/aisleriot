@@ -24,5 +24,6 @@ void undo_callback ();
 void redo_callback ();
 void help_about_callback ();
 void create_menus ();
+void install_menu_hints ();
 
 #endif

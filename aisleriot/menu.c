@@ -81,72 +81,82 @@ GnomeUIInfo rules_sub_menu[] = {
   GNOMEUIINFO_END
 };
 
-GnomeUIInfo rules_menu[] = {
-  GNOMEUIINFO_SUBTREE(N_("_Select"), rules_sub_menu),
+GnomeUIInfo file_menu[] = {
+  GNOMEUIINFO_MENU_EXIT_ITEM(quit_app, NULL),
+  GNOMEUIINFO_END
+};
 
-  GNOMEUIINFO_ITEM_STOCK(N_("_Options..."), NULL, 
+GnomeUIInfo settings_menu[] = {
+
+  
+  GNOMEUIINFO_ITEM_STOCK(N_("Game _options..."),
+			 N_("Modify the options for this game"),
 			 show_rules_options_dialog, GNOME_STOCK_MENU_PREF),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("S_tatistics..."), NULL, 
-			 show_rules_stats_dialog, GNOME_STOCK_MENU_BOOK_BLUE),
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_MENU_PREFERENCES_ITEM(show_preferences_dialog, NULL),
+
+  GNOMEUIINFO_END
+};
+
+GnomeUIInfo rules_menu[] = {
 
   GNOMEUIINFO_END
 };
 
 GnomeUIInfo help_menu[] = {
-  GNOMEUIINFO_ITEM_STOCK(N_("_About..."), NULL, 
-			 help_about_callback, GNOME_STOCK_MENU_ABOUT),
-  GNOMEUIINFO_SEPARATOR,
-
   GNOMEUIINFO_HELP("aisleriot"),
+
+  GNOMEUIINFO_MENU_ABOUT_ITEM(help_about_callback, NULL),
 
   GNOMEUIINFO_END
 };
 
 GnomeUIInfo game_menu[] = {
-  GNOMEUIINFO_ITEM_STOCK(N_("_New"), NULL, 
-			 random_seed, GNOME_STOCK_MENU_NEW),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("_Restart"), NULL,
-			 restart_game, GNOME_STOCK_MENU_REFRESH),
+  GNOMEUIINFO_MENU_NEW_GAME_ITEM(random_seed, NULL),
 
-  GNOMEUIINFO_ITEM_STOCK(N_("_Select..."), NULL, 
+  { GNOME_APP_UI_SUBTREE, N_("New _game of..."),
+    N_("Start a new game of a different variation"),
+    rules_sub_menu, NULL, NULL, GNOME_APP_PIXMAP_STOCK,
+    GNOME_STOCK_MENU_NEW, 0, 0, NULL },
+  
+  GNOMEUIINFO_MENU_RESTART_GAME_ITEM(restart_game, NULL),
+
+  GNOMEUIINFO_ITEM_STOCK(N_("_Select..."), N_("Select a new game variation"),
 			 show_select_game_dialog, GNOME_STOCK_MENU_OPEN),
-
-  GNOMEUIINFO_ITEM_STOCK(N_("_Properties..."), NULL, 
-			 show_property_dialog, GNOME_STOCK_MENU_PREF),
-
-  GNOMEUIINFO_ITEM_STOCK(N_("S_tatistics..."), NULL, 
-			 show_global_stats_dialog, GNOME_STOCK_MENU_BOOK_BLUE),
 
   GNOMEUIINFO_SEPARATOR,
 
-  GNOMEUIINFO_ITEM_STOCK(N_("E_xit"), NULL, 
-			 quit_app, GNOME_STOCK_MENU_EXIT),
+  GNOMEUIINFO_MENU_UNDO_MOVE_ITEM(undo_callback, NULL),
+
+  GNOMEUIINFO_MENU_REDO_MOVE_ITEM(redo_callback, NULL),
+
+  GNOMEUIINFO_MENU_HINT_ITEM(show_hint_dialog, NULL),
+  /*  GNOMEUIINFO_ITEM_STOCK(N_("_Properties..."), NULL, 
+      show_property_dialog, GNOME_STOCK_MENU_PREF), */
+
+  GNOMEUIINFO_SEPARATOR,
+
+  GNOMEUIINFO_MENU_SCORES_ITEM(show_global_stats_dialog, NULL),
+  /*  GNOMEUIINFO_ITEM_STOCK(N_("S_tatistics..."), NULL, 
+      show_global_stats_dialog, GNOME_STOCK_MENU_BOOK_BLUE), */
+
   GNOMEUIINFO_END
 };
 
-GnomeUIInfo move_menu[] = {
-  GNOMEUIINFO_ITEM_STOCK(N_("_Hint"), NULL, 
-			 show_hint_dialog, GNOME_STOCK_MENU_JUMP_TO),
-
-  GNOMEUIINFO_ITEM_STOCK(N_("_Undo"), NULL, 
-			 undo_callback, GNOME_STOCK_MENU_UNDO),
-
-  GNOMEUIINFO_ITEM_STOCK(N_("_Redo"), NULL, 
-			 redo_callback, GNOME_STOCK_MENU_REDO),
-
-  GNOMEUIINFO_END
-};
 
 GnomeUIInfo top_menu[] = {
-  GNOMEUIINFO_SUBTREE(N_("_Game"), game_menu),
 
-  GNOMEUIINFO_SUBTREE(N_("_Variation"), rules_menu),
+  GNOMEUIINFO_MENU_FILE_TREE(file_menu),
 
-  GNOMEUIINFO_SUBTREE(N_("_Move"), move_menu),
 
-  GNOMEUIINFO_SUBTREE(N_("_Help"), help_menu),
+  GNOMEUIINFO_MENU_GAME_TREE(game_menu),
+
+  GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
+
+  GNOMEUIINFO_MENU_HELP_TREE(help_menu),
 
   GNOMEUIINFO_END
 };
@@ -177,7 +187,6 @@ GnomeUIInfo toolbar[] =
 
   GNOMEUIINFO_ITEM_STOCK(N_("Exit"), N_("Quit Aisleriot."),
 			 quit_app, GNOME_STOCK_PIXMAP_EXIT),
-
   GNOMEUIINFO_END
 };
 
@@ -198,3 +207,9 @@ void create_menus ()
 			(gpointer) game_dents[i]->d_name);
   }
 }
+
+void install_menu_hints (GnomeApp *app)
+{
+  gnome_app_install_menu_hints(GNOME_APP (app), top_menu);
+}
+
