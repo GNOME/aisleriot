@@ -1,3 +1,13 @@
+1998-02-15  Raja R Harinath  <harinath@cs.umn.edu>
+
+	* configure.in (AC_OUTPUT): Also generate `macros/Makefile' and
+	`support/Makefile'. 
+	* Makefile.am (SUBDIRS): Include `macros/' and `support/'.
+	(macros/macros.dep): Maintainer rule for auto-regeneration of
+	aclocal.m4. 
+
+	* acconfig.h (HAVE_LIBSM): New tag.
+
 Sat Feb 14 18:09:57 KST 1998  Changwoo Ryu  <cwryu@adam.kaist.ac.kr>
 
 	* configure.in: Not output to freecell/Makefile.

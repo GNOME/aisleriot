@@ -1,5 +1,6 @@
 #undef HAVE_LC_MESSAGES
 #undef HAVE_STPCPY
+#undef HAVE_LIBSM
 #undef PACKAGE
 #undef VERSION
 #undef ENABLE_NLS

@@ -8,12 +8,16 @@ GNOME_INIT
 GNOME_CHECK_OBJC
 GNOME_INIT_OBJC
 GNOME_CHECK_GUILE
+GNOME_SUPPORT_CHECKS
 
 AC_ISC_POSIX
 AC_PROG_CC
 AC_STDC_HEADERS
 AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
+
+## this should come after `AC_PROG_CC'
+GNOME_X_CHECKS
 
 ALL_LINGUAS=""
 AM_GNU_GETTEXT
@@ -28,6 +32,8 @@ AC_CONFIG_SUBDIRS(freecell)
 AC_OUTPUT([
 Makefile
 po/Makefile.in
+macros/Makefile
+support/Makefile
 gnomine/Makefile
 phaser-chess/Makefile
 scottfree/Makefile

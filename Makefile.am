@@ -6,4 +6,11 @@ if GUILE
 guile_DIRS = aisleriot
 endif
 
-SUBDIRS = intl po freecell gnomine same-gnome scottfree $(guile_DIRS) $(objc_DIRS)
+SUBDIRS = intl po macros support \
+	 freecell gnomine same-gnome scottfree $(guile_DIRS) $(objc_DIRS)
+
+## to automatically rebuild aclocal.m4 if any of the macros in
+## `macros/' change
+@MAINT@include macros/macros.dep
+@MAINT@macros/macros.dep: macros/Makefile.am
+@MAINT@	cd macros && $(MAKE) macros.dep
