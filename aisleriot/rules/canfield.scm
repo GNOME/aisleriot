@@ -1,0 +1,191 @@
+(define FLIP-COUNTER 0)
+(define BASE-VAL 0)
+
+(define (new-game)
+  (initialize-playing-area)
+  (make-standard-deck)
+  (shuffle-deck)
+
+  (add-normal-slot DECK)         ; first row
+  (add-normal-slot '())
+  (add-blank-slot)
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-carriage-return-slot)
+
+  (add-normal-slot '())               ; second row
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+  (add-extended-slot '() down)
+
+  (deal-cards 0 '(6 6 6 6 6 6 6 6 6 6 6 6 6 7 8 9 10 2))
+
+  (flip-top-card 6)
+  (flip-top-card 7)
+  (flip-top-card 8)
+  (flip-top-card 9)
+  (flip-top-card 10)
+  (flip-top-card 2)
+
+  (set! FLIP-COUNTER 0)
+  (set! BASE-VAL (get-value (get-top-card 2)))
+
+  (add-to-score! 1)
+
+  (list 7 4)
+)
+
+(define (button-pressed slot-id card-list)
+  (if (= slot-id 0)
+      #f
+      (if card-list
+	  (if (is-visible? (car (reverse card-list)))
+	      #t
+	      #f)
+	  #f)))
+
+(define (complete-transaction start-slot card-list end-slot)
+  (move-n-cards! start-slot end-slot card-list)
+  (if (and (> start-slot 1)
+	   (< start-slot 6))
+      (add-to-score! -1))
+  (if (and (> end-slot 1)
+	   (< end-slot 6))
+      (add-to-score! 1))
+  (if (and (empty-slot? start-slot) 
+	   (> start-slot 6)
+	   (not (empty-slot? 6)))
+      (begin 
+	(let ((top-card (remove-card 6)))
+	  (if (eq? top-card '())
+	      #f
+	      (add-card! start-slot top-card)))
+	(if (not (empty-slot? 6))
+	    (make-visible-top-card 6))))
+  (if (and (not (empty-slot? start-slot)) 
+	   (= start-slot 6))
+      (make-visible-top-card start-slot)
+      #f)
+  #t)
+
+(define (button-released start-slot card-list end-slot)
+  (if (= start-slot end-slot)
+      #f
+      (cond ((and (empty-slot? end-slot)
+		  (> end-slot 2) 
+		  (< end-slot 6) 
+		  (= 1 (list-length card-list))
+		  (= BASE-VAL (get-value (car card-list))))
+	     (complete-transaction start-slot card-list end-slot))
+	    ((and (empty-slot? end-slot)
+		  (> end-slot 6))
+	     (complete-transaction start-slot card-list end-slot))
+	    ((and (> end-slot 6)
+		  (eq? (is-red? (get-top-card end-slot))
+		       (is-black? (car (reverse card-list))))
+		  (or (= (get-value (get-top-card end-slot))
+			 (+ (get-value (car (reverse card-list))) 1))
+		      (and (= (get-value (get-top-card end-slot))
+			      ace)
+			   (= (get-value (car (reverse card-list)))
+			      king))))
+	     (complete-transaction start-slot card-list end-slot))
+	    ((and (> end-slot 1) 
+		  (< end-slot 6)
+		  (not (empty-slot? end-slot))
+		  (= 1 (list-length card-list))
+		  (= (get-suit (get-top-card end-slot))
+		     (get-suit (car card-list)))
+		  (or (= (get-value (get-top-card end-slot))
+			 (- (get-value (car card-list)) 1))
+		      (and (= (get-value (get-top-card end-slot))
+			      king)
+			   (= (get-value (car card-list))
+			      ace))))
+	     (complete-transaction start-slot card-list end-slot))
+	    (else #f))))
+
+(define (flip-cards-back)
+  (if (> FLIP-COUNTER 2)
+      #f
+      (if (empty-slot? 1)
+	  #f
+	  (begin
+	    (add-card! 0 (flip-card (remove-card 1)))
+	    (flip-cards-back)))))
+
+(define (button-clicked slot-id)
+  (if (= slot-id 0)
+      (if (empty-slot? 0)
+	  (begin
+	    (flip-cards-back)
+	    (set! FLIP-COUNTER (+ 1 FLIP-COUNTER)))
+	  (let ((top-card (remove-card 0)))
+	    (if (eq? top-card '())
+		#f
+		(add-card! 1 (flip-card top-card)))))
+      #f))
+
+(define (place-ace card slot)
+  (remove-card slot)
+  (if (empty-slot? 2)
+      (complete-transaction slot (list card) 2)
+      (if (empty-slot? 3)
+	  (complete-transaction slot (list card) 3)
+	  (if (empty-slot? 4)
+	      (complete-transaction slot (list card) 4)
+	      (complete-transaction slot (list card) 5)))))
+
+(define (place-found slot top-card search)
+  (if (and (not (empty-slot? search))
+	   (or (eq? (- (get-value top-card) 1) 
+		    (get-value (get-top-card search)))
+	       (and (eq? (get-value top-card) ace)
+		    (eq? (get-value (get-top-card search)) king)))
+	   (eq? (get-suit top-card) (get-suit (get-top-card search))))
+      (begin 
+	(remove-card slot)
+	(complete-transaction slot (list top-card) search))
+      (if (= search 5)
+	  #f
+	  (place-found slot top-card (+ search 1)))))
+
+(define (button-double-clicked slot)
+  (if (and (or (> slot 5) (eq? slot 1))
+	   (not (empty-slot? slot)))
+      (let ((top-card (get-top-card slot)))
+	(if (eq? (get-value top-card) BASE-VAL)
+	    (place-ace top-card slot)
+	    (place-found slot top-card 2)))))
+
+(define (game-over borp)
+  (if (and (empty-slot? 0)
+	   (empty-slot? 1)
+	   (empty-slot? 6)
+	   (empty-slot? 7)
+	   (empty-slot? 8)
+	   (empty-slot? 9)
+	   (empty-slot? 10))
+      #f
+      #t))
+
+(define (game-won borp)
+  (if (and (empty-slot? 0)
+	   (empty-slot? 1)
+	   (empty-slot? 6)
+	   (empty-slot? 7)
+	   (empty-slot? 8)
+	   (empty-slot? 9)
+	   (empty-slot? 10))
+      #t
+      #f))
+
+(define (get-hint borp)
+  #f)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)

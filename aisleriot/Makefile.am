@@ -41,6 +41,7 @@ types_DATA  = 		\
 	fortunes.scm	\
 	freecell.scm	\
 	camelot.scm	\
+	canfield.scm	\
 	clock.scm	\
 	klondike.scm	\
 	odessa.scm	\
