@@ -17,7 +17,7 @@ gchar*
 games_gconf_get_string(GConfClient *client, const gchar* key, const gchar* def)
 {
   GConfValue *value;
-  GError *error;
+  GError *error = NULL;
   gchar *string;
 
   g_return_val_if_fail (client != NULL, NULL);
@@ -81,7 +81,7 @@ games_gconf_sanity_check_string (GConfClient *client, const gchar* key)
     gtk_label_set_use_markup (GTK_LABEL (GTK_MESSAGE_DIALOG (dialog)->label), TRUE);
     gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
     gtk_dialog_run(GTK_DIALOG(dialog));
-    gtk_widget_destroy (GTK_WINDOW (dialog));
+    gtk_widget_destroy (dialog);
     return FALSE;
   }
   g_free (string);
