@@ -20,6 +20,7 @@
 
 #include <config.h>
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 
 #include "io-gtk.h"
 #include "option.h"
@@ -33,7 +34,7 @@ main (int argc, char **argv)
   textdomain (PACKAGE);
 
   gnome_init("freecell", VERSION, argc, argv);
-
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-cardgame.png");
   option_init();
   score_init();
 

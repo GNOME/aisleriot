@@ -34,7 +34,8 @@
 #include "sol.h"
 #include "events.h"
 #include "draw.h"
-#include "gnome.h"
+#include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 #include "slot.h"
 #include "card.h"
 #include "cscmi.h"
@@ -480,7 +481,8 @@ int main (int argc, char *argv [])
 
   gtk_widget_push_colormap (gdk_imlib_get_colormap ());
   gtk_widget_push_visual (gdk_imlib_get_visual ());
-  
+
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-aisleriot.png");
   splash_new ();
 
   splash_update (_("Initializing scheme..."), 0.20);

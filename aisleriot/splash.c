@@ -19,6 +19,7 @@
 
 #include "splash.h"
 #include <gnome.h>
+#include <libgnomeui/gnome-window-icon.h>
 
 GtkWidget* progress;
 GtkWidget* label;
@@ -47,6 +48,7 @@ splash_new ()
 		       GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (splash), _("AisleRiot"));
   gtk_window_set_policy (GTK_WINDOW (splash), FALSE, FALSE, FALSE);
+  gnome_window_icon_set_from_default (GTK_WINDOW (splash));
   
   gtk_container_border_width (GTK_CONTAINER (vbox), 0);
   gtk_container_add(GTK_CONTAINER(splash), vbox);
