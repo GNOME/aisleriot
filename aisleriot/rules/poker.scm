@@ -79,7 +79,7 @@
   (add-normal-slot '())
   (add-normal-slot '())
   (add-normal-slot '())
-
+  (deal-cards-face-up 0 '(1))
   (list 8 5))
 
 (define (button-pressed slot-id card-list)
@@ -278,12 +278,11 @@
   (and (empty-slot? end-slot)
        (> end-slot 1)
        (move-n-cards! start-slot end-slot card-list)
+       (deal-cards-face-up 0 '(1))
        (check-score end-slot)))
 
 (define (button-clicked slot-id)
-  (and (= slot-id 0)
-       (empty-slot? 1)
-       (deal-cards-face-up 0 '(1))))
+  #f)
 
 (define (button-double-clicked slot-id)
   #f)
