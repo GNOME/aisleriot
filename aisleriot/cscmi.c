@@ -23,8 +23,6 @@
 
 lambda_data* game_data = NULL;
 
-
-
 /* Scheme to C functions... */
 hslot_type new_slot(SCM slot_data) {
   hslot_type retval;
@@ -191,13 +189,14 @@ SCM scm_set_cards(SCM scm_slot_id, SCM new_cards) {
 }
 
 SCM scm_set_lambda(SCM start_game_lambda, 
-						 SCM pressed_lambda, 
-						 SCM released_lambda, 
-						 SCM clicked_lambda, 
-						 SCM dbl_clicked_lambda,
-						 SCM game_over_lambda,
-						 SCM winning_game_lambda,
-						 SCM hint_lambda) {
+		   SCM pressed_lambda, 
+		   SCM released_lambda, 
+		   SCM clicked_lambda, 
+		   SCM dbl_clicked_lambda,
+		   SCM game_over_lambda,
+		   SCM winning_game_lambda,
+		   SCM hint_lambda,
+		   SCM timeout_lambda) {
   if (!game_data)
 	 game_data = malloc(sizeof(lambda_data));
   game_data->start_game_lambda = start_game_lambda;
@@ -208,6 +207,7 @@ SCM scm_set_lambda(SCM start_game_lambda,
   game_data->game_over_lambda = game_over_lambda;
   game_data->winning_game_lambda = winning_game_lambda;
   game_data->hint_lambda = hint_lambda;
+  game_data->timeout_lambda = timeout_lambda;
   return SCM_EOL;
 }
 
@@ -229,4 +229,40 @@ SCM scm_add_to_score(SCM new) {
   score += gh_scm2int(new);
   set_score();
   return gh_int2scm(score);
+}
+
+SCM scm_set_timeout (SCM new) {
+  timeout = gh_scm2int(new);
+  return new;
+}
+
+SCM scm_get_timeout () {
+  return gh_int2scm(timeout);
+}
+
+void cscm_init () {
+  /* FIXME: On 1997-11-14, gh_enter stopped loading `icd-9/boot-9.scm'.
+     In my copy of guile, the first define in boot-9.scm is for "provide",
+     and it looked as good a test as any  */
+  gh_eval_str ("(if (not (defined? \'provide))\n"
+	       "  (primitive-load-path \"ice-9/boot-9.scm\"))");
+  gh_new_procedure0_0("get-card-width", scm_get_card_width);
+  gh_new_procedure0_0("get-card-height", scm_get_card_height);
+  gh_new_procedure0_0("get-horiz-offset",scm_get_horiz_offset);
+  gh_new_procedure0_0("get-vert-offset", scm_get_vert_offset);
+  gh_new_procedure0_0("get-horiz-start", scm_get_horiz_start);
+  gh_new_procedure0_0("get-vert-start", scm_get_vert_start);
+  gh_new_procedure1_0("set-surface-layout", scm_set_surface_layout);
+  gh_new_procedure0_0("reset-surface", scm_reset_surface);
+  gh_new_procedure1_0("add-slot", scm_add_slot);
+  gh_new_procedure1_0("get-slot", scm_get_slot);  
+  gh_new_procedure2_0("set-cards!", scm_set_cards);
+  gh_new_procedure("set-lambda", scm_set_lambda, 8, 0, 0);
+  gh_new_procedure1_0("random", scm_random);
+  gh_new_procedure0_0("get-score", scm_get_score);  
+  gh_new_procedure1_0("set-score!", scm_set_score);
+  gh_new_procedure0_0("get-timeout", scm_get_timeout);  
+  gh_new_procedure1_0("set-timeout!", scm_set_timeout);
+  gh_new_procedure1_0("add-to-score!", scm_add_to_score);
+  eval_installed_file ("sol.scm");
 }
