@@ -89,7 +89,7 @@ static gint fire_timer(Fire *f)
 	    f->index++;
 	    setpixel(g->buffer, f->x, f->y, 0xff,0xff,0xff);
 	    redraw_screen(g, f->x-1, f->y-1, 2, 2);
-//	    while(gtk_events_pending()) gtk_main_iteration();
+/*	    while(gtk_events_pending()) gtk_main_iteration(); */
 	}
 	else
 	{
