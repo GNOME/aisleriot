@@ -4,8 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games 1.0.51\n"
-"POT-Creation-Date: 2000-05-09 22:30+0300\n"
+"Project-Id-Version: gnome-games 1.2.0\n"
+"POT-Creation-Date: 2000-08-15 19:10+0200\n"
 "PO-Revision-Date: 2000-05-09 23:23+0300\n"
 "Last-Translator: Gediminas Paulauskas <menesis@delfi.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -577,7 +577,7 @@ msgstr "Ákeliami paveikslëliai..."
 msgid "Dealing game..."
 msgstr "Dalinamas þaidimas..."
 
-#: aisleriot/sol.c:378 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:847
+#: aisleriot/sol.c:378 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:841
 msgid "Score: "
 msgstr "Taðkai: "
 
@@ -590,7 +590,7 @@ msgid "Variation on game rules"
 msgstr "Þaidimo taisykliø variantas"
 
 #: aisleriot/sol.c:474 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
-#: same-gnome/same-gnome.c:776
+#: same-gnome/same-gnome.c:771
 msgid "NAME"
 msgstr "VARDAS"
 
@@ -684,7 +684,7 @@ msgstr "Naujas þaidimas su sëkla..."
 msgid "Start a new game with a different seed"
 msgstr "Pradëti naujà þaidimà su kitokia sëkla"
 
-#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:1149
 msgid "Score"
 msgstr "Taðkai"
 
@@ -720,10 +720,6 @@ msgstr ""
 msgid "Options"
 msgstr "Pasirinktys"
 
-#: freecell/src/score-dialog.c:54
-msgid "Clear"
-msgstr "Iðvalyti"
-
 #: freecell/src/score.c:56
 msgid "This session: %d%%"
 msgstr "Ði sesija: %d%%"
@@ -756,23 +752,48 @@ msgstr "sàskaita: %d laimëjimø"
 msgid "current: %d losses"
 msgstr "sàskaita: %d praloðimø"
 
-#: gataxx/gataxx.c:248 iagno/gnothello.c:246 same-gnome/same-gnome.c:644
-msgid "Do you really want to quit?"
-msgstr "Ar tikrai nori iðeiti?"
+#: freecell/src/score-dialog.c:54
+msgid "Clear"
+msgstr "Iðvalyti"
 
-#: gataxx/gataxx.c:271 gnibbles/main.c:133 iagno/gnothello.c:270
-msgid "Do you really want to end this game?"
-msgstr "Ar tikrai nori baigti ðá þaidimà?"
+#: gataxx/ataxx.c:133 gataxx/gataxx.c:321 gataxx/gataxx.c:663
+#: iagno/gnothello.c:320 iagno/gnothello.c:631 iagno/othello.c:212
+msgid "Dark's move"
+msgstr "Tamsiojo ëjimas"
 
 #: gataxx/ataxx.c:139 gataxx/gataxx.c:319 iagno/gnothello.c:318
 #: iagno/othello.c:218
 msgid "Light's move"
 msgstr "Ðviesiojo ëjimas"
 
-#: gataxx/ataxx.c:133 gataxx/gataxx.c:321 gataxx/gataxx.c:663
-#: iagno/gnothello.c:320 iagno/gnothello.c:631 iagno/othello.c:212
-msgid "Dark's move"
-msgstr "Tamsiojo ëjimas"
+#: gataxx/ataxx.c:582 iagno/othello.c:610
+msgid "Light player wins!"
+msgstr "Ðviesusis þaidëjas laimi!"
+
+#: gataxx/ataxx.c:584 iagno/othello.c:612
+msgid "Dark player wins!"
+msgstr "Tamsusis þaidëjas laimi!"
+
+#: gataxx/ataxx.c:586 iagno/othello.c:614
+msgid "The game was a draw."
+msgstr "Þaidimas baigësi lygiosiomis."
+
+#: gataxx/ataxx.c:595 iagno/othello.c:624
+msgid "Light must pass, Dark's move"
+msgstr "Ðviesusis turi praleisti, Tamsiojo ëjimas"
+
+#: gataxx/ataxx.c:607 iagno/othello.c:636
+msgid "Dark must pass, Light's move"
+msgstr "Tamsusis turi praleisti, Ðviesiojo ëjimas"
+
+#: gataxx/gataxx.c:248 glines/glines.c:909 iagno/gnothello.c:246
+#: same-gnome/same-gnome.c:639
+msgid "Do you really want to quit?"
+msgstr "Ar tikrai nori iðeiti?"
+
+#: gataxx/gataxx.c:271 gnibbles/main.c:133 iagno/gnothello.c:270
+msgid "Do you really want to end this game?"
+msgstr "Ar tikrai nori baigti ðá þaidimà?"
 
 #: gataxx/gataxx.c:401 gataxx/gataxx.c:689
 msgid "gataxx"
@@ -809,26 +830,6 @@ msgstr "Malonu matyti tave gataxx!"
 msgid "%.2d"
 msgstr "%.2d"
 
-#: gataxx/ataxx.c:582 iagno/othello.c:610
-msgid "Light player wins!"
-msgstr "Ðviesusis þaidëjas laimi!"
-
-#: gataxx/ataxx.c:584 iagno/othello.c:612
-msgid "Dark player wins!"
-msgstr "Tamsusis þaidëjas laimi!"
-
-#: gataxx/ataxx.c:586 iagno/othello.c:614
-msgid "The game was a draw."
-msgstr "Þaidimas baigësi lygiosiomis."
-
-#: gataxx/ataxx.c:595 iagno/othello.c:624
-msgid "Light must pass, Dark's move"
-msgstr "Ðviesusis turi praleisti, Tamsiojo ëjimas"
-
-#: gataxx/ataxx.c:607 iagno/othello.c:636
-msgid "Dark must pass, Light's move"
-msgstr "Tamsusis turi praleisti, Ðviesiojo ëjimas"
-
 #: gataxx/properties.c:320 iagno/properties.c:357
 msgid "Players"
 msgstr "Þaidëjai"
@@ -841,7 +842,7 @@ msgstr "Greiti ëjimai (nukirsti kompiuterio delsà perpus)"
 msgid "Dark"
 msgstr "Tamsusis"
 
-#: gataxx/properties.c:345 gataxx/properties.c:398 gtali/yahtzee.c:63
+#: gataxx/properties.c:345 gataxx/properties.c:398 gtali/yahtzee.c:66
 #: iagno/properties.c:383 iagno/properties.c:435
 msgid "Human"
 msgstr "Þmogus"
@@ -889,6 +890,236 @@ msgstr ""
 msgid "Tile set:"
 msgstr "Skridinëliø rûðis:"
 
+#: glines/glines.c:68
+#, fuzzy, c-format
+msgid "Could not find the '%s' theme for Glines\n"
+msgstr "Negaliu rasti ¥%s´ temos, skirtos SameGnome\n"
+
+#: glines/glines.c:175
+#, fuzzy
+msgid "Game Over!"
+msgstr "Þaidimas baigtas!"
+
+#: glines/glines.c:177 glines/glines.c:670 glines/glines.c:693
+#: glines/glines.c:1115
+#, fuzzy
+msgid "Glines"
+msgstr "Eilutës: "
+
+#. Can't move there!
+#: glines/glines.c:384
+msgid "Can't move there!"
+msgstr ""
+
+#: glines/glines.c:688
+msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
+msgstr ""
+
+#: glines/glines.c:689
+msgid "Szabolcs Ban <shooby@gnome.hu>"
+msgstr ""
+
+#: glines/glines.c:694
+#, fuzzy
+msgid "(C) 1997-2000 the Free Software Foundation"
+msgstr "(C) 1997-1999 the Free Software Foundation"
+
+#: glines/glines.c:696
+msgid "Gnome port of the once-popular Color Lines game"
+msgstr ""
+
+#: glines/glines.c:826 mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:554
+msgid "Preferences"
+msgstr "Savybës"
+
+#: glines/glines.c:847
+#, fuzzy
+msgid "Theme"
+msgstr "triakë"
+
+#: glines/glines.c:853
+#, fuzzy
+msgid "Select theme:"
+msgstr "Pasirink þaidimà"
+
+#: glines/glines.c:867
+#, fuzzy
+msgid "Select background:"
+msgstr "Pasirink kokliø fonà:"
+
+#: glines/glines.c:876
+msgid "Ask confirmation when quitting"
+msgstr ""
+
+#: glines/glines.c:1125
+#, fuzzy
+msgid "Welcome to Glines!"
+msgstr "Malonu kad pasileidai Same Gnome!"
+
+#: glines/glines.c:1136
+msgid "Next Balls"
+msgstr ""
+
+#: gnibbles/gnibbles.c:96 gnibbles/gnibbles.c:113
+msgid "Couldn't find pixmap file!\n"
+msgstr "Negaliu rasti paveikslëlio bylos!\n"
+
+#: gnibbles/gnibbles.c:141
+#, c-format
+msgid "Ack!  Couldn't load level file %s\n"
+msgstr "Ajaj! Negaliu ákelti lygio bylos %s\n"
+
+#: gnibbles/main.c:168
+msgid "Gnibbles"
+msgstr "Gnibbles"
+
+#: gnibbles/main.c:171
+msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
+msgstr "Siøsk komentarus ir klaidø praneðimus á: sjm@acm.org, itp@gnu.org"
+
+#: gnibbles/preferences.c:305
+msgid "Gnibbles Preferences"
+msgstr "Gnibbles Nustatymai"
+
+#: gnibbles/preferences.c:311 gnome-stones/preferences.c:558
+#: gnomine/gnomine.c:298
+msgid "Game"
+msgstr "Þaidimas"
+
+#: gnibbles/preferences.c:318
+msgid "Speed"
+msgstr "Greitis"
+
+#: gnibbles/preferences.c:328
+msgid "Nibbles newbie"
+msgstr "Nibbles naujokas"
+
+#: gnibbles/preferences.c:338
+msgid "My second day"
+msgstr "Mano antroji diena"
+
+#: gnibbles/preferences.c:348
+msgid "Not too shabby"
+msgstr "Ne toks ir menkas"
+
+#: gnibbles/preferences.c:359
+msgid "Finger-twitching good"
+msgstr "Pirðtus trukèioju gerai "
+
+#: gnibbles/preferences.c:376
+msgid "Starting level: "
+msgstr "Pradinis lygis: "
+
+#: gnibbles/preferences.c:401
+msgid "Levels in random order"
+msgstr "Lygiai atsitiktine tvarka"
+
+#: gnibbles/preferences.c:413
+msgid "Fake bonuses"
+msgstr "Suklastoti premijas"
+
+#: gnibbles/preferences.c:425
+msgid "Sounds"
+msgstr "Garsai"
+
+#: gnibbles/preferences.c:435
+msgid "Number of players: "
+msgstr "Þaidëjø skaièius: "
+
+#: gnibbles/preferences.c:461 gnobots2/properties.c:859
+msgid "Graphics"
+msgstr "Grafika"
+
+#: gnibbles/preferences.c:468
+msgid "Board size"
+msgstr "Lentos dydis"
+
+#: gnibbles/preferences.c:476
+msgid "Tiny (184x132)"
+msgstr "Smulkutis (184x132)"
+
+#: gnibbles/preferences.c:486
+msgid "Small (368x264)"
+msgstr "Maþas (368x264)"
+
+#: gnibbles/preferences.c:496
+msgid "Medium (460x330)"
+msgstr "Vidutinis (460x330)"
+
+#: gnibbles/preferences.c:506
+msgid "Large (736x528)"
+msgstr "Didelis (736x528)"
+
+#: gnibbles/preferences.c:516
+msgid "Extra large (920x660)"
+msgstr "Labai didelis (920x660)"
+
+#: gnibbles/preferences.c:526
+msgid "Huge (1840x1320)"
+msgstr "Milþiniðkas (1840x1320)"
+
+#: gnibbles/preferences.c:543
+#, c-format
+msgid "Worm %d"
+msgstr "Kirminas %d"
+
+#: gnibbles/preferences.c:556
+msgid "Up:"
+msgstr "Aukðtyn:"
+
+#: gnibbles/preferences.c:574
+msgid "Down:"
+msgstr "Þemyn:"
+
+#: gnibbles/preferences.c:592
+msgid "Left:"
+msgstr "Kairën:"
+
+#: gnibbles/preferences.c:610
+msgid "Right:"
+msgstr "Deðinën:"
+
+#: gnibbles/preferences.c:628
+msgid "Color:"
+msgstr "Spalva:"
+
+#: gnibbles/preferences.c:637
+msgid "Red"
+msgstr "Raudona"
+
+#: gnibbles/preferences.c:643
+msgid "Green"
+msgstr "Þalia"
+
+#: gnibbles/preferences.c:649
+msgid "Blue"
+msgstr "Mëlyna"
+
+#: gnibbles/preferences.c:655
+msgid "Yellow"
+msgstr "Geltona"
+
+#: gnibbles/preferences.c:661
+msgid "Cyan"
+msgstr "Ciano"
+
+#: gnibbles/preferences.c:667
+msgid "Purple"
+msgstr "Violetinë"
+
+#: gnibbles/preferences.c:673
+msgid "Gray"
+msgstr "Pilka"
+
+#: gnibbles/preferences.c:690
+msgid "Relative movement"
+msgstr "Reliatyvus judëjimas"
+
+#: gnibbles/scoreboard.c:49
+#, c-format
+msgid "Worm %d:"
+msgstr "Kirminas %d:"
+
 #: gnobots2/game.c:120
 #, c-format
 msgid "'%s' with super-safe moves"
@@ -915,7 +1146,7 @@ msgstr "Neliko nei vienos teleporto vietos!!"
 msgid "There are no safe locations to teleport to!!"
 msgstr "Nëra saugios vietos kur teleportuotis!!"
 
-#: gnobots2/gnobots.c:58 same-gnome/same-gnome.c:776
+#: gnobots2/gnobots.c:58 same-gnome/same-gnome.c:771
 msgid "Set game scenario"
 msgstr "Nustatyti þaidimo scenarijø"
 
@@ -1153,10 +1384,6 @@ msgstr "Konfigûracija"
 msgid "Graphics:"
 msgstr "Grafika:"
 
-#: gnibbles/preferences.c:461 gnobots2/properties.c:859
-msgid "Graphics"
-msgstr "Grafika"
-
 #. North West
 #: gnobots2/properties.c:874
 msgid "NW"
@@ -1358,11 +1585,6 @@ msgstr "Urvai"
 msgid "Filename"
 msgstr "Bylos vardas"
 
-#: gnibbles/preferences.c:311 gnome-stones/preferences.c:558
-#: gnomine/gnomine.c:298
-msgid "Game"
-msgstr "Þaidimas"
-
 #: gnome-stones/preferences.c:583
 msgid "Device"
 msgstr "Árenginys"
@@ -1403,6 +1625,79 @@ msgstr "Urvas:"
 #: gnome-stones/status.c:100
 msgid "Lives:"
 msgstr "Gyvybës:"
+
+#: gnometris/main.cpp:36
+msgid "Set starting level (1-10)"
+msgstr "Nustatyti pradiná lygá (1-10)"
+
+#: gnometris/main.cpp:36
+msgid "LEVEL"
+msgstr "LYGIS"
+
+#: gnometris/scoreframe.cpp:31
+msgid "Game Status"
+msgstr "Þaidimo eiga"
+
+#: gnometris/scoreframe.cpp:37
+msgid "Lines: "
+msgstr "Eilutës: "
+
+#: gnometris/scoreframe.cpp:41
+msgid "Level: "
+msgstr "Lygis: "
+
+#: gnometris/tetris.cpp:80
+msgid "Gnometris"
+msgstr "Gnometris"
+
+#: gnometris/tetris.cpp:214
+#, c-format
+msgid "Could not find the '%s' theme for gnometris\n"
+msgstr "Negaliu rasti ¥%s´ gnometris temos\n"
+
+#: gnometris/tetris.cpp:432
+msgid "Gnometris setup"
+msgstr "Gnometris savybës"
+
+#: gnometris/tetris.cpp:457
+msgid "Number of pre-filled rows:"
+msgstr "Ið anksto uþpildytø eiluèiø skaièius:"
+
+#: gnometris/tetris.cpp:478
+msgid "Density of blocks in a pre-filled row:"
+msgstr "Blokø tankumas ið anksto uþpildant:"
+
+#: gnometris/tetris.cpp:499
+msgid "Starting Level:"
+msgstr "Pradinis lygis:"
+
+#: gnometris/tetris.cpp:527
+msgid "Preview next block"
+msgstr "Sekanèio bloko perþiûra"
+
+#: gnometris/tetris.cpp:533
+msgid "Random block colors"
+msgstr "Atsitiktinës blokø spalvos"
+
+#: gnometris/tetris.cpp:539
+msgid "Rotate counterclockwise"
+msgstr "Sukti prieð laikrodþio rodyklæ"
+
+#: gnometris/tetris.cpp:552
+msgid "Block Pixmap: "
+msgstr "Bloko paveikslëlis: "
+
+#: gnometris/tetris.cpp:567
+msgid "Background Pixmap: "
+msgstr "Fono paveikslëlis: "
+
+#: gnometris/tetris.cpp:859
+msgid ""
+"Written for my wife, Matylda\n"
+"Send comments and bug reports to: marcin.gorycki@intel.com"
+msgstr ""
+"Paraðytas mano þmonai, Matyldai\n"
+"Siøsk komentarus ir klaidø praneðimus á: marcin.gorycki@intel.com"
 
 #: gnomine/gnomine.c:42 gnomine/gnomine.c:315
 msgid "Tiny"
@@ -1492,7 +1787,7 @@ msgstr "DYDIS"
 msgid "Number of mines"
 msgstr "Minø skaièius"
 
-#: gnomine/gnomine.c:553 gtali/setup.c:74 gtali/setup.c:75
+#: gnomine/gnomine.c:553 gtali/setup.c:78 gtali/setup.c:79
 msgid "NUMBER"
 msgstr "SKAIÈIUS"
 
@@ -1503,129 +1798,6 @@ msgstr "Vëliavëlës:"
 #: gnomine/gnomine.c:706 gnotravex/gnotravex.c:605 mahjongg/mahjongg.c:2004
 msgid "Time:"
 msgstr "Laikas:"
-
-#: gnotski/gnotski.c:93 gnotski/gnotski.c:214 gnotski/gnotski.c:326
-msgid "1"
-msgstr "1"
-
-#: gnotski/gnotski.c:108 gnotski/gnotski.c:228 gnotski/gnotski.c:349
-msgid "2"
-msgstr "2"
-
-#. Tiles mismatch
-#. { GNOME_APP_UI_ITEM, N_("X"), NULL, level_cb,
-#. "14#20#12#"     "a     bbbbbb  cccccc"     "a     bbbbbb  cccccc"     "a   -##-#######     "     "    -AAAAABBCC#     "     "   d-   DEFGHI#     "     "    #   DEFGJI#     "     "  e #   KEFGLI#     "     "  e #   KEFG*I#     "     "    #   MM****#     "     "fff ###########     "     "fff  ggghhhiiiii  .j"     "kkkkkggg   iiiii....",
-#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
-#: gnotski/gnotski.c:123 gnotski/gnotski.c:242 gnotski/gnotski.c:380
-msgid "3"
-msgstr "3"
-
-#: gnotski/gnotski.c:138 gnotski/gnotski.c:257 gnotski/gnotski.c:395
-msgid "4"
-msgstr "4"
-
-#: gnotski/gnotski.c:153 gnotski/gnotski.c:268 gnotski/gnotski.c:410
-msgid "5"
-msgstr "5"
-
-#: gnotski/gnotski.c:168 gnotski/gnotski.c:281 gnotski/gnotski.c:424
-msgid "6"
-msgstr "6"
-
-#. Tiles mismatch
-#. { GNOME_APP_UI_ITEM, N_("7"), NULL, level_cb,
-#. "14#13#11#"     "         ... "     "          .  "     " ########    "     " #abcdde-    "     " #ffcddg-    "     " #hhijkl#    "     " #***jml#    "     " #n*op q#    "     " #nrr s #    "     " ########    "     "             ",
-#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
-#: gnotski/gnotski.c:183 gnotski/gnotski.c:309
-msgid "7"
-msgstr "7"
-
-#: gnotski/gnotski.c:444
-msgid "_Novice"
-msgstr "_Naujokas"
-
-#: gnotski/gnotski.c:447
-msgid "_Medium"
-msgstr "_Vidutiniðkas"
-
-#: gnotski/gnotski.c:450
-msgid "_Advanced"
-msgstr "_Meistras"
-
-#: gnotski/gnotski.c:570
-msgid "Level completed. Well done."
-msgstr "Lygis baigtas. Gerai padirbëta."
-
-#: gnotski/gnotski.c:666
-msgid "Moves:"
-msgstr "Ëjimai:"
-
-#: gnotravex/gnotravex.c:655 gnotski/gnotski.c:695
-#, c-format
-msgid "Could not find '%s' pixmap file\n"
-msgstr "Negalëjau rasti ¥%s´ paveikslëlio bylos\n"
-
-#: gnotski/gnotski.c:877
-msgid "Welcome to Gnome Klotski"
-msgstr "Sveikas patekæs á Gnome Klotski"
-
-#: gnotski/gnotski.c:894
-#, c-format
-msgid "Playing level %s"
-msgstr "Þaidimo lygis %s"
-
-#: gnotski/gnotski.c:980
-msgid ""
-"Klotski clone\n"
-"(Comments to: Lars.Rydlinge@HIG.SE)"
-msgstr ""
-"Klotski klonas\n"
-"(Komentarus siøskite: Lars.Rydlinge@HIG.SE)"
-
-#: iagno/gnothello.c:107
-msgid "IOR of remote Iagno server"
-msgstr "Nutolusio Iagno serverio IOR"
-
-#: iagno/gnothello.c:108
-msgid "IOR"
-msgstr "IOR"
-
-#: iagno/gnothello.c:401 iagno/gnothello.c:654
-msgid "Iagno"
-msgstr "Iagno"
-
-#: iagno/gnothello.c:401
-msgid "(C) 1998 Ian Peters"
-msgstr "(C) 1998 Ian Peters"
-
-#: iagno/gnothello.c:402
-msgid ""
-"Send comments and bug reports to: itp@gnu.org\n"
-"Tiles under the General Public License."
-msgstr ""
-"Siøsk komentarus ir klaidø praneðimus á: itp@gnu.org\n"
-"Iðleista pagal General Public License."
-
-#: iagno/gnothello.c:498
-#, c-format
-msgid "Could not find '%s' pixmap file for Iagno\n"
-msgstr "Negalëjau rasti ¥%s´ paveikslëlio bylos, reikalingos Iagno\n"
-
-#: iagno/gnothello.c:726
-msgid "Welcome to Iagno!"
-msgstr "Sveikas patekæs á Iagno!"
-
-#: iagno/properties.c:366
-msgid "Quick Moves"
-msgstr "Greiti ëjimai"
-
-#: iagno/properties.c:534
-msgid "Stagger flips"
-msgstr ""
-
-#: iagno/properties.c:543
-msgid "Show grid"
-msgstr "Rodyti groteles"
 
 #: gnotravex/gnotravex.c:122
 msgid "Sol_ve"
@@ -1723,6 +1895,11 @@ msgstr "Galvosûkis iðspræstas! Gerai padirbëta!"
 msgid "Puzzle solved!"
 msgstr "Galvosûkis iðspræstas!"
 
+#: gnotravex/gnotravex.c:655 gnotski/gnotski.c:695
+#, c-format
+msgid "Could not find '%s' pixmap file\n"
+msgstr "Negalëjau rasti ¥%s´ paveikslëlio bylos\n"
+
 #: gnotravex/gnotravex.c:745 mahjongg/mahjongg.c:1424
 msgid "... Game paused ..."
 msgstr "... Pauzë þaidime ..."
@@ -1739,6 +1916,377 @@ msgid ""
 msgstr ""
 "Tetravex klonas\n"
 "(Komentarø laukia: Lars.Rydlinge@HIG.SE)"
+
+#: gnotski/gnotski.c:93 gnotski/gnotski.c:214 gnotski/gnotski.c:326
+msgid "1"
+msgstr "1"
+
+#: gnotski/gnotski.c:108 gnotski/gnotski.c:228 gnotski/gnotski.c:349
+msgid "2"
+msgstr "2"
+
+#. Tiles mismatch
+#. { GNOME_APP_UI_ITEM, N_("X"), NULL, level_cb,
+#. "14#20#12#"     "a     bbbbbb  cccccc"     "a     bbbbbb  cccccc"     "a   -##-#######     "     "    -AAAAABBCC#     "     "   d-   DEFGHI#     "     "    #   DEFGJI#     "     "  e #   KEFGLI#     "     "  e #   KEFG*I#     "     "    #   MM****#     "     "fff ###########     "     "fff  ggghhhiiiii  .j"     "kkkkkggg   iiiii....",
+#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
+#: gnotski/gnotski.c:123 gnotski/gnotski.c:242 gnotski/gnotski.c:380
+msgid "3"
+msgstr "3"
+
+#: gnotski/gnotski.c:138 gnotski/gnotski.c:257 gnotski/gnotski.c:395
+msgid "4"
+msgstr "4"
+
+#: gnotski/gnotski.c:153 gnotski/gnotski.c:268 gnotski/gnotski.c:410
+msgid "5"
+msgstr "5"
+
+#: gnotski/gnotski.c:168 gnotski/gnotski.c:281 gnotski/gnotski.c:424
+msgid "6"
+msgstr "6"
+
+#. Tiles mismatch
+#. { GNOME_APP_UI_ITEM, N_("7"), NULL, level_cb,
+#. "14#13#11#"     "         ... "     "          .  "     " ########    "     " #abcdde-    "     " #ffcddg-    "     " #hhijkl#    "     " #***jml#    "     " #n*op q#    "     " #nrr s #    "     " ########    "     "             ",
+#. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
+#: gnotski/gnotski.c:183 gnotski/gnotski.c:309
+msgid "7"
+msgstr "7"
+
+#: gnotski/gnotski.c:444
+msgid "_Novice"
+msgstr "_Naujokas"
+
+#: gnotski/gnotski.c:447
+msgid "_Medium"
+msgstr "_Vidutiniðkas"
+
+#: gnotski/gnotski.c:450
+msgid "_Advanced"
+msgstr "_Meistras"
+
+#: gnotski/gnotski.c:570
+msgid "Level completed. Well done."
+msgstr "Lygis baigtas. Gerai padirbëta."
+
+#: gnotski/gnotski.c:666
+msgid "Moves:"
+msgstr "Ëjimai:"
+
+#: gnotski/gnotski.c:877
+msgid "Welcome to Gnome Klotski"
+msgstr "Sveikas patekæs á Gnome Klotski"
+
+#: gnotski/gnotski.c:894
+#, c-format
+msgid "Playing level %s"
+msgstr "Þaidimo lygis %s"
+
+#: gnotski/gnotski.c:980
+msgid ""
+"Klotski clone\n"
+"(Comments to: Lars.Rydlinge@HIG.SE)"
+msgstr ""
+"Klotski klonas\n"
+"(Komentarus siøskite: Lars.Rydlinge@HIG.SE)"
+
+#: gtali/clist.c:121
+msgid "Already used! Where do you want to put that?"
+msgstr "Jau panaudota! Kur norëtum padëti ðitai?"
+
+#: gtali/cyahtzee.c:140
+msgid "Not enough lines on the terminal"
+msgstr "Nepakanka eiluèiø terminale"
+
+#: gtali/cyahtzee.c:449
+msgid "What dice to roll again (<RETURN> for none)? "
+msgstr "Kuriuos kauliukus ridenti vël (<ENTER> jei nei vieno)?"
+
+#: gtali/cyahtzee.c:472
+msgid "Where do you want to put that? "
+msgstr "Kur nori tai padëti?"
+
+#: gtali/cyahtzee.c:480
+msgid "No good! Where do you want to put that? "
+msgstr "Nepavyks! Kur nori ðitai padëti?"
+
+#: gtali/cyahtzee.c:491
+msgid "Already used! Where do you want to put that? "
+msgstr "Jau panaudota! Kur norëtum padëti ðitai?"
+
+#: gtali/cyahtzee.c:508
+#, c-format
+msgid "Rolling for %s"
+msgstr "Ridena %s"
+
+#: gtali/cyahtzee.c:548 gtali/gyahtzee.c:113
+#, c-format
+msgid "%s wins the game with %d points"
+msgstr "%s laimi þaidimà su %d taðkais"
+
+#: gtali/cyahtzee.c:566
+msgid "Tali top scores"
+msgstr "Tali geriausi rezultatai"
+
+#: gtali/cyahtzee.c:571
+msgid "Can't get at score file."
+msgstr "Negaliu gauti rekordø bylos."
+
+#: gtali/cyahtzee.c:582 gtali/cyahtzee.c:599
+msgid "Hit Return"
+msgstr "Spausk Enter"
+
+#: gtali/cyahtzee.c:637
+msgid "obsolete function - delay turned off by default)"
+msgstr "pasenusi funkcija - delsimas paprastai bûna iðjungtas"
+
+#: gtali/cyahtzee.c:660
+msgid "Welcome to the game of Tali"
+msgstr "Sveikas atradæs þaidimà Tali"
+
+#: gtali/cyahtzee.c:665
+#, c-format
+msgid "How many wish to play (max of %d)? "
+msgstr "Kiek þaidëjø nori loðti (daugiausiai %d)?"
+
+#: gtali/cyahtzee.c:683
+#, c-format
+msgid "What is the name of player #%d ? "
+msgstr "Koks þaidëjo #%d vardas? "
+
+#: gtali/cyahtzee.c:698
+msgid "Boo hoo... I can't play...\n"
+msgstr "Boo hoo... Að negaliu loðti...\n"
+
+#: gtali/cyahtzee.c:702
+#, c-format
+msgid "How many computers to play (max of %d) ? "
+msgstr "Kiek kompiuteriniø loðëjø (daugiausiai %d)? "
+
+#: gtali/cyahtzee.c:718
+msgid ""
+"Well, why did you run this anyways???\n"
+"\n"
+msgstr ""
+"Gerai, o kodël tu tai vis dëlto paleidai???\n"
+"\n"
+
+#: gtali/gyahtzee.c:59 gtali/gyahtzee.c:375
+msgid "Gnome Tali"
+msgstr "Gnome Tali"
+
+#: gtali/gyahtzee.c:138
+#, c-format
+msgid "Computer playing for %s"
+msgstr "Kompiuteris þaidþia uþ %s"
+
+#: gtali/gyahtzee.c:141
+#, c-format
+msgid "%s! -- You're up."
+msgstr "%s! -- Tavo eilë."
+
+#: gtali/gyahtzee.c:295 gtali/gyahtzee.c:319 gtali/yahtzee.c:187
+msgid "You're only allowed three rolls! Select a score box."
+msgstr "Tau leidþiama ridenti triskart! Pasirink rezultatø eilutæ"
+
+#: gtali/gyahtzee.c:360
+msgid "Scott Heavner"
+msgstr "Scott Heavner"
+
+#: gtali/gyahtzee.c:361
+msgid "Orest Zborowski - Curses Version (C) 1992"
+msgstr "Orest Zborowski - Curses Version (C) 1992"
+
+#: gtali/gyahtzee.c:373
+msgid "(C) 1998 the Free Software Fundation"
+msgstr "(C) 1998 the Free Software Fundation"
+
+#: gtali/gyahtzee.c:401
+msgid "Cheater! Any high scores will not be recorded."
+msgstr "Cheateris! Jokie rekordai nebus áraðyti."
+
+#: gtali/gyahtzee.c:497
+msgid "Select dice to re-roll, press Roll!, or select score slot."
+msgstr ""
+"Pasirink kauliukus kuriuos perridenti, spausk Ridenti! arba pasirink "
+"rezultatø eilutæ."
+
+#: gtali/gyahtzee.c:538
+msgid " Roll ! "
+msgstr "Ridenti!"
+
+#: gtali/setup.c:69
+msgid "Calculate random die throws (debug)"
+msgstr "Skaièiuoti atsitiktinius kauliukø metimus (derinimui)"
+
+#: gtali/setup.c:75
+msgid "Delay computer moves"
+msgstr "Uþdelsti kompiuterio ëjimus"
+
+#: gtali/setup.c:76
+msgid "Show high scores and exit"
+msgstr "Parodyti rekordus ir iðeiti"
+
+#: gtali/setup.c:77
+msgid "Display computer thoughts"
+msgstr "Rodyti kompiuterio mintis"
+
+#: gtali/setup.c:78
+msgid "Number of computer opponents"
+msgstr "Kompiuteriniø varþovø kiekis"
+
+#: gtali/setup.c:79
+msgid "Number of human opponents"
+msgstr "Þmogiðkø varþovø kiekis"
+
+#: gtali/setup.c:88
+msgid "Current game will complete with original number of players."
+msgstr "Esamas þaidimas bus baigtas su originaliu þaidëjø skaièiumi."
+
+#: gtali/setup.c:213
+msgid "GTali setup"
+msgstr "GTali paruoðimas"
+
+#: gtali/setup.c:222
+msgid "Computer Opponents"
+msgstr "Kompiuterio varþovai"
+
+#: gtali/setup.c:230
+msgid "Delay between rolls"
+msgstr "Delsa tarp metimø"
+
+#: gtali/setup.c:240
+msgid "Show thoughts during turn"
+msgstr "Rodyti mintis ëjimo metu"
+
+#: gtali/setup.c:254
+msgid "Number of opponents:"
+msgstr "Varþovø skaièius:"
+
+#: gtali/setup.c:282
+msgid "Human Players"
+msgstr "Þmogiðki þaidëjai"
+
+#: gtali/setup.c:292
+msgid "Number of players:"
+msgstr "Þaidëjø skaièius:"
+
+#. --- OPTIONAL RULES FRAME ----
+#: gtali/setup.c:321
+#, fuzzy
+msgid "Optional Rules"
+msgstr "Pasirinktys"
+
+#: gtali/setup.c:331
+msgid "Extra Yahtzee Bonus"
+msgstr ""
+
+#. --- Button ---
+#: gtali/setup.c:357
+msgid "Enforce Joker Rules"
+msgstr ""
+
+#. --- PLAYER NAMES FRAME ----
+#: gtali/setup.c:372
+#, fuzzy
+msgid "Player Names"
+msgstr "Þaidëjai"
+
+#: gtali/setup.c:389
+#, fuzzy, c-format
+msgid "PlayerName%1d"
+msgstr "Þaidëjai"
+
+#: gtali/yahtzee.c:74
+msgid "1's [total of 1s]"
+msgstr "1-tukai [1-tukø suma]"
+
+#: gtali/yahtzee.c:75
+msgid "2's [total of 2s]"
+msgstr "2-tukai [2-tukø suma]"
+
+#: gtali/yahtzee.c:76
+msgid "3's [total of 3s]"
+msgstr "3-tukai [3-tukø suma]"
+
+#: gtali/yahtzee.c:77
+msgid "4's [total of 4s]"
+msgstr "4-tukai [4-tukø suma]"
+
+#: gtali/yahtzee.c:78
+msgid "5's [total of 5s]"
+msgstr "5-tukai [5-tukø suma]"
+
+#: gtali/yahtzee.c:79
+msgid "6's [total of 6s]"
+msgstr "6-tukai [6-tukø suma]"
+
+#. End of upper panel
+#: gtali/yahtzee.c:81
+msgid "3 of a Kind [total]"
+msgstr "3 vienodi [suma]"
+
+#: gtali/yahtzee.c:82
+msgid "4 of a Kind [total]"
+msgstr "4 vienodi [suma]"
+
+#: gtali/yahtzee.c:83
+msgid "Full House [25]"
+msgstr "Pilni namai [25]"
+
+#: gtali/yahtzee.c:84
+msgid "Small Straight [30]"
+msgstr "Maþoji tiesë [30]"
+
+#: gtali/yahtzee.c:85
+msgid "Large Straight [40]"
+msgstr "Didþioji tiesë [40]"
+
+#: gtali/yahtzee.c:86
+msgid "Yahtzee [50]"
+msgstr "Yahtzee [50]"
+
+#: gtali/yahtzee.c:87
+msgid "Chance [total]"
+msgstr "Ðansas [suma]"
+
+#. End of lower panel
+#: gtali/yahtzee.c:89
+msgid "Lower Total"
+msgstr "Þemesniøjø suma"
+
+#: gtali/yahtzee.c:90
+msgid "Grand Total"
+msgstr "Visa suma"
+
+#. Need to squish between upper and lower pannel
+#: gtali/yahtzee.c:92
+msgid "Upper total"
+msgstr "Aukðtesniøjø suma"
+
+#: gtali/yahtzee.c:93
+msgid "Bonus"
+msgstr "Premija"
+
+#: gtali/yahtzee.c:517
+msgid "How many times to you wish to roll? "
+msgstr "Kiek kartø tu nori ridenti?"
+
+#: gtali/yahtzee.c:522
+msgid "Generating"
+msgstr "Generuojama"
+
+#: gtali/yahtzee.c:557
+msgid "Results"
+msgstr "Rezultatai"
+
+#: gtali/yahtzee.c:557
+msgid "Num Rolls"
+msgstr "Metimø skaièius"
+
+#: gtali/yahtzee.c:557
+msgid "Total"
+msgstr "Suma"
 
 #: gturing/gturing.c:189
 #, c-format
@@ -1845,277 +2393,50 @@ msgstr "Þingsnis"
 msgid "Welcome to gTuring."
 msgstr "Sveikas atvykæs á gTuring"
 
-#: gtali/clist.c:121
-msgid "Already used! Where do you want to put that?"
-msgstr "Jau panaudota! Kur norëtum padëti ðitai?"
+#: iagno/gnothello.c:107
+msgid "IOR of remote Iagno server"
+msgstr "Nutolusio Iagno serverio IOR"
 
-#: gtali/cyahtzee.c:140
-msgid "Not enough lines on the terminal"
-msgstr "Nepakanka eiluèiø terminale"
+#: iagno/gnothello.c:108
+msgid "IOR"
+msgstr "IOR"
 
-#: gtali/cyahtzee.c:449
-msgid "What dice to roll again (<RETURN> for none)? "
-msgstr "Kuriuos kauliukus ridenti vël (<ENTER> jei nei vieno)?"
+#: iagno/gnothello.c:401 iagno/gnothello.c:654
+msgid "Iagno"
+msgstr "Iagno"
 
-#: gtali/cyahtzee.c:472
-msgid "Where do you want to put that? "
-msgstr "Kur nori tai padëti?"
+#: iagno/gnothello.c:401
+msgid "(C) 1998 Ian Peters"
+msgstr "(C) 1998 Ian Peters"
 
-#: gtali/cyahtzee.c:480
-msgid "No good! Where do you want to put that? "
-msgstr "Nepavyks! Kur nori ðitai padëti?"
-
-#: gtali/cyahtzee.c:491
-msgid "Already used! Where do you want to put that? "
-msgstr "Jau panaudota! Kur norëtum padëti ðitai?"
-
-#: gtali/cyahtzee.c:508
-#, c-format
-msgid "Rolling for %s"
-msgstr "Ridena %s"
-
-#: gtali/cyahtzee.c:548 gtali/gyahtzee.c:113
-#, c-format
-msgid "%s wins the game with %d points"
-msgstr "%s laimi þaidimà su %d taðkais"
-
-#: gtali/cyahtzee.c:566
-msgid "Tali top scores"
-msgstr "Tali geriausi rezultatai"
-
-#: gtali/cyahtzee.c:571
-msgid "Can't get at score file."
-msgstr "Negaliu gauti rekordø bylos."
-
-#: gtali/cyahtzee.c:582 gtali/cyahtzee.c:599
-msgid "Hit Return"
-msgstr "Spausk Enter"
-
-#: gtali/cyahtzee.c:637
-msgid "obsolete function - delay turned off by default)"
-msgstr "pasenusi funkcija - delsimas paprastai bûna iðjungtas"
-
-#: gtali/cyahtzee.c:660
-msgid "Welcome to the game of Tali"
-msgstr "Sveikas atradæs þaidimà Tali"
-
-#: gtali/cyahtzee.c:665
-#, c-format
-msgid "How many wish to play (max of %d)? "
-msgstr "Kiek þaidëjø nori loðti (daugiausiai %d)?"
-
-#: gtali/cyahtzee.c:683
-#, c-format
-msgid "What is the name of player #%d ? "
-msgstr "Koks þaidëjo #%d vardas? "
-
-#: gtali/cyahtzee.c:698
-msgid "Boo hoo... I can't play...\n"
-msgstr "Boo hoo... Að negaliu loðti...\n"
-
-#: gtali/cyahtzee.c:702
-#, c-format
-msgid "How many computers to play (max of %d) ? "
-msgstr "Kiek kompiuteriniø loðëjø (daugiausiai %d)? "
-
-#: gtali/cyahtzee.c:718
+#: iagno/gnothello.c:402
 msgid ""
-"Well, why did you run this anyways???\n"
-"\n"
+"Send comments and bug reports to: itp@gnu.org\n"
+"Tiles under the General Public License."
 msgstr ""
-"Gerai, o kodël tu tai vis dëlto paleidai???\n"
-"\n"
+"Siøsk komentarus ir klaidø praneðimus á: itp@gnu.org\n"
+"Iðleista pagal General Public License."
 
-#: gtali/gyahtzee.c:59 gtali/gyahtzee.c:375
-msgid "Gnome Tali"
-msgstr "Gnome Tali"
-
-#: gtali/gyahtzee.c:138
+#: iagno/gnothello.c:498
 #, c-format
-msgid "Computer playing for %s"
-msgstr "Kompiuteris þaidþia uþ %s"
+msgid "Could not find '%s' pixmap file for Iagno\n"
+msgstr "Negalëjau rasti ¥%s´ paveikslëlio bylos, reikalingos Iagno\n"
 
-#: gtali/gyahtzee.c:141
-#, c-format
-msgid "%s! -- You're up."
-msgstr "%s! -- Tavo eilë."
+#: iagno/gnothello.c:726
+msgid "Welcome to Iagno!"
+msgstr "Sveikas patekæs á Iagno!"
 
-#: gtali/gyahtzee.c:295 gtali/gyahtzee.c:319 gtali/yahtzee.c:184
-msgid "You're only allowed three rolls! Select a score box."
-msgstr "Tau leidþiama ridenti triskart! Pasirink rezultatø eilutæ"
+#: iagno/properties.c:366
+msgid "Quick Moves"
+msgstr "Greiti ëjimai"
 
-#: gtali/gyahtzee.c:360
-msgid "Scott Heavner"
-msgstr "Scott Heavner"
-
-#: gtali/gyahtzee.c:361
-msgid "Orest Zborowski - Curses Version (C) 1992"
-msgstr "Orest Zborowski - Curses Version (C) 1992"
-
-#: gtali/gyahtzee.c:373
-msgid "(C) 1998 the Free Software Fundation"
-msgstr "(C) 1998 the Free Software Fundation"
-
-#: gtali/gyahtzee.c:401
-msgid "Cheater! Any high scores will not be recorded."
-msgstr "Cheateris! Jokie rekordai nebus áraðyti."
-
-#: gtali/gyahtzee.c:497
-msgid "Select dice to re-roll, press Roll!, or select score slot."
+#: iagno/properties.c:534
+msgid "Stagger flips"
 msgstr ""
-"Pasirink kauliukus kuriuos perridenti, spausk Ridenti! arba pasirink "
-"rezultatø eilutæ."
 
-#: gtali/gyahtzee.c:538
-msgid " Roll ! "
-msgstr "Ridenti!"
-
-#: gtali/setup.c:65
-msgid "Calculate random die throws (debug)"
-msgstr "Skaièiuoti atsitiktinius kauliukø metimus (derinimui)"
-
-#: gtali/setup.c:71
-msgid "Delay computer moves"
-msgstr "Uþdelsti kompiuterio ëjimus"
-
-#: gtali/setup.c:72
-msgid "Show high scores and exit"
-msgstr "Parodyti rekordus ir iðeiti"
-
-#: gtali/setup.c:73
-msgid "Display computer thoughts"
-msgstr "Rodyti kompiuterio mintis"
-
-#: gtali/setup.c:74
-msgid "Number of computer opponents"
-msgstr "Kompiuteriniø varþovø kiekis"
-
-#: gtali/setup.c:75
-msgid "Number of human opponents"
-msgstr "Þmogiðkø varþovø kiekis"
-
-#: gtali/setup.c:85 gtali/setup.c:88
-msgid "Current game will complete with original number of players."
-msgstr "Esamas þaidimas bus baigtas su originaliu þaidëjø skaièiumi."
-
-#: gtali/setup.c:187
-msgid "GTali setup"
-msgstr "GTali paruoðimas"
-
-#: gtali/setup.c:196
-msgid "Computer Opponents"
-msgstr "Kompiuterio varþovai"
-
-#: gtali/setup.c:204
-msgid "Delay between rolls"
-msgstr "Delsa tarp metimø"
-
-#: gtali/setup.c:213
-msgid "Show thoughts during turn"
-msgstr "Rodyti mintis ëjimo metu"
-
-#: gtali/setup.c:226
-msgid "Number of opponents:"
-msgstr "Varþovø skaièius:"
-
-#: gtali/setup.c:254
-msgid "Human Players"
-msgstr "Þmogiðki þaidëjai"
-
-#: gtali/setup.c:264
-msgid "Number of players:"
-msgstr "Þaidëjø skaièius:"
-
-#: gtali/yahtzee.c:71
-msgid "1's [total of 1s]"
-msgstr "1-tukai [1-tukø suma]"
-
-#: gtali/yahtzee.c:72
-msgid "2's [total of 2s]"
-msgstr "2-tukai [2-tukø suma]"
-
-#: gtali/yahtzee.c:73
-msgid "3's [total of 3s]"
-msgstr "3-tukai [3-tukø suma]"
-
-#: gtali/yahtzee.c:74
-msgid "4's [total of 4s]"
-msgstr "4-tukai [4-tukø suma]"
-
-#: gtali/yahtzee.c:75
-msgid "5's [total of 5s]"
-msgstr "5-tukai [5-tukø suma]"
-
-#: gtali/yahtzee.c:76
-msgid "6's [total of 6s]"
-msgstr "6-tukai [6-tukø suma]"
-
-#. End of upper panel
-#: gtali/yahtzee.c:78
-msgid "3 of a Kind [total]"
-msgstr "3 vienodi [suma]"
-
-#: gtali/yahtzee.c:79
-msgid "4 of a Kind [total]"
-msgstr "4 vienodi [suma]"
-
-#: gtali/yahtzee.c:80
-msgid "Full House [25]"
-msgstr "Pilni namai [25]"
-
-#: gtali/yahtzee.c:81
-msgid "Small Straight [30]"
-msgstr "Maþoji tiesë [30]"
-
-#: gtali/yahtzee.c:82
-msgid "Large Straight [40]"
-msgstr "Didþioji tiesë [40]"
-
-#: gtali/yahtzee.c:83
-msgid "Yahtzee [50]"
-msgstr "Yahtzee [50]"
-
-#: gtali/yahtzee.c:84
-msgid "Chance [total]"
-msgstr "Ðansas [suma]"
-
-#. End of lower panel
-#: gtali/yahtzee.c:86
-msgid "Lower Total"
-msgstr "Þemesniøjø suma"
-
-#: gtali/yahtzee.c:87
-msgid "Grand Total"
-msgstr "Visa suma"
-
-#. Need to squish between upper and lower pannel
-#: gtali/yahtzee.c:89
-msgid "Upper total"
-msgstr "Aukðtesniøjø suma"
-
-#: gtali/yahtzee.c:90
-msgid "Bonus"
-msgstr "Premija"
-
-#: gtali/yahtzee.c:514
-msgid "How many times to you wish to roll? "
-msgstr "Kiek kartø tu nori ridenti?"
-
-#: gtali/yahtzee.c:519
-msgid "Generating"
-msgstr "Generuojama"
-
-#: gtali/yahtzee.c:554
-msgid "Results"
-msgstr "Rezultatai"
-
-#: gtali/yahtzee.c:554
-msgid "Num Rolls"
-msgstr "Metimø skaièius"
-
-#: gtali/yahtzee.c:554
-msgid "Total"
-msgstr "Suma"
+#: iagno/properties.c:543
+msgid "Show grid"
+msgstr "Rodyti groteles"
 
 #: mahjongg/mahjongg.c:346
 msgid "New game with _seed..."
@@ -2200,10 +2521,6 @@ msgstr "Spalvos"
 msgid "Background:"
 msgstr "Fonas:"
 
-#: mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:560
-msgid "Preferences"
-msgstr "Savybës"
-
 #: mahjongg/mahjongg.c:1190
 msgid "Tile Background"
 msgstr "Kokliø fonas"
@@ -2269,7 +2586,7 @@ msgid "Moves Left: "
 msgstr "Ëjimø liko: "
 
 #: same-gnome/same-gnome.c:263 same-gnome/same-gnome.c:295
-#: same-gnome/same-gnome.c:298 same-gnome/same-gnome.c:618
+#: same-gnome/same-gnome.c:298 same-gnome/same-gnome.c:613
 msgid "The Same Gnome"
 msgstr "The Same Gnome"
 
@@ -2278,31 +2595,31 @@ msgstr "The Same Gnome"
 msgid "Could not find the '%s' theme for SameGnome\n"
 msgstr "Negaliu rasti ¥%s´ temos, skirtos SameGnome\n"
 
-#: same-gnome/same-gnome.c:572
+#: same-gnome/same-gnome.c:567
 msgid "Scenario"
 msgstr "Scenarijus"
 
-#: same-gnome/same-gnome.c:578
+#: same-gnome/same-gnome.c:573
 msgid "Select scenario:"
 msgstr "Pasirink scenarijø:"
 
-#: same-gnome/same-gnome.c:584
+#: same-gnome/same-gnome.c:579
 msgid "Make it the default scenario"
 msgstr "Padaryti tai áprastu scenarijumi"
 
-#: same-gnome/same-gnome.c:621
+#: same-gnome/same-gnome.c:616
 msgid "Original idea from KDE's same game program."
 msgstr "Originali idëja ið KDE same game programos."
 
-#: same-gnome/same-gnome.c:775
+#: same-gnome/same-gnome.c:770
 msgid "Debugging mode"
 msgstr "Derinimo reþimas"
 
-#: same-gnome/same-gnome.c:821
+#: same-gnome/same-gnome.c:815
 msgid "Same Gnome"
 msgstr "Same Gnome"
 
-#: same-gnome/same-gnome.c:831
+#: same-gnome/same-gnome.c:825
 msgid "Welcome to Same Gnome!"
 msgstr "Malonu kad pasileidai Same Gnome!"
 
@@ -2397,227 +2714,3 @@ msgstr "Kà að neðu"
 #: scottfree/GnomeScott.c:1511
 msgid "_New"
 msgstr "_Naujas"
-
-#: gnometris/tetris.cpp:80
-msgid "Gnometris"
-msgstr "Gnometris"
-
-#: gnometris/tetris.cpp:214
-#, c-format
-msgid "Could not find the '%s' theme for gnometris\n"
-msgstr "Negaliu rasti ¥%s´ gnometris temos\n"
-
-#: gnometris/tetris.cpp:432
-msgid "Gnometris setup"
-msgstr "Gnometris savybës"
-
-#: gnometris/tetris.cpp:457
-msgid "Number of pre-filled rows:"
-msgstr "Ið anksto uþpildytø eiluèiø skaièius:"
-
-#: gnometris/tetris.cpp:478
-msgid "Density of blocks in a pre-filled row:"
-msgstr "Blokø tankumas ið anksto uþpildant:"
-
-#: gnometris/tetris.cpp:499
-msgid "Starting Level:"
-msgstr "Pradinis lygis:"
-
-#: gnometris/tetris.cpp:527
-msgid "Preview next block"
-msgstr "Sekanèio bloko perþiûra"
-
-#: gnometris/tetris.cpp:533
-msgid "Random block colors"
-msgstr "Atsitiktinës blokø spalvos"
-
-#: gnometris/tetris.cpp:539
-msgid "Rotate counterclockwise"
-msgstr "Sukti prieð laikrodþio rodyklæ"
-
-#: gnometris/tetris.cpp:552
-msgid "Block Pixmap: "
-msgstr "Bloko paveikslëlis: "
-
-#: gnometris/tetris.cpp:567
-msgid "Background Pixmap: "
-msgstr "Fono paveikslëlis: "
-
-#: gnometris/tetris.cpp:859
-msgid ""
-"Written for my wife, Matylda\n"
-"Send comments and bug reports to: marcin.gorycki@intel.com"
-msgstr ""
-"Paraðytas mano þmonai, Matyldai\n"
-"Siøsk komentarus ir klaidø praneðimus á: marcin.gorycki@intel.com"
-
-#: gnometris/main.cpp:36
-msgid "Set starting level (1-10)"
-msgstr "Nustatyti pradiná lygá (1-10)"
-
-#: gnometris/main.cpp:36
-msgid "LEVEL"
-msgstr "LYGIS"
-
-#: gnometris/scoreframe.cpp:31
-msgid "Game Status"
-msgstr "Þaidimo eiga"
-
-#: gnometris/scoreframe.cpp:37
-msgid "Lines: "
-msgstr "Eilutës: "
-
-#: gnometris/scoreframe.cpp:41
-msgid "Level: "
-msgstr "Lygis: "
-
-#: gnibbles/gnibbles.c:96 gnibbles/gnibbles.c:113
-msgid "Couldn't find pixmap file!\n"
-msgstr "Negaliu rasti paveikslëlio bylos!\n"
-
-#: gnibbles/gnibbles.c:141
-#, c-format
-msgid "Ack!  Couldn't load level file %s\n"
-msgstr "Ajaj! Negaliu ákelti lygio bylos %s\n"
-
-#: gnibbles/main.c:168
-msgid "Gnibbles"
-msgstr "Gnibbles"
-
-#: gnibbles/main.c:171
-msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
-msgstr "Siøsk komentarus ir klaidø praneðimus á: sjm@acm.org, itp@gnu.org"
-
-#: gnibbles/preferences.c:305
-msgid "Gnibbles Preferences"
-msgstr "Gnibbles Nustatymai"
-
-#: gnibbles/preferences.c:318
-msgid "Speed"
-msgstr "Greitis"
-
-#: gnibbles/preferences.c:328
-msgid "Nibbles newbie"
-msgstr "Nibbles naujokas"
-
-#: gnibbles/preferences.c:338
-msgid "My second day"
-msgstr "Mano antroji diena"
-
-#: gnibbles/preferences.c:348
-msgid "Not too shabby"
-msgstr "Ne toks ir menkas"
-
-#: gnibbles/preferences.c:359
-msgid "Finger-twitching good"
-msgstr "Pirðtus trukèioju gerai "
-
-#: gnibbles/preferences.c:376
-msgid "Starting level: "
-msgstr "Pradinis lygis: "
-
-#: gnibbles/preferences.c:401
-msgid "Levels in random order"
-msgstr "Lygiai atsitiktine tvarka"
-
-#: gnibbles/preferences.c:413
-msgid "Fake bonuses"
-msgstr "Suklastoti premijas"
-
-#: gnibbles/preferences.c:425
-msgid "Sounds"
-msgstr "Garsai"
-
-#: gnibbles/preferences.c:435
-msgid "Number of players: "
-msgstr "Þaidëjø skaièius: "
-
-#: gnibbles/preferences.c:468
-msgid "Board size"
-msgstr "Lentos dydis"
-
-#: gnibbles/preferences.c:476
-msgid "Tiny (184x132)"
-msgstr "Smulkutis (184x132)"
-
-#: gnibbles/preferences.c:486
-msgid "Small (368x264)"
-msgstr "Maþas (368x264)"
-
-#: gnibbles/preferences.c:496
-msgid "Medium (460x330)"
-msgstr "Vidutinis (460x330)"
-
-#: gnibbles/preferences.c:506
-msgid "Large (736x528)"
-msgstr "Didelis (736x528)"
-
-#: gnibbles/preferences.c:516
-msgid "Extra large (920x660)"
-msgstr "Labai didelis (920x660)"
-
-#: gnibbles/preferences.c:526
-msgid "Huge (1840x1320)"
-msgstr "Milþiniðkas (1840x1320)"
-
-#: gnibbles/preferences.c:543
-#, c-format
-msgid "Worm %d"
-msgstr "Kirminas %d"
-
-#: gnibbles/preferences.c:556
-msgid "Up:"
-msgstr "Aukðtyn:"
-
-#: gnibbles/preferences.c:574
-msgid "Down:"
-msgstr "Þemyn:"
-
-#: gnibbles/preferences.c:592
-msgid "Left:"
-msgstr "Kairën:"
-
-#: gnibbles/preferences.c:610
-msgid "Right:"
-msgstr "Deðinën:"
-
-#: gnibbles/preferences.c:628
-msgid "Color:"
-msgstr "Spalva:"
-
-#: gnibbles/preferences.c:637
-msgid "Red"
-msgstr "Raudona"
-
-#: gnibbles/preferences.c:643
-msgid "Green"
-msgstr "Þalia"
-
-#: gnibbles/preferences.c:649
-msgid "Blue"
-msgstr "Mëlyna"
-
-#: gnibbles/preferences.c:655
-msgid "Yellow"
-msgstr "Geltona"
-
-#: gnibbles/preferences.c:661
-msgid "Cyan"
-msgstr "Ciano"
-
-#: gnibbles/preferences.c:667
-msgid "Purple"
-msgstr "Violetinë"
-
-#: gnibbles/preferences.c:673
-msgid "Gray"
-msgstr "Pilka"
-
-#: gnibbles/preferences.c:690
-msgid "Relative movement"
-msgstr "Reliatyvus judëjimas"
-
-#: gnibbles/scoreboard.c:49
-#, c-format
-msgid "Worm %d:"
-msgstr "Kirminas %d:"
