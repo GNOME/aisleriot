@@ -23,6 +23,7 @@
 #include "menu.h"
 #include "draw.h"
 #include "cscmi.h"
+
 /*
  * Menu stuff...
  */
@@ -58,33 +59,65 @@ int help_about_callback (GtkWidget *widget, void *data)
   return TRUE;
 }
 
-
-GtkMenuEntry same_menu [] = {
-	{ _("File/Quit"),"<control>Q", (GtkMenuCallback) file_quit_callback,NULL }, 
-	{ _("Game/Variation/Klondike"),NULL, (GtkMenuCallback) game_load_game_callback, "klondike.scm" },
-	{ _("Game/Variation/Odessa"),NULL, (GtkMenuCallback) game_load_game_callback, "odessa.scm" },
-	{ _("Game/Variation/Osmosis"),NULL, (GtkMenuCallback) game_load_game_callback, "osmosis.scm" },
-	{ _("Game/Variation/Spider"),NULL, (GtkMenuCallback) game_load_game_callback, "spider.scm" },
-	{ _("Game/Variation/Free Cell"),NULL, (GtkMenuCallback) game_load_game_callback, "freecell.scm" },
-	{ _("Game/Variation/<separator>"), NULL, NULL, NULL},
-	{ _("Game/Variation/Other..."),NULL, NULL, NULL },
-	{ _("Game/New Game"),"<control>N", (GtkMenuCallback) file_new_game_callback, NULL },
-	{ _("Game/Select Game Number..."), NULL, NULL, NULL },
-	{ _("Game/Options..."), NULL, NULL, NULL },
-	{ _("Game/<separator>"), NULL, NULL, NULL},
-	{ _("Game/Hint"),"<control>H", NULL, NULL},
-	{ _("Game/Pause"),"<control>P", NULL, NULL},
-	{ _("Options/Preferences"),"<control>R", NULL, NULL }, 
-	{ _("Help/About"), NULL, (GtkMenuCallback) help_about_callback, NULL },
+/* We fill the items in at runtime... */
+GnomeUIInfo variation_menu[] = {
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 
+GnomeUIInfo help_menu[] = {
+  {GNOME_APP_UI_ITEM, N_("About..."), NULL, help_about_callback,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+};
 
-GtkMenuFactory* create_menu ()
+GnomeUIInfo file_menu[] = {
+  {GNOME_APP_UI_ITEM, N_("New"), NULL, file_new_game_callback,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'n', GDK_CONTROL_MASK, NULL},
+  {GNOME_APP_UI_SUBTREE, N_("Variation"), NULL, variation_menu,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_ITEM, N_("Exit"), NULL, file_quit_callback,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+};
+
+GnomeUIInfo main_menu[] = {
+  {GNOME_APP_UI_SUBTREE, N_("Game"), NULL, file_menu,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+};
+
+typedef struct {
+  char *desc, *filename;
+} AGame;
+
+/* These should be in *reverse* alphabetical order */
+AGame gamelist[] = {
+  {N_("Spider"), "spider.scm"},
+  {N_("Osmosis"), "osmosis.scm"},
+  {N_("Odessa"), "odessa.scm"},
+  {N_("Klondike"), "klondike.scm"},
+  {N_("Freecell"), "freecell.scm"},
+  {NULL, NULL}
+};
+
+void create_menus(GnomeApp *app)
 {
-	GtkMenuFactory *subfactory;
-	
-	subfactory = gtk_menu_factory_new  (GTK_MENU_FACTORY_MENU_BAR);
-	gtk_menu_factory_add_entries (subfactory, same_menu, ELEMENTS(same_menu));
+  int i;
+  GtkWidget *w;
+  gnome_app_create_menus(app, main_menu);
 
-	return subfactory;
+  for(i = 0; gamelist[i].desc; i++)
+    {
+      w = gtk_menu_item_new_with_label(_(gamelist[i].desc));
+      gtk_widget_show(w);
+      gtk_menu_shell_prepend(GTK_MENU_SHELL(variation_menu[0].widget), w);
+      gtk_signal_connect(GTK_OBJECT(w), "activate", game_load_game_callback,
+			 (gpointer)gamelist[i].filename);
+    }
 }

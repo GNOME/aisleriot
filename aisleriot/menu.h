@@ -20,6 +20,7 @@
 #define MENU_H
 
 #include <gtk/gtk.h>
+#include <gnome.h>
 
 #define ELEMENTS(x) (sizeof (x) / sizeof (x [0]))
 
@@ -29,6 +30,5 @@ int game_load_game_callback (GtkWidget*, void* );
 int file_new_game_callback (GtkWidget*, void* );
 int help_about_callback (GtkWidget*, void* );
 
-GtkMenuFactory *create_menu ();
-
+void create_menus(GnomeApp *app);
 #endif

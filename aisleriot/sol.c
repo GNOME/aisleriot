@@ -108,7 +108,7 @@ GtkWidget *
 create_main_window ()
 {
   GtkWidget* retval;
-  retval = gnome_app_new ("solitaire", "Solitaire");
+  retval = gnome_app_new ("solitaire", _("Solitaire"));
 
   gtk_widget_realize (retval);
   
@@ -142,13 +142,13 @@ void main_prog(int argc, char *argv[])
 {
   GtkWidget *label, *hb;
 
-  printf("Done.\ninitializing gnome/gdk...\n");
+  printf(_("Done.\ninitializing gnome/gdk...\n"));
   gnome_init (&argc, &argv);
   gdk_imlib_init();
-  printf("Done.\n");
+  printf(_("Done.\n"));
   
   /* generic startup... */
-  printf("Creating App...\n");
+  printf(_("Creating App...\n"));
   srandom(time(NULL));
   app = create_main_window ();
   vb = gtk_vbox_new (FALSE, 0);
@@ -157,9 +157,9 @@ void main_prog(int argc, char *argv[])
   press_data = malloc(sizeof(press_data_type));
 
   /* load files as needed */
-  printf("loading pixmaps...\n");
+  printf(_("loading pixmaps...\n"));
   load_pixmaps(app);
-  printf("Done.\n");
+  printf(_("Done.\n"));
   /* Scheme stuff... */
   gh_new_procedure0_0("get-card-width", scm_get_card_width);
   gh_new_procedure0_0("get-card-height", scm_get_card_height);
@@ -180,9 +180,7 @@ void main_prog(int argc, char *argv[])
   create_sol_board();
 
   /* create the menus */
-  mf = create_menu ();
-
-  gnome_app_set_menus (GNOME_APP (app), GTK_MENU_BAR (mf->widget));
+  create_menus(GNOME_APP(app));
 
   /* create the scoring widget */
   label = gtk_label_new (_("Score: "));
