@@ -77,10 +77,9 @@ CFLAGS="$RPM_OPT_FLAGS" ./configure --quiet $MYARCH_FLAGS --prefix=%prefix \
 	 --localstatedir=/var/lib --sysconfdir=/etc
 
 if [ "$SMP" != "" ]; then
-  (make "MAKE=make -k -j $SMP" >build.log 2>&1; exit 0)
-  make >build.log 2>&1
+  make -j$SMP MAKE="make -j$SMP"
 else
-  make >build.log 2>&1
+  make
 fi
 
 %install
@@ -109,16 +108,17 @@ fi
 %attr(-, root, games) %{prefix}/bin/*
 %config /etc/sound/events
 %{prefix}/share/gnome/apps/Games/*
-%{prefix}/share/gnibbles/*
-%{prefix}/share/gnobots2/*
+%{prefix}/share/gnibbles
+%{prefix}/share/gnobots2
 %{prefix}/share/gnome/help/*
-%{prefix}/share/gnome-stones/*
-%{prefix}/share/gturing/*
+%{prefix}/share/gnome-stones
+%{prefix}/share/gturing
 %{prefix}/share/locale/*/*/*
-%{prefix}/share/metatris/*
+%{prefix}/share/metatris
 %{prefix}/share/pixmaps/*
-%{prefix}/share/sol-games/*
+%{prefix}/share/sol-games
 %{prefix}/share/sounds/*
+%{prefix}/share/xbill
 
 %{prefix}/lib/lib*.so.*
 %{prefix}/lib/gnome-stones/objects/lib*.so.*
@@ -132,4 +132,3 @@ fi
 %{prefix}/lib/gnome-stones/objects/lib*.so
 %{prefix}/lib/gnome-stones/objects/lib*a
 %{prefix}/include/*
-
