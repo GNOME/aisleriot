@@ -7,6 +7,7 @@ AM_ACLOCAL_INCLUDE(macros)
 GNOME_INIT
 GNOME_CHECK_OBJC
 GNOME_INIT_OBJC
+GNOME_CHECK_GUILE
 
 AC_ISC_POSIX
 AC_PROG_CC
@@ -32,6 +33,8 @@ phaser-chess/Makefile
 freecell/Makefile
 scottfree/Makefile
 same-gnome/Makefile
+aisleriot/Makefile
+aisleriot/pixmaps/Makefile
 intl/Makefile
 version.h
 stamp.h],[sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])
