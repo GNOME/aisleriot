@@ -1,19 +1,7 @@
 #undef HAVE_LC_MESSAGES
 #undef HAVE_STPCPY
 #undef HAVE_LIBSM
-#undef PACKAGE
-#undef VERSION
-#undef ENABLE_NLS
-#undef HAVE_CATGETS
-#undef HAVE_GETTEXT
-#undef GETTEXT_PACKAGE
-#undef HAVE_PROGRAM_INVOCATION_NAME
-#undef HAVE_PROGRAM_INVOCATION_SHORT_NAME
 #undef HAVE_GUILE
-
-/* Define this if you want to compile against the development branch of gtk */
-#undef HAVE_DEVGTK
-
 
 /*=== Curses version detection defines ===*/
 /* Found some version of curses that we're going to use */
@@ -34,21 +22,13 @@
 /* If you Curses does not have color define this one */
 #undef NO_COLOR_CURSES
 
-/* Define if you want to turn on SCO-specific code */
-#undef SCO_FLAVOR
-
 /* Set to reflect version of ncurses *
  *   0 = version 1.*
  *   1 = version 1.9.9g
  *   2 = version 4.0/4.1 */
 #undef NCURSES_970530
 
-#undef WITH_SYMBOL_UNDERSCORE
-
-#undef GNOME_ICONDIR
-
 /* Define if scandir() works with struct direct rather than struct dirent */
 #undef HAVE_STRUCT_DIRECT
 
-/* Define if your system has a sys/dir.h header */
-#undef HAVE_SYS_DIR_H
+#undef SCO_FLAVOR
