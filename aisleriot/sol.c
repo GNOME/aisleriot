@@ -211,7 +211,7 @@ void new_game (gchar* file, guint *seedp )
     eval_installed_file (file);
     if(game_name) {
       g_snprintf(buf, sizeof (buf), "%s/%s", _("Help"), game_name);
-      gnome_app_remove_menus (GNOME_APP (app), buf, 1);
+/*      gnome_app_remove_menus (GNOME_APP (app), buf, 1); */
       if(rules_help[0].user_data) {
 #if 0
 	GnomeHelpMenuEntry *entry = 

@@ -90,7 +90,7 @@ gchar *filename = NULL;
 void select_rules(GtkTreeSelection *select, gpointer data)
 {
 	GtkTreeModel *model;
-	GtkTreeIter iter;
+        GtkTreeIter iter;
 
 	gtk_tree_selection_get_selected(select, &model, &iter);
 	gtk_tree_model_get(model, &iter, 1, &filename, -1);
@@ -112,11 +112,12 @@ void show_select_game_dialog()
   static GtkWidget* seed_entry;
   static GtkListStore* list;
   static GtkWidget* list_view;
+  static GtkTreeSelection* select;
   GtkWidget* scrolled_window;
   GtkTreeViewColumn* column;
   GtkCellRenderer* renderer;
-  GtkTreeSelection* select;
   GtkTreeIter iter;
+  GtkTreePath * path;
   
   guint i;
   gchar buf[20];
@@ -183,7 +184,9 @@ void show_select_game_dialog()
   
     gtk_box_pack_end (GTK_BOX (GTK_DIALOG (dialog)->vbox), 
 		      hbox, FALSE, FALSE, GNOME_PAD_SMALL );
-        
+
+    gtk_widget_show_all (dialog);
+
     filename = NULL;
     
     for(i = 0; i < n_games; i++) {
@@ -191,46 +194,34 @@ void show_select_game_dialog()
 	    gint row;
 	    text = game_file_to_name (game_dents[i]->d_name);
 	    gtk_list_store_append (GTK_LIST_STORE (list), &iter);
-			gtk_list_store_set(GTK_LIST_STORE (list), 
-			                   &iter, 0, text, 1,
-			                   game_dents[i]->d_name, -1);
+            gtk_list_store_set(GTK_LIST_STORE (list), 
+                               &iter, 0, text, 1,
+                               game_dents[i]->d_name, -1);
+            if (g_utf8_collate(text,game_name) == 0) {
+              gtk_tree_selection_select_iter (select, &iter);
+            }
     }
 
-    
     gtk_dialog_set_default_response ( GTK_DIALOG (dialog), GTK_RESPONSE_OK );
 
     g_signal_connect (GTK_OBJECT (dialog), "response", 
 			                GTK_SIGNAL_FUNC (select_game), seed_entry);
 
-    gtk_widget_show_all (dialog);
     
     g_signal_connect (GTK_WIDGET (dialog), "delete_event",
 		                  GTK_SIGNAL_FUNC(gtk_widget_hide), NULL);
+
   }
-
-  /* Can we respect user prefs for status bar using libgnomeui ???
-   * Current app-utils look insufficient to me. */
-	/*
-	if ( gtk_tree_model_get_iter_first(GTK_TREE_MODEL(list), &iter) )
-	{
-		GValue *value;
-		do
-		{
-			gtk_tree_model_get_value(GTK_TREE_MODEL(list), &iter, 1, value);
-			if (!strcmp ( g_value_get_string(value), game_file ) ) {
-				printf("%s\n", game_file);
-				gtk_tree_selection_select_iter (gtk_tree_view_get_selection(GTK_TREE_VIEW (list_view)), &iter);
-				g_value_unset(value); 
-				break;
-			}
-			g_value_unset(value);
-		} while ( gtk_tree_model_iter_next(GTK_TREE_MODEL(list), &iter ) );
-	} */
-
-
+  
   g_snprintf (buf, sizeof (buf), "%d", seed);
   gtk_entry_set_text (GTK_ENTRY (seed_entry), buf);
 
+  if (gtk_tree_selection_get_selected (select, (GtkTreeModel **)(&list), &iter)) {
+    path = gtk_tree_model_get_path (GTK_TREE_MODEL(list), &iter);
+    gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (list_view), path, NULL, TRUE, 0.5, 0.0);
+    gtk_tree_path_free (path);
+  }
+  
   gtk_dialog_run (GTK_DIALOG (dialog)); 
 }
 
