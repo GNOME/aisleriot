@@ -37,6 +37,9 @@ static GtkWidget *about = NULL;
 static void restart_game ()
 {
   if (waiting_for_mouse_up()) return;
+  /* Treat a restart as part of the same game. Eventually either
+   * the player will win or loose and then it gets counted. */
+  game_in_progress = FALSE;
   new_game (NULL, &seed);
 };
 

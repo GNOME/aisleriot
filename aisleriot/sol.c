@@ -371,6 +371,11 @@ static void create_sol_board ()
 
 void quit_app (GtkMenuItem *menuitem)
 {
+  /* If the game isn't over, then it counts as a failure. */
+  if (game_in_progress) {
+    update_statistics (FALSE, 0);
+  }
+
   gtk_main_quit ();
 }
 
