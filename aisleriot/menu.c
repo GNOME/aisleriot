@@ -79,6 +79,7 @@ void help_about_callback ()
 	  N_("                      Robert Brady (rwb197@ecs.soton.ac.uk)"),
 	  N_("                      Nick Lamb (njl195@zepler.org.uk)"),
 	  N_("                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"),
+          N_("                      Matthew Wilcox (matthew@wil.cx)"),
 	  N_("                      Rosanna Yuen (zana@webwynk.net)"),
 	  NULL
   };
