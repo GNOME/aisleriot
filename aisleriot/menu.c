@@ -103,7 +103,7 @@ static void help_about_callback (void)
   gtk_show_about_dialog (GTK_WINDOW (app),
 			 "name", _("AisleRiot"),
 			 "version", VERSION,
-			 "comments", _("AisleRiot provides a rule-based solitaire card engine"
+			 "comments", _("AisleRiot provides a rule-based solitaire card engine "
 				       "that allows many different games to be played."),
 			 "copyright", "Copyright \xc2\xa9 1998-2005 Jonathan Blandford",
 			 "authors", authors,
