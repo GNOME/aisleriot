@@ -18,7 +18,7 @@ GNOME_X_CHECKS
 
 GNORBA_LIBS=`gnome-config --libs gnorba gnomeui`
 AC_CHECK_LIB(gnorba, gnome_CORBA_init, [
-	ORBIT_LIBS=`gnome-config --libs gnorba gnomeui`
+	ORBIT_LIBS="-lgnorba `gnome-config --libs gnorba gnomeui`"
 	ORBIT_CFLAGS=`gnome-config --cflags gnorba gnomeui`
 	AC_SUBST(ORBIT_LIBS)
 	AC_SUBST(ORBIT_CFLAGS)
