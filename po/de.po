@@ -4,6 +4,7 @@
 # Christian Meyer <linux@chrisime.de>, 2000.
 # Karl Eichwalder <ke@suse.de>, 1999, 2000.
 # Matthias Warkus <mawa@iname.com>, 1999.
+#
 # 1999-10-03 11:27:49 CEST
 # A "player" has to take over this message file... -ke-
 # 1999-11-07
@@ -13,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 1.2.0\n"
-"POT-Creation-Date: 2000-08-12 20:16+0200\n"
-"PO-Revision-Date: 2000-08-12 16:00+0200\n"
-"Last-Translator: Christian Meyer <linux@chrisime.de>\n"
+"POT-Creation-Date: 2001-01-07 14:21+0100\n"
+"PO-Revision-Date: 2001-01-07 14:27+01:00\n"
+"Last-Translator: Benedikt Roth <Benedikt.Roth@gmx.net>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -532,8 +533,7 @@ msgstr "Neu"
 msgid "Deal a new game"
 msgstr "Ein neues Spiel geben"
 
-#. {GNOME_APP_UI_ITEM, N_("Seed"), NULL, exit_game_callback, 
-#. (gpointer)SELECT_GAME, NULL,
+#. {GNOME_APP_UI_ITEM, N_("Seed"), NULL, exit_game_callback, (gpointer)SELECT_GAME, NULL,
 #. GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
 #: aisleriot/menu.c:202 freecell/src/menu.c:93 mahjongg/mahjongg.c:410
 msgid "Restart"
@@ -706,7 +706,7 @@ msgstr "Neues Spiel mit Startwert..."
 msgid "Start a new game with a different seed"
 msgstr "Ein neues Spiel einem anderen Startwert starten"
 
-#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:1148
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:54 glines/glines.c:1181
 msgid "Score"
 msgstr "Punkte"
 
@@ -812,7 +812,7 @@ msgstr "Hell muss passen, Dunkel ist am Zug"
 msgid "Dark must pass, Light's move"
 msgstr "Dunkel muss passen, Hell ist am Zug"
 
-#: gataxx/gataxx.c:248 glines/glines.c:908 iagno/gnothello.c:246
+#: gataxx/gataxx.c:248 glines/glines.c:940 iagno/gnothello.c:246
 #: same-gnome/same-gnome.c:639
 msgid "Do you really want to quit?"
 msgstr "Spiel wirklich beenden?"
@@ -916,66 +916,70 @@ msgstr "Endergebnis durch Umdrehen darstellen"
 msgid "Tile set:"
 msgstr "Kachelsatz:"
 
-#: glines/glines.c:68
+#: glines/glines.c:69
 #, c-format
 msgid "Could not find the '%s' theme for Glines\n"
 msgstr "Konnte Thema '%s' für Glines nicht finden\n"
 
-#: glines/glines.c:175
+#: glines/glines.c:189
 msgid "Game Over!"
 msgstr "Spiel vorbei!"
 
-#: glines/glines.c:177 glines/glines.c:670 glines/glines.c:693
-#: glines/glines.c:1114
+#: glines/glines.c:191 glines/glines.c:684 glines/glines.c:707
+#: glines/glines.c:1147
 msgid "Glines"
 msgstr "Glines"
 
 #. Can't move there!
-#: glines/glines.c:384
+#: glines/glines.c:398
 msgid "Can't move there!"
 msgstr "Da komme ich nicht hin!"
 
-#: glines/glines.c:688
+#: glines/glines.c:702
 msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
 msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
 
-#: glines/glines.c:689
+#: glines/glines.c:703
 msgid "Szabolcs Ban <shooby@gnome.hu>"
 msgstr "Szabolcs Ban <shooby@gnome.hu>"
 
-#: glines/glines.c:694
+#: glines/glines.c:708
 msgid "(C) 1997-2000 the Free Software Foundation"
 msgstr "(C) 1997-2000 the Free Software Foundation"
 
-#: glines/glines.c:696
+#: glines/glines.c:710
 msgid "Gnome port of the once-popular Color Lines game"
 msgstr "GNOME-Portierung des ehemals populären »Color Lines«-Spiels"
 
-#: glines/glines.c:826 mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:554
+#: glines/glines.c:848 mahjongg/mahjongg.c:1142 same-gnome/same-gnome.c:554
 msgid "Preferences"
 msgstr "Einstellungen..."
 
-#: glines/glines.c:846
+#: glines/glines.c:869
 msgid "Theme"
 msgstr "Thema"
 
-#: glines/glines.c:852
+#: glines/glines.c:875
 msgid "Select theme:"
 msgstr "Thema wählen:"
 
-#: glines/glines.c:866
+#: glines/glines.c:889
 msgid "Select background:"
 msgstr "Hintergrund wählen:"
 
-#: glines/glines.c:875
+#: glines/glines.c:898
+msgid "Fast moves"
+msgstr "Schnelle Züge"
+
+#: glines/glines.c:907
 msgid "Ask confirmation when quitting"
 msgstr "Bestätigen beim Beenden"
 
-#: glines/glines.c:1124
+#: glines/glines.c:1157
 msgid "Welcome to Glines!"
 msgstr "Willkommen bei Same Gnome!"
 
-#: glines/glines.c:1135
+#: glines/glines.c:1168
 msgid "Next Balls"
 msgstr "Die nächsten Bälle"
 
@@ -1648,11 +1652,11 @@ msgstr "Höhle:"
 msgid "Lives:"
 msgstr "Leben:"
 
-#: gnometris/main.cpp:36
+#: gnometris/main.cpp:37
 msgid "Set starting level (1-10)"
 msgstr "Anfangsstufe einstellen (1-10)"
 
-#: gnometris/main.cpp:36
+#: gnometris/main.cpp:37
 msgid "LEVEL"
 msgstr "STUFE"
 
@@ -1677,49 +1681,49 @@ msgstr "Gnometris"
 msgid "Could not find the '%s' theme for gnometris\n"
 msgstr "Konnte Thema '%s' für Gnometris nicht finden\n"
 
-#: gnometris/tetris.cpp:432
+#: gnometris/tetris.cpp:433
 msgid "Gnometris setup"
 msgstr "Gnometris-Konfiguration"
 
-#: gnometris/tetris.cpp:457
+#: gnometris/tetris.cpp:458
 msgid "Number of pre-filled rows:"
 msgstr "Anzahl anfänglich gefüllter Zeilen"
 
-#: gnometris/tetris.cpp:478
+#: gnometris/tetris.cpp:479
 msgid "Density of blocks in a pre-filled row:"
 msgstr "Dichte der Blöcke in einer vorgefüllten Zeile:"
 
-#: gnometris/tetris.cpp:499
+#: gnometris/tetris.cpp:500
 msgid "Starting Level:"
 msgstr "Anfangsstufe:"
 
-#: gnometris/tetris.cpp:527
+#: gnometris/tetris.cpp:528
 msgid "Preview next block"
 msgstr "Vorschau auf nächsten Block"
 
-#: gnometris/tetris.cpp:533
+#: gnometris/tetris.cpp:534
 msgid "Random block colors"
 msgstr "Zufällige Blockfarben"
 
-#: gnometris/tetris.cpp:539
+#: gnometris/tetris.cpp:540
 msgid "Rotate counterclockwise"
 msgstr "Entgegen dem Uhrzeigersinn drehen"
 
-#: gnometris/tetris.cpp:552
+#: gnometris/tetris.cpp:553
 msgid "Block Pixmap: "
 msgstr "Blockpixmap: "
 
-#: gnometris/tetris.cpp:567
+#: gnometris/tetris.cpp:568
 msgid "Background Pixmap: "
 msgstr "Hintergrundpixmap: "
 
-#: gnometris/tetris.cpp:859
+#: gnometris/tetris.cpp:867
 msgid ""
 "Written for my wife, Matylda\n"
-"Send comments and bug reports to: marcin.gorycki@intel.com"
+"Send comments and bug reports to: janusz.gorycki@intel.com"
 msgstr ""
 "Geschrieben für meine Frau, Matylda\n"
-"Senden Sie Kommentare und Fehlerberichte an: marcin.gorycki@intel.com"
+"Senden Sie Kommentare und Fehlerberichte an: janusz.gorycki@intel.com"
 
 #: gnomine/gnomine.c:42 gnomine/gnomine.c:315
 msgid "Tiny"
@@ -1949,11 +1953,7 @@ msgstr "2"
 
 #. Tiles mismatch
 #. { GNOME_APP_UI_ITEM, N_("X"), NULL, level_cb,
-#. "14#20#12#"     "a     bbbbbb  cccccc"     "a     bbbbbb  cccccc"     "a   
-#. -##-#######     "     "    -AAAAABBCC#     "     "   d-   DEFGHI#     "     
-#. "    #   DEFGJI#     "     "  e #   KEFGLI#     "     "  e #   KEFG*I#     " 
-#.     "    #   MM****#     "     "fff ###########     "     "fff  ggghhhiiiii  
-#. .j"     "kkkkkggg   iiiii....",
+#. "14#20#12#"     "a     bbbbbb  cccccc"     "a     bbbbbb  cccccc"     "a   -##-#######     "     "    -AAAAABBCC#     "     "   d-   DEFGHI#     "     "    #   DEFGJI#     "     "  e #   KEFGLI#     "     "  e #   KEFG*I#     "     "    #   MM****#     "     "fff ###########     "     "fff  ggghhhiiiii  .j"     "kkkkkggg   iiiii....",
 #. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
 #: gnotski/gnotski.c:123 gnotski/gnotski.c:242 gnotski/gnotski.c:380
 msgid "3"
@@ -1973,10 +1973,7 @@ msgstr "6"
 
 #. Tiles mismatch
 #. { GNOME_APP_UI_ITEM, N_("7"), NULL, level_cb,
-#. "14#13#11#"     "         ... "     "          .  "     " ########    "     
-#. " #abcdde-    "     " #ffcddg-    "     " #hhijkl#    "     " #***jml#    "  
-#.    " #n*op q#    "     " #nrr s #    "     " ########    "     "             
-#. ",
+#. "14#13#11#"     "         ... "     "          .  "     " ########    "     " #abcdde-    "     " #ffcddg-    "     " #hhijkl#    "     " #***jml#    "     " #n*op q#    "     " #nrr s #    "     " ########    "     "             ",
 #. NULL, GNOME_APP_PIXMAP_DATA, NULL, 0, 0, NULL },
 #: gnotski/gnotski.c:183 gnotski/gnotski.c:309
 msgid "7"
@@ -2219,11 +2216,6 @@ msgstr "Joker Regeln erzwingen"
 msgid "Player Names"
 msgstr "Spielernamen"
 
-#: gtali/setup.c:389
-#, c-format
-msgid "PlayerName%1d"
-msgstr "Spielername%1d"
-
 #: gtali/yahtzee.c:74
 msgid "1's [total of 1s]"
 msgstr "1er [Summe an 1ern]"
@@ -2315,110 +2307,155 @@ msgstr "Anzahl Würfe"
 msgid "Total"
 msgstr "Insgesamt"
 
-#: gturing/gturing.c:189
+#: gturing/gturing.c:131
+msgid "No comment for this program."
+msgstr "Kein Kommentar für dieses Programm."
+
+#: gturing/gturing.c:271
+msgid "States must be numbers. Move can only be 'r' or 'l'."
+msgstr "Zustände müssen Nummern sein. Bewegung kann entweder 'r' oder 'l' sein."
+
+#: gturing/gturing.c:332 gturing/gturing.c:669
+msgid "State"
+msgstr "Zustand"
+
+#: gturing/gturing.c:332 gturing/gturing.c:669
+msgid "Read"
+msgstr "Lesen"
+
+#: gturing/gturing.c:332 gturing/gturing.c:669
+msgid "Write"
+msgstr "Schreiben"
+
+#: gturing/gturing.c:332 gturing/gturing.c:669
+msgid "Move"
+msgstr "Bewegen"
+
+#: gturing/gturing.c:332 gturing/gturing.c:670
+msgid "New State"
+msgstr "Neuer Zustand"
+
+#: gturing/gturing.c:334
+msgid "Editting is still alpha. Come back later or hack."
+msgstr ""
+
+#: gturing/gturing.c:346
+msgid "Edit Or Create Row"
+msgstr "Eine Zeile bearbeiten oder erstellen"
+
+#: gturing/gturing.c:355
+msgid "Save"
+msgstr "Speichern"
+
+#: gturing/gturing.c:364
+msgid "Set"
+msgstr "Wählen"
+
+#: gturing/gturing.c:422
 #, c-format
 msgid "State: %d"
 msgstr "Zustand: %d"
 
-#: gturing/gturing.c:192 gturing/gturing.c:272
+#: gturing/gturing.c:425 gturing/gturing.c:511
 msgid "Stopped"
 msgstr "Angehalten"
 
-#: gturing/gturing.c:317
+#: gturing/gturing.c:559
+msgid "Save gTuring Program File"
+msgstr "gTuring-Programmdatei speichern"
+
+#: gturing/gturing.c:561
+msgid "Comment"
+msgstr "Kommentar"
+
+#: gturing/gturing.c:594
 msgid "Open gTuring Program File"
 msgstr "gTuring-Programmdatei öffnen"
 
-#: gturing/gturing.c:330
+#: gturing/gturing.c:611
 msgid "Tape Setting"
 msgstr "Bandeinstellung"
 
-#: gturing/gturing.c:330
+#: gturing/gturing.c:611
 msgid "Please enter the tape:"
 msgstr "Bitte geben Sie das Band ein:"
 
-#: gturing/gturing.c:371
-msgid "State"
-msgstr "Zustand"
-
-#: gturing/gturing.c:371
-msgid "Read"
-msgstr "Lesen"
-
-#: gturing/gturing.c:371
-msgid "Write"
-msgstr "Schreiben"
-
-#: gturing/gturing.c:371
-msgid "Move"
-msgstr "Bewegen"
-
-#: gturing/gturing.c:372
-msgid "New State"
-msgstr "Neuer Zustand"
-
-#: gturing/gturing.c:380
+#: gturing/gturing.c:678
 msgid "Machine's states"
 msgstr "Maschinenzustände"
 
-#: gturing/gturing.c:426
+#: gturing/gturing.c:734
 msgid "Animation Speed"
 msgstr "Animationsgeschwindigkeit"
 
-#: gturing/gturing.c:426
+#: gturing/gturing.c:734
 msgid "Miliseconds between steps:"
 msgstr "Millisekunden zwischen Schritten:"
 
-#: gturing/gturing.c:443
+#: gturing/gturing.c:751
 msgid "gturing"
 msgstr "gTuring"
 
-#: gturing/gturing.c:446
+#: gturing/gturing.c:754
 msgid "A Turing Machine for GNOME"
 msgstr "Eine Turingmaschine für GNOME"
 
-#: gturing/gturing.c:464
-msgid "_Play Speed..."
-msgstr "_Ablaufgeschwindigkeit..."
+#: gturing/gturing.c:773
+msgid "_Comment..."
+msgstr "_Kommentar..."
 
-#: gturing/gturing.c:464
-msgid "Set playing speed."
-msgstr "Die Ablaufgeschwindigkeit einstellen."
+#: gturing/gturing.c:773
+msgid "View the program's comment."
+msgstr "Den Kommentar des Programms anzeigen."
 
-#: gturing/gturing.c:466
-msgid "_Tape..."
-msgstr "_Band..."
+#: gturing/gturing.c:775
+msgid "_States..."
+msgstr "_Zustände..."
 
-#: gturing/gturing.c:466
-msgid "Set the machine's tape."
-msgstr "Das Maschinenband festlegen."
-
-#: gturing/gturing.c:468
-msgid "_View States"
-msgstr "_Zustände einsehen"
-
-#: gturing/gturing.c:469
+#: gturing/gturing.c:776
 msgid "Open a table with the machine's states."
 msgstr "Eine Tabelle mit den Maschinenzuständen öffnen."
 
-#: gturing/gturing.c:488
+#: gturing/gturing.c:783
+msgid "_Play Speed..."
+msgstr "_Ablaufgeschwindigkeit..."
+
+#: gturing/gturing.c:783
+msgid "Set playing speed."
+msgstr "Die Ablaufgeschwindigkeit einstellen."
+
+#: gturing/gturing.c:785
+msgid "_Tape..."
+msgstr "_Band..."
+
+#: gturing/gturing.c:785
+msgid "Set the machine's tape."
+msgstr "Das Maschinenband festlegen."
+
+#: gturing/gturing.c:805
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: gturing/gturing.c:490
+#: gturing/gturing.c:807
 msgid "Stop"
 msgstr "Halt"
 
-#: gturing/gturing.c:492
+#: gturing/gturing.c:809
 msgid "Run"
 msgstr "Los"
 
-#: gturing/gturing.c:494
+#: gturing/gturing.c:811
 msgid "Step"
 msgstr "Schritt"
 
-#: gturing/gturing.c:504
+#: gturing/gturing.c:835
 msgid "Welcome to gTuring."
 msgstr "Willkommen zu gTuring."
+
+#. This string is supposed to have the same length as the welcoming string.
+#: gturing/gturing.c:837
+msgid "^                   "
+msgstr "^                    "
 
 #: iagno/gnothello.c:107
 msgid "IOR of remote Iagno server"
@@ -2742,3 +2779,8 @@ msgstr "Was trage ich"
 msgid "_New"
 msgstr "_Neu"
 
+#~ msgid "PlayerName%1d"
+#~ msgstr "Spielername%1d"
+
+#~ msgid "_View States"
+#~ msgstr "_Zustände einsehen"
