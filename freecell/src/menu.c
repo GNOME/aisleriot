@@ -28,7 +28,7 @@ GnomeUIInfo game_menuinfo[] =
 {
   {GNOME_APP_UI_ITEM, N_("New Game"), NULL,
    callback_new, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 0, 0, NULL},
 
   {GNOME_APP_UI_ITEM, N_("Restart Game"), NULL,
    callback_restart, NULL, NULL,
@@ -44,7 +44,7 @@ GnomeUIInfo game_menuinfo[] =
   
   {GNOME_APP_UI_ITEM, N_("Properties..."), NULL,
    callback_option, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_PROPERTIES, 0, 0, NULL},
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PROP, 0, 0, NULL},
   
   {GNOME_APP_UI_ITEM, N_("Score..."), NULL,
    callback_score, NULL, NULL,
@@ -71,7 +71,7 @@ GnomeUIInfo help_menuinfo[] =
 
   {GNOME_APP_UI_ITEM, N_("About..."), NULL,
    callback_about, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
   
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
    NULL, NULL, NULL,
