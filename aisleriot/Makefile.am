@@ -42,3 +42,5 @@ types_DATA  = 		\
 
 EXTRA_DIST = TODO FIXME RULES AUTHORS $(types_DATA) sol.desktop
 
+sysdir = $(datadir)/apps/Games
+sys_DATA = sol.desktop
