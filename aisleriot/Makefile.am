@@ -48,7 +48,8 @@ types_DATA  = 		\
 	odessa.scm	\
 	osmosis.scm	\
 	sol.scm		\
-	spider.scm
+	spider.scm	\
+	yukon.scm
 
 cardimage_DATA = Baize.xpm
 

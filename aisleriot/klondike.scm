@@ -76,8 +76,8 @@
 	   (< end-slot 6))
       (add-to-score! 1))
   (if (and (not (empty-slot? start-slot)) (> start-slot 5))
-		(make-visible-top-card start-slot)
-		#f)
+      (make-visible-top-card start-slot)
+      #f)
   #t)
 
 (define (button-released start-slot card-list end-slot)
