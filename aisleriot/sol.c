@@ -287,10 +287,10 @@ void quit_app (GtkWidget *app)
 
 void create_main_window ()
 {
-  /* Give consistent names to property files: */
-  app = gnome_app_new (gnome_client_get_global_config_prefix 
-		       (gnome_master_client ()),
-		       _("Aisleriot"));
+  app = gnome_app_new ("sol", _("Aisleriot"));
+  GNOME_APP (app)->prefix = 
+    gnome_client_get_global_config_prefix (gnome_master_client ());
+
   gtk_widget_realize (app);
 
   gtk_signal_connect (GTK_OBJECT (app), "delete_event", 
@@ -381,13 +381,14 @@ save_state (GnomeClient *client, gint phase, GnomeSaveStyle save_style,
 {
   gchar *prefix = gnome_client_get_config_prefix (client);
   gchar *argv[2];
-  
+
   gnome_config_push_prefix (prefix);
-  gnome_config_set_string ("Variation/Default", game_name);
+  gnome_config_set_string ("Variation/Default File", game_file);
   gnome_config_pop_prefix ();
   gnome_config_sync();
 
-  argv[0] = "rm";
+  /* Need to fix gnome-session before using a sensible discard command !! */
+  argv[0] = "echo";
   argv[1] = gnome_config_get_real_path (prefix);
   gnome_client_set_discard_command (client, 2, argv);
   
@@ -397,10 +398,20 @@ save_state (GnomeClient *client, gint phase, GnomeSaveStyle save_style,
 static void
 retrieve_state (GnomeClient *client)
 {
-  gnome_config_push_prefix ( gnome_client_get_config_prefix (client));
+  gchar *prefix = gnome_client_get_config_prefix (client);
+
+  gnome_config_push_prefix (prefix);
   start_game = gnome_config_get_string_with_default 
-    ( "Variation/Default/=" DEFAULT_VARIATION, NULL);
+    ( "Variation/Default File=" DEFAULT_VARIATION, NULL);
   gnome_config_pop_prefix ();
+
+  /* Should be done by discard command but this is broken in gnome! */
+  if (strcmp (prefix, gnome_client_get_global_config_prefix (client))) {
+    fprintf(stderr, "\nunlinking %s\n", gnome_config_get_real_path (prefix));
+    prefix = gnome_config_get_real_path (prefix);
+    prefix[ strlen (prefix) - 1] = '\0';
+    unlink (prefix);
+  }
 }
 
 int
