@@ -38,19 +38,20 @@ void show_game_over_dialog() {
   gchar* message;
 
   if (game_won)
-    message = _("Congratulations\n\nYou Won!!!");
+    message = g_strdup_printf ("<b>%s\n\n%s</b>", _("Congratulations."),
+                                _("You won!!!"));
   else
-    message = _("\nGame Over.\n");
+    message = g_strdup_printf ("<b>%s</b>", _("Game over."));
 
-  /* Should we use the status bar for game over reports when the user
-   * look & feel prefs go for the status bar ? I think not... */
-#if 1
   dialog = gtk_message_dialog_new (GTK_WINDOW (app),
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
-                                   GTK_MESSAGE_QUESTION,
+                                   GTK_MESSAGE_INFO,
                                    GTK_BUTTONS_NONE,
                                    message);
 
+  g_free (message);
+  gtk_label_set_use_markup (GTK_LABEL (GTK_MESSAGE_DIALOG (dialog)->label),
+                            TRUE);
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                           _("New Game"), GTK_RESPONSE_ACCEPT,
                           GTK_STOCK_QUIT, GTK_RESPONSE_REJECT,
@@ -79,10 +80,6 @@ void show_game_over_dialog() {
        gtk_widget_destroy (dialog);
      }
   }
-
-#else
-  gnome_app_question_modal ( GNOME_APP (app), message, random_seed, NULL);
-#endif
 }
 
 gchar *filename = NULL;
