@@ -144,8 +144,6 @@ GnomeUIInfo top_menu[] = {
 
   GNOMEUIINFO_SUBTREE(N_("_Move"), move_menu),
 
-  GNOMEUIINFO_JUSTIFY_RIGHT,
-
   GNOMEUIINFO_SUBTREE(N_("_Help"), help_menu),
 
   GNOMEUIINFO_END
