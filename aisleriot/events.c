@@ -37,8 +37,6 @@ int waiting_for_mouse_up(void) {
   return 0;
 }
 
-/* Button press statuses */
-
 void end_of_game_test() {
 
   gh_eval_str ("(end-move)");
@@ -261,6 +259,7 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   gint tmptime;
   GtkSettings * settings;
+  GConfClient * gconf_client = gconf_client_get_default ();
 
   if(surface) {
     gint old_w, old_h;
@@ -283,6 +282,9 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   settings = gtk_settings_get_default();
   g_object_get(G_OBJECT(settings),"gtk-double-click-time",&tmptime,NULL);
   dbl_click_time = tmptime/1000.0;
+
+  gconf_client_set_int (gconf_client, WIDTH_GCONF_KEY, event->width, NULL);
+  gconf_client_set_int (gconf_client, HEIGHT_GCONF_KEY, event->height, NULL);
   
   return FALSE;
 }

@@ -22,6 +22,20 @@
 #include "slot.h"
 #include "card.h"
 
+void rescale_cards (int new_width, int new_height) {
+  static int width = 0;
+  static int height = 0;
+
+  if ((new_width == width) && (new_height == height))
+    return;
+
+  width = new_width;
+  height = new_height;
+
+  /* FIXME: Resize the cards in here. */
+
+}
+
 void draw_cards () {
   GList* slot;
   gint x, y;

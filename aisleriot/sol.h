@@ -31,6 +31,11 @@
 		     GDK_BUTTON_PRESS_MASK    |\
 		     GDK_POINTER_MOTION_MASK  |\
 		     GDK_BUTTON_RELEASE_MASK)
+
+/* GConf keys. */
+#define WIDTH_GCONF_KEY "/apps/aisleriot/width"
+#define HEIGHT_GCONF_KEY "/apps/aisleriot/height"
+
 /*
  * Global variables
  */

@@ -46,6 +46,11 @@
 #include "games-clock.h"
 #include "games-gconf.h"
 
+/* The minimum size for the playing area. Almost completely arbitrary. */
+#define BOARD_MIN_WIDTH 300
+#define BOARD_MIN_HEIGHT 250
+
+
 /*
  * Global Variables
  */
@@ -166,7 +171,6 @@ save_state (GnomeClient *client)
 void new_game (gchar* file, guint *seedp )
 {
   SCM size;
-  gint min_w, min_h;
 
   /* If we're aborting an old game count it as a failure for
    * statistical purposes. */
@@ -217,9 +221,7 @@ void new_game (gchar* file, guint *seedp )
   size = gh_call0(game_data->start_game_lambda);
   gh_eval_str ("(start-game)");
 
-  min_w = gh_scm2int (gh_car (size))*get_horiz_offset() + 2*get_horiz_start();
-  min_h = gh_scm2int (gh_cadr (size))*get_vert_offset() + 2*get_vert_start();
-  gtk_widget_set_size_request (playing_area, min_w, min_h);
+  rescale_cards (gh_scm2int (gh_car (size)), gh_scm2int (gh_cadr (size)));
 
   /* It is possible for some games to not have any moves right from the
    * start. If this happens we redeal. */
@@ -298,6 +300,10 @@ static void create_sol_board ()
   playing_area = gtk_drawing_area_new ();
   gtk_widget_set_events (playing_area, 
 			 gtk_widget_get_events (playing_area) | GAME_EVENTS);
+  /* This only enforces the minimum size. It is actually set using the
+   * window size. */
+  gtk_widget_set_size_request (playing_area, BOARD_MIN_WIDTH, 
+			       BOARD_MIN_HEIGHT);
   
   gnome_app_set_contents (GNOME_APP (app), playing_area);
   
@@ -329,7 +335,14 @@ void quit_app (GtkMenuItem *menuitem)
 
 static void create_main_window ()
 {
+  gint width, height;
+  GConfClient * gconf_client = gconf_client_get_default ();
+
+  width = gconf_client_get_int (gconf_client, WIDTH_GCONF_KEY, NULL);
+  height = gconf_client_get_int (gconf_client, HEIGHT_GCONF_KEY, NULL);
+
   app = gnome_app_new ("aisleriot", _("Aisleriot"));
+  gtk_window_set_default_size (GTK_WINDOW (app), width, height);
 
   gtk_widget_realize (app);
 
