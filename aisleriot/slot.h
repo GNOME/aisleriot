@@ -35,6 +35,11 @@ typedef struct {
   double y;
   double dx;
   double dy;
+  /* there is the real dy, and the one we calculate so that
+   * the slot fits in the screen. we compress too tall slots
+   * see bug#171417 */
+  double compressed_dy;
+  
   /* The location in pixel units. Filled in by the scaling code. */
   gint pixelx;
   gint pixely;

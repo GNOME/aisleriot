@@ -350,6 +350,7 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 	    abs(press_data->yoffset - event->y) > 2)) {
     press_data->status = STATUS_IS_DRAG;
     generate_press_data ();
+    refresh_screen ();
     take_snapshot();
     set_cursor (CURSOR_CLOSED);
   } else {

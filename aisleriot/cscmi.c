@@ -57,11 +57,11 @@ void add_slot(SCM slot_data)
   hslot->x = scm_num2dbl (SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))), NULL);
   hslot->y = scm_num2dbl (SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))), NULL);
   
-  hslot->dx = hslot->dy = 0;
+  hslot->dx = hslot->dy = hslot->compressed_dy = 0;
   hslot->expansion_depth = 0;
 
   if (!strcmp("expanded", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    hslot->dy = y_expanded_offset;
+    hslot->compressed_dy = hslot->dy = y_expanded_offset;
   }
   else if (!strcmp("expanded-right", 
 		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
@@ -69,7 +69,7 @@ void add_slot(SCM slot_data)
   }
   else if (!strcmp("partially-expanded", 
 		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    hslot->dy = y_expanded_offset;
+    hslot->compressed_dy = hslot->dy = y_expanded_offset;
     hslot->expansion_depth = SCM_INUM (SCM_CADDR(SCM_CADDR(slot_data)));
   }
   else if (!strcmp("partially-expanded-right", 
@@ -194,7 +194,7 @@ static SCM gg_scm_add_slot(SCM slot)
 static SCM scm_set_slot_y_expansion(SCM scm_slot_id, SCM new_exp_val)
 {
   hslot_type slot = get_slot(scm_num2int(scm_slot_id, SCM_ARG1, NULL));
-  slot->dy = scm_num2dbl (new_exp_val, NULL);
+  slot->compressed_dy = slot->dy = scm_num2dbl (new_exp_val, NULL);
   return SCM_EOL;
 }
 

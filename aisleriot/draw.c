@@ -66,8 +66,8 @@ static void calculate_card_location (hslot_type hslot)
   hslot->pixelx = xslotstep*hslot->x + xofs;
   hslot->pixely = yslotstep*hslot->y + yofs;
   hslot->pixeldx = hslot->dx*card_width;
-  hslot->pixeldy = hslot->dy*card_height;
-
+  hslot->pixeldy = hslot->compressed_dy*card_height;
+ 
   update_slot_length (hslot);
 }
 
@@ -112,14 +112,52 @@ void rescale_cards (void) {
   set_geometry (width, height);
 }
 
+/* get the actual height of the slot */
+static double get_slot_height (hslot_type hslot) {
+  double cardtops_height;
+  double rest_height_last_card;
+
+  cardtops_height = hslot->pixeldy*g_list_length (hslot->cards);
+  rest_height_last_card = (1-hslot->compressed_dy)*card_height;
+
+  return cardtops_height + rest_height_last_card;
+}
+
+/* get the maximum size of the slot allowing
+ * it to fit in the window */
+static double get_slot_max_height (hslot_type hslot) {
+  int surface_height;
+
+  gdk_drawable_get_size(surface, NULL, &surface_height);
+
+  return surface_height - yoffset - hslot->pixely;
+}
+
 void draw_cards () {
   GList* slot;
   gint x, y;
   GList* card_list;
   GdkPixmap *image;
+  double slot_height;
+  double slot_max_height;
 
   for (slot = get_slot_list (); slot; slot = slot->next) {
     hslot_type hslot = (hslot_type)slot->data;
+
+    hslot->compressed_dy = hslot->dy;
+    hslot->pixeldy = hslot->compressed_dy * card_height;
+
+    slot_height = get_slot_height (hslot);
+    slot_max_height = get_slot_max_height (hslot);
+
+    /* if the slot is too high to fit, reduce dy to make it fit */
+    while (slot_height > slot_max_height) {
+      hslot->compressed_dy = 0.8 * hslot->compressed_dy;
+      hslot->pixeldy = hslot->compressed_dy * card_height;
+      slot_height = get_slot_height (hslot);
+      slot_max_height = get_slot_max_height (hslot);
+    }
+    calculate_card_location (hslot);
 
     if ((card_list = hslot->cards)) {
 
