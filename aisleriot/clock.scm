@@ -116,16 +116,24 @@
       (complete-transaction card-list end-slot)
       #f))
 
-(define (button-clicked slot-id)  
-  (if (= (get-value (get-top-card slot-id)) king)
-      (complete-transaction slot-id slot-id)
+(define (button-clicked slot-id)
+  (if (and (= (get-value (get-top-card slot-id)) king)
+	   (is-visible? (get-top-card slot-id)))
+      (begin
+	(set-cards! 6 (cons (car (reverse (get-cards 6)))
+			    (reverse (cdr (reverse (get-cards 6))))))
+	(make-visible-top-card 6))
       #f))
 
 (define (button-double-clicked slot)
   (if (transaction-good? slot (get-cards 6))
-      (let ((top-card (get-top-card 6)))
-	(set-cards! 6 (cdr (get-cards 6)))
-	(complete-transaction (list top-card) slot))
+      (if (= slot 6)
+	  (set-cards! 6 (cons (car (reverse (get-cards 6))) 
+			      (reverse (cdr (reverse (get-cards 6))))))
+	  (begin
+	    (let ((top-card (get-top-card 6)))
+	      (set-cards! 6 (cdr (get-cards 6)))
+	      (complete-transaction (list top-card) slot))))
       #f))
 
 (define (make-all-visible slot)
