@@ -62,7 +62,7 @@ libgames_support_la_SOURCES =		\
 	$(NULL)
 
 %.c %.h %-private.h: %.gob
-	if [ "x$(GOB2)" = "x" ] then
+	if [ "x$(GOB2)" = "x" ] ; then
 		touch $@ ; 
 	else 
 		@GOB2@ $< ;
