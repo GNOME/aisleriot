@@ -41,50 +41,54 @@ void drop_moving_cards(gint x, gint y) {
   SCM arglist;
   SCM cardlist;
   hslot_type slot;
-  gint slotid, cardid;
- 
+  gint slotid, cardid, moved;
+  gint width, height;
+
+  moved = 0;
   cardlist = SCM_EOL;
 
-  slot_pressed(x, y, &slotid, &cardid);
+  slot_pressed(x+get_card_width()/2-press_data->xoffset, 
+	       y+get_card_height()/2-press_data->yoffset, 
+	       &slotid, &cardid);
  
-  if (slotid == -1) {
-	 add_cards_to_slot(press_data->cards, press_data->slot_id);
-	 slot=get_slot(press_data->slot_id);
-	 slot->expansion_depth = press_data->temporary_partial_hack;
-	 update_slot_length(press_data->slot_id);
-  }
-  else {
-	 for (temp = press_data->cards; temp; temp = temp->next)
-		cardlist = gh_cons(make_card(temp->data), cardlist);
+  if (slotid != -1) {
 
-	 arglist =  gh_cons(gh_long2scm(press_data->slot_id), gh_cons(cardlist, gh_cons(gh_long2scm(slotid), SCM_EOL)));
-	 if (gh_scm2bool(gh_apply(game_data->button_released_lambda, arglist))) {
-		slot=get_slot(slotid);
-		slot->expansion_depth = press_data->temporary_partial_hack;
-		update_slot_length(slotid);
-		end_of_game_test();
-	 }
-	 else {
-		add_cards_to_slot(press_data->cards, press_data->slot_id);
-		slot=get_slot(press_data->slot_id);
-		slot->expansion_depth = press_data->temporary_partial_hack;
-		update_slot_length(press_data->slot_id);
-	 }
+    for (temp = press_data->cards; temp; temp = temp->next)
+      cardlist = gh_cons(make_card(temp->data), cardlist);
+    
+    arglist = gh_cons(gh_long2scm(press_data->slot_id), 
+		      gh_cons(cardlist, 
+			      gh_cons(gh_long2scm(slotid), SCM_EOL)));
+    moved = gh_scm2bool(gh_apply(game_data->button_released_lambda, arglist));
   }
+
+  if (!moved) {
+    slotid = press_data->slot_id;
+    add_cards_to_slot(press_data->cards, slotid);
+  }
+
+  slot = get_slot(slotid);
+  slot->expansion_depth = press_data->temporary_partial_hack;
+  update_slot_length(slotid);
   press_data->cards = NULL;
+
+  gdk_window_get_size(press_data->moving_cards, &width, &height);
+  gdk_window_move(press_data->moving_cards, 
+		  slot->x + slot->width - width, 
+		  slot->y + slot->height - height);
+
+  refresh_screen();
+
+  gdk_window_hide(press_data->moving_cards);
+
   if (press_data->moving_pixmap)
     gdk_pixmap_unref(press_data->moving_pixmap);
   if (press_data->moving_mask)
     gdk_pixmap_unref(press_data->moving_mask);
   press_data->moving_pixmap = NULL;
   press_data->moving_mask = NULL;
-  paint_blank_surface();
-  draw_slot_placements(blank_surface);
-  gdk_draw_pixmap(surface,	playing_area->style->black_gc,blank_surface,0,0,0,0,-1,-1);
-  draw_cards(surface);
-  gdk_window_set_back_pixmap(playing_area->window, surface, 0);
-  gdk_window_move(press_data->moving_cards, 0 - get_card_width(), 0);
-  gdk_window_clear(playing_area->window);
+
+  if(moved) end_of_game_test();
 }
 
 void button_up_not_moved(gint x, gint y) {
