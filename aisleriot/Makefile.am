@@ -2,6 +2,7 @@ cardimagedir = $(datadir)/pixmaps/cards
 icondir = $(datadir)/pixmaps
 Gamesdir  = $(datadir)/applications
 typesdir  = $(datadir)/sol-games
+gladedir = $(datadir)/sol-games/glade
 
 schemadir   = @GCONF_SCHEMA_FILE_DIR@
 schema_in_files = aisleriot.schemas.in
@@ -16,6 +17,7 @@ INCLUDES =  \
 	-DDATADIR=\""$(datadir)"\"		   \
 	$(GNOME_GAMES_CFLAGS)			   \
 	@UCB_CFLAGS@				   \
+	-DGLADEDIR=\""$(gladedir)"\" \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"   \
 	$(GUILE_INCS)
 
@@ -39,13 +41,18 @@ sol_SOURCES = 		\
 	press_data.c	\
 	draw.c		\
 	menu.c		\
-	card.c
+	card.c		\
+	statistics.c	\
+	statistics.h
 
 sol_LDADD = $(GNOME_GAMES_LIBS) \
 	../gdk-card-image/libgdkcardimage.la \
 	../libgames-support/libgames-support.la \
 	@UCB_LDFLAGS@ \
 	$(GUILE_LIBS) 
+
+glade_DATA = \
+	statistics.glade
 
 types_DATA  = 		\
 	agnes.scm	\
@@ -126,7 +133,7 @@ icon_DATA = gnome-aisleriot.png gnome-cardgame.png
 EXTRA_DIST = AUTHORS $(types_DATA) $(cardimage_DATA) \
 	$(icon_DATA) sol.desktop.in freecell.desktop.in \
 	template.scm translatable_game_names.h \
-	$(schema_in_files)
+	$(schema_in_files) $(glade_DATA)
 
 
 sysdir = $(datadir)/applications/

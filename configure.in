@@ -57,7 +57,7 @@ GTK_REQUIRED=2.3
 GCONF_REQUIRED=1.1.5
 GNOME_VFS_REQUIRED=1.9.11
 
-PKG_CHECK_MODULES(GNOME_GAMES, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gconf-2.0 >= $GTK_REQUIRED gnome-vfs-module-2.0 >= $GNOME_VFS_REQUIRED gtk+-2.0 >= $GTK_REQUIRED)
+PKG_CHECK_MODULES(GNOME_GAMES, libglade-2.0 libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gconf-2.0 >= $GTK_REQUIRED gnome-vfs-module-2.0 >= $GNOME_VFS_REQUIRED gtk+-2.0 >= $GTK_REQUIRED)
 
 GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CFLAGS"
 GNOME_GAMES_LIBS="$GNOME_GAMES_LIBS \$(top_builddir)/libgames-support/libgames-support.la"

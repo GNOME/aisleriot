@@ -30,6 +30,7 @@
 #include "cscmi.h"
 #include "draw.h"
 #include "events.h"
+#include "statistics.h"
 
 static GtkWidget *about = NULL;
 
@@ -171,10 +172,6 @@ GnomeUIInfo rules_sub_menu[] = {
   GNOMEUIINFO_END
 };
 
-GnomeUIInfo file_menu[] = {
-  GNOMEUIINFO_END
-};
-
 GnomeUIInfo view_menu[] = {
 
 #if 0
@@ -209,6 +206,8 @@ GnomeUIInfo game_menu[] = {
   GNOMEUIINFO_MENU_RESTART_GAME_ITEM(restart_game, NULL),
 
   GNOMEUIINFO_ITEM_STOCK (N_("_Select..."), N_("Select a different game"), show_select_game_dialog, GTK_STOCK_OPEN),
+
+  GNOMEUIINFO_ITEM_STOCK (N_("S_tatistics..."), N_("Get statistics on the current game"), show_statistics_dialog, GTK_STOCK_ADD),
 
   GNOMEUIINFO_SEPARATOR,
 

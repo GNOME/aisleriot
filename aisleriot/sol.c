@@ -37,6 +37,7 @@
 #include <gnome.h>
 #include <gconf/gconf-client.h>
 #include <libgnomeui/gnome-window-icon.h>
+#include <glade/glade.h>
 #include "slot.h"
 #include "card.h"
 #include "cscmi.h"
@@ -474,6 +475,7 @@ int main (int argc, char *argv [])
  		      argc, argv,
  		      GNOME_PARAM_POPT_TABLE, aisleriot_opts,
  		      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
+  glade_init ();
 
   gconf_client = gconf_client_get_default ();
   games_gconf_sanity_check_string (gconf_client, "/apps/aisleriot/game_file");
