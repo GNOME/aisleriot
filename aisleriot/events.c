@@ -132,7 +132,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 		slot_pressed(event->x,event->y, &slotid, &cardid);
 		if (slotid != -1) {
 		  templist =  gh_cons(gh_long2scm(slotid), SCM_EOL);
-		  //		  gh_apply(game_data->button_double_clicked_lambda, templist);
+		  /* gh_apply(game_data->button_double_clicked_lambda, templist); */
 		}
 		return TRUE;
 	 }

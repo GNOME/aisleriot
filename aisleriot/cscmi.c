@@ -49,7 +49,7 @@ hslot_type new_slot(SCM slot_data) {
   else if (!strcmp("normal", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
     retval->type = NORMAL_SLOT;
   }
-  //if we don't recognize
+  /* if we don't recognize */
   else {
 	 retval->type = NORMAL_SLOT;
   }
@@ -57,7 +57,7 @@ hslot_type new_slot(SCM slot_data) {
   retval->x = SCM_INUM(SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))));
   retval->y = SCM_INUM(SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))));
 
-  //hmmm, this is sorta messy... I assume that update_slot_length will be called soon... 
+  /* hmmm, this is sorta messy... I assume that update_slot_length will be called soon...  */
   retval->height = get_card_height();
   retval->width = get_card_width();
 

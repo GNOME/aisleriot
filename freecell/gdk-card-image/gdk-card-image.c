@@ -302,7 +302,7 @@ draw_suit (GdkGC *gc, GdkPixmap *p, int suit, int rank)
       PAINT_AT(card_base.x1, card_base.y7);
     }
   gdk_gc_set_clip_mask(gc, NULL);
-  // mirror_image (gc, p, 0, 0, card_base.w, card_base.h);
+  /*  mirror_image (gc, p, 0, 0, card_base.w, card_base.h); */
   gdk_gc_set_clip_mask(gc, card_base.suits_clip);
   if (suitflags[rank] & 0x04)
     {
