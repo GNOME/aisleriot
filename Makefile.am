@@ -7,9 +7,10 @@ guile_DIRS = aisleriot
 endif
 
 SUBDIRS = po macros \
-	 freecell gnomine same-gnome scottfree mahjongg gturing \
-         gyahtzee gnobots gnothello gnotravex gnome-stones $(guile_DIRS) idl
-	 
+	  freecell gnomine same-gnome scottfree mahjongg gturing \
+          gyahtzee gnobots gnothello gnotravex gnome-stones \
+	  $(guile_DIRS) idl metatris
+
 #$(objc_DIRS)
 
 EXTRA_DIST = gnome-games.spec

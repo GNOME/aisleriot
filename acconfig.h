@@ -41,3 +41,5 @@
  *   1 = version 1.9.9g
  *   2 = version 4.0/4.1 */
 #undef NCURSES_970530
+
+#undef WITH_SYMBOL_UNDERSCORE
