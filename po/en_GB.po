@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
-"POT-Creation-Date: 2002-05-07 16:03+0100\n"
+"POT-Creation-Date: 2002-05-28 21:45+0100\n"
 "PO-Revision-Date: 1999-06-02 16:36+0100\n"
 "Last-Translator: Robert Brady <rwb197@ecs.soton.ac.uk\n"
 "Language-Team: \n"
@@ -373,7 +373,7 @@ msgstr ""
 msgid "New Game"
 msgstr ""
 
-#: aisleriot/dialog.c:109 mahjongg/mahjongg.c:1432
+#: aisleriot/dialog.c:109 mahjongg/mahjongg.c:1595
 msgid "Select Game"
 msgstr ""
 
@@ -456,11 +456,12 @@ msgid "                      Matthew Wilcox (matthew@wil.cx)"
 msgstr ""
 
 #. Translator credits
-#: aisleriot/menu.c:92 gataxx/gataxx.c:403 glines/glines.c:729
-#: gnect/src/dialog.c:48 gnibbles/main.c:184 gnobots2/menu.c:251
-#: gnome-stones/main.c:1008 gnomine/gnomine.c:247 gnotravex/gnotravex.c:967
-#: gnotski/gnotski.c:981 gtali/gyahtzee.c:361 iagno/gnothello.c:405
-#: mahjongg/mahjongg.c:1199 same-gnome/same-gnome.c:605
+#: aisleriot/menu.c:92 freecell/src/io-gtk.c:656 gataxx/gataxx.c:403
+#: glines/glines.c:729 gnect/src/dialog.c:48 gnibbles/main.c:184
+#: gnobots2/menu.c:235 gnome-stones/main.c:1008 gnometris/tetris.cpp:979
+#: gnomine/gnomine.c:247 gnotravex/gnotravex.c:972 gnotski/gnotski.c:985
+#: gtali/gyahtzee.c:361 iagno/gnothello.c:405 mahjongg/mahjongg.c:1342
+#: same-gnome/same-gnome.c:605
 msgid "translator_credits"
 msgstr ""
 
@@ -504,7 +505,7 @@ msgid "Select a new game variation"
 msgstr ""
 
 #: aisleriot/menu.c:198 freecell/src/menu.c:91 gnect/src/gui.c:85
-#: mahjongg/mahjongg.c:389
+#: mahjongg/mahjongg.c:398
 msgid "New"
 msgstr ""
 
@@ -512,7 +513,7 @@ msgstr ""
 msgid "Deal a new game"
 msgstr ""
 
-#: aisleriot/menu.c:201 freecell/src/menu.c:94 mahjongg/mahjongg.c:392
+#: aisleriot/menu.c:201 freecell/src/menu.c:94 mahjongg/mahjongg.c:402
 msgid "Restart"
 msgstr ""
 
@@ -528,7 +529,7 @@ msgstr ""
 msgid "Select a new game"
 msgstr ""
 
-#: aisleriot/menu.c:209 gnect/src/gui.c:87 mahjongg/mahjongg.c:395
+#: aisleriot/menu.c:209 gnect/src/gui.c:87 mahjongg/mahjongg.c:406
 msgid "Hint"
 msgstr ""
 
@@ -537,7 +538,7 @@ msgid "Suggest a move"
 msgstr ""
 
 #: aisleriot/menu.c:212 freecell/src/menu.c:103 gnect/src/gui.c:86
-#: mahjongg/mahjongg.c:398
+#: mahjongg/mahjongg.c:410
 msgid "Undo"
 msgstr ""
 
@@ -545,7 +546,7 @@ msgstr ""
 msgid "Undo the last move"
 msgstr ""
 
-#: aisleriot/menu.c:215 mahjongg/mahjongg.c:401
+#: aisleriot/menu.c:215 mahjongg/mahjongg.c:414
 msgid "Redo"
 msgstr ""
 
@@ -586,11 +587,11 @@ msgstr ""
 msgid "Dealing game..."
 msgstr ""
 
-#: aisleriot/sol.c:425 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:848
+#: aisleriot/sol.c:425 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:852
 msgid "Score: "
 msgstr ""
 
-#: aisleriot/sol.c:429
+#: aisleriot/sol.c:429 mahjongg/mahjongg.c:2006
 msgid "Time: "
 msgstr ""
 
@@ -603,7 +604,7 @@ msgstr ""
 msgid "NAME"
 msgstr ""
 
-#: aisleriot/sol.c:517
+#: aisleriot/sol.c:520
 msgid "Initializing scheme..."
 msgstr "Initialising scheme..."
 
@@ -709,7 +710,7 @@ msgid "Fourteen"
 msgstr ""
 
 #: aisleriot/translatable_game_names.h:30 freecell/src/io-gtk.c:121
-#: freecell/src/io-gtk.c:664
+#: freecell/src/io-gtk.c:678
 msgid "Freecell"
 msgstr ""
 
@@ -945,12 +946,12 @@ msgstr ""
 msgid "FreeCell Game"
 msgstr ""
 
-#: freecell/src/io-gtk.c:330 freecell/src/io-gtk.c:460
-#: freecell/src/io-gtk.c:525 freecell/src/io-gtk.c:619
+#: freecell/src/io-gtk.c:330 freecell/src/io-gtk.c:462
+#: freecell/src/io-gtk.c:529 freecell/src/io-gtk.c:625
 msgid "Exit this game?"
 msgstr ""
 
-#: freecell/src/io-gtk.c:388 freecell/src/io-gtk.c:490
+#: freecell/src/io-gtk.c:388 freecell/src/io-gtk.c:494
 #, c-format
 msgid "Freecell #%d"
 msgstr ""
@@ -959,27 +960,27 @@ msgstr ""
 msgid "Seed value:"
 msgstr ""
 
-#: freecell/src/io-gtk.c:581
+#: freecell/src/io-gtk.c:587
 msgid "Sorry, this feature is not (yet) implemented."
 msgstr ""
 
-#: freecell/src/io-gtk.c:640
+#: freecell/src/io-gtk.c:648
 msgid "Changwoo Ryu."
 msgstr ""
 
-#: freecell/src/io-gtk.c:666
+#: freecell/src/io-gtk.c:680
 msgid "Reimplement the popular solitaire card game."
 msgstr ""
 
-#: freecell/src/io-gtk.c:683
+#: freecell/src/io-gtk.c:697
 msgid "That move is invalid."
 msgstr ""
 
-#: freecell/src/io-gtk.c:1174
+#: freecell/src/io-gtk.c:1189
 msgid "Sorry, there are no more valid moves."
 msgstr ""
 
-#: freecell/src/io-gtk.c:1195
+#: freecell/src/io-gtk.c:1210
 msgid ""
 "Congratulations.  You won.\n"
 "Do you want to play again?"
@@ -1021,7 +1022,7 @@ msgstr ""
 msgid "Move stacks one by one"
 msgstr ""
 
-#: freecell/src/score-dialog.c:49 glines/glines.c:1223 xbill/UI.cc:139
+#: freecell/src/score-dialog.c:49 glines/glines.c:1226 xbill/UI.cc:139
 msgid "Score"
 msgstr ""
 
@@ -1209,7 +1210,7 @@ msgstr ""
 msgid "Flip final results"
 msgstr ""
 
-#: gataxx/properties.c:518 iagno/properties.c:678 mahjongg/mahjongg.c:1011
+#: gataxx/properties.c:518 iagno/properties.c:678 mahjongg/mahjongg.c:1146
 msgid "Tile set:"
 msgstr ""
 
@@ -1231,7 +1232,7 @@ msgid "Game Over!"
 msgstr ""
 
 #: glines/glines.c:193 glines/glines.c:701 glines/glines.c:744
-#: glines/glines.c:1189 glines/glines.desktop.in.h:1
+#: glines/glines.c:1192 glines/glines.desktop.in.h:1
 msgid "Glines"
 msgstr ""
 
@@ -1276,11 +1277,11 @@ msgstr ""
 msgid "Ask confirmation when quitting"
 msgstr ""
 
-#: glines/glines.c:1199
+#: glines/glines.c:1202
 msgid "Welcome to Glines!"
 msgstr ""
 
-#: glines/glines.c:1210
+#: glines/glines.c:1213
 msgid "Next Balls"
 msgstr ""
 
@@ -1481,7 +1482,7 @@ msgstr ""
 msgid "Error loading theme"
 msgstr ""
 
-#: gnect/src/prefs.c:513
+#: gnect/src/prefs.c:513 gnobots2/menu.c:118
 msgid ""
 "Applying this change to Player Selection\n"
 "will end the current game"
@@ -1754,7 +1755,7 @@ msgstr ""
 msgid "Number of players: "
 msgstr ""
 
-#: gnibbles/preferences.c:457 gnobots2/properties.c:859
+#: gnibbles/preferences.c:457 gnobots2/properties.c:1013
 msgid "Graphics"
 msgstr ""
 
@@ -1828,27 +1829,27 @@ msgstr ""
 msgid "Worm %d:"
 msgstr ""
 
-#: gnobots2/game.c:120
+#: gnobots2/game.c:119
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr ""
 
-#: gnobots2/game.c:123
+#: gnobots2/game.c:122
 #, c-format
 msgid "'%s' with safe moves"
 msgstr ""
 
-#: gnobots2/game.c:340 gnobots2/game.c:355
+#: gnobots2/game.c:339 gnobots2/game.c:354
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
 msgstr ""
 
-#: gnobots2/game.c:1171
+#: gnobots2/game.c:1170
 msgid "There are no teleport locations left!!"
 msgstr ""
 
-#: gnobots2/game.c:1239
+#: gnobots2/game.c:1238
 msgid "There are no safe locations to teleport to!!"
 msgstr ""
 
@@ -1868,7 +1869,7 @@ msgstr ""
 msgid "Y"
 msgstr ""
 
-#: gnobots2/gnobots.c:189 gnobots2/gnobots2.soundlist.in.h:2
+#: gnobots2/gnobots.c:194 gnobots2/gnobots2.soundlist.in.h:2
 msgid "Gnome Robots II"
 msgstr ""
 
@@ -1910,284 +1911,280 @@ msgstr ""
 msgid "Could not find '%s' pixmap file for Gnome Robots\n"
 msgstr ""
 
-#: gnobots2/menu.c:118
-msgid "Do you really want to start a new game?"
-msgstr ""
-
-#: gnobots2/menu.c:210
+#: gnobots2/menu.c:202
 msgid "Do you really want to quit the game?"
 msgstr ""
 
-#: gnobots2/menu.c:253
+#: gnobots2/menu.c:237
 msgid "Gnobots II"
 msgstr ""
 
-#: gnobots2/menu.c:255
+#: gnobots2/menu.c:239
 msgid "Gnome Robots Game"
 msgstr ""
 
-#: gnobots2/properties.c:312
+#: gnobots2/properties.c:329
 msgid "Initial Number of Type 1 Robots"
 msgstr ""
 
-#: gnobots2/properties.c:314
+#: gnobots2/properties.c:331
 msgid "Initial Number of Robots"
 msgstr ""
 
-#: gnobots2/properties.c:321
+#: gnobots2/properties.c:345
 msgid "Initial Number of Type 2 Robots"
 msgstr ""
 
-#: gnobots2/properties.c:328
+#: gnobots2/properties.c:358
 msgid "Increasing Number of Type 1 Robots per Level"
 msgstr ""
 
-#: gnobots2/properties.c:330
+#: gnobots2/properties.c:360
 msgid "Increasing Number of Robots per Level"
 msgstr ""
 
-#: gnobots2/properties.c:337
+#: gnobots2/properties.c:373
 msgid "Increasing Number of Type 2 Robots per Level"
 msgstr ""
 
-#: gnobots2/properties.c:344
+#: gnobots2/properties.c:386
 msgid "Maximum Number of Type 1 Robots"
 msgstr ""
 
-#: gnobots2/properties.c:346
+#: gnobots2/properties.c:388
 msgid "Maximum Number of Robots"
 msgstr ""
 
-#: gnobots2/properties.c:349 gnobots2/properties.c:359
+#: gnobots2/properties.c:391 gnobots2/properties.c:407
 msgid "Fill Screen"
 msgstr ""
 
-#: gnobots2/properties.c:357
+#: gnobots2/properties.c:405
 msgid "Maximum Number of Type 2 Robots"
 msgstr ""
 
-#: gnobots2/properties.c:368
+#: gnobots2/properties.c:422
 msgid "Type 1 Robot Score"
 msgstr ""
 
-#: gnobots2/properties.c:370
+#: gnobots2/properties.c:424
 msgid "Robot Score"
 msgstr ""
 
-#: gnobots2/properties.c:377
+#: gnobots2/properties.c:437
 msgid "Type 2 Robot Score"
 msgstr ""
 
-#: gnobots2/properties.c:384
+#: gnobots2/properties.c:450
 msgid "Type 1 Robot Score When Waiting"
 msgstr ""
 
-#: gnobots2/properties.c:386
+#: gnobots2/properties.c:452
 msgid "Robot Score When Waiting"
 msgstr ""
 
-#: gnobots2/properties.c:393
+#: gnobots2/properties.c:465
 msgid "Type 2 Robot Score When Waiting"
 msgstr ""
 
-#: gnobots2/properties.c:400
+#: gnobots2/properties.c:478
 msgid "Type 1 Robot Score When Splatted"
 msgstr ""
 
-#: gnobots2/properties.c:402
+#: gnobots2/properties.c:480
 msgid "Robot Score When Splatted"
 msgstr ""
 
-#: gnobots2/properties.c:409
+#: gnobots2/properties.c:493
 msgid "Type 2 Robot Score When Splatted"
 msgstr ""
 
-#: gnobots2/properties.c:415
+#: gnobots2/properties.c:505
 msgid "Initial Number of Safe Teleports"
 msgstr ""
 
-#: gnobots2/properties.c:420
+#: gnobots2/properties.c:516
 msgid "Number of Free Safe Teleports per Level"
 msgstr ""
 
-#: gnobots2/properties.c:425
+#: gnobots2/properties.c:527
 msgid "Kills Required While Waiting to Get A Safe Teleport"
 msgstr ""
 
-#: gnobots2/properties.c:430
+#: gnobots2/properties.c:538
 msgid "Score Required To Get A Safe Teleport"
 msgstr ""
 
-#: gnobots2/properties.c:435
+#: gnobots2/properties.c:549
 msgid "Maximum Number of Safe Teleports"
 msgstr ""
 
-#: gnobots2/properties.c:440
+#: gnobots2/properties.c:560
 msgid "Moveable Junkheaps"
 msgstr ""
 
-#: gnobots2/properties.c:442
+#: gnobots2/properties.c:562
 msgid "Yes"
 msgstr ""
 
-#: gnobots2/properties.c:444
+#: gnobots2/properties.c:564
 msgid "No"
 msgstr ""
 
-#: gnobots2/properties.c:633
+#: gnobots2/properties.c:750
 msgid "classic robots"
 msgstr ""
 
-#: gnobots2/properties.c:634
+#: gnobots2/properties.c:751
 msgid "robots2"
 msgstr ""
 
-#: gnobots2/properties.c:635
+#: gnobots2/properties.c:752
 msgid "robots2 easy"
 msgstr ""
 
-#: gnobots2/properties.c:636
+#: gnobots2/properties.c:753
 msgid "robots with safe teleport"
 msgstr ""
 
-#: gnobots2/properties.c:637
+#: gnobots2/properties.c:754
 msgid "nightmare"
 msgstr ""
 
-#: gnobots2/properties.c:672
+#: gnobots2/properties.c:789
 msgid "robots"
 msgstr ""
 
-#: gnobots2/properties.c:673
+#: gnobots2/properties.c:790
 msgid "cows"
 msgstr ""
 
-#: gnobots2/properties.c:674
+#: gnobots2/properties.c:791
 msgid "eggs"
 msgstr ""
 
-#: gnobots2/properties.c:675
+#: gnobots2/properties.c:792
 msgid "gnomes"
 msgstr ""
 
-#: gnobots2/properties.c:676
+#: gnobots2/properties.c:793
 msgid "mice"
 msgstr ""
 
-#: gnobots2/properties.c:677
+#: gnobots2/properties.c:794
 msgid "windows"
 msgstr ""
 
-#: gnobots2/properties.c:724
+#: gnobots2/properties.c:843
 msgid "GnobotsII Preferences"
 msgstr ""
 
-#: gnobots2/properties.c:735
+#: gnobots2/properties.c:867
 msgid "Game Type:"
 msgstr ""
 
-#: gnobots2/properties.c:754
+#: gnobots2/properties.c:893
 msgid "Property"
 msgstr ""
 
-#: gnobots2/properties.c:756
+#: gnobots2/properties.c:900
 msgid "Value"
 msgstr ""
 
-#: gnobots2/properties.c:781
+#: gnobots2/properties.c:936
 msgid "Safe Moves"
 msgstr ""
 
-#: gnobots2/properties.c:788
+#: gnobots2/properties.c:943
 msgid "Super Safe Moves"
 msgstr ""
 
-#: gnobots2/properties.c:795 gnome-stones/preferences.c:853
-#: mahjongg/mahjongg.c:410
+#: gnobots2/properties.c:950 gnome-stones/preferences.c:853
+#: mahjongg/mahjongg.c:428
 msgid "Sound"
 msgstr ""
 
-#: gnobots2/properties.c:802
+#: gnobots2/properties.c:957
 msgid "Splats"
 msgstr ""
 
-#: gnobots2/properties.c:813
+#: gnobots2/properties.c:968
 msgid "You Cannot Change the Game Type When Playing"
 msgstr ""
 
-#: gnobots2/properties.c:820
+#: gnobots2/properties.c:975
 msgid "Configuration"
 msgstr ""
 
-#: gnobots2/properties.c:833
+#: gnobots2/properties.c:987
 msgid "Graphics:"
 msgstr ""
 
 #. North West
-#: gnobots2/properties.c:874
+#: gnobots2/properties.c:1026
 msgid "NW"
 msgstr ""
 
 #. North
-#: gnobots2/properties.c:887
+#: gnobots2/properties.c:1039
 msgid "N"
 msgstr ""
 
 #. North East
-#: gnobots2/properties.c:900
+#: gnobots2/properties.c:1052
 msgid "NE"
 msgstr ""
 
 #. West
-#: gnobots2/properties.c:913
+#: gnobots2/properties.c:1065
 msgid "W"
 msgstr ""
 
 #. East
-#: gnobots2/properties.c:935
+#: gnobots2/properties.c:1087
 msgid "E"
 msgstr ""
 
 #. South West
-#: gnobots2/properties.c:948
+#: gnobots2/properties.c:1100
 msgid "SW"
 msgstr ""
 
 #. South
-#: gnobots2/properties.c:961
+#: gnobots2/properties.c:1113
 msgid "S"
 msgstr ""
 
 #. South East
-#: gnobots2/properties.c:974
+#: gnobots2/properties.c:1126
 msgid "SE"
 msgstr ""
 
-#: gnobots2/properties.c:994
+#: gnobots2/properties.c:1146
 msgid "Teleport:"
 msgstr ""
 
-#: gnobots2/properties.c:1006
+#: gnobots2/properties.c:1158
 msgid "Random Teleport:"
 msgstr ""
 
-#: gnobots2/properties.c:1018
+#: gnobots2/properties.c:1170
 msgid "Wait:"
 msgstr ""
 
-#: gnobots2/properties.c:1039
+#: gnobots2/properties.c:1191
 msgid "Standard Robots Keys"
 msgstr ""
 
-#: gnobots2/properties.c:1045
+#: gnobots2/properties.c:1197
 msgid "Predefined Set 1"
 msgstr ""
 
-#: gnobots2/properties.c:1051
+#: gnobots2/properties.c:1203
 msgid "Predefined Set 2"
 msgstr ""
 
-#: gnobots2/properties.c:1060
+#: gnobots2/properties.c:1212
 msgid "Keyboard"
 msgstr ""
 
@@ -2235,7 +2232,7 @@ msgstr ""
 
 #. That's what a gnome application needs:
 #: gnome-stones/gnome-stones.desktop.in.h:2 gnome-stones/main.c:1022
-#: gnome-stones/main.c:1228
+#: gnome-stones/main.c:1232
 msgid "Gnome-Stones"
 msgstr ""
 
@@ -2288,7 +2285,7 @@ msgstr ""
 
 #. If you change the place for this button, change the index in
 #. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:398 gnome-stones/main.c:963 mahjongg/mahjongg.c:406
+#: gnome-stones/main.c:398 gnome-stones/main.c:963 mahjongg/mahjongg.c:423
 msgid "Pause"
 msgstr ""
 
@@ -2508,7 +2505,7 @@ msgstr ""
 msgid "Background Pixmap: "
 msgstr ""
 
-#: gnometris/tetris.cpp:967
+#: gnometris/tetris.cpp:998
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: janusz.gorycki@intel.com"
@@ -2707,33 +2704,33 @@ msgstr ""
 msgid "Size of board (2-6)"
 msgstr ""
 
-#: gnotravex/gnotravex.c:443
+#: gnotravex/gnotravex.c:448
 msgid "Puzzle solved! Well done!"
 msgstr ""
 
-#: gnotravex/gnotravex.c:446
+#: gnotravex/gnotravex.c:451
 msgid "Puzzle solved!"
 msgstr ""
 
-#: gnotravex/gnotravex.c:610 mahjongg/mahjongg.c:1816
+#: gnotravex/gnotravex.c:615
 msgid "Time : "
 msgstr ""
 
-#: gnotravex/gnotravex.c:659 gnotski/gnotski.c:707
+#: gnotravex/gnotravex.c:664 gnotski/gnotski.c:711
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr ""
 
-#: gnotravex/gnotravex.c:746 mahjongg/mahjongg.c:1228
+#: gnotravex/gnotravex.c:751 mahjongg/mahjongg.c:1386
 msgid "... Game paused ..."
 msgstr ""
 
-#: gnotravex/gnotravex.c:786
+#: gnotravex/gnotravex.c:791
 #, c-format
 msgid "Playing %dx%d board"
 msgstr ""
 
-#: gnotravex/gnotravex.c:971
+#: gnotravex/gnotravex.c:976
 msgid ""
 "Tetravex clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
@@ -2795,24 +2792,24 @@ msgstr ""
 msgid "_Advanced"
 msgstr ""
 
-#: gnotski/gnotski.c:575
+#: gnotski/gnotski.c:579
 msgid "Level completed. Well done."
 msgstr ""
 
-#: gnotski/gnotski.c:669
+#: gnotski/gnotski.c:673
 msgid "Moves:"
 msgstr ""
 
-#: gnotski/gnotski.c:884
+#: gnotski/gnotski.c:888
 msgid "Welcome to Gnome Klotski"
 msgstr ""
 
-#: gnotski/gnotski.c:901
+#: gnotski/gnotski.c:905
 #, c-format
 msgid "Playing level %s"
 msgstr ""
 
-#: gnotski/gnotski.c:999
+#: gnotski/gnotski.c:1003
 msgid ""
 "Klotski clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
@@ -3230,49 +3227,77 @@ msgstr ""
 msgid "Show grid"
 msgstr ""
 
-#: mahjongg/mahjongg.c:331
+#: mahjongg/mahjongg.c:339
 msgid "New game with _seed..."
 msgstr ""
 
-#: mahjongg/mahjongg.c:331
+#: mahjongg/mahjongg.c:340
 msgid "Start a new game giving a seed number..."
 msgstr ""
 
-#: mahjongg/mahjongg.c:344
+#: mahjongg/mahjongg.c:353
 msgid "Shu_ffle tiles"
 msgstr ""
 
-#: mahjongg/mahjongg.c:344
+#: mahjongg/mahjongg.c:353 mahjongg/mahjongg.c:417
 msgid "Shuffle tiles"
 msgstr ""
 
-#: mahjongg/mahjongg.c:359
+#: mahjongg/mahjongg.c:368
 msgid "Show _Tool Bar"
 msgstr ""
 
-#: mahjongg/mahjongg.c:360
+#: mahjongg/mahjongg.c:369
 msgid "Toggle display of the toolbar"
 msgstr ""
 
-#: mahjongg/mahjongg.c:366
+#: mahjongg/mahjongg.c:375
 msgid "_Sound"
 msgstr ""
 
-#: mahjongg/mahjongg.c:710
-msgid ""
-"Start a new game\n"
-"with the new mapset?"
+#: mahjongg/mahjongg.c:398
+msgid "New game"
 msgstr ""
 
-#: mahjongg/mahjongg.c:850 mahjongg/mahjongg.c:855
+#: mahjongg/mahjongg.c:402
+msgid "Restart game"
+msgstr ""
+
+#: mahjongg/mahjongg.c:406
+msgid "Get a hint"
+msgstr ""
+
+#: mahjongg/mahjongg.c:410
+msgid "Undo previous move"
+msgstr ""
+
+#: mahjongg/mahjongg.c:417
+msgid "Shuffle"
+msgstr ""
+
+#: mahjongg/mahjongg.c:423
+msgid "Pause game"
+msgstr ""
+
+#: mahjongg/mahjongg.c:428
+msgid "Toggle sound"
+msgstr ""
+
+#: mahjongg/mahjongg.c:670
+msgid ""
+"This new mapset will take effect when you start a new game, or when "
+"Mahjongg is restarted."
+msgstr ""
+
+#: mahjongg/mahjongg.c:998 mahjongg/mahjongg.c:1003
 msgid "These tiles don't match."
 msgstr ""
 
-#: mahjongg/mahjongg.c:883
+#: mahjongg/mahjongg.c:1034
 msgid "There are no more moves."
 msgstr ""
 
-#: mahjongg/mahjongg.c:907
+#: mahjongg/mahjongg.c:1060
 #, c-format
 msgid ""
 "Fantastic!  %.2f!\n"
@@ -3281,7 +3306,7 @@ msgid ""
 "Another game?"
 msgstr ""
 
-#: mahjongg/mahjongg.c:909
+#: mahjongg/mahjongg.c:1065
 #, c-format
 msgid ""
 "Great!\n"
@@ -3290,53 +3315,53 @@ msgid ""
 "Another game?"
 msgstr ""
 
-#: mahjongg/mahjongg.c:973
+#: mahjongg/mahjongg.c:1114
 msgid "Mahjongg - Preferences"
 msgstr ""
 
-#: mahjongg/mahjongg.c:995
+#: mahjongg/mahjongg.c:1130
 msgid "Tiles"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1026
+#: mahjongg/mahjongg.c:1161
 msgid "Tile background:"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1039
+#: mahjongg/mahjongg.c:1174
 msgid "Maps"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1043
+#: mahjongg/mahjongg.c:1178
 msgid "Select Map:"
 msgstr ""
 
 #. The colour
-#: mahjongg/mahjongg.c:1056
+#: mahjongg/mahjongg.c:1191
 msgid "Colours"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1060
+#: mahjongg/mahjongg.c:1195
 msgid "Background:"
 msgstr ""
 
 #. Warning submenu
-#: mahjongg/mahjongg.c:1081
+#: mahjongg/mahjongg.c:1217
 msgid "Warnings"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1087
+#: mahjongg/mahjongg.c:1224
 msgid "Warn when tiles don't match"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1093
+#: mahjongg/mahjongg.c:1231
 msgid "Show confirmation dialogs"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1201
+#: mahjongg/mahjongg.c:1358
 msgid "GNOME Mahjongg"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1203
+#: mahjongg/mahjongg.c:1360
 msgid ""
 "Send comments and bug reports to:\n"
 "        pancho@nuclecu.unam.mx or\n"
@@ -3345,45 +3370,49 @@ msgid ""
 "Tiles under the General Public License."
 msgstr ""
 
-#: mahjongg/mahjongg.c:1286
+#: mahjongg/mahjongg.c:1443
 msgid "Really restart this game?"
 msgstr ""
 
 #. GNOME IS AN ACRONYM, DAMNIT!
-#: mahjongg/mahjongg.c:1290
+#: mahjongg/mahjongg.c:1447
 msgid "Really exit GNOME Mahjongg?"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1293
+#: mahjongg/mahjongg.c:1451
 msgid "Really start a new game?"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1296
+#: mahjongg/mahjongg.c:1454
 msgid "Serious internal error"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1443
+#: mahjongg/mahjongg.c:1606
 msgid "Game Number:"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1622 mahjongg/mahjongg.c:1637
+#: mahjongg/mahjongg.c:1767 mahjongg/mahjongg.c:1782
 #, c-format
 msgid "Could not find file %s"
 msgstr ""
 
-#: mahjongg/mahjongg.c:1766
+#: mahjongg/mahjongg.c:1937
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr ""
 
-#: mahjongg/mahjongg.c:1839
+#: mahjongg/mahjongg.c:1992
 msgid "Tiles Left: "
 msgstr ""
 
-#: mahjongg/mahjongg.c:1849
+#: mahjongg/mahjongg.c:1999
 msgid "Moves Left: "
 msgstr ""
 
-#: mahjongg/mahjongg.c:1876
+#: mahjongg/mahjongg.c:2013
+msgid "Seed: "
+msgstr ""
+
+#: mahjongg/mahjongg.c:2060
 msgid "Welcome to GNOME Mahjongg!"
 msgstr ""
 
@@ -3429,15 +3458,15 @@ msgstr ""
 msgid "Original idea from KDE's same game program."
 msgstr ""
 
-#: same-gnome/same-gnome.c:813 same-gnome/same-gnome.desktop.in.h:2
+#: same-gnome/same-gnome.c:817 same-gnome/same-gnome.desktop.in.h:2
 msgid "Same Gnome"
 msgstr ""
 
-#: same-gnome/same-gnome.c:823
+#: same-gnome/same-gnome.c:827
 msgid "Welcome to Same Gnome!"
 msgstr ""
 
-#: same-gnome/same-gnome.c:841
+#: same-gnome/same-gnome.c:845
 msgid "Marked: "
 msgstr ""
 
