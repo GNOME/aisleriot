@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 #include <glib.h>
 
 /* This must match OPT_NUM in gdk-card-image.h */
-#define NUM_COMPONENTS 6
+#define NUM_COMPONENTS 7
 
 typedef struct _CardDeckStyle {
   gchar * name;
@@ -39,6 +39,9 @@ typedef struct _CardDeckStyle {
  * Disposal of the list is up to the caller. The data elements can be safely
  * g_free()ed. */
 GList * card_style_file_parse (gchar * filename);
+
+/* To make sorting the card styles easy. */
+gint card_style_compare (gconstpointer a, gconstpointer b);
 
 G_END_DECLS
 

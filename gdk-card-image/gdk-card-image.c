@@ -745,6 +745,7 @@ struct _GtkCardDeckOptionsEdit {
   
   CardDeckStyle * selected_style;
   GList * style_list;
+  GtkWidget * listview;
 };
 
 struct _GtkCardDeckOptionsEditClass {
@@ -825,15 +826,81 @@ gtk_card_deck_options_edit_get_type ()
   return type;
 }
 
+static void gtk_card_deck_options_edit_set_selection (GtkCardDeckOptionsEdit *w)
+{
+  GtkTreePath * path;
+  GtkTreeSelection * select;
+  GList * list;
+  int i;
+
+  select = gtk_tree_view_get_selection (GTK_TREE_VIEW (w->listview));
+  
+  if (w->selected_style) {
+    g_print ("Setting selection.\n");
+    i = 0;
+    list = w->style_list;
+    while (list) {
+      /* Warning: this only works as long as the order of the list isn't
+       * disturbed. */
+      if (list->data == w->selected_style) {
+	path = gtk_tree_path_new_from_indices (i, -1);
+	gtk_tree_selection_select_path (select, path);
+	gtk_tree_path_free (path);
+	return;
+      }
+      i++;
+      list= g_list_next (list);
+    }
+  } else {
+    g_print ("Deselected (yeah, right)\n");
+    gtk_tree_selection_unselect_all (select);
+  }
+}
+
 void          
 gtk_card_deck_options_edit_set (GtkCardDeckOptionsEdit* w,
 				GdkCardDeckOptions deck_options)
 {
   gint* index = g_new(gint, OPT_NUM);
+  gchar ** components;
+  GList * possibles;
+  CardDeckStyle * style;
+  gboolean identical;
+  int i,j;
 
   resolve_options (option_data, deck_options, index);
 
-  /* FIXME: Find some way to set the style menu selection from this. */
+  gnome_config_make_vector (deck_options, &i, &components);
+
+  g_print ("Searching...\n");
+
+  /* Search for a matching options set in our list of predefined
+   * styles. This is all to allow backwards compatibility of the
+   * interface and a users existing options. */
+  if (i >= OPT_NUM) {
+    possibles = w->style_list;
+    while (possibles) {
+      style = (CardDeckStyle *)possibles->data;
+      identical = TRUE;
+      for (j = 0; j < OPT_NUM; j++) {
+	if (g_utf8_collate (style->components[j], components[j])) {
+	  identical = FALSE;
+	  break;
+	}
+      }
+      if (identical) {
+	g_print ("Found\n");
+	w->selected_style = style;
+	gtk_card_deck_options_edit_set_selection (w);
+      }
+      possibles = g_list_next (possibles);
+    }
+  }
+
+  for ( ; i>0; i--)
+    g_free (components[i]);
+  g_free (components);
+
 }
 
 GdkCardDeckOptions 
@@ -916,6 +983,8 @@ gdk_card_deck_options_edit_get_card_styles (GtkCardDeckOptionsEdit * w)
     g_free (last->data);
     g_list_free (last);
   }
+  
+  w->style_list = g_list_sort (w->style_list, card_style_compare);
 }
 
 static GtkListStore *
@@ -926,7 +995,7 @@ gtk_card_deck_options_edit_create_list (GtkCardDeckOptionsEdit * w)
   GtkTreeIter iter;
   CardDeckStyle * style;
 
-  list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+  list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_POINTER);
 
   stylelist = w->style_list;
 
@@ -950,6 +1019,8 @@ gtk_card_deck_options_edit_changed (GtkWidget * w, GObject * o)
 
   inst = GTK_CARD_DECK_OPTIONS_EDIT (o);
 
+  g_print ("Changed\n");
+
   gtk_tree_selection_get_selected (GTK_TREE_SELECTION (w), &tree, &iter);
   gtk_tree_model_get (tree , &iter, 1, &inst->selected_style, -1);
 
@@ -965,7 +1036,6 @@ gtk_card_deck_options_edit_new (void)
   GtkListStore * list;
   GtkTreeViewColumn * column;
   GtkTreeSelection * select;
-  GtkWidget * listview;
   GtkAlignment * a;
   
 
@@ -981,23 +1051,29 @@ gtk_card_deck_options_edit_new (void)
 
   list = gtk_card_deck_options_edit_create_list (w);
 
-  listview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list));
+  w->listview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list));
+  gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (w->listview), FALSE);
   
   column = gtk_tree_view_column_new_with_attributes (NULL,
 						     gtk_cell_renderer_text_new (),
 						     "text", 0,
 						     NULL);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (listview),
+
+  gtk_tree_view_append_column (GTK_TREE_VIEW (w->listview),
 			       GTK_TREE_VIEW_COLUMN (column));
 
-  select = gtk_tree_view_get_selection (GTK_TREE_VIEW (listview));
-  gtk_tree_selection_set_mode (select, GTK_SELECTION_BROWSE);
+  select = gtk_tree_view_get_selection (GTK_TREE_VIEW (w->listview));
+  gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
+
+  /* FIXME: The default selection and focus for the list is a bad thing. */
+
+  gtk_card_deck_options_edit_set_selection (w);
 
   g_signal_connect (G_OBJECT (select), "changed",
 		    G_CALLBACK (gtk_card_deck_options_edit_changed), 
 		    G_OBJECT(w));
 
-  gtk_container_add (GTK_CONTAINER (w), listview);
+  gtk_container_add (GTK_CONTAINER (w), w->listview);
 
   return GTK_WIDGET (w);
 }

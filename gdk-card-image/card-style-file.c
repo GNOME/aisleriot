@@ -25,6 +25,13 @@
 
 #include "card-style-file.h"
 
+gint card_style_compare (gconstpointer a, gconstpointer b)
+{
+  return g_utf8_collate (((const CardDeckStyle *)a)->name, 
+			 ((const CardDeckStyle *)b)->name);
+}
+
+
 typedef struct _CardStyleFileContext {
   GList * style_list;
   gchar ** current_string;

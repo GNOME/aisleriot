@@ -175,7 +175,7 @@ GnomeUIInfo file_menu[] = {
   GNOMEUIINFO_END
 };
 
-GnomeUIInfo settings_menu[] = {
+GnomeUIInfo view_menu[] = {
 
 #if 0
   GNOMEUIINFO_ITEM_STOCK(N_("Game _options..."),
@@ -237,7 +237,7 @@ GnomeUIInfo top_menu[] = {
 
   GNOMEUIINFO_MENU_GAME_TREE(game_menu),
 
-  GNOMEUIINFO_MENU_SETTINGS_TREE(settings_menu),
+  GNOMEUIINFO_MENU_VIEW_TREE(view_menu),
 
   GNOMEUIINFO_MENU_HELP_TREE(help_menu),
 
@@ -286,7 +286,7 @@ void create_menus ()
   gnome_app_create_menus (GNOME_APP(app), top_menu);
   gnome_app_create_toolbar (GNOME_APP(app), toolbar);
 
-  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (settings_menu[0].widget),
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (view_menu[0].widget),
                                   gconf_client_get_bool (gconf_client,
                                                          "/apps/aisleriot/show_toolbar",
                                                          NULL));
