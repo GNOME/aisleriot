@@ -19,7 +19,7 @@ INCLUDES =  \
 	-DGLADEDIR=\""$(gladedir)"\" 		   \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"   \
 	-DVERSION=\"$(VERSION)\"		   \
-	$(GUILE_INCS)
+	$(GUILE_CFLAGS)
 
 bin_PROGRAMS = sol
 
@@ -48,7 +48,7 @@ sol_SOURCES = 		\
 sol_LDADD = $(GNOME_GAMES_LIBS) \
 	../libgames-support/libgames-support.la \
 	@UCB_LDFLAGS@ \
-	$(GUILE_LIBS) 
+	$(GUILE_LDFLAGS) 
 
 glade_DATA = \
 	statistics.glade

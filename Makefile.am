@@ -1,5 +1,5 @@
 
-if GUILE
+if HAVE_GUILE
 guile_DIRS = aisleriot
 endif
 

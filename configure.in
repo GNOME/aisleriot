@@ -26,9 +26,20 @@ AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS")
 AC_CHECK_PROG(CXX_PRESENT, $CXX, yes, no)
 AM_CONDITIONAL([HAVE_CXX], [test "x$CXX_PRESENT" = xyes])
 
-# See if we have guile
-GAMES_CHECK_GUILE
-
+dnl We could use the guile.m4 macros, but this is in fact simpler
+dnl for what we want.
+AC_CHECK_PROG(GUILE_PRESENT, guile-config, yes, no) 
+if test "$GUILE_PRESENT" = "yes" ; then
+  GUILE_CFLAGS=`guile-config compile`
+  GUILE_LDFLAGS=`guile-config link`
+  AC_SUBST(GUILE_CFLAGS)
+  AC_SUBST(GUILE_LDFLAGS)
+  if test `guile -c '(if (string<? (version) "1.6") (display "no") (display "yes")) (newline)'` != yes ; then 
+    GUILE_PRESENT="no"
+    AC_MSG_WARN([Your version of guile is too old, please install a recent guile package (>= 1.6)])
+  fi
+fi
+AM_CONDITIONAL([HAVE_GUILE], [test "x$GUILE_PRESENT" = xyes])
 
 GNOME_COMPILE_WARNINGS(yes)
 GNOME_CXX_WARNINGS(yes)
@@ -270,7 +281,7 @@ Configuration:
 
 	Compile Gnometris, Blackjack
 	(Have c++ compiler):		   ${CXX_PRESENT}
-	Compile AisleRiot (Have guile):	   ${ac_cv_guile_found}
+	Compile AisleRiot (Have guile):	   ${GUILE_PRESENT}
 
         Use setgid binaries                ${setgid}
         Scores user                        ${scores_user}
