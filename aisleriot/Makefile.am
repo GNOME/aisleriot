@@ -28,7 +28,7 @@ sol_SOURCES = 		\
 	menu.c		\
 	card.c
 
-sol_LDADD = $(GUILE_LIBS) -lgdk_imlib $(GNOMEUI_LIBS) \
+sol_LDADD = $(GUILE_LIBS) -lgdk_imlib $(GNOME_LIBDIR) $(GNOMEUI_LIBS) \
 	$(INTLLIBS)
 
 types_DATA  = 		\
