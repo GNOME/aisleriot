@@ -45,6 +45,13 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
+WARN_CFLAGS=
+if test "x$gcc" = xyes; then
+	WARN_CFLAGS="-Wall"
+fi
+
+AC_SUBST(WARN_CFLAGS)
+
 AM_CONDITIONAL(HAVE_JADE, false)
 
 gnome_cv_use_gnome=yes
@@ -120,8 +127,13 @@ UCB_LDFLAGS=
 AC_CHECK_FUNC(scandir, [], [
   LDFLAGS="$LDFLAGS -L/usr/ucblib"
   AC_CHECK_LIB(ucb, scandir,
-    [UCB_LDFLAGS="-L/usr/ucblib -lucb"],
-    AC_MSG_ERROR([No implementation of scandir found])
+    [UCB_LDFLAGS="-L/usr/ucblib -lucb"], [
+      LDFLAGS="$old_LDFLAGS -L/usr/ucblib/sparcv9"
+      AC_CHECK_LIB(ucb, scandir,
+	[UCB_LDFLAGS="-L/usr/ucblib/sparcv9 -lucb"],
+        AC_MSG_ERROR([No implementation of scandir found])
+      )
+    ]
   )
 ])
 LDFLAGS="$old_LDFLAGS"
