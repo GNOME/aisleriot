@@ -1,4 +1,4 @@
-; AisleRiot - seahaven.scm
+; AisleRiot - bakers_game.scm
 ; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
@@ -24,16 +24,24 @@
   (make-standard-deck)
   (shuffle-deck)
 
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-blank-slot)
+
   (add-normal-slot DECK)
   (add-normal-slot '())
 
+
+  (set! HORIZPOS (get-horiz-start))
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+  (add-normal-slot '())
+
   (add-blank-slot)
-
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-
+  (add-blank-slot)
   (add-blank-slot)
 
   (add-normal-slot '())
@@ -41,8 +49,8 @@
 
   (add-carriage-return-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (set! HORIZPOS (+ HORIZPOS 40))
+
   (add-extended-slot '() down)
   (add-extended-slot '() down)
   (add-extended-slot '() down)
@@ -52,14 +60,14 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
 
-  (deal-cards-face-up 0 '(8 9 10 11 12 13 14 15 16 17 8 9 10 11 12 13
-			    14 15 16 17 8 9 10 11 12 13 14 15 16 17 8
-			    9 10 11 12 13 14 15 16 17 8 9 10 11 12 13 
-			    14 15 16 17 3 4))
+  (deal-cards-face-up 0 '(8 9 10 11 12 13 14 15 8 9 10 11 12 13 14 15
+			    8 9 10 11 12 13 14 15 8 9 10 11 12 13 14
+			    15 8 9 10 11 12 13 14 15 8 9 10 11 12 13
+			    14 15 8 9 10 11))
 
-  (set! free-reserves 2)
+  (set! free-reserves 4)
 
-  (list 10 4))
+  (list 9 4))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -166,7 +174,7 @@
        (= (length (get-cards 7)) 13)))
 
 (define (check-to-foundations? slot f-slot)
-  (cond ((= slot 18)
+  (cond ((= slot 16)
 	 #f)
 	((= slot 6)
 	 (check-to-foundations? 8 0))
@@ -219,12 +227,12 @@
 	(#t #f)))
 
 (define (check-to-tableau? slot t-slot)
-  (cond ((= slot 18)
+  (cond ((= slot 16)
 	 #f)
 	((= slot 6)
 	 (check-to-tableau? 8 9))
 	((or (empty-slot? slot)
-	     (= t-slot 18))
+	     (= t-slot 16))
 	 (check-to-tableau? (+ 1 slot) 8))
 	((and (not (= slot t-slot))
 	      (empty-slot? t-slot)

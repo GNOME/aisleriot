@@ -43,6 +43,7 @@ sol_LDADD = -lgdk_imlib $(GNOME_LIBDIR) $(GNOMEUI_LIBS) \
 types_DATA  = 		\
 	auld_lang_syne.scm \
 	bakers_dozen.scm \
+	bakers_game.scm	\
 	beleaguered_castle.scm \
 	bristol.scm	\
 	camelot.scm	\
@@ -51,6 +52,7 @@ types_DATA  = 		\
 	cover.scm	\
 	doublets.scm	\
 	eagle_wing.scm	\
+	eight_off.scm	\
 	elevator.scm	\
 	escalator.scm	\
 	first_law.scm	\
@@ -60,6 +62,8 @@ types_DATA  = 		\
 	glenwood.scm	\
 	gypsy.scm	\
 	hopscotch.scm	\
+	isabel.scm	\
+	jamestown.scm	\
 	kansas.scm	\
 	klondike.scm	\
 	labyrinth.scm	\
@@ -77,6 +81,7 @@ types_DATA  = 		\
 	scorpion.scm	\
 	scuffle.scm	\
 	seahaven.scm	\
+	sir_tommy.scm	\
 	sol.scm		\
 	spider.scm	\
 	straight_up.scm	\

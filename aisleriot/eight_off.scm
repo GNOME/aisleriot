@@ -1,4 +1,4 @@
-; AisleRiot - seahaven.scm
+; AisleRiot - bakers_game.scm
 ; Copyright (C) 2001 Rosanna Yuen <zana@webwynk.net>
 ;
 ; This game is free software; you can redistribute it and/or modify
@@ -25,24 +25,31 @@
   (shuffle-deck)
 
   (add-normal-slot DECK)
+  (add-carriage-return-slot)
   (add-normal-slot '())
+  (add-carriage-return-slot)
+  (add-normal-slot '())
+  (add-carriage-return-slot)
+  (add-normal-slot '())
+
+
+  (set! VERTPOS (get-vert-start))
 
   (add-blank-slot)
-
   (add-normal-slot '())
   (add-normal-slot '())
   (add-normal-slot '())
   (add-normal-slot '())
-
-  (add-blank-slot)
-
+  (add-normal-slot '())
+  (add-normal-slot '())
   (add-normal-slot '())
   (add-normal-slot '())
 
   (add-carriage-return-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-blank-slot)
+  (add-blank-slot)
+
   (add-extended-slot '() down)
   (add-extended-slot '() down)
   (add-extended-slot '() down)
@@ -52,19 +59,19 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
 
-  (deal-cards-face-up 0 '(8 9 10 11 12 13 14 15 16 17 8 9 10 11 12 13
-			    14 15 16 17 8 9 10 11 12 13 14 15 16 17 8
-			    9 10 11 12 13 14 15 16 17 8 9 10 11 12 13 
-			    14 15 16 17 3 4))
+  (deal-cards-face-up 0 '(12 13 14 15 16 17 18 19 12 13 14 15 16 17 18
+			     19 12 13 14 15 16 17 18 19 12 13 14 15 16
+			     17 18 19 12 13 14 15 16 17 18 19 12 13 14 
+			     15 16 17 18 19 4 5 6 7))
 
-  (set! free-reserves 2)
+  (set! free-reserves 4)
 
   (list 10 4))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
        (or (= (length card-list) 1)
-	   (and (> slot-id 7)
+	   (and (> slot-id 11)
 		(< (length card-list) (+ 2 free-reserves))
 		(check-same-suit-list card-list)
 		(check-straight-descending-list card-list)))))
@@ -72,7 +79,7 @@
 (define (button-released start-slot card-list end-slot)
   (cond ((= start-slot end-slot)
 	 #f)
-	((> end-slot 7)
+	((> end-slot 11)
 	 (and (or (and (empty-slot? end-slot)
 		       (= (get-value (car (reverse card-list)))
 			  king)
@@ -83,23 +90,21 @@
 		       (= (get-value (get-top-card end-slot))
 			  (+ 1 (get-value (car (reverse card-list)))))
 		       (move-n-cards! start-slot end-slot card-list)))
-	      (or (> start-slot 7)
-		  (and (> start-slot 1)
-		       (< start-slot 6)
+	      (or (> start-slot 11)
+		  (and (> start-slot 3)
+		       (< start-slot 12)
 		       (set! free-reserves (+ 1 free-reserves)))
 		  (add-to-score! -1))))
 	((and (= (length card-list) 1)
 	      (empty-slot? end-slot)
-	      (> end-slot 1)
-	      (< end-slot 6))
+	      (> end-slot 3)
+	      (< end-slot 12))
 	 (and (move-n-cards! start-slot end-slot card-list)
-	      (or (and (> start-slot 1)
-		       (< start-slot 6))
+	      (or (and (> start-slot 3)
+		       (< start-slot 12))
 		  (set! free-reserves (- free-reserves 1)))))
 	((and (= (length card-list) 1)
-	      (or (< end-slot 2)
-		  (and (> end-slot 5)
-		       (< end-slot 8))))
+	      (< end-slot 4))
 	 (and (or (and (empty-slot? end-slot)
 		       (= (get-value (car card-list)) ace))
 		  (and (not (empty-slot? end-slot))
@@ -108,10 +113,10 @@
 		       (= (+ 1 (get-value (get-top-card end-slot)))
 			  (get-value (car card-list)))))
 	      (move-n-cards! start-slot end-slot card-list)
-	      (or (and (> start-slot 7)
+	      (or (and (> start-slot 11)
 		       (add-to-score! 1))
-		  (and (> start-slot 1)
-		       (< start-slot 6)
+		  (and (> start-slot 3)
+		       (< start-slot 12)
 		       (set! free-reserves (+ free-reserves 1))
 		       (add-to-score! 1))
 		  #t)))
@@ -121,18 +126,14 @@
   #f)
 
 (define (move-to-empty-foundation slot f-slot)
-  (cond ((= f-slot 2)
-	 (move-to-empty-foundation slot 6))
-	((= f-slot 8)
+  (cond ((= f-slot 4)
 	 #f)
 	((empty-slot? f-slot)
 	 (deal-cards slot (list f-slot)))
 	(#t (move-to-empty-foundation slot (+ 1 f-slot)))))
 
 (define (move-to-foundation slot f-slot)
-  (cond ((= f-slot 2)
-	 (move-to-foundation slot 6))
-	((= f-slot 8)
+  (cond ((= f-slot 4)
 	 #f)
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card slot))
@@ -144,15 +145,13 @@
 
 (define (button-double-clicked slot-id)
   (and (not (empty-slot? slot-id))
-       (> slot-id 1)
-       (or (< slot-id 6)
-	   (> slot-id 7))
+       (> slot-id 3)
        (or (and (= (get-value (get-top-card slot-id))
 		   ace)
 		(move-to-empty-foundation slot-id 0))
 	   (move-to-foundation slot-id 0))
        (add-to-score! 1)
-       (or (> slot-id 7)
+       (or (> slot-id 11)
 	   (set! free-reserves (+ 1 free-reserves)))))
 
 (define (game-continuable)
@@ -162,18 +161,14 @@
 (define (game-won)
   (and (= (length (get-cards 0)) 13)
        (= (length (get-cards 1)) 13)
-       (= (length (get-cards 6)) 13)
-       (= (length (get-cards 7)) 13)))
+       (= (length (get-cards 2)) 13)
+       (= (length (get-cards 3)) 13)))
 
 (define (check-to-foundations? slot f-slot)
-  (cond ((= slot 18)
+  (cond ((= slot 20)
 	 #f)
-	((= slot 6)
-	 (check-to-foundations? 8 0))
-	((= f-slot 2)
-	 (check-to-foundations? slot 6))
 	((or (empty-slot? slot)
-	     (= f-slot 8))
+	     (= f-slot 4))
 	 (check-to-foundations? (+ 1 slot) 0))
 	((= (get-value (get-top-card slot)) ace)
 	 (list 2 (get-name (get-top-card slot)) "an empty Foundation"))
@@ -189,7 +184,7 @@
   (cond ((= (length card-list) 0)
 	 #f)
 	((and (= (length card-list) 1)
-	      (> slot 7))
+	      (> slot 11))
 	 #f)
 	((= (get-value (car card-list)) king)
 	 (get-name (car card-list)))
@@ -219,13 +214,11 @@
 	(#t #f)))
 
 (define (check-to-tableau? slot t-slot)
-  (cond ((= slot 18)
+  (cond ((= slot 20)
 	 #f)
-	((= slot 6)
-	 (check-to-tableau? 8 9))
 	((or (empty-slot? slot)
-	     (= t-slot 18))
-	 (check-to-tableau? (+ 1 slot) 8))
+	     (= t-slot 20))
+	 (check-to-tableau? (+ 1 slot) 12))
 	((and (not (= slot t-slot))
 	      (empty-slot? t-slot)
 	      (check-for-king (get-cards slot) free-reserves slot))
@@ -250,8 +243,8 @@
        (list 0 "Move something on to an empty reserve")))
 
 (define (get-hint)
-  (or (check-to-foundations? 2 0)
-      (check-to-tableau? 2 8)
+  (or (check-to-foundations? 4 0)
+      (check-to-tableau? 4 12)
       (check-for-empty-reserve)))
 
 (define (get-options) 

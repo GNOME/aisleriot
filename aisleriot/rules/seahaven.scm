@@ -24,8 +24,6 @@
   (make-standard-deck)
   (shuffle-deck)
 
-  (set! DECK (reverse DECK))
-
   (add-normal-slot DECK)
   (add-normal-slot '())
 

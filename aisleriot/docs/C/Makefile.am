@@ -21,7 +21,9 @@ help_DATA = index.html intro.html glossary.html \
 	maze.html glenwood.html gypsy.html monte-carlo.html \
 	bakers-dozen.html seahaven.html valentine.html \
 	cover.html labyrinth.html scuffle.html peek.html \
-	treize.html quatorze.html escalator.html
+	treize.html quatorze.html escalator.html isabel.html \
+	sir-tommy.html jamestown.html bakers-game.html \
+	eight-off.html
 
 # These are the sources:
 
@@ -39,7 +41,9 @@ help_SGML = aisleriot.sgml definitions.sgml \
 	maze.sgml glenwood.sgml gypsy.sgml monte_carlo.sgml \
 	bakers_dozen.sgml seahaven.sgml valentine.sgml \
 	cover.sgml labyrinth.sgml scuffle.sgml peek.sgml \
-	treize.sgml quatorze.sgml escalator.sgml
+	treize.sgml quatorze.sgml escalator.sgml isabel.sgml \
+	sir_tommy.sgml jamestown.sgml bakers_game.sgml \
+	eight_off.sgml
 
 EXTRA_DIST = $(help_DATA) $(help_SGML)
 
