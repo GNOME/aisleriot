@@ -406,9 +406,9 @@ callback_new_with_seed_really (void)
 
   dialog = gtk_dialog_new_with_buttons (_("Seed"),
 		  GTK_WINDOW (main_window),
-		  0,
-		  GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
+		  GTK_DIALOG_MODAL,
 		  GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
+		  GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
 		  NULL);
 
   label = gtk_label_new (_("Seed value:"));
@@ -419,7 +419,9 @@ callback_new_with_seed_really (void)
   entry = gtk_entry_new ();
   gtk_box_pack_start_defaults (GTK_BOX(GTK_DIALOG(dialog)->vbox), entry);
   gtk_widget_show (entry);
+  gtk_widget_grab_focus (entry);
 
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_STOCK_OK);
   response = gtk_dialog_run (GTK_DIALOG(dialog));
   gtk_widget_hide (dialog);
 

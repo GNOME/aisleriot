@@ -49,12 +49,10 @@ score_dialog (void)
   dialog = gtk_dialog_new_with_buttons (_("Score"),
 		  NULL,
 		  0,
+		  GTK_STOCK_CLEAR, GTK_RESPONSE_REJECT,
 		  GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
 		  NULL);
 		  
-  gtk_dialog_add_buttons (GTK_DIALOG (dialog), GTK_STOCK_CLEAR,
-		  GTK_RESPONSE_REJECT, NULL);
-  
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
 
   g_signal_connect (GTK_OBJECT (dialog), "response",
