@@ -1,0 +1,34 @@
+AC_INIT(gnomine)
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(gnome-games, 0.13)
+AM_MAINTAINER_MODE
+GNOME_INIT
+GNOME_CHECK_OBJC
+
+AC_ISC_POSIX
+AC_PROG_CC
+AC_STDC_HEADERS
+AC_ARG_PROGRAM
+AM_PROG_LIBTOOL
+
+ALL_LINGUAS=""
+AM_GNU_GETTEXT
+
+AC_SUBST(CFLAGS)
+AC_SUBST(CPPFLAGS)
+AC_SUBST(LDFLAGS)
+
+gnome_cv_use_gnome=yes
+AC_CONFIG_SUBDIRS(freecell)
+
+AC_OUTPUT([
+Makefile
+po/Makefile.in
+gnomine/Makefile
+phaser-chess/Makefile
+freecell/Makefile
+scottfree/Makefile
+same-gnome/Makefile
+version.h
+stamp.h],[sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in > po/Makefile])

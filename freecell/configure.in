@@ -51,16 +51,7 @@ if test "$gnome_cv_use_gnome" = "yes"
 then
   AC_MSG_RESULT([OK, built in GNOME tree.])
   in_gnome_tree="yes"
-
-  dnl GNOME's configure kindly passes X11, GTK library paths.
-  X_CFLAGS=$gnome_cv_passdown_X_CFLAGS
-  AC_SUBST(X_CFLAGS)
-  X_LIBS=$gnome_cv_passdown_X_LIBS
-  AC_SUBST(X_LIBS)
-  x_libs=$gnome_cv_passdown_x_libs
-  AC_SUBST(x_libs)
-  GTK_LIBS=$gnome_cv_passdown_GTK_LIBS
-  AC_SUBST(GTK_LIBS)
+  GTK_LIBS="$GNOMEUI_LIBS $GNOMELIB_DIR $GNOMEINCLUDE_DIR"
 else
   AC_MSG_RESULT([OK, built out of GNOME tree.])
   in_gnome_tree="no"
