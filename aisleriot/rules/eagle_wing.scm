@@ -53,7 +53,8 @@
   (set! VERTPOS (+ VERTPOS 20))
   (add-extended-slot '() down)          ;tableau (slot 14)
 
-  (deal-cards 0 '(10 10 10 10 10 10 10 10 10 10 10 10 10 6 7 8 9 11 12 13 14 2))
+  (deal-cards-face-up 0 '(10))
+  (deal-cards 0 '(10 10 10 10 10 10 10 10 10 10 10 10 6 7 8 9 11 12 13 14 2))
 
   (flip-top-card 2)
   (flip-top-card 6)
@@ -188,11 +189,7 @@
 	   (not (= slot 10))
 	   (empty-slot? slot)
 	   (not (empty-slot? 10)))
-      (begin 
-	(deal-cards-face-up 10 (cons slot '()))
-	(if (and (not (empty-slot? 10))
-		 (= (length (get-cards 10)) 1))
-	    (flip-top-card 10)))))
+      (deal-cards-face-up 10 (cons slot '()))))
 
 (define (game-over)
   (and (not (game-won))

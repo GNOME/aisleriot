@@ -44,6 +44,7 @@ types_DATA  = 		\
 	fourteen.scm	\
 	freecell.scm	\
 	doublets.scm	\
+	auld_lang_syne.scm \
 	beleaguered_castle.scm \
 	camelot.scm	\
 	canfield.scm	\

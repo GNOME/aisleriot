@@ -63,16 +63,6 @@
   (list 9 4)
 )
 
-(define (make-deck-list-ace-low init-value value suit)
-   (if (eq? king value)
-      (if (eq? spade suit)
-	  (list (make-card king spade))
-	  (cons (make-card value suit) 
-		(make-deck-list-ace-low 
-		 init-value init-value (+ 1 suit))))
-      (cons (make-card value suit) 
-	    (make-deck-list-ace-low init-value (+ 1 value) suit))))
-
 (define (button-pressed slot-id card-list)
   (and (= (length card-list) 1)
        (not (= ace (get-value (car card-list))))))

@@ -1,5 +1,19 @@
 1999-02-22  Rosanna Yuen  <rwsy@mit.edu>
 
+	* beleaguered_castle.scm: moved deck making to sol.scm
+	* sol.scm (make-deck-list-ace-low): moved this from
+	beleaguered_castle.scm
+	* auld_lang_syne.scm: added new game
+	* eagle_wing.scm (button-double-clicked): fixed minor bug with
+	last Reserve card.
+	* klondike.scm (button-double-clicked): allows double clicking to
+	acutally work for those who prefer it.
+	(new-game): made the waste pile only 1 wide if only dealing 1 card
+	at a time.  (unfortunately, this only happens when game is
+	restarted.  perhaps force new game when options change?)
+	
+1999-02-22  Rosanna Yuen  <rwsy@mit.edu>
+
 	* fourteen.scm: added new game
 	* clock.scm (button-clicked): made clicking kings easier
 	(complete-transaction): added scoring support

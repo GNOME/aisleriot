@@ -32,7 +32,11 @@
   (shuffle-deck)
   
   (add-normal-slot DECK)
-  (add-partially-extended-slot '() right 3)
+
+  (if deal-three
+      (add-partially-extended-slot '() right 3)
+      (add-normal-slot '()))
+
   (add-blank-slot)
   (add-normal-slot '())
   (add-normal-slot '())
@@ -118,10 +122,8 @@
 		    (remove-card start-slot)
 		    (complete-transaction start-slot (list card) end-slot)))))))
 
-; The C still has problems detecting button double clicks ... 
-					 
 (define (button-double-clicked slot)
-  #f)
+  (button-clicked slot))
 
 ; Global variables used in searching (keeping it simple):
 
