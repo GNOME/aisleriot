@@ -424,7 +424,6 @@ void main_prog(int argc, char *argv[])
   gtk_widget_show (app);
   create_press_data ();
 
-  gtk_widget_pop_visual ();
   gtk_widget_pop_colormap ();
 
   gtk_main ();
@@ -504,7 +503,6 @@ int main (int argc, char *argv [])
 			      aisleriot_opts, 0, NULL);
 
   gtk_widget_push_colormap (gdk_rgb_get_cmap ());
-  gtk_widget_push_visual (gdk_rgb_get_visual ());
 
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-aisleriot.png");
   splash_new ();

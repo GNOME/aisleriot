@@ -117,7 +117,6 @@ io_gtk_init (void)
 
   
   /* make main window.  */
-  gtk_widget_push_visual (gdk_rgb_get_visual ());
   gtk_widget_push_colormap (gdk_rgb_get_cmap ());
   main_window = gnome_app_new ("freecell", _("Freecell"));
   gtk_signal_connect (GTK_OBJECT(main_window), "delete_event",
@@ -222,7 +221,6 @@ io_gtk_init (void)
   up_cursor = gdk_cursor_new (GDK_SB_UP_ARROW);
 
   gtk_widget_pop_colormap ();
-  gtk_widget_pop_visual ();
 
   stalled = 1;
 }
