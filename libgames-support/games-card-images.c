@@ -24,6 +24,8 @@
 
 #include "games-card-images.h"
 
+#include "games-card-common.h"
+
 G_DEFINE_TYPE(GamesCardImages, games_card_images, G_TYPE_OBJECT);
 
 GamesCardImages * games_card_images_new (void)
@@ -40,10 +42,20 @@ static void games_card_images_render (GamesCardImages * images)
   gchar * fullname;
 
   /* FIXME: We should search a path. */
-  fullname = g_strconcat (DATADIR"/pixmaps/cards/", images->themename, NULL);
+  fullname = g_strconcat (CARDDIR, images->themename, NULL);
   source = gdk_pixbuf_new_from_file (fullname, NULL);
-  /* FIXME: Find some way to alert the user of errors. */
   g_free (fullname);
+
+  if (!source) {
+    g_warning ("Using a fallback card image set.");
+    fullname = CARDDIR"bonded.png";
+    source = gdk_pixbuf_new_from_file (fullname, NULL);    
+  }
+
+  if (!source) {
+    /* FIXME: Find a better way to report errors. */
+    g_warning ("Failed to load the fallback file.\n");
+  }
 
   subwidth = gdk_pixbuf_get_width (source)/13;
   subheight = gdk_pixbuf_get_height (source)/5;

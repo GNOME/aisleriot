@@ -27,6 +27,7 @@
 #include <dirent.h>
 #include <gnome.h>
 #include <games-frame.h>
+#include <games-card-selector.h>
 #include "cscmi.h"
 #include "sol.h"
 #include "menu.h"
@@ -333,21 +334,22 @@ void show_hint_dialog()
 static GtkWidget * deck_edit = NULL;
 
 static void 
-property_apply (GtkWidget *w, gpointer data)
+property_apply (GtkWidget *w, gchar * name, gpointer data)
 {
-#if 0
-  /* FIXME: actually change the theme. */
-  gconf_client_set_string (gconf_client, "/apps/aisleriot/card_options",
-                           /* FIXME */, NULL);
-#endif
+  gconf_client_set_string (gconf_client, THEME_GCONF_KEY, name, NULL);
+  /* Inconvenient fact of the day: the string "name" is in fact owned by 
+   * something that could go away. We have conveniently arranged so that it
+   * doesn't, but card_style should probably be removed as a variable. */
+  card_style = name;
 
+  set_card_theme (name);
+  
   refresh_screen();
 }
 
 void show_preferences_dialog () 
 {
   static GtkWidget* property_box = NULL;
-  GtkWidget * frame;
   
   if (!property_box) {
     property_box = gtk_dialog_new ();
@@ -356,14 +358,9 @@ void show_preferences_dialog ()
     gtk_dialog_add_buttons(GTK_DIALOG(property_box),
                            GTK_STOCK_CLOSE, GTK_RESPONSE_OK, NULL);
     gtk_window_set_transient_for (GTK_WINDOW(property_box), GTK_WINDOW (app));
-
-    frame = games_frame_new (_("Card Style"));
-    
-    /* FIXME: get an actual widget for this. */
-    deck_edit = NULL;
-    gtk_container_add (GTK_CONTAINER (frame), deck_edit);
-    
-    gtk_box_pack_start (GTK_BOX (GTK_DIALOG (property_box)->vbox), frame,
+     
+    deck_edit = games_card_selector_new (card_style);
+    gtk_box_pack_start (GTK_BOX (GTK_DIALOG (property_box)->vbox), deck_edit,
                         TRUE, TRUE, GNOME_PAD_SMALL);
     
     g_signal_connect (G_OBJECT (deck_edit), "changed",

@@ -7,6 +7,9 @@ INCLUDES =							\
 	$(WARN_CFLAGS)						\
 	$(GNOME_GAMES_CFLAGS)
 
+carddir = $(datadir)/pixmaps/gnome-games-common/cards
+card_DATA = bonded.png dondorf.png
+
 libgames_support_la_SOURCES =		\
 	games-clock.c			\
 	games-clock.h			\
@@ -22,4 +25,8 @@ libgames_support_la_SOURCES =		\
 	games-card-images.h		\
 	games-card-pixmaps.c		\
 	games-card-pixmaps.h		\
+	games-card-selector.c		\
+	games-card-selector.h		\
 	$(NULL)
+
+EXTRA_DIST = $(card_DATA)

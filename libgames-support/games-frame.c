@@ -168,7 +168,7 @@ games_frame_new (const gchar *label)
   GtkWidget *frame;
   gchar *markup;
 
-  frame = g_object_new (TYPE_GAMES_FRAME, NULL);
+  frame = g_object_new (GAMES_TYPE_FRAME, NULL);
 
   markup = g_strdup_printf ("<span weight=\"bold\">%s</span>", label);
   gtk_frame_set_label (GTK_FRAME (frame), markup);

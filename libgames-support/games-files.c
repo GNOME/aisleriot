@@ -210,6 +210,7 @@ GtkWidget * games_file_list_create_widget (GamesFileList * gamesfilelist, gchar 
   GtkComboBox *widget;
   gchar *visible, *string;
   GList * filelist = gamesfilelist->list;
+  gboolean found = FALSE;
 
   widget = GTK_COMBO_BOX (gtk_combo_box_new_text ());
 
@@ -239,11 +240,14 @@ GtkWidget * games_file_list_create_widget (GamesFileList * gamesfilelist, gchar 
     gtk_combo_box_append_text (widget, visible);
     if (selection && (! g_utf8_collate (string, selection))) {
       gtk_combo_box_set_active (widget, itemno);      
+      found = TRUE;
     }
 
     itemno++;
     filelist = g_list_next (filelist);
   }
+  if (!found)
+    gtk_combo_box_set_active (widget, 0);
 
   return GTK_WIDGET (widget);
 }

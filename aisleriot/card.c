@@ -130,9 +130,16 @@ void set_card_size (gint width, gint height)
 
   if (!images) {
     images = games_card_pixmaps_new (playing_area->window);
-    games_card_pixmaps_set_theme (images, "dondorf-new.png"); 
+    games_card_pixmaps_set_theme (images, card_style); 
   }
   games_card_pixmaps_set_size (images, width, height);  
   mask = games_card_pixmaps_get_mask (images);
   gdk_gc_set_clip_mask (draw_gc, mask);
+}
+
+void set_card_theme (gchar * theme)
+{
+  games_card_pixmaps_set_theme (images, theme);
+  mask = games_card_pixmaps_get_mask (images);
+  gdk_gc_set_clip_mask (draw_gc, mask);  
 }

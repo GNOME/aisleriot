@@ -30,12 +30,12 @@ extern "C" {
 #endif /* __cplusplus */
 
 
-#define TYPE_GAMES_FRAME            (games_frame_get_type ())
-#define GAMES_FRAME(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_GAMES_FRAME, GamesFrame))
-#define GAMES_FRAME_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_GAMES_FRAME, GamesFrameClass))
-#define IS_GAMES_FRAME(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_GAMES_FRAME))
-#define IS_GAMES_FRAME_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_GAMES_FRAME))
-#define GAMES_FRAME_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_GAMES_FRAME, GamesFrameClass))
+#define GAMES_TYPE_FRAME            (games_frame_get_type ())
+#define GAMES_FRAME(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_FRAME, GamesFrame))
+#define GAMES_FRAME_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_FRAME, GamesFrameClass))
+#define IS_GAMES_FRAME(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_FRAME))
+#define IS_GAMES_FRAME_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_FRAME))
+#define GAMES_FRAME_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_FRAME, GamesFrameClass))
 
 
 typedef struct _GamesFrame       GamesFrame;

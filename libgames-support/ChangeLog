@@ -1,3 +1,28 @@
+2004-05-01  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* games-files.c (games_file_list_create_widget): Handle the case
+	where the provided default isn't in the list.
+
+	* games-card-images.c: Add a fallback option when cards fail to load.
+	
+	* games-card-images.c: 
+	* games-card-selector.c:
+	* games-card-common.c: Use a common path definition.
+
+	* Makefile.am: Move dondorf.png and bonded.png into this directory.
+
+	* games-card-pixmaps.c (games_card_pixmaps_purge): Remove some
+	debugging statements.
+
+	* games-frame.c: 	
+	* games-frame.h: TYPE_GAMES_FRAME -> GAMES_TYPE_FRAME for
+	consistency across libgames.
+
+	* games-card-selector.c:
+	* games-card-selector.h:
+	* Makefile.am (libgames_support_la_SOURCES): A widget to select a
+	card theme.
+
 2004-04-27  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* games-card-images.c (games_card_images_new): 

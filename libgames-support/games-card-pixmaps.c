@@ -104,9 +104,7 @@ static void games_card_pixmaps_purge (GamesCardPixmaps * images)
 
   for (i=0; i<GAMES_CARDS_TOTAL; i++) {
     if (images->pixmaps[i]) {
-      g_print ("bar\n");
       g_object_unref (images->pixmaps[i]);
-      g_print ("foo\n");
       images->pixmaps[i] = NULL;
     }
   }

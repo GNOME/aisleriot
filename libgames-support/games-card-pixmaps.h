@@ -37,7 +37,7 @@ typedef struct _GamesCardPixmaps {
 } GamesCardPixmaps;
 
 typedef struct _GamesCardPixmapsClass {
-  GObjectClass parent;
+  GamesCardImagesClass parent;
 } GamesCardPixmapsClass;
 
 #define GAMES_TYPE_CARD_PIXMAPS (games_card_pixmaps_get_type ())

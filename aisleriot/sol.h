@@ -48,7 +48,7 @@ extern GdkGC*           slot_gc;
 extern GdkGC*           bg_gc;
 extern GdkPixmap*       surface;
 extern GdkPixmap*       moving_card_pixmap;
-extern GtkObject*       card_deck;
+extern gchar*       card_style;
 
 extern guint            score;
 extern guint            game_time;
