@@ -192,8 +192,198 @@
       #t
       #f))
 
+(define (deal-possible?)
+
+(display "deal-possible?\n")
+
+  (if (not (empty-slot? 0))
+      (list 0 "Deal a new card from the deck")
+      (if (and (< FLIP-COUNTER 3)
+	       (not (empty-slot? 1)))
+	  (list 0 "Move waste back to stock")
+	  #f)))
+
+(define (move-up? card slot)
+
+(display "move-up?\n")
+(display "  slot #")
+(display slot)
+(display "\n")
+
+  (or (if (empty-slot? slot)
+	  (begin
+	    (display "mu: first clause  ")
+	    (display card)
+	    (display "\n")
+	    (if (= (get-value card)
+		   ace)
+		(begin
+		  (display "mu: in if  \n")
+		  (list 1 (get-name card) "empty slot on foundation"))
+		(if (< slot 5)
+		    (move-up? card (+ 1 slot))
+		    #f)))
+	  (and (display "mu: checking and\n")
+	       (= (get-suit card)
+		  (get-suit (get-top-card slot)))
+	       (= (get-value card)
+		  (+ 1 (get-value (get-top-card slot))))
+	       (display "before listing ")
+	       (display card)
+	       (display "  ")
+	       (display (get-top-card slot))
+	       (display "\n")
+	       (list 2 (get-name card)
+		     (get-name (get-top-card slot)))))
+      (if (< slot 5)
+	  (move-up? card (+ 1 slot))
+	  #f)))
+
+(define (get-valid-move check-list)
+
+(display "get-valid-move\n")
+
+(and (not (null? check-list))
+     (display "  gvm:  after null check\n")
+     (or (and (not (empty-slot? (car check-list)))
+	      (display "  gvm:  after not mt-slot cl\n")
+	      (move-up? (get-top-card (car check-list)) 2)
+;	      (display "  gvm:  after move-up call  ")
+;	      (display check-list)
+;	      (display "\n")
+	      
+)
+	 (get-valid-move (cdr check-list)))
+     ))
+
+
+(define (tabled card slot)
+
+(display "tabled\n")
+
+  (or (if (and (empty-slot? slot)
+	       (display "t: 1\n")
+	       (= (get-value card) king)
+	       (display "t: 2\n"))
+	  (list 1 (get-name card) "empty space on tableau")
+	  (and (display "t: 3\n")
+	       (eq? (is-black? card)
+		    (is-red? (get-top-card slot)))
+	       (display "t: 4\n")
+	       (= (get-value card)
+		  (- (get-value (get-top-card slot)) 1))
+	       (display "t: 5\n")
+	       (list 2 (get-name card)
+		     (get-name (get-top-card slot)))))
+      (if (< slot 12)
+	  (begin
+	    (display "t: 6\n")
+	    (tabled card (+ 1 slot)))
+	  #f)))
+
+(define (to-tableau? check-list)
+
+(display "to-tableua\n")
+
+  (and (not (null? check-list))
+       (or (and (not (empty-slot? (car check-list)))
+		(tabled (get-top-card (car check-list)) 6))
+	   (to-tableau? (cdr check-list)))))
+
+(define (col-check card start-slot check-slot check-slot-list)
+
+  (display "col-check  ")
+  (display card)
+  (display "  ")
+  (display (get-value card))
+  (display king)
+  (display "  ")
+  (display start-slot)
+  (display "  ")
+  (display check-slot)
+  (display "  ")
+  (display check-slot-list)
+  (display "\n")
+      
+  (if (and (empty-slot? check-slot)
+	   (< check-slot 12))
+      (col-check card 
+		 start-slot
+		 (+ 1 check-slot) 
+		 (get-cards (+ 1 check-slot)))
+      (begin
+	(or
+	 (and (display "cc: 1st and\n")
+	      (empty-slot? check-slot)
+	      (display "  cc: after empty\n")
+	      (= (get-value card) king)
+	      (display "  cc: after king\n")
+	      (list 1 (get-name card) "empty space on tableau")
+	 (and (display "cc: 2nd and\n")
+	      (not (= start-slot check-slot))
+	      (display "  cc: after not =\n")
+	      (eq? (is-black? card)
+		   (is-red? (car check-slot-list)))
+	      (display "  cc: after color check\n")
+	      (= (get-value card)
+		 (- (get-value (car check-slot-list)) 1))
+	      (display "  cc: after #check\n")
+	      (list 2 (get-name card)
+		    (get-name (car check-slot-list))))
+	 (and (display "cc: 3rd and\n")
+	      (< check-slot 12)
+	      (col-check card 
+			 start-slot
+			 (+ 1 check-slot) 
+			 (get-cards (+ 1 check-slot)))))))))
+
+(define (move-column? check-list check-list-cards)
+  
+  (display "move-column?  ")
+  (display check-list)
+  (display "  ")
+  (display check-list-cards)
+  (display "\n")
+;   (display "  looking ahead:  next:  ")
+;   (display (cdr check-list))
+;   (display "  ")
+;   (display (get-cards (car (cdr check-list))))
+;   (display "\n")
+
+
+  (if (and (not (null? check-list))
+	   (if (not (null? check-list-cards))
+	       (if (and (display "mc: 1\n")
+			(not (is-visible? (car check-list-cards)))
+			(display "mc: 2\n"))
+		   (move-column? check-list (cdr check-list-cards))    
+		   (and (display "mc: checking...:  ")
+			(display check-list-cards)
+			(display "  backwords:  ")
+			(display (reverse check-list-cards))
+			(display "  for  ")
+			(display (car (reverse check-list-cards)))
+			(display "\n")
+			(col-check (car check-list-cards)
+				   (car check-list) 
+				   6
+				   (get-cards 6))))
+	       #f))
+      (move-column? (cdr check-list) (reverse (get-cards (car (cdr check-list)))))))
+
+(define (move-col-reverser check-list list-tbrev)
+  (if (not (null? list-tbrev))
+      (move-column? check-list list-tbrev)
+      (move-col-reverser (cdr check-list) (get-cards (car (cdr check-list))))))
+
 (define (get-hint ugh)
-  #f)
+  (or (get-valid-move '(1 6 7 8 9 10 11 12))
+      (and (display "after get-valid-move\n")
+	   (move-col-reverser '(6 7 8 9 10 11 12) (get-cards 6)))
+      (and (display "after move-column\n")
+	   (to-tableau? '(1)))
+      (deal-possible?)
+      (list 0 "Try rearranging the cards")))
 
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint)
 
