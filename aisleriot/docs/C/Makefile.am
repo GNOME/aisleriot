@@ -18,7 +18,7 @@ help_DATA = index.html intro.html glossary.html \
 	freecell.html bristol.html union-square.html \
 	camelot-goal.png clock-rules.png docbook.css \
 	topic.dat straight-up.html zebra.html lady-jane.html \
-	maze.html
+	maze.html glenwood.html
 
 # These are the sources:
 
@@ -33,7 +33,7 @@ help_SGML = aisleriot.sgml definitions.sgml \
 	beleaguered_castle.sgml thirteen.sgml thieves.sgml \
 	freecell.sgml scorpion.sgml thumb_and_pouch.sgml \
 	straight_up.sgml zebra.sgml lady_jane.sgml \
-	maze.sgml
+	maze.sgml glenwood.sgml
 
 EXTRA_DIST = $(help_DATA) $(help_SGML)
 

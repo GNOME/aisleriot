@@ -210,16 +210,8 @@
 	    (place-found slot top-card 2)))))
 
 (define (game-over)
-  (give-status-message)
-  (if (and (empty-slot? 0)
-	   (empty-slot? 1)
-	   (empty-slot? 6)
-	   (empty-slot? 7)
-	   (empty-slot? 8)
-	   (empty-slot? 9)
-	   (empty-slot? 10))
-      #f
-      #t))
+  (and (give-status-message)
+       (not (game-won))))
 
 (define (game-won)
   (if (and (empty-slot? 0)
