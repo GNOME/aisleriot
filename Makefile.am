@@ -6,10 +6,14 @@ if GUILE
 guile_DIRS = aisleriot
 endif
 
+if CXX_PRESENT
+cxx_DIRS = gnometris
+endif
+
 SUBDIRS = po macros \
 	  freecell gnomine same-gnome scottfree mahjongg gturing \
           gyahtzee gnobots gnothello gnotravex gnome-stones \
-	  $(guile_DIRS) idl metatris
+	  $(guile_DIRS) $(cxx_DIRS) idl metatris
 
 #$(objc_DIRS)
 

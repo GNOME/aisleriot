@@ -8,10 +8,12 @@ GNOME_INIT
 
 AC_ISC_POSIX
 AC_PROG_CC
-AC_PROG_CXX
 AC_STDC_HEADERS
 AC_ARG_PROGRAM
 AM_PROG_LIBTOOL
+
+## failure of 'AC_PRG_CXX' causes automake to abort
+GNOME_CHECK_CXX
 
 ## this should come after `AC_PROG_CC'
 GNOME_X_CHECKS
@@ -65,6 +67,6 @@ gnobots/Makefile
 gnothello/Makefile
 gnotravex/Makefile
 metatris/Makefile
-gtetris/Makefile
-gtetris/pix/Makefile
+gnometris/Makefile 
+gnometris/pix/Makefile
 ])
