@@ -352,9 +352,30 @@ void help_update_game_name (gchar * name)
 
 }
 
+static void option_cb (GtkToggleAction *action, gint n)
+{
+  SCM options_list;
+  SCM entry;
+  SCM statescm;
+
+  options_list = cscmi_get_options_lambda ();
+
+  entry = scm_list_ref (options_list, SCM_MAKINUM (n));
+
+  statec = gtk_toggle_action_get_active (action);
+
+  scm_list_set_x (entry, SCM_MAKINUM(1), statec ? SCM_BOOL_T : SCM_BOOL_F);
+
+  cscmi_apply_options_lambda (options_list);
+  
+  /* FIXME: We do not save state between games. */
+}
+
 /* FIXME: This does not add an appropriate underscore. Is this easy? 
  * Maybe underscore the first letter that isn't underscored in another
  * menu. */
+/* FIXME: We do not set the toggle state correctly (because it isn't saved
+ * yet). */
 void install_options_menu (gchar *name)
 {
   static int merge_id = 0;
@@ -404,6 +425,8 @@ void install_options_menu (gchar *name)
       
       itemaction = gtk_toggle_action_new (actionname, entryname, 
 					  NULL, NULL);
+      g_signal_connect (G_OBJECT (itemaction), "toggled",
+			G_CALLBACK (option_cb), GINT_TO_POINTER (i));
       gtk_action_group_add_action (action_group, GTK_ACTION (itemaction));
 
       strtemp = uistring;
