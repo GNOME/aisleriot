@@ -134,8 +134,6 @@ GnomeUIInfo main_toolbarinfo[] =
 #define ELEMENTS(x) (sizeof(x)/sizeof(x[0]))
 
 
-static GtkWidget *window;
-
 void
 create_menus (GnomeApp *app)
 {

@@ -45,6 +45,7 @@
 #include "card-draw.h"
 
 
+extern int card_image_top_height(void); /* In card-draw.c */
 #define FIELD_WIDTH card_image_width()
 #define FIELD_HEIGHT card_image_top_height() * 14
 
@@ -633,7 +634,7 @@ callback_about (GtkWidget *widget, GdkEvent *event)
   
   about = gnome_about_new (_("Freecell"), VERSION,
 			   "(C) 1998 Free Software Foundation, Inc.",
-			   authors,
+			   (const char **)authors,
 			   _("Reimplement the popular solitaire card game."),
 			   NULL);
   gtk_widget_show (about);

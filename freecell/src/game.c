@@ -122,7 +122,7 @@ void
 freecellgame_delete(FREECELLGAME *freecellgame)
 {
   int i;
-  GSList *list, *tmplist;
+  GSList *list;
 
   for (i = 0; i < freecellgame->freecells_number; i++)
     if (freecellgame->freecells[i] != NULL)
@@ -783,7 +783,7 @@ freecellgame_undo (FREECELLGAME *game)
 {
   Part from_part, to_part;
   int from_index, to_index, more_info;
-  CARD *card;
+  CARD *card = NULL;
   int i, tmp;
   
   if (! game->history)
@@ -817,6 +817,8 @@ freecellgame_undo (FREECELLGAME *game)
 	  card = deck_view_top (game->fields[to_index]);
 	  deck_remove_top (game->fields[to_index]);
 	  break;
+	default:
+	  g_error("Unknown to_part for this card");
 	}
       
       switch (from_part)

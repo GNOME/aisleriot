@@ -47,7 +47,6 @@ score_dialog (void)
 {
   GtkWidget *dialog;
   GtkWidget *label;
-  GtkWidget *all_boxes;
 
   char *formatstring[20];	/* FIXME: is it enough? */
   int i;
@@ -71,5 +70,7 @@ score_dialog (void)
       gtk_widget_show(label);
     }
   gtk_widget_show (dialog);
+
+  return dialog;
 }
 

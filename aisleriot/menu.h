@@ -30,7 +30,7 @@ int game_load_game_callback (GtkWidget*, void* );
 int file_select_game_callback (GtkWidget*, void* );
 int file_new_game_callback (GtkWidget*, void* );
 int game_hint_callback (GtkWidget*, void* );
-int help_about_callback (GtkWidget*, void* );
+void help_about_callback (GtkWidget*, void* );
 
 void create_menus(GnomeApp *app);
 #endif

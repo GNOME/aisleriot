@@ -148,10 +148,11 @@ int file_select_game_callback (GtkWidget *app, void *data )
   show_select_game_dialog();
   return TRUE;
 }
-int help_about_callback (GtkWidget *widget, void *data)
+
+void help_about_callback (GtkWidget *widget, void *data)
 {
   GtkWidget *about;
-  gchar *authors[] = {
+  const gchar *authors[] = {
 	  "Main program:  Jonathan Blandford (jrb@mit.edu)",
 	  "Card Games:    Jonathan Blandford (jrb@mit.edu)",
 	  "                      Ryu Changwoo (cwryu@eve.kaist.ac.kr)",
@@ -162,7 +163,7 @@ int help_about_callback (GtkWidget *widget, void *data)
   about = gnome_about_new ( _("GNOME Solitaire"), VERSION,
         		/* copyright notice */
                         "(C) 1998 Jonathan Blandford (jrb@MIT.EDU)",
-                        authors,
+                        (const char **)authors,
                         /* another comments */
                         _("The GNOME Generic Solitaire provides a rule-based "
 			  "solitaire engine that allows many different games to be played"),

@@ -27,8 +27,8 @@
 /* used for double buffering. */
 static GdkPixmap *d_pixmap;
 static GdkPixmap *c_pixmap;
-static card_width = 79;
-static card_height = 123;
+static int card_width = 79;
+static int card_height = 123;
 
 
 static void draw_card (GdkWindow *window, GdkGC *gc, int x, int y, CARD *card);

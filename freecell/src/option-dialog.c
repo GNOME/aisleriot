@@ -119,9 +119,8 @@ option_dialog_changed_callback (GtkWidget *w, gpointer data)
 static gint
 option_dialog_close_callback (GtkWidget *w, gpointer data1, gpointer data2)
 {
-  g_return_if_fail (data2 != NULL);
-
-  g_free (data2);
+  if(data2)
+    g_free (data2);
   return FALSE;
 }
 

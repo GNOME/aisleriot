@@ -5,6 +5,7 @@
 #include "sol.h"
 #include "menu.h"
 #include "cscmi.h"
+#include "draw.h"
 
 GtkWidget* game_over_dialog_box = NULL;
 GtkWidget* select_game_dialog_box = NULL;
@@ -19,7 +20,8 @@ void hide_game_over_box()
 	 gtk_widget_hide(game_over_dialog_box);
   }
 }
-int hide_game_over_box_callback (GtkWidget *app, void *data )
+
+void hide_game_over_box_callback (GtkWidget *app, void *data )
 {
   hide_game_over_box();
 }
@@ -54,7 +56,6 @@ int select_game_callback (GtkWidget *app, void *data )
 }
 
 void show_game_over_dialog(gboolean won) {
-  GtkWidget* label;
   GtkWidget* new_game_button;
   GtkWidget* cancel_button;
 

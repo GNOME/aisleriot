@@ -49,6 +49,6 @@ extern GString* game;
 #endif
 void set_score();
 void make_title();
-
+void eval_installed_file(char *file);
 
 #endif
