@@ -38,9 +38,9 @@ sol_SOURCES = 		\
 	menu.c		\
 	card.c
 
-sol_LDADD = -lgdk_imlib  $(GNOME_GAMES_LIBS) \
+sol_LDADD = $(GNOME_GAMES_LIBS) \
 	../freecell/gdk-card-image/libgdkcardimage.la \
-	$(INTLLIBS) $(GUILE_LIBS) 
+	$(GUILE_LIBS) 
 
 types_DATA  = 		\
 	agnes.scm	\

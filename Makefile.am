@@ -17,17 +17,10 @@ SUBDIRS = po\
 
 EXTRA_DIST = \
 	gnome-games.spec.in \
+	gnome-games.spec \
 	COPYING-DOCS \
 	sgmldocs.make \
 	game-docs.make \
 	MAINTAINERS	\
 	HACKING
 
-dist-hook:
-	cp gnome-games.spec $(distdir)
-
-## to automatically rebuild aclocal.m4 if any of the macros in
-## `macros/' change
-## @MAINT@include macros/macros.dep
-## @MAINT@macros/macros.dep: macros/Makefile.am
-## @MAINT@	cd macros && $(MAKE) macros.dep
