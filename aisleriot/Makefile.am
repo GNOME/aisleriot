@@ -73,6 +73,7 @@ types_DATA  = 		\
 	jamestown.scm	\
 	jumbo.scm	\
 	kansas.scm	\
+	king_albert.scm	\
 	klondike.scm	\
 	labyrinth.scm	\
 	lady_jane.scm	\
@@ -100,6 +101,7 @@ types_DATA  = 		\
 	union_square.scm \
 	valentine.scm	\
 	westhaven.scm	\
+	whitehead.scm	\
 	yield.scm	\
 	yukon.scm	\
 	zebra.scm

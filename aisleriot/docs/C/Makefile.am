@@ -43,6 +43,7 @@ help_DATA = index.html	\
 	jamestown.html	\
 	jumbo.html	\
 	kansas.html	\
+	king-albert.html	\
 	klondike.html	\
 	labyrinth.html	\
 	lady-jane.html	\
@@ -69,6 +70,7 @@ help_DATA = index.html	\
 	union-square.html	\
 	valentine.html	\
 	westhaven.html	\
+	whitehead.html	\
 	yield.html	\
 	yukon.html 	\
 	zebra.html 
@@ -108,6 +110,7 @@ help_SGML = \
 	jamestown.sgml	\
 	jumbo.sgml	\
 	kansas.sgml	\
+	king_albert.sgml	\
 	klondike.sgml	\
 	labyrinth.sgml	\
 	lady_jane.sgml	\
@@ -134,6 +137,7 @@ help_SGML = \
 	union_square.sgml	\
 	valentine.sgml	\
 	westhaven.sgml	\
+	whitehead.sgml	\
 	yield.sgml	\
 	yukon.sgml 	\
 	zebra.sgml 
