@@ -43,6 +43,7 @@ void show_game_over_dialog() {
   dialog = gnome_message_box_new (message, GNOME_MESSAGE_BOX_QUESTION,
 				  _("New Game"), GNOME_STOCK_BUTTON_CANCEL, 
 				  NULL);
+  gnome_dialog_set_parent (GNOME_DIALOG (dialog), GTK_WINDOW (app));
   gnome_dialog_set_default ( GNOME_DIALOG (dialog), 0 );
   if (gnome_dialog_run (GNOME_DIALOG (dialog)) == 0) 
     new_game (NULL, NULL);
@@ -87,6 +88,8 @@ void show_select_game_dialog()
 				    GNOME_STOCK_BUTTON_CANCEL,
 				    NULL );
     gnome_dialog_set_default ( GNOME_DIALOG (dialog), 0 );
+
+    gnome_dialog_set_parent ( GNOME_DIALOG (dialog), GTK_WINDOW (app) );
 
     hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
     seed_entry = gtk_entry_new ();
@@ -268,6 +271,8 @@ void show_preferences_dialog ()
 
   if (!property_box) {
     property_box = gnome_property_box_new ();
+
+    gnome_dialog_set_parent (GNOME_DIALOG (property_box), GTK_WINDOW (app));
   
     deck_edit = gdk_card_deck_options_edit_new 
       (GTK_NOTEBOOK (GNOME_PROPERTY_BOX (property_box)->notebook));
@@ -336,6 +341,8 @@ void show_rules_options_dialog ()
   
   if (!option_dialog && gh_scm2bool(options)) {
     option_dialog = gnome_property_box_new ();
+
+    gnome_dialog_set_parent (GNOME_DIALOG (option_dialog), GTK_WINDOW (app));
  
     option_page = get_option_page(option_dialog);
 
