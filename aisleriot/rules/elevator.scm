@@ -87,7 +87,7 @@
 
   (give-status-message)
 
-  (list 5 4)
+  (list 7 4)
 )
 
 

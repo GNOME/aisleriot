@@ -67,7 +67,7 @@
 
   (give-status-message)
 
-  (list 6 4)
+  (list 7 4)
 )
 
 (define (give-status-message)

@@ -54,11 +54,17 @@ void show_game_over_dialog() {
 #endif
 }
 
-gchar *filename;
+gchar *filename = NULL;
 
-void select_rules (GtkWidget* menu_item, gchar* file)
+void select_rules(GtkCList       *clist,
+		  gint            row,
+		  gint            column,
+		  GdkEvent       *event)
 {
-  filename = file;
+	if (row == -1)
+		return;
+
+	filename = gtk_clist_get_row_data (GTK_CLIST (clist), row);
 }
 
 void select_game (GtkWidget *app, gint button, GtkWidget* entry)
@@ -73,7 +79,9 @@ void show_select_game_dialog()
 {
   static GtkWidget* dialog = NULL;
   static GtkWidget* seed_entry;
-  static GtkWidget* option_menu;
+  static GtkWidget* list;
+  GtkWidget* scrolled_window;
+  
   guint i;
   gchar buf[20];
 
@@ -81,8 +89,6 @@ void show_select_game_dialog()
 
   if(!dialog) {
 
-    GtkWidget* menu;
-    GtkWidget* menu_item;
     GtkWidget* label;
     GtkWidget* hbox;
     gchar* message = _("Select Game");
@@ -91,6 +97,7 @@ void show_select_game_dialog()
 				    GNOME_STOCK_BUTTON_OK, 
 				    GNOME_STOCK_BUTTON_CANCEL,
 				    NULL );
+    gtk_window_set_policy (GTK_WINDOW (dialog), FALSE, TRUE, FALSE);
     gnome_dialog_set_default ( GNOME_DIALOG (dialog), 0 );
 
     gnome_dialog_set_parent ( GNOME_DIALOG (dialog), GTK_WINDOW (app) );
@@ -108,32 +115,40 @@ void show_select_game_dialog()
 		      hbox, FALSE, FALSE, GNOME_PAD_SMALL );
     
     hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
-    option_menu = gtk_option_menu_new ();
+
+    list = gtk_clist_new (1);
+    gtk_signal_connect (GTK_OBJECT (list), "select_row", select_rules, NULL);
+    gtk_clist_set_selection_mode (GTK_CLIST (list), GTK_SELECTION_BROWSE);
+    scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+    gtk_widget_set_usize (scrolled_window, 300, 250);
+    gtk_container_add (GTK_CONTAINER (scrolled_window), list);
+
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+				    GTK_POLICY_AUTOMATIC,
+				    GTK_POLICY_AUTOMATIC);
+				    
+    
     label = gtk_label_new(_("Rules"));
     
     gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 
 			GNOME_PAD_SMALL );
-    gtk_box_pack_end (GTK_BOX (hbox), option_menu, FALSE, FALSE, 
+    gtk_box_pack_end (GTK_BOX (hbox), scrolled_window, TRUE, TRUE,
 		      GNOME_PAD_SMALL );
-    
+  
     gtk_box_pack_end (GTK_BOX (GNOME_DIALOG (dialog)->vbox), 
 		      hbox, FALSE, FALSE, GNOME_PAD_SMALL );
         
     filename = NULL;
-    menu = gtk_menu_new();
     
     for(i = 0; i < n_games; i++) {
-      menu_item = gtk_menu_item_new_with_label 
-	(game_file_to_name (game_dents[i]->d_name));
-      gtk_signal_connect (GTK_OBJECT(menu_item), "activate", 
-			  (GtkSignalFunc) select_rules,
-			  (gpointer) game_dents[i]->d_name);
-      gtk_menu_shell_append (GTK_MENU_SHELL(menu), menu_item);
+	    gchar *text[1];
+	    gint row;
+	    text[0] = game_file_to_name (game_dents[i]->d_name);
+	    row = gtk_clist_append (GTK_CLIST (list), text);
+	    gtk_clist_set_row_data (GTK_CLIST (list), row, game_dents[i]->d_name);
     }
-    gtk_widget_show_all (menu);
-    
-    gtk_option_menu_set_menu (GTK_OPTION_MENU (option_menu), menu);
 
+    
     gnome_dialog_editable_enters (GNOME_DIALOG (dialog), 
 				  GTK_EDITABLE (seed_entry));
     
@@ -147,16 +162,22 @@ void show_select_game_dialog()
 
   /* Can we respect user prefs for status bar using libgnomeui ???
    * Current app-utils look insufficient to me. */
-  for(i = 0; i < n_games; i++)
-    if (!strcmp (game_dents[i]->d_name, game_file))
-      gtk_option_menu_set_history (GTK_OPTION_MENU (option_menu), i);
-  
+  for(i = 0; i < n_games; i++) {
+	  gchar *text = NULL;
+	  text = (gchar *) gtk_clist_get_row_data (GTK_CLIST (list), i);
+	  if (!strcmp (text, game_file)) {
+		  gtk_clist_select_row (GTK_CLIST (list), i, 0);
+		  break;
+	  }
+  }
+
   g_snprintf (buf, sizeof (buf), "%d", seed);
   gtk_entry_set_text (GTK_ENTRY (seed_entry), buf);
 
   gnome_dialog_run (GNOME_DIALOG (dialog));
 }
-static void
+
+  static void
 hint_destroy_callback (void)
 {
   hint_dlg = NULL;
