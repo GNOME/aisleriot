@@ -497,8 +497,8 @@ int main (int argc, char *argv [])
   gnome_init_with_popt_table ("Aisleriot", VERSION, argc, argv,
 			      aisleriot_opts, 0, NULL);
 
-  gtk_widget_push_colormap (gdk_imlib_get_colormap ());
-  gtk_widget_push_visual (gdk_imlib_get_visual ());
+  gtk_widget_push_colormap (gdk_rgb_get_cmap ());
+  gtk_widget_push_visual (gdk_rgb_get_visual ());
 
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-aisleriot.png");
   splash_new ();

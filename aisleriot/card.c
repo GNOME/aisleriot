@@ -19,6 +19,7 @@
 
 #include "sol.h"
 #include "card.h"
+#include <gdk-pixbuf/gdk-pixbuf.h>
 
 GdkPixmap *default_background_pixmap; 
 GdkPixmap *slot_pixmap;
@@ -75,17 +76,16 @@ int get_horiz_start() {
 GdkPixmap* get_pixmap (const char* filename)
 {
   GdkPixmap* ret;
-  GdkImlibImage *im;
+  GdkPixbuf *im;
   char* fullname = gnome_pixmap_file (filename);
 
   if (fullname == NULL)
     return NULL; 
 
-  im = gdk_imlib_load_image (fullname);
+  im = gdk_pixbuf_new_from_file (fullname);
   if (im != NULL) {
-    gdk_imlib_render (im, im->rgb_width, im->rgb_height);
-    ret = gdk_imlib_copy_image (im);
-    gdk_imlib_destroy_image (im);
+    gdk_pixbuf_render_pixmap_and_mask (im, &ret, NULL, 127);
+    gdk_pixbuf_unref (im);
   } else {
     ret = NULL;
   } 
