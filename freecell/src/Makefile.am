@@ -4,7 +4,6 @@ Gamesdir = $(datadir)/applications
 INCLUDES = \
 	$(GNOME_GAMES_CFLAGS)		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
-	-I$(includedir)					\
 	-I$(srcdir)/../gdk-card-image
 
 bin_PROGRAMS = freecell

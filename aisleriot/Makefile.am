@@ -10,7 +10,6 @@ INCLUDES =  \
 	-I$(top_srcdir)/libgames-support           \
 	$(GNOME_GAMES_CFLAGS)			   \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"   \
-	-I$(includedir)				   \
 	$(GUILE_INCS)
 
 bin_PROGRAMS = sol

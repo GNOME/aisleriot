@@ -27,7 +27,7 @@ cardsuitlarge_DATA = \
 cardslotdir = $(datadir)/pixmaps/cards/slots/
 cardslot_DATA = hand.png plain.png
 
-INCLUDES =  $(GNOME_GAMES_CFLAGS) -I$(includedir) 
+INCLUDES =  $(GNOME_GAMES_CFLAGS) 
 EXTRA_DIST = $(cardback_DATA) $(cardhonor_DATA) $(cardjoker_DATA) \
 	$(cardrank_DATA) $(cardsuitsmall_DATA) $(cardsuitlarge_DATA)\
 	$(cardsuitmedium_DATA) $(cardslot_DATA)
