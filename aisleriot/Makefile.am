@@ -1,13 +1,13 @@
 scoredir=$(localstatedir)/games
 cardimagedir = $(datadir)/pixmaps/cards
 icondir = $(datadir)/pixmaps
-Gamesdir  = $(datadir)/gnome/apps/Games
+Gamesdir  = $(datadir)/applications
 typesdir  = $(datadir)/sol-games
 
 SUBDIRS=docs pixmaps
 
 INCLUDES = \
-	$(GNOME_GAMES_CFLAGS)			\	
+	$(GNOME_GAMES_CFLAGS)			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	-I$(includedir)				 \
 	$(GUILE_INCS)				 
