@@ -17,25 +17,20 @@
  */
 #define CARD_C
 
+#include "../freecell/gdk-card-image/gdk-card-image.h"
 #include "card.h"
-#include "pixmaps/cards.h"
-#include "pixmaps/slot.xpm"
-#include "pixmaps/back.xpm"
-#include "pixmaps/background.xpm"
 
 GdkPixmap *default_background_pixmap; 
 GdkPixmap *slot_pixmap;
 GdkPixmap *card_back_pixmap;
-GdkPixmap *card_pixmaps[52];
 GdkBitmap *mask;
 
 GdkPixmap* get_card_picture(gint suit, gint value ) {
-  if (value == 1) 
-	 return card_pixmaps[suit * 13 + value + 11 ];  
+  GdkPixmap *ret;
+  gdk_card_image(13*((4-suit)%4)+value-1, &ret, NULL); 
 
-  return card_pixmaps[suit * 13 + value - 2 ];  
+  return ret;
 }
-
 
 GdkPixmap* get_background_pixmap() {
   
@@ -78,81 +73,44 @@ int get_horiz_start() {
   return 30;
 }
 
-static GdkPixmap *
-get_pixmap (char **data)
+GdkPixmap* get_pixmap (char* filename)
 {
-	GdkImlibImage *im;
-	GdkPixmap *p;
+  GdkPixmap* ret;
+  GdkImlibImage *im;
+  char* fullname = gnome_pixmap_file (filename);
 
-	im = gdk_imlib_create_image_from_xpm_data (data);
-	gdk_imlib_render (im, im->rgb_width, im->rgb_height);
-	p = gdk_imlib_copy_image (im);
-	gdk_imlib_destroy_image (im);
+  im = gdk_imlib_load_image (fullname);
+  gdk_imlib_render (im, im->rgb_width, im->rgb_height);
+  ret = gdk_imlib_copy_image (im);
+  gdk_imlib_destroy_image (im);
+  g_free (fullname);
 
-	return p;
+  return ret;
 }
 
-void load_pixmaps(GtkWidget* app) {
-  /* cruft */
-  mask = gdk_bitmap_create_from_data(app->window, mask_bits, mask_width, mask_height);
-  slot_pixmap = get_pixmap (slot_xpm);
-  card_back_pixmap = get_pixmap (back_xpm);
-  default_background_pixmap = get_pixmap (background_xpm);
+GdkBitmap* get_mask (char* filename)
+{
+  GdkBitmap* ret;
+  GdkImlibImage *im;
+  char* fullname = gnome_pixmap_file (filename);
 
-  /* cards */
-  /* we should put a load bar here... */
-  card_pixmaps[0] = get_pixmap (_2club_xpm);
-  card_pixmaps[1] = get_pixmap (_3club_xpm);
-  card_pixmaps[2] = get_pixmap (_4club_xpm);
-  card_pixmaps[3] = get_pixmap (_5club_xpm);
-  card_pixmaps[4] = get_pixmap (_6club_xpm);
-  card_pixmaps[5] = get_pixmap (_7club_xpm);
-  card_pixmaps[6] = get_pixmap (_8club_xpm);
-  card_pixmaps[7] = get_pixmap (_9club_xpm);
-  card_pixmaps[8] = get_pixmap (_10club_xpm);
-  card_pixmaps[9] = get_pixmap (jackclub_xpm);
-  card_pixmaps[10] = get_pixmap (queenclub_xpm);
-  card_pixmaps[11] = get_pixmap (kingclub_xpm);
-  card_pixmaps[12] = get_pixmap (aceclub_xpm);
-  card_pixmaps[13] = get_pixmap (_2diamond_xpm);
-  card_pixmaps[14] = get_pixmap (_3diamond_xpm);
-  card_pixmaps[15] = get_pixmap (_4diamond_xpm);
-  card_pixmaps[16] = get_pixmap (_5diamond_xpm);
-  card_pixmaps[17] = get_pixmap (_6diamond_xpm);
-  card_pixmaps[18] = get_pixmap (_7diamond_xpm);
-  card_pixmaps[19] = get_pixmap (_8diamond_xpm);
-  card_pixmaps[20] = get_pixmap (_9diamond_xpm);
-  card_pixmaps[21] = get_pixmap (_10diamond_xpm);
-  card_pixmaps[22] = get_pixmap (jackdiamond_xpm);
-  card_pixmaps[23] = get_pixmap (queendiamond_xpm);
-  card_pixmaps[24] = get_pixmap (kingdiamond_xpm);
-  card_pixmaps[25] = get_pixmap (acediamond_xpm);
-  card_pixmaps[26] = get_pixmap (_2heart_xpm);
-  card_pixmaps[27] = get_pixmap (_3heart_xpm);
-  card_pixmaps[28] = get_pixmap (_4heart_xpm);
-  card_pixmaps[29] = get_pixmap (_5heart_xpm);
-  card_pixmaps[30] = get_pixmap (_6heart_xpm);
-  card_pixmaps[31] = get_pixmap (_7heart_xpm);
-  card_pixmaps[32] = get_pixmap (_8heart_xpm);
-  card_pixmaps[33] = get_pixmap (_9heart_xpm);
-  card_pixmaps[34] = get_pixmap (_10heart_xpm);
-  card_pixmaps[35] = get_pixmap (jackheart_xpm);
-  card_pixmaps[36] = get_pixmap (queenheart_xpm);
-  card_pixmaps[37] = get_pixmap (kingheart_xpm);
-  card_pixmaps[38] = get_pixmap (aceheart_xpm);
-  card_pixmaps[39] = get_pixmap (_2spade_xpm);
-  card_pixmaps[40] = get_pixmap (_3spade_xpm);
-  card_pixmaps[41] = get_pixmap (_4spade_xpm);
-  card_pixmaps[42] = get_pixmap (_5spade_xpm);
-  card_pixmaps[43] = get_pixmap (_6spade_xpm);
-  card_pixmaps[44] = get_pixmap (_7spade_xpm);
-  card_pixmaps[45] = get_pixmap (_8spade_xpm);
-  card_pixmaps[46] = get_pixmap (_9spade_xpm);
-  card_pixmaps[47] = get_pixmap (_10spade_xpm);
-  card_pixmaps[48] = get_pixmap (jackspade_xpm);
-  card_pixmaps[49] = get_pixmap (queenspade_xpm);
-  card_pixmaps[50] = get_pixmap (kingspade_xpm);
-  card_pixmaps[51] = get_pixmap (acespade_xpm);
+  im = gdk_imlib_load_image (fullname);
+  gdk_imlib_render (im, im->rgb_width, im->rgb_height);
+  ret = gdk_imlib_copy_mask (im);
+  gdk_imlib_destroy_image (im);
+  g_free(fullname);
+
+  return ret;
+}
+
+void load_pixmaps(GtkWidget* app) 
+{
+  slot_pixmap = get_pixmap ("cards/Cardback4.xpm");
+  default_background_pixmap = get_pixmap ("cards/Baize.xpm");
+  card_back_pixmap = get_pixmap ("cards/Cardback1.xpm");
+  mask = get_mask ("cards/Background.xpm");
+
+  gdk_card_image_init(app->window);
 }
 
 void add_card(GList** card_list, hcard_type temp_card) {
