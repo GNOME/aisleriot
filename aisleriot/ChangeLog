@@ -1,3 +1,13 @@
+Wed Sep  9 Felix Bellaby <felix@pooh.u-net.com>
+	* draw.c: substantially rewritten to use a single pixmap - surface -
+	for double buffering and rationalise the drawing code.
+	* draw.h: redundant function prototypes removed.
+	* sol.c: removed creation of blank_surface pixmap, added a - draw_gc -
+	so that a tiled fill could be used to paint the background.
+	* sol.h: new gc made available. 
+	* card.c: removed a commented out line.
+	* events.c: removed use of snapshot pixmap.
+	
 Tue Sep  8 Felix Bellaby <felix@pooh.u-net.com>
 	* draw.c: (draw_slot_placements) Whoops! fixed fix to slots!
 	* card.c: (load_pixmaps) Improved mask loading.
