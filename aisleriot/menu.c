@@ -73,13 +73,13 @@ void help_about_callback ()
   const gchar *authors[] = {
 	  N_("Main program:  Jonathan Blandford (jrb@redhat.com)"),
 	  N_("                      Felix Bellaby (felix@pooh.u-net.com)"),
-	  N_("                      Rosanna Yuen (rwsy@mit.edu)"),
+	  N_("                      Rosanna Yuen (zana@webwynk.net)"),
 	  N_("Card Games:    Jonathan Blandford (jrb@redhat.com)"),
 	  N_("                      W. Borgert (debacle@debian.org)"),
 	  N_("                      Robert Brady (rwb197@ecs.soton.ac.uk)"),
 	  N_("                      Nick Lamb (njl195@zepler.org.uk)"),
 	  N_("                      Changwoo Ryu (cwryu@adam.kaist.ac.kr)"),
-	  N_("                      Rosanna Yuen (rwsy@mit.edu)"),
+	  N_("                      Rosanna Yuen (zana@webwynk.net)"),
 	  NULL
   };
 

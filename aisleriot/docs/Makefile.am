@@ -6,7 +6,7 @@
 
 helpdir = $(datadir)/gnome/help/aisleriot/C
 
-help_DATA = index.html intro.html glossary.html gpl.html \
+help_DATA = index.html intro.html glossary.html \
 	camelot.html canfield.html clock.html doublets.html \
 	eagle-wing.html elevator.html fortunes.html \
 	kansas.html klondike.html first-law.html \
@@ -16,22 +16,24 @@ help_DATA = index.html intro.html glossary.html gpl.html \
 	yukon.html westhaven.html royal-east.html \
 	beleaguered-castle.html thirteen.html thieves.html \
 	freecell.html bristol.html union-square.html \
-	camelot-goal.gif clock-rules.gif docbook.css \
-	topic.dat straight-up.html zebra.html lady-jane.html
+	camelot-goal.png clock-rules.png docbook.css \
+	topic.dat straight-up.html zebra.html lady-jane.html \
+	maze.html
 
 # These are the sources:
 
-help_SGML = aisleriot.sgml definitions.sgml gpl.sgml 
+help_SGML = aisleriot.sgml definitions.sgml \
 	camelot.sgml canfield.sgml clock.sgml doublets.sgml \
 	eagle-wing.sgml elevator.sgml fortunes.sgml \
 	kansas.sgml pileon.sgml first_law.sgml \
-	fourteen.sgml klondike.sgml auld-lang-syne.sgml \
+	fourteen.sgml klondike.sgml auld_lang_syne.sgml \
 	bristol.sgml hopscotch.sgml union_square.sgml\
 	neighbor.sgml odessa.sgml osmosis.sgml spider.sgml \
-	yukon.sgml westhaven.sgml royal-east.sgml \
-	beleaguered-castle.sgml thirteen.sgml thieves.sgml \
-	freecell.sgml scorpion.sgml thumb-and-pouch.sgml \
-	straight_up.sgml zebra.sgml lady_jane.sgml
+	yukon.sgml westhaven.sgml royal_east.sgml \
+	beleaguered_castle.sgml thirteen.sgml thieves.sgml \
+	freecell.sgml scorpion.sgml thumb_and_pouch.sgml \
+	straight_up.sgml zebra.sgml lady_jane.sgml \
+	maze.sgml
 
 EXTRA_DIST = $(help_DATA) $(help_SGML)
 
