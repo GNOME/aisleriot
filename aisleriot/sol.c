@@ -167,7 +167,7 @@ void new_game (gchar* file, guint *seedp )
 
     ms = gnome_app_find_menu_pos(GNOME_APP (app)->menubar, buf, &pos);
     gnome_app_fill_menu (GTK_MENU_SHELL(ms), rules_help, 
-			 GNOME_APP (app)->accel_group, TRUE, TRUE, pos);
+			 GNOME_APP (app)->accel_group, TRUE, pos);
     if(option_dialog) {
       gtk_widget_destroy(option_dialog);
       option_dialog = NULL;
