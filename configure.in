@@ -12,9 +12,11 @@ AM_MAINTAINER_MODE
                                                                               
 # Locate various programs
 AC_PROG_CC
+AC_PROG_CPP
 AC_PROG_CXX
 AC_PROG_INTLTOOL([0.27.2])
 AC_PROG_LIBTOOL
+AC_PROG_LN_S
 
 # See if C++ support is actually there and tell automake about it
 # so we can conditionally compile.
@@ -87,6 +89,14 @@ AC_CHECK_FUNCS(ngettext)
 # Check for header files
 AC_HEADER_STDC
 
+
+# Checks for typedefs, structures, and compiler characteristics
+AC_HEADER_STDBOOL
+AC_C_CONST
+AC_C_INLINE
+
+
+# Checks for library functions
 sys_dir_h_found=no
 old_CPPFLAGS="$CPPFLAGS"
 UCB_CFLAGS=
@@ -167,7 +177,7 @@ AC_SUBST(scores_user)
 scoredir='${localstatedir}/games'
 AC_SUBST(scoredir)
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 gnome-games.spec
 Makefile
 po/Makefile.in
@@ -238,6 +248,7 @@ aisleriot/Makefile
 aisleriot/help/Makefile
 aisleriot/help/C/Makefile
 ])
+AC_OUTPUT
 
 echo "
 Configuration:
