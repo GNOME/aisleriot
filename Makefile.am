@@ -19,7 +19,6 @@ always_built_SUBDIRS =		\
 	gnome-stones		\
 	gataxx			\
 	gnotravex		\
-	gnotski			\
 	glines			\
 	iagno			\
 	gdk-card-image		\
