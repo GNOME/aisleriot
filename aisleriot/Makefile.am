@@ -9,6 +9,7 @@ SUBDIRS=docs pixmaps help
 INCLUDES =  \
 	-I$(top_srcdir)/libgames-support           \
 	$(GNOME_GAMES_CFLAGS)			   \
+	@UCB_CFLAGS@				   \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"   \
 	$(GUILE_INCS)
 
@@ -41,6 +42,7 @@ sol_SOURCES = 		\
 sol_LDADD = $(GNOME_GAMES_LIBS) \
 	../freecell/gdk-card-image/libgdkcardimage.la \
 	../libgames-support/libgames-support.la \
+	@UCB_LDFLAGS@ \
 	$(GUILE_LIBS) 
 
 types_DATA  = 		\

@@ -27,7 +27,11 @@
 
 #include <config.h>
 #include <gnome.h>
+#ifdef HAVE_SYS_DIR_H
+#include <sys/dir.h>
+#else
 #include <dirent.h>
+#endif
 #include <gdk-card-image.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
@@ -212,7 +216,11 @@ gdk_card_deck_get_type ()
 }
 
 static int
+#ifdef HAVE_STRUCT_DIRECT
+is_image (const struct direct* dent)
+#else
 is_image (const struct dirent* dent)
+#endif
 {
 	const char *type = gnome_vfs_mime_type_from_name (dent->d_name);
 	if (type == NULL ||
@@ -230,7 +238,11 @@ gdk_card_deck_dir_search (GdkCardDeckDir* dir, gchar* name)
 
   if (!dir->file) {
     gchar* dir_name = gnome_pixmap_file (dir->name);
+#ifdef HAVE_STRUCT_DIRECT
+    struct direct** de;
+#else
     struct dirent** de;
+#endif
     int records;
 
     if (dir_name == NULL)

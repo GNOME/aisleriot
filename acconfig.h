@@ -46,3 +46,9 @@
 #undef WITH_SYMBOL_UNDERSCORE
 
 #undef GNOME_ICONDIR
+
+/* Define if scandir() works with struct direct rather than struct dirent */
+#undef HAVE_STRUCT_DIRECT
+
+/* Define if your system has a sys/dir.h header */
+#undef HAVE_SYS_DIR_H
