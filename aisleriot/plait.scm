@@ -142,11 +142,12 @@
       (begin
 	(if (and (eq? direc 0)
 		 (not (empty-slot? end-slot)))
-	    (if (or (< (get-value (car (get-cards end-slot)))
-		       (get-value (car card-list)))
-		    (= (get-value (car card-list)) ace))
+ 	    (let ((es (get-value (car (get-cards end-slot))))
+ 		  (cl (get-value (car card-list))))
+	      (if (or (and (< es cl) (not (and (= es ace) (= cl king))))
+		      (and (= es king) (= cl ace)))
 		(set! direc up)
-		(set! direc down)))
+		(set! direc down))))
 	(add-cards! end-slot card-list))
       #f))
 
