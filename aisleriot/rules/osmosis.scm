@@ -99,9 +99,60 @@
 	       (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
 	       (flip-cards-back))
 	  (add-card! 9 (flip-card (remove-card 8))))))
-	      
+
+(define (check-to-move orig-slot end-slot above-list top-card)
+  (if (not (null? above-list))
+      (if (eq? (get-value top-card)
+	       (get-value (car above-list)))
+	  (begin
+	    (remove-card orig-slot)
+	    (complete-transaction orig-slot (list top-card) end-slot))
+	  (check-to-move orig-slot end-slot (cdr above-list) top-card))
+      #f))
+  
+
 (define (button-double-clicked slot)
-  #f)
+  (if (and (or (= slot 0)
+	       (= slot 2)
+	       (= slot 4)
+	       (= slot 6)
+	       (= slot 9))
+	   (not (empty-slot? slot)))
+      (begin
+	(let ((top-card (get-top-card slot)))
+	  (if (eq? (get-suit top-card)
+		   (get-suit (car (get-cards 1))))
+	      (begin
+		(remove-card slot)
+		(complete-transaction slot (list top-card) 1))
+	      (if (eq? (get-value top-card)
+		       (get-value (car (reverse (get-cards 1)))))
+		  (cond  ((empty-slot? 3)
+			  (begin
+			    (remove-card slot)
+			    (complete-transaction slot (list top-card) 3)))
+			 ((empty-slot? 5)
+			  (begin
+			    (remove-card slot)
+			    (complete-transaction slot (list top-card) 5)))
+			 (#t
+			  (begin
+			    (remove-card slot)
+			    (complete-transaction slot (list top-card) 7))))
+		  (cond ((and (not (empty-slot? 3))
+			      (eq? (get-suit top-card)
+				   (get-suit (car (get-cards 3)))))
+			 (check-to-move slot 3 (get-cards 1) top-card))
+			((and (not (empty-slot? 5))
+			      (eq? (get-suit top-card)
+				   (get-suit (car (get-cards 5)))))
+			 (check-to-move slot 5 (get-cards 3) top-card))
+			((and (not (empty-slot? 7))
+			      (eq? (get-suit top-card)
+				   (get-suit (car (get-cards 7)))))
+			 (check-to-move slot 7 (get-cards 5) top-card))
+			(#t #f))))))	 
+      #f))
 
 (define (placeable? card slot-id)
   (and (< slot-id 9)
