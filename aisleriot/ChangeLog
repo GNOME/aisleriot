@@ -1,4 +1,20 @@
-Wed Sep 22 Felix Bellaby <felix@pooh.u-net.com>
+Wed Sep 23 Felix Bellaby <felix@pooh.u-net.com>
+	* scheme_messages: new file of gettext msgids for *.scm filenames
+	* sol.c: (main_prog) scans dir for installed games
+	(start_timer) (stop_timer) C level control over timer.
+	(timer_cb) updates time display, executes any scheme callback and 
+	checks for end of game.
+ 	(create_press_data) minor fix for show card
+	* menu.c: (create_menus) lists games found in dir with i18n.
+	(file_new_game_callback) starts timer.
+	* event.c: (end_of_game_test) stops timer.
+	* cscmi.c: (scm_get_timeout) (scm_set_timeout) Scheme level control
+	of when scheme timer callback will be invoked.
+	(scm_set_lambda) used to set scheme timer callback function.
+	(cscm_init) relocates scheme stuff from sol.c
+	* TODO ticked off scan dir, timer.
+	
+Wed Sep 23 Felix Bellaby <felix@pooh.u-net.com>
 	* sol.c: (create_press_data) relocated press_data creation.
 	* press_data.c: removed press_data window creation.
 	* event.c (button_press_event) starts show card with right button
