@@ -16,8 +16,8 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
-(define BASE-VAL 0)
-(define base-set? #f)
+(def-save-var BASE-VAL 0)
+(def-save-var base-set? #f)
 
 (define (new-game)
   (initialize-playing-area)
@@ -268,16 +268,6 @@
   (or (to-foundations? 0 3)
       (to-tableau? 0 1)
       (empties?)))
-
-(define (undo-func data)
-  (set-score! (car data))
-  (set! base-set? (cadr data))
-  (set! BASE-VAL (caddr data)))
-
-(define (record-move slot-id old-cards)
-  (set! MOVE (list undo-func
-		   (list (get-score) base-set? BASE-VAL)
-		   (snapshot-board 0 slot-id old-cards))))
 
 (define (get-options) 
   #f)

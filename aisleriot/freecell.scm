@@ -228,10 +228,10 @@
 ;; Auto move stuffs
 ;;
 
-(define highest-club 0)
-(define highest-diamond 0)
-(define highest-heart 0)
-(define highest-spade 0)
+(def-save-var highest-club 0)
+(def-save-var highest-diamond 0)
+(def-save-var highest-heart 0)
+(def-save-var highest-spade 0)
 
 (define (update-auto suit value)
 	(cond

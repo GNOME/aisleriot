@@ -16,7 +16,7 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
-(define first-row #f)
+(def-save-var first-row #f)
 
 (define (new-game)
   (initialize-playing-area)
@@ -195,10 +195,6 @@
 (define (get-hint)
   (or (check-slot 5)
       (dealable?)))
-
-(define (undo-func data)
-  (set-score! (car data))
-  (set! first-row (cadr data)))
 
 (define (get-options) 
   #f)

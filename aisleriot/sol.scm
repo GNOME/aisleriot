@@ -39,10 +39,18 @@
 
 (define DECK '())
 
+; The list of variables to save when saving the game state
+(define variable-list '())
+
 ;; NEW-GAME PROCEDURES
 ; these may be used in game files during the new-game procedure.
 
 ; This procedure MUST be called at the start of the new-game procedure.
+;
+; Note that variable-list is not cleared, this is because defines are normally
+; done before calling this and we would loose our variable list. At worst
+; case we end up saving and restoring variables that are not currently in use 
+; (but will be defined) so it will work out OK.
 (define (initialize-playing-area)
   (reset-surface)
   (set! FLIP-COUNTER 0)
@@ -53,6 +61,13 @@
   (set! MOVE '())
   (set-statusbar-message " ")
   (set! HISTORY '()))
+
+; Use this instead of define for variables which determine the state of
+; the game. i.e. anything that isn't a constant. This is so undo/redo
+; is transparent. It should behave otherwise identically to define.
+(defmacro def-save-var (nm value)
+  `(begin (define ,nm ,value)
+          (set! variable-list (cons ',nm variable-list))))
 
 ; create a 52 card deck (puts list of cards into DECK)
 (define (make-standard-deck)
@@ -470,7 +485,8 @@
 
 (define (undo-func data)
   (set-score! (car data))
-  (set! FLIP-COUNTER (cadr data)))
+  (set! FLIP-COUNTER (cadr data))
+  (restore-variables variable-list (caddr data)))
 ;(register-undo-function undo-func '(score FLIP-COUNTER))
 	     
 (define (snapshot-board slot-id moving-slot old-cards)
@@ -486,9 +502,31 @@
 ; called from C:
 (define (record-move slot-id old-cards)
   (set! MOVE (list undo-func 
-		   (list (get-score) FLIP-COUNTER)
+		   (list (get-score) FLIP-COUNTER 
+                         (save-variables variable-list))
 		   (snapshot-board 0 slot-id old-cards))))
 
 ; called from C:
 (define (discard-move)
   (set! MOVE '()))
+
+;; Routines for saving/restoring generic variables
+
+; Get a list of values for the variables we wish to save.
+(define save-variables
+  (lambda (names)
+    (if (equal? '() names)
+        '()
+        (cons (eval (car names)) 
+              (save-variables (cdr names))))))
+
+; Restore all the state variables for a game
+(define restore-variables
+  (lambda (names values)
+    (or (equal? '() names)
+        (begin
+          (eval (list 'set! (car names) (car values)))
+          (restore-variables (cdr names) (cdr values))
+          ))))
+
+

@@ -44,8 +44,11 @@
 (define edge-4 20)
 (define home-7 21)
 (define home-8 22)
-(define direc 0)
+(def-save-var direc 0)
 (define start-value 0)
+
+(define up 1)
+(define down 2)
 
 ;; Utilities
 (define (edge? slot)
@@ -106,14 +109,14 @@
 	  #f)))
 
 (define (move-upwards-possible? top-card-value new-card-value)
-  (and (not (eq? direc 'down))
+  (and (not (eq? direc down))
        (or (= top-card-value
 	      (- new-card-value 1))
 	   (and (= top-card-value king)
 		(= new-card-value ace)))))
 
 (define (move-downwards-possible? top-card-value new-card-value)
-  (and (not (eq? direc 'up))
+  (and (not (eq? direc up))
        (or (= top-card-value
 	      (+ new-card-value 1))
 	   (and (= top-card-value ace)
@@ -142,8 +145,8 @@
 	    (if (or (< (get-value (car (get-cards end-slot)))
 		       (get-value (car card-list)))
 		    (= (get-value (car card-list)) ace))
-		(set! direc 'up)
-		(set! direc 'down)))
+		(set! direc up)
+		(set! direc down)))
 	(add-cards! end-slot card-list))
       #f))
 
@@ -228,36 +231,20 @@
 	(add-card! start-slot top-card))
   #t))
 
-;; This unsets the direction, if the user un-does the move,
-;; that set the direction.  (A post-undo-hook would be nice!)
-(define (undo-direc)
-  (if (and (< (length (get-cards home-1)) 2)
-	   (< (length (get-cards home-2)) 2)
-	   (< (length (get-cards home-3)) 2)
-	   (< (length (get-cards home-4)) 2)
-	   (< (length (get-cards home-5)) 2)
-	   (< (length (get-cards home-6)) 2)
-	   (< (length (get-cards home-7)) 2)
-	   (< (length (get-cards home-8)) 2))
-      (set! direc 0))
-  #t)
 
 (define (button-pressed slot card-list)
   (if (or (free? slot)
 	  (edge? slot)
 	  (= stock slot)
 	  (= plait slot))
-      (begin
-	(undo-direc)
-	#t)
+      #t
       #f))
 
 (define (button-released start-slot card-list end-slot)
   (cond ((free? end-slot) (move-to-cell start-slot card-list end-slot))
 	((home? end-slot) (and
 			    (move-to-home card-list end-slot)
-			    (plait-to-edge start-slot)
-			    (undo-direc)))
+			    (plait-to-edge start-slot)))
 	((edge? end-slot) (move-to-cell start-slot card-list end-slot))
 	(else #f)))
   

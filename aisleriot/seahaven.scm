@@ -16,7 +16,7 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
-(define free-reserves 0)
+(def-save-var free-reserves 0)
 
 (define (new-game)
   (initialize-playing-area)
@@ -262,15 +262,6 @@
 
 (define (timeout) 
   #f)
-
-(define (undo-func data)
-  (set-score! (car data))
-  (set! free-reserves (cadr data)))
-
-(define (record-move slot-id old-cards)
-  (set! MOVE (list undo-func
-                   (list (get-score) free-reserves)
-                   (snapshot-board 0 slot-id old-cards))))
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options

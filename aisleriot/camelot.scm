@@ -16,8 +16,8 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
-(define add-stage #t)
-(define fill-count 0)
+(def-save-var add-stage #t)
+(def-save-var fill-count 0)
 
 (define (new-game)
   (initialize-playing-area)
@@ -226,16 +226,6 @@
 		     (placeable? (get-top-card 17))))
 	  (find-match (list-cards 0)))
       (list 0 "Deal a new card from the deck")))
-
-(define (undo-func data)
-  (set-score! (car data))
-  (set! add-stage (cadr data))
-  (set! fill-count (caddr data)))
-
-(define (record-move slot-id old-cards)
-  (set! MOVE (list undo-func
-		   (list (get-score) add-stage fill-count)
-		   (snapshot-board 0 slot-id old-cards))))
 
 (define (get-options) #f)
 

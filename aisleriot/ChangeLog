@@ -1,3 +1,34 @@
+2003-01-15  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* freecell.scm: Updated undo/redo to new scheme. This may fix bug
+	#83517 (it certainly fixes a bug and the symptoms in #83517 fit
+	the profile).
+
+	* plait.scm:  Updated undo/redo to new scheme.
+
+	* labyrinth.scm: Updated undo/redo to new scheme.
+
+	* glenwood.scm: Updated undo/redo to new scheme. Fixes a
+	previously undiscovered bug.
+
+	* eight_off.scm: Updated undo/redo to new scheme. This fixes a
+	previously undetected bug.
+
+	* chessboard.scm: Updated undo/redo to new scheme.
+
+	* camelot.scm: Updated undo/redo to new scheme.
+
+	* bakers_game.scm: Updated undo/redo to new scheme. Refixes
+	#91101/#90905.
+
+	* seahaven.scm: Removed the old undo/redo code in favour of the
+	new transparent scheme. Should be a better fix for the
+	bugs #65242/#89540 (already closed).
+
+	* sol.scm: Added transparent support for undo/redo of variables in
+	individual games. The variables that were already being saved have
+	not been altered to use this method.
+
 2003-03-07  Ross Burton  <ross@burtonini.com>
 
 	* sol.c: Fix up compile warnings.

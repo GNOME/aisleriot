@@ -16,7 +16,7 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
-(define free-reserves 0)
+(def-save-var free-reserves 0)
 
 (define (new-game)
   (initialize-playing-area)
