@@ -16,10 +16,10 @@ AM_PROG_LIBTOOL
 ## this should come after `AC_PROG_CC'
 GNOME_X_CHECKS
 
-GNORBA_LIBS=`gnome-config --libs gnorba gnomeui`
+GNORBA_LIBS="`gnome-config --libs gnorba gnomeui` `orbit-config --libs client server`"
 AC_CHECK_LIB(gnorba, gnome_CORBA_init, [
-	ORBIT_LIBS="-lgnorba `gnome-config --libs gnorba gnomeui`"
-	ORBIT_CFLAGS=`gnome-config --cflags gnorba gnomeui`
+	ORBIT_LIBS="-lgnorba `orbit-config --libs client server`"
+	ORBIT_CFLAGS="`orbit-config --cflags client server`"
 	AC_SUBST(ORBIT_LIBS)
 	AC_SUBST(ORBIT_CFLAGS)
 	AC_DEFINE(HAVE_ORBIT)
