@@ -10,7 +10,6 @@ AC_PROG_INTLTOOL
 
 AM_MAINTAINER_MODE
 
-
 SCROLLKEEPER_REQUIRED=0.3.8
 AC_SUBST(SCROLLKEEPER_REQUIRED)
 
@@ -26,7 +25,6 @@ GAMES_CHECK_GUILE
 LIBGNOMEUI_REQUIRED=1.105.0
 LIBGNOME_REQUIRED=1.105.0
 
-
 PKG_CHECK_MODULES(GNOME_GAMES, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gconf-2.0 >= 1.1.5 gnome-vfs-module-2.0 >= 1.9.11)
 AC_SUBST(GNOME_GAMES_CFLAGS)
 AC_SUBST(GNOME_GAMES_LIBS)
@@ -37,12 +35,6 @@ AC_SUBST(ESD_LIBS)
 if test "x$ESD_CFLAGS" = "x" ; then
 	CFLAGS="$CFLAGS -DNO_ESD"
 fi
-
-## look for some version of curses (keeping AM_'s out of curses.m4)
-AC_CHECK_CURSES
-AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true)
-AC_SUBST(CURSES_INCLUDEDIR)
-AC_SUBST(CURSES_LIBS)
 
 GETTEXT_PACKAGE=gnome-games
 AC_SUBST(GETTEXT_PACKAGE)
@@ -61,10 +53,6 @@ fi
 
 AC_SUBST(WARN_CFLAGS)
 
-AM_CONDITIONAL(HAVE_JADE, false)
-
-gnome_cv_use_gnome=yes
-
 AM_GCONF_SOURCE_2
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 
@@ -74,6 +62,7 @@ if test x$SCROLLKEEPER_CONFIG = xno; then
   AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the scrollkeeper packaga)
 fi
 
+# Used in gtali
 AC_CHECK_FUNCS(rename)
 
 sys_dir_h_found=no
@@ -100,7 +89,7 @@ if test x$sys_dir_h_found = xyes; then
   AC_TRY_COMPILE([#include <sys/dir.h>],
     [struct direct *dummy;],
     [AC_MSG_RESULT(direct)
-     AC_DEFINE(HAVE_STRUCT_DIRECT)
+     AC_DEFINE(HAVE_STRUCT_DIRECT,1,[Define if scandir() works with struct direct rather than struct dirent])
     ],
     [AC_TRY_COMPILE([#include <sys/dir.h>],
      [struct dirent *dummy;],
@@ -194,7 +183,7 @@ Configuration:
 	Source code location:	  	   ${srcdir}
 	Compiler:		  	   ${CC}
 
-	Compile Gnometris and Xbill
+	Compile Gnometris
 	(Have c++ compiler):		   ${ac_cv_prog_cxx_works}
 	Compile AisleRiot (Have guile):	   ${ac_cv_guile_found}
 "

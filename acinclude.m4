@@ -117,7 +117,7 @@ else
 		scm_boot_guile(0,NULL,NULL,NULL);
 	],[
 		ac_cv_guile_found=yes
-		AC_DEFINE(HAVE_GUILE)
+		AC_DEFINE(HAVE_GUILE,1,[Guile is present])
 	],[
 		ac_cv_guile_found=no
 	])
