@@ -98,6 +98,7 @@ void button_up_not_moved(gint x, gint y) {
   if (slotid == press_data->slot_id) {
 	 arglist =  gh_cons(gh_long2scm(slotid), SCM_EOL);
 	 gh_apply(game_data->button_clicked_lambda, arglist);
+
 	 end_of_game_test();
   }
   return;
@@ -130,57 +131,79 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 #ifdef DEBUG
   printf("button_press_event\n");
 #endif
+  if (event->type == GDK_2BUTTON_PRESS) {
+    if (press_data->moving) {
+      press_data->moving = FALSE;
+      drop_moving_cards(event->x, event->y);
+      refresh_screen();
+    }
+    slot_pressed(event->x,event->y, &slotid, &cardid);
+    if (slotid != -1) {
+      templist =  gh_cons(gh_long2scm(slotid), SCM_EOL);
+      gh_apply(game_data->button_double_clicked_lambda, templist);
+    }
+    return TRUE;
+  }
+  
+
   if (event->button == 1) {
-	 if (press_data->button_pressed == 1) {
-		slot_pressed(event->x,event->y, &slotid, &cardid);
-		if (slotid != -1) {
-		  templist =  gh_cons(gh_long2scm(slotid), SCM_EOL);
-		  /* gh_apply(game_data->button_double_clicked_lambda, templist); */
-		}
-		return TRUE;
-	 }
-	 else if (press_data->button_pressed == 3)
-		stop_show_card();
+    
+    if (press_data->button_pressed == 1) {
+      
+      /*
+       ** Triple Click -- not used... 
+       *
+       * slot_pressed(event->x,event->y, &slotid, &cardid);
+       * if (slotid != -1) {
+       * templist =  gh_cons(gh_long2scm(slotid), SCM_EOL);
+       * gh_apply(game_data->button_triple_clicked_lambda, templist); 
+       * }
+       */
+      return TRUE;
+    }
+
+    else if (press_data->button_pressed == 3)
+      stop_show_card();
 	 
-	 press_data->button_pressed = 1;
-	 
-	 /* figure out which (if any) card was pressed... */
-	 slot_pressed(event->x,event->y, &slotid, &cardid);
+    press_data->button_pressed = 1;
+    
+    /* figure out which (if any) card was pressed... */
+    slot_pressed(event->x,event->y, &slotid, &cardid);
 
-	 if (slotid == -1) {
-		press_data->button_pressed = 0;
-		return TRUE;
-	 }
+    if (slotid == -1) {
+      press_data->button_pressed = 0;
+      return TRUE;
+    }
 
-	 /* ask scheme if we want to drag... */
-	 slot = get_slot(slotid);
-	 if (slot->cards)
-		for (temp = g_list_nth(slot->cards, cardid - 1); temp; temp = temp->next) {
-		  cardlist = gh_cons(make_card((hcard_type)temp->data), cardlist);
-		}
-	 else
-		cardlist = SCM_BOOL_F;
-	 arglist =  gh_cons(gh_long2scm(slotid), gh_cons(cardlist, SCM_EOL));
-	 if (!gh_scm2bool(gh_apply(game_data->button_pressed_lambda, arglist))) {
-		press_data->slot_id = slotid;
-		press_data->moving = FALSE;
-		return TRUE;
-	 }
-
-	 
-	 /* we've found the card -- prepare to draw it */
-	 generate_press_data(event->x, event->y, slotid, cardid);
-	 press_data->moving = TRUE;
-
-	 take_snapshot();
-	 gdk_draw_pixmap(surface, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
-	 gdk_draw_pixmap(playing_area->window, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
+    /* ask scheme if we want to drag... */
+    slot = get_slot(slotid);
+    if (slot->cards)
+      for (temp = g_list_nth(slot->cards, cardid - 1); temp; temp = temp->next) {
+	cardlist = gh_cons(make_card((hcard_type)temp->data), cardlist);
+      }
+    else
+      cardlist = SCM_BOOL_F;
+    arglist =  gh_cons(gh_long2scm(slotid), gh_cons(cardlist, SCM_EOL));
+    if (!gh_scm2bool(gh_apply(game_data->button_pressed_lambda, arglist))) {
+      press_data->slot_id = slotid;
+      press_data->moving = FALSE;
+      return TRUE;
+    }
+    
+    
+    /* we've found the card -- prepare to draw it */
+    generate_press_data(event->x, event->y, slotid, cardid);
+    press_data->moving = TRUE;
+    
+    take_snapshot();
+    gdk_draw_pixmap(surface, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
+    gdk_draw_pixmap(playing_area->window, playing_area->style->black_gc,snapshot,0,0,0,0,-1,-1);
   }
   else if (event->button == 3) {
-	 if (press_data->button_pressed == 3)
-		;
-	 else if (press_data->button_pressed == 3)
-		drop_moving_cards(event->x, event->y);
+    if (press_data->button_pressed == 3)
+      ;
+    else if (press_data->button_pressed == 3)
+      drop_moving_cards(event->x, event->y);
   }
   
   return TRUE;

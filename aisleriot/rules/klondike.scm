@@ -52,6 +52,7 @@
   (flip-top-card 10)
   (flip-top-card 11)
   (flip-top-card 12)
+  (set! FLIP-COUNTER 0)
 )
 
 ;Set up the rules
@@ -121,8 +122,35 @@
 
 
 (define (button-double-clicked slot)
-  (display "double click\n")
-  #f)
+  (if (and (or (> slot 5) (eq? slot 1))
+	   (not (empty-slot? slot)))
+      (let ((top-card (get-top-card slot)))
+	(if (and (eq? (- (get-value top-card) 1) (get-value (get-top-card 2)))
+		 (eq? (get-suit top-card) (get-suit (get-top-card 2))))
+	    (begin 
+	      (remove-card slot)
+	      (complete-transaction slot (list top-card) 2))
+	    (if
+	     (and (eq? (- (get-value top-card) 1) (get-value (get-top-card 3)))
+		  (eq? (get-suit top-card) (get-suit (get-top-card 3))))
+	     (begin 
+	       (remove-card slot)
+	       (complete-transaction slot (list top-card) 3))
+	     (if
+	      (and (eq? (- (get-value top-card) 1) (get-value (get-top-card 4)))
+		   (eq? (get-suit top-card) (get-suit (get-top-card 4))))
+	     (begin 
+	       (remove-card slot)
+	       (complete-transaction slot (list top-card) 4))
+	      (if
+	       (and (eq? (- (get-value top-card) 1) (get-value (get-top-card 5)))
+		    (eq? (get-suit top-card) (get-suit (get-top-card 5))))
+	     (begin 
+	       (remove-card slot)
+	       (complete-transaction slot (list top-card) 5))
+	       #f)))))
+      #f))
+
 
 (define (game-over ugh)
   (if (and (= 13 (list-length (get-cards 2)))

@@ -168,15 +168,15 @@ void main_prog(int argc, char *argv[])
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  printf(_("Done.\ninitializing gnome/gdk...\n"));
+  /*  printf(_("Done.\ninitializing gnome/gdk...\n"));*/
   gnome_init ("aisleriot", NULL, argc, argv, 0, NULL);
-  printf(_("Done.\n"));
+  /*  printf(_("Done.\n"));*/
 
   gtk_widget_push_colormap (gdk_imlib_get_colormap ());
   gtk_widget_push_visual (gdk_imlib_get_visual ());
   
   /* generic startup... */
-  printf(_("Creating App...\n"));
+  /*  printf(_("Creating App...\n"));*/
   seed = time(NULL);
   srandom(seed);
   seed = random();
@@ -189,9 +189,9 @@ void main_prog(int argc, char *argv[])
   press_data->moving_cards = NULL;
 
   /* load files as needed */
-  printf(_("loading pixmaps...\n"));
+  /*  printf(_("loading pixmaps...\n"));*/
   load_pixmaps(app);
-  printf(_("Done.\n"));
+  /*  printf(_("Done.\n"));*/
   /* Scheme stuff... */
   /* FIXME: On 1997-11-14, gh_enter stopped loading `icd-9/boot-9.scm'.
      In my copy of guile, the first define in boot-9.scm is for "provide",
@@ -245,7 +245,7 @@ void main_prog(int argc, char *argv[])
   gtk_main ();
 
   /* clean up (needs some work ): */
-  printf("cleaning up...\n");
+  /*  printf("cleaning up...\n");*/
   delete_surface();
   free(press_data);
 }
@@ -253,7 +253,7 @@ void main_prog(int argc, char *argv[])
 
 int main (int argc, char *argv [])
 {
-  printf("starting guile...\n");
+  /*  printf("starting guile...\n");*/
   gh_enter(argc, argv, main_prog);
   return 0;
 }

@@ -102,7 +102,7 @@
             (if (eq? top-card '())
                 #f
                 (add-card! 17 (flip-card top-card)))
-	       (set! add-stage #t)))
+	       (if (not (empty-slot? 16))(set! add-stage #t))))
       #f))
 
 (define (button-double-clicked slot)
