@@ -130,8 +130,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   if (event->type != GDK_BUTTON_PRESS)
     return TRUE;
   
-  if ((event->button == 2) || 
-      (event->button == 3 && (press_data->status == STATUS_IS_DRAG)) ||
+  if ((event->button == 3 && (press_data->status == STATUS_IS_DRAG)) ||
       (event->button == 1 && (press_data->status == STATUS_SHOW || press_data->status == STATUS_IS_DRAG)))
     return TRUE;
 
@@ -194,15 +193,24 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       gdk_window_move(press_data->moving_cards, x, y); 
       gdk_window_show(press_data->moving_cards);
     }
+  } 
+    else if (event->button == 2) {
+      gh_call2 (gh_eval_str ("record-move"), gh_long2scm (-1),
+		SCM_EOL);
+      if (gh_scm2bool (gh_call1 (game_data->button_double_clicked_lambda,
+		       gh_long2scm (hslot->id))))
+	      gh_call0 (gh_eval_str ("end-move"));
+      else
+	      gh_call0 (gh_eval_str ("discard-move"));
+      refresh_screen ();
+      end_of_game_test ();
+      return TRUE;
   }
   return TRUE;
 }
 
 gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
-  if (event->button == 2)
-    return TRUE;
-
   switch (press_data->status) {
   case STATUS_IS_DRAG:
     if (event->button != 1) return TRUE;
