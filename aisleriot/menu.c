@@ -107,7 +107,7 @@ void help_about_callback ()
   }
 
   if (about) {
-    gdk_window_raise (about->window);
+    gtk_window_present (GTK_WINDOW (about));
     return;
   }
   about = gnome_about_new ( _("AisleRiot"), VERSION,

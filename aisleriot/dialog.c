@@ -381,16 +381,16 @@ void show_preferences_dialog ()
     deck_edit = gdk_card_deck_options_edit_new (GTK_NOTEBOOK (notebook));
 
     g_signal_connect (G_OBJECT (property_box), "response",
-			GTK_SIGNAL_FUNC (property_apply), NULL);
+                      GTK_SIGNAL_FUNC (property_apply), NULL);
 
-		g_signal_connect(G_OBJECT (property_box), "delete_event",
-			GTK_SIGNAL_FUNC(gtk_widget_hide), NULL);
+    g_signal_connect(G_OBJECT (property_box), "delete_event",
+                     GTK_SIGNAL_FUNC(gtk_widget_hide), NULL);
+
+    gtk_widget_show_all (property_box);
   }
-  if (property_box && !GTK_WIDGET_VISIBLE (property_box)) {
-    gdk_card_deck_options_edit_set (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit),
-				    deck_options);
-    gtk_widget_show_all(property_box);
-  }
+  gdk_card_deck_options_edit_set (GDK_CARD_DECK_OPTIONS_EDIT (deck_edit),
+                                  deck_options);
+  gtk_window_present (GTK_WINDOW (property_box));
 }
 
 SCM options = SCM_BOOL_F;
@@ -465,10 +465,8 @@ void show_rules_options_dialog ()
 
     g_signal_connect (GTK_OBJECT (option_dialog), "delete_event",
 			GTK_SIGNAL_FUNC (gtk_widget_hide), NULL);
-  }
-  if (option_dialog && !GTK_WIDGET_VISIBLE (option_dialog)) {
-    gtk_widget_show_all(option_dialog);
-  }
+  } 
+  gtk_window_present (GTK_WINDOW (option_dialog));
 }
 
 void show_global_stats_dialog () 
