@@ -53,11 +53,17 @@
   (list 7 3))
 
 (define (give-status-message)
-  (set-statusbar-message (get-stock-no-string)))
+  (set-statusbar-message (string-append (get-stock-no-string)
+					"   "
+					(get-redeals-string))))
 
 (define (get-stock-no-string)
   (string-append "Stock left:  " 
 		 (number->string (length (get-cards 0)))))
+
+(define (get-redeals-string)
+  (string-append "Redeals left:  "
+		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)
   (and (or (> slot-id 1)
@@ -97,7 +103,7 @@
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)
-       (flip-stock 0 1 2 1)
+       (flip-stock 0 1 2)
        (give-status-message)))
 
 (define (button-double-clicked slot-id)
@@ -128,7 +134,7 @@
 		(complete-transaction slot-id (list card) end-slot))))))
 
 (define (game-continuable)
-  (not (game-won)))
+  (get-hint))
 
 (define (game-won)
   (and (= 13 (length (get-cards 2)))
@@ -137,8 +143,11 @@
        (= 13 (length (get-cards 5)))))
 
 (define (dealable?)
-  (and (not (empty-slot? 0))
-       (list 0 "Deal another round")))
+  (or (and (not (empty-slot? 0))
+	   (list 0 "Deal another round"))
+      (and (not (empty-slot? 1))
+	   (< FLIP-COUNTER 2)
+	   (list 0 "Move waste back to stock"))))
 
 (define (empty-exist? slot-id)
   (cond ((= slot-id 13)

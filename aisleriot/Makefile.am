@@ -70,7 +70,8 @@ types_DATA  = 		\
 	thumb_and_pouch.scm \
 	union_square.scm \
 	westhaven.scm	\
-	yukon.scm
+	yukon.scm	\
+	zebra.scm
 
 cardimage_DATA = baize.png splash.png
 
