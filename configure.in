@@ -17,8 +17,10 @@ AM_PROG_LIBTOOL
 
 ## this should come after `AC_PROG_CC'
 GNOME_X_CHECKS
+
+## look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
-AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true) # don't want AM_'s in curses.m4
+AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true)
 
 ALL_LINGUAS="de fr it ko cs da no ga"
 AM_GNU_GETTEXT

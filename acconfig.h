@@ -14,18 +14,14 @@
 #undef HAVE_DEVGTK
 
 
-/*=== Curses variables swiped from Midnight commander's config ===*/
-   
+/*=== Curses version detection defines ===*/
 /* Found some version of curses that we're going to use */
 #undef HAS_CURSES
-
-/* Are you using other type of curses? */
-#undef OTHER_CURSES
-
+   
 /* Use SunOS SysV curses? */
-#undef SUNOS_CURSES
+#undef USE_SUNOS_CURSES
 
-/* Use old BSD curses? */
+/* Use old BSD curses - not used right now */
 #undef USE_BSD_CURSES
 
 /* Use SystemV curses? */
@@ -40,5 +36,8 @@
 /* Define if you want to turn on SCO-specific code */
 #undef SCO_FLAVOR
 
-/* Version of ncurses */
+/* Set to reflect version of ncurses *
+ *   0 = version 1.*
+ *   1 = version 1.9.9g
+ *   2 = version 4.0/4.1 */
 #undef NCURSES_970530
