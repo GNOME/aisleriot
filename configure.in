@@ -53,6 +53,44 @@ dnl
 ZVT_LIBS=`$GNOME_CONFIG --libs zvt`
 AC_SUBST(ZVT_LIBS)
 
+## gnibbles needs gdk_pixbuf
+AC_MSG_CHECKING([for gdk-pixbuf >= 0.6.0])
+
+if gnome-config --libs gdk_pixbuf > /dev/null 2>&1; then
+        vers=`gnome-config --modversion gdk_pixbuf | sed 's/^gdk-pixbuf-//'`
+        major=`echo "$vers" | sed 's/\([[0-9]]*\)\.[[0-9]]*\.[[0-9]]*/\1/'`
+        minor=`echo "$vers" | sed 's/[[0-9]]*\.\([[0-9]]*\)\.[[0-9]]*/\1/'`
+
+        if [[ "x$major" = "x" ]] ; then
+                gdkpixbuf_ok=false
+        elif [[ "x$major" = "x0" ]] ; then
+                case "$minor" in
+                        [[012345]])
+                                gdkpixbuf_ok=false ;;
+                        *)
+                                gdkpixbuf_ok=true ;;
+                esac
+        else
+                gdkpixbuf_ok=true
+        fi
+        AC_MSG_RESULT([found ("$vers")])
+else
+        gdkpixbuf_ok=false
+        AC_MSG_RESULT([not found])
+fi
+
+if ! $gdkpixbuf_ok ; then
+        AC_MSG_WARN([gdk-pixbuf 0.6.0 or later is required to build Gnibbles.])
+fi
+
+GDK_PIXBUF_LIBS=`$GNOME_CONFIG --libs gdk_pixbuf`
+GDK_PIXBUF_INCS=`$GNOME_CONFIG --cflags gdk_pixbuf`
+
+AC_SUBST(GDK_PIXBUF_LIBS)
+AC_SUBST(GDK_PIXBUF_INCS)
+
+AM_CONDITIONAL(GDK_PIXBUF, test $gdkpixbuf_ok)
+
 AC_OUTPUT([
 gnome-games.spec
 Makefile
@@ -60,6 +98,12 @@ po/Makefile.in
 macros/Makefile
 intl/Makefile
 idl/Makefile
+iagno2/Makefile
+iagno2/reversi-iagno2/Makefile
+iagno2/plugins/Makefile
+iagno2/plugins/random/Makefile
+iagno2/src/Makefile
+iagno2/tiles/Makefile
 gnomine/Makefile
 scottfree/Makefile
 same-gnome/Makefile
