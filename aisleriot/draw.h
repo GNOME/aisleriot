@@ -23,6 +23,5 @@
 void draw_cards();
 void take_snapshot();
 void refresh_screen();
-void stop_show_card();
 
 #endif

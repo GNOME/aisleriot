@@ -34,7 +34,6 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
   gint length, height, width, dx, dy, x2, y2;
   GdkGC *gc1, *gc2;
   GdkColor masked = {0, 0, 0, 0}, unmasked = {1, 65535, 65535, 65535};
-  GdkWindowAttr attributes;
   
   press_data->slot_id = slotid;
   press_data->slot_location = cardid;
@@ -98,22 +97,7 @@ void generate_press_data(gint x, gint y, gint slotid, gint cardid) {
     dx = EXPANDED_HORIZ_OFFSET; dy = 0;
   }
   
-  if (!press_data->moving_cards) {
-    attributes.wclass = GDK_INPUT_OUTPUT;
-    attributes.window_type = GDK_WINDOW_CHILD;
-    attributes.event_mask = 0;
-    attributes.width = width;
-    attributes.height = height;
-    attributes.colormap = gdk_window_get_colormap (playing_area->window);
-    attributes.visual = gdk_window_get_visual (playing_area->window);
-    
-    press_data->moving_cards = 
-      gdk_window_new(playing_area->window, &attributes,
-		     (GDK_WA_VISUAL | GDK_WA_COLORMAP));
-  }
-  else {
-    gdk_window_resize(press_data->moving_cards, width, height);
-  }
+  gdk_window_resize(press_data->moving_cards, width, height);
 
   /* 
    * IMHO gdk could give us better access to the XShape extension

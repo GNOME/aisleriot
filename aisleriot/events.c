@@ -35,7 +35,6 @@ void end_of_game_test() {
   }  
 }
 
-
 void drop_moving_cards(gint x, gint y) {
   GList* temp;
   SCM arglist;
@@ -50,7 +49,7 @@ void drop_moving_cards(gint x, gint y) {
   slot_pressed(x+get_card_width()/2-press_data->xoffset, 
 	       y+get_card_height()/2-press_data->yoffset, 
 	       &slotid, &cardid);
- 
+
   if (slotid != -1) {
 
     for (temp = press_data->cards; temp; temp = temp->next)
@@ -134,36 +133,21 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   if (event->button == 1) {
     
     if (press_data->button_pressed == 1) {
-      
-      /*
-       ** Triple Click -- not used... 
-       *
-       * slot_pressed(event->x,event->y, &slotid, &cardid);
-       * if (slotid != -1) {
-       * templist =  gh_cons(gh_long2scm(slotid), SCM_EOL);
-       * gh_apply(game_data->button_triple_clicked_lambda, templist); 
-       * }
-       */
       return TRUE;
     }
-
-    else if (press_data->button_pressed == 3)
-      stop_show_card();
 	 
-    press_data->button_pressed = 1;
-    
-    /* figure out which (if any) card was pressed... */
     slot_pressed(event->x,event->y, &slotid, &cardid);
 
-    if (slotid == -1) {
-      press_data->button_pressed = 0;
+    if (slotid == -1)
       return TRUE;
-    }
+
+    press_data->button_pressed = 1;    
 
     /* ask scheme if we want to drag... */
     slot = get_slot(slotid);
     if (slot->cards)
-      for (temp = g_list_nth(slot->cards, cardid - 1); temp; temp = temp->next) {
+      for (temp = g_list_nth(slot->cards, cardid - 1); 
+	   temp; temp = temp->next) {
 	cardlist = gh_cons(make_card((hcard_type)temp->data), cardlist);
       }
     else
@@ -182,10 +166,34 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
     take_snapshot();
   }
   else if (event->button == 3) {
-    if (press_data->button_pressed == 3)
-      ;
-    else if (press_data->button_pressed == 3)
-      drop_moving_cards(event->x, event->y);
+
+    if (press_data->button_pressed == 0) {
+      hslot_type slot;
+      hcard_type card;
+
+      slot_pressed (event->x,event->y, &slotid, &cardid);
+
+      if (slotid == -1)
+	return TRUE;
+
+      slot = get_slot(slotid);
+      card = g_list_nth(slot->cards, cardid - 1)->data;
+
+      if (card->direction == DOWN)
+	return TRUE;
+
+      press_data->button_pressed = 3;
+      press_data->moving_pixmap = get_card_picture (card->suit, card->value);
+      press_data->moving_mask = mask;
+
+      gdk_window_set_back_pixmap (press_data->moving_cards, 
+				  press_data->moving_pixmap, 0);
+      gdk_window_shape_combine_mask (press_data->moving_cards, 
+				     press_data->moving_mask, 0, 0);
+      gdk_window_move(press_data->moving_cards, slot->x, 
+		      slot->y + (cardid - 1)*EXPANDED_VERT_OFFSET);
+      gdk_window_show(press_data->moving_cards);
+    }
   }
   
   return TRUE;
@@ -207,9 +215,13 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
     }
   }
   else if (event->button == 3) {
-    if (press_data->button_pressed == 3)
+    if (press_data->button_pressed == 3) {
+
       press_data->button_pressed = 0;
-    stop_show_card();
+      gdk_window_hide(press_data->moving_cards);
+      press_data->moving_pixmap = NULL;
+      press_data->moving_mask = NULL;
+    }
   }
   return TRUE;
 }

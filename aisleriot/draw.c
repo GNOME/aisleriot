@@ -116,8 +116,3 @@ void refresh_screen() {
   take_snapshot();
   gdk_window_clear(playing_area->window);
 }
-
-/* show_card stuff */
-void stop_show_card() {
-  refresh_screen();
-}

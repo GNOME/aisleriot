@@ -94,7 +94,6 @@ void make_title ()
 
 void create_sol_board ()
 {
-  /* Here we create the actual playing surface */
   gtk_widget_push_colormap (gdk_imlib_get_colormap ());
   gtk_widget_push_visual (gdk_imlib_get_visual ());
   
@@ -114,15 +113,12 @@ void create_sol_board ()
   gdk_gc_set_tile (draw_gc, get_background_pixmap());
   gdk_gc_set_fill (draw_gc, GDK_TILED);
   
-  /* Set signals for X events... */
   gtk_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
 		      (GtkSignalFunc) button_release_event, NULL);
   gtk_signal_connect (GTK_OBJECT (playing_area), "motion_notify_event",
 		      (GtkSignalFunc) motion_notify_event, NULL);
   gtk_signal_connect (GTK_OBJECT (playing_area), "button_press_event",
 		      (GtkSignalFunc) button_press_event, NULL);
-  gtk_signal_connect (GTK_OBJECT (app), "configure_event",
-		      (GtkSignalFunc) configure_event, NULL);
 }
 
 void create_main_window ()
@@ -132,10 +128,29 @@ void create_main_window ()
 
   gtk_signal_connect (GTK_OBJECT(app), "delete_event", 
 		      GTK_SIGNAL_FUNC(file_quit_callback), NULL);
+  gtk_signal_connect (GTK_OBJECT (app), "configure_event",
+		      (GtkSignalFunc) configure_event, NULL);
 
   gtk_window_set_policy (GTK_WINDOW(app), TRUE, TRUE, FALSE);
 }
 
+void create_press_data ()
+{
+  GdkWindowAttr attributes;
+
+  attributes.wclass = GDK_INPUT_OUTPUT;
+  attributes.window_type = GDK_WINDOW_CHILD;
+  attributes.event_mask = 0;
+  attributes.width = 1;
+  attributes.height = 1;
+  attributes.colormap = gdk_window_get_colormap (playing_area->window);
+  attributes.visual = gdk_window_get_visual (playing_area->window);
+  
+  press_data = malloc(sizeof(press_data_type));
+  press_data->button_pressed = 0;
+  press_data->moving_cards = gdk_window_new(playing_area->window, &attributes,
+					    (GDK_WA_VISUAL | GDK_WA_COLORMAP));
+}
 /*
  * main()
  */
@@ -213,12 +228,10 @@ void main_prog(int argc, char *argv[])
   gtk_box_pack_end (GTK_BOX(status_bar), score_box, FALSE, FALSE, 0);
   gnome_app_set_statusbar (GNOME_APP (app), status_bar);
 
-  press_data = malloc(sizeof(press_data_type));
-  press_data->moving_cards = NULL;
-
   game_load_game_callback (app, "klondike.scm" );
 
   gtk_widget_show (app);
+  create_press_data ();
 
   gtk_main ();
 
