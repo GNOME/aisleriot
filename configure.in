@@ -34,9 +34,17 @@ if test "$GUILE_PRESENT" = "yes" ; then
   GUILE_LDFLAGS=`guile-config link`
   AC_SUBST(GUILE_CFLAGS)
   AC_SUBST(GUILE_LDFLAGS)
-  if test `guile -c '(if (string<? (version) "1.6") (display "no") (display "yes")) (newline)'` != yes ; then 
+  dnl On 64-bit machines guile < 1.6.5 causes a crash in aisleriot.
+  dnl But since 1.6.5 is only a few months old as I write this we 
+  dnl will be more lenient with 32-bit machines.
+  if uname -m | grep -q 64 ; then
+     GUILE_TARGET="1.6.5"
+  else 
+     GUILE_TARGET="1.6.0"
+  fi
+  if test `guile -c '(if (string<? (version) (cadr (command-line))) (display "no") (display "yes")) (newline)' $GUILE_TARGET` != yes ; then 
     GUILE_PRESENT="no"
-    AC_MSG_WARN([Your version of guile is too old, please install a recent guile package (>= 1.6)])
+    AC_MSG_WARN([Your version of guile is too old, please install a recent guile package (>= $GUILE_TARGET)])
   fi
 fi
 AM_CONDITIONAL([HAVE_GUILE], [test "x$GUILE_PRESENT" = xyes])
