@@ -70,13 +70,15 @@
 ;additional functions.
 
 (define (complete-transaction start-slot card-list end-slot)
-  (if (and (is-visible? (get-top-card start-slot))
+  (if (and (not (empty-slot? start-slot))
+	   (is-visible? (get-top-card start-slot))
 	   (eq? (get-suit (get-top-card start-slot))
 		(get-suit (car (reverse card-list))))
 	   (= (get-value (get-top-card start-slot))
 	      (+ 1 (get-value (car (reverse card-list))))))
       (add-to-score! -1))
-  (if (and (is-visible? (get-top-card end-slot))
+  (if (and (not (empty-slot? end-slot))
+	   (is-visible? (get-top-card end-slot))
 	   (eq? (get-suit (get-top-card end-slot))
 		(get-suit (car (reverse card-list))))
 	   (= (get-value (get-top-card end-slot))
@@ -105,6 +107,7 @@
   (check-for-points 9))
 
 (define (button-pressed slot card-list)
+  (set-statusbar-message "")
   (if (empty-slot? slot)
       #f
       (if (< slot 9)
@@ -140,11 +143,24 @@
 
 (define (button-clicked slot)
   (if (= 0 slot)
-      (begin
-	(set! DEAL_COUNTER (+ 1 DEAL_COUNTER))
-	(cond ((> DEAL_COUNTER 6 )
-	       #f)
-	      (#t (deal-new-cards))))
+      (if (not (or (empty-slot? 9)
+		   (empty-slot? 10)
+		   (empty-slot? 11)
+		   (empty-slot? 12)
+		   (empty-slot? 13)
+		   (empty-slot? 14)
+		   (empty-slot? 15)
+		   (empty-slot? 16)
+		   (empty-slot? 17)
+		   (empty-slot? 18)))
+	  (begin
+	    (set! DEAL_COUNTER (+ 1 DEAL_COUNTER))
+	    (cond ((> DEAL_COUNTER 6 )
+		   #f)
+		  (#t (deal-new-cards))))
+	  (begin
+	    (set-statusbar-message "Please fill in empty pile first.")
+	    #f))
       #f))
 
 	      
