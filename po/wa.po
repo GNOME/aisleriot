@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 1.0.51\n"
-"POT-Creation-Date: 2000-04-08 04:26+0200\n"
+"POT-Creation-Date: 2000-04-13 00:18+0200\n"
 "PO-Revision-Date: 1999-03-18 23:11+0100\n"
 "Last-Translator: Nobody yet\n"
 "Language-Team: walon <linux-wa@chanae.alphanet.ch>\n"
@@ -492,20 +492,20 @@ msgid "Start a new game of a different variation"
 msgstr "Enonder on novea variante do djeu"
 
 #: aisleriot/menu.c:159
-msgid "Select a new game variation"
-msgstr "Tchwezi on novea variante do djeu"
-
-#: aisleriot/menu.c:159
 msgid "_Select..."
 msgstr "_Tchwezi..."
 
-#: aisleriot/menu.c:199 freecell/src/menu.c:90
-msgid "Deal a new game"
-msgstr ""
+#: aisleriot/menu.c:159
+msgid "Select a new game variation"
+msgstr "Tchwezi on novea variante do djeu"
 
 #: aisleriot/menu.c:199 freecell/src/menu.c:90 mahjongg/mahjongg.c:400
 msgid "New"
 msgstr "Novea"
+
+#: aisleriot/menu.c:199 freecell/src/menu.c:90
+msgid "Deal a new game"
+msgstr ""
 
 #. {GNOME_APP_UI_ITEM, N_("Seed"), NULL, exit_game_callback, (gpointer)SELECT_GAME, NULL,
 #. GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_NEW, 0, 0, NULL},
@@ -688,12 +688,12 @@ msgid "View the scores"
 msgstr "Veure les meyeus rezultats"
 
 #: freecell/src/menu.c:110
-msgid "Configure Freecell"
-msgstr "Apontyî Freecell"
-
-#: freecell/src/menu.c:110
 msgid "Props"
 msgstr "Prop."
+
+#: freecell/src/menu.c:110
+msgid "Configure Freecell"
+msgstr "Apontyî Freecell"
 
 #: freecell/src/menu.c:115
 msgid "Quit Freecell"
@@ -751,9 +751,12 @@ msgstr ""
 msgid "current: %d losses"
 msgstr ""
 
-#: gataxx/ataxx.c:133 gataxx/gataxx.c:320 gataxx/gataxx.c:662
-#: iagno/gnothello.c:319 iagno/gnothello.c:620 iagno/othello.c:212
-msgid "Dark's move"
+#: gataxx/gataxx.c:247 iagno/gnothello.c:245 same-gnome/same-gnome.c:643
+msgid "Do you really want to quit?"
+msgstr "Voloz-ve moussî foû po do bon?"
+
+#: gataxx/gataxx.c:270 gnibbles/main.c:126 iagno/gnothello.c:269
+msgid "Do you really want to end this game?"
 msgstr ""
 
 #: gataxx/ataxx.c:139 gataxx/gataxx.c:318 iagno/gnothello.c:317
@@ -761,32 +764,9 @@ msgstr ""
 msgid "Light's move"
 msgstr ""
 
-#: gataxx/ataxx.c:582 iagno/othello.c:610
-msgid "Light player wins!"
-msgstr ""
-
-#: gataxx/ataxx.c:584 iagno/othello.c:612
-msgid "Dark player wins!"
-msgstr ""
-
-#: gataxx/ataxx.c:586 iagno/othello.c:614
-msgid "The game was a draw."
-msgstr ""
-
-#: gataxx/ataxx.c:595 iagno/othello.c:624
-msgid "Light must pass, Dark's move"
-msgstr ""
-
-#: gataxx/ataxx.c:607 iagno/othello.c:636
-msgid "Dark must pass, Light's move"
-msgstr ""
-
-#: gataxx/gataxx.c:247 iagno/gnothello.c:245 same-gnome/same-gnome.c:643
-msgid "Do you really want to quit?"
-msgstr "Voloz-ve moussî foû po do bon?"
-
-#: gataxx/gataxx.c:270 gnibbles/main.c:126 iagno/gnothello.c:269
-msgid "Do you really want to end this game?"
+#: gataxx/ataxx.c:133 gataxx/gataxx.c:320 gataxx/gataxx.c:662
+#: iagno/gnothello.c:319 iagno/gnothello.c:620 iagno/othello.c:212
+msgid "Dark's move"
 msgstr ""
 
 #: gataxx/gataxx.c:400 gataxx/gataxx.c:685
@@ -824,7 +804,27 @@ msgstr "Wilicome dins gataxx!"
 msgid "%.2d"
 msgstr "%.2d"
 
-#: gataxx/properties.c:320 iagno/properties.c:339
+#: gataxx/ataxx.c:582 iagno/othello.c:610
+msgid "Light player wins!"
+msgstr ""
+
+#: gataxx/ataxx.c:584 iagno/othello.c:612
+msgid "Dark player wins!"
+msgstr ""
+
+#: gataxx/ataxx.c:586 iagno/othello.c:614
+msgid "The game was a draw."
+msgstr ""
+
+#: gataxx/ataxx.c:595 iagno/othello.c:624
+msgid "Light must pass, Dark's move"
+msgstr ""
+
+#: gataxx/ataxx.c:607 iagno/othello.c:636
+msgid "Dark must pass, Light's move"
+msgstr ""
+
+#: gataxx/properties.c:320 iagno/properties.c:339 iagno2/src/preferences.c:394
 msgid "Players"
 msgstr "Djouweus"
 
@@ -832,12 +832,12 @@ msgstr "Djouweus"
 msgid "Quick Moves (cut computer delay in half)"
 msgstr ""
 
-#: gataxx/properties.c:338 iagno/properties.c:358
+#: gataxx/properties.c:338 iagno/properties.c:358 iagno2/src/iagno2.c:557
 msgid "Dark"
 msgstr "Noeres"
 
 #: gataxx/properties.c:345 gataxx/properties.c:398 gtali/yahtzee.c:63
-#: iagno/properties.c:365 iagno/properties.c:417
+#: iagno/properties.c:365 iagno/properties.c:417 iagno2/src/preferences.c:300
 msgid "Human"
 msgstr "On sakî"
 
@@ -856,7 +856,7 @@ msgstr "Deuzinme livea"
 msgid "Level three"
 msgstr "Troezinme livea"
 
-#: gataxx/properties.c:391 iagno/properties.c:410
+#: gataxx/properties.c:391 iagno/properties.c:410 iagno2/src/iagno2.c:558
 msgid "Light"
 msgstr "Blankes"
 
@@ -883,134 +883,6 @@ msgstr ""
 #: gataxx/properties.c:510 iagno/properties.c:546
 msgid "Tile set:"
 msgstr ""
-
-#: gnibbles/gnibbles.c:97 gnibbles/gnibbles.c:113
-msgid "Couldn't find pixmap file!\n"
-msgstr "Dji n' a nén trové di fitchî pixmap!\n"
-
-#: gnibbles/gnibbles.c:139
-#, c-format
-msgid "Ack!  Couldn't load level file %s\n"
-msgstr ""
-
-#: gnibbles/main.c:162
-msgid "Gnibbles"
-msgstr "Gnibbles"
-
-#: gnibbles/main.c:165
-msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
-msgstr ""
-
-#: gnibbles/preferences.c:286
-msgid "Gnibbles Preferences"
-msgstr "Preferinces di Gnibbles"
-
-#: gnibbles/preferences.c:292 gnome-stones/preferences.c:558
-#: gnomine/gnomine.c:297
-msgid "Game"
-msgstr "Djeu"
-
-#: gnibbles/preferences.c:299
-msgid "Speed"
-msgstr "Roedeu"
-
-#: gnibbles/preferences.c:309
-msgid "Nibbles newbie"
-msgstr "Apurdisse"
-
-#: gnibbles/preferences.c:319
-msgid "My second day"
-msgstr "Min second djoû"
-
-#: gnibbles/preferences.c:329
-msgid "Not too shabby"
-msgstr ""
-
-#: gnibbles/preferences.c:340
-msgid "Finger-twitching good"
-msgstr ""
-
-#: gnibbles/preferences.c:357
-msgid "Starting level: "
-msgstr ""
-
-#: gnibbles/preferences.c:382
-msgid "Levels in random order"
-msgstr ""
-
-#: gnibbles/preferences.c:394
-msgid "Fake bonuses"
-msgstr ""
-
-#: gnibbles/preferences.c:406
-msgid "Sounds"
-msgstr "Sons"
-
-#: gnibbles/preferences.c:416
-msgid "Number of players: "
-msgstr ""
-
-#: gnibbles/preferences.c:443
-#, c-format
-msgid "Worm %d"
-msgstr "Halene %d"
-
-#: gnibbles/preferences.c:456
-msgid "Up:"
-msgstr "Copete:"
-
-#: gnibbles/preferences.c:474
-msgid "Down:"
-msgstr "Bas:"
-
-#: gnibbles/preferences.c:492
-msgid "Left:"
-msgstr "Hintche:"
-
-#: gnibbles/preferences.c:510
-msgid "Right:"
-msgstr "Droete:"
-
-#: gnibbles/preferences.c:528
-msgid "Color:"
-msgstr "Coleur:"
-
-#: gnibbles/preferences.c:537
-msgid "Red"
-msgstr "Rodje"
-
-#: gnibbles/preferences.c:543
-msgid "Green"
-msgstr "Vert"
-
-#: gnibbles/preferences.c:549
-msgid "Blue"
-msgstr "Bleu"
-
-#: gnibbles/preferences.c:555
-msgid "Yellow"
-msgstr "Djaene"
-
-#: gnibbles/preferences.c:561
-msgid "Cyan"
-msgstr ""
-
-#: gnibbles/preferences.c:567
-msgid "Purple"
-msgstr "Pourpe"
-
-#: gnibbles/preferences.c:573
-msgid "Gray"
-msgstr "Gris"
-
-#: gnibbles/preferences.c:590
-msgid "Relative movement"
-msgstr ""
-
-#: gnibbles/scoreboard.c:49
-#, c-format
-msgid "Worm %d:"
-msgstr "Halene %d:"
 
 #: gnobots2/game.c:120
 #, c-format
@@ -1274,7 +1146,7 @@ msgstr "Apontiaedje"
 msgid "Graphics:"
 msgstr "Grafikes:"
 
-#: gnobots2/properties.c:859
+#: gnobots2/properties.c:859 iagno2/src/preferences.c:476
 msgid "Graphics"
 msgstr "Grafikes"
 
@@ -1383,12 +1255,12 @@ msgid "Gnome-Stones (c) 1998 Carsten Schaar"
 msgstr "Gnome-Stones © 1998 Carsten Schaar"
 
 #: gnome-stones/main.c:97
-msgid "FILENAME"
-msgstr "NOFITCHÎ"
-
-#: gnome-stones/main.c:97
 msgid "Game to play"
 msgstr ""
+
+#: gnome-stones/main.c:97
+msgid "FILENAME"
+msgstr "NOFITCHÎ"
 
 #: gnome-stones/main.c:140
 #, c-format
@@ -1477,6 +1349,11 @@ msgstr ""
 msgid "Filename"
 msgstr "No do fitchî"
 
+#: gnibbles/preferences.c:292 gnome-stones/preferences.c:558
+#: gnomine/gnomine.c:297
+msgid "Game"
+msgstr "Djeu"
+
 #: gnome-stones/preferences.c:583
 msgid "Device"
 msgstr "Éndjin"
@@ -1517,79 +1394,6 @@ msgstr ""
 #: gnome-stones/status.c:100
 msgid "Lives:"
 msgstr ""
-
-#: gnometris/main.cpp:36
-msgid "LEVEL"
-msgstr "LIVEA"
-
-#: gnometris/main.cpp:36
-msgid "Set starting level (1-10)"
-msgstr ""
-
-#: gnometris/scoreframe.cpp:31
-msgid "Game Status"
-msgstr ""
-
-#: gnometris/scoreframe.cpp:37
-msgid "Lines: "
-msgstr "Royes: "
-
-#: gnometris/scoreframe.cpp:41
-msgid "Level: "
-msgstr "Livea: "
-
-#: gnometris/tetris.cpp:80
-msgid "Gnometris"
-msgstr ""
-
-#: gnometris/tetris.cpp:211
-#, c-format
-msgid "Could not find the '%s' theme for gnometris\n"
-msgstr ""
-
-#: gnometris/tetris.cpp:422
-msgid "Gnometris setup"
-msgstr "Apontiaedje di Gnometris"
-
-#: gnometris/tetris.cpp:447
-msgid "Number of pre-filled rows:"
-msgstr "Nombe di royes pre-rinpleyes:"
-
-#: gnometris/tetris.cpp:468
-msgid "Density of blocks in a pre-filled row:"
-msgstr ""
-
-#: gnometris/tetris.cpp:489
-msgid "Starting Level:"
-msgstr "Livea a l' enondaedje:"
-
-#: gnometris/tetris.cpp:513
-msgid "Preview next block"
-msgstr ""
-
-#: gnometris/tetris.cpp:519
-msgid "Random block colors"
-msgstr "Blocs di coleur a l' astcheyance"
-
-#: gnometris/tetris.cpp:525
-msgid "Rotate counterclockwise"
-msgstr ""
-
-#: gnometris/tetris.cpp:535
-msgid "Block Pixmap: "
-msgstr ""
-
-#: gnometris/tetris.cpp:551
-msgid "Background Pixmap: "
-msgstr "Pixmap do Fond:"
-
-#: gnometris/tetris.cpp:839
-msgid ""
-"Written for my wife, Matylda\n"
-"Send comments and bug reports to: marcin.gorycki@intel.com"
-msgstr ""
-"Sicrit po m' feume, Matylda\n"
-"Evoyoz vos ideyes èt rapoirts di bugs a: marcin.gorycki@intel.com"
 
 #: gnomine/gnomine.c:41 gnomine/gnomine.c:314
 msgid "Tiny"
@@ -1667,21 +1471,21 @@ msgstr ""
 msgid "Height of grid"
 msgstr ""
 
-#: gnomine/gnomine.c:551 gnotravex/gnotravex.c:193
-msgid "SIZE"
-msgstr "GRANDEU"
-
 #: gnomine/gnomine.c:551
 msgid "Size of mines"
 msgstr "Grandeu des mines"
 
-#: gnomine/gnomine.c:552 gtali/setup.c:74 gtali/setup.c:75
-msgid "NUMBER"
-msgstr "NOMBE"
+#: gnomine/gnomine.c:551 gnotravex/gnotravex.c:193
+msgid "SIZE"
+msgstr "GRANDEU"
 
 #: gnomine/gnomine.c:552
 msgid "Number of mines"
 msgstr "Nombe di mines"
+
+#: gnomine/gnomine.c:552 gtali/setup.c:74 gtali/setup.c:75
+msgid "NUMBER"
+msgstr "NOMBE"
 
 #: gnomine/gnomine.c:693
 msgid "Flags:"
@@ -1690,122 +1494,6 @@ msgstr "Drapeas:"
 #: gnomine/gnomine.c:704 gnotravex/gnotravex.c:604 mahjongg/mahjongg.c:2000
 msgid "Time:"
 msgstr "Tins:"
-
-#: gnotravex/gnotravex.c:121
-msgid "Sol_ve"
-msgstr ""
-
-#: gnotravex/gnotravex.c:121
-msgid "Solve the game"
-msgstr ""
-
-#: gnotravex/gnotravex.c:137
-msgid "Play on a 2x2 board"
-msgstr ""
-
-#: gnotravex/gnotravex.c:137
-msgid "_2x2"
-msgstr "_2x2"
-
-#: gnotravex/gnotravex.c:140
-msgid "Play on a 3x3 board"
-msgstr ""
-
-#: gnotravex/gnotravex.c:140
-msgid "_3x3"
-msgstr "_3x3"
-
-#: gnotravex/gnotravex.c:143
-msgid "Play on a 4x4 board"
-msgstr ""
-
-#: gnotravex/gnotravex.c:143
-msgid "_4x4"
-msgstr "_4x4"
-
-#: gnotravex/gnotravex.c:146
-msgid "Play on a 5x5 board"
-msgstr ""
-
-#: gnotravex/gnotravex.c:146
-msgid "_5x5"
-msgstr "_5x5"
-
-#: gnotravex/gnotravex.c:149
-msgid "Play on a 6x6 board"
-msgstr ""
-
-#: gnotravex/gnotravex.c:149
-msgid "_6x6"
-msgstr "_6x6"
-
-#: gnotravex/gnotravex.c:156
-msgid "Move the selected piece up"
-msgstr "Bodjî al copete li pîce tchwezeye"
-
-#: gnotravex/gnotravex.c:156
-msgid "_Up"
-msgstr "Al _Copete"
-
-#: gnotravex/gnotravex.c:159
-msgid "Move the selected piece left"
-msgstr "Bodjî a hintche li pîce tchwezeye"
-
-#: gnotravex/gnotravex.c:159
-msgid "_Left"
-msgstr "_Hintche"
-
-#: gnotravex/gnotravex.c:162
-msgid "Move the selected piece right"
-msgstr "Bodjî a droete li pîce tchwezeye"
-
-#: gnotravex/gnotravex.c:162
-msgid "_Right"
-msgstr "_Droete"
-
-#: gnotravex/gnotravex.c:165
-msgid "Move the selected piece down"
-msgstr "Bodjî èn bas li pîce tchwezeye"
-
-#: gnotravex/gnotravex.c:165
-msgid "_Down"
-msgstr "_Bas"
-
-#: gnotravex/gnotravex.c:184
-msgid "_Move"
-msgstr "_Bodjî"
-
-#: gnotravex/gnotravex.c:193
-msgid "Size of board (2-6)"
-msgstr ""
-
-#: gnotravex/gnotravex.c:447
-msgid "Puzzle solved! Well done!"
-msgstr ""
-
-#: gnotravex/gnotravex.c:450
-msgid "Puzzle solved!"
-msgstr ""
-
-#: gnotravex/gnotravex.c:654 gnotski/gnotski.c:694
-#, c-format
-msgid "Could not find '%s' pixmap file\n"
-msgstr "Dji n' pout nén trover li fitchî pixmap «%s»\n"
-
-#: gnotravex/gnotravex.c:744 mahjongg/mahjongg.c:1420
-msgid "... Game paused ..."
-msgstr "... Djeu djoké ..."
-
-#: gnotravex/gnotravex.c:782
-#, c-format
-msgid "Playing %dx%d board"
-msgstr ""
-
-#: gnotravex/gnotravex.c:966
-msgid ""
-"Tetravex clone\n"
-"(Comments to: Lars.Rydlinge@HIG.SE)"
-msgstr ""
 
 #: gnotski/gnotski.c:92 gnotski/gnotski.c:213 gnotski/gnotski.c:325
 msgid "1"
@@ -1863,6 +1551,11 @@ msgstr "Livea fén complet. Bea djeu."
 msgid "Moves:"
 msgstr ""
 
+#: gnotravex/gnotravex.c:654 gnotski/gnotski.c:694
+#, c-format
+msgid "Could not find '%s' pixmap file\n"
+msgstr "Dji n' pout nén trover li fitchî pixmap «%s»\n"
+
 #: gnotski/gnotski.c:876
 msgid "Welcome to Gnome Klotski"
 msgstr "Wilicome so Gnome Klotski!"
@@ -1870,13 +1563,386 @@ msgstr "Wilicome so Gnome Klotski!"
 #: gnotski/gnotski.c:893
 #, c-format
 msgid "Playing level %s"
-msgstr "Djowant è livea %d"
+msgstr "Djowant è livea %s"
 
 #: gnotski/gnotski.c:979
 msgid ""
 "Klotski clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
 msgstr ""
+
+#: iagno/gnothello.c:106
+msgid "IOR of remote Iagno server"
+msgstr ""
+
+#: iagno/gnothello.c:107
+msgid "IOR"
+msgstr ""
+
+#: iagno/gnothello.c:400 iagno/gnothello.c:643
+msgid "Iagno"
+msgstr ""
+
+#: iagno/gnothello.c:400
+msgid "(C) 1998 Ian Peters"
+msgstr "© 1998 Ian Peters"
+
+#: iagno/gnothello.c:401
+msgid ""
+"Send comments and bug reports to: itp@acm.org\n"
+"Tiles under the General Public License."
+msgstr ""
+
+#: iagno/gnothello.c:497
+#, c-format
+msgid "Could not find '%s' pixmap file for Iagno\n"
+msgstr ""
+
+#: iagno/gnothello.c:715
+msgid "Welcome to Iagno!"
+msgstr "Wilicome dins Iagno!"
+
+#: iagno/properties.c:348
+msgid "Quick Moves"
+msgstr ""
+
+#: iagno/properties.c:516
+msgid "Stagger flips"
+msgstr ""
+
+#: iagno/properties.c:525
+msgid "Show grid"
+msgstr ""
+
+#: iagno2/plugins/random/random.c:95
+msgid "Random Player for Iagno II"
+msgstr ""
+
+#: iagno2/plugins/random/random.c:98
+msgid ""
+"This is a reference plugin for Iagno II and has the most basic playing "
+"strategy I could think of.  This plugin is intended to demonstrate how to "
+"write an Iagno II plugin."
+msgstr ""
+
+#: iagno2/plugins/random/random.c:134
+msgid "Random Player Configuration"
+msgstr "Apontiaedje do djoweu a l' astcheyance"
+
+#: iagno2/src/iagno2.c:92
+#, c-format
+msgid "Could not find '%s' tileset for Iagno II\n"
+msgstr "Dji n' pout nén trover li djeu d' pîces «%s» po Iagno II\n"
+
+#: iagno2/src/iagno2.c:220 iagno2/src/main.c:105
+msgid "Iagno II"
+msgstr "Iagno II"
+
+#: iagno2/src/iagno2.c:243
+msgid " Welcome to Iagno II!"
+msgstr "Wilicome dvins Iagno II!"
+
+#: iagno2/src/iagno2.c:562
+msgid " was forced to pass] "
+msgstr ""
+
+#: iagno2/src/iagno2.c:571
+msgid "Waiting for input from user... ["
+msgstr ""
+
+#: iagno2/src/iagno2.c:713
+#, c-format
+msgid " Dark player wins by a score of %d to %d"
+msgstr ""
+
+#: iagno2/src/iagno2.c:716
+#, c-format
+msgid " Light player wins by a score of %d to %d"
+msgstr ""
+
+#: iagno2/src/iagno2.c:719
+#, c-format
+msgid " The game was a tie at %d"
+msgstr ""
+
+#: iagno2/src/main.c:107
+msgid "(C) 1999-2000 Ian Peters"
+msgstr "© 1998-2000 Ian Peters"
+
+#: iagno2/src/main.c:109
+msgid "A reversi game for GNOME."
+msgstr ""
+
+#: iagno2/src/main.c:210
+msgid ""
+"Game already in progress!\n"
+"Start a new game?"
+msgstr ""
+"Li djeu a ddja comincé!\n"
+"Voloz-ve enonder on novea djeu?"
+
+#: iagno2/src/preferences.c:159 iagno2/src/preferences.c:166
+msgid "What does configuring yourself mean?"
+msgstr ""
+
+#: iagno2/src/preferences.c:183
+msgid "This plugin has no configuration options."
+msgstr ""
+
+#: iagno2/src/preferences.c:202 iagno2/src/preferences.c:209
+msgid "Why don't you tell me about yourself?"
+msgstr ""
+
+#: iagno2/src/preferences.c:226
+msgid "This plugin has no about information."
+msgstr ""
+
+#: iagno2/src/preferences.c:387
+msgid "Iagno II Preferences"
+msgstr "Preferinces Iagno II"
+
+#: iagno2/src/preferences.c:399
+msgid "Dark Player"
+msgstr ""
+
+#: iagno2/src/preferences.c:418 iagno2/src/preferences.c:455
+msgid "Configure..."
+msgstr "Apontiaedje..."
+
+#: iagno2/src/preferences.c:425 iagno2/src/preferences.c:462
+msgid "About..."
+msgstr "Å dfait..."
+
+#: iagno2/src/preferences.c:436
+msgid "Light Player"
+msgstr ""
+
+#.
+#. gtk_container_border_width (GTK_CONTAINER (hbox), GNOME_PAD_SMALL);
+#.
+#: iagno2/src/preferences.c:486
+msgid "Tileset:"
+msgstr "Djeu d' pîces:"
+
+#: iagno2/src/preferences.c:498
+msgid "Draw grid lines"
+msgstr ""
+
+#: gnotravex/gnotravex.c:121
+msgid "Sol_ve"
+msgstr ""
+
+#: gnotravex/gnotravex.c:121
+msgid "Solve the game"
+msgstr ""
+
+#: gnotravex/gnotravex.c:137
+msgid "_2x2"
+msgstr "_2x2"
+
+#: gnotravex/gnotravex.c:137
+msgid "Play on a 2x2 board"
+msgstr ""
+
+#: gnotravex/gnotravex.c:140
+msgid "_3x3"
+msgstr "_3x3"
+
+#: gnotravex/gnotravex.c:140
+msgid "Play on a 3x3 board"
+msgstr ""
+
+#: gnotravex/gnotravex.c:143
+msgid "_4x4"
+msgstr "_4x4"
+
+#: gnotravex/gnotravex.c:143
+msgid "Play on a 4x4 board"
+msgstr ""
+
+#: gnotravex/gnotravex.c:146
+msgid "_5x5"
+msgstr "_5x5"
+
+#: gnotravex/gnotravex.c:146
+msgid "Play on a 5x5 board"
+msgstr ""
+
+#: gnotravex/gnotravex.c:149
+msgid "_6x6"
+msgstr "_6x6"
+
+#: gnotravex/gnotravex.c:149
+msgid "Play on a 6x6 board"
+msgstr ""
+
+#: gnotravex/gnotravex.c:156
+msgid "_Up"
+msgstr "Al _Copete"
+
+#: gnotravex/gnotravex.c:156
+msgid "Move the selected piece up"
+msgstr "Bodjî al copete li pîce tchwezeye"
+
+#: gnotravex/gnotravex.c:159
+msgid "_Left"
+msgstr "_Hintche"
+
+#: gnotravex/gnotravex.c:159
+msgid "Move the selected piece left"
+msgstr "Bodjî a hintche li pîce tchwezeye"
+
+#: gnotravex/gnotravex.c:162
+msgid "_Right"
+msgstr "_Droete"
+
+#: gnotravex/gnotravex.c:162
+msgid "Move the selected piece right"
+msgstr "Bodjî a droete li pîce tchwezeye"
+
+#: gnotravex/gnotravex.c:165
+msgid "_Down"
+msgstr "_Bas"
+
+#: gnotravex/gnotravex.c:165
+msgid "Move the selected piece down"
+msgstr "Bodjî èn bas li pîce tchwezeye"
+
+#: gnotravex/gnotravex.c:184
+msgid "_Move"
+msgstr "_Bodjî"
+
+#: gnotravex/gnotravex.c:193
+msgid "Size of board (2-6)"
+msgstr ""
+
+#: gnotravex/gnotravex.c:447
+msgid "Puzzle solved! Well done!"
+msgstr ""
+
+#: gnotravex/gnotravex.c:450
+msgid "Puzzle solved!"
+msgstr ""
+
+#: gnotravex/gnotravex.c:744 mahjongg/mahjongg.c:1420
+msgid "... Game paused ..."
+msgstr "... Djeu djoké ..."
+
+#: gnotravex/gnotravex.c:782
+#, c-format
+msgid "Playing %dx%d board"
+msgstr ""
+
+#: gnotravex/gnotravex.c:966
+msgid ""
+"Tetravex clone\n"
+"(Comments to: Lars.Rydlinge@HIG.SE)"
+msgstr ""
+
+#: gturing/gturing.c:189
+#, c-format
+msgid "State: %d"
+msgstr ""
+
+#: gturing/gturing.c:192 gturing/gturing.c:272
+msgid "Stopped"
+msgstr "Aresté"
+
+#: gturing/gturing.c:317
+msgid "Open gTuring Program File"
+msgstr ""
+
+#: gturing/gturing.c:330
+msgid "Tape Setting"
+msgstr ""
+
+#: gturing/gturing.c:330
+msgid "Please enter the tape:"
+msgstr ""
+
+#: gturing/gturing.c:371
+msgid "State"
+msgstr ""
+
+#: gturing/gturing.c:371
+msgid "Read"
+msgstr "Lere"
+
+#: gturing/gturing.c:371
+msgid "Write"
+msgstr "Sicrîre"
+
+#: gturing/gturing.c:371
+msgid "Move"
+msgstr "Bodjî"
+
+#: gturing/gturing.c:372
+msgid "New State"
+msgstr ""
+
+#: gturing/gturing.c:380
+msgid "Machine's states"
+msgstr ""
+
+#: gturing/gturing.c:426
+msgid "Animation Speed"
+msgstr ""
+
+#: gturing/gturing.c:426
+msgid "Miliseconds between steps:"
+msgstr ""
+
+#: gturing/gturing.c:443
+msgid "gturing"
+msgstr "gturing"
+
+#: gturing/gturing.c:446
+msgid "A Turing Machine for GNOME"
+msgstr ""
+
+#: gturing/gturing.c:464
+msgid "_Play Speed..."
+msgstr ""
+
+#: gturing/gturing.c:464
+msgid "Set playing speed."
+msgstr ""
+
+#: gturing/gturing.c:466
+msgid "_Tape..."
+msgstr ""
+
+#: gturing/gturing.c:466
+msgid "Set the machine's tape."
+msgstr ""
+
+#: gturing/gturing.c:468
+msgid "_View States"
+msgstr ""
+
+#: gturing/gturing.c:469
+msgid "Open a table with the machine's states."
+msgstr ""
+
+#: gturing/gturing.c:488
+msgid "Reset"
+msgstr ""
+
+#: gturing/gturing.c:490
+msgid "Stop"
+msgstr "Åwe"
+
+#: gturing/gturing.c:492
+msgid "Run"
+msgstr ""
+
+#: gturing/gturing.c:494
+msgid "Step"
+msgstr ""
+
+#: gturing/gturing.c:504
+msgid "Welcome to gTuring."
+msgstr "Wilicome dins gTuring."
 
 #: gtali/clist.c:121
 msgid "Already used! Where do you want to put that?"
@@ -1940,7 +2006,7 @@ msgstr "Cobén di djouweu volet djouwer (å pus %d) ? "
 #: gtali/cyahtzee.c:683
 #, c-format
 msgid "What is the name of player #%d ? "
-msgstr "Kék est li no do djouweu l° %d ? "
+msgstr "Kél est li no do djouweu l° %d ? "
 
 #: gtali/cyahtzee.c:698
 msgid "Boo hoo... I can't play...\n"
@@ -2135,169 +2201,20 @@ msgid "Generating"
 msgstr ""
 
 #: gtali/yahtzee.c:554
-msgid "Num Rolls"
-msgstr ""
-
-#: gtali/yahtzee.c:554
 msgid "Results"
 msgstr "Rezultats"
+
+#: gtali/yahtzee.c:554
+msgid "Num Rolls"
+msgstr ""
 
 #: gtali/yahtzee.c:554
 msgid "Total"
 msgstr "Totå"
 
-#: gturing/gturing.c:189
-#, c-format
-msgid "State: %d"
-msgstr ""
-
-#: gturing/gturing.c:192 gturing/gturing.c:272
-msgid "Stopped"
-msgstr "Aresté"
-
-#: gturing/gturing.c:317
-msgid "Open gTuring Program File"
-msgstr ""
-
-#: gturing/gturing.c:330
-msgid "Please enter the tape:"
-msgstr ""
-
-#: gturing/gturing.c:330
-msgid "Tape Setting"
-msgstr ""
-
-#: gturing/gturing.c:371
-msgid "Move"
-msgstr "Bodjî"
-
-#: gturing/gturing.c:371
-msgid "Read"
-msgstr "Lere"
-
-#: gturing/gturing.c:371
-msgid "State"
-msgstr ""
-
-#: gturing/gturing.c:371
-msgid "Write"
-msgstr "Sicrîre"
-
-#: gturing/gturing.c:372
-msgid "New State"
-msgstr ""
-
-#: gturing/gturing.c:380
-msgid "Machine's states"
-msgstr ""
-
-#: gturing/gturing.c:426
-msgid "Animation Speed"
-msgstr ""
-
-#: gturing/gturing.c:426
-msgid "Miliseconds between steps:"
-msgstr ""
-
-#: gturing/gturing.c:443
-msgid "gturing"
-msgstr "gturing"
-
-#: gturing/gturing.c:446
-msgid "A Turing Machine for GNOME"
-msgstr ""
-
-#: gturing/gturing.c:464
-msgid "Set playing speed."
-msgstr ""
-
-#: gturing/gturing.c:464
-msgid "_Play Speed..."
-msgstr ""
-
-#: gturing/gturing.c:466
-msgid "Set the machine's tape."
-msgstr ""
-
-#: gturing/gturing.c:466
-msgid "_Tape..."
-msgstr ""
-
-#: gturing/gturing.c:468
-msgid "_View States"
-msgstr ""
-
-#: gturing/gturing.c:469
-msgid "Open a table with the machine's states."
-msgstr ""
-
-#: gturing/gturing.c:488
-msgid "Reset"
-msgstr ""
-
-#: gturing/gturing.c:490
-msgid "Stop"
-msgstr "Åwe"
-
-#: gturing/gturing.c:492
-msgid "Run"
-msgstr ""
-
-#: gturing/gturing.c:494
-msgid "Step"
-msgstr ""
-
-#: gturing/gturing.c:504
-msgid "Welcome to gTuring."
-msgstr "Wilicome dins gTuring."
-
-#: iagno/gnothello.c:106
-msgid "IOR of remote Iagno server"
-msgstr ""
-
-#: iagno/gnothello.c:107
-msgid "IOR"
-msgstr ""
-
-#: iagno/gnothello.c:400
-msgid "(C) 1998 Ian Peters"
-msgstr "© 1998 Ian Peters"
-
-#: iagno/gnothello.c:400 iagno/gnothello.c:643
-msgid "Iagno"
-msgstr ""
-
-#: iagno/gnothello.c:401
-msgid ""
-"Send comments and bug reports to: itp@acm.org\n"
-"Tiles under the General Public License."
-msgstr ""
-
-#: iagno/gnothello.c:497
-#, c-format
-msgid "Could not find '%s' pixmap file for Iagno\n"
-msgstr ""
-
-#: iagno/gnothello.c:715
-msgid "Welcome to Iagno!"
-msgstr "Wilicome dins Iagno!"
-
-#: iagno/properties.c:348
-msgid "Quick Moves"
-msgstr ""
-
-#: iagno/properties.c:516
-msgid "Stagger flips"
-msgstr ""
-
-#: iagno/properties.c:525
-msgid "Show grid"
-msgstr ""
-
 #: mahjongg/mahjongg.c:342
-#, fuzzy
 msgid "New game with _seed..."
-msgstr "Novea _djeu di..."
+msgstr ""
 
 #: mahjongg/mahjongg.c:342
 msgid "Start a new game giving a seed number..."
@@ -2440,9 +2357,8 @@ msgid "Tiles Left: "
 msgstr "Pîces ki restèt: "
 
 #: mahjongg/mahjongg.c:2030
-#, fuzzy
 msgid "Moves Left: "
-msgstr "Bodjî li "
+msgstr "Movmints ki restèt: "
 
 #: same-gnome/same-gnome.c:262 same-gnome/same-gnome.c:294
 #: same-gnome/same-gnome.c:297 same-gnome/same-gnome.c:617
@@ -2573,6 +2489,202 @@ msgstr ""
 #: scottfree/GnomeScott.c:1511
 msgid "_New"
 msgstr "_Novea"
+
+#: gnometris/tetris.cpp:80
+msgid "Gnometris"
+msgstr ""
+
+#: gnometris/tetris.cpp:211
+#, c-format
+msgid "Could not find the '%s' theme for gnometris\n"
+msgstr ""
+
+#: gnometris/tetris.cpp:422
+msgid "Gnometris setup"
+msgstr "Apontiaedje di Gnometris"
+
+#: gnometris/tetris.cpp:447
+msgid "Number of pre-filled rows:"
+msgstr "Nombe di royes pre-rinpleyes:"
+
+#: gnometris/tetris.cpp:468
+msgid "Density of blocks in a pre-filled row:"
+msgstr ""
+
+#: gnometris/tetris.cpp:489
+msgid "Starting Level:"
+msgstr "Livea a l' enondaedje:"
+
+#: gnometris/tetris.cpp:513
+msgid "Preview next block"
+msgstr ""
+
+#: gnometris/tetris.cpp:519
+msgid "Random block colors"
+msgstr "Blocs di coleur a l' astcheyance"
+
+#: gnometris/tetris.cpp:525
+msgid "Rotate counterclockwise"
+msgstr ""
+
+#: gnometris/tetris.cpp:535
+msgid "Block Pixmap: "
+msgstr ""
+
+#: gnometris/tetris.cpp:551
+msgid "Background Pixmap: "
+msgstr "Pixmap do Fond:"
+
+#: gnometris/tetris.cpp:839
+msgid ""
+"Written for my wife, Matylda\n"
+"Send comments and bug reports to: marcin.gorycki@intel.com"
+msgstr ""
+"Sicrit po m' feume, Matylda\n"
+"Evoyoz vos ideyes èt rapoirts di bugs a: marcin.gorycki@intel.com"
+
+#: gnometris/main.cpp:36
+msgid "Set starting level (1-10)"
+msgstr ""
+
+#: gnometris/main.cpp:36
+msgid "LEVEL"
+msgstr "LIVEA"
+
+#: gnometris/scoreframe.cpp:31
+msgid "Game Status"
+msgstr ""
+
+#: gnometris/scoreframe.cpp:37
+msgid "Lines: "
+msgstr "Royes: "
+
+#: gnometris/scoreframe.cpp:41
+msgid "Level: "
+msgstr "Livea: "
+
+#: gnibbles/gnibbles.c:97 gnibbles/gnibbles.c:113
+msgid "Couldn't find pixmap file!\n"
+msgstr "Dji n' a nén trové di fitchî pixmap!\n"
+
+#: gnibbles/gnibbles.c:139
+#, c-format
+msgid "Ack!  Couldn't load level file %s\n"
+msgstr ""
+
+#: gnibbles/main.c:162
+msgid "Gnibbles"
+msgstr "Gnibbles"
+
+#: gnibbles/main.c:165
+msgid "Send comments and bug reports to: sjm@acm.org, itp@gnu.org"
+msgstr ""
+
+#: gnibbles/preferences.c:286
+msgid "Gnibbles Preferences"
+msgstr "Preferinces di Gnibbles"
+
+#: gnibbles/preferences.c:299
+msgid "Speed"
+msgstr "Roedeu"
+
+#: gnibbles/preferences.c:309
+msgid "Nibbles newbie"
+msgstr "Apurdisse"
+
+#: gnibbles/preferences.c:319
+msgid "My second day"
+msgstr "Min second djoû"
+
+#: gnibbles/preferences.c:329
+msgid "Not too shabby"
+msgstr ""
+
+#: gnibbles/preferences.c:340
+msgid "Finger-twitching good"
+msgstr ""
+
+#: gnibbles/preferences.c:357
+msgid "Starting level: "
+msgstr ""
+
+#: gnibbles/preferences.c:382
+msgid "Levels in random order"
+msgstr ""
+
+#: gnibbles/preferences.c:394
+msgid "Fake bonuses"
+msgstr ""
+
+#: gnibbles/preferences.c:406
+msgid "Sounds"
+msgstr "Sons"
+
+#: gnibbles/preferences.c:416
+msgid "Number of players: "
+msgstr ""
+
+#: gnibbles/preferences.c:443
+#, c-format
+msgid "Worm %d"
+msgstr "Halene %d"
+
+#: gnibbles/preferences.c:456
+msgid "Up:"
+msgstr "Copete:"
+
+#: gnibbles/preferences.c:474
+msgid "Down:"
+msgstr "Bas:"
+
+#: gnibbles/preferences.c:492
+msgid "Left:"
+msgstr "Hintche:"
+
+#: gnibbles/preferences.c:510
+msgid "Right:"
+msgstr "Droete:"
+
+#: gnibbles/preferences.c:528
+msgid "Color:"
+msgstr "Coleur:"
+
+#: gnibbles/preferences.c:537
+msgid "Red"
+msgstr "Rodje"
+
+#: gnibbles/preferences.c:543
+msgid "Green"
+msgstr "Vert"
+
+#: gnibbles/preferences.c:549
+msgid "Blue"
+msgstr "Bleu"
+
+#: gnibbles/preferences.c:555
+msgid "Yellow"
+msgstr "Djaene"
+
+#: gnibbles/preferences.c:561
+msgid "Cyan"
+msgstr ""
+
+#: gnibbles/preferences.c:567
+msgid "Purple"
+msgstr "Pourpe"
+
+#: gnibbles/preferences.c:573
+msgid "Gray"
+msgstr "Gris"
+
+#: gnibbles/preferences.c:590
+msgid "Relative movement"
+msgstr ""
+
+#: gnibbles/scoreboard.c:49
+#, c-format
+msgid "Worm %d:"
+msgstr "Halene %d:"
 
 #~ msgid "You won!"
 #~ msgstr "Vos avoz wangni!"
