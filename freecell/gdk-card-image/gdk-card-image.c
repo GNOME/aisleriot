@@ -17,29 +17,24 @@
 
 /* Written by Ryu Changwoo <cwryu@eve.kaist.ac.kr>. */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif /* ! HAVE_CONFIG_H */
-
 #include <gdk/gdk.h>
-#include <gdk/gdkprivate.h>	/* FIXME: not use GdkPrivate* */
-#include <glib.h>
-
-#include <X11/xpm.h>
+#include <gdk_imlib.h>
 
 #include <string.h>
 #include <stdio.h>
-#include <string.h>
 
-static GdkPixmap *card_pixmaps[52];
-static GdkBitmap *card_clips[52];
+static GdkPixmap **faces[4];
+static GdkPixmap *back;
 
 typedef struct CARD_BASE
 {
-  int w, h;
-
   GdkPixmap *background;
   GdkBitmap *card_clip;
+  int w, h;
+
+  GdkPixmap *back;
+  GdkBitmap *back_clip;
+  int bw, bh;
 
   GdkPixmap *ranks;
   GdkBitmap *ranks_clip;
@@ -50,10 +45,10 @@ typedef struct CARD_BASE
   GdkPixmap *suits;
   GdkBitmap *suits_clip;
   int sw, sh;
-  int s1size, s1off;
-  int s2size, s2off;
-  int s3size, s3off;
-  int s4size, s4off;
+  int s1w, s1h, s1off;
+  int s2w, s2h, s2off;
+  int s3w, s3h, s3off;
+  int s4w, s4h, s4off;
   int s4x, s4y;
   
   GdkPixmap *pictures;
@@ -61,6 +56,7 @@ typedef struct CARD_BASE
   int pw, ph;
   int p1w, p1h;
 
+  int xdelta;
   int ydelta;
   int x0, x1, x2;	/* x-positions of the large suit symbols */
   int y0, y1, y2, y3, y4, y5, y6, y7, y8;	/* y-positions */
@@ -68,104 +64,21 @@ typedef struct CARD_BASE
 CARD_BASE;
 static CARD_BASE card_base;
 
-
-static void read_base_image (GdkWindow *w);
+static void read_base_image ();
 static void mirror_image (GdkGC *gc, GdkPixmap *p, int x, int y, int w, int h);
 static void draw_background (GdkGC *gc, GdkPixmap *p);
 static void draw_rank (GdkGC *gc, GdkPixmap *p, int suit, int rank);
 static void draw_small_suit (GdkGC *gc, GdkPixmap *p, int suit);
 static void draw_suit (GdkGC *gc, GdkPixmap *p, int suit, int rank);
 static void draw_picture (GdkGC *gc, GdkPixmap *p, int suit, int rank);
-static char *xpm_filename (char *basename);
-static GdkPixmap *load_xpm (GdkWindow *w, GdkBitmap **mask, char *filename);
+static char *image_filename (char *basename);
+static GdkPixmap *load_image (GdkBitmap **mask, char *filename);
 
-static GdkPixmap *
-load_xpm (GdkWindow *w, GdkBitmap **mask, char *filename)
-{
-  return gdk_pixmap_create_from_xpm (w, mask, 0, filename);
-}
-
-static void
-read_base_image (GdkWindow *w)
-{
-  char *filename;
-
-  filename = xpm_filename ("Ranks.xpm");
-  card_base.ranks
-    = load_xpm (w, &card_base.ranks_clip, filename);
-  g_free(filename);
-  card_base.rw = ((GdkWindowPrivate *)card_base.ranks)->width;
-  card_base.rh = ((GdkWindowPrivate *)card_base.ranks)->height;
-  card_base.r1w = card_base.rw/12;
-  card_base.r1h = card_base.rh/5;
-  card_base.rx = 4;
-  card_base.ry = 6;
-  
-  filename = xpm_filename ("Background.xpm");
-  card_base.background
-    = load_xpm (w, &card_base.card_clip, filename);
-  g_free(filename);
-  card_base.w = ((GdkWindowPrivate *)card_base.background)->width;
-  card_base.h = ((GdkWindowPrivate *)card_base.background)->height;
-  
-  filename = xpm_filename ("Suits.xpm");
-  card_base.suits
-    = load_xpm (w, &card_base.suits_clip, filename);
-  g_free(filename);
-  card_base.sw = ((GdkWindowPrivate *)card_base.suits)->width;
-  card_base.sh = ((GdkWindowPrivate *)card_base.suits)->height;
-
-  /* FIXME: Xpat's X-gfx2.c assumes width equals with height.  */
-  card_base.s1size = 41;
-  card_base.s1off = 0;
-  card_base.s2size = 21;
-  card_base.s2off = card_base.s1off + card_base.s1size;
-  card_base.s3size = 15;
-  card_base.s3off = card_base.s2off + card_base.s2size;
-  card_base.s4size = 11;
-  card_base.s4off = card_base.s3off + card_base.s3size;
-
-  filename = xpm_filename ("Pictures.xpm");
-  card_base.pictures
-    = load_xpm (w, &card_base.pictures_clip, filename);
-  g_free(filename);
-  card_base.pw = ((GdkWindowPrivate *)card_base.pictures)->width;
-  card_base.ph = ((GdkWindowPrivate *)card_base.pictures)->height;
-  card_base.p1w = card_base.pw/4;
-  card_base.p1h = card_base.ph/3;
-
-  card_base.x0 = (card_base.w - 1 * card_base.s2size) / 2
-    - 2 * card_base.w / 9 + 1;
-  card_base.x1 = (card_base.w - 1 * card_base.s2size) / 2;
-  card_base.x2 = (card_base.w - 1 * card_base.s2size) / 2
-    + 2 * card_base.w / 9 - 1;
-
-  card_base.ydelta = (((card_base.h - 2 - 4 * card_base.s2size) / 7) | 1);
-
-  card_base.y0 = (card_base.h - 3 * card_base.ydelta
-		  - 4 * card_base.s2size) / 2;
-  card_base.y1 = (card_base.h - 2 * card_base.ydelta
-		  - 3 * card_base.s2size) / 2;
-  card_base.y2 = (card_base.h - 1 * card_base.ydelta
-		  - 2 * card_base.s2size) / 2;
-  card_base.y3 = (card_base.h - 0 * card_base.ydelta
-		  - 1 * card_base.s2size) / 2;
-  card_base.y4 = (card_base.h + 1 * card_base.ydelta
-		  - 0 * card_base.s2size) / 2;
-  card_base.y5 = (card_base.h + 2 * card_base.ydelta
-		  + 1 * card_base.s2size) / 2;
-  card_base.y6 = (card_base.h + 3 * card_base.ydelta
-		  + 2 * card_base.s2size) / 2;
-  card_base.y7 = (card_base.y0 + card_base.y3) / 2;
-  card_base.y8 = (card_base.y6 + card_base.y3) / 2;
-
-  card_base.s4x = 3;
-  card_base.s4y = card_base.y0 + card_base.s2size - card_base.s4size;
-}
-
-
+  /* FIX ME: CARDIMAGEDIR should be passed as a parameter
+   * OR the images should be hardcoded into the library. Hard coding
+   * a directory is absurd. Linking libgnome is not much better */
 static char *
-xpm_filename (char *basename)
+image_filename (char *basename)
 {
   char *str;
 
@@ -173,6 +86,98 @@ xpm_filename (char *basename)
   sprintf (str, "%s/%s", CARDIMAGEDIR, basename);
   return str;
 }
+
+static GdkPixmap* 
+load_image (GdkBitmap** mask, char* filename)
+{
+  GdkPixmap* ret;
+  GdkImlibImage *im;
+  char* fullname = image_filename (filename);
+
+  im = gdk_imlib_load_image (fullname);
+  gdk_imlib_render (im, im->rgb_width, im->rgb_height);
+  ret = gdk_imlib_copy_image (im);
+  if(mask)
+    *mask = gdk_imlib_copy_mask (im);
+  gdk_imlib_destroy_image (im);
+  g_free (fullname);
+
+  return ret;
+}
+
+
+static void
+read_base_image ()
+{
+  char *filename;
+
+  card_base.ranks = load_image (&card_base.ranks_clip, "Ranks.xpm");
+
+  gdk_window_get_size (card_base.ranks, &card_base.rw, &card_base.rh);
+  card_base.r1w = card_base.rw/13;
+  card_base.r1h = card_base.rh/4;
+  
+  card_base.background = load_image (&card_base.card_clip, "Background.xpm");
+
+  gdk_window_get_size (card_base.background, &card_base.w, &card_base.h);
+
+  card_base.back = load_image (&card_base.back_clip, "Cardback1.xpm");
+
+  gdk_window_get_size (card_base.back, &card_base.bw, &card_base.bh);
+
+  card_base.suits = load_image (&card_base.suits_clip, "Suits.xpm");
+
+  gdk_window_get_size (card_base.suits, &card_base.sw, &card_base.sh);
+
+  card_base.s1w = 21;
+  card_base.s1h = 25;
+  card_base.s1off = 0;
+  card_base.s2w = 18;
+  card_base.s2h = 21;
+  card_base.s2off = card_base.s1off + card_base.s1h;
+  card_base.s3w = 15;
+  card_base.s3h = 19;
+  card_base.s3off = card_base.s2off + card_base.s2h;
+  card_base.s4w = 9;
+  card_base.s4h = 10;
+  card_base.s4off = card_base.s3off + card_base.s3h;
+
+  card_base.pictures = load_image (&card_base.pictures_clip, "Pictures.xpm");
+
+  gdk_window_get_size (card_base.pictures, &card_base.pw, &card_base.ph);
+  card_base.p1w = card_base.pw/4;
+  card_base.p1h = card_base.ph/3;
+
+  card_base.xdelta = card_base.w / 5;
+  card_base.ydelta = card_base.h / 10;  
+
+  card_base.x1 = (card_base.w - card_base.s2w) / 2;
+  card_base.y3 = (card_base.h - card_base.s2h) / 2;
+
+  card_base.x0 = card_base.x1 - card_base.xdelta; 
+  card_base.x2 = card_base.x1 + card_base.xdelta; 
+
+  card_base.y0 = card_base.y3 - 3 * card_base.ydelta;
+  card_base.y1 = card_base.y3 - 2 * card_base.ydelta;
+  card_base.y2 = card_base.y3 - 1 * card_base.ydelta;
+  card_base.y4 = card_base.y3 + 1 * card_base.ydelta;
+  card_base.y5 = card_base.y3 + 2 * card_base.ydelta;
+  card_base.y6 = card_base.y3 + 3 * card_base.ydelta;
+
+  card_base.y7 = card_base.y3 - (3 * card_base.ydelta) / 2;
+  card_base.y8 = card_base.y3 + (3 * card_base.ydelta) / 2;
+
+  card_base.s4x = card_base.x0 + (card_base.s2w - card_base.s4w) / 2
+    - card_base.xdelta; 
+  card_base.s4y = card_base.y0 + (card_base.s2h - card_base.s4h) / 2;
+  card_base.rx = card_base.s4x + (card_base.s4w - card_base.r1w) / 2;
+  card_base.ry = card_base.s4y - card_base.r1h - 1;
+  if (card_base.ry < 6) {
+    card_base.ry = 6;
+    card_base.s4y = card_base.ry + card_base.r1h + 1;
+  }
+}
+
 
 static void
 draw_background (GdkGC *gc, GdkPixmap *p)
@@ -188,13 +193,15 @@ draw_background (GdkGC *gc, GdkPixmap *p)
 static void
 draw_rank (GdkGC *gc, GdkPixmap *p, int suit, int rank)
 {
-  int x, y, dl, cx, cy;
+  int x, y, cx, cy;
 
-  x = 3 * (suit/2) * card_base.r1w + (rank / 5) * card_base.r1w;
-  y = (rank % 5) * card_base.r1h;
+  cx = card_base.w - card_base.rx - card_base.r1w;
+  cy = card_base.h - card_base.ry - card_base.r1h;
 
-  gdk_gc_set_clip_mask(gc,
-		       card_base.ranks_clip);
+  x = rank * card_base.r1w;
+  y = ((suit >> 1) ^ (suit & 1)) * card_base.r1h;
+
+  gdk_gc_set_clip_mask(gc, card_base.ranks_clip);
 
   gdk_gc_set_clip_origin(gc, card_base.rx-x, card_base.ry-y);
   gdk_window_copy_area((GdkWindow *)p, gc,
@@ -202,50 +209,69 @@ draw_rank (GdkGC *gc, GdkPixmap *p, int suit, int rank)
 		       (GdkWindow *)card_base.ranks,
 		       x, y, card_base.r1w, card_base.r1h);
   
-  x = (8 + 3 * (suit/2) - (rank / 5)) * card_base.r1w;
-  y = (4 - rank % 5) * card_base.r1h;
-  dl = card_base.w - card_base.r1w;
-  cx = dl-card_base.rx;
-  cy = card_base.h - card_base.ry - card_base.r1h;
+  gdk_gc_set_clip_origin(gc, cx-x, card_base.ry-y);
+  gdk_window_copy_area((GdkWindow *)p, gc,
+		       cx, card_base.ry,
+		       (GdkWindow *)card_base.ranks,
+		       x, y, card_base.r1w, card_base.r1h);
 
-  gdk_gc_set_clip_origin(gc,
-			 cx-x, cy-y);
+  x = card_base.rw - card_base.r1w - x;
+  y = card_base.rh - card_base.r1h - y;
+
+  gdk_gc_set_clip_origin(gc, card_base.rx-x, cy-y);
+  gdk_window_copy_area((GdkWindow *)p, gc,
+		       card_base.rx, cy,
+		       (GdkWindow *)card_base.ranks,
+		       x, y, card_base.r1w, card_base.r1h);
+
+  gdk_gc_set_clip_origin(gc, cx-x, cy-y);
   gdk_window_copy_area((GdkWindow *)p, gc,
 		       cx, cy,
 		       (GdkWindow *)card_base.ranks,
 		       x, y, card_base.r1w, card_base.r1h);
+
   gdk_gc_set_clip_mask(gc, NULL);
 }
 
 static void
 draw_small_suit (GdkGC *gc, GdkPixmap *p, int suit)
 {
-  int x, y, dl, cx, cy;
+  int x, y, cx, cy;
 
-  x = card_base.s4x;
-  y = card_base.s4y;
+  cx = card_base.w - card_base.s4w - card_base.s4x;
+  cy = card_base.h - card_base.s4h - card_base.s4y;
 
-  gdk_gc_set_clip_mask(gc,
-		       card_base.suits_clip);
-  gdk_gc_set_clip_origin(gc, x-suit*card_base.s4size, y-card_base.s4off);
-  gdk_window_copy_area((GdkWindow *)p, gc,
-		       x, y,
-		       (GdkWindow *)card_base.suits,
-		       suit * card_base.s4size,
-		       card_base.s4off,
-		       card_base.s4size, card_base.s4size);
-
-  x = (suit+4) * card_base.s4size;
+  x = suit*card_base.s4w;
   y = card_base.s4off;
-  dl = card_base.w - card_base.s4size;
-  cx = dl-card_base.s4x;
-  cy = card_base.h - card_base.s4size - card_base.s4y;
+
+  gdk_gc_set_clip_mask(gc, card_base.suits_clip);
+
+  gdk_gc_set_clip_origin(gc, card_base.s4x-x, card_base.s4y-y);
+  gdk_window_copy_area((GdkWindow *)p, gc,
+		       card_base.s4x, card_base.s4y,
+		       (GdkWindow *)card_base.suits,
+		       x, y, card_base.s4w, card_base.s4h);
+
+  gdk_gc_set_clip_origin(gc, cx-x, card_base.s4y-y);
+  gdk_window_copy_area((GdkWindow *)p, gc,
+		       cx, card_base.s4y,
+		       (GdkWindow *)card_base.suits,
+		       x, y, card_base.s4w, card_base.s4h);
+
+  x = x + 4 * card_base.s4w;
 
   gdk_gc_set_clip_origin(gc, cx-x, cy-y);
   gdk_window_copy_area((GdkWindow *)p, gc,
 		       cx, cy,
 		       (GdkWindow *)card_base.suits,
-		       x, y, card_base.s4size, card_base.s4size);
+		       x, y, card_base.s4w, card_base.s4h);
+
+  gdk_gc_set_clip_origin(gc, card_base.s4x-x, cy-y);
+  gdk_window_copy_area((GdkWindow *)p, gc,
+		       card_base.s4x, cy,
+		       (GdkWindow *)card_base.suits,
+		       x, y, card_base.s4w, card_base.s4h);
+
   gdk_gc_set_clip_mask(gc, NULL);
 }
 
@@ -254,14 +280,14 @@ draw_small_suit (GdkGC *gc, GdkPixmap *p, int suit)
   gdk_gc_set_clip_origin(gc, (xx)-x, (yy)-y); \
   gdk_window_copy_area((GdkWindow *)p, gc, (xx), (yy), \
 		       (GdkWindow *)card_base.suits, x, y, \
-		       card_base.s2size, card_base.s2size); \
+		       card_base.s2w, card_base.s2h); \
 }							    
 #define PAINT_RV(xx, yy) \
 { \
   gdk_gc_set_clip_origin(gc, (xx)-x, (yy)-y); \
   gdk_window_copy_area((GdkWindow *)p, gc, (xx), (yy), \
 		       (GdkWindow *)card_base.suits, x, y, \
-		       card_base.s2size, card_base.s2size); \
+		       card_base.s2w, card_base.s2h); \
 }							    
 		       
 
@@ -274,7 +300,7 @@ draw_suit (GdkGC *gc, GdkPixmap *p, int suit, int rank)
   };
   int x, y;
 
-  x = suit * card_base.s2size;
+  x = suit * card_base.s2w;
   y = card_base.s2off;
 
   gdk_gc_set_clip_mask(gc, card_base.suits_clip);
@@ -319,7 +345,7 @@ draw_suit (GdkGC *gc, GdkPixmap *p, int suit, int rank)
     }
 
   /* draw all symbols which are upside-down */
-  x = (suit+4) * card_base.s2size;
+  x = (suit+4) * card_base.s2w;
   if (suitflags[rank] & 0x01) {
     PAINT_RV(card_base.x0, card_base.y6);
     PAINT_RV(card_base.x2, card_base.y6);
@@ -377,12 +403,8 @@ draw_picture (GdkGC *gc, GdkPixmap *p, int suit, int rank)
   int x, y;
 
   x = (card_base.w - card_base.p1w)/2;
-  y = card_base.h/2 - card_base.p1h;
+  y = (card_base.h + 1)/2 - card_base.p1h;
 
-  /* horizontal line in the midst of the card: */
-  gdk_draw_line((GdkDrawable *)p, gc, x, card_base.h/2,
-		card_base.w-1-x, card_base.h/2);
-  
   gdk_gc_set_clip_mask(gc, card_base.pictures_clip);
 
   gdk_gc_set_clip_origin (gc,
@@ -396,50 +418,120 @@ draw_picture (GdkGC *gc, GdkPixmap *p, int suit, int rank)
   mirror_image (gc, p, 0, 0, card_base.w, card_base.h);
 }
 
-
 void
 gdk_card_image_init (GdkWindow *window)
 {
-  GdkPixmap *pixmap;
+  GdkPixmap * pixmap;
   GdkGC *gc;
-
   int i, j;
   
-  read_base_image (window);
+  /* This costs nothing when imlib has already been initialized and
+     makes the library easier to use: */
+  gdk_imlib_init ();
 
-  gc = gdk_gc_new (window);
+  read_base_image ();
 
-  for (i = 0; i < 4; i++)
-    for (j = 0; j < 13; j++)
-      {
-	pixmap = gdk_pixmap_new (window,
-				 card_base.w, card_base.h,
-				 -1);
+  gc = gdk_gc_new (card_base.background);
 
-	draw_background(gc, pixmap);
-	draw_rank(gc, pixmap, i, j);
-	draw_small_suit(gc, pixmap, i);
+  for (i = 0; i < 4; i++) {
+    faces[i] = (GdkPixmap**) calloc(13, sizeof(GdkPixmap*));
 
-	if ((j >= 0) && (j <= 9))
-	  draw_suit(gc, pixmap, i, j);
-	else
-	  draw_picture(gc, pixmap, i, j);
-	  
-	card_pixmaps[i*13 + j] = pixmap;
-	card_clips[i*13 + j] = card_base.card_clip;
+    for (j = 0; j < 13; j++) {
+      pixmap =
+	gdk_pixmap_new (window, card_base.w, card_base.h, -1);
+
+      draw_background(gc, pixmap);
+      draw_rank(gc, pixmap, i, j);
+      draw_small_suit(gc, pixmap, i);
+      
+      if (j == 0) {
+	int x = i * card_base.s1w;
+	int y = card_base.s1off;
+	
+	int xx = (card_base.w - card_base.s1w) / 2;
+	int yy = (card_base.h - card_base.s1h) / 2;
+	
+	gdk_gc_set_clip_mask(gc, card_base.suits_clip);
+	gdk_gc_set_clip_origin(gc, (xx)-x, (yy)-y);
+	gdk_window_copy_area((GdkWindow *)pixmap, gc, (xx), (yy),
+			     (GdkWindow *)card_base.suits, x, y,
+			     card_base.s1w, card_base.s1h);
+	gdk_gc_set_clip_mask(gc, NULL);
       }
+      else if (j <= 9)
+	draw_suit(gc, pixmap, i, j);
+      else
+	draw_picture(gc, pixmap, i, j);
+	  
+      faces[i][j] = pixmap;
+    }
+  }
+
+  {
+    int xx = (card_base.w - card_base.bw) / 2;
+    int yy = (card_base.h - card_base.bh) / 2;
+
+    back = gdk_pixmap_new (window, card_base.w, card_base.h, -1);
+    draw_background(gc, back);
+    gdk_gc_set_clip_mask(gc, card_base.back_clip);
+    gdk_gc_set_clip_origin(gc, (xx), (yy));
+    gdk_window_copy_area((GdkWindow *)back , gc, (xx), (yy),
+			 (GdkWindow *)card_base.back, 0, 0,
+			 card_base.bw, card_base.bh);
+    gdk_gc_set_clip_mask(gc, NULL);  
+  }
 
   gdk_gc_unref(gc);
 }
 
+GdkPixmap*
+gdk_card_image_face (int suit, int value)
+{
+  return faces[suit][value];
+}
+
+GdkPixmap*
+gdk_card_image_back ()
+{
+  return back;
+}
+
+GdkBitmap*
+gdk_card_image_mask ()
+{
+  return card_base.card_clip;
+}
 
 void
-gdk_card_image (int card_id, GdkPixmap **pixmap, GdkBitmap **clip)
+gdk_card_image_unref ()
+{
+  int i, j;
+  
+  gdk_pixmap_unref (card_base.ranks);
+  gdk_bitmap_unref (card_base.ranks_clip);
+  gdk_pixmap_unref (card_base.background);
+  gdk_bitmap_unref (card_base.card_clip);
+  gdk_pixmap_unref (card_base.suits);
+  gdk_bitmap_unref (card_base.suits_clip);
+  gdk_pixmap_unref (card_base.pictures);
+  gdk_bitmap_unref (card_base.pictures_clip);
+
+  for (i = 0; i < 4; i++)
+    for (j = 0; j < 13; j++)
+      gdk_pixmap_unref (faces[i][j]);
+
+  gdk_pixmap_unref (card_base.back);
+  gdk_bitmap_unref (card_base.back_clip);
+}
+
+/* Obsolete */
+void
+gdk_card_image (int old_id, GdkPixmap **pixmap, GdkBitmap **clip)
 {
   if (pixmap)
-    *pixmap = card_pixmaps[card_id];
+    *pixmap = faces[(4-(old_id/13))%4][old_id%13];
   if (clip)
-    *clip = card_clips[card_id];
+    *clip = card_base.card_clip;
 }
 
 #ifdef TEST
