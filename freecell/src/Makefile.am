@@ -1,5 +1,5 @@
 ## process this file with automake to produce Makefile.in
-Gamesdir = $(datadir)/apps/Games
+Gamesdir = $(datadir)/gnome/apps/Games
 
 INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\

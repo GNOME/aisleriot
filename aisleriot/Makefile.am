@@ -1,7 +1,7 @@
 scoredir=$(localstatedir)/games
 cardimagedir = $(datadir)/pixmaps/cards
 icondir = $(datadir)/pixmaps
-Gamesdir  = $(datadir)/apps/Games
+Gamesdir  = $(datadir)/gnome/apps/Games
 typesdir  = $(datadir)/sol-games
 
 SUBDIRS=docs pixmaps
@@ -64,6 +64,6 @@ icon_DATA = gnome-aisleriot.png
 EXTRA_DIST = TODO FIXME  AUTHORS $(types_DATA) $(cardimage_DATA) \
 	$(icon_DATA) sol.desktop
 
-sysdir = $(datadir)/apps/Games
+sysdir = $(datadir)/gnome/apps/Games
 sys_DATA = sol.desktop
 
