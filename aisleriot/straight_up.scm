@@ -132,10 +132,13 @@
       (check-up slot-id (+ 1 foundation-id))))
 
 (define (button-double-clicked slot-id)
-  (check-up slot-id 2))
+  (and (not (empty-slot? slot-id))
+       (is-visible? (get-top-card slot-id))
+       (check-up slot-id 2)))
 
 (define (game-continuable)
-  (not (game-won)))
+  (and (not (game-won))
+       (get-hint)))
 
 (define (game-won)
   (and (= (length (get-cards 2)) 13)
@@ -146,7 +149,7 @@
 (define (dealable?)
   (if (not (empty-slot? 0))
       (list 0 "Deal a new card from the deck")
-      (if (and (< FLIP-COUNTER 3)
+      (if (and (< FLIP-COUNTER 2)
 	       (not (empty-slot? 1)))
 	  (list 0 "Move waste back to stock")
 	  #f)))
