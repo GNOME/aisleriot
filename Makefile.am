@@ -19,12 +19,14 @@ endif
 SUBDIRS = intl po macros \
 	  freecell gnomine same-gnome scottfree mahjongg gturing \
           gtali gnobots2 iagno gnotravex gnome-stones gnotski \
-	  $(guile_DIRS) $(cxx_DIRS) idl glines gataxx gnibbles
+	  $(guile_DIRS) $(cxx_DIRS) idl glines gataxx gnibbles omf-install
 
 #$(objc_DIRS)
 
 EXTRA_DIST = \
 	gnome-games.spec.in \
+	COPYING-DOCS \
+	sgmldocs.make \
 	game-docs.make
 
 dist-hook:

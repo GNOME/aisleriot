@@ -6,6 +6,9 @@ AM_MAINTAINER_MODE
 AM_ACLOCAL_INCLUDE(macros)
 GNOME_INIT
 
+SCROLLKEEPER_REQUIRED=0.1.4
+AC_SUBST(SCROLLKEEPER_REQUIRED)
+
 AC_ISC_POSIX
 AC_PROG_CC
 AC_STDC_HEADERS
@@ -62,6 +65,12 @@ AC_SUBST(LDFLAGS)
 AM_CONDITIONAL(HAVE_JADE, false)
 
 gnome_cv_use_gnome=yes
+
+## Begin tests for scrollkeeper
+AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
+if test x$SCROLLKEEPER_CONFIG = xno; then
+  AC_MSG_ERROR(Couldn't find scrollkeeper-config, please install the scrollkeeper packaga)
+fi
 
 ## gnomine checks
 oLIBS="$LIBS"
@@ -176,6 +185,7 @@ gnibbles/help/Makefile
 gnibbles/help/C/Makefile
 gnibbles/sounds/Makefile
 glines/Makefile
+omf-install/Makefile 
 xbill/Makefile
 xbill/pixmaps/Makefile
 xbill/cursors/Makefile
