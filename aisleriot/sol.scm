@@ -51,7 +51,7 @@
   (set! VERTPOS (get-vert-start))
   (set! IN-GAME #f)
   (set! MOVE '())
-  (set-statusbar-message "")
+  (set-statusbar-message " ")
   (set! HISTORY '()))
 
 ; create a 52 card deck (puts list of cards into DECK)

@@ -83,7 +83,7 @@
 
 (define (give-status-message)
   (if (not base-set?)
-      (set-statusbar-message "")
+      (set-statusbar-message " ")
       (set-statusbar-message (get-base-string))))
 
 (define (get-base-string)
