@@ -4,6 +4,7 @@ noinst_LTLIBRARIES = libgames-support.la
 
 INCLUDES =							\
 	-DDATADIR=\""$(datadir)"\"				\
+	-DGCONF_SCHEMA_CONFIG_SOURCE=\""$(GCONF_SCHEMA_CONFIG_SOURCE)"\" \
 	$(WARN_CFLAGS)						\
 	$(GNOME_GAMES_CFLAGS)
 
