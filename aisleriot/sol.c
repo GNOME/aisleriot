@@ -27,7 +27,6 @@
 #include <dirent.h>
 #include <libguile.h>
 #include <guile/gh.h>
-
 #include "sol.h"
 #include "events.h"
 #include "draw.h"
@@ -43,7 +42,6 @@
 GtkWidget *scorew;
 GtkWidget *label;
 GtkWidget *app, *playing_area, *vb, *hb;
-GtkMenuFactory *mf;
 GdkPixmap *surface, *blank_surface;
 GdkPixmap *snapshot = NULL;
 GdkPixmap *moving_card_pixmap;
@@ -98,11 +96,6 @@ void create_sol_board ()
 
 	gtk_widget_realize (playing_area);
 
-	/* Setup the surface */
-	gtk_drawing_area_size (GTK_DRAWING_AREA (playing_area),
-			       SURFACE_WIDTH,
-			       SURFACE_HEIGHT);
-
 	/* Set up the pixmaps */
 	surface = gdk_pixmap_new (playing_area->window, SURFACE_WIDTH, SURFACE_HEIGHT,
 				  gdk_window_get_visual (playing_area->window)->depth);
@@ -124,7 +117,6 @@ void create_sol_board ()
 
 	/* and, we're off and running... */
 	gtk_widget_show (playing_area);
-
 }
 
 
@@ -138,7 +130,6 @@ create_main_window ()
 {
   GtkWidget* retval;
   retval = gnome_app_new ("solitaire", _("Solitaire"));
-
   gtk_widget_realize (retval);
   
   gtk_signal_connect (GTK_OBJECT(retval), "delete_event", GTK_SIGNAL_FUNC(file_quit_callback), NULL);
@@ -191,9 +182,7 @@ void main_prog(int argc, char *argv[])
   press_data->moving_cards = NULL;
 
   /* load files as needed */
-  /*  printf(_("loading pixmaps...\n"));*/
   load_pixmaps(app);
-  /*  printf(_("Done.\n"));*/
   /* Scheme stuff... */
   /* FIXME: On 1997-11-14, gh_enter stopped loading `icd-9/boot-9.scm'.
      In my copy of guile, the first define in boot-9.scm is for "provide",
@@ -231,11 +220,12 @@ void main_prog(int argc, char *argv[])
   scorew = gtk_label_new ("0");
   
   /* put everything together */
-  gtk_box_pack_start (GTK_BOX(vb), hb, FALSE, FALSE, 0);
   gtk_box_pack_end   (GTK_BOX(hb), scorew, FALSE, FALSE, 10);
   gtk_box_pack_end   (GTK_BOX(hb), label,  0, 0, 0);
-  
+  gtk_box_pack_start (GTK_BOX(vb), hb, FALSE, FALSE, 0);
+
   /* and we're up...*/
+  gtk_widget_set_usize (playing_area, SURFACE_WIDTH, SURFACE_HEIGHT);
   gtk_widget_show (app);
   gtk_widget_show (hb);
   gtk_widget_show (vb);

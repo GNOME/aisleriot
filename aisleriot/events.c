@@ -78,12 +78,13 @@ void drop_moving_cards(gint x, gint y) {
     gdk_pixmap_unref(press_data->moving_mask);
   press_data->moving_pixmap = NULL;
   press_data->moving_mask = NULL;
-  
-  
+  paint_blank_surface();
+  draw_slot_placements(blank_surface);
+  gdk_draw_pixmap(surface,	playing_area->style->black_gc,blank_surface,0,0,0,0,-1,-1);
+  draw_cards(surface);
+  gdk_window_set_back_pixmap(playing_area->window, surface, 0);
   gdk_window_move(press_data->moving_cards, 0 - get_card_width(), 0);
-
-  return;
-
+  gdk_window_clear(playing_area->window);
 }
 
 void button_up_not_moved(gint x, gint y) {
@@ -116,7 +117,6 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
     if (press_data->moving) {
       press_data->moving = FALSE;
       drop_moving_cards(event->x, event->y);
-      refresh_screen();
     }
     slot_pressed(event->x,event->y, &slotid, &cardid);
     if (slotid != -1) {
@@ -198,7 +198,6 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 		if (press_data->moving) {
 		  press_data->moving = FALSE;
 		  drop_moving_cards(event->x, event->y);
-		  refresh_screen();
 		}
 		else {
 		  button_up_not_moved(event->x, event->y);

@@ -15,15 +15,6 @@
 ; License along with this library; if not, write to the Free
 ; Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-;;In case it isn't defined already
-(define list-length
-  (lambda (obj)
-	 (call-with-current-continuation
-	  (lambda (return)
-		 (letrec ((r (lambda (obj) (cond ((null? obj) 0)
-													((pair? obj) (+ (r (cdr obj)) 1))
-													(else (return #f))))))
-			(r obj))))))
 
 
 ;;card stuff
@@ -75,26 +66,26 @@
 
 (define (get-value-name value)
   (cond ((eq? value ace) "ace")
-		  ((eq? value 2) "two")
-		  ((eq? value 3) "three")
-		  ((eq? value 4) "four")
-		  ((eq? value 5) "five")
-		  ((eq? value 6) "six")
-		  ((eq? value 7) "seven")
-		  ((eq? value 8) "eight")
-		  ((eq? value 9) "nine")
-		  ((eq? value 10) "ten")
-		  ((eq? value jack) "jack")
-		  ((eq? value queen) "queen")
-		  ((eq? value king) "king")
-		  (#t "Unknown value")))
+	((eq? value 2) "two")
+	((eq? value 3) "three")
+	((eq? value 4) "four")
+	((eq? value 5) "five")
+	((eq? value 6) "six")
+	((eq? value 7) "seven")
+	((eq? value 8) "eight")
+	((eq? value 9) "nine")
+	((eq? value 10) "ten")
+	((eq? value jack) "jack")
+	((eq? value queen) "queen")
+	((eq? value king) "king")
+	(#t "Unknown value")))
 
 (define (get-suit-name suit)
   (cond ((eq? suit club) "clubs")
-		  ((eq? suit spade) "spades")
-		  ((eq? suit heart) "hearts")
-		  ((eq? suit diamond) "diamonds")
-		  (#t "Unknown suit")))
+	((eq? suit spade) "spades")
+	((eq? suit heart) "hearts")
+	((eq? suit diamond) "diamonds")
+	(#t "Unknown suit")))
 
 (define (get-name card)
   (string-append (get-value-name (get-value card)) " of "(get-suit-name (get-suit card))))
@@ -102,10 +93,10 @@
 ;color handling
 (define (get-color card)
   (cond ((eq? (get-suit card) club) black)
-		  ((eq? (get-suit card) spade) black)
-		  ((eq? (get-suit card) heart) red)
-		  ((eq? (get-suit card) diamond) red)
-		  (#t "Unknown color")))
+	((eq? (get-suit card) spade) black)
+	((eq? (get-suit card) heart) red)
+	((eq? (get-suit card) diamond) red)
+	(#t "Unknown color")))
 
 (define (is-red? card)
   (eq? red (get-color card)))
@@ -116,47 +107,47 @@
 ;;deck stuff
 ;;
 ;;The deck is a list of cards.   
-  
+
 (define DECK '())
 
 (define (make-standard-deck-list-ace-high value suit)
   (if (eq? ace value)
       (if (eq? spade suit)
-			 (list (make-card ace spade))
-			 (cons (make-card value suit) (make-standard-deck-list-ace-high 2 (+ 1 suit))))
+	  (list (make-card ace spade))
+	  (cons (make-card value suit) (make-standard-deck-list-ace-high 2 (+ 1 suit))))
       (cons (make-card value suit) (make-standard-deck-list-ace-high (+ 1 value) suit))))
 
 (define (make-standard-deck-list-ace-low value suit)
   (if (eq? king value)
       (if (eq? spade suit)
-			 (list (make-card king spade))
+	  (list (make-card king spade))
 	  (cons (make-card value suit) (make-standard-deck-list-ace-low 1 (+ 1 suit))))
       (cons (make-card value suit) (make-standard-deck-list-ace-low (+ 1 value) suit))))
 
 (define (make-standard-deck)
   (if (= ace 14)
-		(set! DECK (make-standard-deck-list-ace-high 2 club))
-		(set! DECK (make-standard-deck-list-ace-low ace club))))
-  
+      (set! DECK (make-standard-deck-list-ace-high 2 club))
+      (set! DECK (make-standard-deck-list-ace-low ace club))))
+
 
 (define (make-standard-double-deck)
   (if (= ace 14)
-		(set! DECK (append (make-standard-deck-list-ace-high 2 club) (make-standard-deck-list-ace-high 2 club)))
-		(set! DECK (append (make-standard-deck-list-ace-low ace club) (make-standard-deck-list-ace-low ace club)))))
+      (set! DECK (append (make-standard-deck-list-ace-high 2 club) (make-standard-deck-list-ace-high 2 club)))
+      (set! DECK (append (make-standard-deck-list-ace-low ace club) (make-standard-deck-list-ace-low ace club)))))
 
 
 (define (shuffle-deck)
   (let ((TDECK (list->vector DECK)))
-	 (set! DECK (vector->list (shuffle-deck-helper TDECK 1 (- (vector-length TDECK) 0))))))
+    (set! DECK (vector->list (shuffle-deck-helper TDECK 1 (- (vector-length TDECK) 0))))))
 
 (define (shuffle-deck-helper deck num len)
   (if (= num len)
-		deck
-		(let ((val-at-num (vector-ref deck num)))
-		  (let ((replacement-slot (random len)))
-			 (vector-set! deck num (vector-ref deck replacement-slot))
-			 (vector-set! deck replacement-slot val-at-num))
-		  (shuffle-deck-helper deck (+ 1 num) len))))
+      deck
+      (let ((val-at-num (vector-ref deck num)))
+	(let ((replacement-slot (random len)))
+	  (vector-set! deck num (vector-ref deck replacement-slot))
+	  (vector-set! deck replacement-slot val-at-num))
+	(shuffle-deck-helper deck (+ 1 num) len))))
 
 
 ;;playing area stuff
@@ -198,49 +189,49 @@
 
 (define (get-cards slotval)
   (cadr (if (pair? slotval)
-				slotval
-				(get-slot slotval))))
-  
+	    slotval
+	    (get-slot slotval))))
+
 (define (add-card! slot-id card)
   (let ((slot (get-slot slot-id)))
-	 (set-cards! slot-id (cons card (get-cards slot)))))
+    (set-cards! slot-id (cons card (get-cards slot)))))
 
 (define (add-cards! slot-id cards)
   (let ((slot (get-slot slot-id)))
-	 (set-cards! slot-id (append cards (get-cards slot)))))
+    (set-cards! slot-id (append cards (get-cards slot)))))
 
 (define (cards-eq? card1 card2)
   (and (eq? (get-value card1) (get-value card2))
-		 (eq? (get-suit card1) (get-suit card2))))
+       (eq? (get-suit card1) (get-suit card2))))
 
 (define (remove-card slot-id)
   (let ((slot (get-slot slot-id)))
-	 (let ((retval (get-top-card slot-id)))
-		(set-cards! slot-id (cdr (car (cdr slot))))
-		retval)))
+    (let ((retval (get-top-card slot-id)))
+      (set-cards! slot-id (cdr (car (cdr slot))))
+      retval)))
 
 (define (remove-n-cards slot-id n)
   (set-cards! slot-id (remove-n-cards-helper n (get-cards (get-slot slot-id)))))
 
 (define (remove-n-cards-helper n cards)
   (if (eq? '() cards)
-		cards
-		(if (= n 0)
-			 cards
-			 (remove-n-cards-helper (- n 1) (cdr cards)))))
-  
-  
+      cards
+      (if (= n 0)
+	  cards
+	  (remove-n-cards-helper (- n 1) (cdr cards)))))
+
+
 ;;Surface functions
 (define (get-and-increment-position)
   (let ((retval (list HORIZPOS VERTPOS)))
-	 (set! HORIZPOS (+ HORIZPOS (get-horiz-offset)))
-	 retval))
+    (set! HORIZPOS (+ HORIZPOS (get-horiz-offset)))
+    retval))
 
 (define (linefeed-position)
   (set! HORIZPOS (get-horiz-start))
   (set! VERTPOS (+ VERTPOS (get-vert-offset))))
 
- 
+
 ; Game calls
 (define (add-normal-slot deck)
   (add-slot (set-tag! (new-slot deck (list 'normal (get-and-increment-position))))))
@@ -265,8 +256,8 @@
 
 (define (empty-slot? slot-id)
   (if (eq? '() (cadr (get-slot slot-id)))
-		#t
-		#f))
+      #t
+      #f))
 
 (define (move-n-cards! start-slot end-slot cards)
   (add-cards! end-slot cards))
@@ -276,10 +267,10 @@
 
 (define (deal-cards target-slot-id slot-list)
   (if (eq? '() slot-list)
-		'()
-		(begin 
-		  (add-card! (car slot-list) (remove-card target-slot-id))
-		  (deal-cards target-slot-id (cdr slot-list)))))
+      '()
+      (begin 
+	(add-card! (car slot-list) (remove-card target-slot-id))
+	(deal-cards target-slot-id (cdr slot-list)))))
 
 (define (deal-cards-face-up target-slot-id slot-list)
   (if (eq? '() slot-list)
@@ -290,10 +281,10 @@
 
 (define (deal-cards-from-deck deck slot-list)
   (if (eq? '() slot-list)
-		'()
-		(begin 
-		  (add-card! (car slot-list) (car deck))
-		  (deal-cards-from-deck (cdr deck) (cdr slot-list)))))
+      '()
+      (begin 
+	(add-card! (car slot-list) (car deck))
+	(deal-cards-from-deck (cdr deck) (cdr slot-list)))))
 
 (define (deal-cards-face-up-from-deck deck slot-list)
   (if (eq? '() slot-list)
@@ -304,8 +295,8 @@
 
 (define (get-top-card slot-id)
   (if (empty-slot? slot-id)
-		'()
-		(car (cadr (get-slot slot-id)))))
+      '()
+      (car (cadr (get-slot slot-id)))))
 
 (define (flip-top-card slot-id)
   (add-card! slot-id (flip-card (remove-card slot-id))))

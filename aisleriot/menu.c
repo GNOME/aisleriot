@@ -24,6 +24,7 @@
 #include "draw.h"
 #include "cscmi.h"
 #include "dialog.h"
+#include "pixmaps/tb-xpms.h"
 /*
  * Menu stuff...
  */
@@ -148,6 +149,22 @@ int file_select_game_callback (GtkWidget *app, void *data )
   show_select_game_dialog();
   return TRUE;
 }
+int undo_callback (GtkWidget *app, void *data)
+{
+  return TRUE;
+}
+int redo_callback (GtkWidget *app, void *data)
+{
+  return TRUE;
+}
+int restart_callback (GtkWidget *app, void *data)
+{
+  srandom(seed);
+
+  gh_apply(game_data->start_game_lambda, SCM_EOL);
+  refresh_screen();
+  return TRUE;
+}
 
 void help_about_callback (GtkWidget *widget, void *data)
 {
@@ -174,47 +191,85 @@ void help_about_callback (GtkWidget *widget, void *data)
 }
 
 /* We fill the items in at runtime... */
-GnomeUIInfo variation_menu[] = {
+GnomeUIInfo variation_sub_menu[] = {
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 
-GnomeUIInfo game_menu[] = {
-  {GNOME_APP_UI_SUBTREE, N_("Variation"), NULL, variation_menu, NULL, NULL,
+GnomeUIInfo variation_menu[] = {
+  {GNOME_APP_UI_SUBTREE, N_("Game Type"), NULL, variation_sub_menu, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_ITEM, N_("Game Seed..."), NULL, file_select_game_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN, 'n', GDK_CONTROL_MASK, NULL},
   {GNOME_APP_UI_ITEM, N_("Hint"), NULL, game_hint_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+   GNOME_APP_PIXMAP_NONE, NULL, 'h', GDK_CONTROL_MASK, NULL},
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 GnomeUIInfo help_menu[] = {
+  {GNOME_APP_UI_ITEM, N_("Help with Aisleriot..."), NULL, help_about_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
+  {GNOME_APP_UI_ITEM, N_("Help with Klondike..."), NULL, help_about_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
+  {GNOME_APP_UI_SEPARATOR},
   {GNOME_APP_UI_ITEM, N_("About..."), NULL, help_about_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 
-GnomeUIInfo file_menu[] = {
+GnomeUIInfo game_menu[] = {
   {GNOME_APP_UI_ITEM, N_("New"), NULL, file_new_game_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'n', GDK_CONTROL_MASK, NULL},
-  {GNOME_APP_UI_ITEM, N_("Select Game"), NULL, file_select_game_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_OPEN, 'n', GDK_CONTROL_MASK, NULL},
+  {GNOME_APP_UI_ITEM, N_("Properties..."), NULL, file_new_game_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 0, 0, NULL},
+  {GNOME_APP_UI_ITEM, N_("Statistics..."), NULL, file_new_game_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 0, 0, NULL},
+  {GNOME_APP_UI_SEPARATOR},
   {GNOME_APP_UI_ITEM, N_("Exit"), NULL, file_quit_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 
-GnomeUIInfo main_menu[] = {
-  {GNOME_APP_UI_SUBTREE, N_("File"), NULL, file_menu, NULL, NULL,
-   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+GnomeUIInfo top_menu[] = {
   {GNOME_APP_UI_SUBTREE, N_("Game"), NULL, game_menu, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+  {GNOME_APP_UI_SUBTREE, N_("Variation"), NULL, variation_menu, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   {GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
+GnomeUIInfo toolbar[] =
+{
+  {GNOME_APP_UI_ITEM, N_("Restart"), N_("Start this game over."),
+   restart_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_REFRESH, 0, 0, NULL},
+  
+  {GNOME_APP_UI_ITEM, N_("Seed"), N_("Start a new game after choosing the seed."),
+   file_select_game_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_DATA, tb_new_seed_xpm, 0, 0, NULL},
+
+  {GNOME_APP_UI_ITEM, N_("Undo"), N_("Undo the last move."),
+   undo_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_UNDO, 0, 0, NULL},
+
+  {GNOME_APP_UI_ITEM, N_("Redo"), N_("Redo the last move"),
+   redo_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_REDO, 0, 0, NULL},
+
+  {GNOME_APP_UI_ITEM, N_("Exit"), N_("Quit Aisleriot"),
+   file_quit_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 0, 0, NULL},
+
+  {GNOME_APP_UI_ENDOFINFO, NULL, NULL,
+   NULL, NULL, NULL,
+   GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}
+};
+
+
 
 typedef struct {
   char *desc, *filename;
@@ -235,13 +290,12 @@ void create_menus(GnomeApp *app)
 {
   int i;
   GtkWidget *w;
-  gnome_app_create_menus(app, main_menu);
-
-  for(i = 0; gamelist[i].desc; i++)
-    {
+  gnome_app_create_menus(app, top_menu);
+  gnome_app_create_toolbar(app, toolbar);
+  for(i = 0; gamelist[i].desc; i++) {
       w = gtk_menu_item_new_with_label(_(gamelist[i].desc));
       gtk_widget_show(w);
-      gtk_menu_shell_prepend(GTK_MENU_SHELL(variation_menu[0].widget), w);
+      gtk_menu_shell_prepend(GTK_MENU_SHELL(variation_sub_menu[0].widget), w);
       gtk_signal_connect(GTK_OBJECT(w), "activate", (GtkSignalFunc) game_load_game_callback,
 			 (gpointer)gamelist[i].filename);
     }

@@ -25,8 +25,8 @@
 /*
  * Constants
  */
-#define SURFACE_WIDTH 920
-#define SURFACE_HEIGHT 650
+#define SURFACE_WIDTH 640
+#define SURFACE_HEIGHT 466
 #define GAME_EVENTS (GDK_EXPOSURE_MASK              |\
 							GDK_BUTTON_PRESS_MASK          |\
 							GDK_POINTER_MOTION_MASK        |\
