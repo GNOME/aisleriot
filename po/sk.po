@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.3.90\n"
-"POT-Creation-Date: 2001-06-01 14:36+0200\n"
+"POT-Creation-Date: 2001-07-05 14:41-0600\n"
 "PO-Revision-Date: 2001-06-01 14:44CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@rak.isternet.sk>\n"
@@ -506,40 +506,53 @@ msgstr "Koniec"
 msgid "Quit Aisleriot"
 msgstr "Ukonèí Aisleriot"
 
-#: aisleriot/sol.c:166 aisleriot/sol.c:180
+#: aisleriot/sol.c:142
+#, fuzzy, c-format
+msgid ""
+"Aisleriot can't load the file: \n"
+"%s\n"
+"\n"
+"Please check your Aisleriot installation"
+msgstr ""
+"Same GNOME nemô¾e naèíta» súbor s obrázkom.\n"
+"%s\n"
+"\n"
+"Prosím, overte in¹taláciu Same GNOME."
+
+#: aisleriot/sol.c:177 aisleriot/sol.c:193
 msgid "Help"
 msgstr "Pomocník"
 
-#: aisleriot/sol.c:180 aisleriot/sol.c:324
+#: aisleriot/sol.c:193 aisleriot/sol.c:337
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: aisleriot/sol.c:369
+#: aisleriot/sol.c:382
 msgid "Loading images..."
 msgstr "Naèítavam obrázky..."
 
-#: aisleriot/sol.c:375
+#: aisleriot/sol.c:388
 msgid "Dealing game..."
 msgstr "Rozdávam..."
 
-#: aisleriot/sol.c:381 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:861
+#: aisleriot/sol.c:394 gnometris/scoreframe.cpp:33 same-gnome/same-gnome.c:874
 msgid "Score: "
 msgstr "Skóre: "
 
-#: aisleriot/sol.c:385
+#: aisleriot/sol.c:398
 msgid "Time: "
 msgstr "Èas: "
 
-#: aisleriot/sol.c:476
+#: aisleriot/sol.c:489
 msgid "Variation on game rules"
 msgstr "Variácia pravidiel hier"
 
-#: aisleriot/sol.c:477 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
-#: same-gnome/same-gnome.c:791
+#: aisleriot/sol.c:490 gnobots2/gnobots.c:58 gnobots2/gnobots.c:60
+#: same-gnome/same-gnome.c:796
 msgid "NAME"
 msgstr "MENO"
 
-#: aisleriot/sol.c:493
+#: aisleriot/sol.c:506
 msgid "Initializing scheme..."
 msgstr "Inicializujem schému..."
 
@@ -624,7 +637,8 @@ msgid "If you're ever lost and alone in the woods, hug a tree"
 msgstr "Ak ste sa niekedy stratili v lese sami, dr¾te sa stromu"
 
 #: aisleriot/SCHEME_GAMES.h:31
-msgid "Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
+msgid ""
+"Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
 msgstr "To, ¾e prechod cez cestu vyzerá ako nejaká hra, neznamená, ¾e òou je."
 
 #: aisleriot/SCHEME_GAMES.h:32
@@ -965,7 +979,7 @@ msgstr "Nová hra s násadou..."
 msgid "Start a new game with a different seed"
 msgstr "Spustí novú hru s inou násadou"
 
-#: freecell/src/menu.c:107 freecell/src/score-dialog.c:47 glines/glines.c:1181
+#: freecell/src/menu.c:107 freecell/src/score-dialog.c:47 glines/glines.c:1168
 msgid "Score"
 msgstr "Skóre"
 
@@ -1002,6 +1016,7 @@ msgid "Options"
 msgstr "Mo¾nosti"
 
 #: freecell/src/score.c:56
+#, c-format
 msgid "This session: %d%%"
 msgstr "Toto sedenie: %d%%"
 
@@ -1011,6 +1026,7 @@ msgid "won: %d, lost: %d"
 msgstr "vyhraných: %d, prehraných: %d"
 
 #: freecell/src/score.c:66
+#, c-format
 msgid "Total: %d%%"
 msgstr "Celkom: %d%%"
 
@@ -1067,8 +1083,8 @@ msgstr "Svetlé musia vynecha», »ahajú tmavé"
 msgid "Dark must pass, Light's move"
 msgstr "Tmavé musia vynecha», »ahajú svetlé"
 
-#: gataxx/gataxx.c:248 glines/glines.c:940 iagno/gnothello.c:246
-#: same-gnome/same-gnome.c:659
+#: gataxx/gataxx.c:248 glines/glines.c:934 iagno/gnothello.c:246
+#: same-gnome/same-gnome.c:664
 msgid "Do you really want to quit?"
 msgstr "Naozaj chcete skonèi»?"
 
@@ -1171,81 +1187,119 @@ msgstr "Prevráti» výsledky"
 msgid "Tile set:"
 msgstr "Sada kameòov:"
 
-#: glines/glines.c:69
-#, c-format
-msgid "Could not find the '%s' theme for Glines\n"
-msgstr "Nemô¾em nájs» tému '%s' pre GÈiary\n"
+#: glines/glines.c:68
+#, fuzzy, c-format
+msgid ""
+"Glines couldn't find pixmap file:\n"
+"%s\n"
+"\n"
+"Please check your Glines installation"
+msgstr ""
+"Same GNOME nemô¾e naèíta» súbor s obrázkom.\n"
+"%s\n"
+"\n"
+"Prosím, overte in¹taláciu Same GNOME."
 
-#: glines/glines.c:189
+#: glines/glines.c:188
 msgid "Game Over!"
 msgstr "Koniec hry!"
 
-#: glines/glines.c:191 glines/glines.c:684 glines/glines.c:707
-#: glines/glines.c:1147
+#: glines/glines.c:190 glines/glines.c:683 glines/glines.c:706
+#: glines/glines.c:1134
 msgid "Glines"
 msgstr "GÈiary"
 
 #. Can't move there!
-#: glines/glines.c:398
+#: glines/glines.c:397
 msgid "Can't move there!"
 msgstr "Tam nemô¾ete »aha»!"
 
-#: glines/glines.c:702
+#: glines/glines.c:701
 msgid "Robert Szokovacs <szo@appaloosacorp.hu>"
 msgstr "Robert Szokovacs <szo@appaloosacorp.hu>"
 
-#: glines/glines.c:703
+#: glines/glines.c:702
 msgid "Szabolcs Ban <shooby@gnome.hu>"
 msgstr "Szabolcs Ban <shooby@gnome.hu>"
 
-#: glines/glines.c:708
+#: glines/glines.c:707
 msgid "(C) 1997-2000 the Free Software Foundation"
 msgstr "(C) 1997-2000 Free Software Foundation"
 
-#: glines/glines.c:710
+#: glines/glines.c:709
 msgid "Gnome port of the once-popular Color Lines game"
 msgstr "Port populárnej hry Farebné èiary pre GNOME"
 
-#: glines/glines.c:848 mahjongg/mahjongg.c:1145 same-gnome/same-gnome.c:574
+#: glines/glines.c:842 mahjongg/mahjongg.c:1145 same-gnome/same-gnome.c:579
 msgid "Preferences"
 msgstr "Nastavenie"
 
-#: glines/glines.c:869
+#: glines/glines.c:863
 msgid "Theme"
 msgstr "Téma"
 
-#: glines/glines.c:875
+#: glines/glines.c:869
 msgid "Select theme:"
 msgstr "Vyberte tému:"
 
-#: glines/glines.c:889
+#: glines/glines.c:883
 msgid "Select background:"
 msgstr "Vyberte pozadie:"
 
-#: glines/glines.c:898
+#: glines/glines.c:892
 msgid "Fast moves"
 msgstr "Rýchly pohyb"
 
-#: glines/glines.c:907
+#: glines/glines.c:901
 msgid "Ask confirmation when quitting"
 msgstr "Vy¾adova» potvrdenie pri ukonèení"
 
-#: glines/glines.c:1157
+#: glines/glines.c:1144
 msgid "Welcome to Glines!"
 msgstr "Vítajte v GÈiarach!"
 
-#: glines/glines.c:1168
+#: glines/glines.c:1155
 msgid "Next Balls"
 msgstr "Ïal¹ie gule"
 
-#: gnibbles/gnibbles.c:96 gnibbles/gnibbles.c:113
-msgid "Couldn't find pixmap file!\n"
-msgstr "Nemô¾em nájs» súbor s obrázkom!\n"
+#: gnibbles/gnibbles.c:97
+#, fuzzy, c-format
+msgid ""
+"Gnibbles couldn't find pixmap file:\n"
+"%s\n"
+"\n"
+"Please check your Gnibbles installation"
+msgstr ""
+"Same GNOME nemô¾e naèíta» súbor s obrázkom.\n"
+"%s\n"
+"\n"
+"Prosím, overte in¹taláciu Same GNOME."
 
-#: gnibbles/gnibbles.c:141
-#, c-format
-msgid "Ack!  Couldn't load level file %s\n"
-msgstr "Au! Nepodarilo sa naèíta» súbor s úrovòou %s\n"
+#: gnibbles/gnibbles.c:118
+#, fuzzy, c-format
+msgid ""
+"Gnibbles Couldn't find pixmap file:\n"
+"%s\n"
+"\n"
+"Please check your Gnibbles instalation"
+msgstr ""
+"Nemô¾em nájs» tému:\n"
+"%s\n"
+"\n"
+"Prosím, overte in¹taláciu Same GNOME"
+
+#: gnibbles/gnibbles.c:151
+#, fuzzy, c-format
+msgid ""
+"Gnibbles couldn't load level file:\n"
+"%s\n"
+"\n"
+"Please check your Gnibbles installation"
+msgstr ""
+"Same GNOME nemô¾e naèíta» súbor s obrázkom.\n"
+"%s\n"
+"\n"
+"Prosím, overte in¹taláciu Same GNOME."
 
 #: gnibbles/main.c:189
 msgid "Gnibbles"
@@ -1260,7 +1314,7 @@ msgid "Gnibbles Preferences"
 msgstr "Nastavenie Gnibbles"
 
 #: gnibbles/preferences.c:311 gnome-stones/preferences.c:558
-#: gnomine/gnomine.c:306
+#: gnomine/gnomine.c:324
 msgid "Game"
 msgstr "Hra"
 
@@ -1416,15 +1470,15 @@ msgstr ""
 "Gratulujeme, porazili ste Robotov!!\n"
 "Ale doká¾ete to znovu?"
 
-#: gnobots2/game.c:1167
+#: gnobots2/game.c:1171
 msgid "There are no teleport locations left!!"
 msgstr "U¾ nie sú ¾iadne teleporty!!"
 
-#: gnobots2/game.c:1235
+#: gnobots2/game.c:1239
 msgid "There are no safe locations to teleport to!!"
 msgstr "Neexistuje ¾iadne bezpeèné miesto, kam teleportova»!!"
 
-#: gnobots2/gnobots.c:58 same-gnome/same-gnome.c:791
+#: gnobots2/gnobots.c:58 same-gnome/same-gnome.c:796
 msgid "Set game scenario"
 msgstr "Nastavi» scenár hry"
 
@@ -1432,11 +1486,11 @@ msgstr "Nastavi» scenár hry"
 msgid "Set game configuration"
 msgstr "Nastavenie hry"
 
-#: gnobots2/gnobots.c:61 gnomine/gnomine.c:561 gnomine/gnomine.c:566
+#: gnobots2/gnobots.c:61 gnomine/gnomine.c:579 gnomine/gnomine.c:584
 msgid "X"
 msgstr "X"
 
-#: gnobots2/gnobots.c:62 gnomine/gnomine.c:562 gnomine/gnomine.c:567
+#: gnobots2/gnobots.c:62 gnomine/gnomine.c:580 gnomine/gnomine.c:585
 msgid "Y"
 msgstr "Y"
 
@@ -1754,7 +1808,8 @@ msgstr "Jaskyòa, ktorú sa sna¾íte naèíta» je príli¹ veµká pre túto hru."
 #. An object was requested in this cave, that was not
 #. declared in the game file's Object section.
 #: gnome-stones/io.c:360
-msgid "The cave you are trying to load includes an object, that wasn't declared."
+msgid ""
+"The cave you are trying to load includes an object, that wasn't declared."
 msgstr "Jaskyòa, ktorú sa sna¾íte naèíta» obsahuje nedeklarovaný objekt."
 
 #. **************************************************************************
@@ -1971,103 +2026,103 @@ msgstr ""
 "Napísané pre moju man¾elku Matyldu\n"
 "Komentáre a správy o chybách posielajte na: janusz.gorycki@intel.com"
 
-#: gnomine/gnomine.c:42 gnomine/gnomine.c:323
+#: gnomine/gnomine.c:43 gnomine/gnomine.c:341
 msgid "Tiny"
 msgstr "Drobné"
 
-#: gnomine/gnomine.c:43 gnomine/gnomine.c:334
+#: gnomine/gnomine.c:44 gnomine/gnomine.c:352
 msgid "Medium"
 msgstr "Stredné"
 
-#: gnomine/gnomine.c:44 gnomine/gnomine.c:345
+#: gnomine/gnomine.c:45 gnomine/gnomine.c:363
 msgid "Biiiig"
 msgstr "Veµké"
 
-#: gnomine/gnomine.c:45 gnomine/gnomine.c:356
+#: gnomine/gnomine.c:46 gnomine/gnomine.c:374
 msgid "Custom"
 msgstr "Vlastné"
 
-#: gnomine/gnomine.c:78 gnomine/gnomine.c:213 gnomine/gnomine.c:629
+#: gnomine/gnomine.c:78 gnomine/gnomine.c:231 gnomine/gnomine.c:648
 msgid "Gnome Mines"
 msgstr "Gnome Míny"
 
-#: gnomine/gnomine.c:194
+#: gnomine/gnomine.c:212
 msgid "Code: Pista"
 msgstr "Kód: Pista"
 
-#: gnomine/gnomine.c:195
+#: gnomine/gnomine.c:213
 msgid "Faces: tigert"
 msgstr "Tváre: tigert"
 
-#: gnomine/gnomine.c:196
+#: gnomine/gnomine.c:214
 msgid "Score: HoraPe"
 msgstr "Zvuk: HoraPe"
 
-#: gnomine/gnomine.c:214
+#: gnomine/gnomine.c:232
 msgid "(C) 1997-1999 the Free Software Foundation"
 msgstr "(C) 1997-1999 Free Software Foundation"
 
-#: gnomine/gnomine.c:216
+#: gnomine/gnomine.c:234
 msgid "Minesweeper clone"
 msgstr "Klon Mínového poµa"
 
-#: gnomine/gnomine.c:315
+#: gnomine/gnomine.c:333
 msgid "Field size"
 msgstr "Veµkos» poµa"
 
-#: gnomine/gnomine.c:370
+#: gnomine/gnomine.c:388
 msgid "Custom size"
 msgstr "Vlastná veµkos»:"
 
-#: gnomine/gnomine.c:380
+#: gnomine/gnomine.c:398
 msgid "Horizontal:"
 msgstr "Horizontálne:"
 
-#: gnomine/gnomine.c:396
+#: gnomine/gnomine.c:414
 msgid "Vertical:"
 msgstr "Vertikálne:"
 
-#: gnomine/gnomine.c:412
+#: gnomine/gnomine.c:430
 msgid "Number of mines:"
 msgstr "Poèet mín:"
 
-#: gnomine/gnomine.c:436
+#: gnomine/gnomine.c:454
 msgid "Mine size:"
 msgstr "Veµkos» míny:"
 
-#: gnomine/gnomine.c:463
+#: gnomine/gnomine.c:481
 msgid "Gnome Mine Preferences"
 msgstr "Nastavenie Gnome mín"
 
-#: gnomine/gnomine.c:561
+#: gnomine/gnomine.c:579
 msgid "Width of grid"
 msgstr "©írka mrie¾ky"
 
-#: gnomine/gnomine.c:562
+#: gnomine/gnomine.c:580
 msgid "Height of grid"
 msgstr "Vý¹ka mrie¾ky"
 
-#: gnomine/gnomine.c:563
+#: gnomine/gnomine.c:581
 msgid "Size of mines"
 msgstr "Veµkos» mín"
 
-#: gnomine/gnomine.c:563 gnotravex/gnotravex.c:194
+#: gnomine/gnomine.c:581 gnotravex/gnotravex.c:194
 msgid "SIZE"
 msgstr "VE¥KOS«"
 
-#: gnomine/gnomine.c:564
+#: gnomine/gnomine.c:582
 msgid "Number of mines"
 msgstr "Poèet mín"
 
-#: gnomine/gnomine.c:564 gtali/setup.c:78 gtali/setup.c:79
+#: gnomine/gnomine.c:582 gtali/setup.c:79 gtali/setup.c:80
 msgid "NUMBER"
 msgstr "POÈET"
 
-#: gnomine/gnomine.c:706
+#: gnomine/gnomine.c:735
 msgid "Flags:"
 msgstr "Zástavky:"
 
-#: gnomine/gnomine.c:717 gnotravex/gnotravex.c:605 mahjongg/mahjongg.c:2008
+#: gnomine/gnomine.c:746 gnotravex/gnotravex.c:603 mahjongg/mahjongg.c:2008
 msgid "Time:"
 msgstr "Èas:"
 
@@ -2159,29 +2214,29 @@ msgstr "_Presun"
 msgid "Size of board (2-6)"
 msgstr "Veµkos» plochy (2-6)"
 
-#: gnotravex/gnotravex.c:448
+#: gnotravex/gnotravex.c:446
 msgid "Puzzle solved! Well done!"
 msgstr "Problém vyrie¹ený! Gratulujeme!"
 
-#: gnotravex/gnotravex.c:451
+#: gnotravex/gnotravex.c:449
 msgid "Puzzle solved!"
 msgstr "Problém vyrie¹ený!"
 
-#: gnotravex/gnotravex.c:655 gnotski/gnotski.c:695
+#: gnotravex/gnotravex.c:653 gnotski/gnotski.c:693
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Nemô¾em nájs» súbor s obrázkom '%s'\n"
 
-#: gnotravex/gnotravex.c:747 mahjongg/mahjongg.c:1427
+#: gnotravex/gnotravex.c:745 mahjongg/mahjongg.c:1427
 msgid "... Game paused ..."
 msgstr "... Hra preru¹ená ..."
 
-#: gnotravex/gnotravex.c:785
+#: gnotravex/gnotravex.c:783
 #, c-format
 msgid "Playing %dx%d board"
 msgstr "Plocha %dx%d"
 
-#: gnotravex/gnotravex.c:971
+#: gnotravex/gnotravex.c:969
 msgid ""
 "Tetravex clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
@@ -2245,16 +2300,16 @@ msgstr "Úroveò hotová. Výborne."
 msgid "Moves:"
 msgstr "«ahy: "
 
-#: gnotski/gnotski.c:877
+#: gnotski/gnotski.c:875
 msgid "Welcome to Gnome Klotski"
 msgstr "Vítajte v Gnome Klotski"
 
-#: gnotski/gnotski.c:894
+#: gnotski/gnotski.c:892
 #, c-format
 msgid "Playing level %s"
 msgstr "Úroveò %s"
 
-#: gnotski/gnotski.c:980
+#: gnotski/gnotski.c:978
 msgid ""
 "Klotski clone\n"
 "(Comments to: Lars.Rydlinge@HIG.SE)"
@@ -2343,7 +2398,7 @@ msgstr ""
 "Dobre, a preèo ste to spú¹»ali???\n"
 "\n"
 
-#: gtali/gyahtzee.c:59 gtali/gyahtzee.c:375
+#: gtali/gyahtzee.c:59 gtali/gyahtzee.c:374
 msgid "Gnome Tali"
 msgstr "Gnome Tali"
 
@@ -2357,108 +2412,108 @@ msgstr "Poèítaè hrá za %s"
 msgid "%s! -- You're up."
 msgstr "%s! -- Ste na rade."
 
-#: gtali/gyahtzee.c:295 gtali/gyahtzee.c:319 gtali/yahtzee.c:187
+#: gtali/gyahtzee.c:294 gtali/gyahtzee.c:318 gtali/yahtzee.c:187
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "Mô¾ete hádza» iba trikrát! Vyberte riadok skóre."
 
-#: gtali/gyahtzee.c:360
+#: gtali/gyahtzee.c:359
 msgid "Scott Heavner"
 msgstr "Scott Heavner"
 
-#: gtali/gyahtzee.c:361
+#: gtali/gyahtzee.c:360
 msgid "Orest Zborowski - Curses Version (C) 1992"
 msgstr "Orest Zborowski - Verzia pre Curses (C) 1992"
 
-#: gtali/gyahtzee.c:373
+#: gtali/gyahtzee.c:372
 msgid "(C) 1998 the Free Software Fundation"
 msgstr "(C) 1998 Free Software Fundation"
 
-#: gtali/gyahtzee.c:401
+#: gtali/gyahtzee.c:400
 msgid "Cheater! Any high scores will not be recorded."
 msgstr "Podvodník! ®iadne rekordy nebudú ulo¾ené."
 
-#: gtali/gyahtzee.c:497
+#: gtali/gyahtzee.c:496
 msgid "Select dice to re-roll, press Roll!, or select score slot."
 msgstr ""
 "Vyberte kocku, ktorú chcete znovu hodi», tlaète Hodi»!, alebo vyberte riadok "
 "skóre."
 
-#: gtali/gyahtzee.c:538
+#: gtali/gyahtzee.c:537
 msgid " Roll ! "
 msgstr " Hodi» ! "
 
-#: gtali/setup.c:69
+#: gtali/setup.c:70
 msgid "Calculate random die throws (debug)"
 msgstr "Poèíta» náhodné hody (ladenie)"
 
-#: gtali/setup.c:75
+#: gtali/setup.c:76
 msgid "Delay computer moves"
 msgstr "Pauza pri »ahoch poèítaèa"
 
-#: gtali/setup.c:76
+#: gtali/setup.c:77
 msgid "Show high scores and exit"
 msgstr "Zobrazi» najvy¹¹ie skóre a skonèi»"
 
-#: gtali/setup.c:77
+#: gtali/setup.c:78
 msgid "Display computer thoughts"
 msgstr "Zobrazi» my¹lienky poèítaèa"
 
-#: gtali/setup.c:78
+#: gtali/setup.c:79
 msgid "Number of computer opponents"
 msgstr "Poèet poèítaèových protivníkov"
 
-#: gtali/setup.c:79
+#: gtali/setup.c:80
 msgid "Number of human opponents"
 msgstr "Poèet µudských protivníkov"
 
-#: gtali/setup.c:88
+#: gtali/setup.c:89
 msgid "Current game will complete with original number of players."
 msgstr "Aktuálna hra bude dokonèená s pôvodným poètom hráèov."
 
-#: gtali/setup.c:213
+#: gtali/setup.c:214
 msgid "GTali setup"
 msgstr "Nastavenie GTali"
 
-#: gtali/setup.c:222
+#: gtali/setup.c:223
 msgid "Computer Opponents"
 msgstr "Poèítaèoví protivníci"
 
-#: gtali/setup.c:230
+#: gtali/setup.c:231
 msgid "Delay between rolls"
 msgstr "Pauza medzi hodmi"
 
-#: gtali/setup.c:240
+#: gtali/setup.c:241
 msgid "Show thoughts during turn"
 msgstr "Zobrazi» my¹lienky poèas »ahu"
 
-#: gtali/setup.c:254
+#: gtali/setup.c:255
 msgid "Number of opponents:"
 msgstr "Poèet protivníkov:"
 
-#: gtali/setup.c:282
+#: gtali/setup.c:283
 msgid "Human Players"
 msgstr "¥udia"
 
-#: gtali/setup.c:292
+#: gtali/setup.c:293
 msgid "Number of players:"
 msgstr "Poèet hráèov:"
 
 #. --- OPTIONAL RULES FRAME ----
-#: gtali/setup.c:321
+#: gtali/setup.c:322
 msgid "Optional Rules"
 msgstr "Nepovinné pravidlá"
 
-#: gtali/setup.c:331
+#: gtali/setup.c:332
 msgid "Extra Yahtzee Bonus"
 msgstr "Extra bonus za Yahtzee"
 
 #. --- Button ---
-#: gtali/setup.c:357
+#: gtali/setup.c:358
 msgid "Enforce Joker Rules"
 msgstr "Vynucova» ¾olíkové pravidlá"
 
 #. --- PLAYER NAMES FRAME ----
-#: gtali/setup.c:372
+#: gtali/setup.c:373
 msgid "Player Names"
 msgstr "Mená hráèov"
 
@@ -2895,12 +2950,12 @@ msgstr "Zostáva kameòov: "
 msgid "Moves Left: "
 msgstr "Zostáva »ahov: "
 
-#: same-gnome/same-gnome.c:263 same-gnome/same-gnome.c:295
-#: same-gnome/same-gnome.c:298 same-gnome/same-gnome.c:633
+#: same-gnome/same-gnome.c:268 same-gnome/same-gnome.c:300
+#: same-gnome/same-gnome.c:303 same-gnome/same-gnome.c:638
 msgid "The Same Gnome"
 msgstr "Same Gnome"
 
-#: same-gnome/same-gnome.c:400
+#: same-gnome/same-gnome.c:405
 #, c-format
 msgid ""
 "Could not find the theme:\n"
@@ -2913,46 +2968,51 @@ msgstr ""
 "\n"
 "Prosím, overte in¹taláciu Same GNOME"
 
-#: same-gnome/same-gnome.c:422
-#, c-format
+#: same-gnome/same-gnome.c:427
+#, fuzzy, c-format
 msgid ""
 "Same Gnome can't load the image file:\n"
 "%s\n"
 "\n"
-"Please check you Same Gnome instalation"
+"Please check your Same Gnome installation"
 msgstr ""
 "Same GNOME nemô¾e naèíta» súbor s obrázkom.\n"
 "%s\n"
 "\n"
 "Prosím, overte in¹taláciu Same GNOME."
 
-#: same-gnome/same-gnome.c:587
+#: same-gnome/same-gnome.c:592
 msgid "Scenario"
 msgstr "Scenár"
 
-#: same-gnome/same-gnome.c:593
+#: same-gnome/same-gnome.c:598
 msgid "Select scenario:"
 msgstr "Vyberte scenár:"
 
-#: same-gnome/same-gnome.c:599
+#: same-gnome/same-gnome.c:604
 msgid "Make it the default scenario"
 msgstr "Pou¾i» ako ¹tandardný scenár."
 
-#: same-gnome/same-gnome.c:636
+#: same-gnome/same-gnome.c:641
 msgid "Original idea from KDE's same game program."
 msgstr "Originálna my¹lienka je z KDE programu same."
 
-#: same-gnome/same-gnome.c:790
+#: same-gnome/same-gnome.c:795
 msgid "Debugging mode"
 msgstr "Ladiaci mód"
 
-#: same-gnome/same-gnome.c:835
+#: same-gnome/same-gnome.c:840
 msgid "Same Gnome"
 msgstr "Same Gnome"
 
-#: same-gnome/same-gnome.c:845
+#: same-gnome/same-gnome.c:850
 msgid "Welcome to Same Gnome!"
 msgstr "Vítajte v Same Gnome!"
+
+#: same-gnome/same-gnome.c:867
+#, fuzzy
+msgid "Marked: "
+msgstr "Tmavé:"
 
 #: scottfree/GnomeScott.c:1204
 msgid "Nothing dropped.\n"
@@ -3046,3 +3106,11 @@ msgstr "Èo nesiem"
 msgid "_New"
 msgstr "_Nová"
 
+#~ msgid "Could not find the '%s' theme for Glines\n"
+#~ msgstr "Nemô¾em nájs» tému '%s' pre GÈiary\n"
+
+#~ msgid "Couldn't find pixmap file!\n"
+#~ msgstr "Nemô¾em nájs» súbor s obrázkom!\n"
+
+#~ msgid "Ack!  Couldn't load level file %s\n"
+#~ msgstr "Au! Nepodarilo sa naèíta» súbor s úrovòou %s\n"
