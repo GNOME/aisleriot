@@ -141,10 +141,10 @@ void show_select_game_dialog() {
 void show_hint_dialog(char* message) {
   GtkWidget* hint_dialog;
 
-  hint_dialog = gnome_messagebox_new (message,
-												  GNOME_MESSAGEBOX_QUESTION,
+  hint_dialog = gnome_message_box_new (message,
+												  GNOME_MESSAGE_BOX_QUESTION,
 												  _("Ok"), NULL);
 	GTK_WINDOW(hint_dialog)->position = GTK_WIN_POS_MOUSE;
-	gnome_messagebox_set_modal (GNOME_MESSAGEBOX (hint_dialog));
+	gnome_message_box_set_modal (GNOME_MESSAGE_BOX (hint_dialog));
 	gtk_widget_show (hint_dialog);
 }
