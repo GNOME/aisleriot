@@ -1,10 +1,10 @@
 AC_INIT(gnomine)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-games, 1.4.0.3)
+AM_INIT_AUTOMAKE(gnome-games, 1.90.0)
 AM_MAINTAINER_MODE
 AM_ACLOCAL_INCLUDE(macros)
-GNOME_INIT
+dnl GNOME_INIT
 
 SCROLLKEEPER_REQUIRED=0.1.4
 AC_SUBST(SCROLLKEEPER_REQUIRED)
@@ -24,31 +24,39 @@ fi
 AM_CONDITIONAL(CXX_PRESENT, test "x$ac_cv_prog_cxx_works" != xno)
 
 ## this should come after `AC_PROG_CC'
-GNOME_X_CHECKS
+dnl GNOME_X_CHECKS
 GNOME_CHECK_GUILE
 
 dnl Check for new enough gnome-libs
-CFLAGS_save=$CFLAGS
-LIBS_save=$LIBS
-CFLAGS=`gnome-config --cflags gnomeui`
-LIBS=`gnome-config --libs gnomeui`
+dnl CFLAGS_save=$CFLAGS
+dnl LIBS_save=$LIBS
+dnl CFLAGS=`gnome-config --cflags gnomeui`
+dnl LIBS=`gnome-config --libs gnomeui`
 
-AC_CHECK_LIB(gnomeui, gnome_window_icon_set_default_from_file, ,[
-AC_MSG_ERROR(gnome-libs 1.0.59 or higher is required.)])
+dnl AC_CHECK_LIB(gnomeui, gnome_window_icon_set_default_from_file, ,[
+dnl AC_MSG_ERROR(gnome-libs 1.0.59 or higher is required.)])
 
-CFLAGS=$CFLAGS_save
-LIBS=$LIBS_save
+dnl CFLAGS=$CFLAGS_save
+dnl LIBS=$LIBS_save
 
-AM_PATH_GDK_PIXBUF(0.9.0, ,AC_MSG_ERROR([Need gdk-pixbuf-0.9.0 or later!]))
+dnl AM_PATH_GDK_PIXBUF(0.9.0, ,AC_MSG_ERROR([Need gdk-pixbuf-0.9.0 or later!]))
 
-CFLAGS="`gnome-config --cflags gdk_pixbuf`${CFLAGS}"
+dnl CFLAGS="`gnome-config --cflags gdk_pixbuf`${CFLAGS}"
+
+LIBGNOMEUI_REQUIRED=1.105.0
+LIBGNOME_REQUIRED=1.105.0
+
+
+PKG_CHECK_MODULES(GNOME_GAMES, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
+AC_SUBST(GNOME_GAMES_CFLAGS)
+AC_SUBST(GNOME_GAMES_LIBS)
 
 ## look for some version of curses (keeping AM_'s out of curses.m4)
 AC_CHECK_CURSES
 AM_CONDITIONAL(HAS_CURSES, test "$has_curses" = true)
 
 ALL_LINGUAS="cs da de el en_GB es et fi fr ga gl hu it ja ko lt nl nn no pl pt pt_BR ro ru sk sl sv tr uk wa zh_CN.GB2312 zh_TW"
-AM_GNOME_GETTEXT
+AM_GLIB_GNU_GETTEXT
 
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
@@ -95,7 +103,7 @@ gnome-games.spec
 Makefile
 po/Makefile.in
 macros/Makefile
-intl/Makefile
+dnl intl/Makefile
 idl/Makefile
 gnomine/Makefile
 gnomine/help/Makefile
@@ -114,15 +122,15 @@ aisleriot/docs/Makefile
 aisleriot/docs/C/Makefile
 aisleriot/docs/it/Makefile
 aisleriot/pixmaps/Makefile
-freecell/Makefile
-freecell/src/Makefile
-freecell/gdk-card-image/Makefile
-gnome-stones/Makefile
-gnome-stones/graphics/Makefile
-gnome-stones/objects/Makefile
-gnome-stones/help/Makefile
-gnome-stones/help/C/Makefile
-gnome-stones/help/it/Makefile
+dnl freecell/Makefile
+dnl freecell/src/Makefile
+dnl freecell/gdk-card-image/Makefile
+dnl gnome-stones/Makefile
+dnl gnome-stones/graphics/Makefile
+dnl gnome-stones/objects/Makefile
+dnl gnome-stones/help/Makefile
+dnl gnome-stones/help/C/Makefile
+dnl gnome-stones/help/it/Makefile
 gtali/Makefile
 gtali/pix/Makefile
 gtali/help/Makefile
@@ -150,17 +158,17 @@ gnotravex/help/Makefile
 gnotravex/help/C/Makefile
 gnotravex/help/es/Makefile
 gnotski/Makefile
-gnometris/Makefile 
-gnometris/pix/Makefile
+dnl gnometris/Makefile 
+dnl gnometris/pix/Makefile
 gnibbles/Makefile
 gnibbles/help/Makefile
 gnibbles/help/C/Makefile
 gnibbles/sounds/Makefile
 glines/Makefile
 omf-install/Makefile 
-xbill/Makefile
-xbill/pixmaps/Makefile
-xbill/cursors/Makefile
+dnl xbill/Makefile
+dnl xbill/pixmaps/Makefile
+dnl xbill/cursors/Makefile
 ])
 ## iagno2/Makefile
 ## iagno2/reversi-iagno2/Makefile

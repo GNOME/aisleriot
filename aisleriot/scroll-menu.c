@@ -52,8 +52,8 @@ scroll_menu_get_type (void)
 			sizeof (ScrollMenuClass),
 			(GtkClassInitFunc) scroll_menu_class_init,
 			(GtkObjectInitFunc) scroll_menu_init,
-			(GtkArgSetFunc) NULL,
-			(GtkArgGetFunc) NULL,
+			NULL,
+			NULL,
 			NULL
 		};
 

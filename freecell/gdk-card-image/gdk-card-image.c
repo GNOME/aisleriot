@@ -196,8 +196,8 @@ GtkTypeInfo gdk_card_deck_info =
   sizeof (GdkCardDeckClass),
   (GtkClassInitFunc) gdk_card_deck_class_init,
   (GtkObjectInitFunc) NULL,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL,
+  NULL,
   (GtkClassInitFunc) NULL
 };
 
@@ -299,7 +299,7 @@ gdk_card_deck_file_load (GdkCardDeckFile* file)
 {
   if (!file->refs) {
     GdkPixbuf *im;
-    if (!(im = gdk_pixbuf_new_from_file (file->name))) 
+    if (!(im = gdk_pixbuf_new_from_file (file->name, NULL))) 
       return FALSE;
     
     file->width = gdk_pixbuf_get_width (im) / file->cols;
@@ -410,7 +410,7 @@ gdk_card_deck_options_edit_class_init (GdkCardDeckOptionsEditClass *klass)
   gdk_card_deck_options_edit_signals[CHANGED] =
     gtk_signal_new ("changed",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GdkCardDeckOptionsEditClass, changed),
 		    gtk_signal_default_marshaller,
 		    GTK_TYPE_NONE, 0);
@@ -429,8 +429,8 @@ GtkTypeInfo gdk_card_deck_options_edit_info =
   sizeof (GdkCardDeckOptionsEditClass),
   (GtkClassInitFunc) gdk_card_deck_options_edit_class_init,
   (GtkObjectInitFunc) NULL,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL,
+  NULL,
   (GtkClassInitFunc) NULL
 };
 

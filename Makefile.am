@@ -2,18 +2,20 @@
 #objc_DIRS = 
 #endif
 
-if GUILE
-guile_DIRS = aisleriot
-endif
+#if GUILE
+#guile_DIRS = aisleriot
+#endif
 
 if CXX_PRESENT
 cxx_DIRS = gnometris xbill
 endif
 
-SUBDIRS = intl po macros \
-	  freecell gnomine same-gnome mahjongg \
-          gtali gnobots2 iagno gnotravex gnome-stones gnotski \
-	  $(guile_DIRS) $(cxx_DIRS) idl glines gataxx gnibbles omf-install
+SUBDIRS = intl  po macros \
+	  gnomine same-gnome mahjongg gtali iagno  idl \
+	  gnobots2 gnome-stones gataxx  gnotravex  gnotski \
+	  gnibbles glines omf-install $(cxx_DIRS) \
+	  aisleriot  freecell iagno
+##	  $(guile_DIRS) 
 
 #$(objc_DIRS)
 
