@@ -81,29 +81,29 @@
 	      (complete-transaction start-slot card-list end-slot)
 	      (if (and (> end-slot 5) (= king (get-value (car (reverse card-list)))))
 		  (complete-transaction start-slot card-list end-slot)
-		  #f))
-	  (if (and (> end-slot 5)
-		   (eq? (is-red? (get-top-card end-slot))
-			(is-black? (car (reverse card-list)))))
-	      (if (= (get-value (get-top-card end-slot))
-		     (+ (get-value (car (reverse card-list))) 1))
-		  (complete-transaction start-slot card-list end-slot)
-		  #f)
-	      (if (and (> end-slot 1) (< end-slot 6) (= 1 (list-length card-list))
-		       (= (+ 1 (get-value(get-top-card end-slot))) (get-value (car card-list)))
-		       (= (get-suit(get-top-card end-slot)) (get-suit (car card-list))))
-		  (complete-transaction start-slot card-list end-slot)
-		  #f)))))
+		    #f))
+	    (if (and (> end-slot 5)
+		     (eq? (is-red? (get-top-card end-slot))
+			  (is-black? (car (reverse card-list)))))
+		(if (= (get-value (get-top-card end-slot))
+		       (+ (get-value (car (reverse card-list))) 1))
+		    (complete-transaction start-slot card-list end-slot)
+		    #f)
+		(if (and (> end-slot 1) (< end-slot 6) (= 1 (list-length card-list))
+			 (= (+ 1 (get-value(get-top-card end-slot))) (get-value (car card-list)))
+			 (= (get-suit(get-top-card end-slot)) (get-suit (car card-list))))
+		    (complete-transaction start-slot card-list end-slot)
+		    #f)))))
 
   
 (define (flip-cards-back)
   (if (> FLIP-COUNTER 2)
-		#f
-		(if (empty-slot? 1)
-			 #f
-			 (begin
-				(add-card! 0 (flip-card (remove-card 1)))
-				(flip-cards-back)))))
+      #f
+      (if (empty-slot? 1)
+	  #f
+	  (begin
+	    (add-card! 0 (flip-card (remove-card 1)))
+	    (flip-cards-back)))))
 
   
 				  
@@ -120,54 +120,70 @@
 		(add-card! 1 (flip-card top-card)))))
       #f))
 
+(define (place-ace card slot)
+  (remove-card slot)
+  (if (empty-slot? 2)
+      (complete-transaction slot (list card) 2)
+      (if (empty-slot? 3)
+	  (complete-transaction slot (list card) 3)
+	  (if (empty-slot? 4)
+	      (complete-transaction slot (list card) 4)
+	      (complete-transaction slot (list card) 5)))))
+
 
 (define (button-double-clicked slot)
   (if (and (or (> slot 5) (eq? slot 1))
 	   (not (empty-slot? slot)))
       (let ((top-card (get-top-card slot)))
-	(if (and (eq? (- (get-value top-card) 1) (get-value (get-top-card 2)))
-		 (eq? (get-suit top-card) (get-suit (get-top-card 2))))
-	    (begin 
-	      (remove-card slot)
-	      (complete-transaction slot (list top-card) 2))
-	    (if
-	     (and (eq? (- (get-value top-card) 1) (get-value (get-top-card 3)))
-		  (eq? (get-suit top-card) (get-suit (get-top-card 3))))
-	     (begin 
-	       (remove-card slot)
-	       (complete-transaction slot (list top-card) 3))
-	     (if
-	      (and (eq? (- (get-value top-card) 1) (get-value (get-top-card 4)))
-		   (eq? (get-suit top-card) (get-suit (get-top-card 4))))
-	     (begin 
-	       (remove-card slot)
-	       (complete-transaction slot (list top-card) 4))
-	      (if
-	       (and (eq? (- (get-value top-card) 1) (get-value (get-top-card 5)))
-		    (eq? (get-suit top-card) (get-suit (get-top-card 5))))
-	     (begin 
-	       (remove-card slot)
-	       (complete-transaction slot (list top-card) 5))
-	       #f)))))
-      #f))
+	(if (eq? (get-value top-card) ace)
+	    (place-ace top-card slot)
+	    (if (and (not (empty-slot? 2))
+		     (eq? (- (get-value top-card) 1) (get-value (get-top-card 2)))
+		     (eq? (get-suit top-card) (get-suit (get-top-card 2))))
+		(begin 
+		  (remove-card slot)
+		  (complete-transaction slot (list top-card) 2))
+		(if
+		 (and (not (empty-slot? 3))
+		      (eq? (- (get-value top-card) 1) (get-value (get-top-card 3)))
+		      (eq? (get-suit top-card) (get-suit (get-top-card 3))))
+		 (begin 
+		   (remove-card slot)
+		   (complete-transaction slot (list top-card) 3))
+		 (if
+		  (and (not (empty-slot? 4))
+		       (eq? (- (get-value top-card) 1) (get-value (get-top-card 4)))
+		       (eq? (get-suit top-card) (get-suit (get-top-card 4))))
+		  (begin 
+		    (remove-card slot)
+		    (complete-transaction slot (list top-card) 4))
+		  (if
+		   (and (not (empty-slot? 5))
+			(eq? (- (get-value top-card) 1) (get-value (get-top-card 5)))
+			(eq? (get-suit top-card) (get-suit (get-top-card 5))))
+		   (begin 
+		     (remove-card slot)
+		     (complete-transaction slot (list top-card) 5))
+		   #f)))))
+	   #f)))
 
 
 (define (game-over ugh)
   (if (and (= 13 (list-length (get-cards 2)))
-			  (= 13 (list-length (get-cards 3)))
-			  (= 13 (list-length (get-cards 4)))
-			  (= 13 (list-length (get-cards 5))))
-		#f
-		#t))
+	   (= 13 (list-length (get-cards 3)))
+	   (= 13 (list-length (get-cards 4)))
+	   (= 13 (list-length (get-cards 5))))
+      #f
+      #t))
 
 
 (define (game-won ugh)
   (if (and (= 13 (list-length (get-cards 2)))
-			  (= 13 (list-length (get-cards 3)))
-			  (= 13 (list-length (get-cards 4)))
-			  (= 13 (list-length (get-cards 5))))
-		#t
-		#f))
+	   (= 13 (list-length (get-cards 3)))
+	   (= 13 (list-length (get-cards 4)))
+	   (= 13 (list-length (get-cards 5))))
+      #t
+      #f))
 
 (define (get-hint ugh)
   #f)
