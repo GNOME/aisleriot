@@ -49,6 +49,7 @@ dnl GNOME's configure export USE_GNOME when freecell is built in GNOME tree.
 
 if test "$gnome_cv_use_gnome" = "yes"
 then
+  AM_ACLOCAL_INCLUDE(../macros)
   AC_MSG_RESULT([OK, built in GNOME tree.])
   GNOME_INIT
   in_gnome_tree="yes"
