@@ -36,9 +36,9 @@ EXTRA_DIST = $(cardback_DATA) $(cardhonor_DATA) $(cardjoker_DATA) \
 	$(cardsuitmedium_DATA) $(cardslot_DATA) $(cardmisc_DATA)
 
 lib_LTLIBRARIES = libgdkcardimage.la
-libgdkcardimage_la_SOURCES = gdk-card-image.c
+libgdkcardimage_la_SOURCES = gdk-card-image.c card-style-file.c
 libgdkcardimageincludedir = $(includedir)/gdkcardimage
-libgdkcardimageinclude_HEADERS = gdk-card-image.h
+libgdkcardimageinclude_HEADERS = gdk-card-image.h card-style-file.h
 libgdkcardimage_la_LDFLAGS = -version-info 0:0:0
 libgdkcardimage_la_LIBADD = $(GNOME_GAMES_LIBS) @UCB_LDFLAGS@
 
