@@ -106,7 +106,10 @@
   (add-cards! end-slot card-list)
   (add-card! 6 (car (reverse (get-cards end-slot))))
   (set-cards! end-slot (reverse (cdr (reverse (get-cards end-slot)))))
-  (make-visible-top-card 6))
+  (make-visible-top-card 6)
+  (if (not (= end-slot 6))
+      (add-to-score! 1)
+      #t)
 
 (define (button-released start-slot card-list end-slot)
   (if (transaction-good? end-slot card-list)
@@ -114,7 +117,9 @@
       #f))
 
 (define (button-clicked slot-id)  
-  #f)     
+  (if (= (get-value (get-top-card slot-id)) king)
+      (complete-transaction slot-id slot-id)
+      #f))
 
 (define (button-double-clicked slot)
   (if (transaction-good? slot (get-cards 6))
