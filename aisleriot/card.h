@@ -21,7 +21,6 @@
 #define CARD_H
 
 #include <gnome.h>
-#include "gdk-card-image.h"
 
 /*
  * Constants
@@ -57,7 +56,7 @@ GdkPixmap* get_card_back_pixmap ( void );
 
 void set_card_size (gint width, gint height);
 
-void load_pixmaps (GtkWidget*, GdkCardDeckOptions);
+void load_pixmaps (void);
 void free_pixmaps (void);
 
 void add_card (GList**, hcard_type);

@@ -335,12 +335,11 @@ static GtkWidget * deck_edit = NULL;
 static void 
 property_apply (GtkWidget *w, gpointer data)
 {
-  gtk_object_destroy (card_deck);
-  deck_options =  
-    gtk_card_deck_options_edit_get (GTK_CARD_DECK_OPTIONS_EDIT (w));
-  card_deck = gdk_card_deck_new (app->window, deck_options);
+#if 0
+  /* FIXME: actually change the theme. */
   gconf_client_set_string (gconf_client, "/apps/aisleriot/card_options",
-                           deck_options, NULL);
+                           /* FIXME */, NULL);
+#endif
 
   refresh_screen();
 }
@@ -360,7 +359,8 @@ void show_preferences_dialog ()
 
     frame = games_frame_new (_("Card Style"));
     
-    deck_edit = gtk_card_deck_options_edit_new ();
+    /* FIXME: get an actual widget for this. */
+    deck_edit = NULL;
     gtk_container_add (GTK_CONTAINER (frame), deck_edit);
     
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (property_box)->vbox), frame,
@@ -378,9 +378,6 @@ void show_preferences_dialog ()
     gtk_widget_show_all (property_box);
   }
 
-  gtk_card_deck_options_edit_set (GTK_CARD_DECK_OPTIONS_EDIT (deck_edit),
-				  deck_options);
-  
   gtk_window_present (GTK_WINDOW (property_box));
 }
 

@@ -21,7 +21,6 @@
 #include <gconf/gconf-client.h>
 #include <gtk/gtk.h>
 #include "press_data.h"
-#include "gdk-card-image.h"
 
 /*
  * Constants
@@ -35,6 +34,7 @@
 /* GConf keys. */
 #define WIDTH_GCONF_KEY "/apps/aisleriot/width"
 #define HEIGHT_GCONF_KEY "/apps/aisleriot/height"
+#define THEME_GCONF_KEY "/apps/aisleriot/card_style"
 
 /*
  * Global variables
@@ -49,7 +49,6 @@ extern GdkGC*           bg_gc;
 extern GdkPixmap*       surface;
 extern GdkPixmap*       moving_card_pixmap;
 extern GtkObject*       card_deck;
-extern GdkCardDeckOptions deck_options;
 
 extern guint            score;
 extern guint            game_time;

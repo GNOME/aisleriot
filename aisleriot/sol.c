@@ -62,8 +62,7 @@ GdkGC            *bg_gc;
 GdkGC            *slot_gc;
 GdkPixmap        *surface;
 GdkPixmap        *moving_card_pixmap;
-GtkObject*       card_deck;
-GdkCardDeckOptions deck_options = NULL;
+gchar            *card_style;
 gboolean         dont_save = FALSE; /* If the game is selected on the
                                      * command line we assume that it is
                                      * special and don't save the state.
@@ -164,8 +163,8 @@ save_state (GnomeClient *client)
 {
   gconf_client_set_string (gconf_client, "/apps/aisleriot/game_file",
                            game_file, NULL);
-  gconf_client_set_string (gconf_client, "/apps/aisleriot/card_options",
-                           deck_options, NULL);
+  gconf_client_set_string (gconf_client, "/apps/aisleriot/card_style",
+                           card_style, NULL);
 
   return TRUE;
 }
@@ -372,7 +371,7 @@ static void main_prog(int argc, char *argv[])
 
   create_main_window ();
 
-  load_pixmaps (app, deck_options);
+  load_pixmaps ();
 
   create_sol_board ();
   create_menus ();
@@ -415,9 +414,9 @@ retrieve_state (GnomeClient *client)
   start_game = games_gconf_get_string (gconf_client,
                                        "/apps/aisleriot/game_file",
                                        "klondike.scm");
-  deck_options = games_gconf_get_string (gconf_client,
-                                         "/apps/aisleriot/card_options",
-                                         "beige.png bonded.png gnome.png bold-09x14.png knuth-09x10.png knuth-18x21.png knuth-21x25.png");
+  card_style = games_gconf_get_string (gconf_client,
+				       "/apps/aisleriot/card_style",
+				       "bonded-new.png");
 }
 
 static int
