@@ -1,3 +1,9 @@
+2003-02-24  Theo van Klaveren  <t.vanklaveren@student.utwente.nl>
+
+	* gdk-card-image.c: Include <sys/types.h> if it is present.
+	Conditionally include <dirent.h> on FreeBSD. Kludgey, but I can't
+	think of any other way. Fixes compile on FreeBSD. Closes #106963.
+
 2002-07-04  Ross Burton  <ross@burtonini.com>
 
 	* gdk-card-image.c: Bad hacky mojo to fix building on OSF/1

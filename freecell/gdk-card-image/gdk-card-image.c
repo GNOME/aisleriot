@@ -27,7 +27,13 @@
 
 #include <config.h>
 #include <gnome.h>
-#ifdef HAVE_SYS_DIRENT_H
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
+#ifdef __FreeBSD__
+#include <dirent.h>
+#endif
+#if defined HAVE_SYS_DIRENT_H
 #include <sys/dirent.h>
 #elif defined(HAVE_SYS_DIR_H)
 #include <sys/dir.h>
