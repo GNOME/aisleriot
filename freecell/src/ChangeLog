@@ -1,3 +1,15 @@
+2002-06-25  Ross Burton  <ross@burtonini.com>
+
+	* io-gtk.c (callback_exit):
+	* io-gtk.c (callback_exit): Change the return type to a boolean,
+	and set it so that when a window close event is sent, it can be
+	cancelled (closes #85428)
+
+2002-06-25  Ross Burton  <ross@burtonini.com>
+
+	* io-gtk.c (callback_exit_really): Call gtk_main_quit() instead of
+	exit()
+
 2002-06-02  Ross Burton  <ross@burtonini.com>
 
 	* io-gtk.c (callback_about): Call gtk_window_set_transient_for()

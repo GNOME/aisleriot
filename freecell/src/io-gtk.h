@@ -39,7 +39,7 @@ void callback_new_with_seed (GtkWidget *widget, GdkEvent *event);
 void callback_score (GtkWidget *widget, GdkEvent *event);
 void callback_undo (GtkWidget *widget, GdkEvent *event);
 void callback_option (GtkWidget *widget, GdkEvent *event);
-void callback_exit (GtkWidget *widget, GdkEvent *event);
+gboolean callback_exit (GtkWidget *widget, GdkEvent *event);
 void callback_rule (GtkWidget *widget, GdkEvent *event);
 void callback_about (GtkWidget *widget, GdkEvent *event);
 

@@ -597,7 +597,7 @@ callback_exit_really (void)
 {
   score_write();
   option_write();
-  exit (0);
+  gtk_main_quit();
 }
 
 static void
@@ -609,7 +609,7 @@ callback_exit_with_lose ()
 	mb = NULL;
 }
 
-void
+gboolean
 callback_exit (GtkWidget *widget, GdkEvent *event)
 {
   if (!stalled
@@ -633,6 +633,8 @@ callback_exit (GtkWidget *widget, GdkEvent *event)
       if (response == GTK_RESPONSE_YES)
       {
 	      callback_exit_with_lose();
+      } else {
+        return TRUE;
       }
     }
   else
