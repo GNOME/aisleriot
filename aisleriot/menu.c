@@ -226,11 +226,6 @@ GnomeUIInfo variation_menu[] = {
    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 };
 GnomeUIInfo help_menu[] = {
-  {GNOME_APP_UI_ITEM, N_("Help with Aisleriot..."), NULL, help_about_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-  {GNOME_APP_UI_ITEM, N_("Help with Klondike..."), NULL, help_about_callback, NULL, NULL,
-   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-  {GNOME_APP_UI_SEPARATOR},
   {GNOME_APP_UI_ITEM, N_("About..."), NULL, help_about_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
   {GNOME_APP_UI_ENDOFINFO, NULL, NULL, NULL, NULL, NULL,
@@ -240,9 +235,9 @@ GnomeUIInfo help_menu[] = {
 GnomeUIInfo game_menu[] = {
   {GNOME_APP_UI_ITEM, N_("New"), NULL, file_new_game_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_NEW, 'n', GDK_CONTROL_MASK, NULL},
-  {GNOME_APP_UI_ITEM, N_("Properties..."), NULL, file_new_game_callback, NULL, NULL,
+  {GNOME_APP_UI_ITEM, N_("Properties..."), NULL, show_property_dialog, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 0, 0, NULL},
-  {GNOME_APP_UI_ITEM, N_("Statistics..."), NULL, file_new_game_callback, NULL, NULL,
+  {GNOME_APP_UI_ITEM, N_("Statistics..."), NULL, NULL, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF, 0, 0, NULL},
   {GNOME_APP_UI_SEPARATOR},
   {GNOME_APP_UI_ITEM, N_("Exit"), NULL, file_quit_callback, NULL, NULL,
@@ -274,6 +269,11 @@ GnomeUIInfo toolbar[] =
   {GNOME_APP_UI_ITEM, N_("Seed"), N_("Start a new game after choosing the seed."),
    file_select_game_callback, NULL, NULL,
    GNOME_APP_PIXMAP_DATA, tb_new_seed_xpm, 0, 0, NULL},
+  {GNOME_APP_UI_SEPARATOR},
+  
+  {GNOME_APP_UI_ITEM, N_("Hint"), N_("Give a hint."),
+   game_hint_callback, NULL, NULL,
+   GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_HELP, 0, 0, NULL},
 
   {GNOME_APP_UI_ITEM, N_("Undo"), N_("Undo the last move."),
    undo_callback, NULL, NULL,
@@ -282,6 +282,7 @@ GnomeUIInfo toolbar[] =
   {GNOME_APP_UI_ITEM, N_("Redo"), N_("Redo the last move"),
    redo_callback, NULL, NULL,
    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_PIXMAP_REDO, 0, 0, NULL},
+  {GNOME_APP_UI_SEPARATOR},
 
   {GNOME_APP_UI_ITEM, N_("Exit"), N_("Quit Aisleriot"),
    file_quit_callback, NULL, NULL,

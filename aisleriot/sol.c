@@ -163,7 +163,7 @@ void create_sol_board ()
 
 void create_main_window ()
 {
-  app = gnome_app_new ("solitaire", _("Solitaire"));
+  app = gnome_app_new ("AisleRiot", _("AisleRiot"));
   gtk_widget_realize (app);
 
   gtk_signal_connect (GTK_OBJECT (app), "delete_event", 
