@@ -260,6 +260,7 @@ const char *ui_description =
 "    <toolitem action='UndoMove'/>"
 "    <toolitem action='RedoMove'/>"
 "    <toolitem action='Hint'/>" 
+"    <toolitem action='LeaveFullscreen'/>"
 /* "    <toolitem action='Hidden'/>" */
 "  </toolbar>"
 "</ui>";
