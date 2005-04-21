@@ -379,7 +379,7 @@ games_controls_list_add_control (GamesControlsList *list,
 
 	entry = gconf_engine_get_entry (engine, gconf_key, NULL, TRUE, NULL);
 	if (entry == NULL) {
-	        g_oject_unref (client);
+	        g_object_unref (client);
 		return;
 	}
 
