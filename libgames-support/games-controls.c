@@ -378,7 +378,10 @@ games_controls_list_add_control (GamesControlsList *list,
 	engine = gconf_engine_get_for_address (GCONF_SCHEMA_CONFIG_SOURCE, NULL);
 
 	entry = gconf_engine_get_entry (engine, gconf_key, NULL, TRUE, NULL);
-	g_return_if_fail (entry != NULL);
+	if (entry == NULL) {
+	        g_oject_unref (client);
+		return;
+	}
 
 	schemaname = gconf_entry_get_schema_name (entry);
 	schema = gconf_client_get_schema (client,
