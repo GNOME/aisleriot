@@ -96,7 +96,7 @@ GdkPixmap * games_card_pixmaps_get_card (GamesCardPixmaps * images, gint suit,
 
 GdkPixmap * games_card_pixmaps_get_red_joker (GamesCardPixmaps * images)
 {
-  return games_card_pixmaps_get_card_by_id (images, GAMES_CARD_BACK);
+  return games_card_pixmaps_get_card_by_id (images, GAMES_CARD_RED_JOKER);
 }
 
 GdkPixmap * games_card_pixmaps_get_black_joker (GamesCardPixmaps * images)
