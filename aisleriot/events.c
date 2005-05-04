@@ -79,6 +79,41 @@ enum {
   CURSOR_CLOSED
 };
 
+static void find_drop_target(gint x, gint y, hslot_type* hslot, gint* cardid) {
+  hslot_type new_hslot;
+  gint i, new_cardid;
+  gint min_distance = G_MAXINT;
+
+  /* Find a target directly under the center of the card. */
+  slot_pressed(x + card_width / 2,
+               y + card_height / 2,
+               hslot, cardid);
+  if (*hslot)
+    return;
+
+  /* If that didn't work, look for a target at all 4 corners of the card. */
+  for (i = 0; i < 4; i++) {
+    slot_pressed(x + card_width * (i/2),
+                 y + card_height * (i%2),
+                 &new_hslot, &new_cardid);
+
+    if (new_hslot) {
+      gint dx, dy, new_distance;
+      dx = abs(new_hslot->pixelx + new_cardid*new_hslot->pixeldx - x);
+      dy = abs(new_hslot->pixely + new_cardid*new_hslot->pixeldy - y);
+      /* Actual distance is sqrt(new_distance) */
+      new_distance = dx*dx + dy*dy;
+
+      if (new_distance <= min_distance) {
+        *hslot = new_hslot;
+        *cardid = new_cardid;
+        min_distance = new_distance;
+      }
+    }
+
+  }
+}
+
 static void set_cursor (int cursor)
 {
   if (cursor == CURSOR_NONE)
@@ -135,9 +170,8 @@ void drop_moving_cards(gint x, gint y) {
   gint cardid, moved = 0;
   gint width, height;
 
-  slot_pressed(x + card_width / 2 - press_data->xoffset, 
-	       y + card_height / 2 - press_data->yoffset, 
-	       &hslot, &cardid);
+  find_drop_target(x - press_data->xoffset, y - press_data->yoffset,
+                   &hslot, &cardid);
 
   if (hslot) {
 

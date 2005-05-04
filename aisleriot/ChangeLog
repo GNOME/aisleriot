@@ -1,3 +1,13 @@
+2005-05-03  Richard Hoelscher  <rah@rahga.com>
+
+	* events.c (find_drop_target): Adjustments to distance calculation.
+	* slot.c (slot_pressed): When determining if the point is within
+	out rectangle, we now include the edges of our rectangle.
+
+	* events.c (find_drop_target): Determine if the edges of the card are
+	near a drop target, effectively making the targets bigger. (#91595)
+	Patch from Vincent Povirk <madewokherd@gmail.com>
+
 2005-04-21  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* rules/gay_gordons.scm: Guarantee that the game is solvable. This
