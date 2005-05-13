@@ -9,8 +9,8 @@ Priorities :
 
 After 2.10:
 
-  - Pango will support pixel font size specification (bug 119081), remove 
-    workarounds found in Tetravex, Stones, Gnometris, and Blackjack.
+  - Pango now support pixel font size specification. Replace
+    workarounds found in Stones, Gnometris, and Blackjack.
 
 --------------------------------------------------------------------------
 
@@ -31,13 +31,10 @@ General:
 AisleRiot:
 	- Freecell hint threading (bug 134798)
         - Better klondike hint (bug 85712)
-        - 3-card flip-over (possibly reinstate the game-specific
-          options, bug 50704).
         - Scheme clean-ups (see bug 51016 for suggestions)
         - Be able to automatically drag lists of cards to the
           foundation and have them distributed (like at the end of
           klondike) this is less surprising than auto-move (bug 2845).
-        - Be better at capturing cards (bug 91595)
         - Descriptions of games in Select dialog (bug 110730)
         - Find out what's wrong with block-ten.
         - Final missing features from stand-alone freecell (bug 124522).
@@ -51,9 +48,7 @@ Blackjack:
         - Rules dialog clean-up (bug 124613)
 
 Gataxx:
-        - Grid option : There should b a gconf key (and schema).
         - Share a front-end with Iagno.
-	- Fix the drawing issues with the grid hilight.
 
 Gnect:
         - Graphics (could we share some with iagno/gataxx)
@@ -71,10 +66,6 @@ Gnobots2:
         - Fix no-moves issue (bug 107846).
         - Graphics so they are viewable on large monitors.
         - Clean up the sounds (bug 152107).
-        - Since we can't change some settings mid-game an end-game option
-          would be good (bug 107846).
-        - Keep the preferences dialog open and start a new game. Oops. 
-          Also hiding things is not HIG compliant.
 	- Icon theme for custom icons ?
         - UI review (bug 132387).
 
@@ -128,7 +119,7 @@ Iagno:
 	- Add an "I'm thinking" message, especially for level 3 AI.
         - Merge with Gataxx (see above)
         - High contrast theme ? Other a11y stuff.
-        - See if the code causeing problems in bug 79180 can't be 
+        - See if the code causing problems in bug 79180 can't be 
           glib-ised to make the portability problem glibs.
         - Make defaults consistent with gataxx.
         - Make selecting side in a network game better (bug 119195).
