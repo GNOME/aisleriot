@@ -9,6 +9,14 @@ requires 2.0.0
     GAMES_SCORES_STYLE_PLAIN,
     GAMES_SCORES_STYLE_TIME,
   } GamesScoresStyle;
+
+  typedef enum {
+    GAMES_SCORES_CLOSE_BUTTON = 1,
+    GAMES_SCORES_NEW_GAME_BUTTON = 2,	
+    GAMES_SCORES_UNDO_BUTTON = 4,
+    GAMES_SCORES_QUIT_BUTTON = 8,
+  } GamesScoresButtons;
+
 %}
 
 %alltop{
@@ -37,6 +45,8 @@ requires 2.0.0
 
 class Games:Scores:Dialog from Gtk:Dialog {
 
+  private GtkWidget *message;
+  private GtkWidget *hdiv;
   private GtkWidget *combo;
   private GtkWidget *label;
   private GtkWidget *catbar;
@@ -211,8 +221,17 @@ class Games:Scores:Dialog from Gtk:Dialog {
 					 GTK_SHADOW_ETCHED_IN);
     gtk_box_pack_end (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
     
+    self->_priv->message = gtk_label_new ("");
+    gtk_label_set_use_markup (GTK_LABEL (self->_priv->message), TRUE);
+    gtk_label_set_justify (GTK_LABEL (self->_priv->message), 
+	                   GTK_JUSTIFY_CENTER);    
+    gtk_box_pack_start (GTK_BOX (vbox), self->_priv->message, FALSE, FALSE, 0);
+
+    self->_priv->hdiv = gtk_hseparator_new ();
+    gtk_box_pack_start (GTK_BOX (vbox), self->_priv->hdiv, FALSE, FALSE, 0);
+
     self->_priv->catbar = gtk_hbox_new (FALSE, 12);
-    gtk_box_pack_end (GTK_BOX (vbox), self->_priv->catbar, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (vbox), self->_priv->catbar, FALSE, FALSE, 0);
 
     self->_priv->label = gtk_label_new ("");
     gtk_box_pack_start (GTK_BOX (self->_priv->catbar), self->_priv->label, 
@@ -250,13 +269,13 @@ class Games:Scores:Dialog from Gtk:Dialog {
    
     gtk_container_add (GTK_CONTAINER (scroll), listview);
     
-    gtk_dialog_add_button (GTK_DIALOG (self), GTK_STOCK_CLOSE,
-			   GTK_RESPONSE_CLOSE);
-    gtk_dialog_set_default_response (GTK_DIALOG (self), 
-				     GTK_RESPONSE_CLOSE);
+    games_scores_dialog_set_buttons (self, GAMES_SCORES_CLOSE_BUTTON);
+
     gtk_window_set_destroy_with_parent (GTK_WINDOW (self), TRUE);
 
     gtk_widget_show_all (vbox);
+    gtk_widget_hide (self->_priv->hdiv);
+    gtk_widget_hide (self->_priv->message);
   }
 
   /**
@@ -284,7 +303,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
     self->_priv->catcounter++;
     gtk_combo_box_append_text (GTK_COMBO_BOX (self->_priv->combo), name);
   }
-  
+
   /**
    * set_category:
    * @self: a pointer to a GamesScoresDialog
@@ -371,4 +390,70 @@ class Games:Scores:Dialog from Gtk:Dialog {
     games_scores_dialog_set_hilight_private (self);
   }
 
+  /**
+   * set_message:
+   * @self: a pointer to a GamesScoresDialog
+   * @message: the message
+   * 
+   * Sets the message at the top of the dialog. Pango markup is understood.
+   *
+   **/
+  public void set_message (Games:Scores:Dialog *self, const gchar *message) {
+    if ((message == NULL) || (*message == '\0')) {
+      gtk_widget_hide (self->_priv->message);
+      gtk_widget_hide (self->_priv->hdiv);
+    } else {
+      gtk_widget_show (self->_priv->message);
+      gtk_widget_show (self->_priv->hdiv);
+    }
+
+    gtk_label_set_label (GTK_LABEL (self->_priv->message), message);
+  }
+
+  /**
+   * set_buttons:
+   * @self: a pointer to a GamesScoresDialog
+   * @buttons: An or-ed list of GamesScoresButtons
+   * 
+   * Changes the button sets at the buttom of the dialog
+   *
+   **/
+  public void set_buttons (Games:Scores:Dialog *self, guint buttons) {
+    /* Remove an existing buttons. */
+    gtk_container_foreach (GTK_CONTAINER (GTK_DIALOG (self)->action_area),
+                           (GtkCallback) (gtk_widget_destroy), NULL);
+
+    /* The default is a single close button, suitable for the scores
+       menu item. */
+    if (buttons == 0)
+	buttons = GAMES_SCORES_CLOSE_BUTTON;
+
+    if (buttons & GAMES_SCORES_QUIT_BUTTON) {
+	gtk_dialog_add_button (GTK_DIALOG (self), GTK_STOCK_QUIT,
+	                       GTK_RESPONSE_REJECT);
+        gtk_dialog_set_default_response (GTK_DIALOG (self), 
+	       			         GTK_RESPONSE_REJECT);
+    }
+
+    if (buttons & GAMES_SCORES_UNDO_BUTTON) {
+	gtk_dialog_add_button (GTK_DIALOG (self), GTK_STOCK_UNDO,
+	                       GTK_RESPONSE_DELETE_EVENT);
+        gtk_dialog_set_default_response (GTK_DIALOG (self), 
+	       			         GTK_RESPONSE_DELETE_EVENT);
+    }
+
+    if (buttons & GAMES_SCORES_NEW_GAME_BUTTON) {
+	gtk_dialog_add_button (GTK_DIALOG (self), _("New Game"),
+	                       GTK_RESPONSE_ACCEPT);
+        gtk_dialog_set_default_response (GTK_DIALOG (self), 
+	       			         GTK_RESPONSE_ACCEPT);
+    }
+
+    if (buttons & GAMES_SCORES_CLOSE_BUTTON) {
+	gtk_dialog_add_button (GTK_DIALOG (self), GTK_STOCK_CLOSE,
+	                       GTK_RESPONSE_CLOSE);
+        gtk_dialog_set_default_response (GTK_DIALOG (self), 
+	       			         GTK_RESPONSE_CLOSE);
+    }
+  }
 }

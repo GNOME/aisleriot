@@ -9,7 +9,7 @@
  */
 
 
-#line 14 "games-scores-dialog.gob"
+#line 22 "games-scores-dialog.gob"
 #line 14 "games-scores-dialog-private.h"
 #ifndef __GAMES_SCORES_DIALOG_PRIVATE_H__
 #define __GAMES_SCORES_DIALOG_PRIVATE_H__
@@ -24,34 +24,38 @@ extern "C" {
 
 #include <gtk/gtk.h>
 
-#line 23 "games-scores-dialog.gob"
+#line 31 "games-scores-dialog.gob"
 #line 29 "games-scores-dialog-private.h"
 struct _GamesScoresDialogPrivate {
-#line 40 "games-scores-dialog.gob"
-	GtkWidget * combo;
-#line 41 "games-scores-dialog.gob"
-	GtkWidget * label;
-#line 42 "games-scores-dialog.gob"
-	GtkWidget * catbar;
-#line 43 "games-scores-dialog.gob"
-	GtkListStore * list;
-#line 44 "games-scores-dialog.gob"
-	GtkTreeView * treeview;
-#line 45 "games-scores-dialog.gob"
-	GtkTreeViewColumn * column;
-#line 46 "games-scores-dialog.gob"
-	gchar * domain;
-#line 47 "games-scores-dialog.gob"
-	GHashTable * categories;
 #line 48 "games-scores-dialog.gob"
-	GHashTable * catindices;
+	GtkWidget * message;
 #line 49 "games-scores-dialog.gob"
-	gint catcounter;
+	GtkWidget * hdiv;
 #line 50 "games-scores-dialog.gob"
-	gint hilight;
+	GtkWidget * combo;
+#line 51 "games-scores-dialog.gob"
+	GtkWidget * label;
+#line 52 "games-scores-dialog.gob"
+	GtkWidget * catbar;
 #line 53 "games-scores-dialog.gob"
+	GtkListStore * list;
+#line 54 "games-scores-dialog.gob"
+	GtkTreeView * treeview;
+#line 55 "games-scores-dialog.gob"
+	GtkTreeViewColumn * column;
+#line 56 "games-scores-dialog.gob"
+	gchar * domain;
+#line 57 "games-scores-dialog.gob"
+	GHashTable * categories;
+#line 58 "games-scores-dialog.gob"
+	GHashTable * catindices;
+#line 59 "games-scores-dialog.gob"
+	gint catcounter;
+#line 60 "games-scores-dialog.gob"
+	gint hilight;
+#line 63 "games-scores-dialog.gob"
 	gint style;
-#line 55 "games-scores-dialog-private.h"
+#line 59 "games-scores-dialog-private.h"
 };
 
 #ifdef __cplusplus

@@ -25,6 +25,14 @@ extern "C" {
     GAMES_SCORES_STYLE_TIME,
   } GamesScoresStyle;
 
+  typedef enum {
+    GAMES_SCORES_CLOSE_BUTTON = 1,
+    GAMES_SCORES_NEW_GAME_BUTTON = 2,	
+    GAMES_SCORES_UNDO_BUTTON = 4,
+    GAMES_SCORES_QUIT_BUTTON = 8,
+  } GamesScoresButtons;
+
+
 
 
 #include <gtk/gtk.h>
@@ -83,6 +91,10 @@ void 	games_scores_dialog_set_category_description	(GamesScoresDialog * self,
 					const gchar * description);
 void 	games_scores_dialog_set_hilight	(GamesScoresDialog * self,
 					guint pos);
+void 	games_scores_dialog_set_message	(GamesScoresDialog * self,
+					const gchar * message);
+void 	games_scores_dialog_set_buttons	(GamesScoresDialog * self,
+					guint buttons);
 
 #ifdef __cplusplus
 }
