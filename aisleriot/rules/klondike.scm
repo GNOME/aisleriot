@@ -244,6 +244,6 @@
 
 (define (timeout) #f)
 
-(set-features droppable-feature droppable-feature droppable-feature)
+(set-features droppable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
