@@ -405,9 +405,8 @@ class Games:Scores:Dialog from Gtk:Dialog {
     } else {
       gtk_widget_show (self->_priv->message);
       gtk_widget_show (self->_priv->hdiv);
+      gtk_label_set_label (GTK_LABEL (self->_priv->message), message);
     }
-
-    gtk_label_set_label (GTK_LABEL (self->_priv->message), message);
   }
 
   /**
