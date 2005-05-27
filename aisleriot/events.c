@@ -79,6 +79,19 @@ enum {
   CURSOR_CLOSED
 };
 
+static gboolean cards_are_droppable (hslot_type hslot) {
+      SCM cardlist = SCM_EOL;
+      GList* temp;
+
+      if (!hslot) return FALSE;
+
+      for (temp = press_data->cards; temp; temp = temp->next)
+        cardlist = scm_cons(make_card(temp->data), cardlist);
+      return SCM_NFALSEP (cscmi_droppable_lambda (scm_long2num (press_data->hslot->id),
+                                                  cardlist,
+                                                  scm_long2num (hslot->id)));
+}
+
 static void find_drop_target(gint x, gint y, hslot_type* hslot, gint* cardid) {
   hslot_type new_hslot;
   gint i, new_cardid;
@@ -97,20 +110,25 @@ static void find_drop_target(gint x, gint y, hslot_type* hslot, gint* cardid) {
                  y + card_height * (i%2),
                  &new_hslot, &new_cardid);
 
-    if (new_hslot) {
-      gint dx, dy, new_distance;
+    if (!new_hslot)
+	continue;
+	
+        /* This skips corners we know are not droppable. */
+    if (!droppable_is_featured
+        || cards_are_droppable (new_hslot)) {
+      gint dx, dy, distance_squared;
+
       dx = abs(new_hslot->pixelx + new_cardid*new_hslot->pixeldx - x);
       dy = abs(new_hslot->pixely + new_cardid*new_hslot->pixeldy - y);
-      /* Actual distance is sqrt(new_distance) */
-      new_distance = dx*dx + dy*dy;
 
-      if (new_distance <= min_distance) {
+      distance_squared = dx*dx + dy*dy;
+
+      if (distance_squared <= min_distance) {
         *hslot = new_hslot;
         *cardid = new_cardid;
-        min_distance = new_distance;
+        min_distance = distance_squared;
       }
     }
-
   }
 }
 
@@ -174,7 +192,6 @@ void drop_moving_cards(gint x, gint y) {
                    &hslot, &cardid);
 
   if (hslot) {
-
     for (temp = press_data->cards; temp; temp = temp->next)
       cardlist = scm_cons(make_card(temp->data), cardlist);
     moved = SCM_NFALSEP (cscmi_button_released_lambda (scm_long2num (press_data->hslot->id),
@@ -185,7 +202,6 @@ void drop_moving_cards(gint x, gint y) {
   if (!moved) {
     hslot = press_data->hslot;
     add_cards_to_slot(press_data->cards, hslot);
-
     scm_c_eval_string ("(discard-move)");
   }
 
@@ -202,6 +218,52 @@ void drop_moving_cards(gint x, gint y) {
 
   if(moved) end_of_game_test();
 }
+
+static void highlight_drop_target(hslot_type hslot) {
+  static hslot_type old_hslot = NULL;
+
+  if (hslot != old_hslot) {
+    old_hslot = hslot;
+    gdk_window_hide(press_data->highlight_window);
+
+    if (cards_are_droppable(hslot)) {
+      GdkPixmap *droptarget_pixmap;
+
+      if (hslot->length) {
+      
+        hcard_type card;
+
+        gint delta = hslot->exposed ? hslot->exposed - 1 : 0;
+
+        int x = hslot->pixelx + delta * hslot->pixeldx;
+        int y = hslot->pixely + delta * hslot->pixeldy;
+
+        card = g_list_nth(hslot->cards, hslot->length - 1)->data;
+
+        droptarget_pixmap = get_droptarget_pixmap (card->suit, 
+						   card->value, 
+						   card->direction);
+
+        if (droptarget_pixmap) {
+          gdk_window_set_back_pixmap (press_data->highlight_window,
+                                      droptarget_pixmap, 0);
+          gdk_window_shape_combine_mask (press_data->highlight_window,
+                                    	 mask, 0, 0);
+          gdk_window_resize(press_data->highlight_window, 
+			    card_width, card_height);
+          gdk_window_clear(press_data->highlight_window);
+          gdk_window_move(press_data->highlight_window, x, y);
+          gdk_window_show(press_data->highlight_window);
+        }
+      } 
+    }
+
+  /* This ensures that the moving cards are on top.*/
+  gdk_window_show (press_data->moving_cards);
+  }
+}
+
+
 
 gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 {
@@ -330,6 +392,7 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
   if (event->button == 3 && press_data->status == STATUS_SHOW) {
     press_data->status = STATUS_NONE;
     gdk_window_hide(press_data->moving_cards);
+    highlight_drop_target(NULL);
     press_data->moving_pixmap = NULL;
     press_data->moving_mask = NULL;
     return TRUE;
@@ -346,6 +409,7 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
   switch (press_data->status) {
   case STATUS_IS_DRAG:
     press_data->status = STATUS_NONE;
+    highlight_drop_target(NULL);
     drop_moving_cards(event->x, event->y);
     break;
     
@@ -373,9 +437,19 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 {
   if (press_data->status == STATUS_IS_DRAG) {
+    hslot_type (hslot);
+    gint cardid;
+
+    find_drop_target(event->x - press_data->xoffset,
+                     event->y - press_data->yoffset,
+                     &hslot, &cardid); 
+    
+    highlight_drop_target(hslot);
+
     gdk_window_move(press_data->moving_cards,  
 		    event->x - press_data->xoffset,
 		    event->y - press_data->yoffset);
+
     gdk_window_clear(press_data->moving_cards);
     set_cursor (CURSOR_CLOSED);
   }
@@ -446,8 +520,7 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   window_width = event->width;
   window_height = event->height;
 
-  surface =
-    gdk_pixmap_new (playing_area->window, window_width, window_height, -1);
+  surface = gdk_pixmap_new (playing_area->window, window_width, window_height, -1);
 
   rescale_cards ();
   refresh_screen();

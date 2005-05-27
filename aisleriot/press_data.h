@@ -32,6 +32,7 @@ typedef struct {
   gint cardid;
   gint status;
   GdkWindow *moving_cards;
+  GdkWindow *highlight_window;
 } press_data_type;
 
 extern press_data_type* press_data; 

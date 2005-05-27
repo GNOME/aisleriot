@@ -182,6 +182,12 @@
 ;; How to move cards
 ;;
 
+(define (movable-to-homecell? card-list homecell-id)
+  (and (= (length card-list) 1)
+       (if (empty-slot? homecell-id)
+           (eq? (get-value (car card-list)) ace)
+           (homecell-join? (car (get-cards homecell-id)) (car card-list)))))
+
 (define (move-to-homecell card-list homecell-id)
 	(and
 		(= (length card-list) 1)
@@ -211,19 +217,23 @@
 	)
 )
 
-(define (move-to-field start-slot card-list field-id)
+;; Version of move-to-field that only tests a move or supermove.
+(define (movable-to-field? start-slot card-list field-id)
   (and (field-sequence? card-list)
-       (<= (length card-list) 
-	   (* (+ (empty-freecell-number) 1)
-	      ($expt 2 (max (- (empty-field-number)
-			       (if (empty-slot? field-id) 1 0)
-			       (if (empty-slot? start-slot) 1 0))
-			    0))))
-       (if (empty-slot? field-id)
-	   (add-cards! field-id card-list)
-	   (let ((dest-top (car (get-cards field-id))))
-	     (and (field-sequence? (append card-list (list dest-top)))
-		  (add-cards! field-id card-list))))))
+       (<= (length card-list)
+           (* (+ (empty-freecell-number) 1)
+              ($expt 2 (max (- (empty-field-number)
+                               (if (empty-slot? field-id) 1 0)
+                               (if (empty-slot? start-slot) 1 0))
+                            0))))
+       (or (empty-slot? field-id)
+           (let ((dest-top (car (get-cards field-id))))
+             (and (field-sequence? (append card-list (list dest-top))))))))
+
+
+(define (move-to-field start-slot card-list field-id)
+  (and (movable-to-field? start-slot card-list field-id)
+       (add-cards! field-id card-list)))
 
 (define (move-to-freecell card-list freecell-id)
 	(and
@@ -359,6 +369,13 @@
   (cond ((homecell?   slot) #f)
 	((field?      slot) (field-sequence? card-list))
 	((freecell?   slot) #t)))
+
+(define (droppable? start-slot card-list end-slot)
+        (and (not (= start-slot end-slot))
+             (cond
+               ((homecell? end-slot) (movable-to-homecell? card-list end-slot))
+               ((field?    end-slot) (movable-to-field? start-slot card-list end-slot))
+               (else #f))))
 
 (define (button-released start-slot card-list end-slot)
 	(and
@@ -991,7 +1008,9 @@
     (+ (get-board-free-count board (cdr cells))
        (if (null? (vector-ref board (car cells))) 1 0))))
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
 
 ;;; freecell.scm ends here
 

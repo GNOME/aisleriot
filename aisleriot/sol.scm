@@ -25,6 +25,18 @@
       (eval code)
       (eval code (current-module))))
         
+;; Feature masks:
+(define droppable-feature 1)
+
+(define (reset-features) (set-feature-word! 0))
+
+(define (set-features . feature-list)
+  (set-feature-word! (+ (get-feature-word)
+		       (apply + feature-list))))
+
+;; Sol.scm gets evaluated whenever game types are switched,
+;; this makes sure that the old settings are gone.
+(reset-features)
 
 ;; Constants:
 

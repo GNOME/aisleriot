@@ -43,6 +43,8 @@ void create_press_data (GdkWindow * window)
   press_data = g_malloc0(sizeof(press_data_type));
   press_data->moving_cards = gdk_window_new(window, &attributes,
 					    (GDK_WA_VISUAL | GDK_WA_COLORMAP));
+  press_data->highlight_window = gdk_window_new(window, &attributes,
+                                                (GDK_WA_VISUAL | GDK_WA_COLORMAP));
   press_data->status = 0;
 }
 

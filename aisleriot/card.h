@@ -50,6 +50,7 @@ extern GdkBitmap *mask;
  * Functions
  */
 GdkPixmap* get_card_picture (gint, gint);
+GdkPixmap* get_droptarget_pixmap (gint, gint, gboolean);
 GdkPixmap* get_slot_pixmap ( void );
 GdkPixmap* get_background_pixmap ( void );
 GdkPixmap* get_card_back_pixmap ( void );

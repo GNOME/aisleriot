@@ -1,3 +1,27 @@
+2005-05-26  Richard Hoelscher  <rah@rahga.com>
+
+	* cscmi.c (scm_set_feature_word)(scm_get_feature_word)(scm_set_lambda) 
+	* sol.scm (set-features)(reset-features): 
+	Allow new functions to be added to set-lambda. If a feature is not
+	supported by a game, then scm_set_lambda() won't try to implement it.
+	* sol.[ch]: Add "enabled_features" global, which can be checked against
+	feature masks, as well as convience gboolean "droppable_is_featured".
+
+	* klondike.scm, thieves.scm, monte_carlo.scm, clock.scm, freecell.scm:
+	* cscmi.c (cscmi_droppable_lambda): Support for "droppable?" queries,
+	which can be used in highlighing and expanded drop targets.
+
+	* events.c (cards_are_droppable): New, takes care of dirty work before
+	calling cscmi_droppable_lambda().
+	(highlight_drop_target): New, highlights the top card of a slot.
+	* card.c (get_droptarget_pixmap): Find the topmost card of a given 
+	slot, highlight it, and send back the pixmap.
+	(set_card_size): Copy a card from the newly rendered deck which will
+	be used as a destination pixbuf for highlighting, reset on resize.
+
+	This closes out Bug #91595. Highlighting is based on card outlining 
+	patch from Vincent Povirk <madewokherd@gmail.com> 
+
 2005-05-03  Richard Hoelscher  <rah@rahga.com>
 
 	* events.c (find_drop_target): Adjustments to distance calculation.

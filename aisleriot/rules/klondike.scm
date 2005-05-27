@@ -92,6 +92,11 @@
   #t)
 
 (define (button-released start-slot card-list end-slot)
+  (if (droppable? start-slot card-list end-slot)
+      (complete-transaction start-slot card-list end-slot) 
+  #f))
+
+(define (droppable? start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
        (or (and (member end-slot tableau)
 		(if (empty-slot? end-slot)
@@ -107,8 +112,7 @@
 		    (and (= (get-suit (get-top-card end-slot))
 			    (get-suit (car card-list)))
 			 (= (get-value (get-top-card end-slot)) 
-			    (- (get-value (car card-list)) 1))))))
-       (complete-transaction start-slot card-list end-slot)))
+			    (- (get-value (car card-list)) 1))))))))
 
 (define (button-clicked start-slot)
   (and (= start-slot stock)
@@ -240,4 +244,6 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature droppable-feature droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)

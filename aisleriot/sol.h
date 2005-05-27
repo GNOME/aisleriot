@@ -36,6 +36,9 @@
 #define HEIGHT_GCONF_KEY "/apps/aisleriot/height"
 #define THEME_GCONF_KEY "/apps/aisleriot/card_style"
 
+/* Feature masks */
+#define DROPPABLE_FMASK 1
+
 /*
  * Global variables
  */
@@ -48,7 +51,10 @@ extern GdkGC*           slot_gc;
 extern GdkGC*           bg_gc;
 extern GdkPixmap*       surface;
 extern GdkPixmap*       moving_card_pixmap;
-extern gchar*       card_style;
+extern gchar*	  	card_style;
+
+extern gint		enabled_features;
+extern gboolean		droppable_is_featured;
 
 extern guint            score;
 extern guint            game_time;

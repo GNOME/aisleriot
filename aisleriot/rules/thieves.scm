@@ -95,6 +95,11 @@
        (add-to-score! (score-for (get-value (car card-list))))
        (move-n-cards! start-slot 8 card-list)))
 
+(define (droppable? start-slot card-list end-slot)
+  (and (= end-slot 8)
+       (values-match? (car card-list) (get-top-card 8)) ) )
+
+
 (define (button-clicked slot-id) 
   (if (eq? slot-id 7)
       (and (not (empty-slot? slot-id))
@@ -147,6 +152,8 @@
 (define (apply-options options) #f)
 (define (timeout) #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked 
   button-double-clicked game-over game-won get-hint get-options apply-options
-  timeout)
+  timeout droppable?)

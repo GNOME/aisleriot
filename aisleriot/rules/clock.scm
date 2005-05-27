@@ -112,6 +112,9 @@
       (add-to-score! 1)
       #t))
 
+(define (droppable? start-slot card-list end-slot)
+  (transaction-good? end-slot card-list))
+
 (define (button-released start-slot card-list end-slot)
   (if (transaction-good? end-slot card-list)
       (complete-transaction card-list end-slot)
@@ -235,4 +238,6 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)

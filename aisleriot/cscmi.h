@@ -45,6 +45,9 @@ SCM        cscmi_button_released_lambda       (SCM        start_slot,
 					       SCM        end_slot);
 SCM        cscmi_button_clicked_lambda        (SCM        slot_id);
 SCM        cscmi_button_double_clicked_lambda (SCM        slot_id);
+SCM        cscmi_droppable_lambda             (SCM        start_slot,
+                                               SCM        cards,
+                                               SCM        end_slot);
 SCM        cscmi_game_over_lambda             (void);
 SCM        cscmi_winning_game_lambda          (void);
 SCM        cscmi_hint_lambda                  (void);

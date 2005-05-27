@@ -42,6 +42,7 @@ typedef struct {
   SCM get_options_lambda;
   SCM apply_options_lambda;
   SCM timeout_lambda;
+  SCM droppable_lambda;
 } lambda_data;
 
 lambda_data* game_data = NULL;
@@ -158,6 +159,20 @@ static SCM scm_redo_set_sensitive (SCM in_state)
   return SCM_EOL;
 }
 
+static SCM scm_get_feature_word()
+{
+  return SCM_MAKINUM(enabled_features);
+}
+
+static SCM scm_set_feature_word(SCM features)
+{
+  enabled_features = SCM_INUM(features);
+
+  droppable_is_featured = (enabled_features & DROPPABLE_FMASK);
+
+  return SCM_EOL;
+}
+
 static SCM scm_set_statusbar_message(SCM message)
 {
   gnome_appbar_clear_stack (GNOME_APPBAR (GNOME_APP (app)->statusbar));
@@ -257,6 +272,9 @@ static SCM scm_set_lambda(SCM start_game_lambda,
   game_data->apply_options_lambda = SCM_CADR(rest);
   game_data->timeout_lambda = SCM_CADDR(rest);
 
+  if (droppable_is_featured)
+    game_data->droppable_lambda = SCM_CADDDR(rest);
+
   return SCM_EOL;
 }
 
@@ -297,6 +315,8 @@ static SCM scm_get_timeout ()
 
 void cscm_init () 
 {
+  scm_c_define_gsubr("set-feature-word!", 1, 0, 0, scm_set_feature_word);
+  scm_c_define_gsubr("get-feature-word", 0, 0, 0, scm_get_feature_word);
   scm_c_define_gsubr("set-statusbar-message", 1, 0, 0, scm_set_statusbar_message);
   scm_c_define_gsubr("set-surface-layout", 1, 0, 0, scm_set_surface_layout);
   scm_c_define_gsubr("reset-surface", 0, 0, 0, scm_reset_surface);
@@ -585,6 +605,32 @@ cscmi_button_double_clicked_lambda (SCM slot_id)
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  g_free (call_data);
+
+  return call_data->retval;
+}
+
+SCM
+cscmi_droppable_lambda (SCM start_slot,
+                        SCM cards,
+                        SCM end_slot)
+{
+  CallData *call_data;
+
+  if (!droppable_is_featured) 
+    return SCM_BOOL_F;
+  
+  call_data = g_new0 (CallData, 1);
+  call_data->lambda = game_data->droppable_lambda;
+  call_data->n_args = 3;
+  call_data->arg1 = start_slot;
+  call_data->arg2 = cards;
+  call_data->arg3 = end_slot;
+  scm_internal_catch (SCM_BOOL_T,
+                      cscmi_call_lambda,
+                      call_data,
+                      cscmi_catch_handler,
+                      NULL);
   g_free (call_data);
 
   return call_data->retval;

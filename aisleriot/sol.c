@@ -67,6 +67,9 @@ gboolean         dont_save = FALSE; /* If the game is selected on the
                                      * This is essential for Freecell
                                      * emulation.*/
 
+gint32		 enabled_features;
+gboolean	 droppable_is_featured;
+
 guint            score;
 /* guint            game_seconds;*/
 guint            timeout;
