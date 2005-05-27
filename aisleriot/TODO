@@ -1,48 +1,76 @@
-TODO -- (roughly in order of importance)
-~~~~
-integrate the game with gnome/gtk+-guile:  This will help us add hooks
-to the game to allow a game-sensitive menu.  It will also allow us
-make a preferences dialog for solitaire games. *DONE without using 
-gnome/gtk+-guile*
+For information about card highlighting, see::
+http://bugs.gnome.org/show_bug.cgi?id=305609
 
-add undo:  This will probably be done scheme side, and will require
-modifying all of the games.  It will also make writing games a bit
-more complicated. *DONE*
+The following files do not yet support highlighting:
+agnes.scm
+auld_lang_syne.scm
+bakers_dozen.scm
+bakers_game.scm
+beleaguered_castle.scm
+block_ten.scm
+bristol.scm
+camelot.scm
+canfield.scm
+chessboard.scm
+cover.scm
+diamond_mine.scm
+doublets.scm
+eagle_wing.scm
+easthaven.scm
+eight_off.scm
+elevator.scm
+escalator.scm
+first_law.scm
+fortress.scm
+fortunes.scm
+fourteen.scm
+gay_gordons.scm
+glenwood.scm
+golf.scm
+gypsy.scm
+helsinki.scm
+hopscotch.scm
+isabel.scm
+jamestown.scm
+jumbo.scm
+kansas.scm
+king_albert.scm
+labyrinth.scm
+lady_jane.scm
+maze.scm
+neighbor.scm
+odessa.scm
+osmosis.scm
+peek.scm
+pileon.scm
+plait.scm
+poker.scm
+quatorze.scm
+royal_east.scm
+scorpion.scm
+scuffle.scm
+seahaven.scm
+sir_tommy.scm
+sol.scm
+spiderette.scm
+spider_one_suit.scm
+spider.scm
+spider_two_suit.scm
+straight_up.scm
+streets_and_alleys.scm
+template.scm
+ten_across.scm
+thirteen.scm
+thumb_and_pouch.scm
+treize.scm
+union_square.scm
+valentine.scm
+westhaven.scm
+whitehead.scm
+will_o_the_wisp.scm
+yield.scm
+yukon.scm
+zebra.scm
 
-redo the card format:  I'm thinking of making a dynamic library
-format.  This needs more thought.  I would like to have dynamic cards
-at some point (ala microsoft solitaire) with moving backgrounds,
-possibly.  Nothing really fancy, but good eye-candy anyway.
-
-Add a preferences dialog to the game:  Not exciting but necessary.
-Should allow the user to set the background, card/back pictures, and
-toolbar properties.
-
-Add a timer:  And add hooks to sol.scm to handle it. *DONE* (all in C)
-
-Add the help browser:  And set up a system to let card games add their 
-own help info. *DONE*
-
-Scan the directory for solitaire games: *DONE*
-
-Have the right mouse button show the card completely if it's partially
-exposed. *DONE*
-
-People have requested a search for card feature...  Dunno if it's
-actually useful.
-
-People have also requested Statistics.  That way it'll keep track of
-how many games you've played. etc.
-
-Add a splash screen while starting up. *DONE*
-
-And finally, if a stack is getting too long, try compressing it.
-
-Release Aisleriot 1.0  (:
-
-EXTRAS:
-
-Improve guile error trapping (ie add some!!)
-
-Implement animation of moves made automatically within scheme code.
-
+The following games are supported:
+Klondike, Freecell, Clock, Monte Carlo, Thieves
