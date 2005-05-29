@@ -42,7 +42,7 @@ sub print_header # void
 
 sub get_raw_names
 {
-  my $raw_names = `ls *scm`;
+  my $raw_names = `ls rules/*scm`;
   my @raw_names = split(/\n/, $raw_names);
 
   return @raw_names;
@@ -56,8 +56,11 @@ sub get_i18n_name_strings # (array of raw names) -> (array of i18n names)
   foreach $raw_name (@raw_names)
   {
     chomp;
-    $raw_name =~ s/^(.)(.*).scm$/\U$1\E$2/;
-    $raw_name =~ s/_/ /g; 
+    $raw_name =~ s/^.*\///;               # Remove the direcotry info
+    $raw_name =~ s/^(.)(.*).scm$/\u$1$2/; # Strip the suffix and uppercase 
+                                          # the first letter.
+    $raw_name =~ s/_(.)/ \u$1/g;          # Replace underscores with spaces
+                                          # and upeprcase the next letter.
 
     push @i18n_names, $raw_name;
   }

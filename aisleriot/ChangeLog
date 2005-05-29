@@ -1,3 +1,16 @@
+2005-05-28  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* menu.c (set_fullscreen_actions): Hide the menu bar in
+	full-screen mode. I am tempted to also hide the status bar, but
+	that gives essential info in klondike (the number of redeals
+	remaining).
+
+	* get_titles.pl (get_i18n_name_strings): 
+	* sol.c (game_file_to_name): Capitalise all the words in the game
+	names. This avoids "Monte carlo" while making life hell for 
+	translators. Also told get_titles.pl about the new rules directory
+	and simplified one of the regexps.
+
 2005-05-26  Richard Hoelscher  <rah@rahga.com>
 
 	* cscmi.c (scm_set_feature_word)(scm_get_feature_word)(scm_set_lambda) 

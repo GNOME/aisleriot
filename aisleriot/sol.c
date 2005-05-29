@@ -98,9 +98,15 @@ gchar* game_file_to_name (const gchar* file)
   char* p, *buf = g_path_get_basename(file);
 
   if ((p = strrchr (buf, '.'))) *p = '\0';
-  for(p = buf; p = strchr(p, '_'), p && *p;) *p = ' ';
-  for(p = buf; p = strchr(p, '-'), p && *p;) *p = ' ';
-  buf[0] = toupper(buf[0]);
+  for (p = buf; p = strchr(p, '_'), p && *p;) *p = ' ';
+  for (p = buf; p = strchr(p, '-'), p && *p;) *p = ' ';
+  for (p = buf; p = strchr(p, ' '), p && *p;) {
+    if (*(p+1)) {
+      *(p+1) = g_ascii_toupper (*(p+1));
+      *p++;
+    }
+  }
+  buf[0] = g_ascii_toupper (buf[0]);
 
   return buf;
 }

@@ -141,6 +141,12 @@ static void toolbar_toggle_callback(GtkToggleAction * togglebutton,
 
 static void set_fullscreen_actions (gboolean is_fullscreen)
 {
+  if (is_fullscreen) {
+    gtk_widget_hide (menubar);
+  } else {
+    gtk_widget_show (menubar);
+  }
+
   gtk_action_set_sensitive (leavefullscreenaction, is_fullscreen);
   gtk_action_set_visible (leavefullscreenaction, is_fullscreen);
 
