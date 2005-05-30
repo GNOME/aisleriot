@@ -45,6 +45,8 @@ G_BEGIN_DECLS
 
 void games_stock_init (void);
 
+gchar * games_stock_copy_tooltip_from_stockid(gchar *);
+
 G_END_DECLS
 
 #endif /* __GAMES_STOCK_H__ */

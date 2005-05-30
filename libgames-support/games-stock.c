@@ -23,6 +23,7 @@
 
 #include "config.h"
 
+#include <string.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n-lib.h>
 #include <gdk/gdkkeysyms.h>
@@ -70,6 +71,45 @@ static GamesStockItemIcon stock_item_icon[] = {
   { GAMES_STOCK_LEAVE_FULLSCREEN,   "stock_leave-fullscreen", NULL },
   { GAMES_STOCK_CONTENTS,     NULL,         GTK_STOCK_HELP}
 };
+
+typedef struct {
+  gchar *stock_id;
+  gchar *tooltip;
+} GamesStockItemTooltip;
+
+static GamesStockItemTooltip stock_item_tooltip[] = {
+  { GAMES_STOCK_NEW_GAME, N_("Start a new game") },
+  { GAMES_STOCK_PAUSE_GAME, N_("Pause the game") },
+  { GAMES_STOCK_RESTART_GAME, N_("Restart the game") },
+  { GAMES_STOCK_UNDO_MOVE, N_("Undo the last move") }, 
+  { GAMES_STOCK_REDO_MOVE, N_("Redo the undone move") },
+  { GAMES_STOCK_HINT, N_("Get a hint for your next move") },
+  { GAMES_STOCK_SCORES, N_("View the scores") },
+  { GAMES_STOCK_FULLSCREEN, N_("Enter fullscreen mode") },
+  { GAMES_STOCK_LEAVE_FULLSCREEN, N_("Leave fullscreen mode") },
+  { GAMES_STOCK_END_GAME, N_("End the current game") },
+  { GAMES_STOCK_CONTENTS, N_("View help for this game") },
+  { GTK_STOCK_QUIT, N_("Quit this game") },
+  { GTK_STOCK_ABOUT, N_("About this game") },
+  { GTK_STOCK_PREFERENCES, N_("Configure the game") }
+};
+
+gchar * 
+games_stock_copy_tooltip_from_stockid(gchar *stockid) {
+  gint i;
+  gchar *tooltip = NULL;
+
+  if (!stockid)
+    return NULL;
+
+  for (i = 0; i < G_N_ELEMENTS (stock_item_tooltip); i++) {	
+    if (strcmp (stock_item_tooltip[i].stock_id, stockid) == 0)
+      tooltip = g_strdup(stock_item_tooltip[i].tooltip);
+  }
+
+  return tooltip;
+}
+
 
 /* FIXME: This is for non-gtk icons. It only seems to go for the hicolor defaults. */
 static void
