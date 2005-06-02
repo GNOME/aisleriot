@@ -398,8 +398,8 @@
 		(not (empty-slot? slot))
 		(let ((card (get-top-card slot)))
 			(and
-;				(move-card-to-homecell card (homecell-by-suit (get-suit card)))
-				(move-card-to-freecell card (any-empty-freecell))
+				(or (move-card-to-homecell card (homecell-by-suit (get-suit card)))
+				    (move-card-to-freecell card (any-empty-freecell)))
 				(remove-card slot)
 				(move-low-cards 0)
 			)
