@@ -55,6 +55,7 @@
 GtkWidget        *app;
 GtkWidget        *vbox;
 GtkWidget        *playing_area;
+GtkWidget        *statusbar;
 GdkGC            *draw_gc;
 GdkGC            *bg_gc;
 GdkGC            *slot_gc;
@@ -400,7 +401,7 @@ gchar* start_game;
 
 static void main_prog(void *closure, int argc, char *argv[])
 {
-  GtkWidget *score_label, *time_label, *score_box, *status_bar;
+  GtkWidget *score_label, *time_label, *score_box;
 
   cscm_init();
 
@@ -410,12 +411,13 @@ static void main_prog(void *closure, int argc, char *argv[])
 
   load_pixmaps ();
 
+  statusbar = gtk_statusbar_new ();
   create_menus ();
 
   gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox), toolbar, FALSE, FALSE, 0);  
-
   create_sol_board ();
+  gtk_box_pack_end (GTK_BOX (vbox), statusbar, FALSE, FALSE, 0);
 
   score_box = gtk_hbox_new(0, FALSE);
   score_label = gtk_label_new (_("Score:"));
@@ -427,9 +429,7 @@ static void main_prog(void *closure, int argc, char *argv[])
   time_value = games_clock_new ();
   gtk_box_pack_start (GTK_BOX(score_box), time_value, FALSE, FALSE, GNOME_PAD_SMALL);
 
-  status_bar = gnome_appbar_new (FALSE, TRUE, FALSE);
-  gtk_box_pack_end (GTK_BOX(status_bar), score_box, FALSE, FALSE, 0);
-  gnome_app_set_statusbar (GNOME_APP (app), status_bar);
+  gtk_box_pack_end (GTK_BOX(statusbar), score_box, FALSE, FALSE, 0);
 
   new_game (start_game, NULL);
 

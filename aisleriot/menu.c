@@ -204,8 +204,8 @@ const GtkActionEntry actions[] = {
 
   { "NewGame", GAMES_STOCK_NEW_GAME, NULL, NULL, NULL, G_CALLBACK (random_seed) },
   { "RestartGame", GAMES_STOCK_RESTART_GAME, NULL, NULL, NULL, G_CALLBACK (restart_game) },
-  { "Select", GTK_STOCK_INDEX, N_("_Select Game..."), NULL, NULL, G_CALLBACK (show_select_game_dialog) },
-  { "Statistics", GTK_STOCK_ADD, N_("S_tatistics"), NULL, NULL, G_CALLBACK (show_statistics_dialog) },
+  { "Select", GTK_STOCK_INDEX, N_("_Select Game..."), NULL, N_("Play a different game"), G_CALLBACK (show_select_game_dialog) },
+  { "Statistics", GTK_STOCK_ADD, N_("S_tatistics"), NULL, N_("Show gameplay statistics"), G_CALLBACK (show_statistics_dialog) },
   { "Quit", GTK_STOCK_QUIT, NULL, NULL, NULL, G_CALLBACK (quit_app) },
   { "Fullscreen", GAMES_STOCK_FULLSCREEN, NULL, NULL, NULL, G_CALLBACK (fullscreen_callback) },
   { "LeaveFullscreen", GAMES_STOCK_LEAVE_FULLSCREEN, NULL, NULL, NULL, G_CALLBACK (fullscreen_callback) },
@@ -214,16 +214,14 @@ const GtkActionEntry actions[] = {
   { "UndoMove", GAMES_STOCK_UNDO_MOVE, NULL, NULL, NULL, G_CALLBACK (undo_callback) },
   { "RedoMove", GAMES_STOCK_REDO_MOVE, NULL, NULL, NULL, G_CALLBACK (redo_callback) },
   { "Hint", GAMES_STOCK_HINT, NULL, NULL, NULL, G_CALLBACK (show_hint_dialog) },
-  { "Contents", GAMES_STOCK_CONTENTS, NULL, NULL, NULL, G_CALLBACK (general_help) },
-  { "Help", GTK_STOCK_HELP, "", "", NULL, G_CALLBACK (help_on_specific_game) },
+  { "Contents", GAMES_STOCK_CONTENTS, NULL, NULL, N_("View help for Aisleriot"), G_CALLBACK (general_help) },
+  { "Help", GTK_STOCK_HELP, NULL, NULL, N_("View help for this game"), G_CALLBACK (help_on_specific_game) },
   { "About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) },
-
-  /*  { "Hidden", GTK_STOCK_NEW, "This should be hidden", NULL, NULL, NULL }, */
 };
 
 const GtkToggleActionEntry toggles[] = {
-  { "Toolbar", NULL, N_("_Toolbar"), NULL, NULL, G_CALLBACK (toolbar_toggle_callback) },
-  { "ClickToMove", NULL, N_("_Click to Move"), NULL, NULL, G_CALLBACK (clickmove_toggle_callback) },
+  { "Toolbar", NULL, N_("_Toolbar"), NULL, "Show or hide the toolbar", G_CALLBACK (toolbar_toggle_callback) },
+  { "ClickToMove", NULL, N_("_Click to Move"), NULL, "Pick up and drop cards by clicking", G_CALLBACK (clickmove_toggle_callback) },
 };
 
 const char *ui_description = 
@@ -286,6 +284,8 @@ void create_menus ()
 				       G_N_ELEMENTS (toggles), NULL);
 
   ui_manager = gtk_ui_manager_new ();
+  games_stock_prepare_for_statusbar_tooltips (ui_manager, statusbar);
+
   gtk_ui_manager_insert_action_group (ui_manager, action_group, 1); 
   gtk_ui_manager_add_ui_from_string (ui_manager, ui_description, -1, NULL);
 

@@ -175,8 +175,9 @@ static SCM scm_set_feature_word(SCM features)
 
 static SCM scm_set_statusbar_message(SCM message)
 {
-  gnome_appbar_clear_stack (GNOME_APPBAR (GNOME_APP (app)->statusbar));
-  gnome_appbar_push (GNOME_APPBAR(GNOME_APP (app)->statusbar), _(SCM_STRING_CHARS(message)));
+  guint context_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "message");
+  gtk_statusbar_pop (GTK_STATUSBAR (statusbar), context_id);
+  gtk_statusbar_push (GTK_STATUSBAR (statusbar), context_id, _(SCM_STRING_CHARS(message)));
   return SCM_EOL;
 }
 

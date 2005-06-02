@@ -46,6 +46,7 @@
 extern GtkWidget*       app;
 extern GtkWidget*       playing_area;
 extern GtkWidget*       option_dialog;
+extern GtkWidget*       statusbar;
 extern GdkGC*           draw_gc;
 extern GdkGC*           slot_gc;
 extern GdkGC*           bg_gc;

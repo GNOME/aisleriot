@@ -94,8 +94,14 @@ static GamesStockItemTooltip stock_item_tooltip[] = {
   { GTK_STOCK_PREFERENCES, N_("Configure the game") }
 };
 
-gchar * 
-games_stock_copy_tooltip_from_stockid(gchar *stockid) {
+
+typedef struct {
+  GtkWidget *statusbar;
+  gchar     *tooltip;
+} StatusTip;
+
+static gchar * 
+games_stock_get_tooltip_from_stockid(gchar *stockid) {
   gint i;
   gchar *tooltip = NULL;
 
@@ -104,10 +110,81 @@ games_stock_copy_tooltip_from_stockid(gchar *stockid) {
 
   for (i = 0; i < G_N_ELEMENTS (stock_item_tooltip); i++) {	
     if (strcmp (stock_item_tooltip[i].stock_id, stockid) == 0)
-      tooltip = g_strdup(stock_item_tooltip[i].tooltip);
+      tooltip = stock_item_tooltip[i].tooltip;
   }
 
   return tooltip;
+}
+
+
+static void
+set_statusbar_tooltip (GtkWidget *widget, StatusTip *data)
+{
+  guint context_id;
+
+  context_id = gtk_statusbar_get_context_id (GTK_STATUSBAR(data->statusbar), "games_stock_tooltip");
+  gtk_statusbar_push (GTK_STATUSBAR (data->statusbar), context_id,
+                      data->tooltip ? _(data->tooltip): "");
+}
+
+
+static void
+unset_statusbar_tooltip (GtkWidget *widget, StatusTip *data)
+{
+  guint context_id;
+
+  context_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (data->statusbar), "games_stock_tooltip");
+  gtk_statusbar_pop (GTK_STATUSBAR (data->statusbar), context_id);
+}
+
+
+static void
+connect_proxy (GtkUIManager *ui_manager,
+               GtkAction    *action,
+               GtkWidget    *proxy,
+               GtkWidget    *statusbar)
+{
+  gchar *tooltip;
+
+  if (!GTK_IS_MENU_ITEM (proxy))
+    return;
+
+  g_object_get (G_OBJECT(action), "tooltip", &tooltip, NULL);
+
+  if (!tooltip) {
+    gchar *stockid;
+
+    g_object_get (G_OBJECT(action), "stock-id", &stockid, NULL);
+    if (stockid)
+      tooltip = games_stock_get_tooltip_from_stockid (stockid);
+    g_free (stockid);
+  }
+
+  if (tooltip){
+    StatusTip *statustip;
+
+    statustip = g_new (StatusTip, 1);
+    statustip->statusbar = g_object_ref(statusbar);
+    statustip->tooltip = tooltip;
+
+    g_signal_connect (proxy, "select",
+		      G_CALLBACK (set_statusbar_tooltip), statustip);
+    g_signal_connect (proxy, "deselect",
+		      G_CALLBACK (unset_statusbar_tooltip), statustip);
+  }
+}
+
+
+/** 
+ *  Call this once, after creating the UI Manager but before 
+ *  you start adding actions. Then, whenever an action is added, 
+ *  connect_proxy() will set tooltips to be displayed in the statusbar.
+ */
+void
+games_stock_prepare_for_statusbar_tooltips (GtkUIManager *ui_manager, 
+					    GtkWidget *statusbar)
+{
+  g_signal_connect (ui_manager, "connect-proxy", G_CALLBACK (connect_proxy), statusbar);
 }
 
 

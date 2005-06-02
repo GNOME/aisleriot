@@ -25,6 +25,7 @@
 #define __GAMES_STOCK_H__
 
 #include <glib/gmacros.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
@@ -45,7 +46,9 @@ G_BEGIN_DECLS
 
 void games_stock_init (void);
 
-gchar * games_stock_copy_tooltip_from_stockid(gchar *);
+void
+games_stock_prepare_for_statusbar_tooltips (GtkUIManager *ui_manager,
+                      			    GtkWidget    *statusbar);
 
 G_END_DECLS
 
