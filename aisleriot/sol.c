@@ -434,6 +434,7 @@ static void main_prog(void *closure, int argc, char *argv[])
   new_game (start_game, NULL);
 
   gtk_widget_show_all (app);
+  gtk_window_set_focus (GTK_WINDOW (app), NULL);
 
   if (!gconf_client_get_bool (gconf_client,
                              "/apps/aisleriot/show_toolbar", NULL))

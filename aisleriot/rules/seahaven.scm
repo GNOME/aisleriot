@@ -83,6 +83,34 @@
 		    (sequence-matches-slot? card-list 6)
 		    (sequence-matches-slot? card-list 7))))))
 
+(define (droppable? start-slot card-list end-slot)
+  (cond ((= start-slot end-slot)
+	 #f)
+	((> end-slot 7) ; The tableau
+	 (and (or (and (empty-slot? end-slot)
+		       (= (get-value (car (reverse card-list)))
+			  king))
+		  (and (not (empty-slot? end-slot))
+		       (= (get-suit (get-top-card end-slot))
+			  (get-suit (car card-list)))
+		       (= (get-value (get-top-card end-slot))
+			  (+ 1 (get-value (car (reverse card-list)))))))
+	      (or (> start-slot 7)
+		  (and (> start-slot 1)
+		       (< start-slot 6)))))
+	((and (> end-slot 1) ; The free reserves
+	      (< end-slot 6))
+	 (and (= (length card-list) 1)
+	      (empty-slot? end-slot)))
+	(else ; otherwise it is the foundations
+	 (cond ((empty-slot? end-slot) 
+		(= (get-value (car card-list)) ace))
+	       (else
+		(and (= (get-suit (get-top-card end-slot))
+			(get-suit (car card-list)))
+		     (= (+ 1 (get-value (get-top-card end-slot)))
+			(get-value (car card-list)))))))))
+
 (define (button-released start-slot card-list end-slot)
   (cond ((= start-slot end-slot)
 	 #f)
@@ -286,6 +314,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)
