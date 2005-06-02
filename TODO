@@ -7,15 +7,9 @@ Priorities :
 
 --------------------------------------------------------------------------
 
-After 2.10:
-
-  - Pango now support pixel font size specification. Replace
-    workarounds found in Stones, Gnometris, and Blackjack.
-
---------------------------------------------------------------------------
-
 General:
         - Make games respond to the gconf key change signals.
+	  (I no longer think this is a good idea)
         - Move more common code into the libgames-support library.
         - Make as much as possible scalable so we can have full-screen
           modes (bug 80204).
@@ -127,7 +121,8 @@ Iagno:
 Mahjongg:
         - Fix up the tile search function for speed.
         - Make resizing a bit snappier.
-        - Level editor and external level files.
+        - Level editor and external level files (the later has been
+	  partly done already).
 
 libgames-support:
 	- Widgets other than the combo box for the GamesFileList.
@@ -137,3 +132,4 @@ libgames-support:
 	- Use a second thread for pre-generating card images (I think
           this was shaunm's idea so he could take advantage of works' dual 
 	  opteron).
+	- Write that score back-end you keep talking about Callum.
