@@ -43,7 +43,7 @@
 
   (add-carriage-return-slot)
 
-  (set! VERTPOS (- VERTPOS 100))
+  (set! VERTPOS (- VERTPOS (/ 2 3)))
 
   (add-extended-slot '() down)
   (add-extended-slot '() down)

@@ -15,7 +15,6 @@ INCLUDES =  \
 	-I$(top_srcdir)/libgames-support           \
 	-DDATADIR=\""$(datadir)"\"		   \
 	$(GNOME_GAMES_CFLAGS)			   \
-	@UCB_CFLAGS@				   \
 	-DGLADEDIR=\""$(gladedir)"\" 		   \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"   \
 	-DVERSION=\"$(VERSION)\"		   \
@@ -47,7 +46,6 @@ sol_SOURCES = 		\
 
 sol_LDADD = $(GNOME_GAMES_LIBS) \
 	../libgames-support/libgames-support.la \
-	@UCB_LDFLAGS@ \
 	$(GUILE_LDFLAGS) 
 
 glade_DATA = \
