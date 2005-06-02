@@ -63,11 +63,15 @@
   (and (not (empty-slot? slot-id))
        (> slot-id 4)))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (and (< end-slot 5)
        (> end-slot 0)
        (= (get-value (car card-list))
-	  (+ 1 (get-value (get-top-card end-slot))))
+          (+ 1 (get-value (get-top-card end-slot))))))
+
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
        (move-n-cards! start-slot end-slot card-list)
        (add-to-score! 1)))
 
@@ -149,6 +153,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

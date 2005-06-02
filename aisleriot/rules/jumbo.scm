@@ -91,7 +91,7 @@
       (make-visible-top-card start-slot))
   #t)
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (cond ((and (> end-slot 1)
 	      (< end-slot 10))
 	 (and (= (length card-list) 1)
@@ -102,8 +102,7 @@
 		       (= (get-suit (car card-list))
 			  (get-suit (get-top-card end-slot)))
 		       (= (get-value (car card-list))
-			  (+ 1 (get-value (get-top-card end-slot))))))
-	      (complete-transaction start-slot card-list end-slot)))
+			  (+ 1 (get-value (get-top-card end-slot))))))))
 	((> end-slot 9)
 	 (and (not (= start-slot end-slot))
 	      (or (and (empty-slot? end-slot)
@@ -112,9 +111,13 @@
 		       (not (eq? (is-red? (get-top-card end-slot))
 				 (is-red? (car (reverse card-list)))))
 		       (= (get-value (get-top-card end-slot))
-			  (+ (get-value (car (reverse card-list))) 1))))
-	      (complete-transaction start-slot card-list end-slot)))
+			  (+ (get-value (car (reverse card-list))) 1))))))
 	(#t #f)))
+
+(define (button-released start-slot card-list end-slot)
+  (if (droppable? start-slot card-list end-slot)
+      (complete-transaction start-slot card-list end-slot)
+      #f))
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)
@@ -161,6 +164,11 @@
        (empty-slot? 17)
        (empty-slot? 18)))
 
+(define (get-name-from-tableau slot)
+  (if (empty-slot? slot)
+      (_"an empty tableau slot")
+      (get-name (get-top-card slot))))
+
 (define (strip card-list)
   (if (not (is-visible? (cadr card-list)))
       (car card-list)
@@ -187,14 +195,10 @@
 	((and (not (empty-slot? t-slot))
 	      (not (is-visible? (car (reverse (get-cards t-slot)))))
 	      (check-plop (strip (get-cards t-slot)) 10))
-	 (if (empty-slot? (check-plop (strip (get-cards t-slot)) 10))
-	     (list 2 
-		   (get-name (strip (get-cards t-slot)))
-		   (_"an empty tableau slot"))
-	     (list 1 
-		   (get-name (strip (get-cards t-slot)))
-		   (get-name (get-top-card (check-plop (strip (get-cards t-slot)) 
-						       10))))))
+     (list 1 
+	   (get-name (strip (get-cards t-slot)))
+	   (get-name-from-tableau (check-plop (strip (get-cards t-slot)) 
+					       10))))
 	((and (not (empty-slot? t-slot))
 	      (> (length (get-cards t-slot)) 1)
 	      (not (is-visible? (cadr (get-cards t-slot))))
@@ -213,7 +217,7 @@
 	      (check-plop (get-top-card f-slot) 10))
 	 (list 1 
 	       (get-name (get-top-card f-slot))
-	       (get-name (get-top-card (check-plop (get-top-card f-slot) 10)))))
+	       (get-name-from-tableau (check-plop (get-top-card f-slot) 10))))
 	(#t (check-a-foundation-for-uncover card (+ 1 f-slot)))))
 
 (define (check-foundation-for-uncover t-slot)
@@ -235,8 +239,8 @@
 	     (check-empty-tslot (+ 1 t-slot))
 	     (list 1
 		   (get-name (car (reverse (get-cards t-slot))))
-		   (get-name (get-top-card (check-plop (car (reverse (get-cards t-slot)))
-						       10))))))
+		   (get-name-from-tableau (check-plop (car (reverse (get-cards t-slot)))
+						       10)))))
 	(#t (check-empty-tslot (+ 1 t-slot)))))
 
 (define (check-move-waste t-slot)
@@ -327,7 +331,7 @@
 	      (check-plop (get-top-card f-slot) 10))
 	 (list 1
 	       (get-name (get-top-card f-slot))
-	       (get-name (get-top-card (check-plop (get-top-card f-slot) 10)))))
+	       (get-name-from-tableau (check-plop (get-top-card f-slot) 10))))
 	(#t (check-foundation-for-waste (+ 1 f-slot)))))
 
 (define (get-hint)
@@ -350,6 +354,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+  	 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

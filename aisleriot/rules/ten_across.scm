@@ -98,7 +98,7 @@
        (= (get-value card2)
           (+ (get-value card1) 1))))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
        (or (and (member end-slot tableau)
                 (if (empty-slot? end-slot)
@@ -108,7 +108,10 @@
            (and allow-two-spot-use
                 (member end-slot tmp-spots)
                 (= 1 (length card-list))
-                (empty-slot? end-slot)))
+                (empty-slot? end-slot)))))
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
        (complete-transaction start-slot card-list end-slot)))
 
 (define (button-clicked start-slot)
@@ -369,4 +372,6 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)

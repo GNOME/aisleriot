@@ -99,7 +99,7 @@
 	  (shift-cards start-slot 1)
 	  (shift-cards end-slot 1))))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
        (not (empty-slot? end-slot))
        (> end-slot 0)
@@ -122,7 +122,10 @@
 		(> end-slot 15)
 		(< end-slot 21))
 	   (and (> start-slot 20)
-		(> end-slot 20)))
+		(> end-slot 20)))))
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
        (add-to-score! 2)
        (remove-card end-slot)
        (fill-in start-slot end-slot)))
@@ -196,6 +199,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

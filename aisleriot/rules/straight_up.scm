@@ -77,6 +77,24 @@
        (or (= slot-id 1)
 	   (> slot-id 5))))
 
+(define (droppable? start-slot card-list end-slot)
+  (cond ((and (> end-slot 1)
+              (< end-slot 6))
+         (and (eq? (get-suit (get-top-card end-slot))
+                   (get-suit (car card-list)))
+              (= (+ 1 (get-value (get-top-card end-slot)))
+                 (get-value (car card-list)))))
+        ((> end-slot 6)
+         (or (and (empty-slot? end-slot)
+                  (empty-slot? 6)
+                  (= start-slot 1))
+             (and (not (empty-slot? end-slot))
+                  (eq? (get-suit (get-top-card end-slot))
+                       (get-suit (car card-list)))
+                  (= (get-value (get-top-card end-slot))
+                     (+ 1 (get-value (car (reverse card-list))))))))
+        (else #f)))
+
 (define (button-released start-slot card-list end-slot)
   (cond ((and (> end-slot 1)
 	      (< end-slot 6))
@@ -99,7 +117,7 @@
 		     (+ 1 (get-value (car (reverse card-list)))))
 		  (move-n-cards! start-slot end-slot card-list)
 		  (check-reserve start-slot))))
-	(#t #f)))
+	(else #f)))
 
 (define (check-reserve start-slot)
   (or (< start-slot 6)
@@ -247,6 +265,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

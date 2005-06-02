@@ -140,22 +140,20 @@
 	      #f)
 	  #f)))
 
+(define (droppable? start-slot card-list end-slot)
+  (and (not (= start-slot end-slot))
+       (if (empty-slot? end-slot)
+ 	   (or (and (> end-slot 0) 
+		    (< end-slot 9) 
+		    (= 13 (length card-list)))
+	       (> end-slot 8))
+	   (and (> end-slot 8)
+	        (= (get-value (get-top-card end-slot))
+	        (+ (get-value (car (reverse card-list))) 1))))))
+
 (define (button-released start-slot card-list end-slot)
-  (if (= start-slot end-slot)
-      #f
-      (if (empty-slot? end-slot)
-	  (cond ((and (> end-slot 0) 
-		      (< end-slot 9) 
-		      (= 13 (length card-list)))
-		 (complete-transaction start-slot card-list end-slot))
-		((> end-slot 8)
-		 (complete-transaction start-slot card-list end-slot))
-		(#t #f))
-	  (cond ((and (> end-slot 8)
-		      (= (get-value (get-top-card end-slot))
-			 (+ (get-value (car (reverse card-list))) 1)))
-		 (complete-transaction start-slot card-list end-slot))
-		(#t #f)))))
+  (and (droppable? start-slot card-list end-slot)
+       (complete-transaction start-slot card-list end-slot)))
 
 (define (any-slot-empty?)
   (or (empty-slot? 9)
@@ -282,4 +280,6 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
