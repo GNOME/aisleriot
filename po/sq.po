@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-18 13:44+0000\n"
-"PO-Revision-Date: 2005-05-18 21:06+0200\n"
+"POT-Creation-Date: 2005-06-02 14:29+0000\n"
+"PO-Revision-Date: 2005-06-03 00:08+0200\n"
 "Last-Translator: Elian Myftiu <elian@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "Lartësia e dritares"
 msgid "Window width"
 msgstr "Gjerësia e dritares"
 
-#: ../aisleriot/cscmi.c:476
+#: ../aisleriot/cscmi.c:497
 #, c-format
 msgid ""
 "A scheme exception occured and we were unable to create a temporary file to "
@@ -109,11 +109,12 @@ msgstr "Urime."
 msgid "You have won!!!"
 msgstr "Fitove!!!"
 
-#: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:655
+#: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:625
 msgid "There are no more moves."
 msgstr "Nuk ka më lëvizje."
 
-#: ../aisleriot/dialog.c:64 ../same-gnome/ui.c:153 ../same-gnome/ui.c:174
+#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:171
+#: ../libgames-support/games-scores-dialog.gob:445 ../same-gnome/ui.c:152
 msgid "New Game"
 msgstr "Lojë e Re"
 
@@ -182,8 +183,8 @@ msgstr "Loja FreeCell"
 msgid "Play the popular FreeCell card game"
 msgstr "Luaj lojën e famshme të letrave FreeCell"
 
-#: ../aisleriot/menu.c:86 ../gnome-stones/main.c:1088 ../gnomine/gnomine.c:361
-#: ../mahjongg/mahjongg.c:921
+#: ../aisleriot/menu.c:86 ../gnome-stones/main.c:1011 ../gnomine/gnomine.c:415
+#: ../mahjongg/mahjongg.c:878
 msgid "Main game:"
 msgstr "Loja kryesore:"
 
@@ -205,53 +206,69 @@ msgstr ""
 
 #: ../aisleriot/menu.c:110 ../blackjack/src/menu.cpp:150
 #: ../gataxx/gataxx.c:383 ../glines/glines.c:1211 ../gnect/src/main.c:841
-#: ../gnibbles/main.c:184 ../gnobots2/menu.c:221 ../gnome-stones/main.c:1102
-#: ../gnometris/tetris.cpp:1456 ../gnomine/gnomine.c:384
+#: ../gnibbles/main.c:184 ../gnobots2/menu.c:221 ../gnome-stones/main.c:1025
+#: ../gnometris/tetris.cpp:1456 ../gnomine/gnomine.c:438
 #: ../gnotravex/gnotravex.c:1512 ../gnotski/gnotski.c:1573
-#: ../gtali/gyahtzee.c:438 ../iagno/gnothello.c:296 ../mahjongg/mahjongg.c:948
+#: ../gtali/gyahtzee.c:438 ../iagno/gnothello.c:296 ../mahjongg/mahjongg.c:905
 #: ../same-gnome/ui.c:107
 msgid "translator-credits"
 msgstr "Elian Myftiu <elian@alblinux.net>"
 
-#: ../aisleriot/menu.c:193 ../blackjack/src/blackjack.cpp:295
-#: ../glines/glines.c:1698 ../gnomine/gnomine.c:686 ../gnotski/gnotski.c:631
-#: ../mahjongg/mahjongg.c:1318 ../same-gnome/ui.c:435
+#: ../aisleriot/menu.c:199 ../blackjack/src/blackjack.cpp:297
+#: ../glines/glines.c:1698 ../gnomine/gnomine.c:740 ../gnotski/gnotski.c:631
+#: ../mahjongg/mahjongg.c:1272 ../same-gnome/ui.c:416
 msgid "_Game"
 msgstr "_Loja"
 
-#: ../aisleriot/menu.c:194 ../same-gnome/ui.c:436
+#: ../aisleriot/menu.c:200 ../same-gnome/ui.c:417
 msgid "_View"
 msgstr "_Pamje"
 
-#: ../aisleriot/menu.c:195 ../blackjack/src/blackjack.cpp:302
+#: ../aisleriot/menu.c:201 ../blackjack/src/blackjack.cpp:304
 msgid "_Control"
 msgstr "_Kontrolli"
 
 #. not translated on purpose
-#: ../aisleriot/menu.c:197 ../blackjack/src/blackjack.cpp:309
-#: ../glines/glines.c:1700 ../gnomine/gnomine.c:688 ../gnotski/gnotski.c:632
-#: ../mahjongg/mahjongg.c:1320 ../same-gnome/ui.c:438
+#: ../aisleriot/menu.c:203 ../blackjack/src/blackjack.cpp:311
+#: ../glines/glines.c:1700 ../gnomine/gnomine.c:742 ../gnotski/gnotski.c:632
+#: ../mahjongg/mahjongg.c:1274 ../same-gnome/ui.c:419
 msgid "_Help"
 msgstr "_Ndihmë"
 
-#: ../aisleriot/menu.c:201
+#: ../aisleriot/menu.c:207
 msgid "_Select Game..."
 msgstr "_Zgjidh Lojë..."
 
-#: ../aisleriot/menu.c:202
+#: ../aisleriot/menu.c:207
+msgid "Play a different game"
+msgstr "Fillo një lojë tjetër"
+
+#: ../aisleriot/menu.c:208
 msgid "S_tatistics"
 msgstr "S_tatistikat"
 
-#: ../aisleriot/menu.c:206
+#: ../aisleriot/menu.c:208
+msgid "Show gameplay statistics"
+msgstr "Shfaq statistikat e lojës"
+
+#: ../aisleriot/menu.c:212
 msgid "_Cards..."
 msgstr "_Letrat..."
 
-#: ../aisleriot/menu.c:219 ../blackjack/src/blackjack.cpp:315
-#: ../gnect/src/main.c:1213 ../mahjongg/mahjongg.c:1336
+#: ../aisleriot/menu.c:217
+msgid "View help for Aisleriot"
+msgstr "Shiko ndihmën për Aisleriot"
+
+#: ../aisleriot/menu.c:218 ../libgames-support/games-stock.c:91
+msgid "View help for this game"
+msgstr "Shiko ndihmën për këtë lojë"
+
+#: ../aisleriot/menu.c:223 ../blackjack/src/blackjack.cpp:317
+#: ../gnect/src/main.c:1213 ../mahjongg/mahjongg.c:1290
 msgid "_Toolbar"
 msgstr "_Paneli i instrumentëve"
 
-#: ../aisleriot/menu.c:220
+#: ../aisleriot/menu.c:224
 msgid "_Click to Move"
 msgstr "_Kliko për të Lëvizur"
 
@@ -787,12 +804,12 @@ msgstr "Lëviz një tufë letrash në një slot Tabele bosh"
 msgid "the appropriate Foundation pile"
 msgstr "vargu i përshtatshëm i Bazës"
 
-#: ../aisleriot/sol.c:135
+#: ../aisleriot/sol.c:145
 #, c-format
 msgid "AisleRiot: %s"
 msgstr "AisleRiot: %s"
 
-#: ../aisleriot/sol.c:162
+#: ../aisleriot/sol.c:172
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -805,26 +822,26 @@ msgstr ""
 "\n"
 "Të lutem kontrollo instalimin e AisleRiot"
 
-#: ../aisleriot/sol.c:379
+#: ../aisleriot/sol.c:389
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: ../aisleriot/sol.c:412 ../glines/glines.c:1952 ../gnobots2/statusbar.c:65
+#: ../aisleriot/sol.c:423 ../glines/glines.c:1952 ../gnobots2/statusbar.c:65
 #: ../gnome-stones/status.c:71 ../gnometris/scoreframe.cpp:58
-#: ../gnomine/gnomine.c:370
+#: ../gnomine/gnomine.c:424
 msgid "Score:"
 msgstr "Pikët:"
 
-#: ../aisleriot/sol.c:416 ../gnotravex/gnotravex.c:1051
-#: ../mahjongg/mahjongg.c:1488
+#: ../aisleriot/sol.c:427 ../gnotravex/gnotravex.c:1051
+#: ../mahjongg/mahjongg.c:1444
 msgid "Time:"
 msgstr "Koha:"
 
-#: ../aisleriot/sol.c:465
+#: ../aisleriot/sol.c:474
 msgid "Variation on game rules"
 msgstr "Ndryshim në rregullat e lojës"
 
-#: ../aisleriot/sol.c:466 ../gnobots2/gnobots.c:61 ../gnobots2/gnobots.c:63
+#: ../aisleriot/sol.c:475 ../gnobots2/gnobots.c:61 ../gnobots2/gnobots.c:63
 #: ../same-gnome/same-gnome.c:124 ../same-gnome/same-gnome.c:126
 msgid "NAME"
 msgstr "EMRI"
@@ -1196,24 +1213,24 @@ msgid "Agnes"
 msgstr "Agnes"
 
 #: ../aisleriot/translatable_game_names.h:8
-msgid "Auld lang syne"
-msgstr "Auld lang syne"
+msgid "Auld Lang Syne"
+msgstr "Auld Lang Syne"
 
 #: ../aisleriot/translatable_game_names.h:9
-msgid "Bakers dozen"
-msgstr "Bakers·dozen"
+msgid "Bakers Dozen"
+msgstr "Bakers·Dozen"
 
 #: ../aisleriot/translatable_game_names.h:10
-msgid "Bakers game"
+msgid "Bakers Game"
 msgstr "Loja Bakers"
 
 #: ../aisleriot/translatable_game_names.h:11
-msgid "Beleaguered castle"
+msgid "Beleaguered Castle"
 msgstr "Kështjella Beleaguered"
 
 #: ../aisleriot/translatable_game_names.h:12
-msgid "Block ten"
-msgstr "Blloko dhjetën"
+msgid "Block Ten"
+msgstr "Blloko Dhjetën"
 
 #: ../aisleriot/translatable_game_names.h:13
 msgid "Bristol"
@@ -1240,24 +1257,24 @@ msgid "Cover"
 msgstr "Kapak"
 
 #: ../aisleriot/translatable_game_names.h:19
-msgid "Diamond mine"
-msgstr "Miniera e diamanteve"
+msgid "Diamond Mine"
+msgstr "Miniera e Diamanteve"
 
 #: ../aisleriot/translatable_game_names.h:20
 msgid "Doublets"
 msgstr "Dyshet"
 
 #: ../aisleriot/translatable_game_names.h:21
-msgid "Eagle wing"
-msgstr "Krah shqiponje"
+msgid "Eagle Wing"
+msgstr "Krah Shqiponje"
 
 #: ../aisleriot/translatable_game_names.h:22
 msgid "Easthaven"
 msgstr "Easthaven"
 
 #: ../aisleriot/translatable_game_names.h:23
-msgid "Eight off"
-msgstr "Teta jashtë"
+msgid "Eight Off"
+msgstr "Teta Jashtë"
 
 #: ../aisleriot/translatable_game_names.h:24
 msgid "Elevator"
@@ -1268,8 +1285,8 @@ msgid "Escalator"
 msgstr "Zbritësi"
 
 #: ../aisleriot/translatable_game_names.h:26
-msgid "First law"
-msgstr "Rregulli i parë"
+msgid "First Law"
+msgstr "Rregulli i Parë"
 
 #: ../aisleriot/translatable_game_names.h:27
 msgid "Fortress"
@@ -1288,8 +1305,8 @@ msgid "Freecell"
 msgstr "Freecell"
 
 #: ../aisleriot/translatable_game_names.h:31
-msgid "Gay gordons"
-msgstr "Gay·gordons"
+msgid "Gay Gordons"
+msgstr "Gay·Gordons"
 
 #: ../aisleriot/translatable_game_names.h:32
 msgid "Glenwood"
@@ -1328,8 +1345,8 @@ msgid "Kansas"
 msgstr "Kansas"
 
 #: ../aisleriot/translatable_game_names.h:41
-msgid "King albert"
-msgstr "Mbreti albert"
+msgid "King Albert"
+msgstr "Mbreti Albert"
 
 #: ../aisleriot/translatable_game_names.h:42
 msgid "Klondike"
@@ -1340,16 +1357,16 @@ msgid "Labyrinth"
 msgstr "Labyrinth"
 
 #: ../aisleriot/translatable_game_names.h:44
-msgid "Lady jane"
-msgstr "Zonja jane"
+msgid "Lady Jane"
+msgstr "Zonja Jane"
 
 #: ../aisleriot/translatable_game_names.h:45
 msgid "Maze"
 msgstr "Maze"
 
 #: ../aisleriot/translatable_game_names.h:46
-msgid "Monte carlo"
-msgstr "Montekarlo"
+msgid "Monte Carlo"
+msgstr "Monte Karlo"
 
 #: ../aisleriot/translatable_game_names.h:47
 msgid "Neighbor"
@@ -1384,8 +1401,8 @@ msgid "Quatorze"
 msgstr "Quatorze"
 
 #: ../aisleriot/translatable_game_names.h:55
-msgid "Royal east"
-msgstr "Lindja mbretërore"
+msgid "Royal East"
+msgstr "Lindja Mbretërore"
 
 #: ../aisleriot/translatable_game_names.h:56
 msgid "Scorpion"
@@ -1400,90 +1417,86 @@ msgid "Seahaven"
 msgstr "Seahaven"
 
 #: ../aisleriot/translatable_game_names.h:59
-msgid "Sir tommy"
-msgstr "Zoti tommy"
+msgid "Sir Tommy"
+msgstr "Zoti Tommy"
 
 #: ../aisleriot/translatable_game_names.h:60
-msgid "Sol"
-msgstr "Sol"
-
-#: ../aisleriot/translatable_game_names.h:61
 msgid "Spiderette"
 msgstr "Spiderette"
+
+#: ../aisleriot/translatable_game_names.h:61
+msgid "Spider One Suit"
+msgstr "Spider Një Kostum"
 
 #: ../aisleriot/translatable_game_names.h:62
 msgid "Spider"
 msgstr "Merimanga"
 
 #: ../aisleriot/translatable_game_names.h:63
-msgid "Spider two suit"
-msgstr "Spider dy kostume"
+msgid "Spider Two Suit"
+msgstr "Spider Dy Kostume"
 
 #: ../aisleriot/translatable_game_names.h:64
-msgid "Spider one suit"
-msgstr "Spider një kostum"
+msgid "Straight Up"
+msgstr "I Drejtë"
 
 #: ../aisleriot/translatable_game_names.h:65
-msgid "Straight up"
-msgstr "I drejtë"
+msgid "Streets And Alleys"
+msgstr "Rrugë Dhe Rrugica"
 
 #: ../aisleriot/translatable_game_names.h:66
-msgid "Streets and alleys"
-msgstr "Rrugë dhe rrugica"
-
-#: ../aisleriot/translatable_game_names.h:67
 msgid "Template"
 msgstr "Shabllon"
 
-#: ../aisleriot/translatable_game_names.h:68
-msgid "Ten across"
-msgstr "Dhjeta përtej"
+#: ../aisleriot/translatable_game_names.h:67
+msgid "Ten Across"
+msgstr "Dhjeta Përtej"
 
-#: ../aisleriot/translatable_game_names.h:69
+#: ../aisleriot/translatable_game_names.h:68
 msgid "Thieves"
 msgstr "Hajdutët"
 
-#: ../aisleriot/translatable_game_names.h:70
+#: ../aisleriot/translatable_game_names.h:69
 msgid "Thirteen"
 msgstr "Trembëdhjetë"
 
-#: ../aisleriot/translatable_game_names.h:71
-msgid "Thumb and pouch"
-msgstr "Gishti i madh dhe xhepi"
+#: ../aisleriot/translatable_game_names.h:70
+msgid "Thumb And Pouch"
+msgstr "Gishti i Madh Dhe Xhepi"
 
-#: ../aisleriot/translatable_game_names.h:72
+#: ../aisleriot/translatable_game_names.h:71
 msgid "Treize"
 msgstr "Treize"
 
-#: ../aisleriot/translatable_game_names.h:73
-msgid "Union square"
-msgstr "Sheshi i bashkimit"
+#: ../aisleriot/translatable_game_names.h:72
+msgid "Union Square"
+msgstr "Sheshi i Bashkimit"
 
-#: ../aisleriot/translatable_game_names.h:74
+#: ../aisleriot/translatable_game_names.h:73
 msgid "Valentine"
 msgstr "Valentine"
 
-#: ../aisleriot/translatable_game_names.h:75
+#: ../aisleriot/translatable_game_names.h:74
 msgid "Westhaven"
 msgstr "Westhaven"
 
-#: ../aisleriot/translatable_game_names.h:76
+#: ../aisleriot/translatable_game_names.h:75
 msgid "Whitehead"
 msgstr "Kokëbardhi"
 
-#: ../aisleriot/translatable_game_names.h:77
-msgid "Will o the wisp"
-msgstr "Will·o·the·wisp"
+#: ../aisleriot/translatable_game_names.h:76
+msgid "Will O The Wisp"
+msgstr "Will·O·The·Wisp"
 
-#: ../aisleriot/translatable_game_names.h:78
+#: ../aisleriot/translatable_game_names.h:77
 msgid "Yield"
 msgstr "Prodhim"
 
-#: ../aisleriot/translatable_game_names.h:79
+#: ../aisleriot/translatable_game_names.h:78
 msgid "Yukon"
 msgstr "Yukon"
 
-#: ../aisleriot/translatable_game_names.h:80
+#: ../aisleriot/translatable_game_names.h:79
 msgid "Zebra"
 msgstr "Zebra"
 
@@ -1531,131 +1544,86 @@ msgstr "Përdor një shpërndarje të thjeshtë"
 msgid "Use a quick deal with no delay between each card."
 msgstr "Përdor një shpërndarje të shpejtë pa vonesa ndërmjet çdo letre."
 
-#: ../blackjack/src/blackjack.cpp:90
+#: ../blackjack/src/blackjack.cpp:91
 #, c-format
 msgid "Blackjack - %s"
 msgstr "Blackjack - %s"
 
-#: ../blackjack/src/blackjack.cpp:296
-msgid "_New Game"
-msgstr "Lojë e _Re"
-
-#: ../blackjack/src/blackjack.cpp:296 ../gnect/src/main.c:1240
-#: ../gnobots2/menu.c:106
-msgid "Start a new game"
-msgstr "Fillo një lojë të re"
-
-#: ../blackjack/src/blackjack.cpp:297
-msgid "_Restart Game"
-msgstr "_Rinis Lojën"
-
-#: ../blackjack/src/blackjack.cpp:297
-msgid "Restart the current game"
-msgstr "Rinis lojën e tanishme"
-
-#: ../blackjack/src/blackjack.cpp:298 ../libgames-support/games-stock.c:46
-msgid "_Hint"
-msgstr "_Udhëzim"
-
-#: ../blackjack/src/blackjack.cpp:298
-msgid "Get a hint for the next action"
-msgstr "Merr një ndihmë për lëvizjen tjetër"
-
-#: ../blackjack/src/blackjack.cpp:299
-msgid "Quit application"
-msgstr "Lër programin"
-
-#: ../blackjack/src/blackjack.cpp:300 ../glines/glines.c:1699
-#: ../gnomine/gnomine.c:687 ../mahjongg/mahjongg.c:1319
+#: ../blackjack/src/blackjack.cpp:302 ../glines/glines.c:1699
+#: ../gnomine/gnomine.c:741 ../mahjongg/mahjongg.c:1273
 msgid "_Settings"
 msgstr "_Rregullime"
 
-#: ../blackjack/src/blackjack.cpp:301
-msgid "Show game preferences"
-msgstr "Shfaq preferencat e lojës"
-
-#: ../blackjack/src/blackjack.cpp:303
+#: ../blackjack/src/blackjack.cpp:305
 msgid "D_eal"
 msgstr "Marrë_veshje"
 
-#: ../blackjack/src/blackjack.cpp:303 ../blackjack/src/dialog.cpp:98
+#: ../blackjack/src/blackjack.cpp:305 ../blackjack/src/dialog.cpp:98
 #: ../blackjack/src/dialog.cpp:101
 msgid "Deal a new hand"
 msgstr "Fillo një dorë të re"
 
-#: ../blackjack/src/blackjack.cpp:304
+#: ../blackjack/src/blackjack.cpp:306
 msgid "_Hit"
 msgstr "_Hidh"
 
-#: ../blackjack/src/blackjack.cpp:304
+#: ../blackjack/src/blackjack.cpp:306
 msgid "Add a card to the hand"
 msgstr "Shtoji një letër dorës"
 
-#: ../blackjack/src/blackjack.cpp:305
+#: ../blackjack/src/blackjack.cpp:307
 msgid "_Stand"
 msgstr "_Paso"
 
-#: ../blackjack/src/blackjack.cpp:305
+#: ../blackjack/src/blackjack.cpp:307
 msgid "Stop adding cards to the hand"
 msgstr "Mos i shto më letra dorës"
 
-#: ../blackjack/src/blackjack.cpp:306
+#: ../blackjack/src/blackjack.cpp:308
 msgid "S_urrender"
 msgstr "D_orëzohu"
 
-#: ../blackjack/src/blackjack.cpp:306
-msgid "Surrender the hand"
-msgstr "Dorëzo dorën"
+#: ../blackjack/src/blackjack.cpp:308
+msgid "Forfeit this hand for half of your wager"
+msgstr "Humb gjysmën e rrogës këtë dorë"
 
-#: ../blackjack/src/blackjack.cpp:307
+#: ../blackjack/src/blackjack.cpp:309
 msgid "_Double down"
 msgstr "_Dyfisho"
 
-#: ../blackjack/src/blackjack.cpp:307
-msgid "Double down"
-msgstr "Dyfisho"
+#: ../blackjack/src/blackjack.cpp:309
+msgid "Double your wager for a single hit"
+msgstr "Dyfisho bastin për një tek lëvizje"
 
-#: ../blackjack/src/blackjack.cpp:308
+#: ../blackjack/src/blackjack.cpp:310
 msgid "S_plit the hand"
 msgstr "N_daj dorën"
 
-#: ../blackjack/src/blackjack.cpp:308
-msgid "Split the hand"
-msgstr "Ndaj dorën"
-
-#: ../blackjack/src/blackjack.cpp:310 ../libgames-support/games-stock.c:51
-msgid "_Contents"
-msgstr "_Përmbajtja"
-
 #: ../blackjack/src/blackjack.cpp:310
-msgid "Display help for this game"
-msgstr "Shfaq ndihmën për këtë lojë"
+msgid "Split cards in two new hands"
+msgstr "Ndaj letrat në dy duar të reja"
 
-#: ../blackjack/src/blackjack.cpp:311
-msgid "About this game"
-msgstr "Rreth kësaj loje"
-
-#: ../blackjack/src/blackjack.cpp:315
+#: ../blackjack/src/blackjack.cpp:317
 msgid "Show toolbar"
 msgstr "Shfaq kutizën e veglave"
 
-#: ../blackjack/src/blackjack.cpp:345
+#: ../blackjack/src/blackjack.cpp:351
 msgid "Cards left:"
 msgstr "Letra të mbetura:"
 
-#: ../blackjack/src/blackjack.cpp:354
+#: ../blackjack/src/blackjack.cpp:360
 msgid "Wager:"
 msgstr "Basti:"
 
-#: ../blackjack/src/blackjack.cpp:367
+#: ../blackjack/src/blackjack.cpp:373
 msgid "Balance:"
 msgstr "Barazpesha:"
 
-#: ../blackjack/src/blackjack.cpp:411
+#: ../blackjack/src/blackjack.cpp:414
 msgid "Place your wager or deal a hand"
 msgstr "Vendos bastin ose shpërnda një dorë"
 
-#: ../blackjack/src/blackjack.cpp:649
+#: ../blackjack/src/blackjack.cpp:652
 msgid "Blackjack rule set to use"
 msgstr "Seti i rregullave të përdorimit për Blackjack"
 
@@ -1689,7 +1657,7 @@ msgstr "Preferencat e Blackjack"
 
 #: ../blackjack/src/dialog.cpp:238 ../gnect/src/prefs.c:389
 #: ../gnibbles/preferences.c:217 ../gnobots2/properties.c:829
-#: ../gnome-stones/preferences.c:750 ../gnometris/tetris.cpp:785
+#: ../gnome-stones/preferences.c:678 ../gnometris/tetris.cpp:785
 msgid "Game"
 msgstr "Loja"
 
@@ -1706,7 +1674,7 @@ msgid "_Reset Balance"
 msgstr "_Rivendos Barazpeshën"
 
 #: ../blackjack/src/dialog.cpp:294
-#: ../libgames-support/games-scores-dialog.gob:234
+#: ../libgames-support/games-scores-dialog.gob:253
 msgid "Name"
 msgstr "Emri"
 
@@ -2034,7 +2002,7 @@ msgid "Dark"
 msgstr "I Ziu"
 
 #: ../gataxx/properties.c:354 ../gataxx/properties.c:372
-#: ../gnect/src/prefs.c:337 ../gtali/yahtzee.c:62 ../iagno/properties.c:537
+#: ../gnect/src/prefs.c:337 ../gtali/yahtzee.c:61 ../iagno/properties.c:537
 #: ../iagno/properties.c:583
 msgid "Human"
 msgstr "Njeriu"
@@ -2049,7 +2017,7 @@ msgid "Easy"
 msgstr "I Lehtë"
 
 #: ../gataxx/properties.c:357 ../gataxx/properties.c:375 ../glines/glines.c:74
-#: ../gnomine/gnomine.c:79 ../gnomine/gnomine.c:564 ../same-gnome/game.c:49
+#: ../gnomine/gnomine.c:79 ../gnomine/gnomine.c:618 ../same-gnome/game.c:49
 msgid "Medium"
 msgstr "Mesatare"
 
@@ -2106,7 +2074,7 @@ msgid "Whether the grid should be shown"
 msgstr "Nëse duhet shfaqur apo jo rrjeta"
 
 #: ../gataxx/properties.c:422 ../iagno/properties.c:696
-#: ../mahjongg/mahjongg.c:751
+#: ../mahjongg/mahjongg.c:721
 msgid "_Tile set:"
 msgstr "_Seti i gurit:"
 
@@ -2114,12 +2082,12 @@ msgstr "_Seti i gurit:"
 msgid "The appearance of the pieces"
 msgstr "Pamja e gurëve"
 
-#: ../glines/glines.c:73 ../gnomine/gnomine.c:78 ../gnomine/gnomine.c:554
+#: ../glines/glines.c:73 ../gnomine/gnomine.c:78 ../gnomine/gnomine.c:608
 #: ../same-gnome/game.c:48
 msgid "Small"
 msgstr "E vogël"
 
-#: ../glines/glines.c:75 ../gnomine/gnomine.c:80 ../gnomine/gnomine.c:574
+#: ../glines/glines.c:75 ../gnomine/gnomine.c:80 ../gnomine/gnomine.c:628
 #: ../same-gnome/game.c:50
 msgid "Large"
 msgstr "E madhe"
@@ -2128,7 +2096,7 @@ msgstr "E madhe"
 msgid "Could not load theme"
 msgstr "I pamundur ngarkimi i temës"
 
-#: ../glines/glines.c:169 ../mahjongg/mahjongg.c:133
+#: ../glines/glines.c:169 ../mahjongg/mahjongg.c:131
 msgid "Preferences"
 msgstr "Preferimet"
 
@@ -2208,15 +2176,15 @@ msgstr "N_gjyra e sfondit:"
 msgid "Board Size"
 msgstr "Madhësia e Fushës"
 
-#: ../glines/glines.c:1471 ../same-gnome/ui.c:455
+#: ../glines/glines.c:1471 ../same-gnome/ui.c:436
 msgid "_Small"
 msgstr "E _vogël"
 
-#: ../glines/glines.c:1481 ../same-gnome/ui.c:456
+#: ../glines/glines.c:1481 ../same-gnome/ui.c:437
 msgid "_Medium"
 msgstr "_Mesatar"
 
-#: ../glines/glines.c:1491 ../same-gnome/ui.c:457
+#: ../glines/glines.c:1491 ../same-gnome/ui.c:438
 msgid "_Large"
 msgstr "E _madhe"
 
@@ -2350,7 +2318,7 @@ msgstr "Lëviz djathtas"
 msgid "Show tool bar"
 msgstr "Shfaq kutizën e veglave"
 
-#: ../gnect/data/gnect.schemas.in.h:13 ../gnome-stones/preferences.c:862
+#: ../gnect/data/gnect.schemas.in.h:13 ../gnome-stones/preferences.c:790
 msgid "Sound"
 msgstr "Zëri"
 
@@ -2494,11 +2462,16 @@ msgstr "E re"
 msgid "New game"
 msgstr "Lojë e re"
 
+#: ../gnect/src/main.c:1240 ../gnobots2/menu.c:106
+#: ../libgames-support/games-stock.c:81
+msgid "Start a new game"
+msgstr "Fillo një lojë të re"
+
 #: ../gnect/src/main.c:1242
 msgid "Undo"
 msgstr "Anullo"
 
-#: ../gnect/src/main.c:1242
+#: ../gnect/src/main.c:1242 ../libgames-support/games-stock.c:84
 msgid "Undo the last move"
 msgstr "Anullo lëvizjen e fundit"
 
@@ -2506,7 +2479,7 @@ msgstr "Anullo lëvizjen e fundit"
 msgid "Hint"
 msgstr "Udhëzim"
 
-#: ../gnect/src/main.c:1243
+#: ../gnect/src/main.c:1243 ../libgames-support/games-stock.c:86
 msgid "Get a hint for your next move"
 msgstr "Merr një ndihmë për lëvizjen tuaj në vazhdim "
 
@@ -2946,11 +2919,11 @@ msgstr "Cakto skenarin e lojës"
 msgid "Set game configuration"
 msgstr "Cakto konfigurimin e lojës"
 
-#: ../gnobots2/gnobots.c:64 ../gnomine/gnomine.c:789 ../gnomine/gnomine.c:793
+#: ../gnobots2/gnobots.c:64 ../gnomine/gnomine.c:843 ../gnomine/gnomine.c:847
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:790 ../gnomine/gnomine.c:794
+#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:844 ../gnomine/gnomine.c:848
 msgid "Y"
 msgstr "Y"
 
@@ -3466,7 +3439,7 @@ msgstr "Tema e Grafikëve:"
 msgid "_Image theme:"
 msgstr "_Tema e Imazhit:"
 
-#: ../gnobots2/properties.c:857 ../mahjongg/mahjongg.c:797
+#: ../gnobots2/properties.c:857 ../mahjongg/mahjongg.c:767
 msgid "_Background color:"
 msgstr "_Ngjyra e sfondit:"
 
@@ -3553,28 +3526,16 @@ msgid "Joystick switch level"
 msgstr "Niveli i çelësit të joystick-ut"
 
 #: ../gnome-stones/gnome-stones.schemas.in.h:9
-msgid "Scroll method"
-msgstr "Mënyra e lëvizjes"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:10
 msgid "The full path and filename of game to load."
 msgstr "Vendodhja e plotë dhe emri i lojës për tu ngarkuar."
 
-#: ../gnome-stones/gnome-stones.schemas.in.h:11
+#: ../gnome-stones/gnome-stones.schemas.in.h:10
 msgid ""
 "The level an analog joystick must reach to be considered \"on\" when "
 "emulating a digital joystick. This takes a value between 0.0 and 1.0."
 msgstr ""
 "Niveli që një joystick analog duhet të arrijë për tu konsideruar \"on\" që "
 "të imitojë një joystick dixhital. Ky merr një vlerë midis 0.0 dhe 1.0."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:12
-msgid ""
-"The scroll method, valid values are \"atari_scroll\", \"smooth_scroll\" and "
-"\"center_scroll\"."
-msgstr ""
-"Mënyra e lëvizjes, vlera të vlefshme janë \"lëvizje_atari\", \"lëvizje_lëmuar"
-"\" dhe \"lëvizje_qendrore\"."
 
 #: ../gnome-stones/gnomekoban.caves.in.h:1
 msgid "Gnomekoban"
@@ -3629,69 +3590,65 @@ msgstr ""
 "Të lutem sigurohu që Gurët GNOME është instaluar saktë!"
 
 #. That's what a gnome application needs:
-#: ../gnome-stones/main.c:208 ../gnome-stones/main.c:994
-#: ../gnome-stones/main.c:1097 ../gnome-stones/main.c:1315
+#: ../gnome-stones/main.c:208 ../gnome-stones/main.c:911
+#: ../gnome-stones/main.c:1020 ../gnome-stones/main.c:1232
 msgid "GNOME Stones"
 msgstr "Gurët e GNOME"
 
-#: ../gnome-stones/main.c:290
+#: ../gnome-stones/main.c:234
 msgid "Game title"
 msgstr "Titulli i Lojës"
 
-#: ../gnome-stones/main.c:291
+#: ../gnome-stones/main.c:235
 msgid "Start cave"
 msgstr "Shpella fillestare"
 
-#: ../gnome-stones/main.c:434 ../gnome-stones/main.c:1048
+#: ../gnome-stones/main.c:374 ../gnome-stones/main.c:965
 #: ../gnometris/gnometris.schemas.in.h:15
 msgid "Pause"
 msgstr "Pezullo"
 
-#: ../gnome-stones/main.c:686
+#: ../gnome-stones/main.c:593
 msgid "Congratulations, you win!"
 msgstr "Urime, fitove!"
 
-#: ../gnome-stones/main.c:874 ../gtali/gyahtzee.c:136 ../same-gnome/ui.c:148
+#: ../gnome-stones/main.c:794 ../gtali/gyahtzee.c:136 ../same-gnome/ui.c:147
 msgid "Game over!"
 msgstr "Loja mbaroi!"
 
-#: ../gnome-stones/main.c:1091
+#: ../gnome-stones/main.c:1014
 msgid "Sokoban levels:"
 msgstr "Nivelet e Sokoban:"
 
-#: ../gnome-stones/main.c:1100
+#: ../gnome-stones/main.c:1023
 msgid "Mine through dirt and collect gems."
 msgstr "Futu në minierë dhe mblidh gurë të çmuar."
 
-#: ../gnome-stones/main.c:1115
+#: ../gnome-stones/main.c:1038
 msgid "_Restart level"
 msgstr "_Rinis nivelin"
 
-#: ../gnome-stones/main.c:1115
+#: ../gnome-stones/main.c:1038
 msgid "Restart the current level"
 msgstr "Rinis nivelin e tanishëm"
 
-#: ../gnome-stones/main.c:1220
+#: ../gnome-stones/main.c:1143
 msgid "Scanning private object directory..."
 msgstr "Duke kontrolluar kartelën private të objekteve..."
 
-#: ../gnome-stones/main.c:1224
+#: ../gnome-stones/main.c:1147
 msgid "Scanning public object directory..."
 msgstr "Duke kontrolluar kartelën publike të objekteve..."
 
-#: ../gnome-stones/main.c:1229
-msgid "Filling game widget..."
-msgstr "Duke mbushur lojën me sende..."
-
-#: ../gnome-stones/main.c:1234
+#: ../gnome-stones/main.c:1151
 msgid "Scanning private game directory..."
 msgstr "Duke kontrolluar kartelën private të lojës..."
 
-#: ../gnome-stones/main.c:1238
+#: ../gnome-stones/main.c:1155
 msgid "Scanning public game directory..."
 msgstr "Duke kontrolluar kartelën publike të lojës..."
 
-#: ../gnome-stones/main.c:1242
+#: ../gnome-stones/main.c:1159
 msgid "Restoring preferences..."
 msgstr "Duke rivendosur preferencat..."
 
@@ -3704,82 +3661,62 @@ msgstr "Fitove një jetë më tepër!"
 msgid "Seconds left: %d"
 msgstr "Sekondat e mbetura: %d"
 
-#: ../gnome-stones/preferences.c:461
+#: ../gnome-stones/preferences.c:403
 msgid "Neither your chosen game nor the default game could be loaded."
 msgstr "As loja e zgjedhur as loja e zakonshme nuk mundi të ngarkohej."
 
-#: ../gnome-stones/preferences.c:462
+#: ../gnome-stones/preferences.c:404
 msgid "Please make sure that GNOME Stones is correctly installed."
 msgstr "Të lutem kontrollo nëse Gurët GNOME është instaluar saktë."
 
-#: ../gnome-stones/preferences.c:463
+#: ../gnome-stones/preferences.c:405
 msgid "You may be able to select a different game from the preferences dialog."
 msgstr "Mund të zgjedhësh lojra të ndryshme nga dialogu i preferencave."
 
-#: ../gnome-stones/preferences.c:632
+#: ../gnome-stones/preferences.c:560
 msgid "GNOME Stones Preferences"
 msgstr "Preferencat e Gurët GNOME"
 
-#: ../gnome-stones/preferences.c:685
+#: ../gnome-stones/preferences.c:613
 msgid "Game Title"
 msgstr "Titulli i Lojës"
 
-#: ../gnome-stones/preferences.c:692
+#: ../gnome-stones/preferences.c:620
 msgid "Caves"
 msgstr "Shpellat"
 
-#: ../gnome-stones/preferences.c:772
+#: ../gnome-stones/preferences.c:700
 msgid "Device"
 msgstr "Dispozitivi"
 
-#: ../gnome-stones/preferences.c:781
+#: ../gnome-stones/preferences.c:709
 msgid "_Joystick device:"
 msgstr "_Dispozitivi i joystick-ut:"
 
 #. We definatly have a "disable" entry.
-#: ../gnome-stones/preferences.c:788
+#: ../gnome-stones/preferences.c:716
 msgid "Disabled"
 msgstr "Çaktivizuar"
 
-#: ../gnome-stones/preferences.c:819
+#: ../gnome-stones/preferences.c:747
 msgid "Digital Joystick Emulation"
 msgstr "Imitim Dixhital i Joystick-ut"
 
-#: ../gnome-stones/preferences.c:828
+#: ../gnome-stones/preferences.c:756
 msgid "_Switch level:"
 msgstr "_Ndrysho nivel:"
 
-#: ../gnome-stones/preferences.c:852
+#: ../gnome-stones/preferences.c:780
 msgid "Joystick"
 msgstr "Joystick"
 
-#: ../gnome-stones/preferences.c:870
+#: ../gnome-stones/preferences.c:798
 msgid "Enable sound"
 msgstr "Aktivizo tingujt"
 
-#: ../gnome-stones/preferences.c:882
+#: ../gnome-stones/preferences.c:810
 msgid "_Sound"
 msgstr "_Zëri"
-
-#: ../gnome-stones/preferences.c:902
-msgid "Scroll Method"
-msgstr "Mënyra e Lëvizjes"
-
-#: ../gnome-stones/preferences.c:922
-msgid "Atari like scrolling"
-msgstr "Lëvizje si tek Atari"
-
-#: ../gnome-stones/preferences.c:926
-msgid "Smooth scrolling"
-msgstr "Lëvizje e lëmuar"
-
-#: ../gnome-stones/preferences.c:930
-msgid "Always in the center"
-msgstr "Gjithmonë në qendër"
-
-#: ../gnome-stones/preferences.c:942
-msgid "Misc."
-msgstr "Të ndryshme"
 
 #: ../gnome-stones/status.c:81
 msgid "Diamonds:"
@@ -4007,7 +3944,7 @@ msgstr "_Përdor ngjyra të rastësishme blloku"
 msgid "_Rotate blocks counterclockwise"
 msgstr "_Rrotullo blloqet kundrejt akrepave"
 
-#: ../gnometris/tetris.cpp:901 ../same-gnome/ui.c:307
+#: ../gnometris/tetris.cpp:901 ../same-gnome/ui.c:288
 msgid "Theme"
 msgstr "Tema"
 
@@ -4028,7 +3965,7 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "Rezultatet e Gnometris"
 
-#: ../gnomine/gnomine.c:81 ../gnomine/gnomine.c:584
+#: ../gnomine/gnomine.c:81 ../gnomine/gnomine.c:638
 msgid "Custom"
 msgstr "E personalizuar"
 
@@ -4037,110 +3974,123 @@ msgstr "E personalizuar"
 msgid "Flags: %d/%d"
 msgstr "Flamujt: %d/%d"
 
-#: ../gnomine/gnomine.c:152
-msgid "GNOME Mines Scores"
-msgstr "Rezultatet e lojës Minat GNOME"
+#: ../gnomine/gnomine.c:167
+msgid "The Mines Have Been Cleared!"
+msgstr "Minat u Pastruan!"
 
-#: ../gnomine/gnomine.c:161 ../same-gnome/ui.c:127
+#: ../gnomine/gnomine.c:168
+msgid "Great work, but unfortunately your score did not make the top ten."
+msgstr "Bravo, por fatkeqsisht rezultati yt nuk doli në 10-shen e më të mirëve."
+
+#: ../gnomine/gnomine.c:183
+msgid "Mines Scores"
+msgstr "Rezultatet e lojës Minat"
+
+#: ../gnomine/gnomine.c:192 ../same-gnome/ui.c:127
 msgid "Size:"
 msgstr "Madhësia:"
 
-#: ../gnomine/gnomine.c:247
+#: ../gnomine/gnomine.c:203 ../same-gnome/ui.c:170
+msgid "Congratulations!"
+msgstr "Urime!"
+
+#: ../gnomine/gnomine.c:204 ../same-gnome/ui.c:171
+msgid "Your score has made the top ten."
+msgstr "Rezultati yt doli në 10-shen e më të mirëve."
+
+#: ../gnomine/gnomine.c:300
 msgid "Click a square, any square"
 msgstr "Kliko një katror, ndonjë katror"
 
-#: ../gnomine/gnomine.c:249
+#: ../gnomine/gnomine.c:302
 msgid "Maybe they're all mines ..."
 msgstr "Ndoshta janë të gjitha mina ..."
 
-#: ../gnomine/gnomine.c:364
+#: ../gnomine/gnomine.c:418
 msgid "Faces:"
 msgstr "Fytyrat:"
 
-#: ../gnomine/gnomine.c:367
+#: ../gnomine/gnomine.c:421
 msgid "Graphics:"
 msgstr "Grafikët:"
 
-#: ../gnomine/gnomine.c:373
+#: ../gnomine/gnomine.c:427
 msgid "Resizing and SVG support:"
 msgstr "Duke rizmadhuar dhe suport SVG:"
 
-#: ../gnomine/gnomine.c:380 ../gnomine/gnomine.c:869
-msgid "GNOME Mines"
-msgstr "Minat e GNOME"
+#: ../gnomine/gnomine.c:434 ../gnomine/gnomine.c:924
+#: ../gnomine/gnomine.desktop.in.h:2
+msgid "Mines"
+msgstr "Minat"
 
-#: ../gnomine/gnomine.c:550
+#: ../gnomine/gnomine.c:604
 msgid "Field Size"
 msgstr "Madhësia e Fushës"
 
-#: ../gnomine/gnomine.c:596
+#: ../gnomine/gnomine.c:650
 msgid "Custom Size"
 msgstr "Madhësi Vetjake"
 
-#: ../gnomine/gnomine.c:603
+#: ../gnomine/gnomine.c:657
 msgid "_Number of mines:"
 msgstr "_Numri i minave:"
 
-#: ../gnomine/gnomine.c:615
+#: ../gnomine/gnomine.c:669
 msgid "_Horizontal:"
 msgstr "_Horizontalisht:"
 
-#: ../gnomine/gnomine.c:626
+#: ../gnomine/gnomine.c:680
 msgid "_Vertical:"
 msgstr "_Vertikalisht:"
 
-#: ../gnomine/gnomine.c:641
+#: ../gnomine/gnomine.c:695
 msgid "_Use \"I'm not sure\" flags"
 msgstr "_Përdor flamujt \"S'jam i sigurtë\""
 
-#: ../gnomine/gnomine.c:650
-msgid "GNOME Mines Preferences"
-msgstr "Preferencat e \"Minat GNOME\""
+#: ../gnomine/gnomine.c:704
+msgid "Mines Preferences"
+msgstr "Preferencat e \"Minat\""
 
-#: ../gnomine/gnomine.c:789
+#: ../gnomine/gnomine.c:843
 msgid "Width of grid"
 msgstr "Gjerësia e fushës"
 
-#: ../gnomine/gnomine.c:790
+#: ../gnomine/gnomine.c:844
 msgid "Height of grid"
 msgstr "Gjatësia e fushës"
 
-#: ../gnomine/gnomine.c:791
+#: ../gnomine/gnomine.c:845
 msgid "Number of mines"
 msgstr "Numri i minave"
 
-#: ../gnomine/gnomine.c:791 ../gtali/setup.c:85 ../gtali/setup.c:86
+#: ../gnomine/gnomine.c:845 ../gtali/setup.c:85 ../gtali/setup.c:86
 #: ../same-gnome/same-gnome.c:128
 msgid "NUMBER"
 msgstr "NUMRI"
 
-#: ../gnomine/gnomine.c:792
+#: ../gnomine/gnomine.c:846
 msgid "Size of the board (1=small, 3=large)"
 msgstr "Madhësia e fushës (1=e vogël, 3=e madhe)"
 
-#: ../gnomine/gnomine.c:793
+#: ../gnomine/gnomine.c:847
 msgid "X location of window"
 msgstr "Vendndodhja X e dritares"
 
-#: ../gnomine/gnomine.c:794
+#: ../gnomine/gnomine.c:848
 msgid "Y location of window"
 msgstr "Vendndodhja Y e dritares"
 
-#: ../gnomine/gnomine.c:934
+#: ../gnomine/gnomine.c:989
 msgid "Press to Resume"
 msgstr "Shtyp për të Vazhduar"
 
-#: ../gnomine/gnomine.c:967
+#: ../gnomine/gnomine.c:1022
 msgid "Time: "
 msgstr "Koha: "
 
 #: ../gnomine/gnomine.desktop.in.h:1
 msgid "Clear mines from a minefield"
 msgstr "Pastro zonën e minuar nga minat"
-
-#: ../gnomine/gnomine.desktop.in.h:2
-msgid "Mines"
-msgstr "Minat"
 
 #: ../gnomine/gnomine.schemas.in.h:1
 msgid "Set to true to be able to mark squares as unknown."
@@ -4150,7 +4100,7 @@ msgstr "Aktivizoje për të bërë të mundur shënimin e katrorëve si të panj
 msgid "Use the unknown flag"
 msgstr "Përdor flamurin e panjohur"
 
-#: ../gnomine/minefield.c:161
+#: ../gnomine/minefield.c:192
 msgid ""
 "Unable to find required images.\n"
 "\n"
@@ -4160,7 +4110,7 @@ msgstr ""
 "\n"
 "Të lutem kontrollo instalimin e lojrave-gnome."
 
-#: ../gnomine/minefield.c:168
+#: ../gnomine/minefield.c:200
 msgid ""
 "Required images have been found, but refused to load.\n"
 "\n"
@@ -4170,7 +4120,7 @@ msgstr ""
 "\n"
 "Të lutem kontrollo instalimin e lojrave-gnome dhe varësitë e ndryshme."
 
-#: ../gnomine/minefield.c:178
+#: ../gnomine/minefield.c:210
 msgid "Could not load images"
 msgstr "I pamundur ngarkimi i pamjeve"
 
@@ -4311,7 +4261,7 @@ msgstr "Puzzle u zgjidh! Të lumtë!"
 msgid "Puzzle solved!"
 msgstr "Puzzle u zgjidh!"
 
-#: ../gnotravex/gnotravex.c:1162 ../mahjongg/mahjongg.c:971
+#: ../gnotravex/gnotravex.c:1162 ../mahjongg/mahjongg.c:928
 msgid "Game paused"
 msgstr "Lojë në pushim"
 
@@ -4728,7 +4678,7 @@ msgstr "Zgjidh zarin për ta ri-hedhur, shtyp Hidh!, ose zgjidh rezultatin."
 msgid "Roll"
 msgstr "Hidh"
 
-#: ../gtali/gyahtzee.c:372 ../gtali/gyahtzee.c:381 ../gtali/yahtzee.c:171
+#: ../gtali/gyahtzee.c:372 ../gtali/gyahtzee.c:381 ../gtali/yahtzee.c:170
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "Lejohen vetëm tre hedhje zaresh! Zgjidh pikët."
 
@@ -4806,94 +4756,94 @@ msgstr "N_umri i kundërshtarëve:"
 msgid "Player Names"
 msgstr "Emrat e Lojtarëve"
 
-#: ../gtali/yahtzee.c:70
+#: ../gtali/yahtzee.c:69
 msgid "1s [total of 1s]"
 msgstr "1-a [total i 1-ave]"
 
-#: ../gtali/yahtzee.c:71
+#: ../gtali/yahtzee.c:70
 msgid "2s [total of 2s]"
 msgstr "2-a [total i 2-ave]"
 
-#: ../gtali/yahtzee.c:72
+#: ../gtali/yahtzee.c:71
 msgid "3s [total of 3s]"
 msgstr "3-a [total i 3-ave]"
 
-#: ../gtali/yahtzee.c:73
+#: ../gtali/yahtzee.c:72
 msgid "4s [total of 4s]"
 msgstr "4-a [total i 4-ave]"
 
-#: ../gtali/yahtzee.c:74
+#: ../gtali/yahtzee.c:73
 msgid "5s [total of 5s]"
 msgstr "5-a [total i 5-ave]"
 
-#: ../gtali/yahtzee.c:75
+#: ../gtali/yahtzee.c:74
 msgid "6s [total of 6s]"
 msgstr "6-a [total i 6-ave]"
 
 #. End of upper panel
-#: ../gtali/yahtzee.c:77
+#: ../gtali/yahtzee.c:76
 msgid "3 of a Kind [total]"
 msgstr "3 të një Lloji [total]"
 
-#: ../gtali/yahtzee.c:78
+#: ../gtali/yahtzee.c:77
 msgid "4 of a Kind [total]"
 msgstr "4 të një Lloji [total]"
 
-#: ../gtali/yahtzee.c:79
+#: ../gtali/yahtzee.c:78
 msgid "Full House [25]"
 msgstr "Full [25]"
 
-#: ../gtali/yahtzee.c:80
+#: ../gtali/yahtzee.c:79
 msgid "Small Straight [30]"
 msgstr "Drejtë i Vogël [30]"
 
-#: ../gtali/yahtzee.c:81
+#: ../gtali/yahtzee.c:80
 msgid "Large Straight [40]"
 msgstr "Drejt i Madh [40]"
 
-#: ../gtali/yahtzee.c:82
+#: ../gtali/yahtzee.c:81
 msgid "Yahtzee [50]"
 msgstr "Yahtzee [50]"
 
-#: ../gtali/yahtzee.c:83
+#: ../gtali/yahtzee.c:82
 msgid "Chance [total]"
 msgstr "Shansi [total]"
 
 #. End of lower panel
-#: ../gtali/yahtzee.c:85
+#: ../gtali/yahtzee.c:84
 msgid "Lower Total"
 msgstr "Totali i Poshtëm"
 
-#: ../gtali/yahtzee.c:86
+#: ../gtali/yahtzee.c:85
 msgid "Grand Total"
 msgstr "Totali i Plotë"
 
 #. Need to squish between upper and lower pannel
-#: ../gtali/yahtzee.c:88
+#: ../gtali/yahtzee.c:87
 msgid "Upper total"
 msgstr "Totali i Sipërm"
 
-#: ../gtali/yahtzee.c:89
+#: ../gtali/yahtzee.c:88
 msgid "Bonus if >62"
 msgstr "Bonus nëse >62"
 
-#: ../gtali/yahtzee.c:452
+#: ../gtali/yahtzee.c:451
 msgid "How many times do you wish to roll?"
 msgstr "Sa herë dëshiron të hedhësh zarin?"
 
-#: ../gtali/yahtzee.c:457
+#: ../gtali/yahtzee.c:456
 msgid "Generating ..."
 msgstr "Duke llogaritur ...."
 
-#: ../gtali/yahtzee.c:492
+#: ../gtali/yahtzee.c:491
 msgid "Results"
 msgstr "Rezultatet"
 
-#: ../gtali/yahtzee.c:492
+#: ../gtali/yahtzee.c:491
 msgid "Num Rolls"
 msgstr "Numri i Hedhjeve"
 
-#: ../gtali/yahtzee.c:492
+#: ../gtali/yahtzee.c:491
 msgid "Total"
 msgstr "Gjithsej"
 
@@ -5197,58 +5147,106 @@ msgid "Image rendering failed."
 msgstr "Shfaqja e imazhit dështoi."
 
 #. Translators: this is for a minutes, seconds time display.
-#: ../libgames-support/games-scores-dialog.gob:131
+#: ../libgames-support/games-scores-dialog.gob:141
 #, c-format
 msgid "%dm %ds"
 msgstr "%dm %ds"
 
 #. Note that this assumes the default style is plain.
-#: ../libgames-support/games-scores-dialog.gob:242
-#: ../libgames-support/games-scores-dialog.gob:325
+#: ../libgames-support/games-scores-dialog.gob:261
+#: ../libgames-support/games-scores-dialog.gob:344
 msgid "Score"
 msgstr "Rezultati"
 
-#: ../libgames-support/games-scores-dialog.gob:321
+#: ../libgames-support/games-scores-dialog.gob:340
 msgid "Time"
 msgstr "Ora"
 
 #. i18n: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../libgames-support/games-stock.c:40
+#: ../libgames-support/games-stock.c:41
 msgid "_New"
 msgstr "E _re"
 
-#: ../libgames-support/games-stock.c:41
+#: ../libgames-support/games-stock.c:42
 msgid "_Pause"
 msgstr "_Pezullo"
 
 #. i18n: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:43
+#: ../libgames-support/games-stock.c:44
 msgid "_Restart"
 msgstr "_Rinis"
 
-#: ../libgames-support/games-stock.c:44
+#: ../libgames-support/games-stock.c:45
 msgid "_Undo Move"
 msgstr "_Zhbëj Lëvizjen"
 
-#: ../libgames-support/games-stock.c:45
+#: ../libgames-support/games-stock.c:46
 msgid "_Redo Move"
 msgstr "_Ribëj Lëvizjen"
 
 #: ../libgames-support/games-stock.c:47
+msgid "_Hint"
+msgstr "_Udhëzim"
+
+#: ../libgames-support/games-stock.c:48
 msgid "_Scores"
 msgstr "_Rezultatet"
 
-#: ../libgames-support/games-stock.c:48
+#: ../libgames-support/games-stock.c:49
 msgid "_Fullscreen"
 msgstr "_Ekran i plotë"
 
-#: ../libgames-support/games-stock.c:49
+#: ../libgames-support/games-stock.c:50
 msgid "_Leave Fullscreen"
 msgstr "Lër _Ekranin e Plotë"
 
-#: ../libgames-support/games-stock.c:50
+#: ../libgames-support/games-stock.c:51
 msgid "_End Game"
 msgstr "_Mbaro Lojën"
+
+#: ../libgames-support/games-stock.c:52
+msgid "_Contents"
+msgstr "_Përmbajtja"
+
+#: ../libgames-support/games-stock.c:82
+msgid "Pause the game"
+msgstr "Pezullo lojën"
+
+#: ../libgames-support/games-stock.c:83
+msgid "Restart the game"
+msgstr "Rinis lojën"
+
+#: ../libgames-support/games-stock.c:85
+msgid "Redo the undone move"
+msgstr "Përsërit lëvizjen e anulluar"
+
+#: ../libgames-support/games-stock.c:87
+msgid "View the scores"
+msgstr "Shiko rezultatet"
+
+#: ../libgames-support/games-stock.c:88
+msgid "Enter fullscreen mode"
+msgstr "Shfaqe në ekran të plotë"
+
+#: ../libgames-support/games-stock.c:89
+msgid "Leave fullscreen mode"
+msgstr "Lër ekranin e plotë"
+
+#: ../libgames-support/games-stock.c:90
+msgid "End the current game"
+msgstr "Mbaro lojën e tanishme"
+
+#: ../libgames-support/games-stock.c:92
+msgid "Quit this game"
+msgstr "Lëre këtë lojë"
+
+#: ../libgames-support/games-stock.c:93
+msgid "About this game"
+msgstr "Rreth kësaj loje"
+
+#: ../libgames-support/games-stock.c:94
+msgid "Configure the game"
+msgstr "Konfiguro lojën"
 
 #: ../libgames-support/libgnomegames.schemas.in.h:1
 msgid "Network game mode"
@@ -5340,11 +5338,11 @@ msgstr ""
 "\n"
 "Të lutem kontrollo nëse Mahjongg është instaluar saktë."
 
-#: ../mahjongg/mahjongg.c:129
+#: ../mahjongg/mahjongg.c:127
 msgid "Could not load tile set"
 msgstr "I pamundur ngarkimi i setit të tullave"
 
-#: ../mahjongg/mahjongg.c:363
+#: ../mahjongg/mahjongg.c:333
 msgid ""
 "Do you want to finish the current game or start playing with the new map "
 "immediately?"
@@ -5352,7 +5350,7 @@ msgstr ""
 "Dëshiron ta mbarosh lojën e tanishme apo të nisësh të luash me hartën e re "
 "menjëherë?"
 
-#: ../mahjongg/mahjongg.c:364
+#: ../mahjongg/mahjongg.c:334
 msgid ""
 "If you choose to finish with the old map then the next game will use the new "
 "map."
@@ -5360,83 +5358,71 @@ msgstr ""
 "Nëse zgjedh të mbarosh me hartën e vjetër atëhere loja e mëpasme do përdorë "
 "hartën e re."
 
-#: ../mahjongg/mahjongg.c:366
+#: ../mahjongg/mahjongg.c:336
 msgid "_Finish"
 msgstr "_Mbaro"
 
-#: ../mahjongg/mahjongg.c:618 ../mahjongg/mahjongg.c:623
-msgid "These tiles don't match."
-msgstr "Këto gurë nuk përkojnë."
-
-#: ../mahjongg/mahjongg.c:659
+#: ../mahjongg/mahjongg.c:629
 msgid "Shuffle"
 msgstr "Përzierje"
 
-#: ../mahjongg/mahjongg.c:723
+#: ../mahjongg/mahjongg.c:693
 msgid "Mahjongg Preferences"
 msgstr "Preferimet e Mahjongg"
 
-#: ../mahjongg/mahjongg.c:744
+#: ../mahjongg/mahjongg.c:714
 msgid "Tiles"
 msgstr "Gurët"
 
-#: ../mahjongg/mahjongg.c:767
+#: ../mahjongg/mahjongg.c:737
 msgid "Maps"
 msgstr "Hartat"
 
-#: ../mahjongg/mahjongg.c:774
+#: ../mahjongg/mahjongg.c:744
 msgid "_Select map:"
 msgstr "_Zgjidh hartën:"
 
-#: ../mahjongg/mahjongg.c:790
+#: ../mahjongg/mahjongg.c:760
 msgid "Colors"
 msgstr "Ngjyrat"
 
-#: ../mahjongg/mahjongg.c:814
-msgid "Warnings"
-msgstr "Paralajmërime"
-
-#: ../mahjongg/mahjongg.c:819
-msgid "_Warn when tiles don't match"
-msgstr "_Paralajmëro kur gurët nuk përputhen"
-
-#: ../mahjongg/mahjongg.c:929
+#: ../mahjongg/mahjongg.c:886
 msgid "Maps:"
 msgstr "Hartat:"
 
-#: ../mahjongg/mahjongg.c:933
+#: ../mahjongg/mahjongg.c:890
 msgid "Tiles:"
 msgstr "Gurët:"
 
-#: ../mahjongg/mahjongg.c:943
+#: ../mahjongg/mahjongg.c:900
 msgid "GNOME Mahjongg"
 msgstr "Mahjongg i GNOME"
 
-#: ../mahjongg/mahjongg.c:945
+#: ../mahjongg/mahjongg.c:902
 msgid "A matching game played with Mahjongg tiles."
 msgstr "Një ndeshje luajtur me pllaka Mahjongg."
 
-#: ../mahjongg/mahjongg.c:1288
+#: ../mahjongg/mahjongg.c:1242
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Më fal, nuk arrita të gjej një konfigurim loje."
 
-#: ../mahjongg/mahjongg.c:1336
+#: ../mahjongg/mahjongg.c:1290
 msgid "Show or hide the toolbar"
 msgstr "Shfaq ose fshih kutizën e veglave"
 
-#: ../mahjongg/mahjongg.c:1460 ../mahjongg/mahjongg.desktop.in.h:2
+#: ../mahjongg/mahjongg.c:1416 ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: ../mahjongg/mahjongg.c:1470
+#: ../mahjongg/mahjongg.c:1426
 msgid "Tiles Left:"
 msgstr "Gurët e Mbetur:"
 
-#: ../mahjongg/mahjongg.c:1479
+#: ../mahjongg/mahjongg.c:1435
 msgid "Moves Left:"
 msgstr "Lëvizjet e Mbetura:"
 
-#: ../mahjongg/mahjongg.c:1538
+#: ../mahjongg/mahjongg.c:1494
 msgid "Remove matching pairs of tiles."
 msgstr "Hiq çiftet përkatëse të pllakave."
 
@@ -5598,31 +5584,23 @@ msgstr ""
 msgid "Same GNOME Scores"
 msgstr "Rezultatet e lojës GNOME e Njëjtë"
 
-#: ../same-gnome/ui.c:150
+#: ../same-gnome/ui.c:149
 msgid "Unfortunately your score did not make the top ten."
 msgstr "Fatkeqsisht rezultati yt nuk doli në 10-shen e më të mirëve."
 
-#: ../same-gnome/ui.c:180
-msgid "Congratulations!"
-msgstr "Urime!"
-
-#: ../same-gnome/ui.c:181
-msgid "Your score has made the top ten."
-msgstr "Rezultati yt doli në 10-shen e më të mirëve."
-
-#: ../same-gnome/ui.c:270
+#: ../same-gnome/ui.c:251
 msgid "Same GNOME Theme"
 msgstr "Tema e lojës GNOME e Njëjtë"
 
-#: ../same-gnome/ui.c:437
+#: ../same-gnome/ui.c:418
 msgid "_Size"
 msgstr "_Madhësia"
 
-#: ../same-gnome/ui.c:448
+#: ../same-gnome/ui.c:429
 msgid "_Theme..."
 msgstr "_Tema..."
 
-#: ../same-gnome/ui.c:461
+#: ../same-gnome/ui.c:442
 msgid "_Fast Animation"
 msgstr "_Lëvizje e Shpejtë"
 
@@ -5637,6 +5615,73 @@ msgid ""
 msgstr ""
 "E pamundur të luhet loja. Të lutem kontrollo që loja është instaluar saktë "
 "dhe provoje sërish."
+
+#~ msgid "Sol"
+#~ msgstr "Sol"
+
+#~ msgid "_New Game"
+#~ msgstr "Lojë e _Re"
+
+#~ msgid "_Restart Game"
+#~ msgstr "_Rinis Lojën"
+
+#~ msgid "Get a hint for the next action"
+#~ msgstr "Merr një ndihmë për lëvizjen tjetër"
+
+#~ msgid "Quit application"
+#~ msgstr "Lër programin"
+
+#~ msgid "Show game preferences"
+#~ msgstr "Shfaq preferencat e lojës"
+
+#~ msgid "Surrender the hand"
+#~ msgstr "Dorëzo dorën"
+
+#~ msgid "Double down"
+#~ msgstr "Dyfisho"
+
+#~ msgid "Split the hand"
+#~ msgstr "Ndaj dorën"
+
+#~ msgid "Scroll method"
+#~ msgstr "Mënyra e lëvizjes"
+
+#~ msgid ""
+#~ "The scroll method, valid values are \"atari_scroll\", \"smooth_scroll\" "
+#~ "and \"center_scroll\"."
+#~ msgstr ""
+#~ "Mënyra e lëvizjes, vlera të vlefshme janë \"lëvizje_atari\", "
+#~ "\"lëvizje_lëmuar\" dhe \"lëvizje_qendrore\"."
+
+#~ msgid "Filling game widget..."
+#~ msgstr "Duke mbushur lojën me sende..."
+
+#~ msgid "Scroll Method"
+#~ msgstr "Mënyra e Lëvizjes"
+
+#~ msgid "Atari like scrolling"
+#~ msgstr "Lëvizje si tek Atari"
+
+#~ msgid "Smooth scrolling"
+#~ msgstr "Lëvizje e lëmuar"
+
+#~ msgid "Always in the center"
+#~ msgstr "Gjithmonë në qendër"
+
+#~ msgid "Misc."
+#~ msgstr "Të ndryshme"
+
+#~ msgid "GNOME Mines"
+#~ msgstr "Minat e GNOME"
+
+#~ msgid "These tiles don't match."
+#~ msgstr "Këto gurë nuk përkojnë."
+
+#~ msgid "Warnings"
+#~ msgstr "Paralajmërime"
+
+#~ msgid "_Warn when tiles don't match"
+#~ msgstr "_Paralajmëro kur gurët nuk përputhen"
 
 #~ msgid "Field size:"
 #~ msgstr "Madhësia e fushës:"
@@ -5750,12 +5795,6 @@ msgstr ""
 #~ "I pamundur ngarkimii skedës: '%s'\n"
 #~ "\n"
 #~ "Ky set tullash u gjet por nuk mundi të ngarkohej."
-
-#~ msgid "Restart game"
-#~ msgstr "Rinis lojën"
-
-#~ msgid "Pause game"
-#~ msgstr "Pezullo lojën"
 
 #~ msgid "Undo previous move"
 #~ msgstr "Zhbëj lëvizjen e mëparshme"
