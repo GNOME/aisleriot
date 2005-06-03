@@ -137,18 +137,6 @@ static gchar * game_name_to_file (const gchar *name)
   return p;
 }
 
-
-void make_title () 
-{
-  char *title;
-
-  title = g_strdup_printf (_("AisleRiot: %s"), game_name);
-
-  gtk_window_set_title (GTK_WINDOW (app), title); 
-
-  g_free (title);
-}
-
 void eval_installed_file (char *file)
 {
   char *installed_filename;
@@ -269,7 +257,7 @@ void new_game (gchar* file, guint *seedp)
     redo_set_sensitive (FALSE);
 
     game_over = FALSE;
-    make_title();
+    gtk_window_set_title (GTK_WINDOW (app), _(game_name)); 
   }
 }
 

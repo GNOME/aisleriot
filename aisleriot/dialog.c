@@ -308,11 +308,13 @@ void show_hint_dialog()
    gtk_widget_destroy (GTK_WIDGET (hint_dlg));
   }
 
-  hint_dlg = gtk_message_dialog_new (GTK_WINDOW (app),
+  hint_dlg = gtk_message_dialog_new_with_markup (GTK_WINDOW (app),
 				     GTK_DIALOG_DESTROY_WITH_PARENT,
 				     GTK_MESSAGE_INFO,
 				     GTK_BUTTONS_OK,
-				     gmessage);
+				     "<b>%s</b>", gmessage);
+  gtk_window_set_title (GTK_WINDOW (hint_dlg), "");
+
   if (hint_dlg) {
 	  g_signal_connect (GTK_OBJECT (hint_dlg),
 			      "destroy",
