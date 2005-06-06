@@ -41,18 +41,14 @@
 static gboolean connect_cb (GtkWidget *widget);
 static gboolean start_cb (GtkWidget *widget);
 static gboolean close_cb (GtkWidget *widget);
-static gboolean config_cb (GtkWidget *widget);
-static gboolean config_ok_cb (GtkWidget *widget);
-static gboolean config_cancel_cb (GtkWidget *widget);
 static gboolean config_server_cb (GtkWidget *widget);
 static gboolean config_lan_host_cb (GtkWidget *widget);
 static gboolean config_lan_join_cb (GtkWidget *widget);
 
 static GtkWidget *game_dialog = NULL, *net_cfg_dialog = NULL;
 static GtkWidget *connect_cmd, *cancel_cmd, *start_cmd, *frame;
-static GtkWidget *sw, *config_cmd, *status_view, *name_entry, *game_entry;
+static GtkWidget *sw, *status_view, *name_entry, *game_entry;
 static GtkWidget *rbutton_a, *rbutton_b, *rbutton_c, *server_entry, *view;
-static GtkTextBuffer *status_buf;
 static gint network_mode = 2;
 
 static GtkListStore *model;
@@ -69,37 +65,10 @@ set_game_msg_cb (void (*func)(gchar *message))
   game_msg_cb = func;
 }
 
-static gboolean
-view_scroll (gpointer data)
-{
-  GtkTextIter iter;
-
-  if (!status_buf || !status_view) {
-    return FALSE;
-  }
-
-  gtk_text_buffer_get_iter_at_offset (status_buf, &iter, -1);
-  gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW(status_view),
-			        &iter, 0, TRUE, 0.0, 1.0);
-
-  return FALSE;
-}
-
 void
 network_gui_message (const char *message)
 {
-  GtkTextIter iter;
-
-  game_msg_cb ((char *)message);
-
-  if (!status_buf || !status_view) {
-    return;
-  }
-
-  gtk_text_buffer_get_iter_at_offset (status_buf, &iter, -1);
-  gtk_text_buffer_insert (status_buf, &iter, message, -1);  
-  gtk_text_buffer_insert (status_buf, &iter, "\n", -1);
-  g_idle_add ((GSourceFunc) view_scroll, NULL );
+  gtk_label_set_text (GTK_LABEL (status_view), message);
 }
 
 void
@@ -108,7 +77,7 @@ network_gui_add_player (const char *name)
   static char msgbuf[256];
 
   snprintf (msgbuf, sizeof (msgbuf), 
-            _("The player %s joined the game."), name);
+            _("The player %s has joined the game."), name);
   network_gui_message (msgbuf);
 }
                                                                                 
@@ -118,7 +87,6 @@ network_gui_connected (void)
   gtk_widget_hide (connect_cmd);
   gtk_widget_show (start_cmd);
   gtk_widget_set_sensitive(GTK_WIDGET(connect_cmd), TRUE);
-  gtk_widget_set_sensitive(GTK_WIDGET(config_cmd), FALSE);
 
 }
 
@@ -129,14 +97,31 @@ network_gui_close (void)
     gtk_widget_destroy (game_dialog);
   }
   game_dialog = NULL;
-  status_buf = NULL;
-  status_view = NULL;
+}
+
+static void 
+error_dialog (gchar *message)
+{
+  GtkWidget *dialog = gtk_message_dialog_new (GTK_WINDOW(net_cfg_dialog),
+                                              GTK_DIALOG_DESTROY_WITH_PARENT,
+                                              GTK_MESSAGE_ERROR,
+                                              GTK_BUTTONS_CLOSE,
+                                              message);
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
 }
 
 void
 network_game_dialog_show (GtkWidget *parent_window)
 {
   GtkWidget *vbox;
+  GtkWidget *hbox;
+  GtkWidget *label;
+  GtkWidget *vbox2;
+  gchar *server;
+  gchar *gamename;
+  gchar *name;
+  struct passwd *pwent;
   
   game_dialog = gtk_dialog_new_with_buttons (_("New Network Game"),
                     			     GTK_WINDOW(parent_window),
@@ -149,163 +134,16 @@ network_game_dialog_show (GtkWidget *parent_window)
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
   gtk_container_add (GTK_CONTAINER (GTK_DIALOG (game_dialog)->vbox), vbox);
-  
+
   /*  Create Network Status Frame. */
-  frame = games_frame_new (_("Network Status"));
-  gtk_container_add (GTK_CONTAINER (vbox), frame);
-  status_view = gtk_text_view_new ();
-  gtk_text_view_set_editable (GTK_TEXT_VIEW(status_view), FALSE);
-  status_buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (status_view));
-  sw = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_set_size_request (GTK_WIDGET(status_view), -1, 160);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(sw),
-                                      GTK_SHADOW_ETCHED_IN);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(sw),
-                                 GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-  gtk_container_add (GTK_CONTAINER (sw), status_view);
-  gtk_container_add (GTK_CONTAINER (frame), sw);
+  frame = games_frame_new (_("Status"));
+  gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0);
+  status_view = gtk_label_new (_("Check the configuration and press Connect"));
+  gtk_container_add (GTK_CONTAINER (frame), status_view);
 
-  gtk_text_buffer_set_text (status_buf, _("Please start a new network game.\n"), -1); 
-
-  /* Create buttons. */
-  config_cmd = gtk_button_new_from_stock (GTK_STOCK_PREFERENCES);
-  connect_cmd = gtk_button_new_with_mnemonic (_("C_onnect"));
-  cancel_cmd = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
-  start_cmd = gtk_button_new_with_mnemonic (_("_Start Game"));
-
-  gtk_dialog_add_action_widget (GTK_DIALOG(game_dialog),
-                                   GTK_WIDGET(config_cmd),
-                                   1);
-  gtk_dialog_add_action_widget (GTK_DIALOG(game_dialog),
-                                   GTK_WIDGET(cancel_cmd),
-                                   1);
-  gtk_dialog_add_action_widget (GTK_DIALOG(game_dialog),
-                                   GTK_WIDGET(connect_cmd),
-                                   1);
-  gtk_widget_show_all (game_dialog);
-
-  gtk_dialog_add_action_widget (GTK_DIALOG(game_dialog),
-                                   GTK_WIDGET(start_cmd),
-                                   1);
-
-  g_signal_connect (G_OBJECT (config_cmd), "clicked", G_CALLBACK
-                    (config_cb), NULL);
-  g_signal_connect (G_OBJECT (connect_cmd), "clicked", G_CALLBACK
-                    (connect_cb), NULL);
-  g_signal_connect (G_OBJECT (cancel_cmd), "clicked", G_CALLBACK
-                    (close_cb), NULL);
-  g_signal_connect (G_OBJECT (start_cmd), "clicked", G_CALLBACK
-                    (start_cb), NULL);
-}
-
-static gboolean
-connect_cb (GtkWidget *widget)
-{
-  const char *name, *server;
-                                                                                                          
-  gtk_widget_set_sensitive(GTK_WIDGET(connect_cmd), FALSE);
-  gtk_widget_set_sensitive(GTK_WIDGET(config_cmd), FALSE);
-
-  name  = gconf_client_get_string (conf_client, KEY_NETWORK_NAME, NULL);
-
-  if (!name || *name == '\0') {
-    network_gui_message(_("Invalid name"));
-    return FALSE;
-  }
-
-  server = gconf_client_get_string (conf_client, KEY_NETWORK_SERVER, NULL);
-
-  if (server == NULL) {
-    server = game_server;
-  }
-
-  if (network_mode == SERVER_MODE) {
-    games_network_connect (server, name);
-  } else if (network_mode == HOST_LAN_MODE) {
-    char *gamename = gconf_client_get_string (conf_client,
-				 KEY_NETWORK_GAMENAME, NULL);
-    if (games_host_lan_game ((char *)gamename)) {
-      network_gui_message (_("A new gnome games server was successfully started."));
-    } else {
-      gtk_widget_set_sensitive(GTK_WIDGET(connect_cmd), TRUE);
-      gtk_widget_set_sensitive(GTK_WIDGET(config_cmd), TRUE);
-    }
-  } else if (network_mode == JOIN_LAN_MODE) {
-    games_network_connect (server, name);
-
-  }
-
-
-  return TRUE;
-}
-                                                                                                          
-static gboolean
-start_cb (GtkWidget *widget)
-{
-  games_network_connect (NULL, NULL);
-  return TRUE;
-}
-
-static gboolean
-close_cb (GtkWidget *widget)
-{
-  network_gui_close ();
-  games_network_stop ();
-  return TRUE;
-}
-
-static gboolean
-config_cb (GtkWidget *widget)
-{
-  GtkWidget *label, *hbox, *ok_cmd, *cancel_cmd, *frame, *vbox, *vbox2;
-  static GtkWidget *sw;
-
-  struct passwd *pwent;
-  const char *name, *server, *gamename;
-
-
-  if (net_cfg_dialog) {
-    return TRUE;
-  }
-
-  net_cfg_dialog = gtk_dialog_new_with_buttons (_("Network Preferences"),
-                                             GTK_WINDOW(game_dialog),
-                                             0, NULL);
-					     
-  gtk_dialog_set_has_separator (GTK_DIALOG (net_cfg_dialog), FALSE);
-  gtk_container_set_border_width (GTK_CONTAINER (net_cfg_dialog), 5);
-  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (net_cfg_dialog)->vbox), 2);
-
-  vbox = gtk_vbox_new (FALSE, 18);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (net_cfg_dialog)->vbox), vbox);
-
-  label = gtk_label_new_with_mnemonic(_("_Player name:"));
-
-  name_entry = gtk_entry_new ();
-  gtk_entry_set_max_length(GTK_ENTRY(name_entry), 12);
-  gtk_label_set_mnemonic_widget (GTK_LABEL (label), name_entry);
-
-  name = gconf_client_get_string (conf_client, KEY_NETWORK_NAME, NULL);
-
-  if (name == NULL) {
-    pwent = getpwuid(getuid());
-    if (pwent) {
-      gtk_entry_set_text (GTK_ENTRY(name_entry), pwent->pw_name);
-    } else {
-      gtk_entry_set_text (GTK_ENTRY(name_entry), _("Player"));
-    }
-  } else {
-    gtk_entry_set_text (GTK_ENTRY(name_entry), name);
-  }
-
-  hbox = gtk_hbox_new (FALSE, 12);
-  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX(hbox), name_entry, TRUE, TRUE, 0);
-  gtk_box_pack_start (GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
-  frame = games_frame_new (_("Network Connection Method"));
-  gtk_container_add (GTK_CONTAINER (vbox), frame);
+  /* Now for the network connection options. */
+  frame = games_frame_new (_("Connection Method"));
+  gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, 13);
 
   vbox2 = gtk_vbox_new (FALSE, 6);
   gtk_container_add (GTK_CONTAINER (frame), vbox2);
@@ -422,38 +260,78 @@ config_cb (GtkWidget *widget)
     games_find_lan_game ();
   }
 
+  /* Add the players nickname entry. */
+  frame = games_frame_new ("Identification");
 
-  /* Create buttons */
+  label = gtk_label_new_with_mnemonic(_("_Nickname:"));
+
+  name_entry = gtk_entry_new ();
+  gtk_entry_set_max_length(GTK_ENTRY(name_entry), 12);
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), name_entry);
+
+  name = gconf_client_get_string (conf_client, KEY_NETWORK_NAME, NULL);
+
+  if (name == NULL) {
+    pwent = getpwuid(getuid());
+    if (pwent) {
+      gtk_entry_set_text (GTK_ENTRY(name_entry), pwent->pw_name);
+    } else {
+      gtk_entry_set_text (GTK_ENTRY(name_entry), _("Player"));
+    }
+  } else {
+    gtk_entry_set_text (GTK_ENTRY(name_entry), name);
+  }
+
+  hbox = gtk_hbox_new (FALSE, 12);
+  gtk_container_add (GTK_CONTAINER (frame), hbox);
+
+  gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX(hbox), name_entry, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX(vbox), frame, FALSE, FALSE, 0);
+
+  /* Create buttons. */
+  connect_cmd = gtk_button_new_with_mnemonic (_("C_onnect"));
   cancel_cmd = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
-  ok_cmd = gtk_button_new_from_stock (GTK_STOCK_OK);
+  start_cmd = gtk_button_new_with_mnemonic (_("_Start Game"));
 
-  gtk_dialog_add_action_widget (GTK_DIALOG(net_cfg_dialog),
+  gtk_dialog_add_action_widget (GTK_DIALOG(game_dialog),
                                    GTK_WIDGET(cancel_cmd),
                                    1);
-  gtk_dialog_add_action_widget (GTK_DIALOG(net_cfg_dialog),
-                                   GTK_WIDGET(ok_cmd),
+  gtk_dialog_add_action_widget (GTK_DIALOG(game_dialog),
+                                   GTK_WIDGET(connect_cmd),
+                                   1);
+  gtk_widget_show_all (game_dialog);
+
+  gtk_dialog_add_action_widget (GTK_DIALOG(game_dialog),
+                                   GTK_WIDGET(start_cmd),
                                    1);
 
-  g_signal_connect (G_OBJECT (ok_cmd), "clicked", G_CALLBACK
-                    (config_ok_cb), NULL);
+  g_signal_connect (G_OBJECT (connect_cmd), "clicked", G_CALLBACK
+                    (connect_cb), NULL);
   g_signal_connect (G_OBJECT (cancel_cmd), "clicked", G_CALLBACK
-                    (config_cancel_cb), NULL);
-
-  gtk_widget_show_all (net_cfg_dialog);
-
-  return TRUE;
+                    (close_cb), NULL);
+  g_signal_connect (G_OBJECT (start_cmd), "clicked", G_CALLBACK
+                    (start_cb), NULL);
 }
 
 static gboolean
-config_ok_cb (GtkWidget *widget)
+connect_cb (GtkWidget *widget)
 {
-  const char *name, *server, *gamename;
+  const gchar *name;
+  const gchar *server = NULL;
+  const gchar *gamename;
   GtkTreeIter it;
   GtkTreeSelection *selection;
   char *lan_server;
-
+             
   name = gtk_entry_get_text (GTK_ENTRY(name_entry));
   gconf_client_set_string (conf_client, KEY_NETWORK_NAME, name, NULL);
+
+  if (!name || *name == '\0') {
+    error_dialog (_("Please supply a nickname."));
+    return FALSE;
+  }
+
   gamename = gtk_entry_get_text (GTK_ENTRY(game_entry));
   gconf_client_set_string (conf_client, KEY_NETWORK_GAMENAME, gamename, NULL);
 
@@ -464,14 +342,8 @@ config_ok_cb (GtkWidget *widget)
   } else if (network_mode == JOIN_LAN_MODE){
     selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(view));
     if (!gtk_tree_selection_get_selected(selection, NULL, &it)) {
-      GtkWidget *dialog = gtk_message_dialog_new (GTK_WINDOW(net_cfg_dialog),
-                  	                GTK_DIALOG_DESTROY_WITH_PARENT,
-                               		GTK_MESSAGE_ERROR,
-                               		GTK_BUTTONS_CLOSE,
-                       		        _("No local game selected."));
-      gtk_dialog_run (GTK_DIALOG (dialog));
-      gtk_widget_destroy (dialog);
-      return TRUE;
+      error_dialog (_("No local game selected."));
+      return FALSE;
     }
     gtk_tree_model_get(GTK_TREE_MODEL(model), &it, 1, &lan_server, -1);
     if (lan_server != NULL) {
@@ -482,21 +354,42 @@ config_ok_cb (GtkWidget *widget)
 
   gconf_client_set_int (conf_client, KEY_NETWORK_MODE, network_mode, NULL);
 
-  gtk_widget_destroy (net_cfg_dialog);
-  net_cfg_dialog = NULL;
-  
+  if (server == NULL) {
+    server = game_server;
+  }
+
+  if (network_mode == SERVER_MODE) {
+    games_network_connect (server, name);
+  } else if (network_mode == HOST_LAN_MODE) {
+    char *gamename = gconf_client_get_string (conf_client,
+				 KEY_NETWORK_GAMENAME, NULL);
+    if (games_host_lan_game ((char *)gamename)) {
+      network_gui_message (_("A new gnome games server was successfully started."));
+    } else {
+      gtk_widget_set_sensitive(GTK_WIDGET(connect_cmd), TRUE);
+    }
+  } else if (network_mode == JOIN_LAN_MODE) {
+    games_network_connect (server, name);
+
+  }
+
+  return TRUE;
+}
+                                                                                                          
+static gboolean
+start_cb (GtkWidget *widget)
+{
+  games_network_connect (NULL, NULL);
   return TRUE;
 }
 
 static gboolean
-config_cancel_cb (GtkWidget *widget)
+close_cb (GtkWidget *widget)
 {
-  gtk_widget_destroy (net_cfg_dialog);
-  net_cfg_dialog = NULL;
-
+  network_gui_close ();
+  games_network_stop ();
   return TRUE;
 }
-
 
 static gboolean
 config_server_cb (GtkWidget *widget)
