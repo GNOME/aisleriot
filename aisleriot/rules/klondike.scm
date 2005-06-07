@@ -120,7 +120,9 @@
        (flip-stock stock waste (if deal-three -1 2) (if deal-three 3 1))))
 
 (define (button-double-clicked start-slot)
-  (and (member start-slot (cons waste tableau))
+   (or (and (member start-slot foundation)
+            (autoplay-foundations))
+   (and (member start-slot (cons waste tableau))
        (not (empty-slot? start-slot))
        (let* ((card (get-top-card start-slot))
 	      (suit (get-suit card))
@@ -143,8 +145,16 @@
 		(or (= ace value)
 		    (= (get-value (get-top-card end-slot)) (- value 1)))
 		(remove-card start-slot)
-		(complete-transaction start-slot (list card) end-slot))))))
+		(complete-transaction start-slot (list card) end-slot)))))))
 
+(define (autoplay-foundations)
+  (define (autoplay-foundations-tail)
+    (if (or-map button-double-clicked (cons waste tableau))
+        (autoplay-foundations-tail)
+        #t))
+  (if (or-map button-double-clicked (cons waste tableau))
+      (autoplay-foundations-tail)
+      #f))
 
 ; Global variables used in searching (keeping it simple):
 
