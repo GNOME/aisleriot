@@ -24,7 +24,7 @@
   (shuffle-deck)
 
   (add-normal-slot DECK)         ; first row
-  (add-normal-slot '())
+  (add-partially-extended-slot '() right 3)
   (add-blank-slot)
   (add-normal-slot '())
   (add-normal-slot '())
@@ -63,9 +63,7 @@
 					"   "
 					(get-reserve-no-string)
 					"   "
-					(get-base-string)
-					"   "
-					(get-redeals-string))))
+					(get-base-string))))
 
 (define (get-stock-no-string)
   (string-append (_"Stock left:") " "
@@ -88,10 +86,6 @@
 	((= BASE-VAL 13)
 	 (_"Base Card: King"))
 	(#t #f)))
-
-(define (get-redeals-string)
-  (string-append (_"Redeals left:") " "
-		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)
   (if (= slot-id 0)
@@ -169,7 +163,7 @@
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)
-       (flip-stock 0 1 2 3)))
+       (flip-stock 0 1 -1 3)))
 
 (define (place-ace card slot)
   (remove-card slot)
@@ -225,10 +219,7 @@
 (define (deal-possible?)
   (if (not (empty-slot? 0))
       (list 0 (_"Deal a new card from the deck"))
-      (if (and (< FLIP-COUNTER 2)
-	       (not (empty-slot? 1)))
-	  (list 0 (_"Move waste back to stock"))
-	  #f)))
+      (list 0 (_"Move waste back to stock"))))
 
 (define (move-up? card slot)
   (or (if (empty-slot? slot)

@@ -67,8 +67,9 @@
 					(get-redeals-string))))
 
 (define (get-redeals-string)
-  (string-append (_"Redeals left:") " "
-		 (number->string (- 2 FLIP-COUNTER))))
+  (if deal-three ""
+      (string-append (_"Redeals left:") " "
+		     (number->string (- 2 FLIP-COUNTER)))))
 
 (define (get-stock-no-string)
   (string-append (_"Stock left:") " " 
@@ -116,7 +117,7 @@
 
 (define (button-clicked start-slot)
   (and (= start-slot stock)
-       (flip-stock stock waste 2 (if deal-three 3 1))))
+       (flip-stock stock waste (if deal-three -1 2) (if deal-three 3 1))))
 
 (define (button-double-clicked start-slot)
   (and (member start-slot (cons waste tableau))
@@ -209,7 +210,8 @@
 	   (set! card (get-top-card waste))
 	   (or-map addable? tableau))
       (or-map ploppable? foundation)
-      (and (or (and (< FLIP-COUNTER 2)
+      (and (or (and (or deal-three
+			(< FLIP-COUNTER 2))
 		    (not (empty-slot? waste)))
 	       (not (empty-slot? stock))) 
 	   (list 0 (_"Deal a new card from the deck")))

@@ -232,9 +232,11 @@
 ; when the stock slot is empty than the waste slot will be flipped back
 ; onto the stock unless the flip limit has been reached.
 ; an optional forth argument indicates the number of cards to deal.
+; If the flip limit is negative, it is treated as infinite.
 (define (flip-stock stock-slot waste-slot flip-limit . rest)
   (if (empty-slot? stock-slot)
-      (and (< FLIP-COUNTER flip-limit)
+      (and (or (< flip-limit 0)
+	       (< FLIP-COUNTER flip-limit))
 	   (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
 	   (flip-deck stock-slot waste-slot))
       (or (let loop ((i (if (null? rest) 1 (car rest))))
