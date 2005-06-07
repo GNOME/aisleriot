@@ -32,6 +32,7 @@ G_BEGIN_DECLS
 /* These uses new icons */
 #define GAMES_STOCK_SCORES           "games-scores"
 #define GAMES_STOCK_PAUSE_GAME       "games-pause-game"
+#define GAMES_STOCK_RESUME_GAME      "games-resume-game"
 #define GAMES_STOCK_FULLSCREEN       "games-fullscreen"
 #define GAMES_STOCK_LEAVE_FULLSCREEN "games-leave-fullscreen"
 
@@ -46,9 +47,11 @@ G_BEGIN_DECLS
 
 void games_stock_init (void);
 
-void
-games_stock_prepare_for_statusbar_tooltips (GtkUIManager *ui_manager,
-                      			    GtkWidget    *statusbar);
+void games_stock_set_pause_actions (GtkAction *pause_action, 
+				    GtkAction *resume_action);
+
+void games_stock_prepare_for_statusbar_tooltips (GtkUIManager *ui_manager,
+						 GtkWidget    *statusbar);
 
 G_END_DECLS
 

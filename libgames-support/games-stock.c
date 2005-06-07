@@ -40,6 +40,7 @@ static GtkStockItem games_stock_items[] =
 /* i18n: This "_New" is for the menu item 'Game->New', implies "New Game" */
   { GAMES_STOCK_NEW_GAME, N_("_New"), GDK_CONTROL_MASK, 'n', NULL },
   { GAMES_STOCK_PAUSE_GAME, N_("_Pause"), 0, GDK_Pause, NULL },
+  { GAMES_STOCK_RESUME_GAME, N_("Res_ume"), 0, GDK_Pause, NULL },
 /* i18n: "_Restart" is the menu item 'Game->Restart', implies "Restart Game" */
   { GAMES_STOCK_RESTART_GAME, N_("_Restart"), 0, 0, NULL },
   { GAMES_STOCK_UNDO_MOVE, N_("_Undo Move"), GDK_CONTROL_MASK, 'z', NULL },
@@ -60,16 +61,17 @@ typedef struct {
 
 /* Names of stock intems installed by gtk+ and gnome-icon-theme */
 static GamesStockItemIcon stock_item_icon[] = {
-  { GAMES_STOCK_NEW_GAME,     NULL,         GTK_STOCK_NEW },
-  { GAMES_STOCK_PAUSE_GAME,   "stock_timer_stopped",   NULL },
-  { GAMES_STOCK_RESTART_GAME, NULL,         GTK_STOCK_REFRESH },
-  { GAMES_STOCK_UNDO_MOVE,    NULL ,        GTK_STOCK_UNDO },
-  { GAMES_STOCK_REDO_MOVE,    NULL,         GTK_STOCK_REDO },
-  { GAMES_STOCK_HINT,         NULL,         GTK_STOCK_DIALOG_INFO },
-  { GAMES_STOCK_SCORES,       "stock_scores", NULL },
-  { GAMES_STOCK_FULLSCREEN,   "stock_fullscreen", NULL },
-  { GAMES_STOCK_LEAVE_FULLSCREEN,   "stock_leave-fullscreen", NULL },
-  { GAMES_STOCK_CONTENTS,     NULL,         GTK_STOCK_HELP}
+  { GAMES_STOCK_NEW_GAME,         NULL,                     GTK_STOCK_NEW },
+  { GAMES_STOCK_PAUSE_GAME,       "stock_timer_stopped",    NULL },
+  { GAMES_STOCK_RESUME_GAME,      "stock_timer",            NULL },
+  { GAMES_STOCK_RESTART_GAME,     NULL,                     GTK_STOCK_REFRESH },
+  { GAMES_STOCK_UNDO_MOVE,        NULL ,                    GTK_STOCK_UNDO },
+  { GAMES_STOCK_REDO_MOVE,        NULL,                     GTK_STOCK_REDO },
+  { GAMES_STOCK_HINT,             NULL,                     GTK_STOCK_DIALOG_INFO },
+  { GAMES_STOCK_SCORES,           "stock_scores",           NULL },
+  { GAMES_STOCK_FULLSCREEN,       "stock_fullscreen",       NULL },
+  { GAMES_STOCK_LEAVE_FULLSCREEN, "stock_leave-fullscreen", NULL },
+  { GAMES_STOCK_CONTENTS,         NULL,                     GTK_STOCK_HELP}
 };
 
 typedef struct {
@@ -80,6 +82,7 @@ typedef struct {
 static GamesStockItemTooltip stock_item_tooltip[] = {
   { GAMES_STOCK_NEW_GAME, N_("Start a new game") },
   { GAMES_STOCK_PAUSE_GAME, N_("Pause the game") },
+  { GAMES_STOCK_RESUME_GAME, N_("Resume the paused game") },
   { GAMES_STOCK_RESTART_GAME, N_("Restart the game") },
   { GAMES_STOCK_UNDO_MOVE, N_("Undo the last move") }, 
   { GAMES_STOCK_REDO_MOVE, N_("Redo the undone move") },
@@ -187,6 +190,36 @@ games_stock_prepare_for_statusbar_tooltips (GtkUIManager *ui_manager,
   g_signal_connect (ui_manager, "connect-proxy", G_CALLBACK (connect_proxy), statusbar);
 }
 
+typedef struct {
+  GtkAction *pause_action;
+  GtkAction *resume_action;
+} PauseActions;
+
+static void
+set_pause_actions (GtkAction *active, PauseActions *actions)
+{
+  gboolean paused;
+
+  paused = (active == actions->pause_action);
+  gtk_action_set_visible (actions->pause_action, !paused);
+  gtk_action_set_sensitive (actions->pause_action, !paused);
+  gtk_action_set_visible (actions->resume_action, paused);
+  gtk_action_set_sensitive (actions->resume_action, paused);
+}
+
+void
+games_stock_set_pause_actions (GtkAction *pause_action, GtkAction *resume_action) 
+{
+  PauseActions *actions;
+
+  actions = g_new (PauseActions, 1);
+  actions->pause_action = pause_action;
+  actions->resume_action = resume_action;
+  g_signal_connect (pause_action, "activate", G_CALLBACK (set_pause_actions), actions);
+  g_signal_connect (resume_action, "activate", G_CALLBACK (set_pause_actions), actions);
+
+  set_pause_actions (resume_action, actions);
+}
 
 /* FIXME: This is for non-gtk icons. It only seems to go for the hicolor defaults. */
 static void
