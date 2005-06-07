@@ -88,16 +88,19 @@
 	(#t #f)))
 
 (define (button-pressed slot-id card-list)
-  (if (= slot-id 0)
-      #f
-      (if card-list
-	  (if (is-visible? (car (reverse card-list)))
-	      (if (and (= slot-id 2)
-		       (= (length (get-cards 2)) 1))
-		  #f
-		  #t)
-	      #f)
-	  #f)))
+  (cond ((= slot-id 0)
+	 #f)
+	((and (= slot-id 1) (> (length card-list) 1))
+	 #f)
+	(else
+	 (if card-list
+	     (if (is-visible? (car (reverse card-list)))
+		 (if (and (= slot-id 2)
+			  (= (length (get-cards 2)) 1))
+		     #f
+		     #t)
+		 #f)
+	     #f))))
 
 (define (complete-transaction start-slot card-list end-slot)
   (if (and (> start-slot 1)
