@@ -156,6 +156,11 @@ void draw_cards () {
       hslot->pixeldy = hslot->compressed_dy * card_height;
       slot_height = get_slot_height (hslot);
       slot_max_height = get_slot_max_height (hslot);
+      /* Give up if the result would be unusably small. */
+      if (hslot->pixeldy < 4) {
+	hslot->pixeldy = 4;
+	break;
+      }
     }
     calculate_card_location (hslot);
 
