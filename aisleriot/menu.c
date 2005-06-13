@@ -382,7 +382,7 @@ static gint compress_options_to_int (SCM options_list)
 
   bits = 0;
   l = SCM_INUM (scm_length (options_list)) - 1;
-  for (i=l; i>-1; i--) {
+  for (i=l; i>=0; i--) {
     entry  = scm_list_ref (options_list, SCM_MAKINUM (i));
     bits <<= 1;
     bits |= SCM_NFALSEP (scm_list_ref (entry, SCM_MAKINUM (1))) ? 1 : 0;
