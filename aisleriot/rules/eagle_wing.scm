@@ -123,7 +123,7 @@
       (deal-cards-face-up 10 (cons start-slot '())))
   (give-status-message))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
        (or (and (member end-slot '(2 3 4 5))
 		(if (empty-slot? end-slot)
@@ -134,8 +134,7 @@
 				(+ (get-value (get-top-card end-slot)) 1))
 			     (and (= (get-value (car card-list)) ace)
 				  (= (get-value (get-top-card end-slot)) 
-				     king)))))
-		(complete-transaction start-slot (reverse card-list) end-slot))
+				     king))))))
 	   (and (member end-slot '(6 7 8 9 11 12 13 14))
 		(= (length card-list) 1)
 		(or (empty-slot? end-slot)
@@ -146,8 +145,11 @@
 				(- (get-value (get-top-card end-slot)) 1))
 			     (and (= (get-value (car card-list)) king)
 				  (= (get-value (get-top-card end-slot)) 
-				     ace)))))
-		(complete-transaction start-slot card-list end-slot)))))
+				     ace)))))))))
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
+       (complete-transaction start-slot (reverse card-list) end-slot)))
 
 (define (button-clicked slot-id)
   (if (= slot-id 0)
@@ -354,4 +356,6 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)

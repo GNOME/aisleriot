@@ -82,11 +82,15 @@
            (check-same-value-list (get-cards end-slot)))
                 (freeze-slot end-slot)) #t)
 
-(define (button-released start-slot card-list end-slot)
-  (and (or (empty-slot? end-slot)
+(define (droppable? start-slot card-list end-slot)
+  (and (not (= start-slot end-slot))
+       (or (empty-slot? end-slot)
            (eq? (get-value (car (get-cards end-slot)))
                 (get-value (car card-list))))
-       (< (+ (length (get-cards end-slot)) (length card-list)) 5)
+       (< (+ (length (get-cards end-slot)) (length card-list)) 5)))
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
        (complete-transaction start-slot card-list end-slot)))
 
 (define (button-clicked slot-id) #f)
@@ -171,4 +175,6 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)

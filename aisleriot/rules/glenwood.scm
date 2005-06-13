@@ -55,16 +55,11 @@
 
   (deal-cards-face-up 0 '(6 11 12 13 6 11 12 13 6 11 12 13 7 8 9 10))
 
-  (give-initial-status-message)
+  (give-status-message)
 
   (list 7 5)
 
 )
-
-(define (give-initial-status-message)
-  (set-statusbar-message (string-append (get-stock-no-string)
-					"   "
-					(get-redeals-string))))
 
 (define (give-status-message)
   (set-statusbar-message (string-append (get-stock-no-string)
@@ -93,7 +88,7 @@
 	 (_"Base Card: Queen"))
 	((= BASE-VAL 13)
 	 (_"Base Card: King"))
-	(#t #f)))
+	(#t "")))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -116,23 +111,17 @@
 		    (= slot-id 12)
 		    (= slot-id 13))))))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
        (or (and (= (length card-list) 1)
 		(or (and (empty-slot? end-slot)
-			 (= end-slot 2)
-			 (set! BASE-VAL (get-value (car card-list)))
-			 (move-n-cards! start-slot end-slot card-list)
-			 (add-to-score! 1)
-			 (give-status-message))
+			 (= end-slot 2))
 		    (and (not (empty-slot? 2))
 			 (or (and (empty-slot? end-slot)
 				  (or (and (or (= end-slot 3)
 					       (= end-slot 4)
 					       (= end-slot 5))
-					   (= BASE-VAL (get-value (car card-list)))
-					   (move-n-cards! start-slot end-slot card-list)
-					   (add-to-score! 1))
+					   (= BASE-VAL (get-value (car card-list))))
 				      (and (or (empty-slot? start-slot)
 					       (not (or (= start-slot 7)
 							(= start-slot 8)
@@ -146,8 +135,7 @@
 					   (or (= end-slot 7)
 					       (= end-slot 8)
 					       (= end-slot 9)
-					       (= end-slot 10))
-					   (move-n-cards! start-slot end-slot card-list))))
+					       (= end-slot 10)))))
 			     (and (not (empty-slot? end-slot))
 				  (or (= end-slot 2)
 				      (= end-slot 3)
@@ -160,9 +148,7 @@
 				      (and (= (get-value (car card-list))
 					      ace)
 					   (= (get-value (get-top-card end-slot))
-					      king)))
-				  (move-n-cards! start-slot end-slot card-list)
-				  (add-to-score! 1))))))
+					      king))))))))
 	   (and (or (empty-slot? start-slot)
 		    (= start-slot 1)
 		    (= start-slot 6)
@@ -181,16 +167,24 @@
 			     (and (= (get-value (car (reverse card-list)))
 				     king)
 				  (= (get-value (get-top-card end-slot))
-				     ace)))
-			 (move-n-cards! start-slot end-slot card-list))
+				     ace))))
 		    (and (empty-slot? end-slot)
 			 (or (not (= start-slot 1))
 			     (and (empty-slot? 6)
 				  (empty-slot? 11)
 				  (empty-slot? 12)
-				  (empty-slot? 13)))
-			 (move-n-cards! start-slot end-slot card-list)))))))
-			      
+				  (empty-slot? 13)))))))))
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
+       (or (not (= end-slot 2))
+           (not (empty-slot? end-slot))
+           (set! BASE-VAL (get-value (car card-list))))
+       (move-n-cards! start-slot end-slot card-list)
+       (or (< end-slot 2)
+           (> end-slot 5)
+           (add-to-score! 1))))
+
 (define (button-clicked slot-id)
   (and (not (empty-slot? 2))
        (= slot-id 0)
@@ -241,9 +235,7 @@
 
 
 (define (game-continuable)
-  (if (empty-slot? 2)
-      (give-initial-status-message)
-      (give-status-message))
+  (give-status-message)
   (and (not (game-won))
        (get-hint)))
 
@@ -386,6 +378,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

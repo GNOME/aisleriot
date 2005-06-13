@@ -90,22 +90,21 @@
        (not (= slot-id 8))
        (not (= (get-value (car card-list)) king))))
 
+(define (droppable? start-slot card-list end-slot)
+  (and (= end-slot 8)
+       (= (get-value (car card-list))
+	  (modulo (* 2 (get-value (get-top-card end-slot))) 13))))
+
 (define (button-released start-slot card-list end-slot)
-  (if (= end-slot 8)
-      (if (or (= (get-value (car card-list))
-		 (* 2 (get-value (get-top-card end-slot))))
-	      (= (get-value (car card-list))
-		 (- (* 2 (get-value (get-top-card end-slot))) 13)))
-	  (begin
-	    (add-to-score! 1)
-	    (move-n-cards! start-slot end-slot card-list)
-	    (cond ((not (empty-slot? 1))
-		   (deal-cards 1 (cons start-slot '())))
-		  ((not (empty-slot? 0))
-		   (deal-cards-face-up 0 (cons start-slot '())))
-		  (#t #t)))
-	  #f)
-      #f))
+  (and (droppable? start-slot card-list end-slot)
+       (begin
+	 (add-to-score! 1)
+	 (move-n-cards! start-slot end-slot card-list)
+	 (cond ((not (empty-slot? 1))
+		(deal-cards 1 (cons start-slot '())))
+	       ((not (empty-slot? 0))
+		(deal-cards-face-up 0 (cons start-slot '())))
+	       (#t #t)))))
 
 (define (button-clicked slot-id)
   (if (= slot-id 0)
@@ -159,4 +158,6 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)

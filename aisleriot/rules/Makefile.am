@@ -65,6 +65,7 @@ rules_DATA  = 			\
 	thirteen.scm		\
 	thumb_and_pouch.scm	\
 	treize.scm		\
+	triple_peaks.scm	\
 	union_square.scm	\
 	valentine.scm		\
 	westhaven.scm		\

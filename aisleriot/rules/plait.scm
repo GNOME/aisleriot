@@ -224,6 +224,36 @@
 
   (list 10 4))
 
+
+(define (give-status-message)
+  (set-statusbar-message (string-append (get-stock-no-string)
+					"   "
+					(get-base-string)
+					"   "
+					(get-redeals-string))))
+
+(define (get-stock-no-string)
+  (string-append (_"Stock left:") " "
+		 (number->string (length (get-cards deck)))))
+
+(define (get-base-string)
+  (cond ((and (> start-value 1)
+	      (< start-value 11))
+	 (string-append (_"Base Card: ") (number->string start-value)))
+	((= start-value 1)
+	 (_"Base Card: Ace"))
+	((= start-value 11)
+	 (_"Base Card: Jack"))
+	((= start-value 12)
+	 (_"Base Card: Queen"))
+	((= start-value 13)
+	 (_"Base Card: King"))
+	(#t #f)))
+
+(define (get-redeals-string)
+  (string-append (_"Redeals left:") " "
+		 (number->string (- 2 FLIP-COUNTER))))
+
 ;; Move cards automatically from the plait to one of the edge slots
 (define (plait-to-edge start-slot)
   (if (and (edge? start-slot)
@@ -241,11 +271,20 @@
       #t
       #f))
 
+(define (droppable? start-slot card-list end-slot)
+  (cond ((or (free? end-slot) (edge? end-slot)) (and
+						 (= (length card-list) 1)
+						 (not (and (= start-slot plait)
+							   (free? end-slot)))
+						 (empty-slot? end-slot)))
+	((home? end-slot) (move-possible? (car card-list) end-slot))
+	(else #f)))
+
 (define (button-released start-slot card-list end-slot)
   (cond ((free? end-slot) (move-to-cell start-slot card-list end-slot))
 	((home? end-slot) (and
-			    (move-to-home card-list end-slot)
-			    (plait-to-edge start-slot)))
+			   (move-to-home card-list end-slot)
+			   (plait-to-edge start-slot)))
 	((edge? end-slot) (move-to-cell start-slot card-list end-slot))
 	(else #f)))
 
@@ -320,6 +359,7 @@
 
 (define (game-cont)
   (and (not (game-won))
+       (give-status-message)
        (get-hint)))
        
 (define (get-options) #f)
@@ -328,8 +368,10 @@
 
 (define (timeout) #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 	    button-double-clicked game-cont game-won get-hint
-	    get-options apply-options timeout)
+	    get-options apply-options timeout droppable?)
 
 ;;; plait.scm ends here

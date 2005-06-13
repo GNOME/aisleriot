@@ -61,47 +61,24 @@
        (or (= slot-id 1)
 	   (> slot-id 5))))	    
 
-(define (check-move-up card-list slot-id)
-  (if (< (get-value (get-top-card slot-id)) 13)
-      (cond ((= slot-id 2)
-	     (if (= (modulo (get-value (car card-list)) 13)
-		    (modulo (+ 1 (get-value (get-top-card 2))) 13))
-		 (begin
-		   (add-cards! slot-id card-list)
-		   (add-to-score! 1))
-		 #f))
-	    ((= slot-id 3)
-	     (if (= (modulo (get-value (car card-list)) 13)
-		    (modulo (+ 2 (get-value (get-top-card 3))) 13))
-		 (begin
-		   (add-cards! slot-id card-list)
-		   (add-to-score! 1))
-		 #f))
-	    ((= slot-id 4)
-	     (if (= (modulo (get-value (car card-list)) 13)
-		    (modulo (+ 3 (get-value (get-top-card 4))) 13))
-		 (begin
-		   (add-cards! slot-id card-list)
-		   (add-to-score! 1))
-		 #f))
-	    ((= slot-id 5)
-	     (if (= (modulo (get-value (car card-list)) 13)
-		    (modulo (+ 4 (get-value (get-top-card 5))) 13))
-		 (begin
-		   (add-cards! slot-id card-list)
-		   (add-to-score! 1))
-		 #f))
-	    (#t #f))
-      #f))
-
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (cond ((and (> end-slot 1)
 	      (< end-slot 6))
-	 (check-move-up card-list end-slot))
+	 (= (modulo (get-value (car card-list)) 13)
+	    (modulo (+ (- end-slot 1) (get-value (get-top-card end-slot))) 13)))
 	((and (= start-slot 1)
-	      (not (= end-slot 1)))
-	 (move-n-cards! start-slot end-slot card-list))
+	      (>= end-slot 6))
+	 #t)
 	(#t #f)))
+
+(define (button-released start-slot card-list end-slot)
+  (if (droppable? start-slot card-list end-slot)
+      (begin
+        (move-n-cards! start-slot end-slot card-list)
+        (if (and (> end-slot 1) (< end-slot 6))
+            (add-to-score! 1)
+            #t))
+      #f))
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)
@@ -168,7 +145,9 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)
 

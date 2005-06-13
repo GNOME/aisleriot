@@ -144,13 +144,23 @@
 	       (and (= (get-value (get-top-card end-slot)) ace)
 		    (= (get-value card) king))))))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (if (not (= start-slot end-slot))
       (cond ((and (> end-slot 1)
 		  (< end-slot 6))
 	     (and (= (length card-list) 1)
-		  (to-foundation? (car card-list) end-slot)
-		  (or (and (> start-slot 5)
+		  (to-foundation? (car card-list) end-slot)))
+	    ((and (> end-slot 5)
+		  (< end-slot 13))
+	     (and (to-tableau? (car (reverse card-list)) end-slot)))
+	    (#t #f))
+      #f))
+
+(define (button-released start-slot card-list end-slot)
+  (if (droppable? start-slot card-list end-slot)
+      (cond ((and (> end-slot 1)
+		  (< end-slot 6))
+	     (and (or (and (> start-slot 5)
 			   (< start-slot 13)
 			   (not (empty-slot? start-slot))
 			   (make-visible-top-card start-slot))
@@ -162,8 +172,7 @@
 		  (move-n-cards! start-slot end-slot card-list)))
 	    ((and (> end-slot 5)
 		  (< end-slot 13))
-	     (and (to-tableau? (car (reverse card-list)) end-slot)
-		  (or (and (> start-slot 1)
+	     (and (or (and (> start-slot 1)
 			   (< start-slot 6)
 			   (add-to-score! -1))
 		      (and (> start-slot 5)
@@ -427,6 +436,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)
