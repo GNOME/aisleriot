@@ -27,61 +27,61 @@
 
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
 
   (add-blank-slot)
 
-  (add-normal-slot '())
-
-  (add-carriage-return-slot)
-  (add-blank-slot)
-  (add-blank-slot)
-  (add-blank-slot)
-
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-
-  (add-blank-slot)
-
-  (add-normal-slot '())
+  (add-partially-extended-slot '() right 2)
 
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
 
   (add-blank-slot)
 
-  (add-normal-slot '())
+  (add-partially-extended-slot '() right 2)
+
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
 
   (add-blank-slot)
 
-  (add-normal-slot '())
+  (add-partially-extended-slot '() right 2)
+  (add-carriage-return-slot)
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-blank-slot)
+
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2)
+
+  (add-blank-slot)
+
+  (add-partially-extended-slot '() right 2)
 
   (deal-cards-face-up 0 '(2 3 4 5 7 8 9 10 12 13 14 15 17 18 19 20))
 
   (give-status-message)
 
-  (list 9 4)
+  (list 10 4)
 )
 
 (define (give-status-message)
@@ -153,30 +153,61 @@
 		(#t #f))
 	  #f)))
 
-(define (button-released start-slot card-list end-slot)
-  (cond ((or (= end-slot 0)
+(define (droppable? start-slot card-list end-slot)
+  (cond ((or (= end-slot start-slot)
+             (= end-slot 0)
 	     (= end-slot 1))
 	 #f)
 	((or (= end-slot 6)
 	     (= end-slot 11)
 	     (= end-slot 16)
 	     (= end-slot 21))
-	 (if (to-foundation? card-list end-slot)
-	     (and (move-n-cards! start-slot end-slot card-list)
-		  (add-to-score! 1))
-	     #f))
+	 (to-foundation? card-list end-slot))
 	(#t
-	 (if (to-tableau? card-list end-slot)
-	     (move-n-cards! start-slot end-slot card-list)
-	     #f))))
+	 (to-tableau? card-list end-slot))))
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
+       (cond ((or (= end-slot 6)
+                  (= end-slot 11)
+	          (= end-slot 16)
+	          (= end-slot 21))
+	      (and (move-n-cards! start-slot end-slot card-list)
+		   (add-to-score! 1)))
+	     (#t
+	      (move-n-cards! start-slot end-slot card-list)))))
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)
        (not (empty-slot? 0))
        (deal-cards-face-up 0 '(1))))
 
+(define (play-foundation-helper start-slot end-slots)
+  (define card (get-top-card start-slot))
+  (if (to-foundation? (list card) (car end-slots))
+      (and (remove-card start-slot)
+           (move-n-cards! start-slot (car end-slots) (list card))
+           (add-to-score! 1))
+      (if (eq? (cdr end-slots) '())
+          #f
+          (play-foundation-helper start-slot (cdr end-slots)))))
+
 (define (button-double-clicked slot-id)
-  #f)
+  (cond ((member slot-id '(1 2 3 4 5 7 8 9 10 12 13 14 15 17 18 19 20))
+         (and (not (empty-slot? slot-id))
+              (play-foundation-helper slot-id '(6 11 16 21))))
+        ((member slot-id '(6 11 16 21))
+         (autoplay-foundations))
+        (#t #f)))
+
+(define (autoplay-foundations)
+  (define (autoplay-foundations-tail)
+    (if (or-map button-double-clicked '(1 2 3 4 5 7 8 9 10 12 13 14 15 17 18 19 20))
+        (autoplay-foundations-tail)
+        #t))
+  (if (or-map button-double-clicked '(1 2 3 4 5 7 8 9 10 12 13 14 15 17 18 19 20))
+      (autoplay-foundations-tail)
+      #f))
 
 (define (game-continuable)
   (give-status-message)
@@ -447,7 +478,9 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)
 
