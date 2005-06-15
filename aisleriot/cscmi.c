@@ -169,6 +169,7 @@ static SCM scm_set_feature_word(SCM features)
   enabled_features = SCM_INUM(features);
 
   droppable_is_featured = (enabled_features & DROPPABLE_FMASK);
+  score_is_hidden = (enabled_features & SCOREHIDDEN_FMASK);
 
   return SCM_EOL;
 }

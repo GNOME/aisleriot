@@ -56,6 +56,7 @@ GtkWidget        *app;
 GtkWidget        *vbox;
 GtkWidget        *playing_area;
 GtkWidget        *statusbar;
+GtkWidget        *score_box;
 GdkGC            *draw_gc;
 GdkGC            *bg_gc;
 GdkGC            *slot_gc;
@@ -70,9 +71,9 @@ gboolean         dont_save = FALSE; /* If the game is selected on the
 
 gint32		 enabled_features;
 gboolean	 droppable_is_featured;
+gboolean	 score_is_hidden; 
 
 guint            score;
-/* guint            game_seconds;*/
 guint            timeout;
 guint32          seed;
 guint            n_games;
@@ -221,6 +222,11 @@ void new_game (gchar* file, guint *seedp)
     update_statistics_display ();
     help_update_game_name (game_name);
     install_options_menu (game_name);
+
+    if (score_is_hidden)
+      gtk_widget_hide (score_box);
+    else
+      gtk_widget_show (score_box);
 
     if (!dont_save)
       save_state (gnome_master_client ());
@@ -389,7 +395,7 @@ gchar* start_game;
 
 static void main_prog(void *closure, int argc, char *argv[])
 {
-  GtkWidget *score_label, *time_label, *score_box;
+  GtkWidget *score_label, *time_label, *time_box;
 
   cscm_init();
 
@@ -407,21 +413,29 @@ static void main_prog(void *closure, int argc, char *argv[])
   create_sol_board ();
   gtk_box_pack_end (GTK_BOX (vbox), statusbar, FALSE, FALSE, 0);
 
-  score_box = gtk_hbox_new(0, FALSE);
+  time_box = gtk_hbox_new (0, FALSE);
+  score_box = gtk_hbox_new (0, FALSE);
   score_label = gtk_label_new (_("Score:"));
   gtk_box_pack_start (GTK_BOX(score_box), score_label, FALSE, FALSE, 0);
   score_value = gtk_label_new ("   0");
   gtk_box_pack_start (GTK_BOX(score_box), score_value, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX(time_box), score_box, FALSE, FALSE, 0);
   time_label = gtk_label_new (_("Time:"));
-  gtk_box_pack_start (GTK_BOX(score_box), time_label, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX(time_box), time_label, FALSE, FALSE, 0);
   time_value = games_clock_new ();
-  gtk_box_pack_start (GTK_BOX(score_box), time_value, FALSE, FALSE, GNOME_PAD_SMALL);
+  gtk_box_pack_start (GTK_BOX(time_box), time_value, FALSE, FALSE, GNOME_PAD_SMALL);
 
-  gtk_box_pack_end (GTK_BOX(statusbar), score_box, FALSE, FALSE, 0);
+  gtk_box_pack_end (GTK_BOX(statusbar), time_box, FALSE, FALSE, 0);
 
   new_game (start_game, NULL);
 
   gtk_widget_show_all (app);
+
+  if (score_is_hidden)
+    gtk_widget_hide (score_box);
+  else
+    gtk_widget_show (score_box);
+
   gtk_window_set_focus (GTK_WINDOW (app), NULL);
 
   if (!gconf_client_get_bool (gconf_client,

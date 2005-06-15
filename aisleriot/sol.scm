@@ -27,6 +27,7 @@
         
 ;; Feature masks:
 (define droppable-feature 1)
+(define scores-disabled 2)
 
 (define (reset-features) (set-feature-word! 0))
 

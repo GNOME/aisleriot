@@ -368,7 +368,7 @@
 
 (define (timeout) #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature scores-disabled)
 
 (set-lambda new-game button-pressed button-released button-clicked
 	    button-double-clicked game-cont game-won get-hint

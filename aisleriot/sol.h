@@ -38,6 +38,7 @@
 
 /* Feature masks */
 #define DROPPABLE_FMASK 1
+#define SCOREHIDDEN_FMASK 2
 
 /*
  * Global variables
@@ -56,6 +57,7 @@ extern gchar*	  	card_style;
 
 extern gint		enabled_features;
 extern gboolean		droppable_is_featured;
+extern gboolean		score_is_hidden;
 
 extern guint            score;
 extern guint            game_time;

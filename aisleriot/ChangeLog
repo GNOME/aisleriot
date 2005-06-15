@@ -1,3 +1,11 @@
+2005-06-14  Richard Hoelscher  <rah@rahga.com>
+
+	* sol.scm: Add the "scores-disabled" feature. (#307710)
+	* sol.[ch]: Implement hideable score display widgets.
+	* cscmi.c (scm_set_feature_word): Support the score_is_hidden bool.
+	* rules/plait.scm, ten_across.scm, valentine.scm: Help says these 
+	games don't support scores, so now we hide the score.
+
 2005-06-14  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* rules/union_square.scm: Patch from Vincent Povirk to implement
