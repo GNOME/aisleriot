@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-06 14:22+0000\n"
-"PO-Revision-Date: 2005-06-06 21:34+0200\n"
+"POT-Creation-Date: 2005-06-15 14:22+0000\n"
+"PO-Revision-Date: 2005-06-16 00:22+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgstr "Vensterhoogte"
 msgid "Window width"
 msgstr "Vensterbreedte"
 
-#: ../aisleriot/cscmi.c:497
+#: ../aisleriot/cscmi.c:498
 #, c-format
 msgid ""
 "A scheme exception occured and we were unable to create a temporary file to "
@@ -145,7 +145,7 @@ msgstr "U heeft gewonnen!!"
 msgid "There are no more moves."
 msgstr "Er zijn geen geldige zetten meer."
 
-#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:171
+#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:185
 #: ../libgames-support/games-scores-dialog.gob:445 ../same-gnome/ui.c:152
 msgid "New Game"
 msgstr "Nieuw Spel"
@@ -214,7 +214,7 @@ msgstr "FreeCell Solitaire"
 msgid "Play the popular FreeCell card game"
 msgstr "Het populaire FreeCell kaartspel"
 
-#: ../aisleriot/menu.c:86 ../gnome-stones/main.c:1011 ../gnomine/gnomine.c:415
+#: ../aisleriot/menu.c:86 ../gnome-stones/main.c:1011 ../gnomine/gnomine.c:432
 #: ../mahjongg/mahjongg.c:878
 msgid "Main game:"
 msgstr "Hoofdspel:"
@@ -236,10 +236,10 @@ msgstr "Met AisleRiot kunt u veel verschillende soorten solitaire spelen."
 
 #: ../aisleriot/menu.c:110 ../blackjack/src/menu.cpp:150
 #: ../gataxx/gataxx.c:383 ../glines/glines.c:1211 ../gnect/src/main.c:841
-#: ../gnibbles/main.c:184 ../gnobots2/menu.c:221 ../gnome-stones/main.c:1025
-#: ../gnometris/tetris.cpp:1456 ../gnomine/gnomine.c:438
-#: ../gnotravex/gnotravex.c:1512 ../gnotski/gnotski.c:1573
-#: ../gtali/gyahtzee.c:438 ../iagno/gnothello.c:296 ../mahjongg/mahjongg.c:905
+#: ../gnibbles/main.c:184 ../gnobots2/menu.c:263 ../gnome-stones/main.c:1025
+#: ../gnometris/tetris.cpp:1471 ../gnomine/gnomine.c:455
+#: ../gnotravex/gnotravex.c:1590 ../gnotski/gnotski.c:1573
+#: ../gtali/gyahtzee.c:438 ../iagno/gnothello.c:270 ../mahjongg/mahjongg.c:905
 #: ../same-gnome/ui.c:107
 msgid "translator-credits"
 msgstr ""
@@ -252,12 +252,13 @@ msgstr ""
 "Kijk voor meer info op http://nl.gnome.org/"
 
 #: ../aisleriot/menu.c:199 ../blackjack/src/blackjack.cpp:297
-#: ../glines/glines.c:1698 ../gnomine/gnomine.c:740 ../gnotski/gnotski.c:631
-#: ../mahjongg/mahjongg.c:1272 ../same-gnome/ui.c:416
+#: ../glines/glines.c:1698 ../gnobots2/menu.c:57 ../gnomine/gnomine.c:757
+#: ../gnotravex/gnotravex.c:175 ../gnotski/gnotski.c:631
+#: ../mahjongg/mahjongg.c:1272 ../same-gnome/ui.c:422
 msgid "_Game"
 msgstr "_Spel"
 
-#: ../aisleriot/menu.c:200 ../same-gnome/ui.c:417
+#: ../aisleriot/menu.c:200 ../same-gnome/ui.c:423
 msgid "_View"
 msgstr "Beel_d"
 
@@ -268,8 +269,9 @@ msgstr "_Controle"
 
 #. not translated on purpose
 #: ../aisleriot/menu.c:203 ../blackjack/src/blackjack.cpp:311
-#: ../glines/glines.c:1700 ../gnomine/gnomine.c:742 ../gnotski/gnotski.c:632
-#: ../mahjongg/mahjongg.c:1274 ../same-gnome/ui.c:419
+#: ../glines/glines.c:1700 ../gnobots2/menu.c:60 ../gnomine/gnomine.c:759
+#: ../gnotravex/gnotravex.c:178 ../gnotski/gnotski.c:632
+#: ../mahjongg/mahjongg.c:1274 ../same-gnome/ui.c:425
 msgid "_Help"
 msgstr "_Hulp"
 
@@ -298,12 +300,12 @@ msgstr "_Kaarten..."
 msgid "View help for Aisleriot"
 msgstr "Hulp voor het Aisleriot weergeven"
 
-#: ../aisleriot/menu.c:218 ../libgames-support/games-stock.c:91
+#: ../aisleriot/menu.c:218 ../libgames-support/games-stock.c:94
 msgid "View help for this game"
 msgstr "De hulp voor dit spel weergeven"
 
 #: ../aisleriot/menu.c:223 ../blackjack/src/blackjack.cpp:317
-#: ../gnect/src/main.c:1213 ../mahjongg/mahjongg.c:1290
+#: ../gnect/src/main.c:1213 ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1290
 msgid "_Toolbar"
 msgstr "_Werkbalk"
 
@@ -314,34 +316,39 @@ msgstr "_Klikken om te verplaatsen"
 #: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/canfield.scm.h:1
 #: ../aisleriot/rules/chessboard.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:1
 #: ../aisleriot/rules/glenwood.scm.h:1 ../aisleriot/rules/kansas.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:1
 msgid "Base Card: "
 msgstr "Basiskaart: "
 
 #: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/canfield.scm.h:2
 #: ../aisleriot/rules/chessboard.scm.h:2 ../aisleriot/rules/eagle_wing.scm.h:2
 #: ../aisleriot/rules/glenwood.scm.h:2 ../aisleriot/rules/kansas.scm.h:2
-#: ../aisleriot/rules/lady_jane.scm.h:2 ../aisleriot/rules/royal_east.scm.h:2
+#: ../aisleriot/rules/lady_jane.scm.h:2 ../aisleriot/rules/plait.scm.h:2
+#: ../aisleriot/rules/royal_east.scm.h:2
 msgid "Base Card: Ace"
 msgstr "Basiskaart: Aas"
 
 #: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/canfield.scm.h:3
 #: ../aisleriot/rules/chessboard.scm.h:3 ../aisleriot/rules/eagle_wing.scm.h:3
 #: ../aisleriot/rules/glenwood.scm.h:3 ../aisleriot/rules/kansas.scm.h:3
-#: ../aisleriot/rules/lady_jane.scm.h:3 ../aisleriot/rules/royal_east.scm.h:3
+#: ../aisleriot/rules/lady_jane.scm.h:3 ../aisleriot/rules/plait.scm.h:3
+#: ../aisleriot/rules/royal_east.scm.h:3
 msgid "Base Card: Jack"
 msgstr "Basiskaart: Boer"
 
 #: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/canfield.scm.h:4
 #: ../aisleriot/rules/chessboard.scm.h:4 ../aisleriot/rules/eagle_wing.scm.h:4
 #: ../aisleriot/rules/glenwood.scm.h:4 ../aisleriot/rules/kansas.scm.h:4
-#: ../aisleriot/rules/lady_jane.scm.h:4 ../aisleriot/rules/royal_east.scm.h:4
+#: ../aisleriot/rules/lady_jane.scm.h:4 ../aisleriot/rules/plait.scm.h:4
+#: ../aisleriot/rules/royal_east.scm.h:4
 msgid "Base Card: King"
 msgstr "Basiskaart: Heer"
 
 #: ../aisleriot/rules/agnes.scm.h:5 ../aisleriot/rules/canfield.scm.h:5
 #: ../aisleriot/rules/chessboard.scm.h:5 ../aisleriot/rules/eagle_wing.scm.h:5
 #: ../aisleriot/rules/glenwood.scm.h:5 ../aisleriot/rules/kansas.scm.h:5
-#: ../aisleriot/rules/lady_jane.scm.h:5 ../aisleriot/rules/royal_east.scm.h:5
+#: ../aisleriot/rules/lady_jane.scm.h:5 ../aisleriot/rules/plait.scm.h:5
+#: ../aisleriot/rules/royal_east.scm.h:5
 msgid "Base Card: Queen"
 msgstr "Basiskaart: Vrouw"
 
@@ -354,9 +361,9 @@ msgstr "Geef nomaals"
 
 #: ../aisleriot/rules/agnes.scm.h:7 ../aisleriot/rules/auld_lang_syne.scm.h:2
 #: ../aisleriot/rules/block_ten.scm.h:1 ../aisleriot/rules/bristol.scm.h:2
-#: ../aisleriot/rules/camelot.scm.h:2 ../aisleriot/rules/canfield.scm.h:10
+#: ../aisleriot/rules/camelot.scm.h:2 ../aisleriot/rules/canfield.scm.h:9
 #: ../aisleriot/rules/cover.scm.h:1 ../aisleriot/rules/doublets.scm.h:2
-#: ../aisleriot/rules/eagle_wing.scm.h:11 ../aisleriot/rules/easthaven.scm.h:3
+#: ../aisleriot/rules/eagle_wing.scm.h:11 ../aisleriot/rules/easthaven.scm.h:4
 #: ../aisleriot/rules/elevator.scm.h:2 ../aisleriot/rules/escalator.scm.h:2
 #: ../aisleriot/rules/first_law.scm.h:17 ../aisleriot/rules/fortunes.scm.h:4
 #: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/golf.scm.h:2
@@ -366,9 +373,10 @@ msgstr "Geef nomaals"
 #: ../aisleriot/rules/klondike.scm.h:4 ../aisleriot/rules/labyrinth.scm.h:2
 #: ../aisleriot/rules/lady_jane.scm.h:7 ../aisleriot/rules/monte_carlo.scm.h:2
 #: ../aisleriot/rules/neighbor.scm.h:1 ../aisleriot/rules/osmosis.scm.h:3
-#: ../aisleriot/rules/peek.scm.h:3 ../aisleriot/rules/quatorze.scm.h:1
-#: ../aisleriot/rules/royal_east.scm.h:7 ../aisleriot/rules/scuffle.scm.h:4
-#: ../aisleriot/rules/sir_tommy.scm.h:3 ../aisleriot/rules/spider.scm.h:4
+#: ../aisleriot/rules/peek.scm.h:3 ../aisleriot/rules/plait.scm.h:11
+#: ../aisleriot/rules/quatorze.scm.h:1 ../aisleriot/rules/royal_east.scm.h:7
+#: ../aisleriot/rules/scuffle.scm.h:4 ../aisleriot/rules/sir_tommy.scm.h:3
+#: ../aisleriot/rules/spider.scm.h:4
 #: ../aisleriot/rules/spider_one_suit.scm.h:4
 #: ../aisleriot/rules/spider_two_suit.scm.h:4
 #: ../aisleriot/rules/spiderette.scm.h:3
@@ -388,7 +396,7 @@ msgstr "Kaarten over: 0"
 
 #: ../aisleriot/rules/agnes.scm.h:9 ../aisleriot/rules/bakers_dozen.scm.h:1
 #: ../aisleriot/rules/beleaguered_castle.scm.h:1
-#: ../aisleriot/rules/canfield.scm.h:11 ../aisleriot/rules/jumbo.scm.h:5
+#: ../aisleriot/rules/canfield.scm.h:10 ../aisleriot/rules/jumbo.scm.h:5
 #: ../aisleriot/rules/king_albert.scm.h:1 ../aisleriot/rules/lady_jane.scm.h:9
 #: ../aisleriot/rules/streets_and_alleys.scm.h:1
 msgid "Try rearranging the cards"
@@ -419,7 +427,7 @@ msgid "Move something on to an empty reserve"
 msgstr "Plaats een kaart op een leeg reserve-vak"
 
 #: ../aisleriot/rules/bakers_game.scm.h:2
-#: ../aisleriot/rules/chessboard.scm.h:8 ../aisleriot/rules/easthaven.scm.h:4
+#: ../aisleriot/rules/chessboard.scm.h:8 ../aisleriot/rules/easthaven.scm.h:5
 #: ../aisleriot/rules/eight_off.scm.h:2 ../aisleriot/rules/fortress.scm.h:2
 #: ../aisleriot/rules/gypsy.scm.h:4 ../aisleriot/rules/kansas.scm.h:9
 #: ../aisleriot/rules/seahaven.scm.h:2
@@ -443,7 +451,7 @@ msgstr "een lege Basisplaats"
 #: ../aisleriot/rules/camelot.scm.h:1 ../aisleriot/rules/canfield.scm.h:6
 #: ../aisleriot/rules/glenwood.scm.h:6 ../aisleriot/rules/klondike.scm.h:1
 #: ../aisleriot/rules/osmosis.scm.h:1 ../aisleriot/rules/peek.scm.h:1
-#: ../aisleriot/rules/plait.scm.h:1 ../aisleriot/rules/straight_up.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:6 ../aisleriot/rules/straight_up.scm.h:1
 msgid "Deal a new card from the deck"
 msgstr "Geef een nieuwe kaart van de stapel"
 
@@ -483,31 +491,22 @@ msgid "itself"
 msgstr "zichzelf"
 
 #: ../aisleriot/rules/canfield.scm.h:7 ../aisleriot/rules/eagle_wing.scm.h:7
-#: ../aisleriot/rules/glenwood.scm.h:8 ../aisleriot/rules/plait.scm.h:2
+#: ../aisleriot/rules/glenwood.scm.h:8 ../aisleriot/rules/plait.scm.h:7
 #: ../aisleriot/rules/straight_up.scm.h:2
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:2 ../aisleriot/rules/zebra.scm.h:2
 msgid "Move waste back to stock"
 msgstr "Haal een gebruikte kaart terug naar de voorraad"
 
-#: ../aisleriot/rules/canfield.scm.h:8 ../aisleriot/rules/doublets.scm.h:1
-#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/glenwood.scm.h:9
-#: ../aisleriot/rules/jumbo.scm.h:3 ../aisleriot/rules/klondike.scm.h:3
-#: ../aisleriot/rules/osmosis.scm.h:2 ../aisleriot/rules/peek.scm.h:2
-#: ../aisleriot/rules/scuffle.scm.h:2 ../aisleriot/rules/straight_up.scm.h:3
-#: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
-msgid "Redeals left:"
-msgstr "Ronde(n) over:"
-
-#: ../aisleriot/rules/canfield.scm.h:9 ../aisleriot/rules/eagle_wing.scm.h:10
+#: ../aisleriot/rules/canfield.scm.h:8 ../aisleriot/rules/eagle_wing.scm.h:10
 #: ../aisleriot/rules/kansas.scm.h:7 ../aisleriot/rules/straight_up.scm.h:4
 msgid "Reserve left:"
 msgstr "Reserve over:"
 
-#: ../aisleriot/rules/canfield.scm.h:12 ../aisleriot/rules/glenwood.scm.h:12
+#: ../aisleriot/rules/canfield.scm.h:11 ../aisleriot/rules/glenwood.scm.h:12
 msgid "empty slot on foundation"
 msgstr "leeg basisvak"
 
-#: ../aisleriot/rules/canfield.scm.h:13
+#: ../aisleriot/rules/canfield.scm.h:12
 msgid "empty space on tableau"
 msgstr "lege plaats op tafel"
 
@@ -574,6 +573,15 @@ msgstr ""
 msgid "the foundation pile"
 msgstr "de basisplaats"
 
+#: ../aisleriot/rules/doublets.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:9
+#: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
+#: ../aisleriot/rules/klondike.scm.h:3 ../aisleriot/rules/osmosis.scm.h:2
+#: ../aisleriot/rules/peek.scm.h:2 ../aisleriot/rules/plait.scm.h:10
+#: ../aisleriot/rules/scuffle.scm.h:2 ../aisleriot/rules/straight_up.scm.h:3
+#: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
+msgid "Redeals left:"
+msgstr "Ronde(n) over:"
+
 #: ../aisleriot/rules/eagle_wing.scm.h:6 ../aisleriot/rules/elevator.scm.h:1
 #: ../aisleriot/rules/escalator.scm.h:1 ../aisleriot/rules/royal_east.scm.h:6
 #: ../aisleriot/rules/thirteen.scm.h:1 ../aisleriot/rules/treize.scm.h:1
@@ -593,6 +601,10 @@ msgstr "een leeg vak op de tafel"
 #: ../aisleriot/rules/easthaven.scm.h:2
 msgid "Move a King on to the empty Tableau slot"
 msgstr "Verplaats een heer naar een leeg tafelvak"
+
+#: ../aisleriot/rules/easthaven.scm.h:3 ../aisleriot/rules/klondike.scm.h:2
+msgid "No hint available right now"
+msgstr "Momenteel geen hint beschikbaar"
 
 #: ../aisleriot/rules/first_law.scm.h:2
 msgid "I'm not sure"
@@ -726,10 +738,6 @@ msgstr "een leeg tafelvak"
 msgid "an empty Tableau slot"
 msgstr "een leeg Tafelvak"
 
-#: ../aisleriot/rules/klondike.scm.h:2
-msgid "No hint available right now"
-msgstr "Momenteel geen hint beschikbaar"
-
 #: ../aisleriot/rules/klondike.scm.h:5
 msgid "Three card deals"
 msgstr "Deel drie kaarten"
@@ -754,12 +762,12 @@ msgstr ""
 msgid "something"
 msgstr "iets"
 
-#: ../aisleriot/rules/plait.scm.h:3
+#: ../aisleriot/rules/plait.scm.h:8
 msgid "Move ~a from the stock to an empty edge or tableau slot"
 msgstr "~a van de reserve naar een lege rand of tafelvak verplaatsen"
 
 # ~a word gevuld met een kaartnaam
-#: ../aisleriot/rules/plait.scm.h:4
+#: ../aisleriot/rules/plait.scm.h:9
 msgid "Move ~a to an empty field"
 msgstr "~a verplaatsen naar een lege plaats"
 
@@ -848,7 +856,7 @@ msgstr "Verplaats een stapel kaarten naar het lege Tafelvak"
 msgid "the appropriate Foundation pile"
 msgstr "de passende Basisstapel"
 
-#: ../aisleriot/sol.c:160
+#: ../aisleriot/sol.c:161
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -861,26 +869,26 @@ msgstr ""
 "\n"
 "Controleer uw Aisleriot installatie"
 
-#: ../aisleriot/sol.c:377
+#: ../aisleriot/sol.c:383
 msgid "Aisleriot"
 msgstr "AisleRiot"
 
-#: ../aisleriot/sol.c:411 ../glines/glines.c:1952 ../gnobots2/statusbar.c:65
+#: ../aisleriot/sol.c:418 ../glines/glines.c:1952 ../gnobots2/statusbar.c:65
 #: ../gnome-stones/status.c:71 ../gnometris/scoreframe.cpp:58
-#: ../gnomine/gnomine.c:424
+#: ../gnomine/gnomine.c:441
 msgid "Score:"
 msgstr "Score:"
 
-#: ../aisleriot/sol.c:415 ../gnotravex/gnotravex.c:1051
+#: ../aisleriot/sol.c:423 ../gnotravex/gnotravex.c:1074
 #: ../mahjongg/mahjongg.c:1444
 msgid "Time:"
 msgstr "Tijd:"
 
-#: ../aisleriot/sol.c:463
+#: ../aisleriot/sol.c:477
 msgid "Variation on game rules"
 msgstr "Variatie op spelregels"
 
-#: ../aisleriot/sol.c:464 ../gnobots2/gnobots.c:61 ../gnobots2/gnobots.c:63
+#: ../aisleriot/sol.c:478 ../gnobots2/gnobots.c:62 ../gnobots2/gnobots.c:64
 #: ../same-gnome/same-gnome.c:124 ../same-gnome/same-gnome.c:126
 msgid "NAME"
 msgstr "NAAM"
@@ -1512,34 +1520,38 @@ msgid "Treize"
 msgstr "Treize"
 
 #: ../aisleriot/translatable_game_names.h:72
+msgid "Triple Peaks"
+msgstr "Drie toppen"
+
+#: ../aisleriot/translatable_game_names.h:73
 msgid "Union Square"
 msgstr "Union Square"
 
-#: ../aisleriot/translatable_game_names.h:73
+#: ../aisleriot/translatable_game_names.h:74
 msgid "Valentine"
 msgstr "Valentijn"
 
-#: ../aisleriot/translatable_game_names.h:74
+#: ../aisleriot/translatable_game_names.h:75
 msgid "Westhaven"
 msgstr "Westhaven"
 
-#: ../aisleriot/translatable_game_names.h:75
+#: ../aisleriot/translatable_game_names.h:76
 msgid "Whitehead"
 msgstr "Withoofd"
 
-#: ../aisleriot/translatable_game_names.h:76
+#: ../aisleriot/translatable_game_names.h:77
 msgid "Will O The Wisp"
 msgstr "Dwaallicht"
 
-#: ../aisleriot/translatable_game_names.h:77
+#: ../aisleriot/translatable_game_names.h:78
 msgid "Yield"
 msgstr "Yield"
 
-#: ../aisleriot/translatable_game_names.h:78
+#: ../aisleriot/translatable_game_names.h:79
 msgid "Yukon"
 msgstr "Yukon"
 
-#: ../aisleriot/translatable_game_names.h:79
+#: ../aisleriot/translatable_game_names.h:80
 msgid "Zebra"
 msgstr "Zebra"
 
@@ -1597,7 +1609,7 @@ msgstr "Blackjack - %s"
 
 # hoofdmenu bevat: _Spel _Instellingen en _Hulp
 #: ../blackjack/src/blackjack.cpp:302 ../glines/glines.c:1699
-#: ../gnomine/gnomine.c:741 ../mahjongg/mahjongg.c:1273
+#: ../gnobots2/menu.c:59 ../gnomine/gnomine.c:758 ../mahjongg/mahjongg.c:1273
 msgid "_Settings"
 msgstr "_Instellingen"
 
@@ -1653,7 +1665,7 @@ msgstr "Kaarten s_plitsen"
 msgid "Split cards in two new hands"
 msgstr "Kaarten verdelen over twee handen"
 
-#: ../blackjack/src/blackjack.cpp:317
+#: ../blackjack/src/blackjack.cpp:317 ../gnobots2/gnobots2.schemas.in.h:23
 msgid "Show toolbar"
 msgstr "Werkbalk tonen"
 
@@ -1709,8 +1721,8 @@ msgid "Blackjack Preferences"
 msgstr "Blackjack voorkeuren"
 
 #: ../blackjack/src/dialog.cpp:238 ../gnect/src/prefs.c:389
-#: ../gnibbles/preferences.c:217 ../gnobots2/properties.c:829
-#: ../gnome-stones/preferences.c:678 ../gnometris/tetris.cpp:785
+#: ../gnibbles/preferences.c:217 ../gnobots2/properties.c:831
+#: ../gnome-stones/preferences.c:678 ../gnometris/tetris.cpp:793
 msgid "Game"
 msgstr "Spel"
 
@@ -1944,32 +1956,32 @@ msgstr "Splitsen"
 msgid "Dealer hand probabilities"
 msgstr "Kansen van de bank"
 
-#: ../gataxx/appbar.c:39 ../iagno/gnothello.c:667
+#: ../gataxx/appbar.c:39 ../iagno/gnothello.c:631
 msgid "Light:"
 msgstr "Wit:"
 
-#: ../gataxx/appbar.c:45 ../iagno/gnothello.c:657
+#: ../gataxx/appbar.c:45 ../iagno/gnothello.c:621
 msgid "Dark:"
 msgstr "Zwart:"
 
-#: ../gataxx/appbar.c:79 ../iagno/gnothello.c:211 ../iagno/othello.c:222
+#: ../gataxx/appbar.c:79 ../iagno/gnothello.c:207 ../iagno/othello.c:213
 msgid "Light's move"
 msgstr "Wit is aan zet"
 
-#: ../gataxx/appbar.c:79 ../iagno/gnothello.c:213 ../iagno/gnothello.c:601
-#: ../iagno/othello.c:214
+#: ../gataxx/appbar.c:79 ../iagno/gnothello.c:209 ../iagno/gnothello.c:578
+#: ../iagno/othello.c:210
 msgid "Dark's move"
 msgstr "Zwart is aan zet"
 
-#: ../gataxx/gataxx.c:170 ../iagno/othello.c:702
+#: ../gataxx/gataxx.c:170 ../iagno/othello.c:665
 msgid "Light player wins!"
 msgstr "Wit heeft gewonnen!"
 
-#: ../gataxx/gataxx.c:172 ../iagno/othello.c:704
+#: ../gataxx/gataxx.c:172 ../iagno/othello.c:667
 msgid "Dark player wins!"
 msgstr "Zwart heeft gewonnen!"
 
-#: ../gataxx/gataxx.c:174 ../iagno/othello.c:706
+#: ../gataxx/gataxx.c:174 ../iagno/othello.c:669
 msgid "The game was a draw."
 msgstr "Het is gelijkspel"
 
@@ -2049,7 +2061,7 @@ msgid "Ataxx Preferences"
 msgstr "Ataxx voorkeuren"
 
 #. Players tab
-#: ../gataxx/properties.c:328 ../iagno/properties.c:509
+#: ../gataxx/properties.c:328 ../iagno/properties.c:498
 msgid "Players"
 msgstr "Spelers"
 
@@ -2063,13 +2075,13 @@ msgstr "Dit verkort te wachttijd van de computer voordat een zet wordt gedaan"
 
 #. Dark level select
 #: ../gataxx/properties.c:350 ../gnect/src/theme.c:55
-#: ../iagno/properties.c:532
+#: ../iagno/properties.c:521
 msgid "Dark"
 msgstr "Zwart"
 
 #: ../gataxx/properties.c:354 ../gataxx/properties.c:372
-#: ../gnect/src/prefs.c:337 ../gtali/yahtzee.c:61 ../iagno/properties.c:537
-#: ../iagno/properties.c:583
+#: ../gnect/src/prefs.c:337 ../gtali/yahtzee.c:61 ../iagno/properties.c:526
+#: ../iagno/properties.c:572
 msgid "Human"
 msgstr "Mens"
 
@@ -2083,7 +2095,7 @@ msgid "Easy"
 msgstr "Makkelijk"
 
 #: ../gataxx/properties.c:357 ../gataxx/properties.c:375 ../glines/glines.c:74
-#: ../gnomine/gnomine.c:79 ../gnomine/gnomine.c:618 ../same-gnome/game.c:49
+#: ../gnomine/gnomine.c:82 ../gnomine/gnomine.c:635 ../same-gnome/game.c:49
 msgid "Medium"
 msgstr "Gemiddeld"
 
@@ -2097,14 +2109,14 @@ msgstr "Zeer moeilijk"
 
 #. Light level select
 #: ../gataxx/properties.c:368 ../gnect/src/theme.c:55
-#: ../iagno/properties.c:578
+#: ../iagno/properties.c:567
 msgid "Light"
 msgstr "Wit"
 
 #. Appearance tab
 #: ../gataxx/properties.c:386 ../gataxx/properties.c:389
-#: ../gnect/src/prefs.c:421 ../gnobots2/properties.c:869
-#: ../iagno/properties.c:627
+#: ../gnect/src/prefs.c:421 ../gnobots2/properties.c:871
+#: ../iagno/properties.c:616
 msgid "Appearance"
 msgstr "Uiterlijk"
 
@@ -2118,7 +2130,7 @@ msgid "Flip the pieces with some visual effects"
 msgstr "De stenen omdraaien met enkele visuele effecten"
 
 #. flip tiles button
-#: ../gataxx/properties.c:403 ../iagno/properties.c:686
+#: ../gataxx/properties.c:403 ../iagno/properties.c:675
 msgid "_Flip final results"
 msgstr "_Eindresultaat omdraaien"
 
@@ -2139,7 +2151,7 @@ msgstr "_Raster tonen"
 msgid "Whether the grid should be shown"
 msgstr "Of het rooster moet worden getoond"
 
-#: ../gataxx/properties.c:422 ../iagno/properties.c:696
+#: ../gataxx/properties.c:422 ../iagno/properties.c:685
 #: ../mahjongg/mahjongg.c:721
 msgid "_Tile set:"
 msgstr "_Steensoort:"
@@ -2148,12 +2160,12 @@ msgstr "_Steensoort:"
 msgid "The appearance of the pieces"
 msgstr "Het uiterlijk van de stukken"
 
-#: ../glines/glines.c:73 ../gnomine/gnomine.c:78 ../gnomine/gnomine.c:608
+#: ../glines/glines.c:73 ../gnomine/gnomine.c:81 ../gnomine/gnomine.c:625
 #: ../same-gnome/game.c:48
 msgid "Small"
 msgstr "Klein"
 
-#: ../glines/glines.c:75 ../gnomine/gnomine.c:80 ../gnomine/gnomine.c:628
+#: ../glines/glines.c:75 ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:645
 #: ../same-gnome/game.c:50
 msgid "Large"
 msgstr "Groot"
@@ -2241,15 +2253,15 @@ msgstr "A_chtergrondkleur:"
 msgid "Board Size"
 msgstr "Bordgrootte"
 
-#: ../glines/glines.c:1471 ../same-gnome/ui.c:436
+#: ../glines/glines.c:1471 ../same-gnome/ui.c:442
 msgid "_Small"
 msgstr "_Klein"
 
-#: ../glines/glines.c:1481 ../same-gnome/ui.c:437
+#: ../glines/glines.c:1481 ../same-gnome/ui.c:443
 msgid "_Medium"
 msgstr "_Middel"
 
-#: ../glines/glines.c:1491 ../same-gnome/ui.c:438
+#: ../glines/glines.c:1491 ../same-gnome/ui.c:444
 msgid "_Large"
 msgstr "_Groot"
 
@@ -2522,7 +2534,7 @@ msgstr "_Geluid aanzetten"
 msgid "Enable or disable sound"
 msgstr "Geluid aan of uitzetten"
 
-#: ../gnect/src/main.c:1239 ../gnobots2/menu.c:106
+#: ../gnect/src/main.c:1239 ../gnobots2/menu.c:114
 msgid "New"
 msgstr "Nieuw"
 
@@ -2530,8 +2542,8 @@ msgstr "Nieuw"
 msgid "New game"
 msgstr "Nieuw spel"
 
-#: ../gnect/src/main.c:1240 ../gnobots2/menu.c:106
-#: ../libgames-support/games-stock.c:81
+#: ../gnect/src/main.c:1240 ../gnobots2/menu.c:114
+#: ../libgames-support/games-stock.c:83
 msgid "Start a new game"
 msgstr "Een nieuw spel beginnen"
 
@@ -2539,7 +2551,7 @@ msgstr "Een nieuw spel beginnen"
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: ../gnect/src/main.c:1242 ../libgames-support/games-stock.c:84
+#: ../gnect/src/main.c:1242 ../libgames-support/games-stock.c:87
 msgid "Undo the last move"
 msgstr "De laatste zet ongedaan maken"
 
@@ -2547,7 +2559,7 @@ msgstr "De laatste zet ongedaan maken"
 msgid "Hint"
 msgstr "Hint"
 
-#: ../gnect/src/main.c:1243 ../libgames-support/games-stock.c:86
+#: ../gnect/src/main.c:1243 ../libgames-support/games-stock.c:89
 msgid "Get a hint for your next move"
 msgstr "Vraag een hint voor uw volgende zet"
 
@@ -2573,18 +2585,18 @@ msgstr ""
 "Speler 2:\n"
 "%s"
 
-#: ../gnect/src/prefs.c:339 ../iagno/properties.c:547
-#: ../iagno/properties.c:593
+#: ../gnect/src/prefs.c:339 ../iagno/properties.c:536
+#: ../iagno/properties.c:582
 msgid "Level one"
 msgstr "Niveau een"
 
-#: ../gnect/src/prefs.c:341 ../iagno/properties.c:557
-#: ../iagno/properties.c:603
+#: ../gnect/src/prefs.c:341 ../iagno/properties.c:546
+#: ../iagno/properties.c:592
 msgid "Level two"
 msgstr "Niveau twee"
 
-#: ../gnect/src/prefs.c:343 ../iagno/properties.c:567
-#: ../iagno/properties.c:614
+#: ../gnect/src/prefs.c:343 ../iagno/properties.c:556
+#: ../iagno/properties.c:603
 msgid "Level three"
 msgstr "Niveau drie"
 
@@ -2600,12 +2612,12 @@ msgstr "_Thema:"
 msgid "Enable _animation"
 msgstr "_Animatie gebruiken"
 
-#: ../gnect/src/prefs.c:451 ../gnometris/tetris.cpp:929
+#: ../gnect/src/prefs.c:451 ../gnometris/tetris.cpp:917
 msgid "Controls"
 msgstr "Elementen"
 
 #: ../gnect/src/prefs.c:455 ../gnibbles/preferences.c:381
-#: ../gnobots2/properties.c:876 ../gnometris/tetris.cpp:932
+#: ../gnobots2/properties.c:878 ../gnometris/tetris.cpp:920
 msgid "Keyboard Controls"
 msgstr "Bedieningstoetsen"
 
@@ -2628,8 +2640,8 @@ msgid "High Contrast"
 msgstr "Hoog contrast"
 
 #: ../gnect/src/theme.c:58
-msgid "Marbles"
-msgstr "Knikkers"
+msgid "Cream Marbles"
+msgstr "Roomknikkers"
 
 #: ../gnect/src/theme.c:63 ../gnect/src/theme.c:71 ../gnect/src/theme.c:87
 #: ../gnibbles/preferences.c:422
@@ -2637,8 +2649,8 @@ msgid "Blue"
 msgstr "Blauw"
 
 #: ../gnect/src/theme.c:66
-msgid "More Marbles"
-msgstr "Meer knikkers"
+msgid "Glass Marbles"
+msgstr "Glazen knikkers"
 
 #: ../gnect/src/theme.c:74
 msgid "Nightfall"
@@ -2831,7 +2843,7 @@ msgstr "Eet Bonus"
 msgid "Extra Life"
 msgstr "Extra Leven"
 
-#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/tetris.cpp:284
+#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/tetris.cpp:285
 msgid "Game Over"
 msgstr "Spel voorbij"
 
@@ -2847,7 +2859,7 @@ msgstr "Slang Omdraaien"
 msgid "Worm Teleport"
 msgstr "Willekeurige Teleport"
 
-#: ../gnibbles/main.c:88 ../iagno/gnothello.c:118
+#: ../gnibbles/main.c:88 ../iagno/gnothello.c:114
 msgid "New Net_work Game"
 msgstr "Nieuw net_werk-spel"
 
@@ -2904,7 +2916,7 @@ msgstr "Vingers in de knoop"
 
 #. Options
 #: ../gnibbles/preferences.c:276 ../gnibbles/preferences.c:400
-#: ../gnobots2/properties.c:782 ../iagno/properties.c:667
+#: ../gnobots2/properties.c:784 ../iagno/properties.c:656
 msgid "Options"
 msgstr "Opties"
 
@@ -2922,7 +2934,7 @@ msgstr "_Geluid aanzetten"
 
 # begin-level
 #. starting level
-#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:832
+#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:840
 msgid "_Starting level:"
 msgstr "_Begin-niveau:"
 
@@ -2973,7 +2985,7 @@ msgstr "'%s' met super-veilige zetten"
 msgid "'%s' with safe moves"
 msgstr "'%s' met veilige zetten"
 
-#: ../gnobots2/game.c:326 ../gnobots2/game.c:341
+#: ../gnobots2/game.c:330 ../gnobots2/game.c:345
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -2981,55 +2993,59 @@ msgstr ""
 "Gefeliciteerd, u heeft de robots verslagen!! \n"
 "Maar zal het nog een keer lukken?"
 
-#: ../gnobots2/game.c:1126
+#: ../gnobots2/game.c:1131
 msgid "There are no teleport locations left!!"
 msgstr "Er zijn geen teleport plaatsen over!!"
 
-#: ../gnobots2/game.c:1195
+#: ../gnobots2/game.c:1200
 msgid "There are no safe locations to teleport to!!"
 msgstr "Er zijn geen veilige locaties om naar te teleporten!!"
 
-#: ../gnobots2/gnobots.c:61
+#: ../gnobots2/gnobots.c:62
 msgid "Set game scenario"
 msgstr "Spelscenario instellen"
 
-#: ../gnobots2/gnobots.c:63
+#: ../gnobots2/gnobots.c:64
 msgid "Set game configuration"
 msgstr "Spelconfiguratie instellen"
 
-#: ../gnobots2/gnobots.c:64 ../gnomine/gnomine.c:843 ../gnomine/gnomine.c:847
+#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:860 ../gnomine/gnomine.c:864
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:844 ../gnomine/gnomine.c:848
+#: ../gnobots2/gnobots.c:66 ../gnomine/gnomine.c:861 ../gnomine/gnomine.c:865
 msgid "Y"
 msgstr "Y"
 
-#: ../gnobots2/gnobots.c:200 ../gnobots2/gnobots2.desktop.in.h:2
-#: ../gnobots2/gnobots2.soundlist.in.h:6 ../gnobots2/menu.c:216
+#: ../gnobots2/gnobots.c:184 ../gnobots2/gnobots2.desktop.in.h:2
+#: ../gnobots2/gnobots2.soundlist.in.h:6 ../gnobots2/menu.c:258
 msgid "Robots"
 msgstr "Robots"
 
-#: ../gnobots2/gnobots.c:235
+#: ../gnobots2/gnobots.c:236
 msgid "No game data could be found."
 msgstr "Er zijn geen spelgegevens gevonden."
 
-#: ../gnobots2/gnobots.c:236
+#: ../gnobots2/gnobots.c:237
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
-msgstr "Het programma Robots kon geen geldige spelconfiguratiebestanden vinden. Controleer of het programma goed is geïnstalleerd."
+msgstr ""
+"Het programma Robots kon geen geldige spelconfiguratiebestanden vinden. "
+"Controleer of het programma goed is geïnstalleerd."
 
-#: ../gnobots2/gnobots.c:252
+#: ../gnobots2/gnobots.c:253
 msgid "Some graphics files are missing or corrupt."
 msgstr "Bepaalde grafische bestanden ontbreken of zijn beschadigd."
 
 # vinden ipv laden?
-#: ../gnobots2/gnobots.c:253
+#: ../gnobots2/gnobots.c:254
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
-msgstr "Het programma Robots kon niet alle benodigde grafische bestanden laden. Controleer of het programma op juiste wijze is geïnstalleerd."
+msgstr ""
+"Het programma Robots kon niet alle benodigde grafische bestanden laden. "
+"Controleer of het programma op juiste wijze is geïnstalleerd."
 
 #. ********************************************************************
 #: ../gnobots2/gnobots2.desktop.in.h:1
@@ -3119,21 +3135,25 @@ msgstr "Robotafbeelding-thema"
 msgid "Robot image theme. The theme of the images to use for the robots."
 msgstr "Robotafbeelding-thema. Het thema voor de afbeeldingen van de robots."
 
-#: ../gnobots2/gnobots2.schemas.in.h:23
+#: ../gnobots2/gnobots2.schemas.in.h:24
+msgid "Show toolbar. A standard option for toolbars."
+msgstr "Werkbalk tonen. Een standaard optie voor werkbalken"
+
+#: ../gnobots2/gnobots2.schemas.in.h:25
 msgid ""
 "The name of the key used to hold still. The name is a standard X key name."
 msgstr ""
 "De toetsaanslag die gebruikt wordt om stil te staan. De naam is een "
 "standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:24
+#: ../gnobots2/gnobots2.schemas.in.h:26
 msgid ""
 "The name of the key used to move east. The name is a standard X key name."
 msgstr ""
 "De toetsaanslag die gebruikt wordt om oostelijk te bewegen. De naam is een "
 "standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:25
+#: ../gnobots2/gnobots2.schemas.in.h:27
 msgid ""
 "The name of the key used to move north-east. The name is a standard X key "
 "name."
@@ -3141,7 +3161,7 @@ msgstr ""
 "De toetsaanslag die gebruikt wordt om noordoostelijk te bewegen. De naam is "
 "een standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:26
+#: ../gnobots2/gnobots2.schemas.in.h:28
 msgid ""
 "The name of the key used to move north-west. The name is a standard X key "
 "name."
@@ -3149,14 +3169,14 @@ msgstr ""
 "De toetsaanslag die gebruikt wordt om noordwestelijk te bewegen. De naam is "
 "een standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:27
+#: ../gnobots2/gnobots2.schemas.in.h:29
 msgid ""
 "The name of the key used to move north. The name is a standard X key name."
 msgstr ""
 "De toetsaanslag die gebruikt wordt om noordelijk te bewegen. De naam is een "
 "standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:28
+#: ../gnobots2/gnobots2.schemas.in.h:30
 msgid ""
 "The name of the key used to move south-east. The name is a standard X key "
 "name."
@@ -3164,7 +3184,7 @@ msgstr ""
 "De toetsaanslag die gebruikt wordt om zuidoostelijk te bewegen. De naam is "
 "een standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:29
+#: ../gnobots2/gnobots2.schemas.in.h:31
 msgid ""
 "The name of the key used to move south-west. The name is a standard X key "
 "name."
@@ -3172,21 +3192,21 @@ msgstr ""
 "De toetsaanslag die gebruikt wordt om zuidwestelijk te bewegen. De naam is "
 "een standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:30
+#: ../gnobots2/gnobots2.schemas.in.h:32
 msgid ""
 "The name of the key used to move south. The name is a standard X key name."
 msgstr ""
 "De toetsaanslag die gebruikt wordt om zuidelijk te bewegen. De naam is een "
 "standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:31
+#: ../gnobots2/gnobots2.schemas.in.h:33
 msgid ""
 "The name of the key used to move west. The name is a standard X key name."
 msgstr ""
 "De toetsaanslag die gebruikt wordt om westelijk te bewegen. De naam is een "
 "standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:32
+#: ../gnobots2/gnobots2.schemas.in.h:34
 msgid ""
 "The name of the key used to teleport randomly. The name is a standard X key "
 "name."
@@ -3194,7 +3214,7 @@ msgstr ""
 "De toetsaanslag die gebruikt wordt voor een willekeurige teleport. De naam "
 "is een standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:33
+#: ../gnobots2/gnobots2.schemas.in.h:35
 msgid ""
 "The name of the key used to teleport safely (if possible). The name is a "
 "standard X key name."
@@ -3202,17 +3222,17 @@ msgstr ""
 "De toetsaanslag die gebruikt wordt voor een veilige teleport (indien "
 "mogelijk) . De naam is een standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:34
+#: ../gnobots2/gnobots2.schemas.in.h:36
 msgid "The name of the key used to wait. The name is a standard X key name."
 msgstr ""
 "De toetsaanslag die gebruikt wordt om te wachten. De naam is een "
 "standaardnaam van een X-toets."
 
-#: ../gnobots2/gnobots2.schemas.in.h:35
+#: ../gnobots2/gnobots2.schemas.in.h:37
 msgid "Use safe moves"
 msgstr "Veilige zetten gebruiken"
 
-#: ../gnobots2/gnobots2.schemas.in.h:36
+#: ../gnobots2/gnobots2.schemas.in.h:38
 msgid ""
 "Use safe moves. The safe moves option will help you to avoid being killed "
 "due to a mistake. If you try to make a move that would lead to your death "
@@ -3222,11 +3242,11 @@ msgstr ""
 "wordt gedood. Als u een zet wilt doen die dodelijk zou zijn, terwijl er een "
 "veilige zet beschikbaar is, zult u die zet niet kunnen maken."
 
-#: ../gnobots2/gnobots2.schemas.in.h:37
+#: ../gnobots2/gnobots2.schemas.in.h:39
 msgid "Use super safe moves"
 msgstr "Superveilige zetten gebruiken"
 
-#: ../gnobots2/gnobots2.schemas.in.h:38
+#: ../gnobots2/gnobots2.schemas.in.h:40
 msgid ""
 "Use super safe moves. The player is alerted when there is no safe move and "
 "the only option is to teleport out."
@@ -3258,294 +3278,298 @@ msgstr "Robots zijn geplet!"
 msgid "Victory!!"
 msgstr "Overwinning!!"
 
-#: ../gnobots2/graphics.c:104 ../iagno/gnothello.c:436
+#: ../gnobots2/graphics.c:104 ../iagno/gnothello.c:413
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Kan het '%s' pixmap bestand niet vinden\n"
 
-#: ../gnobots2/menu.c:65
-msgid "_Teleport"
-msgstr "_Teleportatie"
-
-#: ../gnobots2/menu.c:65 ../gnobots2/menu.c:112
-msgid "Teleport, safely if possible"
-msgstr "Teleportatie, veilig indien mogelijk"
-
-#: ../gnobots2/menu.c:66
-msgid "_Random"
-msgstr "Wille_keurig"
-
-#: ../gnobots2/menu.c:66 ../gnobots2/menu.c:116
-msgid "Teleport randomly"
-msgstr "Willekeurige teleportatie"
-
-#: ../gnobots2/menu.c:67
-msgid "_Wait"
-msgstr "_Wachten"
-
-#: ../gnobots2/menu.c:67 ../gnobots2/menu.c:120
-msgid "Wait for the robots"
-msgstr "Wachten op de robots"
-
-#: ../gnobots2/menu.c:98 ../gnotravex/gnotravex.c:231
+#: ../gnobots2/menu.c:58 ../gnotravex/gnotravex.c:176
 msgid "_Move"
 msgstr "_Verplaatsen"
 
+#: ../gnobots2/menu.c:64
+msgid "_Teleport"
+msgstr "_Teleportatie"
+
+#: ../gnobots2/menu.c:64 ../gnobots2/menu.c:120
+msgid "Teleport, safely if possible"
+msgstr "Teleportatie, veilig indien mogelijk"
+
+#: ../gnobots2/menu.c:65
+msgid "_Random"
+msgstr "Wille_keurig"
+
+#: ../gnobots2/menu.c:65 ../gnobots2/menu.c:124
+msgid "Teleport randomly"
+msgstr "Willekeurige teleportatie"
+
+#: ../gnobots2/menu.c:66
+msgid "_Wait"
+msgstr "_Wachten"
+
+#: ../gnobots2/menu.c:66 ../gnobots2/menu.c:128
+msgid "Wait for the robots"
+msgstr "Wachten op de robots"
+
+#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1290
+msgid "Show or hide the toolbar"
+msgstr "De werkbalk tonen of verbergen"
+
 #. FIXME: Someday these should be part of a gnome-games icon theme.
-#: ../gnobots2/menu.c:112
+#: ../gnobots2/menu.c:120
 msgid "Teleport"
 msgstr "Teleportatie"
 
-#: ../gnobots2/menu.c:116
+#: ../gnobots2/menu.c:124
 msgid "Random"
 msgstr "Willekeurig"
 
-#: ../gnobots2/menu.c:120
+#: ../gnobots2/menu.c:128
 msgid "Wait"
 msgstr "Wachten"
 
-#: ../gnobots2/menu.c:219
+#: ../gnobots2/menu.c:261
 msgid "Based on classic BSD Robots."
 msgstr "Gebaseerd op de klassieke BSD robots."
 
-#: ../gnobots2/properties.c:213
+#: ../gnobots2/properties.c:215
 msgid "Initial Number of Type 1 Robots"
 msgstr "Begin-aantal van Type 1 Robots"
 
-#: ../gnobots2/properties.c:215
+#: ../gnobots2/properties.c:217
 msgid "Initial Number of Robots"
 msgstr "Begin-aantal Robots"
 
-#: ../gnobots2/properties.c:229
+#: ../gnobots2/properties.c:231
 msgid "Initial Number of Type 2 Robots"
 msgstr "Begin-aantal van Type 2 Robots"
 
-#: ../gnobots2/properties.c:242
+#: ../gnobots2/properties.c:244
 msgid "Increasing Number of Type 1 Robots per Level"
 msgstr "Toename van aantal Type 1 Robots per niveau"
 
-#: ../gnobots2/properties.c:244
+#: ../gnobots2/properties.c:246
 msgid "Increasing Number of Robots per Level"
 msgstr "Toename van aantal Robots per niveau"
 
-#: ../gnobots2/properties.c:257
+#: ../gnobots2/properties.c:259
 msgid "Increasing Number of Type 2 Robots per Level"
 msgstr "Toename van aantal Type 2 Robots per niveau"
 
-#: ../gnobots2/properties.c:270
+#: ../gnobots2/properties.c:272
 msgid "Maximum Number of Type 1 Robots"
 msgstr "Maximum aantal Type 1 Robots"
 
-#: ../gnobots2/properties.c:272
+#: ../gnobots2/properties.c:274
 msgid "Maximum Number of Robots"
 msgstr "Maximum aantal Robots"
 
-#: ../gnobots2/properties.c:275 ../gnobots2/properties.c:291
+#: ../gnobots2/properties.c:277 ../gnobots2/properties.c:293
 #, c-format
 msgid "Fill Screen"
 msgstr "Schermvullend"
 
-#: ../gnobots2/properties.c:289
+#: ../gnobots2/properties.c:291
 msgid "Maximum Number of Type 2 Robots"
 msgstr "Maximum aantal Type 2 Robots"
 
-#: ../gnobots2/properties.c:306
+#: ../gnobots2/properties.c:308
 msgid "Type 1 Robot Score"
 msgstr "Type 1 Robot Score"
 
-#: ../gnobots2/properties.c:308
+#: ../gnobots2/properties.c:310
 msgid "Robot Score"
 msgstr "Robot Score"
 
-#: ../gnobots2/properties.c:321
+#: ../gnobots2/properties.c:323
 msgid "Type 2 Robot Score"
 msgstr "Type 2 Robot Score"
 
-#: ../gnobots2/properties.c:334
+#: ../gnobots2/properties.c:336
 msgid "Type 1 Robot Score When Waiting"
 msgstr "Type 1 Robot Score tijdens wachten"
 
-#: ../gnobots2/properties.c:336
+#: ../gnobots2/properties.c:338
 msgid "Robot Score When Waiting"
 msgstr "Robot Score tijdens wachten"
 
-#: ../gnobots2/properties.c:349
+#: ../gnobots2/properties.c:351
 msgid "Type 2 Robot Score When Waiting"
 msgstr "Type 2 Robot Score tijdens wachten"
 
-#: ../gnobots2/properties.c:362
+#: ../gnobots2/properties.c:364
 msgid "Type 1 Robot Score When Splatted"
 msgstr "Type 1 Robot Score tijdens wachten"
 
-#: ../gnobots2/properties.c:364
+#: ../gnobots2/properties.c:366
 msgid "Robot Score When Splatted"
 msgstr "Robot Score tijdens pletten"
 
-#: ../gnobots2/properties.c:377
+#: ../gnobots2/properties.c:379
 msgid "Type 2 Robot Score When Splatted"
 msgstr "Type 2 Robot Score tijdens pletten"
 
-#: ../gnobots2/properties.c:389
+#: ../gnobots2/properties.c:391
 msgid "Initial Number of Safe Teleports"
 msgstr "Begin Aantal veilige Teleports"
 
-#: ../gnobots2/properties.c:400
+#: ../gnobots2/properties.c:402
 msgid "Number of Free Safe Teleports per Level"
 msgstr "Toename veilige Teleports per niveau"
 
-#: ../gnobots2/properties.c:411
+#: ../gnobots2/properties.c:413
 msgid "Kills Required While Waiting to Get A Safe Teleport"
 msgstr "Aantal doden benodigd tijdens wachten om veilige Teleport te krijgen"
 
-#: ../gnobots2/properties.c:422
+#: ../gnobots2/properties.c:424
 msgid "Score Required To Get A Safe Teleport"
 msgstr "Score benodigd om een veilige Teleport te krijgen"
 
-#: ../gnobots2/properties.c:433
+#: ../gnobots2/properties.c:435
 msgid "Maximum Number of Safe Teleports"
 msgstr "Maximum aantal veilige Teleports"
 
-#: ../gnobots2/properties.c:444
+#: ../gnobots2/properties.c:446
 msgid "Moveable Junkheaps"
 msgstr "Beweegbaar Schroot"
 
-#: ../gnobots2/properties.c:446
+#: ../gnobots2/properties.c:448
 msgid "Yes"
 msgstr "Ja"
 
-#: ../gnobots2/properties.c:448
+#: ../gnobots2/properties.c:450
 msgid "No"
 msgstr "Nee"
 
-#: ../gnobots2/properties.c:611
+#: ../gnobots2/properties.c:613
 msgid "classic robots"
 msgstr "klassieke robots"
 
-#: ../gnobots2/properties.c:612
+#: ../gnobots2/properties.c:614
 msgid "robots2"
 msgstr "robots2"
 
-#: ../gnobots2/properties.c:613
+#: ../gnobots2/properties.c:615
 msgid "robots2 easy"
 msgstr "robots2 makkelijk"
 
-#: ../gnobots2/properties.c:614
+#: ../gnobots2/properties.c:616
 msgid "robots with safe teleport"
 msgstr "robots met veilige teleport"
 
-#: ../gnobots2/properties.c:615
+#: ../gnobots2/properties.c:617
 msgid "nightmare"
 msgstr "nachtmerrie"
 
-#: ../gnobots2/properties.c:644
+#: ../gnobots2/properties.c:646
 msgid "robots"
 msgstr "robots"
 
-#: ../gnobots2/properties.c:645
+#: ../gnobots2/properties.c:647
 msgid "cows"
 msgstr "koeien"
 
-#: ../gnobots2/properties.c:646
+#: ../gnobots2/properties.c:648
 msgid "eggs"
 msgstr "eieren"
 
-#: ../gnobots2/properties.c:647
+#: ../gnobots2/properties.c:649
 msgid "gnomes"
 msgstr "trollen"
 
-#: ../gnobots2/properties.c:648
+#: ../gnobots2/properties.c:650
 msgid "mice"
 msgstr "muizen"
 
-#: ../gnobots2/properties.c:649
+#: ../gnobots2/properties.c:651
 msgid "windows"
 msgstr "windows"
 
-#: ../gnobots2/properties.c:709
+#: ../gnobots2/properties.c:711
 msgid "Robots Preferences"
 msgstr "Robots voorkeuren"
 
-#: ../gnobots2/properties.c:730
+#: ../gnobots2/properties.c:732
 msgid "Game Type"
 msgstr "Speltype"
 
-#: ../gnobots2/properties.c:753
+#: ../gnobots2/properties.c:755
 msgid "Property"
 msgstr "Eigenschap"
 
-#: ../gnobots2/properties.c:760
+#: ../gnobots2/properties.c:762
 msgid "Value"
 msgstr "Waarde"
 
-#: ../gnobots2/properties.c:792
+#: ../gnobots2/properties.c:794
 msgid "_Use safe moves"
 msgstr "_Veilige zetten gebruiken"
 
-#: ../gnobots2/properties.c:799
+#: ../gnobots2/properties.c:801
 msgid "Prevent some dangerous moves"
 msgstr "Gevaarlijke zetten voorkomen"
 
-#: ../gnobots2/properties.c:800
+#: ../gnobots2/properties.c:802
 msgid "Prevent accidental moves that result in getting killed."
 msgstr "Toevallige zetten voorkomen die resulteren in gedood worden."
 
-#: ../gnobots2/properties.c:802
+#: ../gnobots2/properties.c:804
 msgid "U_se super safe moves"
 msgstr "_Superveilige zetten gebruiken"
 
-#: ../gnobots2/properties.c:808
+#: ../gnobots2/properties.c:810
 msgid "Prevent all dangerous moves"
 msgstr "Alle gevaarlijke zetten voorkomen"
 
-#: ../gnobots2/properties.c:809
+#: ../gnobots2/properties.c:811
 msgid "Prevents all moves that result in getting killed."
 msgstr "Alle zetten voorkomen die resulteren in gedood worden."
 
 # BUG
-#: ../gnobots2/properties.c:811 ../gnometris/tetris.cpp:858
+#: ../gnobots2/properties.c:813 ../gnometris/tetris.cpp:866
 msgid "_Enable sounds"
 msgstr "_Geluiden aanzetten"
 
-#: ../gnobots2/properties.c:817
+#: ../gnobots2/properties.c:819
 msgid "Play sounds for major events"
 msgstr "Geluiden geven bij alle belangrijke gebeurtenissen"
 
-#: ../gnobots2/properties.c:818
+#: ../gnobots2/properties.c:820
 msgid "Play sounds for events like winning a level and dying."
 msgstr ""
 "Geluiden geven bij gebeurtenissen zoals het voltooien van een niveau of bij "
 "doodgaan."
 
-#: ../gnobots2/properties.c:820
+#: ../gnobots2/properties.c:822
 msgid "E_nable splats"
 msgstr "_Splets gebruiken"
 
 # Moet waarschijnlijk zijn 'collided'?
-#: ../gnobots2/properties.c:826
+#: ../gnobots2/properties.c:828
 msgid "Play a sound when two robots collide"
 msgstr "Een geluid maken als twee robots botsen"
 
-#: ../gnobots2/properties.c:827
+#: ../gnobots2/properties.c:829
 msgid "Play the most common, and potentially the most annoying, sound."
 msgstr "Het meest gewone en potentieel meest irritante geluid geven."
 
-#: ../gnobots2/properties.c:837
+#: ../gnobots2/properties.c:839
 msgid "Graphics Theme"
 msgstr "Graphics-thema"
 
-#: ../gnobots2/properties.c:845
+#: ../gnobots2/properties.c:847
 msgid "_Image theme:"
 msgstr "_Afbeelding-thema:"
 
-#: ../gnobots2/properties.c:857 ../mahjongg/mahjongg.c:767
+#: ../gnobots2/properties.c:859 ../mahjongg/mahjongg.c:767
 msgid "_Background color:"
 msgstr "A_chtergrondkleur:"
 
-#: ../gnobots2/properties.c:903
+#: ../gnobots2/properties.c:905
 msgid "_Restore Defaults"
 msgstr "_Standaarden herstellen"
 
-#: ../gnobots2/properties.c:908
+#: ../gnobots2/properties.c:910
 msgid "Keyboard"
 msgstr "Toetsenbord"
 
@@ -3848,8 +3872,8 @@ msgstr "Tutorial caves"
 msgid "Fit falling blocks together"
 msgstr "De vallende blokken goed op elkaar stapelen"
 
-#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:139
-#: ../gnometris/tetris.cpp:1449
+#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:140
+#: ../gnometris/tetris.cpp:1464
 msgid "Gnometris"
 msgstr "Gnometris"
 
@@ -3988,11 +4012,11 @@ msgstr "NIVEAU"
 msgid "Lines:"
 msgstr "Lijnen:"
 
-#: ../gnometris/tetris.cpp:256
+#: ../gnometris/tetris.cpp:257
 msgid "Paused"
 msgstr "Gepauzeerd"
 
-#: ../gnometris/tetris.cpp:377
+#: ../gnometris/tetris.cpp:380
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -4005,7 +4029,7 @@ msgstr ""
 "\n"
 "Controleer uw gnome-games installatie"
 
-#: ../gnometris/tetris.cpp:392
+#: ../gnometris/tetris.cpp:395
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -4018,188 +4042,190 @@ msgstr ""
 "\n"
 "Controleer uw gnome-games installatie"
 
-#: ../gnometris/tetris.cpp:735 ../gnometris/tetris.cpp:736
+#: ../gnometris/tetris.cpp:743 ../gnometris/tetris.cpp:744
 msgid "<none>"
 msgstr "<geen>"
 
-#: ../gnometris/tetris.cpp:764
+#: ../gnometris/tetris.cpp:772
 msgid "Gnometris Preferences"
 msgstr "Gnometris voorkeuren"
 
-#: ../gnometris/tetris.cpp:788
+#: ../gnometris/tetris.cpp:796
 msgid "Setup"
 msgstr "Instellen"
 
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:794
+#: ../gnometris/tetris.cpp:802
 msgid "_Number of pre-filled rows:"
 msgstr "_Aantal voorgevulde rijen:"
 
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:813
+#: ../gnometris/tetris.cpp:821
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "_Dichtheid van blokken in een voorgevulde rij:"
 
 # Operatie
-#: ../gnometris/tetris.cpp:853
+#: ../gnometris/tetris.cpp:861
 msgid "Operation"
 msgstr "Bewerking"
 
-#: ../gnometris/tetris.cpp:868
+#: ../gnometris/tetris.cpp:875
 msgid "_Preview next block"
 msgstr "_Volgend blok tonen"
 
 # 'gebruiken' kan eventueel worden weggelaten
-#: ../gnometris/tetris.cpp:877
+#: ../gnometris/tetris.cpp:884
 msgid "_Use random block colors"
 msgstr "_Willekeurige blokkleuren gebruiken"
 
-#: ../gnometris/tetris.cpp:888
+#: ../gnometris/tetris.cpp:895
 msgid "_Rotate blocks counterclockwise"
 msgstr "_Blokken tegen de klok in draaien"
 
-#: ../gnometris/tetris.cpp:901 ../same-gnome/ui.c:288
+#: ../gnometris/tetris.cpp:908 ../gnometris/tetris.cpp:941
+#: ../same-gnome/ui.c:293
 msgid "Theme"
 msgstr "Thema"
 
-#. Block pixmap
-#: ../gnometris/tetris.cpp:908
-msgid "_Block image:"
-msgstr "_Blok-afbeelding:"
+#: ../gnometris/tetris.cpp:944
+msgid "Block image:"
+msgstr "Blok-afbeelding:"
 
-#: ../gnometris/tetris.cpp:1451
+#: ../gnometris/tetris.cpp:1466
 msgid ""
 "Written for my wife, Matylda\n"
-"Send comments and bug reports to: janusz.gorycki@intel.com"
+"Send comments and bug reports to: \n"
+"janusz.gorycki@intel.com"
 msgstr ""
 "Geschreven voor mijn vrouw, Matylda\n"
-"Stuur commentaar en bug-rapportages naar: janusz.gorycki@intel.com"
+"Stuur commentaar en bug-rapportages naar:\n"
+"janusz.gorycki@intel.com"
 
 #: ../gnometris/highscores.cpp:28
 msgid "Gnometris Scores"
 msgstr "Gnometris scores"
 
-#: ../gnomine/gnomine.c:81 ../gnomine/gnomine.c:638
+#: ../gnomine/gnomine.c:84 ../gnomine/gnomine.c:655
 msgid "Custom"
 msgstr "Aangepast"
 
-#: ../gnomine/gnomine.c:138
+#: ../gnomine/gnomine.c:152
 #, c-format
 msgid "Flags: %d/%d"
 msgstr "Vlaggen: %d/%d"
 
-#: ../gnomine/gnomine.c:167
+#: ../gnomine/gnomine.c:181
 msgid "The Mines Have Been Cleared!"
 msgstr "De mijnen zijn allemaal gevonden!"
 
-#: ../gnomine/gnomine.c:168
+#: ../gnomine/gnomine.c:182
 msgid "Great work, but unfortunately your score did not make the top ten."
 msgstr "Goed gedaan, maar helaas zit uw score niet bij de top tien."
 
-#: ../gnomine/gnomine.c:183
+#: ../gnomine/gnomine.c:198
 msgid "Mines Scores"
 msgstr "Mijnen scores"
 
-#: ../gnomine/gnomine.c:192 ../same-gnome/ui.c:127
+#: ../gnomine/gnomine.c:207 ../same-gnome/ui.c:127
 msgid "Size:"
 msgstr "Grootte:"
 
-#: ../gnomine/gnomine.c:203 ../same-gnome/ui.c:170
+#: ../gnomine/gnomine.c:218 ../same-gnome/ui.c:170
 msgid "Congratulations!"
 msgstr "Gefeliciteerd!"
 
-#: ../gnomine/gnomine.c:204 ../same-gnome/ui.c:171
+#: ../gnomine/gnomine.c:219 ../same-gnome/ui.c:171
 msgid "Your score has made the top ten."
 msgstr "Uw score zit bij de top tien."
 
-#: ../gnomine/gnomine.c:300
+#: ../gnomine/gnomine.c:315
 msgid "Click a square, any square"
 msgstr "Klik op een willekeurig vierkant"
 
-#: ../gnomine/gnomine.c:302
+#: ../gnomine/gnomine.c:317
 msgid "Maybe they're all mines ..."
 msgstr "Misschien zijn het allemaal mijnen..."
 
-#: ../gnomine/gnomine.c:418
+#: ../gnomine/gnomine.c:435
 msgid "Faces:"
 msgstr "Gezichten:"
 
-#: ../gnomine/gnomine.c:421
+#: ../gnomine/gnomine.c:438
 msgid "Graphics:"
 msgstr "Graphics:"
 
-#: ../gnomine/gnomine.c:427
+#: ../gnomine/gnomine.c:444
 msgid "Resizing and SVG support:"
 msgstr "Schalen en SVG ondersteuning:"
 
 # Mijnenjager?
-#: ../gnomine/gnomine.c:434 ../gnomine/gnomine.c:924
+#: ../gnomine/gnomine.c:451 ../gnomine/gnomine.c:966
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
 msgstr "Mijnenveger"
 
-#: ../gnomine/gnomine.c:604
+#: ../gnomine/gnomine.c:621
 msgid "Field Size"
 msgstr "Veldgrootte"
 
-#: ../gnomine/gnomine.c:650
+#: ../gnomine/gnomine.c:667
 msgid "Custom Size"
 msgstr "Aangepaste grootte"
 
-#: ../gnomine/gnomine.c:657
+#: ../gnomine/gnomine.c:674
 msgid "_Number of mines:"
 msgstr "_Aantal mijnen:"
 
-#: ../gnomine/gnomine.c:669
+#: ../gnomine/gnomine.c:686
 msgid "_Horizontal:"
 msgstr "_Horizontaal:"
 
-#: ../gnomine/gnomine.c:680
+#: ../gnomine/gnomine.c:697
 msgid "_Vertical:"
 msgstr "_Vertikaal:"
 
-#: ../gnomine/gnomine.c:695
+#: ../gnomine/gnomine.c:712
 msgid "_Use \"I'm not sure\" flags"
 msgstr "\"Ik _twijfel\"-vlaggen gebruiken"
 
-#: ../gnomine/gnomine.c:704
+#: ../gnomine/gnomine.c:721
 msgid "Mines Preferences"
 msgstr "Mijnen voorkeuren"
 
-#: ../gnomine/gnomine.c:843
+#: ../gnomine/gnomine.c:860
 msgid "Width of grid"
 msgstr "Breedte van raster"
 
-#: ../gnomine/gnomine.c:844
+#: ../gnomine/gnomine.c:861
 msgid "Height of grid"
 msgstr "Hoogte van raster"
 
-#: ../gnomine/gnomine.c:845
+#: ../gnomine/gnomine.c:862
 msgid "Number of mines"
 msgstr "Aantal mijnen"
 
-#: ../gnomine/gnomine.c:845 ../gtali/setup.c:85 ../gtali/setup.c:86
+#: ../gnomine/gnomine.c:862 ../gtali/setup.c:85 ../gtali/setup.c:86
 #: ../same-gnome/same-gnome.c:128
 msgid "NUMBER"
 msgstr "NUMMER"
 
-#: ../gnomine/gnomine.c:846
+#: ../gnomine/gnomine.c:863
 msgid "Size of the board (1=small, 3=large)"
 msgstr "Grootte van het bord (1=klein, 3=groot)"
 
-#: ../gnomine/gnomine.c:847
+#: ../gnomine/gnomine.c:864
 msgid "X location of window"
 msgstr "X locatie van het venster"
 
-#: ../gnomine/gnomine.c:848
+#: ../gnomine/gnomine.c:865
 msgid "Y location of window"
 msgstr "Y locatie van het venster"
 
-#: ../gnomine/gnomine.c:989
+#: ../gnomine/gnomine.c:1031
 msgid "Press to Resume"
 msgstr "Klikken om te hervatten"
 
-#: ../gnomine/gnomine.c:1022
+#: ../gnomine/gnomine.c:1064
 msgid "Time: "
 msgstr "Tijd: "
 
@@ -4243,147 +4269,151 @@ msgid "Could not load images"
 msgstr "Kon de plaatjes niet laden"
 
 #. i18n in-game numbers, replaceable with single-character local ideograms.
-#: ../gnotravex/gnotravex.c:49
+#: ../gnotravex/gnotravex.c:50
 msgid "0"
 msgstr "0"
 
-#: ../gnotravex/gnotravex.c:49
+#: ../gnotravex/gnotravex.c:50
 msgid "1"
 msgstr "1"
 
-#: ../gnotravex/gnotravex.c:49
+#: ../gnotravex/gnotravex.c:50
 msgid "2"
 msgstr "2"
 
-#: ../gnotravex/gnotravex.c:49
+#: ../gnotravex/gnotravex.c:50
 msgid "3"
 msgstr "3"
 
-#: ../gnotravex/gnotravex.c:49
+#: ../gnotravex/gnotravex.c:50
 msgid "4"
 msgstr "4"
 
-#: ../gnotravex/gnotravex.c:49
+#: ../gnotravex/gnotravex.c:50
 msgid "5"
 msgstr "5"
 
-#: ../gnotravex/gnotravex.c:49
+#: ../gnotravex/gnotravex.c:50
 msgid "6"
 msgstr "6"
 
-#: ../gnotravex/gnotravex.c:49
+#: ../gnotravex/gnotravex.c:50
 msgid "7"
 msgstr "7"
 
-#: ../gnotravex/gnotravex.c:49
+#: ../gnotravex/gnotravex.c:50
 msgid "8"
 msgstr "8"
 
-#: ../gnotravex/gnotravex.c:49
+#: ../gnotravex/gnotravex.c:50
 msgid "9"
 msgstr "9"
 
-#: ../gnotravex/gnotravex.c:168
+#: ../gnotravex/gnotravex.c:177 ../same-gnome/ui.c:424
+msgid "_Size"
+msgstr "_Grootte"
+
+#: ../gnotravex/gnotravex.c:183
 msgid "Sol_ve"
 msgstr "_Oplossen"
 
-#: ../gnotravex/gnotravex.c:168
+#: ../gnotravex/gnotravex.c:183
 msgid "Solve the game"
 msgstr "Los het spel op"
 
-#: ../gnotravex/gnotravex.c:184
-msgid "_2×2"
-msgstr "_2×2"
-
-#: ../gnotravex/gnotravex.c:184
-msgid "Play on a 2×2 board"
-msgstr "Spelen op een 2×2 bord"
-
-#: ../gnotravex/gnotravex.c:187
-msgid "_3×3"
-msgstr "_3×3"
-
-#: ../gnotravex/gnotravex.c:187
-msgid "Play on a 3×3 board"
-msgstr "Spelen op een 3×3 bord"
-
-#: ../gnotravex/gnotravex.c:190
-msgid "_4×4"
-msgstr "_4×4"
-
-#: ../gnotravex/gnotravex.c:190
-msgid "Play on a 4×4 board"
-msgstr "Spelen op een 4×4 bord"
-
-#: ../gnotravex/gnotravex.c:193
-msgid "_5×5"
-msgstr "_5×5"
-
-#: ../gnotravex/gnotravex.c:193
-msgid "Play on a 5×5 board"
-msgstr "Spelen op een 5×5 bord"
-
-#: ../gnotravex/gnotravex.c:196
-msgid "_6×6"
-msgstr "_6×6"
-
-#: ../gnotravex/gnotravex.c:196
-msgid "Play on a 6×6 board"
-msgstr "Spelen op een 6×6 bord"
-
-#: ../gnotravex/gnotravex.c:203
+#: ../gnotravex/gnotravex.c:186
 msgid "_Up"
 msgstr "_Omhoog"
 
-#: ../gnotravex/gnotravex.c:203
+#: ../gnotravex/gnotravex.c:186
 msgid "Move the pieces up"
 msgstr "Beweeg de stukken omhoog"
 
-#: ../gnotravex/gnotravex.c:206
+#: ../gnotravex/gnotravex.c:187
 msgid "_Left"
 msgstr "_Links"
 
-#: ../gnotravex/gnotravex.c:206
+#: ../gnotravex/gnotravex.c:187
 msgid "Move the pieces left"
 msgstr "Beweeg de stukken naar links"
 
-#: ../gnotravex/gnotravex.c:209
+#: ../gnotravex/gnotravex.c:188
 msgid "_Right"
 msgstr "_Rechts"
 
-#: ../gnotravex/gnotravex.c:209
+#: ../gnotravex/gnotravex.c:188
 msgid "Move the pieces right"
 msgstr "Beweeg de stukken naar rechts"
 
-#: ../gnotravex/gnotravex.c:212
+#: ../gnotravex/gnotravex.c:189
 msgid "_Down"
 msgstr "_Omlaag"
 
-#: ../gnotravex/gnotravex.c:212
+#: ../gnotravex/gnotravex.c:189
 msgid "Move the pieces down"
 msgstr "Beweeg de stukken omlaag"
 
-#: ../gnotravex/gnotravex.c:241
+#: ../gnotravex/gnotravex.c:195
+msgid "_2×2"
+msgstr "_2×2"
+
+#: ../gnotravex/gnotravex.c:195
+msgid "Play on a 2×2 board"
+msgstr "Spelen op een 2×2 bord"
+
+#: ../gnotravex/gnotravex.c:196
+msgid "_3×3"
+msgstr "_3×3"
+
+#: ../gnotravex/gnotravex.c:196
+msgid "Play on a 3×3 board"
+msgstr "Spelen op een 3×3 bord"
+
+#: ../gnotravex/gnotravex.c:197
+msgid "_4×4"
+msgstr "_4×4"
+
+#: ../gnotravex/gnotravex.c:197
+msgid "Play on a 4×4 board"
+msgstr "Spelen op een 4×4 bord"
+
+#: ../gnotravex/gnotravex.c:198
+msgid "_5×5"
+msgstr "_5×5"
+
+#: ../gnotravex/gnotravex.c:198
+msgid "Play on a 5×5 board"
+msgstr "Spelen op een 5×5 bord"
+
+#: ../gnotravex/gnotravex.c:199
+msgid "_6×6"
+msgstr "_6×6"
+
+#: ../gnotravex/gnotravex.c:199
+msgid "Play on a 6×6 board"
+msgstr "Spelen op een 6×6 bord"
+
+#: ../gnotravex/gnotravex.c:244
 msgid "Size of board (2-6)"
 msgstr "Grootte van het bord (2-6)"
 
-#: ../gnotravex/gnotravex.c:242
+#: ../gnotravex/gnotravex.c:245
 msgid "SIZE"
 msgstr "GROOTTE"
 
-#: ../gnotravex/gnotravex.c:780
+#: ../gnotravex/gnotravex.c:827
 msgid "Puzzle solved! Well done!"
 msgstr "Puzzel opgelost! Goed gedaan!"
 
-#: ../gnotravex/gnotravex.c:783
+#: ../gnotravex/gnotravex.c:830
 msgid "Puzzle solved!"
 msgstr "Puzzel opgelost!"
 
-#: ../gnotravex/gnotravex.c:1162 ../mahjongg/mahjongg.c:928
+#: ../gnotravex/gnotravex.c:1188 ../mahjongg/mahjongg.c:928
 msgid "Game paused"
 msgstr "Spel gepauseerd"
 
-#: ../gnotravex/gnotravex.c:1288
+#: ../gnotravex/gnotravex.c:1346
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "Spel op %d×%d bord"
@@ -4972,25 +5002,25 @@ msgstr "Aantal Worpen"
 msgid "Total"
 msgstr "Totaal"
 
-#: ../iagno/gnothello.c:111
+#: ../iagno/gnothello.c:107
 msgid "Iagno server to use"
 msgstr "lagno server te gebruiken"
 
-#: ../iagno/gnothello.c:291 ../iagno/gnothello.c:624
+#: ../iagno/gnothello.c:265 ../iagno/gnothello.c:588
 #: ../iagno/iagno.desktop.in.h:1 ../iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Iagno"
 
-#: ../iagno/gnothello.c:294
+#: ../iagno/gnothello.c:268
 msgid "A disk flipping game derived from Reversi."
 msgstr ""
 "Een spel waarbij stenen moeten worden omgedraaid, afgeleid van Reversi."
 
-#: ../iagno/gnothello.c:690
+#: ../iagno/gnothello.c:647
 msgid "Welcome to Iagno!"
 msgstr "Welkom bij Iagno!"
 
-#: ../iagno/gnothello.c:698 ../iagno/gnothello.c:700
+#: ../iagno/gnothello.c:655 ../iagno/gnothello.c:657
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
@@ -5016,44 +5046,44 @@ msgstr "Ongeldige spelgegevens (set_peer)"
 msgid "Invalid game data (move)"
 msgstr "Ongeldige spelgegevens (verplaatsing)"
 
-#: ../iagno/othello.c:717
+#: ../iagno/othello.c:680
 msgid "Light must pass, Dark's move"
 msgstr "Wit moet passen, Zwart is aan zet"
 
-#: ../iagno/othello.c:729
+#: ../iagno/othello.c:686
 msgid "Dark must pass, Light's move"
 msgstr "Zwart moet passen, Wit is aan zet"
 
-#: ../iagno/properties.c:495
+#: ../iagno/properties.c:484
 msgid "Iagno Preferences"
 msgstr "Iagno voorkeuren"
 
-#: ../iagno/properties.c:523
+#: ../iagno/properties.c:512
 msgid "_Use quick moves"
 msgstr "_Snelle zetten gebruiken"
 
-#: ../iagno/properties.c:633
+#: ../iagno/properties.c:622
 msgid "Animation"
 msgstr "Animatie"
 
-#: ../iagno/properties.c:637
+#: ../iagno/properties.c:626
 msgid "None"
 msgstr "Geen"
 
-#: ../iagno/properties.c:646
+#: ../iagno/properties.c:635
 msgid "Partial"
 msgstr "Gedeeltelijk"
 
-#: ../iagno/properties.c:655
+#: ../iagno/properties.c:644
 msgid "Complete"
 msgstr "Compleet"
 
 # huh? Wat is stagger?
-#: ../iagno/properties.c:670
+#: ../iagno/properties.c:659
 msgid "_Stagger flips"
 msgstr "_Stagger keren"
 
-#: ../iagno/properties.c:678
+#: ../iagno/properties.c:667
 msgid "S_how grid"
 msgstr "_Raster tonen"
 
@@ -5137,87 +5167,85 @@ msgstr "Y uitlijning"
 msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
 msgstr "De verticale uitlijning, van 0 (boven) tot 1 (onder)"
 
-#: ../libgames-support/games-network-dialog.c:111
+#: ../libgames-support/games-network-dialog.c:80
 #, c-format
-msgid "The player %s joined the game."
+msgid "The player %s has joined the game."
 msgstr "Speler %s doet mee met het spel."
 
-#: ../libgames-support/games-network-dialog.c:141
+#: ../libgames-support/games-network-dialog.c:126
 msgid "New Network Game"
 msgstr "Nieuw netwerk-spel"
 
+# toestand/stand/status
 #. Create Network Status Frame.
-#: ../libgames-support/games-network-dialog.c:154
-msgid "Network Status"
-msgstr "Netwerkstatus"
+#: ../libgames-support/games-network-dialog.c:139
+msgid "Status"
+msgstr "Status"
 
-# online spel/netwerkspel
-#: ../libgames-support/games-network-dialog.c:168
-msgid "Please start a new network game.\n"
-msgstr "Een nieuw netwerkspel beginnen.\n"
+#: ../libgames-support/games-network-dialog.c:141
+msgid "Check the configuration and press Connect"
+msgstr "Controleer de configuratie en klik op: Verbinden"
 
-# wat voor context?
-#: ../libgames-support/games-network-dialog.c:172
-msgid "C_onnect"
-msgstr "_Verbinden"
+#. Now for the network connection options.
+#: ../libgames-support/games-network-dialog.c:145
+msgid "Connection Method"
+msgstr "Verbindingsmethode"
 
-#: ../libgames-support/games-network-dialog.c:174
-msgid "_Start Game"
-msgstr "_Spel starten"
-
-#: ../libgames-support/games-network-dialog.c:212
-msgid "Invalid name"
-msgstr "Ongeldige naam"
-
-# games ipv spel, omdat spellen dubbelzinnig is (toegegeven in de context
-# valt het wel mee)
-#: ../libgames-support/games-network-dialog.c:228
-msgid "A new gnome games server was successfully started."
-msgstr "Een nieuwe gnome games-server is met succes opgestart."
-
-#: ../libgames-support/games-network-dialog.c:271
-msgid "Network Preferences"
-msgstr "Netwerkvoorkeuren"
-
-#: ../libgames-support/games-network-dialog.c:283
-msgid "_Player name:"
-msgstr "_Naam speler:"
-
-#: ../libgames-support/games-network-dialog.c:296
-msgid "Player"
-msgstr "Speler"
-
-#: ../libgames-support/games-network-dialog.c:307
-msgid "Network Connection Method"
-msgstr "Netwerkbindingsmethode"
-
-#: ../libgames-support/games-network-dialog.c:313
+#: ../libgames-support/games-network-dialog.c:151
 msgid "GNOME games server"
 msgstr "GNOME games-server"
 
-#: ../libgames-support/games-network-dialog.c:321
+#: ../libgames-support/games-network-dialog.c:159
 msgid "_Hostname:"
 msgstr "_Hostnaam:"
 
-#: ../libgames-support/games-network-dialog.c:336
+#: ../libgames-support/games-network-dialog.c:174
 msgid "Host local game"
 msgstr "Gastheer zijn voor lokaal spel"
 
-#: ../libgames-support/games-network-dialog.c:356
+#: ../libgames-support/games-network-dialog.c:194
 msgid "_Game name:"
 msgstr "_Spelnaam:"
 
-#: ../libgames-support/games-network-dialog.c:368
+#: ../libgames-support/games-network-dialog.c:206
 msgid "Join local game"
 msgstr "Meedoen met lokaal spel"
 
-#: ../libgames-support/games-network-dialog.c:384
+#: ../libgames-support/games-network-dialog.c:222
 msgid "_Local games:"
 msgstr "_Lokale spellen:"
 
-#: ../libgames-support/games-network-dialog.c:471
+#: ../libgames-support/games-network-dialog.c:266
+msgid "_Nickname:"
+msgstr "_Bijnaam:"
+
+#: ../libgames-support/games-network-dialog.c:279
+msgid "Player"
+msgstr "Speler"
+
+# wat voor context?
+#. Create buttons.
+#: ../libgames-support/games-network-dialog.c:293
+msgid "C_onnect"
+msgstr "_Verbinden"
+
+#: ../libgames-support/games-network-dialog.c:295
+msgid "_Start Game"
+msgstr "_Spel starten"
+
+#: ../libgames-support/games-network-dialog.c:331
+msgid "Please supply a nickname."
+msgstr "Geef een bijnaam aan"
+
+#: ../libgames-support/games-network-dialog.c:345
 msgid "No local game selected."
 msgstr "Geen lokaal spel geselecteerd."
+
+# games ipv spel, omdat spellen dubbelzinnig is (toegegeven in de context
+# valt het wel mee)
+#: ../libgames-support/games-network-dialog.c:367
+msgid "A new gnome games server was successfully started."
+msgstr "Een nieuwe gnome games-server is met succes opgestart."
 
 #: ../libgames-support/games-network.c:121
 msgid "Network initialization complete."
@@ -5301,85 +5329,93 @@ msgstr "_Nieuw"
 msgid "_Pause"
 msgstr "_Pauzeren"
 
+#: ../libgames-support/games-stock.c:43
+msgid "Res_ume"
+msgstr "_Hervatten"
+
 #. i18n: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:44
+#: ../libgames-support/games-stock.c:45
 msgid "_Restart"
 msgstr "_Herstarten"
 
 # herstellen/ongedaan maken
-#: ../libgames-support/games-stock.c:45
+#: ../libgames-support/games-stock.c:46
 msgid "_Undo Move"
 msgstr "_Ongedaan maken"
 
-#: ../libgames-support/games-stock.c:46
+#: ../libgames-support/games-stock.c:47
 msgid "_Redo Move"
 msgstr "_Opnieuw doen"
 
-#: ../libgames-support/games-stock.c:47
+#: ../libgames-support/games-stock.c:48
 msgid "_Hint"
 msgstr "_Hint"
 
-#: ../libgames-support/games-stock.c:48
+#: ../libgames-support/games-stock.c:49
 msgid "_Scores"
 msgstr "_Scores"
 
-#: ../libgames-support/games-stock.c:49
+#: ../libgames-support/games-stock.c:50
 msgid "_Fullscreen"
 msgstr "_Schermvullend"
 
-#: ../libgames-support/games-stock.c:50
+#: ../libgames-support/games-stock.c:51
 msgid "_Leave Fullscreen"
 msgstr "_Schermvullend verlaten"
 
-#: ../libgames-support/games-stock.c:51
+#: ../libgames-support/games-stock.c:52
 msgid "_End Game"
 msgstr "Spel beëindigen"
 
 # wat voor context?
-#: ../libgames-support/games-stock.c:52
+#: ../libgames-support/games-stock.c:53
 msgid "_Contents"
 msgstr "_Inhoud"
 
-#: ../libgames-support/games-stock.c:82
+#: ../libgames-support/games-stock.c:84
 msgid "Pause the game"
 msgstr "Het spel pauzeren"
 
-#: ../libgames-support/games-stock.c:83
+#: ../libgames-support/games-stock.c:85
+msgid "Resume the paused game"
+msgstr "Het gepauzeerde spel hervatten"
+
+#: ../libgames-support/games-stock.c:86
 msgid "Restart the game"
 msgstr "Het spel opnieuw spelen"
 
 # hoe je het ook vertaald, het blijft altijd een beetje dubbelzinnig.
 # maar zo, op z'n simpelst is het voor iedereen toch wel duidelijk
-#: ../libgames-support/games-stock.c:85
+#: ../libgames-support/games-stock.c:88
 msgid "Redo the undone move"
 msgstr "De laatste zet herhalen"
 
 # topscores bekijken
-#: ../libgames-support/games-stock.c:87
+#: ../libgames-support/games-stock.c:90
 msgid "View the scores"
 msgstr "Topscores tonen"
 
-#: ../libgames-support/games-stock.c:88
+#: ../libgames-support/games-stock.c:91
 msgid "Enter fullscreen mode"
 msgstr "Schermvullend"
 
-#: ../libgames-support/games-stock.c:89
+#: ../libgames-support/games-stock.c:92
 msgid "Leave fullscreen mode"
 msgstr "Schermvullend verlaten"
 
-#: ../libgames-support/games-stock.c:90
+#: ../libgames-support/games-stock.c:93
 msgid "End the current game"
 msgstr "Het huidige spel beëindigen"
 
-#: ../libgames-support/games-stock.c:92
+#: ../libgames-support/games-stock.c:95
 msgid "Quit this game"
 msgstr "Dit spel afsluiten"
 
-#: ../libgames-support/games-stock.c:93
+#: ../libgames-support/games-stock.c:96
 msgid "About this game"
 msgstr "Over dit spel"
 
-#: ../libgames-support/games-stock.c:94
+#: ../libgames-support/games-stock.c:97
 msgid "Configure the game"
 msgstr "Het spel configureren"
 
@@ -5552,10 +5588,6 @@ msgstr "Een strategisch spel met Mahjongg-stenen."
 #: ../mahjongg/mahjongg.c:1242
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Sorry, kan geen speelbare configuratie vinden."
-
-#: ../mahjongg/mahjongg.c:1290
-msgid "Show or hide the toolbar"
-msgstr "De werkbalk tonen of verbergen"
 
 #: ../mahjongg/mahjongg.c:1416 ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
@@ -5742,19 +5774,15 @@ msgstr "Same GNOME Scores"
 msgid "Unfortunately your score did not make the top ten."
 msgstr "Helaas zit uw score niet bij de top tien."
 
-#: ../same-gnome/ui.c:251
+#: ../same-gnome/ui.c:254
 msgid "Same GNOME Theme"
 msgstr "Same GNOME thema"
 
-#: ../same-gnome/ui.c:418
-msgid "_Size"
-msgstr "_Grootte"
-
-#: ../same-gnome/ui.c:429
+#: ../same-gnome/ui.c:435
 msgid "_Theme..."
 msgstr "_Thema..."
 
-#: ../same-gnome/ui.c:442
+#: ../same-gnome/ui.c:448
 msgid "_Fast Animation"
 msgstr "_Snelle animatie"
 
@@ -5769,6 +5797,22 @@ msgid ""
 msgstr ""
 "Het is niet mogelijk om het spel te spelen. Controleer of het spel wel goed "
 "is geïnstalleerd en probeer het opnieuw."
+
+#~ msgid "Network Status"
+#~ msgstr "Netwerkstatus"
+
+# online spel/netwerkspel
+#~ msgid "Please start a new network game.\n"
+#~ msgstr "Een nieuw netwerkspel beginnen.\n"
+
+#~ msgid "Invalid name"
+#~ msgstr "Ongeldige naam"
+
+#~ msgid "Network Preferences"
+#~ msgstr "Netwerkvoorkeuren"
+
+#~ msgid "_Player name:"
+#~ msgstr "_Naam speler:"
 
 #~ msgid "AisleRiot: %s"
 #~ msgstr "AisleRiot: %s"
@@ -5973,9 +6017,6 @@ msgstr ""
 
 #~ msgid "Get a hint"
 #~ msgstr "Vraag een hint"
-
-#~ msgid "Tile Set"
-#~ msgstr "Stenenverzameling:"
 
 #~ msgid "Background Color"
 #~ msgstr "Achtergrondkleur"
