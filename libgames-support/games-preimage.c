@@ -225,7 +225,7 @@ games_preimage_new_from_file (const gchar *filename,
     offset += length;
   }
 
-  loader_closed = gdk_pixbuf_loader_close (loader, NULL);
+  loader_closed = gdk_pixbuf_loader_close (loader, error);
   
   if (info.scalable) {   /* Prepare a vector image... */
     
