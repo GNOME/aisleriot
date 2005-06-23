@@ -193,8 +193,9 @@ games_preimage_new_from_file (const gchar *filename,
   gchar *buffer;
   gsize  buffer_size;
   
-  gint   length; 
-  gint   offset = 0;
+  gint     length; 
+  gint     offset = 0;
+  gboolean loader_closed;
   
   struct {
     gint      width;
@@ -223,10 +224,11 @@ games_preimage_new_from_file (const gchar *filename,
     }
     offset += length;
   }
+
+  loader_closed = gdk_pixbuf_loader_close (loader, NULL);
   
   if (info.scalable) {   /* Prepare a vector image... */
     
-    gdk_pixbuf_loader_close (loader, NULL);
     g_object_unref (loader);
     
     preimage = games_preimage_new();
@@ -241,7 +243,7 @@ games_preimage_new_from_file (const gchar *filename,
    
     g_free(buffer);
 
-    if (!gdk_pixbuf_loader_close (loader, error)) {
+    if (!loader_closed) {
       g_object_unref (loader);
       return NULL;
     }
