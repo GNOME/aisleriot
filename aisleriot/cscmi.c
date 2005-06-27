@@ -516,6 +516,7 @@ SCM
 cscmi_start_game_lambda (void)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->start_game_lambda;
@@ -525,9 +526,10 @@ cscmi_start_game_lambda (void)
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
 
 SCM
@@ -535,6 +537,7 @@ cscmi_button_pressed_lambda (SCM slot_id,
 			     SCM cards)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->button_pressed_lambda;
@@ -546,9 +549,10 @@ cscmi_button_pressed_lambda (SCM slot_id,
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
 
 SCM
@@ -557,6 +561,7 @@ cscmi_button_released_lambda (SCM start_slot,
 			      SCM end_slot)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->button_released_lambda;
@@ -569,15 +574,17 @@ cscmi_button_released_lambda (SCM start_slot,
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
 
 SCM
 cscmi_button_clicked_lambda (SCM slot_id)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->button_clicked_lambda;
@@ -588,15 +595,17 @@ cscmi_button_clicked_lambda (SCM slot_id)
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
 
 SCM
 cscmi_button_double_clicked_lambda (SCM slot_id)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->button_double_clicked_lambda;
@@ -607,9 +616,10 @@ cscmi_button_double_clicked_lambda (SCM slot_id)
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
 
 SCM
@@ -618,6 +628,7 @@ cscmi_droppable_lambda (SCM start_slot,
                         SCM end_slot)
 {
   CallData *call_data;
+  SCM retval;
 
   if (!droppable_is_featured) 
     return SCM_BOOL_F;
@@ -633,15 +644,17 @@ cscmi_droppable_lambda (SCM start_slot,
                       call_data,
                       cscmi_catch_handler,
                       NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
 
 SCM
 cscmi_game_over_lambda (void)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->game_over_lambda;
@@ -651,15 +664,17 @@ cscmi_game_over_lambda (void)
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
 
 SCM
 cscmi_winning_game_lambda (void)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->winning_game_lambda;
@@ -669,15 +684,17 @@ cscmi_winning_game_lambda (void)
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
 
 SCM
 cscmi_hint_lambda (void)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->hint_lambda;
@@ -687,9 +704,10 @@ cscmi_hint_lambda (void)
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
 
 SCM
@@ -725,6 +743,7 @@ SCM
 cscmi_apply_options_lambda (SCM options)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->apply_options_lambda;
@@ -735,15 +754,17 @@ cscmi_apply_options_lambda (SCM options)
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
 
 SCM
 cscmi_timeout_lambda (void)
 {
   CallData *call_data;
+  SCM retval;
 
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->timeout_lambda;
@@ -753,7 +774,8 @@ cscmi_timeout_lambda (void)
 		      call_data,
 		      cscmi_catch_handler,
 		      NULL);
+  retval = call_data->retval;
   g_free (call_data);
 
-  return call_data->retval;
+  return retval;
 }
