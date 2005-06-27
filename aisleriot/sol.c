@@ -175,12 +175,6 @@ void eval_installed_file (char *file)
   g_free (relative);
 }
 
-GnomeUIInfo rules_help[] = {
-  GNOMEUIINFO_ITEM_NONE(NULL, NULL, gnome_help_display),
-
-  GNOMEUIINFO_END
-};
-
 static int
 save_state (GnomeClient *client)
 {
@@ -406,6 +400,8 @@ static void main_prog(void *closure, int argc, char *argv[])
   load_pixmaps ();
 
   statusbar = gtk_statusbar_new ();
+  gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (statusbar), FALSE);
+
   create_menus ();
 
   gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, FALSE, 0);
