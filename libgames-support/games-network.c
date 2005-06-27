@@ -457,25 +457,27 @@ games_host_lan_game (char *name)
 #ifdef NO_HOWL
   return FALSE;
 #else
+  gboolean retval = FALSE;
   sw_discovery discovery;
   sw_result result;
   sw_discovery_publish_id id;
-  static char mtype[256];
+  char* mtype = NULL;
         
   if (sw_discovery_init (&discovery) != SW_OKAY) {
     network_gui_message (_("Local Area Network game could not be started. \nTry running mDNSResponder."));
-    return FALSE;
+    return retval;
   }
         
-  snprintf (mtype, sizeof (mtype), "_%s%s", game_port, NETWORK_HOWL_TYPE);
+  mtype = g_strdup_printf ("_%s%s", game_port, NETWORK_HOWL_TYPE);
 
-  if ((result = sw_discovery_publish (discovery, 0, name, mtype,
+  if (!(result = sw_discovery_publish (discovery, 0, name, mtype,
        NULL, NULL, atoi(game_port), NULL, 0, NULL, NULL, &id)) != SW_OKAY) {
-    return FALSE;
+    games_start_server (name);
+    retval = TRUE;
   }
 
-  games_start_server (name);
-  return TRUE;
+  g_free(mtype);
+  return retval;
 #endif
 }
 

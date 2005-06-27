@@ -4,7 +4,7 @@
 
 /* Games Scores Dialog - Display high scores
  *
- * Copyright (c) 2004 by Callum McKenzie
+ * Copyright (c) 2004, 2005 by Callum McKenzie
  *
  */
 
@@ -20,10 +20,7 @@ extern "C" {
 
 
 
-  typedef enum {
-    GAMES_SCORES_STYLE_PLAIN,
-    GAMES_SCORES_STYLE_TIME,
-  } GamesScoresStyle;
+  #include "games-scores.h" /* For GamesScoresStyle. */
 
   typedef enum {
     GAMES_SCORES_CLOSE_BUTTON = 1,

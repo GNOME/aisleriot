@@ -9,6 +9,7 @@ schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 
 INCLUDES =							\
 	-DDATADIR=\""$(datadir)"\"				\
+	-DSCORESDIR=\""$(scoredir)"\"				\
 	-DGCONF_SCHEMA_CONFIG_SOURCE=\""$(GCONF_SCHEMA_CONFIG_SOURCE)"\" \
 	$(HOWL_CFLAGS) \
 	$(WARN_CFLAGS)						\
@@ -24,12 +25,16 @@ card_DATA = bonded.png paris.svg
 
 GOB_FILES= \
 	games-scores-dialog.gob		\
+	games-scores.gob \
 	$(NULL)
 
 GOB_SOURCE= \
 	games-scores-dialog.c		\
 	games-scores-dialog.h		\
 	games-scores-dialog-private.h	\
+	games-scores.c		\
+	games-scores.h		\
+	games-scores-private.h	\
 	$(NULL)
 
 libgames_support_la_SOURCES =		\
