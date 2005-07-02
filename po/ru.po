@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-11 21:11+0300\n"
+"POT-Creation-Date: 2005-07-02 11:09+0400\n"
 "PO-Revision-Date: 2005-02-21 16:54+0200\n"
 "Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -51,8 +51,8 @@ msgstr "Статистика сыгранных игр"
 msgid "The game file to use"
 msgstr "Используемый файл игры"
 
-#: aisleriot/aisleriot.schemas.in.h:6 glines/glines.schemas.in.h:11
-#: same-gnome/same-gnome.schemas.in.h:5
+#: aisleriot/aisleriot.schemas.in.h:6 glines/glines.schemas.in.h:13
+#: same-gnome/same-gnome.schemas.in.h:6
 msgid "The height of the main window."
 msgstr "Высота основного окна."
 
@@ -64,8 +64,8 @@ msgstr "Имя файла с изображениями карт."
 msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "Название файла схем, содержащего нужный пасьянс."
 
-#: aisleriot/aisleriot.schemas.in.h:9 glines/glines.schemas.in.h:12
-#: same-gnome/same-gnome.schemas.in.h:9
+#: aisleriot/aisleriot.schemas.in.h:9 glines/glines.schemas.in.h:14
+#: same-gnome/same-gnome.schemas.in.h:10
 msgid "The width of the main window."
 msgstr "Ширина основного окна."
 
@@ -83,15 +83,15 @@ msgstr "Показать или скрыть панель инструменто
 msgid "Whether or not to show the toolbar."
 msgstr "Показать или скрыть панель инструментов."
 
-#: aisleriot/aisleriot.schemas.in.h:13 glines/glines.schemas.in.h:15
+#: aisleriot/aisleriot.schemas.in.h:13 glines/glines.schemas.in.h:17
 msgid "Window height"
 msgstr "Высота окна"
 
-#: aisleriot/aisleriot.schemas.in.h:14 glines/glines.schemas.in.h:16
+#: aisleriot/aisleriot.schemas.in.h:14 glines/glines.schemas.in.h:18
 msgid "Window width"
 msgstr "Ширина окна"
 
-#: aisleriot/cscmi.c:476
+#: aisleriot/cscmi.c:498
 #, c-format
 msgid ""
 "A scheme exception occured and we were unable to create a temporary file to "
@@ -112,24 +112,25 @@ msgstr "Поздравляем."
 msgid "You have won!!!"
 msgstr "Вы выиграли!!!"
 
-#: aisleriot/dialog.c:48 mahjongg/mahjongg.c:721
+#: aisleriot/dialog.c:48 mahjongg/mahjongg.c:625
 msgid "There are no more moves."
 msgstr "Больше нет вариантов ходов."
 
-#: aisleriot/dialog.c:64 same-gnome/ui.c:168 same-gnome/ui.c:187
+#: aisleriot/dialog.c:64 gnomine/gnomine.c:185
+#: libgames-support/games-scores-dialog.gob:459 same-gnome/ui.c:152
 msgid "New Game"
 msgstr "Новая игра"
 
-#: aisleriot/dialog.c:164
+#: aisleriot/dialog.c:165
 msgid "Select Game"
 msgstr "Выбор игры"
 
 #. Rules Tab
-#: aisleriot/dialog.c:179 blackjack/src/dialog.cpp:268
+#: aisleriot/dialog.c:183 blackjack/src/dialog.cpp:269
 msgid "Rules"
 msgstr "Правила"
 
-#: aisleriot/dialog.c:257
+#: aisleriot/dialog.c:261
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -137,21 +138,21 @@ msgstr ""
 "Игра закончена.\n"
 "Подсказок больше нет"
 
-#: aisleriot/dialog.c:263
+#: aisleriot/dialog.c:267
 msgid "This game does not have hint support yet."
 msgstr "В этой игре подсказка не реализована."
 
-#: aisleriot/dialog.c:275 aisleriot/dialog.c:281
+#: aisleriot/dialog.c:279 aisleriot/dialog.c:285
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Положить %s на %s."
 
-#: aisleriot/dialog.c:287
+#: aisleriot/dialog.c:291
 #, c-format
 msgid "Move %s %s."
 msgstr "Положить %s %s."
 
-#: aisleriot/dialog.c:288
+#: aisleriot/dialog.c:292
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -162,16 +163,16 @@ msgstr ""
 "Пожалуйста, сообщите об ошибке сюда: http://bugzilla.gnome.org\n"
 "с указанием названия игры (посмотрите в заголовке, если вы его не знаете)"
 
-#: aisleriot/dialog.c:293
+#: aisleriot/dialog.c:297
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Вы ищете %s."
 
-#: aisleriot/dialog.c:297
+#: aisleriot/dialog.c:301
 msgid "This game is unable to provide a hint."
 msgstr "В этой игре нельзя реализовать подсказку."
 
-#: aisleriot/dialog.c:348
+#: aisleriot/dialog.c:358
 msgid "AisleRiot Cards"
 msgstr "Карты Айслериот"
 
@@ -183,35 +184,20 @@ msgstr "Пасьянс Свободная ячейка"
 msgid "Play the popular FreeCell card game"
 msgstr "Сыграйте в популярный карточный пасьянс Свободная ячейка"
 
-#: aisleriot/menu.c:94 gnome-stones/main.c:1087 gnomine/gnomine.c:378
-#: mahjongg/mahjongg.c:986
+#: aisleriot/menu.c:86 gnome-stones/main.c:1011 gnomine/gnomine.c:432
+#: mahjongg/mahjongg.c:878
 msgid "Main game:"
 msgstr "Основная игра:"
 
-#: aisleriot/menu.c:100
+#: aisleriot/menu.c:92
 msgid "Card games:"
 msgstr "Карточные игры:"
 
-#. Translator credits
-#: aisleriot/menu.c:115 blackjack/src/menu.cpp:157 gataxx/gataxx.c:372
-#: glines/glines.c:1093 gnect/src/main.c:821 gnibbles/main.c:184
-#: gnobots2/menu.c:224 gnome-stones/main.c:1098 gnometris/tetris.cpp:1431
-#: gnomine/gnomine.c:398 gnotravex/gnotravex.c:1486 gnotski/gnotski.c:1573
-#: gtali/gyahtzee.c:455 iagno/gnothello.c:369 mahjongg/mahjongg.c:1010
-#: same-gnome/ui.c:122
-msgid "translator-credits"
-msgstr ""
-"Валек Филиппов aka frob\n"
-"Дмитрий Мастрюков\n"
-"Вячеслав Диконов\n"
-"Михаил Яхонтов\n"
-"Леонид Кантер"
-
-#: aisleriot/menu.c:136
+#: aisleriot/menu.c:104
 msgid "AisleRiot"
 msgstr "Айслериот"
 
-#: aisleriot/menu.c:139
+#: aisleriot/menu.c:106
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -220,101 +206,116 @@ msgstr ""
 "определения новых правил игры, что позволяет реализовать большое количество "
 "разных игр."
 
-#: aisleriot/menu.c:212 blackjack/src/blackjack.cpp:306 gnect/src/prefs.c:391
-#: gnibbles/preferences.c:213 gnome-stones/preferences.c:744
-#: gnometris/tetris.cpp:775 gnotski/gnotski.c:639 same-gnome/ui.c:429
+#: aisleriot/menu.c:110 blackjack/src/menu.cpp:150 gataxx/gataxx.c:383
+#: glines/glines.c:1221 gnect/src/main.c:806 gnibbles/main.c:184
+#: gnobots2/menu.c:263 gnome-stones/main.c:1025 gnometris/tetris.cpp:1471
+#: gnomine/gnomine.c:455 gnotravex/gnotravex.c:1590 gnotski/gnotski.c:1573
+#: gtali/gyahtzee.c:433 iagno/gnothello.c:270 mahjongg/mahjongg.c:905
+#: same-gnome/ui.c:107
+msgid "translator-credits"
+msgstr ""
+"Валек Филиппов aka frob\n"
+"Дмитрий Мастрюков\n"
+"Вячеслав Диконов\n"
+"Михаил Яхонтов\n"
+"Леонид Кантер"
+
+#: aisleriot/menu.c:199 blackjack/src/blackjack.cpp:297 glines/glines.c:1708
+#: gnect/src/main.c:1135 gnobots2/menu.c:57 gnomine/gnomine.c:757
+#: gnotravex/gnotravex.c:175 gnotski/gnotski.c:631 gtali/gyahtzee.c:511
+#: mahjongg/mahjongg.c:1272 same-gnome/ui.c:422
 msgid "_Game"
 msgstr "Игра"
 
-#: aisleriot/menu.c:213 same-gnome/ui.c:430
+#: aisleriot/menu.c:200 same-gnome/ui.c:423
 msgid "_View"
 msgstr "_Вид"
 
-#: aisleriot/menu.c:214 blackjack/src/blackjack.cpp:313
+#: aisleriot/menu.c:201 blackjack/src/blackjack.cpp:304
 msgid "_Control"
 msgstr "_Управление"
 
-#: aisleriot/menu.c:215 blackjack/src/blackjack.cpp:320 gnotski/gnotski.c:640
-#: same-gnome/ui.c:432
+#. not translated on purpose
+#: aisleriot/menu.c:203 blackjack/src/blackjack.cpp:311 glines/glines.c:1710
+#: gnect/src/main.c:1137 gnobots2/menu.c:60 gnomine/gnomine.c:759
+#: gnotravex/gnotravex.c:178 gnotski/gnotski.c:632 gtali/gyahtzee.c:513
+#: mahjongg/mahjongg.c:1274 same-gnome/ui.c:425
 msgid "_Help"
-msgstr "_Помощь"
+msgstr "_Справка"
 
-#: aisleriot/menu.c:217 same-gnome/ui.c:434
-msgid "_New Game"
-msgstr "_Новая игра"
-
-#: aisleriot/menu.c:218
-msgid "_Restart Game"
-msgstr "Начать игру _заново"
-
-#: aisleriot/menu.c:219
+#: aisleriot/menu.c:207
 msgid "_Select Game..."
 msgstr "_Выбор игры"
 
-#: aisleriot/menu.c:220
-msgid "S_tatistics..."
-msgstr "С_татистика..."
+#: aisleriot/menu.c:207
+msgid "Play a different game"
+msgstr "Начать другой пасьянс"
 
-#: aisleriot/menu.c:223
+#: aisleriot/menu.c:208
+msgid "S_tatistics"
+msgstr "_Статистика"
+
+#: aisleriot/menu.c:208
+msgid "Show gameplay statistics"
+msgstr "Показать статистику игры"
+
+#: aisleriot/menu.c:212
 msgid "_Cards..."
 msgstr "_Карты..."
 
-#: aisleriot/menu.c:225 same-gnome/ui.c:436
-msgid "_Undo Move"
-msgstr "_Отменить Ход"
+#: aisleriot/menu.c:217
+msgid "View help for Aisleriot"
+msgstr "Показать справку по Aisleriot"
 
-#: aisleriot/menu.c:226 same-gnome/ui.c:437
-msgid "_Redo Move"
-msgstr "_Вернуть Ход"
+#: aisleriot/menu.c:218 libgames-support/games-stock.c:94
+msgid "View help for this game"
+msgstr "Показать справку по игре"
 
-#: aisleriot/menu.c:227 blackjack/src/blackjack.cpp:309 gnotski/gnotski.c:652
-msgid "_Hint"
-msgstr "_Подсказка"
-
-#: aisleriot/menu.c:230 blackjack/src/blackjack.cpp:321 same-gnome/ui.c:442
-msgid "_Contents"
-msgstr "_Содержание"
-
-#: aisleriot/menu.c:237 blackjack/src/blackjack.cpp:326 gnect/src/main.c:1194
-#: mahjongg/mahjongg.c:144
+#: aisleriot/menu.c:223 blackjack/src/blackjack.cpp:317 gnobots2/menu.c:74
+#: mahjongg/mahjongg.c:1290
 msgid "_Toolbar"
 msgstr "Панель _инструментов"
 
-#: aisleriot/menu.c:238
+#: aisleriot/menu.c:224
 msgid "_Click to Move"
-msgstr "_Перемещение по щелчку"
+msgstr "_Перенос карт"
 
 #: aisleriot/rules/agnes.scm.h:1 aisleriot/rules/canfield.scm.h:1
 #: aisleriot/rules/chessboard.scm.h:1 aisleriot/rules/eagle_wing.scm.h:1
 #: aisleriot/rules/glenwood.scm.h:1 aisleriot/rules/kansas.scm.h:1
+#: aisleriot/rules/plait.scm.h:1
 msgid "Base Card: "
 msgstr "Основная карта: "
 
 #: aisleriot/rules/agnes.scm.h:2 aisleriot/rules/canfield.scm.h:2
 #: aisleriot/rules/chessboard.scm.h:2 aisleriot/rules/eagle_wing.scm.h:2
 #: aisleriot/rules/glenwood.scm.h:2 aisleriot/rules/kansas.scm.h:2
-#: aisleriot/rules/lady_jane.scm.h:2 aisleriot/rules/royal_east.scm.h:2
+#: aisleriot/rules/lady_jane.scm.h:2 aisleriot/rules/plait.scm.h:2
+#: aisleriot/rules/royal_east.scm.h:2
 msgid "Base Card: Ace"
 msgstr "Основная карта: Туз"
 
 #: aisleriot/rules/agnes.scm.h:3 aisleriot/rules/canfield.scm.h:3
 #: aisleriot/rules/chessboard.scm.h:3 aisleriot/rules/eagle_wing.scm.h:3
 #: aisleriot/rules/glenwood.scm.h:3 aisleriot/rules/kansas.scm.h:3
-#: aisleriot/rules/lady_jane.scm.h:3 aisleriot/rules/royal_east.scm.h:3
+#: aisleriot/rules/lady_jane.scm.h:3 aisleriot/rules/plait.scm.h:3
+#: aisleriot/rules/royal_east.scm.h:3
 msgid "Base Card: Jack"
 msgstr "Основная карта: Валет"
 
 #: aisleriot/rules/agnes.scm.h:4 aisleriot/rules/canfield.scm.h:4
 #: aisleriot/rules/chessboard.scm.h:4 aisleriot/rules/eagle_wing.scm.h:4
 #: aisleriot/rules/glenwood.scm.h:4 aisleriot/rules/kansas.scm.h:4
-#: aisleriot/rules/lady_jane.scm.h:4 aisleriot/rules/royal_east.scm.h:4
+#: aisleriot/rules/lady_jane.scm.h:4 aisleriot/rules/plait.scm.h:4
+#: aisleriot/rules/royal_east.scm.h:4
 msgid "Base Card: King"
 msgstr "Основная карта: Король"
 
 #: aisleriot/rules/agnes.scm.h:5 aisleriot/rules/canfield.scm.h:5
 #: aisleriot/rules/chessboard.scm.h:5 aisleriot/rules/eagle_wing.scm.h:5
 #: aisleriot/rules/glenwood.scm.h:5 aisleriot/rules/kansas.scm.h:5
-#: aisleriot/rules/lady_jane.scm.h:5 aisleriot/rules/royal_east.scm.h:5
+#: aisleriot/rules/lady_jane.scm.h:5 aisleriot/rules/plait.scm.h:5
+#: aisleriot/rules/royal_east.scm.h:5
 msgid "Base Card: Queen"
 msgstr "Основная карта: Дама"
 
@@ -327,9 +328,9 @@ msgstr "Еще раздать карты"
 
 #: aisleriot/rules/agnes.scm.h:7 aisleriot/rules/auld_lang_syne.scm.h:2
 #: aisleriot/rules/block_ten.scm.h:1 aisleriot/rules/bristol.scm.h:2
-#: aisleriot/rules/camelot.scm.h:2 aisleriot/rules/canfield.scm.h:10
+#: aisleriot/rules/camelot.scm.h:2 aisleriot/rules/canfield.scm.h:9
 #: aisleriot/rules/cover.scm.h:1 aisleriot/rules/doublets.scm.h:2
-#: aisleriot/rules/eagle_wing.scm.h:11 aisleriot/rules/easthaven.scm.h:3
+#: aisleriot/rules/eagle_wing.scm.h:11 aisleriot/rules/easthaven.scm.h:4
 #: aisleriot/rules/elevator.scm.h:2 aisleriot/rules/escalator.scm.h:2
 #: aisleriot/rules/first_law.scm.h:17 aisleriot/rules/fortunes.scm.h:4
 #: aisleriot/rules/glenwood.scm.h:11 aisleriot/rules/golf.scm.h:2
@@ -339,10 +340,10 @@ msgstr "Еще раздать карты"
 #: aisleriot/rules/klondike.scm.h:4 aisleriot/rules/labyrinth.scm.h:2
 #: aisleriot/rules/lady_jane.scm.h:7 aisleriot/rules/monte_carlo.scm.h:2
 #: aisleriot/rules/neighbor.scm.h:1 aisleriot/rules/osmosis.scm.h:3
-#: aisleriot/rules/peek.scm.h:3 aisleriot/rules/quatorze.scm.h:1
-#: aisleriot/rules/royal_east.scm.h:7 aisleriot/rules/scuffle.scm.h:4
-#: aisleriot/rules/sir_tommy.scm.h:3 aisleriot/rules/spider.scm.h:4
-#: aisleriot/rules/spider_one_suit.scm.h:4
+#: aisleriot/rules/peek.scm.h:3 aisleriot/rules/plait.scm.h:11
+#: aisleriot/rules/quatorze.scm.h:1 aisleriot/rules/royal_east.scm.h:7
+#: aisleriot/rules/scuffle.scm.h:4 aisleriot/rules/sir_tommy.scm.h:3
+#: aisleriot/rules/spider.scm.h:4 aisleriot/rules/spider_one_suit.scm.h:4
 #: aisleriot/rules/spider_two_suit.scm.h:4 aisleriot/rules/spiderette.scm.h:3
 #: aisleriot/rules/straight_up.scm.h:5 aisleriot/rules/thieves.scm.h:2
 #: aisleriot/rules/thirteen.scm.h:2 aisleriot/rules/thumb_and_pouch.scm.h:4
@@ -359,7 +360,7 @@ msgstr "Осталось в колоде: 0"
 
 #: aisleriot/rules/agnes.scm.h:9 aisleriot/rules/bakers_dozen.scm.h:1
 #: aisleriot/rules/beleaguered_castle.scm.h:1
-#: aisleriot/rules/canfield.scm.h:11 aisleriot/rules/jumbo.scm.h:5
+#: aisleriot/rules/canfield.scm.h:10 aisleriot/rules/jumbo.scm.h:5
 #: aisleriot/rules/king_albert.scm.h:1 aisleriot/rules/lady_jane.scm.h:9
 #: aisleriot/rules/streets_and_alleys.scm.h:1
 msgid "Try rearranging the cards"
@@ -389,7 +390,7 @@ msgid "Move something on to an empty reserve"
 msgstr "Положите что-нибудь на свободное место"
 
 #: aisleriot/rules/bakers_game.scm.h:2 aisleriot/rules/chessboard.scm.h:8
-#: aisleriot/rules/easthaven.scm.h:4 aisleriot/rules/eight_off.scm.h:2
+#: aisleriot/rules/easthaven.scm.h:5 aisleriot/rules/eight_off.scm.h:2
 #: aisleriot/rules/fortress.scm.h:2 aisleriot/rules/gypsy.scm.h:4
 #: aisleriot/rules/kansas.scm.h:9 aisleriot/rules/seahaven.scm.h:2
 #: aisleriot/rules/streets_and_alleys.scm.h:2
@@ -411,7 +412,7 @@ msgstr "пустое основание"
 #: aisleriot/rules/camelot.scm.h:1 aisleriot/rules/canfield.scm.h:6
 #: aisleriot/rules/glenwood.scm.h:6 aisleriot/rules/klondike.scm.h:1
 #: aisleriot/rules/osmosis.scm.h:1 aisleriot/rules/peek.scm.h:1
-#: aisleriot/rules/plait.scm.h:1 aisleriot/rules/straight_up.scm.h:1
+#: aisleriot/rules/plait.scm.h:6 aisleriot/rules/straight_up.scm.h:1
 msgid "Deal a new card from the deck"
 msgstr "Сдать новую карту из колоды"
 
@@ -451,31 +452,22 @@ msgid "itself"
 msgstr "само"
 
 #: aisleriot/rules/canfield.scm.h:7 aisleriot/rules/eagle_wing.scm.h:7
-#: aisleriot/rules/glenwood.scm.h:8 aisleriot/rules/plait.scm.h:2
+#: aisleriot/rules/glenwood.scm.h:8 aisleriot/rules/plait.scm.h:7
 #: aisleriot/rules/straight_up.scm.h:2 aisleriot/rules/thumb_and_pouch.scm.h:2
 #: aisleriot/rules/zebra.scm.h:2
 msgid "Move waste back to stock"
 msgstr "Вложить сброс обратно в колоду"
 
-#: aisleriot/rules/canfield.scm.h:8 aisleriot/rules/doublets.scm.h:1
-#: aisleriot/rules/eagle_wing.scm.h:9 aisleriot/rules/glenwood.scm.h:9
-#: aisleriot/rules/jumbo.scm.h:3 aisleriot/rules/klondike.scm.h:3
-#: aisleriot/rules/osmosis.scm.h:2 aisleriot/rules/peek.scm.h:2
-#: aisleriot/rules/scuffle.scm.h:2 aisleriot/rules/straight_up.scm.h:3
-#: aisleriot/rules/thumb_and_pouch.scm.h:3 aisleriot/rules/zebra.scm.h:3
-msgid "Redeals left:"
-msgstr "Осталось пересдач:"
-
-#: aisleriot/rules/canfield.scm.h:9 aisleriot/rules/eagle_wing.scm.h:10
+#: aisleriot/rules/canfield.scm.h:8 aisleriot/rules/eagle_wing.scm.h:10
 #: aisleriot/rules/kansas.scm.h:7 aisleriot/rules/straight_up.scm.h:4
 msgid "Reserve left:"
 msgstr "Осталось в резерве:"
 
-#: aisleriot/rules/canfield.scm.h:12 aisleriot/rules/glenwood.scm.h:12
+#: aisleriot/rules/canfield.scm.h:11 aisleriot/rules/glenwood.scm.h:12
 msgid "empty slot on foundation"
 msgstr "пустой слот в основании"
 
-#: aisleriot/rules/canfield.scm.h:13
+#: aisleriot/rules/canfield.scm.h:12
 msgid "empty space on tableau"
 msgstr "пустое пространство на игровом поле"
 
@@ -508,7 +500,8 @@ msgid "If you're ever lost and alone in the woods, hug a tree"
 msgstr "Если вы потерялись в лесу, то хотя бы дерево обнимите..."
 
 #: aisleriot/rules/clock.scm.h:6
-msgid "Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
+msgid ""
+"Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
 msgstr ""
 "Хотя пешеходный переход и напоминает игру в классики, это еще не значит, что "
 "на нем обязательно надо играть"
@@ -545,6 +538,15 @@ msgstr "Если нет степлера, то попробуйте обойти
 msgid "the foundation pile"
 msgstr "основание"
 
+#: aisleriot/rules/doublets.scm.h:1 aisleriot/rules/eagle_wing.scm.h:9
+#: aisleriot/rules/glenwood.scm.h:9 aisleriot/rules/jumbo.scm.h:3
+#: aisleriot/rules/klondike.scm.h:3 aisleriot/rules/osmosis.scm.h:2
+#: aisleriot/rules/peek.scm.h:2 aisleriot/rules/plait.scm.h:10
+#: aisleriot/rules/scuffle.scm.h:2 aisleriot/rules/straight_up.scm.h:3
+#: aisleriot/rules/thumb_and_pouch.scm.h:3 aisleriot/rules/zebra.scm.h:3
+msgid "Redeals left:"
+msgstr "Осталось пересдач:"
+
 #: aisleriot/rules/eagle_wing.scm.h:6 aisleriot/rules/elevator.scm.h:1
 #: aisleriot/rules/escalator.scm.h:1 aisleriot/rules/royal_east.scm.h:6
 #: aisleriot/rules/thirteen.scm.h:1 aisleriot/rules/treize.scm.h:1
@@ -564,6 +566,10 @@ msgstr "пустой слот на поле"
 #: aisleriot/rules/easthaven.scm.h:2
 msgid "Move a King on to the empty Tableau slot"
 msgstr "Положите короля в пустой слот на поле"
+
+#: aisleriot/rules/easthaven.scm.h:3 aisleriot/rules/klondike.scm.h:2
+msgid "No hint available right now"
+msgstr "Сейчас подсказок нет"
 
 #: aisleriot/rules/first_law.scm.h:2
 msgid "I'm not sure"
@@ -696,10 +702,6 @@ msgstr "пустой слот на поле"
 msgid "an empty Tableau slot"
 msgstr "пустой слот на поле"
 
-#: aisleriot/rules/klondike.scm.h:2
-msgid "No hint available right now"
-msgstr "Сейчас подсказок нет"
-
 #: aisleriot/rules/klondike.scm.h:5
 msgid "Three card deals"
 msgstr "Сдавать по три карты"
@@ -724,11 +726,11 @@ msgstr ""
 msgid "something"
 msgstr "что-то"
 
-#: aisleriot/rules/plait.scm.h:3
+#: aisleriot/rules/plait.scm.h:8
 msgid "Move ~a from the stock to an empty edge or tableau slot"
 msgstr "Переложите карту из колоды в пустую вершину на поле"
 
-#: aisleriot/rules/plait.scm.h:4
+#: aisleriot/rules/plait.scm.h:9
 msgid "Move ~a to an empty field"
 msgstr "Положить ~a на пустое поле"
 
@@ -812,12 +814,7 @@ msgstr "Переложите связку карт в пустой слот на
 msgid "the appropriate Foundation pile"
 msgstr "подходящее основание для столбца"
 
-#: aisleriot/sol.c:136
-#, c-format
-msgid "AisleRiot: %s"
-msgstr "Айслериот: %s"
-
-#: aisleriot/sol.c:163
+#: aisleriot/sol.c:161
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -834,22 +831,21 @@ msgstr ""
 msgid "Aisleriot"
 msgstr "Айслериот"
 
-#: aisleriot/sol.c:410 glines/glines.c:1700 gnobots2/statusbar.c:65
-#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:58 gnomine/gnomine.c:387
+#: aisleriot/sol.c:414 glines/glines.c:1967 gnobots2/statusbar.c:65
+#: gnome-stones/status.c:71 gnometris/scoreframe.cpp:58 gnomine/gnomine.c:441
 msgid "Score:"
 msgstr "Счет:"
 
-#: aisleriot/sol.c:414 gnomine/gnomine.c:945 gnotravex/gnotravex.c:1019
-#: mahjongg/mahjongg.c:1491
+#: aisleriot/sol.c:419 gnotravex/gnotravex.c:1074 mahjongg/mahjongg.c:1435
 msgid "Time:"
 msgstr "Время:"
 
-#: aisleriot/sol.c:463
+#: aisleriot/sol.c:473
 msgid "Variation on game rules"
 msgstr "Варианты правил игры"
 
-#: aisleriot/sol.c:464 gnobots2/gnobots.c:61 gnobots2/gnobots.c:63
-#: same-gnome/same-gnome.c:123 same-gnome/same-gnome.c:125
+#: aisleriot/sol.c:474 gnobots2/gnobots.c:62 gnobots2/gnobots.c:64
+#: same-gnome/same-gnome.c:124 same-gnome/same-gnome.c:126
 msgid "NAME"
 msgstr "ИМЯ"
 
@@ -1220,24 +1216,24 @@ msgid "Agnes"
 msgstr "Агнэс"
 
 #: aisleriot/translatable_game_names.h:8
-msgid "Auld lang syne"
-msgstr "Олд-ланг-син"
+msgid "Auld Lang Syne"
+msgstr "Олд Ланг Синг"
 
 #: aisleriot/translatable_game_names.h:9
-msgid "Bakers dozen"
-msgstr "Чертова дюжина"
+msgid "Bakers Dozen"
+msgstr "Пекарева дюжина"
 
 #: aisleriot/translatable_game_names.h:10
-msgid "Bakers game"
+msgid "Bakers Game"
 msgstr "Игра пекаря"
 
 #: aisleriot/translatable_game_names.h:11
-msgid "Beleaguered castle"
-msgstr "Осажденный замок"
+msgid "Beleaguered Castle"
+msgstr "Осаждённый замок"
 
 #: aisleriot/translatable_game_names.h:12
-msgid "Block ten"
-msgstr "Десятка"
+msgid "Block Ten"
+msgstr "Десятый блок"
 
 #: aisleriot/translatable_game_names.h:13
 msgid "Bristol"
@@ -1264,7 +1260,7 @@ msgid "Cover"
 msgstr "Конверт"
 
 #: aisleriot/translatable_game_names.h:19
-msgid "Diamond mine"
+msgid "Diamond Mine"
 msgstr "Алмазная шахта"
 
 #: aisleriot/translatable_game_names.h:20
@@ -1272,7 +1268,7 @@ msgid "Doublets"
 msgstr "Дуплеты"
 
 #: aisleriot/translatable_game_names.h:21
-msgid "Eagle wing"
+msgid "Eagle Wing"
 msgstr "Орлиное крыло"
 
 #: aisleriot/translatable_game_names.h:22
@@ -1280,7 +1276,7 @@ msgid "Easthaven"
 msgstr "Восточное убежище"
 
 #: aisleriot/translatable_game_names.h:23
-msgid "Eight off"
+msgid "Eight Off"
 msgstr "Без восьмерок"
 
 #: aisleriot/translatable_game_names.h:24
@@ -1292,7 +1288,7 @@ msgid "Escalator"
 msgstr "Эскалатор"
 
 #: aisleriot/translatable_game_names.h:26
-msgid "First law"
+msgid "First Law"
 msgstr "Первый закон"
 
 #: aisleriot/translatable_game_names.h:27
@@ -1312,7 +1308,7 @@ msgid "Freecell"
 msgstr "Свободная ячейка"
 
 #: aisleriot/translatable_game_names.h:31
-msgid "Gay gordons"
+msgid "Gay Gordons"
 msgstr "Веселые Гордоны"
 
 #: aisleriot/translatable_game_names.h:32
@@ -1352,7 +1348,7 @@ msgid "Kansas"
 msgstr "Канзас"
 
 #: aisleriot/translatable_game_names.h:41
-msgid "King albert"
+msgid "King Albert"
 msgstr "Король Альберт"
 
 #: aisleriot/translatable_game_names.h:42
@@ -1364,7 +1360,7 @@ msgid "Labyrinth"
 msgstr "Лабиринт"
 
 #: aisleriot/translatable_game_names.h:44
-msgid "Lady jane"
+msgid "Lady Jane"
 msgstr "Леди Джейн"
 
 #: aisleriot/translatable_game_names.h:45
@@ -1372,7 +1368,7 @@ msgid "Maze"
 msgstr "Подземелье"
 
 #: aisleriot/translatable_game_names.h:46
-msgid "Monte carlo"
+msgid "Monte Carlo"
 msgstr "Монте-Карло"
 
 #: aisleriot/translatable_game_names.h:47
@@ -1408,7 +1404,7 @@ msgid "Quatorze"
 msgstr "Стиль"
 
 #: aisleriot/translatable_game_names.h:55
-msgid "Royal east"
+msgid "Royal East"
 msgstr "Королевский восток"
 
 #: aisleriot/translatable_game_names.h:56
@@ -1424,63 +1420,63 @@ msgid "Seahaven"
 msgstr "Морское убежище"
 
 #: aisleriot/translatable_game_names.h:59
-msgid "Sir tommy"
+msgid "Sir Tommy"
 msgstr "Сэр Томми"
 
 #: aisleriot/translatable_game_names.h:60
-msgid "Sol"
-msgstr "Солитер"
-
-#: aisleriot/translatable_game_names.h:61
 msgid "Spiderette"
 msgstr "Паучиха"
+
+#: aisleriot/translatable_game_names.h:61
+msgid "Spider One Suit"
+msgstr "Паучиха в одну колоду"
 
 #: aisleriot/translatable_game_names.h:62
 msgid "Spider"
 msgstr "Паук"
 
 #: aisleriot/translatable_game_names.h:63
-msgid "Spider two suit"
+msgid "Spider Two Suit"
 msgstr "Паучиха в две колоды"
 
 #: aisleriot/translatable_game_names.h:64
-msgid "Spider one suit"
-msgstr "Паучиха в одну колоду"
+msgid "Straight Up"
+msgstr "Прямо вверх"
 
 #: aisleriot/translatable_game_names.h:65
-msgid "Straight up"
-msgstr "Длинная улица"
-
-#: aisleriot/translatable_game_names.h:66
-msgid "Streets and alleys"
+msgid "Streets And Alleys"
 msgstr "Улицы и аллеи"
 
-#: aisleriot/translatable_game_names.h:67
+#: aisleriot/translatable_game_names.h:66
 msgid "Template"
 msgstr "Шаблон"
 
-#: aisleriot/translatable_game_names.h:68
-msgid "Ten across"
+#: aisleriot/translatable_game_names.h:67
+msgid "Ten Across"
 msgstr "Десять поперек"
 
-#: aisleriot/translatable_game_names.h:69
+#: aisleriot/translatable_game_names.h:68
 msgid "Thieves"
 msgstr "Воры"
 
-#: aisleriot/translatable_game_names.h:70
+#: aisleriot/translatable_game_names.h:69
 msgid "Thirteen"
 msgstr "Тринадцать"
 
-#: aisleriot/translatable_game_names.h:71
-msgid "Thumb and pouch"
+#: aisleriot/translatable_game_names.h:70
+msgid "Thumb And Pouch"
 msgstr "Рука и кошелек"
 
-#: aisleriot/translatable_game_names.h:72
+#: aisleriot/translatable_game_names.h:71
 msgid "Treize"
 msgstr "Трейз"
 
+#: aisleriot/translatable_game_names.h:72
+msgid "Triple Peaks"
+msgstr "Три острия"
+
 #: aisleriot/translatable_game_names.h:73
-msgid "Union square"
+msgid "Union Square"
 msgstr "Общая площадь"
 
 #: aisleriot/translatable_game_names.h:74
@@ -1496,8 +1492,8 @@ msgid "Whitehead"
 msgstr "Белая голова"
 
 #: aisleriot/translatable_game_names.h:77
-msgid "Will o the wisp"
-msgstr "Блуждающий огонек"
+msgid "Will O The Wisp"
+msgstr "Мельница и прутик"
 
 #: aisleriot/translatable_game_names.h:78
 msgid "Yield"
@@ -1540,7 +1536,8 @@ msgid "The amount of money in your bank."
 msgstr "Количество денег на вашем счету."
 
 #: blackjack/data/blackjack.schemas.in.h:6
-msgid "The name of the rules file containing the variation of the rules to play."
+msgid ""
+"The name of the rules file containing the variation of the rules to play."
 msgstr "Имя файла правил, содержащего варианты условий игр."
 
 #: blackjack/data/blackjack.schemas.in.h:7
@@ -1555,126 +1552,95 @@ msgstr "Использовать быструю сдачу карт"
 msgid "Use a quick deal with no delay between each card."
 msgstr "Использовать быструю сдачу без задержек между сдачей каждой карты."
 
-#: blackjack/src/blackjack.cpp:101
+#: blackjack/src/blackjack.cpp:91
 #, c-format
-msgid "Blackjack: %s"
-msgstr "Блэкджек: %s"
+msgid "Blackjack - %s"
+msgstr "Двадцать одно - %s"
 
-#: blackjack/src/blackjack.cpp:307
-msgid "_New game"
-msgstr "_Новая игра"
-
-#: blackjack/src/blackjack.cpp:307 gnect/src/main.c:1221 gnobots2/menu.c:106
-msgid "Start a new game"
-msgstr "Начать новую игру"
-
-#: blackjack/src/blackjack.cpp:308
-msgid "_Restart game"
-msgstr "Начать игру _заново"
-
-#: blackjack/src/blackjack.cpp:308
-msgid "Restart the current game"
-msgstr "Начать заново текущую игру"
-
-#: blackjack/src/blackjack.cpp:309
-msgid "Get a hint for the next action"
-msgstr "Получить подсказку на следующий ход"
-
-#: blackjack/src/blackjack.cpp:310
-msgid "Quit application"
-msgstr "Выйти из игры"
-
-#: blackjack/src/blackjack.cpp:311
+#: blackjack/src/blackjack.cpp:302 glines/glines.c:1709 gnect/src/main.c:1136
+#: gnobots2/menu.c:59 gnomine/gnomine.c:758 gtali/gyahtzee.c:512
+#: mahjongg/mahjongg.c:1273
 msgid "_Settings"
 msgstr "_Установки"
 
-#: blackjack/src/blackjack.cpp:312
-msgid "Show game preferences"
-msgstr "Показать настройки игры"
+#: blackjack/src/blackjack.cpp:305
+msgid "D_eal"
+msgstr "С_дать"
 
-#: blackjack/src/blackjack.cpp:314
-msgid "Deal"
-msgstr "Сдать"
-
-#: blackjack/src/blackjack.cpp:314 blackjack/src/dialog.cpp:100
-#: blackjack/src/dialog.cpp:103
+#: blackjack/src/blackjack.cpp:305 blackjack/src/dialog.cpp:98
+#: blackjack/src/dialog.cpp:101
 msgid "Deal a new hand"
 msgstr "Сдать карты"
 
-#: blackjack/src/blackjack.cpp:315
+#: blackjack/src/blackjack.cpp:306
 msgid "_Hit"
 msgstr "_Поставить"
 
-#: blackjack/src/blackjack.cpp:315
+#: blackjack/src/blackjack.cpp:306
 msgid "Add a card to the hand"
 msgstr "Сдать еще одну карту"
 
-#: blackjack/src/blackjack.cpp:316
+#: blackjack/src/blackjack.cpp:307
 msgid "_Stand"
 msgstr "_Воздержаться"
 
-#: blackjack/src/blackjack.cpp:316
+#: blackjack/src/blackjack.cpp:307
 msgid "Stop adding cards to the hand"
 msgstr "Остановить сдачу карт на руки"
 
-#: blackjack/src/blackjack.cpp:317 blackjack/src/dialog.cpp:343
-#: blackjack/src/player.cpp:312
-msgid "Surrender"
-msgstr "Сдаться"
+#: blackjack/src/blackjack.cpp:308
+msgid "S_urrender"
+msgstr "_Сдаться"
 
-#: blackjack/src/blackjack.cpp:317
-msgid "Surrender the hand"
-msgstr "Сдасться текущей рукой"
+#: blackjack/src/blackjack.cpp:308
+msgid "Forfeit this hand for half of your wager"
+msgstr "Оштрафовать руку на половину ставки"
 
-#: blackjack/src/blackjack.cpp:318
+#: blackjack/src/blackjack.cpp:309
 msgid "_Double down"
 msgstr "_Удвоить"
 
-#: blackjack/src/blackjack.cpp:318
-msgid "Double down"
-msgstr "Удвоить"
+#: blackjack/src/blackjack.cpp:309
+msgid "Double your wager for a single hit"
+msgstr "Удвоить ставку на одну сдачу"
 
-#: blackjack/src/blackjack.cpp:319
-msgid "Split the hand"
-msgstr "Разделить сдачу"
+#: blackjack/src/blackjack.cpp:310
+msgid "S_plit the hand"
+msgstr "_Разделить сдачу"
 
-#: blackjack/src/blackjack.cpp:321
-msgid "Display help for this game"
-msgstr "Показать справку по игре"
+#: blackjack/src/blackjack.cpp:310
+msgid "Split cards in two new hands"
+msgstr "Разделить карты на две руки"
 
-#: blackjack/src/blackjack.cpp:322
-msgid "About this game"
-msgstr "Об игре"
-
-#: blackjack/src/blackjack.cpp:326
+#: blackjack/src/blackjack.cpp:317 gnobots2/gnobots2.schemas.in.h:23
 msgid "Show toolbar"
 msgstr "Показывать панель инструментов"
 
-#: blackjack/src/blackjack.cpp:355
+#: blackjack/src/blackjack.cpp:353
 msgid "Cards left:"
 msgstr "Осталось карт:"
 
-#: blackjack/src/blackjack.cpp:364
+#: blackjack/src/blackjack.cpp:362
 msgid "Wager:"
 msgstr "Ставка:"
 
-#: blackjack/src/blackjack.cpp:377
+#: blackjack/src/blackjack.cpp:375
 msgid "Balance:"
 msgstr "Баланс:"
 
-#: blackjack/src/blackjack.cpp:421
+#: blackjack/src/blackjack.cpp:416
 msgid "Place your wager or deal a hand"
 msgstr "Делайте ставку или сдавайте карты"
 
-#: blackjack/src/blackjack.cpp:659
+#: blackjack/src/blackjack.cpp:654
 msgid "Blackjack rule set to use"
 msgstr "Используемые правила \"Блэкджек\""
 
-#: blackjack/src/dialog.cpp:53
+#: blackjack/src/dialog.cpp:51
 msgid "Would you like insurance?"
 msgstr "Вы хотите подстраховаться?"
 
-#: blackjack/src/dialog.cpp:54
+#: blackjack/src/dialog.cpp:52
 #, c-format
 msgid ""
 "Insurance is a side wager of 50%% of the original wager that the dealer has "
@@ -1686,121 +1652,128 @@ msgstr ""
 "карта раздающего  - туз. Если раздающий в самом деле имеет 21, тогда игрок "
 "удваивает выигрыш."
 
-#: blackjack/src/dialog.cpp:101
+#: blackjack/src/dialog.cpp:99
 msgid "Set your wager and click in the white outline to deal a new hand."
 msgstr "Сделайте ставку и щелкните по белой внешней линии для сдачи карты."
 
-#: blackjack/src/dialog.cpp:104
+#: blackjack/src/dialog.cpp:102
 msgid "Set your wager or click on the cards to deal a new hand."
 msgstr "Сделайте ставку или щелкните по карте для сдачи новой карты."
 
-#: blackjack/src/dialog.cpp:223
+#: blackjack/src/dialog.cpp:222
 msgid "Blackjack Preferences"
-msgstr "Настройка игры \"Двадцать одно\""
+msgstr "Параметры игры \"Двадцать одно\""
 
-#: blackjack/src/dialog.cpp:237 gnobots2/properties.c:850
+#: blackjack/src/dialog.cpp:238 gnect/src/prefs.c:378
+#: gnibbles/preferences.c:217 gnobots2/properties.c:831
+#: gnome-stones/preferences.c:678 gnometris/tetris.cpp:793
 msgid "Game"
 msgstr "Игра"
 
-#: blackjack/src/dialog.cpp:244
-msgid "Display hand probabilities"
-msgstr "Показывать вероятные карты"
+#: blackjack/src/dialog.cpp:245
+msgid "_Display hand probabilities"
+msgstr "_Показывать вероятные карты"
 
-#: blackjack/src/dialog.cpp:254
-msgid "Quick deals (no delay between each card)"
-msgstr "Быстрая сдача (нет задержек между сдачей карт)"
+#: blackjack/src/dialog.cpp:255
+msgid "_Quick deals (no delay between each card)"
+msgstr "_Быстрая сдача (нет задержек между сдачей карт)"
 
-#: blackjack/src/dialog.cpp:261
-msgid "Reset balance"
-msgstr "Сбросить баланс"
+#: blackjack/src/dialog.cpp:262
+msgid "_Reset Balance"
+msgstr "Сбросить _баланс"
 
-#: blackjack/src/dialog.cpp:293 libgames-support/games-scores-dialog.gob:213
+#: blackjack/src/dialog.cpp:294 libgames-support/games-scores-dialog.gob:267
 msgid "Name"
 msgstr "Имя"
 
-#: blackjack/src/dialog.cpp:298
+#: blackjack/src/dialog.cpp:299
 msgid "Decks"
 msgstr "Рубашки"
 
-#: blackjack/src/dialog.cpp:303
+#: blackjack/src/dialog.cpp:304
 msgid "Hit Soft 17"
 msgstr "Ставить мягко 17"
 
-#: blackjack/src/dialog.cpp:308
+#: blackjack/src/dialog.cpp:309
 msgid "Double Any Total"
 msgstr "Удваивать любое значение"
 
-#: blackjack/src/dialog.cpp:313
+#: blackjack/src/dialog.cpp:314
 msgid "Double 9"
 msgstr "Удваивать 9"
 
-#: blackjack/src/dialog.cpp:318
+#: blackjack/src/dialog.cpp:319
 msgid "Double Soft"
 msgstr "Мягкое удвоение"
 
-#: blackjack/src/dialog.cpp:323
+#: blackjack/src/dialog.cpp:324
 msgid "Double After Hit"
 msgstr "Удвоение после ставки"
 
-#: blackjack/src/dialog.cpp:328
+#: blackjack/src/dialog.cpp:329
 msgid "Double After Split"
 msgstr "Удвоить после разделения"
 
-#: blackjack/src/dialog.cpp:333
+#: blackjack/src/dialog.cpp:334
 msgid "Resplit"
 msgstr "Разделить"
 
-#: blackjack/src/dialog.cpp:338
+#: blackjack/src/dialog.cpp:339
 msgid "Resplit Aces"
 msgstr "Разделить тузы"
 
-#: blackjack/src/dialog.cpp:348
+#: blackjack/src/dialog.cpp:344 blackjack/src/player.cpp:303
+msgid "Surrender"
+msgstr "Сдаться"
+
+#: blackjack/src/dialog.cpp:349
 msgid "Dealer Speed"
 msgstr "Скорость крупье"
 
-#: blackjack/src/events.cpp:526
+#: blackjack/src/events.cpp:508
 msgid "Click to double your wager"
 msgstr "Щелкните для удвоения ставки"
 
-#: blackjack/src/events.cpp:531
+#: blackjack/src/events.cpp:513
 #, c-format
 msgid "Double click to increase your wager by %.2f"
 msgstr "Дважды щелкните для поднятия вашей ставки на %.2f"
 
-#: blackjack/src/events.cpp:543
+#: blackjack/src/events.cpp:525
 #, c-format
 msgid "Double click to decrease your wager by %.2f"
 msgstr "Дважды щелкните для уменьшения вашей ставки на %.2f"
 
-#: blackjack/src/events.cpp:560
+#: blackjack/src/events.cpp:542
 msgid "Click to deal another card; drag card to split pair"
-msgstr "Щелкните мышкой для сдачи другой карты; перенесите карту для разделения пар"
+msgstr ""
+"Щелкните мышкой для сдачи другой карты; перенесите карту для разделения пар"
 
-#: blackjack/src/events.cpp:562
+#: blackjack/src/events.cpp:544
 msgid "Click to deal another card"
 msgstr "Щелкните для сдачи другой карты"
 
-#: blackjack/src/events.cpp:564
+#: blackjack/src/events.cpp:546
 msgid "Click to finish adding cards to your hand"
 msgstr "Щелкните для окончания получения карт"
 
-#: blackjack/src/events.cpp:567
+#: blackjack/src/events.cpp:549
 msgid "Click to deal a new hand"
 msgstr "Щелкните для новой сдачи"
 
-#: blackjack/src/game.cpp:491
+#: blackjack/src/game.cpp:483
 msgid "Blackjack can't load the requested file"
 msgstr "Игра \"Блэкджек\" не смогла загрузить нужные файлы"
 
-#: blackjack/src/game.cpp:493
+#: blackjack/src/game.cpp:485
 msgid "Please check your Blackjack installation"
 msgstr "Пожалуйста, проверьте корректность установки игры \"Двадцать одно\""
 
-#: blackjack/src/hand.cpp:118
+#: blackjack/src/hand.cpp:120
 msgid "The best option is to stand"
 msgstr "Лучше воздержаться"
 
-#: blackjack/src/hand.cpp:120
+#: blackjack/src/hand.cpp:122
 msgid ""
 "To stand means to stop adding cards to your hand.  Do this by clicking on "
 "the dealer's cards or by selecting the option from the Control menu."
@@ -1808,23 +1781,23 @@ msgstr ""
 "Это означает прекращение добавления карт на вашу руку. Вы можете это "
 "сделать, нажав на карты раздающего или выбрав пункт из меню."
 
-#: blackjack/src/hand.cpp:123
+#: blackjack/src/hand.cpp:125
 msgid "The best option is to hit"
 msgstr "Лучше взять еще одну карту"
 
-#: blackjack/src/hand.cpp:125
+#: blackjack/src/hand.cpp:127
 msgid ""
 "To hit means to add another card to your hand.  Do this by clicking once on "
 "your cards or by selecting the option from the Control menu."
 msgstr ""
-"Так вы добавите еще одну карту на руку. Вы можете это сделать, "
-"нажав на ваши карты или выбрав пункт из меню."
+"Так вы добавите еще одну карту на руку. Вы можете это сделать, нажав на ваши "
+"карты или выбрав пункт из меню."
 
-#: blackjack/src/hand.cpp:128
+#: blackjack/src/hand.cpp:130
 msgid "The best option is to double down"
 msgstr "Лучшим будет удвоить"
 
-#: blackjack/src/hand.cpp:130
+#: blackjack/src/hand.cpp:132
 msgid ""
 "To double down means to double the initial wager and receive exactly one "
 "more card.  Do this by clicking once on the chips at the bottom of the "
@@ -1833,11 +1806,11 @@ msgstr ""
 "Удвоение означает удвоение ставки и получение еще одной карты Вы можете "
 "сделать это, кликнув на фишки внизу или выбрав пункт из меню."
 
-#: blackjack/src/hand.cpp:133
+#: blackjack/src/hand.cpp:135
 msgid "The best option is to split"
 msgstr "Лучшим вариантом будет разделение"
 
-#: blackjack/src/hand.cpp:135
+#: blackjack/src/hand.cpp:137
 msgid ""
 "To split means to divide your current hand into two separate hands.  Do this "
 "by dragging one of your cards and dropping it off to the side or by "
@@ -1847,11 +1820,11 @@ msgstr ""
 "это захватив одну из ваших рук и перенеся ее за игровое поле или выбрав "
 "пункт из меню."
 
-#: blackjack/src/hand.cpp:137
+#: blackjack/src/hand.cpp:139
 msgid "The best option is to surrender"
 msgstr "Лучше будет сдаться"
 
-#: blackjack/src/hand.cpp:139
+#: blackjack/src/hand.cpp:141
 msgid ""
 "To surrender means to give up half your wager and not complete the hand.  Do "
 "this by selecting the option from the Control menu."
@@ -1859,100 +1832,102 @@ msgstr ""
 "Сдача вернет вам половину вашей ставки и прекращение заполнения руки. "
 "Выберите соответствующий пункты в меню."
 
-#: blackjack/src/menu.cpp:179
+#: blackjack/src/menu.cpp:172
 msgid "Blackjack provides a casino-style blackjack card game."
-msgstr "Игра \"Двадцать Одно\" позволяет вам играть в карты так, как будто вы играете в реальном казино."
+msgstr ""
+"Игра \"Двадцать Одно\" позволяет вам играть в карты так, как будто вы "
+"играете в реальном казино."
 
-#: blackjack/src/player.cpp:66
+#: blackjack/src/player.cpp:57
 msgid "Computing basic strategy..."
 msgstr "Обсчитываем простейшую стратегию..."
 
-#: blackjack/src/player.cpp:187 blackjack/src/player.cpp:442
+#: blackjack/src/player.cpp:178 blackjack/src/player.cpp:433
 msgid "Bust"
 msgstr "Банкрот"
 
-#: blackjack/src/player.cpp:189
+#: blackjack/src/player.cpp:180
 msgid "Blackjack!"
 msgstr "Двадцать одно!"
 
-#: blackjack/src/player.cpp:192
+#: blackjack/src/player.cpp:183
 msgid "Soft"
 msgstr "Мягко"
 
-#: blackjack/src/player.cpp:198
+#: blackjack/src/player.cpp:189
 msgid "Win"
 msgstr "Победа"
 
-#: blackjack/src/player.cpp:199
+#: blackjack/src/player.cpp:190
 msgid "Push"
 msgstr "Ставить"
 
-#: blackjack/src/player.cpp:200
+#: blackjack/src/player.cpp:191
 msgid "Lose"
 msgstr "Проигрыш"
 
-#: blackjack/src/player.cpp:260
+#: blackjack/src/player.cpp:251
 msgid "Player expected values"
 msgstr "Ожидаемые значения для игрока"
 
-#: blackjack/src/player.cpp:266
+#: blackjack/src/player.cpp:257
 msgid "Stand"
 msgstr "Стоять"
 
-#: blackjack/src/player.cpp:275
+#: blackjack/src/player.cpp:266
 msgid "Hit"
 msgstr "Ставить"
 
-#: blackjack/src/player.cpp:286
+#: blackjack/src/player.cpp:277
 msgid "Double"
 msgstr "Удваивать"
 
-#: blackjack/src/player.cpp:300
+#: blackjack/src/player.cpp:291
 msgid "Split"
 msgstr "Разделить"
 
-#: blackjack/src/player.cpp:441
+#: blackjack/src/player.cpp:432
 msgid "Dealer hand probabilities"
 msgstr "Вероятности карт раздающего"
 
-#: gataxx/appbar.c:39 iagno/gnothello.c:778
+#: gataxx/appbar.c:39 iagno/gnothello.c:631
 msgid "Light:"
 msgstr "Белые:"
 
-#: gataxx/appbar.c:45 iagno/gnothello.c:768
+#: gataxx/appbar.c:45 iagno/gnothello.c:621
 msgid "Dark:"
 msgstr "Черные:"
 
-#: gataxx/appbar.c:79 iagno/gnothello.c:286 iagno/othello.c:222
+#: gataxx/appbar.c:79 iagno/gnothello.c:207 iagno/othello.c:213
 msgid "Light's move"
 msgstr "Ход белых"
 
-#: gataxx/appbar.c:79 iagno/gnothello.c:288 iagno/gnothello.c:710
-#: iagno/othello.c:214
+#: gataxx/appbar.c:79 iagno/gnothello.c:209 iagno/gnothello.c:578
+#: iagno/othello.c:210
 msgid "Dark's move"
 msgstr "Ход черных"
 
-#: gataxx/gataxx.c:165 iagno/othello.c:702
+#: gataxx/gataxx.c:170 iagno/othello.c:665
 msgid "Light player wins!"
 msgstr "Белые победили!"
 
-#: gataxx/gataxx.c:167 iagno/othello.c:704
+#: gataxx/gataxx.c:172 iagno/othello.c:667
 msgid "Dark player wins!"
 msgstr "Черные победили!"
 
-#: gataxx/gataxx.c:169 iagno/othello.c:706
+#: gataxx/gataxx.c:174 iagno/othello.c:669
 msgid "The game was a draw."
 msgstr "Ничья."
 
-#: gataxx/gataxx.c:370
+#: gataxx/gataxx.c:374
 msgid "Based on code from Iagno by Ian Peters"
 msgstr "Основано на коде Iagno, написанной Ian Peters"
 
-#: gataxx/gataxx.c:387 gataxx/gataxx.desktop.in.h:1
+#: gataxx/gataxx.c:377 gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "Атакс"
 
-#: gataxx/gataxx.c:390
+#: gataxx/gataxx.c:381
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr "Переворачивание дисков в попытке захватить доску"
 
@@ -1966,10 +1941,9 @@ msgstr ""
 msgid "Animate"
 msgstr "Анимировать"
 
-#. flip tiles button
-#: gataxx/gataxx.schemas.in.h:2 gataxx/properties.c:400 iagno/properties.c:683
+#: gataxx/gataxx.schemas.in.h:2
 msgid "Flip final results"
-msgstr "Переворот в конце игры"
+msgstr "Подводить итог в конце игры"
 
 #: gataxx/gataxx.schemas.in.h:3
 msgid "Level of black player"
@@ -2007,7 +1981,7 @@ msgstr ""
 "Ноль соответствует отсутствию анимации, единица обозначает частичную, а "
 "двойка - полную анимацию."
 
-#: gataxx/gataxx.schemas.in.h:11 gnect/data/gnect.schemas.in.h:21
+#: gataxx/gataxx.schemas.in.h:11 gnect/data/gnect.schemas.in.h:19
 msgid ""
 "Zero is human; one through three correspond to the level of the computer "
 "player."
@@ -2018,166 +1992,225 @@ msgstr ""
 #. create window
 #: gataxx/properties.c:298
 msgid "Ataxx Preferences"
-msgstr "Настройки игры \"Гатакс\""
+msgstr "Параметры игры \"Гатакс\""
 
 #. Players tab
-#. FIXME mnemonic doesn't seem to work
-#: gataxx/properties.c:324 iagno/properties.c:505
-msgid "_Players"
-msgstr "_Игроки"
+#: gataxx/properties.c:328 iagno/properties.c:498
+msgid "Players"
+msgstr "Игроки"
 
-#: gataxx/properties.c:336
-msgid "Quick Moves"
-msgstr "Быстрые ходы"
+#: gataxx/properties.c:340
+msgid "_Quick moves"
+msgstr "_Быстрые ходы"
 
-#: gataxx/properties.c:337
+#: gataxx/properties.c:341
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "Уменьшать время, за которое компьютер делает ход"
 
 #. Dark level select
-#: gataxx/properties.c:346 gnect/src/theme.c:55 iagno/properties.c:528
+#: gataxx/properties.c:350 gnect/src/theme.c:55 iagno/properties.c:521
 msgid "Dark"
 msgstr "Черные"
 
-#: gataxx/properties.c:351 gnect/src/prefs.c:344 gtali/yahtzee.c:62
-#: iagno/properties.c:534 iagno/properties.c:581
+#: gataxx/properties.c:354 gataxx/properties.c:372 gnect/src/prefs.c:326
+#: gtali/yahtzee.c:61 iagno/properties.c:526 iagno/properties.c:572
 msgid "Human"
 msgstr "Человек"
 
-#: gataxx/properties.c:352 gataxx/properties.c:371
-msgid "Very Easy"
-msgstr "Очень Легкий"
+#: gataxx/properties.c:355 gataxx/properties.c:373
+msgid "Very easy"
+msgstr "Очень легкий"
 
-#: gataxx/properties.c:353 gataxx/properties.c:372 mahjongg/maps.c:534
+#: gataxx/properties.c:356 gataxx/properties.c:374 mahjongg/maps.c:534
 msgid "Easy"
 msgstr "Легкий"
 
-#: gataxx/properties.c:354 gataxx/properties.c:373 gnomine/gnomine.c:89
-#: gnomine/gnomine.c:584 same-gnome/game.c:49
+#: gataxx/properties.c:357 gataxx/properties.c:375 glines/glines.c:74
+#: gnomine/gnomine.c:82 gnomine/gnomine.c:635 same-gnome/game.c:49
 msgid "Medium"
 msgstr "Средний"
 
-#: gataxx/properties.c:355 gataxx/properties.c:374
+#: gataxx/properties.c:358 gataxx/properties.c:376
 msgid "Hard"
 msgstr "Тяжелый"
 
-#: gataxx/properties.c:356 gataxx/properties.c:375
-msgid "Very Hard"
-msgstr "Очень тяжелый"
+#: gataxx/properties.c:359 gataxx/properties.c:377
+msgid "Very hard"
+msgstr "Очень тяжёлый"
 
 #. Light level select
-#: gataxx/properties.c:365 gnect/src/theme.c:55 iagno/properties.c:575
+#: gataxx/properties.c:368 gnect/src/theme.c:55 iagno/properties.c:567
 msgid "Light"
 msgstr "Белые"
 
 #. Appearance tab
-#: gataxx/properties.c:384 iagno/properties.c:625
-msgid "_Appearance"
-msgstr "_Вид"
-
-#: gataxx/properties.c:387 gnect/src/prefs.c:423 gnobots2/properties.c:888
+#: gataxx/properties.c:386 gataxx/properties.c:389 gnect/src/prefs.c:410
+#: gnobots2/properties.c:871 iagno/properties.c:616
 msgid "Appearance"
 msgstr "Вид"
 
 #. animation button
-#: gataxx/properties.c:392 iagno/properties.c:630
-msgid "Animation"
-msgstr "Анимация"
+#: gataxx/properties.c:395
+msgid "_Animation"
+msgstr "_Анимация"
 
-#: gataxx/properties.c:396
+#: gataxx/properties.c:399
 msgid "Flip the pieces with some visual effects"
 msgstr "Переворачивать фишки с визуальными эффектами"
 
-#: gataxx/properties.c:404
+#. flip tiles button
+#: gataxx/properties.c:403 iagno/properties.c:675
+msgid "_Flip final results"
+msgstr "_Подбросить в конце игры"
+
+#: gataxx/properties.c:407
 msgid ""
 "Put all the white pieces at the bottom and all the black pieces on the top "
 "of the board when a game is over"
-msgstr "Перемещать все белые фишки вниз и все черные вверх после окончания игры"
+msgstr ""
+"Перемещать все белые фишки вниз и все черные вверх после окончания игры"
 
 #. show grid button
-#: gataxx/properties.c:408 iagno/properties.c:675
-msgid "Show grid"
-msgstr "Показывать решетку"
+#: gataxx/properties.c:411
+msgid "_Show grid"
+msgstr "_Показывать решетку"
 
-#: gataxx/properties.c:412
+#: gataxx/properties.c:415
 msgid "Whether the grid should be shown"
 msgstr "Показывать сетку"
 
-#: gataxx/properties.c:419 iagno/properties.c:693
-msgid "Tile set:"
-msgstr "Набор фишек:"
+#: gataxx/properties.c:422 iagno/properties.c:685 mahjongg/mahjongg.c:721
+msgid "_Tile set:"
+msgstr "Набор _фишек:"
 
-#: gataxx/properties.c:424
+#: gataxx/properties.c:427
 msgid "The appearance of the pieces"
 msgstr "Внешний вид игровых фишек"
 
-#: glines/glines.c:144
+#: glines/glines.c:73 gnomine/gnomine.c:81 gnomine/gnomine.c:625
+#: same-gnome/game.c:48
+msgid "Small"
+msgstr "Маленький"
+
+#: glines/glines.c:75 gnomine/gnomine.c:83 gnomine/gnomine.c:645
+#: same-gnome/game.c:50
+msgid "Large"
+msgstr "Большой"
+
+#: glines/glines.c:175
+msgid "Could not load theme"
+msgstr "Не удалось загрузить тему"
+
+#: glines/glines.c:180 mahjongg/mahjongg.c:131
+msgid "Preferences"
+msgstr "Параметры"
+
+#: glines/glines.c:204
 #, c-format
 msgid ""
-"Five or More could not find image file:\n"
+"Unable to locate file:\n"
 "%s\n"
 "\n"
-"Please check Five or More is installed correctly."
+"The default theme will be loaded instead."
 msgstr ""
-"Игра Цветные линии не может найти файл изображения:\n"
+"Не могу найти файл:\n"
+"%s\n"
+"Вместо него будет загружена тема по умолчанию."
+
+#: glines/glines.c:213
+#, c-format
+msgid ""
+"Unable to locate file:\n"
+"%s\n"
+"\n"
+"Please check that Five or More is installed correctly."
+msgstr ""
+"Невозможно найти файл:\n"
 "%s\n"
 "\n"
 "Проверьте установку игры Цветные линии"
 
-#: glines/glines.c:305
-msgid "Match five balls of the same color in a row to score!"
+#: glines/glines.c:407
+msgid "Match five objects of the same type in a row to score!"
 msgstr "Соберите пять шариков одинакового цвета в одну линию"
 
-#: glines/glines.c:360 glines/glines.c:1112 glines/glines.c:1646
-#: glines/glines.desktop.in.h:1
-msgid "Five or More"
+#: glines/glines.c:473
+msgid "GNOME Five or More"
 msgstr "Цветные линии"
 
-#: glines/glines.c:393
+#: glines/glines.c:484
+msgid "Board Size:"
+msgstr "Размер игрового поля:"
+
+#: glines/glines.c:521
 msgid "Game Over!"
 msgstr "Игра окончена!"
 
 #. Can't move there!
-#: glines/glines.c:551
-msgid "Can't move there!"
+#: glines/glines.c:681
+msgid "You can't move there!"
 msgstr "Сюда нельзя попасть!"
 
-#: glines/glines.c:1115
+#: glines/glines.c:1216 glines/glines.c:1907 glines/glines.desktop.in.h:1
+msgid "Five or More"
+msgstr "Цветные линии"
+
+#: glines/glines.c:1218
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "Популярная игра Цветные линии для GNOME"
 
-#: glines/glines.c:1252
+#: glines/glines.c:1418
 msgid "Five or More Preferences"
-msgstr "Настройки игры \"Цветные линии\""
+msgstr "Параметры игры \"Цветные линии\""
 
-#: glines/glines.c:1264
+#: glines/glines.c:1439
 msgid "Themes"
 msgstr "Темы"
 
-#: glines/glines.c:1273
-msgid "Ball image"
-msgstr "Изображение шариков"
+#: glines/glines.c:1448
+msgid "_Image:"
+msgstr "_Шарики:"
 
-#: glines/glines.c:1283 glines/glines.schemas.in.h:1
-#: gnobots2/gnobots2.schemas.in.h:1
-msgid "Background color"
-msgstr "Цвет фона"
+#: glines/glines.c:1459
+msgid "B_ackground color:"
+msgstr "Цвет _фона:"
 
-#: glines/glines.c:1297
+#: glines/glines.c:1474
+msgid "Board Size"
+msgstr "Размер игрового поля"
+
+#: glines/glines.c:1481 same-gnome/ui.c:442
+msgid "_Small"
+msgstr "_Маленький"
+
+#: glines/glines.c:1491 same-gnome/ui.c:443
+msgid "_Medium"
+msgstr "_Средний"
+
+#: glines/glines.c:1501 same-gnome/ui.c:444
+msgid "_Large"
+msgstr "_Большой"
+
+#: glines/glines.c:1509
 msgid "General"
 msgstr "Общие"
 
-#: glines/glines.c:1305
-msgid "Use fast moves"
-msgstr "Использовать быстрые ходы"
+#: glines/glines.c:1517
+msgid "_Use fast moves"
+msgstr "Использовать _быстрые ходы"
 
-#: glines/glines.c:1670
+#: glines/glines.c:1937
 msgid "Next:"
 msgstr "Следующие:"
 
 #: glines/glines.desktop.in.h:2
 msgid "Remove colored balls from the board by forming lines"
-msgstr "Убирайте разноцветные шарики с поля, выстраивая прямые линии одного цвета"
+msgstr ""
+"Убирайте разноцветные шарики с поля, выстраивая прямые линии одного цвета"
+
+#: glines/glines.schemas.in.h:1 gnobots2/gnobots2.schemas.in.h:1
+msgid "Background color"
+msgstr "Цвет фона"
 
 #: glines/glines.schemas.in.h:2 gnobots2/gnobots2.schemas.in.h:2
 msgid "Background color. The hex specification of the background color."
@@ -2215,11 +2248,22 @@ msgstr "Результаты игры"
 msgid "Game score from last saved session."
 msgstr "Таблица результатов из последнего сохраненного сеанса игры."
 
-#: glines/glines.schemas.in.h:13
+#: glines/glines.schemas.in.h:11
+msgid "Playing field size"
+msgstr "Размер игрового поля"
+
+#: glines/glines.schemas.in.h:12
+msgid ""
+"Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
+msgstr ""
+"Размер игрового поля. 1 - маленькое, 2 - среднее, 3 - большое. Другие "
+"значениянекорректны"
+
+#: glines/glines.schemas.in.h:15
 msgid "Time between moves"
 msgstr "Время между прыжками шариков"
 
-#: glines/glines.schemas.in.h:14
+#: glines/glines.schemas.in.h:16
 msgid "Time between moves in milliseconds."
 msgstr "Время между прыжками шарика в миллисекундах"
 
@@ -2227,9 +2271,9 @@ msgstr "Время между прыжками шарика в миллисек�
 msgid "Compete to make lines of the same color"
 msgstr "Постарайтесь выстроить ряды шариков одинакового цвета"
 
-#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:1247
-msgid "Four-in-a-row"
-msgstr "Игра Четыре-в-ряд"
+#: gnect/data/gnect.desktop.in.h:2 gnect/src/main.c:801 gnect/src/main.c:1212
+msgid "Four-in-a-Row"
+msgstr "Четыре-в-ряд"
 
 #: gnect/data/gnect.schemas.in.h:1
 msgid "A number specifying the preferred theme."
@@ -2273,39 +2317,31 @@ msgstr "Влево"
 msgid "Move right"
 msgstr "Вправо"
 
-#: gnect/data/gnect.schemas.in.h:12
-msgid "Show tool bar"
-msgstr "Показывать панель инструментов"
-
-#: gnect/data/gnect.schemas.in.h:13 gnome-stones/preferences.c:854
+#: gnect/data/gnect.schemas.in.h:12 gnome-stones/preferences.c:790
 msgid "Sound"
 msgstr "Звук"
 
-#: gnect/data/gnect.schemas.in.h:14
+#: gnect/data/gnect.schemas.in.h:13
 msgid "The height of the main window, in pixels, at start-up."
 msgstr "Высота основного окна после запуска, в пикселях."
 
-#: gnect/data/gnect.schemas.in.h:15
+#: gnect/data/gnect.schemas.in.h:14
 msgid "The width of the main window, in pixels, at start-up."
 msgstr "Ширина основного окна после запуска, в пикселях."
 
-#: gnect/data/gnect.schemas.in.h:16
+#: gnect/data/gnect.schemas.in.h:15
 msgid "Theme ID"
 msgstr "Идентификатор темы"
 
-#: gnect/data/gnect.schemas.in.h:17
+#: gnect/data/gnect.schemas.in.h:16
 msgid "Whether or not to play event sounds."
 msgstr "Воспроизводить звуки событий или нет."
 
-#: gnect/data/gnect.schemas.in.h:18
-msgid "Whether or not to show the tool bar."
-msgstr "Показывать панель инструментов или нет."
-
-#: gnect/data/gnect.schemas.in.h:19
+#: gnect/data/gnect.schemas.in.h:17
 msgid "Whether or not to use animation."
 msgstr "Использовать анимацию или нет."
 
-#: gnect/data/gnect.schemas.in.h:20
+#: gnect/data/gnect.schemas.in.h:18
 msgid "Width of the main window"
 msgstr "Ширина основного окна."
 
@@ -2321,7 +2357,7 @@ msgstr "Ничья!"
 msgid "Gnect"
 msgstr "Гнект"
 
-#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:551
+#: gnect/data/gnect.soundlist.in.h:4 gnect/src/main.c:526
 msgid "I win!"
 msgstr "Я победил!"
 
@@ -2333,7 +2369,7 @@ msgstr "Игрок победил!"
 msgid "Sorry, full column"
 msgstr "Извините, столбец полон"
 
-#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:547
+#: gnect/data/gnect.soundlist.in.h:7 gnect/src/main.c:522
 msgid "You win!"
 msgstr "Вы победили!"
 
@@ -2346,102 +2382,58 @@ msgstr ""
 "Не удается загрузить изображение:\n"
 "%s"
 
-#: gnect/src/main.c:539
+#: gnect/src/main.c:514
 msgid "It's a draw!"
 msgstr "Ничья!"
 
-#: gnect/src/main.c:548
+#: gnect/src/main.c:523
 msgid "Your move..."
 msgstr "Ваш ход..."
 
-#: gnect/src/main.c:552 gnect/src/main.c:645
+#: gnect/src/main.c:527 gnect/src/main.c:620
 msgid "Thinking..."
 msgstr "Думаю..."
 
-#: gnect/src/main.c:560
+#: gnect/src/main.c:535
 #, c-format
 msgid "%s wins!"
 msgstr "%s победил!"
 
-#: gnect/src/main.c:561
+#: gnect/src/main.c:536
 #, c-format
 msgid "%s..."
 msgstr "%s..."
 
-#: gnect/src/main.c:662
+#: gnect/src/main.c:638
 #, c-format
 msgid "Hint: Column %d"
 msgstr "Подсказка: Столбец %d"
 
-#: gnect/src/main.c:690 gnect/src/main.c:695
-msgid "You"
-msgstr "Вы"
+#: gnect/src/main.c:665 gnect/src/main.c:670
+msgid "You:"
+msgstr "Вы:"
 
-#: gnect/src/main.c:691 gnect/src/main.c:694
-msgid "Me"
-msgstr "Я"
+#: gnect/src/main.c:666 gnect/src/main.c:669
+msgid "Me:"
+msgstr "Я:"
 
-#: gnect/src/main.c:741
+#: gnect/src/main.c:716
 msgid "Scores"
 msgstr "Результаты"
 
-#: gnect/src/main.c:788
-msgid "Drawn"
-msgstr "Ничья"
+#: gnect/src/main.c:767
+msgid "Drawn:"
+msgstr "Ничья:"
 
-#: gnect/src/main.c:834
+#: gnect/src/main.c:804
 msgid ""
-"\"Four in a row\" for GNOME, with a computer player driven by Giuliano "
+"\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
 msgstr ""
-"Игра Четверо-в-ряд для GNOME, с использованием алгоритма Velena от Giuliano "
+"Четыре-в-ряд для GNOME, с использованием алгоритма Velena от Giuliano "
 "Bertoletti для компьютерных игроков."
 
-#: gnect/src/main.c:1141 gnect/src/main.c:1168
-msgid "Select \"New game\" from the \"Game\" menu to begin."
-msgstr "Выберите пункт Новая игра из меню Игра для запуска игры."
-
-#: gnect/src/main.c:1195
-msgid "Show or hide the tool bar"
-msgstr "Показать или скрыть панель инструментов"
-
-#: gnect/src/main.c:1198
-msgid "Enable _sound"
-msgstr "Включить _звук"
-
-#: gnect/src/main.c:1199
-msgid "Enable or disable sound"
-msgstr "Включить или отключить звук"
-
-#: gnect/src/main.c:1220 gnobots2/menu.c:106 mahjongg/mahjongg.c:167
-msgid "New"
-msgstr "Новая"
-
-#: gnect/src/main.c:1220 mahjongg/mahjongg.c:167
-msgid "New game"
-msgstr "Новая игра"
-
-#: gnect/src/main.c:1223 mahjongg/mahjongg.c:183
-msgid "Undo"
-msgstr "Отменить"
-
-#: gnect/src/main.c:1223
-msgid "Undo the last move"
-msgstr "Отменить последний ход"
-
-#: gnect/src/main.c:1224 mahjongg/mahjongg.c:189
-msgid "Hint"
-msgstr "Подсказка"
-
-#: gnect/src/main.c:1224
-msgid "Get a hint for your next move"
-msgstr "Получить подсказку на следующий ход"
-
-#: gnect/src/main.c:1314
-msgid "Welcome to Gnect!"
-msgstr "Добро пожаловать в игру Гнект!"
-
-#: gnect/src/prefs.c:158
+#: gnect/src/prefs.c:157
 #, c-format
 msgid ""
 "Player One:\n"
@@ -2450,7 +2442,7 @@ msgstr ""
 "Первый игрок:\n"
 "%s"
 
-#: gnect/src/prefs.c:162
+#: gnect/src/prefs.c:161
 #, c-format
 msgid ""
 "Player Two:\n"
@@ -2459,48 +2451,49 @@ msgstr ""
 "Второй игрок:\n"
 "%s"
 
-#: gnect/src/prefs.c:346 iagno/properties.c:544 iagno/properties.c:591
+#: gnect/src/prefs.c:328 iagno/properties.c:536 iagno/properties.c:582
 msgid "Level one"
 msgstr "Первый уровень"
 
-#: gnect/src/prefs.c:348 iagno/properties.c:554 iagno/properties.c:601
+#: gnect/src/prefs.c:330 iagno/properties.c:546 iagno/properties.c:592
 msgid "Level two"
 msgstr "Второй уровень"
 
-#: gnect/src/prefs.c:350 iagno/properties.c:564 iagno/properties.c:612
+#: gnect/src/prefs.c:332 iagno/properties.c:556 iagno/properties.c:603
 msgid "Level three"
 msgstr "Третий уровень"
 
-#: gnect/src/prefs.c:374
-msgid "Four-in-a-row Preferences"
-msgstr "Настройка игры Четыре-в-ряд"
+#: gnect/src/prefs.c:356
+msgid "Four-in-a-Row Preferences"
+msgstr "Параметры Четыре-в-ряд"
 
-#: gnect/src/prefs.c:432
+#: gnect/src/prefs.c:419
 msgid "_Theme:"
 msgstr "_Тема:"
 
-#: gnect/src/prefs.c:446
+#: gnect/src/prefs.c:433
 msgid "Enable _animation"
 msgstr "Включить _анимацию"
 
-#: gnect/src/prefs.c:453
+#: gnect/src/prefs.c:440 gnometris/tetris.cpp:917
 msgid "Controls"
 msgstr "Управление"
 
-#: gnect/src/prefs.c:456 gnibbles/preferences.c:376 gnometris/tetris.cpp:906
-msgid "Keyboard controls"
-msgstr "Управление с клавиатуры"
+#: gnect/src/prefs.c:444 gnibbles/preferences.c:381 gnobots2/properties.c:878
+#: gnometris/tetris.cpp:920
+msgid "Keyboard Controls"
+msgstr "Управление с клавиатуры:"
 
 #: gnect/src/theme.c:42
 msgid "Classic"
 msgstr "Классическая"
 
 #: gnect/src/theme.c:47 gnect/src/theme.c:63 gnect/src/theme.c:71
-#: gnect/src/theme.c:79 gnibbles/preferences.c:413
+#: gnect/src/theme.c:79 gnibbles/preferences.c:420
 msgid "Red"
 msgstr "Красный"
 
-#: gnect/src/theme.c:47 gnect/src/theme.c:79 gnibbles/preferences.c:416
+#: gnect/src/theme.c:47 gnect/src/theme.c:79 gnibbles/preferences.c:423
 msgid "Yellow"
 msgstr "Желтый"
 
@@ -2509,17 +2502,17 @@ msgid "High Contrast"
 msgstr "Высококонтрастная"
 
 #: gnect/src/theme.c:58
-msgid "Marbles"
-msgstr "Мраморные шарики"
+msgid "Cream Marbles"
+msgstr "Кремовый мрамор"
 
 #: gnect/src/theme.c:63 gnect/src/theme.c:71 gnect/src/theme.c:87
-#: gnibbles/preferences.c:415
+#: gnibbles/preferences.c:422
 msgid "Blue"
 msgstr "Синий"
 
 #: gnect/src/theme.c:66
-msgid "More Marbles"
-msgstr "Другие мраморные шарики"
+msgid "Glass Marbles"
+msgstr "Стеклянный мрамор"
 
 #: gnect/src/theme.c:74
 msgid "Nightfall"
@@ -2564,7 +2557,7 @@ msgid "Guide a worm around a maze"
 msgstr "Управляйте растущим прожорливым червяком в лабиринте"
 
 #: gnibbles/gnibbles.desktop.in.h:2 gnibbles/gnibbles.soundlist.in.h:6
-#: gnibbles/main.c:204
+#: gnibbles/main.c:179
 msgid "Nibbles"
 msgstr "Червячок"
 
@@ -2576,7 +2569,7 @@ msgstr "Цвет червяка"
 msgid "Color to use for worm."
 msgstr "Цвет червяка."
 
-#: gnibbles/gnibbles.schemas.in.h:3 gnibbles/preferences.c:291
+#: gnibbles/gnibbles.schemas.in.h:3
 msgid "Enable fake bonuses"
 msgstr "Разрешить фальшивые бонусы"
 
@@ -2584,8 +2577,7 @@ msgstr "Разрешить фальшивые бонусы"
 msgid "Enable fake bonuses."
 msgstr "Разрешить фальшивые бонусы."
 
-#: gnibbles/gnibbles.schemas.in.h:5 gnibbles/preferences.c:302
-#: gnobots2/properties.c:827 gnometris/tetris.cpp:837
+#: gnibbles/gnibbles.schemas.in.h:5
 msgid "Enable sounds"
 msgstr "Включить звуки"
 
@@ -2653,7 +2645,7 @@ msgstr "Число игроков"
 msgid "Number of players."
 msgstr "Число игроков."
 
-#: gnibbles/gnibbles.schemas.in.h:23 gnibbles/preferences.c:280
+#: gnibbles/gnibbles.schemas.in.h:23
 msgid "Play levels in random order"
 msgstr "Случайно предлагать уровни"
 
@@ -2669,7 +2661,7 @@ msgstr "Размер узора"
 msgid "Size of game tiles."
 msgstr "Размер узора."
 
-#: gnibbles/gnibbles.schemas.in.h:27 gnibbles/preferences.c:402
+#: gnibbles/gnibbles.schemas.in.h:27
 msgid "Use relative movement"
 msgstr "Использовать относительное перемещение"
 
@@ -2705,7 +2697,7 @@ msgstr "Сожрали бонус"
 msgid "Extra Life"
 msgstr "Дополнительная жизнь"
 
-#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:281
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/tetris.cpp:285
 msgid "Game Over"
 msgstr "Игра окончена"
 
@@ -2721,11 +2713,11 @@ msgstr "Разворот червяка"
 msgid "Worm Teleport"
 msgstr "Телепортация червяка"
 
-#: gnibbles/main.c:88 iagno/gnothello.c:118
-msgid "New net_work game"
+#: gnibbles/main.c:88 iagno/gnothello.c:114
+msgid "New Net_work Game"
 msgstr "Новая _сетевая игра"
 
-#: gnibbles/main.c:207
+#: gnibbles/main.c:182
 msgid "A worm game for GNOME."
 msgstr "Игра в червяка для среды GNOME."
 
@@ -2733,25 +2725,14 @@ msgstr "Игра в червяка для среды GNOME."
 msgid "Invalid move attempted"
 msgstr "Попытка сделать недопустимый ход"
 
-#: gnibbles/network.c:164 iagno/network.c:114
-msgid "Invalid game data (set_peer)"
-msgstr "Некорректные данные игры (set_peer)"
+#: gnibbles/network.c:164 gnibbles/network.c:178 gnibbles/network.c:197
+#: gnibbles/network.c:215 gnibbles/network.c:225
+msgid "Invalid game data"
+msgstr "Некорректные данные игры"
 
 #: gnibbles/network.c:170 iagno/network.c:121
 msgid "Peer introduction complete"
 msgstr "Подключение завершено"
-
-#: gnibbles/network.c:178 gnibbles/network.c:197 iagno/network.c:128
-msgid "Invalid game data (move)"
-msgstr "Некорректные данные игры (move)"
-
-#: gnibbles/network.c:215
-msgid "Invalid game data (add_bonus)"
-msgstr "Некорректные данные игры (add_bonus)"
-
-#: gnibbles/network.c:225
-msgid "Invalid game data (remove_bonus)"
-msgstr "Некорректные данные игры (remove_bonus)"
 
 #: gnibbles/network.c:239 iagno/network.c:139
 msgid "New game ready to be started"
@@ -2763,63 +2744,80 @@ msgstr "Начата новая игра"
 
 #: gnibbles/preferences.c:204
 msgid "Gnibbles Preferences"
-msgstr "Настройка игры Червячок"
+msgstr "Параметры игры Червячок"
 
-#: gnibbles/preferences.c:221
+#: gnibbles/preferences.c:225
 msgid "Speed"
 msgstr "Скорость"
 
-#: gnibbles/preferences.c:231
+#: gnibbles/preferences.c:234
 msgid "Nibbles newbie"
 msgstr "Новый червячок"
 
-#: gnibbles/preferences.c:241
+#: gnibbles/preferences.c:244
 msgid "My second day"
 msgstr "Уже второй день играю!"
 
-#: gnibbles/preferences.c:251
+#: gnibbles/preferences.c:254
 msgid "Not too shabby"
 msgstr "Я не полный чайник"
 
-#: gnibbles/preferences.c:262
+#: gnibbles/preferences.c:265
 msgid "Finger-twitching good"
 msgstr "Мастер работы с кнопками"
 
 #. Options
-#: gnibbles/preferences.c:273 gnibbles/preferences.c:395
-#: gnobots2/properties.c:799 iagno/properties.c:664
+#: gnibbles/preferences.c:276 gnibbles/preferences.c:400
+#: gnobots2/properties.c:784 iagno/properties.c:656
 msgid "Options"
 msgstr "Опции"
 
-#: gnibbles/preferences.c:315
-msgid "Starting level:"
-msgstr "Начальный уровень:"
+#: gnibbles/preferences.c:282
+msgid "_Play levels in random order"
+msgstr "_Случайно предлагать уровни"
 
-#: gnibbles/preferences.c:342 gtali/setup.c:266
-msgid "Number of players:"
-msgstr "Число игроков:"
+#: gnibbles/preferences.c:293
+msgid "_Enable fake bonuses"
+msgstr "Разрешить _фальшивые бонусы"
 
-#: gnibbles/preferences.c:367
+#: gnibbles/preferences.c:304
+msgid "E_nable sounds"
+msgstr "Включить _звуки"
+
+#. starting level
+#: gnibbles/preferences.c:318 gnometris/tetris.cpp:840
+msgid "_Starting level:"
+msgstr "_Начальный уровень:"
+
+#: gnibbles/preferences.c:346
+msgid "N_umber of players:"
+msgstr "Число _игроков:"
+
+#: gnibbles/preferences.c:372
 msgid "Worm"
 msgstr "Червяк"
 
-#: gnibbles/preferences.c:408
-msgid "Worm color:"
-msgstr "Цвет червяка:"
+#: gnibbles/preferences.c:407
+msgid "_Use relative movement"
+msgstr "Использовать _относительное перемещение"
 
 #: gnibbles/preferences.c:414
+msgid "_Worm color:"
+msgstr "Цвет _червяка:"
+
+#: gnibbles/preferences.c:421
 msgid "Green"
 msgstr "Зеленый"
 
-#: gnibbles/preferences.c:417
+#: gnibbles/preferences.c:424
 msgid "Cyan"
 msgstr "Голубой"
 
-#: gnibbles/preferences.c:418
+#: gnibbles/preferences.c:425
 msgid "Purple"
 msgstr "Пурпурный"
 
-#: gnibbles/preferences.c:419
+#: gnibbles/preferences.c:426
 msgid "Gray"
 msgstr "Серый"
 
@@ -2828,17 +2826,17 @@ msgstr "Серый"
 msgid "Worm %d:"
 msgstr "Червяк %d:"
 
-#: gnobots2/game.c:143
+#: gnobots2/game.c:142
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "\"%s\" с особо безопасными ходами"
 
-#: gnobots2/game.c:146
+#: gnobots2/game.c:145
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "'%s' с безопасными ходами"
 
-#: gnobots2/game.c:322 gnobots2/game.c:337
+#: gnobots2/game.c:330 gnobots2/game.c:345
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -2846,66 +2844,63 @@ msgstr ""
 "Примите поздравления. Вы победили роботов!!\n"
 "Но удастся ли вам это еще раз?"
 
-#: gnobots2/game.c:1158
+#: gnobots2/game.c:1131
 msgid "There are no teleport locations left!!"
 msgstr "Нет больше мест для телепортации!!"
 
-#: gnobots2/game.c:1227
+#: gnobots2/game.c:1200
 msgid "There are no safe locations to teleport to!!"
 msgstr "Нет безопасных мест для телепортации!!"
 
-#: gnobots2/gnobots.c:61
+#: gnobots2/gnobots.c:62
 msgid "Set game scenario"
 msgstr "Определить сценарий игры"
 
-#: gnobots2/gnobots.c:63
+#: gnobots2/gnobots.c:64
 msgid "Set game configuration"
 msgstr "Настроить игру"
 
-#: gnobots2/gnobots.c:64 gnomine/gnomine.c:774 gnomine/gnomine.c:778
+#: gnobots2/gnobots.c:65 gnomine/gnomine.c:860 gnomine/gnomine.c:864
 msgid "X"
 msgstr "X"
 
-#: gnobots2/gnobots.c:65 gnomine/gnomine.c:775 gnomine/gnomine.c:779
+#: gnobots2/gnobots.c:66 gnomine/gnomine.c:861 gnomine/gnomine.c:865
 msgid "Y"
 msgstr "Y"
 
-#: gnobots2/gnobots.c:200 gnobots2/menu.c:243
-msgid "GNOME Robots"
+#: gnobots2/gnobots.c:184 gnobots2/gnobots2.desktop.in.h:2
+#: gnobots2/gnobots2.soundlist.in.h:6 gnobots2/menu.c:258
+msgid "Robots"
 msgstr "Роботы"
 
-#: gnobots2/gnobots.c:235
+#: gnobots2/gnobots.c:236
 msgid "No game data could be found."
 msgstr "Не найдены данные игры."
 
-#: gnobots2/gnobots.c:236
+#: gnobots2/gnobots.c:237
 msgid ""
-"The program GNOME Robots was unable to find any valid game configuration "
-"files. Please check that the program is installed correctly."
+"The program Robots was unable to find any valid game configuration files. "
+"Please check that the program is installed correctly."
 msgstr ""
-"Программа GNOME Роботы не смогла найти ни одного файла настроек. Проверьте "
+"Программа Роботы не смогла найти ни одного файла настроек. Проверьте "
 "корректность установки игры."
 
-#: gnobots2/gnobots.c:252
+#: gnobots2/gnobots.c:253
 msgid "Some graphics files are missing or corrupt."
 msgstr "Некоторые файлы изображений отсутствуют или повреждены."
 
-#: gnobots2/gnobots.c:253
+#: gnobots2/gnobots.c:254
 msgid ""
-"The program GNOME Robots was unable to load all the necessary graphics "
-"files. Please check that the program is installed correctly."
+"The program Robots was unable to load all the necessary graphics files. "
+"Please check that the program is installed correctly."
 msgstr ""
-"Программа GNOME Роботы не смогла найти все необходимые изображения. "
-"Проверьте корректность установки игры."
+"Программа Роботы не смогла найти все необходимые изображения. Проверьте "
+"корректность установки игры."
 
 #. ********************************************************************
 #: gnobots2/gnobots2.desktop.in.h:1
 msgid "Avoid the robots and make them crash into each other"
 msgstr "Убегайте от роботов, заставляя их сталкиваться друг с другом. "
-
-#: gnobots2/gnobots2.desktop.in.h:2 gnobots2/gnobots2.soundlist.in.h:6
-msgid "Robots"
-msgstr "Роботы"
 
 #: gnobots2/gnobots2.schemas.in.h:3
 msgid "Enable game sounds"
@@ -2915,13 +2910,14 @@ msgstr "Включить звуки игры"
 msgid "Enable game sounds. Play sounds for various events throughout the game."
 msgstr "Включить звуки игры. Воспроизводит звуки при разных событиях в игре."
 
-#: gnobots2/gnobots2.schemas.in.h:5 gnobots2/properties.c:836
+#: gnobots2/gnobots2.schemas.in.h:5
 msgid "Enable splats"
 msgstr "Включить звук взрыва"
 
 #: gnobots2/gnobots2.schemas.in.h:6
 msgid "Enable splats. Play a sound and show a \"Splat!\" on the screen."
-msgstr "Включить звук взрыва. Воспроизводит звук и показывает на экране \"Splat!\"."
+msgstr ""
+"Включить звук взрыва. Воспроизводит звук и показывает на экране \"Splat!\"."
 
 #: gnobots2/gnobots2.schemas.in.h:7
 msgid "Game type"
@@ -2987,19 +2983,25 @@ msgstr "Тема игры Роботы"
 msgid "Robot image theme. The theme of the images to use for the robots."
 msgstr "Тема игры Роботы. Это используемый набор изображений роботов в игре."
 
-#: gnobots2/gnobots2.schemas.in.h:23
-msgid "The name of the key used to hold still. The name is a standard X key name."
+#: gnobots2/gnobots2.schemas.in.h:24
+msgid "Show toolbar. A standard option for toolbars."
+msgstr "Показывать панель инструментов. Стандартная настройка для интерфейса."
+
+#: gnobots2/gnobots2.schemas.in.h:25
+msgid ""
+"The name of the key used to hold still. The name is a standard X key name."
 msgstr ""
 "Клавиша, чтобы оставаться на месте.Значение должно быть стандартным именем "
 "клавиши в X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:24
-msgid "The name of the key used to move east. The name is a standard X key name."
+#: gnobots2/gnobots2.schemas.in.h:26
+msgid ""
+"The name of the key used to move east. The name is a standard X key name."
 msgstr ""
-"Клавиша для движения вправо.Значение должно быть стандартным именем клавиши в "
-"X Window"
+"Клавиша для движения вправо.Значение должно быть стандартным именем клавиши "
+"в X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:25
+#: gnobots2/gnobots2.schemas.in.h:27
 msgid ""
 "The name of the key used to move north-east. The name is a standard X key "
 "name."
@@ -3007,7 +3009,7 @@ msgstr ""
 "Клавиша для движения вправо и вверх.Значение должно быть стандартным именем "
 "клавиши в X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:26
+#: gnobots2/gnobots2.schemas.in.h:28
 msgid ""
 "The name of the key used to move north-west. The name is a standard X key "
 "name."
@@ -3015,13 +3017,14 @@ msgstr ""
 "Клавиша для движения влево и вверх.Значение должно быть стандартным именем "
 "клавиши в X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:27
-msgid "The name of the key used to move north. The name is a standard X key name."
+#: gnobots2/gnobots2.schemas.in.h:29
+msgid ""
+"The name of the key used to move north. The name is a standard X key name."
 msgstr ""
 "Клавиша для движения вверх.Значение должно быть стандартным именем клавиши в "
 "X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:28
+#: gnobots2/gnobots2.schemas.in.h:30
 msgid ""
 "The name of the key used to move south-east. The name is a standard X key "
 "name."
@@ -3029,7 +3032,7 @@ msgstr ""
 "Клавиша для движения вправо и вниз.Значение должно быть стандартным именем "
 "клавиши в X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:29
+#: gnobots2/gnobots2.schemas.in.h:31
 msgid ""
 "The name of the key used to move south-west. The name is a standard X key "
 "name."
@@ -3037,19 +3040,21 @@ msgstr ""
 "Клавиша для движения влево и вниз.Значение должно быть стандартным именем "
 "клавиши в X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:30
-msgid "The name of the key used to move south. The name is a standard X key name."
+#: gnobots2/gnobots2.schemas.in.h:32
+msgid ""
+"The name of the key used to move south. The name is a standard X key name."
 msgstr ""
-"Клавиша для движения вниз.Значение должно быть стандартным именем клавиши в X "
-"Window"
+"Клавиша для движения вниз.Значение должно быть стандартным именем клавиши в "
+"X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:31
-msgid "The name of the key used to move west. The name is a standard X key name."
+#: gnobots2/gnobots2.schemas.in.h:33
+msgid ""
+"The name of the key used to move west. The name is a standard X key name."
 msgstr ""
 "Клавиша для движения влево.Значение должно быть стандартным именем клавиши в "
 "X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:32
+#: gnobots2/gnobots2.schemas.in.h:34
 msgid ""
 "The name of the key used to teleport randomly. The name is a standard X key "
 "name."
@@ -3057,7 +3062,7 @@ msgstr ""
 "Клавиша для случайной телепортации.Значение должно быть стандартным именем "
 "клавиши в X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:33
+#: gnobots2/gnobots2.schemas.in.h:35
 msgid ""
 "The name of the key used to teleport safely (if possible). The name is a "
 "standard X key name."
@@ -3065,17 +3070,17 @@ msgstr ""
 "Клавиша для безопасной телепортации (если такая возможна).Значение должно "
 "быть стандартным именем клавиши в X Window"
 
-#: gnobots2/gnobots2.schemas.in.h:34
+#: gnobots2/gnobots2.schemas.in.h:36
 msgid "The name of the key used to wait. The name is a standard X key name."
 msgstr ""
 "Клавиша для ожидания.Значение должно быть стандартным именем клавиши в X "
 "Window"
 
-#: gnobots2/gnobots2.schemas.in.h:35 gnobots2/properties.c:809
+#: gnobots2/gnobots2.schemas.in.h:37
 msgid "Use safe moves"
 msgstr "Использовать безопасные ходы"
 
-#: gnobots2/gnobots2.schemas.in.h:36
+#: gnobots2/gnobots2.schemas.in.h:38
 msgid ""
 "Use safe moves. The safe moves option will help you to avoid being killed "
 "due to a mistake. If you try to make a move that would lead to your death "
@@ -3086,11 +3091,11 @@ msgstr ""
 "попробуете сделать неудачный ход, ведущий вас прямо в могилу - и при этом "
 "есть безопасный ход, то игра не даст вам ошибиться."
 
-#: gnobots2/gnobots2.schemas.in.h:37 gnobots2/properties.c:818
+#: gnobots2/gnobots2.schemas.in.h:39
 msgid "Use super safe moves"
 msgstr "Использовать особо безопасные ходы"
 
-#: gnobots2/gnobots2.schemas.in.h:38
+#: gnobots2/gnobots2.schemas.in.h:40
 msgid ""
 "Use super safe moves. The player is alerted when there is no safe move and "
 "the only option is to teleport out."
@@ -3122,278 +3127,302 @@ msgstr "Робот раздавлен!"
 msgid "Victory!!"
 msgstr "Победа!!"
 
-#: gnobots2/graphics.c:104 iagno/gnothello.c:545
+#: gnobots2/graphics.c:104 iagno/gnothello.c:413
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Не удалось найти файл изображения \"%s\"\n"
 
-#. FIXME: Someday these should be part of a gnome-games icon theme.
-#: gnobots2/menu.c:65 gnobots2/menu.c:112
-msgid "Teleport"
-msgstr "Tелепортация"
-
-#: gnobots2/menu.c:65 gnobots2/menu.c:112
-msgid "Teleport, safely if possible"
-msgstr "Безопасная телепортация, если такая возможна"
-
-#: gnobots2/menu.c:66 gnobots2/menu.c:116
-msgid "Random"
-msgstr "Случайно"
-
-#: gnobots2/menu.c:66 gnobots2/menu.c:116
-msgid "Teleport randomly"
-msgstr "Случайная телепортация"
-
-#: gnobots2/menu.c:67 gnobots2/menu.c:120
-msgid "Wait"
-msgstr "Ожидание"
-
-#: gnobots2/menu.c:67 gnobots2/menu.c:120
-msgid "Wait for the robots"
-msgstr "Ожидание роботов"
-
-#: gnobots2/menu.c:98 gnotravex/gnotravex.c:229
+#: gnobots2/menu.c:58 gnotravex/gnotravex.c:176
 msgid "_Move"
 msgstr "_Ход"
 
-#: gnobots2/menu.c:245
-msgid "GNOME Robots Game"
-msgstr "Игра Роботы для среды GNOME"
+#: gnobots2/menu.c:64
+msgid "_Teleport"
+msgstr "_Tелепортация"
 
-#: gnobots2/properties.c:225
+#: gnobots2/menu.c:64 gnobots2/menu.c:120
+msgid "Teleport, safely if possible"
+msgstr "Безопасная телепортация, если такая возможна"
+
+#: gnobots2/menu.c:65
+msgid "_Random"
+msgstr "_Случайно"
+
+#: gnobots2/menu.c:65 gnobots2/menu.c:124
+msgid "Teleport randomly"
+msgstr "Случайная телепортация"
+
+#: gnobots2/menu.c:66
+msgid "_Wait"
+msgstr "_Ожидание"
+
+#: gnobots2/menu.c:66 gnobots2/menu.c:128
+msgid "Wait for the robots"
+msgstr "Ожидание роботов"
+
+#: gnobots2/menu.c:74 mahjongg/mahjongg.c:1290
+msgid "Show or hide the toolbar"
+msgstr "Показать или скрыть панель инструментов"
+
+#: gnobots2/menu.c:114
+msgid "New"
+msgstr "Новая"
+
+#: gnobots2/menu.c:114 libgames-support/games-stock.c:83
+msgid "Start a new game"
+msgstr "Начать новую игру"
+
+#. FIXME: Someday these should be part of a gnome-games icon theme.
+#: gnobots2/menu.c:120
+msgid "Teleport"
+msgstr "Tелепортация"
+
+#: gnobots2/menu.c:124
+msgid "Random"
+msgstr "Случайно"
+
+#: gnobots2/menu.c:128
+msgid "Wait"
+msgstr "Ожидание"
+
+#: gnobots2/menu.c:261
+msgid "Based on classic BSD Robots."
+msgstr "Основано на классических роботах из BSD"
+
+#: gnobots2/properties.c:215
 msgid "Initial Number of Type 1 Robots"
 msgstr "Начальное число роботов первого типа"
 
-#: gnobots2/properties.c:227
+#: gnobots2/properties.c:217
 msgid "Initial Number of Robots"
 msgstr "Начальное число роботов"
 
-#: gnobots2/properties.c:241
+#: gnobots2/properties.c:231
 msgid "Initial Number of Type 2 Robots"
 msgstr "Начальное число роботов второго типа"
 
-#: gnobots2/properties.c:254
+#: gnobots2/properties.c:244
 msgid "Increasing Number of Type 1 Robots per Level"
 msgstr "Увеличивающееся с уровнем число роботов первого типа"
 
-#: gnobots2/properties.c:256
+#: gnobots2/properties.c:246
 msgid "Increasing Number of Robots per Level"
 msgstr "Увеличивающееся с уровнем число роботов"
 
-#: gnobots2/properties.c:269
+#: gnobots2/properties.c:259
 msgid "Increasing Number of Type 2 Robots per Level"
 msgstr "Увеличивающееся с уровнем число роботов второго типа"
 
-#: gnobots2/properties.c:282
+#: gnobots2/properties.c:272
 msgid "Maximum Number of Type 1 Robots"
 msgstr "Максимальное число роботов первого типа"
 
-#: gnobots2/properties.c:284
+#: gnobots2/properties.c:274
 msgid "Maximum Number of Robots"
 msgstr "Максимальное число роботов"
 
-#: gnobots2/properties.c:287 gnobots2/properties.c:303
+#: gnobots2/properties.c:277 gnobots2/properties.c:293
 #, c-format
 msgid "Fill Screen"
 msgstr "На весь экран"
 
-#: gnobots2/properties.c:301
+#: gnobots2/properties.c:291
 msgid "Maximum Number of Type 2 Robots"
 msgstr "Максимальное число роботов второго типа"
 
-#: gnobots2/properties.c:318
+#: gnobots2/properties.c:308
 msgid "Type 1 Robot Score"
 msgstr "Счет по роботам первого типа"
 
-#: gnobots2/properties.c:320
+#: gnobots2/properties.c:310
 msgid "Robot Score"
 msgstr "Счет по роботам"
 
-#: gnobots2/properties.c:333
+#: gnobots2/properties.c:323
 msgid "Type 2 Robot Score"
 msgstr "Счет по роботам второго типа"
 
-#: gnobots2/properties.c:346
+#: gnobots2/properties.c:336
 msgid "Type 1 Robot Score When Waiting"
 msgstr "Счет по роботам первого типа при ожидании"
 
-#: gnobots2/properties.c:348
+#: gnobots2/properties.c:338
 msgid "Robot Score When Waiting"
 msgstr "Счет по роботам при ожидании"
 
-#: gnobots2/properties.c:361
+#: gnobots2/properties.c:351
 msgid "Type 2 Robot Score When Waiting"
 msgstr "Счет по роботам второго типа при ожидании"
 
-#: gnobots2/properties.c:374
+#: gnobots2/properties.c:364
 msgid "Type 1 Robot Score When Splatted"
 msgstr "Счет по роботам первого типа при столкновении"
 
-#: gnobots2/properties.c:376
+#: gnobots2/properties.c:366
 msgid "Robot Score When Splatted"
 msgstr "Счет по роботам при столкновении"
 
-#: gnobots2/properties.c:389
+#: gnobots2/properties.c:379
 msgid "Type 2 Robot Score When Splatted"
 msgstr "Счет по роботам второго типа при столкновении"
 
-#: gnobots2/properties.c:401
+#: gnobots2/properties.c:391
 msgid "Initial Number of Safe Teleports"
 msgstr "Начальное число безопасных телепортаций"
 
-#: gnobots2/properties.c:412
+#: gnobots2/properties.c:402
 msgid "Number of Free Safe Teleports per Level"
 msgstr "Число бесплатных безопасных телепортаций на уровне"
 
-#: gnobots2/properties.c:423
+#: gnobots2/properties.c:413
 msgid "Kills Required While Waiting to Get A Safe Teleport"
 msgstr "Количество убитых роботов для получения безопасной телепортации"
 
-#: gnobots2/properties.c:434
+#: gnobots2/properties.c:424
 msgid "Score Required To Get A Safe Teleport"
 msgstr "Число очков для получения безопасной телепортации"
 
-#: gnobots2/properties.c:445
+#: gnobots2/properties.c:435
 msgid "Maximum Number of Safe Teleports"
 msgstr "Максимальное число безопасных телепортаций"
 
-#: gnobots2/properties.c:456
+#: gnobots2/properties.c:446
 msgid "Moveable Junkheaps"
 msgstr "Движущиеся горы мусора"
 
-#: gnobots2/properties.c:458
+#: gnobots2/properties.c:448
 msgid "Yes"
 msgstr "Да"
 
-#: gnobots2/properties.c:460
+#: gnobots2/properties.c:450
 msgid "No"
 msgstr "Нет"
 
-#: gnobots2/properties.c:621
+#: gnobots2/properties.c:613
 msgid "classic robots"
 msgstr "Классические роботы"
 
-#: gnobots2/properties.c:622
+#: gnobots2/properties.c:614
 msgid "robots2"
 msgstr "Роботы 2"
 
-#: gnobots2/properties.c:623
+#: gnobots2/properties.c:615
 msgid "robots2 easy"
 msgstr "Простые Роботы 2"
 
-#: gnobots2/properties.c:624
+#: gnobots2/properties.c:616
 msgid "robots with safe teleport"
 msgstr "Роботы с безопасными телепортациями"
 
-#: gnobots2/properties.c:625
+#: gnobots2/properties.c:617
 msgid "nightmare"
 msgstr "Кошмар"
 
-#: gnobots2/properties.c:654
+#: gnobots2/properties.c:646
 msgid "robots"
 msgstr "роботы"
 
-#: gnobots2/properties.c:655
+#: gnobots2/properties.c:647
 msgid "cows"
 msgstr "коровы"
 
-#: gnobots2/properties.c:656
+#: gnobots2/properties.c:648
 msgid "eggs"
 msgstr "яйца"
 
-#: gnobots2/properties.c:657
+#: gnobots2/properties.c:649
 msgid "gnomes"
 msgstr "гномы"
 
-#: gnobots2/properties.c:658
+#: gnobots2/properties.c:650
 msgid "mice"
 msgstr "мышь"
 
-#: gnobots2/properties.c:659
+#: gnobots2/properties.c:651
 msgid "windows"
 msgstr "окна"
 
-#: gnobots2/properties.c:719
-msgid "GNOME Robots Preferences"
-msgstr "Настройка GNOME Роботы"
+#: gnobots2/properties.c:711
+msgid "Robots Preferences"
+msgstr "Параметры игры \"Роботы\""
 
-#: gnobots2/properties.c:736
+#: gnobots2/properties.c:732
 msgid "Game Type"
 msgstr "Тип игры"
 
-#: gnobots2/properties.c:761
+#: gnobots2/properties.c:755
 msgid "Property"
 msgstr "Свойства"
 
-#: gnobots2/properties.c:768
+#: gnobots2/properties.c:762
 msgid "Value"
 msgstr "Значение"
 
-#: gnobots2/properties.c:815
+#: gnobots2/properties.c:794
+msgid "_Use safe moves"
+msgstr "Использовать _безопасные ходы"
+
+#: gnobots2/properties.c:801
 msgid "Prevent some dangerous moves"
 msgstr "Предотвращать некоторые опасные ходы"
 
-#: gnobots2/properties.c:816
+#: gnobots2/properties.c:802
 msgid "Prevent accidental moves that result in getting killed."
 msgstr "Предотвращать случайные ходы, которые закончатся смертью."
 
-#: gnobots2/properties.c:824
+#: gnobots2/properties.c:804
+msgid "U_se super safe moves"
+msgstr "Использовать _особо безопасные ходы"
+
+#: gnobots2/properties.c:810
 msgid "Prevent all dangerous moves"
 msgstr "Предотвращать все опасные ходы"
 
-#: gnobots2/properties.c:825
+#: gnobots2/properties.c:811
 msgid "Prevents all moves that result in getting killed."
 msgstr "Предотвращать все ходы, которые закончатся смертью."
 
-#: gnobots2/properties.c:833
+#: gnobots2/properties.c:813 gnometris/tetris.cpp:866
+msgid "_Enable sounds"
+msgstr "Включить _звуки"
+
+#: gnobots2/properties.c:819
 msgid "Play sounds for major events"
 msgstr "Проигрывать звук для основных событий"
 
-#: gnobots2/properties.c:834
+#: gnobots2/properties.c:820
 msgid "Play sounds for events like winning a level and dying."
 msgstr "Проигрывать звук для событий победы и смерти."
 
-#: gnobots2/properties.c:842
+#: gnobots2/properties.c:822
+msgid "E_nable splats"
+msgstr "Включить звук _взрыва"
+
+#: gnobots2/properties.c:828
 msgid "Play a sound when two robots collide"
 msgstr "Проигрывать звук столкновения роботов"
 
-#: gnobots2/properties.c:843
+#: gnobots2/properties.c:829
 msgid "Play the most common, and potentially the most annoying, sound."
 msgstr "Проигрывать наиболее общие и наиболее надоедливые звуки"
 
-#: gnobots2/properties.c:846
-msgid "You Cannot Change the Game Type When Playing"
-msgstr "Нельзя переключить тип игры во время игры"
-
-#: gnobots2/properties.c:858
+#: gnobots2/properties.c:839
 msgid "Graphics Theme"
 msgstr "Графическая тема"
 
-#: gnobots2/properties.c:867
-msgid "Image theme:"
-msgstr "Тема изображений:"
+#: gnobots2/properties.c:847
+msgid "_Image theme:"
+msgstr "_Тема роботов:"
 
-#: gnobots2/properties.c:877
-msgid "Background color:"
-msgstr "Цвет фона:"
+#: gnobots2/properties.c:859 mahjongg/mahjongg.c:767
+msgid "_Background color:"
+msgstr "_Цвет фона:"
 
-#: gnobots2/properties.c:895
-msgid "Keyboard Controls"
-msgstr "Управление с клавиатуры:"
+#: gnobots2/properties.c:905
+msgid "_Restore Defaults"
+msgstr "Параметры по _умолчанию:"
 
-#: gnobots2/properties.c:921
-msgid "Use the Keypad"
-msgstr "Использовать дополнительную клавиатуру"
-
-#: gnobots2/properties.c:926
-msgid "Use Left Hand Keys"
-msgstr "Использовать кнопки для левой руки"
-
-#: gnobots2/properties.c:931
-msgid "Use Original Robots Keys"
-msgstr "Использовать стандартные клавиши роботов"
-
-#: gnobots2/properties.c:936
+#: gnobots2/properties.c:910
 msgid "Keyboard"
 msgstr "Клавиатура"
 
@@ -3471,15 +3500,11 @@ msgstr "Устройство джойстика"
 msgid "Joystick switch level"
 msgstr "Уровень переключения джойстика"
 
-#: gnome-stones/gnome-stones.schemas.in.h:9 gnome-stones/preferences.c:894
-msgid "Scroll method"
-msgstr "Метод прокрутки"
-
-#: gnome-stones/gnome-stones.schemas.in.h:10
+#: gnome-stones/gnome-stones.schemas.in.h:9
 msgid "The full path and filename of game to load."
 msgstr "Полный путь и имя файла загружаемой игры."
 
-#: gnome-stones/gnome-stones.schemas.in.h:11
+#: gnome-stones/gnome-stones.schemas.in.h:10
 msgid ""
 "The level an analog joystick must reach to be considered \"on\" when "
 "emulating a digital joystick. This takes a value between 0.0 and 1.0."
@@ -3487,14 +3512,6 @@ msgstr ""
 "Уровень, которого должен достигнуть аналоговый джойстик, чтобы его поняли "
 "как \"нажато\" при эмуляции цифрового джойстика. Принимает значения от 0.0 "
 "до 1.0."
-
-#: gnome-stones/gnome-stones.schemas.in.h:12
-msgid ""
-"The scroll method, valid values are \"atari_scroll\", \"smooth_scroll\" and "
-"\"center_scroll\"."
-msgstr ""
-"Метод прокрутки, корректными значениями являются \"atari_scroll\", "
-"\"smooth_scroll\" и \"center_scroll\"."
 
 #: gnome-stones/gnomekoban.caves.in.h:1
 msgid "Gnomekoban"
@@ -3504,9 +3521,9 @@ msgstr "Сокобан"
 msgid "gnomekoban:empty,0"
 msgstr "сокобан: пусто,0"
 
-#. This cave is to big to be played with gnome-stones.
+#. This cave is too big to be played with gnome-stones.
 #: gnome-stones/io.c:338
-msgid "The cave you are trying to load it to big for this game."
+msgid "The cave you are trying to load is too big for this game."
 msgstr "Вы пытаетесь загрузить слишком большую пещеру для этой игры."
 
 #: gnome-stones/io.c:355
@@ -3517,7 +3534,8 @@ msgstr "Пещера повреждена: %s не найдено."
 #. An object was requested in this cave, that was not
 #. declared in the game file's Object section.
 #: gnome-stones/io.c:381
-msgid "The cave you are trying to load includes an object, that wasn't declared."
+msgid ""
+"The cave you are trying to load includes an object, that wasn't declared."
 msgstr "Вы пытаетесь загрузить пещеру с неопределенным объектом."
 
 #. **************************************************************************
@@ -3539,78 +3557,72 @@ msgstr "ИМЯФАЙЛА"
 #: gnome-stones/main.c:124
 #, c-format
 msgid ""
-"An error occured while loading the image file \"%s\".\n"
-"Please make sure, that GNOME Stones is correctly installed!"
+"An error occurred while loading the image file \"%s\".\n"
+"Please make sure that GNOME Stones is correctly installed!"
 msgstr ""
 "Ошибка при загрузке файла изображения \"%s\".\n"
-"Пожалуйста, проверьте корректность установки игры Камни для GNOME!"
+"Пожалуйста, проверьте корректность установки игры Камни!"
 
 #. That's what a gnome application needs:
-#: gnome-stones/main.c:208 gnome-stones/main.c:994 gnome-stones/main.c:1116
-#: gnome-stones/main.c:1341
+#: gnome-stones/main.c:208 gnome-stones/main.c:911 gnome-stones/main.c:1020
+#: gnome-stones/main.c:1232
 msgid "GNOME Stones"
 msgstr "Камни GNOME"
 
-#: gnome-stones/main.c:290 gnome-stones/preferences.c:682
+#: gnome-stones/main.c:234
 msgid "Game title"
 msgstr "Название игры"
 
-#: gnome-stones/main.c:291
+#: gnome-stones/main.c:235
 msgid "Start cave"
 msgstr "Начальная пещера"
 
-#. If you change the place for this button, change the index in
-#. the definition of PAUSE_BUTTON below
-#: gnome-stones/main.c:434 gnome-stones/main.c:1044
-#: gnometris/gnometris.schemas.in.h:15 mahjongg/mahjongg.c:177
+#: gnome-stones/main.c:374 gnome-stones/main.c:965
+#: gnometris/gnometris.schemas.in.h:15
 msgid "Pause"
 msgstr "Пауза"
 
-#: gnome-stones/main.c:686
+#: gnome-stones/main.c:593
 msgid "Congratulations, you win!"
 msgstr "Поздравляем, вы победили!"
 
-#: gnome-stones/main.c:874 gtali/gyahtzee.c:136 same-gnome/ui.c:163
+#: gnome-stones/main.c:794 gtali/gyahtzee.c:138 same-gnome/ui.c:147
 msgid "Game over!"
 msgstr "Игра закончена!"
 
-#: gnome-stones/main.c:1090
+#: gnome-stones/main.c:1014
 msgid "Sokoban levels:"
 msgstr "Уровни Сокобан:"
 
-#: gnome-stones/main.c:1118
+#: gnome-stones/main.c:1023
 msgid "Mine through dirt and collect gems."
 msgstr "Пробирайтесь сквозь грязь и собирайте алмазы."
 
-#: gnome-stones/main.c:1141
+#: gnome-stones/main.c:1038
 msgid "_Restart level"
 msgstr "Начать уровень _заново"
 
-#: gnome-stones/main.c:1141
+#: gnome-stones/main.c:1038
 msgid "Restart the current level"
 msgstr "Начать данный уровень заново"
 
-#: gnome-stones/main.c:1246
+#: gnome-stones/main.c:1143
 msgid "Scanning private object directory..."
 msgstr "Просмотр персонального каталога объектов..."
 
-#: gnome-stones/main.c:1250
+#: gnome-stones/main.c:1147
 msgid "Scanning public object directory..."
 msgstr "Просмотр публичного каталога объектов..."
 
-#: gnome-stones/main.c:1255
-msgid "Filling game widget..."
-msgstr "Заполнение элемента управления игрой..."
-
-#: gnome-stones/main.c:1260
+#: gnome-stones/main.c:1151
 msgid "Scanning private game directory..."
 msgstr "Просмотр персонального каталога игры..."
 
-#: gnome-stones/main.c:1264
+#: gnome-stones/main.c:1155
 msgid "Scanning public game directory..."
 msgstr "Просмотр публичного каталога игры..."
 
-#: gnome-stones/main.c:1268
+#: gnome-stones/main.c:1159
 msgid "Restoring preferences..."
 msgstr "Восстановление состояния..."
 
@@ -3623,74 +3635,62 @@ msgstr "Вы получили дополнительную жизнь!"
 msgid "Seconds left: %d"
 msgstr "Оставшиеся секунды: %d"
 
-#: gnome-stones/preferences.c:461
+#: gnome-stones/preferences.c:403
 msgid "Neither your chosen game nor the default game could be loaded."
 msgstr "Ни выбранная игра, ни игра по умолчанию не может быть загружена."
 
-#: gnome-stones/preferences.c:462
+#: gnome-stones/preferences.c:404
 msgid "Please make sure that GNOME Stones is correctly installed."
 msgstr "Убедитесь, что игра \"Камни GNOME\" была корректно установлена."
 
-#: gnome-stones/preferences.c:463
+#: gnome-stones/preferences.c:405
 msgid "You may be able to select a different game from the preferences dialog."
-msgstr "Вы можете выбрать другую игру из диалога настройки."
+msgstr "Вы можете выбрать другое расположение в параметрах игры"
 
-#: gnome-stones/preferences.c:632
+#: gnome-stones/preferences.c:560
 msgid "GNOME Stones Preferences"
-msgstr "Настройка игры \"Камни GNOME\""
+msgstr "Параметры игры \"Камни GNOME\""
 
-#: gnome-stones/preferences.c:689
+#: gnome-stones/preferences.c:613
+msgid "Game Title"
+msgstr "Название игры"
+
+#: gnome-stones/preferences.c:620
 msgid "Caves"
 msgstr "Пещеры"
 
-#: gnome-stones/preferences.c:766
+#: gnome-stones/preferences.c:700
 msgid "Device"
 msgstr "Устройство"
 
-#: gnome-stones/preferences.c:775
-msgid "Joystick device:"
-msgstr "Устройство джойстика:"
+#: gnome-stones/preferences.c:709
+msgid "_Joystick device:"
+msgstr "Устройство _джойстика:"
 
 #. We definatly have a "disable" entry.
-#: gnome-stones/preferences.c:781
-msgid "disabled"
-msgstr "выключен"
+#: gnome-stones/preferences.c:716
+msgid "Disabled"
+msgstr "Выключен"
 
-#: gnome-stones/preferences.c:812
-msgid "Digital joystick emulation"
+#: gnome-stones/preferences.c:747
+msgid "Digital Joystick Emulation"
 msgstr "Эмуляция цифрового джойстика"
 
-#: gnome-stones/preferences.c:821
-msgid "Switch level:"
-msgstr "Уровень переключения:"
+#: gnome-stones/preferences.c:756
+msgid "_Switch level:"
+msgstr "_Переключить уровень:"
 
-#: gnome-stones/preferences.c:844
-msgid "_Joystick"
-msgstr "Д_жойстик"
+#: gnome-stones/preferences.c:780
+msgid "Joystick"
+msgstr "Джойстик"
 
-#: gnome-stones/preferences.c:862
+#: gnome-stones/preferences.c:798
 msgid "Enable sound"
 msgstr "Включить звук"
 
-#: gnome-stones/preferences.c:874
+#: gnome-stones/preferences.c:810
 msgid "_Sound"
 msgstr "_Звук"
-
-#: gnome-stones/preferences.c:914
-msgid "Atari like scrolling"
-msgstr "Прокрутка в стиле Atari"
-
-#: gnome-stones/preferences.c:918
-msgid "Smooth scrolling"
-msgstr "Плавная прокрутка"
-
-#: gnome-stones/preferences.c:922
-msgid "Always in the center"
-msgstr "Всегда в центре"
-
-#: gnome-stones/preferences.c:934
-msgid "_Misc."
-msgstr "Прочее"
 
 #: gnome-stones/status.c:81
 msgid "Diamonds:"
@@ -3719,7 +3719,8 @@ msgstr "Обучающие пещеры"
 msgid "Fit falling blocks together"
 msgstr "Укладывайте падающие блоки вместе"
 
-#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:138
+#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:140
+#: gnometris/tetris.cpp:1464
 msgid "Gnometris"
 msgstr "Гнометрис"
 
@@ -3847,11 +3848,11 @@ msgstr "УРОВЕНЬ"
 msgid "Lines:"
 msgstr "Линии:"
 
-#: gnometris/tetris.cpp:253
+#: gnometris/tetris.cpp:257
 msgid "Paused"
 msgstr "Пауза"
 
-#: gnometris/tetris.cpp:372
+#: gnometris/tetris.cpp:380
 #, c-format
 msgid ""
 "Could not find the theme: \n"
@@ -3864,7 +3865,7 @@ msgstr ""
 "\n"
 "Проверьте правильность установки пакета gnome-games"
 
-#: gnometris/tetris.cpp:387
+#: gnometris/tetris.cpp:395
 #, c-format
 msgid ""
 "Can't load the image: \n"
@@ -3877,187 +3878,192 @@ msgstr ""
 "\n"
 "Проверьте правильность установки пакета gnome-games"
 
-#: gnometris/tetris.cpp:728 gnometris/tetris.cpp:729
+#: gnometris/tetris.cpp:743 gnometris/tetris.cpp:744
 msgid "<none>"
 msgstr "<нет>"
 
-#: gnometris/tetris.cpp:757
-msgid "Gnometris preferences"
-msgstr "Настройка Гнометриса"
+#: gnometris/tetris.cpp:772
+msgid "Gnometris Preferences"
+msgstr "Параметры Гнометриса"
 
-#: gnometris/tetris.cpp:778
+#: gnometris/tetris.cpp:796
 msgid "Setup"
 msgstr "Настройка"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:785
-msgid "Number of pre-filled rows:"
-msgstr "Число заранее заполненных строк:"
+#: gnometris/tetris.cpp:802
+msgid "_Number of pre-filled rows:"
+msgstr "Число заранее _заполненных строк:"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:800
-msgid "Density of blocks in a pre-filled row:"
-msgstr "Плотность блоков в заполненных строках:"
+#: gnometris/tetris.cpp:821
+msgid "_Density of blocks in a pre-filled row:"
+msgstr "_Плотность блоков в заполненных строках:"
 
-#. starting level
-#: gnometris/tetris.cpp:815
-msgid "Starting Level:"
-msgstr "Начальный уровень:"
-
-#: gnometris/tetris.cpp:832
+#: gnometris/tetris.cpp:861
 msgid "Operation"
 msgstr "Операция"
 
-#: gnometris/tetris.cpp:847
-msgid "Preview next block"
-msgstr "Показывать следующий блок"
+#: gnometris/tetris.cpp:875
+msgid "_Preview next block"
+msgstr "Показывать _следующий блок"
 
-#: gnometris/tetris.cpp:856
-msgid "Use random block colors"
-msgstr "Использовать разноцветные блоки"
+#: gnometris/tetris.cpp:884
+msgid "_Use random block colors"
+msgstr "_Использовать разноцветные блоки"
 
-#: gnometris/tetris.cpp:867
-msgid "Rotate blocks counterclockwise"
-msgstr "Вращение против часовой стрелки"
+#: gnometris/tetris.cpp:895
+msgid "_Rotate blocks counterclockwise"
+msgstr "Вращение _против часовой стрелки"
 
-#: gnometris/tetris.cpp:880 same-gnome/ui.c:315
+#: gnometris/tetris.cpp:908 gnometris/tetris.cpp:941 same-gnome/ui.c:293
 msgid "Theme"
 msgstr "Тема"
 
-#. Block pixmap
-#: gnometris/tetris.cpp:887
+#: gnometris/tetris.cpp:944
 msgid "Block image:"
 msgstr "Изображение для блоков:"
 
-#: gnometris/tetris.cpp:903
-msgid "_Controls"
-msgstr "_Управление"
-
-#: gnometris/tetris.cpp:1454
+#: gnometris/tetris.cpp:1466
 msgid ""
 "Written for my wife, Matylda\n"
-"Send comments and bug reports to: janusz.gorycki@intel.com"
+"Send comments and bug reports to: \n"
+"janusz.gorycki@intel.com"
 msgstr ""
 "Написано для моей жены Матильды\n"
 "Отправляйте комментарии и сообщения об ошибках на адрес janusz.gorycki@intel."
 "com"
 
-#: gnomine/gnomine.c:88 gnomine/gnomine.c:574 same-gnome/game.c:48
-msgid "Small"
-msgstr "Маленький"
+#: gnometris/highscores.cpp:28
+msgid "Gnometris Scores"
+msgstr "Результаты игры \"Гнометрис\""
 
-#: gnomine/gnomine.c:90 gnomine/gnomine.c:594 same-gnome/game.c:50
-msgid "Large"
-msgstr "Большой"
-
-#: gnomine/gnomine.c:91 gnomine/gnomine.c:604
+#: gnomine/gnomine.c:84 gnomine/gnomine.c:655
 msgid "Custom"
 msgstr "Другой"
 
-#: gnomine/gnomine.c:170
-msgid "GNOME Mines Scores"
-msgstr "Результаты \"Мины\""
+#: gnomine/gnomine.c:152
+#, c-format
+msgid "Flags: %d/%d"
+msgstr "Флаги: %d/%d"
 
-#: gnomine/gnomine.c:179 same-gnome/ui.c:142
+#: gnomine/gnomine.c:181
+msgid "The Mines Have Been Cleared!"
+msgstr "Все мины найдены!"
+
+#: gnomine/gnomine.c:182
+msgid "Great work, but unfortunately your score did not make the top ten."
+msgstr ""
+"К сожалению, ваш результат недостаточен для попадания в десятку лучших."
+
+#: gnomine/gnomine.c:198
+msgid "Mines Scores"
+msgstr "Результаты игры \"Мины\""
+
+#: gnomine/gnomine.c:207 same-gnome/ui.c:127
 msgid "Size:"
 msgstr "Размер:"
 
-#: gnomine/gnomine.c:260
+#: gnomine/gnomine.c:218 same-gnome/ui.c:170
+msgid "Congratulations!"
+msgstr "Поздравляем!"
+
+#: gnomine/gnomine.c:219 same-gnome/ui.c:171
+msgid "Your score has made the top ten."
+msgstr "Ваш результат попал в десятку лучших."
+
+#: gnomine/gnomine.c:315
 msgid "Click a square, any square"
 msgstr "Щелкните по ячейке, любой ячейке"
 
-#: gnomine/gnomine.c:262
+#: gnomine/gnomine.c:317
 msgid "Maybe they're all mines ..."
 msgstr "Возможно, там мины..."
 
-#: gnomine/gnomine.c:381
+#: gnomine/gnomine.c:435
 msgid "Faces:"
 msgstr "Изображения:"
 
-#: gnomine/gnomine.c:384
+#: gnomine/gnomine.c:438
 msgid "Graphics:"
 msgstr "Графическая тема:"
 
-#: gnomine/gnomine.c:390
+#: gnomine/gnomine.c:444
 msgid "Resizing and SVG support:"
 msgstr "Изменение размера и поддержка изображений SVG:"
 
-#: gnomine/gnomine.c:422 gnomine/gnomine.c:851
-msgid "GNOME Mines"
-msgstr "Мины"
+#: gnomine/gnomine.c:451 gnomine/gnomine.c:966 gnomine/gnomine.desktop.in.h:2
+msgid "Mines"
+msgstr "Сапер"
 
-#: gnomine/gnomine.c:425
-msgid "A Minesweeper clone."
-msgstr "Клон игры \"Сапёр\""
-
-#: gnomine/gnomine.c:569
-msgid "Field size"
+#: gnomine/gnomine.c:621
+msgid "Field Size"
 msgstr "Размер поля"
 
-#: gnomine/gnomine.c:617
-msgid "Custom size"
-msgstr "Другой размер"
+#: gnomine/gnomine.c:667
+msgid "Custom Size"
+msgstr "Настраиваемый размер"
 
-#: gnomine/gnomine.c:624
-msgid "Number of mines:"
-msgstr "Число мин:"
+#: gnomine/gnomine.c:674
+msgid "_Number of mines:"
+msgstr "Число _мин:"
 
-#: gnomine/gnomine.c:637
-msgid "Horizontal:"
-msgstr "По горизонтали:"
+#: gnomine/gnomine.c:686
+msgid "_Horizontal:"
+msgstr "По _горизонтали:"
 
-#: gnomine/gnomine.c:649
-msgid "Vertical:"
-msgstr "По вертикали:"
+#: gnomine/gnomine.c:697
+msgid "_Vertical:"
+msgstr "По _вертикали:"
 
-#: gnomine/gnomine.c:666
-msgid "Use \"I'm not sure\" flags."
-msgstr "Использовать флаги \"Не уверен\"."
+#: gnomine/gnomine.c:712
+msgid "_Use \"I'm not sure\" flags"
+msgstr "Использовать _флаги \"Не уверен\"."
 
-#: gnomine/gnomine.c:675
-msgid "GNOME Mines Preferences"
-msgstr "Настройка игры \"Мины\""
+#: gnomine/gnomine.c:721
+msgid "Mines Preferences"
+msgstr "Параметры игры \"Мины\""
 
-#: gnomine/gnomine.c:774
+#: gnomine/gnomine.c:860
 msgid "Width of grid"
 msgstr "Ширина решетки"
 
-#: gnomine/gnomine.c:775
+#: gnomine/gnomine.c:861
 msgid "Height of grid"
 msgstr "Высота решетки"
 
-#: gnomine/gnomine.c:776
+#: gnomine/gnomine.c:862
 msgid "Number of mines"
 msgstr "Число мин"
 
-#: gnomine/gnomine.c:776 gtali/setup.c:85 gtali/setup.c:86
-#: same-gnome/same-gnome.c:127
+#: gnomine/gnomine.c:862 gtali/setup.c:85 gtali/setup.c:86
+#: same-gnome/same-gnome.c:128
 msgid "NUMBER"
 msgstr "ЧИСЛО"
 
-#: gnomine/gnomine.c:777
+#: gnomine/gnomine.c:863
 msgid "Size of the board (1=small, 3=large)"
 msgstr "Размер доски (1=маленькая, 3=большая)"
 
-#: gnomine/gnomine.c:778
+#: gnomine/gnomine.c:864
 msgid "X location of window"
 msgstr "Х-координата окна"
 
-#: gnomine/gnomine.c:779
+#: gnomine/gnomine.c:865
 msgid "Y location of window"
 msgstr "Y-координата окна"
 
-#: gnomine/gnomine.c:937
-msgid "Flags:"
-msgstr "Флаги:"
+#: gnomine/gnomine.c:1031
+msgid "Press to Resume"
+msgstr "Продолжить"
+
+#: gnomine/gnomine.c:1064
+msgid "Time: "
+msgstr "Время:"
 
 #: gnomine/gnomine.desktop.in.h:1
 msgid "Clear mines from a minefield"
 msgstr "Необходимо разминировать минное поле"
-
-#: gnomine/gnomine.desktop.in.h:2
-msgid "Mines"
-msgstr "Сапер"
 
 #: gnomine/gnomine.schemas.in.h:1
 msgid "Set to true to be able to mark squares as unknown."
@@ -4067,7 +4073,7 @@ msgstr "Отметьте поле, если вы хотите использов
 msgid "Use the unknown flag"
 msgstr "Использовать флаг \"Неизвестно\""
 
-#: gnomine/minefield.c:161
+#: gnomine/minefield.c:192
 msgid ""
 "Unable to find required images.\n"
 "\n"
@@ -4078,7 +4084,7 @@ msgstr ""
 "\n"
 "Проверьте правильность установки пакета gnome-games"
 
-#: gnomine/minefield.c:168
+#: gnomine/minefield.c:200
 msgid ""
 "Required images have been found, but refused to load.\n"
 "\n"
@@ -4088,118 +4094,159 @@ msgstr ""
 "\n"
 "Пожалуйста, проверьте правильность установки игры и ее зависимостей."
 
-#: gnomine/minefield.c:178
+#: gnomine/minefield.c:210
 msgid "Could not load images"
 msgstr "Не удается загрузить изображения"
 
-#: gnotravex/gnotravex.c:166
+#. i18n in-game numbers, replaceable with single-character local ideograms.
+#: gnotravex/gnotravex.c:50
+msgid "0"
+msgstr "0"
+
+#: gnotravex/gnotravex.c:50
+msgid "1"
+msgstr "1"
+
+#: gnotravex/gnotravex.c:50
+msgid "2"
+msgstr "2"
+
+#: gnotravex/gnotravex.c:50
+msgid "3"
+msgstr "3"
+
+#: gnotravex/gnotravex.c:50
+msgid "4"
+msgstr "4"
+
+#: gnotravex/gnotravex.c:50
+msgid "5"
+msgstr "5"
+
+#: gnotravex/gnotravex.c:50
+msgid "6"
+msgstr "6"
+
+#: gnotravex/gnotravex.c:50
+msgid "7"
+msgstr "7"
+
+#: gnotravex/gnotravex.c:50
+msgid "8"
+msgstr "8"
+
+#: gnotravex/gnotravex.c:50
+msgid "9"
+msgstr "9"
+
+#: gnotravex/gnotravex.c:177 same-gnome/ui.c:424
+msgid "_Size"
+msgstr "_Размер"
+
+#: gnotravex/gnotravex.c:183
 msgid "Sol_ve"
 msgstr "Ре_шить"
 
-#: gnotravex/gnotravex.c:166
+#: gnotravex/gnotravex.c:183
 msgid "Solve the game"
 msgstr "Найти решение по игре"
 
-#: gnotravex/gnotravex.c:182
-msgid "_2×2"
-msgstr "_2×2"
-
-#: gnotravex/gnotravex.c:182
-msgid "Play on a 2×2 board"
-msgstr "Игра на поле 2x2"
-
-#: gnotravex/gnotravex.c:185
-msgid "_3×3"
-msgstr "_3×3"
-
-#: gnotravex/gnotravex.c:185
-msgid "Play on a 3×3 board"
-msgstr "Игра на поле 3x3"
-
-#: gnotravex/gnotravex.c:188
-msgid "_4×4"
-msgstr "_4×4"
-
-#: gnotravex/gnotravex.c:188
-msgid "Play on a 4×4 board"
-msgstr "Игра на поле 4x4"
-
-#: gnotravex/gnotravex.c:191
-msgid "_5×5"
-msgstr "_5×5"
-
-#: gnotravex/gnotravex.c:191
-msgid "Play on a 5×5 board"
-msgstr "Игра на поле 5x5"
-
-#: gnotravex/gnotravex.c:194
-msgid "_6×6"
-msgstr "_6x6"
-
-#: gnotravex/gnotravex.c:194
-msgid "Play on a 6×6 board"
-msgstr "Игра на поле 6x6"
-
-#: gnotravex/gnotravex.c:201
+#: gnotravex/gnotravex.c:186
 msgid "_Up"
 msgstr "В_верх"
 
-#: gnotravex/gnotravex.c:201
+#: gnotravex/gnotravex.c:186
 msgid "Move the pieces up"
 msgstr "Передвинуть вверх"
 
-#: gnotravex/gnotravex.c:204
+#: gnotravex/gnotravex.c:187
 msgid "_Left"
 msgstr "В_лево"
 
-#: gnotravex/gnotravex.c:204
+#: gnotravex/gnotravex.c:187
 msgid "Move the pieces left"
 msgstr "Передвинуть влево"
 
-#: gnotravex/gnotravex.c:207
+#: gnotravex/gnotravex.c:188
 msgid "_Right"
 msgstr "В_право"
 
-#: gnotravex/gnotravex.c:207
+#: gnotravex/gnotravex.c:188
 msgid "Move the pieces right"
 msgstr "Передвинуть вправо"
 
-#: gnotravex/gnotravex.c:210
+#: gnotravex/gnotravex.c:189
 msgid "_Down"
 msgstr "В_низ"
 
-#: gnotravex/gnotravex.c:210
+#: gnotravex/gnotravex.c:189
 msgid "Move the pieces down"
 msgstr "Передвинуть вниз"
 
-#: gnotravex/gnotravex.c:239
+#: gnotravex/gnotravex.c:195
+msgid "_2×2"
+msgstr "_2×2"
+
+#: gnotravex/gnotravex.c:195
+msgid "Play on a 2×2 board"
+msgstr "Игра на поле 2x2"
+
+#: gnotravex/gnotravex.c:196
+msgid "_3×3"
+msgstr "_3×3"
+
+#: gnotravex/gnotravex.c:196
+msgid "Play on a 3×3 board"
+msgstr "Игра на поле 3x3"
+
+#: gnotravex/gnotravex.c:197
+msgid "_4×4"
+msgstr "_4×4"
+
+#: gnotravex/gnotravex.c:197
+msgid "Play on a 4×4 board"
+msgstr "Игра на поле 4x4"
+
+#: gnotravex/gnotravex.c:198
+msgid "_5×5"
+msgstr "_5×5"
+
+#: gnotravex/gnotravex.c:198
+msgid "Play on a 5×5 board"
+msgstr "Игра на поле 5x5"
+
+#: gnotravex/gnotravex.c:199
+msgid "_6×6"
+msgstr "_6x6"
+
+#: gnotravex/gnotravex.c:199
+msgid "Play on a 6×6 board"
+msgstr "Игра на поле 6x6"
+
+#: gnotravex/gnotravex.c:244
 msgid "Size of board (2-6)"
 msgstr "Размер доски (2-6)"
 
-#: gnotravex/gnotravex.c:240
+#: gnotravex/gnotravex.c:245
 msgid "SIZE"
 msgstr "РАЗМЕР"
 
-#: gnotravex/gnotravex.c:739
+#: gnotravex/gnotravex.c:827
 msgid "Puzzle solved! Well done!"
 msgstr "Головоломка решена! Отлично!"
 
-#: gnotravex/gnotravex.c:742
+#: gnotravex/gnotravex.c:830
 msgid "Puzzle solved!"
 msgstr "Головоломка решена!"
 
-#: gnotravex/gnotravex.c:1139 mahjongg/mahjongg.c:1075
+#: gnotravex/gnotravex.c:1188 mahjongg/mahjongg.c:928
 msgid "Game paused"
 msgstr "Игра приостановлена"
 
-#: gnotravex/gnotravex.c:1261
+#: gnotravex/gnotravex.c:1346
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "Игра на доске %dx%d"
-
-#: gnotravex/gnotravex.c:1508
-msgid "A Tetravex clone."
-msgstr "Клон игры Тетравекс."
 
 #: gnotravex/gnotravex.desktop.in.h:1
 msgid "Play a puzzle game matching tiles together"
@@ -4210,7 +4257,8 @@ msgid "Tetravex"
 msgstr "Тетравекс"
 
 #: gnotravex/gnotravex.schemas.in.h:1
-msgid "The height of the playing window in pixels. At minimum it should be 240."
+msgid ""
+"The height of the playing window in pixels. At minimum it should be 240."
 msgstr "Высота окна в пикселах. Как минимум равно 240."
 
 #: gnotravex/gnotravex.schemas.in.h:2 gnotski/gnotski.schemas.in.h:1
@@ -4241,251 +4289,253 @@ msgid "The width of the window"
 msgstr "Ширина окна"
 
 #. puzzle name
-#: gnotski/gnotski.c:138
+#: gnotski/gnotski.c:136
 msgid "Only 18 Steps"
 msgstr "Только 18 шагов"
 
 #. puzzle name
-#: gnotski/gnotski.c:151
+#: gnotski/gnotski.c:149
 msgid "Daisy"
 msgstr "Дэйзи"
 
 #. puzzle name
-#: gnotski/gnotski.c:164
+#: gnotski/gnotski.c:162
 msgid "Violet"
 msgstr "Вайолет"
 
 #. puzzle name
-#: gnotski/gnotski.c:177
+#: gnotski/gnotski.c:175
 msgid "Poppy"
 msgstr "Поппи"
 
 #. puzzle name
-#: gnotski/gnotski.c:190
+#: gnotski/gnotski.c:188
 msgid "Pansy"
 msgstr "Панси"
 
 #. puzzle name
-#: gnotski/gnotski.c:203
+#: gnotski/gnotski.c:201
 msgid "Snowdrop"
 msgstr "Снегопад"
 
-#. puzzle name
-#: gnotski/gnotski.c:216
+#. puzzle name - sometimes called "Le'Ane Rouge"
+#: gnotski/gnotski.c:214
 msgid "Red Donkey"
 msgstr "Красный осел"
 
 #. puzzle name
-#: gnotski/gnotski.c:229
+#: gnotski/gnotski.c:227
 msgid "Trail"
 msgstr "Грузовик"
 
 #. puzzle name
-#: gnotski/gnotski.c:242
+#: gnotski/gnotski.c:240
 msgid "Ambush"
 msgstr "Засада"
 
 #. puzzle name
-#: gnotski/gnotski.c:255
+#: gnotski/gnotski.c:253
 msgid "Agatka"
 msgstr "Агатка"
 
 #. puzzle name
-#: gnotski/gnotski.c:266
+#: gnotski/gnotski.c:264
 msgid "Success"
 msgstr "Успех"
 
 #. puzzle name
-#: gnotski/gnotski.c:276
+#: gnotski/gnotski.c:274
 msgid "Bone"
 msgstr "Кость"
 
 #. puzzle name
-#: gnotski/gnotski.c:289
+#: gnotski/gnotski.c:287
 msgid "Fortune"
 msgstr "Фортуна"
 
 #. puzzle name
-#: gnotski/gnotski.c:303
+#: gnotski/gnotski.c:301
 msgid "Fool"
 msgstr "Дурак"
 
 #. puzzle name
-#: gnotski/gnotski.c:313
+#: gnotski/gnotski.c:311
 msgid "Solomon"
 msgstr "Соломон"
 
 #. puzzle name
-#: gnotski/gnotski.c:326
+#: gnotski/gnotski.c:324
 msgid "Cleopatra"
 msgstr "Клеопатра"
 
 #. puzzle name
-#: gnotski/gnotski.c:338
+#: gnotski/gnotski.c:336
 msgid "Shark"
 msgstr "Акула"
 
 #. puzzle name
-#: gnotski/gnotski.c:350
+#: gnotski/gnotski.c:348
 msgid "Rome"
 msgstr "Рим"
 
 #. puzzle name
-#: gnotski/gnotski.c:362
+#: gnotski/gnotski.c:360
 msgid "Pennant Puzzle"
 msgstr "Загадка Вымпел"
 
 #. puzzle name
-#: gnotski/gnotski.c:375
+#: gnotski/gnotski.c:373
 msgid "Ithaca"
 msgstr "Итхаца"
 
 #. puzzle name
-#: gnotski/gnotski.c:398
+#: gnotski/gnotski.c:396
 msgid "Pelopones"
 msgstr "Пелопонес"
 
 #. puzzle name
-#: gnotski/gnotski.c:412
+#: gnotski/gnotski.c:408
 msgid "Transeuropa"
 msgstr "Европа"
 
 #. puzzle name
-#: gnotski/gnotski.c:424
+#: gnotski/gnotski.c:420
 msgid "Lodzianka"
 msgstr "Лодзянка"
 
 #. puzzle name
-#: gnotski/gnotski.c:435
+#: gnotski/gnotski.c:431
 msgid "Polonaise"
 msgstr "Полонез"
 
 #. puzzle name
-#: gnotski/gnotski.c:448
+#: gnotski/gnotski.c:442
 msgid "Baltic Sea"
 msgstr "Балтийское море"
 
 #. puzzle name
-#: gnotski/gnotski.c:462
+#: gnotski/gnotski.c:454
 msgid "American Pie"
 msgstr "Американский пирог"
 
 #. puzzle name
-#: gnotski/gnotski.c:478
+#: gnotski/gnotski.c:470
 msgid "Traffic Jam"
 msgstr "Пробка"
 
 #. puzzle name
-#: gnotski/gnotski.c:489
+#: gnotski/gnotski.c:481
 msgid "Sunshine"
 msgstr "Солнечное сияние"
 
 #. puzzle name
-#: gnotski/gnotski.c:515
+#: gnotski/gnotski.c:507
 msgid "Block 10"
 msgstr "Блок 10"
 
 #. puzzle name
-#: gnotski/gnotski.c:526
+#: gnotski/gnotski.c:518
 msgid "Block 10 Pro"
 msgstr "Трудный блок 10"
 
 #. puzzle name
-#: gnotski/gnotski.c:537
+#: gnotski/gnotski.c:529
 msgid "Climb 12"
 msgstr "Подъем 12"
 
 #. puzzle name
-#: gnotski/gnotski.c:548
+#: gnotski/gnotski.c:540
 msgid "Climb 12 Pro"
 msgstr "Трудный подъем 12"
 
 #. puzzle name
-#: gnotski/gnotski.c:559
+#: gnotski/gnotski.c:551
 msgid "Climb 15 Winter"
 msgstr "Подъем 15 зимой"
 
 #. puzzle name
-#: gnotski/gnotski.c:572
+#: gnotski/gnotski.c:564
 msgid "Climb 15 Spring"
 msgstr "Подъем 15 весной"
 
 #. puzzle name
-#: gnotski/gnotski.c:585
+#: gnotski/gnotski.c:577
 msgid "Climb 15 Summer"
 msgstr "Подъем 15 летом"
 
 #. puzzle name
-#: gnotski/gnotski.c:598
+#: gnotski/gnotski.c:590
 msgid "Climb 15 Fall"
 msgstr "Подъем 15 осенью"
 
 #. puzzle name
-#: gnotski/gnotski.c:611
+#: gnotski/gnotski.c:603
 msgid "Climb 24 Pro"
 msgstr "Трудный подъем 24"
 
 #. set of puzzles
-#: gnotski/gnotski.c:642
+#: gnotski/gnotski.c:634
 msgid "HuaRong Trail"
 msgstr "Поезд Хуа-Ронг"
 
 #. set of puzzles
-#: gnotski/gnotski.c:644
+#: gnotski/gnotski.c:636
 msgid "Challenge Pack"
 msgstr "Набор открытий"
 
 #. set of puzzles
-#: gnotski/gnotski.c:646
+#: gnotski/gnotski.c:638
 msgid "Skill Pack"
 msgstr "Трудный набор"
 
 #. set of puzzles
-#: gnotski/gnotski.c:648
+#: gnotski/gnotski.c:640
 msgid "Minoru Climb"
 msgstr "Подъем Минору"
 
-#: gnotski/gnotski.c:649
+#: gnotski/gnotski.c:641
 msgid "_Restart Puzzle"
 msgstr "Начать головоломку _заново"
 
-#: gnotski/gnotski.c:650
+#: gnotski/gnotski.c:642
 msgid "Next Puzzle"
 msgstr "Следующая головоломка"
 
-#: gnotski/gnotski.c:651
+#: gnotski/gnotski.c:643
 msgid "Previous Puzzle"
 msgstr "Предыдущая головоломка"
 
-#: gnotski/gnotski.c:656
-msgid "_Scores"
-msgstr "_Результаты"
+#: gnotski/gnotski.c:820
+msgid "Level completed."
+msgstr "Уровень пройден."
 
-#: gnotski/gnotski.c:825
-msgid "Level completed. Well done."
-msgstr "Уровень закончен. Отлично!"
+#: gnotski/gnotski.c:1012
+msgid ""
+"The theme for this game failed to render.\n"
+"\n"
+"Please check that Klotski is installed correctly."
+msgstr ""
+"Не удалось разобрать тему игры:\n"
+"\n"
+"Проверьте установку игры Клотски."
 
-#: gnotski/gnotski.c:1162
-msgid "Moves:"
-msgstr "Ходы:"
-
-#: gnotski/gnotski.c:1196
+#: gnotski/gnotski.c:1180
 #, c-format
 msgid ""
-"Could not find the image: \n"
+"Could not find the image:\n"
 "%s\n"
 "\n"
-"Please check your gnome-games installation."
+"Please check that Klotski is installed correctly."
 msgstr ""
-"Не удалось найти изображение: \n"
+"Не удалось найти изображение:\n"
 "%s\n"
 "\n"
-"Проверьте правильность установки пакета gnome-games"
+"Проверьте установку игры Клотски."
 
-#: gnotski/gnotski.c:1389
+#: gnotski/gnotski.c:1219
 #, c-format
-msgid "Level %d : %s"
-msgstr "Уровень %d : %s"
+msgid "Moves: %d"
+msgstr "Ходов: %d"
 
 #: gnotski/gnotski.c:1544
 #, c-format
@@ -4546,7 +4596,7 @@ msgstr "Уже занято! Куда поместить эту деталь?"
 msgid "Play a poker-style dice game"
 msgstr "Сыграйте в кости в стиле покера"
 
-#: gtali/gtali.desktop.in.h:2
+#: gtali/gtali.desktop.in.h:2 gtali/gyahtzee.c:64
 msgid "Tali"
 msgstr "Тали"
 
@@ -4558,8 +4608,7 @@ msgstr ""
 "Выберите, вставлять или нет задержку между бросками костей компьютером так, "
 "чтобы игрок мог видеть, что происходит."
 
-#. --- Button ---
-#: gtali/gtali.schemas.in.h:2 gtali/setup.c:288
+#: gtali/gtali.schemas.in.h:2
 msgid "Delay between rolls"
 msgstr "Задержка между бросками"
 
@@ -4568,7 +4617,8 @@ msgid "Display the computer's thoughts"
 msgstr "Показать размышления компьютера"
 
 #: gtali/gtali.schemas.in.h:4
-msgid "If set to true, a dump of the AI's working will be done to standard output."
+msgid ""
+"If set to true, a dump of the AI's working will be done to standard output."
 msgstr ""
 "Если установлено, то на стандартный вывод будут выводиться куски размышлений "
 "искуственного интеллекта."
@@ -4577,15 +4627,11 @@ msgstr ""
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr "[Человек,Вилбер,Билл,Моника,Кеннет,Джанет]"
 
-#: gtali/gyahtzee.c:62
-msgid "GNOME Tali"
-msgstr "Тали"
-
-#: gtali/gyahtzee.c:116
+#: gtali/gyahtzee.c:118
 msgid "The game is a draw!"
 msgstr "Игра закончилась ничьёй."
 
-#: gtali/gyahtzee.c:131
+#: gtali/gyahtzee.c:133
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
@@ -4593,41 +4639,41 @@ msgstr[0] "%s победил в игре с %d очком"
 msgstr[1] "%s победил в игре с %d очками"
 msgstr[2] "%s победил в игре с %d очками"
 
-#: gtali/gyahtzee.c:198
+#: gtali/gyahtzee.c:200
 #, c-format
 msgid "Computer playing for %s"
 msgstr "Компьютер играет за %s"
 
-#: gtali/gyahtzee.c:201
+#: gtali/gyahtzee.c:203
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- Ваша очередь."
 
-#: gtali/gyahtzee.c:295 gtali/gyahtzee.c:611
+#: gtali/gyahtzee.c:297
 msgid "Select dice to re-roll, press Roll!, or select score slot."
 msgstr "Выберите кости для перебрасывания, нажмите Бросок или выберите клетку."
 
-#: gtali/gyahtzee.c:323
+#: gtali/gyahtzee.c:325
 msgid "Roll"
 msgstr "Бросок"
 
-#: gtali/gyahtzee.c:379 gtali/gyahtzee.c:402 gtali/yahtzee.c:171
+#: gtali/gyahtzee.c:374 gtali/yahtzee.c:170
 msgid "You're only allowed three rolls! Select a score box."
 msgstr "У вас было только три броска! Выберите клетку."
 
-#: gtali/gyahtzee.c:445
+#: gtali/gyahtzee.c:417
 msgid "GNOME version (1998):"
 msgstr "Версия GNOME (1998):"
 
-#: gtali/gyahtzee.c:447
-msgid "Curses version (1992):"
-msgstr "Версия Curses (1992):"
+#: gtali/gyahtzee.c:420
+msgid "Console version (1992):"
+msgstr "Текстовая версия (1992):"
 
-#: gtali/gyahtzee.c:477
-msgid "A sort of poker with dice and less money."
+#: gtali/gyahtzee.c:430
+msgid "A variation on poker with dice and less money."
 msgstr "Клон игры в покер с костями и деньгами."
 
-#: gtali/gyahtzee.c:657
+#: gtali/gyahtzee.c:614
 msgid "Roll!"
 msgstr "Бросок!"
 
@@ -4659,136 +4705,145 @@ msgstr "Число соперников-людей"
 msgid "Current game will complete with original number of players."
 msgstr "Текущая игра завершится с исходным числом игроков."
 
-#: gtali/setup.c:231
+#: gtali/setup.c:230
 msgid "GTali Preferences"
-msgstr "Настройки Тали"
+msgstr "Параметры Тали"
 
-#: gtali/setup.c:255
+#: gtali/setup.c:253
 msgid "Human Players"
 msgstr "Игроки-люди"
 
-#: gtali/setup.c:280
+#: gtali/setup.c:263
+msgid "_Number of players:"
+msgstr "_Число игроков:"
+
+#: gtali/setup.c:277
 msgid "Computer Opponents"
 msgstr "Компьютерные соперники"
 
-#: gtali/setup.c:298
-msgid "Number of opponents:"
-msgstr "Число соперников:"
+#. --- Button ---
+#: gtali/setup.c:284
+msgid "_Delay between rolls"
+msgstr "_Задержка между бросками"
+
+#: gtali/setup.c:294
+msgid "N_umber of opponents:"
+msgstr "Число _соперников:"
 
 #. --- PLAYER NAMES FRAME ----
-#: gtali/setup.c:313
+#: gtali/setup.c:308
 msgid "Player Names"
 msgstr "Имена игроков"
 
-#: gtali/yahtzee.c:70
+#: gtali/yahtzee.c:69
 msgid "1s [total of 1s]"
 msgstr "1 [сумма 1й]"
 
-#: gtali/yahtzee.c:71
+#: gtali/yahtzee.c:70
 msgid "2s [total of 2s]"
 msgstr "2 [сумма 2х]"
 
-#: gtali/yahtzee.c:72
+#: gtali/yahtzee.c:71
 msgid "3s [total of 3s]"
 msgstr "3 [сумма 3х]"
 
-#: gtali/yahtzee.c:73
+#: gtali/yahtzee.c:72
 msgid "4s [total of 4s]"
 msgstr "4 [сумма 4х]"
 
-#: gtali/yahtzee.c:74
+#: gtali/yahtzee.c:73
 msgid "5s [total of 5s]"
 msgstr "5 [сумма 5х]"
 
-#: gtali/yahtzee.c:75
+#: gtali/yahtzee.c:74
 msgid "6s [total of 6s]"
 msgstr "6 [сумма 6х]"
 
 #. End of upper panel
-#: gtali/yahtzee.c:77
+#: gtali/yahtzee.c:76
 msgid "3 of a Kind [total]"
 msgstr "3 одинаковых [сумма]"
 
-#: gtali/yahtzee.c:78
+#: gtali/yahtzee.c:77
 msgid "4 of a Kind [total]"
 msgstr "4 одинаковых [сумма]"
 
-#: gtali/yahtzee.c:79
+#: gtali/yahtzee.c:78
 msgid "Full House [25]"
 msgstr "Фулл [25]"
 
-#: gtali/yahtzee.c:80
+#: gtali/yahtzee.c:79
 msgid "Small Straight [30]"
 msgstr "Малый стрит [30]"
 
-#: gtali/yahtzee.c:81
+#: gtali/yahtzee.c:80
 msgid "Large Straight [40]"
 msgstr "Главный стрит [40]"
 
-#: gtali/yahtzee.c:82
+#: gtali/yahtzee.c:81
 msgid "Yahtzee [50]"
 msgstr "Генерал [50]"
 
-#: gtali/yahtzee.c:83
+#: gtali/yahtzee.c:82
 msgid "Chance [total]"
 msgstr "Шанс [сумма]"
 
 #. End of lower panel
-#: gtali/yahtzee.c:85
+#: gtali/yahtzee.c:84
 msgid "Lower Total"
 msgstr "Малая сумма"
 
-#: gtali/yahtzee.c:86
+#: gtali/yahtzee.c:85
 msgid "Grand Total"
 msgstr "Главная сумма"
 
 #. Need to squish between upper and lower pannel
-#: gtali/yahtzee.c:88
+#: gtali/yahtzee.c:87
 msgid "Upper total"
 msgstr "Верхняя сумма"
 
-#: gtali/yahtzee.c:89
+#: gtali/yahtzee.c:88
 msgid "Bonus if >62"
 msgstr "Бонус, если >62"
 
-#: gtali/yahtzee.c:452
+#: gtali/yahtzee.c:451
 msgid "How many times do you wish to roll?"
 msgstr "Сколько раз вы хотите бросить?"
 
-#: gtali/yahtzee.c:457
+#: gtali/yahtzee.c:456
 msgid "Generating ..."
 msgstr "Создание ..."
 
-#: gtali/yahtzee.c:492
+#: gtali/yahtzee.c:491
 msgid "Results"
 msgstr "Итоги"
 
-#: gtali/yahtzee.c:492
+#: gtali/yahtzee.c:491
 msgid "Num Rolls"
 msgstr "Число бросков"
 
-#: gtali/yahtzee.c:492
+#: gtali/yahtzee.c:491
 msgid "Total"
 msgstr "Сумма"
 
-#: iagno/gnothello.c:111
+#: iagno/gnothello.c:107
 msgid "Iagno server to use"
 msgstr "Используемый сервер Ягно"
 
-#: iagno/gnothello.c:390 iagno/gnothello.c:733 iagno/iagno.desktop.in.h:1
+#: iagno/gnothello.c:265 iagno/gnothello.c:588 iagno/iagno.desktop.in.h:1
 #: iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Ягно"
 
-#: iagno/gnothello.c:392
-msgid "GNOME version of the popular Othello disk flipping game."
-msgstr "Версия популярной игры Отелло для среды GNOME."
+#: iagno/gnothello.c:268
+msgid "A disk flipping game derived from Reversi."
+msgstr "Переворачивание дисков в попытке захватить доску"
 
-#: iagno/gnothello.c:801
+#: iagno/gnothello.c:647
 msgid "Welcome to Iagno!"
 msgstr "Добро пожаловать в Ягно!"
 
-#: iagno/gnothello.c:809 iagno/gnothello.c:811
+#: iagno/gnothello.c:655 iagno/gnothello.c:657
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
@@ -4805,44 +4860,60 @@ msgstr "Игра закончена"
 msgid "Piece flipping"
 msgstr "Переворот фишек"
 
-#: iagno/othello.c:717
+#: iagno/network.c:114
+msgid "Invalid game data (set_peer)"
+msgstr "Некорректные данные игры (set_peer)"
+
+#: iagno/network.c:128
+msgid "Invalid game data (move)"
+msgstr "Некорректные данные игры (move)"
+
+#: iagno/othello.c:680
 msgid "Light must pass, Dark's move"
 msgstr "Белые пропускают ход, черные ходят"
 
-#: iagno/othello.c:729
+#: iagno/othello.c:686
 msgid "Dark must pass, Light's move"
 msgstr "Черные пропускают ход, белые ходят"
 
-#: iagno/properties.c:495
+#: iagno/properties.c:484
 msgid "Iagno Preferences"
-msgstr "Настройка Ягно"
+msgstr "Параметры Ягно"
 
-#: iagno/properties.c:519
-msgid "Use quick moves"
-msgstr "Использовать быстрые ходы"
+#: iagno/properties.c:512
+msgid "_Use quick moves"
+msgstr "Использовать _быстрые ходы"
 
-#: iagno/properties.c:634
+#: iagno/properties.c:622
+msgid "Animation"
+msgstr "Анимация"
+
+#: iagno/properties.c:626
 msgid "None"
 msgstr "Нет"
 
-#: iagno/properties.c:643
+#: iagno/properties.c:635
 msgid "Partial"
 msgstr "Частичное"
 
-#: iagno/properties.c:652
+#: iagno/properties.c:644
 msgid "Complete"
 msgstr "Полное"
 
+#: iagno/properties.c:659
+msgid "_Stagger flips"
+msgstr "_Замедлять перевороты"
+
 #: iagno/properties.c:667
-msgid "Stagger flips"
-msgstr "Замедленные перевороты"
+msgid "S_how grid"
+msgstr "Показывать _решетку"
 
 #: libgames-support/games-card-selector.c:52
 msgid "Card Style"
 msgstr "Стиль карты"
 
 #: libgames-support/games-controls.c:158 libgames-support/games-controls.c:332
-#: libgames-support/games-controls.c:404
+#: libgames-support/games-controls.c:407
 msgid "No key"
 msgstr "Нет клавиши"
 
@@ -4850,7 +4921,7 @@ msgstr "Нет клавиши"
 msgid "<Press a Key>"
 msgstr "<Нажмите клавишу>"
 
-#: libgames-support/games-controls.c:391
+#: libgames-support/games-controls.c:394
 msgid "Unknown Command"
 msgstr "Неизвестная команда"
 
@@ -4871,112 +4942,126 @@ msgstr ""
 "Проверьте ваши параметры GConf, особенно проверьте корректность установки "
 "схем."
 
-#: libgames-support/games-gridframe.c:181
-#: libgames-support/games-gridframe.c:188
+#: libgames-support/games-gridframe.c:217
+#: libgames-support/games-gridframe.c:224
 msgid "X Padding"
 msgstr "Интервал по X"
 
-#: libgames-support/games-gridframe.c:182
+#: libgames-support/games-gridframe.c:218
 msgid "Extra space to add to the width allocation."
 msgstr "Дополнительное пространство для виджета в ширину."
 
-#: libgames-support/games-gridframe.c:189
+#: libgames-support/games-gridframe.c:225
 msgid "Extra space to add to the height allocation."
 msgstr "Дополнительное пространство для виджета в высоту."
 
-#: libgames-support/games-gridframe.c:195
+#: libgames-support/games-gridframe.c:231
 msgid "Width Multiple"
 msgstr "Множитель ширины"
 
-#: libgames-support/games-gridframe.c:196
+#: libgames-support/games-gridframe.c:232
 msgid "What multiple to constrain the width to."
 msgstr "С каким множителем соотносить ширину."
 
-#: libgames-support/games-gridframe.c:202
+#: libgames-support/games-gridframe.c:238
 msgid "Height Multiple"
 msgstr "Множитель высоты"
 
-#: libgames-support/games-gridframe.c:203
+#: libgames-support/games-gridframe.c:239
 msgid "What multiple to constrain the height to."
 msgstr "С каким множителем соотносить высоту."
 
-#: libgames-support/games-network-dialog.c:110
+#: libgames-support/games-gridframe.c:245
+msgid "X align"
+msgstr "Горизонтальное выравнивание"
+
+#: libgames-support/games-gridframe.c:246
+msgid "The horizontal alignment, from 0 (left) to 1 (right)"
+msgstr "Горизонтальное выравнивание. От 0 (верх) до 1 (низ)"
+
+#: libgames-support/games-gridframe.c:254
+msgid "Y align"
+msgstr "Вертикальное выравнивание"
+
+#: libgames-support/games-gridframe.c:255
+msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
+msgstr "Вертикальное выравнивание. От 0 (верх) до 1 (низ)"
+
+#: libgames-support/games-network-dialog.c:80
 #, c-format
-msgid "The player %s joined the game."
+msgid "The player %s has joined the game."
 msgstr "Игрок %s присоединился к игре."
 
-#: libgames-support/games-network-dialog.c:138
+#: libgames-support/games-network-dialog.c:126
 msgid "New Network Game"
 msgstr "Новая сетевая игра"
 
 #. Create Network Status Frame.
-#: libgames-support/games-network-dialog.c:144
-msgid "Network Status:"
-msgstr "Статус сети:"
+#: libgames-support/games-network-dialog.c:139
+msgid "Status"
+msgstr "Состояние"
 
-#: libgames-support/games-network-dialog.c:158
-msgid "Please start a new network game.\n"
-msgstr "Пожалуйста, начните новую сетевую игру.\n"
+#: libgames-support/games-network-dialog.c:141
+msgid "Check the configuration and press Connect"
+msgstr "Проверьте конфигурацию и нажмите \"Соединить\""
 
-#: libgames-support/games-network-dialog.c:162
-msgid "_Connect"
-msgstr "_Соединение"
+#. Now for the network connection options.
+#: libgames-support/games-network-dialog.c:145
+msgid "Connection Method"
+msgstr "Способ соединения"
 
-#: libgames-support/games-network-dialog.c:164
-msgid "_Start game"
-msgstr "_Начать игру"
+#: libgames-support/games-network-dialog.c:151
+msgid "GNOME games server"
+msgstr "Сервер игр GNOME"
 
-#: libgames-support/games-network-dialog.c:202
-msgid "Invalid name"
-msgstr "Недопустимое имя"
+#: libgames-support/games-network-dialog.c:159
+msgid "_Hostname:"
+msgstr "Имя _узла:"
 
-#: libgames-support/games-network-dialog.c:218
-msgid "A new gnome games server was successfully started."
-msgstr "Новый сервер для игр GNOME успешно запущен."
+#: libgames-support/games-network-dialog.c:174
+msgid "Host local game"
+msgstr "Начать локальную игру"
 
-#: libgames-support/games-network-dialog.c:261
-msgid "Network Configuration"
-msgstr "Настроить сеть"
+#: libgames-support/games-network-dialog.c:194
+msgid "_Game name:"
+msgstr "_Название игры:"
 
-#: libgames-support/games-network-dialog.c:267
-msgid "Your playername:"
-msgstr "Ваше имя:"
+#: libgames-support/games-network-dialog.c:206
+msgid "Join local game"
+msgstr "Присоединиться к локальной игре"
+
+#: libgames-support/games-network-dialog.c:222
+msgid "_Local games:"
+msgstr "_Локальные игры:"
+
+#: libgames-support/games-network-dialog.c:266
+msgid "_Nickname:"
+msgstr "_Имя:"
 
 #: libgames-support/games-network-dialog.c:279
 msgid "Player"
 msgstr "Игрок"
 
-#: libgames-support/games-network-dialog.c:291
-msgid "Network connection method"
-msgstr "Способ сетевого соединения"
+#. Create buttons.
+#: libgames-support/games-network-dialog.c:293
+msgid "C_onnect"
+msgstr "_Соединение"
 
-#: libgames-support/games-network-dialog.c:296
-msgid "Gnome Games Server"
-msgstr "Сервер игр GNOME"
-
-#: libgames-support/games-network-dialog.c:302
-msgid "Host Local Game"
-msgstr "Локальная игра"
-
-#: libgames-support/games-network-dialog.c:320
-msgid "Game name:"
-msgstr "Название игры:"
+#: libgames-support/games-network-dialog.c:295
+msgid "_Start Game"
+msgstr "_Начать игру"
 
 #: libgames-support/games-network-dialog.c:331
-msgid "Join Local Game"
-msgstr "Присоединиться к локальной игре"
+msgid "Please supply a nickname."
+msgstr "Пожалуйста введите имя."
 
-#: libgames-support/games-network-dialog.c:348
-msgid "Hostname:"
-msgstr "Имя узла:"
-
-#: libgames-support/games-network-dialog.c:360
-msgid "Local Games:"
-msgstr "Локальные игры:"
-
-#: libgames-support/games-network-dialog.c:441
+#: libgames-support/games-network-dialog.c:345
 msgid "No local game selected."
 msgstr "Игра не выбрана"
+
+#: libgames-support/games-network-dialog.c:367
+msgid "A new gnome games server was successfully started."
+msgstr "Новый сервер для игр GNOME успешно запущен."
 
 #: libgames-support/games-network.c:121
 msgid "Network initialization complete."
@@ -5019,8 +5104,8 @@ msgstr "Ошибка соединения"
 msgid "No game server defined"
 msgstr "Не определен игровой сервер"
 
-#: libgames-support/games-network.c:466 libgames-support/games-network.c:547
-#: libgames-support/games-network.c:555
+#: libgames-support/games-network.c:467 libgames-support/games-network.c:549
+#: libgames-support/games-network.c:557
 msgid ""
 "Local Area Network game could not be started. \n"
 "Try running mDNSResponder."
@@ -5028,25 +5113,127 @@ msgstr ""
 "Не удалось запустить игру по локальной сети. \n"
 "Попробуйте запустить mDNSResponder."
 
-#: libgames-support/games-preimage.c:165 libgames-support/games-preimage.c:256
+#: libgames-support/games-preimage.c:165 libgames-support/games-preimage.c:258
 msgid "Image rendering failed."
 msgstr "Не удалось отрисовать изображение."
 
 #. Translators: this is for a minutes, seconds time display.
-#: libgames-support/games-scores-dialog.gob:115
+#: libgames-support/games-scores-dialog.gob:155
 #, c-format
 msgid "%dm %ds"
 msgstr "%dм:%dс"
 
 #. Note that this assumes the default style is plain.
-#: libgames-support/games-scores-dialog.gob:221
-#: libgames-support/games-scores-dialog.gob:304
+#: libgames-support/games-scores-dialog.gob:275
+#: libgames-support/games-scores-dialog.gob:358
 msgid "Score"
 msgstr "Результаты"
 
-#: libgames-support/games-scores-dialog.gob:300
+#: libgames-support/games-scores-dialog.gob:354
 msgid "Time"
 msgstr "Время"
+
+#. i18n: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: libgames-support/games-stock.c:41
+msgid "_New"
+msgstr "_Новая игра"
+
+#: libgames-support/games-stock.c:42
+msgid "_Pause"
+msgstr "_Пауза"
+
+#: libgames-support/games-stock.c:43
+msgid "Res_ume"
+msgstr "_Продолжить"
+
+#. i18n: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
+#: libgames-support/games-stock.c:45
+msgid "_Restart"
+msgstr "_Заново"
+
+#: libgames-support/games-stock.c:46
+msgid "_Undo Move"
+msgstr "_Отменить Ход"
+
+#: libgames-support/games-stock.c:47
+msgid "_Redo Move"
+msgstr "_Вернуть Ход"
+
+#: libgames-support/games-stock.c:48
+msgid "_Hint"
+msgstr "_Подсказка"
+
+#: libgames-support/games-stock.c:49
+msgid "_Scores"
+msgstr "_Результаты"
+
+#: libgames-support/games-stock.c:50
+msgid "_Fullscreen"
+msgstr "На _весь экран"
+
+#: libgames-support/games-stock.c:51
+msgid "_Leave Fullscreen"
+msgstr "Выйти из _полноэкранного режима"
+
+#: libgames-support/games-stock.c:52
+msgid "_End Game"
+msgstr "_Закончить игру"
+
+#: libgames-support/games-stock.c:53
+msgid "_Contents"
+msgstr "_Содержание"
+
+#: libgames-support/games-stock.c:84
+msgid "Pause the game"
+msgstr "Приостановить игру"
+
+#: libgames-support/games-stock.c:85
+msgid "Resume the paused game"
+msgstr "Продолжить остановленную игру"
+
+#: libgames-support/games-stock.c:86
+msgid "Restart the game"
+msgstr "Начать игру заново"
+
+#: libgames-support/games-stock.c:87
+msgid "Undo the last move"
+msgstr "Отменить последний ход"
+
+#: libgames-support/games-stock.c:88
+msgid "Redo the undone move"
+msgstr "Вернуть отменённый ход"
+
+#: libgames-support/games-stock.c:89
+msgid "Get a hint for your next move"
+msgstr "Получить подсказку на следующий ход"
+
+#: libgames-support/games-stock.c:90
+msgid "View the scores"
+msgstr "Просмотреть результаты"
+
+#: libgames-support/games-stock.c:91
+msgid "Enter fullscreen mode"
+msgstr "Переключиться в полноэкранный режим"
+
+#: libgames-support/games-stock.c:92
+msgid "Leave fullscreen mode"
+msgstr "Выйти из полноэкранного режима"
+
+#: libgames-support/games-stock.c:93
+msgid "End the current game"
+msgstr "Закончить текущую игру"
+
+#: libgames-support/games-stock.c:95
+msgid "Quit this game"
+msgstr "Выйти из игры"
+
+#: libgames-support/games-stock.c:96
+msgid "About this game"
+msgstr "Об игре"
+
+#: libgames-support/games-stock.c:97
+msgid "Configure the game"
+msgstr "Настроить игру"
 
 #: libgames-support/libgnomegames.schemas.in.h:1
 msgid "Network game mode"
@@ -5061,7 +5248,8 @@ msgid "The identifier for the game"
 msgstr "Идентификатор игры"
 
 #: libgames-support/libgnomegames.schemas.in.h:4
-msgid "The mode of network game to use. 1 = Server, 2 = LAN Host, 3 = LAN Client."
+msgid ""
+"The mode of network game to use. 1 = Server, 2 = LAN Host, 3 = LAN Client."
 msgstr ""
 "Используемый режим сетевой игры. 1 - сервер, 2 - сетевой узел, 3 - сетевой "
 "клиент."
@@ -5091,171 +5279,134 @@ msgstr ""
 "присоединяться. Здесь можно указать обычное сетевое имя или IP адрес."
 
 #: mahjongg/drawing.c:286
-msgid "This image may be corrupt."
-msgstr "Это изображение может быть повреждено."
-
-#: mahjongg/drawing.c:428
-#, c-format
 msgid ""
-"Unable to locate file: '%s'\n"
+"The selected theme failed to render.\n"
 "\n"
-"Also, the default tile set could not be found."
+"Please check that Mahjongg is installed correctly."
 msgstr ""
-"Не могу найти файл: '%s'\n"
+"Не удалось правильно прочитать выбранную тему.\n"
 "\n"
-"Также не может быть найден набор фишек по умолчанию."
+"Проверьте установку игры Маджонг."
 
-#: mahjongg/drawing.c:430
+#: mahjongg/drawing.c:429
 #, c-format
 msgid ""
-"Unable to locate file: '%s'\n"
+"Unable to locate file:\n"
+"'%s'\n"
+"\n"
+"Please check that Mahjongg is installed correctly."
+msgstr ""
+"Не удалось найти файл:\n"
+"%s\n"
+"\n"
+"Проверьте установку игры Маджонг"
+
+#: mahjongg/drawing.c:432
+#, c-format
+msgid ""
+"Unable to locate file:\n"
+"'%s'\n"
 "\n"
 "The default tile set will be loaded instead."
 msgstr ""
-"Не могу найти файл: '%s'\n"
+"Не могу найти файл:\n"
+"'%s'\n"
 "\n"
 "Вместо него будет загружен набор фишек по умолчанию."
 
-#: mahjongg/drawing.c:446
+#: mahjongg/drawing.c:449
 #, c-format
 msgid ""
-"Unable to load file: '%s'\n"
+"Unable to render file:\n"
+"'%s'\n"
 "\n"
-"This tile set was found but did not load."
+"Please check that Mahjongg is installed correctly."
 msgstr ""
-"Не могу найти файл: '%s'\n"
+"Не удалось прочитать файл:\n"
+"%s\n"
 "\n"
-"Набор фишек найден, но не может быть загружен."
+"Проверьте установку игры Маджонг."
 
-#: mahjongg/mahjongg.c:145
-msgid "Show or hide the toolbar"
-msgstr "Показать или скрыть панель инструментов"
-
-#: mahjongg/mahjongg.c:171
-msgid "Restart"
-msgstr "Заново"
-
-#: mahjongg/mahjongg.c:171
-msgid "Restart game"
-msgstr "Начать игру заново"
-
-#: mahjongg/mahjongg.c:177
-msgid "Pause game"
-msgstr "Приостановить игру"
-
-#: mahjongg/mahjongg.c:183
-msgid "Undo previous move"
-msgstr "Откатить предыдущий ход"
-
-#: mahjongg/mahjongg.c:187
-msgid "Redo"
-msgstr "Возврат"
-
-#: mahjongg/mahjongg.c:189
-msgid "Get a hint"
-msgstr "Получить подсказку"
-
-#: mahjongg/mahjongg.c:208
+#: mahjongg/mahjongg.c:127
 msgid "Could not load tile set"
 msgstr "Не удается загрузить набор фишек."
 
-#: mahjongg/mahjongg.c:212 mahjongg/mahjongg.c:788
-msgid "Preferences"
-msgstr "Настройка"
-
-#: mahjongg/mahjongg.c:424
+#: mahjongg/mahjongg.c:333
 msgid ""
 "Do you want to finish the current game or start playing with the new map "
 "immediately?"
 msgstr "Вы хотите немедленно завершить текущую игру и начать с новой карты?"
 
-#: mahjongg/mahjongg.c:425
+#: mahjongg/mahjongg.c:334
 msgid ""
 "If you choose to finish with the old map then the next game will use the new "
 "map."
 msgstr ""
-"Если вы закончите старую карту, новая игра будет использовать другую "
-"карту."
+"Если вы закончите старую карту, новая игра будет использовать другую карту."
 
-#: mahjongg/mahjongg.c:427
+#: mahjongg/mahjongg.c:336
 msgid "_Finish"
 msgstr "_Закончить"
 
-#: mahjongg/mahjongg.c:684 mahjongg/mahjongg.c:689
-msgid "These tiles don't match."
-msgstr "Эти фишки не совпадают."
-
-#: mahjongg/mahjongg.c:725
+#: mahjongg/mahjongg.c:629
 msgid "Shuffle"
 msgstr "Перемешать"
 
-#: mahjongg/mahjongg.c:807
+#: mahjongg/mahjongg.c:693
+msgid "Mahjongg Preferences"
+msgstr "Параметры игры \"Маджонг\""
+
+#: mahjongg/mahjongg.c:714
 msgid "Tiles"
 msgstr "Фишки"
 
-#: mahjongg/mahjongg.c:815
-msgid "Tile Set"
-msgstr "Набор фишек:"
-
-#: mahjongg/mahjongg.c:828
+#: mahjongg/mahjongg.c:737
 msgid "Maps"
 msgstr "Карты"
 
-#: mahjongg/mahjongg.c:836
-msgid "Select Map"
-msgstr "Выбор карты:"
+#: mahjongg/mahjongg.c:744
+msgid "_Select map:"
+msgstr "Выбор _карты:"
 
-#: mahjongg/mahjongg.c:849
+#: mahjongg/mahjongg.c:760
 msgid "Colors"
 msgstr "Цвета"
 
-#: mahjongg/mahjongg.c:857
-msgid "Background Color"
-msgstr "Цвет фона:"
-
-#: mahjongg/mahjongg.c:871
-msgid "Warnings"
-msgstr "Предупреждения"
-
-#: mahjongg/mahjongg.c:877
-msgid "Warn when tiles don't match"
-msgstr "Предупреждать, если фишки не совпадают"
-
-#: mahjongg/mahjongg.c:994
+#: mahjongg/mahjongg.c:886
 msgid "Maps:"
 msgstr "Карты:"
 
-#: mahjongg/mahjongg.c:998
+#: mahjongg/mahjongg.c:890
 msgid "Tiles:"
 msgstr "Фишки:"
 
-#: mahjongg/mahjongg.c:1030
+#: mahjongg/mahjongg.c:900
 msgid "GNOME Mahjongg"
 msgstr "Маджонг"
 
-#: mahjongg/mahjongg.c:1033
-msgid "GNOME version of the Eastern tile game, Mahjongg."
-msgstr "Версия популярной головоломки Маджонг для среды GNOME."
+#: mahjongg/mahjongg.c:902
+msgid "A matching game played with Mahjongg tiles."
+msgstr "Поиск совпадений в фишках \"Маджонг\""
 
-#: mahjongg/mahjongg.c:1405
+#: mahjongg/mahjongg.c:1242
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Извините, но невозможно найти корректную конфигурацию для игры."
 
-#: mahjongg/mahjongg.c:1465 mahjongg/mahjongg.desktop.in.h:2
+#: mahjongg/mahjongg.c:1407 mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Маджонг"
 
-#: mahjongg/mahjongg.c:1473
+#: mahjongg/mahjongg.c:1417
 msgid "Tiles Left:"
 msgstr "Осталось фишек:"
 
-#: mahjongg/mahjongg.c:1482
+#: mahjongg/mahjongg.c:1426
 msgid "Moves Left:"
 msgstr "Осталось ходов:"
 
-#: mahjongg/mahjongg.c:1547
-msgid "Welcome to GNOME Mahjongg!"
-msgstr "Добро пожаловать в игру Маджонг!"
+#: mahjongg/mahjongg.c:1489
+msgid "Remove matching pairs of tiles."
+msgstr "Удалить пару совпадающих фишек."
 
 #: mahjongg/mahjongg.desktop.in.h:1
 msgid "Disassemble a pile of tiles by removing matching pairs"
@@ -5311,19 +5462,19 @@ msgstr "Зугграт"
 
 #. FIXME: This is long enough to resize the window upwards when
 #. * the game finishes.
-#: same-gnome/game.c:362
+#: same-gnome/game.c:361
 msgid "1000 point bonus for clearing the board!"
 msgstr "1000 очков бонуса за очистку доски!"
 
-#: same-gnome/same-gnome.c:122
+#: same-gnome/same-gnome.c:123
 msgid "Set the theme"
 msgstr "Установить тему"
 
-#: same-gnome/same-gnome.c:125
+#: same-gnome/same-gnome.c:126
 msgid "For backwards compatibility"
 msgstr "Для совместимости со старыми версиями"
 
-#: same-gnome/same-gnome.c:127
+#: same-gnome/same-gnome.c:128
 msgid "Game size (1=small, 3=large)"
 msgstr "Размер доски (1=маленькая, 3=большая)"
 
@@ -5340,52 +5491,61 @@ msgid "Height of the custom board"
 msgstr "Высота настраиваемой доски"
 
 #: same-gnome/same-gnome.schemas.in.h:2
+msgid ""
+"Setting this to FALSE means the pieces fall slowly, but gracefully. A "
+"setting of TRUE causes the pieces to fall quickly and jerkily."
+msgstr ""
+"Значение FALSE задает медленное и красивое падение шариков. ЗначениеTRUE "
+"задает быстрое, но отрывистое падение."
+
+#: same-gnome/same-gnome.schemas.in.h:3
 msgid "The board size"
 msgstr "Размер игрового поля"
 
-#: same-gnome/same-gnome.schemas.in.h:3
+#: same-gnome/same-gnome.schemas.in.h:4
 msgid "The filename of the theme to use."
 msgstr "Файл игровой темы."
 
-#: same-gnome/same-gnome.schemas.in.h:4
+#: same-gnome/same-gnome.schemas.in.h:5
 msgid "The height of the custom board, 101 &gt; height &gt; 3."
 msgstr "Высота настраиваемой доски, 1 &gt; высота &gt; 3."
 
-#: same-gnome/same-gnome.schemas.in.h:6
-msgid "The size of the board to use. 1 = Custom, 2 = Small 3 = Medium 4 = Large."
+#: same-gnome/same-gnome.schemas.in.h:7
+msgid ""
+"The size of the board to use. 1 = Custom, 2 = Small, 3 = Medium, 4 = Large."
 msgstr ""
 "Используемый размер доски. 1 - настраиваемая, 2 - маленькая, 3 - средняя, 4 "
 "- большая."
 
-#: same-gnome/same-gnome.schemas.in.h:7
+#: same-gnome/same-gnome.schemas.in.h:8
 msgid "The theme to use"
 msgstr "Используемая в игре тема"
 
-#: same-gnome/same-gnome.schemas.in.h:8
+#: same-gnome/same-gnome.schemas.in.h:9
 msgid "The width of the custom board, 101 &gt; width &gt; 3."
 msgstr "Ширина настраиваемой доски, 101 &gt; ширина &gt; 3."
 
-#: same-gnome/same-gnome.schemas.in.h:10
+#: same-gnome/same-gnome.schemas.in.h:11
 msgid "The window height"
 msgstr "Высота окна"
 
-#: same-gnome/same-gnome.schemas.in.h:11
+#: same-gnome/same-gnome.schemas.in.h:12
 msgid "The window width"
 msgstr "Ширина окна"
 
-#: same-gnome/same-gnome.schemas.in.h:12
+#: same-gnome/same-gnome.schemas.in.h:13
+msgid "Use fast animation"
+msgstr "Использовать быструю анимацию"
+
+#: same-gnome/same-gnome.schemas.in.h:14
 msgid "Width of the custom board"
 msgstr "Ширина настраиваемой доски"
 
-#: same-gnome/ui.c:62
-#, c-format
-msgid "%d object selected"
-msgid_plural "%d objects selected"
-msgstr[0] "выбран %d объект"
-msgstr[1] "выбрано %d объекта"
-msgstr[2] "выбрано %d объектов"
+#: same-gnome/ui.c:66
+msgid "No points"
+msgstr "Нет точек"
 
-#: same-gnome/ui.c:64
+#: same-gnome/ui.c:71
 #, c-format
 msgid "%d point"
 msgid_plural "%d points"
@@ -5393,35 +5553,12 @@ msgstr[0] "%d точка"
 msgstr[1] "%d точки"
 msgstr[2] "%d точек"
 
-#. Translators: the previous messages get merged into this
-#. * format string.
-#: same-gnome/ui.c:67
-#, c-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#: same-gnome/ui.c:71
-msgid "No objects selected"
-msgstr "Объекты не выбраны"
-
-#: same-gnome/ui.c:81
-msgid "No points"
-msgstr "Нет точек"
-
-#: same-gnome/ui.c:86
-#, c-format
-msgid "%d point !"
-msgid_plural "%d points !"
-msgstr[0] "%d точка!"
-msgstr[1] "%d точки!"
-msgstr[2] "%d точек!"
-
-#: same-gnome/ui.c:100
+#: same-gnome/ui.c:85
 #, c-format
 msgid "Score: %d"
 msgstr "Результат: %d"
 
-#: same-gnome/ui.c:119
+#: same-gnome/ui.c:104
 msgid ""
 "I want to play that game! You know, they all go whirly-round and you click "
 "on them and they vanish!"
@@ -5429,63 +5566,34 @@ msgstr ""
 "Я хочу играть в эту игру! Ты знаешь, они крутятся и ты жмешь на них  и они "
 "исчезают!"
 
-#: same-gnome/ui.c:132
+#: same-gnome/ui.c:117
 msgid "Same GNOME Scores"
 msgstr "Результаты игры \"Тот же GNOME\""
 
-#: same-gnome/ui.c:165
+#: same-gnome/ui.c:149
 msgid "Unfortunately your score did not make the top ten."
 msgstr "К сожалению ваш результат недостаточен для попадания в десятку лучших."
 
-#: same-gnome/ui.c:193
-msgid "Congratulations!"
-msgstr "Поздравляем!"
-
-#: same-gnome/ui.c:194
-msgid "Your score has made the top 10."
-msgstr "Ваш результат попал в десятку лучших."
-
-#: same-gnome/ui.c:283
+#: same-gnome/ui.c:254
 msgid "Same GNOME Theme"
 msgstr "Тема для \"Тот же GNOME\""
 
-#: same-gnome/ui.c:431
-msgid "_Size"
-msgstr "_Размер"
-
 #: same-gnome/ui.c:435
-msgid "_Scores..."
-msgstr "_Результаты..."
-
-#: same-gnome/ui.c:440
 msgid "_Theme..."
 msgstr "_Тема..."
 
 #: same-gnome/ui.c:448
-msgid "_Small"
-msgstr "_Маленький"
+msgid "_Fast Animation"
+msgstr "_Быстрая анимация"
 
-#: same-gnome/ui.c:449
-msgid "_Medium"
-msgstr "_Средний"
-
-#: same-gnome/ui.c:450
-msgid "_Large"
-msgstr "_Большой"
-
-#: same-gnome/ui.c:454
-msgid "_Fullscreen"
-msgstr "На _весь экран"
-
-#: same-gnome/drawing.c:291
+#: same-gnome/drawing.c:358
 msgid "No theme data was found."
 msgstr "Не найдены данные темы."
 
-#: same-gnome/drawing.c:295
+#: same-gnome/drawing.c:362
 msgid ""
 "It is impossible to play the game. Please check that the game has been "
 "installed correctly and try again."
 msgstr ""
-"Игра невозможна. Пожалуйста, проверьте правильность установки и "
-"попытайтесь снова."
-
+"Игра невозможна. Пожалуйста, проверьте правильность установки и попытайтесь "
+"снова."
