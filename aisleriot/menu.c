@@ -195,7 +195,7 @@ void redo_set_sensitive (gboolean state)
   gtk_action_set_sensitive (redoaction, state);
 }
 
-const GtkActionEntry actions[] = {
+static const GtkActionEntry actions[] = {
   { "GameMenu", NULL, N_("_Game") },
   { "ViewMenu", NULL, N_("_View") },
   { "ControlMenu", NULL, N_("_Control") },
@@ -219,12 +219,12 @@ const GtkActionEntry actions[] = {
   { "About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) },
 };
 
-const GtkToggleActionEntry toggles[] = {
+static const GtkToggleActionEntry toggles[] = {
   { "Toolbar", NULL, N_("_Toolbar"), NULL, "Show or hide the toolbar", G_CALLBACK (toolbar_toggle_callback) },
   { "ClickToMove", NULL, N_("_Click to Move"), NULL, "Pick up and drop cards by clicking", G_CALLBACK (clickmove_toggle_callback) },
 };
 
-const char *ui_description = 
+static const char *ui_description = 
 "<ui>"
 "  <menubar name='MainMenu'>"
 "    <menu action='GameMenu'>"
@@ -265,7 +265,6 @@ const char *ui_description =
 "    <toolitem action='RedoMove'/>"
 "    <toolitem action='Hint'/>" 
 "    <toolitem action='LeaveFullscreen'/>"
-/* "    <toolitem action='Hidden'/>" */
 "  </toolbar>"
 "</ui>";
 
