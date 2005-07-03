@@ -33,7 +33,9 @@ requires 2.0.0
 
   typedef enum {
     GAMES_SCORES_STYLE_PLAIN,
+    GAMES_SCORES_STYLE_PLAIN_ASCENDING,
     GAMES_SCORES_STYLE_TIME,
+    GAMES_SCORES_STYLE_TIME_ASCENDING,
   } GamesScoresStyle;
 
   typedef struct {
@@ -80,13 +82,13 @@ requires 2.0.0
    * easy). However we do need some common methods. These functions
    * are here to give us our "pseudo-object". */
 
-  void games_scores_category_free (GamesScoresCategory *cat) {
+  static void games_scores_category_free (GamesScoresCategory *cat) {
     g_free (cat->key);
     g_free (cat->name);
     g_free (cat);
   }
 
-  GamesScoresCategory *games_scores_category_dup (GamesScoresCategory *orig) {
+  static GamesScoresCategory *games_scores_category_dup (GamesScoresCategory *orig) {
     GamesScoresCategory *newcat;
     
     newcat = g_new (GamesScoresCategory, 1);
@@ -101,6 +103,62 @@ requires 2.0.0
 /* FIXME: Static games_score_init function to initialise the setgid stuff. */
 /* FIXME: This is actually an argument for a helper-app since this function
  * won't know what files we are after until _new is called. */
+
+class Games:Score from G:Object {
+  /* FIXME: Can we deal with all the different types without subclassing? */
+}
+
+/* FIXME: This should actually be an abstract base class with a
+ * sub-class to handle "old-style" scores. It isn't done yet
+ * because we don't have any new-style scores. */
+class Games:Scores:Backend from G:Object {
+  private GList scores_list;
+  private GamesScoresStyle style;
+
+  public GObject * new (GamesScoresStyle style, gchar *filename) {
+    GamesScoresBackend *self = GET_NEW;
+
+    self->_priv->style = style;
+
+    scores_list = NULL;
+
+    return (GObject *) self;
+  }
+
+  public GList * get_list (void) {
+    /* Check for a change in the scores file and update if necessary. */
+
+    if ((scores_list == NULL) /* || something */ ) {
+      /* Lock the file and get the list. */
+    }
+
+    return self->_priv->scores_list;
+  }
+
+  public gint insert_score (GamesScore *score) {
+    GList *s;
+
+    s = self->_priv->scores_list;
+
+    while (s != NULL) {
+      GamesScore *oldscore = s->data;
+
+      /* FIXME: Lock the file and check that the list is up to date. */
+
+      /* FIXME: This is all hinting that a games_score should also be
+       * a class. */
+      if (games_score_compare (self->_priv->style, oldscore, score) < 0) {
+	self->_priv->scores_list = g_list_insert_before (self->_priv->scores_list,
+							 s, 
+							 games_score_dup (score));
+      } 
+
+      /* FIXME: write out the file. */
+
+      s = g_list_next (s);
+    }
+  }
+}
 
 class Games:Scores from G:Object {
 
@@ -132,10 +190,11 @@ class Games:Scores from G:Object {
 
     /* FIXME: Input sanity checks. */
 
-    cats = self->_priv->categories;
-    self->_priv->categories = g_hash_table_new_full (g_str_hash, g_str_equal,
-						     g_free, 
-						     games_scores_category_free);
+    cats = description->categories;
+    self->_priv->categories = 
+      g_hash_table_new_full (g_str_hash, g_str_equal,
+			     g_free, 
+			     (GDestroyNotify) games_scores_category_free);
     while (cats) {
       dupcat = games_scores_category_dup (cats);
 
@@ -164,7 +223,7 @@ class Games:Scores from G:Object {
     self->_priv->l_start = 0; 
     self->_priv->l_len = 0; *//* All of it */
 
-    return self;
+    return (GObject *) self;
   }
 
   /**
@@ -212,8 +271,20 @@ class Games:Scores from G:Object {
    **/
   /* FIXME: Write the above-mentioned macros. */
   public gboolean add_score (Games:Score *self, GamesScore score) {
+
+    /* Start by assuming that it isn't a top-ten score. */
+    self->_priv->last_score_significant = FALSE;
+
     /* FIXME: Fill in. */
-    return FALSE;
+    /* Lock the scores file and get the list. */
+    
+    /* Check if our score belongs in the list. */
+
+    /* If so insert it and rewrite the list. */
+
+    /* Free the lock. */
+
+    return self->_priv->last_score_significant;
   }
 
   private void set_dialog_categories (gchar *key, 
@@ -236,7 +307,6 @@ class Games:Scores from G:Object {
    */
   public void show (Games:Scores *self, gboolean hilight) {
     GtkWidget *dialog;
-    GamesScoresCategory *cats;
     
     if (self->_priv->dialog == NULL) {
       /* FIXME: The title is a problem. */

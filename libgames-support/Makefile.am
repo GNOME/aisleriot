@@ -24,8 +24,8 @@ carddir = $(datadir)/pixmaps/gnome-games-common/cards
 card_DATA = bonded.png paris.svg
 
 GOB_FILES= \
-	games-scores-dialog.gob		\
 	games-scores.gob \
+	games-scores-dialog.gob		\
 	$(NULL)
 
 GOB_SOURCE= \
