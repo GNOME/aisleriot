@@ -24,7 +24,7 @@ carddir = $(datadir)/pixmaps/gnome-games-common/cards
 card_DATA = bonded.png paris.svg
 
 GOB_FILES= \
-	games-scores.gob \
+#	games-scores.gob \
 	games-scores-dialog.gob		\
 	$(NULL)
 
@@ -72,8 +72,8 @@ libgames_support_la_SOURCES =		\
 %.c %.h %-private.h: %.gob
 	if [ "x$(GOB2)" = "x" ] ; then \
 		touch $@ ; \
-	else \
-		@GOB2@ $< ; \
+#	else \
+#		@GOB2@ $< ; \
 	fi
 
 install-data-local:
