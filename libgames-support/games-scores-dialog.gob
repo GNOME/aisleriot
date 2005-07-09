@@ -1,4 +1,6 @@
-/* games-files.c
+/* -*- mode: C -*-
+
+   games-files.c
    Copyright 2004, 2005 Callum McKenzie
 
    This library is free software; you can redistribute it and'or modify
@@ -22,7 +24,7 @@ requires 2.0.0
 /* FIXME: This enum should be documented. */
 
 %h{
-  #include "games-scores.h" /* For GamesScoresStyle. */
+  #include "games-score.h" /* For GamesScoreStyle. */
 
   typedef enum {
     GAMES_SCORES_CLOSE_BUTTON = 1,
@@ -149,12 +151,14 @@ class Games:Scores:Dialog from Gtk:Dialog {
     score = scores;
     while (n--) {
       switch (self->_priv->style) {
-      case GAMES_SCORES_STYLE_TIME:
+      case GAMES_SCORES_STYLE_TIME_ASCENDING:
+      case GAMES_SCORES_STYLE_TIME_DESCENDING:
 	intscore = rint (100*(*score));
 	/* Translators: this is for a minutes, seconds time display. */
 	ss = g_strdup_printf (_("%dm %ds"), intscore/100, intscore%100);
 	break;
-      case GAMES_SCORES_STYLE_PLAIN:
+      case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
+      case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
       default:
 	intscore = rint (*score);
 	ss = g_strdup_printf ("%d", intscore);
@@ -200,7 +204,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
     GtkTreeViewColumn *column;
     GtkCellRenderer *renderer;
 
-    self->_priv->style = GAMES_SCORES_STYLE_PLAIN;
+    self->_priv->style = GAMES_SCORES_STYLE_PLAIN_DESCENDING;
     /* These two hashes are the reverse of each other. As an optimisation 
      * they share the same set of strings (as keys in the first case and
      * as data in the second). The first hash is responsible for 
@@ -345,15 +349,17 @@ class Games:Scores:Dialog from Gtk:Dialog {
    * is at this layer.
    *
    **/
-  public void set_style (Games:Scores:Dialog *self, GamesScoresStyle style) {
+  public void set_style (Games:Scores:Dialog *self, GamesScoreStyle style) {
     gchar *header;
 
     self->_priv->style = style;
     switch (style) {
-    case GAMES_SCORES_STYLE_TIME:
+    case GAMES_SCORES_STYLE_TIME_DESCENDING:
+    case GAMES_SCORES_STYLE_TIME_ASCENDING:
       header = _("Time");
       break;
-    case GAMES_SCORES_STYLE_PLAIN:
+    case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
+    case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
     default:
       header = _("Score");
     }

@@ -20,7 +20,7 @@ extern "C" {
 
 
 
-  #include "games-scores.h" /* For GamesScoresStyle. */
+  #include "games-score.h" /* For GamesScoreStyle. */
 
   typedef enum {
     GAMES_SCORES_CLOSE_BUTTON = 1,
@@ -83,7 +83,7 @@ void 	games_scores_dialog_add_category	(GamesScoresDialog * self,
 void 	games_scores_dialog_set_category	(GamesScoresDialog * self,
 					const gchar * key);
 void 	games_scores_dialog_set_style	(GamesScoresDialog * self,
-					GamesScoresStyle style);
+					GamesScoreStyle style);
 void 	games_scores_dialog_set_category_description	(GamesScoresDialog * self,
 					const gchar * description);
 void 	games_scores_dialog_set_hilight	(GamesScoresDialog * self,

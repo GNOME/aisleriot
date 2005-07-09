@@ -31,9 +31,6 @@ GOB_SOURCE= \
 	games-scores-dialog.c		\
 	games-scores-dialog.h		\
 	games-scores-dialog-private.h	\
-	games-scores.c		\
-	games-scores.h		\
-	games-scores-private.h	\
 	$(NULL)
 
 libgames_support_la_SOURCES =		\
@@ -66,6 +63,12 @@ libgames_support_la_SOURCES =		\
         games-preimage.h                \
 	games-stock.c			\
 	games-stock.h			\
+	games-score.h			\
+	games-score.c			\
+	games-scores.c			\
+	games-scores.h			\
+	games-scores-backend.c		\
+	games-scores-backend.h		\
 	$(NULL)
 
 #%.c %.h %-private.h: %.gob
