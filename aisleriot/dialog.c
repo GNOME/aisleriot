@@ -82,9 +82,20 @@ void show_game_over_dialog() {
       gtk_main_quit ();
       break;
     default:
-      /* The player closed the dialog window, just ignore this. */
-      game_over = FALSE;
+      /* The player closed the dialog window. If the game is over,
+       * start a new one. Otherwise undo. This later one isn't
+       * actually the default, but it is probably the most reasonable
+       * thing to do. Leaving the game in the bad state is not a good
+       * option since many parts of the program don't expect that state 
+       * (e.g. hint). */
       gtk_widget_destroy (dialog);
+      if (game_won) {
+	new_game (NULL, NULL);
+      } else {
+	timer_restart ();
+	game_over = FALSE;
+	undo_callback ();
+      }
   }
 }
 

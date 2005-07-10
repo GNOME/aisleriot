@@ -1,5 +1,11 @@
 2005-07-10  Callum McKenzie  <callum@physics.otago.ac.nz>
 
+	* dialog.c: If the game-over dialog is closed, do something. If
+	the game is won, start a new one, if the game isn't do an
+	undo. This isn't the best solution (it would be nice to leave it
+	in the game-over state and let the user decide) but many parts of
+	the code don't handle the game-over state properly (e.g. hints).
+
 	* rules/jumbo.scm: Patch from Vincent Povirk to provide autoplay.
 
 2005-07-06  Richard Hoelscher  <rah@rahga.com>
