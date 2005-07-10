@@ -41,7 +41,7 @@ typedef struct _GamesPreimage {
   gint       width;
   gint       height;
   /* scalable source data */
-  gchar     *srcbuffer;
+  guchar     *srcbuffer;
   gsize	     srcsize;
   /* raster pixbuf data */
   GdkPixbuf *pixbuf;
