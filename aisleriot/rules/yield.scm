@@ -1,4 +1,4 @@
-; AisleRiot - delta.scm
+; AisleRiot - yield.scm
 ; Copyright (C) 2001, 2003 Rosanna Yuen <rwsy@mit.edu>
 ;
 ; This game is free software; you can redistribute it and/or modify
@@ -110,6 +110,7 @@
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
+       (not (= (get-value (car card-list)) king))
        (available? slot-id 0)
        (= (length card-list) 1)))
 
@@ -231,29 +232,24 @@
 	 (and (not (= r-slot 10))
 	      (empty-slot? 10)))))
 
+(define (droppable? start-slot card-list end-slot)
+  (and (not (empty-slot? end-slot))
+       (available? end-slot start-slot)
+       (= 13 (+ (get-value (car card-list))
+                (get-value (get-top-card end-slot))))))
+
 (define (button-released start-slot card-list end-slot)
-  (if (= start-slot end-slot)
-      (or (and (= (get-value (car card-list)) king)
-	       (add-to-score! 1))
-	  (and (= start-slot 2)
-	       (= 13 (+ (get-value (car card-list))
-			(get-value (get-top-card start-slot))))
-	       (add-to-score! 2)
-	       (remove-card start-slot)))
-      (and (not (empty-slot? end-slot))
-	   (available? end-slot start-slot)
-	   (= 13 (+ (get-value (car card-list))
-		    (get-value (get-top-card end-slot))))
-	   (remove-card end-slot)
-	   (if (or (= start-slot 1)
-		   (= end-slot 1))
-	       (if (not (empty-slot? 2))
-		   (begin
-		     (let ((new-contents (get-cards 2)))
-		       (let ((moving-back (car (reverse new-contents))))
-			 (set-cards! 1 (list moving-back)))
-		       (set-cards! 2 (reverse (cdr (reverse new-contents))))))))
-	   (add-to-score! 2))))
+  (and (droppable? start-slot card-list end-slot)
+       (add-to-score! 2)
+       (remove-card end-slot)
+       (if (and (not (empty-slot? 2))
+		(or (= start-slot 1)
+		    (= end-slot 1)))
+	   (let ((new-contents (get-cards 2)))
+	     (let ((moving-back (car (reverse new-contents))))
+	       (set-cards! 1 (list moving-back)))
+	     (set-cards! 2 (reverse (cdr (reverse new-contents)))))
+	   #t)))
 
 (define (button-clicked slot-id)
   (if (= slot-id 0)
@@ -344,6 +340,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)
