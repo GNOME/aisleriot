@@ -86,7 +86,7 @@
 	 (_"Base Card: Queen"))
 	((= BASE-VAL 13)
 	 (_"Base Card: King"))
-	(#t #f)))
+	(#t "")))
 
 (define (button-pressed slot-id card-list)
   (and (not (= (length card-list) 0))

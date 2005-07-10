@@ -75,7 +75,7 @@
 	 (_"Base Card: Queen"))
 	((= BASE-VAL 13)
 	 (_"Base Card: King"))
-	(#t #f)))
+	(#t "")))
 
 (define (get-stock-no-string)
   (if (> (length (get-cards 0)) 1)
