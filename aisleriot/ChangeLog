@@ -1,5 +1,17 @@
 2005-07-10  Callum McKenzie  <callum@physics.otago.ac.nz>
 
+	* rules/plait.scm (get-base-
+	* rules/lady_jane.scm (get-base-string): 
+	* rules/kansas.scm (get-base-string): 
+	* rules/eagle_wing.scm (get-base-string): 
+	* rules/chessboard.scm (get-base-string):
+	* rules/canfield.scm (get-base-string): 
+	* rules/agnes.scm (get-base-string): Make sure all versions of
+	get-base-string return a string at all times to avoid a repeat of
+	the glenwood bug Vincent fixed. This should fix #308186. Many of
+	these shouldn't need it since the base card is always defined, 
+	but it is good practise.
+
 	* dialog.c: If the game-over dialog is closed, do something. If
 	the game is won, start a new one, if the game isn't do an
 	undo. This isn't the best solution (it would be nice to leave it
