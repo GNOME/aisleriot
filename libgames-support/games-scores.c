@@ -34,9 +34,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include <games-scores-dialog.h>
-#include <games-score.h>
-#include <games-scores.h>
+#include "games-scores-dialog.h"
+#include "games-scores-backend.h"
+#include "games-score.h"
+#include "games-scores.h"
 
 /* We want GamesScoresCategory to be a plain structure so it can easily
  * be initialised at compile time (to make writing a GamesScoresDescription
@@ -103,21 +104,11 @@ GObject * games_scores_new (GamesScoresDescription * description) {
   /* FIXME: Do some sanity checks on the default and the like. */
   
   self->priv->style = description->style;
-  
-  /* Find and open the file */
-  self->priv->filename = g_build_filename (SCORESDIR,
-					    description->filename, NULL);
-  
-    self->priv->scoresfd = open (self->priv->filename, O_RDWR);
-    /* FIXME: We don't have a finaliser yet to close the fd again. */
-    
-    
-    /*    self->priv->lock->l_type = F_RDLCK;
-	  self->priv->l_whence = SEEK_SET;
-	  self->priv->l_start = 0; 
-	  self->priv->l_len = 0; *//* All of it */
-    
-    return (GObject *) self;
+
+  self->priv->backend = games_scores_backend_new (description->style,
+						  description->filename);
+      
+  return (GObject *) self;
 }
 
 /**

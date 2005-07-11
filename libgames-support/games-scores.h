@@ -29,6 +29,7 @@
 G_BEGIN_DECLS
 
 #include "games-score.h"
+#include "games-scores-backend.h"
 
 typedef struct {
   gchar *key;  /* A unique identifier (warning: this is used to generate the
@@ -53,15 +54,14 @@ typedef struct {
 #define GAMES_SCORES_GET_CLASS(obj) G_TYPE_INSTANCE_GET_CLASS((obj), games_scores_get_type(), GamesScoresClass)
 
 typedef struct _GamesScoresPrivate {
-	GHashTable * categories;
-	gchar * currentcat;
-	gchar * defcat;
-	gboolean last_score_significant;
-	gint last_score_position;
-	GamesScoreStyle style;
-	gchar * filename;
-	int scoresfd;
-	GtkWidget * dialog;
+  GHashTable * categories;
+  gchar * currentcat;
+  gchar * defcat;
+  gboolean last_score_significant;
+  gint last_score_position;
+  GamesScoreStyle style;
+  GamesScoresBackend *backend;
+  GtkWidget * dialog;
 } GamesScoresPrivate;
 
 typedef struct _GamesScores {

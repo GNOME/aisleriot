@@ -46,6 +46,9 @@ G_BEGIN_DECLS
 
 typedef struct _GamesScoresBackendPrivate {
   GamesScoreStyle style;
+  gchar *filename;
+  gint fd;
+  gboolean fileok;
 } GamesScoresBackendPrivate;
 
 typedef struct _GamesScoresBackend {
@@ -59,7 +62,7 @@ typedef struct _GamesScoresBackendClass {
 
 GType games_scores_backend_get_type (void);
 GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style, 
-					      gchar *filename);
+					      gchar *name);
 GList *games_scores_backend_get_list (GamesScoresBackend *self);
 gint games_scores_backend_insert_score (GamesScoresBackend *self,
 					GamesScore *score);

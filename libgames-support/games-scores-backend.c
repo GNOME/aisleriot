@@ -21,17 +21,29 @@
 #include <glib.h>
 #include <glib-object.h>
 
+#include <fcntl.h>
+#include <unistd.h>
+
 #include "games-score.h"
 #include "games-scores-backend.h"
 
 G_DEFINE_TYPE (GamesScoresBackend, games_scores_backend, G_TYPE_OBJECT);
 
 static void
+games_scores_backend_finalize (GamesScoresBackend *backend)
+{
+  if (backend->priv->fileok) {
+    close (backend->priv->fd);
+  }
+}
+
+static void
 games_scores_backend_class_init (GamesScoresBackendClass *klass)
 {
-  /* GObjectClass *oclass = G_OBJECT_CLASS (klass); */
+  GObjectClass *oclass = G_OBJECT_CLASS (klass);
 
   g_type_class_add_private (klass, sizeof (GamesScoresBackendPrivate));
+  oclass->finalize = (GObjectFinalizeFunc) games_scores_backend_finalize;
 }
 
 static void
@@ -43,7 +55,7 @@ games_scores_backend_init (GamesScoresBackend *backend)
 }
 
 GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style, 
-					      gchar *filename)
+					      gchar *name)
 {
   GamesScoresBackend *backend;
 
@@ -52,6 +64,11 @@ GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
 
   backend->priv->style = style;
   backend->scores_list = NULL;
+  backend->priv->fileok = FALSE;
+  backend->priv->filename = g_build_filename (SCORESDIR, name, NULL);
+  backend->priv->fd = open (backend->priv->filename, O_RDWR);
+  if (backend->priv->fd != 0)
+    backend->priv->fileok = TRUE;
 
   return backend;
 }
