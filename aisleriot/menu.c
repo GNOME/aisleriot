@@ -224,7 +224,7 @@ static const GtkToggleActionEntry toggles[] = {
   { "ClickToMove", NULL, N_("_Click to Move"), NULL, "Pick up and drop cards by clicking", G_CALLBACK (clickmove_toggle_callback) },
 };
 
-static const char *ui_description = 
+static const char ui_description[] = 
 "<ui>"
 "  <menubar name='MainMenu'>"
 "    <menu action='GameMenu'>"
