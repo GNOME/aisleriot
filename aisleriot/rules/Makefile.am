@@ -5,12 +5,14 @@ rulesdir  = $(datadir)/sol-games
 rules_DATA  = 			\
 	agnes.scm		\
 	auld_lang_syne.scm	\
+	backbone.scm		\
 	bakers_dozen.scm	\
 	bakers_game.scm		\
 	beleaguered_castle.scm	\
 	bristol.scm		\
 	camelot.scm		\
 	canfield.scm		\
+	carpet.scm		\
 	chessboard.scm		\
 	clock.scm		\
 	cover.scm		\
