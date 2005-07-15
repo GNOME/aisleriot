@@ -82,7 +82,7 @@
 	      (get-value (cadr card-list)))
 	   (correct-sequence (cdr card-list)))))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
        (not (= end-slot 0))
        (or (and (empty-slot? end-slot)
@@ -91,8 +91,12 @@
 		(eq? (get-suit (get-top-card end-slot))
 		     (get-suit (car (reverse card-list))))
 		(= (get-value (get-top-card end-slot))
-		   (+ 1 (get-value (car (reverse card-list)))))
-		(add-to-score! 1)))
+		   (+ 1 (get-value (car (reverse card-list)))))))))
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
+       (or (empty-slot? end-slot)
+	   (add-to-score! 1))
        (move-n-cards! start-slot end-slot card-list)
        (or (empty-slot? start-slot)
 	   (is-visible? (get-top-card start-slot))
@@ -211,6 +215,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

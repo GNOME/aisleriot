@@ -84,7 +84,7 @@
        (or (= value (get-value (car cards)))
 	   (find-card-val-in-list? (cdr cards) value))))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
        (or (= end-slot 1)
 	   (= end-slot 3)
@@ -99,7 +99,10 @@
 		   (get-suit (car card-list)))
 		(or (= end-slot 1)
 		    (find-card-val-in-list? (get-cards (- end-slot 2))
-					    (get-value (car card-list))) )))
+					    (get-value (car card-list))) )))))
+  
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
        (complete-transaction start-slot card-list end-slot)))
   
 (define (button-clicked slot-id)
@@ -203,4 +206,6 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)

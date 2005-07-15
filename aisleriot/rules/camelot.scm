@@ -89,37 +89,34 @@
 		    (= (get-value (car card-list)) queen)
 		    (= (get-value (car card-list)) jack))))))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (if add-stage
       (and (empty-slot? end-slot) 
 	   (cond ((= (get-value (car card-list)) king)
-		  (or (= end-slot 0)
-		      (= end-slot 3)
-		      (= end-slot 12)
-		      (= end-slot 15)))
+		  (member end-slot '(0 3 12 15)))
 		 ((= (get-value (car card-list)) queen)
-		  (or (= end-slot 1)
-		      (= end-slot 2)
-		      (= end-slot 13)
-		      (= end-slot 14)))
+		  (member end-slot '(1 2 13 14)))
 		 ((= (get-value (car card-list)) jack)
-		  (or (= end-slot 4)
-		      (= end-slot 7)
-		      (= end-slot 8)
-		      (= end-slot 11)))
-		 (#t (not (= end-slot 16))))
-	   (move-n-cards! start-slot end-slot card-list)
-	   (if (< end-slot 16) (set! fill-count (+ fill-count 1)))
-	   #t)
+		  (member end-slot '(4 7 8 11)))
+		 (#t (not (= end-slot 16)))))
       (if (= start-slot end-slot)
-	  (and (= (get-value (car card-list)) 10)
-	       (set! fill-count (- fill-count 1)))	       
+	  (= (get-value (car card-list)) 10)
 	  (and (not (empty-slot? end-slot))
 	       (not (= end-slot 17))
 	       (= 10 (+ (get-value (car card-list))
-			(get-value (car (get-cards end-slot)))))
-	       (remove-card end-slot)
-	       (set! fill-count (- fill-count 2))))))
+			(get-value (car (get-cards end-slot)))))))))
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
+       (cond (add-stage
+              (move-n-cards! start-slot end-slot card-list)
+              (or (> end-slot 15)
+                  (set! fill-count (+ fill-count 1))))
+             ((= start-slot end-slot)
+              (set! fill-count (- fill-count 1)))
+             (#t
+	      (remove-card end-slot)
+	      (set! fill-count (- fill-count 2))))))
 
 (define (button-clicked slot-id)  
   (if (= slot-id 16)
@@ -233,6 +230,8 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
 
 

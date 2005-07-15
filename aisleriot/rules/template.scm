@@ -23,7 +23,13 @@
 (define (button-pressed slot-id card-list)
   #f)
 
+;;; Not essential, see set-features below.
+(define (droppable)
+  #f)
+
 (define (button-released start-slot card-list end-slot)
+  ;; This will often start with somthing like:
+  ;;  (if (droppable? start-slot card-list end-slot ...
   #f)
 
 (define (button-clicked slot-id)
@@ -50,6 +56,13 @@
 (define (timeout) 
   #f)
 
+;; Define the optional features the game uses. Valid options are:
+;;  droppable-feature: An predicate, droppable?, is defined that will 
+;;                     return whether the card can be dropped here. 
+;;                     This is used by the drawing code to highlight
+;;                     droppable locations.
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

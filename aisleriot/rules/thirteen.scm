@@ -106,7 +106,8 @@
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
        (is-visible? (car card-list))
-       (= (length card-list) 1)))
+       (= (length card-list) 1)
+       (not (= (get-value (car card-list)) king))))
 
 (define (check-for-flips slot-id)
   (cond ((= slot-id 30)
@@ -326,28 +327,27 @@
 	       (flip-top-card 3))
 	      (#t #t)))))
 
+(define (droppable? start-slot card-list end-slot)
+  (and (not (empty-slot? end-slot))
+       (is-visible? (get-top-card end-slot))
+       (= 13 (+ (get-value (car card-list))
+		(get-value (get-top-card end-slot))))))
+
 (define (button-released start-slot card-list end-slot)
-  (if (= start-slot end-slot)
-      (and (= (get-value (car card-list)) king)
-	   (check-for-flips start-slot)
-	   (add-to-score! 1))
-      (and (not (empty-slot? end-slot))
-	   (is-visible? (get-top-card end-slot))
-	   (= 13 (+ (get-value (car card-list))
-		    (get-value (get-top-card end-slot))))
-	   (remove-card end-slot)
-	   (check-for-flips start-slot)
-	   (check-for-flips end-slot)
-	   (check-double-flips start-slot end-slot)
-	   (if (or (= start-slot 1)
-		   (= end-slot 1))
-	       (if (not (empty-slot? 2))
-		   (begin
-		     (let ((new-contents (get-cards 2)))
-		       (let ((moving-back (car (reverse new-contents))))
-			 (set-cards! 1 (list moving-back)))
-		       (set-cards! 2 (reverse (cdr (reverse new-contents))))))))
-	   (add-to-score! 2))))
+  (and (droppable? start-slot card-list end-slot)
+       (remove-card end-slot)
+       (check-for-flips start-slot)
+       (check-for-flips end-slot)
+       (check-double-flips start-slot end-slot)
+       (if (or (= start-slot 1)
+	       (= end-slot 1))
+	   (if (not (empty-slot? 2))
+	       (begin
+		 (let ((new-contents (get-cards 2)))
+		   (let ((moving-back (car (reverse new-contents))))
+		     (set-cards! 1 (list moving-back)))
+		   (set-cards! 2 (reverse (cdr (reverse new-contents))))))))
+       (add-to-score! 2)))
 
 (define (button-clicked slot-id)
   (if (= slot-id 0)
@@ -431,6 +431,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

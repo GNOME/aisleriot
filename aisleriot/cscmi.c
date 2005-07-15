@@ -285,7 +285,12 @@ static SCM scm_myrandom(SCM range)
   return scm_long2num(g_random_int_range(0,SCM_INUM(range)));
 }
 
-static SCM scm_get_score() 
+static SCM scm_click_to_move_p (void)
+{
+  return click_to_move ? SCM_BOOL_T : SCM_BOOL_F;
+}
+
+static SCM scm_get_score(void) 
 {
   return scm_long2num(score);
 }
@@ -329,6 +334,7 @@ void cscm_init ()
   scm_c_define_gsubr("set-slot-x-expansion!", 2, 0, 0, scm_set_slot_x_expansion);
   scm_c_define_gsubr("set-lambda", 8, 0, 1, scm_set_lambda);
   scm_c_define_gsubr("random", 1, 0, 0, scm_myrandom);
+  scm_c_define_gsubr("click-to-move?", 0, 0, 0, scm_click_to_move_p);
   scm_c_define_gsubr("get-score", 0, 0, 0, scm_get_score);  
   scm_c_define_gsubr("set-score!", 1, 0, 0, scm_set_score);
   scm_c_define_gsubr("get-timeout", 0, 0, 0, scm_get_timeout);  

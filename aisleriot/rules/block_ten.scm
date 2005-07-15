@@ -16,6 +16,9 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
+; FIXME: when the issues with this game get fixed, also add droppable? 
+; support at the same time.
+
 (define (new-game)
   (initialize-playing-area)
   (make-standard-deck)

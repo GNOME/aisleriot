@@ -64,11 +64,14 @@
 	   (or (empty-slot? 0)
 	       (deal-cards-face-up 0 (list end-slot))))))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (and (not (= end-slot 0))
        (not (empty-slot? end-slot))
        (= (get-value (car card-list))
-	  (get-value (get-top-card end-slot)))
+	  (get-value (get-top-card end-slot)))))
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
        (remove-card end-slot)
        (check-for-deal start-slot end-slot)
        (add-to-score! 2)))
@@ -121,6 +124,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

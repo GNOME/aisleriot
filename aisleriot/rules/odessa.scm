@@ -107,17 +107,16 @@
       (make-visible-top-card start-slot))
   #t)
 
-(define (button-released start-slot cards end-slot)
+(define (droppable? start-slot cards end-slot)
   (and (not (= start-slot end-slot))
        (let ((rcards (reverse cards)))
 	 (if (and (> end-slot 0) (< end-slot 8))
-	     (and (if (empty-slot? end-slot)
-		      (= king (get-value (car rcards)))
-		      (and (= (get-suit (get-top-card end-slot))
-			      (get-suit (car rcards)))
-			   (= (get-value (get-top-card end-slot))
-			      (+ (get-value (car rcards)) 1))))
-		  (complete-transaction start-slot cards rcards end-slot))
+	     (if (empty-slot? end-slot)
+		 (= king (get-value (car rcards)))
+		 (and (= (get-suit (get-top-card end-slot))
+			 (get-suit (car rcards)))
+		      (= (get-value (get-top-card end-slot))
+			 (+ (get-value (car rcards)) 1))))
 	     (and (if (empty-slot? end-slot)
 		      (= ace (get-value (car cards)))
 		      (and (= (get-suit (get-top-card end-slot))
@@ -125,8 +124,13 @@
 			   (= (get-value (get-top-card end-slot))
 			      (- (get-value (car cards)) 1))))
 		  (check-same-suit-list cards)
-		  (check-straight-descending-list cards)
-		  (complete-transaction start-slot rcards cards end-slot))))))
+		  (check-straight-descending-list cards))))))
+
+(define (button-released start-slot cards end-slot)
+  (and (droppable? start-slot cards end-slot)
+       (if (and (> end-slot 0) (< end-slot 8))
+           (complete-transaction start-slot cards (reverse cards) end-slot)
+           (complete-transaction start-slot (reverse cards) cards end-slot))))
 
 (define (button-clicked slot)
   #f)
@@ -261,4 +265,6 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)

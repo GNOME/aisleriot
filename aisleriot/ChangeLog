@@ -1,7 +1,48 @@
-2005-07-14  Callum McKenzie  <callum@physics.otago.ac.nz>
+2005-07-15  Callum McKenzie  <callum@physics.otago.ac.nz>
 
+	* rules/escalator.scm: 
+	* rules/elevator.scm: Adapted to be sane in click-move-mode:
+	single clicks do nothing in that mode (as opposed to doing
+	something occasionally). Add hilight support.
 
+	* cscmi.c (scm_click_to_move_p): Export the click-to-move boolean
+	to scheme.
+
+	* rules/block_ten.scm: Leave a note about other things that
+	need to be fixed with this game.
+
+	* rules/template.scm: Document set-features and droppable?
+
+	* rules/agnes.scm:
+	* rules/osmosis.scm:
+	* rules/helsinki.scm:
+	* rules/bakers_dozen.scm:
+	* rules/bakers_game.scm:
+	* rules/isabel.scm:
+	* rules/beleaguered_castle.scm:
+	* rules/bristol.scm:
+	* rules/camelot.scm:
+	* rules/golf.scm:
+	* rules/jamestown.scm:
+	* rules/kansas.scm:
+	* rules/chessboard.scm:
+	* rules/eight_off.scm:
+	* rules/fortress.scm:
+	* rules/fourteen.scm:
+	* rules/gay_gordons.scm:
+	* rules/king_albert.scm:
+	* rules/labyrinth.scm:
+	* rules/neighbor.scm:
+	* rules/odessa.scm:
+	* rules/scorpion.scm:
+	* rules/streets_and_alleys.scm
+	* rules/thirteen.scm
+	* rules/zebra.scm: More highlighting patches from Vincet Povirk 
+	(see bug #305609). 
+
+	* TODO: Empty out now that we have finished the highlighting patches.
 	
+2005-07-14  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* rules/Makefile.am: Add carpet and backbone to the build.
 

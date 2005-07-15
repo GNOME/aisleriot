@@ -62,44 +62,32 @@
 (define (button-pressed slot-id card-list)
   (= (length card-list) 1))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (cond ((= start-slot end-slot)
 	 #f)
-	((or (= end-slot 1)
-	     (= end-slot 4)
-	     (= end-slot 7)
-	     (= end-slot 10))
+	((member end-slot '(1 4 7 10))
 	 (cond ((empty-slot? end-slot)
-		(and (= (get-value (car card-list)) 1)
-		     (move-n-cards! start-slot end-slot card-list)
-		     (add-to-score! 1)))
-	       ((and (= (get-suit (get-top-card end-slot))
+		(= (get-value (car card-list)) 1))
+	       (#t 
+	        (and (= (get-suit (get-top-card end-slot))
 			(get-suit (car card-list)))
 		     (= (+ 1 (get-value (get-top-card end-slot)))
-			(get-value (car card-list))))
-		(begin
-		  (move-n-cards! start-slot end-slot card-list)
-		  (add-to-score! 1)))
-	       (#t #f)))
+			(get-value (car card-list)))))))
 	((empty-slot? end-slot)
-	 (begin
-	   (move-n-cards! start-slot end-slot card-list)
-	   (if (or (= start-slot 1)
-		   (= start-slot 4)
-		   (= start-slot 7)
-		   (= start-slot 10))
-	       (add-to-score! -1))))
+	 #t)
 	((= (get-value (get-top-card end-slot))
 	    (+ 1 (get-value (car card-list))))
-	 (begin
-	   (move-n-cards! start-slot end-slot card-list)
-	   (if (or (= start-slot 1)
-		   (= start-slot 4)
-		   (= start-slot 7)
-		   (= start-slot 10))
-	       (add-to-score! -1))))
+	 #t)
 	(#t #f)))
 	
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
+       (move-n-cards! start-slot end-slot card-list)
+       (or (not (member start-slot '(1 4 7 10)))
+           (add-to-score! -1))
+       (or (not (member end-slot '(1 4 7 10)))
+           (add-to-score! 1))))
+
 (define (button-clicked slot-id) 
   #f)
 
@@ -202,6 +190,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

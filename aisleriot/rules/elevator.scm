@@ -271,26 +271,18 @@
 	 (if (empty-slot? 4)
 	     (flip-top-card 2)
 	     ))))
-
+  
 (define (button-released start-slot card-list end-slot)
-  (if (and (= end-slot 1)
-	   (not (empty-slot? 1))
-	   (or (= (get-value (get-top-card 1))
-		  (+ 1 (get-value (car card-list))))
-	       (= (+ 1 (get-value (get-top-card 1)))
-		  (get-value (car card-list)))
-	       (and (= king (get-value (get-top-card 1)))
-		    (= ace (get-value (car card-list))))
-	       (and (= ace (get-value (get-top-card 1)))
-		    (= king (get-value (car card-list))))))
+  (if (droppable? start-slot card-list end-slot)
       (begin
 	(add-to-score! 1)
 	(move-n-cards! start-slot end-slot card-list)
 	(check-for-flips start-slot))
       #f))
 
-(define (button-clicked slot-id)
-  (cond ((= slot-id 0)
+(define (play-card slot-id)
+  (cond 
+	 ((= slot-id 0)
 	 (if (not (empty-slot? 0))
 	     (deal-cards-face-up 0 '(1))
 	     #f))
@@ -312,8 +304,16 @@
 	   (check-for-flips slot-id)))
 	(#t #f)))
 
+;; Single-clicking isn't sane in click-to-move more, so we mostly ignore it 
+;; in that case.
+(define (button-clicked slot-id)
+  (if (and (click-to-move?) 
+	   (> slot-id 1))
+      #f
+      (play-card slot-id)))
+
 (define (button-double-clicked slot-id)
-  (button-clicked slot-id))
+  (play-card slot-id))
 
 (define (playable? check-slot)
   (if (or (> check-slot 29)
@@ -360,6 +360,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

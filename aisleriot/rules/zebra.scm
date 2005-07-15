@@ -90,26 +90,30 @@
 	   (give-status-message))
       #t))
 
-(define (button-released start-slot card-list end-slot)
+(define (droppable? start-slot card-list end-slot)
   (cond ((> end-slot 9)
 	 (and (= (length card-list) 1)
 	      (not (empty-slot? end-slot))
 	      (not (eq? (is-red? (car card-list))
 			(is-red? (get-top-card end-slot))))
 	      (= (get-value (get-top-card end-slot))
-		 (+ 1 (get-value (car card-list))))
-	      (move-n-cards! start-slot end-slot card-list)
-	      (empty-tableau start-slot)))
+		 (+ 1 (get-value (car card-list))))))
 	((> end-slot 1)
 	 (and (not (eq? (is-red? (get-top-card end-slot))
 			(is-red? (car card-list))))
 	      (= (+ 1 (get-value (get-top-card end-slot)))
-		 (get-value (car card-list)))
-	      (move-n-cards! start-slot end-slot (reverse card-list))
-	      (add-to-score! (length card-list))
-	      (empty-tableau start-slot)
-	      (give-status-message)))
+		 (get-value (car card-list)))))
 	(#t #f)))
+
+(define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
+       (if (> end-slot 9)
+           (move-n-cards! start-slot end-slot card-list)
+           (begin
+             (move-n-cards! start-slot end-slot (reverse card-list))
+             (add-to-score! (length card-list))))
+       (empty-tableau start-slot)
+       (give-status-message)))
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)
@@ -222,6 +226,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)
