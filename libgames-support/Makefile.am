@@ -83,4 +83,6 @@ if GCONF_SCHEMAS_INSTALL
         GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/libgames-support/$(schema_DATA)
 endif
 
-EXTRA_DIST = $(card_DATA) $(bin_SCRIPTS) $(schema_DATA) $(GOB_SOURCE)
+EXTRA_DIST = $(card_DATA) $(bin_SCRIPTS) $(schema_in_files) $(GOB_SOURCE)
+
+DISTCLEANFILES = $(schema_DATA)
