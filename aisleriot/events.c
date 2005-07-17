@@ -174,6 +174,7 @@ void end_of_game_test() {
       refresh_screen ();
       if (game_won) { /* Check because we can undo lost games. */
 	game_in_progress = FALSE;
+	option_list_set_sensitive ();
 	update_statistics (TRUE, timer_get ());
       }
       show_game_over_dialog ();
@@ -274,6 +275,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
   if (!game_in_progress) {
     game_in_progress = TRUE;
+    option_list_set_sensitive ();
     timer_start ();
   }
 

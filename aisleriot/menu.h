@@ -27,6 +27,7 @@ void create_menus ( void );
 void toolbar_hide ( void );
 void undo_set_sensitive (gboolean state);
 void redo_set_sensitive (gboolean state);
+void option_list_set_sensitive (void);
 void help_update_game_name (gchar * name);
 void install_options_menu (gchar *name);
 

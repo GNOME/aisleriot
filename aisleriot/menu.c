@@ -43,6 +43,7 @@ GtkAction *redoaction;
 GtkAction *restartaction;
 GtkAction *fullscreenaction;
 GtkAction *leavefullscreenaction;
+GtkAction *menuaction = NULL;
 GtkWidget *helpitem;
 GtkWidget *menubar;
 GtkWidget *toolbar;
@@ -55,6 +56,7 @@ static void restart_game ()
   /* Treat a restart as part of the same game. Eventually either
    * the player will win or loose and then it gets counted. */
   game_in_progress = FALSE;
+  option_list_set_sensitive ();
   new_game (NULL, &seed);
 };
 
@@ -407,6 +409,14 @@ static void expand_options_from_int (SCM options_list, guint bits)
 /* FIXME: There isn't a schema for these automatically generated keys.
  * Maybe we should automatically generate those too. */
 
+void option_list_set_sensitive (void)
+{
+  if (menuaction == NULL)
+    return;
+  
+  gtk_action_set_sensitive (menuaction, !game_in_progress);
+}
+
 static void save_option_list (SCM options_list)
 {
   gchar *keyname;
@@ -460,7 +470,6 @@ void install_options_menu (gchar *name)
 {
   static int merge_id = 0;
   static GtkActionGroup *options_group = NULL;
-  GtkAction *menuaction;
   SCM options_list;
   gint l, i;
 

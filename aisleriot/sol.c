@@ -197,6 +197,7 @@ void new_game (gchar* file, guint *seedp)
   }
   /* The game isn't actually in progress until the user makes a move. */
   game_in_progress = FALSE;
+  option_list_set_sensitive ();
 
   if (file && strcmp (file, game_file)) {
     game_file = file;
