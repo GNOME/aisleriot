@@ -15,6 +15,7 @@ INCLUDES =  \
 	-I$(top_srcdir)/libgames-support           \
 	-DDATADIR=\""$(datadir)"\"		   \
 	$(GNOME_GAMES_CFLAGS)			   \
+	$(GLADE_CFLAGS)				   \
 	-DGLADEDIR=\""$(gladedir)"\" 		   \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"   \
 	-DVERSION=\"$(VERSION)\"		   \
@@ -45,7 +46,7 @@ sol_SOURCES = 		\
 	statistics.h
 
 sol_LDADD = $(GNOME_GAMES_LIBS) \
-	../libgames-support/libgames-support.la \
+	$(GLADE_LIBS)				   \
 	$(GUILE_LDFLAGS) 
 
 glade_DATA = \

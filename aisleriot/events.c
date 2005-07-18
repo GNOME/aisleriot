@@ -24,6 +24,7 @@
 #include "dialog.h"
 #include "slot.h"
 #include "statistics.h"
+#include "menu.h"
 
 /* These have been lifted straight from eog. */
 
