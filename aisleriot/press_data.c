@@ -116,6 +116,9 @@ void generate_press_data ( ) {
 				 press_data->moving_mask, 0, 0);
   gdk_window_show (press_data->moving_cards);
 
+  /* FIXME: We can end up here with press_data->cards = NULL.  Why?
+   * (obviously this is a crasher) It happens while dragging. It
+   * is probably also related to 121762.*/
   if (press_data->cards->prev) 
     press_data->cards->prev->next = NULL;
   else 

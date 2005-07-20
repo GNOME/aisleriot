@@ -93,17 +93,19 @@ static gboolean cards_are_droppable (hslot_type hslot) {
                                                   scm_long2num (hslot->id)));
 }
 
-static void find_drop_target(gint x, gint y, hslot_type* hslot, gint* cardid) {
+static hslot_type find_drop_target(gint x, gint y) {
   hslot_type new_hslot;
+  hslot_type retval = NULL;
   gint i, new_cardid;
   gint min_distance = G_MAXINT;
 
   /* Find a target directly under the center of the card. */
   slot_pressed(x + card_width / 2,
                y + card_height / 2,
-               hslot, cardid);
-  if (*hslot)
-    return;
+	       &new_hslot, &new_cardid);
+
+  if (new_hslot)
+    return new_hslot;
 
   /* If that didn't work, look for a target at all 4 corners of the card. */
   for (i = 0; i < 4; i++) {
@@ -119,18 +121,19 @@ static void find_drop_target(gint x, gint y, hslot_type* hslot, gint* cardid) {
         || cards_are_droppable (new_hslot)) {
       gint dx, dy, distance_squared;
 
-      dx = abs(new_hslot->pixelx + new_cardid*new_hslot->pixeldx - x);
-      dy = abs(new_hslot->pixely + new_cardid*new_hslot->pixeldy - y);
+      dx = new_hslot->pixelx + new_cardid*new_hslot->pixeldx - x;
+      dy = new_hslot->pixely + new_cardid*new_hslot->pixeldy - y;
 
       distance_squared = dx*dx + dy*dy;
 
       if (distance_squared <= min_distance) {
-        *hslot = new_hslot;
-        *cardid = new_cardid;
+	retval = new_hslot;
         min_distance = distance_squared;
       }
     }
   }
+
+  return retval;
 }
 
 static void set_cursor (int cursor)
@@ -187,11 +190,10 @@ void drop_moving_cards(gint x, gint y) {
   GList* temp;
   SCM cardlist = SCM_EOL;
   hslot_type hslot;
-  gint cardid, moved = 0;
+  gint moved = 0;
   gint width, height;
 
-  find_drop_target(x - press_data->xoffset, y - press_data->yoffset,
-                   &hslot, &cardid);
+  hslot = find_drop_target(x - press_data->xoffset, y - press_data->yoffset);
 
   if (hslot) {
     for (temp = press_data->cards; temp; temp = temp->next)
@@ -440,12 +442,10 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 {
   if (press_data->status == STATUS_IS_DRAG) {
-    hslot_type (hslot);
-    gint cardid;
+    hslot_type hslot;
 
-    find_drop_target(event->x - press_data->xoffset,
-                     event->y - press_data->yoffset,
-                     &hslot, &cardid); 
+    hslot = find_drop_target(event->x - press_data->xoffset,
+			     event->y - press_data->yoffset);
     
     highlight_drop_target(hslot);
 

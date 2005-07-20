@@ -28,16 +28,16 @@ GList *slot_list = NULL;
 
 void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
   GList *tempptr;
-
   gint num_cards;
   gboolean got_slot = FALSE;
+  hslot_type hslot;
 
   *slot = NULL;
   *cardid = -1;
 
   for (tempptr = g_list_last(slot_list); tempptr; tempptr = tempptr->prev) {
 
-    hslot_type hslot = (hslot_type) tempptr->data;
+    hslot = (hslot_type) tempptr->data;
 
     /* if point is within our rectangle */
     if (hslot->pixelx <= x && x <= hslot->pixelx + hslot->width && 
