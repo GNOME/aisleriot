@@ -138,7 +138,7 @@ network_game_dialog_show (GtkWidget *parent_window)
   /*  Create Network Status Frame. */
   frame = games_frame_new (_("Status"));
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0);
-  status_view = gtk_label_new (_("Check the configuration and press Connect"));
+  status_view = gtk_label_new (_("Select a nickname and connection method\nthen click Connect."));
   gtk_container_add (GTK_CONTAINER (frame), status_view);
 
   /* Now for the network connection options. */

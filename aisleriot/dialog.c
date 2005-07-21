@@ -61,7 +61,7 @@ void show_game_over_dialog() {
 			    NULL);
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
 			  GTK_STOCK_QUIT, GTK_RESPONSE_CLOSE,
-                          _("New Game"), GTK_RESPONSE_ACCEPT,
+                          _("_New Game"), GTK_RESPONSE_ACCEPT,
                           NULL);
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
 
