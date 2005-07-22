@@ -104,7 +104,7 @@ static hslot_type find_drop_target(gint x, gint y) {
                y + card_height / 2,
 	       &new_hslot, &new_cardid);
 
-  if (new_hslot)
+  if (new_hslot && cards_are_droppable (new_hslot))
     return new_hslot;
 
   /* If that didn't work, look for a target at all 4 corners of the card. */
@@ -116,7 +116,7 @@ static hslot_type find_drop_target(gint x, gint y) {
     if (!new_hslot)
 	continue;
 	
-        /* This skips corners we know are not droppable. */
+    /* This skips corners we know are not droppable. */
     if (!droppable_is_featured
         || cards_are_droppable (new_hslot)) {
       gint dx, dy, distance_squared;

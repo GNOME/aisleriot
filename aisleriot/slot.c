@@ -44,7 +44,7 @@ void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
 	hslot->pixely <= y && y <= hslot->pixely + hslot->height) 
     {
 	num_cards = hslot->length;
-       
+
 	if ( got_slot == FALSE || num_cards > 0 )
 	{  
    		/* if we support exposing more than one card,
