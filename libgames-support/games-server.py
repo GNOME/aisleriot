@@ -139,11 +139,33 @@ class Server(Thread):
         if cli in self.waitlist:
             self.waitlist.remove(cli)
         self.ccount -= 1
-     
-iagno1 = Server(26478)
-iagno1.start()
 
+# This is minimal code to make the process a daemon in the Unix
+# environment. See W. R. Stevens "Advanced Programming in the Unix
+# Environment". See chapter 13, esp. section 13.3
+
+pid = os.fork ()
+if (pid != 0):  
+    os._exit (0)
+os.setsid ()
+os.chdir ("/")
+
+for fd in range (0, os.sysconf ("SC_OPEN_MAX")):
+    try:
+        os.close (fd)
+    except:
+        pass
+
+open ("/dev/null", "r")   # new stdin
+open ("/dev/null", "rw")  # new stdout
+open ("/dev/null", "rw")  # new stderr
+
+# Create the servers - one for each game
+iagno1 = Server(26478)
 gnibbles1 = Server(26479)
+
+# Start the servers
+iagno1.start()
 gnibbles1.start()
 
 
