@@ -1,3 +1,11 @@
+2005-07-25  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* games-scores.c: 
+	* games-network-dialog.c: 
+	* games-network.c: Fixed for gcc 4.0 warnings. Note the extra NULL
+	in the gtk_dialog_new_with_buttons because gcc believes that
+	first_button_text is mandatory.
+
 2005-07-23  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* games-server.py: Make it become a proper Unix daemon. This

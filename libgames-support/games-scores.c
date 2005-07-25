@@ -78,7 +78,7 @@ G_DEFINE_TYPE (GamesScores, games_scores, G_TYPE_OBJECT);
  */
 GObject * games_scores_new (GamesScoresDescription * description) {
   GamesScores *self;
-  GamesScoresCategory *cats;
+  GamesScoresCategory **cats;
   GamesScoresCategory *dupcat;
   
   self = GAMES_SCORES (g_object_new (GAMES_TYPE_SCORES, NULL));
@@ -90,11 +90,11 @@ GObject * games_scores_new (GamesScoresDescription * description) {
     g_hash_table_new_full (g_str_hash, g_str_equal,
 			   g_free, 
 			     (GDestroyNotify) games_scores_category_free);
-  while (cats) {
-    dupcat = games_scores_category_dup (cats);
+  while (*cats) {
+    dupcat = games_scores_category_dup (*cats);
     
     g_hash_table_insert (self->priv->categories, 
-			 g_strdup (cats->key),
+			 g_strdup ((*cats)->key),
 			 dupcat);
     cats++;
   }

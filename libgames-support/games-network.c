@@ -488,7 +488,7 @@ games_get_server (sw_discovery discovery, sw_discovery_oid oid,
      sw_const_string domain, sw_ipv4_address address, sw_port  port,
      sw_octets text_record, sw_uint32 text_record_len, sw_opaque_t extra)
 {
-  sw_int8 name_buf[16];
+  char name_buf[16];
 
   sw_discovery_cancel (discovery, oid);
   network_gui_add_server ((char *)name, 

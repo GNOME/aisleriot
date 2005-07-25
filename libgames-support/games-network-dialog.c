@@ -125,7 +125,7 @@ network_game_dialog_show (GtkWidget *parent_window)
   
   game_dialog = gtk_dialog_new_with_buttons (_("New Network Game"),
                     			     GTK_WINDOW(parent_window),
-				             0, NULL);
+				             0, NULL, NULL);
   gtk_dialog_set_has_separator (GTK_DIALOG (game_dialog), FALSE);
   gtk_container_set_border_width (GTK_CONTAINER (game_dialog), 5);
   gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (game_dialog)->vbox), 2);
