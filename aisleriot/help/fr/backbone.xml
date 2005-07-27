@@ -1,0 +1,109 @@
+<sect1 id="Backbone"><!--<sect1info>
+    <copyright>
+      <year>2005</year>
+      <holder>Vincent Povirk</holder>
+    </copyright>
+    <author>
+      <firstname>Vincent</firstname>
+      <surname>Povirk</surname>
+    </author>
+    <address><email>madewokherd@gmail.com</email></address>
+  </sect1info>-->
+
+  <title>Backbone</title>
+
+  <para>written by Vincent Povirk</para>
+
+  <sect2>Setup</sect2>
+
+  <informaltable>
+    <tgroup cols="2"><tbody>
+	<row>
+	  <entry>Type of Deck</entry>
+	  <entry>Double Deck</entry>
+	</row>
+	<row>
+	  <entry>Reserve</entry>
+	  <entry>
+	    Two stacks of 9 cards each, with a single above both stacks.
+	    Cards that are not obscured are available for play to anywhere except
+	    empty tableau spaces.
+	  </entry>
+	</row>
+	<row>
+	  <entry>Tableau</entry>
+	  <entry>
+	    Eight piles, four on each side of the reserve.  A card is dealt to each
+	    tableau pile when the game starts.  Build down in suit.  Empty spaces 
+	    can be filled with any card.  Only one card can be moved at a time.
+	  </entry>
+	</row>
+	<row>
+	  <entry>Foundations</entry>
+	  <entry>
+	    Eight piles top right.  To be built up in suit from Ace to
+	    King.
+	  </entry>
+	</row>
+	<row>
+	  <entry>Stock</entry>
+	  <entry>
+	    Single pile below the foundations on the left.  The rest of the deck is
+	    placed here after dealing on to the Tableau and Reserve.  Cards are 
+	    turned over one at a time to Waste.  One redeal.
+	  </entry>
+	</row>
+	<row>
+	  <entry>Waste</entry>
+	  <entry>
+	    Single pile to the right of the Stock.  To be taken from Stock.  Top 
+	    card available for play.
+	  </entry>
+	</row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+
+  <sect2>Goal</sect2>
+  <para>
+    Move all cards to the Foundation piles.
+  </para>
+
+  <sect2>Rules</sect2>
+  <para>
+    Cards in the Tableau are built down by suit.  Only one card can be moved
+    at a time.  Empty slots can be filled with any card except from the reserve.
+  </para>
+  <para>
+    Cards are flipped from the Stock to the Waste individually.  Top
+    card in Waste is in play.  When Stock is empty, move all cards in
+    Waste back to the Stock, maintaining order. You can go through the
+    deck twice.
+  </para>
+  <para>
+    Foundations are built up in suit from Ace to King.  Cards in the
+    Foundations are no longer in play.  Double clicking on a card will move
+    it to the appropriate Foundation pile if such a move is
+    possible. 
+  </para>
+
+  <sect2>Options</sect2>
+  <para>
+    None.
+  </para>
+
+  <sect2>Scoring</sect2>
+  <para>
+    Each card in the Foundation piles scores one point.
+  </para>
+  <para>
+    Maximum possible score:  104
+  </para>
+
+  <sect2>Strategy</sect2>
+  <para>
+    You can use empty spaces in the Tableau to move multiple cards. Be careful
+    with Kings in the Reserve: the only way to remove them is by playing them
+    to a Foundation on top of a Queen.
+  </para>
+</sect1>
