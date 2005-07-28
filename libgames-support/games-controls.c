@@ -376,6 +376,10 @@ games_controls_list_add_control (GamesControlsList *list,
 	/* We have to go to the root to make sure we can get
 	 * the schemas. */
 	engine = gconf_engine_get_for_address (GCONF_SCHEMA_CONFIG_SOURCE, NULL);
+	if (engine == NULL) {
+	        g_object_unref (client);
+		return;
+	}
 
 	entry = gconf_engine_get_entry (engine, gconf_key, NULL, TRUE, NULL);
 	if (entry == NULL) {

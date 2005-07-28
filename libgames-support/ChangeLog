@@ -1,3 +1,9 @@
+2005-07-28  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* games-controls.c: gconf_engine_* calls don't handle a NULL
+	engine argument so we have to explicitly check for errors at each
+	stage. FIxes bug #300423.
+
 2005-07-25  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* games-scores.c: 
