@@ -53,6 +53,6 @@ SCM        cscmi_winning_game_lambda          (void);
 SCM        cscmi_hint_lambda                  (void);
 SCM        cscmi_get_options_lambda           (void);
 SCM        cscmi_apply_options_lambda         (SCM        options);
-SCM        cscmi_timeout_lambda               (void);
+gboolean   cscmi_timeout_lambda               (void);
 
 #endif

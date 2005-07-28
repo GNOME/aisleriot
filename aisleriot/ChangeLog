@@ -1,3 +1,15 @@
+2005-07-28  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* sol.c: Fix the race condition reported in bug #121762 by making
+	the end_of_game check in the timeout conditional on the game
+	supporting a timeout condition. Currently none do, but if any did
+	the game would have to be careful to allow no more moves or bug
+	#121762 will reappear. Also removed the code that was patching the
+	symptom rather than the cause.
+
+	* cscmi.c (cscmi_timeout_lambda): Since it is called from C, make
+	it return a C value (gboolean in this case).
+
 2005-07-21  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* events.c: Make the placement of cards even better by ignoring

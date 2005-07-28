@@ -766,7 +766,7 @@ cscmi_apply_options_lambda (SCM options)
   return retval;
 }
 
-SCM
+gboolean
 cscmi_timeout_lambda (void)
 {
   CallData *call_data;
@@ -783,5 +783,5 @@ cscmi_timeout_lambda (void)
   retval = call_data->retval;
   g_free (call_data);
 
-  return retval;
+  return SCM_NFALSEP (retval);
 }

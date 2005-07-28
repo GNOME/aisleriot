@@ -201,11 +201,6 @@ void new_game (gchar* file, guint *seedp)
 
   if (file && strcmp (file, game_file)) {
     game_file = file;
-
-    /* Explicitly drop any dragged cards. This shouldn't happen, but it
-     * has in the past so we should be defensive. See bug 121762. */
-    /* FIXME: we haven't actually fixed the cause of this. */
-    free_press_data ();
     
     /* Although this line slows down game switching by a noticeable amount, we
      * add it here in order to make sure all the original functions are
@@ -277,8 +272,10 @@ GtkWidget *time_value;
 static gint timer_cb ()
 {
   timeout = 3600;
-  cscmi_timeout_lambda ();
-  end_of_game_test();
+  /* All the games return #f and nothing else with this call, but just in
+   * case someone changes their mind in the future. */
+  if (cscmi_timeout_lambda ())
+    end_of_game_test();
   return 0;	
 }
 
