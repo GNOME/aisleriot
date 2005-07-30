@@ -662,7 +662,7 @@ games_scores_dialog_set_buttons (GamesScoresDialog * self, guint buttons)
     }
 
     if (buttons & GAMES_SCORES_NEW_GAME_BUTTON) {
-	gtk_dialog_add_button (GTK_DIALOG (self), _("New Game"),
+	gtk_dialog_add_button (GTK_DIALOG (self), _("_New Game"),
 	                       GTK_RESPONSE_ACCEPT);
         gtk_dialog_set_default_response (GTK_DIALOG (self), 
 	       			         GTK_RESPONSE_ACCEPT);
