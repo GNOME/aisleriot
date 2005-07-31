@@ -57,21 +57,37 @@ typedef struct {
   char *stock_id;
   char *from_data;
   char *from_gtk_stock;
+  char *filename;
 } GamesStockItemIcon;
 
 /* Names of stock intems installed by gtk+ and gnome-icon-theme */
 static GamesStockItemIcon stock_item_icon[] = {
-  { GAMES_STOCK_NEW_GAME,         NULL,                     GTK_STOCK_NEW },
-  { GAMES_STOCK_PAUSE_GAME,       "stock_timer_stopped",    NULL },
-  { GAMES_STOCK_RESUME_GAME,      "stock_timer",            NULL },
-  { GAMES_STOCK_RESTART_GAME,     NULL,                     GTK_STOCK_REFRESH },
-  { GAMES_STOCK_UNDO_MOVE,        NULL ,                    GTK_STOCK_UNDO },
-  { GAMES_STOCK_REDO_MOVE,        NULL,                     GTK_STOCK_REDO },
-  { GAMES_STOCK_HINT,             NULL,                     GTK_STOCK_DIALOG_INFO },
-  { GAMES_STOCK_SCORES,           "stock_scores",           NULL },
-  { GAMES_STOCK_FULLSCREEN,       "stock_fullscreen",       NULL },
-  { GAMES_STOCK_LEAVE_FULLSCREEN, "stock_leave-fullscreen", NULL },
-  { GAMES_STOCK_CONTENTS,         NULL,                     GTK_STOCK_HELP}
+  { GAMES_STOCK_NEW_GAME,         NULL,                     GTK_STOCK_NEW, 
+                                  NULL },
+  { GAMES_STOCK_PAUSE_GAME,       "stock_timer_stopped",    NULL,
+                                  NULL },
+  { GAMES_STOCK_RESUME_GAME,      "stock_timer",            NULL,
+                                  NULL },
+  { GAMES_STOCK_RESTART_GAME,     NULL,                     GTK_STOCK_REFRESH,
+                                  NULL },
+  { GAMES_STOCK_UNDO_MOVE,        NULL ,                    GTK_STOCK_UNDO,
+                                  NULL },
+  { GAMES_STOCK_REDO_MOVE,        NULL,                     GTK_STOCK_REDO,
+                                  NULL },
+  { GAMES_STOCK_HINT,             NULL,                     GTK_STOCK_DIALOG_INFO,
+                                  NULL },
+  { GAMES_STOCK_SCORES,           "stock_scores",           NULL,
+                                  NULL },
+  { GAMES_STOCK_FULLSCREEN,       "stock_fullscreen",       NULL,
+                                  NULL },
+  { GAMES_STOCK_LEAVE_FULLSCREEN, "stock_leave-fullscreen", NULL,
+                                  NULL },
+  { GAMES_STOCK_CONTENTS,         NULL,                     GTK_STOCK_HELP,
+                                  NULL },
+  { GAMES_STOCK_TELEPORT,         NULL,                     NULL,
+                                  DATADIR "/pixmaps/teleport.png" },
+  { GAMES_STOCK_RTELEPORT,        NULL,                     NULL,
+                                  DATADIR "/pixmaps/rteleport.png" },
 };
 
 typedef struct {
@@ -239,6 +255,24 @@ add_stock_icon (const gchar  *stock_id,
   gtk_icon_source_free (source);
 }
 
+/* The same routine, but for filenames instead. */
+static void
+add_icon_from_file (const gchar *stock_id, char *filename)
+{
+  GtkIconSource *source;
+  GtkIconSet    *set;
+
+  source = gtk_icon_source_new ();
+  set = gtk_icon_set_new ();
+
+  gtk_icon_source_set_filename (source, filename);
+
+  gtk_icon_set_add_source (set, source);
+  gtk_icon_factory_add (games_icon_factory, stock_id, set);
+  gtk_icon_set_unref (set);
+  gtk_icon_source_free (source);  
+}
+
 void
 games_stock_init (void)
 {
@@ -249,16 +283,19 @@ games_stock_init (void)
   for (i = 0; i < G_N_ELEMENTS (stock_item_icon); i++) {
     GtkIconSet *icon_set;
 
-  if (stock_item_icon[i].from_data) 
-        /* FIXME: Only for non-gtk icons. See above. */
+    if (stock_item_icon[i].filename)
+      add_icon_from_file (stock_item_icon[i].stock_id, 
+			  stock_item_icon[i].filename);
+    else if (stock_item_icon[i].from_data) 
+      /* FIXME: Only for non-gtk icons. See above. */
       add_stock_icon (stock_item_icon[i].stock_id, stock_item_icon[i].from_data);
-  else {
-	/* FIXME: Only for gtk stock icons. 
-         * Seems to support theme switching... but not for a11y? */
+    else {
+      /* FIXME: Only for gtk stock icons. 
+       * Seems to support theme switching... but not for a11y? */
       icon_set = gtk_icon_factory_lookup_default (stock_item_icon[i].from_gtk_stock);
       gtk_icon_factory_add (games_icon_factory, stock_item_icon[i].stock_id, icon_set);
     }
-
+    
   }
 
   gtk_icon_factory_add_default (games_icon_factory);

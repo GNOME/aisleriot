@@ -45,6 +45,10 @@ G_BEGIN_DECLS
 #define GAMES_STOCK_END_GAME         "games-end-game"
 #define GAMES_STOCK_CONTENTS         "games-contents"
 
+/* These belong to us */
+#define GAMES_STOCK_TELEPORT         "games-teleport"
+#define GAMES_STOCK_RTELEPORT        "games-random-teleport"
+
 void games_stock_init (void);
 
 void games_stock_set_pause_actions (GtkAction *pause_action, 

@@ -112,6 +112,13 @@ if test x$CC=xgcc ; then
   GNOME_GAMES_CFLAGS="-std=gnu89 $GNOME_GAMES_CFLAGS"
 fi
 
+## Check for some special cases
+OS_FLAGS=""
+case "$ac_cv_build" in
+     *-*-osf1-* ) OS_FLAGS="-D_POSIX_PII_SOCKET" ;;
+esac
+GNOME_GAMES_CFLAGS="$OS_FLAGS $GNOME_GAMES_CFLAGS"
+
 PKG_CHECK_MODULES(ESD, esound, , [ CFLAGS="$CFLAGS -DNO_ESD" ])
 AC_SUBST(ESD_CFLAGS)
 AC_SUBST(ESD_LIBS)
