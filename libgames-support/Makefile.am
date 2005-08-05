@@ -73,12 +73,12 @@ libgames_support_la_SOURCES =		\
 	rteleport.h			\
 	$(NULL)
 
-#%.c %.h %-private.h: %.gob
-#	if [ "x$(GOB2)" = "x" ] ; then \
-#		touch $@ ; \
-#	else \
-#		@GOB2@ $< ; \
-#	fi
+%.c %.h %-private.h: %.gob
+	if [ "x$(GOB2)" = "x" ] ; then \
+		touch $@ ; \
+	else \
+		@GOB2@ $< ; \
+	fi
 
 install-data-local:
 if GCONF_SCHEMAS_INSTALL
