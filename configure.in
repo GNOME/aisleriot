@@ -85,7 +85,9 @@ AC_SUBST(GNOME_GAMES_CFLAGS)
 AC_SUBST(GNOME_GAMES_LIBS)
 
 ## Flags for glade
-PKG_CHECK_MODULES(GLADE, libglade-2.0)
+## We need gmodule-export to ensure --export-dynamic is used and
+##  glade_xml_signal_autoconnect works.
+PKG_CHECK_MODULES(GLADE, libglade-2.0 gmodule-export-2.0)
 AC_SUBST(GLADE_CFLAGS)
 AC_SUBST(GLADE_LIBS)
 
