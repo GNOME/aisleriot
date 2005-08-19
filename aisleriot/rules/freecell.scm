@@ -235,6 +235,10 @@
   (and (movable-to-field? start-slot card-list field-id)
        (add-cards! field-id card-list)))
 
+(define (movable-to-freecell? card-list freecell-id)
+  (and (= (length card-list) 1)
+       (empty-slot? freecell-id)))
+
 (define (move-to-freecell card-list freecell-id)
 	(and
 		(= (length card-list) 1)
@@ -375,6 +379,7 @@
              (cond
                ((homecell? end-slot) (movable-to-homecell? card-list end-slot))
                ((field?    end-slot) (movable-to-field? start-slot card-list end-slot))
+	       ((freecell? end-slot) (movable-to-freecell? card-list end-slot))
                (else #f))))
 
 (define (button-released start-slot card-list end-slot)
