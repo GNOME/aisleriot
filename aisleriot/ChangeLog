@@ -1,3 +1,14 @@
+2005-08-21  Callum McKenzie  <callum@spooky-possum.org>
+
+	* draw.c: 
+	* sol.c:
+	* events.c:
+	* events.h: Change the drawing mechanism from "Set the background
+	pixmap and let the X server sort it out" to an explicit expose
+	function that draws from the surface pixmap. This is necessary to
+	avoid a bad interaction between the initialisation of the drawing
+	code and GTK+ 2.8.0. 
+
 2005-08-19  Callum McKenzie  <callum@spooky-possum.org>
 
 	* rules/freecell.scm: Patch from Dagfinn I. Mannsåker to make

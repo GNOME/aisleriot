@@ -262,8 +262,8 @@ static void highlight_drop_target(hslot_type hslot) {
       } 
     }
 
-  /* This ensures that the moving cards are on top.*/
-  gdk_window_show (press_data->moving_cards);
+    /* This ensures that the moving cards are on top.*/
+    gdk_window_show (press_data->moving_cards); 
   }
 }
 
@@ -441,6 +441,8 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
 gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 {
+  gint x, y;
+
   if (press_data->status == STATUS_IS_DRAG) {
     hslot_type hslot;
 
@@ -449,11 +451,18 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
     
     highlight_drop_target(hslot);
 
-    gdk_window_move(press_data->moving_cards,  
-		    event->x - press_data->xoffset,
-		    event->y - press_data->yoffset);
+    x = event->x - press_data->xoffset;
+    y = event->y - press_data->yoffset;
 
-    gdk_window_clear(press_data->moving_cards);
+    gdk_window_move(press_data->moving_cards, x, y);
+
+    /* This is a quick and nasty hack to make sure that the areas
+     * under the transparent corners of the dragged card get drawn
+     * properly. */
+    gdk_draw_drawable (playing_area->window, playing_area->style->black_gc,
+		       surface, x, y, x, y, card_width, card_height);
+
+    gdk_window_clear(press_data->moving_cards); 
     set_cursor (CURSOR_CLOSED);
   }
   else if (press_data->status == STATUS_MAYBE_DRAG &&
@@ -534,6 +543,20 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   settings = gtk_settings_get_default();
   g_object_get(G_OBJECT(settings),"gtk-double-click-time",&tmptime,NULL);
   dbl_click_time = tmptime/1000.0;
+
+  return FALSE;
+}
+
+gint expose_event (GtkWidget *widget, GdkEventExpose *event) 
+{
+
+  if (!surface)
+    return TRUE;
+
+  gdk_draw_drawable (widget->window, widget->style->black_gc,
+		     surface, event->area.x, event->area.y,
+		     event->area.x, event->area.y,
+		     event->area.width, event->area.height);
 
   return FALSE;
 }

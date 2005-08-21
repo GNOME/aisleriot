@@ -27,6 +27,7 @@ gint button_press_event (GtkWidget*, GdkEventButton*, void* );
 gint button_release_event (GtkWidget*, GdkEventButton*, void* );
 gint app_configure_event (GtkWidget *widget, GdkEventConfigure *event);
 gint configure_event (GtkWidget*, GdkEventConfigure* );
+gint expose_event (GtkWidget *widget, GdkEventExpose *event);
 gint motion_notify_event (GtkWidget*, GdkEventMotion* );
 void end_of_game_test(void);
 int waiting_for_mouse_up(void);

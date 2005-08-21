@@ -344,14 +344,16 @@ static void create_sol_board ()
 
   slot_gc = gdk_gc_new (playing_area->window);
 
-  g_signal_connect (GTK_OBJECT(playing_area),"button_release_event",
+  g_signal_connect (G_OBJECT(playing_area),"button_release_event",
 		      GTK_SIGNAL_FUNC (button_release_event), NULL);
-  g_signal_connect (GTK_OBJECT (playing_area), "motion_notify_event",
+  g_signal_connect (G_OBJECT (playing_area), "motion_notify_event",
 		      GTK_SIGNAL_FUNC (motion_notify_event), NULL);
-  g_signal_connect (GTK_OBJECT (playing_area), "button_press_event",
+  g_signal_connect (G_OBJECT (playing_area), "button_press_event",
 		      GTK_SIGNAL_FUNC (button_press_event), NULL);
-  g_signal_connect (GTK_OBJECT (playing_area), "configure_event",
+  g_signal_connect (G_OBJECT (playing_area), "configure_event",
 		      GTK_SIGNAL_FUNC (configure_event), NULL);
+  g_signal_connect (G_OBJECT (playing_area), "expose_event",
+		    GTK_SIGNAL_FUNC (expose_event), NULL);
 }
 
 void quit_app (GtkMenuItem *menuitem)

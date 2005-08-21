@@ -206,10 +206,9 @@ void take_snapshot() {
 			 card_width, card_height);
     }
   draw_cards ();
-  gdk_window_set_back_pixmap (playing_area->window, surface, 0);
 }
 
 void refresh_screen () {
   take_snapshot ();
-  gdk_window_clear (playing_area->window);
+  gtk_widget_queue_draw (playing_area);
 }
