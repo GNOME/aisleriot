@@ -66,7 +66,9 @@ void generate_press_data ( ) {
   press_data->cards = g_list_nth(hslot->cards, press_data->cardid - 1);
   width = card_width + (hslot->length - press_data->cardid) * hslot->pixeldx;
   height= card_height + (hslot->length - press_data->cardid) * hslot->pixeldy;
-  
+  press_data->width = width;
+  press_data->height = height;
+
   gdk_window_resize(press_data->moving_cards, width, height);
   gdk_window_move(press_data->moving_cards, x, y);
 

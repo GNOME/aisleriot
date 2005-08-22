@@ -1,3 +1,32 @@
+gnome-games 2.11.5
+==================
+
+This is the final release candidate for 2.12. Testing this release is
+strongly encouraged. It should compile on a GNOME 2.10 system without
+any extra libraries.
+
+As usual there are no new features, however there are some things that
+need attention:
+
+ - Aisleriot drawing code: there has been a change here that is rather
+drastic for this late in the release cycle. Any drawing glitches
+should be filed as bugs. When reporting the bug please describe
+exactly what you were doing, the game played, and how many cards you
+were dragging. Screenshots won't go amiss either.
+
+ - The aisleriot statistics dialog: if I haven't got the autoconf
+magic right then the close button on this dialog may
+fail. Alternatively configure may fail. In either case I am interested
+in reports of this, espeically on Fedora core 3 and core 4 systems.
+
+ - Once again, aisleriot: there is a strange crash that happens very
+infrequently. I have seen it myself, but not managed to get a good
+stack trace. Anyone who has debugging symbols turned on and
+experiences a crash -please report it. It will occur while, or shortly
+after dragging some cards.
+
+All other crashes should also be reported.
+
 gnome-games 2.11.4
 ==================
 

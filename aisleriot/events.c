@@ -460,7 +460,8 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
      * under the transparent corners of the dragged card get drawn
      * properly. */
     gdk_draw_drawable (playing_area->window, playing_area->style->black_gc,
-		       surface, x, y, x, y, card_width, card_height);
+		       surface, x, y, x, y, 
+		       press_data->width, press_data->height);
 
     gdk_window_clear(press_data->moving_cards); 
     set_cursor (CURSOR_CLOSED);
