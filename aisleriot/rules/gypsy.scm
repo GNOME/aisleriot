@@ -320,6 +320,21 @@
 			  #f))
 	(#t (check-to-tableau? slot1 (+ 1 slot2)))))
 
+(define (check-from-foundation? slot1 slot2)
+  (cond ((= slot1 9)
+	 #f)
+	((or (= slot2 17)
+	     (empty-slot? slot1))
+	 (check-from-foundation? (+ 1 slot1) 9))
+	(#t (or (and (not (empty-slot? slot2))
+		     (check-a-tableau (get-top-card slot2) 
+				      slot2 
+				      (list (get-top-card slot1))
+				      slot1 
+				      #f))
+		(check-from-foundation? slot1 (+ 1 slot2))))))
+
+
 (define (check-for-deal)
   (if (not (empty-slot? 0))
       (list 0 (_"Deal another hand"))
@@ -329,7 +344,8 @@
   (or (check-to-foundations? 9)
       (check-to-tableau? 9 10)
       (check-for-empty)
-      (check-for-deal)))
+      (check-for-deal)
+      (check-from-foundation? 1 9)))
 
 (define (get-options) 
   #f)
