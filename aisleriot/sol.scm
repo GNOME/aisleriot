@@ -621,7 +621,7 @@
   (lambda (names values)
     (or (equal? '() names)
         (begin
-          (eval-1 (list 'set! (car names) (car values)))
+          (eval-1 (list 'set! (car names) (list 'quote (car values))))
           (restore-variables (cdr names) (cdr values))
           ))))
 
