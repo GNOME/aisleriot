@@ -28,6 +28,7 @@ rules_DATA  = 			\
 	fortunes.scm		\
 	fourteen.scm		\
 	freecell.scm		\
+	gaps.scm		\
 	gay_gordons.scm		\
 	glenwood.scm		\
 	golf.scm		\

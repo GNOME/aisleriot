@@ -1,3 +1,9 @@
+2005-09-08  Callum McKenzie  <callum@spooky-possum.org>
+
+	* sol.scm (save-variables): Make an explicit copy when saving
+	state so we can restore things that are manipulated by set! style
+	operations (i.e. the use of set-vector! in gaps).
+
 2005-09-06  Callum McKenzie  <callum@spooky-possum.org>
 
 	* sol.scm (restore-variables): Add an extra quote so lists are

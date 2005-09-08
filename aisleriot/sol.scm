@@ -613,7 +613,7 @@
   (lambda (names)
     (if (equal? '() names)
         '()
-        (cons (eval-1 (car names)) 
+        (cons (eval-1 (list 'copy-tree (car names))) 
               (save-variables (cdr names))))))
 
 ; Restore all the state variables for a game
