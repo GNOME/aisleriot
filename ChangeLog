@@ -1,10 +1,27 @@
-2005-08-22  Callum McKenzie  <callum@spooky-possum.org>
+2005-09-08  Callum McKenzie  <callum@spooky-possum.org>
 
-	* NEWS: 
-	* configure.in: 2.11.5
+	* configure.in: Bump the version number to 2.13.0 to avoid
+	confusion.
+
+2005-09-07  Callum McKenzie  <callum@spooky-possum.org>
+
+	* configure.in: Move HOWL stuff out of CFLAGS so that nothing bad
+	happens when CFLAGS is over-ridden. Also change the guile check to
+	look for libguile.h: it is the only reliable test for the
+	development packages since guile-config and its output do not
+	depend on the development packages.
+
+2005-08-22  Callum McKenzie  <callum@spooky-possum.org>
 
 	* configure.in: Don't use gmodule-export, use plain gmodule since
 	not everyone has it.
+
+2005-08-16  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* README: 
+	* configure.in: Patch from Hans Petter Jansson to allow Bonjour to
+	be used for zeroconf networking instead of Howl. Documentation and
+	alteration to not stop on a conflict by yours truly.
 
 2005-08-11  Callum McKenzie  <callum@physics.otago.ac.nz>
 
@@ -15,6 +32,17 @@
 
 	* configure.in: 
 	* NEWS: 2.11.4.
+
+2005-08-06  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* README: Remove mention of the FreeBSD Licensed Nibbles artwork
+	since we have replaced it.
+
+2005-07-31  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* configure.in: Add a special case for OSF/1 and add
+	-D_POSIX_PII_SOCKET to the flags so the correct definition of
+	socklen_t is dragged in.
 
 2005-07-31  Callum McKenzie  <callum@physics.otago.ac.nz>
 

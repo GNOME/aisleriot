@@ -247,7 +247,7 @@
 	     (> slot-id 10))
 	 #f)
 	((empty-slot? slot-id)
-	 (list 2 (get-name (get-top-card 1)) (_"an empty Tableau slot")))
+	 (list 2 (get-name (get-top-card 1)) (_"an empty tableau slot")))
 	(#t (empty-tableau? (+ 1 slot-id)))))
 
 (define (get-hint)

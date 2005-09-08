@@ -164,7 +164,7 @@ network_game_dialog_show (GtkWidget *parent_window)
     
   server = gconf_client_get_string (conf_client, KEY_NETWORK_SERVER, NULL);
   if (server == NULL) {
-    gtk_entry_set_text (GTK_ENTRY(server_entry), game_server);
+    gtk_entry_set_text (GTK_ENTRY(server_entry), games_network_server_name);
   } else {
     gtk_entry_set_text (GTK_ENTRY(server_entry), server);
   }
@@ -172,12 +172,12 @@ network_game_dialog_show (GtkWidget *parent_window)
   rbutton_b = gtk_radio_button_new_with_label_from_widget (
 			GTK_RADIO_BUTTON (rbutton_a),
 			_("Host local game"));
-#ifdef NO_HOWL
+#ifndef HAVE_ZEROCONF
   gtk_widget_set_sensitive (rbutton_b, FALSE);
 #endif
   gtk_box_pack_start (GTK_BOX(vbox2), rbutton_b, FALSE, FALSE, 0);
   game_entry = gtk_entry_new ();
-#ifdef NO_HOWL
+#ifndef HAVE_ZEROCONF
   gtk_widget_set_sensitive (game_entry, FALSE);
 #endif
   gtk_entry_set_max_length(GTK_ENTRY(game_entry), 12);
@@ -194,7 +194,7 @@ network_game_dialog_show (GtkWidget *parent_window)
   label = gtk_label_new_with_mnemonic (_("_Game name:"));
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), game_entry);
   gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
-#ifdef NO_HOWL
+#ifndef HAVE_ZEROCONF
   gtk_widget_set_sensitive (label, FALSE);
   gtk_widget_set_sensitive (game_entry, FALSE);
 #endif
@@ -204,7 +204,7 @@ network_game_dialog_show (GtkWidget *parent_window)
   rbutton_c = gtk_radio_button_new_with_label_from_widget (
                         GTK_RADIO_BUTTON (rbutton_b),
                         _("Join local game"));
-#ifdef NO_HOWL
+#ifndef HAVE_ZEROCONF
   gtk_widget_set_sensitive (rbutton_c, FALSE);
 #endif
   gtk_box_pack_start (GTK_BOX(vbox2), rbutton_c, FALSE, FALSE, 0);
@@ -223,12 +223,12 @@ network_game_dialog_show (GtkWidget *parent_window)
   gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX(vbox2), hbox, FALSE, FALSE, 0);
   
-#ifdef NO_HOWL
+#ifndef HAVE_ZEROCONF
   gtk_widget_set_sensitive (label, FALSE);
 #endif
   model = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
   view = gtk_tree_view_new_with_model (GTK_TREE_MODEL(model));
-#ifdef NO_HOWL
+#ifndef HAVE_ZEROCONF
   gtk_widget_set_sensitive (view, FALSE);
 #endif
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(view), FALSE);
@@ -355,7 +355,7 @@ connect_cb (GtkWidget *widget)
   gconf_client_set_int (conf_client, KEY_NETWORK_MODE, network_mode, NULL);
 
   if (server == NULL) {
-    server = game_server;
+    server = games_network_server_name;
   }
 
   if (network_mode == SERVER_MODE) {

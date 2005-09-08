@@ -23,8 +23,13 @@
 
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <errno.h>
 
 #include "games-score.h"
+#include "games-scores.h"
 #include "games-scores-backend.h"
 
 G_DEFINE_TYPE (GamesScoresBackend, games_scores_backend, G_TYPE_OBJECT);
@@ -32,9 +37,7 @@ G_DEFINE_TYPE (GamesScoresBackend, games_scores_backend, G_TYPE_OBJECT);
 static void
 games_scores_backend_finalize (GamesScoresBackend *backend)
 {
-  if (backend->priv->fileok) {
-    close (backend->priv->fd);
-  }
+
 }
 
 static void
@@ -54,62 +57,154 @@ games_scores_backend_init (GamesScoresBackend *backend)
 					       GamesScoresBackendPrivate);
 }
 
-GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style, 
+GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
+					      gchar *basename,
 					      gchar *name)
 {
   GamesScoresBackend *backend;
+  gchar *fullname;
 
   backend = GAMES_SCORES_BACKEND (g_object_new (GAMES_TYPE_SCORES_BACKEND, 
 						NULL));
 
+  if (name[0] == '\0') /* Name is "" */
+    fullname = g_strjoin (".", basename, "scores", NULL);
+  else
+    fullname = g_strjoin (".", basename, name, "scores", NULL);
+
   backend->priv->style = style;
   backend->scores_list = NULL;
-  backend->priv->fileok = FALSE;
-  backend->priv->filename = g_build_filename (SCORESDIR, name, NULL);
-  backend->priv->fd = open (backend->priv->filename, O_RDWR);
-  if (backend->priv->fd != 0)
-    backend->priv->fileok = TRUE;
+  backend->priv->filename = g_build_filename (SCORESDIR, fullname, NULL);
+  g_free (fullname);
 
   return backend;
 }
 
-GList *games_scores_backend_get_list (GamesScoresBackend *self) 
+/* You can alter the list returned by this function, but you must
+ * make sure you set it again with the _set_scores method
+ * before calling _get_scores again. */
+GList *games_scores_backend_get_scores (GamesScoresBackend *self) 
 {
+  gchar *buffer;
+  gchar *eol;
+  gchar *scorestr;
+  gchar *timestr;
+  gchar *namestr;
+  gsize blen;
+  gboolean errorp;
+  GamesScore *newscore;
+
   /* Check for a change in the scores file and update if necessary. */
-  
+
+  /* FIXME: Update the list when necessary, don't just cache it forever. */
   if ((self->scores_list == NULL) /* || something */ ) {
     /* Lock the file and get the list. */
-  }
-  
+    /* FIXME: Lock the file. */
+    errorp = g_file_get_contents (self->priv->filename, 
+				  &buffer, &blen, NULL);
+    
+    if (!errorp || (blen == 0)) {
+      return NULL;
+    }
+
+    /* FIXME: These details should be in a sub-class. */
+
+    /* Parse the list. We start by breaking it into lines. */
+    /* Since the buffer is null-terminated by g_file_get_contents, 
+     * we can do the string stuff reasonably safely. */
+    eol = strchr (buffer, '\n');
+    scorestr = buffer;
+    /* FIXME: Locale issues for parsing the numbers? i.e. should
+    * we set it back to C. */
+    while (eol != NULL) {
+      *eol++ = '\0';
+      timestr = strchr (scorestr, ' ');
+      if (timestr == NULL) break;
+      *timestr++ = '\0';
+      namestr = strchr (timestr, ' ');
+      if (namestr == NULL) break;
+      *namestr++ = '\0';
+      /* At this point we have three strings, all null terminated. All
+       * part of the original buffer. */
+      newscore = games_score_new ();
+      newscore->name = g_strdup (namestr);
+      newscore->time = strtoll (timestr, NULL, 10);
+      switch (self->priv->style) {
+      case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
+      case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
+	newscore->value.plain = strtod (scorestr, NULL);
+	break;
+      case GAMES_SCORES_STYLE_TIME_DESCENDING:
+      case GAMES_SCORES_STYLE_TIME_ASCENDING:
+	newscore->value.time_double = strtod (scorestr, NULL);
+	break;
+      }
+      self->scores_list = g_list_append (self->scores_list, newscore);
+      /* Setup again for the next time around. */
+      scorestr = eol;
+      eol = strchr (eol, '\n');
+    }
+
+    g_free (buffer);
+  } 
+
+  /* FIXME: Sort the scores! We shouldn't rely on the file being sorted. */
+
   return self->scores_list;
 }
 
-gint games_scores_backend_insert_score (GamesScoresBackend *self,
-					GamesScore *score)
+void games_scores_backend_set_scores (GamesScoresBackend *self,
+				      GList *list)
 {
     GList *s;
+    GamesScore *d;
+    FILE *f;
 
-    s = self->scores_list;
+    /* FIXME: Lock the file. */
 
+    /* FIXME: File mode. */
+
+    /* Yeah! Good old-fashioned stdio. It suits us here. */
+    f = fopen (self->priv->filename, "w");
+
+    if (f == NULL) {
+      g_warning ("Failed to open the high scores file %s: %s\n", 
+		 self->priv->filename, strerror (errno));
+      return;
+    }
+
+    self->scores_list = list;
+
+    s = list;
     while (s != NULL) {
-      GamesScore *oldscore = s->data;
+      gdouble rscore;
+      guint64 rtime;
+      gchar *rname;
 
-      /* FIXME: Lock the file and check that the list is up to date. */
-
-      /* FIXME: This is all hinting that a games_score should also be
-       * a class. */
-      if (games_score_compare (self->priv->style, oldscore, score) < 0) {
-        self->scores_list = g_list_insert_before (self->scores_list,
-						  s,
-						  games_score_dup (score));
+      d = (GamesScore *)s->data;
+      rscore = 0.0;
+      switch (self->priv->style) {
+      case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
+      case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
+	rscore = d->value.plain;
+	break;
+      case GAMES_SCORES_STYLE_TIME_DESCENDING:
+      case GAMES_SCORES_STYLE_TIME_ASCENDING:
+	rscore = d->value.time_double;
+	break;
       }
+      rtime = d->time;
+      rname = d->name;
 
-      /* FIXME: write out the file. */
+      /* We ignore the error and just keep trying. It will give 
+       * better results than if we just gave up. */
+      fprintf (f, "%g %lld %s\n", rscore, rtime, rname); 
 
       s = g_list_next (s);
     }
 
-    /* FIXME: Return the position it was inserted. 0 => Not inserted. */
+    fclose (f);
 
-    return 0;
+    /* FIXME: Unlock the file. */
+
  }

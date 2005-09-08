@@ -42,7 +42,7 @@
 #include <netdb.h>
 
 
-#ifndef NO_HOWL
+#if defined (HAVE_HOWL)
 /* Workaround broken howl including config.h */
 #undef PACKAGE
 #undef PACKAGE_BUGREPORT
@@ -52,6 +52,8 @@
 #undef PACKAGE_VERSION
 #undef VERSION
 #include <howl.h>
+#elif defined (HAVE_BONJOUR)
+#include <dns_sd.h>
 #endif
 
 #include "games-network.h"
@@ -60,7 +62,7 @@
 const char *player_name;
 const char *opponent_name;
 
-char *game_server; 
+char *games_network_server_name; 
 static char *game_port;
 static pid_t server_pid = - 1;
 
@@ -330,7 +332,7 @@ network_connect (void)
 
   memset (&hints, 0, sizeof(hints));
   hints.ai_socktype = SOCK_STREAM;
-  x = getaddrinfo (game_server, game_port, &hints, &res);
+  x = getaddrinfo (games_network_server_name, game_port, &hints, &res);
   if (x) {
     network_set_status (netgame, DISCONNECTED, gai_strerror(x));
     return;
@@ -380,8 +382,8 @@ games_network_connect (const char *server, const char *id)
   player_name = id;
   games_network_start (); 
 
-  game_server = (char *)server;
-  if (!game_server) {
+  games_network_server_name = (char *)server;
+  if (!games_network_server_name) {
     network_set_status (netgame, DISCONNECTED, _("No game server defined"));
     return;
   }
@@ -402,7 +404,7 @@ games_network_connect (const char *server, const char *id)
 void 
 games_network_new (char *server, char *port, GtkWidget *parent_window)
 {
-  game_server = server;
+  games_network_server_name = server;
   game_port = port;
 
   network_game_dialog_show (parent_window);
@@ -417,7 +419,7 @@ games_kill_server (void)
   }
 }
 
-#ifndef NO_HOWL
+#ifdef HAVE_ZEROCONF
 static void
 games_start_server (char *name) 
 {
@@ -451,12 +453,23 @@ games_start_server (char *name)
 }
 #endif
 
+#ifdef HAVE_BONJOUR
+static void
+publish_reply (DNSServiceRef sdRef,
+	       DNSServiceFlags flags,
+	       DNSServiceErrorType errorCode,
+	       const char *name,
+	       const char *regtype,
+	       const char *domain,
+	       void *context)
+{
+}
+#endif
+
 gboolean
 games_host_lan_game (char *name)
 {
-#ifdef NO_HOWL
-  return FALSE;
-#else
+#if defined (HAVE_HOWL)
   gboolean retval = FALSE;
   sw_discovery discovery;
   sw_result result;
@@ -468,7 +481,7 @@ games_host_lan_game (char *name)
     return retval;
   }
         
-  mtype = g_strdup_printf ("_%s%s", game_port, NETWORK_HOWL_TYPE);
+  mtype = g_strdup_printf ("_%s%s", game_port, NETWORK_ZEROCONF_TYPE);
 
   if (!(result = sw_discovery_publish (discovery, 0, name, mtype,
        NULL, NULL, atoi(game_port), NULL, 0, NULL, NULL, &id)) != SW_OKAY) {
@@ -478,10 +491,41 @@ games_host_lan_game (char *name)
 
   g_free(mtype);
   return retval;
+#elif defined (HAVE_BONJOUR)
+  gboolean retval = FALSE;
+  DNSServiceErrorType err;
+  DNSServiceRef publish_session;
+  char* mtype = NULL;
+
+  mtype = g_strdup_printf ("_%s%s", game_port, NETWORK_ZEROCONF_TYPE);
+
+  err = DNSServiceRegister (&publish_session,
+                            0 /* flags */,
+                            0 /* interface; 0 for all */,
+                            name /* name */,
+                            mtype /* type */,
+                            NULL /* domain */,
+                            NULL /* hostname */,
+                            g_htons (atoi (game_port)) /* port in network byte order */,
+                            0, /* text record length */
+                            NULL, /* text record */
+                            publish_reply /* callback */,
+                            NULL /* context */);
+
+  if (err == kDNSServiceErr_NoError) {
+    games_start_server (name);
+    retval = TRUE;
+  }
+
+  g_free (mtype);
+  return retval;
+#else
+  return FALSE;
 #endif
 }
 
-#ifndef NO_HOWL
+#if defined (HAVE_HOWL)
+
 static sw_result HOWL_API
 games_get_server (sw_discovery discovery, sw_discovery_oid oid,
      sw_uint32 interface_index, sw_const_string name, sw_const_string type,
@@ -513,9 +557,57 @@ games_browser (sw_discovery discovery, sw_discovery_oid oid,
   }
   return SW_OKAY;
 }
+
+#elif defined (HAVE_BONJOUR)
+
+static void
+games_get_server (DNSServiceRef session,
+                  DNSServiceFlags flags,
+                  uint32_t interface_index,
+                  DNSServiceErrorType error_code,
+                  const char *full_name,
+                  const char *host_name,
+                  uint16_t port,
+                  uint16_t text_record_len,
+                  const char *text_record,
+                  void *context)
+{
+  DNSServiceRefDeallocate (session);
+  network_gui_add_server ((char *) host_name, (char *) host_name);
+}
+
+static void
+games_browser (DNSServiceRef        session,
+               DNSServiceFlags      flags,
+               uint32_t             interface_index,
+               DNSServiceErrorType  error_code,
+               const char          *name,
+               const char          *type,
+               const char          *domain,
+               void                *context)
+{
+  if (flags & kDNSServiceFlagsAdd) {
+    DNSServiceRef resolve_session;
+    DNSServiceErrorType res;
+
+    res = DNSServiceResolve (&resolve_session,
+			     0 /* flags (none needed) */,
+			     0 /* interface (-1 for local, 0 for all) */,
+			     name,
+			     type,
+			     domain,
+			     games_get_server,
+			     NULL);
+    if (res != kDNSServiceErr_NoError) {
+      network_gui_message ("resolve failed\n");
+    }
+  }
+}
+
 #endif
 
-#ifndef NO_HOWL
+#if defined (HAVE_HOWL)
+
 static gboolean
 games_howl_input (GIOChannel *io_channel, GIOCondition cond, 
 		  gpointer callback_data)
@@ -531,14 +623,26 @@ games_howl_input (GIOChannel *io_channel, GIOCondition cond,
   }
   return TRUE;
 }
+
+#elif defined (HAVE_BONJOUR)
+
+static gboolean
+games_bonjour_input (GIOChannel *io_channel, GIOCondition cond,
+                     gpointer callback_data)
+{
+  DNSServiceRef browse_session;
+
+  browse_session = callback_data;
+  DNSServiceProcessResult (browse_session);
+  return TRUE;
+}
+
 #endif
 
 gboolean
 games_find_lan_game (void)
 {
-#ifdef NO_HOWL
-  return FALSE;
-#else
+#if defined (HAVE_HOWL)
   sw_discovery discovery;
   sw_discovery_oid discovery_oid;
   GIOChannel *channel;
@@ -550,7 +654,7 @@ games_find_lan_game (void)
     return FALSE;
   }
 
-  snprintf (mtype, sizeof (mtype), "_%s%s", game_port, NETWORK_HOWL_TYPE);
+  snprintf (mtype, sizeof (mtype), "_%s%s", game_port, NETWORK_ZEROCONF_TYPE);
 
   if (sw_discovery_browse (discovery, 0, mtype, NULL, 
 			  games_browser, NULL, &discovery_oid) != SW_OKAY) {
@@ -564,5 +668,35 @@ games_find_lan_game (void)
   g_io_channel_unref (channel);
 
   return TRUE;
+#elif defined (HAVE_BONJOUR)
+  DNSServiceRef browse_session;
+  DNSServiceErrorType err;
+  GIOChannel *channel;
+  static char mtype[256];
+  int fd;
+
+  snprintf (mtype, sizeof (mtype), "_%s%s", game_port, NETWORK_ZEROCONF_TYPE);
+
+  err = DNSServiceBrowse (&browse_session,
+			  0 /* flags (none needed) */,
+			  0 /* interface (-1 for local, 0 for all) */,
+			  mtype,
+			  "local",
+			  games_browser,
+			  NULL);
+
+  if (err != kDNSServiceErr_NoError) {
+    network_gui_message (_("Local Area Network game could not be started. \nTry running mDNSResponder."));
+    return FALSE;
+  }
+
+  fd = DNSServiceRefSockFD (browse_session);
+  channel = g_io_channel_unix_new (fd);
+  g_io_add_watch (channel, G_IO_IN, games_bonjour_input, browse_session);
+  g_io_channel_unref (channel);
+
+  return TRUE;
+#else
+  return FALSE;
 #endif
 }

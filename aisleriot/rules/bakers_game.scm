@@ -159,7 +159,7 @@
              (eq? f-slots '()))
          (check-to-foundations? (cdr slots) foundation))
 	((= (get-value (get-top-card (car slots))) ace)
-	 (list 2 (get-name (get-top-card (car slots))) (_"an empty Foundation")))
+	 (list 2 (get-name (get-top-card (car slots))) (_"an empty foundation")))
 	((and (not (empty-slot? (car f-slots)))
 	      (= (get-suit (get-top-card (car slots)))
 		 (get-suit (get-top-card (car f-slots))))
@@ -213,7 +213,7 @@
 	      (check-for-king (get-cards (car slots)) free-reserves (car slots)))
 	 (list 2 
 	       (check-for-king (get-cards (car slots)) free-reserves (car slots)) 
-	       (_"an empty Tableau")))
+	       (_"an empty tableau")))
 	((and (not (empty-slot? (car t-slots)))
 	      (= (get-suit (get-top-card (car slots)))
 		 (get-suit (get-top-card (car t-slots))))

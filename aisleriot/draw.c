@@ -50,6 +50,9 @@ int card_height;
 /* The offset of the cards within the slot. */ 
 int xoffset, yoffset;
 
+/* The offset within the window. */
+int xbaseofs;
+
 static void calculate_card_location (hslot_type hslot)
 {
   int xofs, yofs;
@@ -63,7 +66,7 @@ static void calculate_card_location (hslot_type hslot)
   if (hslot->dy > 0.0)
     yofs = xofs;
 
-  hslot->pixelx = xslotstep*hslot->x + xofs;
+  hslot->pixelx = xslotstep*hslot->x + xofs + xbaseofs;
   hslot->pixely = yslotstep*hslot->y + yofs;
   hslot->pixeldx = hslot->dx*card_width;
   hslot->pixeldy = hslot->compressed_dy*card_height;
@@ -99,8 +102,17 @@ void set_geometry (double new_width, double new_height) {
     card_width = CARD_HW_RATIO*theight;
     card_height = theight;
   }
-  xoffset = (xslotstep - twidth)/2;
-  yoffset = (yslotstep - theight)/2;
+
+  xbaseofs = 0;
+
+  /* If the cards are too far apart, bunch them in the middle. */
+  if (xslotstep > (card_width*3)/2) {
+    xslotstep = (card_width*3)/2;
+    xbaseofs = (window_width - xslotstep*width)/2;
+  }
+
+  xoffset = (xslotstep - card_width)/2;
+  yoffset = (yslotstep - card_height)/2;
 
   set_card_size (card_width, card_height);
 

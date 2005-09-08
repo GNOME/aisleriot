@@ -189,7 +189,7 @@
 	   (empty-slot? 9)
 	   (empty-slot? 10)
 	   (empty-slot? 11))
-       (list 0 (_"Place something on to the empty Tableau slot"))))
+       (list 0 (_"Place something on to the empty tableau slot"))))
 
 (define (dealable?)
   (and (not (empty-slot? 0))

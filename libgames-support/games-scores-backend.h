@@ -47,25 +47,25 @@ G_BEGIN_DECLS
 typedef struct _GamesScoresBackendPrivate {
   GamesScoreStyle style;
   gchar *filename;
-  gint fd;
-  gboolean fileok;
 } GamesScoresBackendPrivate;
 
 typedef struct _GamesScoresBackend {
+  GObject object;
   GList *scores_list;
   GamesScoresBackendPrivate *priv;
 } GamesScoresBackend;
 
 typedef struct _GamesScoresBackendClass {
-
+  GObjectClass parent_class;
 } GamesScoresBackendClass;
 
 GType games_scores_backend_get_type (void);
 GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style, 
+					      gchar *basename,
 					      gchar *name);
-GList *games_scores_backend_get_list (GamesScoresBackend *self);
-gint games_scores_backend_insert_score (GamesScoresBackend *self,
-					GamesScore *score);
+GList *games_scores_backend_get_scores (GamesScoresBackend *self);
+void games_scores_backend_set_scores (GamesScoresBackend *self,
+				      GList *list);
 
 G_END_DECLS
 

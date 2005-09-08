@@ -185,7 +185,7 @@
 	      (= (get-value (get-top-card slot)) ace))
 	 (list 2
 	       (get-name (get-top-card slot))
-	       (_"an empty Foundation")))
+	       (_"an empty foundation")))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card f-slot))
 		 (get-suit (get-top-card slot)))
@@ -221,7 +221,7 @@
 	 #f)
 	((and (empty-slot? slot)
 	      (kings-avail 5))
-	 (list 0 (_"Move a King on to the empty Tableau slot")))
+	 (list 0 (_"Move a King on to the empty tableau slot")))
 	(#t (fill-empties (+ 1 slot)))))
 
 (define (dealable?)

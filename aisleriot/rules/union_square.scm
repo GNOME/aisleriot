@@ -235,7 +235,7 @@
 	      (= slot-id 16)
 	      (not (check-a-foundation (list (get-top-card slot-id)) 6)))
 	  (check-to-foundations (+ 1 slot-id))
-	  (list 2 (get-name (get-top-card slot-id)) (_"appropriate Foundation pile")))))
+	  (list 2 (get-name (get-top-card slot-id)) (_"appropriate foundation pile")))))
 
 (define (check-imbedded card-list foundation-id)
   (if (> (length card-list) 0)

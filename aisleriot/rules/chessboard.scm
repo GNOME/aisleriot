@@ -208,7 +208,7 @@
 		 BASE-VAL))
 	 (list 2
 	       (get-name (get-top-card slot))
-	       (_"an empty Foundation")))
+	       (_"an empty foundation")))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card f-slot))
 		 (get-suit (get-top-card slot)))

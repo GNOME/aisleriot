@@ -1,13 +1,13 @@
 #ifndef GAMES_NETWORK_H
 #define GAMES_NETWORK_H
 
-extern char *game_server;
+extern char *games_network_server_name;
 extern guint whose_turn;
 extern const char *player_name;
 extern const char *opponent_name;
 extern guint game_in_progress;
 
-#define NETWORK_HOWL_TYPE "gnomegames._udp"
+#define NETWORK_ZEROCONF_TYPE "gnomegames._udp"
 
 typedef struct {
   char inbuf[1024];

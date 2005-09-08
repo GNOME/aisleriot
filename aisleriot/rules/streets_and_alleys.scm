@@ -155,7 +155,7 @@
 	 #f)
 	((empty-slot? slot2)
 	 (and (= (get-value (get-top-card slot1)) ace)
-	      (list 2 (get-name (get-top-card slot1)) (_"an empty Foundation"))))
+	      (list 2 (get-name (get-top-card slot1)) (_"an empty foundation"))))
 	((and (= (get-suit (get-top-card slot1))
 		 (get-suit (get-top-card slot2)))
 	      (= (get-value (get-top-card slot1))

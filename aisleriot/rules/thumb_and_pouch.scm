@@ -162,7 +162,7 @@
 
 (define (check-waste-to-empty)
   (and (not (empty-slot? 1))
-       (list 2 (get-name (get-top-card 1)) (_"an empty Tableau pile"))))
+       (list 2 (get-name (get-top-card 1)) (_"an empty tableau pile"))))
 
 (define (stripped card-list)
   (if (not (is-visible? (cadr card-list)))
@@ -174,7 +174,7 @@
 	 #f)
 	((and (not (empty-slot? slot-id))
 	      (not (is-visible? (car (reverse (get-cards slot-id))))))
-	 (list 2 (get-name (stripped (get-cards slot-id))) (_"an empty Tableau pile")))
+	 (list 2 (get-name (stripped (get-cards slot-id))) (_"an empty tableau pile")))
 	(#t (check-tableau-to-empty (+ 1 slot-id)))))
 
 
@@ -194,7 +194,7 @@
 	     #t
 	     (list 2
 		   (get-name (get-top-card slot-id)) 
-		   (_"an empty Foundation pile"))))
+		   (_"an empty foundation pile"))))
 	((and (not (empty-slot? f-slot))
 	      (eq? (get-suit (get-top-card f-slot))
 		   (get-suit card))

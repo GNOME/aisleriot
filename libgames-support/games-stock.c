@@ -85,9 +85,9 @@ static GamesStockItemIcon stock_item_icon[] = {
   { GAMES_STOCK_CONTENTS,         NULL,                     GTK_STOCK_HELP,
                                   NULL },
   { GAMES_STOCK_TELEPORT,         NULL,                     NULL,
-                                  DATADIR "/pixmaps/teleport.png" },
+                                  ICONDIR "/teleport.png" },
   { GAMES_STOCK_RTELEPORT,        NULL,                     NULL,
-                                  DATADIR "/pixmaps/rteleport.png" },
+                                  ICONDIR "/rteleport.png" },
 };
 
 typedef struct {

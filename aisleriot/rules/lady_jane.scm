@@ -250,7 +250,7 @@
 	 (or (and (= (get-value (get-top-card slot-id)) BASE-VAL)
 		  (list 2 
 			(get-name (get-top-card slot-id)) 
-			(_"an empty Foundation pile")))
+			(_"an empty foundation pile")))
 	     (list 1 
 		   (get-name (get-top-card slot-id))
 		   (get-name 
@@ -394,7 +394,7 @@
 		       (= BASE-VAL ace))))
 	 (list 2
 	       (get-name (get-top-visible-card (get-cards slot)))
-	       (_"an empty Tableau slot")))
+	       (_"an empty tableau slot")))
 	((and (not (empty-slot? slot))
 	      (or (> slot 12)
 		  (< slot 2))
@@ -406,7 +406,7 @@
 		       (= BASE-VAL ace))))
 	 (list 2
 	       (get-name (get-top-card slot))
-	       (_"an empty Tableau slot")))
+	       (_"an empty tableau slot")))
 	(#t (find-high-value (+ 1 slot)))))
 
 (define (empty-tableau?)

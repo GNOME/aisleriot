@@ -58,7 +58,7 @@
 
   (give-status-message)
 
-  (list 7 3)
+  (list 7 3.1)
 )
 
 (define (give-status-message)

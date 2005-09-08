@@ -234,7 +234,7 @@
 	((empty-slot? slot-id)
 	 (check-to-foundations (+ 1 slot-id)))
 	((= (get-value (get-top-card slot-id)) BASE-VAL)
-	 (list 2 (get-name (get-top-card slot-id)) (_"an empty Foundation")))
+	 (list 2 (get-name (get-top-card slot-id)) (_"an empty foundation")))
 	((check-a-foundation (get-top-card slot-id) 2)
 	 (list 1 
 	       (get-name (get-top-card slot-id))
@@ -320,7 +320,7 @@
        (or (empty-slot? 7)
 	   (empty-slot? 8)
 	   (empty-slot? 9))
-       (list 2 (get-name (get-top-card 1)) (_"an empty Tableau slot"))))
+       (list 2 (get-name (get-top-card 1)) (_"an empty tableau slot"))))
 
 (define (get-hint)
   (or (check-to-foundations 1)

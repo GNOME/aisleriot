@@ -125,7 +125,7 @@
 	 #f)
 	((check-to-foundation 1 2)
 	 (check-to-foundation 1 2))
-	(#t (list 0 (_"Move card from Waste")))))
+	(#t (list 0 (_"Move card from waste")))))
 
 (define (dealable?)
   (and (not (empty-slot? 0))

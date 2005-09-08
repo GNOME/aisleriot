@@ -182,7 +182,7 @@
   (or (removable?)
       (move-leftable? 1 2)
       (dealable?)
-      (list 0 (_"Return cards to Stock"))))
+      (list 0 (_"Return cards to stock"))))
 
 (define (get-options) 
   #f)

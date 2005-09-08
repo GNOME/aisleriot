@@ -148,7 +148,7 @@
 	((and (not (empty-slot? slot))
 	      (check-to-foundation (get-top-card slot) 2))
 	 (if (= (get-value (get-top-card slot)) ace)
-	     (list 2 (get-name (get-top-card slot)) (_"an empty Foundation"))
+	     (list 2 (get-name (get-top-card slot)) (_"an empty foundation"))
 	     (list 1
 		   (get-name (get-top-card slot))
 		   (get-name (get-top-card (check-to-foundation (get-top-card slot) 2))))))

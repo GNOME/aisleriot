@@ -191,7 +191,7 @@ void show_select_game_dialog (void)
     g_object_unref (G_OBJECT (list));
     
     renderer = gtk_cell_renderer_text_new();
-    column = gtk_tree_view_column_new_with_attributes(_("Rules"),
+    column = gtk_tree_view_column_new_with_attributes(NULL,
                                                       renderer,
                                                       "text", 0,
                                                       NULL);

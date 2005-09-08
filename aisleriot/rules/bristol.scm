@@ -186,7 +186,7 @@
 		  (= (get-value (get-top-card slot-id)) ace))
 	     (list 2
 		   (get-name (get-top-card slot-id)) 
-		   (_"an empty Foundation pile")))
+		   (_"an empty foundation pile")))
 	    ((and (not (empty-slot? foundation-id))
 		  (= (+ 1 (get-value (get-top-card foundation-id)))
 		     (get-value (get-top-card slot-id))))

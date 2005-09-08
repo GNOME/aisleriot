@@ -32,6 +32,26 @@
 	* rules/freecell.scm: Patch from Dagfinn I. Mannsåker to make
 	dragging to the freecells work again.
 
+2005-08-10  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* rules/*.scm: Be consistent about capitalising words like tableau
+	and foundation in the hints (all lower case).
+
+2005-08-09  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* dialog.c (show_select_game_dialog): Remove an unused (but
+	translated) string.
+
+2005-07-31  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* rules/klondike.scm (new-game): Add a little extra space at the
+	bottom of the screen. This stops the fixed drawing code
+	compressing the last column.
+
+	* draw.c: Better card layout code. If the card spacing is more
+	than half a card bring them together and place the excess on the
+	outside edges. Also fix a bug with the in-slot spacing.
+
 2005-07-28  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* sol.c: Fix the race condition reported in bug #121762 by making

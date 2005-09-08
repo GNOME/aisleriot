@@ -197,7 +197,7 @@
 	((empty-slot? slot-id)
 	 (to-foundations? (+ 1 slot-id)))
 	((= (get-value (get-top-card slot-id)) ace)
-	 (list 2 (get-name (get-top-card slot-id)) (_"an empty Foundation")))
+	 (list 2 (get-name (get-top-card slot-id)) (_"an empty foundation")))
 	((and (not (empty-slot? 2))
 	      (eq? (get-suit (get-top-card 2))
 		   (get-suit (get-top-card slot-id)))
@@ -301,11 +301,11 @@
       (cond ((check-invisible 6)
 	     (list 2 
 		   (get-name (check-invisible 6))
-		   (_"an empty Tableau pile")))
+		   (_"an empty tableau pile")))
 	    ((not (empty-slot? 1))
 	     (list 2
 		   (get-name (get-top-card 1))
-		   (_"an empty Tableau pile")))
+		   (_"an empty tableau pile")))
 	    (#t #f))))
 
 (define (get-hint)

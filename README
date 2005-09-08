@@ -149,12 +149,6 @@ http://www.gnu.org/copyleft/gpl.html
 or write to the Free Software Foundation, Inc., 59 Temple Place, Suite
 330, Boston, MA 02111-1307 USA
 
-Note that some artwork is distributed under the FreeBSD
-license. Specifically some of the files in the directory gnibbles/pix
-are under this license. If you conform to the GPL you will satisfy
-this license, but the FreeBSD license gives you other options for using
-this work.
-
 Mailing List
 ------------
 
@@ -264,6 +258,28 @@ configure. These are:
 For a discussion of the details behind these options and why you might
 want to change them see the "Security" section. In general you will
 not need to change any of them.
+
+If you want Zeroconf support you have two options. On most Unix and
+Linux systems Howl is the library of choice and is automatically
+detected. You may also use Apple's Bonjour library, but you have to
+enable it explicitly.
+
+The configure options for zeroconf support are:
+
+ --disable-howl                   Disable Howl support 
+ --enable-bonjour                 Enable Bonjour support
+ --with-bonjour-includes=PREFIX   Specify where to find the Bonjour 
+                                  header files
+ --with-bonjour-libs=PREFIX       Specify where to find the Bonjour 
+                                  libraries
+
+Setting the library and include file directories explicitly should not
+normally be necessary. Note that if you select Bonjour support on a
+system with Howl installed and do not explicitly disable Howl then
+Howl support will be disabled and a warning printed.
+
+Use './configure --help' for a complete list of currently supported
+options and environment variables.
 
 If you are compiling gnome-games from CVS you should look at:
 

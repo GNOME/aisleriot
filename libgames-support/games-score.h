@@ -22,6 +22,7 @@
 #define GAMES_SCORE_H
 
 #include <glib.h>
+#include <time.h>
 
 G_BEGIN_DECLS
 
@@ -36,11 +37,24 @@ typedef enum {
 typedef union {
     guint32 plain;
     gdouble time_double; /* minutes.seconds */
+} GamesScoreValue;
+
+typedef struct {
+  GamesScoreValue value;
+#if 0
+  union {
+    guint32 plain;
+    gdouble time_double; /* minutes.seconds */
+  };
+#endif
+  time_t time;
+  gchar *name;
 } GamesScore;
 
 GamesScore *games_score_new (void);
 GamesScore *games_score_dup (GamesScore *orig);
 gint games_score_compare (GamesScoreStyle style, GamesScore *a, GamesScore *b);
+void games_score_destroy (GamesScore *score);
 
 G_END_DECLS
 

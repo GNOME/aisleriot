@@ -1,7 +1,98 @@
-2005-08-08  Callum McKenzie  <callum@physics.otago.ac.nz>
+2005-09-08  Callum McKenzie  <callum@spooky-possum.org>
 
-	* Makefile.am: Remove references to teleport.h and rteleport.h,
-	they were never shipped.
+	* games-network.c: 
+	* games-network-dialog.c:
+	* games-network.h: Change game_server -> games_network_server_name
+	to try and get around naming conflicts. See bug #315473.
+
+	* games-scores-dialog.gob: Hide the catbar when there is only one
+	category (this is fixing a regression in the new code). Also mark
+	as private public functions that are now unnecessary.
+
+	* games-scores.c (games_scores_get_current): Pass the backend the
+	rather than the name to generate the filename.
+
+2005-09-07  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores-backend.c (games_scores_backend_get_scores): Fix
+	the ordering of the created scores list.
+
+	* games-scores.c: Cut the overflow off correctly.
+
+2005-09-02  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores.c: 
+	* games-scores-backend.c: Finally! The scores file gets written
+	out. Still lots of issues, but the system is at least functional.
+
+2005-09-01  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores.c: 
+	* games-scores.h:
+	* games-scores-backend.c:
+	* games-scores-backend.h:
+	* games-scores-dialog.gob: More work on the scoring system. The
+	insert-score logic is good, although it still doesn't write to
+	file. The generic logic was also moved from games-scores-backend
+	to games-scores.
+
+2005-08-30  Callum McKenzie  <callum@lspooky-possum.org>
+
+	* games-score.c: 	
+	* games-score.h: Reintroduce the scalar score as
+	GamesScoreValue. Also fill out the name and time fields of a
+	GamesScore in the _new function.
+
+2005-08-29  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores-dialog.gob:
+	* games-scores.c:
+	* games-scores.h: Further movement towards a working
+	implementation. Added _get_style and _get_category to games-scores
+	to support games-scores-dialog. Categories are now set correctly
+	(although still not ordered correctly, we may need to move away
+	from a hash table). The formatting for adding a score is also
+	correct, but no actual file I/O occurs.
+
+2005-08-24  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores.h: 
+	* games-scores.c: Remove the _show method and make this a 
+	pure glib object. In other words, don't try and encapsulate
+	dialog . Let the dialog be a view of this data instead.
+	Add a _get method to export the list of high scores and clean
+	up the _add_score method.
+
+2005-08-16  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* games-scores.c:
+	* games-scores.h: Yet more work towards functioning
+	code. Implemented a private version of GamesScoresCategory that
+	stores the backend and generates it on demand.
+
+	* games-network.h: 
+	* games-network.c:
+	* games-network-dialog.c:
+	* Makefile.am: Patch from Hans Petter Jansson to allow Bonjour to
+	be used for zeroconf networking instead of Howl. Also ensures that
+	all the Howl specific code is confined to games-network.[ch].
+
+2005-08-15  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* games-scores-backend.c (games_scores_backend_get_list): Fill out
+	the list.
+
+	* games-score.c: 
+	* games-score.h: Expand the structure to include date and name
+	fields. Move the old GamesScore into a union inside the
+	struct. Add a games_score_destroy function.
+
+2005-08-14  Callum McKenzie  <callum@physics.otago.ac.nz>
+
+	* games-scores-backend.c (games_scores_backend_get_list): Added
+	a proper parser for the old-style score files. It still doesn't
+	pass anything to the caller, it looks like we have to extend
+	GamesScore.
 
 2005-08-05  Callum McKenzie  <callum@physics.otago.ac.nz>
 
@@ -11,7 +102,7 @@
 2005-07-31  Callum McKenzie  <callum@physics.otago.ac.nz>
 
 	* games-stock.h:
-	* games-stock.c: Add support for local in the theme.
+	* games-stock.c: Add support for local icons in the icon theme.
 
 2005-07-29  Dennis Cranston <dennis_cranston@yahoo.com>
 

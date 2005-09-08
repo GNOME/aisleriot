@@ -21,6 +21,7 @@ extern "C" {
 
 
   #include "games-score.h" /* For GamesScoreStyle. */
+  #include "games-scores.h"
 
   typedef enum {
     GAMES_SCORES_CLOSE_BUTTON = 1,
@@ -32,6 +33,7 @@ extern "C" {
 
 
 
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 
@@ -75,15 +77,8 @@ struct _GamesScoresDialogClass {
  * Public methods
  */
 GType	games_scores_dialog_get_type	(void);
-GtkWidget * 	games_scores_dialog_new	(const gchar * domain,
+GtkWidget * 	games_scores_dialog_new	(GamesScores * scores,
 					const gchar * title);
-void 	games_scores_dialog_add_category	(GamesScoresDialog * self,
-					const gchar * key,
-					const gchar * name);
-void 	games_scores_dialog_set_category	(GamesScoresDialog * self,
-					const gchar * key);
-void 	games_scores_dialog_set_style	(GamesScoresDialog * self,
-					GamesScoreStyle style);
 void 	games_scores_dialog_set_category_description	(GamesScoresDialog * self,
 					const gchar * description);
 void 	games_scores_dialog_set_hilight	(GamesScoresDialog * self,

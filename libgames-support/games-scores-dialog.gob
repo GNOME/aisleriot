@@ -25,6 +25,7 @@ requires 2.0.0
 
 %h{
   #include "games-score.h" /* For GamesScoreStyle. */
+  #include "games-scores.h"
 
   typedef enum {
     GAMES_SCORES_CLOSE_BUTTON = 1,
@@ -45,6 +46,7 @@ requires 2.0.0
 %}
 
 %a{
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 %}
 
@@ -69,7 +71,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
   private GtkListStore *list;
   private GtkTreeView *treeview;
   private GtkTreeViewColumn *column;
-  private gchar *domain destroywith g_free;
+  private GamesScores *scores destroywith g_object_unref;
   private GHashTable *categories destroywith g_hash_table_destroy;
   private GHashTable *catindices destroywith g_hash_table_destroy;
   private gint catcounter;
@@ -77,6 +79,14 @@ class Games:Scores:Dialog from Gtk:Dialog {
 
   /* FIXME: This should be a property. */
   private gint style;
+
+  private void load_categories (GamesScoresCategory *cat, 
+				GamesScoresDialog *self) {
+    /* Note the Q_ here, this is so we can use context tags on similar
+     * names. (Medium is one that can cause trouble for translators 
+     * in different contexts.) */
+    games_scores_dialog_add_category (self, cat->key, Q_(cat->name));
+  }
 
   /**
    * new:
@@ -89,12 +99,20 @@ class Games:Scores:Dialog from Gtk:Dialog {
    * Returns: a new widget
    *
    **/
-  public GtkWidget * new (const gchar *domain, const gchar *title) {
+  public GtkWidget * new (GamesScores *scores, const gchar *title) {
     GamesScoresDialog *dialog = GET_NEW;
 
-    dialog->_priv->domain = g_strdup (domain);
+    dialog->_priv->scores = g_object_ref (scores);
+    dialog->_priv->style = games_scores_get_style (scores);
 
     gtk_window_set_title (GTK_WINDOW (dialog), title);
+
+    games_scores_category_foreach (scores, 
+				   (GamesScoresCategoryForeachFunc) games_scores_dialog_load_categories, dialog);
+
+    if (dialog->_priv->catcounter <= 1) {
+      gtk_widget_hide (dialog->_priv->catbar);
+    }
 
     return (GtkWidget *)dialog;
   }
@@ -115,72 +133,62 @@ class Games:Scores:Dialog from Gtk:Dialog {
 
   private
   void redraw (GamesScoresDialog *self) {
-    gint i,n;
     GtkTreeIter iter;
-    gchar **names = NULL;
-    gfloat *scores = NULL;
-    time_t *scoretimes = NULL;
-    gchar **name;
-    gfloat *score;
+    gchar *name;
+    gint score;
     gchar *ss;
-    gint intscore;
-    gint index;
-    gchar *category;
-
-    if (self->_priv->catcounter > 0) {
-      index = gtk_combo_box_get_active (GTK_COMBO_BOX (self->_priv->combo));
-      category = g_hash_table_lookup (self->_priv->catindices, 
-				      GINT_TO_POINTER (index));
-      /* This highly unlikley to be necessary, but just in case someone
-       * adds a category after having used the default category. */
-      gtk_widget_show_all (self->_priv->catbar);
-    } else { 
-      /* If no category has been set, we use the default one and 
-       * hide the category selector. */
-      category = NULL;
-      gtk_widget_hide (self->_priv->catbar);
-    }
+    gdouble dscore;
+    GList *scorelist;
 
     gtk_list_store_clear (self->_priv->list);
-    
-    n = gnome_score_get_notable (self->_priv->domain, category, 
-				 &names, &scores, &scoretimes);
 
-    i = 1;
-    name = names;
-    score = scores;
-    while (n--) {
+    scorelist = games_scores_get (self->_priv->scores);
+
+    while (scorelist) {
+      name = ((GamesScore *)scorelist->data)->name;
       switch (self->_priv->style) {
       case GAMES_SCORES_STYLE_TIME_ASCENDING:
       case GAMES_SCORES_STYLE_TIME_DESCENDING:
-	intscore = rint (100*(*score));
+	dscore = ((GamesScore *)scorelist->data)->value.time_double;
+	score = rint (100*(dscore));
 	/* Translators: this is for a minutes, seconds time display. */
-	ss = g_strdup_printf (_("%dm %ds"), intscore/100, intscore%100);
+	ss = g_strdup_printf (_("%dm %ds"), score/100, score%100);
 	break;
       case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
       case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
       default:
-	intscore = rint (*score);
-	ss = g_strdup_printf ("%d", intscore);
+	score = ((GamesScore *)scorelist->data)->value.plain;
+	ss = g_strdup_printf ("%d", score);
       }
       gtk_list_store_append (self->_priv->list, &iter);
-      gtk_list_store_set (self->_priv->list, &iter, 0, *name, 1, ss, -1);
+      gtk_list_store_set (self->_priv->list, &iter, 0, name, 1, ss, -1);
       g_free (ss);
-      name++;
-      score++;
+      scorelist = g_list_next (scorelist);
     }
       
-    g_free (names);
-    g_free (scores);
-    g_free (scoretimes);        
-
     games_scores_dialog_set_hilight_private (self);
   }
 
   private 
   void change_category (Gtk:Combo:Box *widget, GamesScoresDialog *self) {
+    gchar *catcopy;
+    gint index;
+    gchar *newcat;
+    
+    /* This seems like a bit of a hack, but since we're trying to
+     * temporarily change the category it sort of makes sense. */
+
+    catcopy = g_strdup (games_scores_get_category (self->_priv->scores));
+    index = gtk_combo_box_get_active (widget);
+    newcat = g_hash_table_lookup (self->_priv->catindices,
+				 GINT_TO_POINTER (index));
+
+    games_scores_set_category (self->_priv->scores, newcat);
     self->_priv->hilight = 0;
     games_scores_dialog_redraw (self);
+    games_scores_set_category (self->_priv->scores, catcopy);
+
+    g_free (catcopy);
   }
        
   /* This is to make sure we update ourselves when the window goes through
@@ -189,6 +197,11 @@ class Games:Scores:Dialog from Gtk:Dialog {
    * possible yet. */
   private
   void show (GamesScoresDialog *self) { 
+    const gchar *cat;
+
+    cat = games_scores_get_category (self->_priv->scores);
+    games_scores_dialog_set_category (self, cat);
+
     games_scores_dialog_redraw (self);
   }
 
@@ -306,10 +319,14 @@ class Games:Scores:Dialog from Gtk:Dialog {
    * Adds a new category to combo box selector.
    *
    **/
-  public void add_category (Games:Scores:Dialog *self, const gchar *key, 
+  private void add_category (Games:Scores:Dialog *self, const gchar *key, 
 			    const gchar *name)
   {
     gchar *k;
+
+    /* FIXME: This does not sort the categories, they are added as they appear.
+     * this is not good, especially not when we populate ourselves from a
+     * hash table. */
 
     k = g_strdup (key);
 
@@ -330,7 +347,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
    * Sets the category to scores dialog is displaying.
    *
    **/
-  public void set_category (Games:Scores:Dialog *self, const gchar *key) {
+  private void set_category (Games:Scores:Dialog *self, const gchar *key) {
     gint index;
 
     index = GPOINTER_TO_INT (g_hash_table_lookup (self->_priv->categories, 
@@ -349,7 +366,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
    * is at this layer.
    *
    **/
-  public void set_style (Games:Scores:Dialog *self, GamesScoreStyle style) {
+  private void set_style (Games:Scores:Dialog *self, GamesScoreStyle style) {
     gchar *header;
 
     self->_priv->style = style;

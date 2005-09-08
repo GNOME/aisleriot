@@ -232,7 +232,7 @@
 	((empty-slot? slot-id)
 	 (check-to-foundations? (+ 1 slot-id)))
 	((= (get-value (get-top-card slot-id)) ace)
-	 (list 2 (get-name (get-top-card slot-id)) (_"an empty Foundation")))
+	 (list 2 (get-name (get-top-card slot-id)) (_"an empty foundation")))
 	((check-a-foundation (get-top-card slot-id) 1)
 	 (list 1 
 	       (get-name (get-top-card slot-id))

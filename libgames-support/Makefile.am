@@ -7,21 +7,26 @@ schema_in_files = libgnomegames.schemas.in
 schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
+carddir = $(datadir)/pixmaps/gnome-games-common/cards
+card_DATA = bonded.png paris.svg
+
+icondir = $(datadir)/pixmaps/gnome-games-common/icons
+icon_DATA = icons/teleport.png icons/rteleport.png
+
 INCLUDES =							\
 	-DDATADIR=\""$(datadir)"\"				\
+	-DICONDIR=\""$(icondir)"\"				\
 	-DSCORESDIR=\""$(scoredir)"\"				\
 	-DGCONF_SCHEMA_CONFIG_SOURCE=\""$(GCONF_SCHEMA_CONFIG_SOURCE)"\" \
 	$(HOWL_CFLAGS) \
+	$(BONJOUR_CFLAGS) \
 	$(WARN_CFLAGS)						\
 	$(GNOME_GAMES_CFLAGS)
 
-libgames_support_la_LDFLAGS= $(HOWL_LIBS)
+libgames_support_la_LDFLAGS= $(HOWL_LIBS) $(BONJOUR_LIBS)
 
 
 bin_SCRIPTS = games-server.py
-
-carddir = $(datadir)/pixmaps/gnome-games-common/cards
-card_DATA = bonded.png paris.svg
 
 GOB_FILES= \
 	games-scores-dialog.gob		\
@@ -69,6 +74,8 @@ libgames_support_la_SOURCES =		\
 	games-scores.h			\
 	games-scores-backend.c		\
 	games-scores-backend.h		\
+	teleport.h			\
+	rteleport.h			\
 	$(NULL)
 
 %.c %.h %-private.h: %.gob
@@ -83,6 +90,6 @@ if GCONF_SCHEMAS_INSTALL
         GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/libgames-support/$(schema_DATA)
 endif
 
-EXTRA_DIST = $(card_DATA) $(bin_SCRIPTS) $(schema_in_files) $(GOB_SOURCE)
+EXTRA_DIST = $(card_DATA) $(icon_DATA) $(bin_SCRIPTS) $(schema_in_files) $(GOB_SOURCE)
 
 DISTCLEANFILES = $(schema_DATA)

@@ -21,11 +21,21 @@
 /* We don't make it a proper object, basically to reduce overhead (system
    memory and programmers time) */
 
+/* FIXME: Should memory for these be allocated as a block? (see GMemChunk 
+   and GAllocator)*/
+
 #include "games-score.h"
 
 GamesScore *games_score_new (void)
 {
-  return g_new0 (GamesScore, 1);
+  GamesScore *newscore;
+
+  newscore = g_new0 (GamesScore, 1);
+  newscore->time = time (NULL);
+  /* FIXME: We don't handle the "Unknown" case. */
+  newscore->name = g_strdup (g_get_real_name ());
+
+  return newscore;
 }
 
 GamesScore *games_score_dup (GamesScore *orig)
@@ -37,30 +47,41 @@ GamesScore *games_score_dup (GamesScore *orig)
   /* FIXME: What is the canonical way to duplicate a union?
    * Can we just use the largest item or is it more subtle than
    * that. */
-  new->plain = orig->plain;
-  new->time_double = orig->time_double;
+  new->value.plain = orig->value.plain;
+  new->value.time_double = orig->value.time_double;
+
+  new->time = orig->time;
+  new->name = g_strdup (orig->name);
 
   return new;
+}
+
+void games_score_destroy (GamesScore *score)
+{
+  if (score->name)
+    g_free (score->name);
+
+  g_free (score);
 }
 
 gint games_score_compare (GamesScoreStyle style, GamesScore *a, GamesScore *b)
 {
   switch (style) {
   case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
-    if (a->plain > b->plain) return +1;
-    if (a->plain < b->plain) return -1;
+    if (a->value.plain > b->value.plain) return +1;
+    if (a->value.plain < b->value.plain) return -1;
     return 0;
   case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
-    if (a->plain > b->plain) return -1;
-    if (a->plain < b->plain) return +1;
+    if (a->value.plain > b->value.plain) return -1;
+    if (a->value.plain < b->value.plain) return +1;
     return 0;
   case GAMES_SCORES_STYLE_TIME_DESCENDING:
-    if (a->time_double > b->time_double) return +1;
-    if (a->time_double < b->time_double) return -1;
+    if (a->value.time_double > b->value.time_double) return +1;
+    if (a->value.time_double < b->value.time_double) return -1;
     return 0;
   case GAMES_SCORES_STYLE_TIME_ASCENDING:
-    if (a->time_double > b->time_double) return -1;
-    if (a->time_double < b->time_double) return +1;
+    if (a->value.time_double > b->value.time_double) return -1;
+    if (a->value.time_double < b->value.time_double) return +1;
     return 0;
   default:
     g_warning ("Uknown score style in games_score_compare - treating as equal.");

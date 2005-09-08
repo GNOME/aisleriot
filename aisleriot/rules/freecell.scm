@@ -328,33 +328,32 @@
 
   ; freecells
   (add-normal-slot '())			; 0
+  (set! HORIZPOS (- HORIZPOS (/ 1 24)))
   (add-normal-slot '())			; 1
+  (set! HORIZPOS (- HORIZPOS (/ 1 24)))
   (add-normal-slot '())			; 2
+  (set! HORIZPOS (- HORIZPOS (/ 1 24)))
   (add-normal-slot '())			; 3
   (set! HORIZPOS (+ HORIZPOS 0.25))
 
   ; homecells
   (add-normal-slot '())			; 4
+  (set! HORIZPOS (- HORIZPOS (/ 1 24)))
   (add-normal-slot '())			; 5
+  (set! HORIZPOS (- HORIZPOS (/ 1 24)))
   (add-normal-slot '())			; 6
+  (set! HORIZPOS (- HORIZPOS (/ 1 24)))
   (add-normal-slot '())			; 7
   (add-carriage-return-slot)
 
   ; fields
   (add-extended-slot '() down)		; 8
-  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 9
-  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 10
-  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 11
-  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 12
-  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 13
-  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 14
-  (set! HORIZPOS (+ HORIZPOS (/ 1 28)))
   (add-extended-slot '() down)		; 15
 
   (add-blank-slot)
@@ -366,7 +365,7 @@
 
   (set! board-hash (make-hash-table hash-size))
 
-  (list 8.25 3)
+  (list 8 3.5)
 )
 
 (define (button-pressed slot card-list)

@@ -215,7 +215,7 @@
 	((= BASE-VAL (get-value (get-top-card slot-id)))
 	 (list 2 
 	       (get-name (get-top-card slot-id)) 
-	       (_"an empty Foundation pile")))
+	       (_"an empty foundation pile")))
 	((check-a-foundation (get-top-card slot-id) 2)
 	 (list 1
 	       (get-name (get-top-card slot-id))
@@ -230,7 +230,7 @@
 	     (= slot-id 8))
 	 (waste-to-tableau? (+ 1 slot-id)))
 	((empty-slot? slot-id)
-	 (list 2 (get-name (get-top-card 1)) (_"an empty Tableau pile")))
+	 (list 2 (get-name (get-top-card 1)) (_"an empty tableau pile")))
 	((or (and (= (get-value (get-top-card 1)) king)
 		  (= (get-value (get-top-card slot-id)) ace))
 	     (= (+ 1 (get-value (get-top-card 1)))
