@@ -16,9 +16,6 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
-; FIXME: when the issues with this game get fixed, also add droppable? 
-; support at the same time.
-
 (define (new-game)
   (initialize-playing-area)
   (make-standard-deck)
@@ -68,17 +65,26 @@
 	       (deal-cards-face-up 0 (list end-slot))))))
 
 (define (button-released start-slot card-list end-slot)
-  (and (not (= end-slot 0))
-       (not (empty-slot? end-slot))
-       (or (= 10 (+ (get-value (car card-list))
-		    (get-value (get-top-card end-slot))))
-	   (and (> (get-value (car card-list)) 10)
-		(= (get-value (get-top-card end-slot))
-		   (get-value (car card-list)))))
+  (and (droppable? start-slot card-list end-slot)
        (remove-card end-slot)
        (check-for-deal start-slot end-slot)
        (add-to-score! 2)))
 
+(define (droppable? start-slot card-list end-slot)
+  (and (not (= end-slot 0))
+       (not (empty-slot? end-slot))
+       (or (= 10 (+ (get-value (car card-list))
+		    (get-value (get-top-card end-slot))
+                 )
+           )
+	   (and (> (get-value (car card-list)) 10)
+		(= (get-value (get-top-card end-slot))
+		   (get-value (car card-list))
+                )
+           )
+       )
+   )
+)
 (define (button-clicked slot-id)
   #f)
 
@@ -139,6 +145,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)
