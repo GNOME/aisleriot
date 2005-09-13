@@ -44,6 +44,16 @@ typedef struct {
   GamesScoresBackend *backend;
 } GamesScoresCategoryPrivate;
 
+typedef struct _GamesScoresPrivate {
+  GHashTable * categories;
+  gchar * currentcat;
+  gchar * defcat;
+  gchar *basename;
+  gboolean last_score_significant;
+  gint last_score_position;
+  GamesScoreStyle style;
+} GamesScoresPrivate;
+
 /* Note that these pseudo-methods don't quite do what they say they
    do. In particular category_dup doesn't return what it is
    given. This is all because there are different public and private
@@ -112,23 +122,38 @@ GamesScores * games_scores_new (const GamesScoresDescription * description) {
   self = GAMES_SCORES (g_object_new (GAMES_TYPE_SCORES, NULL));
 
   /* FIXME: Input sanity checks. */
-  
-  cats = description->categories;
+
   self->priv->categories = 
     g_hash_table_new_full (g_str_hash, g_str_equal,
 			   g_free, 
-			     (GDestroyNotify) games_scores_category_free);
-  while (cats->key) {
-    dupcat = games_scores_category_dup (cats);
-    
+			   (GDestroyNotify) games_scores_category_free);
+
+  if (description->categories) {
+    cats = description->categories;
+    while (cats->key) {
+      dupcat = games_scores_category_dup (cats);
+      
+      g_hash_table_insert (self->priv->categories, 
+			   g_strdup (cats->key),
+			   dupcat);
+      cats++;
+    }
+
+    self->priv->defcat = g_strdup (description->deflt);
+    self->priv->currentcat = g_strdup (self->priv->defcat);
+  } else {
+    dupcat = g_new0 (GamesScoresCategoryPrivate, 1);
+    dupcat->key = "";
+    dupcat->name = "";
+
     g_hash_table_insert (self->priv->categories, 
-			 g_strdup (cats->key),
+			 g_strdup (""),
 			 dupcat);
-    cats++;
+
+    self->priv->currentcat = g_strdup ("");
+    self->priv->defcat = "";
   }
   
-  self->priv->defcat = g_strdup (description->deflt);
-  self->priv->currentcat = g_strdup (self->priv->defcat);
   self->priv->basename = g_strdup (description->basename);
   /* FIXME: Do some sanity checks on the default and the like. */
   
@@ -150,7 +175,6 @@ GamesScores * games_scores_new (const GamesScoresDescription * description) {
  *
  **/
 void games_scores_set_category (GamesScores *self, gchar *category) {
-
   g_return_if_fail (self != NULL);
 
   if (category == NULL)

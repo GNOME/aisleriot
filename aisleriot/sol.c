@@ -160,11 +160,10 @@ void eval_installed_file (char *file)
     char *message = g_strdup_printf (
          _("Aisleriot can't load the file: \n%s\n\n"
            "Please check your Aisleriot installation"), installed_filename);
-    GtkWidget *w = gtk_message_dialog_new (GTK_WINDOW(app),
-                                       GTK_DIALOG_DESTROY_WITH_PARENT,
-                                       GTK_MESSAGE_ERROR,
-                                       GTK_BUTTONS_OK,
-                                       message);
+    GtkWidget *w = gtk_message_dialog_new (NULL, 0,
+					   GTK_MESSAGE_ERROR,
+					   GTK_BUTTONS_OK,
+					   message);
 
     gtk_dialog_run (GTK_DIALOG(w));
     gtk_widget_destroy(w);
@@ -184,6 +183,36 @@ save_state (GnomeClient *client)
                            card_style, NULL);
 
   return TRUE;
+}
+
+/* Check for the existence of a particular variation and fall back to
+   a default if it isn't found. */
+/* FIXME: There is a lot of duplication with the eval_installed_file
+   function, but we need this called earlier. */
+static void check_game_file_name (void)
+{
+  gchar *fullpath;
+  gchar *partialpath;
+  GtkWidget *dialog;
+
+  partialpath = g_strconcat (GAMESDIR, game_file, NULL);
+  fullpath = gnome_program_locate_file (NULL,
+					GNOME_FILE_DOMAIN_APP_DATADIR,
+					partialpath,
+					FALSE, NULL);
+  if (!g_file_test (fullpath, G_FILE_TEST_EXISTS)) {
+    dialog = gtk_message_dialog_new (NULL, 0,
+				     GTK_MESSAGE_INFO,
+				     GTK_BUTTONS_OK,
+				     _("Aisleriot cannot find the last game you played."));
+ gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), _("This usually occurs when you run an older version of Aisleriot which does not have the game you last played. The default game, Klondike, is being started instead."));
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    gtk_widget_destroy (dialog);
+    game_file = DEFAULT_VARIATION;
+  }
+
+  g_free (fullpath);
+  g_free (partialpath);
 }
 
 void new_game (gchar* file, guint *seedp)
@@ -206,9 +235,12 @@ void new_game (gchar* file, guint *seedp)
      * add it here in order to make sure all the original functions are
      * "clean". */
     eval_installed_file ("sol.scm");
-    eval_installed_file (file);
+    /* This is here so that the previous lines can catch bad installations 
+       and report it before reporting the fallback to defaults. */
+    check_game_file_name ();
+    eval_installed_file (game_file);
 
-    game_name = game_file_to_name (file);
+    game_name = game_file_to_name (game_file);
     update_statistics_display ();
     help_update_game_name (game_name);
     install_options_menu (game_name);

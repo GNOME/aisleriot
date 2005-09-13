@@ -61,19 +61,9 @@ typedef struct {
 
 #define GAMES_SCORES_GET_CLASS(obj) G_TYPE_INSTANCE_GET_CLASS((obj), games_scores_get_type(), GamesScoresClass)
 
-typedef struct _GamesScoresPrivate {
-  GHashTable * categories;
-  gchar * currentcat;
-  gchar * defcat;
-  gchar *basename;
-  gboolean last_score_significant;
-  gint last_score_position;
-  GamesScoreStyle style;
-} GamesScoresPrivate;
-
 typedef struct _GamesScores {
 	GObject parent;
-	GamesScoresPrivate *priv;
+	struct _GamesScoresPrivate *priv;
 } GamesScores;
 
 typedef struct _GamesScoresClass {
