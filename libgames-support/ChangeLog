@@ -1,3 +1,16 @@
+2005-09-14  Callum McKenzie  <callum@spooky-possum.org>
+
+        * games-scores-backend.c: Implement file locking and rewrite the I/O
+	routines to use a object-wide file descriptor.
+	
+	* games-scores-backend.c: Check whether the scores file has
+	changed and update the list if it has.
+
+	* games-scores.c: Add an ordered list of the categories and make
+	the foreach iterator use it. This means we can fix the dialog's
+	combo box ordering problem while retaining the hash for random
+	lookups.
+
 2005-09-13  Callum McKenzie  <callum@spooky-possum.org>
 
 	* games-scores.c: Move GamesScorePrivate definition out of the

@@ -46,6 +46,7 @@ typedef struct {
 
 typedef struct _GamesScoresPrivate {
   GHashTable * categories;
+  GSList * catsordered;
   gchar * currentcat;
   gchar * defcat;
   gchar *basename;
@@ -128,6 +129,10 @@ GamesScores * games_scores_new (const GamesScoresDescription * description) {
 			   g_free, 
 			   (GDestroyNotify) games_scores_category_free);
 
+  /* catsordered is a record of the ordering of the categories. 
+   * Its data is shared with the hash table. */
+  self->priv->catsordered = NULL;
+
   if (description->categories) {
     cats = description->categories;
     while (cats->key) {
@@ -136,6 +141,8 @@ GamesScores * games_scores_new (const GamesScoresDescription * description) {
       g_hash_table_insert (self->priv->categories, 
 			   g_strdup (cats->key),
 			   dupcat);
+      self->priv->catsordered = g_slist_append (self->priv->catsordered,
+						dupcat);
       cats++;
     }
 
@@ -149,7 +156,9 @@ GamesScores * games_scores_new (const GamesScoresDescription * description) {
     g_hash_table_insert (self->priv->categories, 
 			 g_strdup (""),
 			 dupcat);
-
+    self->priv->catsordered = g_slist_append (self->priv->catsordered,
+					      dupcat);
+     
     self->priv->currentcat = g_strdup ("");
     self->priv->defcat = "";
   }
@@ -275,25 +284,7 @@ GList *games_scores_get (GamesScores *self)
   cat = games_scores_get_current (self);
 
   return games_scores_backend_get_scores (cat->backend);
-}
-
-typedef struct {
-  GamesScoresCategoryForeachFunc func;
-  gpointer userdata;
-} GamesScoresCategoryForeachHelper;
-
-static void games_scores_category_foreach_helper (gchar *key, 
-						  GamesScoresCategoryPrivate *cat, 
-						  GamesScoresCategoryForeachHelper *h)
-{
-  GamesScoresCategory temp;
-
-  temp.key = cat->key;
-  temp.name = cat->name;
-
-  (*h->func)(&temp, h->userdata);
-}
-					   
+}					   
 
 /**
  * category_foreach:
@@ -303,19 +294,24 @@ static void games_scores_category_foreach_helper (gchar *key,
  *
  * This function will iterate over the list of categories calling the
  * supplied function with the category and userdata as arguments.
+ * The ordering of the categories is the order they were added.
  *
  **/
 void games_scores_category_foreach (GamesScores *self, 
 				    GamesScoresCategoryForeachFunc func, 
 				    gpointer userdata)
 {
-  GamesScoresCategoryForeachHelper params;
+  GSList *list;
+  GamesScoresCategory temp;
 
-  params.func = func;
-  params.userdata = userdata;
+  list = self->priv->catsordered;
+  while (list) {
+    temp.key = ((GamesScoresCategoryPrivate *) list->data)->key;
+    temp.name = ((GamesScoresCategoryPrivate *) list->data)->name;
 
-  g_hash_table_foreach (self->priv->categories, 
-			(GHFunc) games_scores_category_foreach_helper, &params);
+    (*func) (&temp, userdata);
+    list = g_slist_next (list);
+  }
 }
 
 /**

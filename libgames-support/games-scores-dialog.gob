@@ -324,10 +324,6 @@ class Games:Scores:Dialog from Gtk:Dialog {
   {
     gchar *k;
 
-    /* FIXME: This does not sort the categories, they are added as they appear.
-     * this is not good, especially not when we populate ourselves from a
-     * hash table. */
-
     k = g_strdup (key);
 
     g_hash_table_insert (self->_priv->categories, k, 

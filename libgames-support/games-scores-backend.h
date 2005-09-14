@@ -24,6 +24,8 @@
 #include <glib.h>
 #include <glib-object.h>
 
+#include <time.h>
+
 #include "games-score.h"
 
 G_BEGIN_DECLS
@@ -46,7 +48,9 @@ G_BEGIN_DECLS
 
 typedef struct _GamesScoresBackendPrivate {
   GamesScoreStyle style;
+  time_t timestamp;
   gchar *filename;
+  gint fd;
 } GamesScoresBackendPrivate;
 
 typedef struct _GamesScoresBackend {

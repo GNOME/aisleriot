@@ -22,11 +22,10 @@
 #include <glib-object.h>
 
 #include <fcntl.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
 
 #include "games-score.h"
 #include "games-scores.h"
@@ -72,12 +71,54 @@ GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
   else
     fullname = g_strjoin (".", basename, name, "scores", NULL);
 
+  backend->priv->timestamp = 0;
   backend->priv->style = style;
   backend->scores_list = NULL;
   backend->priv->filename = g_build_filename (SCORESDIR, fullname, NULL);
   g_free (fullname);
 
+  backend->priv->fd = 0;
+
   return backend;
+}
+
+/* Get a lock on the scores file. Block until it is available. 
+ * This also supplies the file descriptor we need. The return value
+ * is whether we were succesful or not. */
+static gboolean games_scores_backend_get_lock (GamesScoresBackend *self)
+{
+  struct flock lock;
+  gint error;
+
+  self->priv->fd = open (self->priv->filename, O_RDWR);
+  if (self->priv->fd == -1) {
+    return FALSE;
+  }
+
+  lock.l_type = F_WRLCK;
+  lock.l_whence = SEEK_SET;
+  lock.l_start = 0;
+  lock.l_len = 0;
+
+  error = fcntl (self->priv->fd, F_SETLKW, &lock);
+
+  return error != -1;
+}
+
+/* Release the lock on the scores file and dispose of the fd. */
+/* We ignore errors, there is nothing we can do about them. */
+static void games_scores_backend_release_lock (GamesScoresBackend *self)
+{
+  struct flock lock;
+
+  lock.l_type = F_UNLCK;
+  lock.l_whence = SEEK_SET;
+  lock.l_start = 0;
+  lock.l_len = 0;
+
+  fcntl (self->priv->fd, F_SETLKW, &lock);
+
+  close (self->priv->fd);
 }
 
 /* You can alter the list returned by this function, but you must
@@ -90,27 +131,60 @@ GList *games_scores_backend_get_scores (GamesScoresBackend *self)
   gchar *scorestr;
   gchar *timestr;
   gchar *namestr;
-  gsize blen;
-  gboolean errorp;
   GamesScore *newscore;
+  struct stat info;
+  int error;
+  ssize_t length, target;
+  GList *t;
 
   /* Check for a change in the scores file and update if necessary. */
+  error = stat (self->priv->filename, &info);
 
-  /* FIXME: Update the list when necessary, don't just cache it forever. */
-  if ((self->scores_list == NULL) /* || something */ ) {
+  /* If an error occurs then we give up on the file and return NULL. */
+  if (error != 0)
+    return NULL;
+
+  if ((info.st_mtime > self->priv->timestamp) || 
+      (self->scores_list == NULL)) {
+    self->priv->timestamp = info.st_mtime;
+
+    /* Dump the old list of scores. */
+    t = self->scores_list;
+    while (t != NULL) {
+      games_score_destroy ((GamesScore *) t->data);
+      t = g_list_next (t);
+    }
+    g_list_free (self->scores_list);
+    self->scores_list = NULL;
+
     /* Lock the file and get the list. */
-    /* FIXME: Lock the file. */
-    errorp = g_file_get_contents (self->priv->filename, 
-				  &buffer, &blen, NULL);
-    
-    if (!errorp || (blen == 0)) {
+    if (!games_scores_backend_get_lock (self))
+      return NULL;
+
+    buffer = g_malloc (info.st_size + 1);
+    if (buffer == NULL) {
+      games_scores_backend_release_lock (self);
       return NULL;
     }
+
+    target = info.st_size;
+    length = 0;
+    do {
+      target -= length;
+      length = read (self->priv->fd, buffer, info.st_size);
+      if (length == -1) {
+	games_scores_backend_release_lock (self);
+	g_free (buffer);
+	return NULL;
+      }
+    } while (length < target);
+
+    buffer[info.st_size] = '\0';
 
     /* FIXME: These details should be in a sub-class. */
 
     /* Parse the list. We start by breaking it into lines. */
-    /* Since the buffer is null-terminated by g_file_get_contents, 
+    /* Since the buffer is null-terminated 
      * we can do the string stuff reasonably safely. */
     eol = strchr (buffer, '\n');
     scorestr = buffer;
@@ -158,20 +232,10 @@ void games_scores_backend_set_scores (GamesScoresBackend *self,
 {
     GList *s;
     GamesScore *d;
-    FILE *f;
+    gchar *buffer;
 
-    /* FIXME: Lock the file. */
-
-    /* FIXME: File mode. */
-
-    /* Yeah! Good old-fashioned stdio. It suits us here. */
-    f = fopen (self->priv->filename, "w");
-
-    if (f == NULL) {
-      g_warning ("Failed to open the high scores file %s: %s\n", 
-		 self->priv->filename, strerror (errno));
+    if (!games_scores_backend_get_lock (self))
       return;
-    }
 
     self->scores_list = list;
 
@@ -196,15 +260,18 @@ void games_scores_backend_set_scores (GamesScoresBackend *self,
       rtime = d->time;
       rname = d->name;
 
-      /* We ignore the error and just keep trying. It will give 
-       * better results than if we just gave up. */
-      fprintf (f, "%g %lld %s\n", rscore, rtime, rname); 
+      /* FIXME: Once again: are there locale issues here? */
+      buffer = g_strdup_printf ("%g %lld %s\n", rscore, rtime, rname); 
+      write (self->priv->fd, buffer, strlen (buffer));
+      /* Ignore any errors and blunder on. */
+      g_free (buffer);
 
       s = g_list_next (s);
     }
 
-    fclose (f);
+    /* Update the timestamp so we don't reread the scores unnecessarily. */
+    self->priv->timestamp = time (NULL);
 
-    /* FIXME: Unlock the file. */
+    games_scores_backend_release_lock (self);
 
  }
