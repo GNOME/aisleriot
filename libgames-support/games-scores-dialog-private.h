@@ -54,9 +54,11 @@ struct _GamesScoresDialogPrivate {
 	gint catcounter;
 #line 78 "games-scores-dialog.gob"
 	gint hilight;
-#line 81 "games-scores-dialog.gob"
+#line 79 "games-scores-dialog.gob"
+	gboolean preservehilight;
+#line 82 "games-scores-dialog.gob"
 	gint style;
-#line 60 "games-scores-dialog-private.h"
+#line 62 "games-scores-dialog-private.h"
 };
 
 #ifdef __cplusplus

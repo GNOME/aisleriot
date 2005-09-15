@@ -76,6 +76,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
   private GHashTable *catindices destroywith g_hash_table_destroy;
   private gint catcounter;
   private gint hilight;
+  private gboolean preservehilight;
 
   /* FIXME: This should be a property. */
   private gint style;
@@ -104,6 +105,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
 
     dialog->_priv->scores = g_object_ref (scores);
     dialog->_priv->style = games_scores_get_style (scores);
+    dialog->_priv->preservehilight = FALSE;
 
     gtk_window_set_title (GTK_WINDOW (dialog), title);
 
@@ -184,7 +186,11 @@ class Games:Scores:Dialog from Gtk:Dialog {
 				 GINT_TO_POINTER (index));
 
     games_scores_set_category (self->_priv->scores, newcat);
-    self->_priv->hilight = 0;
+    if (self->_priv->preservehilight) {
+      self->_priv->preservehilight = FALSE;
+    } else {
+      self->_priv->hilight = 0;
+    }
     games_scores_dialog_redraw (self);
     games_scores_set_category (self->_priv->scores, catcopy);
 
@@ -193,21 +199,21 @@ class Games:Scores:Dialog from Gtk:Dialog {
        
   /* This is to make sure we update ourselves when the window goes through
    * a hide/show cycle. */
-  /* FIXME: Ideally we monitor the high score list, but this isn't 
-   * possible yet. */
+  /* FIXME: We should monitor the high scores list (or get games-scores to
+   * send us a signal. */
   private
   void show (GamesScoresDialog *self) { 
     const gchar *cat;
-
+    
     cat = games_scores_get_category (self->_priv->scores);
     games_scores_dialog_set_category (self, cat);
-
     games_scores_dialog_redraw (self);
   }
 
   private
   void hide (GamesScoresDialog *self) {
     self->_priv->hilight = 0;
+    gtk_tree_selection_unselect_all (gtk_tree_view_get_selection (self->_priv->treeview));
   }
 
   init (self) {
@@ -348,11 +354,12 @@ class Games:Scores:Dialog from Gtk:Dialog {
 
     index = GPOINTER_TO_INT (g_hash_table_lookup (self->_priv->categories, 
 						   key));
+    self->_priv->preservehilight = TRUE;
     gtk_combo_box_set_active (GTK_COMBO_BOX (self->_priv->combo), index);
   }
 
   /**
-   * set_category:
+   * set_style:
    * @self: a pointer to a GamesScoresDialog
    * @style: the style to use
    * 
@@ -413,10 +420,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
    **/
   public 
   void set_hilight (Games:Scores:Dialog *self, guint pos) {
-    /* We silently exit here since 0 is an explicit indication that we don't 
-     * have a place in mind while greater than 10 is legitimate, but we
-     * aren't going to display it. */
-    if ((pos < 1) || (pos > 10))
+    if ((pos < 1) || (pos > GAMES_SCORES_SIGNIFICANT))
       return;
 
     self->_priv->hilight = pos;

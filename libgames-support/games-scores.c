@@ -55,28 +55,12 @@ typedef struct _GamesScoresPrivate {
   GamesScoreStyle style;
 } GamesScoresPrivate;
 
-/* Note that these pseudo-methods don't quite do what they say they
-   do. In particular category_dup doesn't return what it is
-   given. This is all because there are different public and private
-   representations of the data. */
-
 static void games_scores_category_free (GamesScoresCategoryPrivate *cat) {
   g_free (cat->key);
   g_free (cat->name);
   if (cat->backend)
     g_object_unref (cat->backend);
   g_free (cat);
-}
-
-static GamesScoresCategoryPrivate *games_scores_category_dup (const GamesScoresCategory *orig) {
-  GamesScoresCategoryPrivate *newcat;
-  
-  newcat = g_new0 (GamesScoresCategoryPrivate, 1);
-  newcat->key = g_strdup (orig->key);
-  newcat->name = g_strdup (orig->name);
-  newcat->backend = NULL; /* Backends are created on demand. */
-
-  return newcat;
 }
 
 /**
@@ -118,7 +102,6 @@ G_DEFINE_TYPE (GamesScores, games_scores, G_TYPE_OBJECT);
 GamesScores * games_scores_new (const GamesScoresDescription * description) {
   GamesScores *self;
   const GamesScoresCategory *cats;
-  GamesScoresCategoryPrivate *dupcat;
   
   self = GAMES_SCORES (g_object_new (GAMES_TYPE_SCORES, NULL));
 
@@ -136,28 +119,14 @@ GamesScores * games_scores_new (const GamesScoresDescription * description) {
   if (description->categories) {
     cats = description->categories;
     while (cats->key) {
-      dupcat = games_scores_category_dup (cats);
-      
-      g_hash_table_insert (self->priv->categories, 
-			   g_strdup (cats->key),
-			   dupcat);
-      self->priv->catsordered = g_slist_append (self->priv->catsordered,
-						dupcat);
+      games_scores_add_category (self, cats->key, cats->name);
       cats++;
     }
 
     self->priv->defcat = g_strdup (description->deflt);
     self->priv->currentcat = g_strdup (self->priv->defcat);
   } else {
-    dupcat = g_new0 (GamesScoresCategoryPrivate, 1);
-    dupcat->key = "";
-    dupcat->name = "";
-
-    g_hash_table_insert (self->priv->categories, 
-			 g_strdup (""),
-			 dupcat);
-    self->priv->catsordered = g_slist_append (self->priv->catsordered,
-					      dupcat);
+    games_scores_add_category (self, "", "");
      
     self->priv->currentcat = g_strdup ("");
     self->priv->defcat = "";
@@ -169,6 +138,31 @@ GamesScores * games_scores_new (const GamesScoresDescription * description) {
   self->priv->style = description->style;
       
   return self;
+}
+
+/**
+ * add_category:
+ * @scores: A scores object.
+ * @key: The key for the new category.
+ * @name: The player-visible label for the new category.
+ *
+ * Add a new category after initialisation. key and name are copied into
+ * internal structures. The scores dialog is not currently updated.
+ *
+ **/
+void games_scores_add_category (GamesScores *self, gchar *key, gchar *name)
+{
+  GamesScoresCategoryPrivate *cat;
+
+  cat = g_new (GamesScoresCategoryPrivate, 1);
+  cat->key = g_strdup (key);
+  cat->name = g_strdup (name);
+  cat->backend = NULL;
+  
+  g_hash_table_insert (self->priv->categories,
+		       g_strdup (key),
+		       cat);
+  self->priv->catsordered = g_slist_append (self->priv->catsordered, cat);
 }
 
 /**

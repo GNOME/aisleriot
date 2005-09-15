@@ -78,6 +78,7 @@ GList *games_scores_get (GamesScores *self);
 void games_scores_category_foreach (GamesScores *self, GamesScoresCategoryForeachFunc func, gpointer userdata);
 GamesScoreStyle games_scores_get_style (GamesScores *self);
 const gchar *games_scores_get_category (GamesScores *self);
+void games_scores_add_category (GamesScores *self, gchar *key, gchar *name);
 
 G_END_DECLS
 
