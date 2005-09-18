@@ -77,7 +77,7 @@ GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
   backend->priv->filename = g_build_filename (SCORESDIR, fullname, NULL);
   g_free (fullname);
 
-  backend->priv->fd = 0;
+  backend->priv->fd = -1;
 
   return backend;
 }
@@ -89,6 +89,10 @@ static gboolean games_scores_backend_get_lock (GamesScoresBackend *self)
 {
   struct flock lock;
   gint error;
+
+  if (self->priv->fd != -1) {
+    return TRUE; /* Assume we already have the lock. */
+  }
 
   self->priv->fd = open (self->priv->filename, O_RDWR);
   if (self->priv->fd == -1) {
@@ -102,7 +106,13 @@ static gboolean games_scores_backend_get_lock (GamesScoresBackend *self)
 
   error = fcntl (self->priv->fd, F_SETLKW, &lock);
 
-  return error != -1;
+  if (error == -1) {
+    close (self->priv->fd);
+    self->priv->fd = -1;
+    return FALSE;
+  }
+
+  return TRUE;
 }
 
 /* Release the lock on the scores file and dispose of the fd. */
@@ -119,6 +129,8 @@ static void games_scores_backend_release_lock (GamesScoresBackend *self)
   fcntl (self->priv->fd, F_SETLKW, &lock);
 
   close (self->priv->fd);
+
+  self->priv->fd = -1;
 }
 
 /* You can alter the list returned by this function, but you must

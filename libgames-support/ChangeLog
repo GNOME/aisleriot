@@ -1,3 +1,9 @@
+2005-09-18  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores-backend.c: Make sure that the object only has one
+	open file descriptor at a time. i.e. we aren't "relocking" the
+	file if calls to _get_lock are nested.
+
 2005-09-15  Callum McKenzie  <callum@spooky-possum.org>
 
 	* games-scores-dialog.gob: Bug fixing for the hilighting.
