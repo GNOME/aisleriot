@@ -217,7 +217,7 @@ static const GtkActionEntry actions[] = {
   { "RedoMove", GAMES_STOCK_REDO_MOVE, NULL, NULL, NULL, G_CALLBACK (redo_callback) },
   { "Hint", GAMES_STOCK_HINT, NULL, NULL, NULL, G_CALLBACK (show_hint_dialog) },
   { "Contents", GAMES_STOCK_CONTENTS, NULL, NULL, N_("View help for Aisleriot"), G_CALLBACK (general_help) },
-  { "Help", GTK_STOCK_HELP, NULL, NULL, N_("View help for this game"), G_CALLBACK (help_on_specific_game) },
+  { "Help", GTK_STOCK_HELP, NULL, "<Shift>F1", N_("View help for this game"), G_CALLBACK (help_on_specific_game) },
   { "About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) },
 };
 
