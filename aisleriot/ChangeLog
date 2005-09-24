@@ -1,3 +1,12 @@
+2005-09-24  Callum McKenzie  <callum@spooky-possum.org>
+
+	* rules/straight_up.scm: Make sure the check-reserve always
+	updates the status message. We were missing the update when the
+	reserve emptied. See bug #317069.
+
+	* rules/kansas.scm (droppable?): Stop cards being moved to the
+	reserve. See bug #316737.
+
 2005-09-20  Callum McKenzie  <callum@spooky-possum.org>
 
 	* menu.c: Change the game-specific help shortcut to <Shift>F1 to
