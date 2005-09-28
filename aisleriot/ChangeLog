@@ -1,3 +1,11 @@
+2005-09-28  Callum McKenzie  <callum@spooky-possum.org>
+
+	* rules/freecell.scm: Run the hint code in a thread whenever a
+	game starts or a move is made. When the user hits the hint button
+	a hint is ready and waiting for them (or, if the hint code hasn't
+	finished running - a rare occurrence - the best available hint is
+	returned).
+
 2005-09-24  Callum McKenzie  <callum@spooky-possum.org>
 
 	* rules/straight_up.scm: Make sure the check-reserve always

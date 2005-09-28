@@ -39,6 +39,8 @@
 
 ;;; Code:
 
+(use-modules (ice-9 threads))
+
 ;;
 ;; Game Options
 ;;
@@ -364,6 +366,8 @@
   (update-auto spade 0)
 
   (set! board-hash (make-hash-table hash-size))
+  
+  (start-hint-thread)
 
   (list 8 3.5)
 )
@@ -382,6 +386,7 @@
                (else #f))))
 
 (define (button-released start-slot card-list end-slot)
+  (kill-hint-thread)
 	(and
 		(not (= start-slot end-slot))
 		(cond
@@ -391,6 +396,7 @@
 		)
 		(move-low-cards 0)
 	)
+	(start-hint-thread)
 )
   
 (define (button-clicked slot)
@@ -398,6 +404,7 @@
   #f)
 
 (define (button-double-clicked slot)
+  (kill-hint-thread)
 	(and
 		(not (empty-slot? slot))
 		(let ((card (get-top-card slot)))
@@ -409,6 +416,7 @@
 			)
 		)
 	)
+	(start-hint-thread)
 )
 
 ;; Condition for fail -- no more cards to move
@@ -546,7 +554,7 @@
 ; These constants affect the hash table and search algorithm
 (define hash-size (- (expt 2 17) 1)) ; A Mersenne prime (2^17 - 1) ~128k
 (define board-node-max  50) ; number of board positions to visit each time.
-(define traverse-node-max 1000) ; prevents stack overflow
+(define traverse-node-max 10000) ; prevents stack overflow
 
 ; These constants define values used in constructing the board value.
 (define weight-factor   100) ; effect of weight on final score
@@ -568,11 +576,16 @@
 (define visited-nodes 0) ; Number of board positions created for this search.
 (define traversed-nodes 0) ; Number of board positions traversed through
 
+(define hint-return '()) ; The hint, updated by the hint thread
+(define kill-thread #f) ; Tell the hint thread to die
+(define kill-thread-mutex (make-mutex))
+(define hint-thread '()) 
+
 ;;-----------------------------------------------------------------------------
 ;; Functions
 
 ; Returns the best move found by the search algorithm
-(define (get-hint)
+(define (find-hint)
   (if debug (display "get-hint\n"))
   (set! visited-nodes 0)
   (set! traversed-nodes 0)
@@ -590,6 +603,39 @@
 	  (newline)
 	  (display-best-move-trace board moves)))
       (create-help-list board moves))))
+
+; Start the hint thread on its way
+(define (start-hint-thread)
+  (if debug (display "Starting hint thread\n"))
+  (set! hint-return (list 0 (_"No hint available right now")))
+  (set! kill-thread #f) ; No locking, we haven't started the thread yet
+  (set! hint-thread
+	(begin-thread 
+	 (set! hint-return (find-hint)))))
+
+; Test the kill-thread flag
+(define (kill-thread?)
+  (lock-mutex kill-thread-mutex)
+  (let ((result kill-thread))
+    (unlock-mutex kill-thread-mutex)
+    result))
+		      
+; Kill the hint thread and ignore the result
+(define (kill-hint-thread)
+  (if debug (display "Killing hint thread\n"))
+  (lock-mutex kill-thread-mutex)
+  (set! kill-thread #t)             ; Signal the kill
+  (unlock-mutex kill-thread-mutex)
+  (join-thread hint-thread))        ; and wait for the code to unwind
+
+; The hint callback. It stops the hint thread and gets the current best 
+; result. Note that the thread is not restarted since we let the hint code 
+; unwind and we would therefore have to start at the beginning. In practise 
+; the hint code is faster than the time it takes for the player to click the 
+; hint button so it doesn't matter.
+(define (get-hint)
+  (kill-hint-thread)
+  hint-return)
 
 ; Displays the sequence of best moves found so far by the search. (Debug only)
 ; Note that the best sequence is occasionally not available depending on
@@ -690,7 +736,8 @@
 	     (not (eq? (vector-ref (cdaar moves) index-outcome) outcome-lose)))
 
       ; Determine whether to traverse deeper, or to go back up the tree
-      (if (and (eq? (vector-ref (cdaar moves) index-outcome) #f)
+      (if (and (kill-thread?)
+	       (eq? (vector-ref (cdaar moves) index-outcome) #f)
 	       (< visited-nodes board-node-max)
 	       (< traversed-nodes traverse-node-max)
 	       (>= (vector-ref (cdaar moves) index-value) prev-best))
