@@ -177,8 +177,8 @@ esac
 GNOME_GAMES_CFLAGS="$OS_FLAGS $GNOME_GAMES_CFLAGS"
 
 PKG_CHECK_MODULES(ESD, esound, , [
-  CFLAGS="$CFLAGS -DNO_ESD"
-  CXXFLAGS="$CXXFLAGS -DNO_ESD" ])
+  GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS -DNO_ESD"
+  GNOME_GAMES_CXXFLAGS="$GNOME_GAMES_CXXFLAGS -DNO_ESD" ])
 AC_SUBST(ESD_CFLAGS)
 AC_SUBST(ESD_LIBS)
 
@@ -227,6 +227,19 @@ AC_SUBST(scores_user)
 
 scoredir='${localstatedir}/games'
 AC_SUBST(scoredir)
+
+BUILD_BREAKER_BASIC="-Werror -Wextra -Wfloat-equal -Wmissing-declarations -Wredundant-decls -Wold-style-definition -Wmissing-noreturn -Wdeclaration-after-statement -Wshadow -Wendif-labels -Wlarger-than-4000 -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wundef -Wunreachable-code -fdata-sections"
+MEGA_BUILD_BREAKER="-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -Wstrict-prototypes"
+
+AC_ARG_ENABLE(build-breaker,
+  [  --enable-build-breaker      Enable extra compiler warnings],
+  [GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS $BUILD_BREAKER_BASIC"
+   GNOME_GAMES_CXXFLAGS="$GNOME_GAMES_CXXFLAGS $BUILD_BREAKER_BASIC"])
+AC_ARG_ENABLE(mega-build-breaker,
+  [  --enable-mega-build-breaker Enable extra compiler options that are 
+			      almost guaranteed to stop compilation.],
+  [GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS $BUILD_BREAKER_BASIC $MEGA_BUILD_BREAKER"
+   GNOME_GAMES_CXXFLAGS="$GNOME_GAMES_CXXFLAGS $BUILD_BREAKER_BASIC $MEGA_BUILD_BREAKER"])  
 
 AC_CONFIG_FILES([
 gnome-games.spec

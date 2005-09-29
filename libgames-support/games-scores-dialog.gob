@@ -174,16 +174,16 @@ class Games:Scores:Dialog from Gtk:Dialog {
   private 
   void change_category (Gtk:Combo:Box *widget, GamesScoresDialog *self) {
     gchar *catcopy;
-    gint index;
+    gint idx;
     gchar *newcat;
     
     /* This seems like a bit of a hack, but since we're trying to
      * temporarily change the category it sort of makes sense. */
 
     catcopy = g_strdup (games_scores_get_category (self->_priv->scores));
-    index = gtk_combo_box_get_active (widget);
+    idx = gtk_combo_box_get_active (widget);
     newcat = g_hash_table_lookup (self->_priv->catindices,
-				 GINT_TO_POINTER (index));
+				 GINT_TO_POINTER (idx));
 
     games_scores_set_category (self->_priv->scores, newcat);
     if (self->_priv->preservehilight) {
@@ -350,12 +350,12 @@ class Games:Scores:Dialog from Gtk:Dialog {
    *
    **/
   private void set_category (Games:Scores:Dialog *self, const gchar *key) {
-    gint index;
+    gint idx;
 
-    index = GPOINTER_TO_INT (g_hash_table_lookup (self->_priv->categories, 
-						   key));
+    idx = GPOINTER_TO_SIZE (g_hash_table_lookup (self->_priv->categories, 
+						key));
     self->_priv->preservehilight = TRUE;
-    gtk_combo_box_set_active (GTK_COMBO_BOX (self->_priv->combo), index);
+    gtk_combo_box_set_active (GTK_COMBO_BOX (self->_priv->combo), idx);
   }
 
   /**
