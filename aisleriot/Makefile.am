@@ -45,8 +45,10 @@ sol_SOURCES = 		\
 	statistics.c	\
 	statistics.h
 
-sol_LDADD = $(GNOME_GAMES_LIBS) \
-	$(GLADE_LIBS)				   \
+sol_LDADD = \
+	../libgames-support/libgames-support.la \
+	$(GNOME_GAMES_LIBS) \
+	$(GLADE_LIBS) \
 	$(GUILE_LDFLAGS) 
 
 glade_DATA = \

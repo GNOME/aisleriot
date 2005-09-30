@@ -155,7 +155,6 @@ fi
 
 GNOME_GAMES_CXXFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CXXFLAGS"
 GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CFLAGS"
-GNOME_GAMES_LIBS="$GNOME_GAMES_LIBS \$(top_builddir)/libgames-support/libgames-support.la"
 
 ## Use a separate set of flags for C++ (so we can exclude -std=gnu89 for
 ## example, it doesn't make sense under C++).
@@ -207,6 +206,30 @@ else
 ry])
 fi
 
+AC_MSG_CHECKING([for some Win32 platform])
+case "$host" in
+  *-*-cygwin*|*-*-mingw*)
+    platform_win32=yes
+    ;;
+  *)
+    platform_win32=no
+    ;;
+esac
+AC_MSG_RESULT([$platform_win32])
+AM_CONDITIONAL(PLATFORM_WIN32, test "$platform_win32" = "yes")
+
+AC_MSG_CHECKING([for native Win32])
+case "$host" in
+  *-*-mingw*)
+    os_win32=yes
+    ;;
+  *)
+    os_win32=no
+    ;;
+esac
+AC_MSG_RESULT([$os_win32])
+AM_CONDITIONAL(OS_WIN32, test "$os_win32" = "yes")
+
 AC_ARG_ENABLE(setgid,
   [  --disable-setgid           Disable the use of setgid binaries],
   [case "${enableval}" in
@@ -228,8 +251,8 @@ AC_SUBST(scores_user)
 scoredir='${localstatedir}/games'
 AC_SUBST(scoredir)
 
-BUILD_BREAKER_BASIC="-Werror -Wextra -Wfloat-equal -Wmissing-declarations -Wredundant-decls -Wold-style-definition -Wmissing-noreturn -Wdeclaration-after-statement -Wshadow -Wendif-labels -Wlarger-than-4000 -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wundef -Wunreachable-code -fdata-sections"
-MEGA_BUILD_BREAKER="-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -Wstrict-prototypes"
+BUILD_BREAKER_BASIC="-Werror -Wextra -Wfloat-equal -Wmissing-declarations -Wredundant-decls -Wold-style-definition -Wmissing-noreturn -Wdeclaration-after-statement -Wshadow -Wendif-labels -Wlarger-than-4000 -Wpointer-arith -Wcast-qual -Wcast-align -Wwrite-strings -Wundef -Wunreachable-code -fdata-sections"
+MEGA_BUILD_BREAKER="-DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED -Wstrict-prototypes -Wbad-function-cast"
 
 AC_ARG_ENABLE(build-breaker,
   [  --enable-build-breaker      Enable extra compiler warnings],
