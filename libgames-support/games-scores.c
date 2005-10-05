@@ -195,8 +195,8 @@ void games_scores_set_category (GamesScores *self, gchar *category) {
 /**
  * add_score:
  * @self: A scores object.
- * @score: A GamesScore, please use the macros to convert a score to the
- *         gpointer format.
+ * @score: A GamesScoreValue - it is up to the caller to convert their
+ *         raw value to one of the supported types.
  *
  * Add a score to the set of scores. Retention of anything but the
  * top-ten scores is undefined. It returns either the place in the top ten
@@ -204,7 +204,6 @@ void games_scores_set_category (GamesScores *self, gchar *category) {
  * boolean if desired.
  *
  **/
-/* FIXME: Write the above-mentioned macros. */
 gint games_scores_add_score (GamesScores *self, GamesScoreValue score) {
   GamesScore *fullscore;
   GamesScoresCategoryPrivate *cat;

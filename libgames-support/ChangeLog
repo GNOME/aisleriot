@@ -1,3 +1,11 @@
+2005-10-05  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores-backend.c: Make writing and reading the high score
+	information locale independent.
+	(games_scores_backend_get_lock): When obtaining the file lock on
+	something we already have the lock on, rewind the file to the
+	beginning.
+
 2005-09-29  Callum McKenzie  <callum@spooky-possum.org>
 
 	* games-scores-dialog.gob: Fixes for some of the warnings brought

@@ -91,6 +91,9 @@ static gboolean games_scores_backend_get_lock (GamesScoresBackend *self)
   gint error;
 
   if (self->priv->fd != -1) {
+    /* Assume we already have the lock and rewind the file to
+     * the beginning. */
+    lseek (self->priv->fd, 0, SEEK_SET);
     return TRUE; /* Assume we already have the lock. */
   }
 
@@ -200,8 +203,6 @@ GList *games_scores_backend_get_scores (GamesScoresBackend *self)
      * we can do the string stuff reasonably safely. */
     eol = strchr (buffer, '\n');
     scorestr = buffer;
-    /* FIXME: Locale issues for parsing the numbers? i.e. should
-    * we set it back to C. */
     while (eol != NULL) {
       *eol++ = '\0';
       timestr = strchr (scorestr, ' ');
@@ -214,15 +215,15 @@ GList *games_scores_backend_get_scores (GamesScoresBackend *self)
        * part of the original buffer. */
       newscore = games_score_new ();
       newscore->name = g_strdup (namestr);
-      newscore->time = strtoll (timestr, NULL, 10);
+      newscore->time = g_ascii_strtoull (timestr, NULL, 10);
       switch (self->priv->style) {
       case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
       case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
-	newscore->value.plain = strtod (scorestr, NULL);
+	newscore->value.plain = g_ascii_strtod (scorestr, NULL);
 	break;
       case GAMES_SCORES_STYLE_TIME_DESCENDING:
       case GAMES_SCORES_STYLE_TIME_ASCENDING:
-	newscore->value.time_double = strtod (scorestr, NULL);
+	newscore->value.time_double = g_ascii_strtod (scorestr, NULL);
 	break;
       }
       self->scores_list = g_list_append (self->scores_list, newscore);
@@ -245,6 +246,7 @@ void games_scores_backend_set_scores (GamesScoresBackend *self,
     GList *s;
     GamesScore *d;
     gchar *buffer;
+    gchar dtostrbuf[G_ASCII_DTOSTR_BUF_SIZE];
 
     if (!games_scores_backend_get_lock (self))
       return;
@@ -272,8 +274,10 @@ void games_scores_backend_set_scores (GamesScoresBackend *self,
       rtime = d->time;
       rname = d->name;
 
-      /* FIXME: Once again: are there locale issues here? */
-      buffer = g_strdup_printf ("%g %lld %s\n", rscore, rtime, rname); 
+      buffer = g_strdup_printf ("%s %lld %s\n", 
+				g_ascii_dtostr (dtostrbuf, sizeof (dtostrbuf), 
+						rscore),
+				rtime, rname); 
       write (self->priv->fd, buffer, strlen (buffer));
       /* Ignore any errors and blunder on. */
       g_free (buffer);
