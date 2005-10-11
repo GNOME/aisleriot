@@ -188,6 +188,29 @@
 	       (get-name (get-top-card slot2))))
 	(#t (check-not-suit-moves slot1 (+ 1 slot2)))))
 
+(define (check-for-sequence-of-thirteen-helper cards n suit)
+  (cond ((= n 14) #t)
+	((null? cards) #f)
+	((not (list? cards)) #f)
+	(#t (let ((first-card (car cards)))
+	      (and (eq? (get-suit first-card) suit)
+		   (eq? (get-value first-card) n)
+		   (is-visible? first-card)
+		   (check-for-sequence-of-thirteen-helper (cdr cards) (+ 1 n)
+							  suit))))))
+
+(define (check-for-sequence-of-thirteen cards)
+  (cond ((or (not (list? cards))
+	     (null? cards)) #f)
+	(#t (check-for-sequence-of-thirteen-helper cards ace
+						   (get-suit (car cards))))))
+
+(define (check-for-move-to-foundation slot)
+  (cond ((= slot 12) #f)
+	((check-for-sequence-of-thirteen (get-cards slot)) 
+	 (list 0 (_ "Move the sequence of thirteen cards to the foundation")))
+	(#t (check-for-move-to-foundation (+ 1 slot)))))
+
 (define (check-for-empties slot)
   (and (or (empty-slot? 5)
 	   (empty-slot? 6)
@@ -203,11 +226,11 @@
        (list 0 (_"Deal more cards"))))
 
 (define (get-hint)
-  (or (check-suit-moves 5 6)
+  (or (check-for-move-to-foundation 5)
+      (check-suit-moves 5 6)
       (check-not-suit-moves 5 6)
       (check-for-empties 5)
-      (dealable?)
-      (list 0 (_"Try moving card piles around"))))
+      (dealable?)))
 
 (define (get-options) 
   #f)
