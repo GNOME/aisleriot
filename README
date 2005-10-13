@@ -228,8 +228,8 @@ programming language version 1.6 or later
 missing then the games that rely on them will simply not be built.
 
 The games that require additional packages are:
- scheme: AisleRiot
- C++:    Blackjack, Gnometris            
+ guile scheme:  	AisleRiot
+ C++:         		Blackjack, Gnometris            
 
 
 Building Gnome-Games
@@ -244,7 +244,7 @@ $ make install
 Generic, but detailed, instructions can be found in the file INSTALL.
 
 There are several gnome-games specific options you can pass to
-configure. These are:
+configure. These security related options are:
 
 --disable-setgid                Do not set the setgid bit on the
                                 installed binaries.
@@ -258,6 +258,21 @@ configure. These are:
 For a discussion of the details behind these options and why you might
 want to change them see the "Security" section. In general you will
 not need to change any of them.
+
+To select which games to compile use --enable-omitgames and
+--enable-games. Each option takes a comma separated list of directory
+names (not the screen-names of the games). "all" is also a valid
+name. For example:
+
+./configure  --enable-omitgames=gnometris,gnome-stones
+
+would compile all the games except gnometris and gnome-stones.
+
+./configure --enable-omitgames=all --enable-games=gnomine
+
+would only build the gnomine game. The choice of the awkward phrase
+"enable-omitgames" is due to a limitation in the autoconf tools which
+doesn't allow us to supply an argument to --disable-games.
 
 If you want Zeroconf support you have two options. On most Unix and
 Linux systems Howl is the library of choice and is automatically

@@ -1,40 +1,9 @@
+SUBDIRS= \
+	po \
+	libgames-support \
+	$(gamelist)
 
-if HAVE_GUILE
-guile_DIRS = aisleriot
-endif
-
-if HAVE_CXX
-cxx_DIRS = gnometris \
-	blackjack
-endif
-
-always_built_SUBDIRS =		\
-	po			\
-	libgames-support	\
-	gnect                   \
-	gnomine			\
-	same-gnome		\
-	mahjongg		\
-	gtali			\
-	gnome-stones		\
-	gataxx			\
-	gnotravex		\
-	gnotski			\
-	glines			\
-	iagno			\
-	gnobots2		\
-	gnibbles		
-
-SUBDIRS = \
-	$(always_built_SUBDIRS)	\
-	$(cxx_DIRS)		\
-	$(guile_DIRS)
-
-DIST_SUBDIRS = \
-	$(always_built_SUBDIRS)	\
-	aisleriot		\
-	blackjack		\
-	gnometris
+DIST_SUBDIRS = po libgames-support $(allgames)
 
 EXTRA_DIST = \
 	gnome-games.spec.in \
