@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-30 16:31-0400\n"
+"POT-Creation-Date: 2005-10-14 12:33-0400\n"
 "PO-Revision-Date: 2005-07-22 23:33-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -48,7 +48,7 @@ msgid "The game file to use"
 msgstr "The game file to use"
 
 #: aisleriot/aisleriot.schemas.in.h:6 glines/glines.schemas.in.h:13
-#: same-gnome/same-gnome.schemas.in.h:6
+#: gnometris/gnometris.schemas.in.h:21 same-gnome/same-gnome.schemas.in.h:6
 msgid "The height of the main window."
 msgstr "The height of the main window."
 
@@ -61,7 +61,7 @@ msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "The name of the scheme file containing the solitaire game to play."
 
 #: aisleriot/aisleriot.schemas.in.h:9 glines/glines.schemas.in.h:14
-#: same-gnome/same-gnome.schemas.in.h:10
+#: gnometris/gnometris.schemas.in.h:26 same-gnome/same-gnome.schemas.in.h:10
 msgid "The width of the main window."
 msgstr "The width of the main window."
 
@@ -81,10 +81,12 @@ msgid "Whether or not to show the toolbar."
 msgstr "Whether or not to show the toolbar."
 
 #: aisleriot/aisleriot.schemas.in.h:13 glines/glines.schemas.in.h:17
+#: gnometris/gnometris.schemas.in.h:37
 msgid "Window height"
 msgstr "Window height"
 
 #: aisleriot/aisleriot.schemas.in.h:14 glines/glines.schemas.in.h:18
+#: gnometris/gnometris.schemas.in.h:38
 msgid "Window width"
 msgstr "Window width"
 
@@ -199,7 +201,7 @@ msgstr ""
 
 #: aisleriot/menu.c:112 blackjack/src/menu.cpp:150 gataxx/gataxx.c:390
 #: glines/glines.c:1217 gnect/src/main.c:795 gnibbles/main.c:152
-#: gnobots2/menu.c:241 gnome-stones/main.c:1032 gnometris/tetris.cpp:1462
+#: gnobots2/menu.c:241 gnome-stones/main.c:1032 gnometris/tetris.cpp:1420
 #: gnomine/gnomine.c:448 gnotravex/gnotravex.c:1590 gnotski/gnotski.c:1543
 #: gtali/gyahtzee.c:428 iagno/gnothello.c:270 mahjongg/mahjongg.c:931
 #: same-gnome/ui.c:112
@@ -208,7 +210,7 @@ msgstr "Maintainer: Adam Weinberger <adamw@gnome.org>"
 
 #: aisleriot/menu.c:201 blackjack/src/blackjack.cpp:298 glines/glines.c:1705
 #: gnect/src/main.c:1131 gnibbles/main.c:600 gnobots2/menu.c:57
-#: gnome-stones/main.c:1050 gnometris/tetris.cpp:129 gnomine/gnomine.c:750
+#: gnome-stones/main.c:1050 gnometris/tetris.cpp:128 gnomine/gnomine.c:750
 #: gnotravex/gnotravex.c:175 gnotski/gnotski.c:630 gtali/gyahtzee.c:501
 #: mahjongg/mahjongg.c:1274 same-gnome/ui.c:417
 msgid "_Game"
@@ -225,7 +227,7 @@ msgstr "_Control"
 #. not translated on purpose
 #: aisleriot/menu.c:205 blackjack/src/blackjack.cpp:312 glines/glines.c:1707
 #: gnect/src/main.c:1133 gnibbles/main.c:602 gnobots2/menu.c:60
-#: gnome-stones/main.c:1052 gnometris/tetris.cpp:131 gnomine/gnomine.c:752
+#: gnome-stones/main.c:1052 gnometris/tetris.cpp:130 gnomine/gnomine.c:752
 #: gnotravex/gnotravex.c:178 gnotski/gnotski.c:631 gtali/gyahtzee.c:503
 #: mahjongg/mahjongg.c:1276 same-gnome/ui.c:420
 msgid "_Help"
@@ -1605,7 +1607,7 @@ msgstr "Blackjack - %s"
 
 #: blackjack/src/blackjack.cpp:303 glines/glines.c:1706 gnect/src/main.c:1132
 #: gnibbles/main.c:601 gnobots2/menu.c:59 gnome-stones/main.c:1051
-#: gnometris/tetris.cpp:130 gnomine/gnomine.c:751 gtali/gyahtzee.c:502
+#: gnometris/tetris.cpp:129 gnomine/gnomine.c:751 gtali/gyahtzee.c:502
 #: mahjongg/mahjongg.c:1275
 msgid "_Settings"
 msgstr "_Settings"
@@ -1712,7 +1714,7 @@ msgstr "Blackjack Preferences"
 
 #: blackjack/src/dialog.cpp:246 gnect/src/prefs.c:378
 #: gnibbles/preferences.c:217 gnobots2/properties.c:495
-#: gnome-stones/preferences.c:677 gnometris/tetris.cpp:765
+#: gnome-stones/preferences.c:677 gnometris/tetris.cpp:715
 msgid "Game"
 msgstr "Game"
 
@@ -1737,7 +1739,8 @@ msgstr "_Reset Balance"
 msgid "Rules"
 msgstr "Rules"
 
-#: blackjack/src/dialog.cpp:310 libgames-support/games-scores-dialog.gob:290
+#: blackjack/src/dialog.cpp:310 games-scores-dialog.gob:290
+#: libgames-support/games-scores-dialog.gob:290
 msgid "Name"
 msgstr "Name"
 
@@ -1993,56 +1996,48 @@ msgid "Animate"
 msgstr "Animate"
 
 #: gataxx/gataxx.schemas.in.h:2
-msgid "Flip final results"
-msgstr "Flip final results"
-
-#: gataxx/gataxx.schemas.in.h:3
 msgid "Level of black player"
 msgstr "Level of black player"
 
-#: gataxx/gataxx.schemas.in.h:4
+#: gataxx/gataxx.schemas.in.h:3
 msgid "Level of white player"
 msgstr "Level of white player"
 
-#: gataxx/gataxx.schemas.in.h:5
+#: gataxx/gataxx.schemas.in.h:4
 msgid "Quick moves"
 msgstr "Quick moves"
 
-#: gataxx/gataxx.schemas.in.h:6 gnotravex/gnotravex.schemas.in.h:2
+#: gataxx/gataxx.schemas.in.h:5 gnotravex/gnotravex.schemas.in.h:2
 #: gnotski/gnotski.schemas.in.h:1 mahjongg/mahjongg.schemas.in.h:1
 msgid "The height of the window"
 msgstr "The height of the window"
 
-#: gataxx/gataxx.schemas.in.h:7
+#: gataxx/gataxx.schemas.in.h:6
 msgid "The requested height of the main window in pixels."
 msgstr "The requested height of the main window in pixels."
 
-#: gataxx/gataxx.schemas.in.h:8
+#: gataxx/gataxx.schemas.in.h:7
 msgid "The requested width of the main window in pixels."
 msgstr "The requested width of the main window in pixels."
 
-#: gataxx/gataxx.schemas.in.h:9 gnotravex/gnotravex.schemas.in.h:6
+#: gataxx/gataxx.schemas.in.h:8 gnotravex/gnotravex.schemas.in.h:6
 #: gnotski/gnotski.schemas.in.h:6 mahjongg/mahjongg.schemas.in.h:4
 msgid "The width of the window"
 msgstr "The width of the window"
 
-#: gataxx/gataxx.schemas.in.h:10
+#: gataxx/gataxx.schemas.in.h:9
 msgid "Tileset"
 msgstr "Tileset"
 
-#: gataxx/gataxx.schemas.in.h:11
+#: gataxx/gataxx.schemas.in.h:10
 msgid "Tileset to use."
 msgstr "Tileset to use."
 
-#: gataxx/gataxx.schemas.in.h:12
-msgid "Whether or not to flip final results."
-msgstr "Whether or not to flip final results."
-
-#: gataxx/gataxx.schemas.in.h:13
+#: gataxx/gataxx.schemas.in.h:11
 msgid "Whether or not to use quick moves."
 msgstr "Whether or not to use quick moves."
 
-#: gataxx/gataxx.schemas.in.h:14
+#: gataxx/gataxx.schemas.in.h:12
 msgid ""
 "Zero corresponds to no animations, one is partial animations, two is "
 "complete animations."
@@ -2050,7 +2045,7 @@ msgstr ""
 "Zero corresponds to no animations, one is partial animations, two is "
 "complete animations."
 
-#: gataxx/gataxx.schemas.in.h:15 gnect/data/gnect.schemas.in.h:19
+#: gataxx/gataxx.schemas.in.h:13 gnect/data/gnect.schemas.in.h:19
 msgid ""
 "Zero is human; one through three correspond to the level of the computer "
 "player."
@@ -2059,101 +2054,88 @@ msgstr ""
 "player."
 
 #. create window
-#: gataxx/properties.c:301
+#: gataxx/properties.c:300
 msgid "Ataxx Preferences"
 msgstr "Ataxx Preferences"
 
 #. Players tab
-#: gataxx/properties.c:331 iagno/properties.c:498
+#: gataxx/properties.c:330 iagno/properties.c:498
 msgid "Players"
 msgstr "Players"
 
-#: gataxx/properties.c:343
+#: gataxx/properties.c:342
 msgid "_Quick moves"
 msgstr "_Quick moves"
 
-#: gataxx/properties.c:344
+#: gataxx/properties.c:343
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "Shortens the time a computer waits before doing a move"
 
 #. Dark level select
-#: gataxx/properties.c:353 gnect/src/theme.c:55 gnect/src/theme.c:63
+#: gataxx/properties.c:352 gnect/src/theme.c:55 gnect/src/theme.c:63
 #: iagno/properties.c:521
 msgid "Dark"
 msgstr "Dark"
 
-#: gataxx/properties.c:357 gataxx/properties.c:375 gnect/src/prefs.c:326
+#: gataxx/properties.c:356 gataxx/properties.c:374 gnect/src/prefs.c:326
 #: gtali/yahtzee.c:61 iagno/properties.c:526 iagno/properties.c:572
 msgid "Human"
 msgstr "Human"
 
-#: gataxx/properties.c:358 gataxx/properties.c:376
+#: gataxx/properties.c:357 gataxx/properties.c:375
 msgid "Very easy"
 msgstr "Very easy"
 
-#: gataxx/properties.c:359
+#: gataxx/properties.c:358
 msgid "gataxx|Easy"
 msgstr "Easy"
 
-#: gataxx/properties.c:360
+#: gataxx/properties.c:359
 msgid "gataxx|Medium"
 msgstr "Medium"
 
-#: gataxx/properties.c:361 gataxx/properties.c:379
+#: gataxx/properties.c:360 gataxx/properties.c:378
 msgid "Hard"
 msgstr "Hard"
 
-#: gataxx/properties.c:362 gataxx/properties.c:380
+#: gataxx/properties.c:361 gataxx/properties.c:379
 msgid "Very hard"
 msgstr "Very hard"
 
 #. Light level select
-#: gataxx/properties.c:371 gnect/src/theme.c:55 gnect/src/theme.c:63
+#: gataxx/properties.c:370 gnect/src/theme.c:55 gnect/src/theme.c:63
 #: iagno/properties.c:567
 msgid "Light"
 msgstr "Light"
 
-#: gataxx/properties.c:377
+#: gataxx/properties.c:376
 msgid "Easy"
 msgstr "Easy"
 
-#: gataxx/properties.c:378
+#: gataxx/properties.c:377
 msgid "Medium"
 msgstr "Medium"
 
 #. Appearance tab
-#: gataxx/properties.c:389 gataxx/properties.c:392 gnect/src/prefs.c:410
+#: gataxx/properties.c:388 gataxx/properties.c:391 gnect/src/prefs.c:410
 #: gnobots2/properties.c:535 iagno/properties.c:616
 msgid "Appearance"
 msgstr "Appearance"
 
 #. animation button
-#: gataxx/properties.c:398
+#: gataxx/properties.c:397
 msgid "_Animation"
 msgstr "_Animation"
 
-#: gataxx/properties.c:402
+#: gataxx/properties.c:401
 msgid "Flip the pieces with some visual effects"
 msgstr "Flip the pieces with some visual effects"
 
-#. flip tiles button
-#: gataxx/properties.c:406 iagno/properties.c:675
-msgid "_Flip final results"
-msgstr "_Flip final results"
-
-#: gataxx/properties.c:410
-msgid ""
-"Put all the white pieces at the bottom and all the black pieces on the top "
-"of the board when a game is over"
-msgstr ""
-"Put all the white pieces at the bottom and all the black pieces on the top "
-"of the board when a game is over"
-
-#: gataxx/properties.c:415 iagno/properties.c:685 mahjongg/mahjongg.c:747
+#: gataxx/properties.c:406 iagno/properties.c:685 mahjongg/mahjongg.c:747
 msgid "_Tile set:"
 msgstr "_Tile set:"
 
-#: gataxx/properties.c:420
+#: gataxx/properties.c:411
 msgid "The appearance of the pieces"
 msgstr "The appearance of the pieces"
 
@@ -2529,12 +2511,12 @@ msgstr "_Theme:"
 msgid "Enable _animation"
 msgstr "Enable _animation"
 
-#: gnect/src/prefs.c:440 gnometris/tetris.cpp:889
+#: gnect/src/prefs.c:440 gnometris/tetris.cpp:839
 msgid "Controls"
 msgstr "Controls"
 
 #: gnect/src/prefs.c:444 gnibbles/preferences.c:381 gnobots2/properties.c:542
-#: gnometris/tetris.cpp:892
+#: gnometris/tetris.cpp:842
 msgid "Keyboard Controls"
 msgstr "Keyboard Controls"
 
@@ -2755,7 +2737,7 @@ msgstr "Eat Bonus"
 msgid "Extra Life"
 msgstr "Extra Life"
 
-#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/field.cpp:130
+#: gnibbles/gnibbles.soundlist.in.h:5 gnometris/field.cpp:225
 msgid "Game Over"
 msgstr "Game Over"
 
@@ -2839,7 +2821,7 @@ msgid "E_nable sounds"
 msgstr "E_nable sounds"
 
 #. starting level
-#: gnibbles/preferences.c:318 gnometris/tetris.cpp:812
+#: gnibbles/preferences.c:318 gnometris/tetris.cpp:762
 msgid "_Starting level:"
 msgstr "_Starting level:"
 
@@ -3290,7 +3272,7 @@ msgstr "Prevent all dangerous moves"
 msgid "Prevents all moves that result in getting killed."
 msgstr "Prevents all moves that result in getting killed."
 
-#: gnobots2/properties.c:477 gnometris/tetris.cpp:838
+#: gnobots2/properties.c:477 gnometris/tetris.cpp:788
 msgid "_Enable sounds"
 msgstr "_Enable sounds"
 
@@ -3616,7 +3598,7 @@ msgstr "Lives:"
 msgid "Tutorial caves"
 msgstr "Tutorial caves"
 
-#: gnometris/field.cpp:83
+#: gnometris/field.cpp:223
 msgid "Paused"
 msgstr "Paused"
 
@@ -3624,8 +3606,8 @@ msgstr "Paused"
 msgid "Fit falling blocks together"
 msgstr "Fit falling blocks together"
 
-#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:181
-#: gnometris/tetris.cpp:1455
+#: gnometris/gnometris.desktop.in.h:2 gnometris/tetris.cpp:176
+#: gnometris/tetris.cpp:1413
 msgid "Gnometris"
 msgstr "Gnometris"
 
@@ -3689,7 +3671,11 @@ msgstr ""
 msgid "The density of filled rows"
 msgstr "The density of filled rows"
 
-#: gnometris/gnometris.schemas.in.h:21
+#: gnometris/gnometris.schemas.in.h:22
+msgid "The name of the theme used for rendering the blocks and the background."
+msgstr "The name of the theme used for rendering the blocks and the background."
+
+#: gnometris/gnometris.schemas.in.h:23
 msgid ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
@@ -3697,11 +3683,15 @@ msgstr ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
 
-#: gnometris/gnometris.schemas.in.h:22
+#: gnometris/gnometris.schemas.in.h:24
 msgid "The number of rows to fill"
 msgstr "The number of rows to fill"
 
-#: gnometris/gnometris.schemas.in.h:23
+#: gnometris/gnometris.schemas.in.h:25
+msgid "The theme used for rendering the blocks"
+msgstr "The theme used for rendering the blocks"
+
+#: gnometris/gnometris.schemas.in.h:27
 msgid ""
 "This selects whether or not to draw the background image over the background "
 "color."
@@ -3709,127 +3699,109 @@ msgstr ""
 "This selects whether or not to draw the background image over the background "
 "colour."
 
-#: gnometris/gnometris.schemas.in.h:24
+#: gnometris/gnometris.schemas.in.h:28
 msgid "Whether to give blocks random colors"
 msgstr "Whether to give blocks random colours"
 
-#: gnometris/gnometris.schemas.in.h:25
+#: gnometris/gnometris.schemas.in.h:29
 msgid "Whether to give blocks random colors."
 msgstr "Whether to give blocks random colours."
 
-#: gnometris/gnometris.schemas.in.h:26
+#: gnometris/gnometris.schemas.in.h:30
 msgid "Whether to preview the next block"
 msgstr "Whether to preview the next block"
 
-#: gnometris/gnometris.schemas.in.h:27
+#: gnometris/gnometris.schemas.in.h:31
 msgid "Whether to preview the next block."
 msgstr "Whether to preview the next block."
 
-#: gnometris/gnometris.schemas.in.h:28
+#: gnometris/gnometris.schemas.in.h:32
 msgid "Whether to rotate counter clock wise"
 msgstr "Whether to rotate counter clock wise"
 
-#: gnometris/gnometris.schemas.in.h:29
+#: gnometris/gnometris.schemas.in.h:33
 msgid "Whether to rotate counter clock wise."
 msgstr "Whether to rotate counter clock wise."
 
-#: gnometris/gnometris.schemas.in.h:30
+#: gnometris/gnometris.schemas.in.h:34
 msgid "Whether to use sound"
 msgstr "Whether to use sound"
 
-#: gnometris/gnometris.schemas.in.h:31
+#: gnometris/gnometris.schemas.in.h:35
 msgid "Whether to use sound."
 msgstr "Whether to use sound."
 
-#: gnometris/gnometris.schemas.in.h:32
+#: gnometris/gnometris.schemas.in.h:36
 msgid "Whether to use the background image"
 msgstr "Whether to use the background image"
 
-#: gnometris/main.cpp:38
+#: gnometris/main.cpp:36
 msgid "Set starting level (1-10)"
 msgstr "Set starting level (1-10)"
 
-#: gnometris/main.cpp:38
+#: gnometris/main.cpp:36
 msgid "LEVEL"
 msgstr "LEVEL"
+
+#: gnometris/renderer.cpp:27
+msgid "Plain"
+msgstr "Plain"
+
+#: gnometris/renderer.cpp:28
+msgid "Joined"
+msgstr "Joined"
 
 #: gnometris/scoreframe.cpp:68
 msgid "Lines:"
 msgstr "Lines:"
 
-#: gnometris/tetris.cpp:350
-#, c-format
-msgid ""
-"Could not find the theme: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"Could not find the theme: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-
-#: gnometris/tetris.cpp:365
-#, c-format
-msgid ""
-"Can't load the image: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"Can't load the image: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-
-#: gnometris/tetris.cpp:715 gnometris/tetris.cpp:716
+#: gnometris/tetris.cpp:665 gnometris/tetris.cpp:666
 msgid "<none>"
 msgstr "<none>"
 
-#: gnometris/tetris.cpp:744
+#: gnometris/tetris.cpp:694
 msgid "Gnometris Preferences"
 msgstr "Gnometris Preferences"
 
-#: gnometris/tetris.cpp:768
+#: gnometris/tetris.cpp:718
 msgid "Setup"
 msgstr "Setup"
 
 #. pre-filled rows
-#: gnometris/tetris.cpp:774
+#: gnometris/tetris.cpp:724
 msgid "_Number of pre-filled rows:"
 msgstr "_Number of pre-filled rows:"
 
 #. pre-filled rows density
-#: gnometris/tetris.cpp:793
+#: gnometris/tetris.cpp:743
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "_Density of blocks in a pre-filled row:"
 
-#: gnometris/tetris.cpp:833
+#: gnometris/tetris.cpp:783
 msgid "Operation"
 msgstr "Operation"
 
-#: gnometris/tetris.cpp:847
+#: gnometris/tetris.cpp:797
 msgid "_Preview next block"
 msgstr "_Preview next block"
 
-#: gnometris/tetris.cpp:856
+#: gnometris/tetris.cpp:806
 msgid "_Use random block colors"
 msgstr "_Use random block colours"
 
-#: gnometris/tetris.cpp:867
+#: gnometris/tetris.cpp:817
 msgid "_Rotate blocks counterclockwise"
 msgstr "_Rotate blocks counterclockwise"
 
-#: gnometris/tetris.cpp:880 gnometris/tetris.cpp:913 same-gnome/ui.c:288
+#: gnometris/tetris.cpp:830 gnometris/tetris.cpp:863 same-gnome/ui.c:288
 msgid "Theme"
 msgstr "Theme"
 
-#: gnometris/tetris.cpp:916
-msgid "Block image:"
-msgstr "Block image:"
+#: gnometris/tetris.cpp:866
+msgid "Block Style"
+msgstr "Block Style"
 
-#: gnometris/tetris.cpp:1457
+#: gnometris/tetris.cpp:1415
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: \n"
@@ -4804,6 +4776,10 @@ msgstr "_Stagger flips"
 msgid "S_how grid"
 msgstr "S_how grid"
 
+#: iagno/properties.c:675
+msgid "_Flip final results"
+msgstr "_Flip final results"
+
 #: libgames-support/games-card-selector.c:52
 msgid "Card Style"
 msgstr "Card Style"
@@ -5017,23 +4993,24 @@ msgstr ""
 msgid "Image rendering failed."
 msgstr "Image rendering failed."
 
-#. Translators: this is for a minutes, seconds time display.
-#: libgames-support/games-scores-dialog.gob:157
-#, c-format
-msgid "%dm %ds"
-msgstr "%dm %ds"
-
 #. Note that this assumes the default style is plain.
+#: games-scores-dialog.gob:298 games-scores-dialog.gob:384
 #: libgames-support/games-scores-dialog.gob:298
 #: libgames-support/games-scores-dialog.gob:384
 msgid "Score"
 msgstr "Score"
 
-#: libgames-support/games-scores-dialog.gob:379
+#. Translators: this is for a minutes, seconds time display.
+#: games-scores-dialog.gob:157 libgames-support/games-scores-dialog.gob:157
+#, c-format
+msgid "%dm %ds"
+msgstr "%dm %ds"
+
+#: games-scores-dialog.gob:379 libgames-support/games-scores-dialog.gob:379
 msgid "Time"
 msgstr "Time"
 
-#: libgames-support/games-scores-dialog.gob:482
+#: games-scores-dialog.gob:482 libgames-support/games-scores-dialog.gob:482
 msgid "New Game"
 msgstr "New Game"
 
