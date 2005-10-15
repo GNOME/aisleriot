@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-02 23:42+0200\n"
-"PO-Revision-Date: 2005-02-13 22:10+0100\n"
+"POT-Creation-Date: 2005-10-15 16:21+0200\n"
+"PO-Revision-Date: 2005-10-15 16:21+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -50,6 +50,7 @@ msgid "The game file to use"
 msgstr "Spelfilen att använda"
 
 #: ../aisleriot/aisleriot.schemas.in.h:6 ../glines/glines.schemas.in.h:13
+#: ../gnometris/gnometris.schemas.in.h:21
 #: ../same-gnome/same-gnome.schemas.in.h:6
 msgid "The height of the main window."
 msgstr "Höjden på huvudfönstret."
@@ -64,6 +65,7 @@ msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "Namnet på schemafilen som innehåller det patiensspel som ska spelas."
 
 #: ../aisleriot/aisleriot.schemas.in.h:9 ../glines/glines.schemas.in.h:14
+#: ../gnometris/gnometris.schemas.in.h:26
 #: ../same-gnome/same-gnome.schemas.in.h:10
 msgid "The width of the main window."
 msgstr "Bredden på huvudfönstret."
@@ -84,10 +86,12 @@ msgid "Whether or not to show the toolbar."
 msgstr "Huruvida verktygsraden ska visas eller inte."
 
 #: ../aisleriot/aisleriot.schemas.in.h:13 ../glines/glines.schemas.in.h:17
+#: ../gnometris/gnometris.schemas.in.h:37
 msgid "Window height"
 msgstr "Fönsterhöjd"
 
 #: ../aisleriot/aisleriot.schemas.in.h:14 ../glines/glines.schemas.in.h:18
+#: ../gnometris/gnometris.schemas.in.h:38
 msgid "Window width"
 msgstr "Fönsterbredd"
 
@@ -203,7 +207,7 @@ msgstr ""
 #: ../aisleriot/menu.c:112 ../blackjack/src/menu.cpp:150
 #: ../gataxx/gataxx.c:390 ../glines/glines.c:1217 ../gnect/src/main.c:795
 #: ../gnibbles/main.c:152 ../gnobots2/menu.c:241 ../gnome-stones/main.c:1032
-#: ../gnometris/tetris.cpp:1462 ../gnomine/gnomine.c:448
+#: ../gnometris/tetris.cpp:1420 ../gnomine/gnomine.c:448
 #: ../gnotravex/gnotravex.c:1590 ../gnotski/gnotski.c:1543
 #: ../gtali/gyahtzee.c:428 ../iagno/gnothello.c:270 ../mahjongg/mahjongg.c:931
 #: ../same-gnome/ui.c:112
@@ -218,7 +222,7 @@ msgstr ""
 #: ../aisleriot/menu.c:201 ../blackjack/src/blackjack.cpp:298
 #: ../glines/glines.c:1705 ../gnect/src/main.c:1131 ../gnibbles/main.c:600
 #: ../gnobots2/menu.c:57 ../gnome-stones/main.c:1050
-#: ../gnometris/tetris.cpp:129 ../gnomine/gnomine.c:750
+#: ../gnometris/tetris.cpp:128 ../gnomine/gnomine.c:750
 #: ../gnotravex/gnotravex.c:175 ../gnotski/gnotski.c:630
 #: ../gtali/gyahtzee.c:501 ../mahjongg/mahjongg.c:1274 ../same-gnome/ui.c:417
 msgid "_Game"
@@ -236,7 +240,7 @@ msgstr "_Styrning"
 #: ../aisleriot/menu.c:205 ../blackjack/src/blackjack.cpp:312
 #: ../glines/glines.c:1707 ../gnect/src/main.c:1133 ../gnibbles/main.c:602
 #: ../gnobots2/menu.c:60 ../gnome-stones/main.c:1052
-#: ../gnometris/tetris.cpp:131 ../gnomine/gnomine.c:752
+#: ../gnometris/tetris.cpp:130 ../gnomine/gnomine.c:752
 #: ../gnotravex/gnotravex.c:178 ../gnotski/gnotski.c:631
 #: ../gtali/gyahtzee.c:503 ../mahjongg/mahjongg.c:1276 ../same-gnome/ui.c:420
 msgid "_Help"
@@ -247,30 +251,26 @@ msgid "_Select Game..."
 msgstr "_Välj spel..."
 
 #: ../aisleriot/menu.c:209
-#, fuzzy
 msgid "Play a different game"
-msgstr "Välj ett annat spel"
+msgstr "Spela ett annat spel"
 
 #: ../aisleriot/menu.c:210
-#, fuzzy
 msgid "S_tatistics"
-msgstr "Statistik"
+msgstr "S_tatistik"
 
 #: ../aisleriot/menu.c:210
 msgid "Show gameplay statistics"
-msgstr ""
+msgstr "Visa spelstatistik"
 
 #: ../aisleriot/menu.c:214
 msgid "_Cards..."
 msgstr "_Kort..."
 
 #: ../aisleriot/menu.c:219
-#, fuzzy
 msgid "View help for Aisleriot"
-msgstr "Visa hjälp för det aktuella spelet"
+msgstr "Visa hjälp för Aisleriot"
 
 #: ../aisleriot/menu.c:220 ../libgames-support/games-stock.c:110
-#, fuzzy
 msgid "View help for this game"
 msgstr "Visa hjälp för detta spel"
 
@@ -409,7 +409,6 @@ msgstr "Flytta någonting på tom reservplats"
 
 #: ../aisleriot/rules/bakers_game.scm.h:3 ../aisleriot/rules/eight_off.scm.h:3
 #: ../aisleriot/rules/seahaven.scm.h:3
-#, fuzzy
 msgid "an empty tableau"
 msgstr "ett tomt bord"
 
@@ -565,7 +564,6 @@ msgid "an empty slot on tableau"
 msgstr "en tom plats på bordet"
 
 #: ../aisleriot/rules/easthaven.scm.h:2
-#, fuzzy
 msgid "Move a King on to the empty tableau slot"
 msgstr "Flytta en kung till den tomma bordplatsen"
 
@@ -631,7 +629,6 @@ msgid "Remove the twos"
 msgstr "Ta bort tvåorna"
 
 #: ../aisleriot/rules/first_law.scm.h:16
-#, fuzzy
 msgid "Return cards to stock"
 msgstr "Returnera korten till handen"
 
@@ -663,40 +660,55 @@ msgstr "spelet har ingen lösning"
 msgid "the foundation"
 msgstr "grundhögen"
 
+# FIXME: This broken design should be bug reported.
+# http://bugzilla.gnome.org/show_bug.cgi?id=318938
+#
 #: ../aisleriot/rules/gaps.scm.h:1
-#, fuzzy
 msgid " next to the "
-msgstr "Ställ in temat"
+msgstr " bredvid "
 
+# FIXME: This broken design should be bug reported.
+# http://bugzilla.gnome.org/show_bug.cgi?id=318938
+#
 #: ../aisleriot/rules/gaps.scm.h:2
-#, fuzzy
 msgid " of "
-msgstr "~a av ~a"
+msgstr " av "
 
+# FIXME: This broken design should be bug reported.
+# http://bugzilla.gnome.org/show_bug.cgi?id=318938
+#
 #: ../aisleriot/rules/gaps.scm.h:3
 msgid "."
-msgstr ""
+msgstr "."
 
+# FIXME: This broken design should be bug reported.
+# http://bugzilla.gnome.org/show_bug.cgi?id=318938
+#
 #: ../aisleriot/rules/gaps.scm.h:4
 msgid "Add to the sequence in row "
-msgstr ""
+msgstr "Lägg till i sekvensen på rad "
 
 #: ../aisleriot/rules/gaps.scm.h:5
 msgid "Double click any card to redeal."
-msgstr ""
+msgstr "Dubbelklicka på något kort för att ge om."
 
 #: ../aisleriot/rules/gaps.scm.h:6
-#, fuzzy
 msgid "No hint available."
-msgstr "Inget tips tillgängligt"
+msgstr "Inget tips tillgängligt."
 
+# FIXME: This broken design should be bug reported.
+# http://bugzilla.gnome.org/show_bug.cgi?id=318938
+#
 #: ../aisleriot/rules/gaps.scm.h:7
 msgid "Place a two in the leftmost slot of row "
-msgstr ""
+msgstr "Placera en tvåa till platsen längst till vänster på rad "
 
+# FIXME: This broken design should be bug reported.
+# http://bugzilla.gnome.org/show_bug.cgi?id=318938
+#
 #: ../aisleriot/rules/gaps.scm.h:8
 msgid "Place the "
-msgstr ""
+msgstr "Placera "
 
 #: ../aisleriot/rules/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
@@ -726,7 +738,6 @@ msgid "Move a card or build of cards on to the empty slot"
 msgstr "Flytta ett kort eller en korthög till den tomma platsen"
 
 #: ../aisleriot/rules/hopscotch.scm.h:2
-#, fuzzy
 msgid "Move card from waste"
 msgstr "Flytta kort från talongen"
 
@@ -779,14 +790,12 @@ msgid "Place cards on to the Tableau to form poker hands"
 msgstr "Placera kort på bordet så att de bildar pokerhänder"
 
 #: ../aisleriot/rules/poker.scm.h:2
-#, fuzzy
 msgid "Shuffle mode"
-msgstr "Blanda"
+msgstr "Blandningsläge"
 
 #: ../aisleriot/rules/royal_east.scm.h:9
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:6
 #: ../aisleriot/rules/westhaven.scm.h:4
-#, fuzzy
 msgid "an empty tableau pile"
 msgstr "en tom hög på bordet"
 
@@ -826,7 +835,6 @@ msgstr "Försök flytta runt korthögar"
 
 #: ../aisleriot/rules/spiderette.scm.h:2
 #: ../aisleriot/rules/will_o_the_wisp.scm.h:2
-#, fuzzy
 msgid "Place something on to the empty tableau slot"
 msgstr "Placera någonting på den tomma bordplatsen"
 
@@ -855,7 +863,6 @@ msgid "Deal a card from the deck"
 msgstr "Ge ett kort från kortleken"
 
 #: ../aisleriot/rules/union_square.scm.h:4
-#, fuzzy
 msgid "appropriate foundation pile"
 msgstr "lämplig grundhög"
 
@@ -882,7 +889,7 @@ msgstr ""
 
 #: ../aisleriot/sol.c:207
 msgid "Aisleriot cannot find the last game you played."
-msgstr ""
+msgstr "Aisleriot kan inte hitta det senaste spelet du spelade."
 
 #: ../aisleriot/sol.c:208
 msgid ""
@@ -890,6 +897,9 @@ msgid ""
 "not have the game you last played. The default game, Klondike, is being "
 "started instead."
 msgstr ""
+"Detta inträffar vanligtvis när du kör en äldre version av Aisleriot som inte "
+"har det spel som du senast spelade. Standardspelet, Klondyke, startas "
+"istället."
 
 #: ../aisleriot/sol.c:409
 msgid "Aisleriot"
@@ -1281,38 +1291,33 @@ msgstr "_Nollställ"
 msgid "Agnes"
 msgstr "Agnes"
 
+# Osäker.
 #: ../aisleriot/translatable_game_names.h:8
-#, fuzzy
 msgid "Auld Lang Syne"
-msgstr "Godnattvalsen"
+msgstr "Auld Lang Syne"
 
-# Osäker
-#
+# Osäker.
 #: ../aisleriot/translatable_game_names.h:9
-#, fuzzy
 msgid "Backbone"
-msgstr "Ben"
+msgstr "Backbone"
 
 # I brist på annat...
 #: ../aisleriot/translatable_game_names.h:10
-#, fuzzy
 msgid "Bakers Dozen"
 msgstr "Bagardussin"
 
 # I brist på annat...
 #: ../aisleriot/translatable_game_names.h:11
-#, fuzzy
 msgid "Bakers Game"
 msgstr "Bagarspel"
 
+# Osäker.
 #: ../aisleriot/translatable_game_names.h:12
-#, fuzzy
 msgid "Beleaguered Castle"
 msgstr "Napoleonpatiensen"
 
 # I brist på annat...
 #: ../aisleriot/translatable_game_names.h:13
-#, fuzzy
 msgid "Block Ten"
 msgstr "Blockera tio"
 
@@ -1328,10 +1333,10 @@ msgstr "Camelot"
 msgid "Canfield"
 msgstr "Varvet runt"
 
+# Osäker.
 #: ../aisleriot/translatable_game_names.h:17
-#, fuzzy
 msgid "Carpet"
-msgstr "Camelot"
+msgstr "Matta"
 
 #: ../aisleriot/translatable_game_names.h:18
 msgid "Chessboard"
@@ -1347,7 +1352,6 @@ msgid "Cover"
 msgstr "Täck"
 
 #: ../aisleriot/translatable_game_names.h:21
-#, fuzzy
 msgid "Diamond Mine"
 msgstr "Diamantgruvan"
 
@@ -1357,7 +1361,6 @@ msgstr "Dubletter"
 
 # I brist på annat...
 #: ../aisleriot/translatable_game_names.h:23
-#, fuzzy
 msgid "Eagle Wing"
 msgstr "Örnvinge"
 
@@ -1368,7 +1371,6 @@ msgstr "Österhamn"
 
 # I brist på annat...
 #: ../aisleriot/translatable_game_names.h:25
-#, fuzzy
 msgid "Eight Off"
 msgstr "Åtta av"
 
@@ -1382,7 +1384,6 @@ msgstr "Rulltrappan"
 
 # I brist på annat...
 #: ../aisleriot/translatable_game_names.h:28
-#, fuzzy
 msgid "First Law"
 msgstr "Första lagen"
 
@@ -1404,14 +1405,12 @@ msgid "Freecell"
 msgstr "Napoleon på S:t Helena"
 
 #: ../aisleriot/translatable_game_names.h:33
-#, fuzzy
 msgid "Gaps"
-msgstr "Banor"
+msgstr "Luckor"
 
 #: ../aisleriot/translatable_game_names.h:34
-#, fuzzy
 msgid "Gay Gordons"
-msgstr "Gay gordons"
+msgstr "Gay Gordons"
 
 #: ../aisleriot/translatable_game_names.h:35
 msgid "Glenwood"
@@ -1451,7 +1450,6 @@ msgid "Kansas"
 msgstr "Kansas"
 
 #: ../aisleriot/translatable_game_names.h:44
-#, fuzzy
 msgid "King Albert"
 msgstr "Kung Albert"
 
@@ -1464,7 +1462,6 @@ msgid "Labyrinth"
 msgstr "Labyrint"
 
 #: ../aisleriot/translatable_game_names.h:47
-#, fuzzy
 msgid "Lady Jane"
 msgstr "Lady Jane"
 
@@ -1474,7 +1471,6 @@ msgid "Maze"
 msgstr "Virrvarr"
 
 #: ../aisleriot/translatable_game_names.h:49
-#, fuzzy
 msgid "Monte Carlo"
 msgstr "Monte Carlo"
 
@@ -1511,10 +1507,10 @@ msgstr "Poker"
 msgid "Quatorze"
 msgstr "Quatorze"
 
+# FIXME: Osäker.
 #: ../aisleriot/translatable_game_names.h:58
-#, fuzzy
 msgid "Royal East"
-msgstr "De fyra årstiderna"
+msgstr "Royal East"
 
 #: ../aisleriot/translatable_game_names.h:59
 msgid "Scorpion"
@@ -1538,9 +1534,8 @@ msgstr "Lillspindel"
 
 # Osäker.
 #: ../aisleriot/translatable_game_names.h:64
-#, fuzzy
 msgid "Spider One Suit"
-msgstr "Spindeln, enfärgs"
+msgstr "Enfärgsspindeln"
 
 #: ../aisleriot/translatable_game_names.h:65
 msgid "Spider"
@@ -1548,18 +1543,15 @@ msgstr "Spindeln"
 
 # Osäker.
 #: ../aisleriot/translatable_game_names.h:66
-#, fuzzy
 msgid "Spider Two Suit"
-msgstr "Spindeln, tvåfärgs"
+msgstr "Tvåfärgsspindeln"
 
 # I brist på annat...
 #: ../aisleriot/translatable_game_names.h:67
-#, fuzzy
 msgid "Straight Up"
 msgstr "Rakt upp"
 
 #: ../aisleriot/translatable_game_names.h:68
-#, fuzzy
 msgid "Streets And Alleys"
 msgstr "Gator och gränder"
 
@@ -1568,7 +1560,6 @@ msgid "Template"
 msgstr "Mall"
 
 #: ../aisleriot/translatable_game_names.h:70
-#, fuzzy
 msgid "Ten Across"
 msgstr "Tio i kors"
 
@@ -1582,7 +1573,6 @@ msgstr "Trettonpyramiden"
 
 # I brist på annat...
 #: ../aisleriot/translatable_game_names.h:73
-#, fuzzy
 msgid "Thumb And Pouch"
 msgstr "Tumme och sedelpung"
 
@@ -1590,13 +1580,12 @@ msgstr "Tumme och sedelpung"
 msgid "Treize"
 msgstr "Treize"
 
+# Osäker.
 #: ../aisleriot/translatable_game_names.h:75
-#, fuzzy
 msgid "Triple Peaks"
-msgstr "Bricksamling"
+msgstr "Triple Peaks"
 
 #: ../aisleriot/translatable_game_names.h:76
-#, fuzzy
 msgid "Union Square"
 msgstr "Union Square"
 
@@ -1614,9 +1603,8 @@ msgid "Whitehead"
 msgstr "Whitehead"
 
 #: ../aisleriot/translatable_game_names.h:80
-#, fuzzy
 msgid "Will O The Wisp"
-msgstr "Will o the wisp"
+msgstr "Will O The Wisp"
 
 # I brist på annat...
 #: ../aisleriot/translatable_game_names.h:81
@@ -1653,11 +1641,11 @@ msgstr ""
 
 #: ../blackjack/data/blackjack.schemas.in.h:3
 msgid "Never take insurance"
-msgstr ""
+msgstr "Ta aldrig försäkring"
 
 #: ../blackjack/data/blackjack.schemas.in.h:4
 msgid "Never take insurance with a dealer showing an ace."
-msgstr ""
+msgstr "Ta aldrig försäkring om givaren visar ett ess."
 
 #: ../blackjack/data/blackjack.schemas.in.h:5
 msgid "The amount of money in your bank"
@@ -1686,22 +1674,21 @@ msgid "Use a quick deal with no delay between each card."
 msgstr "Använd ett snabbt giv utan fördröjning mellan varje kort."
 
 #: ../blackjack/src/blackjack.cpp:92
-#, fuzzy, c-format
+#, c-format
 msgid "Blackjack - %s"
-msgstr "Tjugoett: %s"
+msgstr "Tjugoett - %s"
 
 #: ../blackjack/src/blackjack.cpp:303 ../glines/glines.c:1706
 #: ../gnect/src/main.c:1132 ../gnibbles/main.c:601 ../gnobots2/menu.c:59
-#: ../gnome-stones/main.c:1051 ../gnometris/tetris.cpp:130
+#: ../gnome-stones/main.c:1051 ../gnometris/tetris.cpp:129
 #: ../gnomine/gnomine.c:751 ../gtali/gyahtzee.c:502
 #: ../mahjongg/mahjongg.c:1275
 msgid "_Settings"
 msgstr "_Inställningar"
 
 #: ../blackjack/src/blackjack.cpp:306
-#, fuzzy
 msgid "D_eal"
-msgstr "Ge"
+msgstr "_Ge"
 
 #: ../blackjack/src/blackjack.cpp:306 ../blackjack/src/dialog.cpp:98
 #: ../blackjack/src/dialog.cpp:101
@@ -1725,32 +1712,28 @@ msgid "Stop adding cards to the hand"
 msgstr "Sluta lägga till kort till handen"
 
 #: ../blackjack/src/blackjack.cpp:309
-#, fuzzy
 msgid "S_urrender"
-msgstr "Ge upp"
+msgstr "Ge _upp"
 
 #: ../blackjack/src/blackjack.cpp:309
 msgid "Forfeit this hand for half of your wager"
-msgstr ""
+msgstr "Förverka denna hand för halva din insats"
 
 #: ../blackjack/src/blackjack.cpp:310
 msgid "_Double down"
 msgstr "_Dubblera ned"
 
 #: ../blackjack/src/blackjack.cpp:310
-#, fuzzy
 msgid "Double your wager for a single hit"
-msgstr "Placera din insats eller ge en hand"
+msgstr "Dubblera din insats för dragning av ett enstaka kort"
 
 #: ../blackjack/src/blackjack.cpp:311
-#, fuzzy
 msgid "S_plit the hand"
-msgstr "Dela handen"
+msgstr "_Dela handen"
 
 #: ../blackjack/src/blackjack.cpp:311
-#, fuzzy
 msgid "Split cards in two new hands"
-msgstr "Sluta lägga till kort till handen"
+msgstr "Dela korten i två nya händer"
 
 #: ../blackjack/src/blackjack.cpp:318 ../gnobots2/gnobots2.schemas.in.h:23
 msgid "Show toolbar"
@@ -1806,35 +1789,32 @@ msgstr "Inställningar för Tjugoett"
 
 #: ../blackjack/src/dialog.cpp:246 ../gnect/src/prefs.c:378
 #: ../gnibbles/preferences.c:217 ../gnobots2/properties.c:495
-#: ../gnome-stones/preferences.c:677 ../gnometris/tetris.cpp:765
+#: ../gnome-stones/preferences.c:677 ../gnometris/tetris.cpp:715
 msgid "Game"
 msgstr "Spel"
 
 #: ../blackjack/src/dialog.cpp:253
-#, fuzzy
 msgid "_Display hand probabilities"
-msgstr "Visa handsannolikheter"
+msgstr "_Visa handsannolikheter"
 
 #: ../blackjack/src/dialog.cpp:263
-#, fuzzy
 msgid "_Quick deals (no delay between each card)"
-msgstr "Snabba givar (ingen fördröjning mellan varje kort)"
+msgstr "Sna_bba givar (ingen fördröjning mellan varje kort)"
 
 #: ../blackjack/src/dialog.cpp:272
 msgid "_Never take insurance"
-msgstr ""
+msgstr "Ta al_drig försäkring"
 
 #: ../blackjack/src/dialog.cpp:279
-#, fuzzy
 msgid "_Reset Balance"
-msgstr "Nollställ balans"
+msgstr "_Nollställ balans"
 
 #. Rules Tab
 #: ../blackjack/src/dialog.cpp:285
 msgid "Rules"
 msgstr "Regler"
 
-#: ../blackjack/src/dialog.cpp:310
+#: ../blackjack/src/dialog.cpp:310 games-scores-dialog.gob:290
 #: ../libgames-support/games-scores-dialog.gob:290
 msgid "Name"
 msgstr "Namn"
@@ -2096,58 +2076,48 @@ msgid "Animate"
 msgstr "Animera"
 
 #: ../gataxx/gataxx.schemas.in.h:2
-msgid "Flip final results"
-msgstr "Vänd på slutet"
-
-#: ../gataxx/gataxx.schemas.in.h:3
 msgid "Level of black player"
 msgstr "Nivå på svart spelare"
 
-#: ../gataxx/gataxx.schemas.in.h:4
+#: ../gataxx/gataxx.schemas.in.h:3
 msgid "Level of white player"
 msgstr "Nivå på vit spelare"
 
-#: ../gataxx/gataxx.schemas.in.h:5
+#: ../gataxx/gataxx.schemas.in.h:4
 msgid "Quick moves"
 msgstr "Snabba drag"
 
-#: ../gataxx/gataxx.schemas.in.h:6 ../gnotravex/gnotravex.schemas.in.h:2
+#: ../gataxx/gataxx.schemas.in.h:5 ../gnotravex/gnotravex.schemas.in.h:2
 #: ../gnotski/gnotski.schemas.in.h:1 ../mahjongg/mahjongg.schemas.in.h:1
 msgid "The height of the window"
 msgstr "Höjden på fönstret"
 
-#: ../gataxx/gataxx.schemas.in.h:7
-#, fuzzy
+#: ../gataxx/gataxx.schemas.in.h:6
 msgid "The requested height of the main window in pixels."
-msgstr "Höjden på spelfönstret, i bildpunkter, vid uppstart."
+msgstr "Den begärda höjden på spelfönstret i bildpunkter."
 
-#: ../gataxx/gataxx.schemas.in.h:8
-#, fuzzy
+#: ../gataxx/gataxx.schemas.in.h:7
 msgid "The requested width of the main window in pixels."
-msgstr "Bredden på spelfönstret, i bildpunkter, vid uppstart."
+msgstr "Den begärda bredden på spelfönstret i bildpunkter."
 
-#: ../gataxx/gataxx.schemas.in.h:9 ../gnotravex/gnotravex.schemas.in.h:6
+#: ../gataxx/gataxx.schemas.in.h:8 ../gnotravex/gnotravex.schemas.in.h:6
 #: ../gnotski/gnotski.schemas.in.h:6 ../mahjongg/mahjongg.schemas.in.h:4
 msgid "The width of the window"
 msgstr "Bredden på fönstret"
 
-#: ../gataxx/gataxx.schemas.in.h:10
+#: ../gataxx/gataxx.schemas.in.h:9
 msgid "Tileset"
 msgstr "Bricksamling"
 
-#: ../gataxx/gataxx.schemas.in.h:11
+#: ../gataxx/gataxx.schemas.in.h:10
 msgid "Tileset to use."
 msgstr "Bricksamling att använda."
 
-#: ../gataxx/gataxx.schemas.in.h:12
-msgid "Whether or not to flip final results."
-msgstr "Huruvida slutresultatet ska vändas eller inte."
-
-#: ../gataxx/gataxx.schemas.in.h:13
+#: ../gataxx/gataxx.schemas.in.h:11
 msgid "Whether or not to use quick moves."
 msgstr "Huruvida snabba drag ska användas eller inte."
 
-#: ../gataxx/gataxx.schemas.in.h:14
+#: ../gataxx/gataxx.schemas.in.h:12
 msgid ""
 "Zero corresponds to no animations, one is partial animations, two is "
 "complete animations."
@@ -2155,118 +2125,98 @@ msgstr ""
 "Noll motsvarar inga animationer, en är delvisa animationer, två är "
 "fullständiga animationer."
 
-#: ../gataxx/gataxx.schemas.in.h:15 ../gnect/data/gnect.schemas.in.h:19
+#: ../gataxx/gataxx.schemas.in.h:13 ../gnect/data/gnect.schemas.in.h:19
 msgid ""
 "Zero is human; one through three correspond to the level of the computer "
 "player."
 msgstr "Noll är mänsklig, ett till tre motsvarar nivån för datorspelaren."
 
 #. create window
-#: ../gataxx/properties.c:301
+#: ../gataxx/properties.c:300
 msgid "Ataxx Preferences"
 msgstr "Inställningar för Ataxx"
 
 #. Players tab
-#: ../gataxx/properties.c:331 ../iagno/properties.c:498
+#: ../gataxx/properties.c:330 ../iagno/properties.c:498
 msgid "Players"
 msgstr "Spelare"
 
-#: ../gataxx/properties.c:343
-#, fuzzy
+#: ../gataxx/properties.c:342
 msgid "_Quick moves"
-msgstr "Snabba drag"
+msgstr "Sna_bba drag"
 
-#: ../gataxx/properties.c:344
+#: ../gataxx/properties.c:343
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "Kortar ned tiden som en dator väntar innan ett drag görs"
 
 #. Dark level select
-#: ../gataxx/properties.c:353 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:352 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:521
 msgid "Dark"
 msgstr "Mörk"
 
-#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
+#: ../gataxx/properties.c:356 ../gataxx/properties.c:374
 #: ../gnect/src/prefs.c:326 ../gtali/yahtzee.c:61 ../iagno/properties.c:526
 #: ../iagno/properties.c:572
 msgid "Human"
 msgstr "Mänsklig"
 
-#: ../gataxx/properties.c:358 ../gataxx/properties.c:376
-#, fuzzy
+#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
 msgid "Very easy"
 msgstr "Mycket lätt"
 
-#: ../gataxx/properties.c:359
+#: ../gataxx/properties.c:358
 msgid "gataxx|Easy"
-msgstr ""
+msgstr "Lätt"
 
-#: ../gataxx/properties.c:360
-#, fuzzy
+#: ../gataxx/properties.c:359
 msgid "gataxx|Medium"
 msgstr "Mellan"
 
-#: ../gataxx/properties.c:361 ../gataxx/properties.c:379
+#: ../gataxx/properties.c:360 ../gataxx/properties.c:378
 msgid "Hard"
 msgstr "Svårt"
 
-#: ../gataxx/properties.c:362 ../gataxx/properties.c:380
-#, fuzzy
+#: ../gataxx/properties.c:361 ../gataxx/properties.c:379
 msgid "Very hard"
 msgstr "Mycket svårt"
 
 #. Light level select
-#: ../gataxx/properties.c:371 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:370 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:567
 msgid "Light"
 msgstr "Ljus"
 
-#: ../gataxx/properties.c:377
+#: ../gataxx/properties.c:376
 msgid "Easy"
 msgstr "Lätt"
 
-#: ../gataxx/properties.c:378
+#: ../gataxx/properties.c:377
 msgid "Medium"
 msgstr "Mellan"
 
 #. Appearance tab
-#: ../gataxx/properties.c:389 ../gataxx/properties.c:392
+#: ../gataxx/properties.c:388 ../gataxx/properties.c:391
 #: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:535
 #: ../iagno/properties.c:616
 msgid "Appearance"
 msgstr "Utseende"
 
 #. animation button
-#: ../gataxx/properties.c:398
-#, fuzzy
+#: ../gataxx/properties.c:397
 msgid "_Animation"
-msgstr "Animation"
+msgstr "_Animation"
 
-#: ../gataxx/properties.c:402
+#: ../gataxx/properties.c:401
 msgid "Flip the pieces with some visual effects"
 msgstr "Vänd pjäserna med en del visuella effekter"
 
-#. flip tiles button
-#: ../gataxx/properties.c:406 ../iagno/properties.c:675
-#, fuzzy
-msgid "_Flip final results"
-msgstr "Vänd på slutet"
-
-#: ../gataxx/properties.c:410
-msgid ""
-"Put all the white pieces at the bottom and all the black pieces on the top "
-"of the board when a game is over"
-msgstr ""
-"Placera alla vita pjäser nederst och alla svarta pjäser överst på brädet när "
-"ett spel är över"
-
-#: ../gataxx/properties.c:415 ../iagno/properties.c:685
+#: ../gataxx/properties.c:406 ../iagno/properties.c:685
 #: ../mahjongg/mahjongg.c:747
-#, fuzzy
 msgid "_Tile set:"
-msgstr "Bricksamling:"
+msgstr "_Bricksamling:"
 
-#: ../gataxx/properties.c:420
+#: ../gataxx/properties.c:411
 msgid "The appearance of the pieces"
 msgstr "Utseendet på pjäserna"
 
@@ -2277,9 +2227,8 @@ msgid "Small"
 msgstr "Liten"
 
 #: ../glines/glines.c:76 ../glines/glines.c:80
-#, fuzzy
 msgid "glines|Medium"
-msgstr "Mellan"
+msgstr "glines|Mellan"
 
 #: ../glines/glines.c:77 ../glines/glines.c:81 ../gnomine/gnomine.c:84
 #: ../gnomine/gnomine.c:638 ../same-gnome/same-gnome.c:51
@@ -2287,53 +2236,50 @@ msgid "Large"
 msgstr "Stor"
 
 #: ../glines/glines.c:191
-#, fuzzy
 msgid "Could not load theme"
-msgstr "Kunde inte läsa in bricksamlingen"
+msgstr "Kunde inte läsa in tema"
 
 #: ../glines/glines.c:196 ../mahjongg/mahjongg.c:141
 msgid "Preferences"
 msgstr "Inställningar"
 
 #: ../glines/glines.c:220
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to locate file:\n"
 "%s\n"
 "\n"
 "The default theme will be loaded instead."
 msgstr ""
-"Kan inte lokalisera filen: \"%s\"\n"
+"Kan inte lokalisera filen:\n"
+"%s\n"
 "\n"
-"Standardbricksamlingen kommer att läsas in istället."
+"Standardtemat kommer att läsas in istället."
 
 #: ../glines/glines.c:229
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to locate file:\n"
 "%s\n"
 "\n"
 "Please check that Five or More is installed correctly."
 msgstr ""
-"Fem eller mer kunde inte hitta bildfilen:\n"
+"Kan inte lokalisera filen:\n"
 "%s\n"
 "\n"
 "Kontrollera att Fem eller mer är korrekt installerat."
 
 #: ../glines/glines.c:423
-#, fuzzy
 msgid "Match five objects of the same type in a row to score!"
-msgstr "Matcha fem bollar på rad med samma färg för att få poäng!"
+msgstr "Matcha fem objekt på rad av samma typ för att få poäng!"
 
 #: ../glines/glines.c:488
-#, fuzzy
 msgid "GNOME Five or More"
-msgstr "Fem eller mer"
+msgstr "GNOME Fem eller mer"
 
 #: ../glines/glines.c:490
-#, fuzzy
 msgid "Board Size:"
-msgstr "Brädstorleken"
+msgstr "Brädstorlek:"
 
 #: ../glines/glines.c:517
 msgid "Game Over!"
@@ -2341,9 +2287,8 @@ msgstr "Spelet är slut!"
 
 #. Can't move there!
 #: ../glines/glines.c:677
-#, fuzzy
 msgid "You can't move there!"
-msgstr "Kan inte flytta dit!"
+msgstr "Du kan inte flytta dit!"
 
 #: ../glines/glines.c:1212 ../glines/glines.c:1904
 #: ../glines/glines.desktop.in.h:1
@@ -2363,19 +2308,16 @@ msgid "Themes"
 msgstr "Teman"
 
 #: ../glines/glines.c:1445
-#, fuzzy
 msgid "_Image:"
-msgstr "Bildtema:"
+msgstr "_Bild:"
 
 #: ../glines/glines.c:1456
-#, fuzzy
 msgid "B_ackground color:"
-msgstr "Bakgrundsfärg:"
+msgstr "B_akgrundsfärg:"
 
 #: ../glines/glines.c:1471
-#, fuzzy
 msgid "Board Size"
-msgstr "Brädstorleken"
+msgstr "Brädstorlek"
 
 #: ../glines/glines.c:1478 ../same-gnome/ui.c:437
 msgid "_Small"
@@ -2394,9 +2336,8 @@ msgid "General"
 msgstr "Allmänt"
 
 #: ../glines/glines.c:1514
-#, fuzzy
 msgid "_Use fast moves"
-msgstr "Använd snabba drag"
+msgstr "_Använd snabba drag"
 
 #: ../glines/glines.c:1934
 msgid "Next:"
@@ -2447,14 +2388,15 @@ msgid "Game score from last saved session."
 msgstr "Spelpoäng från den senast sparade sessionen."
 
 #: ../glines/glines.schemas.in.h:11
-#, fuzzy
 msgid "Playing field size"
-msgstr "Spelar nivån %s"
+msgstr "Storlek på spelfältet"
 
 #: ../glines/glines.schemas.in.h:12
 msgid ""
 "Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
 msgstr ""
+"Storlek på spelfältet. 1=litet, 2=mellan, 3=stort. Alla andra värden är "
+"ogiltiga."
 
 #: ../glines/glines.schemas.in.h:15
 msgid "Time between moves"
@@ -2470,7 +2412,6 @@ msgstr "Tävla om att skapa rader med samma färg"
 
 #: ../gnect/data/gnect.desktop.in.h:2 ../gnect/src/main.c:790
 #: ../gnect/src/main.c:1211
-#, fuzzy
 msgid "Four-in-a-Row"
 msgstr "Fyra-i-rad"
 
@@ -2589,26 +2530,22 @@ msgid "Hint: Column %d"
 msgstr "Tips: Kolumn %d"
 
 #: ../gnect/src/main.c:651 ../gnect/src/main.c:656
-#, fuzzy
 msgid "You:"
-msgstr "Du"
+msgstr "Du:"
 
 #: ../gnect/src/main.c:652 ../gnect/src/main.c:655
-#, fuzzy
 msgid "Me:"
-msgstr "Jag"
+msgstr "Jag:"
 
 #: ../gnect/src/main.c:702
 msgid "Scores"
 msgstr "Poäng"
 
 #: ../gnect/src/main.c:753
-#, fuzzy
 msgid "Drawn:"
-msgstr "Oavgjort"
+msgstr "Oavgjort:"
 
 #: ../gnect/src/main.c:793
-#, fuzzy
 msgid ""
 "\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -2648,7 +2585,6 @@ msgid "Level three"
 msgstr "Nivå tre"
 
 #: ../gnect/src/prefs.c:356
-#, fuzzy
 msgid "Four-in-a-Row Preferences"
 msgstr "Inställningar för fyra-i-rad"
 
@@ -2660,12 +2596,12 @@ msgstr "_Tema:"
 msgid "Enable _animation"
 msgstr "Aktivera _animation"
 
-#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:889
+#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:839
 msgid "Controls"
 msgstr "Styrning"
 
 #: ../gnect/src/prefs.c:444 ../gnibbles/preferences.c:381
-#: ../gnobots2/properties.c:542 ../gnometris/tetris.cpp:892
+#: ../gnobots2/properties.c:542 ../gnometris/tetris.cpp:842
 msgid "Keyboard Controls"
 msgstr "Tangentbordskontroller"
 
@@ -2688,14 +2624,12 @@ msgid "High Contrast"
 msgstr "Hög kontrast"
 
 #: ../gnect/src/theme.c:58
-#, fuzzy
 msgid "High Contrast Inverse"
-msgstr "Hög kontrast"
+msgstr "Hög kontrast inverterat"
 
 #: ../gnect/src/theme.c:66
-#, fuzzy
 msgid "Cream Marbles"
-msgstr "Mera marmor"
+msgstr "Gräddfärgade kulor"
 
 #: ../gnect/src/theme.c:71 ../gnect/src/theme.c:79 ../gnect/src/theme.c:95
 #: ../gnibbles/preferences.c:422
@@ -2703,9 +2637,8 @@ msgid "Blue"
 msgstr "Blå"
 
 #: ../gnect/src/theme.c:74
-#, fuzzy
 msgid "Glass Marbles"
-msgstr "Marmor"
+msgstr "Glaskulor"
 
 # Osäker.
 #: ../gnect/src/theme.c:82
@@ -2891,7 +2824,7 @@ msgstr "Ätbonus"
 msgid "Extra Life"
 msgstr "Extraliv"
 
-#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:130
+#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:225
 msgid "Game Over"
 msgstr "Spelet är slut"
 
@@ -2934,9 +2867,8 @@ msgid "New game started"
 msgstr "Nytt spel startat"
 
 #: ../gnibbles/preferences.c:204
-#, fuzzy
 msgid "Nibbles Preferences"
-msgstr "Inställningar för Gnibbles"
+msgstr "Inställningar för Nibbles"
 
 #: ../gnibbles/preferences.c:225
 msgid "Speed"
@@ -2965,44 +2897,37 @@ msgid "Options"
 msgstr "Alternativ"
 
 #: ../gnibbles/preferences.c:282
-#, fuzzy
 msgid "_Play levels in random order"
-msgstr "Spela nivåer i slumpmässig ordning"
+msgstr "S_pela nivåer i slumpmässig ordning"
 
 #: ../gnibbles/preferences.c:293
-#, fuzzy
 msgid "_Enable fake bonuses"
-msgstr "Aktivera falska bonusar"
+msgstr "A_ktivera falska bonusar"
 
 #: ../gnibbles/preferences.c:304
-#, fuzzy
 msgid "E_nable sounds"
-msgstr "Aktivera ljud"
+msgstr "Ak_tivera ljud"
 
 #. starting level
-#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:812
-#, fuzzy
+#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:762
 msgid "_Starting level:"
-msgstr "Börja på nivå:"
+msgstr "_Startnivå:"
 
 #: ../gnibbles/preferences.c:346
-#, fuzzy
 msgid "N_umber of players:"
-msgstr "Antal spelare:"
+msgstr "A_ntal spelare:"
 
 #: ../gnibbles/preferences.c:372
 msgid "Worm"
 msgstr "Mask"
 
 #: ../gnibbles/preferences.c:407
-#, fuzzy
 msgid "_Use relative movement"
-msgstr "Använd relativ rörelse"
+msgstr "_Använd relativ rörelse"
 
 #: ../gnibbles/preferences.c:414
-#, fuzzy
 msgid "_Worm color:"
-msgstr "Maskfärg:"
+msgstr "_Maskfärg:"
 
 #: ../gnibbles/preferences.c:421
 msgid "Green"
@@ -3077,25 +3002,23 @@ msgid "No game data could be found."
 msgstr "Inga speldata kunde hittas."
 
 #: ../gnobots2/gnobots.c:235
-#, fuzzy
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
 msgstr ""
-"Programmet GNOME-robotar kunde inte hitta några giltiga "
-"spelkonfigurationsfiler. Kontrollera att programmet installerats korrekt."
+"Programmet Robotar kunde inte hitta några giltiga spelkonfigurationsfiler. "
+"Kontrollera att programmet installerats korrekt."
 
 #: ../gnobots2/gnobots.c:251
 msgid "Some graphics files are missing or corrupt."
 msgstr "En del grafikfiler saknas eller är skadade."
 
 #: ../gnobots2/gnobots.c:252
-#, fuzzy
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
 msgstr ""
-"Programmet GNOME-robotar kunde inte läsa in alla de grafikfiler som behövs. "
+"Programmet Robotar kunde inte läsa in alla de grafikfiler som behövs. "
 "Kontrollera att programmet installerats korrekt."
 
 #. ********************************************************************
@@ -3187,7 +3110,7 @@ msgstr "Robotbildtema. Temat på bilderna som ska användas för robotarna."
 
 #: ../gnobots2/gnobots2.schemas.in.h:24
 msgid "Show toolbar. A standard option for toolbars."
-msgstr ""
+msgstr "Visa verktygsrad. Ett standardalternativ för verktygsrader."
 
 #: ../gnobots2/gnobots2.schemas.in.h:25
 msgid ""
@@ -3339,27 +3262,24 @@ msgid "_Move"
 msgstr "_Flytta"
 
 #: ../gnobots2/menu.c:64
-#, fuzzy
 msgid "_Teleport"
-msgstr "Teleport"
+msgstr "_Teleportera"
 
 #: ../gnobots2/menu.c:64
 msgid "Teleport, safely if possible"
 msgstr "Teleportera, säkert om möjligt"
 
 #: ../gnobots2/menu.c:65
-#, fuzzy
 msgid "_Random"
-msgstr "Slumpmässigt"
+msgstr "_Slumpmässigt"
 
 #: ../gnobots2/menu.c:65
 msgid "Teleport randomly"
 msgstr "Teleportera slumpmässigt"
 
 #: ../gnobots2/menu.c:66
-#, fuzzy
 msgid "_Wait"
-msgstr "Vänta"
+msgstr "_Vänta"
 
 #: ../gnobots2/menu.c:66
 msgid "Wait for the robots"
@@ -3370,9 +3290,8 @@ msgid "Show or hide the toolbar"
 msgstr "Visa eller dölj verktygsraden"
 
 #: ../gnobots2/menu.c:239
-#, fuzzy
 msgid "Based on classic BSD Robots."
-msgstr "klassiska robotar"
+msgstr "Baserad på klassiska BSD-robotar."
 
 #: ../gnobots2/properties.c:319
 msgid "classic robots"
@@ -3419,18 +3338,16 @@ msgid "windows"
 msgstr "fönster"
 
 #: ../gnobots2/properties.c:412
-#, fuzzy
 msgid "Robots Preferences"
-msgstr "GnobotsII-inställningar"
+msgstr "Inställningar för Robotar"
 
 #: ../gnobots2/properties.c:433
 msgid "Game Type"
 msgstr "Speltyp"
 
 #: ../gnobots2/properties.c:458
-#, fuzzy
 msgid "_Use safe moves"
-msgstr "Använd säkra förflyttningar"
+msgstr "_Använd säkra förflyttningar"
 
 #: ../gnobots2/properties.c:465
 msgid "Prevent some dangerous moves"
@@ -3441,9 +3358,8 @@ msgid "Prevent accidental moves that result in getting killed."
 msgstr "Förhindra olyckliga drag som kan resultera i död."
 
 #: ../gnobots2/properties.c:468
-#, fuzzy
 msgid "U_se super safe moves"
-msgstr "Använd supersäkra förflyttningar"
+msgstr "A_nvänd supersäkra förflyttningar"
 
 #: ../gnobots2/properties.c:474
 msgid "Prevent all dangerous moves"
@@ -3453,10 +3369,9 @@ msgstr "Förhindra alla farliga drag"
 msgid "Prevents all moves that result in getting killed."
 msgstr "Förhindrar alla drag som kan resultera i död."
 
-#: ../gnobots2/properties.c:477 ../gnometris/tetris.cpp:838
-#, fuzzy
+#: ../gnobots2/properties.c:477 ../gnometris/tetris.cpp:788
 msgid "_Enable sounds"
-msgstr "Aktivera ljud"
+msgstr "A_ktivera ljud"
 
 #: ../gnobots2/properties.c:483
 msgid "Play sounds for major events"
@@ -3467,9 +3382,8 @@ msgid "Play sounds for events like winning a level and dying."
 msgstr "Spela ljud för händelser som exempelvis att vinna en nivå och att dö."
 
 #: ../gnobots2/properties.c:486
-#, fuzzy
 msgid "E_nable splats"
-msgstr "Aktivera splaschar"
+msgstr "Ak_tivera splaschar"
 
 #: ../gnobots2/properties.c:492
 msgid "Play a sound when two robots collide"
@@ -3484,19 +3398,16 @@ msgid "Graphics Theme"
 msgstr "Grafiktema"
 
 #: ../gnobots2/properties.c:511
-#, fuzzy
 msgid "_Image theme:"
-msgstr "Bildtema:"
+msgstr "_Bildtema:"
 
 #: ../gnobots2/properties.c:523 ../mahjongg/mahjongg.c:793
-#, fuzzy
 msgid "_Background color:"
-msgstr "Bakgrundsfärg:"
+msgstr "_Bakgrundsfärg:"
 
 #: ../gnobots2/properties.c:569
-#, fuzzy
 msgid "_Restore Defaults"
-msgstr "Reserver kvar"
+msgstr "_Återställ standardalternativen"
 
 #: ../gnobots2/properties.c:574
 msgid "Keyboard"
@@ -3598,7 +3509,6 @@ msgstr "gnomekoban:tom,0"
 
 #. This cave is too big to be played with gnome-stones.
 #: ../gnome-stones/io.c:338
-#, fuzzy
 msgid "The cave you are trying to load is too big for this game."
 msgstr "Grottan du försöker läsa in är för stor för det här spelet."
 
@@ -3632,7 +3542,7 @@ msgid "FILENAME"
 msgstr "FILNAMN"
 
 #: ../gnome-stones/main.c:128
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "An error occurred while loading the image file \"%s\".\n"
 "Please make sure that GNOME Stones is correctly installed!"
@@ -3721,7 +3631,6 @@ msgid "GNOME Stones Preferences"
 msgstr "Inställningar för GNOME-stenar"
 
 #: ../gnome-stones/preferences.c:612
-#, fuzzy
 msgid "Game Title"
 msgstr "Speltitel"
 
@@ -3734,25 +3643,21 @@ msgid "Device"
 msgstr "Enhet"
 
 #: ../gnome-stones/preferences.c:708
-#, fuzzy
 msgid "_Joystick device:"
-msgstr "Styrspaksenhet:"
+msgstr "_Styrspaksenhet:"
 
 #. We definatly have a "disable" entry.
 #: ../gnome-stones/preferences.c:715
-#, fuzzy
 msgid "Disabled"
-msgstr "avstängd"
+msgstr "Inaktiverad"
 
 #: ../gnome-stones/preferences.c:746
-#, fuzzy
 msgid "Digital Joystick Emulation"
-msgstr "Emulering av digital styrspak"
+msgstr "Digital emulering av styrspak"
 
 #: ../gnome-stones/preferences.c:755
-#, fuzzy
 msgid "_Switch level:"
-msgstr "Brytpunkt:"
+msgstr "_Brytpunkt:"
 
 #: ../gnome-stones/preferences.c:779
 msgid "Joystick"
@@ -3789,7 +3694,7 @@ msgstr "Liv:"
 msgid "Tutorial caves"
 msgstr "Grottsammanfattning"
 
-#: ../gnometris/field.cpp:83
+#: ../gnometris/field.cpp:223
 msgid "Paused"
 msgstr "Gör paus"
 
@@ -3797,8 +3702,8 @@ msgstr "Gör paus"
 msgid "Fit falling blocks together"
 msgstr "Passa ihop fallande klossar"
 
-#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:181
-#: ../gnometris/tetris.cpp:1455
+#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:176
+#: ../gnometris/tetris.cpp:1413
 msgid "Gnometris"
 msgstr "Gnometris"
 
@@ -3862,18 +3767,26 @@ msgstr ""
 msgid "The density of filled rows"
 msgstr "Densiteten för ifyllda rader"
 
-#: ../gnometris/gnometris.schemas.in.h:21
+#: ../gnometris/gnometris.schemas.in.h:22
+msgid "The name of the theme used for rendering the blocks and the background."
+msgstr "Namnet på temat som används för rendering av klossarna och bakgrunden."
+
+#: ../gnometris/gnometris.schemas.in.h:23
 msgid ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
 msgstr ""
 "Antalet rader som är fyllda med slumpmässiga klossar i början på spelet."
 
-#: ../gnometris/gnometris.schemas.in.h:22
+#: ../gnometris/gnometris.schemas.in.h:24
 msgid "The number of rows to fill"
 msgstr "Antalet rader att fylla"
 
-#: ../gnometris/gnometris.schemas.in.h:23
+#: ../gnometris/gnometris.schemas.in.h:25
+msgid "The theme used for rendering the blocks"
+msgstr "Temat som används för rendering av klossarna"
+
+#: ../gnometris/gnometris.schemas.in.h:27
 msgid ""
 "This selects whether or not to draw the background image over the background "
 "color."
@@ -3881,152 +3794,126 @@ msgstr ""
 "Detta väljer huruvida bakgrundsbilden ska ritas över bakgrundsfärgen eller "
 "inte."
 
-#: ../gnometris/gnometris.schemas.in.h:24
+#: ../gnometris/gnometris.schemas.in.h:28
 msgid "Whether to give blocks random colors"
 msgstr "Huruvida klossar ska ges slumpmässiga färger"
 
-#: ../gnometris/gnometris.schemas.in.h:25
+#: ../gnometris/gnometris.schemas.in.h:29
 msgid "Whether to give blocks random colors."
 msgstr "Huruvida klossar ska ges slumpmässiga färger."
 
-#: ../gnometris/gnometris.schemas.in.h:26
+#: ../gnometris/gnometris.schemas.in.h:30
 msgid "Whether to preview the next block"
 msgstr "Huruvida nästa kloss ska förhandsvisas"
 
-#: ../gnometris/gnometris.schemas.in.h:27
+#: ../gnometris/gnometris.schemas.in.h:31
 msgid "Whether to preview the next block."
 msgstr "Huruvida nästa kloss ska förhandsvisas."
 
-#: ../gnometris/gnometris.schemas.in.h:28
+#: ../gnometris/gnometris.schemas.in.h:32
 msgid "Whether to rotate counter clock wise"
 msgstr "Huruvida rotation ska ske motsols"
 
-#: ../gnometris/gnometris.schemas.in.h:29
+#: ../gnometris/gnometris.schemas.in.h:33
 msgid "Whether to rotate counter clock wise."
 msgstr "Huruvida rotation ska ske motsols."
 
-#: ../gnometris/gnometris.schemas.in.h:30
+#: ../gnometris/gnometris.schemas.in.h:34
 msgid "Whether to use sound"
 msgstr "Huruvida ljud ska användas"
 
-#: ../gnometris/gnometris.schemas.in.h:31
+#: ../gnometris/gnometris.schemas.in.h:35
 msgid "Whether to use sound."
 msgstr "Huruvida ljud ska användas."
 
-#: ../gnometris/gnometris.schemas.in.h:32
+#: ../gnometris/gnometris.schemas.in.h:36
 msgid "Whether to use the background image"
 msgstr "Huruvida bakgrundsbilden ska användas"
 
-#: ../gnometris/main.cpp:38
+#: ../gnometris/main.cpp:36
 msgid "Set starting level (1-10)"
 msgstr "Sätt startnivå (1-10)"
 
-#: ../gnometris/main.cpp:38
+#: ../gnometris/main.cpp:36
 msgid "LEVEL"
 msgstr "NIVÅ"
+
+#: ../gnometris/renderer.cpp:27
+msgid "Plain"
+msgstr "Enkel"
+
+#: ../gnometris/renderer.cpp:28
+msgid "Joined"
+msgstr "Sammanslagen"
 
 #: ../gnometris/scoreframe.cpp:68
 msgid "Lines:"
 msgstr "Linjer:"
 
-#: ../gnometris/tetris.cpp:350
-#, c-format
-msgid ""
-"Could not find the theme: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"Kunde inte hitta temat:\n"
-"%s\n"
-"\n"
-"Kontrollera din installation av gnome-games"
-
-#: ../gnometris/tetris.cpp:365
-#, c-format
-msgid ""
-"Can't load the image: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"Kunde inte läsa in bildfilen:\n"
-"%s\n"
-"\n"
-"Kontrollera din installation av gnome-games"
-
-#: ../gnometris/tetris.cpp:715 ../gnometris/tetris.cpp:716
+#: ../gnometris/tetris.cpp:665 ../gnometris/tetris.cpp:666
 msgid "<none>"
 msgstr "<inga>"
 
-#: ../gnometris/tetris.cpp:744
-#, fuzzy
+#: ../gnometris/tetris.cpp:694
 msgid "Gnometris Preferences"
 msgstr "Inställningar för Gnometris"
 
-#: ../gnometris/tetris.cpp:768
+#: ../gnometris/tetris.cpp:718
 msgid "Setup"
 msgstr "Konfiguration"
 
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:774
-#, fuzzy
+#: ../gnometris/tetris.cpp:724
 msgid "_Number of pre-filled rows:"
-msgstr "Antal förifyllda rader:"
+msgstr "_Antal förifyllda rader:"
 
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:793
-#, fuzzy
+#: ../gnometris/tetris.cpp:743
 msgid "_Density of blocks in a pre-filled row:"
-msgstr "Densiteten av klossar i en förifylld rad:"
+msgstr "_Densiteten på klossar i en förifylld rad:"
 
-#: ../gnometris/tetris.cpp:833
+#: ../gnometris/tetris.cpp:783
 msgid "Operation"
 msgstr "Åtgärd"
 
-#: ../gnometris/tetris.cpp:847
-#, fuzzy
+#: ../gnometris/tetris.cpp:797
 msgid "_Preview next block"
-msgstr "Förhandsgranska nästa kloss"
+msgstr "_Förhandsgranska nästa kloss"
 
-#: ../gnometris/tetris.cpp:856
-#, fuzzy
+#: ../gnometris/tetris.cpp:806
 msgid "_Use random block colors"
-msgstr "Använd slumpmässiga klossfärger"
+msgstr "_Använd slumpmässiga klossfärger"
 
-#: ../gnometris/tetris.cpp:867
-#, fuzzy
+#: ../gnometris/tetris.cpp:817
 msgid "_Rotate blocks counterclockwise"
-msgstr "Rotera klossar moturs"
+msgstr "_Rotera klossar moturs"
 
-#: ../gnometris/tetris.cpp:880 ../gnometris/tetris.cpp:913
+#: ../gnometris/tetris.cpp:830 ../gnometris/tetris.cpp:863
 #: ../same-gnome/ui.c:288
 msgid "Theme"
 msgstr "Tema"
 
-#: ../gnometris/tetris.cpp:916
-#, fuzzy
-msgid "Block Image"
-msgstr "Klossbild: "
+#: ../gnometris/tetris.cpp:866
+msgid "Block Style"
+msgstr "Stil på klossar"
 
-#: ../gnometris/tetris.cpp:1457
-#, fuzzy
+#: ../gnometris/tetris.cpp:1415
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: \n"
 "janusz.gorycki@intel.com"
 msgstr ""
 "Skrivet för min fru, Matylda\n"
-"Skicka kommentarer och buggrapporter till: janusz.gorycki@intel.com\n"
-"Skicka synpunkter på översättningen till: sv@li.org"
+"Skicka kommentarer och buggrapporter till: \n"
+"janusz.gorycki@intel.com\n"
+"Skicka synpunkter på översättningen till: \n"
+"sv@li.org"
 
 #: ../gnometris/highscores.cpp:55
-#, fuzzy
 msgid "Gnometris Scores"
-msgstr "Gnect-poäng"
+msgstr "Gnometris-poäng"
 
 #: ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:628
-#, fuzzy
 msgid "gnomine|Medium"
 msgstr "Mellan"
 
@@ -4035,23 +3922,22 @@ msgid "Custom"
 msgstr "Egen"
 
 #: ../gnomine/gnomine.c:160
-#, fuzzy, c-format
+#, c-format
 msgid "Flags: %d/%d"
-msgstr "Flaggor:"
+msgstr "Flaggor: %d/%d"
 
 #: ../gnomine/gnomine.c:188
 msgid "The Mines Have Been Cleared!"
-msgstr ""
+msgstr "Minorna har röjts!"
 
 #: ../gnomine/gnomine.c:189
-#, fuzzy
 msgid "Great work, but unfortunately your score did not make the top ten."
-msgstr "Tyvärr hamnade inte ditt poängresultat bland de tio bästa."
+msgstr ""
+"Bra jobbat, men tyvärr hamnade inte ditt poängresultat bland de tio bästa."
 
 #: ../gnomine/gnomine.c:206
-#, fuzzy
 msgid "Mines Scores"
-msgstr "GNOME-minor-poäng"
+msgstr "Minorpoäng"
 
 #: ../gnomine/gnomine.c:208 ../same-gnome/ui.c:124
 msgid "Size:"
@@ -4091,39 +3977,32 @@ msgid "Mines"
 msgstr "Minor"
 
 #: ../gnomine/gnomine.c:614
-#, fuzzy
 msgid "Field Size"
-msgstr "Banstorlek"
+msgstr "Fältstorlek"
 
 #: ../gnomine/gnomine.c:660
-#, fuzzy
 msgid "Custom Size"
 msgstr "Egen storlek"
 
 #: ../gnomine/gnomine.c:667
-#, fuzzy
 msgid "_Number of mines:"
-msgstr "Antal minor:"
+msgstr "A_ntal minor:"
 
 #: ../gnomine/gnomine.c:679
-#, fuzzy
 msgid "_Horizontal:"
-msgstr "Horisontellt:"
+msgstr "_Horisontellt:"
 
 #: ../gnomine/gnomine.c:690
-#, fuzzy
 msgid "_Vertical:"
-msgstr "Vertikalt:"
+msgstr "_Vertikalt:"
 
 #: ../gnomine/gnomine.c:705
-#, fuzzy
 msgid "_Use \"I'm not sure\" flags"
-msgstr "Använd \"Jag är inte säker\"-flaggor."
+msgstr "_Använd \"Jag är inte säker\"-flaggor"
 
 #: ../gnomine/gnomine.c:714
-#, fuzzy
 msgid "Mines Preferences"
-msgstr "Inställningar för Glines"
+msgstr "Inställningar för Minor"
 
 #: ../gnomine/gnomine.c:853
 msgid "Width of grid"
@@ -4156,7 +4035,7 @@ msgstr "Y-koordinat för fönstret"
 
 #: ../gnomine/gnomine.c:1024
 msgid "Press to Resume"
-msgstr ""
+msgstr "Tryck för att återuppta"
 
 #: ../gnomine/gnomine.c:1057
 msgid "Time: "
@@ -4201,7 +4080,7 @@ msgstr "Kunde inte läsa in bilder"
 #. i18n in-game numbers, replaceable with single-character local ideograms.
 #: ../gnotravex/gnotravex.c:50
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: ../gnotravex/gnotravex.c:50
 msgid "1"
@@ -4233,11 +4112,11 @@ msgstr "7"
 
 #: ../gnotravex/gnotravex.c:50
 msgid "8"
-msgstr ""
+msgstr "8"
 
 #: ../gnotravex/gnotravex.c:50
 msgid "9"
-msgstr ""
+msgstr "9"
 
 #: ../gnotravex/gnotravex.c:177 ../same-gnome/ui.c:419
 msgid "_Size"
@@ -4665,39 +4544,36 @@ msgid "Previous Puzzle"
 msgstr "Föregående pussel"
 
 #: ../gnotski/gnotski.c:817
-#, fuzzy
 msgid "Level completed."
-msgstr "Nivån färdig"
+msgstr "Nivån färdig."
 
 #: ../gnotski/gnotski.c:1009
-#, fuzzy
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
 "Please check that Klotski is installed correctly."
 msgstr ""
-"Fem eller mer kunde inte hitta bildfilen:\n"
-"%s\n"
+"Misslyckades med att rendera temat för detta spel.\n"
 "\n"
-"Kontrollera att Fem eller mer är korrekt installerat."
+"Kontrollera att Klotski är korrekt installerat."
 
 #: ../gnotski/gnotski.c:1177
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Could not find the image:\n"
 "%s\n"
 "\n"
 "Please check that Klotski is installed correctly."
 msgstr ""
-"Fem eller mer kunde inte hitta bildfilen:\n"
+"Kunde inte hitta bilden:\n"
 "%s\n"
 "\n"
-"Kontrollera att Fem eller mer är korrekt installerat."
+"Kontrollera att Klotski är korrekt installerat."
 
 #: ../gnotski/gnotski.c:1216
-#, fuzzy, c-format
+#, c-format
 msgid "Moves: %d"
-msgstr "Drag:"
+msgstr "Drag: %d"
 
 #: ../gnotski/gnotski.c:1539
 msgid "Sliding Block Puzzles"
@@ -4802,32 +4678,28 @@ msgid "%s! -- You're up."
 msgstr "%s! -- Din tur."
 
 #: ../gtali/gyahtzee.c:299
-#, fuzzy
 msgid "Select dice to roll or choose a score slot."
-msgstr "Välj tärning för omkast, tryck på Kasta!, eller välj poängruta."
+msgstr "Välj tärning att kasta eller välj en poängruta."
 
 #: ../gtali/gyahtzee.c:326
 msgid "Roll"
 msgstr "Kasta"
 
 #: ../gtali/gyahtzee.c:369
-#, fuzzy
 msgid "You are only allowed three rolls. Choose a score slot."
-msgstr "Du får bara tre kast! Välj en poängruta."
+msgstr "Du får bara tre kast. Välj en poängruta."
 
 #: ../gtali/gyahtzee.c:412
 msgid "GNOME version (1998):"
 msgstr "GNOME-version (1998):"
 
 #: ../gtali/gyahtzee.c:415
-#, fuzzy
 msgid "Console version (1992):"
-msgstr "Curses-version (1992):"
+msgstr "Konsollversion (1992):"
 
 #: ../gtali/gyahtzee.c:425
-#, fuzzy
 msgid "A variation on poker with dice and less money."
-msgstr "Ett slags poker med tärning och mindre pengar."
+msgstr "En variant av poker med tärning och mindre pengar."
 
 #: ../gtali/gyahtzee.c:607
 msgid "Roll!"
@@ -4862,18 +4734,16 @@ msgid "Current game will complete with original number of players."
 msgstr "Nuvarande omgång avslutas med det ursprungliga antalet spelare."
 
 #: ../gtali/setup.c:230
-#, fuzzy
 msgid "Tali Preferences"
-msgstr "Inställningar för GTali"
+msgstr "Inställningar för Tali"
 
 #: ../gtali/setup.c:253
 msgid "Human Players"
 msgstr "Mänskliga spelare"
 
 #: ../gtali/setup.c:263
-#, fuzzy
 msgid "_Number of players:"
-msgstr "Antal spelare:"
+msgstr "_Antal spelare:"
 
 #: ../gtali/setup.c:277
 msgid "Computer Opponents"
@@ -4881,14 +4751,12 @@ msgstr "Datormotståndare"
 
 #. --- Button ---
 #: ../gtali/setup.c:284
-#, fuzzy
 msgid "_Delay between rolls"
-msgstr "Fördröjning mellan kast"
+msgstr "_Fördröjning mellan kast"
 
 #: ../gtali/setup.c:294
-#, fuzzy
 msgid "N_umber of opponents:"
-msgstr "Antal motståndare:"
+msgstr "A_ntal motståndare:"
 
 #. --- PLAYER NAMES FRAME ----
 #: ../gtali/setup.c:308
@@ -4941,9 +4809,8 @@ msgid "Large Straight [40]"
 msgstr "Stor stege [40]"
 
 #: ../gtali/yahtzee.c:81
-#, fuzzy
 msgid "5 of a Kind [50]"
-msgstr "Tretal [totalt]"
+msgstr "Femtal [50]"
 
 #: ../gtali/yahtzee.c:82
 msgid "Chance [total]"
@@ -4969,7 +4836,7 @@ msgstr "Bonus om >62"
 
 #: ../gtali/yahtzee.c:187
 msgid "Choose a score slot."
-msgstr ""
+msgstr "Välj en poängruta."
 
 #: ../gtali/yahtzee.c:456
 msgid "How many times do you wish to roll?"
@@ -4996,19 +4863,18 @@ msgid "Iagno server to use"
 msgstr "Iagno-server att använda"
 
 #: ../iagno/gnothello.c:114
-#, fuzzy
 msgid "New Net_work Game"
-msgstr "Nytt nätverksspel"
+msgstr "Nytt nät_verksspel"
 
 #: ../iagno/gnothello.c:265 ../iagno/gnothello.c:588
 #: ../iagno/iagno.desktop.in.h:1 ../iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Iagno"
 
+# Osäker.
 #: ../iagno/gnothello.c:268
-#, fuzzy
 msgid "A disk flipping game derived from Reversi."
-msgstr "Ett brickvändningsspel där du försöker dominera brädet."
+msgstr "Ett brickvändningsspel som utvecklats från Reversi."
 
 #: ../iagno/gnothello.c:647
 msgid "Welcome to Iagno!"
@@ -5052,9 +4918,8 @@ msgid "Iagno Preferences"
 msgstr "Inställningar för Iagno"
 
 #: ../iagno/properties.c:512
-#, fuzzy
 msgid "_Use quick moves"
-msgstr "Använd snabba drag"
+msgstr "_Använd snabba drag"
 
 #: ../iagno/properties.c:622
 msgid "Animation"
@@ -5073,14 +4938,16 @@ msgid "Complete"
 msgstr "Kompletta"
 
 #: ../iagno/properties.c:659
-#, fuzzy
 msgid "_Stagger flips"
-msgstr "Stegvisa vändningar"
+msgstr "_Stegvisa vändningar"
 
 #: ../iagno/properties.c:667
-#, fuzzy
 msgid "S_how grid"
-msgstr "Visa rutnät"
+msgstr "Visa _rutnät"
+
+#: ../iagno/properties.c:675
+msgid "_Flip final results"
+msgstr "_Vänd på slutresultatet"
 
 #: ../libgames-support/games-card-selector.c:52
 msgid "Card Style"
@@ -5147,24 +5014,23 @@ msgid "What multiple to constrain the height to."
 msgstr "Vilken faktor som höjden ska begränsas till."
 
 #: ../libgames-support/games-gridframe.c:245
-#, fuzzy
 msgid "X align"
-msgstr "X-utfyllnad"
+msgstr "X-justering"
 
 #: ../libgames-support/games-gridframe.c:246
 msgid "The horizontal alignment, from 0 (left) to 1 (right)"
-msgstr ""
+msgstr "Den horisontella justeringen, från 0 (vänster) till 1 (höger)"
 
 #: ../libgames-support/games-gridframe.c:254
 msgid "Y align"
-msgstr ""
+msgstr "Y-justering"
 
 #: ../libgames-support/games-gridframe.c:255
 msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
-msgstr ""
+msgstr "Den vertikala justeringen, från 0 (överst) till 1 (nederst)"
 
 #: ../libgames-support/games-network-dialog.c:80
-#, fuzzy, c-format
+#, c-format
 msgid "The player %s has joined the game."
 msgstr "Spelaren %s anslöt till spelet."
 
@@ -5174,56 +5040,52 @@ msgstr "Nytt nätverksspel"
 
 #. Create Network Status Frame.
 #: ../libgames-support/games-network-dialog.c:139
-#, fuzzy
 msgid "Status"
-msgstr "Splaschar"
+msgstr "Status"
 
+# FIXME: Borde buggrapporteras.
+# http://bugzilla.gnome.org/show_bug.cgi?id=318940
+#
 #: ../libgames-support/games-network-dialog.c:141
 msgid ""
 "Select a nickname and connection method\n"
 "then click Connect."
 msgstr ""
+"Välj ett smeknamn och anslutningsmetod\n"
+"och klicka sedan på Anslut."
 
 #. Now for the network connection options.
 #: ../libgames-support/games-network-dialog.c:145
-#, fuzzy
 msgid "Connection Method"
-msgstr "Anslutning misslyckades"
+msgstr "Anslutningsmetod"
 
 #: ../libgames-support/games-network-dialog.c:151
-#, fuzzy
 msgid "GNOME games server"
-msgstr "Spelservern"
+msgstr "GNOME-spelserver"
 
 #: ../libgames-support/games-network-dialog.c:159
-#, fuzzy
 msgid "_Hostname:"
-msgstr "Värdnamn:"
+msgstr "_Värdnamn:"
 
 #: ../libgames-support/games-network-dialog.c:174
-#, fuzzy
 msgid "Host local game"
 msgstr "Agera värd för lokalt spel"
 
 #: ../libgames-support/games-network-dialog.c:194
-#, fuzzy
 msgid "_Game name:"
-msgstr "Spelnamn:"
+msgstr "_Spelnamn:"
 
 #: ../libgames-support/games-network-dialog.c:206
-#, fuzzy
 msgid "Join local game"
 msgstr "Anslut till lokalt spel"
 
 #: ../libgames-support/games-network-dialog.c:222
-#, fuzzy
 msgid "_Local games:"
-msgstr "Lokala spel:"
+msgstr "_Lokala spel:"
 
 #: ../libgames-support/games-network-dialog.c:266
-#, fuzzy
 msgid "_Nickname:"
-msgstr "Huvudspel:"
+msgstr "Smek_namn:"
 
 #: ../libgames-support/games-network-dialog.c:279
 msgid "Player"
@@ -5231,19 +5093,16 @@ msgstr "Spelare"
 
 #. Create buttons.
 #: ../libgames-support/games-network-dialog.c:293
-#, fuzzy
 msgid "C_onnect"
-msgstr "Anslut"
+msgstr "_Anslut"
 
 #: ../libgames-support/games-network-dialog.c:295
-#, fuzzy
 msgid "_Start Game"
 msgstr "_Starta spel"
 
 #: ../libgames-support/games-network-dialog.c:331
-#, fuzzy
 msgid "Please supply a nickname."
-msgstr "Spelarens smeknamn."
+msgstr "Ange ett smeknamn."
 
 #: ../libgames-support/games-network-dialog.c:345
 msgid "No local game selected."
@@ -5311,47 +5170,44 @@ msgstr ""
 msgid "Image rendering failed."
 msgstr "Bildrendering misslyckades."
 
-#. Translators: this is for a minutes, seconds time display.
-#: ../libgames-support/games-scores-dialog.gob:157
-#, c-format
-msgid "%dm %ds"
-msgstr "%d m %d s"
-
 #. Note that this assumes the default style is plain.
+#: games-scores-dialog.gob:298 games-scores-dialog.gob:384
 #: ../libgames-support/games-scores-dialog.gob:298
 #: ../libgames-support/games-scores-dialog.gob:384
 msgid "Score"
 msgstr "Poäng"
 
-#: ../libgames-support/games-scores-dialog.gob:379
+#. Translators: this is for a minutes, seconds time display.
+#: games-scores-dialog.gob:157 ../libgames-support/games-scores-dialog.gob:157
+#, c-format
+msgid "%dm %ds"
+msgstr "%d m %d s"
+
+#: games-scores-dialog.gob:379 ../libgames-support/games-scores-dialog.gob:379
 msgid "Time"
 msgstr "Tid"
 
-#: ../libgames-support/games-scores-dialog.gob:482
+#: games-scores-dialog.gob:482 ../libgames-support/games-scores-dialog.gob:482
 msgid "New Game"
 msgstr "Nytt spel"
 
 #. i18n: This "_New" is for the menu item 'Game->New', implies "New Game"
 #: ../libgames-support/games-stock.c:41
-#, fuzzy
 msgid "_New"
-msgstr "Ny"
+msgstr "_Nytt"
 
 #: ../libgames-support/games-stock.c:42
-#, fuzzy
 msgid "_Pause"
-msgstr "Paus"
+msgstr "Gör _paus"
 
 #: ../libgames-support/games-stock.c:43
-#, fuzzy
 msgid "Res_ume"
-msgstr "_Nollställ"
+msgstr "_Återuppta"
 
 #. i18n: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
 #: ../libgames-support/games-stock.c:45
-#, fuzzy
 msgid "_Restart"
-msgstr "Starta om"
+msgstr "Starta _om"
 
 #: ../libgames-support/games-stock.c:46
 msgid "_Undo Move"
@@ -5374,14 +5230,12 @@ msgid "_Fullscreen"
 msgstr "_Helskärm"
 
 #: ../libgames-support/games-stock.c:51
-#, fuzzy
 msgid "_Leave Fullscreen"
-msgstr "_Helskärm"
+msgstr "_Lämna helskärmsläge"
 
 #: ../libgames-support/games-stock.c:52
-#, fuzzy
 msgid "_End Game"
-msgstr "Avsluta spel"
+msgstr "_Avsluta spel"
 
 #: ../libgames-support/games-stock.c:53
 msgid "_Contents"
@@ -5392,14 +5246,12 @@ msgid "Start a new game"
 msgstr "Starta ett nytt spel"
 
 #: ../libgames-support/games-stock.c:100
-#, fuzzy
 msgid "Pause the game"
-msgstr "Pausa spel"
+msgstr "Gör paus i spelet"
 
 #: ../libgames-support/games-stock.c:101
-#, fuzzy
 msgid "Resume the paused game"
-msgstr "Starta om det aktuella spelet"
+msgstr "Återuppta det pausade spelet"
 
 #: ../libgames-support/games-stock.c:102
 msgid "Restart the game"
@@ -5423,30 +5275,27 @@ msgstr "Visa poängen"
 
 #: ../libgames-support/games-stock.c:107
 msgid "Enter fullscreen mode"
-msgstr ""
+msgstr "Gå in i helskärmsläge"
 
 #: ../libgames-support/games-stock.c:108
 msgid "Leave fullscreen mode"
-msgstr ""
+msgstr "Lämna helskärmsläge"
 
 #: ../libgames-support/games-stock.c:109
-#, fuzzy
 msgid "End the current game"
-msgstr "Starta om det aktuella spelet"
+msgstr "Avsluta det aktuella spelet"
 
 #: ../libgames-support/games-stock.c:111
-#, fuzzy
 msgid "Quit this game"
-msgstr "Om detta spel"
+msgstr "Avsluta detta spel"
 
 #: ../libgames-support/games-stock.c:112
 msgid "About this game"
 msgstr "Om detta spel"
 
 #: ../libgames-support/games-stock.c:113
-#, fuzzy
 msgid "Configure the game"
-msgstr "Lös spelet"
+msgstr "Konfigurera spelet"
 
 #: ../libgames-support/libgnomegames.schemas.in.h:1
 msgid "Network game mode"
@@ -5493,54 +5342,54 @@ msgstr ""
 "med punkt imellan."
 
 #: ../mahjongg/drawing.c:286
-#, fuzzy
 msgid ""
 "The selected theme failed to render.\n"
 "\n"
 "Please check that Mahjongg is installed correctly."
 msgstr ""
-"Fem eller mer kunde inte hitta bildfilen:\n"
+"Rendering av det valda spelet misslyckades:\n"
 "%s\n"
 "\n"
-"Kontrollera att Fem eller mer är korrekt installerat."
+"Kontrollera att Mah Jong är korrekt installerat."
 
 #: ../mahjongg/drawing.c:429
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to locate file:\n"
 "'%s'\n"
 "\n"
 "Please check that Mahjongg is installed correctly."
 msgstr ""
-"Fem eller mer kunde inte hitta bildfilen:\n"
+"Kunde inte hitta filen:\n"
 "%s\n"
 "\n"
-"Kontrollera att Fem eller mer är korrekt installerat."
+"Kontrollera att Mah Jong är korrekt installerat."
 
 #: ../mahjongg/drawing.c:432
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to locate file:\n"
 "'%s'\n"
 "\n"
 "The default tile set will be loaded instead."
 msgstr ""
-"Kan inte lokalisera filen: \"%s\"\n"
+"Kan inte hitta filen:\n"
+"\"%s\"\n"
 "\n"
 "Standardbricksamlingen kommer att läsas in istället."
 
 #: ../mahjongg/drawing.c:449
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to render file:\n"
 "'%s'\n"
 "\n"
 "Please check that Mahjongg is installed correctly."
 msgstr ""
-"Fem eller mer kunde inte hitta bildfilen:\n"
+"Kan inte rendera filen:\n"
 "%s\n"
 "\n"
-"Kontrollera att Fem eller mer är korrekt installerat."
+"Kontrollera att Mah Jong är korrekt installerat."
 
 #: ../mahjongg/mahjongg.c:137
 msgid "Could not load tile set"
@@ -5571,18 +5420,16 @@ msgid "Shuffle"
 msgstr "Blanda"
 
 #: ../mahjongg/mahjongg.c:679 ../mahjongg/mahjongg.c:978
-#, fuzzy
 msgid "Mahjongg Scores"
-msgstr "Mah Jong-spel"
+msgstr "Mah Jong-poäng"
 
 #: ../mahjongg/mahjongg.c:681 ../mahjongg/mahjongg.c:980
 msgid "Map:"
 msgstr "Bana:"
 
 #: ../mahjongg/mahjongg.c:719
-#, fuzzy
 msgid "Mahjongg Preferences"
-msgstr "Mah Jong - Inställningar"
+msgstr "Inställningar för Mah Jong"
 
 #: ../mahjongg/mahjongg.c:740
 msgid "Tiles"
@@ -5593,9 +5440,8 @@ msgid "Maps"
 msgstr "Banor"
 
 #: ../mahjongg/mahjongg.c:770
-#, fuzzy
 msgid "_Select map:"
-msgstr "Välj bana:"
+msgstr "_Välj bana:"
 
 #: ../mahjongg/mahjongg.c:786
 msgid "Colors"
@@ -5616,12 +5462,12 @@ msgstr "Mah Jong"
 
 #: ../mahjongg/mahjongg.c:928
 msgid "A matching game played with Mahjongg tiles."
-msgstr ""
+msgstr "Ett matchningsspel som spelas med Mah Jong-brickor."
 
 #: ../mahjongg/mahjongg.c:992
-#, fuzzy, c-format
+#, c-format
 msgid "%s - %s"
-msgstr "%s (%s)"
+msgstr "%s - %s"
 
 #: ../mahjongg/mahjongg.c:1244
 msgid "Sorry, I was unable to find a playable configuration."
@@ -5637,7 +5483,7 @@ msgstr "Steg kvar:"
 
 #: ../mahjongg/mahjongg.c:1500
 msgid "Remove matching pairs of tiles."
-msgstr ""
+msgstr "Ta bort matchande brickpar."
 
 #: ../mahjongg/mahjongg.desktop.in.h:1
 msgid "Disassemble a pile of tiles by removing matching pairs"
@@ -5660,9 +5506,8 @@ msgstr ""
 "som fönstret innehåller är minst 320 bildpunkter breda."
 
 #: ../mahjongg/maps.c:534
-#, fuzzy
 msgid "mahjongg|Easy"
-msgstr "Mah Jong"
+msgstr "Lätt"
 
 #: ../mahjongg/maps.c:535
 msgid "Difficult"
@@ -5707,7 +5552,7 @@ msgstr "1000 poäng i bonus för att brädet tömdes!"
 
 #: ../same-gnome/same-gnome.c:50
 msgid "same-gnome|Medium"
-msgstr ""
+msgstr "Mellan"
 
 #: ../same-gnome/same-gnome.c:135
 msgid "Set the theme"
@@ -5738,6 +5583,8 @@ msgid ""
 "Setting this to FALSE means the pieces fall slowly, but gracefully. A "
 "setting of TRUE causes the pieces to fall quickly and jerkily."
 msgstr ""
+"Att sätta detta till FALSKT innebär att pjäserna trillar långsamt men mjukt. "
+"SANT gör att pjäserna faller snabbt och hackigt."
 
 #: ../same-gnome/same-gnome.schemas.in.h:3
 msgid "The board size"
@@ -5752,11 +5599,10 @@ msgid "The height of the custom board, 101 &gt; height &gt; 3."
 msgstr "Höjden på det anpassade brädet, 101 &gt; höjd &gt; 3."
 
 #: ../same-gnome/same-gnome.schemas.in.h:7
-#, fuzzy
 msgid ""
 "The size of the board to use. 1 = Custom, 2 = Small, 3 = Medium, 4 = Large."
 msgstr ""
-"Storleken på brädet att använda. 1 = anpassad, 2 = liten, 3 = mellan 4 = "
+"Storleken på brädet att använda. 1 = anpassad, 2 = liten, 3 = mellan, 4 = "
 "stor."
 
 #: ../same-gnome/same-gnome.schemas.in.h:8
@@ -5776,9 +5622,8 @@ msgid "The window width"
 msgstr "Fönsterbredden"
 
 #: ../same-gnome/same-gnome.schemas.in.h:13
-#, fuzzy
 msgid "Use fast animation"
-msgstr "Använd snabba drag"
+msgstr "Använd snabb animation"
 
 #: ../same-gnome/same-gnome.schemas.in.h:14
 msgid "Width of the custom board"
@@ -5825,9 +5670,8 @@ msgid "_Theme..."
 msgstr "_Tema..."
 
 #: ../same-gnome/ui.c:443
-#, fuzzy
 msgid "_Fast Animation"
-msgstr "Animation"
+msgstr "_Snabb animation"
 
 #: ../same-gnome/drawing.c:350
 msgid "No theme data was found."
@@ -5840,6 +5684,269 @@ msgid ""
 msgstr ""
 "Det är omöjligt att spela spelet. Kontrollera att spelet har installerats "
 "korrekt och försök igen."
+
+#~ msgid "Baker's Dozen"
+#~ msgstr "Bagardussin"
+
+#~ msgid "Baker's Game"
+#~ msgstr "Bagarspel"
+
+#~ msgid "Show toolbar."
+#~ msgstr "Visa verktygsrad."
+
+#~ msgid "Number of pre-filled rows:"
+#~ msgstr "Antal förifyllda rader:"
+
+#~ msgid "Use \"I'm not sure\" flags"
+#~ msgstr "Använd \"Jag är inte säker\"-flaggor"
+
+#~ msgid "_Use \"I'm not sure\" flags."
+#~ msgstr "_Använd \"Jag är inte säker\"-flaggor."
+
+#~ msgid "Use \"I'm not sure\" flags."
+#~ msgstr "Använd \"Jag är inte säker\"-flaggor."
+
+#~ msgid "Level completed"
+#~ msgstr "Nivån färdig"
+
+#~ msgid "Moves:"
+#~ msgstr "Drag:"
+
+#~ msgid "Delay between rolls:"
+#~ msgstr "Fördröjning mellan kast:"
+
+#~ msgid "_Delay between rolls:"
+#~ msgstr "_Fördröjning mellan kast:"
+
+#~ msgid "Number of opponents:"
+#~ msgstr "Antal motståndare:"
+
+#~ msgid "New network game"
+#~ msgstr "Nytt nätverksspel"
+
+#~ msgid "Use quick moves"
+#~ msgstr "Använd snabba drag"
+
+#~ msgid "Stagger flips"
+#~ msgstr "Stegvisa vändningar"
+
+#~ msgid "Show grid"
+#~ msgstr "Visa rutnät"
+
+#~ msgid "Flip final results"
+#~ msgstr "Vänd på slutresultatet"
+
+#~ msgid "Select a nickname and connection method then click Connect."
+#~ msgstr "Välj ett smeknamn och anslutningsmetod och klicka sedan på Anslut."
+
+#~ msgid "Games server"
+#~ msgstr "Spelserver"
+
+#~ msgid "Game server"
+#~ msgstr "Spelserver"
+
+#~ msgid "Hostname:"
+#~ msgstr "Värdnamn:"
+
+#~ msgid "Game name:"
+#~ msgstr "Spelnamn:"
+
+#~ msgid "Local games:"
+#~ msgstr "Lokala spel:"
+
+#~ msgid "Nickname:"
+#~ msgstr "Smeknamn:"
+
+#~ msgid "Connect"
+#~ msgstr "Anslut"
+
+#~ msgid "_Start game"
+#~ msgstr "_Starta spel"
+
+#~ msgid "New"
+#~ msgstr "Nytt"
+
+#~ msgid "Resume"
+#~ msgstr "Återuppta"
+
+#~ msgid "Restart"
+#~ msgstr "Starta om"
+
+#~ msgid "_Leave fullscreen"
+#~ msgstr "_Lämna helskärmsläge"
+
+#~ msgid "End Game"
+#~ msgstr "Avsluta spel"
+
+#~ msgid "Select map:"
+#~ msgstr "Välj bana:"
+
+#~ msgid "Fast Animation"
+#~ msgstr "Snabb animation"
+
+#~ msgid "Whether or not to flip final results."
+#~ msgstr "Huruvida slutresultatet ska vändas eller inte."
+
+#~ msgid ""
+#~ "Put all the white pieces at the bottom and all the black pieces on the "
+#~ "top of the board when a game is over"
+#~ msgstr ""
+#~ "Placera alla vita pjäser nederst och alla svarta pjäser överst på brädet "
+#~ "när ett spel är över"
+
+#~ msgid "Gnibbles Preferences"
+#~ msgstr "Inställningar för Gnibbles"
+
+#~ msgid "Starting level:"
+#~ msgstr "Startnivå:"
+
+#~ msgid "Number of players:"
+#~ msgstr "Antal spelare:"
+
+#~ msgid "Worm color:"
+#~ msgstr "Maskfärg:"
+
+#~ msgid "Teleport"
+#~ msgstr "Teleportera"
+
+#~ msgid "Random"
+#~ msgstr "Slumpmässigt"
+
+#~ msgid "Wait"
+#~ msgstr "Vänta"
+
+#~ msgid "Enable Splats"
+#~ msgstr "Aktivera splaschar"
+
+#~ msgid "Image theme:"
+#~ msgstr "Bildtema:"
+
+#~ msgid "Restore Defaults"
+#~ msgstr "Återställ standardalternativen"
+
+#~ msgid "Joystick device:"
+#~ msgstr "Styrspaksenhet:"
+
+#~ msgid "Switch level:"
+#~ msgstr "Brytpunkt:"
+
+#~ msgid ""
+#~ "Could not find the theme: \n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your gnome-games installation"
+#~ msgstr ""
+#~ "Kunde inte hitta temat:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Kontrollera din installation av gnome-games"
+
+#~ msgid ""
+#~ "Can't load the image: \n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your gnome-games installation"
+#~ msgstr ""
+#~ "Kunde inte läsa in bildfilen:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Kontrollera din installation av gnome-games"
+
+#~ msgid "Density of blocks in a pre-filled row:"
+#~ msgstr "Densiteten på klossar i en förifylld rad:"
+
+#~ msgid "Preview next block"
+#~ msgstr "Förhandsgranska nästa kloss"
+
+#~ msgid "Use random block colors"
+#~ msgstr "Använd slumpmässiga klossfärger"
+
+#~ msgid "Rotate blocks counterclockwise"
+#~ msgstr "Rotera klossar moturs"
+
+#~ msgid "Block Image"
+#~ msgstr "Klossbild"
+
+#~ msgid "Block Image: "
+#~ msgstr "Klossbild: "
+
+#~ msgid "Block Image:"
+#~ msgstr "Klossbild:"
+
+#~ msgid "Flags:"
+#~ msgstr "Flaggor:"
+
+#~ msgid "Number of mines:"
+#~ msgstr "Antal minor:"
+
+#~ msgid "Horizontal:"
+#~ msgstr "Horisontellt:"
+
+#~ msgid "Vertical:"
+#~ msgstr "Vertikalt:"
+
+#~ msgid "Choose a different game"
+#~ msgstr "Välj ett annat spel"
+
+#~ msgid "Will o the Wisp"
+#~ msgstr "Will o the Wisp"
+
+#~ msgid "Will O the Wisp"
+#~ msgstr "Will O the Wisp"
+
+#~ msgid "Blackjack: %s"
+#~ msgstr "Tjugoett: %s"
+
+#~ msgid "Deal"
+#~ msgstr "Ge"
+
+#~ msgid "Surrender..."
+#~ msgstr "Ge upp..."
+
+#~ msgid "Split the hand"
+#~ msgstr "Dela handen"
+
+#~ msgid "Display hand probabilities"
+#~ msgstr "Visa handsannolikheter"
+
+#~ msgid "Quick deals (no delay between each card)"
+#~ msgstr "Snabba givar (ingen fördröjning mellan varje kort)"
+
+#~ msgid "Reset Balance"
+#~ msgstr "Nollställ balans"
+
+#~ msgid "_Quick Moves"
+#~ msgstr "Sna_bba drag"
+
+#~ msgid "Tile set:"
+#~ msgstr "Bricksamling:"
+
+#~ msgid "Five or more"
+#~ msgstr "Fem eller mer"
+
+#~ msgid "Board size:"
+#~ msgstr "Brädstorlek:"
+
+#~ msgid "Board size"
+#~ msgstr "Brädstorlek"
+
+#~ msgid "Image:"
+#~ msgstr "Bild:"
+
+#~ msgid "Background color:"
+#~ msgstr "Bakgrundsfärg:"
+
+#~ msgid "Use fast moves"
+#~ msgstr "Använd snabba drag"
+
+#~ msgid "You"
+#~ msgstr "Du"
+
+#~ msgid "Me"
+#~ msgstr "Jag"
+
+#~ msgid "Drawn"
+#~ msgstr "Oavgjort"
 
 #~ msgid "_Restart Game"
 #~ msgstr "Starta _om spel"
@@ -6929,9 +7036,6 @@ msgstr ""
 #~ msgid "_Keyboard"
 #~ msgstr "_Tangentbord"
 
-#~ msgid "none"
-#~ msgstr "inga"
-
 #~ msgid "Maybe they're all mines..."
 #~ msgstr "De kanske är minor allihopa..."
 
@@ -7288,9 +7392,6 @@ msgstr ""
 
 #~ msgid "(C) 1997-2000 the Free Software Foundation"
 #~ msgstr "© 1997-2000 Free Software Foundation"
-
-#~ msgid "Box style"
-#~ msgstr "Rutstil"
 
 #~ msgid "Verify"
 #~ msgstr "Verifiera"
