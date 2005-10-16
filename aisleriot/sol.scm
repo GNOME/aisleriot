@@ -284,6 +284,11 @@
 (define (get-value card)
       (car card))
 
+;; WARNING: This generates a synthetic card that isn't part of the game.
+;;          See gaps.scm for an example of its intended use.
+(define (add-to-value card n)
+  (cons (+ (car card) n) (cdr card)))
+
 ; slot procedures
 (define (get-cards slot-id)
   (cadr (get-slot slot-id)))
