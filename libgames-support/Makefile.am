@@ -74,8 +74,6 @@ libgames_support_la_SOURCES =		\
 	games-scores.h			\
 	games-scores-backend.c		\
 	games-scores-backend.h		\
-	teleport.h			\
-	rteleport.h			\
 	$(NULL)
 
 %.c %.h %-private.h: %.gob
