@@ -1,3 +1,199 @@
+gnome-games 2.13.1
+==================
+
+This is the first release of the 2.13 development series. A lot has
+changed and many bugs can be expected.
+
+Big issues:
+
+gnome-stones has been removed. Serious questions have been raised
+about the Copyright status of some of the code gnome-stones was based
+on and also some of the levels used. Given the earlier sound-effects
+problems and the general lack of maintenance of the game the best
+course of action appears to be euthanasia.
+
+Both Gnometris and Ataxx have new drawing-engines based on the Cairo
+graphics library. The old themes are no longer usable (although this
+may change in the future depending on development of the librsvg
+library) and in the case of Ataxx there is only one theme. In fact,
+using the theme selector in Ataxx is likely to cause a crash - for the
+moment, don't use it. The other bug you should not report is that the
+graphics for Gnometris suck. I know, the current code is mostly proof
+of principle and will be improved.
+
+There is a new high scores API. The games Mines, Five or More,
+Gnometris and Same GNOME use it. This change should be backwards
+compatible and, except for a change in the dialog, invisible.
+
+Security: Because of the high scores change the previously mentioned
+games do NOT drop their setgid privileges as they used to. If someone
+accessing the games group is a serious issue then it is recommended
+that you disable the setgid option. See the "Security Issues" section
+of the README file, but note that the first item in the "mitigating
+factors" doesn't apply for these games.
+
+General News:
+
+- You can now disable and enable the compilation of games. See the
+  README file, search for "enable".
+- Compilation on Windows and Mac OS X stand a good chance of working,
+  I have not tested this personally.
+- The supplied spec file is now up to date thanks to Paul Smith.
+- You can now use Apple's Bonjour library for Zeroconf support instead of 
+  Howl. Avahi is unfortunately not yet supported.
+- Numerous patches to fix compilation with various combinations of options.
+
+Aisleriot:
+
+- New game: Gaps from Zachary Keene. It is similar to the "Blue" demo game 
+  that  came with the curses distribution.
+- The game Block Ten has been reinstated. It was removed with a comment
+  indicating it didn't work. It seems to work fine for us, if you find out
+  otherwise please tell us.
+- Freecell hint code now runs in a separate thread so we get good hints with
+  a good response time.
+- Bug fixes for Spiderette, Kansas, Gypsy and Straight Up.
+
+Ataxx:
+
+- Completely new drawing engine. Theme changing doesn't work. See above 
+  for details.
+
+Blackjack:
+
+- There is now an option to automatically reject insurance.
+
+Gnometris:
+
+- Graphics engine rewrite inspired by Paolo Borelli's code. See above
+  for details and caveats. Note that writing new themes is simple and 
+  encouraged.
+
+Nibbles:
+
+- New graphics from Aurélio A. Heckert
+
+Tali:
+
+- Rather than using a blank die to indicate a die that will be rolled,
+  the entire die acts like a toggle button in a toolbar. In some themes
+  this is a little subtle.
+
+
+gnome-games 2.12.1
+==================
+
+This is a stable maintenance release of gnome-games. Several bugs have
+been fixed and translations have been updated. Upgrading is
+recommended.
+
+The bugs fixed:
+
+General: Fixes to the build system to ensure the correct glib version
+is used and make sure compiling without ESD works. Compiler fixes for
+Solaris and Mac OS X.
+
+Aisleriot: Fix conflicts between menu short-cuts. Fail more gracefully
+when a game file cannot be found (necessary when using a shared home
+directory).
+
+Nibbles: Fix conflicts between menu short-cuts.
+
+Robots: Set the background color correctly at start-up.
+
+Gnometris: Obey the preview preference at start-up.
+
+Mines: Fix a crasher involving multiple simultaneous button clicks.
+
+gnome-games 2.12.0
+==================
+
+Here it is! The shiny new stable release of gnome-games.
+
+Those of you following the testing releases will only notice two
+changes: The handling of mouse movement with the buttons down in Mines
+has been improved and the French docs for Aisleriot are all installed
+properly.
+
+For those of you who like your software bug-free, this is what has changed:
+
+General:
+ - Lots of UI tweaks, thanks to Dennis Cranston tireless attention to detail.
+ - Slightly better UI for network games.
+ - Better use of stock items for menus and toolbars.
+
+Aisleriot:
+ - Stacks of cards that run off the bottom of the screen are squeezed
+   up to make them fit.
+ - Cards you can drop other cards onto are hilighted (Vincent Povirk did
+   all the hard work for this one).
+ - Three new games: Backbone, Carpet and Triple Peaks.
+ - Double clicking foundation cards triggers auto-move, very useful for
+   finishing up games like Klondike (not universally supported).
+ - Fullscreen mode.
+
+Four in a Row:
+ - Nice (SVG) default graphics from Alan Horkan.
+ - A new game starts the moment the program is launched.
+
+Gnometris:
+ - Now uses the new high scores dialog.
+
+Iagno:
+ - Starts a new game the moment the program starts.
+ - Removed the clock - it was useless.
+
+Mahjongg:
+ - If you click on a second tile and it doesn't match the first we now
+   select that one as the new first tile rather than telling you off.
+ - Fullscreen mode.
+ - Display the current game in the title bar.
+
+Mines:
+ - Using the left button on a cleared square is now like using the middle
+   button. This makes the game a lot easier for those with an awkward middle
+   button. All the old buttons still work, so no one should be disadvantaged.
+ - The first click is now guaranteed to clear a useful number of squares:
+   no more clicking randomly to find a gap.
+ - When you click on a mine you now get an explosion.
+
+Robots:
+ - Remove the specialised key sets. The left-hand key set only worked with
+   US keyboards and anyone who is old school enough to use the traditional
+   keys knows how to customise them.
+
+Same GNOME:
+ - A "Fast Animation" mode for the impatient.
+ - Better grid and background colours.
+
+Stones:
+ - The level you last played is remembered properly.
+ - Remove all the scrolling options and replace it with one good scrolling
+   algorithm.
+
+Tali:
+ - The word "Yahtzee" has been completely eliminated so there is absolutely
+   no chance of a trademark dispute.
+
+Tetravex:
+ - Tiles get hilighted on mouse-over: just like any other widget.
+
+Lots of people contributed to this release:
+
+Callum McKenzie
+Richard Hoelscher
+Vincent Povirk
+Dennis Cranston
+Alan Horkan
+Peter Moulder
+Clytie Siddall
+
+and all the other people who reported bugs and provided patches and
+gave generous feedback but for whom my record keeping has failed
+miserably to keep track of.
+
+And also of course the translation team.
+
 gnome-games 2.11.5
 ==================
 
