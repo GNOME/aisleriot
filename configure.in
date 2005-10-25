@@ -275,30 +275,45 @@ gamelist=""
 ## This has a particularly silly name because autoconf doesn't allow 
 ## --disable-foo to have arguments so we have to use an --enable-fubar form.
 AC_ARG_ENABLE(omitgames, [  --enable-omitgames=list     Don't compile games in the comma separated list.
-                              ("all" is valid)])
+                              ("all" and "none" are valid)])
 if test "x${enable_omitgames}" != "x"; then
-   enable_omit_games=`echo "${enable_omitgames}" | sed -e 's/[[	,]][[	,]]*/,/g' -e 's/,$//'`
+   enable_omitgames=`echo ,"${enable_omitgames}", | sed -e 's/[[	,]][[	,]]*/ /g' -e 's/,$//'`
+   omittedgames=""
+   gamelist=""
+   for item in ${enable_omitgames}; do
+     for game in ${allgames}; do
+       case ${item} in
+	  all) omittedgames=${allgames};;
+	  none) omittedgames="";;
+          ${game}) omittedgames="${game} ${omittedgames}";;
+	  *) ;; 
+        esac
+     done
+   done
+   echo ${omittedgames}
    for game in ${allgames}; do
-      case ,${enable_omit_games}, in
-	  *,all,*) gamelist="";;
-          *,${game},*) ;;
-	  *) gamelist="${gamelist} ${game}";; 
-      esac
+     case ${omittedgames} in
+       *${game}*) ;;
+       *) gamelist="${gamelist} ${game}";;
+     esac
    done
 else
    gamelist=${allgames} # Everything on by default
 fi
 
 AC_ARG_ENABLE(games, [  --enable-games=list         Enable the games in the comma separated list
-			      ("all" is valid)])
+			      ("all" and "none" are valid)])
 if test "x${enable_games}" != "x"; then
-   enable_games=`echo "${enable_games}" | sed -e 's/[[	,]][[	,]]*/,/g' -e 's/,$//'`
-   for game in ${allgames}; do
-      case ,${enable_games}, in
-	  *,all,*) gamelist=${allgames};;
-          *,${game},*) gamelist="${gamelist} ${game}";;
+   enable_games=`echo ,"${enable_games}", | sed -e 's/[[	,]][[	,]]*/ /g' -e 's/,$//'`
+   for item in ${enable_games}; do
+     for game in ${allgames}; do
+       case ${item} in
+	  all) gamelist=${allgames};;
+	  none) gamelist="";;
+          ${game}) gamelist="${gamelist} ${game}";;
 	  *) ;; 
-      esac
+        esac
+     done
    done
 fi
 

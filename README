@@ -274,6 +274,10 @@ would only build the gnomine game. The choice of the awkward phrase
 "enable-omitgames" is due to a limitation in the autoconf tools which
 doesn't allow us to supply an argument to --disable-games.
 
+./configure --enable-games=none,gnomine
+
+has the same effect. The names in the lists are applied in order.
+
 If you want Zeroconf support you have two options. On most Unix and
 Linux systems Howl is the library of choice and is automatically
 detected. You may also use Apple's Bonjour library, but you have to
