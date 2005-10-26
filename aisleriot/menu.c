@@ -49,6 +49,24 @@ GtkWidget *menubar;
 GtkWidget *toolbar;
 
 static gchar * gamename = NULL;
+static gchar * ugamename = NULL;
+
+static gchar *convert_name_to_underscored (const gchar *inname)
+{
+  gchar *outname;
+  gchar *s;
+
+  outname = g_strdup (inname);
+
+  s = outname;
+  while (*s) {
+    if (*s == ' ')
+      *s = '_';
+    s++;
+  }
+
+  return outname;
+}
 
 static void restart_game ()
 {
@@ -120,7 +138,7 @@ static void general_help (void)
 
 static void help_on_specific_game (void)
 {
-  gnome_help_display ("aisleriot.xml", gamename, NULL);
+  gnome_help_display ("aisleriot.xml", ugamename, NULL);
 }
 
 static void toolbar_toggle_callback(GtkToggleAction * togglebutton, 
@@ -326,7 +344,11 @@ void help_update_game_name (gchar * name)
   if (gamename)
     g_free (gamename);
 
+  if (ugamename)
+    g_free (ugamename);
+
   gamename = g_strdup (name);
+  ugamename = convert_name_to_underscored (name);
 
   gtk_label_set_text (GTK_LABEL (GTK_BIN (helpitem)->child), gamename);
 
@@ -335,20 +357,11 @@ void help_update_game_name (gchar * name)
 static gchar * make_option_gconf_key (void)
 {
   static gchar *basekey = "/apps/aisleriot/rules/";
-  gchar *name, *s, *r, *sk;
+  gchar *r, *sk;
   GConfSchema *schema;
   GConfValue *def;
-
-  name = g_strdup (gamename);
-  s = name;
-  while (*s) {
-    if (*s == ' ')
-      *s = '_';
-    s++;
-  }
     
-  r = g_strconcat (basekey, name, NULL);
-  g_free(name);
+  r = g_strconcat (basekey, ugamename, NULL);
 
   sk = g_strconcat ("/schemas", r, NULL);
 
