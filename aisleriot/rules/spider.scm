@@ -19,10 +19,16 @@
 ;set up the deck
 (set-ace-low)
 
+(define stock 0)
+(define foundation '(1 2 3 4 5 6 7 8))
+(define tableau '(9 10 11 12 13 14 15 16 17 18))
+(define initial-deal '(9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 12 15 18))
+(define make-deck make-standard-double-deck)
+(define winning-score 96)
 
 (define (new-game)
   (initialize-playing-area)
-  (make-standard-double-deck)
+  (make-deck)
   (shuffle-deck)
 
   ;set up the board
@@ -50,30 +56,26 @@
   (deal-initial-setup)
 
   (give-status-message)
-
+  
   (list 10 4))
 
 (define (give-status-message)
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
-		 (number->string (length (get-cards 0)))))
+  (format (_"Stock left: ~a")
+	  (number->string (length (get-cards stock)))))
 
 ;internal procedures/variables
 
+(define (flip-top-card-slots slots)
+  (or (eq? slots '())
+      (and (flip-top-card (car slots))
+           (flip-top-card-slots (cdr slots)))))
+
 (define (deal-initial-setup)
-  (deal-cards 0 '(9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 12 15 18))
-  (flip-top-card 9)
-  (flip-top-card 10)
-  (flip-top-card 11)
-  (flip-top-card 12)
-  (flip-top-card 13)
-  (flip-top-card 14)
-  (flip-top-card 15)
-  (flip-top-card 16)
-  (flip-top-card 17)
-  (flip-top-card 18))
+  (deal-cards stock initial-deal)
+  (flip-top-card-slots tableau))
 
 ;additional functions.
 
@@ -93,34 +95,32 @@
 	      (+ 1 (get-value (car (reverse card-list))))))
       (add-to-score! 1))
   (move-n-cards! start-slot end-slot card-list)
-  (if (and (not (empty-slot? start-slot)) (> start-slot 5))
+  (if (and (not (empty-slot? start-slot)) (member start-slot tableau))
       (make-visible-top-card start-slot)
       #f)
   #t)
 
-(define (check-for-points slot-id)
-  (if (> slot-id 18)
-      #t
-      (begin
-	(if (and (is-visible? (cadr (get-cards slot-id)))
-		 (eq? (get-suit (get-top-card slot-id))
-		      (get-suit (cadr (get-cards slot-id))))
-		 (= (+ 1 (get-value (get-top-card slot-id)))
-		    (get-value (cadr (get-cards slot-id)))))
-	    (add-to-score! 1))
-	(check-for-points (+ 1 slot-id)))))
+(define (check-for-points slot)
+  (and (is-visible? (cadr (get-cards slot)))
+       (eq? (get-suit (get-top-card slot))
+            (get-suit (cadr (get-cards slot))))
+       (= (+ 1 (get-value (get-top-card slot)))
+          (get-value (cadr (get-cards slot))))
+       (add-to-score! 1)))
 
-(define (deal-new-cards)
-  (if (> (length (get-cards 0)) 0)
-      (begin
-	(deal-cards-face-up 0 '(9 10 11 12 13 14 15 16 17 18))
-	(check-for-points 9))
-      #f))
+(define (deal-new-cards slots)
+  (and (not (eq? slots '()))
+       (> (length (get-cards stock)) 0)
+       (begin
+          (deal-cards-face-up stock (list (car slots)))
+          (check-for-points (car slots))
+          (deal-new-cards (cdr slots)))))
 
 (define (button-pressed slot card-list)
   (give-status-message)
   (if (or (empty-slot? slot)
-	  (< slot 9))
+	  (= slot stock)
+	  (member slot foundation))
       #f
       (if (not (eq? '() card-list))
 	  (if (is-visible? (car (reverse card-list)))
@@ -135,11 +135,10 @@
 (define (droppable? start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
        (if (empty-slot? end-slot)
- 	   (or (and (> end-slot 0) 
-		    (< end-slot 9) 
+ 	   (or (and (member end-slot foundation) 
 		    (= 13 (length card-list)))
-	       (> end-slot 8))
-	   (and (> end-slot 8)
+	       (member end-slot tableau))
+	   (and (member end-slot tableau)
 	        (= (get-value (get-top-card end-slot))
 	        (+ (get-value (car (reverse card-list))) 1))))))
 
@@ -147,26 +146,21 @@
   (and (droppable? start-slot card-list end-slot)
        (complete-transaction start-slot card-list end-slot)))
 
-(define (any-slot-empty?)
-  (or (empty-slot? 9)
-      (empty-slot? 10)
-      (empty-slot? 11)
-      (empty-slot? 12)
-      (empty-slot? 13)
-      (empty-slot? 14)
-      (empty-slot? 15)
-      (empty-slot? 16)
-      (empty-slot? 17)
-      (empty-slot? 18)))
+(define (any-slot-empty? slots)
+  (if (eq? slots '())
+      #f
+      (or (empty-slot? (car slots))
+          (any-slot-empty? (cdr slots)))))
 
 (define (button-clicked slot)
-  (and (= 0 slot)
-       (if (any-slot-empty?)
+  (and (= stock slot)
+       (not (empty-slot? stock))
+       (if (any-slot-empty? tableau)
 	   (begin
              (set-statusbar-message (_"Please fill in empty pile first."))
              #f)
 	   (begin
-	     (deal-new-cards)
+	     (deal-new-cards tableau)
 	     (give-status-message)
 	     #t))))
 
@@ -177,30 +171,19 @@
   (and (not (game-won))
        (get-hint)))
 
+(define (all-slots-empty? slots)
+  (or (eq? slots '())
+      (and (empty-slot? (car slots))
+           (all-slots-empty? (cdr slots)))))
+
 ; Game can be won on two conditions.  Either all the cards being moved
 ; to the top slots, or by stacking all the cards (score of 96)
 (define (game-won)
   (or
-   (and (eq? (get-score) 96)
-	(empty-slot? 1)
-	(empty-slot? 2)
-	(empty-slot? 3)
-	(empty-slot? 4)
-	(empty-slot? 5)
-	(empty-slot? 6)
-	(empty-slot? 7)
-	(empty-slot? 8))
+   (and (= (get-score) winning-score)
+        (all-slots-empty? foundation))
    (and (empty-slot? 0)
-	(empty-slot? 9)
-	(empty-slot? 10)
-	(empty-slot? 11)
-	(empty-slot? 12)
-	(empty-slot? 13)
-	(empty-slot? 14)
-	(empty-slot? 15)
-	(empty-slot? 16)
-	(empty-slot? 17)
-	(empty-slot? 18))))
+	(all-slots-empty? tableau))))
 
 (define (depth-card card-list)
   (if (and (> (length card-list) 1)
@@ -212,56 +195,56 @@
       (depth-card (cdr card-list))
       card-list))
 
-(define (check-a-slot slot1 card-to-move slot2 same-suit?)
-  (if (> slot2 18)
+(define (check-a-slot source card-to-move targets same-suit?)
+  (if (eq? targets '())
       #f
-      (if (and (not (= slot1 slot2))
-	       (not (empty-slot? slot2))
+      (if (and (not (= source (car targets)))
+	       (not (empty-slot? (car targets)))
 	       (eq? same-suit?
 		    (eq? (get-suit card-to-move)
-			 (get-suit (get-top-card slot2))))
+			 (get-suit (get-top-card (car targets)))))
 	       (= (+ 1 (get-value card-to-move))
-		  (get-value (get-top-card slot2))))
+		  (get-value (get-top-card (car targets)))))
 	  (list 1
 		(get-name card-to-move)
-		(get-name (get-top-card slot2)))
-	  (check-a-slot slot1 card-to-move (+ 1 slot2) same-suit?))))
+		(get-name (get-top-card (car targets))))
+	  (check-a-slot source card-to-move (cdr targets) same-suit?))))
 
-(define (same-suit-check slot-id)
-  (if (> slot-id 18)
+(define (same-suit-check slots)
+  (if (eq? slots '())
       #f
-      (if (and (not (empty-slot? slot-id))
-	       (check-a-slot slot-id (car (depth-card (get-cards slot-id))) 9 #t))
-	  (check-a-slot slot-id (car (depth-card (get-cards slot-id))) 9 #t)
-	  (same-suit-check (+ 1 slot-id)))))
+      (if (and (not (empty-slot? (car slots)))
+	       (check-a-slot (car slots) (car (depth-card (get-cards (car slots)))) tableau #t))
+	  (check-a-slot (car slots) (car (depth-card (get-cards (car slots)))) tableau #t)
+	  (same-suit-check (cdr slots)))))
 
-(define (not-same-suit-check slot-id)
-  (if (> slot-id 18)
+(define (not-same-suit-check slots)
+  (if (eq? slots '())
       #f
-      (if (and (not (empty-slot? slot-id))
-	       (or (= 1 (length (depth-card (get-cards slot-id))))
-		   (not (eq? (+ 1 (get-value (car (depth-card (get-cards slot-id)))))
-			     (get-value (cadr (depth-card (get-cards slot-id)))))))
-	       (check-a-slot slot-id (car (depth-card (get-cards slot-id))) 9 #f))
-	  (check-a-slot slot-id (car (depth-card (get-cards slot-id))) 9 #f)
-	  (not-same-suit-check (+ 1 slot-id)))))
+      (if (and (not (empty-slot? (car slots)))
+	       (or (= 1 (length (depth-card (get-cards (car slots)))))
+		   (not (eq? (+ 1 (get-value (car (depth-card (get-cards (car slots))))))
+			     (get-value (cadr (depth-card (get-cards (car slots))))))))
+	       (check-a-slot (car slots) (car (depth-card (get-cards (car slots)))) tableau #f))
+	  (check-a-slot (car slots) (car (depth-card (get-cards (car slots)))) tableau #f)
+	  (not-same-suit-check (cdr slots)))))
 
-(define (open-slots? slot-id)
-  (if (> slot-id 18)
+(define (open-slots? slots)
+  (if (eq? slots '())
       #f
-      (if (empty-slot? slot-id)
+      (if (empty-slot? (car slots))
 	  (list 0 (_"Place something on empty slot"))
-	  (open-slots? (+ 1 slot-id)))))
+	  (open-slots? (cdr slots)))))
 
 (define (dealable?)
-  (if (not (empty-slot? 0))
+  (if (not (empty-slot? stock))
       (list 0 (_"Deal another round"))
       #f))
 
 (define (get-hint)
-  (or (same-suit-check 9)
-      (not-same-suit-check 9)
-      (open-slots? 9)
+  (or (same-suit-check tableau)
+      (not-same-suit-check tableau)
+      (open-slots? tableau)
       (dealable?)
 ; this isn't great, but it will get around the premature end-of-game call
       (list 0 (_"Try moving card piles around"))))
