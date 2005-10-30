@@ -17,6 +17,7 @@ rules_DATA  = 			\
 	chessboard.scm		\
 	clock.scm		\
 	cover.scm		\
+	cruel.scm		\
 	diamond_mine.scm	\
 	doublets.scm		\
 	eagle_wing.scm		\

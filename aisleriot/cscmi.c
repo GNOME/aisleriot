@@ -1,4 +1,4 @@
-/* AisleRiot - cscmi.h
+/* AisleRiot - cscmi.c
  * Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify

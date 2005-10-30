@@ -1,0 +1,95 @@
+<sect1 id="Cruel"><!--<sect1info>
+    <copyright>
+      <year>2005</year>
+      <holder>Zach Keene</holder>
+    </copyright>
+    <author>
+      <firstname>Zach</firstname>
+      <surname>Keene</surname>
+    </author>
+    <address><email>zjkeene@bellsouth.net</email></address>
+  </sect1info>-->
+
+  <title>Cruel</title>
+
+  <para>written by Zach Keene</para>
+
+  <sect2>Setup</sect2>
+
+  <informaltable>
+    <tgroup cols="2"><tbody>
+	<row>
+	  <entry>Type of Deck</entry>
+	  <entry>Standard Deck</entry>
+	</row>
+	<row>
+	  <entry>Stock</entry>
+	  <entry>
+	    Top left slot. Since all remaining cards are always dealt to
+	the tableau, it will always be empty. Redeals are unlimited.
+	  </entry>
+	</row>
+	<row>
+	  <entry>Foundations</entry>
+	  <entry>
+	    Rightmost piles in the top row; the aces are placed here upon
+	the start of the game. Build up in suit from ace to king.
+	  </entry>
+	</row>
+	<row>
+	  <entry>Tableau</entry>
+	  <entry>
+	    Up to thirteen piles, dealt four cards at a time until the
+	stock is exhausted. Tableau piles can be built down in suit.
+	  </entry>
+	</row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+
+  <sect2>Goal</sect2>
+  <para>
+    Move all cards to the foundation piles.
+  </para>
+
+  <sect2>Rules</sect2>
+  <para>
+    Build foundations up in suit and tableau piles down in suit. If no
+  moves are available (or you just feel like it), click on the empty top
+  left slot for a redeal.
+  </para>
+  <para>
+    Redeals are accomplished by placing the tableau piles on top of each
+  other in order, starting from the last pile. Then the deck is simply
+  turned over and redealt, four cards at a time, back to the tableau. If no
+  moves are made, redealing will not alter the arrangement of the
+  cards. Therefore, the game is lost if no move is possible immediately
+  after a redeal.
+  </para>
+  <para>
+    Note: a degenerate case occurs whenever, after a redeal, the last
+  tableau pile contains only one card and the only move possible is from
+  the final tableau pile one before it. Making this move and redealing only
+  results in the original card arrangement. AisleRiot will end the game if
+  this situation is detected.
+  </para>
+
+  <sect2>Options</sect2>
+  <para>
+    None.
+  </para>
+
+  <sect2>Scoring</sect2>
+  <para>
+    Each card placed in the foundation piles scores one point.
+  </para>
+  <para>
+    Maximum possible score:  48
+  </para>
+
+  <sect2>Strategy</sect2>
+  <para>
+    If more than one pile on the tableau can be built upon, choose to build
+  upon the one with the highest rank first.
+  </para>
+</sect1>
