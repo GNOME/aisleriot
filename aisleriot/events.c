@@ -294,7 +294,10 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
   slot_pressed(event->x, event->y, &hslot, &cardid);
 
-  if (!hslot)
+  /* FIXME: I am not sure why we can end up with hslot->length == 0,
+     but we do very occasionally. It happens just after the release of
+     a dragged card. We stop crashes by ignoring such events. */
+  if (!hslot || !hslot->length)
     return TRUE;
 
   if (event->button == 1)
