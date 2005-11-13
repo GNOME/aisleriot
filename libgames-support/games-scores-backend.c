@@ -124,6 +124,10 @@ static void games_scores_backend_release_lock (GamesScoresBackend *self)
 {
   struct flock lock;
 
+  /* We don't have a lock, ignore this call. */
+  if (self->priv->fd == -1)
+    return;
+
   lock.l_type = F_UNLCK;
   lock.l_whence = SEEK_SET;
   lock.l_start = 0;
@@ -137,8 +141,8 @@ static void games_scores_backend_release_lock (GamesScoresBackend *self)
 }
 
 /* You can alter the list returned by this function, but you must
- * make sure you set it again with the _set_scores method
- * before calling _get_scores again. */
+ * make sure you set it again with the _set_scores method or discard it
+ * with with the _discard_scores method. Otherwise deadlocks will ensue. */
 GList *games_scores_backend_get_scores (GamesScoresBackend *self) 
 {
   gchar *buffer;
@@ -291,3 +295,8 @@ void games_scores_backend_set_scores (GamesScoresBackend *self,
     games_scores_backend_release_lock (self);
 
  }
+
+void games_scores_backend_discard_scores (GamesScoresBackend *self)
+{ 
+    games_scores_backend_release_lock (self);
+}

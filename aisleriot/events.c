@@ -297,8 +297,11 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   /* FIXME: I am not sure why we can end up with hslot->length == 0,
      but we do very occasionally. It happens just after the release of
      a dragged card. We stop crashes by ignoring such events. */
-  if (!hslot || !hslot->length)
+  if (!hslot || !hslot->length) {
+    if (hslot)
+      g_print ("hslot->length = %d\n", hslot->length);
     return TRUE;
+  }
 
   if (event->button == 1)
     set_cursor (CURSOR_CLOSED);

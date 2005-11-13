@@ -70,6 +70,7 @@ GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
 GList *games_scores_backend_get_scores (GamesScoresBackend *self);
 void games_scores_backend_set_scores (GamesScoresBackend *self,
 				      GList *list);
+void games_scores_backend_discard_scores (GamesScoresBackend *self);
 
 G_END_DECLS
 

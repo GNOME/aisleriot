@@ -273,10 +273,16 @@ gint games_scores_add_score (GamesScores *self, GamesScoreValue score) {
 GList *games_scores_get (GamesScores *self)
 {
   GamesScoresCategoryPrivate *cat;
+  GList *scores;
 
   cat = games_scores_get_current (self);
 
-  return games_scores_backend_get_scores (cat->backend);
+  scores = games_scores_backend_get_scores (cat->backend);
+  /* Tell the backend that we won't be altering the scores so it
+   * can release the lock. */
+  games_scores_backend_discard_scores (cat->backend);
+
+  return scores;
 }					   
 
 /**

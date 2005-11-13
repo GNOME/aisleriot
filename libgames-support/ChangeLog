@@ -1,3 +1,12 @@
+2005-11-13  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores.c: 
+	* games-scores-backend.c:
+	* games-scores-backend.h: Fix a deadlock where a call to
+	games_scores_get was obtaining a lock on the scores file that
+	didn't go away until the game was over. It stopped two games
+	running simultaneously.
+
 2005-10-24  Callum McKenzie  <callum@spooky-possum.org>
 
 	* Makefile.am (libgames_support_la_SOURCES): Remove the obsolete
