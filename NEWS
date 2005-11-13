@@ -1,3 +1,35 @@
+gnome-games 2.13.2
+==================
+
+Not a lot has changed since the last release, but some bugs have been
+fixed. So, for your testing pleasure, here is the latest development
+version of gnome-games.
+
+General:
+ - The maintainer address has changed to callum@spooky-possum.org. The 
+   maintainer is still the same person.
+ - The --enable-games code has changed to be a bit saner and to accept 
+   "none" as an option. e.g. --enable-games=none,gnometris will only 
+   build gnometris. See the README file for details. (callum)
+ - Fix a bug in the high-score file locking that prevented two games
+   of the same type being played at once.
+
+Aisleriot:
+ - Consolidation of code for all the spider-like games into one common file 
+   which gets inherited by the variations. (Vincent Povirk)
+ - New game: Cruel, a nice permutation game. (Zach Keene)
+ - Documentation id tag corrections to be strictly docbook compliant. (callum)
+
+Five or More:
+ - Fix a bug where clicking on the outer pixels of the game area did 
+   strange things. (callum)
+
+Gnometris:
+ - Changed the "Joined" theme to be a better demonstration of what can be 
+   done if you aren't restricted to a pixmap-style theme format. Still
+   horribly slow. (callum)
+
+
 gnome-games 2.13.1
 ==================
 
