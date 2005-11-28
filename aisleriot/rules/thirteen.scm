@@ -329,6 +329,7 @@
 
 (define (droppable? start-slot card-list end-slot)
   (and (not (empty-slot? end-slot))
+       (not (= start-slot end-slot))
        (is-visible? (get-top-card end-slot))
        (= 13 (+ (get-value (car card-list))
 		(get-value (get-top-card end-slot))))))

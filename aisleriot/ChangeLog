@@ -1,3 +1,9 @@
+2005-11-29  Callum McKenzie  <callum@spooky-possum.org>
+
+	* rules/thirteen.scm (droppable?): Make sure we can't drop back
+	down where we started. This stops the top two cards in the waste
+	being eliminated (bug #322560).
+
 2005-11-14  Callum McKenzie  <callum@spooky-possum.org>
 
 	* events.c (button_press_event): Back out the hslot->length == 0
