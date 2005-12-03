@@ -271,7 +271,19 @@
 	 (if (empty-slot? 4)
 	     (flip-top-card 2)
 	     ))))
-  
+
+(define (droppable? start-slot card-list end-slot)
+  (and (= end-slot 1) 	   
+       (not (empty-slot? 1)) 	 
+       (or (= (get-value (get-top-card 1)) 	 
+	      (+ 1 (get-value (car card-list)))) 	 
+	   (= (+ 1 (get-value (get-top-card 1))) 	 
+	      (get-value (car card-list))) 	 
+	   (and (= king (get-value (get-top-card 1))) 	 
+		(= ace (get-value (car card-list)))) 	 
+	   (and (= ace (get-value (get-top-card 1))) 	 
+		(= king (get-value (car card-list)))))))
+      
 (define (button-released start-slot card-list end-slot)
   (if (droppable? start-slot card-list end-slot)
       (begin
