@@ -224,7 +224,7 @@ static const GtkActionEntry actions[] = {
 
   { "NewGame", GAMES_STOCK_NEW_GAME, NULL, NULL, NULL, G_CALLBACK (random_seed) },
   { "RestartGame", GAMES_STOCK_RESTART_GAME, NULL, NULL, NULL, G_CALLBACK (restart_game) },
-  { "Select", GTK_STOCK_INDEX, N_("_Select Game..."), NULL, N_("Play a different game"), G_CALLBACK (show_select_game_dialog) },
+  { "Select", GTK_STOCK_INDEX, N_("_Select Game..."), "<Ctrl>o", N_("Play a different game"), G_CALLBACK (show_select_game_dialog) },
   { "Statistics", GTK_STOCK_ADD, N_("S_tatistics"), NULL, N_("Show gameplay statistics"), G_CALLBACK (show_statistics_dialog) },
   { "Quit", GTK_STOCK_QUIT, NULL, NULL, NULL, G_CALLBACK (quit_app) },
   { "Fullscreen", GAMES_STOCK_FULLSCREEN, NULL, NULL, NULL, G_CALLBACK (fullscreen_callback) },

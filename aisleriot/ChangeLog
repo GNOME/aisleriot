@@ -1,5 +1,12 @@
 2005-12-03  Callum McKenzie  <callum@spooky-possum.org>
 
+	* rules/agnes.scm: Remove the restriction on playing onto a base
+	card in the tableau - it was confusing players (see bug
+	#322986). Also do a append-string -> format fix.
+
+	* menu.c: Add a keyboard short-cut for changing the game. I chose
+	Ctrl-O in analogy to "Open".
+
 	* rules/elevator.scm (droppable?): Add the droppable? function
 	that appears to have never been added (despite the rest of the
 	code for droppable? being inserted).
