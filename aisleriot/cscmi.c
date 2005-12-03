@@ -322,6 +322,13 @@ static SCM scm_get_timeout ()
 
 void cscm_init () 
 {
+  /* Enable useful debugging options. */
+  SCM_DEVAL_P = 1;
+  SCM_BACKTRACE_P = 1;
+  SCM_RECORD_POSITIONS_P = 1;
+  SCM_RESET_DEBUG_MODE;
+
+  /* Let the scheme side of things know about our C functions. */
   scm_c_define_gsubr("set-feature-word!", 1, 0, 0, scm_set_feature_word);
   scm_c_define_gsubr("get-feature-word", 0, 0, 0, scm_get_feature_word);
   scm_c_define_gsubr("set-statusbar-message", 1, 0, 0, scm_set_statusbar_message);
@@ -382,9 +389,6 @@ cscmi_call_lambda (void *user_data)
   return SCM_EOL;
 }
 
-extern guint32 seed;
-extern gchar *filename;
-
 static void
 cscmi_write_exception_details (int error_fd,
 			       SCM tag,
@@ -392,10 +396,11 @@ cscmi_write_exception_details (int error_fd,
 {
   char *message;
   SCM port;
+  SCM stack;
   GList *slots;
   GList *slot_list;
 
-  message = g_strdup_printf ("Variation: %s\n", filename);
+  message = g_strdup_printf ("Variation: %s\n", game_name);
   write (error_fd, message, strlen (message));
   g_free (message);
 
@@ -415,6 +420,17 @@ cscmi_write_exception_details (int error_fd,
   write (error_fd, message, strlen (message));
   scm_display (tag, port);
   scm_fsync (port);
+
+  message = "\n\nBacktrace:\n";
+  write (error_fd, message, strlen (message));
+  stack = scm_fluid_ref (SCM_VARIABLE_REF (scm_the_last_stack_fluid_var));
+  if (!SCM_FALSEP (stack)) {
+    scm_display_backtrace (stack, port, SCM_UNDEFINED, SCM_UNDEFINED);
+    scm_fsync (port);
+  } else {
+    message = "\tNo backtrace available.\n";
+    write (error_fd, message, strlen (message));    
+  }
 
   message = "\n\nDeck State:\n";
   write (error_fd, message, strlen (message));
@@ -527,11 +543,11 @@ cscmi_start_game_lambda (void)
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->start_game_lambda;
   call_data->n_args = 0;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -550,11 +566,11 @@ cscmi_button_pressed_lambda (SCM slot_id,
   call_data->n_args = 2;
   call_data->arg1 = slot_id;
   call_data->arg2 = cards;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -575,11 +591,11 @@ cscmi_button_released_lambda (SCM start_slot,
   call_data->arg1 = start_slot;
   call_data->arg2 = cards;
   call_data->arg3 = end_slot;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -596,11 +612,11 @@ cscmi_button_clicked_lambda (SCM slot_id)
   call_data->lambda = game_data->button_clicked_lambda;
   call_data->n_args = 1;
   call_data->arg1 = slot_id;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -617,11 +633,11 @@ cscmi_button_double_clicked_lambda (SCM slot_id)
   call_data->lambda = game_data->button_double_clicked_lambda;
   call_data->n_args = 1;
   call_data->arg1 = slot_id;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -645,11 +661,11 @@ cscmi_droppable_lambda (SCM start_slot,
   call_data->arg1 = start_slot;
   call_data->arg2 = cards;
   call_data->arg3 = end_slot;
-  scm_internal_catch (SCM_BOOL_T,
-                      cscmi_call_lambda,
-                      call_data,
-                      cscmi_catch_handler,
-                      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -665,11 +681,11 @@ cscmi_game_over_lambda (void)
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->game_over_lambda;
   call_data->n_args = 0;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -685,11 +701,11 @@ cscmi_winning_game_lambda (void)
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->winning_game_lambda;
   call_data->n_args = 0;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -705,11 +721,11 @@ cscmi_hint_lambda (void)
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->hint_lambda;
   call_data->n_args = 0;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -725,11 +741,11 @@ cscmi_get_options_lambda (void)
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->get_options_lambda;
   call_data->n_args = 0;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -755,11 +771,11 @@ cscmi_apply_options_lambda (SCM options)
   call_data->lambda = game_data->apply_options_lambda;
   call_data->n_args = 1;
   call_data->arg1 = options;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -775,11 +791,11 @@ cscmi_timeout_lambda (void)
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->timeout_lambda;
   call_data->n_args = 0;
-  scm_internal_catch (SCM_BOOL_T,
-		      cscmi_call_lambda,
-		      call_data,
-		      cscmi_catch_handler,
-		      NULL);
+  scm_internal_stack_catch (SCM_BOOL_T,
+			    cscmi_call_lambda,
+			    call_data,
+			    cscmi_catch_handler,
+			    NULL);
   retval = call_data->retval;
   g_free (call_data);
 

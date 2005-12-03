@@ -1,3 +1,21 @@
+2005-12-03  Callum McKenzie  <callum@spooky-possum.org>
+
+	* cscmi.c: Enhance the debugging code to return the stack trace as
+	well.
+
+2005-12-02  Callum McKenzie  <callum@spooky-possum.org>
+
+	* cscmi.c (cscmi_write_exception_details): Update variables which
+	have changed elsewhere. Declaring external variables here rather
+	than relying on include files was very naughty of jrb.
+
+	* sol.scm: Add a new function: get-nth-card.
+
+	* rules/thirteen.scm: Change the way the waste is layed out after
+	a suggestion by Rosanna in bug #322560. The top two cards are now
+	in play as opposed to the end two. This simplifies the code
+	somewhat and makes it look nicer.
+
 2005-11-29  Callum McKenzie  <callum@spooky-possum.org>
 
 	* rules/thirteen.scm (droppable?): Make sure we can't drop back

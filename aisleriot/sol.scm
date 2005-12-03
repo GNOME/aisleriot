@@ -296,6 +296,13 @@
 (define (empty-slot? slot-id)
   (null? (get-cards slot-id)))
 
+; Get the nth card from a slot. Returns #f if n is out of range.
+(define (get-nth-card slot-id n)
+  (let ((cards (get-cards slot-id)))
+    (cond ((< n 1) #f)
+	  ((> n (length cards)) #f)
+	  (#t (list-ref cards (- n 1))))))
+
 (define (get-top-card slot-id)
   (let ((cards (get-cards slot-id)))
     (if (null? cards)
