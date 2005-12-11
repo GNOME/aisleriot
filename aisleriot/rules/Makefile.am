@@ -42,6 +42,7 @@ rules_DATA  = 			\
 	jumbo.scm		\
 	kansas.scm		\
 	king_albert.scm		\
+	kings_audience.scm	\
 	klondike.scm		\
 	labyrinth.scm		\
 	lady_jane.scm		\
