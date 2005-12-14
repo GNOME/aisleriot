@@ -4,6 +4,7 @@ rulesdir  = $(datadir)/sol-games
 
 rules_DATA  = 			\
 	agnes.scm		\
+	athena.scm		\
 	auld_lang_syne.scm	\
 	backbone.scm		\
 	bakers_dozen.scm	\
@@ -56,6 +57,7 @@ rules_DATA  = 			\
 	poker.scm		\
 	quatorze.scm		\
 	royal_east.scm		\
+	saratoga.scm		\
 	scorpion.scm		\
 	scuffle.scm		\
 	seahaven.scm		\
