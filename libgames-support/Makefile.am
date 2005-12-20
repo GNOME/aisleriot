@@ -66,6 +66,8 @@ libgames_support_la_SOURCES =		\
         games-network-dialog.h          \
         games-preimage.c                \
         games-preimage.h                \
+	games-setgid-io.c		\
+	games-setgid-io.h		\
 	games-stock.c			\
 	games-stock.h			\
 	games-score.h			\

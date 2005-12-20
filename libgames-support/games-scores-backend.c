@@ -21,15 +21,14 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
 
 #include "games-score.h"
 #include "games-scores.h"
 #include "games-scores-backend.h"
+
+#include "games-setgid-io.h"
 
 G_DEFINE_TYPE (GamesScoresBackend, games_scores_backend, G_TYPE_OBJECT);
 
@@ -87,30 +86,24 @@ GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
  * is whether we were succesful or not. */
 static gboolean games_scores_backend_get_lock (GamesScoresBackend *self)
 {
-  struct flock lock;
   gint error;
 
   if (self->priv->fd != -1) {
     /* Assume we already have the lock and rewind the file to
      * the beginning. */
-    lseek (self->priv->fd, 0, SEEK_SET);
+    setgid_io_seek (self->priv->fd, 0, SEEK_SET);
     return TRUE; /* Assume we already have the lock. */
   }
 
-  self->priv->fd = open (self->priv->filename, O_RDWR);
+  self->priv->fd = setgid_io_open (self->priv->filename, O_RDWR);
   if (self->priv->fd == -1) {
     return FALSE;
   }
 
-  lock.l_type = F_WRLCK;
-  lock.l_whence = SEEK_SET;
-  lock.l_start = 0;
-  lock.l_len = 0;
-
-  error = fcntl (self->priv->fd, F_SETLKW, &lock);
+  error = setgid_io_lock (self->priv->fd);
 
   if (error == -1) {
-    close (self->priv->fd);
+    setgid_io_close (self->priv->fd);
     self->priv->fd = -1;
     return FALSE;
   }
@@ -122,20 +115,13 @@ static gboolean games_scores_backend_get_lock (GamesScoresBackend *self)
 /* We ignore errors, there is nothing we can do about them. */
 static void games_scores_backend_release_lock (GamesScoresBackend *self)
 {
-  struct flock lock;
-
   /* We don't have a lock, ignore this call. */
   if (self->priv->fd == -1)
     return;
 
-  lock.l_type = F_UNLCK;
-  lock.l_whence = SEEK_SET;
-  lock.l_start = 0;
-  lock.l_len = 0;
+  setgid_io_unlock (self->priv->fd);
 
-  fcntl (self->priv->fd, F_SETLKW, &lock);
-
-  close (self->priv->fd);
+  setgid_io_close (self->priv->fd);
 
   self->priv->fd = -1;
 }
@@ -157,7 +143,7 @@ GList *games_scores_backend_get_scores (GamesScoresBackend *self)
   GList *t;
 
   /* Check for a change in the scores file and update if necessary. */
-  error = stat (self->priv->filename, &info);
+  error = setgid_io_stat (self->priv->filename, &info);
 
   /* If an error occurs then we give up on the file and return NULL. */
   if (error != 0)
@@ -190,7 +176,7 @@ GList *games_scores_backend_get_scores (GamesScoresBackend *self)
     length = 0;
     do {
       target -= length;
-      length = read (self->priv->fd, buffer, info.st_size);
+      length = setgid_io_read (self->priv->fd, buffer, info.st_size);
       if (length == -1) {
 	games_scores_backend_release_lock (self);
 	g_free (buffer);
@@ -282,7 +268,7 @@ void games_scores_backend_set_scores (GamesScoresBackend *self,
 				g_ascii_dtostr (dtostrbuf, sizeof (dtostrbuf), 
 						rscore),
 				rtime, rname); 
-      write (self->priv->fd, buffer, strlen (buffer));
+      setgid_io_write (self->priv->fd, buffer, strlen (buffer));
       /* Ignore any errors and blunder on. */
       g_free (buffer);
 
