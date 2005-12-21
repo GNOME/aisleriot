@@ -229,7 +229,7 @@ void show_select_game_dialog (void)
  
     games_file_list_for_each (files, (GFunc) build_list, list);
 
-    g_free (files);
+    g_object_unref (files);
 
     gtk_dialog_set_default_response ( GTK_DIALOG (dialog), GTK_RESPONSE_OK );
 
