@@ -8,100 +8,123 @@
       <surname>Yuen</surname>
     </author>
     <address><email>zana@webwynk.net</email></address>
+		<copyright>
+			<year>2005</year>
+			<holder>Damien Laniel</holder>
+		</copyright>
+		<author>
+			<firstname>Damien</firstname>
+			<surname>Laniel</surname>
+		</author>
+		<address><email>heretik@tuxfamily.org</email></address>
   </sect1info>-->
 
   <title>Klondike</title>
 
-  <para>written by Jonathan Blandford</para>
+  <para>Ecrit par Jonathan Blandford</para>
+  <para>Traduit en français par Damien Laniel</para>
 
-  <sect2>Setup</sect2>
+  <sect2>Configuration</sect2>
 
   <informaltable>
-    <tgroup cols="2"><tbody>
+    <tgroup cols="2">
+    	<tbody>
 	<row>
-	  <entry>Type of Deck</entry>
-	  <entry>Standard Deck</entry>
+		<entry>Type de Paquet</entry>
+		<entry>Paquet Standard</entry>
 	</row>
 	<row>
-	  <entry>Stock</entry>
+	  <entry>Pioche</entry>
 	  <entry>
-	    Top left pile.  The rest of the deck is placed here after
-	    dealing on to the Tableau.  Cards are turned over one at a
-	    time to Waste.  Two redeals.
+	  	Pile en haut à gauche.
+	  	Le reste du paquet est placé ici après la distribution.
+	  	Les cartes sont retournées une à une vers le Rebut.
+	  	Deux redistributions.
 	  </entry>
 	</row>
 	<row>
-	  <entry>Waste</entry>
+	  <entry>Rebut</entry>
 	  <entry>
-	    To be taken from Stock.  Top card available for
-	    play.
+	  	A prendre depuis la pile.
+	    Les cartes sont retournées ici depuis la Pioche.
+	  	La carte du dessus est disponible pour être jouée.
 	  </entry>
 	</row>
 	<row>
-	  <entry>Foundations</entry>
+	  <entry>Fondations</entry>
 	  <entry>
-	    Four piles top right.  To be built up in suit from Ace to
-	    King.  Topmost card in each Foundation can be played back on
-	    to the Tableau.
+	  	Quatre piles en haut à droite.
+	  	A construire en montant par suite de l'As au Roi.
+	  	La carte du dessus de chaque Fondation peut être rejouée sur le Tableau.
 	  </entry>
 	</row>
 	<row>
 	  <entry>Tableau</entry>
 	  <entry>
-	    Seven piles.  Deal card face up in first pile.  Place one
-	    card face down on all other piles.  Place one card face up
-	    on next pile followed by one card face down on all covered
-	    piles.  Repeat until there are seven cards in last pile.
-	    Tableau can be built down in alternating colors.  Groups of
-	    cards can be moved.  Empty piles can only be filled by Kings
-	    or group of cards starting with a King.
+	  	Sept piles.
+	  	On distribue une carte face visible sur la première pile.
+	  	On place une carte face cachée sur toutes les autres piles.
+	  	On place une carte face	visible sur la pile suivante, puis une carte face
+	  	cachée sur toutes les	autres piles.
+	  	Ainsi de suite jusqu'à qu'il y ait sept cartes sur la dernière pile.
+      Les piles du Tableau peuvent être construites en descendant par couleur
+      alternée.
+      Les groupes de cartes peuvent être déplacés.
+      Les piles vides peuvent seulement être remplies par des Rois ou des
+      séquences commençant par un Roi.
 	  </entry>
 	</row>
       </tbody>
     </tgroup>
   </informaltable>
 
-  <sect2>Goal</sect2>
+  <sect2>Objectif</sect2>
   <para>
-    Move all cards to the Foundation piles.
+  	Déplacer toutes les cartes vers les Fondations.
   </para>
 
-  <sect2>Rules</sect2>
+  <sect2>Règles</sect2>
   <para>
-    Cards in the Tableau are built down by alternating color.  Groups of
-    cards can be moved.  An empty pile in the Tableau can be filled with
-    a King or a group of cards with a King on the bottom.
+  	Les piles du Tableau peuvent être construites en descendant par couleur
+  	alternée.
+  	Les groupes de cartes peuvent être déplacés.
+  	Les piles vides du Tableau peuvent seulement être remplies par des Rois ou
+  	des	séquences commençant par un Roi.
   </para>
   <para>
-    Cards are flipped from the Stock to the Waste individually.  Top
-    card in Waste is in play.  When Stock is empty, move all cards in
-    Waste back to the Stock, maintaining order. You can go through the
-    deck three times.
+		Les cartes sont retournées une à une de la Pioche vers le Rebut.
+		La carte du dessus du Rebut est en jeu.
+		Quand la Pioche est vide, toutes les cartes du Rebut sont remises sur la
+		Pioche,	en gardant l'ordre des cartes.
+		Deux redistributions.
   </para>
   <para>
-    Foundations are built up in suit from Ace to King.  Cards in
-    Foundations are still in play.  Double clicking on a card will move
-    it to the appropriate Foundation pile if such a move is possible.
-  </para>
-
-  <sect2>Options</sect2>
-  <para>
-    Three card deals: If checked, the Stock will deal three each time.
-    Otherwise, the Stock will deal singly into the Waste.
+    Les Fondations sont à construire en montant par suite de l'As au Roi.
+    Les cartes des Fondations sont toujours en jeu.
+    Double-cliquer sur une carte la déplace dans la Fondation appropriée
+    si un tel déplacement est possible.
   </para>
 
-  <sect2>Scoring</sect2>
+  <sect2>Option</sect2>
   <para>
-    Each card in the Foundation piles scores one point.
-  </para>
-  <para>
-    Maximum possible score:  52
+    Distribution de trois cartes : Si coché, la Pioche distribue
+    trois cartes à la fois.
+    Sinon, la Pioche distribue les cartes une à une.
   </para>
 
-  <sect2>Strategy</sect2>
+  <sect2>Score</sect2>
   <para>
-    Don't give up the ship!  Try brute force methods when the game seems
-    over.  Sometimes a combination of using cards already in the
-    Foundation and rearranging sequences will free up some needed cards.
+  	Chaque carte dans les Fondations vaut un point.
+  </para>
+  <para>
+   	Score maximum possible : 52
+  </para>
+
+  <sect2>Stratégie</sect2>
+  <para>
+    N'abandonnez pas le vaisseau ! Essayez des méthodes de force brute
+    quand la partie semble terminée.
+    Parfois une combinaison en utilisant les cartes des Fondations et
+    un réarrangement des séquences libérera certaines cartes nécessaires.
   </para>
 </sect1>

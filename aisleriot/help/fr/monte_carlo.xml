@@ -8,77 +8,85 @@
 			<surname>Yuen</surname>
 		</author>
 		<address><email>zana@webwynk.net</email></address>
+		<copyright>
+			<year>2005</year>
+			<holder>Damien Laniel</holder>
+		</copyright>
+		<author>
+			<firstname>Damien</firstname>
+			<surname>Laniel</surname>
+		</author>
+		<address><email>heretik@tuxfamily.org</email></address>
 	</sect1info>-->
 
 	<title>Monte Carlo</title>
 
-  <para>written by Rosanna Yuen</para>
+  <para>Ecrit par Rosanna Yuen</para>
+  <para>Traduit en français par Damien Laniel</para>
 
-  <sect2>Setup</sect2>
+	<sect2>Configuration</sect2>
 
-  <informaltable>
-    <tgroup cols="2">
-      <tbody>
+	<informaltable>
+		<tgroup cols="2">
+			<tbody>
 	<row>
-	  <entry>Type of Deck</entry>
-	  <entry>Standard Deck</entry>
+		<entry>Type de Paquet</entry>
+		<entry>Paquet Standard</entry>
 	</row>
 	<row>
-	  <entry>Stock</entry>
+	  <entry>Pioche</entry>
 	  <entry>
-	  	Top left pile.  The rest of the deck is placed here after
-	    dealing the Tableau.  Cards are dealt after concatenating
-	    the Tableau onto the empty slots.
+	    Pile en haut à gauche.
+	    Le reste du paquet est placé ici après la distribution.
 	  </entry>
 	</row>
 	<row>
 	  <entry>Tableau</entry>
 	  <entry>
-	  	Five by five grid, each capable of holding one card.
-		  One card dealt to each space at the beginning of game.  Empty
-		  spaces can be filled by moving cards from the right to the
-		  left, from the leftmost card of the row below to the rightmost
-		  space, and from the Stock to all otherwise empty spaces by
-		  clicking on the Stock.
+	    Grille de cinq par cinq emplacements, chacun pouvant contenir une carte.
+	    Une carte est distribuée dans chaque emplacement au début de la partie.
+	    Lors d'une distribution, les emplacements vides sont remplis en déplaçant
+	    des cartes de la droite vers la gauche, la carte la plus à gauche de
+	    chaque rangée étant déplacée vers l'emplacement le plus à droite de la
+	    rangée du dessus.
+	    Les emplacements restant vides après cela sont remplis depuis la Pioche.
 		</entry>
 	</row>
       </tbody>
     </tgroup>
   </informaltable>
 
-  <sect2>Goal</sect2>
+  <sect2>Objectif</sect2>
   <para>
-    Remove all cards.
+    Enlever toutes les cartes.
   </para>
 
-  <sect2>Rules</sect2>
+  <sect2>Règles</sect2>
   <para>
-    Cards can be removed in pairs that have the same value as long as
-    the two cards are touching horizontally, vertically, or diagonally.
+    Les cartes peuvent être enlevées par paires de cartes de même valeur
+    qui se touchent horizontalement, verticalement ou en diagonal.
   </para>
   <para>
-    At any point that there are empty piles in the Tableau, dealing from
-    the Stock moves all the cards already in the Tableau from the right
-    to left and moving them up a row to the far right if necessary
-    making all the empty slots at the end.  The Stock is then dealt on
-    to these empty slots.
-  </para>
-
-  <sect2>Options</sect2>
-  <para>None</para>
-
-  <sect2>Scoring</sect2>
-  <para>
-    Each pair of cards removed scores two points.
-  </para>
-  <para>
-    Maximum possible score:  52
+    Lors d'une distribution, les emplacements vides sont remplis en déplaçant
+    des cartes de la droite vers la gauche, la carte la plus à gauche de
+    chaque rangée étant déplacée vers l'emplacement le plus à droite de la
+    rangée du dessus.
+    Les emplacements restant vides après cela sont remplis depuis la Pioche.
   </para>
 
-  <sect2>Strategy</sect2>
+  <sect2>Score</sect2>
   <para>
-    Keep an eye out as to how the Tableau will shrink when you deal.
-    Sometimes leaving pairs in will allow more pairs to become available
-    after a deal.
+    Chaque paire de cartes enlevée vaut deux points.
+  </para>
+  <para>
+   	Score maximum possible : 52
+  </para>
+
+  <sect2>Stratégie</sect2>
+  <para>
+    Gardez un oeil sur la façon dont le Tableau va se rétrécir quand vous allez
+    distribuer.
+    Parfois, laisser des paires dans le Tableau vous permettra d'avoir plus de
+    paires disponibles à la prochaine distribution.
   </para>
 </sect1>

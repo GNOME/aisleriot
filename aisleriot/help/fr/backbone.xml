@@ -8,102 +8,118 @@
       <surname>Povirk</surname>
     </author>
     <address><email>madewokherd@gmail.com</email></address>
-  </sect1info>-->
+		<copyright>
+			<year>2005</year>
+			<holder>Damien Laniel</holder>
+		</copyright>
+		<author>
+			<firstname>Damien</firstname>
+			<surname>Laniel</surname>
+		</author>
+		<address><email>heretik@tuxfamily.org</email></address>
+	</sect1info>-->
 
   <title>Backbone</title>
 
-  <para>written by Vincent Povirk</para>
+  <para>Ecrit par Vincent Povirk</para>
+  <para>Traduit en français par Damien Laniel</para>
 
-  <sect2>Setup</sect2>
+  <sect2>Configuration</sect2>
 
   <informaltable>
-    <tgroup cols="2"><tbody>
+    <tgroup cols="2">
+    	<tbody>
 	<row>
-	  <entry>Type of Deck</entry>
-	  <entry>Double Deck</entry>
+		<entry>Type de Paquet</entry>
+		<entry>Paquet Double</entry>
 	</row>
 	<row>
-	  <entry>Reserve</entry>
+	  <entry>Pioche</entry>
 	  <entry>
-	    Two stacks of 9 cards each, with a single above both stacks.
-	    Cards that are not obscured are available for play to anywhere except
-	    empty tableau spaces.
+	  	Pile à gauche, sous les Fondations.
+	  	Le reste du paquet est placé ici après la distribution.
+	  	Les cartes sont retournées à par une vers le Rebut.
+	  	Une redistribution.
+	  </entry>
+	</row>
+	<row>
+	  <entry>Rebut</entry>
+	  <entry>
+	  	Pile à droite de la Pioche.
+	  	Les cartes sont retournées ici depuis la Pioche.
+	  	La carte du dessus est disponible pour être jouée.
+	  </entry>
+	</row>
+	<row>
+	  <entry>Fondations</entry>
+	  <entry>
+	  	Huit piles en haut à droite.
+	  	A construire en montant par suite de l'As au Roi.
+	  </entry>
+	</row>
+	<row>
+	  <entry>Réserves</entry>
+	  <entry>
+	  	Deux piles de 9 cartes, avec une carte au dessus de chaque pile.
+	    Les cartes visibles sont disponibles pour être jouées n'importe où
+	    sauf sur les cases vides du Tableau.
 	  </entry>
 	</row>
 	<row>
 	  <entry>Tableau</entry>
 	  <entry>
-	    Eight piles, four on each side of the reserve.  A card is dealt to each
-	    tableau pile when the game starts.  Build down in suit.  Empty spaces 
-	    can be filled with any card.  Only one card can be moved at a time.
-	  </entry>
-	</row>
-	<row>
-	  <entry>Foundations</entry>
-	  <entry>
-	    Eight piles top right.  To be built up in suit from Ace to
-	    King.
-	  </entry>
-	</row>
-	<row>
-	  <entry>Stock</entry>
-	  <entry>
-	    Single pile below the foundations on the left.  The rest of the deck is
-	    placed here after dealing on to the Tableau and Reserve.  Cards are 
-	    turned over one at a time to Waste.  One redeal.
-	  </entry>
-	</row>
-	<row>
-	  <entry>Waste</entry>
-	  <entry>
-	    Single pile to the right of the Stock.  To be taken from Stock.  Top 
-	    card available for play.
+			Huit piles, quatre sur chaque côté de la Réserve. Une carte est distribuée
+			sur chaque pile du Tableau quand la partie commence.
+			Les piles peuvent être construites en descendant par suite.
+			Les cases vides peuvent être remplies par n'importe quelle carte sauf venant
+			de la Réserve.
+			Une seule carte peut être déplacée à la fois.
 	  </entry>
 	</row>
       </tbody>
     </tgroup>
   </informaltable>
 
-  <sect2>Goal</sect2>
+  <sect2>Objectif</sect2>
   <para>
-    Move all cards to the Foundation piles.
+  	Déplacer toutes les cartes vers les Fondations.
   </para>
 
-  <sect2>Rules</sect2>
+  <sect2>Règles</sect2>
   <para>
-    Cards in the Tableau are built down by suit.  Only one card can be moved
-    at a time.  Empty slots can be filled with any card except from the reserve.
+		Huit piles, quatre sur chaque côté de la Réserve. Une carte est distribuée
+		sur chaque pile du Tableau quand la partie commence.
+		Les piles du Tableau peuvent être construites en descendant par suite.
+		Les cases vides peuvent être remplies par n'importe quelle carte sauf venant
+		de la Réserve.
+		Une seule carte peut être déplacée à la fois.
   </para>
   <para>
-    Cards are flipped from the Stock to the Waste individually.  Top
-    card in Waste is in play.  When Stock is empty, move all cards in
-    Waste back to the Stock, maintaining order. You can go through the
-    deck twice.
+  	Les cartes sont retournées depuis la Pioche vers le Rebut individuellement.
+  	La carte du dessus du Rebut est en jeu.
+  	Quand la Pioche est vide, toutes les cartes du Rebut sont remises sur la pioche,
+  	en gardant l'ordre des cartes.
+  	Une redistribution.
   </para>
   <para>
-    Foundations are built up in suit from Ace to King.  Cards in the
-    Foundations are no longer in play.  Double clicking on a card will move
-    it to the appropriate Foundation pile if such a move is
-    possible. 
-  </para>
-
-  <sect2>Options</sect2>
-  <para>
-    None.
-  </para>
-
-  <sect2>Scoring</sect2>
-  <para>
-    Each card in the Foundation piles scores one point.
-  </para>
-  <para>
-    Maximum possible score:  104
+		Les Fondations sont à construire en montant par suite de l'As au Roi.
+		Les cartes des Fondations ne sont plus en jeu.
+		Double-cliquer sur une carte la déplacera vers la Fondation appropriée si
+		un tel déplacement est possible.
   </para>
 
-  <sect2>Strategy</sect2>
+  <sect2>Score</sect2>
   <para>
-    You can use empty spaces in the Tableau to move multiple cards. Be careful
-    with Kings in the Reserve: the only way to remove them is by playing them
-    to a Foundation on top of a Queen.
+  	Chaque carte dans les Fondations vaut un point.
+  </para>
+  <para>
+  	Score maximum possible : 104
+  </para>
+
+  <sect2>Stratégie</sect2>
+  <para>
+  	Vous pouvez utiliser les cases vides du Tableau pour déplacer plusieurs cartes.
+  	Faites attention aux Rois dans les Réserves : la seule façon de les enlever
+  	est de les déplacer vers une Fondation sur une Reine.
   </para>
 </sect1>

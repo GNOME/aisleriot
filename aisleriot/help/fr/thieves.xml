@@ -7,75 +7,85 @@
       <firstname>Robert</firstname>
       <surname>Brady</surname>
     </author>
-    <address>
-      <email>rwb197@ecs.soton.ac.uk</email>
-    </address>
+    <address><email>rwb197@ecs.soton.ac.uk</email></address>
+		<copyright>
+			<year>2005</year>
+			<holder>Damien Laniel</holder>
+		</copyright>
+		<author>
+			<firstname>Damien</firstname>
+			<surname>Laniel</surname>
+		</author>
+		<address><email>heretik@tuxfamily.org</email></address>
   </sect1info>-->
 
   <title>Thieves</title>
 
-  <para>written by Robert Brady</para>
+	<para>Ecrit par Robert Brady</para>
+	<para>Traduit en français par Damien Laniel</para>
 
-  <sect2>Setup</sect2>
+	<sect2>Configuration</sect2>
 
-  <informaltable>
-    <tgroup cols="2">
-      <tbody>
+	<informaltable>
+		<tgroup cols="2">
+			<tbody>
 	<row>
-	  <entry>Type of Deck</entry>
-	  <entry>Joker Deck</entry>
+		<entry>Type de Paquet</entry>
+		<entry>Paquet Joker</entry>
 	</row>
 	<row>
 	  <entry>Tableau</entry>
 	  <entry>
-	    Seven piles of five cards each, face up.
+	    Sept piles de cinq cartes, face visible.
 	  </entry>
 	</row>
 	<row>
-	  <entry>Stock</entry>
+	  <entry>Pioche</entry>
 	  <entry>
-	    Place all remaining cards here.  Cards are turned over one
-	    at a time to Waste.  No redeals.
+ 		  Pile en bas à gauche.
+		  Le reste du paquet est placé ici après la distribution.
+		  Les cartes sont retournées une à une vers le Rebut.
+	    Pas de redistribution.
 	  </entry>
 	</row>
 	<row>
-	  <entry>Waste</entry>
+	  <entry>Rebut</entry>
 	  <entry>
-	    To be taken from Stock.  Top card available for play.
+      Les cartes sont retournées ici depuis la Pioche.
+	    La carte du dessus est disponible pour être jouée.
 	  </entry>
 	</row>
       </tbody>
     </tgroup>
   </informaltable>
 
-  <sect2>Goal</sect2>
+	<sect2>Objectif</sect2>
+	<para>
+	  Déplacer toutes les cartes vers le Rebut.
+	</para>
+
+  <sect2>Règles</sect2>
   <para>
-    Move all cards to Waste.
+    Le Rebut est à construire en montant ou descendant à partir des cartes du
+    Tableau.
+    Les jokers peuvent être joués sur n'importe quoi et on peut jouer n'importe
+    quoi sur eux.
+  </para>
+  <para>
+ 	  Les cartes sont retournées une à une de la Pioche vers le Rebut.
   </para>
 
-  <sect2>Rules</sect2>
+  <sect2>Score</sect2>
   <para>
-    The Waste can be built up or down from the available cards on the
-    Tableau.  Jokers are wild and can be played on any rank as well as
-    be played upon by a card of any rank.
-  </para>
-  <para>
-    At any point, a card can be dealt from the Stock to the Waste.
+    De l'As au Roi, les cartes valent : 8, 6, 6, 4, 4, 2, 2, 2, 4, 4, 6, 6, 8
+    points.
+    Pas de point pour les jokers.
   </para>
 
-  <sect2>Options</sect2>
-  <para>None</para>
-
-  <sect2>Scoring</sect2>
+  <sect2>Stratégie</sect2>
   <para>
-    In rank order you get, 8, 6, 6, 4, 4, 2, 2, 2, 4, 4, 6, 6, 8 for each
-    type of card.. No points are scored for jokers.
-  </para>
-
-  <sect2>Strategy</sect2>
-  <para>
-    Since you can see all the cards on the Tableau, try to engineer
-    `runs', to try and get rid of as many cards up there as possible, as
-    you only have a finite supply of cards in Stock.
+    Comme vous pouvez voir toutes les cartes du Tableau, essayez d'enlever les
+    cartes dans un ordre qui vous permettra de faire les suites les plus
+    longues possibles, car vous avez un nombre limité de cartes dans la Pioche.
   </para>
 </sect1>
