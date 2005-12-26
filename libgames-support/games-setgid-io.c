@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2005 by Callum McKenzie
  *
- * Time-stamp: <2005-12-20 20:57:01 callum>
+ * Time-stamp: <2005-12-23 18:04:43 callum>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,10 +21,26 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* WARNING: The purpose of this code is to subvert GTK's checks against
- * setuid/setgid code. It provides a very broad interface effectively
- * running certain library calls with elevated privileges. This broadness
- * does not provide good security and its use should be limited.
+/* WARNING: The purpose of this code is to subvert GTK's checks
+ * against setuid/setgid code. It does this by running a separate
+ * process that retains setgid privileges while the main code drops
+ * its privileges and runs the main code. The two processes
+ * communicate by a pipe. This interface is very liberal - effectively
+ * providing the standard file i/o operations with the privileges of
+ * the original executable. This is bad security. The
+ * privileged/non-privileged interface should be one more layer out so
+ * that data passing through it can be checked more rigorously. It
+ * isn't this way because a different security mechanism was assumed
+ * during the design of the scoring system and this is the simplest way to 
+ * retrofit the setgid security system.
+ *
+ * In practise security shouldn't be compromised much more than it
+ * already was. The new threat is that a compromised game could
+ * over-write (or create) any file with games privileges. In the old
+ * code this was less likely since both the game code and the
+ * privileged code would have to be compromised. In any event, if
+ * games privileges are significant in your system then you have
+ * bigger security problems than this code.
  */
 
 /* We almost directly wrap the standard open/close/read/write/seek

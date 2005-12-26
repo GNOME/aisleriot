@@ -79,12 +79,20 @@ static GList * games_file_list_new_internal (gchar * glob, va_list path)
   return list;
 }
 
-/* This function takes a glob and a NULL terminated list of paths 
- * and finds all files in the path matching the glob. Only regular 
- * files are returned. */
-/* The arguments are the filespec followed by a null-terminated list 
- * of paths. */
-/* The caller must free the list. */
+/**
+ * games_file_list_new:
+ * @glob: A pattern to match files against. See g_pattern_spec_new () for 
+ * details.
+ * @varargs: A NULL terminated list of strings containing directory names to 
+ * be searched for files.
+ * 
+ * This function takes a glob and a NULL terminated list of directories 
+ * and constructs a list of all files in the directories that match the glob. 
+ * Only regular files are returned.
+ * 
+ * Return value: A pointer to a new GamesFileList containing files 
+ * matching the glob in the path.
+ **/
 GamesFileList * games_file_list_new (gchar * glob, ...)
 {
   GamesFileList * filelist;
@@ -200,8 +208,19 @@ static GList * games_file_list_new_images_single (gchar * directory)
   return list;
 }
 
-/* Get a list of files in the NULL terminated list of directories which are loadable by 
- * GdkPixbuf. Files are identified by their extension. */
+/**
+ * games_file_list_new_images:
+ * @path1: A NULL-terminated list of strings containing directories to be 
+ * searched.
+ * 
+ * A convenience function which constructs a list of filenames which
+ * are images that can be loaded via gdk-pixbuf. Whether a file is an
+ * image or not is determined by its extension. The list of possible
+ * extensions is determined by querying the gdk-pixbuf library the
+ * first time this function is called.
+ * 
+ * Return value: A new GamesFileList containing the list of image files.
+ **/
 GamesFileList * games_file_list_new_images (gchar * path1, ...)
 {
   GamesFileList * filelist;
@@ -225,11 +244,21 @@ GamesFileList * games_file_list_new_images (gchar * path1, ...)
   return filelist;
 }
 
-/* Create a gtk_combo_box with the given list of strings as the
-   entries. If selection is given and it matches a list item then that
-   item is selected as the default. If selection == NULL then nothing
-   is selected. flags is a list of transformations to apply to the 
-   names before they are displayed (the actual file list is unaffected). */
+/**
+ * games_file_list_create_widget:
+ * @gamesfilelist: The list of files to use.
+ * @selection: The name to select as the default. NULL means no default.
+ * @flags: A set of flags to specify how the names are displayed. 
+ * 
+ * Create a combo box with the given list of strings as the entries. If 
+ * selection is non-NULL the matching file name is selected by default. 
+ * Otherwise nothing is selected. The flags affect how the names are 
+ * displayed. The valid flags are GAMES_FILE_LIST_REMOVE_EXTENSION, which 
+ * removes extensions, and GAMES_FILE_LIST_REPLACE_UNDERSCORES with replaces
+ * underscores with spaces.
+ * 
+ * Return value: A widget with the list of names.
+ **/
 GtkWidget * games_file_list_create_widget (GamesFileList * gamesfilelist, gchar * selection, guint flags)
 {
   gint itemno;
@@ -278,8 +307,17 @@ GtkWidget * games_file_list_create_widget (GamesFileList * gamesfilelist, gchar 
   return GTK_WIDGET (widget);
 }
 
-/* The direct equivalent of g_list_foreach iterated across the 
- * list of filenames. */
+/**
+ * games_file_list_for_each:
+ * @filelist: The file list to iterate over.
+ * @function: The function to call on each item. It gets called with two 
+ * arguments: the file name and the pointer supplied to this function in 
+ * the userdata argument.
+ * @userdata: An arbitrary pointer that gets passed as the second argument
+ * to each call of function.
+ * 
+ * Apply a function to each file name in the list.
+ **/
 void games_file_list_for_each (GamesFileList * filelist, GFunc function, 
 			       gpointer userdata)
 {
@@ -287,6 +325,15 @@ void games_file_list_for_each (GamesFileList * filelist, GFunc function,
 }
 
 
+/**
+ * games_file_list_get_nth:
+ * @filelist: The list of file names to select from.
+ * @n: The 0-based index into the list.
+ * 
+ * Obtain the (n+1)th file name from the list.
+ * 
+ * Return value: 
+ **/
 /* Return the nth filename in the list. */
 gchar * games_file_list_get_nth (GamesFileList * filelist, gint n)
 {
