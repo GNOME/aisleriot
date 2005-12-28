@@ -25,6 +25,12 @@
 #include "slot.h"
 #include "card.h"
 
+/* The limits for how much overlap there is between cards and
+ * how much is allowed to slip off the bottom. */
+#define MIN_DELTA (0.05)
+#define MAX_DELTA (0.2)
+#define MAX_OVERHANG (0.2)
+
 /* The ratio of height to width for a card. */
 #define CARD_HW_RATIO (0.65)
 
@@ -124,55 +130,29 @@ void rescale_cards (void) {
   set_geometry (width, height);
 }
 
-/* get the actual height of the slot */
-static double get_slot_height (hslot_type hslot) {
-  double cardtops_height;
-  double rest_height_last_card;
-
-  cardtops_height = hslot->pixeldy*g_list_length (hslot->cards);
-  rest_height_last_card = (1-hslot->compressed_dy)*card_height;
-
-  return cardtops_height + rest_height_last_card;
-}
-
-/* get the maximum size of the slot allowing
- * it to fit in the window */
-static double get_slot_max_height (hslot_type hslot) {
-  int surface_height;
-
-  gdk_drawable_get_size(surface, NULL, &surface_height);
-
-  return surface_height - yoffset - hslot->pixely;
-}
-
 void draw_cards () {
   GList* slot;
   gint x, y;
   GList* card_list;
   GdkPixmap *image;
-  double slot_height;
-  double slot_max_height;
+  gint surface_height;
+  gint n;
+  double y_from_bottom;
 
   for (slot = get_slot_list (); slot; slot = slot->next) {
     hslot_type hslot = (hslot_type)slot->data;
 
-    hslot->compressed_dy = hslot->dy;
-    hslot->pixeldy = hslot->compressed_dy * card_height;
-
-    slot_height = get_slot_height (hslot);
-    slot_max_height = get_slot_max_height (hslot);
-
-    /* if the slot is too high to fit, reduce dy to make it fit */
-    while (slot_height > slot_max_height) {
-      hslot->compressed_dy = 0.8 * hslot->compressed_dy;
+    n = g_list_length (hslot->cards);
+    if ((hslot->dy > 0.0) && (n > 1)) {
+      /* Calculate the compressed_dy that will let us fit within the screen. */
+      gdk_drawable_get_size (surface, NULL, &surface_height);
+      y_from_bottom = 1.0*(surface_height - hslot->pixely)/card_height;
+      hslot->compressed_dy = (y_from_bottom - MAX_OVERHANG)/(n - 1.0);
+      hslot->compressed_dy = CLAMP (hslot->compressed_dy, MIN_DELTA, MAX_DELTA);
       hslot->pixeldy = hslot->compressed_dy * card_height;
-      slot_height = get_slot_height (hslot);
-      slot_max_height = get_slot_max_height (hslot);
-      /* Give up if the result would be unusably small. */
-      if (hslot->pixeldy < 4) {
-	hslot->pixeldy = 4;
-	break;
-      }
+    } else {
+      hslot->compressed_dy = 0.0;
+      hslot->pixeldy = 0;
     }
     calculate_card_location (hslot);
 

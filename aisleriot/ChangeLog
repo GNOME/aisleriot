@@ -1,3 +1,10 @@
+2005-12-28  Callum McKenzie  <callum@spooky-possum.org>
+
+	* draw.c: Calculate the card list compression ratio directly
+	rather than using the old iterative method. This is not only more
+	efficient, but also means that long stacks of cards don't shorten
+	up more than neighbouring uncompressed stacks. See bug #324611.
+
 2005-12-21  Callum McKenzie  <callum@spooky-possum.org>
 
 	* dialog.c (show_select_game_dialog): unref objects, don't free
