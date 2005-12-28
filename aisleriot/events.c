@@ -276,19 +276,27 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   gboolean double_click;
   gboolean drag_valid;
 
+  double_click = FALSE;
+
   if (!game_in_progress) {
     game_in_progress = TRUE;
     option_list_set_sensitive ();
     timer_start ();
   }
 
-  if (event->button != 1 && event->button != 3)
+  if (event->button < 1 && event->button > 3)
     return TRUE;
   
   /* ignore the gdk synthetic click events */
   if (event->type != GDK_BUTTON_PRESS)
     return TRUE;
   
+  /* Let the middle button be a synthetic double-click. */
+  if (event->button == 2) {
+    double_click = TRUE;
+    event->button = 1;
+  }
+
   if (press_data->status == STATUS_SHOW || press_data->status == STATUS_IS_DRAG)
     return TRUE;
 
@@ -303,10 +311,10 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   /* We can't let Gdk do the double-click detection since the entire playing
    * area is one big widget it can't distinguish between single-clicks on two
    * cards and a double-click on one. */
-  double_click = (g_timer_elapsed(click_timer,NULL) < dbl_click_time)
+  double_click |= (g_timer_elapsed(click_timer, NULL) < dbl_click_time)
     && (last_cardid == cardid)
     && (last_hslot->id == hslot->id)
-    && (event->button != 3);
+    && (event->button == 1);
   g_timer_start(click_timer);
   slot_pressed(event->x, event->y, &last_hslot, &last_cardid);
 
