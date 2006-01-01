@@ -22,6 +22,8 @@
 (define row4 '(39 40 41 42 43 44 45 46 47 48 49 50 51))
 (def-save-var rows (vector row1 row2 row3 row4))
 
+(define random-gaps #f)
+
 (define (new-game)
   (initialize-playing-area)
   (make-standard-deck)
@@ -229,12 +231,34 @@
     )
   )
   (set! DECK collection)
-  (shuffle-deck)                                 
-  (deal-cards-face-up-from-deck DECK (append (cdr (vector-ref rows 0))
-                                             (cdr (vector-ref rows 1))
-                                             (cdr (vector-ref rows 2))
-                                             (cdr (vector-ref rows 3))
-                                     )
+  (if random-gaps
+    (for-each 
+      (lambda (x)
+        (set! DECK (append (list (make-card ace club)) DECK))
+      )
+      '(1 2 3 4)
+    )
+  )
+  (shuffle-deck)
+  (if random-gaps
+    (begin
+      (deal-cards-face-up-from-deck DECK (append (vector-ref rows 0)
+                                                 (vector-ref rows 1)
+                                                 (vector-ref rows 2)
+                                                 (vector-ref rows 3)
+                                         )
+      )
+      (remove-aces (append (vector-ref rows 0) (vector-ref rows 1)
+                           (vector-ref rows 2) (vector-ref rows 3)
+                   )
+      )
+    )   
+    (deal-cards-face-up-from-deck DECK (append (cdr (vector-ref rows 0))
+                                               (cdr (vector-ref rows 1))
+                                               (cdr (vector-ref rows 2))
+                                               (cdr (vector-ref rows 3))
+                                       )
+    )
   )
   #t
 )
@@ -288,9 +312,13 @@
   )
 )
 
-(define (get-options) #f)
+(define (get-options)
+  (list (list (_"Randomly Placed Gaps on Redeal") random-gaps))
+)
 
-(define (apply-options options) #f)
+(define (apply-options options)
+  (set! random-gaps (cadar options))
+)
 
 (define (timeout) #f)
 
