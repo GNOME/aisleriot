@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-20 00:26+0900\n"
-"PO-Revision-Date: 2005-12-20 00:26+0900\n"
+"POT-Creation-Date: 2006-01-03 01:03+0900\n"
+"PO-Revision-Date: 2006-01-03 01:01+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -204,7 +204,7 @@ msgstr ""
 "を提供します。"
 
 #: ../aisleriot/menu.c:130 ../blackjack/src/menu.cpp:150
-#: ../gataxx/gataxx.c:390 ../glines/glines.c:1222 ../gnect/src/main.c:795
+#: ../gataxx/gataxx.c:389 ../glines/glines.c:1222 ../gnect/src/main.c:795
 #: ../gnibbles/main.c:152 ../gnobots2/menu.c:241 ../gnometris/tetris.cpp:1448
 #: ../gnomine/gnomine.c:448 ../gnotravex/gnotravex.c:1590
 #: ../gnotski/gnotski.c:1543 ../gtali/gyahtzee.c:428 ../iagno/gnothello.c:270
@@ -217,7 +217,7 @@ msgstr ""
 "Yuusuke Tahara <tahara@gnome.gr.jp>\n"
 "Akira Higuchi <a-higuti@math.sci.hokudai.ac.jp>\n"
 "Yukihiro Nakai <Nakai@technologist.com>\n"
-"日本GNOMEユーザー会 <http://www.gnome.gr.jp>"
+"日本GNOMEユーザー会 http://www.gnome.gr.jp"
 
 #: ../aisleriot/menu.c:219 ../blackjack/src/blackjack.cpp:298
 #: ../glines/glines.c:1710 ../gnect/src/main.c:1131 ../gnibbles/main.c:600
@@ -383,7 +383,7 @@ msgid "No hint available right now"
 msgstr "ヒントはありません"
 
 #: ../aisleriot/rules/athena.scm.h:3 ../aisleriot/rules/doublets.scm.h:1
-#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:3
+#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:4
 #: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
 #: ../aisleriot/rules/klondike.scm.h:3 ../aisleriot/rules/osmosis.scm.h:2
 #: ../aisleriot/rules/peek.scm.h:2 ../aisleriot/rules/plait.scm.h:10
@@ -679,6 +679,11 @@ msgstr "カードをダブル・クリックして引き直しなさい"
 msgid "No hint available."
 msgstr "ヒントはありません"
 
+# 意味不明
+#: ../aisleriot/rules/gaps.scm.h:3
+msgid "Randomly Placed Gaps on Redeal"
+msgstr "Randomly Placed Gaps on Redeal"
+
 #: ../aisleriot/rules/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
 msgstr "リザーブにあるカードを空の絵札のスロットへ置きなさい"
@@ -871,7 +876,7 @@ msgid "Score:"
 msgstr "得点:"
 
 #: ../aisleriot/sol.c:451 ../gnotravex/gnotravex.c:1074
-#: ../mahjongg/mahjongg.c:1447
+#: ../mahjongg/mahjongg.c:1449
 msgid "Time:"
 msgstr "タイム:"
 
@@ -1640,15 +1645,15 @@ msgstr "カードを引く(_E)"
 #: ../blackjack/src/blackjack.cpp:306 ../blackjack/src/dialog.cpp:98
 #: ../blackjack/src/dialog.cpp:101
 msgid "Deal a new hand"
-msgstr "新しいカードを引きなさい"
+msgstr "新しいカードを引きます"
 
 #: ../blackjack/src/blackjack.cpp:307
 msgid "_Hit"
-msgstr "ヒント(_H)"
+msgstr "ヒット(_H)"
 
 #: ../blackjack/src/blackjack.cpp:307
 msgid "Add a card to the hand"
-msgstr "カードを加えなさい"
+msgstr "カードを追加します"
 
 #: ../blackjack/src/blackjack.cpp:308
 msgid "_Stand"
@@ -1656,7 +1661,7 @@ msgstr "スタンド(_S)"
 
 #: ../blackjack/src/blackjack.cpp:308
 msgid "Stop adding cards to the hand"
-msgstr "カードを加えるのを止めなさい"
+msgstr "カードの追加を止めます"
 
 #: ../blackjack/src/blackjack.cpp:309
 msgid "S_urrender"
@@ -2001,15 +2006,15 @@ msgstr "黒の勝ち！"
 msgid "The game was a draw."
 msgstr "引き分け！"
 
-#: ../gataxx/gataxx.c:381
+#: ../gataxx/gataxx.c:380
 msgid "Based on code from Iagno by Ian Peters"
 msgstr "Ian Peters 氏の Iagno のコードを流用しました"
 
-#: ../gataxx/gataxx.c:384 ../gataxx/gataxx.desktop.in.h:1
+#: ../gataxx/gataxx.c:383 ../gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "Ataxx"
 
-#: ../gataxx/gataxx.c:388
+#: ../gataxx/gataxx.c:387
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr "支配しようとする盤面にあるディスクを弾くゲームです。"
 
@@ -2039,31 +2044,40 @@ msgid "The height of the window"
 msgstr "ウィンドウの高さ"
 
 #: ../gataxx/gataxx.schemas.in.h:6
+msgid "The name of the theme to use."
+msgstr "使用するテーマの名前です。"
+
+#: ../gataxx/gataxx.schemas.in.h:7
 msgid "The requested height of the main window in pixels."
 msgstr "メイン・ウィンドウの高さ (ピクセル単位) です。"
 
-#: ../gataxx/gataxx.schemas.in.h:7
+#: ../gataxx/gataxx.schemas.in.h:8
 msgid "The requested width of the main window in pixels."
 msgstr "メイン・ウィンドウの幅 (ピクセル単位) です。"
 
-#: ../gataxx/gataxx.schemas.in.h:8 ../gnotravex/gnotravex.schemas.in.h:6
+#: ../gataxx/gataxx.schemas.in.h:9 ../gnotravex/gnotravex.schemas.in.h:6
 #: ../gnotski/gnotski.schemas.in.h:6 ../mahjongg/mahjongg.schemas.in.h:4
 msgid "The width of the window"
 msgstr "ウィンドウの幅"
 
-#: ../gataxx/gataxx.schemas.in.h:9
-msgid "Tileset"
-msgstr "絵柄"
-
-#: ../gataxx/gataxx.schemas.in.h:10
-msgid "Tileset to use."
-msgstr "使用する絵柄です。"
+#: ../gataxx/gataxx.schemas.in.h:10 ../gnometris/tetris.cpp:857
+#: ../gnometris/tetris.cpp:890 ../same-gnome/ui.c:288
+msgid "Theme"
+msgstr "テーマ"
 
 #: ../gataxx/gataxx.schemas.in.h:11
+msgid "Tileset (obsolete)"
+msgstr "使用する絵柄 (廃止)"
+
+#: ../gataxx/gataxx.schemas.in.h:12
+msgid "Tileset to use (obsolete)."
+msgstr "使用する絵柄です (このキーは廃止になりました)。"
+
+#: ../gataxx/gataxx.schemas.in.h:13
 msgid "Whether or not to use quick moves."
 msgstr "クイック移動を使用するかどうかです。"
 
-#: ../gataxx/gataxx.schemas.in.h:12
+#: ../gataxx/gataxx.schemas.in.h:14
 msgid ""
 "Zero corresponds to no animations, one is partial animations, two is "
 "complete animations."
@@ -2071,98 +2085,106 @@ msgstr ""
 "0 = アニメーションを使用しない、1 = 一部アニメーションを使用する、2 = 全てア"
 "ニメーションを使用する"
 
-#: ../gataxx/gataxx.schemas.in.h:13 ../gnect/data/gnect.schemas.in.h:19
+#: ../gataxx/gataxx.schemas.in.h:15 ../gnect/data/gnect.schemas.in.h:19
 msgid ""
 "Zero is human; one through three correspond to the level of the computer "
 "player."
 msgstr "0 = 人間; 1〜3 = コンピュータのレベル"
 
+#: ../gataxx/gtkgridboardthemes.c:166 ../gnometris/renderer.cpp:27
+msgid "Plain"
+msgstr "プレーン"
+
+#: ../gataxx/gtkgridboardthemes.c:168
+msgid "Squares and Diamonds"
+msgstr "◇と■"
+
 #. create window
-#: ../gataxx/properties.c:300
+#: ../gataxx/properties.c:297
 msgid "Ataxx Preferences"
 msgstr "Ataxx の設定"
 
 #. Players tab
-#: ../gataxx/properties.c:330 ../iagno/properties.c:498
+#: ../gataxx/properties.c:327 ../iagno/properties.c:498
 msgid "Players"
 msgstr "プレイヤー"
 
-#: ../gataxx/properties.c:342
+#: ../gataxx/properties.c:339
 msgid "_Quick moves"
 msgstr "素早く移動する(_Q)"
 
-#: ../gataxx/properties.c:343
+#: ../gataxx/properties.c:340
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "移動する前にコンピュータの待機時間を短くします"
 
 #. Dark level select
-#: ../gataxx/properties.c:352 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:349 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:521
 msgid "Dark"
 msgstr "黒"
 
-#: ../gataxx/properties.c:356 ../gataxx/properties.c:374
+#: ../gataxx/properties.c:353 ../gataxx/properties.c:371
 #: ../gnect/src/prefs.c:326 ../gtali/yahtzee.c:61 ../iagno/properties.c:526
 #: ../iagno/properties.c:572
 msgid "Human"
 msgstr "人間"
 
-#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
+#: ../gataxx/properties.c:354 ../gataxx/properties.c:372
 msgid "Very easy"
 msgstr "超初級"
 
-#: ../gataxx/properties.c:358
+#: ../gataxx/properties.c:355
 msgid "gataxx|Easy"
-msgstr "gataxx|初級"
+msgstr "初級"
 
-#: ../gataxx/properties.c:359
+#: ../gataxx/properties.c:356
 msgid "gataxx|Medium"
-msgstr "gataxx|中級"
+msgstr "中級"
 
-#: ../gataxx/properties.c:360 ../gataxx/properties.c:378
+#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
 msgid "Hard"
 msgstr "上級"
 
-#: ../gataxx/properties.c:361 ../gataxx/properties.c:379
+#: ../gataxx/properties.c:358 ../gataxx/properties.c:376
 msgid "Very hard"
 msgstr "超上級"
 
 #. Light level select
-#: ../gataxx/properties.c:370 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:367 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:567
 msgid "Light"
 msgstr "白"
 
-#: ../gataxx/properties.c:376
+#: ../gataxx/properties.c:373
 msgid "Easy"
 msgstr "簡単"
 
-#: ../gataxx/properties.c:377
+#: ../gataxx/properties.c:374
 msgid "Medium"
 msgstr "中くらい"
 
 #. Appearance tab
-#: ../gataxx/properties.c:388 ../gataxx/properties.c:391
+#: ../gataxx/properties.c:385 ../gataxx/properties.c:388
 #: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:535
 #: ../iagno/properties.c:616
 msgid "Appearance"
 msgstr "外観"
 
 #. animation button
-#: ../gataxx/properties.c:397
+#: ../gataxx/properties.c:394
 msgid "_Animation"
 msgstr "アニメーションを有効にする(_A)"
 
-#: ../gataxx/properties.c:401
+#: ../gataxx/properties.c:398
 msgid "Flip the pieces with some visual effects"
 msgstr "視覚効果を使って裏返します"
 
-#: ../gataxx/properties.c:406 ../iagno/properties.c:685
+#: ../gataxx/properties.c:403 ../iagno/properties.c:685
 #: ../mahjongg/mahjongg.c:747
 msgid "_Tile set:"
 msgstr "絵柄(_T):"
 
-#: ../gataxx/properties.c:411
+#: ../gataxx/properties.c:408
 msgid "The appearance of the pieces"
 msgstr "石の外観"
 
@@ -2174,7 +2196,7 @@ msgstr "小さい"
 
 #: ../glines/glines.c:76 ../glines/glines.c:80
 msgid "glines|Medium"
-msgstr "glines|中ぐらい"
+msgstr "中ぐらい"
 
 #: ../glines/glines.c:77 ../glines/glines.c:81 ../gnomine/gnomine.c:84
 #: ../gnomine/gnomine.c:638 ../same-gnome/same-gnome.c:51
@@ -2822,11 +2844,11 @@ msgstr "スピード"
 
 #: ../gnibbles/preferences.c:234
 msgid "Nibbles newbie"
-msgstr "Nibbles の初心者向け"
+msgstr "Nibbles の初心者です"
 
 #: ../gnibbles/preferences.c:244
 msgid "My second day"
-msgstr "遊び初めて二日目"
+msgstr "遊び初めて二日目です"
 
 #: ../gnibbles/preferences.c:254
 msgid "Not too shabby"
@@ -2834,7 +2856,7 @@ msgstr "ちょっと自慢できます"
 
 #: ../gnibbles/preferences.c:265
 msgid "Finger-twitching good"
-msgstr "指の動きは最高です"
+msgstr "指の動きは絶好調です"
 
 #. Options
 #: ../gnibbles/preferences.c:276 ../gnibbles/preferences.c:400
@@ -3274,7 +3296,7 @@ msgstr "たまご"
 
 #: ../gnobots2/properties.c:355
 msgid "gnomes"
-msgstr "こびと (GNOME)"
+msgstr "ノーム (地の精)"
 
 #: ../gnobots2/properties.c:356
 msgid "mice"
@@ -3510,17 +3532,13 @@ msgstr "半時計周りに回転させるかどうかです。"
 msgid "Whether to use the background image"
 msgstr "背景として画像を利用するかどうか"
 
-#: ../gnometris/main.cpp:36
+#: ../gnometris/main.cpp:39
 msgid "Set starting level (1 or greater)"
 msgstr "開始時のレベルをセットする (1 以上)"
 
-#: ../gnometris/main.cpp:36
+#: ../gnometris/main.cpp:39
 msgid "LEVEL"
 msgstr "レベル"
-
-#: ../gnometris/renderer.cpp:27
-msgid "Plain"
-msgstr "プレーン"
 
 #: ../gnometris/renderer.cpp:28
 msgid "Joined"
@@ -3572,11 +3590,6 @@ msgstr "半時計周りに回転させる(_R)"
 msgid "Show where the block will _land"
 msgstr "ブロックを落とす場所を表示する(_L)"
 
-#: ../gnometris/tetris.cpp:857 ../gnometris/tetris.cpp:890
-#: ../same-gnome/ui.c:288
-msgid "Theme"
-msgstr "テーマ:"
-
 #: ../gnometris/tetris.cpp:893
 msgid "Block Style"
 msgstr "ブロックのスタイル"
@@ -3597,11 +3610,11 @@ msgstr "GNOMEトリスの得点"
 
 #: ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:628
 msgid "gnomine|Medium"
-msgstr "gnomine|中くらい"
+msgstr "中くらい"
 
 #: ../gnomine/gnomine.c:85 ../gnomine/gnomine.c:648
 msgid "Custom"
-msgstr "カスタム"
+msgstr "カスタマイズ"
 
 #: ../gnomine/gnomine.c:160
 #, c-format
@@ -3652,7 +3665,7 @@ msgstr "グラフィックス:"
 msgid "Resizing and SVG support:"
 msgstr "サイズ変更と SVG サポート:"
 
-#: ../gnomine/gnomine.c:444 ../gnomine/gnomine.c:959
+#: ../gnomine/gnomine.c:444 ../gnomine/gnomine.c:961
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
 msgstr "Mines"
@@ -3663,7 +3676,7 @@ msgstr "フィールドの大きさ"
 
 #: ../gnomine/gnomine.c:660
 msgid "Custom Size"
-msgstr "カスタム・サイズ"
+msgstr "大きさのカスタマイズ"
 
 #: ../gnomine/gnomine.c:667
 msgid "_Number of mines:"
@@ -3714,13 +3727,13 @@ msgstr "ウィンドウの X 座標"
 msgid "Y location of window"
 msgstr "ウィンドウの Y 座標"
 
-#: ../gnomine/gnomine.c:1024
+#: ../gnomine/gnomine.c:1026
 msgid "Press to Resume"
-msgstr "何か押すと再開します"
+msgstr "ここを押すと再開します"
 
-#: ../gnomine/gnomine.c:1057
+#: ../gnomine/gnomine.c:1059
 msgid "Time: "
-msgstr "時間: "
+msgstr "経過時間: "
 
 #: ../gnomine/gnomine.desktop.in.h:1
 msgid "Clear mines from a minefield"
@@ -3805,11 +3818,11 @@ msgstr "大きさ(_S)"
 
 #: ../gnotravex/gnotravex.c:183
 msgid "Sol_ve"
-msgstr "解決(_V)"
+msgstr "解決する(_V)"
 
 #: ../gnotravex/gnotravex.c:183
 msgid "Solve the game"
-msgstr "答えを表示します"
+msgstr "このゲームを解きます"
 
 #: ../gnotravex/gnotravex.c:186
 msgid "_Up"
@@ -4536,7 +4549,7 @@ msgstr "素早く移動する(_U)"
 
 #: ../iagno/properties.c:622
 msgid "Animation"
-msgstr "アニメーションを有効にする"
+msgstr "アニメーション"
 
 #: ../iagno/properties.c:626
 msgid "None"
@@ -4548,7 +4561,7 @@ msgstr "部分的に"
 
 #: ../iagno/properties.c:644
 msgid "Complete"
-msgstr "全て"
+msgstr "常に"
 
 #: ../iagno/properties.c:659
 msgid "_Stagger flips"
@@ -4903,7 +4916,7 @@ msgstr "このゲームについて"
 
 #: ../libgames-support/games-stock.c:113
 msgid "Configure the game"
-msgstr "ゲームの設定"
+msgstr "このゲームを設定します"
 
 #: ../libgames-support/libgnomegames.schemas.in.h:1
 msgid "Network game mode"
@@ -5079,15 +5092,15 @@ msgstr "%s - %s"
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "すみません。プレイ可能な設定が見つかりませんでした。"
 
-#: ../mahjongg/mahjongg.c:1429
+#: ../mahjongg/mahjongg.c:1431
 msgid "Tiles Left:"
 msgstr "牌の残り:"
 
-#: ../mahjongg/mahjongg.c:1438
+#: ../mahjongg/mahjongg.c:1440
 msgid "Moves Left:"
 msgstr "取れる牌:"
 
-#: ../mahjongg/mahjongg.c:1500
+#: ../mahjongg/mahjongg.c:1502
 msgid "Remove matching pairs of tiles."
 msgstr "同じ牌のペアを削除します。"
 
@@ -5113,7 +5126,7 @@ msgstr ""
 
 #: ../mahjongg/maps.c:534
 msgid "mahjongg|Easy"
-msgstr "mahjongg|初級"
+msgstr "初級"
 
 #: ../mahjongg/maps.c:535
 msgid "Difficult"
@@ -5155,7 +5168,7 @@ msgstr "ゲームのクリアで 1000 ポイントのボーナスです！"
 
 #: ../same-gnome/same-gnome.c:50
 msgid "same-gnome|Medium"
-msgstr "same-gnome|中くらい"
+msgstr "中くらい"
 
 #: ../same-gnome/same-gnome.c:135
 msgid "Set the theme"
