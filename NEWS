@@ -1,3 +1,38 @@
+gnome-games 2.13.4
+==================
+
+Yet another development release of gnome-games. A bit more fun to be
+had this time. New games for Aisleriot, new graphics for Ataxx and a
+modification to the high scores code that is sure to test your
+bug-reporting skills ;).
+
+Aisleriot:
+ - Two new games from Alan Horkan: Athena and Saratoga.
+ - The middle button can now be used to emulate a double-click.
+ - The algorithm to compress long piles of cards has been changed. The 
+   cards are now allowed to fall off the bottom of the window as long as 
+   they are still partially visible. This makes more of each card visible.
+ - New option to shuffle the gaps on redeal for Gaps (Zach Keene)
+ - The French translation of the help files has been completed thanks to
+   Damien Laniel.
+ - Options sections in the help for games which don't actually have any 
+   options have been removed (Damien Laniel).
+
+Ataxx:
+ - Theme support has been re-instated. The themes are now based on code 
+   rather than image files (just like gnometris). There are currently 
+   only two themes: Plain and Squares and Diamonds. See the file
+   gtkgridboardthemes.c if you want to write new ones.
+
+Blackjack:
+ - Show results of a hand even if events are pending (Jon McCann).
+
+Gnometris, Mahjongg, Mines, Same-GNOME:
+ - The games now work again when setgid games. The code seems to work but 
+   is theoretically very prone to lock-ups (as opposed to actual crashes). 
+   Bug reports with a description of what you were doing at the time are 
+   encouraged.
+
 gnome-games 2.13.3
 ==================
 
