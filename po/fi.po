@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-31 08:45+0200\n"
-"PO-Revision-Date: 2005-12-31:08:59+0200\n"
+"POT-Creation-Date: 2006-01-06 14:31+0200\n"
+"PO-Revision-Date: 2005-01-06 14:35+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -202,7 +202,7 @@ msgstr ""
 "pelien pelaamisen."
 
 #: ../aisleriot/menu.c:130 ../blackjack/src/menu.cpp:150
-#: ../gataxx/gataxx.c:390 ../glines/glines.c:1222 ../gnect/src/main.c:795
+#: ../gataxx/gataxx.c:389 ../glines/glines.c:1222 ../gnect/src/main.c:795
 #: ../gnibbles/main.c:152 ../gnobots2/menu.c:241 ../gnometris/tetris.cpp:1448
 #: ../gnomine/gnomine.c:448 ../gnotravex/gnotravex.c:1590
 #: ../gnotski/gnotski.c:1543 ../gtali/gyahtzee.c:428 ../iagno/gnothello.c:270
@@ -377,7 +377,7 @@ msgid "No hint available right now"
 msgstr "Ei vinkkiä saatavilla"
 
 #: ../aisleriot/rules/athena.scm.h:3 ../aisleriot/rules/doublets.scm.h:1
-#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:3
+#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:4
 #: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
 #: ../aisleriot/rules/klondike.scm.h:3 ../aisleriot/rules/osmosis.scm.h:2
 #: ../aisleriot/rules/peek.scm.h:2 ../aisleriot/rules/plait.scm.h:10
@@ -673,6 +673,10 @@ msgstr "Jaa uudestaan kaksoisnapsauttamalla jotain korttia."
 msgid "No hint available."
 msgstr "Vinkkiä ei ole saatavilla."
 
+#: ../aisleriot/rules/gaps.scm.h:3
+msgid "Randomly Placed Gaps on Redeal"
+msgstr "Satunnaisesti sijoitetut väliä uudelleenjaossa."
+
 #: ../aisleriot/rules/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
 msgstr "Siirrä kortti reservistä tyhjään paikkaan pöydällä"
@@ -851,8 +855,8 @@ msgid ""
 "not have the game you last played. The default game, Klondike, is being "
 "started instead."
 msgstr ""
-"Tämä tapahtuu yleensä, kun suoritat aisleriotin vanhempaa versiota, joka "
-"ei tue viimeisimmän pelatun pelin tallennusta. Tämän takia käynnistetään "
+"Tämä tapahtuu yleensä, kun suoritat aisleriotin vanhempaa versiota, joka ei "
+"tue viimeisimmän pelatun pelin tallennusta. Tämän takia käynnistetään "
 "oletuspeli Klondike."
 
 #: ../aisleriot/sol.c:409
@@ -1992,15 +1996,15 @@ msgstr "Musta voitti!"
 msgid "The game was a draw."
 msgstr "Tasapeli."
 
-#: ../gataxx/gataxx.c:381
+#: ../gataxx/gataxx.c:380
 msgid "Based on code from Iagno by Ian Peters"
 msgstr "Perustuu Ian Petersin Iagno-koodiin"
 
-#: ../gataxx/gataxx.c:384 ../gataxx/gataxx.desktop.in.h:1
+#: ../gataxx/gataxx.c:383 ../gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "Ataxx"
 
-#: ../gataxx/gataxx.c:388
+#: ../gataxx/gataxx.c:387
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr "Levynkääntelypeli missä yritetään valloittaa pelilauta."
 
@@ -2030,31 +2034,40 @@ msgid "The height of the window"
 msgstr "Ikkunan korkeus"
 
 #: ../gataxx/gataxx.schemas.in.h:6
+msgid "The name of the theme to use."
+msgstr "Käytettävän teeman nimi."
+
+#: ../gataxx/gataxx.schemas.in.h:7
 msgid "The requested height of the main window in pixels."
 msgstr "Pyydetty pääikkunan korkeus kuvapisteinä."
 
-#: ../gataxx/gataxx.schemas.in.h:7
+#: ../gataxx/gataxx.schemas.in.h:8
 msgid "The requested width of the main window in pixels."
 msgstr "Pyydetty pääikkunan leveys kuvapisteinä."
 
-#: ../gataxx/gataxx.schemas.in.h:8 ../gnotravex/gnotravex.schemas.in.h:6
+#: ../gataxx/gataxx.schemas.in.h:9 ../gnotravex/gnotravex.schemas.in.h:6
 #: ../gnotski/gnotski.schemas.in.h:6 ../mahjongg/mahjongg.schemas.in.h:4
 msgid "The width of the window"
 msgstr "Ikkunan leveys"
 
-#: ../gataxx/gataxx.schemas.in.h:9
-msgid "Tileset"
-msgstr "Laatat"
-
-#: ../gataxx/gataxx.schemas.in.h:10
-msgid "Tileset to use."
-msgstr "Käytettävät laatat."
+#: ../gataxx/gataxx.schemas.in.h:10 ../gnometris/tetris.cpp:857
+#: ../gnometris/tetris.cpp:890 ../same-gnome/ui.c:288
+msgid "Theme"
+msgstr "Teema"
 
 #: ../gataxx/gataxx.schemas.in.h:11
+msgid "Tileset (obsolete)"
+msgstr "Laattajoukko (ei enää käytössä)."
+
+#: ../gataxx/gataxx.schemas.in.h:12
+msgid "Tileset to use (obsolete)."
+msgstr "Käytettävät laatat (ei enää käytössä)."
+
+#: ../gataxx/gataxx.schemas.in.h:13
 msgid "Whether or not to use quick moves."
 msgstr "Käytetäänkö pikasiirtoja?"
 
-#: ../gataxx/gataxx.schemas.in.h:12
+#: ../gataxx/gataxx.schemas.in.h:14
 msgid ""
 "Zero corresponds to no animations, one is partial animations, two is "
 "complete animations."
@@ -2062,98 +2075,106 @@ msgstr ""
 "Nolla vastaa ei animaatiota, yksi osittainen animointi, kaksi täydelliset "
 "animaatiot."
 
-#: ../gataxx/gataxx.schemas.in.h:13 ../gnect/data/gnect.schemas.in.h:19
+#: ../gataxx/gataxx.schemas.in.h:15 ../gnect/data/gnect.schemas.in.h:19
 msgid ""
 "Zero is human; one through three correspond to the level of the computer "
 "player."
 msgstr "Nolla on ihminen; yhdestä kolmeen vastaa tietokonepelaajan vaikeutta."
 
+#: ../gataxx/gtkgridboardthemes.c:166 ../gnometris/renderer.cpp:27
+msgid "Plain"
+msgstr "Paljas"
+
+#: ../gataxx/gtkgridboardthemes.c:168
+msgid "Squares and Diamonds"
+msgstr "Ruudut ja timantit"
+
 #. create window
-#: ../gataxx/properties.c:300
+#: ../gataxx/properties.c:297
 msgid "Ataxx Preferences"
 msgstr "Ataxxin asetukset"
 
 #. Players tab
-#: ../gataxx/properties.c:330 ../iagno/properties.c:498
+#: ../gataxx/properties.c:327 ../iagno/properties.c:498
 msgid "Players"
 msgstr "Pelaajat"
 
-#: ../gataxx/properties.c:342
+#: ../gataxx/properties.c:339
 msgid "_Quick moves"
 msgstr "_Nopeat siirrot"
 
-#: ../gataxx/properties.c:343
+#: ../gataxx/properties.c:340
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "Lyhentää tietokoneen odottamaa aikaa ennen seuraavaa siirtoa"
 
 #. Dark level select
-#: ../gataxx/properties.c:352 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:349 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:521
 msgid "Dark"
 msgstr "Musta"
 
-#: ../gataxx/properties.c:356 ../gataxx/properties.c:374
+#: ../gataxx/properties.c:353 ../gataxx/properties.c:371
 #: ../gnect/src/prefs.c:326 ../gtali/yahtzee.c:61 ../iagno/properties.c:526
 #: ../iagno/properties.c:572
 msgid "Human"
 msgstr "Ihminen"
 
-#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
+#: ../gataxx/properties.c:354 ../gataxx/properties.c:372
 msgid "Very easy"
 msgstr "Erittäin helppo"
 
-#: ../gataxx/properties.c:358
+#: ../gataxx/properties.c:355
 msgid "gataxx|Easy"
 msgstr "Helppo"
 
-#: ../gataxx/properties.c:359
+#: ../gataxx/properties.c:356
 msgid "gataxx|Medium"
 msgstr "Keskivaikea"
 
-#: ../gataxx/properties.c:360 ../gataxx/properties.c:378
+#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
 msgid "Hard"
 msgstr "Vaikea"
 
-#: ../gataxx/properties.c:361 ../gataxx/properties.c:379
+#: ../gataxx/properties.c:358 ../gataxx/properties.c:376
 msgid "Very hard"
 msgstr "Erittäin vaikea"
 
 #. Light level select
-#: ../gataxx/properties.c:370 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:367 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:567
 msgid "Light"
 msgstr "Kevyt"
 
-#: ../gataxx/properties.c:376
+#: ../gataxx/properties.c:373
 msgid "Easy"
 msgstr "Helppo"
 
-#: ../gataxx/properties.c:377
+#: ../gataxx/properties.c:374
 msgid "Medium"
 msgstr "Keskivaikea"
 
 #. Appearance tab
-#: ../gataxx/properties.c:388 ../gataxx/properties.c:391
+#: ../gataxx/properties.c:385 ../gataxx/properties.c:388
 #: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:535
 #: ../iagno/properties.c:616
 msgid "Appearance"
 msgstr "Ulkonäkö"
 
 #. animation button
-#: ../gataxx/properties.c:397
+#: ../gataxx/properties.c:394
 msgid "_Animation"
 msgstr "_Animaatio"
 
-#: ../gataxx/properties.c:401
+#: ../gataxx/properties.c:398
 msgid "Flip the pieces with some visual effects"
 msgstr "Käännä nappulat näkyvin erikoistehostein"
 
-#: ../gataxx/properties.c:406 ../iagno/properties.c:685
+#: ../gataxx/properties.c:403 ../iagno/properties.c:685
 #: ../mahjongg/mahjongg.c:747
 msgid "_Tile set:"
 msgstr "_Laattakuvio:"
 
-#: ../gataxx/properties.c:411
+#: ../gataxx/properties.c:408
 msgid "The appearance of the pieces"
 msgstr "Nappuloiden ulkonäkö"
 
@@ -3481,8 +3502,7 @@ msgstr "Tulisiko näyttää seuraavan palikan esikatselu."
 #: ../gnometris/gnometris.schemas.in.h:32
 msgid ""
 "Whether to provide a graphical representation of where a block will land."
-msgstr ""
-"Näytetäänkö palikan laskeutumispaikka pelissä graafisesti etukäteen."
+msgstr "Näytetäänkö palikan laskeutumispaikka pelissä graafisesti etukäteen."
 
 #: ../gnometris/gnometris.schemas.in.h:33
 msgid "Whether to provide a target"
@@ -3507,10 +3527,6 @@ msgstr "Aseta aloitustaso (1 tai suurempi)"
 #: ../gnometris/main.cpp:39
 msgid "LEVEL"
 msgstr "TASO"
-
-#: ../gnometris/renderer.cpp:27
-msgid "Plain"
-msgstr "Paljas"
 
 #: ../gnometris/renderer.cpp:28
 msgid "Joined"
@@ -3561,11 +3577,6 @@ msgstr "_Pyöritä palikoita vastapäivään"
 #: ../gnometris/tetris.cpp:845
 msgid "Show where the block will _land"
 msgstr "Näytä mihin palikka _laskeutuu"
-
-#: ../gnometris/tetris.cpp:857 ../gnometris/tetris.cpp:890
-#: ../same-gnome/ui.c:288
-msgid "Theme"
-msgstr "Teema"
 
 #: ../gnometris/tetris.cpp:893
 msgid "Block Style"
@@ -4649,8 +4660,8 @@ msgstr "Tila"
 
 #: ../libgames-support/games-network-dialog.c:141
 msgid "Select a nickname and connection method then click Connect."
-msgstr "Valitse lempinimi ja yhteysmenetelmä ja napsauta sitten "
-"\"Yhdistä\"-nappia."
+msgstr ""
+"Valitse lempinimi ja yhteysmenetelmä ja napsauta sitten \"Yhdistä\"-nappia."
 
 #. Now for the network connection options.
 #: ../libgames-support/games-network-dialog.c:145
@@ -5277,5 +5288,5 @@ msgstr ""
 "Pelin pelaaminen ei onnistu. Tarkista, että peli on asennettu "
 "asianmukaisesti ja yritä uudelleen."
 
-
-
+#~ msgid "Tileset"
+#~ msgstr "Laatat"
