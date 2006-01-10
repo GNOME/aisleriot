@@ -104,7 +104,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
     GamesScoresDialog *dialog = GET_NEW;
 
     dialog->_priv->scores = g_object_ref (scores);
-    dialog->_priv->style = games_scores_get_style (scores);
+    games_scores_dialog_set_style (dialog, games_scores_get_style (scores));
     dialog->_priv->preservehilight = FALSE;
 
     gtk_window_set_title (GTK_WINDOW (dialog), title);
@@ -385,8 +385,6 @@ class Games:Scores:Dialog from Gtk:Dialog {
     }
 
     gtk_tree_view_column_set_title (self->_priv->column, header);
-    games_scores_dialog_change_category (GTK_COMBO_BOX (self->_priv->combo), 
-					 self);
   }
 
   /**
