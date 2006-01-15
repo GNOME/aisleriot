@@ -54,6 +54,8 @@ typedef struct {
 GamesScore *games_score_new (void);
 GamesScore *games_score_dup (GamesScore *orig);
 gint games_score_compare (GamesScoreStyle style, GamesScore *a, GamesScore *b);
+gint games_score_compare_values (GamesScoreStyle style, GamesScoreValue a, 
+				 GamesScoreValue b);
 void games_score_destroy (GamesScore *score);
 
 G_END_DECLS

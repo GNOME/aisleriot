@@ -1,3 +1,19 @@
+2006-01-15  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores-dialog.gob: Allow the name to be set when a high
+	score has been set. This should qualify for fixing bug #315442.
+
+	* games-scores.h: 
+	* games-scores.c: Add games_scores_update_score as a hack to let
+	us set the name after the fact. i.e. out of the
+	games_scores_dialog. While it is a public interface, no one should
+	use it without very good reasons.
+
+	* games-score.c:
+	* games-score.h: Add games_score_compare_values to compare a pair
+	of GamesScoreValue types. games_score_compare is now implemented
+	in terms of it.
+
 2006-01-10  Callum McKenzie  <callum@spooky-possum.org>
 
 	* games-scores-dialog.gob: Make the code set the correct column

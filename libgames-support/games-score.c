@@ -64,27 +64,33 @@ void games_score_destroy (GamesScore *score)
   g_free (score);
 }
 
-gint games_score_compare (GamesScoreStyle style, GamesScore *a, GamesScore *b)
+gint games_score_compare_values (GamesScoreStyle style, GamesScoreValue a, 
+				 GamesScoreValue b)
 {
   switch (style) {
   case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
-    if (a->value.plain > b->value.plain) return +1;
-    if (a->value.plain < b->value.plain) return -1;
+    if (a.plain > b.plain) return +1;
+    if (a.plain < b.plain) return -1;
     return 0;
   case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
-    if (a->value.plain > b->value.plain) return -1;
-    if (a->value.plain < b->value.plain) return +1;
+    if (a.plain > b.plain) return -1;
+    if (a.plain < b.plain) return +1;
     return 0;
   case GAMES_SCORES_STYLE_TIME_DESCENDING:
-    if (a->value.time_double > b->value.time_double) return +1;
-    if (a->value.time_double < b->value.time_double) return -1;
+    if (a.time_double > b.time_double) return +1;
+    if (a.time_double < b.time_double) return -1;
     return 0;
   case GAMES_SCORES_STYLE_TIME_ASCENDING:
-    if (a->value.time_double > b->value.time_double) return -1;
-    if (a->value.time_double < b->value.time_double) return +1;
+    if (a.time_double > b.time_double) return -1;
+    if (a.time_double < b.time_double) return +1;
     return 0;
   default:
     g_warning ("Uknown score style in games_score_compare - treating as equal.");
     return 0;
   }
+}
+
+gint games_score_compare (GamesScoreStyle style, GamesScore *a, GamesScore *b)
+{
+  return games_score_compare_values (style, a->value, b->value);
 }

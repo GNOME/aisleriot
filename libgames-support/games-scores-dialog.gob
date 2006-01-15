@@ -70,7 +70,9 @@ class Games:Scores:Dialog from Gtk:Dialog {
   private GtkWidget *catbar;
   private GtkListStore *list;
   private GtkTreeView *treeview;
+  private GtkCellRenderer *namerenderer;
   private GtkTreeViewColumn *column;
+  private GtkTreeViewColumn *namecolumn;
   private GamesScores *scores destroywith g_object_unref;
   private GHashTable *categories destroywith g_hash_table_destroy;
   private GHashTable *catindices destroywith g_hash_table_destroy;
@@ -120,16 +122,42 @@ class Games:Scores:Dialog from Gtk:Dialog {
   }
 
   private
+  void name_edited (GtkCellRendererText *cell, gchar *path,
+		    gchar *new_text, GamesScoresDialog *self)
+  {
+    GtkTreeIter iter;
+
+    gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (self->_priv->list), 
+					 &iter, path);
+    gtk_list_store_set (self->_priv->list, &iter, 0, new_text, -1);
+
+    games_scores_update_score (self->_priv->scores, new_text);
+  }
+
+  /* We only edit the cell we set ourselves. */
+  private
+  void cursor_changed (GtkTreeView *treeview, GamesScoresDialog *self)
+  {
+    /* FIXME: Also emitted after an explicit set: must pick up on this. */
+    /*  g_object_set (self->_priv->namerenderer, "editable", FALSE, NULL); */
+  }    
+
+  private
   void set_hilight_private (Games:Scores:Dialog *self) {
     GtkTreePath *path;
     GtkTreeSelection *selection;
 
-    if (self->_priv->hilight == 0)
+    if (self->_priv->hilight == 0) {
+      g_object_set (self->_priv->namerenderer, "editable", FALSE, NULL);
       return;
+    }
 
+    g_object_set (self->_priv->namerenderer, "editable", TRUE, NULL);
     selection = gtk_tree_view_get_selection (self->_priv->treeview);
     path = gtk_tree_path_new_from_indices (self->_priv->hilight - 1, -1);
     gtk_tree_selection_select_path (selection, path);
+    gtk_tree_view_set_cursor (self->_priv->treeview, path, 
+			      self->_priv->namecolumn, TRUE);
     g_free (path);
   }
 
@@ -285,14 +313,19 @@ class Games:Scores:Dialog from Gtk:Dialog {
 
     listview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (self->_priv->list));
     self->_priv->treeview = GTK_TREE_VIEW (listview);
+    g_signal_connect (G_OBJECT (self->_priv->treeview), "cursor-changed", 
+		      G_CALLBACK (games_scores_dialog_cursor_changed), self);
 
-    renderer = gtk_cell_renderer_text_new ();
-    column = gtk_tree_view_column_new_with_attributes (_("Name"),
-						       renderer,
-						       "text", 0,
-						       NULL);
+    self->_priv->namerenderer = gtk_cell_renderer_text_new ();
+    g_signal_connect (self->_priv->namerenderer, "edited", 
+		      G_CALLBACK (games_scores_dialog_name_edited), self);
+
+    self->_priv->namecolumn = gtk_tree_view_column_new_with_attributes (_("Name"),
+									self->_priv->namerenderer,
+									"text", 0,
+									NULL);
     gtk_tree_view_append_column (GTK_TREE_VIEW (listview),
-				 GTK_TREE_VIEW_COLUMN (column));
+				 GTK_TREE_VIEW_COLUMN (self->_priv->namecolumn));
     renderer = gtk_cell_renderer_text_new ();
     /* Note that this assumes the default style is plain. */
     column = gtk_tree_view_column_new_with_attributes (_("Score"),

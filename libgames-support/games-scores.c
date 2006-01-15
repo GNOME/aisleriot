@@ -52,6 +52,7 @@ typedef struct _GamesScoresPrivate {
   gchar *basename;
   gboolean last_score_significant;
   gint last_score_position;
+  GamesScoreValue last_score_value;
   GamesScoreStyle style;
 } GamesScoresPrivate;
 
@@ -257,8 +258,68 @@ gint games_scores_add_score (GamesScores *self, GamesScoreValue score) {
   games_scores_backend_set_scores (cat->backend, scores_list);
   
   self->priv->last_score_significant = place > 0;
+  self->priv->last_score_position = place;
+  self->priv->last_score_value = score;
   
   return place;
+}
+
+/**
+ * games_scores_update_score:
+ * @self: A scores object.
+ * @new_name: The new name to use.
+ *
+ * By default add_score uses the current user name. This routine updates
+ * that name. There are a few wrinkles: the score may have moved since we
+ * got the original score. Use in normal code is discouraged, it is here 
+ * to be used by GamesScoresDialog.
+ *
+ **/
+void games_scores_update_score (GamesScores *self, gchar *new_name)
+{
+  GamesScoresCategoryPrivate *cat;
+  GList *s, *scores_list;
+  gint n, place;
+  gchar *old_name;
+  GamesScore *sc;
+  GamesScoreValue score;
+
+  place = self->priv->last_score_position;
+  score = self->priv->last_score_value;
+
+  if (place == 0)
+    return;
+
+  old_name = g_strdup (g_get_real_name ());
+
+  cat = games_scores_get_current (self);
+
+  scores_list = games_scores_backend_get_scores (cat->backend);
+
+  s = g_list_last (scores_list);
+  n = g_list_length (scores_list);
+
+  /* We hunt backwards down the list until we find the last entry with
+     a matching user and score. */
+  /* The check that we haven't gone back before place isn't just a
+     pointless optimisation. It also catches the case where our score
+     has been dropped from the high-score list in the meantime. */
+
+  while ((n >= place) && (s != NULL)) {
+    sc = (GamesScore *)(s->data);
+    if ((games_score_compare_values (self->priv->style, sc->value, score) == 0) &&
+	(g_utf8_collate (old_name, sc->name) == 0)) {
+      g_free (sc->name);
+      sc->name = g_strdup (new_name);
+    }
+
+    s = g_list_previous (s);
+    n--;
+  }
+
+  games_scores_backend_set_scores (cat->backend, scores_list);
+
+  g_free (old_name);
 }
 
 /**
@@ -346,7 +407,8 @@ games_scores_init (GamesScores *self) {
 					    GamesScoresPrivate);
   
   self->priv->last_score_significant = FALSE;
-  self->priv->last_score_position = -1; /* FIXME: = 0? */
+  self->priv->last_score_position = 0;
+  self->priv->last_score_value.plain = 0;
 }
 
 static void

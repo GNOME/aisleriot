@@ -43,22 +43,26 @@ struct _GamesScoresDialogPrivate {
 #line 72 "games-scores-dialog.gob"
 	GtkTreeView * treeview;
 #line 73 "games-scores-dialog.gob"
-	GtkTreeViewColumn * column;
+	GtkCellRenderer * namerenderer;
 #line 74 "games-scores-dialog.gob"
-	GamesScores * scores;
+	GtkTreeViewColumn * column;
 #line 75 "games-scores-dialog.gob"
-	GHashTable * categories;
+	GtkTreeViewColumn * namecolumn;
 #line 76 "games-scores-dialog.gob"
-	GHashTable * catindices;
+	GamesScores * scores;
 #line 77 "games-scores-dialog.gob"
-	gint catcounter;
+	GHashTable * categories;
 #line 78 "games-scores-dialog.gob"
-	gint hilight;
+	GHashTable * catindices;
 #line 79 "games-scores-dialog.gob"
+	gint catcounter;
+#line 80 "games-scores-dialog.gob"
+	gint hilight;
+#line 81 "games-scores-dialog.gob"
 	gboolean preservehilight;
-#line 82 "games-scores-dialog.gob"
+#line 84 "games-scores-dialog.gob"
 	gint style;
-#line 62 "games-scores-dialog-private.h"
+#line 66 "games-scores-dialog-private.h"
 };
 
 #ifdef __cplusplus
