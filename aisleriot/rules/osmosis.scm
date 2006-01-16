@@ -16,6 +16,7 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
+(define deal-three #f)
 
 (define (new-game)
   (initialize-playing-area)
@@ -40,15 +41,23 @@
   (add-extended-slot '() right)      ;Slot 7
   (add-carriage-return-slot)
   (add-normal-slot DECK)             ;Slot 8
-  (add-normal-slot '())              ;Slot 9
 
-  (deal-cards 8 '(0 2 4 6 0 2 4 6 0 2 4 6))
-  (deal-cards-face-up 8 '(0 2 4 6 1))
+  (if deal-three
+    (add-partially-extended-slot '() right 3)
+    (add-normal-slot '())             
+  )                                  ;Slot 9
+
+  (initial-deal)
 
   (give-status-message)
 
   (add-to-score! 1)
   (list 6 5))
+
+(define (initial-deal)
+  (deal-cards 8 '(0 2 4 6 0 2 4 6 0 2 4 6))
+  (deal-cards-face-up 8 '(0 2 4 6 1))
+)
 
 (define (give-status-message)
   (set-statusbar-message (string-append (get-stock-no-string)
@@ -56,12 +65,15 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
-		 (number->string (length (get-cards 8)))))
+  (format (_ "Stock left: ~a") (number->string (length (get-cards 8))))
+)
 
 (define (get-redeals-string)
-  (string-append (_"Redeals left:") " "
-		 (number->string (- 2 FLIP-COUNTER))))
+  (if deal-three
+    ""
+    (format (_ "Redeals left: ~a") (number->string (- 2 FLIP-COUNTER)))
+  )
+)
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -107,7 +119,7 @@
   
 (define (button-clicked slot-id)
   (and (= slot-id 8)
-       (flip-stock 8 9 2)))
+       (flip-stock 8 9 (if deal-three -1 2) (if deal-three 3 1))))
 
 (define (check-to-move orig-slot end-slot above-list top-card)
   (if (not (null? above-list))
@@ -183,9 +195,10 @@
 		(placeable? (get-top-card (car id-list)) 1))
 	   (get-valid-move (cdr id-list)))))
 
-(define (game-over)
+(define (game-continuable)
   (give-status-message)
-  (or (and (< FLIP-COUNTER 2)
+  (or (and (or deal-three
+               (< FLIP-COUNTER 2))
 	   (not (empty-slot? 9)))
       (not (empty-slot? 8))
       (get-valid-move '(0 2 4 6 9))))
@@ -198,14 +211,22 @@
 
 (define (get-hint)
   (or (get-valid-move '(0 2 4 6 9))
-      (list 0 (_"Deal a new card from the deck"))))
+      (if deal-three
+        (list 0 (_"Deal new cards from the deck"))
+        (list 0 (_"Deal a new card from the deck"))
+      )
+  )
+)
 
-(define (get-options) #f)
+(define (get-options)
+  (list (list (_"Three card deals") deal-three)))
 
-(define (apply-options options) #f)
+(define (apply-options options)
+  (set! deal-three (cadar options))
+)
 
 (define (timeout) #f)
 
 (set-features droppable-feature)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-continuable game-won get-hint get-options apply-options timeout droppable?)

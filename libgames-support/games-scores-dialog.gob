@@ -79,6 +79,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
   private gint catcounter;
   private gint hilight;
   private gboolean preservehilight;
+  private gulong cursor_handler_id;
 
   /* FIXME: This should be a property. */
   private gint style;
@@ -134,12 +135,11 @@ class Games:Scores:Dialog from Gtk:Dialog {
     games_scores_update_score (self->_priv->scores, new_text);
   }
 
-  /* We only edit the cell we set ourselves. */
+  /* Prevent editing of any cell but the ones we set. */
   private
   void cursor_changed (GtkTreeView *treeview, GamesScoresDialog *self)
   {
-    /* FIXME: Also emitted after an explicit set: must pick up on this. */
-    /*  g_object_set (self->_priv->namerenderer, "editable", FALSE, NULL); */
+    g_object_set (self->_priv->namerenderer, "editable", FALSE, NULL);
   }    
 
   private
@@ -151,13 +151,19 @@ class Games:Scores:Dialog from Gtk:Dialog {
       g_object_set (self->_priv->namerenderer, "editable", FALSE, NULL);
       return;
     }
-
+    
+    /* Temporarily disable the code that prevents editing when the
+     * cursor changes position. */
+    g_signal_handler_block (self->_priv->treeview, 
+			    self->_priv->cursor_handler_id);
     g_object_set (self->_priv->namerenderer, "editable", TRUE, NULL);
     selection = gtk_tree_view_get_selection (self->_priv->treeview);
     path = gtk_tree_path_new_from_indices (self->_priv->hilight - 1, -1);
     gtk_tree_selection_select_path (selection, path);
     gtk_tree_view_set_cursor (self->_priv->treeview, path, 
 			      self->_priv->namecolumn, TRUE);
+    g_signal_handler_unblock (self->_priv->treeview, 
+			      self->_priv->cursor_handler_id);
     g_free (path);
   }
 
@@ -313,9 +319,11 @@ class Games:Scores:Dialog from Gtk:Dialog {
 
     listview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (self->_priv->list));
     self->_priv->treeview = GTK_TREE_VIEW (listview);
-    g_signal_connect (G_OBJECT (self->_priv->treeview), "cursor-changed", 
-		      G_CALLBACK (games_scores_dialog_cursor_changed), self);
-
+    self->_priv->cursor_handler_id = 
+      g_signal_connect (G_OBJECT (self->_priv->treeview), 
+			"cursor-changed", 
+			G_CALLBACK (games_scores_dialog_cursor_changed), self);
+    
     self->_priv->namerenderer = gtk_cell_renderer_text_new ();
     g_signal_connect (self->_priv->namerenderer, "edited", 
 		      G_CALLBACK (games_scores_dialog_name_edited), self);
