@@ -16,14 +16,28 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
+(define extend-waste #t)
+
+(define stock 0)
+(define waste 1)
+(define tableau '(2 3 4 5 6 7 8))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
   (make-standard-deck)
   (shuffle-deck)
 
+  ;; Stock
   (add-normal-slot DECK)
-  (add-normal-slot '())
+
+  ;; Waste
+  (if extend-waste
+      ;; extended slot looks best but gets too big,
+      ;; use part extended slot instead
+      (add-partially-extended-slot '() right 26)
+      ;; normal waste, only last card is shown
+      (add-normal-slot '()))
 
   (add-carriage-return-slot)
 
@@ -35,8 +49,12 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
 
-  (deal-cards-face-up 0 '(2 3 4 5 6 7 8 2 3 4 5 6 7 8 2 3 4 5 6 7 8 2
-			    3 4 5 6 7 8 2 3 4 5 6 7 8 ))
+  ;; deal five full rows to the tableau
+  (deal-cards-face-up stock tableau)
+  (deal-cards-face-up stock tableau)
+  (deal-cards-face-up stock tableau)
+  (deal-cards-face-up stock tableau)
+  (deal-cards-face-up stock tableau)
 
   (give-status-message)
 
@@ -46,22 +64,22 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
-		 (number->string (length (get-cards 0)))))
+  (format (_"Stock left: ~a") (number->string (length (get-cards stock)))))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
-       (> slot-id 1)
+       (> slot-id waste)
        (= (length card-list) 1)))
 
 (define (droppable? start-slot card-list end-slot)
-  (and (= end-slot 1)
-       (not (empty-slot? 1))
-       (not (= (get-value (get-top-card 1)) king))
-       (or (= (get-value (car card-list))
-	      (+ 1 (get-value (get-top-card 1))))
-	   (= (+ 1 (get-value (car card-list)))
-	      (get-value (get-top-card 1))))))
+  (and (= end-slot waste)
+       (not (empty-slot? waste))
+       (let ((waste-value (get-value (get-top-card waste)))) 
+	 (and (not (= waste-value king))
+	      (or (= (get-value (car card-list))
+		     (+ 1 waste-value))
+		  (= (+ 1 (get-value (car card-list)))
+		     waste-value))))))
 
 (define (button-released start-slot card-list end-slot)
   (and (droppable? start-slot card-list end-slot)
@@ -69,20 +87,20 @@
        (add-to-score! 1)))
 
 (define (button-clicked slot-id)
-  (or (and (= slot-id 0)
+  (or (and (= slot-id stock)
 	   (not (empty-slot? slot-id))
-	   (deal-cards-face-up 0 '(1)))
-      (and (> slot-id 1)
+	   (deal-cards-face-up stock (list waste)))
+      (and (> slot-id waste)
 	   (not (empty-slot? slot-id))
-	   (not (empty-slot? 1))
-	   (not (= (get-value (get-top-card 1))
-		   king))
-	   (or (= (get-value (get-top-card slot-id))
-		  (+ 1 (get-value (get-top-card 1))))
-	       (= (+ 1 (get-value (get-top-card slot-id)))
-		  (get-value (get-top-card 1))))
-	   (deal-cards slot-id '(1))
-	   (add-to-score! 1))))
+	   (not (empty-slot? waste))
+	   (let ((waste-value (get-value (get-top-card waste)))) 
+	     (and (not (= waste-value king))
+		  (or (= (get-value (get-top-card slot-id))
+			 (+ 1 waste-value))
+		      (= (+ 1 (get-value (get-top-card slot-id)))
+			 waste-value))
+		  (deal-cards slot-id (list waste))
+		  (add-to-score! 1))))))
 
 (define (button-double-clicked slot-id)
   (button-clicked slot-id))
@@ -102,24 +120,26 @@
        (empty-slot? 8)))
 
 (define (check-slots slot)
-  (cond ((or (empty-slot? 1)
-	     (= (get-value (get-top-card 1)) king)
-	     (= slot 9))
-	 #f)
-	((and (not (empty-slot? slot))
-	      (or (= (get-value (get-top-card slot))
-		     (+ 1 (get-value (get-top-card 1))))
-		  (= (+ 1 (get-value (get-top-card slot)))
-		     (get-value (get-top-card 1)))))
-	 (list 1 (get-name (get-top-card slot)) (get-name (get-top-card 1))))
-	(#t (check-slots (+ 1 slot)))))
+    (cond ((or (empty-slot? waste)
+	       (= (get-value (get-top-card waste)) king)
+	       (= slot 9))
+	   #f)
+	  ((let ((waste-value (get-value (get-top-card waste)))) 
+	     (and (not (empty-slot? slot))
+		  (or (= (get-value (get-top-card slot))
+			 (+ 1 waste-value))
+		      (= (+ 1 (get-value (get-top-card slot)))
+			 waste-value))))
+	     (list 1 (get-name (get-top-card slot)) 
+		   (get-name (get-top-card waste))))
+	    (#t (check-slots (+ 1 slot)))))
 
 (define (dealable?)
-  (and (not (empty-slot? 0))
+  (and (not (empty-slot? stock))
        (list 0 (_"Deal another card"))))
 
 (define (get-hint)
-  (or (check-slots 2)
+  (or (check-slots (car tableau))
       (dealable?)))
 
 (define (get-options) 
