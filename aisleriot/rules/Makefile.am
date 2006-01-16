@@ -6,6 +6,7 @@ rules_DATA  = 			\
 	agnes.scm		\
 	athena.scm		\
 	auld_lang_syne.scm	\
+	aunt_mary.scm		\
 	backbone.scm		\
 	bakers_dozen.scm	\
 	bakers_game.scm		\

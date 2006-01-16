@@ -7,6 +7,7 @@
 gchar *s = N_("Agnes")
 gchar *s = N_("Athena")
 gchar *s = N_("Auld Lang Syne")
+gchar *s = N_("Aunt Mary")
 gchar *s = N_("Backbone")
 gchar *s = N_("Bakers Dozen")
 gchar *s = N_("Bakers Game")
