@@ -478,6 +478,8 @@ static void main_prog(void *closure, int argc, char *argv[])
 
   gtk_main ();
 
+  gnome_accelerators_sync ();
+
   free_pixmaps();
   g_object_unref (surface);
 }
