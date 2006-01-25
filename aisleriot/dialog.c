@@ -42,8 +42,8 @@ void show_game_over_dialog() {
   gchar* message;
 
   if (game_won)
-    message = g_strdup_printf ("<b>%s\n\n%s</b>", _("Congratulations."),
-                                _("You have won!!!"));
+    message = g_strdup_printf ("<b>%s\n\n%s</b>", _("Congratulations!!!"),
+                                _("You have won."));
   else
     message = g_strdup_printf ("<b>%s</b>", _("There are no more moves."));
 
