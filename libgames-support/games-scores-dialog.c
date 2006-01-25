@@ -406,12 +406,12 @@ games_scores_dialog_set_hilight_private (GamesScoresDialog * self)
      * cursor changes position. */
     g_signal_handler_block (self->_priv->treeview, 
 			    self->_priv->cursor_handler_id); 
+    g_object_set (self->_priv->namerenderer, "editable", TRUE, NULL);
     selection = gtk_tree_view_get_selection (self->_priv->treeview);
     path = gtk_tree_path_new_from_indices (self->_priv->hilight - 1, -1);
     gtk_tree_selection_select_path (selection, path);
     gtk_tree_view_set_cursor (self->_priv->treeview, path, 
 			      self->_priv->namecolumn, TRUE);
-    g_object_set (self->_priv->namerenderer, "editable", TRUE, NULL);
     g_signal_handler_unblock (self->_priv->treeview, 
 			      self->_priv->cursor_handler_id); 
     g_free (path);

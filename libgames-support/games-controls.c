@@ -358,7 +358,6 @@ games_controls_list_add_control (GamesControlsList *list,
                                  const gchar *gconf_key)
 {
 	GConfClient *client;
-	GConfEngine *engine;
 	GConfEntry *entry;
 	GConfSchema *schema;
 	const gchar *label, *keyname;
@@ -373,20 +372,7 @@ games_controls_list_add_control (GamesControlsList *list,
 
 	client = gconf_client_get_default ();
 
-	/* We have to go to the root to make sure we can get
-	 * the schemas. */
-	engine = gconf_engine_get_for_address (GCONF_SCHEMA_CONFIG_SOURCE, NULL);
-	if (engine == NULL) {
-	        g_object_unref (client);
-		return;
-	}
-
-	entry = gconf_engine_get_entry (engine, gconf_key, NULL, TRUE, NULL);
-	if (entry == NULL) {
-	        g_object_unref (client);
-		return;
-	}
-
+	entry = gconf_client_get_entry (client, gconf_key, NULL, TRUE, NULL);
 	schemaname = gconf_entry_get_schema_name (entry);
 	schema = gconf_client_get_schema (client,
 	                                  schemaname,
@@ -426,7 +412,6 @@ games_controls_list_add_control (GamesControlsList *list,
 
 	list->notify_list = g_slist_prepend (list->notify_list, GINT_TO_POINTER (cid));
 
-	gconf_engine_unref (engine);
 	g_object_unref (G_OBJECT (client));
 }
 
