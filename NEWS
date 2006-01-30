@@ -1,3 +1,50 @@
+gnome-games 2.13.6
+==================
+
+This is the first beta release of gnome-games in anticipation of the
+2.14 release. For this release we are firmly in bug-fixing and
+polishing mode.
+
+The most noticeable change will be the new documentation for Mines. It
+is still is a half-complete state, but I am taking an approach that 
+should make it a lot more useful than our old state-the-obvious style that
+has plagued GNOME for so long. Criticism of the style and approach
+is very welcome.
+
+Aside from that most of the changes are trivial.
+
+General:
+ - Corrections to all the desktop file category entries.
+ - User-defined accelerators are now saved.
+ - Change the code for saving user-customisable controls to be more
+   robust. Anyone who was loosing their custom key settings should
+   get them back now.
+
+Aisleriot:
+ - Shuffled exclamation marks in the game-won dialog to be slightly more 
+   sane.
+ - Fixed the sect2 tags so that section headings appear again and the 
+   docs make a bit more sense.
+ - The Aunt Mary documentation now appears correctly in the English docs.
+
+Mines:
+ - Complete rewrite of the documentation in what is hopefully a more
+   informative style.
+ - Fix a crash on some 64-bit machines when custom sizes are chosen.
+ - Removed a spurious warning when the mouse is moved out of the playing
+   area with the button down.
+
+Robots:
+ - Certain end-of-game situations with safe-moves on could lead to a game
+   that had to be aborted and with no chance of saving the score. This
+   is theoretically fixed now. Testing is needed.
+ - New SVG icon from Nicu Buculei.
+
+Tali:
+ - Restored the "blank die" image on selected die because the toolbar
+   selection is hard to discern in some themes. The toolbar hilighting
+   is still used.
+
 gnome-games 2.13.5
 ==================
 
