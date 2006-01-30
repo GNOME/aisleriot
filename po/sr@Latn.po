@@ -1,18 +1,18 @@
 # Serbian translation of gnome-games
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005, 2006.
 #
 # This file is distributed under the same license as the gnome-games package.
 #
 # Maintainer: Dušan Marjanović <madafaka@bsd.org.yu>
-# Igor Nestorović <igor@prevod.org>, 2005
+# Reviewed on 2005-08-03 by: Igor Nestorović <igor@prevod.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-26 13:44+0200\n"
-"PO-Revision-Date: 2005-08-03 21:29+0200\n"
-"Last-Translator: Igor Nestorović <igor@prevod.org>\n"
+"POT-Creation-Date: 2006-01-30 23:28+0100\n"
+"PO-Revision-Date: 2006-01-30 23:59+0100\n"
+"Last-Translator: Slobodan D. Sredojević <slobo@akrep.be>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,6 +51,7 @@ msgid "The game file to use"
 msgstr "Datoteka igre koja će se koristiti"
 
 #: ../aisleriot/aisleriot.schemas.in.h:6 ../glines/glines.schemas.in.h:13
+#: ../gnometris/gnometris.schemas.in.h:21
 #: ../same-gnome/same-gnome.schemas.in.h:6
 msgid "The height of the main window."
 msgstr "Visina glavnog prozora."
@@ -65,6 +66,7 @@ msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "Ime datoteke koja sadrži opis vrste pasijansa koji će se igrati."
 
 #: ../aisleriot/aisleriot.schemas.in.h:9 ../glines/glines.schemas.in.h:14
+#: ../gnometris/gnometris.schemas.in.h:26
 #: ../same-gnome/same-gnome.schemas.in.h:10
 msgid "The width of the main window."
 msgstr "Širina glavnog prozora."
@@ -85,14 +87,16 @@ msgid "Whether or not to show the toolbar."
 msgstr "Da li prikazivati paletu alata."
 
 #: ../aisleriot/aisleriot.schemas.in.h:13 ../glines/glines.schemas.in.h:17
+#: ../gnometris/gnometris.schemas.in.h:37
 msgid "Window height"
 msgstr "Visina prozora"
 
 #: ../aisleriot/aisleriot.schemas.in.h:14 ../glines/glines.schemas.in.h:18
+#: ../gnometris/gnometris.schemas.in.h:38
 msgid "Window width"
 msgstr "Širina prozora"
 
-#: ../aisleriot/cscmi.c:504
+#: ../aisleriot/cscmi.c:520
 #, c-format
 msgid ""
 "A scheme exception occured and we were unable to create a temporary file to "
@@ -106,12 +110,12 @@ msgstr ""
 "%s"
 
 #: ../aisleriot/dialog.c:45
-msgid "Congratulations."
-msgstr "Čestitamo."
+msgid "Congratulations!!!"
+msgstr "Čestitamo!!!"
 
 #: ../aisleriot/dialog.c:46
-msgid "You have won!!!"
-msgstr "Pobedio si!!!"
+msgid "You have won."
+msgstr "Pobedio si."
 
 #: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:640
 msgid "There are no more moves."
@@ -180,20 +184,19 @@ msgstr "Igra Oslobađanja polja"
 msgid "Play the popular FreeCell card game"
 msgstr "Igraj popularnu kartašku igru Oslobađanja polja."
 
-#: ../aisleriot/menu.c:88 ../gnome-stones/main.c:1018 ../gnomine/gnomine.c:425
-#: ../mahjongg/mahjongg.c:904
+#: ../aisleriot/menu.c:106 ../gnomine/gnomine.c:416 ../mahjongg/mahjongg.c:905
 msgid "Main game:"
 msgstr "Glavna igra:"
 
-#: ../aisleriot/menu.c:94
+#: ../aisleriot/menu.c:112
 msgid "Card games:"
 msgstr "Igre kartama:"
 
-#: ../aisleriot/menu.c:106
+#: ../aisleriot/menu.c:124
 msgid "AisleRiot"
 msgstr "Pasijans"
 
-#: ../aisleriot/menu.c:108
+#: ../aisleriot/menu.c:126
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -201,88 +204,81 @@ msgstr ""
 "Pasijans je sistem koji omoguđava igranje veliki broj različitih pasijans "
 "igara."
 
-#: ../aisleriot/menu.c:112 ../blackjack/src/menu.cpp:150
-#: ../gataxx/gataxx.c:390 ../glines/glines.c:1217 ../gnect/src/main.c:795
-#: ../gnibbles/main.c:152 ../gnobots2/menu.c:241 ../gnome-stones/main.c:1032
-#: ../gnometris/tetris.cpp:1461 ../gnomine/gnomine.c:448
-#: ../gnotravex/gnotravex.c:1590 ../gnotski/gnotski.c:1543
-#: ../gtali/gyahtzee.c:428 ../iagno/gnothello.c:270 ../mahjongg/mahjongg.c:931
-#: ../same-gnome/ui.c:112
+#: ../aisleriot/menu.c:130 ../blackjack/src/menu.cpp:150
+#: ../gataxx/gataxx.c:389 ../glines/glines.c:1224 ../gnect/src/main.c:795
+#: ../gnibbles/main.c:152 ../gnobots2/menu.c:241 ../gnometris/tetris.cpp:1448
+#: ../gnomine/gnomine.c:439 ../gnotravex/gnotravex.c:1592
+#: ../gnotski/gnotski.c:1545 ../gtali/gyahtzee.c:443 ../iagno/gnothello.c:250
+#: ../mahjongg/mahjongg.c:932 ../same-gnome/ui.c:112
 msgid "translator-credits"
-msgstr "Dušan Marjanović <madafaka@root.co.yu>"
+msgstr ""
+"Dušan Marjanović <madafaka@root.co.yu>\n"
+"\n"
+"http://prevod.org — prevod na srpski jezik"
 
-#: ../aisleriot/menu.c:201 ../blackjack/src/blackjack.cpp:298
-#: ../glines/glines.c:1705 ../gnect/src/main.c:1131 ../gnibbles/main.c:600
-#: ../gnobots2/menu.c:57 ../gnome-stones/main.c:1050
-#: ../gnometris/tetris.cpp:130 ../gnomine/gnomine.c:750
+#: ../aisleriot/menu.c:219 ../blackjack/src/blackjack.cpp:298
+#: ../glines/glines.c:1712 ../gnect/src/main.c:1131 ../gnibbles/main.c:600
+#: ../gnobots2/menu.c:57 ../gnometris/tetris.cpp:131 ../gnomine/gnomine.c:745
 #: ../gnotravex/gnotravex.c:175 ../gnotski/gnotski.c:630
-#: ../gtali/gyahtzee.c:501 ../mahjongg/mahjongg.c:1274 ../same-gnome/ui.c:417
+#: ../gtali/gyahtzee.c:516 ../mahjongg/mahjongg.c:1275 ../same-gnome/ui.c:417
 msgid "_Game"
 msgstr "_Igra"
 
-#: ../aisleriot/menu.c:202 ../same-gnome/ui.c:418
+#: ../aisleriot/menu.c:220 ../same-gnome/ui.c:418
 msgid "_View"
 msgstr "P_regled"
 
-#: ../aisleriot/menu.c:203 ../blackjack/src/blackjack.cpp:305
+#: ../aisleriot/menu.c:221 ../blackjack/src/blackjack.cpp:305
 msgid "_Control"
 msgstr "Upr_avljanje"
 
 #. not translated on purpose
-#: ../aisleriot/menu.c:205 ../blackjack/src/blackjack.cpp:312
-#: ../glines/glines.c:1707 ../gnect/src/main.c:1133 ../gnibbles/main.c:602
-#: ../gnobots2/menu.c:60 ../gnome-stones/main.c:1052
-#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:752
+#: ../aisleriot/menu.c:223 ../blackjack/src/blackjack.cpp:312
+#: ../glines/glines.c:1714 ../gnect/src/main.c:1133 ../gnibbles/main.c:602
+#: ../gnobots2/menu.c:60 ../gnometris/tetris.cpp:133 ../gnomine/gnomine.c:747
 #: ../gnotravex/gnotravex.c:178 ../gnotski/gnotski.c:631
-#: ../gtali/gyahtzee.c:503 ../mahjongg/mahjongg.c:1276 ../same-gnome/ui.c:420
+#: ../gtali/gyahtzee.c:518 ../mahjongg/mahjongg.c:1277 ../same-gnome/ui.c:420
 msgid "_Help"
 msgstr "_Pomoć"
 
-#: ../aisleriot/menu.c:209
+#: ../aisleriot/menu.c:227
 msgid "_Select Game..."
 msgstr "_Izaberi igru..."
 
-#: ../aisleriot/menu.c:209
+#: ../aisleriot/menu.c:227
 msgid "Play a different game"
 msgstr "Igraj drugu igru"
 
-#: ../aisleriot/menu.c:210
+#: ../aisleriot/menu.c:228
 msgid "S_tatistics"
 msgstr "S_tatistike"
 
-#: ../aisleriot/menu.c:210
+#: ../aisleriot/menu.c:228
 msgid "Show gameplay statistics"
 msgstr "Prikaži statistike toka igre"
 
-#: ../aisleriot/menu.c:214
+#: ../aisleriot/menu.c:232
 msgid "_Cards..."
 msgstr "_Karte..."
 
-#: ../aisleriot/menu.c:219
+#: ../aisleriot/menu.c:237
 msgid "View help for Aisleriot"
 msgstr "Prikaži pomoć za pasijans"
 
-#: ../aisleriot/menu.c:220 ../libgames-support/games-stock.c:110
+#: ../aisleriot/menu.c:238 ../libgames-support/games-stock.c:110
 msgid "View help for this game"
 msgstr "Prikaži pomoć za ovu igru"
 
-#: ../aisleriot/menu.c:225 ../blackjack/src/blackjack.cpp:318
-#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1292
+#: ../aisleriot/menu.c:243 ../blackjack/src/blackjack.cpp:318
+#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1293
 msgid "_Toolbar"
 msgstr "_Paleta alata"
 
-#: ../aisleriot/menu.c:226
+#: ../aisleriot/menu.c:244
 msgid "_Click to Move"
 msgstr "_Kliknite za potez"
 
-#: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/canfield.scm.h:1
-#: ../aisleriot/rules/chessboard.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:1
-#: ../aisleriot/rules/glenwood.scm.h:1 ../aisleriot/rules/kansas.scm.h:1
-#: ../aisleriot/rules/plait.scm.h:1
-msgid "Base Card: "
-msgstr "Osnovna karta: "
-
-#: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/canfield.scm.h:2
+#: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/canfield.scm.h:2
 #: ../aisleriot/rules/chessboard.scm.h:2 ../aisleriot/rules/eagle_wing.scm.h:2
 #: ../aisleriot/rules/glenwood.scm.h:2 ../aisleriot/rules/kansas.scm.h:2
 #: ../aisleriot/rules/lady_jane.scm.h:2 ../aisleriot/rules/plait.scm.h:2
@@ -290,7 +286,7 @@ msgstr "Osnovna karta: "
 msgid "Base Card: Ace"
 msgstr "Osnovna karta: Kec"
 
-#: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/canfield.scm.h:3
+#: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/canfield.scm.h:3
 #: ../aisleriot/rules/chessboard.scm.h:3 ../aisleriot/rules/eagle_wing.scm.h:3
 #: ../aisleriot/rules/glenwood.scm.h:3 ../aisleriot/rules/kansas.scm.h:3
 #: ../aisleriot/rules/lady_jane.scm.h:3 ../aisleriot/rules/plait.scm.h:3
@@ -298,7 +294,7 @@ msgstr "Osnovna karta: Kec"
 msgid "Base Card: Jack"
 msgstr "Osnovna karta: Žandarm"
 
-#: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/canfield.scm.h:4
+#: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/canfield.scm.h:4
 #: ../aisleriot/rules/chessboard.scm.h:4 ../aisleriot/rules/eagle_wing.scm.h:4
 #: ../aisleriot/rules/glenwood.scm.h:4 ../aisleriot/rules/kansas.scm.h:4
 #: ../aisleriot/rules/lady_jane.scm.h:4 ../aisleriot/rules/plait.scm.h:4
@@ -306,7 +302,7 @@ msgstr "Osnovna karta: Žandarm"
 msgid "Base Card: King"
 msgstr "Osnovna karta: Kralj"
 
-#: ../aisleriot/rules/agnes.scm.h:5 ../aisleriot/rules/canfield.scm.h:5
+#: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/canfield.scm.h:5
 #: ../aisleriot/rules/chessboard.scm.h:5 ../aisleriot/rules/eagle_wing.scm.h:5
 #: ../aisleriot/rules/glenwood.scm.h:5 ../aisleriot/rules/kansas.scm.h:5
 #: ../aisleriot/rules/lady_jane.scm.h:5 ../aisleriot/rules/plait.scm.h:5
@@ -314,41 +310,40 @@ msgstr "Osnovna karta: Kralj"
 msgid "Base Card: Queen"
 msgstr "Osnovna karta: Kraljica"
 
+#bug(slobo): ovo proveri šta je
+#: ../aisleriot/rules/agnes.scm.h:5
+msgid "Base Card: ~a"
+msgstr "Osnovna karta: ~a"
+
 #: ../aisleriot/rules/agnes.scm.h:6 ../aisleriot/rules/easthaven.scm.h:1
 #: ../aisleriot/rules/labyrinth.scm.h:1 ../aisleriot/rules/monte_carlo.scm.h:1
-#: ../aisleriot/rules/spiderette.scm.h:1 ../aisleriot/rules/valentine.scm.h:1
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:1
+#: ../aisleriot/rules/valentine.scm.h:1
 msgid "Deal more cards"
 msgstr "Podeli još karata"
 
-#: ../aisleriot/rules/agnes.scm.h:7 ../aisleriot/rules/auld_lang_syne.scm.h:2
+#: ../aisleriot/rules/agnes.scm.h:7 ../aisleriot/rules/athena.scm.h:4
+#: ../aisleriot/rules/auld_lang_syne.scm.h:2
 #: ../aisleriot/rules/block_ten.scm.h:1 ../aisleriot/rules/bristol.scm.h:2
 #: ../aisleriot/rules/camelot.scm.h:2 ../aisleriot/rules/canfield.scm.h:9
 #: ../aisleriot/rules/cover.scm.h:1 ../aisleriot/rules/doublets.scm.h:2
 #: ../aisleriot/rules/eagle_wing.scm.h:11 ../aisleriot/rules/easthaven.scm.h:4
 #: ../aisleriot/rules/elevator.scm.h:2 ../aisleriot/rules/escalator.scm.h:2
 #: ../aisleriot/rules/first_law.scm.h:17 ../aisleriot/rules/fortunes.scm.h:4
-#: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/golf.scm.h:2
-#: ../aisleriot/rules/gypsy.scm.h:3 ../aisleriot/rules/helsinki.scm.h:1
-#: ../aisleriot/rules/hopscotch.scm.h:3 ../aisleriot/rules/jamestown.scm.h:1
-#: ../aisleriot/rules/jumbo.scm.h:4 ../aisleriot/rules/kansas.scm.h:8
-#: ../aisleriot/rules/klondike.scm.h:4 ../aisleriot/rules/labyrinth.scm.h:2
-#: ../aisleriot/rules/lady_jane.scm.h:7 ../aisleriot/rules/monte_carlo.scm.h:2
-#: ../aisleriot/rules/neighbor.scm.h:1 ../aisleriot/rules/osmosis.scm.h:3
-#: ../aisleriot/rules/peek.scm.h:3 ../aisleriot/rules/plait.scm.h:11
-#: ../aisleriot/rules/quatorze.scm.h:1 ../aisleriot/rules/royal_east.scm.h:7
+#: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/gypsy.scm.h:3
+#: ../aisleriot/rules/helsinki.scm.h:1 ../aisleriot/rules/hopscotch.scm.h:3
+#: ../aisleriot/rules/jamestown.scm.h:1 ../aisleriot/rules/jumbo.scm.h:4
+#: ../aisleriot/rules/kansas.scm.h:8 ../aisleriot/rules/klondike.scm.h:4
+#: ../aisleriot/rules/labyrinth.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:7
+#: ../aisleriot/rules/monte_carlo.scm.h:2 ../aisleriot/rules/neighbor.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:11 ../aisleriot/rules/quatorze.scm.h:1
+#: ../aisleriot/rules/royal_east.scm.h:7 ../aisleriot/rules/saratoga.scm.h:4
 #: ../aisleriot/rules/scuffle.scm.h:4 ../aisleriot/rules/sir_tommy.scm.h:3
-#: ../aisleriot/rules/spider.scm.h:4
-#: ../aisleriot/rules/spider_one_suit.scm.h:4
-#: ../aisleriot/rules/spider_two_suit.scm.h:4
-#: ../aisleriot/rules/spiderette.scm.h:3
 #: ../aisleriot/rules/straight_up.scm.h:5 ../aisleriot/rules/thieves.scm.h:2
-#: ../aisleriot/rules/thirteen.scm.h:2
+#: ../aisleriot/rules/thirteen.scm.h:3
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:2 ../aisleriot/rules/union_square.scm.h:2
 #: ../aisleriot/rules/westhaven.scm.h:2 ../aisleriot/rules/whitehead.scm.h:3
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:3 ../aisleriot/rules/yield.scm.h:2
-#: ../aisleriot/rules/zebra.scm.h:4
+#: ../aisleriot/rules/yield.scm.h:2 ../aisleriot/rules/zebra.scm.h:4
 msgid "Stock left:"
 msgstr "Preostalo na gomili: "
 
@@ -370,15 +365,60 @@ msgstr "Probajte da prerasporedite karte"
 msgid "an empty foundation pile"
 msgstr "prazna gomila na `temelju`"
 
+#: ../aisleriot/rules/athena.scm.h:1 ../aisleriot/rules/camelot.scm.h:1
+#: ../aisleriot/rules/canfield.scm.h:6 ../aisleriot/rules/glenwood.scm.h:6
+#: ../aisleriot/rules/klondike.scm.h:1 ../aisleriot/rules/osmosis.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:6 ../aisleriot/rules/saratoga.scm.h:1
+#: ../aisleriot/rules/straight_up.scm.h:1
+msgid "Deal a new card from the deck"
+msgstr "Podeli novu kartu sa talona"
+
+#: ../aisleriot/rules/athena.scm.h:2 ../aisleriot/rules/easthaven.scm.h:3
+#: ../aisleriot/rules/freecell.scm.h:1 ../aisleriot/rules/klondike.scm.h:2
+#: ../aisleriot/rules/saratoga.scm.h:2
+msgid "No hint available right now"
+msgstr "Trenutno nema saveta"
+
+#: ../aisleriot/rules/athena.scm.h:3 ../aisleriot/rules/doublets.scm.h:1
+#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:4
+#: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
+#: ../aisleriot/rules/klondike.scm.h:3 ../aisleriot/rules/plait.scm.h:10
+#: ../aisleriot/rules/saratoga.scm.h:3 ../aisleriot/rules/scuffle.scm.h:2
+#: ../aisleriot/rules/straight_up.scm.h:3
+#: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
+msgid "Redeals left:"
+msgstr "Broj preostalih deljenja: "
+
+#: ../aisleriot/rules/athena.scm.h:5 ../aisleriot/rules/klondike.scm.h:5
+#: ../aisleriot/rules/osmosis.scm.h:3 ../aisleriot/rules/saratoga.scm.h:5
+msgid "Three card deals"
+msgstr "Deljenje po tri karte"
+
+#: ../aisleriot/rules/athena.scm.h:6 ../aisleriot/rules/klondike.scm.h:6
+#: ../aisleriot/rules/saratoga.scm.h:6
+msgid "Try moving cards down from the foundation"
+msgstr "Pokušajte da pomerite karte sa `temelja`"
+
+#: ../aisleriot/rules/athena.scm.h:7 ../aisleriot/rules/camelot.scm.h:7
+#: ../aisleriot/rules/diamond_mine.scm.h:1 ../aisleriot/rules/klondike.scm.h:7
+#: ../aisleriot/rules/odessa.scm.h:1 ../aisleriot/rules/osmosis.scm.h:4
+#: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/saratoga.scm.h:7
+#: ../aisleriot/rules/scorpion.scm.h:2 ../aisleriot/rules/ten_across.scm.h:4
+#: ../aisleriot/rules/union_square.scm.h:3 ../aisleriot/rules/yukon.scm.h:2
+msgid "an empty slot"
+msgstr "Prazno polje"
+
 #: ../aisleriot/rules/auld_lang_syne.scm.h:1
 #: ../aisleriot/rules/bristol.scm.h:1 ../aisleriot/rules/first_law.scm.h:1
 #: ../aisleriot/rules/fortunes.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:6
 #: ../aisleriot/rules/scuffle.scm.h:1 ../aisleriot/rules/spider.scm.h:1
-#: ../aisleriot/rules/spider_one_suit.scm.h:1
-#: ../aisleriot/rules/spider_two_suit.scm.h:1
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:1 ../aisleriot/rules/zebra.scm.h:1
 msgid "Deal another round"
 msgstr "Podeli još jednu ruku"
+
+#: ../aisleriot/rules/aunt_mary.scm.h:1
+msgid "Redeals left: ~a"
+msgstr "Broj preostalih deljenja: ~a"
 
 #: ../aisleriot/rules/bakers_dozen.scm.h:2
 #: ../aisleriot/rules/bakers_game.scm.h:2
@@ -400,16 +440,8 @@ msgstr "Postavite nešto u prazno mesto"
 
 #: ../aisleriot/rules/bakers_game.scm.h:3 ../aisleriot/rules/eight_off.scm.h:3
 #: ../aisleriot/rules/seahaven.scm.h:3
-#, fuzzy
 msgid "an empty tableau"
 msgstr "prazna Talon gomila"
-
-#: ../aisleriot/rules/camelot.scm.h:1 ../aisleriot/rules/canfield.scm.h:6
-#: ../aisleriot/rules/glenwood.scm.h:6 ../aisleriot/rules/klondike.scm.h:1
-#: ../aisleriot/rules/osmosis.scm.h:1 ../aisleriot/rules/peek.scm.h:1
-#: ../aisleriot/rules/plait.scm.h:6 ../aisleriot/rules/straight_up.scm.h:1
-msgid "Deal a new card from the deck"
-msgstr "Podeli novu kartu sa talona"
 
 #: ../aisleriot/rules/camelot.scm.h:3
 msgid "an empty bottom slot"
@@ -427,24 +459,21 @@ msgstr "Prazno levo polje"
 msgid "an empty right slot"
 msgstr "Prazno desno polje"
 
-#: ../aisleriot/rules/camelot.scm.h:7 ../aisleriot/rules/diamond_mine.scm.h:1
-#: ../aisleriot/rules/klondike.scm.h:7 ../aisleriot/rules/odessa.scm.h:1
-#: ../aisleriot/rules/osmosis.scm.h:4 ../aisleriot/rules/peek.scm.h:4
-#: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/scorpion.scm.h:2
-#: ../aisleriot/rules/ten_across.scm.h:4
-#: ../aisleriot/rules/union_square.scm.h:3 ../aisleriot/rules/yukon.scm.h:2
-msgid "an empty slot"
-msgstr "Prazno polje"
-
 #: ../aisleriot/rules/camelot.scm.h:8
 msgid "an empty top slot"
 msgstr "prazno gornje polje"
 
 #: ../aisleriot/rules/camelot.scm.h:9 ../aisleriot/rules/helsinki.scm.h:2
-#: ../aisleriot/rules/neighbor.scm.h:2 ../aisleriot/rules/thirteen.scm.h:3
+#: ../aisleriot/rules/neighbor.scm.h:2 ../aisleriot/rules/thirteen.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:3 ../aisleriot/rules/yield.scm.h:3
 msgid "itself"
 msgstr "samom sebi"
+
+#: ../aisleriot/rules/canfield.scm.h:1 ../aisleriot/rules/chessboard.scm.h:1
+#: ../aisleriot/rules/eagle_wing.scm.h:1 ../aisleriot/rules/glenwood.scm.h:1
+#: ../aisleriot/rules/kansas.scm.h:1 ../aisleriot/rules/plait.scm.h:1
+msgid "Base Card: "
+msgstr "Osnovna karta: "
 
 #: ../aisleriot/rules/canfield.scm.h:7 ../aisleriot/rules/eagle_wing.scm.h:7
 #: ../aisleriot/rules/glenwood.scm.h:8 ../aisleriot/rules/plait.scm.h:7
@@ -523,19 +552,13 @@ msgstr "Steznici se ne preporučuju sem u najvećoj nevolji"
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr "Kada ste bez alata za heftanje, spajalica i lenjir mogu poslužiti"
 
+#: ../aisleriot/rules/cruel.scm.h:1
+msgid "Redeal."
+msgstr "Podeli ponovo."
+
 #: ../aisleriot/rules/diamond_mine.scm.h:2
 msgid "the foundation pile"
 msgstr "gomila na `temelju`"
-
-#: ../aisleriot/rules/doublets.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:9
-#: ../aisleriot/rules/gaps.scm.h:9 ../aisleriot/rules/glenwood.scm.h:9
-#: ../aisleriot/rules/jumbo.scm.h:3 ../aisleriot/rules/klondike.scm.h:3
-#: ../aisleriot/rules/osmosis.scm.h:2 ../aisleriot/rules/peek.scm.h:2
-#: ../aisleriot/rules/plait.scm.h:10 ../aisleriot/rules/scuffle.scm.h:2
-#: ../aisleriot/rules/straight_up.scm.h:3
-#: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
-msgid "Redeals left:"
-msgstr "Broj preostalih deljenja: "
 
 #: ../aisleriot/rules/eagle_wing.scm.h:6 ../aisleriot/rules/elevator.scm.h:1
 #: ../aisleriot/rules/escalator.scm.h:1 ../aisleriot/rules/royal_east.scm.h:6
@@ -554,13 +577,8 @@ msgid "an empty slot on tableau"
 msgstr "prazno polje na talonu"
 
 #: ../aisleriot/rules/easthaven.scm.h:2
-#, fuzzy
 msgid "Move a King on to the empty tableau slot"
 msgstr "Pomeri Kralja na prazno talon polje"
-
-#: ../aisleriot/rules/easthaven.scm.h:3 ../aisleriot/rules/klondike.scm.h:2
-msgid "No hint available right now"
-msgstr "Trenutno nema saveta"
 
 #: ../aisleriot/rules/first_law.scm.h:2
 msgid "I'm not sure"
@@ -619,7 +637,6 @@ msgid "Remove the twos"
 msgstr "Ukloni dvojke"
 
 #: ../aisleriot/rules/first_law.scm.h:16
-#, fuzzy
 msgid "Return cards to stock"
 msgstr "Vrati karte na gomilu"
 
@@ -631,60 +648,37 @@ msgstr "Razmislite o tome da nešto prebacite u prazno polje"
 msgid "Move ~a off the board"
 msgstr "Pomeri ~a sa table"
 
-#: ../aisleriot/rules/freecell.scm.h:1
+#: ../aisleriot/rules/freecell.scm.h:2
 msgid "No moves available"
 msgstr "Nema dostupnih poteza"
 
-#: ../aisleriot/rules/freecell.scm.h:2
+#: ../aisleriot/rules/freecell.scm.h:3
 msgid "an empty reserve"
 msgstr "prazna rezerva"
 
-#: ../aisleriot/rules/freecell.scm.h:3
+#: ../aisleriot/rules/freecell.scm.h:4
 msgid "an open tableau"
 msgstr "otvoreni talon"
 
-#: ../aisleriot/rules/freecell.scm.h:4
+#: ../aisleriot/rules/freecell.scm.h:5
 msgid "game has no solution"
 msgstr "igra nema rešenja"
 
-#: ../aisleriot/rules/freecell.scm.h:5
+#: ../aisleriot/rules/freecell.scm.h:6
 msgid "the foundation"
 msgstr "osnova"
 
 #: ../aisleriot/rules/gaps.scm.h:1
-#, fuzzy
-msgid " next to the "
-msgstr "Postavi temu"
+msgid "Double click any card to redeal."
+msgstr "Dva puta pritisni na bilo koju kartu za novo deljenje."
 
 #: ../aisleriot/rules/gaps.scm.h:2
-msgid " of "
-msgstr ""
+msgid "No hint available."
+msgstr "Saveti nisu dostupni."
 
 #: ../aisleriot/rules/gaps.scm.h:3
-msgid "."
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:4
-msgid "Add to the sequence in row "
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:5
-msgid "Double click any card to redeal."
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:6
-#, fuzzy
-msgid "No hint available."
-msgstr "Saveti nisu dostupni"
-
-#: ../aisleriot/rules/gaps.scm.h:7
-msgid "Place a two in the leftmost slot of row "
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:8
-#, fuzzy
-msgid "Place the "
-msgstr "Pauziraj igru"
+msgid "Randomly Placed Gaps on Redeal"
+msgstr "Slučajno izostavljanje pri novom deljenju"
 
 #: ../aisleriot/rules/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
@@ -704,6 +698,10 @@ msgstr "na prazno talon polje"
 msgid "Deal another card"
 msgstr "Podeli još jednu kartu"
 
+#: ../aisleriot/rules/golf.scm.h:2 ../aisleriot/rules/spider.scm.h:4
+msgid "Stock left: ~a"
+msgstr "Preostalo na gomili: ~a"
+
 #: ../aisleriot/rules/gypsy.scm.h:1
 msgid "Deal another hand"
 msgstr "Podeli još jednu ruku"
@@ -713,9 +711,8 @@ msgid "Move a card or build of cards on to the empty slot"
 msgstr "Pomeri kartu ili niz karata na prazno polje"
 
 #: ../aisleriot/rules/hopscotch.scm.h:2
-#, fuzzy
 msgid "Move card from waste"
-msgstr "Ukloni kartu iz `Otpada`"
+msgstr "Premesti kartu iz „Otpada“"
 
 #: ../aisleriot/rules/jumbo.scm.h:2
 msgid "Move waste to stock"
@@ -728,13 +725,9 @@ msgstr "Vrati `otpad` nazad na kup"
 msgid "an empty tableau slot"
 msgstr "prazno talon polje"
 
-#: ../aisleriot/rules/klondike.scm.h:5
-msgid "Three card deals"
-msgstr "Deljenje po tri karte"
-
-#: ../aisleriot/rules/klondike.scm.h:6
-msgid "Try moving cards down from the foundation"
-msgstr "Pokušajte da pomerite karte sa `temelja`"
+#: ../aisleriot/rules/kings_audience.scm.h:1
+msgid "Deal a new card"
+msgstr "Podeli jednu novu kartu"
 
 #: ../aisleriot/rules/lady_jane.scm.h:1 ../aisleriot/rules/royal_east.scm.h:1
 msgid "Base Card:"
@@ -747,6 +740,10 @@ msgid ""
 msgstr ""
 "Naciljaj da namestiš boje u poretku koji najprirodnije odgovara trenutnom "
 "rasporedu."
+
+#: ../aisleriot/rules/osmosis.scm.h:2
+msgid "Deal new cards from the deck"
+msgstr "Podeli nove karte iz špila"
 
 #: ../aisleriot/rules/pileon.scm.h:2
 msgid "something"
@@ -773,7 +770,6 @@ msgstr "Pomešani režim"
 #: ../aisleriot/rules/royal_east.scm.h:9
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:6
 #: ../aisleriot/rules/westhaven.scm.h:4
-#, fuzzy
 msgid "an empty tableau pile"
 msgstr "prazna talon gomila"
 
@@ -794,28 +790,16 @@ msgid "empty foundation"
 msgstr "prazan `temelj`"
 
 #: ../aisleriot/rules/spider.scm.h:2
-#: ../aisleriot/rules/spider_one_suit.scm.h:2
-#: ../aisleriot/rules/spider_two_suit.scm.h:2
 msgid "Place something on empty slot"
 msgstr "Postavite nešto u prazno mesto"
 
 #: ../aisleriot/rules/spider.scm.h:3
-#: ../aisleriot/rules/spider_one_suit.scm.h:3
-#: ../aisleriot/rules/spider_two_suit.scm.h:3
 msgid "Please fill in empty pile first."
 msgstr "Popunite prvo ispražnjenu gomilu."
 
 #: ../aisleriot/rules/spider.scm.h:5
-#: ../aisleriot/rules/spider_one_suit.scm.h:5
-#: ../aisleriot/rules/spider_two_suit.scm.h:5
 msgid "Try moving card piles around"
 msgstr "Pokušajte da pomerite karte okolo"
-
-#: ../aisleriot/rules/spiderette.scm.h:2
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:2
-#, fuzzy
-msgid "Place something on to the empty tableau slot"
-msgstr "Postavite nešto na prazan talon"
 
 #: ../aisleriot/rules/ten_across.scm.h:1
 msgid "Allow temporary spots use"
@@ -841,10 +825,15 @@ msgstr "prazno(a) polje(a)"
 msgid "Deal a card from the deck"
 msgstr "Podeli kartu sa talona"
 
+#: ../aisleriot/rules/thirteen.scm.h:2
+msgid "Match the top two cards of the waste."
+msgstr "Poklopi dve najgornje karte viška."
+
+# bug(slobo): msgstr "odgovarajuća `temelj` gomila"
+# za sedmice trebaju karte od 7 do Keca, da li se o ovome radi?
 #: ../aisleriot/rules/union_square.scm.h:4
-#, fuzzy
 msgid "appropriate foundation pile"
-msgstr "odgovarajuća `temelj` gomila"
+msgstr "Karte koje su u igri"
 
 #: ../aisleriot/rules/whitehead.scm.h:2
 msgid "Move a build of cards on to the empty Tableau slot"
@@ -869,7 +858,7 @@ msgstr ""
 
 #: ../aisleriot/sol.c:207
 msgid "Aisleriot cannot find the last game you played."
-msgstr ""
+msgstr "Program ne može da pronađe koju ste zadnju igru igrali."
 
 #: ../aisleriot/sol.c:208
 msgid ""
@@ -877,27 +866,28 @@ msgid ""
 "not have the game you last played. The default game, Klondike, is being "
 "started instead."
 msgstr ""
+"Ovo se obično dešava kada igrate stariju verziju Pasijensa koja nema onu "
+"igru koju ste zadnju igrali. Umesto toga sada se pokreće igrica Klondajk."
 
 #: ../aisleriot/sol.c:409
 msgid "Aisleriot"
 msgstr "Pasijans"
 
-#: ../aisleriot/sol.c:446 ../glines/glines.c:1964 ../gnobots2/statusbar.c:65
-#: ../gnome-stones/status.c:71 ../gnometris/scoreframe.cpp:58
-#: ../gnomine/gnomine.c:434
+#: ../aisleriot/sol.c:446 ../glines/glines.c:1973 ../gnobots2/statusbar.c:65
+#: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:425
 msgid "Score:"
 msgstr "Razultat:"
 
-#: ../aisleriot/sol.c:451 ../gnotravex/gnotravex.c:1074
-#: ../mahjongg/mahjongg.c:1447
+#: ../aisleriot/sol.c:451 ../gnotravex/gnotravex.c:1076
+#: ../mahjongg/mahjongg.c:1450
 msgid "Time:"
 msgstr "Vreme:"
 
-#: ../aisleriot/sol.c:505
+#: ../aisleriot/sol.c:507
 msgid "Variation on game rules"
 msgstr "Varijacije pravila igre"
 
-#: ../aisleriot/sol.c:506 ../gnobots2/gnobots.c:62 ../gnobots2/gnobots.c:64
+#: ../aisleriot/sol.c:508 ../gnobots2/gnobots.c:62 ../gnobots2/gnobots.c:64
 #: ../same-gnome/same-gnome.c:136 ../same-gnome/same-gnome.c:138
 msgid "NAME"
 msgstr "IME"
@@ -1270,307 +1260,326 @@ msgid "Agnes"
 msgstr "Agnes"
 
 #: ../aisleriot/translatable_game_names.h:8
+msgid "Athena"
+msgstr "Atina"
+
+#: ../aisleriot/translatable_game_names.h:9
 msgid "Auld Lang Syne"
 msgstr "Auld Lang Sajn"
 
-#: ../aisleriot/translatable_game_names.h:9
+#: ../aisleriot/translatable_game_names.h:10
+msgid "Aunt Mary"
+msgstr "Ujna Marija"
+
+#: ../aisleriot/translatable_game_names.h:11
 msgid "Backbone"
 msgstr "Kičma"
 
-#: ../aisleriot/translatable_game_names.h:10
+#: ../aisleriot/translatable_game_names.h:12
 msgid "Bakers Dozen"
 msgstr "Pekarovo tuce"
 
-#: ../aisleriot/translatable_game_names.h:11
+#: ../aisleriot/translatable_game_names.h:13
 msgid "Bakers Game"
 msgstr "Pekarova igra"
 
-#: ../aisleriot/translatable_game_names.h:12
+#: ../aisleriot/translatable_game_names.h:14
 msgid "Beleaguered Castle"
 msgstr "Opkoljeni zamak"
 
-#: ../aisleriot/translatable_game_names.h:13
+#: ../aisleriot/translatable_game_names.h:15
 msgid "Block Ten"
 msgstr "Blokiraj desetku"
 
-#: ../aisleriot/translatable_game_names.h:14
+#: ../aisleriot/translatable_game_names.h:16
 msgid "Bristol"
 msgstr "Bristol"
 
-#: ../aisleriot/translatable_game_names.h:15
+#: ../aisleriot/translatable_game_names.h:17
 msgid "Camelot"
 msgstr "Kamelot"
 
-#: ../aisleriot/translatable_game_names.h:16
+#: ../aisleriot/translatable_game_names.h:18
 msgid "Canfield"
 msgstr "Kenfild"
 
-#: ../aisleriot/translatable_game_names.h:17
+#: ../aisleriot/translatable_game_names.h:19
 msgid "Carpet"
 msgstr "Tepih"
 
-#: ../aisleriot/translatable_game_names.h:18
+#: ../aisleriot/translatable_game_names.h:20
 msgid "Chessboard"
 msgstr "Šahovska tabla"
 
-#: ../aisleriot/translatable_game_names.h:19
+#: ../aisleriot/translatable_game_names.h:21
 msgid "Clock"
 msgstr "Sat"
 
-#: ../aisleriot/translatable_game_names.h:20
+#: ../aisleriot/translatable_game_names.h:22
 msgid "Cover"
 msgstr "Zaklon"
 
-#: ../aisleriot/translatable_game_names.h:21
+#: ../aisleriot/translatable_game_names.h:23
+msgid "Cruel"
+msgstr "Okrutan"
+
+#: ../aisleriot/translatable_game_names.h:24
 msgid "Diamond Mine"
 msgstr "Dijamantska mina"
 
-#: ../aisleriot/translatable_game_names.h:22
+#: ../aisleriot/translatable_game_names.h:25
 msgid "Doublets"
 msgstr "Dublovi"
 
-#: ../aisleriot/translatable_game_names.h:23
+#: ../aisleriot/translatable_game_names.h:26
 msgid "Eagle Wing"
 msgstr "Orlovo krilo"
 
-#: ../aisleriot/translatable_game_names.h:24
+#: ../aisleriot/translatable_game_names.h:27
 msgid "Easthaven"
 msgstr "Istočna luka"
 
-#: ../aisleriot/translatable_game_names.h:25
+#: ../aisleriot/translatable_game_names.h:28
 msgid "Eight Off"
 msgstr "Osmica"
 
-#: ../aisleriot/translatable_game_names.h:26
+#: ../aisleriot/translatable_game_names.h:29
 msgid "Elevator"
 msgstr "Lift"
 
-#: ../aisleriot/translatable_game_names.h:27
+#: ../aisleriot/translatable_game_names.h:30
 msgid "Escalator"
 msgstr "Pokretne Stepenice"
 
-#: ../aisleriot/translatable_game_names.h:28
+#: ../aisleriot/translatable_game_names.h:31
 msgid "First Law"
 msgstr "Prvi zakon "
 
-#: ../aisleriot/translatable_game_names.h:29
+#: ../aisleriot/translatable_game_names.h:32
 msgid "Fortress"
 msgstr "Utvrđenje"
 
-#: ../aisleriot/translatable_game_names.h:30
+#: ../aisleriot/translatable_game_names.h:33
 msgid "Fortunes"
 msgstr "Kolačići"
 
-#: ../aisleriot/translatable_game_names.h:31
+#: ../aisleriot/translatable_game_names.h:34
 msgid "Fourteen"
 msgstr "Četrnaestica"
 
-#: ../aisleriot/translatable_game_names.h:32
+#: ../aisleriot/translatable_game_names.h:35
 msgid "Freecell"
 msgstr "Oslobodilac polja"
 
-#: ../aisleriot/translatable_game_names.h:33
-#, fuzzy
+#: ../aisleriot/translatable_game_names.h:36
 msgid "Gaps"
-msgstr "Mape"
+msgstr "Pukotine"
 
-#: ../aisleriot/translatable_game_names.h:34
+#: ../aisleriot/translatable_game_names.h:37
 msgid "Gay Gordons"
 msgstr "Gordon homoseksualac"
 
-#: ../aisleriot/translatable_game_names.h:35
+#: ../aisleriot/translatable_game_names.h:38
 msgid "Glenwood"
 msgstr "Glenvud"
 
-#: ../aisleriot/translatable_game_names.h:36
+#: ../aisleriot/translatable_game_names.h:39
 msgid "Golf"
 msgstr "Golf"
 
-#: ../aisleriot/translatable_game_names.h:37
+#: ../aisleriot/translatable_game_names.h:40
 msgid "Gypsy"
 msgstr "Ciga"
 
-#: ../aisleriot/translatable_game_names.h:38
+#: ../aisleriot/translatable_game_names.h:41
 msgid "Helsinki"
 msgstr "Helsinki"
 
-#: ../aisleriot/translatable_game_names.h:39
+#: ../aisleriot/translatable_game_names.h:42
 msgid "Hopscotch"
 msgstr "Hopskoč"
 
-#: ../aisleriot/translatable_game_names.h:40
+#: ../aisleriot/translatable_game_names.h:43
 msgid "Isabel"
 msgstr "Izabela"
 
-#: ../aisleriot/translatable_game_names.h:41
+#: ../aisleriot/translatable_game_names.h:44
 msgid "Jamestown"
 msgstr "DŽejmstaun"
 
-#: ../aisleriot/translatable_game_names.h:42
+#: ../aisleriot/translatable_game_names.h:45
 msgid "Jumbo"
 msgstr "DŽambo"
 
-#: ../aisleriot/translatable_game_names.h:43
+#: ../aisleriot/translatable_game_names.h:46
 msgid "Kansas"
 msgstr "Kanzas"
 
-#: ../aisleriot/translatable_game_names.h:44
+#: ../aisleriot/translatable_game_names.h:47
 msgid "King Albert"
 msgstr "Kralj Albert"
 
-#: ../aisleriot/translatable_game_names.h:45
+#: ../aisleriot/translatable_game_names.h:48
+msgid "Kings Audience"
+msgstr "Kraljeva publika"
+
+#: ../aisleriot/translatable_game_names.h:49
 msgid "Klondike"
 msgstr "Klondajk"
 
-#: ../aisleriot/translatable_game_names.h:46
+#: ../aisleriot/translatable_game_names.h:50
 msgid "Labyrinth"
 msgstr "Lavirint"
 
-#: ../aisleriot/translatable_game_names.h:47
+#: ../aisleriot/translatable_game_names.h:51
 msgid "Lady Jane"
 msgstr "Dama DŽejn"
 
-#: ../aisleriot/translatable_game_names.h:48
+#: ../aisleriot/translatable_game_names.h:52
 msgid "Maze"
 msgstr "Lavirint"
 
-#: ../aisleriot/translatable_game_names.h:49
+#: ../aisleriot/translatable_game_names.h:53
 msgid "Monte Carlo"
 msgstr "Monte Karlo"
 
-#: ../aisleriot/translatable_game_names.h:50
+#: ../aisleriot/translatable_game_names.h:54
 msgid "Neighbor"
 msgstr "Komšija"
 
-#: ../aisleriot/translatable_game_names.h:51
+#: ../aisleriot/translatable_game_names.h:55
 msgid "Odessa"
 msgstr "Odesa"
 
-#: ../aisleriot/translatable_game_names.h:52
+#: ../aisleriot/translatable_game_names.h:56
 msgid "Osmosis"
 msgstr "Osmoza"
 
-#: ../aisleriot/translatable_game_names.h:53
+#: ../aisleriot/translatable_game_names.h:57
 msgid "Peek"
 msgstr "Vrh"
 
-#: ../aisleriot/translatable_game_names.h:54
+#: ../aisleriot/translatable_game_names.h:58
 msgid "Pileon"
 msgstr "Pajlon"
 
-#: ../aisleriot/translatable_game_names.h:55
+#: ../aisleriot/translatable_game_names.h:59
 msgid "Plait"
 msgstr "Plejt"
 
-#: ../aisleriot/translatable_game_names.h:56
+#: ../aisleriot/translatable_game_names.h:60
 msgid "Poker"
 msgstr "Poker"
 
-#: ../aisleriot/translatable_game_names.h:57
+#: ../aisleriot/translatable_game_names.h:61
 msgid "Quatorze"
 msgstr "Kvatorz"
 
-#: ../aisleriot/translatable_game_names.h:58
+#: ../aisleriot/translatable_game_names.h:62
 msgid "Royal East"
 msgstr "Kraljevski istok"
 
-#: ../aisleriot/translatable_game_names.h:59
+#: ../aisleriot/translatable_game_names.h:63
+msgid "Saratoga"
+msgstr "Saratoga"
+
+#: ../aisleriot/translatable_game_names.h:64
 msgid "Scorpion"
 msgstr "Škorpija"
 
-#: ../aisleriot/translatable_game_names.h:60
+#: ../aisleriot/translatable_game_names.h:65
 msgid "Scuffle"
 msgstr "Skafl"
 
-#: ../aisleriot/translatable_game_names.h:61
+#: ../aisleriot/translatable_game_names.h:66
 msgid "Seahaven"
 msgstr "Morska luka"
 
-#: ../aisleriot/translatable_game_names.h:62
+#: ../aisleriot/translatable_game_names.h:67
 msgid "Sir Tommy"
 msgstr "Ser Tomi"
 
-#: ../aisleriot/translatable_game_names.h:63
+#: ../aisleriot/translatable_game_names.h:68
 msgid "Spiderette"
 msgstr "Paukovnjača"
 
-#: ../aisleriot/translatable_game_names.h:64
+#: ../aisleriot/translatable_game_names.h:69
 msgid "Spider One Suit"
 msgstr "Paukovnjača jedan komplet"
 
-#: ../aisleriot/translatable_game_names.h:65
+#: ../aisleriot/translatable_game_names.h:70
 msgid "Spider"
 msgstr "Pauk"
 
-#: ../aisleriot/translatable_game_names.h:66
+#: ../aisleriot/translatable_game_names.h:71
 msgid "Spider Two Suit"
 msgstr "Paukovnjača dva kompleta"
 
-#: ../aisleriot/translatable_game_names.h:67
+#: ../aisleriot/translatable_game_names.h:72
 msgid "Straight Up"
 msgstr "Pravo gore"
 
-#: ../aisleriot/translatable_game_names.h:68
+#: ../aisleriot/translatable_game_names.h:73
 msgid "Streets And Alleys"
 msgstr "Ulice i sokaci"
 
-#: ../aisleriot/translatable_game_names.h:69
+#: ../aisleriot/translatable_game_names.h:74
 msgid "Template"
 msgstr "Šablon"
 
-#: ../aisleriot/translatable_game_names.h:70
+#: ../aisleriot/translatable_game_names.h:75
 msgid "Ten Across"
 msgstr "Deset popreko"
 
-#: ../aisleriot/translatable_game_names.h:71
+#: ../aisleriot/translatable_game_names.h:76
 msgid "Thieves"
 msgstr "Lopovi"
 
-#: ../aisleriot/translatable_game_names.h:72
+#: ../aisleriot/translatable_game_names.h:77
 msgid "Thirteen"
 msgstr "Trinaestica"
 
-#: ../aisleriot/translatable_game_names.h:73
+#: ../aisleriot/translatable_game_names.h:78
 msgid "Thumb And Pouch"
 msgstr "Palac i torba"
 
-#: ../aisleriot/translatable_game_names.h:74
+#: ../aisleriot/translatable_game_names.h:79
 msgid "Treize"
 msgstr "Trez"
 
-#: ../aisleriot/translatable_game_names.h:75
+#: ../aisleriot/translatable_game_names.h:80
 msgid "Triple Peaks"
 msgstr "Trostruki vrhovi"
 
-#: ../aisleriot/translatable_game_names.h:76
+#: ../aisleriot/translatable_game_names.h:81
 msgid "Union Square"
 msgstr "Ujedinjeni kvadrati"
 
-#: ../aisleriot/translatable_game_names.h:77
+#: ../aisleriot/translatable_game_names.h:82
 msgid "Valentine"
 msgstr "Valentin"
 
-#: ../aisleriot/translatable_game_names.h:78
+#: ../aisleriot/translatable_game_names.h:83
 msgid "Westhaven"
 msgstr "Zapadna luka"
 
-#: ../aisleriot/translatable_game_names.h:79
+#: ../aisleriot/translatable_game_names.h:84
 msgid "Whitehead"
 msgstr "Bela glava"
 
-#: ../aisleriot/translatable_game_names.h:80
+#: ../aisleriot/translatable_game_names.h:85
 msgid "Will O The Wisp"
 msgstr "Bludna vatra"
 
-#: ../aisleriot/translatable_game_names.h:81
+#: ../aisleriot/translatable_game_names.h:86
 msgid "Yield"
 msgstr "Rod"
 
-#: ../aisleriot/translatable_game_names.h:82
+#: ../aisleriot/translatable_game_names.h:87
 msgid "Yukon"
 msgstr "Jukon"
 
-#: ../aisleriot/translatable_game_names.h:83
+#: ../aisleriot/translatable_game_names.h:88
 msgid "Zebra"
 msgstr "Zebra"
 
@@ -1595,11 +1604,11 @@ msgstr ""
 
 #: ../blackjack/data/blackjack.schemas.in.h:3
 msgid "Never take insurance"
-msgstr ""
+msgstr "Nikad se ne osiguravaj"
 
 #: ../blackjack/data/blackjack.schemas.in.h:4
 msgid "Never take insurance with a dealer showing an ace."
-msgstr ""
+msgstr "Nikad se ne osiguravaj kada delilac pokaže keca."
 
 #: ../blackjack/data/blackjack.schemas.in.h:5
 msgid "The amount of money in your bank"
@@ -1631,11 +1640,10 @@ msgstr "Koristi brzo deljenje bez ikakve pauze između dve karte."
 msgid "Blackjack - %s"
 msgstr "Anjc - %s"
 
-#: ../blackjack/src/blackjack.cpp:303 ../glines/glines.c:1706
+#: ../blackjack/src/blackjack.cpp:303 ../glines/glines.c:1713
 #: ../gnect/src/main.c:1132 ../gnibbles/main.c:601 ../gnobots2/menu.c:59
-#: ../gnome-stones/main.c:1051 ../gnometris/tetris.cpp:131
-#: ../gnomine/gnomine.c:751 ../gtali/gyahtzee.c:502
-#: ../mahjongg/mahjongg.c:1275
+#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:746
+#: ../gtali/gyahtzee.c:517 ../mahjongg/mahjongg.c:1276
 msgid "_Settings"
 msgstr "Po_dešavanja"
 
@@ -1708,7 +1716,7 @@ msgstr "Ravnoteža:"
 msgid "Place your wager or deal a hand"
 msgstr "Uloži ili podeli ruku"
 
-#: ../blackjack/src/blackjack.cpp:683
+#: ../blackjack/src/blackjack.cpp:685
 msgid "Blackjack rule set to use"
 msgstr "Koja pravila za Anjc koristiti"
 
@@ -1724,9 +1732,9 @@ msgid ""
 "a natural 21 (aka blackjack) that is offered when the dealer's face up card "
 "is an ace. If the dealer has a natural 21 then the player is paid double."
 msgstr ""
-"Osiguranje je ulog sa strane u vrednosti 50%% početnog uloga kada delilac "
-"ima prirodnih 21 (poznato kao „anjc“) koji se nudi kada delilac naiđe na "
-"keca. Ukoliko delilac ima prirodnih 21, tada se igraču dvostruko isplaćuje."
+"Osiguranje je ulog sa strane u vrednosti 50%% početnog uloga kada delilac ima "
+"prirodnih 21 (poznato kao „anjc“) koji se nudi kada delilac naiđe na keca. "
+"Ukoliko delilac ima prirodnih 21, tada se igraču dvostruko isplaćuje."
 
 #: ../blackjack/src/dialog.cpp:99
 msgid "Set your wager and click in the white outline to deal a new hand."
@@ -1742,7 +1750,7 @@ msgstr "Postavke za Anjc"
 
 #: ../blackjack/src/dialog.cpp:246 ../gnect/src/prefs.c:378
 #: ../gnibbles/preferences.c:217 ../gnobots2/properties.c:495
-#: ../gnome-stones/preferences.c:677 ../gnometris/tetris.cpp:764
+#: ../gnometris/tetris.cpp:734
 msgid "Game"
 msgstr "Igra"
 
@@ -1756,7 +1764,7 @@ msgstr "_Brzo deljenje (bez pauza između svake karte)"
 
 #: ../blackjack/src/dialog.cpp:272
 msgid "_Never take insurance"
-msgstr ""
+msgstr "_Nikad ne prihvataj osiguranje"
 
 #: ../blackjack/src/dialog.cpp:279
 msgid "_Reset Balance"
@@ -1767,8 +1775,8 @@ msgstr "_Vrati ravnotežu"
 msgid "Rules"
 msgstr "Pravila"
 
-#: ../blackjack/src/dialog.cpp:310
-#: ../libgames-support/games-scores-dialog.gob:290
+#: ../blackjack/src/dialog.cpp:310 games-scores-dialog.gob:331
+#: ../libgames-support/games-scores-dialog.gob:331
 msgid "Name"
 msgstr "Ime"
 
@@ -1907,8 +1915,8 @@ msgid ""
 "selecting the option from the Control menu."
 msgstr ""
 "Podeliti znači da podelite vašu tekuću ruku u dve ruke.  Ovo radite "
-"prevlačenjem jedne vaše karte i puštanjem iste na stranu ili izborom opcije "
-"iz menija „Upravljanje“."
+"prevlačenjem jedne vaše karte i puštanjem iste na stranu ili izborom opcije iz "
+"menija „Upravljanje“."
 
 #: ../blackjack/src/hand.cpp:139
 msgid "The best option is to surrender"
@@ -1979,44 +1987,44 @@ msgstr "Podeli"
 msgid "Dealer hand probabilities"
 msgstr "Verovatnoće ruke delioca"
 
-#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:631
+#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:615
 msgid "Light:"
 msgstr "Beli:"
 
-#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:621
+#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:605
 msgid "Dark:"
 msgstr "Crni:"
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:207 ../iagno/othello.c:213
+#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:200 ../iagno/othello.c:271
 msgid "Light's move"
 msgstr "Beli je na potezu"
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:209 ../iagno/gnothello.c:578
-#: ../iagno/othello.c:210
+#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:202 ../iagno/gnothello.c:562
+#: ../iagno/othello.c:267
 msgid "Dark's move"
 msgstr "Crni je na potezu"
 
-#: ../gataxx/gataxx.c:175 ../iagno/othello.c:665
+#: ../gataxx/gataxx.c:175 ../iagno/othello.c:698
 msgid "Light player wins!"
 msgstr "Beli je pobedio!"
 
-#: ../gataxx/gataxx.c:177 ../iagno/othello.c:667
+#: ../gataxx/gataxx.c:177 ../iagno/othello.c:700
 msgid "Dark player wins!"
 msgstr "Crni je pobedio!"
 
-#: ../gataxx/gataxx.c:179 ../iagno/othello.c:669
+#: ../gataxx/gataxx.c:179 ../iagno/othello.c:702
 msgid "The game was a draw."
 msgstr "Igra je nerešena."
 
-#: ../gataxx/gataxx.c:381
+#: ../gataxx/gataxx.c:380
 msgid "Based on code from Iagno by Ian Peters"
 msgstr "Zasnovano na kodu iz Iagnoa od Iana Petersa (Ian Peters)"
 
-#: ../gataxx/gataxx.c:384 ../gataxx/gataxx.desktop.in.h:1
+#: ../gataxx/gataxx.c:383 ../gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
-msgstr "Ataks"
+msgstr "Bojno polje"
 
-#: ../gataxx/gataxx.c:388
+#: ../gataxx/gataxx.c:387
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr "Igra izvrtanja diskova u kojoj pokušavate da osvojite tablu."
 
@@ -2029,52 +2037,51 @@ msgid "Animate"
 msgstr "Animirano"
 
 #: ../gataxx/gataxx.schemas.in.h:2
-msgid "Flip final results"
-msgstr "Okreni konačni rezultat"
-
-#: ../gataxx/gataxx.schemas.in.h:3
 msgid "Level of black player"
 msgstr "Nivo crnog igrača"
 
-#: ../gataxx/gataxx.schemas.in.h:4
+#: ../gataxx/gataxx.schemas.in.h:3
 msgid "Level of white player"
 msgstr "Nivo belog igrača"
 
-#: ../gataxx/gataxx.schemas.in.h:5
+#: ../gataxx/gataxx.schemas.in.h:4
 msgid "Quick moves"
 msgstr "Brzi potezi"
 
-#: ../gataxx/gataxx.schemas.in.h:6 ../gnotravex/gnotravex.schemas.in.h:2
+#: ../gataxx/gataxx.schemas.in.h:5 ../gnotravex/gnotravex.schemas.in.h:2
 #: ../gnotski/gnotski.schemas.in.h:1 ../mahjongg/mahjongg.schemas.in.h:1
 msgid "The height of the window"
 msgstr "Visina prozora"
 
+#: ../gataxx/gataxx.schemas.in.h:6
+msgid "The name of the theme to use."
+msgstr "Ime teme koju treba koristiti."
+
 #: ../gataxx/gataxx.schemas.in.h:7
-#, fuzzy
 msgid "The requested height of the main window in pixels."
-msgstr "Visina glavnog prozora, u tačkama, po pokretanju."
+msgstr "Zahtevana visina glavnog prozora (u tačkama)."
 
 #: ../gataxx/gataxx.schemas.in.h:8
-#, fuzzy
 msgid "The requested width of the main window in pixels."
-msgstr "Širina glavnog prozora, u tačkama, po pokretanju."
+msgstr "Zahtevana širina glavnog prozora (u tačkama)."
 
 #: ../gataxx/gataxx.schemas.in.h:9 ../gnotravex/gnotravex.schemas.in.h:6
 #: ../gnotski/gnotski.schemas.in.h:6 ../mahjongg/mahjongg.schemas.in.h:4
 msgid "The width of the window"
 msgstr "Širina prozora"
 
-#: ../gataxx/gataxx.schemas.in.h:10
-msgid "Tileset"
-msgstr "Špil"
+#: ../gataxx/gataxx.schemas.in.h:10 ../gnometris/tetris.cpp:857
+#: ../gnometris/tetris.cpp:890 ../same-gnome/ui.c:288
+msgid "Theme"
+msgstr "Tema"
 
 #: ../gataxx/gataxx.schemas.in.h:11
-msgid "Tileset to use."
-msgstr "Izaberite špil."
+msgid "Tileset (obsolete)"
+msgstr "Špil (napušteno)"
 
 #: ../gataxx/gataxx.schemas.in.h:12
-msgid "Whether or not to flip final results."
-msgstr "Da li da okrećem konačni rezultat."
+msgid "Tileset to use (obsolete)."
+msgstr "Izaberite špil (napušteno)."
 
 #: ../gataxx/gataxx.schemas.in.h:13
 msgid "Whether or not to use quick moves."
@@ -2094,122 +2101,115 @@ msgid ""
 "player."
 msgstr "Nula je čovek; od jedan do tri je nivo kompjuterskog protivnika."
 
+#: ../gataxx/gtkgridboardthemes.c:166 ../gnometris/renderer.cpp:27
+msgid "Plain"
+msgstr "Ravno"
+
+#: ../gataxx/gtkgridboardthemes.c:168
+msgid "Squares and Diamonds"
+msgstr "Kvadrati i dijamanti"
+
 #. create window
-#: ../gataxx/properties.c:301
+#: ../gataxx/properties.c:297
 msgid "Ataxx Preferences"
-msgstr "Ataks postavke"
+msgstr "Postavke igrice Bojno polje"
 
 #. Players tab
-#: ../gataxx/properties.c:331 ../iagno/properties.c:498
+#: ../gataxx/properties.c:327 ../iagno/properties.c:498
 msgid "Players"
 msgstr "Igrači"
 
-#: ../gataxx/properties.c:343
+#: ../gataxx/properties.c:339
 msgid "_Quick moves"
 msgstr "_Brzi potezi"
 
-#: ../gataxx/properties.c:344
+#: ../gataxx/properties.c:340
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "Skraćuje vreme koje računar čeka pre povlačenja svog poteza"
 
 #. Dark level select
-#: ../gataxx/properties.c:353 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:349 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:521
 msgid "Dark"
 msgstr "Crni"
 
-#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
+#: ../gataxx/properties.c:353 ../gataxx/properties.c:371
 #: ../gnect/src/prefs.c:326 ../gtali/yahtzee.c:61 ../iagno/properties.c:526
 #: ../iagno/properties.c:572
 msgid "Human"
 msgstr "Čovek"
 
-#: ../gataxx/properties.c:358 ../gataxx/properties.c:376
+#: ../gataxx/properties.c:354 ../gataxx/properties.c:372
 msgid "Very easy"
 msgstr "Vrlo lako"
 
-#: ../gataxx/properties.c:359
+#: ../gataxx/properties.c:355
 msgid "gataxx|Easy"
-msgstr ""
+msgstr "Bojno polje|Lako"
 
-#: ../gataxx/properties.c:360
-#, fuzzy
+#: ../gataxx/properties.c:356
 msgid "gataxx|Medium"
-msgstr "Srednje"
+msgstr "Bojno polje|Srednje"
 
-#: ../gataxx/properties.c:361 ../gataxx/properties.c:379
+#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
 msgid "Hard"
 msgstr "Teško"
 
-#: ../gataxx/properties.c:362 ../gataxx/properties.c:380
+#: ../gataxx/properties.c:358 ../gataxx/properties.c:376
 msgid "Very hard"
 msgstr "Vrlo teško"
 
 #. Light level select
-#: ../gataxx/properties.c:371 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:367 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:567
 msgid "Light"
 msgstr "Beli"
 
-#: ../gataxx/properties.c:377
+#: ../gataxx/properties.c:373
 msgid "Easy"
 msgstr "Lako"
 
-#: ../gataxx/properties.c:378
+#: ../gataxx/properties.c:374
 msgid "Medium"
 msgstr "Srednje"
 
 #. Appearance tab
-#: ../gataxx/properties.c:389 ../gataxx/properties.c:392
+#: ../gataxx/properties.c:385 ../gataxx/properties.c:388
 #: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:535
 #: ../iagno/properties.c:616
 msgid "Appearance"
 msgstr "Izgled"
 
 #. animation button
-#: ../gataxx/properties.c:398
+#: ../gataxx/properties.c:394
 msgid "_Animation"
 msgstr "_Animacija"
 
-#: ../gataxx/properties.c:402
+#: ../gataxx/properties.c:398
 msgid "Flip the pieces with some visual effects"
 msgstr "Obrni figure uz neke vizuelne efekte"
 
-#. flip tiles button
-#: ../gataxx/properties.c:406 ../iagno/properties.c:675
-msgid "_Flip final results"
-msgstr "_Obrni konačni rezultat"
-
-#: ../gataxx/properties.c:410
-msgid ""
-"Put all the white pieces at the bottom and all the black pieces on the top "
-"of the board when a game is over"
-msgstr ""
-"Postavi sve bele figure na dno i sve crne figure na vrh table kada se igra "
-"završi"
-
-#: ../gataxx/properties.c:415 ../iagno/properties.c:685
-#: ../mahjongg/mahjongg.c:747
+#: ../gataxx/properties.c:403 ../iagno/properties.c:685
+#: ../mahjongg/mahjongg.c:748
 msgid "_Tile set:"
 msgstr "Skup _figura:"
 
-#: ../gataxx/properties.c:420
+#: ../gataxx/properties.c:408
 msgid "The appearance of the pieces"
 msgstr "Izgled figura"
 
 #. GstElement *sound_player;
 #: ../glines/glines.c:75 ../glines/glines.c:79 ../gnomine/gnomine.c:82
-#: ../gnomine/gnomine.c:618 ../same-gnome/same-gnome.c:49
+#: ../gnomine/gnomine.c:609 ../same-gnome/same-gnome.c:49
 msgid "Small"
 msgstr "Malo"
 
 #: ../glines/glines.c:76 ../glines/glines.c:80
-#, fuzzy
 msgid "glines|Medium"
-msgstr "Srednje"
+msgstr "Linije|Srednje"
 
 #: ../glines/glines.c:77 ../glines/glines.c:81 ../gnomine/gnomine.c:84
-#: ../gnomine/gnomine.c:638 ../same-gnome/same-gnome.c:51
+#: ../gnomine/gnomine.c:631 ../same-gnome/same-gnome.c:51
 msgid "Large"
 msgstr "Veliko"
 
@@ -2259,65 +2259,65 @@ msgstr "Gnomovo Pet ili više"
 msgid "Board Size:"
 msgstr "Veličina table:"
 
-#: ../glines/glines.c:517
+#: ../glines/glines.c:518
 msgid "Game Over!"
 msgstr "Igra je gotova!"
 
 #. Can't move there!
-#: ../glines/glines.c:677
+#: ../glines/glines.c:679
 msgid "You can't move there!"
 msgstr "Nemoguć potez!"
 
-#: ../glines/glines.c:1212 ../glines/glines.c:1904
+#: ../glines/glines.c:1219 ../glines/glines.c:1913
 #: ../glines/glines.desktop.in.h:1
 msgid "Five or More"
 msgstr "Pet ili više"
 
-#: ../glines/glines.c:1214
+#: ../glines/glines.c:1221
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "Gnom izvedba nekad popularne igre Linije"
 
-#: ../glines/glines.c:1415
+#: ../glines/glines.c:1422
 msgid "Five or More Preferences"
 msgstr "Postavke za Pet ili više"
 
-#: ../glines/glines.c:1436
+#: ../glines/glines.c:1443
 msgid "Themes"
 msgstr "Teme"
 
-#: ../glines/glines.c:1445
+#: ../glines/glines.c:1452
 msgid "_Image:"
 msgstr "_Slika:"
 
-#: ../glines/glines.c:1456
+#: ../glines/glines.c:1463
 msgid "B_ackground color:"
 msgstr "Boja p_ozadine:"
 
-#: ../glines/glines.c:1471
+#: ../glines/glines.c:1478
 msgid "Board Size"
 msgstr "Veličina table"
 
-#: ../glines/glines.c:1478 ../same-gnome/ui.c:437
+#: ../glines/glines.c:1485 ../same-gnome/ui.c:437
 msgid "_Small"
 msgstr "_Malo"
 
-#: ../glines/glines.c:1488 ../same-gnome/ui.c:438
+#: ../glines/glines.c:1495 ../same-gnome/ui.c:438
 msgid "_Medium"
 msgstr "_Srednje"
 
-#: ../glines/glines.c:1498 ../same-gnome/ui.c:439
+#: ../glines/glines.c:1505 ../same-gnome/ui.c:439
 msgid "_Large"
 msgstr "_Veliko"
 
-#: ../glines/glines.c:1506
+#: ../glines/glines.c:1513
 msgid "General"
 msgstr "Osnovno"
 
-#: ../glines/glines.c:1514
+#: ../glines/glines.c:1521
 msgid "_Use fast moves"
 msgstr "_Koristi brze poteze"
 
-#: ../glines/glines.c:1934
+#: ../glines/glines.c:1943
 msgid "Next:"
 msgstr "Sledeće:"
 
@@ -2435,7 +2435,7 @@ msgstr "Potez u levo"
 msgid "Move right"
 msgstr "Potez u desno"
 
-#: ../gnect/data/gnect.schemas.in.h:12 ../gnome-stones/preferences.c:789
+#: ../gnect/data/gnect.schemas.in.h:12
 msgid "Sound"
 msgstr "Zvuk"
 
@@ -2576,12 +2576,12 @@ msgstr "_Tema:"
 msgid "Enable _animation"
 msgstr "Uključi _animacije"
 
-#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:888
+#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:866
 msgid "Controls"
 msgstr "Kontrole"
 
 #: ../gnect/src/prefs.c:444 ../gnibbles/preferences.c:381
-#: ../gnobots2/properties.c:542 ../gnometris/tetris.cpp:891
+#: ../gnobots2/properties.c:542 ../gnometris/tetris.cpp:869
 msgid "Keyboard Controls"
 msgstr "Kontrola tastaturom"
 
@@ -2803,7 +2803,7 @@ msgstr "Pojedi bonus"
 msgid "Extra Life"
 msgstr "Dodatni život"
 
-#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:130
+#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:227
 msgid "Game Over"
 msgstr "Igra završena"
 
@@ -2846,9 +2846,8 @@ msgid "New game started"
 msgstr "Nova igra otpočela"
 
 #: ../gnibbles/preferences.c:204
-#, fuzzy
 msgid "Nibbles Preferences"
-msgstr "Postavke Gzmija"
+msgstr "Postavke za igricu zmije"
 
 #: ../gnibbles/preferences.c:225
 msgid "Speed"
@@ -2889,7 +2888,7 @@ msgid "E_nable sounds"
 msgstr "U_ključi zvukove"
 
 #. starting level
-#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:811
+#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:781
 msgid "_Starting level:"
 msgstr "_Početni nivo: "
 
@@ -2930,17 +2929,17 @@ msgstr "Sivi"
 msgid "Worm %d:"
 msgstr "Crv %d:"
 
-#: ../gnobots2/game.c:142
+#: ../gnobots2/game.c:143
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "„%s“ sa super-bezbednim pokretima"
 
-#: ../gnobots2/game.c:145
+#: ../gnobots2/game.c:146
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "„%s“ sa bezbednim pokretima"
 
-#: ../gnobots2/game.c:330 ../gnobots2/game.c:345
+#: ../gnobots2/game.c:331 ../gnobots2/game.c:346
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -2948,11 +2947,16 @@ msgstr ""
 "Čestitamo, Pobedili ste robote!! \n"
 "Ali da li možete opet?"
 
-#: ../gnobots2/game.c:1131
+#. This should never happen.
+#: ../gnobots2/game.c:1156
 msgid "There are no teleport locations left!!"
 msgstr "Nema više teleport lokacija!!"
 
-#: ../gnobots2/game.c:1200
+#: ../gnobots2/game.c:1190
+msgid "You have run out of safe moves - the robots have won!"
+msgstr "Ponestalo vam je sigurnih poteza — roboti su pobedili!"
+
+#: ../gnobots2/game.c:1196
 msgid "There are no safe locations to teleport to!!"
 msgstr "Nema više bezbednih lokacija sa teleportovanje!!"
 
@@ -2964,11 +2968,11 @@ msgstr "Izaberi scenario igre"
 msgid "Set game configuration"
 msgstr "Izaberi podešavanja igre"
 
-#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:853 ../gnomine/gnomine.c:857
+#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:848 ../gnomine/gnomine.c:852
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:66 ../gnomine/gnomine.c:854 ../gnomine/gnomine.c:858
+#: ../gnobots2/gnobots.c:66 ../gnomine/gnomine.c:849 ../gnomine/gnomine.c:853
 msgid "Y"
 msgstr "Y"
 
@@ -3171,8 +3175,8 @@ msgid ""
 "when there is a safe move available you will not be allowed to proceed."
 msgstr ""
 "Koristi bezbedne poteze. Ova opcija će vam pomoći da izbegnete smrt usled "
-"greške. Ukoliko je ova opcija uključena i pokušate da napravite potez koji "
-"će dovesti do vaše smrti nećete moći da ga izvršite."
+"greške. Ukoliko je ova opcija uključena i pokušate da napravite potez koji će "
+"dovesti do vaše smrti nećete moći da ga izvršite."
 
 #: ../gnobots2/gnobots2.schemas.in.h:39
 msgid "Use super safe moves"
@@ -3210,7 +3214,7 @@ msgstr "Robot je prsnuo!"
 msgid "Victory!!"
 msgstr "Pobeda!!"
 
-#: ../gnobots2/graphics.c:104 ../iagno/gnothello.c:413
+#: ../gnobots2/graphics.c:104 ../iagno/gnothello.c:393
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Slika „%s“ nije pronađena\n"
@@ -3243,7 +3247,7 @@ msgstr "_Čekaj"
 msgid "Wait for the robots"
 msgstr "Čekaj robote"
 
-#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1292
+#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1293
 msgid "Show or hide the toolbar"
 msgstr "Prikaži ili sakrij paletu alata"
 
@@ -3327,7 +3331,7 @@ msgstr "Spreči sve opasne poteze"
 msgid "Prevents all moves that result in getting killed."
 msgstr "Sprečava sve poteze koji mogu dovesti do pogibije."
 
-#: ../gnobots2/properties.c:477 ../gnometris/tetris.cpp:837
+#: ../gnobots2/properties.c:477 ../gnometris/tetris.cpp:807
 msgid "_Enable sounds"
 msgstr "_Uključi zvukove"
 
@@ -3359,7 +3363,7 @@ msgstr "Tema za grafiku"
 msgid "_Image theme:"
 msgstr "Tema za _slike:"
 
-#: ../gnobots2/properties.c:523 ../mahjongg/mahjongg.c:793
+#: ../gnobots2/properties.c:523 ../mahjongg/mahjongg.c:794
 msgid "_Background color:"
 msgstr "Boja _pozadine:"
 
@@ -3375,7 +3379,7 @@ msgstr "Tastatura"
 msgid "Safe Teleports:"
 msgstr "Bezbedna teleportacija:"
 
-#: ../gnobots2/statusbar.c:85 ../gnometris/scoreframe.cpp:79
+#: ../gnobots2/statusbar.c:85 ../gnometris/scoreframe.cpp:74
 msgid "Level:"
 msgstr "Nivo:"
 
@@ -3383,275 +3387,7 @@ msgstr "Nivo:"
 msgid "Remaining:"
 msgstr "Preostalo:"
 
-#. ********************************************************************
-#: ../gnome-stones/atari.caves.in.h:1 ../gnome-stones/default.caves.in.h:1
-msgid "Collect all diamonds and find exit"
-msgstr "Pokupi sve dijamante i nađi izlaz"
-
-#: ../gnome-stones/atari.caves.in.h:2
-msgid "Congratulations!!! You have won!"
-msgstr "Čestitamo!!! Pobedili ste!"
-
-#: ../gnome-stones/atari.caves.in.h:3
-msgid "Original Atari caves"
-msgstr "Originalne pećine sa Atarija"
-
-#: ../gnome-stones/atari.caves.in.h:4 ../gnome-stones/default.caves.in.h:3
-#: ../gnome-stones/tutorial.caves.in.h:2
-msgid "gnome-stones:empty"
-msgstr "gnom-kamenje:prazno"
-
-#: ../gnome-stones/default.caves.in.h:2
-msgid "Default caves"
-msgstr "Podrazumevane pećine"
-
-#: ../gnome-stones/gnome-stones.desktop.in.h:1
-msgid "Collect diamonds while avoiding falling boulders"
-msgstr "Pokupi sve dijamante izbegavajući stene koje padaju"
-
-#: ../gnome-stones/gnome-stones.desktop.in.h:2
-msgid "Stones"
-msgstr "Kamenje"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:1
-msgid "Cave number to start"
-msgstr "Broj pećina na početku"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:2
-msgid "Cave number to start."
-msgstr "Broj pećina na početku."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:3
-msgid "Device to use for joystick control."
-msgstr "Uređaj za kontrolu džojstikom."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:4
-msgid "Enable sound support"
-msgstr "Uključi podršku za zvuk"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:5
-msgid "Enable sound support."
-msgstr "Uključuje podršku za zvuk."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:6
-msgid "Game name"
-msgstr "Ime igre"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:7
-msgid "Joystick device"
-msgstr "Uređaj džojstika"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:8
-msgid "Joystick switch level"
-msgstr "Stepen pokretljivosti džojstika"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:9
-msgid "The full path and filename of game to load."
-msgstr "Puna putanja i ime igre koju treba učitati."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:10
-msgid ""
-"The level an analog joystick must reach to be considered \"on\" when "
-"emulating a digital joystick. This takes a value between 0.0 and 1.0."
-msgstr ""
-"Nivo koji analogni džojstik mora da dostigne da bi se smatrao \"uključenim\" "
-"kada oponaša digitalni džojstik. Ovo uzima vrednost između 0.0 i 1.0."
-
-#: ../gnome-stones/gnomekoban.caves.in.h:1
-msgid "Gnomekoban"
-msgstr "Gnom Sokoban"
-
-#: ../gnome-stones/gnomekoban.caves.in.h:2
-msgid "gnomekoban:empty,0"
-msgstr "gnom sokoban:prazno,0"
-
-#. This cave is too big to be played with gnome-stones.
-#: ../gnome-stones/io.c:338
-msgid "The cave you are trying to load is too big for this game."
-msgstr "Pećina koju pokušavate da učitate je prevelika za ovu igru."
-
-#: ../gnome-stones/io.c:355
-#, c-format
-msgid "The cave is corrupted: %s is missing."
-msgstr "Pećina je oštećena: %s nedostaje."
-
-#. An object was requested in this cave, that was not
-#. declared in the game file's Object section.
-#: ../gnome-stones/io.c:381
-msgid ""
-"The cave you are trying to load includes an object, that wasn't declared."
-msgstr "Pećina koju pokušavate da učitate sadrži objekat koji nije prijavljen."
-
-#. **************************************************************************
-#. Some constants.
-#. This message will be printed in the statusline, if no message was
-#. specified in a game file.
-#: ../gnome-stones/main.c:66
-msgid "This is GNOME Stones"
-msgstr "Ovo je Gnom Kamenje"
-
-#: ../gnome-stones/main.c:76
-msgid "Game to play"
-msgstr "Šta se igra"
-
-#: ../gnome-stones/main.c:76
-msgid "FILENAME"
-msgstr "DATOTEKA"
-
-#: ../gnome-stones/main.c:128
-#, c-format
-msgid ""
-"An error occurred while loading the image file \"%s\".\n"
-"Please make sure that GNOME Stones is correctly installed!"
-msgstr ""
-"Greška se javila pri učitavanju slike \"%s\".\n"
-"Proverite da li je Gnom kamenje ispravno instalirano!"
-
-#. That's what a gnome application needs:
-#: ../gnome-stones/main.c:212 ../gnome-stones/main.c:918
-#: ../gnome-stones/main.c:1027 ../gnome-stones/main.c:1276
-msgid "GNOME Stones"
-msgstr "Gnom Kamenje"
-
-#: ../gnome-stones/main.c:238
-msgid "Game title"
-msgstr "Naslov igre"
-
-#: ../gnome-stones/main.c:239
-msgid "Start cave"
-msgstr "Početna pećina"
-
-#: ../gnome-stones/main.c:378 ../gnome-stones/main.c:972
-#: ../gnometris/gnometris.schemas.in.h:15
-msgid "Pause"
-msgstr "Pauza"
-
-#: ../gnome-stones/main.c:600
-msgid "Congratulations, you win!"
-msgstr "Čestitamo, pobedili ste!"
-
-#: ../gnome-stones/main.c:801 ../gtali/gyahtzee.c:141 ../same-gnome/ui.c:144
-msgid "Game over!"
-msgstr "Igra završena!"
-
-#: ../gnome-stones/main.c:1021
-msgid "Sokoban levels:"
-msgstr "Sokoban nivoi:"
-
-#: ../gnome-stones/main.c:1030
-msgid "Mine through dirt and collect gems."
-msgstr "Kopaj po blatu i sakupljaj dragulje."
-
-#: ../gnome-stones/main.c:1184
-msgid "Scanning private object directory..."
-msgstr "Pretražujem direktorijum sa privatnim objektima..."
-
-#: ../gnome-stones/main.c:1188
-msgid "Scanning public object directory..."
-msgstr "Pretražujem direktorijum sa javnim objektima..."
-
-#: ../gnome-stones/main.c:1192
-msgid "Scanning private game directory..."
-msgstr "Pretražujem privatni direktorijum igre..."
-
-#: ../gnome-stones/main.c:1196
-msgid "Scanning public game directory..."
-msgstr "Pretražujem javni direktorijum igre..."
-
-#: ../gnome-stones/main.c:1200
-msgid "Restoring preferences..."
-msgstr "Vraćam postavke na stare vrednosti..."
-
-#: ../gnome-stones/player.c:77
-msgid "You gained an extra life!"
-msgstr "Dobili ste dodatni život!"
-
-#: ../gnome-stones/player.c:121
-#, c-format
-msgid "Seconds left: %d"
-msgstr "Preostalo sekundi: %d"
-
-#: ../gnome-stones/preferences.c:402
-msgid "Neither your chosen game nor the default game could be loaded."
-msgstr "Ni igra koju ste izabrali, ni standardna igra nije mogla da se učita."
-
-#: ../gnome-stones/preferences.c:403
-msgid "Please make sure that GNOME Stones is correctly installed."
-msgstr "Proverite da li je Gnom kamenje ispravno instalirano."
-
-#: ../gnome-stones/preferences.c:404
-msgid "You may be able to select a different game from the preferences dialog."
-msgstr "Možete izabrati neku drugu igru iz dijaloga sa postavkama."
-
-#: ../gnome-stones/preferences.c:559
-msgid "GNOME Stones Preferences"
-msgstr "Postavke za Gnom Kamenje"
-
-#: ../gnome-stones/preferences.c:612
-msgid "Game Title"
-msgstr "Naslov igre"
-
-#: ../gnome-stones/preferences.c:619
-msgid "Caves"
-msgstr "Pećine"
-
-#: ../gnome-stones/preferences.c:699
-msgid "Device"
-msgstr "Uređaj"
-
-#: ../gnome-stones/preferences.c:708
-msgid "_Joystick device:"
-msgstr "Uređaj za _džojstik:"
-
-#. We definatly have a "disable" entry.
-#: ../gnome-stones/preferences.c:715
-msgid "Disabled"
-msgstr "Isključeno"
-
-#: ../gnome-stones/preferences.c:746
-msgid "Digital Joystick Emulation"
-msgstr "Imitacija digitalnog džojstika"
-
-#: ../gnome-stones/preferences.c:755
-msgid "_Switch level:"
-msgstr "_Pređi na nivo:"
-
-#: ../gnome-stones/preferences.c:779
-msgid "Joystick"
-msgstr "DŽojstik"
-
-#: ../gnome-stones/preferences.c:797
-msgid "Enable sound"
-msgstr "Uključi zvukove"
-
-#: ../gnome-stones/preferences.c:809
-msgid "_Sound"
-msgstr "_Zvuk"
-
-#: ../gnome-stones/status.c:81
-msgid "Diamonds:"
-msgstr "Dijamanti:"
-
-#: ../gnome-stones/status.c:95
-msgid "Cave:"
-msgstr "Pećina:"
-
-#: ../gnome-stones/status.c:105
-msgid "Lives:"
-msgstr "Životi:"
-
-#. Local Variables:
-#. mode:c
-#. eval:(load-library "time-stamp")
-#. eval:(make-local-variable 'write-file-hooks)
-#. eval:(add-hook 'write-file-hooks 'time-stamp)
-#. eval:(setq time-stamp-format '(time-stamp-yyyy/mm/dd time-stamp-hh:mm:ss user-login-name))
-#. End:
-#: ../gnome-stones/tutorial.caves.in.h:1
-msgid "Tutorial caves"
-msgstr "Pećine za učenje"
-
-#: ../gnometris/field.cpp:83
+#: ../gnometris/field.cpp:225
 msgid "Paused"
 msgstr "Pauzirano"
 
@@ -3659,8 +3395,8 @@ msgstr "Pauzirano"
 msgid "Fit falling blocks together"
 msgstr "Sastavljaj padajuće blokove"
 
-#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:182
-#: ../gnometris/tetris.cpp:1454
+#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:179
+#: ../gnometris/tetris.cpp:1441
 msgid "Gnometris"
 msgstr "Gnom tetris"
 
@@ -3700,6 +3436,10 @@ msgstr "Početni nivo"
 msgid "Level to start with."
 msgstr "Početni nivo."
 
+#: ../gnometris/gnometris.schemas.in.h:15
+msgid "Pause"
+msgstr "Pauza"
+
 #: ../gnometris/gnometris.schemas.in.h:16
 msgid "Rotate"
 msgstr "Rotiraj"
@@ -3717,151 +3457,137 @@ msgid ""
 "The density of blocks in rows filled at the start of the game. The value is "
 "between 0 (for no blocks) and 10 (for a completely filled row)."
 msgstr ""
-"Gustina blokova u redovima koji su već popunjeni na početku igre. Vrednost "
-"je između 0 (bez blokova) i 10 (za potpuno popunjeni red)."
+"Gustina blokova u redovima koji su već popunjeni na početku igre. Vrednost je "
+"između 0 (bez blokova) i 10 (za potpuno popunjeni red)."
 
 #: ../gnometris/gnometris.schemas.in.h:20
 msgid "The density of filled rows"
 msgstr "Gustina popunjenih redova"
 
-#: ../gnometris/gnometris.schemas.in.h:21
+#: ../gnometris/gnometris.schemas.in.h:22
+msgid "The name of the theme used for rendering the blocks and the background."
+msgstr "Ime teme koja se koristi za iscrtavanje blokova i pozadine."
+
+#: ../gnometris/gnometris.schemas.in.h:23
 msgid ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
 msgstr "Broj redova koji su popunjeni nasumičnim blokovima na početku igre."
 
-#: ../gnometris/gnometris.schemas.in.h:22
+#: ../gnometris/gnometris.schemas.in.h:24
 msgid "The number of rows to fill"
 msgstr "Broj redova za popunjavanje"
 
-#: ../gnometris/gnometris.schemas.in.h:23
+#: ../gnometris/gnometris.schemas.in.h:25
+msgid "The theme used for rendering the blocks"
+msgstr "Slika za iscrtavanje blokova"
+
+#: ../gnometris/gnometris.schemas.in.h:27
 msgid ""
 "This selects whether or not to draw the background image over the background "
 "color."
 msgstr "Ovo određuje da li da iscrtava sliku za pozadinu preko boje pozadine."
 
-#: ../gnometris/gnometris.schemas.in.h:24
+#: ../gnometris/gnometris.schemas.in.h:28
 msgid "Whether to give blocks random colors"
 msgstr "Da li da blokovi budu nasumičnih boja"
 
-#: ../gnometris/gnometris.schemas.in.h:25
+#: ../gnometris/gnometris.schemas.in.h:29
 msgid "Whether to give blocks random colors."
 msgstr "Da li da blokovi budu nasumičnih boja."
 
-#: ../gnometris/gnometris.schemas.in.h:26
+#: ../gnometris/gnometris.schemas.in.h:30
 msgid "Whether to preview the next block"
 msgstr "Da li prikazati sledeći blok"
 
-#: ../gnometris/gnometris.schemas.in.h:27
+#: ../gnometris/gnometris.schemas.in.h:31
 msgid "Whether to preview the next block."
 msgstr "Da li prikazati sledeći blok."
 
-#: ../gnometris/gnometris.schemas.in.h:28
+#: ../gnometris/gnometris.schemas.in.h:32
+msgid ""
+"Whether to provide a graphical representation of where a block will land."
+msgstr "Da li da obezbedim grafičku predstavu gde će blok biti prizemljen."
+
+#: ../gnometris/gnometris.schemas.in.h:33
+msgid "Whether to provide a target"
+msgstr "Da li da obezbedim metu"
+
+#: ../gnometris/gnometris.schemas.in.h:34
 msgid "Whether to rotate counter clock wise"
 msgstr "Da li blokove rotirati u pravcu suprotnom od kazaljke na satu"
 
-#: ../gnometris/gnometris.schemas.in.h:29
+#: ../gnometris/gnometris.schemas.in.h:35
 msgid "Whether to rotate counter clock wise."
 msgstr "Da li blokove rotirati u pravcu suprotnom od kazaljke na satu."
 
-#: ../gnometris/gnometris.schemas.in.h:30
-msgid "Whether to use sound"
-msgstr "Da li da koristi zvuk"
-
-#: ../gnometris/gnometris.schemas.in.h:31
-msgid "Whether to use sound."
-msgstr "Da li da koristi zvuk."
-
-#: ../gnometris/gnometris.schemas.in.h:32
+#: ../gnometris/gnometris.schemas.in.h:36
 msgid "Whether to use the background image"
 msgstr "Da li da koristi sliku za pozadinu"
 
-#: ../gnometris/main.cpp:38
-msgid "Set starting level (1-10)"
-msgstr "Podesi početni nivo (1-10)"
+#: ../gnometris/main.cpp:39
+msgid "Set starting level (1 or greater)"
+msgstr "Postavi početni nivo (1 ili veći)"
 
-#: ../gnometris/main.cpp:38
+#: ../gnometris/main.cpp:39
 msgid "LEVEL"
 msgstr "NIVO"
 
-#: ../gnometris/scoreframe.cpp:68
+#: ../gnometris/renderer.cpp:28
+msgid "Joined"
+msgstr "Spojen"
+
+#: ../gnometris/scoreframe.cpp:63
 msgid "Lines:"
 msgstr "Linije:"
 
-#: ../gnometris/tetris.cpp:351
-#, c-format
-msgid ""
-"Could not find the theme: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"Ne mogu da nađem temu: \n"
-"%s\n"
-"\n"
-"Proverite instalaciju Gnom igara"
-
-#: ../gnometris/tetris.cpp:366
-#, c-format
-msgid ""
-"Can't load the image: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"Ne mogu da učitam sliku: \n"
-"%s\n"
-"\n"
-"Proverite instalaciju Gnom igara"
-
-#: ../gnometris/tetris.cpp:714 ../gnometris/tetris.cpp:715
+#: ../gnometris/tetris.cpp:684 ../gnometris/tetris.cpp:685
 msgid "<none>"
 msgstr "<ništa>"
 
-#: ../gnometris/tetris.cpp:743
+#: ../gnometris/tetris.cpp:713
 msgid "Gnometris Preferences"
 msgstr "Gnom tetris postavke"
 
-#: ../gnometris/tetris.cpp:767
+#: ../gnometris/tetris.cpp:737
 msgid "Setup"
 msgstr "Podešavanje"
 
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:773
+#: ../gnometris/tetris.cpp:743
 msgid "_Number of pre-filled rows:"
 msgstr "_Broj unapred popunjenih redova:"
 
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:792
+#: ../gnometris/tetris.cpp:762
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "_Gustina blokova u unapred popunjenim redovima:"
 
-#: ../gnometris/tetris.cpp:832
+#: ../gnometris/tetris.cpp:802
 msgid "Operation"
 msgstr "Operacija"
 
-#: ../gnometris/tetris.cpp:846
+#: ../gnometris/tetris.cpp:816
 msgid "_Preview next block"
 msgstr "_Prikaži sledeći blok"
 
-#: ../gnometris/tetris.cpp:855
+#: ../gnometris/tetris.cpp:825
 msgid "_Use random block colors"
 msgstr "_Koristi nasumične boje blokova"
 
-#: ../gnometris/tetris.cpp:866
+#: ../gnometris/tetris.cpp:836
 msgid "_Rotate blocks counterclockwise"
 msgstr "_Okreći suprotno smeru kazaljke na satu"
 
-#: ../gnometris/tetris.cpp:879 ../gnometris/tetris.cpp:912
-#: ../same-gnome/ui.c:288
-msgid "Theme"
-msgstr "Tema"
+#: ../gnometris/tetris.cpp:845
+msgid "Show where the block will _land"
+msgstr "Prikaži gde će blok biti prizemljen"
 
-#: ../gnometris/tetris.cpp:915
-msgid "Block image:"
-msgstr "Slika za blok:"
+#: ../gnometris/tetris.cpp:893
+msgid "Block Style"
+msgstr "Stil bloka"
 
-#: ../gnometris/tetris.cpp:1456
+#: ../gnometris/tetris.cpp:1443
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: \n"
@@ -3875,12 +3601,11 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "Rezultati za Gnom tetris"
 
-#: ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:628
-#, fuzzy
+#: ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:620
 msgid "gnomine|Medium"
-msgstr "Srednje"
+msgstr "Mine|Srednje"
 
-#: ../gnomine/gnomine.c:85 ../gnomine/gnomine.c:648
+#: ../gnomine/gnomine.c:85 ../gnomine/gnomine.c:642
 msgid "Custom"
 msgstr "Proizvoljno"
 
@@ -3905,11 +3630,11 @@ msgstr "Rezultati Gnom mina"
 msgid "Size:"
 msgstr "Veličina:"
 
-#: ../gnomine/gnomine.c:215 ../mahjongg/mahjongg.c:683 ../same-gnome/ui.c:165
+#: ../gnomine/gnomine.c:215 ../mahjongg/mahjongg.c:684 ../same-gnome/ui.c:165
 msgid "Congratulations!"
 msgstr "Čestitamo!"
 
-#: ../gnomine/gnomine.c:216 ../mahjongg/mahjongg.c:684 ../same-gnome/ui.c:166
+#: ../gnomine/gnomine.c:216 ../mahjongg/mahjongg.c:685 ../same-gnome/ui.c:166
 msgid "Your score has made the top ten."
 msgstr "Vaš rezultat je ušao u najboljih 10."
 
@@ -3921,85 +3646,85 @@ msgstr "Kliknite na kvadrat, bilo koji kvadrat"
 msgid "Maybe they're all mines ..."
 msgstr "Možda su sve mine ..."
 
-#: ../gnomine/gnomine.c:428
+#: ../gnomine/gnomine.c:419
 msgid "Faces:"
 msgstr "Lica:"
 
-#: ../gnomine/gnomine.c:431
+#: ../gnomine/gnomine.c:422
 msgid "Graphics:"
 msgstr "Grafike:"
 
-#: ../gnomine/gnomine.c:437
+#: ../gnomine/gnomine.c:428
 msgid "Resizing and SVG support:"
 msgstr "Podrška za promenu veličine i SVG:"
 
-#: ../gnomine/gnomine.c:444 ../gnomine/gnomine.c:959
+#: ../gnomine/gnomine.c:435 ../gnomine/gnomine.c:956
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
 msgstr "Mine"
 
-#: ../gnomine/gnomine.c:614
+#: ../gnomine/gnomine.c:605
 msgid "Field Size"
 msgstr "Veličina polja"
 
-#: ../gnomine/gnomine.c:660
+#: ../gnomine/gnomine.c:655
 msgid "Custom Size"
 msgstr "Prozvoljna veličina"
 
-#: ../gnomine/gnomine.c:667
+#: ../gnomine/gnomine.c:662
 msgid "_Number of mines:"
 msgstr "_Broj mina:"
 
-#: ../gnomine/gnomine.c:679
+#: ../gnomine/gnomine.c:674
 msgid "_Horizontal:"
 msgstr "_Vodoravno:"
 
-#: ../gnomine/gnomine.c:690
+#: ../gnomine/gnomine.c:685
 msgid "_Vertical:"
 msgstr "_Uspravno:"
 
-#: ../gnomine/gnomine.c:705
+#: ../gnomine/gnomine.c:700
 msgid "_Use \"I'm not sure\" flags"
 msgstr "_Koristi \"Nisam siguran\" oznake"
 
-#: ../gnomine/gnomine.c:714
+#: ../gnomine/gnomine.c:709
 msgid "Mines Preferences"
 msgstr "Mine postavke"
 
-#: ../gnomine/gnomine.c:853
+#: ../gnomine/gnomine.c:848
 msgid "Width of grid"
 msgstr "Širina mreže"
 
-#: ../gnomine/gnomine.c:854
+#: ../gnomine/gnomine.c:849
 msgid "Height of grid"
 msgstr "Visina mreže"
 
-#: ../gnomine/gnomine.c:855
+#: ../gnomine/gnomine.c:850
 msgid "Number of mines"
 msgstr "Broj mina"
 
-#: ../gnomine/gnomine.c:855 ../gtali/setup.c:85 ../gtali/setup.c:86
+#: ../gnomine/gnomine.c:850 ../gtali/setup.c:85 ../gtali/setup.c:86
 #: ../same-gnome/same-gnome.c:140
 msgid "NUMBER"
 msgstr "BROJ"
 
-#: ../gnomine/gnomine.c:856
+#: ../gnomine/gnomine.c:851
 msgid "Size of the board (1=small, 3=large)"
 msgstr "Veličina table (1=mala, 3=velika)"
 
-#: ../gnomine/gnomine.c:857
+#: ../gnomine/gnomine.c:852
 msgid "X location of window"
 msgstr "X pozicija prozora"
 
-#: ../gnomine/gnomine.c:858
+#: ../gnomine/gnomine.c:853
 msgid "Y location of window"
 msgstr "Y pozicija prozora"
 
-#: ../gnomine/gnomine.c:1024
+#: ../gnomine/gnomine.c:1021
 msgid "Press to Resume"
 msgstr "Pritisnite za nastavak"
 
-#: ../gnomine/gnomine.c:1057
+#: ../gnomine/gnomine.c:1054
 msgid "Time: "
 msgstr "Vreme: "
 
@@ -4172,19 +3897,19 @@ msgstr "Veličina table (2-6)"
 msgid "SIZE"
 msgstr "VELIČINA"
 
-#: ../gnotravex/gnotravex.c:827
+#: ../gnotravex/gnotravex.c:829
 msgid "Puzzle solved! Well done!"
 msgstr "Slagalica rešena! Svaka čast!"
 
-#: ../gnotravex/gnotravex.c:830
+#: ../gnotravex/gnotravex.c:832
 msgid "Puzzle solved!"
 msgstr "Slagalica rešena!"
 
-#: ../gnotravex/gnotravex.c:1188 ../mahjongg/mahjongg.c:954
+#: ../gnotravex/gnotravex.c:1190 ../mahjongg/mahjongg.c:955
 msgid "Game paused"
 msgstr "Igra je pauzirana"
 
-#: ../gnotravex/gnotravex.c:1346
+#: ../gnotravex/gnotravex.c:1348
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "Igra se na %dx%d tabli"
@@ -4195,7 +3920,7 @@ msgstr "Igraj slagalicu spajajući odgovarajuće oblike"
 
 #: ../gnotravex/gnotravex.desktop.in.h:2
 msgid "Tetravex"
-msgstr "Tetraveks"
+msgstr "Slagalica"
 
 #: ../gnotravex/gnotravex.schemas.in.h:1
 msgid ""
@@ -4438,11 +4163,11 @@ msgstr "Sledeća slagalica"
 msgid "Previous Puzzle"
 msgstr "Prethodna slagalica"
 
-#: ../gnotski/gnotski.c:817
+#: ../gnotski/gnotski.c:819
 msgid "Level completed."
 msgstr "Nivo završen."
 
-#: ../gnotski/gnotski.c:1009
+#: ../gnotski/gnotski.c:1011
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -4452,7 +4177,7 @@ msgstr ""
 "\n"
 "Proverite da li je Klotski ispravno instaliran."
 
-#: ../gnotski/gnotski.c:1177
+#: ../gnotski/gnotski.c:1179
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -4465,12 +4190,12 @@ msgstr ""
 "\n"
 "Proverite da li je Klotski ispravno instaliran."
 
-#: ../gnotski/gnotski.c:1216
+#: ../gnotski/gnotski.c:1218
 #, c-format
 msgid "Moves: %d"
 msgstr "Potezi: %d"
 
-#: ../gnotski/gnotski.c:1539
+#: ../gnotski/gnotski.c:1541
 msgid "Sliding Block Puzzles"
 msgstr "Slagalice sa klizećim blokovima"
 
@@ -4552,11 +4277,11 @@ msgstr ""
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr "[Čovek,Miljenko,Gojnik,Savudin,Vukašin,Goran]"
 
-#: ../gtali/gyahtzee.c:121
+#: ../gtali/gyahtzee.c:125
 msgid "The game is a draw!"
 msgstr "Igra je nerešena!"
 
-#: ../gtali/gyahtzee.c:136
+#: ../gtali/gyahtzee.c:140
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
@@ -4564,45 +4289,46 @@ msgstr[0] "%s je pobedio sa %d poenom"
 msgstr[1] "%s je pobedio sa %d poena"
 msgstr[2] "%s je pobedio sa %d poena"
 
-#: ../gtali/gyahtzee.c:203
+#: ../gtali/gyahtzee.c:145 ../same-gnome/ui.c:144
+msgid "Game over!"
+msgstr "Igra završena!"
+
+#: ../gtali/gyahtzee.c:207
 #, c-format
 msgid "Computer playing for %s"
 msgstr "Računar igra kao %s"
 
-#: ../gtali/gyahtzee.c:206
+#: ../gtali/gyahtzee.c:210
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- Vaš red."
 
-#: ../gtali/gyahtzee.c:299
-#, fuzzy
+#: ../gtali/gyahtzee.c:303
 msgid "Select dice to roll or choose a score slot."
 msgstr ""
-"Izaberite kockice koje hoćete ponovo da bacate, i pritisnite Bacaj!, ili "
-"izaberite polje za upis."
+"Izaberite kockice koje hoćete ponovo da bacate ili izaberite polje za upis."
 
-#: ../gtali/gyahtzee.c:326
+#: ../gtali/gyahtzee.c:330
 msgid "Roll"
 msgstr "Bacaj"
 
-#: ../gtali/gyahtzee.c:369
-#, fuzzy
+#: ../gtali/gyahtzee.c:382
 msgid "You are only allowed three rolls. Choose a score slot."
 msgstr "Samo su tri bacanja dozvoljena! Izaberite polje za upis."
 
-#: ../gtali/gyahtzee.c:412
+#: ../gtali/gyahtzee.c:427
 msgid "GNOME version (1998):"
 msgstr "Gnom verzija (1998):"
 
-#: ../gtali/gyahtzee.c:415
+#: ../gtali/gyahtzee.c:430
 msgid "Console version (1992):"
 msgstr "Konzolna verzija (1992):"
 
-#: ../gtali/gyahtzee.c:425
+#: ../gtali/gyahtzee.c:440
 msgid "A variation on poker with dice and less money."
 msgstr "Vrsta pokera sa kockicom i manje novca."
 
-#: ../gtali/gyahtzee.c:607
+#: ../gtali/gyahtzee.c:622
 msgid "Roll!"
 msgstr "Bacaj!"
 
@@ -4635,7 +4361,6 @@ msgid "Current game will complete with original number of players."
 msgstr "Igra koja trenutno traje će biti završena sa prvobitnim brojem igrača."
 
 #: ../gtali/setup.c:230
-#, fuzzy
 msgid "Tali Preferences"
 msgstr "Jamb postavke"
 
@@ -4738,7 +4463,7 @@ msgstr "Bonus ukoliko je >62"
 
 #: ../gtali/yahtzee.c:187
 msgid "Choose a score slot."
-msgstr ""
+msgstr "Izaberite mesto za rezultat."
 
 #: ../gtali/yahtzee.c:456
 msgid "How many times do you wish to roll?"
@@ -4768,20 +4493,20 @@ msgstr "Jagno server koji treba koristiti"
 msgid "New Net_work Game"
 msgstr "Nova mrež_na igra"
 
-#: ../iagno/gnothello.c:265 ../iagno/gnothello.c:588
+#: ../iagno/gnothello.c:245 ../iagno/gnothello.c:572
 #: ../iagno/iagno.desktop.in.h:1 ../iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Jagno"
 
-#: ../iagno/gnothello.c:268
+#: ../iagno/gnothello.c:248
 msgid "A disk flipping game derived from Reversi."
 msgstr "Igra izvrtanja diskova proizašla iz igre Reversi."
 
-#: ../iagno/gnothello.c:647
+#: ../iagno/gnothello.c:631
 msgid "Welcome to Iagno!"
 msgstr "Dobro došli u Jagno!"
 
-#: ../iagno/gnothello.c:655 ../iagno/gnothello.c:657
+#: ../iagno/gnothello.c:639 ../iagno/gnothello.c:641
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
@@ -4806,11 +4531,11 @@ msgstr "Nepostojeći podatak (set_peer)"
 msgid "Invalid game data (move)"
 msgstr "Nepostojeći podatak (move)"
 
-#: ../iagno/othello.c:680
+#: ../iagno/othello.c:712
 msgid "Light must pass, Dark's move"
 msgstr "Beli preskače potez, Crni je na potezu"
 
-#: ../iagno/othello.c:686
+#: ../iagno/othello.c:718
 msgid "Dark must pass, Light's move"
 msgstr "Crni preskače potez, Beli je na potezu"
 
@@ -4846,13 +4571,17 @@ msgstr "_Razbacaj figure"
 msgid "S_how grid"
 msgstr "P_rikaži mrežu"
 
+#: ../iagno/properties.c:675
+msgid "_Flip final results"
+msgstr "_Obrni konačni rezultat"
+
 #: ../libgames-support/games-card-selector.c:52
 msgid "Card Style"
 msgstr "Stil karata"
 
 #: ../libgames-support/games-controls.c:158
 #: ../libgames-support/games-controls.c:332
-#: ../libgames-support/games-controls.c:411
+#: ../libgames-support/games-controls.c:397
 msgid "No key"
 msgstr "Bez tastera"
 
@@ -4860,7 +4589,7 @@ msgstr "Bez tastera"
 msgid "<Press a Key>"
 msgstr "<Pritisnite taster>"
 
-#: ../libgames-support/games-controls.c:398
+#: ../libgames-support/games-controls.c:384
 msgid "Unknown Command"
 msgstr "Nepoznata naredba"
 
@@ -4941,12 +4670,9 @@ msgid "Status"
 msgstr "Status"
 
 #: ../libgames-support/games-network-dialog.c:141
-msgid ""
-"Select a nickname and connection method\n"
-"then click Connect."
+msgid "Select a nickname and connection method then click Connect."
 msgstr ""
-"Izaberite nadimak i način povezivanja\n"
-"a zatim kliknite Poveži"
+"Izaberite nadimak i način povezivanja a zatim pritisnite „Poveži se“."
 
 #. Now for the network connection options.
 #: ../libgames-support/games-network-dialog.c:145
@@ -5064,23 +4790,24 @@ msgstr ""
 msgid "Image rendering failed."
 msgstr "Neuspešno iscrtavanje slike."
 
+#. Note that this assumes the default style is plain.
+#: games-scores-dialog.gob:339 games-scores-dialog.gob:425
+#: ../libgames-support/games-scores-dialog.gob:339
+#: ../libgames-support/games-scores-dialog.gob:425
+msgid "Score"
+msgstr "Rezultat"
+
 #. Translators: this is for a minutes, seconds time display.
-#: ../libgames-support/games-scores-dialog.gob:157
+#: games-scores-dialog.gob:191 ../libgames-support/games-scores-dialog.gob:191
 #, c-format
 msgid "%dm %ds"
 msgstr "%dm %ds"
 
-#. Note that this assumes the default style is plain.
-#: ../libgames-support/games-scores-dialog.gob:298
-#: ../libgames-support/games-scores-dialog.gob:384
-msgid "Score"
-msgstr "Rezultat"
-
-#: ../libgames-support/games-scores-dialog.gob:379
+#: games-scores-dialog.gob:420 ../libgames-support/games-scores-dialog.gob:420
 msgid "Time"
 msgstr "Vreme"
 
-#: ../libgames-support/games-scores-dialog.gob:482
+#: games-scores-dialog.gob:521 ../libgames-support/games-scores-dialog.gob:521
 msgid "New Game"
 msgstr "Nova igra"
 
@@ -5220,8 +4947,8 @@ msgid ""
 "This string identifies the default game to connect to or create (depending "
 "on mode)."
 msgstr ""
-"Ova niska određuje podrazumevanu igru kojoj se priključiti ili koju "
-"napraviti (u zavisnosti od režima)."
+"Ova niska određuje podrazumevanu igru kojoj se priključiti ili koju napraviti "
+"(u zavisnosti od režima)."
 
 #: ../libgames-support/libgnomegames.schemas.in.h:8
 msgid ""
@@ -5306,71 +5033,69 @@ msgstr "_Završi"
 msgid "Shuffle"
 msgstr "Mešaj"
 
-#: ../mahjongg/mahjongg.c:679 ../mahjongg/mahjongg.c:978
-#, fuzzy
+#: ../mahjongg/mahjongg.c:680 ../mahjongg/mahjongg.c:979
 msgid "Mahjongg Scores"
-msgstr "Mahjong"
+msgstr "Mahjong rezultati"
 
-#: ../mahjongg/mahjongg.c:681 ../mahjongg/mahjongg.c:980
-#, fuzzy
+#: ../mahjongg/mahjongg.c:682 ../mahjongg/mahjongg.c:981
 msgid "Map:"
-msgstr "Mape:"
+msgstr "Mapa:"
 
-#: ../mahjongg/mahjongg.c:719
+#: ../mahjongg/mahjongg.c:720
 msgid "Mahjongg Preferences"
 msgstr "Mahjong postavke"
 
-#: ../mahjongg/mahjongg.c:740
+#: ../mahjongg/mahjongg.c:741
 msgid "Tiles"
 msgstr "Slike"
 
-#: ../mahjongg/mahjongg.c:763
+#: ../mahjongg/mahjongg.c:764
 msgid "Maps"
 msgstr "Mape"
 
-#: ../mahjongg/mahjongg.c:770
+#: ../mahjongg/mahjongg.c:771
 msgid "_Select map:"
 msgstr "_Izaberi mapu:"
 
-#: ../mahjongg/mahjongg.c:786
+#: ../mahjongg/mahjongg.c:787
 msgid "Colors"
 msgstr "Boje"
 
-#: ../mahjongg/mahjongg.c:912
+#: ../mahjongg/mahjongg.c:913
 msgid "Maps:"
 msgstr "Mape:"
 
-#: ../mahjongg/mahjongg.c:916
+#: ../mahjongg/mahjongg.c:917
 msgid "Tiles:"
 msgstr "Slike:"
 
-#: ../mahjongg/mahjongg.c:926 ../mahjongg/mahjongg.c:992
+#: ../mahjongg/mahjongg.c:927 ../mahjongg/mahjongg.c:993
 #: ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjong"
 
-#: ../mahjongg/mahjongg.c:928
+#: ../mahjongg/mahjongg.c:929
 msgid "A matching game played with Mahjongg tiles."
 msgstr "Igra slaganja sa figurama Mahjonga."
 
-#: ../mahjongg/mahjongg.c:992
+#: ../mahjongg/mahjongg.c:993
 #, c-format
 msgid "%s - %s"
 msgstr "%s - %s"
 
-#: ../mahjongg/mahjongg.c:1244
+#: ../mahjongg/mahjongg.c:1245
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Žao nam je, ali ne možemo da nađemo upotrebljiva podešavanja."
 
-#: ../mahjongg/mahjongg.c:1429
+#: ../mahjongg/mahjongg.c:1432
 msgid "Tiles Left:"
 msgstr "Figura preostalo:"
 
-#: ../mahjongg/mahjongg.c:1438
+#: ../mahjongg/mahjongg.c:1441
 msgid "Moves Left:"
 msgstr "Poteza preostalo:"
 
-#: ../mahjongg/mahjongg.c:1500
+#: ../mahjongg/mahjongg.c:1503
 msgid "Remove matching pairs of tiles."
 msgstr "Ukloni složene parove slika."
 
@@ -5395,9 +5120,8 @@ msgstr ""
 "koje sadrži prozor širin najmanje 320 tačaka."
 
 #: ../mahjongg/maps.c:534
-#, fuzzy
 msgid "mahjongg|Easy"
-msgstr "Mahjong"
+msgstr "Mahjong|Lako"
 
 #: ../mahjongg/maps.c:535
 msgid "Difficult"
@@ -5433,13 +5157,13 @@ msgstr "Zigurat"
 
 #. FIXME: This is long enough to resize the window upwards when
 #. * the game finishes.
-#: ../same-gnome/game.c:364
+#: ../same-gnome/game.c:367
 msgid "1000 point bonus for clearing the board!"
 msgstr "1000 dodatnih poena za čišćenje table!"
 
 #: ../same-gnome/same-gnome.c:50
 msgid "same-gnome|Medium"
-msgstr ""
+msgstr "Isto-isto|Srednje"
 
 #: ../same-gnome/same-gnome.c:135
 msgid "Set the theme"
@@ -5571,3 +5295,248 @@ msgid ""
 msgstr ""
 "Nije moguće igrati igru. Proverite da li je igra ispravno postavljena i "
 "pokušajte ponovo."
+
+#~ msgid "Congratulations."
+#~ msgstr "Čestitamo."
+
+#, fuzzy
+#~ msgid " next to the "
+#~ msgstr "Postavi temu"
+
+#, fuzzy
+#~ msgid "Place the "
+#~ msgstr "Pauziraj igru"
+
+#, fuzzy
+#~ msgid "Place something on to the empty tableau slot"
+#~ msgstr "Postavite nešto na prazan talon"
+
+#~ msgid "Flip final results"
+#~ msgstr "Okreni konačni rezultat"
+
+#~ msgid "Tileset"
+#~ msgstr "Špil"
+
+#~ msgid "Whether or not to flip final results."
+#~ msgstr "Da li da okrećem konačni rezultat."
+
+#~ msgid ""
+#~ "Put all the white pieces at the bottom and all the black pieces on the "
+#~ "top of the board when a game is over"
+#~ msgstr ""
+#~ "Postavi sve bele figure na dno i sve crne figure na vrh table kada se "
+#~ "igra završi"
+
+#~ msgid "Collect all diamonds and find exit"
+#~ msgstr "Pokupi sve dijamante i nađi izlaz"
+
+#~ msgid "Congratulations!!! You have won!"
+#~ msgstr "Čestitamo!!! Pobedili ste!"
+
+#~ msgid "Original Atari caves"
+#~ msgstr "Originalne pećine sa Atarija"
+
+#~ msgid "gnome-stones:empty"
+#~ msgstr "gnom-kamenje:prazno"
+
+#~ msgid "Default caves"
+#~ msgstr "Podrazumevane pećine"
+
+#~ msgid "Collect diamonds while avoiding falling boulders"
+#~ msgstr "Pokupi sve dijamante izbegavajući stene koje padaju"
+
+#~ msgid "Stones"
+#~ msgstr "Kamenje"
+
+#~ msgid "Cave number to start"
+#~ msgstr "Broj pećina na početku"
+
+#~ msgid "Cave number to start."
+#~ msgstr "Broj pećina na početku."
+
+#~ msgid "Device to use for joystick control."
+#~ msgstr "Uređaj za kontrolu džojstikom."
+
+#~ msgid "Enable sound support"
+#~ msgstr "Uključi podršku za zvuk"
+
+#~ msgid "Enable sound support."
+#~ msgstr "Uključuje podršku za zvuk."
+
+#~ msgid "Game name"
+#~ msgstr "Ime igre"
+
+#~ msgid "Joystick device"
+#~ msgstr "Uređaj džojstika"
+
+#~ msgid "Joystick switch level"
+#~ msgstr "Stepen pokretljivosti džojstika"
+
+#~ msgid "The full path and filename of game to load."
+#~ msgstr "Puna putanja i ime igre koju treba učitati."
+
+#~ msgid ""
+#~ "The level an analog joystick must reach to be considered \"on\" when "
+#~ "emulating a digital joystick. This takes a value between 0.0 and 1.0."
+#~ msgstr ""
+#~ "Nivo koji analogni džojstik mora da dostigne da bi se smatrao \"uključenim"
+#~ "\" kada oponaša digitalni džojstik. Ovo uzima vrednost između 0.0 i 1.0."
+
+#~ msgid "Gnomekoban"
+#~ msgstr "Gnom Sokoban"
+
+#~ msgid "gnomekoban:empty,0"
+#~ msgstr "gnom sokoban:prazno,0"
+
+#~ msgid "The cave you are trying to load is too big for this game."
+#~ msgstr "Pećina koju pokušavate da učitate je prevelika za ovu igru."
+
+#~ msgid "The cave is corrupted: %s is missing."
+#~ msgstr "Pećina je oštećena: %s nedostaje."
+
+#~ msgid ""
+#~ "The cave you are trying to load includes an object, that wasn't declared."
+#~ msgstr ""
+#~ "Pećina koju pokušavate da učitate sadrži objekat koji nije prijavljen."
+
+#~ msgid "This is GNOME Stones"
+#~ msgstr "Ovo je Gnom Kamenje"
+
+#~ msgid "Game to play"
+#~ msgstr "Šta se igra"
+
+#~ msgid "FILENAME"
+#~ msgstr "DATOTEKA"
+
+#~ msgid ""
+#~ "An error occurred while loading the image file \"%s\".\n"
+#~ "Please make sure that GNOME Stones is correctly installed!"
+#~ msgstr ""
+#~ "Greška se javila pri učitavanju slike \"%s\".\n"
+#~ "Proverite da li je Gnom kamenje ispravno instalirano!"
+
+#~ msgid "GNOME Stones"
+#~ msgstr "Gnom Kamenje"
+
+#~ msgid "Game title"
+#~ msgstr "Naslov igre"
+
+#~ msgid "Start cave"
+#~ msgstr "Početna pećina"
+
+#~ msgid "Congratulations, you win!"
+#~ msgstr "Čestitamo, pobedili ste!"
+
+#~ msgid "Sokoban levels:"
+#~ msgstr "Sokoban nivoi:"
+
+#~ msgid "Mine through dirt and collect gems."
+#~ msgstr "Kopaj po blatu i sakupljaj dragulje."
+
+#~ msgid "Scanning private object directory..."
+#~ msgstr "Pretražujem direktorijum sa privatnim objektima..."
+
+#~ msgid "Scanning public object directory..."
+#~ msgstr "Pretražujem direktorijum sa javnim objektima..."
+
+#~ msgid "Scanning private game directory..."
+#~ msgstr "Pretražujem privatni direktorijum igre..."
+
+#~ msgid "Scanning public game directory..."
+#~ msgstr "Pretražujem javni direktorijum igre..."
+
+#~ msgid "Restoring preferences..."
+#~ msgstr "Vraćam postavke na stare vrednosti..."
+
+#~ msgid "You gained an extra life!"
+#~ msgstr "Dobili ste dodatni život!"
+
+#~ msgid "Seconds left: %d"
+#~ msgstr "Preostalo sekundi: %d"
+
+#~ msgid "Neither your chosen game nor the default game could be loaded."
+#~ msgstr ""
+#~ "Ni igra koju ste izabrali, ni standardna igra nije mogla da se učita."
+
+#~ msgid "Please make sure that GNOME Stones is correctly installed."
+#~ msgstr "Proverite da li je Gnom kamenje ispravno instalirano."
+
+#~ msgid ""
+#~ "You may be able to select a different game from the preferences dialog."
+#~ msgstr "Možete izabrati neku drugu igru iz dijaloga sa postavkama."
+
+#~ msgid "GNOME Stones Preferences"
+#~ msgstr "Postavke za Gnom Kamenje"
+
+#~ msgid "Game Title"
+#~ msgstr "Naslov igre"
+
+#~ msgid "Caves"
+#~ msgstr "Pećine"
+
+#~ msgid "Device"
+#~ msgstr "Uređaj"
+
+#~ msgid "_Joystick device:"
+#~ msgstr "Uređaj za _džojstik:"
+
+#~ msgid "Disabled"
+#~ msgstr "Isključeno"
+
+#~ msgid "Digital Joystick Emulation"
+#~ msgstr "Imitacija digitalnog džojstika"
+
+#~ msgid "_Switch level:"
+#~ msgstr "_Pređi na nivo:"
+
+#~ msgid "Joystick"
+#~ msgstr "DŽojstik"
+
+#~ msgid "Enable sound"
+#~ msgstr "Uključi zvukove"
+
+#~ msgid "_Sound"
+#~ msgstr "_Zvuk"
+
+#~ msgid "Diamonds:"
+#~ msgstr "Dijamanti:"
+
+#~ msgid "Cave:"
+#~ msgstr "Pećina:"
+
+#~ msgid "Lives:"
+#~ msgstr "Životi:"
+
+#~ msgid "Tutorial caves"
+#~ msgstr "Pećine za učenje"
+
+#~ msgid "Whether to use sound"
+#~ msgstr "Da li da koristi zvuk"
+
+#~ msgid "Whether to use sound."
+#~ msgstr "Da li da koristi zvuk."
+
+#~ msgid ""
+#~ "Could not find the theme: \n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your gnome-games installation"
+#~ msgstr ""
+#~ "Ne mogu da nađem temu: \n"
+#~ "%s\n"
+#~ "\n"
+#~ "Proverite instalaciju Gnom igara"
+
+#~ msgid ""
+#~ "Can't load the image: \n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your gnome-games installation"
+#~ msgstr ""
+#~ "Ne mogu da učitam sliku: \n"
+#~ "%s\n"
+#~ "\n"
+#~ "Proverite instalaciju Gnom igara"
+
+#~ msgid "Block image:"
+#~ msgstr "Slika za blok:"
