@@ -261,7 +261,7 @@ network_game_dialog_show (GtkWidget *parent_window)
   }
 
   /* Add the players nickname entry. */
-  frame = games_frame_new ("Identification");
+  frame = games_frame_new (_("Identification"));
 
   label = gtk_label_new_with_mnemonic(_("_Nickname:"));
 
