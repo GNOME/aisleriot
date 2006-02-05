@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-26 13:44+0200\n"
-"PO-Revision-Date: 2005-08-16 11:14+0800\n"
+"POT-Creation-Date: 2006-02-05 07:07+0100\n"
+"PO-Revision-Date: 2006-02-05 16:57+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -42,6 +42,7 @@ msgid "The game file to use"
 msgstr "要使用的游戏文件"
 
 #: ../aisleriot/aisleriot.schemas.in.h:6 ../glines/glines.schemas.in.h:13
+#: ../gnometris/gnometris.schemas.in.h:21
 #: ../same-gnome/same-gnome.schemas.in.h:6
 msgid "The height of the main window."
 msgstr "主窗口的高度。"
@@ -56,6 +57,7 @@ msgid "The name of the scheme file containing the solitaire game to play."
 msgstr ""
 
 #: ../aisleriot/aisleriot.schemas.in.h:9 ../glines/glines.schemas.in.h:14
+#: ../gnometris/gnometris.schemas.in.h:26
 #: ../same-gnome/same-gnome.schemas.in.h:10
 msgid "The width of the main window."
 msgstr "主窗口的宽度。"
@@ -76,14 +78,16 @@ msgid "Whether or not to show the toolbar."
 msgstr "是否显示工具栏。"
 
 #: ../aisleriot/aisleriot.schemas.in.h:13 ../glines/glines.schemas.in.h:17
+#: ../gnometris/gnometris.schemas.in.h:37
 msgid "Window height"
 msgstr "窗口高度"
 
 #: ../aisleriot/aisleriot.schemas.in.h:14 ../glines/glines.schemas.in.h:18
+#: ../gnometris/gnometris.schemas.in.h:38
 msgid "Window width"
 msgstr "窗口宽度"
 
-#: ../aisleriot/cscmi.c:504
+#: ../aisleriot/cscmi.c:520
 #, c-format
 msgid ""
 "A scheme exception occured and we were unable to create a temporary file to "
@@ -93,12 +97,12 @@ msgid ""
 msgstr ""
 
 #: ../aisleriot/dialog.c:45
-msgid "Congratulations."
-msgstr "恭喜。"
+msgid "Congratulations!!!"
+msgstr "恭喜！"
 
 #: ../aisleriot/dialog.c:46
-msgid "You have won!!!"
-msgstr "您赢了！"
+msgid "You have won."
+msgstr "您赢了。"
 
 #: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:640
 msgid "There are no more moves."
@@ -163,107 +167,96 @@ msgstr "空当接龙"
 msgid "Play the popular FreeCell card game"
 msgstr "玩流行的空当接龙纸牌游戏"
 
-#: ../aisleriot/menu.c:88 ../gnome-stones/main.c:1018 ../gnomine/gnomine.c:425
-#: ../mahjongg/mahjongg.c:904
+#: ../aisleriot/menu.c:106 ../gnomine/gnomine.c:416 ../mahjongg/mahjongg.c:905
 msgid "Main game:"
 msgstr "主游戏："
 
-#: ../aisleriot/menu.c:94
+#: ../aisleriot/menu.c:112
 msgid "Card games:"
 msgstr "纸牌游戏："
 
-#: ../aisleriot/menu.c:106
+#: ../aisleriot/menu.c:124
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
-#: ../aisleriot/menu.c:108
+#: ../aisleriot/menu.c:126
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
 msgstr "AisleRiot 提供基于规则的单人纸牌引擎允许进行许多不同的游戏。"
 
-#: ../aisleriot/menu.c:112 ../blackjack/src/menu.cpp:150
-#: ../gataxx/gataxx.c:390 ../glines/glines.c:1217 ../gnect/src/main.c:795
-#: ../gnibbles/main.c:152 ../gnobots2/menu.c:241 ../gnome-stones/main.c:1032
-#: ../gnometris/tetris.cpp:1461 ../gnomine/gnomine.c:448
-#: ../gnotravex/gnotravex.c:1590 ../gnotski/gnotski.c:1543
-#: ../gtali/gyahtzee.c:428 ../iagno/gnothello.c:270 ../mahjongg/mahjongg.c:931
-#: ../same-gnome/ui.c:112
+#: ../aisleriot/menu.c:130 ../blackjack/src/menu.cpp:150
+#: ../gataxx/gataxx.c:389 ../glines/glines.c:1224 ../gnect/src/main.c:795
+#: ../gnibbles/main.c:152 ../gnobots2/menu.c:241 ../gnometris/tetris.cpp:1448
+#: ../gnomine/gnomine.c:439 ../gnotravex/gnotravex.c:1592
+#: ../gnotski/gnotski.c:1545 ../gtali/gyahtzee.c:443 ../iagno/gnothello.c:250
+#: ../mahjongg/mahjongg.c:932 ../same-gnome/ui.c:112
 msgid "translator-credits"
 msgstr "GNOME 简体中文翻译组"
 
-#: ../aisleriot/menu.c:201 ../blackjack/src/blackjack.cpp:298
-#: ../glines/glines.c:1705 ../gnect/src/main.c:1131 ../gnibbles/main.c:600
-#: ../gnobots2/menu.c:57 ../gnome-stones/main.c:1050
-#: ../gnometris/tetris.cpp:130 ../gnomine/gnomine.c:750
+#: ../aisleriot/menu.c:219 ../blackjack/src/blackjack.cpp:298
+#: ../glines/glines.c:1712 ../gnect/src/main.c:1131 ../gnibbles/main.c:600
+#: ../gnobots2/menu.c:57 ../gnometris/tetris.cpp:131 ../gnomine/gnomine.c:745
 #: ../gnotravex/gnotravex.c:175 ../gnotski/gnotski.c:630
-#: ../gtali/gyahtzee.c:501 ../mahjongg/mahjongg.c:1274 ../same-gnome/ui.c:417
+#: ../gtali/gyahtzee.c:516 ../mahjongg/mahjongg.c:1275 ../same-gnome/ui.c:417
 msgid "_Game"
 msgstr "游戏(_G)"
 
-#: ../aisleriot/menu.c:202 ../same-gnome/ui.c:418
+#: ../aisleriot/menu.c:220 ../same-gnome/ui.c:418
 msgid "_View"
 msgstr "查看(_V)"
 
-#: ../aisleriot/menu.c:203 ../blackjack/src/blackjack.cpp:305
+#: ../aisleriot/menu.c:221 ../blackjack/src/blackjack.cpp:305
 msgid "_Control"
 msgstr "控制(_C)"
 
 #. not translated on purpose
-#: ../aisleriot/menu.c:205 ../blackjack/src/blackjack.cpp:312
-#: ../glines/glines.c:1707 ../gnect/src/main.c:1133 ../gnibbles/main.c:602
-#: ../gnobots2/menu.c:60 ../gnome-stones/main.c:1052
-#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:752
+#: ../aisleriot/menu.c:223 ../blackjack/src/blackjack.cpp:312
+#: ../glines/glines.c:1714 ../gnect/src/main.c:1133 ../gnibbles/main.c:602
+#: ../gnobots2/menu.c:60 ../gnometris/tetris.cpp:133 ../gnomine/gnomine.c:747
 #: ../gnotravex/gnotravex.c:178 ../gnotski/gnotski.c:631
-#: ../gtali/gyahtzee.c:503 ../mahjongg/mahjongg.c:1276 ../same-gnome/ui.c:420
+#: ../gtali/gyahtzee.c:518 ../mahjongg/mahjongg.c:1277 ../same-gnome/ui.c:420
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../aisleriot/menu.c:209
+#: ../aisleriot/menu.c:227
 msgid "_Select Game..."
 msgstr "选择游戏(_S)..."
 
-#: ../aisleriot/menu.c:209
+#: ../aisleriot/menu.c:227
 msgid "Play a different game"
 msgstr "玩多种不同的游戏"
 
-#: ../aisleriot/menu.c:210
+#: ../aisleriot/menu.c:228
 msgid "S_tatistics"
 msgstr "统计(_T)"
 
-#: ../aisleriot/menu.c:210
+#: ../aisleriot/menu.c:228
 msgid "Show gameplay statistics"
 msgstr "显示游戏统计"
 
-#: ../aisleriot/menu.c:214
+#: ../aisleriot/menu.c:232
 msgid "_Cards..."
 msgstr "纸牌(_C)..."
 
-#: ../aisleriot/menu.c:219
+#: ../aisleriot/menu.c:237
 msgid "View help for Aisleriot"
 msgstr "查看 Aisleriot 的帮助"
 
-#: ../aisleriot/menu.c:220 ../libgames-support/games-stock.c:110
+#: ../aisleriot/menu.c:238 ../libgames-support/games-stock.c:110
 msgid "View help for this game"
 msgstr "查看此游戏的帮助"
 
-#: ../aisleriot/menu.c:225 ../blackjack/src/blackjack.cpp:318
-#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1292
+#: ../aisleriot/menu.c:243 ../blackjack/src/blackjack.cpp:318
+#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1293
 msgid "_Toolbar"
 msgstr "工具栏(_T)"
 
-#: ../aisleriot/menu.c:226
+#: ../aisleriot/menu.c:244
 msgid "_Click to Move"
 msgstr "单击移动(_C)"
 
-#: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/canfield.scm.h:1
-#: ../aisleriot/rules/chessboard.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:1
-#: ../aisleriot/rules/glenwood.scm.h:1 ../aisleriot/rules/kansas.scm.h:1
-#: ../aisleriot/rules/plait.scm.h:1
-msgid "Base Card: "
-msgstr "底牌："
-
-#: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/canfield.scm.h:2
+#: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/canfield.scm.h:2
 #: ../aisleriot/rules/chessboard.scm.h:2 ../aisleriot/rules/eagle_wing.scm.h:2
 #: ../aisleriot/rules/glenwood.scm.h:2 ../aisleriot/rules/kansas.scm.h:2
 #: ../aisleriot/rules/lady_jane.scm.h:2 ../aisleriot/rules/plait.scm.h:2
@@ -271,7 +264,7 @@ msgstr "底牌："
 msgid "Base Card: Ace"
 msgstr "底牌：A"
 
-#: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/canfield.scm.h:3
+#: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/canfield.scm.h:3
 #: ../aisleriot/rules/chessboard.scm.h:3 ../aisleriot/rules/eagle_wing.scm.h:3
 #: ../aisleriot/rules/glenwood.scm.h:3 ../aisleriot/rules/kansas.scm.h:3
 #: ../aisleriot/rules/lady_jane.scm.h:3 ../aisleriot/rules/plait.scm.h:3
@@ -279,7 +272,7 @@ msgstr "底牌：A"
 msgid "Base Card: Jack"
 msgstr "底牌：J"
 
-#: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/canfield.scm.h:4
+#: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/canfield.scm.h:4
 #: ../aisleriot/rules/chessboard.scm.h:4 ../aisleriot/rules/eagle_wing.scm.h:4
 #: ../aisleriot/rules/glenwood.scm.h:4 ../aisleriot/rules/kansas.scm.h:4
 #: ../aisleriot/rules/lady_jane.scm.h:4 ../aisleriot/rules/plait.scm.h:4
@@ -287,7 +280,7 @@ msgstr "底牌：J"
 msgid "Base Card: King"
 msgstr "底牌：K"
 
-#: ../aisleriot/rules/agnes.scm.h:5 ../aisleriot/rules/canfield.scm.h:5
+#: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/canfield.scm.h:5
 #: ../aisleriot/rules/chessboard.scm.h:5 ../aisleriot/rules/eagle_wing.scm.h:5
 #: ../aisleriot/rules/glenwood.scm.h:5 ../aisleriot/rules/kansas.scm.h:5
 #: ../aisleriot/rules/lady_jane.scm.h:5 ../aisleriot/rules/plait.scm.h:5
@@ -295,41 +288,40 @@ msgstr "底牌：K"
 msgid "Base Card: Queen"
 msgstr "底牌：Q"
 
+#: ../aisleriot/rules/agnes.scm.h:5
+#, fuzzy
+msgid "Base Card: ~a"
+msgstr "底牌："
+
 #: ../aisleriot/rules/agnes.scm.h:6 ../aisleriot/rules/easthaven.scm.h:1
 #: ../aisleriot/rules/labyrinth.scm.h:1 ../aisleriot/rules/monte_carlo.scm.h:1
-#: ../aisleriot/rules/spiderette.scm.h:1 ../aisleriot/rules/valentine.scm.h:1
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:1
+#: ../aisleriot/rules/valentine.scm.h:1
 msgid "Deal more cards"
 msgstr "发更多的牌"
 
-#: ../aisleriot/rules/agnes.scm.h:7 ../aisleriot/rules/auld_lang_syne.scm.h:2
+#: ../aisleriot/rules/agnes.scm.h:7 ../aisleriot/rules/athena.scm.h:4
+#: ../aisleriot/rules/auld_lang_syne.scm.h:2
 #: ../aisleriot/rules/block_ten.scm.h:1 ../aisleriot/rules/bristol.scm.h:2
 #: ../aisleriot/rules/camelot.scm.h:2 ../aisleriot/rules/canfield.scm.h:9
 #: ../aisleriot/rules/cover.scm.h:1 ../aisleriot/rules/doublets.scm.h:2
 #: ../aisleriot/rules/eagle_wing.scm.h:11 ../aisleriot/rules/easthaven.scm.h:4
 #: ../aisleriot/rules/elevator.scm.h:2 ../aisleriot/rules/escalator.scm.h:2
 #: ../aisleriot/rules/first_law.scm.h:17 ../aisleriot/rules/fortunes.scm.h:4
-#: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/golf.scm.h:2
-#: ../aisleriot/rules/gypsy.scm.h:3 ../aisleriot/rules/helsinki.scm.h:1
-#: ../aisleriot/rules/hopscotch.scm.h:3 ../aisleriot/rules/jamestown.scm.h:1
-#: ../aisleriot/rules/jumbo.scm.h:4 ../aisleriot/rules/kansas.scm.h:8
-#: ../aisleriot/rules/klondike.scm.h:4 ../aisleriot/rules/labyrinth.scm.h:2
-#: ../aisleriot/rules/lady_jane.scm.h:7 ../aisleriot/rules/monte_carlo.scm.h:2
-#: ../aisleriot/rules/neighbor.scm.h:1 ../aisleriot/rules/osmosis.scm.h:3
-#: ../aisleriot/rules/peek.scm.h:3 ../aisleriot/rules/plait.scm.h:11
-#: ../aisleriot/rules/quatorze.scm.h:1 ../aisleriot/rules/royal_east.scm.h:7
+#: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/gypsy.scm.h:3
+#: ../aisleriot/rules/helsinki.scm.h:1 ../aisleriot/rules/hopscotch.scm.h:3
+#: ../aisleriot/rules/jamestown.scm.h:1 ../aisleriot/rules/jumbo.scm.h:4
+#: ../aisleriot/rules/kansas.scm.h:8 ../aisleriot/rules/klondike.scm.h:4
+#: ../aisleriot/rules/labyrinth.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:7
+#: ../aisleriot/rules/monte_carlo.scm.h:2 ../aisleriot/rules/neighbor.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:11 ../aisleriot/rules/quatorze.scm.h:1
+#: ../aisleriot/rules/royal_east.scm.h:7 ../aisleriot/rules/saratoga.scm.h:4
 #: ../aisleriot/rules/scuffle.scm.h:4 ../aisleriot/rules/sir_tommy.scm.h:3
-#: ../aisleriot/rules/spider.scm.h:4
-#: ../aisleriot/rules/spider_one_suit.scm.h:4
-#: ../aisleriot/rules/spider_two_suit.scm.h:4
-#: ../aisleriot/rules/spiderette.scm.h:3
 #: ../aisleriot/rules/straight_up.scm.h:5 ../aisleriot/rules/thieves.scm.h:2
-#: ../aisleriot/rules/thirteen.scm.h:2
+#: ../aisleriot/rules/thirteen.scm.h:3
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:2 ../aisleriot/rules/union_square.scm.h:2
 #: ../aisleriot/rules/westhaven.scm.h:2 ../aisleriot/rules/whitehead.scm.h:3
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:3 ../aisleriot/rules/yield.scm.h:2
-#: ../aisleriot/rules/zebra.scm.h:4
+#: ../aisleriot/rules/yield.scm.h:2 ../aisleriot/rules/zebra.scm.h:4
 msgid "Stock left:"
 msgstr "发牌区剩下："
 
@@ -351,15 +343,61 @@ msgstr "尝试重新排列纸牌"
 msgid "an empty foundation pile"
 msgstr "空的收牌区牌堆"
 
+#: ../aisleriot/rules/athena.scm.h:1 ../aisleriot/rules/camelot.scm.h:1
+#: ../aisleriot/rules/canfield.scm.h:6 ../aisleriot/rules/glenwood.scm.h:6
+#: ../aisleriot/rules/klondike.scm.h:1 ../aisleriot/rules/osmosis.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:6 ../aisleriot/rules/saratoga.scm.h:1
+#: ../aisleriot/rules/straight_up.scm.h:1
+msgid "Deal a new card from the deck"
+msgstr "从牌垛中发一张新牌"
+
+#: ../aisleriot/rules/athena.scm.h:2 ../aisleriot/rules/easthaven.scm.h:3
+#: ../aisleriot/rules/freecell.scm.h:1 ../aisleriot/rules/klondike.scm.h:2
+#: ../aisleriot/rules/saratoga.scm.h:2
+msgid "No hint available right now"
+msgstr "现在没有可用的提示"
+
+#: ../aisleriot/rules/athena.scm.h:3 ../aisleriot/rules/doublets.scm.h:1
+#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:4
+#: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
+#: ../aisleriot/rules/klondike.scm.h:3 ../aisleriot/rules/plait.scm.h:10
+#: ../aisleriot/rules/saratoga.scm.h:3 ../aisleriot/rules/scuffle.scm.h:2
+#: ../aisleriot/rules/straight_up.scm.h:3
+#: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
+msgid "Redeals left:"
+msgstr "剩余重发次数："
+
+#: ../aisleriot/rules/athena.scm.h:5 ../aisleriot/rules/klondike.scm.h:5
+#: ../aisleriot/rules/osmosis.scm.h:3 ../aisleriot/rules/saratoga.scm.h:5
+msgid "Three card deals"
+msgstr "发三张牌"
+
+#: ../aisleriot/rules/athena.scm.h:6 ../aisleriot/rules/klondike.scm.h:6
+#: ../aisleriot/rules/saratoga.scm.h:6
+msgid "Try moving cards down from the foundation"
+msgstr "可以尝试从收牌区取回一些牌"
+
+#: ../aisleriot/rules/athena.scm.h:7 ../aisleriot/rules/camelot.scm.h:7
+#: ../aisleriot/rules/diamond_mine.scm.h:1 ../aisleriot/rules/klondike.scm.h:7
+#: ../aisleriot/rules/odessa.scm.h:1 ../aisleriot/rules/osmosis.scm.h:4
+#: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/saratoga.scm.h:7
+#: ../aisleriot/rules/scorpion.scm.h:2 ../aisleriot/rules/ten_across.scm.h:4
+#: ../aisleriot/rules/union_square.scm.h:3 ../aisleriot/rules/yukon.scm.h:2
+msgid "an empty slot"
+msgstr "空位"
+
 #: ../aisleriot/rules/auld_lang_syne.scm.h:1
 #: ../aisleriot/rules/bristol.scm.h:1 ../aisleriot/rules/first_law.scm.h:1
 #: ../aisleriot/rules/fortunes.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:6
 #: ../aisleriot/rules/scuffle.scm.h:1 ../aisleriot/rules/spider.scm.h:1
-#: ../aisleriot/rules/spider_one_suit.scm.h:1
-#: ../aisleriot/rules/spider_two_suit.scm.h:1
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:1 ../aisleriot/rules/zebra.scm.h:1
 msgid "Deal another round"
 msgstr "发另一轮牌"
+
+#: ../aisleriot/rules/aunt_mary.scm.h:1
+#, fuzzy
+msgid "Redeals left: ~a"
+msgstr "剩余重发次数："
 
 #: ../aisleriot/rules/bakers_dozen.scm.h:2
 #: ../aisleriot/rules/bakers_game.scm.h:2
@@ -386,13 +424,6 @@ msgstr "将某物置于空位中"
 msgid "an empty tableau"
 msgstr "空的排列区牌堆"
 
-#: ../aisleriot/rules/camelot.scm.h:1 ../aisleriot/rules/canfield.scm.h:6
-#: ../aisleriot/rules/glenwood.scm.h:6 ../aisleriot/rules/klondike.scm.h:1
-#: ../aisleriot/rules/osmosis.scm.h:1 ../aisleriot/rules/peek.scm.h:1
-#: ../aisleriot/rules/plait.scm.h:6 ../aisleriot/rules/straight_up.scm.h:1
-msgid "Deal a new card from the deck"
-msgstr "从牌垛中发一张新牌"
-
 #: ../aisleriot/rules/camelot.scm.h:3
 msgid "an empty bottom slot"
 msgstr "下方空位"
@@ -409,24 +440,21 @@ msgstr "左侧空位"
 msgid "an empty right slot"
 msgstr "右侧空位"
 
-#: ../aisleriot/rules/camelot.scm.h:7 ../aisleriot/rules/diamond_mine.scm.h:1
-#: ../aisleriot/rules/klondike.scm.h:7 ../aisleriot/rules/odessa.scm.h:1
-#: ../aisleriot/rules/osmosis.scm.h:4 ../aisleriot/rules/peek.scm.h:4
-#: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/scorpion.scm.h:2
-#: ../aisleriot/rules/ten_across.scm.h:4
-#: ../aisleriot/rules/union_square.scm.h:3 ../aisleriot/rules/yukon.scm.h:2
-msgid "an empty slot"
-msgstr "空位"
-
 #: ../aisleriot/rules/camelot.scm.h:8
 msgid "an empty top slot"
 msgstr "上方空位"
 
 #: ../aisleriot/rules/camelot.scm.h:9 ../aisleriot/rules/helsinki.scm.h:2
-#: ../aisleriot/rules/neighbor.scm.h:2 ../aisleriot/rules/thirteen.scm.h:3
+#: ../aisleriot/rules/neighbor.scm.h:2 ../aisleriot/rules/thirteen.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:3 ../aisleriot/rules/yield.scm.h:3
 msgid "itself"
 msgstr "它自己"
+
+#: ../aisleriot/rules/canfield.scm.h:1 ../aisleriot/rules/chessboard.scm.h:1
+#: ../aisleriot/rules/eagle_wing.scm.h:1 ../aisleriot/rules/glenwood.scm.h:1
+#: ../aisleriot/rules/kansas.scm.h:1 ../aisleriot/rules/plait.scm.h:1
+msgid "Base Card: "
+msgstr "底牌："
 
 #: ../aisleriot/rules/canfield.scm.h:7 ../aisleriot/rules/eagle_wing.scm.h:7
 #: ../aisleriot/rules/glenwood.scm.h:8 ../aisleriot/rules/plait.scm.h:7
@@ -506,19 +534,14 @@ msgstr "除非绝对紧急的情况不建议使用脉压器"
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr "在没有钉书机的时候，钉书钉和尺子就够用"
 
+#: ../aisleriot/rules/cruel.scm.h:1
+#, fuzzy
+msgid "Redeal."
+msgstr "红"
+
 #: ../aisleriot/rules/diamond_mine.scm.h:2
 msgid "the foundation pile"
 msgstr "收牌区牌堆"
-
-#: ../aisleriot/rules/doublets.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:9
-#: ../aisleriot/rules/gaps.scm.h:9 ../aisleriot/rules/glenwood.scm.h:9
-#: ../aisleriot/rules/jumbo.scm.h:3 ../aisleriot/rules/klondike.scm.h:3
-#: ../aisleriot/rules/osmosis.scm.h:2 ../aisleriot/rules/peek.scm.h:2
-#: ../aisleriot/rules/plait.scm.h:10 ../aisleriot/rules/scuffle.scm.h:2
-#: ../aisleriot/rules/straight_up.scm.h:3
-#: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
-msgid "Redeals left:"
-msgstr "剩余重发次数："
 
 #: ../aisleriot/rules/eagle_wing.scm.h:6 ../aisleriot/rules/elevator.scm.h:1
 #: ../aisleriot/rules/escalator.scm.h:1 ../aisleriot/rules/royal_east.scm.h:6
@@ -540,10 +563,6 @@ msgstr "排列区的空位"
 #, fuzzy
 msgid "Move a King on to the empty tableau slot"
 msgstr "排列区的空位"
-
-#: ../aisleriot/rules/easthaven.scm.h:3 ../aisleriot/rules/klondike.scm.h:2
-msgid "No hint available right now"
-msgstr "现在没有可用的提示"
 
 #: ../aisleriot/rules/first_law.scm.h:2
 msgid "I'm not sure"
@@ -615,62 +634,40 @@ msgstr "考虑将某物移动到空位上"
 msgid "Move ~a off the board"
 msgstr "离开桌面"
 
-#: ../aisleriot/rules/freecell.scm.h:1
+#: ../aisleriot/rules/freecell.scm.h:2
 msgid "No moves available"
 msgstr "无可移动"
 
-#: ../aisleriot/rules/freecell.scm.h:2
+#: ../aisleriot/rules/freecell.scm.h:3
 #, fuzzy
 msgid "an empty reserve"
 msgstr "空位"
 
-#: ../aisleriot/rules/freecell.scm.h:3
+#: ../aisleriot/rules/freecell.scm.h:4
 #, fuzzy
 msgid "an open tableau"
 msgstr "空的排列区牌堆"
 
-#: ../aisleriot/rules/freecell.scm.h:4
+#: ../aisleriot/rules/freecell.scm.h:5
 msgid "game has no solution"
 msgstr "游戏无解"
 
-#: ../aisleriot/rules/freecell.scm.h:5
+#: ../aisleriot/rules/freecell.scm.h:6
 msgid "the foundation"
 msgstr "收牌区"
 
 #: ../aisleriot/rules/gaps.scm.h:1
-#, fuzzy
-msgid " next to the "
-msgstr "设定主题"
-
-#: ../aisleriot/rules/gaps.scm.h:2
-msgid " of "
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:3
-msgid "."
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:4
-msgid "Add to the sequence in row "
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:5
 msgid "Double click any card to redeal."
 msgstr ""
 
-#: ../aisleriot/rules/gaps.scm.h:6
+#: ../aisleriot/rules/gaps.scm.h:2
 #, fuzzy
 msgid "No hint available."
 msgstr "没有可用的提示"
 
-#: ../aisleriot/rules/gaps.scm.h:7
-msgid "Place a two in the leftmost slot of row "
+#: ../aisleriot/rules/gaps.scm.h:3
+msgid "Randomly Placed Gaps on Redeal"
 msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:8
-#, fuzzy
-msgid "Place the "
-msgstr "暂停游戏"
 
 #: ../aisleriot/rules/glenwood.scm.h:7
 #, fuzzy
@@ -691,6 +688,11 @@ msgstr "排列区的空位"
 #: ../aisleriot/rules/sir_tommy.scm.h:1 ../aisleriot/rules/whitehead.scm.h:1
 msgid "Deal another card"
 msgstr "发另一张牌"
+
+#: ../aisleriot/rules/golf.scm.h:2 ../aisleriot/rules/spider.scm.h:4
+#, fuzzy
+msgid "Stock left: ~a"
+msgstr "发牌区中剩下：0"
 
 #: ../aisleriot/rules/gypsy.scm.h:1
 msgid "Deal another hand"
@@ -718,13 +720,10 @@ msgstr "将牌从废牌堆放回发牌区"
 msgid "an empty tableau slot"
 msgstr "排列区的空位"
 
-#: ../aisleriot/rules/klondike.scm.h:5
-msgid "Three card deals"
-msgstr "发三张牌"
-
-#: ../aisleriot/rules/klondike.scm.h:6
-msgid "Try moving cards down from the foundation"
-msgstr "可以尝试从收牌区取回一些牌"
+#: ../aisleriot/rules/kings_audience.scm.h:1
+#, fuzzy
+msgid "Deal a new card"
+msgstr "发另一手牌"
 
 #: ../aisleriot/rules/lady_jane.scm.h:1 ../aisleriot/rules/royal_east.scm.h:1
 msgid "Base Card:"
@@ -735,6 +734,11 @@ msgid ""
 "Aim to place the suits in the order which fits the current layout most "
 "naturally."
 msgstr ""
+
+#: ../aisleriot/rules/osmosis.scm.h:2
+#, fuzzy
+msgid "Deal new cards from the deck"
+msgstr "从牌垛中发一张新牌"
 
 #: ../aisleriot/rules/pileon.scm.h:2
 msgid "something"
@@ -783,29 +787,17 @@ msgid "empty foundation"
 msgstr "空的收牌区"
 
 #: ../aisleriot/rules/spider.scm.h:2
-#: ../aisleriot/rules/spider_one_suit.scm.h:2
-#: ../aisleriot/rules/spider_two_suit.scm.h:2
 msgid "Place something on empty slot"
 msgstr "将某物置于空位中"
 
 #: ../aisleriot/rules/spider.scm.h:3
-#: ../aisleriot/rules/spider_one_suit.scm.h:3
-#: ../aisleriot/rules/spider_two_suit.scm.h:3
 msgid "Please fill in empty pile first."
 msgstr "请首先填满空位。"
 
 #: ../aisleriot/rules/spider.scm.h:5
-#: ../aisleriot/rules/spider_one_suit.scm.h:5
-#: ../aisleriot/rules/spider_two_suit.scm.h:5
 #, fuzzy
 msgid "Try moving card piles around"
 msgstr "可以尝试从收牌区取回一些牌"
-
-#: ../aisleriot/rules/spiderette.scm.h:2
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:2
-#, fuzzy
-msgid "Place something on to the empty tableau slot"
-msgstr "将某物置于空位中"
 
 #: ../aisleriot/rules/ten_across.scm.h:1
 msgid "Allow temporary spots use"
@@ -831,6 +823,10 @@ msgstr "空位"
 #: ../aisleriot/rules/thieves.scm.h:1
 msgid "Deal a card from the deck"
 msgstr "从牌垛中发一张牌"
+
+#: ../aisleriot/rules/thirteen.scm.h:2
+msgid "Match the top two cards of the waste."
+msgstr ""
 
 #: ../aisleriot/rules/union_square.scm.h:4
 #, fuzzy
@@ -874,22 +870,21 @@ msgstr ""
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: ../aisleriot/sol.c:446 ../glines/glines.c:1964 ../gnobots2/statusbar.c:65
-#: ../gnome-stones/status.c:71 ../gnometris/scoreframe.cpp:58
-#: ../gnomine/gnomine.c:434
+#: ../aisleriot/sol.c:446 ../glines/glines.c:1973 ../gnobots2/statusbar.c:65
+#: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:425
 msgid "Score:"
 msgstr "得分："
 
-#: ../aisleriot/sol.c:451 ../gnotravex/gnotravex.c:1074
-#: ../mahjongg/mahjongg.c:1447
+#: ../aisleriot/sol.c:451 ../gnotravex/gnotravex.c:1076
+#: ../mahjongg/mahjongg.c:1450
 msgid "Time:"
 msgstr "时间："
 
-#: ../aisleriot/sol.c:505
+#: ../aisleriot/sol.c:507
 msgid "Variation on game rules"
 msgstr "游戏规则变种"
 
-#: ../aisleriot/sol.c:506 ../gnobots2/gnobots.c:62 ../gnobots2/gnobots.c:64
+#: ../aisleriot/sol.c:508 ../gnobots2/gnobots.c:62 ../gnobots2/gnobots.c:64
 #: ../same-gnome/same-gnome.c:136 ../same-gnome/same-gnome.c:138
 msgid "NAME"
 msgstr "名称"
@@ -1261,328 +1256,344 @@ msgid "Agnes"
 msgstr "Agnes"
 
 #: ../aisleriot/translatable_game_names.h:8
+#, fuzzy
+msgid "Athena"
+msgstr "10"
+
+#: ../aisleriot/translatable_game_names.h:9
 msgid "Auld Lang Syne"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:9
+#: ../aisleriot/translatable_game_names.h:10
+msgid "Aunt Mary"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:11
 #, fuzzy
 msgid "Backbone"
 msgstr "无"
 
-#: ../aisleriot/translatable_game_names.h:10
+#: ../aisleriot/translatable_game_names.h:12
 #, fuzzy
 msgid "Bakers Dozen"
 msgstr "暂停游戏"
 
-#: ../aisleriot/translatable_game_names.h:11
+#: ../aisleriot/translatable_game_names.h:13
 #, fuzzy
 msgid "Bakers Game"
 msgstr "暂停游戏"
 
-#: ../aisleriot/translatable_game_names.h:12
+#: ../aisleriot/translatable_game_names.h:14
 msgid "Beleaguered Castle"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:13
+#: ../aisleriot/translatable_game_names.h:15
 #, fuzzy
 msgid "Block Ten"
 msgstr "方块位图："
 
-#: ../aisleriot/translatable_game_names.h:14
+#: ../aisleriot/translatable_game_names.h:16
 msgid "Bristol"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:15
+#: ../aisleriot/translatable_game_names.h:17
 msgid "Camelot"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:16
+#: ../aisleriot/translatable_game_names.h:18
 msgid "Canfield"
 msgstr "甘菲德牌戏"
 
-#: ../aisleriot/translatable_game_names.h:17
+#: ../aisleriot/translatable_game_names.h:19
 msgid "Carpet"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:18
+#: ../aisleriot/translatable_game_names.h:20
 msgid "Chessboard"
 msgstr "棋盘"
 
-#: ../aisleriot/translatable_game_names.h:19
+#: ../aisleriot/translatable_game_names.h:21
 msgid "Clock"
 msgstr "钟"
 
-#: ../aisleriot/translatable_game_names.h:20
+#: ../aisleriot/translatable_game_names.h:22
 msgid "Cover"
 msgstr "表面"
 
-#: ../aisleriot/translatable_game_names.h:21
-#, fuzzy
+#: ../aisleriot/translatable_game_names.h:23
+msgid "Cruel"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:24
 msgid "Diamond Mine"
 msgstr "钻石矿"
 
-#: ../aisleriot/translatable_game_names.h:22
+#: ../aisleriot/translatable_game_names.h:25
 #, fuzzy
 msgid "Doublets"
 msgstr "完成"
 
-#: ../aisleriot/translatable_game_names.h:23
-#, fuzzy
+#: ../aisleriot/translatable_game_names.h:26
 msgid "Eagle Wing"
 msgstr "鹰翼"
 
-#: ../aisleriot/translatable_game_names.h:24
+#: ../aisleriot/translatable_game_names.h:27
 #, fuzzy
 msgid "Easthaven"
 msgstr "海港"
 
-#: ../aisleriot/translatable_game_names.h:25
+#: ../aisleriot/translatable_game_names.h:28
 #, fuzzy
 msgid "Eight Off"
 msgstr "网格高度"
 
-#: ../aisleriot/translatable_game_names.h:26
+#: ../aisleriot/translatable_game_names.h:29
 msgid "Elevator"
 msgstr "电梯"
 
-#: ../aisleriot/translatable_game_names.h:27
+#: ../aisleriot/translatable_game_names.h:30
 msgid "Escalator"
 msgstr "电动扶梯"
 
-#: ../aisleriot/translatable_game_names.h:28
-#, fuzzy
+#: ../aisleriot/translatable_game_names.h:31
 msgid "First Law"
-msgstr "第一条法律"
+msgstr "第一法律"
 
-#: ../aisleriot/translatable_game_names.h:29
+#: ../aisleriot/translatable_game_names.h:32
 msgid "Fortress"
 msgstr "要塞"
 
-#: ../aisleriot/translatable_game_names.h:30
+#: ../aisleriot/translatable_game_names.h:33
 msgid "Fortunes"
 msgstr "财富"
 
-#: ../aisleriot/translatable_game_names.h:31
+#: ../aisleriot/translatable_game_names.h:34
 msgid "Fourteen"
 msgstr "十四"
 
-#: ../aisleriot/translatable_game_names.h:32
+#: ../aisleriot/translatable_game_names.h:35
 msgid "Freecell"
 msgstr "空当接龙"
 
-#: ../aisleriot/translatable_game_names.h:33
+#: ../aisleriot/translatable_game_names.h:36
 #, fuzzy
 msgid "Gaps"
 msgstr "地图"
 
-#: ../aisleriot/translatable_game_names.h:34
+#: ../aisleriot/translatable_game_names.h:37
 msgid "Gay Gordons"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:35
+#: ../aisleriot/translatable_game_names.h:38
 msgid "Glenwood"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:36
+#: ../aisleriot/translatable_game_names.h:39
 msgid "Golf"
 msgstr "高尔夫"
 
-#: ../aisleriot/translatable_game_names.h:37
+#: ../aisleriot/translatable_game_names.h:40
 msgid "Gypsy"
 msgstr "吉普赛"
 
-#: ../aisleriot/translatable_game_names.h:38
+#: ../aisleriot/translatable_game_names.h:41
 msgid "Helsinki"
 msgstr "赫尔辛基"
 
-#: ../aisleriot/translatable_game_names.h:39
+#: ../aisleriot/translatable_game_names.h:42
 msgid "Hopscotch"
 msgstr "跳房子"
 
-#: ../aisleriot/translatable_game_names.h:40
+#: ../aisleriot/translatable_game_names.h:43
 msgid "Isabel"
 msgstr "依莎贝尔"
 
-#: ../aisleriot/translatable_game_names.h:41
+#: ../aisleriot/translatable_game_names.h:44
 msgid "Jamestown"
 msgstr "詹姆斯敦"
 
-#: ../aisleriot/translatable_game_names.h:42
+#: ../aisleriot/translatable_game_names.h:45
 msgid "Jumbo"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:43
+#: ../aisleriot/translatable_game_names.h:46
 msgid "Kansas"
 msgstr "堪萨斯"
 
-#: ../aisleriot/translatable_game_names.h:44
-#, fuzzy
+#: ../aisleriot/translatable_game_names.h:47
 msgid "King Albert"
 msgstr "阿尔伯特王"
 
-#: ../aisleriot/translatable_game_names.h:45
+#: ../aisleriot/translatable_game_names.h:48
+msgid "Kings Audience"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:49
 msgid "Klondike"
 msgstr "克郎代克河"
 
-#: ../aisleriot/translatable_game_names.h:46
+#: ../aisleriot/translatable_game_names.h:50
 msgid "Labyrinth"
 msgstr "迷宫(Labyrinth)"
 
-#: ../aisleriot/translatable_game_names.h:47
-#, fuzzy
+#: ../aisleriot/translatable_game_names.h:51
 msgid "Lady Jane"
 msgstr "简女士"
 
-#: ../aisleriot/translatable_game_names.h:48
+#: ../aisleriot/translatable_game_names.h:52
 msgid "Maze"
 msgstr "迷宫(Maze)"
 
-#: ../aisleriot/translatable_game_names.h:49
+#: ../aisleriot/translatable_game_names.h:53
 #, fuzzy
 msgid "Monte Carlo"
 msgstr "蒙特卡罗"
 
-#: ../aisleriot/translatable_game_names.h:50
+#: ../aisleriot/translatable_game_names.h:54
 msgid "Neighbor"
 msgstr "邻国"
 
-#: ../aisleriot/translatable_game_names.h:51
+#: ../aisleriot/translatable_game_names.h:55
 msgid "Odessa"
 msgstr "敖德萨"
 
-#: ../aisleriot/translatable_game_names.h:52
+#: ../aisleriot/translatable_game_names.h:56
 msgid "Osmosis"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:53
+#: ../aisleriot/translatable_game_names.h:57
 msgid "Peek"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:54
+#: ../aisleriot/translatable_game_names.h:58
 msgid "Pileon"
 msgstr "根冠"
 
-#: ../aisleriot/translatable_game_names.h:55
+#: ../aisleriot/translatable_game_names.h:59
 msgid "Plait"
 msgstr "辫子"
 
-#: ../aisleriot/translatable_game_names.h:56
+#: ../aisleriot/translatable_game_names.h:60
 msgid "Poker"
 msgstr "纸牌戏"
 
-#: ../aisleriot/translatable_game_names.h:57
+#: ../aisleriot/translatable_game_names.h:61
 msgid "Quatorze"
 msgstr "皮克牌戏"
 
-#: ../aisleriot/translatable_game_names.h:58
+#: ../aisleriot/translatable_game_names.h:62
 msgid "Royal East"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:59
+#: ../aisleriot/translatable_game_names.h:63
+msgid "Saratoga"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:64
 msgid "Scorpion"
 msgstr "黑心人"
 
-#: ../aisleriot/translatable_game_names.h:60
+#: ../aisleriot/translatable_game_names.h:65
 msgid "Scuffle"
 msgstr "混战"
 
-#: ../aisleriot/translatable_game_names.h:61
+#: ../aisleriot/translatable_game_names.h:66
 msgid "Seahaven"
 msgstr "海港"
 
-#: ../aisleriot/translatable_game_names.h:62
+#: ../aisleriot/translatable_game_names.h:67
 msgid "Sir Tommy"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:63
+#: ../aisleriot/translatable_game_names.h:68
 #, fuzzy
 msgid "Spiderette"
 msgstr "蜘蛛纸牌"
 
-#: ../aisleriot/translatable_game_names.h:64
+#: ../aisleriot/translatable_game_names.h:69
 #, fuzzy
 msgid "Spider One Suit"
 msgstr "蜘蛛纸牌"
 
-#: ../aisleriot/translatable_game_names.h:65
+#: ../aisleriot/translatable_game_names.h:70
 msgid "Spider"
 msgstr "蜘蛛纸牌"
 
-#: ../aisleriot/translatable_game_names.h:66
+#: ../aisleriot/translatable_game_names.h:71
 #, fuzzy
 msgid "Spider Two Suit"
 msgstr "蜘蛛纸牌"
 
-#: ../aisleriot/translatable_game_names.h:67
+#: ../aisleriot/translatable_game_names.h:72
 #, fuzzy
 msgid "Straight Up"
 msgstr "大顺子 [40]"
 
-#: ../aisleriot/translatable_game_names.h:68
+#: ../aisleriot/translatable_game_names.h:73
 #, fuzzy
 msgid "Streets And Alleys"
 msgstr "街道和壁灯"
 
-#: ../aisleriot/translatable_game_names.h:69
+#: ../aisleriot/translatable_game_names.h:74
 msgid "Template"
 msgstr "模板"
 
-#: ../aisleriot/translatable_game_names.h:70
+#: ../aisleriot/translatable_game_names.h:75
 msgid "Ten Across"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:71
+#: ../aisleriot/translatable_game_names.h:76
 msgid "Thieves"
 msgstr "小偷"
 
-#: ../aisleriot/translatable_game_names.h:72
+#: ../aisleriot/translatable_game_names.h:77
 msgid "Thirteen"
 msgstr "十三"
 
-#: ../aisleriot/translatable_game_names.h:73
+#: ../aisleriot/translatable_game_names.h:78
 msgid "Thumb And Pouch"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:74
+#: ../aisleriot/translatable_game_names.h:79
 msgid "Treize"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:75
+#: ../aisleriot/translatable_game_names.h:80
 #, fuzzy
 msgid "Triple Peaks"
 msgstr "牌集合"
 
-#: ../aisleriot/translatable_game_names.h:76
+#: ../aisleriot/translatable_game_names.h:81
 msgid "Union Square"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:77
+#: ../aisleriot/translatable_game_names.h:82
 msgid "Valentine"
 msgstr "情人节"
 
-#: ../aisleriot/translatable_game_names.h:78
+#: ../aisleriot/translatable_game_names.h:83
 #, fuzzy
 msgid "Westhaven"
 msgstr "海港"
 
-#: ../aisleriot/translatable_game_names.h:79
+#: ../aisleriot/translatable_game_names.h:84
 msgid "Whitehead"
 msgstr "白头"
 
-#: ../aisleriot/translatable_game_names.h:80
+#: ../aisleriot/translatable_game_names.h:85
 msgid "Will O The Wisp"
 msgstr ""
 
-#: ../aisleriot/translatable_game_names.h:81
+#: ../aisleriot/translatable_game_names.h:86
 #, fuzzy
 msgid "Yield"
 msgstr "甘菲德牌戏"
 
-#: ../aisleriot/translatable_game_names.h:82
+#: ../aisleriot/translatable_game_names.h:87
 msgid "Yukon"
 msgstr "育空地区"
 
-#: ../aisleriot/translatable_game_names.h:83
+#: ../aisleriot/translatable_game_names.h:88
 msgid "Zebra"
 msgstr "斑马"
 
@@ -1606,7 +1617,7 @@ msgstr "显示每一手牌的可能支出以及您的期望值。"
 
 #: ../blackjack/data/blackjack.schemas.in.h:3
 msgid "Never take insurance"
-msgstr ""
+msgstr "决不投保"
 
 #: ../blackjack/data/blackjack.schemas.in.h:4
 msgid "Never take insurance with a dealer showing an ace."
@@ -1642,11 +1653,10 @@ msgstr ""
 msgid "Blackjack - %s"
 msgstr "二十一点 - %s"
 
-#: ../blackjack/src/blackjack.cpp:303 ../glines/glines.c:1706
+#: ../blackjack/src/blackjack.cpp:303 ../glines/glines.c:1713
 #: ../gnect/src/main.c:1132 ../gnibbles/main.c:601 ../gnobots2/menu.c:59
-#: ../gnome-stones/main.c:1051 ../gnometris/tetris.cpp:131
-#: ../gnomine/gnomine.c:751 ../gtali/gyahtzee.c:502
-#: ../mahjongg/mahjongg.c:1275
+#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:746
+#: ../gtali/gyahtzee.c:517 ../mahjongg/mahjongg.c:1276
 msgid "_Settings"
 msgstr "设置(_S)"
 
@@ -1664,18 +1674,16 @@ msgid "_Hit"
 msgstr "叫牌(_H)"
 
 #: ../blackjack/src/blackjack.cpp:307
-#, fuzzy
 msgid "Add a card to the hand"
-msgstr "可以尝试从收牌区取回一些牌"
+msgstr "向手里抓牌"
 
 #: ../blackjack/src/blackjack.cpp:308
 msgid "_Stand"
 msgstr "持牌(_S)"
 
 #: ../blackjack/src/blackjack.cpp:308
-#, fuzzy
 msgid "Stop adding cards to the hand"
-msgstr "单击可完成叫牌"
+msgstr "停止向手里抓牌"
 
 #: ../blackjack/src/blackjack.cpp:309
 msgid "S_urrender"
@@ -1683,25 +1691,23 @@ msgstr "放弃(_U)"
 
 #: ../blackjack/src/blackjack.cpp:309
 msgid "Forfeit this hand for half of your wager"
-msgstr ""
+msgstr "放弃这手牌，您将失去一半赌注"
 
 #: ../blackjack/src/blackjack.cpp:310
-#, fuzzy
 msgid "_Double down"
-msgstr "对九"
+msgstr "赌注加倍(_D)"
 
 #: ../blackjack/src/blackjack.cpp:310
-#, fuzzy
 msgid "Double your wager for a single hit"
-msgstr "下注或者叫一手牌"
+msgstr "一手牌加倍下注"
 
 #: ../blackjack/src/blackjack.cpp:311
 msgid "S_plit the hand"
-msgstr "分牌(_P)"
+msgstr "拆牌(_P)"
 
 #: ../blackjack/src/blackjack.cpp:311
 msgid "Split cards in two new hands"
-msgstr ""
+msgstr "将一手牌拆为两手牌"
 
 #: ../blackjack/src/blackjack.cpp:318 ../gnobots2/gnobots2.schemas.in.h:23
 msgid "Show toolbar"
@@ -1723,7 +1729,7 @@ msgstr "余额："
 msgid "Place your wager or deal a hand"
 msgstr "下注或者叫一手牌"
 
-#: ../blackjack/src/blackjack.cpp:683
+#: ../blackjack/src/blackjack.cpp:685
 msgid "Blackjack rule set to use"
 msgstr "要使用的二十一点规则集"
 
@@ -1738,6 +1744,8 @@ msgid ""
 "a natural 21 (aka blackjack) that is offered when the dealer's face up card "
 "is an ace. If the dealer has a natural 21 then the player is paid double."
 msgstr ""
+"保险将另外花去您原始赌注的 50%%。当发牌者亮出 A 时，发牌者认为自己有可能抓到恰好二十一点时，"
+"您将有机会投保。因为如果此时发牌者抓到的确实是二十一点的话，玩家将赔掉双倍赌注。"
 
 #: ../blackjack/src/dialog.cpp:99
 msgid "Set your wager and click in the white outline to deal a new hand."
@@ -1753,7 +1761,7 @@ msgstr "二十一点首选项"
 
 #: ../blackjack/src/dialog.cpp:246 ../gnect/src/prefs.c:378
 #: ../gnibbles/preferences.c:217 ../gnobots2/properties.c:495
-#: ../gnome-stones/preferences.c:677 ../gnometris/tetris.cpp:764
+#: ../gnometris/tetris.cpp:734
 msgid "Game"
 msgstr "游戏"
 
@@ -1767,7 +1775,7 @@ msgstr "快速发牌(每张牌之间不延迟)(_Q)"
 
 #: ../blackjack/src/dialog.cpp:272
 msgid "_Never take insurance"
-msgstr ""
+msgstr "决不投保(_N)"
 
 #: ../blackjack/src/dialog.cpp:279
 msgid "_Reset Balance"
@@ -1778,10 +1786,10 @@ msgstr "重置余额(_R)"
 msgid "Rules"
 msgstr "规则"
 
-#: ../blackjack/src/dialog.cpp:310
-#: ../libgames-support/games-scores-dialog.gob:290
+#: ../blackjack/src/dialog.cpp:310 games-scores-dialog.gob:331
+#: ../libgames-support/games-scores-dialog.gob:331
 msgid "Name"
-msgstr "名称"
+msgstr "姓名"
 
 #: ../blackjack/src/dialog.cpp:315
 msgid "Decks"
@@ -1813,14 +1821,12 @@ msgid "Double After Split"
 msgstr ""
 
 #: ../blackjack/src/dialog.cpp:350
-#, fuzzy
 msgid "Resplit"
-msgstr "结果"
+msgstr "重新拆分"
 
 #: ../blackjack/src/dialog.cpp:355
-#, fuzzy
 msgid "Resplit Aces"
-msgstr "结果"
+msgstr "重新拆分 A"
 
 #: ../blackjack/src/dialog.cpp:360 ../blackjack/src/player.cpp:303
 msgid "Surrender"
@@ -1845,9 +1851,8 @@ msgid "Double click to decrease your wager by %.2f"
 msgstr "双击可减注 %.2f"
 
 #: ../blackjack/src/events.cpp:542
-#, fuzzy
 msgid "Click to deal another card; drag card to split pair"
-msgstr "发其它牌"
+msgstr "单击可叫另一张牌；拖曳牌可以拆为两手"
 
 #: ../blackjack/src/events.cpp:544
 msgid "Click to deal another card"
@@ -1902,7 +1907,7 @@ msgstr ""
 
 #: ../blackjack/src/hand.cpp:135
 msgid "The best option is to split"
-msgstr ""
+msgstr "最好的选项是拆牌"
 
 #: ../blackjack/src/hand.cpp:137
 msgid ""
@@ -1975,48 +1980,47 @@ msgid "Split"
 msgstr "分牌"
 
 #: ../blackjack/src/player.cpp:432
-#, fuzzy
 msgid "Dealer hand probabilities"
-msgstr "显示每手概率"
+msgstr "发牌手概率"
 
-#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:631
+#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:615
 msgid "Light:"
 msgstr "白方："
 
-#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:621
+#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:605
 msgid "Dark:"
 msgstr "黑方："
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:207 ../iagno/othello.c:213
+#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:200 ../iagno/othello.c:271
 msgid "Light's move"
 msgstr "轮到白方"
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:209 ../iagno/gnothello.c:578
-#: ../iagno/othello.c:210
+#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:202 ../iagno/gnothello.c:562
+#: ../iagno/othello.c:267
 msgid "Dark's move"
 msgstr "轮到黑方"
 
-#: ../gataxx/gataxx.c:175 ../iagno/othello.c:665
+#: ../gataxx/gataxx.c:175 ../iagno/othello.c:698
 msgid "Light player wins!"
 msgstr "白方获胜！"
 
-#: ../gataxx/gataxx.c:177 ../iagno/othello.c:667
+#: ../gataxx/gataxx.c:177 ../iagno/othello.c:700
 msgid "Dark player wins!"
 msgstr "黑方获胜！"
 
-#: ../gataxx/gataxx.c:179 ../iagno/othello.c:669
+#: ../gataxx/gataxx.c:179 ../iagno/othello.c:702
 msgid "The game was a draw."
 msgstr "对局为平局。"
 
-#: ../gataxx/gataxx.c:381
+#: ../gataxx/gataxx.c:380
 msgid "Based on code from Iagno by Ian Peters"
-msgstr ""
+msgstr "基于 Ian Peters 的翻转棋代码"
 
-#: ../gataxx/gataxx.c:384 ../gataxx/gataxx.desktop.in.h:1
+#: ../gataxx/gataxx.c:383 ../gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "Ataxx"
 
-#: ../gataxx/gataxx.c:388
+#: ../gataxx/gataxx.c:387
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr ""
 
@@ -2029,25 +2033,25 @@ msgid "Animate"
 msgstr "动画"
 
 #: ../gataxx/gataxx.schemas.in.h:2
-msgid "Flip final results"
-msgstr "翻转最终结果"
-
-#: ../gataxx/gataxx.schemas.in.h:3
 msgid "Level of black player"
 msgstr "黑方玩家级别"
 
-#: ../gataxx/gataxx.schemas.in.h:4
+#: ../gataxx/gataxx.schemas.in.h:3
 msgid "Level of white player"
 msgstr "白方玩家级别"
 
-#: ../gataxx/gataxx.schemas.in.h:5
+#: ../gataxx/gataxx.schemas.in.h:4
 msgid "Quick moves"
 msgstr "快速移动"
 
-#: ../gataxx/gataxx.schemas.in.h:6 ../gnotravex/gnotravex.schemas.in.h:2
+#: ../gataxx/gataxx.schemas.in.h:5 ../gnotravex/gnotravex.schemas.in.h:2
 #: ../gnotski/gnotski.schemas.in.h:1 ../mahjongg/mahjongg.schemas.in.h:1
 msgid "The height of the window"
 msgstr "窗口的高度"
+
+#: ../gataxx/gataxx.schemas.in.h:6
+msgid "The name of the theme to use."
+msgstr "要使用的主题名。"
 
 #: ../gataxx/gataxx.schemas.in.h:7
 #, fuzzy
@@ -2064,17 +2068,20 @@ msgstr "主窗口启动时的宽度，以像素计。"
 msgid "The width of the window"
 msgstr "窗口的宽度"
 
-#: ../gataxx/gataxx.schemas.in.h:10
-msgid "Tileset"
-msgstr "棋子集合"
+#: ../gataxx/gataxx.schemas.in.h:10 ../gnometris/tetris.cpp:857
+#: ../gnometris/tetris.cpp:890 ../same-gnome/ui.c:288
+msgid "Theme"
+msgstr "主题"
 
 #: ../gataxx/gataxx.schemas.in.h:11
-msgid "Tileset to use."
+#, fuzzy
+msgid "Tileset (obsolete)"
 msgstr "要使用的棋子集合。"
 
 #: ../gataxx/gataxx.schemas.in.h:12
-msgid "Whether or not to flip final results."
-msgstr "是否翻转最终结果。"
+#, fuzzy
+msgid "Tileset to use (obsolete)."
+msgstr "要使用的棋子集合。"
 
 #: ../gataxx/gataxx.schemas.in.h:13
 msgid "Whether or not to use quick moves."
@@ -2092,120 +2099,115 @@ msgid ""
 "player."
 msgstr "0 代表玩家；1 到 3 代表相应的计算机玩家。"
 
+#: ../gataxx/gtkgridboardthemes.c:166 ../gnometris/renderer.cpp:27
+msgid "Plain"
+msgstr "平面"
+
+#: ../gataxx/gtkgridboardthemes.c:168
+msgid "Squares and Diamonds"
+msgstr "矩形和菱形"
+
 #. create window
-#: ../gataxx/properties.c:301
+#: ../gataxx/properties.c:297
 msgid "Ataxx Preferences"
 msgstr "Ataxx 首选项"
 
 #. Players tab
-#: ../gataxx/properties.c:331 ../iagno/properties.c:498
+#: ../gataxx/properties.c:327 ../iagno/properties.c:498
 msgid "Players"
 msgstr "玩家"
 
-#: ../gataxx/properties.c:343
+#: ../gataxx/properties.c:339
 msgid "_Quick moves"
 msgstr "快速移动(_Q)"
 
-#: ../gataxx/properties.c:344
+#: ../gataxx/properties.c:340
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "缩短计算机等候移动的时间"
 
 #. Dark level select
-#: ../gataxx/properties.c:353 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:349 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:521
 msgid "Dark"
 msgstr "黑"
 
-#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
+#: ../gataxx/properties.c:353 ../gataxx/properties.c:371
 #: ../gnect/src/prefs.c:326 ../gtali/yahtzee.c:61 ../iagno/properties.c:526
 #: ../iagno/properties.c:572
 msgid "Human"
 msgstr "人"
 
-#: ../gataxx/properties.c:358 ../gataxx/properties.c:376
+#: ../gataxx/properties.c:354 ../gataxx/properties.c:372
 msgid "Very easy"
 msgstr "超易"
 
-#: ../gataxx/properties.c:359
+#: ../gataxx/properties.c:355
 msgid "gataxx|Easy"
-msgstr ""
+msgstr "容易"
 
-#: ../gataxx/properties.c:360
-#, fuzzy
+#: ../gataxx/properties.c:356
 msgid "gataxx|Medium"
-msgstr "中"
+msgstr "中等"
 
-#: ../gataxx/properties.c:361 ../gataxx/properties.c:379
+#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
 msgid "Hard"
 msgstr "难"
 
-#: ../gataxx/properties.c:362 ../gataxx/properties.c:380
+#: ../gataxx/properties.c:358 ../gataxx/properties.c:376
 msgid "Very hard"
 msgstr "超难"
 
 #. Light level select
-#: ../gataxx/properties.c:371 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:367 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:567
 msgid "Light"
 msgstr "白方"
 
-#: ../gataxx/properties.c:377
+#: ../gataxx/properties.c:373
 msgid "Easy"
 msgstr "易"
 
-#: ../gataxx/properties.c:378
+#: ../gataxx/properties.c:374
 msgid "Medium"
 msgstr "中"
 
 #. Appearance tab
-#: ../gataxx/properties.c:389 ../gataxx/properties.c:392
+#: ../gataxx/properties.c:385 ../gataxx/properties.c:388
 #: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:535
 #: ../iagno/properties.c:616
 msgid "Appearance"
 msgstr "外观"
 
 #. animation button
-#: ../gataxx/properties.c:398
+#: ../gataxx/properties.c:394
 msgid "_Animation"
 msgstr "动画(_A)"
 
-#: ../gataxx/properties.c:402
+#: ../gataxx/properties.c:398
 msgid "Flip the pieces with some visual effects"
 msgstr "翻牌时播放视觉效果"
 
-#. flip tiles button
-#: ../gataxx/properties.c:406 ../iagno/properties.c:675
-msgid "_Flip final results"
-msgstr "翻出最终结果(_F)"
-
-#: ../gataxx/properties.c:410
-msgid ""
-"Put all the white pieces at the bottom and all the black pieces on the top "
-"of the board when a game is over"
-msgstr ""
-
-#: ../gataxx/properties.c:415 ../iagno/properties.c:685
-#: ../mahjongg/mahjongg.c:747
+#: ../gataxx/properties.c:403 ../iagno/properties.c:685
+#: ../mahjongg/mahjongg.c:748
 msgid "_Tile set:"
 msgstr "牌面集(_T)："
 
-#: ../gataxx/properties.c:420
+#: ../gataxx/properties.c:408
 msgid "The appearance of the pieces"
 msgstr "更改纸牌的外观"
 
 #. GstElement *sound_player;
 #: ../glines/glines.c:75 ../glines/glines.c:79 ../gnomine/gnomine.c:82
-#: ../gnomine/gnomine.c:618 ../same-gnome/same-gnome.c:49
+#: ../gnomine/gnomine.c:609 ../same-gnome/same-gnome.c:49
 msgid "Small"
 msgstr "小"
 
 #: ../glines/glines.c:76 ../glines/glines.c:80
-#, fuzzy
 msgid "glines|Medium"
 msgstr "中"
 
 #: ../glines/glines.c:77 ../glines/glines.c:81 ../gnomine/gnomine.c:84
-#: ../gnomine/gnomine.c:638 ../same-gnome/same-gnome.c:51
+#: ../gnomine/gnomine.c:631 ../same-gnome/same-gnome.c:51
 msgid "Large"
 msgstr "大"
 
@@ -2241,7 +2243,7 @@ msgstr ""
 "无法定位文件：\n"
 "%s\n"
 "\n"
-"请检查您的五子棋安装是否正确。"
+"请检查您的多子棋安装是否正确。"
 
 #: ../glines/glines.c:423
 msgid "Match five objects of the same type in a row to score!"
@@ -2249,71 +2251,71 @@ msgstr "在一行中放置五个同色球以便得分！"
 
 #: ../glines/glines.c:488
 msgid "GNOME Five or More"
-msgstr "GNOME 五子棋"
+msgstr "GNOME 多子棋"
 
 #: ../glines/glines.c:490
 msgid "Board Size:"
 msgstr "盘面大小："
 
-#: ../glines/glines.c:517
+#: ../glines/glines.c:518
 msgid "Game Over!"
 msgstr "游戏结束！"
 
 #. Can't move there!
-#: ../glines/glines.c:677
+#: ../glines/glines.c:679
 msgid "You can't move there!"
 msgstr "不能放在这儿！"
 
-#: ../glines/glines.c:1212 ../glines/glines.c:1904
+#: ../glines/glines.c:1219 ../glines/glines.c:1913
 #: ../glines/glines.desktop.in.h:1
 msgid "Five or More"
-msgstr "五子棋"
+msgstr "多子棋"
 
-#: ../glines/glines.c:1214
+#: ../glines/glines.c:1221
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "流行的彩线游戏的 Gnome 版本"
 
-#: ../glines/glines.c:1415
+#: ../glines/glines.c:1422
 msgid "Five or More Preferences"
-msgstr "五子棋首选项"
+msgstr "多子棋首选项"
 
-#: ../glines/glines.c:1436
+#: ../glines/glines.c:1443
 msgid "Themes"
 msgstr "主题"
 
-#: ../glines/glines.c:1445
+#: ../glines/glines.c:1452
 msgid "_Image:"
 msgstr "图像(_I)："
 
-#: ../glines/glines.c:1456
+#: ../glines/glines.c:1463
 msgid "B_ackground color:"
 msgstr "背景颜色(_A)："
 
-#: ../glines/glines.c:1471
+#: ../glines/glines.c:1478
 msgid "Board Size"
 msgstr "盘面大小"
 
-#: ../glines/glines.c:1478 ../same-gnome/ui.c:437
+#: ../glines/glines.c:1485 ../same-gnome/ui.c:437
 msgid "_Small"
 msgstr "小(_S)"
 
-#: ../glines/glines.c:1488 ../same-gnome/ui.c:438
+#: ../glines/glines.c:1495 ../same-gnome/ui.c:438
 msgid "_Medium"
 msgstr "中(_M)"
 
-#: ../glines/glines.c:1498 ../same-gnome/ui.c:439
+#: ../glines/glines.c:1505 ../same-gnome/ui.c:439
 msgid "_Large"
 msgstr "大(_L)"
 
-#: ../glines/glines.c:1506
+#: ../glines/glines.c:1513
 msgid "General"
 msgstr "常规"
 
-#: ../glines/glines.c:1514
+#: ../glines/glines.c:1521
 msgid "_Use fast moves"
 msgstr "使用快速移动(_U)"
 
-#: ../glines/glines.c:1934
+#: ../glines/glines.c:1943
 msgid "Next:"
 msgstr "下个球："
 
@@ -2390,11 +2392,11 @@ msgstr "四子连线"
 
 #: ../gnect/data/gnect.schemas.in.h:1
 msgid "A number specifying the preferred theme."
-msgstr ""
+msgstr "指定首选主题的数字。"
 
 #: ../gnect/data/gnect.schemas.in.h:3
 msgid "Drop marble"
-msgstr ""
+msgstr "落下小球"
 
 #: ../gnect/data/gnect.schemas.in.h:4
 msgid "Height of the main window"
@@ -2430,7 +2432,7 @@ msgstr "向左移动"
 msgid "Move right"
 msgstr "向右移动"
 
-#: ../gnect/data/gnect.schemas.in.h:12 ../gnome-stones/preferences.c:789
+#: ../gnect/data/gnect.schemas.in.h:12
 msgid "Sound"
 msgstr "音效"
 
@@ -2571,12 +2573,12 @@ msgstr "主题(_T)："
 msgid "Enable _animation"
 msgstr "启用动画(_A)"
 
-#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:888
+#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:866
 msgid "Controls"
 msgstr "控制"
 
 #: ../gnect/src/prefs.c:444 ../gnibbles/preferences.c:381
-#: ../gnobots2/properties.c:542 ../gnometris/tetris.cpp:891
+#: ../gnobots2/properties.c:542 ../gnometris/tetris.cpp:869
 msgid "Keyboard Controls"
 msgstr "键盘控制"
 
@@ -2600,12 +2602,11 @@ msgstr "高对比度"
 
 #: ../gnect/src/theme.c:58
 msgid "High Contrast Inverse"
-msgstr "高对比度"
+msgstr "高对比度反色"
 
 #: ../gnect/src/theme.c:66
-#, fuzzy
 msgid "Cream Marbles"
-msgstr "蒙特卡罗"
+msgstr "弹球"
 
 #: ../gnect/src/theme.c:71 ../gnect/src/theme.c:79 ../gnect/src/theme.c:95
 #: ../gnibbles/preferences.c:422
@@ -2613,17 +2614,16 @@ msgid "Blue"
 msgstr "蓝"
 
 #: ../gnect/src/theme.c:74
-#, fuzzy
 msgid "Glass Marbles"
-msgstr "蒙特卡罗"
+msgstr "玻璃球"
 
 #: ../gnect/src/theme.c:82
 msgid "Nightfall"
-msgstr ""
+msgstr "夜色"
 
 #: ../gnect/src/theme.c:90
 msgid "Blocks"
-msgstr "块"
+msgstr "砖块"
 
 #: ../gnect/src/theme.c:95
 msgid "Orange"
@@ -2798,7 +2798,7 @@ msgstr "吃掉奖品"
 msgid "Extra Life"
 msgstr "奖命"
 
-#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:130
+#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:227
 msgid "Game Over"
 msgstr "游戏结束"
 
@@ -2841,9 +2841,8 @@ msgid "New game started"
 msgstr "新游戏已开始"
 
 #: ../gnibbles/preferences.c:204
-#, fuzzy
 msgid "Nibbles Preferences"
-msgstr "Gnome 贪吃蛇首选项"
+msgstr "贪吃蛇首选项"
 
 #: ../gnibbles/preferences.c:225
 msgid "Speed"
@@ -2884,7 +2883,7 @@ msgid "E_nable sounds"
 msgstr "启用声音(_N)"
 
 #. starting level
-#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:811
+#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:781
 msgid "_Starting level:"
 msgstr "起始级别(_S)："
 
@@ -2925,17 +2924,17 @@ msgstr "灰"
 msgid "Worm %d:"
 msgstr "小蛇 %d："
 
-#: ../gnobots2/game.c:142
+#: ../gnobots2/game.c:143
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "“%s”使用超级安全移动"
 
-#: ../gnobots2/game.c:145
+#: ../gnobots2/game.c:146
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "“%s”使用安全移动"
 
-#: ../gnobots2/game.c:330 ../gnobots2/game.c:345
+#: ../gnobots2/game.c:331 ../gnobots2/game.c:346
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -2943,11 +2942,16 @@ msgstr ""
 "恭喜，您已击败机器人！！\n"
 "但您能再次击败它吗？"
 
-#: ../gnobots2/game.c:1131
+#. This should never happen.
+#: ../gnobots2/game.c:1156
 msgid "There are no teleport locations left!!"
 msgstr "没有剩下传送点了！！"
 
-#: ../gnobots2/game.c:1200
+#: ../gnobots2/game.c:1190
+msgid "You have run out of safe moves - the robots have won!"
+msgstr ""
+
+#: ../gnobots2/game.c:1196
 msgid "There are no safe locations to teleport to!!"
 msgstr "没有可传送到的安全的位置了！！"
 
@@ -2959,11 +2963,11 @@ msgstr "设定游戏情节"
 msgid "Set game configuration"
 msgstr "设定游戏配置"
 
-#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:853 ../gnomine/gnomine.c:857
+#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:848 ../gnomine/gnomine.c:852
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:66 ../gnomine/gnomine.c:854 ../gnomine/gnomine.c:858
+#: ../gnobots2/gnobots.c:66 ../gnomine/gnomine.c:849 ../gnomine/gnomine.c:853
 msgid "Y"
 msgstr "Y"
 
@@ -3007,13 +3011,12 @@ msgid "Enable game sounds. Play sounds for various events throughout the game."
 msgstr "启用游戏音效。在玩游戏的过程中的各种事件可播放声音。"
 
 #: ../gnobots2/gnobots2.schemas.in.h:5
-#, fuzzy
 msgid "Enable splats"
-msgstr "启用声音(_S)"
+msgstr "允许相撞"
 
 #: ../gnobots2/gnobots2.schemas.in.h:6
 msgid "Enable splats. Play a sound and show a \"Splat!\" on the screen."
-msgstr ""
+msgstr "允许相撞。播放声音并在屏幕上显示相撞的图样字样。"
 
 #: ../gnobots2/gnobots2.schemas.in.h:7
 msgid "Game type"
@@ -3193,7 +3196,7 @@ msgstr "机器人已 splatted！"
 msgid "Victory!!"
 msgstr "胜利！！"
 
-#: ../gnobots2/graphics.c:104 ../iagno/gnothello.c:413
+#: ../gnobots2/graphics.c:104 ../iagno/gnothello.c:393
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "无法找到“%s”位图文件\n"
@@ -3226,7 +3229,7 @@ msgstr "等待(_W)"
 msgid "Wait for the robots"
 msgstr "等候机器人"
 
-#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1292
+#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1293
 msgid "Show or hide the toolbar"
 msgstr "显示或隐藏工具栏"
 
@@ -3308,28 +3311,27 @@ msgstr "避免全部危险的移动"
 
 #: ../gnobots2/properties.c:475
 msgid "Prevents all moves that result in getting killed."
-msgstr ""
+msgstr "避免将导致丢命的全部移动。"
 
-#: ../gnobots2/properties.c:477 ../gnometris/tetris.cpp:837
+#: ../gnobots2/properties.c:477 ../gnometris/tetris.cpp:807
 msgid "_Enable sounds"
 msgstr "启用声音(_E)"
 
 #: ../gnobots2/properties.c:483
 msgid "Play sounds for major events"
-msgstr ""
+msgstr "主要事件播放声音"
 
 #: ../gnobots2/properties.c:484
 msgid "Play sounds for events like winning a level and dying."
 msgstr ""
 
 #: ../gnobots2/properties.c:486
-#, fuzzy
 msgid "E_nable splats"
-msgstr "启用声音(_S)"
+msgstr "允许相撞(_N)"
 
 #: ../gnobots2/properties.c:492
 msgid "Play a sound when two robots collide"
-msgstr ""
+msgstr "两个机器人相撞的时候播放声音"
 
 #: ../gnobots2/properties.c:493
 msgid "Play the most common, and potentially the most annoying, sound."
@@ -3343,7 +3345,7 @@ msgstr "图形主题"
 msgid "_Image theme:"
 msgstr "图像主题(_I)："
 
-#: ../gnobots2/properties.c:523 ../mahjongg/mahjongg.c:793
+#: ../gnobots2/properties.c:523 ../mahjongg/mahjongg.c:794
 msgid "_Background color:"
 msgstr "背景颜色(_B)："
 
@@ -3359,7 +3361,7 @@ msgstr "键盘"
 msgid "Safe Teleports:"
 msgstr "安全传送点："
 
-#: ../gnobots2/statusbar.c:85 ../gnometris/scoreframe.cpp:79
+#: ../gnobots2/statusbar.c:85 ../gnometris/scoreframe.cpp:74
 msgid "Level:"
 msgstr "级别："
 
@@ -3367,275 +3369,7 @@ msgstr "级别："
 msgid "Remaining:"
 msgstr "剩下："
 
-#. ********************************************************************
-#: ../gnome-stones/atari.caves.in.h:1 ../gnome-stones/default.caves.in.h:1
-msgid "Collect all diamonds and find exit"
-msgstr "收集所有钻石并找到出口"
-
-#: ../gnome-stones/atari.caves.in.h:2
-msgid "Congratulations!!! You have won!"
-msgstr "恭喜！！！您赢了！"
-
-#: ../gnome-stones/atari.caves.in.h:3
-msgid "Original Atari caves"
-msgstr "原始 Atari 洞穴"
-
-#: ../gnome-stones/atari.caves.in.h:4 ../gnome-stones/default.caves.in.h:3
-#: ../gnome-stones/tutorial.caves.in.h:2
-msgid "gnome-stones:empty"
-msgstr "gnome-stones：空"
-
-#: ../gnome-stones/default.caves.in.h:2
-msgid "Default caves"
-msgstr "默认洞穴"
-
-#: ../gnome-stones/gnome-stones.desktop.in.h:1
-#, fuzzy
-msgid "Collect diamonds while avoiding falling boulders"
-msgstr "收集所有钻石并找到出口"
-
-#: ../gnome-stones/gnome-stones.desktop.in.h:2
-msgid "Stones"
-msgstr "钻石"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:1
-msgid "Cave number to start"
-msgstr ""
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:2
-msgid "Cave number to start."
-msgstr ""
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:3
-msgid "Device to use for joystick control."
-msgstr "游戏杆控制要使用的设备。"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:4
-msgid "Enable sound support"
-msgstr "启用声音支持"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:5
-msgid "Enable sound support."
-msgstr "启用声音支持。"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:6
-msgid "Game name"
-msgstr "游戏编号"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:7
-msgid "Joystick device"
-msgstr "游戏杆设备"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:8
-msgid "Joystick switch level"
-msgstr "游戏杆开关级别"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:9
-msgid "The full path and filename of game to load."
-msgstr ""
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:10
-msgid ""
-"The level an analog joystick must reach to be considered \"on\" when "
-"emulating a digital joystick. This takes a value between 0.0 and 1.0."
-msgstr ""
-
-#: ../gnome-stones/gnomekoban.caves.in.h:1
-msgid "Gnomekoban"
-msgstr "Gnomekoban"
-
-#: ../gnome-stones/gnomekoban.caves.in.h:2
-msgid "gnomekoban:empty,0"
-msgstr "gnomekoban：空，0"
-
-#. This cave is too big to be played with gnome-stones.
-#: ../gnome-stones/io.c:338
-msgid "The cave you are trying to load is too big for this game."
-msgstr "您试图装入的洞穴对该游戏来说太大。"
-
-#: ../gnome-stones/io.c:355
-#, c-format
-msgid "The cave is corrupted: %s is missing."
-msgstr ""
-
-#. An object was requested in this cave, that was not
-#. declared in the game file's Object section.
-#: ../gnome-stones/io.c:381
-msgid ""
-"The cave you are trying to load includes an object, that wasn't declared."
-msgstr "您试图装入的洞穴含有一个未声明的对象。"
-
-#. **************************************************************************
-#. Some constants.
-#. This message will be printed in the statusline, if no message was
-#. specified in a game file.
-#: ../gnome-stones/main.c:66
-msgid "This is GNOME Stones"
-msgstr "这是 GNOME 钻石"
-
-#: ../gnome-stones/main.c:76
-msgid "Game to play"
-msgstr "要玩的游戏"
-
-#: ../gnome-stones/main.c:76
-msgid "FILENAME"
-msgstr "文件名"
-
-#: ../gnome-stones/main.c:128
-#, c-format
-msgid ""
-"An error occurred while loading the image file \"%s\".\n"
-"Please make sure that GNOME Stones is correctly installed!"
-msgstr ""
-"装入图像文件“%s”时出错。\n"
-"请确认正确地安装了 GNOME 钻石！"
-
-#. That's what a gnome application needs:
-#: ../gnome-stones/main.c:212 ../gnome-stones/main.c:918
-#: ../gnome-stones/main.c:1027 ../gnome-stones/main.c:1276
-msgid "GNOME Stones"
-msgstr "GNOME 钻石"
-
-#: ../gnome-stones/main.c:238
-msgid "Game title"
-msgstr "游戏标题"
-
-#: ../gnome-stones/main.c:239
-msgid "Start cave"
-msgstr "起点洞穴"
-
-#: ../gnome-stones/main.c:378 ../gnome-stones/main.c:972
-#: ../gnometris/gnometris.schemas.in.h:15
-msgid "Pause"
-msgstr "暂停"
-
-#: ../gnome-stones/main.c:600
-msgid "Congratulations, you win!"
-msgstr "恭喜，您赢了！"
-
-#: ../gnome-stones/main.c:801 ../gtali/gyahtzee.c:141 ../same-gnome/ui.c:144
-msgid "Game over!"
-msgstr "游戏结束！"
-
-#: ../gnome-stones/main.c:1021
-#, fuzzy
-msgid "Sokoban levels:"
-msgstr "起始级别："
-
-#: ../gnome-stones/main.c:1030
-msgid "Mine through dirt and collect gems."
-msgstr ""
-
-#: ../gnome-stones/main.c:1184
-msgid "Scanning private object directory..."
-msgstr "正在扫描私有对象目录..."
-
-#: ../gnome-stones/main.c:1188
-msgid "Scanning public object directory..."
-msgstr "正在扫描公有对象目录..."
-
-#: ../gnome-stones/main.c:1192
-msgid "Scanning private game directory..."
-msgstr "正在扫描私有游戏目录..."
-
-#: ../gnome-stones/main.c:1196
-msgid "Scanning public game directory..."
-msgstr "正在扫描公共游戏目录..."
-
-#: ../gnome-stones/main.c:1200
-msgid "Restoring preferences..."
-msgstr "正在恢复首选项..."
-
-#: ../gnome-stones/player.c:77
-msgid "You gained an extra life!"
-msgstr "您获得额外的一条命！"
-
-#: ../gnome-stones/player.c:121
-#, c-format
-msgid "Seconds left: %d"
-msgstr "剩余秒：%d"
-
-#: ../gnome-stones/preferences.c:402
-msgid "Neither your chosen game nor the default game could be loaded."
-msgstr "不管是您所选的游戏还是默认游戏都无法装入。"
-
-#: ../gnome-stones/preferences.c:403
-msgid "Please make sure that GNOME Stones is correctly installed."
-msgstr "请确认正确地安装了 Gnome 钻石。"
-
-#: ../gnome-stones/preferences.c:404
-msgid "You may be able to select a different game from the preferences dialog."
-msgstr "您可以从首选项对话框中选择不同的游戏。"
-
-#: ../gnome-stones/preferences.c:559
-msgid "GNOME Stones Preferences"
-msgstr "GNOME 钻石首选项"
-
-#: ../gnome-stones/preferences.c:612
-msgid "Game Title"
-msgstr "游戏标题"
-
-#: ../gnome-stones/preferences.c:619
-msgid "Caves"
-msgstr "洞穴"
-
-#: ../gnome-stones/preferences.c:699
-msgid "Device"
-msgstr "设备"
-
-#: ../gnome-stones/preferences.c:708
-msgid "_Joystick device:"
-msgstr "游戏杆设备(_J)："
-
-#. We definatly have a "disable" entry.
-#: ../gnome-stones/preferences.c:715
-msgid "Disabled"
-msgstr "禁用"
-
-#: ../gnome-stones/preferences.c:746
-msgid "Digital Joystick Emulation"
-msgstr "数字游戏杆仿真"
-
-#: ../gnome-stones/preferences.c:755
-msgid "_Switch level:"
-msgstr "开关级别(_S)："
-
-#: ../gnome-stones/preferences.c:779
-msgid "Joystick"
-msgstr "游戏杆"
-
-#: ../gnome-stones/preferences.c:797
-msgid "Enable sound"
-msgstr "启用声音"
-
-#: ../gnome-stones/preferences.c:809
-msgid "_Sound"
-msgstr "音效(_S)"
-
-#: ../gnome-stones/status.c:81
-msgid "Diamonds:"
-msgstr "钻石："
-
-#: ../gnome-stones/status.c:95
-msgid "Cave:"
-msgstr "洞穴："
-
-#: ../gnome-stones/status.c:105
-msgid "Lives:"
-msgstr "生命："
-
-#. Local Variables:
-#. mode:c
-#. eval:(load-library "time-stamp")
-#. eval:(make-local-variable 'write-file-hooks)
-#. eval:(add-hook 'write-file-hooks 'time-stamp)
-#. eval:(setq time-stamp-format '(time-stamp-yyyy/mm/dd time-stamp-hh:mm:ss user-login-name))
-#. End:
-#: ../gnome-stones/tutorial.caves.in.h:1
-msgid "Tutorial caves"
-msgstr "训练洞穴"
-
-#: ../gnometris/field.cpp:83
+#: ../gnometris/field.cpp:225
 msgid "Paused"
 msgstr "暂停"
 
@@ -3643,8 +3377,8 @@ msgstr "暂停"
 msgid "Fit falling blocks together"
 msgstr ""
 
-#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:182
-#: ../gnometris/tetris.cpp:1454
+#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:179
+#: ../gnometris/tetris.cpp:1441
 msgid "Gnometris"
 msgstr "Gnome 方块"
 
@@ -3684,6 +3418,10 @@ msgstr "起始级别"
 msgid "Level to start with."
 msgstr "起始级别。"
 
+#: ../gnometris/gnometris.schemas.in.h:15
+msgid "Pause"
+msgstr "暂停"
+
 #: ../gnometris/gnometris.schemas.in.h:16
 msgid "Rotate"
 msgstr "旋转"
@@ -3706,144 +3444,131 @@ msgstr ""
 msgid "The density of filled rows"
 msgstr "填充行的浓度"
 
-#: ../gnometris/gnometris.schemas.in.h:21
+#: ../gnometris/gnometris.schemas.in.h:22
+msgid "The name of the theme used for rendering the blocks and the background."
+msgstr ""
+
+#: ../gnometris/gnometris.schemas.in.h:23
 msgid ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
 msgstr ""
 
-#: ../gnometris/gnometris.schemas.in.h:22
+#: ../gnometris/gnometris.schemas.in.h:24
 msgid "The number of rows to fill"
 msgstr "要填充的行数"
 
-#: ../gnometris/gnometris.schemas.in.h:23
+#: ../gnometris/gnometris.schemas.in.h:25
+#, fuzzy
+msgid "The theme used for rendering the blocks"
+msgstr "要用做绘制方块的图像"
+
+#: ../gnometris/gnometris.schemas.in.h:27
 msgid ""
 "This selects whether or not to draw the background image over the background "
 "color."
 msgstr ""
 
-#: ../gnometris/gnometris.schemas.in.h:24
+#: ../gnometris/gnometris.schemas.in.h:28
 msgid "Whether to give blocks random colors"
 msgstr "是否给方块随机着色"
 
-#: ../gnometris/gnometris.schemas.in.h:25
+#: ../gnometris/gnometris.schemas.in.h:29
 msgid "Whether to give blocks random colors."
 msgstr "是否给方块随机着色。"
 
-#: ../gnometris/gnometris.schemas.in.h:26
+#: ../gnometris/gnometris.schemas.in.h:30
 msgid "Whether to preview the next block"
 msgstr "是否预览下一个方块"
 
-#: ../gnometris/gnometris.schemas.in.h:27
+#: ../gnometris/gnometris.schemas.in.h:31
 msgid "Whether to preview the next block."
 msgstr "是否预览下一个方块。"
 
-#: ../gnometris/gnometris.schemas.in.h:28
+#: ../gnometris/gnometris.schemas.in.h:32
+msgid ""
+"Whether to provide a graphical representation of where a block will land."
+msgstr ""
+
+#: ../gnometris/gnometris.schemas.in.h:33
+msgid "Whether to provide a target"
+msgstr "是否提供目标"
+
+#: ../gnometris/gnometris.schemas.in.h:34
 msgid "Whether to rotate counter clock wise"
 msgstr "是否逆时针旋转"
 
-#: ../gnometris/gnometris.schemas.in.h:29
+#: ../gnometris/gnometris.schemas.in.h:35
 msgid "Whether to rotate counter clock wise."
 msgstr "是否逆时针旋转。"
 
-#: ../gnometris/gnometris.schemas.in.h:30
-msgid "Whether to use sound"
-msgstr "是否使用声音。"
-
-#: ../gnometris/gnometris.schemas.in.h:31
-msgid "Whether to use sound."
-msgstr "是否使用声音。"
-
-#: ../gnometris/gnometris.schemas.in.h:32
+#: ../gnometris/gnometris.schemas.in.h:36
 msgid "Whether to use the background image"
 msgstr "是否使用背景图像"
 
-#: ../gnometris/main.cpp:38
-msgid "Set starting level (1-10)"
-msgstr "设定起始级别 (1-10)"
+#: ../gnometris/main.cpp:39
+msgid "Set starting level (1 or greater)"
+msgstr "设定起始级别 (大于等于1)"
 
-#: ../gnometris/main.cpp:38
+#: ../gnometris/main.cpp:39
 msgid "LEVEL"
 msgstr "级别"
 
-#: ../gnometris/scoreframe.cpp:68
+#: ../gnometris/renderer.cpp:28
+msgid "Joined"
+msgstr "立体"
+
+#: ../gnometris/scoreframe.cpp:63
 msgid "Lines:"
 msgstr "行数："
 
-#: ../gnometris/tetris.cpp:351
-#, c-format
-msgid ""
-"Could not find the theme: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"无法找到主题：\n"
-"%s\n"
-"\n"
-"请检查您的 gnome-games 的安装"
-
-#: ../gnometris/tetris.cpp:366
-#, c-format
-msgid ""
-"Can't load the image: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"无法装入图像：\n"
-"%s\n"
-"\n"
-"请检查您的 gnome-games 的安装"
-
-#: ../gnometris/tetris.cpp:714 ../gnometris/tetris.cpp:715
+#: ../gnometris/tetris.cpp:684 ../gnometris/tetris.cpp:685
 msgid "<none>"
 msgstr "<无>"
 
-#: ../gnometris/tetris.cpp:743
+#: ../gnometris/tetris.cpp:713
 msgid "Gnometris Preferences"
 msgstr "Gnometris 首选项"
 
-#: ../gnometris/tetris.cpp:767
+#: ../gnometris/tetris.cpp:737
 msgid "Setup"
 msgstr "设置"
 
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:773
+#: ../gnometris/tetris.cpp:743
 msgid "_Number of pre-filled rows:"
 msgstr "预填充行行数(_N)："
 
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:792
+#: ../gnometris/tetris.cpp:762
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "预填充行中方块的浓度(_D)："
 
-#: ../gnometris/tetris.cpp:832
+#: ../gnometris/tetris.cpp:802
 msgid "Operation"
 msgstr "操作"
 
-#: ../gnometris/tetris.cpp:846
+#: ../gnometris/tetris.cpp:816
 msgid "_Preview next block"
 msgstr "预览下一个方块(_P)"
 
-#: ../gnometris/tetris.cpp:855
+#: ../gnometris/tetris.cpp:825
 msgid "_Use random block colors"
 msgstr "使用随机的方块颜色(_U)"
 
-#: ../gnometris/tetris.cpp:866
+#: ../gnometris/tetris.cpp:836
 msgid "_Rotate blocks counterclockwise"
 msgstr "逆时针旋转块(_R)"
 
-#: ../gnometris/tetris.cpp:879 ../gnometris/tetris.cpp:912
-#: ../same-gnome/ui.c:288
-msgid "Theme"
-msgstr "主题"
+#: ../gnometris/tetris.cpp:845
+msgid "Show where the block will _land"
+msgstr "显示方块即将下落到何处(_L)"
 
-#: ../gnometris/tetris.cpp:915
-msgid "Block image:"
-msgstr "方块图像："
+#: ../gnometris/tetris.cpp:893
+msgid "Block Style"
+msgstr "方块样式"
 
-#: ../gnometris/tetris.cpp:1456
+#: ../gnometris/tetris.cpp:1443
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: \n"
@@ -3857,12 +3582,11 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "Gnome 方块得分"
 
-#: ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:628
-#, fuzzy
+#: ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:620
 msgid "gnomine|Medium"
 msgstr "中"
 
-#: ../gnomine/gnomine.c:85 ../gnomine/gnomine.c:648
+#: ../gnomine/gnomine.c:85 ../gnomine/gnomine.c:642
 msgid "Custom"
 msgstr "自定义"
 
@@ -3887,13 +3611,13 @@ msgstr "扫雷得分"
 msgid "Size:"
 msgstr "大小："
 
-#: ../gnomine/gnomine.c:215 ../mahjongg/mahjongg.c:683 ../same-gnome/ui.c:165
+#: ../gnomine/gnomine.c:215 ../mahjongg/mahjongg.c:684 ../same-gnome/ui.c:165
 msgid "Congratulations!"
 msgstr "恭喜！"
 
-#: ../gnomine/gnomine.c:216 ../mahjongg/mahjongg.c:684 ../same-gnome/ui.c:166
+#: ../gnomine/gnomine.c:216 ../mahjongg/mahjongg.c:685 ../same-gnome/ui.c:166
 msgid "Your score has made the top ten."
-msgstr ""
+msgstr "您已经进入了前十名。"
 
 #: ../gnomine/gnomine.c:308
 msgid "Click a square, any square"
@@ -3903,85 +3627,85 @@ msgstr "请单击任何一个方块"
 msgid "Maybe they're all mines ..."
 msgstr "可能全都是雷..."
 
-#: ../gnomine/gnomine.c:428
+#: ../gnomine/gnomine.c:419
 msgid "Faces:"
 msgstr "表面："
 
-#: ../gnomine/gnomine.c:431
+#: ../gnomine/gnomine.c:422
 msgid "Graphics:"
 msgstr "图形："
 
-#: ../gnomine/gnomine.c:437
+#: ../gnomine/gnomine.c:428
 msgid "Resizing and SVG support:"
 msgstr "缩放和 SVG 支持："
 
-#: ../gnomine/gnomine.c:444 ../gnomine/gnomine.c:959
+#: ../gnomine/gnomine.c:435 ../gnomine/gnomine.c:956
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
 msgstr "扫雷"
 
-#: ../gnomine/gnomine.c:614
+#: ../gnomine/gnomine.c:605
 msgid "Field Size"
 msgstr "场地大小"
 
-#: ../gnomine/gnomine.c:660
+#: ../gnomine/gnomine.c:655
 msgid "Custom Size"
 msgstr "自定义大小"
 
-#: ../gnomine/gnomine.c:667
+#: ../gnomine/gnomine.c:662
 msgid "_Number of mines:"
 msgstr "地雷数量(_N)："
 
-#: ../gnomine/gnomine.c:679
+#: ../gnomine/gnomine.c:674
 msgid "_Horizontal:"
 msgstr "水平(_H)："
 
-#: ../gnomine/gnomine.c:690
+#: ../gnomine/gnomine.c:685
 msgid "_Vertical:"
 msgstr "垂直(_V)："
 
-#: ../gnomine/gnomine.c:705
+#: ../gnomine/gnomine.c:700
 msgid "_Use \"I'm not sure\" flags"
 msgstr "使用“不确定”旗标(_U)"
 
-#: ../gnomine/gnomine.c:714
+#: ../gnomine/gnomine.c:709
 msgid "Mines Preferences"
 msgstr "扫雷首选项"
 
-#: ../gnomine/gnomine.c:853
+#: ../gnomine/gnomine.c:848
 msgid "Width of grid"
 msgstr "网格宽度"
 
-#: ../gnomine/gnomine.c:854
+#: ../gnomine/gnomine.c:849
 msgid "Height of grid"
 msgstr "网格高度"
 
-#: ../gnomine/gnomine.c:855
+#: ../gnomine/gnomine.c:850
 msgid "Number of mines"
 msgstr "地雷数量"
 
-#: ../gnomine/gnomine.c:855 ../gtali/setup.c:85 ../gtali/setup.c:86
+#: ../gnomine/gnomine.c:850 ../gtali/setup.c:85 ../gtali/setup.c:86
 #: ../same-gnome/same-gnome.c:140
 msgid "NUMBER"
 msgstr "数量"
 
-#: ../gnomine/gnomine.c:856
+#: ../gnomine/gnomine.c:851
 msgid "Size of the board (1=small, 3=large)"
 msgstr "盘面大小(1=小，3=大)"
 
-#: ../gnomine/gnomine.c:857
+#: ../gnomine/gnomine.c:852
 msgid "X location of window"
 msgstr "窗口的 X 位置"
 
-#: ../gnomine/gnomine.c:858
+#: ../gnomine/gnomine.c:853
 msgid "Y location of window"
 msgstr "窗口的 Y 位置"
 
-#: ../gnomine/gnomine.c:1024
+#: ../gnomine/gnomine.c:1021
 msgid "Press to Resume"
 msgstr "按下可恢复"
 
-#: ../gnomine/gnomine.c:1057
+#: ../gnomine/gnomine.c:1054
 msgid "Time: "
 msgstr "时间："
 
@@ -4154,19 +3878,19 @@ msgstr "盘面的大小 (2-6)"
 msgid "SIZE"
 msgstr "大小"
 
-#: ../gnotravex/gnotravex.c:827
+#: ../gnotravex/gnotravex.c:829
 msgid "Puzzle solved! Well done!"
 msgstr "拼图完成了！干得好！"
 
-#: ../gnotravex/gnotravex.c:830
+#: ../gnotravex/gnotravex.c:832
 msgid "Puzzle solved!"
 msgstr "拼图完成了！"
 
-#: ../gnotravex/gnotravex.c:1188 ../mahjongg/mahjongg.c:954
+#: ../gnotravex/gnotravex.c:1190 ../mahjongg/mahjongg.c:955
 msgid "Game paused"
 msgstr "游戏暂停"
 
-#: ../gnotravex/gnotravex.c:1346
+#: ../gnotravex/gnotravex.c:1348
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "正在玩 %dx%d 盘面"
@@ -4428,11 +4152,11 @@ msgstr "下一迷宫"
 msgid "Previous Puzzle"
 msgstr "上一迷宫"
 
-#: ../gnotski/gnotski.c:817
+#: ../gnotski/gnotski.c:819
 msgid "Level completed."
 msgstr "本层完成。"
 
-#: ../gnotski/gnotski.c:1009
+#: ../gnotski/gnotski.c:1011
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -4442,7 +4166,7 @@ msgstr ""
 "\n"
 "请检查 Klotski 是否安装正确。"
 
-#: ../gnotski/gnotski.c:1177
+#: ../gnotski/gnotski.c:1179
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -4455,12 +4179,12 @@ msgstr ""
 "\n"
 "请检查 Klotski 是否安装正确。"
 
-#: ../gnotski/gnotski.c:1216
+#: ../gnotski/gnotski.c:1218
 #, c-format
 msgid "Moves: %d"
 msgstr "步数：%d"
 
-#: ../gnotski/gnotski.c:1539
+#: ../gnotski/gnotski.c:1541
 msgid "Sliding Block Puzzles"
 msgstr ""
 
@@ -4535,53 +4259,57 @@ msgstr ""
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr ""
 
-#: ../gtali/gyahtzee.c:121
+#: ../gtali/gyahtzee.c:125
 msgid "The game is a draw!"
 msgstr "平局！"
 
-#: ../gtali/gyahtzee.c:136
+#: ../gtali/gyahtzee.c:140
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
 msgstr[0] "%s 赢了，得到 %d 分"
 
-#: ../gtali/gyahtzee.c:203
+#: ../gtali/gyahtzee.c:145 ../same-gnome/ui.c:144
+msgid "Game over!"
+msgstr "游戏结束！"
+
+#: ../gtali/gyahtzee.c:207
 #, c-format
 msgid "Computer playing for %s"
 msgstr "计算机玩 %s"
 
-#: ../gtali/gyahtzee.c:206
+#: ../gtali/gyahtzee.c:210
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- 你在上面。"
 
-#: ../gtali/gyahtzee.c:299
+#: ../gtali/gyahtzee.c:303
 #, fuzzy
 msgid "Select dice to roll or choose a score slot."
 msgstr "选择骰子以重掷，按 掷！，或者选择积分槽。"
 
-#: ../gtali/gyahtzee.c:326
+#: ../gtali/gyahtzee.c:330
 msgid "Roll"
 msgstr "掷"
 
-#: ../gtali/gyahtzee.c:369
+#: ../gtali/gyahtzee.c:382
 #, fuzzy
 msgid "You are only allowed three rolls. Choose a score slot."
 msgstr "你只能掷三次！选择一个积分盒。"
 
-#: ../gtali/gyahtzee.c:412
+#: ../gtali/gyahtzee.c:427
 msgid "GNOME version (1998):"
 msgstr "GNOME 版本(1998)："
 
-#: ../gtali/gyahtzee.c:415
+#: ../gtali/gyahtzee.c:430
 msgid "Console version (1992):"
 msgstr "控制台版本(1992)："
 
-#: ../gtali/gyahtzee.c:425
+#: ../gtali/gyahtzee.c:440
 msgid "A variation on poker with dice and less money."
 msgstr ""
 
-#: ../gtali/gyahtzee.c:607
+#: ../gtali/gyahtzee.c:622
 msgid "Roll!"
 msgstr "掷！"
 
@@ -4744,26 +4472,26 @@ msgstr "总计"
 
 #: ../iagno/gnothello.c:107
 msgid "Iagno server to use"
-msgstr "使用的 Iagno 服务器"
+msgstr "使用的翻转棋服务器"
 
 #: ../iagno/gnothello.c:114
 msgid "New Net_work Game"
 msgstr "新建网络游戏(_W)"
 
-#: ../iagno/gnothello.c:265 ../iagno/gnothello.c:588
+#: ../iagno/gnothello.c:245 ../iagno/gnothello.c:572
 #: ../iagno/iagno.desktop.in.h:1 ../iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
-msgstr "Iagno"
+msgstr "翻转棋"
 
-#: ../iagno/gnothello.c:268
+#: ../iagno/gnothello.c:248
 msgid "A disk flipping game derived from Reversi."
-msgstr ""
+msgstr "派生于翻转棋的翻盘游戏。"
 
-#: ../iagno/gnothello.c:647
+#: ../iagno/gnothello.c:631
 msgid "Welcome to Iagno!"
-msgstr "欢迎来玩 Iagno！"
+msgstr "欢迎来玩翻转棋！"
 
-#: ../iagno/gnothello.c:655 ../iagno/gnothello.c:657
+#: ../iagno/gnothello.c:639 ../iagno/gnothello.c:641
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
@@ -4788,17 +4516,17 @@ msgstr "非法游戏数据 (set_peer)"
 msgid "Invalid game data (move)"
 msgstr "非法游戏数据 (移动)"
 
-#: ../iagno/othello.c:680
+#: ../iagno/othello.c:712
 msgid "Light must pass, Dark's move"
 msgstr "白方必须略过，轮到黑方"
 
-#: ../iagno/othello.c:686
+#: ../iagno/othello.c:718
 msgid "Dark must pass, Light's move"
 msgstr "黑方必须略过，轮到白方"
 
 #: ../iagno/properties.c:484
 msgid "Iagno Preferences"
-msgstr "Iagno 首选项"
+msgstr "翻转棋首选项"
 
 #: ../iagno/properties.c:512
 msgid "_Use quick moves"
@@ -4828,13 +4556,17 @@ msgstr "晃动翻转(_S)"
 msgid "S_how grid"
 msgstr "显示网格(_H)"
 
+#: ../iagno/properties.c:675
+msgid "_Flip final results"
+msgstr "翻出最终结果(_F)"
+
 #: ../libgames-support/games-card-selector.c:52
 msgid "Card Style"
 msgstr "纸牌样式"
 
 #: ../libgames-support/games-controls.c:158
 #: ../libgames-support/games-controls.c:332
-#: ../libgames-support/games-controls.c:411
+#: ../libgames-support/games-controls.c:397
 msgid "No key"
 msgstr "无键"
 
@@ -4842,7 +4574,7 @@ msgstr "无键"
 msgid "<Press a Key>"
 msgstr "<请按键>"
 
-#: ../libgames-support/games-controls.c:398
+#: ../libgames-support/games-controls.c:384
 msgid "Unknown Command"
 msgstr "未知命令"
 
@@ -4921,10 +4653,8 @@ msgid "Status"
 msgstr "状态"
 
 #: ../libgames-support/games-network-dialog.c:141
-msgid ""
-"Select a nickname and connection method\n"
-"then click Connect."
-msgstr ""
+msgid "Select a nickname and connection method then click Connect."
+msgstr "选择昵称及连接方式，然后单击连接。"
 
 #. Now for the network connection options.
 #: ../libgames-support/games-network-dialog.c:145
@@ -4982,7 +4712,7 @@ msgstr "没有选择本地游戏。"
 
 #: ../libgames-support/games-network-dialog.c:367
 msgid "A new gnome games server was successfully started."
-msgstr ""
+msgstr "成功启动了新的 GNOME 游戏服务器。"
 
 #: ../libgames-support/games-network.c:123
 msgid "Network initialization complete."
@@ -5042,23 +4772,24 @@ msgstr ""
 msgid "Image rendering failed."
 msgstr "图像渲染失败。"
 
+#. Note that this assumes the default style is plain.
+#: games-scores-dialog.gob:339 games-scores-dialog.gob:425
+#: ../libgames-support/games-scores-dialog.gob:339
+#: ../libgames-support/games-scores-dialog.gob:425
+msgid "Score"
+msgstr "积分"
+
 #. Translators: this is for a minutes, seconds time display.
-#: ../libgames-support/games-scores-dialog.gob:157
+#: games-scores-dialog.gob:191 ../libgames-support/games-scores-dialog.gob:191
 #, c-format
 msgid "%dm %ds"
 msgstr "%d分%d秒"
 
-#. Note that this assumes the default style is plain.
-#: ../libgames-support/games-scores-dialog.gob:298
-#: ../libgames-support/games-scores-dialog.gob:384
-msgid "Score"
-msgstr "积分"
-
-#: ../libgames-support/games-scores-dialog.gob:379
+#: games-scores-dialog.gob:420 ../libgames-support/games-scores-dialog.gob:420
 msgid "Time"
 msgstr "时间"
 
-#: ../libgames-support/games-scores-dialog.gob:482
+#: games-scores-dialog.gob:521 ../libgames-support/games-scores-dialog.gob:521
 msgid "New Game"
 msgstr "新游戏"
 
@@ -5278,71 +5009,69 @@ msgstr "完成(_F)"
 msgid "Shuffle"
 msgstr "洗牌"
 
-#: ../mahjongg/mahjongg.c:679 ../mahjongg/mahjongg.c:978
-#, fuzzy
+#: ../mahjongg/mahjongg.c:680 ../mahjongg/mahjongg.c:979
 msgid "Mahjongg Scores"
-msgstr "对对碰"
+msgstr "对对碰排行榜"
 
-#: ../mahjongg/mahjongg.c:681 ../mahjongg/mahjongg.c:980
-#, fuzzy
+#: ../mahjongg/mahjongg.c:682 ../mahjongg/mahjongg.c:981
 msgid "Map:"
 msgstr "地图："
 
-#: ../mahjongg/mahjongg.c:719
+#: ../mahjongg/mahjongg.c:720
 msgid "Mahjongg Preferences"
 msgstr "对对碰首选项"
 
-#: ../mahjongg/mahjongg.c:740
+#: ../mahjongg/mahjongg.c:741
 msgid "Tiles"
 msgstr "牌"
 
-#: ../mahjongg/mahjongg.c:763
+#: ../mahjongg/mahjongg.c:764
 msgid "Maps"
 msgstr "地图"
 
-#: ../mahjongg/mahjongg.c:770
+#: ../mahjongg/mahjongg.c:771
 msgid "_Select map:"
 msgstr "选择地图(_S)："
 
-#: ../mahjongg/mahjongg.c:786
+#: ../mahjongg/mahjongg.c:787
 msgid "Colors"
 msgstr "颜色"
 
-#: ../mahjongg/mahjongg.c:912
+#: ../mahjongg/mahjongg.c:913
 msgid "Maps:"
 msgstr "地图："
 
-#: ../mahjongg/mahjongg.c:916
+#: ../mahjongg/mahjongg.c:917
 msgid "Tiles:"
 msgstr "牌数："
 
-#: ../mahjongg/mahjongg.c:926 ../mahjongg/mahjongg.c:992
+#: ../mahjongg/mahjongg.c:927 ../mahjongg/mahjongg.c:993
 #: ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "对对碰"
 
-#: ../mahjongg/mahjongg.c:928
+#: ../mahjongg/mahjongg.c:929
 msgid "A matching game played with Mahjongg tiles."
-msgstr ""
+msgstr "使用麻将牌玩的对对碰游戏。"
 
-#: ../mahjongg/mahjongg.c:992
+#: ../mahjongg/mahjongg.c:993
 #, c-format
 msgid "%s - %s"
 msgstr "%s - %s"
 
-#: ../mahjongg/mahjongg.c:1244
+#: ../mahjongg/mahjongg.c:1245
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "对不起，我无法找到可以玩的配置。"
 
-#: ../mahjongg/mahjongg.c:1429
+#: ../mahjongg/mahjongg.c:1432
 msgid "Tiles Left:"
 msgstr "剩下的牌："
 
-#: ../mahjongg/mahjongg.c:1438
+#: ../mahjongg/mahjongg.c:1441
 msgid "Moves Left:"
 msgstr "剩下的着法："
 
-#: ../mahjongg/mahjongg.c:1500
+#: ../mahjongg/mahjongg.c:1503
 msgid "Remove matching pairs of tiles."
 msgstr ""
 
@@ -5363,9 +5092,8 @@ msgid ""
 msgstr ""
 
 #: ../mahjongg/maps.c:534
-#, fuzzy
 msgid "mahjongg|Easy"
-msgstr "对对碰"
+msgstr "易"
 
 #: ../mahjongg/maps.c:535
 msgid "Difficult"
@@ -5381,7 +5109,7 @@ msgstr ""
 
 #: ../mahjongg/maps.c:538
 msgid "Tic-Tac-Toe"
-msgstr ""
+msgstr "踢踏"
 
 #: ../mahjongg/maps.c:539
 msgid "Cloud"
@@ -5401,13 +5129,13 @@ msgstr ""
 
 #. FIXME: This is long enough to resize the window upwards when
 #. * the game finishes.
-#: ../same-gnome/game.c:364
+#: ../same-gnome/game.c:367
 msgid "1000 point bonus for clearing the board!"
 msgstr ""
 
 #: ../same-gnome/same-gnome.c:50
 msgid "same-gnome|Medium"
-msgstr ""
+msgstr "中"
 
 #: ../same-gnome/same-gnome.c:135
 msgid "Set the theme"
@@ -5507,7 +5235,7 @@ msgstr "Same GNOME 积分"
 
 #: ../same-gnome/ui.c:146
 msgid "Unfortunately your score did not make the top ten."
-msgstr ""
+msgstr "抱歉，您的得分未进入前十名。"
 
 #: ../same-gnome/ui.c:249
 msgid "Same GNOME Theme"
