@@ -98,6 +98,7 @@ GConfClient      *gconf_client = NULL;
 gchar* game_file_to_name (const gchar* file)
 {
   char* p, *buf = g_path_get_basename(file);
+  gchar *ts;
 
   if ((p = strrchr (buf, '.'))) *p = '\0';
   for (p = buf; p = strchr(p, '_'), p && *p;) *p = ' ';
@@ -110,9 +111,15 @@ gchar* game_file_to_name (const gchar* file)
   }
   buf[0] = g_ascii_toupper (buf[0]);
 
-  return buf;
+  ts = g_strdup (_(buf));
+  g_free (buf);
+
+  return ts;
 }
 
+/* Note that this is not the inverse of game_file_to_name. This
+ * only works on untranslated names. game_file_to_name only produces
+ * translated names. Be careful. */
 static gchar * game_name_to_file (const gchar *name)
 {
   char *p, *s;

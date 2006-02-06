@@ -498,7 +498,7 @@ void install_options_menu (gchar *name)
 
   if (has_options ()) {
     menuaction = gtk_action_group_get_action (action_group, "OptionsMenu");
-    g_object_set (G_OBJECT (menuaction), "label", _(name), NULL);
+    g_object_set (G_OBJECT (menuaction), "label", name, NULL);
 
     options_group = gtk_action_group_new ("OptionsActions");
     gtk_ui_manager_insert_action_group (ui_manager, options_group, -1);
