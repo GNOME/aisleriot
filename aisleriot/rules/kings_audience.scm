@@ -98,6 +98,7 @@
 (define (droppable? start-slot card-list end-slot)
   (and (not (null? (car card-list)))
        (not (= start-slot end-slot))
+       (not (= end-slot stock))
        (or (pair? (car card-list) (get-top-card end-slot) king queen)
            (pair? (car card-list) (get-top-card end-slot) ace jack)
            (and (not (empty-slot? end-slot))
