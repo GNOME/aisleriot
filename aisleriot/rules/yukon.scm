@@ -259,7 +259,7 @@
 	      '()
 	      (stripped (cdr card-list) card)))))
 
-(define (check-a-tableau card slot1 card-list slot2 imbedded?)
+(define (check-a-tableau card slot1 card-list slot2)
   (cond ((or (= (length card-list) 0)
 	     (not (is-visible? (car card-list))))
 	 #f)
@@ -271,35 +271,28 @@
                   (not (is-visible? (cadr card-list)))
 		  (eq? (is-red? (car card-list))
 		       (is-red? (cadr card-list)))
-		  imbedded?
 		  (not (= (+ 1 (get-value (car card-list)))
 			  (get-value (cadr card-list))))
 		  (check-a-foundation (cadr card-list) 0)
 		  (check-a-tableau (get-top-card slot2)
 				   slot1	
 				   (cdr card-list)
-				   slot2
-				   #t)
+				   slot2)
 		  (check-a-tableau (cadr card-list)
 				   slot2
 				   (get-cards slot1)
-				   slot1
-				   #t)
+				   slot1)
 		  (check-a-tableau (cadr card-list)
 				   slot2
 				   (stripped (get-cards slot2)
 					     (car card-list))
-				   slot2
-				   #t))
+				   slot2))
 	     (list 1 (get-name (car card-list)) (get-name card))
-	     (and (not imbedded?)
-		  (check-a-tableau card 
-				   slot1 
-				   (cdr card-list) 
-				   slot2 
-				   imbedded?))))
-	(imbedded? #f)
-	(#t (check-a-tableau card slot1 (cdr card-list) slot2 imbedded?))))
+	     (check-a-tableau card 
+			      slot1 
+			      (cdr card-list) 
+			      slot2)))
+	(#t (check-a-tableau card slot1 (cdr card-list) slot2))))
 
 (define (check-to-tableau? slot1 slot2)
   (cond ((= slot1 8)
@@ -311,13 +304,11 @@
 	      (check-a-tableau (get-top-card slot1) 
 			       slot1 
 			       (get-cards slot2) 
-			       slot2 
-			       #f))
+			       slot2))
 	 (check-a-tableau (get-top-card slot1) 
 			  slot1 
 			  (get-cards slot2) 
-			  slot2 
-			  #f))
+			  slot2))
 	(#t (check-to-tableau? slot1 (+ 1 slot2)))))
 
 (define (get-hint)

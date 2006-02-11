@@ -1,3 +1,10 @@
+2006-02-11  Callum McKenzie  <callum@spooky-possum.org>
+
+	* rules/yukon.scm (check-a-tableau): Recursive checks for
+	secondary moves were terminating early producing cases like bug
+	#330616. Removed the immbedded? flag since I don't think it is
+	actually needed.
+
 2006-02-09  Callum McKenzie  <callum@spooky-possum.org>
 
 	* rules/kings_audience.scm: Patch from Zack Keene to fix a slight
