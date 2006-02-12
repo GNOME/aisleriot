@@ -127,10 +127,9 @@ GamesScores * games_scores_new (const GamesScoresDescription * description) {
     self->priv->defcat = g_strdup (description->deflt);
     self->priv->currentcat = g_strdup (self->priv->defcat);
   } else {
-    games_scores_add_category (self, "", "");
-     
-    self->priv->currentcat = g_strdup ("");
-    self->priv->defcat = "";
+    self->priv->currentcat = NULL;
+    self->priv->defcat = NULL;
+    self->priv->catsordered = NULL;
   }
   
   self->priv->basename = g_strdup (description->basename);
@@ -180,6 +179,7 @@ void games_scores_add_category (GamesScores *self, gchar *key, gchar *name)
  **/
 void games_scores_set_category (GamesScores *self, gchar *category) {
   g_return_if_fail (self != NULL);
+  g_return_if_fail (self->priv != NULL);
 
   if (category == NULL)
     category = self->priv->defcat;
@@ -210,6 +210,10 @@ gint games_scores_add_score (GamesScores *self, GamesScoreValue score) {
   GamesScoresCategoryPrivate *cat;
   gint place, n;
   GList *s, *scores_list;
+
+  g_return_val_if_fail (self != NULL, 0);
+  g_return_val_if_fail (self->priv != NULL, 0);
+  g_return_val_if_fail (self->priv->currentcat != NULL, 0);
 
   fullscore = games_score_new ();
   fullscore->value = score;
@@ -284,6 +288,10 @@ void games_scores_update_score (GamesScores *self, gchar *new_name)
   GamesScore *sc;
   GamesScoreValue score;
 
+  g_return_if_fail (self != NULL);
+  g_return_if_fail (self->priv != NULL);
+  g_return_if_fail (self->priv->currentcat != NULL);
+
   place = self->priv->last_score_position;
   score = self->priv->last_score_value;
 
@@ -336,6 +344,10 @@ GList *games_scores_get (GamesScores *self)
   GamesScoresCategoryPrivate *cat;
   GList *scores;
 
+  g_return_val_if_fail (self != NULL, NULL);
+  g_return_val_if_fail (self->priv != NULL, NULL);
+  g_return_val_if_fail (self->priv->currentcat != NULL, NULL);
+
   cat = games_scores_get_current (self);
 
   scores = games_scores_backend_get_scores (cat->backend);
@@ -364,6 +376,9 @@ void games_scores_category_foreach (GamesScores *self,
   GSList *list;
   GamesScoresCategory temp;
 
+  g_return_if_fail (self != NULL);
+  g_return_if_fail (self->priv != NULL);
+
   list = self->priv->catsordered;
   while (list) {
     temp.key = ((GamesScoresCategoryPrivate *) list->data)->key;
@@ -383,6 +398,9 @@ void games_scores_category_foreach (GamesScores *self,
  **/
 GamesScoreStyle games_scores_get_style (GamesScores *self)
 {
+  g_return_val_if_fail (self != NULL, 0);
+  g_return_val_if_fail (self->priv != NULL, 0);
+
   return self->priv->style;
 }
 
@@ -391,11 +409,15 @@ GamesScoreStyle games_scores_get_style (GamesScores *self)
  * @self: A scores object.
  *
  * Returns the current category key. It is owned by the GamesScores object and
- * should not be altered.
+ * should not be altered. This will be NULL if no category is current (this
+ * will typically happen if no categories have been added to the GamesScore).
  *
  **/
 const gchar *games_scores_get_category (GamesScores *self)
 {
+  g_return_val_if_fail (self != NULL, NULL);
+  g_return_val_if_fail (self->priv != NULL, NULL);
+
   return self->priv->currentcat;
 }
 

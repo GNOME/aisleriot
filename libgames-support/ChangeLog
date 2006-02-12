@@ -1,3 +1,12 @@
+2006-02-12  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores.c: Remove the default "" category in favour of a
+	NULL category. Sprinkle warnings around to make sure we do the
+	right thing. This should fix bug #330401. The alternative of
+	deliberately ignoring a "" category was rejected on the grounds
+	that it would take more code and wasn't going to give warnings
+	about buggy code on the client end.
+
 2006-02-05  Callum McKenzie  <callum@spooky-possum.org>
 
 	* games-network-dialog.c (network_game_dialog_show):
