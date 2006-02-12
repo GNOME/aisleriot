@@ -211,11 +211,6 @@ void drop_moving_cards(gint x, gint y) {
 
   update_slot_length(hslot);
 
-  gdk_drawable_get_size(press_data->moving_cards, &width, &height);
-  gdk_window_move(press_data->moving_cards, 
-		  hslot->pixelx + hslot->width - width, 
-		  hslot->pixely + hslot->height - height);
-
   refresh_screen();
 
   free_press_data ();

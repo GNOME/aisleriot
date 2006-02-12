@@ -137,7 +137,7 @@ void free_press_data (void)
 {
   if (press_data == NULL)
     return;
-  
+
   gdk_window_hide (press_data->moving_cards);
   
   if (press_data->moving_pixmap) {

@@ -1,3 +1,11 @@
+2006-02-12  Callum McKenzie  <callum@spooky-possum.org>
+
+	* events.c (drop_moving_cards): Remove the code that moved the
+	window to the final destination. It works just fine without it and
+	for some reason, probably related to the new card compression
+	code, it wasn't going to the right place when a king was placed on
+	an empty slot causing a flicker.
+
 2006-02-11  Callum McKenzie  <callum@spooky-possum.org>
 
 	* rules/yukon.scm (check-a-tableau): Recursive checks for
