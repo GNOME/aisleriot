@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2005 by Callum McKenzie
  *
- * Time-stamp: <2005-12-23 18:04:43 callum>
+ * Time-stamp: <2006-02-15 18:55:54 callum>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -61,6 +61,7 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <string.h>

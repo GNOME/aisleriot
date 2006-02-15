@@ -155,12 +155,7 @@ void free_pixmaps ()
 }
 
 void add_card(GList** card_list, hcard_type temp_card) {
-  if (*card_list)
-	 g_list_append(*card_list, temp_card);
-  else {
-	 *card_list = g_list_alloc();
-	 (*card_list)->data = temp_card;
-  }
+  *card_list = g_list_append(*card_list, temp_card);
 }
 
 void set_card_size (gint width, gint height)

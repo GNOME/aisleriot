@@ -191,7 +191,6 @@ void drop_moving_cards(gint x, gint y) {
   SCM cardlist = SCM_EOL;
   hslot_type hslot;
   gint moved = 0;
-  gint width, height;
 
   hslot = find_drop_target(x - press_data->xoffset, y - press_data->yoffset);
 

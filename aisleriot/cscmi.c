@@ -82,12 +82,7 @@ void add_slot(SCM slot_data)
   hslot->length = hslot->exposed = 0;
   update_slot_length(hslot);
 
-  if (slot_list)
-    g_list_append(slot_list, hslot);
-  else {
-    slot_list = g_list_alloc();
-    slot_list->data = hslot;
-  }
+  slot_list = g_list_append(slot_list, hslot);
 }
 
 hcard_type new_card(SCM card_data) 
