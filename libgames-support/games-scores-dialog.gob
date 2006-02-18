@@ -240,7 +240,8 @@ class Games:Scores:Dialog from Gtk:Dialog {
     const gchar *cat;
     
     cat = games_scores_get_category (self->_priv->scores);
-    games_scores_dialog_set_category (self, cat);
+    if (cat)
+      games_scores_dialog_set_category (self, cat);
     games_scores_dialog_redraw (self);
   }
 

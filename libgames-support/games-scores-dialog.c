@@ -174,7 +174,7 @@ games_scores_dialog_class_init (GamesScoresDialogClass * c G_GNUC_UNUSED)
 	g_object_class->finalize = ___finalize;
 }
 #undef __GOB_FUNCTION__
-#line 253 "games-scores-dialog.gob"
+#line 254 "games-scores-dialog.gob"
 static void 
 games_scores_dialog_init (GamesScoresDialog * self G_GNUC_UNUSED)
 #line 181 "games-scores-dialog.c"
@@ -182,7 +182,7 @@ games_scores_dialog_init (GamesScoresDialog * self G_GNUC_UNUSED)
 #define __GOB_FUNCTION__ "Games:Scores:Dialog::init"
 	self->_priv = G_TYPE_INSTANCE_GET_PRIVATE(self,GAMES_TYPE_SCORES_DIALOG,GamesScoresDialogPrivate);
  {
-#line 253 "games-scores-dialog.gob"
+#line 254 "games-scores-dialog.gob"
 
     GtkWidget *vbox;
     GtkWidget *scroll;
@@ -513,25 +513,26 @@ games_scores_dialog_show (GamesScoresDialog * self)
     const gchar *cat;
     
     cat = games_scores_get_category (self->_priv->scores);
-    games_scores_dialog_set_category (self, cat);
+    if (cat)
+      games_scores_dialog_set_category (self, cat);
     games_scores_dialog_redraw (self);
   }}
-#line 520 "games-scores-dialog.c"
+#line 521 "games-scores-dialog.c"
 #undef __GOB_FUNCTION__
 
-#line 247 "games-scores-dialog.gob"
+#line 248 "games-scores-dialog.gob"
 static void 
 games_scores_dialog_hide (GamesScoresDialog * self)
-#line 526 "games-scores-dialog.c"
+#line 527 "games-scores-dialog.c"
 {
 #define __GOB_FUNCTION__ "Games:Scores:Dialog::hide"
 {
-#line 248 "games-scores-dialog.gob"
+#line 249 "games-scores-dialog.gob"
 	
     self->_priv->hilight = 0;
     gtk_tree_selection_unselect_all (gtk_tree_view_get_selection (self->_priv->treeview));
   }}
-#line 535 "games-scores-dialog.c"
+#line 536 "games-scores-dialog.c"
 #undef __GOB_FUNCTION__
 
 
@@ -545,14 +546,14 @@ games_scores_dialog_hide (GamesScoresDialog * self)
  * Adds a new category to combo box selector.
  *
  **/
-#line 369 "games-scores-dialog.gob"
+#line 370 "games-scores-dialog.gob"
 static void 
 games_scores_dialog_add_category (GamesScoresDialog * self, const gchar * key, const gchar * name)
-#line 552 "games-scores-dialog.c"
+#line 553 "games-scores-dialog.c"
 {
 #define __GOB_FUNCTION__ "Games:Scores:Dialog::add_category"
 {
-#line 371 "games-scores-dialog.gob"
+#line 372 "games-scores-dialog.gob"
 	
     gchar *k;
 
@@ -566,7 +567,7 @@ games_scores_dialog_add_category (GamesScoresDialog * self, const gchar * key, c
     self->_priv->catcounter++;
     gtk_combo_box_append_text (GTK_COMBO_BOX (self->_priv->combo), name);
   }}
-#line 570 "games-scores-dialog.c"
+#line 571 "games-scores-dialog.c"
 #undef __GOB_FUNCTION__
 
 /**
@@ -577,14 +578,14 @@ games_scores_dialog_add_category (GamesScoresDialog * self, const gchar * key, c
  * Sets the category to scores dialog is displaying.
  *
  **/
-#line 393 "games-scores-dialog.gob"
+#line 394 "games-scores-dialog.gob"
 static void 
 games_scores_dialog_set_category (GamesScoresDialog * self, const gchar * key)
-#line 584 "games-scores-dialog.c"
+#line 585 "games-scores-dialog.c"
 {
 #define __GOB_FUNCTION__ "Games:Scores:Dialog::set_category"
 {
-#line 393 "games-scores-dialog.gob"
+#line 394 "games-scores-dialog.gob"
 	
     gint idx;
 
@@ -593,7 +594,7 @@ games_scores_dialog_set_category (GamesScoresDialog * self, const gchar * key)
     self->_priv->preservehilight = TRUE;
     gtk_combo_box_set_active (GTK_COMBO_BOX (self->_priv->combo), idx);
   }}
-#line 597 "games-scores-dialog.c"
+#line 598 "games-scores-dialog.c"
 #undef __GOB_FUNCTION__
 
 /**
@@ -607,14 +608,14 @@ games_scores_dialog_set_category (GamesScoresDialog * self, const gchar * key)
  * is at this layer.
  *
  **/
-#line 413 "games-scores-dialog.gob"
+#line 414 "games-scores-dialog.gob"
 static void 
 games_scores_dialog_set_style (GamesScoresDialog * self, GamesScoreStyle style)
-#line 614 "games-scores-dialog.c"
+#line 615 "games-scores-dialog.c"
 {
 #define __GOB_FUNCTION__ "Games:Scores:Dialog::set_style"
 {
-#line 413 "games-scores-dialog.gob"
+#line 414 "games-scores-dialog.gob"
 	
     gchar *header;
 
@@ -632,7 +633,7 @@ games_scores_dialog_set_style (GamesScoresDialog * self, GamesScoreStyle style)
 
     gtk_tree_view_column_set_title (self->_priv->column, header);
   }}
-#line 636 "games-scores-dialog.c"
+#line 637 "games-scores-dialog.c"
 #undef __GOB_FUNCTION__
 
 /**
@@ -645,14 +646,14 @@ games_scores_dialog_set_style (GamesScoresDialog * self, GamesScoreStyle style)
  * to the player where the game they just played is.
  *
  **/
-#line 440 "games-scores-dialog.gob"
+#line 441 "games-scores-dialog.gob"
 void 
 games_scores_dialog_set_category_description (GamesScoresDialog * self, const gchar * description)
-#line 652 "games-scores-dialog.c"
+#line 653 "games-scores-dialog.c"
 {
 #define __GOB_FUNCTION__ "Games:Scores:Dialog::set_category_description"
 {
-#line 441 "games-scores-dialog.gob"
+#line 442 "games-scores-dialog.gob"
 	
     gchar *lstr;
 
@@ -661,17 +662,17 @@ games_scores_dialog_set_category_description (GamesScoresDialog * self, const gc
     gtk_label_set_use_markup (GTK_LABEL (self->_priv->label), TRUE);
     g_free(lstr);
   }}
-#line 665 "games-scores-dialog.c"
+#line 666 "games-scores-dialog.c"
 #undef __GOB_FUNCTION__
 
-#line 460 "games-scores-dialog.gob"
+#line 461 "games-scores-dialog.gob"
 void 
 games_scores_dialog_set_hilight (GamesScoresDialog * self, guint pos)
-#line 671 "games-scores-dialog.c"
+#line 672 "games-scores-dialog.c"
 {
 #define __GOB_FUNCTION__ "Games:Scores:Dialog::set_hilight"
 {
-#line 461 "games-scores-dialog.gob"
+#line 462 "games-scores-dialog.gob"
 	
     if ((pos < 1) || (pos > GAMES_SCORES_SIGNIFICANT))
       return;
@@ -679,7 +680,7 @@ games_scores_dialog_set_hilight (GamesScoresDialog * self, guint pos)
     self->_priv->hilight = pos;
     games_scores_dialog_set_hilight_private (self);
   }}
-#line 683 "games-scores-dialog.c"
+#line 684 "games-scores-dialog.c"
 #undef __GOB_FUNCTION__
 
 /**
@@ -690,14 +691,14 @@ games_scores_dialog_set_hilight (GamesScoresDialog * self, guint pos)
  * Sets the message at the top of the dialog. Pango markup is understood.
  *
  **/
-#line 477 "games-scores-dialog.gob"
+#line 478 "games-scores-dialog.gob"
 void 
 games_scores_dialog_set_message (GamesScoresDialog * self, const gchar * message)
-#line 697 "games-scores-dialog.c"
+#line 698 "games-scores-dialog.c"
 {
 #define __GOB_FUNCTION__ "Games:Scores:Dialog::set_message"
 {
-#line 477 "games-scores-dialog.gob"
+#line 478 "games-scores-dialog.gob"
 	
     if ((message == NULL) || (*message == '\0')) {
       gtk_widget_hide (self->_priv->message);
@@ -708,7 +709,7 @@ games_scores_dialog_set_message (GamesScoresDialog * self, const gchar * message
       gtk_label_set_label (GTK_LABEL (self->_priv->message), message);
     }
   }}
-#line 712 "games-scores-dialog.c"
+#line 713 "games-scores-dialog.c"
 #undef __GOB_FUNCTION__
 
 /**
@@ -719,14 +720,14 @@ games_scores_dialog_set_message (GamesScoresDialog * self, const gchar * message
  * Changes the button sets at the buttom of the dialog
  *
  **/
-#line 496 "games-scores-dialog.gob"
+#line 497 "games-scores-dialog.gob"
 void 
 games_scores_dialog_set_buttons (GamesScoresDialog * self, guint buttons)
-#line 726 "games-scores-dialog.c"
+#line 727 "games-scores-dialog.c"
 {
 #define __GOB_FUNCTION__ "Games:Scores:Dialog::set_buttons"
 {
-#line 496 "games-scores-dialog.gob"
+#line 497 "games-scores-dialog.gob"
 	
     /* Remove an existing buttons. */
     gtk_container_foreach (GTK_CONTAINER (GTK_DIALOG (self)->action_area),
@@ -765,5 +766,5 @@ games_scores_dialog_set_buttons (GamesScoresDialog * self, guint buttons)
 	       			         GTK_RESPONSE_CLOSE);
     }
   }}
-#line 769 "games-scores-dialog.c"
+#line 770 "games-scores-dialog.c"
 #undef __GOB_FUNCTION__

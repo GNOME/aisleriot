@@ -54,6 +54,7 @@ typedef struct _GamesScoresPrivate {
   gint last_score_position;
   GamesScoreValue last_score_value;
   GamesScoreStyle style;
+  GamesScoresCategoryPrivate dummycat;
 } GamesScoresPrivate;
 
 static void games_scores_category_free (GamesScoresCategoryPrivate *cat) {
@@ -75,7 +76,12 @@ static GamesScoresCategoryPrivate *games_scores_get_current (GamesScores *self)
 {
   GamesScoresCategoryPrivate *cat;
 
-  cat = g_hash_table_lookup (self->priv->categories, self->priv->currentcat);
+  if (self->priv->currentcat == NULL) {
+    /* We have a single, anonymous, category. */
+    cat = &(self->priv->dummycat);
+  } else {
+    cat = g_hash_table_lookup (self->priv->categories, self->priv->currentcat);
+  }
 
   if (cat->backend == NULL) { 
    cat->backend = games_scores_backend_new (self->priv->style, self->priv->basename, cat->key); 
@@ -137,6 +143,11 @@ GamesScores * games_scores_new (const GamesScoresDescription * description) {
   
   self->priv->style = description->style;
       
+  /* Set up the anonymous category for use when no categories are specified. */
+  self->priv->dummycat.key = "";
+  self->priv->dummycat.name = "";
+  self->priv->dummycat.backend = NULL;
+
   return self;
 }
 
@@ -213,7 +224,6 @@ gint games_scores_add_score (GamesScores *self, GamesScoreValue score) {
 
   g_return_val_if_fail (self != NULL, 0);
   g_return_val_if_fail (self->priv != NULL, 0);
-  g_return_val_if_fail (self->priv->currentcat != NULL, 0);
 
   fullscore = games_score_new ();
   fullscore->value = score;
@@ -290,7 +300,6 @@ void games_scores_update_score (GamesScores *self, gchar *new_name)
 
   g_return_if_fail (self != NULL);
   g_return_if_fail (self->priv != NULL);
-  g_return_if_fail (self->priv->currentcat != NULL);
 
   place = self->priv->last_score_position;
   score = self->priv->last_score_value;
@@ -346,7 +355,6 @@ GList *games_scores_get (GamesScores *self)
 
   g_return_val_if_fail (self != NULL, NULL);
   g_return_val_if_fail (self->priv != NULL, NULL);
-  g_return_val_if_fail (self->priv->currentcat != NULL, NULL);
 
   cat = games_scores_get_current (self);
 
