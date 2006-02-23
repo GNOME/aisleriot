@@ -478,6 +478,7 @@ games_host_lan_game (char *name)
         
   if (sw_discovery_init (&discovery) != SW_OKAY) {
     network_gui_message (_("Local Area Network game could not be started. \nTry running mDNSResponder."));
+    g_print ("Failure 4\n");
     return retval;
   }
         
@@ -651,6 +652,7 @@ games_find_lan_game (void)
 
   if (sw_discovery_init(&discovery) != SW_OKAY) {
     network_gui_message (_("Local Area Network game could not be started. \nTry running mDNSResponder."));
+    g_print ("Failure 1\n");
     return FALSE;
   }
 
@@ -659,6 +661,7 @@ games_find_lan_game (void)
   if (sw_discovery_browse (discovery, 0, mtype, NULL, 
 			  games_browser, NULL, &discovery_oid) != SW_OKAY) {
     network_gui_message (_("Local Area Network game could not be started. \nTry running mDNSResponder."));
+    g_print ("Failure 2\n");
     return FALSE;
   }
 
@@ -687,6 +690,7 @@ games_find_lan_game (void)
 
   if (err != kDNSServiceErr_NoError) {
     network_gui_message (_("Local Area Network game could not be started. \nTry running mDNSResponder."));
+    g_print ("Failure 3\n");
     return FALSE;
   }
 

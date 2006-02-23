@@ -369,7 +369,7 @@ connect_cb (GtkWidget *widget)
       gtk_widget_set_sensitive(GTK_WIDGET(connect_cmd), TRUE);
     }
   } else if (network_mode == JOIN_LAN_MODE) {
-    games_network_connect (server, name);
+    games_network_connect (lan_server, name);
 
   }
 
