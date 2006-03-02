@@ -143,15 +143,10 @@ class Games:Scores:Dialog from Gtk:Dialog {
   }    
 
   private
-  void set_hilight_private (Games:Scores:Dialog *self) {
+  gboolean set_edit (Games:Scores:Dialog *self) {
     GtkTreePath *path;
     GtkTreeSelection *selection;
 
-    if (self->_priv->hilight == 0) {
-      g_object_set (self->_priv->namerenderer, "editable", FALSE, NULL);
-      return;
-    }
-    
     /* Temporarily disable the code that prevents editing when the
      * cursor changes position. */
     g_signal_handler_block (self->_priv->treeview, 
@@ -165,6 +160,24 @@ class Games:Scores:Dialog from Gtk:Dialog {
     g_signal_handler_unblock (self->_priv->treeview, 
 			      self->_priv->cursor_handler_id); 
     g_free (path);
+
+    return FALSE;
+  }
+
+  private
+  void set_hilight_private (Games:Scores:Dialog *self) {
+
+    if (self->_priv->hilight == 0) {
+      g_object_set (self->_priv->namerenderer, "editable", FALSE, NULL);
+      return;
+    }
+    
+    /* We can't set the hilight editable immediately in case we are
+     * still in the process of being created and the editing subwindow
+     * gets put in the wrong place. Attaching to the expose signal
+     * doesn't seem to have the desired effect, so instead we just
+     * wait until all other work is done. */
+    g_idle_add ((GSourceFunc)games_scores_dialog_set_edit, self);
   }
 
   private
