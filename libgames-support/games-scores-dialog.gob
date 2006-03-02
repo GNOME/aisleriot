@@ -147,6 +147,10 @@ class Games:Scores:Dialog from Gtk:Dialog {
     GtkTreePath *path;
     GtkTreeSelection *selection;
 
+    /* Just in case we've been closed as soon as we're created. */
+    if (!GTK_WIDGET_REALIZED (self))
+      return FALSE;
+
     /* Temporarily disable the code that prevents editing when the
      * cursor changes position. */
     g_signal_handler_block (self->_priv->treeview, 
