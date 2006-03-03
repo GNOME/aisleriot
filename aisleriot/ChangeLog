@@ -1,3 +1,12 @@
+2006-03-03  Callum McKenzie  <callum@spooky-possum.org>
+
+	* rules/freecell.scm (button-double-clicked): Only move the cards
+	to the freecells - there are cases where moving to the foundation
+	is undesirable and it isn't undoable. All the obvious cases are
+	handled by the auto=move code anyway so chances are the player
+	wants to move them to the freecells. See bug #329973 for another
+	argument.
+
 2006-02-15  Callum McKenzie  <callum@spooky-possum.org>
 
 	* events.c: Remove unused variables.
