@@ -1,3 +1,12 @@
+2006-03-04  Callum McKenzie  <callum@spooky-possum.org>
+
+	* rules/freecell.scm: Revert the threaded-hints patch since the
+	qthreads library used in guile 1.6 isn't portable and guile 1.8 is
+	too new to depend upon. Also, bug #331966 suggests that it isn't
+	stable. See
+	https://launchpad.net/distros/ubuntu/+source/gnome-games/+bug/29690
+	for a discussion of the issues.
+
 2006-03-03  Callum McKenzie  <callum@spooky-possum.org>
 
 	* rules/freecell.scm (button-double-clicked): Only move the cards
