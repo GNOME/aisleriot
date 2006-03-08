@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD.hi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-26 13:44+0200\n"
+"POT-Creation-Date: 2006-03-08 06:43+0100\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: Rajesh Ranjan <rranjan@redhat.com>\n"
 "Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
@@ -53,6 +53,7 @@ msgid "The game file to use"
 msgstr "खेल फ़ाइल उपयोग में"
 
 #: ../aisleriot/aisleriot.schemas.in.h:6 ../glines/glines.schemas.in.h:13
+#: ../gnometris/gnometris.schemas.in.h:21
 #: ../same-gnome/same-gnome.schemas.in.h:6
 msgid "The height of the main window."
 msgstr "मुख्य विंडो की ऊँचाई."
@@ -67,6 +68,7 @@ msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "प्रसंग फ़ाइल का नाम जिसमें खेला जाने वाला सॉलिटेयर खेल है."
 
 #: ../aisleriot/aisleriot.schemas.in.h:9 ../glines/glines.schemas.in.h:14
+#: ../gnometris/gnometris.schemas.in.h:26
 #: ../same-gnome/same-gnome.schemas.in.h:10
 msgid "The width of the main window."
 msgstr "मुख्य विंडो की चौड़ाई."
@@ -87,14 +89,16 @@ msgid "Whether or not to show the toolbar."
 msgstr "उपकरण-पट्टी दिखाएँ या नहीं"
 
 #: ../aisleriot/aisleriot.schemas.in.h:13 ../glines/glines.schemas.in.h:17
+#: ../gnometris/gnometris.schemas.in.h:37
 msgid "Window height"
 msgstr "विंडो की ऊँचाई"
 
 #: ../aisleriot/aisleriot.schemas.in.h:14 ../glines/glines.schemas.in.h:18
+#: ../gnometris/gnometris.schemas.in.h:38
 msgid "Window width"
 msgstr "विंडो की चौड़ाई"
 
-#: ../aisleriot/cscmi.c:504
+#: ../aisleriot/cscmi.c:515
 #, c-format
 msgid ""
 "A scheme exception occured and we were unable to create a temporary file to "
@@ -107,11 +111,13 @@ msgstr ""
 "%s"
 
 #: ../aisleriot/dialog.c:45
-msgid "Congratulations."
-msgstr "बधाइयाँ."
+#, fuzzy
+msgid "Congratulations!!!"
+msgstr "बधाइयाँ!"
 
 #: ../aisleriot/dialog.c:46
-msgid "You have won!!!"
+#, fuzzy
+msgid "You have won."
 msgstr "आप जीत गए!!!"
 
 #: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:640
@@ -183,20 +189,19 @@ msgstr "फ्रीसेल सॉलिटेयर"
 msgid "Play the popular FreeCell card game"
 msgstr "लोकप्रिय ताश का खेल फ्रीसेल खेलें"
 
-#: ../aisleriot/menu.c:88 ../gnome-stones/main.c:1018 ../gnomine/gnomine.c:425
-#: ../mahjongg/mahjongg.c:904
+#: ../aisleriot/menu.c:106 ../gnomine/gnomine.c:416 ../mahjongg/mahjongg.c:905
 msgid "Main game:"
 msgstr "मुख्य खेलः"
 
-#: ../aisleriot/menu.c:94
+#: ../aisleriot/menu.c:112
 msgid "Card games:"
 msgstr "ताश के खेलः"
 
-#: ../aisleriot/menu.c:106
+#: ../aisleriot/menu.c:124
 msgid "AisleRiot"
 msgstr "एस्लेरियॉट"
 
-#: ../aisleriot/menu.c:108
+#: ../aisleriot/menu.c:126
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -205,13 +210,12 @@ msgstr ""
 "खेलने देता है."
 
 #  Translator credits
-#: ../aisleriot/menu.c:112 ../blackjack/src/menu.cpp:150
-#: ../gataxx/gataxx.c:390 ../glines/glines.c:1217 ../gnect/src/main.c:795
-#: ../gnibbles/main.c:152 ../gnobots2/menu.c:241 ../gnome-stones/main.c:1032
-#: ../gnometris/tetris.cpp:1461 ../gnomine/gnomine.c:448
-#: ../gnotravex/gnotravex.c:1590 ../gnotski/gnotski.c:1543
-#: ../gtali/gyahtzee.c:428 ../iagno/gnothello.c:270 ../mahjongg/mahjongg.c:931
-#: ../same-gnome/ui.c:112
+#: ../aisleriot/menu.c:130 ../blackjack/src/menu.cpp:150
+#: ../gataxx/gataxx.c:389 ../glines/glines.c:1224 ../gnect/src/main.c:795
+#: ../gnibbles/main.c:153 ../gnobots2/menu.c:241 ../gnometris/tetris.cpp:1448
+#: ../gnomine/gnomine.c:439 ../gnotravex/gnotravex.c:1592
+#: ../gnotski/gnotski.c:1545 ../gtali/gyahtzee.c:443 ../iagno/gnothello.c:250
+#: ../mahjongg/mahjongg.c:932 ../same-gnome/ui.c:112
 msgid "translator-credits"
 msgstr ""
 "रविशंकर श्रीवास्तव (raviratlami@yahoo.com)\n"
@@ -219,79 +223,70 @@ msgstr ""
 
 # #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
 # libgnomeui/gnome-app-helper.c:95 libgnomeui/gnome-app-helper.h:534
-#: ../aisleriot/menu.c:201 ../blackjack/src/blackjack.cpp:298
-#: ../glines/glines.c:1705 ../gnect/src/main.c:1131 ../gnibbles/main.c:600
-#: ../gnobots2/menu.c:57 ../gnome-stones/main.c:1050
-#: ../gnometris/tetris.cpp:130 ../gnomine/gnomine.c:750
+#: ../aisleriot/menu.c:219 ../blackjack/src/blackjack.cpp:298
+#: ../glines/glines.c:1712 ../gnect/src/main.c:1131 ../gnibbles/main.c:605
+#: ../gnobots2/menu.c:57 ../gnometris/tetris.cpp:131 ../gnomine/gnomine.c:745
 #: ../gnotravex/gnotravex.c:175 ../gnotski/gnotski.c:630
-#: ../gtali/gyahtzee.c:501 ../mahjongg/mahjongg.c:1274 ../same-gnome/ui.c:417
+#: ../gtali/gyahtzee.c:516 ../mahjongg/mahjongg.c:1275 ../same-gnome/ui.c:417
 msgid "_Game"
 msgstr "खेल (_G)"
 
-#: ../aisleriot/menu.c:202 ../same-gnome/ui.c:418
+#: ../aisleriot/menu.c:220 ../same-gnome/ui.c:418
 msgid "_View"
 msgstr "देखें (_V)"
 
-#: ../aisleriot/menu.c:203 ../blackjack/src/blackjack.cpp:305
+#: ../aisleriot/menu.c:221 ../blackjack/src/blackjack.cpp:305
 msgid "_Control"
 msgstr "नियंत्रण (_C)"
 
 #. not translated on purpose
-#: ../aisleriot/menu.c:205 ../blackjack/src/blackjack.cpp:312
-#: ../glines/glines.c:1707 ../gnect/src/main.c:1133 ../gnibbles/main.c:602
-#: ../gnobots2/menu.c:60 ../gnome-stones/main.c:1052
-#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:752
+#: ../aisleriot/menu.c:223 ../blackjack/src/blackjack.cpp:312
+#: ../glines/glines.c:1714 ../gnect/src/main.c:1133 ../gnibbles/main.c:607
+#: ../gnobots2/menu.c:60 ../gnometris/tetris.cpp:133 ../gnomine/gnomine.c:747
 #: ../gnotravex/gnotravex.c:178 ../gnotski/gnotski.c:631
-#: ../gtali/gyahtzee.c:503 ../mahjongg/mahjongg.c:1276 ../same-gnome/ui.c:420
+#: ../gtali/gyahtzee.c:518 ../mahjongg/mahjongg.c:1277 ../same-gnome/ui.c:420
 msgid "_Help"
 msgstr "मदद (_H)"
 
 # libgnomeui/gnome-file-entry.c:418
-#: ../aisleriot/menu.c:209
+#: ../aisleriot/menu.c:227
 msgid "_Select Game..."
 msgstr "खेल चुनें (_S)"
 
-#: ../aisleriot/menu.c:209
+#: ../aisleriot/menu.c:227
 msgid "Play a different game"
 msgstr "भिन्न प्रकार खेल खेलें"
 
-#: ../aisleriot/menu.c:210
+#: ../aisleriot/menu.c:228
 msgid "S_tatistics"
 msgstr "सांख्यिकी (_t)"
 
-#: ../aisleriot/menu.c:210
+#: ../aisleriot/menu.c:228
 msgid "Show gameplay statistics"
 msgstr "खेल सांख्यिकी दिखायें"
 
-#: ../aisleriot/menu.c:214
+#: ../aisleriot/menu.c:232
 msgid "_Cards..."
 msgstr "पत्ते... (_C)"
 
-#: ../aisleriot/menu.c:219
+#: ../aisleriot/menu.c:237
 msgid "View help for Aisleriot"
 msgstr "Aisleriot के लिये सहायता देखें"
 
-#: ../aisleriot/menu.c:220 ../libgames-support/games-stock.c:110
+#: ../aisleriot/menu.c:238 ../libgames-support/games-stock.c:110
 msgid "View help for this game"
 msgstr "इस खेल के लिये सहायता दिखायें"
 
-#: ../aisleriot/menu.c:225 ../blackjack/src/blackjack.cpp:318
-#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1292
+#: ../aisleriot/menu.c:243 ../blackjack/src/blackjack.cpp:318
+#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1293
 msgid "_Toolbar"
 msgstr "उपकरण-पट्टी (_T)"
 
-#: ../aisleriot/menu.c:226
+#: ../aisleriot/menu.c:244
 msgid "_Click to Move"
 msgstr "बढ़ने के लिये क्लिक करें (_C)"
 
-#: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/canfield.scm.h:1
-#: ../aisleriot/rules/chessboard.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:1
-#: ../aisleriot/rules/glenwood.scm.h:1 ../aisleriot/rules/kansas.scm.h:1
-#: ../aisleriot/rules/plait.scm.h:1
-msgid "Base Card: "
-msgstr "आधार पत्ताः"
-
-#: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/canfield.scm.h:2
+#: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/canfield.scm.h:2
 #: ../aisleriot/rules/chessboard.scm.h:2 ../aisleriot/rules/eagle_wing.scm.h:2
 #: ../aisleriot/rules/glenwood.scm.h:2 ../aisleriot/rules/kansas.scm.h:2
 #: ../aisleriot/rules/lady_jane.scm.h:2 ../aisleriot/rules/plait.scm.h:2
@@ -299,7 +294,7 @@ msgstr "आधार पत्ताः"
 msgid "Base Card: Ace"
 msgstr "आधार पत्ताः इक्का"
 
-#: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/canfield.scm.h:3
+#: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/canfield.scm.h:3
 #: ../aisleriot/rules/chessboard.scm.h:3 ../aisleriot/rules/eagle_wing.scm.h:3
 #: ../aisleriot/rules/glenwood.scm.h:3 ../aisleriot/rules/kansas.scm.h:3
 #: ../aisleriot/rules/lady_jane.scm.h:3 ../aisleriot/rules/plait.scm.h:3
@@ -307,7 +302,7 @@ msgstr "आधार पत्ताः इक्का"
 msgid "Base Card: Jack"
 msgstr "आधार पत्ताः जोकर"
 
-#: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/canfield.scm.h:4
+#: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/canfield.scm.h:4
 #: ../aisleriot/rules/chessboard.scm.h:4 ../aisleriot/rules/eagle_wing.scm.h:4
 #: ../aisleriot/rules/glenwood.scm.h:4 ../aisleriot/rules/kansas.scm.h:4
 #: ../aisleriot/rules/lady_jane.scm.h:4 ../aisleriot/rules/plait.scm.h:4
@@ -315,7 +310,7 @@ msgstr "आधार पत्ताः जोकर"
 msgid "Base Card: King"
 msgstr "आधार पत्ताः बादशाह"
 
-#: ../aisleriot/rules/agnes.scm.h:5 ../aisleriot/rules/canfield.scm.h:5
+#: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/canfield.scm.h:5
 #: ../aisleriot/rules/chessboard.scm.h:5 ../aisleriot/rules/eagle_wing.scm.h:5
 #: ../aisleriot/rules/glenwood.scm.h:5 ../aisleriot/rules/kansas.scm.h:5
 #: ../aisleriot/rules/lady_jane.scm.h:5 ../aisleriot/rules/plait.scm.h:5
@@ -323,41 +318,40 @@ msgstr "आधार पत्ताः बादशाह"
 msgid "Base Card: Queen"
 msgstr "आधार पत्ताः रानी"
 
+#: ../aisleriot/rules/agnes.scm.h:5
+#, fuzzy
+msgid "Base Card: ~a"
+msgstr "आधार पत्ताः"
+
 #: ../aisleriot/rules/agnes.scm.h:6 ../aisleriot/rules/easthaven.scm.h:1
 #: ../aisleriot/rules/labyrinth.scm.h:1 ../aisleriot/rules/monte_carlo.scm.h:1
-#: ../aisleriot/rules/spiderette.scm.h:1 ../aisleriot/rules/valentine.scm.h:1
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:1
+#: ../aisleriot/rules/valentine.scm.h:1
 msgid "Deal more cards"
 msgstr "और ताश बांटें"
 
-#: ../aisleriot/rules/agnes.scm.h:7 ../aisleriot/rules/auld_lang_syne.scm.h:2
+#: ../aisleriot/rules/agnes.scm.h:7 ../aisleriot/rules/athena.scm.h:4
+#: ../aisleriot/rules/auld_lang_syne.scm.h:2
 #: ../aisleriot/rules/block_ten.scm.h:1 ../aisleriot/rules/bristol.scm.h:2
 #: ../aisleriot/rules/camelot.scm.h:2 ../aisleriot/rules/canfield.scm.h:9
 #: ../aisleriot/rules/cover.scm.h:1 ../aisleriot/rules/doublets.scm.h:2
 #: ../aisleriot/rules/eagle_wing.scm.h:11 ../aisleriot/rules/easthaven.scm.h:4
 #: ../aisleriot/rules/elevator.scm.h:2 ../aisleriot/rules/escalator.scm.h:2
 #: ../aisleriot/rules/first_law.scm.h:17 ../aisleriot/rules/fortunes.scm.h:4
-#: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/golf.scm.h:2
-#: ../aisleriot/rules/gypsy.scm.h:3 ../aisleriot/rules/helsinki.scm.h:1
-#: ../aisleriot/rules/hopscotch.scm.h:3 ../aisleriot/rules/jamestown.scm.h:1
-#: ../aisleriot/rules/jumbo.scm.h:4 ../aisleriot/rules/kansas.scm.h:8
-#: ../aisleriot/rules/klondike.scm.h:4 ../aisleriot/rules/labyrinth.scm.h:2
-#: ../aisleriot/rules/lady_jane.scm.h:7 ../aisleriot/rules/monte_carlo.scm.h:2
-#: ../aisleriot/rules/neighbor.scm.h:1 ../aisleriot/rules/osmosis.scm.h:3
-#: ../aisleriot/rules/peek.scm.h:3 ../aisleriot/rules/plait.scm.h:11
-#: ../aisleriot/rules/quatorze.scm.h:1 ../aisleriot/rules/royal_east.scm.h:7
+#: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/gypsy.scm.h:3
+#: ../aisleriot/rules/helsinki.scm.h:1 ../aisleriot/rules/hopscotch.scm.h:3
+#: ../aisleriot/rules/jamestown.scm.h:1 ../aisleriot/rules/jumbo.scm.h:4
+#: ../aisleriot/rules/kansas.scm.h:8 ../aisleriot/rules/klondike.scm.h:4
+#: ../aisleriot/rules/labyrinth.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:7
+#: ../aisleriot/rules/monte_carlo.scm.h:2 ../aisleriot/rules/neighbor.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:11 ../aisleriot/rules/quatorze.scm.h:1
+#: ../aisleriot/rules/royal_east.scm.h:7 ../aisleriot/rules/saratoga.scm.h:4
 #: ../aisleriot/rules/scuffle.scm.h:4 ../aisleriot/rules/sir_tommy.scm.h:3
-#: ../aisleriot/rules/spider.scm.h:4
-#: ../aisleriot/rules/spider_one_suit.scm.h:4
-#: ../aisleriot/rules/spider_two_suit.scm.h:4
-#: ../aisleriot/rules/spiderette.scm.h:3
 #: ../aisleriot/rules/straight_up.scm.h:5 ../aisleriot/rules/thieves.scm.h:2
-#: ../aisleriot/rules/thirteen.scm.h:2
+#: ../aisleriot/rules/thirteen.scm.h:3
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:2 ../aisleriot/rules/union_square.scm.h:2
 #: ../aisleriot/rules/westhaven.scm.h:2 ../aisleriot/rules/whitehead.scm.h:3
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:3 ../aisleriot/rules/yield.scm.h:2
-#: ../aisleriot/rules/zebra.scm.h:4
+#: ../aisleriot/rules/yield.scm.h:2 ../aisleriot/rules/zebra.scm.h:4
 msgid "Stock left:"
 msgstr "बचा मालः"
 
@@ -379,15 +373,61 @@ msgstr "ताश को फिर से जमाने की कोशिश
 msgid "an empty foundation pile"
 msgstr "एक खाली संस्थापन के ढेर"
 
+#: ../aisleriot/rules/athena.scm.h:1 ../aisleriot/rules/camelot.scm.h:1
+#: ../aisleriot/rules/canfield.scm.h:6 ../aisleriot/rules/glenwood.scm.h:6
+#: ../aisleriot/rules/klondike.scm.h:1 ../aisleriot/rules/osmosis.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:6 ../aisleriot/rules/saratoga.scm.h:1
+#: ../aisleriot/rules/straight_up.scm.h:1
+msgid "Deal a new card from the deck"
+msgstr "डेक में से नया पत्ता चलें"
+
+# libgnomeprintui/gpaui/settings-selector.c:207
+#: ../aisleriot/rules/athena.scm.h:2 ../aisleriot/rules/easthaven.scm.h:3
+#: ../aisleriot/rules/klondike.scm.h:2 ../aisleriot/rules/saratoga.scm.h:2
+msgid "No hint available right now"
+msgstr "कोई संकेत अभी उपलब्ध नहीं है"
+
+#: ../aisleriot/rules/athena.scm.h:3 ../aisleriot/rules/doublets.scm.h:1
+#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:4
+#: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
+#: ../aisleriot/rules/klondike.scm.h:3 ../aisleriot/rules/plait.scm.h:10
+#: ../aisleriot/rules/saratoga.scm.h:3 ../aisleriot/rules/scuffle.scm.h:2
+#: ../aisleriot/rules/straight_up.scm.h:3
+#: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
+msgid "Redeals left:"
+msgstr "ताश बांटना बाकीः"
+
+#: ../aisleriot/rules/athena.scm.h:5 ../aisleriot/rules/klondike.scm.h:5
+#: ../aisleriot/rules/osmosis.scm.h:3 ../aisleriot/rules/saratoga.scm.h:5
+msgid "Three card deals"
+msgstr "तीन पत्ते बांटें"
+
+#: ../aisleriot/rules/athena.scm.h:6 ../aisleriot/rules/klondike.scm.h:6
+#: ../aisleriot/rules/saratoga.scm.h:6
+msgid "Try moving cards down from the foundation"
+msgstr "आधार से पत्तों को नीचे की ले जाने की कोशिश करें"
+
+#: ../aisleriot/rules/athena.scm.h:7 ../aisleriot/rules/camelot.scm.h:7
+#: ../aisleriot/rules/diamond_mine.scm.h:1 ../aisleriot/rules/klondike.scm.h:7
+#: ../aisleriot/rules/odessa.scm.h:1 ../aisleriot/rules/osmosis.scm.h:4
+#: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/saratoga.scm.h:7
+#: ../aisleriot/rules/scorpion.scm.h:2 ../aisleriot/rules/ten_across.scm.h:4
+#: ../aisleriot/rules/union_square.scm.h:3 ../aisleriot/rules/yukon.scm.h:2
+msgid "an empty slot"
+msgstr "एक खाली खाँचा"
+
 #: ../aisleriot/rules/auld_lang_syne.scm.h:1
 #: ../aisleriot/rules/bristol.scm.h:1 ../aisleriot/rules/first_law.scm.h:1
 #: ../aisleriot/rules/fortunes.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:6
 #: ../aisleriot/rules/scuffle.scm.h:1 ../aisleriot/rules/spider.scm.h:1
-#: ../aisleriot/rules/spider_one_suit.scm.h:1
-#: ../aisleriot/rules/spider_two_suit.scm.h:1
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:1 ../aisleriot/rules/zebra.scm.h:1
 msgid "Deal another round"
 msgstr "एक दौर और चलें"
+
+#: ../aisleriot/rules/aunt_mary.scm.h:1
+#, fuzzy
+msgid "Redeals left: ~a"
+msgstr "ताश बांटना बाकीः"
 
 # libgnome-desktop/gnome-ditem-edit.c:679
 #: ../aisleriot/rules/bakers_dozen.scm.h:2
@@ -415,13 +455,6 @@ msgstr "खाली बची अतिरिक्त जगह पर कु�
 msgid "an empty tableau"
 msgstr "एक खाली तस्वीर"
 
-#: ../aisleriot/rules/camelot.scm.h:1 ../aisleriot/rules/canfield.scm.h:6
-#: ../aisleriot/rules/glenwood.scm.h:6 ../aisleriot/rules/klondike.scm.h:1
-#: ../aisleriot/rules/osmosis.scm.h:1 ../aisleriot/rules/peek.scm.h:1
-#: ../aisleriot/rules/plait.scm.h:6 ../aisleriot/rules/straight_up.scm.h:1
-msgid "Deal a new card from the deck"
-msgstr "डेक में से नया पत्ता चलें"
-
 #: ../aisleriot/rules/camelot.scm.h:3
 msgid "an empty bottom slot"
 msgstr "नीचे का एक खाली खाँचा"
@@ -438,24 +471,21 @@ msgstr "एक खाली बचा खाँचा"
 msgid "an empty right slot"
 msgstr "दाएँ का एक खाली खाँचा"
 
-#: ../aisleriot/rules/camelot.scm.h:7 ../aisleriot/rules/diamond_mine.scm.h:1
-#: ../aisleriot/rules/klondike.scm.h:7 ../aisleriot/rules/odessa.scm.h:1
-#: ../aisleriot/rules/osmosis.scm.h:4 ../aisleriot/rules/peek.scm.h:4
-#: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/scorpion.scm.h:2
-#: ../aisleriot/rules/ten_across.scm.h:4
-#: ../aisleriot/rules/union_square.scm.h:3 ../aisleriot/rules/yukon.scm.h:2
-msgid "an empty slot"
-msgstr "एक खाली खाँचा"
-
 #: ../aisleriot/rules/camelot.scm.h:8
 msgid "an empty top slot"
 msgstr "एक खाली शीर्ष खाँचा"
 
 #: ../aisleriot/rules/camelot.scm.h:9 ../aisleriot/rules/helsinki.scm.h:2
-#: ../aisleriot/rules/neighbor.scm.h:2 ../aisleriot/rules/thirteen.scm.h:3
+#: ../aisleriot/rules/neighbor.scm.h:2 ../aisleriot/rules/thirteen.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:3 ../aisleriot/rules/yield.scm.h:3
 msgid "itself"
 msgstr "स्वयं से"
+
+#: ../aisleriot/rules/canfield.scm.h:1 ../aisleriot/rules/chessboard.scm.h:1
+#: ../aisleriot/rules/eagle_wing.scm.h:1 ../aisleriot/rules/glenwood.scm.h:1
+#: ../aisleriot/rules/kansas.scm.h:1 ../aisleriot/rules/plait.scm.h:1
+msgid "Base Card: "
+msgstr "आधार पत्ताः"
 
 #: ../aisleriot/rules/canfield.scm.h:7 ../aisleriot/rules/eagle_wing.scm.h:7
 #: ../aisleriot/rules/glenwood.scm.h:8 ../aisleriot/rules/plait.scm.h:7
@@ -537,19 +567,14 @@ msgstr "जब तक अत्यधिक आपात् स्थिति �
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr "जब व्यवसायी न हो तो हाट और शासक भी वह काम करते हैं"
 
+#: ../aisleriot/rules/cruel.scm.h:1
+#, fuzzy
+msgid "Redeal."
+msgstr "लाल"
+
 #: ../aisleriot/rules/diamond_mine.scm.h:2
 msgid "the foundation pile"
 msgstr "आधार ढेर"
-
-#: ../aisleriot/rules/doublets.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:9
-#: ../aisleriot/rules/gaps.scm.h:9 ../aisleriot/rules/glenwood.scm.h:9
-#: ../aisleriot/rules/jumbo.scm.h:3 ../aisleriot/rules/klondike.scm.h:3
-#: ../aisleriot/rules/osmosis.scm.h:2 ../aisleriot/rules/peek.scm.h:2
-#: ../aisleriot/rules/plait.scm.h:10 ../aisleriot/rules/scuffle.scm.h:2
-#: ../aisleriot/rules/straight_up.scm.h:3
-#: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
-msgid "Redeals left:"
-msgstr "ताश बांटना बाकीः"
 
 #: ../aisleriot/rules/eagle_wing.scm.h:6 ../aisleriot/rules/elevator.scm.h:1
 #: ../aisleriot/rules/escalator.scm.h:1 ../aisleriot/rules/royal_east.scm.h:6
@@ -571,11 +596,6 @@ msgstr "तस्वीर में एक खाली खाँचा"
 #, fuzzy
 msgid "Move a King on to the empty tableau slot"
 msgstr "खाली तस्वीर खाँचा पर बादशाह को ले जाएँ"
-
-# libgnomeprintui/gpaui/settings-selector.c:207
-#: ../aisleriot/rules/easthaven.scm.h:3 ../aisleriot/rules/klondike.scm.h:2
-msgid "No hint available right now"
-msgstr "कोई संकेत अभी उपलब्ध नहीं है"
 
 #: ../aisleriot/rules/first_law.scm.h:2
 msgid "I'm not sure"
@@ -668,43 +688,19 @@ msgstr "खेल के पास कोई हल नहीं है"
 msgid "the foundation"
 msgstr "न्यास"
 
-# libgnomeui/gnome-app-helper.c:254
 #: ../aisleriot/rules/gaps.scm.h:1
-#, fuzzy
-msgid " next to the "
-msgstr "प्रसंग तय करें"
-
-#: ../aisleriot/rules/gaps.scm.h:2
-msgid " of "
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:3
-msgid "."
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:4
-msgid "Add to the sequence in row "
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:5
 msgid "Double click any card to redeal."
 msgstr ""
 
 # libgnomeprintui/gpaui/settings-selector.c:207
-#: ../aisleriot/rules/gaps.scm.h:6
+#: ../aisleriot/rules/gaps.scm.h:2
 #, fuzzy
 msgid "No hint available."
 msgstr "कोई संकेत उपलब्ध नहीं है"
 
-#: ../aisleriot/rules/gaps.scm.h:7
-msgid "Place a two in the leftmost slot of row "
+#: ../aisleriot/rules/gaps.scm.h:3
+msgid "Randomly Placed Gaps on Redeal"
 msgstr ""
-
-# libgnomeui/gnome-app-helper.c:254
-#: ../aisleriot/rules/gaps.scm.h:8
-#, fuzzy
-msgid "Place the "
-msgstr "खेल रोकें"
 
 #: ../aisleriot/rules/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
@@ -723,6 +719,11 @@ msgstr "खाली तस्वीर खाँचा पर"
 #: ../aisleriot/rules/sir_tommy.scm.h:1 ../aisleriot/rules/whitehead.scm.h:1
 msgid "Deal another card"
 msgstr "एक और पत्ता बाँटें"
+
+#: ../aisleriot/rules/golf.scm.h:2 ../aisleriot/rules/spider.scm.h:4
+#, fuzzy
+msgid "Stock left: ~a"
+msgstr "बचा मालः 0"
 
 #: ../aisleriot/rules/gypsy.scm.h:1
 msgid "Deal another hand"
@@ -748,13 +749,10 @@ msgstr "बेकार को भण्डार में ले जाएँ"
 msgid "an empty tableau slot"
 msgstr "एक खाली तस्वीर खाँचा"
 
-#: ../aisleriot/rules/klondike.scm.h:5
-msgid "Three card deals"
-msgstr "तीन पत्ते बांटें"
-
-#: ../aisleriot/rules/klondike.scm.h:6
-msgid "Try moving cards down from the foundation"
-msgstr "आधार से पत्तों को नीचे की ले जाने की कोशिश करें"
+#: ../aisleriot/rules/kings_audience.scm.h:1
+#, fuzzy
+msgid "Deal a new card"
+msgstr "एक हाथ और बांटें"
 
 #: ../aisleriot/rules/lady_jane.scm.h:1 ../aisleriot/rules/royal_east.scm.h:1
 msgid "Base Card:"
@@ -765,6 +763,11 @@ msgid ""
 "Aim to place the suits in the order which fits the current layout most "
 "naturally."
 msgstr "वर्तमान विन्यास अति प्राकृतिक रूप से ताश के रंग के योग्य हो इस हेतु ध्येय कीजिए."
+
+#: ../aisleriot/rules/osmosis.scm.h:2
+#, fuzzy
+msgid "Deal new cards from the deck"
+msgstr "डेक में से नया पत्ता चलें"
 
 #: ../aisleriot/rules/pileon.scm.h:2
 msgid "something"
@@ -812,28 +815,16 @@ msgid "empty foundation"
 msgstr "आधार खाली करें"
 
 #: ../aisleriot/rules/spider.scm.h:2
-#: ../aisleriot/rules/spider_one_suit.scm.h:2
-#: ../aisleriot/rules/spider_two_suit.scm.h:2
 msgid "Place something on empty slot"
 msgstr "खाली खाँचा पर कुछ रखें"
 
 #: ../aisleriot/rules/spider.scm.h:3
-#: ../aisleriot/rules/spider_one_suit.scm.h:3
-#: ../aisleriot/rules/spider_two_suit.scm.h:3
 msgid "Please fill in empty pile first."
 msgstr "कृपया खाली ढेर को पहले भरें."
 
 #: ../aisleriot/rules/spider.scm.h:5
-#: ../aisleriot/rules/spider_one_suit.scm.h:5
-#: ../aisleriot/rules/spider_two_suit.scm.h:5
 msgid "Try moving card piles around"
 msgstr "पत्तों के ढेर को आसपास ले जाने की कोशिश करें"
-
-#: ../aisleriot/rules/spiderette.scm.h:2
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:2
-#, fuzzy
-msgid "Place something on to the empty tableau slot"
-msgstr "तस्वीर के खाली खाँचा में कुछ रखें"
 
 #: ../aisleriot/rules/ten_across.scm.h:1
 msgid "Allow temporary spots use"
@@ -860,6 +851,10 @@ msgstr "खाली खाँचा"
 msgid "Deal a card from the deck"
 msgstr "डेक में से पत्ता निकालें"
 
+#: ../aisleriot/rules/thirteen.scm.h:2
+msgid "Match the top two cards of the waste."
+msgstr ""
+
 #: ../aisleriot/rules/union_square.scm.h:4
 #, fuzzy
 msgid "appropriate foundation pile"
@@ -873,7 +868,7 @@ msgstr "खाली तस्वीर खाँचा पर पत्तो�
 msgid "the appropriate Foundation pile"
 msgstr "उचित संस्थापन ढेर"
 
-#: ../aisleriot/sol.c:161
+#: ../aisleriot/sol.c:168
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -886,37 +881,36 @@ msgstr ""
 "लोड करने में असमर्थ रहा. \n"
 "कृपया अपना एस्लेरियॉट संस्थापन जांचें"
 
-#: ../aisleriot/sol.c:207
+#: ../aisleriot/sol.c:214
 msgid "Aisleriot cannot find the last game you played."
 msgstr ""
 
-#: ../aisleriot/sol.c:208
+#: ../aisleriot/sol.c:215
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
 "started instead."
 msgstr ""
 
-#: ../aisleriot/sol.c:409
+#: ../aisleriot/sol.c:416
 msgid "Aisleriot"
 msgstr "एस्लेरियॉट"
 
-#: ../aisleriot/sol.c:446 ../glines/glines.c:1964 ../gnobots2/statusbar.c:65
-#: ../gnome-stones/status.c:71 ../gnometris/scoreframe.cpp:58
-#: ../gnomine/gnomine.c:434
+#: ../aisleriot/sol.c:453 ../glines/glines.c:1973 ../gnobots2/statusbar.c:65
+#: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:425
 msgid "Score:"
 msgstr "अंक:"
 
-#: ../aisleriot/sol.c:451 ../gnotravex/gnotravex.c:1074
-#: ../mahjongg/mahjongg.c:1447
+#: ../aisleriot/sol.c:458 ../gnotravex/gnotravex.c:1076
+#: ../mahjongg/mahjongg.c:1450
 msgid "Time:"
 msgstr "समय:"
 
-#: ../aisleriot/sol.c:505
+#: ../aisleriot/sol.c:514
 msgid "Variation on game rules"
 msgstr "खेल नियमों में परिवर्तन"
 
-#: ../aisleriot/sol.c:506 ../gnobots2/gnobots.c:62 ../gnobots2/gnobots.c:64
+#: ../aisleriot/sol.c:515 ../gnobots2/gnobots.c:62 ../gnobots2/gnobots.c:64
 #: ../same-gnome/same-gnome.c:136 ../same-gnome/same-gnome.c:138
 msgid "NAME"
 msgstr "नाम"
@@ -1295,331 +1289,352 @@ msgid "Agnes"
 msgstr "एग्नेस"
 
 #: ../aisleriot/translatable_game_names.h:8
+#, fuzzy
+msgid "Athena"
+msgstr "दहला"
+
+#: ../aisleriot/translatable_game_names.h:9
 msgid "Auld Lang Syne"
 msgstr "अल्ड लेंग स्याने"
 
-#: ../aisleriot/translatable_game_names.h:9
+#: ../aisleriot/translatable_game_names.h:10
+msgid "Aunt Mary"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:11
 msgid "Backbone"
 msgstr "रीढ़"
 
-#: ../aisleriot/translatable_game_names.h:10
+#: ../aisleriot/translatable_game_names.h:12
 msgid "Bakers Dozen"
 msgstr "बेकर्स दर्जन"
 
 # #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
 # libgnomeui/gnome-app-helper.c:253
-#: ../aisleriot/translatable_game_names.h:11
+#: ../aisleriot/translatable_game_names.h:13
 msgid "Bakers Game"
 msgstr "बेकर्स खेल"
 
-#: ../aisleriot/translatable_game_names.h:12
+#: ../aisleriot/translatable_game_names.h:14
 msgid "Beleaguered Castle"
 msgstr "सताने वाला किला"
 
-#: ../aisleriot/translatable_game_names.h:13
+#: ../aisleriot/translatable_game_names.h:15
 msgid "Block Ten"
 msgstr "ब्लाक दस"
 
-#: ../aisleriot/translatable_game_names.h:14
+#: ../aisleriot/translatable_game_names.h:16
 msgid "Bristol"
 msgstr "ब्रिस्टल"
 
 # #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
 # 48x48/emblems/emblem-camera.icon.in.h:1
 # 48x48/emblems/emblem-camera.icon.in.h:1
-#: ../aisleriot/translatable_game_names.h:15
+#: ../aisleriot/translatable_game_names.h:17
 msgid "Camelot"
 msgstr "केमेलॉट"
 
 # #-#-#-#-#  anjuta.ANJUTA_1_2_0.hi.po (anjuta2 VERSION)  #-#-#-#-#
 # #-#-#-#-#  gnome-session.HEAD.hi.po (gnome-session VERSION)  #-#-#-#-#
 # gnome-session/session-properties.c:179
-#: ../aisleriot/translatable_game_names.h:16
+#: ../aisleriot/translatable_game_names.h:18
 msgid "Canfield"
 msgstr "केनफील्ड"
 
 # #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
 # 48x48/emblems/emblem-camera.icon.in.h:1
 # 48x48/emblems/emblem-camera.icon.in.h:1
-#: ../aisleriot/translatable_game_names.h:17
+#: ../aisleriot/translatable_game_names.h:19
 msgid "Carpet"
 msgstr "दरी"
 
-#: ../aisleriot/translatable_game_names.h:18
+#: ../aisleriot/translatable_game_names.h:20
 msgid "Chessboard"
 msgstr "शतरंज"
 
-#: ../aisleriot/translatable_game_names.h:19
+#: ../aisleriot/translatable_game_names.h:21
 msgid "Clock"
 msgstr "घड़ी"
 
-#: ../aisleriot/translatable_game_names.h:20
+#: ../aisleriot/translatable_game_names.h:22
 msgid "Cover"
 msgstr "आवरण"
 
-#: ../aisleriot/translatable_game_names.h:21
+#: ../aisleriot/translatable_game_names.h:23
+msgid "Cruel"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:24
 msgid "Diamond Mine"
 msgstr "हीरा खदान"
 
 # #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
 # 48x48/emblems/emblem-documents.icon.in.h:1
 # 48x48/emblems/emblem-documents.icon.in.h:1
-#: ../aisleriot/translatable_game_names.h:22
+#: ../aisleriot/translatable_game_names.h:25
 msgid "Doublets"
 msgstr "जोड़ा"
 
-#: ../aisleriot/translatable_game_names.h:23
+#: ../aisleriot/translatable_game_names.h:26
 msgid "Eagle Wing"
 msgstr "बाज पंख"
 
-#: ../aisleriot/translatable_game_names.h:24
+#: ../aisleriot/translatable_game_names.h:27
 msgid "Easthaven"
 msgstr "ईस्टहैवन"
 
-#: ../aisleriot/translatable_game_names.h:25
+#: ../aisleriot/translatable_game_names.h:28
 msgid "Eight Off"
 msgstr "आठ बन्द"
 
-#: ../aisleriot/translatable_game_names.h:26
+#: ../aisleriot/translatable_game_names.h:29
 msgid "Elevator"
 msgstr "एलीवेटर"
 
-#: ../aisleriot/translatable_game_names.h:27
+#: ../aisleriot/translatable_game_names.h:30
 msgid "Escalator"
 msgstr "एस्केलेटर "
 
-#: ../aisleriot/translatable_game_names.h:28
+#: ../aisleriot/translatable_game_names.h:31
 msgid "First Law"
 msgstr "पहला नियम"
 
-#: ../aisleriot/translatable_game_names.h:29
+#: ../aisleriot/translatable_game_names.h:32
 msgid "Fortress"
 msgstr "किला"
 
-#: ../aisleriot/translatable_game_names.h:30
+#: ../aisleriot/translatable_game_names.h:33
 msgid "Fortunes"
 msgstr "सौभाग्य"
 
-#: ../aisleriot/translatable_game_names.h:31
+#: ../aisleriot/translatable_game_names.h:34
 msgid "Fourteen"
 msgstr "चौदह"
 
-#: ../aisleriot/translatable_game_names.h:32
+#: ../aisleriot/translatable_game_names.h:35
 msgid "Freecell"
 msgstr "फ्रीसेल"
 
-#: ../aisleriot/translatable_game_names.h:33
+#: ../aisleriot/translatable_game_names.h:36
 #, fuzzy
 msgid "Gaps"
 msgstr "नक्शे"
 
-#: ../aisleriot/translatable_game_names.h:34
+#: ../aisleriot/translatable_game_names.h:37
 msgid "Gay Gordons"
 msgstr "गे गोरडोन्स"
 
-#: ../aisleriot/translatable_game_names.h:35
+#: ../aisleriot/translatable_game_names.h:38
 msgid "Glenwood"
 msgstr "ग्लेनवुड"
 
-#: ../aisleriot/translatable_game_names.h:36
+#: ../aisleriot/translatable_game_names.h:39
 msgid "Golf"
 msgstr "गोल्फ"
 
-#: ../aisleriot/translatable_game_names.h:37
+#: ../aisleriot/translatable_game_names.h:40
 msgid "Gypsy"
 msgstr "जिप्सी"
 
-#: ../aisleriot/translatable_game_names.h:38
+#: ../aisleriot/translatable_game_names.h:41
 msgid "Helsinki"
 msgstr "हेलसिंकी"
 
-#: ../aisleriot/translatable_game_names.h:39
+#: ../aisleriot/translatable_game_names.h:42
 msgid "Hopscotch"
 msgstr "हॉपस्कॉच"
 
 # #-#-#-#-#  gnome-applets.gnome-2-2.hi.po (gnome-applets 2.x)  #-#-#-#-#
 # gtk/gtkbutton.c:189 gtk/gtkframe.c:125 gtk/gtklabel.c:280
-#: ../aisleriot/translatable_game_names.h:40
+#: ../aisleriot/translatable_game_names.h:43
 msgid "Isabel"
 msgstr "इसाबेल"
 
-#: ../aisleriot/translatable_game_names.h:41
+#: ../aisleriot/translatable_game_names.h:44
 msgid "Jamestown"
 msgstr "जेम्सटाउन"
 
-#: ../aisleriot/translatable_game_names.h:42
+#: ../aisleriot/translatable_game_names.h:45
 msgid "Jumbo"
 msgstr "भारी भरकम"
 
-#: ../aisleriot/translatable_game_names.h:43
+#: ../aisleriot/translatable_game_names.h:46
 msgid "Kansas"
 msgstr "कैनसास"
 
-#: ../aisleriot/translatable_game_names.h:44
+#: ../aisleriot/translatable_game_names.h:47
 msgid "King Albert"
 msgstr "राजा अलबर्ट"
 
-#: ../aisleriot/translatable_game_names.h:45
+#: ../aisleriot/translatable_game_names.h:48
+msgid "Kings Audience"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:49
 msgid "Klondike"
 msgstr "क्लॉन्डिके"
 
-#: ../aisleriot/translatable_game_names.h:46
+#: ../aisleriot/translatable_game_names.h:50
 msgid "Labyrinth"
 msgstr "भूलभुलैया"
 
-#: ../aisleriot/translatable_game_names.h:47
+#: ../aisleriot/translatable_game_names.h:51
 msgid "Lady Jane"
 msgstr "श्रीमती ज़ेन"
 
-#: ../aisleriot/translatable_game_names.h:48
+#: ../aisleriot/translatable_game_names.h:52
 msgid "Maze"
 msgstr "भूल भुलैया"
 
-#: ../aisleriot/translatable_game_names.h:49
+#: ../aisleriot/translatable_game_names.h:53
 msgid "Monte Carlo"
 msgstr "मोन्ते कार्लो"
 
-#: ../aisleriot/translatable_game_names.h:50
+#: ../aisleriot/translatable_game_names.h:54
 msgid "Neighbor"
 msgstr "पड़ोसी"
 
-#: ../aisleriot/translatable_game_names.h:51
+#: ../aisleriot/translatable_game_names.h:55
 msgid "Odessa"
 msgstr "ओडेसा"
 
-#: ../aisleriot/translatable_game_names.h:52
+#: ../aisleriot/translatable_game_names.h:56
 msgid "Osmosis"
 msgstr "ऑस्मोसिस"
 
-#: ../aisleriot/translatable_game_names.h:53
+#: ../aisleriot/translatable_game_names.h:57
 msgid "Peek"
 msgstr "झांकें"
 
-#: ../aisleriot/translatable_game_names.h:54
+#: ../aisleriot/translatable_game_names.h:58
 msgid "Pileon"
 msgstr "पाइलेअन"
 
 # #-#-#-#-#  libgnomeprint.gnome-2-2.hi.po (libgnomeprint VERSION)  #-#-#-#-#
 # libgnomeprint/gpa/gpa-media.c:343
-#: ../aisleriot/translatable_game_names.h:55
+#: ../aisleriot/translatable_game_names.h:59
 msgid "Plait"
 msgstr "लपेट"
 
-#: ../aisleriot/translatable_game_names.h:56
+#: ../aisleriot/translatable_game_names.h:60
 msgid "Poker"
 msgstr "पोकर"
 
-#: ../aisleriot/translatable_game_names.h:57
+#: ../aisleriot/translatable_game_names.h:61
 msgid "Quatorze"
 msgstr "क्वातोर्जे"
 
-#: ../aisleriot/translatable_game_names.h:58
+#: ../aisleriot/translatable_game_names.h:62
 msgid "Royal East"
 msgstr "रॉयल ईस्ट"
 
-#: ../aisleriot/translatable_game_names.h:59
+#: ../aisleriot/translatable_game_names.h:63
+msgid "Saratoga"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:64
 msgid "Scorpion"
 msgstr "वृश्चिक"
 
 # libgnomecanvas/gnome-canvas-text.c:367
-#: ../aisleriot/translatable_game_names.h:60
+#: ../aisleriot/translatable_game_names.h:65
 msgid "Scuffle"
 msgstr "हाथापाई"
 
-#: ../aisleriot/translatable_game_names.h:61
+#: ../aisleriot/translatable_game_names.h:66
 msgid "Seahaven"
 msgstr "सीहैवन"
 
-#: ../aisleriot/translatable_game_names.h:62
+#: ../aisleriot/translatable_game_names.h:67
 msgid "Sir Tommy"
 msgstr "श्रीमान् टॉमी"
 
-#: ../aisleriot/translatable_game_names.h:63
+#: ../aisleriot/translatable_game_names.h:68
 msgid "Spiderette"
 msgstr "मादा मकड़ी"
 
-#: ../aisleriot/translatable_game_names.h:64
+#: ../aisleriot/translatable_game_names.h:69
 msgid "Spider One Suit"
 msgstr "मकड़ी एक सूट"
 
-#: ../aisleriot/translatable_game_names.h:65
+#: ../aisleriot/translatable_game_names.h:70
 msgid "Spider"
 msgstr "मकड़ी"
 
-#: ../aisleriot/translatable_game_names.h:66
+#: ../aisleriot/translatable_game_names.h:71
 msgid "Spider Two Suit"
 msgstr "मकड़ी दो सूट"
 
 # libgnomeprint/gpa/gpa-media.c:263
-#: ../aisleriot/translatable_game_names.h:67
+#: ../aisleriot/translatable_game_names.h:72
 msgid "Straight Up"
 msgstr "सीधा ऊपर"
 
-#: ../aisleriot/translatable_game_names.h:68
+#: ../aisleriot/translatable_game_names.h:73
 msgid "Streets And Alleys"
 msgstr "गलियां और चौबारा"
 
-#: ../aisleriot/translatable_game_names.h:69
+#: ../aisleriot/translatable_game_names.h:74
 msgid "Template"
 msgstr "टेम्पलेट"
 
-#: ../aisleriot/translatable_game_names.h:70
+#: ../aisleriot/translatable_game_names.h:75
 msgid "Ten Across"
 msgstr "दस आरपार"
 
-#: ../aisleriot/translatable_game_names.h:71
+#: ../aisleriot/translatable_game_names.h:76
 msgid "Thieves"
 msgstr "चोर"
 
-#: ../aisleriot/translatable_game_names.h:72
+#: ../aisleriot/translatable_game_names.h:77
 msgid "Thirteen"
 msgstr "तेरह"
 
-#: ../aisleriot/translatable_game_names.h:73
+#: ../aisleriot/translatable_game_names.h:78
 msgid "Thumb And Pouch"
 msgstr "अंगूठा और पॉकेट"
 
-#: ../aisleriot/translatable_game_names.h:74
+#: ../aisleriot/translatable_game_names.h:79
 msgid "Treize"
 msgstr "ट्रेज"
 
-#: ../aisleriot/translatable_game_names.h:75
+#: ../aisleriot/translatable_game_names.h:80
 msgid "Triple Peaks"
 msgstr "तिहरी चोटी"
 
-#: ../aisleriot/translatable_game_names.h:76
+#: ../aisleriot/translatable_game_names.h:81
 msgid "Union Square"
 msgstr "संघीय चौराहा"
 
-#: ../aisleriot/translatable_game_names.h:77
+#: ../aisleriot/translatable_game_names.h:82
 msgid "Valentine"
 msgstr "वेलेंटाइन"
 
 # #-#-#-#-#  anjuta.ANJUTA_1_2_0.hi.po (anjuta2 VERSION)  #-#-#-#-#
 # #-#-#-#-#  libgnomecanvas.HEAD.hi.po (PACKAGE VERSION)  #-#-#-#-#
 # libgnomecanvas/gnome-canvas-text.c:337
-#: ../aisleriot/translatable_game_names.h:78
+#: ../aisleriot/translatable_game_names.h:83
 msgid "Westhaven"
 msgstr "वेस्ट हैवन"
 
-#: ../aisleriot/translatable_game_names.h:79
+#: ../aisleriot/translatable_game_names.h:84
 msgid "Whitehead"
 msgstr "सफेदसिर (व्हाइटहेड)"
 
 # libgnomeui/gnome-druid-page-standard.c:122
-#: ../aisleriot/translatable_game_names.h:80
+#: ../aisleriot/translatable_game_names.h:85
 msgid "Will O The Wisp"
 msgstr "विल औ द विस्प"
 
-#: ../aisleriot/translatable_game_names.h:81
+#: ../aisleriot/translatable_game_names.h:86
 msgid "Yield"
 msgstr "उपज"
 
-#: ../aisleriot/translatable_game_names.h:82
+#: ../aisleriot/translatable_game_names.h:87
 msgid "Yukon"
 msgstr "युकान"
 
-#: ../aisleriot/translatable_game_names.h:83
+#: ../aisleriot/translatable_game_names.h:88
 msgid "Zebra"
 msgstr "जेब्रा"
 
@@ -1679,11 +1694,10 @@ msgstr "जल्दी पत्ते बांटें जहां प्�
 msgid "Blackjack - %s"
 msgstr "Blackjack - %s"
 
-#: ../blackjack/src/blackjack.cpp:303 ../glines/glines.c:1706
-#: ../gnect/src/main.c:1132 ../gnibbles/main.c:601 ../gnobots2/menu.c:59
-#: ../gnome-stones/main.c:1051 ../gnometris/tetris.cpp:131
-#: ../gnomine/gnomine.c:751 ../gtali/gyahtzee.c:502
-#: ../mahjongg/mahjongg.c:1275
+#: ../blackjack/src/blackjack.cpp:303 ../glines/glines.c:1713
+#: ../gnect/src/main.c:1132 ../gnibbles/main.c:606 ../gnobots2/menu.c:59
+#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:746
+#: ../gtali/gyahtzee.c:517 ../mahjongg/mahjongg.c:1276
 msgid "_Settings"
 msgstr "जमावट (_S)"
 
@@ -1759,7 +1773,7 @@ msgstr "बचा हुआः"
 msgid "Place your wager or deal a hand"
 msgstr "अपनी बाजी लगाएँ या हाथ बाटें"
 
-#: ../blackjack/src/blackjack.cpp:683
+#: ../blackjack/src/blackjack.cpp:685
 msgid "Blackjack rule set to use"
 msgstr "ब्लेकजेक नियम प्रयोग के लिये सेट"
 
@@ -1794,7 +1808,7 @@ msgstr "ब्लेकजेक वरीयताएँ"
 # libgnomeui/gnome-app-helper.c:95 libgnomeui/gnome-app-helper.h:534
 #: ../blackjack/src/dialog.cpp:246 ../gnect/src/prefs.c:378
 #: ../gnibbles/preferences.c:217 ../gnobots2/properties.c:495
-#: ../gnome-stones/preferences.c:677 ../gnometris/tetris.cpp:764
+#: ../gnometris/tetris.cpp:734
 msgid "Game"
 msgstr "खेल"
 
@@ -1821,8 +1835,8 @@ msgstr "नियम "
 
 # libgnome-desktop/gnome-ditem-edit.c:616
 # libgnome-desktop/gnome-ditem-edit.c:718
-#: ../blackjack/src/dialog.cpp:310
-#: ../libgames-support/games-scores-dialog.gob:290
+#: ../blackjack/src/dialog.cpp:310 games-scores-dialog.gob:349
+#: ../libgames-support/games-scores-dialog.gob:349
 msgid "Name"
 msgstr "नाम"
 
@@ -2033,44 +2047,44 @@ msgstr "विभाजित करें"
 msgid "Dealer hand probabilities"
 msgstr "फेंटने वाले हाथ की संभावनाएँ"
 
-#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:631
+#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:615
 msgid "Light:"
 msgstr "हल्काः"
 
-#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:621
+#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:605
 msgid "Dark:"
 msgstr "गहराः"
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:207 ../iagno/othello.c:213
+#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:200 ../iagno/othello.c:271
 msgid "Light's move"
 msgstr "हल्के रंग वाले की चाल"
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:209 ../iagno/gnothello.c:578
-#: ../iagno/othello.c:210
+#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:202 ../iagno/gnothello.c:562
+#: ../iagno/othello.c:267
 msgid "Dark's move"
 msgstr "गहरे रंग वाले की चाल"
 
-#: ../gataxx/gataxx.c:175 ../iagno/othello.c:665
+#: ../gataxx/gataxx.c:175 ../iagno/othello.c:698
 msgid "Light player wins!"
 msgstr "हल्के रंग वाला खिलाड़ी जीता!"
 
-#: ../gataxx/gataxx.c:177 ../iagno/othello.c:667
+#: ../gataxx/gataxx.c:177 ../iagno/othello.c:700
 msgid "Dark player wins!"
 msgstr "गहरे रंग वाला खिलाड़ी जीता!"
 
-#: ../gataxx/gataxx.c:179 ../iagno/othello.c:669
+#: ../gataxx/gataxx.c:179 ../iagno/othello.c:702
 msgid "The game was a draw."
 msgstr "खेल बराबरी पर रहा."
 
-#: ../gataxx/gataxx.c:381
+#: ../gataxx/gataxx.c:380
 msgid "Based on code from Iagno by Ian Peters"
 msgstr "इयान पीटर्स के इयाग्नो कोड पर आधारित"
 
-#: ../gataxx/gataxx.c:384 ../gataxx/gataxx.desktop.in.h:1
+#: ../gataxx/gataxx.c:383 ../gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "आटाक्स"
 
-#: ../gataxx/gataxx.c:388
+#: ../gataxx/gataxx.c:387
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr "एक डिस्क-उछालने का खेल जहाँ आप पट्ट को अधिकार में करने की कोशिश करते हैं."
 
@@ -2083,25 +2097,26 @@ msgid "Animate"
 msgstr "एनिमेट"
 
 #: ../gataxx/gataxx.schemas.in.h:2
-msgid "Flip final results"
-msgstr "अंतिम परिणाम पलटें"
-
-#: ../gataxx/gataxx.schemas.in.h:3
 msgid "Level of black player"
 msgstr "काले खिलाड़ी का स्तर"
 
-#: ../gataxx/gataxx.schemas.in.h:4
+#: ../gataxx/gataxx.schemas.in.h:3
 msgid "Level of white player"
 msgstr "सफेद खिलाड़ी का स्तर"
 
-#: ../gataxx/gataxx.schemas.in.h:5
+#: ../gataxx/gataxx.schemas.in.h:4
 msgid "Quick moves"
 msgstr "चालें जल्दी से"
 
-#: ../gataxx/gataxx.schemas.in.h:6 ../gnotravex/gnotravex.schemas.in.h:2
+#: ../gataxx/gataxx.schemas.in.h:5 ../gnotravex/gnotravex.schemas.in.h:2
 #: ../gnotski/gnotski.schemas.in.h:1 ../mahjongg/mahjongg.schemas.in.h:1
 msgid "The height of the window"
 msgstr "विंडो की ऊँचाई"
+
+#: ../gataxx/gataxx.schemas.in.h:6
+#, fuzzy
+msgid "The name of the theme to use."
+msgstr "थीम का फ़ाइल नाम उपयोग करने के लिये"
 
 #: ../gataxx/gataxx.schemas.in.h:7
 #, fuzzy
@@ -2118,17 +2133,20 @@ msgstr "मुख्य विंडो की चौड़ाई, पिक्�
 msgid "The width of the window"
 msgstr "विंडो की चौड़ाई"
 
-#: ../gataxx/gataxx.schemas.in.h:10
-msgid "Tileset"
-msgstr "टाइलसेट"
+#: ../gataxx/gataxx.schemas.in.h:10 ../gnometris/tetris.cpp:857
+#: ../gnometris/tetris.cpp:890 ../same-gnome/ui.c:288
+msgid "Theme"
+msgstr "प्रसंग"
 
 #: ../gataxx/gataxx.schemas.in.h:11
-msgid "Tileset to use."
+#, fuzzy
+msgid "Tileset (obsolete)"
 msgstr "टाइलसेट उपयोग में."
 
 #: ../gataxx/gataxx.schemas.in.h:12
-msgid "Whether or not to flip final results."
-msgstr "अंतिम परिणाम पलटें या नहीं."
+#, fuzzy
+msgid "Tileset to use (obsolete)."
+msgstr "टाइलसेट उपयोग में."
 
 #: ../gataxx/gataxx.schemas.in.h:13
 msgid "Whether or not to use quick moves."
@@ -2146,57 +2164,68 @@ msgid ""
 "player."
 msgstr "शून्य मनुष्य का है, एक से तीन तक का लेवल कम्प्यूटर खिलाड़ी हेतु है."
 
+# #-#-#-#-#  libgnomeprint.gnome-2-2.hi.po (libgnomeprint VERSION)  #-#-#-#-#
+# libgnomeprint/gpa/gpa-media.c:343
+#: ../gataxx/gtkgridboardthemes.c:166 ../gnometris/renderer.cpp:27
+#, fuzzy
+msgid "Plain"
+msgstr "लपेट"
+
+#: ../gataxx/gtkgridboardthemes.c:168
+msgid "Squares and Diamonds"
+msgstr ""
+
 #  create window
 #. create window
-#: ../gataxx/properties.c:301
+#: ../gataxx/properties.c:286
 msgid "Ataxx Preferences"
 msgstr "आटाक्स वरीयताएँ"
 
 #  Players tab
 #  FIXME mnemonic doesn't seem to work
 #. Players tab
-#: ../gataxx/properties.c:331 ../iagno/properties.c:498
+#: ../gataxx/properties.c:316 ../iagno/properties.c:498
 msgid "Players"
 msgstr "खिलाड़ी"
 
-#: ../gataxx/properties.c:343
+#: ../gataxx/properties.c:328
 msgid "_Quick moves"
 msgstr "चालें जल्दी से (_Q)"
 
-#: ../gataxx/properties.c:344
+#: ../gataxx/properties.c:329
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "चाल चलने हेतु कम्प्यूटर द्वारा इंतज़ार करने के समय को कम करता है"
 
 #. Dark level select
-#: ../gataxx/properties.c:353 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:338 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:521
 msgid "Dark"
 msgstr "गहरा"
 
-#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
+#: ../gataxx/properties.c:342 ../gataxx/properties.c:360
 #: ../gnect/src/prefs.c:326 ../gtali/yahtzee.c:61 ../iagno/properties.c:526
 #: ../iagno/properties.c:572
 msgid "Human"
 msgstr "मनुष्य "
 
-#: ../gataxx/properties.c:358 ../gataxx/properties.c:376
+#: ../gataxx/properties.c:343 ../gataxx/properties.c:361
 msgid "Very easy"
 msgstr "अति आसान"
 
-#: ../gataxx/properties.c:359
+#: ../gataxx/properties.c:344
 msgid "gataxx|Easy"
 msgstr ""
 
-#: ../gataxx/properties.c:360
+#: ../gataxx/properties.c:345
 #, fuzzy
 msgid "gataxx|Medium"
 msgstr "मध्य"
 
-#: ../gataxx/properties.c:361 ../gataxx/properties.c:379
+#: ../gataxx/properties.c:346 ../gataxx/properties.c:364
 msgid "Hard"
 msgstr "कठिन"
 
-#: ../gataxx/properties.c:362 ../gataxx/properties.c:380
+#: ../gataxx/properties.c:347 ../gataxx/properties.c:365
 msgid "Very hard"
 msgstr "अत्यंत कठिन"
 
@@ -2204,60 +2233,47 @@ msgstr "अत्यंत कठिन"
 # libgnomeprintui/gnome-print-paper-selector.c:2039
 #  Light level select
 #. Light level select
-#: ../gataxx/properties.c:371 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:356 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:567
 msgid "Light"
 msgstr "हल्का "
 
-#: ../gataxx/properties.c:377
+#: ../gataxx/properties.c:362
 msgid "Easy"
 msgstr "आसान"
 
-#: ../gataxx/properties.c:378
+#: ../gataxx/properties.c:363
 msgid "Medium"
 msgstr "मध्य"
 
 #. Appearance tab
-#: ../gataxx/properties.c:389 ../gataxx/properties.c:392
+#: ../gataxx/properties.c:374 ../gataxx/properties.c:377
 #: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:535
 #: ../iagno/properties.c:616
 msgid "Appearance"
 msgstr "प्रकटन"
 
 #. animation button
-#: ../gataxx/properties.c:398
+#: ../gataxx/properties.c:383
 msgid "_Animation"
 msgstr "एनीमेशन (_A)"
 
-#: ../gataxx/properties.c:402
+#: ../gataxx/properties.c:387
 msgid "Flip the pieces with some visual effects"
 msgstr "टुकड़ों को दृश्यमय प्रबाव के साथ उछालें"
 
-#. flip tiles button
-#: ../gataxx/properties.c:406 ../iagno/properties.c:675
-msgid "_Flip final results"
-msgstr "अंतिम परिणाम पलटें (_F)"
-
-#: ../gataxx/properties.c:410
-msgid ""
-"Put all the white pieces at the bottom and all the black pieces on the top "
-"of the board when a game is over"
-msgstr ""
-"कृपया नीचे सारे सफेद टुकड़े को रखें और बोर्ड के शीर्ष पर सारे काले टुकड़े को रखें जब खेल समाप्त "
-"हो जाये"
-
-#: ../gataxx/properties.c:415 ../iagno/properties.c:685
-#: ../mahjongg/mahjongg.c:747
+#: ../gataxx/properties.c:392 ../iagno/properties.c:685
+#: ../mahjongg/mahjongg.c:748
 msgid "_Tile set:"
 msgstr "टाइल सेट (_T):"
 
-#: ../gataxx/properties.c:420
+#: ../gataxx/properties.c:397
 msgid "The appearance of the pieces"
 msgstr "टुकड़ों का प्रकटन"
 
 #. GstElement *sound_player;
 #: ../glines/glines.c:75 ../glines/glines.c:79 ../gnomine/gnomine.c:82
-#: ../gnomine/gnomine.c:618 ../same-gnome/same-gnome.c:49
+#: ../gnomine/gnomine.c:609 ../same-gnome/same-gnome.c:49
 msgid "Small"
 msgstr "छोटा"
 
@@ -2267,7 +2283,7 @@ msgid "glines|Medium"
 msgstr "मध्य"
 
 #: ../glines/glines.c:77 ../glines/glines.c:81 ../gnomine/gnomine.c:84
-#: ../gnomine/gnomine.c:638 ../same-gnome/same-gnome.c:51
+#: ../gnomine/gnomine.c:631 ../same-gnome/same-gnome.c:51
 msgid "Large"
 msgstr "विशाल"
 
@@ -2317,69 +2333,69 @@ msgstr "GNOME पांच या अधिक"
 msgid "Board Size:"
 msgstr "विसात आकारः"
 
-#: ../glines/glines.c:517
+#: ../glines/glines.c:518
 msgid "Game Over!"
 msgstr "खेल खत्म!"
 
 #. Can't move there!
-#: ../glines/glines.c:677
+#: ../glines/glines.c:679
 msgid "You can't move there!"
 msgstr "वहां नहीं जा सकता!"
 
-#: ../glines/glines.c:1212 ../glines/glines.c:1904
+#: ../glines/glines.c:1219 ../glines/glines.c:1913
 #: ../glines/glines.desktop.in.h:1
 msgid "Five or More"
 msgstr "पांच या अधिक"
 
-#: ../glines/glines.c:1214
+#: ../glines/glines.c:1221
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "एक लोकप्रिय रंग रेखा खेल का गनोम पोर्ट"
 
-#: ../glines/glines.c:1415
+#: ../glines/glines.c:1422
 msgid "Five or More Preferences"
 msgstr "पांच या अधिक वरीयताएँ"
 
-#: ../glines/glines.c:1436
+#: ../glines/glines.c:1443
 msgid "Themes"
 msgstr "प्रसंग"
 
-#: ../glines/glines.c:1445
+#: ../glines/glines.c:1452
 msgid "_Image:"
 msgstr "छविः (_I)"
 
 # #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
 # libgnomeui/gnome-druid-page-standard.c:170
-#: ../glines/glines.c:1456
+#: ../glines/glines.c:1463
 msgid "B_ackground color:"
 msgstr "पृष्ठभूमि रंग (_a)"
 
-#: ../glines/glines.c:1471
+#: ../glines/glines.c:1478
 msgid "Board Size"
 msgstr "बिसात आकार"
 
-#: ../glines/glines.c:1478 ../same-gnome/ui.c:437
+#: ../glines/glines.c:1485 ../same-gnome/ui.c:437
 msgid "_Small"
 msgstr "छोटा (_S)"
 
-#: ../glines/glines.c:1488 ../same-gnome/ui.c:438
+#: ../glines/glines.c:1495 ../same-gnome/ui.c:438
 msgid "_Medium"
 msgstr "मध्यम (_M)"
 
-#: ../glines/glines.c:1498 ../same-gnome/ui.c:439
+#: ../glines/glines.c:1505 ../same-gnome/ui.c:439
 msgid "_Large"
 msgstr "विशाल (_L)"
 
-#: ../glines/glines.c:1506
+#: ../glines/glines.c:1513
 msgid "General"
 msgstr "सामान्य"
 
 # #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
 # libgnomeui/gnome-app-helper.c:264
-#: ../glines/glines.c:1514
+#: ../glines/glines.c:1521
 msgid "_Use fast moves"
 msgstr "तीव्र चाल उपयोग में लें (_U)"
 
-#: ../glines/glines.c:1934
+#: ../glines/glines.c:1943
 msgid "Next:"
 msgstr "अगला:"
 
@@ -2504,7 +2520,7 @@ msgstr "दाँया जाएँ"
 # #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
 # 48x48/emblems/emblem-sound.icon.in.h:1
 # 48x48/emblems/emblem-sound.icon.in.h:1
-#: ../gnect/data/gnect.schemas.in.h:12 ../gnome-stones/preferences.c:789
+#: ../gnect/data/gnect.schemas.in.h:12
 msgid "Sound"
 msgstr "ध्वनि"
 
@@ -2647,12 +2663,12 @@ msgstr "प्रसंग: (_T)"
 msgid "Enable _animation"
 msgstr "एनीमेशन सक्षम करें (_a)"
 
-#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:888
+#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:866
 msgid "Controls"
 msgstr "नियंत्रक"
 
 #: ../gnect/src/prefs.c:444 ../gnibbles/preferences.c:381
-#: ../gnobots2/properties.c:542 ../gnometris/tetris.cpp:891
+#: ../gnobots2/properties.c:542 ../gnometris/tetris.cpp:869
 msgid "Keyboard Controls"
 msgstr "कुंजीपटल नियंत्रण"
 
@@ -2734,7 +2750,7 @@ msgid "Guide a worm around a maze"
 msgstr "भूल भुलैया में इल्ली को रास्ता दिखाएँ"
 
 #: ../gnibbles/gnibbles.desktop.in.h:2 ../gnibbles/gnibbles.soundlist.in.h:6
-#: ../gnibbles/main.c:147
+#: ../gnibbles/main.c:148
 msgid "Nibbles"
 msgstr "निब्बल्स"
 
@@ -2875,7 +2891,7 @@ msgstr "पारितोषिक खाया"
 msgid "Extra Life"
 msgstr "अतिरिक्त जीवन"
 
-#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:130
+#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:227
 msgid "Game Over"
 msgstr "खेल खत्म"
 
@@ -2891,7 +2907,7 @@ msgstr "इल्ली विपरीत दिशा में"
 msgid "Worm Teleport"
 msgstr "इल्ली को दूर भेजें"
 
-#: ../gnibbles/main.c:150
+#: ../gnibbles/main.c:151
 msgid "A worm game for GNOME."
 msgstr "गनोम हेतु एक इल्ली खेल."
 
@@ -2971,7 +2987,7 @@ msgstr "ध्वनियाँ सक्षम करें (_n)"
 
 # gnome-session/gsm-client-row.c:34
 #. starting level
-#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:811
+#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:781
 msgid "_Starting level:"
 msgstr "लेबल शुरू कर रहा है (_S):"
 
@@ -3012,17 +3028,17 @@ msgstr "धूसर"
 msgid "Worm %d:"
 msgstr "इल्ली %d:"
 
-#: ../gnobots2/game.c:142
+#: ../gnobots2/game.c:143
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "'%s' के साथ अत्यंत सुरक्षित चालें"
 
-#: ../gnobots2/game.c:145
+#: ../gnobots2/game.c:146
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "'%s' के साथ सुरक्षित चालें"
 
-#: ../gnobots2/game.c:330 ../gnobots2/game.c:345
+#: ../gnobots2/game.c:370 ../gnobots2/game.c:385
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -3030,12 +3046,17 @@ msgstr ""
 "बधाइयाँ. आपने रोबॉट्स को हरा दिया. !! \n"
 "पर क्या आप इसे दोहरा सकते हैं?"
 
-#: ../gnobots2/game.c:1131
+#. This should never happen.
+#: ../gnobots2/game.c:1181
 msgid "There are no teleport locations left!!"
 msgstr "कोई टेलिपोर्ट जगह बाकी नहीं!!"
 
+#: ../gnobots2/game.c:1212
+msgid "You have run out of safe moves - the robots have won!"
+msgstr ""
+
 # libgnome/gnome-program.c:427
-#: ../gnobots2/game.c:1200
+#: ../gnobots2/game.c:1216
 msgid "There are no safe locations to teleport to!!"
 msgstr "टेलिपोर्ट हेतु भी कोई सुरक्षित जगह बाकी नहीं!!"
 
@@ -3049,13 +3070,13 @@ msgstr "खेल के कॉन्फ़िगरेशन तय करे�
 
 # #-#-#-#-#  libgnomecanvas.gnome-2-2.hi.po (libgnomecanvas)  #-#-#-#-#
 # libgnomecanvas/gnome-canvas.c:1390 libgnomecanvas/gnome-canvas.c:1391
-#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:853 ../gnomine/gnomine.c:857
+#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:848 ../gnomine/gnomine.c:852
 msgid "X"
 msgstr "एक्स"
 
 # #-#-#-#-#  libgnomecanvas.gnome-2-2.hi.po (libgnomecanvas)  #-#-#-#-#
 # libgnomecanvas/gnome-canvas.c:1397 libgnomecanvas/gnome-canvas.c:1398
-#: ../gnobots2/gnobots.c:66 ../gnomine/gnomine.c:854 ../gnomine/gnomine.c:858
+#: ../gnobots2/gnobots.c:66 ../gnomine/gnomine.c:849 ../gnomine/gnomine.c:853
 msgid "Y"
 msgstr "वाई"
 
@@ -3297,7 +3318,7 @@ msgstr "रोबॉट स्पलेट हो गया!"
 msgid "Victory!!"
 msgstr "जीत!!"
 
-#: ../gnobots2/graphics.c:104 ../iagno/gnothello.c:413
+#: ../gnobots2/graphics.c:104 ../iagno/gnothello.c:393
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "पिक्समेप फ़ाइल '%s' ढूंढ नहीं सका\n"
@@ -3330,7 +3351,7 @@ msgstr "इंतजार करें (_W)"
 msgid "Wait for the robots"
 msgstr "रोबोट के लिये इंतजार करें"
 
-#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1292
+#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1293
 msgid "Show or hide the toolbar"
 msgstr "उपकरण-पट्टी छुपाएँ या दिखाएँ"
 
@@ -3417,7 +3438,7 @@ msgid "Prevents all moves that result in getting killed."
 msgstr "सभी चालों को रोकें जिससे मर सकते हों."
 
 # libgnome/gnome-program.c:578
-#: ../gnobots2/properties.c:477 ../gnometris/tetris.cpp:837
+#: ../gnobots2/properties.c:477 ../gnometris/tetris.cpp:807
 msgid "_Enable sounds"
 msgstr "ध्वनियाँ सक्षम करें (_E)"
 
@@ -3452,7 +3473,7 @@ msgstr "छवि प्रसंग (_I)"
 
 # #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
 # libgnomeui/gnome-druid-page-standard.c:170
-#: ../gnobots2/properties.c:523 ../mahjongg/mahjongg.c:793
+#: ../gnobots2/properties.c:523 ../mahjongg/mahjongg.c:794
 msgid "_Background color:"
 msgstr "पृष्ठभूमि रंग: (_B)"
 
@@ -3468,7 +3489,7 @@ msgstr "कुंजीपटल"
 msgid "Safe Teleports:"
 msgstr "सुरक्षित टेलिपोर्टः"
 
-#: ../gnobots2/statusbar.c:85 ../gnometris/scoreframe.cpp:79
+#: ../gnobots2/statusbar.c:85 ../gnometris/scoreframe.cpp:74
 msgid "Level:"
 msgstr "स्तर:"
 
@@ -3478,298 +3499,7 @@ msgstr "स्तर:"
 msgid "Remaining:"
 msgstr "बाकी:"
 
-#  ********************************************************************
-#. ********************************************************************
-#: ../gnome-stones/atari.caves.in.h:1 ../gnome-stones/default.caves.in.h:1
-msgid "Collect all diamonds and find exit"
-msgstr "सभी हीरों को बटोरें और बाहर निकलने का रास्ता ढूंढें"
-
-#: ../gnome-stones/atari.caves.in.h:2
-msgid "Congratulations!!! You have won!"
-msgstr "बधाई!!! आप जीत गए!"
-
-#: ../gnome-stones/atari.caves.in.h:3
-msgid "Original Atari caves"
-msgstr "मूल अटारी गुफाएँ"
-
-#: ../gnome-stones/atari.caves.in.h:4 ../gnome-stones/default.caves.in.h:3
-#: ../gnome-stones/tutorial.caves.in.h:2
-msgid "gnome-stones:empty"
-msgstr "गनोम-स्टोन्सःखाली"
-
-#: ../gnome-stones/default.caves.in.h:2
-msgid "Default caves"
-msgstr "डिफ़ॉल्ट गुफाएँ"
-
-#: ../gnome-stones/gnome-stones.desktop.in.h:1
-msgid "Collect diamonds while avoiding falling boulders"
-msgstr "गिरते पत्थरों से बचते हुए हीरों को बटोरें"
-
-#: ../gnome-stones/gnome-stones.desktop.in.h:2
-msgid "Stones"
-msgstr "स्टोन्स"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:1
-msgid "Cave number to start"
-msgstr "प्रारंभ करने हेतु गुफा क्रमांक"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:2
-msgid "Cave number to start."
-msgstr "प्रारंभ करने हेतु गुफा क्रमांक."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:3
-msgid "Device to use for joystick control."
-msgstr "जॉयस्टिक चलाने में उपयोगी उपकरण."
-
-# libgnome/gnome-program.c:579
-#: ../gnome-stones/gnome-stones.schemas.in.h:4
-msgid "Enable sound support"
-msgstr "ध्वनि छमता प्रारंभ करें"
-
-# libgnome/gnome-program.c:579
-#: ../gnome-stones/gnome-stones.schemas.in.h:5
-msgid "Enable sound support."
-msgstr "ध्वनि छमता प्रारंभ करें."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:6
-msgid "Game name"
-msgstr "खेल नाम"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:7
-msgid "Joystick device"
-msgstr "जॉयस्टिक उपकरण"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:8
-msgid "Joystick switch level"
-msgstr "जॉयस्टिक बदलने का स्तर"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:9
-msgid "The full path and filename of game to load."
-msgstr "लोड करने हेतु खेल का पूरा नाम एवं पूर्ण पथ."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:10
-msgid ""
-"The level an analog joystick must reach to be considered \"on\" when "
-"emulating a digital joystick. This takes a value between 0.0 and 1.0."
-msgstr ""
-"एक एनॉलॉग जॉय-स्टिक का स्तर \"प्रारंभ\" में तब समझा जाता है जब वह डिजिटल जॉय-स्टिक "
-"की नकल करता है. यह  0.0 से 1.0 के बीच के मूल्य लेता है."
-
-#: ../gnome-stones/gnomekoban.caves.in.h:1
-msgid "Gnomekoban"
-msgstr "गनोमकोबान"
-
-#: ../gnome-stones/gnomekoban.caves.in.h:2
-msgid "gnomekoban:empty,0"
-msgstr "गनोमकोबानः खाली,0"
-
-#  This cave is to big to be played with gnome-stones.
-#. This cave is too big to be played with gnome-stones.
-#: ../gnome-stones/io.c:338
-msgid "The cave you are trying to load is too big for this game."
-msgstr "जो गुफा आप लोड करने की कोशिश कर रहे हैं वह इस खेल हेतु बहुत बड़ा है."
-
-#: ../gnome-stones/io.c:355
-#, c-format
-msgid "The cave is corrupted: %s is missing."
-msgstr "गुफा भ्रष्ट हो गया है: %s नहीं है."
-
-#  An object was requested in this cave, that was not
-#  declared in the game file's Object section.
-#. An object was requested in this cave, that was not
-#. declared in the game file's Object section.
-#: ../gnome-stones/io.c:381
-msgid ""
-"The cave you are trying to load includes an object, that wasn't declared."
-msgstr ""
-"जो गुफा आप लोड करने की कोशिश कर रहे हैं उसमें कोई वस्तु शामिल है, वह घोषित नहीं है."
-
-#  **************************************************************************
-#  Some constants.
-#  This message will be printed in the statusline, if no message was
-#  specified in a game file.
-#. **************************************************************************
-#. Some constants.
-#. This message will be printed in the statusline, if no message was
-#. specified in a game file.
-#: ../gnome-stones/main.c:66
-msgid "This is GNOME Stones"
-msgstr "यह गनोम स्टोन्स है"
-
-#: ../gnome-stones/main.c:76
-msgid "Game to play"
-msgstr "खेलने हेतु खेल"
-
-#: ../gnome-stones/main.c:76
-msgid "FILENAME"
-msgstr "फ़ाइलनाम"
-
-#: ../gnome-stones/main.c:128
-#, c-format
-msgid ""
-"An error occurred while loading the image file \"%s\".\n"
-"Please make sure that GNOME Stones is correctly installed!"
-msgstr ""
-"छवि फ़ाइल \"%s\" लोड करने में त्रुटि हुई. \n"
-"कृपया यह सुनिश्चित करें कि गनोम स्टोन्स उचित प्रकार से संस्थापित है.!"
-
-#. That's what a gnome application needs:
-#: ../gnome-stones/main.c:212 ../gnome-stones/main.c:918
-#: ../gnome-stones/main.c:1027 ../gnome-stones/main.c:1276
-msgid "GNOME Stones"
-msgstr "गनोम-स्टोन्स"
-
-#: ../gnome-stones/main.c:238
-msgid "Game title"
-msgstr "खेल शीर्षक"
-
-#: ../gnome-stones/main.c:239
-msgid "Start cave"
-msgstr "गुफा प्रारंभ करें"
-
-#: ../gnome-stones/main.c:378 ../gnome-stones/main.c:972
-#: ../gnometris/gnometris.schemas.in.h:15
-msgid "Pause"
-msgstr "ठहरें"
-
-#: ../gnome-stones/main.c:600
-msgid "Congratulations, you win!"
-msgstr "बधाई, आप जीत गए!"
-
-#: ../gnome-stones/main.c:801 ../gtali/gyahtzee.c:141 ../same-gnome/ui.c:144
-msgid "Game over!"
-msgstr "खेल खत्म!"
-
-#: ../gnome-stones/main.c:1021
-msgid "Sokoban levels:"
-msgstr "सोकोबान स्तरः"
-
-#: ../gnome-stones/main.c:1030
-msgid "Mine through dirt and collect gems."
-msgstr "धूल में खुदाई कर रत्न जमा करें"
-
-#: ../gnome-stones/main.c:1184
-msgid "Scanning private object directory..."
-msgstr "निजी वस्तु डिरेक्ट्री स्केन कर रहे..."
-
-#: ../gnome-stones/main.c:1188
-msgid "Scanning public object directory..."
-msgstr "सार्वजनिक वस्तु डिरेक्ट्री स्केन कर रहे..."
-
-#: ../gnome-stones/main.c:1192
-msgid "Scanning private game directory..."
-msgstr "निजी खेल डिरेक्ट्री स्केन कर रहे..."
-
-#: ../gnome-stones/main.c:1196
-msgid "Scanning public game directory..."
-msgstr "सार्वजनिक खेल डिरेक्ट्री स्केन कर रहे..."
-
-#: ../gnome-stones/main.c:1200
-msgid "Restoring preferences..."
-msgstr "वरीयताएँ पुनर्स्थापित कर रहे..."
-
-#: ../gnome-stones/player.c:77
-msgid "You gained an extra life!"
-msgstr "आपको एक नया जीवन मिला!"
-
-#: ../gnome-stones/player.c:121
-#, c-format
-msgid "Seconds left: %d"
-msgstr "सेकण्ड्स बाकी: %d"
-
-#: ../gnome-stones/preferences.c:402
-msgid "Neither your chosen game nor the default game could be loaded."
-msgstr "न तो आपका चुना गया न ही डिफ़ॉल्ट खेल लोड किया जा सका."
-
-#: ../gnome-stones/preferences.c:403
-msgid "Please make sure that GNOME Stones is correctly installed."
-msgstr "कृपया सुनिश्चित करें कि गनोम स्टोन्स उचित प्रकार से संस्थापित है."
-
-#: ../gnome-stones/preferences.c:404
-msgid "You may be able to select a different game from the preferences dialog."
-msgstr "वरीयताएँ संवाद से आप एक भिन्न खेल चुनने में सक्षम हो सकते  हैं."
-
-#: ../gnome-stones/preferences.c:559
-msgid "GNOME Stones Preferences"
-msgstr "गनोम-स्टोन्स वरीयताएँ"
-
-#: ../gnome-stones/preferences.c:612
-msgid "Game Title"
-msgstr "खेल शीर्षक"
-
-#: ../gnome-stones/preferences.c:619
-msgid "Caves"
-msgstr "गुफाएँ"
-
-#: ../gnome-stones/preferences.c:699
-msgid "Device"
-msgstr "उपकरण"
-
-#: ../gnome-stones/preferences.c:708
-msgid "_Joystick device:"
-msgstr "जॉय-स्टिक उपकरण (_J)"
-
-#  We definatly have a "disable" entry.
-#. We definatly have a "disable" entry.
-#: ../gnome-stones/preferences.c:715
-msgid "Disabled"
-msgstr "अक्षम"
-
-#: ../gnome-stones/preferences.c:746
-msgid "Digital Joystick Emulation"
-msgstr "डिजिटल जॉय-स्टिक नकल"
-
-#: ../gnome-stones/preferences.c:755
-msgid "_Switch level:"
-msgstr "स्तर बदलें (_S)"
-
-#: ../gnome-stones/preferences.c:779
-msgid "Joystick"
-msgstr "जॉय-स्टिक"
-
-# libgnome/gnome-program.c:578
-#: ../gnome-stones/preferences.c:797
-msgid "Enable sound"
-msgstr "ध्वनि सक्षम करें"
-
-# #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
-# 48x48/emblems/emblem-sound.icon.in.h:1
-# 48x48/emblems/emblem-sound.icon.in.h:1
-#: ../gnome-stones/preferences.c:809
-msgid "_Sound"
-msgstr "ध्वनि (_S)"
-
-#: ../gnome-stones/status.c:81
-msgid "Diamonds:"
-msgstr "ईंटः"
-
-#: ../gnome-stones/status.c:95
-msgid "Cave:"
-msgstr "गुफाः"
-
-#: ../gnome-stones/status.c:105
-msgid "Lives:"
-msgstr "जीवनः"
-
-#  Local Variables:
-#  mode:c
-#  eval:(load-library "time-stamp")
-#  eval:(make-local-variable 'write-file-hooks)
-#  eval:(add-hook 'write-file-hooks 'time-stamp)
-#  eval:(setq time-stamp-format '(time-stamp-yyyy/mm/dd time-stamp-hh:mm:ss user-login-name))
-#  End:
-#. Local Variables:
-#. mode:c
-#. eval:(load-library "time-stamp")
-#. eval:(make-local-variable 'write-file-hooks)
-#. eval:(add-hook 'write-file-hooks 'time-stamp)
-#. eval:(setq time-stamp-format '(time-stamp-yyyy/mm/dd time-stamp-hh:mm:ss user-login-name))
-#. End:
-#: ../gnome-stones/tutorial.caves.in.h:1
-msgid "Tutorial caves"
-msgstr "शिक्षण गुफाएँ"
-
-#: ../gnometris/field.cpp:83
+#: ../gnometris/field.cpp:225
 msgid "Paused"
 msgstr "ठहरा"
 
@@ -3778,8 +3508,8 @@ msgid "Fit falling blocks together"
 msgstr "गिरते पिण्डों को आपस में जमाएँ"
 
 # libgnomeui/gnome-file-entry.c:241
-#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:182
-#: ../gnometris/tetris.cpp:1454
+#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:179
+#: ../gnometris/tetris.cpp:1441
 msgid "Gnometris"
 msgstr "गनोमेट्रिस"
 
@@ -3820,6 +3550,10 @@ msgstr "स्तर जिससे प्रारंभ करना है"
 msgid "Level to start with."
 msgstr "स्तर जिससे प्रारंभ करना है."
 
+#: ../gnometris/gnometris.schemas.in.h:15
+msgid "Pause"
+msgstr "ठहरें"
+
 #: ../gnometris/gnometris.schemas.in.h:16
 msgid "Rotate"
 msgstr "घुमाएँ"
@@ -3846,121 +3580,114 @@ msgstr ""
 msgid "The density of filled rows"
 msgstr "भरी हुई पंक्तियों के घनत्व"
 
-#: ../gnometris/gnometris.schemas.in.h:21
+#: ../gnometris/gnometris.schemas.in.h:22
+msgid "The name of the theme used for rendering the blocks and the background."
+msgstr ""
+
+#: ../gnometris/gnometris.schemas.in.h:23
 msgid ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
 msgstr "खेल प्रारंभ होने पर पंक्तियों की संख्या जो बेतरतीब पिण्डों से भरे हुए हों."
 
-#: ../gnometris/gnometris.schemas.in.h:22
+#: ../gnometris/gnometris.schemas.in.h:24
 msgid "The number of rows to fill"
 msgstr "भरने हेतु पंक्तियों की संख्या"
 
-#: ../gnometris/gnometris.schemas.in.h:23
+#: ../gnometris/gnometris.schemas.in.h:25
+#, fuzzy
+msgid "The theme used for rendering the blocks"
+msgstr "पिण्ड बनाने हेतु उपयोग में छवि"
+
+#: ../gnometris/gnometris.schemas.in.h:27
 msgid ""
 "This selects whether or not to draw the background image over the background "
 "color."
 msgstr "यह चुनता है कि क्या पृष्ठभूमि रंग के ऊपर पृष्ठभूमि विंब को खींचा जाना है कि नहीं"
 
-#: ../gnometris/gnometris.schemas.in.h:24
+#: ../gnometris/gnometris.schemas.in.h:28
 msgid "Whether to give blocks random colors"
 msgstr "क्या पिण्डों को बेतरतीब रंग दें"
 
-#: ../gnometris/gnometris.schemas.in.h:25
+#: ../gnometris/gnometris.schemas.in.h:29
 msgid "Whether to give blocks random colors."
 msgstr "क्या पिण्डों को बेतरतीब रंग दें."
 
 # #-#-#-#-#  libgnomecanvas.gnome-2-2.hi.po (libgnomecanvas)  #-#-#-#-#
 # libgnomecanvas/gnome-canvas-text.c:349
-#: ../gnometris/gnometris.schemas.in.h:26
+#: ../gnometris/gnometris.schemas.in.h:30
 msgid "Whether to preview the next block"
 msgstr "क्या अगले पिण्डों का पूर्वावलोकन करें"
 
 # #-#-#-#-#  libgnomecanvas.gnome-2-2.hi.po (libgnomecanvas)  #-#-#-#-#
 # libgnomecanvas/gnome-canvas-text.c:349
-#: ../gnometris/gnometris.schemas.in.h:27
+#: ../gnometris/gnometris.schemas.in.h:31
 msgid "Whether to preview the next block."
 msgstr "क्या अगले पिण्डों का पूर्वावलोकन करें."
 
-#: ../gnometris/gnometris.schemas.in.h:28
+#: ../gnometris/gnometris.schemas.in.h:32
+msgid ""
+"Whether to provide a graphical representation of where a block will land."
+msgstr ""
+
+# #-#-#-#-#  libgnomecanvas.gnome-2-2.hi.po (libgnomecanvas)  #-#-#-#-#
+# libgnomecanvas/gnome-canvas-text.c:349
+#: ../gnometris/gnometris.schemas.in.h:33
+#, fuzzy
+msgid "Whether to provide a target"
+msgstr "क्या अगले पिण्डों का पूर्वावलोकन करें"
+
+#: ../gnometris/gnometris.schemas.in.h:34
 msgid "Whether to rotate counter clock wise"
 msgstr "क्या घड़ी के विपरीत दिशा में घुमाना है"
 
-#: ../gnometris/gnometris.schemas.in.h:29
+#: ../gnometris/gnometris.schemas.in.h:35
 msgid "Whether to rotate counter clock wise."
 msgstr "क्या घड़ी के विपरीत दिशा में घुमाना है."
 
-#: ../gnometris/gnometris.schemas.in.h:30
-msgid "Whether to use sound"
-msgstr "क्या ध्वनि का प्रयोग करना है"
-
-#: ../gnometris/gnometris.schemas.in.h:31
-msgid "Whether to use sound."
-msgstr "क्या ध्वनि का प्रयोग करना है."
-
-#: ../gnometris/gnometris.schemas.in.h:32
+#: ../gnometris/gnometris.schemas.in.h:36
 msgid "Whether to use the background image"
 msgstr "क्या पृष्ठभूमि विंब का प्रयोग करना है"
 
-#: ../gnometris/main.cpp:38
-msgid "Set starting level (1-10)"
+#: ../gnometris/main.cpp:39
+#, fuzzy
+msgid "Set starting level (1 or greater)"
 msgstr "प्रारंभिक स्तर नियत करें (1-10)"
 
-#: ../gnometris/main.cpp:38
+#: ../gnometris/main.cpp:39
 msgid "LEVEL"
 msgstr "स्तर"
 
-#: ../gnometris/scoreframe.cpp:68
+#: ../gnometris/renderer.cpp:28
+#, fuzzy
+msgid "Joined"
+msgstr "कोई नहीं"
+
+#: ../gnometris/scoreframe.cpp:63
 msgid "Lines:"
 msgstr "पंक्तियां:"
 
-#: ../gnometris/tetris.cpp:351
-#, c-format
-msgid ""
-"Could not find the theme: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"प्रसंग : \n"
-"%s\n"
-"ढूंढ नहीं सका\n"
-"कृपया अपना गनोम-गेम्स संस्थापना जाँचें"
-
-#: ../gnometris/tetris.cpp:366
-#, c-format
-msgid ""
-"Can't load the image: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"छवि %s \n"
-"लोड नहीं कर सकते: \n"
-"\n"
-"कृपया अपना गनोम-गेम्स संस्थापन जाँचें"
-
-#: ../gnometris/tetris.cpp:714 ../gnometris/tetris.cpp:715
+#: ../gnometris/tetris.cpp:684 ../gnometris/tetris.cpp:685
 msgid "<none>"
 msgstr "<कुछ नहीं>"
 
-#: ../gnometris/tetris.cpp:743
+#: ../gnometris/tetris.cpp:713
 msgid "Gnometris Preferences"
 msgstr "ग्नोमेट्रिस वरीयताएँ"
 
-#: ../gnometris/tetris.cpp:767
+#: ../gnometris/tetris.cpp:737
 msgid "Setup"
 msgstr " सेटअप"
 
 #  pre-filled rows
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:773
+#: ../gnometris/tetris.cpp:743
 msgid "_Number of pre-filled rows:"
 msgstr "पंक्तियों की संख्या जो पहले से भरे हुए हों (_N)"
 
 #  pre-filled rows density
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:792
+#: ../gnometris/tetris.cpp:762
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "पहले से भरी हुई पंक्तियों में पिण्डों के घनत्व (_D):"
 
@@ -3971,34 +3698,34 @@ msgstr "पहले से भरी हुई पंक्तियों म�
 # gnome-session/session-properties-capplet.c:217
 # #-#-#-#-#  gnome-applets.gnome-2-2.hi.po (gnome-applets 2.x)  #-#-#-#-#
 # gnome-session/session-properties-capplet.c:217
-#: ../gnometris/tetris.cpp:832
+#: ../gnometris/tetris.cpp:802
 msgid "Operation"
 msgstr "प्रक्रिया"
 
 # #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
 # libgnomeui/gnome-font-picker.c:192
-#: ../gnometris/tetris.cpp:846
+#: ../gnometris/tetris.cpp:816
 msgid "_Preview next block"
 msgstr "अगले पिण्डों का पूर्वावलोकन (_P)"
 
-#: ../gnometris/tetris.cpp:855
+#: ../gnometris/tetris.cpp:825
 msgid "_Use random block colors"
 msgstr "बेतरतीब ब्लॉक रंग का प्रयोग करें (_U)"
 
-#: ../gnometris/tetris.cpp:866
+#: ../gnometris/tetris.cpp:836
 msgid "_Rotate blocks counterclockwise"
 msgstr "घड़ी की विपरीत दिशा में पिण्डों को घुमाएँ (_R)"
 
-#: ../gnometris/tetris.cpp:879 ../gnometris/tetris.cpp:912
-#: ../same-gnome/ui.c:288
-msgid "Theme"
-msgstr "प्रसंग"
+#: ../gnometris/tetris.cpp:845
+msgid "Show where the block will _land"
+msgstr ""
 
-#: ../gnometris/tetris.cpp:915
-msgid "Block image:"
-msgstr "पिण्ड छवि:"
+#: ../gnometris/tetris.cpp:893
+#, fuzzy
+msgid "Block Style"
+msgstr "ब्लाक दस"
 
-#: ../gnometris/tetris.cpp:1456
+#: ../gnometris/tetris.cpp:1443
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: \n"
@@ -4012,7 +3739,7 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "गनोमेट्रिस स्कोर"
 
-#: ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:628
+#: ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:620
 #, fuzzy
 msgid "gnomine|Medium"
 msgstr "मध्य"
@@ -4021,7 +3748,7 @@ msgstr "मध्य"
 # libgnomeprint/gpa/gpa-media.c:241
 # #-#-#-#-#  libgnomeprint.gnome-2-2.hi.po (libgnomeprint VERSION)  #-#-#-#-#
 # libgnomeprint/gpa/gpa-media.c:241
-#: ../gnomine/gnomine.c:85 ../gnomine/gnomine.c:648
+#: ../gnomine/gnomine.c:85 ../gnomine/gnomine.c:642
 msgid "Custom"
 msgstr "अनुकूलित"
 
@@ -4046,11 +3773,11 @@ msgstr "माइन्स अंक"
 msgid "Size:"
 msgstr "आकारः"
 
-#: ../gnomine/gnomine.c:215 ../mahjongg/mahjongg.c:683 ../same-gnome/ui.c:165
+#: ../gnomine/gnomine.c:215 ../mahjongg/mahjongg.c:684 ../same-gnome/ui.c:165
 msgid "Congratulations!"
 msgstr "बधाइयाँ!"
 
-#: ../gnomine/gnomine.c:216 ../mahjongg/mahjongg.c:684 ../same-gnome/ui.c:166
+#: ../gnomine/gnomine.c:216 ../mahjongg/mahjongg.c:685 ../same-gnome/ui.c:166
 msgid "Your score has made the top ten."
 msgstr "आपके अंक शीर्ष दस में हैं"
 
@@ -4062,85 +3789,85 @@ msgstr "एक वर्ग में क्लिक करें, किसी
 msgid "Maybe they're all mines ..."
 msgstr "शायद वे सभी सुरंगों में हैं..."
 
-#: ../gnomine/gnomine.c:428
+#: ../gnomine/gnomine.c:419
 msgid "Faces:"
 msgstr "चेहरेः"
 
-#: ../gnomine/gnomine.c:431
+#: ../gnomine/gnomine.c:422
 msgid "Graphics:"
 msgstr "ग्राफिक्स:"
 
-#: ../gnomine/gnomine.c:437
+#: ../gnomine/gnomine.c:428
 msgid "Resizing and SVG support:"
 msgstr "नया आकार तथा एसवीज़ी समर्थन:"
 
-#: ../gnomine/gnomine.c:444 ../gnomine/gnomine.c:959
+#: ../gnomine/gnomine.c:435 ../gnomine/gnomine.c:956
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
 msgstr "सुरंग"
 
-#: ../gnomine/gnomine.c:614
+#: ../gnomine/gnomine.c:605
 msgid "Field Size"
 msgstr "फील्ड का आकार"
 
-#: ../gnomine/gnomine.c:660
+#: ../gnomine/gnomine.c:655
 msgid "Custom Size"
 msgstr "विशेष आकार"
 
-#: ../gnomine/gnomine.c:667
+#: ../gnomine/gnomine.c:662
 msgid "_Number of mines:"
 msgstr "खानों की संख्याएँ (_N):"
 
-#: ../gnomine/gnomine.c:679
+#: ../gnomine/gnomine.c:674
 msgid "_Horizontal:"
 msgstr "क्षैतिज (_H):"
 
-#: ../gnomine/gnomine.c:690
+#: ../gnomine/gnomine.c:685
 msgid "_Vertical:"
 msgstr "ऊर्ध्वाधर (_V):"
 
-#: ../gnomine/gnomine.c:705
+#: ../gnomine/gnomine.c:700
 msgid "_Use \"I'm not sure\" flags"
 msgstr " \"मैं सुनिश्चित नहीं हूं \" झंडे का उपयोग करें (_U)."
 
-#: ../gnomine/gnomine.c:714
+#: ../gnomine/gnomine.c:709
 msgid "Mines Preferences"
 msgstr "सुरंग वरीयताएँ"
 
-#: ../gnomine/gnomine.c:853
+#: ../gnomine/gnomine.c:848
 msgid "Width of grid"
 msgstr "ग्रिड की चौड़ाई"
 
-#: ../gnomine/gnomine.c:854
+#: ../gnomine/gnomine.c:849
 msgid "Height of grid"
 msgstr "ग्रिड की ऊँचाई"
 
-#: ../gnomine/gnomine.c:855
+#: ../gnomine/gnomine.c:850
 msgid "Number of mines"
 msgstr "खानों की संख्या"
 
-#: ../gnomine/gnomine.c:855 ../gtali/setup.c:85 ../gtali/setup.c:86
+#: ../gnomine/gnomine.c:850 ../gtali/setup.c:85 ../gtali/setup.c:86
 #: ../same-gnome/same-gnome.c:140
 msgid "NUMBER"
 msgstr "संख्या"
 
-#: ../gnomine/gnomine.c:856
+#: ../gnomine/gnomine.c:851
 msgid "Size of the board (1=small, 3=large)"
 msgstr "पट्ट का आकार (1=छोटा, 3=बड़ा)"
 
-#: ../gnomine/gnomine.c:857
+#: ../gnomine/gnomine.c:852
 msgid "X location of window"
 msgstr "विंडो का एक्स स्थान"
 
-#: ../gnomine/gnomine.c:858
+#: ../gnomine/gnomine.c:853
 msgid "Y location of window"
 msgstr "विंडो का वाय स्थान"
 
-#: ../gnomine/gnomine.c:1024
+#: ../gnomine/gnomine.c:1021
 msgid "Press to Resume"
 msgstr "फिर से  प्रारंभ करने के लिए  दबाएँ"
 
-#: ../gnomine/gnomine.c:1057
+#: ../gnomine/gnomine.c:1054
 msgid "Time: "
 msgstr "समय:"
 
@@ -4314,19 +4041,19 @@ msgstr "पट्ट का आकार (2-6)"
 msgid "SIZE"
 msgstr "आकार"
 
-#: ../gnotravex/gnotravex.c:827
+#: ../gnotravex/gnotravex.c:829
 msgid "Puzzle solved! Well done!"
 msgstr "पहेली हल हो गई! बहुत अच्छे!"
 
-#: ../gnotravex/gnotravex.c:830
+#: ../gnotravex/gnotravex.c:832
 msgid "Puzzle solved!"
 msgstr "पहेली हल हो गई! "
 
-#: ../gnotravex/gnotravex.c:1188 ../mahjongg/mahjongg.c:954
+#: ../gnotravex/gnotravex.c:1190 ../mahjongg/mahjongg.c:955
 msgid "Game paused"
 msgstr "खेल ठहरा है"
 
-#: ../gnotravex/gnotravex.c:1346
+#: ../gnotravex/gnotravex.c:1348
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "%d×%d पट्ट में खेल रहे"
@@ -4578,11 +4305,11 @@ msgstr "अगला पजल"
 msgid "Previous Puzzle"
 msgstr "पहले का पजल"
 
-#: ../gnotski/gnotski.c:817
+#: ../gnotski/gnotski.c:819
 msgid "Level completed."
 msgstr "स्तर पूर्ण."
 
-#: ../gnotski/gnotski.c:1009
+#: ../gnotski/gnotski.c:1011
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -4592,7 +4319,7 @@ msgstr ""
 "\n"
 "कृपया जांचें कि क्लोत्सकी सही संस्थापित है."
 
-#: ../gnotski/gnotski.c:1177
+#: ../gnotski/gnotski.c:1179
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -4605,12 +4332,12 @@ msgstr ""
 "\n"
 "कृपया जांचें कि क्लोटस्की सही संस्थापित है."
 
-#: ../gnotski/gnotski.c:1216
+#: ../gnotski/gnotski.c:1218
 #, c-format
 msgid "Moves: %d"
 msgstr "चाल: %d"
 
-#: ../gnotski/gnotski.c:1539
+#: ../gnotski/gnotski.c:1541
 msgid "Sliding Block Puzzles"
 msgstr "खिसकने वाला ब्लॉक पजल"
 
@@ -4697,54 +4424,58 @@ msgstr "यदि सत्य नियत किया जाता है, �
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr "[मानव,राहुल,विजय,प्रिया,श्रेया,जूही]"
 
-#: ../gtali/gyahtzee.c:121
+#: ../gtali/gyahtzee.c:125
 msgid "The game is a draw!"
 msgstr "खेल बराबरी पर रहा."
 
-#: ../gtali/gyahtzee.c:136
+#: ../gtali/gyahtzee.c:140
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
 msgstr[0] "%s खेल जीता %d अंक के साथ"
 msgstr[1] "%s खेल जीता %d अंकों के साथ"
 
-#: ../gtali/gyahtzee.c:203
+#: ../gtali/gyahtzee.c:145 ../same-gnome/ui.c:144
+msgid "Game over!"
+msgstr "खेल खत्म!"
+
+#: ../gtali/gyahtzee.c:207
 #, c-format
 msgid "Computer playing for %s"
 msgstr "%s हेतु कम्प्यूटर खेल रहा है"
 
-#: ../gtali/gyahtzee.c:206
+#: ../gtali/gyahtzee.c:210
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- आपकी बारी खत्म."
 
-#: ../gtali/gyahtzee.c:299
+#: ../gtali/gyahtzee.c:303
 #, fuzzy
 msgid "Select dice to roll or choose a score slot."
 msgstr "पाँसे को फिर से फेंकने हेतु चुनें, पाँसा फेंकें!  दबाएँ या अंक खाँचा चुनें."
 
-#: ../gtali/gyahtzee.c:326
+#: ../gtali/gyahtzee.c:330
 msgid "Roll"
 msgstr "फेंकें"
 
-#: ../gtali/gyahtzee.c:369
+#: ../gtali/gyahtzee.c:382
 #, fuzzy
 msgid "You are only allowed three rolls. Choose a score slot."
 msgstr "आप सिर्फ तीन बार पाँसे फेंक सकते हैं! अंक बक्सा चुनें"
 
-#: ../gtali/gyahtzee.c:412
+#: ../gtali/gyahtzee.c:427
 msgid "GNOME version (1998):"
 msgstr "गनोम संस्करण (1998):"
 
-#: ../gtali/gyahtzee.c:415
+#: ../gtali/gyahtzee.c:430
 msgid "Console version (1992):"
 msgstr "कंसोल संस्करण (1992):"
 
-#: ../gtali/gyahtzee.c:425
+#: ../gtali/gyahtzee.c:440
 msgid "A variation on poker with dice and less money."
 msgstr "पाँसा और कम मुद्रा सहित एक पोकर किस्म ."
 
-#: ../gtali/gyahtzee.c:607
+#: ../gtali/gyahtzee.c:622
 msgid "Roll!"
 msgstr "पाँसा फेंकें!"
 
@@ -4921,21 +4652,21 @@ msgstr "इआग्नो सर्वर उपयोग में"
 msgid "New Net_work Game"
 msgstr "नया नेटवर्क खेल (_w)"
 
-#: ../iagno/gnothello.c:265 ../iagno/gnothello.c:588
+#: ../iagno/gnothello.c:245 ../iagno/gnothello.c:572
 #: ../iagno/iagno.desktop.in.h:1 ../iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "इआग्नो"
 
-#: ../iagno/gnothello.c:268
+#: ../iagno/gnothello.c:248
 msgid "A disk flipping game derived from Reversi."
 msgstr "एक डिस्क-उछालने का खेल रेवरसी से उत्पन्न"
 
-#: ../iagno/gnothello.c:647
+#: ../iagno/gnothello.c:631
 msgid "Welcome to Iagno!"
 msgstr "इआग्नो में आपका स्वागत है!"
 
 # libgnomeprint/gnome-print-paper.c:51
-#: ../iagno/gnothello.c:655 ../iagno/gnothello.c:657
+#: ../iagno/gnothello.c:639 ../iagno/gnothello.c:641
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
@@ -4961,11 +4692,11 @@ msgstr "अवैध खेल डेटा (पीअर नियत करे
 msgid "Invalid game data (move)"
 msgstr "अवैध खेल डेटा (चाल)"
 
-#: ../iagno/othello.c:680
+#: ../iagno/othello.c:712
 msgid "Light must pass, Dark's move"
 msgstr "हल्के रंग को पास करना होगा. गहरे रंग की बारी"
 
-#: ../iagno/othello.c:686
+#: ../iagno/othello.c:718
 msgid "Dark must pass, Light's move"
 msgstr "गहरे रंग  को पास करना होगा. हल्के रंग  की बारी"
 
@@ -5003,13 +4734,17 @@ msgstr "लड़खड़ाती उछाल (_S)"
 msgid "S_how grid"
 msgstr "ग्रिड दिखाएँ (_h)"
 
+#: ../iagno/properties.c:675
+msgid "_Flip final results"
+msgstr "अंतिम परिणाम पलटें (_F)"
+
 #: ../libgames-support/games-card-selector.c:52
 msgid "Card Style"
 msgstr "ताश शैली"
 
 #: ../libgames-support/games-controls.c:158
 #: ../libgames-support/games-controls.c:332
-#: ../libgames-support/games-controls.c:411
+#: ../libgames-support/games-controls.c:397
 msgid "No key"
 msgstr "कोई कुंजी नहीं"
 
@@ -5018,7 +4753,7 @@ msgid "<Press a Key>"
 msgstr "<एक कुंजी दबाएँ>"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: ../libgames-support/games-controls.c:398
+#: ../libgames-support/games-controls.c:384
 msgid "Unknown Command"
 msgstr "अज्ञात कमांड"
 
@@ -5097,9 +4832,8 @@ msgid "Status"
 msgstr "स्थिति"
 
 #: ../libgames-support/games-network-dialog.c:141
-msgid ""
-"Select a nickname and connection method\n"
-"then click Connect."
+#, fuzzy
+msgid "Select a nickname and connection method then click Connect."
 msgstr ""
 "उपनाम व संबंधन विधि चुनें\n"
 "तब संबंधित करें को क्लिक करें."
@@ -5133,6 +4867,12 @@ msgstr "स्थानीय खेल में शामिल हों"
 #: ../libgames-support/games-network-dialog.c:222
 msgid "_Local games:"
 msgstr "स्थानीय खेल (_L):"
+
+#. Add the players nickname entry.
+#: ../libgames-support/games-network-dialog.c:264
+#, fuzzy
+msgid "Identification"
+msgstr "एनीमेशन"
 
 #: ../libgames-support/games-network-dialog.c:266
 msgid "_Nickname:"
@@ -5227,25 +4967,26 @@ msgstr ""
 msgid "Image rendering failed."
 msgstr "विंब रेंडरिंग विफल"
 
+# libgnomeui/gnome-scores.c:94
+#. Note that this assumes the default style is plain.
+#: games-scores-dialog.gob:357 games-scores-dialog.gob:443
+#: ../libgames-support/games-scores-dialog.gob:357
+#: ../libgames-support/games-scores-dialog.gob:443
+msgid "Score"
+msgstr "अंक"
+
 #  Translators: this is for a minutes, seconds time display.
 #. Translators: this is for a minutes, seconds time display.
-#: ../libgames-support/games-scores-dialog.gob:157
+#: games-scores-dialog.gob:208 ../libgames-support/games-scores-dialog.gob:208
 #, c-format
 msgid "%dm %ds"
 msgstr "%dमि. %dसे."
 
-# libgnomeui/gnome-scores.c:94
-#. Note that this assumes the default style is plain.
-#: ../libgames-support/games-scores-dialog.gob:298
-#: ../libgames-support/games-scores-dialog.gob:384
-msgid "Score"
-msgstr "अंक"
-
-#: ../libgames-support/games-scores-dialog.gob:379
+#: games-scores-dialog.gob:438 ../libgames-support/games-scores-dialog.gob:438
 msgid "Time"
 msgstr "समय"
 
-#: ../libgames-support/games-scores-dialog.gob:482
+#: games-scores-dialog.gob:539 ../libgames-support/games-scores-dialog.gob:539
 msgid "New Game"
 msgstr "नया खेल "
 
@@ -5476,71 +5217,71 @@ msgstr "समाप्त (_F)"
 msgid "Shuffle"
 msgstr "फेंटें"
 
-#: ../mahjongg/mahjongg.c:679 ../mahjongg/mahjongg.c:978
+#: ../mahjongg/mahjongg.c:680 ../mahjongg/mahjongg.c:979
 #, fuzzy
 msgid "Mahjongg Scores"
 msgstr "महजोंग"
 
-#: ../mahjongg/mahjongg.c:681 ../mahjongg/mahjongg.c:980
+#: ../mahjongg/mahjongg.c:682 ../mahjongg/mahjongg.c:981
 #, fuzzy
 msgid "Map:"
 msgstr "नक्शे:"
 
-#: ../mahjongg/mahjongg.c:719
+#: ../mahjongg/mahjongg.c:720
 msgid "Mahjongg Preferences"
 msgstr "महाजोंग वरीयताएँ"
 
-#: ../mahjongg/mahjongg.c:740
+#: ../mahjongg/mahjongg.c:741
 msgid "Tiles"
 msgstr "टाइलें"
 
-#: ../mahjongg/mahjongg.c:763
+#: ../mahjongg/mahjongg.c:764
 msgid "Maps"
 msgstr "नक्शे"
 
-#: ../mahjongg/mahjongg.c:770
+#: ../mahjongg/mahjongg.c:771
 msgid "_Select map:"
 msgstr "नक्शा चुनें (_S):"
 
-#: ../mahjongg/mahjongg.c:786
+#: ../mahjongg/mahjongg.c:787
 msgid "Colors"
 msgstr "रंग"
 
-#: ../mahjongg/mahjongg.c:912
+#: ../mahjongg/mahjongg.c:913
 msgid "Maps:"
 msgstr "नक्शे:"
 
-#: ../mahjongg/mahjongg.c:916
+#: ../mahjongg/mahjongg.c:917
 msgid "Tiles:"
 msgstr "टाइलें:"
 
-#: ../mahjongg/mahjongg.c:926 ../mahjongg/mahjongg.c:992
+#: ../mahjongg/mahjongg.c:927 ../mahjongg/mahjongg.c:993
 #: ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "महजोंग"
 
-#: ../mahjongg/mahjongg.c:928
+#: ../mahjongg/mahjongg.c:929
 msgid "A matching game played with Mahjongg tiles."
 msgstr "महाजोंग खेल महाजोंग टाइल के साथ खेला गया."
 
-#: ../mahjongg/mahjongg.c:992
+#: ../mahjongg/mahjongg.c:993
 #, c-format
 msgid "%s - %s"
 msgstr "%s - %s"
 
-#: ../mahjongg/mahjongg.c:1244
+#: ../mahjongg/mahjongg.c:1245
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "क्षमा करें, मैं खेले जा सकने वाले कॉन्फ़िगरेशन को ढूंढने में अक्षम रहा."
 
-#: ../mahjongg/mahjongg.c:1429
+#: ../mahjongg/mahjongg.c:1432
 msgid "Tiles Left:"
 msgstr "टाइल बाएँ:"
 
-#: ../mahjongg/mahjongg.c:1438
+#: ../mahjongg/mahjongg.c:1441
 msgid "Moves Left:"
 msgstr "बायाँ ले जाएँ:"
 
-#: ../mahjongg/mahjongg.c:1500
+#: ../mahjongg/mahjongg.c:1503
 msgid "Remove matching pairs of tiles."
 msgstr "टाइल के मैचिंग जोड़े को हटायें"
 
@@ -5606,7 +5347,7 @@ msgstr "द ज़िगरॉट"
 
 #. FIXME: This is long enough to resize the window upwards when
 #. * the game finishes.
-#: ../same-gnome/game.c:364
+#: ../same-gnome/game.c:367
 msgid "1000 point bonus for clearing the board!"
 msgstr "1000 अंक बोनस के बोर्ड को साफ करने के लिये!"
 
@@ -5742,3 +5483,271 @@ msgid ""
 "It is impossible to play the game. Please check that the game has been "
 "installed correctly and try again."
 msgstr "यह खेल खेलना असंभव है. कृपया जांचे कि खेल ठीक से अधिष्टापित है और फिर कोशिश करें."
+
+#~ msgid "Congratulations."
+#~ msgstr "बधाइयाँ."
+
+# libgnomeui/gnome-app-helper.c:254
+#, fuzzy
+#~ msgid " next to the "
+#~ msgstr "प्रसंग तय करें"
+
+# libgnomeui/gnome-app-helper.c:254
+#, fuzzy
+#~ msgid "Place the "
+#~ msgstr "खेल रोकें"
+
+#, fuzzy
+#~ msgid "Place something on to the empty tableau slot"
+#~ msgstr "तस्वीर के खाली खाँचा में कुछ रखें"
+
+#~ msgid "Flip final results"
+#~ msgstr "अंतिम परिणाम पलटें"
+
+#~ msgid "Tileset"
+#~ msgstr "टाइलसेट"
+
+#~ msgid "Whether or not to flip final results."
+#~ msgstr "अंतिम परिणाम पलटें या नहीं."
+
+#~ msgid ""
+#~ "Put all the white pieces at the bottom and all the black pieces on the "
+#~ "top of the board when a game is over"
+#~ msgstr ""
+#~ "कृपया नीचे सारे सफेद टुकड़े को रखें और बोर्ड के शीर्ष पर सारे काले टुकड़े को रखें जब खेल "
+#~ "समाप्त हो जाये"
+
+#  ********************************************************************
+#~ msgid "Collect all diamonds and find exit"
+#~ msgstr "सभी हीरों को बटोरें और बाहर निकलने का रास्ता ढूंढें"
+
+#~ msgid "Congratulations!!! You have won!"
+#~ msgstr "बधाई!!! आप जीत गए!"
+
+#~ msgid "Original Atari caves"
+#~ msgstr "मूल अटारी गुफाएँ"
+
+#~ msgid "gnome-stones:empty"
+#~ msgstr "गनोम-स्टोन्सःखाली"
+
+#~ msgid "Default caves"
+#~ msgstr "डिफ़ॉल्ट गुफाएँ"
+
+#~ msgid "Collect diamonds while avoiding falling boulders"
+#~ msgstr "गिरते पत्थरों से बचते हुए हीरों को बटोरें"
+
+#~ msgid "Stones"
+#~ msgstr "स्टोन्स"
+
+#~ msgid "Cave number to start"
+#~ msgstr "प्रारंभ करने हेतु गुफा क्रमांक"
+
+#~ msgid "Cave number to start."
+#~ msgstr "प्रारंभ करने हेतु गुफा क्रमांक."
+
+#~ msgid "Device to use for joystick control."
+#~ msgstr "जॉयस्टिक चलाने में उपयोगी उपकरण."
+
+# libgnome/gnome-program.c:579
+#~ msgid "Enable sound support"
+#~ msgstr "ध्वनि छमता प्रारंभ करें"
+
+# libgnome/gnome-program.c:579
+#~ msgid "Enable sound support."
+#~ msgstr "ध्वनि छमता प्रारंभ करें."
+
+#~ msgid "Game name"
+#~ msgstr "खेल नाम"
+
+#~ msgid "Joystick device"
+#~ msgstr "जॉयस्टिक उपकरण"
+
+#~ msgid "Joystick switch level"
+#~ msgstr "जॉयस्टिक बदलने का स्तर"
+
+#~ msgid "The full path and filename of game to load."
+#~ msgstr "लोड करने हेतु खेल का पूरा नाम एवं पूर्ण पथ."
+
+#~ msgid ""
+#~ "The level an analog joystick must reach to be considered \"on\" when "
+#~ "emulating a digital joystick. This takes a value between 0.0 and 1.0."
+#~ msgstr ""
+#~ "एक एनॉलॉग जॉय-स्टिक का स्तर \"प्रारंभ\" में तब समझा जाता है जब वह डिजिटल जॉय-"
+#~ "स्टिक की नकल करता है. यह  0.0 से 1.0 के बीच के मूल्य लेता है."
+
+#~ msgid "Gnomekoban"
+#~ msgstr "गनोमकोबान"
+
+#~ msgid "gnomekoban:empty,0"
+#~ msgstr "गनोमकोबानः खाली,0"
+
+#  This cave is to big to be played with gnome-stones.
+#~ msgid "The cave you are trying to load is too big for this game."
+#~ msgstr "जो गुफा आप लोड करने की कोशिश कर रहे हैं वह इस खेल हेतु बहुत बड़ा है."
+
+#~ msgid "The cave is corrupted: %s is missing."
+#~ msgstr "गुफा भ्रष्ट हो गया है: %s नहीं है."
+
+#  An object was requested in this cave, that was not
+#  declared in the game file's Object section.
+#~ msgid ""
+#~ "The cave you are trying to load includes an object, that wasn't declared."
+#~ msgstr ""
+#~ "जो गुफा आप लोड करने की कोशिश कर रहे हैं उसमें कोई वस्तु शामिल है, वह घोषित नहीं है."
+
+#  **************************************************************************
+#  Some constants.
+#  This message will be printed in the statusline, if no message was
+#  specified in a game file.
+#~ msgid "This is GNOME Stones"
+#~ msgstr "यह गनोम स्टोन्स है"
+
+#~ msgid "Game to play"
+#~ msgstr "खेलने हेतु खेल"
+
+#~ msgid "FILENAME"
+#~ msgstr "फ़ाइलनाम"
+
+#~ msgid ""
+#~ "An error occurred while loading the image file \"%s\".\n"
+#~ "Please make sure that GNOME Stones is correctly installed!"
+#~ msgstr ""
+#~ "छवि फ़ाइल \"%s\" लोड करने में त्रुटि हुई. \n"
+#~ "कृपया यह सुनिश्चित करें कि गनोम स्टोन्स उचित प्रकार से संस्थापित है.!"
+
+#~ msgid "GNOME Stones"
+#~ msgstr "गनोम-स्टोन्स"
+
+#~ msgid "Game title"
+#~ msgstr "खेल शीर्षक"
+
+#~ msgid "Start cave"
+#~ msgstr "गुफा प्रारंभ करें"
+
+#~ msgid "Congratulations, you win!"
+#~ msgstr "बधाई, आप जीत गए!"
+
+#~ msgid "Sokoban levels:"
+#~ msgstr "सोकोबान स्तरः"
+
+#~ msgid "Mine through dirt and collect gems."
+#~ msgstr "धूल में खुदाई कर रत्न जमा करें"
+
+#~ msgid "Scanning private object directory..."
+#~ msgstr "निजी वस्तु डिरेक्ट्री स्केन कर रहे..."
+
+#~ msgid "Scanning public object directory..."
+#~ msgstr "सार्वजनिक वस्तु डिरेक्ट्री स्केन कर रहे..."
+
+#~ msgid "Scanning private game directory..."
+#~ msgstr "निजी खेल डिरेक्ट्री स्केन कर रहे..."
+
+#~ msgid "Scanning public game directory..."
+#~ msgstr "सार्वजनिक खेल डिरेक्ट्री स्केन कर रहे..."
+
+#~ msgid "Restoring preferences..."
+#~ msgstr "वरीयताएँ पुनर्स्थापित कर रहे..."
+
+#~ msgid "You gained an extra life!"
+#~ msgstr "आपको एक नया जीवन मिला!"
+
+#~ msgid "Seconds left: %d"
+#~ msgstr "सेकण्ड्स बाकी: %d"
+
+#~ msgid "Neither your chosen game nor the default game could be loaded."
+#~ msgstr "न तो आपका चुना गया न ही डिफ़ॉल्ट खेल लोड किया जा सका."
+
+#~ msgid "Please make sure that GNOME Stones is correctly installed."
+#~ msgstr "कृपया सुनिश्चित करें कि गनोम स्टोन्स उचित प्रकार से संस्थापित है."
+
+#~ msgid ""
+#~ "You may be able to select a different game from the preferences dialog."
+#~ msgstr "वरीयताएँ संवाद से आप एक भिन्न खेल चुनने में सक्षम हो सकते  हैं."
+
+#~ msgid "GNOME Stones Preferences"
+#~ msgstr "गनोम-स्टोन्स वरीयताएँ"
+
+#~ msgid "Game Title"
+#~ msgstr "खेल शीर्षक"
+
+#~ msgid "Caves"
+#~ msgstr "गुफाएँ"
+
+#~ msgid "Device"
+#~ msgstr "उपकरण"
+
+#~ msgid "_Joystick device:"
+#~ msgstr "जॉय-स्टिक उपकरण (_J)"
+
+#  We definatly have a "disable" entry.
+#~ msgid "Disabled"
+#~ msgstr "अक्षम"
+
+#~ msgid "Digital Joystick Emulation"
+#~ msgstr "डिजिटल जॉय-स्टिक नकल"
+
+#~ msgid "_Switch level:"
+#~ msgstr "स्तर बदलें (_S)"
+
+#~ msgid "Joystick"
+#~ msgstr "जॉय-स्टिक"
+
+# libgnome/gnome-program.c:578
+#~ msgid "Enable sound"
+#~ msgstr "ध्वनि सक्षम करें"
+
+# #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
+# 48x48/emblems/emblem-sound.icon.in.h:1
+# 48x48/emblems/emblem-sound.icon.in.h:1
+#~ msgid "_Sound"
+#~ msgstr "ध्वनि (_S)"
+
+#~ msgid "Diamonds:"
+#~ msgstr "ईंटः"
+
+#~ msgid "Cave:"
+#~ msgstr "गुफाः"
+
+#~ msgid "Lives:"
+#~ msgstr "जीवनः"
+
+#  Local Variables:
+#  mode:c
+#  eval:(load-library "time-stamp")
+#  eval:(make-local-variable 'write-file-hooks)
+#  eval:(add-hook 'write-file-hooks 'time-stamp)
+#  eval:(setq time-stamp-format '(time-stamp-yyyy/mm/dd time-stamp-hh:mm:ss user-login-name))
+#  End:
+#~ msgid "Tutorial caves"
+#~ msgstr "शिक्षण गुफाएँ"
+
+#~ msgid "Whether to use sound"
+#~ msgstr "क्या ध्वनि का प्रयोग करना है"
+
+#~ msgid "Whether to use sound."
+#~ msgstr "क्या ध्वनि का प्रयोग करना है."
+
+#~ msgid ""
+#~ "Could not find the theme: \n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your gnome-games installation"
+#~ msgstr ""
+#~ "प्रसंग : \n"
+#~ "%s\n"
+#~ "ढूंढ नहीं सका\n"
+#~ "कृपया अपना गनोम-गेम्स संस्थापना जाँचें"
+
+#~ msgid ""
+#~ "Can't load the image: \n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your gnome-games installation"
+#~ msgstr ""
+#~ "छवि %s \n"
+#~ "लोड नहीं कर सकते: \n"
+#~ "\n"
+#~ "कृपया अपना गनोम-गेम्स संस्थापन जाँचें"
+
+#~ msgid "Block image:"
+#~ msgstr "पिण्ड छवि:"
