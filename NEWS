@@ -1,3 +1,74 @@
+gnome-games 2.14.0
+==================
+
+This is it! The grand 2.14.0 release of gnome-games!
+
+The BIG changes:
+ - There is a new high score system. Mines, Five or More, Mahjongg,
+   Same GNOME and Gnometris use it. Most of the changes are behind the
+   scenes, but there is a new high-score dialog and you now have the
+   opportunity to change the name recorded in the high score list.
+ - gnome-stones has been removed. Serious copyright issues were raised 
+   about the origins of some of the code and levels. Given the earlier 
+   sound effects problems and the general lack of maintanence the best
+   course of action was euthanasia.
+ - Gnometris and Ataxx have new drawing engines. The old themes are no
+   longer usable (although this may change in the future).
+
+Other changes:
+
+General:
+ - You can enable or disable compilation of individual games.
+ - You can use Apple's Bonjour library for zeroconf support. Avahi
+   is not yet supported (the code is just about ready).
+
+Aisleriot:
+ - New games: Gaps, Block Ten, Cruel, King's Audience, Athena,
+   Aunt Mary and Saratoga. 
+ - A more useful card-compression algorithm.
+ - A French translation of the documentation.
+ - Middle button acts as a double-click.
+
+Ataxx:
+ - New graphics engine.
+
+Gnometris:
+ - New level system. There is no upper limit, but the game never stops
+   getting faster.
+ - New graphics engine.
+ - New options for beginners: show where the piece will land.	
+
+Iagno:
+ - New AI code.
+
+Mines:
+ - New, better, documentation.
+
+Nibbles:
+ - New graphics.
+
+And lots and lots of bug fixes.
+
+Minor changes since the 2.13.8 release:
+
+Aisleriot:
+ - Remove the threaded hint code for Freecell because of portability issues
+   with threads in all but the most recent guile releases.
+ - Fix the double-click code in Freecell to not make potentially bad moves.
+
+Mines:
+ - Finally finish the new documentation.
+ - Relicense the documentation under a dual GPL/GFDL license.
+
+Robots:
+ - Allow alphabetical keys to be used as controls.
+
+General:
+ - Fix the bug when you enter your name in the high score list and the entry
+   isn't centered properly.
+
+Enjoy.
+
 gnome-games 2.13.8
 ==================
 
