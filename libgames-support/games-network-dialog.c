@@ -124,8 +124,8 @@ network_game_dialog_show (GtkWidget *parent_window)
   struct passwd *pwent;
   
   game_dialog = gtk_dialog_new_with_buttons (_("New Network Game"),
-                    			     GTK_WINDOW(parent_window),
-				             0, NULL, NULL);
+                                     GTK_WINDOW(parent_window),
+                             0, NULL, NULL);
   gtk_dialog_set_has_separator (GTK_DIALOG (game_dialog), FALSE);
   gtk_container_set_border_width (GTK_CONTAINER (game_dialog), 5);
   gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (game_dialog)->vbox), 2);
@@ -170,8 +170,8 @@ network_game_dialog_show (GtkWidget *parent_window)
   }
 
   rbutton_b = gtk_radio_button_new_with_label_from_widget (
-			GTK_RADIO_BUTTON (rbutton_a),
-			_("Host local game"));
+            GTK_RADIO_BUTTON (rbutton_a),
+            _("Host local game"));
 #ifndef HAVE_ZEROCONF
   gtk_widget_set_sensitive (rbutton_b, FALSE);
 #endif
@@ -318,11 +318,12 @@ static gboolean
 connect_cb (GtkWidget *widget)
 {
   const gchar *name;
-  const gchar *server = NULL;
-  const gchar *gamename;
+  const gchar *server = NULL; /* A WAN-/Internet-Server */
+  const gchar *gamename;      /* e.g. gnomegames */
   GtkTreeIter it;
   GtkTreeSelection *selection;
-  char *lan_server;
+  char *lan_server;           /* If this is a LAN-Game we
+                                 are going to use this variable */
              
   name = gtk_entry_get_text (GTK_ENTRY(name_entry));
   gconf_client_set_string (conf_client, KEY_NETWORK_NAME, name, NULL);
