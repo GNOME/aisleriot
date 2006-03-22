@@ -78,6 +78,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
   private GHashTable *catindices destroywith g_hash_table_destroy;
   private gint catcounter;
   private gint hilight;
+  private gint sethilight;
   private gboolean preservehilight;
   private gulong cursor_handler_id;
 
@@ -175,7 +176,12 @@ class Games:Scores:Dialog from Gtk:Dialog {
       g_object_set (self->_priv->namerenderer, "editable", FALSE, NULL);
       return;
     }
-    
+
+    if (self->_priv->hilight == self->_priv->sethilight)
+      return;
+
+    self->_priv->sethilight = self->_priv->hilight;
+
     /* We can't set the hilight editable immediately in case we are
      * still in the process of being created and the editing subwindow
      * gets put in the wrong place. Attaching to the expose signal
@@ -286,6 +292,7 @@ class Games:Scores:Dialog from Gtk:Dialog {
     self->_priv->catindices = g_hash_table_new (g_direct_hash, g_direct_equal);
     self->_priv->catcounter = 0;
     self->_priv->hilight = 0;
+    self->_priv->sethilight = -1;
 
     gtk_dialog_set_has_separator (GTK_DIALOG (self), FALSE);
     gtk_container_set_border_width (GTK_CONTAINER (self), 5);

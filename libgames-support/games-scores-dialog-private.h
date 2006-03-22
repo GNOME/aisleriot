@@ -59,12 +59,14 @@ struct _GamesScoresDialogPrivate {
 #line 80 "games-scores-dialog.gob"
 	gint hilight;
 #line 81 "games-scores-dialog.gob"
-	gboolean preservehilight;
+	gint sethilight;
 #line 82 "games-scores-dialog.gob"
+	gboolean preservehilight;
+#line 83 "games-scores-dialog.gob"
 	gulong cursor_handler_id;
-#line 85 "games-scores-dialog.gob"
+#line 86 "games-scores-dialog.gob"
 	gint style;
-#line 68 "games-scores-dialog-private.h"
+#line 70 "games-scores-dialog-private.h"
 };
 
 #ifdef __cplusplus
