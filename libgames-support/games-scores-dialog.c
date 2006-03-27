@@ -609,7 +609,7 @@ games_scores_dialog_add_category (GamesScoresDialog * self, const gchar * key, c
  * @self: a pointer to a GamesScoresDialog
  * @key: the category to change to
  *
- * Sets the category to scores dialog is displaying.
+ * Sets the category the scores dialog is displaying.
  *
  **/
 #line 418 "games-scores-dialog.gob"
