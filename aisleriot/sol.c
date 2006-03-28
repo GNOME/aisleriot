@@ -504,24 +504,27 @@ retrieve_state (GnomeClient *client)
 
 int main (int argc, char *argv [])
 {
-  struct poptOption aisleriot_opts[] = {
-    {"variation", '\0', POPT_ARG_STRING, NULL, 0, NULL, NULL},
-    {NULL, '\0', 0, NULL, 0, NULL, NULL}
+  static const GOptionEntry aisleriot_opts[] = {
+    {"variation", 'v', 0, G_OPTION_ARG_STRING, &variation,
+     N_("Select the game to play"), N_("NAME")},
+    {NULL}
   };
   gchar * var_file;
-
-  aisleriot_opts[0].arg = &variation;
-  aisleriot_opts[0].descrip = N_("Variation on game rules");
-  aisleriot_opts[0].argDescrip = N_("NAME");
+  GOptionContext *option_context;
 
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  option_context = g_option_context_new ("");
+  g_option_context_add_main_entries (option_context,
+                                     aisleriot_opts,
+                                     GETTEXT_PACKAGE);
+  
   gnome_program_init ("aisleriot", VERSION,
  		      LIBGNOMEUI_MODULE, 
  		      argc, argv,
- 		      GNOME_PARAM_POPT_TABLE, aisleriot_opts,
+ 		      GNOME_PARAM_GOPTION_CONTEXT, option_context,
  		      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
   glade_init ();
 
@@ -534,7 +537,8 @@ int main (int argc, char *argv [])
 			   NULL, NULL, NULL);
   load_statistics ();
   
-  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-aisleriot.png");
+  gtk_window_set_default_icon_from_file (GNOME_ICONDIR"/gnome-aisleriot.png", 
+					 NULL);
   g_signal_connect (GTK_OBJECT (gnome_master_client ()), "save_yourself",
 		      GTK_SIGNAL_FUNC (save_state), 
 		      (gpointer) g_path_get_basename(argv[0]));
