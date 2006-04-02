@@ -128,6 +128,7 @@ static void help_about_callback (void)
 			 "copyright", "Copyright \xc2\xa9 1998-2005 Jonathan Blandford",
 			 "authors", authors,
 			 "translator_credits", _("translator-credits"),
+			 "logo-icon-name", "gnome-aisleriot.png",
 			 NULL);
 }
 
