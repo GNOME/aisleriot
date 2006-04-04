@@ -510,6 +510,7 @@ int main (int argc, char *argv [])
   };
   gchar * var_file;
   GOptionContext *option_context;
+  GnomeProgram *program;
 
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -520,11 +521,11 @@ int main (int argc, char *argv [])
                                      aisleriot_opts,
                                      GETTEXT_PACKAGE);
   
-  gnome_program_init ("aisleriot", VERSION,
- 		      LIBGNOMEUI_MODULE, 
- 		      argc, argv,
- 		      GNOME_PARAM_GOPTION_CONTEXT, option_context,
- 		      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
+  program = gnome_program_init ("aisleriot", VERSION,
+				LIBGNOMEUI_MODULE, 
+				argc, argv,
+				GNOME_PARAM_GOPTION_CONTEXT, option_context,
+				GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
   glade_init ();
 
   gconf_client = gconf_client_get_default ();
@@ -560,5 +561,7 @@ int main (int argc, char *argv [])
   }
 
   scm_boot_guile (argc, argv, main_prog, NULL);
+
+  g_object_unref (program);
   return 0;
 }

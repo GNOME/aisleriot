@@ -538,6 +538,7 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   surface = gdk_pixmap_new (playing_area->window, window_width, window_height, -1);
 
   rescale_cards ();
+
   refresh_screen();
 
   /* Set up the double-click detection.*/
@@ -546,6 +547,7 @@ gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   settings = gtk_settings_get_default();
   g_object_get(G_OBJECT(settings),"gtk-double-click-time",&tmptime,NULL);
   dbl_click_time = tmptime/1000.0;
+
 
   return FALSE;
 }
