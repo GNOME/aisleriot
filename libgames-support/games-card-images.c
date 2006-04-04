@@ -19,6 +19,10 @@
 
 /* Manage a set of pixbufs containing a deck of cards. */
 
+/* #defining this prints out the time it takes to run 
+ * games_preimage_new_from_file (in seconds). */
+#undef INSTRUMENT_LOADING
+
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
@@ -61,6 +65,11 @@ static void games_card_images_render (GamesCardImages * images, gint cardid)
 static void games_card_images_prerender (GamesCardImages * images)
 {
   gchar * fullname;
+#ifdef INSTRUMENT_LOADING
+  clock_t t1, t2;
+
+  t1 = clock ();
+#endif
 
   /* FIXME: We should search a path. */
   fullname = g_strconcat (CARDDIR, images->themename, NULL);
@@ -82,7 +91,7 @@ static void games_card_images_prerender (GamesCardImages * images)
   }
 
   images->prescaled = games_preimage_is_scalable (images->preimage);
-  
+
   if (!images->prescaled){
     images->source = games_preimage_render_unscaled_pixbuf (images->preimage);
   } else {
@@ -95,6 +104,11 @@ static void games_card_images_prerender (GamesCardImages * images)
   images->subheight = gdk_pixbuf_get_height (images->source)/5;
 
   images->prerendered = TRUE;
+
+#ifdef INSTRUMENT_LOADING
+  t2 = clock ();
+  g_print ("%f\n", (t2 - t1)*1.0/CLOCKS_PER_SEC);
+#endif
 }
 
 static void games_card_images_purge (GamesCardImages * images)

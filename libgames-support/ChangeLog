@@ -1,3 +1,11 @@
+2006-04-04  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-card-images.c: Add some instrumentation code.
+
+	* games-preimage.c: Gain a factor of 2 in start-up time by using
+	gdk_pixbuf_get_file_info instead of a more-or-less-copy of it that
+	got broken by gdk-pixbuf changes.
+
 2006-03-24  Callum McKenzie  <callum@spooky-possum.org>
 
 	* games-scores-dialog.gob: Fix a comment typo.

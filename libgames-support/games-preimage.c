@@ -62,36 +62,6 @@ games_preimage_new (void)
   return GAMES_PREIMAGE (g_object_new (GAMES_TYPE_PREIMAGE, NULL));
 }
 
-/* size_info_cb:
- * Handles the size-prepared signal in games_preimage_new_from_file */
-static void
-size_info_cb (GdkPixbufLoader *loader, 
-	      gint              width,
-	      gint              height,
-	      gpointer         data)
-{
-  GdkPixbufFormat *format;
-
-  struct {
-    gint width;
-    gint height;
-    gboolean scalable;
-  } *info = data;
-
-  g_return_if_fail (width > 0 && height > 0);
-  
-  format = gdk_pixbuf_loader_get_format (loader);
-  
-  info->scalable = gdk_pixbuf_format_is_scalable(format);
- 
-  /* SVG files should provide a default width and height, which can be 
-   * used to describe the aspect ratio. If this is not specified, the
-   * the loader generates a warning, then provides an arbitrary width and
-   * height. (currently 512x512) */
-  info->width  = width;
-  info->height = height;
-}
-
 /* size_prepared_cb:
  * Handles the size-prepared signal in games_preimage_render */
 static void
@@ -187,15 +157,8 @@ games_preimage_new_from_file (const gchar *filename,
 			      GError     **error)
 {
   GamesPreimage   *preimage;
-  GdkPixbufLoader *loader;
   GdkPixbuf       *pixbuf;
-  
-  gchar *buffer;
-  gsize  buffer_size;
-  
-  gint     length; 
-  gint     offset = 0;
-  gboolean loader_closed;
+  GdkPixbufFormat *format;
   
   struct {
     gint      width;
@@ -203,64 +166,33 @@ games_preimage_new_from_file (const gchar *filename,
     gboolean scalable;
   } info;
   
-  info.scalable = FALSE;
-  
   g_return_val_if_fail (filename != NULL, NULL);
   
-  if (!g_file_get_contents (filename, &buffer, &buffer_size, NULL))
-    return NULL;
-  
-  loader = gdk_pixbuf_loader_new ();
-  g_signal_connect (loader, "size-prepared", G_CALLBACK (size_info_cb), &info);
-  
-  /* write to the loader, breaking early if we find a vector image*/
-  while ((buffer_size>offset) && !(info.scalable)) {
-    length = MIN (buffer_size-offset, LOAD_BUFFER_SIZE);
-    if (!gdk_pixbuf_loader_write (loader, (guchar *)buffer + offset, length, error)) {
-      gdk_pixbuf_loader_close (loader, NULL);
-      g_object_unref (loader);
-      g_free (buffer);
-      return NULL;
-    }
-    offset += length;
-  }
+  format = gdk_pixbuf_get_file_info (filename, &info.width, &info.height);
+  info.scalable = gdk_pixbuf_format_is_scalable (format);
 
-  loader_closed = gdk_pixbuf_loader_close (loader, error);
-  
   if (info.scalable) {   /* Prepare a vector image... */
-    
-    g_object_unref (loader);
-    
+
     preimage = games_preimage_new();
     
     preimage->scalable  = info.scalable;
     preimage->width     = info.width;
     preimage->height    = info.height;
-    preimage->srcbuffer = (guchar *)buffer;
-    preimage->srcsize   = buffer_size;
-    
-  } else {              /* ...Or prepare a raster image */
-   
-    g_free(buffer);
 
-    if (!loader_closed) {
-      g_object_unref (loader);
+    if (!g_file_get_contents (filename, (gchar **)&(preimage->srcbuffer), 
+			      &(preimage->srcsize), error)) {
+      g_object_unref (preimage);
       return NULL;
     }
     
-    pixbuf = gdk_pixbuf_loader_get_pixbuf (loader);
-    
+  } else {              /* ...Or prepare a raster image */
+    pixbuf = gdk_pixbuf_new_from_file (filename, error);
+       
     if (!pixbuf) {
-      g_object_unref (loader);
-      g_set_error (error,
-		   GDK_PIXBUF_ERROR,
-		   GDK_PIXBUF_ERROR_FAILED,
-		   _("Image rendering failed."));
       return NULL;
     }
     
     g_object_ref (pixbuf);
-    g_object_unref (loader);
     
     preimage = games_preimage_new ();
     
