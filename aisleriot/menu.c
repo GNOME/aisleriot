@@ -120,15 +120,25 @@ static void help_about_callback (void)
 	  NULL
   };
 
+  const gchar *documenters[] = {
+	  "Rosanna Yuen (zana@webwynk.net)",
+	  NULL
+  };
+
   gtk_show_about_dialog (GTK_WINDOW (app),
 			 "name", _("AisleRiot"),
 			 "version", VERSION,
-			 "comments", _("AisleRiot provides a rule-based solitaire card engine "
-				       "that allows many different games to be played."),
-			 "copyright", "Copyright \xc2\xa9 1998-2005 Jonathan Blandford",
+			 "comments", _("AisleRiot provides a rule-based solitaire\n"
+				       "card engine that allows many different\n"
+				       "games to be played."),
+			 "copyright", "Copyright \xc2\xa9 1998-2006 Jonathan Blandford",
+			 "license", "GPL 2+",
 			 "authors", authors,
+			 "documenters", documenters,
 			 "translator_credits", _("translator-credits"),
 			 "logo-icon-name", "gnome-aisleriot.png",
+			 "website", "http://www.gnome.org/projects/gnome-games/",
+			 "wrap-license", TRUE,
 			 NULL);
 }
 
