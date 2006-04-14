@@ -1,4 +1,4 @@
-/* gdk-card-image.c
+/* games-files.h:
    Copyright 2003 Callum McKenzie
 
    This library is free software; you can redistribute it and'or modify
@@ -41,13 +41,16 @@ struct _GamesFileListClass {
 
 GType games_file_list_get_type (void);
 
-GamesFileList * games_file_list_new (gchar * glob, ...) G_GNUC_NULL_TERMINATED;
+GamesFileList * games_file_list_new (const gchar * glob, ...) G_GNUC_NULL_TERMINATED;
 GamesFileList * games_file_list_new_images (gchar * path1, ...) G_GNUC_NULL_TERMINATED;
 
 void games_file_list_transform_basename (GamesFileList * list);
 
 void games_file_list_for_each (GamesFileList * filelist, GFunc function, 
 			       gpointer userdata);
+
+gchar * games_file_list_find (GamesFileList *filelist, GCompareFunc function, 
+			      gpointer userdata);
 
 gchar * games_file_list_get_nth (GamesFileList * filelist, gint n);
 

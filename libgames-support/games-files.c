@@ -50,7 +50,7 @@ static void games_file_list_remove_duplicates (GamesFileList *filelist)
   }
 }
 
-static GList * games_file_list_new_internal (gchar * glob, va_list path)
+static GList * games_file_list_new_internal (const gchar * glob, va_list path)
 {
   GPatternSpec * filespec = g_pattern_spec_new (glob);
   gchar * pathelement;
@@ -93,7 +93,7 @@ static GList * games_file_list_new_internal (gchar * glob, va_list path)
  * Return value: A pointer to a new GamesFileList containing files 
  * matching the glob in the path.
  **/
-GamesFileList * games_file_list_new (gchar * glob, ...)
+GamesFileList * games_file_list_new (const gchar * glob, ...)
 {
   GamesFileList * filelist;
   va_list paths;
@@ -324,6 +324,29 @@ void games_file_list_for_each (GamesFileList * filelist, GFunc function,
   g_list_foreach (filelist->list, function, userdata);
 }
 
+/**
+ * games_file_list_find:
+ * @filelist: The file list to iterate over.
+ * @function: The function to call on each item. It gets called with two 
+ * arguments: the file name and the pointer supplied to this function in 
+ * the userdata argument.
+ * @userdata: An arbitrary pointer that gets passed as the second argument
+ * to each call of function.
+ * 
+ * Find a file name by iterating through a list until the given function
+ * returns 0.
+ *
+ * Return value: A newly allocated string containing a copy of the file name.
+ **/
+gchar * games_file_list_find (GamesFileList *filelist, GCompareFunc function, 
+			      gpointer userdata)
+{
+  GList *element;
+
+  element = (gchar *)g_list_find_custom (filelist->list, userdata, function);
+
+  return g_strdup ((gchar *)element->data);
+}
 
 /**
  * games_file_list_get_nth:

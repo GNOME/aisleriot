@@ -497,8 +497,8 @@ retrieve_state (GnomeClient *client)
                                        "/apps/aisleriot/game_file",
                                        "klondike.scm");
   card_style = games_gconf_get_string (gconf_client,
-				       "/apps/aisleriot/card_style",
-				       "bonded-new.png");
+				       THEME_GCONF_KEY,
+				       "bonded.svg");
 }
 
 int main (int argc, char *argv [])

@@ -8,7 +8,7 @@ schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
 carddir = $(datadir)/pixmaps/gnome-games-common/cards
-card_DATA = bonded.png paris.svg
+card_DATA = bonded.svg paris.svg
 
 icondir = $(datadir)/pixmaps/gnome-games-common/icons
 icon_DATA = icons/teleport.png icons/rteleport.png
@@ -50,6 +50,8 @@ libgames_support_la_SOURCES =		\
 	games-frame.h			\
 	games-files.c			\
 	games-files.h			\
+	games-find-file.c		\
+	games-find-file.h		\
 	games-gridframe.c		\
 	games-gridframe.h		\
 	games-card-common.h		\

@@ -1,3 +1,21 @@
+2006-04-14  Callum McKenzie  <callum@spooky-possum.org>
+
+	* Makefile.am: Make the bonded card theme an SVG theme rather than
+	a PNG one. Add games-find-file.* to the build.
+
+	* games-card-images.c (games_card_images_prerender): Make the
+	fall-back code use the games_find_similar_file function.
+
+	* games-find-file.c: 
+	* games-find-file.h: New code to find a "similar" file in a given
+	path.
+
+	* games-files.c: Add a new function: games_file_list_find. It is
+	analogous to g_list_find_custom. Make the first argument of
+	games_file_list_new const.
+
+	* games-files.h: Fix up the file name in the leading comment.
+
 2006-04-04  Callum McKenzie  <callum@spooky-possum.org>
 
 	* games-card-images.c: Add some instrumentation code.

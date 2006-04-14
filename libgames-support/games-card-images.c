@@ -28,6 +28,7 @@
 
 #include "games-card-images.h"
 #include "games-card-common.h"
+#include "games-find-file.h"
 #include "games-preimage.h"
 
 G_DEFINE_TYPE(GamesCardImages, games_card_images, G_TYPE_OBJECT);
@@ -71,20 +72,30 @@ static void games_card_images_prerender (GamesCardImages * images)
   t1 = clock ();
 #endif
 
-  /* FIXME: We should search a path. */
-  fullname = g_strconcat (CARDDIR, images->themename, NULL);
+  /* First try and load the given file. */
   if (!images->preimage) {
+    /* FIXME: We should search a path. */
+    fullname = g_build_filename (CARDDIR, images->themename, NULL);
     images->preimage = games_preimage_new_from_file (fullname, NULL);
+    g_free (fullname);
   }
 
-  g_free (fullname);
+  /* Failing that, try and find a similar file (e.g. a suffix change). */
+  if (!images->preimage) {
+    fullname = games_find_similar_file (images->themename, CARDDIR, NULL);
+    images->preimage = games_preimage_new_from_file (fullname, NULL);    
+    g_free (fullname);
+  }
 
+  /* The try the default name. */
   if (!images->preimage) {
     g_warning ("Using a fallback card image set.");
-    fullname = CARDDIR"bonded.png";
+    fullname = g_build_filename (CARDDIR, "bonded.svg", NULL);
     images->preimage = games_preimage_new_from_file (fullname, NULL);    
+    g_free (fullname);
   }
 
+  /* If all that fails, report an error. */
   if (!images->preimage) {
     /* FIXME: Find a better way to report errors. */
     g_warning ("Failed to load the fallback file.\n");
