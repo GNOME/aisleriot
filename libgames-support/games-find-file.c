@@ -58,8 +58,7 @@ static gint compare_names (const gchar *filename, const gchar *ctarget)
   return keepgoing;
 }
 
-gchar * games_find_similar_file (const gchar *target, const gchar *directory, 
-				 const gchar *fallback)
+gchar * games_find_similar_file (const gchar *target, const gchar *directory)
 {
   GamesFileList *list;
   gchar *result;
@@ -70,9 +69,6 @@ gchar * games_find_similar_file (const gchar *target, const gchar *directory,
   list = games_file_list_new ("*", directory, NULL);
 
   result = games_file_list_find (list, (GCompareFunc) compare_names, ctarget);
-
-  if (result == NULL)
-    result = g_strdup (fallback);
 
   g_object_unref (list);
   g_free (ctarget);

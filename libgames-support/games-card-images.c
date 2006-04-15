@@ -82,7 +82,7 @@ static void games_card_images_prerender (GamesCardImages * images)
 
   /* Failing that, try and find a similar file (e.g. a suffix change). */
   if (!images->preimage) {
-    fullname = games_find_similar_file (images->themename, CARDDIR, NULL);
+    fullname = games_find_similar_file (images->themename, CARDDIR);
     images->preimage = games_preimage_new_from_file (fullname, NULL);    
     g_free (fullname);
   }

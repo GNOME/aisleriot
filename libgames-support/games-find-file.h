@@ -18,7 +18,15 @@
 
 /* Authors:   Callum McKenzie <callum@spooky-possum.org> */
 
+#ifndef GAMES_FIND_FILE_H
+#define GAMES_FIND_FILE_H
+
 #include <glib.h>
 
-gchar * games_find_similar_file (const gchar *target, const gchar *directory, 
-				 const gchar *fallback);
+G_BEGIN_DECLS
+
+gchar * games_find_similar_file (const gchar *target, const gchar *directory); 
+
+G_END_DECLS
+
+#endif
