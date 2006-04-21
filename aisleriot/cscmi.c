@@ -47,45 +47,16 @@ typedef struct {
 
 lambda_data* game_data = NULL;
 
-/* Scheme to C functions... */
+gint32 enabled_features;
 
-void add_slot(SCM slot_data) 
+SCM c2scm_card(hcard_type card) 
 {
-  hslot_type hslot = malloc(sizeof(slot_type));
-
-  hslot->id = SCM_INUM(SCM_CAR(slot_data));
-  hslot->cards = new_deck(SCM_CADR(slot_data));
-  hslot->x = scm_num2dbl (SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))), NULL);
-  hslot->y = scm_num2dbl (SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))), NULL);
-  
-  hslot->dx = hslot->dy = hslot->compressed_dy = 0;
-  hslot->expansion_depth = 0;
-
-  if (!strcmp("expanded", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    hslot->compressed_dy = hslot->dy = y_expanded_offset;
-  }
-  else if (!strcmp("expanded-right", 
-		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    hslot->dx = x_expanded_offset;
-  }
-  else if (!strcmp("partially-expanded", 
-		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    hslot->compressed_dy = hslot->dy = y_expanded_offset;
-    hslot->expansion_depth = SCM_INUM (SCM_CADDR(SCM_CADDR(slot_data)));
-  }
-  else if (!strcmp("partially-expanded-right", 
-		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
-    hslot->dx = x_expanded_offset;
-    hslot->expansion_depth = SCM_INUM(SCM_CADDR(SCM_CADDR(slot_data)));
-  }
-
-  hslot->length = hslot->exposed = 0;
-  update_slot_length(hslot);
-
-  slot_list = g_list_append(slot_list, hslot);
+  return scm_cons(scm_long2num(card->value),
+		 scm_cons(scm_long2num(card->suit),
+			  scm_cons(SCM_BOOL(!card->direction), SCM_EOL)));
 }
 
-hcard_type new_card(SCM card_data) 
+static hcard_type scm2c_card(SCM card_data) 
 {
   hcard_type temp_card = malloc(sizeof(card_type));
 
@@ -96,25 +67,48 @@ hcard_type new_card(SCM card_data)
   return temp_card;
 }
 
-GList* new_deck(SCM deck_data) 
+static GList* scm2c_deck(SCM deck_data) 
 {
   SCM list_el;
   GList* temp_deck = NULL;
 
   if (SCM_NFALSEP(deck_data)) {
     for (list_el = deck_data; list_el != SCM_EOL; list_el = SCM_CDR(list_el))
-      add_card(&temp_deck,new_card(SCM_CAR(list_el)));
+      temp_deck = g_list_prepend(temp_deck, scm2c_card(SCM_CAR(list_el)));
   }
   
-  return g_list_reverse(temp_deck);
+  return temp_deck;
 }
 
-/* C to Scheme functions... */
-SCM make_card(hcard_type card) 
+static void cscmi_add_slot(SCM slot_data) 
 {
-  return scm_cons(scm_long2num(card->value),
-		 scm_cons(scm_long2num(card->suit),
-			  scm_cons(SCM_BOOL(!card->direction), SCM_EOL)));
+  gboolean expanded_down = FALSE;
+  gboolean expanded_right = FALSE;
+  gint expansion_depth = 0;
+
+  if (!strcmp("expanded", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+    expanded_down = TRUE;
+  }
+  else if (!strcmp("expanded-right", 
+		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+    expanded_right = TRUE;
+  }
+  else if (!strcmp("partially-expanded", 
+		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+    expanded_down = TRUE;
+    expansion_depth = SCM_INUM (SCM_CADDR(SCM_CADDR(slot_data)));
+  }
+  else if (!strcmp("partially-expanded-right", 
+		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+    expanded_right = TRUE;
+    expansion_depth = SCM_INUM(SCM_CADDR(SCM_CADDR(slot_data)));
+  }
+
+  add_slot(/* id = */ SCM_INUM(SCM_CAR(slot_data)),
+	   /* cards = */ scm2c_deck(SCM_CADR(slot_data)),
+	   /* x = */ scm_num2dbl (SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))), NULL),
+	   /* y = */ scm_num2dbl (SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))), NULL),
+	   expanded_down, expanded_right, expansion_depth);
 }
 
 /* Scheme functions */
@@ -185,7 +179,7 @@ static SCM scm_set_surface_layout(SCM surface)
     delete_surface();
 
     for (list_el = surface; list_el != SCM_EOL; list_el = SCM_CDR(list_el))
-      add_slot(SCM_CAR(list_el));
+      cscmi_add_slot(SCM_CAR(list_el));
   }
   return SCM_EOL;
 }
@@ -199,7 +193,7 @@ static SCM scm_reset_surface()
 
 static SCM gg_scm_add_slot(SCM slot) 
 {
-  add_slot(slot);
+  cscmi_add_slot(slot);
   return SCM_EOL;
 }
 
@@ -224,7 +218,7 @@ static SCM scm_get_slot(SCM scm_slot_id)
   GList* tempcard;
   if (slot) {
     for (tempcard = slot->cards; tempcard; tempcard = tempcard->next)
-      cards = scm_cons(make_card(tempcard->data), cards);
+      cards = scm_cons(c2scm_card(tempcard->data), cards);
 
     cards = scm_cons(scm_slot_id, scm_cons(cards, SCM_EOL));
   }
@@ -239,7 +233,7 @@ static SCM scm_set_cards(SCM scm_slot_id, SCM new_cards)
   for (tempptr = hslot->cards; tempptr; tempptr = tempptr->next)
     free(tempptr->data);
 
-  hslot->cards = new_deck(new_cards);
+  hslot->cards = scm2c_deck(new_cards);
   update_slot_length(hslot);
 
   return SCM_BOOL_T;
@@ -287,21 +281,20 @@ static SCM scm_click_to_move_p (void)
 
 static SCM scm_get_score(void) 
 {
-  return scm_long2num(score);
+  return scm_long2num(get_score());
 }
 
 static SCM scm_set_score(SCM new) 
 {
-  score = scm_num2int(new, SCM_ARG1, NULL);
-  set_score();
-  return scm_long2num(score);
+  set_score(scm_num2int(new, SCM_ARG1, NULL));
+  return new;
 }
 
-static SCM scm_add_to_score(SCM new) 
+static SCM scm_add_to_score(SCM delta) 
 {
-  score += scm_num2int(new, SCM_ARG1, NULL);
-  set_score();
-  return scm_long2num(score);
+  guint new_score = get_score() + scm_num2int(delta, SCM_ARG1, NULL);
+  set_score(new_score);
+  return scm_long2num(new_score);
 }
 
 static SCM scm_set_timeout (SCM new) 
@@ -748,7 +741,7 @@ cscmi_get_options_lambda (void)
 }
 
 gboolean
-has_options (void)
+cscmi_has_options (void)
 {
   SCM options;
 

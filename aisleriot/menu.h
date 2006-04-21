@@ -20,11 +20,9 @@
 #ifndef MENU_H
 #define MENU_H
 
-void random_seed ( void );
 void undo_callback ( void );
 void redo_callback ( void );
 void create_menus ( void );
-void toolbar_hide ( void );
 void undo_set_sensitive (gboolean state);
 void redo_set_sensitive (gboolean state);
 void option_list_set_sensitive (void);

@@ -23,11 +23,12 @@
 #include <games-preimage.h>
 #include <games-card-pixmaps.h>
 
+GdkBitmap *card_mask = NULL;
+
 GdkPixmap *default_background_pixmap; 
 GdkPixmap *droptarget_pixmap;
 GamesPreimage *slot_preimage;
 GdkPixmap *slot_pixmap = NULL;
-GdkBitmap *mask = NULL;
 GdkBitmap *slot_mask = NULL;
 GdkPixbuf* comppixbuf = NULL;
 
@@ -154,10 +155,6 @@ void free_pixmaps ()
     g_object_unref (default_background_pixmap);
 }
 
-void add_card(GList** card_list, hcard_type temp_card) {
-  *card_list = g_list_append(*card_list, temp_card);
-}
-
 void set_card_size (gint width, gint height)
 {
   GdkPixbuf *scaled;
@@ -188,8 +185,8 @@ void set_card_size (gint width, gint height)
 
   games_card_pixmaps_set_size (images, width, height);  
 
-  mask = games_card_pixmaps_get_mask (images);
-  gdk_gc_set_clip_mask (draw_gc, mask);
+  card_mask = games_card_pixmaps_get_mask (images);
+  gdk_gc_set_clip_mask (draw_gc, card_mask);
 
   comppixbuf = gdk_pixbuf_copy (games_card_images_get_back (GAMES_CARD_IMAGES(images)));
   droptarget_pixmap = gdk_pixmap_new (GDK_DRAWABLE(playing_area->window), width, height, -1);
@@ -198,6 +195,6 @@ void set_card_size (gint width, gint height)
 void set_card_theme (gchar * theme)
 {
   games_card_pixmaps_set_theme (images, theme);
-  mask = games_card_pixmaps_get_mask (images);
-  gdk_gc_set_clip_mask (draw_gc, mask);  
+  card_mask = games_card_pixmaps_get_mask (images);
+  gdk_gc_set_clip_mask (draw_gc, card_mask);  
 }

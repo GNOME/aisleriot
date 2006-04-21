@@ -57,7 +57,7 @@ void generate_press_data ( ) {
   GdkColor masked = {0, 0, 0, 0}, unmasked = {1, 65535, 65535, 65535};
 
   for (tempptr = hslot->cards; tempptr; tempptr = tempptr->next)
-    old_cards = scm_cons (make_card(tempptr->data), old_cards);
+    old_cards = scm_cons (c2scm_card(tempptr->data), old_cards);
 
   delta = hslot->exposed - (hslot->length - press_data->cardid) - 1;
   press_data->xoffset -= x = hslot->pixelx + delta * hslot->pixeldx;
@@ -85,8 +85,8 @@ void generate_press_data ( ) {
   gdk_draw_rectangle (press_data->moving_mask, gc2, TRUE, 0, 0, width, height);
   gdk_gc_set_foreground (gc2, &unmasked);
 
-  gdk_gc_set_clip_mask (gc1, mask); 
-  gdk_gc_set_clip_mask (gc2, mask); 
+  gdk_gc_set_clip_mask (gc1, card_mask); 
+  gdk_gc_set_clip_mask (gc2, card_mask); 
 
   x = y = 0; width = card_width; height = card_height;
 

@@ -23,8 +23,33 @@
 #include "slot.h"
 #include "card.h"
 #include "draw.h"
+#include "sol.h"
 
 GList *slot_list = NULL;
+
+void add_slot(gint id, GList *cards, double x, double y, 
+	      gboolean expanded_down, gboolean expanded_right, 
+	      gint expansion_depth) {
+  const double x_expanded_offset = 0.21;
+  const double y_expanded_offset = 0.21;
+
+  /* create and initialize slot */
+  hslot_type hslot = malloc(sizeof(struct _slot_struct));
+  hslot->id = id;
+  hslot->cards = cards; /* list belongs to the slot now */
+  hslot->x = x;
+  hslot->y = y;
+  hslot->dx = expanded_right ? x_expanded_offset : 0;
+  hslot->dy = expanded_down ? y_expanded_offset : 0;
+  hslot->compressed_dy = hslot->dy;
+  hslot->expansion_depth = expansion_depth;
+  hslot->length = 0;
+  hslot->exposed = 0;
+  update_slot_length(hslot);
+
+  /* add to slot list */
+  slot_list = g_list_append(slot_list, hslot);
+}
 
 void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
   GList *tempptr;
@@ -119,7 +144,7 @@ void add_cards_to_slot(GList* newcards, hslot_type hslot) {
   update_slot_length(hslot);
 }
 
-void delete_slot(hslot_type hslot) {
+static void delete_slot(hslot_type hslot) {
   GList* temptr;
   
   for (temptr = hslot->cards; temptr; temptr = temptr->next)

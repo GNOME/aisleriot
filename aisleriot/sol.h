@@ -46,25 +46,18 @@
 
 extern GtkWidget*       app;
 extern GtkWidget*       playing_area;
-extern GtkWidget*       option_dialog;
 extern GtkWidget*       statusbar;
 extern GdkGC*           draw_gc;
 extern GdkGC*           slot_gc;
 extern GdkGC*           bg_gc;
 extern GdkPixmap*       surface;
-extern GdkPixmap*       moving_card_pixmap;
 extern gchar*	  	card_style;
 
-extern gint		enabled_features;
 extern gboolean		droppable_is_featured;
 extern gboolean		score_is_hidden;
 
-extern guint            score;
-extern guint            game_time;
 extern guint            timeout;
 extern guint            seed;
-extern guint            n_games;
-extern struct dirent**  game_dents;
 extern gchar*           game_file;
 extern gchar*           game_name;
 extern gboolean         game_in_progress;
@@ -73,23 +66,18 @@ extern gboolean         game_won;
 extern gboolean         click_to_move;
 extern gchar            *gamesdir;
 
-extern guint            x_spacing;
-extern guint            y_spacing;
-extern double            x_expanded_offset;
-extern double            y_expanded_offset;
-
 extern GConfClient * gconf_client;
 
 gchar* game_file_to_name(const gchar* file);
 void new_game(gchar* file, guint *seed);
-void quit_app (GtkMenuItem*);
-void set_score (void);
-void timer_start (void);
-void timer_restart (void);
-void timer_stop (void);
-void timer_reset (void);
-guint timer_get (void);
-void make_title (void);
+void quit_app(GtkMenuItem*);
+void set_score(guint new_score);
+guint get_score(void);
+void timer_start(void);
+void timer_restart(void);
+void timer_stop(void);
+void timer_reset(void);
+guint timer_get(void);
 void eval_installed_file(gchar *file);
 
 #endif

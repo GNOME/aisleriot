@@ -68,14 +68,12 @@ gboolean         dont_save = FALSE; /* If the game is selected on the
                                      * This is essential for Freecell
                                      * emulation.*/
 
-gint32		 enabled_features;
 gboolean	 droppable_is_featured;
 gboolean	 score_is_hidden; 
 
 guint            score;
 guint            timeout;
 guint32          seed;
-guint            n_games;
 gchar            *game_file = "";
 gchar            *game_name;
 gboolean         game_in_progress = FALSE;
@@ -85,10 +83,6 @@ gboolean         click_to_move = FALSE;
 gchar            *variation = "";
 gchar            *gamesdir;
 
-guint            x_spacing = 5;
-guint            y_spacing = 15;
-double           x_expanded_offset = 0.21;
-double           y_expanded_offset = 0.21;
 GConfClient      *gconf_client = NULL;
 
 #define DEFAULT_VARIATION "klondike.scm"
@@ -269,8 +263,7 @@ void new_game (gchar* file, guint *seedp)
   }
 
   g_random_set_seed(seed);
-  score = 0;
-  set_score();
+  set_score(0);
   timer_reset ();
 
   size = cscmi_start_game_lambda ();
@@ -297,12 +290,19 @@ void new_game (gchar* file, guint *seedp)
 
 GtkWidget *score_value;
 
-void set_score () 
+guint score;
+
+void set_score(guint new_score) 
 {
   char b [10];
+  score = new_score;
   g_snprintf (b, sizeof (b), "%6d  ", score);
-
   gtk_label_set_text(GTK_LABEL(score_value), b);
+}
+
+guint get_score()
+{
+  return score;
 }
 
 GtkWidget *time_value;

@@ -87,7 +87,7 @@ static gboolean cards_are_droppable (hslot_type hslot) {
       if (!hslot) return FALSE;
 
       for (temp = press_data->cards; temp; temp = temp->next)
-        cardlist = scm_cons(make_card(temp->data), cardlist);
+        cardlist = scm_cons(c2scm_card(temp->data), cardlist);
       return SCM_NFALSEP (cscmi_droppable_lambda (scm_long2num (press_data->hslot->id),
                                                   cardlist,
                                                   scm_long2num (hslot->id)));
@@ -196,7 +196,7 @@ void drop_moving_cards(gint x, gint y) {
 
   if (hslot) {
     for (temp = press_data->cards; temp; temp = temp->next)
-      cardlist = scm_cons(make_card(temp->data), cardlist);
+      cardlist = scm_cons(c2scm_card(temp->data), cardlist);
     moved = SCM_NFALSEP (cscmi_button_released_lambda (scm_long2num (press_data->hslot->id),
 						       cardlist, 
 						       scm_long2num (hslot->id)));
@@ -246,7 +246,7 @@ static void highlight_drop_target(hslot_type hslot) {
           gdk_window_set_back_pixmap (press_data->highlight_window,
                                       droptarget_pixmap, 0);
           gdk_window_shape_combine_mask (press_data->highlight_window,
-                                    	 mask, 0, 0);
+                                    	 card_mask, 0, 0);
           gdk_window_resize(press_data->highlight_window, 
 			    card_width, card_height);
           gdk_window_clear(press_data->highlight_window);
@@ -329,7 +329,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
       press_data->status = STATUS_SHOW;
       press_data->moving_pixmap = get_card_picture (card->suit, card->value);
-      press_data->moving_mask = mask;
+      press_data->moving_mask = card_mask;
 
       if (press_data->moving_pixmap != NULL)
         gdk_window_set_back_pixmap (press_data->moving_cards, 
@@ -354,7 +354,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
     SCM cardlist = SCM_EOL;
 
     for (; glist; glist = glist->next)
-      cardlist = scm_cons(make_card((hcard_type)glist->data), cardlist);
+      cardlist = scm_cons(c2scm_card((hcard_type)glist->data), cardlist);
     
     drag_valid = SCM_NFALSEP (cscmi_button_pressed_lambda (scm_long2num (press_data->hslot->id), 
 							   cardlist));
@@ -474,7 +474,6 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
     press_data->status = STATUS_IS_DRAG;
     generate_press_data ();
     refresh_screen ();
-    take_snapshot();
     set_cursor (CURSOR_CLOSED);
   } else {
     set_cursor_by_location (CURSOR_OPEN, event->x, event->y);

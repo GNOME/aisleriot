@@ -29,14 +29,9 @@
 /* Init function */
 void       cscm_init                          (void);
 
-/* Scheme to C functions... */
-void       add_slot                           (SCM        slot_data);
-GList*     new_deck                           (SCM        deck_data);
-hcard_type new_card                           (SCM        card_data);
-gboolean   has_options                        (void);
-
 /* C to Scheme functions... */
-SCM        make_card                          (hcard_type card);
+SCM        c2scm_card                          (hcard_type card);
+gboolean   cscmi_has_options                        (void);
 SCM        cscmi_start_game_lambda            (void);
 SCM        cscmi_button_pressed_lambda        (SCM        slot_id,
 					       SCM        cards);

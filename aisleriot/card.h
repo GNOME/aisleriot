@@ -44,7 +44,7 @@ typedef card_type* hcard_type;
 /*
  * Variables
  */
-extern GdkBitmap *mask;
+extern GdkBitmap *card_mask;
 
 /*
  * Functions
@@ -61,5 +61,4 @@ void set_card_theme (gchar * theme);
 void load_pixmaps (void);
 void free_pixmaps (void);
 
-void add_card (GList**, hcard_type);
 #endif

@@ -26,8 +26,7 @@
  * Data Structures
  */
 
-typedef struct {
-
+struct _slot_struct {
   gint id;
   GList* cards;
   /* The location in slot co-ordinates. Filled in by the game code. */
@@ -50,12 +49,9 @@ typedef struct {
   gint expansion_depth;
   gint width;
   gint height;
+};
 
-} slot_type;
-
-typedef slot_type* hslot_type;
-
-extern GList *slot_list;
+typedef struct _slot_struct* hslot_type;
 
 /*
  * Functions
@@ -65,12 +61,13 @@ void slot_pressed (gint, gint, hslot_type *, gint*);
 void card_offset (hslot_type, gint, gint*, gint*);
 GList* get_slot_list(void);
 void delete_surface(void);
-void delete_slot(hslot_type);
 hslot_type get_slot(gint);
-void increase_slot_length(hslot_type);
-void reduce_slot_length(hslot_type);
 void add_cards_to_slot(GList*, hslot_type hslot);
 void update_slot_length(hslot_type hslot);
+
+void add_slot(gint id, GList *cards, double x, double y, 
+	      gboolean expanded_down, gboolean expanded_right, 
+	      gint expansion_depth);
 
 #endif
 

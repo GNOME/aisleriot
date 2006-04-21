@@ -78,7 +78,7 @@ static void restart_game ()
   new_game (NULL, &seed);
 };
 
-void random_seed ()
+static void new_game_action ()
 {
   if (waiting_for_mouse_up()) return;
   new_game (NULL, NULL);
@@ -233,7 +233,7 @@ static const GtkActionEntry actions[] = {
   { "OptionsMenu", NULL, "Options" /* not translated on purpose */ },
   { "HelpMenu", NULL, N_("_Help") },
 
-  { "NewGame", GAMES_STOCK_NEW_GAME, NULL, NULL, NULL, G_CALLBACK (random_seed) },
+  { "NewGame", GAMES_STOCK_NEW_GAME, NULL, NULL, NULL, G_CALLBACK (new_game_action) },
   { "RestartGame", GAMES_STOCK_RESTART_GAME, NULL, NULL, NULL, G_CALLBACK (restart_game) },
   { "Select", GTK_STOCK_INDEX, N_("_Select Game..."), "<Ctrl>o", N_("Play a different game"), G_CALLBACK (show_select_game_dialog) },
   { "Statistics", GTK_STOCK_ADD, N_("S_tatistics"), NULL, N_("Show gameplay statistics"), G_CALLBACK (show_statistics_dialog) },
@@ -507,7 +507,7 @@ void install_options_menu (gchar *name)
     options_group = NULL;
   }
 
-  if (has_options ()) {
+  if (cscmi_has_options ()) {
     menuaction = gtk_action_group_get_action (action_group, "OptionsMenu");
     g_object_set (G_OBJECT (menuaction), "label", name, NULL);
 
