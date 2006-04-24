@@ -1,3 +1,59 @@
+gnome-games 2.15.1
+==================
+
+It's that time of release-cycle again. Time for completely new code
+and completely new bugs. A lot of the work so far has been clean-up
+work, especially those focused on by the GNOME Goals. Thomas Andersen,
+Thomas Thurman, Paolo Borelli and Przemysì©©aw Grzegorczyk deserve
+special thanks for their efforts towards these. The other highlights
+are Avahi support and resizeable graphics in Robots.
+
+My primary goals for this release cycle are to finish the resizing
+work and to fully migrate all the games to the new high-score
+system. I would also like to revamp the networking user-interface to
+make playing games with your friends trivial.
+
+General:
+ - Avahi support courtesy of Daniel Haischt.
+ - The bonded card set now uses vector graphics for the ranks.
+ - Use icon themes everywhere.
+ - Updated about dialogs.
+ - Incorrect documentation links fixed.
+ - Migrate command-line options from popt to GOption.
+ - With some themes, look for a similar name if the exact name isn't there
+   (e.g. find bonded.svg if bonded.png isn't around anymore).
+
+Aisleriot:
+ - Many. many, minor fixes.
+ - Code clean-up by Amnon Aaronsohn.
+ - Double-clicking the foundations in seahaven triggers auto-play.
+
+Ataxx:
+ - Added a secondary hilight to the selected piece.
+
+Gnometris:
+ - Change the command line options to work with the new level system.	
+
+Mahjongg:
+ - Reorganise the menu sensitivity.
+ - Make sure we start the clock whenever the player does something that
+   looks like starting a game (e.g. asks for a hint).
+
+Nibbles:
+ - Use the new high score system.
+ 
+Robots:
+ - Make the graphics resizeable.
+ - Use new SVG graphics from Nicu Buculei.
+ - The bubble graphics appear in the theme menu: this is a known bug.
+
+Same GNOME:
+ - Make sure the command-line options work.
+
+Tetraves:
+ - Use the new high score system.
+
+
 gnome-games 2.14.0
 ==================
 
@@ -388,7 +444,7 @@ Gnometris:
 
 Nibbles:
 
-- New graphics from AurÈlio A. Heckert
+- New graphics from AurÅÈlio A. Heckert
 
 Tali:
 
@@ -697,7 +753,7 @@ William Jon McCann
 Paolo Borelli
 Jonathan Blandford
 Damien Laniel
-Andreas R¯sdal
+Andreas RÅ¯sdal
 Thomas Vander Stichele
 
 Major changes since 2.9.0:
@@ -1047,7 +1103,7 @@ This is the first release of the 2.9 *unstable* series of gnome-games.
 
 Important changes:
  - Network games support zeroconf if libhowl is available (thanks to 
-   Andreas R¯sdal).
+   Andreas RÅ¯sdal).
  - Four-in-a-row and Klotski are now resizeable (Paolo Borelli and 
    Richard Hoelscher respectively).
  - Player-visible random number seeds have been eliminated from gnome-games.
@@ -1160,7 +1216,7 @@ Callum McKenzie
 Richard Hoelscher
 Paolo Borelli
 Jon McCann
-Andreas R¯sdal
+Andreas RÅ¯sdal
 Ryan Stutsman
 Matthew V. Ball
 Angela Boyle
@@ -1338,8 +1394,8 @@ Gnometris:
  - Configurable keyboard controls (Paolo Borelli)
 
 Iagno:
- - Factored out the network code (Andreas R¯sdal)
- - New network dialog (Andreas R¯sdal)
+ - Factored out the network code (Andreas RÅ¯sdal)
+ - New network dialog (Andreas RÅ¯sdal)
 
 Klotski:
  - It's back !
