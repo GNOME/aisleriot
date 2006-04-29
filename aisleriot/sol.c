@@ -392,6 +392,8 @@ static void create_sol_board ()
 		      GTK_SIGNAL_FUNC (configure_event), NULL);
   g_signal_connect (G_OBJECT (playing_area), "expose_event",
 		    GTK_SIGNAL_FUNC (expose_event), NULL);
+  /* No need for gtk's double buffering, since we have our own. */
+  gtk_widget_set_double_buffered(playing_area, FALSE);
 }
 
 void quit_app (GtkMenuItem *menuitem)
