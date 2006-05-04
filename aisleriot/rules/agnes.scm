@@ -168,7 +168,7 @@
 (define (autoplay-foundations)
   (define (autoplay-foundations-tail)
     (if (or-map button-double-clicked '(5 6 7 8 9 10 11))
-        (autoplay-foundations-tail)
+        (delayed-call autoplay-foundations-tail)
         #t))
   (if (or-map button-double-clicked '(5 6 7 8 9 10 11))
       (autoplay-foundations-tail)

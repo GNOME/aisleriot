@@ -200,7 +200,7 @@
 (define (autoplay-foundations)
   (define (autoplay-foundations-tail)
     (if (or-map button-double-clicked (append freecells tableau))
-        (autoplay-foundations-tail)
+        (delayed-call autoplay-foundations-tail)
         #t))
   (if (or-map button-double-clicked (append freecells tableau))
       (autoplay-foundations-tail)

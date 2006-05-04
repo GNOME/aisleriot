@@ -39,13 +39,6 @@
 
 ;;; Code:
 
-
-;;
-;; Game Options
-;;
-(define option-auto-move #t)
-(define option-one-by-one #f)
-
 ;;
 ;; Constants
 ;;
@@ -288,31 +281,34 @@
 )
 
 (define (move-low-cards slot)
-	(and
-		(not (homecell? slot))
-		(not (empty-slot? slot))
-		(let ((card (get-top-card slot)))
-			(if (= (get-color card) red)
-				(and
-					(<= (get-value card) (max-auto-red))
-					(move-card-to-homecell card (homecell-by-suit (get-suit card)))
-					(remove-card slot)
-					(move-low-cards 0)
-				)
-				(and
-					(<= (get-value card) (max-auto-black))
-					(move-card-to-homecell card (homecell-by-suit (get-suit card)))
-					(remove-card slot)
-					(move-low-cards 0)
-				)
-			)
-		)
-	)
-	(if (< slot field-8)
-		(move-low-cards (+ 1 slot))
-		#t
-	)
-)
+  (or
+   (and
+    (not (homecell? slot))
+    (not (empty-slot? slot))
+    (let ((card (get-top-card slot)))
+      (if (= (get-color card) red)
+	  (and
+	   (<= (get-value card) (max-auto-red))
+	   (move-card-to-homecell card (homecell-by-suit (get-suit card)))
+	   (remove-card slot)
+	   (delayed-call ((lambda (x) (lambda () (move-low-cards x))) 0))
+	   )
+	  (and
+	   (<= (get-value card) (max-auto-black))
+	   (move-card-to-homecell card (homecell-by-suit (get-suit card)))
+	   (remove-card slot)
+	   (delayed-call ((lambda (x) (lambda () (move-low-cards x))) 0))
+					;	(move-low-cards 0)
+	   )
+	  )
+      )
+    )
+   (if (< slot field-8)
+       (move-low-cards (+ 1 slot))
+       #t
+       )
+   )
+  )
 
 ;;
 ;; Callbacks & Initialize the game
@@ -426,13 +422,9 @@
 
 (define (get-options) 
   #f)
-;  '(("Auto move to homecell" option-auto-move)
-;    ("Move one by one" option-one-by-one)))
 
 (define (apply-options options) 
   #f)
-;  (set! option-auto-move (cadar options))
-;  (set! option-auto-move (cadadr options)))
 
 (define (timeout) 
   ; (FIXME)

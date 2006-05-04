@@ -1,3 +1,21 @@
+2006-05-04  Callum McKenzie  <callum@spooky-possum.org>
+
+	* rules/union_square.scm (autoplay-foundations): 
+	* rules/saratoga.scm (autoplay-foundations): 
+	* rules/jumbo.scm (autoplay-foundations): 
+	* rules/gypsy.scm (autoplay-foundations): 
+	* rules/athena.scm (autoplay-foundations): 
+	* rules/agnes.scm (autoplay-foundations): 
+	* rules/klondike.scm (autoplay-foundations): 
+	* rules/freecell.scm (move-low-cards): Use delayed-call.
+
+	* cscmi.c: Add a delayed-call function so scheme code can animate
+	auto-moves by delaying parts of the recursion. See bug #338453.
+
+2006-05-02  Callum McKenzie  <callum@spooky-possum.org>
+
+	* rules/freecell.scm: Remove some unused option variables.
+
 2006-04-29  Callum McKenzie  <callum@spooky-possum.org>
 
 	* sol.c (create_sol_board): Patch from Amnon Aaronsohn to disable

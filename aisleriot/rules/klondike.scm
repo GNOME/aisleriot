@@ -150,7 +150,7 @@
 (define (autoplay-foundations)
   (define (autoplay-foundations-tail)
     (if (or-map button-double-clicked (cons waste tableau))
-        (autoplay-foundations-tail)
+        (delayed-call autoplay-foundations-tail)
         #t))
   (if (or-map button-double-clicked (cons waste tableau))
       (autoplay-foundations-tail)
