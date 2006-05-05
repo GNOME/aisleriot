@@ -336,7 +336,8 @@ void games_file_list_for_each (GamesFileList * filelist, GFunc function,
  * Find a file name by iterating through a list until the given function
  * returns 0.
  *
- * Return value: A newly allocated string containing a copy of the file name.
+ * Return value: A newly allocated string containing a copy of the file name,
+ * or NULL if no file name was found.
  **/
 gchar * games_file_list_find (GamesFileList *filelist, GCompareFunc function, 
 			      gpointer userdata)
@@ -345,7 +346,7 @@ gchar * games_file_list_find (GamesFileList *filelist, GCompareFunc function,
 
   element = (gchar *)g_list_find_custom (filelist->list, userdata, function);
 
-  return g_strdup ((gchar *)element->data);
+  return element ? g_strdup ((gchar *)element->data) : NULL;
 }
 
 /**

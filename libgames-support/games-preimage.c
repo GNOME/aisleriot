@@ -167,8 +167,15 @@ games_preimage_new_from_file (const gchar *filename,
   } info;
   
   g_return_val_if_fail (filename != NULL, NULL);
-  
+
   format = gdk_pixbuf_get_file_info (filename, &info.width, &info.height);
+
+  /* Catch a dud filename. This is not a warning since we might be 
+   * blindly, but deliberately, testing for files. */
+  if (!format) {
+    return NULL;
+  }
+
   info.scalable = gdk_pixbuf_format_is_scalable (format);
 
   if (info.scalable) {   /* Prepare a vector image... */
