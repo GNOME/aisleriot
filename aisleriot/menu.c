@@ -144,12 +144,14 @@ static void help_about_callback (void)
 
 static void general_help (void)
 {
-  gnome_help_display ("aisleriot.xml", NULL, NULL);
+  gnome_help_display_on_screen ("aisleriot.xml", NULL,
+				gtk_widget_get_screen (app), NULL);
 }
 
 static void help_on_specific_game (void)
 {
-  gnome_help_display ("aisleriot.xml", ugamename, NULL);
+  gnome_help_display_on_screen ("aisleriot.xml", ugamename,
+				gtk_widget_get_screen (app), NULL);
 }
 
 static void toolbar_toggle_callback(GtkToggleAction * togglebutton, 
