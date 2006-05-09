@@ -231,6 +231,9 @@ void show_select_game_dialog (void)
 
     g_object_unref (files);
 
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list),
+					  0, GTK_SORT_ASCENDING);
+
     gtk_dialog_set_default_response ( GTK_DIALOG (dialog), GTK_RESPONSE_OK );
 
     g_signal_connect (G_OBJECT (dialog), "response", 
