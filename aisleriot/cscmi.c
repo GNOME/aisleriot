@@ -492,8 +492,6 @@ static gint scm_execute_delayed_function (SCM callback)
 {
   CallData *call_data;
 
-  g_print ("Executing %p\n", callback);
-
   call_data = g_new0 (CallData, 1);
   call_data->lambda = callback;
   call_data->n_args = 0;
@@ -504,11 +502,11 @@ static gint scm_execute_delayed_function (SCM callback)
 			    NULL);
   g_free (call_data);
 
-  scm_unprotect_object (callback);
-
-  g_print ("Executed\n");
+  scm_gc_unprotect_object (callback);
 
   refresh_screen ();
+
+  end_of_game_test ();
 
   return FALSE;
 }
@@ -518,14 +516,14 @@ static SCM scm_delayed_call (SCM callback)
   /* This is necessary since guile can't pick up on the fact that 
    * we're storing the callback value uins g_timeout_add and callback
    * gets prematurely grabage collected. */
-  scm_protect_object (callback);
+  scm_gc_protect_object (callback);
 
   g_timeout_add (50, (GSourceFunc) scm_execute_delayed_function, callback);
   /* FIXME: We may hae the inhibit the event handling
    * since this is designed to be called from auto-move
    * code and there could be a race condition. */
 
-  return SCM_BOOL_F;
+  return SCM_BOOL_T;
 }
 
 void cscm_init () 
