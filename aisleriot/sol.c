@@ -217,7 +217,7 @@ static void check_game_file_name (void)
 
 void new_game (gchar* file, guint *seedp)
 {
-  SCM size;
+  double width, height;
 
   /* If we're aborting an old game count it as a failure for
    * statistical purposes. */
@@ -266,15 +266,14 @@ void new_game (gchar* file, guint *seedp)
   set_score(0);
   timer_reset ();
 
-  size = cscmi_start_game_lambda ();
+  cscmi_start_game_lambda(&width, &height);
   scm_c_eval_string ("(start-game)");
 
-  set_geometry (scm_num2double (SCM_CAR (size), 0, NULL),
-		scm_num2double (SCM_CADR (size), 0, NULL));
+  set_geometry(width, height);
 
   /* It is possible for some games to not have any moves right from the
    * start. If this happens we redeal. */
-  if (!SCM_NFALSEP (cscmi_game_over_lambda ())) {
+  if (!cscmi_game_over_lambda()) {
     new_game (file, NULL);
   } else {
     if (surface)

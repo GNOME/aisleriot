@@ -60,9 +60,10 @@ typedef struct _slot_struct* hslot_type;
 void slot_pressed (gint, gint, hslot_type *, gint*);
 void card_offset (hslot_type, gint, gint*, gint*);
 GList* get_slot_list(void);
-void delete_surface(void);
+void delete_all_slots(void);
 hslot_type get_slot(gint);
 void add_cards_to_slot(GList*, hslot_type hslot);
+void slot_set_cards(GList*, hslot_type hslot);
 void update_slot_length(hslot_type hslot);
 
 void add_slot(gint id, GList *cards, double x, double y, 

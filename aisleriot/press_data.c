@@ -50,22 +50,21 @@ void create_press_data (GdkWindow * window)
 
 void generate_press_data ( ) {
   GList* tempptr;
-  SCM old_cards = SCM_EOL; 
   hslot_type hslot = press_data->hslot;
   gint delta, height, width, x, y;
   GdkGC *gc1, *gc2;
   GdkColor masked = {0, 0, 0, 0}, unmasked = {1, 65535, 65535, 65535};
+  int num_moving_cards = hslot->length - (press_data->cardid - 1);
 
-  for (tempptr = hslot->cards; tempptr; tempptr = tempptr->next)
-    old_cards = scm_cons (c2scm_card(tempptr->data), old_cards);
+  cscmi_record_move(hslot->id, hslot->cards);
 
-  delta = hslot->exposed - (hslot->length - press_data->cardid) - 1;
+  delta = hslot->exposed - num_moving_cards;
   press_data->xoffset -= x = hslot->pixelx + delta * hslot->pixeldx;
   press_data->yoffset -= y = hslot->pixely + delta * hslot->pixeldy;
 
   press_data->cards = g_list_nth(hslot->cards, press_data->cardid - 1);
-  width = card_width + (hslot->length - press_data->cardid) * hslot->pixeldx;
-  height= card_height + (hslot->length - press_data->cardid) * hslot->pixeldy;
+  width = card_width + (num_moving_cards - 1) * hslot->pixeldx;
+  height = card_height + (num_moving_cards - 1) * hslot->pixeldy;
   press_data->width = width;
   press_data->height = height;
 
@@ -123,18 +122,16 @@ void generate_press_data ( ) {
   else 
     hslot->cards = NULL;
 
-  scm_call_2 (scm_c_eval_string ("record-move"),
-	      scm_long2num (hslot->id), 
-	      old_cards);
-
   press_data->cards->prev = NULL;
   update_slot_length(press_data->hslot);
 }
 
 /* This does slightly more than free data, it also hides the window for
  * instance, but it is certainly in the correct spirit. */
-void free_press_data (void)
+void free_press_data(void)
 {
+  GList *temptr;
+
   if (press_data == NULL)
     return;
 
@@ -149,8 +146,10 @@ void free_press_data (void)
     press_data->moving_mask = NULL;
   }
   press_data->status = STATUS_NONE;
-  /* FIXME: I think there is a memory leak here, but I haven't managed
-   * to figure out where the list is extracted from yet. This is what
-   * most of the rest of the code does. */
+
+  for (temptr = press_data->cards; temptr; temptr = temptr->next) {
+    free(temptr->data);
+  }
+  g_list_free(press_data->cards);
   press_data->cards = NULL;
 }

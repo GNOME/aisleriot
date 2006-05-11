@@ -81,16 +81,8 @@ enum {
 };
 
 static gboolean cards_are_droppable (hslot_type hslot) {
-      SCM cardlist = SCM_EOL;
-      GList* temp;
-
-      if (!hslot) return FALSE;
-
-      for (temp = press_data->cards; temp; temp = temp->next)
-        cardlist = scm_cons(c2scm_card(temp->data), cardlist);
-      return SCM_NFALSEP (cscmi_droppable_lambda (scm_long2num (press_data->hslot->id),
-                                                  cardlist,
-                                                  scm_long2num (hslot->id)));
+      return hslot && 
+	cscmi_drop_valid(press_data->hslot->id, press_data->cards, hslot->id);
 }
 
 static hslot_type find_drop_target(gint x, gint y) {
@@ -168,13 +160,13 @@ int waiting_for_mouse_up(void) {
 }
 
 void end_of_game_test() {
-  scm_c_eval_string ("(end-move)");
-  if(!game_over) { 
-    game_over = !SCM_NFALSEP (cscmi_game_over_lambda ());
+  cscmi_end_move();
+  if (!game_over) { 
+    game_over = !cscmi_game_over_lambda();
     
     if (game_over) {
       timer_stop ();
-      game_won = SCM_NFALSEP (cscmi_winning_game_lambda ());
+      game_won = cscmi_winning_game_lambda();
       refresh_screen ();
       if (game_won) { /* Check because we can undo lost games. */
 	game_in_progress = FALSE;
@@ -187,34 +179,27 @@ void end_of_game_test() {
 }
 
 void drop_moving_cards(gint x, gint y) {
-  GList* temp;
-  SCM cardlist = SCM_EOL;
   hslot_type hslot;
-  gint moved = 0;
+  gboolean moved = FALSE;
 
   hslot = find_drop_target(x - press_data->xoffset, y - press_data->yoffset);
 
   if (hslot) {
-    for (temp = press_data->cards; temp; temp = temp->next)
-      cardlist = scm_cons(c2scm_card(temp->data), cardlist);
-    moved = SCM_NFALSEP (cscmi_button_released_lambda (scm_long2num (press_data->hslot->id),
-						       cardlist, 
-						       scm_long2num (hslot->id)));
+    moved = cscmi_drop_cards(press_data->hslot->id, press_data->cards, 
+			     hslot->id);
   }
 
   if (!moved) {
-    hslot = press_data->hslot;
-    add_cards_to_slot(press_data->cards, hslot);
-    scm_c_eval_string ("(discard-move)");
+    add_cards_to_slot(press_data->cards, press_data->hslot);
+    press_data->cards = NULL; /* they belong to the slot now */
+    cscmi_discard_move();
   }
-
-  update_slot_length(hslot);
 
   refresh_screen();
 
-  free_press_data ();
+  free_press_data();
 
-  if(moved) end_of_game_test();
+  if (moved) end_of_game_test();
 }
 
 static void highlight_drop_target(hslot_type hslot) {
@@ -227,8 +212,7 @@ static void highlight_drop_target(hslot_type hslot) {
     if (cards_are_droppable(hslot)) {
       GdkPixmap *droptarget_pixmap;
 
-      if (hslot->length) {
-      
+      if (hslot->cards) {      
         hcard_type card;
 
         gint delta = hslot->exposed ? hslot->exposed - 1 : 0;
@@ -236,7 +220,7 @@ static void highlight_drop_target(hslot_type hslot) {
         int x = hslot->pixelx + delta * hslot->pixeldx;
         int y = hslot->pixely + delta * hslot->pixeldy;
 
-        card = g_list_nth(hslot->cards, hslot->length - 1)->data;
+        card = g_list_last(hslot->cards)->data;
 
         droptarget_pixmap = get_droptarget_pixmap (card->suit, 
 						   card->value, 
@@ -322,7 +306,7 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       && event->button == 3) {
     hcard_type card = g_list_nth(hslot->cards, cardid - 1)->data;
 
-    if (card->direction == UP) {      
+    if (card->direction == UP) {
       guint delta = hslot->exposed - (hslot->length - cardid) - 1;
       int x = hslot->pixelx + delta * hslot->pixeldx;
       int y = hslot->pixely + delta * hslot->pixeldy;
@@ -349,15 +333,8 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
   /* Check if the cards are draggable, assuming we have any cards. */
   if (hslot->cards) {
-    hslot_type hslot = press_data->hslot;
-    GList* glist = g_list_nth(hslot->cards, press_data->cardid - 1); 
-    SCM cardlist = SCM_EOL;
-
-    for (; glist; glist = glist->next)
-      cardlist = scm_cons(c2scm_card((hcard_type)glist->data), cardlist);
-    
-    drag_valid = SCM_NFALSEP (cscmi_button_pressed_lambda (scm_long2num (press_data->hslot->id), 
-							   cardlist));
+    GList* cards = g_list_nth(hslot->cards, press_data->cardid - 1); 
+    drag_valid = cscmi_drag_valid(press_data->hslot->id, cards);
   } else {
     drag_valid = FALSE;
   }
@@ -373,12 +350,11 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
   if (double_click) {
     press_data->status = STATUS_NONE; 
-    scm_call_2 (scm_c_eval_string ("record-move"), scm_long2num (-1),
-	      SCM_EOL);
-    if (SCM_NFALSEP (cscmi_button_double_clicked_lambda (scm_long2num (hslot->id))))
-      scm_call_0 (scm_c_eval_string ("end-move"));
-    else {
-      scm_call_0 (scm_c_eval_string ("discard-move"));
+    cscmi_record_move(-1, NULL);
+    if (cscmi_button_double_clicked_lambda (hslot->id)) {
+      cscmi_end_move();
+    } else {
+      cscmi_discard_move();
       /* Allow for a drag on the second click if nothing else happened. */
       if ((cardid > 0) && drag_valid) {
 	press_data->status = STATUS_MAYBE_DRAG; 
@@ -423,12 +399,11 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
   case STATUS_MAYBE_DRAG:
   case STATUS_NOT_DRAG:
     press_data->status = STATUS_CLICK;
-    scm_call_2 (scm_c_eval_string ("record-move"), scm_long2num (-1),
-	      SCM_EOL);
-    if (SCM_NFALSEP (cscmi_button_clicked_lambda (scm_long2num (press_data->hslot->id))))
-	    scm_call_0 (scm_c_eval_string ("end-move"));
+    cscmi_record_move(-1, NULL);
+    if (cscmi_button_clicked_lambda (press_data->hslot->id))
+      cscmi_end_move();
     else
-	    scm_call_0 (scm_c_eval_string ("discard-move"));
+      cscmi_discard_move();
     refresh_screen();
     end_of_game_test();
     break;

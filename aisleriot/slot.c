@@ -85,8 +85,7 @@ void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
 		/* account for the last card getting much more display area
 		 * or no cards */
 
-		if (depth > hslot->exposed)
-			
+		if (depth > hslot->exposed)			
 			depth = hslot->exposed;
 		*slot = hslot;
 
@@ -139,21 +138,30 @@ hslot_type get_slot(gint slotid) {
 }
 
 void add_cards_to_slot(GList* newcards, hslot_type hslot) {
-
   hslot->cards = g_list_concat(hslot->cards, newcards);
   update_slot_length(hslot);
 }
 
 static void delete_slot(hslot_type hslot) {
-  GList* temptr;
-  
+  GList* temptr;  
   for (temptr = hslot->cards; temptr; temptr = temptr->next)
     free(temptr->data);
   g_list_free(hslot->cards);
   free(hslot);
 }
 
-void delete_surface() {
+void slot_set_cards(GList *new_cards, hslot_type hslot)
+{
+  GList* temptr;
+  for (temptr = hslot->cards; temptr; temptr = temptr->next)
+    free(temptr->data);
+  g_list_free(hslot->cards);
+  hslot->cards = new_cards; /* list belongs to slot now */
+  update_slot_length(hslot);
+}
+
+
+void delete_all_slots() {
   GList* temptr;
 
   for(temptr = slot_list; temptr; temptr = temptr->next) {

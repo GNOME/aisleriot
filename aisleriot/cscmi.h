@@ -30,24 +30,27 @@
 void       cscm_init                          (void);
 
 /* C to Scheme functions... */
-SCM        c2scm_card                          (hcard_type card);
-gboolean   cscmi_has_options                        (void);
-SCM        cscmi_start_game_lambda            (void);
-SCM        cscmi_button_pressed_lambda        (SCM        slot_id,
-					       SCM        cards);
-SCM        cscmi_button_released_lambda       (SCM        start_slot,
-					       SCM        cards,
-					       SCM        end_slot);
-SCM        cscmi_button_clicked_lambda        (SCM        slot_id);
-SCM        cscmi_button_double_clicked_lambda (SCM        slot_id);
-SCM        cscmi_droppable_lambda             (SCM        start_slot,
-                                               SCM        cards,
-                                               SCM        end_slot);
-SCM        cscmi_game_over_lambda             (void);
-SCM        cscmi_winning_game_lambda          (void);
+SCM        c2scm_card                         (hcard_type card);
+
+gboolean   cscmi_has_options                  (void);
+void       cscmi_start_game_lambda            (double *width, double *height);
+gboolean   cscmi_drag_valid                   (int slot_id, GList *cards);
+gboolean   cscmi_drop_valid                   (int start_slot, GList *cards,
+					       int end_slot);
+gboolean   cscmi_drop_cards                   (int start_slot, GList *cards,
+					       int end_slot);
+gboolean   cscmi_button_clicked_lambda        (int slot_id);
+gboolean   cscmi_button_double_clicked_lambda (int slot_id);
+gboolean   cscmi_game_over_lambda             (void);
+gboolean   cscmi_winning_game_lambda          (void);
 SCM        cscmi_hint_lambda                  (void);
 SCM        cscmi_get_options_lambda           (void);
 SCM        cscmi_apply_options_lambda         (SCM        options);
 gboolean   cscmi_timeout_lambda               (void);
+
+void cscmi_record_move(int slot_id, GList *old_cards);
+void cscmi_end_move(void);
+void cscmi_discard_move(void);
+
 
 #endif
