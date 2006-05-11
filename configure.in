@@ -81,6 +81,8 @@ GTK_REQUIRED=2.8.0
 GCONF_REQUIRED=2.0
 LIBRSVG_REQUIRED=2.0
 CAIRO_REQUIRED=1.0
+# This ones not actually required, but it is the minimum usable version.
+AVAHI_REQUIRED=0.6.6
 
 ## Common flags for libraries that all games use.
 PKG_CHECK_MODULES(GNOME_GAMES, libgnome-2.0 >= $LIBGNOME_REQUIRED gconf-2.0 >= $GCONF_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gtk+-2.0 >= $GTK_REQUIRED librsvg-2.0 >= $LIBRSVG_REQUIRED)
@@ -109,7 +111,7 @@ if test "x$enable_avahi" != "xno"; then
 		HOWL_CFLAGS=""
 		HOWL_LIBS=""
 	fi
-PKG_CHECK_MODULES(AVAHI, avahi-client >= 0.6.6, [ AVAHI_EXTRA_CFLAGS="-DHAVE_ZEROCONF -DHAVE_AVAHI" msg_zeroconf="avahi" ],
+PKG_CHECK_MODULES(AVAHI, avahi-client >= $AVAHI_REQUIRED avahi-glib >= $AVAHI_REQUIRED, [ AVAHI_EXTRA_CFLAGS="-DHAVE_ZEROCONF -DHAVE_AVAHI" msg_zeroconf="avahi" ],
 			  [ msg_zeroconf="none" ])
         AVAHI_CFLAGS="${AVAHI_CFLAGS} ${AVAHI_EXTRA_CFLAGS}"
 	AC_SUBST(AVAHI_CFLAGS)
