@@ -451,12 +451,17 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
   } else {
     /* If we've moved off the card, abandon the click. */
     slot_pressed (event->x, event->y, &target_hslot, &dummy);
-    if ((press_data->status == STATUS_NOT_DRAG) && 
-	(target_hslot != press_data->hslot)) {
-      g_print ("Abandoned (%p, %p).\n", target_hslot, press_data->hslot);
-      press_data->status = STATUS_NONE;
+    if (target_hslot != press_data->hslot) {
+      if (press_data->status == STATUS_NOT_DRAG) {
+	press_data->status = STATUS_CLICK;
+      } 
+    } else {
+      if (press_data->status == STATUS_CLICK) {
+	press_data->status = STATUS_NOT_DRAG;
+      }
     }
-    set_cursor_by_location (CURSOR_OPEN, event->x, event->y);
+    set_cursor_by_location (target_hslot == press_data->hslot ?
+			    CURSOR_CLOSED : CURSOR_OPEN, event->x, event->y);
   }
   return FALSE;
 }
