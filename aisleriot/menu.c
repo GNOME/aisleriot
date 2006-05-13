@@ -411,8 +411,10 @@ static gint compress_options_to_int (SCM options_list)
   l = SCM_INUM (scm_length (options_list)) - 1;
   for (i=l; i>=0; i--) {
     entry  = scm_list_ref (options_list, SCM_MAKINUM (i));
-    bits <<= 1;
-    bits |= SCM_NFALSEP (scm_list_ref (entry, SCM_MAKINUM (1))) ? 1 : 0;
+    if (SCM_NFALSEP (scm_list_p (entry))) {
+      bits <<= 1;
+      bits |= SCM_NFALSEP (scm_list_ref (entry, SCM_MAKINUM (1))) ? 1 : 0;
+    }
   }
 
   return bits;
@@ -427,8 +429,10 @@ static void expand_options_from_int (SCM options_list, guint bits)
   l = SCM_INUM (scm_length (options_list));
   for (i=0; i<l; i++) {
     entry  = scm_list_ref (options_list, SCM_MAKINUM (i));
-    scm_list_set_x (entry, SCM_MAKINUM (1), bits & 1 ? SCM_BOOL_T : SCM_BOOL_F);
-    bits >>= 1;
+    if (SCM_NFALSEP (scm_list_p (entry))) {
+      scm_list_set_x (entry, SCM_MAKINUM (1), bits & 1 ? SCM_BOOL_T : SCM_BOOL_F);
+      bits >>= 1;
+    }
   }
 }
 
@@ -446,6 +450,8 @@ void option_list_set_sensitive (void)
 static void save_option_list (SCM options_list)
 {
   gchar *keyname;
+
+  return;
 
   keyname = make_option_gconf_key ();
 
@@ -489,15 +495,27 @@ static void option_cb (GtkToggleAction *action, gint n)
   cscmi_apply_options_lambda (options_list);
 }
 
+enum {
+  menu_normal,
+  menu_radio
+} menumodes;
+
 /* FIXME: This does not add an appropriate underscore. Is this easy? 
  * Maybe underscore the first letter that isn't underscored in another
  * menu. */
+/* To get radio buttons in the menu insert an atom into the option list
+ * in your scheme code. To get back out of radio-button mode insert 
+ * another atom. The exact value of the atoms is irrelevant - they merely
+ * trigger a toggle - but descriptive names like begin-exclusive and
+ * end-exclusive are probably a good idea. */
 void install_options_menu (gchar *name)
 {
   static int merge_id = 0;
   static GtkActionGroup *options_group = NULL;
   SCM options_list;
   gint l, i;
+  gint mode = menu_normal;
+  GSList *radiogroup = NULL;
 
   if (merge_id) {
     gtk_ui_manager_remove_ui (ui_manager, merge_id);
@@ -533,22 +551,41 @@ void install_options_menu (gchar *name)
       /* Each entry in the options list is a list consisting of a name and 
 	 a variable. */
       entry = scm_list_ref (options_list, SCM_MAKINUM (i));
-      entryname = SCM_STRING_CHARS (scm_list_ref (entry, SCM_MAKINUM (0)));
-      entrystate = SCM_NFALSEP (scm_list_ref (entry, SCM_MAKINUM (1)));
-
-      g_snprintf (actionname, sizeof (actionname), "Option%d", i);
-
-      itemaction = gtk_toggle_action_new (actionname, entryname, 
-					  NULL, NULL);
-      g_signal_connect (G_OBJECT (itemaction), "toggled",
-			G_CALLBACK (option_cb), GINT_TO_POINTER (i));
-      gtk_action_group_add_action (action_group, GTK_ACTION (itemaction));
-      gtk_toggle_action_set_active (itemaction, entrystate);
-      g_object_unref (itemaction);
-
-      gtk_ui_manager_add_ui (ui_manager, merge_id, "/MainMenu/OptionsMenu",
-			     actionname, actionname,
-			     GTK_UI_MANAGER_MENUITEM, FALSE);
+      if (SCM_NFALSEP (scm_list_p (entry))) {
+	entryname = SCM_STRING_CHARS (scm_list_ref (entry, SCM_MAKINUM (0)));
+	entrystate = SCM_NFALSEP (scm_list_ref (entry, SCM_MAKINUM (1)));
+	
+	g_snprintf (actionname, sizeof (actionname), "Option%d", i);
+	
+	if (mode == menu_normal) { 
+	  itemaction = gtk_toggle_action_new (actionname, entryname, 
+					      NULL, NULL);
+	} else {
+	  itemaction = GTK_TOGGLE_ACTION (gtk_radio_action_new (actionname, 
+							 entryname, 
+							 NULL, NULL, i));
+	  gtk_radio_action_set_group (GTK_RADIO_ACTION (itemaction),
+				      radiogroup);
+	}
+	g_signal_connect (G_OBJECT (itemaction), "toggled",
+			  G_CALLBACK (option_cb), 
+			  GINT_TO_POINTER (i));
+	gtk_action_group_add_action (action_group, GTK_ACTION (itemaction));
+	gtk_toggle_action_set_active (itemaction, entrystate);
+	g_object_unref (itemaction);
+	
+	gtk_ui_manager_add_ui (ui_manager, merge_id, "/MainMenu/OptionsMenu",
+			       actionname, actionname,
+			       GTK_UI_MANAGER_MENUITEM, FALSE);
+      } else {
+	/* If we encounter an atom, change the mode. What the atom is doesn't
+	   really matter. */
+	if (mode == menu_normal) {
+	  mode = menu_radio;
+	} else {
+	  mode = menu_normal;
+	}
+      }
     }
   } 
 }

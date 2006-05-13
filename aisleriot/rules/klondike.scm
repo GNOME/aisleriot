@@ -249,10 +249,10 @@
   (not (game-won)))
 
 (define (get-options)
-  (list (list (_"Three card deals") deal-three)))
+  (list 'begin-exclusive (list (_"Three card deals") deal-three)))
 
 (define (apply-options options)
-  (set! deal-three (cadar options)))
+  (set! deal-three (cadadr options)))
 
 (define (timeout) #f)
 

@@ -45,7 +45,8 @@ void create_press_data (GdkWindow * window)
 					    (GDK_WA_VISUAL | GDK_WA_COLORMAP));
   press_data->highlight_window = gdk_window_new(window, &attributes,
                                                 (GDK_WA_VISUAL | GDK_WA_COLORMAP));
-  press_data->status = 0;
+  press_data->status = STATUS_NONE;
+  press_data->hslot = NULL;
 }
 
 void generate_press_data ( ) {

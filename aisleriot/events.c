@@ -81,8 +81,8 @@ enum {
 };
 
 static gboolean cards_are_droppable (hslot_type hslot) {
-      return hslot && 
-	cscmi_drop_valid(press_data->hslot->id, press_data->cards, hslot->id);
+  return hslot && press_data->hslot &&
+    cscmi_drop_valid(press_data->hslot->id, press_data->cards, hslot->id);
 }
 
 static hslot_type find_drop_target(gint x, gint y) {
@@ -389,6 +389,7 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
   if (event->button != 1)
     return TRUE;
+
   switch (press_data->status) {
   case STATUS_IS_DRAG:
     press_data->status = STATUS_NONE;
@@ -419,17 +420,15 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
 gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
 {
   gint x, y;
+  gint dummy;
+  hslot_type target_hslot;
+
+  x = event->x - press_data->xoffset;
+  y = event->y - press_data->yoffset;
 
   if (press_data->status == STATUS_IS_DRAG) {
-    hslot_type hslot;
-
-    hslot = find_drop_target(event->x - press_data->xoffset,
-			     event->y - press_data->yoffset);
-    
-    highlight_drop_target(hslot);
-
-    x = event->x - press_data->xoffset;
-    y = event->y - press_data->yoffset;
+    target_hslot = find_drop_target(x, y);
+    highlight_drop_target(target_hslot);
 
     gdk_window_move(press_data->moving_cards, x, y);
 
@@ -444,13 +443,19 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
     set_cursor (CURSOR_CLOSED);
   }
   else if (press_data->status == STATUS_MAYBE_DRAG &&
-	   (abs(press_data->xoffset - event->x) > 2 ||
-	    abs(press_data->yoffset - event->y) > 2)) {
+	   (abs(x) > 2 || abs(y) > 2)) {
     press_data->status = STATUS_IS_DRAG;
     generate_press_data ();
     refresh_screen ();
     set_cursor (CURSOR_CLOSED);
   } else {
+    /* If we've moved off the card, abandon the click. */
+    slot_pressed (event->x, event->y, &target_hslot, &dummy);
+    if ((press_data->status == STATUS_NOT_DRAG) && 
+	(target_hslot != press_data->hslot)) {
+      g_print ("Abandoned (%p, %p).\n", target_hslot, press_data->hslot);
+      press_data->status = STATUS_NONE;
+    }
     set_cursor_by_location (CURSOR_OPEN, event->x, event->y);
   }
   return FALSE;
