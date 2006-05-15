@@ -1,3 +1,39 @@
+gnome-games 2.15.2
+==================
+
+This is the second development release of gnome-games for the 2.15
+development cycle. Not too much new this time, the most visible change
+being the auto-move animation in Aisleriot.
+
+General:
+ - Find the Avahi libs properly, not just if they're in /usr/lib
+ - Improve the linking process for other zeroconf libraries. Once
+   again this should help people compiling with libraries anywhere
+   but the deafult locations.
+ - Disabled GTK double-buffering in programs which do their own 
+   double-buffering. Aisleriot in particular should benefit from this.
+
+Aisleriot:
+ - Add a "trickle" effect for auto-moved cards to make it more obvious
+   and to make the end-of-game situation in Freecell a little less
+   sudden.
+ - Better behaviour for the mouse. Notably, if you click on a card
+   that isn't draggable and move away from the card, it cancels the 
+   click.
+ - Radio buttons for the per-game menu have been implemented, although 
+   nothing uses it properly yet (Klondike uses it, but only in a stupid 
+   way for testing purposes).
+ - More cleanups from Amnon Aaronsohn. Including memory leaks fixes.
+ - The games list is now sorted regardless of locale.
+
+Nibbles:
+ - Fix relative motion so the worm doesn't automatically die if you
+   turn the same way too often.
+
+Robots:
+ - Use the correct icon name for the desktop file.
+
+
 gnome-games 2.15.1
 ==================
 
