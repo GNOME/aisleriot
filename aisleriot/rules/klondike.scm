@@ -16,7 +16,12 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
+(define deal-one #t)
 (define deal-three #f)
+(define no-redeal #f)
+(define unlimited-redeal #f)
+
+(define max-redeal 2)
 
 ; The set up:
 
@@ -52,7 +57,7 @@
   (add-extended-slot '() down)
   (add-extended-slot '() down)
 
-  (deal-cards stock '(6 7 8 9 10 11 12 7 8 9 10 11 12 8 9 10 11 12 9 10 11 12 10 11 12 11 12 12))
+  (deal-tableau tableau)
   
   (map flip-top-card tableau)
 
@@ -61,15 +66,21 @@
   (list 7 3.1)
 )
 
+(define (deal-tableau tableau)
+  (if (not (null? tableau))
+      (begin
+        (deal-cards stock tableau)
+        (deal-tableau (cdr tableau)))))
+
 (define (give-status-message)
   (set-statusbar-message (string-append (get-stock-no-string)
 					"   "
 					(get-redeals-string))))
 
 (define (get-redeals-string)
-  (if deal-three ""
+  (if (< max-redeal 0) ""
       (string-append (_"Redeals left:") " "
-		     (number->string (- 2 FLIP-COUNTER)))))
+		     (number->string (- max-redeal FLIP-COUNTER)))))
 
 (define (get-stock-no-string)
   (string-append (_"Stock left:") " " 
@@ -117,35 +128,29 @@
 
 (define (button-clicked start-slot)
   (and (= start-slot stock)
-       (flip-stock stock waste (if deal-three -1 2) (if deal-three 3 1))))
+       (flip-stock stock waste max-redeal 
+                               (if deal-three 3 1))))
 
 (define (button-double-clicked start-slot)
    (or (and (member start-slot foundation)
             (autoplay-foundations))
    (and (member start-slot (cons waste tableau))
        (not (empty-slot? start-slot))
-       (let* ((card (get-top-card start-slot))
-	      (suit (get-suit card))
-	      (value (get-value card)))
-	 (let ((end-slot 
-		(cond ((if (empty-slot? 2)
-			   (= ace value)
-			   (= suit (get-suit (get-top-card 2)))) 2)
-		      ((if (empty-slot? 3)
-			   (= ace value)
-			   (= suit (get-suit (get-top-card 3)))) 3)
-		      ((if (empty-slot? 4)
-			   (= ace value)
-			   (= suit (get-suit (get-top-card 4)))) 4)
-		      ((if (empty-slot? 5)
-			   (= ace value)
-			   (= suit (get-suit (get-top-card 5)))) 5)
-		      (#t #f))))
-	   (and end-slot
-		(or (= ace value)
-		    (= (get-value (get-top-card end-slot)) (- value 1)))
-		(remove-card start-slot)
-		(complete-transaction start-slot (list card) end-slot)))))))
+        (let* ((target-card
+                (cond ((= (get-value(get-top-card start-slot)) ace) '())
+                      (#t (add-to-value (get-top-card start-slot) -1))))
+              (end-slot (search-foundation target-card foundation)))
+                 (and end-slot
+               (complete-transaction start-slot 
+                                    (list (remove-card start-slot)) 
+                                    end-slot))))))
+
+(define (search-foundation card foundations)
+   (if (not (null? foundations))
+       (if (equal? card (get-top-card (car foundations)))
+           (car foundations)
+           (search-foundation card (cdr foundations)))
+       #f))
 
 (define (autoplay-foundations)
   (define (autoplay-foundations-tail)
@@ -221,12 +226,12 @@
 	   (or-map addable? tableau))
       (or-map ploppable? foundation)
       (and (or (and (or deal-three
-			(< FLIP-COUNTER 2))
+			(< FLIP-COUNTER max-redeal))
 		    (not (empty-slot? waste)))
 	       (not (empty-slot? stock))) 
 	   (list 0 (_"Deal a new card from the deck")))
 ; FIXME: need to give proper hints for this case too ...
-      (and (not (and-map empty-slot? '(2 3 4 5)))
+      (and (not (and-map empty-slot? foundation))
            (list 0 (_"Try moving cards down from the foundation")))
       (list 0 (_"No hint available right now"))))
 
@@ -249,10 +254,21 @@
   (not (game-won)))
 
 (define (get-options)
-  (list 'begin-exclusive (list (_"Three card deals") deal-three)))
+  (list 'begin-exclusive 
+	(list (_ "Three card deals") deal-three)
+	(list (_ "Single card deals") deal-one)
+	(list (_ "Unlimited redeals") unlimited-redeal)
+	(list (_ "No redeals") no-redeal)
+	'end-exclusive))
 
 (define (apply-options options)
-  (set! deal-three (cadadr options)))
+  (set! deal-three (cadr (list-ref options 1)))
+  (set! deal-one (cadr (list-ref options 2)))
+  (set! unlimited-redeal (cadr (list-ref options 3)))
+  (set! no-redeal (cadr (list-ref options 4)))
+  (set! max-redeal (cond (no-redeal 0)
+			 (deal-one 2)
+			 (#t -1))))
 
 (define (timeout) #f)
 

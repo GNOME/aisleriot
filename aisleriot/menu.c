@@ -451,8 +451,6 @@ static void save_option_list (SCM options_list)
 {
   gchar *keyname;
 
-  return;
-
   keyname = make_option_gconf_key ();
 
   gconf_client_set_int (gconf_client, keyname, 
@@ -564,8 +562,8 @@ void install_options_menu (gchar *name)
 	  itemaction = GTK_TOGGLE_ACTION (gtk_radio_action_new (actionname, 
 							 entryname, 
 							 NULL, NULL, i));
-	  gtk_radio_action_set_group (GTK_RADIO_ACTION (itemaction),
-				      radiogroup);
+	  gtk_radio_action_set_group (GTK_RADIO_ACTION (itemaction), radiogroup);
+	  radiogroup = gtk_radio_action_get_group (GTK_RADIO_ACTION (itemaction));
 	}
 	g_signal_connect (G_OBJECT (itemaction), "toggled",
 			  G_CALLBACK (option_cb), 
@@ -582,6 +580,7 @@ void install_options_menu (gchar *name)
 	   really matter. */
 	if (mode == menu_normal) {
 	  mode = menu_radio;
+	  radiogroup = NULL; /* Start a new radio group. */
 	} else {
 	  mode = menu_normal;
 	}
