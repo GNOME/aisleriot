@@ -473,6 +473,7 @@ static void load_option_list (SCM options_list)
   g_free (keyname);
 
   expand_options_from_int (options_list, r);
+  cscmi_apply_options_lambda (options_list);
 }
 
 static void option_cb (GtkToggleAction *action, gint n)

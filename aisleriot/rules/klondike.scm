@@ -19,7 +19,6 @@
 (define deal-one #t)
 (define deal-three #f)
 (define no-redeal #f)
-(define unlimited-redeal #f)
 
 (define max-redeal 2)
 
@@ -132,25 +131,23 @@
                                (if deal-three 3 1))))
 
 (define (button-double-clicked start-slot)
-   (or (and (member start-slot foundation)
-            (autoplay-foundations))
-   (and (member start-slot (cons waste tableau))
-       (not (empty-slot? start-slot))
-        (let* ((target-card
-                (cond ((= (get-value(get-top-card start-slot)) ace) '())
-                      (#t (add-to-value (get-top-card start-slot) -1))))
-              (end-slot (search-foundation target-card foundation)))
-                 (and end-slot
-               (complete-transaction start-slot 
-                                    (list (remove-card start-slot)) 
-                                    end-slot))))))
+  (or (and (member start-slot foundation)
+	   (autoplay-foundations))
+      (and (member start-slot (cons waste tableau))
+	   (not (empty-slot? start-slot))
+	   (let* ((target-card
+		   (cond ((= (get-value(get-top-card start-slot)) ace) '())
+			 (#t (add-to-value (get-top-card start-slot) -1))))
+		  (end-slot (search-foundation target-card foundation)))
+	     (and end-slot
+		  (complete-transaction start-slot 
+					(list (remove-card start-slot)) 
+					end-slot))))))
 
 (define (search-foundation card foundations)
-   (if (not (null? foundations))
-       (if (equal? card (get-top-card (car foundations)))
-           (car foundations)
-           (search-foundation card (cdr foundations)))
-       #f))
+  (or-map (lambda (slot) (if (equal? card (get-top-card slot))
+			     slot
+			     #f)) foundations))
 
 (define (autoplay-foundations)
   (define (autoplay-foundations-tail)
@@ -257,15 +254,13 @@
   (list 'begin-exclusive 
 	(list (_ "Three card deals") deal-three)
 	(list (_ "Single card deals") deal-one)
-	(list (_ "Unlimited redeals") unlimited-redeal)
 	(list (_ "No redeals") no-redeal)
 	'end-exclusive))
 
 (define (apply-options options)
   (set! deal-three (cadr (list-ref options 1)))
   (set! deal-one (cadr (list-ref options 2)))
-  (set! unlimited-redeal (cadr (list-ref options 3)))
-  (set! no-redeal (cadr (list-ref options 4)))
+  (set! no-redeal (cadr (list-ref options 3)))
   (set! max-redeal (cond (no-redeal 0)
 			 (deal-one 2)
 			 (#t -1))))
