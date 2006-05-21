@@ -468,12 +468,21 @@
 
 
 (define (set-cards! slot-id new_cards)
-;  (if IN-GAME 
-;      (record-move slot-id new_cards (get-cards slot-id)))
   (set-cards-c! slot-id new_cards))
 
+; Since the cards get thrown around between C and scheme a lot we
+; protect them all from the garbage collector using this guardian.
+; The guardian is defined once. If this file is evaluated again
+; (i.e. at the beginning of a new game) then we clean out the old 
+; cards from the guardian.
+(if (defined? 'card-guardian)
+    (while (card-guardian))
+    (define card-guardian (make-guardian)))
+
 (define (make-card value suit)
-  (list value suit #f))
+  (let ((new-card (list value suit #f)))
+    (card-guardian new-card)
+    new-card))
 
 (define (make-standard-deck-list-ace-high value suit)
   (if (eq? ace value)

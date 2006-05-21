@@ -1,3 +1,11 @@
+2006-05-21  Callum McKenzie  <callum@spooky-possum.org>
+
+	* sol.scm: Explicitly protect the cards from garbage
+	collection. We pull the cards into lists on the C side that guile
+	doesn't know about and occaisionally the GC bites us. Doing
+	everything on the scheme side might be better, but not today. See
+	bug #342038.
+
 2006-05-18  Callum McKenzie  <callum@spooky-possum.org>
 
 	* rules/klondike.scm: Remvoe unlimited redeals, it isn't
