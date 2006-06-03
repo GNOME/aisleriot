@@ -476,7 +476,7 @@
 ; (i.e. at the beginning of a new game) then we clean out the old 
 ; cards from the guardian.
 (if (defined? 'card-guardian)
-    (while (card-guardian))
+    (while (card-guardian) #t)
     (define card-guardian (make-guardian)))
 
 (define (make-card value suit)
