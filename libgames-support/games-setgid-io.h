@@ -24,5 +24,6 @@ off_t setgid_io_seek (int fd, off_t offset, int whence);
 int setgid_io_lock (int fd);
 int setgid_io_unlock (int fd);
 int setgid_io_stat (char * filename, struct stat *buffer);
+int setgid_io_truncate (int fd, int length);
 
 #endif /* GAMES_SETGID_IO_H */

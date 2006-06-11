@@ -77,7 +77,8 @@ enum {
   cmd_seek,
   cmd_lock,
   cmd_unlock,
-  cmd_stat
+  cmd_stat,
+  cmd_truncate
 } commands;
 
 /* Global state variables, the program only has one global instance of
@@ -402,6 +403,30 @@ static void setgid_io_stat_priv (int outfd, int infd)
   write_int (outfd, result);
 }
 
+/* Unprivileged side. */
+int setgid_io_truncate (int fd, int length)
+{
+  write_cmd (cmd_truncate);
+  write_int (setgid_io_outfd, fd);
+  write_int (setgid_io_outfd, length);
+
+  return read_int (setgid_io_infd);
+}
+
+/* Privileged side. */
+static void setgid_io_truncate_priv (int outfd, int infd)
+{
+  int fd;
+  int length;
+  int result;
+
+  fd = read_int (infd);
+  length = read_int (infd);
+  result = ftruncate(fd, length);
+
+  write_int(outfd, result);
+}
+
 /* This function never returns. */
 static void setgid_io_pipe_watcher (int outfd, int infd)
 {
@@ -440,6 +465,9 @@ static void setgid_io_pipe_watcher (int outfd, int infd)
 	break;
       case cmd_stat:
 	setgid_io_stat_priv (outfd, infd);
+	break;
+      case cmd_truncate:
+	setgid_io_truncate_priv (outfd, infd);
 	break;
       default:
 	g_warning ("Invalid command to setgid_io: ignored.\n");

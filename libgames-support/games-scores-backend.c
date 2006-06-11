@@ -236,6 +236,7 @@ void games_scores_backend_set_scores (GamesScoresBackend *self,
     GList *s;
     GamesScore *d;
     gchar *buffer;
+    gint output_length = 0;
     gchar dtostrbuf[G_ASCII_DTOSTR_BUF_SIZE];
 
     if (!games_scores_backend_get_lock (self))
@@ -269,11 +270,15 @@ void games_scores_backend_set_scores (GamesScoresBackend *self,
 						rscore),
 				rtime, rname); 
       setgid_io_write (self->priv->fd, buffer, strlen (buffer));
+      output_length += strlen(buffer);
       /* Ignore any errors and blunder on. */
       g_free (buffer);
 
       s = g_list_next (s);
     }
+
+    /* Remove any content in the file that hasn't yet been overwritten. */
+    setgid_io_truncate (self->priv->fd, output_length--);
 
     /* Update the timestamp so we don't reread the scores unnecessarily. */
     self->priv->timestamp = time (NULL);
