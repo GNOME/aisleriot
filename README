@@ -17,27 +17,6 @@ Contents
 - Security Issues
 - The Future
 
-=========================================================================
-
-!!! IMPORTANT !!!
-
-Migrating from 2.8 to 2.10.
-
-There is almost nothing you need to know, almost everything should
-Just Work. The major source of problems will be in Same GNOME, which
-has been completely rewritten. The theme format is different and
-your old custom themes will not be recognised. Standard themes that
-have been migrated may also look different. Anything else is a bug,
-report it to http://bugzilla.gnome.org/. 
-
-People with 64-bit machines need to ensure they have guile version
-1.6.5 or later. This is to avoid a 64-bit bug in guile. The configure
-scripts should detect this, but the test is a little dodgy and the
-response is simply to not build aisleriot. If aisleriot is not being
-built, check your version of guile.
-
-========================================================================
-
 Overview
 --------
 
@@ -107,10 +86,6 @@ Same GNOME      You start with a grid of stones of different
                 remove as many as possible. You score more points by
                 removing them in bigger groups.
 
-Stones          Mine through dirt and collect gems: but don't get
-                squashed by the boulders. Also has a Sokoban mode.
-                (gnome-stones)
-
 Tali            Sort of poker with dice and less money. An ancient
                 Roman game, this variant is similar to Yahtzee (R).
                 (gtali)
@@ -122,7 +97,7 @@ Further information and screenshots can be found at:
 
 http://www.gnome.org/projects/gnome-games/
 
-developers should see
+Aspiring developers should see:
 
 http://www.gnome.org/projects/gnome-games/contributing.html
 
@@ -216,10 +191,11 @@ about contributing to gnome-games.
 Requirements
 ------------
 
-To compile these packages you need at least the baseline GNOME 2.10
-development packages. You really, really, need GTK+ 2.6. You also need
-gettext 0.12 or newer. If you are building from CVS then you also need
-the CVS version of intltool.
+To compile these packages, we recommend using the baseline GNOME 2.14
+development packages. While gnome-games may compile with older versions,
+we will not accept bug reports for games used under those conditions.
+
+CVS checkouts will require the latest intltool.
 
 In addition it is useful to have a working C++ compiler (e.g. g++,
 part of the gcc suite) and the guile implementation of the Scheme
@@ -350,16 +326,12 @@ group (and user) used via the --with-scores-group and
 The Future
 ----------
 
-The 2.10 release of gnome-games has been an incremental improvement
-over 2.8. 2.12 will be a similar incremental improvement. Once again I
-hope to concentrate on only a few games to bring them kicking and
-screaming into the 21st century. The following goals are still
-important in the long run:
- - Making it easier for individual players to introduce their own themes.
- - Scalability of the game graphics so that the game can be resized
-   to suit the player, for examples of this see gnomine and gnotravex.
+As time marches on, we shall strive to drag more of our games kicking and
+screaming into the 21st century. The following is a short list of recent 
+priorities, and many more can be found in the bug tracker and the TODO file.
+ - Accessibility improvements.
+ - Better graphics rendering quality and speed.
+ - Making it easy for individual players to introduce their own themes.
  - Networking. Iagno and Nibbles already does it, there are several
    other games with two-player options that are just begging to be 
    networked.
- - A new high scores back-end. This resolves some synchronization
-   issues between libgnome and gnome-games.

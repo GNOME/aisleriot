@@ -1,15 +1,6 @@
-Priorities :
+General :
 
-  iagno (to match gataxx)
-  gnobots2, especially drawing code and mouse use
-  rework aisleriot statistics code (cleanliness).
-  New scoring infrastructure.
-
---------------------------------------------------------------------------
-
-General:
-        - Make games respond to the gconf key change signals.
-	  (I no longer think this is a good idea)
+	- Update iagno and gnect to match gataxx
         - Move more common code into the libgames-support library.
         - Make as much as possible scalable so we can have full-screen
           modes (bug 80204).
@@ -50,7 +41,6 @@ Gnibbles:
 	- AI worms.
 
 Gnobots2:
-        - Graphics so they are viewable on large monitors.
         - Clean up the sounds (bug 152107).
 	- Icon theme for custom icons ?
         - UI review (bug 132387).
@@ -71,18 +61,11 @@ Gnomine:
 	- Fix up the hint_used signal so that all states get returned this 
 	  way (or something else that doesn't look completely awful like the 
 	  current system).
-        - Make unpause as automatic as pause?
-
-Gnotravex:
-        - Have a colour mode in addition to the numbers.
-        - Use the arrow keys as accelerators for the move meu.
 
 Gnotski:
         - Record completed puzzles (bug 111543)
 
 Gtali:
-        - AI upgrade, but make it optional: see Phil Woodward. "Yahtzee®: 
-          The Solution", Chance 16(1):17-20 (Winter 2003). (bug 52635)
         - Remove that space from gtali.schemas.in once intltool has
           had a few more releases (and upgrade the required version to 0.31
           or whatever it becomes.
@@ -108,7 +91,4 @@ libgames-support:
 	- Widgets other than the combo box for the GamesFileList.
 	- GamesFileList standard directory option for paths.
 	- Make a shared library. Rename to libgnome-games
-        - Document
-	- Use a second thread for pre-generating card images (I think
-          this was shaunm's idea so he could take advantage of works' dual 
-	  opteron).
+        - Documentation

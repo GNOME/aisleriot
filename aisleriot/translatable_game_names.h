@@ -3,7 +3,6 @@
  * Add this file to your project's POTFILES.in.
  * DO NOT compile it as part of your application.
  */
-
 gchar *s = N_("Agnes")
 gchar *s = N_("Athena")
 gchar *s = N_("Auld Lang Syne")
@@ -65,10 +64,10 @@ gchar *s = N_("Scorpion")
 gchar *s = N_("Scuffle")
 gchar *s = N_("Seahaven")
 gchar *s = N_("Sir Tommy")
-gchar *s = N_("Spiderette")
-gchar *s = N_("Spider One Suit")
 gchar *s = N_("Spider")
+gchar *s = N_("Spider One Suit")
 gchar *s = N_("Spider Two Suit")
+gchar *s = N_("Spiderette")
 gchar *s = N_("Straight Up")
 gchar *s = N_("Streets And Alleys")
 gchar *s = N_("Template")
