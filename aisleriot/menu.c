@@ -136,7 +136,7 @@ static void help_about_callback (void)
 			 "authors", authors,
 			 "documenters", documenters,
 			 "translator_credits", _("translator-credits"),
-			 "logo-icon-name", "gnome-aisleriot.png",
+			 "logo-icon-name", "gnome-aisleriot",
 			 "website", "http://www.gnome.org/projects/gnome-games/",
 			 "wrap-license", TRUE,
 			 NULL);

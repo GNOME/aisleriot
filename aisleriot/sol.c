@@ -538,7 +538,7 @@ int main (int argc, char *argv [])
 			   NULL, NULL, NULL);
   load_statistics ();
   
-  gtk_window_set_default_icon_name ("gnome-aisleriot.png");
+  gtk_window_set_default_icon_name ("gnome-aisleriot");
   g_signal_connect (GTK_OBJECT (gnome_master_client ()), "save_yourself",
 		      GTK_SIGNAL_FUNC (save_state), 
 		      (gpointer) g_path_get_basename(argv[0]));
