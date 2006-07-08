@@ -235,8 +235,8 @@ static const GtkActionEntry actions[] = {
   { "OptionsMenu", NULL, "Options" /* not translated on purpose */ },
   { "HelpMenu", NULL, N_("_Help") },
 
-  { "NewGame", GAMES_STOCK_NEW_GAME, NULL, NULL, NULL, G_CALLBACK (new_game_action) },
-  { "RestartGame", GAMES_STOCK_RESTART_GAME, NULL, NULL, NULL, G_CALLBACK (restart_game) },
+  { "NewGame", GAMES_STOCK_NEW_GAME, NULL, NULL, N_("Start a new game"), G_CALLBACK (new_game_action) },
+  { "RestartGame", GAMES_STOCK_RESTART_GAME, NULL, NULL, N_("Restart the current game"), G_CALLBACK (restart_game) },
   { "Select", GTK_STOCK_INDEX, N_("_Select Game..."), "<Ctrl>o", N_("Play a different game"), G_CALLBACK (show_select_game_dialog) },
   { "Statistics", GTK_STOCK_ADD, N_("S_tatistics"), NULL, N_("Show gameplay statistics"), G_CALLBACK (show_statistics_dialog) },
   { "Quit", GTK_STOCK_QUIT, NULL, NULL, NULL, G_CALLBACK (quit_app) },
@@ -244,9 +244,9 @@ static const GtkActionEntry actions[] = {
   { "LeaveFullscreen", GAMES_STOCK_LEAVE_FULLSCREEN, NULL, NULL, NULL, G_CALLBACK (fullscreen_callback) },
   { "Cards", NULL, N_("_Cards..."), NULL, NULL, G_CALLBACK (show_preferences_dialog) },
 
-  { "UndoMove", GAMES_STOCK_UNDO_MOVE, NULL, NULL, NULL, G_CALLBACK (undo_callback) },
-  { "RedoMove", GAMES_STOCK_REDO_MOVE, NULL, NULL, NULL, G_CALLBACK (redo_callback) },
-  { "Hint", GAMES_STOCK_HINT, NULL, NULL, NULL, G_CALLBACK (show_hint_dialog) },
+  { "UndoMove", GAMES_STOCK_UNDO_MOVE, NULL, NULL, N_("Undo the last move"), G_CALLBACK (undo_callback) },
+  { "RedoMove", GAMES_STOCK_REDO_MOVE, NULL, NULL, N_("Redo the last move"), G_CALLBACK (redo_callback) },
+  { "Hint", GAMES_STOCK_HINT, NULL, NULL, N_("Show a hint"), G_CALLBACK (show_hint_dialog) },
   { "Contents", GAMES_STOCK_CONTENTS, NULL, NULL, N_("View help for Aisleriot"), G_CALLBACK (general_help) },
   { "Help", GTK_STOCK_HELP, NULL, "<Shift>F1", N_("View help for this game"), G_CALLBACK (help_on_specific_game) },
   { "About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (help_about_callback) },
