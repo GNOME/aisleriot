@@ -90,6 +90,12 @@ Tali            Sort of poker with dice and less money. An ancient
                 Roman game, this variant is similar to Yahtzee (R).
                 (gtali)
 
+Tetravex	A puzzle game where you have to match a grid of tiles 
+		together. The skill level ranges from the simple two by
+		two up to the seriously mind-bending six by six grid.
+		(gnotravex)
+
+
 Website
 -------
 
@@ -142,10 +148,11 @@ written for the GNOME environment. It is moderated and low volume.
 Maintainers
 -----------
 
-The current maintainers are:
+The current maintainers for gnome-games are:
 
- Callum McKenzie <callum@physics.otago.ac.nz>.
- Jon McCann <mccann@jhu.edu> (blackjack).
+ Richard Hoelscher <rah@rahga.com>
+ Jason Clinton <me@jasonclinton.com>
+ Andreas Røsdal <andrearo@stud.ntnu.no>
 
 While you can email them with suggestions and bug reports it is better
 to use either the bug tracking system (see below) or the mailing
@@ -186,7 +193,10 @@ Contributing
 ------------
 
 See the file HACKING and the webpages mentioned within for details
-about contributing to gnome-games.
+about contributing to gnome-games. In particular, the following
+page is relevant:
+
+http://www.gnome.org/projects/gnome-games/contributing.html
 
 Requirements
 ------------
@@ -202,6 +212,9 @@ part of the gcc suite) and the guile implementation of the Scheme
 programming language version 1.6 or later
 (http://www.gnu.org/software/guile/guile.html). If either of these is
 missing then the games that rely on them will simply not be built.
+
+A Zeroconf library is optional, but it is highly recommended to use
+for example the Avahi library. http://www.avahi.org/
 
 The games that require additional packages are:
  guile scheme:  	AisleRiot
@@ -254,15 +267,21 @@ doesn't allow us to supply an argument to --disable-games.
 
 has the same effect. The names in the lists are applied in order.
 
-If you want Zeroconf support you have two options. On most Unix and
-Linux systems Howl is the library of choice and is automatically
-detected. You may also use Apple's Bonjour library, but you have to
-enable it explicitly.
+If you want Zeroconf support you have some options. Avahi is one 
+library which is supported. The use of Avahi is optional and 
+mutually exclusive with Howl and Bonjour.
+
+On most Unix and Linux systems Howl is another library to use, and 
+it is automatically detected. Howl is no longer actively developed 
+by Porchdog Software or anyone else. Therefore it is likely to be
+removed from gnome-games in the future. You may also use Apple's 
+Bonjour library, but you have to enable it explicitly. 
 
 The configure options for zeroconf support are:
 
  --disable-howl                   Disable Howl support 
  --enable-bonjour                 Enable Bonjour support
+ --enable_avahi                   Enable Avahi 
  --with-bonjour-includes=PREFIX   Specify where to find the Bonjour 
                                   header files
  --with-bonjour-libs=PREFIX       Specify where to find the Bonjour 
