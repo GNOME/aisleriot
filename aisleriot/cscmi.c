@@ -196,8 +196,9 @@ cscmi_catch_handler (gpointer data,
   cscmi_write_exception_details (error_fd, tag, throw_args);
   close (error_fd);
 
-  exec_str = g_strdup_printf ("bug-buddy --package=gnome-games --package-version=%s --appname=aisleriot --kill=%d --include=%s",
+  exec_str = g_strdup_printf ("bug-buddy --package=gnome-games --package-version=%s --appname=aisleriot --pid=%d --kill=%d --include=%s",
 			      VERSION,
+			      getpid (),
 			      getpid (),
 			      error_file);
   system (exec_str);
