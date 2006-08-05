@@ -29,9 +29,6 @@
 /* Init function */
 void       cscm_init                          (void);
 
-/* C to Scheme functions... */
-SCM        c2scm_card                         (hcard_type card);
-
 gboolean   cscmi_has_options                  (void);
 void       cscmi_start_game_lambda            (double *width, double *height);
 gboolean   cscmi_drag_valid                   (int slot_id, GList *cards);

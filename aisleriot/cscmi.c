@@ -231,7 +231,7 @@ cscmi_call_lambda (void *user_data)
   return SCM_EOL;
 }
 
-SCM c2scm_card(hcard_type card) 
+static SCM c2scm_card(hcard_type card) 
 {
   return scm_cons(scm_long2num(card->value),
 		 scm_cons(scm_long2num(card->suit),
@@ -249,6 +249,18 @@ static hcard_type scm2c_card(SCM card_data)
   return temp_card;
 }
 
+static SCM c2scm_deck(GList *c_cards)
+{
+  SCM scm_cards = SCM_EOL;
+
+  while (c_cards) {
+    scm_cards = scm_cons(c2scm_card((hcard_type)c_cards->data), scm_cards);
+    c_cards = c_cards->next;
+  }
+
+  return scm_cards;
+}
+
 static GList* scm2c_deck(SCM deck_data) 
 {
   SCM list_el;
@@ -260,16 +272,6 @@ static GList* scm2c_deck(SCM deck_data)
   }
   
   return temp_deck;
-}
-
-static SCM c2scm_deck(GList *c_cards)
-{
-  SCM scm_cards = SCM_EOL;
-  while (c_cards) {
-    scm_cards = scm_cons(c2scm_card((hcard_type)c_cards->data), scm_cards);
-    c_cards = c_cards->next;
-  }
-  return scm_cards;
 }
 
 static void cscmi_add_slot(SCM slot_data) 
@@ -407,14 +409,11 @@ static SCM scm_get_slot(SCM scm_slot_id)
 {
   SCM cards = SCM_EOL;
   hslot_type slot = get_slot(scm_num2int(scm_slot_id, SCM_ARG1, NULL));
-  GList* tempcard;
-  if (slot) {
-    for (tempcard = slot->cards; tempcard; tempcard = tempcard->next)
-      cards = scm_cons(c2scm_card(tempcard->data), cards);
 
-    cards = scm_cons(scm_slot_id, scm_cons(cards, SCM_EOL));
-  }
-  return cards; 
+  if (slot) 
+    cards = scm_cons(scm_slot_id, scm_cons(c2scm_deck (slot->cards), SCM_EOL));
+
+  return cards;
 }
 
 static SCM scm_set_cards(SCM scm_slot_id, SCM new_cards) 
@@ -597,6 +596,7 @@ cscmi_drag_valid(int slot_id, GList *cards)
   call_data->n_args = 2;
   call_data->arg1 = scm_long2num(slot_id);
   call_data->arg2 = c2scm_deck(cards);
+  scm_gc_protect_object (call_data->arg2);
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
 			    call_data,
@@ -604,6 +604,7 @@ cscmi_drag_valid(int slot_id, GList *cards)
 			    NULL);
   retval = call_data->retval;
   g_free (call_data);
+  scm_gc_unprotect_object (call_data->arg2);
 
   return SCM_NFALSEP(retval);
 }
@@ -619,6 +620,7 @@ cscmi_drop_cards(int start_slot, GList *cards, int end_slot)
   call_data->n_args = 3;
   call_data->arg1 = scm_long2num(start_slot);
   call_data->arg2 = c2scm_deck(cards);
+  scm_gc_protect_object (call_data->arg2);
   call_data->arg3 = scm_long2num(end_slot);
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
@@ -627,6 +629,7 @@ cscmi_drop_cards(int start_slot, GList *cards, int end_slot)
 			    NULL);
   retval = call_data->retval;
   g_free (call_data);
+  scm_gc_unprotect_object (call_data->arg2);
 
   return SCM_NFALSEP(retval);
 }
@@ -687,6 +690,7 @@ cscmi_drop_valid(int start_slot, GList *cards, int end_slot)
   call_data->n_args = 3;
   call_data->arg1 = scm_long2num(start_slot);
   call_data->arg2 = c2scm_deck(cards);
+  scm_gc_protect_object (call_data->arg2);
   call_data->arg3 = scm_long2num(end_slot);
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
@@ -695,6 +699,7 @@ cscmi_drop_valid(int start_slot, GList *cards, int end_slot)
 			    NULL);
   retval = call_data->retval;
   g_free (call_data);
+  scm_gc_unprotect_object (call_data->arg2);
 
   return SCM_NFALSEP(retval);
 }
@@ -833,9 +838,14 @@ cscmi_timeout_lambda (void)
 
 void cscmi_record_move(int slot_id, GList *old_cards)
 {
+  SCM cards = c2scm_deck(old_cards);
+
+  scm_gc_protect_object (cards);
+
   scm_call_2(scm_c_eval_string("record-move"),
-	     scm_long2num(slot_id), 
-	     c2scm_deck(old_cards));
+	     scm_long2num(slot_id), cards);
+
+  scm_gc_unprotect_object (cards);
 }
 
 void cscmi_end_move(void)

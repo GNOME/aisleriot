@@ -1,3 +1,16 @@
+2006-08-05  Callum McKenzie  <callum@spooky-possum.org>
+
+	* sol.scm: Removed the old garbage-protection code. It leaked
+	memory and wasn't actually targeting the right objects.
+
+	* cscmi.h: 
+	* cscmi.c: Make c2scm_card private to cscmi.c. Reverse order of
+	c2scm_deck and scm2c_deck to be consistent with c2scm_card and
+	scm2c_card. Make scm_get_slot use c2scm_deck rather than
+	duplicating code. c2scm_deck is now the only user of c2scm_card.
+	Explicitly protect the result of c2scm_deck when it is passed to a
+	scheme function. This should fix bug #342038.
+	
 2006-07-23  Callum McKenzie  <callum@spooky-possum.org>
 
 	* sol.scm (make-card): Redo the garbage-collection protection
