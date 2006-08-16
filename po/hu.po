@@ -14,14 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-26 09:35+0100\n"
+"POT-Creation-Date: 2006-08-15 11:20+0200\n"
 "PO-Revision-Date: 2005-08-03 23:21+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=1; plural=0;\n"
+"Plural-Forms:   nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.10.2\n"
 
 #: ../aisleriot/aisleriot.schemas.in.h:1
@@ -55,7 +55,7 @@ msgid "The game file to use"
 msgstr "A használandó játékfájl"
 
 #: ../aisleriot/aisleriot.schemas.in.h:6 ../glines/glines.schemas.in.h:13
-#: ../gnometris/gnometris.schemas.in.h:21
+#: ../gnobots2/gnobots2.schemas.in.h:25 ../gnometris/gnometris.schemas.in.h:21
 #: ../same-gnome/same-gnome.schemas.in.h:6
 msgid "The height of the main window."
 msgstr "A főablak magassága."
@@ -70,7 +70,7 @@ msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "A játszandó pasziánszjátékot tartalmazó sémafájl neve."
 
 #: ../aisleriot/aisleriot.schemas.in.h:9 ../glines/glines.schemas.in.h:14
-#: ../gnometris/gnometris.schemas.in.h:26
+#: ../gnobots2/gnobots2.schemas.in.h:38 ../gnometris/gnometris.schemas.in.h:26
 #: ../same-gnome/same-gnome.schemas.in.h:10
 msgid "The width of the main window."
 msgstr "A főablak szélessége."
@@ -91,16 +91,16 @@ msgid "Whether or not to show the toolbar."
 msgstr "Megjelenjen-e az eszköztár."
 
 #: ../aisleriot/aisleriot.schemas.in.h:13 ../glines/glines.schemas.in.h:17
-#: ../gnometris/gnometris.schemas.in.h:37
+#: ../gnobots2/gnobots2.schemas.in.h:43 ../gnometris/gnometris.schemas.in.h:37
 msgid "Window height"
 msgstr "Ablakmagasság"
 
 #: ../aisleriot/aisleriot.schemas.in.h:14 ../glines/glines.schemas.in.h:18
-#: ../gnometris/gnometris.schemas.in.h:38
+#: ../gnobots2/gnobots2.schemas.in.h:44 ../gnometris/gnometris.schemas.in.h:38
 msgid "Window width"
 msgstr "Ablakszélesség"
 
-#: ../aisleriot/cscmi.c:515
+#: ../aisleriot/cscmi.c:191
 #, c-format
 msgid ""
 "A scheme exception occured and we were unable to create a temporary file to "
@@ -121,11 +121,11 @@ msgstr "Gratulálok!!!"
 msgid "You have won."
 msgstr "Ön nyert."
 
-#: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:640
+#: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:653
 msgid "There are no more moves."
 msgstr "Nincs több lépés."
 
-#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:192 ../same-gnome/ui.c:149
+#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:196 ../same-gnome/ui.c:156
 msgid "_New Game"
 msgstr "Ú_j játék"
 
@@ -133,7 +133,7 @@ msgstr "Ú_j játék"
 msgid "Select Game"
 msgstr "Játék kiválasztása"
 
-#: ../aisleriot/dialog.c:272
+#: ../aisleriot/dialog.c:275
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -141,21 +141,21 @@ msgstr ""
 "A játéknak vége.\n"
 "Nincs javaslat"
 
-#: ../aisleriot/dialog.c:278
+#: ../aisleriot/dialog.c:281
 msgid "This game does not have hint support yet."
 msgstr "Ebben a játékban nincs javaslat. Egyelőre."
 
-#: ../aisleriot/dialog.c:290 ../aisleriot/dialog.c:296
+#: ../aisleriot/dialog.c:293 ../aisleriot/dialog.c:299
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Rakja a(z) %st a következőre: %s."
 
-#: ../aisleriot/dialog.c:302
+#: ../aisleriot/dialog.c:305
 #, c-format
 msgid "Move %s %s."
 msgstr "Rakja ezt: %s ide: %s."
 
-#: ../aisleriot/dialog.c:303
+#: ../aisleriot/dialog.c:306
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -169,16 +169,16 @@ msgstr ""
 "benne, megtalálja a\n"
 " címsorban)."
 
-#: ../aisleriot/dialog.c:308
+#: ../aisleriot/dialog.c:311
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Ön egy %st keres."
 
-#: ../aisleriot/dialog.c:312
+#: ../aisleriot/dialog.c:315
 msgid "This game is unable to provide a hint."
 msgstr "Ebben a játékban nincs javaslat."
 
-#: ../aisleriot/dialog.c:369
+#: ../aisleriot/dialog.c:372
 msgid "AisleRiot Cards"
 msgstr "AisleRiot kártyák"
 
@@ -190,7 +190,7 @@ msgstr "FreeCell pasziánsz"
 msgid "Play the popular FreeCell card game"
 msgstr "A népszerű FreeCell kártyajáték"
 
-#: ../aisleriot/menu.c:106 ../gnomine/gnomine.c:416 ../mahjongg/mahjongg.c:905
+#: ../aisleriot/menu.c:106 ../gnomine/gnomine.c:427 ../mahjongg/mahjongg.c:920
 msgid "Main game:"
 msgstr "Fő játék:"
 
@@ -198,24 +198,26 @@ msgstr "Fő játék:"
 msgid "Card games:"
 msgstr "Kártyajátékok:"
 
-#: ../aisleriot/menu.c:124
+#: ../aisleriot/menu.c:129
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
-#: ../aisleriot/menu.c:126
+#: ../aisleriot/menu.c:131
+#, fuzzy
 msgid ""
-"AisleRiot provides a rule-based solitaire card engine that allows many "
-"different games to be played."
+"AisleRiot provides a rule-based solitaire\n"
+"card engine that allows many different\n"
+"games to be played."
 msgstr ""
 "Az AisleRiot egy meghatározott szabályokon alapuló pasziánsz-motor, amely "
 "sok különböző játékra ad lehetőséget."
 
-#: ../aisleriot/menu.c:130 ../blackjack/src/menu.cpp:150
-#: ../gataxx/gataxx.c:389 ../glines/glines.c:1224 ../gnect/src/main.c:795
-#: ../gnibbles/main.c:153 ../gnobots2/menu.c:241 ../gnometris/tetris.cpp:1448
-#: ../gnomine/gnomine.c:439 ../gnotravex/gnotravex.c:1592
-#: ../gnotski/gnotski.c:1545 ../gtali/gyahtzee.c:443 ../iagno/gnothello.c:250
-#: ../mahjongg/mahjongg.c:932 ../same-gnome/ui.c:112
+#: ../aisleriot/menu.c:138 ../blackjack/src/menu.cpp:159
+#: ../gataxx/gataxx.c:400 ../glines/glines.c:1228 ../gnect/src/main.c:825
+#: ../gnibbles/main.c:207 ../gnobots2/menu.c:257 ../gnometris/tetris.cpp:1452
+#: ../gnomine/gnomine.c:464 ../gnotravex/gnotravex.c:1633
+#: ../gnotski/gnotski.c:1606 ../gtali/gyahtzee.c:461 ../iagno/gnothello.c:256
+#: ../mahjongg/mahjongg.c:958 ../same-gnome/ui.c:116
 msgid "translator-credits"
 msgstr ""
 "Bán Szabolcs <shooby@gnome.hu>\n"
@@ -226,66 +228,96 @@ msgstr ""
 "Tímár András <timar@gnome.hu>\n"
 "Varga Szabolcs <shirokuma@shirokuma.hu>"
 
-#: ../aisleriot/menu.c:219 ../blackjack/src/blackjack.cpp:298
-#: ../glines/glines.c:1712 ../gnect/src/main.c:1131 ../gnibbles/main.c:605
-#: ../gnobots2/menu.c:57 ../gnometris/tetris.cpp:131 ../gnomine/gnomine.c:745
-#: ../gnotravex/gnotravex.c:175 ../gnotski/gnotski.c:630
-#: ../gtali/gyahtzee.c:516 ../mahjongg/mahjongg.c:1275 ../same-gnome/ui.c:417
+#: ../aisleriot/menu.c:232 ../blackjack/src/blackjack.cpp:335
+#: ../glines/glines.c:1719 ../gnect/src/main.c:1164 ../gnibbles/main.c:644
+#: ../gnobots2/menu.c:61 ../gnometris/tetris.cpp:131 ../gnomine/gnomine.c:794
+#: ../gnotravex/gnotravex.c:194 ../gnotski/gnotski.c:635
+#: ../gtali/gyahtzee.c:537 ../mahjongg/mahjongg.c:1306 ../same-gnome/ui.c:424
 msgid "_Game"
 msgstr "_Játék"
 
-#: ../aisleriot/menu.c:220 ../same-gnome/ui.c:418
+#: ../aisleriot/menu.c:233 ../blackjack/src/blackjack.cpp:336
+#: ../gnect/src/main.c:1165 ../gnibbles/main.c:645 ../gnobots2/menu.c:62
+#: ../gnotravex/gnotravex.c:195 ../gnotski/gnotski.c:636
+#: ../same-gnome/ui.c:425
 msgid "_View"
 msgstr "_Nézet"
 
-#: ../aisleriot/menu.c:221 ../blackjack/src/blackjack.cpp:305
+#: ../aisleriot/menu.c:234 ../blackjack/src/blackjack.cpp:345
 msgid "_Control"
 msgstr "_Vezérlés"
 
 #. not translated on purpose
-#: ../aisleriot/menu.c:223 ../blackjack/src/blackjack.cpp:312
-#: ../glines/glines.c:1714 ../gnect/src/main.c:1133 ../gnibbles/main.c:607
-#: ../gnobots2/menu.c:60 ../gnometris/tetris.cpp:133 ../gnomine/gnomine.c:747
-#: ../gnotravex/gnotravex.c:178 ../gnotski/gnotski.c:631
-#: ../gtali/gyahtzee.c:518 ../mahjongg/mahjongg.c:1277 ../same-gnome/ui.c:420
+#: ../aisleriot/menu.c:236 ../blackjack/src/blackjack.cpp:352
+#: ../glines/glines.c:1721 ../gnect/src/main.c:1167 ../gnibbles/main.c:647
+#: ../gnobots2/menu.c:65 ../gnometris/tetris.cpp:133 ../gnomine/gnomine.c:796
+#: ../gnotravex/gnotravex.c:198 ../gnotski/gnotski.c:637
+#: ../gtali/gyahtzee.c:539 ../mahjongg/mahjongg.c:1308 ../same-gnome/ui.c:427
 msgid "_Help"
 msgstr "_Súgó"
 
-#: ../aisleriot/menu.c:227
+#: ../aisleriot/menu.c:238 ../blackjack/src/blackjack.cpp:337
+#: ../gnobots2/menu.c:66 ../libgames-support/games-stock.c:99
+#: ../mahjongg/mahjongg.c:1309
+msgid "Start a new game"
+msgstr "Új játék indítása"
+
+#: ../aisleriot/menu.c:239 ../blackjack/src/blackjack.cpp:338
+#: ../mahjongg/mahjongg.c:1310
+#, fuzzy
+msgid "Restart the current game"
+msgstr "A játék újraindítása"
+
+#: ../aisleriot/menu.c:240
 msgid "_Select Game..."
 msgstr "Játék _kiválasztása"
 
-#: ../aisleriot/menu.c:227
+#: ../aisleriot/menu.c:240
 msgid "Play a different game"
 msgstr "Másik játék indítása"
 
-#: ../aisleriot/menu.c:228
+#: ../aisleriot/menu.c:241
 msgid "S_tatistics"
 msgstr "_Statisztika"
 
-#: ../aisleriot/menu.c:228
+#: ../aisleriot/menu.c:241
 msgid "Show gameplay statistics"
 msgstr "Játékstatisztikák megjelenítése"
 
-#: ../aisleriot/menu.c:232
+#: ../aisleriot/menu.c:245
 msgid "_Cards..."
 msgstr "_Kártyák..."
 
-#: ../aisleriot/menu.c:237
+#: ../aisleriot/menu.c:247 ../libgames-support/games-stock.c:103
+#: ../mahjongg/mahjongg.c:1313
+msgid "Undo the last move"
+msgstr "Az utolsó lépés visszavonása"
+
+#: ../aisleriot/menu.c:248 ../mahjongg/mahjongg.c:1314
+#, fuzzy
+msgid "Redo the last move"
+msgstr "Az utolsó lépés visszavonása"
+
+#: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:339
+#: ../mahjongg/mahjongg.c:1315
+msgid "Show a hint"
+msgstr ""
+
+#: ../aisleriot/menu.c:250
 msgid "View help for Aisleriot"
 msgstr "Az Aisleriot súgójának megjelenítése"
 
 # aisleriot/menu.c:125
-#: ../aisleriot/menu.c:238 ../libgames-support/games-stock.c:110
+#: ../aisleriot/menu.c:251 ../libgames-support/games-stock.c:110
 msgid "View help for this game"
 msgstr "Súgó megjelenítése ehhez a játékhoz"
 
-#: ../aisleriot/menu.c:243 ../blackjack/src/blackjack.cpp:318
-#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1293
+#: ../aisleriot/menu.c:256 ../blackjack/src/blackjack.cpp:358
+#: ../gnobots2/menu.c:82 ../mahjongg/mahjongg.c:1326
 msgid "_Toolbar"
 msgstr "Eszköz_tár"
 
-#: ../aisleriot/menu.c:244
+#: ../aisleriot/menu.c:257
 msgid "_Click to Move"
 msgstr "_Kattintás a lépéshez"
 
@@ -384,8 +416,7 @@ msgid "Deal a new card from the deck"
 msgstr "Osszon egy új lapot a pakliból"
 
 #: ../aisleriot/rules/athena.scm.h:2 ../aisleriot/rules/easthaven.scm.h:3
-#: ../aisleriot/rules/freecell.scm.h:1 ../aisleriot/rules/klondike.scm.h:2
-#: ../aisleriot/rules/saratoga.scm.h:2
+#: ../aisleriot/rules/klondike.scm.h:2 ../aisleriot/rules/saratoga.scm.h:2
 msgid "No hint available right now"
 msgstr "Nincs javaslat"
 
@@ -399,18 +430,18 @@ msgstr "Nincs javaslat"
 msgid "Redeals left:"
 msgstr "Hátralévő újraosztások:"
 
-#: ../aisleriot/rules/athena.scm.h:5 ../aisleriot/rules/klondike.scm.h:5
-#: ../aisleriot/rules/osmosis.scm.h:3 ../aisleriot/rules/saratoga.scm.h:5
+#: ../aisleriot/rules/athena.scm.h:5 ../aisleriot/rules/osmosis.scm.h:3
+#: ../aisleriot/rules/saratoga.scm.h:5
 msgid "Three card deals"
 msgstr "Hármasával oszt"
 
-#: ../aisleriot/rules/athena.scm.h:6 ../aisleriot/rules/klondike.scm.h:6
+#: ../aisleriot/rules/athena.scm.h:6 ../aisleriot/rules/klondike.scm.h:5
 #: ../aisleriot/rules/saratoga.scm.h:6
 msgid "Try moving cards down from the foundation"
 msgstr "Próbáljon levenni kártyákat az alapról"
 
 #: ../aisleriot/rules/athena.scm.h:7 ../aisleriot/rules/camelot.scm.h:7
-#: ../aisleriot/rules/diamond_mine.scm.h:1 ../aisleriot/rules/klondike.scm.h:7
+#: ../aisleriot/rules/diamond_mine.scm.h:1 ../aisleriot/rules/klondike.scm.h:6
 #: ../aisleriot/rules/odessa.scm.h:1 ../aisleriot/rules/osmosis.scm.h:4
 #: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/saratoga.scm.h:7
 #: ../aisleriot/rules/scorpion.scm.h:2 ../aisleriot/rules/ten_across.scm.h:4
@@ -534,7 +565,8 @@ msgid "If you're ever lost and alone in the woods, hug a tree"
 msgstr "Ha eltévedt, és egyedül van az erdőben, öleljen meg egy fát"
 
 #: ../aisleriot/rules/clock.scm.h:6
-msgid "Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
+msgid ""
+"Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
 msgstr "Attól, hogy a gyalogátkelőhely úgy néz ki, mint egy ugróiskola, nem az"
 
 #: ../aisleriot/rules/clock.scm.h:7
@@ -657,9 +689,14 @@ msgstr "Próbáljon meg valamit egy üres helyre mozgatni"
 msgid "Move ~a off the board"
 msgstr "Rakja le a(z) ~at a tábláról"
 
+#: ../aisleriot/rules/freecell.scm.h:1
+msgid "No moves are possible. Undo or start again."
+msgstr ""
+
 #: ../aisleriot/rules/freecell.scm.h:2
-msgid "No moves available"
-msgstr "Nincs lehetséges lépés"
+#, fuzzy
+msgid "The game has no solution. Undo or start again."
+msgstr "a játéknak nincs megoldása"
 
 #: ../aisleriot/rules/freecell.scm.h:3
 msgid "an empty reserve"
@@ -670,10 +707,6 @@ msgid "an open tableau"
 msgstr "egy üres tabló"
 
 #: ../aisleriot/rules/freecell.scm.h:5
-msgid "game has no solution"
-msgstr "a játéknak nincs megoldása"
-
-#: ../aisleriot/rules/freecell.scm.h:6
 msgid "the foundation"
 msgstr "az alap"
 
@@ -848,7 +881,7 @@ msgstr "Mozgasson át egy kártya-összeállítást egy üres Tabló helyre"
 msgid "the appropriate Foundation pile"
 msgstr "a megfelelő Alap sor"
 
-#: ../aisleriot/sol.c:168
+#: ../aisleriot/sol.c:161
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -861,40 +894,42 @@ msgstr ""
 "\n"
 "Ellenőrizze az AisleRiot telepítést"
 
-#: ../aisleriot/sol.c:214
+#: ../aisleriot/sol.c:207
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Az Aisleriot nem találja az utoljára játszott játékot."
 
-#: ../aisleriot/sol.c:215
+#: ../aisleriot/sol.c:208
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
 "started instead."
 msgstr ""
 "Ez általában akkor történik, ha az Aisleriot egy régebbi verzióját futtatja, "
-"amely nem rendelkezik az utoljára játszott játékkal. Ehelyett az alapértelmezett "
-"játék, a Klondike kerül elindításra."
+"amely nem rendelkezik az utoljára játszott játékkal. Ehelyett az "
+"alapértelmezett játék, a Klondike kerül elindításra."
 
 #: ../aisleriot/sol.c:416
 msgid "Aisleriot"
 msgstr "AisleRiot"
 
-#: ../aisleriot/sol.c:453 ../glines/glines.c:1973 ../gnobots2/statusbar.c:65
-#: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:425
+#: ../aisleriot/sol.c:453 ../glines/glines.c:1981 ../gnobots2/statusbar.c:65
+#: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:430
 msgid "Score:"
 msgstr "Pont:"
 
-#: ../aisleriot/sol.c:458 ../gnotravex/gnotravex.c:1076
-#: ../mahjongg/mahjongg.c:1450
+#: ../aisleriot/sol.c:458 ../gnotravex/gnotravex.c:1104
+#: ../mahjongg/mahjongg.c:1487
 msgid "Time:"
 msgstr "Idő:"
 
-#: ../aisleriot/sol.c:514
-msgid "Variation on game rules"
-msgstr "Variációk a játékra"
+#: ../aisleriot/sol.c:509
+#, fuzzy
+msgid "Select the game to play"
+msgstr "A feladat megoldása"
 
-#: ../aisleriot/sol.c:515 ../gnobots2/gnobots.c:62 ../gnobots2/gnobots.c:64
-#: ../same-gnome/same-gnome.c:136 ../same-gnome/same-gnome.c:138
+#: ../aisleriot/sol.c:509 ../gnobots2/gnobots.c:66 ../gnobots2/gnobots.c:68
+#: ../iagno/gnothello.c:109 ../same-gnome/same-gnome.c:139
+#: ../same-gnome/same-gnome.c:141
 msgid "NAME"
 msgstr "NÉV"
 
@@ -1261,332 +1296,332 @@ msgstr "_Visszaállítás"
 #. * Add this file to your project's POTFILES.in.
 #. * DO NOT compile it as part of your application.
 #.
-#: ../aisleriot/translatable_game_names.h:7
+#: ../aisleriot/translatable_game_names.h:6
 msgid "Agnes"
 msgstr "Agnes"
 
-#: ../aisleriot/translatable_game_names.h:8
+#: ../aisleriot/translatable_game_names.h:7
 msgid "Athena"
 msgstr "Athena"
 
-#: ../aisleriot/translatable_game_names.h:9
+#: ../aisleriot/translatable_game_names.h:8
 msgid "Auld Lang Syne"
 msgstr "Régi szép idők"
 
-#: ../aisleriot/translatable_game_names.h:10
+#: ../aisleriot/translatable_game_names.h:9
 msgid "Aunt Mary"
 msgstr "Mary néni"
 
-#: ../aisleriot/translatable_game_names.h:11
+#: ../aisleriot/translatable_game_names.h:10
 msgid "Backbone"
 msgstr "Backbone"
 
-#: ../aisleriot/translatable_game_names.h:12
+#: ../aisleriot/translatable_game_names.h:11
 msgid "Bakers Dozen"
 msgstr "Bakers Dozen"
 
-#: ../aisleriot/translatable_game_names.h:13
+#: ../aisleriot/translatable_game_names.h:12
 msgid "Bakers Game"
 msgstr "Bakers Game"
 
-#: ../aisleriot/translatable_game_names.h:14
+#: ../aisleriot/translatable_game_names.h:13
 msgid "Beleaguered Castle"
 msgstr "Beleaguered Castle"
 
-#: ../aisleriot/translatable_game_names.h:15
+#: ../aisleriot/translatable_game_names.h:14
 msgid "Block Ten"
 msgstr "Block Ten"
 
-#: ../aisleriot/translatable_game_names.h:16
+#: ../aisleriot/translatable_game_names.h:15
 msgid "Bristol"
 msgstr "Bristol"
 
-#: ../aisleriot/translatable_game_names.h:17
+#: ../aisleriot/translatable_game_names.h:16
 msgid "Camelot"
 msgstr "Camelot"
 
-#: ../aisleriot/translatable_game_names.h:18
+#: ../aisleriot/translatable_game_names.h:17
 msgid "Canfield"
 msgstr "Canfield"
 
-#: ../aisleriot/translatable_game_names.h:19
+#: ../aisleriot/translatable_game_names.h:18
 msgid "Carpet"
 msgstr "Szőnyeg"
 
-#: ../aisleriot/translatable_game_names.h:20
+#: ../aisleriot/translatable_game_names.h:19
 msgid "Chessboard"
 msgstr "Sakktábla"
 
-#: ../aisleriot/translatable_game_names.h:21
+#: ../aisleriot/translatable_game_names.h:20
 msgid "Clock"
 msgstr "Óra"
 
-#: ../aisleriot/translatable_game_names.h:22
+#: ../aisleriot/translatable_game_names.h:21
 msgid "Cover"
 msgstr "Borító"
 
-#: ../aisleriot/translatable_game_names.h:23
+#: ../aisleriot/translatable_game_names.h:22
 msgid "Cruel"
 msgstr "Cruel"
 
-#: ../aisleriot/translatable_game_names.h:24
+#: ../aisleriot/translatable_game_names.h:23
 msgid "Diamond Mine"
 msgstr "Gyémántbánya"
 
 # aisleriot/dialog.c:112
-#: ../aisleriot/translatable_game_names.h:25
+#: ../aisleriot/translatable_game_names.h:24
 msgid "Doublets"
 msgstr "Doublets"
 
-#: ../aisleriot/translatable_game_names.h:26
+#: ../aisleriot/translatable_game_names.h:25
 msgid "Eagle Wing"
 msgstr "Sasszárny"
 
-#: ../aisleriot/translatable_game_names.h:27
+#: ../aisleriot/translatable_game_names.h:26
 msgid "Easthaven"
 msgstr "Easthaven"
 
-#: ../aisleriot/translatable_game_names.h:28
+#: ../aisleriot/translatable_game_names.h:27
 msgid "Eight Off"
 msgstr "Eight off"
 
-#: ../aisleriot/translatable_game_names.h:29
+#: ../aisleriot/translatable_game_names.h:28
 msgid "Elevator"
 msgstr "Lift"
 
-#: ../aisleriot/translatable_game_names.h:30
+#: ../aisleriot/translatable_game_names.h:29
 msgid "Escalator"
 msgstr "Mozgólépcső"
 
-#: ../aisleriot/translatable_game_names.h:31
+#: ../aisleriot/translatable_game_names.h:30
 msgid "First Law"
 msgstr "Első törvény"
 
-#: ../aisleriot/translatable_game_names.h:32
+#: ../aisleriot/translatable_game_names.h:31
 msgid "Fortress"
 msgstr "Erőd"
 
-#: ../aisleriot/translatable_game_names.h:33
+#: ../aisleriot/translatable_game_names.h:32
 msgid "Fortunes"
 msgstr "Fortunes"
 
-#: ../aisleriot/translatable_game_names.h:34
+#: ../aisleriot/translatable_game_names.h:33
 msgid "Fourteen"
 msgstr "Tizennégy"
 
-#: ../aisleriot/translatable_game_names.h:35
+#: ../aisleriot/translatable_game_names.h:34
 msgid "Freecell"
 msgstr "Freecell"
 
-#: ../aisleriot/translatable_game_names.h:36
+#: ../aisleriot/translatable_game_names.h:35
 msgid "Gaps"
 msgstr "Rések"
 
-#: ../aisleriot/translatable_game_names.h:37
+#: ../aisleriot/translatable_game_names.h:36
 msgid "Gay Gordons"
 msgstr "Gay Gordons"
 
-#: ../aisleriot/translatable_game_names.h:38
+#: ../aisleriot/translatable_game_names.h:37
 msgid "Glenwood"
 msgstr "Glenwood"
 
-#: ../aisleriot/translatable_game_names.h:39
+#: ../aisleriot/translatable_game_names.h:38
 msgid "Golf"
 msgstr "Golf"
 
-#: ../aisleriot/translatable_game_names.h:40
+#: ../aisleriot/translatable_game_names.h:39
 msgid "Gypsy"
 msgstr "Gypsy"
 
-#: ../aisleriot/translatable_game_names.h:41
+#: ../aisleriot/translatable_game_names.h:40
 msgid "Helsinki"
 msgstr "Helsinki"
 
-#: ../aisleriot/translatable_game_names.h:42
+#: ../aisleriot/translatable_game_names.h:41
 msgid "Hopscotch"
 msgstr "Hopscotch"
 
-#: ../aisleriot/translatable_game_names.h:43
+#: ../aisleriot/translatable_game_names.h:42
 msgid "Isabel"
 msgstr "Isabel"
 
-#: ../aisleriot/translatable_game_names.h:44
+#: ../aisleriot/translatable_game_names.h:43
 msgid "Jamestown"
 msgstr "Jamestown"
 
-#: ../aisleriot/translatable_game_names.h:45
+#: ../aisleriot/translatable_game_names.h:44
 msgid "Jumbo"
 msgstr "Jumbo"
 
-#: ../aisleriot/translatable_game_names.h:46
+#: ../aisleriot/translatable_game_names.h:45
 msgid "Kansas"
 msgstr "Kansas"
 
-#: ../aisleriot/translatable_game_names.h:47
+#: ../aisleriot/translatable_game_names.h:46
 msgid "King Albert"
 msgstr "Albert király"
 
-#: ../aisleriot/translatable_game_names.h:48
+#: ../aisleriot/translatable_game_names.h:47
 msgid "Kings Audience"
 msgstr "Királyi kihallgatás"
 
-#: ../aisleriot/translatable_game_names.h:49
+#: ../aisleriot/translatable_game_names.h:48
 msgid "Klondike"
 msgstr "Klondike"
 
-#: ../aisleriot/translatable_game_names.h:50
+#: ../aisleriot/translatable_game_names.h:49
 msgid "Labyrinth"
 msgstr "Labirintus"
 
-#: ../aisleriot/translatable_game_names.h:51
+#: ../aisleriot/translatable_game_names.h:50
 msgid "Lady Jane"
 msgstr "Lady Jane"
 
-#: ../aisleriot/translatable_game_names.h:52
+#: ../aisleriot/translatable_game_names.h:51
 msgid "Maze"
 msgstr "Útvesztő"
 
-#: ../aisleriot/translatable_game_names.h:53
+#: ../aisleriot/translatable_game_names.h:52
 msgid "Monte Carlo"
 msgstr "Monte Carlo"
 
-#: ../aisleriot/translatable_game_names.h:54
+#: ../aisleriot/translatable_game_names.h:53
 msgid "Neighbor"
 msgstr "Szomszéd"
 
-#: ../aisleriot/translatable_game_names.h:55
+#: ../aisleriot/translatable_game_names.h:54
 msgid "Odessa"
 msgstr "Odessa"
 
-#: ../aisleriot/translatable_game_names.h:56
+#: ../aisleriot/translatable_game_names.h:55
 msgid "Osmosis"
 msgstr "Ozmózis"
 
-#: ../aisleriot/translatable_game_names.h:57
+#: ../aisleriot/translatable_game_names.h:56
 msgid "Peek"
 msgstr "Peek"
 
-#: ../aisleriot/translatable_game_names.h:58
+#: ../aisleriot/translatable_game_names.h:57
 msgid "Pileon"
 msgstr "Pileon"
 
-#: ../aisleriot/translatable_game_names.h:59
+#: ../aisleriot/translatable_game_names.h:58
 msgid "Plait"
 msgstr "Copf"
 
-#: ../aisleriot/translatable_game_names.h:60
+#: ../aisleriot/translatable_game_names.h:59
 msgid "Poker"
 msgstr "Póker"
 
-#: ../aisleriot/translatable_game_names.h:61
+#: ../aisleriot/translatable_game_names.h:60
 msgid "Quatorze"
 msgstr "Quatorze"
 
-#: ../aisleriot/translatable_game_names.h:62
+#: ../aisleriot/translatable_game_names.h:61
 msgid "Royal East"
 msgstr "Royal East"
 
-#: ../aisleriot/translatable_game_names.h:63
+#: ../aisleriot/translatable_game_names.h:62
 msgid "Saratoga"
 msgstr "Saratoga"
 
-#: ../aisleriot/translatable_game_names.h:64
+#: ../aisleriot/translatable_game_names.h:63
 msgid "Scorpion"
 msgstr "Skorpió"
 
-#: ../aisleriot/translatable_game_names.h:65
+#: ../aisleriot/translatable_game_names.h:64
 msgid "Scuffle"
 msgstr "Scuffle"
 
-#: ../aisleriot/translatable_game_names.h:66
+#: ../aisleriot/translatable_game_names.h:65
 msgid "Seahaven"
 msgstr "Seahaven"
 
-#: ../aisleriot/translatable_game_names.h:67
+#: ../aisleriot/translatable_game_names.h:66
 msgid "Sir Tommy"
 msgstr "Sir Tommy"
 
-#: ../aisleriot/translatable_game_names.h:68
-msgid "Spiderette"
-msgstr "Spiderette"
-
-#: ../aisleriot/translatable_game_names.h:69
-msgid "Spider One Suit"
-msgstr "Spider egy színnel"
-
-#: ../aisleriot/translatable_game_names.h:70
+#: ../aisleriot/translatable_game_names.h:67
 msgid "Spider"
 msgstr "Spider"
 
-#: ../aisleriot/translatable_game_names.h:71
+#: ../aisleriot/translatable_game_names.h:68
+msgid "Spider One Suit"
+msgstr "Spider egy színnel"
+
+#: ../aisleriot/translatable_game_names.h:69
 msgid "Spider Two Suit"
 msgstr "Spider két színnel"
 
-#: ../aisleriot/translatable_game_names.h:72
+#: ../aisleriot/translatable_game_names.h:70
+msgid "Spiderette"
+msgstr "Spiderette"
+
+#: ../aisleriot/translatable_game_names.h:71
 msgid "Straight Up"
 msgstr "Egyenesen fel"
 
-#: ../aisleriot/translatable_game_names.h:73
+#: ../aisleriot/translatable_game_names.h:72
 msgid "Streets And Alleys"
 msgstr "Streets And Alleys"
 
-#: ../aisleriot/translatable_game_names.h:74
+#: ../aisleriot/translatable_game_names.h:73
 msgid "Template"
 msgstr "Sablon"
 
-#: ../aisleriot/translatable_game_names.h:75
+#: ../aisleriot/translatable_game_names.h:74
 msgid "Ten Across"
 msgstr "Ten Across"
 
-#: ../aisleriot/translatable_game_names.h:76
+#: ../aisleriot/translatable_game_names.h:75
 msgid "Thieves"
 msgstr "Tolvajok"
 
-#: ../aisleriot/translatable_game_names.h:77
+#: ../aisleriot/translatable_game_names.h:76
 msgid "Thirteen"
 msgstr "Tizenhárom"
 
-#: ../aisleriot/translatable_game_names.h:78
+#: ../aisleriot/translatable_game_names.h:77
 msgid "Thumb And Pouch"
 msgstr "Thumb And Pouch"
 
-#: ../aisleriot/translatable_game_names.h:79
+#: ../aisleriot/translatable_game_names.h:78
 msgid "Treize"
 msgstr "Treize"
 
-#: ../aisleriot/translatable_game_names.h:80
+#: ../aisleriot/translatable_game_names.h:79
 msgid "Triple Peaks"
 msgstr "Triple Peaks"
 
-#: ../aisleriot/translatable_game_names.h:81
+#: ../aisleriot/translatable_game_names.h:80
 msgid "Union Square"
 msgstr "Union Square"
 
-#: ../aisleriot/translatable_game_names.h:82
+#: ../aisleriot/translatable_game_names.h:81
 msgid "Valentine"
 msgstr "Valentine"
 
-#: ../aisleriot/translatable_game_names.h:83
+#: ../aisleriot/translatable_game_names.h:82
 msgid "Westhaven"
 msgstr "Westhaven"
 
-#: ../aisleriot/translatable_game_names.h:84
+#: ../aisleriot/translatable_game_names.h:83
 msgid "Whitehead"
 msgstr "Whitehead"
 
-#: ../aisleriot/translatable_game_names.h:85
+#: ../aisleriot/translatable_game_names.h:84
 msgid "Will O The Wisp"
 msgstr "Will O The Wisp"
 
-#: ../aisleriot/translatable_game_names.h:86
+#: ../aisleriot/translatable_game_names.h:85
 msgid "Yield"
 msgstr "Yield"
 
-#: ../aisleriot/translatable_game_names.h:87
+#: ../aisleriot/translatable_game_names.h:86
 msgid "Yukon"
 msgstr "Yukon"
 
-#: ../aisleriot/translatable_game_names.h:88
+#: ../aisleriot/translatable_game_names.h:87
 msgid "Zebra"
 msgstr "Zebra"
 
@@ -1627,7 +1662,8 @@ msgid "The amount of money in your bank."
 msgstr "A bankjában levő pénzösszeg."
 
 #: ../blackjack/data/blackjack.schemas.in.h:8
-msgid "The name of the rules file containing the variation of the rules to play."
+msgid ""
+"The name of the rules file containing the variation of the rules to play."
 msgstr "A játék szabályvariációit tartalmazó szabályfájl neve."
 
 #: ../blackjack/data/blackjack.schemas.in.h:9
@@ -1642,88 +1678,88 @@ msgstr "Gyors osztás használata"
 msgid "Use a quick deal with no delay between each card."
 msgstr "Gyors osztás használata (nincs késleltetés az egyes kártyák között)."
 
-#: ../blackjack/src/blackjack.cpp:92
+#: ../blackjack/src/blackjack.cpp:95
 #, c-format
 msgid "Blackjack - %s"
 msgstr "Blackjack - %s"
 
-#: ../blackjack/src/blackjack.cpp:303 ../glines/glines.c:1713
-#: ../gnect/src/main.c:1132 ../gnibbles/main.c:606 ../gnobots2/menu.c:59
-#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:746
-#: ../gtali/gyahtzee.c:517 ../mahjongg/mahjongg.c:1276
+#: ../blackjack/src/blackjack.cpp:341 ../glines/glines.c:1720
+#: ../gnect/src/main.c:1166 ../gnibbles/main.c:646 ../gnobots2/menu.c:64
+#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:795
+#: ../gtali/gyahtzee.c:538 ../mahjongg/mahjongg.c:1307
 msgid "_Settings"
 msgstr "_Beállítások"
 
-#: ../blackjack/src/blackjack.cpp:306
+#: ../blackjack/src/blackjack.cpp:346
 msgid "D_eal"
 msgstr "_Osztás"
 
-#: ../blackjack/src/blackjack.cpp:306 ../blackjack/src/dialog.cpp:98
+#: ../blackjack/src/blackjack.cpp:346 ../blackjack/src/dialog.cpp:98
 #: ../blackjack/src/dialog.cpp:101
 msgid "Deal a new hand"
 msgstr "Új leosztás"
 
-#: ../blackjack/src/blackjack.cpp:307
+#: ../blackjack/src/blackjack.cpp:347
 msgid "_Hit"
 msgstr "Ü_tés"
 
-#: ../blackjack/src/blackjack.cpp:307
+#: ../blackjack/src/blackjack.cpp:347
 msgid "Add a card to the hand"
 msgstr "Kártya hozzáadása a leosztáshoz"
 
-#: ../blackjack/src/blackjack.cpp:308
+#: ../blackjack/src/blackjack.cpp:348
 msgid "_Stand"
 msgstr "Megállá_s"
 
-#: ../blackjack/src/blackjack.cpp:308
+#: ../blackjack/src/blackjack.cpp:348
 msgid "Stop adding cards to the hand"
 msgstr "Kártyák hozzáadásának leállítása"
 
-#: ../blackjack/src/blackjack.cpp:309
+#: ../blackjack/src/blackjack.cpp:349
 msgid "S_urrender"
 msgstr "Be_dobás"
 
-#: ../blackjack/src/blackjack.cpp:309
+#: ../blackjack/src/blackjack.cpp:349
 msgid "Forfeit this hand for half of your wager"
 msgstr "Ezen osztás elvesztése a tét feléért"
 
-#: ../blackjack/src/blackjack.cpp:310
+#: ../blackjack/src/blackjack.cpp:350
 msgid "_Double down"
 msgstr "_Duplázás"
 
-#: ../blackjack/src/blackjack.cpp:310
+#: ../blackjack/src/blackjack.cpp:350
 msgid "Double your wager for a single hit"
 msgstr "A tét megduplázása egyetlen lapért"
 
-#: ../blackjack/src/blackjack.cpp:311
+#: ../blackjack/src/blackjack.cpp:351
 msgid "S_plit the hand"
 msgstr "Le_osztás szétválasztása"
 
-#: ../blackjack/src/blackjack.cpp:311
+#: ../blackjack/src/blackjack.cpp:351
 msgid "Split cards in two new hands"
 msgstr "Kártyák szétválasztása két leosztásba"
 
-#: ../blackjack/src/blackjack.cpp:318 ../gnobots2/gnobots2.schemas.in.h:23
+#: ../blackjack/src/blackjack.cpp:358 ../gnobots2/gnobots2.schemas.in.h:23
 msgid "Show toolbar"
 msgstr "Eszköztár megjelenítése"
 
-#: ../blackjack/src/blackjack.cpp:354
+#: ../blackjack/src/blackjack.cpp:394
 msgid "Cards left:"
 msgstr "Hátralévő lapok:"
 
-#: ../blackjack/src/blackjack.cpp:363
+#: ../blackjack/src/blackjack.cpp:403
 msgid "Wager:"
 msgstr "Tét:"
 
-#: ../blackjack/src/blackjack.cpp:376
+#: ../blackjack/src/blackjack.cpp:416
 msgid "Balance:"
 msgstr "Mérleg:"
 
-#: ../blackjack/src/blackjack.cpp:417
+#: ../blackjack/src/blackjack.cpp:466
 msgid "Place your wager or deal a hand"
 msgstr "Helyezze el a tétet vagy osszon"
 
-#: ../blackjack/src/blackjack.cpp:685
+#: ../blackjack/src/blackjack.cpp:734
 msgid "Blackjack rule set to use"
 msgstr "A Blackjack használandó szabálykészlete"
 
@@ -1745,18 +1781,20 @@ msgstr ""
 
 #: ../blackjack/src/dialog.cpp:99
 msgid "Set your wager and click in the white outline to deal a new hand."
-msgstr "Tegye meg tétjét, és kattintson a fehér körvonalra egy új leosztás kéréséhez."
+msgstr ""
+"Tegye meg tétjét, és kattintson a fehér körvonalra egy új leosztás kéréséhez."
 
 #: ../blackjack/src/dialog.cpp:102
 msgid "Set your wager or click on the cards to deal a new hand."
-msgstr "Tegye meg a tétet, vagy kattintson a kártyákra egy új leosztás kéréséhez."
+msgstr ""
+"Tegye meg a tétet, vagy kattintson a kártyákra egy új leosztás kéréséhez."
 
 #: ../blackjack/src/dialog.cpp:230
 msgid "Blackjack Preferences"
 msgstr "A Blackjack beállításai"
 
 #: ../blackjack/src/dialog.cpp:246 ../gnect/src/prefs.c:378
-#: ../gnibbles/preferences.c:217 ../gnobots2/properties.c:495
+#: ../gnibbles/preferences.c:215 ../gnobots2/properties.c:530
 #: ../gnometris/tetris.cpp:734
 msgid "Game"
 msgstr "Játék"
@@ -1783,8 +1821,8 @@ msgstr "Mérleg _visszaállítása"
 msgid "Rules"
 msgstr "Szabályok"
 
-#: ../blackjack/src/dialog.cpp:310 games-scores-dialog.gob:332
-#: ../libgames-support/games-scores-dialog.gob:332
+#: ../blackjack/src/dialog.cpp:310 games-scores-dialog.gob:356
+#: ../libgames-support/games-scores-dialog.gob:356
 msgid "Name"
 msgstr "Név"
 
@@ -1941,8 +1979,9 @@ msgstr ""
 "leosztást. Ezt a Vezérlés menü megfelelő pontjának kiválasztásával teheti "
 "meg."
 
-#: ../blackjack/src/menu.cpp:172
-msgid "Blackjack provides a casino-style blackjack card game."
+#: ../blackjack/src/menu.cpp:156
+#, fuzzy
+msgid "Blackjack is a casino-style card game."
 msgstr "A Blackjack egy kaszinó-stílusú kártyajátékot kínál"
 
 #: ../blackjack/src/player.cpp:57
@@ -1998,50 +2037,67 @@ msgstr "Szétválasztás"
 msgid "Dealer hand probabilities"
 msgstr "Osztó lehetőségei"
 
-#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:615
+#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:627
 msgid "Light:"
 msgstr "Világos:"
 
-#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:605
+#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:617
 msgid "Dark:"
 msgstr "Sötét:"
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:200 ../iagno/othello.c:271
+#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:202 ../iagno/othello.c:271
 msgid "Light's move"
 msgstr "A világos lép"
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:202 ../iagno/gnothello.c:562
+#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:204 ../iagno/gnothello.c:571
 #: ../iagno/othello.c:267
 msgid "Dark's move"
 msgstr "A sötét lép"
 
-#: ../gataxx/gataxx.c:175 ../iagno/othello.c:698
+#: ../gataxx/gataxx.c:59
+#, fuzzy
+msgid "Set the state of the board at start-up."
+msgstr "A főablak magassága képpontokban az induláskor."
+
+#: ../gataxx/gataxx.c:59
+msgid "STATE"
+msgstr ""
+
+#: ../gataxx/gataxx.c:61
+msgid "Set whose turn it is."
+msgstr ""
+
+#: ../gataxx/gataxx.c:61
+msgid "1 (Light) or 2 (Dark)"
+msgstr ""
+
+#: ../gataxx/gataxx.c:180 ../iagno/othello.c:698
 msgid "Light player wins!"
 msgstr "A világos nyert!"
 
-#: ../gataxx/gataxx.c:177 ../iagno/othello.c:700
+#: ../gataxx/gataxx.c:182 ../iagno/othello.c:700
 msgid "Dark player wins!"
 msgstr "A sötét nyert!"
 
-#: ../gataxx/gataxx.c:179 ../iagno/othello.c:702
+#: ../gataxx/gataxx.c:184 ../iagno/othello.c:702
 msgid "The game was a draw."
 msgstr "Döntetlen az eredmény."
 
-#: ../gataxx/gataxx.c:380
+#: ../gataxx/gataxx.c:385
 msgid "Based on code from Iagno by Ian Peters"
 msgstr "Az Iagno kódja alapján készítette Ian Peters"
 
-#: ../gataxx/gataxx.c:383 ../gataxx/gataxx.desktop.in.h:1
+#: ../gataxx/gataxx.c:391 ../gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "Ataxx"
 
-#: ../gataxx/gataxx.c:387
+#: ../gataxx/gataxx.c:397
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr "Korongfordítgatós játék, ahol Ön megkísérli elfoglalni a táblát."
 
 #: ../gataxx/gataxx.desktop.in.h:2
-msgid "Compete to dominate the board in a Reversi-like game"
-msgstr "Versenyezzen a tábla elfoglalásáért egy Reversi-szerű játékban"
+msgid "Dominate the board in a modern variation of Reversi"
+msgstr ""
 
 #: ../gataxx/gataxx.schemas.in.h:1 ../gnect/data/gnect.schemas.in.h:2
 msgid "Animate"
@@ -2082,7 +2138,7 @@ msgid "The width of the window"
 msgstr "Az ablak szélessége"
 
 #: ../gataxx/gataxx.schemas.in.h:10 ../gnometris/tetris.cpp:857
-#: ../gnometris/tetris.cpp:890 ../same-gnome/ui.c:288
+#: ../gnometris/tetris.cpp:890 ../same-gnome/ui.c:295
 msgid "Theme"
 msgstr "Téma"
 
@@ -2114,11 +2170,11 @@ msgstr ""
 "A nulla az ember, az egytől háromig terjedő értékek a számítógépes játékos "
 "szintjét jelentik."
 
-#: ../gataxx/gtkgridboardthemes.c:166 ../gnometris/renderer.cpp:27
+#: ../gataxx/gtkgridboardthemes.c:200 ../gnometris/renderer.cpp:27
 msgid "Plain"
 msgstr "Egyszerű"
 
-#: ../gataxx/gtkgridboardthemes.c:168
+#: ../gataxx/gtkgridboardthemes.c:202
 msgid "Squares and Diamonds"
 msgstr "Négyzetek és gyémántok"
 
@@ -2147,8 +2203,8 @@ msgid "Dark"
 msgstr "Sötét"
 
 #: ../gataxx/properties.c:342 ../gataxx/properties.c:360
-#: ../gnect/src/prefs.c:326 ../gtali/yahtzee.c:61 ../iagno/properties.c:526
-#: ../iagno/properties.c:572
+#: ../gnect/src/prefs.c:326 ../gtali/gyahtzee.c:763 ../gtali/yahtzee.c:60
+#: ../iagno/properties.c:526 ../iagno/properties.c:572
 msgid "Human"
 msgstr "Ember"
 
@@ -2188,7 +2244,7 @@ msgstr "Közepes"
 
 #. Appearance tab
 #: ../gataxx/properties.c:374 ../gataxx/properties.c:377
-#: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:535
+#: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:569
 #: ../iagno/properties.c:616
 msgid "Appearance"
 msgstr "Megjelenés"
@@ -2203,7 +2259,7 @@ msgid "Flip the pieces with some visual effects"
 msgstr "Vizuális effektusok kíséretében fordítja meg az elemeket"
 
 #: ../gataxx/properties.c:392 ../iagno/properties.c:685
-#: ../mahjongg/mahjongg.c:748
+#: ../mahjongg/mahjongg.c:761
 msgid "_Tile set:"
 msgstr "_Cserépkészlet:"
 
@@ -2212,29 +2268,29 @@ msgid "The appearance of the pieces"
 msgstr "Az elemek megjelenése"
 
 #. GstElement *sound_player;
-#: ../glines/glines.c:75 ../glines/glines.c:79 ../gnomine/gnomine.c:82
-#: ../gnomine/gnomine.c:609 ../same-gnome/same-gnome.c:49
+#: ../glines/glines.c:74 ../glines/glines.c:78 ../gnomine/gnomine.c:86
+#: ../gnomine/gnomine.c:649 ../same-gnome/same-gnome.c:49
 msgid "Small"
 msgstr "Kicsi"
 
-#: ../glines/glines.c:76 ../glines/glines.c:80
+#: ../glines/glines.c:75 ../glines/glines.c:79
 msgid "glines|Medium"
 msgstr "Közepes"
 
-#: ../glines/glines.c:77 ../glines/glines.c:81 ../gnomine/gnomine.c:84
-#: ../gnomine/gnomine.c:631 ../same-gnome/same-gnome.c:51
+#: ../glines/glines.c:76 ../glines/glines.c:80 ../gnomine/gnomine.c:88
+#: ../gnomine/gnomine.c:671 ../same-gnome/same-gnome.c:51
 msgid "Large"
 msgstr "Nagy"
 
-#: ../glines/glines.c:191
+#: ../glines/glines.c:190
 msgid "Could not load theme"
 msgstr "Nem lehet betölteni a témát"
 
-#: ../glines/glines.c:196 ../mahjongg/mahjongg.c:141
+#: ../glines/glines.c:195 ../mahjongg/mahjongg.c:142
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: ../glines/glines.c:220
+#: ../glines/glines.c:219
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -2247,7 +2303,7 @@ msgstr ""
 "\n"
 "Helyette az alapértelmezett téma kerül betöltésre."
 
-#: ../glines/glines.c:229
+#: ../glines/glines.c:228
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -2260,77 +2316,77 @@ msgstr ""
 "\n"
 "Ellenőrizze, hogy a Five or More megfelelően van-e telepítve."
 
-#: ../glines/glines.c:423
+#: ../glines/glines.c:422
 msgid "Match five objects of the same type in a row to score!"
 msgstr "Helyezzen el öt egyszínű objektumot egy sorba!"
 
-#: ../glines/glines.c:488
+#: ../glines/glines.c:487
 msgid "GNOME Five or More"
 msgstr "GNOME Five or More"
 
-#: ../glines/glines.c:490
+#: ../glines/glines.c:489
 msgid "Board Size:"
 msgstr "A tábla mérete:"
 
-#: ../glines/glines.c:518
+#: ../glines/glines.c:517
 msgid "Game Over!"
 msgstr "Vége a játéknak!"
 
 #. Can't move there!
-#: ../glines/glines.c:679
+#: ../glines/glines.c:678
 msgid "You can't move there!"
 msgstr "Nem léphet oda!"
 
-#: ../glines/glines.c:1219 ../glines/glines.c:1913
+#: ../glines/glines.c:1221 ../glines/glines.c:1921
 #: ../glines/glines.desktop.in.h:1
 msgid "Five or More"
 msgstr "Five or More"
 
-#: ../glines/glines.c:1221
+#: ../glines/glines.c:1223
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "A népszerű Color Lines játék GNOME-átirata"
 
-#: ../glines/glines.c:1422
+#: ../glines/glines.c:1429
 msgid "Five or More Preferences"
 msgstr "Five or More beállítások"
 
-#: ../glines/glines.c:1443
+#: ../glines/glines.c:1450
 msgid "Themes"
 msgstr "Témák"
 
-#: ../glines/glines.c:1452
+#: ../glines/glines.c:1459
 msgid "_Image:"
 msgstr "Ké_p:"
 
-#: ../glines/glines.c:1463
+#: ../glines/glines.c:1470
 msgid "B_ackground color:"
 msgstr "_Háttérszín:"
 
-#: ../glines/glines.c:1478
+#: ../glines/glines.c:1485
 msgid "Board Size"
 msgstr "A tábla mérete"
 
-#: ../glines/glines.c:1485 ../same-gnome/ui.c:437
+#: ../glines/glines.c:1492 ../same-gnome/ui.c:444
 msgid "_Small"
 msgstr "Kic_si"
 
-#: ../glines/glines.c:1495 ../same-gnome/ui.c:438
+#: ../glines/glines.c:1502 ../same-gnome/ui.c:445
 msgid "_Medium"
 msgstr "Kö_zepes"
 
-#: ../glines/glines.c:1505 ../same-gnome/ui.c:439
+#: ../glines/glines.c:1512 ../same-gnome/ui.c:446
 msgid "_Large"
 msgstr "_Nagy"
 
-#: ../glines/glines.c:1513
+#: ../glines/glines.c:1520
 msgid "General"
 msgstr "Általános"
 
-#: ../glines/glines.c:1521
+#: ../glines/glines.c:1528
 msgid "_Use fast moves"
 msgstr "_Gyors mozgások használata"
 
-#: ../glines/glines.c:1943
+#: ../glines/glines.c:1951
 msgid "Next:"
 msgstr "Következő:"
 
@@ -2383,8 +2439,10 @@ msgid "Playing field size"
 msgstr "Játékmező mérete"
 
 #: ../glines/glines.schemas.in.h:12
-msgid "Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
-msgstr "Játékmező mérete. 1=Kicsi, 2=Közepes, 3=Nagy. Bármely más érték érvénytelen."
+msgid ""
+"Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
+msgstr ""
+"Játékmező mérete. 1=Kicsi, 2=Közepes, 3=Nagy. Bármely más érték érvénytelen."
 
 #: ../glines/glines.schemas.in.h:15
 msgid "Time between moves"
@@ -2394,14 +2452,15 @@ msgstr "Mozgások közötti idő"
 msgid "Time between moves in milliseconds."
 msgstr "Mozgások közötti idő ezredmásodpercben."
 
-#: ../gnect/data/gnect.desktop.in.h:1
-msgid "Compete to make lines of the same color"
-msgstr "Verseny a sorok azonos színűvé tételéért"
-
-#: ../gnect/data/gnect.desktop.in.h:2 ../gnect/src/main.c:790
-#: ../gnect/src/main.c:1211
+#: ../gnect/data/gnect.desktop.in.h:1 ../gnect/src/main.c:817
+#: ../gnect/src/main.c:1255
 msgid "Four-in-a-Row"
 msgstr "Négyet egy sorba"
+
+#: ../gnect/data/gnect.desktop.in.h:2
+#, fuzzy
+msgid "Make lines of the same color to win"
+msgstr "Verseny a sorok azonos színűvé tételéért"
 
 #: ../gnect/data/gnect.schemas.in.h:1
 msgid "A number specifying the preferred theme."
@@ -2482,58 +2541,58 @@ msgstr ""
 "Nem lehet betölteni a következő képet:\n"
 "%s"
 
-#: ../gnect/src/main.c:500
+#: ../gnect/src/main.c:526
 msgid "It's a draw!"
 msgstr "Döntetlen!"
 
-#: ../gnect/src/main.c:508
+#: ../gnect/src/main.c:534
 msgid "You win!"
 msgstr "Ön nyert!"
 
-#: ../gnect/src/main.c:509
+#: ../gnect/src/main.c:535
 msgid "Your move..."
 msgstr "Ön jön..."
 
-#: ../gnect/src/main.c:512
+#: ../gnect/src/main.c:538
 msgid "I win!"
 msgstr "Én nyertem!"
 
-#: ../gnect/src/main.c:513 ../gnect/src/main.c:606
+#: ../gnect/src/main.c:539 ../gnect/src/main.c:632
 msgid "Thinking..."
 msgstr "Gondolkodom..."
 
-#: ../gnect/src/main.c:521
+#: ../gnect/src/main.c:547
 #, c-format
 msgid "%s wins!"
 msgstr "%s nyert!"
 
-#: ../gnect/src/main.c:522
+#: ../gnect/src/main.c:548
 #, c-format
 msgid "%s..."
 msgstr "%s..."
 
-#: ../gnect/src/main.c:624
+#: ../gnect/src/main.c:650
 #, c-format
 msgid "Hint: Column %d"
 msgstr "Javaslat: %d. oszlop"
 
-#: ../gnect/src/main.c:651 ../gnect/src/main.c:656
+#: ../gnect/src/main.c:677 ../gnect/src/main.c:682
 msgid "You:"
 msgstr "Ön:"
 
-#: ../gnect/src/main.c:652 ../gnect/src/main.c:655
+#: ../gnect/src/main.c:678 ../gnect/src/main.c:681
 msgid "Me:"
 msgstr "Én:"
 
-#: ../gnect/src/main.c:702
+#: ../gnect/src/main.c:728
 msgid "Scores"
 msgstr "Pontszámok"
 
-#: ../gnect/src/main.c:753
+#: ../gnect/src/main.c:775
 msgid "Drawn:"
 msgstr "Döntetlen:"
 
-#: ../gnect/src/main.c:793
+#: ../gnect/src/main.c:821
 msgid ""
 "\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -2590,8 +2649,8 @@ msgstr "_Animáció bekapcsolása"
 msgid "Controls"
 msgstr "Vezérlés"
 
-#: ../gnect/src/prefs.c:444 ../gnibbles/preferences.c:381
-#: ../gnobots2/properties.c:542 ../gnometris/tetris.cpp:869
+#: ../gnect/src/prefs.c:444 ../gnibbles/preferences.c:379
+#: ../gnobots2/properties.c:576 ../gnometris/tetris.cpp:869
 msgid "Keyboard Controls"
 msgstr "Billentyűzetes vezérlés"
 
@@ -2600,12 +2659,12 @@ msgid "Classic"
 msgstr "Klasszikus"
 
 #: ../gnect/src/theme.c:47 ../gnect/src/theme.c:71 ../gnect/src/theme.c:79
-#: ../gnect/src/theme.c:87 ../gnibbles/preferences.c:420
+#: ../gnect/src/theme.c:87 ../gnibbles/preferences.c:418
 msgid "Red"
 msgstr "Vörös"
 
 #: ../gnect/src/theme.c:47 ../gnect/src/theme.c:87
-#: ../gnibbles/preferences.c:423
+#: ../gnibbles/preferences.c:421
 msgid "Yellow"
 msgstr "Sárga"
 
@@ -2622,7 +2681,7 @@ msgid "Cream Marbles"
 msgstr "Krémes golyók"
 
 #: ../gnect/src/theme.c:71 ../gnect/src/theme.c:79 ../gnect/src/theme.c:95
-#: ../gnibbles/preferences.c:422
+#: ../gnibbles/preferences.c:420
 msgid "Blue"
 msgstr "Kék"
 
@@ -2642,7 +2701,7 @@ msgstr "Tömbök"
 msgid "Orange"
 msgstr "Narancs"
 
-#: ../gnibbles/gnibbles.c:83
+#: ../gnibbles/gnibbles.c:85
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -2655,7 +2714,7 @@ msgstr ""
 "\n"
 "Ellenőrizze a Gnibbles telepítést"
 
-#: ../gnibbles/gnibbles.c:232
+#: ../gnibbles/gnibbles.c:234
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -2668,12 +2727,34 @@ msgstr ""
 "\n"
 "Ellenőrizze a Gnibbles telepítést"
 
+#: ../gnibbles/gnibbles.c:570
+#, fuzzy
+msgid "Nibbles Scores"
+msgstr "Aknakereső pontszámok"
+
+#: ../gnibbles/gnibbles.c:571
+#, fuzzy
+msgid "Speed:"
+msgstr "Sebesség"
+
+#: ../gnibbles/gnibbles.c:576 ../gnomine/gnomine.c:219
+#: ../gnotravex/gnotravex.c:990 ../mahjongg/mahjongg.c:697
+#: ../same-gnome/ui.c:172
+msgid "Congratulations!"
+msgstr "Gratulálok!"
+
+#: ../gnibbles/gnibbles.c:577 ../gnomine/gnomine.c:220
+#: ../gnotravex/gnotravex.c:991 ../mahjongg/mahjongg.c:698
+#: ../same-gnome/ui.c:173
+msgid "Your score has made the top ten."
+msgstr "Pontszáma benne van az első tízben."
+
 #: ../gnibbles/gnibbles.desktop.in.h:1
 msgid "Guide a worm around a maze"
 msgstr "Kukac irányítása egy labirintusban"
 
 #: ../gnibbles/gnibbles.desktop.in.h:2 ../gnibbles/gnibbles.soundlist.in.h:6
-#: ../gnibbles/main.c:148
+#: ../gnibbles/main.c:200
 msgid "Nibbles"
 msgstr "Nibbles"
 
@@ -2813,7 +2894,7 @@ msgstr "Egye meg a bónuszt"
 msgid "Extra Life"
 msgstr "Extra élet"
 
-#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:227
+#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:229
 msgid "Game Over"
 msgstr "Vége a játéknak"
 
@@ -2829,7 +2910,42 @@ msgstr "Kukac visszafordítása"
 msgid "Worm Teleport"
 msgstr "Kukac teleport"
 
-#: ../gnibbles/main.c:151
+#: ../gnibbles/main.c:48
+msgid "Beginner"
+msgstr ""
+
+#: ../gnibbles/main.c:49
+#, fuzzy
+msgid "Slow"
+msgstr "Sárga"
+
+#: ../gnibbles/main.c:50
+#, fuzzy
+msgid "gnibbles|Medium"
+msgstr "Közepes"
+
+#: ../gnibbles/main.c:51
+#, fuzzy
+msgid "Fast"
+msgstr "Arcok:"
+
+#: ../gnibbles/main.c:52
+msgid "Beginner with Fakes"
+msgstr ""
+
+#: ../gnibbles/main.c:53
+msgid "Slow with Fakes"
+msgstr ""
+
+#: ../gnibbles/main.c:54
+msgid "Medium with Fakes"
+msgstr ""
+
+#: ../gnibbles/main.c:55
+msgid "Fast with Fakes"
+msgstr ""
+
+#: ../gnibbles/main.c:204
 msgid "A worm game for GNOME."
 msgstr "Egy kukacos játék a GNOME-hoz."
 
@@ -2855,82 +2971,82 @@ msgstr "Az új játék készen áll az indításra"
 msgid "New game started"
 msgstr "Új játék elindítva"
 
-#: ../gnibbles/preferences.c:204
+#: ../gnibbles/preferences.c:202
 msgid "Nibbles Preferences"
 msgstr "Nibbles beállításai"
 
-#: ../gnibbles/preferences.c:225
+#: ../gnibbles/preferences.c:223
 msgid "Speed"
 msgstr "Sebesség"
 
-#: ../gnibbles/preferences.c:234
+#: ../gnibbles/preferences.c:232
 msgid "Nibbles newbie"
 msgstr "Nibbles kezdő"
 
-#: ../gnibbles/preferences.c:244
+#: ../gnibbles/preferences.c:242
 msgid "My second day"
 msgstr "Második napom"
 
-#: ../gnibbles/preferences.c:254
+#: ../gnibbles/preferences.c:252
 msgid "Not too shabby"
 msgstr "Nem túl kopott"
 
-#: ../gnibbles/preferences.c:265
+#: ../gnibbles/preferences.c:263
 msgid "Finger-twitching good"
 msgstr "Viszket az ujjam, olyan jó"
 
 #. Options
-#: ../gnibbles/preferences.c:276 ../gnibbles/preferences.c:400
-#: ../gnobots2/properties.c:448 ../iagno/properties.c:656
+#: ../gnibbles/preferences.c:274 ../gnibbles/preferences.c:398
+#: ../gnobots2/properties.c:483 ../iagno/properties.c:656
 msgid "Options"
 msgstr "Beállítások"
 
-#: ../gnibbles/preferences.c:282
+#: ../gnibbles/preferences.c:280
 msgid "_Play levels in random order"
 msgstr "_Szintek játszása véletlen sorrendben"
 
-#: ../gnibbles/preferences.c:293
+#: ../gnibbles/preferences.c:291
 msgid "_Enable fake bonuses"
 msgstr "_Hamis bónuszok bekapcsolása"
 
-#: ../gnibbles/preferences.c:304
+#: ../gnibbles/preferences.c:302
 msgid "E_nable sounds"
 msgstr "Ha_ngok bekapcsolása"
 
 #. starting level
-#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:781
+#: ../gnibbles/preferences.c:316 ../gnometris/tetris.cpp:781
 msgid "_Starting level:"
 msgstr "_Kezdőszint:"
 
-#: ../gnibbles/preferences.c:346
+#: ../gnibbles/preferences.c:344
 msgid "N_umber of players:"
 msgstr "_Játékosok száma:"
 
-#: ../gnibbles/preferences.c:372
+#: ../gnibbles/preferences.c:370
 msgid "Worm"
 msgstr "Kukac"
 
-#: ../gnibbles/preferences.c:407
+#: ../gnibbles/preferences.c:405
 msgid "_Use relative movement"
 msgstr "Relatív _mozgatás használata"
 
-#: ../gnibbles/preferences.c:414
+#: ../gnibbles/preferences.c:412
 msgid "_Worm color:"
 msgstr "K_ukac színe:"
 
-#: ../gnibbles/preferences.c:421
+#: ../gnibbles/preferences.c:419
 msgid "Green"
 msgstr "Zöld"
 
-#: ../gnibbles/preferences.c:424
+#: ../gnibbles/preferences.c:422
 msgid "Cyan"
 msgstr "Ciánkék"
 
-#: ../gnibbles/preferences.c:425
+#: ../gnibbles/preferences.c:423
 msgid "Purple"
 msgstr "Bíbor"
 
-#: ../gnibbles/preferences.c:426
+#: ../gnibbles/preferences.c:424
 msgid "Gray"
 msgstr "Szürke"
 
@@ -2958,44 +3074,52 @@ msgstr ""
 "De meg tudja-e csinálni még egyszer?"
 
 #. This should never happen.
-#: ../gnobots2/game.c:1181
+#: ../gnobots2/game.c:1185
 msgid "There are no teleport locations left!!"
 msgstr "Nem maradt több teleport hely!"
 
-#: ../gnobots2/game.c:1212
+#: ../gnobots2/game.c:1216
 msgid "You have run out of safe moves - the robots have won!"
 msgstr "Elfogytak a biztonságos lépései - a robotok győztek!"
 
-#: ../gnobots2/game.c:1216
+#: ../gnobots2/game.c:1220
 msgid "There are no safe locations to teleport to!!"
 msgstr "Nincs több biztonságos teleport hely!"
 
-#: ../gnobots2/gnobots.c:62
+#: ../gnobots2/gnobots.c:66
 msgid "Set game scenario"
 msgstr "Játékszituáció beállítása"
 
-#: ../gnobots2/gnobots.c:64
+#: ../gnobots2/gnobots.c:68
 msgid "Set game configuration"
 msgstr "A játék beállítása"
 
-#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:848 ../gnomine/gnomine.c:852
+#: ../gnobots2/gnobots.c:69 ../gnobots2/gnobots.c:70
+msgid "Initial window position"
+msgstr ""
+
+#: ../gnobots2/gnobots.c:69 ../gnomine/gnomine.c:946 ../gnomine/gnomine.c:950
+#: ../gnotravex/gnotravex.c:269 ../gnotski/gnotski.c:689
+#: ../iagno/gnothello.c:105
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:66 ../gnomine/gnomine.c:849 ../gnomine/gnomine.c:853
+#: ../gnobots2/gnobots.c:70 ../gnomine/gnomine.c:947 ../gnomine/gnomine.c:951
+#: ../gnotravex/gnotravex.c:271 ../gnotski/gnotski.c:691
+#: ../iagno/gnothello.c:107
 msgid "Y"
 msgstr "Y"
 
-#: ../gnobots2/gnobots.c:183 ../gnobots2/gnobots2.desktop.in.h:2
-#: ../gnobots2/gnobots2.soundlist.in.h:6 ../gnobots2/menu.c:236
+#: ../gnobots2/gnobots.c:194 ../gnobots2/gnobots2.desktop.in.h:2
+#: ../gnobots2/gnobots2.soundlist.in.h:6 ../gnobots2/menu.c:250
 msgid "Robots"
 msgstr "Robotok"
 
-#: ../gnobots2/gnobots.c:234
+#: ../gnobots2/gnobots.c:258
 msgid "No game data could be found."
 msgstr "A játékadatok nem találhatók meg."
 
-#: ../gnobots2/gnobots.c:235
+#: ../gnobots2/gnobots.c:259
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
@@ -3003,11 +3127,11 @@ msgstr ""
 "A Robotok program nem talált érvényes játékbeállítás-fájlt. Ellenőrizze, "
 "hogy a program megfelelően van-e telepítve."
 
-#: ../gnobots2/gnobots.c:251
+#: ../gnobots2/gnobots.c:275
 msgid "Some graphics files are missing or corrupt."
 msgstr "Néhány grafikus fájl hiányzik vagy sérült."
 
-#: ../gnobots2/gnobots.c:252
+#: ../gnobots2/gnobots.c:276
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
@@ -3026,7 +3150,8 @@ msgstr "Hang bekapcsolása"
 
 #: ../gnobots2/gnobots2.schemas.in.h:4
 msgid "Enable game sounds. Play sounds for various events throughout the game."
-msgstr "Hang bekapcsolása. Hangok lejátszása különböző eseményekhez a játék alatt."
+msgstr ""
+"Hang bekapcsolása. Hangok lejátszása különböző eseményekhez a játék alatt."
 
 #: ../gnobots2/gnobots2.schemas.in.h:5
 msgid "Enable splats"
@@ -3106,19 +3231,21 @@ msgstr "Robotkép-téma. A rendszer a képek témáját használja a robotokhoz.
 msgid "Show toolbar. A standard option for toolbars."
 msgstr "Eszköztár mutatása. Egy szabvány lehetőség eszköztárakhoz."
 
-#: ../gnobots2/gnobots2.schemas.in.h:25
-msgid "The name of the key used to hold still. The name is a standard X key name."
+#: ../gnobots2/gnobots2.schemas.in.h:26
+msgid ""
+"The name of the key used to hold still. The name is a standard X key name."
 msgstr ""
 "A mozdulatlanság fenntartásához használt billentyű neve. A név egy "
 "szabványos X billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:26
-msgid "The name of the key used to move east. The name is a standard X key name."
+#: ../gnobots2/gnobots2.schemas.in.h:27
+msgid ""
+"The name of the key used to move east. The name is a standard X key name."
 msgstr ""
 "A keleti irányba mozgáshoz használandó billentyű neve. A név egy szabványos "
 "X billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:27
+#: ../gnobots2/gnobots2.schemas.in.h:28
 msgid ""
 "The name of the key used to move north-east. The name is a standard X key "
 "name."
@@ -3126,7 +3253,7 @@ msgstr ""
 "Az északkeleti irányba mozgáshoz használandó billentyű neve. A név egy "
 "szabványos X billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:28
+#: ../gnobots2/gnobots2.schemas.in.h:29
 msgid ""
 "The name of the key used to move north-west. The name is a standard X key "
 "name."
@@ -3134,13 +3261,14 @@ msgstr ""
 "Az északnyugati irányba mozgáshoz használandó billentyű neve. A név egy "
 "szabványos X billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:29
-msgid "The name of the key used to move north. The name is a standard X key name."
+#: ../gnobots2/gnobots2.schemas.in.h:30
+msgid ""
+"The name of the key used to move north. The name is a standard X key name."
 msgstr ""
 "Az északi irányba mozgáshoz használandó billentyű neve. A név egy szabványos "
 "X billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:30
+#: ../gnobots2/gnobots2.schemas.in.h:31
 msgid ""
 "The name of the key used to move south-east. The name is a standard X key "
 "name."
@@ -3148,7 +3276,7 @@ msgstr ""
 "A délkeleti irányba mozgáshoz használandó billentyű neve. A név egy "
 "szabványos X billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:31
+#: ../gnobots2/gnobots2.schemas.in.h:32
 msgid ""
 "The name of the key used to move south-west. The name is a standard X key "
 "name."
@@ -3156,19 +3284,21 @@ msgstr ""
 "A délnyugati irányba mozgáshoz használandó billentyű neve. A név egy "
 "szabványos X billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:32
-msgid "The name of the key used to move south. The name is a standard X key name."
+#: ../gnobots2/gnobots2.schemas.in.h:33
+msgid ""
+"The name of the key used to move south. The name is a standard X key name."
 msgstr ""
 "A déli irányba mozgáshoz használandó billentyű neve. A név egy szabványos X "
 "billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:33
-msgid "The name of the key used to move west. The name is a standard X key name."
+#: ../gnobots2/gnobots2.schemas.in.h:34
+msgid ""
+"The name of the key used to move west. The name is a standard X key name."
 msgstr ""
 "A nyugati irányba mozgáshoz használandó billentyű neve. A név egy szabványos "
 "X billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:34
+#: ../gnobots2/gnobots2.schemas.in.h:35
 msgid ""
 "The name of the key used to teleport randomly. The name is a standard X key "
 "name."
@@ -3176,7 +3306,7 @@ msgstr ""
 "A véletlenszerű teleporthoz használandó billentyű neve. A név egy szabványos "
 "X billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:35
+#: ../gnobots2/gnobots2.schemas.in.h:36
 msgid ""
 "The name of the key used to teleport safely (if possible). The name is a "
 "standard X key name."
@@ -3184,17 +3314,17 @@ msgstr ""
 "A biztonságos teleporthoz (ha lehetséges) használandó billentyű neve. A név "
 "egy szabványos X billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:36
+#: ../gnobots2/gnobots2.schemas.in.h:37
 msgid "The name of the key used to wait. The name is a standard X key name."
 msgstr ""
 "A várakozáshoz használandó billentyű neve. A név egy szabványos X "
 "billentyűnév."
 
-#: ../gnobots2/gnobots2.schemas.in.h:37
+#: ../gnobots2/gnobots2.schemas.in.h:39
 msgid "Use safe moves"
 msgstr "Biztonságos lépések használata"
 
-#: ../gnobots2/gnobots2.schemas.in.h:38
+#: ../gnobots2/gnobots2.schemas.in.h:40
 msgid ""
 "Use safe moves. The safe moves option will help you to avoid being killed "
 "due to a mistake. If you try to make a move that would lead to your death "
@@ -3205,11 +3335,11 @@ msgstr ""
 "tenni, amely a halálához vezetne, amikor van biztonságos lépés, akkor a "
 "rendszer ezt nem fogja engedni."
 
-#: ../gnobots2/gnobots2.schemas.in.h:39
+#: ../gnobots2/gnobots2.schemas.in.h:41
 msgid "Use super safe moves"
 msgstr "Tutibiztos lépések használata"
 
-#: ../gnobots2/gnobots2.schemas.in.h:40
+#: ../gnobots2/gnobots2.schemas.in.h:42
 msgid ""
 "Use super safe moves. The player is alerted when there is no safe move and "
 "the only option is to teleport out."
@@ -3241,164 +3371,168 @@ msgstr "Kilapította a robotot!"
 msgid "Victory!!"
 msgstr "Győzelem!"
 
-#: ../gnobots2/graphics.c:104 ../iagno/gnothello.c:393
+#: ../gnobots2/graphics.c:149 ../iagno/gnothello.c:402
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "A(z) \"%s\" pixmap fájl nem található\n"
 
-#: ../gnobots2/menu.c:58 ../gnotravex/gnotravex.c:176
+#: ../gnobots2/menu.c:63 ../gnotravex/gnotravex.c:196
 msgid "_Move"
 msgstr "_Mozgatás"
 
-#: ../gnobots2/menu.c:64
+#: ../gnobots2/menu.c:69
 msgid "_Teleport"
 msgstr "_Teleport"
 
-#: ../gnobots2/menu.c:64
+#: ../gnobots2/menu.c:69
 msgid "Teleport, safely if possible"
 msgstr "Teleportálás, ha lehet, biztonságosan"
 
-#: ../gnobots2/menu.c:65
+#: ../gnobots2/menu.c:70
 msgid "_Random"
 msgstr "_Véletlenszerű"
 
-#: ../gnobots2/menu.c:65
+#: ../gnobots2/menu.c:70
 msgid "Teleport randomly"
 msgstr "Teleportálás véletlenszerűen"
 
-#: ../gnobots2/menu.c:66
+#: ../gnobots2/menu.c:71
 msgid "_Wait"
 msgstr "Vá_rakozás"
 
-#: ../gnobots2/menu.c:66
+#: ../gnobots2/menu.c:71
 msgid "Wait for the robots"
 msgstr "Várakozás a robotokra"
 
-#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1293
+#: ../gnobots2/menu.c:82 ../mahjongg/mahjongg.c:1326
 msgid "Show or hide the toolbar"
 msgstr "Eszköztár megjelenítése vagy elrejtése"
 
-#: ../gnobots2/menu.c:239
+#: ../gnobots2/menu.c:254
 msgid "Based on classic BSD Robots."
 msgstr "A klasszikus BSD robotok alapján."
 
-#: ../gnobots2/properties.c:319
+#: ../gnobots2/properties.c:344
 msgid "classic robots"
 msgstr "klasszikus robotok"
 
-#: ../gnobots2/properties.c:320
+#: ../gnobots2/properties.c:345
 msgid "robots2"
 msgstr "robotok2"
 
-#: ../gnobots2/properties.c:321
+#: ../gnobots2/properties.c:346
 msgid "robots2 easy"
 msgstr "robotok2 könnyű"
 
-#: ../gnobots2/properties.c:322
+#: ../gnobots2/properties.c:347
 msgid "robots with safe teleport"
 msgstr "robotok biztonságos teleporttal"
 
-#: ../gnobots2/properties.c:323
+#: ../gnobots2/properties.c:348
 msgid "nightmare"
 msgstr "rémálom"
 
-#: ../gnobots2/properties.c:352
+#: ../gnobots2/properties.c:384
 msgid "robots"
 msgstr "robotok"
 
-#: ../gnobots2/properties.c:353
+#: ../gnobots2/properties.c:385
 msgid "cows"
 msgstr "bocik"
 
-#: ../gnobots2/properties.c:354
+#: ../gnobots2/properties.c:386
 msgid "eggs"
 msgstr "tojások"
 
-#: ../gnobots2/properties.c:355
+#: ../gnobots2/properties.c:387
 msgid "gnomes"
 msgstr "törpék"
 
-#: ../gnobots2/properties.c:356
+#: ../gnobots2/properties.c:388
 msgid "mice"
 msgstr "egerek"
 
-#: ../gnobots2/properties.c:357
-msgid "windows"
-msgstr "ablakok"
+#: ../gnobots2/properties.c:389
+msgid "ufo"
+msgstr ""
 
-#: ../gnobots2/properties.c:412
+#: ../gnobots2/properties.c:390
+msgid "boo"
+msgstr ""
+
+#: ../gnobots2/properties.c:447
 msgid "Robots Preferences"
 msgstr "A Robotok beállításai"
 
-#: ../gnobots2/properties.c:433
+#: ../gnobots2/properties.c:468
 msgid "Game Type"
 msgstr "Játéktípus"
 
-#: ../gnobots2/properties.c:458
+#: ../gnobots2/properties.c:493
 msgid "_Use safe moves"
 msgstr "_Biztonságos lépések használata"
 
-#: ../gnobots2/properties.c:465
+#: ../gnobots2/properties.c:500
 msgid "Prevent some dangerous moves"
 msgstr "Néhány veszélyes lépés megelőzése"
 
-#: ../gnobots2/properties.c:466
+#: ../gnobots2/properties.c:501
 msgid "Prevent accidental moves that result in getting killed."
 msgstr "Halálhoz vezető véletlen lépések megelőzése."
 
-#: ../gnobots2/properties.c:468
+#: ../gnobots2/properties.c:503
 msgid "U_se super safe moves"
 msgstr "_Tutibiztos lépések használata"
 
-#: ../gnobots2/properties.c:474
+#: ../gnobots2/properties.c:509
 msgid "Prevent all dangerous moves"
 msgstr "Minden veszélyes lépés megelőzése"
 
-#: ../gnobots2/properties.c:475
+#: ../gnobots2/properties.c:510
 msgid "Prevents all moves that result in getting killed."
 msgstr "Minden halálhoz vezető lépés megelőzése."
 
-#: ../gnobots2/properties.c:477 ../gnometris/tetris.cpp:807
+#: ../gnobots2/properties.c:512 ../gnometris/tetris.cpp:807
 msgid "_Enable sounds"
 msgstr "_Hangok bekapcsolása"
 
-#: ../gnobots2/properties.c:483
+#: ../gnobots2/properties.c:518
 msgid "Play sounds for major events"
 msgstr "Hangok lejátszása a nagyobb eseményeknél"
 
-#: ../gnobots2/properties.c:484
+#: ../gnobots2/properties.c:519
 msgid "Play sounds for events like winning a level and dying."
 msgstr "Hangok lejátszása győzelem vagy halál esetén."
 
-#: ../gnobots2/properties.c:486
+#: ../gnobots2/properties.c:521
 msgid "E_nable splats"
 msgstr "_Kilapítás bekapcsolása"
 
-#: ../gnobots2/properties.c:492
+#: ../gnobots2/properties.c:527
 msgid "Play a sound when two robots collide"
 msgstr "Hangok lejátszása két robot összeütközésénél"
 
-#: ../gnobots2/properties.c:493
+#: ../gnobots2/properties.c:528
 msgid "Play the most common, and potentially the most annoying, sound."
 msgstr "A legáltalánosabb és a lehető legunalmasabb hang lejátszása."
 
-#: ../gnobots2/properties.c:503
+#: ../gnobots2/properties.c:538
 msgid "Graphics Theme"
 msgstr "Grafikus téma"
 
-#: ../gnobots2/properties.c:511
+#: ../gnobots2/properties.c:546
 msgid "_Image theme:"
 msgstr "_Képtéma:"
 
-#: ../gnobots2/properties.c:523 ../mahjongg/mahjongg.c:794
+#: ../gnobots2/properties.c:557 ../mahjongg/mahjongg.c:807
 msgid "_Background color:"
 msgstr "_Háttérszín:"
 
-#: ../gnobots2/properties.c:569
+#: ../gnobots2/properties.c:603
 msgid "_Restore Defaults"
 msgstr "Alapértelmezések vissz_aállítása"
 
-#: ../gnobots2/properties.c:574
+#: ../gnobots2/properties.c:608
 msgid "Keyboard"
 msgstr "Billentyűzet"
 
@@ -3414,7 +3548,7 @@ msgstr "Szint:"
 msgid "Remaining:"
 msgstr "Hátra van:"
 
-#: ../gnometris/field.cpp:225
+#: ../gnometris/field.cpp:227
 msgid "Paused"
 msgstr "Szüneteltetve"
 
@@ -3423,7 +3557,7 @@ msgid "Fit falling blocks together"
 msgstr "Lehulló blokkok egymáshoz illesztése"
 
 #: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:179
-#: ../gnometris/tetris.cpp:1441
+#: ../gnometris/tetris.cpp:1443
 msgid "Gnometris"
 msgstr "Gnometris"
 
@@ -3515,7 +3649,8 @@ msgstr "A blokkok rajzolásához használt kép"
 msgid ""
 "This selects whether or not to draw the background image over the background "
 "color."
-msgstr "Ezzel kiválasztható, hogy a háttérszínre kirajzolásra kerüljön-e a háttérkép."
+msgstr ""
+"Ezzel kiválasztható, hogy a háttérszínre kirajzolásra kerüljön-e a háttérkép."
 
 #: ../gnometris/gnometris.schemas.in.h:28
 msgid "Whether to give blocks random colors"
@@ -3534,7 +3669,8 @@ msgid "Whether to preview the next block."
 msgstr "Lehessen-e előre látni a következő blokkot."
 
 #: ../gnometris/gnometris.schemas.in.h:32
-msgid "Whether to provide a graphical representation of where a block will land."
+msgid ""
+"Whether to provide a graphical representation of where a block will land."
 msgstr "Megjelenjen-e a blokk várható helye grafikusan?"
 
 #: ../gnometris/gnometris.schemas.in.h:33
@@ -3553,11 +3689,11 @@ msgstr "A forgatás az óramutató járásával ellentétes irányba történjen
 msgid "Whether to use the background image"
 msgstr "Használjon-e háttérképet."
 
-#: ../gnometris/main.cpp:39
+#: ../gnometris/main.cpp:38
 msgid "Set starting level (1 or greater)"
 msgstr "A kezdő pálya beállítása (1 vagy nagyobb)"
 
-#: ../gnometris/main.cpp:39
+#: ../gnometris/main.cpp:38
 msgid "LEVEL"
 msgstr "SZINT"
 
@@ -3608,14 +3744,15 @@ msgid "_Rotate blocks counterclockwise"
 msgstr "Blokkok _forgatása az óramutató járásával ellentétes irányba"
 
 #: ../gnometris/tetris.cpp:845
-msgid "Show where the block will _land"
+#, fuzzy
+msgid "Show _where the block will land"
 msgstr "A blokk _várható helyének megjelenítése"
 
 #: ../gnometris/tetris.cpp:893
 msgid "Block Style"
 msgstr "Blokkstílus"
 
-#: ../gnometris/tetris.cpp:1443
+#: ../gnometris/tetris.cpp:1445
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: \n"
@@ -3629,135 +3766,142 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "Gnometris pontszámok"
 
-#: ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:620
+#: ../gnomine/gnomine.c:87 ../gnomine/gnomine.c:660
 msgid "gnomine|Medium"
 msgstr "Közepes"
 
-#: ../gnomine/gnomine.c:85 ../gnomine/gnomine.c:642
+#: ../gnomine/gnomine.c:89 ../gnomine/gnomine.c:682
 msgid "Custom"
 msgstr "Egyéni"
 
-#: ../gnomine/gnomine.c:160
+#: ../gnomine/gnomine.c:164
 #, c-format
 msgid "Flags: %d/%d"
 msgstr "Zászlók: %d/%d"
 
-#: ../gnomine/gnomine.c:188
+#: ../gnomine/gnomine.c:192
 msgid "The Mines Have Been Cleared!"
 msgstr "Az aknamező megtisztítva!"
 
-#: ../gnomine/gnomine.c:189
+#: ../gnomine/gnomine.c:193
 msgid "Great work, but unfortunately your score did not make the top ten."
 msgstr "Remek munka, de a pontszáma sajnos nincs benne az első tízben."
 
-#: ../gnomine/gnomine.c:206
+#: ../gnomine/gnomine.c:210
 msgid "Mines Scores"
 msgstr "Aknakereső pontszámok"
 
-#: ../gnomine/gnomine.c:208 ../same-gnome/ui.c:124
+#: ../gnomine/gnomine.c:212 ../gnotravex/gnotravex.c:985
+#: ../same-gnome/ui.c:131
 msgid "Size:"
 msgstr "Méret:"
 
-#: ../gnomine/gnomine.c:215 ../mahjongg/mahjongg.c:684 ../same-gnome/ui.c:165
-msgid "Congratulations!"
-msgstr "Gratulálok!"
-
-#: ../gnomine/gnomine.c:216 ../mahjongg/mahjongg.c:685 ../same-gnome/ui.c:166
-msgid "Your score has made the top ten."
-msgstr "Pontszáma benne van az első tízben."
-
-#: ../gnomine/gnomine.c:308
+#: ../gnomine/gnomine.c:313
 msgid "Click a square, any square"
 msgstr "Kattintson egy négyzetre; bármelyik négyzetre"
 
-#: ../gnomine/gnomine.c:310
+#: ../gnomine/gnomine.c:315
 msgid "Maybe they're all mines ..."
 msgstr "Lehet, hogy mindegyik akna..."
 
-#: ../gnomine/gnomine.c:419
-msgid "Faces:"
-msgstr "Arcok:"
-
-#: ../gnomine/gnomine.c:422
-msgid "Graphics:"
-msgstr "Grafika:"
-
-#: ../gnomine/gnomine.c:428
+#: ../gnomine/gnomine.c:433
 msgid "Resizing and SVG support:"
 msgstr "Átméretezés és SVG-támogatás:"
 
-#: ../gnomine/gnomine.c:435 ../gnomine/gnomine.c:956
+#: ../gnomine/gnomine.c:440
+msgid "Faces:"
+msgstr "Arcok:"
+
+#: ../gnomine/gnomine.c:443
+msgid "Graphics:"
+msgstr "Grafika:"
+
+#: ../gnomine/gnomine.c:454 ../gnomine/gnomine.c:1022
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
 msgstr "Aknakereső"
 
-#: ../gnomine/gnomine.c:605
+#: ../gnomine/gnomine.c:456
+msgid ""
+"The popular logic puzzle minesweeper. Clear mines from a board using hints "
+"from squares you have already uncovered."
+msgstr ""
+
+#: ../gnomine/gnomine.c:645
 msgid "Field Size"
 msgstr "Mező mérete"
 
-#: ../gnomine/gnomine.c:655
+#: ../gnomine/gnomine.c:695
 msgid "Custom Size"
 msgstr "Egyéni méret"
 
-#: ../gnomine/gnomine.c:662
+#: ../gnomine/gnomine.c:702
 msgid "_Number of mines:"
 msgstr "_Aknák száma:"
 
-#: ../gnomine/gnomine.c:674
+#: ../gnomine/gnomine.c:714
 msgid "_Horizontal:"
 msgstr "_Vízszintes:"
 
-#: ../gnomine/gnomine.c:685
+#: ../gnomine/gnomine.c:725
 msgid "_Vertical:"
 msgstr "_Függőleges:"
 
-#: ../gnomine/gnomine.c:700
+#: ../gnomine/gnomine.c:740
 msgid "_Use \"I'm not sure\" flags"
 msgstr "\"Nem vagyok benne biztos\" _zászlók használata."
 
-#: ../gnomine/gnomine.c:709
+#: ../gnomine/gnomine.c:749
+msgid "_Use \"Too many flags\" warning"
+msgstr ""
+
+#: ../gnomine/gnomine.c:758
 msgid "Mines Preferences"
 msgstr "Aknakereső beállításai"
 
-#: ../gnomine/gnomine.c:848
+#: ../gnomine/gnomine.c:946
 msgid "Width of grid"
 msgstr "Rács szélessége"
 
-#: ../gnomine/gnomine.c:849
+#: ../gnomine/gnomine.c:947
 msgid "Height of grid"
 msgstr "Rács magassága"
 
-#: ../gnomine/gnomine.c:850
+#: ../gnomine/gnomine.c:948
 msgid "Number of mines"
 msgstr "Aknák száma"
 
-#: ../gnomine/gnomine.c:850 ../gtali/setup.c:85 ../gtali/setup.c:86
-#: ../same-gnome/same-gnome.c:140
+#: ../gnomine/gnomine.c:948 ../gtali/gyahtzee.c:90 ../gtali/gyahtzee.c:92
+#: ../same-gnome/same-gnome.c:143
 msgid "NUMBER"
 msgstr "SZÁM"
 
-#: ../gnomine/gnomine.c:851
-msgid "Size of the board (1=small, 3=large)"
+#: ../gnomine/gnomine.c:949
+#, fuzzy
+msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "A tábla mérete (1=kicsi, 3=nagy)"
 
-#: ../gnomine/gnomine.c:852
+#: ../gnomine/gnomine.c:950 ../gnotravex/gnotravex.c:268
+#: ../gnotski/gnotski.c:688 ../iagno/gnothello.c:104
 msgid "X location of window"
 msgstr "Az ablak X koordinátája"
 
-#: ../gnomine/gnomine.c:853
+#: ../gnomine/gnomine.c:951 ../gnotravex/gnotravex.c:270
+#: ../gnotski/gnotski.c:690 ../iagno/gnothello.c:106
 msgid "Y location of window"
 msgstr "Az ablak Y koordinátája"
 
-#: ../gnomine/gnomine.c:1021
+#: ../gnomine/gnomine.c:1087
 msgid "Press to Resume"
 msgstr "Kattintson a folytatáshoz"
 
-#: ../gnomine/gnomine.c:1054
+#: ../gnomine/gnomine.c:1123
 msgid "Time: "
 msgstr "Idő: "
 
 #: ../gnomine/gnomine.desktop.in.h:1
-msgid "Clear mines from a minefield"
+#, fuzzy
+msgid "Clear hidden mines from a minefield"
 msgstr "Aknák eltávolítása az aknamezőről"
 
 #: ../gnomine/gnomine.schemas.in.h:1
@@ -3767,10 +3911,18 @@ msgstr ""
 "megjelölni."
 
 #: ../gnomine/gnomine.schemas.in.h:2
+msgid "Set to true to enable warning icons when too many flags are placed."
+msgstr ""
+
+#: ../gnomine/gnomine.schemas.in.h:3
 msgid "Use the unknown flag"
 msgstr "Ismeretlen zászló használata"
 
-#: ../gnomine/minefield.c:193
+#: ../gnomine/gnomine.schemas.in.h:4
+msgid "Warning about too many flags"
+msgstr ""
+
+#: ../gnomine/minefield.c:197
 msgid ""
 "Unable to find required images.\n"
 "\n"
@@ -3781,7 +3933,7 @@ msgstr ""
 "\n"
 "Ellenőrizze a gnome-games telepítést"
 
-#: ../gnomine/minefield.c:201
+#: ../gnomine/minefield.c:206
 msgid ""
 "Required images have been found, but refused to load.\n"
 "\n"
@@ -3791,172 +3943,209 @@ msgstr ""
 "\n"
 "Kérjük, ellenőrizze a telepített gnome-games programot és annak függőségeit."
 
-#: ../gnomine/minefield.c:211
+#: ../gnomine/minefield.c:216
 msgid "Could not load images"
 msgstr ""
 "Nem lehet betölteni a következő képeket:\n"
 "%s"
 
 #. i18n in-game numbers, replaceable with single-character local ideograms.
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "0"
 msgstr "0"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "1"
 msgstr "1"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "2"
 msgstr "2"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "3"
 msgstr "3"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "4"
 msgstr "4"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "5"
 msgstr "5"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "6"
 msgstr "6"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "7"
 msgstr "7"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "8"
 msgstr "8"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "9"
 msgstr "9"
 
-#: ../gnotravex/gnotravex.c:177 ../same-gnome/ui.c:419
+#: ../gnotravex/gnotravex.c:59
+#, fuzzy
+msgid "2×2"
+msgstr "_2×2"
+
+#: ../gnotravex/gnotravex.c:60
+#, fuzzy
+msgid "3×3"
+msgstr "_3×3"
+
+#: ../gnotravex/gnotravex.c:61
+#, fuzzy
+msgid "4×4"
+msgstr "_4×4"
+
+#: ../gnotravex/gnotravex.c:62
+#, fuzzy
+msgid "5×5"
+msgstr "_5×5"
+
+#: ../gnotravex/gnotravex.c:63
+#, fuzzy
+msgid "6×6"
+msgstr "_6×6"
+
+#: ../gnotravex/gnotravex.c:197 ../same-gnome/ui.c:426
 msgid "_Size"
 msgstr "_Méret"
 
-#: ../gnotravex/gnotravex.c:183
+#: ../gnotravex/gnotravex.c:203
 msgid "Sol_ve"
 msgstr "M_egoldás"
 
-#: ../gnotravex/gnotravex.c:183
+#: ../gnotravex/gnotravex.c:203
 msgid "Solve the game"
 msgstr "A feladat megoldása"
 
-#: ../gnotravex/gnotravex.c:186
+#: ../gnotravex/gnotravex.c:209
 msgid "_Up"
 msgstr "_Fel"
 
-#: ../gnotravex/gnotravex.c:186
+#: ../gnotravex/gnotravex.c:209
 msgid "Move the pieces up"
 msgstr "Az elemek felfelé mozgatása"
 
-#: ../gnotravex/gnotravex.c:187
+#: ../gnotravex/gnotravex.c:210
 msgid "_Left"
 msgstr "_Balra"
 
-#: ../gnotravex/gnotravex.c:187
+#: ../gnotravex/gnotravex.c:210
 msgid "Move the pieces left"
 msgstr "Az elemek balra mozgatása"
 
-#: ../gnotravex/gnotravex.c:188
+#: ../gnotravex/gnotravex.c:211
 msgid "_Right"
 msgstr "_Jobbra"
 
-#: ../gnotravex/gnotravex.c:188
+#: ../gnotravex/gnotravex.c:211
 msgid "Move the pieces right"
 msgstr "Az elemek jobbra mozgatása"
 
-#: ../gnotravex/gnotravex.c:189
+#: ../gnotravex/gnotravex.c:212
 msgid "_Down"
 msgstr "_Le"
 
-#: ../gnotravex/gnotravex.c:189
+#: ../gnotravex/gnotravex.c:212
 msgid "Move the pieces down"
 msgstr "Az elemek lefelé mozgatása"
 
-#: ../gnotravex/gnotravex.c:195
+#: ../gnotravex/gnotravex.c:218
 msgid "_2×2"
 msgstr "_2×2"
 
-#: ../gnotravex/gnotravex.c:195
+#: ../gnotravex/gnotravex.c:218
 msgid "Play on a 2×2 board"
 msgstr "Játék 2×2-es táblán"
 
-#: ../gnotravex/gnotravex.c:196
+#: ../gnotravex/gnotravex.c:219
 msgid "_3×3"
 msgstr "_3×3"
 
-#: ../gnotravex/gnotravex.c:196
+#: ../gnotravex/gnotravex.c:219
 msgid "Play on a 3×3 board"
 msgstr "Játék 3×3-as táblán"
 
-#: ../gnotravex/gnotravex.c:197
+#: ../gnotravex/gnotravex.c:220
 msgid "_4×4"
 msgstr "_4×4"
 
-#: ../gnotravex/gnotravex.c:197
+#: ../gnotravex/gnotravex.c:220
 msgid "Play on a 4×4 board"
 msgstr "Játék 4×4-es táblán"
 
-#: ../gnotravex/gnotravex.c:198
+#: ../gnotravex/gnotravex.c:221
 msgid "_5×5"
 msgstr "_5×5"
 
-#: ../gnotravex/gnotravex.c:198
+#: ../gnotravex/gnotravex.c:221
 msgid "Play on a 5×5 board"
 msgstr "Játék 5×5-ös táblán"
 
-#: ../gnotravex/gnotravex.c:199
+#: ../gnotravex/gnotravex.c:222
 msgid "_6×6"
 msgstr "_6×6"
 
-#: ../gnotravex/gnotravex.c:199
+#: ../gnotravex/gnotravex.c:222
 msgid "Play on a 6×6 board"
 msgstr "Játék 6×6-os táblán"
 
-#: ../gnotravex/gnotravex.c:244
+#: ../gnotravex/gnotravex.c:272
 msgid "Size of board (2-6)"
 msgstr "A tábla mérete (2-6)"
 
-#: ../gnotravex/gnotravex.c:245
+#: ../gnotravex/gnotravex.c:273
 msgid "SIZE"
 msgstr "MÉRET"
 
-#: ../gnotravex/gnotravex.c:829
+#: ../gnotravex/gnotravex.c:869
 msgid "Puzzle solved! Well done!"
 msgstr "Ezt kirakta! Kiváló!"
 
-#: ../gnotravex/gnotravex.c:832
+#: ../gnotravex/gnotravex.c:872
 msgid "Puzzle solved!"
 msgstr "Ezt kirakta!"
 
-#: ../gnotravex/gnotravex.c:1190 ../mahjongg/mahjongg.c:955
+#: ../gnotravex/gnotravex.c:984
+#, fuzzy
+msgid "Tetravex Scores"
+msgstr "Tetravex"
+
+#: ../gnotravex/gnotravex.c:1218 ../mahjongg/mahjongg.c:983
 msgid "Game paused"
 msgstr "Játék szüneteltetve"
 
-#: ../gnotravex/gnotravex.c:1348
+#: ../gnotravex/gnotravex.c:1382
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "A tábla mérete: %d×%d"
 
+#: ../gnotravex/gnotravex.c:1626
+msgid ""
+"GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
+"the same numbers are touching each other."
+msgstr ""
+
 #: ../gnotravex/gnotravex.desktop.in.h:1
-msgid "Play a puzzle game matching tiles together"
-msgstr "Kirakós játék elemek egymáshoz illesztésével"
+msgid "Complete the puzzle by matching numbered tiles"
+msgstr ""
 
 #: ../gnotravex/gnotravex.desktop.in.h:2
 msgid "Tetravex"
 msgstr "Tetravex"
 
 #: ../gnotravex/gnotravex.schemas.in.h:1
-msgid "The height of the playing window in pixels. At minimum it should be 240."
+msgid ""
+"The height of the playing window in pixels. At minimum it should be 240."
 msgstr "A játékablak magassága képpontban (minimális érték: 240)."
 
 #: ../gnotravex/gnotravex.schemas.in.h:3
@@ -3976,227 +4165,227 @@ msgid "The width of the playing window in pixels. At minimum it should be 320."
 msgstr "A játékablak szélessége képpontban (minimális érték: 320)."
 
 #. puzzle name
-#: ../gnotski/gnotski.c:135
+#: ../gnotski/gnotski.c:140
 msgid "Only 18 Steps"
 msgstr "Csak 18 lépés"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:148
+#: ../gnotski/gnotski.c:153
 msgid "Daisy"
 msgstr "Százszorszép"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:161
+#: ../gnotski/gnotski.c:166
 msgid "Violet"
 msgstr "Viola"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:174
+#: ../gnotski/gnotski.c:179
 msgid "Poppy"
 msgstr "Pipacs"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:187
+#: ../gnotski/gnotski.c:192
 msgid "Pansy"
 msgstr "Árvácska"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:200
+#: ../gnotski/gnotski.c:205
 msgid "Snowdrop"
 msgstr "Hóvirág"
 
 #. puzzle name - sometimes called "Le'Ane Rouge"
-#: ../gnotski/gnotski.c:213
+#: ../gnotski/gnotski.c:218
 msgid "Red Donkey"
 msgstr "Vörös csacsi"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:226
+#: ../gnotski/gnotski.c:231
 msgid "Trail"
 msgstr "Ösvény"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:239
+#: ../gnotski/gnotski.c:244
 msgid "Ambush"
 msgstr "Csapda"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:252
+#: ../gnotski/gnotski.c:257
 msgid "Agatka"
 msgstr "Agatka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:263
+#: ../gnotski/gnotski.c:268
 msgid "Success"
 msgstr "Siker"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:273
+#: ../gnotski/gnotski.c:278
 msgid "Bone"
 msgstr "Csont"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:286
+#: ../gnotski/gnotski.c:291
 msgid "Fortune"
 msgstr "Szerencse"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:300
+#: ../gnotski/gnotski.c:305
 msgid "Fool"
 msgstr "Bolond"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:310
+#: ../gnotski/gnotski.c:315
 msgid "Solomon"
 msgstr "Salamon"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:323
+#: ../gnotski/gnotski.c:328
 msgid "Cleopatra"
 msgstr "Kleopátra"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:335
+#: ../gnotski/gnotski.c:340
 msgid "Shark"
 msgstr "Cápa"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:347
+#: ../gnotski/gnotski.c:352
 msgid "Rome"
 msgstr "Róma"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:359
+#: ../gnotski/gnotski.c:364
 msgid "Pennant Puzzle"
 msgstr "Zászló"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:372
+#: ../gnotski/gnotski.c:377
 msgid "Ithaca"
 msgstr "Itaka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:395
+#: ../gnotski/gnotski.c:400
 msgid "Pelopones"
 msgstr "Peloponész"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:407
+#: ../gnotski/gnotski.c:412
 msgid "Transeuropa"
 msgstr "Transzeurópa"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:419
+#: ../gnotski/gnotski.c:424
 msgid "Lodzianka"
 msgstr "Lodzianka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:430
+#: ../gnotski/gnotski.c:435
 msgid "Polonaise"
 msgstr "Lengyel"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:441
+#: ../gnotski/gnotski.c:446
 msgid "Baltic Sea"
 msgstr "Balti tenger"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:453
+#: ../gnotski/gnotski.c:458
 msgid "American Pie"
 msgstr "Amerikai pite"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:469
+#: ../gnotski/gnotski.c:474
 msgid "Traffic Jam"
 msgstr "Dugó"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:480
+#: ../gnotski/gnotski.c:485
 msgid "Sunshine"
 msgstr "Napfény"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:506
+#: ../gnotski/gnotski.c:511
 msgid "Block 10"
 msgstr "Tízes blokk"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:517
+#: ../gnotski/gnotski.c:522
 msgid "Block 10 Pro"
 msgstr "Tízes blokk Pro"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:528
+#: ../gnotski/gnotski.c:533
 msgid "Climb 12"
 msgstr "Emelkedő 12"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:539
+#: ../gnotski/gnotski.c:544
 msgid "Climb 12 Pro"
 msgstr "Emelkedő 12 Pro"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:550
+#: ../gnotski/gnotski.c:555
 msgid "Climb 15 Winter"
 msgstr "Emelkedő 15 tél"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:563
+#: ../gnotski/gnotski.c:568
 msgid "Climb 15 Spring"
 msgstr "Emelkedő 15 tavasz"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:576
+#: ../gnotski/gnotski.c:581
 msgid "Climb 15 Summer"
 msgstr "Emelkedő 15 nyár"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:589
+#: ../gnotski/gnotski.c:594
 msgid "Climb 15 Fall"
 msgstr "Emelkedő 15 ősz"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:602
+#: ../gnotski/gnotski.c:607
 msgid "Climb 24 Pro"
 msgstr "Emelkedő 24 Pro"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:633
+#: ../gnotski/gnotski.c:639
 msgid "HuaRong Trail"
 msgstr "HuaRong ösvény"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:635
+#: ../gnotski/gnotski.c:641
 msgid "Challenge Pack"
 msgstr "Kihíváscsomag"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:637
+#: ../gnotski/gnotski.c:643
 msgid "Skill Pack"
 msgstr "Szakértői csomag"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:639
+#: ../gnotski/gnotski.c:645
 msgid "Minoru Climb"
 msgstr "Enyhe emelkedő"
 
-#: ../gnotski/gnotski.c:640
+#: ../gnotski/gnotski.c:646
 msgid "_Restart Puzzle"
 msgstr "_Feladvány újraindítása"
 
-#: ../gnotski/gnotski.c:641
+#: ../gnotski/gnotski.c:647
 msgid "Next Puzzle"
 msgstr "Következő feladvány"
 
-#: ../gnotski/gnotski.c:642
+#: ../gnotski/gnotski.c:648
 msgid "Previous Puzzle"
 msgstr "Előző feladvány"
 
-#: ../gnotski/gnotski.c:819
+#: ../gnotski/gnotski.c:871
 msgid "Level completed."
 msgstr "Szint teljesítve."
 
-#: ../gnotski/gnotski.c:1011
+#: ../gnotski/gnotski.c:1063
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -4206,7 +4395,7 @@ msgstr ""
 "\n"
 "Ellenőrizze, hogy a Klotski megfelelően van-e telepítve."
 
-#: ../gnotski/gnotski.c:1179
+#: ../gnotski/gnotski.c:1234
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -4219,12 +4408,12 @@ msgstr ""
 "\n"
 "Ellenőrizze, hogy a Klotski megfelelően van-e telepítve."
 
-#: ../gnotski/gnotski.c:1218
+#: ../gnotski/gnotski.c:1273
 #, c-format
 msgid "Moves: %d"
 msgstr "Lépések: %d"
 
-#: ../gnotski/gnotski.c:1541
+#: ../gnotski/gnotski.c:1601
 msgid "Sliding Block Puzzles"
 msgstr "Tologatós fejtörők"
 
@@ -4233,8 +4422,8 @@ msgid "Klotski"
 msgstr "Klotski"
 
 #: ../gnotski/gnotski.desktop.in.h:2
-msgid "Solve puzzles by sliding blocks"
-msgstr "Blokktologatós fejtörők"
+msgid "Slide blocks to solve the puzzle"
+msgstr ""
 
 #: ../gnotski/gnotski.schemas.in.h:2
 msgid "The number of the puzzle being played."
@@ -4272,10 +4461,11 @@ msgstr "Már fel van használva. Hova szeretné tenni?"
 #. End:
 #.
 #: ../gtali/gtali.desktop.in.h:1
-msgid "Play a poker-style dice game"
+#, fuzzy
+msgid "Beat the odds in a poker-style dice game"
 msgstr "Egy póker stílusú kockajáték"
 
-#: ../gtali/gtali.desktop.in.h:2 ../gtali/gyahtzee.c:55
+#: ../gtali/gtali.desktop.in.h:2 ../gtali/gyahtzee.c:52
 msgid "Tali"
 msgstr "Tali"
 
@@ -4296,7 +4486,8 @@ msgid "Display the computer's thoughts"
 msgstr "A számítógép gondolatainak megjelenítése"
 
 #: ../gtali/gtali.schemas.in.h:4
-msgid "If set to true, a dump of the AI's working will be done to standard output."
+msgid ""
+"If set to true, a dump of the AI's working will be done to standard output."
 msgstr ""
 "Ha igaz értékre van állítva, az AI működése kiírásra kerül a standard "
 "kimenetre."
@@ -4305,241 +4496,233 @@ msgstr ""
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr "[Játékos,Wilber,Bill,Monica,Kenneth,Janet]"
 
-#: ../gtali/gyahtzee.c:125
+#: ../gtali/gyahtzee.c:86
+msgid "Delay computer moves"
+msgstr "A számítógép lépéseinek késleltetése"
+
+#: ../gtali/gyahtzee.c:88
+msgid "Display computer thoughts"
+msgstr "A számítógép gondolatainak megjelenítése"
+
+#: ../gtali/gyahtzee.c:90
+msgid "Number of computer opponents"
+msgstr "Számítógépes ellenfelek száma"
+
+#: ../gtali/gyahtzee.c:92
+msgid "Number of human opponents"
+msgstr "Élő ellenfelek száma"
+
+#: ../gtali/gyahtzee.c:135
 msgid "The game is a draw!"
 msgstr "Az eredmény döntetlen!"
 
-#: ../gtali/gyahtzee.c:140
+#: ../gtali/gyahtzee.c:150
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
 msgstr[0] "%s nyerte a játékot %d ponttal"
 msgstr[1] "%s nyerte a játékot %d ponttal"
 
-#: ../gtali/gyahtzee.c:145 ../same-gnome/ui.c:144
+#: ../gtali/gyahtzee.c:155 ../same-gnome/ui.c:151
 msgid "Game over!"
 msgstr "Vége a játéknak!"
 
-#: ../gtali/gyahtzee.c:207
+#: ../gtali/gyahtzee.c:217
 #, c-format
 msgid "Computer playing for %s"
 msgstr "A számítógép %s helyett játszik"
 
-#: ../gtali/gyahtzee.c:210
+#: ../gtali/gyahtzee.c:220
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- Ön jön!"
 
-#: ../gtali/gyahtzee.c:303
+#: ../gtali/gyahtzee.c:313
 msgid "Select dice to roll or choose a score slot."
 msgstr "Válasszon kockát a dobáshoz, vagy válasszon egy pontszámmezőt."
 
-#: ../gtali/gyahtzee.c:330
+#: ../gtali/gyahtzee.c:340
 msgid "Roll"
 msgstr "Dobás"
 
-#: ../gtali/gyahtzee.c:382
+#: ../gtali/gyahtzee.c:392
 msgid "You are only allowed three rolls. Choose a score slot."
 msgstr "Csak három dobása van! Válasszon pontszámmezőt."
 
-#: ../gtali/gyahtzee.c:427
+#: ../gtali/gyahtzee.c:437
 msgid "GNOME version (1998):"
 msgstr "GNOME verzió (1998):"
 
-#: ../gtali/gyahtzee.c:430
+#: ../gtali/gyahtzee.c:440
 msgid "Console version (1992):"
 msgstr "Konzol verzió (1992):"
 
-#: ../gtali/gyahtzee.c:440
+#: ../gtali/gyahtzee.c:457
 msgid "A variation on poker with dice and less money."
 msgstr "Egy pókerváltozat dobókockával és kevesebb pénzzel."
 
-#: ../gtali/gyahtzee.c:622
+#: ../gtali/gyahtzee.c:643
 msgid "Roll!"
 msgstr " Dobás!"
 
-#: ../gtali/setup.c:76
-msgid "Calculate random die throws (debug)"
-msgstr "Véletlenszerű kockadobások kiszámítása (hibakeresés)"
-
-#: ../gtali/setup.c:82
-msgid "Delay computer moves"
-msgstr "A számítógép lépéseinek késleltetése"
-
-#: ../gtali/setup.c:83
-msgid "Show high scores and exit"
-msgstr "Pontszámok megjelenítése és kilépés"
-
-#: ../gtali/setup.c:84
-msgid "Display computer thoughts"
-msgstr "A számítógép gondolatainak megjelenítése"
-
-#: ../gtali/setup.c:85
-msgid "Number of computer opponents"
-msgstr "Számítógépes ellenfelek száma"
-
-#: ../gtali/setup.c:86
-msgid "Number of human opponents"
-msgstr "Élő ellenfelek száma"
-
-#: ../gtali/setup.c:98
+#: ../gtali/setup.c:62
 msgid "Current game will complete with original number of players."
 msgstr "A mostani játék az eredeti számú játékossal fog befejeződni."
 
-#: ../gtali/setup.c:230
+#: ../gtali/setup.c:194
 msgid "Tali Preferences"
 msgstr "A Tali beállításai"
 
-#: ../gtali/setup.c:253
+#: ../gtali/setup.c:217
 msgid "Human Players"
 msgstr "Élő játékosok"
 
-#: ../gtali/setup.c:263
+#: ../gtali/setup.c:227
 msgid "_Number of players:"
 msgstr "_Játékosok száma:"
 
-#: ../gtali/setup.c:277
+#: ../gtali/setup.c:241
 msgid "Computer Opponents"
 msgstr "Számítógépes ellenfelek"
 
 #. --- Button ---
-#: ../gtali/setup.c:284
+#: ../gtali/setup.c:248
 msgid "_Delay between rolls"
 msgstr "_Dobások közötti késleltetés"
 
-#: ../gtali/setup.c:294
+#: ../gtali/setup.c:258
 msgid "N_umber of opponents:"
 msgstr "_Ellenfelek száma:"
 
 #. --- PLAYER NAMES FRAME ----
-#: ../gtali/setup.c:308
+#: ../gtali/setup.c:272
 msgid "Player Names"
 msgstr "Játékosok neve"
 
-#: ../gtali/yahtzee.c:69
+#: ../gtali/yahtzee.c:68
 msgid "1s [total of 1s]"
 msgstr "egyesek [összes egyes]"
 
-#: ../gtali/yahtzee.c:70
+#: ../gtali/yahtzee.c:69
 msgid "2s [total of 2s]"
 msgstr "kettesek [összes kettes]"
 
-#: ../gtali/yahtzee.c:71
+#: ../gtali/yahtzee.c:70
 msgid "3s [total of 3s]"
 msgstr "hármasok [összes hármas]"
 
-#: ../gtali/yahtzee.c:72
+#: ../gtali/yahtzee.c:71
 msgid "4s [total of 4s]"
 msgstr "négyesek [összes négyes]"
 
-#: ../gtali/yahtzee.c:73
+#: ../gtali/yahtzee.c:72
 msgid "5s [total of 5s]"
 msgstr "ötösök [összes ötös]"
 
-#: ../gtali/yahtzee.c:74
+#: ../gtali/yahtzee.c:73
 msgid "6s [total of 6s]"
 msgstr "hatosok [összes hatos]"
 
 #. End of upper panel
-#: ../gtali/yahtzee.c:76
+#: ../gtali/yahtzee.c:75
 msgid "3 of a Kind [total]"
 msgstr "három egyforma [összes]"
 
-#: ../gtali/yahtzee.c:77
+#: ../gtali/yahtzee.c:76
 msgid "4 of a Kind [total]"
 msgstr "négy egyforma [összes]"
 
-#: ../gtali/yahtzee.c:78
+#: ../gtali/yahtzee.c:77
 msgid "Full House [25]"
 msgstr "Full [25]"
 
-#: ../gtali/yahtzee.c:79
+#: ../gtali/yahtzee.c:78
 msgid "Small Straight [30]"
 msgstr "Kis sor [30]"
 
-#: ../gtali/yahtzee.c:80
+#: ../gtali/yahtzee.c:79
 msgid "Large Straight [40]"
 msgstr "Nagy sor [40]"
 
-#: ../gtali/yahtzee.c:81
+#: ../gtali/yahtzee.c:80
 msgid "5 of a Kind [50]"
 msgstr "öt egyforma [ötven]"
 
-#: ../gtali/yahtzee.c:82
+#: ../gtali/yahtzee.c:81
 msgid "Chance [total]"
 msgstr "Esély [összes]"
 
 #. End of lower panel
-#: ../gtali/yahtzee.c:84
+#: ../gtali/yahtzee.c:83
 msgid "Lower Total"
 msgstr "Alsó összeg"
 
-#: ../gtali/yahtzee.c:85
+#: ../gtali/yahtzee.c:84
 msgid "Grand Total"
 msgstr "Összeg"
 
 #. Need to squish between upper and lower pannel
-#: ../gtali/yahtzee.c:87
+#: ../gtali/yahtzee.c:86
 msgid "Upper total"
 msgstr "Felső összeg"
 
-#: ../gtali/yahtzee.c:88
+#: ../gtali/yahtzee.c:87
 msgid "Bonus if >62"
 msgstr "Bónusz, ha nagyobb, mint 62"
 
-#: ../gtali/yahtzee.c:187
+#: ../gtali/yahtzee.c:186
 msgid "Choose a score slot."
 msgstr "Válasszon egy pontszámmezőt."
 
-#: ../gtali/yahtzee.c:456
+#: ../gtali/yahtzee.c:455
 msgid "How many times do you wish to roll?"
 msgstr "Hány alkalommal szeretne dobni?"
 
-#: ../gtali/yahtzee.c:461
+#: ../gtali/yahtzee.c:460
 msgid "Generating ..."
 msgstr "Előállítás ..."
 
-#: ../gtali/yahtzee.c:496
+#: ../gtali/yahtzee.c:495
 msgid "Results"
 msgstr "Eredmények"
 
-#: ../gtali/yahtzee.c:496
+#: ../gtali/yahtzee.c:495
 msgid "Num Rolls"
 msgstr "Dobások száma"
 
-#: ../gtali/yahtzee.c:496
+#: ../gtali/yahtzee.c:495
 msgid "Total"
 msgstr "Összesen"
 
-#: ../iagno/gnothello.c:107
+#: ../iagno/gnothello.c:109
 msgid "Iagno server to use"
 msgstr "Használandó Iagno kiszolgáló"
 
-#: ../iagno/gnothello.c:114
+#: ../iagno/gnothello.c:116
 msgid "New Net_work Game"
 msgstr "Új _hálózati játék"
 
-#: ../iagno/gnothello.c:245 ../iagno/gnothello.c:572
-#: ../iagno/iagno.desktop.in.h:1 ../iagno/iagno.soundlist.in.h:2
+#: ../iagno/gnothello.c:249 ../iagno/gnothello.c:581
+#: ../iagno/iagno.desktop.in.h:2 ../iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Iagno"
 
-#: ../iagno/gnothello.c:248
+#: ../iagno/gnothello.c:253
 msgid "A disk flipping game derived from Reversi."
 msgstr "A Reversiből származtatott korongfordítgatós játék."
 
-#: ../iagno/gnothello.c:631
+#: ../iagno/gnothello.c:643
 msgid "Welcome to Iagno!"
 msgstr "Üdvözli az Iagno!"
 
-#: ../iagno/gnothello.c:639 ../iagno/gnothello.c:641
+#: ../iagno/gnothello.c:651 ../iagno/gnothello.c:653
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
 
-#: ../iagno/iagno.desktop.in.h:2
-msgid "Play a game of Reversi"
-msgstr "Reversi játék"
+#: ../iagno/iagno.desktop.in.h:1
+msgid "Dominate the board in a classic version of Reversi"
+msgstr ""
 
 #: ../iagno/iagno.soundlist.in.h:1
 msgid "Game over"
@@ -4626,13 +4809,15 @@ msgstr "Hiba történt a GConf elérése közben: %s"
 
 #: ../libgames-support/games-gconf.c:79
 msgid "The default configuration values could not be retrieved correctly."
-msgstr "Az alapértelmezett konfigurációs értékeket nem lehetett helyesen betölteni."
+msgstr ""
+"Az alapértelmezett konfigurációs értékeket nem lehetett helyesen betölteni."
 
 #: ../libgames-support/games-gconf.c:80
 msgid ""
 "Please check your GConf configuration, specifically that the schemas have "
 "been installed correctly."
-msgstr "Ellenőrizze a GConf beállításait, különösen a sémák megfelelő telepítését."
+msgstr ""
+"Ellenőrizze a GConf beállításait, különösen a sémák megfelelő telepítését."
 
 #: ../libgames-support/games-gridframe.c:217
 #: ../libgames-support/games-gridframe.c:224
@@ -4695,7 +4880,9 @@ msgstr "Állapot"
 
 #: ../libgames-support/games-network-dialog.c:141
 msgid "Select a nickname and connection method then click Connect."
-msgstr "Válasszon egy becenevet és kapcsolódási módszert, majd kattintson a Kapcsolódásra."
+msgstr ""
+"Válasszon egy becenevet és kapcsolódási módszert, majd kattintson a "
+"Kapcsolódásra."
 
 #. Now for the network connection options.
 #: ../libgames-support/games-network-dialog.c:145
@@ -4748,64 +4935,64 @@ msgstr "Kapcs_olódás"
 msgid "_Start Game"
 msgstr "Játék _indítása"
 
-#: ../libgames-support/games-network-dialog.c:331
+#: ../libgames-support/games-network-dialog.c:332
 msgid "Please supply a nickname."
 msgstr "Kérem adjon meg egy becenevet."
 
-#: ../libgames-support/games-network-dialog.c:345
+#: ../libgames-support/games-network-dialog.c:346
 msgid "No local game selected."
 msgstr "Nincs kiválasztva helyi játék."
 
-#: ../libgames-support/games-network-dialog.c:367
+#: ../libgames-support/games-network-dialog.c:368
 msgid "A new gnome games server was successfully started."
 msgstr "Sikeresen elindult egy új gnome games szerver."
 
-#: ../libgames-support/games-network.c:123
+#: ../libgames-support/games-network.c:148
 msgid "Network initialization complete."
 msgstr "A hálózat inicializálása sikerült."
 
-#: ../libgames-support/games-network.c:133
+#: ../libgames-support/games-network.c:158
 msgid "Network shutdown in progress."
 msgstr "A hálózat leállítása folyamatban van."
 
 #. Shut down the connection, either it was broken or someone is messing with us
-#: ../libgames-support/games-network.c:256
+#: ../libgames-support/games-network.c:284
 msgid "The remote player disconnected"
 msgstr "A távoli játékossal megszakadt a kapcsolat"
 
-#: ../libgames-support/games-network.c:276
+#: ../libgames-support/games-network.c:307
 msgid "Error occurred during connect attempt."
 msgstr "Hiba a kapcsolatfelvétel közben."
 
-#: ../libgames-support/games-network.c:278
-#: ../libgames-support/games-network.c:364
+#: ../libgames-support/games-network.c:309
+#: ../libgames-support/games-network.c:395
 msgid "Connection succeeded, waiting for opponent"
 msgstr "Kapcsolódás sikeres, várakozás az ellenfélre"
 
-#: ../libgames-support/games-network.c:288
+#: ../libgames-support/games-network.c:319
 msgid "Error occurred during write."
 msgstr "Hiba történt írás közben."
 
-#: ../libgames-support/games-network.c:343
+#: ../libgames-support/games-network.c:374
 msgid "Cleaning up connection"
 msgstr "Kapcsolat törlése"
 
-#: ../libgames-support/games-network.c:355
+#: ../libgames-support/games-network.c:386
 msgid "Connection in progress..."
 msgstr "Kapcsolódás folyamatban..."
 
-#: ../libgames-support/games-network.c:359
+#: ../libgames-support/games-network.c:390
 msgid "Connection failed"
 msgstr "A kapcsolatfelvétel nem sikerült"
 
-#: ../libgames-support/games-network.c:387
+#: ../libgames-support/games-network.c:418
 msgid "No game server defined"
 msgstr "Nincs megadva játékszerver"
 
-#: ../libgames-support/games-network.c:480
-#: ../libgames-support/games-network.c:654
-#: ../libgames-support/games-network.c:663
-#: ../libgames-support/games-network.c:692
+#: ../libgames-support/games-network.c:705
+#: ../libgames-support/games-network.c:1110
+#: ../libgames-support/games-network.c:1118
+#: ../libgames-support/games-network.c:1146
 msgid ""
 "Local Area Network game could not be started. \n"
 "Try running mDNSResponder."
@@ -4813,29 +5000,28 @@ msgstr ""
 "A helyi hálózati játék nem indítható el.\n"
 "Próbálkozzon az mDNSResponder futtatásával."
 
-#: ../libgames-support/games-preimage.c:165
-#: ../libgames-support/games-preimage.c:258
+#: ../libgames-support/games-preimage.c:135
 msgid "Image rendering failed."
 msgstr "A kép megjelenítése nem sikerült."
 
 #. Note that this assumes the default style is plain.
-#: games-scores-dialog.gob:340 games-scores-dialog.gob:426
-#: ../libgames-support/games-scores-dialog.gob:340
-#: ../libgames-support/games-scores-dialog.gob:426
+#: games-scores-dialog.gob:364 games-scores-dialog.gob:450
+#: ../libgames-support/games-scores-dialog.gob:364
+#: ../libgames-support/games-scores-dialog.gob:450
 msgid "Score"
 msgstr "Pontszámok"
 
 #. Translators: this is for a minutes, seconds time display.
-#: games-scores-dialog.gob:191 ../libgames-support/games-scores-dialog.gob:191
+#: games-scores-dialog.gob:214 ../libgames-support/games-scores-dialog.gob:214
 #, c-format
 msgid "%dm %ds"
 msgstr "%dp %ds"
 
-#: games-scores-dialog.gob:421 ../libgames-support/games-scores-dialog.gob:421
+#: games-scores-dialog.gob:445 ../libgames-support/games-scores-dialog.gob:445
 msgid "Time"
 msgstr "Idő"
 
-#: games-scores-dialog.gob:522 ../libgames-support/games-scores-dialog.gob:522
+#: games-scores-dialog.gob:546 ../libgames-support/games-scores-dialog.gob:546
 msgid "New Game"
 msgstr "Új játék"
 
@@ -4890,25 +5076,17 @@ msgstr "Játék be_fejezése"
 msgid "_Contents"
 msgstr "_Tartalom"
 
-#: ../libgames-support/games-stock.c:99
-msgid "Start a new game"
-msgstr "Új játék indítása"
-
-#: ../libgames-support/games-stock.c:100
+#: ../libgames-support/games-stock.c:100 ../mahjongg/mahjongg.c:1311
 msgid "Pause the game"
 msgstr "A játék szüneteltetése"
 
-#: ../libgames-support/games-stock.c:101
+#: ../libgames-support/games-stock.c:101 ../mahjongg/mahjongg.c:1312
 msgid "Resume the paused game"
 msgstr "A szüneteltetett játék folytatása"
 
 #: ../libgames-support/games-stock.c:102
 msgid "Restart the game"
 msgstr "A játék újraindítása"
-
-#: ../libgames-support/games-stock.c:103
-msgid "Undo the last move"
-msgstr "Az utolsó lépés visszavonása"
 
 #: ../libgames-support/games-stock.c:104
 msgid "Redo the undone move"
@@ -4959,7 +5137,8 @@ msgid "The identifier for the game"
 msgstr "A játék azonosítója"
 
 #: ../libgames-support/libgnomegames.schemas.in.h:4
-msgid "The mode of network game to use. 1 = Server, 2 = LAN Host, 3 = LAN Client."
+msgid ""
+"The mode of network game to use. 1 = Server, 2 = LAN Host, 3 = LAN Client."
 msgstr "A hálózati játék mód: 1 = szerver, 2 = LAN kiszolgáló, 3 = LAN kliens."
 
 #: ../libgames-support/libgnomegames.schemas.in.h:5
@@ -4996,7 +5175,7 @@ msgstr ""
 "\n"
 "Ellenőrizze, hogy a Mahjongg megfelelően van-e telepítve."
 
-#: ../mahjongg/drawing.c:429
+#: ../mahjongg/drawing.c:431
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -5009,7 +5188,7 @@ msgstr ""
 "\n"
 "Ellenőrizze, hogy a Mahjongg megfelelően van-e telepítve."
 
-#: ../mahjongg/drawing.c:432
+#: ../mahjongg/drawing.c:434
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -5022,7 +5201,7 @@ msgstr ""
 "\n"
 "Helyette az alapértelmezett elemkészlet kerül betöltésre."
 
-#: ../mahjongg/drawing.c:449
+#: ../mahjongg/drawing.c:451
 #, c-format
 msgid ""
 "Unable to render file:\n"
@@ -5035,11 +5214,11 @@ msgstr ""
 "\n"
 "Ellenőrizze, hogy a Mahjongg megfelelően van-e telepítve."
 
-#: ../mahjongg/mahjongg.c:137
+#: ../mahjongg/mahjongg.c:138
 msgid "Could not load tile set"
 msgstr "Nem lehet betölteni az elemkészletet"
 
-#: ../mahjongg/mahjongg.c:361
+#: ../mahjongg/mahjongg.c:374
 msgid ""
 "Do you want to finish the current game or start playing with the new map "
 "immediately?"
@@ -5047,7 +5226,7 @@ msgstr ""
 "Be szeretné fejezni az aktuális játékot, vagy azonnal elindít egy játékot az "
 "új térképpel?"
 
-#: ../mahjongg/mahjongg.c:362
+#: ../mahjongg/mahjongg.c:375
 msgid ""
 "If you choose to finish with the old map then the next game will use the new "
 "map."
@@ -5055,77 +5234,77 @@ msgstr ""
 "Ha azt választja, hogy befejezi a régi térképpel, akkor a következő játék az "
 "új térképet fogja használni."
 
-#: ../mahjongg/mahjongg.c:364
+#: ../mahjongg/mahjongg.c:377
 msgid "_Finish"
 msgstr "Be_fejezés"
 
-#: ../mahjongg/mahjongg.c:644
+#: ../mahjongg/mahjongg.c:657
 msgid "Shuffle"
 msgstr "Keverés"
 
-#: ../mahjongg/mahjongg.c:680 ../mahjongg/mahjongg.c:979
+#: ../mahjongg/mahjongg.c:693 ../mahjongg/mahjongg.c:1010
 msgid "Mahjongg Scores"
 msgstr "Mahjongg pontszámok"
 
-#: ../mahjongg/mahjongg.c:682 ../mahjongg/mahjongg.c:981
+#: ../mahjongg/mahjongg.c:695 ../mahjongg/mahjongg.c:1012
 msgid "Map:"
 msgstr "Térkép:"
 
-#: ../mahjongg/mahjongg.c:720
+#: ../mahjongg/mahjongg.c:733
 msgid "Mahjongg Preferences"
 msgstr "A Mahjongg beállításai"
 
-#: ../mahjongg/mahjongg.c:741
+#: ../mahjongg/mahjongg.c:754
 msgid "Tiles"
 msgstr "Elemek"
 
-#: ../mahjongg/mahjongg.c:764
+#: ../mahjongg/mahjongg.c:777
 msgid "Maps"
 msgstr "Térképek"
 
-#: ../mahjongg/mahjongg.c:771
+#: ../mahjongg/mahjongg.c:784
 msgid "_Select map:"
 msgstr "_Válasszon térképet:"
 
-#: ../mahjongg/mahjongg.c:787
+#: ../mahjongg/mahjongg.c:800
 msgid "Colors"
 msgstr "Színek"
 
-#: ../mahjongg/mahjongg.c:913
+#: ../mahjongg/mahjongg.c:928
 msgid "Maps:"
 msgstr "Térképek:"
 
-#: ../mahjongg/mahjongg.c:917
+#: ../mahjongg/mahjongg.c:935
 msgid "Tiles:"
 msgstr "Elemek:"
 
-#: ../mahjongg/mahjongg.c:927 ../mahjongg/mahjongg.c:993
+#: ../mahjongg/mahjongg.c:950 ../mahjongg/mahjongg.c:1024
 #: ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: ../mahjongg/mahjongg.c:929
+#: ../mahjongg/mahjongg.c:952
 msgid "A matching game played with Mahjongg tiles."
 msgstr "Párkereső játék Mahjongg téglákkal."
 
-#: ../mahjongg/mahjongg.c:993
+#: ../mahjongg/mahjongg.c:1024
 #, c-format
 msgid "%s - %s"
 msgstr "%s - %s"
 
-#: ../mahjongg/mahjongg.c:1245
+#: ../mahjongg/mahjongg.c:1276
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Sajnálom, nem találok egy játszható konfigurációt sem."
 
-#: ../mahjongg/mahjongg.c:1432
+#: ../mahjongg/mahjongg.c:1469
 msgid "Tiles Left:"
 msgstr "Hátralévő elemek:"
 
-#: ../mahjongg/mahjongg.c:1441
+#: ../mahjongg/mahjongg.c:1478
 msgid "Moves Left:"
 msgstr "Hátralévő lépések:"
 
-#: ../mahjongg/mahjongg.c:1503
+#: ../mahjongg/mahjongg.c:1540
 msgid "Remove matching pairs of tiles."
 msgstr "Távolítsa el az összeillő téglapárokat."
 
@@ -5149,41 +5328,9 @@ msgstr ""
 "A főablak kívánt szélessége képpontban. Megjegyzés: az ablak felületi elemei "
 "(a widgetek) legalább 320 képpont szélesek."
 
-#: ../mahjongg/maps.c:534
+#: ../mahjongg/maps.c:81
 msgid "mahjongg|Easy"
 msgstr "Könnyű"
-
-#: ../mahjongg/maps.c:535
-msgid "Difficult"
-msgstr "Nehéz"
-
-#: ../mahjongg/maps.c:536
-msgid "Confounding Cross"
-msgstr "Zavarba ejtő kereszt"
-
-#: ../mahjongg/maps.c:537
-msgid "Pyramid's Walls"
-msgstr "Piramisfal"
-
-#: ../mahjongg/maps.c:538
-msgid "Tic-Tac-Toe"
-msgstr "Tic-Tac-Toe"
-
-#: ../mahjongg/maps.c:539
-msgid "Cloud"
-msgstr "Felhő"
-
-#: ../mahjongg/maps.c:540
-msgid "Red Dragon"
-msgstr "Vörös sárkány"
-
-#: ../mahjongg/maps.c:542
-msgid "Four Bridges"
-msgstr "Négy híd"
-
-#: ../mahjongg/maps.c:543
-msgid "The Ziggurat"
-msgstr "Zikkurat"
 
 #. FIXME: This is long enough to resize the window upwards when
 #. * the game finishes.
@@ -5195,21 +5342,21 @@ msgstr "A tábla teljes kiürítéséért 1000 pont jutalom!"
 msgid "same-gnome|Medium"
 msgstr "Közepes"
 
-#: ../same-gnome/same-gnome.c:135
+#: ../same-gnome/same-gnome.c:139
 msgid "Set the theme"
 msgstr "Adja meg a témát"
 
-#: ../same-gnome/same-gnome.c:138
+#: ../same-gnome/same-gnome.c:141
 msgid "For backwards compatibility"
 msgstr "A visszamenőleges kompatibilitás érdekében"
 
-#: ../same-gnome/same-gnome.c:140
+#: ../same-gnome/same-gnome.c:143
 msgid "Game size (1=small, 3=large)"
 msgstr "A tábla mérete (1=kicsi, 3=nagy)"
 
 #: ../same-gnome/same-gnome.desktop.in.h:1
-msgid "Remove groups of balls to try and clear the screen"
-msgstr "Távolítsa el a golyók csoportjait, és próbálja meg kiüríteni a képernyőt"
+msgid "Clear the screen by removing groups of colored balls"
+msgstr ""
 
 #: ../same-gnome/same-gnome.desktop.in.h:2
 msgid "Same GNOME"
@@ -5240,8 +5387,10 @@ msgid "The height of the custom board, 101 &gt; height &gt; 3."
 msgstr "Az egyéni tábla magassága, 101 &gt; height &gt; 3."
 
 #: ../same-gnome/same-gnome.schemas.in.h:7
-msgid "The size of the board to use. 1 = Custom, 2 = Small, 3 = Medium, 4 = Large."
-msgstr "A használandó tábla mérete: 1 = egyéni, 2 = kicsi, 3 = közepes, 4 = nagy."
+msgid ""
+"The size of the board to use. 1 = Custom, 2 = Small, 3 = Medium, 4 = Large."
+msgstr ""
+"A használandó tábla mérete: 1 = egyéni, 2 = kicsi, 3 = közepes, 4 = nagy."
 
 #: ../same-gnome/same-gnome.schemas.in.h:8
 msgid "The theme to use"
@@ -5283,29 +5432,29 @@ msgstr[1] "%d pont"
 msgid "Score: %d"
 msgstr "Pontszám: %d"
 
-#: ../same-gnome/ui.c:109
+#: ../same-gnome/ui.c:112
 msgid ""
 "I want to play that game! You know, they all go whirly-round and you click "
 "on them and they vanish!"
 msgstr "Akarok játszani ezzel! Forognak körbe, az ember rákattint és eltűnnek!"
 
-#: ../same-gnome/ui.c:121
+#: ../same-gnome/ui.c:128
 msgid "Same GNOME Scores"
 msgstr "Same GNOME pontszám"
 
-#: ../same-gnome/ui.c:146
+#: ../same-gnome/ui.c:153
 msgid "Unfortunately your score did not make the top ten."
 msgstr "Pontszáma sajnos nincs benne az első tízben."
 
-#: ../same-gnome/ui.c:249
+#: ../same-gnome/ui.c:256
 msgid "Same GNOME Theme"
 msgstr "Same GNOME téma"
 
-#: ../same-gnome/ui.c:430
+#: ../same-gnome/ui.c:437
 msgid "_Theme..."
 msgstr "_Téma..."
 
-#: ../same-gnome/ui.c:443
+#: ../same-gnome/ui.c:450
 msgid "_Fast Animation"
 msgstr "G_yors animáció"
 
@@ -5321,3 +5470,57 @@ msgstr ""
 "Nem lehet játszani a játékkal. Kérjük, ellenőrizze, hogy a játék helyesen "
 "van-e telepítve, és próbálja meg újra."
 
+#~ msgid "No moves available"
+#~ msgstr "Nincs lehetséges lépés"
+
+#~ msgid "Variation on game rules"
+#~ msgstr "Variációk a játékra"
+
+#~ msgid "Compete to dominate the board in a Reversi-like game"
+#~ msgstr "Versenyezzen a tábla elfoglalásáért egy Reversi-szerű játékban"
+
+#~ msgid "windows"
+#~ msgstr "ablakok"
+
+#~ msgid "Play a puzzle game matching tiles together"
+#~ msgstr "Kirakós játék elemek egymáshoz illesztésével"
+
+#~ msgid "Solve puzzles by sliding blocks"
+#~ msgstr "Blokktologatós fejtörők"
+
+#~ msgid "Calculate random die throws (debug)"
+#~ msgstr "Véletlenszerű kockadobások kiszámítása (hibakeresés)"
+
+#~ msgid "Show high scores and exit"
+#~ msgstr "Pontszámok megjelenítése és kilépés"
+
+#~ msgid "Play a game of Reversi"
+#~ msgstr "Reversi játék"
+
+#~ msgid "Difficult"
+#~ msgstr "Nehéz"
+
+#~ msgid "Confounding Cross"
+#~ msgstr "Zavarba ejtő kereszt"
+
+#~ msgid "Pyramid's Walls"
+#~ msgstr "Piramisfal"
+
+#~ msgid "Tic-Tac-Toe"
+#~ msgstr "Tic-Tac-Toe"
+
+#~ msgid "Cloud"
+#~ msgstr "Felhő"
+
+#~ msgid "Red Dragon"
+#~ msgstr "Vörös sárkány"
+
+#~ msgid "Four Bridges"
+#~ msgstr "Négy híd"
+
+#~ msgid "The Ziggurat"
+#~ msgstr "Zikkurat"
+
+#~ msgid "Remove groups of balls to try and clear the screen"
+#~ msgstr ""
+#~ "Távolítsa el a golyók csoportjait, és próbálja meg kiüríteni a képernyőt"
