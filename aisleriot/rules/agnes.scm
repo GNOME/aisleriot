@@ -199,7 +199,10 @@
   (give-status-message))
 
 (define (game-won)
-  #f)
+  (and (= 13 (length (get-cards 1)))
+       (= 13 (length (get-cards 2)))
+       (= 13 (length (get-cards 3)))
+       (= 13 (length (get-cards 4)))))
 
 (define (check-to-foundation? slot)
   (cond ((= slot 12)
