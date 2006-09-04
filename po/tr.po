@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-26 13:44+0200\n"
+"POT-Creation-Date: 2006-09-04 22:54+0300\n"
 "PO-Revision-Date: 2005-09-01 10:15+0200\n"
 "Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -54,6 +54,7 @@ msgid "The game file to use"
 msgstr "Kullanılacak oyun dosyası"
 
 #: ../aisleriot/aisleriot.schemas.in.h:6 ../glines/glines.schemas.in.h:13
+#: ../gnobots2/gnobots2.schemas.in.h:25 ../gnometris/gnometris.schemas.in.h:21
 #: ../same-gnome/same-gnome.schemas.in.h:6
 msgid "The height of the main window."
 msgstr "Ana pencerenin yüksekliği."
@@ -68,6 +69,7 @@ msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "Oynanılacak iskambil falı oyununu içeren şema dosyasının ismi."
 
 #: ../aisleriot/aisleriot.schemas.in.h:9 ../glines/glines.schemas.in.h:14
+#: ../gnobots2/gnobots2.schemas.in.h:38 ../gnometris/gnometris.schemas.in.h:26
 #: ../same-gnome/same-gnome.schemas.in.h:10
 msgid "The width of the main window."
 msgstr "Ana pencerenin genişliği."
@@ -88,14 +90,16 @@ msgid "Whether or not to show the toolbar."
 msgstr "Araç çubuğunu göster veya gizle."
 
 #: ../aisleriot/aisleriot.schemas.in.h:13 ../glines/glines.schemas.in.h:17
+#: ../gnobots2/gnobots2.schemas.in.h:43 ../gnometris/gnometris.schemas.in.h:37
 msgid "Window height"
 msgstr "Pencere yüksekliği"
 
 #: ../aisleriot/aisleriot.schemas.in.h:14 ../glines/glines.schemas.in.h:18
+#: ../gnobots2/gnobots2.schemas.in.h:44 ../gnometris/gnometris.schemas.in.h:38
 msgid "Window width"
 msgstr "Pencere genişliği"
 
-#: ../aisleriot/cscmi.c:504
+#: ../aisleriot/cscmi.c:191
 #, c-format
 msgid ""
 "A scheme exception occured and we were unable to create a temporary file to "
@@ -108,18 +112,18 @@ msgstr ""
 "%s"
 
 #: ../aisleriot/dialog.c:45
-msgid "Congratulations."
-msgstr "Tebrikler."
+msgid "Congratulations!!!"
+msgstr "Tebrikler!!!"
 
 #: ../aisleriot/dialog.c:46
-msgid "You have won!!!"
-msgstr "Sen kazandın!!!"
+msgid "You have won."
+msgstr "Sen kazandın."
 
-#: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:640
+#: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:653
 msgid "There are no more moves."
 msgstr "Daha başka hareket kalmadı."
 
-#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:192 ../same-gnome/ui.c:149
+#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:196 ../same-gnome/ui.c:156
 msgid "_New Game"
 msgstr "Yeni _Oyun"
 
@@ -127,7 +131,7 @@ msgstr "Yeni _Oyun"
 msgid "Select Game"
 msgstr "Oyun Seç"
 
-#: ../aisleriot/dialog.c:272
+#: ../aisleriot/dialog.c:275
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -135,21 +139,21 @@ msgstr ""
 "Oyun bitti.\n"
 "Hiç ipucu yok"
 
-#: ../aisleriot/dialog.c:278
+#: ../aisleriot/dialog.c:281
 msgid "This game does not have hint support yet."
 msgstr "Bu oyunun şimdilik ipucu desteği yok."
 
-#: ../aisleriot/dialog.c:290 ../aisleriot/dialog.c:296
+#: ../aisleriot/dialog.c:293 ../aisleriot/dialog.c:299
 #, c-format
 msgid "Move %s onto %s."
 msgstr "%s'ı %s üzerine taşı."
 
-#: ../aisleriot/dialog.c:302
+#: ../aisleriot/dialog.c:305
 #, c-format
 msgid "Move %s %s."
 msgstr "%s %s taşı."
 
-#: ../aisleriot/dialog.c:303
+#: ../aisleriot/dialog.c:306
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -163,16 +167,16 @@ msgstr ""
 "bildirimi \n"
 "yapın."
 
-#: ../aisleriot/dialog.c:308
+#: ../aisleriot/dialog.c:311
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Aradığınız şey bir %s."
 
-#: ../aisleriot/dialog.c:312
+#: ../aisleriot/dialog.c:315
 msgid "This game is unable to provide a hint."
 msgstr "Oyun ipucu veremiyor."
 
-#: ../aisleriot/dialog.c:369
+#: ../aisleriot/dialog.c:372
 msgid "AisleRiot Cards"
 msgstr "AisleRiot Kartları"
 
@@ -184,109 +188,128 @@ msgstr "Yedekli İskambil Falı"
 msgid "Play the popular FreeCell card game"
 msgstr "Meşhur Yedekli İskambil Falı oyununu oynayın"
 
-#: ../aisleriot/menu.c:88 ../gnome-stones/main.c:1018 ../gnomine/gnomine.c:425
-#: ../mahjongg/mahjongg.c:904
+#: ../aisleriot/menu.c:106 ../gnomine/gnomine.c:427 ../mahjongg/mahjongg.c:920
 msgid "Main game:"
 msgstr "Ana oyun:"
 
-#: ../aisleriot/menu.c:94
+#: ../aisleriot/menu.c:112
 msgid "Card games:"
 msgstr "Kart oyunları:"
 
-#: ../aisleriot/menu.c:106
+#: ../aisleriot/menu.c:129
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
-#: ../aisleriot/menu.c:108
+#: ../aisleriot/menu.c:131
 msgid ""
-"AisleRiot provides a rule-based solitaire card engine that allows many "
-"different games to be played."
+"AisleRiot provides a rule-based solitaire\n"
+"card engine that allows many different\n"
+"games to be played."
 msgstr ""
-"AisleRiot oyunu, İskambil Falı kart motoru ile pek çok farklı oyunun "
+"AisleRiot oyunu, İskambil Falı kart motoru \n"
+"ile pek çok farklı oyunun \n"
 "oynanabilmesine olanak verir."
 
-#: ../aisleriot/menu.c:112 ../blackjack/src/menu.cpp:150
-#: ../gataxx/gataxx.c:390 ../glines/glines.c:1217 ../gnect/src/main.c:795
-#: ../gnibbles/main.c:152 ../gnobots2/menu.c:241 ../gnome-stones/main.c:1032
-#: ../gnometris/tetris.cpp:1461 ../gnomine/gnomine.c:448
-#: ../gnotravex/gnotravex.c:1590 ../gnotski/gnotski.c:1543
-#: ../gtali/gyahtzee.c:428 ../iagno/gnothello.c:270 ../mahjongg/mahjongg.c:931
-#: ../same-gnome/ui.c:112
+#: ../aisleriot/menu.c:138 ../blackjack/src/menu.cpp:159
+#: ../gataxx/gataxx.c:400 ../glines/glines.c:1228 ../gnect/src/main.c:825
+#: ../gnibbles/main.c:207 ../gnobots2/menu.c:257 ../gnometris/tetris.cpp:1452
+#: ../gnomine/gnomine.c:464 ../gnotravex/gnotravex.c:1633
+#: ../gnotski/gnotski.c:1606 ../gtali/gyahtzee.c:461 ../iagno/gnothello.c:256
+#: ../mahjongg/mahjongg.c:958 ../same-gnome/ui.c:116
 msgid "translator-credits"
 msgstr "Barış_Çiçek"
 
-#: ../aisleriot/menu.c:201 ../blackjack/src/blackjack.cpp:298
-#: ../glines/glines.c:1705 ../gnect/src/main.c:1131 ../gnibbles/main.c:600
-#: ../gnobots2/menu.c:57 ../gnome-stones/main.c:1050
-#: ../gnometris/tetris.cpp:130 ../gnomine/gnomine.c:750
-#: ../gnotravex/gnotravex.c:175 ../gnotski/gnotski.c:630
-#: ../gtali/gyahtzee.c:501 ../mahjongg/mahjongg.c:1274 ../same-gnome/ui.c:417
+#: ../aisleriot/menu.c:232 ../blackjack/src/blackjack.cpp:335
+#: ../glines/glines.c:1719 ../gnect/src/main.c:1164 ../gnibbles/main.c:644
+#: ../gnobots2/menu.c:61 ../gnometris/tetris.cpp:131 ../gnomine/gnomine.c:794
+#: ../gnotravex/gnotravex.c:194 ../gnotski/gnotski.c:635
+#: ../gtali/gyahtzee.c:537 ../mahjongg/mahjongg.c:1306 ../same-gnome/ui.c:424
 msgid "_Game"
 msgstr "_Oyun"
 
-#: ../aisleriot/menu.c:202 ../same-gnome/ui.c:418
+#: ../aisleriot/menu.c:233 ../blackjack/src/blackjack.cpp:336
+#: ../gnect/src/main.c:1165 ../gnibbles/main.c:645 ../gnobots2/menu.c:62
+#: ../gnotravex/gnotravex.c:195 ../gnotski/gnotski.c:636
+#: ../same-gnome/ui.c:425
 msgid "_View"
 msgstr "_Görünüm"
 
-#: ../aisleriot/menu.c:203 ../blackjack/src/blackjack.cpp:305
+#: ../aisleriot/menu.c:234 ../blackjack/src/blackjack.cpp:345
 msgid "_Control"
 msgstr "_Kontrol"
 
 #. not translated on purpose
-#: ../aisleriot/menu.c:205 ../blackjack/src/blackjack.cpp:312
-#: ../glines/glines.c:1707 ../gnect/src/main.c:1133 ../gnibbles/main.c:602
-#: ../gnobots2/menu.c:60 ../gnome-stones/main.c:1052
-#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:752
-#: ../gnotravex/gnotravex.c:178 ../gnotski/gnotski.c:631
-#: ../gtali/gyahtzee.c:503 ../mahjongg/mahjongg.c:1276 ../same-gnome/ui.c:420
+#: ../aisleriot/menu.c:236 ../blackjack/src/blackjack.cpp:352
+#: ../glines/glines.c:1721 ../gnect/src/main.c:1167 ../gnibbles/main.c:647
+#: ../gnobots2/menu.c:65 ../gnometris/tetris.cpp:133 ../gnomine/gnomine.c:796
+#: ../gnotravex/gnotravex.c:198 ../gnotski/gnotski.c:637
+#: ../gtali/gyahtzee.c:539 ../mahjongg/mahjongg.c:1308 ../same-gnome/ui.c:427
 msgid "_Help"
 msgstr "_Yardım"
 
-#: ../aisleriot/menu.c:209
+#: ../aisleriot/menu.c:238 ../blackjack/src/blackjack.cpp:337
+#: ../gnobots2/menu.c:66 ../libgames-support/games-stock.c:99
+#: ../mahjongg/mahjongg.c:1309
+msgid "Start a new game"
+msgstr "Yeni bir oyun başlat"
+
+#: ../aisleriot/menu.c:239 ../blackjack/src/blackjack.cpp:338
+#: ../mahjongg/mahjongg.c:1310
+msgid "Restart the current game"
+msgstr "Oyunu yeniden başlat"
+
+#: ../aisleriot/menu.c:240
 msgid "_Select Game..."
 msgstr "Oyun _Seç..."
 
-#: ../aisleriot/menu.c:209
+#: ../aisleriot/menu.c:240
 msgid "Play a different game"
 msgstr "Farklı bir oyun oynayın"
 
-#: ../aisleriot/menu.c:210
+#: ../aisleriot/menu.c:241
 msgid "S_tatistics"
 msgstr "İ_statistikler"
 
-#: ../aisleriot/menu.c:210
+#: ../aisleriot/menu.c:241
 msgid "Show gameplay statistics"
 msgstr "Oyun istatistiklerini göster"
 
-#: ../aisleriot/menu.c:214
+#: ../aisleriot/menu.c:245
 msgid "_Cards..."
 msgstr "_Kartlar..."
 
-#: ../aisleriot/menu.c:219
+#: ../aisleriot/menu.c:247 ../libgames-support/games-stock.c:103
+#: ../mahjongg/mahjongg.c:1313
+msgid "Undo the last move"
+msgstr "Son hareketi geri al"
+
+#: ../aisleriot/menu.c:248 ../mahjongg/mahjongg.c:1314
+msgid "Redo the last move"
+msgstr "Son hareketi tekrarla"
+
+#: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:339
+#: ../mahjongg/mahjongg.c:1315
+msgid "Show a hint"
+msgstr ""
+
+#: ../aisleriot/menu.c:250
 msgid "View help for Aisleriot"
 msgstr "Aislerio için yardım göster"
 
-#: ../aisleriot/menu.c:220 ../libgames-support/games-stock.c:110
+#: ../aisleriot/menu.c:251 ../libgames-support/games-stock.c:110
 msgid "View help for this game"
 msgstr "Bu oyun için yardım göster"
 
-#: ../aisleriot/menu.c:225 ../blackjack/src/blackjack.cpp:318
-#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1292
+#: ../aisleriot/menu.c:256 ../blackjack/src/blackjack.cpp:358
+#: ../gnobots2/menu.c:82 ../mahjongg/mahjongg.c:1326
 msgid "_Toolbar"
 msgstr "_Araç çubuğu"
 
-#: ../aisleriot/menu.c:226
+#: ../aisleriot/menu.c:257
 msgid "_Click to Move"
 msgstr "_Taşımak için Tıklayın"
 
-#: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/canfield.scm.h:1
-#: ../aisleriot/rules/chessboard.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:1
-#: ../aisleriot/rules/glenwood.scm.h:1 ../aisleriot/rules/kansas.scm.h:1
-#: ../aisleriot/rules/plait.scm.h:1
-msgid "Base Card: "
-msgstr "Baş Kart: "
-
-#: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/canfield.scm.h:2
+#: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/canfield.scm.h:2
 #: ../aisleriot/rules/chessboard.scm.h:2 ../aisleriot/rules/eagle_wing.scm.h:2
 #: ../aisleriot/rules/glenwood.scm.h:2 ../aisleriot/rules/kansas.scm.h:2
 #: ../aisleriot/rules/lady_jane.scm.h:2 ../aisleriot/rules/plait.scm.h:2
@@ -294,7 +317,7 @@ msgstr "Baş Kart: "
 msgid "Base Card: Ace"
 msgstr "Baş Kart: As"
 
-#: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/canfield.scm.h:3
+#: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/canfield.scm.h:3
 #: ../aisleriot/rules/chessboard.scm.h:3 ../aisleriot/rules/eagle_wing.scm.h:3
 #: ../aisleriot/rules/glenwood.scm.h:3 ../aisleriot/rules/kansas.scm.h:3
 #: ../aisleriot/rules/lady_jane.scm.h:3 ../aisleriot/rules/plait.scm.h:3
@@ -302,7 +325,7 @@ msgstr "Baş Kart: As"
 msgid "Base Card: Jack"
 msgstr "Baş Kart: Vale"
 
-#: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/canfield.scm.h:4
+#: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/canfield.scm.h:4
 #: ../aisleriot/rules/chessboard.scm.h:4 ../aisleriot/rules/eagle_wing.scm.h:4
 #: ../aisleriot/rules/glenwood.scm.h:4 ../aisleriot/rules/kansas.scm.h:4
 #: ../aisleriot/rules/lady_jane.scm.h:4 ../aisleriot/rules/plait.scm.h:4
@@ -310,7 +333,7 @@ msgstr "Baş Kart: Vale"
 msgid "Base Card: King"
 msgstr "Baş Kart: Papaz"
 
-#: ../aisleriot/rules/agnes.scm.h:5 ../aisleriot/rules/canfield.scm.h:5
+#: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/canfield.scm.h:5
 #: ../aisleriot/rules/chessboard.scm.h:5 ../aisleriot/rules/eagle_wing.scm.h:5
 #: ../aisleriot/rules/glenwood.scm.h:5 ../aisleriot/rules/kansas.scm.h:5
 #: ../aisleriot/rules/lady_jane.scm.h:5 ../aisleriot/rules/plait.scm.h:5
@@ -318,41 +341,39 @@ msgstr "Baş Kart: Papaz"
 msgid "Base Card: Queen"
 msgstr "Baş Kart: Kız"
 
+#: ../aisleriot/rules/agnes.scm.h:5
+msgid "Base Card: ~a"
+msgstr "Baş Kart: ~a"
+
 #: ../aisleriot/rules/agnes.scm.h:6 ../aisleriot/rules/easthaven.scm.h:1
 #: ../aisleriot/rules/labyrinth.scm.h:1 ../aisleriot/rules/monte_carlo.scm.h:1
-#: ../aisleriot/rules/spiderette.scm.h:1 ../aisleriot/rules/valentine.scm.h:1
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:1
+#: ../aisleriot/rules/valentine.scm.h:1
 msgid "Deal more cards"
 msgstr "Daha çok kart dağıt"
 
-#: ../aisleriot/rules/agnes.scm.h:7 ../aisleriot/rules/auld_lang_syne.scm.h:2
+#: ../aisleriot/rules/agnes.scm.h:7 ../aisleriot/rules/athena.scm.h:4
+#: ../aisleriot/rules/auld_lang_syne.scm.h:2
 #: ../aisleriot/rules/block_ten.scm.h:1 ../aisleriot/rules/bristol.scm.h:2
 #: ../aisleriot/rules/camelot.scm.h:2 ../aisleriot/rules/canfield.scm.h:9
 #: ../aisleriot/rules/cover.scm.h:1 ../aisleriot/rules/doublets.scm.h:2
 #: ../aisleriot/rules/eagle_wing.scm.h:11 ../aisleriot/rules/easthaven.scm.h:4
 #: ../aisleriot/rules/elevator.scm.h:2 ../aisleriot/rules/escalator.scm.h:2
 #: ../aisleriot/rules/first_law.scm.h:17 ../aisleriot/rules/fortunes.scm.h:4
-#: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/golf.scm.h:2
-#: ../aisleriot/rules/gypsy.scm.h:3 ../aisleriot/rules/helsinki.scm.h:1
-#: ../aisleriot/rules/hopscotch.scm.h:3 ../aisleriot/rules/jamestown.scm.h:1
-#: ../aisleriot/rules/jumbo.scm.h:4 ../aisleriot/rules/kansas.scm.h:8
-#: ../aisleriot/rules/klondike.scm.h:4 ../aisleriot/rules/labyrinth.scm.h:2
-#: ../aisleriot/rules/lady_jane.scm.h:7 ../aisleriot/rules/monte_carlo.scm.h:2
-#: ../aisleriot/rules/neighbor.scm.h:1 ../aisleriot/rules/osmosis.scm.h:3
-#: ../aisleriot/rules/peek.scm.h:3 ../aisleriot/rules/plait.scm.h:11
-#: ../aisleriot/rules/quatorze.scm.h:1 ../aisleriot/rules/royal_east.scm.h:7
+#: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/gypsy.scm.h:3
+#: ../aisleriot/rules/helsinki.scm.h:1 ../aisleriot/rules/hopscotch.scm.h:3
+#: ../aisleriot/rules/jamestown.scm.h:1 ../aisleriot/rules/jumbo.scm.h:4
+#: ../aisleriot/rules/kansas.scm.h:8 ../aisleriot/rules/klondike.scm.h:4
+#: ../aisleriot/rules/labyrinth.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:7
+#: ../aisleriot/rules/monte_carlo.scm.h:2 ../aisleriot/rules/neighbor.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:11 ../aisleriot/rules/quatorze.scm.h:1
+#: ../aisleriot/rules/royal_east.scm.h:7 ../aisleriot/rules/saratoga.scm.h:4
 #: ../aisleriot/rules/scuffle.scm.h:4 ../aisleriot/rules/sir_tommy.scm.h:3
-#: ../aisleriot/rules/spider.scm.h:4
-#: ../aisleriot/rules/spider_one_suit.scm.h:4
-#: ../aisleriot/rules/spider_two_suit.scm.h:4
-#: ../aisleriot/rules/spiderette.scm.h:3
 #: ../aisleriot/rules/straight_up.scm.h:5 ../aisleriot/rules/thieves.scm.h:2
-#: ../aisleriot/rules/thirteen.scm.h:2
+#: ../aisleriot/rules/thirteen.scm.h:3
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:2 ../aisleriot/rules/union_square.scm.h:2
 #: ../aisleriot/rules/westhaven.scm.h:2 ../aisleriot/rules/whitehead.scm.h:3
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:3 ../aisleriot/rules/yield.scm.h:2
-#: ../aisleriot/rules/zebra.scm.h:4
+#: ../aisleriot/rules/yield.scm.h:2 ../aisleriot/rules/zebra.scm.h:4
 msgid "Stock left:"
 msgstr "Elde kalan kağıt:"
 
@@ -374,15 +395,59 @@ msgstr "Kartları tekrar dizmeyi dene"
 msgid "an empty foundation pile"
 msgstr "boş sıralama yığını"
 
+#: ../aisleriot/rules/athena.scm.h:1 ../aisleriot/rules/camelot.scm.h:1
+#: ../aisleriot/rules/canfield.scm.h:6 ../aisleriot/rules/glenwood.scm.h:6
+#: ../aisleriot/rules/klondike.scm.h:1 ../aisleriot/rules/osmosis.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:6 ../aisleriot/rules/saratoga.scm.h:1
+#: ../aisleriot/rules/straight_up.scm.h:1
+msgid "Deal a new card from the deck"
+msgstr "Desteden yeni bir kart çek"
+
+#: ../aisleriot/rules/athena.scm.h:2 ../aisleriot/rules/easthaven.scm.h:3
+#: ../aisleriot/rules/klondike.scm.h:2 ../aisleriot/rules/saratoga.scm.h:2
+msgid "No hint available right now"
+msgstr "Şu anda hiç bir ipucu yok"
+
+#: ../aisleriot/rules/athena.scm.h:3 ../aisleriot/rules/doublets.scm.h:1
+#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:4
+#: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
+#: ../aisleriot/rules/klondike.scm.h:3 ../aisleriot/rules/plait.scm.h:10
+#: ../aisleriot/rules/saratoga.scm.h:3 ../aisleriot/rules/scuffle.scm.h:2
+#: ../aisleriot/rules/straight_up.scm.h:3
+#: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
+msgid "Redeals left:"
+msgstr "Kalan karıştırma:"
+
+#: ../aisleriot/rules/athena.scm.h:5 ../aisleriot/rules/osmosis.scm.h:3
+#: ../aisleriot/rules/saratoga.scm.h:5
+msgid "Three card deals"
+msgstr "Üç kart dağıtır"
+
+#: ../aisleriot/rules/athena.scm.h:6 ../aisleriot/rules/klondike.scm.h:5
+#: ../aisleriot/rules/saratoga.scm.h:6
+msgid "Try moving cards down from the foundation"
+msgstr "Kartları sıralama yerinden aşağı taşımayı dene"
+
+#: ../aisleriot/rules/athena.scm.h:7 ../aisleriot/rules/camelot.scm.h:7
+#: ../aisleriot/rules/diamond_mine.scm.h:1 ../aisleriot/rules/klondike.scm.h:6
+#: ../aisleriot/rules/odessa.scm.h:1 ../aisleriot/rules/osmosis.scm.h:4
+#: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/saratoga.scm.h:7
+#: ../aisleriot/rules/scorpion.scm.h:2 ../aisleriot/rules/ten_across.scm.h:4
+#: ../aisleriot/rules/union_square.scm.h:3 ../aisleriot/rules/yukon.scm.h:2
+msgid "an empty slot"
+msgstr "boş bir yuva"
+
 #: ../aisleriot/rules/auld_lang_syne.scm.h:1
 #: ../aisleriot/rules/bristol.scm.h:1 ../aisleriot/rules/first_law.scm.h:1
 #: ../aisleriot/rules/fortunes.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:6
 #: ../aisleriot/rules/scuffle.scm.h:1 ../aisleriot/rules/spider.scm.h:1
-#: ../aisleriot/rules/spider_one_suit.scm.h:1
-#: ../aisleriot/rules/spider_two_suit.scm.h:1
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:1 ../aisleriot/rules/zebra.scm.h:1
 msgid "Deal another round"
 msgstr "Başka bir turu dağıt"
+
+#: ../aisleriot/rules/aunt_mary.scm.h:1
+msgid "Redeals left: ~a"
+msgstr "Kalan karıştırma: ~a"
 
 #: ../aisleriot/rules/bakers_dozen.scm.h:2
 #: ../aisleriot/rules/bakers_game.scm.h:2
@@ -404,16 +469,8 @@ msgstr "Boş yedek yuvasına bir şey yerleştir"
 
 #: ../aisleriot/rules/bakers_game.scm.h:3 ../aisleriot/rules/eight_off.scm.h:3
 #: ../aisleriot/rules/seahaven.scm.h:3
-#, fuzzy
 msgid "an empty tableau"
 msgstr "boş bir orta sıra yeri"
-
-#: ../aisleriot/rules/camelot.scm.h:1 ../aisleriot/rules/canfield.scm.h:6
-#: ../aisleriot/rules/glenwood.scm.h:6 ../aisleriot/rules/klondike.scm.h:1
-#: ../aisleriot/rules/osmosis.scm.h:1 ../aisleriot/rules/peek.scm.h:1
-#: ../aisleriot/rules/plait.scm.h:6 ../aisleriot/rules/straight_up.scm.h:1
-msgid "Deal a new card from the deck"
-msgstr "Desteden yeni bir kart çek"
 
 #: ../aisleriot/rules/camelot.scm.h:3
 msgid "an empty bottom slot"
@@ -431,24 +488,21 @@ msgstr "boş bir sol sıra yuvası"
 msgid "an empty right slot"
 msgstr "boş bir sağ sıra yuvası"
 
-#: ../aisleriot/rules/camelot.scm.h:7 ../aisleriot/rules/diamond_mine.scm.h:1
-#: ../aisleriot/rules/klondike.scm.h:7 ../aisleriot/rules/odessa.scm.h:1
-#: ../aisleriot/rules/osmosis.scm.h:4 ../aisleriot/rules/peek.scm.h:4
-#: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/scorpion.scm.h:2
-#: ../aisleriot/rules/ten_across.scm.h:4
-#: ../aisleriot/rules/union_square.scm.h:3 ../aisleriot/rules/yukon.scm.h:2
-msgid "an empty slot"
-msgstr "boş bir yuva"
-
 #: ../aisleriot/rules/camelot.scm.h:8
 msgid "an empty top slot"
 msgstr "boş bir üst sıra yuvası"
 
 #: ../aisleriot/rules/camelot.scm.h:9 ../aisleriot/rules/helsinki.scm.h:2
-#: ../aisleriot/rules/neighbor.scm.h:2 ../aisleriot/rules/thirteen.scm.h:3
+#: ../aisleriot/rules/neighbor.scm.h:2 ../aisleriot/rules/thirteen.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:3 ../aisleriot/rules/yield.scm.h:3
 msgid "itself"
 msgstr "kendisi"
+
+#: ../aisleriot/rules/canfield.scm.h:1 ../aisleriot/rules/chessboard.scm.h:1
+#: ../aisleriot/rules/eagle_wing.scm.h:1 ../aisleriot/rules/glenwood.scm.h:1
+#: ../aisleriot/rules/kansas.scm.h:1 ../aisleriot/rules/plait.scm.h:1
+msgid "Base Card: "
+msgstr "Baş Kart: "
 
 #: ../aisleriot/rules/canfield.scm.h:7 ../aisleriot/rules/eagle_wing.scm.h:7
 #: ../aisleriot/rules/glenwood.scm.h:8 ../aisleriot/rules/plait.scm.h:7
@@ -528,19 +582,13 @@ msgstr "Büyük ihtiyaç olmadıkça turnike tedavisi tavsiye edilmez"
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr "Tel zımbalayıcı yokken, bir tel ve bir cetvel de iş görür"
 
+#: ../aisleriot/rules/cruel.scm.h:1
+msgid "Redeal."
+msgstr ""
+
 #: ../aisleriot/rules/diamond_mine.scm.h:2
 msgid "the foundation pile"
 msgstr "boş bir sıralama yeri yığını"
-
-#: ../aisleriot/rules/doublets.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:9
-#: ../aisleriot/rules/gaps.scm.h:9 ../aisleriot/rules/glenwood.scm.h:9
-#: ../aisleriot/rules/jumbo.scm.h:3 ../aisleriot/rules/klondike.scm.h:3
-#: ../aisleriot/rules/osmosis.scm.h:2 ../aisleriot/rules/peek.scm.h:2
-#: ../aisleriot/rules/plait.scm.h:10 ../aisleriot/rules/scuffle.scm.h:2
-#: ../aisleriot/rules/straight_up.scm.h:3
-#: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
-msgid "Redeals left:"
-msgstr "Kalan karıştırma:"
 
 #: ../aisleriot/rules/eagle_wing.scm.h:6 ../aisleriot/rules/elevator.scm.h:1
 #: ../aisleriot/rules/escalator.scm.h:1 ../aisleriot/rules/royal_east.scm.h:6
@@ -559,13 +607,8 @@ msgid "an empty slot on tableau"
 msgstr "orta sıra üzerinde boşluk"
 
 #: ../aisleriot/rules/easthaven.scm.h:2
-#, fuzzy
 msgid "Move a King on to the empty tableau slot"
 msgstr "Kralı orta sıradaki boşluğa taşı"
-
-#: ../aisleriot/rules/easthaven.scm.h:3 ../aisleriot/rules/klondike.scm.h:2
-msgid "No hint available right now"
-msgstr "Şu anda hiç bir ipucu yok"
 
 #: ../aisleriot/rules/first_law.scm.h:2
 msgid "I'm not sure"
@@ -624,9 +667,8 @@ msgid "Remove the twos"
 msgstr "İkilileri çıkart"
 
 #: ../aisleriot/rules/first_law.scm.h:16
-#, fuzzy
 msgid "Return cards to stock"
-msgstr "Kartları eldeki kağıtlara koy"
+msgstr "Kartları eldeki desteye koy"
 
 #: ../aisleriot/rules/fortunes.scm.h:1
 msgid "Consider moving something into an empty slot"
@@ -637,77 +679,60 @@ msgid "Move ~a off the board"
 msgstr "~tahta dışına taşı"
 
 #: ../aisleriot/rules/freecell.scm.h:1
-msgid "No moves available"
-msgstr "Hiç bir hareket kalmadı"
+msgid "No moves are possible. Undo or start again."
+msgstr ""
 
 #: ../aisleriot/rules/freecell.scm.h:2
+msgid "The game has no solution. Undo or start again."
+msgstr "Oyunun hiç bir çözümü yok. Geri alın ya da baştan başlayın."
+
+#: ../aisleriot/rules/freecell.scm.h:3
 msgid "an empty reserve"
 msgstr "boş bir yedek"
 
-#: ../aisleriot/rules/freecell.scm.h:3
+#: ../aisleriot/rules/freecell.scm.h:4
 msgid "an open tableau"
 msgstr "açık bir orta sıra yeri"
-
-#: ../aisleriot/rules/freecell.scm.h:4
-msgid "game has no solution"
-msgstr "oyunun hiç bir çözümü yok"
 
 #: ../aisleriot/rules/freecell.scm.h:5
 msgid "the foundation"
 msgstr "sıralama yeri"
 
 #: ../aisleriot/rules/gaps.scm.h:1
-#, fuzzy
-msgid " next to the "
-msgstr "Temayı ayarlayın"
-
-#: ../aisleriot/rules/gaps.scm.h:2
-msgid " of "
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:3
-msgid "."
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:4
-msgid "Add to the sequence in row "
-msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:5
 msgid "Double click any card to redeal."
 msgstr ""
 
-#: ../aisleriot/rules/gaps.scm.h:6
-#, fuzzy
+#: ../aisleriot/rules/gaps.scm.h:2
 msgid "No hint available."
-msgstr "İpucu yok"
+msgstr "İpucu yok."
 
-#: ../aisleriot/rules/gaps.scm.h:7
-msgid "Place a two in the leftmost slot of row "
+#: ../aisleriot/rules/gaps.scm.h:3
+msgid "Randomly Placed Gaps on Redeal"
 msgstr ""
-
-#: ../aisleriot/rules/gaps.scm.h:8
-#, fuzzy
-msgid "Place the "
-msgstr "Oyunu duraklat"
 
 #: ../aisleriot/rules/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
 msgstr "Yedekteki bir kağıdı orta sıradaki boşluğa taşı"
 
 #: ../aisleriot/rules/glenwood.scm.h:10
+#, fuzzy
 msgid "Select a card from the reserve for first foundation pile"
-msgstr "İlk sıralama yığını için yedekten bir kart seç"
+msgstr "Yedekteki bir kağıdı orta sıradaki boşluğa taşı"
 
 #: ../aisleriot/rules/glenwood.scm.h:13
+#, fuzzy
 msgid "on to the empty tableau slot"
-msgstr "orta sıradaki boşluğa"
+msgstr "Kralı orta sıradaki boşluğa taşı"
 
 #: ../aisleriot/rules/golf.scm.h:1 ../aisleriot/rules/hopscotch.scm.h:1
 #: ../aisleriot/rules/jumbo.scm.h:1 ../aisleriot/rules/kansas.scm.h:6
 #: ../aisleriot/rules/sir_tommy.scm.h:1 ../aisleriot/rules/whitehead.scm.h:1
 msgid "Deal another card"
 msgstr "Başka bir kart dağıt"
+
+#: ../aisleriot/rules/golf.scm.h:2 ../aisleriot/rules/spider.scm.h:4
+msgid "Stock left: ~a"
+msgstr "Elde kalan kağıt: ~a"
 
 #: ../aisleriot/rules/gypsy.scm.h:1
 msgid "Deal another hand"
@@ -718,7 +743,6 @@ msgid "Move a card or build of cards on to the empty slot"
 msgstr "Bir kartı yada kartları boş bir yuvaya taşı"
 
 #: ../aisleriot/rules/hopscotch.scm.h:2
-#, fuzzy
 msgid "Move card from waste"
 msgstr "Kullanılmayanlardan bir kart taşı"
 
@@ -733,13 +757,9 @@ msgstr "Kullanılmayan kartları eldeki kartlara taşı"
 msgid "an empty tableau slot"
 msgstr "orta sırada boş bir yuva"
 
-#: ../aisleriot/rules/klondike.scm.h:5
-msgid "Three card deals"
-msgstr "Üç kart dağıtır"
-
-#: ../aisleriot/rules/klondike.scm.h:6
-msgid "Try moving cards down from the foundation"
-msgstr "Kartları sıralama yerinden aşağı taşımayı dene"
+#: ../aisleriot/rules/kings_audience.scm.h:1
+msgid "Deal a new card"
+msgstr "Yeni bir kağıt dağıt"
 
 #: ../aisleriot/rules/lady_jane.scm.h:1 ../aisleriot/rules/royal_east.scm.h:1
 msgid "Base Card:"
@@ -750,6 +770,10 @@ msgid ""
 "Aim to place the suits in the order which fits the current layout most "
 "naturally."
 msgstr "Mevcut düzene en iyi oturan kart takımını yerleştirmeyi amaçla."
+
+#: ../aisleriot/rules/osmosis.scm.h:2
+msgid "Deal new cards from the deck"
+msgstr "Desteden yeni bir kart çek"
 
 #: ../aisleriot/rules/pileon.scm.h:2
 msgid "something"
@@ -774,7 +798,6 @@ msgstr "Karışık kip"
 #: ../aisleriot/rules/royal_east.scm.h:9
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:6
 #: ../aisleriot/rules/westhaven.scm.h:4
-#, fuzzy
 msgid "an empty tableau pile"
 msgstr "boş bir orta sıra yığını"
 
@@ -795,28 +818,16 @@ msgid "empty foundation"
 msgstr "boş bir sıralama yeri"
 
 #: ../aisleriot/rules/spider.scm.h:2
-#: ../aisleriot/rules/spider_one_suit.scm.h:2
-#: ../aisleriot/rules/spider_two_suit.scm.h:2
 msgid "Place something on empty slot"
 msgstr "Boş yuvaya bir şey yerleştir"
 
 #: ../aisleriot/rules/spider.scm.h:3
-#: ../aisleriot/rules/spider_one_suit.scm.h:3
-#: ../aisleriot/rules/spider_two_suit.scm.h:3
 msgid "Please fill in empty pile first."
 msgstr "Lütfen önce boş yığını doldur."
 
 #: ../aisleriot/rules/spider.scm.h:5
-#: ../aisleriot/rules/spider_one_suit.scm.h:5
-#: ../aisleriot/rules/spider_two_suit.scm.h:5
 msgid "Try moving card piles around"
 msgstr "Kartları yığınlarını bir yere taşımayı dene"
-
-#: ../aisleriot/rules/spiderette.scm.h:2
-#: ../aisleriot/rules/will_o_the_wisp.scm.h:2
-#, fuzzy
-msgid "Place something on to the empty tableau slot"
-msgstr "Orta sıradaki boş yuvaya bir şeyler yerleştir"
 
 #: ../aisleriot/rules/ten_across.scm.h:1
 msgid "Allow temporary spots use"
@@ -842,10 +853,13 @@ msgstr "boş yuva"
 msgid "Deal a card from the deck"
 msgstr "Desteden bir kart çek"
 
+#: ../aisleriot/rules/thirteen.scm.h:2
+msgid "Match the top two cards of the waste."
+msgstr ""
+
 #: ../aisleriot/rules/union_square.scm.h:4
-#, fuzzy
 msgid "appropriate foundation pile"
-msgstr "uygun Sıralama yığını"
+msgstr "uygun sıralama yığını"
 
 #: ../aisleriot/rules/whitehead.scm.h:2
 msgid "Move a build of cards on to the empty Tableau slot"
@@ -879,27 +893,27 @@ msgid ""
 "started instead."
 msgstr ""
 
-#: ../aisleriot/sol.c:409
+#: ../aisleriot/sol.c:416
 msgid "Aisleriot"
 msgstr "Aisleriot"
 
-#: ../aisleriot/sol.c:446 ../glines/glines.c:1964 ../gnobots2/statusbar.c:65
-#: ../gnome-stones/status.c:71 ../gnometris/scoreframe.cpp:58
-#: ../gnomine/gnomine.c:434
+#: ../aisleriot/sol.c:453 ../glines/glines.c:1981 ../gnobots2/statusbar.c:65
+#: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:430
 msgid "Score:"
 msgstr "Puan:"
 
-#: ../aisleriot/sol.c:451 ../gnotravex/gnotravex.c:1074
-#: ../mahjongg/mahjongg.c:1447
+#: ../aisleriot/sol.c:458 ../gnotravex/gnotravex.c:1104
+#: ../mahjongg/mahjongg.c:1487
 msgid "Time:"
 msgstr "Süre:"
 
-#: ../aisleriot/sol.c:505
-msgid "Variation on game rules"
-msgstr "Oyun kurallarında değişiklikler"
+#: ../aisleriot/sol.c:509
+msgid "Select the game to play"
+msgstr "Oyunanacak oyunu seçin"
 
-#: ../aisleriot/sol.c:506 ../gnobots2/gnobots.c:62 ../gnobots2/gnobots.c:64
-#: ../same-gnome/same-gnome.c:136 ../same-gnome/same-gnome.c:138
+#: ../aisleriot/sol.c:509 ../gnobots2/gnobots.c:66 ../gnobots2/gnobots.c:68
+#: ../iagno/gnothello.c:109 ../same-gnome/same-gnome.c:139
+#: ../same-gnome/same-gnome.c:141
 msgid "NAME"
 msgstr "İSİM"
 
@@ -1265,312 +1279,331 @@ msgstr "_Sıfırla"
 #. * Add this file to your project's POTFILES.in.
 #. * DO NOT compile it as part of your application.
 #.
-#: ../aisleriot/translatable_game_names.h:7
+#: ../aisleriot/translatable_game_names.h:6
 msgid "Agnes"
 msgstr "Piramit"
+
+#: ../aisleriot/translatable_game_names.h:7
+msgid "Athena"
+msgstr "Atina"
 
 #: ../aisleriot/translatable_game_names.h:8
 msgid "Auld Lang Syne"
 msgstr "Eski Güzel Günler"
 
 #: ../aisleriot/translatable_game_names.h:9
+msgid "Aunt Mary"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:10
 msgid "Backbone"
 msgstr "Omurga"
 
-#: ../aisleriot/translatable_game_names.h:10
+#: ../aisleriot/translatable_game_names.h:11
 msgid "Bakers Dozen"
 msgstr "Fırıncının Düzünesi"
 
-#: ../aisleriot/translatable_game_names.h:11
+#: ../aisleriot/translatable_game_names.h:12
 msgid "Bakers Game"
 msgstr "Fırıncının Oyunu"
 
-#: ../aisleriot/translatable_game_names.h:12
+#: ../aisleriot/translatable_game_names.h:13
 msgid "Beleaguered Castle"
 msgstr "Kuşatılmış Kale"
 
-#: ../aisleriot/translatable_game_names.h:13
+#: ../aisleriot/translatable_game_names.h:14
 msgid "Block Ten"
 msgstr "On Bloğu"
 
-#: ../aisleriot/translatable_game_names.h:14
+#: ../aisleriot/translatable_game_names.h:15
 msgid "Bristol"
 msgstr "İstanbul"
 
-#: ../aisleriot/translatable_game_names.h:15
+#: ../aisleriot/translatable_game_names.h:16
 msgid "Camelot"
 msgstr "Saray"
 
-#: ../aisleriot/translatable_game_names.h:16
+#: ../aisleriot/translatable_game_names.h:17
 msgid "Canfield"
 msgstr "Cankurtaran"
 
-#: ../aisleriot/translatable_game_names.h:17
+#: ../aisleriot/translatable_game_names.h:18
 msgid "Carpet"
 msgstr "Halı"
 
-#: ../aisleriot/translatable_game_names.h:18
+#: ../aisleriot/translatable_game_names.h:19
 msgid "Chessboard"
 msgstr "Satranç tahtası"
 
-#: ../aisleriot/translatable_game_names.h:19
+#: ../aisleriot/translatable_game_names.h:20
 msgid "Clock"
 msgstr "Saat"
 
-#: ../aisleriot/translatable_game_names.h:20
+#: ../aisleriot/translatable_game_names.h:21
 msgid "Cover"
 msgstr "Tepegöz"
 
-#: ../aisleriot/translatable_game_names.h:21
+#: ../aisleriot/translatable_game_names.h:22
+msgid "Cruel"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:23
 msgid "Diamond Mine"
 msgstr "Elmas Madeni"
 
-#: ../aisleriot/translatable_game_names.h:22
+#: ../aisleriot/translatable_game_names.h:24
 msgid "Doublets"
 msgstr "Şık"
 
-#: ../aisleriot/translatable_game_names.h:23
+#: ../aisleriot/translatable_game_names.h:25
 msgid "Eagle Wing"
 msgstr "Kartal Kanadı"
 
-#: ../aisleriot/translatable_game_names.h:24
+#: ../aisleriot/translatable_game_names.h:26
 msgid "Easthaven"
 msgstr "Doğu limanı"
 
-#: ../aisleriot/translatable_game_names.h:25
+#: ../aisleriot/translatable_game_names.h:27
 msgid "Eight Off"
 msgstr "Sekizli"
 
-#: ../aisleriot/translatable_game_names.h:26
+#: ../aisleriot/translatable_game_names.h:28
 msgid "Elevator"
 msgstr "Asansör"
 
-#: ../aisleriot/translatable_game_names.h:27
+#: ../aisleriot/translatable_game_names.h:29
 msgid "Escalator"
 msgstr "Merdiven"
 
-#: ../aisleriot/translatable_game_names.h:28
+#: ../aisleriot/translatable_game_names.h:30
 msgid "First Law"
 msgstr "Birinci Kural"
 
-#: ../aisleriot/translatable_game_names.h:29
+#: ../aisleriot/translatable_game_names.h:31
 msgid "Fortress"
 msgstr "Kule"
 
-#: ../aisleriot/translatable_game_names.h:30
+#: ../aisleriot/translatable_game_names.h:32
 msgid "Fortunes"
 msgstr "Hazine"
 
-#: ../aisleriot/translatable_game_names.h:31
+#: ../aisleriot/translatable_game_names.h:33
 msgid "Fourteen"
 msgstr "Ondört"
 
-#: ../aisleriot/translatable_game_names.h:32
+#: ../aisleriot/translatable_game_names.h:34
 msgid "Freecell"
 msgstr "Yedekli"
 
-#: ../aisleriot/translatable_game_names.h:33
-#, fuzzy
+#: ../aisleriot/translatable_game_names.h:35
 msgid "Gaps"
-msgstr "Haritalar"
+msgstr "Boşluklar"
 
-#: ../aisleriot/translatable_game_names.h:34
+#: ../aisleriot/translatable_game_names.h:36
 msgid "Gay Gordons"
 msgstr "Mutlu Gordonlar"
 
-#: ../aisleriot/translatable_game_names.h:35
+#: ../aisleriot/translatable_game_names.h:37
 msgid "Glenwood"
 msgstr "Atılım"
 
-#: ../aisleriot/translatable_game_names.h:36
+#: ../aisleriot/translatable_game_names.h:38
 msgid "Golf"
 msgstr "Golf"
 
-#: ../aisleriot/translatable_game_names.h:37
+#: ../aisleriot/translatable_game_names.h:39
 msgid "Gypsy"
 msgstr "Çingene"
 
-#: ../aisleriot/translatable_game_names.h:38
+#: ../aisleriot/translatable_game_names.h:40
 msgid "Helsinki"
 msgstr "Efes"
 
-#: ../aisleriot/translatable_game_names.h:39
+#: ../aisleriot/translatable_game_names.h:41
 msgid "Hopscotch"
 msgstr "Seksek"
 
-#: ../aisleriot/translatable_game_names.h:40
+#: ../aisleriot/translatable_game_names.h:42
 msgid "Isabel"
 msgstr "Eminem"
 
-#: ../aisleriot/translatable_game_names.h:41
+#: ../aisleriot/translatable_game_names.h:43
 msgid "Jamestown"
 msgstr "Jamestown"
 
-#: ../aisleriot/translatable_game_names.h:42
+#: ../aisleriot/translatable_game_names.h:44
 msgid "Jumbo"
 msgstr "Kocaman"
 
-#: ../aisleriot/translatable_game_names.h:43
+#: ../aisleriot/translatable_game_names.h:45
 msgid "Kansas"
 msgstr "Kansas"
 
-#: ../aisleriot/translatable_game_names.h:44
+#: ../aisleriot/translatable_game_names.h:46
 msgid "King Albert"
 msgstr "Kral Albert"
 
-#: ../aisleriot/translatable_game_names.h:45
+#: ../aisleriot/translatable_game_names.h:47
+msgid "Kings Audience"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:48
 msgid "Klondike"
 msgstr "Klondike"
 
-#: ../aisleriot/translatable_game_names.h:46
+#: ../aisleriot/translatable_game_names.h:49
 msgid "Labyrinth"
 msgstr "Labirent"
 
-#: ../aisleriot/translatable_game_names.h:47
+#: ../aisleriot/translatable_game_names.h:50
 msgid "Lady Jane"
 msgstr "Bayan Jane"
 
-#: ../aisleriot/translatable_game_names.h:48
+#: ../aisleriot/translatable_game_names.h:51
 msgid "Maze"
 msgstr "Karmaşık"
 
-#: ../aisleriot/translatable_game_names.h:49
+#: ../aisleriot/translatable_game_names.h:52
 msgid "Monte Carlo"
 msgstr "Monte Karlo"
 
-#: ../aisleriot/translatable_game_names.h:50
+#: ../aisleriot/translatable_game_names.h:53
 msgid "Neighbor"
 msgstr "Komşu"
 
-#: ../aisleriot/translatable_game_names.h:51
+#: ../aisleriot/translatable_game_names.h:54
 msgid "Odessa"
 msgstr "İlyada"
 
-#: ../aisleriot/translatable_game_names.h:52
+#: ../aisleriot/translatable_game_names.h:55
 msgid "Osmosis"
 msgstr "Hücre"
 
-#: ../aisleriot/translatable_game_names.h:53
+#: ../aisleriot/translatable_game_names.h:56
 msgid "Peek"
 msgstr "Görüntü"
 
-#: ../aisleriot/translatable_game_names.h:54
+#: ../aisleriot/translatable_game_names.h:57
 msgid "Pileon"
 msgstr "Güvercin"
 
-#: ../aisleriot/translatable_game_names.h:55
+#: ../aisleriot/translatable_game_names.h:58
 msgid "Plait"
 msgstr "Kıvrak"
 
-#: ../aisleriot/translatable_game_names.h:56
+#: ../aisleriot/translatable_game_names.h:59
 msgid "Poker"
 msgstr "Poker"
 
-#: ../aisleriot/translatable_game_names.h:57
+#: ../aisleriot/translatable_game_names.h:60
 msgid "Quatorze"
 msgstr "Tıpa"
 
-#: ../aisleriot/translatable_game_names.h:58
+#: ../aisleriot/translatable_game_names.h:61
 msgid "Royal East"
 msgstr "Soylu Doğu"
 
-#: ../aisleriot/translatable_game_names.h:59
+#: ../aisleriot/translatable_game_names.h:62
+msgid "Saratoga"
+msgstr ""
+
+#: ../aisleriot/translatable_game_names.h:63
 msgid "Scorpion"
 msgstr "Akrep"
 
-#: ../aisleriot/translatable_game_names.h:60
+#: ../aisleriot/translatable_game_names.h:64
 msgid "Scuffle"
 msgstr "Anafor"
 
-#: ../aisleriot/translatable_game_names.h:61
+#: ../aisleriot/translatable_game_names.h:65
 msgid "Seahaven"
 msgstr "Cennet"
 
-#: ../aisleriot/translatable_game_names.h:62
+#: ../aisleriot/translatable_game_names.h:66
 msgid "Sir Tommy"
 msgstr "Bay Tommy"
 
-#: ../aisleriot/translatable_game_names.h:63
-msgid "Spiderette"
-msgstr "Güneş tanrısı"
-
-#: ../aisleriot/translatable_game_names.h:64
-msgid "Spider One Suit"
-msgstr "Örümcek Bir Takım"
-
-#: ../aisleriot/translatable_game_names.h:65
+#: ../aisleriot/translatable_game_names.h:67
 msgid "Spider"
 msgstr "Örümcek"
 
-#: ../aisleriot/translatable_game_names.h:66
+#: ../aisleriot/translatable_game_names.h:68
+msgid "Spider One Suit"
+msgstr "Örümcek Bir Takım"
+
+#: ../aisleriot/translatable_game_names.h:69
 msgid "Spider Two Suit"
 msgstr "Örümcek İki Takım"
 
-#: ../aisleriot/translatable_game_names.h:67
+#: ../aisleriot/translatable_game_names.h:70
+msgid "Spiderette"
+msgstr "Güneş tanrısı"
+
+#: ../aisleriot/translatable_game_names.h:71
 msgid "Straight Up"
 msgstr "Düz Yukarı"
 
-#: ../aisleriot/translatable_game_names.h:68
+#: ../aisleriot/translatable_game_names.h:72
 msgid "Streets And Alleys"
 msgstr "Sokaklar ve Caddeler"
 
-#: ../aisleriot/translatable_game_names.h:69
+#: ../aisleriot/translatable_game_names.h:73
 msgid "Template"
 msgstr "Tapınak"
 
-#: ../aisleriot/translatable_game_names.h:70
+#: ../aisleriot/translatable_game_names.h:74
 msgid "Ten Across"
 msgstr "Karşıya Onlu"
 
-#: ../aisleriot/translatable_game_names.h:71
+#: ../aisleriot/translatable_game_names.h:75
 msgid "Thieves"
 msgstr "Hırsızlar"
 
-#: ../aisleriot/translatable_game_names.h:72
+#: ../aisleriot/translatable_game_names.h:76
 msgid "Thirteen"
 msgstr "Onüçüncü cuma"
 
-#: ../aisleriot/translatable_game_names.h:73
+#: ../aisleriot/translatable_game_names.h:77
 msgid "Thumb And Pouch"
 msgstr "Baş Parmak ve Yumruk"
 
-#: ../aisleriot/translatable_game_names.h:74
+#: ../aisleriot/translatable_game_names.h:78
 msgid "Treize"
 msgstr "Treize"
 
-#: ../aisleriot/translatable_game_names.h:75
+#: ../aisleriot/translatable_game_names.h:79
 msgid "Triple Peaks"
 msgstr "Üçlü Çıkışlar"
 
-#: ../aisleriot/translatable_game_names.h:76
+#: ../aisleriot/translatable_game_names.h:80
 msgid "Union Square"
 msgstr "Birleşme Karesi"
 
-#: ../aisleriot/translatable_game_names.h:77
+#: ../aisleriot/translatable_game_names.h:81
 msgid "Valentine"
 msgstr "Burcu"
 
-#: ../aisleriot/translatable_game_names.h:78
+#: ../aisleriot/translatable_game_names.h:82
 msgid "Westhaven"
 msgstr "Anadolu"
 
-#: ../aisleriot/translatable_game_names.h:79
+#: ../aisleriot/translatable_game_names.h:83
 msgid "Whitehead"
 msgstr "Beyaz tüy"
 
-#: ../aisleriot/translatable_game_names.h:80
+#: ../aisleriot/translatable_game_names.h:84
 msgid "Will O The Wisp"
 msgstr "Sihirbaz Will O"
 
-#: ../aisleriot/translatable_game_names.h:81
+#: ../aisleriot/translatable_game_names.h:85
 msgid "Yield"
 msgstr "Başak"
 
-#: ../aisleriot/translatable_game_names.h:82
+#: ../aisleriot/translatable_game_names.h:86
 msgid "Yukon"
 msgstr "Penguen"
 
-#: ../aisleriot/translatable_game_names.h:83
+#: ../aisleriot/translatable_game_names.h:87
 msgid "Zebra"
 msgstr "Zebra"
 
@@ -1627,89 +1660,88 @@ msgstr "Hızlı dağıtı kullan"
 msgid "Use a quick deal with no delay between each card."
 msgstr "Kartlar arasında bekleme yapmayan hızlı dağıtı kullan."
 
-#: ../blackjack/src/blackjack.cpp:92
+#: ../blackjack/src/blackjack.cpp:95
 #, c-format
 msgid "Blackjack - %s"
 msgstr "YirmiBir - %s"
 
-#: ../blackjack/src/blackjack.cpp:303 ../glines/glines.c:1706
-#: ../gnect/src/main.c:1132 ../gnibbles/main.c:601 ../gnobots2/menu.c:59
-#: ../gnome-stones/main.c:1051 ../gnometris/tetris.cpp:131
-#: ../gnomine/gnomine.c:751 ../gtali/gyahtzee.c:502
-#: ../mahjongg/mahjongg.c:1275
+#: ../blackjack/src/blackjack.cpp:341 ../glines/glines.c:1720
+#: ../gnect/src/main.c:1166 ../gnibbles/main.c:646 ../gnobots2/menu.c:64
+#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:795
+#: ../gtali/gyahtzee.c:538 ../mahjongg/mahjongg.c:1307
 msgid "_Settings"
 msgstr "_Ayarlar"
 
-#: ../blackjack/src/blackjack.cpp:306
+#: ../blackjack/src/blackjack.cpp:346
 msgid "D_eal"
 msgstr "_Dağıt"
 
-#: ../blackjack/src/blackjack.cpp:306 ../blackjack/src/dialog.cpp:98
+#: ../blackjack/src/blackjack.cpp:346 ../blackjack/src/dialog.cpp:98
 #: ../blackjack/src/dialog.cpp:101
 msgid "Deal a new hand"
 msgstr "Yeni bir el dağıt"
 
-#: ../blackjack/src/blackjack.cpp:307
+#: ../blackjack/src/blackjack.cpp:347
 msgid "_Hit"
 msgstr "_Hit"
 
-#: ../blackjack/src/blackjack.cpp:307
+#: ../blackjack/src/blackjack.cpp:347
 msgid "Add a card to the hand"
 msgstr "Ele yeni bir kart al"
 
-#: ../blackjack/src/blackjack.cpp:308
+#: ../blackjack/src/blackjack.cpp:348
 msgid "_Stand"
 msgstr "_Bekle"
 
-#: ../blackjack/src/blackjack.cpp:308
+#: ../blackjack/src/blackjack.cpp:348
 msgid "Stop adding cards to the hand"
 msgstr "Ele kart almayı durdur"
 
-#: ../blackjack/src/blackjack.cpp:309
+#: ../blackjack/src/blackjack.cpp:349
 msgid "S_urrender"
 msgstr "_Teslim"
 
-#: ../blackjack/src/blackjack.cpp:309
+#: ../blackjack/src/blackjack.cpp:349
 msgid "Forfeit this hand for half of your wager"
 msgstr "Bahisinizin yarısı için bu eli kopyala"
 
-#: ../blackjack/src/blackjack.cpp:310
+#: ../blackjack/src/blackjack.cpp:350
 msgid "_Double down"
 msgstr "_Çift altı"
 
-#: ../blackjack/src/blackjack.cpp:310
+#: ../blackjack/src/blackjack.cpp:350
 msgid "Double your wager for a single hit"
 msgstr "Tek bir sefer için bahsinizi ikiye çıkartın"
 
-#: ../blackjack/src/blackjack.cpp:311
+#: ../blackjack/src/blackjack.cpp:351
 msgid "S_plit the hand"
 msgstr "_Eli böl"
 
-#: ../blackjack/src/blackjack.cpp:311
+#: ../blackjack/src/blackjack.cpp:351
 msgid "Split cards in two new hands"
 msgstr "_Kartları iki yeni ele böl"
 
-#: ../blackjack/src/blackjack.cpp:318 ../gnobots2/gnobots2.schemas.in.h:23
+#: ../blackjack/src/blackjack.cpp:358 ../gnobots2/gnobots2.schemas.in.h:23
 msgid "Show toolbar"
 msgstr "Araç çubuğunu göster"
 
-#: ../blackjack/src/blackjack.cpp:354
+#: ../blackjack/src/blackjack.cpp:394
 msgid "Cards left:"
 msgstr "Kalan kartlar:"
 
-#: ../blackjack/src/blackjack.cpp:363
+#: ../blackjack/src/blackjack.cpp:403
 msgid "Wager:"
 msgstr "Bahis:"
 
-#: ../blackjack/src/blackjack.cpp:376
+#: ../blackjack/src/blackjack.cpp:416
 msgid "Balance:"
 msgstr "Denge:"
 
-#: ../blackjack/src/blackjack.cpp:417
+#: ../blackjack/src/blackjack.cpp:466
 msgid "Place your wager or deal a hand"
 msgstr "Bahsinizi koyun yada bir dağıtın"
 
-#: ../blackjack/src/blackjack.cpp:683
+#: ../blackjack/src/blackjack.cpp:734
 msgid "Blackjack rule set to use"
 msgstr "Kullanılacak blackjack kuralı"
 
@@ -1740,8 +1772,8 @@ msgid "Blackjack Preferences"
 msgstr "Blackjack Tercihleri"
 
 #: ../blackjack/src/dialog.cpp:246 ../gnect/src/prefs.c:378
-#: ../gnibbles/preferences.c:217 ../gnobots2/properties.c:495
-#: ../gnome-stones/preferences.c:677 ../gnometris/tetris.cpp:764
+#: ../gnibbles/preferences.c:215 ../gnobots2/properties.c:530
+#: ../gnometris/tetris.cpp:734
 msgid "Game"
 msgstr "Oyun"
 
@@ -1766,8 +1798,8 @@ msgstr "_Hesabı Sıfırla"
 msgid "Rules"
 msgstr "Kurallar"
 
-#: ../blackjack/src/dialog.cpp:310
-#: ../libgames-support/games-scores-dialog.gob:290
+#: ../blackjack/src/dialog.cpp:310 games-scores-dialog.gob:356
+#: ../libgames-support/games-scores-dialog.gob:356
 msgid "Name"
 msgstr "İsim"
 
@@ -1920,8 +1952,8 @@ msgstr ""
 "Teslim demek bahsin yarısından vazgeçip eli tamamlamamak demektir.  Kontrol "
 "menüsü seçeneğini seçerek yapabilirsiniz."
 
-#: ../blackjack/src/menu.cpp:172
-msgid "Blackjack provides a casino-style blackjack card game."
+#: ../blackjack/src/menu.cpp:156
+msgid "Blackjack is a casino-style card game."
 msgstr "BlackJack kumarhane tarzı yirmibir kart oyunudur."
 
 #: ../blackjack/src/player.cpp:57
@@ -1976,102 +2008,117 @@ msgstr "Split"
 msgid "Dealer hand probabilities"
 msgstr "Dagıtıçı eli olasılıkları"
 
-#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:631
+#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:627
 msgid "Light:"
 msgstr "Beyaz:"
 
-#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:621
+#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:617
 msgid "Dark:"
 msgstr "Siyah:"
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:207 ../iagno/othello.c:213
+#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:202 ../iagno/othello.c:271
 msgid "Light's move"
 msgstr "Beyazın hareketi"
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:209 ../iagno/gnothello.c:578
-#: ../iagno/othello.c:210
+#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:204 ../iagno/gnothello.c:571
+#: ../iagno/othello.c:267
 msgid "Dark's move"
 msgstr "Siyahın hareketi"
 
-#: ../gataxx/gataxx.c:175 ../iagno/othello.c:665
+#: ../gataxx/gataxx.c:59
+msgid "Set the state of the board at start-up."
+msgstr "Başlangıçta tahtanın dusumunu ayarlayın."
+
+#: ../gataxx/gataxx.c:59
+msgid "STATE"
+msgstr "DURUM"
+
+#: ../gataxx/gataxx.c:61
+msgid "Set whose turn it is."
+msgstr "Kimin sırası olduğunu ayarlayın."
+
+#: ../gataxx/gataxx.c:61
+msgid "1 (Light) or 2 (Dark)"
+msgstr ""
+
+#: ../gataxx/gataxx.c:180 ../iagno/othello.c:698
 msgid "Light player wins!"
 msgstr "Beyaz oyuncu kazandı!"
 
-#: ../gataxx/gataxx.c:177 ../iagno/othello.c:667
+#: ../gataxx/gataxx.c:182 ../iagno/othello.c:700
 msgid "Dark player wins!"
 msgstr "Siyah oyuncu kazandı!"
 
-#: ../gataxx/gataxx.c:179 ../iagno/othello.c:669
+#: ../gataxx/gataxx.c:184 ../iagno/othello.c:702
 msgid "The game was a draw."
 msgstr "Oyun berabere bitti."
 
-#: ../gataxx/gataxx.c:381
+#: ../gataxx/gataxx.c:385
 msgid "Based on code from Iagno by Ian Peters"
 msgstr "Ian Peters tarafından yazılan Iango kodu temel alınmıştır"
 
-#: ../gataxx/gataxx.c:384 ../gataxx/gataxx.desktop.in.h:1
+#: ../gataxx/gataxx.c:391 ../gataxx/gataxx.desktop.in.h:1
 msgid "Ataxx"
 msgstr "Ataxx"
 
-#: ../gataxx/gataxx.c:388
+#: ../gataxx/gataxx.c:397
 msgid "A disk-flipping game where you attempt to dominate the board."
 msgstr "Tahtaya hakim olmaya çalışacağınız bir disk atlama oyunu."
 
 #: ../gataxx/gataxx.desktop.in.h:2
-msgid "Compete to dominate the board in a Reversi-like game"
-msgstr "Reversi-benzeri oyunda tahtaya hakim olmak için yarışın"
+msgid "Dominate the board in a modern variation of Reversi"
+msgstr ""
 
 #: ../gataxx/gataxx.schemas.in.h:1 ../gnect/data/gnect.schemas.in.h:2
 msgid "Animate"
 msgstr "Canlandır"
 
 #: ../gataxx/gataxx.schemas.in.h:2
-msgid "Flip final results"
-msgstr "Son sonuçları döndür"
-
-#: ../gataxx/gataxx.schemas.in.h:3
 msgid "Level of black player"
 msgstr "Siyah oyuncunun seviyesi"
 
-#: ../gataxx/gataxx.schemas.in.h:4
+#: ../gataxx/gataxx.schemas.in.h:3
 msgid "Level of white player"
 msgstr "Beyaz oyuncunun seviyesi"
 
-#: ../gataxx/gataxx.schemas.in.h:5
+#: ../gataxx/gataxx.schemas.in.h:4
 msgid "Quick moves"
 msgstr "Hızlı hareketler"
 
-#: ../gataxx/gataxx.schemas.in.h:6 ../gnotravex/gnotravex.schemas.in.h:2
+#: ../gataxx/gataxx.schemas.in.h:5 ../gnotravex/gnotravex.schemas.in.h:2
 #: ../gnotski/gnotski.schemas.in.h:1 ../mahjongg/mahjongg.schemas.in.h:1
 msgid "The height of the window"
 msgstr "Pencere yüksekliği"
 
+#: ../gataxx/gataxx.schemas.in.h:6
+msgid "The name of the theme to use."
+msgstr "Kullanılacak temanın adı."
+
 #: ../gataxx/gataxx.schemas.in.h:7
-#, fuzzy
 msgid "The requested height of the main window in pixels."
-msgstr "Ana pencerenin yüksekliği, piksel olarak, başlangıçta."
+msgstr "Ana pencerenin yüksekliği, piksel olarak."
 
 #: ../gataxx/gataxx.schemas.in.h:8
-#, fuzzy
 msgid "The requested width of the main window in pixels."
-msgstr "Ana pencerenin genişliği, piksel olarak, başlangıçta."
+msgstr "Ana pencerenin genişliği, piksel olarak."
 
 #: ../gataxx/gataxx.schemas.in.h:9 ../gnotravex/gnotravex.schemas.in.h:6
 #: ../gnotski/gnotski.schemas.in.h:6 ../mahjongg/mahjongg.schemas.in.h:4
 msgid "The width of the window"
 msgstr "Pencere genişliği"
 
-#: ../gataxx/gataxx.schemas.in.h:10
-msgid "Tileset"
-msgstr "Döşeme"
+#: ../gataxx/gataxx.schemas.in.h:10 ../gnometris/tetris.cpp:857
+#: ../gnometris/tetris.cpp:890 ../same-gnome/ui.c:295
+msgid "Theme"
+msgstr "Tema"
 
 #: ../gataxx/gataxx.schemas.in.h:11
-msgid "Tileset to use."
-msgstr "Kullanılan döşeme."
+msgid "Tileset (obsolete)"
+msgstr "Kullanılan döşeme (kullanılmıyor)"
 
 #: ../gataxx/gataxx.schemas.in.h:12
-msgid "Whether or not to flip final results."
-msgstr "Son sonuçlarındöndürülüp dödürülmeyeceği."
+msgid "Tileset to use (obsolete)."
+msgstr "Kullanılan döşeme (kullanılmıyor)"
 
 #: ../gataxx/gataxx.schemas.in.h:13
 msgid "Whether or not to use quick moves."
@@ -2093,134 +2140,127 @@ msgstr ""
 "Sıfır insan; birden üçe kadar olan sayılarda bilgisayarın seviyesini "
 "belirtir."
 
+#: ../gataxx/gtkgridboardthemes.c:200 ../gnometris/renderer.cpp:27
+msgid "Plain"
+msgstr "Düz"
+
+#: ../gataxx/gtkgridboardthemes.c:202
+msgid "Squares and Diamonds"
+msgstr "Karolar ve Maçalar"
+
 #. create window
-#: ../gataxx/properties.c:301
+#: ../gataxx/properties.c:286
 msgid "Ataxx Preferences"
 msgstr "Ataxx Tercihleri"
 
 #. Players tab
-#: ../gataxx/properties.c:331 ../iagno/properties.c:498
+#: ../gataxx/properties.c:316 ../iagno/properties.c:498
 msgid "Players"
 msgstr "Oyuncular"
 
-#: ../gataxx/properties.c:343
+#: ../gataxx/properties.c:328
 msgid "_Quick moves"
 msgstr "_Hızlı hareketler"
 
-#: ../gataxx/properties.c:344
+#: ../gataxx/properties.c:329
 msgid "Shortens the time a computer waits before doing a move"
 msgstr "Bilgisayar hamle yapmadan önce beklediği zamanı kısaltır"
 
 #. Dark level select
-#: ../gataxx/properties.c:353 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:338 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:521
 msgid "Dark"
 msgstr "Siyah"
 
-#: ../gataxx/properties.c:357 ../gataxx/properties.c:375
-#: ../gnect/src/prefs.c:326 ../gtali/yahtzee.c:61 ../iagno/properties.c:526
-#: ../iagno/properties.c:572
+#: ../gataxx/properties.c:342 ../gataxx/properties.c:360
+#: ../gnect/src/prefs.c:326 ../gtali/gyahtzee.c:763 ../gtali/yahtzee.c:60
+#: ../iagno/properties.c:526 ../iagno/properties.c:572
 msgid "Human"
 msgstr "İnsan"
 
-#: ../gataxx/properties.c:358 ../gataxx/properties.c:376
+#: ../gataxx/properties.c:343 ../gataxx/properties.c:361
 msgid "Very easy"
 msgstr "Çok _kolay"
 
-#: ../gataxx/properties.c:359
+#: ../gataxx/properties.c:344
 msgid "gataxx|Easy"
 msgstr ""
 
-#: ../gataxx/properties.c:360
-#, fuzzy
+#: ../gataxx/properties.c:345
 msgid "gataxx|Medium"
 msgstr "Orta"
 
-#: ../gataxx/properties.c:361 ../gataxx/properties.c:379
+#: ../gataxx/properties.c:346 ../gataxx/properties.c:364
 msgid "Hard"
 msgstr "Zor"
 
-#: ../gataxx/properties.c:362 ../gataxx/properties.c:380
+#: ../gataxx/properties.c:347 ../gataxx/properties.c:365
 msgid "Very hard"
 msgstr "Çok _zor"
 
 #. Light level select
-#: ../gataxx/properties.c:371 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
+#: ../gataxx/properties.c:356 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
 #: ../iagno/properties.c:567
 msgid "Light"
 msgstr "Beyaz"
 
-#: ../gataxx/properties.c:377
+#: ../gataxx/properties.c:362
 msgid "Easy"
 msgstr "Kolay"
 
-#: ../gataxx/properties.c:378
+#: ../gataxx/properties.c:363
 msgid "Medium"
 msgstr "Orta"
 
 #. Appearance tab
-#: ../gataxx/properties.c:389 ../gataxx/properties.c:392
-#: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:535
+#: ../gataxx/properties.c:374 ../gataxx/properties.c:377
+#: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:569
 #: ../iagno/properties.c:616
 msgid "Appearance"
 msgstr "Görünüm"
 
 #. animation button
-#: ../gataxx/properties.c:398
+#: ../gataxx/properties.c:383
 msgid "_Animation"
 msgstr "_Canlandırma"
 
-#: ../gataxx/properties.c:402
+#: ../gataxx/properties.c:387
 msgid "Flip the pieces with some visual effects"
 msgstr "Parçaları bazı görsel efektler ile çevir"
 
-#. flip tiles button
-#: ../gataxx/properties.c:406 ../iagno/properties.c:675
-msgid "_Flip final results"
-msgstr "Son _sonuçları döndür"
-
-#: ../gataxx/properties.c:410
-msgid ""
-"Put all the white pieces at the bottom and all the black pieces on the top "
-"of the board when a game is over"
-msgstr ""
-"Oyun bittiği zaman tüm beyaz parçaları tahtanın aşağısına, tüm siyah "
-"parçaları datahtanın üstüne topla"
-
-#: ../gataxx/properties.c:415 ../iagno/properties.c:685
-#: ../mahjongg/mahjongg.c:747
+#: ../gataxx/properties.c:392 ../iagno/properties.c:685
+#: ../mahjongg/mahjongg.c:761
 msgid "_Tile set:"
 msgstr "_Desen ayarı:"
 
-#: ../gataxx/properties.c:420
+#: ../gataxx/properties.c:397
 msgid "The appearance of the pieces"
 msgstr "Parçaların görünümü"
 
 #. GstElement *sound_player;
-#: ../glines/glines.c:75 ../glines/glines.c:79 ../gnomine/gnomine.c:82
-#: ../gnomine/gnomine.c:618 ../same-gnome/same-gnome.c:49
+#: ../glines/glines.c:74 ../glines/glines.c:78 ../gnomine/gnomine.c:86
+#: ../gnomine/gnomine.c:649 ../same-gnome/same-gnome.c:49
 msgid "Small"
 msgstr "Küçük"
 
-#: ../glines/glines.c:76 ../glines/glines.c:80
-#, fuzzy
+#: ../glines/glines.c:75 ../glines/glines.c:79
 msgid "glines|Medium"
 msgstr "Orta"
 
-#: ../glines/glines.c:77 ../glines/glines.c:81 ../gnomine/gnomine.c:84
-#: ../gnomine/gnomine.c:638 ../same-gnome/same-gnome.c:51
+#: ../glines/glines.c:76 ../glines/glines.c:80 ../gnomine/gnomine.c:88
+#: ../gnomine/gnomine.c:671 ../same-gnome/same-gnome.c:51
 msgid "Large"
 msgstr "Büyük"
 
-#: ../glines/glines.c:191
+#: ../glines/glines.c:190
 msgid "Could not load theme"
 msgstr "Tema yüklenemedi"
 
-#: ../glines/glines.c:196 ../mahjongg/mahjongg.c:141
+#: ../glines/glines.c:195 ../mahjongg/mahjongg.c:142
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: ../glines/glines.c:220
+#: ../glines/glines.c:219
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -2233,7 +2273,7 @@ msgstr ""
 "\n"
 "Bunun yerine öntanımlı tema yüklenecek."
 
-#: ../glines/glines.c:229
+#: ../glines/glines.c:228
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -2246,15 +2286,15 @@ msgstr ""
 "\n"
 "Lütfen Beş veya Fazlası'nın tam olarak kurulu olup olmadığını kontrol edin."
 
-#: ../glines/glines.c:423
+#: ../glines/glines.c:422
 msgid "Match five objects of the same type in a row to score!"
 msgstr "Puan almak için, bir sırada aynı renkten beş nesneyi eşleştirin!"
 
-#: ../glines/glines.c:488
+#: ../glines/glines.c:487
 msgid "GNOME Five or More"
 msgstr "GNOME Beş veya Fazlası"
 
-#: ../glines/glines.c:490
+#: ../glines/glines.c:489
 msgid "Board Size:"
 msgstr "Tablo Boyutu:"
 
@@ -2263,60 +2303,60 @@ msgid "Game Over!"
 msgstr "Oyun Bitti!"
 
 #. Can't move there!
-#: ../glines/glines.c:677
+#: ../glines/glines.c:678
 msgid "You can't move there!"
 msgstr "Oraya taşınamaz!"
 
-#: ../glines/glines.c:1212 ../glines/glines.c:1904
+#: ../glines/glines.c:1221 ../glines/glines.c:1921
 #: ../glines/glines.desktop.in.h:1
 msgid "Five or More"
 msgstr "Beş veya Fazlası"
 
-#: ../glines/glines.c:1214
+#: ../glines/glines.c:1223
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "Bir zamanların meşur Color Lines oyununun GNOME versiyonu"
 
-#: ../glines/glines.c:1415
+#: ../glines/glines.c:1429
 msgid "Five or More Preferences"
 msgstr "Beş veya Fazlası Tercihleri"
 
-#: ../glines/glines.c:1436
+#: ../glines/glines.c:1450
 msgid "Themes"
 msgstr "Temalar"
 
-#: ../glines/glines.c:1445
+#: ../glines/glines.c:1459
 msgid "_Image:"
 msgstr "_Resim:"
 
-#: ../glines/glines.c:1456
+#: ../glines/glines.c:1470
 msgid "B_ackground color:"
 msgstr "_Arkaplan rengi:"
 
-#: ../glines/glines.c:1471
+#: ../glines/glines.c:1485
 msgid "Board Size"
 msgstr "Tablo Boyutu"
 
-#: ../glines/glines.c:1478 ../same-gnome/ui.c:437
+#: ../glines/glines.c:1492 ../same-gnome/ui.c:444
 msgid "_Small"
 msgstr "_Küçük"
 
-#: ../glines/glines.c:1488 ../same-gnome/ui.c:438
+#: ../glines/glines.c:1502 ../same-gnome/ui.c:445
 msgid "_Medium"
 msgstr "_Orta"
 
-#: ../glines/glines.c:1498 ../same-gnome/ui.c:439
+#: ../glines/glines.c:1512 ../same-gnome/ui.c:446
 msgid "_Large"
 msgstr "_Büyük"
 
-#: ../glines/glines.c:1506
+#: ../glines/glines.c:1520
 msgid "General"
 msgstr "Genel"
 
-#: ../glines/glines.c:1514
+#: ../glines/glines.c:1528
 msgid "_Use fast moves"
 msgstr "_Hızlı hareketleri kullan"
 
-#: ../glines/glines.c:1934
+#: ../glines/glines.c:1951
 msgid "Next:"
 msgstr "Sonraki:"
 
@@ -2382,14 +2422,14 @@ msgstr "Hareketler arasıdaki süre"
 msgid "Time between moves in milliseconds."
 msgstr "Milisaniye olarak hareketler arasıdaki süre."
 
-#: ../gnect/data/gnect.desktop.in.h:1
-msgid "Compete to make lines of the same color"
-msgstr "Aynı renkten çizgiler yapmak için yarışın"
-
-#: ../gnect/data/gnect.desktop.in.h:2 ../gnect/src/main.c:790
-#: ../gnect/src/main.c:1211
+#: ../gnect/data/gnect.desktop.in.h:1 ../gnect/src/main.c:817
+#: ../gnect/src/main.c:1255
 msgid "Four-in-a-Row"
 msgstr "Bir-Sırada-Dört-Taş"
+
+#: ../gnect/data/gnect.desktop.in.h:2
+msgid "Make lines of the same color to win"
+msgstr "Aynı renkten çizgiler yapmak için yarışın"
 
 #: ../gnect/data/gnect.schemas.in.h:1
 msgid "A number specifying the preferred theme."
@@ -2433,7 +2473,7 @@ msgstr "Sola taşı"
 msgid "Move right"
 msgstr "Sağa taşı"
 
-#: ../gnect/data/gnect.schemas.in.h:12 ../gnome-stones/preferences.c:789
+#: ../gnect/data/gnect.schemas.in.h:12
 msgid "Sound"
 msgstr "Ses"
 
@@ -2470,58 +2510,58 @@ msgstr ""
 "Resim yüklenemedi:\n"
 "%s"
 
-#: ../gnect/src/main.c:500
+#: ../gnect/src/main.c:526
 msgid "It's a draw!"
 msgstr "Berabere!"
 
-#: ../gnect/src/main.c:508
+#: ../gnect/src/main.c:534
 msgid "You win!"
 msgstr "Sen kazandın!"
 
-#: ../gnect/src/main.c:509
+#: ../gnect/src/main.c:535
 msgid "Your move..."
 msgstr "Sizin hamleniz..."
 
-#: ../gnect/src/main.c:512
+#: ../gnect/src/main.c:538
 msgid "I win!"
 msgstr "Ben Yendim!"
 
-#: ../gnect/src/main.c:513 ../gnect/src/main.c:606
+#: ../gnect/src/main.c:539 ../gnect/src/main.c:632
 msgid "Thinking..."
 msgstr "Düşünüyorum..."
 
-#: ../gnect/src/main.c:521
+#: ../gnect/src/main.c:547
 #, c-format
 msgid "%s wins!"
 msgstr "%s Yendi!"
 
-#: ../gnect/src/main.c:522
+#: ../gnect/src/main.c:548
 #, c-format
 msgid "%s..."
 msgstr "%s..."
 
-#: ../gnect/src/main.c:624
+#: ../gnect/src/main.c:650
 #, c-format
 msgid "Hint: Column %d"
 msgstr "İpucu: Sütün %d"
 
-#: ../gnect/src/main.c:651 ../gnect/src/main.c:656
+#: ../gnect/src/main.c:677 ../gnect/src/main.c:682
 msgid "You:"
 msgstr "Siz:"
 
-#: ../gnect/src/main.c:652 ../gnect/src/main.c:655
+#: ../gnect/src/main.c:678 ../gnect/src/main.c:681
 msgid "Me:"
 msgstr "Ben:"
 
-#: ../gnect/src/main.c:702
+#: ../gnect/src/main.c:728
 msgid "Scores"
 msgstr "Puanlar"
 
-#: ../gnect/src/main.c:753
+#: ../gnect/src/main.c:775
 msgid "Drawn:"
 msgstr "Berabere:"
 
-#: ../gnect/src/main.c:793
+#: ../gnect/src/main.c:821
 msgid ""
 "\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -2574,12 +2614,12 @@ msgstr "_Tema:"
 msgid "Enable _animation"
 msgstr "_Canlandırmayı etkinleştir"
 
-#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:888
+#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:866
 msgid "Controls"
 msgstr "Kontroller"
 
-#: ../gnect/src/prefs.c:444 ../gnibbles/preferences.c:381
-#: ../gnobots2/properties.c:542 ../gnometris/tetris.cpp:891
+#: ../gnect/src/prefs.c:444 ../gnibbles/preferences.c:379
+#: ../gnobots2/properties.c:576 ../gnometris/tetris.cpp:869
 msgid "Keyboard Controls"
 msgstr "Klavye Kontrolleri"
 
@@ -2588,12 +2628,12 @@ msgid "Classic"
 msgstr "Klasik"
 
 #: ../gnect/src/theme.c:47 ../gnect/src/theme.c:71 ../gnect/src/theme.c:79
-#: ../gnect/src/theme.c:87 ../gnibbles/preferences.c:420
+#: ../gnect/src/theme.c:87 ../gnibbles/preferences.c:418
 msgid "Red"
 msgstr "Kırmızı"
 
 #: ../gnect/src/theme.c:47 ../gnect/src/theme.c:87
-#: ../gnibbles/preferences.c:423
+#: ../gnibbles/preferences.c:421
 msgid "Yellow"
 msgstr "Sarı"
 
@@ -2610,7 +2650,7 @@ msgid "Cream Marbles"
 msgstr "Krem Mermerler"
 
 #: ../gnect/src/theme.c:71 ../gnect/src/theme.c:79 ../gnect/src/theme.c:95
-#: ../gnibbles/preferences.c:422
+#: ../gnibbles/preferences.c:420
 msgid "Blue"
 msgstr "Mavi"
 
@@ -2630,7 +2670,7 @@ msgstr "Bloklar"
 msgid "Orange"
 msgstr "Turuncu"
 
-#: ../gnibbles/gnibbles.c:83
+#: ../gnibbles/gnibbles.c:85
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -2643,7 +2683,7 @@ msgstr ""
 "\n"
 "Lütfen Gnibbles kurulumunu kontrol edin"
 
-#: ../gnibbles/gnibbles.c:232
+#: ../gnibbles/gnibbles.c:234
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -2656,12 +2696,32 @@ msgstr ""
 "\n"
 "Lütfen Gnibbles kurulumunu kontrol edin"
 
+#: ../gnibbles/gnibbles.c:570
+msgid "Nibbles Scores"
+msgstr "Nibbles Puanları"
+
+#: ../gnibbles/gnibbles.c:571
+msgid "Speed:"
+msgstr "Hız:"
+
+#: ../gnibbles/gnibbles.c:576 ../gnomine/gnomine.c:219
+#: ../gnotravex/gnotravex.c:990 ../mahjongg/mahjongg.c:697
+#: ../same-gnome/ui.c:172
+msgid "Congratulations!"
+msgstr "Tebrikler!"
+
+#: ../gnibbles/gnibbles.c:577 ../gnomine/gnomine.c:220
+#: ../gnotravex/gnotravex.c:991 ../mahjongg/mahjongg.c:698
+#: ../same-gnome/ui.c:173
+msgid "Your score has made the top ten."
+msgstr "Puanınız en iyi on listesine girdi."
+
 #: ../gnibbles/gnibbles.desktop.in.h:1
 msgid "Guide a worm around a maze"
 msgstr "Solucanı engellerin çevresinden geçirin"
 
 #: ../gnibbles/gnibbles.desktop.in.h:2 ../gnibbles/gnibbles.soundlist.in.h:6
-#: ../gnibbles/main.c:147
+#: ../gnibbles/main.c:200
 msgid "Nibbles"
 msgstr "Nibbles"
 
@@ -2801,7 +2861,7 @@ msgstr "Bonusu Ye"
 msgid "Extra Life"
 msgstr "Fazladan Yaşam"
 
-#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:130
+#: ../gnibbles/gnibbles.soundlist.in.h:5 ../gnometris/field.cpp:229
 msgid "Game Over"
 msgstr "Oyun Bitti"
 
@@ -2817,7 +2877,39 @@ msgstr "Tersten Solucan"
 msgid "Worm Teleport"
 msgstr "Solucan Işınlanması"
 
-#: ../gnibbles/main.c:150
+#: ../gnibbles/main.c:48
+msgid "Beginner"
+msgstr ""
+
+#: ../gnibbles/main.c:49
+msgid "Slow"
+msgstr ""
+
+#: ../gnibbles/main.c:50
+msgid "gnibbles|Medium"
+msgstr "Orta"
+
+#: ../gnibbles/main.c:51
+msgid "Fast"
+msgstr ""
+
+#: ../gnibbles/main.c:52
+msgid "Beginner with Fakes"
+msgstr ""
+
+#: ../gnibbles/main.c:53
+msgid "Slow with Fakes"
+msgstr ""
+
+#: ../gnibbles/main.c:54
+msgid "Medium with Fakes"
+msgstr ""
+
+#: ../gnibbles/main.c:55
+msgid "Fast with Fakes"
+msgstr ""
+
+#: ../gnibbles/main.c:204
 msgid "A worm game for GNOME."
 msgstr "GNOME için solucan oyunu."
 
@@ -2843,83 +2935,82 @@ msgstr "Yeni oyun başlama için hazır"
 msgid "New game started"
 msgstr "Yeni oyun başladı"
 
-#: ../gnibbles/preferences.c:204
-#, fuzzy
+#: ../gnibbles/preferences.c:202
 msgid "Nibbles Preferences"
 msgstr "Gnibbles Tercihleri"
 
-#: ../gnibbles/preferences.c:225
+#: ../gnibbles/preferences.c:223
 msgid "Speed"
 msgstr "Hız"
 
-#: ../gnibbles/preferences.c:234
+#: ../gnibbles/preferences.c:232
 msgid "Nibbles newbie"
 msgstr "Acemi Nibbles"
 
-#: ../gnibbles/preferences.c:244
+#: ../gnibbles/preferences.c:242
 msgid "My second day"
 msgstr "İkinci günüm"
 
-#: ../gnibbles/preferences.c:254
+#: ../gnibbles/preferences.c:252
 msgid "Not too shabby"
 msgstr "Pek kötü sayılmam"
 
-#: ../gnibbles/preferences.c:265
+#: ../gnibbles/preferences.c:263
 msgid "Finger-twitching good"
 msgstr "Çok iyiyim"
 
 #. Options
-#: ../gnibbles/preferences.c:276 ../gnibbles/preferences.c:400
-#: ../gnobots2/properties.c:448 ../iagno/properties.c:656
+#: ../gnibbles/preferences.c:274 ../gnibbles/preferences.c:398
+#: ../gnobots2/properties.c:483 ../iagno/properties.c:656
 msgid "Options"
 msgstr "Seçenekler"
 
-#: ../gnibbles/preferences.c:282
+#: ../gnibbles/preferences.c:280
 msgid "_Play levels in random order"
 msgstr "_Seviyeleri rastgele sıralı oyna"
 
-#: ../gnibbles/preferences.c:293
+#: ../gnibbles/preferences.c:291
 msgid "_Enable fake bonuses"
 msgstr "_Sahte bonusları etkinleştir"
 
-#: ../gnibbles/preferences.c:304
+#: ../gnibbles/preferences.c:302
 msgid "E_nable sounds"
 msgstr "_Sesleri etkinleştir"
 
 #. starting level
-#: ../gnibbles/preferences.c:318 ../gnometris/tetris.cpp:811
+#: ../gnibbles/preferences.c:316 ../gnometris/tetris.cpp:781
 msgid "_Starting level:"
 msgstr "_Başlangıç seviyesi:"
 
-#: ../gnibbles/preferences.c:346
+#: ../gnibbles/preferences.c:344
 msgid "N_umber of players:"
 msgstr "_Oyuncu sayısı:"
 
-#: ../gnibbles/preferences.c:372
+#: ../gnibbles/preferences.c:370
 msgid "Worm"
 msgstr "Solucan"
 
-#: ../gnibbles/preferences.c:407
+#: ../gnibbles/preferences.c:405
 msgid "_Use relative movement"
 msgstr "_Bağıl hareketleri kullan"
 
-#: ../gnibbles/preferences.c:414
+#: ../gnibbles/preferences.c:412
 msgid "_Worm color:"
 msgstr "_Solucan rengi:"
 
-#: ../gnibbles/preferences.c:421
+#: ../gnibbles/preferences.c:419
 msgid "Green"
 msgstr "Yeşil"
 
-#: ../gnibbles/preferences.c:424
+#: ../gnibbles/preferences.c:422
 msgid "Cyan"
 msgstr "Cyan"
 
-#: ../gnibbles/preferences.c:425
+#: ../gnibbles/preferences.c:423
 msgid "Purple"
 msgstr "Mor"
 
-#: ../gnibbles/preferences.c:426
+#: ../gnibbles/preferences.c:424
 msgid "Gray"
 msgstr "Gri"
 
@@ -2928,17 +3019,17 @@ msgstr "Gri"
 msgid "Worm %d:"
 msgstr "Solucan %d:"
 
-#: ../gnobots2/game.c:142
+#: ../gnobots2/game.c:143
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "'%s' süper güvenli hareketlerle"
 
-#: ../gnobots2/game.c:145
+#: ../gnobots2/game.c:146
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "'%s' güvenli hareketlerle"
 
-#: ../gnobots2/game.c:330 ../gnobots2/game.c:345
+#: ../gnobots2/game.c:370 ../gnobots2/game.c:385
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -2946,40 +3037,53 @@ msgstr ""
 "Tebrikler, Robotları Yendiniz!! \n"
 "Peki,Tekrar Yapabilir misiniz?"
 
-#: ../gnobots2/game.c:1131
+#. This should never happen.
+#: ../gnobots2/game.c:1185
 msgid "There are no teleport locations left!!"
 msgstr "Geriye hiç ışınlanma bölgesi kalmadı!!"
 
-#: ../gnobots2/game.c:1200
+#: ../gnobots2/game.c:1216
+msgid "You have run out of safe moves - the robots have won!"
+msgstr ""
+
+#: ../gnobots2/game.c:1220
 msgid "There are no safe locations to teleport to!!"
 msgstr "Işınlanma ile gidilebilecek güvenli bölge kalmadı!!"
 
-#: ../gnobots2/gnobots.c:62
+#: ../gnobots2/gnobots.c:66
 msgid "Set game scenario"
 msgstr "Oyun senaryosunu belirle"
 
-#: ../gnobots2/gnobots.c:64
+#: ../gnobots2/gnobots.c:68
 msgid "Set game configuration"
 msgstr "Oyun ayarlarını belirle"
 
-#: ../gnobots2/gnobots.c:65 ../gnomine/gnomine.c:853 ../gnomine/gnomine.c:857
+#: ../gnobots2/gnobots.c:69 ../gnobots2/gnobots.c:70
+msgid "Initial window position"
+msgstr ""
+
+#: ../gnobots2/gnobots.c:69 ../gnomine/gnomine.c:946 ../gnomine/gnomine.c:950
+#: ../gnotravex/gnotravex.c:269 ../gnotski/gnotski.c:689
+#: ../iagno/gnothello.c:105
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:66 ../gnomine/gnomine.c:854 ../gnomine/gnomine.c:858
+#: ../gnobots2/gnobots.c:70 ../gnomine/gnomine.c:947 ../gnomine/gnomine.c:951
+#: ../gnotravex/gnotravex.c:271 ../gnotski/gnotski.c:691
+#: ../iagno/gnothello.c:107
 msgid "Y"
 msgstr "Y"
 
-#: ../gnobots2/gnobots.c:183 ../gnobots2/gnobots2.desktop.in.h:2
-#: ../gnobots2/gnobots2.soundlist.in.h:6 ../gnobots2/menu.c:236
+#: ../gnobots2/gnobots.c:194 ../gnobots2/gnobots2.desktop.in.h:2
+#: ../gnobots2/gnobots2.soundlist.in.h:6 ../gnobots2/menu.c:250
 msgid "Robots"
 msgstr "Robotlar"
 
-#: ../gnobots2/gnobots.c:234
+#: ../gnobots2/gnobots.c:258
 msgid "No game data could be found."
 msgstr "Oyun verisi bulunamadı."
 
-#: ../gnobots2/gnobots.c:235
+#: ../gnobots2/gnobots.c:259
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
@@ -2987,11 +3091,11 @@ msgstr ""
 "Robotlar uygulaması geçerli bir yapılandırma dosyası bulamadı. Lütfen bu "
 "programın kurulumunu gözden geçirin."
 
-#: ../gnobots2/gnobots.c:251
+#: ../gnobots2/gnobots.c:275
 msgid "Some graphics files are missing or corrupt."
 msgstr "Kimi grafik dosyaları eksik ya da bozuk."
 
-#: ../gnobots2/gnobots.c:252
+#: ../gnobots2/gnobots.c:276
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
@@ -3088,67 +3192,67 @@ msgstr "Robot resim teması. Robotlar için kullanılacak resim teması."
 msgid "Show toolbar. A standard option for toolbars."
 msgstr "Araç çubuğunu göster. Araç çubukları için standart seçenek."
 
-#: ../gnobots2/gnobots2.schemas.in.h:25
+#: ../gnobots2/gnobots2.schemas.in.h:26
 msgid ""
 "The name of the key used to hold still. The name is a standard X key name."
 msgstr "Hala saklamak için kullanılacak tuşun adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:26
+#: ../gnobots2/gnobots2.schemas.in.h:27
 msgid ""
 "The name of the key used to move east. The name is a standard X key name."
 msgstr "Doğuya taşımak için kullanılacak tuşun adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:27
+#: ../gnobots2/gnobots2.schemas.in.h:28
 msgid ""
 "The name of the key used to move north-east. The name is a standard X key "
 "name."
 msgstr ""
 "Kuzey-doğuya taşımak için kullanılacak tuşun adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:28
+#: ../gnobots2/gnobots2.schemas.in.h:29
 msgid ""
 "The name of the key used to move north-west. The name is a standard X key "
 "name."
 msgstr ""
 "Kuzey-batıya taşımak için kullanılacak tuşun adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:29
+#: ../gnobots2/gnobots2.schemas.in.h:30
 msgid ""
 "The name of the key used to move north. The name is a standard X key name."
 msgstr "Kuzeye taşımak için kullanılacak tuşun adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:30
+#: ../gnobots2/gnobots2.schemas.in.h:31
 msgid ""
 "The name of the key used to move south-east. The name is a standard X key "
 "name."
 msgstr ""
 "Güney-doğuya taşımak için kullanılacak tuşun adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:31
+#: ../gnobots2/gnobots2.schemas.in.h:32
 msgid ""
 "The name of the key used to move south-west. The name is a standard X key "
 "name."
 msgstr ""
 "Güney-batıya taşımak için kullanılacak tuşun adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:32
+#: ../gnobots2/gnobots2.schemas.in.h:33
 msgid ""
 "The name of the key used to move south. The name is a standard X key name."
 msgstr "Güneye taşımak için kullanılacak tuşun adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:33
+#: ../gnobots2/gnobots2.schemas.in.h:34
 msgid ""
 "The name of the key used to move west. The name is a standard X key name."
 msgstr "Batıya taşımak için kullanılacak tuşun adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:34
+#: ../gnobots2/gnobots2.schemas.in.h:35
 msgid ""
 "The name of the key used to teleport randomly. The name is a standard X key "
 "name."
 msgstr ""
 "Rastgele ışınlama için kullanılacak tuşun adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:35
+#: ../gnobots2/gnobots2.schemas.in.h:36
 msgid ""
 "The name of the key used to teleport safely (if possible). The name is a "
 "standard X key name."
@@ -3156,15 +3260,15 @@ msgstr ""
 "Güvenli (eğer mümkünse) ışınlama için kullanılacak tuş adı. Ad standart X "
 "tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:36
+#: ../gnobots2/gnobots2.schemas.in.h:37
 msgid "The name of the key used to wait. The name is a standard X key name."
 msgstr "Bekleme için kulllanılacak tuş adı. Ad standart X tuş adıdır."
 
-#: ../gnobots2/gnobots2.schemas.in.h:37
+#: ../gnobots2/gnobots2.schemas.in.h:39
 msgid "Use safe moves"
 msgstr "Güvenli hareketleri kullan"
 
-#: ../gnobots2/gnobots2.schemas.in.h:38
+#: ../gnobots2/gnobots2.schemas.in.h:40
 msgid ""
 "Use safe moves. The safe moves option will help you to avoid being killed "
 "due to a mistake. If you try to make a move that would lead to your death "
@@ -3174,11 +3278,11 @@ msgstr ""
 "olur. Güvenli bir hareket olduğu halde sizi öldürecek bir hareket yapmaya "
 "çalıştığınızda bunun gerçekleşmesine izin vermez."
 
-#: ../gnobots2/gnobots2.schemas.in.h:39
+#: ../gnobots2/gnobots2.schemas.in.h:41
 msgid "Use super safe moves"
 msgstr "Süper güvenli harekeri kullan"
 
-#: ../gnobots2/gnobots2.schemas.in.h:40
+#: ../gnobots2/gnobots2.schemas.in.h:42
 msgid ""
 "Use super safe moves. The player is alerted when there is no safe move and "
 "the only option is to teleport out."
@@ -3210,164 +3314,168 @@ msgstr "Robot patladı!"
 msgid "Victory!!"
 msgstr "Zafer!!"
 
-#: ../gnobots2/graphics.c:104 ../iagno/gnothello.c:413
+#: ../gnobots2/graphics.c:149 ../iagno/gnothello.c:402
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "'%s' benekeşlem dosyası bulunamadı\n"
 
-#: ../gnobots2/menu.c:58 ../gnotravex/gnotravex.c:176
+#: ../gnobots2/menu.c:63 ../gnotravex/gnotravex.c:196
 msgid "_Move"
 msgstr "_Taşı"
 
-#: ../gnobots2/menu.c:64
+#: ../gnobots2/menu.c:69
 msgid "_Teleport"
 msgstr "_Işınla"
 
-#: ../gnobots2/menu.c:64
+#: ../gnobots2/menu.c:69
 msgid "Teleport, safely if possible"
 msgstr "Işınlama, eğer mümkünse güvenli"
 
-#: ../gnobots2/menu.c:65
+#: ../gnobots2/menu.c:70
 msgid "_Random"
 msgstr "_Rastgele"
 
-#: ../gnobots2/menu.c:65
+#: ../gnobots2/menu.c:70
 msgid "Teleport randomly"
 msgstr "Rastgele ışınla"
 
-#: ../gnobots2/menu.c:66
+#: ../gnobots2/menu.c:71
 msgid "_Wait"
 msgstr "_Bekle"
 
-#: ../gnobots2/menu.c:66
+#: ../gnobots2/menu.c:71
 msgid "Wait for the robots"
 msgstr "Robotlar için bekle"
 
-#: ../gnobots2/menu.c:74 ../mahjongg/mahjongg.c:1292
+#: ../gnobots2/menu.c:82 ../mahjongg/mahjongg.c:1326
 msgid "Show or hide the toolbar"
 msgstr "Araç çubuğunu göster veya gizle"
 
-#: ../gnobots2/menu.c:239
+#: ../gnobots2/menu.c:254
 msgid "Based on classic BSD Robots."
 msgstr "Klasik BSD Robotlar temel alınmıştır"
 
-#: ../gnobots2/properties.c:319
+#: ../gnobots2/properties.c:344
 msgid "classic robots"
 msgstr "klasik robotlar"
 
-#: ../gnobots2/properties.c:320
+#: ../gnobots2/properties.c:345
 msgid "robots2"
 msgstr "robotlar2"
 
-#: ../gnobots2/properties.c:321
+#: ../gnobots2/properties.c:346
 msgid "robots2 easy"
 msgstr "kolay robotlar2"
 
-#: ../gnobots2/properties.c:322
+#: ../gnobots2/properties.c:347
 msgid "robots with safe teleport"
 msgstr "güvenli ışınlamalı robotlar"
 
-#: ../gnobots2/properties.c:323
+#: ../gnobots2/properties.c:348
 msgid "nightmare"
 msgstr "kabus"
 
-#: ../gnobots2/properties.c:352
+#: ../gnobots2/properties.c:384
 msgid "robots"
 msgstr "robotlar"
 
-#: ../gnobots2/properties.c:353
+#: ../gnobots2/properties.c:385
 msgid "cows"
 msgstr "inekler"
 
-#: ../gnobots2/properties.c:354
+#: ../gnobots2/properties.c:386
 msgid "eggs"
 msgstr "yumurtalar"
 
-#: ../gnobots2/properties.c:355
+#: ../gnobots2/properties.c:387
 msgid "gnomes"
 msgstr "genomlar"
 
-#: ../gnobots2/properties.c:356
+#: ../gnobots2/properties.c:388
 msgid "mice"
 msgstr "fareler"
 
-#: ../gnobots2/properties.c:357
-msgid "windows"
-msgstr "pencereler"
+#: ../gnobots2/properties.c:389
+msgid "ufo"
+msgstr ""
 
-#: ../gnobots2/properties.c:412
+#: ../gnobots2/properties.c:390
+msgid "boo"
+msgstr ""
+
+#: ../gnobots2/properties.c:447
 msgid "Robots Preferences"
 msgstr "RobotlarTercihleri"
 
-#: ../gnobots2/properties.c:433
+#: ../gnobots2/properties.c:468
 msgid "Game Type"
 msgstr "Oyun Türü"
 
-#: ../gnobots2/properties.c:458
+#: ../gnobots2/properties.c:493
 msgid "_Use safe moves"
 msgstr "_Güvenli hareketleri kullan"
 
-#: ../gnobots2/properties.c:465
+#: ../gnobots2/properties.c:500
 msgid "Prevent some dangerous moves"
 msgstr "Kimi tehlikeli hamleleri engelle"
 
-#: ../gnobots2/properties.c:466
+#: ../gnobots2/properties.c:501
 msgid "Prevent accidental moves that result in getting killed."
 msgstr "Ölüm ile sonuçlanabilecek kazalı hamleleri önle."
 
-#: ../gnobots2/properties.c:468
+#: ../gnobots2/properties.c:503
 msgid "U_se super safe moves"
 msgstr "_Süper güvenli harekeri kullan"
 
-#: ../gnobots2/properties.c:474
+#: ../gnobots2/properties.c:509
 msgid "Prevent all dangerous moves"
 msgstr "Tüm tehlikeli hamleleri önle"
 
-#: ../gnobots2/properties.c:475
+#: ../gnobots2/properties.c:510
 msgid "Prevents all moves that result in getting killed."
 msgstr "Ölüm ile sonuçlanan tüm hamleleri önle."
 
-#: ../gnobots2/properties.c:477 ../gnometris/tetris.cpp:837
+#: ../gnobots2/properties.c:512 ../gnometris/tetris.cpp:807
 msgid "_Enable sounds"
 msgstr "_Sesleri etkinleştir"
 
-#: ../gnobots2/properties.c:483
+#: ../gnobots2/properties.c:518
 msgid "Play sounds for major events"
 msgstr "Ana olaylar için ses çal"
 
-#: ../gnobots2/properties.c:484
+#: ../gnobots2/properties.c:519
 msgid "Play sounds for events like winning a level and dying."
 msgstr "Seviyeyi geçme ve ölme gibi olaylar için ses çal."
 
-#: ../gnobots2/properties.c:486
+#: ../gnobots2/properties.c:521
 msgid "E_nable splats"
 msgstr "_Patlamaları etkinleştir"
 
-#: ../gnobots2/properties.c:492
+#: ../gnobots2/properties.c:527
 msgid "Play a sound when two robots collide"
 msgstr "İki robot çarpıştığında ses çal"
 
-#: ../gnobots2/properties.c:493
+#: ../gnobots2/properties.c:528
 msgid "Play the most common, and potentially the most annoying, sound."
 msgstr "En yaygın olan, ve rahatsızlık vermeye en olası sesi çal."
 
-#: ../gnobots2/properties.c:503
+#: ../gnobots2/properties.c:538
 msgid "Graphics Theme"
 msgstr "Grafik Teması"
 
-#: ../gnobots2/properties.c:511
+#: ../gnobots2/properties.c:546
 msgid "_Image theme:"
 msgstr "_Resim teması:"
 
-#: ../gnobots2/properties.c:523 ../mahjongg/mahjongg.c:793
+#: ../gnobots2/properties.c:557 ../mahjongg/mahjongg.c:807
 msgid "_Background color:"
 msgstr "_Arkaplan rengi:"
 
-#: ../gnobots2/properties.c:569
+#: ../gnobots2/properties.c:603
 msgid "_Restore Defaults"
 msgstr "Ö_ntanımlılara Dön"
 
-#: ../gnobots2/properties.c:574
+#: ../gnobots2/properties.c:608
 msgid "Keyboard"
 msgstr "Klavye"
 
@@ -3375,7 +3483,7 @@ msgstr "Klavye"
 msgid "Safe Teleports:"
 msgstr "Güvenli Işınlamalar:"
 
-#: ../gnobots2/statusbar.c:85 ../gnometris/scoreframe.cpp:79
+#: ../gnobots2/statusbar.c:85 ../gnometris/scoreframe.cpp:74
 msgid "Level:"
 msgstr "Seviye:"
 
@@ -3383,275 +3491,7 @@ msgstr "Seviye:"
 msgid "Remaining:"
 msgstr "Kalan:"
 
-#. ********************************************************************
-#: ../gnome-stones/atari.caves.in.h:1 ../gnome-stones/default.caves.in.h:1
-msgid "Collect all diamonds and find exit"
-msgstr "Bütün elmasları toplayın ve çıkışı bulun"
-
-#: ../gnome-stones/atari.caves.in.h:2
-msgid "Congratulations!!! You have won!"
-msgstr "Tebrikler!!! Kazandınız!"
-
-#: ../gnome-stones/atari.caves.in.h:3
-msgid "Original Atari caves"
-msgstr "Orjinal Atari mağarası"
-
-#: ../gnome-stones/atari.caves.in.h:4 ../gnome-stones/default.caves.in.h:3
-#: ../gnome-stones/tutorial.caves.in.h:2
-msgid "gnome-stones:empty"
-msgstr "gnome-stones:boş"
-
-#: ../gnome-stones/default.caves.in.h:2
-msgid "Default caves"
-msgstr "Öntanımlı mağaralar"
-
-#: ../gnome-stones/gnome-stones.desktop.in.h:1
-msgid "Collect diamonds while avoiding falling boulders"
-msgstr "Çukurlara duşmekten kaçınırken elmasları toplayın"
-
-#: ../gnome-stones/gnome-stones.desktop.in.h:2
-msgid "Stones"
-msgstr "Taşlar"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:1
-msgid "Cave number to start"
-msgstr "Başlangıç mağara numarası"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:2
-msgid "Cave number to start."
-msgstr "Başlangıç mağara numarası."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:3
-msgid "Device to use for joystick control."
-msgstr "Oyun çubuğu kontrolleri için kullanılacak aygıt."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:4
-msgid "Enable sound support"
-msgstr "Ses desteğini etkinleştir"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:5
-msgid "Enable sound support."
-msgstr "Ses desteğini etkinleştir."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:6
-msgid "Game name"
-msgstr "Oyun adı"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:7
-msgid "Joystick device"
-msgstr "Oyun çubuğu aygıtı"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:8
-msgid "Joystick switch level"
-msgstr "Oyun çubuğu değişim seviyesi"
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:9
-msgid "The full path and filename of game to load."
-msgstr "Yüklenecek oyunun tam yolu ve dosya adı."
-
-#: ../gnome-stones/gnome-stones.schemas.in.h:10
-msgid ""
-"The level an analog joystick must reach to be considered \"on\" when "
-"emulating a digital joystick. This takes a value between 0.0 and 1.0."
-msgstr ""
-"Sayısal oyun çubuğu benzetimi yapılırken analog oyun çubuğu zorunlu ulaşım "
-"seviyesi \"açık\" kabul edilecek. Bu 0,0 ve 1,0 arasında değer alır."
-
-#: ../gnome-stones/gnomekoban.caves.in.h:1
-msgid "Gnomekoban"
-msgstr "Gnomekoban"
-
-#: ../gnome-stones/gnomekoban.caves.in.h:2
-msgid "gnomekoban:empty,0"
-msgstr "gnomekoban:boş,0"
-
-#. This cave is too big to be played with gnome-stones.
-#: ../gnome-stones/io.c:338
-msgid "The cave you are trying to load is too big for this game."
-msgstr "Yüklemeye çalıştığınız mağara bu oyun için çok büyük."
-
-#: ../gnome-stones/io.c:355
-#, c-format
-msgid "The cave is corrupted: %s is missing."
-msgstr "Mağara bozuk: %s eksik."
-
-#. An object was requested in this cave, that was not
-#. declared in the game file's Object section.
-#: ../gnome-stones/io.c:381
-msgid ""
-"The cave you are trying to load includes an object, that wasn't declared."
-msgstr "Yüklemeye çalıştığınız mağara, tanımlanmamış bir obje içermekte."
-
-#. **************************************************************************
-#. Some constants.
-#. This message will be printed in the statusline, if no message was
-#. specified in a game file.
-#: ../gnome-stones/main.c:66
-msgid "This is GNOME Stones"
-msgstr "GNOME Taşlar oyunu"
-
-#: ../gnome-stones/main.c:76
-msgid "Game to play"
-msgstr "Oynanacak oyun"
-
-#: ../gnome-stones/main.c:76
-msgid "FILENAME"
-msgstr "DOSYAADI"
-
-#: ../gnome-stones/main.c:128
-#, c-format
-msgid ""
-"An error occurred while loading the image file \"%s\".\n"
-"Please make sure that GNOME Stones is correctly installed!"
-msgstr ""
-"Resim dosyası \"%s\" yüklenirken bir hata oluştu.\n"
-"Lütfen GNOME Taşlar oyununun doğru yüklendiğinden emin olun!"
-
-#. That's what a gnome application needs:
-#: ../gnome-stones/main.c:212 ../gnome-stones/main.c:918
-#: ../gnome-stones/main.c:1027 ../gnome-stones/main.c:1276
-msgid "GNOME Stones"
-msgstr "GNOME Stones"
-
-#: ../gnome-stones/main.c:238
-msgid "Game title"
-msgstr "Oyun başlığı"
-
-#: ../gnome-stones/main.c:239
-msgid "Start cave"
-msgstr "Başlangıç mağarası"
-
-#: ../gnome-stones/main.c:378 ../gnome-stones/main.c:972
-#: ../gnometris/gnometris.schemas.in.h:15
-msgid "Pause"
-msgstr "Dondur"
-
-#: ../gnome-stones/main.c:600
-msgid "Congratulations, you win!"
-msgstr "Tebrikler, kazandınız!"
-
-#: ../gnome-stones/main.c:801 ../gtali/gyahtzee.c:141 ../same-gnome/ui.c:144
-msgid "Game over!"
-msgstr "Oyun bitti!"
-
-#: ../gnome-stones/main.c:1021
-msgid "Sokoban levels:"
-msgstr "Sokoban seviyeleri:"
-
-#: ../gnome-stones/main.c:1030
-msgid "Mine through dirt and collect gems."
-msgstr "Toprağı kazıyın ve elmasları toplayın."
-
-#: ../gnome-stones/main.c:1184
-msgid "Scanning private object directory..."
-msgstr "Özel nesne dizini taranıyor..."
-
-#: ../gnome-stones/main.c:1188
-msgid "Scanning public object directory..."
-msgstr "Genel nesne dizini taranıyor..."
-
-#: ../gnome-stones/main.c:1192
-msgid "Scanning private game directory..."
-msgstr "Özel oyun dizini taranıyor..."
-
-#: ../gnome-stones/main.c:1196
-msgid "Scanning public game directory..."
-msgstr "Genel oyun dizini taranıyor..."
-
-#: ../gnome-stones/main.c:1200
-msgid "Restoring preferences..."
-msgstr "Tercihler yükleniyor..."
-
-#: ../gnome-stones/player.c:77
-msgid "You gained an extra life!"
-msgstr "Fazladan bir can kazandınız!"
-
-#: ../gnome-stones/player.c:121
-#, c-format
-msgid "Seconds left: %d"
-msgstr "Kalan saniyeler: %d"
-
-#: ../gnome-stones/preferences.c:402
-msgid "Neither your chosen game nor the default game could be loaded."
-msgstr "Ne sizin seçtiğiniz ne de öntanımlı oyun yüklenebildi."
-
-#: ../gnome-stones/preferences.c:403
-msgid "Please make sure that GNOME Stones is correctly installed."
-msgstr "Lütfen GNOME Stones oyununun doğru yüklendiğinden emin olun."
-
-#: ../gnome-stones/preferences.c:404
-msgid "You may be able to select a different game from the preferences dialog."
-msgstr "Seçenekler penceresinden başla bir oyun seçebilirsiniz."
-
-#: ../gnome-stones/preferences.c:559
-msgid "GNOME Stones Preferences"
-msgstr "GNOME Stones Tercihleri"
-
-#: ../gnome-stones/preferences.c:612
-msgid "Game Title"
-msgstr "Oyun Başlığı"
-
-#: ../gnome-stones/preferences.c:619
-msgid "Caves"
-msgstr "Mağaralar"
-
-#: ../gnome-stones/preferences.c:699
-msgid "Device"
-msgstr "Aygıt"
-
-#: ../gnome-stones/preferences.c:708
-msgid "_Joystick device:"
-msgstr "_Oyun çubuğu aygıtı:"
-
-#. We definatly have a "disable" entry.
-#: ../gnome-stones/preferences.c:715
-msgid "Disabled"
-msgstr "Kapalı"
-
-#: ../gnome-stones/preferences.c:746
-msgid "Digital Joystick Emulation"
-msgstr "_Sayısal Oyun Çubuğu Benzetimi"
-
-#: ../gnome-stones/preferences.c:755
-msgid "_Switch level:"
-msgstr "_Seviye değiştirme:"
-
-#: ../gnome-stones/preferences.c:779
-msgid "Joystick"
-msgstr "Oyun Çubuğu"
-
-#: ../gnome-stones/preferences.c:797
-msgid "Enable sound"
-msgstr "Sesi etkinleştir"
-
-#: ../gnome-stones/preferences.c:809
-msgid "_Sound"
-msgstr "_Ses"
-
-#: ../gnome-stones/status.c:81
-msgid "Diamonds:"
-msgstr "Elmaslar:"
-
-#: ../gnome-stones/status.c:95
-msgid "Cave:"
-msgstr "Mağara:"
-
-#: ../gnome-stones/status.c:105
-msgid "Lives:"
-msgstr "Canlar:"
-
-#. Local Variables:
-#. mode:c
-#. eval:(load-library "time-stamp")
-#. eval:(make-local-variable 'write-file-hooks)
-#. eval:(add-hook 'write-file-hooks 'time-stamp)
-#. eval:(setq time-stamp-format '(time-stamp-yyyy/mm/dd time-stamp-hh:mm:ss user-login-name))
-#. End:
-#: ../gnome-stones/tutorial.caves.in.h:1
-msgid "Tutorial caves"
-msgstr "Deneme mağaraları"
-
-#: ../gnometris/field.cpp:83
+#: ../gnometris/field.cpp:227
 msgid "Paused"
 msgstr "Dondur"
 
@@ -3659,8 +3499,8 @@ msgstr "Dondur"
 msgid "Fit falling blocks together"
 msgstr "Düşen blokları bir araya oturt"
 
-#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:182
-#: ../gnometris/tetris.cpp:1454
+#: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:179
+#: ../gnometris/tetris.cpp:1443
 msgid "Gnometris"
 msgstr "Gnometris"
 
@@ -3700,6 +3540,10 @@ msgstr "Başlangıç seviyesi"
 msgid "Level to start with."
 msgstr "Başlangıç seviyesi."
 
+#: ../gnometris/gnometris.schemas.in.h:15
+msgid "Pause"
+msgstr "Dondur"
+
 #: ../gnometris/gnometris.schemas.in.h:16
 msgid "Rotate"
 msgstr "Çevir"
@@ -3724,145 +3568,131 @@ msgstr ""
 msgid "The density of filled rows"
 msgstr "Önceden doldurulmuş sıraların yoğunluğu"
 
-#: ../gnometris/gnometris.schemas.in.h:21
+#: ../gnometris/gnometris.schemas.in.h:22
+msgid "The name of the theme used for rendering the blocks and the background."
+msgstr ""
+
+#: ../gnometris/gnometris.schemas.in.h:23
 msgid ""
 "The number of rows that are filled with random blocks at the start of the "
 "game."
 msgstr "Oyunun başında rastgele bloklarla doldurulmuş sıraların sayısı."
 
-#: ../gnometris/gnometris.schemas.in.h:22
+#: ../gnometris/gnometris.schemas.in.h:24
 msgid "The number of rows to fill"
 msgstr "Doldurulacak sıra sayısı"
 
-#: ../gnometris/gnometris.schemas.in.h:23
+#: ../gnometris/gnometris.schemas.in.h:25
+msgid "The theme used for rendering the blocks"
+msgstr "Blokları oluştururken kullanılacak resim"
+
+#: ../gnometris/gnometris.schemas.in.h:27
 msgid ""
 "This selects whether or not to draw the background image over the background "
 "color."
 msgstr ""
 "Bu arkaplan resminin arkaplan renginin üstüne çizilip çizilmemesini seçer."
 
-#: ../gnometris/gnometris.schemas.in.h:24
+#: ../gnometris/gnometris.schemas.in.h:28
 msgid "Whether to give blocks random colors"
 msgstr "Bloklara rastgele renk verilecek mi"
 
-#: ../gnometris/gnometris.schemas.in.h:25
+#: ../gnometris/gnometris.schemas.in.h:29
 msgid "Whether to give blocks random colors."
 msgstr "Bloklara rastgele renk verilip verilmeyeceği."
 
-#: ../gnometris/gnometris.schemas.in.h:26
+#: ../gnometris/gnometris.schemas.in.h:30
 msgid "Whether to preview the next block"
 msgstr "Sonraki bloğu göster"
 
-#: ../gnometris/gnometris.schemas.in.h:27
+#: ../gnometris/gnometris.schemas.in.h:31
 msgid "Whether to preview the next block."
 msgstr "Sonraki bloğun gösterilmesi."
 
-#: ../gnometris/gnometris.schemas.in.h:28
+#: ../gnometris/gnometris.schemas.in.h:32
+msgid ""
+"Whether to provide a graphical representation of where a block will land."
+msgstr ""
+
+#: ../gnometris/gnometris.schemas.in.h:33
+msgid "Whether to provide a target"
+msgstr "Hedefin gösterilmesi"
+
+#: ../gnometris/gnometris.schemas.in.h:34
 msgid "Whether to rotate counter clock wise"
 msgstr "Saat yönü tersine döndür"
 
-#: ../gnometris/gnometris.schemas.in.h:29
+#: ../gnometris/gnometris.schemas.in.h:35
 msgid "Whether to rotate counter clock wise."
 msgstr "Saat yönü tersine döndürme."
 
-#: ../gnometris/gnometris.schemas.in.h:30
-msgid "Whether to use sound"
-msgstr "Ses kullanılması"
-
-#: ../gnometris/gnometris.schemas.in.h:31
-msgid "Whether to use sound."
-msgstr "Ses kullanılıp kullanılmaması."
-
-#: ../gnometris/gnometris.schemas.in.h:32
+#: ../gnometris/gnometris.schemas.in.h:36
 msgid "Whether to use the background image"
 msgstr "Arkaplan resmi kullanılması"
 
 #: ../gnometris/main.cpp:38
-msgid "Set starting level (1-10)"
-msgstr "Başlangıç seviyesini belirle (1-10)"
+msgid "Set starting level (1 or greater)"
+msgstr "Başlangıç seviyesini belirle (1 ya da daha büyük)"
 
 #: ../gnometris/main.cpp:38
 msgid "LEVEL"
 msgstr "SEVİYE"
 
-#: ../gnometris/scoreframe.cpp:68
+#: ../gnometris/renderer.cpp:28
+msgid "Joined"
+msgstr ""
+
+#: ../gnometris/scoreframe.cpp:63
 msgid "Lines:"
 msgstr "Satır:"
 
-#: ../gnometris/tetris.cpp:351
-#, c-format
-msgid ""
-"Could not find the theme: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"Tema bulunamadı:\n"
-"%s\n"
-"\n"
-"Lütfen gnome-games kurulumunu kontrol edin"
-
-#: ../gnometris/tetris.cpp:366
-#, c-format
-msgid ""
-"Can't load the image: \n"
-"%s\n"
-"\n"
-"Please check your gnome-games installation"
-msgstr ""
-"Resim yüklenemedi:\n"
-"%s\n"
-"\n"
-"Lütfen gnome-games kurulumunu kontrol edin"
-
-#: ../gnometris/tetris.cpp:714 ../gnometris/tetris.cpp:715
+#: ../gnometris/tetris.cpp:684 ../gnometris/tetris.cpp:685
 msgid "<none>"
 msgstr "<hiçbiri>"
 
-#: ../gnometris/tetris.cpp:743
+#: ../gnometris/tetris.cpp:713
 msgid "Gnometris Preferences"
 msgstr "Gnometris Tercihleri"
 
-#: ../gnometris/tetris.cpp:767
+#: ../gnometris/tetris.cpp:737
 msgid "Setup"
 msgstr "Ayarlar"
 
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:773
+#: ../gnometris/tetris.cpp:743
 msgid "_Number of pre-filled rows:"
 msgstr "Önceden _doldurulmuş sıra sayısı:"
 
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:792
+#: ../gnometris/tetris.cpp:762
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "Önceden doldurulmuş _blok yoğunluğu:"
 
-#: ../gnometris/tetris.cpp:832
+#: ../gnometris/tetris.cpp:802
 msgid "Operation"
 msgstr "İşlem"
 
-#: ../gnometris/tetris.cpp:846
+#: ../gnometris/tetris.cpp:816
 msgid "_Preview next block"
 msgstr "_Sonraki bloğu göster"
 
-#: ../gnometris/tetris.cpp:855
+#: ../gnometris/tetris.cpp:825
 msgid "_Use random block colors"
 msgstr "_Rastgele blok renkleri kullan"
 
-#: ../gnometris/tetris.cpp:866
+#: ../gnometris/tetris.cpp:836
 msgid "_Rotate blocks counterclockwise"
 msgstr "Blokları saat _yönünün tersine döndür"
 
-#: ../gnometris/tetris.cpp:879 ../gnometris/tetris.cpp:912
-#: ../same-gnome/ui.c:288
-msgid "Theme"
-msgstr "Tema"
+#: ../gnometris/tetris.cpp:845
+msgid "Show _where the block will land"
+msgstr ""
 
-#: ../gnometris/tetris.cpp:915
-msgid "Block image:"
-msgstr "Blok resmi:"
+#: ../gnometris/tetris.cpp:893
+msgid "Block Style"
+msgstr "Blok Biçemi"
 
-#: ../gnometris/tetris.cpp:1456
+#: ../gnometris/tetris.cpp:1445
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: \n"
@@ -3876,148 +3706,160 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "Gnometris Puanları"
 
-#: ../gnomine/gnomine.c:83 ../gnomine/gnomine.c:628
-#, fuzzy
+#: ../gnomine/gnomine.c:87 ../gnomine/gnomine.c:660
 msgid "gnomine|Medium"
 msgstr "Orta"
 
-#: ../gnomine/gnomine.c:85 ../gnomine/gnomine.c:648
+#: ../gnomine/gnomine.c:89 ../gnomine/gnomine.c:682
 msgid "Custom"
 msgstr "Özel"
 
-#: ../gnomine/gnomine.c:160
+#: ../gnomine/gnomine.c:164
 #, c-format
 msgid "Flags: %d/%d"
 msgstr "Bayraklar: %d/%d"
 
-#: ../gnomine/gnomine.c:188
+#: ../gnomine/gnomine.c:192
 msgid "The Mines Have Been Cleared!"
 msgstr "Mayınlar Temizlendi!"
 
-#: ../gnomine/gnomine.c:189
+#: ../gnomine/gnomine.c:193
 msgid "Great work, but unfortunately your score did not make the top ten."
 msgstr ""
 "Çok iyi iş çıkardınız, ancak puanınız en iyi on listesine yer bulamadı."
 
-#: ../gnomine/gnomine.c:206
+#: ../gnomine/gnomine.c:210
 msgid "Mines Scores"
 msgstr "Mayın Tarlası Puanları"
 
-#: ../gnomine/gnomine.c:208 ../same-gnome/ui.c:124
+#: ../gnomine/gnomine.c:212 ../gnotravex/gnotravex.c:985
+#: ../same-gnome/ui.c:131
 msgid "Size:"
 msgstr "Boyut:"
 
-#: ../gnomine/gnomine.c:215 ../mahjongg/mahjongg.c:683 ../same-gnome/ui.c:165
-msgid "Congratulations!"
-msgstr "Tebrikler!"
-
-#: ../gnomine/gnomine.c:216 ../mahjongg/mahjongg.c:684 ../same-gnome/ui.c:166
-msgid "Your score has made the top ten."
-msgstr "Puanınız en iyi on listesine girdi."
-
-#: ../gnomine/gnomine.c:308
+#: ../gnomine/gnomine.c:313
 msgid "Click a square, any square"
 msgstr "Bir kareye tıklayın, herhangibirine"
 
-#: ../gnomine/gnomine.c:310
+#: ../gnomine/gnomine.c:315
 msgid "Maybe they're all mines ..."
 msgstr "Belkide hepsi mayındır..."
 
-#: ../gnomine/gnomine.c:428
-msgid "Faces:"
-msgstr "Yüzler:"
-
-#: ../gnomine/gnomine.c:431
-msgid "Graphics:"
-msgstr "Grafikler:"
-
-#: ../gnomine/gnomine.c:437
+#: ../gnomine/gnomine.c:433
 msgid "Resizing and SVG support:"
 msgstr "Yeniden boyutlandırma ve SVG desteği:"
 
-#: ../gnomine/gnomine.c:444 ../gnomine/gnomine.c:959
+#: ../gnomine/gnomine.c:440
+msgid "Faces:"
+msgstr "Yüzler:"
+
+#: ../gnomine/gnomine.c:443
+msgid "Graphics:"
+msgstr "Grafikler:"
+
+#: ../gnomine/gnomine.c:454 ../gnomine/gnomine.c:1022
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
 msgstr "Mayınlar"
 
-#: ../gnomine/gnomine.c:614
+#: ../gnomine/gnomine.c:456
+msgid ""
+"The popular logic puzzle minesweeper. Clear mines from a board using hints "
+"from squares you have already uncovered."
+msgstr ""
+
+#: ../gnomine/gnomine.c:645
 msgid "Field Size"
 msgstr "Alan Boyutu"
 
-#: ../gnomine/gnomine.c:660
+#: ../gnomine/gnomine.c:695
 msgid "Custom Size"
 msgstr "Özel Boyut"
 
-#: ../gnomine/gnomine.c:667
+#: ../gnomine/gnomine.c:702
 msgid "_Number of mines:"
 msgstr "_Mayın adedi:"
 
-#: ../gnomine/gnomine.c:679
+#: ../gnomine/gnomine.c:714
 msgid "_Horizontal:"
 msgstr "_Yatay:"
 
-#: ../gnomine/gnomine.c:690
+#: ../gnomine/gnomine.c:725
 msgid "_Vertical:"
 msgstr "_Dikey:"
 
-#: ../gnomine/gnomine.c:705
+#: ../gnomine/gnomine.c:740
 msgid "_Use \"I'm not sure\" flags"
 msgstr "\"Emin değilim\" _bayraklarını kullan"
 
-#: ../gnomine/gnomine.c:714
+#: ../gnomine/gnomine.c:749
+msgid "_Use \"Too many flags\" warning"
+msgstr ""
+
+#: ../gnomine/gnomine.c:758
 msgid "Mines Preferences"
 msgstr "Mayın Tarlası Tercihleri"
 
-#: ../gnomine/gnomine.c:853
+#: ../gnomine/gnomine.c:946
 msgid "Width of grid"
 msgstr "Izgara genişliği"
 
-#: ../gnomine/gnomine.c:854
+#: ../gnomine/gnomine.c:947
 msgid "Height of grid"
 msgstr "Izgara yüksekliği"
 
-#: ../gnomine/gnomine.c:855
+#: ../gnomine/gnomine.c:948
 msgid "Number of mines"
 msgstr "Mayınların sayısı"
 
-#: ../gnomine/gnomine.c:855 ../gtali/setup.c:85 ../gtali/setup.c:86
-#: ../same-gnome/same-gnome.c:140
+#: ../gnomine/gnomine.c:948 ../gtali/gyahtzee.c:90 ../gtali/gyahtzee.c:92
+#: ../same-gnome/same-gnome.c:143
 msgid "NUMBER"
 msgstr "SAYI"
 
-#: ../gnomine/gnomine.c:856
-msgid "Size of the board (1=small, 3=large)"
-msgstr "Tahta boyutu (1=küçük, 3=büyük)"
+#: ../gnomine/gnomine.c:949
+msgid "Size of the board (0-2 = small-large, 3=custom)"
+msgstr "Tahta boyutu (0-2=küçük-büyük, 3=özel)"
 
-#: ../gnomine/gnomine.c:857
+#: ../gnomine/gnomine.c:950 ../gnotravex/gnotravex.c:268
+#: ../gnotski/gnotski.c:688 ../iagno/gnothello.c:104
 msgid "X location of window"
 msgstr "Pencerenin X konumu"
 
-#: ../gnomine/gnomine.c:858
+#: ../gnomine/gnomine.c:951 ../gnotravex/gnotravex.c:270
+#: ../gnotski/gnotski.c:690 ../iagno/gnothello.c:106
 msgid "Y location of window"
 msgstr "Pencerenin Y konumu"
 
-#: ../gnomine/gnomine.c:1024
+#: ../gnomine/gnomine.c:1087
 msgid "Press to Resume"
 msgstr "Devam Et'e Basın"
 
-#: ../gnomine/gnomine.c:1057
+#: ../gnomine/gnomine.c:1123
 msgid "Time: "
 msgstr "Süre:"
 
 #: ../gnomine/gnomine.desktop.in.h:1
-msgid "Clear mines from a minefield"
-msgstr "Mayın alanından mayınları temizle"
+msgid "Clear hidden mines from a minefield"
+msgstr "Mayın alanından gizli mayınları temizle"
 
 #: ../gnomine/gnomine.schemas.in.h:1
 msgid "Set to true to be able to mark squares as unknown."
 msgstr "Kareleri bilinmiyor şeklide işaretleyebilmek için doğruya ayarlayın."
 
 #: ../gnomine/gnomine.schemas.in.h:2
+msgid "Set to true to enable warning icons when too many flags are placed."
+msgstr ""
+
+#: ../gnomine/gnomine.schemas.in.h:3
 msgid "Use the unknown flag"
 msgstr "Bilinmiyor bayrağını kullan"
 
-#: ../gnomine/minefield.c:193
+#: ../gnomine/gnomine.schemas.in.h:4
+msgid "Warning about too many flags"
+msgstr ""
+
+#: ../gnomine/minefield.c:197
 msgid ""
 "Unable to find required images.\n"
 "\n"
@@ -4027,7 +3869,7 @@ msgstr ""
 "\n"
 "Lütfen gnome-games kurulumunu kontrol edin."
 
-#: ../gnomine/minefield.c:201
+#: ../gnomine/minefield.c:206
 msgid ""
 "Required images have been found, but refused to load.\n"
 "\n"
@@ -4037,163 +3879,193 @@ msgstr ""
 "\n"
 "Lütfen gnome-games ve gereksinimlerinin kurulumunu kontrol edin."
 
-#: ../gnomine/minefield.c:211
+#: ../gnomine/minefield.c:216
 msgid "Could not load images"
 msgstr "Resimler yüklenemedi"
 
 #. i18n in-game numbers, replaceable with single-character local ideograms.
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "0"
 msgstr "0"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "1"
 msgstr "1"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "2"
 msgstr "2"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "3"
 msgstr "3"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "4"
 msgstr "4"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "5"
 msgstr "5"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "6"
 msgstr "6"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "7"
 msgstr "7"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "8"
 msgstr "8"
 
-#: ../gnotravex/gnotravex.c:50
+#: ../gnotravex/gnotravex.c:51
 msgid "9"
 msgstr "9"
 
-#: ../gnotravex/gnotravex.c:177 ../same-gnome/ui.c:419
+#: ../gnotravex/gnotravex.c:59
+msgid "2×2"
+msgstr "2x2"
+
+#: ../gnotravex/gnotravex.c:60
+msgid "3×3"
+msgstr "3x3"
+
+#: ../gnotravex/gnotravex.c:61
+msgid "4×4"
+msgstr "4x4"
+
+#: ../gnotravex/gnotravex.c:62
+msgid "5×5"
+msgstr "5x5"
+
+#: ../gnotravex/gnotravex.c:63
+msgid "6×6"
+msgstr "6x6"
+
+#: ../gnotravex/gnotravex.c:197 ../same-gnome/ui.c:426
 msgid "_Size"
 msgstr "_Boyut"
 
-#: ../gnotravex/gnotravex.c:183
+#: ../gnotravex/gnotravex.c:203
 msgid "Sol_ve"
 msgstr "Çö_z"
 
-#: ../gnotravex/gnotravex.c:183
+#: ../gnotravex/gnotravex.c:203
 msgid "Solve the game"
 msgstr "Oyunu çöz"
 
-#: ../gnotravex/gnotravex.c:186
+#: ../gnotravex/gnotravex.c:209
 msgid "_Up"
 msgstr "_Yukarı"
 
-#: ../gnotravex/gnotravex.c:186
+#: ../gnotravex/gnotravex.c:209
 msgid "Move the pieces up"
 msgstr "Parçaları yukarı taşı"
 
-#: ../gnotravex/gnotravex.c:187
+#: ../gnotravex/gnotravex.c:210
 msgid "_Left"
 msgstr "So_l"
 
-#: ../gnotravex/gnotravex.c:187
+#: ../gnotravex/gnotravex.c:210
 msgid "Move the pieces left"
 msgstr "Parçaları sola taşı"
 
-#: ../gnotravex/gnotravex.c:188
+#: ../gnotravex/gnotravex.c:211
 msgid "_Right"
 msgstr "_Sağ"
 
-#: ../gnotravex/gnotravex.c:188
+#: ../gnotravex/gnotravex.c:211
 msgid "Move the pieces right"
 msgstr "Parçaları sağa taşı"
 
-#: ../gnotravex/gnotravex.c:189
+#: ../gnotravex/gnotravex.c:212
 msgid "_Down"
 msgstr "_Aşağı"
 
-#: ../gnotravex/gnotravex.c:189
+#: ../gnotravex/gnotravex.c:212
 msgid "Move the pieces down"
 msgstr "Parçaları aşağıya taşı"
 
-#: ../gnotravex/gnotravex.c:195
+#: ../gnotravex/gnotravex.c:218
 msgid "_2×2"
 msgstr "_2x2"
 
-#: ../gnotravex/gnotravex.c:195
+#: ../gnotravex/gnotravex.c:218
 msgid "Play on a 2×2 board"
 msgstr "2x2 lık tahtada oyna"
 
-#: ../gnotravex/gnotravex.c:196
+#: ../gnotravex/gnotravex.c:219
 msgid "_3×3"
 msgstr "_3x3"
 
-#: ../gnotravex/gnotravex.c:196
+#: ../gnotravex/gnotravex.c:219
 msgid "Play on a 3×3 board"
 msgstr "3x3 lük tahtada oyna"
 
-#: ../gnotravex/gnotravex.c:197
+#: ../gnotravex/gnotravex.c:220
 msgid "_4×4"
 msgstr "_4x4"
 
-#: ../gnotravex/gnotravex.c:197
+#: ../gnotravex/gnotravex.c:220
 msgid "Play on a 4×4 board"
 msgstr "4x4 lük tahtada oyna"
 
-#: ../gnotravex/gnotravex.c:198
+#: ../gnotravex/gnotravex.c:221
 msgid "_5×5"
 msgstr "_5x5"
 
-#: ../gnotravex/gnotravex.c:198
+#: ../gnotravex/gnotravex.c:221
 msgid "Play on a 5×5 board"
 msgstr "5x5 lik tahtada oyna"
 
-#: ../gnotravex/gnotravex.c:199
+#: ../gnotravex/gnotravex.c:222
 msgid "_6×6"
 msgstr "_6x6"
 
-#: ../gnotravex/gnotravex.c:199
+#: ../gnotravex/gnotravex.c:222
 msgid "Play on a 6×6 board"
 msgstr "6x6 lık tahtada oyna"
 
-#: ../gnotravex/gnotravex.c:244
+#: ../gnotravex/gnotravex.c:272
 msgid "Size of board (2-6)"
 msgstr "Tahta boyutu (2-6)"
 
-#: ../gnotravex/gnotravex.c:245
+#: ../gnotravex/gnotravex.c:273
 msgid "SIZE"
 msgstr "BOYUT"
 
-#: ../gnotravex/gnotravex.c:827
+#: ../gnotravex/gnotravex.c:869
 msgid "Puzzle solved! Well done!"
 msgstr "Bulmaca çözüldü! Tebrikler!"
 
-#: ../gnotravex/gnotravex.c:830
+#: ../gnotravex/gnotravex.c:872
 msgid "Puzzle solved!"
 msgstr "Bulmaca çözüldü!"
 
-#: ../gnotravex/gnotravex.c:1188 ../mahjongg/mahjongg.c:954
+#: ../gnotravex/gnotravex.c:984
+msgid "Tetravex Scores"
+msgstr "Tetravex Puanları"
+
+#: ../gnotravex/gnotravex.c:1218 ../mahjongg/mahjongg.c:983
 msgid "Game paused"
 msgstr "Oyun donduruldu"
 
-#: ../gnotravex/gnotravex.c:1346
+#: ../gnotravex/gnotravex.c:1382
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "%d x %d tahta oynanıyor"
 
+#: ../gnotravex/gnotravex.c:1626
+msgid ""
+"GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
+"the same numbers are touching each other."
+msgstr ""
+
 #: ../gnotravex/gnotravex.desktop.in.h:1
-msgid "Play a puzzle game matching tiles together"
-msgstr "Parçaları eşleyerek bulmacayı çözün"
+msgid "Complete the puzzle by matching numbered tiles"
+msgstr ""
 
 #: ../gnotravex/gnotravex.desktop.in.h:2
 msgid "Tetravex"
@@ -4223,227 +4095,227 @@ msgstr ""
 "Oyun penceresinin piksel olarak genişliği. Asgari olaral 320 olmalıdır."
 
 #. puzzle name
-#: ../gnotski/gnotski.c:135
+#: ../gnotski/gnotski.c:140
 msgid "Only 18 Steps"
 msgstr "Sadece 18 adım"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:148
+#: ../gnotski/gnotski.c:153
 msgid "Daisy"
 msgstr "Papatya"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:161
+#: ../gnotski/gnotski.c:166
 msgid "Violet"
 msgstr "Keman"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:174
+#: ../gnotski/gnotski.c:179
 msgid "Poppy"
 msgstr "Gelincik"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:187
+#: ../gnotski/gnotski.c:192
 msgid "Pansy"
 msgstr "Menekşe"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:200
+#: ../gnotski/gnotski.c:205
 msgid "Snowdrop"
 msgstr "Kardelen"
 
 #. puzzle name - sometimes called "Le'Ane Rouge"
-#: ../gnotski/gnotski.c:213
+#: ../gnotski/gnotski.c:218
 msgid "Red Donkey"
 msgstr "Kırmızı Eşek"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:226
+#: ../gnotski/gnotski.c:231
 msgid "Trail"
 msgstr "Vadi"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:239
+#: ../gnotski/gnotski.c:244
 msgid "Ambush"
 msgstr "Pusu"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:252
+#: ../gnotski/gnotski.c:257
 msgid "Agatka"
 msgstr "Agatka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:263
+#: ../gnotski/gnotski.c:268
 msgid "Success"
 msgstr "Başarı"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:273
+#: ../gnotski/gnotski.c:278
 msgid "Bone"
 msgstr "Kemik"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:286
+#: ../gnotski/gnotski.c:291
 msgid "Fortune"
 msgstr "Hazine"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:300
+#: ../gnotski/gnotski.c:305
 msgid "Fool"
 msgstr "Aptal"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:310
+#: ../gnotski/gnotski.c:315
 msgid "Solomon"
 msgstr "Solomon"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:323
+#: ../gnotski/gnotski.c:328
 msgid "Cleopatra"
 msgstr "Kleopatra"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:335
+#: ../gnotski/gnotski.c:340
 msgid "Shark"
 msgstr "Köpek Balığı"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:347
+#: ../gnotski/gnotski.c:352
 msgid "Rome"
 msgstr "Roma"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:359
+#: ../gnotski/gnotski.c:364
 msgid "Pennant Puzzle"
 msgstr "Flama Bulmacası"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:372
+#: ../gnotski/gnotski.c:377
 msgid "Ithaca"
 msgstr "Ithaka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:395
+#: ../gnotski/gnotski.c:400
 msgid "Pelopones"
 msgstr "Pelopones"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:407
+#: ../gnotski/gnotski.c:412
 msgid "Transeuropa"
 msgstr "Transeuropa"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:419
+#: ../gnotski/gnotski.c:424
 msgid "Lodzianka"
 msgstr "Lodzianka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:430
+#: ../gnotski/gnotski.c:435
 msgid "Polonaise"
 msgstr "Polonez"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:441
+#: ../gnotski/gnotski.c:446
 msgid "Baltic Sea"
 msgstr "Baltık Denizi"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:453
+#: ../gnotski/gnotski.c:458
 msgid "American Pie"
 msgstr "American Pie"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:469
+#: ../gnotski/gnotski.c:474
 msgid "Traffic Jam"
 msgstr "Trafik Karmaşası"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:480
+#: ../gnotski/gnotski.c:485
 msgid "Sunshine"
 msgstr "Gün Işığı"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:506
+#: ../gnotski/gnotski.c:511
 msgid "Block 10"
 msgstr "Blok 10"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:517
+#: ../gnotski/gnotski.c:522
 msgid "Block 10 Pro"
 msgstr "Blok 10 Pro"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:528
+#: ../gnotski/gnotski.c:533
 msgid "Climb 12"
 msgstr "Tırmanış 12"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:539
+#: ../gnotski/gnotski.c:544
 msgid "Climb 12 Pro"
 msgstr "Tırmanış 12 Pro"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:550
+#: ../gnotski/gnotski.c:555
 msgid "Climb 15 Winter"
 msgstr "Tırmanış 15 Kış"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:563
+#: ../gnotski/gnotski.c:568
 msgid "Climb 15 Spring"
 msgstr "Tırmanış 15 İlk Bahar"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:576
+#: ../gnotski/gnotski.c:581
 msgid "Climb 15 Summer"
 msgstr "Tırmanış 15 Yaz"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:589
+#: ../gnotski/gnotski.c:594
 msgid "Climb 15 Fall"
 msgstr "Tırmanış 15 Son Bahar"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:602
+#: ../gnotski/gnotski.c:607
 msgid "Climb 24 Pro"
 msgstr "Tırmanış 24 Pro"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:633
+#: ../gnotski/gnotski.c:639
 msgid "HuaRong Trail"
 msgstr "HuaRong Vadisi"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:635
+#: ../gnotski/gnotski.c:641
 msgid "Challenge Pack"
 msgstr "Zorlayıcı Paket"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:637
+#: ../gnotski/gnotski.c:643
 msgid "Skill Pack"
 msgstr "Yetenek Paketi"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:639
+#: ../gnotski/gnotski.c:645
 msgid "Minoru Climb"
 msgstr "Minoru Tırmanışı"
 
-#: ../gnotski/gnotski.c:640
+#: ../gnotski/gnotski.c:646
 msgid "_Restart Puzzle"
 msgstr "_Bulmacayı Yeniden Başlat"
 
-#: ../gnotski/gnotski.c:641
+#: ../gnotski/gnotski.c:647
 msgid "Next Puzzle"
 msgstr "Sonraki Bulmaca"
 
-#: ../gnotski/gnotski.c:642
+#: ../gnotski/gnotski.c:648
 msgid "Previous Puzzle"
 msgstr "Önceki Bulmaca"
 
-#: ../gnotski/gnotski.c:817
+#: ../gnotski/gnotski.c:871
 msgid "Level completed."
 msgstr "Seviye tamamlandı."
 
-#: ../gnotski/gnotski.c:1009
+#: ../gnotski/gnotski.c:1063
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -4453,7 +4325,7 @@ msgstr ""
 "\n"
 "Lütfen Klotski'nin tam olarak kurulu olup olmadığını kontrol edin."
 
-#: ../gnotski/gnotski.c:1177
+#: ../gnotski/gnotski.c:1234
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -4466,12 +4338,12 @@ msgstr ""
 "\n"
 "Lütfen Klotski'nin tam olarak kurulu olup olmadığını kontrol edin."
 
-#: ../gnotski/gnotski.c:1216
+#: ../gnotski/gnotski.c:1273
 #, c-format
 msgid "Moves: %d"
 msgstr "Hareketler: %d"
 
-#: ../gnotski/gnotski.c:1539
+#: ../gnotski/gnotski.c:1601
 msgid "Sliding Block Puzzles"
 msgstr "Kayan Bloklar Bulmacası"
 
@@ -4480,8 +4352,8 @@ msgid "Klotski"
 msgstr "Klotski"
 
 #: ../gnotski/gnotski.desktop.in.h:2
-msgid "Solve puzzles by sliding blocks"
-msgstr "Blokları kaydırarak bulmacaları çözün"
+msgid "Slide blocks to solve the puzzle"
+msgstr ""
 
 #: ../gnotski/gnotski.schemas.in.h:2
 msgid "The number of the puzzle being played."
@@ -4519,10 +4391,10 @@ msgstr "Önceden kullanıldı! Onu nereye koymak istiyorsun?"
 #. End:
 #.
 #: ../gtali/gtali.desktop.in.h:1
-msgid "Play a poker-style dice game"
-msgstr "Poker stili zar oyunu oyna"
+msgid "Beat the odds in a poker-style dice game"
+msgstr "Poker stili zar oyunu oyunu için tekleri yenin"
 
-#: ../gtali/gtali.desktop.in.h:2 ../gtali/gyahtzee.c:55
+#: ../gtali/gtali.desktop.in.h:2 ../gtali/gyahtzee.c:52
 msgid "Tali"
 msgstr "Tali"
 
@@ -4551,240 +4423,233 @@ msgstr "Eğer doğru seçiliyse, YZ'nin çalışmaları standart çıktıya akta
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr "[İnsan,Onur,Tarık,Neslihan,Barış,Elif]"
 
-#: ../gtali/gyahtzee.c:121
+#: ../gtali/gyahtzee.c:86
+msgid "Delay computer moves"
+msgstr "Bilgisayar hareketlerini geciktir"
+
+#: ../gtali/gyahtzee.c:88
+msgid "Display computer thoughts"
+msgstr "Bilgisayar düşüncelerini göster"
+
+#: ../gtali/gyahtzee.c:90
+msgid "Number of computer opponents"
+msgstr "Bilgisayar rakiplerin sayısı"
+
+#: ../gtali/gyahtzee.c:92
+msgid "Number of human opponents"
+msgstr "İnsan rakiplerin sayısı"
+
+#: ../gtali/gyahtzee.c:135
 msgid "The game is a draw!"
 msgstr "Oyun berabere bitti!"
 
-#: ../gtali/gyahtzee.c:136
+#: ../gtali/gyahtzee.c:150
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
 msgstr[0] "%s oyunu %d puanla kazandı"
 msgstr[1] "%s oyunu %d puanla kazandı"
 
-#: ../gtali/gyahtzee.c:203
+#: ../gtali/gyahtzee.c:155 ../same-gnome/ui.c:151
+msgid "Game over!"
+msgstr "Oyun bitti!"
+
+#: ../gtali/gyahtzee.c:217
 #, c-format
 msgid "Computer playing for %s"
 msgstr "Bilgisayar %s için oynuyor"
 
-#: ../gtali/gyahtzee.c:206
+#: ../gtali/gyahtzee.c:220
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- Sıra sende."
 
-#: ../gtali/gyahtzee.c:299
-#, fuzzy
+#: ../gtali/gyahtzee.c:313
 msgid "Select dice to roll or choose a score slot."
-msgstr "Tekrar atmak için zarı seç, Salla!'a bas, ya da puan yuvası seç."
+msgstr "Tekrar atmak için zarı seç, ya da puan yuvası seç."
 
-#: ../gtali/gyahtzee.c:326
+#: ../gtali/gyahtzee.c:340
 msgid "Roll"
 msgstr "Salla"
 
-#: ../gtali/gyahtzee.c:369
-#, fuzzy
+#: ../gtali/gyahtzee.c:392
 msgid "You are only allowed three rolls. Choose a score slot."
-msgstr "Sadece üç sefer hakkınız var! Bir puan kutusu seçin."
+msgstr "Sadece üç sefer hakkınız var. Bir puan yuvası seçin."
 
-#: ../gtali/gyahtzee.c:412
+#: ../gtali/gyahtzee.c:437
 msgid "GNOME version (1998):"
 msgstr "GNOME sürümü (1998):"
 
-#: ../gtali/gyahtzee.c:415
+#: ../gtali/gyahtzee.c:440
 msgid "Console version (1992):"
 msgstr "Konsol sürümü (1992):"
 
-#: ../gtali/gyahtzee.c:425
+#: ../gtali/gyahtzee.c:457
 msgid "A variation on poker with dice and less money."
 msgstr "Zar ve daha az para ile oynanan poker türevi."
 
-#: ../gtali/gyahtzee.c:607
+#: ../gtali/gyahtzee.c:643
 msgid "Roll!"
 msgstr "Salla!"
 
-#: ../gtali/setup.c:76
-msgid "Calculate random die throws (debug)"
-msgstr "Rastgele zar atışları hesapla (hata ayıklama)"
-
-#: ../gtali/setup.c:82
-msgid "Delay computer moves"
-msgstr "Bilgisayar hareketlerini geciktir"
-
-#: ../gtali/setup.c:83
-msgid "Show high scores and exit"
-msgstr "Yüksek puanları göster ve çık"
-
-#: ../gtali/setup.c:84
-msgid "Display computer thoughts"
-msgstr "Bilgisayar düşüncelerini göster"
-
-#: ../gtali/setup.c:85
-msgid "Number of computer opponents"
-msgstr "Bilgisayar rakiplerin sayısı"
-
-#: ../gtali/setup.c:86
-msgid "Number of human opponents"
-msgstr "İnsan rakiplerin sayısı"
-
-#: ../gtali/setup.c:98
+#: ../gtali/setup.c:62
 msgid "Current game will complete with original number of players."
 msgstr "Mevcut oyun orijinal oyuncu sayısı ile tamamlanacak."
 
-#: ../gtali/setup.c:230
-#, fuzzy
+#: ../gtali/setup.c:194
 msgid "Tali Preferences"
-msgstr "GTail Tercihleri"
+msgstr "Tail Tercihleri"
 
-#: ../gtali/setup.c:253
+#: ../gtali/setup.c:217
 msgid "Human Players"
 msgstr "İnsan Oyuncular"
 
-#: ../gtali/setup.c:263
+#: ../gtali/setup.c:227
 msgid "_Number of players:"
 msgstr "_Oyuncu sayısı:"
 
-#: ../gtali/setup.c:277
+#: ../gtali/setup.c:241
 msgid "Computer Opponents"
 msgstr "Bilgisayar Rakipler"
 
 #. --- Button ---
-#: ../gtali/setup.c:284
+#: ../gtali/setup.c:248
 msgid "_Delay between rolls"
 msgstr "_Atışlar arası süre"
 
-#: ../gtali/setup.c:294
+#: ../gtali/setup.c:258
 msgid "N_umber of opponents:"
 msgstr "_Rakip sayısı:"
 
 #. --- PLAYER NAMES FRAME ----
-#: ../gtali/setup.c:308
+#: ../gtali/setup.c:272
 msgid "Player Names"
 msgstr "Oyuncu İsimleri"
 
-#: ../gtali/yahtzee.c:69
+#: ../gtali/yahtzee.c:68
 msgid "1s [total of 1s]"
 msgstr "1'ler [1'lerin toplamı]"
 
-#: ../gtali/yahtzee.c:70
+#: ../gtali/yahtzee.c:69
 msgid "2s [total of 2s]"
 msgstr "2'ler [2'lerin toplamı]"
 
-#: ../gtali/yahtzee.c:71
+#: ../gtali/yahtzee.c:70
 msgid "3s [total of 3s]"
 msgstr "3'ler [3'lerin toplamı]"
 
-#: ../gtali/yahtzee.c:72
+#: ../gtali/yahtzee.c:71
 msgid "4s [total of 4s]"
 msgstr "4'ler [4'lerin toplamı]"
 
-#: ../gtali/yahtzee.c:73
+#: ../gtali/yahtzee.c:72
 msgid "5s [total of 5s]"
 msgstr "5'ler [5'lerin toplamı]"
 
-#: ../gtali/yahtzee.c:74
+#: ../gtali/yahtzee.c:73
 msgid "6s [total of 6s]"
 msgstr "6'lar [6'ların toplamı]"
 
 #. End of upper panel
-#: ../gtali/yahtzee.c:76
+#: ../gtali/yahtzee.c:75
 msgid "3 of a Kind [total]"
 msgstr "3 tane aynı [toplam]"
 
-#: ../gtali/yahtzee.c:77
+#: ../gtali/yahtzee.c:76
 msgid "4 of a Kind [total]"
 msgstr "4 tane aynı [toplam]"
 
-#: ../gtali/yahtzee.c:78
+#: ../gtali/yahtzee.c:77
 msgid "Full House [25]"
 msgstr "Dolu Ev [25]"
 
-#: ../gtali/yahtzee.c:79
+#: ../gtali/yahtzee.c:78
 msgid "Small Straight [30]"
 msgstr "Küçük Düz [30]"
 
-#: ../gtali/yahtzee.c:80
+#: ../gtali/yahtzee.c:79
 msgid "Large Straight [40]"
 msgstr "Büyük Düz [40]"
 
-#: ../gtali/yahtzee.c:81
+#: ../gtali/yahtzee.c:80
 msgid "5 of a Kind [50]"
 msgstr "5 Tane Aynısından [50]"
 
-#: ../gtali/yahtzee.c:82
+#: ../gtali/yahtzee.c:81
 msgid "Chance [total]"
 msgstr "Şans [toplam]"
 
 #. End of lower panel
-#: ../gtali/yahtzee.c:84
+#: ../gtali/yahtzee.c:83
 msgid "Lower Total"
 msgstr "Aşağı Toplam"
 
-#: ../gtali/yahtzee.c:85
+#: ../gtali/yahtzee.c:84
 msgid "Grand Total"
 msgstr "Büyük Toplam"
 
 #. Need to squish between upper and lower pannel
-#: ../gtali/yahtzee.c:87
+#: ../gtali/yahtzee.c:86
 msgid "Upper total"
 msgstr "Yukarı Toplam"
 
-#: ../gtali/yahtzee.c:88
+#: ../gtali/yahtzee.c:87
 msgid "Bonus if >62"
 msgstr "62'den büyükse bonus"
 
-#: ../gtali/yahtzee.c:187
+#: ../gtali/yahtzee.c:186
 msgid "Choose a score slot."
 msgstr ""
 
-#: ../gtali/yahtzee.c:456
+#: ../gtali/yahtzee.c:455
 msgid "How many times do you wish to roll?"
 msgstr "Kaç tur zar atmak istiyorsunuz?"
 
-#: ../gtali/yahtzee.c:461
+#: ../gtali/yahtzee.c:460
 msgid "Generating ..."
 msgstr "Oluşturuluyor..."
 
-#: ../gtali/yahtzee.c:496
+#: ../gtali/yahtzee.c:495
 msgid "Results"
 msgstr "Sonuçlar"
 
-#: ../gtali/yahtzee.c:496
+#: ../gtali/yahtzee.c:495
 msgid "Num Rolls"
 msgstr "Atış Sayısı"
 
-#: ../gtali/yahtzee.c:496
+#: ../gtali/yahtzee.c:495
 msgid "Total"
 msgstr "Toplam"
 
-#: ../iagno/gnothello.c:107
+#: ../iagno/gnothello.c:109
 msgid "Iagno server to use"
 msgstr "Kullanılacak Iagno sunucusu"
 
-#: ../iagno/gnothello.c:114
+#: ../iagno/gnothello.c:116
 msgid "New Net_work Game"
 msgstr "Yeni _Ağ Oyunu"
 
-#: ../iagno/gnothello.c:265 ../iagno/gnothello.c:588
-#: ../iagno/iagno.desktop.in.h:1 ../iagno/iagno.soundlist.in.h:2
+#: ../iagno/gnothello.c:249 ../iagno/gnothello.c:581
+#: ../iagno/iagno.desktop.in.h:2 ../iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Iagno"
 
-#: ../iagno/gnothello.c:268
+#: ../iagno/gnothello.c:253
 msgid "A disk flipping game derived from Reversi."
 msgstr "Reversi'den türetilmiş bir disk atlama oyunu."
 
-#: ../iagno/gnothello.c:647
+#: ../iagno/gnothello.c:643
 msgid "Welcome to Iagno!"
 msgstr "Iagno'ya Hoşgeldiniz!"
 
-#: ../iagno/gnothello.c:655 ../iagno/gnothello.c:657
+#: ../iagno/gnothello.c:651 ../iagno/gnothello.c:653
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
 
-#: ../iagno/iagno.desktop.in.h:2
-msgid "Play a game of Reversi"
-msgstr "Reversi'nin oyununu oynayın"
+#: ../iagno/iagno.desktop.in.h:1
+msgid "Dominate the board in a classic version of Reversi"
+msgstr ""
 
 #: ../iagno/iagno.soundlist.in.h:1
 msgid "Game over"
@@ -4802,11 +4667,11 @@ msgstr "Geçersiz oyun verisi (eş_ayarı)"
 msgid "Invalid game data (move)"
 msgstr "Geçersiz oyun verisi (taşıma)"
 
-#: ../iagno/othello.c:680
+#: ../iagno/othello.c:712
 msgid "Light must pass, Dark's move"
 msgstr "Beyaz pas geçmeli, Siyah'ın sırası"
 
-#: ../iagno/othello.c:686
+#: ../iagno/othello.c:718
 msgid "Dark must pass, Light's move"
 msgstr "Siyah pas geçmeli, Beyaz'ın sırası"
 
@@ -4842,13 +4707,17 @@ msgstr "_Yanıp sönme"
 msgid "S_how grid"
 msgstr "_Izgaraları göster"
 
+#: ../iagno/properties.c:675
+msgid "_Flip final results"
+msgstr "Son _sonuçları döndür"
+
 #: ../libgames-support/games-card-selector.c:52
 msgid "Card Style"
 msgstr "Kart Stili"
 
 #: ../libgames-support/games-controls.c:158
 #: ../libgames-support/games-controls.c:332
-#: ../libgames-support/games-controls.c:411
+#: ../libgames-support/games-controls.c:397
 msgid "No key"
 msgstr "Tuş yok"
 
@@ -4856,7 +4725,7 @@ msgstr "Tuş yok"
 msgid "<Press a Key>"
 msgstr "<Bir Tuşa Basın>"
 
-#: ../libgames-support/games-controls.c:398
+#: ../libgames-support/games-controls.c:384
 msgid "Unknown Command"
 msgstr "Bilinmeyen Komut"
 
@@ -4937,12 +4806,8 @@ msgid "Status"
 msgstr "Durum"
 
 #: ../libgames-support/games-network-dialog.c:141
-msgid ""
-"Select a nickname and connection method\n"
-"then click Connect."
-msgstr ""
-"Takma isim ve bağlantı yöntemi seçin\n"
-"sonra Bağlan'a tıklayın."
+msgid "Select a nickname and connection method then click Connect."
+msgstr "Takma isim ve bağlantı yöntemi seçin sonra Bağlan'a tıklayın."
 
 #. Now for the network connection options.
 #: ../libgames-support/games-network-dialog.c:145
@@ -4973,6 +4838,11 @@ msgstr "Yerel oyuna katıl"
 msgid "_Local games:"
 msgstr "_Yerel oyunlar:"
 
+#. Add the players nickname entry.
+#: ../libgames-support/games-network-dialog.c:264
+msgid "Identification"
+msgstr "Kimlik"
+
 #: ../libgames-support/games-network-dialog.c:266
 msgid "_Nickname:"
 msgstr "_Takma isim:"
@@ -4990,64 +4860,64 @@ msgstr "_Bağlan"
 msgid "_Start Game"
 msgstr "_Oyunu Başlat"
 
-#: ../libgames-support/games-network-dialog.c:331
+#: ../libgames-support/games-network-dialog.c:332
 msgid "Please supply a nickname."
 msgstr "Lütfen bir takma ad belirtin."
 
-#: ../libgames-support/games-network-dialog.c:345
+#: ../libgames-support/games-network-dialog.c:346
 msgid "No local game selected."
 msgstr "Hiçbir yerel oyun seçilmedi."
 
-#: ../libgames-support/games-network-dialog.c:367
+#: ../libgames-support/games-network-dialog.c:368
 msgid "A new gnome games server was successfully started."
 msgstr "Yeni bir gnome oyun sunucusu başarıyla başlatıldı."
 
-#: ../libgames-support/games-network.c:123
+#: ../libgames-support/games-network.c:148
 msgid "Network initialization complete."
 msgstr "Ağı ilklendirmesi başarılı."
 
-#: ../libgames-support/games-network.c:133
+#: ../libgames-support/games-network.c:158
 msgid "Network shutdown in progress."
 msgstr "Ağ kapatımı işlem halinde."
 
 #. Shut down the connection, either it was broken or someone is messing with us
-#: ../libgames-support/games-network.c:256
+#: ../libgames-support/games-network.c:284
 msgid "The remote player disconnected"
 msgstr "Uzaktaki oyuncu bağlantısını kesti"
 
-#: ../libgames-support/games-network.c:276
+#: ../libgames-support/games-network.c:307
 msgid "Error occurred during connect attempt."
 msgstr "Bağlantı denemesi sırasında hata oluştu."
 
-#: ../libgames-support/games-network.c:278
-#: ../libgames-support/games-network.c:364
+#: ../libgames-support/games-network.c:309
+#: ../libgames-support/games-network.c:395
 msgid "Connection succeeded, waiting for opponent"
 msgstr "Bağlantı başarılı, rakip bekleniyor"
 
-#: ../libgames-support/games-network.c:288
+#: ../libgames-support/games-network.c:319
 msgid "Error occurred during write."
 msgstr "Yazılırken hata oluştu."
 
-#: ../libgames-support/games-network.c:343
+#: ../libgames-support/games-network.c:374
 msgid "Cleaning up connection"
 msgstr "Bağlantı temizleniyor"
 
-#: ../libgames-support/games-network.c:355
+#: ../libgames-support/games-network.c:386
 msgid "Connection in progress..."
 msgstr "Bağlantı işliyor..."
 
-#: ../libgames-support/games-network.c:359
+#: ../libgames-support/games-network.c:390
 msgid "Connection failed"
 msgstr "Bağlantı başarısızlıkla sonuçlandı"
 
-#: ../libgames-support/games-network.c:387
+#: ../libgames-support/games-network.c:418
 msgid "No game server defined"
 msgstr "Oyun sunucusu yanımlanmamış"
 
-#: ../libgames-support/games-network.c:480
-#: ../libgames-support/games-network.c:653
-#: ../libgames-support/games-network.c:661
-#: ../libgames-support/games-network.c:689
+#: ../libgames-support/games-network.c:705
+#: ../libgames-support/games-network.c:1110
+#: ../libgames-support/games-network.c:1118
+#: ../libgames-support/games-network.c:1146
 msgid ""
 "Local Area Network game could not be started. \n"
 "Try running mDNSResponder."
@@ -5055,28 +4925,28 @@ msgstr ""
 "Yerel Alan Ağı oyunu başlatılamadı. \n"
 "mDNSResponder çalıştırmayı deneyin."
 
-#: ../libgames-support/games-preimage.c:165
-#: ../libgames-support/games-preimage.c:258
+#: ../libgames-support/games-preimage.c:135
 msgid "Image rendering failed."
 msgstr "Resim taraması başarısız oldu."
 
+#. Note that this assumes the default style is plain.
+#: games-scores-dialog.gob:364 games-scores-dialog.gob:450
+#: ../libgames-support/games-scores-dialog.gob:364
+#: ../libgames-support/games-scores-dialog.gob:450
+msgid "Score"
+msgstr "Puan"
+
 #. Translators: this is for a minutes, seconds time display.
-#: ../libgames-support/games-scores-dialog.gob:157
+#: games-scores-dialog.gob:214 ../libgames-support/games-scores-dialog.gob:214
 #, c-format
 msgid "%dm %ds"
 msgstr "%dd %ds"
 
-#. Note that this assumes the default style is plain.
-#: ../libgames-support/games-scores-dialog.gob:298
-#: ../libgames-support/games-scores-dialog.gob:384
-msgid "Score"
-msgstr "Puan"
-
-#: ../libgames-support/games-scores-dialog.gob:379
+#: games-scores-dialog.gob:445 ../libgames-support/games-scores-dialog.gob:445
 msgid "Time"
 msgstr "Zaman"
 
-#: ../libgames-support/games-scores-dialog.gob:482
+#: games-scores-dialog.gob:546 ../libgames-support/games-scores-dialog.gob:546
 msgid "New Game"
 msgstr "Yeni Oyun"
 
@@ -5130,25 +5000,17 @@ msgstr "_Oyunu Bitir"
 msgid "_Contents"
 msgstr "İ_çindekiler"
 
-#: ../libgames-support/games-stock.c:99
-msgid "Start a new game"
-msgstr "Yeni bir oyun başlat"
-
-#: ../libgames-support/games-stock.c:100
+#: ../libgames-support/games-stock.c:100 ../mahjongg/mahjongg.c:1311
 msgid "Pause the game"
 msgstr "Oyunu duraklat"
 
-#: ../libgames-support/games-stock.c:101
+#: ../libgames-support/games-stock.c:101 ../mahjongg/mahjongg.c:1312
 msgid "Resume the paused game"
 msgstr "Duraklatılmış oyunu devam ettir"
 
 #: ../libgames-support/games-stock.c:102
 msgid "Restart the game"
 msgstr "Oyunu yeniden başlat"
-
-#: ../libgames-support/games-stock.c:103
-msgid "Undo the last move"
-msgstr "Son hareketi geri al"
 
 #: ../libgames-support/games-stock.c:104
 msgid "Redo the undone move"
@@ -5238,7 +5100,7 @@ msgstr ""
 "\n"
 "Lütfen Mahjongg'un tam olarak kurulu olup olmadığını kontrol edin."
 
-#: ../mahjongg/drawing.c:429
+#: ../mahjongg/drawing.c:431
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -5251,7 +5113,7 @@ msgstr ""
 "\n"
 "Lütfen Mahjongg'un tam olarak kurulu olup olmadığını kontrol edin."
 
-#: ../mahjongg/drawing.c:432
+#: ../mahjongg/drawing.c:434
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -5264,7 +5126,7 @@ msgstr ""
 "\n"
 "Bunun yerine öntanımlı döşeme kümesi yüklenecek."
 
-#: ../mahjongg/drawing.c:449
+#: ../mahjongg/drawing.c:451
 #, c-format
 msgid ""
 "Unable to render file:\n"
@@ -5277,11 +5139,11 @@ msgstr ""
 "\n"
 "Lütfen Mahjongg'un tam olarak kurulu olup olmadığını kontrol edin."
 
-#: ../mahjongg/mahjongg.c:137
+#: ../mahjongg/mahjongg.c:138
 msgid "Could not load tile set"
 msgstr "Döşeme kümesi yüklenemedi"
 
-#: ../mahjongg/mahjongg.c:361
+#: ../mahjongg/mahjongg.c:374
 msgid ""
 "Do you want to finish the current game or start playing with the new map "
 "immediately?"
@@ -5289,7 +5151,7 @@ msgstr ""
 "Mevcut oyunu bitirmek mi istiyorsunuz yoksa yeni bir harita ile hemen oyuna "
 "başlamak mı istiyorsunuz?"
 
-#: ../mahjongg/mahjongg.c:362
+#: ../mahjongg/mahjongg.c:375
 msgid ""
 "If you choose to finish with the old map then the next game will use the new "
 "map."
@@ -5297,79 +5159,77 @@ msgstr ""
 "Eğer eski harita ile oyunu bitirirseniz sonraki oyun yeni haritayı "
 "kullanacak."
 
-#: ../mahjongg/mahjongg.c:364
+#: ../mahjongg/mahjongg.c:377
 msgid "_Finish"
 msgstr "_Bitir"
 
-#: ../mahjongg/mahjongg.c:644
+#: ../mahjongg/mahjongg.c:657
 msgid "Shuffle"
 msgstr "Karıştır"
 
-#: ../mahjongg/mahjongg.c:679 ../mahjongg/mahjongg.c:978
-#, fuzzy
+#: ../mahjongg/mahjongg.c:693 ../mahjongg/mahjongg.c:1010
 msgid "Mahjongg Scores"
-msgstr "Mahjongg"
+msgstr "Mahjongg Puanları"
 
-#: ../mahjongg/mahjongg.c:681 ../mahjongg/mahjongg.c:980
-#, fuzzy
+#: ../mahjongg/mahjongg.c:695 ../mahjongg/mahjongg.c:1012
 msgid "Map:"
-msgstr "Haritalar:"
+msgstr "Harita:"
 
-#: ../mahjongg/mahjongg.c:719
+#: ../mahjongg/mahjongg.c:733
 msgid "Mahjongg Preferences"
 msgstr "Mahjongg Tercihleri"
 
-#: ../mahjongg/mahjongg.c:740
+#: ../mahjongg/mahjongg.c:754
 msgid "Tiles"
 msgstr "Desenler"
 
-#: ../mahjongg/mahjongg.c:763
+#: ../mahjongg/mahjongg.c:777
 msgid "Maps"
 msgstr "Haritalar"
 
-#: ../mahjongg/mahjongg.c:770
+#: ../mahjongg/mahjongg.c:784
 msgid "_Select map:"
 msgstr "_Harita seç:"
 
-#: ../mahjongg/mahjongg.c:786
+#: ../mahjongg/mahjongg.c:800
 msgid "Colors"
 msgstr "Renkler"
 
-#: ../mahjongg/mahjongg.c:912
+#: ../mahjongg/mahjongg.c:928
 msgid "Maps:"
 msgstr "Haritalar:"
 
-#: ../mahjongg/mahjongg.c:916
+#: ../mahjongg/mahjongg.c:935
 msgid "Tiles:"
 msgstr "Desenler:"
 
-#: ../mahjongg/mahjongg.c:926 ../mahjongg/mahjongg.c:992
+#: ../mahjongg/mahjongg.c:950 ../mahjongg/mahjongg.c:1024
 #: ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: ../mahjongg/mahjongg.c:928
+#: ../mahjongg/mahjongg.c:952
 msgid "A matching game played with Mahjongg tiles."
 msgstr "Mahjongg taşları ile oynanan bir eşleme oyunu."
 
-#: ../mahjongg/mahjongg.c:992
+#: ../mahjongg/mahjongg.c:1024
 #, c-format
 msgid "%s - %s"
 msgstr "%s - %s"
 
-#: ../mahjongg/mahjongg.c:1244
+#: ../mahjongg/mahjongg.c:1276
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Üzgünüm ama oynanabilir bir yapılandırma bulamıyorum."
 
-#: ../mahjongg/mahjongg.c:1429
+#: ../mahjongg/mahjongg.c:1469
 msgid "Tiles Left:"
 msgstr "Kalan Desen:"
 
-#: ../mahjongg/mahjongg.c:1438
+#: ../mahjongg/mahjongg.c:1478
 msgid "Moves Left:"
 msgstr "Kalan Hareket:"
 
-#: ../mahjongg/mahjongg.c:1500
+#: ../mahjongg/mahjongg.c:1540
 msgid "Remove matching pairs of tiles."
 msgstr "Eşleşen taş çiftlerini kaldır."
 
@@ -5393,46 +5253,13 @@ msgstr ""
 "Ana pencere için istenen piksel olarak genişlik. Pencerenin içerdiği "
 "parçaların genişliğinin en az 320 piksel olduğuna dikkat edin."
 
-#: ../mahjongg/maps.c:534
-#, fuzzy
+#: ../mahjongg/maps.c:81
 msgid "mahjongg|Easy"
-msgstr "Mahjongg"
-
-#: ../mahjongg/maps.c:535
-msgid "Difficult"
-msgstr "Zor"
-
-#: ../mahjongg/maps.c:536
-msgid "Confounding Cross"
-msgstr "Çapraz Oluşturma"
-
-#: ../mahjongg/maps.c:537
-msgid "Pyramid's Walls"
-msgstr "Piramidin Duvarları"
-
-#: ../mahjongg/maps.c:538
-msgid "Tic-Tac-Toe"
-msgstr "Tik-Tak-Toe"
-
-#: ../mahjongg/maps.c:539
-msgid "Cloud"
-msgstr "Bulut"
-
-#: ../mahjongg/maps.c:540
-msgid "Red Dragon"
-msgstr "Kırmızı Ejderha"
-
-#: ../mahjongg/maps.c:542
-msgid "Four Bridges"
-msgstr "Dört Köprü"
-
-#: ../mahjongg/maps.c:543
-msgid "The Ziggurat"
-msgstr "Ziggurat"
+msgstr "Basit"
 
 #. FIXME: This is long enough to resize the window upwards when
 #. * the game finishes.
-#: ../same-gnome/game.c:364
+#: ../same-gnome/game.c:367
 msgid "1000 point bonus for clearing the board!"
 msgstr "Tabloyu temizlediğiniz için 1000 puan bonus!"
 
@@ -5440,21 +5267,21 @@ msgstr "Tabloyu temizlediğiniz için 1000 puan bonus!"
 msgid "same-gnome|Medium"
 msgstr ""
 
-#: ../same-gnome/same-gnome.c:135
+#: ../same-gnome/same-gnome.c:139
 msgid "Set the theme"
 msgstr "Temayı ayarlayın"
 
-#: ../same-gnome/same-gnome.c:138
+#: ../same-gnome/same-gnome.c:141
 msgid "For backwards compatibility"
 msgstr "Geriye dönük uyumluluk için"
 
-#: ../same-gnome/same-gnome.c:140
+#: ../same-gnome/same-gnome.c:143
 msgid "Game size (1=small, 3=large)"
 msgstr "Oyun boyutu (1=küçük, 3=büyük)"
 
 #: ../same-gnome/same-gnome.desktop.in.h:1
-msgid "Remove groups of balls to try and clear the screen"
-msgstr "Denemek için top gruplarını silin ve ekranı temizleyin"
+msgid "Clear the screen by removing groups of colored balls"
+msgstr ""
 
 #: ../same-gnome/same-gnome.desktop.in.h:2
 msgid "Same GNOME"
@@ -5530,7 +5357,7 @@ msgstr[1] ""
 msgid "Score: %d"
 msgstr "Puan: %d"
 
-#: ../same-gnome/ui.c:109
+#: ../same-gnome/ui.c:112
 msgid ""
 "I want to play that game! You know, they all go whirly-round and you click "
 "on them and they vanish!"
@@ -5538,23 +5365,23 @@ msgstr ""
 "Bu oyunu oynamak istiyorum! Bilirsin, onlar ortalıkta dönerek dolaşırken "
 "üstüne tıklarsın ve kaybolurlar!"
 
-#: ../same-gnome/ui.c:121
+#: ../same-gnome/ui.c:128
 msgid "Same GNOME Scores"
 msgstr "GNOME Same Puanları"
 
-#: ../same-gnome/ui.c:146
+#: ../same-gnome/ui.c:153
 msgid "Unfortunately your score did not make the top ten."
 msgstr "Malesef puanınız en iyi on listesine yer bulamadı."
 
-#: ../same-gnome/ui.c:249
+#: ../same-gnome/ui.c:256
 msgid "Same GNOME Theme"
 msgstr "GNOME Same Teması"
 
-#: ../same-gnome/ui.c:430
+#: ../same-gnome/ui.c:437
 msgid "_Theme..."
 msgstr "_Tema..."
 
-#: ../same-gnome/ui.c:443
+#: ../same-gnome/ui.c:450
 msgid "_Fast Animation"
 msgstr "_Hızlı Canlandırma"
 
@@ -5569,3 +5396,298 @@ msgid ""
 msgstr ""
 "Oyunu oynamak imkansız. Lütfen oyunun doğru bir şekilde kurulduğundan emin "
 "olun ve tekrar deneyin."
+
+#~ msgid "Congratulations."
+#~ msgstr "Tebrikler."
+
+#~ msgid "No moves available"
+#~ msgstr "Hiç bir hareket kalmadı"
+
+#~ msgid " next to the "
+#~ msgstr "Temayı ayarlayın"
+
+#~ msgid "Place the "
+#~ msgstr "Oyunu duraklat"
+
+#~ msgid "Place something on to the empty tableau slot"
+#~ msgstr "Orta sıradaki boş yuvaya bir şeyler yerleştir"
+
+#~ msgid "Variation on game rules"
+#~ msgstr "Oyun kurallarında değişiklikler"
+
+#~ msgid "Compete to dominate the board in a Reversi-like game"
+#~ msgstr "Reversi-benzeri oyunda tahtaya hakim olmak için yarışın"
+
+#~ msgid "Flip final results"
+#~ msgstr "Son sonuçları döndür"
+
+#~ msgid "Tileset"
+#~ msgstr "Döşeme"
+
+#~ msgid "Whether or not to flip final results."
+#~ msgstr "Son sonuçlarındöndürülüp dödürülmeyeceği."
+
+#~ msgid ""
+#~ "Put all the white pieces at the bottom and all the black pieces on the "
+#~ "top of the board when a game is over"
+#~ msgstr ""
+#~ "Oyun bittiği zaman tüm beyaz parçaları tahtanın aşağısına, tüm siyah "
+#~ "parçaları datahtanın üstüne topla"
+
+#~ msgid "windows"
+#~ msgstr "pencereler"
+
+#~ msgid "Collect all diamonds and find exit"
+#~ msgstr "Bütün elmasları toplayın ve çıkışı bulun"
+
+#~ msgid "Congratulations!!! You have won!"
+#~ msgstr "Tebrikler!!! Kazandınız!"
+
+#~ msgid "Original Atari caves"
+#~ msgstr "Orjinal Atari mağarası"
+
+#~ msgid "gnome-stones:empty"
+#~ msgstr "gnome-stones:boş"
+
+#~ msgid "Default caves"
+#~ msgstr "Öntanımlı mağaralar"
+
+#~ msgid "Collect diamonds while avoiding falling boulders"
+#~ msgstr "Çukurlara duşmekten kaçınırken elmasları toplayın"
+
+#~ msgid "Stones"
+#~ msgstr "Taşlar"
+
+#~ msgid "Cave number to start"
+#~ msgstr "Başlangıç mağara numarası"
+
+#~ msgid "Cave number to start."
+#~ msgstr "Başlangıç mağara numarası."
+
+#~ msgid "Device to use for joystick control."
+#~ msgstr "Oyun çubuğu kontrolleri için kullanılacak aygıt."
+
+#~ msgid "Enable sound support"
+#~ msgstr "Ses desteğini etkinleştir"
+
+#~ msgid "Enable sound support."
+#~ msgstr "Ses desteğini etkinleştir."
+
+#~ msgid "Game name"
+#~ msgstr "Oyun adı"
+
+#~ msgid "Joystick device"
+#~ msgstr "Oyun çubuğu aygıtı"
+
+#~ msgid "Joystick switch level"
+#~ msgstr "Oyun çubuğu değişim seviyesi"
+
+#~ msgid "The full path and filename of game to load."
+#~ msgstr "Yüklenecek oyunun tam yolu ve dosya adı."
+
+#~ msgid ""
+#~ "The level an analog joystick must reach to be considered \"on\" when "
+#~ "emulating a digital joystick. This takes a value between 0.0 and 1.0."
+#~ msgstr ""
+#~ "Sayısal oyun çubuğu benzetimi yapılırken analog oyun çubuğu zorunlu "
+#~ "ulaşım seviyesi \"açık\" kabul edilecek. Bu 0,0 ve 1,0 arasında değer "
+#~ "alır."
+
+#~ msgid "Gnomekoban"
+#~ msgstr "Gnomekoban"
+
+#~ msgid "gnomekoban:empty,0"
+#~ msgstr "gnomekoban:boş,0"
+
+#~ msgid "The cave you are trying to load is too big for this game."
+#~ msgstr "Yüklemeye çalıştığınız mağara bu oyun için çok büyük."
+
+#~ msgid "The cave is corrupted: %s is missing."
+#~ msgstr "Mağara bozuk: %s eksik."
+
+#~ msgid ""
+#~ "The cave you are trying to load includes an object, that wasn't declared."
+#~ msgstr "Yüklemeye çalıştığınız mağara, tanımlanmamış bir obje içermekte."
+
+#~ msgid "This is GNOME Stones"
+#~ msgstr "GNOME Taşlar oyunu"
+
+#~ msgid "Game to play"
+#~ msgstr "Oynanacak oyun"
+
+#~ msgid "FILENAME"
+#~ msgstr "DOSYAADI"
+
+#~ msgid ""
+#~ "An error occurred while loading the image file \"%s\".\n"
+#~ "Please make sure that GNOME Stones is correctly installed!"
+#~ msgstr ""
+#~ "Resim dosyası \"%s\" yüklenirken bir hata oluştu.\n"
+#~ "Lütfen GNOME Taşlar oyununun doğru yüklendiğinden emin olun!"
+
+#~ msgid "GNOME Stones"
+#~ msgstr "GNOME Stones"
+
+#~ msgid "Game title"
+#~ msgstr "Oyun başlığı"
+
+#~ msgid "Start cave"
+#~ msgstr "Başlangıç mağarası"
+
+#~ msgid "Congratulations, you win!"
+#~ msgstr "Tebrikler, kazandınız!"
+
+#~ msgid "Sokoban levels:"
+#~ msgstr "Sokoban seviyeleri:"
+
+#~ msgid "Mine through dirt and collect gems."
+#~ msgstr "Toprağı kazıyın ve elmasları toplayın."
+
+#~ msgid "Scanning private object directory..."
+#~ msgstr "Özel nesne dizini taranıyor..."
+
+#~ msgid "Scanning public object directory..."
+#~ msgstr "Genel nesne dizini taranıyor..."
+
+#~ msgid "Scanning private game directory..."
+#~ msgstr "Özel oyun dizini taranıyor..."
+
+#~ msgid "Scanning public game directory..."
+#~ msgstr "Genel oyun dizini taranıyor..."
+
+#~ msgid "Restoring preferences..."
+#~ msgstr "Tercihler yükleniyor..."
+
+#~ msgid "You gained an extra life!"
+#~ msgstr "Fazladan bir can kazandınız!"
+
+#~ msgid "Seconds left: %d"
+#~ msgstr "Kalan saniyeler: %d"
+
+#~ msgid "Neither your chosen game nor the default game could be loaded."
+#~ msgstr "Ne sizin seçtiğiniz ne de öntanımlı oyun yüklenebildi."
+
+#~ msgid "Please make sure that GNOME Stones is correctly installed."
+#~ msgstr "Lütfen GNOME Stones oyununun doğru yüklendiğinden emin olun."
+
+#~ msgid ""
+#~ "You may be able to select a different game from the preferences dialog."
+#~ msgstr "Seçenekler penceresinden başla bir oyun seçebilirsiniz."
+
+#~ msgid "GNOME Stones Preferences"
+#~ msgstr "GNOME Stones Tercihleri"
+
+#~ msgid "Game Title"
+#~ msgstr "Oyun Başlığı"
+
+#~ msgid "Caves"
+#~ msgstr "Mağaralar"
+
+#~ msgid "Device"
+#~ msgstr "Aygıt"
+
+#~ msgid "_Joystick device:"
+#~ msgstr "_Oyun çubuğu aygıtı:"
+
+#~ msgid "Disabled"
+#~ msgstr "Kapalı"
+
+#~ msgid "Digital Joystick Emulation"
+#~ msgstr "_Sayısal Oyun Çubuğu Benzetimi"
+
+#~ msgid "_Switch level:"
+#~ msgstr "_Seviye değiştirme:"
+
+#~ msgid "Joystick"
+#~ msgstr "Oyun Çubuğu"
+
+#~ msgid "Enable sound"
+#~ msgstr "Sesi etkinleştir"
+
+#~ msgid "_Sound"
+#~ msgstr "_Ses"
+
+#~ msgid "Diamonds:"
+#~ msgstr "Elmaslar:"
+
+#~ msgid "Cave:"
+#~ msgstr "Mağara:"
+
+#~ msgid "Lives:"
+#~ msgstr "Canlar:"
+
+#~ msgid "Tutorial caves"
+#~ msgstr "Deneme mağaraları"
+
+#~ msgid "Whether to use sound"
+#~ msgstr "Ses kullanılması"
+
+#~ msgid "Whether to use sound."
+#~ msgstr "Ses kullanılıp kullanılmaması."
+
+#~ msgid ""
+#~ "Could not find the theme: \n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your gnome-games installation"
+#~ msgstr ""
+#~ "Tema bulunamadı:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Lütfen gnome-games kurulumunu kontrol edin"
+
+#~ msgid ""
+#~ "Can't load the image: \n"
+#~ "%s\n"
+#~ "\n"
+#~ "Please check your gnome-games installation"
+#~ msgstr ""
+#~ "Resim yüklenemedi:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Lütfen gnome-games kurulumunu kontrol edin"
+
+#~ msgid "Block image:"
+#~ msgstr "Blok resmi:"
+
+#~ msgid "Play a puzzle game matching tiles together"
+#~ msgstr "Parçaları eşleyerek bulmacayı çözün"
+
+#~ msgid "Solve puzzles by sliding blocks"
+#~ msgstr "Blokları kaydırarak bulmacaları çözün"
+
+#~ msgid "Calculate random die throws (debug)"
+#~ msgstr "Rastgele zar atışları hesapla (hata ayıklama)"
+
+#~ msgid "Show high scores and exit"
+#~ msgstr "Yüksek puanları göster ve çık"
+
+#~ msgid "Play a game of Reversi"
+#~ msgstr "Reversi'nin oyununu oynayın"
+
+#~ msgid "Difficult"
+#~ msgstr "Zor"
+
+#~ msgid "Confounding Cross"
+#~ msgstr "Çapraz Oluşturma"
+
+#~ msgid "Pyramid's Walls"
+#~ msgstr "Piramidin Duvarları"
+
+#~ msgid "Tic-Tac-Toe"
+#~ msgstr "Tik-Tak-Toe"
+
+#~ msgid "Cloud"
+#~ msgstr "Bulut"
+
+#~ msgid "Red Dragon"
+#~ msgstr "Kırmızı Ejderha"
+
+#~ msgid "Four Bridges"
+#~ msgstr "Dört Köprü"
+
+#~ msgid "The Ziggurat"
+#~ msgstr "Ziggurat"
+
+#~ msgid "Remove groups of balls to try and clear the screen"
+#~ msgstr "Denemek için top gruplarını silin ve ekranı temizleyin"
