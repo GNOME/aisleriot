@@ -38,6 +38,9 @@ G_BEGIN_DECLS
 
 /* These use stock gtk icons */
 #define GAMES_STOCK_NEW_GAME         "games-new-game"
+#define GAMES_STOCK_NETWORK_GAME     "games-network-game"
+#define GAMES_STOCK_NETWORK_LEAVE    "games-network-leave"
+#define GAMES_STOCK_PLAYER_LIST      "games-player-list"
 #define GAMES_STOCK_RESTART_GAME     "games-restart-game"
 #define GAMES_STOCK_UNDO_MOVE        "games-undo-move"
 #define GAMES_STOCK_REDO_MOVE        "games-redo-move"

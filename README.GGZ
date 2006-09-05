@@ -1,0 +1,173 @@
+The GGZ Gaming Zone - General Information
+=========================================
+
+Welcome to the GGZ Gaming Zone, a multiuser networked gaming
+environment. You're reading this file because it is either included in one
+of the packages of the GGZ Gaming Zone (or simply GGZ) or comes with
+a game which can be played on GGZ.
+
+This project is still in the development phase, and as
+such may have some bugs.  It may not even compile or run on your
+machine (although we do our best to make sure it does).  If you are
+interested in assisting with development or in writing a module for
+your favorite game, please let us know at:
+<ggz-dev@mail.ggzgamingzone.org>.
+
+The server currently supports nineteen different game types, including
+Spades, Tic-Tac-Toe, Chess, Reversi, and others.  Players can create
+accounts, login, and play games in any one of multiple game rooms.
+Sometimes they can even watch other players.
+More game servers are available in experimental state or as part of
+other projects.
+
+If you're a game developer, make sure your game includes GGZ support!
+A list of free game projects already supporting GGZ can be found on our
+homepage.
+
+The project homepage is located here:
+http://www.ggzgamingzone.org/
+
+An online player ranking system with tournaments, browser game access
+and other community tools is available here:
+https://www.ggzcommunity.org/
+
+Developers can find more information (SVN, mailing lists, i18n) at:
+http://dev.ggzgamingzone.org/
+
+It is highly recommended to subscribe to the low-traffic ggz-announce
+mailing list!
+https://mail.ggzgamingzone.org/cgi-bin/mailman/listinfo
+
+
+Downloading
+===========
+You can always download the latest released version of GGZ from our
+homepage at http://ggzgamingzone.org/, or for the absolute bleeding
+edge you can check out the sources via anonymous SVN (instructions are
+at the aforementioned homepage).  GGZ is comprised of several
+components, each of which is packaged separately for maximum
+flexibility.  The components are:
+
+- The libggz library
+
+  This is a library of common function calls for client/server
+  communication and utily functions.  It is distributed in source form
+  as libggz-X.X.X.tar.gz, where X.X.X is the version number.  The
+  easysock library has been merged into libggz.
+
+- Common client libraries
+
+  This is the set of libraries common to all clients.  The source is
+  available as ggz-client-libs-X.X.X.tar.gz where X.X.X is the
+  version number.  This includes ggzcore and ggzmod.
+
+- GGZ clients
+
+  This is the core client program that lets you log into a GGZ server,
+  chat with friends, move between rooms and launch tables (the actual
+  games are distributed separately).  It is our goal to provide
+  frontends for all environments.  We currently have a Gtk+ client, a
+  KDE client, a GNOME client, a SDL client, and a simple text-only client.
+  These are available as ggz-YYY-client-X.X.X.tar.gz where YYY is one
+  of kde, gtk, gnome, or txt, and X.X.X is the version number.
+  The SDL client is part of the ggz-python-X.X.X.tar.gz package.
+  Special client programs exist for IM clients and embedded into games.
+
+- GGZ game client modules
+
+  To make it easy to add more games without having to recompile GGZ,
+  we distribute games as modules.  Each frontend (kde, gtk, etc) has
+  separate modules, but you can mix and match as you like.  Every GGZ
+  module should work with every GGZ client (within reason.  You can't
+  expect X-based games to work on a text console, of course).  The
+  games are distributed as ggz-YYY-games-X.X.X.tar.gz where YYY is kde
+  or gtk or sdl, and X.X.X is the version number.
+  Some SDL games are available in the ggz-python-X.X.X.tar.gz package.
+  One text game is included in the text client package.
+
+- Python module
+
+  Game development using the Python programming language is supported
+  through the pyggzmod, pyggzdmod and pyggzcoresimple wrappers.
+  This package is distributed as ggz-python-X.X.X.tar.gz, where X.X.X
+  is the version number.
+  It also contains a core client and serveral game clients and
+  servers.
+
+- Java module
+
+  Both a core client and a game framework are contained in this package,
+  which has the primary purpose of being run as an applet.
+  The package is distributed as ggz-java-X.X.X.tar.gz where XXX
+  is the version number.
+
+- The GGZ server
+
+  This is the software for setting up and managing a GGZ server
+  installation, including the server game modules.  Note that if you
+  only want to play games on an existing server, you do not need to
+  download this.  The GGZ server is distributed as
+  ggz-server-X.X.X.tar.gz where X.X.X is the version number.
+  This package also includes ggzdmod.
+  The C++ wrapper for ggzdmod, named ggzdmod++, is also included now.
+
+- Additional software
+
+  If you want to experience everything of GGZ, try this out.
+  The current additional packages are grubby (our chat bot), available
+  as ggz-grubby-X.X.X.tar.gz, and various utilities, ggz-utils.X.X.X.
+  For the very bleeding edge, some more (not distributed) software
+  can be found in the playground SVN module.
+  The web pages are also kept in SVN (module www), but not part of the
+  releases. The rankings/tournament web pages are also available there
+  (module community), and is part of the release as ggz-community.X.X.X.
+
+- Documentation
+
+  A whole bunch of documentation, including the GGZ hosting guide and
+  the GGZ development guide, as well as information on the various
+  games and the project itself can be found in ggz-docs-X.X.X.
+
+
+Compiling and Installing
+========================
+For more detailed instructions on configuring and installing each
+of GGZ components, please read the INSTALL file in each of the
+respective source directories.  For an overview of the installation
+process, please read the QuickStart.GGZ file.
+
+
+Running
+=======
+You must have access to a running server for the client to be of any
+use to you.  The server does not have to be running on your machine,
+however, if you have no (or slow!) network access, you may want to run
+both the client and the server locally.  If you choose to install the
+GGZ server, you may launch it simply by running the command 'ggzd -F'.
+This will start the server listening on port of 5688 (ggz).
+You can find a list of GGZ servers on our homepage, or query to GGZ
+metaserver to get this information.
+
+The command to launch the client will vary, depending on the
+particular flavor you have installed.  For example, the Gtk+ client is
+started by running 'ggz-gtk', whereas the KDE client is started by
+running 'kggz'.  Once the client is running you should be able to log
+into a running GGZ server and begin playing! (Provided you have
+installed some games as well).
+
+
+Bugs
+====
+Bugs in our code?  Never! :)  But if you do happen to find one, you
+can report it at https://bugs.ggzgamingzone.org/ or feel
+free to contact us at the email address below.
+
+
+Please let us know if you have any problems, comments, feedback. etc.
+
+
+Enjoy!
+--The GGZ Development Team
+<ggz-dev@mail.ggzgamingzone.org>
+
+

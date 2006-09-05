@@ -101,78 +101,9 @@ PKG_CHECK_MODULES(GLADE, libglade-2.0 gmodule-2.0)
 AC_SUBST(GLADE_CFLAGS)
 AC_SUBST(GLADE_LIBS)
 
-msg_zeroconf="none"
 
-## Flags for Avahi. Use of this library is optional and mutually exclusive with Howl and Bonjour.
-AC_ARG_ENABLE(avahi, [  --disable-avahi        build without avahi support])
-if test "x$enable_avahi" != "xno"; then
-	if test "x${HOWL_LIBS}" != "x"; then
-		echo "WARNING: Bonjour, Avahi and Howl are mutually exclusive. Using Avahi."
-		HOWL_CFLAGS=""
-		HOWL_LIBS=""
-	fi
-PKG_CHECK_MODULES(AVAHI, avahi-client >= $AVAHI_REQUIRED avahi-glib >= $AVAHI_REQUIRED, [ AVAHI_EXTRA_CFLAGS="-DHAVE_ZEROCONF -DHAVE_AVAHI" msg_zeroconf="avahi" ],
-			  [ msg_zeroconf="none" ])
-        AVAHI_CFLAGS="${AVAHI_CFLAGS} ${AVAHI_EXTRA_CFLAGS}"
-	AC_SUBST(AVAHI_CFLAGS)
-	AC_SUBST(AVAHI_LIBS)
-fi
-
-## Flags for Howl. Use of this library is optional and mutually exclusive with Avahi and Bonjour.
-AC_ARG_ENABLE(howl, [  --enable-howl          build with howl support])
-if test "x$enable_howl" = "xyes"; then
-	PKG_CHECK_MODULES(HOWL, howl >= 0.9.6, [ HOWL_EXTRA_CFLAGS="-DHAVE_ZEROCONF -DHAVE_HOWL" msg_zeroconf="howl" ],)
-        HOWL_CFLAGS="${HOWL_CFLAGS} ${HOWL_EXTRA_CFLAGS}"
-	AC_SUBST(HOWL_CFLAGS)
-	AC_SUBST(HOWL_LIBS)
-fi
-
-## Flags for Bonjour. Use of this library is optional and mutually exclusive with Howl and Avahi.
-AC_ARG_ENABLE(bonjour, [  --enable-bonjour        build with bonjour support])
-if test "x$enable_bonjour" = "xyes"; then
-	if test "x${HOWL_LIBS}" != "x"; then
-		echo "WARNING: Bonjour, Avahi and Howl are mutually exclusive. Using Bonjour."
-		HOWL_CFLAGS=""
-		HOWL_LIBS=""
-	fi
-	if test "x${Avahi_LIBS}" != "x"; then
-		echo "WARNING: Bonjour, Avahi and Howl are mutually exclusive. Using Bonjour."
-		AVAHI_CFLAGS=""
-		AVAHI_LIBS=""
-	fi
-	CPPFLAGS_save="$CPPFLAGS"
-	LDFLAGS_save="$LDFLAGS"
-	AC_ARG_WITH(bonjour-includes, [  --with-bonjour-includes=PREFIX     Location of Bonjour includes.],  with_bonjour_includes="$withval", with_bonjour_includes="/usr/include")
-
-	CPPFLAGS="$CPPFLAGS -I$with_bonjour_includes"
-	AC_CHECK_HEADER(dns_sd.h, , AC_MSG_ERROR([Unable to find Bonjour includes]))
-	CPPFLAGS="$CPPFLAGS_save"
-
-	if test x$with_bonjour_includes != x/usr/include; then
-		BONJOUR_CFLAGS="-I$with_bonjour_includes -DHAVE_ZEROCONF -DHAVE_BONJOUR"
-	else
-		BONJOUR_CFLAGS="-DHAVE_ZEROCONF -DHAVE_BONJOUR"
-	fi
-
-	AC_ARG_WITH(bonjour-libs, [  --with-bonjour-libs=PREFIX     	Location of Bonjour libs.],
-				  with_bonjour_libs="$withval", with_bonjour_libs="/usr/lib")
-
-	LDFLAGS="$LDFLAGS -L$with_bonjour_libs -ldns_sd"
-	AC_TRY_LINK_FUNC(DNSServiceResolve, , AC_MSG_ERROR([Unable to find Bonjour libs]))
-	LDFLAGS="$LDFLAGS_save"
-
-	if test x$with_bonjour_libs != x/usr/lib; then
-		BONJOUR_LIBS="-L$with_bonjour_libs -ldns_sd"
-	else
-		BONJOUR_LIBS="-ldns_sd"
-	fi
-
-	msg_zeroconf="bonjour"
-	AC_DEFINE(HAVE_BONJOUR, 1, [Define to 1 if Bonjour is available and desired])
-
-	AC_SUBST(BONJOUR_CFLAGS)
-	AC_SUBST(BONJOUR_LIBS)
-fi
+dnl Check for GGZ
+AC_GGZ_CHECK("gtk")
 
 GNOME_GAMES_CXXFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CXXFLAGS"
 GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS -I\$(top_srcdir)/libgames-support $WARN_CFLAGS"
@@ -354,6 +285,8 @@ blackjack/src/Makefile
 gnect/Makefile
 gnect/src/Makefile
 gnect/data/Makefile
+gnect/data/gnect-client.dsc
+gnect/data/gnect-server.dsc
 gnect/pixmaps/Makefile
 gnect/help/Makefile
 gnect/help/C/Makefile
@@ -372,6 +305,8 @@ gtali/help/Makefile
 gtali/help/C/Makefile
 gtali/help/da/Makefile
 iagno/Makefile
+iagno/iagno-client.dsc
+iagno/iagno-server.dsc
 iagno/sounds/Makefile
 iagno/help/Makefile
 iagno/help/C/Makefile
@@ -399,6 +334,8 @@ gnobots2/help/da/Makefile
 gnobots2/help/es/Makefile
 gnobots2/help/it/Makefile
 gnibbles/Makefile
+gnibbles/gnibbles-client.dsc
+gnibbles/gnibbles-server.dsc
 gnibbles/help/Makefile
 gnibbles/help/C/Makefile
 gnibbles/pix/Makefile
@@ -427,7 +364,9 @@ Configuration:
         Scores user                        ${scores_user}
         Scores & setgid group              ${scores_group}
 
-        Zeroconf support:                  ${msg_zeroconf}
+        GGZ Gaming Zone client support:    ${ggz_client}
+        GGZ Gaming Zone server support:    ${ggz_server}
+
 "
 
 if grep -q "$scores_group:" /etc/group ; then

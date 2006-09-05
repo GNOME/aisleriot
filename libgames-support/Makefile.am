@@ -18,16 +18,8 @@ INCLUDES =							\
 	-DICONDIR=\""$(icondir)"\"				\
 	-DSCORESDIR=\""$(scoredir)"\"				\
 	-DGCONF_SCHEMA_CONFIG_SOURCE=\""$(GCONF_SCHEMA_CONFIG_SOURCE)"\" \
-	$(HOWL_CFLAGS) \
-	$(AVAHI_CFLAGS) \
-	$(BONJOUR_CFLAGS) \
 	$(WARN_CFLAGS)						\
 	$(GNOME_GAMES_CFLAGS)
-
-libgames_support_la_LDFLAGS= $(HOWL_LIBS) $(BONJOUR_LIBS)
-
-
-bin_SCRIPTS = games-server.py
 
 GOB_FILES= \
 	games-scores-dialog.gob		\
@@ -39,9 +31,19 @@ GOB_SOURCE= \
 	games-scores-dialog-private.h	\
 	$(NULL)
 
+if GGZ_CLIENT
+GGZ_DIALOGS = \
+	games-dlg-chat.c		\
+	games-dlg-chat.h		\
+	games-dlg-players.c		\
+	games-dlg-players.h		\
+	$(NULL)	
+endif
+
 libgames_support_la_SOURCES =		\
 	$(GOB_FILES)			\
 	$(GOB_SOURCE)			\
+	$(GGZ_DIALOGS)			\
 	games-clock.c			\
 	games-clock.h			\
 	games-gconf.c			\
@@ -63,10 +65,6 @@ libgames_support_la_SOURCES =		\
 	games-card-selector.h		\
 	games-controls.c		\
 	games-controls.h		\
-	games-network.c			\
-	games-network.h			\
-        games-network-dialog.c          \
-        games-network-dialog.h          \
         games-preimage.c                \
         games-preimage.h                \
 	games-setgid-io.c		\
@@ -93,6 +91,6 @@ if GCONF_SCHEMAS_INSTALL
         GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/libgames-support/$(schema_DATA)
 endif
 
-EXTRA_DIST = $(card_DATA) $(icon_DATA) $(bin_SCRIPTS) $(schema_in_files) $(GOB_SOURCE)
+EXTRA_DIST = $(card_DATA) $(icon_DATA) $(schema_in_files) $(GOB_SOURCE)
 
 DISTCLEANFILES = $(schema_DATA)

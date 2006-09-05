@@ -19,6 +19,25 @@ which gnome-autogen.sh || {
     exit 1
 }
 
-REQUIRED_AUTOMAKE_VERSION=1.7
+REQUIRED_AUTOMAKE_VERSION=1.7.2
 
+# Dont't run configure yet, ...
+GNM_NOCONFIGURE=$NOCONFIGURE
+NOCONFIGURE=1
 USE_GNOME2_MACROS=1 ACLOCAL_FLAGS="-I m4 $ACLOCAL_FLAGS" . gnome-autogen.sh
+
+# Use own copy of Makefile.in.in for gnome-games.
+# See po/README.TRANSLATORS for more information.
+echo "Creating po/Makefile.in.in"
+rm -f $srcdir/po/Makefile.in.in 
+cp $srcdir/po/Makefile.in.in.own $srcdir/po/Makefile.in.in
+
+# ... and then proceed.
+if test "x$GNM_NOCONFIGURE" = x; then
+    printbold Running $srcdir/configure $conf_flags "$@" ...
+    $srcdir/configure $conf_flags "$@" \
+         || exit 1
+fi
+
+
+

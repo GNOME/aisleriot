@@ -39,6 +39,9 @@ static GtkStockItem games_stock_items[] =
 {
 /* i18n: This "_New" is for the menu item 'Game->New', implies "New Game" */
   { GAMES_STOCK_NEW_GAME, N_("_New"), GDK_CONTROL_MASK, 'n', NULL },
+  { GAMES_STOCK_NETWORK_GAME, N_("Network _Game"), GDK_CONTROL_MASK, 'g', NULL },
+  { GAMES_STOCK_NETWORK_LEAVE, N_("L_eave Game"), GDK_CONTROL_MASK, 'e', NULL },
+  { GAMES_STOCK_PLAYER_LIST, N_("Player _List"), GDK_CONTROL_MASK, 'l', NULL },
   { GAMES_STOCK_PAUSE_GAME, N_("_Pause"), 0, GDK_Pause, NULL },
   { GAMES_STOCK_RESUME_GAME, N_("Res_ume"), 0, GDK_Pause, NULL },
 /* i18n: "_Restart" is the menu item 'Game->Restart', implies "Restart Game" */
@@ -63,6 +66,12 @@ typedef struct {
 /* Names of stock intems installed by gtk+ and gnome-icon-theme */
 static GamesStockItemIcon stock_item_icon[] = {
   { GAMES_STOCK_NEW_GAME,         NULL,                     GTK_STOCK_NEW, 
+                                  NULL },
+  { GAMES_STOCK_NETWORK_GAME,     NULL,                     GTK_STOCK_NETWORK, 
+                                  NULL },
+  { GAMES_STOCK_NETWORK_LEAVE,    NULL,                     GTK_STOCK_STOP, 
+                                  NULL },
+  { GAMES_STOCK_PLAYER_LIST,      NULL,                     GTK_STOCK_INFO, 
                                   NULL },
   { GAMES_STOCK_PAUSE_GAME,       "stock_timer_stopped",    NULL,
                                   NULL },
@@ -97,6 +106,9 @@ typedef struct {
 
 static GamesStockItemTooltip stock_item_tooltip[] = {
   { GAMES_STOCK_NEW_GAME, N_("Start a new game") },
+  { GAMES_STOCK_NETWORK_GAME, N_("Start a new multiplayer network game") },
+  { GAMES_STOCK_NETWORK_LEAVE, N_("End the current network game and return to network server") },
+  { GAMES_STOCK_PLAYER_LIST, N_("Show a list of players in the network game") },
   { GAMES_STOCK_PAUSE_GAME, N_("Pause the game") },
   { GAMES_STOCK_RESUME_GAME, N_("Resume the paused game") },
   { GAMES_STOCK_RESTART_GAME, N_("Restart the game") },

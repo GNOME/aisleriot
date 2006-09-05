@@ -14,6 +14,7 @@ Contents
 - Bug Reports
 - Requirements
 - Building Gnome-Games
+- Network Games
 - Security Issues
 - The Future
 
@@ -212,9 +213,6 @@ programming language version 1.6 or later
 (http://www.gnu.org/software/guile/guile.html). If either of these is
 missing then the games that rely on them will simply not be built.
 
-A Zeroconf library is optional, but it is highly recommended to use
-for example the Avahi library. http://www.avahi.org/
-
 The games that require additional packages are:
  guile scheme:  	AisleRiot
  C++:         		Blackjack, Gnometris            
@@ -266,37 +264,46 @@ doesn't allow us to supply an argument to --disable-games.
 
 has the same effect. The names in the lists are applied in order.
 
-If you want Zeroconf support you have some options. Avahi is one 
-library which is supported. The use of Avahi is optional and 
-mutually exclusive with Howl and Bonjour.
-
-On most Unix and Linux systems Howl is another library to use, and 
-it is automatically detected. Howl is no longer actively developed 
-by Porchdog Software or anyone else. Therefore it is likely to be
-removed from gnome-games in the future. You may also use Apple's 
-Bonjour library, but you have to enable it explicitly. 
-
-The configure options for zeroconf support are:
-
- --disable-howl                   Disable Howl support 
- --enable-bonjour                 Enable Bonjour support
- --enable_avahi                   Enable Avahi 
- --with-bonjour-includes=PREFIX   Specify where to find the Bonjour 
-                                  header files
- --with-bonjour-libs=PREFIX       Specify where to find the Bonjour 
-                                  libraries
-
-Setting the library and include file directories explicitly should not
-normally be necessary. Note that if you select Bonjour support on a
-system with Howl installed and do not explicitly disable Howl then
-Howl support will be disabled and a warning printed.
-
 Use './configure --help' for a complete list of currently supported
 options and environment variables.
 
 If you are compiling gnome-games from CVS you should look at:
 
 http://www.gnome.org/projects/gnome-games/contributing.html
+
+
+Network Games
+--------------------
+Network games can be played with the games Gnibbles, Four-in-a-Row and
+Iagno. These games requires GGZ Gaming Zone version 0.0.14 or later.
+
+Network games can be started using the "Network Game" menu item
+in the supported games. Network games can also be started using
+the ggz-gtk application which is a part of GGZ.
+
+GGZ can be downloaded from http://www.ggzgamingzone.org/
+See the included file README.GGZ for an introduction to GGZ.
+
+GGZ will be automatically detected by configure if it is installed,
+and is an optional library requirement for gnome-games.
+
+The following GGZ packages are recommended:
+- ggz-client-libs
+- gtk-client
+- libggz
+- ggzd is optional for GGZ server hosters.
+
+It is possible to build support for both GGZ client and server support,
+altough most desktop users will normally only need to build client support.
+GGZ is configured with the following parameters:
+
+./configure --with-ggz-server=yes --with-ggz-client=yes
+
+Several other games in gnome-games will get GGZ support in the future.
+Further, it is planned to implement support for observers and statistics.
+
+For an up-to-date list of GGZ servers, see: http://live.gnome.org/GnomeGames
+Behave politely on the GGZ game servers, and have a lot of fun.
 
 Security Issues
 ---------------
@@ -349,6 +356,5 @@ screaming into the 21st century. The following is a short list of recent
 priorities, and many more can be found in the bug tracker and the TODO file.
  - Usability, Accessibility and Fancibility improvements.
  - Better graphics rendering quality and speed.
- - GGZ Gaming Zone network support (planned for 2.17.x).
  - Making it easy for individual players to introduce their own themes.
  - During the 2.17.x cycle, one old game will be replaced with one new game!
