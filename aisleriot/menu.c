@@ -72,7 +72,7 @@ static void restart_game ()
 {
   if (waiting_for_mouse_up()) return;
   /* Treat a restart as part of the same game. Eventually either
-   * the player will win or loose and then it gets counted. */
+   * the player will win or lose and then it gets counted. */
   game_in_progress = FALSE;
   option_list_set_sensitive ();
   new_game (NULL, &seed);
