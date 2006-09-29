@@ -344,7 +344,7 @@ gchar * games_file_list_find (GamesFileList *filelist, GCompareFunc function,
 {
   GList *element;
 
-  element = (gchar *)g_list_find_custom (filelist->list, userdata, function);
+  element = g_list_find_custom (filelist->list, userdata, function);
 
   return element ? g_strdup ((gchar *)element->data) : NULL;
 }

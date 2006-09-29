@@ -1,5 +1,5 @@
 /* AisleRiot - sol.c
- * Copyright (C) 1998, 2001, 2003 Jonathan Blandford <jrb@alum.mit.edu>
+ * Copyright (C) 1998, 2001, 2003, 2006 Jonathan Blandford <jrb@alum.mit.edu>
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -99,7 +99,7 @@ gchar* game_file_to_name (const gchar* file)
   for (p = buf; p = strchr(p, ' '), p && *p;) {
     if (*(p+1)) {
       *(p+1) = g_ascii_toupper (*(p+1));
-      *p++;
+      p++;
     }
   }
   buf[0] = g_ascii_toupper (buf[0]);

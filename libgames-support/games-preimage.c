@@ -186,7 +186,8 @@ games_preimage_new_from_file (const gchar *filename,
     preimage->width     = info.width;
     preimage->height    = info.height;
 
-    if (!g_file_get_contents (filename, (gchar **)&(preimage->srcbuffer), 
+    if (!g_file_get_contents (filename,
+			      (gchar **)(char *)&(preimage->srcbuffer), 
 			      &(preimage->srcsize), error)) {
       g_object_unref (preimage);
       return NULL;
