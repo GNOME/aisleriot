@@ -7,7 +7,11 @@
 
 (load "klondike.scm") 
 
+(define deal-one #t)
 (define deal-three #f)
+(define no-redeal #f)
+
+(define max-redeal 2)
 
 (define tableau '(6 7 8 9 10 11))
 
@@ -58,8 +62,10 @@
   (list 7 3) 
 )
 
-;; One attempt.  No redeals
-(define (get-redeals-string)
-  (format (_"Redeals left: ~a") (number->string (- 0 FLIP-COUNTER))))
+(define (get-options) 
+  #f)
+
+(define (apply-options options) 
+  #f)
 
 (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
