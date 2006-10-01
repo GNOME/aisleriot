@@ -28,6 +28,7 @@ void redo_set_sensitive (gboolean state);
 void option_list_set_sensitive (void);
 void help_update_game_name (gchar * name);
 void install_options_menu (gchar *name);
+void install_recently_played_menu (void);
 
 extern GtkUIManager *ui_manager;
 extern GtkWidget *menubar;

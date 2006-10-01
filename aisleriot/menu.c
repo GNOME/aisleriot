@@ -84,6 +84,18 @@ static void new_game_action ()
   new_game (NULL, NULL);
 };
 
+
+static void new_recent_game_action (GtkAction *action,
+								  	gpointer   user_data)
+{
+	if (user_data == NULL)
+		new_game (NULL, NULL);
+	else {
+		new_game ((gchar *) user_data, NULL);
+		g_free (user_data);
+	}
+};
+
 void undo_callback ()
 {
   if (waiting_for_mouse_up()) return;
@@ -102,7 +114,7 @@ void redo_callback ()
 
 static void help_about_callback (void)
 {
-  const gchar *authors[] = {
+	const gchar *authors[] = {
 	  _("Main game:"),
 	  "Jonathan Blandford (jrb@redhat.com)",
 	  "Felix Bellaby (felix@pooh.u-net.com)",
@@ -238,6 +250,7 @@ static const GtkActionEntry actions[] = {
   { "NewGame", GAMES_STOCK_NEW_GAME, NULL, NULL, N_("Start a new game"), G_CALLBACK (new_game_action) },
   { "RestartGame", GAMES_STOCK_RESTART_GAME, NULL, NULL, N_("Restart the current game"), G_CALLBACK (restart_game) },
   { "Select", GTK_STOCK_INDEX, N_("_Select Game..."), "<Ctrl>o", N_("Play a different game"), G_CALLBACK (show_select_game_dialog) },
+  { "RecentlyPlayed", NULL, N_("Recently _Played") },
   { "Statistics", GTK_STOCK_ADD, N_("S_tatistics"), NULL, N_("Show gameplay statistics"), G_CALLBACK (show_statistics_dialog) },
   { "Quit", GTK_STOCK_QUIT, NULL, NULL, NULL, G_CALLBACK (quit_app) },
   { "Fullscreen", GAMES_STOCK_FULLSCREEN, NULL, NULL, NULL, G_CALLBACK (fullscreen_callback) },
@@ -264,6 +277,7 @@ static const char ui_description[] =
 "      <menuitem action='NewGame'/>"
 "      <menuitem action='RestartGame'/>"
 "      <menuitem action='Select'/>"
+"      <menu action='RecentlyPlayed'/>"
 "      <menuitem action='Statistics'/>"
 "      <separator/>"
 "      <menuitem action='Quit'/>"
@@ -310,6 +324,7 @@ void create_menus ()
   games_stock_init();
   action_group = gtk_action_group_new ("MenuActions");
   gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
+
   gtk_action_group_add_actions (action_group, actions, G_N_ELEMENTS (actions),
 				NULL); 
   gtk_action_group_add_toggle_actions (action_group, toggles, 
@@ -323,6 +338,9 @@ void create_menus ()
 
   accel_group = gtk_ui_manager_get_accel_group (ui_manager);
   gtk_window_add_accel_group (GTK_WINDOW (app), accel_group);
+
+  /* The actions and menus are done. Add the recently played games */
+  install_recently_played_menu ();
 
   undoaction = gtk_action_group_get_action (action_group, "UndoMove");
   redoaction = gtk_action_group_get_action (action_group, "RedoMove");
@@ -580,7 +598,7 @@ void install_options_menu (gchar *name)
 	/* If we encounter an atom, change the mode. What the atom is doesn't
 	   really matter. */
 	if (mode == menu_normal) {
-	  mode = menu_radio;
+	  mode = menu_radio;	
 	  radiogroup = NULL; /* Start a new radio group. */
 	} else {
 	  mode = menu_normal;
@@ -588,4 +606,67 @@ void install_options_menu (gchar *name)
       }
     }
   } 
+}
+
+/*
+ * Set up a sub-menu with the recently played games
+ * We'll keep track of 5 different games
+ */
+void install_recently_played_menu ()
+{
+	char*  game_file_name = NULL;
+	gchar* game_name      = NULL;
+	gchar* callback_data  = NULL;
+	
+	GtkAction *pAction = NULL;
+	GtkWidget *pWidget = NULL;
+	
+ 	/* Show the empty menu if they don't have any recent games yet */
+	GtkAction *action = gtk_action_group_get_action (action_group, "RecentlyPlayed");
+	if (action) {
+		g_object_set (action, "hide_if_empty", FALSE, NULL);
+	}
+
+	/* Get a list of the recent games */
+	GConfClient * gconf_client = gconf_client_get_default ();
+	
+	gchar* recent_games = gconf_client_get_string (gconf_client, RECENT_GAMES_GCONF_KEY, NULL);
+	
+	if (recent_games == NULL)
+		return;
+
+	/* Get the MenuItem that the RecentlyPlayed menu belongs to */
+	GtkWidget *recent_menu = gtk_ui_manager_get_widget (ui_manager, "/MainMenu/GameMenu/RecentlyPlayed");
+
+	if (recent_menu == NULL) return;	
+
+	gtk_menu_item_remove_submenu (GTK_MENU_ITEM (recent_menu));
+	
+	GtkWidget *submenu = gtk_menu_new();
+
+	game_file_name = strtok (recent_games, ",");
+
+	while (game_file_name != NULL) {
+		/* Create actions for the recent games */
+		game_name = game_file_to_name(game_file_name);
+		callback_data = g_strdup (game_file_name);
+
+		pAction = gtk_action_new(game_name, game_name, NULL, NULL);
+		
+		g_signal_connect (G_OBJECT (pAction), "activate",
+								G_CALLBACK (new_recent_game_action),
+								callback_data);
+
+		/* Turn them into widgets */
+		pWidget = gtk_action_create_menu_item(pAction);
+
+		/* Append the recent games to the submenu */
+		gtk_menu_shell_append ( GTK_MENU_SHELL (submenu), pWidget);
+
+		game_file_name = strtok (NULL, ",");
+	}
+
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM (recent_menu), submenu);
+	
+	g_free (recent_games);
 }

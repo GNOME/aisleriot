@@ -35,6 +35,7 @@
 #define WIDTH_GCONF_KEY "/apps/aisleriot/width"
 #define HEIGHT_GCONF_KEY "/apps/aisleriot/height"
 #define THEME_GCONF_KEY "/apps/aisleriot/card_style"
+#define RECENT_GAMES_GCONF_KEY "/apps/aisleriot/recent_games"
 
 /* Feature masks */
 #define DROPPABLE_FMASK 1
@@ -79,5 +80,6 @@ void timer_stop(void);
 void timer_reset(void);
 guint timer_get(void);
 void eval_installed_file(gchar *file);
+void add_recently_played_game (gchar* game_file);
 
 #endif

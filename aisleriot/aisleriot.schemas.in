@@ -85,6 +85,18 @@
 	<long>A list of strings that come in the form of a quintuple: name, wins, total games played, best time (in seconds) and worst time (also in seconds). Unplayed games do not need to be represented.</long>
       </locale>
     </schema>
+	
+	<schema>
+      <key>/schemas/apps/aisleriot/recent_games</key>
+      <applyto>/apps/aisleriot/recent_games</applyto>
+      <owner>aisleriot</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Recently Played Games</short>
+        <long>A comma seperated list of recently played games. The filenames are stored here, not the actual game name.</long>
+      </locale>
+     </schema>
 
   </schemalist>
 </gconfschemafile>

@@ -285,6 +285,8 @@ void new_game (gchar* file, guint *seedp)
     game_over = FALSE;
     gtk_window_set_title (GTK_WINDOW (app), _(game_name)); 
   }
+  /* We've just started a new game. Add this to the list of games the user likes */
+  add_recently_played_game (file);
 }
 
 GtkWidget *score_value;
@@ -403,6 +405,55 @@ void quit_app (GtkMenuItem *menuitem)
   }
 
   gtk_main_quit ();
+}
+
+/*
+ * Takes the name of the file that drives the game and
+ * stores it as a recently played game
+ * Recent games are stored at the end of the list.
+ */
+void add_recently_played_game (gchar* game_file)
+{
+	if (game_file == NULL) return;
+	
+	GConfClient * gconf_client = gconf_client_get_default ();
+	
+	gchar* recent_games = gconf_client_get_string (gconf_client, RECENT_GAMES_GCONF_KEY, NULL);
+	gchar* new_games = NULL;
+
+	if (recent_games == NULL)
+		new_games = g_strdup (game_file);		
+	else {		
+		gchar** games_list = g_strsplit (recent_games, (gchar *) ",", 0);
+
+		/* Start off with our latest game at the front */
+		new_games = g_strdup (game_file);
+		int game_count = 1;
+		int index      = 0;
+
+		while ((games_list[index] != NULL) && (game_count < 5)) {			
+			/* If the game is already in the list, don't add it again */
+			if (g_ascii_strcasecmp (game_file, games_list[index]) == 0 ) {
+				++index;
+				continue;
+			}
+			new_games = g_strconcat (new_games, (gchar *) ",", games_list[index], NULL);
+			
+			++game_count;			
+			++index;
+		}
+	
+		new_games = g_strconcat (new_games, NULL);
+		g_strfreev (games_list);
+	}
+	
+	/* Update the gconf key with the new list of games */
+	gconf_client_set_string (gconf_client, RECENT_GAMES_GCONF_KEY, new_games, NULL);
+
+	g_free (recent_games);
+	g_free (new_games);
+
+	install_recently_played_menu ();
 }
 
 static void create_main_window ()
