@@ -1,7 +1,8 @@
 /*
- * games-stock.c: games stock items and icon registation
+ * games-stock.c: games stock items, strings and icon registation
  *
  * Copyright (C) 2005 Richard Hoelscher
+ * Copyright (C) 2006 Andreas Røsdal
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -313,4 +314,34 @@ games_stock_init (void)
   gtk_icon_factory_add_default (games_icon_factory);
 
   gtk_stock_add_static (games_stock_items, G_N_ELEMENTS (games_stock_items));
+}
+
+/* Returns a GPL license string for a specific game. */
+gchar* 
+games_get_license (const gchar *game_name) 
+{
+  gchar *license_trans, *license_str;
+
+  const gchar *license[] = {
+  /* %s is replaced with the name of the game in gnome-games. */
+  N_("%s is free software; you can redistribute it and/or modify "
+    "it under the terms of the GNU General Public License as published by "
+    "the Free Software Foundation; either version 2 of the License, or "
+    "(at your option) any later version."),
+  N_("%s is distributed in the hope that it will be useful, "
+    "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+    "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+    "GNU General Public License for more details."),
+  N_("You should have received a copy of the GNU General Public License "
+     "along with Nautilus; if not, write to the Free Software Foundation, Inc., "
+     "59 Temple Place, Suite 330, Boston, MA  02111-1307  USA")
+  };
+
+  license_trans = g_strjoin ("\n\n", _(license[0]), _(license[1]),
+					     _(license[2]), NULL);
+
+  license_str = g_strdup_printf (license_trans, game_name, game_name);
+  g_free (license_trans);
+
+  return license_str;
 }

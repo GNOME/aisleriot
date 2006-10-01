@@ -59,6 +59,7 @@ void games_stock_set_pause_actions (GtkAction *pause_action,
 
 void games_stock_prepare_for_statusbar_tooltips (GtkUIManager *ui_manager,
 						 GtkWidget    *statusbar);
+gchar* games_get_license (const gchar *game_name); 
 
 G_END_DECLS
 

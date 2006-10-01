@@ -136,6 +136,7 @@ static void help_about_callback (void)
 	  "Rosanna Yuen (zana@webwynk.net)",
 	  NULL
   };
+  gchar *license = games_get_license (_("AisleRiot"));
 
   gtk_show_about_dialog (GTK_WINDOW (app),
 			 "name", _("AisleRiot"),
@@ -144,7 +145,7 @@ static void help_about_callback (void)
 				       "card engine that allows many different\n"
 				       "games to be played."),
 			 "copyright", "Copyright \xc2\xa9 1998-2006 Jonathan Blandford",
-			 "license", "GPL 2+",
+			 "license", license,
 			 "authors", authors,
 			 "documenters", documenters,
 			 "translator_credits", _("translator-credits"),
@@ -152,6 +153,7 @@ static void help_about_callback (void)
 			 "website", "http://www.gnome.org/projects/gnome-games/",
 			 "wrap-license", TRUE,
 			 NULL);
+  g_free (license);
 }
 
 static void general_help (void)
