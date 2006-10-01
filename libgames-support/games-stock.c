@@ -333,14 +333,14 @@ games_get_license (const gchar *game_name)
     "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
     "GNU General Public License for more details."),
   N_("You should have received a copy of the GNU General Public License "
-     "along with Nautilus; if not, write to the Free Software Foundation, Inc., "
+     "along with %s; if not, write to the Free Software Foundation, Inc., "
      "59 Temple Place, Suite 330, Boston, MA  02111-1307  USA")
   };
 
   license_trans = g_strjoin ("\n\n", _(license[0]), _(license[1]),
 					     _(license[2]), NULL);
 
-  license_str = g_strdup_printf (license_trans, game_name, game_name);
+  license_str = g_strdup_printf (license_trans, game_name, game_name, game_name);
   g_free (license_trans);
 
   return license_str;
