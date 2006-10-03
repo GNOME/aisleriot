@@ -26,55 +26,46 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 G_BEGIN_DECLS
-
 #define GAMES_TYPE_PREIMAGE             (games_preimage_get_type ())
 #define GAMES_PREIMAGE(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), GAMES_TYPE_PREIMAGE, GamesPreimage))
 #define GAMES_PREIMAGE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_PREIMAGE, GamesPreimageClass))
 #define GAMES_IS_PREIMAGE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_PREIMAGE))
 #define GAMES_IS_PREIMAGE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_PREIMAGE))
 #define GAMES_GET_PREIMAGE_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_PREIMAGE, GamesPreimageClass))
-
-typedef struct _GamesPreimage {
+  typedef struct _GamesPreimage {
   GObject parent;
-  
-  gboolean   scalable;
-  gint       width;
-  gint       height;
+
+  gboolean scalable;
+  gint width;
+  gint height;
   /* scalable source data */
-  guchar     *srcbuffer;
-  gsize	     srcsize;
+  guchar *srcbuffer;
+  gsize srcsize;
   /* raster pixbuf data */
   GdkPixbuf *pixbuf;
 } GamesPreimage;
 
 typedef struct _GamesPreimageClass {
   GObjectClass parent;
-}	GamesPreimageClass;
+} GamesPreimageClass;
 
 GType games_preimage_get_type (void);
 
-GamesPreimage * games_preimage_new (void);
+GamesPreimage *games_preimage_new (void);
 
-GamesPreimage * games_preimage_new_from_file (const gchar *filename,
-					      GError     **error);
+GamesPreimage *games_preimage_new_from_file (const gchar * filename,
+					     GError ** error);
 
-GdkPixbuf * games_preimage_render (GamesPreimage * preimage,
-				   gint width, 
-				   gint height, 
-				   GError **error);
+GdkPixbuf *games_preimage_render (GamesPreimage * preimage,
+				  gint width, gint height, GError ** error);
 
-gboolean
-games_preimage_is_scalable (GamesPreimage * preimage);
+gboolean games_preimage_is_scalable (GamesPreimage * preimage);
 
-gint
-games_preimage_get_width (GamesPreimage * preimage);
+gint games_preimage_get_width (GamesPreimage * preimage);
 
-gint
-games_preimage_get_height (GamesPreimage * preimage);
+gint games_preimage_get_height (GamesPreimage * preimage);
 
-GdkPixbuf *
-games_preimage_render_unscaled_pixbuf (GamesPreimage * preimage);
+GdkPixbuf *games_preimage_render_unscaled_pixbuf (GamesPreimage * preimage);
 
 G_END_DECLS
-
 #endif /* GAMES_PREIMAGE_H */

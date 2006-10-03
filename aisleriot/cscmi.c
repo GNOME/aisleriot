@@ -30,8 +30,7 @@
 #include "draw.h"
 #include "events.h"
 
-typedef struct
-{
+typedef struct {
   SCM lambda;
   int n_args;
   SCM arg1;
@@ -56,14 +55,12 @@ typedef struct {
   SCM droppable_lambda;
 } lambda_data;
 
-lambda_data* game_data = NULL;
+lambda_data *game_data = NULL;
 
 gint32 enabled_features;
 
 static void
-cscmi_write_exception_details (int error_fd,
-			       SCM tag,
-			       SCM throw_args)
+cscmi_write_exception_details (int error_fd, SCM tag, SCM throw_args)
 {
   char *message;
   SCM port;
@@ -78,7 +75,7 @@ cscmi_write_exception_details (int error_fd,
   message = g_strdup_printf ("Seed: %u\n", seed);
   write (error_fd, message, strlen (message));
   g_free (message);
-  
+
   message = "Scheme error:\n\t";
   write (error_fd, message, strlen (message));
 
@@ -100,107 +97,92 @@ cscmi_write_exception_details (int error_fd,
     scm_fsync (port);
   } else {
     message = "\tNo backtrace available.\n";
-    write (error_fd, message, strlen (message));    
+    write (error_fd, message, strlen (message));
   }
 
   message = "\n\nDeck State:\n";
   write (error_fd, message, strlen (message));
   slots = get_slot_list ();
-  if (slots)
-    {
-      for (slot_list = slots; slot_list; slot_list = slot_list->next)
-	{
-	  hslot_type slot;
-	  GList *card_list;
+  if (slots) {
+    for (slot_list = slots; slot_list; slot_list = slot_list->next) {
+      hslot_type slot;
+      GList *card_list;
 
-	  slot = slot_list->data;
-	  message = g_strdup_printf ("\tSlot %d\n", slot->id);
+      slot = slot_list->data;
+      message = g_strdup_printf ("\tSlot %d\n", slot->id);
+      write (error_fd, message, strlen (message));
+      g_free (message);
+      if (slot->cards) {
+	int count = 0;
+	for (card_list = slot->cards; card_list; card_list = card_list->next) {
+	  hcard_type card = card_list->data;
+
+	  if (count == 0)
+	    message = "\t\t";
+	  else
+	    message = ", ";
+	  write (error_fd, message, strlen (message));
+
+	  message = g_strdup_printf ("(%d %d %s)",
+				     card->suit,
+				     card->value,
+				     card->direction ? "#t" : "#f");
 	  write (error_fd, message, strlen (message));
 	  g_free (message);
-	  if (slot->cards)
-	    {
-	      int count = 0;
-	      for (card_list = slot->cards; card_list; card_list = card_list->next)
-		{
-		  hcard_type card = card_list->data;
-
-		  if (count == 0)
-		    message = "\t\t";
-		  else
-		    message = ", ";
-		  write (error_fd, message, strlen (message));
-
-		  message = g_strdup_printf ("(%d %d %s)",
-					     card->suit,
-					     card->value,
-					     card->direction ? "#t" : "#f");
-		  write (error_fd, message, strlen (message));
-		  g_free (message);
-		  count ++;
-		  if (count == 5)
-		    {
-		      message = "\n";
-		      write (error_fd, message, strlen (message));
-		      count = 0;
-		    }
-		}
-	      if (count != 0)
-		{
-		  message = "\n";
-		  write (error_fd, message, strlen (message));
-		}
-	    }
-	  else
-	    {
-	      message = "\t\t(Empty)\n";
-	      write (error_fd, message, strlen (message));
-	    }
+	  count++;
+	  if (count == 5) {
+	    message = "\n";
+	    write (error_fd, message, strlen (message));
+	    count = 0;
+	  }
 	}
+	if (count != 0) {
+	  message = "\n";
+	  write (error_fd, message, strlen (message));
+	}
+      } else {
+	message = "\t\t(Empty)\n";
+	write (error_fd, message, strlen (message));
+      }
     }
-  else
-    {
-      message = "\tNo cards in deck\n";
-      write (error_fd, message, strlen (message));
-    }
+  } else {
+    message = "\tNo cards in deck\n";
+    write (error_fd, message, strlen (message));
+  }
 }
 
 /* Called when we get an exception from guile.  We launch bug-buddy with the
  * exception information:
  */
 static SCM
-cscmi_catch_handler (gpointer data,
-		     SCM      tag,
-		     SCM      throw_args)
+cscmi_catch_handler (gpointer data, SCM tag, SCM throw_args)
 {
   int error_fd;
   gchar *error_file;
   GError *error = NULL;
   gchar *exec_str;
 
-  error_fd = g_file_open_tmp ("arcrashXXXXXX",
-			      &error_file,
-			      &error);
-  if (error)
-    {
-      GtkWidget *message_dialog;
+  error_fd = g_file_open_tmp ("arcrashXXXXXX", &error_file, &error);
+  if (error) {
+    GtkWidget *message_dialog;
 
-      message_dialog = gtk_message_dialog_new (NULL,
-					       GTK_DIALOG_DESTROY_WITH_PARENT,
-					       GTK_MESSAGE_ERROR,
-					       GTK_BUTTONS_OK,
-					       _("A scheme exception occured and we were unable to create a temporary file to report it:\n\n%s"),
-					       error->message);
-      gtk_dialog_run (GTK_DIALOG (message_dialog));
-      exit (1);
-    }
+    message_dialog = gtk_message_dialog_new (NULL,
+					     GTK_DIALOG_DESTROY_WITH_PARENT,
+					     GTK_MESSAGE_ERROR,
+					     GTK_BUTTONS_OK,
+					     _
+					     ("A scheme exception occured and we were unable to create a temporary file to report it:\n\n%s"),
+					     error->message);
+    gtk_dialog_run (GTK_DIALOG (message_dialog));
+    exit (1);
+  }
   cscmi_write_exception_details (error_fd, tag, throw_args);
   close (error_fd);
 
-  exec_str = g_strdup_printf ("bug-buddy --package=gnome-games --package-ver=%s --appname=aisleriot --pid=%d --kill=%d --include=%s",
-			      VERSION,
-			      getpid (),
-			      getpid (),
-			      error_file);
+  exec_str =
+    g_strdup_printf
+    ("bug-buddy --package=gnome-games --package-ver=%s --appname=aisleriot --pid=%d --kill=%d --include=%s",
+     VERSION, getpid (), getpid (), error_file);
   system (exec_str);
   unlink (error_file);
   exit (1);
@@ -210,119 +192,128 @@ static SCM
 cscmi_call_lambda (void *user_data)
 {
   CallData *call_data = user_data;
-  switch (call_data->n_args)
-    {
-    case 0:
-      call_data->retval = scm_call_0 (call_data->lambda);
-      break;
-    case 1:
-      call_data->retval = scm_call_1 (call_data->lambda, call_data->arg1);
-      break;
-    case 2:
-      call_data->retval = scm_call_2 (call_data->lambda, call_data->arg1, call_data->arg2);
-      break;
-    case 3:
-      call_data->retval = scm_call_3 (call_data->lambda, call_data->arg1, call_data->arg2, call_data->arg3);
-      break;
-    default:
-      g_assert_not_reached ();
-    }
+  switch (call_data->n_args) {
+  case 0:
+    call_data->retval = scm_call_0 (call_data->lambda);
+    break;
+  case 1:
+    call_data->retval = scm_call_1 (call_data->lambda, call_data->arg1);
+    break;
+  case 2:
+    call_data->retval =
+      scm_call_2 (call_data->lambda, call_data->arg1, call_data->arg2);
+    break;
+  case 3:
+    call_data->retval =
+      scm_call_3 (call_data->lambda, call_data->arg1, call_data->arg2,
+		  call_data->arg3);
+    break;
+  default:
+    g_assert_not_reached ();
+  }
 
   return SCM_EOL;
 }
 
-static SCM c2scm_card(hcard_type card) 
+static SCM
+c2scm_card (hcard_type card)
 {
-  return scm_cons(scm_long2num(card->value),
-		 scm_cons(scm_long2num(card->suit),
-			  scm_cons(SCM_BOOL(!card->direction), SCM_EOL)));
+  return scm_cons (scm_long2num (card->value),
+		   scm_cons (scm_long2num (card->suit),
+			     scm_cons (SCM_BOOL (!card->direction),
+				       SCM_EOL)));
 }
 
-static hcard_type scm2c_card(SCM card_data) 
+static hcard_type
+scm2c_card (SCM card_data)
 {
-  hcard_type temp_card = malloc(sizeof(card_type));
+  hcard_type temp_card = malloc (sizeof (card_type));
 
-  temp_card->value = SCM_INUM(SCM_CAR(card_data));
-  temp_card->suit = SCM_INUM(SCM_CADR(card_data));
-  temp_card->direction = !(SCM_NFALSEP(SCM_CADDR(card_data)));
+  temp_card->value = SCM_INUM (SCM_CAR (card_data));
+  temp_card->suit = SCM_INUM (SCM_CADR (card_data));
+  temp_card->direction = !(SCM_NFALSEP (SCM_CADDR (card_data)));
 
   return temp_card;
 }
 
-static SCM c2scm_deck(GList *c_cards)
+static SCM
+c2scm_deck (GList * c_cards)
 {
   SCM scm_cards = SCM_EOL;
 
   while (c_cards) {
-    scm_cards = scm_cons(c2scm_card((hcard_type)c_cards->data), scm_cards);
+    scm_cards = scm_cons (c2scm_card ((hcard_type) c_cards->data), scm_cards);
     c_cards = c_cards->next;
   }
 
   return scm_cards;
 }
 
-static GList* scm2c_deck(SCM deck_data) 
+static GList *
+scm2c_deck (SCM deck_data)
 {
   SCM list_el;
-  GList* temp_deck = NULL;
+  GList *temp_deck = NULL;
 
-  if (SCM_NFALSEP(deck_data)) {
-    for (list_el = deck_data; list_el != SCM_EOL; list_el = SCM_CDR(list_el))
-      temp_deck = g_list_prepend(temp_deck, scm2c_card(SCM_CAR(list_el)));
+  if (SCM_NFALSEP (deck_data)) {
+    for (list_el = deck_data; list_el != SCM_EOL; list_el = SCM_CDR (list_el))
+      temp_deck = g_list_prepend (temp_deck, scm2c_card (SCM_CAR (list_el)));
   }
-  
+
   return temp_deck;
 }
 
-static void cscmi_add_slot(SCM slot_data) 
+static void
+cscmi_add_slot (SCM slot_data)
 {
   gboolean expanded_down = FALSE;
   gboolean expanded_right = FALSE;
   gint expansion_depth = 0;
 
-  if (!strcmp("expanded", SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+  if (!strcmp ("expanded", SCM_CHARS (SCM_CAR (SCM_CADDR (slot_data))))) {
     expanded_down = TRUE;
-  }
-  else if (!strcmp("expanded-right", 
-		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+  } else if (!strcmp ("expanded-right",
+		      SCM_CHARS (SCM_CAR (SCM_CADDR (slot_data))))) {
     expanded_right = TRUE;
-  }
-  else if (!strcmp("partially-expanded", 
-		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+  } else if (!strcmp ("partially-expanded",
+		      SCM_CHARS (SCM_CAR (SCM_CADDR (slot_data))))) {
     expanded_down = TRUE;
-    expansion_depth = SCM_INUM (SCM_CADDR(SCM_CADDR(slot_data)));
-  }
-  else if (!strcmp("partially-expanded-right", 
-		   SCM_CHARS(SCM_CAR(SCM_CADDR(slot_data))))) {
+    expansion_depth = SCM_INUM (SCM_CADDR (SCM_CADDR (slot_data)));
+  } else if (!strcmp ("partially-expanded-right",
+		      SCM_CHARS (SCM_CAR (SCM_CADDR (slot_data))))) {
     expanded_right = TRUE;
-    expansion_depth = SCM_INUM(SCM_CADDR(SCM_CADDR(slot_data)));
+    expansion_depth = SCM_INUM (SCM_CADDR (SCM_CADDR (slot_data)));
   }
 
-  add_slot(/* id = */ SCM_INUM(SCM_CAR(slot_data)),
-	   /* cards = */ scm2c_deck(SCM_CADR(slot_data)),
-	   /* x = */ scm_num2dbl (SCM_CAR(SCM_CADR(SCM_CADDR(slot_data))), NULL),
-	   /* y = */ scm_num2dbl (SCM_CADR(SCM_CADR(SCM_CADDR(slot_data))), NULL),
-	   expanded_down, expanded_right, expansion_depth);
+  add_slot ( /* id = */ SCM_INUM (SCM_CAR (slot_data)),
+	    /* cards = */ scm2c_deck (SCM_CADR (slot_data)),
+	    /* x = */ scm_num2dbl (SCM_CAR (SCM_CADR (SCM_CADDR (slot_data))),
+				   NULL),
+	    /* y = */
+	    scm_num2dbl (SCM_CADR (SCM_CADR (SCM_CADDR (slot_data))), NULL),
+	    expanded_down, expanded_right, expansion_depth);
 }
 
 /* Scheme functions */
-static SCM scm_gettext(SCM message)
+static SCM
+scm_gettext (SCM message)
 {
-  static char * input = NULL;
-  char * output;
+  static char *input = NULL;
+  char *output;
 
   /* This is needed because we can't free the string before returning
    * if it isn't translated. This way we have a permanent one-string
    * memory leak and nothing more. */
   if (!input)
     free (input);
-  
+
   input = SCM_STRING_CHARS (message);
   output = _(input);
   return scm_makfrom0str (output);
 }
 
-static SCM scm_undo_set_sensitive (SCM in_state)
+static SCM
+scm_undo_set_sensitive (SCM in_state)
 {
   gboolean state;
 
@@ -332,7 +323,8 @@ static SCM scm_undo_set_sensitive (SCM in_state)
   return SCM_EOL;
 }
 
-static SCM scm_redo_set_sensitive (SCM in_state)
+static SCM
+scm_redo_set_sensitive (SCM in_state)
 {
   gboolean state;
 
@@ -342,14 +334,16 @@ static SCM scm_redo_set_sensitive (SCM in_state)
   return SCM_EOL;
 }
 
-static SCM scm_get_feature_word()
+static SCM
+scm_get_feature_word ()
 {
-  return SCM_MAKINUM(enabled_features);
+  return SCM_MAKINUM (enabled_features);
 }
 
-static SCM scm_set_feature_word(SCM features)
+static SCM
+scm_set_feature_word (SCM features)
 {
-  enabled_features = SCM_INUM(features);
+  enabled_features = SCM_INUM (features);
 
   droppable_is_featured = (enabled_features & DROPPABLE_FMASK);
   score_is_hidden = (enabled_features & SCOREHIDDEN_FMASK);
@@ -357,84 +351,94 @@ static SCM scm_set_feature_word(SCM features)
   return SCM_EOL;
 }
 
-static SCM scm_set_statusbar_message(SCM message)
+static SCM
+scm_set_statusbar_message (SCM message)
 {
-  guint context_id = gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "message");
+  guint context_id =
+    gtk_statusbar_get_context_id (GTK_STATUSBAR (statusbar), "message");
   gtk_statusbar_pop (GTK_STATUSBAR (statusbar), context_id);
-  gtk_statusbar_push (GTK_STATUSBAR (statusbar), context_id, _(SCM_STRING_CHARS(message)));
+  gtk_statusbar_push (GTK_STATUSBAR (statusbar), context_id,
+		      _(SCM_STRING_CHARS (message)));
   return SCM_EOL;
 }
 
-static SCM scm_set_surface_layout(SCM surface) 
+static SCM
+scm_set_surface_layout (SCM surface)
 {
   if (surface != SCM_EOL) {
     SCM list_el;
-  
-    delete_all_slots();
 
-    for (list_el = surface; list_el != SCM_EOL; list_el = SCM_CDR(list_el))
-      cscmi_add_slot(SCM_CAR(list_el));
+    delete_all_slots ();
+
+    for (list_el = surface; list_el != SCM_EOL; list_el = SCM_CDR (list_el))
+      cscmi_add_slot (SCM_CAR (list_el));
   }
   return SCM_EOL;
 }
 
 
-static SCM scm_reset_surface() 
+static SCM
+scm_reset_surface ()
 {
-  delete_all_slots();
+  delete_all_slots ();
   return SCM_EOL;
 }
 
-static SCM gg_scm_add_slot(SCM slot) 
+static SCM
+gg_scm_add_slot (SCM slot)
 {
-  cscmi_add_slot(slot);
+  cscmi_add_slot (slot);
   return SCM_EOL;
 }
 
-static SCM scm_set_slot_y_expansion(SCM scm_slot_id, SCM new_exp_val)
+static SCM
+scm_set_slot_y_expansion (SCM scm_slot_id, SCM new_exp_val)
 {
-  hslot_type slot = get_slot(scm_num2int(scm_slot_id, SCM_ARG1, NULL));
+  hslot_type slot = get_slot (scm_num2int (scm_slot_id, SCM_ARG1, NULL));
   slot->compressed_dy = slot->dy = scm_num2dbl (new_exp_val, NULL);
   return SCM_EOL;
 }
 
-static SCM scm_set_slot_x_expansion(SCM scm_slot_id, SCM new_exp_val)
+static SCM
+scm_set_slot_x_expansion (SCM scm_slot_id, SCM new_exp_val)
 {
-  hslot_type slot = get_slot(scm_num2int(scm_slot_id, SCM_ARG1, NULL));
+  hslot_type slot = get_slot (scm_num2int (scm_slot_id, SCM_ARG1, NULL));
   slot->dx = scm_num2dbl (new_exp_val, NULL);
   return SCM_EOL;
 }
 
-static SCM scm_get_slot(SCM scm_slot_id) 
+static SCM
+scm_get_slot (SCM scm_slot_id)
 {
   SCM cards = SCM_EOL;
-  hslot_type slot = get_slot(scm_num2int(scm_slot_id, SCM_ARG1, NULL));
+  hslot_type slot = get_slot (scm_num2int (scm_slot_id, SCM_ARG1, NULL));
 
-  if (slot) 
-    cards = scm_cons(scm_slot_id, scm_cons(c2scm_deck (slot->cards), SCM_EOL));
+  if (slot)
+    cards =
+      scm_cons (scm_slot_id, scm_cons (c2scm_deck (slot->cards), SCM_EOL));
 
   return cards;
 }
 
-static SCM scm_set_cards(SCM scm_slot_id, SCM new_cards) 
+static SCM
+scm_set_cards (SCM scm_slot_id, SCM new_cards)
 {
-  hslot_type hslot = get_slot(scm_num2int(scm_slot_id, SCM_ARG1, NULL));
-  slot_set_cards(scm2c_deck(new_cards), hslot);
+  hslot_type hslot = get_slot (scm_num2int (scm_slot_id, SCM_ARG1, NULL));
+  slot_set_cards (scm2c_deck (new_cards), hslot);
   return SCM_BOOL_T;
 }
 
-static SCM scm_set_lambda(SCM start_game_lambda, 
-                          SCM pressed_lambda, 
-                          SCM released_lambda, 
-                          SCM clicked_lambda, 
-                          SCM dbl_clicked_lambda,
-                          SCM game_over_lambda,
-                          SCM winning_game_lambda,
-                          SCM hint_lambda,
-                          SCM rest) 
+static SCM
+scm_set_lambda (SCM start_game_lambda,
+		SCM pressed_lambda,
+		SCM released_lambda,
+		SCM clicked_lambda,
+		SCM dbl_clicked_lambda,
+		SCM game_over_lambda,
+		SCM winning_game_lambda, SCM hint_lambda, SCM rest)
 {
   if (!game_data)
-	 game_data = malloc(sizeof(lambda_data));
+    game_data = malloc (sizeof (lambda_data));
   game_data->start_game_lambda = start_game_lambda;
   game_data->button_pressed_lambda = pressed_lambda;
   game_data->button_released_lambda = released_lambda;
@@ -443,56 +447,64 @@ static SCM scm_set_lambda(SCM start_game_lambda,
   game_data->game_over_lambda = game_over_lambda;
   game_data->winning_game_lambda = winning_game_lambda;
   game_data->hint_lambda = hint_lambda;
-  game_data->get_options_lambda = SCM_CAR(rest);
-  game_data->apply_options_lambda = SCM_CADR(rest);
-  game_data->timeout_lambda = SCM_CADDR(rest);
+  game_data->get_options_lambda = SCM_CAR (rest);
+  game_data->apply_options_lambda = SCM_CADR (rest);
+  game_data->timeout_lambda = SCM_CADDR (rest);
 
   if (droppable_is_featured)
-    game_data->droppable_lambda = SCM_CADDDR(rest);
+    game_data->droppable_lambda = SCM_CADDDR (rest);
 
   return SCM_EOL;
 }
 
-static SCM scm_myrandom(SCM range) 
+static SCM
+scm_myrandom (SCM range)
 {
-  return scm_long2num(g_random_int_range(0,SCM_INUM(range)));
+  return scm_long2num (g_random_int_range (0, SCM_INUM (range)));
 }
 
-static SCM scm_click_to_move_p (void)
+static SCM
+scm_click_to_move_p (void)
 {
   return click_to_move ? SCM_BOOL_T : SCM_BOOL_F;
 }
 
-static SCM scm_get_score(void) 
+static SCM
+scm_get_score (void)
 {
-  return scm_long2num(get_score());
+  return scm_long2num (get_score ());
 }
 
-static SCM scm_set_score(SCM new) 
+static SCM
+scm_set_score (SCM new)
 {
-  set_score(scm_num2int(new, SCM_ARG1, NULL));
+  set_score (scm_num2int (new, SCM_ARG1, NULL));
   return new;
 }
 
-static SCM scm_add_to_score(SCM delta) 
+static SCM
+scm_add_to_score (SCM delta)
 {
-  guint new_score = get_score() + scm_num2int(delta, SCM_ARG1, NULL);
-  set_score(new_score);
-  return scm_long2num(new_score);
+  guint new_score = get_score () + scm_num2int (delta, SCM_ARG1, NULL);
+  set_score (new_score);
+  return scm_long2num (new_score);
 }
 
-static SCM scm_set_timeout (SCM new) 
+static SCM
+scm_set_timeout (SCM new)
 {
-  timeout = scm_num2int(new, SCM_ARG1, NULL);
+  timeout = scm_num2int (new, SCM_ARG1, NULL);
   return new;
 }
 
-static SCM scm_get_timeout () 
+static SCM
+scm_get_timeout ()
 {
-  return scm_long2num(timeout);
+  return scm_long2num (timeout);
 }
 
-static gint scm_execute_delayed_function (SCM callback)
+static gint
+scm_execute_delayed_function (SCM callback)
 {
   CallData *call_data;
 
@@ -501,9 +513,7 @@ static gint scm_execute_delayed_function (SCM callback)
   call_data->n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   g_free (call_data);
 
   scm_gc_unprotect_object (callback);
@@ -515,7 +525,8 @@ static gint scm_execute_delayed_function (SCM callback)
   return FALSE;
 }
 
-static SCM scm_delayed_call (SCM callback)
+static SCM
+scm_delayed_call (SCM callback)
 {
   /* This is necessary since guile can't pick up on the fact that 
    * we're storing the callback value uins g_timeout_add and callback
@@ -530,7 +541,8 @@ static SCM scm_delayed_call (SCM callback)
   return SCM_BOOL_T;
 }
 
-void cscm_init () 
+void
+cscm_init ()
 {
   /* Enable useful debugging options. */
   SCM_DEVAL_P = 1;
@@ -539,28 +551,31 @@ void cscm_init ()
   SCM_RESET_DEBUG_MODE;
 
   /* Let the scheme side of things know about our C functions. */
-  scm_c_define_gsubr("set-feature-word!", 1, 0, 0, scm_set_feature_word);
-  scm_c_define_gsubr("get-feature-word", 0, 0, 0, scm_get_feature_word);
-  scm_c_define_gsubr("set-statusbar-message", 1, 0, 0, scm_set_statusbar_message);
-  scm_c_define_gsubr("set-surface-layout", 1, 0, 0, scm_set_surface_layout);
-  scm_c_define_gsubr("reset-surface", 0, 0, 0, scm_reset_surface);
-  scm_c_define_gsubr("add-slot", 1, 0, 0, gg_scm_add_slot);
-  scm_c_define_gsubr("get-slot", 1, 0, 0, scm_get_slot);  
-  scm_c_define_gsubr("set-cards-c!", 2, 0, 0, scm_set_cards);
-  scm_c_define_gsubr("set-slot-y-expansion!", 2, 0, 0, scm_set_slot_y_expansion);
-  scm_c_define_gsubr("set-slot-x-expansion!", 2, 0, 0, scm_set_slot_x_expansion);
-  scm_c_define_gsubr("set-lambda", 8, 0, 1, scm_set_lambda);
-  scm_c_define_gsubr("random", 1, 0, 0, scm_myrandom);
-  scm_c_define_gsubr("click-to-move?", 0, 0, 0, scm_click_to_move_p);
-  scm_c_define_gsubr("get-score", 0, 0, 0, scm_get_score);  
-  scm_c_define_gsubr("set-score!", 1, 0, 0, scm_set_score);
-  scm_c_define_gsubr("get-timeout", 0, 0, 0, scm_get_timeout);  
-  scm_c_define_gsubr("set-timeout!", 1, 0, 0, scm_set_timeout);
-  scm_c_define_gsubr("delayed-call", 1, 0, 0, scm_delayed_call);
-  scm_c_define_gsubr("add-to-score!", 1, 0, 0, scm_add_to_score);
-  scm_c_define_gsubr("_", 1, 0, 0, scm_gettext);
-  scm_c_define_gsubr("undo-set-sensitive", 1, 0, 0, scm_undo_set_sensitive);
-  scm_c_define_gsubr("redo-set-sensitive", 1, 0, 0, scm_redo_set_sensitive);
+  scm_c_define_gsubr ("set-feature-word!", 1, 0, 0, scm_set_feature_word);
+  scm_c_define_gsubr ("get-feature-word", 0, 0, 0, scm_get_feature_word);
+  scm_c_define_gsubr ("set-statusbar-message", 1, 0, 0,
+		      scm_set_statusbar_message);
+  scm_c_define_gsubr ("set-surface-layout", 1, 0, 0, scm_set_surface_layout);
+  scm_c_define_gsubr ("reset-surface", 0, 0, 0, scm_reset_surface);
+  scm_c_define_gsubr ("add-slot", 1, 0, 0, gg_scm_add_slot);
+  scm_c_define_gsubr ("get-slot", 1, 0, 0, scm_get_slot);
+  scm_c_define_gsubr ("set-cards-c!", 2, 0, 0, scm_set_cards);
+  scm_c_define_gsubr ("set-slot-y-expansion!", 2, 0, 0,
+		      scm_set_slot_y_expansion);
+  scm_c_define_gsubr ("set-slot-x-expansion!", 2, 0, 0,
+		      scm_set_slot_x_expansion);
+  scm_c_define_gsubr ("set-lambda", 8, 0, 1, scm_set_lambda);
+  scm_c_define_gsubr ("random", 1, 0, 0, scm_myrandom);
+  scm_c_define_gsubr ("click-to-move?", 0, 0, 0, scm_click_to_move_p);
+  scm_c_define_gsubr ("get-score", 0, 0, 0, scm_get_score);
+  scm_c_define_gsubr ("set-score!", 1, 0, 0, scm_set_score);
+  scm_c_define_gsubr ("get-timeout", 0, 0, 0, scm_get_timeout);
+  scm_c_define_gsubr ("set-timeout!", 1, 0, 0, scm_set_timeout);
+  scm_c_define_gsubr ("delayed-call", 1, 0, 0, scm_delayed_call);
+  scm_c_define_gsubr ("add-to-score!", 1, 0, 0, scm_add_to_score);
+  scm_c_define_gsubr ("_", 1, 0, 0, scm_gettext);
+  scm_c_define_gsubr ("undo-set-sensitive", 1, 0, 0, scm_undo_set_sensitive);
+  scm_c_define_gsubr ("redo-set-sensitive", 1, 0, 0, scm_redo_set_sensitive);
   eval_installed_file ("sol.scm");
 }
 
@@ -575,42 +590,38 @@ cscmi_start_game_lambda (double *width, double *height)
   call_data->n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
 
-  *width = scm_num2double(SCM_CAR (retval), 0, NULL);
-  *height = scm_num2double(SCM_CADR (retval), 0, NULL);
+  *width = scm_num2double (SCM_CAR (retval), 0, NULL);
+  *height = scm_num2double (SCM_CADR (retval), 0, NULL);
 }
 
 gboolean
-cscmi_drag_valid(int slot_id, GList *cards)
+cscmi_drag_valid (int slot_id, GList * cards)
 {
   CallData *call_data;
   SCM retval;
-  
+
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->button_pressed_lambda;
   call_data->n_args = 2;
-  call_data->arg1 = scm_long2num(slot_id);
-  call_data->arg2 = c2scm_deck(cards);
+  call_data->arg1 = scm_long2num (slot_id);
+  call_data->arg2 = c2scm_deck (cards);
   scm_gc_protect_object (call_data->arg2);
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
   scm_gc_unprotect_object (call_data->arg2);
 
-  return SCM_NFALSEP(retval);
+  return SCM_NFALSEP (retval);
 }
 
 gboolean
-cscmi_drop_cards(int start_slot, GList *cards, int end_slot)
+cscmi_drop_cards (int start_slot, GList * cards, int end_slot)
 {
   CallData *call_data;
   SCM retval;
@@ -618,24 +629,22 @@ cscmi_drop_cards(int start_slot, GList *cards, int end_slot)
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->button_released_lambda;
   call_data->n_args = 3;
-  call_data->arg1 = scm_long2num(start_slot);
-  call_data->arg2 = c2scm_deck(cards);
+  call_data->arg1 = scm_long2num (start_slot);
+  call_data->arg2 = c2scm_deck (cards);
   scm_gc_protect_object (call_data->arg2);
-  call_data->arg3 = scm_long2num(end_slot);
+  call_data->arg3 = scm_long2num (end_slot);
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
   scm_gc_unprotect_object (call_data->arg2);
 
-  return SCM_NFALSEP(retval);
+  return SCM_NFALSEP (retval);
 }
 
 gboolean
-cscmi_button_clicked_lambda(int slot_id)
+cscmi_button_clicked_lambda (int slot_id)
 {
   CallData *call_data;
   SCM retval;
@@ -643,20 +652,18 @@ cscmi_button_clicked_lambda(int slot_id)
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->button_clicked_lambda;
   call_data->n_args = 1;
-  call_data->arg1 = scm_long2num(slot_id);
+  call_data->arg1 = scm_long2num (slot_id);
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
 
-  return SCM_NFALSEP(retval);
+  return SCM_NFALSEP (retval);
 }
 
 gboolean
-cscmi_button_double_clicked_lambda(int slot_id)
+cscmi_button_double_clicked_lambda (int slot_id)
 {
   CallData *call_data;
   SCM retval;
@@ -664,20 +671,18 @@ cscmi_button_double_clicked_lambda(int slot_id)
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->button_double_clicked_lambda;
   call_data->n_args = 1;
-  call_data->arg1 = scm_long2num(slot_id);
+  call_data->arg1 = scm_long2num (slot_id);
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
 
-  return SCM_NFALSEP(retval);
+  return SCM_NFALSEP (retval);
 }
 
 gboolean
-cscmi_drop_valid(int start_slot, GList *cards, int end_slot)
+cscmi_drop_valid (int start_slot, GList * cards, int end_slot)
 {
   CallData *call_data;
   SCM retval;
@@ -688,20 +693,18 @@ cscmi_drop_valid(int start_slot, GList *cards, int end_slot)
   call_data = g_new0 (CallData, 1);
   call_data->lambda = game_data->droppable_lambda;
   call_data->n_args = 3;
-  call_data->arg1 = scm_long2num(start_slot);
-  call_data->arg2 = c2scm_deck(cards);
+  call_data->arg1 = scm_long2num (start_slot);
+  call_data->arg2 = c2scm_deck (cards);
   scm_gc_protect_object (call_data->arg2);
-  call_data->arg3 = scm_long2num(end_slot);
+  call_data->arg3 = scm_long2num (end_slot);
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
   scm_gc_unprotect_object (call_data->arg2);
 
-  return SCM_NFALSEP(retval);
+  return SCM_NFALSEP (retval);
 }
 
 
@@ -716,13 +719,11 @@ cscmi_game_over_lambda (void)
   call_data->n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
 
-  return SCM_NFALSEP(retval);
+  return SCM_NFALSEP (retval);
 }
 
 gboolean
@@ -736,13 +737,11 @@ cscmi_winning_game_lambda (void)
   call_data->n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
 
-  return SCM_NFALSEP(retval);
+  return SCM_NFALSEP (retval);
 }
 
 SCM
@@ -756,9 +755,7 @@ cscmi_hint_lambda (void)
   call_data->n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -776,9 +773,7 @@ cscmi_get_options_lambda (void)
   call_data->n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -806,9 +801,7 @@ cscmi_apply_options_lambda (SCM options)
   call_data->arg1 = options;
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -826,9 +819,7 @@ cscmi_timeout_lambda (void)
   call_data->n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
 			    cscmi_call_lambda,
-			    call_data,
-			    cscmi_catch_handler,
-			    NULL);
+			    call_data, cscmi_catch_handler, NULL);
   retval = call_data->retval;
   g_free (call_data);
 
@@ -836,25 +827,27 @@ cscmi_timeout_lambda (void)
 }
 
 
-void cscmi_record_move(int slot_id, GList *old_cards)
+void
+cscmi_record_move (int slot_id, GList * old_cards)
 {
-  SCM cards = c2scm_deck(old_cards);
+  SCM cards = c2scm_deck (old_cards);
 
   scm_gc_protect_object (cards);
 
-  scm_call_2(scm_c_eval_string("record-move"),
-	     scm_long2num(slot_id), cards);
+  scm_call_2 (scm_c_eval_string ("record-move"),
+	      scm_long2num (slot_id), cards);
 
   scm_gc_unprotect_object (cards);
 }
 
-void cscmi_end_move(void)
+void
+cscmi_end_move (void)
 {
-  scm_call_0(scm_c_eval_string ("end-move"));  
+  scm_call_0 (scm_c_eval_string ("end-move"));
 }
 
-void cscmi_discard_move(void)
+void
+cscmi_discard_move (void)
 {
-  scm_call_0(scm_c_eval_string ("discard-move"));  
+  scm_call_0 (scm_c_eval_string ("discard-move"));
 }
-

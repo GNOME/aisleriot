@@ -25,7 +25,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif /* __cplusplus */
+#endif				/* __cplusplus */
 
 
 #define GAMES_TYPE_FRAME            (games_frame_get_type ())
@@ -36,34 +36,29 @@ extern "C" {
 #define GAMES_FRAME_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_FRAME, GamesFrameClass))
 
 
-typedef struct _GamesFrame       GamesFrame;
-typedef struct _GamesFrameClass  GamesFrameClass;
+  typedef struct _GamesFrame GamesFrame;
+  typedef struct _GamesFrameClass GamesFrameClass;
 
-struct _GamesFrame
-{
-  GtkFrame parent_instance;
-};
+  struct _GamesFrame {
+    GtkFrame parent_instance;
+  };
 
-struct _GamesFrameClass
-{
-  GtkFrameClass parent_class;
+  struct _GamesFrameClass {
+    GtkFrameClass parent_class;
 
-  /* Padding for future expansion */
-  void (* _games_reserved1) (void);
-  void (* _games_reserved2) (void);
-  void (* _games_reserved3) (void);
-  void (* _games_reserved4) (void);
-};
+    /* Padding for future expansion */
+    void (*_games_reserved1) (void);
+    void (*_games_reserved2) (void);
+    void (*_games_reserved3) (void);
+    void (*_games_reserved4) (void);
+  };
 
 
-GType      games_frame_get_type   (void) G_GNUC_CONST;
-GtkWidget* games_frame_new        (const gchar *label);
-void       games_frame_set_label  (GamesFrame  *frame,
-                                   const gchar *label);
+  GType games_frame_get_type (void) G_GNUC_CONST;
+  GtkWidget *games_frame_new (const gchar * label);
+  void games_frame_set_label (GamesFrame * frame, const gchar * label);
 
 #ifdef __cplusplus
 }
-#endif /* __cplusplus */
-
-
-#endif /* __GAMES_FRAME_H__ */
+#endif				/* __cplusplus */
+#endif				/* __GAMES_FRAME_H__ */

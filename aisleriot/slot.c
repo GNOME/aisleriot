@@ -27,16 +27,18 @@
 
 GList *slot_list = NULL;
 
-void add_slot(gint id, GList *cards, double x, double y, 
-	      gboolean expanded_down, gboolean expanded_right, 
-	      gint expansion_depth) {
+void
+add_slot (gint id, GList * cards, double x, double y,
+	  gboolean expanded_down, gboolean expanded_right,
+	  gint expansion_depth)
+{
   const double x_expanded_offset = 0.21;
   const double y_expanded_offset = 0.21;
 
   /* create and initialize slot */
-  hslot_type hslot = malloc(sizeof(struct _slot_struct));
+  hslot_type hslot = malloc (sizeof (struct _slot_struct));
   hslot->id = id;
-  hslot->cards = cards; /* list belongs to the slot now */
+  hslot->cards = cards;		/* list belongs to the slot now */
   hslot->x = x;
   hslot->y = y;
   hslot->dx = expanded_right ? x_expanded_offset : 0;
@@ -45,13 +47,15 @@ void add_slot(gint id, GList *cards, double x, double y,
   hslot->expansion_depth = expansion_depth;
   hslot->length = 0;
   hslot->exposed = 0;
-  update_slot_length(hslot);
+  update_slot_length (hslot);
 
   /* add to slot list */
-  slot_list = g_list_append(slot_list, hslot);
+  slot_list = g_list_append (slot_list, hslot);
 }
 
-void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
+void
+slot_pressed (gint x, gint y, hslot_type * slot, gint * cardid)
+{
   GList *tempptr;
   gint num_cards;
   gboolean got_slot = FALSE;
@@ -60,51 +64,50 @@ void slot_pressed(gint x, gint y, hslot_type *slot, gint *cardid) {
   *slot = NULL;
   *cardid = -1;
 
-  for (tempptr = g_list_last(slot_list); tempptr; tempptr = tempptr->prev) {
+  for (tempptr = g_list_last (slot_list); tempptr; tempptr = tempptr->prev) {
 
     hslot = (hslot_type) tempptr->data;
 
     /* if point is within our rectangle */
-    if (hslot->pixelx <= x && x <= hslot->pixelx + hslot->width && 
-	hslot->pixely <= y && y <= hslot->pixely + hslot->height) 
-    {
-	num_cards = hslot->length;
+    if (hslot->pixelx <= x && x <= hslot->pixelx + hslot->width &&
+	hslot->pixely <= y && y <= hslot->pixely + hslot->height) {
+      num_cards = hslot->length;
 
-	if ( got_slot == FALSE || num_cards > 0 )
-	{  
-   		/* if we support exposing more than one card,
-		 * find the exact card  */
+      if (got_slot == FALSE || num_cards > 0) {
+	/* if we support exposing more than one card,
+	 * find the exact card  */
 
-		gint depth = 1;
+	gint depth = 1;
 
-		if (hslot->pixeldx > 0)		
-			depth += (x - hslot->pixelx) / hslot->pixeldx;
-		else if (hslot->pixeldy > 0)
-			depth += (y - hslot->pixely) / hslot->pixeldy;
-	    
-		/* account for the last card getting much more display area
-		 * or no cards */
+	if (hslot->pixeldx > 0)
+	  depth += (x - hslot->pixelx) / hslot->pixeldx;
+	else if (hslot->pixeldy > 0)
+	  depth += (y - hslot->pixely) / hslot->pixeldy;
 
-		if (depth > hslot->exposed)			
-			depth = hslot->exposed;
-		*slot = hslot;
+	/* account for the last card getting much more display area
+	 * or no cards */
 
-		/* card = #cards in slot + card chosen (indexed in # exposed cards) - # exposed cards */
+	if (depth > hslot->exposed)
+	  depth = hslot->exposed;
+	*slot = hslot;
 
-		*cardid = num_cards + depth - hslot->exposed;
-		
-		/* this is the topmost slot with a card */
-		/* take it and run*/
-		if ( num_cards > 0 )
-			break;
+	/* card = #cards in slot + card chosen (indexed in # exposed cards) - # exposed cards */
 
-		got_slot = TRUE;
-	}
+	*cardid = num_cards + depth - hslot->exposed;
+
+	/* this is the topmost slot with a card */
+	/* take it and run */
+	if (num_cards > 0)
+	  break;
+
+	got_slot = TRUE;
+      }
     }
   }
 }
 
-void update_slot_length(hslot_type hslot) 
+void
+update_slot_length (hslot_type hslot)
 {
   gint delta;
 
@@ -124,50 +127,61 @@ void update_slot_length(hslot_type hslot)
   hslot->height = card_height + delta * hslot->pixeldy;
 }
 
-GList* get_slot_list() {
+GList *
+get_slot_list ()
+{
   return slot_list;
 }
 
-hslot_type get_slot(gint slotid) {
-  GList* tempptr;
-  
+hslot_type
+get_slot (gint slotid)
+{
+  GList *tempptr;
+
   for (tempptr = slot_list; tempptr; tempptr = tempptr->next)
-	 if (((hslot_type) tempptr->data)-> id == slotid)
-		return tempptr->data;
+    if (((hslot_type) tempptr->data)->id == slotid)
+      return tempptr->data;
   return NULL;
 }
 
-void add_cards_to_slot(GList* newcards, hslot_type hslot) {
-  hslot->cards = g_list_concat(hslot->cards, newcards);
-  update_slot_length(hslot);
-}
-
-static void delete_slot(hslot_type hslot) {
-  GList* temptr;  
-  for (temptr = hslot->cards; temptr; temptr = temptr->next)
-    free(temptr->data);
-  g_list_free(hslot->cards);
-  free(hslot);
-}
-
-void slot_set_cards(GList *new_cards, hslot_type hslot)
+void
+add_cards_to_slot (GList * newcards, hslot_type hslot)
 {
-  GList* temptr;
+  hslot->cards = g_list_concat (hslot->cards, newcards);
+  update_slot_length (hslot);
+}
+
+static void
+delete_slot (hslot_type hslot)
+{
+  GList *temptr;
   for (temptr = hslot->cards; temptr; temptr = temptr->next)
-    free(temptr->data);
-  g_list_free(hslot->cards);
-  hslot->cards = new_cards; /* list belongs to slot now */
-  update_slot_length(hslot);
+    free (temptr->data);
+  g_list_free (hslot->cards);
+  free (hslot);
+}
+
+void
+slot_set_cards (GList * new_cards, hslot_type hslot)
+{
+  GList *temptr;
+  for (temptr = hslot->cards; temptr; temptr = temptr->next)
+    free (temptr->data);
+  g_list_free (hslot->cards);
+  hslot->cards = new_cards;	/* list belongs to slot now */
+  update_slot_length (hslot);
 }
 
 
-void delete_all_slots() {
-  GList* temptr;
+void
+delete_all_slots ()
+{
+  GList *temptr;
 
-  for(temptr = slot_list; temptr; temptr = temptr->next) {
-    delete_slot(temptr->data);
+  for (temptr = slot_list; temptr; temptr = temptr->next) {
+    delete_slot (temptr->data);
     temptr->data = NULL;
   }
-  g_list_free(slot_list);
+  g_list_free (slot_list);
   slot_list = NULL;
 }

@@ -33,13 +33,13 @@
 G_DEFINE_TYPE (GamesScoresBackend, games_scores_backend, G_TYPE_OBJECT);
 
 static void
-games_scores_backend_finalize (GamesScoresBackend *backend)
+games_scores_backend_finalize (GamesScoresBackend * backend)
 {
 
 }
 
 static void
-games_scores_backend_class_init (GamesScoresBackendClass *klass)
+games_scores_backend_class_init (GamesScoresBackendClass * klass)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
 
@@ -48,24 +48,24 @@ games_scores_backend_class_init (GamesScoresBackendClass *klass)
 }
 
 static void
-games_scores_backend_init (GamesScoresBackend *backend)
+games_scores_backend_init (GamesScoresBackend * backend)
 {
-  backend->priv = G_TYPE_INSTANCE_GET_PRIVATE (backend, 
+  backend->priv = G_TYPE_INSTANCE_GET_PRIVATE (backend,
 					       GAMES_TYPE_SCORES_BACKEND,
 					       GamesScoresBackendPrivate);
 }
 
-GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
-					      gchar *basename,
-					      gchar *name)
+GamesScoresBackend *
+games_scores_backend_new (GamesScoreStyle style,
+			  gchar * basename, gchar * name)
 {
   GamesScoresBackend *backend;
   gchar *fullname;
 
-  backend = GAMES_SCORES_BACKEND (g_object_new (GAMES_TYPE_SCORES_BACKEND, 
+  backend = GAMES_SCORES_BACKEND (g_object_new (GAMES_TYPE_SCORES_BACKEND,
 						NULL));
 
-  if (name[0] == '\0') /* Name is "" */
+  if (name[0] == '\0')		/* Name is "" */
     fullname = g_strjoin (".", basename, "scores", NULL);
   else
     fullname = g_strjoin (".", basename, name, "scores", NULL);
@@ -84,7 +84,8 @@ GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
 /* Get a lock on the scores file. Block until it is available. 
  * This also supplies the file descriptor we need. The return value
  * is whether we were succesful or not. */
-static gboolean games_scores_backend_get_lock (GamesScoresBackend *self)
+static gboolean
+games_scores_backend_get_lock (GamesScoresBackend * self)
 {
   gint error;
 
@@ -92,7 +93,7 @@ static gboolean games_scores_backend_get_lock (GamesScoresBackend *self)
     /* Assume we already have the lock and rewind the file to
      * the beginning. */
     setgid_io_seek (self->priv->fd, 0, SEEK_SET);
-    return TRUE; /* Assume we already have the lock. */
+    return TRUE;		/* Assume we already have the lock. */
   }
 
   self->priv->fd = setgid_io_open (self->priv->filename, O_RDWR);
@@ -113,7 +114,8 @@ static gboolean games_scores_backend_get_lock (GamesScoresBackend *self)
 
 /* Release the lock on the scores file and dispose of the fd. */
 /* We ignore errors, there is nothing we can do about them. */
-static void games_scores_backend_release_lock (GamesScoresBackend *self)
+static void
+games_scores_backend_release_lock (GamesScoresBackend * self)
 {
   /* We don't have a lock, ignore this call. */
   if (self->priv->fd == -1)
@@ -129,7 +131,8 @@ static void games_scores_backend_release_lock (GamesScoresBackend *self)
 /* You can alter the list returned by this function, but you must
  * make sure you set it again with the _set_scores method or discard it
  * with with the _discard_scores method. Otherwise deadlocks will ensue. */
-GList *games_scores_backend_get_scores (GamesScoresBackend *self) 
+GList *
+games_scores_backend_get_scores (GamesScoresBackend * self)
 {
   gchar *buffer;
   gchar *eol;
@@ -149,8 +152,7 @@ GList *games_scores_backend_get_scores (GamesScoresBackend *self)
   if (error != 0)
     return NULL;
 
-  if ((info.st_mtime > self->priv->timestamp) || 
-      (self->scores_list == NULL)) {
+  if ((info.st_mtime > self->priv->timestamp) || (self->scores_list == NULL)) {
     self->priv->timestamp = info.st_mtime;
 
     /* Dump the old list of scores. */
@@ -196,10 +198,12 @@ GList *games_scores_backend_get_scores (GamesScoresBackend *self)
     while (eol != NULL) {
       *eol++ = '\0';
       timestr = strchr (scorestr, ' ');
-      if (timestr == NULL) break;
+      if (timestr == NULL)
+	break;
       *timestr++ = '\0';
       namestr = strchr (timestr, ' ');
-      if (namestr == NULL) break;
+      if (namestr == NULL)
+	break;
       *namestr++ = '\0';
       /* At this point we have three strings, all null terminated. All
        * part of the original buffer. */
@@ -223,71 +227,71 @@ GList *games_scores_backend_get_scores (GamesScoresBackend *self)
     }
 
     g_free (buffer);
-  } 
+  }
 
   /* FIXME: Sort the scores! We shouldn't rely on the file being sorted. */
 
   return self->scores_list;
 }
 
-void games_scores_backend_set_scores (GamesScoresBackend *self,
-				      GList *list)
+void
+games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
 {
-    GList *s;
-    GamesScore *d;
-    gchar *buffer;
-    gint output_length = 0;
-    gchar dtostrbuf[G_ASCII_DTOSTR_BUF_SIZE];
+  GList *s;
+  GamesScore *d;
+  gchar *buffer;
+  gint output_length = 0;
+  gchar dtostrbuf[G_ASCII_DTOSTR_BUF_SIZE];
 
-    if (!games_scores_backend_get_lock (self))
-      return;
+  if (!games_scores_backend_get_lock (self))
+    return;
 
-    self->scores_list = list;
+  self->scores_list = list;
 
-    s = list;
-    while (s != NULL) {
-      gdouble rscore;
-      guint64 rtime;
-      gchar *rname;
+  s = list;
+  while (s != NULL) {
+    gdouble rscore;
+    guint64 rtime;
+    gchar *rname;
 
-      d = (GamesScore *)s->data;
-      rscore = 0.0;
-      switch (self->priv->style) {
-      case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
-      case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
-	rscore = d->value.plain;
-	break;
-      case GAMES_SCORES_STYLE_TIME_DESCENDING:
-      case GAMES_SCORES_STYLE_TIME_ASCENDING:
-	rscore = d->value.time_double;
-	break;
-      }
-      rtime = d->time;
-      rname = d->name;
-
-      buffer = g_strdup_printf ("%s %lld %s\n", 
-				g_ascii_dtostr (dtostrbuf, sizeof (dtostrbuf), 
-						rscore),
-				rtime, rname); 
-      setgid_io_write (self->priv->fd, buffer, strlen (buffer));
-      output_length += strlen(buffer);
-      /* Ignore any errors and blunder on. */
-      g_free (buffer);
-
-      s = g_list_next (s);
+    d = (GamesScore *) s->data;
+    rscore = 0.0;
+    switch (self->priv->style) {
+    case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
+    case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
+      rscore = d->value.plain;
+      break;
+    case GAMES_SCORES_STYLE_TIME_DESCENDING:
+    case GAMES_SCORES_STYLE_TIME_ASCENDING:
+      rscore = d->value.time_double;
+      break;
     }
+    rtime = d->time;
+    rname = d->name;
 
-    /* Remove any content in the file that hasn't yet been overwritten. */
-    setgid_io_truncate (self->priv->fd, output_length--);
+    buffer = g_strdup_printf ("%s %lld %s\n",
+			      g_ascii_dtostr (dtostrbuf, sizeof (dtostrbuf),
+					      rscore), rtime, rname);
+    setgid_io_write (self->priv->fd, buffer, strlen (buffer));
+    output_length += strlen (buffer);
+    /* Ignore any errors and blunder on. */
+    g_free (buffer);
 
-    /* Update the timestamp so we don't reread the scores unnecessarily. */
-    self->priv->timestamp = time (NULL);
+    s = g_list_next (s);
+  }
 
-    games_scores_backend_release_lock (self);
+  /* Remove any content in the file that hasn't yet been overwritten. */
+  setgid_io_truncate (self->priv->fd, output_length--);
 
- }
+  /* Update the timestamp so we don't reread the scores unnecessarily. */
+  self->priv->timestamp = time (NULL);
 
-void games_scores_backend_discard_scores (GamesScoresBackend *self)
-{ 
-    games_scores_backend_release_lock (self);
+  games_scores_backend_release_lock (self);
+
+}
+
+void
+games_scores_backend_discard_scores (GamesScoresBackend * self)
+{
+  games_scores_backend_release_lock (self);
 }

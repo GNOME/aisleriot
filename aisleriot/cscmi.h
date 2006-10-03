@@ -27,27 +27,25 @@
 
 
 /* Init function */
-void       cscm_init                          (void);
+void cscm_init (void);
 
-gboolean   cscmi_has_options                  (void);
-void       cscmi_start_game_lambda            (double *width, double *height);
-gboolean   cscmi_drag_valid                   (int slot_id, GList *cards);
-gboolean   cscmi_drop_valid                   (int start_slot, GList *cards,
-					       int end_slot);
-gboolean   cscmi_drop_cards                   (int start_slot, GList *cards,
-					       int end_slot);
-gboolean   cscmi_button_clicked_lambda        (int slot_id);
-gboolean   cscmi_button_double_clicked_lambda (int slot_id);
-gboolean   cscmi_game_over_lambda             (void);
-gboolean   cscmi_winning_game_lambda          (void);
-SCM        cscmi_hint_lambda                  (void);
-SCM        cscmi_get_options_lambda           (void);
-SCM        cscmi_apply_options_lambda         (SCM        options);
-gboolean   cscmi_timeout_lambda               (void);
+gboolean cscmi_has_options (void);
+void cscmi_start_game_lambda (double *width, double *height);
+gboolean cscmi_drag_valid (int slot_id, GList * cards);
+gboolean cscmi_drop_valid (int start_slot, GList * cards, int end_slot);
+gboolean cscmi_drop_cards (int start_slot, GList * cards, int end_slot);
+gboolean cscmi_button_clicked_lambda (int slot_id);
+gboolean cscmi_button_double_clicked_lambda (int slot_id);
+gboolean cscmi_game_over_lambda (void);
+gboolean cscmi_winning_game_lambda (void);
+SCM cscmi_hint_lambda (void);
+SCM cscmi_get_options_lambda (void);
+SCM cscmi_apply_options_lambda (SCM options);
+gboolean cscmi_timeout_lambda (void);
 
-void cscmi_record_move(int slot_id, GList *old_cards);
-void cscmi_end_move(void);
-void cscmi_discard_move(void);
+void cscmi_record_move (int slot_id, GList * old_cards);
+void cscmi_end_move (void);
+void cscmi_discard_move (void);
 
 
 #endif

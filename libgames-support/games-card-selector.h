@@ -23,24 +23,20 @@
 #define GAMES_CARD_SELECTOR_H
 
 G_BEGIN_DECLS
-
 #include <gtk/gtk.h>
-
 #include "games-frame.h"
 #include "games-files.h"
-
-typedef struct _GamesCardSelector {
+  typedef struct _GamesCardSelector {
   GamesFrame parent;
 
-  GtkWidget * combobox;
-  GamesFileList * files;
+  GtkWidget *combobox;
+  GamesFileList *files;
 } GamesCardSelector;
 
 typedef struct _GamesCardSelectorClass {
   GamesFrameClass parent;
 
-  void (*changed) (GamesCardSelector *selector,
-		   gchar *name);
+  void (*changed) (GamesCardSelector * selector, gchar * name);
 } GamesCardSelectorClass;
 
 #define GAMES_TYPE_CARD_SELECTOR (games_card_selector_get_type ())
@@ -52,8 +48,7 @@ typedef struct _GamesCardSelectorClass {
 
 GType games_card_selector_get_type (void);
 
-GtkWidget * games_card_selector_new (gchar * current);
+GtkWidget *games_card_selector_new (gchar * current);
 
 G_END_DECLS
-
 #endif /* GAMES_CARD_SELECTOR_H */

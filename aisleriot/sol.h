@@ -45,41 +45,41 @@
  * Global variables
  */
 
-extern GtkWidget*       app;
-extern GtkWidget*       playing_area;
-extern GtkWidget*       statusbar;
-extern GdkGC*           draw_gc;
-extern GdkGC*           slot_gc;
-extern GdkGC*           bg_gc;
-extern GdkPixmap*       surface;
-extern gchar*	  	card_style;
+extern GtkWidget *app;
+extern GtkWidget *playing_area;
+extern GtkWidget *statusbar;
+extern GdkGC *draw_gc;
+extern GdkGC *slot_gc;
+extern GdkGC *bg_gc;
+extern GdkPixmap *surface;
+extern gchar *card_style;
 
-extern gboolean		droppable_is_featured;
-extern gboolean		score_is_hidden;
+extern gboolean droppable_is_featured;
+extern gboolean score_is_hidden;
 
-extern guint            timeout;
-extern guint            seed;
-extern gchar*           game_file;
-extern gchar*           game_name;
-extern gboolean         game_in_progress;
-extern gboolean         game_over;
-extern gboolean         game_won;
-extern gboolean         click_to_move;
-extern gchar            *gamesdir;
+extern guint timeout;
+extern guint seed;
+extern gchar *game_file;
+extern gchar *game_name;
+extern gboolean game_in_progress;
+extern gboolean game_over;
+extern gboolean game_won;
+extern gboolean click_to_move;
+extern gchar *gamesdir;
 
-extern GConfClient * gconf_client;
+extern GConfClient *gconf_client;
 
-gchar* game_file_to_name(const gchar* file);
-void new_game(gchar* file, guint *seed);
-void quit_app(GtkMenuItem*);
-void set_score(guint new_score);
-guint get_score(void);
-void timer_start(void);
-void timer_restart(void);
-void timer_stop(void);
-void timer_reset(void);
-guint timer_get(void);
-void eval_installed_file(gchar *file);
-void add_recently_played_game (gchar* game_file);
+gchar *game_file_to_name (const gchar * file);
+void new_game (gchar * file, guint * seed);
+void quit_app (GtkMenuItem *);
+void set_score (guint new_score);
+guint get_score (void);
+void timer_start (void);
+void timer_restart (void);
+void timer_stop (void);
+void timer_reset (void);
+guint timer_get (void);
+void eval_installed_file (gchar * file);
+void add_recently_played_game (gchar * game_file);
 
 #endif

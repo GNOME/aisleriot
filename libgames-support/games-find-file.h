@@ -24,9 +24,8 @@
 #include <glib.h>
 
 G_BEGIN_DECLS
-
-gchar * games_find_similar_file (const gchar *target, const gchar *directory); 
+  gchar * games_find_similar_file (const gchar * target,
+				   const gchar * directory);
 
 G_END_DECLS
-
 #endif

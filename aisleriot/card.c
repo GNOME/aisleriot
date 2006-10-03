@@ -25,44 +25,49 @@
 
 GdkBitmap *card_mask = NULL;
 
-GdkPixmap *default_background_pixmap; 
+GdkPixmap *default_background_pixmap;
 GdkPixmap *droptarget_pixmap;
 GamesPreimage *slot_preimage;
 GdkPixmap *slot_pixmap = NULL;
 GdkBitmap *slot_mask = NULL;
-GdkPixbuf* comppixbuf = NULL;
+GdkPixbuf *comppixbuf = NULL;
 
-GamesCardPixmaps * images = NULL;
+GamesCardPixmaps *images = NULL;
 
-GdkPixmap* get_card_picture (gint suit, gint rank ) 
+GdkPixmap *
+get_card_picture (gint suit, gint rank)
 {
-  if (rank == 0) { /* A joker */
-    if (suit == 0) /* A black joker. */
+  if (rank == 0) {		/* A joker */
+    if (suit == 0)		/* A black joker. */
       return games_card_pixmaps_get_black_joker (images);
-    else /* A red joker. */
+    else			/* A red joker. */
       return games_card_pixmaps_get_red_joker (images);
   }
 
   return games_card_pixmaps_get_card (images, suit, rank);
 }
 
-GdkPixmap* get_droptarget_pixmap (gint suit, gint rank, gboolean direction)
+GdkPixmap *
+get_droptarget_pixmap (gint suit, gint rank, gboolean direction)
 {
-  GdkPixbuf* cardpixbuf;
+  GdkPixbuf *cardpixbuf;
   guint x, y, width, height, rowstride;
   guint16 red, green, blue;
   guchar *pixels, *p;
 
-  if (rank == 0) 
-    if (suit == 0) 
-      cardpixbuf = games_card_images_get_black_joker (GAMES_CARD_IMAGES(images));
-    else 
-      cardpixbuf = games_card_images_get_red_joker (GAMES_CARD_IMAGES(images));
+  if (rank == 0)
+    if (suit == 0)
+      cardpixbuf =
+	games_card_images_get_black_joker (GAMES_CARD_IMAGES (images));
+    else
+      cardpixbuf =
+	games_card_images_get_red_joker (GAMES_CARD_IMAGES (images));
   else
-    cardpixbuf = games_card_images_get_card (GAMES_CARD_IMAGES(images), suit, rank);
+    cardpixbuf =
+      games_card_images_get_card (GAMES_CARD_IMAGES (images), suit, rank);
 
   if (direction)
-    cardpixbuf = games_card_images_get_back (GAMES_CARD_IMAGES(images));
+    cardpixbuf = games_card_images_get_back (GAMES_CARD_IMAGES (images));
 
   /* FIXME: We can do a color button later... if it's usable. */
   red = 0;
@@ -78,62 +83,73 @@ GdkPixmap* get_droptarget_pixmap (gint suit, gint rank, gboolean direction)
 
   for (y = 0; y < height; y++) {
     for (x = 0; x < width; x++) {
-      p = pixels + y*rowstride + x*4;
-      p[0] += (0xFF - p[0]) * red   / 0xFF;
+      p = pixels + y * rowstride + x * 4;
+      p[0] += (0xFF - p[0]) * red / 0xFF;
       p[1] += (0xFF - p[1]) * green / 0xFF;
-      p[2] += (0xFF - p[2]) * blue  / 0xFF;
+      p[2] += (0xFF - p[2]) * blue / 0xFF;
     }
   }
 
-  gdk_draw_pixbuf (GDK_DRAWABLE(droptarget_pixmap), NULL, comppixbuf, 0, 0, 0, 0, -1, -1, 0, 0, 0);
+  gdk_draw_pixbuf (GDK_DRAWABLE (droptarget_pixmap), NULL, comppixbuf, 0, 0,
+		   0, 0, -1, -1, 0, 0, 0);
 
   return droptarget_pixmap;
 }
 
-GdkPixmap* get_background_pixmap () {
+GdkPixmap *
+get_background_pixmap ()
+{
   return default_background_pixmap;
 }
 
-GdkPixmap* get_slot_pixmap () {
+GdkPixmap *
+get_slot_pixmap ()
+{
   return slot_pixmap;
 }
 
-GdkPixmap* get_card_back_pixmap () {
+GdkPixmap *
+get_card_back_pixmap ()
+{
   return games_card_pixmaps_get_back (images);
 }
 
-static GdkPixmap* get_pixmap (const char* filename)
+static GdkPixmap *
+get_pixmap (const char *filename)
 {
-  GdkPixmap* ret;
+  GdkPixmap *ret;
   GdkPixbuf *im;
-  char* fullname = gnome_program_locate_file (NULL,
-		  GNOME_FILE_DOMAIN_APP_PIXMAP,
-		  filename, TRUE, NULL);
+  char *fullname = gnome_program_locate_file (NULL,
+					      GNOME_FILE_DOMAIN_APP_PIXMAP,
+					      filename, TRUE, NULL);
 
   if (fullname == NULL)
-    return NULL; 
+    return NULL;
 
   im = gdk_pixbuf_new_from_file (fullname, NULL);
   if (im != NULL) {
-    gdk_pixbuf_render_pixmap_and_mask_for_colormap (im, gdk_colormap_get_system(), &ret, NULL, 127);
+    gdk_pixbuf_render_pixmap_and_mask_for_colormap (im,
+						    gdk_colormap_get_system
+						    (), &ret, NULL, 127);
     gdk_pixbuf_unref (im);
   } else {
     ret = NULL;
-  } 
+  }
   g_free (fullname);
 
   return ret;
 }
 
-static GamesPreimage* get_preimage (const char* filename)
+static GamesPreimage *
+get_preimage (const char *filename)
 {
   GamesPreimage *im;
-  char* fullname = gnome_program_locate_file (NULL,
-                                              GNOME_FILE_DOMAIN_APP_PIXMAP,
-                                              filename, TRUE, NULL);
+  char *fullname = gnome_program_locate_file (NULL,
+					      GNOME_FILE_DOMAIN_APP_PIXMAP,
+					      filename, TRUE, NULL);
 
   if (fullname == NULL)
-    return NULL; 
+    return NULL;
 
   im = games_preimage_new_from_file (fullname, NULL);
   g_free (fullname);
@@ -141,13 +157,15 @@ static GamesPreimage* get_preimage (const char* filename)
   return im;
 }
 
-void load_pixmaps (void) 
+void
+load_pixmaps (void)
 {
   slot_preimage = get_preimage ("cards/slot.svg");
   default_background_pixmap = get_pixmap ("cards/baize.png");
 }
 
-void free_pixmaps () 
+void
+free_pixmaps ()
 {
   if (slot_preimage != NULL)
     g_object_unref (slot_preimage);
@@ -155,7 +173,8 @@ void free_pixmaps ()
     g_object_unref (default_background_pixmap);
 }
 
-void set_card_size (gint width, gint height)
+void
+set_card_size (gint width, gint height)
 {
   GdkPixbuf *scaled;
 
@@ -169,32 +188,37 @@ void set_card_size (gint width, gint height)
     g_object_unref (comppixbuf);
   }
 
-  scaled = games_preimage_render (slot_preimage, width, height, 
-				  NULL);
+  scaled = games_preimage_render (slot_preimage, width, height, NULL);
 
-  gdk_pixbuf_render_pixmap_and_mask_for_colormap (scaled, gdk_colormap_get_system(), &slot_pixmap, &slot_mask, 255);
+  gdk_pixbuf_render_pixmap_and_mask_for_colormap (scaled,
+						  gdk_colormap_get_system (),
+						  &slot_pixmap, &slot_mask,
+						  255);
 
-  gdk_gc_set_clip_mask (slot_gc, slot_mask); 
+  gdk_gc_set_clip_mask (slot_gc, slot_mask);
 
   g_object_unref (scaled);
 
   if (!images) {
     images = games_card_pixmaps_new (playing_area->window);
-    games_card_pixmaps_set_theme (images, card_style); 
+    games_card_pixmaps_set_theme (images, card_style);
   }
 
-  games_card_pixmaps_set_size (images, width, height);  
+  games_card_pixmaps_set_size (images, width, height);
 
   card_mask = games_card_pixmaps_get_mask (images);
   gdk_gc_set_clip_mask (draw_gc, card_mask);
 
-  comppixbuf = gdk_pixbuf_copy (games_card_images_get_back (GAMES_CARD_IMAGES(images)));
-  droptarget_pixmap = gdk_pixmap_new (GDK_DRAWABLE(playing_area->window), width, height, -1);
+  comppixbuf =
+    gdk_pixbuf_copy (games_card_images_get_back (GAMES_CARD_IMAGES (images)));
+  droptarget_pixmap =
+    gdk_pixmap_new (GDK_DRAWABLE (playing_area->window), width, height, -1);
 }
 
-void set_card_theme (gchar * theme)
+void
+set_card_theme (gchar * theme)
 {
   games_card_pixmaps_set_theme (images, theme);
   card_mask = games_card_pixmaps_get_mask (images);
-  gdk_gc_set_clip_mask (draw_gc, card_mask);  
+  gdk_gc_set_clip_mask (draw_gc, card_mask);
 }

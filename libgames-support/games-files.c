@@ -29,7 +29,8 @@
 #include "games-files.h"
 
 /* Remove duplicate names form the list */
-static void games_file_list_remove_duplicates (GamesFileList *filelist)
+static void
+games_file_list_remove_duplicates (GamesFileList * filelist)
 {
   GList *l;
 
@@ -50,14 +51,15 @@ static void games_file_list_remove_duplicates (GamesFileList *filelist)
   }
 }
 
-static GList * games_file_list_new_internal (const gchar * glob, va_list path)
+static GList *
+games_file_list_new_internal (const gchar * glob, va_list path)
 {
-  GPatternSpec * filespec = g_pattern_spec_new (glob);
-  gchar * pathelement;
-  GList * list = NULL;
-  GDir * dir;
-  const gchar * filename;
-  gchar * fullname;
+  GPatternSpec *filespec = g_pattern_spec_new (glob);
+  gchar *pathelement;
+  GList *list = NULL;
+  GDir *dir;
+  const gchar *filename;
+  gchar *fullname;
 
   while ((pathelement = va_arg (path, gchar *)) != NULL) {
     dir = g_dir_open (pathelement, 0, NULL);
@@ -67,7 +69,8 @@ static GList * games_file_list_new_internal (const gchar * glob, va_list path)
 	  fullname = g_build_filename (pathelement, filename, NULL);
 	  if (g_file_test (fullname, G_FILE_TEST_IS_REGULAR)) {
 	    list = g_list_append (list, fullname);
-	  } else g_free (fullname);
+	  } else
+	    g_free (fullname);
 	}
       }
       g_dir_close (dir);
@@ -93,9 +96,10 @@ static GList * games_file_list_new_internal (const gchar * glob, va_list path)
  * Return value: A pointer to a new GamesFileList containing files 
  * matching the glob in the path.
  **/
-GamesFileList * games_file_list_new (const gchar * glob, ...)
+GamesFileList *
+games_file_list_new (const gchar * glob, ...)
 {
-  GamesFileList * filelist;
+  GamesFileList *filelist;
   va_list paths;
 
   filelist = g_object_new (GAMES_FILE_LIST_TYPE, NULL);
@@ -104,44 +108,47 @@ GamesFileList * games_file_list_new (const gchar * glob, ...)
   filelist->list = games_file_list_new_internal (glob, paths);
   va_end (paths);
 
-  filelist->list = g_list_sort (filelist->list, (GCompareFunc) g_utf8_collate);
+  filelist->list =
+    g_list_sort (filelist->list, (GCompareFunc) g_utf8_collate);
   games_file_list_remove_duplicates (filelist);
 
   return filelist;
 }
 
 /* Transform the list of files to be only the basenames. */
-void games_file_list_transform_basename (GamesFileList * filelist)
+void
+games_file_list_transform_basename (GamesFileList * filelist)
 {
-  GList * current = filelist->list;
-  gchar * shortname;
-  
+  GList *current = filelist->list;
+  gchar *shortname;
+
   while (current) {
     shortname = g_path_get_basename ((gchar *) current->data);
     g_free (current->data);
     current->data = (gpointer) shortname;
     current = g_list_next (current);
   }
-  
+
   games_file_list_remove_duplicates (filelist);
 }
 
-GSList * image_suffix_list = NULL;
+GSList *image_suffix_list = NULL;
 GStaticMutex image_suffix_mutex = G_STATIC_MUTEX_INIT;
 
 /* We only want to initilise the list of suffixes once, this is
  * the function that does it. It might even be thread safe, not that
  * this has been tested ... */
-static void games_image_suffix_list_init (void)
+static void
+games_image_suffix_list_init (void)
 {
-  GSList * pixbuf_formats;
-  GSList * element;
-  GdkPixbufFormat * formats;
-  gchar ** suffices;
-  gchar ** suffix;
+  GSList *pixbuf_formats;
+  GSList *element;
+  GdkPixbufFormat *formats;
+  gchar **suffices;
+  gchar **suffix;
 
   g_static_mutex_lock (&image_suffix_mutex);
-  
+
   /* This check needs to be inside the lock to make sure that another
    * thread haasn't half-completed the list. */
   if (image_suffix_list) {
@@ -159,7 +166,8 @@ static void games_image_suffix_list_init (void)
 
     suffix = suffices;
     while (*suffix) {
-      image_suffix_list = g_slist_append (image_suffix_list, g_strdup_printf (".%s", *suffix));
+      image_suffix_list =
+	g_slist_append (image_suffix_list, g_strdup_printf (".%s", *suffix));
       suffix++;
     }
 
@@ -175,20 +183,21 @@ static void games_image_suffix_list_init (void)
   g_static_mutex_unlock (&image_suffix_mutex);
 }
 
-static GList * games_file_list_new_images_single (gchar * directory)
+static GList *
+games_file_list_new_images_single (gchar * directory)
 {
-  GDir * dir;
-  GList * list = NULL;
-  const gchar * filename;
-  gchar * fullname;
-  GSList * suffix;
+  GDir *dir;
+  GList *list = NULL;
+  const gchar *filename;
+  gchar *fullname;
+  GSList *suffix;
 
   dir = g_dir_open (directory, 0, NULL);
   if (!dir)
     return NULL;
 
   games_image_suffix_list_init ();
-  
+
   while ((filename = g_dir_read_name (dir)) != NULL) {
     suffix = image_suffix_list;
     while (suffix) {
@@ -196,9 +205,10 @@ static GList * games_file_list_new_images_single (gchar * directory)
 	fullname = g_build_filename (directory, filename, NULL);
 	if (g_file_test (fullname, G_FILE_TEST_IS_REGULAR)) {
 	  list = g_list_append (list, fullname);
-	} else g_free (fullname);
+	} else
+	  g_free (fullname);
 	break;
-      } 
+      }
       suffix = g_slist_next (suffix);
     }
   }
@@ -221,11 +231,12 @@ static GList * games_file_list_new_images_single (gchar * directory)
  * 
  * Return value: A new GamesFileList containing the list of image files.
  **/
-GamesFileList * games_file_list_new_images (gchar * path1, ...)
+GamesFileList *
+games_file_list_new_images (gchar * path1, ...)
 {
-  GamesFileList * filelist;
-  GList * list;
-  gchar * pathentry;
+  GamesFileList *filelist;
+  GList *list;
+  gchar *pathentry;
   va_list paths;
 
   filelist = g_object_new (GAMES_FILE_LIST_TYPE, NULL);
@@ -233,12 +244,13 @@ GamesFileList * games_file_list_new_images (gchar * path1, ...)
   filelist->list = games_file_list_new_images_single (path1);
   va_start (paths, path1);
   while ((pathentry = va_arg (paths, gchar *)) != NULL) {
-    list = g_list_concat (filelist->list, 
+    list = g_list_concat (filelist->list,
 			  games_file_list_new_images_single (pathentry));
   }
   va_end (paths);
 
-  filelist->list = g_list_sort (filelist->list, (GCompareFunc) g_utf8_collate);
+  filelist->list =
+    g_list_sort (filelist->list, (GCompareFunc) g_utf8_collate);
   games_file_list_remove_duplicates (filelist);
 
   return filelist;
@@ -259,19 +271,21 @@ GamesFileList * games_file_list_new_images (gchar * path1, ...)
  * 
  * Return value: A widget with the list of names.
  **/
-GtkWidget * games_file_list_create_widget (GamesFileList * gamesfilelist, gchar * selection, guint flags)
+GtkWidget *
+games_file_list_create_widget (GamesFileList * gamesfilelist,
+			       gchar * selection, guint flags)
 {
   gint itemno;
   GtkComboBox *widget;
   gchar *visible, *string;
-  GList * filelist = gamesfilelist->list;
+  GList *filelist = gamesfilelist->list;
   gboolean found = FALSE;
 
   widget = GTK_COMBO_BOX (gtk_combo_box_new_text ());
 
   itemno = 0;
   while (filelist) {
-    gchar * s;
+    gchar *s;
 
     string = (gchar *) filelist->data;
     visible = g_strdup (string);
@@ -293,8 +307,8 @@ GtkWidget * games_file_list_create_widget (GamesFileList * gamesfilelist, gchar 
     }
 
     gtk_combo_box_append_text (widget, visible);
-    if (selection && (! g_utf8_collate (string, selection))) {
-      gtk_combo_box_set_active (widget, itemno);      
+    if (selection && (!g_utf8_collate (string, selection))) {
+      gtk_combo_box_set_active (widget, itemno);
       found = TRUE;
     }
 
@@ -318,8 +332,9 @@ GtkWidget * games_file_list_create_widget (GamesFileList * gamesfilelist, gchar 
  * 
  * Apply a function to each file name in the list.
  **/
-void games_file_list_for_each (GamesFileList * filelist, GFunc function, 
-			       gpointer userdata)
+void
+games_file_list_for_each (GamesFileList * filelist, GFunc function,
+			  gpointer userdata)
 {
   g_list_foreach (filelist->list, function, userdata);
 }
@@ -339,14 +354,15 @@ void games_file_list_for_each (GamesFileList * filelist, GFunc function,
  * Return value: A newly allocated string containing a copy of the file name,
  * or NULL if no file name was found.
  **/
-gchar * games_file_list_find (GamesFileList *filelist, GCompareFunc function, 
-			      gpointer userdata)
+gchar *
+games_file_list_find (GamesFileList * filelist, GCompareFunc function,
+		      gpointer userdata)
 {
   GList *element;
 
   element = g_list_find_custom (filelist->list, userdata, function);
 
-  return element ? g_strdup ((gchar *)element->data) : NULL;
+  return element ? g_strdup ((gchar *) element->data) : NULL;
 }
 
 /**
@@ -359,33 +375,38 @@ gchar * games_file_list_find (GamesFileList *filelist, GCompareFunc function,
  * Return value: 
  **/
 /* Return the nth filename in the list. */
-gchar * games_file_list_get_nth (GamesFileList * filelist, gint n)
+gchar *
+games_file_list_get_nth (GamesFileList * filelist, gint n)
 {
   return (gchar *) g_list_nth_data (filelist->list, n);
 }
 
-static void games_file_list_finalize (GamesFileList * filelist)
+static void
+games_file_list_finalize (GamesFileList * filelist)
 {
   /* For simplicity we haven't used the dispose method since we can
    * guarantee that everything this references doesn't reference itself. */
 
   g_list_foreach (filelist->list, (GFunc) g_free, NULL);
-  g_list_free (filelist->list);    
+  g_list_free (filelist->list);
 }
 
-static void games_file_list_class_init (GamesFileListClass *class)
+static void
+games_file_list_class_init (GamesFileListClass * class)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (class);
 
   oclass->finalize = (GObjectFinalizeFunc) games_file_list_finalize;
 }
 
-static void games_file_list_init (GamesFileList *filelist)
+static void
+games_file_list_init (GamesFileList * filelist)
 {
   filelist->list = NULL;
 }
 
-GType games_file_list_get_type (void)
+GType
+games_file_list_get_type (void)
 {
   static GType type = 0;
   static const GTypeInfo info = {
@@ -396,7 +417,7 @@ GType games_file_list_get_type (void)
     NULL,
     NULL,
     sizeof (GamesFileList),
-    0,     
+    0,
     (GInstanceInitFunc) games_file_list_init
   };
 

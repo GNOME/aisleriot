@@ -32,29 +32,29 @@
    if the game wants its own handlers for these events you should
    register them *after* calling this function, and then be sure to
    call update_player_lists when the events occur. */
-void init_player_list(GGZMod * ggzmod);
+void init_player_list (GGZMod * ggzmod);
 
 /* The player list will attach itself to the SEAT and SPECTATOR ggzmod
    events, but if you override them you should call this function instead.
    You should also call it when the STATE changes out of CREATED, if you
    have an handler registered for that event. */
-void update_player_lists(void);
+void update_player_lists (void);
 
 /* Creates a widget containing a pleyer list. */
-GtkWidget *create_playerlist_widget(void);
+GtkWidget *create_playerlist_widget (void);
 
 /* Creates or raises the main player list dialog window. */
-void create_or_raise_dlg_players(GtkWindow *window);
+void create_or_raise_dlg_players (GtkWindow * window);
 
 /* A tangentially-related function: this one will pop up a menu to give
    you some options on what you can do to the given seat or spectator
    seat.  Either seat or sseat must be defined (but not both).  button
    is the number of the button pressed to open the menu
    (see GdkEventButton::button) */
-void popup_player_menu(GGZSeat * seat,
-		       GGZSpectatorSeat * sseat, guint button);
+void popup_player_menu (GGZSeat * seat,
+			GGZSpectatorSeat * sseat, guint button);
 
 /* Some more vaguely related functions.  Call do_sit() to sit down at the
    table, and do_stand() to stand up (obviously). */
-void do_sit(void);
-void do_stand(void);
+void do_sit (void);
+void do_stand (void);

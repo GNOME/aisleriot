@@ -25,9 +25,8 @@
 #include <time.h>
 
 G_BEGIN_DECLS
-
 /* GamesScore and GamesScoresStyle should be kept in sync. */
-typedef enum {
+  typedef enum {
   GAMES_SCORES_STYLE_PLAIN_DESCENDING,
   GAMES_SCORES_STYLE_PLAIN_ASCENDING,
   GAMES_SCORES_STYLE_TIME_DESCENDING,
@@ -35,8 +34,8 @@ typedef enum {
 } GamesScoreStyle;
 
 typedef union {
-    guint32 plain;
-    gdouble time_double; /* minutes.seconds */
+  guint32 plain;
+  gdouble time_double;		/* minutes.seconds */
 } GamesScoreValue;
 
 typedef struct {
@@ -44,7 +43,7 @@ typedef struct {
 #if 0
   union {
     guint32 plain;
-    gdouble time_double; /* minutes.seconds */
+    gdouble time_double;	/* minutes.seconds */
   };
 #endif
   time_t time;
@@ -52,12 +51,12 @@ typedef struct {
 } GamesScore;
 
 GamesScore *games_score_new (void);
-GamesScore *games_score_dup (GamesScore *orig);
-gint games_score_compare (GamesScoreStyle style, GamesScore *a, GamesScore *b);
-gint games_score_compare_values (GamesScoreStyle style, GamesScoreValue a, 
+GamesScore *games_score_dup (GamesScore * orig);
+gint games_score_compare (GamesScoreStyle style, GamesScore * a,
+			  GamesScore * b);
+gint games_score_compare_values (GamesScoreStyle style, GamesScoreValue a,
 				 GamesScoreValue b);
-void games_score_destroy (GamesScore *score);
+void games_score_destroy (GamesScore * score);
 
 G_END_DECLS
-
 #endif /* GAMES_SCORE_H */

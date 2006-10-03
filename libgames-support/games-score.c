@@ -26,7 +26,8 @@
 
 #include "games-score.h"
 
-GamesScore *games_score_new (void)
+GamesScore *
+games_score_new (void)
 {
   GamesScore *newscore;
 
@@ -38,12 +39,13 @@ GamesScore *games_score_new (void)
   return newscore;
 }
 
-GamesScore *games_score_dup (GamesScore *orig)
+GamesScore *
+games_score_dup (GamesScore * orig)
 {
   GamesScore *new;
 
   new = games_score_new ();
-  
+
   /* FIXME: What is the canonical way to duplicate a union?
    * Can we just use the largest item or is it more subtle than
    * that. */
@@ -56,7 +58,8 @@ GamesScore *games_score_dup (GamesScore *orig)
   return new;
 }
 
-void games_score_destroy (GamesScore *score)
+void
+games_score_destroy (GamesScore * score)
 {
   if (score->name)
     g_free (score->name);
@@ -64,33 +67,44 @@ void games_score_destroy (GamesScore *score)
   g_free (score);
 }
 
-gint games_score_compare_values (GamesScoreStyle style, GamesScoreValue a, 
-				 GamesScoreValue b)
+gint
+games_score_compare_values (GamesScoreStyle style, GamesScoreValue a,
+			    GamesScoreValue b)
 {
   switch (style) {
   case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
-    if (a.plain > b.plain) return +1;
-    if (a.plain < b.plain) return -1;
+    if (a.plain > b.plain)
+      return +1;
+    if (a.plain < b.plain)
+      return -1;
     return 0;
   case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
-    if (a.plain > b.plain) return -1;
-    if (a.plain < b.plain) return +1;
+    if (a.plain > b.plain)
+      return -1;
+    if (a.plain < b.plain)
+      return +1;
     return 0;
   case GAMES_SCORES_STYLE_TIME_DESCENDING:
-    if (a.time_double > b.time_double) return +1;
-    if (a.time_double < b.time_double) return -1;
+    if (a.time_double > b.time_double)
+      return +1;
+    if (a.time_double < b.time_double)
+      return -1;
     return 0;
   case GAMES_SCORES_STYLE_TIME_ASCENDING:
-    if (a.time_double > b.time_double) return -1;
-    if (a.time_double < b.time_double) return +1;
+    if (a.time_double > b.time_double)
+      return -1;
+    if (a.time_double < b.time_double)
+      return +1;
     return 0;
   default:
-    g_warning ("Uknown score style in games_score_compare - treating as equal.");
+    g_warning
+      ("Uknown score style in games_score_compare - treating as equal.");
     return 0;
   }
 }
 
-gint games_score_compare (GamesScoreStyle style, GamesScore *a, GamesScore *b)
+gint
+games_score_compare (GamesScoreStyle style, GamesScore * a, GamesScore * b)
 {
   return games_score_compare_values (style, a->value, b->value);
 }

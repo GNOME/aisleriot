@@ -18,7 +18,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif /* __cplusplus */
+#endif				/* __cplusplus */
 
 
 
@@ -27,50 +27,49 @@ extern "C" {
 
 #line 48 "games-scores-dialog.gob"
 #line 30 "games-scores-dialog-private.h"
-struct _GamesScoresDialogPrivate {
+  struct _GamesScoresDialogPrivate {
 #line 66 "games-scores-dialog.gob"
-	GtkWidget * message;
+    GtkWidget *message;
 #line 67 "games-scores-dialog.gob"
-	GtkWidget * hdiv;
+    GtkWidget *hdiv;
 #line 68 "games-scores-dialog.gob"
-	GtkWidget * combo;
+    GtkWidget *combo;
 #line 69 "games-scores-dialog.gob"
-	GtkWidget * label;
+    GtkWidget *label;
 #line 70 "games-scores-dialog.gob"
-	GtkWidget * catbar;
+    GtkWidget *catbar;
 #line 71 "games-scores-dialog.gob"
-	GtkListStore * list;
+    GtkListStore *list;
 #line 72 "games-scores-dialog.gob"
-	GtkTreeView * treeview;
+    GtkTreeView *treeview;
 #line 73 "games-scores-dialog.gob"
-	GtkCellRenderer * namerenderer;
+    GtkCellRenderer *namerenderer;
 #line 74 "games-scores-dialog.gob"
-	GtkTreeViewColumn * column;
+    GtkTreeViewColumn *column;
 #line 75 "games-scores-dialog.gob"
-	GtkTreeViewColumn * namecolumn;
+    GtkTreeViewColumn *namecolumn;
 #line 76 "games-scores-dialog.gob"
-	GamesScores * scores;
+    GamesScores *scores;
 #line 77 "games-scores-dialog.gob"
-	GHashTable * categories;
+    GHashTable *categories;
 #line 78 "games-scores-dialog.gob"
-	GHashTable * catindices;
+    GHashTable *catindices;
 #line 79 "games-scores-dialog.gob"
-	gint catcounter;
+    gint catcounter;
 #line 80 "games-scores-dialog.gob"
-	gint hilight;
+    gint hilight;
 #line 81 "games-scores-dialog.gob"
-	gint sethilight;
+    gint sethilight;
 #line 82 "games-scores-dialog.gob"
-	gboolean preservehilight;
+    gboolean preservehilight;
 #line 83 "games-scores-dialog.gob"
-	gulong cursor_handler_id;
+    gulong cursor_handler_id;
 #line 86 "games-scores-dialog.gob"
-	gint style;
+    gint style;
 #line 70 "games-scores-dialog-private.h"
-};
+  };
 
 #ifdef __cplusplus
 }
-#endif /* __cplusplus */
-
+#endif				/* __cplusplus */
 #endif

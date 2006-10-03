@@ -23,17 +23,14 @@
 #define GAMES_CARD_PIXMAPS_H
 
 G_BEGIN_DECLS
-
 #include <gtk/gtk.h>
-
 #include <games-card-images.h>
-
-typedef struct _GamesCardPixmaps {
+  typedef struct _GamesCardPixmaps {
   GamesCardImages parent;
 
-  GdkPixmap ** pixmaps;
-  GdkBitmap * mask;
-  GdkDrawable * drawable;
+  GdkPixmap **pixmaps;
+  GdkBitmap *mask;
+  GdkDrawable *drawable;
 } GamesCardPixmaps;
 
 typedef struct _GamesCardPixmapsClass {
@@ -49,25 +46,24 @@ typedef struct _GamesCardPixmapsClass {
 
 GType games_card_pixmaps_get_type (void);
 
-GamesCardPixmaps * games_card_pixmaps_new (GdkWindow * drawable);
+GamesCardPixmaps *games_card_pixmaps_new (GdkWindow * drawable);
 
 /* The real card routine. */
-GdkPixmap * games_card_pixmaps_get_card_by_id (GamesCardPixmaps * images,
+GdkPixmap *games_card_pixmaps_get_card_by_id (GamesCardPixmaps * images,
 					      gint cardid);
 
-GdkBitmap * games_card_pixmaps_get_mask (GamesCardPixmaps * images);
+GdkBitmap *games_card_pixmaps_get_mask (GamesCardPixmaps * images);
 
 /* The convenience functions. */
-GdkPixmap * games_card_pixmaps_get_card (GamesCardPixmaps * images, gint suit, 
+GdkPixmap *games_card_pixmaps_get_card (GamesCardPixmaps * images, gint suit,
 					gint rank);
-GdkPixmap * games_card_pixmaps_get_red_joker (GamesCardPixmaps * images);
-GdkPixmap * games_card_pixmaps_get_black_joker (GamesCardPixmaps * images);
-GdkPixmap * games_card_pixmaps_get_back (GamesCardPixmaps * images);
+GdkPixmap *games_card_pixmaps_get_red_joker (GamesCardPixmaps * images);
+GdkPixmap *games_card_pixmaps_get_black_joker (GamesCardPixmaps * images);
+GdkPixmap *games_card_pixmaps_get_back (GamesCardPixmaps * images);
 
-void games_card_pixmaps_set_size (GamesCardPixmaps * images, 
-				 gint width, gint height);
+void games_card_pixmaps_set_size (GamesCardPixmaps * images,
+				  gint width, gint height);
 void games_card_pixmaps_set_theme (GamesCardPixmaps * images, gchar * name);
 
 G_END_DECLS
-
 #endif /* GAMES_CARD_PIXMAPS_H */

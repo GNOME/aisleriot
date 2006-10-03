@@ -53,13 +53,14 @@ static double height = 0.0;
 int card_width;
 int card_height;
 
-/* The offset of the cards within the slot. */ 
+/* The offset of the cards within the slot. */
 int xoffset, yoffset;
 
 /* The offset within the window. */
 int xbaseofs;
 
-static void calculate_card_location (hslot_type hslot)
+static void
+calculate_card_location (hslot_type hslot)
 {
   int xofs, yofs;
 
@@ -72,16 +73,18 @@ static void calculate_card_location (hslot_type hslot)
   if (hslot->dy > 0.0)
     yofs = xofs;
 
-  hslot->pixelx = xslotstep*hslot->x + xofs + xbaseofs;
-  hslot->pixely = yslotstep*hslot->y + yofs;
-  hslot->pixeldx = hslot->dx*card_width;
-  hslot->pixeldy = hslot->compressed_dy*card_height;
- 
+  hslot->pixelx = xslotstep * hslot->x + xofs + xbaseofs;
+  hslot->pixely = yslotstep * hslot->y + yofs;
+  hslot->pixeldx = hslot->dx * card_width;
+  hslot->pixeldy = hslot->compressed_dy * card_height;
+
   update_slot_length (hslot);
 }
 
 /* Work out new sizes and spacings for the cards. */
-void set_geometry (double new_width, double new_height) {
+void
+set_geometry (double new_width, double new_height)
+{
   double twidth, theight;
 
   width = new_width;
@@ -96,29 +99,29 @@ void set_geometry (double new_width, double new_height) {
   if ((window_height == 0) || (window_width == 0))
     return;
 
-  xslotstep = window_width/width;
-  yslotstep = window_height/height;
+  xslotstep = window_width / width;
+  yslotstep = window_height / height;
 
-  twidth = CARD_SLOT_PROP*xslotstep;
-  theight = CARD_SLOT_PROP*yslotstep;
-  if (twidth/theight < CARD_HW_RATIO) {
-    card_height = twidth/CARD_HW_RATIO;
+  twidth = CARD_SLOT_PROP * xslotstep;
+  theight = CARD_SLOT_PROP * yslotstep;
+  if (twidth / theight < CARD_HW_RATIO) {
+    card_height = twidth / CARD_HW_RATIO;
     card_width = twidth;
   } else {
-    card_width = CARD_HW_RATIO*theight;
+    card_width = CARD_HW_RATIO * theight;
     card_height = theight;
   }
 
   xbaseofs = 0;
 
   /* If the cards are too far apart, bunch them in the middle. */
-  if (xslotstep > (card_width*3)/2) {
-    xslotstep = (card_width*3)/2;
-    xbaseofs = (window_width - xslotstep*width)/2;
+  if (xslotstep > (card_width * 3) / 2) {
+    xslotstep = (card_width * 3) / 2;
+    xbaseofs = (window_width - xslotstep * width) / 2;
   }
 
-  xoffset = (xslotstep - card_width)/2;
-  yoffset = (yslotstep - card_height)/2;
+  xoffset = (xslotstep - card_width) / 2;
+  yoffset = (yslotstep - card_height) / 2;
 
   set_card_size (card_width, card_height);
 
@@ -126,29 +129,34 @@ void set_geometry (double new_width, double new_height) {
   g_list_foreach (get_slot_list (), (GFunc) calculate_card_location, NULL);
 }
 
-void rescale_cards (void) {
+void
+rescale_cards (void)
+{
   set_geometry (width, height);
 }
 
-void draw_cards () {
-  GList* slot;
+void
+draw_cards ()
+{
+  GList *slot;
   gint x, y;
-  GList* card_list;
+  GList *card_list;
   GdkPixmap *image;
   gint surface_height;
   gint n;
   double y_from_bottom;
 
   for (slot = get_slot_list (); slot; slot = slot->next) {
-    hslot_type hslot = (hslot_type)slot->data;
+    hslot_type hslot = (hslot_type) slot->data;
 
     n = g_list_length (hslot->cards);
     if ((hslot->dy > 0.0) && (n > 1)) {
       /* Calculate the compressed_dy that will let us fit within the screen. */
       gdk_drawable_get_size (surface, NULL, &surface_height);
-      y_from_bottom = 1.0*(surface_height - hslot->pixely)/card_height;
-      hslot->compressed_dy = (y_from_bottom - MAX_OVERHANG)/(n - 1.0);
-      hslot->compressed_dy = CLAMP (hslot->compressed_dy, MIN_DELTA, MAX_DELTA);
+      y_from_bottom = 1.0 * (surface_height - hslot->pixely) / card_height;
+      hslot->compressed_dy = (y_from_bottom - MAX_OVERHANG) / (n - 1.0);
+      hslot->compressed_dy =
+	CLAMP (hslot->compressed_dy, MIN_DELTA, MAX_DELTA);
       hslot->pixeldy = hslot->compressed_dy * card_height;
     } else {
       hslot->compressed_dy = 0.0;
@@ -166,33 +174,36 @@ void draw_cards () {
       for (; card_list; card_list = card_list->next) {
 	card_type *card = card_list->data;
 
-	if (card->direction == DOWN) 
+	if (card->direction == DOWN)
 	  image = get_card_back_pixmap ();
-	else 
+	else
 	  image = get_card_picture (card->suit, card->value);
-	
+
 	gdk_gc_set_clip_origin (draw_gc, x, y);
 	if (image != NULL)
 	  gdk_draw_drawable (surface, draw_gc, image, 0, 0, x, y, -1, -1);
 
-	x += hslot->pixeldx; y += hslot->pixeldy;
+	x += hslot->pixeldx;
+	y += hslot->pixeldy;
       }
     }
   }
 }
 
-void take_snapshot() {
-  GList* slot;
+void
+take_snapshot ()
+{
+  GList *slot;
   GdkPixmap *slot_pixmap;
-  gint x,y;
+  gint x, y;
 
   gdk_draw_rectangle (surface, bg_gc, TRUE, 0, 0, -1, -1);
   slot_pixmap = get_slot_pixmap ();
 
   if (slot_pixmap != NULL)
     for (slot = get_slot_list (); slot; slot = slot->next) {
-      x = ((hslot_type)slot->data)->pixelx;
-      y = ((hslot_type)slot->data)->pixely;
+      x = ((hslot_type) slot->data)->pixelx;
+      y = ((hslot_type) slot->data)->pixely;
       gdk_gc_set_clip_origin (slot_gc, x, y);
       gdk_draw_drawable (surface, slot_gc, slot_pixmap, 0, 0, x, y,
 			 card_width, card_height);
@@ -200,7 +211,9 @@ void take_snapshot() {
   draw_cards ();
 }
 
-void refresh_screen () {
+void
+refresh_screen ()
+{
   take_snapshot ();
   gtk_widget_queue_draw (playing_area);
 }

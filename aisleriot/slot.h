@@ -28,7 +28,7 @@
 
 struct _slot_struct {
   gint id;
-  GList* cards;
+  GList *cards;
   /* The location in slot co-ordinates. Filled in by the game code. */
   double x;
   double y;
@@ -38,7 +38,7 @@ struct _slot_struct {
    * the slot fits in the screen. we compress too tall slots
    * see bug#171417 */
   double compressed_dy;
-  
+
   /* The location in pixel units. Filled in by the scaling code. */
   gint pixelx;
   gint pixely;
@@ -51,24 +51,23 @@ struct _slot_struct {
   gint height;
 };
 
-typedef struct _slot_struct* hslot_type;
+typedef struct _slot_struct *hslot_type;
 
 /*
  * Functions
  */
 
-void slot_pressed (gint, gint, hslot_type *, gint*);
-void card_offset (hslot_type, gint, gint*, gint*);
-GList* get_slot_list(void);
-void delete_all_slots(void);
-hslot_type get_slot(gint);
-void add_cards_to_slot(GList*, hslot_type hslot);
-void slot_set_cards(GList*, hslot_type hslot);
-void update_slot_length(hslot_type hslot);
+void slot_pressed (gint, gint, hslot_type *, gint *);
+void card_offset (hslot_type, gint, gint *, gint *);
+GList *get_slot_list (void);
+void delete_all_slots (void);
+hslot_type get_slot (gint);
+void add_cards_to_slot (GList *, hslot_type hslot);
+void slot_set_cards (GList *, hslot_type hslot);
+void update_slot_length (hslot_type hslot);
 
-void add_slot(gint id, GList *cards, double x, double y, 
-	      gboolean expanded_down, gboolean expanded_right, 
-	      gint expansion_depth);
+void add_slot (gint id, GList * cards, double x, double y,
+	       gboolean expanded_down, gboolean expanded_right,
+	       gint expansion_depth);
 
 #endif
-

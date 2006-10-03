@@ -20,14 +20,14 @@
 #ifndef MENU_H
 #define MENU_H
 
-void undo_callback ( void );
-void redo_callback ( void );
-void create_menus ( void );
+void undo_callback (void);
+void redo_callback (void);
+void create_menus (void);
 void undo_set_sensitive (gboolean state);
 void redo_set_sensitive (gboolean state);
 void option_list_set_sensitive (void);
 void help_update_game_name (gchar * name);
-void install_options_menu (gchar *name);
+void install_options_menu (gchar * name);
 void install_recently_played_menu (void);
 
 extern GtkUIManager *ui_manager;

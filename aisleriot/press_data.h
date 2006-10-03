@@ -29,7 +29,7 @@ typedef struct {
   gint height;
   GdkPixmap *moving_pixmap;
   GdkBitmap *moving_mask;
-  GList* cards;
+  GList *cards;
   hslot_type hslot;
   gint cardid;
   gint status;
@@ -37,9 +37,9 @@ typedef struct {
   GdkWindow *highlight_window;
 } press_data_type;
 
-extern press_data_type* press_data; 
+extern press_data_type *press_data;
 
 void create_press_data (GdkWindow * window);
-void generate_press_data ( void );
-void free_press_data ( void );
+void generate_press_data (void);
+void free_press_data (void);
 #endif

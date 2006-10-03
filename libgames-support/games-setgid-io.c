@@ -90,76 +90,84 @@ static int setgid_io_outfd;
 static int setgid_io_child_pid;
 
 
-static void write_cmd (unsigned char cmd)
+static void
+write_cmd (unsigned char cmd)
 {
   write (setgid_io_outfd, &cmd, 1);
 }
 
 
-static gboolean write_n_bytes (int fd, const void *buffer, int n)
+static gboolean
+write_n_bytes (int fd, const void *buffer, int n)
 {
   int totalcnt;
   int cnt;
 
   totalcnt = 0;
   while (totalcnt < n) {
-    cnt = write (fd, buffer+totalcnt, n);
+    cnt = write (fd, buffer + totalcnt, n);
     if (cnt == -1)
       return FALSE;
     totalcnt += cnt;
   }
-  
+
   return TRUE;
 }
 
-static gboolean read_n_bytes (int fd, void *buffer, int n)
+static gboolean
+read_n_bytes (int fd, void *buffer, int n)
 {
   int totalcnt;
   int cnt;
 
   totalcnt = 0;
   while (totalcnt < n) {
-    cnt = read (fd, buffer+totalcnt, n);
+    cnt = read (fd, buffer + totalcnt, n);
     if (cnt == -1)
       return FALSE;
     totalcnt += cnt;
   }
-  
+
   return TRUE;
 }
 
-static void write_int (int fd, int i)
+static void
+write_int (int fd, int i)
 {
   write (fd, &i, sizeof (int));
 }
 
-static int read_int (int fd)
+static int
+read_int (int fd)
 {
   int out;
 
-  if (!read_n_bytes (fd, (char *)&out, sizeof (int)))
+  if (!read_n_bytes (fd, (char *) &out, sizeof (int)))
     return 0;
 
   return out;
 }
 
-static void write_off_t (int fd, off_t o)
+static void
+write_off_t (int fd, off_t o)
 {
   write (fd, &o, sizeof (off_t));
 }
 
-static off_t read_off_t (int fd)
+static off_t
+read_off_t (int fd)
 {
   off_t out;
 
-  if (!read_n_bytes (fd, (char *)&out, sizeof (off_t)))
+  if (!read_n_bytes (fd, (char *) &out, sizeof (off_t)))
     return 0;
 
   return out;
 }
 
 /* Unprivileged side. */
-int setgid_io_open (const char *path, int flags)
+int
+setgid_io_open (const char *path, int flags)
 {
   int length;
   int fd;
@@ -177,7 +185,8 @@ int setgid_io_open (const char *path, int flags)
 }
 
 /* Privileged side. */
-static void setgid_io_open_priv (int outfd, int infd)
+static void
+setgid_io_open_priv (int outfd, int infd)
 {
   int length;
   char *path;
@@ -188,7 +197,7 @@ static void setgid_io_open_priv (int outfd, int infd)
   path = g_malloc (length);
   read_n_bytes (infd, path, length);
   flags = read_int (infd);
-  
+
   newfd = open (path, flags);
 
   write_int (outfd, newfd);
@@ -196,38 +205,41 @@ static void setgid_io_open_priv (int outfd, int infd)
 }
 
 /* Unprivileged side. */
-int setgid_io_close (int fd)
+int
+setgid_io_close (int fd)
 {
   write_cmd (cmd_close);
   write_int (setgid_io_outfd, fd);
-  
+
   return read_int (setgid_io_infd);
 }
 
 /* Privileged side. */
-static void setgid_io_close_priv (int outfd, int infd)
+static void
+setgid_io_close_priv (int outfd, int infd)
 {
   int fd;
   int result;
 
   fd = read_int (infd);
-  
+
   result = close (fd);
 
   write_int (outfd, result);
 }
 
 /* Unprivileged side. */
-int setgid_io_read (int fd, char *buffer, int n)
+int
+setgid_io_read (int fd, char *buffer, int n)
 {
   int result;
 
   write_cmd (cmd_read);
   write_int (setgid_io_outfd, fd);
   write_int (setgid_io_outfd, n);
-  
+
   result = read_int (setgid_io_infd);
-  
+
   if ((result >= 0) && (result <= n)) {
     read_n_bytes (setgid_io_infd, buffer, result);
   }
@@ -236,7 +248,8 @@ int setgid_io_read (int fd, char *buffer, int n)
 }
 
 /* Privileged side. */
-static void setgid_io_read_priv (int outfd, int infd)
+static void
+setgid_io_read_priv (int outfd, int infd)
 {
   int fd;
   int n;
@@ -256,7 +269,8 @@ static void setgid_io_read_priv (int outfd, int infd)
 }
 
 /* Unprivileged side. */
-int setgid_io_write (int fd, const char *buffer, int n)
+int
+setgid_io_write (int fd, const char *buffer, int n)
 {
   write_cmd (cmd_write);
   write_int (setgid_io_outfd, fd);
@@ -264,10 +278,11 @@ int setgid_io_write (int fd, const char *buffer, int n)
   write_n_bytes (setgid_io_outfd, buffer, n);
 
   return read_int (setgid_io_infd);
- }
+}
 
 /* Privileged side. */
-static void setgid_io_write_priv (int outfd, int infd)
+static void
+setgid_io_write_priv (int outfd, int infd)
 {
   int fd;
   int n;
@@ -287,7 +302,8 @@ static void setgid_io_write_priv (int outfd, int infd)
 }
 
 /* Unprivileged side. */
-off_t setgid_io_seek (int fd, off_t offset, int whence)
+off_t
+setgid_io_seek (int fd, off_t offset, int whence)
 {
   write_cmd (cmd_seek);
   write_int (setgid_io_outfd, fd);
@@ -295,10 +311,11 @@ off_t setgid_io_seek (int fd, off_t offset, int whence)
   write_int (setgid_io_outfd, whence);
 
   return read_off_t (setgid_io_infd);
- }
+}
 
 /* Privileged side. */
-static void setgid_io_seek_priv (int outfd, int infd)
+static void
+setgid_io_seek_priv (int outfd, int infd)
 {
   int fd;
   off_t offset;
@@ -315,16 +332,18 @@ static void setgid_io_seek_priv (int outfd, int infd)
 }
 
 /* Unprivileged side. */
-int setgid_io_lock (int fd)
+int
+setgid_io_lock (int fd)
 {
   write_cmd (cmd_lock);
   write_int (setgid_io_outfd, fd);
 
   return read_int (setgid_io_infd);
- }
+}
 
 /* Privileged side. */
-static void setgid_io_lock_priv (int outfd, int infd)
+static void
+setgid_io_lock_priv (int outfd, int infd)
 {
   int fd;
   int result;
@@ -343,16 +362,18 @@ static void setgid_io_lock_priv (int outfd, int infd)
 }
 
 /* Unprivileged side. */
-int setgid_io_unlock (int fd)
+int
+setgid_io_unlock (int fd)
 {
   write_cmd (cmd_unlock);
   write_int (setgid_io_outfd, fd);
 
   return read_int (setgid_io_infd);
- }
+}
 
 /* Privileged side. */
-static void setgid_io_unlock_priv (int outfd, int infd)
+static void
+setgid_io_unlock_priv (int outfd, int infd)
 {
   int fd;
   int result;
@@ -371,7 +392,8 @@ static void setgid_io_unlock_priv (int outfd, int infd)
 }
 
 /* Unprivileged side. */
-int setgid_io_stat (char *filename, struct stat *buffer)
+int
+setgid_io_stat (char *filename, struct stat *buffer)
 {
   int length;
 
@@ -383,10 +405,11 @@ int setgid_io_stat (char *filename, struct stat *buffer)
 
   read_n_bytes (setgid_io_infd, buffer, sizeof (struct stat));
   return read_int (setgid_io_infd);
- }
+}
 
 /* Privileged side. */
-static void setgid_io_stat_priv (int outfd, int infd)
+static void
+setgid_io_stat_priv (int outfd, int infd)
 {
   int length;
   char *filename;
@@ -404,7 +427,8 @@ static void setgid_io_stat_priv (int outfd, int infd)
 }
 
 /* Unprivileged side. */
-int setgid_io_truncate (int fd, int length)
+int
+setgid_io_truncate (int fd, int length)
 {
   write_cmd (cmd_truncate);
   write_int (setgid_io_outfd, fd);
@@ -414,7 +438,8 @@ int setgid_io_truncate (int fd, int length)
 }
 
 /* Privileged side. */
-static void setgid_io_truncate_priv (int outfd, int infd)
+static void
+setgid_io_truncate_priv (int outfd, int infd)
 {
   int fd;
   int length;
@@ -422,13 +447,14 @@ static void setgid_io_truncate_priv (int outfd, int infd)
 
   fd = read_int (infd);
   length = read_int (infd);
-  result = ftruncate(fd, length);
+  result = ftruncate (fd, length);
 
-  write_int(outfd, result);
+  write_int (outfd, result);
 }
 
 /* This function never returns. */
-static void setgid_io_pipe_watcher (int outfd, int infd)
+static void
+setgid_io_pipe_watcher (int outfd, int infd)
 {
   fd_set watchfds;
   char command;
@@ -438,7 +464,7 @@ static void setgid_io_pipe_watcher (int outfd, int infd)
   FD_SET (infd, &watchfds);
 
   while (1) {
-    select (infd+1, &watchfds, NULL, NULL, NULL);
+    select (infd + 1, &watchfds, NULL, NULL, NULL);
     cnt = read (infd, &command, 1);
     if (cnt == 1) {
       switch (command) {
@@ -475,10 +501,11 @@ static void setgid_io_pipe_watcher (int outfd, int infd)
     } else {
       exit (0);
     }
-  }  
+  }
 }
 
-void setgid_io_init (void)
+void
+setgid_io_init (void)
 {
   gid_t safegid;
   int setgid_io_inpipe[2];

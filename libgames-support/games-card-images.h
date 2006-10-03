@@ -23,35 +23,32 @@
 #define GAMES_CARD_IMAGES_H
 
 G_BEGIN_DECLS
-
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
-
 #include "games-preimage.h"
-
-enum {
-  GAMES_CARD_ACE         = 1,
-  GAMES_CARD_TWO         = 2,
-  GAMES_CARD_THREE       = 3,
-  GAMES_CARD_FOUR        = 4,
-  GAMES_CARD_FIVE        = 5,
-  GAMES_CARD_SIX         = 6,
-  GAMES_CARD_SEVEN       = 7,
-  GAMES_CARD_EIGHT       = 8,
-  GAMES_CARD_NINE        = 9,
-  GAMES_CARD_TEN         = 10,
-  GAMES_CARD_JACK        = 11,
-  GAMES_CARD_QUEEN       = 12,
-  GAMES_CARD_KING        = 13,
-  GAMES_CARD_ACE_HIGH    = 14,
-  GAMES_CARDS_CLUBS      = 0,
-  GAMES_CARDS_DIAMONDS   = 2,
-  GAMES_CARDS_HEARTS     = 1,
-  GAMES_CARDS_SPADES     = 3,
-  GAMES_CARD_RED_JOKER   = 52,
+  enum {
+  GAMES_CARD_ACE = 1,
+  GAMES_CARD_TWO = 2,
+  GAMES_CARD_THREE = 3,
+  GAMES_CARD_FOUR = 4,
+  GAMES_CARD_FIVE = 5,
+  GAMES_CARD_SIX = 6,
+  GAMES_CARD_SEVEN = 7,
+  GAMES_CARD_EIGHT = 8,
+  GAMES_CARD_NINE = 9,
+  GAMES_CARD_TEN = 10,
+  GAMES_CARD_JACK = 11,
+  GAMES_CARD_QUEEN = 12,
+  GAMES_CARD_KING = 13,
+  GAMES_CARD_ACE_HIGH = 14,
+  GAMES_CARDS_CLUBS = 0,
+  GAMES_CARDS_DIAMONDS = 2,
+  GAMES_CARDS_HEARTS = 1,
+  GAMES_CARDS_SPADES = 3,
+  GAMES_CARD_RED_JOKER = 52,
   GAMES_CARD_BLACK_JOKER = 53,
-  GAMES_CARD_BACK        = 54,
-  GAMES_CARDS_TOTAL       = 55
+  GAMES_CARD_BACK = 54,
+  GAMES_CARDS_TOTAL = 55
 };
 
 typedef struct _GamesCardImages {
@@ -60,16 +57,16 @@ typedef struct _GamesCardImages {
   gint width;
   gint height;
 
-  gchar * themename;
+  gchar *themename;
 
-  GamesPreimage * preimage;
+  GamesPreimage *preimage;
   gboolean prescaled;
 
-  GdkPixbuf * source;
+  GdkPixbuf *source;
   gint subwidth, subheight;
   gboolean prerendered;
   gboolean *rendered;
-  GdkPixbuf ** pixbufs;
+  GdkPixbuf **pixbufs;
 } GamesCardImages;
 
 typedef struct _GamesCardImagesClass {
@@ -85,25 +82,24 @@ typedef struct _GamesCardImagesClass {
 
 GType games_card_images_get_type (void);
 
-GamesCardImages * games_card_images_new (void);
+GamesCardImages *games_card_images_new (void);
 
 /* The real card routine. */
-GdkPixbuf * games_card_images_get_card_by_id (GamesCardImages * images,
-					      gint cardid);
+GdkPixbuf *games_card_images_get_card_by_id (GamesCardImages * images,
+					     gint cardid);
 
 /* The convenience functions. */
 #define GAMES_CARD_ID(suit, rank) ((13*(suit)) + ((rank-1)%13))
 
-GdkPixbuf * games_card_images_get_card (GamesCardImages * images, gint suit, 
-					gint rank);
-GdkPixbuf * games_card_images_get_red_joker (GamesCardImages * images);
-GdkPixbuf * games_card_images_get_black_joker (GamesCardImages * images);
-GdkPixbuf * games_card_images_get_back (GamesCardImages * images);
+GdkPixbuf *games_card_images_get_card (GamesCardImages * images, gint suit,
+				       gint rank);
+GdkPixbuf *games_card_images_get_red_joker (GamesCardImages * images);
+GdkPixbuf *games_card_images_get_black_joker (GamesCardImages * images);
+GdkPixbuf *games_card_images_get_back (GamesCardImages * images);
 
-void games_card_images_set_size (GamesCardImages * images, 
+void games_card_images_set_size (GamesCardImages * images,
 				 gint width, gint height);
 void games_card_images_set_theme (GamesCardImages * images, gchar * name);
 
 G_END_DECLS
-
 #endif /* GAMES_CARD_IMAGES_H */

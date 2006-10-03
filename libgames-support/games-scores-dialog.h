@@ -16,16 +16,16 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif /* __cplusplus */
+#endif				/* __cplusplus */
 
 
 
-  #include "games-score.h" /* For GamesScoreStyle. */
-  #include "games-scores.h"
+#include "games-score.h"	/* For GamesScoreStyle. */
+#include "games-scores.h"
 
   typedef enum {
     GAMES_SCORES_CLOSE_BUTTON = 1,
-    GAMES_SCORES_NEW_GAME_BUTTON = 2,	
+    GAMES_SCORES_NEW_GAME_BUTTON = 2,
     GAMES_SCORES_UNDO_BUTTON = 4,
     GAMES_SCORES_QUIT_BUTTON = 8,
   } GamesScoresButtons;
@@ -49,47 +49,46 @@ extern "C" {
 #define GAMES_SCORES_DIALOG_GET_CLASS(obj)	G_TYPE_INSTANCE_GET_CLASS((obj), games_scores_dialog_get_type(), GamesScoresDialogClass)
 
 /* Private structure type */
-typedef struct _GamesScoresDialogPrivate GamesScoresDialogPrivate;
+  typedef struct _GamesScoresDialogPrivate GamesScoresDialogPrivate;
 
 /*
  * Main object structure
  */
 #ifndef __TYPEDEF_GAMES_SCORES_DIALOG__
 #define __TYPEDEF_GAMES_SCORES_DIALOG__
-typedef struct _GamesScoresDialog GamesScoresDialog;
+  typedef struct _GamesScoresDialog GamesScoresDialog;
 #endif
-struct _GamesScoresDialog {
-	GtkDialog __parent__;
-	/*< private >*/
-	GamesScoresDialogPrivate *_priv;
-};
+  struct _GamesScoresDialog {
+    GtkDialog __parent__;
+    /*< private > */
+    GamesScoresDialogPrivate *_priv;
+  };
 
 /*
  * Class definition
  */
-typedef struct _GamesScoresDialogClass GamesScoresDialogClass;
-struct _GamesScoresDialogClass {
-	GtkDialogClass __parent__;
-};
+  typedef struct _GamesScoresDialogClass GamesScoresDialogClass;
+  struct _GamesScoresDialogClass {
+    GtkDialogClass __parent__;
+  };
 
 
 /*
  * Public methods
  */
-GType	games_scores_dialog_get_type	(void);
-GtkWidget * 	games_scores_dialog_new	(GamesScores * scores,
-					const gchar * title);
-void 	games_scores_dialog_set_category_description	(GamesScoresDialog * self,
-					const gchar * description);
-void 	games_scores_dialog_set_hilight	(GamesScoresDialog * self,
-					guint pos);
-void 	games_scores_dialog_set_message	(GamesScoresDialog * self,
+  GType games_scores_dialog_get_type (void);
+  GtkWidget *games_scores_dialog_new (GamesScores * scores,
+				      const gchar * title);
+  void games_scores_dialog_set_category_description (GamesScoresDialog * self,
+						     const gchar *
+						     description);
+  void games_scores_dialog_set_hilight (GamesScoresDialog * self, guint pos);
+  void games_scores_dialog_set_message (GamesScoresDialog * self,
 					const gchar * message);
-void 	games_scores_dialog_set_buttons	(GamesScoresDialog * self,
+  void games_scores_dialog_set_buttons (GamesScoresDialog * self,
 					guint buttons);
 
 #ifdef __cplusplus
 }
-#endif /* __cplusplus */
-
+#endif				/* __cplusplus */
 #endif

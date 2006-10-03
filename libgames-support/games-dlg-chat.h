@@ -30,14 +30,14 @@
  * handler for the CHAT event.  If the game wants its own handler for this
  * event you should register it *after* calling this function, and handle
  * the chat manually. */
-void init_chat(GGZMod * ggzmod);
+void init_chat (GGZMod * ggzmod);
 
 /* Creates a widget containing a chatbox. */
-GtkWidget *create_chat_widget(void);
+GtkWidget *create_chat_widget (void);
 
 /* Creates or raises the main chat dialog window. */
-void create_or_raise_dlg_chat(GtkWindow *window);
+void create_or_raise_dlg_chat (GtkWindow * window);
 
-void toggle_chat_window(gpointer data, guint action, GtkWidget * w);
+void toggle_chat_window (gpointer data, guint action, GtkWidget * w);
 
-void add_chat_text (const gchar *text);
+void add_chat_text (const gchar * text);

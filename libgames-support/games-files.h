@@ -21,16 +21,14 @@
 #define GAMES_FILES_H
 
 G_BEGIN_DECLS
-
 #include <gtk/gtk.h>
-
 typedef struct _GamesFileList GamesFileList;
 typedef struct _GamesFileListClass GamesFileListClass;
 
 struct _GamesFileList {
   GObject parent;
 
-  GList * list;
+  GList *list;
 };
 
 struct _GamesFileListClass {
@@ -41,26 +39,30 @@ struct _GamesFileListClass {
 
 GType games_file_list_get_type (void);
 
-GamesFileList * games_file_list_new (const gchar * glob, ...) G_GNUC_NULL_TERMINATED;
-GamesFileList * games_file_list_new_images (gchar * path1, ...) G_GNUC_NULL_TERMINATED;
+GamesFileList *
+games_file_list_new (const gchar * glob, ...)
+  G_GNUC_NULL_TERMINATED;
+     GamesFileList *games_file_list_new_images (gchar * path1,
+						...) G_GNUC_NULL_TERMINATED;
 
-void games_file_list_transform_basename (GamesFileList * list);
+     void games_file_list_transform_basename (GamesFileList * list);
 
-void games_file_list_for_each (GamesFileList * filelist, GFunc function, 
-			       gpointer userdata);
+     void games_file_list_for_each (GamesFileList * filelist, GFunc function,
+				    gpointer userdata);
 
-gchar * games_file_list_find (GamesFileList *filelist, GCompareFunc function, 
-			      gpointer userdata);
+     gchar *games_file_list_find (GamesFileList * filelist,
+				  GCompareFunc function, gpointer userdata);
 
-gchar * games_file_list_get_nth (GamesFileList * filelist, gint n);
+     gchar *games_file_list_get_nth (GamesFileList * filelist, gint n);
 
-enum {
-  GAMES_FILE_LIST_REMOVE_EXTENSION    = 1 << 0,
-  GAMES_FILE_LIST_REPLACE_UNDERSCORES = 1 << 1,
-};
+     enum {
+       GAMES_FILE_LIST_REMOVE_EXTENSION = 1 << 0,
+       GAMES_FILE_LIST_REPLACE_UNDERSCORES = 1 << 1,
+     };
 
-GtkWidget * games_file_list_create_widget (GamesFileList * filelist, gchar * selection, guint flags);
+     GtkWidget *games_file_list_create_widget (GamesFileList * filelist,
+					       gchar * selection,
+					       guint flags);
 
 G_END_DECLS
-
 #endif /* GAMES_FILES_H */

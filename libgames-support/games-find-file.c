@@ -23,11 +23,12 @@
 #include "games-files.h"
 #include "games-find-file.h"
 
-static gchar * make_canonical_name (const gchar *name)
+static gchar *
+make_canonical_name (const gchar * name)
 {
   gchar *cname;
   gchar *s;
-  
+
   /* Strip the path. */
   cname = g_path_get_basename (name);
   /* Strip the suffix. */
@@ -36,15 +37,18 @@ static gchar * make_canonical_name (const gchar *name)
     *s = '\0';
   /* Remove case-sensitivity. */
   s = g_utf8_casefold (cname, -1);
-  g_free (cname); cname = s;
+  g_free (cname);
+  cname = s;
   /* Normalise the UTF-8 encoding. */
   s = g_utf8_normalize (cname, -1, G_NORMALIZE_ALL);
-  g_free (cname); cname = s;
+  g_free (cname);
+  cname = s;
 
   return cname;
 }
 
-static gint compare_names (const gchar *filename, const gchar *ctarget)
+static gint
+compare_names (const gchar * filename, const gchar * ctarget)
 {
   gchar *cname;
   gint keepgoing;
@@ -58,7 +62,8 @@ static gint compare_names (const gchar *filename, const gchar *ctarget)
   return keepgoing;
 }
 
-gchar * games_find_similar_file (const gchar *target, const gchar *directory)
+gchar *
+games_find_similar_file (const gchar * target, const gchar * directory)
 {
   GamesFileList *list;
   gchar *result;

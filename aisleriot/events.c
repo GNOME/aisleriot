@@ -31,48 +31,52 @@
 #define hand_closed_data_width 20
 #define hand_closed_data_height 20
 static char hand_closed_data_bits[] = {
-   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x80, 0x3f, 0x00,
-   0x80, 0xff, 0x00, 0x80, 0xff, 0x00, 0xb0, 0xff, 0x00, 0xf0, 0xff, 0x00,
-   0xe0, 0xff, 0x00, 0xe0, 0x7f, 0x00, 0xc0, 0x7f, 0x00, 0x80, 0x3f, 0x00,
-   0x00, 0x3f, 0x00, 0x00, 0x3f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x80, 0x3f, 0x00,
+  0x80, 0xff, 0x00, 0x80, 0xff, 0x00, 0xb0, 0xff, 0x00, 0xf0, 0xff, 0x00,
+  0xe0, 0xff, 0x00, 0xe0, 0x7f, 0x00, 0xc0, 0x7f, 0x00, 0x80, 0x3f, 0x00,
+  0x00, 0x3f, 0x00, 0x00, 0x3f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
 
 #define hand_closed_mask_width 20
 #define hand_closed_mask_height 20
 static char hand_closed_mask_bits[] = {
-   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-   0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x80, 0x3f, 0x00, 0xc0, 0xff, 0x00,
-   0xc0, 0xff, 0x01, 0xf0, 0xff, 0x01, 0xf8, 0xff, 0x01, 0xf8, 0xff, 0x01,
-   0xf0, 0xff, 0x01, 0xf0, 0xff, 0x00, 0xe0, 0xff, 0x00, 0xc0, 0x7f, 0x00,
-   0x80, 0x7f, 0x00, 0x80, 0x7f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+  0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x80, 0x3f, 0x00, 0xc0, 0xff, 0x00,
+  0xc0, 0xff, 0x01, 0xf0, 0xff, 0x01, 0xf8, 0xff, 0x01, 0xf8, 0xff, 0x01,
+  0xf0, 0xff, 0x01, 0xf0, 0xff, 0x00, 0xe0, 0xff, 0x00, 0xc0, 0x7f, 0x00,
+  0x80, 0x7f, 0x00, 0x80, 0x7f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
 
 #define hand_open_data_width 20
 #define hand_open_data_height 20
 static char hand_open_data_bits[] = {
-   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00,
-   0x60, 0x36, 0x00, 0x60, 0x36, 0x00, 0xc0, 0x36, 0x01, 0xc0, 0xb6, 0x01,
-   0x80, 0xbf, 0x01, 0x98, 0xff, 0x01, 0xb8, 0xff, 0x00, 0xf0, 0xff, 0x00,
-   0xe0, 0xff, 0x00, 0xe0, 0x7f, 0x00, 0xc0, 0x7f, 0x00, 0x80, 0x3f, 0x00,
-   0x00, 0x3f, 0x00, 0x00, 0x3f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00,
+  0x60, 0x36, 0x00, 0x60, 0x36, 0x00, 0xc0, 0x36, 0x01, 0xc0, 0xb6, 0x01,
+  0x80, 0xbf, 0x01, 0x98, 0xff, 0x01, 0xb8, 0xff, 0x00, 0xf0, 0xff, 0x00,
+  0xe0, 0xff, 0x00, 0xe0, 0x7f, 0x00, 0xc0, 0x7f, 0x00, 0x80, 0x3f, 0x00,
+  0x00, 0x3f, 0x00, 0x00, 0x3f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
 
 #define hand_open_mask_width 20
 #define hand_open_mask_height 20
 static char hand_open_mask_bits[] = {
-   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x60, 0x3f, 0x00,
-   0xf0, 0x7f, 0x00, 0xf0, 0x7f, 0x01, 0xe0, 0xff, 0x03, 0xe0, 0xff, 0x03,
-   0xd8, 0xff, 0x03, 0xfc, 0xff, 0x03, 0xfc, 0xff, 0x01, 0xf8, 0xff, 0x01,
-   0xf0, 0xff, 0x01, 0xf0, 0xff, 0x00, 0xe0, 0xff, 0x00, 0xc0, 0x7f, 0x00,
-   0x80, 0x7f, 0x00, 0x80, 0x7f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x60, 0x3f, 0x00,
+  0xf0, 0x7f, 0x00, 0xf0, 0x7f, 0x01, 0xe0, 0xff, 0x03, 0xe0, 0xff, 0x03,
+  0xd8, 0xff, 0x03, 0xfc, 0xff, 0x03, 0xfc, 0xff, 0x01, 0xf8, 0xff, 0x01,
+  0xf0, 0xff, 0x01, 0xf0, 0xff, 0x00, 0xe0, 0xff, 0x00, 0xc0, 0x7f, 0x00,
+  0x80, 0x7f, 0x00, 0x80, 0x7f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
 
 hslot_type last_hslot;
 gint last_cardid;
-GTimer * click_timer = NULL;
+GTimer *click_timer = NULL;
 gdouble dbl_click_time;
-gint clicked = FALSE; /* Auxilary status for click-to-move. */
+gint clicked = FALSE;		/* Auxilary status for click-to-move. */
 
-GdkCursor * hand_closed_cursor = NULL;
-GdkCursor * hand_open_cursor = NULL;
-GdkCursor * default_cursor = NULL;
+GdkCursor *hand_closed_cursor = NULL;
+GdkCursor *hand_open_cursor = NULL;
+GdkCursor *default_cursor = NULL;
 
 enum {
   CURSOR_NONE = 0,
@@ -80,47 +84,48 @@ enum {
   CURSOR_CLOSED
 };
 
-static gboolean cards_are_droppable (hslot_type hslot) {
+static gboolean
+cards_are_droppable (hslot_type hslot)
+{
   return hslot && press_data->hslot &&
-    cscmi_drop_valid(press_data->hslot->id, press_data->cards, hslot->id);
+    cscmi_drop_valid (press_data->hslot->id, press_data->cards, hslot->id);
 }
 
-static hslot_type find_drop_target(gint x, gint y) {
+static hslot_type
+find_drop_target (gint x, gint y)
+{
   hslot_type new_hslot;
   hslot_type retval = NULL;
   gint i, new_cardid;
   gint min_distance = G_MAXINT;
 
   /* Find a target directly under the center of the card. */
-  slot_pressed(x + card_width / 2,
-               y + card_height / 2,
-	       &new_hslot, &new_cardid);
+  slot_pressed (x + card_width / 2,
+		y + card_height / 2, &new_hslot, &new_cardid);
 
   if (new_hslot && cards_are_droppable (new_hslot))
     return new_hslot;
 
   /* If that didn't work, look for a target at all 4 corners of the card. */
   for (i = 0; i < 4; i++) {
-    slot_pressed(x + card_width * (i/2),
-                 y + card_height * (i%2),
-                 &new_hslot, &new_cardid);
+    slot_pressed (x + card_width * (i / 2),
+		  y + card_height * (i % 2), &new_hslot, &new_cardid);
 
     if (!new_hslot)
-	continue;
-	
+      continue;
+
     /* This skips corners we know are not droppable. */
-    if (!droppable_is_featured
-        || cards_are_droppable (new_hslot)) {
+    if (!droppable_is_featured || cards_are_droppable (new_hslot)) {
       gint dx, dy, distance_squared;
 
-      dx = new_hslot->pixelx + new_cardid*new_hslot->pixeldx - x;
-      dy = new_hslot->pixely + new_cardid*new_hslot->pixeldy - y;
+      dx = new_hslot->pixelx + new_cardid * new_hslot->pixeldx - x;
+      dy = new_hslot->pixely + new_cardid * new_hslot->pixeldy - y;
 
-      distance_squared = dx*dx + dy*dy;
+      distance_squared = dx * dx + dy * dy;
 
       if (distance_squared <= min_distance) {
 	retval = new_hslot;
-        min_distance = distance_squared;
+	min_distance = distance_squared;
       }
     }
   }
@@ -128,7 +133,8 @@ static hslot_type find_drop_target(gint x, gint y) {
   return retval;
 }
 
-static void set_cursor (int cursor)
+static void
+set_cursor (int cursor)
 {
   if (cursor == CURSOR_NONE)
     gdk_window_set_cursor (playing_area->window, default_cursor);
@@ -140,114 +146,128 @@ static void set_cursor (int cursor)
 
 /* If we are over a slot, set the cursor to the given cursor,
  * otherwise use the default cursor. */
-static void set_cursor_by_location (int cursor, int x, int y)
+static void
+set_cursor_by_location (int cursor, int x, int y)
 {
   hslot_type hslot;
   gint cardid;
 
-  slot_pressed(x, y, &hslot, &cardid);
+  slot_pressed (x, y, &hslot, &cardid);
   if (hslot)
     set_cursor (cursor);
   else
     set_cursor (CURSOR_NONE);
 }
 
-int waiting_for_mouse_up(void) {
-  if (!press_data) return 0;
-  if (press_data->status == STATUS_IS_DRAG) return 1;
-  if (press_data->status == STATUS_SHOW) return 1;
+int
+waiting_for_mouse_up (void)
+{
+  if (!press_data)
+    return 0;
+  if (press_data->status == STATUS_IS_DRAG)
+    return 1;
+  if (press_data->status == STATUS_SHOW)
+    return 1;
   return 0;
 }
 
-void end_of_game_test() {
-  cscmi_end_move();
-  if (!game_over) { 
-    game_over = !cscmi_game_over_lambda();
-    
+void
+end_of_game_test ()
+{
+  cscmi_end_move ();
+  if (!game_over) {
+    game_over = !cscmi_game_over_lambda ();
+
     if (game_over) {
       timer_stop ();
-      game_won = cscmi_winning_game_lambda();
+      game_won = cscmi_winning_game_lambda ();
       refresh_screen ();
-      if (game_won) { /* Check because we can undo lost games. */
+      if (game_won) {		/* Check because we can undo lost games. */
 	game_in_progress = FALSE;
 	option_list_set_sensitive ();
 	update_statistics (TRUE, timer_get ());
       }
       show_game_over_dialog ();
     }
-  }  
+  }
 }
 
-void drop_moving_cards(gint x, gint y) {
+void
+drop_moving_cards (gint x, gint y)
+{
   hslot_type hslot;
   gboolean moved = FALSE;
 
-  hslot = find_drop_target(x - press_data->xoffset, y - press_data->yoffset);
+  hslot = find_drop_target (x - press_data->xoffset, y - press_data->yoffset);
 
   if (hslot) {
-    moved = cscmi_drop_cards(press_data->hslot->id, press_data->cards, 
-			     hslot->id);
+    moved = cscmi_drop_cards (press_data->hslot->id, press_data->cards,
+			      hslot->id);
   }
 
   if (!moved) {
-    add_cards_to_slot(press_data->cards, press_data->hslot);
-    press_data->cards = NULL; /* they belong to the slot now */
-    cscmi_discard_move();
+    add_cards_to_slot (press_data->cards, press_data->hslot);
+    press_data->cards = NULL;	/* they belong to the slot now */
+    cscmi_discard_move ();
   }
 
-  refresh_screen();
+  refresh_screen ();
 
-  free_press_data();
+  free_press_data ();
 
-  if (moved) end_of_game_test();
+  if (moved)
+    end_of_game_test ();
 }
 
-static void highlight_drop_target(hslot_type hslot) {
+static void
+highlight_drop_target (hslot_type hslot)
+{
   static hslot_type old_hslot = NULL;
 
   if (hslot != old_hslot) {
     old_hslot = hslot;
-    gdk_window_hide(press_data->highlight_window);
+    gdk_window_hide (press_data->highlight_window);
 
-    if (cards_are_droppable(hslot)) {
+    if (cards_are_droppable (hslot)) {
       GdkPixmap *droptarget_pixmap;
 
-      if (hslot->cards) {      
-        hcard_type card;
+      if (hslot->cards) {
+	hcard_type card;
 
-        gint delta = hslot->exposed ? hslot->exposed - 1 : 0;
+	gint delta = hslot->exposed ? hslot->exposed - 1 : 0;
 
-        int x = hslot->pixelx + delta * hslot->pixeldx;
-        int y = hslot->pixely + delta * hslot->pixeldy;
+	int x = hslot->pixelx + delta * hslot->pixeldx;
+	int y = hslot->pixely + delta * hslot->pixeldy;
 
-        card = g_list_last(hslot->cards)->data;
+	card = g_list_last (hslot->cards)->data;
 
-        droptarget_pixmap = get_droptarget_pixmap (card->suit, 
-						   card->value, 
+	droptarget_pixmap = get_droptarget_pixmap (card->suit,
+						   card->value,
 						   card->direction);
 
-        if (droptarget_pixmap) {
-          gdk_window_set_back_pixmap (press_data->highlight_window,
-                                      droptarget_pixmap, 0);
-          gdk_window_shape_combine_mask (press_data->highlight_window,
-                                    	 card_mask, 0, 0);
-          gdk_window_resize(press_data->highlight_window, 
-			    card_width, card_height);
-          gdk_window_clear(press_data->highlight_window);
-          gdk_window_move(press_data->highlight_window, x, y);
-          gdk_window_show(press_data->highlight_window);
-        }
-      } 
+	if (droptarget_pixmap) {
+	  gdk_window_set_back_pixmap (press_data->highlight_window,
+				      droptarget_pixmap, 0);
+	  gdk_window_shape_combine_mask (press_data->highlight_window,
+					 card_mask, 0, 0);
+	  gdk_window_resize (press_data->highlight_window,
+			     card_width, card_height);
+	  gdk_window_clear (press_data->highlight_window);
+	  gdk_window_move (press_data->highlight_window, x, y);
+	  gdk_window_show (press_data->highlight_window);
+	}
+      }
     }
 
-    /* This ensures that the moving cards are on top.*/
-    gdk_window_show (press_data->moving_cards); 
+    /* This ensures that the moving cards are on top. */
+    gdk_window_show (press_data->moving_cards);
   }
 }
 
 
 
-gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
+gint
+button_press_event (GtkWidget * widget, GdkEventButton * event, void *d)
 {
   hslot_type hslot;
   gint cardid;
@@ -264,23 +284,24 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
 
   if (event->button < 1 && event->button > 3)
     return TRUE;
-  
+
   /* ignore the gdk synthetic click events */
   if (event->type != GDK_BUTTON_PRESS)
     return TRUE;
-  
+
   /* Let the middle button be a synthetic double-click. */
   if (event->button == 2) {
     double_click = TRUE;
     event->button = 1;
   }
 
-  if (press_data->status == STATUS_SHOW || press_data->status == STATUS_IS_DRAG)
+  if (press_data->status == STATUS_SHOW
+      || press_data->status == STATUS_IS_DRAG)
     return TRUE;
 
-  slot_pressed(event->x, event->y, &hslot, &cardid);
+  slot_pressed (event->x, event->y, &hslot, &cardid);
 
-  if (!hslot) 
+  if (!hslot)
     return TRUE;
 
   if (event->button == 1)
@@ -289,12 +310,12 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   /* We can't let Gdk do the double-click detection since the entire playing
    * area is one big widget it can't distinguish between single-clicks on two
    * cards and a double-click on one. */
-  double_click |= (g_timer_elapsed(click_timer, NULL) < dbl_click_time)
+  double_click |= (g_timer_elapsed (click_timer, NULL) < dbl_click_time)
     && (last_cardid == cardid)
     && (last_hslot->id == hslot->id)
     && (event->button == 1);
-  g_timer_start(click_timer);
-  slot_pressed(event->x, event->y, &last_hslot, &last_cardid);
+  g_timer_start (click_timer);
+  slot_pressed (event->x, event->y, &last_hslot, &last_cardid);
 
   press_data->xoffset = event->x;
   press_data->yoffset = event->y;
@@ -302,9 +323,11 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   press_data->cardid = cardid;
 
   /* The right-button-reveals-card action. */
-  if (cardid > 0 && (press_data->status == STATUS_NONE || press_data->status == STATUS_CLICK)
+  if (cardid > 0
+      && (press_data->status == STATUS_NONE
+	  || press_data->status == STATUS_CLICK)
       && event->button == 3) {
-    hcard_type card = g_list_nth(hslot->cards, cardid - 1)->data;
+    hcard_type card = g_list_nth (hslot->cards, cardid - 1)->data;
 
     if (card->direction == UP) {
       guint delta = hslot->exposed - (hslot->length - cardid) - 1;
@@ -316,48 +339,48 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
       press_data->moving_mask = card_mask;
 
       if (press_data->moving_pixmap != NULL)
-        gdk_window_set_back_pixmap (press_data->moving_cards, 
+	gdk_window_set_back_pixmap (press_data->moving_cards,
 				    press_data->moving_pixmap, 0);
 
-      gdk_window_shape_combine_mask (press_data->moving_cards, 
+      gdk_window_shape_combine_mask (press_data->moving_cards,
 				     press_data->moving_mask, 0, 0);
 
-      gdk_window_resize(press_data->moving_cards, card_width, card_height);
-      gdk_window_move(press_data->moving_cards, x, y); 
-      gdk_window_show(press_data->moving_cards);
+      gdk_window_resize (press_data->moving_cards, card_width, card_height);
+      gdk_window_move (press_data->moving_cards, x, y);
+      gdk_window_show (press_data->moving_cards);
     }
     return TRUE;
-  } 
+  }
 
   clicked = TRUE;
 
   /* Check if the cards are draggable, assuming we have any cards. */
   if (hslot->cards) {
-    GList* cards = g_list_nth(hslot->cards, press_data->cardid - 1); 
-    drag_valid = cscmi_drag_valid(press_data->hslot->id, cards);
+    GList *cards = g_list_nth (hslot->cards, press_data->cardid - 1);
+    drag_valid = cscmi_drag_valid (press_data->hslot->id, cards);
   } else {
     drag_valid = FALSE;
   }
 
   if (!(press_data->status == STATUS_CLICK && double_click)) {
     press_data->status = cardid > 0 ? STATUS_MAYBE_DRAG : STATUS_NOT_DRAG;
-    
+
     if (!drag_valid) {
-	press_data->status = STATUS_NOT_DRAG;
-	clicked = FALSE;
+      press_data->status = STATUS_NOT_DRAG;
+      clicked = FALSE;
     }
-  } 
+  }
 
   if (double_click) {
-    press_data->status = STATUS_NONE; 
-    cscmi_record_move(-1, NULL);
+    press_data->status = STATUS_NONE;
+    cscmi_record_move (-1, NULL);
     if (cscmi_button_double_clicked_lambda (hslot->id)) {
-      cscmi_end_move();
+      cscmi_end_move ();
     } else {
-      cscmi_discard_move();
+      cscmi_discard_move ();
       /* Allow for a drag on the second click if nothing else happened. */
       if ((cardid > 0) && drag_valid) {
-	press_data->status = STATUS_MAYBE_DRAG; 
+	press_data->status = STATUS_MAYBE_DRAG;
       } else {
 	press_data->status = STATUS_NOT_DRAG;
       }
@@ -370,12 +393,13 @@ gint button_press_event (GtkWidget *widget, GdkEventButton *event, void *d)
   return TRUE;
 }
 
-gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
+gint
+button_release_event (GtkWidget * widget, GdkEventButton * event, void *d)
 {
   if (event->button == 3 && press_data->status == STATUS_SHOW) {
     press_data->status = STATUS_NONE;
-    gdk_window_hide(press_data->moving_cards);
-    highlight_drop_target(NULL);
+    gdk_window_hide (press_data->moving_cards);
+    highlight_drop_target (NULL);
     press_data->moving_pixmap = NULL;
     press_data->moving_mask = NULL;
     return TRUE;
@@ -393,22 +417,22 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
   switch (press_data->status) {
   case STATUS_IS_DRAG:
     press_data->status = STATUS_NONE;
-    highlight_drop_target(NULL);
-    drop_moving_cards(event->x, event->y);
+    highlight_drop_target (NULL);
+    drop_moving_cards (event->x, event->y);
     break;
-    
+
   case STATUS_MAYBE_DRAG:
   case STATUS_NOT_DRAG:
     press_data->status = STATUS_CLICK;
-    cscmi_record_move(-1, NULL);
+    cscmi_record_move (-1, NULL);
     if (cscmi_button_clicked_lambda (press_data->hslot->id))
-      cscmi_end_move();
+      cscmi_end_move ();
     else
-      cscmi_discard_move();
-    refresh_screen();
-    end_of_game_test();
+      cscmi_discard_move ();
+    refresh_screen ();
+    end_of_game_test ();
     break;
-    
+
   case STATUS_CLICK:
   case STATUS_NONE:
     break;
@@ -417,7 +441,8 @@ gint button_release_event (GtkWidget *widget, GdkEventButton *event, void *d)
   return TRUE;
 }
 
-gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
+gint
+motion_notify_event (GtkWidget * widget, GdkEventMotion * event)
 {
   gint x, y;
   gint dummy;
@@ -427,23 +452,22 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
   y = event->y - press_data->yoffset;
 
   if (press_data->status == STATUS_IS_DRAG) {
-    target_hslot = find_drop_target(x, y);
-    highlight_drop_target(target_hslot);
+    target_hslot = find_drop_target (x, y);
+    highlight_drop_target (target_hslot);
 
-    gdk_window_move(press_data->moving_cards, x, y);
+    gdk_window_move (press_data->moving_cards, x, y);
 
     /* This is a quick and nasty hack to make sure that the areas
      * under the transparent corners of the dragged card get drawn
      * properly. */
     gdk_draw_drawable (playing_area->window, playing_area->style->black_gc,
-		       surface, x, y, x, y, 
+		       surface, x, y, x, y,
 		       press_data->width, press_data->height);
 
-    gdk_window_clear(press_data->moving_cards); 
+    gdk_window_clear (press_data->moving_cards);
     set_cursor (CURSOR_CLOSED);
-  }
-  else if (press_data->status == STATUS_MAYBE_DRAG &&
-	   (abs(x) > 2 || abs(y) > 2)) {
+  } else if (press_data->status == STATUS_MAYBE_DRAG &&
+	     (abs (x) > 2 || abs (y) > 2)) {
     press_data->status = STATUS_IS_DRAG;
     generate_press_data ();
     refresh_screen ();
@@ -454,7 +478,7 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
     if (target_hslot != press_data->hslot) {
       if (press_data->status == STATUS_NOT_DRAG) {
 	press_data->status = STATUS_CLICK;
-      } 
+      }
     } else {
       if (press_data->status == STATUS_CLICK) {
 	press_data->status = STATUS_NOT_DRAG;
@@ -466,8 +490,10 @@ gint motion_notify_event (GtkWidget *widget, GdkEventMotion *event)
   return FALSE;
 }
 
-gint app_configure_event (GtkWidget *widget, GdkEventConfigure *event) {
-  GConfClient * gconf_client = gconf_client_get_default ();
+gint
+app_configure_event (GtkWidget * widget, GdkEventConfigure * event)
+{
+  GConfClient *gconf_client = gconf_client_get_default ();
 
   gconf_client_set_int (gconf_client, WIDTH_GCONF_KEY, event->width, NULL);
   gconf_client_set_int (gconf_client, HEIGHT_GCONF_KEY, event->height, NULL);
@@ -475,13 +501,14 @@ gint app_configure_event (GtkWidget *widget, GdkEventConfigure *event) {
   return FALSE;
 }
 
-static GdkCursor * make_cursor (char * data, char * mask_data)
+static GdkCursor *
+make_cursor (char *data, char *mask_data)
 {
-  GdkColor fg = {0, 65535, 65535, 65535};
-  GdkColor bg = {0, 0, 0, 0};
+  GdkColor fg = { 0, 65535, 65535, 65535 };
+  GdkColor bg = { 0, 0, 0, 0 };
   GdkPixmap *source;
   GdkPixmap *mask;
-  GdkCursor * cursor;
+  GdkCursor *cursor;
 
   /* Yeah, hard-coded sizes are bad. */
   source = gdk_bitmap_create_from_data (NULL, data, 20, 20);
@@ -491,52 +518,55 @@ static GdkCursor * make_cursor (char * data, char * mask_data)
 
   g_object_unref (source);
   g_object_unref (mask);
-  
+
   return cursor;
 }
 
-gint configure_event (GtkWidget *widget, GdkEventConfigure *event) {
+gint
+configure_event (GtkWidget * widget, GdkEventConfigure * event)
+{
   gint tmptime;
-  GtkSettings * settings;
+  GtkSettings *settings;
 
   if (!default_cursor)
-    default_cursor = gdk_cursor_new(GDK_LEFT_PTR);
+    default_cursor = gdk_cursor_new (GDK_LEFT_PTR);
 
   if (!hand_closed_cursor)
     hand_closed_cursor = make_cursor (hand_closed_data_bits,
 				      hand_closed_mask_bits);
 
   if (!hand_open_cursor)
-    hand_open_cursor = make_cursor (hand_open_data_bits,
-				    hand_open_mask_bits);
+    hand_open_cursor = make_cursor (hand_open_data_bits, hand_open_mask_bits);
 
-  if(surface) {
-    if(window_width == event->width && window_height == event->height)
+  if (surface) {
+    if (window_width == event->width && window_height == event->height)
       return TRUE;
-    g_object_unref(surface);
+    g_object_unref (surface);
   }
 
   window_width = event->width;
   window_height = event->height;
 
-  surface = gdk_pixmap_new (playing_area->window, window_width, window_height, -1);
+  surface =
+    gdk_pixmap_new (playing_area->window, window_width, window_height, -1);
 
   rescale_cards ();
 
-  refresh_screen();
+  refresh_screen ();
 
-  /* Set up the double-click detection.*/
+  /* Set up the double-click detection. */
   if (!click_timer)
-    click_timer = g_timer_new();
-  settings = gtk_settings_get_default();
-  g_object_get(G_OBJECT(settings),"gtk-double-click-time",&tmptime,NULL);
-  dbl_click_time = tmptime/1000.0;
+    click_timer = g_timer_new ();
+  settings = gtk_settings_get_default ();
+  g_object_get (G_OBJECT (settings), "gtk-double-click-time", &tmptime, NULL);
+  dbl_click_time = tmptime / 1000.0;
 
 
   return FALSE;
 }
 
-gint expose_event (GtkWidget *widget, GdkEventExpose *event) 
+gint
+expose_event (GtkWidget * widget, GdkEventExpose * event)
 {
 
   if (!surface)
@@ -549,4 +579,3 @@ gint expose_event (GtkWidget *widget, GdkEventExpose *event)
 
   return FALSE;
 }
-
