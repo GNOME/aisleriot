@@ -65,8 +65,8 @@ GType games_scores_backend_get_type (void);
 GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
 					      gchar * basename, gchar * name);
 GList *games_scores_backend_get_scores (GamesScoresBackend * self);
-void games_scores_backend_set_scores (GamesScoresBackend * self,
-				      GList * list);
+gboolean games_scores_backend_set_scores (GamesScoresBackend * self,
+				          GList * list);
 void games_scores_backend_discard_scores (GamesScoresBackend * self);
 
 G_END_DECLS

@@ -280,7 +280,8 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
     s->next = NULL;
   }
 
-  games_scores_backend_set_scores (cat->backend, scores_list);
+  if (games_scores_backend_set_scores (cat->backend, scores_list) == FALSE)
+    place = 0;
 
   self->priv->last_score_significant = place > 0;
   self->priv->last_score_position = place;

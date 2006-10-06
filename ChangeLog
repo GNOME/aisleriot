@@ -1,5 +1,14 @@
 2006-10-06  Andreas Røsdal  <andrearo@pvv.ntnu.no>
 
+	* libgames-support/games-scores-backend.h:
+	* libgames-support/games-scores-backend.c:
+	* libgames-support/games-scores.c: Patch to fix a bug in
+	games-scores, where if games_scores_backend_set_scores() fails, then  
+	don't display score dialog. 
+	Patch from Matt Keenan <matt.keenan@sun.com> in #359876.
+
+2006-10-06  Andreas Røsdal  <andrearo@pvv.ntnu.no>
+
 	* libgames-support/Makefile.am: Fix 'make distcheck'.
 
 2006-10-06  Andreas Røsdal  <andrearo@pvv.ntnu.no>

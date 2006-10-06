@@ -234,7 +234,7 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
   return self->scores_list;
 }
 
-void
+gboolean
 games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
 {
   GList *s;
@@ -244,7 +244,7 @@ games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
   gchar dtostrbuf[G_ASCII_DTOSTR_BUF_SIZE];
 
   if (!games_scores_backend_get_lock (self))
-    return;
+    return FALSE;
 
   self->scores_list = list;
 
@@ -287,6 +287,8 @@ games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
   self->priv->timestamp = time (NULL);
 
   games_scores_backend_release_lock (self);
+
+  return TRUE;
 
 }
 
