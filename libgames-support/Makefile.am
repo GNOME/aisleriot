@@ -77,6 +77,7 @@ libgames_support_la_SOURCES =		\
 	games-scores.h			\
 	games-scores-backend.c		\
 	games-scores-backend.h		\
+	ggz-strings.h			\
 	$(NULL)
 
 %.c %.h %-private.h: %.gob
