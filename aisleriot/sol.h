@@ -70,6 +70,8 @@ extern gchar *gamesdir;
 extern GConfClient *gconf_client;
 
 gchar *game_file_to_name (const gchar * file);
+gchar *game_file_to_help_section (const gchar * file);
+
 void new_game (gchar * file, guint * seed);
 void quit_app (GtkMenuItem *);
 void set_score (guint new_score);

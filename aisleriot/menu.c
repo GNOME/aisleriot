@@ -48,27 +48,6 @@ GtkWidget *helpitem;
 GtkWidget *menubar;
 GtkWidget *toolbar;
 
-static gchar *gamename = NULL;
-static gchar *ugamename = NULL;
-
-static gchar *
-convert_name_to_underscored (const gchar * inname)
-{
-  gchar *outname;
-  gchar *s;
-
-  outname = g_strdup (inname);
-
-  s = outname;
-  while (*s) {
-    if (*s == ' ')
-      *s = '_';
-    s++;
-  }
-
-  return outname;
-}
-
 static void
 restart_game ()
 {
@@ -175,8 +154,12 @@ general_help (void)
 static void
 help_on_specific_game (void)
 {
-  gnome_help_display_on_screen ("aisleriot.xml", ugamename,
+  gchar *help_section;
+  
+  help_section = game_file_to_help_section (game_file);
+  gnome_help_display_on_screen ("aisleriot.xml", help_section,
 				gtk_widget_get_screen (app), NULL);
+  g_free (help_section);
 }
 
 static void
@@ -403,20 +386,9 @@ create_menus ()
 }
 
 void
-help_update_game_name (gchar * name)
+help_update_game_name ()
 {
-
-  if (gamename)
-    g_free (gamename);
-
-  if (ugamename)
-    g_free (ugamename);
-
-  gamename = g_strdup (name);
-  ugamename = convert_name_to_underscored (name);
-
-  gtk_label_set_text (GTK_LABEL (GTK_BIN (helpitem)->child), gamename);
-
+  gtk_label_set_text (GTK_LABEL (GTK_BIN (helpitem)->child), game_name);
 }
 
 static gchar *
@@ -427,8 +399,7 @@ make_option_gconf_key (void)
   GConfSchema *schema;
   GConfValue *def;
 
-  r = g_strconcat (basekey, ugamename, NULL);
-
+  r = g_strconcat (basekey, game_file, NULL);
   sk = g_strconcat ("/schemas", r, NULL);
 
   /* Check if we have a schema for this key and make one if we don't. */
@@ -567,7 +538,7 @@ enum {
  * trigger a toggle - but descriptive names like begin-exclusive and
  * end-exclusive are probably a good idea. */
 void
-install_options_menu (gchar * name)
+install_options_menu ()
 {
   static int merge_id = 0;
   static GtkActionGroup *options_group = NULL;
@@ -588,7 +559,7 @@ install_options_menu (gchar * name)
 
   if (cscmi_has_options ()) {
     menuaction = gtk_action_group_get_action (action_group, "OptionsMenu");
-    g_object_set (G_OBJECT (menuaction), "label", name, NULL);
+    g_object_set (G_OBJECT (menuaction), "label", game_name, NULL);
 
     options_group = gtk_action_group_new ("OptionsActions");
     gtk_ui_manager_insert_action_group (ui_manager, options_group, -1);

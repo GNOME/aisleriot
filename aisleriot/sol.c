@@ -114,6 +114,26 @@ game_file_to_name (const gchar * file)
   return ts;
 }
 
+gchar *
+game_file_to_help_section (const gchar * file)
+{
+  char *p, *buf = g_path_get_basename (file);
+
+  if ((p = strrchr (buf, '.')))
+    *p = '\0';
+  for (p = buf; p = strchr (p, '-'), p && *p;)
+    *p = '_';
+  for (p = buf; p = strchr (p, '_'), p && *p;) {
+    if (*(p + 1)) {
+      *(p + 1) = g_ascii_toupper (*(p + 1));
+      p++;
+    }
+  }
+  buf[0] = g_ascii_toupper (buf[0]);
+
+  return buf;
+}
+
 /* Note that this is not the inverse of game_file_to_name. This
  * only works on untranslated names. game_file_to_name only produces
  * translated names. Be careful. */
@@ -253,8 +273,8 @@ new_game (gchar * file, guint * seedp)
 
     game_name = game_file_to_name (game_file);
     update_statistics_display ();
-    help_update_game_name (game_name);
-    install_options_menu (game_name);
+    help_update_game_name ();
+    install_options_menu ();
 
     if (score_is_hidden)
       gtk_widget_hide (score_box);

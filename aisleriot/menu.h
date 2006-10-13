@@ -26,8 +26,8 @@ void create_menus (void);
 void undo_set_sensitive (gboolean state);
 void redo_set_sensitive (gboolean state);
 void option_list_set_sensitive (void);
-void help_update_game_name (gchar * name);
-void install_options_menu (gchar * name);
+void help_update_game_name (void);
+void install_options_menu (void);
 void install_recently_played_menu (void);
 
 extern GtkUIManager *ui_manager;
