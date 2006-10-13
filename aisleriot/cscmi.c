@@ -171,7 +171,7 @@ cscmi_catch_handler (gpointer data, SCM tag, SCM throw_args)
 					     GTK_MESSAGE_ERROR,
 					     GTK_BUTTONS_OK,
 					     _
-					     ("A scheme exception occured and we were unable to create a temporary file to report it:\n\n%s"),
+					     ("A scheme exception occurred and we were unable to create a temporary file to report it:\n\n%s"),
 					     error->message);
     gtk_dialog_run (GTK_DIALOG (message_dialog));
     exit (1);
