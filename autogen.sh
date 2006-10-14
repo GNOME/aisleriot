@@ -7,6 +7,7 @@ WANT_AUTOMAKE=1.8
 export WANT_AUTOMAKE
 
 DIE=0
+PKG_NAME="Gnome Games"
 package=gnome-games
 
 SRCDIR=`dirname $0`
@@ -299,7 +300,5 @@ if [ "$FC_HELP" = "yes" ]; then
   exit 1
 fi
 
-echo 
-echo "Now type 'make' to compile $package."
 
 exit 0

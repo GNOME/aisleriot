@@ -1,9 +1,10 @@
 SUBDIRS= \
 	po \
+	dependencies \
 	libgames-support \
 	$(gamelist)
 
-DIST_SUBDIRS = po libgames-support $(allgames)
+DIST_SUBDIRS = po dependencies libgames-support $(allgames)
 
 EXTRA_DIST = \
 	gnome-games.spec.in \

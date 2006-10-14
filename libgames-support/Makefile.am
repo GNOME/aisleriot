@@ -19,7 +19,9 @@ INCLUDES =							\
 	-DSCORESDIR=\""$(scoredir)"\"				\
 	-DGCONF_SCHEMA_CONFIG_SOURCE=\""$(GCONF_SCHEMA_CONFIG_SOURCE)"\" \
 	$(WARN_CFLAGS)						\
-	$(GNOME_GAMES_CFLAGS)
+	$(GNOME_GAMES_CFLAGS)					\
+	$(GGZMOD_INCLUDES) $(GGZ_GTK_INCLUDES) $(GGZCORE_INCLUDES) \
+	$(LIBGGZ_INCLUDES)
 
 GOB_FILES= \
 	games-scores-dialog.gob		\
@@ -77,7 +79,6 @@ libgames_support_la_SOURCES =		\
 	games-scores.h			\
 	games-scores-backend.c		\
 	games-scores-backend.h		\
-	ggz-strings.h			\
 	$(NULL)
 
 %.c %.h %-private.h: %.gob
