@@ -287,21 +287,12 @@ cd $BUILDDIR
 echo "+ removing config.cache ... "
 rm -f config.cache
 
-echo "+ running configure ... "
-echo
-if [ -z "$FC_NEWARGLINE" ]; then
-  echo "I am going to run ./configure with no arguments - if you wish "
-  echo "to pass any to it, please specify them on the $0 command line."
-else
-  echo "using: $FC_NEWARGLINE"
-fi
-echo
-
-$SRCDIR/configure $FC_NEWARGLINE || {
-  echo
-  echo "configure failed"
-  exit 1
+which gnome-autogen.sh || {
+    echo "You need to install gnome-common from the GNOME CVS"
+    exit 1
 }
+
+USE_GNOME2_MACROS=1 ACLOCAL_FLAGS="-I m4 $ACLOCAL_FLAGS" . gnome-autogen.sh
 
 # abort if we did --help
 if [ "$FC_HELP" = "yes" ]; then
