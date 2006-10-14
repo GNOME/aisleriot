@@ -198,7 +198,7 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [The gettext package name])
 AM_GLIB_GNU_GETTEXT
 # Since there is controversy over using it, we will check for it.
-AC_CHECK_FUNCS(ngettext getpwuid getenv setenv)
+AC_CHECK_FUNCS(ngettext getpwuid getenv setenv close hstrerror kill socketpair)
 
 # Check for header files
 AC_HEADER_STDC
@@ -208,6 +208,37 @@ AC_TYPE_SIGNAL
 AC_FUNC_FORK
 AC_FUNC_STRCOLL
 AC_FUNC_VPRINTF
+
+# Check for PF_LOCAL/PF_UNIX
+# ==========================
+# There should be an autoconf macro to check this???
+#
+# Not having this is not necessarily a fatal error.  It should mean that
+# the WinAPI interface is used instead.
+AC_MSG_CHECKING([for PF_LOCAL])
+AC_EGREP_CPP(PF_LOCAL,
+             [#include <sys/socket.h>
+              PF_LOCAL ],
+             [AC_MSG_RESULT(no)
+              AC_MSG_CHECKING([for PF_UNIX])
+              AC_EGREP_CPP(PF_UNIX, [ #include <sys/socket.h>
+				      PF_UNIX ],
+                           [AC_MSG_RESULT(no)],
+                           [AC_MSG_RESULT(yes)
+                            AC_DEFINE([PF_LOCAL], PF_UNIX,
+				      [PF_UNIX is available])
+			    AC_DEFINE([AF_LOCAL], AF_UNIX,
+				      [AF_UNIX is available])])], 
+             AC_MSG_RESULT(yes))
+
+# Check for header files
+# ======================
+AC_CHECK_HEADERS([fcntl.h limits.h sys/time.h time.h \
+                  unistd.h], [],
+                 [AC_MSG_ERROR([cannot find required header file])])
+AC_CHECK_HEADERS([netdb.h sys/socket.h winsock2.h])
+AC_HEADER_SYS_WAIT
+
 
 # Checks for typedefs, structures, and compiler characteristics
 AC_HEADER_STDBOOL
