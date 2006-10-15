@@ -197,8 +197,17 @@ GETTEXT_PACKAGE=gnome-games
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [The gettext package name])
 AM_GLIB_GNU_GETTEXT
+
+# Check for library functions
+# ===========================
+AC_CHECK_FUNCS([dup2 strcasecmp strchr strerror \
+                malloc vprintf], [],
+               [AC_MSG_ERROR([cannot find required function])])
+AC_CHECK_FUNCS([fork select]) 
 # Since there is controversy over using it, we will check for it.
-AC_CHECK_FUNCS(ngettext getpwuid getenv setenv close hstrerror kill socketpair)
+AC_CHECK_FUNCS(ngettext alarm getpwuid getenv setenv close hstrerror kill socketpair)
+
+AC_FUNC_SELECT_ARGTYPES
 
 # Check for header files
 AC_HEADER_STDC
