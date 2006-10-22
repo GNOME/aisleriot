@@ -222,6 +222,14 @@ AC_FUNC_FORK
 AC_FUNC_STRCOLL
 AC_FUNC_VPRINTF
 
+# Check for expat
+# ===============
+AC_CHECK_LIB(expat, XML_ParserCreate, [LIBEXPAT="-lexpat"],
+             [AC_MSG_ERROR(cannot find expat library)])
+AC_CHECK_HEADER(expat.h, [],
+                [AC_MSG_ERROR(cannot find expat.h header)])
+AC_SUBST(LIBEXPAT)
+
 # Check for PF_LOCAL/PF_UNIX
 # ==========================
 # There should be an autoconf macro to check this???
