@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-26 08:22+0300\n"
-"PO-Revision-Date: 2006-10-26 08:48+0300\n"
+"PO-Revision-Date: 2006-10-26 10:10+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,8 @@ msgid ""
 "A comma seperated list of recently played games. The filenames are stored "
 "here, not the actual game name."
 msgstr ""
+"Pilkulla erotettu lista äskettäin pelatuista peleistä. Listassa on "
+"tiedostonimiä, ei pelien nimiä."
 
 #: ../aisleriot/aisleriot.schemas.in.h:2
 msgid ""
@@ -104,15 +106,15 @@ msgid "Window width"
 msgstr "Ikkunan leveys"
 
 #: ../aisleriot/cscmi.c:174
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A scheme exception occurred and we were unable to create a temporary file to "
 "report it:\n"
 "\n"
 "%s"
 msgstr ""
-"Tapahtui scheme·muistisuojavirhe·ja väliaikaisen vikatiedoston luonti "
-"vikailmoitusta varten ei onnistu:\n"
+"Tapahtui Scheme-poikkeus, eikä väliaikaistiedostoa sen raportoimiseksi "
+"voitu luoda:\n"
 "\n"
 "%s"
 
@@ -264,7 +266,7 @@ msgstr "Aloita uusi peli"
 #: ../aisleriot/menu.c:252 ../blackjack/src/blackjack.cpp:338
 #: ../mahjongg/mahjongg.c:1308
 msgid "Restart the current game"
-msgstr "Aloita valittu peli uudelleen"
+msgstr "Aloita valittu peli uudestaan"
 
 #: ../aisleriot/menu.c:253
 msgid "_Select Game..."
@@ -276,7 +278,7 @@ msgstr "Valitse toinen peli"
 
 #: ../aisleriot/menu.c:255
 msgid "Recently _Played"
-msgstr ""
+msgstr "Äskettäin _pelatut"
 
 #: ../aisleriot/menu.c:256
 msgid "S_tatistics"
@@ -297,7 +299,7 @@ msgstr "Peru edellinen siirto"
 
 #: ../aisleriot/menu.c:268 ../mahjongg/mahjongg.c:1315
 msgid "Redo the last move"
-msgstr "Tee edellinen siirto uudelleen"
+msgstr "Tee edellinen siirto uudestaan"
 
 #: ../aisleriot/menu.c:270 ../blackjack/src/blackjack.cpp:339
 #: ../mahjongg/mahjongg.c:1317
@@ -2075,19 +2077,19 @@ msgstr "GGZ-pelialue"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:429
 msgid "You can't chat while not in a room."
-msgstr ""
+msgstr "Et voi keskustella, jos et ole huoneessa."
 
 #: ../dependencies/ggz-gtk/ggzclient.c:434
 msgid "You don't have permission to chat here."
-msgstr ""
+msgstr "Sinulla ei ole lupaa keskustella täällä."
 
 #: ../dependencies/ggz-gtk/ggzclient.c:438
 msgid "No private chatting at a table!"
-msgstr ""
+msgstr "Yksityinen keskustelu pöydässä kielletty!"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:442
 msgid "That player isn't in the room!"
-msgstr ""
+msgstr "Pelaa ei ole huoneessa!"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:447
 msgid "There was an error sending the chat."
@@ -2100,7 +2102,7 @@ msgstr "Et ole pöydässä."
 #: ../dependencies/ggz-gtk/ggzclient.c:455
 #, c-format
 msgid "Chat failed: %s."
-msgstr ""
+msgstr "Keskustelu epäonnistui: %s."
 
 #: ../dependencies/ggz-gtk/ggzclient.c:559
 #, c-format
@@ -2120,7 +2122,7 @@ msgstr "Virhe liityttäessä pöytään: %s"
 #: ../dependencies/ggz-gtk/ggzclient.c:616
 #, c-format
 msgid "You have been booted from the table by %s."
-msgstr ""
+msgstr "Pelaaja %s poisti sinut pöydästä."
 
 #: ../dependencies/ggz-gtk/ggzclient.c:621
 #, c-format
@@ -2227,6 +2229,8 @@ msgid ""
 "Authentication has failed.\n"
 "Please supply the correct password."
 msgstr ""
+"Tunnistautuminen epäonnistui.\n"
+"Varmista että salasana on oikein."
 
 #: ../dependencies/ggz-gtk/login.c:123
 #, c-format
@@ -2236,12 +2240,12 @@ msgstr "Käyttäjätunnus on liian pitkä!"
 #: ../dependencies/ggz-gtk/login.c:126
 #, c-format
 msgid "Invalid username, do not use special characters!"
-msgstr ""
+msgstr "Virheellinen käyttäjätunnus, älä käytä erikoismerkkejä!"
 
 #: ../dependencies/ggz-gtk/login.c:130
 #, c-format
 msgid "Login failed for unknown reason: %s"
-msgstr ""
+msgstr "Kirjautuminen epäonnistui tuntemattomaan virheeseen: %s"
 
 #: ../dependencies/ggz-gtk/login.c:538
 msgid "Server Profile"
@@ -2373,7 +2377,7 @@ msgstr "Tutkija"
 
 #: ../dependencies/ggz-gtk/first.c:61
 msgid "Entity"
-msgstr ""
+msgstr "Kokonaisuus"
 
 #: ../dependencies/ggz-gtk/first.c:61
 msgid "Creator"
@@ -2393,97 +2397,100 @@ msgid ""
 "This is the first time you are running the GTK+ GGZ Gaming Zone client. "
 "Would you like to create some default server profiles?"
 msgstr ""
+"Tämä on ensimmäinen kerta, kun käytät GTK+ GGZ-pelialueen asiakasta. "
+"Haluatko luoda palvelimien oletusprofiileja?"
 
 #: ../dependencies/ggz-gtk/chat.c:89
 msgid "/msg <username> <message> . Private message a player"
-msgstr ""
+msgstr "/msg <käyttäjä> <viesti> . Yksityinen viesti käyttäjälle"
 
 #: ../dependencies/ggz-gtk/chat.c:91
 msgid "/table <message> .......... Message to your table"
-msgstr ""
+msgstr "/table <viesti> .......... Viesti pöydällesi"
 
 #: ../dependencies/ggz-gtk/chat.c:93
 msgid "/wall <message> ........... Admin command"
-msgstr ""
+msgstr "/wall viesti> ............ Ylläpitäjän komento"
 
 #: ../dependencies/ggz-gtk/chat.c:95
 msgid "/beep <username> .......... Beep a player"
-msgstr ""
+msgstr "/beep <käyttäjä> ......... Piippaa pelaajalle"
 
 #: ../dependencies/ggz-gtk/chat.c:97
 msgid "/help ..................... Get help"
-msgstr ""
+msgstr "/help .................... Lue ohjeita"
 
 #: ../dependencies/ggz-gtk/chat.c:99
 msgid "/friends .................. List your friends"
-msgstr ""
+msgstr "/ystävät ................. Näytä ystäväsi"
 
 #: ../dependencies/ggz-gtk/chat.c:101
 msgid "/ignore ................... List people you're ignoring"
-msgstr ""
+msgstr "/ignore .................. Näytä henkilöt, joita et kuuntele"
 
 #: ../dependencies/ggz-gtk/chat.c:104
 msgid "/kick <username> .......... Kick a player from the room"
-msgstr ""
+msgstr "/kick <käyttäjä> ......... Poista käyttäjä huoneesta"
 
 #: ../dependencies/ggz-gtk/chat.c:107
 msgid "/gag <username> ........... Gag a player to prevent them from talking"
-msgstr ""
+msgstr "/gag <käyttäjä> .......... Estä pelaajaa puhumasta"
 
 #: ../dependencies/ggz-gtk/chat.c:110
 msgid ""
 "/ungag <username> ......... Reverse the gag operation to allow a player to "
 "talk"
 msgstr ""
+"/ungag <käyttäjä> ......... Salli pelaajan puhua jälleen"
 
 #: ../dependencies/ggz-gtk/chat.c:113
 msgid "/ban <username> ........... Ban a player from the server"
-msgstr ""
+msgstr "/ban <käyttäjä> .......... Estä käyttäjän pääsy palvelimelle"
 
 #: ../dependencies/ggz-gtk/chat.c:254
 #, c-format
 msgid "You have received an unknown message from %s."
-msgstr ""
+msgstr "Sait tuntemattoman viestin lähteestä %s."
 
 #: ../dependencies/ggz-gtk/chat.c:318
 #, c-format
 msgid "You've been beeped by %s."
-msgstr ""
+msgstr "Pelaaja %s piippasi sinulle."
 
 #: ../dependencies/ggz-gtk/chat.c:439
 msgid "Usage: /msg <username> <message>"
-msgstr ""
+msgstr "Käyttö: /msg <käyttäjä> <viesti>"
 
 #: ../dependencies/ggz-gtk/chat.c:441
 msgid "    Sends a private message to a user on the network."
-msgstr ""
+msgstr "    Lähettää yksityisen viestin verkon käyttäjälle."
 
 #: ../dependencies/ggz-gtk/chat.c:495
-#, fuzzy, c-format
+#, c-format
 msgid "Beep sent to %s."
-msgstr "Siirrä %s kortin %s päälle."
+msgstr "Piippaus lähetetty käyttäjälle %s."
 
 #: ../dependencies/ggz-gtk/chat.c:523
 #, c-format
 msgid "%s (logged on)"
-msgstr ""
+msgstr "%s (kirjautui sisään)"
 
 #: ../dependencies/ggz-gtk/chat.c:561
 #, c-format
 msgid "%s (logged off)"
-msgstr ""
+msgstr "%s (kirjautui ulos)"
 
 #: ../dependencies/ggz-gtk/chat.c:587
 msgid "Chat Commands"
-msgstr ""
+msgstr "Keskustelukomennot"
 
 #: ../dependencies/ggz-gtk/chat.c:588
 msgid "-------------"
-msgstr ""
+msgstr "-------------"
 
 #: ../dependencies/ggz-gtk/chat.c:592
 msgid "/me <action> .............. Send an action"
-msgstr ""
+msgstr "/me <toiminto> ........... Lähetä toiminto"
 
 #: ../dependencies/ggz-gtk/chat.c:783
 #, c-format
@@ -2498,24 +2505,24 @@ msgstr "Poistettiin %s ystävälistaltasi."
 #: ../dependencies/ggz-gtk/chat.c:838
 #, c-format
 msgid "Added %s to your ignore list."
-msgstr ""
+msgstr "Lisättiin %s huomiotta jätettyjen listallesi."
 
 #: ../dependencies/ggz-gtk/chat.c:863
 #, c-format
 msgid "Removed %s from your ignore list."
-msgstr ""
+msgstr "Poistettiin %s huomiotta jätettyjen listaltasi."
 
 #: ../dependencies/ggz-gtk/chat.c:939
 msgid "People currently your friends"
-msgstr ""
+msgstr "Henkilöt, jotka tällä hetkellä ovat ysitäviäsi"
 
 #: ../dependencies/ggz-gtk/chat.c:953
 msgid "People you're currently ignoring"
-msgstr ""
+msgstr "Henkilöt, joita et tällä hetkellä huomioi"
 
 #: ../dependencies/ggz-gtk/chat.c:1029
 msgid "Multiple matches:"
-msgstr ""
+msgstr "Useita osumia:"
 
 #: ../dependencies/ggz-gtk/game.c:72
 #, c-format
@@ -2523,19 +2530,23 @@ msgid ""
 "You don't have this game installed. You can download\n"
 "it from %s."
 msgstr ""
+"Sinulla ei ole peliä asennettuna. Voit hakea sen\n"
+"osoitteesta %s."
 
 #: ../dependencies/ggz-gtk/game.c:76 ../dependencies/ggz-gtk/game.c:149
 #: ../dependencies/ggz-gtk/game.c:315 ../dependencies/ggz-gtk/game.c:325
 #: ../dependencies/ggz-gtk/game.c:334 ../dependencies/ggz-gtk/game.c:350
 #: ../dependencies/ggz-gtk/launch.c:290
 msgid "Launch Error"
-msgstr ""
+msgstr "Virhe käynnistyksessä"
 
 #: ../dependencies/ggz-gtk/game.c:148
 msgid ""
 "Failed to execute game module.\n"
 " Launch aborted."
 msgstr ""
+"Pelimodulia ei voitu suorittaa.\n"
+"Käynnistys keskeytettiin."
 
 #: ../dependencies/ggz-gtk/game.c:201
 msgid "Launched game"
@@ -2547,7 +2558,7 @@ msgstr "Käynnistys epäonnistui"
 
 #: ../dependencies/ggz-gtk/game.c:296
 msgid "You can only play one game at a time."
-msgstr ""
+msgstr "Voit pelata vain yhtä peliä kerrallaan."
 
 #: ../dependencies/ggz-gtk/game.c:297 ../dependencies/ggz-gtk/game.c:305
 #: ../dependencies/ggz-gtk/launch.c:335 ../dependencies/ggz-gtk/client.c:586
@@ -2572,16 +2583,20 @@ msgid ""
 "No game types defined for this server.\n"
 "Launch aborted."
 msgstr ""
+"Tälle palvelimelle ei ole määritelty pelityyppejä.\n"
+"Käynnistys keskeytettiin."
 
 #: ../dependencies/ggz-gtk/game.c:333
 msgid "This game doesn't support spectators."
-msgstr ""
+msgstr "Tämä peli ei tue katselijoita."
 
 #: ../dependencies/ggz-gtk/game.c:348
 msgid ""
 "You need to launch the GGZ client directly\n"
 "to be able to play this game."
 msgstr ""
+"Tätä peliä pelataksesi sinun täytyy käynnistää\n"
+"GGZ-asiakas suoraan."
 
 #: ../dependencies/ggz-gtk/support.c:139 ../dependencies/ggz-gtk/props.c:1464
 #: ../dependencies/ggz-gtk/props.c:1484
@@ -2658,6 +2673,10 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"Huoneiden suodatusta ei ole vielä toteutettu.\n"
+"Jos haluat auttaa toteutuksessa, mene sivulle\n"
+"http://www.ggzgamingzone.org/"
+
 
 #: ../dependencies/ggz-gtk/types.c:151 ../dependencies/ggz-gtk/client.c:239
 #: ../dependencies/ggz-gtk/client.c:251 ../dependencies/ggz-gtk/client.c:311
@@ -2683,11 +2702,11 @@ msgstr "Pelityypit"
 
 #: ../dependencies/ggz-gtk/types.c:254
 msgid "Room List Filter:"
-msgstr ""
+msgstr "Huonelistan suodatin:"
 
 #: ../dependencies/ggz-gtk/types.c:266
 msgid "Set"
-msgstr ""
+msgstr "Aseta"
 
 #: ../dependencies/ggz-gtk/types.c:306
 msgid "Upgrage Game"
@@ -2704,7 +2723,7 @@ msgstr "Tietoja pelaajasta"
 #. Add 'handle' label
 #: ../dependencies/ggz-gtk/playerinfo.c:132
 msgid "Player Handle:"
-msgstr ""
+msgstr "Pelaajan kahva:"
 
 #. Add "table" label
 #: ../dependencies/ggz-gtk/playerinfo.c:150
@@ -2719,17 +2738,17 @@ msgstr "Tili:"
 #. Add "Record" label
 #: ../dependencies/ggz-gtk/playerinfo.c:187
 msgid "Record:"
-msgstr ""
+msgstr "Merkintä:"
 
 #. Add "Rating" label
 #: ../dependencies/ggz-gtk/playerinfo.c:205
 msgid "Rating:"
-msgstr ""
+msgstr "Luokitus:"
 
 #. Add "Ranking" label
 #: ../dependencies/ggz-gtk/playerinfo.c:223
 msgid "Rank:"
-msgstr ""
+msgstr "Sijaluku:"
 
 #. Add "Private chat" label
 #: ../dependencies/ggz-gtk/playerinfo.c:259
@@ -2774,7 +2793,7 @@ msgstr "Ystävät"
 
 #: ../dependencies/ggz-gtk/playerlist.c:106
 msgid "Ignore"
-msgstr ""
+msgstr "Älä huomioi"
 
 #: ../dependencies/ggz-gtk/playerlist.c:246
 #, c-format
@@ -2797,7 +2816,7 @@ msgstr "Tilastot"
 
 #: ../dependencies/ggz-gtk/pick_module.c:89
 msgid "Which client would you like to use to play this game?"
-msgstr ""
+msgstr "Millä asiakkalla haluat pelata tätä peliä?"
 
 #: ../dependencies/ggz-gtk/pick_module.c:131
 msgid "Don't ask me again."
@@ -2806,9 +2825,8 @@ msgstr "Älä kysy uudestaan."
 #: ../dependencies/ggz-gtk/tablelist.c:74
 #: ../dependencies/ggz-gtk/roomlist.c:150 ../dependencies/ggz-gtk/client.c:985
 #: ../dependencies/ggz-gtk/client.c:1141
-#, fuzzy
 msgid "Join"
-msgstr "Yhdistetty"
+msgstr "Liity"
 
 #: ../dependencies/ggz-gtk/tablelist.c:77
 #: ../dependencies/ggz-gtk/client.c:1004 ../dependencies/ggz-gtk/client.c:1157
@@ -2857,16 +2875,15 @@ msgstr "Tuntematon huone"
 
 #: ../dependencies/ggz-gtk/roomlist.c:73
 msgid "You can't join a room; you're not logged in"
-msgstr ""
+msgstr "Et voi liittyä huoneeseen, koska et ole kirjautunut sisään"
 
 #: ../dependencies/ggz-gtk/roomlist.c:77
-#, fuzzy
 msgid "You're already in between rooms"
-msgstr "Viive heittojen välillä"
+msgstr "Olet jo huoneiden välissä"
 
 #: ../dependencies/ggz-gtk/roomlist.c:82
 msgid "You can't switch rooms while playing a game"
-msgstr ""
+msgstr "Et voi vaihtaa huonetta kesken pelin"
 
 #: ../dependencies/ggz-gtk/roomlist.c:89
 msgid "Unknown error"
@@ -2916,16 +2933,16 @@ msgstr ""
 
 #: ../dependencies/ggz-gtk/launch.c:325
 msgid "Invalid number of bots specified"
-msgstr ""
+msgstr "Annettiin virheellinen määrä botteja"
 
 #: ../dependencies/ggz-gtk/launch.c:334 ../dependencies/ggz-gtk/client.c:585
 #: ../dependencies/ggz-gtk/client.c:626
 msgid "Error launching game module."
-msgstr ""
+msgstr "Virhe käynnistettäessä pelimodulia."
 
 #: ../dependencies/ggz-gtk/launch.c:420
 msgid "Seat Assignments"
-msgstr ""
+msgstr "Tuolien jako"
 
 #: ../dependencies/ggz-gtk/launch.c:443
 msgid "Game Type:"
@@ -2979,6 +2996,9 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"Palvelintilastoja ei ole vielä toteutettu.\n"
+"Jos haluat auttaa toteutuksessa, mene sivulle\n"
+"http://www.ggzgamingzone.org/"
 
 #: ../dependencies/ggz-gtk/client.c:248 ../dependencies/ggz-gtk/client.c:545
 msgid ""
@@ -2986,12 +3006,17 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"Pelaajatilastoja ei ole vielä toteutettu.\n"
+"Jos haluat auttaa toteutuksessa, mene sivulle\n"
+"http://www.ggzgamingzone.org/"
 
 #: ../dependencies/ggz-gtk/client.c:294
 msgid ""
 "GGZ Gaming Zone help needs a browser to be configured.\n"
 "The configuration dialog will be invoked now."
 msgstr ""
+"GGZ-pelialueen ohje vaatii selaimen määrittelyn.\n"
+"Asetusikkunan selaimen määrittelyyn avataan."
 
 #: ../dependencies/ggz-gtk/client.c:308
 msgid ""
@@ -3000,10 +3025,15 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"Pelinsisäinen ohje ei ole vielä toteutettu, mutta\n"
+"ohjeita löytyy WWW-sivuilta.\n"
+"Jos haluat auttaa toteutuksessa, mene sivulle\n"
+"http://www.ggzgamingzone.org/"
+
 
 #: ../dependencies/ggz-gtk/client.c:566
 msgid "You must highlight a table before you can join it."
-msgstr ""
+msgstr "Sinun täytyy valita pöytä ennen kuin voit liittyä siihen."
 
 #: ../dependencies/ggz-gtk/client.c:567 ../dependencies/ggz-gtk/client.c:576
 #: ../dependencies/ggz-gtk/client.c:615
@@ -3016,17 +3046,19 @@ msgstr "Tämä pöytä on täynnä."
 
 #: ../dependencies/ggz-gtk/client.c:600
 msgid "You must highlight a table before you can watch it."
-msgstr ""
+msgstr "Sinun täytyy valita pöytä ennen kuin voit tarkkailla sitä."
 
 #: ../dependencies/ggz-gtk/client.c:602
 msgid "Error Spectating"
-msgstr ""
+msgstr "Virhe tarkkailtaessa"
 
 #: ../dependencies/ggz-gtk/client.c:647
 msgid ""
 "Failed to join table.\n"
 "Join aborted."
 msgstr ""
+"Pöytään ei voitu liittyä.\n"
+"Liittyminen keskeytetty."
 
 #: ../dependencies/ggz-gtk/client.c:648
 msgid "Join Error"
@@ -3034,11 +3066,11 @@ msgstr "Liittymisvirhe"
 
 #: ../dependencies/ggz-gtk/client.c:678
 msgid "Disconnect from the GGZ Gaming Zone server"
-msgstr ""
+msgstr "Katkaise yhteys GGZ-pelialueen palvelimeen"
 
 #: ../dependencies/ggz-gtk/client.c:680
 msgid "Start playing a game at a new table"
-msgstr ""
+msgstr "Aloita peli uudessa pöydässä"
 
 #: ../dependencies/ggz-gtk/client.c:682
 msgid "Join an existing game"
@@ -3046,42 +3078,42 @@ msgstr "Liity olemassaolevaan peliin"
 
 #: ../dependencies/ggz-gtk/client.c:684
 msgid "Watch an existing game - become a spectator of the table"
-msgstr ""
+msgstr "Tarkkaile olemassaolevaa peliä"
 
 #: ../dependencies/ggz-gtk/client.c:687
 msgid "Leave the game you're currently playing"
-msgstr ""
+msgstr "Lopeta peli, jota tällä hetkellä pelaat"
 
 #: ../dependencies/ggz-gtk/client.c:689
 msgid "Show the properties dialog to change the client settings"
-msgstr ""
+msgstr "Näytä asiakkaan asetusten ominaisuusikkuna"
 
 #: ../dependencies/ggz-gtk/client.c:693
 msgid "Show the game stats for the current room's game type"
-msgstr ""
+msgstr "Näytä nykyisen huoneen pelityypin pelitilastoikkuna"
 
 #: ../dependencies/ggz-gtk/client.c:696
 msgid "Exit the GGZ client application."
-msgstr ""
+msgstr "Sulje GGZ-asiakasohjelma."
 
 #. Print out client information
 #: ../dependencies/ggz-gtk/client.c:726
 #, c-format
 msgid "Client Version:14 %s"
-msgstr ""
+msgstr "Asiakasversio:14 %s"
 
 #: ../dependencies/ggz-gtk/client.c:729
 #, c-format
 msgid "GTK+ Version:14 %d.%d.%d\n"
-msgstr ""
+msgstr "GTK+-versio:14 %d.%d.%d\n"
 
 #: ../dependencies/ggz-gtk/client.c:736
 msgid "Compiled with debugging."
-msgstr ""
+msgstr "Käännetty vianetsintätietojen kanssa."
 
 #: ../dependencies/ggz-gtk/client.c:934
 msgid "GGZ"
-msgstr ""
+msgstr "GGZ"
 
 #. We should use gtk_tool_button_new_from_stock but for some reason
 #. * the connect and disconnect stock items don't have text included.
@@ -3147,7 +3179,7 @@ msgstr "Pelin ohje"
 
 #: ../dependencies/ggz-gtk/client.c:1121
 msgid "Goto Web"
-msgstr ""
+msgstr "Siirry WWW-sivulle"
 
 #: ../dependencies/ggz-gtk/client.c:1295
 msgid "Send"
@@ -3180,7 +3212,7 @@ msgstr "Muuta"
 
 #: ../dependencies/ggz-gtk/props.c:1147
 msgid "Ignore Join/Part Messages"
-msgstr ""
+msgstr "Älä huomioi liittymis- ja poistumisviestejä"
 
 #: ../dependencies/ggz-gtk/props.c:1155
 msgid "Play Sounds"
@@ -3188,11 +3220,11 @@ msgstr "Soita äänet"
 
 #: ../dependencies/ggz-gtk/props.c:1163
 msgid "Auto Indent"
-msgstr ""
+msgstr "Sisennä automaattisesti"
 
 #: ../dependencies/ggz-gtk/props.c:1171
 msgid "Timestamp Chats"
-msgstr ""
+msgstr "Lisää aikaleima keskusteluihin"
 
 #: ../dependencies/ggz-gtk/props.c:1179
 msgid "Word Wrap"
@@ -3204,15 +3236,15 @@ msgstr "Keskustelun väri"
 
 #: ../dependencies/ggz-gtk/props.c:1236
 msgid "Default chat color assigned to your friends"
-msgstr ""
+msgstr "Ystäville oletuksena annettu väri"
 
 #: ../dependencies/ggz-gtk/props.c:1245
 msgid "Chat color used when your name is typed"
-msgstr ""
+msgstr "Nimesi korostamiseen tekstistä oletuksena käytetty väri"
 
 #: ../dependencies/ggz-gtk/props.c:1254
 msgid "Chat color used for all other chats"
-msgstr ""
+msgstr "Yleisen keskustelun näyttöön käytetty väri"
 
 #: ../dependencies/ggz-gtk/props.c:1263
 msgid "Normal Color"
@@ -3240,7 +3272,7 @@ msgstr "Keskustelu"
 
 #: ../dependencies/ggz-gtk/props.c:1326
 msgid "All of the following information is optional."
-msgstr ""
+msgstr "Kaikki seuraavat tiedot ovat valinnaisia."
 
 #: ../dependencies/ggz-gtk/props.c:1344
 msgid "Name:"
@@ -3268,11 +3300,11 @@ msgstr "Tietoja käyttäjästä"
 
 #: ../dependencies/ggz-gtk/props.c:1459
 msgid "Browser to launch URLs with:"
-msgstr ""
+msgstr "URL:ien avaamiseen käytetty selain:"
 
 #: ../dependencies/ggz-gtk/props.c:1486
 msgid "Single Click Room Entry"
-msgstr ""
+msgstr "Avaa huoneet yhdellä napsautuksella"
 
 #: ../dependencies/ggz-gtk/props.c:1500
 msgid "Display All"
@@ -4832,7 +4864,7 @@ msgstr "Gnometrisin pisteet"
 
 #: ../gnome-sudoku/glade/high_scores.glade.h:1
 msgid "<span size=\"large\" style=\"italic\" weight=\"bold\">You win!</span>"
-msgstr ""
+msgstr "<span size=\"large\" style=\"italic\" weight=\"bold\">Voitit!</span>"
 
 #: ../gnome-sudoku/glade/high_scores.glade.h:2
 msgid "High Scores"
@@ -4855,11 +4887,11 @@ msgstr "<i>Vaikea</i>"
 #: ../gnome-sudoku/glade/new_game.glade.h:3
 #: ../gnome-sudoku/glade/open_game.glade.h:1
 msgid "<span size=\"larger\" weight=\"bold\">Select Game</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">Valitse peli</span>"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:4
 msgid "Choose the _level of difficulty for your new game."
-msgstr ""
+msgstr "Valitse uuden pelin _vaiheustaso."
 
 #: ../gnome-sudoku/glade/new_game.glade.h:5 games-scores-dialog.gob:546
 #: ../libgames-support/games-scores-dialog.gob:546
@@ -4881,11 +4913,11 @@ msgstr "Valitse _peli"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:3
 msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">Tulosta pelejä</span>"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:4
 msgid "Choose the _level of difficulty for games"
-msgstr ""
+msgstr "Valitse pelien _vaikeustaso"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:5
 msgid "Ma_ximum Difficulty"
@@ -4893,7 +4925,7 @@ msgstr "Mah_dollisimman aikea"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:6
 msgid "Print Sudokus"
-msgstr ""
+msgstr "Tulosta sudokut"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:7
 msgid "_Game List"
@@ -4901,15 +4933,15 @@ msgstr "_Pelilista"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:8
 msgid "_Include games you've already played in list of games to print"
-msgstr ""
+msgstr "L_iitä jo pelatut pelit tulostettavien pelien listaan"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:9
 msgid "_Label games with difficulty and name."
-msgstr ""
+msgstr "_Nimeä pelit vaikeustason ja nimen mukaan."
 
 #: ../gnome-sudoku/glade/print_games.glade.h:10
 msgid "_Mark games as played once you've printed them."
-msgstr ""
+msgstr "_Merkitse pelit pelatuksi, kun olet tulostanut ne."
 
 #: ../gnome-sudoku/glade/print_games.glade.h:11
 msgid "_Minimum Difficulty"
@@ -4921,11 +4953,11 @@ msgstr "Tulostettavien sudokujen _lukumäärä:"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:13
 msgid "_Sudokus per page: "
-msgstr ""
+msgstr "_Sudokuja sivua kohti: "
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:1
 msgid "<i><u>Number of Puzzles</u></i>"
-msgstr ""
+msgstr "<i><u>Pulmien lukumäärä</u></i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:2
 msgid "<i>Easy:</i>"
@@ -4941,11 +4973,11 @@ msgstr "<i>Keskivaikea</i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:5
 msgid "<i>_Very Hard:</i>"
-msgstr ""
+msgstr "<i>_Hyvin vaikea:</i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:6
 msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">Pulmageneraattori</span>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:7
 msgid "Criteria:"
@@ -4953,19 +4985,19 @@ msgstr "Ehdot:"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:8
 msgid "Generate Policy"
-msgstr ""
+msgstr "Luonnin taktiikka"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:9
 msgid "Generate until _reaching target"
-msgstr ""
+msgstr "Luo kunnes kohde _tavoitetaan"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:10
 msgid "Puzzle Generator"
-msgstr ""
+msgstr "Pulmien luonti"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:11
 msgid "Target _number of sudokus:"
-msgstr ""
+msgstr "Sudokujen tavoite_määrä:"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:12
 #: ../gnome-sudoku/src/lib/sudoku.py:600
@@ -4979,11 +5011,11 @@ msgstr "H_elppo"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:14
 msgid "_Generate"
-msgstr ""
+msgstr "_Luo"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:15
 msgid "_Generate new puzzles until stopped"
-msgstr ""
+msgstr "_Luo uusia pulmia kunnes keskeytetään"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:16
 msgid "_Hard"
@@ -4995,16 +5027,16 @@ msgstr "Tyhjennä _muut"
 
 #: ../gnome-sudoku/glade/tracker.glade.h:2
 msgid "_Add Tracker"
-msgstr ""
+msgstr "_Lisää seuraaja"
 
 #: ../gnome-sudoku/glade/tracker.glade.h:3
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:824
 msgid "_Clear Tracker"
-msgstr ""
+msgstr "_Tyhjennä seuraaja"
 
 #: ../gnome-sudoku/glade/tracker.glade.h:4
 msgid "_Trackers"
-msgstr ""
+msgstr "_Seuraajat"
 
 #: ../gnome-sudoku/src/lib/sudoku_maker.py:327
 #: ../gnome-sudoku/src/lib/sudoku_maker.py:354
@@ -5013,46 +5045,47 @@ msgstr ""
 #: ../gnome-sudoku/src/lib/game_selector.py:193
 #: ../gnome-sudoku/src/lib/game_selector.py:290
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:725
-#, fuzzy
 msgid "Puzzle"
-msgstr "Seuraava ongelma"
+msgstr "Pulma"
 
 #: ../gnome-sudoku/src/lib/defaults.py:13
 msgid "GNOME Sudoku"
-msgstr ""
+msgstr "Gnomen sudoku"
 
 #: ../gnome-sudoku/src/lib/defaults.py:14
 msgid "Copyright (c) 2005,2006, Thomas M. Hinkle. GNU GPL"
-msgstr ""
+msgstr "Tekijänoikeudet (©) 2005,2006, Thomas M. Hinkle. GNU GPL"
 
 #: ../gnome-sudoku/src/lib/defaults.py:15
 msgid ""
 "GNOME Sudoku is a simple sudoku generator and player.  Sudoku is a japanese "
 "logic puzzle."
 msgstr ""
+"Gnomen sudoku on yksinkertainen sudokugeneraattori ja pelaaja. "
+"Sudoku on japanilainen logiikkapeli."
 
 #: ../gnome-sudoku/src/lib/printing.py:203
 msgid "Print Sudoku"
 msgid_plural "Print Sudokus"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tulosta sudoku"
+msgstr[1] "Tulosta sudokut"
 
 #: ../gnome-sudoku/src/lib/printing.py:216
 msgid "Print Preview"
-msgstr ""
+msgstr "Tulostuksen esikatselu"
 
 #. now we enumerate some details...
 #: ../gnome-sudoku/src/lib/game_selector.py:88
 msgid "Squares instantly fillable by filling: "
-msgstr ""
+msgstr "Lisäämällä heti täytettävissä olevat ruudut: "
 
 #: ../gnome-sudoku/src/lib/game_selector.py:90
 msgid "Squares instantly fillable by elimination: "
-msgstr ""
+msgstr "Poistamalla heti täytetävissä olevat ruudut: "
 
 #: ../gnome-sudoku/src/lib/game_selector.py:92
 msgid "Number of trial-and-errors necessary to solve: "
-msgstr ""
+msgstr "Ratkaisuun vaadittavat yritykset:"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:94
 msgid "Difficulty value: "
@@ -5081,17 +5114,17 @@ msgstr "Tila"
 #: ../gnome-sudoku/src/lib/game_selector.py:181
 #, python-format
 msgid "Printed %s ago"
-msgstr ""
+msgstr "Tulostettiin %s sitten"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:190
 #, python-format
 msgid "Played for %s"
-msgstr ""
+msgstr "Peliaika %s"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:214
 #, python-format
 msgid "%s ago"
-msgstr ""
+msgstr "%s sitten"
 
 #. Note that this assumes the default style is plain.
 #: ../gnome-sudoku/src/lib/game_selector.py:246 games-scores-dialog.gob:368
@@ -5110,47 +5143,46 @@ msgstr "Vinkit"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:298
 msgid "Warnings about unfillable squares"
-msgstr ""
+msgstr "Varoitukset täyttökelvottomista ruuduista"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:300
 msgid "Auto-fills"
-msgstr ""
+msgstr "Automaattitäytöt"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:301
 msgid "Finished in"
-msgstr ""
+msgstr "Valmistui ajassa"
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:88
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:99
 msgid "Working..."
-msgstr ""
+msgstr "Työn alla..."
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "%s puzzle"
 msgid_plural "%s puzzles"
-msgstr[0] "Seuraava ongelma"
-msgstr[1] "Seuraava ongelma"
+msgstr[0] "%s pulma"
+msgstr[1] "%s pulmaa"
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:181
-#, fuzzy
 msgid "Stopped"
-msgstr "Nopeus"
+msgstr "Pysäytetty"
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:196
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:206
 #, python-format
 msgid "Generated %(n)s out of %(total)s puzzle"
 msgid_plural "Generated %(n)s out of %(total)s puzzles"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Luotiin %(n)s / %(total)s pulma"
+msgstr[1] "Luotiin %(n)s / %(total)s pulmaa"
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:214
-#, fuzzy, python-format
+#, python-format
 msgid "Generated %s puzzle"
 msgid_plural "Generated %s puzzles"
-msgstr[0] "Viiriongelma"
-msgstr[1] "Viiriongelma"
+msgstr[0] "Luotiin %s pulma"
+msgstr[1] "Luotiin %s pulmaa"
 
 #: ../gnome-sudoku/src/lib/sudoku.py:601
 #: ../gnome-sudoku/src/lib/sudoku_copy.py:698
@@ -5175,45 +5207,44 @@ msgstr "_Keskeytä"
 
 #. setup stop button
 #: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:337
-#, fuzzy
 msgid "_Stop"
-msgstr "Asetukset"
+msgstr "_Lopeta"
 
 #: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:354
 msgid "Do you really want to do this"
-msgstr ""
+msgstr "Haluatko varmasti tehdä tämän"
 
 #: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:388
 msgid "Don't ask me this again."
-msgstr ""
+msgstr "Älä kysy uudestaan."
 
 #: ../gnome-sudoku/src/lib/timer.py:12
 #, python-format
 msgid "%s year"
 msgid_plural "%s years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s vuosi"
+msgstr[1] "%s vuotta"
 
 #: ../gnome-sudoku/src/lib/timer.py:14
-#, fuzzy, python-format
+#, python-format
 msgid "%s month"
 msgid_plural "%s months"
-msgstr[0] "%d piste"
-msgstr[1] "%d pistettä"
+msgstr[0] "%s kuukausi "
+msgstr[1] "%s kuukautta"
 
 #: ../gnome-sudoku/src/lib/timer.py:16
 #, python-format
 msgid "%s week"
 msgid_plural "%s weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s viikko"
+msgstr[1] "%s viikkoa"
 
 #: ../gnome-sudoku/src/lib/timer.py:18
 #, python-format
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s päivä"
+msgstr[1] "%s päivää"
 
 #: ../gnome-sudoku/src/lib/timer.py:20
 #, python-format
@@ -5265,7 +5296,7 @@ msgstr "Mahdolliset arvot "
 
 #: ../gnome-sudoku/src/lib/gsudoku_copy.py:453
 msgid "No values are possible!"
-msgstr ""
+msgstr "Mahdollisia arvoja ei ole!"
 
 #: ../gnome-sudoku/src/lib/gsudoku.py:76
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
@@ -5290,38 +5321,36 @@ msgstr "Tulosta nykyinen peli"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:158
 msgid "Print _Multiple Sudokus"
-msgstr ""
+msgstr "Tulosta _useita sudokuja"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:159
 msgid "Print more than one sudoku at a time."
-msgstr ""
+msgstr "Tulosta useampi kuin yksi sudoku kerrallaan."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:163
 msgid "Close Sudoku (save game for later)"
-msgstr ""
+msgstr "Sulje Sudoku (tallenna peli)"
 
 #. ('Save',gtk.STOCK_SAVE,_('_Save'),
 #. '<Control>s','Save game to play later.',
 #. self.save_game),
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:167
-#, fuzzy
 msgid "_Enter custom game"
-msgstr "Lopeta nykyinen peli"
+msgstr "Syötä _oma peli"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:168
 msgid ""
 "Enter new puzzle by hand (use this to copy a puzzle from another source)."
 msgstr ""
+"Syötä uusi pulma käsin (käytä tätä pulman kopiointin toisesta lähteestä)."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:170
-#, fuzzy
 msgid "_Resume old game"
-msgstr "Jatka keskeytettyä peliä"
+msgstr "Jatka vanhaa peliä"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:171
-#, fuzzy
 msgid "Resume a previous saved game."
-msgstr "Jatka keskeytettyä peliä"
+msgstr "Jatka aiemmin tallennettua peliä."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:175
 #: ../libgames-support/games-stock.c:53
@@ -5330,65 +5359,65 @@ msgstr "_Vinkki"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:177
 msgid "Show which numbers could go in the current square."
-msgstr ""
+msgstr "Näytä mitkä numerot voisivat sopia valittuun ruutuun."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:179
 msgid "_Fill"
-msgstr ""
+msgstr "_Täytä"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:180
 msgid "Automatically fill in the current square if possible."
-msgstr ""
+msgstr "Täytä valittu ruutu automaattisesti, jos mahdollista."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:182
 msgid "Fill _all squares"
-msgstr ""
+msgstr "Täytä k_aikki ruudut"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:183
 msgid ""
 "Automatically fill in all squares for which there is only one valid value."
 msgstr ""
+"Täytä automaattisesti kaikki ruudut, joille on vain yksi kelvollinen arvo."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:193
 msgid "Puzzle _Statistics"
-msgstr ""
+msgstr "Pulman _tilastot"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:194
 msgid "Show statistics about current puzzle"
-msgstr ""
+msgstr "Näytä tilastoja nykyisestä pulmasta"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:202
 msgid "High _Scores"
 msgstr "_Pisteet"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:203
-#, fuzzy
 msgid "Show high scores or replay old games."
-msgstr "Näytä tuloslista ja poistu"
+msgstr "Näytä tuloslista tai pelaa vanhoja pelejä uudestaan."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:209
 msgid "_Always show hint"
-msgstr ""
+msgstr "Näytä _vinkki aina"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:211
 msgid "Always show possible numbers in a square"
-msgstr ""
+msgstr "Näytä ruudun mahdolliset numerot aina"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:215
 msgid "Warn about _unfillable squares"
-msgstr ""
+msgstr "Varoita _täyttökelvottomista ruuduista"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:217
 msgid "Warn about squares made unfillable by a move"
-msgstr ""
+msgstr "Varoita ruuduista, joita ei voi täyttää siirron jälkeen"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:219
 msgid "_Track additions"
-msgstr ""
+msgstr "Pidä _kirjaa lisäyksistä"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:221
 msgid "Mark new additions in a separate color so you can keep track of them."
-msgstr ""
+msgstr "Merkitse uudet lisäykset eri värillä, jotta voit pitää niistä kirjaa."
 
 #. ('ZoomOnResize',None,_('_Adjust size of grid when resizing window'),
 #. None,_('Automatically change the size of numbers and squares to fit the window.'),
@@ -5408,24 +5437,28 @@ msgid ""
 "Background of game is black; otherwise, the background will follow your "
 "theme colors."
 msgstr ""
+"Pelin tausta on musta. Muussa tapauksessa pelin taustaväri käyttää "
+"teeman värejä."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:232
 msgid "_Highlighter"
-msgstr ""
+msgstr "_Korosta"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:233
 msgid "Highlight the current row, column and box"
-msgstr ""
+msgstr "Korosta nykyinen rivi, sarake ja laatikko"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:234
 msgid "Generate new puzzles _while you play"
-msgstr ""
+msgstr "Luo uusia pulmia _sillä aikaa kun pelaat"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:236
 msgid ""
 "Generate new puzzles in the background while you play. This will "
 "automatically pause when the game goes into the background."
 msgstr ""
+"Luo uusia pulmia taustalla pelin aikana. Tämä toiminto pysäytetään "
+"automaattisesti, kun peli siirretään taustalle."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:243
 msgid "_Undo"
@@ -5436,90 +5469,85 @@ msgid "Undo last action"
 msgstr "Peru edellinen siirto"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:244
-#, fuzzy
 msgid "_Redo"
-msgstr "Punainen"
+msgstr "_Tee uudestaan"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:244
-#, fuzzy
 msgid "Redo last action"
-msgstr "Tee edellinen siirto uudelleen"
+msgstr "Tee edellinen toiminto uudestaan"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
 msgid "Clear entries you've filled in"
-msgstr ""
+msgstr "Tyhjennä kohdat, jotka olet täyttänyt"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:246
 msgid "Clear _Notes"
-msgstr ""
+msgstr "Tyhjennä _muistiinpanot"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:246
 msgid "Clear notes and hints"
-msgstr ""
+msgstr "Tyhjennä muistiinpanot ja vihjeet"
 
 #. Trackers...
 #. Our initial row...
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:248
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:815
-#, fuzzy
 msgid "No Tracker"
-msgstr "Näppäin puuttuu"
+msgstr "Ei seuraajaa"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
 msgid "_Generate new puzzles"
-msgstr ""
+msgstr "_Luo uusia pulmia"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
 msgid "Generate new puzzles."
-msgstr ""
+msgstr "Luo uusia pulmia."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:295
 msgid "Entering custom grid..."
-msgstr ""
+msgstr "Syötetään omaa ruudukkoa..."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:299
-#, fuzzy
 msgid "_Play game"
-msgstr "Pelaajien nimet"
+msgstr "_Pelaa"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:664
-#, fuzzy
 msgid "Playing "
-msgstr "Paljas"
+msgstr "Pelataan "
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:705
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:728
 msgid "Puzzle Information"
-msgstr ""
+msgstr "Tietoja pulmasta"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:706
 msgid "There is no current puzzle."
-msgstr ""
+msgstr "Pulmaa ei ole valittu."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:711
 msgid "Calculated difficulty: "
-msgstr ""
+msgstr "Laskettu vaikeustaso:"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:715
 msgid "Number of moves instantly fillable by elimination: "
-msgstr ""
+msgstr "Poistamalla heti täytettävissä olevien siirtojen määrä:"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:718
 msgid "Number of moves instantly fillable by filling: "
-msgstr ""
+msgstr "Täyttämällä heti täytettävissä olevien siirtojen määrä:"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:721
 msgid "Amount of trial-and-error required to solve: "
-msgstr ""
+msgstr "Ratkaisuun vaadittavien yritysten lukumäärä:"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:729
-#, fuzzy, python-format
+#, python-format
 msgid "Statistics for %s"
-msgstr "Tilastotietoa"
+msgstr "Tilastoja kohteelle %s"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:825
 msgid "Clear all moves tracked by selected tracker."
-msgstr ""
+msgstr "Poista kaikki valitun seuraajan seuraamat siirrot."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:829
 msgid "_Clear Others"
@@ -5527,12 +5555,12 @@ msgstr "_Tyhjennä muut"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:831
 msgid "Clear all moves not tracked by selected tracker."
-msgstr ""
+msgstr "Poista kaikki siirrot, joita valittu seuraaja ei seuraa."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:857
 #, python-format
 msgid "Tracker %s"
-msgstr ""
+msgstr "Seuraaja %s"
 
 #: ../gnomine/gnomine.c:87 ../gnomine/gnomine.c:664
 msgid "gnomine|Medium"
@@ -5860,9 +5888,8 @@ msgid "Play on a 6×6 board"
 msgstr "Pelaa 6×6-laudalla"
 
 #: ../gnotravex/gnotravex.c:314
-#, fuzzy
 msgid "Tile _Colours"
-msgstr "Värit"
+msgstr "Palojen _värit"
 
 #: ../gnotravex/gnotravex.c:363
 msgid "Size of board (2-6)"
@@ -5911,12 +5938,11 @@ msgstr "Tetravex"
 
 #: ../gnotravex/gnotravex.schemas.in.h:1
 msgid "A flag to enable coloured tiles."
-msgstr ""
+msgstr "Valitsin värillisten palojen käyttöönottoon."
 
 #: ../gnotravex/gnotravex.schemas.in.h:2
-#, fuzzy
 msgid "Control coloured tiles"
-msgstr "Ei voitu ladata laattojen kuvia"
+msgstr "Ohjaa värillisiä paloja"
 
 #: ../gnotravex/gnotravex.schemas.in.h:3
 msgid ""
@@ -6042,7 +6068,7 @@ msgstr "Rooma"
 #. puzzle name
 #: ../gnotski/gnotski.c:251
 msgid "Pennant Puzzle"
-msgstr "Viiriongelma"
+msgstr "Viiripulma"
 
 #. puzzle name
 #: ../gnotski/gnotski.c:257
@@ -6156,15 +6182,15 @@ msgstr "Minoru-kiipeily"
 
 #: ../gnotski/gnotski.c:437
 msgid "_Restart Puzzle"
-msgstr "_Aloita ongelma uudelleen"
+msgstr "_Aloita pulma uudestaan"
 
 #: ../gnotski/gnotski.c:439
 msgid "Next Puzzle"
-msgstr "Seuraava ongelma"
+msgstr "Seuraava pulma"
 
 #: ../gnotski/gnotski.c:441
 msgid "Previous Puzzle"
-msgstr "Edellinen ongelma"
+msgstr "Edellinen pulma"
 
 #: ../gnotski/gnotski.c:670
 msgid "Level completed."
@@ -6200,7 +6226,7 @@ msgstr "Siirtoja: %d"
 
 #: ../gnotski/gnotski.c:1403
 msgid "Sliding Block Puzzles"
-msgstr "Liukuva-palikkaongelmat"
+msgstr "Liukuva-palikkapulma"
 
 #: ../gnotski/gnotski.desktop.in.h:1
 msgid "Klotski"
@@ -6212,11 +6238,11 @@ msgstr "Ratkaise palapeli siirtämällä palikoita"
 
 #: ../gnotski/gnotski.schemas.in.h:2
 msgid "The number of the puzzle being played."
-msgstr "Pelattavan ongelman järjestysnumero"
+msgstr "Pelattavan pulman järjestysnumero"
 
 #: ../gnotski/gnotski.schemas.in.h:3
 msgid "The puzzle in play"
-msgstr "Pelattava ongelma"
+msgstr "Pelattava pulma"
 
 #: ../gnotski/gnotski.schemas.in.h:4
 msgid ""
@@ -6323,7 +6349,7 @@ msgstr "%s! -- Sinun vuorosi."
 
 #: ../gtali/gyahtzee.c:310
 msgid "Select dice to roll or choose a score slot."
-msgstr "Valitse uudelleen heitettävät nopat tai valitse pistelaatikko"
+msgstr "Valitse heitettävät nopat tai valitse pistelaatikko."
 
 #: ../gtali/gyahtzee.c:337
 msgid "Roll"
@@ -6741,7 +6767,7 @@ msgstr "_Peru siirto"
 
 #: ../libgames-support/games-stock.c:51
 msgid "_Redo Move"
-msgstr "_Tee siirto uudelleen"
+msgstr "_Tee siirto uudestaan"
 
 #: ../libgames-support/games-stock.c:54
 msgid "_Scores"
@@ -6785,11 +6811,11 @@ msgstr "Jatka keskeytettyä peliä"
 
 #: ../libgames-support/games-stock.c:117
 msgid "Restart the game"
-msgstr "Aloita peli uudelleen"
+msgstr "Aloita peli uudestaan"
 
 #: ../libgames-support/games-stock.c:119
 msgid "Redo the undone move"
-msgstr "Tee peruttu siirto uudelleen"
+msgstr "Tee peruttu siirto uudestaan"
 
 #: ../libgames-support/games-stock.c:120
 msgid "Get a hint for your next move"
@@ -6832,6 +6858,12 @@ msgid ""
 "Foundation; either version 2 of the License, or (at your option) any later "
 "version."
 msgstr ""
+"%s on vapaa ohjelma; sitä on sallittu levittää edelleen "
+"ja muuttaa GNU yleisen lisenssin (GPL lisenssin) ehtojen mukaan "
+" sellaisina kuin Free Software Foundation on ne julkaissut; joko "
+"lisenssin version 2, tai (valinnan mukaan) minkä tahansa myöhemmän "
+"version mukaisesti."
+
 
 #: ../libgames-support/games-stock.c:342
 #, c-format
@@ -6841,6 +6873,10 @@ msgid ""
 "FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
 "details."
 msgstr ""
+"Ohjelmaa %s levitetään siinä toivossa, että se olisi hyödyllinen, "
+"mutta ilman mitään takuuta; ilman edes hiljaista takuuta kaupallisesti "
+"hyväksyttävästä laadusta tai soveltuvuudesta tiettyyn tarkoitukseen. "
+"Katso GPL lisenssistä lisää yksityiskohtia."
 
 #: ../libgames-support/games-stock.c:346
 #, c-format
@@ -6849,6 +6885,9 @@ msgid ""
 "%s; if not, write to the Free Software Foundation, Inc., 59 Temple Place, "
 "Suite 330, Boston, MA  02111-1307  USA"
 msgstr ""
+"Ohjelman %s mukana pitäisi tulla kopio GPL-lisenssistä; jos näin "
+"ei ole, kirjoita osoitteeseen Free Software Foundation Inc., "
+"59 Temple Place, Suite 330, Boston, MA  02111-1307  USA"
 
 #: ../libgames-support/libgnomegames.schemas.in.h:1
 msgid "Network game mode"
@@ -7199,242 +7238,5 @@ msgid ""
 "installed correctly and try again."
 msgstr ""
 "Pelin pelaaminen ei onnistu. Tarkista, että peli on asennettu "
-"asianmukaisesti ja yritä uudelleen."
+"asianmukaisesti ja yritä uudestaan."
 
-#~ msgid "Redeals left: ~a"
-#~ msgstr "Jakoja jäljellä: ~a"
-
-#~ msgid "Set the state of the board at start-up."
-#~ msgstr "Aseta ikkunan tila käynnistettäessä."
-
-#~ msgid "STATE"
-#~ msgstr "TILA"
-
-#~ msgid "Set whose turn it is."
-#~ msgstr "Aseta kumman vuoro on."
-
-#~ msgid "1 (Light) or 2 (Dark)"
-#~ msgstr "1 (vaalea) tai 2(tumma)"
-
-#~ msgid "Based on code from Iagno by Ian Peters"
-#~ msgstr "Perustuu Ian Petersin Iagno-koodiin"
-
-#~ msgid "Ataxx"
-#~ msgstr "Ataxx"
-
-#~ msgid "A disk-flipping game where you attempt to dominate the board."
-#~ msgstr "Levynkääntelypeli missä yritetään valloittaa pelilauta."
-
-#~ msgid "Dominate the board in a modern variation of Reversi"
-#~ msgstr "Hallitse pöytää Reversin uudessa muodossa"
-
-#~ msgid "Level of black player"
-#~ msgstr "Mustan pelaajan kenttä"
-
-#~ msgid "Level of white player"
-#~ msgstr "Valkoisen pelaajan kenttä"
-
-#~ msgid "The name of the theme to use."
-#~ msgstr "Käytettävän teeman nimi."
-
-#~ msgid "The requested height of the main window in pixels."
-#~ msgstr "Pyydetty pääikkunan korkeus kuvapisteinä."
-
-#~ msgid "The requested width of the main window in pixels."
-#~ msgstr "Pyydetty pääikkunan leveys kuvapisteinä."
-
-#~ msgid "Tileset (obsolete)"
-#~ msgstr "Laattajoukko (ei enää käytössä)."
-
-#~ msgid "Tileset to use (obsolete)."
-#~ msgstr "Käytettävät laatat (ei enää käytössä)."
-
-#~ msgid "Whether or not to use quick moves."
-#~ msgstr "Käytetäänkö pikasiirtoja?"
-
-#~ msgid ""
-#~ "Zero corresponds to no animations, one is partial animations, two is "
-#~ "complete animations."
-#~ msgstr ""
-#~ "Nolla vastaa ei animaatiota, yksi osittainen animointi, kaksi täydelliset "
-#~ "animaatiot."
-
-#~ msgid "Squares and Diamonds"
-#~ msgstr "Ruudut ja timantit"
-
-#~ msgid "Ataxx Preferences"
-#~ msgstr "Ataxxin asetukset"
-
-#~ msgid "_Quick moves"
-#~ msgstr "_Nopeat siirrot"
-
-#~ msgid "Shortens the time a computer waits before doing a move"
-#~ msgstr "Lyhentää tietokoneen odottamaa aikaa ennen seuraavaa siirtoa"
-
-#~ msgid "Very easy"
-#~ msgstr "Erittäin helppo"
-
-#~ msgid "gataxx|Easy"
-#~ msgstr "Helppo"
-
-#~ msgid "gataxx|Medium"
-#~ msgstr "Keskivaikea"
-
-#~ msgid "_Animation"
-#~ msgstr "_Animaatio"
-
-#~ msgid "Flip the pieces with some visual effects"
-#~ msgstr "Käännä nappulat näkyvin erikoistehostein"
-
-#~ msgid "The appearance of the pieces"
-#~ msgstr "Nappuloiden ulkonäkö"
-
-#~ msgid "%s..."
-#~ msgstr "%s..."
-
-#~ msgid "Invalid game data"
-#~ msgstr "Viallinen pelitieto"
-
-#~ msgid "Peer introduction complete"
-#~ msgstr "Yhteyden esittely valmis"
-
-#~ msgid "New game ready to be started"
-#~ msgstr "Uusi peli valmis aloitettavaksi"
-
-#~ msgid "New game started"
-#~ msgstr "Uusi peli aloitettu"
-
-#~ msgid "Iagno server to use"
-#~ msgstr "Käytettävä Iagno-palvelin"
-
-#~ msgid "Invalid game data (set_peer)"
-#~ msgstr "Viallinen pelidata (set_peer)"
-
-#~ msgid "Invalid game data (move)"
-#~ msgstr "Viallinen pelidata (siirto)"
-
-#~ msgid "Select a nickname and connection method then click Connect."
-#~ msgstr ""
-#~ "Valitse lempinimi ja yhteysmenetelmä ja napsauta sitten \"Yhdistä\"-"
-#~ "nappia."
-
-#~ msgid "Connection Method"
-#~ msgstr "Yhteysmenetelmä"
-
-#~ msgid "GNOME games server"
-#~ msgstr "Gnomen pelipalvelin"
-
-#~ msgid "Host local game"
-#~ msgstr "Isännöi paikallista peliä"
-
-#~ msgid "_Local games:"
-#~ msgstr "Paika_lliset pelit:"
-
-#~ msgid "Identification"
-#~ msgstr "Tunnistautuminen"
-
-#~ msgid "_Nickname:"
-#~ msgstr "Lempi_nimi:"
-
-#~ msgid "_Start Game"
-#~ msgstr "_Aloita peli"
-
-#~ msgid "Please supply a nickname."
-#~ msgstr "Anna lempinimi."
-
-#~ msgid "No local game selected."
-#~ msgstr "Ei paikallisia pelejä valittu."
-
-#~ msgid "A new gnome games server was successfully started."
-#~ msgstr "Uusi Gnome-pelipalvelin käynnistettiin onnistuneesti."
-
-#~ msgid "Network initialization complete."
-#~ msgstr "Verkkoyhteyden alustus valmis."
-
-#~ msgid "Network shutdown in progress."
-#~ msgstr "Verkkoyhteyden katkaisu käynnissä."
-
-#~ msgid "The remote player disconnected"
-#~ msgstr "Etäpelaajan yhteys katkaistu"
-
-#~ msgid "Error occurred during connect attempt."
-#~ msgstr "Virhe yhteyden luonnin yhteydessä."
-
-#~ msgid "Connection succeeded, waiting for opponent"
-#~ msgstr "Yhteys onnistui, odotetaan vastustajaa"
-
-#~ msgid "Error occurred during write."
-#~ msgstr "Virhe sattui kirjoitettaessa."
-
-#~ msgid "Cleaning up connection"
-#~ msgstr "Puhdistetaan yhteyttä"
-
-#~ msgid "Connection in progress..."
-#~ msgstr "Yhteys päällä..."
-
-#~ msgid "No game server defined"
-#~ msgstr "Ei pelipalvelinta määritelty"
-
-#~ msgid ""
-#~ "Local Area Network game could not be started. \n"
-#~ "Try running mDNSResponder."
-#~ msgstr ""
-#~ "Paikallista verkkopeliä ei voitu aloittaa. \n"
-#~ "Yritä mDNSResponder:n ajamista."
-
-#~ msgid "Compete to dominate the board in a Reversi-like game"
-#~ msgstr "Kilpaile saadaksesi haltuun laudan Reversi-tyyppisessä pelissä"
-
-#~ msgid "Play a puzzle game matching tiles together"
-#~ msgstr "Pelaa ongelmanratkaisupeliä yhdistämällä tiiliä yhteen"
-
-#~ msgid "Solve puzzles by sliding blocks"
-#~ msgstr "Selvitä ongelmia siirtelemällä esineitä"
-
-#~ msgid "Play a game of Reversi"
-#~ msgstr "Pelaa peli Reversiä"
-
-#~ msgid "Pause or continue the game"
-#~ msgstr "Pysäytä tai jatka peliä"
-
-#~ msgid "Remove groups of balls to try and clear the screen"
-#~ msgstr "Poista palloja ryhmittäin puhdistaaksesi ruudun"
-
-#~ msgid "The Ziggurat"
-#~ msgstr "Ziggurat"
-
-#~ msgid "Four Bridges"
-#~ msgstr "Neljä siltaa"
-
-#~ msgid "Cloud"
-#~ msgstr "Pilvi"
-
-#~ msgid "Tic-Tac-Toe"
-#~ msgstr "Ristinolla"
-
-#~ msgid "Red Dragon"
-#~ msgstr "Punainen lohikäärme"
-
-#~ msgid "Pyramid's Walls"
-#~ msgstr "Pyramidin seinät"
-
-#~ msgid "Confounding Cross"
-#~ msgstr "Hämmentävän ristikkäinen"
-
-#~ msgid "No moves available"
-#~ msgstr "Ei siirtoja jäljellä"
-
-#~ msgid "Variation on game rules"
-#~ msgstr "Muunnelma pelin säännöistä"
-
-#~ msgid "windows"
-#~ msgstr "ikkunat"
-
-#~ msgid "Calculate random die throws (debug)"
-#~ msgstr "Laske satunnaisia nopanheittoja (vianmääritystä varten)"
-
-#~ msgid "Congratulations."
-#~ msgstr "Onnittelut."
-
-#~ msgid "Tileset"
-#~ msgstr "Laatat"
