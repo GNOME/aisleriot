@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-20 17:43+0200\n"
+"POT-Creation-Date: 2006-10-28 20:52+0200\n"
 "PO-Revision-Date: 2006-07-20 17:48+0200\n"
 "Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
@@ -26,6 +26,12 @@ msgstr ""
 
 #: ../aisleriot/aisleriot.schemas.in.h:1
 msgid ""
+"A comma seperated list of recently played games. The filenames are stored "
+"here, not the actual game name."
+msgstr ""
+
+#: ../aisleriot/aisleriot.schemas.in.h:2
+msgid ""
 "A list of strings that come in the form of a quintuple: name, wins, total "
 "games played, best time (in seconds) and worst time (also in seconds). "
 "Unplayed games do not need to be represented."
@@ -34,74 +40,79 @@ msgstr ""
 "čas (v sekundách) a nejhorší čas (také v sekundách). Nehrané hry nemusí být "
 "reprezentovány."
 
-#: ../aisleriot/aisleriot.schemas.in.h:2
+#: ../aisleriot/aisleriot.schemas.in.h:3
+#, fuzzy
+msgid "Recently Played Games"
+msgstr "Jména hráčů"
+
+#: ../aisleriot/aisleriot.schemas.in.h:4
 msgid "Select the style of control"
 msgstr "Zvolte styl ovládání"
 
-#: ../aisleriot/aisleriot.schemas.in.h:3
+#: ../aisleriot/aisleriot.schemas.in.h:5
 msgid ""
 "Select whether to drag the cards or to click on the source then the "
 "destination."
 msgstr "Zvolte, jestli karty přetahovat nebo kliknout na zdroj a pak na cíl."
 
-#: ../aisleriot/aisleriot.schemas.in.h:4
+#: ../aisleriot/aisleriot.schemas.in.h:6
 msgid "Statistics of games played"
 msgstr "Statistika hraných her"
 
-#: ../aisleriot/aisleriot.schemas.in.h:5
+#: ../aisleriot/aisleriot.schemas.in.h:7
 msgid "The game file to use"
 msgstr "Soubor hry, který používat"
 
-#: ../aisleriot/aisleriot.schemas.in.h:6 ../glines/glines.schemas.in.h:13
+#: ../aisleriot/aisleriot.schemas.in.h:8 ../glines/glines.schemas.in.h:13
 #: ../gnobots2/gnobots2.schemas.in.h:25 ../gnometris/gnometris.schemas.in.h:21
 #: ../same-gnome/same-gnome.schemas.in.h:6
 msgid "The height of the main window."
 msgstr "Výška hlavního okna."
 
-#: ../aisleriot/aisleriot.schemas.in.h:7
+#: ../aisleriot/aisleriot.schemas.in.h:9
 #: ../blackjack/data/blackjack.schemas.in.h:7
 msgid "The name of the file with the graphics for the cards."
 msgstr "Název souboru s grafikou karet."
 
-#: ../aisleriot/aisleriot.schemas.in.h:8
+#: ../aisleriot/aisleriot.schemas.in.h:10
 msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "Název souboru scheme obsahujícího hru solitaire, kterou hrát."
 
-#: ../aisleriot/aisleriot.schemas.in.h:9 ../glines/glines.schemas.in.h:14
+#: ../aisleriot/aisleriot.schemas.in.h:11 ../glines/glines.schemas.in.h:14
 #: ../gnobots2/gnobots2.schemas.in.h:38 ../gnometris/gnometris.schemas.in.h:26
 #: ../same-gnome/same-gnome.schemas.in.h:10
 msgid "The width of the main window."
 msgstr "Šířka hlavního okna."
 
-#: ../aisleriot/aisleriot.schemas.in.h:10
+#: ../aisleriot/aisleriot.schemas.in.h:12
 #: ../blackjack/data/blackjack.schemas.in.h:10
 msgid "Theme file name"
 msgstr "Název souboru motivu"
 
-#: ../aisleriot/aisleriot.schemas.in.h:11
+#: ../aisleriot/aisleriot.schemas.in.h:13
 #: ../blackjack/data/blackjack.schemas.in.h:13
 msgid "Whether or not to show the toolbar"
 msgstr "Jestli zobrazovat lištu nástrojů"
 
-#: ../aisleriot/aisleriot.schemas.in.h:12
+#: ../aisleriot/aisleriot.schemas.in.h:14
 #: ../blackjack/data/blackjack.schemas.in.h:14
 msgid "Whether or not to show the toolbar."
 msgstr "Jestli zobrazovat lištu nástrojů."
 
-#: ../aisleriot/aisleriot.schemas.in.h:13 ../glines/glines.schemas.in.h:17
+#: ../aisleriot/aisleriot.schemas.in.h:15 ../glines/glines.schemas.in.h:17
 #: ../gnobots2/gnobots2.schemas.in.h:43 ../gnometris/gnometris.schemas.in.h:37
 msgid "Window height"
 msgstr "Výška okna"
 
-#: ../aisleriot/aisleriot.schemas.in.h:14 ../glines/glines.schemas.in.h:18
+#: ../aisleriot/aisleriot.schemas.in.h:16 ../glines/glines.schemas.in.h:18
 #: ../gnobots2/gnobots2.schemas.in.h:44 ../gnometris/gnometris.schemas.in.h:38
 msgid "Window width"
 msgstr "Šířka okna"
 
-#: ../aisleriot/cscmi.c:191
-#, c-format
+#: ../aisleriot/cscmi.c:174
+#, fuzzy, c-format
 msgid ""
-"A scheme exception occured and we were unable to create a temporary file to "
+"A scheme exception occurred and we were unable to create a temporary file to "
 "report it:\n"
 "\n"
 "%s"
@@ -111,27 +122,27 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../aisleriot/dialog.c:45
+#: ../aisleriot/dialog.c:47
 msgid "Congratulations!!!"
 msgstr "Gratuluji!!!"
 
-#: ../aisleriot/dialog.c:46
+#: ../aisleriot/dialog.c:48
 msgid "You have won."
 msgstr "Vyhráli jste."
 
-#: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:653
+#: ../aisleriot/dialog.c:50 ../mahjongg/mahjongg.c:656
 msgid "There are no more moves."
 msgstr "Nejsou možné žádné další tahy."
 
-#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:196 ../same-gnome/ui.c:156
+#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:199 ../same-gnome/ui.c:171
 msgid "_New Game"
 msgstr "_Nová hra"
 
-#: ../aisleriot/dialog.c:176
+#: ../aisleriot/dialog.c:177
 msgid "Select Game"
 msgstr "Vybrat hru"
 
-#: ../aisleriot/dialog.c:275
+#: ../aisleriot/dialog.c:277
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -139,7 +150,7 @@ msgstr ""
 "Hra již skončila.\n"
 "Žádné rady nejsou k dispozici"
 
-#: ../aisleriot/dialog.c:281
+#: ../aisleriot/dialog.c:282
 msgid "This game does not have hint support yet."
 msgstr "Tato hra zatím nepodporuje rady."
 
@@ -153,7 +164,7 @@ msgstr "Přesunout %s na %s."
 msgid "Move %s %s."
 msgstr "Přesuňte %s %s."
 
-#: ../aisleriot/dialog.c:306
+#: ../aisleriot/dialog.c:307
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -165,12 +176,12 @@ msgstr ""
 "a název hry, kterou jste hráli (podívejte se do lišty nadpisu, pokud si\n"
 "nejste jisti)."
 
-#: ../aisleriot/dialog.c:311
+#: ../aisleriot/dialog.c:312
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Hledáte %s."
 
-#: ../aisleriot/dialog.c:315
+#: ../aisleriot/dialog.c:316
 msgid "This game is unable to provide a hint."
 msgstr "Tato hra nemůže poskytnout radu."
 
@@ -186,19 +197,19 @@ msgstr "Solitaire FreeCell"
 msgid "Play the popular FreeCell card game"
 msgstr "Hrát populární karetní hru FreeCell"
 
-#: ../aisleriot/menu.c:106 ../gnomine/gnomine.c:427 ../mahjongg/mahjongg.c:920
+#: ../aisleriot/menu.c:107 ../gnomine/gnomine.c:429 ../mahjongg/mahjongg.c:915
 msgid "Main game:"
 msgstr "Hlavní hra:"
 
-#: ../aisleriot/menu.c:112
+#: ../aisleriot/menu.c:113
 msgid "Card games:"
 msgstr "Karetní hry:"
 
-#: ../aisleriot/menu.c:129
+#: ../aisleriot/menu.c:128 ../aisleriot/menu.c:131
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
-#: ../aisleriot/menu.c:131
+#: ../aisleriot/menu.c:134
 #, fuzzy
 msgid ""
 "AisleRiot provides a rule-based solitaire\n"
@@ -208,105 +219,115 @@ msgstr ""
 "AisleRiot poskytuje na pravidlech založený engine pro karetní hry typu "
 "Solitaire, který umožňuje hrát mnoho různých her."
 
-#: ../aisleriot/menu.c:138 ../blackjack/src/menu.cpp:159
-#: ../gataxx/gataxx.c:400 ../glines/glines.c:1228 ../gnect/src/main.c:825
-#: ../gnibbles/main.c:207 ../gnobots2/menu.c:257 ../gnometris/tetris.cpp:1452
-#: ../gnomine/gnomine.c:464 ../gnotravex/gnotravex.c:1633
-#: ../gnotski/gnotski.c:1606 ../gtali/gyahtzee.c:461 ../iagno/gnothello.c:256
-#: ../mahjongg/mahjongg.c:958 ../same-gnome/ui.c:116
+#: ../aisleriot/menu.c:140 ../blackjack/src/menu.cpp:162
+#: ../glines/glines.c:1229 ../gnect/src/main.c:923 ../gnibbles/main.c:248
+#: ../gnobots2/menu.c:266 ../gnometris/tetris.cpp:1454
+#: ../gnomine/gnomine.c:468 ../gnotravex/gnotravex.c:1831
+#: ../gnotski/gnotski.c:1408 ../gtali/gyahtzee.c:462 ../iagno/gnothello.c:306
+#: ../mahjongg/mahjongg.c:954 ../same-gnome/ui.c:127
 msgid "translator-credits"
 msgstr ""
 "Jirka Lébl\n"
 "Michal Bukovjan\n"
 "Miloslav Trmač"
 
-#: ../aisleriot/menu.c:232 ../blackjack/src/blackjack.cpp:335
-#: ../glines/glines.c:1719 ../gnect/src/main.c:1164 ../gnibbles/main.c:644
-#: ../gnobots2/menu.c:61 ../gnometris/tetris.cpp:131 ../gnomine/gnomine.c:794
-#: ../gnotravex/gnotravex.c:194 ../gnotski/gnotski.c:635
-#: ../gtali/gyahtzee.c:537 ../mahjongg/mahjongg.c:1306 ../same-gnome/ui.c:424
+#: ../aisleriot/menu.c:243 ../blackjack/src/blackjack.cpp:335
+#: ../glchess/glade/glchess.glade.h:38 ../glines/glines.c:1688
+#: ../gnect/src/main.c:1306 ../gnibbles/main.c:761 ../gnobots2/menu.c:61
+#: ../gnometris/tetris.cpp:131 ../gnome-sudoku/src/lib/gnome_sudoku.py:173
+#: ../gnomine/gnomine.c:802 ../gnotravex/gnotravex.c:267
+#: ../gnotski/gnotski.c:426 ../gtali/gyahtzee.c:538
+#: ../mahjongg/mahjongg.c:1302 ../same-gnome/ui.c:455
 msgid "_Game"
 msgstr "_Hra"
 
-#: ../aisleriot/menu.c:233 ../blackjack/src/blackjack.cpp:336
-#: ../gnect/src/main.c:1165 ../gnibbles/main.c:645 ../gnobots2/menu.c:62
-#: ../gnotravex/gnotravex.c:195 ../gnotski/gnotski.c:636
-#: ../same-gnome/ui.c:425
+#: ../aisleriot/menu.c:244 ../blackjack/src/blackjack.cpp:336
+#: ../glchess/glade/glchess.glade.h:43 ../gnect/src/main.c:1307
+#: ../gnibbles/main.c:762 ../gnobots2/menu.c:62
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:174 ../gnotravex/gnotravex.c:268
+#: ../gnotski/gnotski.c:427 ../same-gnome/ui.c:456
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../aisleriot/menu.c:234 ../blackjack/src/blackjack.cpp:345
+#: ../aisleriot/menu.c:245 ../blackjack/src/blackjack.cpp:345
 msgid "_Control"
 msgstr "_Ovládání"
 
 #. not translated on purpose
-#: ../aisleriot/menu.c:236 ../blackjack/src/blackjack.cpp:352
-#: ../glines/glines.c:1721 ../gnect/src/main.c:1167 ../gnibbles/main.c:647
-#: ../gnobots2/menu.c:65 ../gnometris/tetris.cpp:133 ../gnomine/gnomine.c:796
-#: ../gnotravex/gnotravex.c:198 ../gnotski/gnotski.c:637
-#: ../gtali/gyahtzee.c:539 ../mahjongg/mahjongg.c:1308 ../same-gnome/ui.c:427
+#: ../aisleriot/menu.c:247 ../blackjack/src/blackjack.cpp:352
+#: ../glchess/glade/glchess.glade.h:39 ../glines/glines.c:1690
+#: ../gnect/src/main.c:1309 ../gnibbles/main.c:764 ../gnobots2/menu.c:65
+#: ../gnometris/tetris.cpp:133 ../gnome-sudoku/src/lib/gnome_sudoku.py:196
+#: ../gnomine/gnomine.c:804 ../gnotravex/gnotravex.c:271
+#: ../gnotski/gnotski.c:428 ../gtali/gyahtzee.c:540
+#: ../mahjongg/mahjongg.c:1304 ../same-gnome/ui.c:458
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../aisleriot/menu.c:238 ../blackjack/src/blackjack.cpp:337
-#: ../gnobots2/menu.c:66 ../libgames-support/games-stock.c:99
-#: ../mahjongg/mahjongg.c:1309
+#: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:337
+#: ../glchess/glade/glchess.glade.h:28 ../gnobots2/menu.c:66
+#: ../libgames-support/games-stock.c:110 ../mahjongg/mahjongg.c:1305
 msgid "Start a new game"
 msgstr "Začít novou hru"
 
-#: ../aisleriot/menu.c:239 ../blackjack/src/blackjack.cpp:338
-#: ../mahjongg/mahjongg.c:1310
+#: ../aisleriot/menu.c:252 ../blackjack/src/blackjack.cpp:338
+#: ../mahjongg/mahjongg.c:1308
 msgid "Restart the current game"
 msgstr "Restartovat aktuální hru"
 
-#: ../aisleriot/menu.c:240
+#: ../aisleriot/menu.c:253
 msgid "_Select Game..."
 msgstr "_Vybrat hru..."
 
-#: ../aisleriot/menu.c:240
+#: ../aisleriot/menu.c:254
 msgid "Play a different game"
 msgstr "Hrát jinou hru"
 
-#: ../aisleriot/menu.c:241
+#: ../aisleriot/menu.c:255
+msgid "Recently _Played"
+msgstr ""
+
+#: ../aisleriot/menu.c:256
 msgid "S_tatistics"
 msgstr "_Statistiky"
 
-#: ../aisleriot/menu.c:241
+#: ../aisleriot/menu.c:257
 msgid "Show gameplay statistics"
 msgstr "Zobrazit statistiku o hraní"
 
-#: ../aisleriot/menu.c:245
+#: ../aisleriot/menu.c:263
 msgid "_Cards..."
 msgstr "_Karty..."
 
-#: ../aisleriot/menu.c:247 ../libgames-support/games-stock.c:103
+#: ../aisleriot/menu.c:266 ../libgames-support/games-stock.c:118
 #: ../mahjongg/mahjongg.c:1313
 msgid "Undo the last move"
 msgstr "Vrátit poslední tah"
 
-#: ../aisleriot/menu.c:248 ../mahjongg/mahjongg.c:1314
+#: ../aisleriot/menu.c:268 ../mahjongg/mahjongg.c:1315
 msgid "Redo the last move"
 msgstr "Vrátit poslední tah"
 
-#: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:339
-#: ../mahjongg/mahjongg.c:1315
+#: ../aisleriot/menu.c:270 ../blackjack/src/blackjack.cpp:339
+#: ../mahjongg/mahjongg.c:1317
 msgid "Show a hint"
 msgstr "Zobrazit radu"
 
-#: ../aisleriot/menu.c:250
+#: ../aisleriot/menu.c:273
 msgid "View help for Aisleriot"
 msgstr "Zobrazit nápovědu k Aisleriot"
 
-#: ../aisleriot/menu.c:251 ../libgames-support/games-stock.c:110
+#: ../aisleriot/menu.c:274 ../libgames-support/games-stock.c:125
 msgid "View help for this game"
 msgstr "Zobrazit nápovědu o této hře"
 
-#: ../aisleriot/menu.c:256 ../blackjack/src/blackjack.cpp:358
-#: ../gnobots2/menu.c:82 ../mahjongg/mahjongg.c:1326
+#: ../aisleriot/menu.c:281 ../blackjack/src/blackjack.cpp:358
+#: ../glchess/glade/glchess.glade.h:42 ../gnobots2/menu.c:89
+#: ../mahjongg/mahjongg.c:1333
 msgid "_Toolbar"
 msgstr "_Lišta nástrojů"
 
-#: ../aisleriot/menu.c:257
+#: ../aisleriot/menu.c:283
 msgid "_Click to Move"
 msgstr "_Přesouvat kliknutími"
 
@@ -446,10 +467,6 @@ msgstr "prázdné místo"
 msgid "Deal another round"
 msgstr "Rozdat další kolo"
 
-#: ../aisleriot/rules/aunt_mary.scm.h:1
-msgid "Redeals left: ~a"
-msgstr "Zbylá rozdání: ~a"
-
 #: ../aisleriot/rules/bakers_dozen.scm.h:2
 #: ../aisleriot/rules/bakers_game.scm.h:2
 #: ../aisleriot/rules/chessboard.scm.h:8 ../aisleriot/rules/easthaven.scm.h:5
@@ -554,7 +571,8 @@ msgid "If you're ever lost and alone in the woods, hug a tree"
 msgstr "Pokud se ocitneš v lese sám a opuštěný, obejmi strom"
 
 #: ../aisleriot/rules/clock.scm.h:6
-msgid "Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
+msgid ""
+"Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
 msgstr ""
 "To, že přechod pro chodce vypadá jako skákací panák, ještě neznamená, že to "
 "je skákací panák"
@@ -870,7 +888,7 @@ msgstr "Přesunout sadu karet na prázdné stolní místo"
 msgid "the appropriate Foundation pile"
 msgstr "odpovídající základní hromádka"
 
-#: ../aisleriot/sol.c:161
+#: ../aisleriot/sol.c:187
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -883,11 +901,11 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím svou instalaci této hry"
 
-#: ../aisleriot/sol.c:207
+#: ../aisleriot/sol.c:235
 msgid "Aisleriot cannot find the last game you played."
 msgstr "AisleRiot nemůže najít poslední hru, kterou jste hráli."
 
-#: ../aisleriot/sol.c:208
+#: ../aisleriot/sol.c:238
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -896,27 +914,28 @@ msgstr ""
 "To se obvykle stává, když spustíte starší verzi Aisleriot, která nemá hru, "
 "kterou jste naposledy hráli. Místo ní se spouští implicitní hra Klondike."
 
-#: ../aisleriot/sol.c:416
+#: ../aisleriot/sol.c:516
 msgid "Aisleriot"
 msgstr "AisleRiot"
 
-#: ../aisleriot/sol.c:453 ../glines/glines.c:1981 ../gnobots2/statusbar.c:65
-#: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:430
+#. Add "Highscore" label
+#: ../aisleriot/sol.c:554 ../dependencies/ggz-gtk/playerinfo.c:241
+#: ../glines/glines.c:1940 ../gnobots2/statusbar.c:65
+#: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:432
 msgid "Score:"
 msgstr "Skóre:"
 
-#: ../aisleriot/sol.c:458 ../gnotravex/gnotravex.c:1104
-#: ../mahjongg/mahjongg.c:1487
+#: ../aisleriot/sol.c:559 ../gnotravex/gnotravex.c:1296
+#: ../mahjongg/mahjongg.c:1500
 msgid "Time:"
 msgstr "Čas:"
 
-#: ../aisleriot/sol.c:509
+#: ../aisleriot/sol.c:611
 msgid "Select the game to play"
 msgstr "Zvolte hru, kterou chcete hrát"
 
-#: ../aisleriot/sol.c:509 ../gnobots2/gnobots.c:66 ../gnobots2/gnobots.c:68
-#: ../iagno/gnothello.c:109 ../same-gnome/same-gnome.c:139
-#: ../same-gnome/same-gnome.c:141
+#: ../aisleriot/sol.c:611 ../gnobots2/gnobots.c:66 ../gnobots2/gnobots.c:68
+#: ../same-gnome/same-gnome.c:148 ../same-gnome/same-gnome.c:150
 msgid "NAME"
 msgstr "JMÉNO"
 
@@ -1230,13 +1249,14 @@ msgstr "dvojka"
 
 #. For translators: N/A means "Not Applicable", use whatever
 #. * abbreviation you have for a value that has no meaning.
-#: ../aisleriot/statistics.c:95 ../aisleriot/statistics.c:104
-#: ../aisleriot/statistics.c:113
+#: ../aisleriot/statistics.c:100 ../aisleriot/statistics.c:109
+#: ../aisleriot/statistics.c:118 ../dependencies/ggz-gtk/roominfo.c:162
+#: ../dependencies/ggz-gtk/roominfo.c:169
 msgid "N/A"
 msgstr "N/A"
 
 #. Translators: this represents minutes:seconds.
-#: ../aisleriot/statistics.c:99 ../aisleriot/statistics.c:108
+#: ../aisleriot/statistics.c:104 ../aisleriot/statistics.c:113
 #, c-format
 msgid "%d:%02d"
 msgstr "%d:%02d"
@@ -1610,7 +1630,8 @@ msgstr "Yukon"
 msgid "Zebra"
 msgstr "Zebra"
 
-#: ../blackjack/data/blackjack.desktop.in.h:1 ../blackjack/src/splash.cpp:93
+#: ../blackjack/data/blackjack.desktop.in.h:1 ../blackjack/src/menu.cpp:152
+#: ../blackjack/src/splash.cpp:93
 msgid "Blackjack"
 msgstr "Blackjack"
 
@@ -1647,7 +1668,8 @@ msgid "The amount of money in your bank."
 msgstr "Peněžní částka ve vašem banku."
 
 #: ../blackjack/data/blackjack.schemas.in.h:8
-msgid "The name of the rules file containing the variation of the rules to play."
+msgid ""
+"The name of the rules file containing the variation of the rules to play."
 msgstr "Název souboru pravidel obsahujícího variaci pravidel, kterou hrát."
 
 #: ../blackjack/data/blackjack.schemas.in.h:9
@@ -1667,10 +1689,10 @@ msgstr "Použít rychlé rozdávání bez zpoždění mezi kartami."
 msgid "Blackjack - %s"
 msgstr "Blackjack - %s"
 
-#: ../blackjack/src/blackjack.cpp:341 ../glines/glines.c:1720
-#: ../gnect/src/main.c:1166 ../gnibbles/main.c:646 ../gnobots2/menu.c:64
-#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:795
-#: ../gtali/gyahtzee.c:538 ../mahjongg/mahjongg.c:1307
+#: ../blackjack/src/blackjack.cpp:341 ../glines/glines.c:1689
+#: ../gnect/src/main.c:1308 ../gnibbles/main.c:763 ../gnobots2/menu.c:64
+#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:803
+#: ../gtali/gyahtzee.c:539 ../mahjongg/mahjongg.c:1303
 msgid "_Settings"
 msgstr "_Nastavení"
 
@@ -1774,9 +1796,9 @@ msgstr "Nastavte svou sázku nebo rozdejte nové karty kliknutím na karty."
 msgid "Blackjack Preferences"
 msgstr "Nastavení Blackjacku"
 
-#: ../blackjack/src/dialog.cpp:246 ../gnect/src/prefs.c:378
-#: ../gnibbles/preferences.c:215 ../gnobots2/properties.c:530
-#: ../gnometris/tetris.cpp:734
+#: ../blackjack/src/dialog.cpp:246 ../dependencies/ggz-gtk/client.c:969
+#: ../gnect/src/prefs.c:404 ../gnibbles/preferences.c:231
+#: ../gnobots2/properties.c:539 ../gnometris/tetris.cpp:734
 msgid "Game"
 msgstr "Hra"
 
@@ -1801,7 +1823,10 @@ msgstr "_Vynulovat zůstatek"
 msgid "Rules"
 msgstr "Pravidla"
 
-#: ../blackjack/src/dialog.cpp:310 games-scores-dialog.gob:356
+#: ../blackjack/src/dialog.cpp:310 ../dependencies/ggz-gtk/types.c:176
+#: ../dependencies/ggz-gtk/playerlist.c:362
+#: ../gnome-sudoku/src/lib/game_selector.py:107
+#: ../gnome-sudoku/src/lib/game_selector.py:136 games-scores-dialog.gob:360
 #: ../libgames-support/games-scores-dialog.gob:356
 msgid "Name"
 msgstr "Název"
@@ -1843,6 +1868,7 @@ msgid "Resplit Aces"
 msgstr "Resplit Aces"
 
 #: ../blackjack/src/dialog.cpp:360 ../blackjack/src/player.cpp:303
+#: ../glchess/glade/glchess.glade.h:32
 msgid "Surrender"
 msgstr "Surrender"
 
@@ -1952,7 +1978,7 @@ msgstr ""
 "Surrender znamená vzdát se poloviny vaší sázky a nedokončit hru. Uděláte to "
 "vybráním této možnosti z nabídky Ovládání."
 
-#: ../blackjack/src/menu.cpp:156
+#: ../blackjack/src/menu.cpp:159
 msgid "Blackjack is a casino-style card game."
 msgstr "Blackjack je hazardní karetní hra."
 
@@ -2008,258 +2034,1728 @@ msgstr "Split"
 msgid "Dealer hand probabilities"
 msgstr "Pravděpodobnosti karet rozdávajícího"
 
-#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:627
-msgid "Light:"
-msgstr "Bílý:"
+#: ../dependencies/ggz-gtk/ggzclient.c:122
+#, c-format
+msgid "Error connecting to server: %s"
+msgstr ""
 
-#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:617
-msgid "Dark:"
-msgstr "Černý:"
+#: ../dependencies/ggz-gtk/ggzclient.c:124
+#: ../dependencies/ggz-gtk/ggzclient.c:380
+#: ../dependencies/ggz-gtk/ggzclient.c:561
+#: ../dependencies/ggz-gtk/ggzclient.c:596
+#: ../dependencies/ggz-gtk/ggzclient.c:649
+#: ../dependencies/ggz-gtk/ggzclient.c:1079
+#: ../dependencies/ggz-gtk/launch.c:325
+msgid "Error"
+msgstr ""
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:202 ../iagno/othello.c:271
-msgid "Light's move"
-msgstr "Tah bílého"
+#: ../dependencies/ggz-gtk/ggzclient.c:237
+#, c-format
+msgid "Your new password is %s"
+msgstr ""
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:204 ../iagno/gnothello.c:571
-#: ../iagno/othello.c:267
-msgid "Dark's move"
-msgstr "Tah černého"
+#: ../dependencies/ggz-gtk/ggzclient.c:239
+msgid "New password"
+msgstr ""
 
-#: ../gataxx/gataxx.c:59
+#: ../dependencies/ggz-gtk/ggzclient.c:275
+#, fuzzy, c-format
+msgid "Players on server: %d"
+msgstr ""
+"Hráč 1:\n"
+"%s"
+
+#: ../dependencies/ggz-gtk/ggzclient.c:320
+#, c-format
+msgid "Current Room: %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:328
+#, c-format
+msgid "You've joined room \"%s\"."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:378
+#, c-format
+msgid "Error joining room: %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:400
+#: ../dependencies/ggz-gtk/client.c:1480
+msgid "GGZ Gaming Zone"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:429
+msgid "You can't chat while not in a room."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:434
+msgid "You don't have permission to chat here."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:438
+msgid "No private chatting at a table!"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:442
 #, fuzzy
-msgid "Set the state of the board at start-up."
-msgstr "Výška hlavního okna v pixelech při spouštění."
+msgid "That player isn't in the room!"
+msgstr "Hráč %s se připojil ke hře."
 
-#: ../gataxx/gataxx.c:59
-msgid "STATE"
+#: ../dependencies/ggz-gtk/ggzclient.c:447
+#, fuzzy
+msgid "There was an error sending the chat."
+msgstr "Při přístupu k rozhraní GConf došlo k chybě: %s"
+
+#: ../dependencies/ggz-gtk/ggzclient.c:451
+#, fuzzy
+msgid "You're not at a table."
+msgstr "Žádná nápověda není k dispozici."
+
+#: ../dependencies/ggz-gtk/ggzclient.c:455
+#, c-format
+msgid "Chat failed: %s."
 msgstr ""
 
-#: ../gataxx/gataxx.c:61
-msgid "Set whose turn it is."
-msgstr "Nastavte, kdo je na tahu."
-
-#: ../gataxx/gataxx.c:61
-msgid "1 (Light) or 2 (Dark)"
-msgstr "1 (Bílý) nebo 2 (Černý)"
-
-#: ../gataxx/gataxx.c:180 ../iagno/othello.c:698
-msgid "Light player wins!"
-msgstr "Bílý hráč vyhrává!"
-
-#: ../gataxx/gataxx.c:182 ../iagno/othello.c:700
-msgid "Dark player wins!"
-msgstr "Černý hráč vyhrává!"
-
-#: ../gataxx/gataxx.c:184 ../iagno/othello.c:702
-msgid "The game was a draw."
-msgstr "Hra skončila nerozhodně."
-
-#: ../gataxx/gataxx.c:385
-msgid "Based on code from Iagno by Ian Peters"
-msgstr "Založeno na kódu Iagno od Iana Peterse"
-
-#: ../gataxx/gataxx.c:391 ../gataxx/gataxx.desktop.in.h:1
-msgid "Ataxx"
-msgstr "Ataxx"
-
-#: ../gataxx/gataxx.c:397
-msgid "A disk-flipping game where you attempt to dominate the board."
-msgstr "Hra s převracením kamenů, kde se snažíte ovládnout desku."
-
-#: ../gataxx/gataxx.desktop.in.h:2
-msgid "Dominate the board in a modern variation of Reversi"
+#: ../dependencies/ggz-gtk/ggzclient.c:559
+#, c-format
+msgid "Error launching table: %s"
 msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:1 ../gnect/data/gnect.schemas.in.h:2
-msgid "Animate"
-msgstr "Animace"
+#: ../dependencies/ggz-gtk/ggzclient.c:579
+#, fuzzy, c-format
+msgid "You have joined table %d."
+msgstr "Vyhráli jste."
 
-#: ../gataxx/gataxx.schemas.in.h:2
-msgid "Level of black player"
-msgstr "Úroveň černého hráče"
-
-#: ../gataxx/gataxx.schemas.in.h:3
-msgid "Level of white player"
-msgstr "Úroveň bílého hráče"
-
-#: ../gataxx/gataxx.schemas.in.h:4
-msgid "Quick moves"
-msgstr "Rychlé tahy"
-
-#: ../gataxx/gataxx.schemas.in.h:5 ../gnotravex/gnotravex.schemas.in.h:2
-#: ../gnotski/gnotski.schemas.in.h:1 ../mahjongg/mahjongg.schemas.in.h:1
-msgid "The height of the window"
-msgstr "Výška okna"
-
-#: ../gataxx/gataxx.schemas.in.h:6
-msgid "The name of the theme to use."
-msgstr "Název motivu, který používat."
-
-#: ../gataxx/gataxx.schemas.in.h:7
-msgid "The requested height of the main window in pixels."
-msgstr "Požadovaná výška hlavního okna v pixelech."
-
-#: ../gataxx/gataxx.schemas.in.h:8
-msgid "The requested width of the main window in pixels."
-msgstr "Požadovaná šířka hlavního okna v pixelech."
-
-#: ../gataxx/gataxx.schemas.in.h:9 ../gnotravex/gnotravex.schemas.in.h:6
-#: ../gnotski/gnotski.schemas.in.h:6 ../mahjongg/mahjongg.schemas.in.h:4
-msgid "The width of the window"
-msgstr "Šířka okna"
-
-#: ../gataxx/gataxx.schemas.in.h:10 ../gnometris/tetris.cpp:857
-#: ../gnometris/tetris.cpp:890 ../same-gnome/ui.c:295
-msgid "Theme"
-msgstr "Motiv"
-
-#: ../gataxx/gataxx.schemas.in.h:11
-msgid "Tileset (obsolete)"
-msgstr "Sada kamenů (zastaralé)"
-
-#: ../gataxx/gataxx.schemas.in.h:12
-msgid "Tileset to use (obsolete)."
-msgstr "Sada kamenů, kterou používat (zastaralé)."
-
-#: ../gataxx/gataxx.schemas.in.h:13
-msgid "Whether or not to use quick moves."
-msgstr "Jestli se mají používat rychlé tahy."
-
-#: ../gataxx/gataxx.schemas.in.h:14
-msgid ""
-"Zero corresponds to no animations, one is partial animations, two is "
-"complete animations."
+#: ../dependencies/ggz-gtk/ggzclient.c:594
+#, c-format
+msgid "Error joining table: %s"
 msgstr ""
-"Nula odpovídá žádným animacím, jedna znamená částečné animace, dvě znamená "
-"kompletní animace."
 
-#: ../gataxx/gataxx.schemas.in.h:15 ../gnect/data/gnect.schemas.in.h:19
-msgid ""
-"Zero is human; one through three correspond to the level of the computer "
-"player."
-msgstr "Nula znamená člověk; jedna až tři odpovídá úrovni počítačového hráče."
+#: ../dependencies/ggz-gtk/ggzclient.c:616
+#, c-format
+msgid "You have been booted from the table by %s."
+msgstr ""
 
-#: ../gataxx/gtkgridboardthemes.c:200 ../gnometris/renderer.cpp:27
-msgid "Plain"
+#: ../dependencies/ggz-gtk/ggzclient.c:621
+#, c-format
+msgid "You have left the table."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:624 ../gnibbles/main.c:697
+#, fuzzy, c-format
+msgid "The game is over."
+msgstr "Server hry"
+
+#: ../dependencies/ggz-gtk/ggzclient.c:628
+#, c-format
+msgid "There was an error with the game server."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:647
+#, c-format
+msgid "Error leaving table: %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:718
+#: ../dependencies/ggz-gtk/client.c:1196
+msgid "Current Room:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:740
+msgid "**none**"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:747
+msgid "Offline"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:750
+#, fuzzy
+msgid "Connecting"
+msgstr "_Připojit"
+
+#: ../dependencies/ggz-gtk/ggzclient.c:753
+#, fuzzy
+msgid "Reconnecting"
+msgstr "_Připojit"
+
+#: ../dependencies/ggz-gtk/ggzclient.c:756
+#, fuzzy
+msgid "Online"
+msgstr "devítka"
+
+#: ../dependencies/ggz-gtk/ggzclient.c:759
+msgid "Logging In"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:762
+msgid "Logged In"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:766
+msgid "--> Room"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:769
+msgid "Chatting"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:773
+msgid "--> Table"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:776
+#, fuzzy
+msgid "Playing"
 msgstr "Jednoduché"
 
-#: ../gataxx/gtkgridboardthemes.c:202
-msgid "Squares and Diamonds"
-msgstr "Čtverce a diamanty"
+#: ../dependencies/ggz-gtk/ggzclient.c:779
+msgid "<-- Table"
+msgstr ""
 
-#. create window
-#: ../gataxx/properties.c:286
-msgid "Ataxx Preferences"
-msgstr "Nastavení Ataxx"
+#: ../dependencies/ggz-gtk/ggzclient.c:782
+msgid "Logging Out"
+msgstr ""
 
-#. Players tab
-#: ../gataxx/properties.c:316 ../iagno/properties.c:498
-msgid "Players"
-msgstr "Hráči"
+#: ../dependencies/ggz-gtk/ggzclient.c:1078
+#, c-format
+msgid "Server error: %s"
+msgstr ""
 
-#: ../gataxx/properties.c:328
-msgid "_Quick moves"
-msgstr "_Rychlé tahy"
+#: ../dependencies/ggz-gtk/ggzclient.c:1166
+msgid "Disconnected from server."
+msgstr ""
 
-#: ../gataxx/properties.c:329
-msgid "Shortens the time a computer waits before doing a move"
-msgstr "Zkrátí čas, který počítač čeká před provedením tahu"
+#: ../dependencies/ggz-gtk/login.c:101
+msgid "Login"
+msgstr ""
 
-#. Dark level select
-#: ../gataxx/properties.c:338 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
-#: ../iagno/properties.c:521
-msgid "Dark"
-msgstr "Černé"
+#: ../dependencies/ggz-gtk/login.c:108
+msgid "Sorry!"
+msgstr ""
 
-#: ../gataxx/properties.c:342 ../gataxx/properties.c:360
-#: ../gnect/src/prefs.c:326 ../gtali/gyahtzee.c:763 ../gtali/yahtzee.c:60
-#: ../iagno/properties.c:526 ../iagno/properties.c:572
-msgid "Human"
-msgstr "Člověk"
+#: ../dependencies/ggz-gtk/login.c:115
+#, c-format
+msgid "That username is already in use."
+msgstr ""
 
-#: ../gataxx/properties.c:343 ../gataxx/properties.c:361
-msgid "Very easy"
-msgstr "Velmi jednoduché"
+#: ../dependencies/ggz-gtk/login.c:119
+#, c-format
+msgid ""
+"Authentication has failed.\n"
+"Please supply the correct password."
+msgstr ""
 
-#: ../gataxx/properties.c:344
-msgid "gataxx|Easy"
-msgstr "Jednoduché"
+#: ../dependencies/ggz-gtk/login.c:123
+#, c-format
+msgid "The username is too long!"
+msgstr ""
 
-#: ../gataxx/properties.c:345
-msgid "gataxx|Medium"
-msgstr "Střední"
+#: ../dependencies/ggz-gtk/login.c:126
+#, c-format
+msgid "Invalid username, do not use special characters!"
+msgstr ""
 
-#: ../gataxx/properties.c:346 ../gataxx/properties.c:364
-msgid "Hard"
+#: ../dependencies/ggz-gtk/login.c:130
+#, c-format
+msgid "Login failed for unknown reason: %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:538
+msgid "Server Profile"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:562 ../dependencies/ggz-gtk/props.c:925
+msgid "Profile:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:582
+msgid "Edit Profiles..."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:590 ../dependencies/ggz-gtk/props.c:946
+#, fuzzy
+msgid "Server:"
+msgstr "Skóre:"
+
+#: ../dependencies/ggz-gtk/login.c:600
+msgid "localhost"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:602 ../dependencies/ggz-gtk/props.c:961
+#, fuzzy
+msgid "Port:"
+msgstr "Nejhorší:"
+
+#: ../dependencies/ggz-gtk/login.c:612
+msgid "5688"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:633 ../dependencies/ggz-gtk/props.c:993
+#, fuzzy
+msgid "Username:"
+msgstr "_Jméno počítače:"
+
+#: ../dependencies/ggz-gtk/login.c:648 ../dependencies/ggz-gtk/props.c:1014
+msgid "Password:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:664
+msgid "Email:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:680 ../dependencies/ggz-gtk/props.c:1057
+msgid "Normal Login"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:691 ../dependencies/ggz-gtk/props.c:1065
+msgid "Guest Login"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:699
+msgid "First-time Login"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:710 ../dependencies/ggz-gtk/client.c:942
+#, fuzzy
+msgid "Connect"
+msgstr "_Připojit"
+
+#: ../dependencies/ggz-gtk/first.c:57
+#, fuzzy
+msgid "Wizard"
 msgstr "Těžké"
 
-#: ../gataxx/properties.c:347 ../gataxx/properties.c:365
-msgid "Very hard"
-msgstr "Velmi těžké"
+#: ../dependencies/ggz-gtk/first.c:57
+#, fuzzy
+msgid "Deity"
+msgstr "Sedmikráska"
 
-#. Light level select
-#: ../gataxx/properties.c:356 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
-#: ../iagno/properties.c:567
-msgid "Light"
-msgstr "Bílé"
+#: ../dependencies/ggz-gtk/first.c:57
+#, fuzzy
+msgid "Sentinel"
+msgstr "Valentýna"
 
-#: ../gataxx/properties.c:362
-msgid "Easy"
+#: ../dependencies/ggz-gtk/first.c:57
+#, fuzzy
+msgid "Captain"
+msgstr "Koberec"
+
+#: ../dependencies/ggz-gtk/first.c:58
+#, fuzzy
+msgid "Knight"
+msgstr "osmička"
+
+#: ../dependencies/ggz-gtk/first.c:58
+#, fuzzy
+msgid "Angel"
+msgstr "Agnes"
+
+#: ../dependencies/ggz-gtk/first.c:58
+msgid "Silverlord"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:58
+#, fuzzy
+msgid "Eagle"
+msgstr "Orlí křídlo"
+
+#: ../dependencies/ggz-gtk/first.c:59
+msgid "Vampire"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:59
+msgid "Chief"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:59
+#, fuzzy
+msgid "Colonel"
+msgstr "Polonéza"
+
+#: ../dependencies/ggz-gtk/first.c:59 ../glines/glines.c:1508
+msgid "General"
+msgstr "Obecné"
+
+#: ../dependencies/ggz-gtk/first.c:60
+#, fuzzy
+msgid "Major"
+msgstr "Mahjongg"
+
+#: ../dependencies/ggz-gtk/first.c:60
+#, fuzzy
+msgid "Scout"
+msgstr "Soft"
+
+#: ../dependencies/ggz-gtk/first.c:60
+msgid "Lieutenant"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:60
+msgid "Stalker"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:61
+msgid "Scientist"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:61
+#, fuzzy
+msgid "Scholar"
+msgstr "Skóre"
+
+#: ../dependencies/ggz-gtk/first.c:61
+msgid "Entity"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:61
+#, fuzzy
+msgid "Creator"
+msgstr "Výtah"
+
+#. {"Morat.net (Fast)", "ggz.morat.net", 5688, 1},
+#: ../dependencies/ggz-gtk/first.c:69
+msgid "GGZ Community (fast)"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:70
+msgid "Local developer server"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:190
+msgid ""
+"This is the first time you are running the GTK+ GGZ Gaming Zone client. "
+"Would you like to create some default server profiles?"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:89
+msgid "/msg <username> <message> . Private message a player"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:91
+msgid "/table <message> .......... Message to your table"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:93
+msgid "/wall <message> ........... Admin command"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:95
+msgid "/beep <username> .......... Beep a player"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:97
+msgid "/help ..................... Get help"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:99
+msgid "/friends .................. List your friends"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:101
+msgid "/ignore ................... List people you're ignoring"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:104
+msgid "/kick <username> .......... Kick a player from the room"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:107
+msgid "/gag <username> ........... Gag a player to prevent them from talking"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:110
+msgid ""
+"/ungag <username> ......... Reverse the gag operation to allow a player to "
+"talk"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:113
+msgid "/ban <username> ........... Ban a player from the server"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:254
+#, c-format
+msgid "You have received an unknown message from %s."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:318
+#, c-format
+msgid "You've been beeped by %s."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:439
+msgid "Usage: /msg <username> <message>"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:441
+msgid "    Sends a private message to a user on the network."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:495
+#, fuzzy, c-format
+msgid "Beep sent to %s."
+msgstr "Přesunout %s na %s."
+
+#: ../dependencies/ggz-gtk/chat.c:523
+#, c-format
+msgid "%s (logged on)"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:561
+#, c-format
+msgid "%s (logged off)"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:587
+msgid "Chat Commands"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:588
+msgid "-------------"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:592
+msgid "/me <action> .............. Send an action"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:783
+#, c-format
+msgid "Added %s to your friends list."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:807
+#, fuzzy, c-format
+msgid "Removed %s from your friends list."
+msgstr "Odstraňovat barevné koule z hrací desky tvořením úseček"
+
+#: ../dependencies/ggz-gtk/chat.c:838
+#, c-format
+msgid "Added %s to your ignore list."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:863
+#, c-format
+msgid "Removed %s from your ignore list."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:939
+msgid "People currently your friends"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:953
+msgid "People you're currently ignoring"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:1029
+msgid "Multiple matches:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:72
+#, c-format
+msgid ""
+"You don't have this game installed. You can download\n"
+"it from %s."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:76 ../dependencies/ggz-gtk/game.c:149
+#: ../dependencies/ggz-gtk/game.c:315 ../dependencies/ggz-gtk/game.c:325
+#: ../dependencies/ggz-gtk/game.c:334 ../dependencies/ggz-gtk/game.c:350
+#: ../dependencies/ggz-gtk/launch.c:290
+msgid "Launch Error"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:148
+msgid ""
+"Failed to execute game module.\n"
+" Launch aborted."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:201
+#, fuzzy
+msgid "Launched game"
+msgstr "Pozastavit hru"
+
+#: ../dependencies/ggz-gtk/game.c:222
+#, fuzzy
+msgid "Launch failed"
+msgstr "Spojení selhalo"
+
+#: ../dependencies/ggz-gtk/game.c:296
+msgid "You can only play one game at a time."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:297 ../dependencies/ggz-gtk/game.c:305
+#: ../dependencies/ggz-gtk/launch.c:335 ../dependencies/ggz-gtk/client.c:586
+#: ../dependencies/ggz-gtk/client.c:627
+#, fuzzy
+msgid "Game Error"
+msgstr "Konec hry"
+
+#: ../dependencies/ggz-gtk/game.c:304
+msgid "You're still at a table."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:313
+msgid ""
+"You must be in a room to launch a game.\n"
+"Launch aborted"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:323
+msgid ""
+"No game types defined for this server.\n"
+"Launch aborted."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:333
+#, fuzzy
+msgid "This game doesn't support spectators."
+msgstr "Tato hra zatím nepodporuje rady."
+
+#: ../dependencies/ggz-gtk/game.c:348
+msgid ""
+"You need to launch the GGZ client directly\n"
+"to be able to play this game."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:139 ../dependencies/ggz-gtk/props.c:1464
+#: ../dependencies/ggz-gtk/props.c:1484
+msgid "Galeon - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:142 ../dependencies/ggz-gtk/props.c:1465
+msgid "Galeon - Existing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:145 ../dependencies/ggz-gtk/props.c:1466
+msgid "Gnome URL Handler"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:148 ../dependencies/ggz-gtk/props.c:1467
+msgid "Konqueror - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:151 ../dependencies/ggz-gtk/props.c:1468
+msgid "Konqueror - Existing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:163 ../dependencies/ggz-gtk/props.c:1469
+msgid "Lynx"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:169 ../dependencies/ggz-gtk/props.c:1470
+msgid "Mozilla - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:172 ../dependencies/ggz-gtk/props.c:1471
+msgid "Mozilla - Existing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:176 ../dependencies/ggz-gtk/props.c:1472
+msgid "Netscape - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:179 ../dependencies/ggz-gtk/props.c:1473
+msgid "Netscape - Existing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:183 ../dependencies/ggz-gtk/props.c:1474
+msgid "Opera - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:186 ../dependencies/ggz-gtk/props.c:1475
+#, fuzzy
+msgid "Opera - Existing"
+msgstr "Operace"
+
+#: ../dependencies/ggz-gtk/support.c:191 ../dependencies/ggz-gtk/props.c:1476
+msgid "Firefox - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:194 ../dependencies/ggz-gtk/props.c:1477
+msgid "Firefox - Existing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/about.c:87 ../dependencies/ggz-gtk/client.c:1089
+msgid "About"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/motd.c:161
+#, fuzzy
+msgid "Message of the Day"
+msgstr "Přesunout ~a mimo stůl"
+
+#: ../dependencies/ggz-gtk/types.c:113 ../iagno/properties.c:610
+msgid "None"
+msgstr "Žádná"
+
+#: ../dependencies/ggz-gtk/types.c:148
+msgid ""
+"Room filtering is not implemented yet. If\n"
+"you would like to help head over to\n"
+"http://www.ggzgamingzone.org/"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/types.c:151 ../dependencies/ggz-gtk/client.c:239
+#: ../dependencies/ggz-gtk/client.c:251 ../dependencies/ggz-gtk/client.c:311
+#: ../dependencies/ggz-gtk/client.c:547
+#, fuzzy
+msgid "Not Implemented"
+msgstr "Úplná"
+
+#: ../dependencies/ggz-gtk/types.c:183 ../dependencies/ggz-gtk/tablelist.c:201
+#, fuzzy
+msgid "Description"
+msgstr "Škorpión"
+
+#: ../dependencies/ggz-gtk/types.c:191
+msgid "Web Address"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/types.c:199
+msgid "Author"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/types.c:237 ../dependencies/ggz-gtk/client.c:1065
+#, fuzzy
+msgid "Game Types"
+msgstr "Typ hry"
+
+#: ../dependencies/ggz-gtk/types.c:254
+msgid "Room List Filter:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/types.c:266
+#, fuzzy
+msgid "Set"
+msgstr "Nastavení"
+
+#: ../dependencies/ggz-gtk/types.c:306
+#, fuzzy
+msgid "Upgrage Game"
+msgstr "Pekařova hra"
+
+#: ../dependencies/ggz-gtk/types.c:309
+msgid "Goto Web Site"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerinfo.c:102
+#, fuzzy
+msgid "Player Information"
+msgstr "Teleportovat hráče"
+
+#. Add 'handle' label
+#: ../dependencies/ggz-gtk/playerinfo.c:132
+#, fuzzy
+msgid "Player Handle:"
+msgstr "Hráč mrtev"
+
+#. Add "table" label
+#: ../dependencies/ggz-gtk/playerinfo.c:150
+#, fuzzy
+msgid "Table:"
+msgstr "Kameny:"
+
+#. Add "type" label
+#: ../dependencies/ggz-gtk/playerinfo.c:168
+msgid "Account:"
+msgstr ""
+
+#. Add "Record" label
+#: ../dependencies/ggz-gtk/playerinfo.c:187
+#, fuzzy
+msgid "Record:"
+msgstr "Skóre:"
+
+#. Add "Rating" label
+#: ../dependencies/ggz-gtk/playerinfo.c:205
+#, fuzzy
+msgid "Rating:"
+msgstr "Zbývá:"
+
+#. Add "Ranking" label
+#: ../dependencies/ggz-gtk/playerinfo.c:223
+#, fuzzy
+msgid "Rank:"
+msgstr "Černý:"
+
+#. Add "Private chat" label
+#: ../dependencies/ggz-gtk/playerinfo.c:259
+#: ../dependencies/ggz-gtk/client.c:1277
+msgid "Message:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerinfo.c:302
+#: ../dependencies/ggz-gtk/playerinfo.c:334
+#, fuzzy
+msgid "Unknown"
+msgstr "Neznámá barva"
+
+#: ../dependencies/ggz-gtk/playerinfo.c:337
+msgid "Registered"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerinfo.c:340
+#, fuzzy
+msgid "Guest"
+msgstr "Bust"
+
+#: ../dependencies/ggz-gtk/playerinfo.c:343
+#, fuzzy
+msgid "Host"
+msgstr "Skákací panák"
+
+#: ../dependencies/ggz-gtk/playerinfo.c:346
+msgid "Administrator"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerinfo.c:349
+msgid "Bot"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerlist.c:94
+#: ../dependencies/ggz-gtk/tablelist.c:84
+#: ../dependencies/ggz-gtk/roomlist.c:144
+#, fuzzy
+msgid "Info"
+msgstr "Iagno"
+
+#: ../dependencies/ggz-gtk/playerlist.c:101
+msgid "Friends"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerlist.c:106
+#, fuzzy
+msgid "Ignore"
+msgstr "Iagno"
+
+#: ../dependencies/ggz-gtk/playerlist.c:246
+#, c-format
+msgid "#%d"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerlist.c:346
+msgid "L"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerlist.c:351
+#: ../dependencies/ggz-gtk/tablelist.c:191
+msgid "T#"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerlist.c:356
+#: ../dependencies/ggz-gtk/client.c:1171
+#, fuzzy
+msgid "Stats"
+msgstr "Stav"
+
+#: ../dependencies/ggz-gtk/pick_module.c:89
+msgid "Which client would you like to use to play this game?"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/pick_module.c:131
+msgid "Don't ask me again."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/tablelist.c:74
+#: ../dependencies/ggz-gtk/roomlist.c:150 ../dependencies/ggz-gtk/client.c:985
+#: ../dependencies/ggz-gtk/client.c:1141
+#, fuzzy
+msgid "Join"
+msgstr "Spojené"
+
+#: ../dependencies/ggz-gtk/tablelist.c:77
+#: ../dependencies/ggz-gtk/client.c:1004 ../dependencies/ggz-gtk/client.c:1157
+#, fuzzy
+msgid "Leave"
+msgstr "Úroveň:"
+
+#: ../dependencies/ggz-gtk/tablelist.c:161
+#, fuzzy
+msgid "No description available."
+msgstr "Žádná nápověda není k dispozici."
+
+#: ../dependencies/ggz-gtk/tablelist.c:196
+#, fuzzy
+msgid "Seats"
+msgstr "srdce"
+
+#: ../dependencies/ggz-gtk/roominfo.c:63
+msgid "Room Information"
+msgstr ""
+
+#. Add 'name' label and text.
+#: ../dependencies/ggz-gtk/roominfo.c:80
+#, fuzzy
+msgid "Game Name:"
+msgstr "_Název hry:"
+
+#. Add 'author' label and text.
+#: ../dependencies/ggz-gtk/roominfo.c:90 ../dependencies/ggz-gtk/launch.c:495
+msgid "Author:"
+msgstr ""
+
+#. Add 'homepage' label and text.
+#: ../dependencies/ggz-gtk/roominfo.c:100 ../dependencies/ggz-gtk/launch.c:530
+#, fuzzy
+msgid "Homepage:"
+msgstr "_Obrázek:"
+
+#. Add 'description' label and text.
+#: ../dependencies/ggz-gtk/roominfo.c:110
+msgid "Room Description:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roominfo.c:155
+msgid "This room has no game"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roominfo.c:175
+#, fuzzy
+msgid "Unknown room"
+msgstr "Neznámá barva"
+
+#: ../dependencies/ggz-gtk/roomlist.c:73
+msgid "You can't join a room; you're not logged in"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roomlist.c:77
+#, fuzzy
+msgid "You're already in between rooms"
+msgstr "Prodleva mezi hody"
+
+#: ../dependencies/ggz-gtk/roomlist.c:82
+msgid "You can't switch rooms while playing a game"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roomlist.c:89
+#, fuzzy
+msgid "Unknown error"
+msgstr "Neznámá barva"
+
+#. If we get here, there was an error
+#: ../dependencies/ggz-gtk/roomlist.c:109
+#: ../dependencies/ggz-gtk/roomlist.c:114
+msgid "Error joining room"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roomlist.c:350
+msgid "Other Rooms"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roomlist.c:424
+#, fuzzy
+msgid "Room"
+msgstr "Řím"
+
+#: ../dependencies/ggz-gtk/launch.c:114
+#, fuzzy, c-format
+msgid "Game Type:  %s"
+msgstr "Typ hry"
+
+#: ../dependencies/ggz-gtk/launch.c:120
+#, c-format
+msgid "Author:  %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:127
+#, c-format
+msgid "Description:  %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:133
+#, c-format
+msgid "Home Page:  %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:289
+msgid ""
+"Failed to launch table.\n"
+" Launch aborted."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:325
+msgid "Invalid number of bots specified"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:334 ../dependencies/ggz-gtk/client.c:585
+#: ../dependencies/ggz-gtk/client.c:626
+msgid "Error launching game module."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:420
+msgid "Seat Assignments"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:443
+#, fuzzy
+msgid "Game Type:"
+msgstr "Typ hry"
+
+#: ../dependencies/ggz-gtk/launch.c:479
+#, fuzzy
+msgid "Number of seats"
+msgstr "Počet min"
+
+#: ../dependencies/ggz-gtk/launch.c:513
+#, fuzzy
+msgid "Description:"
+msgstr "Škorpión"
+
+#: ../dependencies/ggz-gtk/launch.c:586
+#, c-format
+msgid "Seat %d:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:598
+#, fuzzy
+msgid "Computer"
+msgstr "Úplná"
+
+#: ../dependencies/ggz-gtk/launch.c:613
+#, fuzzy
+msgid "Open"
+msgstr "Operace"
+
+#: ../dependencies/ggz-gtk/launch.c:628
+#, fuzzy
+msgid "Reserved for"
+msgstr "Zbylá rezerva:"
+
+#: ../dependencies/ggz-gtk/launch.c:663
+msgid "Game Description   "
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:693 ../dependencies/ggz-gtk/client.c:978
+#: ../dependencies/ggz-gtk/client.c:1133
+msgid "Launch"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:144
+#, fuzzy
+msgid "Are you sure you want to quit?"
+msgstr "Už se používá! Kam to chcete dát?"
+
+#: ../dependencies/ggz-gtk/client.c:144
+msgid "Quit?"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:237
+msgid ""
+"Server stats are not implemented yet. If\n"
+"you would like to help head over to\n"
+"http://www.ggzgamingzone.org/"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:248 ../dependencies/ggz-gtk/client.c:545
+msgid ""
+"Player stats are not implemented yet. If\n"
+"you would like to help head over to\n"
+"http://www.ggzgamingzone.org/"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:294
+msgid ""
+"GGZ Gaming Zone help needs a browser to be configured.\n"
+"The configuration dialog will be invoked now."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:308
+msgid ""
+"Inline game help is not implemented yet. Help\n"
+"is on our website. If\n"
+"you would like to help head over to\n"
+"http://www.ggzgamingzone.org/"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:566
+msgid "You must highlight a table before you can join it."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:567 ../dependencies/ggz-gtk/client.c:576
+#: ../dependencies/ggz-gtk/client.c:615
+msgid "Error Joining"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:576 ../dependencies/ggz-gtk/client.c:614
+msgid "That table is full."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:600
+msgid "You must highlight a table before you can watch it."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:602
+msgid "Error Spectating"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:647
+msgid ""
+"Failed to join table.\n"
+"Join aborted."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:648
+msgid "Join Error"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:678
+msgid "Disconnect from the GGZ Gaming Zone server"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:680
+msgid "Start playing a game at a new table"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:682 ../glchess/glade/glchess.glade.h:14
+#, fuzzy
+msgid "Join an existing game"
+msgstr "Připojit se k místní hře"
+
+#: ../dependencies/ggz-gtk/client.c:684
+msgid "Watch an existing game - become a spectator of the table"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:687
+msgid "Leave the game you're currently playing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:689
+msgid "Show the properties dialog to change the client settings"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:693
+msgid "Show the game stats for the current room's game type"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:696
+msgid "Exit the GGZ client application."
+msgstr ""
+
+#. Print out client information
+#: ../dependencies/ggz-gtk/client.c:726
+#, c-format
+msgid "Client Version:14 %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:729
+#, c-format
+msgid "GTK+ Version:14 %d.%d.%d\n"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:736
+msgid "Compiled with debugging."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:934
+msgid "GGZ"
+msgstr ""
+
+#. We should use gtk_tool_button_new_from_stock but for some reason
+#. * the connect and disconnect stock items don't have text included.
+#: ../dependencies/ggz-gtk/client.c:949 ../dependencies/ggz-gtk/client.c:1180
+#, fuzzy
+msgid "Disconnect"
+msgstr "_Připojit"
+
+#: ../dependencies/ggz-gtk/client.c:962
+msgid "Quit"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:992 ../dependencies/ggz-gtk/client.c:1149
+#, fuzzy
+msgid "Watch"
+msgstr "_Čekat"
+
+#: ../dependencies/ggz-gtk/client.c:1011
+msgid "Edit"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1019
+msgid "Properties"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1026
+#, fuzzy
+msgid "View"
+msgstr "_Zobrazit"
+
+#: ../dependencies/ggz-gtk/client.c:1035
+msgid "Room List"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1041
+#, fuzzy
+msgid "Player List"
+msgstr "Hráči"
+
+#: ../dependencies/ggz-gtk/client.c:1053
+msgid "Server Stats"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1057
+#, fuzzy
+msgid "Player Stats"
+msgstr "Jména hráčů"
+
+#: ../dependencies/ggz-gtk/client.c:1074 ../dependencies/ggz-gtk/props.c:1491
+msgid "MOTD"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1081
+#, fuzzy
+msgid "Help"
+msgstr "_Nápověda"
+
+#: ../dependencies/ggz-gtk/client.c:1096
+#, fuzzy
+msgid "Copyright"
+msgstr "Pohyb doprava"
+
+#: ../dependencies/ggz-gtk/client.c:1105
+#, fuzzy
+msgid "GGZ Help"
+msgstr "_Nápověda"
+
+#: ../dependencies/ggz-gtk/client.c:1112
+#, fuzzy
+msgid "Game Help"
+msgstr "Pole hry"
+
+#: ../dependencies/ggz-gtk/client.c:1121
+msgid "Goto Web"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1295
+#, fuzzy
+msgid "Send"
+msgstr "Rychlost"
+
+#. Display a status Message
+#: ../dependencies/ggz-gtk/props.c:249
+msgid "Properties Updated"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1035
+msgid "Confirm:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1085
+msgid "Modify"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1099
+#, fuzzy
+msgid "Servers"
+msgstr "Skóre"
+
+#: ../dependencies/ggz-gtk/props.c:1118
+msgid "Chat Font:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1134
+#, fuzzy
+msgid "Change"
+msgstr "Oranžová"
+
+#: ../dependencies/ggz-gtk/props.c:1147
+msgid "Ignore Join/Part Messages"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1155
+#, fuzzy
+msgid "Play Sounds"
+msgstr "Zvuk"
+
+#: ../dependencies/ggz-gtk/props.c:1163
+msgid "Auto Indent"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1171
+msgid "Timestamp Chats"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1179
+msgid "Word Wrap"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1187
+#, fuzzy
+msgid "Chat Color"
+msgstr "Barvy"
+
+#: ../dependencies/ggz-gtk/props.c:1236
+msgid "Default chat color assigned to your friends"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1245
+msgid "Chat color used when your name is typed"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1254
+msgid "Chat color used for all other chats"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1263
+#, fuzzy
+msgid "Normal Color"
+msgstr "Barva _červa:"
+
+#: ../dependencies/ggz-gtk/props.c:1274
+msgid "Highlight Color"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1285
+msgid "Friend Color"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1296
+#, fuzzy
+msgid "Black Background"
+msgstr "Blackjack"
+
+#: ../dependencies/ggz-gtk/props.c:1305
+#, fuzzy
+msgid "White Background"
+msgstr "Barva pozadí"
+
+#: ../dependencies/ggz-gtk/props.c:1314
+#, fuzzy
+msgid "Chat"
+msgstr "Koberec"
+
+#: ../dependencies/ggz-gtk/props.c:1326
+msgid "All of the following information is optional."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1344 ../glchess/glade/new_game.glade.h:16
+#, fuzzy
+msgid "Name:"
+msgstr "Název"
+
+#: ../dependencies/ggz-gtk/props.c:1371
+msgid "City:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1392
+#, fuzzy
+msgid "State:"
+msgstr "Stav"
+
+#: ../dependencies/ggz-gtk/props.c:1413
+#, fuzzy
+msgid "Country:"
+msgstr "_Ovládání"
+
+#: ../dependencies/ggz-gtk/props.c:1428
+msgid "Comments, Hobies, Etc."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1450
+#, fuzzy
+msgid "User Information"
+msgstr "Používat rychlé animace"
+
+#: ../dependencies/ggz-gtk/props.c:1459
+msgid "Browser to launch URLs with:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1486
+msgid "Single Click Room Entry"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1500
+msgid "Display All"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1509
+msgid "Display New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1518
+#, fuzzy
+msgid "Display Important"
+msgstr "Zobrazovat pravděpodobnosti"
+
+#: ../dependencies/ggz-gtk/props.c:1527
+#, fuzzy
+msgid "Display None"
+msgstr "Zobrazovat pravděpodobnosti"
+
+#. Options
+#: ../dependencies/ggz-gtk/props.c:1536 ../gnibbles/preferences.c:288
+#: ../gnibbles/preferences.c:414 ../gnobots2/properties.c:486
+#: ../iagno/properties.c:639
+msgid "Options"
+msgstr "Nastavení"
+
+#: ../dependencies/ggz-gtk/props.c:1625
+#, fuzzy
+msgid "Select Font"
+msgstr "Vybrat hru"
+
+#: ../glchess/glade/about.glade.h:1
+msgid "A 2D/3D chess interface for Gnome"
+msgstr ""
+
+#: ../glchess/glade/about.glade.h:2
+msgid "glChess homepage"
+msgstr ""
+
+#: ../glchess/glade/ai.glade.h:1
+#, fuzzy
+msgid "Communication:"
+msgstr "Animace"
+
+#: ../glchess/glade/ai.glade.h:2
+msgid "Executable:"
+msgstr ""
+
+#: ../glchess/glade/ai.glade.h:3
+#, fuzzy
+msgid "Playing as:"
 msgstr "Jednoduché"
 
-#: ../gataxx/properties.c:363
-msgid "Medium"
-msgstr "Střední"
+#: ../glchess/glade/save_game.glade.h:1
+#, fuzzy
+msgid "Save chess game"
+msgstr "Vyřešit hru"
 
-#. Appearance tab
-#: ../gataxx/properties.c:374 ../gataxx/properties.c:377
-#: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:569
-#: ../iagno/properties.c:616
-msgid "Appearance"
-msgstr "Vzhled"
+#: ../glchess/glade/load_game.glade.h:1
+#, fuzzy
+msgid "Load a chess game"
+msgstr "Začít novou hru"
 
-#. animation button
-#: ../gataxx/properties.c:383
-msgid "_Animation"
-msgstr "_Animace"
+#: ../glchess/glade/glchess.glade.h:1
+#, fuzzy
+msgid "<b>Chess Pieces</b>"
+msgstr "<b>Výhry</b>"
 
-#: ../gataxx/properties.c:387
-msgid "Flip the pieces with some visual effects"
-msgstr "Obracet kameny s vizuálními efekty"
+#: ../glchess/glade/glchess.glade.h:2
+#, fuzzy
+msgid "<b>Initial Game</b>"
+msgstr "<b>Čas</b>"
 
-#: ../gataxx/properties.c:392 ../iagno/properties.c:685
-#: ../mahjongg/mahjongg.c:761
-msgid "_Tile set:"
-msgstr "_Sada kamenů:"
+#: ../glchess/glade/glchess.glade.h:3
+#, fuzzy
+msgid "AI Information"
+msgstr "Animace"
 
-#: ../gataxx/properties.c:397
-msgid "The appearance of the pieces"
-msgstr "Vzhled kamenů"
+#: ../glchess/glade/glchess.glade.h:4
+msgid "Animate moving pieces"
+msgstr ""
 
-#. GstElement *sound_player;
-#: ../glines/glines.c:74 ../glines/glines.c:78 ../gnomine/gnomine.c:86
-#: ../gnomine/gnomine.c:649 ../same-gnome/same-gnome.c:49
-msgid "Small"
-msgstr "Malé"
+#: ../glchess/glade/glchess.glade.h:5 ../iagno/properties.c:606
+msgid "Animation"
+msgstr "Animace"
 
-#: ../glines/glines.c:75 ../glines/glines.c:79
-msgid "glines|Medium"
-msgstr "Střední"
+#: ../glchess/glade/glchess.glade.h:6
+msgid "Artifical Intelligence"
+msgstr ""
 
-#: ../glines/glines.c:76 ../glines/glines.c:80 ../gnomine/gnomine.c:88
-#: ../gnomine/gnomine.c:671 ../same-gnome/same-gnome.c:51
-msgid "Large"
-msgstr "Velké"
+#: ../glchess/glade/glchess.glade.h:7
+#, fuzzy
+msgid "End Game"
+msgstr "U_končit hru"
 
-#: ../glines/glines.c:190
-msgid "Could not load theme"
-msgstr "Nemohu načíst motiv"
+#: ../glchess/glade/glchess.glade.h:8 ../libgames-support/games-stock.c:124
+msgid "End the current game"
+msgstr "Ukončit aktuální hru"
 
-#: ../glines/glines.c:195 ../mahjongg/mahjongg.c:142
+#: ../glchess/glade/glchess.glade.h:9
+#, fuzzy
+msgid "Graphics"
+msgstr "Grafika:"
+
+#: ../glchess/glade/glchess.glade.h:10
+#, fuzzy
+msgid "Human versus AI"
+msgstr "Lidští hráči"
+
+#: ../glchess/glade/glchess.glade.h:11
+msgid "Human versus human"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:12
+msgid "If no previous game loaded then start with:"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:13 ../glchess/glade/new_game.glade.h:13
+#, fuzzy
+msgid "Join Game"
+msgstr "U_končit hru"
+
+#: ../glchess/glade/glchess.glade.h:15
+#, fuzzy
+msgid "Load a saved game"
+msgstr "Začít novou hru"
+
+#: ../glchess/glade/glchess.glade.h:16
+#, fuzzy
+msgid "Models:"
+msgstr "Tahů: %d"
+
+#: ../glchess/glade/glchess.glade.h:17 ../glchess/glade/new_game.glade.h:17
+#: ../gnome-sudoku/glade/new_game.glade.h:5 games-scores-dialog.gob:546
+#: ../libgames-support/games-scores-dialog.gob:546
+msgid "New Game"
+msgstr "Nová hra"
+
+#: ../glchess/glade/glchess.glade.h:18
+msgid "New piece sets can be installed by dragging them into this window"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:19
+#, fuzzy
+msgid "No game"
+msgstr "Název"
+
+#: ../glchess/glade/glchess.glade.h:20 ../glines/glines.c:203
+#: ../mahjongg/mahjongg.c:145
 msgid "Preferences"
 msgstr "Nastavení"
 
-#: ../glines/glines.c:219
+#: ../glchess/glade/glchess.glade.h:21
+msgid "Quality:"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:22
+#, fuzzy
+msgid "Rewind to the game start"
+msgstr "Začala nová hra"
+
+#: ../glchess/glade/glchess.glade.h:23
+msgid "Rotate board to face human player:"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:24
+#, fuzzy
+msgid "Save the current game"
+msgstr "Ukončit aktuální hru"
+
+#: ../glchess/glade/glchess.glade.h:25
+#, fuzzy
+msgid "Show the current move"
+msgstr "Ukončit aktuální hru"
+
+#: ../glchess/glade/glchess.glade.h:26
+#, fuzzy
+msgid "Show the next move"
+msgstr "Zopakovat vrácený tah"
+
+#: ../glchess/glade/glchess.glade.h:27
+#, fuzzy
+msgid "Show the previous move"
+msgstr "Vrátit poslední tah"
+
+#: ../glchess/glade/glchess.glade.h:29
+#, fuzzy
+msgid "Start with unfinished games"
+msgstr "Začít novou hru"
+
+#: ../glchess/glade/glchess.glade.h:30
+#, fuzzy
+msgid "Startup"
+msgstr "Stav"
+
+#: ../glchess/glade/glchess.glade.h:31
+msgid "Summary"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:33
+msgid "There are not artificial intelligences in use"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:34
+msgid "_3D"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:35
+#, fuzzy
+msgid "_AI Information"
+msgstr "_Animace"
+
+#: ../glchess/glade/glchess.glade.h:36
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:200
+#: ../libgames-support/games-stock.c:58
+msgid "_Contents"
+msgstr "_Obsah"
+
+#: ../glchess/glade/glchess.glade.h:37 ../libgames-support/games-stock.c:57
+msgid "_End Game"
+msgstr "U_končit hru"
+
+#: ../glchess/glade/glchess.glade.h:40
+#, fuzzy
+msgid "_History"
+msgstr "_Hit"
+
+#: ../glchess/glade/glchess.glade.h:41
+#, fuzzy
+msgid "_Join Game"
+msgstr "U_končit hru"
+
+#: ../glchess/glade/new_game.glade.h:1
+msgid "<b>Black Player</b>"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:2
+msgid "<b>Game Properties</b>"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:3
+#, fuzzy
+msgid "<b>Game to Join</b>"
+msgstr "<b>Výhry</b>"
+
+#: ../glchess/glade/new_game.glade.h:4
+msgid "<b>Local Player</b>"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:5
+#, fuzzy
+msgid "<b>White Player</b>"
+msgstr "<b>Výhry</b>"
+
+#: ../glchess/glade/new_game.glade.h:6
+msgid "Allow Spectators:"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:7
+msgid "Allow remote clients to watch this game"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:8
+#, fuzzy
+msgid "Black"
+msgstr "Bloky"
+
+#: ../glchess/glade/new_game.glade.h:9
+msgid "Difficulty:"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:10
+#, fuzzy
+msgid "Enter the title for this game"
+msgstr "Zobrazit nápovědu o této hře"
+
+#: ../glchess/glade/new_game.glade.h:11
+msgid "Find Servers"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:12
+#, fuzzy
+msgid "Game name:"
+msgstr "_Název hry:"
+
+#: ../glchess/glade/new_game.glade.h:14
+#, fuzzy
+msgid "Local chess game"
+msgstr "_Místní hry:"
+
+#: ../glchess/glade/new_game.glade.h:15
+#, fuzzy
+msgid "Local chess player"
+msgstr "Úroveň bílého hráče"
+
+#: ../glchess/glade/new_game.glade.h:18
+msgid "Servers:"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:19
+msgid "Start the game. The game can be started once all fields are complete"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:20
+msgid "The hostname/IP address to search for servers on"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:21
+#, fuzzy
+msgid "Type:"
+msgstr "Čas:"
+
+#: ../glchess/glade/new_game.glade.h:22
+#, fuzzy
+msgid "White"
+msgstr "Mazánek"
+
+#: ../glchess/glade/new_game.glade.h:23
+#, fuzzy
+msgid "_Join"
+msgstr "Spojené"
+
+#: ../glchess/glade/new_game.glade.h:24
+#, fuzzy
+msgid "_Start"
+msgstr "_Restartovat"
+
+#: ../glchess/glade/network_game.glade.h:1
+#, fuzzy
+msgid "<b>Players</b>"
+msgstr "Hráči"
+
+#: ../glchess/glade/network_game.glade.h:2
+msgid "<b>Status / Chat</b>"
+msgstr ""
+
+#: ../glchess/glade/network_game.glade.h:3
+#, fuzzy
+msgid "Black Player:"
+msgstr "Hráč"
+
+#: ../glchess/glade/network_game.glade.h:4
+#, fuzzy
+msgid "Ready"
+msgstr "Červená"
+
+#: ../glchess/glade/network_game.glade.h:5
+#, fuzzy
+msgid "Waiting for players"
+msgstr "Čekat na roboty"
+
+#: ../glchess/glade/network_game.glade.h:6
+#, fuzzy
+msgid "White Player:"
+msgstr "Hráč"
+
+#: ../glchess/src/lib/defaults.py:13
+msgid "glChess"
+msgstr ""
+
+#: ../glchess/src/lib/gtkui/gtkui.py:233
+#, fuzzy
+msgid "Game Start"
+msgstr "Konec hry"
+
+#: ../glchess/src/lib/gtkui/gtkui.py:511 ../gnect/src/prefs.c:352
+#: ../gtali/gyahtzee.c:760 ../gtali/yahtzee.c:60 ../iagno/properties.c:521
+#: ../iagno/properties.c:562
+msgid "Human"
+msgstr "Člověk"
+
+#. GstElement *sound_player;
+#: ../glines/glines.c:75 ../glines/glines.c:80 ../gnomine/gnomine.c:86
+#: ../gnomine/gnomine.c:654 ../same-gnome/same-gnome.c:54
+msgid "Small"
+msgstr "Malé"
+
+#: ../glines/glines.c:76 ../glines/glines.c:81
+msgid "glines|Medium"
+msgstr "Střední"
+
+#: ../glines/glines.c:77 ../glines/glines.c:82 ../gnomine/gnomine.c:88
+#: ../gnomine/gnomine.c:673 ../same-gnome/same-gnome.c:56
+msgid "Large"
+msgstr "Velké"
+
+#: ../glines/glines.c:197
+msgid "Could not load theme"
+msgstr "Nemohu načíst motiv"
+
+#: ../glines/glines.c:229
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -2272,7 +3768,7 @@ msgstr ""
 "\n"
 "Bude místo něj načten implicitní motiv."
 
-#: ../glines/glines.c:228
+#: ../glines/glines.c:241
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -2285,77 +3781,74 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím, že je Pět nebo víc správně nainstalováno."
 
-#: ../glines/glines.c:422
+#: ../glines/glines.c:436
 msgid "Match five objects of the same type in a row to score!"
 msgstr "Seřazením pěti objektů stejného typu do řady získáte body!"
 
-#: ../glines/glines.c:487
+#: ../glines/glines.c:497
 msgid "GNOME Five or More"
 msgstr "GNOME Pět nebo víc"
 
-#: ../glines/glines.c:489
+#: ../glines/glines.c:499
 msgid "Board Size:"
 msgstr "Velikost desky:"
 
-#: ../glines/glines.c:517
+#: ../glines/glines.c:526
 msgid "Game Over!"
 msgstr "Konec hry!"
 
 #. Can't move there!
-#: ../glines/glines.c:678
+#: ../glines/glines.c:685
 msgid "You can't move there!"
 msgstr "Tam nemůžete táhnout!"
 
-#: ../glines/glines.c:1221 ../glines/glines.c:1921
+#: ../glines/glines.c:1218 ../glines/glines.c:1221 ../glines/glines.c:1879
 #: ../glines/glines.desktop.in.h:1
 msgid "Five or More"
 msgstr "Pět nebo víc"
 
-#: ../glines/glines.c:1223
+#: ../glines/glines.c:1224
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "Port kdysi známé hry Barevné linie pro prostředí GNOME"
 
-#: ../glines/glines.c:1429
+#: ../glines/glines.c:1422
 msgid "Five or More Preferences"
 msgstr "Nastavení Pět nebo víc"
 
-#: ../glines/glines.c:1450
+#: ../glines/glines.c:1442
 msgid "Themes"
 msgstr "Motivy"
 
-#: ../glines/glines.c:1459
+#: ../glines/glines.c:1450
 msgid "_Image:"
 msgstr "_Obrázek:"
 
-#: ../glines/glines.c:1470
+#: ../glines/glines.c:1461
 msgid "B_ackground color:"
 msgstr "Barva _pozadí:"
 
-#: ../glines/glines.c:1485
+#: ../glines/glines.c:1476
 msgid "Board Size"
 msgstr "Velikost desky"
 
-#: ../glines/glines.c:1492 ../same-gnome/ui.c:444
+#: ../glines/glines.c:1482 ../same-gnome/ui.c:478
 msgid "_Small"
 msgstr "_Malá"
 
-#: ../glines/glines.c:1502 ../same-gnome/ui.c:445
+#: ../glines/glines.c:1491 ../gnome-sudoku/glade/puzzle_generator.glade.h:17
+#: ../same-gnome/ui.c:479
 msgid "_Medium"
 msgstr "_Střední"
 
-#: ../glines/glines.c:1512 ../same-gnome/ui.c:446
+#: ../glines/glines.c:1500 ../same-gnome/ui.c:480
 msgid "_Large"
 msgstr "_Velká"
 
-#: ../glines/glines.c:1520
-msgid "General"
-msgstr "Obecné"
-
-#: ../glines/glines.c:1528
+#: ../glines/glines.c:1515
 msgid "_Use fast moves"
 msgstr "Používat _rychlé tahy"
 
-#: ../glines/glines.c:1951
+#: ../glines/glines.c:1910
 msgid "Next:"
 msgstr "Následující:"
 
@@ -2408,7 +3901,8 @@ msgid "Playing field size"
 msgstr "Velikost hracího pole"
 
 #: ../glines/glines.schemas.in.h:12
-msgid "Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
+msgid ""
+"Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
 msgstr ""
 "Velikost hracího pole. 1=malá, 2=střední, 3=velká. Jiné hodnoty nejsou "
 "platné."
@@ -2421,8 +3915,8 @@ msgstr "Čas mezi tahy"
 msgid "Time between moves in milliseconds."
 msgstr "Čas mezi tahy v milisekundách."
 
-#: ../gnect/data/gnect.desktop.in.h:1 ../gnect/src/main.c:817
-#: ../gnect/src/main.c:1255
+#: ../gnect/data/gnect.desktop.in.h:1 ../gnect/src/main.c:911
+#: ../gnect/src/main.c:914 ../gnect/src/main.c:1427
 msgid "Four-in-a-Row"
 msgstr "Čtyři-v-řadě"
 
@@ -2434,6 +3928,10 @@ msgstr "Soutěžit ve tvorbě úseček stejné barvy"
 #: ../gnect/data/gnect.schemas.in.h:1
 msgid "A number specifying the preferred theme."
 msgstr "Číslo určující preferovaný motiv."
+
+#: ../gnect/data/gnect.schemas.in.h:2
+msgid "Animate"
+msgstr "Animace"
 
 #: ../gnect/data/gnect.schemas.in.h:3
 msgid "Drop marble"
@@ -2501,7 +3999,13 @@ msgstr "Jestli se má použít animace."
 msgid "Width of the main window"
 msgstr "Šířka hlavního okna"
 
-#: ../gnect/src/gfx.c:264
+#: ../gnect/data/gnect.schemas.in.h:19
+msgid ""
+"Zero is human; one through three correspond to the level of the computer "
+"player."
+msgstr "Nula znamená člověk; jedna až tři odpovídá úrovni počítačového hráče."
+
+#: ../gnect/src/gfx.c:263
 #, c-format
 msgid ""
 "Unable to load image:\n"
@@ -2510,58 +4014,77 @@ msgstr ""
 "Nemohu načíst obrázek:\n"
 "%s"
 
-#: ../gnect/src/main.c:526
+#: ../gnect/src/ggz-network.c:115
+msgid "A network error has occured."
+msgstr ""
+
+#: ../gnect/src/ggz-network.c:129 ../iagno/ggz-network.c:94
+msgid "Waiting for an opponent to join the game."
+msgstr ""
+
+#: ../gnect/src/ggz-network.c:245 ../gnibbles/ggz-network.c:359
+#, c-format
+msgid "Welcome to a network game of %s."
+msgstr ""
+
+#: ../gnect/src/ggz-network.c:284 ../gnibbles/ggz-network.c:397
+#: ../gnome-sudoku/src/lib/game_selector.py:241 ../iagno/ggz-network.c:313
+msgid "Player"
+msgstr "Hráč"
+
+#: ../gnect/src/main.c:567
 msgid "It's a draw!"
 msgstr "Je to nerozhodně!"
 
-#: ../gnect/src/main.c:534
+#: ../gnect/src/main.c:581
 msgid "You win!"
 msgstr "Vyhráli jste!"
 
-#: ../gnect/src/main.c:535
-msgid "Your move..."
+#: ../gnect/src/main.c:583 ../gnect/src/main.c:616
+#, fuzzy
+msgid "It is your move."
 msgstr "Váš tah..."
 
-#: ../gnect/src/main.c:538
+#: ../gnect/src/main.c:586
 msgid "I win!"
 msgstr "Vyhrál jsem!"
 
-#: ../gnect/src/main.c:539 ../gnect/src/main.c:632
+#: ../gnect/src/main.c:588 ../gnect/src/main.c:721
 msgid "Thinking..."
 msgstr "Přemýšlím..."
 
-#: ../gnect/src/main.c:547
+#: ../gnect/src/main.c:609 ../gnect/src/main.c:613
 #, c-format
 msgid "%s wins!"
 msgstr "%s vyhrál!"
 
-#: ../gnect/src/main.c:548
+#: ../gnect/src/main.c:619
 #, c-format
-msgid "%s..."
-msgstr "%s..."
+msgid "Waiting for %s to move."
+msgstr ""
 
-#: ../gnect/src/main.c:650
+#: ../gnect/src/main.c:738
 #, c-format
 msgid "Hint: Column %d"
 msgstr "Rada: Sloupec %d"
 
-#: ../gnect/src/main.c:677 ../gnect/src/main.c:682
+#: ../gnect/src/main.c:766 ../gnect/src/main.c:770
 msgid "You:"
 msgstr "Vy:"
 
-#: ../gnect/src/main.c:678 ../gnect/src/main.c:681
+#: ../gnect/src/main.c:767 ../gnect/src/main.c:769
 msgid "Me:"
 msgstr "Já:"
 
-#: ../gnect/src/main.c:728
+#: ../gnect/src/main.c:815
 msgid "Scores"
 msgstr "Skóre"
 
-#: ../gnect/src/main.c:775
+#: ../gnect/src/main.c:866
 msgid "Drawn:"
 msgstr "Nerozhodně:"
 
-#: ../gnect/src/main.c:821
+#: ../gnect/src/main.c:920
 msgid ""
 "\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -2569,7 +4092,7 @@ msgstr ""
 "Hra \"Čtyři v řadě\" pro GNOME s počítačovým hráčem řízeným systémem Velena "
 "od Giuliano Bertolettiho."
 
-#: ../gnect/src/prefs.c:157
+#: ../gnect/src/prefs.c:161
 #, c-format
 msgid ""
 "Player One:\n"
@@ -2578,7 +4101,7 @@ msgstr ""
 "Hráč 1:\n"
 "%s"
 
-#: ../gnect/src/prefs.c:161
+#: ../gnect/src/prefs.c:165
 #, c-format
 msgid ""
 "Player Two:\n"
@@ -2587,39 +4110,44 @@ msgstr ""
 "Hráč 2:\n"
 "%s"
 
-#: ../gnect/src/prefs.c:328 ../iagno/properties.c:536
-#: ../iagno/properties.c:582
+#: ../gnect/src/prefs.c:354 ../iagno/properties.c:530
+#: ../iagno/properties.c:571
 msgid "Level one"
 msgstr "První úroveň"
 
-#: ../gnect/src/prefs.c:330 ../iagno/properties.c:546
-#: ../iagno/properties.c:592
+#: ../gnect/src/prefs.c:356 ../iagno/properties.c:539
+#: ../iagno/properties.c:580
 msgid "Level two"
 msgstr "Druhá úroveň"
 
-#: ../gnect/src/prefs.c:332 ../iagno/properties.c:556
-#: ../iagno/properties.c:603
+#: ../gnect/src/prefs.c:358 ../iagno/properties.c:548
+#: ../iagno/properties.c:589
 msgid "Level three"
 msgstr "Třetí úroveň"
 
-#: ../gnect/src/prefs.c:356
+#: ../gnect/src/prefs.c:382
 msgid "Four-in-a-Row Preferences"
 msgstr "Nastavení Čtyř-v-řadě"
 
-#: ../gnect/src/prefs.c:419
+#: ../gnect/src/prefs.c:436 ../gnobots2/properties.c:578
+#: ../iagno/properties.c:600
+msgid "Appearance"
+msgstr "Vzhled"
+
+#: ../gnect/src/prefs.c:445
 msgid "_Theme:"
 msgstr "_Motiv:"
 
-#: ../gnect/src/prefs.c:433
+#: ../gnect/src/prefs.c:460
 msgid "Enable _animation"
 msgstr "Povolit _animace"
 
-#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:866
+#: ../gnect/src/prefs.c:467 ../gnometris/tetris.cpp:866
 msgid "Controls"
 msgstr "Ovládání"
 
-#: ../gnect/src/prefs.c:444 ../gnibbles/preferences.c:379
-#: ../gnobots2/properties.c:576 ../gnometris/tetris.cpp:869
+#: ../gnect/src/prefs.c:471 ../gnibbles/preferences.c:393
+#: ../gnobots2/properties.c:585 ../gnometris/tetris.cpp:869
 msgid "Keyboard Controls"
 msgstr "Ovládání klávesnicí"
 
@@ -2628,18 +4156,26 @@ msgid "Classic"
 msgstr "Klasické"
 
 #: ../gnect/src/theme.c:47 ../gnect/src/theme.c:71 ../gnect/src/theme.c:79
-#: ../gnect/src/theme.c:87 ../gnibbles/preferences.c:418
+#: ../gnect/src/theme.c:87 ../gnibbles/preferences.c:433
 msgid "Red"
 msgstr "Červená"
 
 #: ../gnect/src/theme.c:47 ../gnect/src/theme.c:87
-#: ../gnibbles/preferences.c:421
+#: ../gnibbles/preferences.c:436
 msgid "Yellow"
 msgstr "Žlutá"
 
 #: ../gnect/src/theme.c:50
 msgid "High Contrast"
 msgstr "Vysoký kontrast"
+
+#: ../gnect/src/theme.c:55 ../gnect/src/theme.c:63 ../iagno/properties.c:557
+msgid "Light"
+msgstr "Bílé"
+
+#: ../gnect/src/theme.c:55 ../gnect/src/theme.c:63 ../iagno/properties.c:516
+msgid "Dark"
+msgstr "Černé"
 
 #: ../gnect/src/theme.c:58
 msgid "High Contrast Inverse"
@@ -2650,7 +4186,7 @@ msgid "Cream Marbles"
 msgstr "Smetanové kuličky"
 
 #: ../gnect/src/theme.c:71 ../gnect/src/theme.c:79 ../gnect/src/theme.c:95
-#: ../gnibbles/preferences.c:420
+#: ../gnibbles/preferences.c:435
 msgid "Blue"
 msgstr "Modrá"
 
@@ -2670,7 +4206,17 @@ msgstr "Bloky"
 msgid "Orange"
 msgstr "Oranžová"
 
-#: ../gnibbles/gnibbles.c:85
+#: ../gnibbles/ggz-network.c:134
+#, fuzzy, c-format
+msgid "%s joined the game.\n"
+msgstr "Hráč %s se připojil ke hře."
+
+#: ../gnibbles/ggz-network.c:142
+#, c-format
+msgid "The game ended because the host %s left the game.\n"
+msgstr ""
+
+#: ../gnibbles/gnibbles.c:93
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -2683,7 +4229,7 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím svou instalaci Gnibbles"
 
-#: ../gnibbles/gnibbles.c:234
+#: ../gnibbles/gnibbles.c:245
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -2696,24 +4242,24 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím svou instalaci Gnibbles"
 
-#: ../gnibbles/gnibbles.c:570
+#: ../gnibbles/gnibbles.c:597
 #, fuzzy
 msgid "Nibbles Scores"
 msgstr "Skóre min"
 
-#: ../gnibbles/gnibbles.c:571
+#: ../gnibbles/gnibbles.c:600
 msgid "Speed:"
 msgstr "Rychlost:"
 
-#: ../gnibbles/gnibbles.c:576 ../gnomine/gnomine.c:219
-#: ../gnotravex/gnotravex.c:990 ../mahjongg/mahjongg.c:697
-#: ../same-gnome/ui.c:172
+#: ../gnibbles/gnibbles.c:605 ../gnomine/gnomine.c:221
+#: ../gnotravex/gnotravex.c:1166 ../mahjongg/mahjongg.c:697
+#: ../same-gnome/ui.c:188
 msgid "Congratulations!"
 msgstr "Gratuluji!"
 
-#: ../gnibbles/gnibbles.c:577 ../gnomine/gnomine.c:220
-#: ../gnotravex/gnotravex.c:991 ../mahjongg/mahjongg.c:698
-#: ../same-gnome/ui.c:173
+#: ../gnibbles/gnibbles.c:606 ../gnomine/gnomine.c:222
+#: ../gnotravex/gnotravex.c:1167 ../mahjongg/mahjongg.c:698
+#: ../same-gnome/ui.c:189
 msgid "Your score has made the top ten."
 msgstr "Vaše skóre se dostalo mezi deset nejlepších."
 
@@ -2722,7 +4268,7 @@ msgid "Guide a worm around a maze"
 msgstr "Vést červa v bludišti"
 
 #: ../gnibbles/gnibbles.desktop.in.h:2 ../gnibbles/gnibbles.soundlist.in.h:6
-#: ../gnibbles/main.c:200
+#: ../gnibbles/main.c:238 ../gnibbles/main.c:241
 msgid "Nibbles"
 msgstr "Nibbles"
 
@@ -2774,7 +4320,8 @@ msgstr "Výška okna GNibbles"
 msgid ""
 "Height of the GNibbles window, used to restore the window size between "
 "sessions."
-msgstr "Výška okna GNibbles používaná pro obnovení velikosti okna mezi sezeními."
+msgstr ""
+"Výška okna GNibbles používaná pro obnovení velikosti okna mezi sezeními."
 
 #: ../gnibbles/gnibbles.schemas.in.h:13
 msgid "Key to use for motion down."
@@ -2840,7 +4387,8 @@ msgstr "Šířka okna GNibbles"
 msgid ""
 "Width of the GNibbles window, used to restore the window size between "
 "sessions."
-msgstr "Šířka okna GNibbles používaná pro obnovení velikosti okna mezi sezeními."
+msgstr ""
+"Šířka okna GNibbles používaná pro obnovení velikosti okna mezi sezeními."
 
 #: ../gnibbles/gnibbles.soundlist.in.h:1
 msgid "Bonus"
@@ -2874,143 +4422,120 @@ msgstr "Obrácení červa"
 msgid "Worm Teleport"
 msgstr "Teleport červa"
 
-#: ../gnibbles/main.c:48
+#: ../gnibbles/main.c:57
 msgid "Beginner"
 msgstr "Začátečník"
 
-#: ../gnibbles/main.c:49
+#: ../gnibbles/main.c:58
 #, fuzzy
 msgid "Slow"
 msgstr "Žlutá"
 
-#: ../gnibbles/main.c:50
+#: ../gnibbles/main.c:59
 #, fuzzy
 msgid "gnibbles|Medium"
 msgstr "Střední"
 
-#: ../gnibbles/main.c:51
+#: ../gnibbles/main.c:60
 #, fuzzy
 msgid "Fast"
 msgstr "Tváře:"
 
-#: ../gnibbles/main.c:52
+#: ../gnibbles/main.c:61
 msgid "Beginner with Fakes"
 msgstr ""
 
-#: ../gnibbles/main.c:53
+#: ../gnibbles/main.c:62
 msgid "Slow with Fakes"
 msgstr ""
 
-#: ../gnibbles/main.c:54
+#: ../gnibbles/main.c:63
 msgid "Medium with Fakes"
 msgstr ""
 
-#: ../gnibbles/main.c:55
+#: ../gnibbles/main.c:64
 msgid "Fast with Fakes"
 msgstr ""
 
-#: ../gnibbles/main.c:204
+#: ../gnibbles/main.c:246
 msgid "A worm game for GNOME."
 msgstr "Hra s červem pro GNOME."
 
-#: ../gnibbles/network.c:159 ../iagno/network.c:108
-msgid "Invalid move attempted"
-msgstr "Pokus o neplatný tah"
+#: ../gnibbles/main.c:649
+#, c-format
+msgid "Game over! The game has been won by %s!"
+msgstr ""
 
-#: ../gnibbles/network.c:164 ../gnibbles/network.c:178
-#: ../gnibbles/network.c:197 ../gnibbles/network.c:215
-#: ../gnibbles/network.c:225
-msgid "Invalid game data"
-msgstr "Neplatná data hry"
-
-#: ../gnibbles/network.c:170 ../iagno/network.c:121
-msgid "Peer introduction complete"
-msgstr "Představení souseda dokončeno."
-
-#: ../gnibbles/network.c:239 ../iagno/network.c:139
-msgid "New game ready to be started"
-msgstr "Nová hra je připravena ke startu"
-
-#: ../gnibbles/network.c:246 ../iagno/network.c:146
-msgid "New game started"
-msgstr "Začala nová hra"
-
-#: ../gnibbles/preferences.c:202
+#: ../gnibbles/preferences.c:218
 msgid "Nibbles Preferences"
 msgstr "Nastavení Nibbles"
 
-#: ../gnibbles/preferences.c:223
+#: ../gnibbles/preferences.c:238
 msgid "Speed"
 msgstr "Rychlost"
 
-#: ../gnibbles/preferences.c:232
+#: ../gnibbles/preferences.c:248
 msgid "Nibbles newbie"
 msgstr "Nováček v nibbles"
 
-#: ../gnibbles/preferences.c:242
+#: ../gnibbles/preferences.c:258
 msgid "My second day"
 msgstr "Můj druhý den"
 
-#: ../gnibbles/preferences.c:252
+#: ../gnibbles/preferences.c:268
 msgid "Not too shabby"
 msgstr "Ne moc špatný"
 
-#: ../gnibbles/preferences.c:263
+#: ../gnibbles/preferences.c:278
 msgid "Finger-twitching good"
 msgstr "Tak dobrý, že má křeč v prstech"
 
-#. Options
-#: ../gnibbles/preferences.c:274 ../gnibbles/preferences.c:398
-#: ../gnobots2/properties.c:483 ../iagno/properties.c:656
-msgid "Options"
-msgstr "Nastavení"
-
-#: ../gnibbles/preferences.c:280
+#: ../gnibbles/preferences.c:295
 msgid "_Play levels in random order"
 msgstr "_Hrát úrovně v náhodném pořadí"
 
-#: ../gnibbles/preferences.c:291
+#: ../gnibbles/preferences.c:305
 msgid "_Enable fake bonuses"
 msgstr "Povolit _falešné bonusy"
 
-#: ../gnibbles/preferences.c:302
+#: ../gnibbles/preferences.c:315
 msgid "E_nable sounds"
 msgstr "Povolit _zvuky"
 
 #. starting level
-#: ../gnibbles/preferences.c:316 ../gnometris/tetris.cpp:781
+#: ../gnibbles/preferences.c:328 ../gnometris/tetris.cpp:781
 msgid "_Starting level:"
 msgstr "_Počáteční úroveň:"
 
-#: ../gnibbles/preferences.c:344
+#: ../gnibbles/preferences.c:357
 msgid "N_umber of players:"
 msgstr "_Počet hráčů:"
 
-#: ../gnibbles/preferences.c:370
+#: ../gnibbles/preferences.c:384
 msgid "Worm"
 msgstr "Červ"
 
-#: ../gnibbles/preferences.c:405
+#: ../gnibbles/preferences.c:420
 msgid "_Use relative movement"
 msgstr "Používat _relativní pohyb"
 
-#: ../gnibbles/preferences.c:412
+#: ../gnibbles/preferences.c:427
 msgid "_Worm color:"
 msgstr "Barva _červa:"
 
-#: ../gnibbles/preferences.c:419
+#: ../gnibbles/preferences.c:434
 msgid "Green"
 msgstr "Zelená"
 
-#: ../gnibbles/preferences.c:422
+#: ../gnibbles/preferences.c:437
 msgid "Cyan"
 msgstr "Modrozelená"
 
-#: ../gnibbles/preferences.c:423
+#: ../gnibbles/preferences.c:438
 msgid "Purple"
 msgstr "Purpurová"
 
-#: ../gnibbles/preferences.c:424
+#: ../gnibbles/preferences.c:439
 msgid "Gray"
 msgstr "Šedá"
 
@@ -3019,17 +4544,17 @@ msgstr "Šedá"
 msgid "Worm %d:"
 msgstr "Červ %d:"
 
-#: ../gnobots2/game.c:143
+#: ../gnobots2/game.c:147
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "'%s' se super-bezpečnými pohyby"
 
-#: ../gnobots2/game.c:146
+#: ../gnobots2/game.c:150
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "'%s' s bezpečnými pohyby"
 
-#: ../gnobots2/game.c:370 ../gnobots2/game.c:385
+#: ../gnobots2/game.c:381 ../gnobots2/game.c:397
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -3038,15 +4563,15 @@ msgstr ""
 "Povede se vám to znovu?"
 
 #. This should never happen.
-#: ../gnobots2/game.c:1185
+#: ../gnobots2/game.c:1219
 msgid "There are no teleport locations left!!"
 msgstr "Nezbývá žádné umístění teleportu!!"
 
-#: ../gnobots2/game.c:1216
+#: ../gnobots2/game.c:1251
 msgid "You have run out of safe moves - the robots have won!"
 msgstr "Došly vám bezpečné tahy - roboti vyhráli!"
 
-#: ../gnobots2/game.c:1220
+#: ../gnobots2/game.c:1255
 msgid "There are no safe locations to teleport to!!"
 msgstr "Neexistují bezpečná umístění, kam se teleportovat!!"
 
@@ -3058,32 +4583,33 @@ msgstr "Nastavit scénář hry"
 msgid "Set game configuration"
 msgstr "Nastavit konfiguraci hry"
 
-#: ../gnobots2/gnobots.c:69 ../gnobots2/gnobots.c:70
+#: ../gnobots2/gnobots.c:70 ../gnobots2/gnobots.c:72
 msgid "Initial window position"
 msgstr "Počáteční poloha okna"
 
-#: ../gnobots2/gnobots.c:69 ../gnomine/gnomine.c:946 ../gnomine/gnomine.c:950
-#: ../gnotravex/gnotravex.c:269 ../gnotski/gnotski.c:689
-#: ../iagno/gnothello.c:105
+#: ../gnobots2/gnobots.c:70 ../gnomine/gnomine.c:962 ../gnomine/gnomine.c:970
+#: ../gnotravex/gnotravex.c:360 ../gnotski/gnotski.c:482
+#: ../iagno/gnothello.c:125
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:70 ../gnomine/gnomine.c:947 ../gnomine/gnomine.c:951
-#: ../gnotravex/gnotravex.c:271 ../gnotski/gnotski.c:691
-#: ../iagno/gnothello.c:107
+#: ../gnobots2/gnobots.c:72 ../gnomine/gnomine.c:964 ../gnomine/gnomine.c:972
+#: ../gnotravex/gnotravex.c:362 ../gnotski/gnotski.c:484
+#: ../iagno/gnothello.c:127
 msgid "Y"
 msgstr "Y"
 
-#: ../gnobots2/gnobots.c:194 ../gnobots2/gnobots2.desktop.in.h:2
-#: ../gnobots2/gnobots2.soundlist.in.h:6 ../gnobots2/menu.c:250
+#: ../gnobots2/gnobots.c:196 ../gnobots2/gnobots2.desktop.in.h:2
+#: ../gnobots2/gnobots2.soundlist.in.h:6 ../gnobots2/menu.c:256
+#: ../gnobots2/menu.c:259
 msgid "Robots"
 msgstr "Roboti"
 
-#: ../gnobots2/gnobots.c:258
+#: ../gnobots2/gnobots.c:260
 msgid "No game data could be found."
 msgstr "Nebyla nalezena data hry."
 
-#: ../gnobots2/gnobots.c:259
+#: ../gnobots2/gnobots.c:262
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
@@ -3091,11 +4617,11 @@ msgstr ""
 "Program Robots nemohl najít platné soubory nastavení hry. Zkontrolujte "
 "prosím, zda je program správně nainstalován."
 
-#: ../gnobots2/gnobots.c:275
+#: ../gnobots2/gnobots.c:281
 msgid "Some graphics files are missing or corrupt."
 msgstr "Některé soubory grafiky chybí nebo jsou poškozeny."
 
-#: ../gnobots2/gnobots.c:276
+#: ../gnobots2/gnobots.c:283
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
@@ -3122,7 +4648,8 @@ msgstr "Povolit rozmáčknutí"
 
 #: ../gnobots2/gnobots2.schemas.in.h:6
 msgid "Enable splats. Play a sound and show a \"Splat!\" on the screen."
-msgstr "Povolit rozmáčknutí. Přehraje zvuk a zobrazí na obrazovce \"Rozmáčknut!\"."
+msgstr ""
+"Povolit rozmáčknutí. Přehraje zvuk a zobrazí na obrazovce \"Rozmáčknut!\"."
 
 #: ../gnobots2/gnobots2.schemas.in.h:7
 msgid "Game type"
@@ -3193,11 +4720,14 @@ msgid "Show toolbar. A standard option for toolbars."
 msgstr "Zobrazovat lištu nástrojů. Standardní možnost lišt nástrojů."
 
 #: ../gnobots2/gnobots2.schemas.in.h:26
-msgid "The name of the key used to hold still. The name is a standard X key name."
-msgstr "Název klávesy používané pro stání. Název je standardní název klávesy v X."
+msgid ""
+"The name of the key used to hold still. The name is a standard X key name."
+msgstr ""
+"Název klávesy používané pro stání. Název je standardní název klávesy v X."
 
 #: ../gnobots2/gnobots2.schemas.in.h:27
-msgid "The name of the key used to move east. The name is a standard X key name."
+msgid ""
+"The name of the key used to move east. The name is a standard X key name."
 msgstr ""
 "Název klávesy používané pro pohyb doprava. Název je standardní název klávesy "
 "v X."
@@ -3219,7 +4749,8 @@ msgstr ""
 "klávesy v X."
 
 #: ../gnobots2/gnobots2.schemas.in.h:30
-msgid "The name of the key used to move north. The name is a standard X key name."
+msgid ""
+"The name of the key used to move north. The name is a standard X key name."
 msgstr ""
 "Název klávesy používané pro pohyb nahoru. Název je standardní název klávesy "
 "v X."
@@ -3241,13 +4772,15 @@ msgstr ""
 "klávesy v X."
 
 #: ../gnobots2/gnobots2.schemas.in.h:33
-msgid "The name of the key used to move south. The name is a standard X key name."
+msgid ""
+"The name of the key used to move south. The name is a standard X key name."
 msgstr ""
 "Název klávesy používané pro pohyb dolů. Název je standardní název klávesy v "
 "X."
 
 #: ../gnobots2/gnobots2.schemas.in.h:34
-msgid "The name of the key used to move west. The name is a standard X key name."
+msgid ""
+"The name of the key used to move west. The name is a standard X key name."
 msgstr ""
 "Název klávesy používané pro pohyb doleva. Název je standardní název klávesy "
 "v X."
@@ -3270,7 +4803,8 @@ msgstr ""
 
 #: ../gnobots2/gnobots2.schemas.in.h:37
 msgid "The name of the key used to wait. The name is a standard X key name."
-msgstr "Název klávesy používané pro čekání. Název je standardní název klávesy v X."
+msgstr ""
+"Název klávesy používané pro čekání. Název je standardní název klávesy v X."
 
 #: ../gnobots2/gnobots2.schemas.in.h:39
 msgid "Use safe moves"
@@ -3322,168 +4856,168 @@ msgstr "Robot byl rozmáčknut!"
 msgid "Victory!!"
 msgstr "Vítězství!!"
 
-#: ../gnobots2/graphics.c:149 ../iagno/gnothello.c:402
+#: ../gnobots2/graphics.c:150 ../iagno/gnothello.c:453
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Nelze nalézt soubor s bitmapou '%s'\n"
 
-#: ../gnobots2/menu.c:63 ../gnotravex/gnotravex.c:196
+#: ../gnobots2/menu.c:63 ../gnotravex/gnotravex.c:269
 msgid "_Move"
 msgstr "_Posunout"
 
-#: ../gnobots2/menu.c:69
+#: ../gnobots2/menu.c:70
 msgid "_Teleport"
 msgstr "_Teleport"
 
-#: ../gnobots2/menu.c:69
+#: ../gnobots2/menu.c:71
 msgid "Teleport, safely if possible"
 msgstr "Teleportovat se, pokud možno bezpečně"
 
-#: ../gnobots2/menu.c:70
+#: ../gnobots2/menu.c:72
 msgid "_Random"
 msgstr "_Náhodně"
 
-#: ../gnobots2/menu.c:70
+#: ../gnobots2/menu.c:73
 msgid "Teleport randomly"
 msgstr "Náhodně se teleportovat"
 
-#: ../gnobots2/menu.c:71
+#: ../gnobots2/menu.c:74
 msgid "_Wait"
 msgstr "_Čekat"
 
-#: ../gnobots2/menu.c:71
+#: ../gnobots2/menu.c:74
 msgid "Wait for the robots"
 msgstr "Čekat na roboty"
 
-#: ../gnobots2/menu.c:82 ../mahjongg/mahjongg.c:1326
+#: ../gnobots2/menu.c:89 ../mahjongg/mahjongg.c:1333
 msgid "Show or hide the toolbar"
 msgstr "Zobrazit nebo skrýt lištu nástrojů"
 
-#: ../gnobots2/menu.c:254
+#: ../gnobots2/menu.c:263
 msgid "Based on classic BSD Robots."
 msgstr "Založeno na klasických BSD robotech."
 
-#: ../gnobots2/properties.c:344
+#: ../gnobots2/properties.c:347
 msgid "classic robots"
 msgstr "klasičtí roboti"
 
-#: ../gnobots2/properties.c:345
+#: ../gnobots2/properties.c:348
 msgid "robots2"
 msgstr "roboti2"
 
-#: ../gnobots2/properties.c:346
+#: ../gnobots2/properties.c:349
 msgid "robots2 easy"
 msgstr "roboti2 snadní"
 
-#: ../gnobots2/properties.c:347
+#: ../gnobots2/properties.c:350
 msgid "robots with safe teleport"
 msgstr "roboti s bezpečným teleportem"
 
-#: ../gnobots2/properties.c:348
+#: ../gnobots2/properties.c:351
 msgid "nightmare"
 msgstr "noční můra"
 
-#: ../gnobots2/properties.c:384
+#: ../gnobots2/properties.c:387
 msgid "robots"
 msgstr "roboti"
 
-#: ../gnobots2/properties.c:385
+#: ../gnobots2/properties.c:388
 msgid "cows"
 msgstr "krávy"
 
-#: ../gnobots2/properties.c:386
+#: ../gnobots2/properties.c:389
 msgid "eggs"
 msgstr "vejce"
 
-#: ../gnobots2/properties.c:387
+#: ../gnobots2/properties.c:390
 msgid "gnomes"
 msgstr "trpaslíci"
 
-#: ../gnobots2/properties.c:388
+#: ../gnobots2/properties.c:391
 msgid "mice"
 msgstr "myši"
 
-#: ../gnobots2/properties.c:389
+#: ../gnobots2/properties.c:392
 msgid "ufo"
 msgstr "ufo"
 
-#: ../gnobots2/properties.c:390
+#: ../gnobots2/properties.c:393
 msgid "boo"
 msgstr "boo"
 
-#: ../gnobots2/properties.c:447
+#: ../gnobots2/properties.c:450
 msgid "Robots Preferences"
 msgstr "Nastavení Robots"
 
-#: ../gnobots2/properties.c:468
+#: ../gnobots2/properties.c:471
 msgid "Game Type"
 msgstr "Typ hry"
 
-#: ../gnobots2/properties.c:493
+#: ../gnobots2/properties.c:496
 msgid "_Use safe moves"
 msgstr "Používat _bezpečné pohyby"
 
-#: ../gnobots2/properties.c:500
+#: ../gnobots2/properties.c:503
 msgid "Prevent some dangerous moves"
 msgstr "Bránit některým nebezpečným tahům"
 
-#: ../gnobots2/properties.c:501
+#: ../gnobots2/properties.c:505
 msgid "Prevent accidental moves that result in getting killed."
 msgstr "Bránit náhodným tahům, které způsobí smrt."
 
-#: ../gnobots2/properties.c:503
+#: ../gnobots2/properties.c:507
 msgid "U_se super safe moves"
 msgstr "Používat _super-bezpečné pohyby"
 
-#: ../gnobots2/properties.c:509
+#: ../gnobots2/properties.c:514
 msgid "Prevent all dangerous moves"
 msgstr "Bránit všem nebezpečným tahům"
 
-#: ../gnobots2/properties.c:510
+#: ../gnobots2/properties.c:516
 msgid "Prevents all moves that result in getting killed."
 msgstr "Bránit všem tahům, které způsobí smrt."
 
-#: ../gnobots2/properties.c:512 ../gnometris/tetris.cpp:807
+#: ../gnobots2/properties.c:518 ../gnometris/tetris.cpp:807
 msgid "_Enable sounds"
 msgstr "_Povolit zvuky"
 
-#: ../gnobots2/properties.c:518
+#: ../gnobots2/properties.c:524
 msgid "Play sounds for major events"
 msgstr "Přehrávat zvuky pro hlavní události"
 
-#: ../gnobots2/properties.c:519
+#: ../gnobots2/properties.c:526
 msgid "Play sounds for events like winning a level and dying."
 msgstr "Přehrávat zvuky pro události jako výhra úrovně a smrt."
 
-#: ../gnobots2/properties.c:521
+#: ../gnobots2/properties.c:528
 msgid "E_nable splats"
 msgstr "Povolit _rozmáčknutí"
 
-#: ../gnobots2/properties.c:527
+#: ../gnobots2/properties.c:535
 msgid "Play a sound when two robots collide"
 msgstr "Přehrávat zvuk, když se dva roboti srazí"
 
-#: ../gnobots2/properties.c:528
+#: ../gnobots2/properties.c:537
 msgid "Play the most common, and potentially the most annoying, sound."
 msgstr "Přehrávat nejčastější a potenciálně nejvíce otravný zvuk."
 
-#: ../gnobots2/properties.c:538
+#: ../gnobots2/properties.c:547
 msgid "Graphics Theme"
 msgstr "Motiv grafiky"
 
-#: ../gnobots2/properties.c:546
+#: ../gnobots2/properties.c:555
 msgid "_Image theme:"
 msgstr "Motiv _obrázků:"
 
-#: ../gnobots2/properties.c:557 ../mahjongg/mahjongg.c:807
+#: ../gnobots2/properties.c:566 ../mahjongg/mahjongg.c:803
 msgid "_Background color:"
 msgstr "Barva _pozadí:"
 
-#: ../gnobots2/properties.c:603
+#: ../gnobots2/properties.c:611
 msgid "_Restore Defaults"
 msgstr "_Obnovit implicitní"
 
-#: ../gnobots2/properties.c:608
+#: ../gnobots2/properties.c:616
 msgid "Keyboard"
 msgstr "Klávesnice"
 
@@ -3500,6 +5034,8 @@ msgid "Remaining:"
 msgstr "Zbývá:"
 
 #: ../gnometris/field.cpp:227
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:176
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:215
 msgid "Paused"
 msgstr "Pozastaveno"
 
@@ -3508,7 +5044,7 @@ msgid "Fit falling blocks together"
 msgstr "Skládat padací bloky dohromady"
 
 #: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:179
-#: ../gnometris/tetris.cpp:1443
+#: ../gnometris/tetris.cpp:1442 ../gnometris/tetris.cpp:1445
 msgid "Gnometris"
 msgstr "Gnometris"
 
@@ -3617,7 +5153,8 @@ msgid "Whether to preview the next block."
 msgstr "Jestli zobrazovat náhled dalšího bloku."
 
 #: ../gnometris/gnometris.schemas.in.h:32
-msgid "Whether to provide a graphical representation of where a block will land."
+msgid ""
+"Whether to provide a graphical representation of where a block will land."
 msgstr "Jestli poskytovat grafické znázornění, kam blok padne."
 
 #: ../gnometris/gnometris.schemas.in.h:33
@@ -3643,6 +5180,10 @@ msgstr "Nastavte počáteční úroveň (1 nebo vyšší)"
 #: ../gnometris/main.cpp:38
 msgid "LEVEL"
 msgstr "ÚROVEŇ"
+
+#: ../gnometris/renderer.cpp:27
+msgid "Plain"
+msgstr "Jednoduché"
 
 #: ../gnometris/renderer.cpp:28
 msgid "Joined"
@@ -3694,11 +5235,16 @@ msgstr "_Rotovat bloky proti směru hodinových ručiček"
 msgid "Show _where the block will land"
 msgstr "Zobrazovat, _kam blok padne"
 
+#: ../gnometris/tetris.cpp:857 ../gnometris/tetris.cpp:890
+#: ../same-gnome/ui.c:315
+msgid "Theme"
+msgstr "Motiv"
+
 #: ../gnometris/tetris.cpp:893
 msgid "Block Style"
 msgstr "Styl bloků"
 
-#: ../gnometris/tetris.cpp:1445
+#: ../gnometris/tetris.cpp:1447
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: \n"
@@ -3712,7 +5258,746 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "Skóre Gnometris"
 
-#: ../gnomine/gnomine.c:87 ../gnomine/gnomine.c:660
+#: ../gnome-sudoku/glade/high_scores.glade.h:1
+msgid "<span size=\"large\" style=\"italic\" weight=\"bold\">You win!</span>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/high_scores.glade.h:2
+#, fuzzy
+msgid "High Scores"
+msgstr "Skóre"
+
+#: ../gnome-sudoku/glade/high_scores.glade.h:3
+#, fuzzy
+msgid "_High Scores"
+msgstr "_Skóre"
+
+#: ../gnome-sudoku/glade/new_game.glade.h:1
+#: ../gnome-sudoku/glade/print_games.glade.h:1
+msgid "<i>Easy</i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/new_game.glade.h:2
+#: ../gnome-sudoku/glade/print_games.glade.h:2
+msgid "<i>Hard</i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/new_game.glade.h:3
+#: ../gnome-sudoku/glade/open_game.glade.h:1
+msgid "<span size=\"larger\" weight=\"bold\">Select Game</span>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/new_game.glade.h:4
+msgid "Choose the _level of difficulty for your new game."
+msgstr ""
+
+#: ../gnome-sudoku/glade/new_game.glade.h:6
+#, fuzzy
+msgid "_Details"
+msgstr "_Rozdat"
+
+#: ../gnome-sudoku/glade/new_game.glade.h:7
+#: ../gnome-sudoku/glade/open_game.glade.h:3
+#, fuzzy
+msgid "_Play"
+msgstr "Hráč"
+
+#: ../gnome-sudoku/glade/open_game.glade.h:2
+msgid "Choose _game"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:3
+msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:4
+msgid "Choose the _level of difficulty for games"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:5
+msgid "Ma_ximum Difficulty"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:6
+msgid "Print Sudokus"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:7
+#, fuzzy
+msgid "_Game List"
+msgstr "_Hra"
+
+#: ../gnome-sudoku/glade/print_games.glade.h:8
+msgid "_Include games you've already played in list of games to print"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:9
+msgid "_Label games with difficulty and name."
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:10
+msgid "_Mark games as played once you've printed them."
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:11
+msgid "_Minimum Difficulty"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:12
+#, fuzzy
+msgid "_Number of sudoku to print: "
+msgstr "_Počet min:"
+
+#: ../gnome-sudoku/glade/print_games.glade.h:13
+msgid "_Sudokus per page: "
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:1
+msgid "<i><u>Number of Puzzles</u></i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:2
+msgid "<i>Easy:</i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:3
+msgid "<i>Hard:</i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:4
+#, fuzzy
+msgid "<i>Medium:</i>"
+msgstr "Střední"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:5
+msgid "<i>_Very Hard:</i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:6
+msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:7
+msgid "Criteria:"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:8
+#, fuzzy
+msgid "Generate Policy"
+msgstr "Obecné"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:9
+msgid "Generate until _reaching target"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:10
+msgid "Puzzle Generator"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:11
+msgid "Target _number of sudokus:"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:12
+#: ../gnome-sudoku/src/lib/sudoku.py:598
+#: ../gnome-sudoku/src/lib/sudoku_copy.py:695
+#, fuzzy
+msgid "Very Hard"
+msgstr "Velmi těžké"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:13
+#, fuzzy
+msgid "_Easy"
+msgstr "Jednoduché"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:14
+#, fuzzy
+msgid "_Generate"
+msgstr "Obecné"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:15
+msgid "_Generate new puzzles until stopped"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:16
+#, fuzzy
+msgid "_Hard"
+msgstr "Těžké"
+
+#: ../gnome-sudoku/glade/tracker.glade.h:1
+msgid "Clear _Others"
+msgstr ""
+
+#: ../gnome-sudoku/glade/tracker.glade.h:2
+msgid "_Add Tracker"
+msgstr ""
+
+#: ../gnome-sudoku/glade/tracker.glade.h:3
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:824
+msgid "_Clear Tracker"
+msgstr ""
+
+#: ../gnome-sudoku/glade/tracker.glade.h:4
+msgid "_Trackers"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/sudoku_maker.py:327
+#: ../gnome-sudoku/src/lib/sudoku_maker.py:354
+#: ../gnome-sudoku/src/lib/sudoku_maker.py:439
+#: ../gnome-sudoku/src/lib/game_selector.py:77
+#: ../gnome-sudoku/src/lib/game_selector.py:193
+#: ../gnome-sudoku/src/lib/game_selector.py:290
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:725
+#, fuzzy
+msgid "Puzzle"
+msgstr "Následující hádanka"
+
+#: ../gnome-sudoku/src/lib/defaults.py:13
+msgid "GNOME Sudoku"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/defaults.py:14
+msgid "Copyright (c) 2005,2006, Thomas M. Hinkle. GNU GPL"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/defaults.py:15
+msgid ""
+"GNOME Sudoku is a simple sudoku generator and player.  Sudoku is a japanese "
+"logic puzzle."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/printing.py:203
+msgid "Print Sudoku"
+msgid_plural "Print Sudokus"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../gnome-sudoku/src/lib/printing.py:216
+msgid "Print Preview"
+msgstr ""
+
+#. now we enumerate some details...
+#: ../gnome-sudoku/src/lib/game_selector.py:88
+msgid "Squares instantly fillable by filling: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:90
+msgid "Squares instantly fillable by elimination: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:92
+msgid "Number of trial-and-errors necessary to solve: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:94
+msgid "Difficulty value: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:109
+#: ../gnome-sudoku/src/lib/game_selector.py:139
+#: ../gnome-sudoku/src/lib/game_selector.py:291
+msgid "Difficulty"
+msgstr ""
+
+#. position
+#: ../gnome-sudoku/src/lib/game_selector.py:143
+#, fuzzy
+msgid "Started"
+msgstr "_Začít hru"
+
+#. position
+#: ../gnome-sudoku/src/lib/game_selector.py:149
+msgid "Last Played"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:154
+msgid "Status"
+msgstr "Stav"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:181
+#, python-format
+msgid "Printed %s ago"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:190
+#, fuzzy, python-format
+msgid "Played for %s"
+msgstr "Hráči"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:214
+#, python-format
+msgid "%s ago"
+msgstr ""
+
+#. Note that this assumes the default style is plain.
+#: ../gnome-sudoku/src/lib/game_selector.py:246 games-scores-dialog.gob:368
+#: games-scores-dialog.gob:450 ../libgames-support/games-scores-dialog.gob:364
+#: ../libgames-support/games-scores-dialog.gob:450
+msgid "Score"
+msgstr "Skóre"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:249
+#, fuzzy
+msgid "Date"
+msgstr "Rotovat"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:297
+#, fuzzy
+msgid "Hints"
+msgstr "_Rada"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:298
+msgid "Warnings about unfillable squares"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:300
+msgid "Auto-fills"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:301
+#, fuzzy
+msgid "Finished in"
+msgstr "_Dokončit"
+
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:88
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:99
+#, fuzzy
+msgid "Working..."
+msgstr "Přemýšlím..."
+
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:137
+#, fuzzy, python-format
+msgid "%s puzzle"
+msgid_plural "%s puzzles"
+msgstr[0] "Následující hádanka"
+msgstr[1] "Následující hádanka"
+msgstr[2] "Následující hádanka"
+
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:181
+#, fuzzy
+msgid "Stopped"
+msgstr "Rychlost"
+
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:196
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:206
+#, python-format
+msgid "Generated %(n)s out of %(total)s puzzle"
+msgid_plural "Generated %(n)s out of %(total)s puzzles"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:214
+#, fuzzy, python-format
+msgid "Generated %s puzzle"
+msgid_plural "Generated %s puzzles"
+msgstr[0] "Pennant Puzzle"
+msgstr[1] "Pennant Puzzle"
+msgstr[2] "Pennant Puzzle"
+
+#: ../gnome-sudoku/src/lib/sudoku.py:599
+#: ../gnome-sudoku/src/lib/sudoku_copy.py:696
+msgid "Hard"
+msgstr "Těžké"
+
+#: ../gnome-sudoku/src/lib/sudoku.py:600
+#: ../gnome-sudoku/src/lib/sudoku_copy.py:697
+msgid "Medium"
+msgstr "Střední"
+
+#: ../gnome-sudoku/src/lib/sudoku.py:601
+#: ../gnome-sudoku/src/lib/sudoku_copy.py:698
+msgid "Easy"
+msgstr "Jednoduché"
+
+#. setup pause button
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:328
+#: ../libgames-support/games-stock.c:46
+msgid "_Pause"
+msgstr "_Pozastavit"
+
+#. setup stop button
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:337
+#, fuzzy
+msgid "_Stop"
+msgstr "Nastavení"
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:354
+msgid "Do you really want to do this"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:388
+msgid "Don't ask me this again."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/timer.py:12
+#, python-format
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../gnome-sudoku/src/lib/timer.py:14
+#, fuzzy, python-format
+msgid "%s month"
+msgid_plural "%s months"
+msgstr[0] "%d bod"
+msgstr[1] "%d body"
+msgstr[2] "%d bodů"
+
+#: ../gnome-sudoku/src/lib/timer.py:16
+#, python-format
+msgid "%s week"
+msgid_plural "%s weeks"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../gnome-sudoku/src/lib/timer.py:18
+#, python-format
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../gnome-sudoku/src/lib/timer.py:20
+#, python-format
+msgid "%s hour"
+msgid_plural "%s hours"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../gnome-sudoku/src/lib/timer.py:22
+#, python-format
+msgid "%s minute"
+msgid_plural "%s minutes"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../gnome-sudoku/src/lib/timer.py:24
+#, fuzzy, python-format
+msgid "%s second"
+msgid_plural "%s seconds"
+msgstr[0] "Můj druhý den"
+msgstr[1] "Můj druhý den"
+msgstr[2] "Můj druhý den"
+
+#. Translators... this is a messay way of concatenating
+#. lists. In English we do lists this way: 1, 2, 3, 4, 5
+#. and 6. This set-up allows for the English system only.
+#. You can of course make your language only use commas or
+#. ands or spaces or whatever you like by translating both
+#. ", " and " and " with the same string.
+#: ../gnome-sudoku/src/lib/timer.py:42 ../gnome-sudoku/src/lib/timer.py:44
+#, fuzzy
+msgid " and "
+msgstr "Stand"
+
+#: ../gnome-sudoku/src/lib/timer.py:42
+msgid ", "
+msgstr ""
+
+#. then we're today
+#: ../gnome-sudoku/src/lib/timer.py:54
+#, fuzzy
+msgid "Today"
+msgstr "Celkem"
+
+#: ../gnome-sudoku/src/lib/timer.py:56
+msgid "Yesterday"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gsudoku_copy.py:451
+msgid "Possible values "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gsudoku_copy.py:453
+msgid "No values are possible!"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gsudoku.py:76
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
+#, fuzzy
+msgid "_Clear"
+msgstr "Kleopatra"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:25
+#, fuzzy
+msgid "Track moves"
+msgstr "Rychlé tahy"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:31
+#, fuzzy
+msgid "Full Screen"
+msgstr "_Celá obrazovka"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:155
+#, fuzzy
+msgid "New game"
+msgstr "Nová hra"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:157
+#, fuzzy
+msgid "Print current game"
+msgstr "Ukončit aktuální hru"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:158
+msgid "Print _Multiple Sudokus"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:159
+msgid "Print more than one sudoku at a time."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:163
+msgid "Close Sudoku (save game for later)"
+msgstr ""
+
+#. ('Save',gtk.STOCK_SAVE,_('_Save'),
+#. '<Control>s','Save game to play later.',
+#. self.save_game),
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:167
+#, fuzzy
+msgid "_Enter custom game"
+msgstr "Ukončit aktuální hru"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:168
+msgid ""
+"Enter new puzzle by hand (use this to copy a puzzle from another source)."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:170
+#, fuzzy
+msgid "_Resume old game"
+msgstr "Pokračovat pozastavenou hru"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:171
+#, fuzzy
+msgid "Resume a previous saved game."
+msgstr "Pokračovat pozastavenou hru"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:175
+#: ../libgames-support/games-stock.c:53
+msgid "_Hint"
+msgstr "_Rada"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:177
+msgid "Show which numbers could go in the current square."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:179
+msgid "_Fill"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:180
+msgid "Automatically fill in the current square if possible."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:182
+msgid "Fill _all squares"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:183
+msgid ""
+"Automatically fill in all squares for which there is only one valid value."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:193
+#, fuzzy
+msgid "Puzzle _Statistics"
+msgstr "Statistiky:"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:194
+msgid "Show statistics about current puzzle"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:202
+#, fuzzy
+msgid "High _Scores"
+msgstr "_Skóre"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:203
+msgid "Show high scores or replay old games."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:209
+msgid "_Always show hint"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:211
+msgid "Always show possible numbers in a square"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:215
+msgid "Warn about _unfillable squares"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:217
+msgid "Warn about squares made unfillable by a move"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:219
+msgid "_Track additions"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:221
+msgid "Mark new additions in a separate color so you can keep track of them."
+msgstr ""
+
+#. ('ZoomOnResize',None,_('_Adjust size of grid when resizing window'),
+#. None,_('Automatically change the size of numbers and squares to fit the window.'),
+#. ),
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:226
+#, fuzzy
+msgid "Show _Toolbar"
+msgstr "Zobrazit lištu nástrojů"
+
+#. ('ToggleNotes',None,_('Show _Notes'),'<Control>O',
+#. _('Include room for notes at the top and bottom of squares.'),self.toggle_notes_cb),
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:229
+#, fuzzy
+msgid "_Black background"
+msgstr "Barva _pozadí:"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:230
+msgid ""
+"Background of game is black; otherwise, the background will follow your "
+"theme colors."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:232
+msgid "_Highlighter"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:233
+msgid "Highlight the current row, column and box"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:234
+msgid "Generate new puzzles _while you play"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:236
+msgid ""
+"Generate new puzzles in the background while you play. This will "
+"automatically pause when the game goes into the background."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:243
+#, fuzzy
+msgid "_Undo"
+msgstr "Tah _zpět"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:243
+#, fuzzy
+msgid "Undo last action"
+msgstr "Vrátit poslední tah"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:244
+#, fuzzy
+msgid "_Redo"
+msgstr "Červená"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:244
+#, fuzzy
+msgid "Redo last action"
+msgstr "Vrátit poslední tah"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
+msgid "Clear entries you've filled in"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:246
+msgid "Clear _Notes"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:246
+msgid "Clear notes and hints"
+msgstr ""
+
+#. Trackers...
+#. Our initial row...
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:248
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:815
+#, fuzzy
+msgid "No Tracker"
+msgstr "Žádná klávesa"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
+msgid "_Generate new puzzles"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
+msgid "Generate new puzzles."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:295
+msgid "Entering custom grid..."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:299
+#, fuzzy
+msgid "_Play game"
+msgstr "Jména hráčů"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:664
+#, fuzzy
+msgid "Playing "
+msgstr "Jednoduché"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:705
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:728
+msgid "Puzzle Information"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:706
+msgid "There is no current puzzle."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:711
+msgid "Calculated difficulty: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:715
+msgid "Number of moves instantly fillable by elimination: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:718
+msgid "Number of moves instantly fillable by filling: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:721
+msgid "Amount of trial-and-error required to solve: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:729
+#, fuzzy, python-format
+msgid "Statistics for %s"
+msgstr "Statistiky:"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:825
+msgid "Clear all moves tracked by selected tracker."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:829
+msgid "_Clear Others"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:831
+msgid "Clear all moves not tracked by selected tracker."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:857
+#, python-format
+msgid "Tracker %s"
+msgstr ""
+
+#: ../gnomine/gnomine.c:87 ../gnomine/gnomine.c:664
 msgid "gnomine|Medium"
 msgstr "Střední"
 
@@ -3720,54 +6005,55 @@ msgstr "Střední"
 msgid "Custom"
 msgstr "Vlastní"
 
-#: ../gnomine/gnomine.c:164
+#: ../gnomine/gnomine.c:167
 #, c-format
 msgid "Flags: %d/%d"
 msgstr "Vlaječek: %d/%d"
 
-#: ../gnomine/gnomine.c:192
+#: ../gnomine/gnomine.c:195
 msgid "The Mines Have Been Cleared!"
 msgstr "Miny byly vyčištěny!"
 
-#: ../gnomine/gnomine.c:193
+#: ../gnomine/gnomine.c:197
 msgid "Great work, but unfortunately your score did not make the top ten."
-msgstr "Dobrá práce, ale vaše skóre se bohužel nedostalo mezi deset nejlepších."
+msgstr ""
+"Dobrá práce, ale vaše skóre se bohužel nedostalo mezi deset nejlepších."
 
-#: ../gnomine/gnomine.c:210
+#: ../gnomine/gnomine.c:211
 msgid "Mines Scores"
 msgstr "Skóre min"
 
-#: ../gnomine/gnomine.c:212 ../gnotravex/gnotravex.c:985
-#: ../same-gnome/ui.c:131
+#: ../gnomine/gnomine.c:214 ../gnotravex/gnotravex.c:1161
+#: ../same-gnome/ui.c:143
 msgid "Size:"
 msgstr "Velikost:"
 
-#: ../gnomine/gnomine.c:313
+#: ../gnomine/gnomine.c:314
 msgid "Click a square, any square"
 msgstr "Klikněte na libovolné pole"
 
-#: ../gnomine/gnomine.c:315
+#: ../gnomine/gnomine.c:316
 msgid "Maybe they're all mines ..."
 msgstr "Možná jsou to všechno miny ..."
 
-#: ../gnomine/gnomine.c:433
+#: ../gnomine/gnomine.c:435
 msgid "Resizing and SVG support:"
 msgstr "Změna velikosti a podpora SVG:"
 
-#: ../gnomine/gnomine.c:440
+#: ../gnomine/gnomine.c:442
 msgid "Faces:"
 msgstr "Tváře:"
 
-#: ../gnomine/gnomine.c:443
+#: ../gnomine/gnomine.c:445
 msgid "Graphics:"
 msgstr "Grafika:"
 
-#: ../gnomine/gnomine.c:454 ../gnomine/gnomine.c:1022
+#: ../gnomine/gnomine.c:455 ../gnomine/gnomine.c:458 ../gnomine/gnomine.c:1032
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
 msgstr "Miny"
 
-#: ../gnomine/gnomine.c:456
+#: ../gnomine/gnomine.c:461
 msgid ""
 "The popular logic puzzle minesweeper. Clear mines from a board using hints "
 "from squares you have already uncovered."
@@ -3775,15 +6061,15 @@ msgstr ""
 "Oblíbená logická hra hledač min. Odstraňte miny z hrací desky pomocí "
 "informací na již odkrytých polích."
 
-#: ../gnomine/gnomine.c:645
+#: ../gnomine/gnomine.c:650
 msgid "Field Size"
 msgstr "Velikost pole"
 
-#: ../gnomine/gnomine.c:695
+#: ../gnomine/gnomine.c:694
 msgid "Custom Size"
 msgstr "Vlastní velikost"
 
-#: ../gnomine/gnomine.c:702
+#: ../gnomine/gnomine.c:701
 msgid "_Number of mines:"
 msgstr "_Počet min:"
 
@@ -3791,58 +6077,58 @@ msgstr "_Počet min:"
 msgid "_Horizontal:"
 msgstr "_Vodorovně:"
 
-#: ../gnomine/gnomine.c:725
+#: ../gnomine/gnomine.c:726
 msgid "_Vertical:"
 msgstr "_Svisle:"
 
-#: ../gnomine/gnomine.c:740
+#: ../gnomine/gnomine.c:744
 msgid "_Use \"I'm not sure\" flags"
 msgstr "Používat vlaječky \"_Nejsem si jist\"."
 
-#: ../gnomine/gnomine.c:749
+#: ../gnomine/gnomine.c:755
 msgid "_Use \"Too many flags\" warning"
 msgstr ""
 
-#: ../gnomine/gnomine.c:758
+#: ../gnomine/gnomine.c:765
 msgid "Mines Preferences"
 msgstr "Nastavení min"
 
-#: ../gnomine/gnomine.c:946
+#: ../gnomine/gnomine.c:962
 msgid "Width of grid"
 msgstr "Šířka mřížky"
 
-#: ../gnomine/gnomine.c:947
+#: ../gnomine/gnomine.c:963
 msgid "Height of grid"
 msgstr "Výška mřížky"
 
-#: ../gnomine/gnomine.c:948
+#: ../gnomine/gnomine.c:965
 msgid "Number of mines"
 msgstr "Počet min"
 
-#: ../gnomine/gnomine.c:948 ../gtali/gyahtzee.c:90 ../gtali/gyahtzee.c:92
-#: ../same-gnome/same-gnome.c:143
+#: ../gnomine/gnomine.c:966 ../gtali/gyahtzee.c:91 ../gtali/gyahtzee.c:93
+#: ../same-gnome/same-gnome.c:152
 msgid "NUMBER"
 msgstr "ČÍSLO"
 
-#: ../gnomine/gnomine.c:949
+#: ../gnomine/gnomine.c:968
 msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "Velikost desky (0-2 = malá-velká, 3=vlastní)"
 
-#: ../gnomine/gnomine.c:950 ../gnotravex/gnotravex.c:268
-#: ../gnotski/gnotski.c:688 ../iagno/gnothello.c:104
+#: ../gnomine/gnomine.c:969 ../gnotravex/gnotravex.c:359
+#: ../gnotski/gnotski.c:481 ../iagno/gnothello.c:124
 msgid "X location of window"
 msgstr "Umístění X okna"
 
-#: ../gnomine/gnomine.c:951 ../gnotravex/gnotravex.c:270
-#: ../gnotski/gnotski.c:690 ../iagno/gnothello.c:106
+#: ../gnomine/gnomine.c:971 ../gnotravex/gnotravex.c:361
+#: ../gnotski/gnotski.c:483 ../iagno/gnothello.c:126
 msgid "Y location of window"
 msgstr "Umístění Y okna"
 
-#: ../gnomine/gnomine.c:1087
+#: ../gnomine/gnomine.c:1096
 msgid "Press to Resume"
 msgstr "Pokračujte stisknutím"
 
-#: ../gnomine/gnomine.c:1123
+#: ../gnomine/gnomine.c:1127
 msgid "Time: "
 msgstr "Čas: "
 
@@ -3867,7 +6153,7 @@ msgstr "Používat vlaječku neznámého"
 msgid "Warning about too many flags"
 msgstr ""
 
-#: ../gnomine/minefield.c:197
+#: ../gnomine/minefield.c:212
 msgid ""
 "Unable to find required images.\n"
 "\n"
@@ -3877,7 +6163,7 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím vaši instalaci gnome-games."
 
-#: ../gnomine/minefield.c:206
+#: ../gnomine/minefield.c:222
 msgid ""
 "Required images have been found, but refused to load.\n"
 "\n"
@@ -3887,185 +6173,189 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím vaši instalaci gnome-games a jejich závislostí."
 
-#: ../gnomine/minefield.c:216
+#: ../gnomine/minefield.c:231
 msgid "Could not load images"
 msgstr "Nemohu načíst obrázky"
 
-#. i18n in-game numbers, replaceable with single-character local ideograms.
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "0"
 msgstr "0"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "1"
 msgstr "1"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "2"
 msgstr "2"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "3"
 msgstr "3"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "4"
 msgstr "4"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "5"
 msgstr "5"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "6"
 msgstr "6"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "7"
 msgstr "7"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:54
 msgid "8"
 msgstr "8"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:54
 msgid "9"
 msgstr "9"
 
-#: ../gnotravex/gnotravex.c:59
+#: ../gnotravex/gnotravex.c:62
 msgid "2×2"
 msgstr "2×2"
 
-#: ../gnotravex/gnotravex.c:60
+#: ../gnotravex/gnotravex.c:63
 msgid "3×3"
 msgstr "3×3"
 
-#: ../gnotravex/gnotravex.c:61
+#: ../gnotravex/gnotravex.c:64
 msgid "4×4"
 msgstr "4×4"
 
-#: ../gnotravex/gnotravex.c:62
+#: ../gnotravex/gnotravex.c:65
 msgid "5×5"
 msgstr "5×5"
 
-#: ../gnotravex/gnotravex.c:63
+#: ../gnotravex/gnotravex.c:66
 msgid "6×6"
 msgstr "6×6"
 
-#: ../gnotravex/gnotravex.c:197 ../same-gnome/ui.c:426
+#: ../gnotravex/gnotravex.c:270 ../same-gnome/ui.c:457
 msgid "_Size"
 msgstr "_Velikost"
 
-#: ../gnotravex/gnotravex.c:203
+#: ../gnotravex/gnotravex.c:279
 msgid "Sol_ve"
 msgstr "_Vyřešit"
 
-#: ../gnotravex/gnotravex.c:203
+#: ../gnotravex/gnotravex.c:279
 msgid "Solve the game"
 msgstr "Vyřešit hru"
 
-#: ../gnotravex/gnotravex.c:209
+#: ../gnotravex/gnotravex.c:288
 msgid "_Up"
 msgstr "Na_horu"
 
-#: ../gnotravex/gnotravex.c:209
+#: ../gnotravex/gnotravex.c:289
 msgid "Move the pieces up"
 msgstr "Posunout kousky nahoru"
 
-#: ../gnotravex/gnotravex.c:210
+#: ../gnotravex/gnotravex.c:290
 msgid "_Left"
 msgstr "Do_leva"
 
-#: ../gnotravex/gnotravex.c:210
+#: ../gnotravex/gnotravex.c:291
 msgid "Move the pieces left"
 msgstr "Posunout kousky doleva"
 
-#: ../gnotravex/gnotravex.c:211
+#: ../gnotravex/gnotravex.c:292
 msgid "_Right"
 msgstr "Do_prava"
 
-#: ../gnotravex/gnotravex.c:211
+#: ../gnotravex/gnotravex.c:293
 msgid "Move the pieces right"
 msgstr "Posunout kousky doprava"
 
-#: ../gnotravex/gnotravex.c:212
+#: ../gnotravex/gnotravex.c:294
 msgid "_Down"
 msgstr "_Dolů"
 
-#: ../gnotravex/gnotravex.c:212
+#: ../gnotravex/gnotravex.c:295
 msgid "Move the pieces down"
 msgstr "Posunout kousky dolů"
 
-#: ../gnotravex/gnotravex.c:218
+#: ../gnotravex/gnotravex.c:301
 msgid "_2×2"
 msgstr "_2×2"
 
-#: ../gnotravex/gnotravex.c:218
+#: ../gnotravex/gnotravex.c:301
 msgid "Play on a 2×2 board"
 msgstr "Hrát na desce o rozměrech 2×2"
 
-#: ../gnotravex/gnotravex.c:219
+#: ../gnotravex/gnotravex.c:303
 msgid "_3×3"
 msgstr "_3×3"
 
-#: ../gnotravex/gnotravex.c:219
+#: ../gnotravex/gnotravex.c:303
 msgid "Play on a 3×3 board"
 msgstr "Hrát na desce o rozměrech 3×3"
 
-#: ../gnotravex/gnotravex.c:220
+#: ../gnotravex/gnotravex.c:305
 msgid "_4×4"
 msgstr "_4×4"
 
-#: ../gnotravex/gnotravex.c:220
+#: ../gnotravex/gnotravex.c:305
 msgid "Play on a 4×4 board"
 msgstr "Hrát na desce o rozměrech 4×4"
 
-#: ../gnotravex/gnotravex.c:221
+#: ../gnotravex/gnotravex.c:307
 msgid "_5×5"
 msgstr "_5×5"
 
-#: ../gnotravex/gnotravex.c:221
+#: ../gnotravex/gnotravex.c:307
 msgid "Play on a 5×5 board"
 msgstr "Hrát na desce o rozměrech 5×5"
 
-#: ../gnotravex/gnotravex.c:222
+#: ../gnotravex/gnotravex.c:309
 msgid "_6×6"
 msgstr "_6×6"
 
-#: ../gnotravex/gnotravex.c:222
+#: ../gnotravex/gnotravex.c:309
 msgid "Play on a 6×6 board"
 msgstr "Hrát na desce o rozměrech 6×6"
 
-#: ../gnotravex/gnotravex.c:272
+#: ../gnotravex/gnotravex.c:314
+#, fuzzy
+msgid "Tile _Colours"
+msgstr "Barvy"
+
+#: ../gnotravex/gnotravex.c:363
 msgid "Size of board (2-6)"
 msgstr "Velikost desky (2-6)"
 
-#: ../gnotravex/gnotravex.c:273
+#: ../gnotravex/gnotravex.c:364
 msgid "SIZE"
 msgstr "VELIKOST"
 
-#: ../gnotravex/gnotravex.c:869
+#: ../gnotravex/gnotravex.c:1044
 msgid "Puzzle solved! Well done!"
 msgstr "Hlavolam vyřešen! Výborně!"
 
-#: ../gnotravex/gnotravex.c:872
+#: ../gnotravex/gnotravex.c:1047
 msgid "Puzzle solved!"
 msgstr "Hlavolam vyřešen!"
 
-#: ../gnotravex/gnotravex.c:984
+#: ../gnotravex/gnotravex.c:1159
 msgid "Tetravex Scores"
 msgstr "Tetravex skóre"
 
-#: ../gnotravex/gnotravex.c:1218 ../mahjongg/mahjongg.c:983
+#: ../gnotravex/gnotravex.c:1411 ../mahjongg/mahjongg.c:979
 msgid "Game paused"
 msgstr "Hra pozastavena"
 
-#: ../gnotravex/gnotravex.c:1382
+#: ../gnotravex/gnotravex.c:1569
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "Hraje se na desce %d×%d"
 
-#: ../gnotravex/gnotravex.c:1626
+#: ../gnotravex/gnotravex.c:1824
 msgid ""
 "GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
 "the same numbers are touching each other."
@@ -4082,14 +6372,29 @@ msgid "Tetravex"
 msgstr "Tetravex"
 
 #: ../gnotravex/gnotravex.schemas.in.h:1
-msgid "The height of the playing window in pixels. At minimum it should be 240."
-msgstr "Výška hracího okna v pixelech. Měla by být nejméně 240."
+msgid "A flag to enable coloured tiles."
+msgstr ""
+
+#: ../gnotravex/gnotravex.schemas.in.h:2
+#, fuzzy
+msgid "Control coloured tiles"
+msgstr "Nemohu načíst sadu kamenů"
 
 #: ../gnotravex/gnotravex.schemas.in.h:3
+msgid ""
+"The height of the playing window in pixels. At minimum it should be 240."
+msgstr "Výška hracího okna v pixelech. Měla by být nejméně 240."
+
+#: ../gnotravex/gnotravex.schemas.in.h:4 ../gnotski/gnotski.schemas.in.h:1
+#: ../mahjongg/mahjongg.schemas.in.h:1
+msgid "The height of the window"
+msgstr "Výška okna"
+
+#: ../gnotravex/gnotravex.schemas.in.h:5
 msgid "The size of the playing grid"
 msgstr "Velikost hracího pole"
 
-#: ../gnotravex/gnotravex.schemas.in.h:4
+#: ../gnotravex/gnotravex.schemas.in.h:6
 msgid ""
 "The value of this key is used to decide the size of the playing grid. The "
 "valid values are 2 to 8, anything else gets set to 3."
@@ -4097,9 +6402,14 @@ msgstr ""
 "Hodnota tohoto klíče se používá pro určení velikosti hracího pole. Platné "
 "hodnoty jsou od 2 do 8, cokoli jiného způsobí nastavení na 3."
 
-#: ../gnotravex/gnotravex.schemas.in.h:5
+#: ../gnotravex/gnotravex.schemas.in.h:7
 msgid "The width of the playing window in pixels. At minimum it should be 320."
 msgstr "Šířka hracího okna v pixelech. Měla by být nejméně 320."
+
+#: ../gnotravex/gnotravex.schemas.in.h:8 ../gnotski/gnotski.schemas.in.h:6
+#: ../mahjongg/mahjongg.schemas.in.h:4
+msgid "The width of the window"
+msgstr "Šířka okna"
 
 #. puzzle name
 #: ../gnotski/gnotski.c:140
@@ -4107,222 +6417,222 @@ msgid "Only 18 Steps"
 msgstr "Jen 18 kroků"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:153
+#: ../gnotski/gnotski.c:146
 msgid "Daisy"
 msgstr "Sedmikráska"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:166
+#: ../gnotski/gnotski.c:152
 msgid "Violet"
 msgstr "Fialka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:179
+#: ../gnotski/gnotski.c:158
 msgid "Poppy"
 msgstr "Poppy"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:192
+#: ../gnotski/gnotski.c:164
 msgid "Pansy"
 msgstr "Pansy"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:205
+#: ../gnotski/gnotski.c:170
 msgid "Snowdrop"
 msgstr "Sněhová vločka"
 
 #. puzzle name - sometimes called "Le'Ane Rouge"
-#: ../gnotski/gnotski.c:218
+#: ../gnotski/gnotski.c:176
 msgid "Red Donkey"
 msgstr "Červený osel"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:231
+#: ../gnotski/gnotski.c:182
 msgid "Trail"
 msgstr "Stopa"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:244
+#: ../gnotski/gnotski.c:188
 msgid "Ambush"
 msgstr "Léčka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:257
+#: ../gnotski/gnotski.c:194
 msgid "Agatka"
 msgstr "Agatka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:268
+#: ../gnotski/gnotski.c:199
 msgid "Success"
 msgstr "Úspěch"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:278
+#: ../gnotski/gnotski.c:204
 msgid "Bone"
 msgstr "Kost"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:291
+#: ../gnotski/gnotski.c:210
 msgid "Fortune"
 msgstr "Štěstí"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:305
+#: ../gnotski/gnotski.c:218
 msgid "Fool"
 msgstr "Hlupák"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:315
+#: ../gnotski/gnotski.c:224
 msgid "Solomon"
 msgstr "Šalomoun"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:328
+#: ../gnotski/gnotski.c:231
 msgid "Cleopatra"
 msgstr "Kleopatra"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:340
+#: ../gnotski/gnotski.c:236
 msgid "Shark"
 msgstr "Žralok"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:352
+#: ../gnotski/gnotski.c:244
 msgid "Rome"
 msgstr "Řím"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:364
+#: ../gnotski/gnotski.c:251
 msgid "Pennant Puzzle"
 msgstr "Pennant Puzzle"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:377
+#: ../gnotski/gnotski.c:257
 msgid "Ithaca"
 msgstr "Ithaca"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:400
+#: ../gnotski/gnotski.c:278
 msgid "Pelopones"
 msgstr "Peloponés"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:412
+#: ../gnotski/gnotski.c:285
 msgid "Transeuropa"
 msgstr "Transeuropa"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:424
+#: ../gnotski/gnotski.c:294
 msgid "Lodzianka"
 msgstr "Lodzianka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:435
+#: ../gnotski/gnotski.c:300
 msgid "Polonaise"
 msgstr "Polonéza"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:446
+#: ../gnotski/gnotski.c:305
 msgid "Baltic Sea"
 msgstr "Baltské moře"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:458
+#: ../gnotski/gnotski.c:310
 msgid "American Pie"
 msgstr "American Pie"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:474
+#: ../gnotski/gnotski.c:322
 msgid "Traffic Jam"
 msgstr "Dopravní zácpa"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:485
+#: ../gnotski/gnotski.c:329
 msgid "Sunshine"
 msgstr "Sluneční svit"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:511
+#: ../gnotski/gnotski.c:353
 msgid "Block 10"
 msgstr "Block 10"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:522
+#: ../gnotski/gnotski.c:358
 msgid "Block 10 Pro"
 msgstr "Block 10 Pro"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:533
+#: ../gnotski/gnotski.c:363
 msgid "Climb 12"
 msgstr "Climb 12"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:544
+#: ../gnotski/gnotski.c:368
 msgid "Climb 12 Pro"
 msgstr "Climb 12 Pro"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:555
+#: ../gnotski/gnotski.c:373
 msgid "Climb 15 Winter"
 msgstr "Climb 15 zima"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:568
+#: ../gnotski/gnotski.c:380
 msgid "Climb 15 Spring"
 msgstr "Climb 15 jaro"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:581
+#: ../gnotski/gnotski.c:387
 msgid "Climb 15 Summer"
 msgstr "Climb 15 léto"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:594
+#: ../gnotski/gnotski.c:394
 msgid "Climb 15 Fall"
 msgstr "Climb 15 podzim"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:607
+#: ../gnotski/gnotski.c:401
 msgid "Climb 24 Pro"
 msgstr "Climb 24 Pro"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:639
+#: ../gnotski/gnotski.c:430
 msgid "HuaRong Trail"
 msgstr "Stezka HuaRong"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:641
+#: ../gnotski/gnotski.c:432
 msgid "Challenge Pack"
 msgstr "Sbírka výzev"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:643
+#: ../gnotski/gnotski.c:434
 msgid "Skill Pack"
 msgstr "Sbírka dovedností"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:645
+#: ../gnotski/gnotski.c:436
 msgid "Minoru Climb"
 msgstr "Minoru Climb"
 
-#: ../gnotski/gnotski.c:646
+#: ../gnotski/gnotski.c:437
 msgid "_Restart Puzzle"
 msgstr "_Restartovat hádanku"
 
-#: ../gnotski/gnotski.c:647
+#: ../gnotski/gnotski.c:439
 msgid "Next Puzzle"
 msgstr "Následující hádanka"
 
-#: ../gnotski/gnotski.c:648
+#: ../gnotski/gnotski.c:441
 msgid "Previous Puzzle"
 msgstr "Předchozí hádanka"
 
-#: ../gnotski/gnotski.c:871
+#: ../gnotski/gnotski.c:670
 msgid "Level completed."
 msgstr "Úroveň dokončena."
 
-#: ../gnotski/gnotski.c:1063
+#: ../gnotski/gnotski.c:862
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -4332,7 +6642,7 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím, že je Klotski správně nainstalována."
 
-#: ../gnotski/gnotski.c:1234
+#: ../gnotski/gnotski.c:1034
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -4345,12 +6655,12 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím, že je Klotski správně nainstalována."
 
-#: ../gnotski/gnotski.c:1273
+#: ../gnotski/gnotski.c:1073
 #, c-format
 msgid "Moves: %d"
 msgstr "Tahů: %d"
 
-#: ../gnotski/gnotski.c:1601
+#: ../gnotski/gnotski.c:1403
 msgid "Sliding Block Puzzles"
 msgstr "Hádanky s posouváním bloků"
 
@@ -4423,30 +6733,32 @@ msgid "Display the computer's thoughts"
 msgstr "Zobrazovat myšlenky počítače"
 
 #: ../gtali/gtali.schemas.in.h:4
-msgid "If set to true, a dump of the AI's working will be done to standard output."
-msgstr "Je-li nastaveno na true, bude na standardní výstup vypisována práce AI."
+msgid ""
+"If set to true, a dump of the AI's working will be done to standard output."
+msgstr ""
+"Je-li nastaveno na true, bude na standardní výstup vypisována práce AI."
 
 #: ../gtali/gtali.schemas.in.h:5
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr "[Člověk,Josef,Pavel,Anna,Eva,Jana]"
 
-#: ../gtali/gyahtzee.c:86
+#: ../gtali/gyahtzee.c:87
 msgid "Delay computer moves"
 msgstr "Zdržet tahy počítače"
 
-#: ../gtali/gyahtzee.c:88
+#: ../gtali/gyahtzee.c:89
 msgid "Display computer thoughts"
 msgstr "Zobrazit myšlenky počítače"
 
-#: ../gtali/gyahtzee.c:90
+#: ../gtali/gyahtzee.c:91
 msgid "Number of computer opponents"
 msgstr "Počet počítačových protivníků"
 
-#: ../gtali/gyahtzee.c:92
+#: ../gtali/gyahtzee.c:93
 msgid "Number of human opponents"
 msgstr "Počet lidských protivníků"
 
-#: ../gtali/gyahtzee.c:135
+#: ../gtali/gyahtzee.c:136
 msgid "The game is a draw!"
 msgstr "Hra skončila nerozhodně!"
 
@@ -4458,29 +6770,29 @@ msgstr[0] "%s vyhrává hru s %d bodem"
 msgstr[1] "%s vyhrává hru s %d body"
 msgstr[2] "%s vyhrává hru s %d body"
 
-#: ../gtali/gyahtzee.c:155 ../same-gnome/ui.c:151
+#: ../gtali/gyahtzee.c:154 ../same-gnome/ui.c:165
 msgid "Game over!"
 msgstr "Konec hry!"
 
-#: ../gtali/gyahtzee.c:217
+#: ../gtali/gyahtzee.c:216
 #, c-format
 msgid "Computer playing for %s"
 msgstr "Počítač hraje pro %s"
 
-#: ../gtali/gyahtzee.c:220
+#: ../gtali/gyahtzee.c:218
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- Jste na řadě."
 
-#: ../gtali/gyahtzee.c:313
+#: ../gtali/gyahtzee.c:310
 msgid "Select dice to roll or choose a score slot."
 msgstr "Vyberte kostku, kterou chcete házet, nebo vyberte místo s body."
 
-#: ../gtali/gyahtzee.c:340
+#: ../gtali/gyahtzee.c:337
 msgid "Roll"
 msgstr "Házet"
 
-#: ../gtali/gyahtzee.c:392
+#: ../gtali/gyahtzee.c:390
 msgid "You are only allowed three rolls. Choose a score slot."
 msgstr "Máte povoleny pouze tři hody. Vyberte oddíl s body."
 
@@ -4492,11 +6804,11 @@ msgstr "Verze pro GNOME (1998):"
 msgid "Console version (1992):"
 msgstr "Verze pro konzolu (1992):"
 
-#: ../gtali/gyahtzee.c:457
+#: ../gtali/gyahtzee.c:458
 msgid "A variation on poker with dice and less money."
 msgstr "Variace na poker s kostkami a méně penězi."
 
-#: ../gtali/gyahtzee.c:643
+#: ../gtali/gyahtzee.c:645
 msgid "Roll!"
 msgstr "Házet!"
 
@@ -4508,7 +6820,7 @@ msgstr "Současná hra bude dokončena s původním počtem hráčů."
 msgid "Tali Preferences"
 msgstr "Nastavení Tali"
 
-#: ../gtali/setup.c:217
+#: ../gtali/setup.c:216
 msgid "Human Players"
 msgstr "Lidští hráči"
 
@@ -4521,11 +6833,11 @@ msgid "Computer Opponents"
 msgstr "Počítačoví protivníci"
 
 #. --- Button ---
-#: ../gtali/setup.c:248
+#: ../gtali/setup.c:249
 msgid "_Delay between rolls"
 msgstr "_Prodleva mezi hody"
 
-#: ../gtali/setup.c:258
+#: ../gtali/setup.c:259
 msgid "N_umber of opponents:"
 msgstr "Počet _protivníků:"
 
@@ -4605,55 +6917,100 @@ msgstr "Vyšší součet"
 msgid "Bonus if >62"
 msgstr "Bonus pokud >62"
 
-#: ../gtali/yahtzee.c:186
+#: ../gtali/yahtzee.c:184
 msgid "Choose a score slot."
 msgstr "Zvolte místo s body."
 
-#: ../gtali/yahtzee.c:455
+#: ../gtali/yahtzee.c:445
 msgid "How many times do you wish to roll?"
 msgstr "Kolikrát si přejete házet?"
 
-#: ../gtali/yahtzee.c:460
+#: ../gtali/yahtzee.c:450
 msgid "Generating ..."
 msgstr "Generuji ..."
 
-#: ../gtali/yahtzee.c:495
+#: ../gtali/yahtzee.c:485
 msgid "Results"
 msgstr "Výsledky"
 
-#: ../gtali/yahtzee.c:495
+#: ../gtali/yahtzee.c:485
 msgid "Num Rolls"
 msgstr "Počet hodů"
 
-#: ../gtali/yahtzee.c:495
+#: ../gtali/yahtzee.c:485
 msgid "Total"
 msgstr "Celkem"
 
-#: ../iagno/gnothello.c:109
-msgid "Iagno server to use"
-msgstr "Použitý server Iagno"
-
-#: ../iagno/gnothello.c:116
-msgid "New Net_work Game"
+#: ../iagno/gnothello.c:134
+#, fuzzy
+msgid "Net_work Game"
 msgstr "Nová _síťová hra"
 
-#: ../iagno/gnothello.c:249 ../iagno/gnothello.c:581
+#: ../iagno/gnothello.c:140
+#, fuzzy
+msgid "_Player list"
+msgstr "Hráči"
+
+#: ../iagno/gnothello.c:142
+msgid "_Chat Window"
+msgstr ""
+
+#: ../iagno/gnothello.c:146
+#, fuzzy
+msgid "_Leave Game"
+msgstr "_Nová hra"
+
+#: ../iagno/gnothello.c:295 ../iagno/gnothello.c:299 ../iagno/gnothello.c:634
 #: ../iagno/iagno.desktop.in.h:2 ../iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Iagno"
 
-#: ../iagno/gnothello.c:253
+#: ../iagno/gnothello.c:304
 msgid "A disk flipping game derived from Reversi."
 msgstr "Hra s převracením kamenů odvozená z Reversi."
 
-#: ../iagno/gnothello.c:643
+#: ../iagno/gnothello.c:382
+#, fuzzy
+msgid "Invalid move."
+msgstr "Pokus o neplatný tah"
+
+#: ../iagno/gnothello.c:675
+msgid "Dark:"
+msgstr "Černý:"
+
+#: ../iagno/gnothello.c:685
+msgid "Light:"
+msgstr "Bílý:"
+
+#: ../iagno/gnothello.c:700
 msgid "Welcome to Iagno!"
 msgstr "Vítejte ve hře Iagno!"
 
-#: ../iagno/gnothello.c:651 ../iagno/gnothello.c:653
+#: ../iagno/gnothello.c:708 ../iagno/gnothello.c:710
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
+
+#: ../iagno/gnothello.c:740
+msgid "It is your turn to place a dark piece"
+msgstr ""
+
+#: ../iagno/gnothello.c:742
+msgid "It is your turn to place a light piece"
+msgstr ""
+
+#: ../iagno/gnothello.c:745
+#, c-format
+msgid "Waiting for %s to move"
+msgstr ""
+
+#: ../iagno/gnothello.c:752
+msgid "Dark's move"
+msgstr "Tah černého"
+
+#: ../iagno/gnothello.c:754
+msgid "Light's move"
+msgstr "Tah bílého"
 
 #: ../iagno/iagno.desktop.in.h:1
 msgid "Dominate the board in a classic version of Reversi"
@@ -4667,86 +7024,90 @@ msgstr "Konec hry"
 msgid "Piece flipping"
 msgstr "Obrácení kamene"
 
-#: ../iagno/network.c:114
-msgid "Invalid game data (set_peer)"
-msgstr "Neplatná herní data (set_peer)"
+#: ../iagno/othello.c:694
+msgid "Light player wins!"
+msgstr "Bílý hráč vyhrává!"
 
-#: ../iagno/network.c:128
-msgid "Invalid game data (move)"
-msgstr "Neplatná herní data (tah)"
+#: ../iagno/othello.c:696
+msgid "Dark player wins!"
+msgstr "Černý hráč vyhrává!"
 
-#: ../iagno/othello.c:712
+#: ../iagno/othello.c:698
+msgid "The game was a draw."
+msgstr "Hra skončila nerozhodně."
+
+#: ../iagno/othello.c:707
 msgid "Light must pass, Dark's move"
 msgstr "Bílý musí vynechat, černý táhne"
 
-#: ../iagno/othello.c:718
+#: ../iagno/othello.c:712
 msgid "Dark must pass, Light's move"
 msgstr "Černý musí vynechat, bílý táhne"
 
-#: ../iagno/properties.c:484
+#: ../iagno/properties.c:480
 msgid "Iagno Preferences"
 msgstr "Nastavení Iagno"
 
-#: ../iagno/properties.c:512
+#: ../iagno/properties.c:494
+msgid "Players"
+msgstr "Hráči"
+
+#: ../iagno/properties.c:507
 msgid "_Use quick moves"
 msgstr "Používat _rychlé tahy"
 
-#: ../iagno/properties.c:622
-msgid "Animation"
-msgstr "Animace"
-
-#: ../iagno/properties.c:626
-msgid "None"
-msgstr "Žádná"
-
-#: ../iagno/properties.c:635
+#: ../iagno/properties.c:619
 msgid "Partial"
 msgstr "Částečná"
 
-#: ../iagno/properties.c:644
+#: ../iagno/properties.c:628
 msgid "Complete"
 msgstr "Úplná"
 
-#: ../iagno/properties.c:659
+#: ../iagno/properties.c:642
 msgid "_Stagger flips"
 msgstr "_Rovnoměrné otáčení"
 
-#: ../iagno/properties.c:667
+#: ../iagno/properties.c:650
 msgid "S_how grid"
 msgstr "Zobrazit _mřížku"
 
-#: ../iagno/properties.c:675
+#: ../iagno/properties.c:657
 msgid "_Flip final results"
 msgstr "_Převrátit konečné výsledky"
 
-#: ../libgames-support/games-card-selector.c:52
+#: ../iagno/properties.c:666 ../mahjongg/mahjongg.c:761
+msgid "_Tile set:"
+msgstr "_Sada kamenů:"
+
+#: ../libgames-support/games-card-selector.c:56
 msgid "Card Style"
 msgstr "Styl karet"
 
-#: ../libgames-support/games-controls.c:158
-#: ../libgames-support/games-controls.c:332
-#: ../libgames-support/games-controls.c:397
+#: ../libgames-support/games-controls.c:151
+#: ../libgames-support/games-controls.c:318
+#: ../libgames-support/games-controls.c:380
 msgid "No key"
 msgstr "Žádná klávesa"
 
-#: ../libgames-support/games-controls.c:203
+#: ../libgames-support/games-controls.c:194
 msgid "<Press a Key>"
 msgstr "<Stiskněte klávesu>"
 
-#: ../libgames-support/games-controls.c:384
+#: ../libgames-support/games-controls.c:366
 msgid "Unknown Command"
 msgstr "Neznámý příkaz"
 
-#: ../libgames-support/games-gconf.c:66
+#: ../libgames-support/games-gconf.c:69
 #, c-format
 msgid "There was an error accessing GConf: %s"
 msgstr "Při přístupu k rozhraní GConf došlo k chybě: %s"
 
-#: ../libgames-support/games-gconf.c:79
+#: ../libgames-support/games-gconf.c:83
 msgid "The default configuration values could not be retrieved correctly."
 msgstr "Implicitní hodnoty nastavení nemohly být úspěšně získány."
 
-#: ../libgames-support/games-gconf.c:80
+#: ../libgames-support/games-gconf.c:85
 msgid ""
 "Please check your GConf configuration, specifically that the schemas have "
 "been installed correctly."
@@ -4754,195 +7115,54 @@ msgstr ""
 "Zkontrolujte prosím své nastavení GConf, konkrétně jestli byla správně "
 "nainstalována schémata."
 
-#: ../libgames-support/games-gridframe.c:217
-#: ../libgames-support/games-gridframe.c:224
+#: ../libgames-support/games-gridframe.c:219
+#: ../libgames-support/games-gridframe.c:227
 msgid "X Padding"
 msgstr "Mezera X"
 
-#: ../libgames-support/games-gridframe.c:218
+#: ../libgames-support/games-gridframe.c:221
 msgid "Extra space to add to the width allocation."
 msgstr "Další místo, které přidat k alokaci šířky."
 
-#: ../libgames-support/games-gridframe.c:225
+#: ../libgames-support/games-gridframe.c:229
 msgid "Extra space to add to the height allocation."
 msgstr "Další místo, které přidat k alokaci výšky."
 
-#: ../libgames-support/games-gridframe.c:231
+#: ../libgames-support/games-gridframe.c:235
 msgid "Width Multiple"
 msgstr "Násobek šířky"
 
-#: ../libgames-support/games-gridframe.c:232
+#: ../libgames-support/games-gridframe.c:237
 msgid "What multiple to constrain the width to."
 msgstr "Na jaké násobky omezit šířku."
 
-#: ../libgames-support/games-gridframe.c:238
+#: ../libgames-support/games-gridframe.c:243
 msgid "Height Multiple"
 msgstr "Násobek výšky"
 
-#: ../libgames-support/games-gridframe.c:239
+#: ../libgames-support/games-gridframe.c:245
 msgid "What multiple to constrain the height to."
 msgstr "Na jaké násobky omezit výšku."
 
-#: ../libgames-support/games-gridframe.c:245
+#: ../libgames-support/games-gridframe.c:250
 msgid "X align"
 msgstr "Zarovnání X"
 
-#: ../libgames-support/games-gridframe.c:246
+#: ../libgames-support/games-gridframe.c:252
 msgid "The horizontal alignment, from 0 (left) to 1 (right)"
 msgstr "Vodorovné zarovnání od 0 (levé) do 1 (pravé)"
 
-#: ../libgames-support/games-gridframe.c:254
+#: ../libgames-support/games-gridframe.c:257
 msgid "Y align"
 msgstr "Zarovnání Y"
 
-#: ../libgames-support/games-gridframe.c:255
+#: ../libgames-support/games-gridframe.c:259
 msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
 msgstr "Svislé od 0 (levé) do 1 (pravé)"
 
-#: ../libgames-support/games-network-dialog.c:80
-#, c-format
-msgid "The player %s has joined the game."
-msgstr "Hráč %s se připojil ke hře."
-
-#: ../libgames-support/games-network-dialog.c:126
-msgid "New Network Game"
-msgstr "Nová síťová hra"
-
-#. Create Network Status Frame.
-#: ../libgames-support/games-network-dialog.c:139
-msgid "Status"
-msgstr "Stav"
-
-#: ../libgames-support/games-network-dialog.c:141
-msgid "Select a nickname and connection method then click Connect."
-msgstr "Zvolte přezdívku a metodu přípojení, pak klikněte na Připojit."
-
-#. Now for the network connection options.
-#: ../libgames-support/games-network-dialog.c:145
-msgid "Connection Method"
-msgstr "Metoda připojení"
-
-#: ../libgames-support/games-network-dialog.c:151
-msgid "GNOME games server"
-msgstr "Server her GNOME"
-
-#: ../libgames-support/games-network-dialog.c:159
-msgid "_Hostname:"
-msgstr "_Jméno počítače:"
-
-#: ../libgames-support/games-network-dialog.c:174
-msgid "Host local game"
-msgstr "Provozovat místní hru"
-
-#: ../libgames-support/games-network-dialog.c:194
-msgid "_Game name:"
-msgstr "_Název hry:"
-
-#: ../libgames-support/games-network-dialog.c:206
-msgid "Join local game"
-msgstr "Připojit se k místní hře"
-
-#: ../libgames-support/games-network-dialog.c:222
-msgid "_Local games:"
-msgstr "_Místní hry:"
-
-#. Add the players nickname entry.
-#: ../libgames-support/games-network-dialog.c:264
-msgid "Identification"
-msgstr "Identifikace"
-
-#: ../libgames-support/games-network-dialog.c:266
-msgid "_Nickname:"
-msgstr "_Přezdívka:"
-
-#: ../libgames-support/games-network-dialog.c:279
-msgid "Player"
-msgstr "Hráč"
-
-#. Create buttons.
-#: ../libgames-support/games-network-dialog.c:293
-msgid "C_onnect"
-msgstr "_Připojit"
-
-#: ../libgames-support/games-network-dialog.c:295
-msgid "_Start Game"
-msgstr "_Začít hru"
-
-#: ../libgames-support/games-network-dialog.c:332
-msgid "Please supply a nickname."
-msgstr "Zadejte prosím přezdívku."
-
-#: ../libgames-support/games-network-dialog.c:346
-msgid "No local game selected."
-msgstr "Nevybrána žádná místní hra."
-
-#: ../libgames-support/games-network-dialog.c:368
-msgid "A new gnome games server was successfully started."
-msgstr "Nový server gnome her byl úspěšně spuštěn."
-
-#: ../libgames-support/games-network.c:148
-msgid "Network initialization complete."
-msgstr "Inicializace sítě kompletní."
-
-#: ../libgames-support/games-network.c:158
-msgid "Network shutdown in progress."
-msgstr "Probíhá zastavení sítě."
-
-#. Shut down the connection, either it was broken or someone is messing with us
-#: ../libgames-support/games-network.c:284
-msgid "The remote player disconnected"
-msgstr "Vzdálený hráč byl odpojen"
-
-#: ../libgames-support/games-network.c:307
-msgid "Error occurred during connect attempt."
-msgstr "Při pokusu o spojení se vyskytla chyba."
-
-#: ../libgames-support/games-network.c:309
-#: ../libgames-support/games-network.c:395
-msgid "Connection succeeded, waiting for opponent"
-msgstr "Spojení úspěšné, čeká se na protivníka"
-
-#: ../libgames-support/games-network.c:319
-msgid "Error occurred during write."
-msgstr "Došlo k chybě při zápisu."
-
-#: ../libgames-support/games-network.c:374
-msgid "Cleaning up connection"
-msgstr "Čistím připojení"
-
-#: ../libgames-support/games-network.c:386
-msgid "Connection in progress..."
-msgstr "Probíhá připojení..."
-
-#: ../libgames-support/games-network.c:390
-msgid "Connection failed"
-msgstr "Spojení selhalo"
-
-#: ../libgames-support/games-network.c:418
-msgid "No game server defined"
-msgstr "Není definován server hry"
-
-#: ../libgames-support/games-network.c:705
-#: ../libgames-support/games-network.c:1110
-#: ../libgames-support/games-network.c:1118
-#: ../libgames-support/games-network.c:1146
-msgid ""
-"Local Area Network game could not be started. \n"
-"Try running mDNSResponder."
-msgstr ""
-"Hru v síti nelze spustit. \n"
-"Zkuste spustit mDNSResponder."
-
-#: ../libgames-support/games-preimage.c:135
+#: ../libgames-support/games-preimage.c:131
 msgid "Image rendering failed."
 msgstr "Vykreslování obrázku selhalo."
-
-#. Note that this assumes the default style is plain.
-#: games-scores-dialog.gob:364 games-scores-dialog.gob:450
-#: ../libgames-support/games-scores-dialog.gob:364
-#: ../libgames-support/games-scores-dialog.gob:450
-msgid "Score"
-msgstr "Skóre"
 
 #. Translators: this is for a minutes, seconds time display.
 #: games-scores-dialog.gob:214 ../libgames-support/games-scores-dialog.gob:214
@@ -4954,107 +7174,138 @@ msgstr "%dm %ds"
 msgid "Time"
 msgstr "Čas"
 
-#: games-scores-dialog.gob:546 ../libgames-support/games-scores-dialog.gob:546
-msgid "New Game"
-msgstr "Nová hra"
-
 #. i18n: This "_New" is for the menu item 'Game->New', implies "New Game"
 #: ../libgames-support/games-stock.c:41
 msgid "_New"
 msgstr "_Nová"
 
 #: ../libgames-support/games-stock.c:42
-msgid "_Pause"
-msgstr "_Pozastavit"
+#, fuzzy
+msgid "Network _Game"
+msgstr "Nová síťová hra"
 
-#: ../libgames-support/games-stock.c:43
+#: ../libgames-support/games-stock.c:44
+#, fuzzy
+msgid "L_eave Game"
+msgstr "_Nová hra"
+
+#: ../libgames-support/games-stock.c:45
+#, fuzzy
+msgid "Player _List"
+msgstr "Hráči"
+
+#: ../libgames-support/games-stock.c:47
 msgid "Res_ume"
 msgstr "_Pokračovat"
 
 #. i18n: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:45
+#: ../libgames-support/games-stock.c:49
 msgid "_Restart"
 msgstr "_Restartovat"
 
-#: ../libgames-support/games-stock.c:46
+#: ../libgames-support/games-stock.c:50
 msgid "_Undo Move"
 msgstr "Tah _zpět"
 
-#: ../libgames-support/games-stock.c:47
+#: ../libgames-support/games-stock.c:51
 msgid "_Redo Move"
 msgstr "Tah zn_ovu"
 
-#: ../libgames-support/games-stock.c:48
-msgid "_Hint"
-msgstr "_Rada"
-
-#: ../libgames-support/games-stock.c:49
+#: ../libgames-support/games-stock.c:54
 msgid "_Scores"
 msgstr "_Skóre"
 
-#: ../libgames-support/games-stock.c:50
+#: ../libgames-support/games-stock.c:55
 msgid "_Fullscreen"
 msgstr "_Celá obrazovka"
 
-#: ../libgames-support/games-stock.c:51
+#: ../libgames-support/games-stock.c:56
 msgid "_Leave Fullscreen"
 msgstr "_Opustit celou obrazovku"
 
-#: ../libgames-support/games-stock.c:52
-msgid "_End Game"
-msgstr "U_končit hru"
+#: ../libgames-support/games-stock.c:111
+#, fuzzy
+msgid "Start a new multiplayer network game"
+msgstr "Začít novou hru"
 
-#: ../libgames-support/games-stock.c:53
-msgid "_Contents"
-msgstr "_Obsah"
+#: ../libgames-support/games-stock.c:113
+msgid "End the current network game and return to network server"
+msgstr ""
 
-#: ../libgames-support/games-stock.c:100 ../mahjongg/mahjongg.c:1311
+#: ../libgames-support/games-stock.c:114
+msgid "Show a list of players in the network game"
+msgstr ""
+
+#: ../libgames-support/games-stock.c:115 ../mahjongg/mahjongg.c:1309
 msgid "Pause the game"
 msgstr "Pozastavit hru"
 
-#: ../libgames-support/games-stock.c:101 ../mahjongg/mahjongg.c:1312
+#: ../libgames-support/games-stock.c:116 ../mahjongg/mahjongg.c:1312
 msgid "Resume the paused game"
 msgstr "Pokračovat pozastavenou hru"
 
-#: ../libgames-support/games-stock.c:102
+#: ../libgames-support/games-stock.c:117
 msgid "Restart the game"
 msgstr "Začít hru znovu"
 
-#: ../libgames-support/games-stock.c:104
+#: ../libgames-support/games-stock.c:119
 msgid "Redo the undone move"
 msgstr "Zopakovat vrácený tah"
 
-#: ../libgames-support/games-stock.c:105
+#: ../libgames-support/games-stock.c:120
 msgid "Get a hint for your next move"
 msgstr "Získat radu pro váš další tah"
 
-#: ../libgames-support/games-stock.c:106
+#: ../libgames-support/games-stock.c:121
 msgid "View the scores"
 msgstr "Zobrazit skóre"
 
-#: ../libgames-support/games-stock.c:107
+#: ../libgames-support/games-stock.c:122
 msgid "Enter fullscreen mode"
 msgstr "Přejít do režimu přes celou obravoku"
 
-#: ../libgames-support/games-stock.c:108
+#: ../libgames-support/games-stock.c:123
 msgid "Leave fullscreen mode"
 msgstr "Opustit režim přes celou obrazovku"
 
-#: ../libgames-support/games-stock.c:109
-msgid "End the current game"
-msgstr "Ukončit aktuální hru"
-
-#: ../libgames-support/games-stock.c:111
+#: ../libgames-support/games-stock.c:126
 msgid "Quit this game"
 msgstr "Ukončit tuto hru"
 
-#: ../libgames-support/games-stock.c:112
+#: ../libgames-support/games-stock.c:127
 msgid "About this game"
 msgstr "O této hře"
 
-#: ../libgames-support/games-stock.c:113
+#: ../libgames-support/games-stock.c:128
 msgid "Configure the game"
 msgstr "Nastavit hru"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../libgames-support/games-stock.c:338
+#, c-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version."
+msgstr ""
+
+#: ../libgames-support/games-stock.c:342
+#, c-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+
+#: ../libgames-support/games-stock.c:346
+#, c-format
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"%s; if not, write to the Free Software Foundation, Inc., 59 Temple Place, "
+"Suite 330, Boston, MA  02111-1307  USA"
+msgstr ""
 
 #: ../libgames-support/libgnomegames.schemas.in.h:1
 msgid "Network game mode"
@@ -5069,7 +7320,8 @@ msgid "The identifier for the game"
 msgstr "Identifikátor hry"
 
 #: ../libgames-support/libgnomegames.schemas.in.h:4
-msgid "The mode of network game to use. 1 = Server, 2 = LAN Host, 3 = LAN Client."
+msgid ""
+"The mode of network game to use. 1 = Server, 2 = LAN Host, 3 = LAN Client."
 msgstr ""
 "Režim síťové hry, který používat. 1 = Server, 2 = hostitel v síti, 3 = "
 "klient v síti."
@@ -5098,7 +7350,7 @@ msgstr ""
 "Který server hry kontaktovat při používání režimu serveru. Přijímá obvyklý "
 "zápis jmen počítačů nebo čtveřice oddělené tečkami."
 
-#: ../mahjongg/drawing.c:286
+#: ../mahjongg/drawing.c:296
 msgid ""
 "The selected theme failed to render.\n"
 "\n"
@@ -5108,7 +7360,7 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím, že je Mahjongg víc správně nainstalován."
 
-#: ../mahjongg/drawing.c:431
+#: ../mahjongg/drawing.c:454
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -5121,7 +7373,7 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím, že je Mahjongg správně nainstalováno."
 
-#: ../mahjongg/drawing.c:434
+#: ../mahjongg/drawing.c:458
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -5134,7 +7386,7 @@ msgstr ""
 "\n"
 "Bude místo něj načtena implicitní sada kamenů."
 
-#: ../mahjongg/drawing.c:451
+#: ../mahjongg/drawing.c:476
 #, c-format
 msgid ""
 "Unable to render file:\n"
@@ -5147,35 +7399,36 @@ msgstr ""
 "\n"
 "Zkontrolujte prosím, že je Mahjongg správně nainstalován."
 
-#: ../mahjongg/mahjongg.c:138
+#: ../mahjongg/mahjongg.c:140
 msgid "Could not load tile set"
 msgstr "Nemohu načíst sadu kamenů"
 
-#: ../mahjongg/mahjongg.c:374
+#: ../mahjongg/mahjongg.c:380
 msgid ""
 "Do you want to finish the current game or start playing with the new map "
 "immediately?"
 msgstr "Chcete dokončit aktuální hru nebo hned začít hrát s novou mapou?"
 
-#: ../mahjongg/mahjongg.c:375
+#: ../mahjongg/mahjongg.c:382
 msgid ""
 "If you choose to finish with the old map then the next game will use the new "
 "map."
-msgstr "Pokud se rozhodnete dokončit starou mapu, použije další hra novou mapu."
+msgstr ""
+"Pokud se rozhodnete dokončit starou mapu, použije další hra novou mapu."
 
-#: ../mahjongg/mahjongg.c:377
+#: ../mahjongg/mahjongg.c:383
 msgid "_Finish"
 msgstr "_Dokončit"
 
-#: ../mahjongg/mahjongg.c:657
+#: ../mahjongg/mahjongg.c:660
 msgid "Shuffle"
 msgstr "Zamíchat"
 
-#: ../mahjongg/mahjongg.c:693 ../mahjongg/mahjongg.c:1010
+#: ../mahjongg/mahjongg.c:693 ../mahjongg/mahjongg.c:1004
 msgid "Mahjongg Scores"
 msgstr "Skóre Mahjongg"
 
-#: ../mahjongg/mahjongg.c:695 ../mahjongg/mahjongg.c:1012
+#: ../mahjongg/mahjongg.c:695 ../mahjongg/mahjongg.c:1006
 msgid "Map:"
 msgstr "Mapa:"
 
@@ -5187,53 +7440,53 @@ msgstr "Nastavení Mahjongg"
 msgid "Tiles"
 msgstr "Kameny"
 
-#: ../mahjongg/mahjongg.c:777
+#: ../mahjongg/mahjongg.c:775
 msgid "Maps"
 msgstr "Mapy"
 
-#: ../mahjongg/mahjongg.c:784
+#: ../mahjongg/mahjongg.c:782
 msgid "_Select map:"
 msgstr "_Vyberte mapu:"
 
-#: ../mahjongg/mahjongg.c:800
+#: ../mahjongg/mahjongg.c:796
 msgid "Colors"
 msgstr "Barvy"
 
-#: ../mahjongg/mahjongg.c:928
+#: ../mahjongg/mahjongg.c:923
 msgid "Maps:"
 msgstr "Mapy:"
 
-#: ../mahjongg/mahjongg.c:935
+#: ../mahjongg/mahjongg.c:930
 msgid "Tiles:"
 msgstr "Kameny:"
 
-#: ../mahjongg/mahjongg.c:950 ../mahjongg/mahjongg.c:1024
-#: ../mahjongg/mahjongg.desktop.in.h:2
+#: ../mahjongg/mahjongg.c:943 ../mahjongg/mahjongg.c:946
+#: ../mahjongg/mahjongg.c:1018 ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: ../mahjongg/mahjongg.c:952
+#: ../mahjongg/mahjongg.c:949
 msgid "A matching game played with Mahjongg tiles."
 msgstr "Párovací hra hraná s kameny Mahjongg."
 
-#: ../mahjongg/mahjongg.c:1024
+#: ../mahjongg/mahjongg.c:1018
 #, c-format
 msgid "%s - %s"
 msgstr "%s - %s"
 
-#: ../mahjongg/mahjongg.c:1276
+#: ../mahjongg/mahjongg.c:1272
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Promiňte, nepodařilo se nalézt hratelné nastavení."
 
-#: ../mahjongg/mahjongg.c:1469
+#: ../mahjongg/mahjongg.c:1482
 msgid "Tiles Left:"
 msgstr "Zbývá kamenů:"
 
-#: ../mahjongg/mahjongg.c:1478
+#: ../mahjongg/mahjongg.c:1491
 msgid "Moves Left:"
 msgstr "Zbývá tahů:"
 
-#: ../mahjongg/mahjongg.c:1540
+#: ../mahjongg/mahjongg.c:1554
 msgid "Remove matching pairs of tiles."
 msgstr "Odstranit odpovídající si dvojice kamenů."
 
@@ -5257,29 +7510,29 @@ msgstr ""
 "Požadovaná šířka hlavního okna v pixelech. Widgety, které okno obsahuje, "
 "jsou alespoň 320 pixelů široké."
 
-#: ../mahjongg/maps.c:81
+#: ../mahjongg/maps.c:224
 msgid "mahjongg|Easy"
 msgstr "Snadné"
 
 #. FIXME: This is long enough to resize the window upwards when
 #. * the game finishes.
-#: ../same-gnome/game.c:367
+#: ../same-gnome/game.c:384
 msgid "1000 point bonus for clearing the board!"
 msgstr "Bonus 1000 bodů za vyčištění desky!"
 
-#: ../same-gnome/same-gnome.c:50
+#: ../same-gnome/same-gnome.c:55
 msgid "same-gnome|Medium"
 msgstr "Střední"
 
-#: ../same-gnome/same-gnome.c:139
+#: ../same-gnome/same-gnome.c:148
 msgid "Set the theme"
 msgstr "Nastavit motiv"
 
-#: ../same-gnome/same-gnome.c:141
+#: ../same-gnome/same-gnome.c:150
 msgid "For backwards compatibility"
 msgstr "Pro zpětnou komptibilitu"
 
-#: ../same-gnome/same-gnome.c:143
+#: ../same-gnome/same-gnome.c:152
 msgid "Game size (1=small, 3=large)"
 msgstr "Velikost hry (1=malá, 3=velká)"
 
@@ -5316,8 +7569,10 @@ msgid "The height of the custom board, 101 &gt; height &gt; 3."
 msgstr "Výška vlastní desky, 101 &gt; výška &gt; 3."
 
 #: ../same-gnome/same-gnome.schemas.in.h:7
-msgid "The size of the board to use. 1 = Custom, 2 = Small, 3 = Medium, 4 = Large."
-msgstr "Velikost desky, kterou používat. 1 = vlastní, 2 = malá 3 = střední 4 = velká."
+msgid ""
+"The size of the board to use. 1 = Custom, 2 = Small, 3 = Medium, 4 = Large."
+msgstr ""
+"Velikost desky, kterou používat. 1 = vlastní, 2 = malá 3 = střední 4 = velká."
 
 #: ../same-gnome/same-gnome.schemas.in.h:8
 msgid "The theme to use"
@@ -5343,11 +7598,11 @@ msgstr "Používat rychlé animace"
 msgid "Width of the custom board"
 msgstr "Šířka vlastní desky"
 
-#: ../same-gnome/ui.c:71
+#: ../same-gnome/ui.c:73
 msgid "No points"
 msgstr "Žádné body"
 
-#: ../same-gnome/ui.c:76
+#: ../same-gnome/ui.c:78
 #, c-format
 msgid "%d point"
 msgid_plural "%d points"
@@ -5355,42 +7610,42 @@ msgstr[0] "%d bod"
 msgstr[1] "%d body"
 msgstr[2] "%d bodů"
 
-#: ../same-gnome/ui.c:90
+#: ../same-gnome/ui.c:94
 #, c-format
 msgid "Score: %d"
 msgstr "Skóre: %d"
 
-#: ../same-gnome/ui.c:112
+#: ../same-gnome/ui.c:123
 msgid ""
 "I want to play that game! You know, they all go whirly-round and you click "
 "on them and they vanish!"
 msgstr "Chci hrát tu hru! Víte, všechny se točí a vy na ně klikáte a ony mizí!"
 
-#: ../same-gnome/ui.c:128
+#: ../same-gnome/ui.c:140
 msgid "Same GNOME Scores"
 msgstr "Skóre Same GNOME"
 
-#: ../same-gnome/ui.c:153
+#: ../same-gnome/ui.c:169
 msgid "Unfortunately your score did not make the top ten."
 msgstr "Vaše skóre se bohužel nedostalo mezi deset nejlepších."
 
-#: ../same-gnome/ui.c:256
+#: ../same-gnome/ui.c:276
 msgid "Same GNOME Theme"
 msgstr "Motiv Same GNOME"
 
-#: ../same-gnome/ui.c:437
+#: ../same-gnome/ui.c:471
 msgid "_Theme..."
 msgstr "_Motiv..."
 
-#: ../same-gnome/ui.c:450
+#: ../same-gnome/ui.c:484
 msgid "_Fast Animation"
 msgstr "_Rychlé animace"
 
-#: ../same-gnome/drawing.c:350
+#: ../same-gnome/drawing.c:359
 msgid "No theme data was found."
 msgstr "Nebyla nalezena data motivu."
 
-#: ../same-gnome/drawing.c:354
+#: ../same-gnome/drawing.c:364
 msgid ""
 "It is impossible to play the game. Please check that the game has been "
 "installed correctly and try again."
@@ -5398,3 +7653,161 @@ msgstr ""
 "Nelze hrát hru. Zkontrolujte prosím, že hra byla správně nainstalována, a "
 "zkuste to znovu."
 
+#~ msgid "Redeals left: ~a"
+#~ msgstr "Zbylá rozdání: ~a"
+
+#, fuzzy
+#~ msgid "Set the state of the board at start-up."
+#~ msgstr "Výška hlavního okna v pixelech při spouštění."
+
+#~ msgid "Set whose turn it is."
+#~ msgstr "Nastavte, kdo je na tahu."
+
+#~ msgid "1 (Light) or 2 (Dark)"
+#~ msgstr "1 (Bílý) nebo 2 (Černý)"
+
+#~ msgid "Based on code from Iagno by Ian Peters"
+#~ msgstr "Založeno na kódu Iagno od Iana Peterse"
+
+#~ msgid "Ataxx"
+#~ msgstr "Ataxx"
+
+#~ msgid "A disk-flipping game where you attempt to dominate the board."
+#~ msgstr "Hra s převracením kamenů, kde se snažíte ovládnout desku."
+
+#~ msgid "Level of black player"
+#~ msgstr "Úroveň černého hráče"
+
+#~ msgid "The name of the theme to use."
+#~ msgstr "Název motivu, který používat."
+
+#~ msgid "The requested height of the main window in pixels."
+#~ msgstr "Požadovaná výška hlavního okna v pixelech."
+
+#~ msgid "The requested width of the main window in pixels."
+#~ msgstr "Požadovaná šířka hlavního okna v pixelech."
+
+#~ msgid "Tileset (obsolete)"
+#~ msgstr "Sada kamenů (zastaralé)"
+
+#~ msgid "Tileset to use (obsolete)."
+#~ msgstr "Sada kamenů, kterou používat (zastaralé)."
+
+#~ msgid "Whether or not to use quick moves."
+#~ msgstr "Jestli se mají používat rychlé tahy."
+
+#~ msgid ""
+#~ "Zero corresponds to no animations, one is partial animations, two is "
+#~ "complete animations."
+#~ msgstr ""
+#~ "Nula odpovídá žádným animacím, jedna znamená částečné animace, dvě "
+#~ "znamená kompletní animace."
+
+#~ msgid "Squares and Diamonds"
+#~ msgstr "Čtverce a diamanty"
+
+#~ msgid "Ataxx Preferences"
+#~ msgstr "Nastavení Ataxx"
+
+#~ msgid "_Quick moves"
+#~ msgstr "_Rychlé tahy"
+
+#~ msgid "Shortens the time a computer waits before doing a move"
+#~ msgstr "Zkrátí čas, který počítač čeká před provedením tahu"
+
+#~ msgid "Very easy"
+#~ msgstr "Velmi jednoduché"
+
+#~ msgid "gataxx|Easy"
+#~ msgstr "Jednoduché"
+
+#~ msgid "gataxx|Medium"
+#~ msgstr "Střední"
+
+#~ msgid "Flip the pieces with some visual effects"
+#~ msgstr "Obracet kameny s vizuálními efekty"
+
+#~ msgid "The appearance of the pieces"
+#~ msgstr "Vzhled kamenů"
+
+#~ msgid "%s..."
+#~ msgstr "%s..."
+
+#~ msgid "Invalid game data"
+#~ msgstr "Neplatná data hry"
+
+#~ msgid "Peer introduction complete"
+#~ msgstr "Představení souseda dokončeno."
+
+#~ msgid "New game ready to be started"
+#~ msgstr "Nová hra je připravena ke startu"
+
+#~ msgid "Iagno server to use"
+#~ msgstr "Použitý server Iagno"
+
+#~ msgid "Invalid game data (set_peer)"
+#~ msgstr "Neplatná herní data (set_peer)"
+
+#~ msgid "Invalid game data (move)"
+#~ msgstr "Neplatná herní data (tah)"
+
+#~ msgid "Select a nickname and connection method then click Connect."
+#~ msgstr "Zvolte přezdívku a metodu přípojení, pak klikněte na Připojit."
+
+#~ msgid "Connection Method"
+#~ msgstr "Metoda připojení"
+
+#~ msgid "GNOME games server"
+#~ msgstr "Server her GNOME"
+
+#~ msgid "Host local game"
+#~ msgstr "Provozovat místní hru"
+
+#~ msgid "Identification"
+#~ msgstr "Identifikace"
+
+#~ msgid "_Nickname:"
+#~ msgstr "_Přezdívka:"
+
+#~ msgid "Please supply a nickname."
+#~ msgstr "Zadejte prosím přezdívku."
+
+#~ msgid "No local game selected."
+#~ msgstr "Nevybrána žádná místní hra."
+
+#~ msgid "A new gnome games server was successfully started."
+#~ msgstr "Nový server gnome her byl úspěšně spuštěn."
+
+#~ msgid "Network initialization complete."
+#~ msgstr "Inicializace sítě kompletní."
+
+#~ msgid "Network shutdown in progress."
+#~ msgstr "Probíhá zastavení sítě."
+
+#~ msgid "The remote player disconnected"
+#~ msgstr "Vzdálený hráč byl odpojen"
+
+#~ msgid "Error occurred during connect attempt."
+#~ msgstr "Při pokusu o spojení se vyskytla chyba."
+
+#~ msgid "Connection succeeded, waiting for opponent"
+#~ msgstr "Spojení úspěšné, čeká se na protivníka"
+
+#~ msgid "Error occurred during write."
+#~ msgstr "Došlo k chybě při zápisu."
+
+#~ msgid "Cleaning up connection"
+#~ msgstr "Čistím připojení"
+
+#~ msgid "Connection in progress..."
+#~ msgstr "Probíhá připojení..."
+
+#~ msgid "No game server defined"
+#~ msgstr "Není definován server hry"
+
+#~ msgid ""
+#~ "Local Area Network game could not be started. \n"
+#~ "Try running mDNSResponder."
+#~ msgstr ""
+#~ "Hru v síti nelze spustit. \n"
+#~ "Zkuste spustit mDNSResponder."

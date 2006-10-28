@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games 2.15.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-23 00:54+0900\n"
+"POT-Creation-Date: 2006-10-28 20:52+0200\n"
 "PO-Revision-Date: 2006-07-23 01:00+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -17,6 +17,12 @@ msgstr ""
 
 #: ../aisleriot/aisleriot.schemas.in.h:1
 msgid ""
+"A comma seperated list of recently played games. The filenames are stored "
+"here, not the actual game name."
+msgstr ""
+
+#: ../aisleriot/aisleriot.schemas.in.h:2
+msgid ""
 "A list of strings that come in the form of a quintuple: name, wins, total "
 "games played, best time (in seconds) and worst time (also in seconds). "
 "Unplayed games do not need to be represented."
@@ -24,75 +30,80 @@ msgstr ""
 "5개 데이타 튜플 형태의 스트링 목록: 이름, 이긴 회수, 전체 게임 수, 최고 게임 "
 "(초 단위) 그리고 최저 게임 (역시 초 단위).  플레이하지 않은 게임은 해당 없음."
 
-#: ../aisleriot/aisleriot.schemas.in.h:2
+#: ../aisleriot/aisleriot.schemas.in.h:3
+#, fuzzy
+msgid "Recently Played Games"
+msgstr "플레이어 이름"
+
+#: ../aisleriot/aisleriot.schemas.in.h:4
 msgid "Select the style of control"
 msgstr "컨트롤 방식을 고르십시오"
 
-#: ../aisleriot/aisleriot.schemas.in.h:3
+#: ../aisleriot/aisleriot.schemas.in.h:5
 msgid ""
 "Select whether to drag the cards or to click on the source then the "
 "destination."
 msgstr ""
 "카드를 옮길 때 원래 위치에서 옮길 위치까지 드래그할 지 클릭할 지 고르십시오."
 
-#: ../aisleriot/aisleriot.schemas.in.h:4
+#: ../aisleriot/aisleriot.schemas.in.h:6
 msgid "Statistics of games played"
 msgstr "플레이한 게임의 통계"
 
-#: ../aisleriot/aisleriot.schemas.in.h:5
+#: ../aisleriot/aisleriot.schemas.in.h:7
 msgid "The game file to use"
 msgstr "사용할 게임 파일"
 
-#: ../aisleriot/aisleriot.schemas.in.h:6 ../glines/glines.schemas.in.h:13
+#: ../aisleriot/aisleriot.schemas.in.h:8 ../glines/glines.schemas.in.h:13
 #: ../gnobots2/gnobots2.schemas.in.h:25 ../gnometris/gnometris.schemas.in.h:21
 #: ../same-gnome/same-gnome.schemas.in.h:6
 msgid "The height of the main window."
 msgstr "메인 창의 높이."
 
-#: ../aisleriot/aisleriot.schemas.in.h:7
+#: ../aisleriot/aisleriot.schemas.in.h:9
 #: ../blackjack/data/blackjack.schemas.in.h:7
 msgid "The name of the file with the graphics for the cards."
 msgstr "카드의 그래픽이 들어 있는 파일의 이름."
 
-#: ../aisleriot/aisleriot.schemas.in.h:8
+#: ../aisleriot/aisleriot.schemas.in.h:10
 msgid "The name of the scheme file containing the solitaire game to play."
 msgstr "플레이할 솔리테어 게임이 들어 있는 Scheme 파일의 이름."
 
-#: ../aisleriot/aisleriot.schemas.in.h:9 ../glines/glines.schemas.in.h:14
+#: ../aisleriot/aisleriot.schemas.in.h:11 ../glines/glines.schemas.in.h:14
 #: ../gnobots2/gnobots2.schemas.in.h:38 ../gnometris/gnometris.schemas.in.h:26
 #: ../same-gnome/same-gnome.schemas.in.h:10
 msgid "The width of the main window."
 msgstr "메인 창의 너비."
 
-#: ../aisleriot/aisleriot.schemas.in.h:10
+#: ../aisleriot/aisleriot.schemas.in.h:12
 #: ../blackjack/data/blackjack.schemas.in.h:10
 msgid "Theme file name"
 msgstr "테마 파일 이름"
 
-#: ../aisleriot/aisleriot.schemas.in.h:11
+#: ../aisleriot/aisleriot.schemas.in.h:13
 #: ../blackjack/data/blackjack.schemas.in.h:13
 msgid "Whether or not to show the toolbar"
 msgstr "도구 모음을 보일 지 여부"
 
-#: ../aisleriot/aisleriot.schemas.in.h:12
+#: ../aisleriot/aisleriot.schemas.in.h:14
 #: ../blackjack/data/blackjack.schemas.in.h:14
 msgid "Whether or not to show the toolbar."
 msgstr "도구 모음을 보일 지 여부."
 
-#: ../aisleriot/aisleriot.schemas.in.h:13 ../glines/glines.schemas.in.h:17
+#: ../aisleriot/aisleriot.schemas.in.h:15 ../glines/glines.schemas.in.h:17
 #: ../gnobots2/gnobots2.schemas.in.h:43 ../gnometris/gnometris.schemas.in.h:37
 msgid "Window height"
 msgstr "창 높이"
 
-#: ../aisleriot/aisleriot.schemas.in.h:14 ../glines/glines.schemas.in.h:18
+#: ../aisleriot/aisleriot.schemas.in.h:16 ../glines/glines.schemas.in.h:18
 #: ../gnobots2/gnobots2.schemas.in.h:44 ../gnometris/gnometris.schemas.in.h:38
 msgid "Window width"
 msgstr "창 너비"
 
-#: ../aisleriot/cscmi.c:191
-#, c-format
+#: ../aisleriot/cscmi.c:174
+#, fuzzy, c-format
 msgid ""
-"A scheme exception occured and we were unable to create a temporary file to "
+"A scheme exception occurred and we were unable to create a temporary file to "
 "report it:\n"
 "\n"
 "%s"
@@ -101,27 +112,27 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../aisleriot/dialog.c:45
+#: ../aisleriot/dialog.c:47
 msgid "Congratulations!!!"
 msgstr "축하합니다!!!"
 
-#: ../aisleriot/dialog.c:46
+#: ../aisleriot/dialog.c:48
 msgid "You have won."
 msgstr "이겼습니다."
 
-#: ../aisleriot/dialog.c:48 ../mahjongg/mahjongg.c:653
+#: ../aisleriot/dialog.c:50 ../mahjongg/mahjongg.c:656
 msgid "There are no more moves."
 msgstr "더 이상 움직일 수 없습니다."
 
-#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:196 ../same-gnome/ui.c:156
+#: ../aisleriot/dialog.c:64 ../gnomine/gnomine.c:199 ../same-gnome/ui.c:171
 msgid "_New Game"
 msgstr "새 게임(_N)"
 
-#: ../aisleriot/dialog.c:176
+#: ../aisleriot/dialog.c:177
 msgid "Select Game"
 msgstr "게임 선택"
 
-#: ../aisleriot/dialog.c:275
+#: ../aisleriot/dialog.c:277
 msgid ""
 "The game is over.\n"
 "No hints are available"
@@ -129,7 +140,7 @@ msgstr ""
 "게임이 끝났습니다.\n"
 "힌트는 사용할 수 없습니다."
 
-#: ../aisleriot/dialog.c:281
+#: ../aisleriot/dialog.c:282
 msgid "This game does not have hint support yet."
 msgstr "이 게임은 아직 힌트가 지원되지 않습니다."
 
@@ -144,7 +155,7 @@ msgid "Move %s %s."
 msgstr "%s %s을(를) 움직이십시오."
 
 # bugzilla.gnome.org는 영어로 보고해야 하므로 영어 원문을 포함한다
-#: ../aisleriot/dialog.c:306
+#: ../aisleriot/dialog.c:307
 msgid ""
 "This game uses a deprecated hint method (case 3).\n"
 "Please file a bug at http://bugzilla.gnome.org including this message and\n"
@@ -160,12 +171,12 @@ msgstr ""
 "the name of the game you where playing (look in the title bar if you \n"
 "aren't sure)."
 
-#: ../aisleriot/dialog.c:311
+#: ../aisleriot/dialog.c:312
 #, c-format
 msgid "You are searching for a %s."
 msgstr "%s을(를) 찾고 있습니다."
 
-#: ../aisleriot/dialog.c:315
+#: ../aisleriot/dialog.c:316
 msgid "This game is unable to provide a hint."
 msgstr "이 게임은 힌트를 제공할 수 없습니다."
 
@@ -181,19 +192,19 @@ msgstr "프리셀 솔리테어"
 msgid "Play the popular FreeCell card game"
 msgstr "유명한 프리셀 카드 게임"
 
-#: ../aisleriot/menu.c:106 ../gnomine/gnomine.c:427 ../mahjongg/mahjongg.c:920
+#: ../aisleriot/menu.c:107 ../gnomine/gnomine.c:429 ../mahjongg/mahjongg.c:915
 msgid "Main game:"
 msgstr "주 게임:"
 
-#: ../aisleriot/menu.c:112
+#: ../aisleriot/menu.c:113
 msgid "Card games:"
 msgstr "카드 게임:"
 
-#: ../aisleriot/menu.c:129
+#: ../aisleriot/menu.c:128 ../aisleriot/menu.c:131
 msgid "AisleRiot"
 msgstr "아일라이어트"
 
-#: ../aisleriot/menu.c:131
+#: ../aisleriot/menu.c:134
 msgid ""
 "AisleRiot provides a rule-based solitaire\n"
 "card engine that allows many different\n"
@@ -203,102 +214,112 @@ msgstr ""
 "카드게임 엔진을 제공하여 다양한 종류의\n"
 "게임을 플레이할 수 있습니다."
 
-#: ../aisleriot/menu.c:138 ../blackjack/src/menu.cpp:159
-#: ../gataxx/gataxx.c:400 ../glines/glines.c:1228 ../gnect/src/main.c:825
-#: ../gnibbles/main.c:207 ../gnobots2/menu.c:257 ../gnometris/tetris.cpp:1452
-#: ../gnomine/gnomine.c:464 ../gnotravex/gnotravex.c:1633
-#: ../gnotski/gnotski.c:1606 ../gtali/gyahtzee.c:461 ../iagno/gnothello.c:256
-#: ../mahjongg/mahjongg.c:958 ../same-gnome/ui.c:116
+#: ../aisleriot/menu.c:140 ../blackjack/src/menu.cpp:162
+#: ../glines/glines.c:1229 ../gnect/src/main.c:923 ../gnibbles/main.c:248
+#: ../gnobots2/menu.c:266 ../gnometris/tetris.cpp:1454
+#: ../gnomine/gnomine.c:468 ../gnotravex/gnotravex.c:1831
+#: ../gnotski/gnotski.c:1408 ../gtali/gyahtzee.c:462 ../iagno/gnothello.c:306
+#: ../mahjongg/mahjongg.c:954 ../same-gnome/ui.c:127
 msgid "translator-credits"
 msgstr "류창우 <cwryu@debian.org>"
 
-#: ../aisleriot/menu.c:232 ../blackjack/src/blackjack.cpp:335
-#: ../glines/glines.c:1719 ../gnect/src/main.c:1164 ../gnibbles/main.c:644
-#: ../gnobots2/menu.c:61 ../gnometris/tetris.cpp:131 ../gnomine/gnomine.c:794
-#: ../gnotravex/gnotravex.c:194 ../gnotski/gnotski.c:635
-#: ../gtali/gyahtzee.c:537 ../mahjongg/mahjongg.c:1306 ../same-gnome/ui.c:424
+#: ../aisleriot/menu.c:243 ../blackjack/src/blackjack.cpp:335
+#: ../glchess/glade/glchess.glade.h:38 ../glines/glines.c:1688
+#: ../gnect/src/main.c:1306 ../gnibbles/main.c:761 ../gnobots2/menu.c:61
+#: ../gnometris/tetris.cpp:131 ../gnome-sudoku/src/lib/gnome_sudoku.py:173
+#: ../gnomine/gnomine.c:802 ../gnotravex/gnotravex.c:267
+#: ../gnotski/gnotski.c:426 ../gtali/gyahtzee.c:538
+#: ../mahjongg/mahjongg.c:1302 ../same-gnome/ui.c:455
 msgid "_Game"
 msgstr "게임(_G)"
 
-#: ../aisleriot/menu.c:233 ../blackjack/src/blackjack.cpp:336
-#: ../gnect/src/main.c:1165 ../gnibbles/main.c:645 ../gnobots2/menu.c:62
-#: ../gnotravex/gnotravex.c:195 ../gnotski/gnotski.c:636
-#: ../same-gnome/ui.c:425
+#: ../aisleriot/menu.c:244 ../blackjack/src/blackjack.cpp:336
+#: ../glchess/glade/glchess.glade.h:43 ../gnect/src/main.c:1307
+#: ../gnibbles/main.c:762 ../gnobots2/menu.c:62
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:174 ../gnotravex/gnotravex.c:268
+#: ../gnotski/gnotski.c:427 ../same-gnome/ui.c:456
 msgid "_View"
 msgstr "보기(_V)"
 
-#: ../aisleriot/menu.c:234 ../blackjack/src/blackjack.cpp:345
+#: ../aisleriot/menu.c:245 ../blackjack/src/blackjack.cpp:345
 msgid "_Control"
 msgstr "컨트롤(_C)"
 
 #. not translated on purpose
-#: ../aisleriot/menu.c:236 ../blackjack/src/blackjack.cpp:352
-#: ../glines/glines.c:1721 ../gnect/src/main.c:1167 ../gnibbles/main.c:647
-#: ../gnobots2/menu.c:65 ../gnometris/tetris.cpp:133 ../gnomine/gnomine.c:796
-#: ../gnotravex/gnotravex.c:198 ../gnotski/gnotski.c:637
-#: ../gtali/gyahtzee.c:539 ../mahjongg/mahjongg.c:1308 ../same-gnome/ui.c:427
+#: ../aisleriot/menu.c:247 ../blackjack/src/blackjack.cpp:352
+#: ../glchess/glade/glchess.glade.h:39 ../glines/glines.c:1690
+#: ../gnect/src/main.c:1309 ../gnibbles/main.c:764 ../gnobots2/menu.c:65
+#: ../gnometris/tetris.cpp:133 ../gnome-sudoku/src/lib/gnome_sudoku.py:196
+#: ../gnomine/gnomine.c:804 ../gnotravex/gnotravex.c:271
+#: ../gnotski/gnotski.c:428 ../gtali/gyahtzee.c:540
+#: ../mahjongg/mahjongg.c:1304 ../same-gnome/ui.c:458
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: ../aisleriot/menu.c:238 ../blackjack/src/blackjack.cpp:337
-#: ../gnobots2/menu.c:66 ../libgames-support/games-stock.c:99
-#: ../mahjongg/mahjongg.c:1309
+#: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:337
+#: ../glchess/glade/glchess.glade.h:28 ../gnobots2/menu.c:66
+#: ../libgames-support/games-stock.c:110 ../mahjongg/mahjongg.c:1305
 msgid "Start a new game"
 msgstr "새 게임을 시작합니다"
 
-#: ../aisleriot/menu.c:239 ../blackjack/src/blackjack.cpp:338
-#: ../mahjongg/mahjongg.c:1310
+#: ../aisleriot/menu.c:252 ../blackjack/src/blackjack.cpp:338
+#: ../mahjongg/mahjongg.c:1308
 msgid "Restart the current game"
 msgstr "현재 게임을 다시 시작합니다"
 
-#: ../aisleriot/menu.c:240
+#: ../aisleriot/menu.c:253
 msgid "_Select Game..."
 msgstr "게임 선택(_S)..."
 
-#: ../aisleriot/menu.c:240
+#: ../aisleriot/menu.c:254
 msgid "Play a different game"
 msgstr "다른 게임을 플레이합니다"
 
-#: ../aisleriot/menu.c:241
+#: ../aisleriot/menu.c:255
+msgid "Recently _Played"
+msgstr ""
+
+#: ../aisleriot/menu.c:256
 msgid "S_tatistics"
 msgstr "통계(_T)"
 
-#: ../aisleriot/menu.c:241
+#: ../aisleriot/menu.c:257
 msgid "Show gameplay statistics"
 msgstr "게임 플레이 통계 보기"
 
-#: ../aisleriot/menu.c:245
+#: ../aisleriot/menu.c:263
 msgid "_Cards..."
 msgstr "카드(_C)..."
 
-#: ../aisleriot/menu.c:247 ../libgames-support/games-stock.c:103
+#: ../aisleriot/menu.c:266 ../libgames-support/games-stock.c:118
 #: ../mahjongg/mahjongg.c:1313
 msgid "Undo the last move"
 msgstr "마지막 움직임을 취소합니다"
 
-#: ../aisleriot/menu.c:248 ../mahjongg/mahjongg.c:1314
+#: ../aisleriot/menu.c:268 ../mahjongg/mahjongg.c:1315
 msgid "Redo the last move"
 msgstr "마지막 움직임을 다시 실행합니다"
 
-#: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:339
-#: ../mahjongg/mahjongg.c:1315
+#: ../aisleriot/menu.c:270 ../blackjack/src/blackjack.cpp:339
+#: ../mahjongg/mahjongg.c:1317
 msgid "Show a hint"
 msgstr "힌트를 봅니다"
 
-#: ../aisleriot/menu.c:250
+#: ../aisleriot/menu.c:273
 msgid "View help for Aisleriot"
 msgstr "아일라이어트 도움말 보기"
 
-#: ../aisleriot/menu.c:251 ../libgames-support/games-stock.c:110
+#: ../aisleriot/menu.c:274 ../libgames-support/games-stock.c:125
 msgid "View help for this game"
 msgstr "이 게임의 도움말을 봅니다"
 
-#: ../aisleriot/menu.c:256 ../blackjack/src/blackjack.cpp:358
-#: ../gnobots2/menu.c:82 ../mahjongg/mahjongg.c:1326
+#: ../aisleriot/menu.c:281 ../blackjack/src/blackjack.cpp:358
+#: ../glchess/glade/glchess.glade.h:42 ../gnobots2/menu.c:89
+#: ../mahjongg/mahjongg.c:1333
 msgid "_Toolbar"
 msgstr "도구 모음(_T)"
 
-#: ../aisleriot/menu.c:257
+#: ../aisleriot/menu.c:283
 msgid "_Click to Move"
 msgstr "클릭하면 움직임(_C)"
 
@@ -437,10 +458,6 @@ msgstr "비어 있는 슬롯"
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:1 ../aisleriot/rules/zebra.scm.h:1
 msgid "Deal another round"
 msgstr "다른 라운드를 돌리십시오"
-
-#: ../aisleriot/rules/aunt_mary.scm.h:1
-msgid "Redeals left: ~a"
-msgstr "왼쪽 다시 돌리기: ~a"
 
 #: ../aisleriot/rules/bakers_dozen.scm.h:2
 #: ../aisleriot/rules/bakers_game.scm.h:2
@@ -862,7 +879,7 @@ msgstr "카드 뭉치를 빈 타블로 슬롯으로 옮기십시오"
 msgid "the appropriate Foundation pile"
 msgstr "적당한 파운데이션 더미"
 
-#: ../aisleriot/sol.c:161
+#: ../aisleriot/sol.c:187
 #, c-format
 msgid ""
 "Aisleriot can't load the file: \n"
@@ -875,11 +892,11 @@ msgstr ""
 "\n"
 "아일라이어트가 제대로 설치되었는 지 확인하십시오"
 
-#: ../aisleriot/sol.c:207
+#: ../aisleriot/sol.c:235
 msgid "Aisleriot cannot find the last game you played."
 msgstr "아일라이어트에서 플레이한 마지막 게임을 찾지 못했습니다."
 
-#: ../aisleriot/sol.c:208
+#: ../aisleriot/sol.c:238
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -888,27 +905,28 @@ msgstr ""
 "마지막으로 플레이한 게임이 들어 있지 않은 아일라이어트 옛날 버전을 실행하는 "
 "경우 일어납니다. 기본 게임인 클론다이크를 대신 실행합니다."
 
-#: ../aisleriot/sol.c:416
+#: ../aisleriot/sol.c:516
 msgid "Aisleriot"
 msgstr "아일라이어트"
 
-#: ../aisleriot/sol.c:453 ../glines/glines.c:1981 ../gnobots2/statusbar.c:65
-#: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:430
+#. Add "Highscore" label
+#: ../aisleriot/sol.c:554 ../dependencies/ggz-gtk/playerinfo.c:241
+#: ../glines/glines.c:1940 ../gnobots2/statusbar.c:65
+#: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:432
 msgid "Score:"
 msgstr "점수:"
 
-#: ../aisleriot/sol.c:458 ../gnotravex/gnotravex.c:1104
-#: ../mahjongg/mahjongg.c:1487
+#: ../aisleriot/sol.c:559 ../gnotravex/gnotravex.c:1296
+#: ../mahjongg/mahjongg.c:1500
 msgid "Time:"
 msgstr "시간:"
 
-#: ../aisleriot/sol.c:509
+#: ../aisleriot/sol.c:611
 msgid "Select the game to play"
 msgstr "플레이할 게임을 선택하십시오"
 
-#: ../aisleriot/sol.c:509 ../gnobots2/gnobots.c:66 ../gnobots2/gnobots.c:68
-#: ../iagno/gnothello.c:109 ../same-gnome/same-gnome.c:139
-#: ../same-gnome/same-gnome.c:141
+#: ../aisleriot/sol.c:611 ../gnobots2/gnobots.c:66 ../gnobots2/gnobots.c:68
+#: ../same-gnome/same-gnome.c:148 ../same-gnome/same-gnome.c:150
 msgid "NAME"
 msgstr "<이름>"
 
@@ -1222,13 +1240,14 @@ msgstr "이"
 
 #. For translators: N/A means "Not Applicable", use whatever
 #. * abbreviation you have for a value that has no meaning.
-#: ../aisleriot/statistics.c:95 ../aisleriot/statistics.c:104
-#: ../aisleriot/statistics.c:113
+#: ../aisleriot/statistics.c:100 ../aisleriot/statistics.c:109
+#: ../aisleriot/statistics.c:118 ../dependencies/ggz-gtk/roominfo.c:162
+#: ../dependencies/ggz-gtk/roominfo.c:169
 msgid "N/A"
 msgstr "해당 없음"
 
 #. Translators: this represents minutes:seconds.
-#: ../aisleriot/statistics.c:99 ../aisleriot/statistics.c:108
+#: ../aisleriot/statistics.c:104 ../aisleriot/statistics.c:113
 #, c-format
 msgid "%d:%02d"
 msgstr "%d:%02d"
@@ -1602,7 +1621,8 @@ msgstr "유콘"
 msgid "Zebra"
 msgstr "제브라"
 
-#: ../blackjack/data/blackjack.desktop.in.h:1 ../blackjack/src/splash.cpp:93
+#: ../blackjack/data/blackjack.desktop.in.h:1 ../blackjack/src/menu.cpp:152
+#: ../blackjack/src/splash.cpp:93
 msgid "Blackjack"
 msgstr "블랙잭"
 
@@ -1658,10 +1678,10 @@ msgstr "각 카드 사이에 지연 시간 없이 빨리 카드를 돌립니다.
 msgid "Blackjack - %s"
 msgstr "블랙잭 - %s"
 
-#: ../blackjack/src/blackjack.cpp:341 ../glines/glines.c:1720
-#: ../gnect/src/main.c:1166 ../gnibbles/main.c:646 ../gnobots2/menu.c:64
-#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:795
-#: ../gtali/gyahtzee.c:538 ../mahjongg/mahjongg.c:1307
+#: ../blackjack/src/blackjack.cpp:341 ../glines/glines.c:1689
+#: ../gnect/src/main.c:1308 ../gnibbles/main.c:763 ../gnobots2/menu.c:64
+#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:803
+#: ../gtali/gyahtzee.c:539 ../mahjongg/mahjongg.c:1303
 msgid "_Settings"
 msgstr "설정(_S)"
 
@@ -1765,9 +1785,9 @@ msgstr "돈을 걸거나, 새로 카드를 받으려면 카드뭉치에 클릭�
 msgid "Blackjack Preferences"
 msgstr "블랙잭 기본 설정"
 
-#: ../blackjack/src/dialog.cpp:246 ../gnect/src/prefs.c:378
-#: ../gnibbles/preferences.c:215 ../gnobots2/properties.c:530
-#: ../gnometris/tetris.cpp:734
+#: ../blackjack/src/dialog.cpp:246 ../dependencies/ggz-gtk/client.c:969
+#: ../gnect/src/prefs.c:404 ../gnibbles/preferences.c:231
+#: ../gnobots2/properties.c:539 ../gnometris/tetris.cpp:734
 msgid "Game"
 msgstr "게임"
 
@@ -1792,7 +1812,10 @@ msgstr "잔고 리셋(_R)"
 msgid "Rules"
 msgstr "규칙"
 
-#: ../blackjack/src/dialog.cpp:310 games-scores-dialog.gob:356
+#: ../blackjack/src/dialog.cpp:310 ../dependencies/ggz-gtk/types.c:176
+#: ../dependencies/ggz-gtk/playerlist.c:362
+#: ../gnome-sudoku/src/lib/game_selector.py:107
+#: ../gnome-sudoku/src/lib/game_selector.py:136 games-scores-dialog.gob:360
 #: ../libgames-support/games-scores-dialog.gob:356
 msgid "Name"
 msgstr "이름"
@@ -1834,6 +1857,7 @@ msgid "Resplit Aces"
 msgstr "에이스 다시 스플릿"
 
 #: ../blackjack/src/dialog.cpp:360 ../blackjack/src/player.cpp:303
+#: ../glchess/glade/glchess.glade.h:32
 msgid "Surrender"
 msgstr "서렌더"
 
@@ -1942,7 +1966,7 @@ msgstr ""
 "서렌더는 현재 거는 돈의 절반을 포기하고 패를 끝마치지 않는 것입니다.  조작 메"
 "뉴에서 해당 옵션을 선택하면 됩니다."
 
-#: ../blackjack/src/menu.cpp:156
+#: ../blackjack/src/menu.cpp:159
 msgid "Blackjack is a casino-style card game."
 msgstr "블랙잭은 카지노 스타일의 카드 게임입니다."
 
@@ -1998,255 +2022,1729 @@ msgstr "스플릿"
 msgid "Dealer hand probabilities"
 msgstr "딜러측 확률"
 
-#: ../gataxx/appbar.c:41 ../iagno/gnothello.c:627
-msgid "Light:"
-msgstr "밝은 쪽:"
+#: ../dependencies/ggz-gtk/ggzclient.c:122
+#, c-format
+msgid "Error connecting to server: %s"
+msgstr ""
 
-#: ../gataxx/appbar.c:47 ../iagno/gnothello.c:617
-msgid "Dark:"
-msgstr "어두운 쪽:"
+#: ../dependencies/ggz-gtk/ggzclient.c:124
+#: ../dependencies/ggz-gtk/ggzclient.c:380
+#: ../dependencies/ggz-gtk/ggzclient.c:561
+#: ../dependencies/ggz-gtk/ggzclient.c:596
+#: ../dependencies/ggz-gtk/ggzclient.c:649
+#: ../dependencies/ggz-gtk/ggzclient.c:1079
+#: ../dependencies/ggz-gtk/launch.c:325
+msgid "Error"
+msgstr ""
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:202 ../iagno/othello.c:271
-msgid "Light's move"
-msgstr "밝은 쪽 차례"
+#: ../dependencies/ggz-gtk/ggzclient.c:237
+#, c-format
+msgid "Your new password is %s"
+msgstr ""
 
-#: ../gataxx/appbar.c:84 ../iagno/gnothello.c:204 ../iagno/gnothello.c:571
-#: ../iagno/othello.c:267
-msgid "Dark's move"
-msgstr "어두운 쪽 차례"
+#: ../dependencies/ggz-gtk/ggzclient.c:239
+msgid "New password"
+msgstr ""
 
-#: ../gataxx/gataxx.c:59
-msgid "Set the state of the board at start-up."
-msgstr "시작할 때 게임판의 상태."
+#: ../dependencies/ggz-gtk/ggzclient.c:275
+#, fuzzy, c-format
+msgid "Players on server: %d"
+msgstr ""
+"플레이어 1:\n"
+"%s"
 
-#: ../gataxx/gataxx.c:59
-msgid "STATE"
-msgstr "<상태>"
+#: ../dependencies/ggz-gtk/ggzclient.c:320
+#, c-format
+msgid "Current Room: %s"
+msgstr ""
 
-#: ../gataxx/gataxx.c:61
-msgid "Set whose turn it is."
-msgstr "어느쪽 차례인지 설정합니다."
+#: ../dependencies/ggz-gtk/ggzclient.c:328
+#, c-format
+msgid "You've joined room \"%s\"."
+msgstr ""
 
-#: ../gataxx/gataxx.c:61
-msgid "1 (Light) or 2 (Dark)"
-msgstr "1 (밝은 쪽) or 2 (어두운 쪽)"
+#: ../dependencies/ggz-gtk/ggzclient.c:378
+#, c-format
+msgid "Error joining room: %s"
+msgstr ""
 
-#: ../gataxx/gataxx.c:180 ../iagno/othello.c:698
-msgid "Light player wins!"
-msgstr "밝은 쪽이 이겼습니다!"
+#: ../dependencies/ggz-gtk/ggzclient.c:400
+#: ../dependencies/ggz-gtk/client.c:1480
+msgid "GGZ Gaming Zone"
+msgstr ""
 
-#: ../gataxx/gataxx.c:182 ../iagno/othello.c:700
-msgid "Dark player wins!"
-msgstr "어두운 쪽이 이겼습니다!"
+#: ../dependencies/ggz-gtk/ggzclient.c:429
+msgid "You can't chat while not in a room."
+msgstr ""
 
-#: ../gataxx/gataxx.c:184 ../iagno/othello.c:702
-msgid "The game was a draw."
-msgstr "게임이 무승부입니다."
+#: ../dependencies/ggz-gtk/ggzclient.c:434
+msgid "You don't have permission to chat here."
+msgstr ""
 
-#: ../gataxx/gataxx.c:385
-msgid "Based on code from Iagno by Ian Peters"
-msgstr "Ian Peters의 이아그노 코드를 기반으로 합니다"
+#: ../dependencies/ggz-gtk/ggzclient.c:438
+msgid "No private chatting at a table!"
+msgstr ""
 
-#: ../gataxx/gataxx.c:391 ../gataxx/gataxx.desktop.in.h:1
-msgid "Ataxx"
-msgstr "어택스"
+#: ../dependencies/ggz-gtk/ggzclient.c:442
+#, fuzzy
+msgid "That player isn't in the room!"
+msgstr "%s 플레이어가 게임에 참여했습니다."
 
-#: ../gataxx/gataxx.c:397
-msgid "A disk-flipping game where you attempt to dominate the board."
-msgstr "원판을 뒤집어서 보드를 차지합니다."
+#: ../dependencies/ggz-gtk/ggzclient.c:447
+#, fuzzy
+msgid "There was an error sending the chat."
+msgstr "GConf에 접근하는 데 오류가 발생했습니다: %s"
 
-#: ../gataxx/gataxx.desktop.in.h:2
-msgid "Dominate the board in a modern variation of Reversi"
-msgstr "리버시 게임의 현대적인 버전에서 게임판을 차지합니다"
+#: ../dependencies/ggz-gtk/ggzclient.c:451
+#, fuzzy
+msgid "You're not at a table."
+msgstr "힌트가 없습니다."
 
-#: ../gataxx/gataxx.schemas.in.h:1 ../gnect/data/gnect.schemas.in.h:2
-msgid "Animate"
-msgstr "애니메이션"
+#: ../dependencies/ggz-gtk/ggzclient.c:455
+#, c-format
+msgid "Chat failed: %s."
+msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:2
-msgid "Level of black player"
-msgstr "흑 플레이어의 수준"
+#: ../dependencies/ggz-gtk/ggzclient.c:559
+#, c-format
+msgid "Error launching table: %s"
+msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:3
-msgid "Level of white player"
-msgstr "백 플레이어의 수준"
+#: ../dependencies/ggz-gtk/ggzclient.c:579
+#, fuzzy, c-format
+msgid "You have joined table %d."
+msgstr "이겼습니다."
 
-#: ../gataxx/gataxx.schemas.in.h:4
-msgid "Quick moves"
-msgstr "빨리 움직임"
+#: ../dependencies/ggz-gtk/ggzclient.c:594
+#, c-format
+msgid "Error joining table: %s"
+msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:5 ../gnotravex/gnotravex.schemas.in.h:2
-#: ../gnotski/gnotski.schemas.in.h:1 ../mahjongg/mahjongg.schemas.in.h:1
-msgid "The height of the window"
-msgstr "창의 높이"
+#: ../dependencies/ggz-gtk/ggzclient.c:616
+#, c-format
+msgid "You have been booted from the table by %s."
+msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:6
-msgid "The name of the theme to use."
-msgstr "사용할 테마의 이름."
+#: ../dependencies/ggz-gtk/ggzclient.c:621
+#, c-format
+msgid "You have left the table."
+msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:7
-msgid "The requested height of the main window in pixels."
-msgstr "메인 창의 기본 높이, 픽셀 단위."
+#: ../dependencies/ggz-gtk/ggzclient.c:624 ../gnibbles/main.c:697
+#, fuzzy, c-format
+msgid "The game is over."
+msgstr "게임 서버"
 
-#: ../gataxx/gataxx.schemas.in.h:8
-msgid "The requested width of the main window in pixels."
-msgstr "메인 창의 기본 너비, 픽셀 단위."
+#: ../dependencies/ggz-gtk/ggzclient.c:628
+#, c-format
+msgid "There was an error with the game server."
+msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:9 ../gnotravex/gnotravex.schemas.in.h:6
-#: ../gnotski/gnotski.schemas.in.h:6 ../mahjongg/mahjongg.schemas.in.h:4
-msgid "The width of the window"
-msgstr "창의 너비"
+#: ../dependencies/ggz-gtk/ggzclient.c:647
+#, c-format
+msgid "Error leaving table: %s"
+msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:10 ../gnometris/tetris.cpp:857
-#: ../gnometris/tetris.cpp:890 ../same-gnome/ui.c:295
-msgid "Theme"
-msgstr "테마"
+#: ../dependencies/ggz-gtk/ggzclient.c:718
+#: ../dependencies/ggz-gtk/client.c:1196
+msgid "Current Room:"
+msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:11
-msgid "Tileset (obsolete)"
-msgstr "타일세트 (없어진 기능)"
+#: ../dependencies/ggz-gtk/ggzclient.c:740
+msgid "**none**"
+msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:12
-msgid "Tileset to use (obsolete)."
-msgstr "사용할 타일세트 (없어진 기능)."
+#: ../dependencies/ggz-gtk/ggzclient.c:747
+msgid "Offline"
+msgstr ""
 
-#: ../gataxx/gataxx.schemas.in.h:13
-msgid "Whether or not to use quick moves."
-msgstr "빨리 움직임을 사용할 지 여부."
+#: ../dependencies/ggz-gtk/ggzclient.c:750
+#, fuzzy
+msgid "Connecting"
+msgstr "연결(_O)"
 
-#: ../gataxx/gataxx.schemas.in.h:14
-msgid ""
-"Zero corresponds to no animations, one is partial animations, two is "
-"complete animations."
-msgstr "0은 애니메이션 없음, 1은 부분 애니메이션, 2는 완전한 애니메이션."
+#: ../dependencies/ggz-gtk/ggzclient.c:753
+#, fuzzy
+msgid "Reconnecting"
+msgstr "연결(_O)"
 
-#: ../gataxx/gataxx.schemas.in.h:15 ../gnect/data/gnect.schemas.in.h:19
-msgid ""
-"Zero is human; one through three correspond to the level of the computer "
-"player."
-msgstr "0은 사용자; 1부터 3은 컴퓨터 플레이어의 수준에 해당합니다."
+#: ../dependencies/ggz-gtk/ggzclient.c:756
+#, fuzzy
+msgid "Online"
+msgstr "구"
 
-#: ../gataxx/gtkgridboardthemes.c:200 ../gnometris/renderer.cpp:27
-msgid "Plain"
+#: ../dependencies/ggz-gtk/ggzclient.c:759
+msgid "Logging In"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:762
+msgid "Logged In"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:766
+msgid "--> Room"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:769
+msgid "Chatting"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:773
+msgid "--> Table"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/ggzclient.c:776
+#, fuzzy
+msgid "Playing"
 msgstr "단순"
 
-#: ../gataxx/gtkgridboardthemes.c:202
-msgid "Squares and Diamonds"
-msgstr "네모와 다이아몬드"
+#: ../dependencies/ggz-gtk/ggzclient.c:779
+msgid "<-- Table"
+msgstr ""
 
-#. create window
-#: ../gataxx/properties.c:286
-msgid "Ataxx Preferences"
-msgstr "어택스 기본 설정"
+#: ../dependencies/ggz-gtk/ggzclient.c:782
+msgid "Logging Out"
+msgstr ""
 
-#. Players tab
-#: ../gataxx/properties.c:316 ../iagno/properties.c:498
-msgid "Players"
-msgstr "플레이어"
+#: ../dependencies/ggz-gtk/ggzclient.c:1078
+#, c-format
+msgid "Server error: %s"
+msgstr ""
 
-#: ../gataxx/properties.c:328
-msgid "_Quick moves"
-msgstr "빨리 움직임(_Q)"
+#: ../dependencies/ggz-gtk/ggzclient.c:1166
+msgid "Disconnected from server."
+msgstr ""
 
-#: ../gataxx/properties.c:329
-msgid "Shortens the time a computer waits before doing a move"
-msgstr "움직이기 전에 컴퓨터가 기다리는 시간을 줄입니다"
+#: ../dependencies/ggz-gtk/login.c:101
+msgid "Login"
+msgstr ""
 
-#. Dark level select
-#: ../gataxx/properties.c:338 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
-#: ../iagno/properties.c:521
-msgid "Dark"
-msgstr "어두운 쪽"
+#: ../dependencies/ggz-gtk/login.c:108
+msgid "Sorry!"
+msgstr ""
 
-#: ../gataxx/properties.c:342 ../gataxx/properties.c:360
-#: ../gnect/src/prefs.c:326 ../gtali/gyahtzee.c:763 ../gtali/yahtzee.c:60
-#: ../iagno/properties.c:526 ../iagno/properties.c:572
-msgid "Human"
-msgstr "사람"
+#: ../dependencies/ggz-gtk/login.c:115
+#, c-format
+msgid "That username is already in use."
+msgstr ""
 
-#: ../gataxx/properties.c:343 ../gataxx/properties.c:361
-msgid "Very easy"
-msgstr "매우 쉬움"
+#: ../dependencies/ggz-gtk/login.c:119
+#, c-format
+msgid ""
+"Authentication has failed.\n"
+"Please supply the correct password."
+msgstr ""
 
-#: ../gataxx/properties.c:344
-msgid "gataxx|Easy"
-msgstr "쉬움"
+#: ../dependencies/ggz-gtk/login.c:123
+#, c-format
+msgid "The username is too long!"
+msgstr ""
 
-#: ../gataxx/properties.c:345
-msgid "gataxx|Medium"
-msgstr "중간"
+#: ../dependencies/ggz-gtk/login.c:126
+#, c-format
+msgid "Invalid username, do not use special characters!"
+msgstr ""
 
-#: ../gataxx/properties.c:346 ../gataxx/properties.c:364
-msgid "Hard"
+#: ../dependencies/ggz-gtk/login.c:130
+#, c-format
+msgid "Login failed for unknown reason: %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:538
+msgid "Server Profile"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:562 ../dependencies/ggz-gtk/props.c:925
+msgid "Profile:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:582
+msgid "Edit Profiles..."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:590 ../dependencies/ggz-gtk/props.c:946
+#, fuzzy
+msgid "Server:"
+msgstr "점수:"
+
+#: ../dependencies/ggz-gtk/login.c:600
+msgid "localhost"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:602 ../dependencies/ggz-gtk/props.c:961
+#, fuzzy
+msgid "Port:"
+msgstr "최저:"
+
+#: ../dependencies/ggz-gtk/login.c:612
+msgid "5688"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:633 ../dependencies/ggz-gtk/props.c:993
+#, fuzzy
+msgid "Username:"
+msgstr "호스트 이름(_H):"
+
+#: ../dependencies/ggz-gtk/login.c:648 ../dependencies/ggz-gtk/props.c:1014
+msgid "Password:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:664
+msgid "Email:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:680 ../dependencies/ggz-gtk/props.c:1057
+msgid "Normal Login"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:691 ../dependencies/ggz-gtk/props.c:1065
+msgid "Guest Login"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:699
+msgid "First-time Login"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/login.c:710 ../dependencies/ggz-gtk/client.c:942
+#, fuzzy
+msgid "Connect"
+msgstr "연결(_O)"
+
+#: ../dependencies/ggz-gtk/first.c:57
+#, fuzzy
+msgid "Wizard"
 msgstr "어려움"
 
-#: ../gataxx/properties.c:347 ../gataxx/properties.c:365
-msgid "Very hard"
-msgstr "매우 어려움"
+#: ../dependencies/ggz-gtk/first.c:57
+#, fuzzy
+msgid "Deity"
+msgstr "데이지"
 
-#. Light level select
-#: ../gataxx/properties.c:356 ../gnect/src/theme.c:55 ../gnect/src/theme.c:63
-#: ../iagno/properties.c:567
-msgid "Light"
-msgstr "밝은 쪽"
+#: ../dependencies/ggz-gtk/first.c:57
+#, fuzzy
+msgid "Sentinel"
+msgstr "발렌타인"
 
-#: ../gataxx/properties.c:362
-msgid "Easy"
-msgstr "쉬움"
+#: ../dependencies/ggz-gtk/first.c:57
+#, fuzzy
+msgid "Captain"
+msgstr "카페트"
 
-#: ../gataxx/properties.c:363
-msgid "Medium"
-msgstr "중간"
+#: ../dependencies/ggz-gtk/first.c:58
+#, fuzzy
+msgid "Knight"
+msgstr "팔"
 
-#. Appearance tab
-#: ../gataxx/properties.c:374 ../gataxx/properties.c:377
-#: ../gnect/src/prefs.c:410 ../gnobots2/properties.c:569
-#: ../iagno/properties.c:616
-msgid "Appearance"
-msgstr "모양"
+#: ../dependencies/ggz-gtk/first.c:58
+#, fuzzy
+msgid "Angel"
+msgstr "아그네스"
 
-#. animation button
-#: ../gataxx/properties.c:383
-msgid "_Animation"
-msgstr "애니메이션(_A)"
+#: ../dependencies/ggz-gtk/first.c:58
+msgid "Silverlord"
+msgstr ""
 
-#: ../gataxx/properties.c:387
-msgid "Flip the pieces with some visual effects"
-msgstr "조각을 뒤집을 때 시각 효과를 곁들입니다"
+#: ../dependencies/ggz-gtk/first.c:58
+#, fuzzy
+msgid "Eagle"
+msgstr "이글 윙"
 
-#: ../gataxx/properties.c:392 ../iagno/properties.c:685
-#: ../mahjongg/mahjongg.c:761
-msgid "_Tile set:"
-msgstr "타일세트(_T):"
+#: ../dependencies/ggz-gtk/first.c:59
+msgid "Vampire"
+msgstr ""
 
-#: ../gataxx/properties.c:397
-msgid "The appearance of the pieces"
-msgstr "조각의 모양"
+#: ../dependencies/ggz-gtk/first.c:59
+msgid "Chief"
+msgstr ""
 
-#. GstElement *sound_player;
-#: ../glines/glines.c:74 ../glines/glines.c:78 ../gnomine/gnomine.c:86
-#: ../gnomine/gnomine.c:649 ../same-gnome/same-gnome.c:49
-msgid "Small"
-msgstr "작게"
+#: ../dependencies/ggz-gtk/first.c:59
+#, fuzzy
+msgid "Colonel"
+msgstr "폴로네즈"
 
-#: ../glines/glines.c:75 ../glines/glines.c:79
-msgid "glines|Medium"
-msgstr "중간"
+#: ../dependencies/ggz-gtk/first.c:59 ../glines/glines.c:1508
+msgid "General"
+msgstr "일반"
 
-#: ../glines/glines.c:76 ../glines/glines.c:80 ../gnomine/gnomine.c:88
-#: ../gnomine/gnomine.c:671 ../same-gnome/same-gnome.c:51
-msgid "Large"
-msgstr "크게"
+#: ../dependencies/ggz-gtk/first.c:60
+#, fuzzy
+msgid "Major"
+msgstr "그놈 마작"
 
-#: ../glines/glines.c:190
-msgid "Could not load theme"
-msgstr "테마를 읽어들일 수 없습니다"
+#: ../dependencies/ggz-gtk/first.c:60
+#, fuzzy
+msgid "Scout"
+msgstr "소프트"
 
-#: ../glines/glines.c:195 ../mahjongg/mahjongg.c:142
+#: ../dependencies/ggz-gtk/first.c:60
+msgid "Lieutenant"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:60
+msgid "Stalker"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:61
+msgid "Scientist"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:61
+#, fuzzy
+msgid "Scholar"
+msgstr "점수"
+
+#: ../dependencies/ggz-gtk/first.c:61
+msgid "Entity"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:61
+#, fuzzy
+msgid "Creator"
+msgstr "엘리베이터"
+
+#. {"Morat.net (Fast)", "ggz.morat.net", 5688, 1},
+#: ../dependencies/ggz-gtk/first.c:69
+msgid "GGZ Community (fast)"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:70
+msgid "Local developer server"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/first.c:190
+msgid ""
+"This is the first time you are running the GTK+ GGZ Gaming Zone client. "
+"Would you like to create some default server profiles?"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:89
+msgid "/msg <username> <message> . Private message a player"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:91
+msgid "/table <message> .......... Message to your table"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:93
+msgid "/wall <message> ........... Admin command"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:95
+msgid "/beep <username> .......... Beep a player"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:97
+msgid "/help ..................... Get help"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:99
+msgid "/friends .................. List your friends"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:101
+msgid "/ignore ................... List people you're ignoring"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:104
+msgid "/kick <username> .......... Kick a player from the room"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:107
+msgid "/gag <username> ........... Gag a player to prevent them from talking"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:110
+msgid ""
+"/ungag <username> ......... Reverse the gag operation to allow a player to "
+"talk"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:113
+msgid "/ban <username> ........... Ban a player from the server"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:254
+#, c-format
+msgid "You have received an unknown message from %s."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:318
+#, c-format
+msgid "You've been beeped by %s."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:439
+msgid "Usage: /msg <username> <message>"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:441
+msgid "    Sends a private message to a user on the network."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:495
+#, fuzzy, c-format
+msgid "Beep sent to %s."
+msgstr "%2$s에 있는 %1$s을(를) 움직이십시오."
+
+#: ../dependencies/ggz-gtk/chat.c:523
+#, c-format
+msgid "%s (logged on)"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:561
+#, c-format
+msgid "%s (logged off)"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:587
+msgid "Chat Commands"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:588
+msgid "-------------"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:592
+msgid "/me <action> .............. Send an action"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:783
+#, c-format
+msgid "Added %s to your friends list."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:807
+#, fuzzy, c-format
+msgid "Removed %s from your friends list."
+msgstr "색색의 공을 지워서 한 줄로 만듭니다"
+
+#: ../dependencies/ggz-gtk/chat.c:838
+#, c-format
+msgid "Added %s to your ignore list."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:863
+#, c-format
+msgid "Removed %s from your ignore list."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:939
+msgid "People currently your friends"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:953
+msgid "People you're currently ignoring"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/chat.c:1029
+msgid "Multiple matches:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:72
+#, c-format
+msgid ""
+"You don't have this game installed. You can download\n"
+"it from %s."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:76 ../dependencies/ggz-gtk/game.c:149
+#: ../dependencies/ggz-gtk/game.c:315 ../dependencies/ggz-gtk/game.c:325
+#: ../dependencies/ggz-gtk/game.c:334 ../dependencies/ggz-gtk/game.c:350
+#: ../dependencies/ggz-gtk/launch.c:290
+msgid "Launch Error"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:148
+msgid ""
+"Failed to execute game module.\n"
+" Launch aborted."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:201
+#, fuzzy
+msgid "Launched game"
+msgstr "게임을 일시 중지합니다"
+
+#: ../dependencies/ggz-gtk/game.c:222
+#, fuzzy
+msgid "Launch failed"
+msgstr "연결 실패"
+
+#: ../dependencies/ggz-gtk/game.c:296
+msgid "You can only play one game at a time."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:297 ../dependencies/ggz-gtk/game.c:305
+#: ../dependencies/ggz-gtk/launch.c:335 ../dependencies/ggz-gtk/client.c:586
+#: ../dependencies/ggz-gtk/client.c:627
+#, fuzzy
+msgid "Game Error"
+msgstr "게임 끝"
+
+#: ../dependencies/ggz-gtk/game.c:304
+msgid "You're still at a table."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:313
+msgid ""
+"You must be in a room to launch a game.\n"
+"Launch aborted"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:323
+msgid ""
+"No game types defined for this server.\n"
+"Launch aborted."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/game.c:333
+#, fuzzy
+msgid "This game doesn't support spectators."
+msgstr "이 게임은 아직 힌트가 지원되지 않습니다."
+
+#: ../dependencies/ggz-gtk/game.c:348
+msgid ""
+"You need to launch the GGZ client directly\n"
+"to be able to play this game."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:139 ../dependencies/ggz-gtk/props.c:1464
+#: ../dependencies/ggz-gtk/props.c:1484
+msgid "Galeon - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:142 ../dependencies/ggz-gtk/props.c:1465
+msgid "Galeon - Existing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:145 ../dependencies/ggz-gtk/props.c:1466
+msgid "Gnome URL Handler"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:148 ../dependencies/ggz-gtk/props.c:1467
+msgid "Konqueror - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:151 ../dependencies/ggz-gtk/props.c:1468
+msgid "Konqueror - Existing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:163 ../dependencies/ggz-gtk/props.c:1469
+msgid "Lynx"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:169 ../dependencies/ggz-gtk/props.c:1470
+msgid "Mozilla - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:172 ../dependencies/ggz-gtk/props.c:1471
+msgid "Mozilla - Existing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:176 ../dependencies/ggz-gtk/props.c:1472
+msgid "Netscape - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:179 ../dependencies/ggz-gtk/props.c:1473
+msgid "Netscape - Existing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:183 ../dependencies/ggz-gtk/props.c:1474
+msgid "Opera - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:186 ../dependencies/ggz-gtk/props.c:1475
+#, fuzzy
+msgid "Opera - Existing"
+msgstr "동작"
+
+#: ../dependencies/ggz-gtk/support.c:191 ../dependencies/ggz-gtk/props.c:1476
+msgid "Firefox - New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/support.c:194 ../dependencies/ggz-gtk/props.c:1477
+msgid "Firefox - Existing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/about.c:87 ../dependencies/ggz-gtk/client.c:1089
+msgid "About"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/motd.c:161
+#, fuzzy
+msgid "Message of the Day"
+msgstr "판에서 ~a 카드를 치우십시오"
+
+#: ../dependencies/ggz-gtk/types.c:113 ../iagno/properties.c:610
+msgid "None"
+msgstr "없음"
+
+#: ../dependencies/ggz-gtk/types.c:148
+msgid ""
+"Room filtering is not implemented yet. If\n"
+"you would like to help head over to\n"
+"http://www.ggzgamingzone.org/"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/types.c:151 ../dependencies/ggz-gtk/client.c:239
+#: ../dependencies/ggz-gtk/client.c:251 ../dependencies/ggz-gtk/client.c:311
+#: ../dependencies/ggz-gtk/client.c:547
+#, fuzzy
+msgid "Not Implemented"
+msgstr "완전"
+
+#: ../dependencies/ggz-gtk/types.c:183 ../dependencies/ggz-gtk/tablelist.c:201
+#, fuzzy
+msgid "Description"
+msgstr "스콜피온"
+
+#: ../dependencies/ggz-gtk/types.c:191
+msgid "Web Address"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/types.c:199
+msgid "Author"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/types.c:237 ../dependencies/ggz-gtk/client.c:1065
+#, fuzzy
+msgid "Game Types"
+msgstr "게임 종류"
+
+#: ../dependencies/ggz-gtk/types.c:254
+msgid "Room List Filter:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/types.c:266
+#, fuzzy
+msgid "Set"
+msgstr "설정"
+
+#: ../dependencies/ggz-gtk/types.c:306
+#, fuzzy
+msgid "Upgrage Game"
+msgstr "베이커즈 게임"
+
+#: ../dependencies/ggz-gtk/types.c:309
+msgid "Goto Web Site"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerinfo.c:102
+#, fuzzy
+msgid "Player Information"
+msgstr "플레이어 텔레포트"
+
+#. Add 'handle' label
+#: ../dependencies/ggz-gtk/playerinfo.c:132
+#, fuzzy
+msgid "Player Handle:"
+msgstr "플레이어 죽음"
+
+#. Add "table" label
+#: ../dependencies/ggz-gtk/playerinfo.c:150
+#, fuzzy
+msgid "Table:"
+msgstr "타일:"
+
+#. Add "type" label
+#: ../dependencies/ggz-gtk/playerinfo.c:168
+msgid "Account:"
+msgstr ""
+
+#. Add "Record" label
+#: ../dependencies/ggz-gtk/playerinfo.c:187
+#, fuzzy
+msgid "Record:"
+msgstr "점수:"
+
+#. Add "Rating" label
+#: ../dependencies/ggz-gtk/playerinfo.c:205
+#, fuzzy
+msgid "Rating:"
+msgstr "남은 수:"
+
+#. Add "Ranking" label
+#: ../dependencies/ggz-gtk/playerinfo.c:223
+#, fuzzy
+msgid "Rank:"
+msgstr "어두운 쪽:"
+
+#. Add "Private chat" label
+#: ../dependencies/ggz-gtk/playerinfo.c:259
+#: ../dependencies/ggz-gtk/client.c:1277
+msgid "Message:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerinfo.c:302
+#: ../dependencies/ggz-gtk/playerinfo.c:334
+#, fuzzy
+msgid "Unknown"
+msgstr "알 수 없는 카드패"
+
+#: ../dependencies/ggz-gtk/playerinfo.c:337
+msgid "Registered"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerinfo.c:340
+#, fuzzy
+msgid "Guest"
+msgstr "버스트"
+
+#: ../dependencies/ggz-gtk/playerinfo.c:343
+#, fuzzy
+msgid "Host"
+msgstr "홉스카치"
+
+#: ../dependencies/ggz-gtk/playerinfo.c:346
+msgid "Administrator"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerinfo.c:349
+msgid "Bot"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerlist.c:94
+#: ../dependencies/ggz-gtk/tablelist.c:84
+#: ../dependencies/ggz-gtk/roomlist.c:144
+#, fuzzy
+msgid "Info"
+msgstr "이아그노"
+
+#: ../dependencies/ggz-gtk/playerlist.c:101
+msgid "Friends"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerlist.c:106
+#, fuzzy
+msgid "Ignore"
+msgstr "이아그노"
+
+#: ../dependencies/ggz-gtk/playerlist.c:246
+#, c-format
+msgid "#%d"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerlist.c:346
+msgid "L"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerlist.c:351
+#: ../dependencies/ggz-gtk/tablelist.c:191
+msgid "T#"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/playerlist.c:356
+#: ../dependencies/ggz-gtk/client.c:1171
+#, fuzzy
+msgid "Stats"
+msgstr "상태"
+
+#: ../dependencies/ggz-gtk/pick_module.c:89
+msgid "Which client would you like to use to play this game?"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/pick_module.c:131
+msgid "Don't ask me again."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/tablelist.c:74
+#: ../dependencies/ggz-gtk/roomlist.c:150 ../dependencies/ggz-gtk/client.c:985
+#: ../dependencies/ggz-gtk/client.c:1141
+#, fuzzy
+msgid "Join"
+msgstr "입체"
+
+#: ../dependencies/ggz-gtk/tablelist.c:77
+#: ../dependencies/ggz-gtk/client.c:1004 ../dependencies/ggz-gtk/client.c:1157
+#, fuzzy
+msgid "Leave"
+msgstr "단계:"
+
+#: ../dependencies/ggz-gtk/tablelist.c:161
+#, fuzzy
+msgid "No description available."
+msgstr "힌트가 없습니다."
+
+#: ../dependencies/ggz-gtk/tablelist.c:196
+#, fuzzy
+msgid "Seats"
+msgstr "하트"
+
+#: ../dependencies/ggz-gtk/roominfo.c:63
+msgid "Room Information"
+msgstr ""
+
+#. Add 'name' label and text.
+#: ../dependencies/ggz-gtk/roominfo.c:80
+#, fuzzy
+msgid "Game Name:"
+msgstr "게임 이름(_G):"
+
+#. Add 'author' label and text.
+#: ../dependencies/ggz-gtk/roominfo.c:90 ../dependencies/ggz-gtk/launch.c:495
+msgid "Author:"
+msgstr ""
+
+#. Add 'homepage' label and text.
+#: ../dependencies/ggz-gtk/roominfo.c:100 ../dependencies/ggz-gtk/launch.c:530
+#, fuzzy
+msgid "Homepage:"
+msgstr "그림(_I):"
+
+#. Add 'description' label and text.
+#: ../dependencies/ggz-gtk/roominfo.c:110
+msgid "Room Description:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roominfo.c:155
+msgid "This room has no game"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roominfo.c:175
+#, fuzzy
+msgid "Unknown room"
+msgstr "알 수 없는 색상"
+
+#: ../dependencies/ggz-gtk/roomlist.c:73
+msgid "You can't join a room; you're not logged in"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roomlist.c:77
+#, fuzzy
+msgid "You're already in between rooms"
+msgstr "굴리는 사이에 지연"
+
+#: ../dependencies/ggz-gtk/roomlist.c:82
+msgid "You can't switch rooms while playing a game"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roomlist.c:89
+#, fuzzy
+msgid "Unknown error"
+msgstr "알 수 없는 색상"
+
+#. If we get here, there was an error
+#: ../dependencies/ggz-gtk/roomlist.c:109
+#: ../dependencies/ggz-gtk/roomlist.c:114
+msgid "Error joining room"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roomlist.c:350
+msgid "Other Rooms"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/roomlist.c:424
+#, fuzzy
+msgid "Room"
+msgstr "로마"
+
+#: ../dependencies/ggz-gtk/launch.c:114
+#, fuzzy, c-format
+msgid "Game Type:  %s"
+msgstr "게임 종류"
+
+#: ../dependencies/ggz-gtk/launch.c:120
+#, c-format
+msgid "Author:  %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:127
+#, c-format
+msgid "Description:  %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:133
+#, c-format
+msgid "Home Page:  %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:289
+msgid ""
+"Failed to launch table.\n"
+" Launch aborted."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:325
+msgid "Invalid number of bots specified"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:334 ../dependencies/ggz-gtk/client.c:585
+#: ../dependencies/ggz-gtk/client.c:626
+msgid "Error launching game module."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:420
+msgid "Seat Assignments"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:443
+#, fuzzy
+msgid "Game Type:"
+msgstr "게임 종류"
+
+#: ../dependencies/ggz-gtk/launch.c:479
+#, fuzzy
+msgid "Number of seats"
+msgstr "지뢰의 개수"
+
+#: ../dependencies/ggz-gtk/launch.c:513
+#, fuzzy
+msgid "Description:"
+msgstr "스콜피온"
+
+#: ../dependencies/ggz-gtk/launch.c:586
+#, c-format
+msgid "Seat %d:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:598
+#, fuzzy
+msgid "Computer"
+msgstr "완전"
+
+#: ../dependencies/ggz-gtk/launch.c:613
+#, fuzzy
+msgid "Open"
+msgstr "동작"
+
+#: ../dependencies/ggz-gtk/launch.c:628
+#, fuzzy
+msgid "Reserved for"
+msgstr "왼쪽 보류:"
+
+#: ../dependencies/ggz-gtk/launch.c:663
+msgid "Game Description   "
+msgstr ""
+
+#: ../dependencies/ggz-gtk/launch.c:693 ../dependencies/ggz-gtk/client.c:978
+#: ../dependencies/ggz-gtk/client.c:1133
+msgid "Launch"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:144
+#, fuzzy
+msgid "Are you sure you want to quit?"
+msgstr "이미 사용했습니다! 어디에 놓으시겠습니까?"
+
+#: ../dependencies/ggz-gtk/client.c:144
+msgid "Quit?"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:237
+msgid ""
+"Server stats are not implemented yet. If\n"
+"you would like to help head over to\n"
+"http://www.ggzgamingzone.org/"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:248 ../dependencies/ggz-gtk/client.c:545
+msgid ""
+"Player stats are not implemented yet. If\n"
+"you would like to help head over to\n"
+"http://www.ggzgamingzone.org/"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:294
+msgid ""
+"GGZ Gaming Zone help needs a browser to be configured.\n"
+"The configuration dialog will be invoked now."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:308
+msgid ""
+"Inline game help is not implemented yet. Help\n"
+"is on our website. If\n"
+"you would like to help head over to\n"
+"http://www.ggzgamingzone.org/"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:566
+msgid "You must highlight a table before you can join it."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:567 ../dependencies/ggz-gtk/client.c:576
+#: ../dependencies/ggz-gtk/client.c:615
+msgid "Error Joining"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:576 ../dependencies/ggz-gtk/client.c:614
+msgid "That table is full."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:600
+msgid "You must highlight a table before you can watch it."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:602
+msgid "Error Spectating"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:647
+msgid ""
+"Failed to join table.\n"
+"Join aborted."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:648
+msgid "Join Error"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:678
+msgid "Disconnect from the GGZ Gaming Zone server"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:680
+msgid "Start playing a game at a new table"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:682 ../glchess/glade/glchess.glade.h:14
+#, fuzzy
+msgid "Join an existing game"
+msgstr "로컬 게임 참가"
+
+#: ../dependencies/ggz-gtk/client.c:684
+msgid "Watch an existing game - become a spectator of the table"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:687
+msgid "Leave the game you're currently playing"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:689
+msgid "Show the properties dialog to change the client settings"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:693
+msgid "Show the game stats for the current room's game type"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:696
+msgid "Exit the GGZ client application."
+msgstr ""
+
+#. Print out client information
+#: ../dependencies/ggz-gtk/client.c:726
+#, c-format
+msgid "Client Version:14 %s"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:729
+#, c-format
+msgid "GTK+ Version:14 %d.%d.%d\n"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:736
+msgid "Compiled with debugging."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:934
+msgid "GGZ"
+msgstr ""
+
+#. We should use gtk_tool_button_new_from_stock but for some reason
+#. * the connect and disconnect stock items don't have text included.
+#: ../dependencies/ggz-gtk/client.c:949 ../dependencies/ggz-gtk/client.c:1180
+#, fuzzy
+msgid "Disconnect"
+msgstr "연결(_O)"
+
+#: ../dependencies/ggz-gtk/client.c:962
+msgid "Quit"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:992 ../dependencies/ggz-gtk/client.c:1149
+#, fuzzy
+msgid "Watch"
+msgstr "기다리기(_W)"
+
+#: ../dependencies/ggz-gtk/client.c:1011
+msgid "Edit"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1019
+msgid "Properties"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1026
+#, fuzzy
+msgid "View"
+msgstr "보기(_V)"
+
+#: ../dependencies/ggz-gtk/client.c:1035
+msgid "Room List"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1041
+#, fuzzy
+msgid "Player List"
+msgstr "플레이어"
+
+#: ../dependencies/ggz-gtk/client.c:1053
+msgid "Server Stats"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1057
+#, fuzzy
+msgid "Player Stats"
+msgstr "플레이어 이름"
+
+#: ../dependencies/ggz-gtk/client.c:1074 ../dependencies/ggz-gtk/props.c:1491
+msgid "MOTD"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1081
+#, fuzzy
+msgid "Help"
+msgstr "도움말(_H)"
+
+#: ../dependencies/ggz-gtk/client.c:1096
+#, fuzzy
+msgid "Copyright"
+msgstr "오른쪽으로 이동"
+
+#: ../dependencies/ggz-gtk/client.c:1105
+#, fuzzy
+msgid "GGZ Help"
+msgstr "도움말(_H)"
+
+#: ../dependencies/ggz-gtk/client.c:1112
+#, fuzzy
+msgid "Game Help"
+msgstr "게임판"
+
+#: ../dependencies/ggz-gtk/client.c:1121
+msgid "Goto Web"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/client.c:1295
+#, fuzzy
+msgid "Send"
+msgstr "속도"
+
+#. Display a status Message
+#: ../dependencies/ggz-gtk/props.c:249
+msgid "Properties Updated"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1035
+msgid "Confirm:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1085
+msgid "Modify"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1099
+#, fuzzy
+msgid "Servers"
+msgstr "점수"
+
+#: ../dependencies/ggz-gtk/props.c:1118
+msgid "Chat Font:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1134
+#, fuzzy
+msgid "Change"
+msgstr "주황"
+
+#: ../dependencies/ggz-gtk/props.c:1147
+msgid "Ignore Join/Part Messages"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1155
+#, fuzzy
+msgid "Play Sounds"
+msgstr "소리"
+
+#: ../dependencies/ggz-gtk/props.c:1163
+msgid "Auto Indent"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1171
+msgid "Timestamp Chats"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1179
+msgid "Word Wrap"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1187
+#, fuzzy
+msgid "Chat Color"
+msgstr "색"
+
+#: ../dependencies/ggz-gtk/props.c:1236
+msgid "Default chat color assigned to your friends"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1245
+msgid "Chat color used when your name is typed"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1254
+msgid "Chat color used for all other chats"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1263
+#, fuzzy
+msgid "Normal Color"
+msgstr "벌레 색(_W):"
+
+#: ../dependencies/ggz-gtk/props.c:1274
+msgid "Highlight Color"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1285
+msgid "Friend Color"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1296
+#, fuzzy
+msgid "Black Background"
+msgstr "블랙잭"
+
+#: ../dependencies/ggz-gtk/props.c:1305
+#, fuzzy
+msgid "White Background"
+msgstr "바탕색"
+
+#: ../dependencies/ggz-gtk/props.c:1314
+#, fuzzy
+msgid "Chat"
+msgstr "카페트"
+
+#: ../dependencies/ggz-gtk/props.c:1326
+msgid "All of the following information is optional."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1344 ../glchess/glade/new_game.glade.h:16
+#, fuzzy
+msgid "Name:"
+msgstr "이름"
+
+#: ../dependencies/ggz-gtk/props.c:1371
+msgid "City:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1392
+#, fuzzy
+msgid "State:"
+msgstr "상태"
+
+#: ../dependencies/ggz-gtk/props.c:1413
+#, fuzzy
+msgid "Country:"
+msgstr "컨트롤(_C)"
+
+#: ../dependencies/ggz-gtk/props.c:1428
+msgid "Comments, Hobies, Etc."
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1450
+#, fuzzy
+msgid "User Information"
+msgstr "빠른 애니메이션 사용"
+
+#: ../dependencies/ggz-gtk/props.c:1459
+msgid "Browser to launch URLs with:"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1486
+msgid "Single Click Room Entry"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1500
+msgid "Display All"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1509
+msgid "Display New"
+msgstr ""
+
+#: ../dependencies/ggz-gtk/props.c:1518
+#, fuzzy
+msgid "Display Important"
+msgstr "확률 보여주기"
+
+#: ../dependencies/ggz-gtk/props.c:1527
+#, fuzzy
+msgid "Display None"
+msgstr "확률 보여주기"
+
+#. Options
+#: ../dependencies/ggz-gtk/props.c:1536 ../gnibbles/preferences.c:288
+#: ../gnibbles/preferences.c:414 ../gnobots2/properties.c:486
+#: ../iagno/properties.c:639
+msgid "Options"
+msgstr "옵션"
+
+#: ../dependencies/ggz-gtk/props.c:1625
+#, fuzzy
+msgid "Select Font"
+msgstr "게임 선택"
+
+#: ../glchess/glade/about.glade.h:1
+msgid "A 2D/3D chess interface for Gnome"
+msgstr ""
+
+#: ../glchess/glade/about.glade.h:2
+msgid "glChess homepage"
+msgstr ""
+
+#: ../glchess/glade/ai.glade.h:1
+#, fuzzy
+msgid "Communication:"
+msgstr "애니메이션"
+
+#: ../glchess/glade/ai.glade.h:2
+msgid "Executable:"
+msgstr ""
+
+#: ../glchess/glade/ai.glade.h:3
+#, fuzzy
+msgid "Playing as:"
+msgstr "단순"
+
+#: ../glchess/glade/save_game.glade.h:1
+#, fuzzy
+msgid "Save chess game"
+msgstr "게임 풀이"
+
+#: ../glchess/glade/load_game.glade.h:1
+#, fuzzy
+msgid "Load a chess game"
+msgstr "새 게임을 시작합니다"
+
+#: ../glchess/glade/glchess.glade.h:1
+#, fuzzy
+msgid "<b>Chess Pieces</b>"
+msgstr "<b>승리</b>"
+
+#: ../glchess/glade/glchess.glade.h:2
+#, fuzzy
+msgid "<b>Initial Game</b>"
+msgstr "<b>시간</b>"
+
+#: ../glchess/glade/glchess.glade.h:3
+#, fuzzy
+msgid "AI Information"
+msgstr "애니메이션"
+
+#: ../glchess/glade/glchess.glade.h:4
+msgid "Animate moving pieces"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:5 ../iagno/properties.c:606
+msgid "Animation"
+msgstr "애니메이션"
+
+#: ../glchess/glade/glchess.glade.h:6
+msgid "Artifical Intelligence"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:7
+#, fuzzy
+msgid "End Game"
+msgstr "게임 끝내기(_E)"
+
+#: ../glchess/glade/glchess.glade.h:8 ../libgames-support/games-stock.c:124
+msgid "End the current game"
+msgstr "현재 게임을 끝냅니다"
+
+#: ../glchess/glade/glchess.glade.h:9
+#, fuzzy
+msgid "Graphics"
+msgstr "그래픽:"
+
+#: ../glchess/glade/glchess.glade.h:10
+#, fuzzy
+msgid "Human versus AI"
+msgstr "사람 플레이어"
+
+#: ../glchess/glade/glchess.glade.h:11
+msgid "Human versus human"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:12
+msgid "If no previous game loaded then start with:"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:13 ../glchess/glade/new_game.glade.h:13
+#, fuzzy
+msgid "Join Game"
+msgstr "게임 끝내기(_E)"
+
+#: ../glchess/glade/glchess.glade.h:15
+#, fuzzy
+msgid "Load a saved game"
+msgstr "새 게임을 시작합니다"
+
+#: ../glchess/glade/glchess.glade.h:16
+#, fuzzy
+msgid "Models:"
+msgstr "이동: %d"
+
+#: ../glchess/glade/glchess.glade.h:17 ../glchess/glade/new_game.glade.h:17
+#: ../gnome-sudoku/glade/new_game.glade.h:5 games-scores-dialog.gob:546
+#: ../libgames-support/games-scores-dialog.gob:546
+msgid "New Game"
+msgstr "새 게임"
+
+#: ../glchess/glade/glchess.glade.h:18
+msgid "New piece sets can be installed by dragging them into this window"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:19
+#, fuzzy
+msgid "No game"
+msgstr "이름"
+
+#: ../glchess/glade/glchess.glade.h:20 ../glines/glines.c:203
+#: ../mahjongg/mahjongg.c:145
 msgid "Preferences"
 msgstr "기본 설정"
 
-#: ../glines/glines.c:219
+#: ../glchess/glade/glchess.glade.h:21
+msgid "Quality:"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:22
+#, fuzzy
+msgid "Rewind to the game start"
+msgstr "새 게임을 시작했습니다"
+
+#: ../glchess/glade/glchess.glade.h:23
+msgid "Rotate board to face human player:"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:24
+#, fuzzy
+msgid "Save the current game"
+msgstr "현재 게임을 끝냅니다"
+
+#: ../glchess/glade/glchess.glade.h:25
+#, fuzzy
+msgid "Show the current move"
+msgstr "현재 게임을 끝냅니다"
+
+#: ../glchess/glade/glchess.glade.h:26
+#, fuzzy
+msgid "Show the next move"
+msgstr "마지막 움직임을 되돌립니다"
+
+#: ../glchess/glade/glchess.glade.h:27
+#, fuzzy
+msgid "Show the previous move"
+msgstr "마지막 움직임을 다시 실행합니다"
+
+#: ../glchess/glade/glchess.glade.h:29
+#, fuzzy
+msgid "Start with unfinished games"
+msgstr "새 게임을 시작합니다"
+
+#: ../glchess/glade/glchess.glade.h:30
+#, fuzzy
+msgid "Startup"
+msgstr "상태"
+
+#: ../glchess/glade/glchess.glade.h:31
+msgid "Summary"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:33
+msgid "There are not artificial intelligences in use"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:34
+msgid "_3D"
+msgstr ""
+
+#: ../glchess/glade/glchess.glade.h:35
+#, fuzzy
+msgid "_AI Information"
+msgstr "애니메이션(_A)"
+
+#: ../glchess/glade/glchess.glade.h:36
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:200
+#: ../libgames-support/games-stock.c:58
+msgid "_Contents"
+msgstr "차례(_C)"
+
+#: ../glchess/glade/glchess.glade.h:37 ../libgames-support/games-stock.c:57
+msgid "_End Game"
+msgstr "게임 끝내기(_E)"
+
+#: ../glchess/glade/glchess.glade.h:40
+#, fuzzy
+msgid "_History"
+msgstr "히트(_H)"
+
+#: ../glchess/glade/glchess.glade.h:41
+#, fuzzy
+msgid "_Join Game"
+msgstr "게임 끝내기(_E)"
+
+#: ../glchess/glade/new_game.glade.h:1
+msgid "<b>Black Player</b>"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:2
+msgid "<b>Game Properties</b>"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:3
+#, fuzzy
+msgid "<b>Game to Join</b>"
+msgstr "<b>승리</b>"
+
+#: ../glchess/glade/new_game.glade.h:4
+msgid "<b>Local Player</b>"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:5
+#, fuzzy
+msgid "<b>White Player</b>"
+msgstr "<b>승리</b>"
+
+#: ../glchess/glade/new_game.glade.h:6
+msgid "Allow Spectators:"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:7
+msgid "Allow remote clients to watch this game"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:8
+#, fuzzy
+msgid "Black"
+msgstr "블록"
+
+#: ../glchess/glade/new_game.glade.h:9
+#, fuzzy
+msgid "Difficulty:"
+msgstr "어려움"
+
+#: ../glchess/glade/new_game.glade.h:10
+#, fuzzy
+msgid "Enter the title for this game"
+msgstr "이 게임의 도움말을 봅니다"
+
+#: ../glchess/glade/new_game.glade.h:11
+msgid "Find Servers"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:12
+#, fuzzy
+msgid "Game name:"
+msgstr "게임 이름(_G):"
+
+#: ../glchess/glade/new_game.glade.h:14
+#, fuzzy
+msgid "Local chess game"
+msgstr "로컬 게임(_L):"
+
+#: ../glchess/glade/new_game.glade.h:15
+#, fuzzy
+msgid "Local chess player"
+msgstr "백 플레이어의 수준"
+
+#: ../glchess/glade/new_game.glade.h:18
+msgid "Servers:"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:19
+msgid "Start the game. The game can be started once all fields are complete"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:20
+msgid "The hostname/IP address to search for servers on"
+msgstr ""
+
+#: ../glchess/glade/new_game.glade.h:21
+#, fuzzy
+msgid "Type:"
+msgstr "시간:"
+
+#: ../glchess/glade/new_game.glade.h:22
+#, fuzzy
+msgid "White"
+msgstr "화이트헤드"
+
+#: ../glchess/glade/new_game.glade.h:23
+#, fuzzy
+msgid "_Join"
+msgstr "입체"
+
+#: ../glchess/glade/new_game.glade.h:24
+#, fuzzy
+msgid "_Start"
+msgstr "게임 다시(_R)"
+
+#: ../glchess/glade/network_game.glade.h:1
+#, fuzzy
+msgid "<b>Players</b>"
+msgstr "플레이어"
+
+#: ../glchess/glade/network_game.glade.h:2
+msgid "<b>Status / Chat</b>"
+msgstr ""
+
+#: ../glchess/glade/network_game.glade.h:3
+#, fuzzy
+msgid "Black Player:"
+msgstr "플레이어"
+
+#: ../glchess/glade/network_game.glade.h:4
+#, fuzzy
+msgid "Ready"
+msgstr "빨강"
+
+#: ../glchess/glade/network_game.glade.h:5
+#, fuzzy
+msgid "Waiting for players"
+msgstr "로봇을 기다립니다"
+
+#: ../glchess/glade/network_game.glade.h:6
+#, fuzzy
+msgid "White Player:"
+msgstr "플레이어"
+
+#: ../glchess/src/lib/defaults.py:13
+msgid "glChess"
+msgstr ""
+
+#: ../glchess/src/lib/gtkui/gtkui.py:233
+#, fuzzy
+msgid "Game Start"
+msgstr "게임 끝"
+
+#: ../glchess/src/lib/gtkui/gtkui.py:511 ../gnect/src/prefs.c:352
+#: ../gtali/gyahtzee.c:760 ../gtali/yahtzee.c:60 ../iagno/properties.c:521
+#: ../iagno/properties.c:562
+msgid "Human"
+msgstr "사람"
+
+#. GstElement *sound_player;
+#: ../glines/glines.c:75 ../glines/glines.c:80 ../gnomine/gnomine.c:86
+#: ../gnomine/gnomine.c:654 ../same-gnome/same-gnome.c:54
+msgid "Small"
+msgstr "작게"
+
+#: ../glines/glines.c:76 ../glines/glines.c:81
+msgid "glines|Medium"
+msgstr "중간"
+
+#: ../glines/glines.c:77 ../glines/glines.c:82 ../gnomine/gnomine.c:88
+#: ../gnomine/gnomine.c:673 ../same-gnome/same-gnome.c:56
+msgid "Large"
+msgstr "크게"
+
+#: ../glines/glines.c:197
+msgid "Could not load theme"
+msgstr "테마를 읽어들일 수 없습니다"
+
+#: ../glines/glines.c:229
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -2259,7 +3757,7 @@ msgstr ""
 "\n"
 "기본 타일 세트를 읽어들입니다."
 
-#: ../glines/glines.c:228
+#: ../glines/glines.c:241
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -2272,77 +3770,74 @@ msgstr ""
 "\n"
 "다섯개가 제대로 설치되었는 지 확인하십시오"
 
-#: ../glines/glines.c:422
+#: ../glines/glines.c:436
 msgid "Match five objects of the same type in a row to score!"
 msgstr "점수를 올리려면 같은 색의 동그라미 다섯 개를 한 줄에 늘어 놓으십시오!"
 
-#: ../glines/glines.c:487
+#: ../glines/glines.c:497
 msgid "GNOME Five or More"
 msgstr "그놈 다섯개"
 
-#: ../glines/glines.c:489
+#: ../glines/glines.c:499
 msgid "Board Size:"
 msgstr "게임판 크기:"
 
-#: ../glines/glines.c:517
+#: ../glines/glines.c:526
 msgid "Game Over!"
 msgstr "게임 끝!"
 
 #. Can't move there!
-#: ../glines/glines.c:678
+#: ../glines/glines.c:685
 msgid "You can't move there!"
 msgstr "거기로 이동할 수 없습니다!"
 
-#: ../glines/glines.c:1221 ../glines/glines.c:1921
+#: ../glines/glines.c:1218 ../glines/glines.c:1221 ../glines/glines.c:1879
 #: ../glines/glines.desktop.in.h:1
 msgid "Five or More"
 msgstr "다섯개"
 
-#: ../glines/glines.c:1223
+#: ../glines/glines.c:1224
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "한때 유행했던 색상 라인 게임을 그놈으로 옮겼습니다"
 
-#: ../glines/glines.c:1429
+#: ../glines/glines.c:1422
 msgid "Five or More Preferences"
 msgstr "다섯개 기본 설정"
 
-#: ../glines/glines.c:1450
+#: ../glines/glines.c:1442
 msgid "Themes"
 msgstr "테마"
 
-#: ../glines/glines.c:1459
+#: ../glines/glines.c:1450
 msgid "_Image:"
 msgstr "그림(_I):"
 
-#: ../glines/glines.c:1470
+#: ../glines/glines.c:1461
 msgid "B_ackground color:"
 msgstr "바탕색(_A):"
 
-#: ../glines/glines.c:1485
+#: ../glines/glines.c:1476
 msgid "Board Size"
 msgstr "게임판 크기"
 
-#: ../glines/glines.c:1492 ../same-gnome/ui.c:444
+#: ../glines/glines.c:1482 ../same-gnome/ui.c:478
 msgid "_Small"
 msgstr "작게(_S)"
 
-#: ../glines/glines.c:1502 ../same-gnome/ui.c:445
+#: ../glines/glines.c:1491 ../gnome-sudoku/glade/puzzle_generator.glade.h:17
+#: ../same-gnome/ui.c:479
 msgid "_Medium"
 msgstr "중간(_M)"
 
-#: ../glines/glines.c:1512 ../same-gnome/ui.c:446
+#: ../glines/glines.c:1500 ../same-gnome/ui.c:480
 msgid "_Large"
 msgstr "크게(_L)"
 
-#: ../glines/glines.c:1520
-msgid "General"
-msgstr "일반"
-
-#: ../glines/glines.c:1528
+#: ../glines/glines.c:1515
 msgid "_Use fast moves"
 msgstr "빨리 움직임(_U)"
 
-#: ../glines/glines.c:1951
+#: ../glines/glines.c:1910
 msgid "Next:"
 msgstr "다음:"
 
@@ -2407,8 +3902,8 @@ msgstr "움직임 사이의 시간"
 msgid "Time between moves in milliseconds."
 msgstr "움직임 사이의 시간 (천분의 일초 단위)."
 
-#: ../gnect/data/gnect.desktop.in.h:1 ../gnect/src/main.c:817
-#: ../gnect/src/main.c:1255
+#: ../gnect/data/gnect.desktop.in.h:1 ../gnect/src/main.c:911
+#: ../gnect/src/main.c:914 ../gnect/src/main.c:1427
 msgid "Four-in-a-Row"
 msgstr "사목"
 
@@ -2419,6 +3914,10 @@ msgstr "같은 색을 한 줄로 놓아야 이기는 게임"
 #: ../gnect/data/gnect.schemas.in.h:1
 msgid "A number specifying the preferred theme."
 msgstr "사용할 테마를 지정하는 숫자."
+
+#: ../gnect/data/gnect.schemas.in.h:2
+msgid "Animate"
+msgstr "애니메이션"
 
 #: ../gnect/data/gnect.schemas.in.h:3
 msgid "Drop marble"
@@ -2486,7 +3985,13 @@ msgstr "애니메이션을 사용할 지 여부."
 msgid "Width of the main window"
 msgstr "메인 창의 너비"
 
-#: ../gnect/src/gfx.c:264
+#: ../gnect/data/gnect.schemas.in.h:19
+msgid ""
+"Zero is human; one through three correspond to the level of the computer "
+"player."
+msgstr "0은 사용자; 1부터 3은 컴퓨터 플레이어의 수준에 해당합니다."
+
+#: ../gnect/src/gfx.c:263
 #, c-format
 msgid ""
 "Unable to load image:\n"
@@ -2495,58 +4000,77 @@ msgstr ""
 "그림을 읽어들일 수 없습니다:\n"
 "%s"
 
-#: ../gnect/src/main.c:526
+#: ../gnect/src/ggz-network.c:115
+msgid "A network error has occured."
+msgstr ""
+
+#: ../gnect/src/ggz-network.c:129 ../iagno/ggz-network.c:94
+msgid "Waiting for an opponent to join the game."
+msgstr ""
+
+#: ../gnect/src/ggz-network.c:245 ../gnibbles/ggz-network.c:359
+#, c-format
+msgid "Welcome to a network game of %s."
+msgstr ""
+
+#: ../gnect/src/ggz-network.c:284 ../gnibbles/ggz-network.c:397
+#: ../gnome-sudoku/src/lib/game_selector.py:241 ../iagno/ggz-network.c:313
+msgid "Player"
+msgstr "플레이어"
+
+#: ../gnect/src/main.c:567
 msgid "It's a draw!"
 msgstr "무승부입니다!"
 
-#: ../gnect/src/main.c:534
+#: ../gnect/src/main.c:581
 msgid "You win!"
 msgstr "당신이 이겼습니다!"
 
-#: ../gnect/src/main.c:535
-msgid "Your move..."
+#: ../gnect/src/main.c:583 ../gnect/src/main.c:616
+#, fuzzy
+msgid "It is your move."
 msgstr "당신 차례..."
 
-#: ../gnect/src/main.c:538
+#: ../gnect/src/main.c:586
 msgid "I win!"
 msgstr "내가 이겼습니다!"
 
-#: ../gnect/src/main.c:539 ../gnect/src/main.c:632
+#: ../gnect/src/main.c:588 ../gnect/src/main.c:721
 msgid "Thinking..."
 msgstr "생각중..."
 
-#: ../gnect/src/main.c:547
+#: ../gnect/src/main.c:609 ../gnect/src/main.c:613
 #, c-format
 msgid "%s wins!"
 msgstr "%s의 승리!"
 
-#: ../gnect/src/main.c:548
+#: ../gnect/src/main.c:619
 #, c-format
-msgid "%s..."
-msgstr "%s..."
+msgid "Waiting for %s to move."
+msgstr ""
 
-#: ../gnect/src/main.c:650
+#: ../gnect/src/main.c:738
 #, c-format
 msgid "Hint: Column %d"
 msgstr "힌트: %d열"
 
-#: ../gnect/src/main.c:677 ../gnect/src/main.c:682
+#: ../gnect/src/main.c:766 ../gnect/src/main.c:770
 msgid "You:"
 msgstr "당신:"
 
-#: ../gnect/src/main.c:678 ../gnect/src/main.c:681
+#: ../gnect/src/main.c:767 ../gnect/src/main.c:769
 msgid "Me:"
 msgstr "나:"
 
-#: ../gnect/src/main.c:728
+#: ../gnect/src/main.c:815
 msgid "Scores"
 msgstr "점수"
 
-#: ../gnect/src/main.c:775
+#: ../gnect/src/main.c:866
 msgid "Drawn:"
 msgstr "무승부:"
 
-#: ../gnect/src/main.c:821
+#: ../gnect/src/main.c:920
 msgid ""
 "\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -2554,7 +4078,7 @@ msgstr ""
 "그놈 \"사목\" 게임, 컴퓨터 플레이어는 Giuliano Bertoletti의 Velena 엔진에 기"
 "반했습니다."
 
-#: ../gnect/src/prefs.c:157
+#: ../gnect/src/prefs.c:161
 #, c-format
 msgid ""
 "Player One:\n"
@@ -2563,7 +4087,7 @@ msgstr ""
 "플레이어 1:\n"
 "%s"
 
-#: ../gnect/src/prefs.c:161
+#: ../gnect/src/prefs.c:165
 #, c-format
 msgid ""
 "Player Two:\n"
@@ -2572,39 +4096,44 @@ msgstr ""
 "플레이어 2:\n"
 "%s"
 
-#: ../gnect/src/prefs.c:328 ../iagno/properties.c:536
-#: ../iagno/properties.c:582
+#: ../gnect/src/prefs.c:354 ../iagno/properties.c:530
+#: ../iagno/properties.c:571
 msgid "Level one"
 msgstr "수준 하"
 
-#: ../gnect/src/prefs.c:330 ../iagno/properties.c:546
-#: ../iagno/properties.c:592
+#: ../gnect/src/prefs.c:356 ../iagno/properties.c:539
+#: ../iagno/properties.c:580
 msgid "Level two"
 msgstr "수준 중"
 
-#: ../gnect/src/prefs.c:332 ../iagno/properties.c:556
-#: ../iagno/properties.c:603
+#: ../gnect/src/prefs.c:358 ../iagno/properties.c:548
+#: ../iagno/properties.c:589
 msgid "Level three"
 msgstr "수준 상"
 
-#: ../gnect/src/prefs.c:356
+#: ../gnect/src/prefs.c:382
 msgid "Four-in-a-Row Preferences"
 msgstr "사목 기본 설정"
 
-#: ../gnect/src/prefs.c:419
+#: ../gnect/src/prefs.c:436 ../gnobots2/properties.c:578
+#: ../iagno/properties.c:600
+msgid "Appearance"
+msgstr "모양"
+
+#: ../gnect/src/prefs.c:445
 msgid "_Theme:"
 msgstr "테마(_T):"
 
-#: ../gnect/src/prefs.c:433
+#: ../gnect/src/prefs.c:460
 msgid "Enable _animation"
 msgstr "애니메이션 사용(_A)"
 
-#: ../gnect/src/prefs.c:440 ../gnometris/tetris.cpp:866
+#: ../gnect/src/prefs.c:467 ../gnometris/tetris.cpp:866
 msgid "Controls"
 msgstr "조작"
 
-#: ../gnect/src/prefs.c:444 ../gnibbles/preferences.c:379
-#: ../gnobots2/properties.c:576 ../gnometris/tetris.cpp:869
+#: ../gnect/src/prefs.c:471 ../gnibbles/preferences.c:393
+#: ../gnobots2/properties.c:585 ../gnometris/tetris.cpp:869
 msgid "Keyboard Controls"
 msgstr "키보드 조작"
 
@@ -2613,18 +4142,26 @@ msgid "Classic"
 msgstr "클래식"
 
 #: ../gnect/src/theme.c:47 ../gnect/src/theme.c:71 ../gnect/src/theme.c:79
-#: ../gnect/src/theme.c:87 ../gnibbles/preferences.c:418
+#: ../gnect/src/theme.c:87 ../gnibbles/preferences.c:433
 msgid "Red"
 msgstr "빨강"
 
 #: ../gnect/src/theme.c:47 ../gnect/src/theme.c:87
-#: ../gnibbles/preferences.c:421
+#: ../gnibbles/preferences.c:436
 msgid "Yellow"
 msgstr "노랑"
 
 #: ../gnect/src/theme.c:50
 msgid "High Contrast"
 msgstr "고대비"
+
+#: ../gnect/src/theme.c:55 ../gnect/src/theme.c:63 ../iagno/properties.c:557
+msgid "Light"
+msgstr "밝은 쪽"
+
+#: ../gnect/src/theme.c:55 ../gnect/src/theme.c:63 ../iagno/properties.c:516
+msgid "Dark"
+msgstr "어두운 쪽"
 
 #: ../gnect/src/theme.c:58
 msgid "High Contrast Inverse"
@@ -2635,7 +4172,7 @@ msgid "Cream Marbles"
 msgstr "크림 대리석"
 
 #: ../gnect/src/theme.c:71 ../gnect/src/theme.c:79 ../gnect/src/theme.c:95
-#: ../gnibbles/preferences.c:420
+#: ../gnibbles/preferences.c:435
 msgid "Blue"
 msgstr "파랑"
 
@@ -2655,7 +4192,17 @@ msgstr "블록"
 msgid "Orange"
 msgstr "주황"
 
-#: ../gnibbles/gnibbles.c:85
+#: ../gnibbles/ggz-network.c:134
+#, fuzzy, c-format
+msgid "%s joined the game.\n"
+msgstr "%s 플레이어가 게임에 참여했습니다."
+
+#: ../gnibbles/ggz-network.c:142
+#, c-format
+msgid "The game ended because the host %s left the game.\n"
+msgstr ""
+
+#: ../gnibbles/gnibbles.c:93
 #, c-format
 msgid ""
 "Gnibbles couldn't find pixmap file:\n"
@@ -2668,7 +4215,7 @@ msgstr ""
 "\n"
 "Gnibbles가 제대로 설치되었는 지 확인하십시오"
 
-#: ../gnibbles/gnibbles.c:234
+#: ../gnibbles/gnibbles.c:245
 #, c-format
 msgid ""
 "Gnibbles couldn't load level file:\n"
@@ -2681,23 +4228,23 @@ msgstr ""
 "\n"
 "Gnibbles가 제대로 설치되었는 지 확인하십시오"
 
-#: ../gnibbles/gnibbles.c:570
+#: ../gnibbles/gnibbles.c:597
 msgid "Nibbles Scores"
 msgstr "니블즈 점수"
 
-#: ../gnibbles/gnibbles.c:571
+#: ../gnibbles/gnibbles.c:600
 msgid "Speed:"
 msgstr "속도:"
 
-#: ../gnibbles/gnibbles.c:576 ../gnomine/gnomine.c:219
-#: ../gnotravex/gnotravex.c:990 ../mahjongg/mahjongg.c:697
-#: ../same-gnome/ui.c:172
+#: ../gnibbles/gnibbles.c:605 ../gnomine/gnomine.c:221
+#: ../gnotravex/gnotravex.c:1166 ../mahjongg/mahjongg.c:697
+#: ../same-gnome/ui.c:188
 msgid "Congratulations!"
 msgstr "축하합니다!"
 
-#: ../gnibbles/gnibbles.c:577 ../gnomine/gnomine.c:220
-#: ../gnotravex/gnotravex.c:991 ../mahjongg/mahjongg.c:698
-#: ../same-gnome/ui.c:173
+#: ../gnibbles/gnibbles.c:606 ../gnomine/gnomine.c:222
+#: ../gnotravex/gnotravex.c:1167 ../mahjongg/mahjongg.c:698
+#: ../same-gnome/ui.c:189
 msgid "Your score has made the top ten."
 msgstr "점수가 10위 안에 들었습니다."
 
@@ -2706,7 +4253,7 @@ msgid "Guide a worm around a maze"
 msgstr "벌레를 조종해 미로를 통과합니다"
 
 #: ../gnibbles/gnibbles.desktop.in.h:2 ../gnibbles/gnibbles.soundlist.in.h:6
-#: ../gnibbles/main.c:200
+#: ../gnibbles/main.c:238 ../gnibbles/main.c:241
 msgid "Nibbles"
 msgstr "니블즈"
 
@@ -2860,140 +4407,117 @@ msgstr "벌레 반대로"
 msgid "Worm Teleport"
 msgstr "벌레 텔레포트"
 
-#: ../gnibbles/main.c:48
+#: ../gnibbles/main.c:57
 msgid "Beginner"
 msgstr "초심자"
 
-#: ../gnibbles/main.c:49
+#: ../gnibbles/main.c:58
 msgid "Slow"
 msgstr "느리게"
 
-#: ../gnibbles/main.c:50
+#: ../gnibbles/main.c:59
 msgid "gnibbles|Medium"
 msgstr "중간"
 
-#: ../gnibbles/main.c:51
+#: ../gnibbles/main.c:60
 msgid "Fast"
 msgstr "빠르게"
 
-#: ../gnibbles/main.c:52
+#: ../gnibbles/main.c:61
 msgid "Beginner with Fakes"
 msgstr "초보자 (속임수 사용)"
 
-#: ../gnibbles/main.c:53
+#: ../gnibbles/main.c:62
 msgid "Slow with Fakes"
 msgstr "느리게 (속임수 사용)"
 
-#: ../gnibbles/main.c:54
+#: ../gnibbles/main.c:63
 msgid "Medium with Fakes"
 msgstr "중간 (속임수 사용)"
 
-#: ../gnibbles/main.c:55
+#: ../gnibbles/main.c:64
 msgid "Fast with Fakes"
 msgstr "빠르게 (속임수 사용)"
 
-#: ../gnibbles/main.c:204
+#: ../gnibbles/main.c:246
 msgid "A worm game for GNOME."
 msgstr "그놈 벌레 게임."
 
-#: ../gnibbles/network.c:159 ../iagno/network.c:108
-msgid "Invalid move attempted"
-msgstr "잘못된 움직임을 시도했습니다"
+#: ../gnibbles/main.c:649
+#, c-format
+msgid "Game over! The game has been won by %s!"
+msgstr ""
 
-#: ../gnibbles/network.c:164 ../gnibbles/network.c:178
-#: ../gnibbles/network.c:197 ../gnibbles/network.c:215
-#: ../gnibbles/network.c:225
-msgid "Invalid game data"
-msgstr "잘못된 게임 데이터"
-
-#: ../gnibbles/network.c:170 ../iagno/network.c:121
-msgid "Peer introduction complete"
-msgstr "상대편 소개 완료"
-
-#: ../gnibbles/network.c:239 ../iagno/network.c:139
-msgid "New game ready to be started"
-msgstr "새 게임을 시작할 준비가 되었습니다"
-
-#: ../gnibbles/network.c:246 ../iagno/network.c:146
-msgid "New game started"
-msgstr "새 게임을 시작했습니다"
-
-#: ../gnibbles/preferences.c:202
+#: ../gnibbles/preferences.c:218
 msgid "Nibbles Preferences"
 msgstr "니블즈 기본 설정"
 
-#: ../gnibbles/preferences.c:223
+#: ../gnibbles/preferences.c:238
 msgid "Speed"
 msgstr "속도"
 
-#: ../gnibbles/preferences.c:232
+#: ../gnibbles/preferences.c:248
 msgid "Nibbles newbie"
 msgstr "니블즈 초보"
 
-#: ../gnibbles/preferences.c:242
+#: ../gnibbles/preferences.c:258
 msgid "My second day"
 msgstr "두 번째 날"
 
-#: ../gnibbles/preferences.c:252
+#: ../gnibbles/preferences.c:268
 msgid "Not too shabby"
 msgstr "너무 시시하지 않게"
 
-#: ../gnibbles/preferences.c:263
+#: ../gnibbles/preferences.c:278
 msgid "Finger-twitching good"
 msgstr "기도나 하는 게 좋을 걸"
 
-#. Options
-#: ../gnibbles/preferences.c:274 ../gnibbles/preferences.c:398
-#: ../gnobots2/properties.c:483 ../iagno/properties.c:656
-msgid "Options"
-msgstr "옵션"
-
-#: ../gnibbles/preferences.c:280
+#: ../gnibbles/preferences.c:295
 msgid "_Play levels in random order"
 msgstr "임의의 순서로 각 단계를 플레이(_P)"
 
-#: ../gnibbles/preferences.c:291
+#: ../gnibbles/preferences.c:305
 msgid "_Enable fake bonuses"
 msgstr "가짜 보너스 사용(_E)"
 
-#: ../gnibbles/preferences.c:302
+#: ../gnibbles/preferences.c:315
 msgid "E_nable sounds"
 msgstr "사운드 사용(_N)"
 
 #. starting level
-#: ../gnibbles/preferences.c:316 ../gnometris/tetris.cpp:781
+#: ../gnibbles/preferences.c:328 ../gnometris/tetris.cpp:781
 msgid "_Starting level:"
 msgstr "시작 단계(_S):"
 
-#: ../gnibbles/preferences.c:344
+#: ../gnibbles/preferences.c:357
 msgid "N_umber of players:"
 msgstr "플레이어의 숫자(_U):"
 
-#: ../gnibbles/preferences.c:370
+#: ../gnibbles/preferences.c:384
 msgid "Worm"
 msgstr "벌레"
 
-#: ../gnibbles/preferences.c:405
+#: ../gnibbles/preferences.c:420
 msgid "_Use relative movement"
 msgstr "상대적인 움직임(_U)"
 
-#: ../gnibbles/preferences.c:412
+#: ../gnibbles/preferences.c:427
 msgid "_Worm color:"
 msgstr "벌레 색(_W):"
 
-#: ../gnibbles/preferences.c:419
+#: ../gnibbles/preferences.c:434
 msgid "Green"
 msgstr "녹색"
 
-#: ../gnibbles/preferences.c:422
+#: ../gnibbles/preferences.c:437
 msgid "Cyan"
 msgstr "청록"
 
-#: ../gnibbles/preferences.c:423
+#: ../gnibbles/preferences.c:438
 msgid "Purple"
 msgstr "자주색"
 
-#: ../gnibbles/preferences.c:424
+#: ../gnibbles/preferences.c:439
 msgid "Gray"
 msgstr "회색"
 
@@ -3002,17 +4526,17 @@ msgstr "회색"
 msgid "Worm %d:"
 msgstr "벌레 %d:"
 
-#: ../gnobots2/game.c:143
+#: ../gnobots2/game.c:147
 #, c-format
 msgid "'%s' with super-safe moves"
 msgstr "'%s', 수퍼 안전한 움직임"
 
-#: ../gnobots2/game.c:146
+#: ../gnobots2/game.c:150
 #, c-format
 msgid "'%s' with safe moves"
 msgstr "'%s', 안전한 움직임"
 
-#: ../gnobots2/game.c:370 ../gnobots2/game.c:385
+#: ../gnobots2/game.c:381 ../gnobots2/game.c:397
 msgid ""
 "Congratulations, You Have Defeated the Robots!! \n"
 "But Can You do it Again?"
@@ -3021,15 +4545,15 @@ msgstr ""
 "다시 플레이하시겠습니까?"
 
 #. This should never happen.
-#: ../gnobots2/game.c:1185
+#: ../gnobots2/game.c:1219
 msgid "There are no teleport locations left!!"
 msgstr "텔레포트할 위치가 남아 있지 않습니다!!"
 
-#: ../gnobots2/game.c:1216
+#: ../gnobots2/game.c:1251
 msgid "You have run out of safe moves - the robots have won!"
 msgstr "안전하게 움직일 방법이 없습니다 - 로봇이 승리했습니다!"
 
-#: ../gnobots2/game.c:1220
+#: ../gnobots2/game.c:1255
 msgid "There are no safe locations to teleport to!!"
 msgstr "텔레포트할 안전한 위치가 남아 있지 않습니다!!"
 
@@ -3041,32 +4565,33 @@ msgstr "게임 시나리오 설정"
 msgid "Set game configuration"
 msgstr "게임 설정"
 
-#: ../gnobots2/gnobots.c:69 ../gnobots2/gnobots.c:70
+#: ../gnobots2/gnobots.c:70 ../gnobots2/gnobots.c:72
 msgid "Initial window position"
 msgstr "처음 창 위치"
 
-#: ../gnobots2/gnobots.c:69 ../gnomine/gnomine.c:946 ../gnomine/gnomine.c:950
-#: ../gnotravex/gnotravex.c:269 ../gnotski/gnotski.c:689
-#: ../iagno/gnothello.c:105
+#: ../gnobots2/gnobots.c:70 ../gnomine/gnomine.c:962 ../gnomine/gnomine.c:970
+#: ../gnotravex/gnotravex.c:360 ../gnotski/gnotski.c:482
+#: ../iagno/gnothello.c:125
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:70 ../gnomine/gnomine.c:947 ../gnomine/gnomine.c:951
-#: ../gnotravex/gnotravex.c:271 ../gnotski/gnotski.c:691
-#: ../iagno/gnothello.c:107
+#: ../gnobots2/gnobots.c:72 ../gnomine/gnomine.c:964 ../gnomine/gnomine.c:972
+#: ../gnotravex/gnotravex.c:362 ../gnotski/gnotski.c:484
+#: ../iagno/gnothello.c:127
 msgid "Y"
 msgstr "Y"
 
-#: ../gnobots2/gnobots.c:194 ../gnobots2/gnobots2.desktop.in.h:2
-#: ../gnobots2/gnobots2.soundlist.in.h:6 ../gnobots2/menu.c:250
+#: ../gnobots2/gnobots.c:196 ../gnobots2/gnobots2.desktop.in.h:2
+#: ../gnobots2/gnobots2.soundlist.in.h:6 ../gnobots2/menu.c:256
+#: ../gnobots2/menu.c:259
 msgid "Robots"
 msgstr "로봇"
 
-#: ../gnobots2/gnobots.c:258
+#: ../gnobots2/gnobots.c:260
 msgid "No game data could be found."
 msgstr "게임 데이타를 찾을 수 없습니다."
 
-#: ../gnobots2/gnobots.c:259
+#: ../gnobots2/gnobots.c:262
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
@@ -3074,11 +4599,11 @@ msgstr ""
 "로봇 프로그램에서 올바른 게임 설정 파일을 찾지 못했습니다. 프로그램이 올바르"
 "게 설치되었는지 확인하십시오."
 
-#: ../gnobots2/gnobots.c:275
+#: ../gnobots2/gnobots.c:281
 msgid "Some graphics files are missing or corrupt."
 msgstr "그래픽스 파일중에 없거나 망가진 파일이 있습니다."
 
-#: ../gnobots2/gnobots.c:276
+#: ../gnobots2/gnobots.c:283
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
@@ -3293,169 +4818,169 @@ msgstr "로봇이 부서졌습니다!"
 msgid "Victory!!"
 msgstr "승리!!"
 
-#: ../gnobots2/graphics.c:149 ../iagno/gnothello.c:402
+#: ../gnobots2/graphics.c:150 ../iagno/gnothello.c:453
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "'%s' 픽스맵 파일을 찾을 수 없습니다\n"
 
-#: ../gnobots2/menu.c:63 ../gnotravex/gnotravex.c:196
+#: ../gnobots2/menu.c:63 ../gnotravex/gnotravex.c:269
 msgid "_Move"
 msgstr "이동(_M)"
 
-#: ../gnobots2/menu.c:69
+#: ../gnobots2/menu.c:70
 msgid "_Teleport"
 msgstr "텔레포트(_T)"
 
-#: ../gnobots2/menu.c:69
+#: ../gnobots2/menu.c:71
 msgid "Teleport, safely if possible"
 msgstr "텔레포트, 할 수 있으면 안전하게"
 
-#: ../gnobots2/menu.c:70
+#: ../gnobots2/menu.c:72
 msgid "_Random"
 msgstr "임의(_R)"
 
-#: ../gnobots2/menu.c:70
+#: ../gnobots2/menu.c:73
 msgid "Teleport randomly"
 msgstr "임의 위치로 텔레포트"
 
-#: ../gnobots2/menu.c:71
+#: ../gnobots2/menu.c:74
 msgid "_Wait"
 msgstr "기다리기(_W)"
 
-#: ../gnobots2/menu.c:71
+#: ../gnobots2/menu.c:74
 msgid "Wait for the robots"
 msgstr "로봇을 기다립니다"
 
-#: ../gnobots2/menu.c:82 ../mahjongg/mahjongg.c:1326
+#: ../gnobots2/menu.c:89 ../mahjongg/mahjongg.c:1333
 msgid "Show or hide the toolbar"
 msgstr "도구 모음 보이기 혹은 감추기"
 
-#: ../gnobots2/menu.c:254
+#: ../gnobots2/menu.c:263
 msgid "Based on classic BSD Robots."
 msgstr "전통적인 BSD 로봇 게임에 기반합니다."
 
-#: ../gnobots2/properties.c:344
+#: ../gnobots2/properties.c:347
 msgid "classic robots"
 msgstr "전통적 로봇"
 
-#: ../gnobots2/properties.c:345
+#: ../gnobots2/properties.c:348
 msgid "robots2"
 msgstr "로봇2"
 
-#: ../gnobots2/properties.c:346
+#: ../gnobots2/properties.c:349
 msgid "robots2 easy"
 msgstr "로봇2 쉽게"
 
-#: ../gnobots2/properties.c:347
+#: ../gnobots2/properties.c:350
 msgid "robots with safe teleport"
 msgstr "로봇, 안전한 텔레포트"
 
-#: ../gnobots2/properties.c:348
+#: ../gnobots2/properties.c:351
 msgid "nightmare"
 msgstr "악몽"
 
-#: ../gnobots2/properties.c:384
+#: ../gnobots2/properties.c:387
 msgid "robots"
 msgstr "로봇"
 
-#: ../gnobots2/properties.c:385
+#: ../gnobots2/properties.c:388
 msgid "cows"
 msgstr "젖소"
 
-#: ../gnobots2/properties.c:386
+#: ../gnobots2/properties.c:389
 msgid "eggs"
 msgstr "달걀"
 
-#: ../gnobots2/properties.c:387
+#: ../gnobots2/properties.c:390
 msgid "gnomes"
 msgstr "노움"
 
-#: ../gnobots2/properties.c:388
+#: ../gnobots2/properties.c:391
 msgid "mice"
 msgstr "쥐"
 
-#: ../gnobots2/properties.c:389
+#: ../gnobots2/properties.c:392
 msgid "ufo"
 msgstr "유에프오"
 
 # 귀신 이미지
-#: ../gnobots2/properties.c:390
+#: ../gnobots2/properties.c:393
 msgid "boo"
 msgstr "으악"
 
-#: ../gnobots2/properties.c:447
+#: ../gnobots2/properties.c:450
 msgid "Robots Preferences"
 msgstr "로봇 기본 설정"
 
-#: ../gnobots2/properties.c:468
+#: ../gnobots2/properties.c:471
 msgid "Game Type"
 msgstr "게임 종류"
 
-#: ../gnobots2/properties.c:493
+#: ../gnobots2/properties.c:496
 msgid "_Use safe moves"
 msgstr "안전한 움직임 사용(_U)"
 
-#: ../gnobots2/properties.c:500
+#: ../gnobots2/properties.c:503
 msgid "Prevent some dangerous moves"
 msgstr "일부 위험한 움직임을 막습니다"
 
-#: ../gnobots2/properties.c:501
+#: ../gnobots2/properties.c:505
 msgid "Prevent accidental moves that result in getting killed."
 msgstr "죽게 되는 움직임을 우연히 하지 못하도록 막습니다."
 
-#: ../gnobots2/properties.c:503
+#: ../gnobots2/properties.c:507
 msgid "U_se super safe moves"
 msgstr "수퍼 안전한 움직임 사용(_S)"
 
-#: ../gnobots2/properties.c:509
+#: ../gnobots2/properties.c:514
 msgid "Prevent all dangerous moves"
 msgstr "모든 위험한 움직임을 막습니다"
 
-#: ../gnobots2/properties.c:510
+#: ../gnobots2/properties.c:516
 msgid "Prevents all moves that result in getting killed."
 msgstr "죽게 되는 움직임을 무엇이든 하지 못하도록 막습니다."
 
-#: ../gnobots2/properties.c:512 ../gnometris/tetris.cpp:807
+#: ../gnobots2/properties.c:518 ../gnometris/tetris.cpp:807
 msgid "_Enable sounds"
 msgstr "사운드 사용(_E)"
 
-#: ../gnobots2/properties.c:518
+#: ../gnobots2/properties.c:524
 msgid "Play sounds for major events"
 msgstr "주요 이벤트에 대해 소리를 냅니다"
 
-#: ../gnobots2/properties.c:519
+#: ../gnobots2/properties.c:526
 msgid "Play sounds for events like winning a level and dying."
 msgstr "레벨을 마쳤거나 죽을 때와 같은 이벤트에 대해 소리를 냅니다."
 
-#: ../gnobots2/properties.c:521
+#: ../gnobots2/properties.c:528
 msgid "E_nable splats"
 msgstr "쾅 소리 사용(_N)"
 
-#: ../gnobots2/properties.c:527
+#: ../gnobots2/properties.c:535
 msgid "Play a sound when two robots collide"
 msgstr "두 로봇이 충돌할 때 소리를 냅니다"
 
-#: ../gnobots2/properties.c:528
+#: ../gnobots2/properties.c:537
 msgid "Play the most common, and potentially the most annoying, sound."
 msgstr "가장 자주 일어나는, 때로는 가장 짜증나는 소리를 냅니다."
 
-#: ../gnobots2/properties.c:538
+#: ../gnobots2/properties.c:547
 msgid "Graphics Theme"
 msgstr "그래픽 테마"
 
-#: ../gnobots2/properties.c:546
+#: ../gnobots2/properties.c:555
 msgid "_Image theme:"
 msgstr "이미지 테마(_I):"
 
-#: ../gnobots2/properties.c:557 ../mahjongg/mahjongg.c:807
+#: ../gnobots2/properties.c:566 ../mahjongg/mahjongg.c:803
 msgid "_Background color:"
 msgstr "바탕색(_B):"
 
-#: ../gnobots2/properties.c:603
+#: ../gnobots2/properties.c:611
 msgid "_Restore Defaults"
 msgstr "기본값으로 되돌리기(_R)"
 
-#: ../gnobots2/properties.c:608
+#: ../gnobots2/properties.c:616
 msgid "Keyboard"
 msgstr "키보드"
 
@@ -3472,6 +4997,8 @@ msgid "Remaining:"
 msgstr "남은 수:"
 
 #: ../gnometris/field.cpp:227
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:176
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:215
 msgid "Paused"
 msgstr "일시 중지"
 
@@ -3480,7 +5007,7 @@ msgid "Fit falling blocks together"
 msgstr "떨어지는 블록을 맞춥니다"
 
 #: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:179
-#: ../gnometris/tetris.cpp:1443
+#: ../gnometris/tetris.cpp:1442 ../gnometris/tetris.cpp:1445
 msgid "Gnometris"
 msgstr "그놈 테트리스"
 
@@ -3617,6 +5144,10 @@ msgstr "시작 난이도를 설정합니다 (1 이상)"
 msgid "LEVEL"
 msgstr "난이도"
 
+#: ../gnometris/renderer.cpp:27
+msgid "Plain"
+msgstr "단순"
+
 #: ../gnometris/renderer.cpp:28
 msgid "Joined"
 msgstr "입체"
@@ -3667,11 +5198,16 @@ msgstr "시계반대 방향으로 회전(_R)"
 msgid "Show _where the block will land"
 msgstr "블록이 어디로 떨어질 지 보기(_W)"
 
+#: ../gnometris/tetris.cpp:857 ../gnometris/tetris.cpp:890
+#: ../same-gnome/ui.c:315
+msgid "Theme"
+msgstr "테마"
+
 #: ../gnometris/tetris.cpp:893
 msgid "Block Style"
 msgstr "블록 모양새"
 
-#: ../gnometris/tetris.cpp:1445
+#: ../gnometris/tetris.cpp:1447
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: \n"
@@ -3685,7 +5221,729 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "그놈 테트리스 점수"
 
-#: ../gnomine/gnomine.c:87 ../gnomine/gnomine.c:660
+#: ../gnome-sudoku/glade/high_scores.glade.h:1
+msgid "<span size=\"large\" style=\"italic\" weight=\"bold\">You win!</span>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/high_scores.glade.h:2
+#, fuzzy
+msgid "High Scores"
+msgstr "점수"
+
+#: ../gnome-sudoku/glade/high_scores.glade.h:3
+#, fuzzy
+msgid "_High Scores"
+msgstr "점수(_S)"
+
+#: ../gnome-sudoku/glade/new_game.glade.h:1
+#: ../gnome-sudoku/glade/print_games.glade.h:1
+msgid "<i>Easy</i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/new_game.glade.h:2
+#: ../gnome-sudoku/glade/print_games.glade.h:2
+msgid "<i>Hard</i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/new_game.glade.h:3
+#: ../gnome-sudoku/glade/open_game.glade.h:1
+msgid "<span size=\"larger\" weight=\"bold\">Select Game</span>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/new_game.glade.h:4
+msgid "Choose the _level of difficulty for your new game."
+msgstr ""
+
+#: ../gnome-sudoku/glade/new_game.glade.h:6
+#, fuzzy
+msgid "_Details"
+msgstr "패 돌리기(_E)"
+
+#: ../gnome-sudoku/glade/new_game.glade.h:7
+#: ../gnome-sudoku/glade/open_game.glade.h:3
+#, fuzzy
+msgid "_Play"
+msgstr "플레이어"
+
+#: ../gnome-sudoku/glade/open_game.glade.h:2
+msgid "Choose _game"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:3
+msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:4
+msgid "Choose the _level of difficulty for games"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:5
+#, fuzzy
+msgid "Ma_ximum Difficulty"
+msgstr "어려움"
+
+#: ../gnome-sudoku/glade/print_games.glade.h:6
+msgid "Print Sudokus"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:7
+#, fuzzy
+msgid "_Game List"
+msgstr "게임(_G)"
+
+#: ../gnome-sudoku/glade/print_games.glade.h:8
+msgid "_Include games you've already played in list of games to print"
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:9
+msgid "_Label games with difficulty and name."
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:10
+msgid "_Mark games as played once you've printed them."
+msgstr ""
+
+#: ../gnome-sudoku/glade/print_games.glade.h:11
+#, fuzzy
+msgid "_Minimum Difficulty"
+msgstr "어려움"
+
+#: ../gnome-sudoku/glade/print_games.glade.h:12
+#, fuzzy
+msgid "_Number of sudoku to print: "
+msgstr "지뢰의 갯수(_N):"
+
+#: ../gnome-sudoku/glade/print_games.glade.h:13
+msgid "_Sudokus per page: "
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:1
+msgid "<i><u>Number of Puzzles</u></i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:2
+msgid "<i>Easy:</i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:3
+msgid "<i>Hard:</i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:4
+#, fuzzy
+msgid "<i>Medium:</i>"
+msgstr "중간"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:5
+msgid "<i>_Very Hard:</i>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:6
+msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:7
+msgid "Criteria:"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:8
+#, fuzzy
+msgid "Generate Policy"
+msgstr "일반"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:9
+msgid "Generate until _reaching target"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:10
+msgid "Puzzle Generator"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:11
+msgid "Target _number of sudokus:"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:12
+#: ../gnome-sudoku/src/lib/sudoku.py:598
+#: ../gnome-sudoku/src/lib/sudoku_copy.py:695
+#, fuzzy
+msgid "Very Hard"
+msgstr "매우 어려움"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:13
+#, fuzzy
+msgid "_Easy"
+msgstr "쉬움"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:14
+#, fuzzy
+msgid "_Generate"
+msgstr "일반"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:15
+msgid "_Generate new puzzles until stopped"
+msgstr ""
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:16
+#, fuzzy
+msgid "_Hard"
+msgstr "어려움"
+
+#: ../gnome-sudoku/glade/tracker.glade.h:1
+msgid "Clear _Others"
+msgstr ""
+
+#: ../gnome-sudoku/glade/tracker.glade.h:2
+msgid "_Add Tracker"
+msgstr ""
+
+#: ../gnome-sudoku/glade/tracker.glade.h:3
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:824
+msgid "_Clear Tracker"
+msgstr ""
+
+#: ../gnome-sudoku/glade/tracker.glade.h:4
+msgid "_Trackers"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/sudoku_maker.py:327
+#: ../gnome-sudoku/src/lib/sudoku_maker.py:354
+#: ../gnome-sudoku/src/lib/sudoku_maker.py:439
+#: ../gnome-sudoku/src/lib/game_selector.py:77
+#: ../gnome-sudoku/src/lib/game_selector.py:193
+#: ../gnome-sudoku/src/lib/game_selector.py:290
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:725
+#, fuzzy
+msgid "Puzzle"
+msgstr "다음 퍼즐"
+
+#: ../gnome-sudoku/src/lib/defaults.py:13
+msgid "GNOME Sudoku"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/defaults.py:14
+msgid "Copyright (c) 2005,2006, Thomas M. Hinkle. GNU GPL"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/defaults.py:15
+msgid ""
+"GNOME Sudoku is a simple sudoku generator and player.  Sudoku is a japanese "
+"logic puzzle."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/printing.py:203
+msgid "Print Sudoku"
+msgid_plural "Print Sudokus"
+msgstr[0] ""
+
+#: ../gnome-sudoku/src/lib/printing.py:216
+msgid "Print Preview"
+msgstr ""
+
+#. now we enumerate some details...
+#: ../gnome-sudoku/src/lib/game_selector.py:88
+msgid "Squares instantly fillable by filling: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:90
+msgid "Squares instantly fillable by elimination: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:92
+msgid "Number of trial-and-errors necessary to solve: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:94
+#, fuzzy
+msgid "Difficulty value: "
+msgstr "어려움"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:109
+#: ../gnome-sudoku/src/lib/game_selector.py:139
+#: ../gnome-sudoku/src/lib/game_selector.py:291
+#, fuzzy
+msgid "Difficulty"
+msgstr "어려움"
+
+#. position
+#: ../gnome-sudoku/src/lib/game_selector.py:143
+#, fuzzy
+msgid "Started"
+msgstr "게임 시작(_S)"
+
+#. position
+#: ../gnome-sudoku/src/lib/game_selector.py:149
+msgid "Last Played"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:154
+msgid "Status"
+msgstr "상태"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:181
+#, python-format
+msgid "Printed %s ago"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:190
+#, fuzzy, python-format
+msgid "Played for %s"
+msgstr "플레이어"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:214
+#, python-format
+msgid "%s ago"
+msgstr ""
+
+#. Note that this assumes the default style is plain.
+#: ../gnome-sudoku/src/lib/game_selector.py:246 games-scores-dialog.gob:368
+#: games-scores-dialog.gob:450 ../libgames-support/games-scores-dialog.gob:364
+#: ../libgames-support/games-scores-dialog.gob:450
+msgid "Score"
+msgstr "점수"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:249
+#, fuzzy
+msgid "Date"
+msgstr "돌리기"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:297
+#, fuzzy
+msgid "Hints"
+msgstr "힌트(_H)"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:298
+#, fuzzy
+msgid "Warnings about unfillable squares"
+msgstr "너무 깃발이 많을 때 경고"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:300
+msgid "Auto-fills"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/game_selector.py:301
+#, fuzzy
+msgid "Finished in"
+msgstr "마침(_F)"
+
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:88
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:99
+#, fuzzy
+msgid "Working..."
+msgstr "생각중..."
+
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:137
+#, fuzzy, python-format
+msgid "%s puzzle"
+msgid_plural "%s puzzles"
+msgstr[0] "다음 퍼즐"
+
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:181
+#, fuzzy
+msgid "Stopped"
+msgstr "속도"
+
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:196
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:206
+#, python-format
+msgid "Generated %(n)s out of %(total)s puzzle"
+msgid_plural "Generated %(n)s out of %(total)s puzzles"
+msgstr[0] ""
+
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:214
+#, fuzzy, python-format
+msgid "Generated %s puzzle"
+msgid_plural "Generated %s puzzles"
+msgstr[0] "페넌트 퍼즐"
+
+#: ../gnome-sudoku/src/lib/sudoku.py:599
+#: ../gnome-sudoku/src/lib/sudoku_copy.py:696
+msgid "Hard"
+msgstr "어려움"
+
+#: ../gnome-sudoku/src/lib/sudoku.py:600
+#: ../gnome-sudoku/src/lib/sudoku_copy.py:697
+msgid "Medium"
+msgstr "중간"
+
+#: ../gnome-sudoku/src/lib/sudoku.py:601
+#: ../gnome-sudoku/src/lib/sudoku_copy.py:698
+msgid "Easy"
+msgstr "쉬움"
+
+#. setup pause button
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:328
+#: ../libgames-support/games-stock.c:46
+msgid "_Pause"
+msgstr "일시 중지(_P)"
+
+#. setup stop button
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:337
+#, fuzzy
+msgid "_Stop"
+msgstr "설정"
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:354
+msgid "Do you really want to do this"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:388
+msgid "Don't ask me this again."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/timer.py:12
+#, python-format
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] ""
+
+#: ../gnome-sudoku/src/lib/timer.py:14
+#, fuzzy, python-format
+msgid "%s month"
+msgid_plural "%s months"
+msgstr[0] "%d점"
+
+#: ../gnome-sudoku/src/lib/timer.py:16
+#, python-format
+msgid "%s week"
+msgid_plural "%s weeks"
+msgstr[0] ""
+
+#: ../gnome-sudoku/src/lib/timer.py:18
+#, python-format
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] ""
+
+#: ../gnome-sudoku/src/lib/timer.py:20
+#, python-format
+msgid "%s hour"
+msgid_plural "%s hours"
+msgstr[0] ""
+
+#: ../gnome-sudoku/src/lib/timer.py:22
+#, python-format
+msgid "%s minute"
+msgid_plural "%s minutes"
+msgstr[0] ""
+
+#: ../gnome-sudoku/src/lib/timer.py:24
+#, fuzzy, python-format
+msgid "%s second"
+msgid_plural "%s seconds"
+msgstr[0] "두 번째 날"
+
+#. Translators... this is a messay way of concatenating
+#. lists. In English we do lists this way: 1, 2, 3, 4, 5
+#. and 6. This set-up allows for the English system only.
+#. You can of course make your language only use commas or
+#. ands or spaces or whatever you like by translating both
+#. ", " and " and " with the same string.
+#: ../gnome-sudoku/src/lib/timer.py:42 ../gnome-sudoku/src/lib/timer.py:44
+#, fuzzy
+msgid " and "
+msgstr "스탠드"
+
+#: ../gnome-sudoku/src/lib/timer.py:42
+msgid ", "
+msgstr ""
+
+#. then we're today
+#: ../gnome-sudoku/src/lib/timer.py:54
+#, fuzzy
+msgid "Today"
+msgstr "합계"
+
+#: ../gnome-sudoku/src/lib/timer.py:56
+msgid "Yesterday"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gsudoku_copy.py:451
+msgid "Possible values "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gsudoku_copy.py:453
+msgid "No values are possible!"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gsudoku.py:76
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
+#, fuzzy
+msgid "_Clear"
+msgstr "클레오파트라"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:25
+#, fuzzy
+msgid "Track moves"
+msgstr "빨리 움직임"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:31
+#, fuzzy
+msgid "Full Screen"
+msgstr "전체 화면(_F)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:155
+#, fuzzy
+msgid "New game"
+msgstr "새 게임"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:157
+#, fuzzy
+msgid "Print current game"
+msgstr "현재 게임을 끝냅니다"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:158
+msgid "Print _Multiple Sudokus"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:159
+msgid "Print more than one sudoku at a time."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:163
+msgid "Close Sudoku (save game for later)"
+msgstr ""
+
+#. ('Save',gtk.STOCK_SAVE,_('_Save'),
+#. '<Control>s','Save game to play later.',
+#. self.save_game),
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:167
+#, fuzzy
+msgid "_Enter custom game"
+msgstr "현재 게임을 끝냅니다"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:168
+msgid ""
+"Enter new puzzle by hand (use this to copy a puzzle from another source)."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:170
+#, fuzzy
+msgid "_Resume old game"
+msgstr "일시 중지한 게임을 다시 시작합니다"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:171
+#, fuzzy
+msgid "Resume a previous saved game."
+msgstr "일시 중지한 게임을 다시 시작합니다"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:175
+#: ../libgames-support/games-stock.c:53
+msgid "_Hint"
+msgstr "힌트(_H)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:177
+msgid "Show which numbers could go in the current square."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:179
+msgid "_Fill"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:180
+msgid "Automatically fill in the current square if possible."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:182
+msgid "Fill _all squares"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:183
+msgid ""
+"Automatically fill in all squares for which there is only one valid value."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:193
+#, fuzzy
+msgid "Puzzle _Statistics"
+msgstr "통계"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:194
+msgid "Show statistics about current puzzle"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:202
+#, fuzzy
+msgid "High _Scores"
+msgstr "점수(_S)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:203
+msgid "Show high scores or replay old games."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:209
+msgid "_Always show hint"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:211
+msgid "Always show possible numbers in a square"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:215
+msgid "Warn about _unfillable squares"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:217
+msgid "Warn about squares made unfillable by a move"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:219
+msgid "_Track additions"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:221
+msgid "Mark new additions in a separate color so you can keep track of them."
+msgstr ""
+
+#. ('ZoomOnResize',None,_('_Adjust size of grid when resizing window'),
+#. None,_('Automatically change the size of numbers and squares to fit the window.'),
+#. ),
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:226
+#, fuzzy
+msgid "Show _Toolbar"
+msgstr "도구 모음 보기"
+
+#. ('ToggleNotes',None,_('Show _Notes'),'<Control>O',
+#. _('Include room for notes at the top and bottom of squares.'),self.toggle_notes_cb),
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:229
+#, fuzzy
+msgid "_Black background"
+msgstr "바탕색(_B):"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:230
+msgid ""
+"Background of game is black; otherwise, the background will follow your "
+"theme colors."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:232
+msgid "_Highlighter"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:233
+msgid "Highlight the current row, column and box"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:234
+msgid "Generate new puzzles _while you play"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:236
+msgid ""
+"Generate new puzzles in the background while you play. This will "
+"automatically pause when the game goes into the background."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:243
+#, fuzzy
+msgid "_Undo"
+msgstr "이동 취소(_U)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:243
+#, fuzzy
+msgid "Undo last action"
+msgstr "마지막 움직임을 취소합니다"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:244
+#, fuzzy
+msgid "_Redo"
+msgstr "빨강"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:244
+#, fuzzy
+msgid "Redo last action"
+msgstr "마지막 움직임을 다시 실행합니다"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
+msgid "Clear entries you've filled in"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:246
+msgid "Clear _Notes"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:246
+msgid "Clear notes and hints"
+msgstr ""
+
+#. Trackers...
+#. Our initial row...
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:248
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:815
+#, fuzzy
+msgid "No Tracker"
+msgstr "키 없음"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
+msgid "_Generate new puzzles"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
+msgid "Generate new puzzles."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:295
+msgid "Entering custom grid..."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:299
+#, fuzzy
+msgid "_Play game"
+msgstr "플레이어 이름"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:664
+#, fuzzy
+msgid "Playing "
+msgstr "단순"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:705
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:728
+msgid "Puzzle Information"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:706
+msgid "There is no current puzzle."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:711
+msgid "Calculated difficulty: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:715
+msgid "Number of moves instantly fillable by elimination: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:718
+msgid "Number of moves instantly fillable by filling: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:721
+msgid "Amount of trial-and-error required to solve: "
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:729
+#, fuzzy, python-format
+msgid "Statistics for %s"
+msgstr "통계"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:825
+msgid "Clear all moves tracked by selected tracker."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:829
+msgid "_Clear Others"
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:831
+msgid "Clear all moves not tracked by selected tracker."
+msgstr ""
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:857
+#, python-format
+msgid "Tracker %s"
+msgstr ""
+
+#: ../gnomine/gnomine.c:87 ../gnomine/gnomine.c:664
 msgid "gnomine|Medium"
 msgstr "중간"
 
@@ -3693,69 +5951,69 @@ msgstr "중간"
 msgid "Custom"
 msgstr "사용자 정의"
 
-#: ../gnomine/gnomine.c:164
+#: ../gnomine/gnomine.c:167
 #, c-format
 msgid "Flags: %d/%d"
 msgstr "깃발: %d/%d"
 
-#: ../gnomine/gnomine.c:192
+#: ../gnomine/gnomine.c:195
 msgid "The Mines Have Been Cleared!"
 msgstr "지뢰를 처리했습니다!"
 
-#: ../gnomine/gnomine.c:193
+#: ../gnomine/gnomine.c:197
 msgid "Great work, but unfortunately your score did not make the top ten."
 msgstr "잘 했지만 아쉽게도 점수가 10위 안에 들지 못했습니다."
 
-#: ../gnomine/gnomine.c:210
+#: ../gnomine/gnomine.c:211
 msgid "Mines Scores"
 msgstr "지뢰찾기 점수"
 
-#: ../gnomine/gnomine.c:212 ../gnotravex/gnotravex.c:985
-#: ../same-gnome/ui.c:131
+#: ../gnomine/gnomine.c:214 ../gnotravex/gnotravex.c:1161
+#: ../same-gnome/ui.c:143
 msgid "Size:"
 msgstr "크기:"
 
-#: ../gnomine/gnomine.c:313
+#: ../gnomine/gnomine.c:314
 msgid "Click a square, any square"
 msgstr "네모 모양을 누르십시오"
 
-#: ../gnomine/gnomine.c:315
+#: ../gnomine/gnomine.c:316
 msgid "Maybe they're all mines ..."
 msgstr "아마도 모두가 지뢰일 것입니다..."
 
-#: ../gnomine/gnomine.c:433
+#: ../gnomine/gnomine.c:435
 msgid "Resizing and SVG support:"
 msgstr "크기 바꾸기 및 SVG 지원:"
 
-#: ../gnomine/gnomine.c:440
+#: ../gnomine/gnomine.c:442
 msgid "Faces:"
 msgstr "모양:"
 
-#: ../gnomine/gnomine.c:443
+#: ../gnomine/gnomine.c:445
 msgid "Graphics:"
 msgstr "그래픽:"
 
-#: ../gnomine/gnomine.c:454 ../gnomine/gnomine.c:1022
+#: ../gnomine/gnomine.c:455 ../gnomine/gnomine.c:458 ../gnomine/gnomine.c:1032
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
 msgstr "지뢰찾기"
 
-#: ../gnomine/gnomine.c:456
+#: ../gnomine/gnomine.c:461
 msgid ""
 "The popular logic puzzle minesweeper. Clear mines from a board using hints "
 "from squares you have already uncovered."
 msgstr ""
 "유명한 지뢰찾기 퍼즐게임. 이미 처리한 곳의 정보를 이용해서 지뢰를 처리합니다."
 
-#: ../gnomine/gnomine.c:645
+#: ../gnomine/gnomine.c:650
 msgid "Field Size"
 msgstr "지뢰밭 크기"
 
-#: ../gnomine/gnomine.c:695
+#: ../gnomine/gnomine.c:694
 msgid "Custom Size"
 msgstr "사용자 정의 크기"
 
-#: ../gnomine/gnomine.c:702
+#: ../gnomine/gnomine.c:701
 msgid "_Number of mines:"
 msgstr "지뢰의 갯수(_N):"
 
@@ -3763,58 +6021,58 @@ msgstr "지뢰의 갯수(_N):"
 msgid "_Horizontal:"
 msgstr "가로(_H):"
 
-#: ../gnomine/gnomine.c:725
+#: ../gnomine/gnomine.c:726
 msgid "_Vertical:"
 msgstr "세로(_V):"
 
-#: ../gnomine/gnomine.c:740
+#: ../gnomine/gnomine.c:744
 msgid "_Use \"I'm not sure\" flags"
 msgstr "\"알 수 없군\" 깃발 사용(_U)"
 
-#: ../gnomine/gnomine.c:749
+#: ../gnomine/gnomine.c:755
 msgid "_Use \"Too many flags\" warning"
 msgstr "\"깃발이 너무 많습니다\" 경고 사용(_U)"
 
-#: ../gnomine/gnomine.c:758
+#: ../gnomine/gnomine.c:765
 msgid "Mines Preferences"
 msgstr "지뢰찾기 기본 설정"
 
-#: ../gnomine/gnomine.c:946
+#: ../gnomine/gnomine.c:962
 msgid "Width of grid"
 msgstr "격자 너비"
 
-#: ../gnomine/gnomine.c:947
+#: ../gnomine/gnomine.c:963
 msgid "Height of grid"
 msgstr "격자 높이"
 
-#: ../gnomine/gnomine.c:948
+#: ../gnomine/gnomine.c:965
 msgid "Number of mines"
 msgstr "지뢰의 개수"
 
-#: ../gnomine/gnomine.c:948 ../gtali/gyahtzee.c:90 ../gtali/gyahtzee.c:92
-#: ../same-gnome/same-gnome.c:143
+#: ../gnomine/gnomine.c:966 ../gtali/gyahtzee.c:91 ../gtali/gyahtzee.c:93
+#: ../same-gnome/same-gnome.c:152
 msgid "NUMBER"
 msgstr "<개수>"
 
-#: ../gnomine/gnomine.c:949
+#: ../gnomine/gnomine.c:968
 msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "게임판의 크기 (0-2 = 작게-크게, 3=사용자 설정)"
 
-#: ../gnomine/gnomine.c:950 ../gnotravex/gnotravex.c:268
-#: ../gnotski/gnotski.c:688 ../iagno/gnothello.c:104
+#: ../gnomine/gnomine.c:969 ../gnotravex/gnotravex.c:359
+#: ../gnotski/gnotski.c:481 ../iagno/gnothello.c:124
 msgid "X location of window"
 msgstr "창의 가로 위치"
 
-#: ../gnomine/gnomine.c:951 ../gnotravex/gnotravex.c:270
-#: ../gnotski/gnotski.c:690 ../iagno/gnothello.c:106
+#: ../gnomine/gnomine.c:971 ../gnotravex/gnotravex.c:361
+#: ../gnotski/gnotski.c:483 ../iagno/gnothello.c:126
 msgid "Y location of window"
 msgstr "창의 세로 위치"
 
-#: ../gnomine/gnomine.c:1087
+#: ../gnomine/gnomine.c:1096
 msgid "Press to Resume"
 msgstr "다시 시작하려면 누르십시오"
 
-#: ../gnomine/gnomine.c:1123
+#: ../gnomine/gnomine.c:1127
 msgid "Time: "
 msgstr "시간: "
 
@@ -3838,7 +6096,7 @@ msgstr "알 수 없음 깃발 사용"
 msgid "Warning about too many flags"
 msgstr "너무 깃발이 많을 때 경고"
 
-#: ../gnomine/minefield.c:197
+#: ../gnomine/minefield.c:212
 msgid ""
 "Unable to find required images.\n"
 "\n"
@@ -3849,7 +6107,7 @@ msgstr ""
 "\n"
 "gnome-games가 제대로 설치되었는 지 확인하십시오"
 
-#: ../gnomine/minefield.c:206
+#: ../gnomine/minefield.c:222
 msgid ""
 "Required images have been found, but refused to load.\n"
 "\n"
@@ -3859,185 +6117,189 @@ msgstr ""
 "\n"
 "그놈 게임과 필요한 소프트웨어가 제대로 설치되었는지 확인하십시오."
 
-#: ../gnomine/minefield.c:216
+#: ../gnomine/minefield.c:231
 msgid "Could not load images"
 msgstr "그림을 읽어들일 수 없습니다"
 
-#. i18n in-game numbers, replaceable with single-character local ideograms.
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "0"
 msgstr "0"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "1"
 msgstr "1"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "2"
 msgstr "2"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "3"
 msgstr "3"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "4"
 msgstr "4"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "5"
 msgstr "5"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "6"
 msgstr "6"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:53
 msgid "7"
 msgstr "7"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:54
 msgid "8"
 msgstr "8"
 
-#: ../gnotravex/gnotravex.c:51
+#: ../gnotravex/gnotravex.c:54
 msgid "9"
 msgstr "9"
 
-#: ../gnotravex/gnotravex.c:59
+#: ../gnotravex/gnotravex.c:62
 msgid "2×2"
 msgstr "2×2"
 
-#: ../gnotravex/gnotravex.c:60
+#: ../gnotravex/gnotravex.c:63
 msgid "3×3"
 msgstr "3×3"
 
-#: ../gnotravex/gnotravex.c:61
+#: ../gnotravex/gnotravex.c:64
 msgid "4×4"
 msgstr "4×4"
 
-#: ../gnotravex/gnotravex.c:62
+#: ../gnotravex/gnotravex.c:65
 msgid "5×5"
 msgstr "5×5"
 
-#: ../gnotravex/gnotravex.c:63
+#: ../gnotravex/gnotravex.c:66
 msgid "6×6"
 msgstr "6×6"
 
-#: ../gnotravex/gnotravex.c:197 ../same-gnome/ui.c:426
+#: ../gnotravex/gnotravex.c:270 ../same-gnome/ui.c:457
 msgid "_Size"
 msgstr "크기(_S)"
 
-#: ../gnotravex/gnotravex.c:203
+#: ../gnotravex/gnotravex.c:279
 msgid "Sol_ve"
 msgstr "풀이(_V)"
 
-#: ../gnotravex/gnotravex.c:203
+#: ../gnotravex/gnotravex.c:279
 msgid "Solve the game"
 msgstr "게임 풀이"
 
-#: ../gnotravex/gnotravex.c:209
+#: ../gnotravex/gnotravex.c:288
 msgid "_Up"
 msgstr "위(_U)"
 
-#: ../gnotravex/gnotravex.c:209
+#: ../gnotravex/gnotravex.c:289
 msgid "Move the pieces up"
 msgstr "조각을 위로 옮깁니다"
 
-#: ../gnotravex/gnotravex.c:210
+#: ../gnotravex/gnotravex.c:290
 msgid "_Left"
 msgstr "왼쪽(_L)"
 
-#: ../gnotravex/gnotravex.c:210
+#: ../gnotravex/gnotravex.c:291
 msgid "Move the pieces left"
 msgstr "조각을 왼쪽으로 옮깁니다"
 
-#: ../gnotravex/gnotravex.c:211
+#: ../gnotravex/gnotravex.c:292
 msgid "_Right"
 msgstr "오른쪽(_R)"
 
-#: ../gnotravex/gnotravex.c:211
+#: ../gnotravex/gnotravex.c:293
 msgid "Move the pieces right"
 msgstr "조각을 오른쪽으로 옮깁니다"
 
-#: ../gnotravex/gnotravex.c:212
+#: ../gnotravex/gnotravex.c:294
 msgid "_Down"
 msgstr "아래(_D)"
 
-#: ../gnotravex/gnotravex.c:212
+#: ../gnotravex/gnotravex.c:295
 msgid "Move the pieces down"
 msgstr "조각을 아래로 옮깁니다"
 
-#: ../gnotravex/gnotravex.c:218
+#: ../gnotravex/gnotravex.c:301
 msgid "_2×2"
 msgstr "_2×2"
 
-#: ../gnotravex/gnotravex.c:218
+#: ../gnotravex/gnotravex.c:301
 msgid "Play on a 2×2 board"
 msgstr "2×2 보드에서 플레이"
 
-#: ../gnotravex/gnotravex.c:219
+#: ../gnotravex/gnotravex.c:303
 msgid "_3×3"
 msgstr "_3×3"
 
-#: ../gnotravex/gnotravex.c:219
+#: ../gnotravex/gnotravex.c:303
 msgid "Play on a 3×3 board"
 msgstr "3×3 보드에서 플레이"
 
-#: ../gnotravex/gnotravex.c:220
+#: ../gnotravex/gnotravex.c:305
 msgid "_4×4"
 msgstr "_4×4"
 
-#: ../gnotravex/gnotravex.c:220
+#: ../gnotravex/gnotravex.c:305
 msgid "Play on a 4×4 board"
 msgstr "4×4 보드에서 플레이"
 
-#: ../gnotravex/gnotravex.c:221
+#: ../gnotravex/gnotravex.c:307
 msgid "_5×5"
 msgstr "_5×5"
 
-#: ../gnotravex/gnotravex.c:221
+#: ../gnotravex/gnotravex.c:307
 msgid "Play on a 5×5 board"
 msgstr "5×5 보드에서 플레이"
 
-#: ../gnotravex/gnotravex.c:222
+#: ../gnotravex/gnotravex.c:309
 msgid "_6×6"
 msgstr "_6×6"
 
-#: ../gnotravex/gnotravex.c:222
+#: ../gnotravex/gnotravex.c:309
 msgid "Play on a 6×6 board"
 msgstr "6×6 보드에서 플레이"
 
-#: ../gnotravex/gnotravex.c:272
+#: ../gnotravex/gnotravex.c:314
+#, fuzzy
+msgid "Tile _Colours"
+msgstr "색"
+
+#: ../gnotravex/gnotravex.c:363
 msgid "Size of board (2-6)"
 msgstr "보드의 크기 (2-6)"
 
-#: ../gnotravex/gnotravex.c:273
+#: ../gnotravex/gnotravex.c:364
 msgid "SIZE"
 msgstr "크기"
 
-#: ../gnotravex/gnotravex.c:869
+#: ../gnotravex/gnotravex.c:1044
 msgid "Puzzle solved! Well done!"
 msgstr "퍼즐이 풀렸습니다! 잘 하셨습니다!"
 
-#: ../gnotravex/gnotravex.c:872
+#: ../gnotravex/gnotravex.c:1047
 msgid "Puzzle solved!"
 msgstr "퍼즐이 풀렸습니다!"
 
-#: ../gnotravex/gnotravex.c:984
+#: ../gnotravex/gnotravex.c:1159
 msgid "Tetravex Scores"
 msgstr "테트라벡스 점수"
 
-#: ../gnotravex/gnotravex.c:1218 ../mahjongg/mahjongg.c:983
+#: ../gnotravex/gnotravex.c:1411 ../mahjongg/mahjongg.c:979
 msgid "Game paused"
 msgstr "게임 일시정지"
 
-#: ../gnotravex/gnotravex.c:1382
+#: ../gnotravex/gnotravex.c:1569
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "%d×%d 보드 플레이"
 
-#: ../gnotravex/gnotravex.c:1626
+#: ../gnotravex/gnotravex.c:1824
 msgid ""
 "GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
 "the same numbers are touching each other."
@@ -4054,15 +6316,29 @@ msgid "Tetravex"
 msgstr "테트라벡스"
 
 #: ../gnotravex/gnotravex.schemas.in.h:1
+msgid "A flag to enable coloured tiles."
+msgstr ""
+
+#: ../gnotravex/gnotravex.schemas.in.h:2
+#, fuzzy
+msgid "Control coloured tiles"
+msgstr "타일 세트를 읽어들일 수 없습니다"
+
+#: ../gnotravex/gnotravex.schemas.in.h:3
 msgid ""
 "The height of the playing window in pixels. At minimum it should be 240."
 msgstr "플레이 창의 높이 (픽셀 단위). 최소값으로 240은 되어야 합니다."
 
-#: ../gnotravex/gnotravex.schemas.in.h:3
+#: ../gnotravex/gnotravex.schemas.in.h:4 ../gnotski/gnotski.schemas.in.h:1
+#: ../mahjongg/mahjongg.schemas.in.h:1
+msgid "The height of the window"
+msgstr "창의 높이"
+
+#: ../gnotravex/gnotravex.schemas.in.h:5
 msgid "The size of the playing grid"
 msgstr "플레이하는 격자의 크기"
 
-#: ../gnotravex/gnotravex.schemas.in.h:4
+#: ../gnotravex/gnotravex.schemas.in.h:6
 msgid ""
 "The value of this key is used to decide the size of the playing grid. The "
 "valid values are 2 to 8, anything else gets set to 3."
@@ -4070,9 +6346,14 @@ msgstr ""
 "이 키는 플레이 격자의 크기를 결정합니다. 사용 가능한 값은 2에서 8입니다.  그 "
 "외의 값은 3과 같습니다."
 
-#: ../gnotravex/gnotravex.schemas.in.h:5
+#: ../gnotravex/gnotravex.schemas.in.h:7
 msgid "The width of the playing window in pixels. At minimum it should be 320."
 msgstr "플레이 창의 너비 (픽셀 단위). 최소값으로 320은 되어야 합니다."
+
+#: ../gnotravex/gnotravex.schemas.in.h:8 ../gnotski/gnotski.schemas.in.h:6
+#: ../mahjongg/mahjongg.schemas.in.h:4
+msgid "The width of the window"
+msgstr "창의 너비"
 
 #. puzzle name
 #: ../gnotski/gnotski.c:140
@@ -4080,222 +6361,222 @@ msgid "Only 18 Steps"
 msgstr "겨우 18 단계"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:153
+#: ../gnotski/gnotski.c:146
 msgid "Daisy"
 msgstr "데이지"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:166
+#: ../gnotski/gnotski.c:152
 msgid "Violet"
 msgstr "바이올렛"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:179
+#: ../gnotski/gnotski.c:158
 msgid "Poppy"
 msgstr "퍼피"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:192
+#: ../gnotski/gnotski.c:164
 msgid "Pansy"
 msgstr "펜지"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:205
+#: ../gnotski/gnotski.c:170
 msgid "Snowdrop"
 msgstr "스노드롭"
 
 #. puzzle name - sometimes called "Le'Ane Rouge"
-#: ../gnotski/gnotski.c:218
+#: ../gnotski/gnotski.c:176
 msgid "Red Donkey"
 msgstr "붉은 당나귀"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:231
+#: ../gnotski/gnotski.c:182
 msgid "Trail"
 msgstr "추적"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:244
+#: ../gnotski/gnotski.c:188
 msgid "Ambush"
 msgstr "잠복"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:257
+#: ../gnotski/gnotski.c:194
 msgid "Agatka"
 msgstr "아가트카"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:268
+#: ../gnotski/gnotski.c:199
 msgid "Success"
 msgstr "성공"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:278
+#: ../gnotski/gnotski.c:204
 msgid "Bone"
 msgstr "뼈"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:291
+#: ../gnotski/gnotski.c:210
 msgid "Fortune"
 msgstr "포츈"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:305
+#: ../gnotski/gnotski.c:218
 msgid "Fool"
 msgstr "바보"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:315
+#: ../gnotski/gnotski.c:224
 msgid "Solomon"
 msgstr "솔로몬"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:328
+#: ../gnotski/gnotski.c:231
 msgid "Cleopatra"
 msgstr "클레오파트라"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:340
+#: ../gnotski/gnotski.c:236
 msgid "Shark"
 msgstr "상어"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:352
+#: ../gnotski/gnotski.c:244
 msgid "Rome"
 msgstr "로마"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:364
+#: ../gnotski/gnotski.c:251
 msgid "Pennant Puzzle"
 msgstr "페넌트 퍼즐"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:377
+#: ../gnotski/gnotski.c:257
 msgid "Ithaca"
 msgstr "이타카"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:400
+#: ../gnotski/gnotski.c:278
 msgid "Pelopones"
 msgstr "펠로포네스"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:412
+#: ../gnotski/gnotski.c:285
 msgid "Transeuropa"
 msgstr "트랜스유로파"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:424
+#: ../gnotski/gnotski.c:294
 msgid "Lodzianka"
 msgstr "로쟌카"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:435
+#: ../gnotski/gnotski.c:300
 msgid "Polonaise"
 msgstr "폴로네즈"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:446
+#: ../gnotski/gnotski.c:305
 msgid "Baltic Sea"
 msgstr "발트해"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:458
+#: ../gnotski/gnotski.c:310
 msgid "American Pie"
 msgstr "아메리칸파이"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:474
+#: ../gnotski/gnotski.c:322
 msgid "Traffic Jam"
 msgstr "교통체증"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:485
+#: ../gnotski/gnotski.c:329
 msgid "Sunshine"
 msgstr "햇볕"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:511
+#: ../gnotski/gnotski.c:353
 msgid "Block 10"
 msgstr "블록 10"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:522
+#: ../gnotski/gnotski.c:358
 msgid "Block 10 Pro"
 msgstr "블록 10 프로"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:533
+#: ../gnotski/gnotski.c:363
 msgid "Climb 12"
 msgstr "클라임 12"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:544
+#: ../gnotski/gnotski.c:368
 msgid "Climb 12 Pro"
 msgstr "클라임 12 프로"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:555
+#: ../gnotski/gnotski.c:373
 msgid "Climb 15 Winter"
 msgstr "클라임 12 겨울"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:568
+#: ../gnotski/gnotski.c:380
 msgid "Climb 15 Spring"
 msgstr "클라임 12 봄"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:581
+#: ../gnotski/gnotski.c:387
 msgid "Climb 15 Summer"
 msgstr "클라임 12 여름"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:594
+#: ../gnotski/gnotski.c:394
 msgid "Climb 15 Fall"
 msgstr "클라임 12 가을"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:607
+#: ../gnotski/gnotski.c:401
 msgid "Climb 24 Pro"
 msgstr "클라임 24 프로"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:639
+#: ../gnotski/gnotski.c:430
 msgid "HuaRong Trail"
 msgstr "화롱 추적"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:641
+#: ../gnotski/gnotski.c:432
 msgid "Challenge Pack"
 msgstr "챌린지팩"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:643
+#: ../gnotski/gnotski.c:434
 msgid "Skill Pack"
 msgstr "스킬팩"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:645
+#: ../gnotski/gnotski.c:436
 msgid "Minoru Climb"
 msgstr "미노루 클라임"
 
-#: ../gnotski/gnotski.c:646
+#: ../gnotski/gnotski.c:437
 msgid "_Restart Puzzle"
 msgstr "퍼즐 다시 시작(_R)"
 
-#: ../gnotski/gnotski.c:647
+#: ../gnotski/gnotski.c:439
 msgid "Next Puzzle"
 msgstr "다음 퍼즐"
 
-#: ../gnotski/gnotski.c:648
+#: ../gnotski/gnotski.c:441
 msgid "Previous Puzzle"
 msgstr "이전 퍼즐"
 
-#: ../gnotski/gnotski.c:871
+#: ../gnotski/gnotski.c:670
 msgid "Level completed."
 msgstr "단계 마침."
 
-#: ../gnotski/gnotski.c:1063
+#: ../gnotski/gnotski.c:862
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -4305,7 +6586,7 @@ msgstr ""
 "\n"
 "클로츠키를 제대로 설치했는 지 확인하십시오."
 
-#: ../gnotski/gnotski.c:1234
+#: ../gnotski/gnotski.c:1034
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -4318,12 +6599,12 @@ msgstr ""
 "\n"
 "클로츠키를 제대로 설치했는 지 확인하십시오"
 
-#: ../gnotski/gnotski.c:1273
+#: ../gnotski/gnotski.c:1073
 #, c-format
 msgid "Moves: %d"
 msgstr "이동: %d"
 
-#: ../gnotski/gnotski.c:1601
+#: ../gnotski/gnotski.c:1403
 msgid "Sliding Block Puzzles"
 msgstr "블록 퍼즐 밀어서 맞추기"
 
@@ -4399,23 +6680,23 @@ msgstr "참이면, AI의 내용이 표준 출력으로 출력됩니다."
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 
-#: ../gtali/gyahtzee.c:86
+#: ../gtali/gyahtzee.c:87
 msgid "Delay computer moves"
 msgstr "컴퓨터 움직임 지연시간"
 
-#: ../gtali/gyahtzee.c:88
+#: ../gtali/gyahtzee.c:89
 msgid "Display computer thoughts"
 msgstr "컴퓨터의 생각을 보여주기"
 
-#: ../gtali/gyahtzee.c:90
+#: ../gtali/gyahtzee.c:91
 msgid "Number of computer opponents"
 msgstr "컴퓨터 상대의 수"
 
-#: ../gtali/gyahtzee.c:92
+#: ../gtali/gyahtzee.c:93
 msgid "Number of human opponents"
 msgstr "사람 상대의 수"
 
-#: ../gtali/gyahtzee.c:135
+#: ../gtali/gyahtzee.c:136
 msgid "The game is a draw!"
 msgstr "게임이 무승부입니다!"
 
@@ -4425,29 +6706,29 @@ msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
 msgstr[0] "%s이(가) %d점 차이로 게임에 이겼습니다"
 
-#: ../gtali/gyahtzee.c:155 ../same-gnome/ui.c:151
+#: ../gtali/gyahtzee.c:154 ../same-gnome/ui.c:165
 msgid "Game over!"
 msgstr "게임 끝!"
 
-#: ../gtali/gyahtzee.c:217
+#: ../gtali/gyahtzee.c:216
 #, c-format
 msgid "Computer playing for %s"
 msgstr "%s의 컴퓨터 플레이"
 
-#: ../gtali/gyahtzee.c:220
+#: ../gtali/gyahtzee.c:218
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- 당신이 이겼습니다."
 
-#: ../gtali/gyahtzee.c:313
+#: ../gtali/gyahtzee.c:310
 msgid "Select dice to roll or choose a score slot."
 msgstr "다시 굴리려면, 주사위를 선택하고, 아니면 점수 슬롯을 선택하십시오."
 
-#: ../gtali/gyahtzee.c:340
+#: ../gtali/gyahtzee.c:337
 msgid "Roll"
 msgstr "굴리기"
 
-#: ../gtali/gyahtzee.c:392
+#: ../gtali/gyahtzee.c:390
 msgid "You are only allowed three rolls. Choose a score slot."
 msgstr "세번만 굴릴 수 있습니다! 점수 슬롯을 선택하십시오."
 
@@ -4459,11 +6740,11 @@ msgstr "그놈 버전 (1998):"
 msgid "Console version (1992):"
 msgstr "콘솔 버전 (1992):"
 
-#: ../gtali/gyahtzee.c:457
+#: ../gtali/gyahtzee.c:458
 msgid "A variation on poker with dice and less money."
 msgstr "포커의 일종, 주사위와 포커보다 작은 돈 사용."
 
-#: ../gtali/gyahtzee.c:643
+#: ../gtali/gyahtzee.c:645
 msgid "Roll!"
 msgstr "굴리기!"
 
@@ -4475,7 +6756,7 @@ msgstr "현재 게임은 원래 플레이어의 수로 끝납니다."
 msgid "Tali Preferences"
 msgstr "탈리 기본 설정"
 
-#: ../gtali/setup.c:217
+#: ../gtali/setup.c:216
 msgid "Human Players"
 msgstr "사람 플레이어"
 
@@ -4488,11 +6769,11 @@ msgid "Computer Opponents"
 msgstr "컴퓨터 상대"
 
 #. --- Button ---
-#: ../gtali/setup.c:248
+#: ../gtali/setup.c:249
 msgid "_Delay between rolls"
 msgstr "굴리는 사이에 지연(_D)"
 
-#: ../gtali/setup.c:258
+#: ../gtali/setup.c:259
 msgid "N_umber of opponents:"
 msgstr "상대의 숫자(_U):"
 
@@ -4572,55 +6853,100 @@ msgstr "위쪽 합계"
 msgid "Bonus if >62"
 msgstr "62보다 크면 보너스"
 
-#: ../gtali/yahtzee.c:186
+#: ../gtali/yahtzee.c:184
 msgid "Choose a score slot."
 msgstr "점수 슬롯을 선택하십시오."
 
-#: ../gtali/yahtzee.c:455
+#: ../gtali/yahtzee.c:445
 msgid "How many times do you wish to roll?"
 msgstr "몇번이나 굴리고 싶습니까?"
 
-#: ../gtali/yahtzee.c:460
+#: ../gtali/yahtzee.c:450
 msgid "Generating ..."
 msgstr "만드는 중입니다..."
 
-#: ../gtali/yahtzee.c:495
+#: ../gtali/yahtzee.c:485
 msgid "Results"
 msgstr "결과"
 
-#: ../gtali/yahtzee.c:495
+#: ../gtali/yahtzee.c:485
 msgid "Num Rolls"
 msgstr "굴릴 횟수"
 
-#: ../gtali/yahtzee.c:495
+#: ../gtali/yahtzee.c:485
 msgid "Total"
 msgstr "합계"
 
-#: ../iagno/gnothello.c:109
-msgid "Iagno server to use"
-msgstr "사용할 이아그노 서버"
-
-#: ../iagno/gnothello.c:116
-msgid "New Net_work Game"
+#: ../iagno/gnothello.c:134
+#, fuzzy
+msgid "Net_work Game"
 msgstr "새 네트워크 게임(_W)"
 
-#: ../iagno/gnothello.c:249 ../iagno/gnothello.c:581
+#: ../iagno/gnothello.c:140
+#, fuzzy
+msgid "_Player list"
+msgstr "플레이어"
+
+#: ../iagno/gnothello.c:142
+msgid "_Chat Window"
+msgstr ""
+
+#: ../iagno/gnothello.c:146
+#, fuzzy
+msgid "_Leave Game"
+msgstr "새 게임(_N)"
+
+#: ../iagno/gnothello.c:295 ../iagno/gnothello.c:299 ../iagno/gnothello.c:634
 #: ../iagno/iagno.desktop.in.h:2 ../iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "이아그노"
 
-#: ../iagno/gnothello.c:253
+#: ../iagno/gnothello.c:304
 msgid "A disk flipping game derived from Reversi."
 msgstr "리버시에 기반한 게임으로 원판을 뒤집는 게임."
 
-#: ../iagno/gnothello.c:643
+#: ../iagno/gnothello.c:382
+#, fuzzy
+msgid "Invalid move."
+msgstr "잘못된 움직임을 시도했습니다"
+
+#: ../iagno/gnothello.c:675
+msgid "Dark:"
+msgstr "어두운 쪽:"
+
+#: ../iagno/gnothello.c:685
+msgid "Light:"
+msgstr "밝은 쪽:"
+
+#: ../iagno/gnothello.c:700
 msgid "Welcome to Iagno!"
 msgstr "이아그노에 오신 것을 환영합니다!"
 
-#: ../iagno/gnothello.c:651 ../iagno/gnothello.c:653
+#: ../iagno/gnothello.c:708 ../iagno/gnothello.c:710
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
+
+#: ../iagno/gnothello.c:740
+msgid "It is your turn to place a dark piece"
+msgstr ""
+
+#: ../iagno/gnothello.c:742
+msgid "It is your turn to place a light piece"
+msgstr ""
+
+#: ../iagno/gnothello.c:745
+#, c-format
+msgid "Waiting for %s to move"
+msgstr ""
+
+#: ../iagno/gnothello.c:752
+msgid "Dark's move"
+msgstr "어두운 쪽 차례"
+
+#: ../iagno/gnothello.c:754
+msgid "Light's move"
+msgstr "밝은 쪽 차례"
 
 #: ../iagno/iagno.desktop.in.h:1
 msgid "Dominate the board in a classic version of Reversi"
@@ -4634,281 +6960,144 @@ msgstr "게임 끝"
 msgid "Piece flipping"
 msgstr "돌 뒤집기"
 
-#: ../iagno/network.c:114
-msgid "Invalid game data (set_peer)"
-msgstr "잘못된 게임 데이타 (set_peer)"
+#: ../iagno/othello.c:694
+msgid "Light player wins!"
+msgstr "밝은 쪽이 이겼습니다!"
 
-#: ../iagno/network.c:128
-msgid "Invalid game data (move)"
-msgstr "잘못된 게임 데이터 (move)"
+#: ../iagno/othello.c:696
+msgid "Dark player wins!"
+msgstr "어두운 쪽이 이겼습니다!"
 
-#: ../iagno/othello.c:712
+#: ../iagno/othello.c:698
+msgid "The game was a draw."
+msgstr "게임이 무승부입니다."
+
+#: ../iagno/othello.c:707
 msgid "Light must pass, Dark's move"
 msgstr "밝은 쪽은 차례를 걸러야 하고, 어두운 쪽 차례입니다"
 
-#: ../iagno/othello.c:718
+#: ../iagno/othello.c:712
 msgid "Dark must pass, Light's move"
 msgstr "어두운 쪽은 차례를 걸러야 하고, 밝은 쪽 차례입니다"
 
-#: ../iagno/properties.c:484
+#: ../iagno/properties.c:480
 msgid "Iagno Preferences"
 msgstr "이아그노 기본 설정"
 
-#: ../iagno/properties.c:512
+#: ../iagno/properties.c:494
+msgid "Players"
+msgstr "플레이어"
+
+#: ../iagno/properties.c:507
 msgid "_Use quick moves"
 msgstr "빨리 움직임(_U)"
 
-#: ../iagno/properties.c:622
-msgid "Animation"
-msgstr "애니메이션"
-
-#: ../iagno/properties.c:626
-msgid "None"
-msgstr "없음"
-
-#: ../iagno/properties.c:635
+#: ../iagno/properties.c:619
 msgid "Partial"
 msgstr "부분"
 
-#: ../iagno/properties.c:644
+#: ../iagno/properties.c:628
 msgid "Complete"
 msgstr "완전"
 
-#: ../iagno/properties.c:659
+#: ../iagno/properties.c:642
 msgid "_Stagger flips"
 msgstr "엇갈리게 뒤집기(_S)"
 
-#: ../iagno/properties.c:667
+#: ../iagno/properties.c:650
 msgid "S_how grid"
 msgstr "격자 보기(_H)"
 
-#: ../iagno/properties.c:675
+#: ../iagno/properties.c:657
 msgid "_Flip final results"
 msgstr "마지막 결과를 뒤집기(_F)"
 
-#: ../libgames-support/games-card-selector.c:52
+#: ../iagno/properties.c:666 ../mahjongg/mahjongg.c:761
+msgid "_Tile set:"
+msgstr "타일세트(_T):"
+
+#: ../libgames-support/games-card-selector.c:56
 msgid "Card Style"
 msgstr "카드 모양새"
 
-#: ../libgames-support/games-controls.c:158
-#: ../libgames-support/games-controls.c:332
-#: ../libgames-support/games-controls.c:397
+#: ../libgames-support/games-controls.c:151
+#: ../libgames-support/games-controls.c:318
+#: ../libgames-support/games-controls.c:380
 msgid "No key"
 msgstr "키 없음"
 
-#: ../libgames-support/games-controls.c:203
+#: ../libgames-support/games-controls.c:194
 msgid "<Press a Key>"
 msgstr "<키를 누르십시오>"
 
-#: ../libgames-support/games-controls.c:384
+#: ../libgames-support/games-controls.c:366
 msgid "Unknown Command"
 msgstr "알 수 없는 명령"
 
-#: ../libgames-support/games-gconf.c:66
+#: ../libgames-support/games-gconf.c:69
 #, c-format
 msgid "There was an error accessing GConf: %s"
 msgstr "GConf에 접근하는 데 오류가 발생했습니다: %s"
 
-#: ../libgames-support/games-gconf.c:79
+#: ../libgames-support/games-gconf.c:83
 msgid "The default configuration values could not be retrieved correctly."
 msgstr "기본 설정 값을 제대로 가져올 수 없습니다."
 
-#: ../libgames-support/games-gconf.c:80
+#: ../libgames-support/games-gconf.c:85
 msgid ""
 "Please check your GConf configuration, specifically that the schemas have "
 "been installed correctly."
 msgstr ""
 "GConf 설정을 확인하십시오. 특히 스키마가 제대로 설치되었는지 확인하십시오."
 
-#: ../libgames-support/games-gridframe.c:217
-#: ../libgames-support/games-gridframe.c:224
+#: ../libgames-support/games-gridframe.c:219
+#: ../libgames-support/games-gridframe.c:227
 msgid "X Padding"
 msgstr "X 채움"
 
-#: ../libgames-support/games-gridframe.c:218
+#: ../libgames-support/games-gridframe.c:221
 msgid "Extra space to add to the width allocation."
 msgstr "너비에 더할 추가 공간."
 
-#: ../libgames-support/games-gridframe.c:225
+#: ../libgames-support/games-gridframe.c:229
 msgid "Extra space to add to the height allocation."
 msgstr "높이에 더할 추가 공간."
 
-#: ../libgames-support/games-gridframe.c:231
+#: ../libgames-support/games-gridframe.c:235
 msgid "Width Multiple"
 msgstr "너비 배수"
 
-#: ../libgames-support/games-gridframe.c:232
+#: ../libgames-support/games-gridframe.c:237
 msgid "What multiple to constrain the width to."
 msgstr "너비를 이 값의 배수로 제한."
 
-#: ../libgames-support/games-gridframe.c:238
+#: ../libgames-support/games-gridframe.c:243
 msgid "Height Multiple"
 msgstr "높이 배수"
 
-#: ../libgames-support/games-gridframe.c:239
+#: ../libgames-support/games-gridframe.c:245
 msgid "What multiple to constrain the height to."
 msgstr "높이를 이 값의 배수로 제한."
 
-#: ../libgames-support/games-gridframe.c:245
+#: ../libgames-support/games-gridframe.c:250
 msgid "X align"
 msgstr "X 맞춤"
 
-#: ../libgames-support/games-gridframe.c:246
+#: ../libgames-support/games-gridframe.c:252
 msgid "The horizontal alignment, from 0 (left) to 1 (right)"
 msgstr "가로 맞춤, 0에서 (왼쪽) 1까지 (오른쪽)"
 
-#: ../libgames-support/games-gridframe.c:254
+#: ../libgames-support/games-gridframe.c:257
 msgid "Y align"
 msgstr "Y 맞춤"
 
-#: ../libgames-support/games-gridframe.c:255
+#: ../libgames-support/games-gridframe.c:259
 msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
 msgstr "세로 맞춤, 0에서 (위) 1까지 (아래)"
 
-#: ../libgames-support/games-network-dialog.c:80
-#, c-format
-msgid "The player %s has joined the game."
-msgstr "%s 플레이어가 게임에 참여했습니다."
-
-#: ../libgames-support/games-network-dialog.c:126
-msgid "New Network Game"
-msgstr "새 네트워크 게임"
-
-#. Create Network Status Frame.
-#: ../libgames-support/games-network-dialog.c:139
-msgid "Status"
-msgstr "상태"
-
-#: ../libgames-support/games-network-dialog.c:141
-msgid "Select a nickname and connection method then click Connect."
-msgstr "별명과 연결 방법을 선택한 다음 연결을 누르십시오."
-
-#. Now for the network connection options.
-#: ../libgames-support/games-network-dialog.c:145
-msgid "Connection Method"
-msgstr "연결 방법"
-
-#: ../libgames-support/games-network-dialog.c:151
-msgid "GNOME games server"
-msgstr "그놈 게임 서버"
-
-#: ../libgames-support/games-network-dialog.c:159
-msgid "_Hostname:"
-msgstr "호스트 이름(_H):"
-
-#: ../libgames-support/games-network-dialog.c:174
-msgid "Host local game"
-msgstr "로컬 게임 열기"
-
-#: ../libgames-support/games-network-dialog.c:194
-msgid "_Game name:"
-msgstr "게임 이름(_G):"
-
-#: ../libgames-support/games-network-dialog.c:206
-msgid "Join local game"
-msgstr "로컬 게임 참가"
-
-#: ../libgames-support/games-network-dialog.c:222
-msgid "_Local games:"
-msgstr "로컬 게임(_L):"
-
-#. Add the players nickname entry.
-#: ../libgames-support/games-network-dialog.c:264
-msgid "Identification"
-msgstr "아이디"
-
-#: ../libgames-support/games-network-dialog.c:266
-msgid "_Nickname:"
-msgstr "별명(_N):"
-
-#: ../libgames-support/games-network-dialog.c:279
-msgid "Player"
-msgstr "플레이어"
-
-#. Create buttons.
-#: ../libgames-support/games-network-dialog.c:293
-msgid "C_onnect"
-msgstr "연결(_O)"
-
-#: ../libgames-support/games-network-dialog.c:295
-msgid "_Start Game"
-msgstr "게임 시작(_S)"
-
-#: ../libgames-support/games-network-dialog.c:332
-msgid "Please supply a nickname."
-msgstr "별명을 입력하십시오."
-
-#: ../libgames-support/games-network-dialog.c:346
-msgid "No local game selected."
-msgstr "로컬 네트워크 게임을 선택하지 않았습니다."
-
-#: ../libgames-support/games-network-dialog.c:368
-msgid "A new gnome games server was successfully started."
-msgstr "새 그놈 게임 서버를 성공적으로 시작했습니다."
-
-#: ../libgames-support/games-network.c:148
-msgid "Network initialization complete."
-msgstr "네트워크 초기화 완료."
-
-#: ../libgames-support/games-network.c:158
-msgid "Network shutdown in progress."
-msgstr "네트워크 셧다운 진행 중."
-
-#. Shut down the connection, either it was broken or someone is messing with us
-#: ../libgames-support/games-network.c:284
-msgid "The remote player disconnected"
-msgstr "원격 플레이어의 연결이 끊겼습니다"
-
-#: ../libgames-support/games-network.c:307
-msgid "Error occurred during connect attempt."
-msgstr "연결 시도하는 데 오류가 발생했습니다."
-
-#: ../libgames-support/games-network.c:309
-#: ../libgames-support/games-network.c:395
-msgid "Connection succeeded, waiting for opponent"
-msgstr "연결 성공, 상대방을 기다리는 중"
-
-#: ../libgames-support/games-network.c:319
-msgid "Error occurred during write."
-msgstr "쓰는 데 오류가 발생했습니다."
-
-#: ../libgames-support/games-network.c:374
-msgid "Cleaning up connection"
-msgstr "연결을 없애는 중입니다"
-
-#: ../libgames-support/games-network.c:386
-msgid "Connection in progress..."
-msgstr "연결 진행 중..."
-
-#: ../libgames-support/games-network.c:390
-msgid "Connection failed"
-msgstr "연결 실패"
-
-#: ../libgames-support/games-network.c:418
-msgid "No game server defined"
-msgstr "게임 서버가 정의되지 않았습니다"
-
-#: ../libgames-support/games-network.c:705
-#: ../libgames-support/games-network.c:1110
-#: ../libgames-support/games-network.c:1118
-#: ../libgames-support/games-network.c:1146
-msgid ""
-"Local Area Network game could not be started. \n"
-"Try running mDNSResponder."
-msgstr ""
-"로컬 네트워크 게임을 시작할 수 없습니다. \n"
-"mDNSResponder 실행해 보십시오."
-
-#: ../libgames-support/games-preimage.c:135
+#: ../libgames-support/games-preimage.c:131
 msgid "Image rendering failed."
 msgstr "이미지 렌더링 실패."
-
-#. Note that this assumes the default style is plain.
-#: games-scores-dialog.gob:364 games-scores-dialog.gob:450
-#: ../libgames-support/games-scores-dialog.gob:364
-#: ../libgames-support/games-scores-dialog.gob:450
-msgid "Score"
-msgstr "점수"
 
 #. Translators: this is for a minutes, seconds time display.
 #: games-scores-dialog.gob:214 ../libgames-support/games-scores-dialog.gob:214
@@ -4920,107 +7109,138 @@ msgstr "%d분 %d초"
 msgid "Time"
 msgstr "시간"
 
-#: games-scores-dialog.gob:546 ../libgames-support/games-scores-dialog.gob:546
-msgid "New Game"
-msgstr "새 게임"
-
 #. i18n: This "_New" is for the menu item 'Game->New', implies "New Game"
 #: ../libgames-support/games-stock.c:41
 msgid "_New"
 msgstr "새 게임(_N)"
 
 #: ../libgames-support/games-stock.c:42
-msgid "_Pause"
-msgstr "일시 중지(_P)"
+#, fuzzy
+msgid "Network _Game"
+msgstr "새 네트워크 게임"
 
-#: ../libgames-support/games-stock.c:43
+#: ../libgames-support/games-stock.c:44
+#, fuzzy
+msgid "L_eave Game"
+msgstr "새 게임(_N)"
+
+#: ../libgames-support/games-stock.c:45
+#, fuzzy
+msgid "Player _List"
+msgstr "플레이어"
+
+#: ../libgames-support/games-stock.c:47
 msgid "Res_ume"
 msgstr "다시 시작(_U)"
 
 #. i18n: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:45
+#: ../libgames-support/games-stock.c:49
 msgid "_Restart"
 msgstr "게임 다시(_R)"
 
-#: ../libgames-support/games-stock.c:46
+#: ../libgames-support/games-stock.c:50
 msgid "_Undo Move"
 msgstr "이동 취소(_U)"
 
-#: ../libgames-support/games-stock.c:47
+#: ../libgames-support/games-stock.c:51
 msgid "_Redo Move"
 msgstr "다시 이동(_R)"
 
-#: ../libgames-support/games-stock.c:48
-msgid "_Hint"
-msgstr "힌트(_H)"
-
-#: ../libgames-support/games-stock.c:49
+#: ../libgames-support/games-stock.c:54
 msgid "_Scores"
 msgstr "점수(_S)"
 
-#: ../libgames-support/games-stock.c:50
+#: ../libgames-support/games-stock.c:55
 msgid "_Fullscreen"
 msgstr "전체 화면(_F)"
 
-#: ../libgames-support/games-stock.c:51
+#: ../libgames-support/games-stock.c:56
 msgid "_Leave Fullscreen"
 msgstr "전체 화면 나가기(_L)"
 
-#: ../libgames-support/games-stock.c:52
-msgid "_End Game"
-msgstr "게임 끝내기(_E)"
+#: ../libgames-support/games-stock.c:111
+#, fuzzy
+msgid "Start a new multiplayer network game"
+msgstr "새 게임을 시작합니다"
 
-#: ../libgames-support/games-stock.c:53
-msgid "_Contents"
-msgstr "차례(_C)"
+#: ../libgames-support/games-stock.c:113
+msgid "End the current network game and return to network server"
+msgstr ""
 
-#: ../libgames-support/games-stock.c:100 ../mahjongg/mahjongg.c:1311
+#: ../libgames-support/games-stock.c:114
+msgid "Show a list of players in the network game"
+msgstr ""
+
+#: ../libgames-support/games-stock.c:115 ../mahjongg/mahjongg.c:1309
 msgid "Pause the game"
 msgstr "게임을 일시 중지합니다"
 
-#: ../libgames-support/games-stock.c:101 ../mahjongg/mahjongg.c:1312
+#: ../libgames-support/games-stock.c:116 ../mahjongg/mahjongg.c:1312
 msgid "Resume the paused game"
 msgstr "일시 중지한 게임을 다시 시작합니다"
 
-#: ../libgames-support/games-stock.c:102
+#: ../libgames-support/games-stock.c:117
 msgid "Restart the game"
 msgstr "게임을 다시 시작합니다"
 
-#: ../libgames-support/games-stock.c:104
+#: ../libgames-support/games-stock.c:119
 msgid "Redo the undone move"
 msgstr "마지막 움직임을 되돌립니다"
 
-#: ../libgames-support/games-stock.c:105
+#: ../libgames-support/games-stock.c:120
 msgid "Get a hint for your next move"
 msgstr "다음 움직임에 대한 힌트를 얻습니다"
 
-#: ../libgames-support/games-stock.c:106
+#: ../libgames-support/games-stock.c:121
 msgid "View the scores"
 msgstr "점수를 봅니다"
 
-#: ../libgames-support/games-stock.c:107
+#: ../libgames-support/games-stock.c:122
 msgid "Enter fullscreen mode"
 msgstr "전체 화면 모드로 합니다"
 
-#: ../libgames-support/games-stock.c:108
+#: ../libgames-support/games-stock.c:123
 msgid "Leave fullscreen mode"
 msgstr "전체 화면 모드를 나갑니다"
 
-#: ../libgames-support/games-stock.c:109
-msgid "End the current game"
-msgstr "현재 게임을 끝냅니다"
-
-#: ../libgames-support/games-stock.c:111
+#: ../libgames-support/games-stock.c:126
 msgid "Quit this game"
 msgstr "이 게임을 끝냅니다"
 
-#: ../libgames-support/games-stock.c:112
+#: ../libgames-support/games-stock.c:127
 msgid "About this game"
 msgstr "이 게임 정보"
 
-#: ../libgames-support/games-stock.c:113
+#: ../libgames-support/games-stock.c:128
 msgid "Configure the game"
 msgstr "게임을 설정합니다"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../libgames-support/games-stock.c:338
+#, c-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version."
+msgstr ""
+
+#: ../libgames-support/games-stock.c:342
+#, c-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+
+#: ../libgames-support/games-stock.c:346
+#, c-format
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"%s; if not, write to the Free Software Foundation, Inc., 59 Temple Place, "
+"Suite 330, Boston, MA  02111-1307  USA"
+msgstr ""
 
 #: ../libgames-support/libgnomegames.schemas.in.h:1
 msgid "Network game mode"
@@ -5062,7 +7282,7 @@ msgstr ""
 "서버 모드를 사용할 경우, 연결할 게임 서버를 설정합니다. 호스트 이름 혹은 점으"
 "로 구분한 표시방법을 사용할 수 있습니다."
 
-#: ../mahjongg/drawing.c:286
+#: ../mahjongg/drawing.c:296
 msgid ""
 "The selected theme failed to render.\n"
 "\n"
@@ -5072,7 +7292,7 @@ msgstr ""
 "\n"
 "마작이 제대로 설치되었는 지 확인하십시오."
 
-#: ../mahjongg/drawing.c:431
+#: ../mahjongg/drawing.c:454
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -5085,7 +7305,7 @@ msgstr ""
 "\n"
 "마작이 제대로 설치되었는 지 확인하십시오."
 
-#: ../mahjongg/drawing.c:434
+#: ../mahjongg/drawing.c:458
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -5098,7 +7318,7 @@ msgstr ""
 "\n"
 "기본 타일 세트를 읽어들입니다."
 
-#: ../mahjongg/drawing.c:451
+#: ../mahjongg/drawing.c:476
 #, c-format
 msgid ""
 "Unable to render file:\n"
@@ -5111,35 +7331,35 @@ msgstr ""
 "\n"
 "마작이 제대로 설치되었는 지 확인하십시오."
 
-#: ../mahjongg/mahjongg.c:138
+#: ../mahjongg/mahjongg.c:140
 msgid "Could not load tile set"
 msgstr "타일 세트를 읽어들일 수 없습니다"
 
-#: ../mahjongg/mahjongg.c:374
+#: ../mahjongg/mahjongg.c:380
 msgid ""
 "Do you want to finish the current game or start playing with the new map "
 "immediately?"
 msgstr "현재 게임을 마치고 지금 당장 새 맵으로 플레이하시겠습니까?"
 
-#: ../mahjongg/mahjongg.c:375
+#: ../mahjongg/mahjongg.c:382
 msgid ""
 "If you choose to finish with the old map then the next game will use the new "
 "map."
 msgstr "지금 맵을 마치시면, 다음 게임은 새 맵을 사용합니다."
 
-#: ../mahjongg/mahjongg.c:377
+#: ../mahjongg/mahjongg.c:383
 msgid "_Finish"
 msgstr "마침(_F)"
 
-#: ../mahjongg/mahjongg.c:657
+#: ../mahjongg/mahjongg.c:660
 msgid "Shuffle"
 msgstr "섞기"
 
-#: ../mahjongg/mahjongg.c:693 ../mahjongg/mahjongg.c:1010
+#: ../mahjongg/mahjongg.c:693 ../mahjongg/mahjongg.c:1004
 msgid "Mahjongg Scores"
 msgstr "마작 점수"
 
-#: ../mahjongg/mahjongg.c:695 ../mahjongg/mahjongg.c:1012
+#: ../mahjongg/mahjongg.c:695 ../mahjongg/mahjongg.c:1006
 msgid "Map:"
 msgstr "맵:"
 
@@ -5151,53 +7371,53 @@ msgstr "마작 기본 설정"
 msgid "Tiles"
 msgstr "타일"
 
-#: ../mahjongg/mahjongg.c:777
+#: ../mahjongg/mahjongg.c:775
 msgid "Maps"
 msgstr "맵"
 
-#: ../mahjongg/mahjongg.c:784
+#: ../mahjongg/mahjongg.c:782
 msgid "_Select map:"
 msgstr "맵 선택(_S):"
 
-#: ../mahjongg/mahjongg.c:800
+#: ../mahjongg/mahjongg.c:796
 msgid "Colors"
 msgstr "색"
 
-#: ../mahjongg/mahjongg.c:928
+#: ../mahjongg/mahjongg.c:923
 msgid "Maps:"
 msgstr "맵:"
 
-#: ../mahjongg/mahjongg.c:935
+#: ../mahjongg/mahjongg.c:930
 msgid "Tiles:"
 msgstr "타일:"
 
-#: ../mahjongg/mahjongg.c:950 ../mahjongg/mahjongg.c:1024
-#: ../mahjongg/mahjongg.desktop.in.h:2
+#: ../mahjongg/mahjongg.c:943 ../mahjongg/mahjongg.c:946
+#: ../mahjongg/mahjongg.c:1018 ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "그놈 마작"
 
-#: ../mahjongg/mahjongg.c:952
+#: ../mahjongg/mahjongg.c:949
 msgid "A matching game played with Mahjongg tiles."
 msgstr "마작 타일로 같은 모양을 맞추는 게임."
 
-#: ../mahjongg/mahjongg.c:1024
+#: ../mahjongg/mahjongg.c:1018
 #, c-format
 msgid "%s - %s"
 msgstr "%s - %s"
 
-#: ../mahjongg/mahjongg.c:1276
+#: ../mahjongg/mahjongg.c:1272
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "죄송하지만, 플레이할 수 있는 환경설정을 찾을 수 없습니다."
 
-#: ../mahjongg/mahjongg.c:1469
+#: ../mahjongg/mahjongg.c:1482
 msgid "Tiles Left:"
 msgstr "남은 타일:"
 
-#: ../mahjongg/mahjongg.c:1478
+#: ../mahjongg/mahjongg.c:1491
 msgid "Moves Left:"
 msgstr "남은 움직임:"
 
-#: ../mahjongg/mahjongg.c:1540
+#: ../mahjongg/mahjongg.c:1554
 msgid "Remove matching pairs of tiles."
 msgstr "같은 모양의 타일 두 개를 지우십시오."
 
@@ -5221,29 +7441,29 @@ msgstr ""
 "창의 요청한 너비 (픽셀 단위). 창에 들어 있는 위젯의 너비는 최소 320 픽셀이 되"
 "어야 합니다."
 
-#: ../mahjongg/maps.c:81
+#: ../mahjongg/maps.c:224
 msgid "mahjongg|Easy"
 msgstr "쉬움"
 
 #. FIXME: This is long enough to resize the window upwards when
 #. * the game finishes.
-#: ../same-gnome/game.c:367
+#: ../same-gnome/game.c:384
 msgid "1000 point bonus for clearing the board!"
 msgstr "게임판 비움, 1000점 보너스!"
 
-#: ../same-gnome/same-gnome.c:50
+#: ../same-gnome/same-gnome.c:55
 msgid "same-gnome|Medium"
 msgstr "중간"
 
-#: ../same-gnome/same-gnome.c:139
+#: ../same-gnome/same-gnome.c:148
 msgid "Set the theme"
 msgstr "테마 설정"
 
-#: ../same-gnome/same-gnome.c:141
+#: ../same-gnome/same-gnome.c:150
 msgid "For backwards compatibility"
 msgstr "하위 호환성을 위한 기능"
 
-#: ../same-gnome/same-gnome.c:143
+#: ../same-gnome/same-gnome.c:152
 msgid "Game size (1=small, 3=large)"
 msgstr "게임 크기 (1=작게, 3=크게)"
 
@@ -5308,58 +7528,220 @@ msgstr "빠른 애니메이션 사용"
 msgid "Width of the custom board"
 msgstr "사용자 설정 게임판 너비"
 
-#: ../same-gnome/ui.c:71
+#: ../same-gnome/ui.c:73
 msgid "No points"
 msgstr "점수 없음"
 
-#: ../same-gnome/ui.c:76
+#: ../same-gnome/ui.c:78
 #, c-format
 msgid "%d point"
 msgid_plural "%d points"
 msgstr[0] "%d점"
 
-#: ../same-gnome/ui.c:90
+#: ../same-gnome/ui.c:94
 #, c-format
 msgid "Score: %d"
 msgstr "점수: %d"
 
-#: ../same-gnome/ui.c:112
+#: ../same-gnome/ui.c:123
 msgid ""
 "I want to play that game! You know, they all go whirly-round and you click "
 "on them and they vanish!"
 msgstr "게임을 즐기세요!  동그란 구슬에 클릭해서 구슬을 없애세요!"
 
-#: ../same-gnome/ui.c:128
+#: ../same-gnome/ui.c:140
 msgid "Same GNOME Scores"
 msgstr "세임 그놈 점수"
 
-#: ../same-gnome/ui.c:153
+#: ../same-gnome/ui.c:169
 msgid "Unfortunately your score did not make the top ten."
 msgstr "아쉽게도 점수가 10위 안에 들지 못했습니다."
 
-#: ../same-gnome/ui.c:256
+#: ../same-gnome/ui.c:276
 msgid "Same GNOME Theme"
 msgstr "세임 그놈 테마"
 
-#: ../same-gnome/ui.c:437
+#: ../same-gnome/ui.c:471
 msgid "_Theme..."
 msgstr "테마(_T)..."
 
-#: ../same-gnome/ui.c:450
+#: ../same-gnome/ui.c:484
 msgid "_Fast Animation"
 msgstr "빠른 애니메이션(_F)"
 
-#: ../same-gnome/drawing.c:350
+#: ../same-gnome/drawing.c:359
 msgid "No theme data was found."
 msgstr "게임 데이터가 없습니다."
 
-#: ../same-gnome/drawing.c:354
+#: ../same-gnome/drawing.c:364
 msgid ""
 "It is impossible to play the game. Please check that the game has been "
 "installed correctly and try again."
 msgstr ""
 "게임을 플레이할 수 없습니다. 게임이 제대로 설치되었는지 확인하시고 다시 시도"
 "하십시오."
+
+#~ msgid "Redeals left: ~a"
+#~ msgstr "왼쪽 다시 돌리기: ~a"
+
+#~ msgid "Set the state of the board at start-up."
+#~ msgstr "시작할 때 게임판의 상태."
+
+#~ msgid "STATE"
+#~ msgstr "<상태>"
+
+#~ msgid "Set whose turn it is."
+#~ msgstr "어느쪽 차례인지 설정합니다."
+
+#~ msgid "1 (Light) or 2 (Dark)"
+#~ msgstr "1 (밝은 쪽) or 2 (어두운 쪽)"
+
+#~ msgid "Based on code from Iagno by Ian Peters"
+#~ msgstr "Ian Peters의 이아그노 코드를 기반으로 합니다"
+
+#~ msgid "Ataxx"
+#~ msgstr "어택스"
+
+#~ msgid "A disk-flipping game where you attempt to dominate the board."
+#~ msgstr "원판을 뒤집어서 보드를 차지합니다."
+
+#~ msgid "Dominate the board in a modern variation of Reversi"
+#~ msgstr "리버시 게임의 현대적인 버전에서 게임판을 차지합니다"
+
+#~ msgid "Level of black player"
+#~ msgstr "흑 플레이어의 수준"
+
+#~ msgid "The name of the theme to use."
+#~ msgstr "사용할 테마의 이름."
+
+#~ msgid "The requested height of the main window in pixels."
+#~ msgstr "메인 창의 기본 높이, 픽셀 단위."
+
+#~ msgid "The requested width of the main window in pixels."
+#~ msgstr "메인 창의 기본 너비, 픽셀 단위."
+
+#~ msgid "Tileset (obsolete)"
+#~ msgstr "타일세트 (없어진 기능)"
+
+#~ msgid "Tileset to use (obsolete)."
+#~ msgstr "사용할 타일세트 (없어진 기능)."
+
+#~ msgid "Whether or not to use quick moves."
+#~ msgstr "빨리 움직임을 사용할 지 여부."
+
+#~ msgid ""
+#~ "Zero corresponds to no animations, one is partial animations, two is "
+#~ "complete animations."
+#~ msgstr "0은 애니메이션 없음, 1은 부분 애니메이션, 2는 완전한 애니메이션."
+
+#~ msgid "Squares and Diamonds"
+#~ msgstr "네모와 다이아몬드"
+
+#~ msgid "Ataxx Preferences"
+#~ msgstr "어택스 기본 설정"
+
+#~ msgid "_Quick moves"
+#~ msgstr "빨리 움직임(_Q)"
+
+#~ msgid "Shortens the time a computer waits before doing a move"
+#~ msgstr "움직이기 전에 컴퓨터가 기다리는 시간을 줄입니다"
+
+#~ msgid "Very easy"
+#~ msgstr "매우 쉬움"
+
+#~ msgid "gataxx|Easy"
+#~ msgstr "쉬움"
+
+#~ msgid "gataxx|Medium"
+#~ msgstr "중간"
+
+#~ msgid "Flip the pieces with some visual effects"
+#~ msgstr "조각을 뒤집을 때 시각 효과를 곁들입니다"
+
+#~ msgid "The appearance of the pieces"
+#~ msgstr "조각의 모양"
+
+#~ msgid "%s..."
+#~ msgstr "%s..."
+
+#~ msgid "Invalid game data"
+#~ msgstr "잘못된 게임 데이터"
+
+#~ msgid "Peer introduction complete"
+#~ msgstr "상대편 소개 완료"
+
+#~ msgid "New game ready to be started"
+#~ msgstr "새 게임을 시작할 준비가 되었습니다"
+
+#~ msgid "Iagno server to use"
+#~ msgstr "사용할 이아그노 서버"
+
+#~ msgid "Invalid game data (set_peer)"
+#~ msgstr "잘못된 게임 데이타 (set_peer)"
+
+#~ msgid "Invalid game data (move)"
+#~ msgstr "잘못된 게임 데이터 (move)"
+
+#~ msgid "Select a nickname and connection method then click Connect."
+#~ msgstr "별명과 연결 방법을 선택한 다음 연결을 누르십시오."
+
+#~ msgid "Connection Method"
+#~ msgstr "연결 방법"
+
+#~ msgid "GNOME games server"
+#~ msgstr "그놈 게임 서버"
+
+#~ msgid "Host local game"
+#~ msgstr "로컬 게임 열기"
+
+#~ msgid "Identification"
+#~ msgstr "아이디"
+
+#~ msgid "_Nickname:"
+#~ msgstr "별명(_N):"
+
+#~ msgid "Please supply a nickname."
+#~ msgstr "별명을 입력하십시오."
+
+#~ msgid "No local game selected."
+#~ msgstr "로컬 네트워크 게임을 선택하지 않았습니다."
+
+#~ msgid "A new gnome games server was successfully started."
+#~ msgstr "새 그놈 게임 서버를 성공적으로 시작했습니다."
+
+#~ msgid "Network initialization complete."
+#~ msgstr "네트워크 초기화 완료."
+
+#~ msgid "Network shutdown in progress."
+#~ msgstr "네트워크 셧다운 진행 중."
+
+#~ msgid "The remote player disconnected"
+#~ msgstr "원격 플레이어의 연결이 끊겼습니다"
+
+#~ msgid "Error occurred during connect attempt."
+#~ msgstr "연결 시도하는 데 오류가 발생했습니다."
+
+#~ msgid "Connection succeeded, waiting for opponent"
+#~ msgstr "연결 성공, 상대방을 기다리는 중"
+
+#~ msgid "Error occurred during write."
+#~ msgstr "쓰는 데 오류가 발생했습니다."
+
+#~ msgid "Cleaning up connection"
+#~ msgstr "연결을 없애는 중입니다"
+
+#~ msgid "Connection in progress..."
+#~ msgstr "연결 진행 중..."
+
+#~ msgid "No game server defined"
+#~ msgstr "게임 서버가 정의되지 않았습니다"
+
+#~ msgid ""
+#~ "Local Area Network game could not be started. \n"
+#~ "Try running mDNSResponder."
+#~ msgstr ""
+#~ "로컬 네트워크 게임을 시작할 수 없습니다. \n"
+#~ "mDNSResponder 실행해 보십시오."
 
 #~ msgid "Compete to dominate the board in a Reversi-like game"
 #~ msgstr "Reversi같은 게임에서 게임판을 차지하기 위해 싸웁니다"
@@ -5393,9 +7775,6 @@ msgstr ""
 
 #~ msgid "Confounding Cross"
 #~ msgstr "어지러운 십자"
-
-#~ msgid "Difficult"
-#~ msgstr "어려움"
 
 #~ msgid "Remove groups of balls to try and clear the screen"
 #~ msgstr "같은 색의 공들을 지워서 게임판을 깨끗이 합니다"
