@@ -206,7 +206,7 @@ http://live.gnome.org/GnomeGames/Contributing
 Requirements
 ------------
 
-To compile these packages, we recommend using the baseline GNOME 2.14
+To compile these packages, we recommend using the baseline GNOME 2.17.x
 development packages. While gnome-games may compile with older versions,
 we will not accept bug reports for games used under those conditions.
 
@@ -218,10 +218,16 @@ programming language version 1.6 or later
 (http://www.gnu.org/software/guile/guile.html). If either of these is
 missing then the games that rely on them will simply not be built.
 
+glChess can optionally take advantage of Python OpenGL and GtkGLExt 
+to render the board using 3D OpenGl. Further, to play chess against 
+an AI, it is recommended to install a CECP compatible AIs, such 
+as 'crafty'. See the README file in the glchess directory for more
+information about glChess and it's optional software dependencies.
+
 The games that require additional packages are:
  guile scheme:  	AisleRiot
  C++:         		Blackjack, Gnometris            
-
+ Python:		glchess, gnome-sudoku
 
 Building Gnome-Games
 --------------------
