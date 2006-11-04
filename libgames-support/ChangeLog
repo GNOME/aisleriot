@@ -1,3 +1,16 @@
+2006-10-27  Callum McKenzie  <callum@spooky-possum.org>
+
+	* Makefile.am: Remove gob support.
+
+2006-10-25  Callum McKenzie  <callum@spooky-possum.org>
+
+	* games-scores-dialog-private.h: 
+	* games-scores-dialog.h: 
+	* games-scores-dialog.c:
+	* games-scores-dialog.gob: Start disassociating ourselves from
+	gob. It was useful for bootstrapping, but when the object matures
+	it is just as easy to have it in C (and it's more hackable).
+
 2006-09-25  Tom Tromey  <tromey@redhat.com>
 
 	Bug #347262.

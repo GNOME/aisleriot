@@ -23,16 +23,6 @@ INCLUDES =							\
 	$(GGZMOD_INCLUDES) $(GGZ_GTK_INCLUDES) $(GGZCORE_INCLUDES) \
 	$(LIBGGZ_INCLUDES)
 
-GOB_FILES= \
-	games-scores-dialog.gob		\
-	$(NULL)
-
-GOB_SOURCE= \
-	games-scores-dialog.c		\
-	games-scores-dialog.h		\
-	games-scores-dialog-private.h	\
-	$(NULL)
-
 if GGZ_CLIENT
 GGZ_DIALOGS = \
 	games-dlg-chat.c		\
@@ -43,8 +33,6 @@ GGZ_DIALOGS = \
 endif
 
 libgames_support_la_SOURCES =		\
-	$(GOB_FILES)			\
-	$(GOB_SOURCE)			\
 	$(GGZ_DIALOGS)			\
 	games-clock.c			\
 	games-clock.h			\
@@ -79,20 +67,16 @@ libgames_support_la_SOURCES =		\
 	games-scores.h			\
 	games-scores-backend.c		\
 	games-scores-backend.h		\
+	games-scores-dialog.c		\
+	games-scores-dialog.h		\
+	games-scores-dialog-private.h	\
 	$(NULL)
-
-%.c %.h %-private.h: %.gob
-	if [ "x$(GOB2)" = "x" ] ; then \
-		touch $@ ; \
-	else \
-		@GOB2@ $< ; \
-	fi
 
 install-data-local:
 if GCONF_SCHEMAS_INSTALL
         GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/libgames-support/$(schema_DATA)
 endif
 
-EXTRA_DIST = $(card_DATA) $(icon_DATA) $(schema_in_files) $(GOB_SOURCE)
+EXTRA_DIST = $(card_DATA) $(icon_DATA) $(schema_in_files)
 
 DISTCLEANFILES = $(schema_DATA)

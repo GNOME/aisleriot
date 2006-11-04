@@ -312,7 +312,7 @@
            (tally-score slot-id))))
 
 (define (button-double-clicked slot-id)
-  #f)
+    (button-clicked slot-id))
 
 (define (game-continuable)
   (give-status-message)
