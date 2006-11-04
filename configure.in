@@ -247,6 +247,12 @@ AC_EGREP_CPP(PF_LOCAL,
 				      [AF_UNIX is available])])], 
              AC_MSG_RESULT(yes))
 
+# Check for programs 
+AC_PROG_AWK
+AC_PROG_LN_S
+AC_STRUCT_TM
+AM_PROG_LEX
+
 # Check for header files
 # ======================
 AC_CHECK_HEADERS([fcntl.h limits.h sys/time.h time.h \
@@ -257,9 +263,14 @@ AC_HEADER_SYS_WAIT
 
 
 # Checks for typedefs, structures, and compiler characteristics
-AC_HEADER_STDBOOL
 AC_C_CONST
+AC_C_VOLATILE
+AC_FUNC_REALLOC
+AC_HEADER_STDBOOL
 AC_C_INLINE
+AC_TYPE_SIZE_T
+AC_HEADER_TIME
+AX_CREATE_STDINT_H(dependencies/gnuchess/GCint.h)
 
 if test "x${prefix}" = "xNONE"; then
    AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${ac_default_prefix}/share/pixmaps", [Pix
@@ -395,6 +406,7 @@ dependencies/ggzcore/Makefile
 dependencies/ggzmod/Makefile
 dependencies/ggzmod-ggz/Makefile
 dependencies/ggz-gtk/Makefile
+dependencies/gnuchess/Makefile
 libgames-support/Makefile
 blackjack/Makefile
 blackjack/data/Makefile

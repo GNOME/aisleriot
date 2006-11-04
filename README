@@ -63,9 +63,9 @@ Five or More    You move balls around the grid and try and form lines
 
 Chess		glChess is a chess game which supports several chess engines,
 		with 2D and optionally 3D support if OpenGl and GtkGLExt
-		is present. It is highly recommended to get a chess engine,
-		such as crafty. glChess is written in Python and uses GTK+
-		and Cairo to render the chess board. (glchess)
+		is present. glChess is written in Python and uses GTK+
+		and Cairo to render the chess board. glChess uses gnuchess
+		as the default AI player. (glchess)
 
 Sudoku		Gnome Sudoku is a logic game with a Japanese name that has
 		recently exploded in popularity. (gnome-sudoku)
@@ -219,10 +219,10 @@ programming language version 1.6 or later
 missing then the games that rely on them will simply not be built.
 
 glChess can optionally take advantage of Python OpenGL and GtkGLExt 
-to render the board using 3D OpenGl. Further, to play chess against 
-an AI, it is recommended to install a CECP compatible AIs, such 
-as 'crafty'. See the README file in the glchess directory for more
-information about glChess and it's optional software dependencies.
+to render the board using 3D OpenGl. glChess supports any 
+CECP compatible AI, such as crafty or gnuchess. See the README file 
+in the glchess directory for more information about glChess and it's
+optional software dependencies.
 
 The games that require additional packages are:
  guile scheme:  	AisleRiot
