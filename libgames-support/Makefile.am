@@ -8,7 +8,7 @@ schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
 carddir = $(datadir)/pixmaps/gnome-games-common/cards
-card_DATA = bonded.svg paris.svg
+card_DATA = bonded.svg 
 
 icondir = $(datadir)/pixmaps/gnome-games-common/icons
 icon_DATA = icons/teleport.png icons/rteleport.png
