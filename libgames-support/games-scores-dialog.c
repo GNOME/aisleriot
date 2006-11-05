@@ -29,12 +29,36 @@
 #include "games-scores-dialog.h"
 #include "games-scores-dialog-private.h"
 
+static   gpointer games_scores_dialog_parent_class;
+
+
 G_DEFINE_TYPE (GamesScoresDialog, games_scores_dialog, GTK_TYPE_DIALOG);
+
+static void
+games_scores_dialog_finalize (GObject *o)
+{
+  GamesScoresDialog *dialog = GAMES_SCORES_DIALOG (o);
+
+  if (dialog->_priv->scores)
+    g_object_unref (dialog->_priv->scores);
+
+  if (dialog->_priv->categories)
+    g_hash_table_destroy (dialog->_priv->categories);
+  if (dialog->_priv->catindices)
+    g_hash_table_destroy (dialog->_priv->catindices);
+
+  if (G_OBJECT_CLASS (games_scores_dialog_parent_class)->finalize)
+    (*G_OBJECT_CLASS (games_scores_dialog_parent_class)->finalize) (o);
+}
 
 static void
 games_scores_dialog_class_init (GamesScoresDialogClass *klass)
 {
   g_type_class_add_private (klass, sizeof (GamesScoresDialogPrivate));
+
+  games_scores_dialog_parent_class = g_type_class_peek_parent (klass);
+
+  G_OBJECT_CLASS (klass)->finalize = games_scores_dialog_finalize;
 }
 
 /**
