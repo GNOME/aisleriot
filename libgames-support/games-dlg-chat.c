@@ -42,7 +42,7 @@ typedef struct chatwidgets {
 
 static ChatWidgets *chats;
 static GtkWidget *dlg_chat;
-GGZMod *ggz;
+extern GGZMod *ggz;
 
 static void
 handle_ggz_chat_event (GGZMod * ggzmod, GGZModEvent e, const void *data)
