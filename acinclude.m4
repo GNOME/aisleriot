@@ -1337,11 +1337,21 @@ AC_CHECK_FUNC([sendmsg],
 AC_MSG_CHECKING([for network feature: PF_LOCAL])
 have_localsockets=0
 AC_COMPILE_IFELSE(
-  AC_LANG_PROGRAM([[#include <sys/socket.h>]], [[int a = PF_LOCAL;]]),
+  AC_LANG_PROGRAM(
+    [[
+      #include <sys/types.h>
+      #include <sys/socket.h>
+    ]],
+  [[int a = PF_LOCAL;]]),
   [have_localsockets=1],
   [
     AC_COMPILE_IFELSE(
-      AC_LANG_PROGRAM([[#include <sys/socket.h>]], [[int a = PF_UNIX;]]),
+      AC_LANG_PROGRAM(
+    [[
+      #include <sys/types.h>
+      #include <sys/socket.h>
+    ]],
+    [[int a = PF_UNIX;]]),
       [
         AC_DEFINE([PF_LOCAL], PF_UNIX, [PF_LOCAL is available via PF_UNIX])
         AC_DEFINE([AF_LOCAL], AF_UNIX, [AF_LOCAL is available via AF_UNIX])
@@ -1377,7 +1387,11 @@ AC_LINK_IFELSE(
 AC_MSG_CHECKING([for network feature: msg_controllen])
 have_controllen=0
 AC_COMPILE_IFELSE(
-  AC_LANG_PROGRAM([[#include <sys/socket.h>]],
+  AC_LANG_PROGRAM(
+    [[
+      #include <sys/types.h>
+      #include <sys/socket.h>
+    ]],
     [[struct msghdr m; m.msg_controllen = 0;]]),
   [have_controllen=1],
   [])
