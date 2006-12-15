@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-12-12 16:15+0100\n"
-"PO-Revision-Date: 2006-12-12 16:45+0100\n"
+"PO-Revision-Date: 2006-12-15 12:17+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -36,9 +36,8 @@ msgstr ""
 "segundos). Los juegos sin partidas no se tienen que representar."
 
 #: ../aisleriot/aisleriot.schemas.in.h:3
-#, fuzzy
 msgid "Recently Played Games"
-msgstr "Nombres de los jugadores"
+msgstr "Juegos recientemente jugados"
 
 #: ../aisleriot/aisleriot.schemas.in.h:4 ../gnotravex/gnotravex.schemas.in.h:3
 msgid "Select the style of control"
@@ -109,7 +108,7 @@ msgid "Window width"
 msgstr "Anchura de ventana"
 
 #: ../aisleriot/cscmi.c:174
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A scheme exception occurred and we were unable to create a temporary file to "
 "report it:\n"
@@ -117,7 +116,7 @@ msgid ""
 "%s"
 msgstr ""
 "Ha ocurrido una excepción de esquema y resultó imposible crear un archivo "
-"temporal en el que registrarla:\n"
+"temporal para informar de ella:\n"
 "\n"
 "%s"
 
@@ -2376,7 +2375,7 @@ msgstr "Teniente"
 
 #: ../dependencies/ggz-gtk/first.c:60
 msgid "Stalker"
-msgstr ""
+msgstr "Stalker"
 
 #: ../dependencies/ggz-gtk/first.c:61
 msgid "Scientist"
@@ -2451,11 +2450,11 @@ msgstr "/gag <usuario> ........... Amordazar a un jugador para impedir que hable
 msgid ""
 "/ungag <username> ......... Reverse the gag operation to allow a player to "
 "talk"
-msgstr ""
+msgstr "/ungag <usuario> ......... Quita la mordaza a un jugador para permitirle hablar"
 
 #: ../dependencies/ggz-gtk/chat.c:113
 msgid "/ban <username> ........... Ban a player from the server"
-msgstr ""
+msgstr "/ban <usuario> ........... Proscribe a un jugador de un servidor"
 
 #: ../dependencies/ggz-gtk/chat.c:254
 #, c-format
@@ -2469,77 +2468,77 @@ msgstr "Ha sido avisado por %s."
 
 #: ../dependencies/ggz-gtk/chat.c:439
 msgid "Usage: /msg <username> <message>"
-msgstr ""
+msgstr "Uso: /msg <usuario> <mensaje>"
 
 #: ../dependencies/ggz-gtk/chat.c:441
 msgid "    Sends a private message to a user on the network."
-msgstr ""
+msgstr "Envía un mensaje privado a un usuario de la red."
 
 #: ../dependencies/ggz-gtk/chat.c:495
-#, fuzzy, c-format
+#, c-format
 msgid "Beep sent to %s."
-msgstr "Mover %s en %s."
+msgstr "Aviso enviado a %s."
 
 #: ../dependencies/ggz-gtk/chat.c:523
 #, c-format
 msgid "%s (logged on)"
-msgstr ""
+msgstr "%s (conectado)"
 
 #: ../dependencies/ggz-gtk/chat.c:561
 #, c-format
 msgid "%s (logged off)"
-msgstr ""
+msgstr "%s (desconectado)"
 
 #: ../dependencies/ggz-gtk/chat.c:587
 msgid "Chat Commands"
-msgstr ""
+msgstr "Comandos de Chat"
 
 #: ../dependencies/ggz-gtk/chat.c:588
 msgid "-------------"
-msgstr ""
+msgstr "-------------"
 
 #: ../dependencies/ggz-gtk/chat.c:592
 msgid "/me <action> .............. Send an action"
-msgstr ""
+msgstr "/me <acción>  Envía una acción"
 
 #: ../dependencies/ggz-gtk/chat.c:783
 #, c-format
 msgid "Added %s to your friends list."
-msgstr ""
+msgstr "Se ha añadido a %s a su lista de amigos."
 
 #: ../dependencies/ggz-gtk/chat.c:807
-#, fuzzy, c-format
+#, c-format
 msgid "Removed %s from your friends list."
-msgstr "Elimine bolas de colores del tablero formando líneas"
+msgstr "Se ha quitado a %s de su lista de amigos."
 
 #: ../dependencies/ggz-gtk/chat.c:838
 #, c-format
 msgid "Added %s to your ignore list."
-msgstr ""
+msgstr "Se ha añadido a %s a su lista de ignorados."
 
 #: ../dependencies/ggz-gtk/chat.c:863
 #, c-format
 msgid "Removed %s from your ignore list."
-msgstr ""
+msgstr "Se ha quitado a %s de su lista de ignorados."
 
 #: ../dependencies/ggz-gtk/chat.c:939
 msgid "People currently your friends"
-msgstr ""
+msgstr "Gente que es amiga"
 
 #: ../dependencies/ggz-gtk/chat.c:953
 msgid "People you're currently ignoring"
-msgstr ""
+msgstr "Gente que ignoras"
 
 #: ../dependencies/ggz-gtk/chat.c:1029
 msgid "Multiple matches:"
-msgstr ""
+msgstr "Coincidencias múltiples:"
 
 #: ../dependencies/ggz-gtk/game.c:72
 #, c-format
 msgid ""
 "You don't have this game installed. You can download\n"
 "it from %s."
-msgstr ""
+msgstr "No tienes este juego instalado. Puedes descargarlo desde %s."
 
 #: ../dependencies/ggz-gtk/game.c:76 ../dependencies/ggz-gtk/game.c:149
 #: ../dependencies/ggz-gtk/game.c:315 ../dependencies/ggz-gtk/game.c:325
@@ -2553,6 +2552,8 @@ msgid ""
 "Failed to execute game module.\n"
 " Launch aborted."
 msgstr ""
+"Falló al ejecutar el módulo del juego.\n"
+" Lanzamiento abortado"
 
 #: ../dependencies/ggz-gtk/game.c:201
 msgid "Launched game"
@@ -2589,75 +2590,77 @@ msgid ""
 "No game types defined for this server.\n"
 "Launch aborted."
 msgstr ""
+"No hay tipos de juegos definidos en este servidor.\n"
+"Lanzamiento abortado"
 
 #: ../dependencies/ggz-gtk/game.c:333
-#, fuzzy
 msgid "This game doesn't support spectators."
-msgstr "Las sugerencias aún no han sido implementadas en este juego."
+msgstr "Este juego no soporta espectadores."
 
 #: ../dependencies/ggz-gtk/game.c:348
 msgid ""
 "You need to launch the GGZ client directly\n"
 "to be able to play this game."
 msgstr ""
+"Necesita lanzar el cliente GGZ directamente\n"
+"para poder jugar a este juego."
 
 #: ../dependencies/ggz-gtk/support.c:139 ../dependencies/ggz-gtk/props.c:1464
 #: ../dependencies/ggz-gtk/props.c:1484
 msgid "Galeon - New"
-msgstr ""
+msgstr "Galeon: nuevo"
 
 #: ../dependencies/ggz-gtk/support.c:142 ../dependencies/ggz-gtk/props.c:1465
 msgid "Galeon - Existing"
-msgstr ""
+msgstr "Galeon: existente"
 
 #: ../dependencies/ggz-gtk/support.c:145 ../dependencies/ggz-gtk/props.c:1466
 msgid "Gnome URL Handler"
-msgstr ""
+msgstr "Manipulador de URL de GNOME"
 
 #: ../dependencies/ggz-gtk/support.c:148 ../dependencies/ggz-gtk/props.c:1467
 msgid "Konqueror - New"
-msgstr ""
+msgstr "Konqueror: nuevo"
 
 #: ../dependencies/ggz-gtk/support.c:151 ../dependencies/ggz-gtk/props.c:1468
 msgid "Konqueror - Existing"
-msgstr ""
+msgstr "Konqueror: existente"
 
 #: ../dependencies/ggz-gtk/support.c:163 ../dependencies/ggz-gtk/props.c:1469
 msgid "Lynx"
-msgstr ""
+msgstr "Lynx"
 
 #: ../dependencies/ggz-gtk/support.c:169 ../dependencies/ggz-gtk/props.c:1470
 msgid "Mozilla - New"
-msgstr ""
+msgstr "Mozilla: nuevo"
 
 #: ../dependencies/ggz-gtk/support.c:172 ../dependencies/ggz-gtk/props.c:1471
 msgid "Mozilla - Existing"
-msgstr ""
+msgstr "Mozilla: existente"
 
 #: ../dependencies/ggz-gtk/support.c:176 ../dependencies/ggz-gtk/props.c:1472
 msgid "Netscape - New"
-msgstr ""
+msgstr "Netscape: nuevo"
 
 #: ../dependencies/ggz-gtk/support.c:179 ../dependencies/ggz-gtk/props.c:1473
 msgid "Netscape - Existing"
-msgstr ""
+msgstr "Netscape: existente"
 
 #: ../dependencies/ggz-gtk/support.c:183 ../dependencies/ggz-gtk/props.c:1474
 msgid "Opera - New"
-msgstr ""
+msgstr "Opera: nuevo"
 
 #: ../dependencies/ggz-gtk/support.c:186 ../dependencies/ggz-gtk/props.c:1475
-#, fuzzy
 msgid "Opera - Existing"
-msgstr "Operación"
+msgstr "Opera: existente"
 
 #: ../dependencies/ggz-gtk/support.c:191 ../dependencies/ggz-gtk/props.c:1476
 msgid "Firefox - New"
-msgstr ""
+msgstr "Firefox: nuevo"
 
 #: ../dependencies/ggz-gtk/support.c:194 ../dependencies/ggz-gtk/props.c:1477
 msgid "Firefox - Existing"
-msgstr ""
+msgstr "Firefox: existente"
 
 #: ../dependencies/ggz-gtk/about.c:87 ../dependencies/ggz-gtk/client.c:1089
 msgid "About"
@@ -2677,6 +2680,9 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"El filtro de salas aún no está implementado\n"
+"quiere ir a\n"
+"http://www.ggzgamingzone.org/"
 
 #: ../dependencies/ggz-gtk/types.c:151 ../dependencies/ggz-gtk/client.c:239
 #: ../dependencies/ggz-gtk/client.c:251 ../dependencies/ggz-gtk/client.c:311
@@ -2685,9 +2691,8 @@ msgid "Not Implemented"
 msgstr "No implementado"
 
 #: ../dependencies/ggz-gtk/types.c:183 ../dependencies/ggz-gtk/tablelist.c:201
-#, fuzzy
 msgid "Description"
-msgstr "Escorpión"
+msgstr "Descripción"
 
 #: ../dependencies/ggz-gtk/types.c:191
 msgid "Web Address"
@@ -2698,44 +2703,38 @@ msgid "Author"
 msgstr "Autor"
 
 #: ../dependencies/ggz-gtk/types.c:237 ../dependencies/ggz-gtk/client.c:1065
-#, fuzzy
 msgid "Game Types"
-msgstr "Tipo de juego"
+msgstr "Tipos de juegos"
 
 #: ../dependencies/ggz-gtk/types.c:254
 msgid "Room List Filter:"
 msgstr "Filtro de lista de salas:"
 
 #: ../dependencies/ggz-gtk/types.c:266
-#, fuzzy
 msgid "Set"
-msgstr "Ajustes"
+msgstr "Ajuste"
 
 #: ../dependencies/ggz-gtk/types.c:306
-#, fuzzy
 msgid "Upgrage Game"
-msgstr "Juego de panaderos"
+msgstr "Actualizar juego"
 
 #: ../dependencies/ggz-gtk/types.c:309
 msgid "Goto Web Site"
 msgstr "Ir a sitio web"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:102
-#, fuzzy
 msgid "Player Information"
-msgstr "Jugador teletransportado"
+msgstr "Información del jugador"
 
 #. Add 'handle' label
 #: ../dependencies/ggz-gtk/playerinfo.c:132
-#, fuzzy
 msgid "Player Handle:"
-msgstr "Jugador muerto"
+msgstr "Manejador del jugador:"
 
 #. Add "table" label
 #: ../dependencies/ggz-gtk/playerinfo.c:150
-#, fuzzy
 msgid "Table:"
-msgstr "Fichas:"
+msgstr "Mesa:"
 
 #. Add "type" label
 #: ../dependencies/ggz-gtk/playerinfo.c:168
@@ -2744,21 +2743,18 @@ msgstr "Cuenta:"
 
 #. Add "Record" label
 #: ../dependencies/ggz-gtk/playerinfo.c:187
-#, fuzzy
 msgid "Record:"
-msgstr "Puntuación:"
+msgstr "Registro:"
 
 #. Add "Rating" label
 #: ../dependencies/ggz-gtk/playerinfo.c:205
-#, fuzzy
 msgid "Rating:"
-msgstr "Quedan:"
+msgstr "Puntuación:"
 
 #. Add "Ranking" label
 #: ../dependencies/ggz-gtk/playerinfo.c:223
-#, fuzzy
 msgid "Rank:"
-msgstr "Negras:"
+msgstr "Rango:"
 
 #. Add "Private chat" label
 #: ../dependencies/ggz-gtk/playerinfo.c:259
@@ -2768,23 +2764,20 @@ msgstr "Mensaje:"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:302
 #: ../dependencies/ggz-gtk/playerinfo.c:334
-#, fuzzy
 msgid "Unknown"
-msgstr "Palo desconocido"
+msgstr "Desconocido"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:337
 msgid "Registered"
 msgstr "Registrado"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:340
-#, fuzzy
 msgid "Guest"
-msgstr "Pasarse"
+msgstr "Invitado"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:343
-#, fuzzy
 msgid "Host"
-msgstr "Rayuela"
+msgstr "Anfitrión"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:346
 msgid "Administrator"
@@ -2800,18 +2793,16 @@ msgstr "Robot"
 #: ../dependencies/ggz-gtk/tablelist.c:84
 #: ../dependencies/ggz-gtk/roomlist.c:144
 #: ../libgames-support/games-dlg-players.c:419
-#, fuzzy
 msgid "Info"
-msgstr "Iagno"
+msgstr "Info"
 
 #: ../dependencies/ggz-gtk/playerlist.c:101
 msgid "Friends"
 msgstr "Amigos"
 
 #: ../dependencies/ggz-gtk/playerlist.c:106
-#, fuzzy
 msgid "Ignore"
-msgstr "Iagno"
+msgstr "Ignorados"
 
 #: ../dependencies/ggz-gtk/playerlist.c:246
 #, c-format
@@ -2829,9 +2820,8 @@ msgstr "T#"
 
 #: ../dependencies/ggz-gtk/playerlist.c:356
 #: ../dependencies/ggz-gtk/client.c:1171
-#, fuzzy
 msgid "Stats"
-msgstr "Estado"
+msgstr "Estadísticas"
 
 #: ../dependencies/ggz-gtk/pick_module.c:89
 msgid "Which client would you like to use to play this game?"
@@ -2844,25 +2834,21 @@ msgstr "No preguntarme de nuevo"
 #: ../dependencies/ggz-gtk/tablelist.c:74
 #: ../dependencies/ggz-gtk/roomlist.c:150 ../dependencies/ggz-gtk/client.c:985
 #: ../dependencies/ggz-gtk/client.c:1141
-#, fuzzy
 msgid "Join"
-msgstr "Unido"
+msgstr "Unir"
 
 #: ../dependencies/ggz-gtk/tablelist.c:77
 #: ../dependencies/ggz-gtk/client.c:1004 ../dependencies/ggz-gtk/client.c:1157
-#, fuzzy
 msgid "Leave"
-msgstr "Nivel:"
+msgstr "Abandonar"
 
 #: ../dependencies/ggz-gtk/tablelist.c:161
-#, fuzzy
 msgid "No description available."
-msgstr "No hay sugerencias disponible"
+msgstr "No hay descripción disponible"
 
 #: ../dependencies/ggz-gtk/tablelist.c:196
-#, fuzzy
 msgid "Seats"
-msgstr "corazones"
+msgstr "Asientos"
 
 #: ../dependencies/ggz-gtk/roominfo.c:63
 msgid "Room Information"
@@ -2870,9 +2856,8 @@ msgstr "Información de la sala"
 
 #. Add 'name' label and text.
 #: ../dependencies/ggz-gtk/roominfo.c:80
-#, fuzzy
 msgid "Game Name:"
-msgstr "Nombre del jue_go:"
+msgstr "Nombre del juego:"
 
 #. Add 'author' label and text.
 #: ../dependencies/ggz-gtk/roominfo.c:90 ../dependencies/ggz-gtk/launch.c:495
@@ -2881,9 +2866,8 @@ msgstr "Autor:"
 
 #. Add 'homepage' label and text.
 #: ../dependencies/ggz-gtk/roominfo.c:100 ../dependencies/ggz-gtk/launch.c:530
-#, fuzzy
 msgid "Homepage:"
-msgstr "_Imagen:"
+msgstr "Página web:"
 
 #. Add 'description' label and text.
 #: ../dependencies/ggz-gtk/roominfo.c:110
@@ -2895,27 +2879,24 @@ msgid "This room has no game"
 msgstr "Esta sala no tiene juego"
 
 #: ../dependencies/ggz-gtk/roominfo.c:175
-#, fuzzy
 msgid "Unknown room"
-msgstr "Color desconocido"
+msgstr "Sala desconocida"
 
 #: ../dependencies/ggz-gtk/roomlist.c:73
 msgid "You can't join a room; you're not logged in"
 msgstr "No puede unirse a una sala, no ha iniciado sesión"
 
 #: ../dependencies/ggz-gtk/roomlist.c:77
-#, fuzzy
 msgid "You're already in between rooms"
-msgstr "Demora entre lanzamientos"
+msgstr "Ya está entre salas"
 
 #: ../dependencies/ggz-gtk/roomlist.c:82
 msgid "You can't switch rooms while playing a game"
 msgstr "No puede cambiar de sala mientras está jugando"
 
 #: ../dependencies/ggz-gtk/roomlist.c:89
-#, fuzzy
 msgid "Unknown error"
-msgstr "Color desconocido"
+msgstr "Error desconocido"
 
 #. If we get here, there was an error
 #: ../dependencies/ggz-gtk/roomlist.c:109
@@ -2944,31 +2925,33 @@ msgstr "Autor: %s"
 #: ../dependencies/ggz-gtk/launch.c:127
 #, c-format
 msgid "Description:  %s"
-msgstr ""
+msgstr "Descripción: %s"
 
 #: ../dependencies/ggz-gtk/launch.c:133
 #, c-format
 msgid "Home Page:  %s"
-msgstr ""
+msgstr "Página web: %s"
 
 #: ../dependencies/ggz-gtk/launch.c:289
 msgid ""
 "Failed to launch table.\n"
 " Launch aborted."
 msgstr ""
+"Falló al lanzar la mesa. \n"
+"Lanzamiento abortado."
 
 #: ../dependencies/ggz-gtk/launch.c:325
 msgid "Invalid number of bots specified"
-msgstr ""
+msgstr "Número de robots especificado inválido"
 
 #: ../dependencies/ggz-gtk/launch.c:334 ../dependencies/ggz-gtk/client.c:585
 #: ../dependencies/ggz-gtk/client.c:626
 msgid "Error launching game module."
-msgstr ""
+msgstr "Error al lanzar el módulo del juego."
 
 #: ../dependencies/ggz-gtk/launch.c:420
 msgid "Seat Assignments"
-msgstr ""
+msgstr "Asignación de asientos"
 
 #: ../dependencies/ggz-gtk/launch.c:443
 msgid "Game Type:"
@@ -2985,7 +2968,7 @@ msgstr "Descripción:"
 #: ../dependencies/ggz-gtk/launch.c:586
 #, c-format
 msgid "Seat %d:"
-msgstr ""
+msgstr "Asiento %d:"
 
 #: ../dependencies/ggz-gtk/launch.c:598
 msgid "Computer"
@@ -3006,7 +2989,7 @@ msgstr "Descripción del juego   "
 #: ../dependencies/ggz-gtk/launch.c:693 ../dependencies/ggz-gtk/client.c:978
 #: ../dependencies/ggz-gtk/client.c:1133
 msgid "Launch"
-msgstr ""
+msgstr "Lanzar"
 
 #: ../dependencies/ggz-gtk/client.c:144
 msgid "Are you sure you want to quit?"
@@ -3014,7 +2997,7 @@ msgstr "¿Seguro que quiere salir?"
 
 #: ../dependencies/ggz-gtk/client.c:144
 msgid "Quit?"
-msgstr ""
+msgstr "¿Salir?"
 
 #: ../dependencies/ggz-gtk/client.c:237
 msgid ""
@@ -3046,24 +3029,24 @@ msgstr ""
 
 #: ../dependencies/ggz-gtk/client.c:566
 msgid "You must highlight a table before you can join it."
-msgstr ""
+msgstr "Debe resaltar una mesa antes de que pueda unirse a ella."
 
 #: ../dependencies/ggz-gtk/client.c:567 ../dependencies/ggz-gtk/client.c:576
 #: ../dependencies/ggz-gtk/client.c:615
 msgid "Error Joining"
-msgstr ""
+msgstr "Error al unir"
 
 #: ../dependencies/ggz-gtk/client.c:576 ../dependencies/ggz-gtk/client.c:614
 msgid "That table is full."
-msgstr ""
+msgstr "Esa mesa está llena."
 
 #: ../dependencies/ggz-gtk/client.c:600
 msgid "You must highlight a table before you can watch it."
-msgstr ""
+msgstr "Debe señalar una mesa antes de poder mirar."
 
 #: ../dependencies/ggz-gtk/client.c:602
 msgid "Error Spectating"
-msgstr ""
+msgstr "Error al mirar"
 
 #: ../dependencies/ggz-gtk/client.c:647
 msgid ""
@@ -3073,15 +3056,15 @@ msgstr ""
 
 #: ../dependencies/ggz-gtk/client.c:648
 msgid "Join Error"
-msgstr ""
+msgstr "Error al unirse"
 
 #: ../dependencies/ggz-gtk/client.c:678
 msgid "Disconnect from the GGZ Gaming Zone server"
-msgstr ""
+msgstr "Desconectar del servidor GGZ Gaming Zone"
 
 #: ../dependencies/ggz-gtk/client.c:680
 msgid "Start playing a game at a new table"
-msgstr ""
+msgstr "Empezar a jugar un juego en una mesa nueva"
 
 #: ../dependencies/ggz-gtk/client.c:682 ../glchess/glade/glchess.glade.h:7
 msgid "Join an existing game"
@@ -3093,38 +3076,38 @@ msgstr ""
 
 #: ../dependencies/ggz-gtk/client.c:687
 msgid "Leave the game you're currently playing"
-msgstr ""
+msgstr "Abandonar el juego que está jugando"
 
 #: ../dependencies/ggz-gtk/client.c:689
 msgid "Show the properties dialog to change the client settings"
-msgstr ""
+msgstr "Mostrar el diálogo de propiedades para cambiar los ajustes del cliente"
 
 #: ../dependencies/ggz-gtk/client.c:693
 msgid "Show the game stats for the current room's game type"
-msgstr ""
+msgstr "Mostrar las estadísticas del juego para el tipo de juego de la sala actual"
 
 #: ../dependencies/ggz-gtk/client.c:696
 msgid "Exit the GGZ client application."
-msgstr ""
+msgstr "Salir de la aplicación cliente GGZ"
 
 #. Print out client information
 #: ../dependencies/ggz-gtk/client.c:726
 #, c-format
 msgid "Client Version:14 %s"
-msgstr ""
+msgstr "Versión del cliente:  14 %s"
 
 #: ../dependencies/ggz-gtk/client.c:729
 #, c-format
 msgid "GTK+ Version:14 %d.%d.%d\n"
-msgstr ""
+msgstr "Versión GTK+ %d.%d.%d\n"
 
 #: ../dependencies/ggz-gtk/client.c:736
 msgid "Compiled with debugging."
-msgstr ""
+msgstr "Compilado con depuración."
 
 #: ../dependencies/ggz-gtk/client.c:934
 msgid "GGZ"
-msgstr ""
+msgstr "GGZ"
 
 #. We should use gtk_tool_button_new_from_stock but for some reason
 #. * the connect and disconnect stock items don't have text included.
@@ -3134,7 +3117,7 @@ msgstr "Desconectar"
 
 #: ../dependencies/ggz-gtk/client.c:962
 msgid "Quit"
-msgstr ""
+msgstr "Salir"
 
 #: ../dependencies/ggz-gtk/client.c:992 ../dependencies/ggz-gtk/client.c:1149
 msgid "Watch"
@@ -3146,7 +3129,7 @@ msgstr "Editar"
 
 #: ../dependencies/ggz-gtk/client.c:1019
 msgid "Properties"
-msgstr ""
+msgstr "Propiedades"
 
 #: ../dependencies/ggz-gtk/client.c:1026
 msgid "View"
@@ -3154,7 +3137,7 @@ msgstr "Ver"
 
 #: ../dependencies/ggz-gtk/client.c:1035
 msgid "Room List"
-msgstr ""
+msgstr "Lista de salas"
 
 #.
 #. * Create outer window.
@@ -3166,7 +3149,7 @@ msgstr "Lista de jugadores"
 
 #: ../dependencies/ggz-gtk/client.c:1053
 msgid "Server Stats"
-msgstr ""
+msgstr "Estadísticas del servidor"
 
 #: ../dependencies/ggz-gtk/client.c:1057
 msgid "Player Stats"
@@ -3174,7 +3157,7 @@ msgstr "Estadísticas de jugadores"
 
 #: ../dependencies/ggz-gtk/client.c:1074 ../dependencies/ggz-gtk/props.c:1491
 msgid "MOTD"
-msgstr ""
+msgstr "MDD"
 
 #: ../dependencies/ggz-gtk/client.c:1081
 msgid "Help"
@@ -3207,11 +3190,11 @@ msgstr "Propiedades actualizadas"
 
 #: ../dependencies/ggz-gtk/props.c:1035
 msgid "Confirm:"
-msgstr ""
+msgstr "Confirmar:"
 
 #: ../dependencies/ggz-gtk/props.c:1085
 msgid "Modify"
-msgstr ""
+msgstr "Modificar"
 
 #: ../dependencies/ggz-gtk/props.c:1099
 msgid "Servers"
@@ -3219,7 +3202,7 @@ msgstr "Servidores"
 
 #: ../dependencies/ggz-gtk/props.c:1118
 msgid "Chat Font:"
-msgstr ""
+msgstr "Tipografía de charla:"
 
 #: ../dependencies/ggz-gtk/props.c:1134
 msgid "Change"
@@ -3227,7 +3210,7 @@ msgstr "Cambio"
 
 #: ../dependencies/ggz-gtk/props.c:1147
 msgid "Ignore Join/Part Messages"
-msgstr ""
+msgstr "Ignorar unión/Partes de mesajes"
 
 #: ../dependencies/ggz-gtk/props.c:1155
 msgid "Play Sounds"
@@ -3239,11 +3222,11 @@ msgstr "Autosangrado"
 
 #: ../dependencies/ggz-gtk/props.c:1171
 msgid "Timestamp Chats"
-msgstr ""
+msgstr "Tiempo en charlas"
 
 #: ../dependencies/ggz-gtk/props.c:1179
 msgid "Word Wrap"
-msgstr ""
+msgstr "Ajuste de palabras"
 
 #: ../dependencies/ggz-gtk/props.c:1187
 msgid "Chat Color"
@@ -3251,15 +3234,15 @@ msgstr "Color de charla"
 
 #: ../dependencies/ggz-gtk/props.c:1236
 msgid "Default chat color assigned to your friends"
-msgstr ""
+msgstr "Color de charla predeterminado asignado a sus amigos"
 
 #: ../dependencies/ggz-gtk/props.c:1245
 msgid "Chat color used when your name is typed"
-msgstr ""
+msgstr "Color de charla usando cuando su nombre se mencione"
 
 #: ../dependencies/ggz-gtk/props.c:1254
 msgid "Chat color used for all other chats"
-msgstr ""
+msgstr "Color de charla usado para todos los demás"
 
 #: ../dependencies/ggz-gtk/props.c:1263
 msgid "Normal Color"
@@ -3295,7 +3278,7 @@ msgstr "Nombre:"
 
 #: ../dependencies/ggz-gtk/props.c:1371
 msgid "City:"
-msgstr ""
+msgstr "Ciudad:"
 
 #: ../dependencies/ggz-gtk/props.c:1392
 msgid "State:"
@@ -3319,15 +3302,15 @@ msgstr "Navegador con el que lanzar URLs:"
 
 #: ../dependencies/ggz-gtk/props.c:1486
 msgid "Single Click Room Entry"
-msgstr ""
+msgstr "Entrada con un solo clic a la sala"
 
 #: ../dependencies/ggz-gtk/props.c:1500
 msgid "Display All"
-msgstr ""
+msgstr "Mostrar todo"
 
 #: ../dependencies/ggz-gtk/props.c:1509
 msgid "Display New"
-msgstr ""
+msgstr "Mostrar nuevo"
 
 #: ../dependencies/ggz-gtk/props.c:1518
 msgid "Display Important"
@@ -3373,9 +3356,9 @@ msgid "This name is already registered so cannot be used by a guest"
 msgstr "Este nombre ya está registrado y no lo puede usar un invitado"
 
 #: ../dependencies/ggzcore/server.c:937
-#, fuzzy, c-format
+#, c-format
 msgid "No such name was found"
-msgstr "No se pudieron encontrar los datos del tema."
+msgstr "No se encontró dicho nombre"
 
 #: ../dependencies/ggzcore/server.c:941
 #, c-format
@@ -3393,14 +3376,14 @@ msgid "Missing password or other bad options."
 msgstr "Falta la contraseña u otras opciones erróneas."
 
 #: ../dependencies/ggzcore/server.c:953
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown login error"
-msgstr "Color desconocido"
+msgstr "Error de entrada de sesión desconocido"
 
 #: ../dependencies/ggzcore/server.c:976
-#, fuzzy, c-format
+#, c-format
 msgid "Room full"
-msgstr "Rome"
+msgstr "Sala llena"
 
 #: ../dependencies/ggzcore/server.c:980
 #, c-format
@@ -3410,22 +3393,22 @@ msgstr "No se puede cambiar de sala cuando se está en la mesa"
 #: ../dependencies/ggzcore/server.c:984
 #, c-format
 msgid "Can't change rooms while joining/leaving a table"
-msgstr ""
+msgstr "No se pueden cambiar salas al unirse/dejar una mesa"
 
 #: ../dependencies/ggzcore/server.c:989
 #, c-format
 msgid "Bad room number"
-msgstr ""
+msgstr "Número de sala erróneo"
 
 #: ../dependencies/ggzcore/server.c:993
 #, c-format
 msgid "Insufficient permissions, room access is restricted"
-msgstr ""
+msgstr "Faltan permisos, la sala está restringida"
 
 #: ../dependencies/ggzcore/server.c:997
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown room-joining error"
-msgstr "Color desconocido"
+msgstr "Error de unión a sala desconocido"
 
 #. Not all systems have hstrerror.
 #: ../dependencies/ggzcore/server.c:1188
@@ -3434,39 +3417,39 @@ msgstr "No es posible conectar"
 
 #: ../dependencies/ggzcore/server.c:1432 ../dependencies/ggzcore/server.c:1449
 msgid "Protocol mismatch"
-msgstr ""
+msgstr "Incoherencia de protocolo"
 
 #: ../dependencies/gnuchess/getopt.c:693
 #, c-format
 msgid "%s: option `%s' is ambiguous\n"
-msgstr ""
+msgstr "%s: la opción `%s' es ambigua\n"
 
 #: ../dependencies/gnuchess/getopt.c:718
 #, c-format
 msgid "%s: option `--%s' doesn't allow an argument\n"
-msgstr ""
+msgstr "%s: la opción «--%s» no permite un argumento\n"
 
 #: ../dependencies/gnuchess/getopt.c:723
 #, c-format
 msgid "%s: option `%c%s' doesn't allow an argument\n"
-msgstr ""
+msgstr "%s: la opción «%c%s» no permite un argumento\n"
 
 #: ../dependencies/gnuchess/getopt.c:741 ../dependencies/gnuchess/getopt.c:914
 #, c-format
 msgid "%s: option `%s' requires an argument\n"
-msgstr ""
+msgstr "%s: la opción «%s» requiere un argumento\n"
 
 #. --option
 #: ../dependencies/gnuchess/getopt.c:770
 #, c-format
 msgid "%s: unrecognized option `--%s'\n"
-msgstr ""
+msgstr "%s: la opción «--%s» no reconocida\n"
 
 #. +option or -option
 #: ../dependencies/gnuchess/getopt.c:774
 #, c-format
 msgid "%s: unrecognized option `%c%s'\n"
-msgstr ""
+msgstr "%s: la opción «%c%s» no reconocida\n"
 
 #. 1003.2 specifies the format of this message.
 #: ../dependencies/gnuchess/getopt.c:800
@@ -3496,42 +3479,36 @@ msgid "%s: option `-W %s' doesn't allow an argument\n"
 msgstr ""
 
 #: ../glchess/glade/ai.glade.h:1
-#, fuzzy
 msgid "Communication:"
-msgstr "Animación"
+msgstr "Comunicación:"
 
 #: ../glchess/glade/ai.glade.h:2
 msgid "Executable:"
-msgstr ""
+msgstr "Ejecutable:"
 
 #: ../glchess/glade/ai.glade.h:3
-#, fuzzy
 msgid "Playing as:"
-msgstr "Plano"
+msgstr "Jugando como:"
 
 #: ../glchess/glade/save_game.glade.h:1
-#, fuzzy
 msgid "Save Chess Game"
-msgstr "Resolver el juego"
+msgstr "Guardar juego de ajedrez"
 
 #: ../glchess/glade/load_game.glade.h:1
-#, fuzzy
 msgid "Load Chess Game"
-msgstr "Iniciar un juego nuevo"
+msgstr "Cargar juego de ajedrez"
 
 #: ../glchess/glade/glchess.glade.h:1
 msgid "<b><big>Some games have been changed. Save changes before closing?</big></b>"
 msgstr ""
 
 #: ../glchess/glade/glchess.glade.h:2
-#, fuzzy
 msgid "AI Information"
-msgstr "Animación"
+msgstr "Información de IA"
 
 #: ../glchess/glade/glchess.glade.h:3
-#, fuzzy
 msgid "End Game"
-msgstr "Finalizar el ju_ego"
+msgstr "Finalizar el juego"
 
 #: ../glchess/glade/glchess.glade.h:4 ../libgames-support/games-stock.c:124
 msgid "End the current game"
@@ -3539,22 +3516,19 @@ msgstr "Finalizar el juego actual"
 
 #: ../glchess/glade/glchess.glade.h:5
 msgid "If you don't save, all your changes will be permanently lost"
-msgstr ""
+msgstr "Si no guarda, todos los cambios se perderán para siempre"
 
 #: ../glchess/glade/glchess.glade.h:6 ../glchess/glade/new_game.glade.h:11
-#, fuzzy
 msgid "Join Game"
-msgstr "Finalizar el ju_ego"
+msgstr "Unirse a un juego"
 
 #: ../glchess/glade/glchess.glade.h:8
-#, fuzzy
 msgid "Leave _Fullscreen"
-msgstr "Abandobnar _pantalla completa"
+msgstr "Abandonar _pantalla completa"
 
 #: ../glchess/glade/glchess.glade.h:9
-#, fuzzy
 msgid "Load a saved game"
-msgstr "Iniciar un juego nuevo"
+msgstr "Cargar un juego guardado"
 
 #: ../glchess/glade/glchess.glade.h:10 ../glchess/glade/new_game.glade.h:15
 #: ../gnome-sudoku/glade/new_game.glade.h:5
@@ -3563,27 +3537,24 @@ msgid "New Game"
 msgstr "Nuevo juego"
 
 #: ../glchess/glade/glchess.glade.h:11
-#, fuzzy
 msgid "Rewind to the game start"
-msgstr "Nuevo juego iniciado"
+msgstr "Volver al inicio del juego"
 
 #: ../glchess/glade/glchess.glade.h:12
 msgid "Save and _Quit"
-msgstr ""
+msgstr "Guardar y _salir"
 
 #: ../glchess/glade/glchess.glade.h:13
-#, fuzzy
 msgid "Save the current game"
-msgstr "Finalizar el juego actual"
+msgstr "Guardar el juego actual"
 
 #: ../glchess/glade/glchess.glade.h:14
-#, fuzzy
 msgid "Select the games you want to save:"
-msgstr "Seleccione el juego que desea jugar"
+msgstr "Seleccione los juegos que desea guardar:"
 
 #: ../glchess/glade/glchess.glade.h:15
 msgid "Show the current move"
-msgstr "Mostrar el juego actual"
+msgstr "Mostrar el movimiento actual"
 
 #: ../glchess/glade/glchess.glade.h:16
 msgid "Show the next move"
@@ -3631,7 +3602,7 @@ msgstr "<b>Jugador negro</b>"
 
 #: ../glchess/glade/new_game.glade.h:2
 msgid "<b>Game Properties</b>"
-msgstr ""
+msgstr "<b>Propiedades del juego</b>"
 
 #: ../glchess/glade/new_game.glade.h:3
 msgid "<b>Game to Join</b>"
@@ -3647,7 +3618,7 @@ msgstr "<b>Jugador blanco</b>"
 
 #: ../glchess/glade/new_game.glade.h:6
 msgid "Allow remote clients to watch this game"
-msgstr ""
+msgstr "Permitir a los clientes remotos mirar este juego"
 
 #: ../glchess/glade/new_game.glade.h:7
 msgid "Black"
@@ -3683,11 +3654,11 @@ msgstr "Servidores:"
 
 #: ../glchess/glade/new_game.glade.h:17
 msgid "Start the game. The game can be started once all fields are complete"
-msgstr ""
+msgstr "Iniciar la partida. La partida se iniciará cuando todos los campos estén completos"
 
 #: ../glchess/glade/new_game.glade.h:18
 msgid "The hostname/IP address to search for servers on"
-msgstr ""
+msgstr "La dirección de host/IP donde buscar servidores"
 
 #: ../glchess/glade/new_game.glade.h:19
 msgid "Typ_e:"
@@ -3699,7 +3670,7 @@ msgstr "Blanco"
 
 #: ../glchess/glade/new_game.glade.h:21
 msgid "_Allow spectators"
-msgstr ""
+msgstr "_Permitir separadores"
 
 #: ../glchess/glade/new_game.glade.h:22
 msgid "_Difficulty:"
@@ -3731,27 +3702,23 @@ msgstr "<b>Jugadores</b>"
 
 #: ../glchess/glade/network_game.glade.h:2
 msgid "<b>Status / Chat</b>"
-msgstr ""
+msgstr "<b>Estado / Charla</b>"
 
 #: ../glchess/glade/network_game.glade.h:3
-#, fuzzy
 msgid "Waiting For Players"
-msgstr "Esperar a los robots"
+msgstr "Esperando jugadores"
 
 #: ../glchess/glade/network_game.glade.h:4
-#, fuzzy
 msgid "_Black player:"
-msgstr "Jugador"
+msgstr "_Jugador negro"
 
 #: ../glchess/glade/network_game.glade.h:5
-#, fuzzy
 msgid "_Ready"
-msgstr "Rojo"
+msgstr "_Preparado"
 
 #: ../glchess/glade/network_game.glade.h:6
-#, fuzzy
 msgid "_White player:"
-msgstr "Jugador"
+msgstr "Jugador _blanco:"
 
 #: ../glchess/glchess.desktop.in.h:1
 msgid "Chess"
@@ -3759,11 +3726,11 @@ msgstr "Ajedrez"
 
 #: ../glchess/glchess.desktop.in.h:2
 msgid "Play the classic two-player boardgame of chess "
-msgstr ""
+msgstr "Jugar una partida clásica de ajedrez de dos jugadores"
 
 #: ../glchess/src/lib/defaults.py.in:15
 msgid "glChess"
-msgstr ""
+msgstr "glChess"
 
 #: ../glchess/src/lib/defaults.py.in:17
 msgid "Copyright 2005-2006 Robert Ancell (and contributors)"
@@ -3771,7 +3738,7 @@ msgstr "Copyright 2005-2006 Robert Ancell (y contribuidores)"
 
 #: ../glchess/src/lib/defaults.py.in:18
 msgid "A 2D/3D chess interface for Gnome"
-msgstr ""
+msgstr "Un interfaz 2d/3D de ajedrez para GNOME"
 
 #: ../glchess/src/lib/defaults.py.in:20
 msgid "glChess homepage"
@@ -4069,7 +4036,7 @@ msgstr ""
 
 #: ../gnect/src/ggz-network.c:115
 msgid "A network error has occured."
-msgstr ""
+msgstr "Ha ocurrido un error de red."
 
 #: ../gnect/src/ggz-network.c:129 ../iagno/ggz-network.c:94
 msgid "Waiting for an opponent to join the game."
@@ -4078,7 +4045,7 @@ msgstr ""
 #: ../gnect/src/ggz-network.c:245 ../gnibbles/ggz-network.c:360
 #, c-format
 msgid "Welcome to a network game of %s."
-msgstr ""
+msgstr "Esperando un juego de red de %s."
 
 #: ../gnect/src/ggz-network.c:284 ../gnibbles/ggz-network.c:398
 #: ../gnome-sudoku/src/lib/game_selector.py:241 ../iagno/ggz-network.c:313
@@ -4113,7 +4080,7 @@ msgstr "Gana %s."
 #: ../gnect/src/main.c:619
 #, c-format
 msgid "Waiting for %s to move."
-msgstr ""
+msgstr "Esperando que %s mueva."
 
 #: ../gnect/src/main.c:738
 #, c-format
@@ -4266,7 +4233,7 @@ msgstr "El jugador %s se ha unido al juego.\n"
 #: ../gnibbles/ggz-network.c:143
 #, c-format
 msgid "The game ended because the host %s left the game.\n"
-msgstr ""
+msgstr "La partida terminó porque el host %s dejó el juego.\n"
 
 #: ../gnibbles/gnibbles.c:93
 #, c-format
@@ -4404,19 +4371,16 @@ msgid "Number of AI players"
 msgstr "Número de jugadores con IA"
 
 #: ../gnibbles/gnibbles.schemas.in.h:22
-#, fuzzy
 msgid "Number of AI players."
-msgstr "Número de jugadores."
+msgstr "Número de jugadores IA"
 
 #: ../gnibbles/gnibbles.schemas.in.h:23
-#, fuzzy
 msgid "Number of human players"
-msgstr "Número de jugadores"
+msgstr "Número de jugadores humanos"
 
 #: ../gnibbles/gnibbles.schemas.in.h:24
-#, fuzzy
 msgid "Number of human players."
-msgstr "Número de jugadores."
+msgstr "Número de jugadores humanos."
 
 #: ../gnibbles/gnibbles.schemas.in.h:25
 msgid "Play levels in random order"
@@ -4525,7 +4489,7 @@ msgstr "Un juego de gusanos para GNOME."
 #: ../gnibbles/main.c:651
 #, c-format
 msgid "Game over! The game has been won by %s!"
-msgstr ""
+msgstr "Partida terminada. La partida la ha ganado %s"
 
 #: ../gnibbles/preferences.c:238
 msgid "Nibbles Preferences"
@@ -4569,14 +4533,12 @@ msgid "_Starting level:"
 msgstr "_Nivel inicial:"
 
 #: ../gnibbles/preferences.c:377
-#, fuzzy
 msgid "Number of _human players:"
-msgstr "Número de j_ugadores:"
+msgstr "Número de j_ugadores humanos:"
 
 #: ../gnibbles/preferences.c:398
-#, fuzzy
 msgid "Number of _AI players:"
-msgstr "Número de j_ugadores:"
+msgstr "Número de j_ugadores IA:"
 
 #: ../gnibbles/preferences.c:425
 msgid "Worm"
@@ -5334,171 +5296,160 @@ msgstr "Puntuación de GNOMEtris"
 
 #: ../gnome-sudoku/gnome-sudoku.desktop.in.h:1
 msgid "GNOME Sudoku; a logic puzzle"
-msgstr ""
+msgstr "Sudoku GNOME, un puzzle lógico"
 
 #: ../gnome-sudoku/gnome-sudoku.desktop.in.h:2
 msgid "Sudoku"
-msgstr ""
+msgstr "Sudoku"
 
 #: ../gnome-sudoku/glade/high_scores.glade.h:1
-#, fuzzy
 msgid "High Scores"
-msgstr "Puntuación"
+msgstr "Puntuaciones más altas"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:1
 #: ../gnome-sudoku/glade/print_games.glade.h:1
 msgid "<i>Easy</i>"
-msgstr ""
+msgstr "<i>Fácil</i>"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:2
 #: ../gnome-sudoku/glade/print_games.glade.h:2
 msgid "<i>Hard</i>"
-msgstr ""
+msgstr "<i>Difícil</i>"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:3
 #: ../gnome-sudoku/glade/open_game.glade.h:1
 msgid "<span size=\"larger\" weight=\"bold\">Select Game</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">Seleccione el juego</span>"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:4
 msgid "Choose the _level of difficulty for your new game."
-msgstr ""
+msgstr "Elija el nivel de _dificultad para su partida nueva."
 
 #: ../gnome-sudoku/glade/new_game.glade.h:6
-#, fuzzy
 msgid "_Details"
-msgstr "R_epartir"
+msgstr "_Detalles"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:7
 #: ../gnome-sudoku/glade/open_game.glade.h:3
-#, fuzzy
 msgid "_Play"
-msgstr "Jugador"
+msgstr "_Jugar"
 
 #: ../gnome-sudoku/glade/open_game.glade.h:2
 msgid "Choose _game"
-msgstr ""
+msgstr "Elija un _juego"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:3
 msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">Imprimir guegos</span>"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:4
 msgid "Choose the _level of difficulty for games"
-msgstr ""
+msgstr "Elija el _nivel de dificultad de los juegos"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:5
 msgid "Ma_ximum Difficulty"
-msgstr ""
+msgstr "Má_xima dificultad"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:6
 msgid "Print Sudokus"
-msgstr ""
+msgstr "Imprimir Sudokus"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:7
-#, fuzzy
 msgid "_Game List"
-msgstr "_Juego"
+msgstr "Lista de _juegos"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:8
 msgid "_Include games you've already played in list of games to print"
-msgstr ""
+msgstr "_Incluir juegos que ya ha jugado en la lista de juegos que imprimir"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:9
 msgid "_Label games with difficulty and name."
-msgstr ""
+msgstr "_Etiquetar juegos con dificultad y nombre"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:10
 msgid "_Mark games as played once you've printed them."
-msgstr ""
+msgstr "_Marcar juegos como jugados una vez que los ha impreso."
 
 #: ../gnome-sudoku/glade/print_games.glade.h:11
 msgid "_Minimum Difficulty"
-msgstr ""
+msgstr "Dificultad _mínima"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:12
-#, fuzzy
 msgid "_Number of sudoku to print: "
-msgstr "_Número de minas:"
+msgstr "_Número de sudokus que imprimir:"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:13
 msgid "_Sudokus per page: "
-msgstr ""
+msgstr "_Sudokus por página:"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:1
 msgid "<i><u>Number of Puzzles</u></i>"
-msgstr ""
+msgstr "<i><u>Número de puzzles</u></i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:2
 msgid "<i>Easy:</i>"
-msgstr ""
+msgstr "<i>Fácil:</i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:3
 msgid "<i>Hard:</i>"
-msgstr ""
+msgstr "<i>Difícil:</i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:4
-#, fuzzy
 msgid "<i>Medium:</i>"
-msgstr "Mediano"
+msgstr "<i>Medio:</i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:5
 msgid "<i>_Very Hard:</i>"
-msgstr ""
+msgstr "<i>_Muy difícil:</i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:6
 msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">Generador de puzzles</span>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:7
 msgid "Criteria:"
-msgstr ""
+msgstr "Criterio:"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:8
-#, fuzzy
 msgid "Generate Policy"
-msgstr "General"
+msgstr "Generar normas"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:9
 msgid "Generate until _reaching target"
-msgstr ""
+msgstr "Generar hasta _llegar al número final"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:10
 msgid "Puzzle Generator"
-msgstr ""
+msgstr "Generador de puzzles"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:11
 msgid "Target _number of sudokus:"
-msgstr ""
+msgstr "_Numero final de sudokus:"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:12
 #: ../gnome-sudoku/src/lib/sudoku.py:598
-#, fuzzy
 msgid "Very Hard"
 msgstr "Muy difícil"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:13
-#, fuzzy
 msgid "_Easy"
-msgstr "Fácil"
+msgstr "_Fácil"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:14
-#, fuzzy
 msgid "_Generate"
-msgstr "General"
+msgstr "_Generar"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:15
 msgid "_Generate new puzzles until stopped"
-msgstr ""
+msgstr "_Generar puzzles nuevos hasta parar"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:16
-#, fuzzy
 msgid "_Hard"
-msgstr "Difícil"
+msgstr "_Difícil"
 
 #: ../gnome-sudoku/glade/tracker.glade.h:1
 msgid "Clear _Others"
-msgstr ""
+msgstr "Limpiar _otros"
 
 #: ../gnome-sudoku/glade/tracker.glade.h:2
 msgid "_Add Tracker"
@@ -5520,33 +5471,32 @@ msgstr ""
 #: ../gnome-sudoku/src/lib/game_selector.py:193
 #: ../gnome-sudoku/src/lib/game_selector.py:290
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:726
-#, fuzzy
 msgid "Puzzle"
-msgstr "Siguiente juego"
+msgstr "Puzzle"
 
 #: ../gnome-sudoku/src/lib/defaults.py.in:13
 msgid "GNOME Sudoku"
-msgstr ""
+msgstr "GNOME Sudoku"
 
 #: ../gnome-sudoku/src/lib/defaults.py.in:14
 msgid "Copyright (c) 2005,2006, Thomas M. Hinkle. GNU GPL"
-msgstr ""
+msgstr "Copyright © 2005,2006, Thomas M. Hinkle. GNU GPL"
 
 #: ../gnome-sudoku/src/lib/defaults.py.in:15
 msgid ""
 "GNOME Sudoku is a simple sudoku generator and player.  Sudoku is a japanese "
 "logic puzzle."
-msgstr ""
+msgstr "GNOME Sudoku es un generador sencillo y juego de sudokus. Sudoku es un puzzle lógico japonés"
 
 #: ../gnome-sudoku/src/lib/printing.py:203
 msgid "Print Sudoku"
 msgid_plural "Print Sudokus"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Imprimir Sudoku"
+msgstr[1] "Imprimir Sudokus"
 
 #: ../gnome-sudoku/src/lib/printing.py:216
 msgid "Print Preview"
-msgstr ""
+msgstr "Vista previa de impresión"
 
 #. now we enumerate some details...
 #: ../gnome-sudoku/src/lib/game_selector.py:88
@@ -5563,24 +5513,23 @@ msgstr ""
 
 #: ../gnome-sudoku/src/lib/game_selector.py:94
 msgid "Difficulty value: "
-msgstr ""
+msgstr "Valor de dificultad: "
 
 #: ../gnome-sudoku/src/lib/game_selector.py:109
 #: ../gnome-sudoku/src/lib/game_selector.py:139
 #: ../gnome-sudoku/src/lib/game_selector.py:291
 msgid "Difficulty"
-msgstr ""
+msgstr "Dificultad"
 
 #. position
 #: ../gnome-sudoku/src/lib/game_selector.py:143
-#, fuzzy
 msgid "Started"
-msgstr "_Iniciar el juego"
+msgstr "Iniciado"
 
 #. position
 #: ../gnome-sudoku/src/lib/game_selector.py:149
 msgid "Last Played"
-msgstr ""
+msgstr "Último jugado"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:154
 #: ../libgames-support/games-dlg-players.c:212
@@ -5590,17 +5539,17 @@ msgstr "Estado"
 #: ../gnome-sudoku/src/lib/game_selector.py:181
 #, python-format
 msgid "Printed %s ago"
-msgstr ""
+msgstr "Impreso hace %s"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:190
-#, fuzzy, python-format
+#, python-format
 msgid "Played for %s"
-msgstr "Jugadores"
+msgstr "Jugado durante %s"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:214
 #, python-format
 msgid "%s ago"
-msgstr ""
+msgstr "hace %s"
 
 #. Note that this assumes the default style is plain.
 #: ../gnome-sudoku/src/lib/game_selector.py:246
@@ -5610,61 +5559,55 @@ msgid "Score"
 msgstr "Puntuación"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:249
-#, fuzzy
 msgid "Date"
-msgstr "Rotar"
+msgstr "Fecha"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:297
-#, fuzzy
 msgid "Hints"
-msgstr "_Sugerencia"
+msgstr "Pistas"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:298
-#, fuzzy
 msgid "Warnings about unfillable squares"
-msgstr "Advertir acerca de demasiadas banderas"
+msgstr "Advertencias de cuadrados no rellenables"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:300
 msgid "Auto-fills"
-msgstr ""
+msgstr "Autorellenables"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:301
-#, fuzzy
 msgid "Finished in"
-msgstr "_Terminar"
+msgstr "Terminado en"
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:88
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:99
-#, fuzzy
 msgid "Working..."
 msgstr "Pensando..."
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "%s puzzle"
 msgid_plural "%s puzzles"
-msgstr[0] "Siguiente juego"
-msgstr[1] "Siguiente juego"
+msgstr[0] "%s puzzle"
+msgstr[1] "%s puzzles"
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:181
-#, fuzzy
 msgid "Stopped"
-msgstr "Velocidad"
+msgstr "Parado"
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:196
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:206
 #, python-format
 msgid "Generated %(n)s out of %(total)s puzzle"
 msgid_plural "Generated %(n)s out of %(total)s puzzles"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Generatdos %(n)s de %(total)s puzzle"
+msgstr[1] "Generatdos %(n)s de %(total)s puzzles"
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:214
-#, fuzzy, python-format
+#, python-format
 msgid "Generated %s puzzle"
 msgid_plural "Generated %s puzzles"
-msgstr[0] "Pennant Puzzle"
-msgstr[1] "Pennant Puzzle"
+msgstr[0] "Generado %s puzzle"
+msgstr[1] "Generados %s puzzles"
 
 #: ../gnome-sudoku/src/lib/sudoku.py:599
 msgid "Hard"
@@ -5686,66 +5629,65 @@ msgstr "_Pausa"
 
 #. setup stop button
 #: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:337
-#, fuzzy
 msgid "_Stop"
-msgstr "Ajustes"
+msgstr "_Parar"
 
 #: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:354
 msgid "Do you really want to do this"
-msgstr ""
+msgstr "¿Seguro que quiere hacer esto?"
 
 #: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:388
 msgid "Don't ask me this again."
-msgstr ""
+msgstr "No preguntarme de nuevo."
 
 #: ../gnome-sudoku/src/lib/timer.py:12
 #, python-format
 msgid "%s year"
 msgid_plural "%s years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s año"
+msgstr[1] "%s años"
 
 #: ../gnome-sudoku/src/lib/timer.py:14
-#, fuzzy, python-format
+#, python-format
 msgid "%s month"
 msgid_plural "%s months"
-msgstr[0] "%d punto"
-msgstr[1] "%d puntos"
+msgstr[0] "%s mes"
+msgstr[1] "%s meses"
 
 #: ../gnome-sudoku/src/lib/timer.py:16
 #, python-format
 msgid "%s week"
 msgid_plural "%s weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s semana"
+msgstr[1] "%s semanas"
 
 #: ../gnome-sudoku/src/lib/timer.py:18
 #, python-format
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s día"
+msgstr[1] "%s días"
 
 #: ../gnome-sudoku/src/lib/timer.py:20
 #, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s hora"
+msgstr[1] "%s horas"
 
 #: ../gnome-sudoku/src/lib/timer.py:22
 #, python-format
 msgid "%s minute"
 msgid_plural "%s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s minuto"
+msgstr[1] "%s minutos"
 
 #: ../gnome-sudoku/src/lib/timer.py:24
-#, fuzzy, python-format
+#, python-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] "Mi segundo día"
-msgstr[1] "Mi segundo día"
+msgstr[0] "%s segundo"
+msgstr[1] "%s segundos"
 
 #. Translators... this is a messay way of concatenating
 #. lists. In English we do lists this way: 1, 2, 3, 4, 5
@@ -5754,83 +5696,73 @@ msgstr[1] "Mi segundo día"
 #. ands or spaces or whatever you like by translating both
 #. ", " and " and " with the same string.
 #: ../gnome-sudoku/src/lib/timer.py:42 ../gnome-sudoku/src/lib/timer.py:44
-#, fuzzy
 msgid " and "
-msgstr "Plantarse"
+msgstr " y "
 
 #: ../gnome-sudoku/src/lib/timer.py:42
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #. then we're today
 #: ../gnome-sudoku/src/lib/timer.py:54
-#, fuzzy
 msgid "Today"
-msgstr "Total"
+msgstr "Hoy"
 
 #: ../gnome-sudoku/src/lib/timer.py:56
 msgid "Yesterday"
-msgstr ""
+msgstr "Ayer"
 
 #: ../gnome-sudoku/src/lib/gsudoku.py:78
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:246
-#, fuzzy
 msgid "_Clear"
-msgstr "Cleopatra"
+msgstr "_Limpiar"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:25
-#, fuzzy
 msgid "Track moves"
-msgstr "Movimientos rápidos"
+msgstr "Seguir movimientos"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:31
-#, fuzzy
 msgid "Full Screen"
-msgstr "_Pantalla completa"
+msgstr "Pantalla completa"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:156
-#, fuzzy
 msgid "New game"
-msgstr "Nuevo juego"
+msgstr "Partida nueva"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:158
-#, fuzzy
 msgid "Print current game"
-msgstr "Finalizar el juego actual"
+msgstr "Imprimir partida actual"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:159
 msgid "Print _Multiple Sudokus"
-msgstr ""
+msgstr "Imprimir _múltiples sudokus"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:160
 msgid "Print more than one sudoku at a time."
-msgstr ""
+msgstr "Imprimir más de un sudoku al tiempo."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:164
 msgid "Close Sudoku (save game for later)"
-msgstr ""
+msgstr "Cerrar Sudoku (guardar partida para más tarde)"
 
 #. ('Save',gtk.STOCK_SAVE,_('_Save'),
 #. '<Control>s','Save game to play later.',
 #. self.save_game),
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:168
-#, fuzzy
 msgid "_Enter custom game"
-msgstr "Finalizar el juego actual"
+msgstr "_Entrar partida personalizada"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:169
 msgid "Enter new puzzle by hand (use this to copy a puzzle from another source)."
 msgstr ""
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:171
-#, fuzzy
 msgid "_Resume old game"
-msgstr "Reiniciar el juego pausado"
+msgstr "_Continuar una partida antigua"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:172
-#, fuzzy
 msgid "Resume a previous saved game."
-msgstr "Reiniciar el juego pausado"
+msgstr "Continua una partida anteriormente guardada."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:176
 #: ../libgames-support/games-stock.c:53
@@ -5839,32 +5771,31 @@ msgstr "_Sugerencia"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:178
 msgid "Show which numbers could go in the current square."
-msgstr ""
+msgstr "Muestra qué números podrían ir en el cuadrado actual."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:180
 msgid "_Fill"
-msgstr ""
+msgstr "_Rellenar"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:181
 msgid "Automatically fill in the current square if possible."
-msgstr ""
+msgstr "Rellenar automáticamente el cuadrado actual si es posible."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:183
 msgid "Fill _all squares"
-msgstr ""
+msgstr "Rellenar _todos los cuadrados"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:184
 msgid "Automatically fill in all squares for which there is only one valid value."
-msgstr ""
+msgstr "Rellenar automáticamente todos los cuadrados para los que sólo hay un valor válido."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:194
-#, fuzzy
 msgid "Puzzle _Statistics"
-msgstr "Estadísticas"
+msgstr "Estadísticas de _puzzle"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:195
 msgid "Show statistics about current puzzle"
-msgstr ""
+msgstr "Muestra las estadísticas acerca del puzzle actual"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:201
 #: ../libgames-support/games-stock.c:58
@@ -5872,25 +5803,24 @@ msgid "_Contents"
 msgstr "_Contenido"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:203
-#, fuzzy
 msgid "High _Scores"
-msgstr "_Puntuación"
+msgstr "Puntuaciones _altas"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:204
 msgid "Show high scores or replay old games."
-msgstr ""
+msgstr "Muestra puntuaciones altas o volver a jugar partidas antiguas."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:210
 msgid "_Always show hint"
-msgstr ""
+msgstr "_Siempre mostrar sugerencia"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:212
 msgid "Always show possible numbers in a square"
-msgstr ""
+msgstr "Mostrar siempre los números posibles en un cuadrado"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:216
 msgid "Warn about _unfillable squares"
-msgstr ""
+msgstr "Advertir acerca de cuadros no _rellenables"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:218
 msgid "Warn about squares made unfillable by a move"
@@ -5898,7 +5828,7 @@ msgstr ""
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:220
 msgid "_Track additions"
-msgstr ""
+msgstr "_Seguir adiciones"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:222
 msgid "Mark new additions in a separate color so you can keep track of them."
@@ -5908,16 +5838,14 @@ msgstr ""
 #. None,_('Automatically change the size of numbers and squares to fit the window.'),
 #. ),
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:227
-#, fuzzy
 msgid "Show _Toolbar"
-msgstr "Mostrar la barra de herramientas"
+msgstr "Mostrar la _barra de herramientas"
 
 #. ('ToggleNotes',None,_('Show _Notes'),'<Control>O',
 #. _('Include room for notes at the top and bottom of squares.'),self.toggle_notes_cb),
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:230
-#, fuzzy
 msgid "_Black background"
-msgstr "Color de _fondo:"
+msgstr "Fondo _negro"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:231
 msgid ""
@@ -5927,11 +5855,11 @@ msgstr ""
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:233
 msgid "_Highlighter"
-msgstr ""
+msgstr "_Resaltador"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:234
 msgid "Highlight the current row, column and box"
-msgstr ""
+msgstr "Resaltar la columna, fila y caja actual"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:235
 msgid "Generate new puzzles _while you play"
@@ -5944,79 +5872,72 @@ msgid ""
 msgstr ""
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:244
-#, fuzzy
 msgid "_Undo"
-msgstr "_Deshacer movimiento"
+msgstr "_Deshacer"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:244
-#, fuzzy
 msgid "Undo last action"
-msgstr "Anular el último movimiento"
+msgstr "Deshace la última acción"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
-#, fuzzy
 msgid "_Redo"
-msgstr "Rojo"
+msgstr "_Rehacer"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
-#, fuzzy
 msgid "Redo last action"
-msgstr "Rehacer el último movimiento"
+msgstr "Rehace la última acción"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:246
 msgid "Clear entries you've filled in"
-msgstr ""
+msgstr "Limpiar entradas introducidas por usted"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:247
 msgid "Clear _Notes"
-msgstr ""
+msgstr "Limpiar _notas"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:247
 msgid "Clear notes and hints"
-msgstr ""
+msgstr "Limpia notas y sugerencias"
 
 #. Trackers...
 #. Our initial row...
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:814
-#, fuzzy
 msgid "No Tracker"
-msgstr "Sin tecla"
+msgstr "Sin seguimiento"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:250
 msgid "_Generate new puzzles"
-msgstr ""
+msgstr "_Generar puzzles nuevos"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:250
 msgid "Generate new puzzles."
-msgstr ""
+msgstr "Genera puzzles nuevos."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:296
 msgid "Entering custom grid..."
-msgstr ""
+msgstr "Introduciendo rejilla personalizada..."
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:300
-#, fuzzy
 msgid "_Play game"
-msgstr "Nombres de los jugadores"
+msgstr "_Jugar partida"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:665
-#, fuzzy
 msgid "Playing "
-msgstr "Plano"
+msgstr "Jugando "
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:706
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:729
 msgid "Puzzle Information"
-msgstr ""
+msgstr "Información del puzzle"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:707
 msgid "There is no current puzzle."
-msgstr ""
+msgstr "No hay puzzle actual"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:712
 msgid "Calculated difficulty: "
-msgstr ""
+msgstr "Dificultad calculada: "
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:716
 msgid "Number of moves instantly fillable by elimination: "
@@ -6031,14 +5952,14 @@ msgid "Amount of trial-and-error required to solve: "
 msgstr ""
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:730
-#, fuzzy, python-format
+#, python-format
 msgid "Statistics for %s"
-msgstr "Estadísticas"
+msgstr "Estadísticas para %s"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:759
-#, fuzzy
 msgid "translator_credits"
 msgstr ""
+"Francisco Javier F. Serrador <serrador@openshine.com>\n"
 "Lucas Vieites <lucas@asixinformatica.com>, 2002-2006\n"
 "Germán Poo Caamaño <gpoo@ubiobio.cl>\n"
 "Pablo Saratxaga <pablo@mandrakesoft.com>"
@@ -6049,7 +5970,7 @@ msgstr ""
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:828
 msgid "_Clear Others"
-msgstr ""
+msgstr "_Limpiar otros"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:830
 msgid "Clear all moves not tracked by selected tracker."
@@ -6058,7 +5979,7 @@ msgstr ""
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:856
 #, python-format
 msgid "Tracker %s"
-msgstr ""
+msgstr "Seguimiento %s"
 
 #: ../gnomine/gnomine.c:89 ../gnomine/gnomine.c:671
 msgid "gnomine|Medium"
@@ -6110,7 +6031,7 @@ msgstr "Caras:"
 
 #: ../gnomine/gnomine.c:447
 msgid "Graphics:"
-msgstr "Tema gráfico:"
+msgstr "Gráficos:"
 
 #: ../gnomine/gnomine.c:457 ../gnomine/gnomine.c:460 ../gnomine/gnomine.c:1042
 #: ../gnomine/gnomine.desktop.in.h:2
@@ -6201,21 +6122,20 @@ msgid "Clear hidden mines from a minefield"
 msgstr "Limpie de minas el campo minado"
 
 #: ../gnomine/gnomine.schemas.in.h:1
-#, fuzzy
 msgid "Board size"
 msgstr "Tamaño del tablero"
 
 #: ../gnomine/gnomine.schemas.in.h:2
 msgid "Enable automatic placing of flags"
-msgstr ""
+msgstr "Activar situación automática de banderas"
 
 #: ../gnomine/gnomine.schemas.in.h:3
 msgid "Number of columns in a custom game"
-msgstr ""
+msgstr "Número de columnas en una partida personalizada"
 
 #: ../gnomine/gnomine.schemas.in.h:4
 msgid "Number of rows in a custom game"
-msgstr ""
+msgstr "Número de filas en una partida personalizada"
 
 #: ../gnomine/gnomine.schemas.in.h:5
 msgid "Set to true to be able to mark squares as unknown."
@@ -6234,9 +6154,8 @@ msgid ""
 msgstr ""
 
 #: ../gnomine/gnomine.schemas.in.h:9
-#, fuzzy
 msgid "The height of the playing window in pixels."
-msgstr "La altura de la ventana principal pedida, en píxeles."
+msgstr "La altura de la ventana de juego en píxeles."
 
 #: ../gnomine/gnomine.schemas.in.h:10 ../gnotravex/gnotravex.schemas.in.h:6
 #: ../gnotski/gnotski.schemas.in.h:1 ../mahjongg/mahjongg.schemas.in.h:1
@@ -6244,14 +6163,12 @@ msgid "The height of the window"
 msgstr "La altura de la ventana"
 
 #: ../gnomine/gnomine.schemas.in.h:11
-#, fuzzy
 msgid "The number of mines in a custom game"
-msgstr "La cantidad de líneas que se rellenarán"
+msgstr "La cantidad de minas en un juego personalizado"
 
 #: ../gnomine/gnomine.schemas.in.h:12
-#, fuzzy
 msgid "The width of the playing window in pixels."
-msgstr "La anchura de la ventana principal pedida, en píxeles."
+msgstr "La anchura de la ventana de juego en píxeles."
 
 #: ../gnomine/gnomine.schemas.in.h:13 ../gnotravex/gnotravex.schemas.in.h:10
 #: ../gnotski/gnotski.schemas.in.h:6 ../mahjongg/mahjongg.schemas.in.h:4
@@ -6436,9 +6353,8 @@ msgid "Play on a 6×6 board"
 msgstr "Jugar con un tablero de 6x6"
 
 #: ../gnotravex/gnotravex.c:327
-#, fuzzy
 msgid "Tile _Colours"
-msgstr "Colores"
+msgstr "Colores de _baldosas"
 
 #: ../gnotravex/gnotravex.c:380
 msgid "Size of board (2-6)"
@@ -6487,20 +6403,18 @@ msgstr "Tetravex"
 
 #: ../gnotravex/gnotravex.schemas.in.h:1
 msgid "A flag to enable coloured tiles."
-msgstr ""
+msgstr "Una bandera para activar baldosas coloreadas."
 
 #: ../gnotravex/gnotravex.schemas.in.h:2
-#, fuzzy
 msgid "Control coloured tiles"
-msgstr "No se pudo cargar el conjunto de fichas"
+msgstr "Control de baldosas coloreadas"
 
 #: ../gnotravex/gnotravex.schemas.in.h:4
-#, fuzzy
 msgid ""
 "Select whether to drag the tiles or to click on the source then the "
 "destination."
 msgstr ""
-"Seleccione entre arrastrar las cartas o pulsar en el origen y después en el "
+"Seleccione entre arrastrar las baldosas o pulsar en el origen y después en el "
 "destino."
 
 #: ../gnotravex/gnotravex.schemas.in.h:5
@@ -6871,7 +6785,6 @@ msgid "Number of human opponents"
 msgstr "Cantidad de oponentes humanos"
 
 #: ../gtali/gyahtzee.c:125
-#, fuzzy
 msgid "Roll all!"
 msgstr "Lanzar"
 
@@ -6884,9 +6797,8 @@ msgid "The game is a draw!"
 msgstr "El juego ha resultado en empate."
 
 #: ../gtali/gyahtzee.c:179 ../gtali/gyahtzee.c:523
-#, fuzzy
 msgid "Tali Scores"
-msgstr "Puntuación"
+msgstr "Puntuación de Tali"
 
 #: ../gtali/gyahtzee.c:197
 #, c-format
@@ -7063,23 +6975,20 @@ msgid "Total"
 msgstr "Total"
 
 #: ../iagno/gnothello.c:134
-#, fuzzy
 msgid "Net_work Game"
-msgstr "Nuevo juego de _red"
+msgstr "Partida en _red"
 
 #: ../iagno/gnothello.c:140
-#, fuzzy
 msgid "_Player list"
-msgstr "Jugadores"
+msgstr "_Lista de jugadores"
 
 #: ../iagno/gnothello.c:142
 msgid "_Chat Window"
-msgstr ""
+msgstr "_Ventana de charla"
 
 #: ../iagno/gnothello.c:146
-#, fuzzy
 msgid "_Leave Game"
-msgstr "Juego _nuevo"
+msgstr "_Abandonar el juego"
 
 #: ../iagno/gnothello.c:295 ../iagno/gnothello.c:299 ../iagno/gnothello.c:634
 #: ../iagno/iagno.desktop.in.h:2 ../iagno/iagno.soundlist.in.h:2
@@ -7091,9 +7000,8 @@ msgid "A disk flipping game derived from Reversi."
 msgstr "Un juego de voltear fichas derivado de Reversi."
 
 #: ../iagno/gnothello.c:382
-#, fuzzy
 msgid "Invalid move."
-msgstr "Ese movimiento no es válido"
+msgstr "Movimiento no válido"
 
 #: ../iagno/gnothello.c:675
 msgid "Dark:"
@@ -7114,16 +7022,16 @@ msgstr "%.2d"
 
 #: ../iagno/gnothello.c:740
 msgid "It is your turn to place a dark piece"
-msgstr ""
+msgstr "Es su turno para colocar una pieza oscura"
 
 #: ../iagno/gnothello.c:742
 msgid "It is your turn to place a light piece"
-msgstr ""
+msgstr "Es su turno para colocar una pieza clara"
 
 #: ../iagno/gnothello.c:745
 #, c-format
 msgid "Waiting for %s to move"
-msgstr ""
+msgstr "Esperando a que %s mueva"
 
 #: ../iagno/gnothello.c:752
 msgid "Dark's move"
@@ -7209,73 +7117,65 @@ msgstr "Juego de _fichas:"
 #. * Create outer window.
 #.
 #: ../libgames-support/games-dlg-chat.c:178
-#, fuzzy
 msgid "Player Chat"
-msgstr "Nombres de los jugadores"
+msgstr "Charla de jugadores"
 
 #: ../libgames-support/games-dlg-players.c:118
 msgid "Occupied"
-msgstr ""
+msgstr "Ocupado"
 
 #: ../libgames-support/games-dlg-players.c:122
 msgid "Empty"
-msgstr ""
+msgstr "Vacío"
 
 #: ../libgames-support/games-dlg-players.c:130
-#, fuzzy
 msgid "Reserved"
-msgstr "Queda en reserva:"
+msgstr "Reservado"
 
 #: ../libgames-support/games-dlg-players.c:134
 msgid "Abandoned"
-msgstr ""
+msgstr "Abandonado"
 
 #: ../libgames-support/games-dlg-players.c:138
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: ../libgames-support/games-dlg-players.c:168
-#, fuzzy
 msgid "Spectator"
-msgstr "Elevador"
+msgstr "Espectador"
 
 #: ../libgames-support/games-dlg-players.c:205
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: ../libgames-support/games-dlg-players.c:278
-#, fuzzy
 msgid "List of players:"
-msgstr "Esperar a los robots"
+msgstr "Lista de jugadores:"
 
 #. FIXME: you shouldn't be able to boot yourself
 #: ../libgames-support/games-dlg-players.c:435
 msgid "Boot player"
-msgstr ""
+msgstr "Expulsar jugador"
 
 #: ../libgames-support/games-dlg-players.c:453
-#, fuzzy
 msgid "Sit here"
-msgstr "tres"
+msgstr "Sentarse aquí"
 
 #: ../libgames-support/games-dlg-players.c:455
-#, fuzzy
 msgid "Move here"
-msgstr "Mover izquierda"
+msgstr "Mover aquí"
 
 #: ../libgames-support/games-dlg-players.c:471
 msgid "Play with bot"
-msgstr ""
+msgstr "Jugar con robot"
 
 #: ../libgames-support/games-dlg-players.c:485
-#, fuzzy
 msgid "Drop reservation"
-msgstr "Operación"
+msgstr "Quitar reserva"
 
 #: ../libgames-support/games-dlg-players.c:487
-#, fuzzy
 msgid "Remove bot"
-msgstr "Elimine los ases"
+msgstr "Quitar bot"
 
 #: ../libgames-support/games-card-selector.c:56
 msgid "Card Style"
@@ -7379,23 +7279,20 @@ msgid "_New"
 msgstr "_Nuevo"
 
 #: ../libgames-support/games-stock.c:42
-#, fuzzy
 msgid "Network _Game"
-msgstr "Nuevo juego de red"
+msgstr "_Partida en red"
 
 #: ../libgames-support/games-stock.c:44
-#, fuzzy
 msgid "L_eave Game"
-msgstr "Juego _nuevo"
+msgstr "_Dejar partida"
 
 #: ../libgames-support/games-stock.c:45
-#, fuzzy
 msgid "Player _List"
-msgstr "Jugadores"
+msgstr "_Lista de jugadores"
 
 #: ../libgames-support/games-stock.c:47
 msgid "Res_ume"
-msgstr "Rei_niciar"
+msgstr "C_ontinuar"
 
 #. i18n: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
 #: ../libgames-support/games-stock.c:49
@@ -7419,17 +7316,16 @@ msgid "_Leave Fullscreen"
 msgstr "Abandobnar _pantalla completa"
 
 #: ../libgames-support/games-stock.c:111
-#, fuzzy
 msgid "Start a new multiplayer network game"
-msgstr "Iniciar un juego nuevo"
+msgstr "Iniciar una partida multijugador en red"
 
 #: ../libgames-support/games-stock.c:113
 msgid "End the current network game and return to network server"
-msgstr ""
+msgstr "Terminar la partida de red actual y volver al servidor de red"
 
 #: ../libgames-support/games-stock.c:114
 msgid "Show a list of players in the network game"
-msgstr ""
+msgstr "Mostrar una lista de jugadores en la partida de red"
 
 #: ../libgames-support/games-stock.c:115 ../mahjongg/mahjongg.c:1310
 msgid "Pause the game"
@@ -7718,38 +7614,35 @@ msgstr "Fácil"
 #.
 #: ../mahjongg/translatable_game_names.h:6
 msgid "The Ziggurat"
-msgstr ""
+msgstr "El Zigurat"
 
 #: ../mahjongg/translatable_game_names.h:7
-#, fuzzy
 msgid "Four Bridges"
-msgstr "Fortaleza"
+msgstr "Cuatro puentes"
 
 #: ../mahjongg/translatable_game_names.h:8
-#, fuzzy
 msgid "Cloud"
-msgstr "Reloj"
+msgstr "Nube"
 
 #: ../mahjongg/translatable_game_names.h:9
 msgid "Tic-Tac-Toe"
-msgstr ""
+msgstr "Tic-Tac-Toe"
 
 #: ../mahjongg/translatable_game_names.h:10
-#, fuzzy
 msgid "Red Dragon"
-msgstr "Red Donkey"
+msgstr "Dragón rojo"
 
 #: ../mahjongg/translatable_game_names.h:11
 msgid "Pyramid's Walls"
-msgstr ""
+msgstr "Muro de la pirámide"
 
 #: ../mahjongg/translatable_game_names.h:12
 msgid "Confounding Cross"
-msgstr ""
+msgstr "Cruce confuso"
 
 #: ../mahjongg/translatable_game_names.h:13
 msgid "Difficult"
-msgstr ""
+msgstr "Dificultad"
 
 #. FIXME: This is long enough to resize the window upwards when
 #. * the game finishes.
