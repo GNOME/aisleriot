@@ -131,9 +131,6 @@ LIB_GGZDMOD="$LIB_GGZ \$(top_builddir)/dependencies/ggzdmod/libggzdmod.la"
 AC_SUBST(LIB_GGZDMOD)
 AM_CONDITIONAL(INSTALL_GGZDMOD, false)
 
-AC_DEFINE(GGZ_SERVER, 0, [Server support for GGZ])
-AM_CONDITIONAL(GGZ_SERVER, false)
-
 GGZMOD_INCLUDES="-I\$(top_srcdir)/dependencies/ggzmod"
 AC_SUBST(GGZMOD_INCLUDES)
 GGZMOD_LDFLAGS=""
