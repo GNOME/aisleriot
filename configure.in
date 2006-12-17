@@ -53,6 +53,13 @@ if test "$GUILE_PRESENT" = "yes" ; then
 fi
 AM_CONDITIONAL([HAVE_GUILE], [test "x$GUILE_PRESENT" = xyes])
 
+# Possibly disable the included gnuchess
+AC_ARG_ENABLE(gnuchess, [  --disable-gnuchess      disable included gnuchess for glChess])
+if test "x$enable_gnuchess" != "xno"; then
+ AC_DEFINE(ENABLE_GNUCHESS, 1, [Enable compilation of included GNU Chess as AI chess engine for glChess])
+fi
+AM_CONDITIONAL(ENABLE_GNUCHESS, [test "x$enable_gnuchess" != "xno"])
+
 GNOME_COMPILE_WARNINGS(yes)
 GNOME_CXX_WARNINGS(yes)
 
