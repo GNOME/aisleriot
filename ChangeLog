@@ -1,3 +1,13 @@
+2006-12-26  Danilo Šegan  <danilo@gnome.org>
+
+	Fix #369550: implement gnome-doc-utils support for glchess.
+	Patch based on Andreas Røsdal's patch.
+
+	* .cvsignore: Ignore gnome-doc-utils.make.
+	* Makefile.am (SUBDIRS): Add gnome-doc-utils.make to EXTRA_DIST.
+	* configure.in: Add GNOME_DOC_INIT call, don't generate
+	glchess/help/C/Makefile.
+
 2006-12-23  Callum McKenzie  <callum@spooky-possum.org>
 
 	* README: Added a note about non-GPL licensed artwork.

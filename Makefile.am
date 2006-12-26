@@ -16,12 +16,14 @@ EXTRA_DIST = \
 	HACKING		 \
 	intltool-extract.in \
 	intltool-merge.in    \
-	intltool-update.in
+	intltool-update.in \
+	gnome-doc-utils.make
 
 DISTCLEANFILES = \
 	intltool-extract \
 	intltool-merge \
-	intltool-update
+	intltool-update \
+	gnome-doc-utils.make
 
 gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
 
