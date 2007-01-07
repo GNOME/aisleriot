@@ -16,6 +16,10 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
+(define suits-four #t)
+(define suits-two #f)
+(define suits-one #f)
+
 ;set up the deck
 (set-ace-low)
 
@@ -23,7 +27,22 @@
 (define foundation '(1 2 3 4 5 6 7 8))
 (define tableau '(9 10 11 12 13 14 15 16 17 18))
 (define initial-deal '(9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 10 11 12 13 14 15 16 17 18 9 12 15 18))
-(define make-deck make-standard-double-deck)
+(define (make-deck)
+  (cond
+    (suits-one (set! DECK (append (make-standard-deck-list-ace-low ace spade)
+		     (make-standard-deck-list-ace-low ace spade) 
+		     (make-standard-deck-list-ace-low ace spade) 
+		     (make-standard-deck-list-ace-low ace spade) 
+		     (make-standard-deck-list-ace-low ace spade) 
+		     (make-standard-deck-list-ace-low ace spade) 
+		     (make-standard-deck-list-ace-low ace spade) 
+		     (make-standard-deck-list-ace-low ace spade))))
+    (suits-two (set! DECK (append (make-standard-deck-list-ace-low ace heart)
+		     (make-standard-deck-list-ace-low ace heart) 
+		     (make-standard-deck-list-ace-low ace heart) 
+		     (make-standard-deck-list-ace-low ace heart))))
+    (else (make-standard-double-deck))))
+
 (define winning-score 96)
 
 (define (new-game)
@@ -249,9 +268,17 @@
 ; this isn't great, but it will get around the premature end-of-game call
       (list 0 (_"Try moving card piles around"))))
 
-(define (get-options) #f)
+(define (get-options)
+  (list 'begin-exclusive 
+	(list (_ "Four Suits") suits-four)
+	(list (_ "Two Suits") suits-two)
+	(list (_ "One Suit") suits-one)
+	'end-exclusive))
 
-(define (apply-options options) #f)
+(define (apply-options options)
+  (set! suits-four (cadr (list-ref options 1)))
+  (set! suits-two (cadr (list-ref options 2)))
+  (set! suits-one (cadr (list-ref options 3))))
 
 (define (timeout) #f)
 

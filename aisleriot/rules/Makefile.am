@@ -65,8 +65,6 @@ rules_DATA  = 			\
 	sir_tommy.scm		\
 	spider.scm		\
 	spiderette.scm		\
-	spider_two_suit.scm 	\
-	spider_one_suit.scm 	\
 	straight_up.scm		\
 	streets_and_alleys.scm	\
 	ten_across.scm  	\
