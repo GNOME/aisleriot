@@ -134,7 +134,7 @@ help_about_callback (void)
 			 _("AisleRiot provides a rule-based solitaire\n"
 			   "card engine that allows many different\n"
 			   "games to be played."), "copyright",
-			 "Copyright \xc2\xa9 1998-2006 Jonathan Blandford",
+			 "Copyright \xc2\xa9 1998-2007 Jonathan Blandford",
 			 "license", license, "authors", authors,
 			 "documenters", documenters, "translator_credits",
 			 _("translator-credits"), "logo-icon-name",
