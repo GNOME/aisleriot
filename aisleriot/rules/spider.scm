@@ -270,9 +270,9 @@
 
 (define (get-options)
   (list 'begin-exclusive 
-	(list (_ "Four Suits") suits-four)
-	(list (_ "Two Suits") suits-two)
-	(list (_ "One Suit") suits-one)
+	(list (_"Four Suits") suits-four)
+	(list (_"Two Suits") suits-two)
+	(list (_"One Suit") suits-one)
 	'end-exclusive))
 
 (define (apply-options options)

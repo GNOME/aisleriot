@@ -84,7 +84,7 @@
 )
 
 (define (give-status)
-  (set-statusbar-message (format (_ "Stock remaining: ~a")
+  (set-statusbar-message (format (_"Stock remaining: ~a")
                                  (number->string (length (get-cards stock)))
                          )
   )

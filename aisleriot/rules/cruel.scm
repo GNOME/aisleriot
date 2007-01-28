@@ -148,7 +148,7 @@
 )
 
 (define (give-status)
-  (set-statusbar-message (format (_ "Cards remaining: ~a") 
+  (set-statusbar-message (format (_"Cards remaining: ~a") 
 				 (number->string (- 48 (get-score)))))
                          
 )

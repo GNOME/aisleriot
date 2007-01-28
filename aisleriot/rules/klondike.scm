@@ -252,9 +252,9 @@
 
 (define (get-options)
   (list 'begin-exclusive 
-	(list (_ "Three card deals") deal-three)
-	(list (_ "Single card deals") deal-one)
-	(list (_ "No redeals") no-redeal)
+	(list (_"Three card deals") deal-three)
+	(list (_"Single card deals") deal-one)
+	(list (_"No redeals") no-redeal)
 	'end-exclusive))
 
 (define (apply-options options)
