@@ -26,8 +26,6 @@ struct _GamesControlsList {
   GtkWidget *view;
 
   GSList *notify_list;
-
-  gboolean dispose_has_run;
 };
 
 struct _GamesControlsListClass {

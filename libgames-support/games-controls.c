@@ -42,29 +42,25 @@ enum {
   N_COLUMNS
 };
 
+G_DEFINE_TYPE (GamesControlsList, games_controls_list, GTK_TYPE_VBOX)
+
 static void
-games_controls_list_dispose (GamesControlsList * list)
+games_controls_list_dispose (GObject *object)
+	
 {
+  GamesControlsList *list = GAMES_CONTROLS_LIST (object);
   GConfClient *client;
   GSList *l;
 
-  if (list->dispose_has_run)
-    return;
-
   client = gconf_client_get_default ();
-  l = list->notify_list;
-  while (l) {
-    gconf_client_notify_remove (client, GPOINTER_TO_INT (l->data));
-    l = l->next;
+  for (l = list->notify_list; l != NULL; l = l->next) {
+    gconf_client_notify_remove (client, GPOINTER_TO_UINT (l->data));
   }
-
-  list->dispose_has_run = TRUE;
-}
-
-static void
-games_controls_list_finalize (GamesControlsList * list)
-{
   g_slist_free (list->notify_list);
+  list->notify_list = NULL;
+  g_object_unref (client);
+
+  G_OBJECT_CLASS (games_controls_list_parent_class)->dispose (object);
 }
 
 static void
@@ -72,8 +68,7 @@ games_controls_list_class_init (GamesControlsListClass * class)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (class);
 
-  oclass->dispose = (GObjectFinalizeFunc) games_controls_list_dispose;
-  oclass->finalize = (GObjectFinalizeFunc) games_controls_list_finalize;
+  oclass->dispose = games_controls_list_dispose;
 }
 
 /*
@@ -254,33 +249,7 @@ games_controls_list_init (GamesControlsList * list)
   g_signal_connect (G_OBJECT (list->view), "button_press_event",
 		    G_CALLBACK (abort_on_button_press_event), list);
 
-  list->dispose_has_run = FALSE;
   list->notify_list = NULL;
-}
-
-GType
-games_controls_list_get_type (void)
-{
-  static GType type = 0;
-
-  if (!type) {
-    static const GTypeInfo info = {
-      sizeof (GamesControlsListClass),
-      (GBaseInitFunc) NULL,
-      (GBaseFinalizeFunc) NULL,
-      (GClassInitFunc) games_controls_list_class_init,
-      (GClassFinalizeFunc) NULL,
-      NULL,
-      sizeof (GamesControlsList),
-      0,
-      (GInstanceInitFunc) games_controls_list_init
-    };
-
-    type =
-      g_type_register_static (GTK_TYPE_VBOX, "GamesControlsList", &info, 0);
-  }
-
-  return type;
 }
 
 GtkWidget *
@@ -392,7 +361,7 @@ games_controls_list_add_control (GamesControlsList * list,
 				 list, NULL, NULL);
 
   list->notify_list =
-    g_slist_prepend (list->notify_list, GINT_TO_POINTER (cid));
+    g_slist_prepend (list->notify_list, GUINT_TO_POINTER (cid));
 
   g_object_unref (G_OBJECT (client));
 }

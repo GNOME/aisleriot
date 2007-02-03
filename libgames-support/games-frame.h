@@ -20,13 +20,9 @@
 #ifndef __GAMES_FRAME_H__
 #define __GAMES_FRAME_H__
 
-
 #include <gtk/gtkframe.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif				/* __cplusplus */
-
+G_BEGIN_DECLS
 
 #define GAMES_TYPE_FRAME            (games_frame_get_type ())
 #define GAMES_FRAME(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_FRAME, GamesFrame))
@@ -58,7 +54,6 @@ extern "C" {
   GtkWidget *games_frame_new (const gchar * label);
   void games_frame_set_label (GamesFrame * frame, const gchar * label);
 
-#ifdef __cplusplus
-}
-#endif				/* __cplusplus */
+G_END_DECLS
+
 #endif				/* __GAMES_FRAME_H__ */

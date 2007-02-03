@@ -49,9 +49,6 @@ static void games_frame_label_widget_notify (GtkFrame * frame);
 static gint games_frame_get_indent (GtkWidget * widget);
 static gint games_frame_get_label_spacing (GtkFrame * frame);
 
-
-static GtkVBoxClass *parent_class = NULL;
-
 G_DEFINE_TYPE (GamesFrame, games_frame, GTK_TYPE_FRAME);
 
 static void
@@ -59,8 +56,6 @@ games_frame_class_init (GamesFrameClass * klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
   GtkFrameClass *frame_class = GTK_FRAME_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   widget_class->size_request = games_frame_size_request;
   widget_class->size_allocate = games_frame_size_allocate;
@@ -201,7 +196,7 @@ static gboolean
 games_frame_expose_event (GtkWidget * widget, GdkEventExpose * event)
 {
   if (GTK_WIDGET_DRAWABLE (widget)) {
-    GtkWidgetClass *widget_class = g_type_class_peek_parent (parent_class);
+    GtkWidgetClass *widget_class = g_type_class_peek_parent (games_frame_parent_class);
 
     return widget_class->expose_event (widget, event);
   }

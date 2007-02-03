@@ -28,6 +28,8 @@
 
 #include "games-files.h"
 
+G_DEFINE_TYPE (GamesFileList, games_file_list, G_TYPE_OBJECT)
+
 /* Remove duplicate names form the list */
 static void
 games_file_list_remove_duplicates (GamesFileList * filelist)
@@ -382,13 +384,17 @@ games_file_list_get_nth (GamesFileList * filelist, gint n)
 }
 
 static void
-games_file_list_finalize (GamesFileList * filelist)
+games_file_list_finalize (GObject *object)
 {
+  GamesFileList * filelist = GAMES_FILE_LIST (object);
+
   /* For simplicity we haven't used the dispose method since we can
    * guarantee that everything this references doesn't reference itself. */
 
   g_list_foreach (filelist->list, (GFunc) g_free, NULL);
   g_list_free (filelist->list);
+
+  G_OBJECT_CLASS (games_file_list_parent_class)->finalize (object);
 }
 
 static void
@@ -396,33 +402,11 @@ games_file_list_class_init (GamesFileListClass * class)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (class);
 
-  oclass->finalize = (GObjectFinalizeFunc) games_file_list_finalize;
+  oclass->finalize = games_file_list_finalize;
 }
 
 static void
 games_file_list_init (GamesFileList * filelist)
 {
   filelist->list = NULL;
-}
-
-GType
-games_file_list_get_type (void)
-{
-  static GType type = 0;
-  static const GTypeInfo info = {
-    sizeof (GamesFileListClass),
-    NULL,
-    NULL,
-    (GClassInitFunc) games_file_list_class_init,
-    NULL,
-    NULL,
-    sizeof (GamesFileList),
-    0,
-    (GInstanceInitFunc) games_file_list_init
-  };
-
-  if (!type)
-    type = g_type_register_static (G_TYPE_OBJECT, "GamesFileList", &info, 0);
-
-  return type;
 }

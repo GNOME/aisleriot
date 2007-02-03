@@ -43,18 +43,24 @@ games_preimage_init (GamesPreimage * preimage)
 }
 
 static void
-games_preimage_finalize (GamesPreimage * preimage)
+games_preimage_finalize (GObject *object)
+	
 {
+  GamesPreimage *preimage = GAMES_PREIMAGE (object);
+
   g_free (preimage->srcbuffer);
   if (preimage->pixbuf != NULL)
     g_object_unref (preimage->pixbuf);
+
+  G_OBJECT_CLASS (games_preimage_parent_class)->finalize (object);
 }
 
 static void
 games_preimage_class_init (GamesPreimageClass * klass)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
-  oclass->finalize = (GObjectFinalizeFunc) games_preimage_finalize;
+
+  oclass->finalize = games_preimage_finalize;
 }
 
 GamesPreimage *
@@ -211,7 +217,7 @@ gboolean
 games_preimage_is_scalable (GamesPreimage * preimage)
 {
   g_return_val_if_fail (preimage != NULL, FALSE);
-  return preimage->scalable;
+  return preimage->scalable != FALSE;
 }
 
 gint

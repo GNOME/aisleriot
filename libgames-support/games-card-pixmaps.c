@@ -153,9 +153,13 @@ games_card_pixmaps_set_theme (GamesCardPixmaps * images, gchar * name)
 }
 
 static void
-games_card_pixmaps_finalize (GamesCardPixmaps * images)
+games_card_pixmaps_finalize (GObject *object)
 {
+  GamesCardPixmaps *images = GAMES_CARD_PIXMAPS (object);
+
   games_card_pixmaps_purge (images);
+
+  G_OBJECT_CLASS (games_card_pixmaps_parent_class)->finalize (object);
 }
 
 static void
@@ -163,7 +167,7 @@ games_card_pixmaps_class_init (GamesCardPixmapsClass * class)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (class);
 
-  oclass->finalize = (GObjectFinalizeFunc) games_card_pixmaps_finalize;
+  oclass->finalize = games_card_pixmaps_finalize;
 }
 
 static void

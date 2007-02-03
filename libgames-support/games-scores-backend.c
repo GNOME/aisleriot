@@ -33,9 +33,15 @@
 G_DEFINE_TYPE (GamesScoresBackend, games_scores_backend, G_TYPE_OBJECT);
 
 static void
-games_scores_backend_finalize (GamesScoresBackend * backend)
+games_scores_backend_finalize (GObject *object)
 {
+  GamesScoresBackend *backend = GAMES_SCORES_BACKEND (object);
+  GamesScoresBackendPrivate *priv = backend->priv;
 
+  g_free (priv->filename);
+  /* FIXME: more to do? */
+
+  G_OBJECT_CLASS (games_scores_backend_parent_class)->finalize (object);
 }
 
 static void
@@ -44,7 +50,7 @@ games_scores_backend_class_init (GamesScoresBackendClass * klass)
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
 
   g_type_class_add_private (klass, sizeof (GamesScoresBackendPrivate));
-  oclass->finalize = (GObjectFinalizeFunc) games_scores_backend_finalize;
+  oclass->finalize = games_scores_backend_finalize;
 }
 
 static void

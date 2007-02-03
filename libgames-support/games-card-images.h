@@ -60,13 +60,14 @@ typedef struct _GamesCardImages {
   gchar *themename;
 
   GamesPreimage *preimage;
-  gboolean prescaled;
 
   GdkPixbuf *source;
   gint subwidth, subheight;
-  gboolean prerendered;
   gboolean *rendered;
   GdkPixbuf **pixbufs;
+
+  guint prescaled : 1; /* preimage */
+  guint prerendered : 1;
 } GamesCardImages;
 
 typedef struct _GamesCardImagesClass {

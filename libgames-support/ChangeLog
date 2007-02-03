@@ -1,3 +1,38 @@
+2007-02-03  Andreas Røsdal  <andreasr@gnome.org>
+
+	* games-files.h
+	* games-controls.h
+	* games-card-selector.c
+	* games-preimage.c
+	* games-frame.c
+	* games-scores-dialog.c
+	* games-clock.c
+	* games-card-selector.h
+	* games-frame.h
+	* games-card-images.c
+	* games-card-images.h
+	* games-scores-backend.c
+	* games-card-pixmaps.c
+	* games-card-pixmaps.h
+	* games-gridframe.c
+	* games-files.c
+	* games-controls.c: Patch from Christian Persch <chpe@gnome.org>, in Bug #403660. 
+	The cleanup consists of the following bugfixes and cleanups:
+
+	Bug fixes:
+	- finalize and dipose MUST chain up to the parent classes handler [everywhere]
+	- int/uint confusion: gconf handler IDs are unsigned [games-controls.c]
+	- leaks reference returned by gconf_client_get_default () [games-controls.c]
+	- fix typecast macros to return the right types [games-card-selector.h,
+	games-card-pixmaps.h]
+
+	Cleanups:
+	- use G_DEFINE_TYPE
+	- combine 2 gboolean's into a bitfield (saves 4 bytes per instance) [games-card-images.h] 
+	- remove useless games_controls_list_finalize handler and do all the work in
+	dispose [games-controls-list.c]
+
+
 2006-12-23  Francisco Javier F. Serrador  <serrador@openshine.com>
 
 	* games-stock.c (games_get_license): Updated FSF snail mail address.

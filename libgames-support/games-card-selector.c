@@ -29,7 +29,13 @@
 
 #include "games-card-selector.h"
 
-static guint signalid = 0;
+enum
+{
+	CHANGED,
+	LAST_SIGNAL
+};
+
+static guint signals[LAST_SIGNAL];
 
 G_DEFINE_TYPE (GamesCardSelector, games_card_selector, GAMES_TYPE_FRAME);
 
@@ -43,7 +49,7 @@ signal_propagator (GtkWidget * widget, GamesCardSelector * selector)
 							    (selector->
 							     combobox)));
 
-  g_signal_emit (selector, signalid, 0, name);
+  g_signal_emit (selector, signals[CHANGED], 0, name);
 }
 
 GtkWidget *
@@ -72,15 +78,18 @@ games_card_selector_new (gchar * current)
   return GTK_WIDGET (selector);
 }
 static void
-games_card_selector_finalize (GamesCardSelector * selector)
+games_card_selector_finalize (GObject *object)
 {
+  GamesCardSelector *selector = GAMES_CARD_SELECTOR (object);
+
   g_object_unref (selector->files);
+
+  G_OBJECT_CLASS (games_card_selector_parent_class)->finalize (object);
 }
 
 static void
 games_card_selector_init (GamesCardSelector * selector)
 {
-
 }
 
 static void
@@ -88,9 +97,9 @@ games_card_selector_class_init (GamesCardSelectorClass * class)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (class);
 
-  oclass->finalize = (GObjectFinalizeFunc) games_card_selector_finalize;
+  oclass->finalize = games_card_selector_finalize;
 
-  signalid =
+  signals[CHANGED] =
     g_signal_new ("changed",
 		  GAMES_TYPE_CARD_SELECTOR,
 		  G_SIGNAL_RUN_FIRST,

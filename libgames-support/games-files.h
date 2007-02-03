@@ -36,6 +36,7 @@ struct _GamesFileListClass {
 };
 
 #define GAMES_FILE_LIST_TYPE (games_file_list_get_type ())
+#define GAMES_FILE_LIST(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_FILE_LIST_TYPE, GamesFileList))
 
 GType games_file_list_get_type (void);
 

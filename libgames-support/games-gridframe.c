@@ -37,6 +37,8 @@ enum {
   PROP_Y_ALIGN
 };
 
+G_DEFINE_TYPE (GamesGridFrame, games_grid_frame,GTK_TYPE_BIN)
+
 void
 games_grid_frame_set (GamesGridFrame * frame, gint newxmult, gint newymult)
 {
@@ -270,30 +272,6 @@ games_grid_frame_init (GamesGridFrame * frame)
 
   frame->xalign = 0.5;
   frame->yalign = 0.5;
-}
-
-GType
-games_grid_frame_get_type (void)
-{
-  static GType type = 0;
-
-  if (!type) {
-    static const GTypeInfo info = {
-      sizeof (GamesGridFrameClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) games_grid_frame_class_init,
-      NULL,
-      NULL,
-      sizeof (GamesGridFrame),
-      0,
-      (GInstanceInitFunc) games_grid_frame_init,
-    };
-
-    type = g_type_register_static (GTK_TYPE_BIN, "GamesGridFrame", &info, 0);
-  }
-
-  return type;
 }
 
 GtkWidget *

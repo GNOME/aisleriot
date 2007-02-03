@@ -12,23 +12,19 @@
 
 #include "games-clock.h"
 
-static GtkLabelClass *parent_class = NULL;
+G_DEFINE_TYPE (GamesClock, games_clock, GTK_TYPE_LABEL)
 
 static void
 games_clock_finalize (GObject * object)
 {
-  GamesClock *clock;
-
-  g_return_if_fail (object && GAMES_IS_CLOCK (object));
-
-  clock = GAMES_CLOCK (object);
+  GamesClock *clock = GAMES_CLOCK (object);
 
   if (clock->timer_id != -1) {
     g_source_remove (clock->timer_id);
     clock->timer_id = -1;
   }
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (games_clock_parent_class)->finalize (object);
 }
 
 static void
@@ -37,41 +33,15 @@ games_clock_class_init (GamesClockClass * klass)
   GObjectClass *object_class = (GObjectClass *) klass;
 
   object_class->finalize = games_clock_finalize;
-
-  parent_class = g_type_class_peek_parent (klass);
 }
 
 static void
-games_clock_instance_init (GamesClock * clock)
+games_clock_init (GamesClock * clock)
 {
   clock->timer_id = -1;
   clock->seconds = 0;
 
   gtk_label_set_text (GTK_LABEL (clock), "00:00:00");
-}
-
-GType
-games_clock_get_type (void)
-{
-  static GType type = 0;
-
-  if (!type) {
-    GTypeInfo info = {
-      sizeof (GamesClockClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) games_clock_class_init,
-      NULL,
-      NULL,
-      sizeof (GamesClock),
-      0,
-      (GInstanceInitFunc) games_clock_instance_init,
-    };
-
-    type = g_type_register_static (GTK_TYPE_LABEL, "GamesClock", &info, 0);
-  }
-
-  return type;
 }
 
 GtkWidget *

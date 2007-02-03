@@ -221,9 +221,13 @@ games_card_images_set_theme (GamesCardImages * images, gchar * name)
 }
 
 static void
-games_card_images_finalize (GamesCardImages * images)
+games_card_images_finalize (GObject *object)
 {
+  GamesCardImages *images = GAMES_CARD_IMAGES (object);
+
   games_card_images_purge (images);
+
+  G_OBJECT_CLASS (games_card_images_parent_class)->finalize (object);
 }
 
 static void
@@ -231,7 +235,7 @@ games_card_images_class_init (GamesCardImagesClass * class)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (class);
 
-  oclass->finalize = (GObjectFinalizeFunc) games_card_images_finalize;
+  oclass->finalize = games_card_images_finalize;
 }
 
 static void
