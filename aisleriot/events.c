@@ -522,7 +522,7 @@ make_cursor (char *data, char *mask_data)
   return cursor;
 }
 
-gint
+gboolean
 configure_event (GtkWidget * widget, GdkEventConfigure * event)
 {
   gint tmptime;
