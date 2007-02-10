@@ -6,6 +6,8 @@ SUBDIRS= \
 
 DIST_SUBDIRS = po dependencies libgames-support $(allgames)
 
+ACLOCAL_AMFLAGS = -I m4
+
 EXTRA_DIST = \
 	gnome-games.spec.in \
 	gnome-games.spec \
@@ -38,3 +40,7 @@ install-data-hook:
 
 # Ignore score files, these *should* be left behind.
 distuninstallcheck_listfiles = find . -type f -print | grep -v '.scores' | grep-v scrollkeeper
+
+DISTCHECK_CONFIGURE_FLAGS = \
+	--disable-scrollkeeper \
+	--disable-schemas-install

@@ -5,9 +5,12 @@
 AC_PREREQ([2.53])
 AC_INIT([gnome-games], [2.17.90],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games])
-AM_INIT_AUTOMAKE
+
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([gnomine/gnomine.c])
 AC_CONFIG_HEADERS([config.h])
+
+AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2])
 AM_MAINTAINER_MODE
 
 # Locate various programs
@@ -22,9 +25,6 @@ AC_PROG_LIBTOOL
 AC_GGZ_PLATFORM
 
 GNOME_DOC_INIT
-
-dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
-AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS")
 
 # See if C++ support is actually there and tell automake about it
 # so we can conditionally compile.
@@ -63,6 +63,7 @@ if test "x$enable_gnuchess" != "xno"; then
 fi
 AM_CONDITIONAL(ENABLE_GNUCHESS, [test "x$enable_gnuchess" != "xno"])
 
+GNOME_COMMON_INIT
 GNOME_COMPILE_WARNINGS(yes)
 GNOME_CXX_WARNINGS(yes)
 
@@ -432,13 +433,11 @@ gnect/data/gnect-client.dsc
 gnect/data/gnect-server.dsc
 gnect/pixmaps/Makefile
 gnect/help/Makefile
-gnect/help/C/Makefile
 gnomine/Makefile
 gnomine/help/Makefile
 gnomine/help/C/Makefile
 same-gnome/Makefile
 same-gnome/help/Makefile
-same-gnome/help/C/Makefile
 mahjongg/Makefile
 mahjongg/help/Makefile
 mahjongg/help/C/Makefile
@@ -462,7 +461,6 @@ gnotski/help/Makefile
 gnotski/help/C/Makefile
 glines/Makefile
 glines/help/Makefile
-glines/help/C/Makefile
 gnometris/Makefile
 gnometris/pix/Makefile
 gnometris/sounds/Makefile
