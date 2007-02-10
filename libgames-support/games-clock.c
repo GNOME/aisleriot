@@ -19,9 +19,9 @@ games_clock_finalize (GObject * object)
 {
   GamesClock *clock = GAMES_CLOCK (object);
 
-  if (clock->timer_id != -1) {
+  if (clock->timer_id != 0) {
     g_source_remove (clock->timer_id);
-    clock->timer_id = -1;
+    clock->timer_id = 0;
   }
 
   G_OBJECT_CLASS (games_clock_parent_class)->finalize (object);
@@ -38,7 +38,7 @@ games_clock_class_init (GamesClockClass * klass)
 static void
 games_clock_init (GamesClock * clock)
 {
-  clock->timer_id = -1;
+  clock->timer_id = 0;
   clock->seconds = 0;
 
   gtk_label_set_text (GTK_LABEL (clock), "00:00:00");
@@ -94,7 +94,7 @@ games_clock_start (GamesClock * clock)
 {
   g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
 
-  if (clock->timer_id != -1)
+  if (clock->timer_id != 0)
     return;
 
   clock->timer_id = g_timeout_add (1000,
@@ -106,11 +106,11 @@ games_clock_stop (GamesClock * clock)
 {
   g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
 
-  if (clock->timer_id == -1)
+  if (clock->timer_id == 0)
     return;
 
   g_source_remove (clock->timer_id);
-  clock->timer_id = -1;
+  clock->timer_id = 0;
   clock->stopped = clock->seconds;
 }
 
