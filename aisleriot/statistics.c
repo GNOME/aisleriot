@@ -61,14 +61,22 @@ locate_current_stats (void)
 {
   /* Get the current stats from the hash table. Create a new 
    * entry if there are no stats. */
-  current_stats = g_hash_table_lookup (stats, game_name);
+  current_stats = g_hash_table_lookup (stats, game_file);
+  /* Previous versions used the localised name as key, so try it as fall-back */
+  if (!current_stats) {
+    current_stats = g_hash_table_lookup (stats, game_name);
+    if (current_stats) {
+      g_hash_table_remove (stats, game_name);
+      g_hash_table_insert (stats, g_strdup (game_file), current_stats);
+    }
+  }
   if (!current_stats) {
     current_stats = g_new (game_stats, 1);
     current_stats->wins = 0;
     current_stats->total = 0;
     current_stats->best = 0;
     current_stats->worst = 0;
-    g_hash_table_insert (stats, g_strdup (game_name), current_stats);
+    g_hash_table_insert (stats, g_strdup (game_file), current_stats);
   }
 }
 
