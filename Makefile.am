@@ -2,9 +2,10 @@ SUBDIRS= \
 	po \
 	dependencies \
 	libgames-support \
+	tests \
 	$(gamelist)
 
-DIST_SUBDIRS = po dependencies libgames-support $(allgames)
+DIST_SUBDIRS = po dependencies libgames-support tests $(allgames)
 
 ACLOCAL_AMFLAGS = -I m4
 
