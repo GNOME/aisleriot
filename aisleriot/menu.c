@@ -508,8 +508,9 @@ load_option_list (SCM options_list)
 }
 
 static void
-option_cb (GtkToggleAction * action, gint n)
+option_cb (GtkToggleAction * action, gpointer n_ptr)
 {
+  gint n = GPOINTER_TO_INT (n_ptr);
   SCM options_list;
   SCM entry;
   gboolean statec;
