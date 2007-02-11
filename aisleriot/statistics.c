@@ -131,7 +131,7 @@ update_statistics_display (void)
 {
   gchar *text;
 
-  if (!statistics_dialog || !GTK_WIDGET_VISIBLE (statistics_dialog))
+  if (!statistics_dialog)
     return;
 
   text = g_strdup_printf ("<b>%s</b>", game_name);
@@ -292,9 +292,10 @@ show_statistics_dialog (void)
     percentage_label = glade_xml_get_widget (dialog, "percentage_label");
     best_label = glade_xml_get_widget (dialog, "best_label");
     worst_label = glade_xml_get_widget (dialog, "worst_label");
-  } else {
-    gtk_window_present (GTK_WINDOW (statistics_dialog));
-  }
+  } 
 
+  gtk_window_set_transient_for (GTK_WINDOW (statistics_dialog), GTK_WINDOW (app));  
   update_statistics_display ();
+
+  gtk_window_present (GTK_WINDOW (statistics_dialog));
 }

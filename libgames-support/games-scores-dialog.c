@@ -154,7 +154,7 @@ static void games_scores_dialog_set_category (GamesScoresDialog *self,
  * Returns: a new widget
  *
  **/
-GtkWidget * games_scores_dialog_new (GamesScores *scores, const gchar *title)
+GtkWidget * games_scores_dialog_new (GtkWindow *parent_window, GamesScores *scores, const gchar *title)
 {
   GamesScoresDialog *dialog = GAMES_SCORES_DIALOG (g_object_new (GAMES_TYPE_SCORES_DIALOG, NULL));
 
@@ -163,6 +163,7 @@ GtkWidget * games_scores_dialog_new (GamesScores *scores, const gchar *title)
   dialog->_priv->preservehilight = FALSE;
 
   gtk_window_set_title (GTK_WINDOW (dialog), title);
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent_window));
 
   games_scores_category_foreach (scores, 
 				 (GamesScoresCategoryForeachFunc) games_scores_dialog_load_categories, 

@@ -65,7 +65,7 @@ typedef struct _GamesScoresDialogClass {
 
 GType games_scores_dialog_get_type (void);
 
-GtkWidget * games_scores_dialog_new (GamesScores *scores, const gchar *title);
+GtkWidget * games_scores_dialog_new (GtkWindow *parent_window, GamesScores *scores, const gchar *title);
 void games_scores_dialog_set_category_description (GamesScoresDialog *self, 
 						   const gchar *description);
 void games_scores_dialog_set_hilight (GamesScoresDialog *self, guint pos);
