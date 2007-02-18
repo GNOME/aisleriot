@@ -1,31 +1,33 @@
 # gnome-games ja.po.
-# Copyright (C) 1998-2006 Free Software Foundation, Inc.
+# Copyright (C) 1998-2007 Free Software Foundation, Inc.
 # Yukihiro Nakai <Nakai@technologist.com>, 1998
 # Akira Higuchi <a-higuti@math.sci.hokudai.ac.jp>, 1999
 # Yuusuke Tahara <tahara@gnome.gr.jp>, 2000
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2002
-# Takeshi Aihana <aihana@gnome.gr.jp>, 2001-2006.
+# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2001-2007.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003
 # Satoru SATOH <ss@gnome.gr.jp>, 2006
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games gnome-2-14\n"
+"Project-Id-Version: gnome-games trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-23 01:24+0100\n"
-"PO-Revision-Date: 2006-10-30 08:26+0900\n"
-"Last-Translator: Satoru SATOH <ss@gnome.gr.jp>\n"
+"POT-Creation-Date: 2007-02-18 12:36+0900\n"
+"PO-Revision-Date: 2007-02-18 12:36+0900\n"
+"Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../aisleriot/aisleriot.schemas.in.h:1
 msgid ""
 "A comma seperated list of recently played games. The filenames are stored "
 "here, not the actual game name."
 msgstr ""
+"最近プレイしたゲームをコンマで区切って並べた文字列です。実際のゲームの名前で"
+"はなく、ゲーム・ファイルの名前を指定して下さい。"
 
 #: ../aisleriot/aisleriot.schemas.in.h:2
 msgid ""
@@ -37,9 +39,8 @@ msgstr ""
 "ワースト・タイム(秒) です。プレイしていない数は示す必要はありません。"
 
 #: ../aisleriot/aisleriot.schemas.in.h:3
-#, fuzzy
 msgid "Recently Played Games"
-msgstr "プレイヤーの名前"
+msgstr "最近プレイしたゲーム"
 
 #: ../aisleriot/aisleriot.schemas.in.h:4 ../gnotravex/gnotravex.schemas.in.h:3
 msgid "Select the style of control"
@@ -108,14 +109,14 @@ msgid "Window width"
 msgstr "ウィンドウの幅"
 
 #: ../aisleriot/cscmi.c:174
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A scheme exception occurred and we were unable to create a temporary file to "
 "report it:\n"
 "\n"
 "%s"
 msgstr ""
-"スキームに例外が発生したので、問題を報告するための作業ファイルを生成できませ"
+"スキームに例外が発生したため、問題を報告するための作業ファイルを生成できませ"
 "んでした:\n"
 "\n"
 "%s"
@@ -128,7 +129,7 @@ msgstr "おめでとうございます！！！"
 msgid "You have won."
 msgstr "あなたの勝ちです。"
 
-#: ../aisleriot/dialog.c:50 ../mahjongg/mahjongg.c:656
+#: ../aisleriot/dialog.c:50 ../mahjongg/mahjongg.c:658
 msgid "There are no more moves."
 msgstr "残念ながら、手詰まりです。"
 
@@ -155,12 +156,12 @@ msgstr "このゲームはまだヒントをサポートしていません。"
 #: ../aisleriot/dialog.c:293 ../aisleriot/dialog.c:299
 #, c-format
 msgid "Move %s onto %s."
-msgstr "%s を %s の上に置きなさい"
+msgstr "%sを%sの上に置きなさい"
 
 #: ../aisleriot/dialog.c:305
 #, c-format
 msgid "Move %s %s."
-msgstr "%s を %s に置きなさい"
+msgstr "%sを%sに移動しなさい"
 
 #: ../aisleriot/dialog.c:307
 msgid ""
@@ -195,7 +196,7 @@ msgstr "フリーセル・ソリティア"
 msgid "Play the popular FreeCell card game"
 msgstr "ポピュラーなフリーセル・カード・ゲームをお楽しみ下さい"
 
-#: ../aisleriot/menu.c:107 ../gnomine/gnomine.c:431 ../mahjongg/mahjongg.c:916
+#: ../aisleriot/menu.c:107 ../gnomine/gnomine.c:431 ../mahjongg/mahjongg.c:918
 msgid "Main game:"
 msgstr "メイン・ゲーム:"
 
@@ -213,19 +214,19 @@ msgid ""
 "card engine that allows many different\n"
 "games to be played."
 msgstr ""
-"AisleRiot はルールベースのソリティアカード\n"
-"エンジンを提供します。このエンジンによっていろいろな種類の\n"
-"ゲームで遊べるようになります。"
+"AisleRiot はいろいろな種類のカード・ゲームを\n"
+"プレイできるソリティア型ゲーム・エンジンを提供します。"
 
 #: ../aisleriot/menu.c:140 ../blackjack/src/menu.cpp:162
-#: ../glines/glines.c:1229 ../gnect/src/main.c:923 ../gnibbles/main.c:248
-#: ../gnobots2/menu.c:266 ../gnometris/tetris.cpp:1454
-#: ../gnomine/gnomine.c:470 ../gnotravex/gnotravex.c:1933
-#: ../gnotski/gnotski.c:1408 ../gtali/gyahtzee.c:536 ../iagno/gnothello.c:306
-#: ../mahjongg/mahjongg.c:955 ../same-gnome/ui.c:127
+#: ../glines/glines.c:1229 ../gnect/src/main.c:924 ../gnibbles/main.c:250
+#: ../gnobots2/menu.c:266 ../gnometris/tetris.cpp:1456
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:806 ../gnomine/gnomine.c:470
+#: ../gnotravex/gnotravex.c:1930 ../gnotski/gnotski.c:1484
+#: ../gtali/gyahtzee.c:536 ../iagno/gnothello.c:316 ../mahjongg/mahjongg.c:957
+#: ../same-gnome/ui.c:127
 msgid "translator-credits"
 msgstr ""
-"相花 毅 <aihana@gnome.gr.jp>\n"
+"相花 毅 <takeshi.aihana@gmail.com>\n"
 "佐藤 暁 <ss@gnome.gr.jp>\n"
 "KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
 "Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
@@ -234,103 +235,103 @@ msgstr ""
 "Yukihiro Nakai <Nakai@technologist.com>\n"
 "日本GNOMEユーザー会 http://www.gnome.gr.jp"
 
-#: ../aisleriot/menu.c:243 ../blackjack/src/blackjack.cpp:335
-#: ../glchess/glade/glchess.glade.h:27 ../glines/glines.c:1688
-#: ../gnect/src/main.c:1306 ../gnibbles/main.c:763 ../gnobots2/menu.c:61
-#: ../gnometris/tetris.cpp:131 ../gnome-sudoku/src/lib/gnome_sudoku.py:174
-#: ../gnomine/gnomine.c:809 ../gnotravex/gnotravex.c:280
-#: ../gnotski/gnotski.c:426 ../gtali/gyahtzee.c:598
-#: ../mahjongg/mahjongg.c:1303 ../same-gnome/ui.c:455
+#: ../aisleriot/menu.c:245 ../blackjack/src/blackjack.cpp:335
+#: ../glchess/glade/glchess.glade.h:31 ../glines/glines.c:1690
+#: ../gnect/src/main.c:1307 ../gnibbles/main.c:774 ../gnobots2/menu.c:61
+#: ../gnometris/tetris.cpp:131 ../gnome-sudoku/src/lib/gnome_sudoku.py:213
+#: ../gnomine/gnomine.c:811 ../gnotravex/gnotravex.c:289
+#: ../gnotski/gnotski.c:427 ../gtali/gyahtzee.c:598
+#: ../mahjongg/mahjongg.c:1305 ../same-gnome/ui.c:457
 msgid "_Game"
 msgstr "ゲーム(_G)"
 
-#: ../aisleriot/menu.c:244 ../blackjack/src/blackjack.cpp:336
-#: ../glchess/glade/glchess.glade.h:32 ../gnect/src/main.c:1307
-#: ../gnibbles/main.c:764 ../gnobots2/menu.c:62
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:175 ../gnotravex/gnotravex.c:281
-#: ../gnotski/gnotski.c:427 ../same-gnome/ui.c:456
+#: ../aisleriot/menu.c:246 ../blackjack/src/blackjack.cpp:336
+#: ../glchess/glade/glchess.glade.h:36 ../gnect/src/main.c:1308
+#: ../gnibbles/main.c:775 ../gnobots2/menu.c:62
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:214 ../gnotravex/gnotravex.c:290
+#: ../gnotski/gnotski.c:428 ../same-gnome/ui.c:458
 msgid "_View"
 msgstr "表示(_V)"
 
-#: ../aisleriot/menu.c:245 ../blackjack/src/blackjack.cpp:345
+#: ../aisleriot/menu.c:247 ../blackjack/src/blackjack.cpp:345
 msgid "_Control"
 msgstr "操作(_C)"
 
 #. not translated on purpose
-#: ../aisleriot/menu.c:247 ../blackjack/src/blackjack.cpp:352
-#: ../glchess/glade/glchess.glade.h:28 ../glines/glines.c:1690
-#: ../gnect/src/main.c:1309 ../gnibbles/main.c:766 ../gnobots2/menu.c:65
-#: ../gnometris/tetris.cpp:133 ../gnome-sudoku/src/lib/gnome_sudoku.py:197
-#: ../gnomine/gnomine.c:811 ../gnotravex/gnotravex.c:284
-#: ../gnotski/gnotski.c:428 ../gtali/gyahtzee.c:600
-#: ../mahjongg/mahjongg.c:1305 ../same-gnome/ui.c:458
+#: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:352
+#: ../glchess/glade/glchess.glade.h:32 ../glines/glines.c:1692
+#: ../gnect/src/main.c:1310 ../gnibbles/main.c:777 ../gnobots2/menu.c:65
+#: ../gnometris/tetris.cpp:133 ../gnome-sudoku/src/lib/gnome_sudoku.py:236
+#: ../gnomine/gnomine.c:813 ../gnotravex/gnotravex.c:293
+#: ../gnotski/gnotski.c:429 ../gtali/gyahtzee.c:600
+#: ../mahjongg/mahjongg.c:1307 ../same-gnome/ui.c:460
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:337
-#: ../glchess/glade/glchess.glade.h:18 ../gnobots2/menu.c:66
-#: ../libgames-support/games-stock.c:110 ../mahjongg/mahjongg.c:1306
+#: ../aisleriot/menu.c:251 ../blackjack/src/blackjack.cpp:337
+#: ../glchess/glade/glchess.glade.h:19 ../gnobots2/menu.c:66
+#: ../libgames-support/games-stock.c:110 ../mahjongg/mahjongg.c:1308
 msgid "Start a new game"
 msgstr "新しいゲームを開始します"
 
-#: ../aisleriot/menu.c:252 ../blackjack/src/blackjack.cpp:338
-#: ../mahjongg/mahjongg.c:1309
+#: ../aisleriot/menu.c:254 ../blackjack/src/blackjack.cpp:338
+#: ../mahjongg/mahjongg.c:1311
 msgid "Restart the current game"
-msgstr "現在のゲームをやり直します"
+msgstr "ゲームをやり直します"
 
-#: ../aisleriot/menu.c:253
+#: ../aisleriot/menu.c:255
 msgid "_Select Game..."
 msgstr "ゲームの選択(_S)..."
 
-#: ../aisleriot/menu.c:254
+#: ../aisleriot/menu.c:256
 msgid "Play a different game"
 msgstr "別のゲームをプレイします"
 
-#: ../aisleriot/menu.c:255
+#: ../aisleriot/menu.c:257
 msgid "Recently _Played"
-msgstr ""
+msgstr "最近プレイしたゲーム(_P)"
 
-#: ../aisleriot/menu.c:256
+#: ../aisleriot/menu.c:258
 msgid "S_tatistics"
 msgstr "統計情報(_T)"
 
-#: ../aisleriot/menu.c:257
+#: ../aisleriot/menu.c:259
 msgid "Show gameplay statistics"
 msgstr "ゲームの統計情報を表示します"
 
-#: ../aisleriot/menu.c:263
+#: ../aisleriot/menu.c:265
 msgid "_Cards..."
 msgstr "カード(_C)..."
 
-#: ../aisleriot/menu.c:266 ../libgames-support/games-stock.c:118
-#: ../mahjongg/mahjongg.c:1314
+#: ../aisleriot/menu.c:268 ../libgames-support/games-stock.c:118
+#: ../mahjongg/mahjongg.c:1316
 msgid "Undo the last move"
 msgstr "直前の操作を取り消します"
 
-#: ../aisleriot/menu.c:268 ../mahjongg/mahjongg.c:1316
+#: ../aisleriot/menu.c:270 ../mahjongg/mahjongg.c:1318
 msgid "Redo the last move"
-msgstr "最近の移動をやりなおします"
+msgstr "最後の移動を取り消します"
 
-#: ../aisleriot/menu.c:270 ../blackjack/src/blackjack.cpp:339
-#: ../mahjongg/mahjongg.c:1318
+#: ../aisleriot/menu.c:272 ../blackjack/src/blackjack.cpp:339
+#: ../mahjongg/mahjongg.c:1320
 msgid "Show a hint"
-msgstr "ヒントを表示"
+msgstr "ヒントを提示します"
 
-#: ../aisleriot/menu.c:273
+#: ../aisleriot/menu.c:275
 msgid "View help for Aisleriot"
 msgstr "AisleRiot のヘルプを表示します"
 
-#: ../aisleriot/menu.c:274 ../libgames-support/games-stock.c:125
+#: ../aisleriot/menu.c:276 ../libgames-support/games-stock.c:125
 msgid "View help for this game"
 msgstr "このゲームのヘルプを表示します"
 
-#: ../aisleriot/menu.c:281 ../blackjack/src/blackjack.cpp:358
-#: ../glchess/glade/glchess.glade.h:31 ../gnobots2/menu.c:89
-#: ../mahjongg/mahjongg.c:1334
+#: ../aisleriot/menu.c:283 ../blackjack/src/blackjack.cpp:358
+#: ../glchess/glade/glchess.glade.h:35 ../gnobots2/menu.c:89
+#: ../mahjongg/mahjongg.c:1336
 msgid "_Toolbar"
 msgstr "ツールバー(_T)"
 
-#: ../aisleriot/menu.c:283 ../gnotravex/gnotravex.c:329
+#: ../aisleriot/menu.c:285 ../gnotravex/gnotravex.c:338
 msgid "_Click to Move"
 msgstr "クリックして移動する(_C)"
 
@@ -387,7 +388,7 @@ msgstr "もっとカードを引きなさい"
 #: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/gypsy.scm.h:3
 #: ../aisleriot/rules/helsinki.scm.h:1 ../aisleriot/rules/hopscotch.scm.h:3
 #: ../aisleriot/rules/jamestown.scm.h:1 ../aisleriot/rules/jumbo.scm.h:4
-#: ../aisleriot/rules/kansas.scm.h:8 ../aisleriot/rules/klondike.scm.h:4
+#: ../aisleriot/rules/kansas.scm.h:8 ../aisleriot/rules/klondike.scm.h:6
 #: ../aisleriot/rules/labyrinth.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:7
 #: ../aisleriot/rules/monte_carlo.scm.h:2 ../aisleriot/rules/neighbor.scm.h:1
 #: ../aisleriot/rules/plait.scm.h:11 ../aisleriot/rules/quatorze.scm.h:1
@@ -434,28 +435,28 @@ msgid "No hint available right now"
 msgstr "ヒントはありません"
 
 #: ../aisleriot/rules/athena.scm.h:3 ../aisleriot/rules/doublets.scm.h:1
-#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:4
+#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:7
 #: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
-#: ../aisleriot/rules/klondike.scm.h:3 ../aisleriot/rules/plait.scm.h:10
+#: ../aisleriot/rules/klondike.scm.h:4 ../aisleriot/rules/plait.scm.h:10
 #: ../aisleriot/rules/saratoga.scm.h:3 ../aisleriot/rules/scuffle.scm.h:2
 #: ../aisleriot/rules/straight_up.scm.h:3
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
 msgid "Redeals left:"
 msgstr "引き直しの残数:"
 
-#: ../aisleriot/rules/athena.scm.h:5 ../aisleriot/rules/osmosis.scm.h:3
-#: ../aisleriot/rules/saratoga.scm.h:5
+#: ../aisleriot/rules/athena.scm.h:5 ../aisleriot/rules/klondike.scm.h:7
+#: ../aisleriot/rules/osmosis.scm.h:5 ../aisleriot/rules/saratoga.scm.h:5
 msgid "Three card deals"
 msgstr "三つのカード取り引き"
 
-#: ../aisleriot/rules/athena.scm.h:6 ../aisleriot/rules/klondike.scm.h:5
+#: ../aisleriot/rules/athena.scm.h:6 ../aisleriot/rules/klondike.scm.h:8
 #: ../aisleriot/rules/saratoga.scm.h:6
 msgid "Try moving cards down from the foundation"
 msgstr "組札のカードを場に戻してみよう"
 
 #: ../aisleriot/rules/athena.scm.h:7 ../aisleriot/rules/camelot.scm.h:7
-#: ../aisleriot/rules/diamond_mine.scm.h:1 ../aisleriot/rules/klondike.scm.h:6
-#: ../aisleriot/rules/odessa.scm.h:1 ../aisleriot/rules/osmosis.scm.h:4
+#: ../aisleriot/rules/diamond_mine.scm.h:1 ../aisleriot/rules/klondike.scm.h:9
+#: ../aisleriot/rules/odessa.scm.h:1 ../aisleriot/rules/osmosis.scm.h:6
 #: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/saratoga.scm.h:7
 #: ../aisleriot/rules/scorpion.scm.h:2 ../aisleriot/rules/ten_across.scm.h:4
 #: ../aisleriot/rules/union_square.scm.h:3 ../aisleriot/rules/yukon.scm.h:2
@@ -530,7 +531,7 @@ msgstr "ベースのカード: "
 #: ../aisleriot/rules/straight_up.scm.h:2
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:2 ../aisleriot/rules/zebra.scm.h:2
 msgid "Move waste back to stock"
-msgstr "捨て札をストックに戻しなさい"
+msgstr "捨て札を場に戻しなさい"
 
 #: ../aisleriot/rules/canfield.scm.h:8 ../aisleriot/rules/eagle_wing.scm.h:10
 #: ../aisleriot/rules/kansas.scm.h:7 ../aisleriot/rules/straight_up.scm.h:4
@@ -571,7 +572,7 @@ msgstr "右肩のマッサージをすることができた..."
 
 #: ../aisleriot/rules/clock.scm.h:5
 msgid "If you're ever lost and alone in the woods, hug a tree"
-msgstr "森の中で道に迷ったら、木を目印にすべし"
+msgstr "森の中で道に迷ったら木を目印にすべし"
 
 #: ../aisleriot/rules/clock.scm.h:6
 msgid ""
@@ -605,6 +606,10 @@ msgid "When without a stapler, a staple and a ruler will work"
 msgstr "ホッチキスが無い時に、ホッチキスの針と定規が使える"
 
 #: ../aisleriot/rules/cruel.scm.h:1
+msgid "Cards remaining: ~a"
+msgstr "残りのカード: ~a"
+
+#: ../aisleriot/rules/cruel.scm.h:2
 msgid "Redeal."
 msgstr "カードを引き直しなさい"
 
@@ -702,11 +707,11 @@ msgstr "~a を場から取り去りなさい"
 
 #: ../aisleriot/rules/freecell.scm.h:1
 msgid "No moves are possible. Undo or start again."
-msgstr "移動できません。アンドゥするか最初からやり直してください。"
+msgstr "移動できるモノがありません。元に戻すか初めからやり直しなさい。"
 
 #: ../aisleriot/rules/freecell.scm.h:2
 msgid "The game has no solution. Undo or start again."
-msgstr "解答がありません。アンドゥするか最初からやり直してください。"
+msgstr "他に解決方法はありません。元に戻すか初めからやり直しなさい。"
 
 #: ../aisleriot/rules/freecell.scm.h:3
 msgid "an empty reserve"
@@ -721,15 +726,27 @@ msgid "the foundation"
 msgstr "組札の山"
 
 #: ../aisleriot/rules/gaps.scm.h:1
+msgid "Add to the sequence in row ~a."
+msgstr "~a がある行に並べなさい"
+
+#: ../aisleriot/rules/gaps.scm.h:2
 msgid "Double click any card to redeal."
 msgstr "カードをダブル・クリックして引き直しなさい"
 
-#: ../aisleriot/rules/gaps.scm.h:2
+#: ../aisleriot/rules/gaps.scm.h:3
 msgid "No hint available."
 msgstr "ヒントはありません"
 
-# FIXME: 意味がとれない
-#: ../aisleriot/rules/gaps.scm.h:3
+#: ../aisleriot/rules/gaps.scm.h:4
+msgid "Place a two in the leftmost slot of row ~a."
+msgstr "~a がある行の一番左に２を置きなさい"
+
+#: ../aisleriot/rules/gaps.scm.h:5
+msgid "Place the ~a next to ~a."
+msgstr "~a を ~a の隣に置きなさい"
+
+# FIXME: 意味不明
+#: ../aisleriot/rules/gaps.scm.h:6
 msgid "Randomly Placed Gaps on Redeal"
 msgstr "Randomly Placed Gaps on Redeal"
 
@@ -751,7 +768,8 @@ msgstr "空の絵札の場へ"
 msgid "Deal another card"
 msgstr "他のカードを引きなさい"
 
-#: ../aisleriot/rules/golf.scm.h:2 ../aisleriot/rules/spider.scm.h:4
+#: ../aisleriot/rules/golf.scm.h:2 ../aisleriot/rules/osmosis.scm.h:4
+#: ../aisleriot/rules/spider.scm.h:6
 msgid "Stock left: ~a"
 msgstr "残りの場数: ~a"
 
@@ -782,6 +800,18 @@ msgstr "空の絵札の場"
 msgid "Deal a new card"
 msgstr "新しいカードを引きなさい"
 
+#: ../aisleriot/rules/kings_audience.scm.h:2
+msgid "Stock remaining: ~a"
+msgstr "残りの場数: ~a"
+
+#: ../aisleriot/rules/klondike.scm.h:3
+msgid "No redeals"
+msgstr "引き直せません"
+
+#: ../aisleriot/rules/klondike.scm.h:5
+msgid "Single card deals"
+msgstr "一枚引き直しなさい"
+
 #: ../aisleriot/rules/lady_jane.scm.h:1 ../aisleriot/rules/royal_east.scm.h:1
 msgid "Base Card:"
 msgstr "ベースのカード: "
@@ -797,6 +827,10 @@ msgstr ""
 #: ../aisleriot/rules/osmosis.scm.h:2
 msgid "Deal new cards from the deck"
 msgstr "新しいカードをデッキから引きなさい"
+
+#: ../aisleriot/rules/osmosis.scm.h:3
+msgid "Redeals left: ~a"
+msgstr "引き直しの残数: ~a"
 
 #: ../aisleriot/rules/pileon.scm.h:2
 msgid "something"
@@ -841,20 +875,32 @@ msgid "empty foundation"
 msgstr "空の組札"
 
 #: ../aisleriot/rules/spider.scm.h:2
+msgid "Four Suits"
+msgstr "四組"
+
+#: ../aisleriot/rules/spider.scm.h:3
+msgid "One Suit"
+msgstr "一組"
+
+#: ../aisleriot/rules/spider.scm.h:4
 msgid "Place something on empty slot"
 msgstr "空のスロットに何か置きなさい"
 
-#: ../aisleriot/rules/spider.scm.h:3
+#: ../aisleriot/rules/spider.scm.h:5
 msgid "Please fill in empty pile first."
 msgstr "まず最初に空の場を埋めなさい"
 
-#: ../aisleriot/rules/spider.scm.h:5
+#: ../aisleriot/rules/spider.scm.h:7
 msgid "Try moving card piles around"
 msgstr "カードの山を他の場に移動してみよう"
 
+#: ../aisleriot/rules/spider.scm.h:8
+msgid "Two Suits"
+msgstr "二組"
+
 #: ../aisleriot/rules/ten_across.scm.h:1
 msgid "Allow temporary spots use"
-msgstr "一時スポットを利用する"
+msgstr "スポットを一時的に利用する"
 
 #: ../aisleriot/rules/ten_across.scm.h:2
 msgid "Move a card to an empty temporary slot"
@@ -916,7 +962,7 @@ msgid ""
 "started instead."
 msgstr ""
 "これは古いバージョンの Aisleriot を起動した際に、以前プレイしたゲームが存在し"
-"ない場合に発生します。デフォルトのゲームである Klondike を代わりに起動してい"
+"ない場合に発生します。代わりに、デフォルトのゲームであるクロンダイクを起動し"
 "ます。"
 
 #: ../aisleriot/sol.c:516
@@ -925,19 +971,19 @@ msgstr "Aisleriot"
 
 #. Add "Highscore" label
 #: ../aisleriot/sol.c:554 ../dependencies/ggz-gtk/playerinfo.c:241
-#: ../glines/glines.c:1940 ../gnobots2/statusbar.c:65
+#: ../glines/glines.c:1942 ../gnobots2/statusbar.c:65
 #: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:434
 msgid "Score:"
 msgstr "得点:"
 
-#: ../aisleriot/sol.c:559 ../gnotravex/gnotravex.c:1385
-#: ../mahjongg/mahjongg.c:1501
+#: ../aisleriot/sol.c:559 ../gnotravex/gnotravex.c:1382
+#: ../mahjongg/mahjongg.c:1503
 msgid "Time:"
 msgstr "タイム:"
 
 #: ../aisleriot/sol.c:611
 msgid "Select the game to play"
-msgstr "遊ぶゲームを選択"
+msgstr "プレイするゲームを選択する"
 
 #: ../aisleriot/sol.c:611 ../gnobots2/gnobots.c:66 ../gnobots2/gnobots.c:68
 #: ../same-gnome/same-gnome.c:148 ../same-gnome/same-gnome.c:150
@@ -1254,14 +1300,14 @@ msgstr "２"
 
 #. For translators: N/A means "Not Applicable", use whatever
 #. * abbreviation you have for a value that has no meaning.
-#: ../aisleriot/statistics.c:100 ../aisleriot/statistics.c:109
-#: ../aisleriot/statistics.c:118 ../dependencies/ggz-gtk/roominfo.c:162
+#: ../aisleriot/statistics.c:108 ../aisleriot/statistics.c:117
+#: ../aisleriot/statistics.c:126 ../dependencies/ggz-gtk/roominfo.c:162
 #: ../dependencies/ggz-gtk/roominfo.c:169
 msgid "N/A"
 msgstr "N/A"
 
 #. Translators: this represents minutes:seconds.
-#: ../aisleriot/statistics.c:104 ../aisleriot/statistics.c:113
+#: ../aisleriot/statistics.c:112 ../aisleriot/statistics.c:121
 #, c-format
 msgid "%d:%02d"
 msgstr "%d:%02d"
@@ -1556,82 +1602,74 @@ msgid "Spider"
 msgstr "スパイダー"
 
 #: ../aisleriot/translatable_game_names.h:68
-msgid "Spider One Suit"
-msgstr "Spider one suit"
-
-#: ../aisleriot/translatable_game_names.h:69
-msgid "Spider Two Suit"
-msgstr "Spider two suit"
-
-#: ../aisleriot/translatable_game_names.h:70
 msgid "Spiderette"
 msgstr "スパイダーレット"
 
-#: ../aisleriot/translatable_game_names.h:71
+#: ../aisleriot/translatable_game_names.h:69
 msgid "Straight Up"
 msgstr "真っ直ぐ上へ"
 
-#: ../aisleriot/translatable_game_names.h:72
+#: ../aisleriot/translatable_game_names.h:70
 msgid "Streets And Alleys"
 msgstr "通りと路地"
 
-#: ../aisleriot/translatable_game_names.h:73
+#: ../aisleriot/translatable_game_names.h:71
 msgid "Template"
 msgstr "テンプレート"
 
-#: ../aisleriot/translatable_game_names.h:74
+#: ../aisleriot/translatable_game_names.h:72
 msgid "Ten Across"
 msgstr "10回横切る"
 
-#: ../aisleriot/translatable_game_names.h:75
+#: ../aisleriot/translatable_game_names.h:73
 msgid "Thieves"
 msgstr "泥棒達"
 
-#: ../aisleriot/translatable_game_names.h:76
+#: ../aisleriot/translatable_game_names.h:74
 msgid "Thirteen"
 msgstr "１３"
 
-#: ../aisleriot/translatable_game_names.h:77
+#: ../aisleriot/translatable_game_names.h:75
 msgid "Thumb And Pouch"
 msgstr "指と小袋"
 
-#: ../aisleriot/translatable_game_names.h:78
+#: ../aisleriot/translatable_game_names.h:76
 msgid "Treize"
 msgstr "トレイズ"
 
-#: ../aisleriot/translatable_game_names.h:79
+#: ../aisleriot/translatable_game_names.h:77
 msgid "Triple Peaks"
 msgstr "トリプル・ピーク"
 
-#: ../aisleriot/translatable_game_names.h:80
+#: ../aisleriot/translatable_game_names.h:78
 msgid "Union Square"
 msgstr "ユニオン・スクウェア"
 
-#: ../aisleriot/translatable_game_names.h:81
+#: ../aisleriot/translatable_game_names.h:79
 msgid "Valentine"
 msgstr "バレンタイン"
 
-#: ../aisleriot/translatable_game_names.h:82
+#: ../aisleriot/translatable_game_names.h:80
 msgid "Westhaven"
 msgstr "ウェスト・ヘブン"
 
-#: ../aisleriot/translatable_game_names.h:83
+#: ../aisleriot/translatable_game_names.h:81
 msgid "Whitehead"
 msgstr "ホワイト・ヘッド"
 
-#: ../aisleriot/translatable_game_names.h:84
+#: ../aisleriot/translatable_game_names.h:82
 msgid "Will O The Wisp"
 msgstr "Will O The Wisp"
 
-#: ../aisleriot/translatable_game_names.h:85
+#: ../aisleriot/translatable_game_names.h:83
 msgid "Yield"
 msgstr "生まれる"
 
-#: ../aisleriot/translatable_game_names.h:86
+#: ../aisleriot/translatable_game_names.h:84
 msgid "Yukon"
 msgstr "ユーコン"
 
-#: ../aisleriot/translatable_game_names.h:87
+#: ../aisleriot/translatable_game_names.h:85
 msgid "Zebra"
 msgstr "ゼブラ"
 
@@ -1692,10 +1730,10 @@ msgstr "一枚単位で配らずに素早く配ります。"
 msgid "Blackjack - %s"
 msgstr "ブラックジャック - %s"
 
-#: ../blackjack/src/blackjack.cpp:341 ../glines/glines.c:1689
-#: ../gnect/src/main.c:1308 ../gnibbles/main.c:765 ../gnobots2/menu.c:64
-#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:810
-#: ../gtali/gyahtzee.c:599 ../mahjongg/mahjongg.c:1304
+#: ../blackjack/src/blackjack.cpp:341 ../glines/glines.c:1691
+#: ../gnect/src/main.c:1309 ../gnibbles/main.c:776 ../gnobots2/menu.c:64
+#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:812
+#: ../gtali/gyahtzee.c:599 ../mahjongg/mahjongg.c:1306
 msgid "_Settings"
 msgstr "設定(_S)"
 
@@ -1831,7 +1869,7 @@ msgstr "ルール"
 #: ../gnome-sudoku/src/lib/game_selector.py:107
 #: ../gnome-sudoku/src/lib/game_selector.py:136
 #: ../libgames-support/games-dlg-players.c:221
-#: ../libgames-support/games-scores-dialog.c:534
+#: ../libgames-support/games-scores-dialog.c:529
 msgid "Name"
 msgstr "名前"
 
@@ -1872,7 +1910,7 @@ msgid "Resplit Aces"
 msgstr "Resplit Aces"
 
 #: ../blackjack/src/dialog.cpp:360 ../blackjack/src/player.cpp:303
-#: ../glchess/glade/glchess.glade.h:20
+#: ../glchess/glade/glchess.glade.h:21
 msgid "Surrender"
 msgstr "サレンダー"
 
@@ -2045,7 +2083,7 @@ msgstr "確率を表示する"
 #: ../dependencies/ggz-gtk/ggzclient.c:122
 #, c-format
 msgid "Error connecting to server: %s"
-msgstr ""
+msgstr "サーバへ接続する際にエラー: %s"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:124
 #: ../dependencies/ggz-gtk/ggzclient.c:380
@@ -2055,198 +2093,189 @@ msgstr ""
 #: ../dependencies/ggz-gtk/ggzclient.c:1079
 #: ../dependencies/ggz-gtk/launch.c:325
 msgid "Error"
-msgstr ""
+msgstr "エラー"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:237
 #, c-format
 msgid "Your new password is %s"
-msgstr ""
+msgstr "新しいパスワードは %s です"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:239
 msgid "New password"
-msgstr ""
+msgstr "新しいパスワード"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:275
-#, fuzzy, c-format
+#, c-format
 msgid "Players on server: %d"
-msgstr ""
-"プレイヤー１:\n"
-"%s"
+msgstr "このサーバに居るプレイヤーの総数: %d"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:320
 #, c-format
 msgid "Current Room: %s"
-msgstr ""
+msgstr "現在の部屋: %s"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:328
 #, c-format
 msgid "You've joined room \"%s\"."
-msgstr ""
+msgstr "\"%s\" という部屋に入りました"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:378
 #, c-format
 msgid "Error joining room: %s"
-msgstr ""
+msgstr "部屋に入る際にエラー: %s"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:400
 #: ../dependencies/ggz-gtk/client.c:1480
 msgid "GGZ Gaming Zone"
-msgstr ""
+msgstr "GGZ ゲーム・ゾーン"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:429
 msgid "You can't chat while not in a room."
-msgstr ""
+msgstr "部屋に入っていない間はチャットできません"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:434
 msgid "You don't have permission to chat here."
-msgstr ""
+msgstr "ここでチャットする権限がありません"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:438
 msgid "No private chatting at a table!"
-msgstr ""
+msgstr "テーブルで個人的なチャットはしないで下さい！"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:442
-#, fuzzy
 msgid "That player isn't in the room!"
-msgstr "プレイヤー '%s' がゲームに参加しました。"
+msgstr "そのプレイヤーは部屋に居ません！"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:447
-#, fuzzy
 msgid "There was an error sending the chat."
-msgstr "GConf にアクセスする際にエラーが発生しました: %s"
+msgstr "チャットのメッセージを送信する際にエラーが発生しました"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:451
-#, fuzzy
 msgid "You're not at a table."
-msgstr "ヒントはありません"
+msgstr "テーブルについていません"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:455
 #, c-format
 msgid "Chat failed: %s."
-msgstr ""
+msgstr "チャットに失敗しました: %s"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:559
 #, c-format
 msgid "Error launching table: %s"
-msgstr ""
+msgstr "テーブルを起動する際にエラー: %s"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:579
-#, fuzzy, c-format
+#, c-format
 msgid "You have joined table %d."
-msgstr "あなたの勝ちです。"
+msgstr "%d 番のテーブルにつきました"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:594
 #, c-format
 msgid "Error joining table: %s"
-msgstr ""
+msgstr "テーブルにつく際にエラー: %s"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:616
 #, c-format
 msgid "You have been booted from the table by %s."
-msgstr ""
+msgstr "%s があなたをテーブルから起動しました"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:621
 #, c-format
 msgid "You have left the table."
-msgstr ""
+msgstr "テーブルから出ました"
 
-#: ../dependencies/ggz-gtk/ggzclient.c:624 ../gnibbles/main.c:699
-#, fuzzy, c-format
+#: ../dependencies/ggz-gtk/ggzclient.c:624 ../gnibbles/main.c:704
+#, c-format
 msgid "The game is over."
-msgstr "ゲーム・サーバ"
+msgstr "ゲーム・オーバーです"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:628
 #, c-format
 msgid "There was an error with the game server."
-msgstr ""
+msgstr "ゲーム・サーバでエラーが発生しました"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:647
 #, c-format
 msgid "Error leaving table: %s"
-msgstr ""
+msgstr "テーブルから離れる際にエラー: %s"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:718
 #: ../dependencies/ggz-gtk/client.c:1196
 msgid "Current Room:"
-msgstr ""
+msgstr "現在の部屋:"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:740
 msgid "**none**"
-msgstr ""
+msgstr "**なし**"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:747
 msgid "Offline"
-msgstr ""
+msgstr "オフラインです"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:750
-#, fuzzy
 msgid "Connecting"
-msgstr "接続(_O)"
+msgstr "接続中です"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:753
-#, fuzzy
 msgid "Reconnecting"
-msgstr "接続(_O)"
+msgstr "再接続中です"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:756
-#, fuzzy
 msgid "Online"
-msgstr "９"
+msgstr "オンラインです"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:759
 msgid "Logging In"
-msgstr ""
+msgstr "ログイン中です"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:762
 msgid "Logged In"
-msgstr ""
+msgstr "ログイン完了です"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:766
 msgid "--> Room"
-msgstr ""
+msgstr "--> 部屋"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:769
 msgid "Chatting"
-msgstr ""
+msgstr "チャット中です"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:773
 msgid "--> Table"
-msgstr ""
+msgstr "--> テーブル"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:776
-#, fuzzy
 msgid "Playing"
-msgstr "プレーン"
+msgstr "プレイ中"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:779
 msgid "<-- Table"
-msgstr ""
+msgstr "<-- テーブル"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:782
 msgid "Logging Out"
-msgstr ""
+msgstr "ログアウト中です"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:1078
 #, c-format
 msgid "Server error: %s"
-msgstr ""
+msgstr "サーバ・エラー: %s"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:1166
 msgid "Disconnected from server."
-msgstr ""
+msgstr "サーバから切断しました"
 
 #: ../dependencies/ggz-gtk/login.c:101
 msgid "Login"
-msgstr ""
+msgstr "ログイン"
 
 #: ../dependencies/ggz-gtk/login.c:108
 msgid "Sorry!"
-msgstr ""
+msgstr "すみません！"
 
 #: ../dependencies/ggz-gtk/login.c:115
 #, c-format
 msgid "That username is already in use."
-msgstr ""
+msgstr "そのユーザ名は既に使われています"
 
 #: ../dependencies/ggz-gtk/login.c:119
 #, c-format
@@ -2254,311 +2283,291 @@ msgid ""
 "Authentication has failed.\n"
 "Please supply the correct password."
 msgstr ""
+"認証に失敗しました\n"
+"正しいパスワードを指定して下さい"
 
 #: ../dependencies/ggz-gtk/login.c:123
 #, c-format
 msgid "The username is too long!"
-msgstr ""
+msgstr "そのユーザ名は長すぎます！"
 
 #: ../dependencies/ggz-gtk/login.c:126
 #, c-format
 msgid "Invalid username, do not use special characters!"
-msgstr ""
+msgstr "ユーザ名が間違っています (特殊な文字を使用しないこと！)"
 
 #: ../dependencies/ggz-gtk/login.c:130
 #, c-format
 msgid "Login failed for unknown reason: %s"
-msgstr ""
+msgstr "原因不明なエラーによりログインに失敗しました: %s"
 
 #: ../dependencies/ggz-gtk/login.c:538
 msgid "Server Profile"
-msgstr ""
+msgstr "サーバの情報"
 
 #: ../dependencies/ggz-gtk/login.c:562 ../dependencies/ggz-gtk/props.c:925
 msgid "Profile:"
-msgstr ""
+msgstr "プロファイル:"
 
 #: ../dependencies/ggz-gtk/login.c:582
 msgid "Edit Profiles..."
-msgstr ""
+msgstr "編集..."
 
 #: ../dependencies/ggz-gtk/login.c:590 ../dependencies/ggz-gtk/props.c:946
-#, fuzzy
 msgid "Server:"
-msgstr "得点:"
-
-#: ../dependencies/ggz-gtk/login.c:600
-msgid "localhost"
-msgstr ""
+msgstr "サーバ:"
 
 #: ../dependencies/ggz-gtk/login.c:602 ../dependencies/ggz-gtk/props.c:961
-#, fuzzy
 msgid "Port:"
-msgstr "ワースト:"
-
-#: ../dependencies/ggz-gtk/login.c:612
-msgid "5688"
-msgstr ""
+msgstr "ポート:"
 
 #: ../dependencies/ggz-gtk/login.c:633 ../dependencies/ggz-gtk/props.c:993
-#, fuzzy
 msgid "Username:"
-msgstr "ホスト名(_H):"
+msgstr "ユーザ名:"
 
 #: ../dependencies/ggz-gtk/login.c:648 ../dependencies/ggz-gtk/props.c:1014
 msgid "Password:"
-msgstr ""
+msgstr "パスワード:"
 
 #: ../dependencies/ggz-gtk/login.c:664
 msgid "Email:"
-msgstr ""
+msgstr "E-メール:"
 
 #: ../dependencies/ggz-gtk/login.c:680 ../dependencies/ggz-gtk/props.c:1057
 msgid "Normal Login"
-msgstr ""
+msgstr "通常のログイン"
 
 #: ../dependencies/ggz-gtk/login.c:691 ../dependencies/ggz-gtk/props.c:1065
 msgid "Guest Login"
-msgstr ""
+msgstr "ゲスト・ログイン"
 
 #: ../dependencies/ggz-gtk/login.c:699
 msgid "First-time Login"
-msgstr ""
+msgstr "初めてのログイン"
 
-#: ../dependencies/ggz-gtk/login.c:710 ../dependencies/ggz-gtk/client.c:942
-#, fuzzy
+#: ../dependencies/ggz-gtk/login.c:718 ../dependencies/ggz-gtk/client.c:942
 msgid "Connect"
-msgstr "接続(_O)"
+msgstr "接続"
 
 #: ../dependencies/ggz-gtk/first.c:57
-#, fuzzy
 msgid "Wizard"
-msgstr "上級"
+msgstr "魔法使い"
 
 #: ../dependencies/ggz-gtk/first.c:57
-#, fuzzy
 msgid "Deity"
-msgstr "\"ヒナギク\""
+msgstr "神"
 
 #: ../dependencies/ggz-gtk/first.c:57
-#, fuzzy
 msgid "Sentinel"
-msgstr "バレンタイン"
+msgstr "歩哨"
 
 #: ../dependencies/ggz-gtk/first.c:57
-#, fuzzy
 msgid "Captain"
-msgstr "じゅうたん"
+msgstr "大尉"
 
 #: ../dependencies/ggz-gtk/first.c:58
-#, fuzzy
 msgid "Knight"
-msgstr "８"
+msgstr "騎士"
 
 #: ../dependencies/ggz-gtk/first.c:58
-#, fuzzy
 msgid "Angel"
-msgstr "アグネス"
+msgstr "天使"
 
 #: ../dependencies/ggz-gtk/first.c:58
 msgid "Silverlord"
-msgstr ""
+msgstr "Silverlord"
 
 #: ../dependencies/ggz-gtk/first.c:58
-#, fuzzy
 msgid "Eagle"
-msgstr "鷹の羽"
+msgstr "鷹"
 
 #: ../dependencies/ggz-gtk/first.c:59
 msgid "Vampire"
-msgstr ""
+msgstr "吸血鬼"
 
 #: ../dependencies/ggz-gtk/first.c:59
 msgid "Chief"
-msgstr ""
+msgstr "ボス"
 
 #: ../dependencies/ggz-gtk/first.c:59
-#, fuzzy
 msgid "Colonel"
-msgstr "\"ポロネーズ\""
+msgstr "大佐"
 
-#: ../dependencies/ggz-gtk/first.c:59 ../glines/glines.c:1508
+#: ../dependencies/ggz-gtk/first.c:59
 msgid "General"
-msgstr "全般"
+msgstr "将軍"
 
 #: ../dependencies/ggz-gtk/first.c:60
-#, fuzzy
 msgid "Major"
-msgstr "GNOME 上海"
+msgstr "少佐"
 
 #: ../dependencies/ggz-gtk/first.c:60
-#, fuzzy
 msgid "Scout"
-msgstr "ソフト"
+msgstr "偵察"
 
 #: ../dependencies/ggz-gtk/first.c:60
 msgid "Lieutenant"
-msgstr ""
+msgstr "中尉"
 
 #: ../dependencies/ggz-gtk/first.c:60
 msgid "Stalker"
-msgstr ""
+msgstr "ストーカー"
 
 #: ../dependencies/ggz-gtk/first.c:61
 msgid "Scientist"
-msgstr ""
+msgstr "科学者"
 
 #: ../dependencies/ggz-gtk/first.c:61
-#, fuzzy
 msgid "Scholar"
-msgstr "得点"
+msgstr "学者"
 
 #: ../dependencies/ggz-gtk/first.c:61
 msgid "Entity"
-msgstr ""
+msgstr "エンティティ"
 
 #: ../dependencies/ggz-gtk/first.c:61
-#, fuzzy
 msgid "Creator"
-msgstr "エレベーター"
+msgstr "クリエイタ"
 
 #. {"Morat.net (Fast)", "ggz.morat.net", 5688, 1},
 #: ../dependencies/ggz-gtk/first.c:69
 msgid "GGZ Community (fast)"
-msgstr ""
+msgstr "GGZ コミュニティ (高速)"
 
 #: ../dependencies/ggz-gtk/first.c:70
 msgid "Local developer server"
-msgstr ""
+msgstr "ローカルの開発サーバ"
 
 #: ../dependencies/ggz-gtk/first.c:190
 msgid ""
 "This is the first time you are running the GTK+ GGZ Gaming Zone client. "
 "Would you like to create some default server profiles?"
 msgstr ""
+"初めて GTK+ 版の GGZ ゲーム・ゾーン・クライアントを起動したようです。デフォル"
+"トで使用するサーバのプロファイルを作成しますか？"
 
-#: ../dependencies/ggz-gtk/chat.c:89
+#: ../dependencies/ggz-gtk/chat.c:94
 msgid "/msg <username> <message> . Private message a player"
-msgstr ""
+msgstr "/msg <ユーザ名> <メッセージ> . 個人的なメッセージを送る"
 
-#: ../dependencies/ggz-gtk/chat.c:91
+#: ../dependencies/ggz-gtk/chat.c:96
 msgid "/table <message> .......... Message to your table"
-msgstr ""
+msgstr "/table <メッセージ> .......... テーブルの皆にメッセージに送る"
 
-#: ../dependencies/ggz-gtk/chat.c:93
+#: ../dependencies/ggz-gtk/chat.c:98
 msgid "/wall <message> ........... Admin command"
-msgstr ""
+msgstr "/wall <メッセージ> ........... 管理者用のコマンド"
 
-#: ../dependencies/ggz-gtk/chat.c:95
+#: ../dependencies/ggz-gtk/chat.c:100
 msgid "/beep <username> .......... Beep a player"
-msgstr ""
+msgstr "/beep <ユーザ名> .......... プレイヤーに警告音を送る"
 
-#: ../dependencies/ggz-gtk/chat.c:97
+#: ../dependencies/ggz-gtk/chat.c:102
 msgid "/help ..................... Get help"
-msgstr ""
-
-#: ../dependencies/ggz-gtk/chat.c:99
-msgid "/friends .................. List your friends"
-msgstr ""
-
-#: ../dependencies/ggz-gtk/chat.c:101
-msgid "/ignore ................... List people you're ignoring"
-msgstr ""
+msgstr "/help ..................... ヘルプを取得する"
 
 #: ../dependencies/ggz-gtk/chat.c:104
+msgid "/friends .................. List your friends"
+msgstr "/friends .................. 仲間の一覧を表示する"
+
+#: ../dependencies/ggz-gtk/chat.c:106
+msgid "/ignore ................... List people you're ignoring"
+msgstr "/ignore ................... 無視するプレイヤーの一覧を表示する"
+
+#: ../dependencies/ggz-gtk/chat.c:109
 msgid "/kick <username> .......... Kick a player from the room"
-msgstr ""
+msgstr "/kick <ユーザ名> .......... 部屋からプレイヤーを追い出す"
 
-#: ../dependencies/ggz-gtk/chat.c:107
+#: ../dependencies/ggz-gtk/chat.c:112
 msgid "/gag <username> ........... Gag a player to prevent them from talking"
-msgstr ""
+msgstr "/gag <ユーザ名> ........... メッセージを送信できないようにする"
 
-#: ../dependencies/ggz-gtk/chat.c:110
+#: ../dependencies/ggz-gtk/chat.c:115
 msgid ""
 "/ungag <username> ......... Reverse the gag operation to allow a player to "
 "talk"
-msgstr ""
+msgstr "/ungag <ユーザ名> ......... メッセージを送信できるようにする"
 
-#: ../dependencies/ggz-gtk/chat.c:113
+#: ../dependencies/ggz-gtk/chat.c:118
 msgid "/ban <username> ........... Ban a player from the server"
-msgstr ""
+msgstr "/ban <ユーザ名> ........... サーバからプレイヤーを追い出す"
 
-#: ../dependencies/ggz-gtk/chat.c:254
+#: ../dependencies/ggz-gtk/chat.c:259
 #, c-format
 msgid "You have received an unknown message from %s."
-msgstr ""
+msgstr "%s さんから不明なメッセージを受け取りました"
 
-#: ../dependencies/ggz-gtk/chat.c:318
+#: ../dependencies/ggz-gtk/chat.c:323
 #, c-format
 msgid "You've been beeped by %s."
-msgstr ""
+msgstr "%s さんから警告を受け取りました"
 
-#: ../dependencies/ggz-gtk/chat.c:439
+#: ../dependencies/ggz-gtk/chat.c:444
 msgid "Usage: /msg <username> <message>"
-msgstr ""
+msgstr "用法: /msg <ユーザ名> <メッセージ>"
 
-#: ../dependencies/ggz-gtk/chat.c:441
+#: ../dependencies/ggz-gtk/chat.c:446
 msgid "    Sends a private message to a user on the network."
-msgstr ""
+msgstr "    ネットワーク上のユーザに個人的なメッセージを送信する"
 
-#: ../dependencies/ggz-gtk/chat.c:495
-#, fuzzy, c-format
+#: ../dependencies/ggz-gtk/chat.c:500
+#, c-format
 msgid "Beep sent to %s."
-msgstr "%s を %s の上に置きなさい"
+msgstr "%s さんに警告音を送りました"
 
-#: ../dependencies/ggz-gtk/chat.c:523
+#: ../dependencies/ggz-gtk/chat.c:528
 #, c-format
 msgid "%s (logged on)"
-msgstr ""
+msgstr "%s (ログイン済)"
 
-#: ../dependencies/ggz-gtk/chat.c:561
+#: ../dependencies/ggz-gtk/chat.c:566
 #, c-format
 msgid "%s (logged off)"
-msgstr ""
-
-#: ../dependencies/ggz-gtk/chat.c:587
-msgid "Chat Commands"
-msgstr ""
-
-#: ../dependencies/ggz-gtk/chat.c:588
-msgid "-------------"
-msgstr ""
+msgstr "%s (ログアウト済)"
 
 #: ../dependencies/ggz-gtk/chat.c:592
-msgid "/me <action> .............. Send an action"
-msgstr ""
+msgid "Chat Commands"
+msgstr "チャット・コマンド"
 
-#: ../dependencies/ggz-gtk/chat.c:783
+#: ../dependencies/ggz-gtk/chat.c:593
+msgid "-------------"
+msgstr "-------------"
+
+#: ../dependencies/ggz-gtk/chat.c:597
+msgid "/me <action> .............. Send an action"
+msgstr "/me <アクション> .............. アクションを送信する"
+
+#: ../dependencies/ggz-gtk/chat.c:788
 #, c-format
 msgid "Added %s to your friends list."
-msgstr ""
+msgstr "%s さんを仲間の一覧に追加しました"
 
-#: ../dependencies/ggz-gtk/chat.c:807
-#, fuzzy, c-format
+#: ../dependencies/ggz-gtk/chat.c:812
+#, c-format
 msgid "Removed %s from your friends list."
-msgstr "ラインを形成することで色の付いたボールをボードから取り去って下さい"
+msgstr "%s さんを仲間の一覧から削除しました"
 
-#: ../dependencies/ggz-gtk/chat.c:838
+#: ../dependencies/ggz-gtk/chat.c:843
 #, c-format
 msgid "Added %s to your ignore list."
-msgstr ""
+msgstr "%s さんを無視する一覧に加えました"
 
-#: ../dependencies/ggz-gtk/chat.c:863
+#: ../dependencies/ggz-gtk/chat.c:868
 #, c-format
 msgid "Removed %s from your ignore list."
-msgstr ""
+msgstr "%s さんを無視する一覧から削除しました"
 
-#: ../dependencies/ggz-gtk/chat.c:939
+#: ../dependencies/ggz-gtk/chat.c:944
 msgid "People currently your friends"
-msgstr ""
+msgstr "ここにいる人達は皆あなたの仲間です"
 
-#: ../dependencies/ggz-gtk/chat.c:953
+#: ../dependencies/ggz-gtk/chat.c:958
 msgid "People you're currently ignoring"
-msgstr ""
+msgstr "ここにいる人達は皆無視します"
 
-#: ../dependencies/ggz-gtk/chat.c:1029
+#: ../dependencies/ggz-gtk/chat.c:1034
 msgid "Multiple matches:"
-msgstr ""
+msgstr "複数個に一致:"
 
 #: ../dependencies/ggz-gtk/game.c:72
 #, c-format
@@ -2566,134 +2575,138 @@ msgid ""
 "You don't have this game installed. You can download\n"
 "it from %s."
 msgstr ""
+"このゲームをインストールしていません\n"
+"(%s からダウンロードできます)"
 
 #: ../dependencies/ggz-gtk/game.c:76 ../dependencies/ggz-gtk/game.c:149
 #: ../dependencies/ggz-gtk/game.c:315 ../dependencies/ggz-gtk/game.c:325
 #: ../dependencies/ggz-gtk/game.c:334 ../dependencies/ggz-gtk/game.c:350
 #: ../dependencies/ggz-gtk/launch.c:290
 msgid "Launch Error"
-msgstr ""
+msgstr "起動エラー"
 
 #: ../dependencies/ggz-gtk/game.c:148
 msgid ""
 "Failed to execute game module.\n"
 " Launch aborted."
 msgstr ""
+"ゲームのモジュールを実行できませんでした\n"
+"(起動を中止しました)"
 
 #: ../dependencies/ggz-gtk/game.c:201
-#, fuzzy
 msgid "Launched game"
-msgstr "ゲームを一時停止します"
+msgstr "ゲームを起動しました"
 
 #: ../dependencies/ggz-gtk/game.c:222
-#, fuzzy
 msgid "Launch failed"
-msgstr "接続に失敗しました。"
+msgstr "起動に失敗しました"
 
 #: ../dependencies/ggz-gtk/game.c:296
 msgid "You can only play one game at a time."
-msgstr ""
+msgstr "一度に一個のゲームしかプレイできません"
 
 #: ../dependencies/ggz-gtk/game.c:297 ../dependencies/ggz-gtk/game.c:305
 #: ../dependencies/ggz-gtk/launch.c:335 ../dependencies/ggz-gtk/client.c:586
 #: ../dependencies/ggz-gtk/client.c:627
-#, fuzzy
 msgid "Game Error"
-msgstr "ゲームオーバー"
+msgstr "ゲーム・エラー"
 
 #: ../dependencies/ggz-gtk/game.c:304
 msgid "You're still at a table."
-msgstr ""
+msgstr "未だテーブルにいます"
 
 #: ../dependencies/ggz-gtk/game.c:313
 msgid ""
 "You must be in a room to launch a game.\n"
 "Launch aborted"
 msgstr ""
+"ゲームを起動するには部屋に入らなければなりません\n"
+"(起動を中止します)"
 
 #: ../dependencies/ggz-gtk/game.c:323
 msgid ""
 "No game types defined for this server.\n"
 "Launch aborted."
 msgstr ""
+"このサーバではゲームの種類が定義されていません\n"
+"(起動を中止します)"
 
 #: ../dependencies/ggz-gtk/game.c:333
-#, fuzzy
 msgid "This game doesn't support spectators."
-msgstr "このゲームはまだヒントをサポートしていません。"
+msgstr "このゲームの見物はサポートされていません"
 
 #: ../dependencies/ggz-gtk/game.c:348
 msgid ""
 "You need to launch the GGZ client directly\n"
 "to be able to play this game."
 msgstr ""
+"このゲームをプレイできるようにするには\n"
+"GGZ クライアントを直接起動する必要があります"
 
 #: ../dependencies/ggz-gtk/support.c:139 ../dependencies/ggz-gtk/props.c:1464
 #: ../dependencies/ggz-gtk/props.c:1484
 msgid "Galeon - New"
-msgstr ""
+msgstr "新しい Galeon"
 
 #: ../dependencies/ggz-gtk/support.c:142 ../dependencies/ggz-gtk/props.c:1465
 msgid "Galeon - Existing"
-msgstr ""
+msgstr "既存の Galeon"
 
 #: ../dependencies/ggz-gtk/support.c:145 ../dependencies/ggz-gtk/props.c:1466
 msgid "Gnome URL Handler"
-msgstr ""
+msgstr "GNOME URL ハンドラ"
 
 #: ../dependencies/ggz-gtk/support.c:148 ../dependencies/ggz-gtk/props.c:1467
 msgid "Konqueror - New"
-msgstr ""
+msgstr "新しい Konqueror"
 
 #: ../dependencies/ggz-gtk/support.c:151 ../dependencies/ggz-gtk/props.c:1468
 msgid "Konqueror - Existing"
-msgstr ""
+msgstr "既存の Konqueror"
 
 #: ../dependencies/ggz-gtk/support.c:163 ../dependencies/ggz-gtk/props.c:1469
 msgid "Lynx"
-msgstr ""
+msgstr "Lynx"
 
 #: ../dependencies/ggz-gtk/support.c:169 ../dependencies/ggz-gtk/props.c:1470
 msgid "Mozilla - New"
-msgstr ""
+msgstr "新しい Mozilla"
 
 #: ../dependencies/ggz-gtk/support.c:172 ../dependencies/ggz-gtk/props.c:1471
 msgid "Mozilla - Existing"
-msgstr ""
+msgstr "既存の Mozilla"
 
 #: ../dependencies/ggz-gtk/support.c:176 ../dependencies/ggz-gtk/props.c:1472
 msgid "Netscape - New"
-msgstr ""
+msgstr "新しい Netscape"
 
 #: ../dependencies/ggz-gtk/support.c:179 ../dependencies/ggz-gtk/props.c:1473
 msgid "Netscape - Existing"
-msgstr ""
+msgstr "既存の Netscape"
 
 #: ../dependencies/ggz-gtk/support.c:183 ../dependencies/ggz-gtk/props.c:1474
 msgid "Opera - New"
-msgstr ""
+msgstr "新しい Opera"
 
 #: ../dependencies/ggz-gtk/support.c:186 ../dependencies/ggz-gtk/props.c:1475
-#, fuzzy
 msgid "Opera - Existing"
-msgstr "操作"
+msgstr "既存の Opera"
 
 #: ../dependencies/ggz-gtk/support.c:191 ../dependencies/ggz-gtk/props.c:1476
 msgid "Firefox - New"
-msgstr ""
+msgstr "新しい Firefox"
 
 #: ../dependencies/ggz-gtk/support.c:194 ../dependencies/ggz-gtk/props.c:1477
 msgid "Firefox - Existing"
-msgstr ""
+msgstr "既存の Firefox"
 
 #: ../dependencies/ggz-gtk/about.c:87 ../dependencies/ggz-gtk/client.c:1089
 msgid "About"
-msgstr ""
+msgstr "情報"
 
 #: ../dependencies/ggz-gtk/motd.c:161
-#, fuzzy
 msgid "Message of the Day"
-msgstr "~a を場から取り去りなさい"
+msgstr "今日の一言"
 
 #: ../dependencies/ggz-gtk/types.c:113 ../iagno/properties.c:610
 msgid "None"
@@ -2705,353 +2718,315 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"部屋のフィルタリングは未だ実装されていません\n"
+"(お手伝いを希望される方は http://www.ggzgamingzone.org/ をご覧下さい)"
 
 #: ../dependencies/ggz-gtk/types.c:151 ../dependencies/ggz-gtk/client.c:239
 #: ../dependencies/ggz-gtk/client.c:251 ../dependencies/ggz-gtk/client.c:311
 #: ../dependencies/ggz-gtk/client.c:547
-#, fuzzy
 msgid "Not Implemented"
-msgstr "常に"
+msgstr "未実装"
 
 #: ../dependencies/ggz-gtk/types.c:183 ../dependencies/ggz-gtk/tablelist.c:201
-#, fuzzy
 msgid "Description"
-msgstr "スコーピオン"
+msgstr "説明"
 
 #: ../dependencies/ggz-gtk/types.c:191
 msgid "Web Address"
-msgstr ""
+msgstr "ウェブのアドレス"
 
 #: ../dependencies/ggz-gtk/types.c:199
 msgid "Author"
-msgstr ""
+msgstr "作者"
 
 #: ../dependencies/ggz-gtk/types.c:237 ../dependencies/ggz-gtk/client.c:1065
-#, fuzzy
 msgid "Game Types"
 msgstr "ゲームの種類"
 
 #: ../dependencies/ggz-gtk/types.c:254
 msgid "Room List Filter:"
-msgstr ""
+msgstr "部屋の一覧のフィルタ:"
 
 #: ../dependencies/ggz-gtk/types.c:266
-#, fuzzy
 msgid "Set"
-msgstr "事前設定"
-
-#: ../dependencies/ggz-gtk/types.c:306
-#, fuzzy
-msgid "Upgrage Game"
-msgstr "パン屋のゲーム"
-
-#: ../dependencies/ggz-gtk/types.c:309
-msgid "Goto Web Site"
-msgstr ""
+msgstr "セット"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:102
-#, fuzzy
 msgid "Player Information"
-msgstr "プレイヤーがテレポートした"
+msgstr "プレイヤーの情報"
 
 #. Add 'handle' label
 #: ../dependencies/ggz-gtk/playerinfo.c:132
-#, fuzzy
 msgid "Player Handle:"
-msgstr "プレイヤーがやられた"
+msgstr "ハンドル名:"
 
 #. Add "table" label
 #: ../dependencies/ggz-gtk/playerinfo.c:150
-#, fuzzy
 msgid "Table:"
-msgstr "牌:"
+msgstr "テーブル:"
 
 #. Add "type" label
 #: ../dependencies/ggz-gtk/playerinfo.c:168
 msgid "Account:"
-msgstr ""
+msgstr "アカウント:"
 
 #. Add "Record" label
 #: ../dependencies/ggz-gtk/playerinfo.c:187
-#, fuzzy
 msgid "Record:"
-msgstr "得点:"
+msgstr "記録:"
 
 #. Add "Rating" label
 #: ../dependencies/ggz-gtk/playerinfo.c:205
-#, fuzzy
 msgid "Rating:"
-msgstr "残り:"
+msgstr "評価:"
 
 #. Add "Ranking" label
 #: ../dependencies/ggz-gtk/playerinfo.c:223
-#, fuzzy
 msgid "Rank:"
-msgstr "黒:"
+msgstr "ランク:"
 
 #. Add "Private chat" label
 #: ../dependencies/ggz-gtk/playerinfo.c:259
 #: ../dependencies/ggz-gtk/client.c:1277
 msgid "Message:"
-msgstr ""
+msgstr "メッセージ:"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:302
 #: ../dependencies/ggz-gtk/playerinfo.c:334
-#, fuzzy
 msgid "Unknown"
-msgstr "不明なマーク"
+msgstr "不明"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:337
 msgid "Registered"
-msgstr ""
+msgstr "登録済"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:340
-#, fuzzy
 msgid "Guest"
-msgstr "バースト"
+msgstr "ゲスト"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:343
-#, fuzzy
 msgid "Host"
-msgstr "石けり遊び"
+msgstr "ホスト"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:346
 msgid "Administrator"
-msgstr ""
+msgstr "管理者"
 
 #: ../dependencies/ggz-gtk/playerinfo.c:349
 #: ../libgames-support/games-dlg-players.c:126
 msgid "Bot"
-msgstr ""
+msgstr "ボット"
 
 #. FIXME: what about bot/reservation seats?
 #: ../dependencies/ggz-gtk/playerlist.c:94
 #: ../dependencies/ggz-gtk/tablelist.c:84
 #: ../dependencies/ggz-gtk/roomlist.c:144
 #: ../libgames-support/games-dlg-players.c:419
-#, fuzzy
 msgid "Info"
-msgstr "Iagno"
+msgstr "情報"
 
 #: ../dependencies/ggz-gtk/playerlist.c:101
 msgid "Friends"
-msgstr ""
+msgstr "仲間にする"
 
 #: ../dependencies/ggz-gtk/playerlist.c:106
-#, fuzzy
 msgid "Ignore"
-msgstr "Iagno"
+msgstr "無視する"
 
 #: ../dependencies/ggz-gtk/playerlist.c:246
 #, c-format
 msgid "#%d"
-msgstr ""
+msgstr "#%d"
 
 #: ../dependencies/ggz-gtk/playerlist.c:346
 msgid "L"
-msgstr ""
+msgstr "L"
 
 #: ../dependencies/ggz-gtk/playerlist.c:351
 #: ../dependencies/ggz-gtk/tablelist.c:191
 msgid "T#"
-msgstr ""
+msgstr "T#"
 
 #: ../dependencies/ggz-gtk/playerlist.c:356
 #: ../dependencies/ggz-gtk/client.c:1171
-#, fuzzy
 msgid "Stats"
 msgstr "状態"
 
 #: ../dependencies/ggz-gtk/pick_module.c:89
 msgid "Which client would you like to use to play this game?"
-msgstr ""
+msgstr "このゲームをプレイする際に使用するクライアントはどれですか？"
 
 #: ../dependencies/ggz-gtk/pick_module.c:131
 msgid "Don't ask me again."
-msgstr ""
+msgstr "次回から表示しない"
 
 #: ../dependencies/ggz-gtk/tablelist.c:74
 #: ../dependencies/ggz-gtk/roomlist.c:150 ../dependencies/ggz-gtk/client.c:985
 #: ../dependencies/ggz-gtk/client.c:1141
-#, fuzzy
 msgid "Join"
-msgstr "連結"
+msgstr "参加する"
 
 #: ../dependencies/ggz-gtk/tablelist.c:77
 #: ../dependencies/ggz-gtk/client.c:1004 ../dependencies/ggz-gtk/client.c:1157
-#, fuzzy
 msgid "Leave"
-msgstr "レベル:"
+msgstr "抜ける"
 
 #: ../dependencies/ggz-gtk/tablelist.c:161
-#, fuzzy
 msgid "No description available."
-msgstr "ヒントはありません"
+msgstr "説明なし"
 
 #: ../dependencies/ggz-gtk/tablelist.c:196
-#, fuzzy
 msgid "Seats"
-msgstr "ハート"
+msgstr "席"
 
 #: ../dependencies/ggz-gtk/roominfo.c:63
 msgid "Room Information"
-msgstr ""
+msgstr "部屋の情報"
 
 #. Add 'name' label and text.
 #: ../dependencies/ggz-gtk/roominfo.c:80
-#, fuzzy
 msgid "Game Name:"
-msgstr "ゲームの名前(_G):"
+msgstr "ゲームの名前:"
 
 #. Add 'author' label and text.
 #: ../dependencies/ggz-gtk/roominfo.c:90 ../dependencies/ggz-gtk/launch.c:495
 msgid "Author:"
-msgstr ""
+msgstr "作者:"
 
 #. Add 'homepage' label and text.
 #: ../dependencies/ggz-gtk/roominfo.c:100 ../dependencies/ggz-gtk/launch.c:530
-#, fuzzy
 msgid "Homepage:"
-msgstr "画像(_I):"
+msgstr "ホームページ:"
 
 #. Add 'description' label and text.
 #: ../dependencies/ggz-gtk/roominfo.c:110
 msgid "Room Description:"
-msgstr ""
+msgstr "部屋の説明:"
 
 #: ../dependencies/ggz-gtk/roominfo.c:155
 msgid "This room has no game"
-msgstr ""
+msgstr "この部屋にはゲームはありません"
 
 #: ../dependencies/ggz-gtk/roominfo.c:175
-#, fuzzy
 msgid "Unknown room"
-msgstr "不明な色"
+msgstr "不明な部屋"
 
 #: ../dependencies/ggz-gtk/roomlist.c:73
 msgid "You can't join a room; you're not logged in"
-msgstr ""
+msgstr "ログインしていないので部屋に入れません"
 
 #: ../dependencies/ggz-gtk/roomlist.c:77
-#, fuzzy
 msgid "You're already in between rooms"
-msgstr "ゆっくり実行する"
+msgstr "既に複数の部屋の間にいます"
 
 #: ../dependencies/ggz-gtk/roomlist.c:82
 msgid "You can't switch rooms while playing a game"
-msgstr ""
+msgstr "プレイ中は部屋を移ることはできません"
 
 #: ../dependencies/ggz-gtk/roomlist.c:89
-#, fuzzy
 msgid "Unknown error"
-msgstr "不明な色"
+msgstr "原因不明のエラー"
 
 #. If we get here, there was an error
 #: ../dependencies/ggz-gtk/roomlist.c:109
 #: ../dependencies/ggz-gtk/roomlist.c:114
 msgid "Error joining room"
-msgstr ""
+msgstr "部屋に入る際にエラー"
 
 #: ../dependencies/ggz-gtk/roomlist.c:350
 msgid "Other Rooms"
-msgstr ""
+msgstr "他の部屋"
 
 #: ../dependencies/ggz-gtk/roomlist.c:424
-#, fuzzy
 msgid "Room"
-msgstr "\"ローマ\""
+msgstr "部屋"
 
 #: ../dependencies/ggz-gtk/launch.c:114
-#, fuzzy, c-format
+#, c-format
 msgid "Game Type:  %s"
-msgstr "ゲームの種類"
+msgstr "ゲームの種類:  %s"
 
 #: ../dependencies/ggz-gtk/launch.c:120
 #, c-format
 msgid "Author:  %s"
-msgstr ""
+msgstr "作者:  %s"
 
 #: ../dependencies/ggz-gtk/launch.c:127
 #, c-format
 msgid "Description:  %s"
-msgstr ""
+msgstr "説明:  %s"
 
 #: ../dependencies/ggz-gtk/launch.c:133
 #, c-format
 msgid "Home Page:  %s"
-msgstr ""
+msgstr "ホームページ:  %s"
 
 #: ../dependencies/ggz-gtk/launch.c:289
 msgid ""
 "Failed to launch table.\n"
 " Launch aborted."
 msgstr ""
+"テーブルの起動に失敗しました\n"
+"(起動を中止します)"
 
 #: ../dependencies/ggz-gtk/launch.c:325
 msgid "Invalid number of bots specified"
-msgstr ""
+msgstr "指定したボットの数が間違っています"
 
 #: ../dependencies/ggz-gtk/launch.c:334 ../dependencies/ggz-gtk/client.c:585
 #: ../dependencies/ggz-gtk/client.c:626
 msgid "Error launching game module."
-msgstr ""
+msgstr "ゲーム・モジュールを起動する際にエラー"
 
 #: ../dependencies/ggz-gtk/launch.c:420
 msgid "Seat Assignments"
-msgstr ""
+msgstr "席の割り当て"
 
 #: ../dependencies/ggz-gtk/launch.c:443
-#, fuzzy
 msgid "Game Type:"
-msgstr "ゲームの種類"
+msgstr "ゲームの種類:"
 
 #: ../dependencies/ggz-gtk/launch.c:479
-#, fuzzy
 msgid "Number of seats"
-msgstr "地雷の数"
+msgstr "席の数"
 
 #: ../dependencies/ggz-gtk/launch.c:513
-#, fuzzy
 msgid "Description:"
-msgstr "スコーピオン"
+msgstr "説明:"
 
 #: ../dependencies/ggz-gtk/launch.c:586
 #, c-format
 msgid "Seat %d:"
-msgstr ""
+msgstr "席 %d:"
 
 #: ../dependencies/ggz-gtk/launch.c:598
-#, fuzzy
 msgid "Computer"
-msgstr "常に"
+msgstr "コンピュータ"
 
 #: ../dependencies/ggz-gtk/launch.c:613
-#, fuzzy
 msgid "Open"
-msgstr "操作"
+msgstr "オープン"
 
 #: ../dependencies/ggz-gtk/launch.c:628
-#, fuzzy
 msgid "Reserved for"
-msgstr "左のリザーブ: "
+msgstr "次の人専用: "
 
 #: ../dependencies/ggz-gtk/launch.c:663
 msgid "Game Description   "
-msgstr ""
+msgstr "ゲームの説明   "
 
 #: ../dependencies/ggz-gtk/launch.c:693 ../dependencies/ggz-gtk/client.c:978
 #: ../dependencies/ggz-gtk/client.c:1133
 msgid "Launch"
-msgstr ""
+msgstr "起動する"
 
 #: ../dependencies/ggz-gtk/client.c:144
-#, fuzzy
 msgid "Are you sure you want to quit?"
-msgstr "その役は既に使用済です！ どの役を適用しますか？"
+msgstr "本当に終了してもよろしいですか？"
 
 #: ../dependencies/ggz-gtk/client.c:144
 msgid "Quit?"
-msgstr ""
+msgstr "終了しますか？"
 
 #: ../dependencies/ggz-gtk/client.c:237
 msgid ""
@@ -3059,6 +3034,8 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"サーバ状態の取得は未だ実装されていません。\n"
+"(お手伝いを希望される方は http://www.ggzgamingzone.org/ をご覧下さい)"
 
 #: ../dependencies/ggz-gtk/client.c:248 ../dependencies/ggz-gtk/client.c:545
 msgid ""
@@ -3066,12 +3043,16 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"プレイヤー状態の取得は未だ実装されていません\n"
+"(お手伝いを希望される方は http://www.ggzgamingzone.org/ をご覧下さい)"
 
 #: ../dependencies/ggz-gtk/client.c:294
 msgid ""
 "GGZ Gaming Zone help needs a browser to be configured.\n"
 "The configuration dialog will be invoked now."
 msgstr ""
+"GGZ ゲーム・ゾーンのヘルプを表示するには設定済みのブラウザが必要です。\n"
+"(現在、設定ダイアログを起動しています...)"
 
 #: ../dependencies/ggz-gtk/client.c:308
 msgid ""
@@ -3080,324 +3061,303 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"インライン・ゲームのヘルプは未だ実装されていません\n"
+"(お手伝いを希望される方は http://www.ggzgamingzone.org/ をご覧下さい)"
 
 #: ../dependencies/ggz-gtk/client.c:566
 msgid "You must highlight a table before you can join it."
-msgstr ""
+msgstr "テーブルにつく前にそのテーブルをクリックして強調表示にして下さい"
 
 #: ../dependencies/ggz-gtk/client.c:567 ../dependencies/ggz-gtk/client.c:576
 #: ../dependencies/ggz-gtk/client.c:615
 msgid "Error Joining"
-msgstr ""
+msgstr "部屋に入る際にエラー"
 
 #: ../dependencies/ggz-gtk/client.c:576 ../dependencies/ggz-gtk/client.c:614
 msgid "That table is full."
-msgstr ""
+msgstr "そのテーブルは満員です"
 
 #: ../dependencies/ggz-gtk/client.c:600
 msgid "You must highlight a table before you can watch it."
-msgstr ""
+msgstr "テーブルを監視する前にそのテーブルをクリックして強調表示にして下さい"
 
 #: ../dependencies/ggz-gtk/client.c:602
 msgid "Error Spectating"
-msgstr ""
+msgstr "監視する際にエラー"
 
 #: ../dependencies/ggz-gtk/client.c:647
 msgid ""
 "Failed to join table.\n"
 "Join aborted."
 msgstr ""
+"テーブルにつけませんでした\n"
+"(参加を中止します)"
 
 #: ../dependencies/ggz-gtk/client.c:648
 msgid "Join Error"
-msgstr ""
+msgstr "参加エラー"
 
 #: ../dependencies/ggz-gtk/client.c:678
 msgid "Disconnect from the GGZ Gaming Zone server"
-msgstr ""
+msgstr "GGZ ゲーム・ゾーンのサーバとの接続を切ります"
 
 #: ../dependencies/ggz-gtk/client.c:680
 msgid "Start playing a game at a new table"
-msgstr ""
+msgstr "新しいテーブルでゲームを開始します"
 
-#: ../dependencies/ggz-gtk/client.c:682 ../glchess/glade/glchess.glade.h:7
-#, fuzzy
+#: ../dependencies/ggz-gtk/client.c:682 ../glchess/glade/glchess.glade.h:8
 msgid "Join an existing game"
-msgstr "ローカル・ゲームへ参加"
+msgstr "既存のゲームに参加します"
 
 #: ../dependencies/ggz-gtk/client.c:684
 msgid "Watch an existing game - become a spectator of the table"
-msgstr ""
+msgstr "既存のゲームを観察します (テーブルを見学します)"
 
 #: ../dependencies/ggz-gtk/client.c:687
 msgid "Leave the game you're currently playing"
-msgstr ""
+msgstr "現在プレイ中のゲームを離れます"
 
 #: ../dependencies/ggz-gtk/client.c:689
 msgid "Show the properties dialog to change the client settings"
-msgstr ""
+msgstr "クライアントの設定を変更するためのプロパティダイアログを表示します"
 
 #: ../dependencies/ggz-gtk/client.c:693
 msgid "Show the game stats for the current room's game type"
-msgstr ""
+msgstr "この部屋にあるゲームの状態を表示します"
 
 #: ../dependencies/ggz-gtk/client.c:696
 msgid "Exit the GGZ client application."
-msgstr ""
+msgstr "GGZ クライアントを終了します"
 
 #. Print out client information
 #: ../dependencies/ggz-gtk/client.c:726
 #, c-format
 msgid "Client Version:14 %s"
-msgstr ""
+msgstr "クライアントのバージョン:14 %s"
 
 #: ../dependencies/ggz-gtk/client.c:729
 #, c-format
 msgid "GTK+ Version:14 %d.%d.%d\n"
-msgstr ""
+msgstr "GTK+ のバージョン:14 %d.%d.%d\n"
 
 #: ../dependencies/ggz-gtk/client.c:736
 msgid "Compiled with debugging."
-msgstr ""
+msgstr "(デバッグ付きでビルド済)"
 
 #: ../dependencies/ggz-gtk/client.c:934
 msgid "GGZ"
-msgstr ""
+msgstr "GGZ"
 
 #. We should use gtk_tool_button_new_from_stock but for some reason
 #. * the connect and disconnect stock items don't have text included.
 #: ../dependencies/ggz-gtk/client.c:949 ../dependencies/ggz-gtk/client.c:1180
-#, fuzzy
 msgid "Disconnect"
-msgstr "接続(_O)"
+msgstr "切断"
 
 #: ../dependencies/ggz-gtk/client.c:962
 msgid "Quit"
-msgstr ""
+msgstr "終了"
 
 #: ../dependencies/ggz-gtk/client.c:992 ../dependencies/ggz-gtk/client.c:1149
-#, fuzzy
 msgid "Watch"
-msgstr "待機(_W)"
+msgstr "待機する"
 
 #: ../dependencies/ggz-gtk/client.c:1011
 msgid "Edit"
-msgstr ""
+msgstr "編集"
 
 #: ../dependencies/ggz-gtk/client.c:1019
 msgid "Properties"
-msgstr ""
+msgstr "プロパティ"
 
 #: ../dependencies/ggz-gtk/client.c:1026
-#, fuzzy
 msgid "View"
-msgstr "表示(_V)"
+msgstr "表示"
 
 #: ../dependencies/ggz-gtk/client.c:1035
 msgid "Room List"
-msgstr ""
+msgstr "部屋の一覧"
 
 #.
 #. * Create outer window.
 #.
 #: ../dependencies/ggz-gtk/client.c:1041
 #: ../libgames-support/games-dlg-players.c:263
-#, fuzzy
 msgid "Player List"
-msgstr "プレイヤー"
+msgstr "プレイヤーの一覧"
 
 #: ../dependencies/ggz-gtk/client.c:1053
 msgid "Server Stats"
-msgstr ""
+msgstr "サーバの状態"
 
 #: ../dependencies/ggz-gtk/client.c:1057
-#, fuzzy
 msgid "Player Stats"
-msgstr "プレイヤーの名前"
+msgstr "プレイヤーの状態"
 
 #: ../dependencies/ggz-gtk/client.c:1074 ../dependencies/ggz-gtk/props.c:1491
 msgid "MOTD"
-msgstr ""
+msgstr "MOTD"
 
 #: ../dependencies/ggz-gtk/client.c:1081
-#, fuzzy
 msgid "Help"
-msgstr "ヘルプ(_H)"
+msgstr "ヘルプ"
 
 #: ../dependencies/ggz-gtk/client.c:1096
-#, fuzzy
 msgid "Copyright"
-msgstr "右へ移動する"
+msgstr "コピーライト"
 
 #: ../dependencies/ggz-gtk/client.c:1105
-#, fuzzy
 msgid "GGZ Help"
-msgstr "ヘルプ(_H)"
+msgstr "GGZ のヘルプ"
 
 #: ../dependencies/ggz-gtk/client.c:1112
-#, fuzzy
 msgid "Game Help"
-msgstr "ゲーム・フィールド"
+msgstr "ゲームのヘルプ"
 
 #: ../dependencies/ggz-gtk/client.c:1121
 msgid "Goto Web"
-msgstr ""
+msgstr "ウェブへジャンプ"
 
 #: ../dependencies/ggz-gtk/client.c:1295
-#, fuzzy
 msgid "Send"
-msgstr "速さ"
+msgstr "送信"
 
 #. Display a status Message
 #: ../dependencies/ggz-gtk/props.c:249
 msgid "Properties Updated"
-msgstr ""
+msgstr "プロパティを更新しました"
 
 #: ../dependencies/ggz-gtk/props.c:1035
 msgid "Confirm:"
-msgstr ""
+msgstr "確認:"
 
 #: ../dependencies/ggz-gtk/props.c:1085
 msgid "Modify"
-msgstr ""
+msgstr "変更"
 
 #: ../dependencies/ggz-gtk/props.c:1099
-#, fuzzy
 msgid "Servers"
-msgstr "得点"
+msgstr "サーバ"
 
 #: ../dependencies/ggz-gtk/props.c:1118
 msgid "Chat Font:"
-msgstr ""
+msgstr "フォント:"
 
 #: ../dependencies/ggz-gtk/props.c:1134
-#, fuzzy
 msgid "Change"
-msgstr "オレンジ色"
+msgstr "変更する"
 
 #: ../dependencies/ggz-gtk/props.c:1147
 msgid "Ignore Join/Part Messages"
-msgstr ""
+msgstr "Join/Part なメッセージを無視する"
 
 #: ../dependencies/ggz-gtk/props.c:1155
-#, fuzzy
 msgid "Play Sounds"
-msgstr "効果音"
+msgstr "効果音を鳴らす"
 
 #: ../dependencies/ggz-gtk/props.c:1163
 msgid "Auto Indent"
-msgstr ""
+msgstr "自動的にインデントする"
 
 #: ../dependencies/ggz-gtk/props.c:1171
 msgid "Timestamp Chats"
-msgstr ""
+msgstr "タイムスタンプを付与する"
 
 #: ../dependencies/ggz-gtk/props.c:1179
 msgid "Word Wrap"
-msgstr ""
+msgstr "単語をラップする"
 
 #: ../dependencies/ggz-gtk/props.c:1187
-#, fuzzy
 msgid "Chat Color"
-msgstr "色"
+msgstr "文字の色"
 
 #: ../dependencies/ggz-gtk/props.c:1236
 msgid "Default chat color assigned to your friends"
-msgstr ""
+msgstr "(仲間の名前を表示する際に使用する色です)"
 
 #: ../dependencies/ggz-gtk/props.c:1245
 msgid "Chat color used when your name is typed"
-msgstr ""
+msgstr "(あなたの名前を表示する際に使用する色です)"
 
 #: ../dependencies/ggz-gtk/props.c:1254
 msgid "Chat color used for all other chats"
-msgstr ""
+msgstr "(それ以外のメッセージで使用する色です)"
 
 #: ../dependencies/ggz-gtk/props.c:1263
-#, fuzzy
 msgid "Normal Color"
-msgstr "いも虫の色(_W):"
+msgstr "通常の色"
 
 #: ../dependencies/ggz-gtk/props.c:1274
 msgid "Highlight Color"
-msgstr ""
+msgstr "強調表示の色"
 
 #: ../dependencies/ggz-gtk/props.c:1285
 msgid "Friend Color"
-msgstr ""
+msgstr "仲間の色"
 
 #: ../dependencies/ggz-gtk/props.c:1296
-#, fuzzy
 msgid "Black Background"
-msgstr "ブラックジャック"
+msgstr "背景を黒にする"
 
 #: ../dependencies/ggz-gtk/props.c:1305
-#, fuzzy
 msgid "White Background"
-msgstr "背景色"
+msgstr "背景を白にする"
 
 #: ../dependencies/ggz-gtk/props.c:1314
-#, fuzzy
 msgid "Chat"
-msgstr "じゅうたん"
+msgstr "チャット"
 
 #: ../dependencies/ggz-gtk/props.c:1326
 msgid "All of the following information is optional."
-msgstr ""
+msgstr "次の情報は全てオプションです:"
 
 #: ../dependencies/ggz-gtk/props.c:1344
-#, fuzzy
 msgid "Name:"
-msgstr "名前"
+msgstr "名前:"
 
 #: ../dependencies/ggz-gtk/props.c:1371
 msgid "City:"
-msgstr ""
+msgstr "都市:"
 
 #: ../dependencies/ggz-gtk/props.c:1392
-#, fuzzy
 msgid "State:"
-msgstr "状態"
+msgstr "状態:"
 
 #: ../dependencies/ggz-gtk/props.c:1413
-#, fuzzy
 msgid "Country:"
-msgstr "操作(_C)"
+msgstr "国:"
 
 #: ../dependencies/ggz-gtk/props.c:1428
-msgid "Comments, Hobies, Etc."
-msgstr ""
+msgid "Comments, Hobbies, Etc."
+msgstr "コメントや趣味など"
 
 #: ../dependencies/ggz-gtk/props.c:1450
-#, fuzzy
 msgid "User Information"
-msgstr "高速に描画する"
+msgstr "ユーザの情報"
 
 #: ../dependencies/ggz-gtk/props.c:1459
 msgid "Browser to launch URLs with:"
-msgstr ""
+msgstr "次のブラウザを使って URL を開く:"
 
 #: ../dependencies/ggz-gtk/props.c:1486
 msgid "Single Click Room Entry"
-msgstr ""
+msgstr "シングル・クリックで部屋に入る"
 
 #: ../dependencies/ggz-gtk/props.c:1500
 msgid "Display All"
-msgstr ""
+msgstr "全て表示する"
 
 #: ../dependencies/ggz-gtk/props.c:1509
 msgid "Display New"
-msgstr ""
+msgstr "新しいものだけ表示する"
 
 #: ../dependencies/ggz-gtk/props.c:1518
-#, fuzzy
 msgid "Display Important"
-msgstr "確率の表示"
+msgstr "重要なものだけ表示する"
 
 #: ../dependencies/ggz-gtk/props.c:1527
-#, fuzzy
 msgid "Display None"
-msgstr "確率の表示"
+msgstr "何も表示しない"
 
 #. Options
 #: ../dependencies/ggz-gtk/props.c:1536 ../gnibbles/preferences.c:308
@@ -3407,485 +3367,596 @@ msgid "Options"
 msgstr "オプション"
 
 #: ../dependencies/ggz-gtk/props.c:1625
-#, fuzzy
 msgid "Select Font"
-msgstr "ゲームの選択"
+msgstr "フォントの選択"
 
 #: ../dependencies/ggzcore/server.c:894
-#, fuzzy
 msgid "Unknown negotation"
-msgstr "不明な色"
+msgstr "不明なネゴシエーション"
 
 #: ../dependencies/ggzcore/server.c:921
 #, c-format
 msgid "Already logged in"
-msgstr ""
+msgstr "既にログイン済みです"
 
 #: ../dependencies/ggzcore/server.c:925
 #, c-format
 msgid "The password was incorrect"
-msgstr ""
+msgstr "パスワードが間違っていました"
 
 #: ../dependencies/ggzcore/server.c:929
 #, c-format
 msgid "Name is already taken"
-msgstr ""
+msgstr "名前は既に取得済みです"
 
 #: ../dependencies/ggzcore/server.c:933
 #, c-format
 msgid "This name is already registered so cannot be used by a guest"
-msgstr ""
+msgstr "その名前は既に登録済みなので利用できません"
 
 #: ../dependencies/ggzcore/server.c:937
-#, fuzzy, c-format
+#, c-format
 msgid "No such name was found"
-msgstr "テーマが見つかりませんでした。"
+msgstr "そのような名前が見つかりませんでした"
 
 #: ../dependencies/ggzcore/server.c:941
 #, c-format
 msgid "Name too long"
-msgstr ""
+msgstr "名前が長すぎます"
 
 #: ../dependencies/ggzcore/server.c:945
 #, c-format
 msgid "Name contains forbidden ASCII characters"
-msgstr ""
+msgstr "指定した名前には使用禁止の ASCII 文字が含まれています"
 
 #: ../dependencies/ggzcore/server.c:949
 #, c-format
 msgid "Missing password or other bad options."
-msgstr ""
+msgstr "パスワードがない、またはオプションが間違っています"
 
 #: ../dependencies/ggzcore/server.c:953
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown login error"
-msgstr "不明な色"
+msgstr "原因不明のログイン・エラー"
 
 #: ../dependencies/ggzcore/server.c:976
-#, fuzzy, c-format
+#, c-format
 msgid "Room full"
-msgstr "\"ローマ\""
+msgstr "満員です"
 
 #: ../dependencies/ggzcore/server.c:980
 #, c-format
 msgid "Can't change rooms while at a table"
-msgstr ""
+msgstr "テーブルについている間は部屋を変更できません"
 
 #: ../dependencies/ggzcore/server.c:984
 #, c-format
 msgid "Can't change rooms while joining/leaving a table"
-msgstr ""
+msgstr "テーブルについている/抜けている間は部屋を変更できません"
 
 #: ../dependencies/ggzcore/server.c:989
 #, c-format
 msgid "Bad room number"
-msgstr ""
+msgstr "部屋の番号が間違っています"
 
 #: ../dependencies/ggzcore/server.c:993
 #, c-format
 msgid "Insufficient permissions, room access is restricted"
-msgstr ""
+msgstr "権限が不適切です (部屋へのアクセスが拒否されました)"
 
 #: ../dependencies/ggzcore/server.c:997
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown room-joining error"
-msgstr "不明な色"
+msgstr "部屋に入る際に原因不明のエラー"
 
 #. Not all systems have hstrerror.
 #: ../dependencies/ggzcore/server.c:1188
 msgid "Unable to connect"
-msgstr ""
+msgstr "接続できません"
 
 #: ../dependencies/ggzcore/server.c:1432 ../dependencies/ggzcore/server.c:1449
 msgid "Protocol mismatch"
-msgstr ""
+msgstr "プロトコルが一致しません"
 
 #: ../dependencies/gnuchess/getopt.c:693
 #, c-format
 msgid "%s: option `%s' is ambiguous\n"
-msgstr ""
+msgstr "%s: オプション '%s' はあいまいです\n"
 
 #: ../dependencies/gnuchess/getopt.c:718
 #, c-format
 msgid "%s: option `--%s' doesn't allow an argument\n"
-msgstr ""
+msgstr "%s: オプション '--%s' は引数を指定できません\n"
 
 #: ../dependencies/gnuchess/getopt.c:723
 #, c-format
 msgid "%s: option `%c%s' doesn't allow an argument\n"
-msgstr ""
+msgstr "%s: オプション '%c%s' は引数を指定できません\n"
 
 #: ../dependencies/gnuchess/getopt.c:741 ../dependencies/gnuchess/getopt.c:914
 #, c-format
 msgid "%s: option `%s' requires an argument\n"
-msgstr ""
+msgstr "%s: オプション '%s' には引数が必要です\n"
 
 #. --option
 #: ../dependencies/gnuchess/getopt.c:770
 #, c-format
 msgid "%s: unrecognized option `--%s'\n"
-msgstr ""
+msgstr "%s: 認識できないオプションです: '--%s'\n"
 
 #. +option or -option
 #: ../dependencies/gnuchess/getopt.c:774
 #, c-format
 msgid "%s: unrecognized option `%c%s'\n"
-msgstr ""
+msgstr "%s: 認識できないオプションです: '%c%s'\n"
 
 #. 1003.2 specifies the format of this message.
 #: ../dependencies/gnuchess/getopt.c:800
 #, c-format
 msgid "%s: illegal option -- %c\n"
-msgstr ""
+msgstr "%s: 間違ったオプションです -- %c\n"
 
 #: ../dependencies/gnuchess/getopt.c:803
 #, c-format
 msgid "%s: invalid option -- %c\n"
-msgstr ""
+msgstr "%s: 間違ったオプションです -- %c\n"
 
 #. 1003.2 specifies the format of this message.
 #: ../dependencies/gnuchess/getopt.c:833 ../dependencies/gnuchess/getopt.c:963
 #, c-format
 msgid "%s: option requires an argument -- %c\n"
-msgstr ""
+msgstr "%s: オプションには引数が必要です -- %c\n"
 
 #: ../dependencies/gnuchess/getopt.c:880
 #, c-format
 msgid "%s: option `-W %s' is ambiguous\n"
-msgstr ""
+msgstr "%s: オプション '-W %s' はあいまいです\n"
 
 #: ../dependencies/gnuchess/getopt.c:898
 #, c-format
 msgid "%s: option `-W %s' doesn't allow an argument\n"
+msgstr "%s: オプション '-W %s' には引数を指定できません\n"
+
+#: ../glchess/data/glchess.schemas.in.h:1
+msgid "A flag to allow remote players to watch new games"
+msgstr "新しいゲームを見学できるかどうか"
+
+#: ../glchess/data/glchess.schemas.in.h:2
+msgid "A flag to enable 3D mode"
+msgstr "３Ｄモードを有効にするかどうか"
+
+#: ../glchess/data/glchess.schemas.in.h:3
+msgid "A flag to enable fullscreen mode"
+msgstr "フルスクリーン表示にするかどうか"
+
+#: ../glchess/data/glchess.schemas.in.h:4
+msgid "A flag to enable the move history browser"
+msgstr "履歴ブラウザを表示するかどうか"
+
+#: ../glchess/data/glchess.schemas.in.h:5
+msgid "A flag to enable the toolbar"
+msgstr "ツールバーを表示するかどうか"
+
+#: ../glchess/data/glchess.schemas.in.h:6
+msgid "The amount of time each player has to move in new games"
+msgstr "新しいゲームで各プレイヤーが駒を移動するのに必要な時間"
+
+#: ../glchess/data/glchess.schemas.in.h:7
+msgid "The default player difficulty for black in new games"
+msgstr "黒のプレイヤーの難易度"
+
+#: ../glchess/data/glchess.schemas.in.h:8
+msgid "The default player difficulty for white in new games"
+msgstr "白のプレイヤーの難易度"
+
+#: ../glchess/data/glchess.schemas.in.h:9
+msgid "The default player type for black in new games"
+msgstr "黒のプレイヤーの種類"
+
+#: ../glchess/data/glchess.schemas.in.h:10
+msgid "The default player type for white in new games"
+msgstr "白のプレイヤーの種類"
+
+#: ../glchess/data/glchess.schemas.in.h:11
+msgid "The directory to open the load game dialog in"
+msgstr "ゲームを読み込む際に開くフォルダ"
+
+#: ../glchess/data/glchess.schemas.in.h:12
+msgid "The directory to open the save game dialog in"
+msgstr "ゲームを保存する際に開くフォルダ"
+
+#: ../glchess/data/glchess.schemas.in.h:13
+msgid "The format to display moves in"
+msgstr "駒の移動を表現する書式"
+
+#: ../glchess/data/glchess.schemas.in.h:14
+msgid ""
+"The format to display moves in, can be either 'human' (human readable), "
+"'lan' (long algebraic notation) or 'san' (standard algebraic notation)"
 msgstr ""
+"駒の移動を表現する際に使用する書式です。指定可能な値: 'human' (可読な書"
+"式)、'lan' (長い代数記法)、'san' (標準的な代数記法)\n"
+"                                                           "
+
+#: ../glchess/data/glchess.schemas.in.h:15
+msgid "The height of the main window in pixels."
+msgstr "メイン・ウィンドウの高さ (ピクセル単位) です。"
+
+#: ../glchess/data/glchess.schemas.in.h:16 ../gnomine/gnomine.schemas.in.h:10
+#: ../gnotravex/gnotravex.schemas.in.h:6 ../gnotski/gnotski.schemas.in.h:1
+#: ../mahjongg/mahjongg.schemas.in.h:1
+msgid "The height of the window"
+msgstr "ウィンドウの高さ"
+
+#: ../glchess/data/glchess.schemas.in.h:17
+msgid "The width of the main window in pixels."
+msgstr "メイン・ウィンドウの幅 (ピクセル単位) です。"
+
+#: ../glchess/data/glchess.schemas.in.h:18 ../gnomine/gnomine.schemas.in.h:13
+#: ../gnotravex/gnotravex.schemas.in.h:10 ../gnotski/gnotski.schemas.in.h:6
+#: ../mahjongg/mahjongg.schemas.in.h:4
+msgid "The width of the window"
+msgstr "ウィンドウの幅"
 
 #: ../glchess/glade/ai.glade.h:1
-#, fuzzy
 msgid "Communication:"
-msgstr "アニメーション"
+msgstr "コミュニケーション:"
 
 #: ../glchess/glade/ai.glade.h:2
 msgid "Executable:"
-msgstr ""
+msgstr "実行形式:"
 
 #: ../glchess/glade/ai.glade.h:3
-#, fuzzy
 msgid "Playing as:"
-msgstr "プレーン"
+msgstr "プレイの内容:"
 
 #: ../glchess/glade/save_game.glade.h:1
-#, fuzzy
 msgid "Save Chess Game"
-msgstr "このゲームを解きます"
+msgstr "チェス・ゲームの保存"
 
 #: ../glchess/glade/load_game.glade.h:1
-#, fuzzy
 msgid "Load Chess Game"
-msgstr "新しいゲームを開始します"
+msgstr "チェス・ゲームの読み込み"
 
 #: ../glchess/glade/glchess.glade.h:1
 msgid ""
 "<b><big>Some games have been changed. Save changes before closing?</big></b>"
 msgstr ""
+"<b><big>いくつかのゲームが変更されました。閉じる前に保存しますか？</big></b>"
 
 #: ../glchess/glade/glchess.glade.h:2
-#, fuzzy
-msgid "AI Information"
-msgstr "アニメーション"
+msgid "<b><big>Unable to enable 3D mode</big></b>"
+msgstr "<b><big>３Ｄモードは利用できません</big></b>"
 
 #: ../glchess/glade/glchess.glade.h:3
-#, fuzzy
-msgid "End Game"
-msgstr "ゲームの終了(_E)"
+msgid "AI Information"
+msgstr "AI の情報"
 
-#: ../glchess/glade/glchess.glade.h:4 ../libgames-support/games-stock.c:124
+#: ../glchess/glade/glchess.glade.h:4
+msgid "End Game"
+msgstr "ゲーム終了"
+
+#: ../glchess/glade/glchess.glade.h:5 ../libgames-support/games-stock.c:124
 msgid "End the current game"
 msgstr "このゲームを終了します"
 
-#: ../glchess/glade/glchess.glade.h:5
+#: ../glchess/glade/glchess.glade.h:6
 msgid "If you don't save, all your changes will be permanently lost"
-msgstr ""
+msgstr "保存しない場合は変更点を全て失うことになります"
 
-#: ../glchess/glade/glchess.glade.h:6 ../glchess/glade/new_game.glade.h:11
-#, fuzzy
+#: ../glchess/glade/glchess.glade.h:7
 msgid "Join Game"
-msgstr "ゲームの終了(_E)"
-
-#: ../glchess/glade/glchess.glade.h:8
-#, fuzzy
-msgid "Leave _Fullscreen"
-msgstr "フルスクリーンから抜ける(_L)"
+msgstr "ゲーム参加"
 
 #: ../glchess/glade/glchess.glade.h:9
-#, fuzzy
+msgid "Leave _Fullscreen"
+msgstr "フルスクリーンの解除(_F)"
+
+#: ../glchess/glade/glchess.glade.h:10
 msgid "Load a saved game"
-msgstr "新しいゲームを開始します"
+msgstr "保存したゲームを読み込みます"
 
-#: ../glchess/glade/glchess.glade.h:10 ../glchess/glade/new_game.glade.h:15
+#: ../glchess/glade/glchess.glade.h:11 ../glchess/glade/new_game.glade.h:9
 #: ../gnome-sudoku/glade/new_game.glade.h:5
-#: ../libgames-support/games-scores-dialog.c:437
+#: ../libgames-support/games-scores-dialog.c:432
 msgid "New Game"
-msgstr "新規ゲーム"
-
-#: ../glchess/glade/glchess.glade.h:11
-#, fuzzy
-msgid "Rewind to the game start"
-msgstr "新しいゲームを開始します"
+msgstr "新ゲーム"
 
 #: ../glchess/glade/glchess.glade.h:12
-msgid "Save and _Quit"
-msgstr ""
+msgid "Rewind to the game start"
+msgstr "ゲームの開始まで戻します"
 
 #: ../glchess/glade/glchess.glade.h:13
-#, fuzzy
-msgid "Save the current game"
-msgstr "このゲームを終了します"
+msgid "Save and _Quit"
+msgstr "保存して終了(_Q)"
 
 #: ../glchess/glade/glchess.glade.h:14
-#, fuzzy
-msgid "Select the games you want to save:"
-msgstr "遊ぶゲームを選択"
+msgid "Save the current game"
+msgstr "現在の状態を保存します"
 
 #: ../glchess/glade/glchess.glade.h:15
-#, fuzzy
-msgid "Show the current move"
-msgstr "このゲームを終了します"
+msgid "Select the games you want to save:"
+msgstr "保存するゲームを選択して下さい:"
 
 #: ../glchess/glade/glchess.glade.h:16
-#, fuzzy
-msgid "Show the next move"
-msgstr "直前の操作を取り消します"
+msgid "Show the current move"
+msgstr "最新の移動を表示します"
 
 #: ../glchess/glade/glchess.glade.h:17
-#, fuzzy
+msgid "Show the next move"
+msgstr "次の移動を表示します"
+
+#: ../glchess/glade/glchess.glade.h:18
 msgid "Show the previous move"
-msgstr "最近の移動をやりなおします"
+msgstr "直前の移動を表示します"
 
-#: ../glchess/glade/glchess.glade.h:19
+#: ../glchess/glade/glchess.glade.h:20
 msgid "Summary"
-msgstr ""
-
-#: ../glchess/glade/glchess.glade.h:21
-msgid "There are not artificial intelligences in use"
-msgstr ""
+msgstr "サマリ"
 
 #: ../glchess/glade/glchess.glade.h:22
-msgid "_3D"
-msgstr ""
+msgid "There are no artificial intelligence players."
+msgstr "人工知能 (AI) のプレイヤーはいません。"
 
 #: ../glchess/glade/glchess.glade.h:23
-#, fuzzy
-msgid "_AI Information"
-msgstr "アニメーションを有効にする(_A)"
+msgid ""
+"Your system does not have the required software to enable 3D mode. Please "
+"contact your system administrator and ask them to install the <i>OpenGL "
+"Python bindings</i> and the <i>GtkGLExt Python bindings</i>.\n"
+"\n"
+"You are still able to play chess in 2D without these packages."
+msgstr ""
+"お使いのシステムでは３Ｄモードでプレイするための条件が整っていません。"
+"<i>OpenGL の Python バインディング</i> と <i>GtkGLExt の Python バインディン"
+"グ</i> をインストールするようシステム管理者に問い合わせてみて下さい。\n"
+"\n"
+"これらのパッケージがインストールされていなくても２Ｄモードでプレイできます。"
 
-#: ../glchess/glade/glchess.glade.h:24
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:201
+#: ../glchess/glade/glchess.glade.h:26
+msgid "_3D"
+msgstr "3D(_3)"
+
+#: ../glchess/glade/glchess.glade.h:27
+msgid "_AI Information"
+msgstr "AI の情報(_A)"
+
+#: ../glchess/glade/glchess.glade.h:28
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:240
 #: ../libgames-support/games-stock.c:58
 msgid "_Contents"
 msgstr "目次(_C)"
 
-#: ../glchess/glade/glchess.glade.h:25 ../libgames-support/games-stock.c:57
+#: ../glchess/glade/glchess.glade.h:29 ../libgames-support/games-stock.c:57
 msgid "_End Game"
 msgstr "ゲームの終了(_E)"
 
-#: ../glchess/glade/glchess.glade.h:26 ../libgames-support/games-stock.c:55
+#: ../glchess/glade/glchess.glade.h:30 ../libgames-support/games-stock.c:55
 msgid "_Fullscreen"
 msgstr "フルスクリーン(_F)"
 
-#: ../glchess/glade/glchess.glade.h:29
-#, fuzzy
+#: ../glchess/glade/glchess.glade.h:33
 msgid "_History"
-msgstr "ヒット(_H)"
+msgstr "履歴(_H)"
 
-#: ../glchess/glade/glchess.glade.h:30
-#, fuzzy
+#: ../glchess/glade/glchess.glade.h:34
 msgid "_Join Game"
-msgstr "ゲームの終了(_E)"
+msgstr "ゲームへ参加(_J)"
 
 #: ../glchess/glade/new_game.glade.h:1
-msgid "<b>Black Player</b>"
-msgstr ""
+msgid "<b>Difficulty</b>"
+msgstr "<b>難易度</b>"
 
 #: ../glchess/glade/new_game.glade.h:2
 msgid "<b>Game Properties</b>"
-msgstr ""
+msgstr "<b>ゲームのプロパティ</b>"
 
 #: ../glchess/glade/new_game.glade.h:3
-#, fuzzy
-msgid "<b>Game to Join</b>"
-msgstr "<b>勝ち数</b>"
+msgid "<b>Players</b>"
+msgstr "<b>プレイヤー</b>"
 
 #: ../glchess/glade/new_game.glade.h:4
-msgid "<b>Local Player</b>"
-msgstr ""
+msgid "Allow remote clients to watch this game"
+msgstr "リモートのクライアントにゲームを公開します"
 
 #: ../glchess/glade/new_game.glade.h:5
-#, fuzzy
-msgid "<b>White Player</b>"
-msgstr "<b>勝ち数</b>"
+msgid "B_lack:"
+msgstr "黒(_L):"
 
 #: ../glchess/glade/new_game.glade.h:6
-msgid "Allow remote clients to watch this game"
-msgstr ""
+msgid "Enter the title for this game"
+msgstr "このゲームのタイトルを指定して下さい"
 
 #: ../glchess/glade/new_game.glade.h:7
-#, fuzzy
-msgid "Black"
-msgstr "ブロック"
+msgid "Local chess game"
+msgstr "ローカルのチェス・ゲーム"
 
 #: ../glchess/glade/new_game.glade.h:8
-#, fuzzy
-msgid "Di_fficulty:"
-msgstr "上級"
-
-#: ../glchess/glade/new_game.glade.h:9
-#, fuzzy
-msgid "Enter the title for this game"
-msgstr "このゲームのヘルプを表示します"
+msgid "Move _Time:"
+msgstr "移動時間(_T):"
 
 #: ../glchess/glade/new_game.glade.h:10
-msgid "Find Servers"
-msgstr ""
+msgid "Start the game. The game can be started once all fields are complete"
+msgstr "ゲームを開始します"
+
+#: ../glchess/glade/new_game.glade.h:11
+msgid "W_hite:"
+msgstr "白(_H):"
 
 #: ../glchess/glade/new_game.glade.h:12
-#, fuzzy
-msgid "Local chess game"
-msgstr "ローカル・ゲーム(_L):"
+msgid "_Allow spectators"
+msgstr "見物を許可する(_A)"
 
 #: ../glchess/glade/new_game.glade.h:13
-#, fuzzy
-msgid "Local chess player"
-msgstr "白のプレイヤーのレベル"
+msgid "_Black:"
+msgstr "黒(_B):"
 
 #: ../glchess/glade/new_game.glade.h:14
-#, fuzzy
-msgid "Na_me:"
-msgstr "名前"
-
-#: ../glchess/glade/new_game.glade.h:16
-msgid "Servers:"
-msgstr ""
-
-#: ../glchess/glade/new_game.glade.h:17
-msgid "Start the game. The game can be started once all fields are complete"
-msgstr ""
-
-#: ../glchess/glade/new_game.glade.h:18
-msgid "The hostname/IP address to search for servers on"
-msgstr ""
-
-#: ../glchess/glade/new_game.glade.h:19
-#, fuzzy
-msgid "Typ_e:"
-msgstr "タイム:"
-
-#: ../glchess/glade/new_game.glade.h:20
-#, fuzzy
-msgid "White"
-msgstr "ホワイト・ヘッド"
-
-#: ../glchess/glade/new_game.glade.h:21
-msgid "_Allow spectators"
-msgstr ""
-
-#: ../glchess/glade/new_game.glade.h:22
-#, fuzzy
-msgid "_Difficulty:"
-msgstr "上級"
-
-#: ../glchess/glade/new_game.glade.h:23
-#, fuzzy
 msgid "_Game name:"
 msgstr "ゲームの名前(_G):"
 
-#: ../glchess/glade/new_game.glade.h:24
-#, fuzzy
-msgid "_Join"
-msgstr "連結"
-
-#: ../glchess/glade/new_game.glade.h:25
-#, fuzzy
-msgid "_Name:"
-msgstr "名前"
-
-#: ../glchess/glade/new_game.glade.h:26
-#, fuzzy
+#: ../glchess/glade/new_game.glade.h:15
 msgid "_Start"
-msgstr "最初から(_R)"
+msgstr "開始(_S)"
 
-#: ../glchess/glade/new_game.glade.h:27
-#, fuzzy
-msgid "_Type:"
-msgstr "タイム:"
+#: ../glchess/glade/new_game.glade.h:16
+msgid "_White:"
+msgstr "白(_W):"
 
-#: ../glchess/glade/network_game.glade.h:1
-#, fuzzy
-msgid "<b>Players</b>"
-msgstr "プレイヤー"
-
-#: ../glchess/glade/network_game.glade.h:2
-msgid "<b>Status / Chat</b>"
-msgstr ""
-
-#: ../glchess/glade/network_game.glade.h:3
-#, fuzzy
-msgid "Waiting For Players"
-msgstr "その場に待機します"
-
-#: ../glchess/glade/network_game.glade.h:4
-#, fuzzy
-msgid "_Black player:"
-msgstr "プレイヤー"
-
-#: ../glchess/glade/network_game.glade.h:5
-#, fuzzy
-msgid "_Ready"
-msgstr "赤色"
-
-#: ../glchess/glade/network_game.glade.h:6
-#, fuzzy
-msgid "_White player:"
-msgstr "プレイヤー"
-
-#: ../glchess/glchess.desktop.in.h:1
-#, fuzzy
+#: ../glchess/glchess.desktop.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:974
 msgid "Chess"
-msgstr "チェス盤"
+msgstr "チェス"
 
 #: ../glchess/glchess.desktop.in.h:2
 msgid "Play the classic two-player boardgame of chess "
-msgstr ""
+msgstr "古典的な対戦型のチェス・ゲームをお楽しみ下さい"
 
-#: ../glchess/src/lib/defaults.py.in:15
+#: ../glchess/src/lib/defaults.py.in:26
 msgid "glChess"
-msgstr ""
+msgstr "glChess"
 
-#: ../glchess/src/lib/defaults.py.in:17
-msgid "Copyright 2005-2006 Robert Ancell (and contributors)"
-msgstr ""
+#: ../glchess/src/lib/defaults.py.in:28
+msgid "Copyright 2005-2007 Robert Ancell (and contributors)"
+msgstr "Copyright 2005-2007 Robert Ancell (と、たくさんの貢献者)"
 
-#: ../glchess/src/lib/defaults.py.in:18
+#: ../glchess/src/lib/defaults.py.in:29
 msgid "A 2D/3D chess interface for Gnome"
-msgstr ""
+msgstr "GNOME 向けの 2D/3D チェス・ゲーム"
 
-#: ../glchess/src/lib/defaults.py.in:20
+#: ../glchess/src/lib/defaults.py.in:31
 msgid "glChess homepage"
+msgstr "glChess のホームページ"
+
+#. The GPL license string will be translated, and the game name inserted.
+#. This license is the same as in libgames-support/games-stock.c
+#. %s is replaced with the name of the game in gnome-games.
+#: ../glchess/src/lib/defaults.py.in:46
+#: ../gnome-sudoku/src/lib/defaults.py.in:29
+#: ../libgames-support/games-stock.c:338
+#, c-format, python-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version."
 msgstr ""
+"%s はフリーソフトウェアです;フリーソフトウェア財団が提供する GNU 一般公衆利用"
+"許諾契約書の第二版、あるいはそれ以降の版が定める条項の下で本プログラムを再頒"
+"布または変更することができます。"
 
-#: ../glchess/src/lib/gtkui/gtkui.py:248
-#, fuzzy
+#: ../glchess/src/lib/defaults.py.in:50
+#: ../gnome-sudoku/src/lib/defaults.py.in:33
+#: ../libgames-support/games-stock.c:342
+#, c-format, python-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+"%s は有用とは思いますが、その頒布にあたっては市場性及び特定の目的、その適合性"
+"についての暗黙の保証を含めて、いかなる保証も行ないません。詳細については GNU "
+"一般公衆利用許諾契約書をご覧下さい。"
+
+#: ../glchess/src/lib/defaults.py.in:54
+#: ../gnome-sudoku/src/lib/defaults.py.in:37
+#: ../libgames-support/games-stock.c:346
+#, c-format, python-format
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
+"Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+"あなたは %s と一緒に GNU 一般公衆利用許諾契約書の写しを受け取っているはずで"
+"す。そうでない場合は、Free Software Foundation, Inc., 59 Temple Place - "
+"Suite 330, Boston, MA 02111-1307, USA へ手紙を書いて下さい。"
+
+#: ../glchess/src/lib/gtkui/gtkui.py:257
 msgid "Game Start"
-msgstr "ゲームオーバー"
+msgstr "ゲーム開始"
 
-#: ../glchess/src/lib/gtkui/gtkui.py:568 ../gnect/src/prefs.c:352
+#: ../glchess/src/lib/gtkui/gtkui.py:291
+msgid "Check"
+msgstr "チェック"
+
+#: ../glchess/src/lib/gtkui/gtkui.py:293
+#, python-format
+msgid "Checkmate, %s wins."
+msgstr "チェックメイトです (%s の勝ちです)"
+
+#: ../glchess/src/lib/gtkui/gtkui.py:603 ../gnect/src/prefs.c:352
 #: ../gtali/gyahtzee.c:831 ../gtali/yahtzee.c:64 ../iagno/properties.c:521
 #: ../iagno/properties.c:562
 msgid "Human"
 msgstr "人間"
 
+#. Create model for game time
+#: ../glchess/src/lib/gtkui/dialogs.py:118
+msgid "Unlimited"
+msgstr "制限なし"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:119
+msgid "One minute"
+msgstr "１分"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:120
+msgid "Five minutes"
+msgstr "５分"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:121
+msgid "30 minutes"
+msgstr "30分"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:122
+msgid "One hour"
+msgstr "１時間"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:123 ../gnomine/gnomine.c:91
+#: ../gnomine/gnomine.c:691
+msgid "Custom"
+msgstr "カスタマイズ"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:136
+msgid "seconds"
+msgstr "秒"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:137
+msgid "minutes"
+msgstr "分"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:138
+msgid "hours"
+msgstr "時間"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:151
+#: ../gnome-sudoku/src/lib/sudoku.py:601
+msgid "Easy"
+msgstr "簡単"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:152
+msgid "Normal"
+msgstr "ふつう"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:153
+#: ../gnome-sudoku/src/lib/sudoku.py:599
+msgid "Hard"
+msgstr "上級"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:269
+#, python-format
+msgid "%s versus %s"
+msgstr "%s 対 %s"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:293
+msgid "White"
+msgstr "白"
+
+#: ../glchess/src/lib/gtkui/dialogs.py:300
+msgid "Black"
+msgstr "黒"
+
 #. GstElement *sound_player;
 #: ../glines/glines.c:75 ../glines/glines.c:80 ../gnomine/gnomine.c:88
-#: ../gnomine/gnomine.c:661 ../same-gnome/same-gnome.c:54
+#: ../gnomine/gnomine.c:663 ../same-gnome/same-gnome.c:54
 msgid "Small"
 msgstr "小さい"
 
@@ -3894,7 +3965,7 @@ msgid "glines|Medium"
 msgstr "中ぐらい"
 
 #: ../glines/glines.c:77 ../glines/glines.c:82 ../gnomine/gnomine.c:90
-#: ../gnomine/gnomine.c:680 ../same-gnome/same-gnome.c:56
+#: ../gnomine/gnomine.c:682 ../same-gnome/same-gnome.c:56
 msgid "Large"
 msgstr "大きい"
 
@@ -3952,7 +4023,7 @@ msgstr "ゲーム・オーバー！"
 msgid "You can't move there!"
 msgstr "そこへ移動できません！"
 
-#: ../glines/glines.c:1218 ../glines/glines.c:1221 ../glines/glines.c:1879
+#: ../glines/glines.c:1218 ../glines/glines.c:1221 ../glines/glines.c:1881
 #: ../glines/glines.desktop.in.h:1
 msgid "Five or More"
 msgstr "Five or More"
@@ -3961,50 +4032,54 @@ msgstr "Five or More"
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "一世を風靡したカラーライン・ゲームの GNOME 版です。"
 
-#: ../glines/glines.c:1422
+#: ../glines/glines.c:1424
 msgid "Five or More Preferences"
 msgstr "Five or More の設定"
 
-#: ../glines/glines.c:1442
+#: ../glines/glines.c:1444
 msgid "Themes"
 msgstr "テーマ"
 
-#: ../glines/glines.c:1450
+#: ../glines/glines.c:1452
 msgid "_Image:"
 msgstr "画像(_I):"
 
-#: ../glines/glines.c:1461
+#: ../glines/glines.c:1463
 msgid "B_ackground color:"
 msgstr "背景色(_A):"
 
-#: ../glines/glines.c:1476
+#: ../glines/glines.c:1478
 msgid "Board Size"
 msgstr "盤の大きさ"
 
-#: ../glines/glines.c:1482 ../same-gnome/ui.c:478
+#: ../glines/glines.c:1484 ../same-gnome/ui.c:480
 msgid "_Small"
 msgstr "小さい(_S)"
 
-#: ../glines/glines.c:1491 ../gnome-sudoku/glade/puzzle_generator.glade.h:17
-#: ../same-gnome/ui.c:479
+#: ../glines/glines.c:1493 ../gnome-sudoku/glade/puzzle_generator.glade.h:16
+#: ../same-gnome/ui.c:481
 msgid "_Medium"
 msgstr "中くらい(_M)"
 
-#: ../glines/glines.c:1500 ../same-gnome/ui.c:480
+#: ../glines/glines.c:1502 ../same-gnome/ui.c:482
 msgid "_Large"
 msgstr "大きい(_L)"
 
-#: ../glines/glines.c:1515
+#: ../glines/glines.c:1510
+msgid "glines|General"
+msgstr "全般"
+
+#: ../glines/glines.c:1517
 msgid "_Use fast moves"
 msgstr "素早く移動する(_U)"
 
-#: ../glines/glines.c:1910
+#: ../glines/glines.c:1912
 msgid "Next:"
-msgstr "次へ:"
+msgstr "次:"
 
 #: ../glines/glines.desktop.in.h:2
 msgid "Remove colored balls from the board by forming lines"
-msgstr "ラインを形成することで色の付いたボールをボードから取り去って下さい"
+msgstr "色の付いた玉を並べて盤面から取り去って下さい"
 
 #: ../glines/glines.schemas.in.h:1 ../gnobots2/gnobots2.schemas.in.h:1
 msgid "Background color"
@@ -4016,11 +4091,11 @@ msgstr "背景色 (16進表記)"
 
 #: ../glines/glines.schemas.in.h:3
 msgid "Ball style"
-msgstr "ボールのスタイル"
+msgstr "玉のスタイル"
 
 #: ../glines/glines.schemas.in.h:4
 msgid "Ball style. The filename of the images to use for the balls."
-msgstr "ボールのスタイルで、ボールに使用する画像のファイル名です。"
+msgstr "玉のスタイルで、玉に使用する画像のファイル名です。"
 
 #: ../glines/glines.schemas.in.h:5
 msgid "Game field"
@@ -4059,14 +4134,14 @@ msgstr ""
 
 #: ../glines/glines.schemas.in.h:15
 msgid "Time between moves"
-msgstr "移動する時間間隔"
+msgstr "移動する時間"
 
 #: ../glines/glines.schemas.in.h:16
 msgid "Time between moves in milliseconds."
-msgstr "ボールを移動する時間間隔 (ミリ秒単位) です。"
+msgstr "玉の移動に必要な時間 (ミリ秒単位) です。"
 
-#: ../gnect/data/gnect.desktop.in.h:1 ../gnect/src/main.c:911
-#: ../gnect/src/main.c:914 ../gnect/src/main.c:1427
+#: ../gnect/data/gnect.desktop.in.h:1 ../gnect/src/main.c:912
+#: ../gnect/src/main.c:915 ../gnect/src/main.c:1428
 msgid "Four-in-a-Row"
 msgstr "四目並べ"
 
@@ -4163,83 +4238,77 @@ msgstr ""
 "画像を読み込めません:\n"
 "%s"
 
-#: ../gnect/src/ggz-network.c:115
-msgid "A network error has occured."
-msgstr ""
+#: ../gnect/src/ggz-network.c:116
+msgid "A network error has occurred."
+msgstr "ネットワーク・エラーが発生しました"
 
-#: ../gnect/src/ggz-network.c:129 ../iagno/ggz-network.c:94
+#: ../gnect/src/ggz-network.c:130 ../iagno/ggz-network.c:95
 msgid "Waiting for an opponent to join the game."
-msgstr ""
+msgstr "相手のプレイヤーがゲームに参加するまで待機します"
 
-#: ../gnect/src/ggz-network.c:245 ../gnibbles/ggz-network.c:360
+#: ../gnect/src/ggz-network.c:246 ../gnibbles/ggz-network.c:369
 #, c-format
 msgid "Welcome to a network game of %s."
-msgstr ""
+msgstr "%s のネットワーク対戦へようこそ。"
 
-#: ../gnect/src/ggz-network.c:284 ../gnibbles/ggz-network.c:398
-#: ../gnome-sudoku/src/lib/game_selector.py:241 ../iagno/ggz-network.c:313
-msgid "Player"
-msgstr "プレイヤー"
-
-#: ../gnect/src/main.c:567
+#: ../gnect/src/main.c:568
 msgid "It's a draw!"
 msgstr "引き分けです！"
 
-#: ../gnect/src/main.c:581
+#: ../gnect/src/main.c:582
 msgid "You win!"
 msgstr "あなたの勝ちです！"
 
-#: ../gnect/src/main.c:583 ../gnect/src/main.c:616
-#, fuzzy
+#: ../gnect/src/main.c:584 ../gnect/src/main.c:617
 msgid "It is your move."
-msgstr "あなたの番です..."
+msgstr "あなたの番です"
 
-#: ../gnect/src/main.c:586
+#: ../gnect/src/main.c:587
 msgid "I win!"
 msgstr "コンピュータの勝利です！"
 
-#: ../gnect/src/main.c:588 ../gnect/src/main.c:721
+#: ../gnect/src/main.c:589 ../gnect/src/main.c:722
 msgid "Thinking..."
 msgstr "思考中..."
 
-#: ../gnect/src/main.c:609 ../gnect/src/main.c:613
+#: ../gnect/src/main.c:610 ../gnect/src/main.c:614
 #, c-format
 msgid "%s wins!"
 msgstr " %s さんの勝利です！"
 
-#: ../gnect/src/main.c:619
+#: ../gnect/src/main.c:620
 #, c-format
 msgid "Waiting for %s to move."
-msgstr ""
+msgstr "%s さんが移動するまで待機します"
 
-#: ../gnect/src/main.c:738
+#: ../gnect/src/main.c:739
 #, c-format
 msgid "Hint: Column %d"
-msgstr "ヒント: %d 列目"
+msgstr "ヒント: %d列目"
 
-#: ../gnect/src/main.c:766 ../gnect/src/main.c:770
+#: ../gnect/src/main.c:767 ../gnect/src/main.c:771
 msgid "You:"
 msgstr "あなた:"
 
-#: ../gnect/src/main.c:767 ../gnect/src/main.c:769
+#: ../gnect/src/main.c:768 ../gnect/src/main.c:770
 msgid "Me:"
 msgstr "わたし:"
 
-#: ../gnect/src/main.c:815
+#: ../gnect/src/main.c:816
 msgid "Scores"
 msgstr "得点"
 
-#: ../gnect/src/main.c:866
+#: ../gnect/src/main.c:867
 msgid "Drawn:"
 msgstr "引き分け:"
 
-#: ../gnect/src/main.c:920
+#: ../gnect/src/main.c:921
 msgid ""
 "\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
 msgstr ""
-"GNOME 向けの \"四目並べ\" で、Giuliano Bertoletti's Velena エンジンを使ってコ"
-"ンピュータ・プレイヤーを操ります。"
+"これは GNOME 向けの \"四目並べ\" です (Giuliano Bertoletti's Velena エンジン"
+"を使用しています)。"
 
 #: ../gnect/src/prefs.c:161
 #, c-format
@@ -4298,7 +4367,7 @@ msgstr "操作"
 #: ../gnect/src/prefs.c:471 ../gnibbles/preferences.c:434
 #: ../gnobots2/properties.c:585 ../gnometris/tetris.cpp:869
 msgid "Keyboard Controls"
-msgstr "キーボード操作"
+msgstr "キーボードの操作"
 
 #: ../gnect/src/theme.c:42
 msgid "Classic"
@@ -4355,15 +4424,20 @@ msgstr "ブロック"
 msgid "Orange"
 msgstr "オレンジ色"
 
-#: ../gnibbles/ggz-network.c:135
-#, fuzzy, c-format
+#: ../gnibbles/ggz-network.c:136
+#, c-format
 msgid "%s joined the game.\n"
-msgstr "プレイヤー '%s' がゲームに参加しました。"
+msgstr "%s さんがゲームに参加しました。\n"
 
-#: ../gnibbles/ggz-network.c:143
+#: ../gnibbles/ggz-network.c:146
 #, c-format
 msgid "The game ended because the host %s left the game.\n"
-msgstr ""
+msgstr "ホスト役の %s さんがゲームを抜けたので終了します\n"
+
+#: ../gnibbles/ggz-network.c:152
+#, c-format
+msgid "%s left the game.\n"
+msgstr "%s さんがゲームから抜けました。\n"
 
 #: ../gnibbles/gnibbles.c:93
 #, c-format
@@ -4391,23 +4465,23 @@ msgstr ""
 "\n"
 "Gnibbles のインストールを確認して下さい。"
 
-#: ../gnibbles/gnibbles.c:600
+#: ../gnibbles/gnibbles.c:601
 msgid "Nibbles Scores"
-msgstr "Nibbles 得点"
+msgstr "Gnibble の得点"
 
-#: ../gnibbles/gnibbles.c:603
+#: ../gnibbles/gnibbles.c:604
 msgid "Speed:"
-msgstr "速さ:"
+msgstr "スピード:"
 
-#: ../gnibbles/gnibbles.c:608 ../gnomine/gnomine.c:223
-#: ../gnotravex/gnotravex.c:1248 ../gtali/gyahtzee.c:198
-#: ../mahjongg/mahjongg.c:697 ../same-gnome/ui.c:188
+#: ../gnibbles/gnibbles.c:609 ../gnomine/gnomine.c:223
+#: ../gnotravex/gnotravex.c:1231 ../gtali/gyahtzee.c:198
+#: ../mahjongg/mahjongg.c:699 ../same-gnome/ui.c:188
 msgid "Congratulations!"
 msgstr "おめでとうございます！"
 
-#: ../gnibbles/gnibbles.c:609 ../gnomine/gnomine.c:224
-#: ../gnotravex/gnotravex.c:1249 ../gtali/gyahtzee.c:199
-#: ../mahjongg/mahjongg.c:698 ../same-gnome/ui.c:189
+#: ../gnibbles/gnibbles.c:610 ../gnomine/gnomine.c:224
+#: ../gnotravex/gnotravex.c:1232 ../gtali/gyahtzee.c:199
+#: ../mahjongg/mahjongg.c:700 ../same-gnome/ui.c:189
 msgid "Your score has made the top ten."
 msgstr "トップ 10 に入りました。"
 
@@ -4416,7 +4490,7 @@ msgid "Guide a worm around a maze"
 msgstr "迷路をさまよう虫を導いて下さい"
 
 #: ../gnibbles/gnibbles.desktop.in.h:2 ../gnibbles/gnibbles.soundlist.in.h:6
-#: ../gnibbles/main.c:238 ../gnibbles/main.c:241
+#: ../gnibbles/main.c:240 ../gnibbles/main.c:243
 msgid "Nibbles"
 msgstr "Nibbles"
 
@@ -4497,22 +4571,18 @@ msgid "Move up"
 msgstr "上へ移動する"
 
 #: ../gnibbles/gnibbles.schemas.in.h:21
-#, fuzzy
 msgid "Number of AI players"
-msgstr "プレイヤーの人数"
+msgstr "AI プレイヤーの数"
 
 #: ../gnibbles/gnibbles.schemas.in.h:22
-#, fuzzy
 msgid "Number of AI players."
-msgstr "プレイする人の数です。"
+msgstr "プレイする AI (人工知能) の数です。"
 
 #: ../gnibbles/gnibbles.schemas.in.h:23
-#, fuzzy
 msgid "Number of human players"
 msgstr "プレイヤーの人数"
 
 #: ../gnibbles/gnibbles.schemas.in.h:24
-#, fuzzy
 msgid "Number of human players."
 msgstr "プレイする人の数です。"
 
@@ -4590,41 +4660,40 @@ msgstr "初心者"
 
 #: ../gnibbles/main.c:58
 msgid "Slow"
-msgstr "遅い"
+msgstr "低速黄色"
 
 #: ../gnibbles/main.c:59
 msgid "gnibbles|Medium"
-msgstr "中ぐらい"
+msgstr "gnibbles|中速"
 
 #: ../gnibbles/main.c:60
 msgid "Fast"
-msgstr "速い"
+msgstr "高速"
 
-# FIXME: 得点表の一覧に表示される。意味がよくわからず。
 #: ../gnibbles/main.c:61
 msgid "Beginner with Fakes"
-msgstr "初心者 (偽物あり)"
+msgstr "まやかしの初心者"
 
 #: ../gnibbles/main.c:62
 msgid "Slow with Fakes"
-msgstr "遅い (偽物あり)"
+msgstr "まやかしの低速"
 
 #: ../gnibbles/main.c:63
 msgid "Medium with Fakes"
-msgstr "中ぐらい (偽物あり)"
+msgstr "まやかしの中速"
 
 #: ../gnibbles/main.c:64
 msgid "Fast with Fakes"
-msgstr "速い (偽物あり)"
+msgstr "まやかしの高速"
 
-#: ../gnibbles/main.c:246
+#: ../gnibbles/main.c:248
 msgid "A worm game for GNOME."
 msgstr "GNOME 版のいも虫ゲームです。"
 
-#: ../gnibbles/main.c:651
+#: ../gnibbles/main.c:653
 #, c-format
 msgid "Game over! The game has been won by %s!"
-msgstr ""
+msgstr "ゲーム・オーバーです！ %s の勝利です！"
 
 #: ../gnibbles/preferences.c:238
 msgid "Nibbles Preferences"
@@ -4632,7 +4701,7 @@ msgstr "Nibbles の設定"
 
 #: ../gnibbles/preferences.c:258
 msgid "Speed"
-msgstr "速さ"
+msgstr "スピード"
 
 #: ../gnibbles/preferences.c:268
 msgid "Nibbles newbie"
@@ -4668,14 +4737,12 @@ msgid "_Starting level:"
 msgstr "開始レベル(_S):"
 
 #: ../gnibbles/preferences.c:377
-#, fuzzy
 msgid "Number of _human players:"
-msgstr "プレイヤーの人数(_U):"
+msgstr "プレイヤーの人数(_H):"
 
 #: ../gnibbles/preferences.c:398
-#, fuzzy
 msgid "Number of _AI players:"
-msgstr "プレイヤーの人数(_U):"
+msgstr "AI プレイヤーの数(_A):"
 
 #: ../gnibbles/preferences.c:425
 msgid "Worm"
@@ -4683,7 +4750,7 @@ msgstr "いも虫"
 
 #: ../gnibbles/preferences.c:461
 msgid "_Use relative movement"
-msgstr "相対移動にする(_U)"
+msgstr "相対運動にする(_U)"
 
 #: ../gnibbles/preferences.c:468
 msgid "_Worm color:"
@@ -4713,12 +4780,12 @@ msgstr "いも虫 %d: "
 #: ../gnobots2/game.c:147
 #, c-format
 msgid "'%s' with super-safe moves"
-msgstr "'%s' (スーパーセーフ・モードで移動)"
+msgstr "'%s' (超安全モードで移動)"
 
 #: ../gnobots2/game.c:150
 #, c-format
 msgid "'%s' with safe moves"
-msgstr "'%s' (セーフ・モードで移動)"
+msgstr "'%s' (安全モードで移動)"
 
 #: ../gnobots2/game.c:381 ../gnobots2/game.c:397
 msgid ""
@@ -4731,7 +4798,7 @@ msgstr ""
 #. This should never happen.
 #: ../gnobots2/game.c:1219
 msgid "There are no teleport locations left!!"
-msgstr "残りのテレポート場所がありません！！"
+msgstr "残っているテレポート可能な場所がありません！！"
 
 #: ../gnobots2/game.c:1251
 msgid "You have run out of safe moves - the robots have won!"
@@ -4739,28 +4806,28 @@ msgstr "安全に移動できる場所がなくなりました - ロボットの
 
 #: ../gnobots2/game.c:1255
 msgid "There are no safe locations to teleport to!!"
-msgstr "テレポートできるセーフ・エリアがありません！"
+msgstr "安全にテレポートできる場所がありません！"
 
 #: ../gnobots2/gnobots.c:66
 msgid "Set game scenario"
-msgstr "シナリオの設定"
+msgstr "シナリオをセットする"
 
 #: ../gnobots2/gnobots.c:68
 msgid "Set game configuration"
-msgstr "ゲームの設定"
+msgstr "ゲームを設定する"
 
 #: ../gnobots2/gnobots.c:70 ../gnobots2/gnobots.c:72
 msgid "Initial window position"
-msgstr "最初のウィンドウの位置"
+msgstr "ウィンドウの位置を初期化する"
 
-#: ../gnobots2/gnobots.c:70 ../gnomine/gnomine.c:969 ../gnomine/gnomine.c:977
-#: ../gnotravex/gnotravex.c:377 ../gnotski/gnotski.c:482
+#: ../gnobots2/gnobots.c:70 ../gnomine/gnomine.c:971 ../gnomine/gnomine.c:979
+#: ../gnotravex/gnotravex.c:386 ../gnotski/gnotski.c:483
 #: ../iagno/gnothello.c:125
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:72 ../gnomine/gnomine.c:971 ../gnomine/gnomine.c:979
-#: ../gnotravex/gnotravex.c:379 ../gnotski/gnotski.c:484
+#: ../gnobots2/gnobots.c:72 ../gnomine/gnomine.c:973 ../gnomine/gnomine.c:981
+#: ../gnotravex/gnotravex.c:388 ../gnotski/gnotski.c:485
 #: ../iagno/gnothello.c:127
 msgid "Y"
 msgstr "Y"
@@ -4979,7 +5046,7 @@ msgstr ""
 
 #: ../gnobots2/gnobots2.schemas.in.h:39
 msgid "Use safe moves"
-msgstr "セーフ・モードを使う"
+msgstr "安全モードを使う"
 
 #: ../gnobots2/gnobots2.schemas.in.h:40
 msgid ""
@@ -4993,7 +5060,7 @@ msgstr ""
 
 #: ../gnobots2/gnobots2.schemas.in.h:41
 msgid "Use super safe moves"
-msgstr "スーパーセーフ・モードを使う"
+msgstr "超安全モードを使う"
 
 #: ../gnobots2/gnobots2.schemas.in.h:42
 msgid ""
@@ -5027,12 +5094,12 @@ msgstr "ロボットを破壊した"
 msgid "Victory!!"
 msgstr "ロボットに勝利した！！"
 
-#: ../gnobots2/graphics.c:150 ../iagno/gnothello.c:453
+#: ../gnobots2/graphics.c:150 ../iagno/gnothello.c:463
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "'%s' の画像ファイルを見つけられませんでした。\n"
 
-#: ../gnobots2/menu.c:63 ../gnotravex/gnotravex.c:282
+#: ../gnobots2/menu.c:63 ../gnotravex/gnotravex.c:291
 msgid "_Move"
 msgstr "移動(_M)"
 
@@ -5060,7 +5127,7 @@ msgstr "待機(_W)"
 msgid "Wait for the robots"
 msgstr "その場に待機します"
 
-#: ../gnobots2/menu.c:89 ../mahjongg/mahjongg.c:1334
+#: ../gnobots2/menu.c:89 ../mahjongg/mahjongg.c:1336
 msgid "Show or hide the toolbar"
 msgstr "ツールバーの表示/非表示を切り替えます"
 
@@ -5082,7 +5149,7 @@ msgstr "ロボット２ (Easy)"
 
 #: ../gnobots2/properties.c:350
 msgid "robots with safe teleport"
-msgstr "セーフ・テレポート付きロボット"
+msgstr "安全なテレポート付きロボット"
 
 #: ../gnobots2/properties.c:351
 msgid "nightmare"
@@ -5110,11 +5177,11 @@ msgstr "ねずみ"
 
 #: ../gnobots2/properties.c:392
 msgid "ufo"
-msgstr "ufo"
+msgstr "UFO"
 
 #: ../gnobots2/properties.c:393
 msgid "boo"
-msgstr "boo"
+msgstr "おばけ"
 
 #: ../gnobots2/properties.c:450
 msgid "Robots Preferences"
@@ -5127,7 +5194,7 @@ msgstr "ゲームの種類"
 
 #: ../gnobots2/properties.c:496
 msgid "_Use safe moves"
-msgstr "セーフ・モードを使う(_U)"
+msgstr "安全モードを使う(_U)"
 
 #: ../gnobots2/properties.c:503
 msgid "Prevent some dangerous moves"
@@ -5139,7 +5206,7 @@ msgstr "お亡くなりになった後の思いがけない移動を避けます
 
 #: ../gnobots2/properties.c:507
 msgid "U_se super safe moves"
-msgstr "スーパーセーフ・モードを使う(_S)"
+msgstr "超安全モードを使う(_S)"
 
 #: ../gnobots2/properties.c:514
 msgid "Prevent all dangerous moves"
@@ -5181,7 +5248,7 @@ msgstr "グラフィックスのテーマ"
 msgid "_Image theme:"
 msgstr "画像のテーマ(_I):"
 
-#: ../gnobots2/properties.c:566 ../mahjongg/mahjongg.c:804
+#: ../gnobots2/properties.c:566 ../mahjongg/mahjongg.c:806
 msgid "_Background color:"
 msgstr "背景色(_B):"
 
@@ -5195,7 +5262,7 @@ msgstr "キーボード"
 
 #: ../gnobots2/statusbar.c:75
 msgid "Safe Teleports:"
-msgstr "セーフ・テレポート数:"
+msgstr "安全なテレポートの数:"
 
 #: ../gnobots2/statusbar.c:85 ../gnometris/scoreframe.cpp:74
 msgid "Level:"
@@ -5206,17 +5273,17 @@ msgid "Remaining:"
 msgstr "残り:"
 
 #: ../gnometris/field.cpp:227
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:176
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:215
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:203
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:242
 msgid "Paused"
 msgstr "一時停止"
 
 #: ../gnometris/gnometris.desktop.in.h:1
 msgid "Fit falling blocks together"
-msgstr "落ちてくるブロックを共に合わせて消し去って下さい"
+msgstr "落ちてくるブロックを組み合わせて消し去って下さい"
 
 #: ../gnometris/gnometris.desktop.in.h:2 ../gnometris/tetris.cpp:179
-#: ../gnometris/tetris.cpp:1442 ../gnometris/tetris.cpp:1445
+#: ../gnometris/tetris.cpp:1444 ../gnometris/tetris.cpp:1447
 msgid "Gnometris"
 msgstr "GNOMEトリス"
 
@@ -5416,7 +5483,7 @@ msgstr "テーマ"
 msgid "Block Style"
 msgstr "ブロックのスタイル"
 
-#: ../gnometris/tetris.cpp:1447
+#: ../gnometris/tetris.cpp:1449
 msgid ""
 "Written for my wife, Matylda\n"
 "Send comments and bug reports to: \n"
@@ -5432,186 +5499,172 @@ msgstr "GNOMEトリスの得点"
 
 #: ../gnome-sudoku/gnome-sudoku.desktop.in.h:1
 msgid "GNOME Sudoku; a logic puzzle"
-msgstr ""
+msgstr "指向型のパズルである GNOME 数独をお楽しみ下さい"
 
 #: ../gnome-sudoku/gnome-sudoku.desktop.in.h:2
 msgid "Sudoku"
-msgstr ""
+msgstr "GNOME 数独"
 
 #: ../gnome-sudoku/glade/high_scores.glade.h:1
-#, fuzzy
 msgid "High Scores"
-msgstr "得点"
+msgstr "最高得点"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:1
 #: ../gnome-sudoku/glade/print_games.glade.h:1
 msgid "<i>Easy</i>"
-msgstr ""
+msgstr "<i>簡単</i>"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:2
 #: ../gnome-sudoku/glade/print_games.glade.h:2
 msgid "<i>Hard</i>"
-msgstr ""
+msgstr "<i>難しい</i>"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:3
 #: ../gnome-sudoku/glade/open_game.glade.h:1
 msgid "<span size=\"larger\" weight=\"bold\">Select Game</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">ゲームの難易度</span>"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:4
 msgid "Choose the _level of difficulty for your new game."
-msgstr ""
+msgstr "新ゲームの難易度を選択して下さい(_L):"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:6
-#, fuzzy
 msgid "_Details"
-msgstr "カードを引く(_E)"
+msgstr "詳細(_D)"
 
 #: ../gnome-sudoku/glade/new_game.glade.h:7
 #: ../gnome-sudoku/glade/open_game.glade.h:3
-#, fuzzy
 msgid "_Play"
-msgstr "プレイヤー"
+msgstr "開始(_P)"
 
 #: ../gnome-sudoku/glade/open_game.glade.h:2
 msgid "Choose _game"
-msgstr ""
+msgstr "ゲームの選択(_G)"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:3
 msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">ゲームの印刷</span>"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:4
 msgid "Choose the _level of difficulty for games"
-msgstr ""
+msgstr "ゲームの難易度を選択して下さい(_L):"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:5
-#, fuzzy
 msgid "Ma_ximum Difficulty"
-msgstr "上級"
+msgstr "最大難易度(_X)"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:6
 msgid "Print Sudokus"
-msgstr ""
+msgstr "数独の印刷"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:7
-#, fuzzy
 msgid "_Game List"
-msgstr "ゲーム(_G)"
+msgstr "ゲームの一覧(_G)"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:8
 msgid "_Include games you've already played in list of games to print"
-msgstr ""
+msgstr "既にプレイしたゲームも印刷一覧に含める(_I)"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:9
 msgid "_Label games with difficulty and name."
-msgstr ""
+msgstr "ゲームの難易度と名前も印刷する(_L)"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:10
 msgid "_Mark games as played once you've printed them."
-msgstr ""
+msgstr "既にプレイした旨も印刷する(_M)"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:11
-#, fuzzy
 msgid "_Minimum Difficulty"
-msgstr "上級"
+msgstr "最小難易度(_M)"
 
 #: ../gnome-sudoku/glade/print_games.glade.h:12
-#, fuzzy
 msgid "_Number of sudoku to print: "
-msgstr "地雷の数(_N):"
+msgstr "印刷する数独の数(_N): "
 
 #: ../gnome-sudoku/glade/print_games.glade.h:13
 msgid "_Sudokus per page: "
-msgstr ""
+msgstr "数独/ページ(_S):"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:1
 msgid "<i><u>Number of Puzzles</u></i>"
-msgstr ""
+msgstr "<i><u>パズルの数</u></i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:2
 msgid "<i>Easy:</i>"
-msgstr ""
+msgstr "<i>簡単:</i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:3
 msgid "<i>Hard:</i>"
-msgstr ""
+msgstr "<i>難しい:</i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:4
-#, fuzzy
 msgid "<i>Medium:</i>"
-msgstr "中くらい"
+msgstr "<i>中くらい</i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:5
-msgid "<i>_Very Hard:</i>"
-msgstr ""
+msgid "<i>Very Hard:</i>"
+msgstr "<i>超難関</i>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:6
 msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">パズルの生成</span>"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:7
 msgid "Criteria:"
-msgstr ""
+msgstr "条件:"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:8
-#, fuzzy
 msgid "Generate Policy"
-msgstr "全般"
+msgstr "生成ポリシー"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:9
-msgid "Generate until _reaching target"
-msgstr ""
+msgid "Generate new puzzles _until stopped"
+msgstr "停止するまで新しいパズルを生成する(_U)"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:10
-msgid "Puzzle Generator"
-msgstr ""
+msgid "Generate until _reaching target"
+msgstr "数を指定して生成する(_R)"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:11
-msgid "Target _number of sudokus:"
-msgstr ""
+msgid "Puzzle Generator"
+msgstr "パズルの生成"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:12
-#: ../gnome-sudoku/src/lib/sudoku.py:598
-#, fuzzy
-msgid "Very Hard"
-msgstr "超上級"
+msgid "Target _number of sudokus:"
+msgstr "生成する数(_N):"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:13
-#, fuzzy
 msgid "_Easy"
-msgstr "簡単"
+msgstr "初級(_E)"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:14
-#, fuzzy
 msgid "_Generate"
-msgstr "全般"
+msgstr "生成(_G)"
 
 #: ../gnome-sudoku/glade/puzzle_generator.glade.h:15
-msgid "_Generate new puzzles until stopped"
-msgstr ""
-
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:16
-#, fuzzy
 msgid "_Hard"
-msgstr "上級"
+msgstr "上級(_H)"
+
+#: ../gnome-sudoku/glade/puzzle_generator.glade.h:17
+msgid "_Very Hard"
+msgstr "超難関(_V)"
 
 #: ../gnome-sudoku/glade/tracker.glade.h:1
 msgid "Clear _Others"
-msgstr ""
+msgstr "他のクリア(_O)"
 
 #: ../gnome-sudoku/glade/tracker.glade.h:2
 msgid "_Add Tracker"
-msgstr ""
+msgstr "トラッカの追加(_A)"
 
 #: ../gnome-sudoku/glade/tracker.glade.h:3
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:825
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:870
 msgid "_Clear Tracker"
-msgstr ""
+msgstr "トラッカのクリア(_C)"
 
 #: ../gnome-sudoku/glade/tracker.glade.h:4
 msgid "_Trackers"
-msgstr ""
+msgstr "トラッカ(_T)"
 
 #: ../gnome-sudoku/src/lib/sudoku_maker.py:327
 #: ../gnome-sudoku/src/lib/sudoku_maker.py:354
@@ -5619,69 +5672,64 @@ msgstr ""
 #: ../gnome-sudoku/src/lib/game_selector.py:77
 #: ../gnome-sudoku/src/lib/game_selector.py:193
 #: ../gnome-sudoku/src/lib/game_selector.py:290
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:726
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:771
 msgid "Puzzle"
-msgstr "次のパズル"
+msgstr "パズル"
 
-#: ../gnome-sudoku/src/lib/defaults.py.in:13
+#: ../gnome-sudoku/src/lib/defaults.py.in:20
 msgid "GNOME Sudoku"
-msgstr ""
+msgstr "GNOME 数独"
 
-#: ../gnome-sudoku/src/lib/defaults.py.in:14
-msgid "Copyright (c) 2005,2006, Thomas M. Hinkle. GNU GPL"
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/defaults.py.in:15
+#: ../gnome-sudoku/src/lib/defaults.py.in:22
 msgid ""
 "GNOME Sudoku is a simple sudoku generator and player.  Sudoku is a japanese "
 "logic puzzle."
 msgstr ""
+"GNOME 数独は数独パタンを生成しゲームを提供します。数独は日本で生まれた思考型"
+"のパズルです。"
 
 #: ../gnome-sudoku/src/lib/printing.py:203
 msgid "Print Sudoku"
 msgid_plural "Print Sudokus"
-msgstr[0] ""
+msgstr[0] "数独の印刷"
+msgstr[1] "数独の印刷"
 
 #: ../gnome-sudoku/src/lib/printing.py:216
 msgid "Print Preview"
-msgstr ""
+msgstr "印刷プレビュー"
 
 #. now we enumerate some details...
 #: ../gnome-sudoku/src/lib/game_selector.py:88
 msgid "Squares instantly fillable by filling: "
-msgstr ""
+msgstr "そのまま埋め込みが可能なマス目: "
 
 #: ../gnome-sudoku/src/lib/game_selector.py:90
 msgid "Squares instantly fillable by elimination: "
-msgstr ""
+msgstr "削除することで埋め込むことが可能なマス目: "
 
 #: ../gnome-sudoku/src/lib/game_selector.py:92
 msgid "Number of trial-and-errors necessary to solve: "
-msgstr ""
+msgstr "トライ＆エラーが必要な数: "
 
 #: ../gnome-sudoku/src/lib/game_selector.py:94
-#, fuzzy
 msgid "Difficulty value: "
-msgstr "上級"
+msgstr "難易度の値:"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:109
 #: ../gnome-sudoku/src/lib/game_selector.py:139
 #: ../gnome-sudoku/src/lib/game_selector.py:291
-#, fuzzy
 msgid "Difficulty"
-msgstr "上級"
+msgstr "難易度"
 
 #. position
 #: ../gnome-sudoku/src/lib/game_selector.py:143
-#, fuzzy
 msgid "Started"
-msgstr "ゲームの開始(_S)"
+msgstr "プレイ中"
 
 #. position
 #: ../gnome-sudoku/src/lib/game_selector.py:149
 msgid "Last Played"
-msgstr ""
+msgstr "最後にプレイ済み"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:154
 #: ../libgames-support/games-dlg-players.c:212
@@ -5691,90 +5739,87 @@ msgstr "状態"
 #: ../gnome-sudoku/src/lib/game_selector.py:181
 #, python-format
 msgid "Printed %s ago"
-msgstr ""
+msgstr "%s 前に印刷済み"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:190
-#, fuzzy, python-format
+#, python-format
 msgid "Played for %s"
-msgstr "プレイヤー"
+msgstr "%s にプレイ済み"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:214
 #, python-format
 msgid "%s ago"
-msgstr ""
+msgstr "%s 前"
+
+#: ../gnome-sudoku/src/lib/game_selector.py:241
+msgid "Player"
+msgstr "プレイヤー"
 
 #. Note that this assumes the default style is plain.
 #: ../gnome-sudoku/src/lib/game_selector.py:246
-#: ../libgames-support/games-scores-dialog.c:127
-#: ../libgames-support/games-scores-dialog.c:542
+#: ../libgames-support/games-scores-dialog.c:121
+#: ../libgames-support/games-scores-dialog.c:537
 msgid "Score"
 msgstr "得点"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:249
-#, fuzzy
 msgid "Date"
-msgstr "回転させるキー"
+msgstr "日付"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:297
-#, fuzzy
 msgid "Hints"
-msgstr "ヒント(_H)"
+msgstr "ヒント"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:298
-#, fuzzy
 msgid "Warnings about unfillable squares"
-msgstr "旗が多すぎることについて警告"
+msgstr "埋めていない格子の警告"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:300
 msgid "Auto-fills"
-msgstr ""
+msgstr "自動埋め込み"
 
 #: ../gnome-sudoku/src/lib/game_selector.py:301
-#, fuzzy
 msgid "Finished in"
-msgstr "終了する(_F)"
+msgstr "完了"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:88
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:99
-#, fuzzy
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:108
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:119
 msgid "Working..."
-msgstr "思考中..."
+msgstr "作業中..."
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:137
-#, fuzzy, python-format
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:162
+#, python-format
 msgid "%s puzzle"
 msgid_plural "%s puzzles"
-msgstr[0] "次のパズル"
+msgstr[0] " %s個のパズル"
+msgstr[1] " %s個のパズル"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:181
-#, fuzzy
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:208
 msgid "Stopped"
-msgstr "速さ"
+msgstr "停止中"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:196
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:206
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:223
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:233
 #, python-format
 msgid "Generated %(n)s out of %(total)s puzzle"
 msgid_plural "Generated %(n)s out of %(total)s puzzles"
-msgstr[0] ""
+msgstr[0] "%(n)s/%(total)s 個のパズルの生成中"
+msgstr[1] "%(n)s/%(total)s 個のパズルの生成中"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:214
-#, fuzzy, python-format
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:241
+#, python-format
 msgid "Generated %s puzzle"
 msgid_plural "Generated %s puzzles"
-msgstr[0] "\"パズル大会\""
+msgstr[0] " %s個のパズルの生成中"
+msgstr[1] " %s個のパズルの生成中"
 
-#: ../gnome-sudoku/src/lib/sudoku.py:599
-msgid "Hard"
-msgstr "上級"
+#: ../gnome-sudoku/src/lib/sudoku.py:598
+msgid "Very Hard"
+msgstr "超難関"
 
 #: ../gnome-sudoku/src/lib/sudoku.py:600
 msgid "Medium"
 msgstr "中くらい"
-
-#: ../gnome-sudoku/src/lib/sudoku.py:601
-msgid "Easy"
-msgstr "簡単"
 
 #. setup pause button
 #: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:328
@@ -5784,59 +5829,65 @@ msgstr "一時停止(_P)"
 
 #. setup stop button
 #: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:337
-#, fuzzy
 msgid "_Stop"
-msgstr "事前設定"
+msgstr "停止(_S)"
 
 #: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:354
-msgid "Do you really want to do this"
-msgstr ""
+msgid "Do you really want to do this?"
+msgstr "本当にこれを行ってよろしいですか？"
 
 #: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:388
 msgid "Don't ask me this again."
-msgstr ""
+msgstr "次回から表示しない"
 
 #: ../gnome-sudoku/src/lib/timer.py:12
 #, python-format
 msgid "%s year"
 msgid_plural "%s years"
-msgstr[0] ""
+msgstr[0] " %s年"
+msgstr[1] " %s年"
 
 #: ../gnome-sudoku/src/lib/timer.py:14
 #, python-format
 msgid "%s month"
 msgid_plural "%s months"
-msgstr[0] "%s ヶ月"
+msgstr[0] " %sヶ月"
+msgstr[1] " %sヶ月"
 
 #: ../gnome-sudoku/src/lib/timer.py:16
 #, python-format
 msgid "%s week"
 msgid_plural "%s weeks"
-msgstr[0] ""
+msgstr[0] " %s週間"
+msgstr[1] " %s週間"
 
 #: ../gnome-sudoku/src/lib/timer.py:18
 #, python-format
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] ""
+msgstr[0] " %s日"
+msgstr[1] " %s日"
 
 #: ../gnome-sudoku/src/lib/timer.py:20
 #, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] ""
+msgstr[0] " %s時間"
+msgstr[1] " %s時間"
 
 #: ../gnome-sudoku/src/lib/timer.py:22
 #, python-format
 msgid "%s minute"
 msgid_plural "%s minutes"
-msgstr[0] ""
+msgstr[0] " %s分"
+msgstr[1] " %s分"
 
 #: ../gnome-sudoku/src/lib/timer.py:24
-#, fuzzy, python-format
+#, python-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] "遊び初めて二日目です"
+msgstr[0] " %s秒"
+msgstr[1] " %s秒"
 
 #. Translators... this is a messay way of concatenating
 #. lists. In English we do lists this way: 1, 2, 3, 4, 5
@@ -5845,322 +5896,295 @@ msgstr[0] "遊び初めて二日目です"
 #. ands or spaces or whatever you like by translating both
 #. ", " and " and " with the same string.
 #: ../gnome-sudoku/src/lib/timer.py:42 ../gnome-sudoku/src/lib/timer.py:44
-#, fuzzy
 msgid " and "
-msgstr "スタンド"
+msgstr " と "
 
 #: ../gnome-sudoku/src/lib/timer.py:42
 msgid ", "
-msgstr ""
+msgstr "、"
 
 #. then we're today
 #: ../gnome-sudoku/src/lib/timer.py:54
-#, fuzzy
 msgid "Today"
-msgstr "合計"
+msgstr "今日"
 
 #: ../gnome-sudoku/src/lib/timer.py:56
 msgid "Yesterday"
-msgstr ""
+msgstr "昨日"
 
-#: ../gnome-sudoku/src/lib/gsudoku.py:78
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:246
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gsudoku.py:83
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:285
 msgid "_Clear"
-msgstr "\"クレオパトラ\""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:25
-#, fuzzy
-msgid "Track moves"
-msgstr "素早く移動する"
+msgstr "クリア(_C)"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:31
-#, fuzzy
+msgid "Track moves"
+msgstr "トラックの移動"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:37
 msgid "Full Screen"
-msgstr "フルスクリーン(_F)"
+msgstr "フルスクリーン"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:156
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:193
+msgid "_File"
+msgstr "ファイル(_F)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:195
 msgid "New game"
-msgstr "新規ゲーム"
+msgstr "新規にゲームを始めます"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:158
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:197
 msgid "Print current game"
-msgstr "このゲームを終了します"
+msgstr "このゲームを印刷します"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:159
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:198
 msgid "Print _Multiple Sudokus"
-msgstr ""
+msgstr "複数個の数独の印刷(_M)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:160
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:199
 msgid "Print more than one sudoku at a time."
-msgstr ""
+msgstr "一度にたくさんの数独を印刷します"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:164
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:203
 msgid "Close Sudoku (save game for later)"
-msgstr ""
+msgstr "数独を閉じます (後でゲームを保存して下さい)"
 
 #. ('Save',gtk.STOCK_SAVE,_('_Save'),
 #. '<Control>s','Save game to play later.',
 #. self.save_game),
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:168
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:207
 msgid "_Enter custom game"
-msgstr "このゲームを終了します"
+msgstr "ゲームのカスタマイズ(_E)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:169
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:208
 msgid ""
 "Enter new puzzle by hand (use this to copy a puzzle from another source)."
 msgstr ""
+"手動で新しいパズルを生成しプレイします (別のソースからパズルをコピーするのに"
+"使用します)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:171
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:210
 msgid "_Resume old game"
-msgstr "一時停止していたゲームを再開します"
+msgstr "前のゲームの再開(_R)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:172
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:211
 msgid "Resume a previous saved game."
-msgstr "一時停止していたゲームを再開します"
+msgstr "以前保存したゲームを再開します"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:176
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:215
 #: ../libgames-support/games-stock.c:53
 msgid "_Hint"
 msgstr "ヒント(_H)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:178
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:217
 msgid "Show which numbers could go in the current square."
-msgstr ""
+msgstr "この時点で指定できる数値を提示します"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:180
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:219
 msgid "_Fill"
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:181
-msgid "Automatically fill in the current square if possible."
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:183
-msgid "Fill _all squares"
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:184
-msgid ""
-"Automatically fill in all squares for which there is only one valid value."
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:194
-#, fuzzy
-msgid "Puzzle _Statistics"
-msgstr "統計情報"
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:195
-msgid "Show statistics about current puzzle"
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:203
-#, fuzzy
-msgid "High _Scores"
-msgstr "得点(_S)"
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:204
-#, fuzzy
-msgid "Show high scores or replay old games."
-msgstr "得点を表示して終了する"
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:210
-msgid "_Always show hint"
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:212
-msgid "Always show possible numbers in a square"
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:216
-msgid "Warn about _unfillable squares"
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:218
-msgid "Warn about squares made unfillable by a move"
-msgstr ""
+msgstr "埋める(_F)"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:220
-msgid "_Track additions"
-msgstr ""
+msgid "Automatically fill in the current square if possible."
+msgstr "現在のブロックの中を自動的に埋めます (可能な部分だけ)"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:222
+msgid "Fill _all squares"
+msgstr "全て埋める(_F)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:223
+msgid ""
+"Automatically fill in all squares for which there is only one valid value."
+msgstr "妥当な数値だけ指定できる全てのブロックの中を自動的に埋めます"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:233
+msgid "Puzzle _Statistics"
+msgstr "パズルの統計情報(_S)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:234
+msgid "Show statistics about current puzzle"
+msgstr "このパズルの統計情報を表示します"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:242
+msgid "High _Scores"
+msgstr "最高得点(_S)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:243
+msgid "Show high scores or replay old games."
+msgstr "今までの最高得点を表示します"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
+msgid "_Always show hint"
+msgstr "常にヒントを表示する(_A)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:251
+msgid "Always show possible numbers in a square"
+msgstr "ブロックの中に妥当な数値を常に表示します"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:255
+msgid "Warn about _unfillable squares"
+msgstr "埋めていないブロックを警告する(_U)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:257
+msgid "Warn about squares made unfillable by a move"
+msgstr "未だ埋められていないブロックについて警告します"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:259
+msgid "_Track additions"
+msgstr "トラッカの追加(_T)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:261
 msgid "Mark new additions in a separate color so you can keep track of them."
-msgstr ""
+msgstr "別の色の新しいトラッカを追加して数値の動きを監視します"
 
 #. ('ZoomOnResize',None,_('_Adjust size of grid when resizing window'),
 #. None,_('Automatically change the size of numbers and squares to fit the window.'),
 #. ),
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:227
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:266
 msgid "Show _Toolbar"
-msgstr "ツールバーを表示します"
+msgstr "ツールバーを表示する(_T)"
 
 #. ('ToggleNotes',None,_('Show _Notes'),'<Control>O',
 #. _('Include room for notes at the top and bottom of squares.'),self.toggle_notes_cb),
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:230
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:269
 msgid "_Black background"
-msgstr "背景色(_B):"
+msgstr "背景を黒にする(_B)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:231
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:270
 msgid ""
 "Background of game is black; otherwise, the background will follow your "
 "theme colors."
-msgstr ""
+msgstr "盤面の背景を黒にします (それ以外は、お使いのテーマの色に従います)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:233
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:272
 msgid "_Highlighter"
-msgstr ""
+msgstr "強調表示する(_H)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:234
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:273
 msgid "Highlight the current row, column and box"
-msgstr ""
+msgstr "現在のタテ列やヨコ列、そしてブロックを強調表示します"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:235
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:274
 msgid "Generate new puzzles _while you play"
-msgstr ""
+msgstr "プレイ中に新しいパズルを生成する(_W)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:237
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:276
 msgid ""
 "Generate new puzzles in the background while you play. This will "
 "automatically pause when the game goes into the background."
 msgstr ""
+"プレイ中にバックグラウンドで新しいパズルを生成します (ゲームをバックグランド"
+"に移動したら生成を自動的に一時停止します)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:244
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:282
+msgid "_Edit"
+msgstr "編集(_E)"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:283
 msgid "_Undo"
-msgstr "移動を元に戻す(_U)"
+msgstr "元に戻す(_U)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:244
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:283
 msgid "Undo last action"
-msgstr "直前の操作を取り消します"
+msgstr "最後の操作に戻します"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:284
 msgid "_Redo"
-msgstr "赤色"
+msgstr "やり直す(_R)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:284
 msgid "Redo last action"
-msgstr "最近の移動をやりなおします"
+msgstr "最後の操作を取り消します"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:246
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:285
 msgid "Clear entries you've filled in"
-msgstr ""
+msgstr "指定した格子をクリアします"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:247
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:286
 msgid "Clear _Notes"
-msgstr ""
+msgstr "メモのクリア(_N)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:247
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:286
 msgid "Clear notes and hints"
-msgstr ""
+msgstr "メモやヒントをクリアします"
 
 #. Trackers...
 #. Our initial row...
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:816
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:288
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:861
 msgid "No Tracker"
-msgstr "キーなし"
+msgstr "トラッカなし"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:250
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:289
 msgid "_Generate new puzzles"
-msgstr ""
+msgstr "新しいパズルの生成(_G)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:250
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:289
 msgid "Generate new puzzles."
-msgstr ""
+msgstr "新しいパズルを生成します"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:296
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:335
 msgid "Entering custom grid..."
-msgstr ""
+msgstr "格子をカスタマイズして下さい..."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:300
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:339
 msgid "_Play game"
-msgstr "プレイヤーの名前"
+msgstr "プレイする(_P)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:665
-#, fuzzy
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:710
 msgid "Playing "
-msgstr "プレーン"
+msgstr "プレイ中: "
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:706
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:729
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:751
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:774
 msgid "Puzzle Information"
-msgstr ""
+msgstr "パズルの情報"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:707
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:752
 msgid "There is no current puzzle."
-msgstr ""
+msgstr "現在、パズルはありません"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:712
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:757
 msgid "Calculated difficulty: "
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:716
-msgid "Number of moves instantly fillable by elimination: "
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:719
-msgid "Number of moves instantly fillable by filling: "
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:722
-msgid "Amount of trial-and-error required to solve: "
-msgstr ""
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:730
-#, fuzzy, python-format
-msgid "Statistics for %s"
-msgstr "統計情報"
+msgstr "計算した難易度:"
 
 #: ../gnome-sudoku/src/lib/gnome_sudoku.py:761
-#, fuzzy
-msgid "translator_credits"
-msgstr ""
-"相花 毅 <aihana@gnome.gr.jp>\n"
-"佐藤 暁 <ss@gnome.gr.jp>\n"
-"KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
-"Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
-"Yuusuke Tahara <tahara@gnome.gr.jp>\n"
-"Akira Higuchi <a-higuti@math.sci.hokudai.ac.jp>\n"
-"Yukihiro Nakai <Nakai@technologist.com>\n"
-"日本GNOMEユーザー会 http://www.gnome.gr.jp"
+msgid "Number of moves instantly fillable by elimination: "
+msgstr "削除することで埋め込むことが可能な移動数: "
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:826
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:764
+msgid "Number of moves instantly fillable by filling: "
+msgstr "そのまま埋め込みが可能な移動数: "
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:767
+msgid "Amount of trial-and-error required to solve: "
+msgstr "トライ＆エラーが必要な数: "
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:775
+#, python-format
+msgid "Statistics for %s"
+msgstr "%s の統計情報"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:871
 msgid "Clear all moves tracked by selected tracker."
-msgstr ""
+msgstr "指定したトラッカで監視している全ての移動をクリアします"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:830
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:875
 msgid "_Clear Others"
-msgstr ""
+msgstr "他のクリア(_C)"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:832
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:877
 msgid "Clear all moves not tracked by selected tracker."
-msgstr ""
+msgstr "指定したトラックで監視していない全ての移動をクリアします"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:858
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:903
 #, python-format
 msgid "Tracker %s"
-msgstr ""
+msgstr "トラッカ %s"
 
-#: ../gnomine/gnomine.c:89 ../gnomine/gnomine.c:671
+#: ../gnomine/gnomine.c:89 ../gnomine/gnomine.c:673
 msgid "gnomine|Medium"
 msgstr "中くらい"
-
-#: ../gnomine/gnomine.c:91 ../gnomine/gnomine.c:689
-msgid "Custom"
-msgstr "カスタマイズ"
 
 #: ../gnomine/gnomine.c:169
 #, c-format
@@ -6179,7 +6203,7 @@ msgstr "素晴らしい活躍ですが、残念ながらトップ 10 入りで�
 msgid "Mines Scores"
 msgstr "マインスィーパの得点"
 
-#: ../gnomine/gnomine.c:216 ../gnotravex/gnotravex.c:1243
+#: ../gnomine/gnomine.c:216 ../gnotravex/gnotravex.c:1226
 #: ../same-gnome/ui.c:143
 msgid "Size:"
 msgstr "大きさ:"
@@ -6204,110 +6228,109 @@ msgstr "フェイス:"
 msgid "Graphics:"
 msgstr "グラフィックス:"
 
-#: ../gnomine/gnomine.c:457 ../gnomine/gnomine.c:460 ../gnomine/gnomine.c:1042
+#: ../gnomine/gnomine.c:457 ../gnomine/gnomine.c:460 ../gnomine/gnomine.c:1044
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
-msgstr "Mines"
+msgstr "GNOME マインスィーパ"
 
 #: ../gnomine/gnomine.c:463
 msgid ""
 "The popular logic puzzle minesweeper. Clear mines from a board using hints "
 "from squares you have already uncovered."
 msgstr ""
-"人気のある論理パズル、マインスイーパです。既に掘った場所(四角)をヒントにマイ"
-"ン(地雷)をボードから見つけ出します。"
+"人気のある \"理詰め\" 式パズルのマインスィーパです。ヒントに従って盤面上のマ"
+"ス目からマインを除去して下さい。"
 
-#: ../gnomine/gnomine.c:657
+#: ../gnomine/gnomine.c:659
 msgid "Field Size"
 msgstr "フィールドの大きさ"
 
-#: ../gnomine/gnomine.c:701
+#: ../gnomine/gnomine.c:703
 msgid "Custom Size"
 msgstr "大きさのカスタマイズ"
 
-#: ../gnomine/gnomine.c:708
+#: ../gnomine/gnomine.c:710
 msgid "_Number of mines:"
 msgstr "地雷の数(_N):"
 
-#: ../gnomine/gnomine.c:721
+#: ../gnomine/gnomine.c:723
 msgid "_Horizontal:"
 msgstr "水平(_H):"
 
-#: ../gnomine/gnomine.c:733
+#: ../gnomine/gnomine.c:735
 msgid "_Vertical:"
 msgstr "垂直(_V):"
 
-#: ../gnomine/gnomine.c:751
+#: ../gnomine/gnomine.c:753
 msgid "_Use \"I'm not sure\" flags"
 msgstr "\"確認していません\" フラグを使う(_U)"
 
-#: ../gnomine/gnomine.c:762
+#: ../gnomine/gnomine.c:764
 msgid "_Use \"Too many flags\" warning"
-msgstr "\"旗が多すぎます\" という警告を使用する(_U)"
+msgstr "フラグを置きすぎたら警告する(_U)"
 
-#: ../gnomine/gnomine.c:772
+#: ../gnomine/gnomine.c:774
 msgid "Mines Preferences"
 msgstr "GNOME マインスイーパの設定"
 
-#: ../gnomine/gnomine.c:969
+#: ../gnomine/gnomine.c:971
 msgid "Width of grid"
 msgstr "グリッドの幅"
 
-#: ../gnomine/gnomine.c:970
+#: ../gnomine/gnomine.c:972
 msgid "Height of grid"
 msgstr "グリッドの高さ"
 
-#: ../gnomine/gnomine.c:972
+#: ../gnomine/gnomine.c:974
 msgid "Number of mines"
 msgstr "地雷の数"
 
-#: ../gnomine/gnomine.c:973 ../gtali/gyahtzee.c:104 ../gtali/gyahtzee.c:106
+#: ../gnomine/gnomine.c:975 ../gtali/gyahtzee.c:104 ../gtali/gyahtzee.c:106
 #: ../same-gnome/same-gnome.c:152
 msgid "NUMBER"
-msgstr "数"
+msgstr "NUMBER"
 
-#: ../gnomine/gnomine.c:975 ../gnomine/gnomine.schemas.in.h:8
+#: ../gnomine/gnomine.c:977 ../gnomine/gnomine.schemas.in.h:8
 msgid "Size of the board (0-2 = small-large, 3=custom)"
-msgstr "ボードの大きさ (0-2 = 小 - 大, 3 = カスタム)"
+msgstr "ボードの大きさ (0-2 = 小さい〜大きい、3=その他)"
 
-#: ../gnomine/gnomine.c:976 ../gnotravex/gnotravex.c:376
-#: ../gnotski/gnotski.c:481 ../iagno/gnothello.c:124
+#: ../gnomine/gnomine.c:978 ../gnotravex/gnotravex.c:385
+#: ../gnotski/gnotski.c:482 ../iagno/gnothello.c:124
 msgid "X location of window"
-msgstr "ウィンドウの X 座標"
+msgstr "ウィンドウのＸ座標"
 
-#: ../gnomine/gnomine.c:978 ../gnotravex/gnotravex.c:378
-#: ../gnotski/gnotski.c:483 ../iagno/gnothello.c:126
+#: ../gnomine/gnomine.c:980 ../gnotravex/gnotravex.c:387
+#: ../gnotski/gnotski.c:484 ../iagno/gnothello.c:126
 msgid "Y location of window"
-msgstr "ウィンドウの Y 座標"
+msgstr "ウィンドウのＹ座標"
 
-#: ../gnomine/gnomine.c:1106
+#: ../gnomine/gnomine.c:1108
 msgid "Press to Resume"
 msgstr "ここを押すと再開します"
 
-#: ../gnomine/gnomine.c:1140
+#: ../gnomine/gnomine.c:1142
 msgid "Time: "
 msgstr "経過時間: "
 
 #: ../gnomine/gnomine.desktop.in.h:1
 msgid "Clear hidden mines from a minefield"
-msgstr "地雷原から隠された地雷を見つけ出して下さい"
+msgstr "地雷原から見えない地雷を除去して下さい"
 
 #: ../gnomine/gnomine.schemas.in.h:1
-#, fuzzy
 msgid "Board size"
 msgstr "盤の大きさ"
 
 #: ../gnomine/gnomine.schemas.in.h:2
 msgid "Enable automatic placing of flags"
-msgstr ""
+msgstr "フラグを自動的に置くかどうか"
 
 #: ../gnomine/gnomine.schemas.in.h:3
 msgid "Number of columns in a custom game"
-msgstr ""
+msgstr "カスタマイズしたゲームでの盤面の桁数"
 
 #: ../gnomine/gnomine.schemas.in.h:4
 msgid "Number of rows in a custom game"
-msgstr ""
+msgstr "カスタマイズしたゲームでの盤面の行数"
 
 #: ../gnomine/gnomine.schemas.in.h:5
 msgid "Set to true to be able to mark squares as unknown."
@@ -6316,38 +6339,28 @@ msgstr "不明なエリアをマークできるようにする場合は TRUE に
 #: ../gnomine/gnomine.schemas.in.h:6
 msgid "Set to true to enable warning icons when too many flags are placed."
 msgstr ""
-"true にすると、配置した旗が多すぎるときに警告するアイコンが有効になります。"
+"フラグをたくさん置いた時に警告アイコンを表示する場合は TRUE にセットして下さ"
+"い。"
 
 #: ../gnomine/gnomine.schemas.in.h:7
 msgid ""
 "Set to true to have gnomine automatically flag squares as mined when enough "
 "squares are revealed"
 msgstr ""
+"マス目に地雷が埋まっていることが明らかであることを表すフラグを自動的に付与す"
+"る場合は TRUE です。"
 
 #: ../gnomine/gnomine.schemas.in.h:9
-#, fuzzy
 msgid "The height of the playing window in pixels."
 msgstr "メイン・ウィンドウの高さ (ピクセル単位) です。"
 
-#: ../gnomine/gnomine.schemas.in.h:10 ../gnotravex/gnotravex.schemas.in.h:6
-#: ../gnotski/gnotski.schemas.in.h:1 ../mahjongg/mahjongg.schemas.in.h:1
-msgid "The height of the window"
-msgstr "ウィンドウの高さ"
-
 #: ../gnomine/gnomine.schemas.in.h:11
-#, fuzzy
 msgid "The number of mines in a custom game"
-msgstr "予め埋めておく桁の番号"
+msgstr "カスタム・ゲームでの地雷の数"
 
 #: ../gnomine/gnomine.schemas.in.h:12
-#, fuzzy
 msgid "The width of the playing window in pixels."
 msgstr "メイン・ウィンドウの幅 (ピクセル単位) です。"
-
-#: ../gnomine/gnomine.schemas.in.h:13 ../gnotravex/gnotravex.schemas.in.h:10
-#: ../gnotski/gnotski.schemas.in.h:6 ../mahjongg/mahjongg.schemas.in.h:4
-msgid "The width of the window"
-msgstr "ウィンドウの幅"
 
 #: ../gnomine/gnomine.schemas.in.h:14
 msgid "Use the unknown flag"
@@ -6355,7 +6368,7 @@ msgstr "不明なフラグを使う"
 
 #: ../gnomine/gnomine.schemas.in.h:15
 msgid "Warning about too many flags"
-msgstr "旗が多すぎることについて警告"
+msgstr "フラグを置きすぎたら警告する"
 
 #: ../gnomine/minefield.c:216
 msgid ""
@@ -6421,155 +6434,154 @@ msgstr "八"
 msgid "9"
 msgstr "九"
 
-#: ../gnotravex/gnotravex.c:64
+#: ../gnotravex/gnotravex.c:65
 msgid "2×2"
 msgstr "2×2"
 
-#: ../gnotravex/gnotravex.c:65
+#: ../gnotravex/gnotravex.c:66
 msgid "3×3"
 msgstr "3×3"
 
-#: ../gnotravex/gnotravex.c:66
+#: ../gnotravex/gnotravex.c:67
 msgid "4×4"
 msgstr "4×4"
 
-#: ../gnotravex/gnotravex.c:67
+#: ../gnotravex/gnotravex.c:68
 msgid "5×5"
 msgstr "5×5"
 
-#: ../gnotravex/gnotravex.c:68
+#: ../gnotravex/gnotravex.c:69
 msgid "6×6"
 msgstr "6×6"
 
-#: ../gnotravex/gnotravex.c:283 ../same-gnome/ui.c:457
+#: ../gnotravex/gnotravex.c:292 ../same-gnome/ui.c:459
 msgid "_Size"
-msgstr "大きさ(_S)"
+msgstr "盤面(_S)"
 
-#: ../gnotravex/gnotravex.c:292
+#: ../gnotravex/gnotravex.c:301
 msgid "Sol_ve"
 msgstr "解決する(_V)"
 
-#: ../gnotravex/gnotravex.c:292
+#: ../gnotravex/gnotravex.c:301
 msgid "Solve the game"
 msgstr "このゲームを解きます"
 
-#: ../gnotravex/gnotravex.c:301
+#: ../gnotravex/gnotravex.c:310
 msgid "_Up"
 msgstr "上(_U)"
 
-#: ../gnotravex/gnotravex.c:302
+#: ../gnotravex/gnotravex.c:311
 msgid "Move the pieces up"
 msgstr "上に移動します"
 
-#: ../gnotravex/gnotravex.c:303
+#: ../gnotravex/gnotravex.c:312
 msgid "_Left"
 msgstr "左(_L)"
 
-#: ../gnotravex/gnotravex.c:304
+#: ../gnotravex/gnotravex.c:313
 msgid "Move the pieces left"
 msgstr "左に移動します"
 
-#: ../gnotravex/gnotravex.c:305
+#: ../gnotravex/gnotravex.c:314
 msgid "_Right"
 msgstr "右(_R)"
 
-#: ../gnotravex/gnotravex.c:306
+#: ../gnotravex/gnotravex.c:315
 msgid "Move the pieces right"
 msgstr "右に移動します"
 
-#: ../gnotravex/gnotravex.c:307
+#: ../gnotravex/gnotravex.c:316
 msgid "_Down"
 msgstr "下(_D)"
 
-#: ../gnotravex/gnotravex.c:308
+#: ../gnotravex/gnotravex.c:317
 msgid "Move the pieces down"
 msgstr "下に移動します"
 
-#: ../gnotravex/gnotravex.c:314
+#: ../gnotravex/gnotravex.c:323
 msgid "_2×2"
 msgstr "_2×2"
 
-#: ../gnotravex/gnotravex.c:314
+#: ../gnotravex/gnotravex.c:323
 msgid "Play on a 2×2 board"
 msgstr "2×2 のボードでプレイします"
 
-#: ../gnotravex/gnotravex.c:316
+#: ../gnotravex/gnotravex.c:325
 msgid "_3×3"
 msgstr "_3×3"
 
-#: ../gnotravex/gnotravex.c:316
+#: ../gnotravex/gnotravex.c:325
 msgid "Play on a 3×3 board"
 msgstr "3×3 のボードでプレイします"
 
-#: ../gnotravex/gnotravex.c:318
+#: ../gnotravex/gnotravex.c:327
 msgid "_4×4"
 msgstr "_4×4"
 
-#: ../gnotravex/gnotravex.c:318
+#: ../gnotravex/gnotravex.c:327
 msgid "Play on a 4×4 board"
 msgstr "4×4 のボードでプレイします"
 
-#: ../gnotravex/gnotravex.c:320
+#: ../gnotravex/gnotravex.c:329
 msgid "_5×5"
 msgstr "_5×5"
 
-#: ../gnotravex/gnotravex.c:320
+#: ../gnotravex/gnotravex.c:329
 msgid "Play on a 5×5 board"
 msgstr "5×5 のボードでプレイします"
 
-#: ../gnotravex/gnotravex.c:322
+#: ../gnotravex/gnotravex.c:331
 msgid "_6×6"
 msgstr "_6×6"
 
-#: ../gnotravex/gnotravex.c:322
+#: ../gnotravex/gnotravex.c:331
 msgid "Play on a 6×6 board"
 msgstr "6×6 のボードでプレイします"
 
-#: ../gnotravex/gnotravex.c:327
-#, fuzzy
+#: ../gnotravex/gnotravex.c:336
 msgid "Tile _Colours"
-msgstr "色"
+msgstr "色付きのタイル(_C)"
 
-#: ../gnotravex/gnotravex.c:380
+#: ../gnotravex/gnotravex.c:389
 msgid "Size of board (2-6)"
 msgstr "盤の大きさ(2-6)"
 
-#: ../gnotravex/gnotravex.c:381
+#: ../gnotravex/gnotravex.c:390
 msgid "SIZE"
 msgstr "大きさ"
 
-#: ../gnotravex/gnotravex.c:1126
+#: ../gnotravex/gnotravex.c:1108
 msgid "Puzzle solved! Well done!"
 msgstr "解決しました！やったね！"
 
-#: ../gnotravex/gnotravex.c:1129
+#: ../gnotravex/gnotravex.c:1110
 msgid "Puzzle solved!"
 msgstr "解決しました！"
 
-#: ../gnotravex/gnotravex.c:1241
+#: ../gnotravex/gnotravex.c:1224
 msgid "Tetravex Scores"
-msgstr "Tetravex 得点"
+msgstr "Tetravex の得点"
 
-#: ../gnotravex/gnotravex.c:1500 ../mahjongg/mahjongg.c:980
+#: ../gnotravex/gnotravex.c:1497 ../mahjongg/mahjongg.c:982
 msgid "Game paused"
-msgstr "ゲームの一時停止"
+msgstr "ゲームを一時停止しました"
 
-#: ../gnotravex/gnotravex.c:1663
+#: ../gnotravex/gnotravex.c:1654
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "%d×%d のボードでプレイ中です"
 
-#: ../gnotravex/gnotravex.c:1926
+#: ../gnotravex/gnotravex.c:1923
 msgid ""
 "GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
 "the same numbers are touching each other."
 msgstr ""
-"GNOME Tetravex は、ピースを同じ数字が互いに接っするように置いていく、シンプル"
-"なパズルゲームです。"
+"GNOME Tetravex は同じ数字をお互いに向かい合わせる位置にパズルのピースを配置す"
+"るゲームです。"
 
 #: ../gnotravex/gnotravex.desktop.in.h:1
 msgid "Complete the puzzle by matching numbered tiles"
-msgstr "数字タイルがマッチするようにしてパズルを完了"
+msgstr "同じ数字が隣接するように並べながらパズルを完成させて下さい"
 
 #: ../gnotravex/gnotravex.desktop.in.h:2
 msgid "Tetravex"
@@ -6577,21 +6589,19 @@ msgstr "Tetravex"
 
 #: ../gnotravex/gnotravex.schemas.in.h:1
 msgid "A flag to enable coloured tiles."
-msgstr ""
+msgstr "タイルに色を付けるかどうかです。"
 
 #: ../gnotravex/gnotravex.schemas.in.h:2
-#, fuzzy
 msgid "Control coloured tiles"
-msgstr "牌を読み込めませんでした"
+msgstr "タイルに色を付けるかどうか"
 
 #: ../gnotravex/gnotravex.schemas.in.h:4
-#, fuzzy
 msgid ""
 "Select whether to drag the tiles or to click on the source then the "
 "destination."
 msgstr ""
-"カードを操作する方法として、カードをドラッグするか、またはソースをクリックし"
-"て対象となるカードへドラッグするか、どちらかを選択して下さい。"
+"タイルの移動方法で、タイルをドラッグして移動するか、またはクリックするとその"
+"まま移動するかです。"
 
 #: ../gnotravex/gnotravex.schemas.in.h:5
 msgid ""
@@ -6615,227 +6625,227 @@ msgid "The width of the playing window in pixels. At minimum it should be 320."
 msgstr "プレイするウィンドウの幅 (ピクセル単位) です。最小値は 320 です。"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:140
+#: ../gnotski/gnotski.c:142
 msgid "Only 18 Steps"
 msgstr "\"Only 18 Steps\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:146
+#: ../gnotski/gnotski.c:148
 msgid "Daisy"
 msgstr "\"ヒナギク\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:152
+#: ../gnotski/gnotski.c:154
 msgid "Violet"
 msgstr "\"スミレ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:158
+#: ../gnotski/gnotski.c:160
 msgid "Poppy"
 msgstr "\"ケシ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:164
+#: ../gnotski/gnotski.c:166
 msgid "Pansy"
 msgstr "\"三色スミレ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:170
+#: ../gnotski/gnotski.c:172
 msgid "Snowdrop"
 msgstr "\"Snowdrop\""
 
 #. puzzle name - sometimes called "Le'Ane Rouge"
-#: ../gnotski/gnotski.c:176
+#: ../gnotski/gnotski.c:178
 msgid "Red Donkey"
 msgstr "\"赤いロバ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:182
+#: ../gnotski/gnotski.c:184
 msgid "Trail"
 msgstr "\"トレイル\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:188
+#: ../gnotski/gnotski.c:190
 msgid "Ambush"
 msgstr "\"待ち伏せ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:194
+#: ../gnotski/gnotski.c:196
 msgid "Agatka"
 msgstr "\"Agatka\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:199
+#: ../gnotski/gnotski.c:201
 msgid "Success"
 msgstr "\"大当たり\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:204
+#: ../gnotski/gnotski.c:206
 msgid "Bone"
 msgstr "\"骨\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:210
+#: ../gnotski/gnotski.c:212
 msgid "Fortune"
 msgstr "\"運命\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:218
+#: ../gnotski/gnotski.c:220
 msgid "Fool"
 msgstr "\"道化師\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:224
+#: ../gnotski/gnotski.c:226
 msgid "Solomon"
 msgstr "\"ソロモン\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:231
+#: ../gnotski/gnotski.c:233
 msgid "Cleopatra"
 msgstr "\"クレオパトラ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:236
+#: ../gnotski/gnotski.c:238
 msgid "Shark"
 msgstr "\"サメ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:244
+#: ../gnotski/gnotski.c:246
 msgid "Rome"
 msgstr "\"ローマ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:251
+#: ../gnotski/gnotski.c:253
 msgid "Pennant Puzzle"
 msgstr "\"パズル大会\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:257
+#: ../gnotski/gnotski.c:259
 msgid "Ithaca"
 msgstr "\"イサカ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:278
+#: ../gnotski/gnotski.c:280
 msgid "Pelopones"
 msgstr "\"Pelopones\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:285
+#: ../gnotski/gnotski.c:287
 msgid "Transeuropa"
 msgstr "\"Transeuropa\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:294
+#: ../gnotski/gnotski.c:296
 msgid "Lodzianka"
 msgstr "\"Lodzianka\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:300
+#: ../gnotski/gnotski.c:302
 msgid "Polonaise"
 msgstr "\"ポロネーズ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:305
+#: ../gnotski/gnotski.c:307
 msgid "Baltic Sea"
 msgstr "\"バルト海\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:310
+#: ../gnotski/gnotski.c:312
 msgid "American Pie"
 msgstr "\"アメリカン・パイ\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:322
+#: ../gnotski/gnotski.c:324
 msgid "Traffic Jam"
 msgstr "\"渋滞\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:329
+#: ../gnotski/gnotski.c:331
 msgid "Sunshine"
 msgstr "\"日の輝き\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:353
+#: ../gnotski/gnotski.c:355
 msgid "Block 10"
 msgstr "\"ブロック 10\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:358
+#: ../gnotski/gnotski.c:360
 msgid "Block 10 Pro"
 msgstr "\"ブロック 10 Pro\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:363
+#: ../gnotski/gnotski.c:365
 msgid "Climb 12"
 msgstr "\"クライム 12\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:368
+#: ../gnotski/gnotski.c:370
 msgid "Climb 12 Pro"
 msgstr "\"クライム 12 Pro\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:373
+#: ../gnotski/gnotski.c:375
 msgid "Climb 15 Winter"
 msgstr "\"クライム 15 冬\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:380
+#: ../gnotski/gnotski.c:382
 msgid "Climb 15 Spring"
 msgstr "\"クライム 15 春\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:387
+#: ../gnotski/gnotski.c:389
 msgid "Climb 15 Summer"
 msgstr "\"クライム 15 夏\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:394
+#: ../gnotski/gnotski.c:396
 msgid "Climb 15 Fall"
 msgstr "\"クライム 15 秋\""
 
 #. puzzle name
-#: ../gnotski/gnotski.c:401
+#: ../gnotski/gnotski.c:403
 msgid "Climb 24 Pro"
 msgstr "\"クライム 24 Pro\""
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:430
+#: ../gnotski/gnotski.c:431
 msgid "HuaRong Trail"
 msgstr "\"HuaRong Road\""
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:432
+#: ../gnotski/gnotski.c:433
 msgid "Challenge Pack"
 msgstr "\"チャレンジ・パック\""
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:434
+#: ../gnotski/gnotski.c:435
 msgid "Skill Pack"
 msgstr "\"スキル・パック\""
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:436
+#: ../gnotski/gnotski.c:437
 msgid "Minoru Climb"
 msgstr "\"Minoru パズル\""
 
-#: ../gnotski/gnotski.c:437
+#: ../gnotski/gnotski.c:438
 msgid "_Restart Puzzle"
 msgstr "パズルの再スタート(_R)"
 
-#: ../gnotski/gnotski.c:439
+#: ../gnotski/gnotski.c:440
 msgid "Next Puzzle"
 msgstr "次のパズル"
 
-#: ../gnotski/gnotski.c:441
+#: ../gnotski/gnotski.c:442
 msgid "Previous Puzzle"
 msgstr "前のパズル"
 
-#: ../gnotski/gnotski.c:670
+#: ../gnotski/gnotski.c:673
 msgid "Level completed."
 msgstr "レベルを制覇しました"
 
-#: ../gnotski/gnotski.c:862
+#: ../gnotski/gnotski.c:873
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -6845,7 +6855,7 @@ msgstr ""
 "\n"
 "正しく Klotski がインストールされているか確認して下さい。"
 
-#: ../gnotski/gnotski.c:1034
+#: ../gnotski/gnotski.c:1110
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -6858,12 +6868,12 @@ msgstr ""
 "\n"
 "正しく Klotski がインストールされているか確認して下さい。"
 
-#: ../gnotski/gnotski.c:1073
+#: ../gnotski/gnotski.c:1149
 #, c-format
 msgid "Moves: %d"
 msgstr "移動数: %d"
 
-#: ../gnotski/gnotski.c:1403
+#: ../gnotski/gnotski.c:1479
 msgid "Sliding Block Puzzles"
 msgstr "ブロックをスライドするパズルです。"
 
@@ -6873,7 +6883,7 @@ msgstr "Klotski"
 
 #: ../gnotski/gnotski.desktop.in.h:2
 msgid "Slide blocks to solve the puzzle"
-msgstr "パズルを解くためにブロックをずらす"
+msgstr "ブロックをずらしながらパズルを解いて下さい"
 
 #: ../gnotski/gnotski.schemas.in.h:2
 msgid "The number of the puzzle being played."
@@ -6912,7 +6922,7 @@ msgstr "その役は既に使用済です！ どの役を適用しますか？"
 #.
 #: ../gtali/gtali.desktop.in.h:1
 msgid "Beat the odds in a poker-style dice game"
-msgstr "ポーカー・スタイルのダイス・ゲームでオッズを勝ち取れ"
+msgstr "ポーカー・スタイルのダイス・ゲームを楽しんで下さい"
 
 #: ../gtali/gtali.desktop.in.h:2 ../gtali/gyahtzee.c:54
 msgid "Tali"
@@ -6941,11 +6951,11 @@ msgstr "TRUE の場合、コンピュータの AI 思考情報が標準出力に
 
 #: ../gtali/gtali.schemas.in.h:5 ../gtali/setup.c:343
 msgid "Regular"
-msgstr ""
+msgstr "標準"
 
 #: ../gtali/gtali.schemas.in.h:6
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
-msgstr "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
+msgstr "[人間,ウィルバー,ビル,モニカ,ケニス,ジャネット]"
 
 #: ../gtali/gyahtzee.c:100
 msgid "Delay computer moves"
@@ -6957,43 +6967,42 @@ msgstr "コンピュータの思考を表示する"
 
 #: ../gtali/gyahtzee.c:104
 msgid "Number of computer opponents"
-msgstr "コンピュータがプレイする人数"
+msgstr "コンピュータがプレイする人数を指定する"
 
 #: ../gtali/gyahtzee.c:106
 msgid "Number of human opponents"
-msgstr "人間のプレイヤーの数"
+msgstr "人間のプレイヤーの数を指定する"
 
 #: ../gtali/gyahtzee.c:108
 msgid "Game choice: Regular or Colors"
-msgstr ""
+msgstr "ゲームを選択する (RegularまたはColors)"
 
 #: ../gtali/gyahtzee.c:108
 msgid "STRING"
-msgstr ""
+msgstr "STRING"
 
 #: ../gtali/gyahtzee.c:143
-#, fuzzy
 msgid "Roll all!"
-msgstr " サイを振る！ "
+msgstr "全てのサイを振る！"
 
 #: ../gtali/gyahtzee.c:146 ../gtali/gyahtzee.c:705
 msgid "Roll!"
-msgstr " サイを振る！ "
+msgstr "サイを振る！"
 
 #: ../gtali/gyahtzee.c:181
 msgid "The game is a draw!"
 msgstr "引き分けです！"
 
 #: ../gtali/gyahtzee.c:196 ../gtali/gyahtzee.c:550
-#, fuzzy
 msgid "Tali Scores"
-msgstr "得点"
+msgstr "Tali の得点"
 
 #: ../gtali/gyahtzee.c:214
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
-msgstr[0] "%s が %d 点で勝利しました"
+msgstr[0] "%s さんが %d点で勝利しました"
+msgstr[1] "%s さんが %d点で勝利しました"
 
 #: ../gtali/gyahtzee.c:218 ../same-gnome/ui.c:165
 msgid "Game over!"
@@ -7062,9 +7071,9 @@ msgstr "ゆっくり実行する(_D)"
 msgid "N_umber of opponents:"
 msgstr "人数(_U):"
 
-#: ../gtali/setup.c:344 ../mahjongg/mahjongg.c:797
+#: ../gtali/setup.c:344 ../mahjongg/mahjongg.c:799
 msgid "Colors"
-msgstr "色"
+msgstr "色付き"
 
 #. --- PLAYER NAMES FRAME ----
 #: ../gtali/setup.c:352
@@ -7145,133 +7154,126 @@ msgstr ">62 の場合はボーナス"
 #. End of upper panel
 #: ../gtali/yahtzee.c:103
 msgid "2 pair Same Color [total]"
-msgstr ""
+msgstr "２ペアで同じ色 [合計]"
 
 #: ../gtali/yahtzee.c:105
-#, fuzzy
 msgid "Full House [15 + total]"
-msgstr "フルハウス   [25]"
+msgstr "フルハウス [15 + 合計]"
 
 #: ../gtali/yahtzee.c:106
 msgid "Full House Same Color [20 + total]"
-msgstr ""
+msgstr "フルハウスで同じ色 [20 + 合計]"
 
 #: ../gtali/yahtzee.c:107
 msgid "Flush (all same color) [35]"
-msgstr ""
+msgstr "フラッシュ (全て同じ色) [35]"
 
 #: ../gtali/yahtzee.c:109
-#, fuzzy
 msgid "4 of a Kind [25 + total]"
-msgstr "同種が４つ [合計]"
+msgstr "キングが４つ [25 + 合計]"
 
 #: ../gtali/yahtzee.c:110
-#, fuzzy
 msgid "5 of a Kind [50 + total]"
-msgstr "同種が３つ [合計]"
+msgstr "キングが５つ [50 + 合計]"
 
 #: ../gtali/yahtzee.c:234
 msgid "Choose a score slot."
 msgstr "得点スロットの選択"
 
-#: ../gtali/yahtzee.c:592
+#: ../gtali/yahtzee.c:593
 msgid "How many times do you wish to roll?"
 msgstr "何回サイを振りますか？"
 
-#: ../gtali/yahtzee.c:597
+#: ../gtali/yahtzee.c:598
 msgid "Generating ..."
 msgstr "生成中..."
 
-#: ../gtali/yahtzee.c:632
+#: ../gtali/yahtzee.c:633
 msgid "Results"
 msgstr "結果"
 
-#: ../gtali/yahtzee.c:632
+#: ../gtali/yahtzee.c:633
 msgid "Num Rolls"
 msgstr "振った回数"
 
-#: ../gtali/yahtzee.c:632
+#: ../gtali/yahtzee.c:633
 msgid "Total"
 msgstr "合計"
 
 #: ../iagno/gnothello.c:134
-#, fuzzy
 msgid "Net_work Game"
-msgstr "新しいネットワーク対戦(_W)"
+msgstr "ネットワーク対戦(_W)"
 
 #: ../iagno/gnothello.c:140
-#, fuzzy
 msgid "_Player list"
-msgstr "プレイヤー"
+msgstr "プレイヤーの一覧(_P)"
 
 #: ../iagno/gnothello.c:142
 msgid "_Chat Window"
-msgstr ""
+msgstr "チャット(_C)"
 
 #: ../iagno/gnothello.c:146
-#, fuzzy
 msgid "_Leave Game"
-msgstr "新ゲーム(_N)"
+msgstr "ゲームから抜ける(_L)"
 
-#: ../iagno/gnothello.c:295 ../iagno/gnothello.c:299 ../iagno/gnothello.c:634
+#: ../iagno/gnothello.c:305 ../iagno/gnothello.c:309 ../iagno/gnothello.c:644
 #: ../iagno/iagno.desktop.in.h:2 ../iagno/iagno.soundlist.in.h:2
 msgid "Iagno"
 msgstr "Iagno"
 
-#: ../iagno/gnothello.c:304
+#: ../iagno/gnothello.c:314
 msgid "A disk flipping game derived from Reversi."
-msgstr "支配しようとする盤面にあるディスクを弾くゲームです。"
+msgstr "石をひっくり返す Reversi から派生したゲームです。"
 
-#: ../iagno/gnothello.c:382
-#, fuzzy
+#: ../iagno/gnothello.c:392
 msgid "Invalid move."
-msgstr "おかしな移動を行いました。"
+msgstr "おかしな移動です"
 
-#: ../iagno/gnothello.c:675
+#: ../iagno/gnothello.c:685
 msgid "Dark:"
 msgstr "黒:"
 
-#: ../iagno/gnothello.c:685
+#: ../iagno/gnothello.c:695
 msgid "Light:"
 msgstr "白:"
 
-#: ../iagno/gnothello.c:700
+#: ../iagno/gnothello.c:710
 msgid "Welcome to Iagno!"
 msgstr "Iagno へようこそ！"
 
-#: ../iagno/gnothello.c:708 ../iagno/gnothello.c:710
+#: ../iagno/gnothello.c:718 ../iagno/gnothello.c:720
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
 
-#: ../iagno/gnothello.c:740
+#: ../iagno/gnothello.c:750
 msgid "It is your turn to place a dark piece"
-msgstr ""
-
-#: ../iagno/gnothello.c:742
-msgid "It is your turn to place a light piece"
-msgstr ""
-
-#: ../iagno/gnothello.c:745
-#, c-format
-msgid "Waiting for %s to move"
-msgstr ""
+msgstr "黒の番です"
 
 #: ../iagno/gnothello.c:752
+msgid "It is your turn to place a light piece"
+msgstr "白の番です"
+
+#: ../iagno/gnothello.c:755
+#, c-format
+msgid "Waiting for %s to move"
+msgstr "%s さんが置くまで待機します"
+
+#: ../iagno/gnothello.c:762
 msgid "Dark's move"
 msgstr "黒の番です"
 
-#: ../iagno/gnothello.c:754
+#: ../iagno/gnothello.c:764
 msgid "Light's move"
 msgstr "白の番です"
 
 #: ../iagno/iagno.desktop.in.h:1
 msgid "Dominate the board in a classic version of Reversi"
-msgstr "リバーシの旧来のバージョンでボードを支配"
+msgstr "Reversi の古典版でボードを支配して下さい"
 
 #: ../iagno/iagno.soundlist.in.h:1
 msgid "Game over"
-msgstr "ゲームオーバー"
+msgstr "ゲーム・オーバー"
 
 #: ../iagno/iagno.soundlist.in.h:3
 msgid "Piece flipping"
@@ -7333,7 +7335,7 @@ msgstr "グリッドを表示する(_H)"
 msgid "_Flip final results"
 msgstr "最終結果を石で表示する(_F)"
 
-#: ../iagno/properties.c:666 ../mahjongg/mahjongg.c:762
+#: ../iagno/properties.c:666 ../mahjongg/mahjongg.c:764
 msgid "_Tile set:"
 msgstr "絵柄(_T):"
 
@@ -7341,89 +7343,81 @@ msgstr "絵柄(_T):"
 #. * Create outer window.
 #.
 #: ../libgames-support/games-dlg-chat.c:178
-#, fuzzy
 msgid "Player Chat"
-msgstr "プレイヤーの名前"
+msgstr "プレイヤーのチャット"
 
 #: ../libgames-support/games-dlg-players.c:118
 msgid "Occupied"
-msgstr ""
+msgstr "登録済"
 
 #: ../libgames-support/games-dlg-players.c:122
 msgid "Empty"
-msgstr ""
+msgstr "空"
 
 #: ../libgames-support/games-dlg-players.c:130
-#, fuzzy
 msgid "Reserved"
-msgstr "左のリザーブ: "
+msgstr "予約済"
 
 #: ../libgames-support/games-dlg-players.c:134
 msgid "Abandoned"
-msgstr ""
+msgstr "放棄済"
 
 #: ../libgames-support/games-dlg-players.c:138
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: ../libgames-support/games-dlg-players.c:168
-#, fuzzy
 msgid "Spectator"
-msgstr "エレベーター"
+msgstr "見物人"
 
 #: ../libgames-support/games-dlg-players.c:205
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: ../libgames-support/games-dlg-players.c:278
-#, fuzzy
 msgid "List of players:"
-msgstr "その場に待機します"
+msgstr "プレイヤーの一覧:"
 
 #. FIXME: you shouldn't be able to boot yourself
 #: ../libgames-support/games-dlg-players.c:435
 msgid "Boot player"
-msgstr ""
+msgstr "ホスト役のプレイヤー"
 
 #: ../libgames-support/games-dlg-players.c:453
-#, fuzzy
 msgid "Sit here"
-msgstr "３"
+msgstr "ここに居座る"
 
 #: ../libgames-support/games-dlg-players.c:455
-#, fuzzy
 msgid "Move here"
-msgstr "左へ移動する"
+msgstr "ここに移動する"
 
 #: ../libgames-support/games-dlg-players.c:471
 msgid "Play with bot"
-msgstr ""
+msgstr "ボットとプレイする"
 
 #: ../libgames-support/games-dlg-players.c:485
-#, fuzzy
 msgid "Drop reservation"
-msgstr "操作"
+msgstr "予約を取り消す"
 
 #: ../libgames-support/games-dlg-players.c:487
-#, fuzzy
 msgid "Remove bot"
-msgstr "Ａを取り去りなさい"
+msgstr "ボットの削除"
 
-#: ../libgames-support/games-card-selector.c:56
+#: ../libgames-support/games-card-selector.c:62
 msgid "Card Style"
 msgstr "カードのスタイル"
 
-#: ../libgames-support/games-controls.c:151
-#: ../libgames-support/games-controls.c:318
-#: ../libgames-support/games-controls.c:380
+#: ../libgames-support/games-controls.c:146
+#: ../libgames-support/games-controls.c:287
+#: ../libgames-support/games-controls.c:349
 msgid "No key"
 msgstr "キーなし"
 
-#: ../libgames-support/games-controls.c:194
+#: ../libgames-support/games-controls.c:189
 msgid "<Press a Key>"
-msgstr "<キーを押して下さい>"
+msgstr "<何かキーを押して下さい>"
 
-#: ../libgames-support/games-controls.c:366
+#: ../libgames-support/games-controls.c:335
 msgid "Unknown Command"
 msgstr "不明なコマンド"
 
@@ -7444,61 +7438,61 @@ msgstr ""
 "お使いの GConf の設定、特にスキーマが正しくインストールされているか確認して下"
 "さい。"
 
-#: ../libgames-support/games-gridframe.c:219
-#: ../libgames-support/games-gridframe.c:227
-msgid "X Padding"
-msgstr "X-方向のパディング"
-
 #: ../libgames-support/games-gridframe.c:221
+#: ../libgames-support/games-gridframe.c:229
+msgid "X Padding"
+msgstr "Ｘ方向のパディング"
+
+#: ../libgames-support/games-gridframe.c:223
 msgid "Extra space to add to the width allocation."
 msgstr "横方向に挿入する余分なスペースです。"
 
-#: ../libgames-support/games-gridframe.c:229
+#: ../libgames-support/games-gridframe.c:231
 msgid "Extra space to add to the height allocation."
 msgstr "縦方向に挿入する余分なスペースです。"
 
-#: ../libgames-support/games-gridframe.c:235
+#: ../libgames-support/games-gridframe.c:237
 msgid "Width Multiple"
 msgstr "横方向の倍率"
 
-#: ../libgames-support/games-gridframe.c:237
+#: ../libgames-support/games-gridframe.c:239
 msgid "What multiple to constrain the width to."
 msgstr "横幅に掛け合わせる倍率です。"
 
-#: ../libgames-support/games-gridframe.c:243
+#: ../libgames-support/games-gridframe.c:245
 msgid "Height Multiple"
 msgstr "縦方向の倍率"
 
-#: ../libgames-support/games-gridframe.c:245
+#: ../libgames-support/games-gridframe.c:247
 msgid "What multiple to constrain the height to."
 msgstr "高さに掛け合わせる倍率です。"
 
-#: ../libgames-support/games-gridframe.c:250
-msgid "X align"
-msgstr "X-方向の位置"
-
 #: ../libgames-support/games-gridframe.c:252
+msgid "X align"
+msgstr "Ｘ方向の位置"
+
+#: ../libgames-support/games-gridframe.c:254
 msgid "The horizontal alignment, from 0 (left) to 1 (right)"
 msgstr "水平方向の位置: 0 (左) 〜 1 (右)"
 
-#: ../libgames-support/games-gridframe.c:257
-msgid "Y align"
-msgstr "Y-方向の位置"
-
 #: ../libgames-support/games-gridframe.c:259
+msgid "Y align"
+msgstr "Ｙ方向の位置"
+
+#: ../libgames-support/games-gridframe.c:261
 msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
 msgstr "垂直方向の位置: 0 (上) 〜 1 (下)"
 
-#: ../libgames-support/games-preimage.c:131
+#: ../libgames-support/games-preimage.c:137
 msgid "Image rendering failed."
 msgstr "画像の描画に失敗しました。"
 
-#: ../libgames-support/games-scores-dialog.c:122
+#: ../libgames-support/games-scores-dialog.c:116
 msgid "Time"
 msgstr "タイム"
 
 #. Translators: this is for a minutes, seconds time display.
-#: ../libgames-support/games-scores-dialog.c:276
+#: ../libgames-support/games-scores-dialog.c:271
 #, c-format
 msgid "%dm %ds"
 msgstr "%d分 %d秒"
@@ -7509,19 +7503,16 @@ msgid "_New"
 msgstr "新ゲーム(_N)"
 
 #: ../libgames-support/games-stock.c:42
-#, fuzzy
 msgid "Network _Game"
-msgstr "新しいネットワーク対戦"
+msgstr "ネットワーク対戦(_G)"
 
 #: ../libgames-support/games-stock.c:44
-#, fuzzy
 msgid "L_eave Game"
-msgstr "新ゲーム(_N)"
+msgstr "ゲームから抜ける(_E)"
 
 #: ../libgames-support/games-stock.c:45
-#, fuzzy
 msgid "Player _List"
-msgstr "プレイヤー"
+msgstr "プレイヤーの一覧(_L)"
 
 #: ../libgames-support/games-stock.c:47
 msgid "Res_ume"
@@ -7546,26 +7537,25 @@ msgstr "得点(_S)"
 
 #: ../libgames-support/games-stock.c:56
 msgid "_Leave Fullscreen"
-msgstr "フルスクリーンから抜ける(_L)"
+msgstr "フルスクリーンの解除(_L)"
 
 #: ../libgames-support/games-stock.c:111
-#, fuzzy
 msgid "Start a new multiplayer network game"
-msgstr "新しいゲームを開始します"
+msgstr "新しいネットワーク対戦ゲームを開始します"
 
 #: ../libgames-support/games-stock.c:113
 msgid "End the current network game and return to network server"
-msgstr ""
+msgstr "現在のネットワーク対戦を終了してネットワーク・サーバに戻ります"
 
 #: ../libgames-support/games-stock.c:114
 msgid "Show a list of players in the network game"
-msgstr ""
+msgstr "ネットワーク対戦しているプレイヤーの一覧を表示します"
 
-#: ../libgames-support/games-stock.c:115 ../mahjongg/mahjongg.c:1310
+#: ../libgames-support/games-stock.c:115 ../mahjongg/mahjongg.c:1312
 msgid "Pause the game"
 msgstr "ゲームを一時停止します"
 
-#: ../libgames-support/games-stock.c:116 ../mahjongg/mahjongg.c:1313
+#: ../libgames-support/games-stock.c:116 ../mahjongg/mahjongg.c:1315
 msgid "Resume the paused game"
 msgstr "一時停止していたゲームを再開します"
 
@@ -7604,33 +7594,6 @@ msgstr "このゲームの情報を表示します"
 #: ../libgames-support/games-stock.c:128
 msgid "Configure the game"
 msgstr "このゲームを設定します"
-
-#. %s is replaced with the name of the game in gnome-games.
-#: ../libgames-support/games-stock.c:338
-#, c-format
-msgid ""
-"%s is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version."
-msgstr ""
-
-#: ../libgames-support/games-stock.c:342
-#, c-format
-msgid ""
-"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details."
-msgstr ""
-
-#: ../libgames-support/games-stock.c:346
-#, c-format
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"%s; if not, write to the Free Software Foundation, Inc., 59 Temple Place, "
-"Suite 330, Boston, MA  02111-1307  USA"
-msgstr ""
 
 #: ../libgames-support/libgnomegames.schemas.in.h:1
 msgid "Network game mode"
@@ -7685,7 +7648,7 @@ msgstr ""
 "\n"
 "正しく Mahjongg がインストールされているか確認して下さい。"
 
-#: ../mahjongg/drawing.c:454
+#: ../mahjongg/drawing.c:456
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -7698,7 +7661,7 @@ msgstr ""
 "\n"
 "正しく Mahjongg がインストールされているか確認して下さい。"
 
-#: ../mahjongg/drawing.c:458
+#: ../mahjongg/drawing.c:460
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -7711,7 +7674,7 @@ msgstr ""
 "\n"
 "デフォルトの牌を読み込むことにします。"
 
-#: ../mahjongg/drawing.c:476
+#: ../mahjongg/drawing.c:478
 #, c-format
 msgid ""
 "Unable to render file:\n"
@@ -7728,7 +7691,7 @@ msgstr ""
 msgid "Could not load tile set"
 msgstr "牌を読み込めませんでした"
 
-#: ../mahjongg/mahjongg.c:380
+#: ../mahjongg/mahjongg.c:382
 msgid ""
 "Do you want to finish the current game or start playing with the new map "
 "immediately?"
@@ -7736,7 +7699,7 @@ msgstr ""
 "現在プレイしているゲームを今すぐ終了するか、または新しいマップでプレイを再開"
 "しますか？"
 
-#: ../mahjongg/mahjongg.c:382
+#: ../mahjongg/mahjongg.c:384
 msgid ""
 "If you choose to finish with the old map then the next game will use the new "
 "map."
@@ -7744,79 +7707,79 @@ msgstr ""
 "古いマップのプレイを終了すると、次のゲームでは新しいマップを利用することにな"
 "ります。"
 
-#: ../mahjongg/mahjongg.c:383
+#: ../mahjongg/mahjongg.c:385
 msgid "_Finish"
 msgstr "終了する(_F)"
 
-#: ../mahjongg/mahjongg.c:660
+#: ../mahjongg/mahjongg.c:662
 msgid "Shuffle"
 msgstr "牌をシャッフルします"
 
-#: ../mahjongg/mahjongg.c:693 ../mahjongg/mahjongg.c:1005
+#: ../mahjongg/mahjongg.c:695 ../mahjongg/mahjongg.c:1007
 msgid "Mahjongg Scores"
 msgstr "GNOME 上海の得点"
 
-#: ../mahjongg/mahjongg.c:695 ../mahjongg/mahjongg.c:1007
+#: ../mahjongg/mahjongg.c:697 ../mahjongg/mahjongg.c:1009
 msgid "Map:"
 msgstr "マップ:"
 
-#: ../mahjongg/mahjongg.c:734
+#: ../mahjongg/mahjongg.c:736
 msgid "Mahjongg Preferences"
 msgstr "GNOME 上海の設定"
 
-#: ../mahjongg/mahjongg.c:755
+#: ../mahjongg/mahjongg.c:757
 msgid "Tiles"
 msgstr "牌"
 
-#: ../mahjongg/mahjongg.c:776
+#: ../mahjongg/mahjongg.c:778
 msgid "Maps"
 msgstr "マップ"
 
-#: ../mahjongg/mahjongg.c:783
+#: ../mahjongg/mahjongg.c:785
 msgid "_Select map:"
 msgstr "マップの選択(_S):"
 
-#: ../mahjongg/mahjongg.c:924
+#: ../mahjongg/mahjongg.c:926
 msgid "Maps:"
 msgstr "マップ:"
 
-#: ../mahjongg/mahjongg.c:931
+#: ../mahjongg/mahjongg.c:933
 msgid "Tiles:"
 msgstr "牌:"
 
-#: ../mahjongg/mahjongg.c:944 ../mahjongg/mahjongg.c:947
-#: ../mahjongg/mahjongg.c:1019 ../mahjongg/mahjongg.desktop.in.h:2
+#: ../mahjongg/mahjongg.c:946 ../mahjongg/mahjongg.c:949
+#: ../mahjongg/mahjongg.c:1021 ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "GNOME 上海"
 
-#: ../mahjongg/mahjongg.c:950
+#: ../mahjongg/mahjongg.c:952
 msgid "A matching game played with Mahjongg tiles."
 msgstr "同じ麻雀牌を見つけていくゲームです。"
 
-#: ../mahjongg/mahjongg.c:1019
+#: ../mahjongg/mahjongg.c:1021
 #, c-format
 msgid "%s - %s"
 msgstr "%s - %s"
 
-#: ../mahjongg/mahjongg.c:1273
+#: ../mahjongg/mahjongg.c:1275
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "すみません。プレイ可能な設定が見つかりませんでした。"
 
-#: ../mahjongg/mahjongg.c:1483
+#: ../mahjongg/mahjongg.c:1485
 msgid "Tiles Left:"
 msgstr "牌の残り:"
 
-#: ../mahjongg/mahjongg.c:1492
+#: ../mahjongg/mahjongg.c:1494
 msgid "Moves Left:"
 msgstr "取れる牌:"
 
-#: ../mahjongg/mahjongg.c:1555
+#: ../mahjongg/mahjongg.c:1557
 msgid "Remove matching pairs of tiles."
 msgstr "同じ牌のペアを削除します。"
 
 #: ../mahjongg/mahjongg.desktop.in.h:1
 msgid "Disassemble a pile of tiles by removing matching pairs"
-msgstr "一致するペアの牌を取り去って牌の山を崩して下さい"
+msgstr "同じ牌を取り去って牌の山を崩して下さい"
 
 #: ../mahjongg/mahjongg.schemas.in.h:2
 msgid ""
@@ -7845,34 +7808,33 @@ msgstr "初級"
 #.
 #: ../mahjongg/translatable_game_names.h:6
 msgid "The Ziggurat"
-msgstr "\"ジッグラト\""
+msgstr "ジッグラト"
 
 #: ../mahjongg/translatable_game_names.h:7
 msgid "Four Bridges"
-msgstr "\"四つの橋\""
+msgstr "四つの橋"
 
 #: ../mahjongg/translatable_game_names.h:8
 msgid "Cloud"
-msgstr "\"雲\""
+msgstr "雲"
 
 #: ../mahjongg/translatable_game_names.h:9
 msgid "Tic-Tac-Toe"
-msgstr "\"三目並べ\""
+msgstr "三目並べ"
 
 #: ../mahjongg/translatable_game_names.h:10
 msgid "Red Dragon"
-msgstr "\"レッド・ドラゴン\""
+msgstr "赤い龍"
 
 #: ../mahjongg/translatable_game_names.h:11
 msgid "Pyramid's Walls"
-msgstr "\"ピラミッドの壁\""
+msgstr "ピラミッドの壁"
 
 #: ../mahjongg/translatable_game_names.h:12
 msgid "Confounding Cross"
-msgstr "\"不可解な十字\""
+msgstr "交差する十字"
 
 #: ../mahjongg/translatable_game_names.h:13
-#, fuzzy
 msgid "Difficult"
 msgstr "上級"
 
@@ -7888,19 +7850,19 @@ msgstr "中くらい"
 
 #: ../same-gnome/same-gnome.c:148
 msgid "Set the theme"
-msgstr "テーマの選択"
+msgstr "テーマをセットする"
 
 #: ../same-gnome/same-gnome.c:150
 msgid "For backwards compatibility"
-msgstr "後方互換性のため"
+msgstr "バージョン互換のため"
 
 #: ../same-gnome/same-gnome.c:152
 msgid "Game size (1=small, 3=large)"
-msgstr "盤の大きさ (1 = 小さい, 3 = 大きい)"
+msgstr "盤の大きさ (1=小さい、3=大きい)"
 
 #: ../same-gnome/same-gnome.desktop.in.h:1
 msgid "Clear the screen by removing groups of colored balls"
-msgstr "色の付いたボールのグループを消して画面をクリア"
+msgstr "同じ色の玉を一気に削除しながらゲームをクリアして下さい"
 
 #: ../same-gnome/same-gnome.desktop.in.h:2
 msgid "Same GNOME"
@@ -7915,8 +7877,8 @@ msgid ""
 "Setting this to FALSE means the pieces fall slowly, but gracefully. A "
 "setting of TRUE causes the pieces to fall quickly and jerkily."
 msgstr ""
-"これを FALSE にするとボールが落ちる速度が遅くなりますが、描画する効果が綺麗で"
-"す。TRUE にするとボールの落ちる速度が速く描画する効果はありません。"
+"これを FALSE にすると玉が落ちる速度が遅くなりますが、描画する効果が綺麗です。"
+"TRUE にすると玉の落ちる速度が速く描画する効果はありません。"
 
 #: ../same-gnome/same-gnome.schemas.in.h:3
 msgid "The board size"
@@ -7934,7 +7896,7 @@ msgstr "カスタム盤の高さ (101 &gt; 高さ &gt; 3) です。"
 msgid ""
 "The size of the board to use. 1 = Custom, 2 = Small, 3 = Medium, 4 = Large."
 msgstr ""
-"使用する盤の大きさです。使用可能な値: 1 = カスタム、2 = 小さい、3 = 中くら"
+"使用する盤の大きさです。指定可能な値: 1 = カスタム、2 = 小さい、3 = 中くら"
 "い、4 = 大きい"
 
 #: ../same-gnome/same-gnome.schemas.in.h:8
@@ -7943,7 +7905,7 @@ msgstr "使用するテーマ・ファイル"
 
 #: ../same-gnome/same-gnome.schemas.in.h:9
 msgid "The width of the custom board, 101 &gt; width &gt; 3."
-msgstr "カスタム盤の幅 (101 &gt; 幅 &gt; 3) です。"
+msgstr "カスタム盤の幅 (101 < 幅 < 3) です。"
 
 #: ../same-gnome/same-gnome.schemas.in.h:11
 msgid "The window height"
@@ -7955,21 +7917,22 @@ msgstr "ウィンドウの幅"
 
 #: ../same-gnome/same-gnome.schemas.in.h:13
 msgid "Use fast animation"
-msgstr "高速に描画する"
+msgstr "高速描画するかどうか"
 
 #: ../same-gnome/same-gnome.schemas.in.h:14
 msgid "Width of the custom board"
-msgstr "盤の幅です。"
+msgstr "盤の幅"
 
 #: ../same-gnome/ui.c:73
 msgid "No points"
-msgstr "無得点"
+msgstr "ポイントなし"
 
 #: ../same-gnome/ui.c:78
 #, c-format
 msgid "%d point"
 msgid_plural "%d points"
-msgstr[0] "%d 点"
+msgstr[0] "%dポイント"
+msgstr[1] "%dポイント"
 
 #: ../same-gnome/ui.c:94
 #, c-format
@@ -7980,7 +7943,9 @@ msgstr "得点: %d"
 msgid ""
 "I want to play that game! You know, they all go whirly-round and you click "
 "on them and they vanish!"
-msgstr "ゲームしたい! ぐるぐる渦巻いているのを全部、クリックすると消えるよ!"
+msgstr ""
+"私はゲームを楽しみたい！ 知ってのとおり、同じ色の玉をクリックすると消えてなく"
+"なります！"
 
 #: ../same-gnome/ui.c:140
 msgid "Same GNOME Scores"
@@ -7994,11 +7959,11 @@ msgstr "残念ながら、トップ 10 入りできませんでした。"
 msgid "Same GNOME Theme"
 msgstr "さめ GNOME のテーマ"
 
-#: ../same-gnome/ui.c:471
+#: ../same-gnome/ui.c:473
 msgid "_Theme..."
 msgstr "テーマ(_T)..."
 
-#: ../same-gnome/ui.c:484
+#: ../same-gnome/ui.c:486
 msgid "_Fast Animation"
 msgstr "アニメーションを高速にする(_F)"
 
@@ -8013,226 +7978,3 @@ msgid ""
 msgstr ""
 "ゲームをプレイできません。ゲームが正しくインストールされているか確認して再度"
 "起動してみて下さい。"
-
-#, fuzzy
-#~ msgid "<b>Chess Pieces</b>"
-#~ msgstr "<b>勝ち数</b>"
-
-#, fuzzy
-#~ msgid "<b>Initial Game</b>"
-#~ msgstr "<b>タイム</b>"
-
-#, fuzzy
-#~ msgid "Graphics"
-#~ msgstr "グラフィックス:"
-
-#, fuzzy
-#~ msgid "Human versus AI"
-#~ msgstr "人間のプレイヤー"
-
-#, fuzzy
-#~ msgid "Models:"
-#~ msgstr "移動数: %d"
-
-#, fuzzy
-#~ msgid "No game"
-#~ msgstr "名前"
-
-#, fuzzy
-#~ msgid "Start with unfinished games"
-#~ msgstr "新しいゲームを開始します"
-
-#, fuzzy
-#~ msgid "Startup"
-#~ msgstr "状態"
-
-#, fuzzy
-#~ msgid "_High Scores"
-#~ msgstr "得点(_S)"
-
-#~ msgid "Redeals left: ~a"
-#~ msgstr "引き直しの残数: ~a"
-
-#~ msgid "Set the state of the board at start-up."
-#~ msgstr "最初のボードの状態に戻します。"
-
-#~ msgid "STATE"
-#~ msgstr "STATE"
-
-#~ msgid "Set whose turn it is."
-#~ msgstr "順番を設定します。"
-
-#~ msgid "1 (Light) or 2 (Dark)"
-#~ msgstr "1 (白) か 2 (黒)"
-
-#~ msgid "Based on code from Iagno by Ian Peters"
-#~ msgstr "Ian Peters 氏の Iagno のコードを流用しました"
-
-#~ msgid "Ataxx"
-#~ msgstr "Ataxx"
-
-#~ msgid "A disk-flipping game where you attempt to dominate the board."
-#~ msgstr "支配しようとする盤面にあるディスクを弾くゲームです。"
-
-#~ msgid "Dominate the board in a modern variation of Reversi"
-#~ msgstr "近代的なリバーシのバリエーションでボードを支配"
-
-#~ msgid "Level of black player"
-#~ msgstr "黒のプレイヤーのレベル"
-
-#~ msgid "The name of the theme to use."
-#~ msgstr "使用するテーマの名前です。"
-
-#~ msgid "Tileset (obsolete)"
-#~ msgstr "使用する絵柄 (廃止)"
-
-#~ msgid "Tileset to use (obsolete)."
-#~ msgstr "使用する絵柄です (このキーは廃止になりました)。"
-
-#~ msgid "Whether or not to use quick moves."
-#~ msgstr "クイック移動を使用するかどうかです。"
-
-#~ msgid ""
-#~ "Zero corresponds to no animations, one is partial animations, two is "
-#~ "complete animations."
-#~ msgstr ""
-#~ "0 = アニメーションを使用しない、1 = 一部アニメーションを使用する、2 = 全て"
-#~ "アニメーションを使用する"
-
-#~ msgid "Squares and Diamonds"
-#~ msgstr "◇と■"
-
-#~ msgid "Ataxx Preferences"
-#~ msgstr "Ataxx の設定"
-
-#~ msgid "_Quick moves"
-#~ msgstr "素早く移動する(_Q)"
-
-#~ msgid "Shortens the time a computer waits before doing a move"
-#~ msgstr "移動する前にコンピュータの待機時間を短くします"
-
-#~ msgid "Very easy"
-#~ msgstr "超初級"
-
-#~ msgid "gataxx|Easy"
-#~ msgstr "初級"
-
-#~ msgid "gataxx|Medium"
-#~ msgstr "中級"
-
-#~ msgid "Flip the pieces with some visual effects"
-#~ msgstr "視覚効果を使って裏返します"
-
-#~ msgid "The appearance of the pieces"
-#~ msgstr "石の外観"
-
-#~ msgid "%s..."
-#~ msgstr "%s..."
-
-#~ msgid "Invalid game data"
-#~ msgstr "おかしなゲーム・データです"
-
-#~ msgid "Peer introduction complete"
-#~ msgstr "Peer の紹介が完了しました"
-
-#~ msgid "New game ready to be started"
-#~ msgstr "新しいゲームを開始する準備が整いました"
-
-#~ msgid "Iagno server to use"
-#~ msgstr "使用する Iagno サーバ"
-
-#~ msgid "Invalid game data (set_peer)"
-#~ msgstr "おかしなゲームデータ (set_peer) です。"
-
-#~ msgid "Invalid game data (move)"
-#~ msgstr "おかしなゲームデータ (move) です。"
-
-#~ msgid "Select a nickname and connection method then click Connect."
-#~ msgstr ""
-#~ "あだ名と接続方法を選択して\n"
-#~ "[接続] ボタンをクリックして下さい。"
-
-#~ msgid "Connection Method"
-#~ msgstr "接続の方法"
-
-#~ msgid "GNOME games server"
-#~ msgstr "GNOME ゲーム・サーバ"
-
-#~ msgid "Host local game"
-#~ msgstr "ホストのローカル・ゲーム"
-
-#~ msgid "Identification"
-#~ msgstr "個人を識別するもの"
-
-#~ msgid "_Nickname:"
-#~ msgstr "あだ名(_N):"
-
-#~ msgid "Please supply a nickname."
-#~ msgstr "プレイヤーのニックネームを指定して下さい。"
-
-#~ msgid "No local game selected."
-#~ msgstr "ローカル・ゲームが選択されていません。"
-
-#~ msgid "A new gnome games server was successfully started."
-#~ msgstr "新しい GNOME ゲーム・サーバの起動が完了しました。"
-
-#~ msgid "Network initialization complete."
-#~ msgstr "ネットワークの初期化が完了しました。"
-
-#~ msgid "Network shutdown in progress."
-#~ msgstr "ネットワークのシャットダウンが進行中です。"
-
-#~ msgid "The remote player disconnected"
-#~ msgstr "リモート・プレイヤーが接続を切りました。"
-
-#~ msgid "Error occurred during connect attempt."
-#~ msgstr "接続を試みている際にエラーが発生しました。"
-
-#~ msgid "Connection succeeded, waiting for opponent"
-#~ msgstr "接続が完了しました。相手のプレイヤーを待っています。"
-
-#~ msgid "Error occurred during write."
-#~ msgstr "書き込みを行う際にエラーが発生しました。"
-
-#~ msgid "Cleaning up connection"
-#~ msgstr "接続のクリンアップ中です。"
-
-#~ msgid "Connection in progress..."
-#~ msgstr "接続しています..."
-
-#~ msgid "No game server defined"
-#~ msgstr "ゲーム・サーバが定義されていません。"
-
-#~ msgid ""
-#~ "Local Area Network game could not be started. \n"
-#~ "Try running mDNSResponder."
-#~ msgstr ""
-#~ "LAN 経由のゲームを起動することができませんでした。\n"
-#~ "'mDNSResponder' を起動してみて下さい。"
-
-#~ msgid "Compete to dominate the board in a Reversi-like game"
-#~ msgstr "Reversi ライクなゲームでボードを支配しながら競い合って下さい"
-
-#~ msgid "Play a puzzle game matching tiles together"
-#~ msgstr "タイルをお互いに合わせるパズル・ゲームを楽しんで下さい"
-
-#~ msgid "Solve puzzles by sliding blocks"
-#~ msgstr "ブロックを横へずらしてパズルを解いて下さい"
-
-#~ msgid "Play a game of Reversi"
-#~ msgstr "Reversi のゲームを楽しんで下さい"
-
-#~ msgid "Remove groups of balls to try and clear the screen"
-#~ msgstr "画面をクリアするためにボールの集まりを取り去って下さい"
-
-#~ msgid "No moves available"
-#~ msgstr "移動できません"
-
-#~ msgid "Variation on game rules"
-#~ msgstr "ゲームの種類"
-
-#~ msgid "windows"
-#~ msgstr "Windows"
-
-#~ msgid "Calculate random die throws (debug)"
-#~ msgstr "サイの目を生成する(デバグ用)"
