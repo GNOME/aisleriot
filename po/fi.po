@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-14 15:12+0300\n"
-"PO-Revision-Date: 2007-02-14 15:19+0300\n"
+"POT-Creation-Date: 2007-02-19 20:55+0300\n"
+"PO-Revision-Date: 2007-02-19 21:15+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -217,7 +217,7 @@ msgstr ""
 #: ../aisleriot/menu.c:140 ../blackjack/src/menu.cpp:162
 #: ../glines/glines.c:1229 ../gnect/src/main.c:924 ../gnibbles/main.c:250
 #: ../gnobots2/menu.c:266 ../gnometris/tetris.cpp:1456
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:796 ../gnomine/gnomine.c:470
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:806 ../gnomine/gnomine.c:470
 #: ../gnotravex/gnotravex.c:1930 ../gnotski/gnotski.c:1484
 #: ../gtali/gyahtzee.c:536 ../iagno/gnothello.c:316 ../mahjongg/mahjongg.c:957
 #: ../same-gnome/ui.c:127
@@ -231,7 +231,7 @@ msgstr ""
 #: ../aisleriot/menu.c:245 ../blackjack/src/blackjack.cpp:335
 #: ../glchess/glade/glchess.glade.h:31 ../glines/glines.c:1690
 #: ../gnect/src/main.c:1307 ../gnibbles/main.c:774 ../gnobots2/menu.c:61
-#: ../gnometris/tetris.cpp:131 ../gnome-sudoku/src/lib/gnome_sudoku.py:203
+#: ../gnometris/tetris.cpp:131 ../gnome-sudoku/src/lib/gnome_sudoku.py:213
 #: ../gnomine/gnomine.c:811 ../gnotravex/gnotravex.c:289
 #: ../gnotski/gnotski.c:427 ../gtali/gyahtzee.c:598
 #: ../mahjongg/mahjongg.c:1305 ../same-gnome/ui.c:457
@@ -241,7 +241,7 @@ msgstr "_Peli"
 #: ../aisleriot/menu.c:246 ../blackjack/src/blackjack.cpp:336
 #: ../glchess/glade/glchess.glade.h:36 ../gnect/src/main.c:1308
 #: ../gnibbles/main.c:775 ../gnobots2/menu.c:62
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:204 ../gnotravex/gnotravex.c:290
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:214 ../gnotravex/gnotravex.c:290
 #: ../gnotski/gnotski.c:428 ../same-gnome/ui.c:458
 msgid "_View"
 msgstr "_Näytä"
@@ -254,7 +254,7 @@ msgstr "_Ohjaus"
 #: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:352
 #: ../glchess/glade/glchess.glade.h:32 ../glines/glines.c:1692
 #: ../gnect/src/main.c:1310 ../gnibbles/main.c:777 ../gnobots2/menu.c:65
-#: ../gnometris/tetris.cpp:133 ../gnome-sudoku/src/lib/gnome_sudoku.py:226
+#: ../gnometris/tetris.cpp:133 ../gnome-sudoku/src/lib/gnome_sudoku.py:236
 #: ../gnomine/gnomine.c:813 ../gnotravex/gnotravex.c:293
 #: ../gnotski/gnotski.c:429 ../gtali/gyahtzee.c:600
 #: ../mahjongg/mahjongg.c:1307 ../same-gnome/ui.c:460
@@ -3535,7 +3535,7 @@ msgstr "Valitsin, joka näyttää työkalupalkin"
 
 #: ../glchess/data/glchess.schemas.in.h:6
 msgid "The amount of time each player has to move in new games"
-msgstr ""
+msgstr "Kuinka pitkä aika pelaajalla on käytettävissä siirtoon uusissa peleissä"
 
 #: ../glchess/data/glchess.schemas.in.h:7
 msgid "The default player difficulty for black in new games"
@@ -3547,19 +3547,19 @@ msgstr "Valkoisen pelaajan oletusvaikeustaso uusissa peleissä"
 
 #: ../glchess/data/glchess.schemas.in.h:9
 msgid "The default player type for black in new games"
-msgstr ""
+msgstr "Mustan pelaajan oletustyyppi uusissa peleissä"
 
 #: ../glchess/data/glchess.schemas.in.h:10
 msgid "The default player type for white in new games"
-msgstr ""
+msgstr "Valkoisen pelaajan oletustyyppi uusissa peleissä"
 
 #: ../glchess/data/glchess.schemas.in.h:11
 msgid "The directory to open the load game dialog in"
-msgstr ""
+msgstr "Kansio, johon pelien latausikkuna avataan"
 
 #: ../glchess/data/glchess.schemas.in.h:12
 msgid "The directory to open the save game dialog in"
-msgstr ""
+msgstr "Kansio, johon pelien tallennusikkuna avataan"
 
 #: ../glchess/data/glchess.schemas.in.h:13
 msgid "The format to display moves in"
@@ -3570,6 +3570,8 @@ msgid ""
 "The format to display moves in, can be either 'human' (human readable), "
 "'lan' (long algebraic notation) or 'san' (standard algebraic notation)"
 msgstr ""
+"Siirtojen näyttömuoto, voi olla joko 'human' (ihmisen luettavissa oleva), "
+"'lan' (pitkä algebranotaatio) tai 'san' (normaali algebranotaatio)"
 
 #: ../glchess/data/glchess.schemas.in.h:15
 msgid "The height of the main window in pixels."
@@ -3700,6 +3702,11 @@ msgid ""
 "\n"
 "You are still able to play chess in 2D without these packages."
 msgstr ""
+"Tietokoneesi ei sisällä tarvittavia ohjelmia 3D-tilan käyttöönottoon. "
+"Ota yhteyttä ylläpitoon ja pyydä heitä asentaa <i>OpenGL python-sidokset</i> "
+"ja <i>GtkGLExt python-sidokset</i>.\n"
+"\n"
+"Voit pelata shakkia kaksiulotteisessa tilassa ilman näitä paketteja."
 
 #: ../glchess/glade/glchess.glade.h:26
 msgid "_3D"
@@ -3710,7 +3717,7 @@ msgid "_AI Information"
 msgstr "Tietoja _tekoälystä"
 
 #: ../glchess/glade/glchess.glade.h:28
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:230
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:240
 #: ../libgames-support/games-stock.c:58
 msgid "_Contents"
 msgstr "_Sisältö"
@@ -3805,7 +3812,7 @@ msgstr "glChess"
 
 #: ../glchess/src/lib/defaults.py.in:28
 msgid "Copyright 2005-2007 Robert Ancell (and contributors)"
-msgstr ""
+msgstr "Tekijänoikeudet ©2005-2007 Robert Ancell ja avustajat"
 
 #: ../glchess/src/lib/defaults.py.in:29
 msgid "A 2D/3D chess interface for Gnome"
@@ -5647,7 +5654,7 @@ msgid "_Add Tracker"
 msgstr "_Lisää seuraaja"
 
 #: ../gnome-sudoku/glade/tracker.glade.h:3
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:860
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:870
 msgid "_Clear Tracker"
 msgstr "_Tyhjennä seuraaja"
 
@@ -5661,7 +5668,7 @@ msgstr "_Seuraajat"
 #: ../gnome-sudoku/src/lib/game_selector.py:77
 #: ../gnome-sudoku/src/lib/game_selector.py:193
 #: ../gnome-sudoku/src/lib/game_selector.py:290
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:761
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:771
 msgid "Puzzle"
 msgstr "Pulma"
 
@@ -5902,7 +5909,7 @@ msgid "Yesterday"
 msgstr "Eilen"
 
 #: ../gnome-sudoku/src/lib/gsudoku.py:83
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:275
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:285
 msgid "_Clear"
 msgstr "_Tyhjennä"
 
@@ -5914,132 +5921,132 @@ msgstr "Seuraa siirtoja"
 msgid "Full Screen"
 msgstr "Kokoruutu"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:183
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:193
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:185
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:195
 msgid "New game"
 msgstr "Uusi peli"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:187
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:197
 msgid "Print current game"
 msgstr "Tulosta nykyinen peli"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:188
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:198
 msgid "Print _Multiple Sudokus"
 msgstr "Tulosta _useita sudokuja"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:189
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:199
 msgid "Print more than one sudoku at a time."
 msgstr "Tulosta useampi kuin yksi sudoku kerrallaan."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:193
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:203
 msgid "Close Sudoku (save game for later)"
 msgstr "Sulje Sudoku (tallenna peli)"
 
 #. ('Save',gtk.STOCK_SAVE,_('_Save'),
 #. '<Control>s','Save game to play later.',
 #. self.save_game),
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:197
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:207
 msgid "_Enter custom game"
 msgstr "Syötä _oma peli"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:198
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:208
 msgid ""
 "Enter new puzzle by hand (use this to copy a puzzle from another source)."
 msgstr ""
 "Syötä uusi pulma käsin (käytä tätä pulman kopiointin toisesta lähteestä)."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:200
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:210
 msgid "_Resume old game"
 msgstr "Jatka vanhaa peliä"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:201
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:211
 msgid "Resume a previous saved game."
 msgstr "Jatka aiemmin tallennettua peliä."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:205
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:215
 #: ../libgames-support/games-stock.c:53
 msgid "_Hint"
 msgstr "_Vinkki"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:207
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:217
 msgid "Show which numbers could go in the current square."
 msgstr "Näytä, mitkä numerot voisivat sopia valittuun ruutuun."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:209
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:219
 msgid "_Fill"
 msgstr "_Täytä"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:210
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:220
 msgid "Automatically fill in the current square if possible."
 msgstr "Täytä valittu ruutu automaattisesti, jos mahdollista."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:212
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:222
 msgid "Fill _all squares"
 msgstr "Täytä k_aikki ruudut"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:213
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:223
 msgid ""
 "Automatically fill in all squares for which there is only one valid value."
 msgstr ""
 "Täytä automaattisesti kaikki ruudut, joille on vain yksi kelvollinen arvo."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:223
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:233
 msgid "Puzzle _Statistics"
 msgstr "Pulman _tilastot"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:224
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:234
 msgid "Show statistics about current puzzle"
 msgstr "Näytä tilastoja nykyisestä pulmasta"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:232
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:242
 msgid "High _Scores"
 msgstr "_Pisteet"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:233
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:243
 msgid "Show high scores or replay old games."
 msgstr "Näytä tuloslista tai pelaa vanhoja pelejä uudestaan."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:239
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
 msgid "_Always show hint"
 msgstr "Näytä _vinkki aina"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:241
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:251
 msgid "Always show possible numbers in a square"
 msgstr "Näytä ruudun mahdolliset numerot aina"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:245
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:255
 msgid "Warn about _unfillable squares"
 msgstr "Varoita _täyttökelvottomista ruuduista"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:247
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:257
 msgid "Warn about squares made unfillable by a move"
 msgstr "Varoita ruuduista, joita ei voi täyttää siirron jälkeen"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:259
 msgid "_Track additions"
 msgstr "Pidä _kirjaa lisäyksistä"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:251
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:261
 msgid "Mark new additions in a separate color so you can keep track of them."
 msgstr "Merkitse uudet lisäykset eri värillä, jotta voit pitää niistä kirjaa."
 
 #. ('ZoomOnResize',None,_('_Adjust size of grid when resizing window'),
 #. None,_('Automatically change the size of numbers and squares to fit the window.'),
 #. ),
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:256
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:266
 msgid "Show _Toolbar"
 msgstr "Näytä _työkalupalkki"
 
 #. ('ToggleNotes',None,_('Show _Notes'),'<Control>O',
 #. _('Include room for notes at the top and bottom of squares.'),self.toggle_notes_cb),
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:259
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:269
 msgid "_Black background"
 msgstr "M_usta taustaväri"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:260
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:270
 msgid ""
 "Background of game is black; otherwise, the background will follow your "
 "theme colors."
@@ -6047,19 +6054,19 @@ msgstr ""
 "Pelin tausta on musta. Muussa tapauksessa pelin taustaväri käyttää teeman "
 "värejä."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:262
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:272
 msgid "_Highlighter"
 msgstr "_Korosta"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:263
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:273
 msgid "Highlight the current row, column and box"
 msgstr "Korosta nykyinen rivi, sarake ja laatikko"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:264
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:274
 msgid "Generate new puzzles _while you play"
 msgstr "Luo uusia pulmia _sillä aikaa kun pelaat"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:266
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:276
 msgid ""
 "Generate new puzzles in the background while you play. This will "
 "automatically pause when the game goes into the background."
@@ -6067,108 +6074,108 @@ msgstr ""
 "Luo uusia pulmia taustalla pelin aikana. Tämä toiminto pysäytetään "
 "automaattisesti, kun peli siirretään taustalle."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:272
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:282
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:273
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:283
 msgid "_Undo"
 msgstr "_Peru"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:273
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:283
 msgid "Undo last action"
 msgstr "Peru edellinen siirto"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:274
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:284
 msgid "_Redo"
 msgstr "_Tee uudestaan"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:274
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:284
 msgid "Redo last action"
 msgstr "Tee edellinen toiminto uudestaan"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:275
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:285
 msgid "Clear entries you've filled in"
 msgstr "Tyhjennä kohdat, jotka olet täyttänyt"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:276
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:286
 msgid "Clear _Notes"
 msgstr "Tyhjennä _muistiinpanot"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:276
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:286
 msgid "Clear notes and hints"
 msgstr "Tyhjennä muistiinpanot ja vihjeet"
 
 #. Trackers...
 #. Our initial row...
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:278
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:851
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:288
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:861
 msgid "No Tracker"
 msgstr "Ei seuraajaa"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:279
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:289
 msgid "_Generate new puzzles"
 msgstr "_Luo uusia pulmia"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:279
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:289
 msgid "Generate new puzzles."
 msgstr "Luo uusia pulmia."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:325
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:335
 msgid "Entering custom grid..."
 msgstr "Syötetään omaa ruudukkoa..."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:329
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:339
 msgid "_Play game"
 msgstr "_Pelaa"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:700
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:710
 msgid "Playing "
 msgstr "Pelataan "
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:741
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:764
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:751
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:774
 msgid "Puzzle Information"
 msgstr "Tietoja pulmasta"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:742
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:752
 msgid "There is no current puzzle."
 msgstr "Pulmaa ei ole valittu."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:747
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:757
 msgid "Calculated difficulty: "
 msgstr "Laskettu vaikeustaso:"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:751
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:761
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "Poistamalla heti täytettävissä olevien siirtojen määrä:"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:754
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:764
 msgid "Number of moves instantly fillable by filling: "
 msgstr "Täyttämällä heti täytettävissä olevien siirtojen määrä:"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:757
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:767
 msgid "Amount of trial-and-error required to solve: "
 msgstr "Ratkaisuun vaadittavien yritysten lukumäärä:"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:765
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:775
 #, python-format
 msgid "Statistics for %s"
 msgstr "Tilastoja kohteelle %s"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:861
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:871
 msgid "Clear all moves tracked by selected tracker."
 msgstr "Poista kaikki valitun seuraajan seuraamat siirrot."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:865
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:875
 msgid "_Clear Others"
 msgstr "_Tyhjennä muut"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:867
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:877
 msgid "Clear all moves not tracked by selected tracker."
 msgstr "Poista kaikki siirrot, joita valittu seuraaja ei seuraa."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:893
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:903
 #, python-format
 msgid "Tracker %s"
 msgstr "Seuraaja %s"
@@ -6314,15 +6321,15 @@ msgstr "Kentän koko"
 
 #: ../gnomine/gnomine.schemas.in.h:2
 msgid "Enable automatic placing of flags"
-msgstr ""
+msgstr "Ota käyttöön lippujen automaattinen sijoittelu"
 
 #: ../gnomine/gnomine.schemas.in.h:3
 msgid "Number of columns in a custom game"
-msgstr ""
+msgstr "Oman pelin sarakkeiden lukumäärä"
 
 #: ../gnomine/gnomine.schemas.in.h:4
 msgid "Number of rows in a custom game"
-msgstr ""
+msgstr "Oman pelin rivien lukumäärä"
 
 #: ../gnomine/gnomine.schemas.in.h:5
 msgid "Set to true to be able to mark squares as unknown."
@@ -6339,6 +6346,8 @@ msgid ""
 "Set to true to have gnomine automatically flag squares as mined when enough "
 "squares are revealed"
 msgstr ""
+"Aseta todeksi, jos haluat gnominen merkitsevän miinoitetut ruudut heti, kun "
+"tarpeeksi ruutuja ympäriltä on paljastettu"
 
 #: ../gnomine/gnomine.schemas.in.h:9
 msgid "The height of the playing window in pixels."
@@ -6590,8 +6599,8 @@ msgid ""
 "Select whether to drag the tiles or to click on the source then the "
 "destination."
 msgstr ""
-"Valitse raahataanko paloja vai napsautetaanko ensin lähdettä ja "
-"sitten kohdetta"
+"Valitse raahataanko paloja vai napsautetaanko ensin lähdettä ja sitten "
+"kohdetta"
 
 #: ../gnotravex/gnotravex.schemas.in.h:5
 msgid ""
@@ -7158,7 +7167,7 @@ msgstr "Täyskäsi samanvärisillä [20 + summa]"
 
 #: ../gtali/yahtzee.c:107
 msgid "Flush (all same color) [35]"
-msgstr ""
+msgstr "Väri (kaikki samaa väriä) [35]"
 
 #: ../gtali/yahtzee.c:109
 msgid "4 of a Kind [25 + total]"
@@ -7385,7 +7394,7 @@ msgstr "Siirry tähän"
 
 #: ../libgames-support/games-dlg-players.c:471
 msgid "Play with bot"
-msgstr ""
+msgstr "Pelaa botin kanssa"
 
 #: ../libgames-support/games-dlg-players.c:485
 msgid "Drop reservation"
@@ -7393,7 +7402,7 @@ msgstr "Peru varaus"
 
 #: ../libgames-support/games-dlg-players.c:487
 msgid "Remove bot"
-msgstr ""
+msgstr "Poista botti"
 
 #: ../libgames-support/games-card-selector.c:62
 msgid "Card Style"
