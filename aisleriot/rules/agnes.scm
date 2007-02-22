@@ -196,7 +196,8 @@
 	 (check-dc slot-id 1 #f))))
 
 (define (game-continuable)
-  (give-status-message))
+  (give-status-message)
+  (not (game-won)))
 
 (define (game-won)
   (and (= 13 (length (get-cards 1)))
