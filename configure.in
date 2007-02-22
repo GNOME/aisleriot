@@ -313,8 +313,8 @@ dnl check for "check", unit testing library/header
 PKG_CHECK_MODULES([CHECK], [check >= 0.9.4], 
     [
         HAVE_CHECK=yes
-        AC_MSG_NOTICE(CHECK_CFLAGS: $CHECK_CFLAGS)
-        AC_MSG_NOTICE(CHECK_LIBS: $CHECK_LIBS)
+        #AC_MSG_NOTICE(CHECK_CFLAGS: $CHECK_CFLAGS)
+        #AC_MSG_NOTICE(CHECK_LIBS: $CHECK_LIBS)
     ],
     HAVE_CHECK=no)
 AM_CONDITIONAL(HAVE_CHECK, test "x$HAVE_CHECK" = "xyes")
