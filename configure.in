@@ -44,7 +44,7 @@ if test "$GUILE_PRESENT" = "yes" ; then
   dnl On 64-bit machines guile < 1.6.5 causes a crash in aisleriot.
   dnl But since 1.6.5 is only a few months old as I write this we 
   dnl will be more lenient with 32-bit machines.
-  if uname -m | grep -q 64 ; then
+  if uname -m | grep 64 ; then
      GUILE_TARGET="1.6.5"
   else 
      GUILE_TARGET="1.6.0"
@@ -555,7 +555,7 @@ Configuration:
         Scores & setgid group              ${scores_group}
 "
 
-if grep -q "$scores_group:" /etc/group ; then
+if grep "$scores_group:" /etc/group ; then
 :;
 else
 echo
