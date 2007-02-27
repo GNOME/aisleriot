@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-12 21:20+0200\n"
+"POT-Creation-Date: 2007-02-27 15:47+0200\n"
 "PO-Revision-Date: 2007-01-12 12:56+0200\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -27,7 +27,7 @@ msgid ""
 "A comma seperated list of recently played games. The filenames are stored "
 "here, not the actual game name."
 msgstr ""
-"Kableliu atskirtų vėliausiai žaistų žaidimų sąrašas. Čia saugomi rinkmenų "
+"Kableliu atskirtų vėliausiai žaistų žaidimų sąrašas. Čia saugomi failų "
 "pavadinimai, ne žaidimų pavadinimai."
 
 #: ../aisleriot/aisleriot.schemas.in.h:2
@@ -62,7 +62,7 @@ msgstr "Žaistų žaidimų statistika"
 
 #: ../aisleriot/aisleriot.schemas.in.h:7
 msgid "The game file to use"
-msgstr "Naudotina žaidimo rinkmena"
+msgstr "Naudotinas žaidimo failas"
 
 #: ../aisleriot/aisleriot.schemas.in.h:8 ../glines/glines.schemas.in.h:13
 #: ../gnobots2/gnobots2.schemas.in.h:25 ../gnometris/gnometris.schemas.in.h:21
@@ -73,11 +73,11 @@ msgstr "Pagrindinio lango aukštis."
 #: ../aisleriot/aisleriot.schemas.in.h:9
 #: ../blackjack/data/blackjack.schemas.in.h:7
 msgid "The name of the file with the graphics for the cards."
-msgstr "Rinkmenos, saugančios kortų grafiką, pavadinimas."
+msgstr "Failo, saugančio kortų grafiką, pavadinimas."
 
 #: ../aisleriot/aisleriot.schemas.in.h:10
 msgid "The name of the scheme file containing the solitaire game to play."
-msgstr "Schemos rinkmena, aprašanti žaidžiamą pasjanso žaidimą."
+msgstr "Schemos failas, aprašantis žaidžiamą pasjanso žaidimą."
 
 #: ../aisleriot/aisleriot.schemas.in.h:11 ../glines/glines.schemas.in.h:14
 #: ../gnobots2/gnobots2.schemas.in.h:38 ../gnometris/gnometris.schemas.in.h:26
@@ -88,7 +88,7 @@ msgstr "Pagrindinio lango plotis."
 #: ../aisleriot/aisleriot.schemas.in.h:12
 #: ../blackjack/data/blackjack.schemas.in.h:10
 msgid "Theme file name"
-msgstr "Temos rinkmenos vardas"
+msgstr "Temos failo vardas"
 
 #: ../aisleriot/aisleriot.schemas.in.h:13
 #: ../blackjack/data/blackjack.schemas.in.h:13
@@ -118,8 +118,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Įškilo schemos išimtis ir nepavyko sukurti laikinosios rinkmenos apie tai "
-"pranešti:\n"
+"Įvyko schemos klaida ir nepavyko sukurti laikinojo failo apie tai pranešti:\n"
 "\n"
 "%s"
 
@@ -131,7 +130,7 @@ msgstr "Sveikiname!!!"
 msgid "You have won."
 msgstr "Jūs laimėjote."
 
-#: ../aisleriot/dialog.c:50 ../mahjongg/mahjongg.c:656
+#: ../aisleriot/dialog.c:50 ../mahjongg/mahjongg.c:658
 msgid "There are no more moves."
 msgstr "Nebėra galimų ėjimų."
 
@@ -200,7 +199,7 @@ msgstr "FreeCell pasjansas"
 msgid "Play the popular FreeCell card game"
 msgstr "Žaiskite populiarųjį FreeCell kortų žaidimą"
 
-#: ../aisleriot/menu.c:107 ../gnomine/gnomine.c:431 ../mahjongg/mahjongg.c:916
+#: ../aisleriot/menu.c:107 ../gnomine/gnomine.c:431 ../mahjongg/mahjongg.c:918
 msgid "Main game:"
 msgstr "Pagrindinis žaidimas:"
 
@@ -223,11 +222,12 @@ msgstr ""
 "žaisti daug skirtingų žaidimų."
 
 #: ../aisleriot/menu.c:140 ../blackjack/src/menu.cpp:162
-#: ../glines/glines.c:1229 ../gnect/src/main.c:923 ../gnibbles/main.c:248
+#: ../glines/glines.c:1229 ../gnect/src/main.c:924 ../gnibbles/main.c:250
 #: ../gnobots2/menu.c:266 ../gnometris/tetris.cpp:1456
-#: ../gnomine/gnomine.c:470 ../gnotravex/gnotravex.c:1930
-#: ../gnotski/gnotski.c:1408 ../gtali/gyahtzee.c:536 ../iagno/gnothello.c:316
-#: ../mahjongg/mahjongg.c:955 ../same-gnome/ui.c:127
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:806 ../gnomine/gnomine.c:470
+#: ../gnotravex/gnotravex.c:1930 ../gnotski/gnotski.c:1484
+#: ../gtali/gyahtzee.c:536 ../iagno/gnothello.c:316 ../mahjongg/mahjongg.c:957
+#: ../same-gnome/ui.c:127
 msgid "translator-credits"
 msgstr ""
 "Paskutinieji vertėjai:\n"
@@ -238,103 +238,103 @@ msgstr ""
 "Tomas Kuliavas <tokul@users.sf.net>,\n"
 "Gediminas Paulauskas <menesis@chatsubo.lt>"
 
-#: ../aisleriot/menu.c:243 ../blackjack/src/blackjack.cpp:335
-#: ../glchess/glade/glchess.glade.h:31 ../glines/glines.c:1688
-#: ../gnect/src/main.c:1306 ../gnibbles/main.c:772 ../gnobots2/menu.c:61
-#: ../gnometris/tetris.cpp:131 ../gnome-sudoku/src/lib/gnome_sudoku.py:180
-#: ../gnomine/gnomine.c:809 ../gnotravex/gnotravex.c:289
-#: ../gnotski/gnotski.c:426 ../gtali/gyahtzee.c:598
-#: ../mahjongg/mahjongg.c:1303 ../same-gnome/ui.c:455
+#: ../aisleriot/menu.c:245 ../blackjack/src/blackjack.cpp:335
+#: ../glchess/glade/glchess.glade.h:31 ../glines/glines.c:1690
+#: ../gnect/src/main.c:1307 ../gnibbles/main.c:774 ../gnobots2/menu.c:61
+#: ../gnometris/tetris.cpp:131 ../gnome-sudoku/src/lib/gnome_sudoku.py:213
+#: ../gnomine/gnomine.c:811 ../gnotravex/gnotravex.c:289
+#: ../gnotski/gnotski.c:427 ../gtali/gyahtzee.c:598
+#: ../mahjongg/mahjongg.c:1305 ../same-gnome/ui.c:457
 msgid "_Game"
 msgstr "Ž_aidimas"
 
-#: ../aisleriot/menu.c:244 ../blackjack/src/blackjack.cpp:336
-#: ../glchess/glade/glchess.glade.h:36 ../gnect/src/main.c:1307
-#: ../gnibbles/main.c:773 ../gnobots2/menu.c:62
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:181 ../gnotravex/gnotravex.c:290
-#: ../gnotski/gnotski.c:427 ../same-gnome/ui.c:456
+#: ../aisleriot/menu.c:246 ../blackjack/src/blackjack.cpp:336
+#: ../glchess/glade/glchess.glade.h:36 ../gnect/src/main.c:1308
+#: ../gnibbles/main.c:775 ../gnobots2/menu.c:62
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:214 ../gnotravex/gnotravex.c:290
+#: ../gnotski/gnotski.c:428 ../same-gnome/ui.c:458
 msgid "_View"
 msgstr "R_odymas"
 
-#: ../aisleriot/menu.c:245 ../blackjack/src/blackjack.cpp:345
+#: ../aisleriot/menu.c:247 ../blackjack/src/blackjack.cpp:345
 msgid "_Control"
 msgstr "V_aldymas"
 
 #. not translated on purpose
-#: ../aisleriot/menu.c:247 ../blackjack/src/blackjack.cpp:352
-#: ../glchess/glade/glchess.glade.h:32 ../glines/glines.c:1690
-#: ../gnect/src/main.c:1309 ../gnibbles/main.c:775 ../gnobots2/menu.c:65
-#: ../gnometris/tetris.cpp:133 ../gnome-sudoku/src/lib/gnome_sudoku.py:203
-#: ../gnomine/gnomine.c:811 ../gnotravex/gnotravex.c:293
-#: ../gnotski/gnotski.c:428 ../gtali/gyahtzee.c:600
-#: ../mahjongg/mahjongg.c:1305 ../same-gnome/ui.c:458
+#: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:352
+#: ../glchess/glade/glchess.glade.h:32 ../glines/glines.c:1692
+#: ../gnect/src/main.c:1310 ../gnibbles/main.c:777 ../gnobots2/menu.c:65
+#: ../gnometris/tetris.cpp:133 ../gnome-sudoku/src/lib/gnome_sudoku.py:236
+#: ../gnomine/gnomine.c:813 ../gnotravex/gnotravex.c:293
+#: ../gnotski/gnotski.c:429 ../gtali/gyahtzee.c:600
+#: ../mahjongg/mahjongg.c:1307 ../same-gnome/ui.c:460
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: ../aisleriot/menu.c:249 ../blackjack/src/blackjack.cpp:337
+#: ../aisleriot/menu.c:251 ../blackjack/src/blackjack.cpp:337
 #: ../glchess/glade/glchess.glade.h:19 ../gnobots2/menu.c:66
-#: ../libgames-support/games-stock.c:110 ../mahjongg/mahjongg.c:1306
+#: ../libgames-support/games-stock.c:110 ../mahjongg/mahjongg.c:1308
 msgid "Start a new game"
 msgstr "Pradėti naują žaidimą"
 
-#: ../aisleriot/menu.c:252 ../blackjack/src/blackjack.cpp:338
-#: ../mahjongg/mahjongg.c:1309
+#: ../aisleriot/menu.c:254 ../blackjack/src/blackjack.cpp:338
+#: ../mahjongg/mahjongg.c:1311
 msgid "Restart the current game"
 msgstr "Pradėti žaidimą iš naujo"
 
-#: ../aisleriot/menu.c:253
+#: ../aisleriot/menu.c:255
 msgid "_Select Game..."
 msgstr "_Pasirinkti žaidimą.."
 
-#: ../aisleriot/menu.c:254
+#: ../aisleriot/menu.c:256
 msgid "Play a different game"
 msgstr "Žaisti kitokį žaidimą"
 
-#: ../aisleriot/menu.c:255
+#: ../aisleriot/menu.c:257
 msgid "Recently _Played"
 msgstr "Vėliausiai _žaisti"
 
-#: ../aisleriot/menu.c:256
+#: ../aisleriot/menu.c:258
 msgid "S_tatistics"
 msgstr "S_tatistika"
 
-#: ../aisleriot/menu.c:257
+#: ../aisleriot/menu.c:259
 msgid "Show gameplay statistics"
 msgstr "Rodyti žaidimo statistiką"
 
-#: ../aisleriot/menu.c:263
+#: ../aisleriot/menu.c:265
 msgid "_Cards..."
 msgstr "_Kortos..."
 
-#: ../aisleriot/menu.c:266 ../libgames-support/games-stock.c:118
-#: ../mahjongg/mahjongg.c:1314
+#: ../aisleriot/menu.c:268 ../libgames-support/games-stock.c:118
+#: ../mahjongg/mahjongg.c:1316
 msgid "Undo the last move"
 msgstr "Atšaukti paskutinį ėjimą"
 
-#: ../aisleriot/menu.c:268 ../mahjongg/mahjongg.c:1316
+#: ../aisleriot/menu.c:270 ../mahjongg/mahjongg.c:1318
 msgid "Redo the last move"
 msgstr "Atšaukti paskutinį ėjimą"
 
-#: ../aisleriot/menu.c:270 ../blackjack/src/blackjack.cpp:339
-#: ../mahjongg/mahjongg.c:1318
+#: ../aisleriot/menu.c:272 ../blackjack/src/blackjack.cpp:339
+#: ../mahjongg/mahjongg.c:1320
 msgid "Show a hint"
 msgstr "Rodyti užuominą"
 
-#: ../aisleriot/menu.c:273
+#: ../aisleriot/menu.c:275
 msgid "View help for Aisleriot"
 msgstr "Rodyti Aisleriot žinyną"
 
-#: ../aisleriot/menu.c:274 ../libgames-support/games-stock.c:125
+#: ../aisleriot/menu.c:276 ../libgames-support/games-stock.c:125
 msgid "View help for this game"
 msgstr "Rodyti šio žaidimo žinyną"
 
-#: ../aisleriot/menu.c:281 ../blackjack/src/blackjack.cpp:358
+#: ../aisleriot/menu.c:283 ../blackjack/src/blackjack.cpp:358
 #: ../glchess/glade/glchess.glade.h:35 ../gnobots2/menu.c:89
-#: ../mahjongg/mahjongg.c:1334
+#: ../mahjongg/mahjongg.c:1336
 msgid "_Toolbar"
 msgstr "Įrankių _juosta"
 
-#: ../aisleriot/menu.c:283 ../gnotravex/gnotravex.c:338
+#: ../aisleriot/menu.c:285 ../gnotravex/gnotravex.c:338
 msgid "_Click to Move"
 msgstr "_Norint perkelti reikia spragtelti"
 
@@ -391,7 +391,7 @@ msgstr "Išdalinti daugiau kortų"
 #: ../aisleriot/rules/glenwood.scm.h:11 ../aisleriot/rules/gypsy.scm.h:3
 #: ../aisleriot/rules/helsinki.scm.h:1 ../aisleriot/rules/hopscotch.scm.h:3
 #: ../aisleriot/rules/jamestown.scm.h:1 ../aisleriot/rules/jumbo.scm.h:4
-#: ../aisleriot/rules/kansas.scm.h:8 ../aisleriot/rules/klondike.scm.h:4
+#: ../aisleriot/rules/kansas.scm.h:8 ../aisleriot/rules/klondike.scm.h:6
 #: ../aisleriot/rules/labyrinth.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:7
 #: ../aisleriot/rules/monte_carlo.scm.h:2 ../aisleriot/rules/neighbor.scm.h:1
 #: ../aisleriot/rules/plait.scm.h:11 ../aisleriot/rules/quatorze.scm.h:1
@@ -438,28 +438,28 @@ msgid "No hint available right now"
 msgstr "Šiuo metu negalima niekaip patarti"
 
 #: ../aisleriot/rules/athena.scm.h:3 ../aisleriot/rules/doublets.scm.h:1
-#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:4
+#: ../aisleriot/rules/eagle_wing.scm.h:9 ../aisleriot/rules/gaps.scm.h:7
 #: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
-#: ../aisleriot/rules/klondike.scm.h:3 ../aisleriot/rules/plait.scm.h:10
+#: ../aisleriot/rules/klondike.scm.h:4 ../aisleriot/rules/plait.scm.h:10
 #: ../aisleriot/rules/saratoga.scm.h:3 ../aisleriot/rules/scuffle.scm.h:2
 #: ../aisleriot/rules/straight_up.scm.h:3
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
 msgid "Redeals left:"
 msgstr "Pervertimų liko:"
 
-#: ../aisleriot/rules/athena.scm.h:5 ../aisleriot/rules/osmosis.scm.h:3
-#: ../aisleriot/rules/saratoga.scm.h:5
+#: ../aisleriot/rules/athena.scm.h:5 ../aisleriot/rules/klondike.scm.h:7
+#: ../aisleriot/rules/osmosis.scm.h:5 ../aisleriot/rules/saratoga.scm.h:5
 msgid "Three card deals"
 msgstr "Traukiama po tris kortas"
 
-#: ../aisleriot/rules/athena.scm.h:6 ../aisleriot/rules/klondike.scm.h:5
+#: ../aisleriot/rules/athena.scm.h:6 ../aisleriot/rules/klondike.scm.h:8
 #: ../aisleriot/rules/saratoga.scm.h:6
 msgid "Try moving cards down from the foundation"
 msgstr "Bandyk kortas iš fondo nukelti žemyn"
 
 #: ../aisleriot/rules/athena.scm.h:7 ../aisleriot/rules/camelot.scm.h:7
-#: ../aisleriot/rules/diamond_mine.scm.h:1 ../aisleriot/rules/klondike.scm.h:6
-#: ../aisleriot/rules/odessa.scm.h:1 ../aisleriot/rules/osmosis.scm.h:4
+#: ../aisleriot/rules/diamond_mine.scm.h:1 ../aisleriot/rules/klondike.scm.h:9
+#: ../aisleriot/rules/odessa.scm.h:1 ../aisleriot/rules/osmosis.scm.h:6
 #: ../aisleriot/rules/pileon.scm.h:1 ../aisleriot/rules/saratoga.scm.h:7
 #: ../aisleriot/rules/scorpion.scm.h:2 ../aisleriot/rules/ten_across.scm.h:4
 #: ../aisleriot/rules/union_square.scm.h:3 ../aisleriot/rules/yukon.scm.h:2
@@ -608,6 +608,11 @@ msgid "When without a stapler, a staple and a ruler will work"
 msgstr "Jei neturi susegiklio, pabandyk sąsagą įsegti liniuote"
 
 #: ../aisleriot/rules/cruel.scm.h:1
+#, fuzzy
+msgid "Cards remaining: ~a"
+msgstr "Liko:"
+
+#: ../aisleriot/rules/cruel.scm.h:2
 msgid "Redeal."
 msgstr "Dalinti iš naujo."
 
@@ -725,14 +730,26 @@ msgid "the foundation"
 msgstr "fondas"
 
 #: ../aisleriot/rules/gaps.scm.h:1
+msgid "Add to the sequence in row ~a."
+msgstr ""
+
+#: ../aisleriot/rules/gaps.scm.h:2
 msgid "Double click any card to redeal."
 msgstr "Norėdami perdalinti, du kartus spragtelėkite bet kokią kortą."
 
-#: ../aisleriot/rules/gaps.scm.h:2
+#: ../aisleriot/rules/gaps.scm.h:3
 msgid "No hint available."
 msgstr "Patarimų nėra."
 
-#: ../aisleriot/rules/gaps.scm.h:3
+#: ../aisleriot/rules/gaps.scm.h:4
+msgid "Place a two in the leftmost slot of row ~a."
+msgstr ""
+
+#: ../aisleriot/rules/gaps.scm.h:5
+msgid "Place the ~a next to ~a."
+msgstr ""
+
+#: ../aisleriot/rules/gaps.scm.h:6
 msgid "Randomly Placed Gaps on Redeal"
 msgstr "Perdalinant atsitiktinai padaryti tarpai"
 
@@ -754,7 +771,8 @@ msgstr "į tuščią skylę ant stalo"
 msgid "Deal another card"
 msgstr "Imkite kitą kortą"
 
-#: ../aisleriot/rules/golf.scm.h:2 ../aisleriot/rules/spider.scm.h:4
+#: ../aisleriot/rules/golf.scm.h:2 ../aisleriot/rules/osmosis.scm.h:4
+#: ../aisleriot/rules/spider.scm.h:6
 msgid "Stock left: ~a"
 msgstr "Malkoje liko: ~a"
 
@@ -785,6 +803,21 @@ msgstr "tuščia skylė ant stalo"
 msgid "Deal a new card"
 msgstr "Dalinti naują kortą"
 
+#: ../aisleriot/rules/kings_audience.scm.h:2
+#, fuzzy
+msgid "Stock remaining: ~a"
+msgstr "Malkoje liko: ~a"
+
+#: ../aisleriot/rules/klondike.scm.h:3
+#, fuzzy
+msgid "No redeals"
+msgstr "Normalu"
+
+#: ../aisleriot/rules/klondike.scm.h:5
+#, fuzzy
+msgid "Single card deals"
+msgstr "Traukiama po tris kortas"
+
 #: ../aisleriot/rules/lady_jane.scm.h:1 ../aisleriot/rules/royal_east.scm.h:1
 msgid "Base Card:"
 msgstr "Pagrindinė korta:"
@@ -800,6 +833,10 @@ msgstr ""
 #: ../aisleriot/rules/osmosis.scm.h:2
 msgid "Deal new cards from the deck"
 msgstr "Dalinti iš kaladės naujas kortas"
+
+#: ../aisleriot/rules/osmosis.scm.h:3
+msgid "Redeals left: ~a"
+msgstr "Perdalinimų liko: ~a"
 
 #: ../aisleriot/rules/pileon.scm.h:2
 msgid "something"
@@ -844,16 +881,31 @@ msgid "empty foundation"
 msgstr "tuščias fondas"
 
 #: ../aisleriot/rules/spider.scm.h:2
+#, fuzzy
+msgid "Four Suits"
+msgstr "Keturi tiltai"
+
+#: ../aisleriot/rules/spider.scm.h:3
+#, fuzzy
+msgid "One Suit"
+msgstr "Voras (viena rūšis)"
+
+#: ../aisleriot/rules/spider.scm.h:4
 msgid "Place something on empty slot"
 msgstr "Padėk ką nors į tuščią skylę"
 
-#: ../aisleriot/rules/spider.scm.h:3
+#: ../aisleriot/rules/spider.scm.h:5
 msgid "Please fill in empty pile first."
 msgstr "Pirmiausia užpildyk tuščią krūvelę."
 
-#: ../aisleriot/rules/spider.scm.h:5
+#: ../aisleriot/rules/spider.scm.h:7
 msgid "Try moving card piles around"
 msgstr "Pabandykite perstumdyti kortas"
+
+#: ../aisleriot/rules/spider.scm.h:8
+#, fuzzy
+msgid "Two Suits"
+msgstr "Voras (dvi rūšys)"
 
 #: ../aisleriot/rules/ten_across.scm.h:1
 msgid "Allow temporary spots use"
@@ -903,10 +955,10 @@ msgid ""
 "\n"
 "Please check your Aisleriot installation"
 msgstr ""
-"AisleRiot nepavyko įkelti rinkmenos: \n"
+"AisleRiot nepavyko įkelti failo: \n"
 "%s\n"
 "\n"
-"Patikrinkite AisleRiot instaliacija"
+"Patikrinkite AisleRiot instaliaciją"
 
 #: ../aisleriot/sol.c:235
 msgid "Aisleriot cannot find the last game you played."
@@ -928,13 +980,13 @@ msgstr "Aisleriot"
 
 #. Add "Highscore" label
 #: ../aisleriot/sol.c:554 ../dependencies/ggz-gtk/playerinfo.c:241
-#: ../glines/glines.c:1940 ../gnobots2/statusbar.c:65
+#: ../glines/glines.c:1942 ../gnobots2/statusbar.c:65
 #: ../gnometris/scoreframe.cpp:53 ../gnomine/gnomine.c:434
 msgid "Score:"
 msgstr "Taškai:"
 
 #: ../aisleriot/sol.c:559 ../gnotravex/gnotravex.c:1382
-#: ../mahjongg/mahjongg.c:1501
+#: ../mahjongg/mahjongg.c:1503
 msgid "Time:"
 msgstr "Laikas:"
 
@@ -1257,14 +1309,14 @@ msgstr "dviakė"
 
 #. For translators: N/A means "Not Applicable", use whatever
 #. * abbreviation you have for a value that has no meaning.
-#: ../aisleriot/statistics.c:100 ../aisleriot/statistics.c:109
-#: ../aisleriot/statistics.c:118 ../dependencies/ggz-gtk/roominfo.c:162
+#: ../aisleriot/statistics.c:108 ../aisleriot/statistics.c:117
+#: ../aisleriot/statistics.c:126 ../dependencies/ggz-gtk/roominfo.c:162
 #: ../dependencies/ggz-gtk/roominfo.c:169
 msgid "N/A"
 msgstr "nėra"
 
 #. Translators: this represents minutes:seconds.
-#: ../aisleriot/statistics.c:104 ../aisleriot/statistics.c:113
+#: ../aisleriot/statistics.c:112 ../aisleriot/statistics.c:121
 #, c-format
 msgid "%d:%02d"
 msgstr "%d:%02d"
@@ -1559,82 +1611,74 @@ msgid "Spider"
 msgstr "Voras"
 
 #: ../aisleriot/translatable_game_names.h:68
-msgid "Spider One Suit"
-msgstr "Voras (viena rūšis)"
-
-#: ../aisleriot/translatable_game_names.h:69
-msgid "Spider Two Suit"
-msgstr "Voras (dvi rūšys)"
-
-#: ../aisleriot/translatable_game_names.h:70
 msgid "Spiderette"
 msgstr "Voriukė"
 
-#: ../aisleriot/translatable_game_names.h:71
+#: ../aisleriot/translatable_game_names.h:69
 msgid "Straight Up"
 msgstr "Straight Up"
 
-#: ../aisleriot/translatable_game_names.h:72
+#: ../aisleriot/translatable_game_names.h:70
 msgid "Streets And Alleys"
 msgstr "Streets And Alleys"
 
-#: ../aisleriot/translatable_game_names.h:73
+#: ../aisleriot/translatable_game_names.h:71
 msgid "Template"
 msgstr "Template"
 
-#: ../aisleriot/translatable_game_names.h:74
+#: ../aisleriot/translatable_game_names.h:72
 msgid "Ten Across"
 msgstr "Ten Across"
 
-#: ../aisleriot/translatable_game_names.h:75
+#: ../aisleriot/translatable_game_names.h:73
 msgid "Thieves"
 msgstr "Vagys"
 
-#: ../aisleriot/translatable_game_names.h:76
+#: ../aisleriot/translatable_game_names.h:74
 msgid "Thirteen"
 msgstr "Trylika"
 
-#: ../aisleriot/translatable_game_names.h:77
+#: ../aisleriot/translatable_game_names.h:75
 msgid "Thumb And Pouch"
 msgstr "Thumb And Pouch"
 
-#: ../aisleriot/translatable_game_names.h:78
+#: ../aisleriot/translatable_game_names.h:76
 msgid "Treize"
 msgstr "Treize"
 
-#: ../aisleriot/translatable_game_names.h:79
+#: ../aisleriot/translatable_game_names.h:77
 msgid "Triple Peaks"
 msgstr "Trigubos viršūnės"
 
-#: ../aisleriot/translatable_game_names.h:80
+#: ../aisleriot/translatable_game_names.h:78
 msgid "Union Square"
 msgstr "Union Square"
 
-#: ../aisleriot/translatable_game_names.h:81
+#: ../aisleriot/translatable_game_names.h:79
 msgid "Valentine"
 msgstr "Valentinas"
 
-#: ../aisleriot/translatable_game_names.h:82
+#: ../aisleriot/translatable_game_names.h:80
 msgid "Westhaven"
 msgstr "Vakarų uostas"
 
-#: ../aisleriot/translatable_game_names.h:83
+#: ../aisleriot/translatable_game_names.h:81
 msgid "Whitehead"
 msgstr "Whitehead"
 
-#: ../aisleriot/translatable_game_names.h:84
+#: ../aisleriot/translatable_game_names.h:82
 msgid "Will O The Wisp"
 msgstr "Will O The Wisp"
 
-#: ../aisleriot/translatable_game_names.h:85
+#: ../aisleriot/translatable_game_names.h:83
 msgid "Yield"
 msgstr "Yield"
 
-#: ../aisleriot/translatable_game_names.h:86
+#: ../aisleriot/translatable_game_names.h:84
 msgid "Yukon"
 msgstr "Jukonas"
 
-#: ../aisleriot/translatable_game_names.h:87
+#: ../aisleriot/translatable_game_names.h:85
 msgid "Zebra"
 msgstr "Zebras"
 
@@ -1676,11 +1720,11 @@ msgstr "Pinigų suma Jūsų banke."
 #: ../blackjack/data/blackjack.schemas.in.h:8
 msgid ""
 "The name of the rules file containing the variation of the rules to play."
-msgstr "Rinkmenos, saugančios žaidimo taisyklių variantą, pavadinimas."
+msgstr "Failo, saugančio žaidimo taisyklių variantą, pavadinimas."
 
 #: ../blackjack/data/blackjack.schemas.in.h:9
 msgid "The variation of the rules file to use"
-msgstr "Naudojama taisyklių rinkmena"
+msgstr "Naudojamas taisyklių failas"
 
 #: ../blackjack/data/blackjack.schemas.in.h:11
 msgid "Use a quick deal"
@@ -1695,10 +1739,10 @@ msgstr "Naudoti greitą dalijimą be pauzių tarp pateikiamų kortų."
 msgid "Blackjack - %s"
 msgstr "Blackjack - %s"
 
-#: ../blackjack/src/blackjack.cpp:341 ../glines/glines.c:1689
-#: ../gnect/src/main.c:1308 ../gnibbles/main.c:774 ../gnobots2/menu.c:64
-#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:810
-#: ../gtali/gyahtzee.c:599 ../mahjongg/mahjongg.c:1304
+#: ../blackjack/src/blackjack.cpp:341 ../glines/glines.c:1691
+#: ../gnect/src/main.c:1309 ../gnibbles/main.c:776 ../gnobots2/menu.c:64
+#: ../gnometris/tetris.cpp:132 ../gnomine/gnomine.c:812
+#: ../gtali/gyahtzee.c:599 ../mahjongg/mahjongg.c:1306
 msgid "_Settings"
 msgstr "_Nustatymai"
 
@@ -1839,7 +1883,7 @@ msgstr "Taisyklės"
 #: ../gnome-sudoku/src/lib/game_selector.py:107
 #: ../gnome-sudoku/src/lib/game_selector.py:136
 #: ../libgames-support/games-dlg-players.c:221
-#: ../libgames-support/games-scores-dialog.c:534
+#: ../libgames-support/games-scores-dialog.c:529
 msgid "Name"
 msgstr "Vardas"
 
@@ -1920,7 +1964,7 @@ msgstr "Imkite naują rinkinį"
 
 #: ../blackjack/src/game.cpp:483
 msgid "Blackjack can't load the requested file"
-msgstr "Blackjack nepavyko įkelti reikiamos rinkmenos"
+msgstr "Blackjack nepavyko įkelti reikiamos failo"
 
 #: ../blackjack/src/game.cpp:485
 msgid "Please check your Blackjack installation"
@@ -2149,7 +2193,7 @@ msgstr "%s jus išspyrė nuo stalo."
 msgid "You have left the table."
 msgstr "Jūs palikote stalą."
 
-#: ../dependencies/ggz-gtk/ggzclient.c:624 ../gnibbles/main.c:702
+#: ../dependencies/ggz-gtk/ggzclient.c:624 ../gnibbles/main.c:704
 #, c-format
 msgid "The game is over."
 msgstr "Žaidimas baigtas."
@@ -2283,17 +2327,9 @@ msgstr "Keisti profilius..."
 msgid "Server:"
 msgstr "Serveris:"
 
-#: ../dependencies/ggz-gtk/login.c:600
-msgid "localhost"
-msgstr "localhost"
-
 #: ../dependencies/ggz-gtk/login.c:602 ../dependencies/ggz-gtk/props.c:961
 msgid "Port:"
 msgstr "Prievadas:"
-
-#: ../dependencies/ggz-gtk/login.c:612
-msgid "5688"
-msgstr "5688"
 
 #: ../dependencies/ggz-gtk/login.c:633 ../dependencies/ggz-gtk/props.c:993
 msgid "Username:"
@@ -2319,7 +2355,7 @@ msgstr "Prisijungimas svečiu"
 msgid "First-time Login"
 msgstr "Pirmasis prisijungimas"
 
-#: ../dependencies/ggz-gtk/login.c:710 ../dependencies/ggz-gtk/client.c:942
+#: ../dependencies/ggz-gtk/login.c:718 ../dependencies/ggz-gtk/client.c:942
 msgid "Connect"
 msgstr "Prisijungti"
 
@@ -2367,7 +2403,7 @@ msgstr "Vadas"
 msgid "Colonel"
 msgstr "Pulkininkas"
 
-#: ../dependencies/ggz-gtk/first.c:59 ../glines/glines.c:1508
+#: ../dependencies/ggz-gtk/first.c:59
 msgid "General"
 msgstr "Bendra"
 
@@ -2418,43 +2454,43 @@ msgid ""
 "Would you like to create some default server profiles?"
 msgstr ""
 
-#: ../dependencies/ggz-gtk/chat.c:89
+#: ../dependencies/ggz-gtk/chat.c:94
 msgid "/msg <username> <message> . Private message a player"
 msgstr "/msg <naudotojas> <žinutė> . Asmeninė žinutė žaidėjui"
 
-#: ../dependencies/ggz-gtk/chat.c:91
+#: ../dependencies/ggz-gtk/chat.c:96
 msgid "/table <message> .......... Message to your table"
 msgstr "/table <žinutė> .......... Žinutė jūsų stalui"
 
-#: ../dependencies/ggz-gtk/chat.c:93
+#: ../dependencies/ggz-gtk/chat.c:98
 msgid "/wall <message> ........... Admin command"
 msgstr "/wall <žinutė> ........... Administratoriaus komanda"
 
-#: ../dependencies/ggz-gtk/chat.c:95
+#: ../dependencies/ggz-gtk/chat.c:100
 msgid "/beep <username> .......... Beep a player"
 msgstr "/beep <naudotojas> .......... Pyptelti žaidėjui"
 
-#: ../dependencies/ggz-gtk/chat.c:97
+#: ../dependencies/ggz-gtk/chat.c:102
 msgid "/help ..................... Get help"
 msgstr "/help ..................... Pamatyti žinyną"
 
-#: ../dependencies/ggz-gtk/chat.c:99
+#: ../dependencies/ggz-gtk/chat.c:104
 msgid "/friends .................. List your friends"
 msgstr "/friends .................. Jūsų draugų sąrašas"
 
-#: ../dependencies/ggz-gtk/chat.c:101
+#: ../dependencies/ggz-gtk/chat.c:106
 msgid "/ignore ................... List people you're ignoring"
 msgstr "/ignore ................... Jūsų ignoruojamų žmonių sąrašas"
 
-#: ../dependencies/ggz-gtk/chat.c:104
+#: ../dependencies/ggz-gtk/chat.c:109
 msgid "/kick <username> .......... Kick a player from the room"
 msgstr "/kick <naudotojas> .......... Išspirti žaidėją iš kambario"
 
-#: ../dependencies/ggz-gtk/chat.c:107
+#: ../dependencies/ggz-gtk/chat.c:112
 msgid "/gag <username> ........... Gag a player to prevent them from talking"
 msgstr "/gag <naudotojas> ........... Užčiaupti žaidėją, kad jis nešnekėtų"
 
-#: ../dependencies/ggz-gtk/chat.c:110
+#: ../dependencies/ggz-gtk/chat.c:115
 msgid ""
 "/ungag <username> ......... Reverse the gag operation to allow a player to "
 "talk"
@@ -2462,85 +2498,85 @@ msgstr ""
 "/ungag <naudotojas> ......... Operacija atvirkštinė operacijai gag "
 "leidžianti žaidėjui šnekėti"
 
-#: ../dependencies/ggz-gtk/chat.c:113
+#: ../dependencies/ggz-gtk/chat.c:118
 msgid "/ban <username> ........... Ban a player from the server"
 msgstr ""
 "/ban <naudotojas> ........... Uždrausti žaidėjui prisijungti prie serverio"
 
-#: ../dependencies/ggz-gtk/chat.c:254
+#: ../dependencies/ggz-gtk/chat.c:259
 #, c-format
 msgid "You have received an unknown message from %s."
 msgstr "Jūs iš %s gavote nežinomą žinutę."
 
-#: ../dependencies/ggz-gtk/chat.c:318
+#: ../dependencies/ggz-gtk/chat.c:323
 #, c-format
 msgid "You've been beeped by %s."
 msgstr "%s Jums atsiuntė signalą."
 
-#: ../dependencies/ggz-gtk/chat.c:439
+#: ../dependencies/ggz-gtk/chat.c:444
 msgid "Usage: /msg <username> <message>"
 msgstr "Naudojimas: /msg <naudotojas> <žinutė>"
 
-#: ../dependencies/ggz-gtk/chat.c:441
+#: ../dependencies/ggz-gtk/chat.c:446
 msgid "    Sends a private message to a user on the network."
 msgstr "    Siunčia asmeninę žinutę naudotojui šiame tinkle."
 
-#: ../dependencies/ggz-gtk/chat.c:495
+#: ../dependencies/ggz-gtk/chat.c:500
 #, c-format
 msgid "Beep sent to %s."
 msgstr "%s išsiųstas signalas."
 
-#: ../dependencies/ggz-gtk/chat.c:523
+#: ../dependencies/ggz-gtk/chat.c:528
 #, c-format
 msgid "%s (logged on)"
 msgstr "%s (prisijungęs)"
 
-#: ../dependencies/ggz-gtk/chat.c:561
+#: ../dependencies/ggz-gtk/chat.c:566
 #, c-format
 msgid "%s (logged off)"
 msgstr "%s (atsijungęs)"
 
-#: ../dependencies/ggz-gtk/chat.c:587
+#: ../dependencies/ggz-gtk/chat.c:592
 msgid "Chat Commands"
 msgstr "Pokalbio komandos"
 
-#: ../dependencies/ggz-gtk/chat.c:588
+#: ../dependencies/ggz-gtk/chat.c:593
 msgid "-------------"
 msgstr "-------------"
 
-#: ../dependencies/ggz-gtk/chat.c:592
+#: ../dependencies/ggz-gtk/chat.c:597
 msgid "/me <action> .............. Send an action"
 msgstr "/me <veiksmas> .............. Siųsti veiksmą"
 
-#: ../dependencies/ggz-gtk/chat.c:783
+#: ../dependencies/ggz-gtk/chat.c:788
 #, c-format
 msgid "Added %s to your friends list."
 msgstr "%s įtrauktas į Jūsų draugų sąrašą."
 
-#: ../dependencies/ggz-gtk/chat.c:807
+#: ../dependencies/ggz-gtk/chat.c:812
 #, c-format
 msgid "Removed %s from your friends list."
 msgstr "%s pašalintas iš Jūsų draugų sąrašo."
 
-#: ../dependencies/ggz-gtk/chat.c:838
+#: ../dependencies/ggz-gtk/chat.c:843
 #, c-format
 msgid "Added %s to your ignore list."
 msgstr "%s įtrauktas į Jūsų ignoruojamų žmonių sąrašą."
 
-#: ../dependencies/ggz-gtk/chat.c:863
+#: ../dependencies/ggz-gtk/chat.c:868
 #, c-format
 msgid "Removed %s from your ignore list."
 msgstr "%s pašalintas iš Jūsų ignoruojamų žmonių sąrašo."
 
-#: ../dependencies/ggz-gtk/chat.c:939
+#: ../dependencies/ggz-gtk/chat.c:944
 msgid "People currently your friends"
 msgstr "Žmonės šiuo metu esantys draugais"
 
-#: ../dependencies/ggz-gtk/chat.c:953
+#: ../dependencies/ggz-gtk/chat.c:958
 msgid "People you're currently ignoring"
 msgstr "Žmonės, kuriuos šiuo metu ignoruojate"
 
-#: ../dependencies/ggz-gtk/chat.c:1029
+#: ../dependencies/ggz-gtk/chat.c:1034
 msgid "Multiple matches:"
 msgstr "Daugiau nei vienas atitikmuo:"
 
@@ -3523,21 +3559,32 @@ msgstr ""
 
 #: ../glchess/data/glchess.schemas.in.h:13
 #, fuzzy
+msgid "The format to display moves in"
+msgstr "būgnų keturakė"
+
+#: ../glchess/data/glchess.schemas.in.h:14
+msgid ""
+"The format to display moves in, can be either 'human' (human readable), "
+"'lan' (long algebraic notation) or 'san' (standard algebraic notation)"
+msgstr ""
+
+#: ../glchess/data/glchess.schemas.in.h:15
+#, fuzzy
 msgid "The height of the main window in pixels."
 msgstr "Žaidimo lango aukštis taškeliais."
 
-#: ../glchess/data/glchess.schemas.in.h:14 ../gnomine/gnomine.schemas.in.h:10
+#: ../glchess/data/glchess.schemas.in.h:16 ../gnomine/gnomine.schemas.in.h:10
 #: ../gnotravex/gnotravex.schemas.in.h:6 ../gnotski/gnotski.schemas.in.h:1
 #: ../mahjongg/mahjongg.schemas.in.h:1
 msgid "The height of the window"
 msgstr "Lango aukštis"
 
-#: ../glchess/data/glchess.schemas.in.h:15
+#: ../glchess/data/glchess.schemas.in.h:17
 #, fuzzy
 msgid "The width of the main window in pixels."
 msgstr "Žaidimo lango plotis taškeliais."
 
-#: ../glchess/data/glchess.schemas.in.h:16 ../gnomine/gnomine.schemas.in.h:13
+#: ../glchess/data/glchess.schemas.in.h:18 ../gnomine/gnomine.schemas.in.h:13
 #: ../gnotravex/gnotravex.schemas.in.h:10 ../gnotski/gnotski.schemas.in.h:6
 #: ../mahjongg/mahjongg.schemas.in.h:4
 msgid "The width of the window"
@@ -3602,7 +3649,7 @@ msgstr "Įkelti išsaugotą žaidimą"
 
 #: ../glchess/glade/glchess.glade.h:11 ../glchess/glade/new_game.glade.h:9
 #: ../gnome-sudoku/glade/new_game.glade.h:5
-#: ../libgames-support/games-scores-dialog.c:437
+#: ../libgames-support/games-scores-dialog.c:432
 msgid "New Game"
 msgstr "Naujas žaidimas"
 
@@ -3660,7 +3707,7 @@ msgid "_AI Information"
 msgstr "_DI informacija"
 
 #: ../glchess/glade/glchess.glade.h:28
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:207
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:240
 #: ../libgames-support/games-stock.c:58
 msgid "_Contents"
 msgstr "_Turinys"
@@ -3741,7 +3788,7 @@ msgstr "_Pradėti"
 msgid "_White:"
 msgstr "_Baltieji:"
 
-#: ../glchess/glchess.desktop.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:948
+#: ../glchess/glchess.desktop.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:974
 msgid "Chess"
 msgstr "Šachmatai"
 
@@ -3749,27 +3796,72 @@ msgstr "Šachmatai"
 msgid "Play the classic two-player boardgame of chess "
 msgstr "Žaisti klasikinį dviejų žaidėjų žaidimą šachmatais"
 
-#: ../glchess/src/lib/defaults.py.in:16
+#: ../glchess/src/lib/defaults.py.in:26
 msgid "glChess"
 msgstr "glChess"
 
-#: ../glchess/src/lib/defaults.py.in:18
+#: ../glchess/src/lib/defaults.py.in:28
 msgid "Copyright 2005-2007 Robert Ancell (and contributors)"
 msgstr "Autorinės teisės priklauso 2005-2007 Robert Ancell (ir kiti)"
 
-#: ../glchess/src/lib/defaults.py.in:19
+#: ../glchess/src/lib/defaults.py.in:29
 msgid "A 2D/3D chess interface for Gnome"
 msgstr ""
 
-#: ../glchess/src/lib/defaults.py.in:21
+#: ../glchess/src/lib/defaults.py.in:31
 msgid "glChess homepage"
 msgstr "glChess tinklalapis"
+
+#. The GPL license string will be translated, and the game name inserted.
+#. This license is the same as in libgames-support/games-stock.c
+#. %s is replaced with the name of the game in gnome-games.
+#: ../glchess/src/lib/defaults.py.in:46
+#: ../gnome-sudoku/src/lib/defaults.py.in:29
+#: ../libgames-support/games-stock.c:338
+#, c-format, python-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version."
+msgstr ""
+
+#: ../glchess/src/lib/defaults.py.in:50
+#: ../gnome-sudoku/src/lib/defaults.py.in:33
+#: ../libgames-support/games-stock.c:342
+#, c-format, python-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+
+#: ../glchess/src/lib/defaults.py.in:54
+#: ../gnome-sudoku/src/lib/defaults.py.in:37
+#: ../libgames-support/games-stock.c:346
+#, c-format, python-format
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
+"Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
 
 #: ../glchess/src/lib/gtkui/gtkui.py:257
 msgid "Game Start"
 msgstr "Žaidimo pradžia"
 
-#: ../glchess/src/lib/gtkui/gtkui.py:591 ../gnect/src/prefs.c:352
+#: ../glchess/src/lib/gtkui/gtkui.py:291
+#, fuzzy
+msgid "Check"
+msgstr "Laikrodis"
+
+#: ../glchess/src/lib/gtkui/gtkui.py:293
+#, python-format
+msgid "Checkmate, %s wins."
+msgstr ""
+
+#: ../glchess/src/lib/gtkui/gtkui.py:603 ../gnect/src/prefs.c:352
 #: ../gtali/gyahtzee.c:831 ../gtali/yahtzee.c:64 ../iagno/properties.c:521
 #: ../iagno/properties.c:562
 msgid "Human"
@@ -3797,7 +3889,7 @@ msgid "One hour"
 msgstr "Viena valanda"
 
 #: ../glchess/src/lib/gtkui/dialogs.py:123 ../gnomine/gnomine.c:91
-#: ../gnomine/gnomine.c:689
+#: ../gnomine/gnomine.c:691
 msgid "Custom"
 msgstr "Pasirinktas"
 
@@ -3814,7 +3906,7 @@ msgid "hours"
 msgstr "valandos"
 
 #: ../glchess/src/lib/gtkui/dialogs.py:151
-#: ../gnome-sudoku/src/lib/sudoku.py:601
+#: ../gnome-sudoku/src/lib/sudoku.py:604
 msgid "Easy"
 msgstr "Lengva"
 
@@ -3823,7 +3915,7 @@ msgid "Normal"
 msgstr "Normalu"
 
 #: ../glchess/src/lib/gtkui/dialogs.py:153
-#: ../gnome-sudoku/src/lib/sudoku.py:599
+#: ../gnome-sudoku/src/lib/sudoku.py:602
 msgid "Hard"
 msgstr "Sunku"
 
@@ -3842,7 +3934,7 @@ msgstr "Juodieji"
 
 #. GstElement *sound_player;
 #: ../glines/glines.c:75 ../glines/glines.c:80 ../gnomine/gnomine.c:88
-#: ../gnomine/gnomine.c:661 ../same-gnome/same-gnome.c:54
+#: ../gnomine/gnomine.c:663 ../same-gnome/same-gnome.c:54
 msgid "Small"
 msgstr "Mažas"
 
@@ -3851,7 +3943,7 @@ msgid "glines|Medium"
 msgstr "Vidutiniškai"
 
 #: ../glines/glines.c:77 ../glines/glines.c:82 ../gnomine/gnomine.c:90
-#: ../gnomine/gnomine.c:680 ../same-gnome/same-gnome.c:56
+#: ../gnomine/gnomine.c:682 ../same-gnome/same-gnome.c:56
 msgid "Large"
 msgstr "Didelis"
 
@@ -3871,7 +3963,7 @@ msgid ""
 "\n"
 "The default theme will be loaded instead."
 msgstr ""
-"Nepavyko rasti rinkmenos: „%s“\n"
+"Nepavyko rasti failo: „%s“\n"
 "\n"
 "Vietoje to, bus įkelta numatytoji tema."
 
@@ -3883,7 +3975,7 @@ msgid ""
 "\n"
 "Please check that Five or More is installed correctly."
 msgstr ""
-"Nepavyko aptikti rinkmenos:\n"
+"Nepavyko aptikti failo:\n"
 "%s\n"
 "\n"
 "Patikrinkite ar „Penketas ar daugiau“ yra įdiegtas teisingai."
@@ -3909,7 +4001,7 @@ msgstr "Žaidimas baigtas!"
 msgid "You can't move there!"
 msgstr "Jūs negalite ten perkelti!"
 
-#: ../glines/glines.c:1218 ../glines/glines.c:1221 ../glines/glines.c:1879
+#: ../glines/glines.c:1218 ../glines/glines.c:1221 ../glines/glines.c:1881
 #: ../glines/glines.desktop.in.h:1
 msgid "Five or More"
 msgstr "Penketas ar daugiau"
@@ -3918,44 +4010,49 @@ msgstr "Penketas ar daugiau"
 msgid "GNOME port of the once-popular Color Lines game"
 msgstr "Kažkada populiaraus Color Lines žaidimo GNOME variantas"
 
-#: ../glines/glines.c:1422
+#: ../glines/glines.c:1424
 msgid "Five or More Preferences"
 msgstr "Penketas ar daugiau nustatymai"
 
-#: ../glines/glines.c:1442
+#: ../glines/glines.c:1444
 msgid "Themes"
 msgstr "Temos"
 
-#: ../glines/glines.c:1450
+#: ../glines/glines.c:1452
 msgid "_Image:"
 msgstr "_Paveiksliukas:"
 
-#: ../glines/glines.c:1461
+#: ../glines/glines.c:1463
 msgid "B_ackground color:"
 msgstr "F_ono spalva:"
 
-#: ../glines/glines.c:1476
+#: ../glines/glines.c:1478
 msgid "Board Size"
 msgstr "Lentos dydis"
 
-#: ../glines/glines.c:1482 ../same-gnome/ui.c:478
+#: ../glines/glines.c:1484 ../same-gnome/ui.c:480
 msgid "_Small"
 msgstr "_Mažas"
 
-#: ../glines/glines.c:1491 ../gnome-sudoku/glade/puzzle_generator.glade.h:16
-#: ../same-gnome/ui.c:479
+#: ../glines/glines.c:1493 ../gnome-sudoku/glade/puzzle_generator.glade.h:16
+#: ../same-gnome/ui.c:481
 msgid "_Medium"
 msgstr "_Vidutinis"
 
-#: ../glines/glines.c:1500 ../same-gnome/ui.c:480
+#: ../glines/glines.c:1502 ../same-gnome/ui.c:482
 msgid "_Large"
 msgstr "_Didelis"
 
-#: ../glines/glines.c:1515
+#: ../glines/glines.c:1510
+#, fuzzy
+msgid "glines|General"
+msgstr "Bendra"
+
+#: ../glines/glines.c:1517
 msgid "_Use fast moves"
 msgstr "_Naudoti greitus ėjimus"
 
-#: ../glines/glines.c:1910
+#: ../glines/glines.c:1912
 msgid "Next:"
 msgstr "Kitas:"
 
@@ -3978,7 +4075,7 @@ msgstr "Rutulio stilius"
 #: ../glines/glines.schemas.in.h:4
 msgid "Ball style. The filename of the images to use for the balls."
 msgstr ""
-"Rutulio stilius. Rinkmena, sauganti paveikslėlius, iš kurių suformuojami "
+"Rutulio stilius. Failas, saugantis paveikslėlius, iš kurių suformuojami "
 "rutuliai."
 
 #: ../glines/glines.schemas.in.h:5
@@ -4024,8 +4121,8 @@ msgstr "Pauzė tarp ėjimų"
 msgid "Time between moves in milliseconds."
 msgstr "Laikas tarp ėjimų milisekundėmis."
 
-#: ../gnect/data/gnect.desktop.in.h:1 ../gnect/src/main.c:911
-#: ../gnect/src/main.c:914 ../gnect/src/main.c:1427
+#: ../gnect/data/gnect.desktop.in.h:1 ../gnect/src/main.c:912
+#: ../gnect/src/main.c:915 ../gnect/src/main.c:1428
 msgid "Four-in-a-Row"
 msgstr "Keturi eilėje"
 
@@ -4137,58 +4234,58 @@ msgstr ""
 msgid "Welcome to a network game of %s."
 msgstr ""
 
-#: ../gnect/src/main.c:567
+#: ../gnect/src/main.c:568
 msgid "It's a draw!"
 msgstr "Lygiosios!"
 
-#: ../gnect/src/main.c:581
+#: ../gnect/src/main.c:582
 msgid "You win!"
 msgstr "Jūs laimėjote!"
 
-#: ../gnect/src/main.c:583 ../gnect/src/main.c:616
+#: ../gnect/src/main.c:584 ../gnect/src/main.c:617
 msgid "It is your move."
 msgstr "Jūsų ėjimas."
 
-#: ../gnect/src/main.c:586
+#: ../gnect/src/main.c:587
 msgid "I win!"
 msgstr "Programa laimėjo!"
 
-#: ../gnect/src/main.c:588 ../gnect/src/main.c:721
+#: ../gnect/src/main.c:589 ../gnect/src/main.c:722
 msgid "Thinking..."
 msgstr "Svarstoma..."
 
-#: ../gnect/src/main.c:609 ../gnect/src/main.c:613
+#: ../gnect/src/main.c:610 ../gnect/src/main.c:614
 #, c-format
 msgid "%s wins!"
 msgstr "%s laimėjo!"
 
-#: ../gnect/src/main.c:619
+#: ../gnect/src/main.c:620
 #, c-format
 msgid "Waiting for %s to move."
 msgstr ""
 
-#: ../gnect/src/main.c:738
+#: ../gnect/src/main.c:739
 #, c-format
 msgid "Hint: Column %d"
 msgstr "Patarimas: stulpelis %d"
 
-#: ../gnect/src/main.c:766 ../gnect/src/main.c:770
+#: ../gnect/src/main.c:767 ../gnect/src/main.c:771
 msgid "You:"
 msgstr "Jūs:"
 
-#: ../gnect/src/main.c:767 ../gnect/src/main.c:769
+#: ../gnect/src/main.c:768 ../gnect/src/main.c:770
 msgid "Me:"
 msgstr "Aš:"
 
-#: ../gnect/src/main.c:815
+#: ../gnect/src/main.c:816
 msgid "Scores"
 msgstr "Taškai"
 
-#: ../gnect/src/main.c:866
+#: ../gnect/src/main.c:867
 msgid "Drawn:"
 msgstr "Lygiosios:"
 
-#: ../gnect/src/main.c:920
+#: ../gnect/src/main.c:921
 msgid ""
 "\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine."
@@ -4333,7 +4430,7 @@ msgid ""
 "\n"
 "Please check your Gnibbles installation"
 msgstr ""
-"Gnibbles nepavyko įkelti paveikslėlio rinkmenos:\n"
+"Gnibbles nepavyko įkelti paveikslėlio failo:\n"
 "%s\n"
 "\n"
 "Patikrinkite ar Gnibbles įdiegtas korektiškai"
@@ -4346,28 +4443,28 @@ msgid ""
 "\n"
 "Please check your Gnibbles installation"
 msgstr ""
-"Gnibbles nepavyko įkelti lygių rinkmenos:\n"
+"Gnibbles nepavyko įkelti lygių failo:\n"
 "%s\n"
 "\n"
 "Patikrinkite ar Gnibbles įdiegtas korektiškai"
 
-#: ../gnibbles/gnibbles.c:600
+#: ../gnibbles/gnibbles.c:601
 msgid "Nibbles Scores"
 msgstr "Nibbles taškai"
 
-#: ../gnibbles/gnibbles.c:603
+#: ../gnibbles/gnibbles.c:604
 msgid "Speed:"
 msgstr "Greitis:"
 
-#: ../gnibbles/gnibbles.c:608 ../gnomine/gnomine.c:223
+#: ../gnibbles/gnibbles.c:609 ../gnomine/gnomine.c:223
 #: ../gnotravex/gnotravex.c:1231 ../gtali/gyahtzee.c:198
-#: ../mahjongg/mahjongg.c:697 ../same-gnome/ui.c:188
+#: ../mahjongg/mahjongg.c:699 ../same-gnome/ui.c:188
 msgid "Congratulations!"
 msgstr "Sveikiname!"
 
-#: ../gnibbles/gnibbles.c:609 ../gnomine/gnomine.c:224
+#: ../gnibbles/gnibbles.c:610 ../gnomine/gnomine.c:224
 #: ../gnotravex/gnotravex.c:1232 ../gtali/gyahtzee.c:199
-#: ../mahjongg/mahjongg.c:698 ../same-gnome/ui.c:189
+#: ../mahjongg/mahjongg.c:700 ../same-gnome/ui.c:189
 msgid "Your score has made the top ten."
 msgstr "Jūsų taškai pateko į top 10."
 
@@ -4376,7 +4473,7 @@ msgid "Guide a worm around a maze"
 msgstr "Praveskite gyvatę pro labirintą"
 
 #: ../gnibbles/gnibbles.desktop.in.h:2 ../gnibbles/gnibbles.soundlist.in.h:6
-#: ../gnibbles/main.c:238 ../gnibbles/main.c:241
+#: ../gnibbles/main.c:240 ../gnibbles/main.c:243
 msgid "Nibbles"
 msgstr "Nibbles"
 
@@ -4569,11 +4666,11 @@ msgstr "Vidutiniškai su apgaulėmis"
 msgid "Fast with Fakes"
 msgstr "Greitai su apgaulėmis"
 
-#: ../gnibbles/main.c:246
+#: ../gnibbles/main.c:248
 msgid "A worm game for GNOME."
 msgstr "GNOME gyvatėlės žaidimas."
 
-#: ../gnibbles/main.c:651
+#: ../gnibbles/main.c:653
 #, c-format
 msgid "Game over! The game has been won by %s!"
 msgstr "Žaidimas baigtas! Žaidimą laimėjo %s!"
@@ -4703,14 +4800,14 @@ msgstr "Nustatyti žaidimo savybes"
 msgid "Initial window position"
 msgstr "Pradinė lango pozicija"
 
-#: ../gnobots2/gnobots.c:70 ../gnomine/gnomine.c:969 ../gnomine/gnomine.c:977
-#: ../gnotravex/gnotravex.c:386 ../gnotski/gnotski.c:482
+#: ../gnobots2/gnobots.c:70 ../gnomine/gnomine.c:971 ../gnomine/gnomine.c:979
+#: ../gnotravex/gnotravex.c:386 ../gnotski/gnotski.c:483
 #: ../iagno/gnothello.c:125
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:72 ../gnomine/gnomine.c:971 ../gnomine/gnomine.c:979
-#: ../gnotravex/gnotravex.c:388 ../gnotski/gnotski.c:484
+#: ../gnobots2/gnobots.c:72 ../gnomine/gnomine.c:973 ../gnomine/gnomine.c:981
+#: ../gnotravex/gnotravex.c:388 ../gnotski/gnotski.c:485
 #: ../iagno/gnothello.c:127
 msgid "Y"
 msgstr "Y"
@@ -4730,19 +4827,19 @@ msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
 msgstr ""
-"Robots programai nepavyko rasti tinkamų žaidimo nustatymų rinkmenų. "
+"Robots programai nepavyko rasti tinkamų žaidimo nustatymų failų. "
 "Patikrinkite ar programa yra įdiegta teisingai."
 
 #: ../gnobots2/gnobots.c:281
 msgid "Some graphics files are missing or corrupt."
-msgstr "Trūksta kai kurių grafikos rinkmenų arba jos yra sugadintos."
+msgstr "Trūksta kai kurių grafikos failų arba jos yra sugadintos."
 
 #: ../gnobots2/gnobots.c:283
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
 msgstr ""
-"Robots programai nepavyko įkelti visų reikalingų grafinių rinkmenų. "
+"Robots programai nepavyko įkelti visų reikalingų grafinių failų. "
 "Patikrinkite ar programa yra įdiegta teisingai."
 
 #. ********************************************************************
@@ -4964,7 +5061,7 @@ msgstr "Pergalė!"
 #: ../gnobots2/graphics.c:150 ../iagno/gnothello.c:463
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
-msgstr "Nepavyko rasti „%s“ paveikslėlio rinkmenos\n"
+msgstr "Nepavyko rasti „%s“ paveikslėlio failo\n"
 
 #: ../gnobots2/menu.c:63 ../gnotravex/gnotravex.c:291
 msgid "_Move"
@@ -4994,7 +5091,7 @@ msgstr "_Laukti"
 msgid "Wait for the robots"
 msgstr "Laukti robotų"
 
-#: ../gnobots2/menu.c:89 ../mahjongg/mahjongg.c:1334
+#: ../gnobots2/menu.c:89 ../mahjongg/mahjongg.c:1336
 msgid "Show or hide the toolbar"
 msgstr "Rodyti arba paslėpti įrankių juostą"
 
@@ -5116,7 +5213,7 @@ msgstr "Grafikos tema"
 msgid "_Image theme:"
 msgstr "_Paveikslėlių tema:"
 
-#: ../gnobots2/properties.c:566 ../mahjongg/mahjongg.c:804
+#: ../gnobots2/properties.c:566 ../mahjongg/mahjongg.c:806
 msgid "_Background color:"
 msgstr "_Fono spalva:"
 
@@ -5526,7 +5623,7 @@ msgid "_Add Tracker"
 msgstr ""
 
 #: ../gnome-sudoku/glade/tracker.glade.h:3
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:831
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:870
 msgid "_Clear Tracker"
 msgstr ""
 
@@ -5540,19 +5637,15 @@ msgstr ""
 #: ../gnome-sudoku/src/lib/game_selector.py:77
 #: ../gnome-sudoku/src/lib/game_selector.py:193
 #: ../gnome-sudoku/src/lib/game_selector.py:290
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:732
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:771
 msgid "Puzzle"
 msgstr "Galvosūkis"
 
-#: ../gnome-sudoku/src/lib/defaults.py.in:13
+#: ../gnome-sudoku/src/lib/defaults.py.in:20
 msgid "GNOME Sudoku"
 msgstr "GNOME Sudoku"
 
-#: ../gnome-sudoku/src/lib/defaults.py.in:14
-msgid "Copyright (c) 2005,2006, Thomas M. Hinkle. GNU GPL"
-msgstr "Autorinės teisės priklauso (c) 2005,2006, Thomas M. Hinkle. GNU GPL"
-
-#: ../gnome-sudoku/src/lib/defaults.py.in:15
+#: ../gnome-sudoku/src/lib/defaults.py.in:22
 msgid ""
 "GNOME Sudoku is a simple sudoku generator and player.  Sudoku is a japanese "
 "logic puzzle."
@@ -5630,8 +5723,8 @@ msgstr "Žaidėjas"
 
 #. Note that this assumes the default style is plain.
 #: ../gnome-sudoku/src/lib/game_selector.py:246
-#: ../libgames-support/games-scores-dialog.c:127
-#: ../libgames-support/games-scores-dialog.c:542
+#: ../libgames-support/games-scores-dialog.c:121
+#: ../libgames-support/games-scores-dialog.c:537
 msgid "Score"
 msgstr "Taškai"
 
@@ -5689,11 +5782,11 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: ../gnome-sudoku/src/lib/sudoku.py:598
+#: ../gnome-sudoku/src/lib/sudoku.py:601
 msgid "Very Hard"
 msgstr "Labai sunku"
 
-#: ../gnome-sudoku/src/lib/sudoku.py:600
+#: ../gnome-sudoku/src/lib/sudoku.py:603
 msgid "Medium"
 msgstr "Vidutiniškai"
 
@@ -5796,7 +5889,7 @@ msgid "Yesterday"
 msgstr "Vakar"
 
 #: ../gnome-sudoku/src/lib/gsudoku.py:83
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:252
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:285
 msgid "_Clear"
 msgstr "Iš_valyti"
 
@@ -5808,113 +5901,118 @@ msgstr "Sekti ėjimus"
 msgid "Full Screen"
 msgstr "Visame ekrane"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:162
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:193
+#, fuzzy
+msgid "_File"
+msgstr "_Užpildyti"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:195
 msgid "New game"
 msgstr "Naujas žaidimas"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:164
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:197
 msgid "Print current game"
 msgstr "Spausdinti esamą žaidimą"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:165
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:198
 msgid "Print _Multiple Sudokus"
 msgstr "Spausdinti _keletą Sudoku"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:166
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:199
 msgid "Print more than one sudoku at a time."
 msgstr "Vienu metu spausdinti daugiau nei vieną Sudoku."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:170
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:203
 msgid "Close Sudoku (save game for later)"
 msgstr "Užverti Sudoku (išsaugoti žaidimui vėliau)"
 
 #. ('Save',gtk.STOCK_SAVE,_('_Save'),
 #. '<Control>s','Save game to play later.',
 #. self.save_game),
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:174
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:207
 msgid "_Enter custom game"
 msgstr "Į_vesti kitą žaidimą"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:175
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:208
 msgid ""
 "Enter new puzzle by hand (use this to copy a puzzle from another source)."
 msgstr ""
 "Įvesti naują galvosūkį pačiam (tai galite naudoti galvosūkio perkėlimui iš "
 "kito šaltinio)."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:177
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:210
 msgid "_Resume old game"
 msgstr "_Tęsti seną žaidimą"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:178
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:211
 msgid "Resume a previous saved game."
 msgstr "Tęsti anksčiau išsaugotą žaidimą."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:182
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:215
 #: ../libgames-support/games-stock.c:53
 msgid "_Hint"
 msgstr "_Užuomina"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:184
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:217
 msgid "Show which numbers could go in the current square."
 msgstr "Parodyti kurie skaičiai gali tikti esamame kvadrate."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:186
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:219
 msgid "_Fill"
 msgstr "_Užpildyti"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:187
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:220
 msgid "Automatically fill in the current square if possible."
 msgstr "Jei tai įmanoma, automatiškai užpildyti esamą kvadratą."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:189
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:222
 msgid "Fill _all squares"
 msgstr "Užpildyti _visus kvadratėlius"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:190
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:223
 msgid ""
 "Automatically fill in all squares for which there is only one valid value."
 msgstr ""
 "Automatiškai užpildyti visus kvadratus, kuriems tinka tik viena reikšmė."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:200
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:233
 msgid "Puzzle _Statistics"
 msgstr "Galvosūkio _statistika"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:201
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:234
 msgid "Show statistics about current puzzle"
 msgstr "Rodyti esamo galvosūkio statistiką"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:209
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:242
 msgid "High _Scores"
 msgstr "_Taškai"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:210
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:243
 msgid "Show high scores or replay old games."
 msgstr ""
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:216
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:249
 msgid "_Always show hint"
 msgstr "_Visada rodyti užuominą"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:218
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:251
 msgid "Always show possible numbers in a square"
 msgstr "Visada rodyti kvadratuose tinkančius skaičius"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:222
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:255
 msgid "Warn about _unfillable squares"
 msgstr "Perspėti apie ne_užpildomus kvadratus"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:224
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:257
 msgid "Warn about squares made unfillable by a move"
 msgstr ""
 "Perspėti apie kvadratus, kurių neįmanoma užpildyti dėl paskutiniojo ėjimo"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:226
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:259
 msgid "_Track additions"
 msgstr "_Sekti pridėjimus"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:228
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:261
 msgid "Mark new additions in a separate color so you can keep track of them."
 msgstr ""
 "Pažymėti naujus pridėjimus atskira spalva, kad juos būtų lengviau sekti."
@@ -5922,36 +6020,36 @@ msgstr ""
 #. ('ZoomOnResize',None,_('_Adjust size of grid when resizing window'),
 #. None,_('Automatically change the size of numbers and squares to fit the window.'),
 #. ),
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:233
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:266
 msgid "Show _Toolbar"
 msgstr "Rodyti įran_kių juostą"
 
 #. ('ToggleNotes',None,_('Show _Notes'),'<Control>O',
 #. _('Include room for notes at the top and bottom of squares.'),self.toggle_notes_cb),
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:236
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:269
 msgid "_Black background"
 msgstr "_Juodas fonas"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:237
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:270
 msgid ""
 "Background of game is black; otherwise, the background will follow your "
 "theme colors."
 msgstr ""
 "Žaidimo fonas juodas; kitu atveju žaidimo fonas priklausys nuo temos spalvų."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:239
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:272
 msgid "_Highlighter"
 msgstr "_Išryškinimas"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:240
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:273
 msgid "Highlight the current row, column and box"
 msgstr "Išryškinti esamą eilutę, stulpelį ir dėžutę"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:241
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:274
 msgid "Generate new puzzles _while you play"
 msgstr "Žaidžiant _generuoti naujus galvosūkius"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:243
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:276
 msgid ""
 "Generate new puzzles in the background while you play. This will "
 "automatically pause when the game goes into the background."
@@ -5959,118 +6057,114 @@ msgstr ""
 "Žaidžiant foniniame režime generuoti naujus galvosūkius. Dėl to, kai "
 "žaidimas bus fono veiksenoje, žaidime automatiškai bus įjungta pauzė."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:250
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:282
+#, fuzzy
+msgid "_Edit"
+msgstr "Keisti"
+
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:283
 msgid "_Undo"
 msgstr "_Atšaukti"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:250
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:283
 msgid "Undo last action"
 msgstr "Atšaukti paskutinį ėjimą"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:251
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:284
 msgid "_Redo"
 msgstr "_Pakartoti"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:251
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:284
 msgid "Redo last action"
 msgstr "Pakartoti paskutinį ėjimą"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:252
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:285
 msgid "Clear entries you've filled in"
 msgstr "Išvalyti jūsų užpildytus įrašus"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:253
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:286
 msgid "Clear _Notes"
 msgstr "Išvalyti _pastabas"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:253
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:286
 msgid "Clear notes and hints"
 msgstr "Išvalytis pastabas ir užuominas"
 
 #. Trackers...
 #. Our initial row...
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:255
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:822
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:288
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:861
 msgid "No Tracker"
 msgstr ""
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:256
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:289
 msgid "_Generate new puzzles"
 msgstr "_Sugeneruoti naujus galvosūkius"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:256
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:289
 msgid "Generate new puzzles."
 msgstr "Sugeneruoti naujus galvosūkius"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:302
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:335
 msgid "Entering custom grid..."
 msgstr ""
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:306
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:339
 msgid "_Play game"
 msgstr "_Žaisti žaidimą"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:671
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:710
 msgid "Playing "
 msgstr "Žaidžiama "
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:712
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:735
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:751
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:774
 msgid "Puzzle Information"
 msgstr "Galvosūkio informacija"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:713
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:752
 msgid "There is no current puzzle."
 msgstr "Nėra esamo galvosūkio."
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:718
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:757
 msgid "Calculated difficulty: "
 msgstr "Apskaičiuotas sudėtingumas: "
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:722
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:761
 msgid "Number of moves instantly fillable by elimination: "
 msgstr ""
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:725
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:764
 msgid "Number of moves instantly fillable by filling: "
 msgstr ""
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:728
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:767
 msgid "Amount of trial-and-error required to solve: "
 msgstr ""
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:736
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:775
 #, python-format
 msgid "Statistics for %s"
 msgstr "%s statistika"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:767
-msgid "translator_credits"
-msgstr ""
-"Paskutinieji vertėjai:\n"
-"Žygimantas Beručka <zygis@gnome.org>,\n"
-"Justina Klingaitė <justina.klingaite@gmail.com>\n"
-"Tomas Kuliavas <tokul@users.sf.net>,\n"
-"Gediminas Paulauskas <menesis@chatsubo.lt>"
-
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:832
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:871
 msgid "Clear all moves tracked by selected tracker."
 msgstr ""
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:836
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:875
 msgid "_Clear Others"
 msgstr "Iš_valyti kitus"
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:838
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:877
 msgid "Clear all moves not tracked by selected tracker."
 msgstr ""
 
-#: ../gnome-sudoku/src/lib/gnome_sudoku.py:864
+#: ../gnome-sudoku/src/lib/gnome_sudoku.py:903
 #, python-format
 msgid "Tracker %s"
 msgstr ""
 
-#: ../gnomine/gnomine.c:89 ../gnomine/gnomine.c:671
+#: ../gnomine/gnomine.c:89 ../gnomine/gnomine.c:673
 msgid "gnomine|Medium"
 msgstr "Vidutiniška"
 
@@ -6116,7 +6210,7 @@ msgstr "Veidai:"
 msgid "Graphics:"
 msgstr "Grafika:"
 
-#: ../gnomine/gnomine.c:457 ../gnomine/gnomine.c:460 ../gnomine/gnomine.c:1042
+#: ../gnomine/gnomine.c:457 ../gnomine/gnomine.c:460 ../gnomine/gnomine.c:1044
 #: ../gnomine/gnomine.desktop.in.h:2
 msgid "Mines"
 msgstr "Minos"
@@ -6129,74 +6223,74 @@ msgstr ""
 "Populiarusis išminuotojo žaidimas. Raskite minas naudodamiesi užuominomis "
 "atskleistuose langeliuose."
 
-#: ../gnomine/gnomine.c:657
+#: ../gnomine/gnomine.c:659
 msgid "Field Size"
 msgstr "Lauko dydis"
 
-#: ../gnomine/gnomine.c:701
+#: ../gnomine/gnomine.c:703
 msgid "Custom Size"
 msgstr "Kitas dydis"
 
-#: ../gnomine/gnomine.c:708
+#: ../gnomine/gnomine.c:710
 msgid "_Number of mines:"
 msgstr "_Minų skaičius:"
 
-#: ../gnomine/gnomine.c:721
+#: ../gnomine/gnomine.c:723
 msgid "_Horizontal:"
 msgstr "_Horizontaliai:"
 
-#: ../gnomine/gnomine.c:733
+#: ../gnomine/gnomine.c:735
 msgid "_Vertical:"
 msgstr "_Vertikaliai:"
 
-#: ../gnomine/gnomine.c:751
+#: ../gnomine/gnomine.c:753
 msgid "_Use \"I'm not sure\" flags"
 msgstr "_Naudoti \"Aš nesu tikras\" vėliavėlės"
 
-#: ../gnomine/gnomine.c:762
+#: ../gnomine/gnomine.c:764
 msgid "_Use \"Too many flags\" warning"
 msgstr "_Rodyti „Per daug vėliavų“ įspėjimą"
 
-#: ../gnomine/gnomine.c:772
+#: ../gnomine/gnomine.c:774
 msgid "Mines Preferences"
 msgstr "Minų nustatymai"
 
-#: ../gnomine/gnomine.c:969
+#: ../gnomine/gnomine.c:971
 msgid "Width of grid"
 msgstr "Lauko plotis"
 
-#: ../gnomine/gnomine.c:970
+#: ../gnomine/gnomine.c:972
 msgid "Height of grid"
 msgstr "Lauko aukštis"
 
-#: ../gnomine/gnomine.c:972
+#: ../gnomine/gnomine.c:974
 msgid "Number of mines"
 msgstr "Minų skaičius"
 
-#: ../gnomine/gnomine.c:973 ../gtali/gyahtzee.c:104 ../gtali/gyahtzee.c:106
+#: ../gnomine/gnomine.c:975 ../gtali/gyahtzee.c:104 ../gtali/gyahtzee.c:106
 #: ../same-gnome/same-gnome.c:152
 msgid "NUMBER"
 msgstr "SKAIČIUS"
 
-#: ../gnomine/gnomine.c:975 ../gnomine/gnomine.schemas.in.h:8
+#: ../gnomine/gnomine.c:977 ../gnomine/gnomine.schemas.in.h:8
 msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "Lauko dydis (0-2=mažas-didelis, 3=nurodytų išmatavimų)"
 
-#: ../gnomine/gnomine.c:976 ../gnotravex/gnotravex.c:385
-#: ../gnotski/gnotski.c:481 ../iagno/gnothello.c:124
+#: ../gnomine/gnomine.c:978 ../gnotravex/gnotravex.c:385
+#: ../gnotski/gnotski.c:482 ../iagno/gnothello.c:124
 msgid "X location of window"
 msgstr "Lango x padėtis"
 
-#: ../gnomine/gnomine.c:978 ../gnotravex/gnotravex.c:387
-#: ../gnotski/gnotski.c:483 ../iagno/gnothello.c:126
+#: ../gnomine/gnomine.c:980 ../gnotravex/gnotravex.c:387
+#: ../gnotski/gnotski.c:484 ../iagno/gnothello.c:126
 msgid "Y location of window"
 msgstr "Lango y padėtis"
 
-#: ../gnomine/gnomine.c:1106
+#: ../gnomine/gnomine.c:1108
 msgid "Press to Resume"
 msgstr "Paspauskite norėdami tęsti"
 
-#: ../gnomine/gnomine.c:1140
+#: ../gnomine/gnomine.c:1142
 msgid "Time: "
 msgstr "Laikas: "
 
@@ -6341,7 +6435,7 @@ msgstr "5x5"
 msgid "6×6"
 msgstr "6x6"
 
-#: ../gnotravex/gnotravex.c:292 ../same-gnome/ui.c:457
+#: ../gnotravex/gnotravex.c:292 ../same-gnome/ui.c:459
 msgid "_Size"
 msgstr "_Dydis"
 
@@ -6449,7 +6543,7 @@ msgstr "Galvosūkis išspręstas!"
 msgid "Tetravex Scores"
 msgstr "Tetravex taškai"
 
-#: ../gnotravex/gnotravex.c:1497 ../mahjongg/mahjongg.c:980
+#: ../gnotravex/gnotravex.c:1497 ../mahjongg/mahjongg.c:982
 msgid "Game paused"
 msgstr "Žaidimas sustabdytas"
 
@@ -6513,227 +6607,227 @@ msgid "The width of the playing window in pixels. At minimum it should be 320."
 msgstr "Lango plotis pikseliais. Mažiausia galima reikšmė yra 320."
 
 #. puzzle name
-#: ../gnotski/gnotski.c:140
+#: ../gnotski/gnotski.c:142
 msgid "Only 18 Steps"
 msgstr "Tik 18 žingsnių"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:146
+#: ../gnotski/gnotski.c:148
 msgid "Daisy"
 msgstr "Ramunė"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:152
+#: ../gnotski/gnotski.c:154
 msgid "Violet"
 msgstr "Violeta"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:158
+#: ../gnotski/gnotski.c:160
 msgid "Poppy"
 msgstr "Aguona"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:164
+#: ../gnotski/gnotski.c:166
 msgid "Pansy"
 msgstr "Našlaitė"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:170
+#: ../gnotski/gnotski.c:172
 msgid "Snowdrop"
 msgstr "Snieguolė"
 
 #. puzzle name - sometimes called "Le'Ane Rouge"
-#: ../gnotski/gnotski.c:176
+#: ../gnotski/gnotski.c:178
 msgid "Red Donkey"
 msgstr "Raudonas asilas"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:182
+#: ../gnotski/gnotski.c:184
 msgid "Trail"
 msgstr "Pėdsakas"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:188
+#: ../gnotski/gnotski.c:190
 msgid "Ambush"
 msgstr "Pasala"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:194
+#: ../gnotski/gnotski.c:196
 msgid "Agatka"
 msgstr "Agatka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:199
+#: ../gnotski/gnotski.c:201
 msgid "Success"
 msgstr "Sėkmė"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:204
+#: ../gnotski/gnotski.c:206
 msgid "Bone"
 msgstr "Kaulas"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:210
+#: ../gnotski/gnotski.c:212
 msgid "Fortune"
 msgstr "Fortūna"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:218
+#: ../gnotski/gnotski.c:220
 msgid "Fool"
 msgstr "Kvailys"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:224
+#: ../gnotski/gnotski.c:226
 msgid "Solomon"
 msgstr "Saliamonas"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:231
+#: ../gnotski/gnotski.c:233
 msgid "Cleopatra"
 msgstr "Kleopatra"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:236
+#: ../gnotski/gnotski.c:238
 msgid "Shark"
 msgstr "Ryklys"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:244
+#: ../gnotski/gnotski.c:246
 msgid "Rome"
 msgstr "Roma"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:251
+#: ../gnotski/gnotski.c:253
 msgid "Pennant Puzzle"
 msgstr "Vėliavėlių galvosūkis"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:257
+#: ../gnotski/gnotski.c:259
 msgid "Ithaca"
 msgstr "Ithaca"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:278
+#: ../gnotski/gnotski.c:280
 msgid "Pelopones"
 msgstr "Pelopones"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:285
+#: ../gnotski/gnotski.c:287
 msgid "Transeuropa"
 msgstr "Transeuropa"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:294
+#: ../gnotski/gnotski.c:296
 msgid "Lodzianka"
 msgstr "Lodzianka"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:300
+#: ../gnotski/gnotski.c:302
 msgid "Polonaise"
 msgstr "Polonezas"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:305
+#: ../gnotski/gnotski.c:307
 msgid "Baltic Sea"
 msgstr "Baltijos jūra"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:310
+#: ../gnotski/gnotski.c:312
 msgid "American Pie"
 msgstr "Amerikietiškas pyragas"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:322
+#: ../gnotski/gnotski.c:324
 msgid "Traffic Jam"
 msgstr "Eismo kamštis"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:329
+#: ../gnotski/gnotski.c:331
 msgid "Sunshine"
 msgstr "Saulės šviesa"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:353
+#: ../gnotski/gnotski.c:355
 msgid "Block 10"
 msgstr "10 blokas"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:358
+#: ../gnotski/gnotski.c:360
 msgid "Block 10 Pro"
 msgstr "10 blokas pro"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:363
+#: ../gnotski/gnotski.c:365
 msgid "Climb 12"
 msgstr "Lipimas 12"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:368
+#: ../gnotski/gnotski.c:370
 msgid "Climb 12 Pro"
 msgstr "Lipimas 12 pro"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:373
+#: ../gnotski/gnotski.c:375
 msgid "Climb 15 Winter"
 msgstr "Lipimas 15 žiema"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:380
+#: ../gnotski/gnotski.c:382
 msgid "Climb 15 Spring"
 msgstr "Lipimas 15 pavasaris"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:387
+#: ../gnotski/gnotski.c:389
 msgid "Climb 15 Summer"
 msgstr "Lipimas 15 vasara"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:394
+#: ../gnotski/gnotski.c:396
 msgid "Climb 15 Fall"
 msgstr "Lipimas 15 ruduo"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:401
+#: ../gnotski/gnotski.c:403
 msgid "Climb 24 Pro"
 msgstr "Lipimas 24 pro"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:430
+#: ../gnotski/gnotski.c:431
 msgid "HuaRong Trail"
 msgstr "HuaRong pėdsakas"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:432
+#: ../gnotski/gnotski.c:433
 msgid "Challenge Pack"
 msgstr "Iššukių paketas"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:434
+#: ../gnotski/gnotski.c:435
 msgid "Skill Pack"
 msgstr "Įgudžių paketas"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:436
+#: ../gnotski/gnotski.c:437
 msgid "Minoru Climb"
 msgstr "Minoru lipimas"
 
-#: ../gnotski/gnotski.c:437
+#: ../gnotski/gnotski.c:438
 msgid "_Restart Puzzle"
 msgstr "_Perleisti galvosūkį"
 
-#: ../gnotski/gnotski.c:439
+#: ../gnotski/gnotski.c:440
 msgid "Next Puzzle"
 msgstr "Kitas galvosūkis"
 
-#: ../gnotski/gnotski.c:441
+#: ../gnotski/gnotski.c:442
 msgid "Previous Puzzle"
 msgstr "Ankstesnis galvosūkis"
 
-#: ../gnotski/gnotski.c:670
+#: ../gnotski/gnotski.c:673
 msgid "Level completed."
 msgstr "Lygis užbaigtas."
 
-#: ../gnotski/gnotski.c:862
+#: ../gnotski/gnotski.c:873
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -6743,7 +6837,7 @@ msgstr ""
 "\n"
 "Patikrinkite ar „Klotski“ įdiegta teisingai."
 
-#: ../gnotski/gnotski.c:1034
+#: ../gnotski/gnotski.c:1110
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -6756,12 +6850,12 @@ msgstr ""
 "\n"
 "Patikrinkite ar „Klotski“ įdiegta teisingai."
 
-#: ../gnotski/gnotski.c:1073
+#: ../gnotski/gnotski.c:1149
 #, c-format
 msgid "Moves: %d"
 msgstr "Ėjimai: %d"
 
-#: ../gnotski/gnotski.c:1403
+#: ../gnotski/gnotski.c:1479
 msgid "Sliding Block Puzzles"
 msgstr "Slystančių blokų galvosūkis"
 
@@ -6962,7 +7056,7 @@ msgstr "_Delsa tarp metimų"
 msgid "N_umber of opponents:"
 msgstr "_Varžovų skaičius:"
 
-#: ../gtali/setup.c:344 ../mahjongg/mahjongg.c:797
+#: ../gtali/setup.c:344 ../mahjongg/mahjongg.c:799
 msgid "Colors"
 msgstr "Spalvos"
 
@@ -7071,23 +7165,23 @@ msgstr "5 vienodi [50 + suma]"
 msgid "Choose a score slot."
 msgstr "Pasirinkite rezultatų dėžutę."
 
-#: ../gtali/yahtzee.c:592
+#: ../gtali/yahtzee.c:593
 msgid "How many times do you wish to roll?"
 msgstr "Kiek kartų norite ridenti?"
 
-#: ../gtali/yahtzee.c:597
+#: ../gtali/yahtzee.c:598
 msgid "Generating ..."
 msgstr "Generuojama ..."
 
-#: ../gtali/yahtzee.c:632
+#: ../gtali/yahtzee.c:633
 msgid "Results"
 msgstr "Rezultatai"
 
-#: ../gtali/yahtzee.c:632
+#: ../gtali/yahtzee.c:633
 msgid "Num Rolls"
 msgstr "Metimų skaičius"
 
-#: ../gtali/yahtzee.c:632
+#: ../gtali/yahtzee.c:633
 msgid "Total"
 msgstr "Suma"
 
@@ -7226,7 +7320,7 @@ msgstr "R_odyti groteles"
 msgid "_Flip final results"
 msgstr "_Spragtelėti galutinius rezultatus"
 
-#: ../iagno/properties.c:666 ../mahjongg/mahjongg.c:762
+#: ../iagno/properties.c:666 ../mahjongg/mahjongg.c:764
 msgid "_Tile set:"
 msgstr "_Skridinėlių rūšis:"
 
@@ -7294,21 +7388,21 @@ msgstr ""
 msgid "Remove bot"
 msgstr "Pašalinti robotą"
 
-#: ../libgames-support/games-card-selector.c:56
+#: ../libgames-support/games-card-selector.c:62
 msgid "Card Style"
 msgstr "Kortų stilius"
 
-#: ../libgames-support/games-controls.c:151
-#: ../libgames-support/games-controls.c:318
-#: ../libgames-support/games-controls.c:380
+#: ../libgames-support/games-controls.c:146
+#: ../libgames-support/games-controls.c:287
+#: ../libgames-support/games-controls.c:349
 msgid "No key"
 msgstr "Joks klavišas"
 
-#: ../libgames-support/games-controls.c:194
+#: ../libgames-support/games-controls.c:189
 msgid "<Press a Key>"
 msgstr "<Spauskite klavišą>"
 
-#: ../libgames-support/games-controls.c:366
+#: ../libgames-support/games-controls.c:335
 msgid "Unknown Command"
 msgstr "Nežinoma komanda"
 
@@ -7327,61 +7421,61 @@ msgid ""
 "been installed correctly."
 msgstr "Patikrinkite Jūsų GConf nustatymus. Ar schemos yra teisingai įdiegtos."
 
-#: ../libgames-support/games-gridframe.c:219
-#: ../libgames-support/games-gridframe.c:227
+#: ../libgames-support/games-gridframe.c:221
+#: ../libgames-support/games-gridframe.c:229
 msgid "X Padding"
 msgstr "X užpildymas"
 
-#: ../libgames-support/games-gridframe.c:221
+#: ../libgames-support/games-gridframe.c:223
 msgid "Extra space to add to the width allocation."
 msgstr "Papildoma erdvė pridedama prie paskirto pločio."
 
-#: ../libgames-support/games-gridframe.c:229
+#: ../libgames-support/games-gridframe.c:231
 msgid "Extra space to add to the height allocation."
 msgstr "Papildoma erdvė pridedama prie paskirto aukščio."
 
-#: ../libgames-support/games-gridframe.c:235
+#: ../libgames-support/games-gridframe.c:237
 msgid "Width Multiple"
 msgstr "Pločio kartotinis"
 
-#: ../libgames-support/games-gridframe.c:237
+#: ../libgames-support/games-gridframe.c:239
 msgid "What multiple to constrain the width to."
 msgstr "Į kokį kartotinį paversti plotį."
 
-#: ../libgames-support/games-gridframe.c:243
+#: ../libgames-support/games-gridframe.c:245
 msgid "Height Multiple"
 msgstr "Aukščio kartotinis"
 
-#: ../libgames-support/games-gridframe.c:245
+#: ../libgames-support/games-gridframe.c:247
 msgid "What multiple to constrain the height to."
 msgstr "Į kokį kartotinį paversti aukštį."
 
-#: ../libgames-support/games-gridframe.c:250
+#: ../libgames-support/games-gridframe.c:252
 msgid "X align"
 msgstr "X užpildymas"
 
-#: ../libgames-support/games-gridframe.c:252
+#: ../libgames-support/games-gridframe.c:254
 msgid "The horizontal alignment, from 0 (left) to 1 (right)"
 msgstr "Horizontalus lygiavimas, nuo 0 (kairė) iki 1 (dešinė)"
 
-#: ../libgames-support/games-gridframe.c:257
+#: ../libgames-support/games-gridframe.c:259
 msgid "Y align"
 msgstr "Y lygiuotė"
 
-#: ../libgames-support/games-gridframe.c:259
+#: ../libgames-support/games-gridframe.c:261
 msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
 msgstr "Vertikalus lygiavimas, nuo 0 (viršus) iki 1 (apačia)"
 
-#: ../libgames-support/games-preimage.c:131
+#: ../libgames-support/games-preimage.c:137
 msgid "Image rendering failed."
 msgstr "Paveikslėlių atvaizdavimas nepavyko."
 
-#: ../libgames-support/games-scores-dialog.c:122
+#: ../libgames-support/games-scores-dialog.c:116
 msgid "Time"
 msgstr "Laikas"
 
 #. Translators: this is for a minutes, seconds time display.
-#: ../libgames-support/games-scores-dialog.c:276
+#: ../libgames-support/games-scores-dialog.c:271
 #, c-format
 msgid "%dm %ds"
 msgstr "%dm %ds"
@@ -7440,11 +7534,11 @@ msgstr ""
 msgid "Show a list of players in the network game"
 msgstr ""
 
-#: ../libgames-support/games-stock.c:115 ../mahjongg/mahjongg.c:1310
+#: ../libgames-support/games-stock.c:115 ../mahjongg/mahjongg.c:1312
 msgid "Pause the game"
 msgstr "Sustabdyti žaidimą"
 
-#: ../libgames-support/games-stock.c:116 ../mahjongg/mahjongg.c:1313
+#: ../libgames-support/games-stock.c:116 ../mahjongg/mahjongg.c:1315
 msgid "Resume the paused game"
 msgstr "Tęsti sustabdytą žaidimą"
 
@@ -7483,33 +7577,6 @@ msgstr "Apie šį žaidimą"
 #: ../libgames-support/games-stock.c:128
 msgid "Configure the game"
 msgstr "Konfigūruoti žaidimą"
-
-#. %s is replaced with the name of the game in gnome-games.
-#: ../libgames-support/games-stock.c:338
-#, c-format
-msgid ""
-"%s is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version."
-msgstr ""
-
-#: ../libgames-support/games-stock.c:342
-#, c-format
-msgid ""
-"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details."
-msgstr ""
-
-#: ../libgames-support/games-stock.c:346
-#, c-format
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
-"Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr ""
 
 #: ../libgames-support/libgnomegames.schemas.in.h:1
 msgid "Network game mode"
@@ -7564,7 +7631,7 @@ msgstr ""
 "\n"
 "Patikrinkite ar „Mahjongg“ yra įdiegtas tesingai."
 
-#: ../mahjongg/drawing.c:454
+#: ../mahjongg/drawing.c:456
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -7572,12 +7639,12 @@ msgid ""
 "\n"
 "Please check that Mahjongg is installed correctly."
 msgstr ""
-"Nepavyko rasti rinkmenos:\n"
+"Nepavyko rasti failo:\n"
 "%s\n"
 "\n"
 "Patikrinkite ar „Mahjongg“ yra įdiegtas teisingai."
 
-#: ../mahjongg/drawing.c:458
+#: ../mahjongg/drawing.c:460
 #, c-format
 msgid ""
 "Unable to locate file:\n"
@@ -7585,11 +7652,11 @@ msgid ""
 "\n"
 "The default tile set will be loaded instead."
 msgstr ""
-"Nepavyko rasti rinkmenos:\n"
+"Nepavyko rasti failo:\n"
 "„%s“\n"
 "Vietoje to, bus įkeltas numatytasis koklių rinkinys."
 
-#: ../mahjongg/drawing.c:476
+#: ../mahjongg/drawing.c:478
 #, c-format
 msgid ""
 "Unable to render file:\n"
@@ -7597,7 +7664,7 @@ msgid ""
 "\n"
 "Please check that Mahjongg is installed correctly."
 msgstr ""
-"Nepavyko atvaizduoti rinkmenos:\n"
+"Nepavyko atvaizduoti failo:\n"
 "%s\n"
 "\n"
 "Patikrinkite ar „Mahjongg“ yra įdiegtas teisingai."
@@ -7606,7 +7673,7 @@ msgstr ""
 msgid "Could not load tile set"
 msgstr "Nepavyko įkelti koklių rinkinio"
 
-#: ../mahjongg/mahjongg.c:380
+#: ../mahjongg/mahjongg.c:382
 msgid ""
 "Do you want to finish the current game or start playing with the new map "
 "immediately?"
@@ -7614,7 +7681,7 @@ msgstr ""
 "Ar norite užbaigti šį žaidimą, ar tučtuojau pradėti žaisti su nauju "
 "žemėlapiu?"
 
-#: ../mahjongg/mahjongg.c:382
+#: ../mahjongg/mahjongg.c:384
 msgid ""
 "If you choose to finish with the old map then the next game will use the new "
 "map."
@@ -7622,73 +7689,73 @@ msgstr ""
 "Jeigu pasirinksite užbaigti su senu žemėlapiu, tada kitame žaidime bus "
 "naudojamas naujas žemėlapis."
 
-#: ../mahjongg/mahjongg.c:383
+#: ../mahjongg/mahjongg.c:385
 msgid "_Finish"
 msgstr "_Baigti"
 
-#: ../mahjongg/mahjongg.c:660
+#: ../mahjongg/mahjongg.c:662
 msgid "Shuffle"
 msgstr "Sumaišyti"
 
-#: ../mahjongg/mahjongg.c:693 ../mahjongg/mahjongg.c:1005
+#: ../mahjongg/mahjongg.c:695 ../mahjongg/mahjongg.c:1007
 msgid "Mahjongg Scores"
 msgstr "Mahjongg taškai"
 
-#: ../mahjongg/mahjongg.c:695 ../mahjongg/mahjongg.c:1007
+#: ../mahjongg/mahjongg.c:697 ../mahjongg/mahjongg.c:1009
 msgid "Map:"
 msgstr "Planas:"
 
-#: ../mahjongg/mahjongg.c:734
+#: ../mahjongg/mahjongg.c:736
 msgid "Mahjongg Preferences"
 msgstr "Mahjongg nustatymai"
 
-#: ../mahjongg/mahjongg.c:755
+#: ../mahjongg/mahjongg.c:757
 msgid "Tiles"
 msgstr "Kokliai"
 
-#: ../mahjongg/mahjongg.c:776
+#: ../mahjongg/mahjongg.c:778
 msgid "Maps"
 msgstr "Planai"
 
-#: ../mahjongg/mahjongg.c:783
+#: ../mahjongg/mahjongg.c:785
 msgid "_Select map:"
 msgstr "_Pasirinkite planą:"
 
-#: ../mahjongg/mahjongg.c:924
+#: ../mahjongg/mahjongg.c:926
 msgid "Maps:"
 msgstr "Planai:"
 
-#: ../mahjongg/mahjongg.c:931
+#: ../mahjongg/mahjongg.c:933
 msgid "Tiles:"
 msgstr "Kokliai:"
 
-#: ../mahjongg/mahjongg.c:944 ../mahjongg/mahjongg.c:947
-#: ../mahjongg/mahjongg.c:1019 ../mahjongg/mahjongg.desktop.in.h:2
+#: ../mahjongg/mahjongg.c:946 ../mahjongg/mahjongg.c:949
+#: ../mahjongg/mahjongg.c:1021 ../mahjongg/mahjongg.desktop.in.h:2
 msgid "Mahjongg"
 msgstr "Mahjongg"
 
-#: ../mahjongg/mahjongg.c:950
+#: ../mahjongg/mahjongg.c:952
 msgid "A matching game played with Mahjongg tiles."
 msgstr "Atitikmenų žaidimas žaidžiamas su Mahjongg kokliais. "
 
-#: ../mahjongg/mahjongg.c:1019
+#: ../mahjongg/mahjongg.c:1021
 #, c-format
 msgid "%s - %s"
 msgstr "%s - %s"
 
-#: ../mahjongg/mahjongg.c:1273
+#: ../mahjongg/mahjongg.c:1275
 msgid "Sorry, I was unable to find a playable configuration."
 msgstr "Labai gaila, bet sistemai nepavyko rasti žaidimui tinkamų nustatymų."
 
-#: ../mahjongg/mahjongg.c:1483
+#: ../mahjongg/mahjongg.c:1485
 msgid "Tiles Left:"
 msgstr "Koklių liko: "
 
-#: ../mahjongg/mahjongg.c:1492
+#: ../mahjongg/mahjongg.c:1494
 msgid "Moves Left:"
 msgstr "Ėjimų liko: "
 
-#: ../mahjongg/mahjongg.c:1555
+#: ../mahjongg/mahjongg.c:1557
 msgid "Remove matching pairs of tiles."
 msgstr "Pašalinkite sutampančias koklių poras."
 
@@ -7801,7 +7868,7 @@ msgstr "Lentos dydis"
 
 #: ../same-gnome/same-gnome.schemas.in.h:4
 msgid "The filename of the theme to use."
-msgstr "Naudojamos temos rinkmenos pavadinimas."
+msgstr "Naudotinos temos failo pavadinimas."
 
 #: ../same-gnome/same-gnome.schemas.in.h:5
 msgid "The height of the custom board, 101 &gt; height &gt; 3."
@@ -7875,11 +7942,11 @@ msgstr "Nelaimei, Jūsų taškai nepateko į top dešimtuką."
 msgid "Same GNOME Theme"
 msgstr "Same GNOME tema"
 
-#: ../same-gnome/ui.c:471
+#: ../same-gnome/ui.c:473
 msgid "_Theme..."
 msgstr "_Tema..."
 
-#: ../same-gnome/ui.c:484
+#: ../same-gnome/ui.c:486
 msgid "_Fast Animation"
 msgstr "_Greita animacija"
 
@@ -7894,6 +7961,23 @@ msgid ""
 msgstr ""
 "Žaisti šio žaidimo neįmanoma. Prašau, patikrinkite ar žaidimas buvo įdiegtas "
 "korektiškai ir bandykite dar kartą."
+
+#~ msgid "localhost"
+#~ msgstr "localhost"
+
+#~ msgid "5688"
+#~ msgstr "5688"
+
+#~ msgid "Copyright (c) 2005,2006, Thomas M. Hinkle. GNU GPL"
+#~ msgstr "Autorinės teisės priklauso (c) 2005,2006, Thomas M. Hinkle. GNU GPL"
+
+#~ msgid "translator_credits"
+#~ msgstr ""
+#~ "Paskutinieji vertėjai:\n"
+#~ "Žygimantas Beručka <zygis@gnome.org>,\n"
+#~ "Justina Klingaitė <justina.klingaite@gmail.com>\n"
+#~ "Tomas Kuliavas <tokul@users.sf.net>,\n"
+#~ "Gediminas Paulauskas <menesis@chatsubo.lt>"
 
 #, fuzzy
 #~ msgid "Upgrage Game"
@@ -7982,9 +8066,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "_High Scores"
 #~ msgstr "_Taškai"
-
-#~ msgid "Redeals left: ~a"
-#~ msgstr "Perdalinimų liko: ~a"
 
 #~ msgid "Set the state of the board at start-up."
 #~ msgstr "Nustatyti lentos būseną žaidimo pradžioje."
