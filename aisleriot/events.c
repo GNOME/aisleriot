@@ -282,7 +282,7 @@ button_press_event (GtkWidget * widget, GdkEventButton * event, void *d)
     timer_start ();
   }
 
-  if (event->button < 1 && event->button > 3)
+  if (event->button < 1 || event->button > 3)
     return TRUE;
 
   /* ignore the gdk synthetic click events */
