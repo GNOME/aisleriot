@@ -245,11 +245,13 @@ AC_SUBST(LIBEXPAT)
 # the WinAPI interface is used instead.
 AC_MSG_CHECKING([for PF_LOCAL])
 AC_EGREP_CPP(PF_LOCAL,
-             [#include <sys/socket.h>
+             [#include <sys/types.h>
+              #include <sys/socket.h>
               PF_LOCAL ],
              [AC_MSG_RESULT(no)
               AC_MSG_CHECKING([for PF_UNIX])
-              AC_EGREP_CPP(PF_UNIX, [ #include <sys/socket.h>
+              AC_EGREP_CPP(PF_UNIX, [ #include <sys/types.h>
+				      #include <sys/socket.h>
 				      PF_UNIX ],
                            [AC_MSG_RESULT(no)],
                            [AC_MSG_RESULT(yes)
