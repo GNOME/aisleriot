@@ -374,7 +374,7 @@
 ; check-move handles it. This only checks for the one special case
 ; of the top two cards matching.
 (define (check-waste-for-move)
-  (if (and (> (length (get-cards waste-slot)) 2)
+  (if (and (>= (length (get-cards waste-slot)) 2)
 	   (= (+ (get-value (get-nth-card waste-slot 1))
 		 (get-value (get-nth-card waste-slot 2))) 
 	      magic-total))
