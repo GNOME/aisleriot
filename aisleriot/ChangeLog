@@ -1,5 +1,12 @@
 2007-03-20  Andreas Røsdal  <andreasr@gnome.org>
 
+	* plait.scm: Prevent a crash when double clicking in Plait.
+	The button-double-clicked didn't check if the source slot
+	is empty before trying to remove a card from it.
+	Patch from Vincent Povirk in bug #416255.
+
+2007-03-20  Andreas Røsdal  <andreasr@gnome.org>
+
 	* thirteen.scm: Correctly recognize a win condition in Thirteen,
 	by changing a check of the length of waste-slot. Patch from 
 	Vincent Povirk in bug #418045.

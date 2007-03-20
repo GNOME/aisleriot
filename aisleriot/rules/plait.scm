@@ -18,7 +18,7 @@
 ;; along with this program; if not, write to the Free Software
 ;; Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-;; @(#) $Id$
+;; @(#) $Id: plait.scm,v 1.14 2005/07/10 07:08:54 callum Exp $
 
 ;; Constants
 (define edge-1  0)
@@ -321,6 +321,7 @@
 ;;     used differently, depending on whether it's a home slot or not.
 (define (find-valid-move source slot-list)
   (and (not (null? slot-list))
+       (not (empty-slot? source))
        (let ((target (car slot-list)))
             (cond ((and (home? target)
                         (not (empty-slot? source))
