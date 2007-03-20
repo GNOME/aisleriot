@@ -270,15 +270,15 @@
 
 (define (get-options)
   (list 'begin-exclusive 
-	(list (_"Four Suits") suits-four)
-	(list (_"Two Suits") suits-two)
 	(list (_"One Suit") suits-one)
+	(list (_"Two Suits") suits-two)
+	(list (_"Four Suits") suits-four)
 	'end-exclusive))
 
 (define (apply-options options)
-  (set! suits-four (cadr (list-ref options 1)))
+  (set! suits-one (cadr (list-ref options 1)))
   (set! suits-two (cadr (list-ref options 2)))
-  (set! suits-one (cadr (list-ref options 3))))
+  (set! suits-four (cadr (list-ref options 3))))
 
 (define (timeout) #f)
 
