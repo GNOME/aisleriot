@@ -1,3 +1,63 @@
+gnome-games 2.19.1
+==================
+
+This is a bleeding-edge release of gnome-games, with new features and bugfixes
+to Aisleriot, Chess and Sudoku.
+
+* General
+ - Fix inclusion of types.h for GGZ (#381715).
+ - Use correct locale dir for GGZ (#431300). 
+
+* Aisleriot
+ - Change spider options order (bug #403961).
+ - Prevent a crash when double clicking in Plait (#416255).
+ - Correctly recognize a win condition in Thirteen (#418045).
+ - Fix manual validation (Bug #370394).
+
+* Chess
+ - Changed AI process management to remove os.forkpty() (Bug #426538)
+ - Catch exception if unable to display help (Bug #432216).
+ - Catch IOError exceptions when autosaving (Bug #425614).
+ - Added timed play.
+ - Changed nice level for AIs to 19 (they are affecting the animation)
+ - Add choice of board rotation modes (white side, black side, human
+   side, current players side)
+ - Fixed broken OpenGL board rotation
+ - Added 2D rotation
+ - Handle empty filename in save dialog (Bug #419486)
+ - Change python OpenGL import to make issues with external bindings 
+   more visible (Bug #419605)
+ - Added menu selectable promotion type
+ - AI players now wait for piece animation to end before making moves
+ - Refactored game/scene code
+ - Made move hints optional. (menu item: view->move hints)
+ - Added support for Boo's Chess Engine.
+ - Changed chess engine to using bitboards (33% faster)
+ - Added detection for stalemate, resignation, threefold repetition,
+   fifty move rule. (Still insufficient material to be done).
+ - Tooltip style panel appears when game ends.
+ - Removed all pop-up error dialogs and integrated the error reporting
+   into the load/save dialogs.
+
+* Sudoku
+ - Catch exceptions when launching help (Bug #418193)
+ - Sort game name columns numerically (Bug #417191)
+ - Make sure one game is always selected for restoring (Bug #422748)
+ - Remember window size when quitting (Bug #380780).
+ - Use string substitution using dictionary lookups when using ngettext to stop
+   substitution exceptions (Bug #409739).
+ - Handle corrupted high score entries (Bug #413848).
+ - Removed dialog separators to be HIG compliant.
+ - Stop number pop-up from visibly moving when created.
+ - Stop number pop-up from being in taskbar list (Bug #406767).
+ - Correctly mark game name as unicode so that it can be split on 
+   character boundaries (Bug #409740).
+ - Load random module correctly (Bug #411073).
+ - Fix PyGtk tree selection bug (Bug #416063).
+ - Fix undo tracker deletion (Bug #417805).
+ - Handle exceptions loading pickled objects (Bug #408837).
+
+
 gnome-games 2.18.0
 ==================
 
