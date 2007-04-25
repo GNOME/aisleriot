@@ -50,7 +50,6 @@ games_clock_new (void)
   GamesClock *clock;
 
   clock = g_object_new (games_clock_get_type (), NULL);
-  games_clock_init (clock);
 
   return GTK_WIDGET (clock);
 }
