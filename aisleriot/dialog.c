@@ -304,7 +304,7 @@ show_hint_dialog ()
 	str2 = SCM_STRING_CHARS (SCM_CADDR (hint));
 	gmessage = g_strdup_printf (_("Move %s %s."), str1, str2);
 	g_warning (_
-		   ("This game uses a deprecated hint method (case 3).\nPlease file a bug at http://bugzilla.gnome.org including this message and\nthe name of the game you where playing (look in the title bar if you \naren't sure)."));
+		   ("This game uses a deprecated hint method (case 3).\nPlease file a bug at http://bugzilla.gnome.org including this message and\nthe name of the game you were playing (look in the title bar if you \naren't sure)."));
 	break;
 
       case 4:
