@@ -80,7 +80,7 @@ scrollkeeper-update
 
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
 SCHEMAS="aisleriot.schemas blackjack.schemas glines.schemas gnect.schemas
-gnibbles.schemas gnobots2.schemas gnome-stones.schemas gnometris.schemas gnomine.schemas 
+gnibbles.schemas gnobots2.schemas gnometris.schemas gnomine.schemas 
 gnotravex.schemas gtali.schemas iagno.schemas mahjongg.schemas same-gnome.schemas"
 for S in $SCHEMAS; do
   gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/$S > /dev/null
@@ -101,14 +101,11 @@ scrollkeeper-update
 %{_datadir}/pixmaps
 %{_datadir}/gnobots2
 %{_datadir}/sounds
-%{_datadir}/gnome-stones
 %{_datadir}/mime-info
-%{_datadir}/gnome-stonesrc*
 %{_datadir}/gnibbles
 %{_datadir}/sol-games
 %{_datadir}/omf
 %{_datadir}/blackjack
-%{_libdir}/gnome-stones
 %{_libdir}/*.so.*
 %{_sysconfdir}/gconf/schemas/*
 %config %{_sysconfdir}/sound/events/*
@@ -133,7 +130,6 @@ scrollkeeper-update
 %{_bindir}/mahjongg
 %{_bindir}/gtali
 %{_bindir}/gnobots2
-%{_bindir}/gnome-stones
 %{_bindir}/gnometris
 %{_bindir}/gnotravex
 %{_bindir}/gnotski
