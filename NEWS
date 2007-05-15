@@ -1,3 +1,30 @@
+gnome-games 2.19.2
+==================
+
+This is yet another development release of the 2.19.x development branch,
+containing the following mayor changes:
+
+ * General:
+ - The translations of documentation and user-interface is well under way,
+   even to Occitan!
+ - gnome-games has been fully migrated to gnome-doc-utils. This means
+   that it will be easier for the hard-working translators to translate
+   the documentation. Thanks to everyone who helped with the migration. 
+   (Bug #398471).
+ - GnomeGoal: fix gtk-update-icon-cache for uninstall-hook (Bug #436258).
+ 
+ * glChess:
+ - Set more configuration defaults in case schema is missing (Bug #434097)
+ - Prevent cluttering of home directory with logs (Bug #424010)
+ - Fix visible resizing when starting up
+ - Save window maximised state (Bug #404554).
+ - Update dummy OpenGL scene to have correct method arguments (Bug #420730).
+
+ * Sudoku:
+ - Fix a race condition which occurs when saving puzzles on exit. 
+   The solution is to run the pickle operation atomically. This solves
+   Bug #409172 et al.
+
 gnome-games 2.19.1
 ==================
 
