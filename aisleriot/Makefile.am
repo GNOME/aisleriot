@@ -1,7 +1,6 @@
 if HAVE_GUILE
 
 cardimagedir = $(datadir)/pixmaps/cards
-icondir = $(datadir)/icons/hicolor/48x48/apps
 Gamesdir  = $(datadir)/applications
 scmdir  = $(datadir)/sol-games
 gladedir = $(datadir)/sol-games/glade
@@ -61,10 +60,8 @@ scm_DATA  = 		\
 
 cardimage_DATA = baize.png slot.svg
 
-icon_DATA = gnome-aisleriot.png gnome-freecell.png
-
 EXTRA_DIST = AUTHORS $(scm_DATA) $(cardimage_DATA) \
-	$(icon_DATA) sol.desktop.in freecell.desktop.in \
+	sol.desktop.in freecell.desktop.in \
 	translatable_game_names.h \
 	$(schema_in_files) $(glade_DATA)
 
