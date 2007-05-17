@@ -13,6 +13,8 @@ card_DATA = bonded.svg
 icondir = $(datadir)/pixmaps/gnome-games-common/icons
 icon_DATA = icons/teleport.png icons/rteleport.png
 
+sounddir=$(datadir)/gnome-games/sounds
+
 INCLUDES =							\
 	-DDATADIR=\""$(datadir)"\"				\
 	-DICONDIR=\""$(icondir)"\"				\
@@ -21,7 +23,8 @@ INCLUDES =							\
 	$(WARN_CFLAGS)						\
 	$(GNOME_GAMES_CFLAGS)					\
 	$(GGZMOD_INCLUDES) $(GGZ_GTK_INCLUDES) $(GGZCORE_INCLUDES) \
-	$(LIBGGZ_INCLUDES)
+	$(LIBGGZ_INCLUDES)					\
+	-DSOUNDDIR=\""$(sounddir)"\"
 
 if GGZ_CLIENT
 GGZ_DIALOGS = \
@@ -70,6 +73,8 @@ libgames_support_la_SOURCES =		\
 	games-scores-dialog.c		\
 	games-scores-dialog.h		\
 	games-scores-dialog-private.h	\
+	games-sound.c			\
+	games-sound.h			\
 	$(NULL)
 
 install-data-local:

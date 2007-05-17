@@ -1,3 +1,20 @@
+2007-05-17  Andreas Røsdal  <andreasr@gnome.org>
+
+	* Add GStreamer support to gnome-games. 
+
+	This means that gnome-games now requires GStreamer >= 0.10.
+	The common sound code is integrated into libgames-support.
+
+	The sounds are stored in /sounds in ogg vorbis format,
+	which will reduce the total size of the gnome-games tarball.
+	The sounds are accessable for all the games, so that sounds
+	can be reused.
+
+	Iagno, gnometris, gnibbles and gnobots use the new sound code,
+	but it should be trivial to implement sound support in the other
+	games as well. Note that this deprecates all sound-related bugs
+	in gnome-games, and replaces them with potentially new ones.
+
 2007-05-16  Robert Ancell  <robert.ancell@gmail.com>
 
 	* Use new Tango icons from Daniel Derozier (closes #354507)

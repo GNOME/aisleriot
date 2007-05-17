@@ -104,9 +104,10 @@ GCONF_REQUIRED=2.0
 LIBRSVG_REQUIRED=2.0
 CAIRO_REQUIRED=1.0
 LIBXML_REQUIRED=2.4.0
+GSTREAMER_REQUIRED=0.10.11
 
 ## Common flags for libraries that all games use.
-PKG_CHECK_MODULES(GNOME_GAMES, libxml-2.0 >= $LIBXML_REQUIRED libgnome-2.0 >= $LIBGNOME_REQUIRED gconf-2.0 >= $GCONF_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gtk+-2.0 >= $GTK_REQUIRED librsvg-2.0 >= $LIBRSVG_REQUIRED pygtk-2.0 >= $PYGTK_REQUIRED gnome-python-desktop-2.0 >= $GNOME_PYTHON_DESKTOP_REQUIRED)
+PKG_CHECK_MODULES(GNOME_GAMES, libxml-2.0 >= $LIBXML_REQUIRED libgnome-2.0 >= $LIBGNOME_REQUIRED gconf-2.0 >= $GCONF_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gtk+-2.0 >= $GTK_REQUIRED librsvg-2.0 >= $LIBRSVG_REQUIRED pygtk-2.0 >= $PYGTK_REQUIRED gnome-python-desktop-2.0 >= $GNOME_PYTHON_DESKTOP_REQUIRED gstreamer-0.10 >= $GSTREAMER_REQUIRED)
 AC_SUBST(GNOME_GAMES_CFLAGS)
 AC_SUBST(GNOME_GAMES_LIBS)
 
@@ -197,12 +198,6 @@ case "$ac_cv_build" in
      *-*-osf1-* ) OS_FLAGS="-D_POSIX_PII_SOCKET" ;;
 esac
 GNOME_GAMES_CFLAGS="$OS_FLAGS $GNOME_GAMES_CFLAGS"
-
-PKG_CHECK_MODULES(ESD, esound, , [
-  GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS -DNO_ESD"
-  GNOME_GAMES_CXXFLAGS="$GNOME_GAMES_CXXFLAGS -DNO_ESD" ])
-AC_SUBST(ESD_CFLAGS)
-AC_SUBST(ESD_LIBS)
 
 GETTEXT_PACKAGE=gnome-games
 AC_SUBST(GETTEXT_PACKAGE)
@@ -445,6 +440,7 @@ dependencies/ggzmod-ggz/Makefile
 dependencies/ggz-gtk/Makefile
 dependencies/gnuchess/Makefile
 icons/Makefile
+sounds/Makefile
 libgames-support/Makefile
 blackjack/Makefile
 blackjack/data/Makefile
@@ -471,7 +467,6 @@ gtali/help/da/Makefile
 iagno/Makefile
 iagno/iagno-client.dsc
 iagno/iagno-server.dsc
-iagno/sounds/Makefile
 iagno/help/Makefile
 gnotravex/Makefile
 gnotravex/help/Makefile
@@ -482,7 +477,6 @@ glines/Makefile
 glines/help/Makefile
 gnometris/Makefile
 gnometris/pix/Makefile
-gnometris/sounds/Makefile
 gnometris/help/Makefile
 gnobots2/Makefile
 gnobots2/help/Makefile
@@ -494,7 +488,6 @@ gnibbles/gnibbles-client.dsc
 gnibbles/gnibbles-server.dsc
 gnibbles/help/Makefile
 gnibbles/pix/Makefile
-gnibbles/sounds/Makefile
 aisleriot/Makefile
 aisleriot/rules/Makefile
 aisleriot/help/Makefile
