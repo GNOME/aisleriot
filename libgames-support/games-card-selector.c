@@ -55,9 +55,13 @@ signal_propagator (GtkWidget * widget, GamesCardSelector * selector)
 gint 
 games_card_selector_get_size (void) 
 {
-  GamesFileList *files = games_file_list_new_images (CARDDIR, NULL);
+  gint size;
 
-  return g_list_length (files->list);
+  GamesFileList *files = games_file_list_new_images (CARDDIR, NULL);
+  size = g_list_length (files->list);
+  g_object_unref (files);
+
+  return size;
 }
 
 GtkWidget *
