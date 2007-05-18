@@ -32,6 +32,7 @@ static GstElement *pipeline;
 static GstBus *bus;
 static gboolean sound_enabled = TRUE;
 static gboolean sound_init = FALSE;
+static GThreadPool *threads;
 
 /* Gstreamer callback function. */
 static gboolean
@@ -62,10 +63,29 @@ bus_watch (GstBus * bus, GstMessage * message, gpointer data)
   return TRUE;
 }
 
+/* This function is called as a separate thread, playing the sound. */
+static void 
+games_sound_thread_run (gchar *data, gchar *user_data)
+{
+  gchar *fullname = NULL;
+
+  if (pipeline != NULL && loop != NULL) {
+    fullname = g_strdup_printf ("file:///%s/%s.ogg", SOUNDDIR, (char *) data);
+    g_object_set (G_OBJECT (pipeline), "uri", fullname, NULL);
+    gst_element_set_state (pipeline, GST_STATE_PLAYING);
+    g_main_loop_run (loop);
+    gst_element_set_state (pipeline, GST_STATE_NULL);
+    g_free (fullname);
+  }
+
+}
+
 /* Initializes the games-sound support, GStreamer and threads. */
 static void
 games_sound_init (void)
 {
+  GError *err = NULL;
+
   sound_init = TRUE;
   gst_init (NULL, NULL);
   loop = g_main_loop_new (NULL, FALSE);
@@ -76,36 +96,18 @@ games_sound_init (void)
   gst_bus_add_watch (bus, bus_watch, loop);
   gst_object_unref (bus);
 
-  if (!g_thread_supported ()) {
-    g_thread_init (NULL);
-    gdk_threads_init ();
-  } 
-}
-
-/* This function is called as a separate thread, playing the sound. */
-static void 
-games_sound_thread_run (void *filename) 
-{
-  gchar *fullname = NULL;
-
-  if (pipeline != NULL && loop != NULL) {
-    fullname = g_strdup_printf ("file:///%s/%s.ogg", SOUNDDIR, (char *) filename);
-    g_object_set (G_OBJECT (pipeline), "uri", fullname, NULL);
-    gst_element_set_state (pipeline, GST_STATE_PLAYING);
-    g_main_loop_run (loop);
-    gst_element_set_state (pipeline, GST_STATE_NULL);
-    g_free (fullname);
-  }
+  threads = g_thread_pool_new ((GFunc) games_sound_thread_run,
+                               NULL, 10, FALSE, &err);
 
 }
+
 
 /* Plays a sound with the given filename using GStreamer. The sound file is stored in 
  * the SOUNDDIR directory in .ogg format. Sound is played in a separate thread.
  */
 void
-games_sound_play (const gchar * filename)
+games_sound_play (gchar *filename)
 {
-  GThread *sound_thread;
   GError *err = NULL;
 
   if (!sound_enabled)
@@ -113,10 +115,7 @@ games_sound_play (const gchar * filename)
   if (!sound_init)
     games_sound_init ();
 
-  if ((sound_thread = g_thread_create ((GThreadFunc)games_sound_thread_run, (void *)filename, TRUE, &err)) == NULL) {
-     g_print (_("Error playing sound: %s\n"), err->message);
-     g_error_free ( err ) ;
-  }
+  g_thread_pool_push (threads, filename, &err);  
  
 }
 

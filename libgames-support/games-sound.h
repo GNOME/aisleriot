@@ -27,7 +27,7 @@
 extern "C" {
 #endif
 
-  void games_sound_play (const gchar * filename);
+  void games_sound_play (gchar *filename);
   void games_sound_enable (gboolean enabled);
   gboolean games_sound_is_enabled (void);
 
