@@ -48,6 +48,8 @@ typedef struct _GamesCardSelectorClass {
 
 GType games_card_selector_get_type (void);
 
+gint games_card_selector_get_size (void); 
+
 GtkWidget *games_card_selector_new (gchar * current);
 
 G_END_DECLS

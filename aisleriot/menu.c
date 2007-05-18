@@ -25,6 +25,7 @@
 #include <gnome.h>
 
 #include <games-stock.h>
+#include <games-card-selector.h>
 
 #include "sol.h"
 #include "menu.h"
@@ -366,6 +367,9 @@ create_menus ()
     gtk_action_group_get_action (action_group, "LeaveFullscreen");
   ctmtoggle = gtk_action_group_get_action (action_group, "ClickToMove");
   toolbartoggle = gtk_action_group_get_action (action_group, "Toolbar");
+
+  gtk_action_set_visible (gtk_action_group_get_action (action_group, "Cards"),
+ 			  games_card_selector_get_size () > 1);
 
   helpitem =
     gtk_ui_manager_get_widget (ui_manager, "/MainMenu/HelpMenu/Help");

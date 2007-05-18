@@ -52,6 +52,14 @@ signal_propagator (GtkWidget * widget, GamesCardSelector * selector)
   g_signal_emit (selector, signals[CHANGED], 0, name);
 }
 
+gint 
+games_card_selector_get_size (void) 
+{
+  GamesFileList *files = games_file_list_new_images (CARDDIR, NULL);
+
+  return g_list_length (files->list);
+}
+
 GtkWidget *
 games_card_selector_new (gchar * current)
 {
