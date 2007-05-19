@@ -19,7 +19,7 @@
  *
  */
 
-#include "config.h"
+#include <config.h>
 
 #include <gnome.h>
 #include <glib.h>
@@ -86,8 +86,7 @@ games_sound_init (void)
 {
   GError *err = NULL;
 
-  sound_init = TRUE;
-  gst_init (NULL, NULL);
+  g_assert (g_thread_supported ());
   loop = g_main_loop_new (NULL, FALSE);
 
   pipeline = gst_element_factory_make ("playbin", "playbin");
@@ -98,9 +97,20 @@ games_sound_init (void)
 
   threads = g_thread_pool_new ((GFunc) games_sound_thread_run,
                                NULL, 10, FALSE, &err);
+  sound_init = TRUE;
 
 }
 
+/**
+ * games_sound_get_option_group:
+ *
+ * Returns: a new #GOptionGroup containing the GStreamer options
+ */
+GOptionGroup *
+games_sound_get_option_group (void)
+{
+  return gst_init_get_option_group ();
+}
 
 /* Plays a sound with the given filename using GStreamer. The sound file is stored in 
  * the SOUNDDIR directory in .ogg format. Sound is played in a separate thread.

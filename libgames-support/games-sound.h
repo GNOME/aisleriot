@@ -23,16 +23,15 @@
 #ifndef GAMES_SOUND_H
 #define GAMES_SOUND_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <glib.h>
 
-  void games_sound_play (gchar *filename);
-  void games_sound_enable (gboolean enabled);
-  gboolean games_sound_is_enabled (void);
+G_BEGIN_DECLS
 
+void games_sound_play (gchar *filename);
+void games_sound_enable (gboolean enabled);
+gboolean games_sound_is_enabled (void);
+GOptionGroup *games_sound_get_option_group  (void);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
+
 #endif
