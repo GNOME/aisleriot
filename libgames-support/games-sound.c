@@ -27,57 +27,58 @@
 
 #include "games-sound.h"
 
-static GMainLoop *loop;
 static GstElement *pipeline;
-static GstBus *bus;
 static gboolean sound_enabled = TRUE;
 static gboolean sound_init = FALSE;
 static GThreadPool *threads;
 
-/* Gstreamer callback function. */
-static gboolean
-bus_watch (GstBus * bus, GstMessage * message, gpointer data)
-{
-  GMainLoop *loop = (GMainLoop *) data;
-
-  switch (GST_MESSAGE_TYPE (message)) {
-  case GST_MESSAGE_ERROR:{
-      GError *err;
-      gchar *debug;
-
-      gst_message_parse_error (message, &err, &debug);
-      g_print (_("Error playing sound: %s\n"), err->message);
-      g_error_free (err);
-      g_free (debug);
-
-      g_main_loop_quit (loop);
-      break;
-    }
-  case GST_MESSAGE_EOS:
-    g_main_loop_quit (loop);
-    break;
-  default:
-    break;
-  }
-
-  return TRUE;
-}
-
 /* This function is called as a separate thread, playing the sound. */
-static void 
-games_sound_thread_run (gchar *data, gchar *user_data)
+static void
+games_sound_thread_run (gchar * data, gchar * user_data)
 {
   gchar *fullname = NULL;
 
-  if (pipeline != NULL && loop != NULL) {
-    fullname = g_strdup_printf ("file:///%s/%s.ogg", SOUNDDIR, (char *) data);
-    g_object_set (G_OBJECT (pipeline), "uri", fullname, NULL);
-    gst_element_set_state (pipeline, GST_STATE_PLAYING);
-    g_main_loop_run (loop);
-    gst_element_set_state (pipeline, GST_STATE_NULL);
-    g_free (fullname);
-  }
+  gboolean done = FALSE;
+  GstBus *bus;
 
+  bus = gst_pipeline_get_bus (GST_PIPELINE (pipeline));
+  /* Set URL for sound to play. */
+  fullname = g_strdup_printf ("file:///%s/%s.ogg", SOUNDDIR, (char *) data);
+  g_object_set (G_OBJECT (pipeline), "uri", fullname, NULL);
+  /* Set playbin to playing state. */
+  gst_element_set_state (pipeline, GST_STATE_PLAYING);
+
+  do {
+    GstMessage *message;
+
+    /* wait for message on the bus */
+    message = gst_bus_timed_pop (bus, GST_CLOCK_TIME_NONE);
+
+    switch (GST_MESSAGE_TYPE (message)) {
+    case GST_MESSAGE_EOS:
+      done = TRUE;
+      break;
+    case GST_MESSAGE_ERROR:{
+	GError *err;
+	gchar *debug;
+
+	gst_message_parse_error (message, &err, &debug);
+	g_print (_("Error playing sound: %s\n"), err->message);
+	g_error_free (err);
+	g_free (debug);
+
+	done = TRUE;
+	break;
+      }
+    default:
+      break;
+    }
+    gst_message_unref (message);
+  }
+  while (!done);
+
+  gst_element_set_state (pipeline, GST_STATE_NULL);
+  g_free (fullname);
 }
 
 /* Initializes the games-sound support, GStreamer and threads. */
@@ -87,16 +88,11 @@ games_sound_init (void)
   GError *err = NULL;
 
   g_assert (g_thread_supported ());
-  loop = g_main_loop_new (NULL, FALSE);
 
   pipeline = gst_element_factory_make ("playbin", "playbin");
 
-  bus = gst_pipeline_get_bus (GST_PIPELINE (pipeline));
-  gst_bus_add_watch (bus, bus_watch, loop);
-  gst_object_unref (bus);
-
   threads = g_thread_pool_new ((GFunc) games_sound_thread_run,
-                               NULL, 10, FALSE, &err);
+			       NULL, 10, FALSE, &err);
   sound_init = TRUE;
 
 }
@@ -116,7 +112,7 @@ games_sound_get_option_group (void)
  * the SOUNDDIR directory in .ogg format. Sound is played in a separate thread.
  */
 void
-games_sound_play (gchar *filename)
+games_sound_play (const gchar * filename)
 {
   GError *err = NULL;
 
@@ -125,8 +121,8 @@ games_sound_play (gchar *filename)
   if (!sound_init)
     games_sound_init ();
 
-  g_thread_pool_push (threads, filename, &err);  
- 
+  g_thread_pool_push (threads, (gchar *) filename, &err);
+
 }
 
 /* Enables or disables sound support. */

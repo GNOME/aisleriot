@@ -27,7 +27,7 @@
 
 G_BEGIN_DECLS
 
-void games_sound_play (gchar *filename);
+void games_sound_play (const gchar *filename);
 void games_sound_enable (gboolean enabled);
 gboolean games_sound_is_enabled (void);
 GOptionGroup *games_sound_get_option_group  (void);
