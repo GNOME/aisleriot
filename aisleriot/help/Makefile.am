@@ -6,14 +6,14 @@ if !HAVE_MAEMO
 # remove your language code from SUBDIRS here and from AC_CONFIG_FILES
 # in configure.in once you've migrated.
 
-SUBDIRS += es fr
+SUBDIRS += fr
 endif
 
 # GNOME doc utils
 
 include $(top_srcdir)/gnome-doc-utils.make
 
-DOC_LINGUAS =
+DOC_LINGUAS = es sv
 
 DOC_MODULE = aisleriot
 
