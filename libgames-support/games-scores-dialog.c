@@ -350,8 +350,8 @@ void games_scores_dialog_set_category_description (GamesScoresDialog *self,
   gchar *lstr;
 
   lstr = g_strdup_printf ("<b>%s</b>", description);
-  gtk_label_set_text (GTK_LABEL (self->_priv->label), lstr);
-  gtk_label_set_use_markup (GTK_LABEL (self->_priv->label), TRUE);
+  gtk_label_set_markup (GTK_LABEL (self->_priv->label), lstr);
+  gtk_label_set_use_underline (GTK_LABEL (self->_priv->label), TRUE);
   g_free(lstr);
 }
 
@@ -502,13 +502,15 @@ static void games_scores_dialog_init (GamesScoresDialog *self)
   self->_priv->catbar = gtk_hbox_new (FALSE, 12);
   gtk_box_pack_start (GTK_BOX (vbox), self->_priv->catbar, FALSE, FALSE, 0);
 
-  self->_priv->label = gtk_label_new ("");
-  gtk_box_pack_start (GTK_BOX (self->_priv->catbar), self->_priv->label, 
+  self->_priv->label = gtk_label_new (NULL);
+  gtk_label_set_use_markup (GTK_LABEL (self->_priv->label), TRUE);
+  gtk_box_pack_start (GTK_BOX (self->_priv->catbar), self->_priv->label,
 			FALSE, FALSE, 0);	
  
   self->_priv->combo = gtk_combo_box_new_text ();
   gtk_box_pack_start (GTK_BOX (self->_priv->catbar), 
 			self->_priv->combo, TRUE, TRUE, 0);
+  gtk_label_set_mnemonic_widget (GTK_LABEL (self->_priv->label), self->_priv->combo);
 
   g_signal_connect (G_OBJECT (self->_priv->combo), "changed", 
 		      G_CALLBACK (games_scores_dialog_change_category), self);

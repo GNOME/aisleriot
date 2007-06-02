@@ -20,8 +20,10 @@
 #ifndef GAMES_FILES_H
 #define GAMES_FILES_H
 
-G_BEGIN_DECLS
 #include <gtk/gtk.h>
+
+G_BEGIN_DECLS
+
 typedef struct _GamesFileList GamesFileList;
 typedef struct _GamesFileListClass GamesFileListClass;
 
@@ -62,8 +64,11 @@ games_file_list_new (const gchar * glob, ...)
      };
 
      GtkWidget *games_file_list_create_widget (GamesFileList * filelist,
-					       gchar * selection,
+					       const gchar * selection,
 					       guint flags);
 
+GamesFileList *games_file_list_card_themes (gboolean scalable);
+
 G_END_DECLS
+
 #endif /* GAMES_FILES_H */

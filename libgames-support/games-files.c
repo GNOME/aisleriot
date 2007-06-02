@@ -1,5 +1,5 @@
 /* games-files.c
-   Copyright 2003 Callum McKenzie
+   Copyright © 2003 Callum McKenzie
 
    This library is free software; you can redistribute it and'or modify
    it under the terms of the GNU Library General Public License as published 
@@ -22,11 +22,20 @@
  * that a game might be interested in. I'm writing them as I perceive
  * and so some of them should be replaced or removed eventually. */
 
-#include <gtk/gtk.h>
+#include <config.h>
+
+#include <string.h>
 #include <stdarg.h>
+
+#include <gtk/gtk.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 #include "games-files.h"
+#include "games-card-common.h"
+
+#if defined (HAVE_RSVG) && defined (HAVE_CAIRO) && !defined (HAVE_MAEMO)
+#define ENABLE_SCALABLE
+#endif
 
 G_DEFINE_TYPE (GamesFileList, games_file_list, G_TYPE_OBJECT)
 
@@ -134,8 +143,8 @@ games_file_list_transform_basename (GamesFileList * filelist)
   games_file_list_remove_duplicates (filelist);
 }
 
-GSList *image_suffix_list = NULL;
-GStaticMutex image_suffix_mutex = G_STATIC_MUTEX_INIT;
+static GSList *image_suffix_list = NULL;
+static GStaticMutex image_suffix_mutex = G_STATIC_MUTEX_INIT;
 
 /* We only want to initilise the list of suffixes once, this is
  * the function that does it. It might even be thread safe, not that
@@ -275,7 +284,7 @@ games_file_list_new_images (gchar * path1, ...)
  **/
 GtkWidget *
 games_file_list_create_widget (GamesFileList * gamesfilelist,
-			       gchar * selection, guint flags)
+			       const gchar * selection, guint flags)
 {
   gint itemno;
   GtkComboBox *widget;
@@ -297,7 +306,8 @@ games_file_list_create_widget (GamesFileList * gamesfilelist,
      * seriously mangle unicode strings. */
     if (flags & GAMES_FILE_LIST_REMOVE_EXTENSION) {
       s = g_strrstr (visible, ".");
-      *s = '\0';
+      if (s)
+        *s = '\0';
     }
     if (flags & GAMES_FILE_LIST_REPLACE_UNDERSCORES) {
       s = visible;
@@ -309,7 +319,7 @@ games_file_list_create_widget (GamesFileList * gamesfilelist,
     }
 
     gtk_combo_box_append_text (widget, visible);
-    if (selection && (!g_utf8_collate (string, selection))) {
+    if (selection && (!strcmp (string, selection))) {
       gtk_combo_box_set_active (widget, itemno);
       found = TRUE;
     }
@@ -408,5 +418,49 @@ games_file_list_class_init (GamesFileListClass * class)
 static void
 games_file_list_init (GamesFileList * filelist)
 {
-  filelist->list = NULL;
+}
+
+/**
+ * games_file_list_card_themes:
+ * @scalable: whether to look for scalable or prerendered themes
+ *
+ * Note that the returned #GamesFileList's list contains the found
+ * theme names in the filename encoding!
+ * 
+ * Returns: a new #GamesFileList containing the found themes
+ */
+GamesFileList *
+games_file_list_card_themes (gboolean scalable)
+{
+  GamesFileList *files;
+  GList *l;
+  const char *glob, *ext, *dir;
+
+#ifdef ENABLE_SCALABLE
+  if (scalable) {
+    glob = "*.svg";
+    ext = ".svg";
+    dir = SCALABLE_CARDS_DIR;
+  } else
+#endif /* ENABLE_SCALABLE */
+  {
+    glob = "*.card-theme";
+    ext = ".card-theme";
+    dir = PRERENDERED_CARDS_DIR;
+  }
+
+  files = games_file_list_new (glob, dir, NULL);
+  games_file_list_transform_basename (files);
+
+  for (l = files->list; l != NULL; l = l->next) {
+    const char *filename = (const char *) l->data;
+    char *dot;
+
+    dot = g_strrstr (filename, ext);
+    if (dot) {
+      *dot = '\0';
+    }
+  }
+
+  return files;
 }

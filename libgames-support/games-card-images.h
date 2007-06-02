@@ -1,19 +1,20 @@
-/* games-card-images.h
-   Copyright 2004 Callum McKenzie
+/*
+  Copyright © 2004 Callum McKenzie
+  Copyright © 2007 Christian Persch
 
-   This library is free software; you can redistribute it and'or modify
-   it under the terms of the GNU Library General Public License as published 
-   by the Free Software Foundation; either version 2, or (at your option)
-   any later version.
+  This library is free software; you can redistribute it and'or modify
+  it under the terms of the GNU Library General Public License as published
+  by the Free Software Foundation; either version 2, or (at your option)
+  any later version.
 
-   This library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Library General Public License for more details.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Library General Public License for more details.
 
-   You should have received a copy of the GNU Library General Public License
-   along with this library; if not, write to the Free Software
-   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
+  You should have received a copy of the GNU Library General Public License
+  along with this library; if not, write to the Free Software
+  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 /* Authors:   Callum McKenzie <callum@physics.otago.ac.nz> */
 
@@ -22,85 +23,117 @@
 #ifndef GAMES_CARD_IMAGES_H
 #define GAMES_CARD_IMAGES_H
 
-G_BEGIN_DECLS
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include "games-preimage.h"
-  enum {
-  GAMES_CARD_ACE = 1,
-  GAMES_CARD_TWO = 2,
-  GAMES_CARD_THREE = 3,
-  GAMES_CARD_FOUR = 4,
-  GAMES_CARD_FIVE = 5,
-  GAMES_CARD_SIX = 6,
-  GAMES_CARD_SEVEN = 7,
-  GAMES_CARD_EIGHT = 8,
-  GAMES_CARD_NINE = 9,
-  GAMES_CARD_TEN = 10,
-  GAMES_CARD_JACK = 11,
-  GAMES_CARD_QUEEN = 12,
-  GAMES_CARD_KING = 13,
-  GAMES_CARD_ACE_HIGH = 14,
-  GAMES_CARDS_CLUBS = 0,
-  GAMES_CARDS_DIAMONDS = 2,
-  GAMES_CARDS_HEARTS = 1,
-  GAMES_CARDS_SPADES = 3,
-  GAMES_CARD_RED_JOKER = 52,
-  GAMES_CARD_BLACK_JOKER = 53,
-  GAMES_CARD_BACK = 54,
-  GAMES_CARDS_TOTAL = 55
-};
+
+#include "games-card-common.h"
+#include "games-card-theme.h"
+
+G_BEGIN_DECLS
+
+#define GAMES_TYPE_CARD_IMAGES            (games_card_images_get_type ())
+#define GAMES_CARD_IMAGES(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_IMAGES, GamesCardImages))
+#define GAMES_CARD_IMAGES_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_IMAGES, GamesCardImagesClass))
+#define GAMES_IS_CARD_IMAGES(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_IMAGES))
+#define GAMES_IS_CARD_IMAGES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_IMAGES))
+#define GAMES_CARD_IMAGES_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_IMAGES))
+
+typedef enum
+{
+  CACHE_PIXBUFS,
+  CACHE_PIXMAPS,
+  LAST_CACHE_MODE
+} GamesCardImagesCacheMode;
 
 typedef struct _GamesCardImages {
   GObject parent;
 
-  gint width;
-  gint height;
+  GamesCardTheme *theme;
+  GdkDrawable *drawable;
+  GdkBitmap *card_mask;
+  GdkBitmap *slot_mask;
+  gpointer *cache;
+  GdkColor background_colour;
+  GdkColor selection_colour;
 
-  gchar *themename;
-
-  GamesPreimage *preimage;
-
-  GdkPixbuf *source;
-  gint subwidth, subheight;
-  gboolean *rendered;
-  GdkPixbuf **pixbufs;
-
-  guint prescaled : 1; /* preimage */
-  guint prerendered : 1;
+  guint scalable : 1;
+  guint cache_mode : 1;
 } GamesCardImages;
 
-typedef struct _GamesCardImagesClass {
-  GObjectClass parent;
-} GamesCardImagesClass;
-
-#define GAMES_TYPE_CARD_IMAGES (games_card_images_get_type ())
-#define GAMES_CARD_IMAGES(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_IMAGES, GamesCardImages))
-#define GAMES_CARD_IMAGES_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_IMAGES, GamesCardImagesClass))
-#define GAMES_IS_CARD_IMAGES(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_IMAGES))
-#define GAMES_IS_CARD_IMAGES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_IMAGES))
-#define GAMES_CARD_IMAGES_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_IMAGES))
+typedef GObjectClass GamesCardImagesClass;
 
 GType games_card_images_get_type (void);
 
-GamesCardImages *games_card_images_new (void);
+GamesCardImages *games_card_images_new (gboolean scalable);
 
-/* The real card routine. */
-GdkPixbuf *games_card_images_get_card_by_id (GamesCardImages * images,
-					     gint cardid);
+void games_card_images_set_cache_mode (GamesCardImages * images,
+                                       GamesCardImagesCacheMode mode);
 
-/* The convenience functions. */
-#define GAMES_CARD_ID(suit, rank) ((13*(suit)) + ((rank-1)%13))
+void games_card_images_set_drawable (GamesCardImages * images,
+                                     GdkWindow * drawable);
 
-GdkPixbuf *games_card_images_get_card (GamesCardImages * images, gint suit,
-				       gint rank);
-GdkPixbuf *games_card_images_get_red_joker (GamesCardImages * images);
-GdkPixbuf *games_card_images_get_black_joker (GamesCardImages * images);
-GdkPixbuf *games_card_images_get_back (GamesCardImages * images);
+void games_card_images_set_antialias (GamesCardImages * images,
+                                      guint antialias, guint subpixel_order);
 
-void games_card_images_set_size (GamesCardImages * images,
-				 gint width, gint height);
-void games_card_images_set_theme (GamesCardImages * images, gchar * name);
+gboolean games_card_images_set_theme (GamesCardImages * images,
+                                      const gchar * name);
+
+const gchar *games_card_images_get_theme (GamesCardImages * images);
+
+gboolean games_card_images_set_size (GamesCardImages * images,
+                                     gint width,
+                                     gint height, gdouble proportion);
+
+CardSize games_card_images_get_size (GamesCardImages * images);
+
+double games_card_images_get_aspect (GamesCardImages * images);
+
+void games_card_images_set_background_color (GamesCardImages * images,
+                                             const GdkColor * color);
+
+void games_card_images_set_selection_color (GamesCardImages * images,
+                                            const GdkColor * color);
+
+/* Pixbuf routines */
+GdkPixbuf *games_card_images_get_card_pixbuf_by_id (GamesCardImages * images,
+                                                    guint card_id,
+                                                    gboolean highlighted);
+
+GdkPixbuf *games_card_images_get_card_pixbuf (GamesCardImages * images,
+                                              Card card,
+                                              gboolean highlighted);
+
+/* Pixmap routines */
+GdkPixmap *games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
+                                                    guint card_id,
+                                                    gboolean highlighted);
+
+GdkPixmap *games_card_images_get_card_pixmap (GamesCardImages * images,
+                                              Card card,
+                                              gboolean highlighted);
+
+GdkBitmap *games_card_images_get_card_mask (GamesCardImages * images);
+
+/* Slot routines */
+GdkPixbuf *games_card_images_get_slot_pixbuf (GamesCardImages * images,
+                                              gboolean highlighted);
+
+GdkPixmap *games_card_images_get_slot_pixmap (GamesCardImages * images,
+                                              gboolean highlighted);
+
+GdkBitmap *games_card_images_get_slot_mask (GamesCardImages * images);
+
+/* Deprecated */
+GdkPixbuf *games_card_images_get_card_pixbuf_by_suit_and_rank (GamesCardImages
+                                                               * images,
+                                                               guint suit,
+                                                               guint rank);
+
+GdkPixmap *games_card_images_get_card_pixmap_by_suit_and_rank (GamesCardImages
+                                                               * images,
+                                                               guint suit,
+                                                               guint rank);
 
 G_END_DECLS
+
 #endif /* GAMES_CARD_IMAGES_H */

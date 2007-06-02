@@ -1,0 +1,57 @@
+How to compile AisleRiot on different platforms
+===============================================
+
+The AilseRiot code supports different platforms: GNOME, GTK only and Maemo.
+To compile it for some platform, configure GNOME Games with
+
+    ./configure --with-platform=gnome
+  or
+    ./configure --with-platform=gtk-only --with-games=aisleriot
+  or
+    ./configure --with-platform=maemo --with-games=aisleriot
+
+For GNOME and GTK-only, you can just install and run AisleRiot as normal.
+Please refer to the scratchbox documentation about how to run AilseRiot in
+scratchbox for the Maemo platform.
+
+
+Notes about Maemo environment
+=============================
+
+On maemo the programme is started using DBUS service files;
+org.gnome.Games.AisleRiot.service.in is our service file.
+aisleriot-backup.conf is used to backup the programme's setting
+using the device's backup manager, and aisleriot-clean.sh is used
+to clean the setting on uninstall.
+
+
+Environment variables
+=====================
+
+You can set the following environment variables to influence the
+behaviour of AisleRiot:
+
+GAMES_CARDS_SUBRENDERING:
+  Values: 0 or 1
+  Detault: 0
+  
+    Set to 1 to use librsvg's subrendering which speeds up
+  the card rendering in case we don't need them all at once.
+  Needs support from the cards svg in form of special node IDs;
+  only works with 'bellot' theme right now; set to 0 to suppress
+  subrendering even for the 'bellot' theme.
+
+AISLERIOT_CARDS_SCALABLE:
+  Values: 0 or 1
+  Default: 1
+
+    Set to 0 to use prerendered cards; to 1 to use scalable cards.
+
+AISLERIOT_PIXBUF_DRAWING:
+  Values: 0 or 1
+  Default: 0
+  
+    Set to 1 to enable pixbuf drawing instead of pixmap drawing. This
+  has the benefit of using full alphachannels, eliminating ugly
+  rendering artifacts caused by the 1-bit alphachannels of the pixmaps.
+  Might be a bit slower though.

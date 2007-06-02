@@ -1,81 +1,158 @@
-if HAVE_GUILE
+SUBDIRS = rules
 
-cardimagedir = $(datadir)/pixmaps/cards
-Gamesdir  = $(datadir)/applications
-scmdir  = $(datadir)/sol-games
-gladedir = $(datadir)/sol-games/glade
+if !HAVE_MAEMO
+SUBDIRS += help
+endif
 
-schemadir   = @GCONF_SCHEMA_FILE_DIR@
-schema_in_files = aisleriot.schemas.in
-schema_DATA = $(schema_in_files:.schemas.in=.schemas)
-@INTLTOOL_SCHEMAS_RULE@
+NULL =
 
-SUBDIRS=help rules
+cardimagedir = $(pkgdatadir)/pixmaps
+cardimage_DATA = \
+	baize.png
 
-INCLUDES =  \
-	-I$(top_srcdir)/libgames-support           \
-	-DDATADIR=\""$(datadir)"\"		   \
-	$(GNOME_GAMES_CFLAGS)			   \
-	$(GLADE_CFLAGS)				   \
-	-DGLADEDIR=\""$(gladedir)"\" 		   \
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"   \
-	-DVERSION=\"$(VERSION)\"		   \
-	$(GUILE_CFLAGS)
+scmdir  = $(pkgdatadir)/aisleriot/games
+scm_DATA = \
+	sol.scm
 
 bin_PROGRAMS = sol
 
-sol_SOURCES = 		\
-	card.h		\
-	cscmi.h		\
-	dialog.h	\
-	draw.h		\
-	events.h	\
-	menu.h		\
-	press_data.h	\
-	slot.h		\
-	sol.h		\
+sol_SOURCES = \
+	board.c		\
+	board.h		\
+	conf.c		\
+	conf.h		\
+	game.c		\
+	game.h		\
 	sol.c		\
-	slot.c		\
-	dialog.c	\
-	cscmi.c		\
-	events.c	\
-	press_data.c	\
-	draw.c		\
-	menu.c		\
-	card.c		\
-	statistics.c	\
-	statistics.h
+	stats-dialog.c	\
+	stats-dialog.h	\
+	util.c		\
+	util.h		\
+	window.c	\
+	window.h	\
+	$(NULL)
+
+if !HAVE_GUILE_1_8
+sol_SOURCES += guile16-compat.h
+endif
+		
+# FIXMEchpe: fix localedir for maemo? $PKG_CONFIG osso-af-settings --variable=localedir
+
+sol_CPPFLAGS = \
+	-I$(top_srcdir)				\
+	-I$(top_srcdir)/libgames-support	\
+	-DDATADIR="\"$(datadir)\""		\
+	-DGAMESDIR="\"$(scmdir)\""		\
+	-DGNOMELOCALEDIR="\"$(datadir)/locale\""\
+	-DPIXMAPDIR="\"$(pkgdatadir)/pixmaps\""	\
+	-DPKGDATADIR="\"$(pkgdatadir)\""	\
+	$(AM_CPPFLAGS)
+
+sol_CFLAGS = \
+	$(GTK_CFLAGS)	\
+	$(GUILE_CFLAGS)	\
+	$(AM_CFLAGS)
+
+sol_LDFLAGS = \
+	$(AM_LDFLAGS)
 
 sol_LDADD = \
-	../libgames-support/libgames-support.la \
-	$(GNOME_GAMES_LIBS) \
-	$(GLADE_LIBS) \
-	$(GUILE_LDFLAGS) 
+	$(top_builddir)/libgames-support/libgames-support.la	\
+	$(GTK_LIBS)	\
+	$(GUILE_LIBS)
 
-glade_DATA = \
-	statistics.glade
+if HAVE_MAEMO
+sol_CPPFLAGS += -DHELPDIR="\"$(pkgdatadir)/aisleriot/help\""
+sol_CFLAGS += $(MAEMO_CFLAGS)
+sol_LDADD += $(MAEMO_LIBS)
+endif
 
-scm_DATA  = 		\
-	sol.scm
+if HAVE_GNOME
+sol_CFLAGS += $(GNOME_CFLAGS)
+sol_LDADD += $(GNOME_LIBS)
+endif
 
-cardimage_DATA = baize.png slot.svg
+if HAVE_RSVG
+sol_CFLAGS += $(RSVG_CFLAGS)
+sol_LDADD += $(RSVG_LIBS)
+endif
 
-EXTRA_DIST = AUTHORS $(scm_DATA) $(cardimage_DATA) \
-	sol.desktop.in freecell.desktop.in \
-	translatable_game_names.h \
-	$(schema_in_files) $(glade_DATA)
+if WITH_GTHREAD
+sol_CFLAGS += $(GHTREAD_CFLAGS)
+sol_LDADD += $(GTHREAD_LIBS)
+endif
 
+desktop_in_files = \
+	sol.desktop.in.in
 
-sysdir = $(datadir)/applications/
-sys_in_files = sol.desktop.in freecell.desktop.in
-sys_DATA = $(sys_in_files:.desktop.in=.desktop)
-@INTLTOOL_DESKTOP_RULE@
+if !HAVE_MAEMO
+desktop_in_files += \
+	freecell.desktop.in.in
+endif
 
-DISTCLEANFILES = $(sys_DATA) $(schema_DATA)
+if HAVE_MAEMO
+desktopdir = $(shell $(PKG_CONFIG) osso-af-settings --variable=desktopentrydir)
+else
+desktopdir = $(datadir)/applications
+endif
 
+desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
+
+schemadir = $(GCONF_SCHEMA_FILE_DIR)
+schema_in_files = aisleriot.schemas.in
+schema_DATA = $(schema_in_files:.schemas.in=.schemas)
+
+ossobackup_in_files = aisleriot-backup.conf
+ossoscript_in_files = aisleriot-clean.sh
+ossoservice_in_files = org.gnome.Games.AisleRiot.service.in
+
+if HAVE_MAEMO
+ossobackupdir = $(sysconfdir)/osso-backup/applications
+ossobackup_DATA = $(ossobackup_in_files)
+
+ossocuddir = $(sysconfdir)/osso-cud-scripts
+ossocud_SCRIPTS = $(ossoscript_in_files)
+
+servicedir = $(shell $(PKG_CONFIG) osso-af-settings --variable=dbusservicedir)
+service_DATA = $(ossoservice_in_files:.service.in=.service)
+endif
+
+%.service: %.service.in Makefile
+	sed -e "s|%bindir%|$(bindir)|" $< > $@
+
+install-schemas-local: $(schema_DATA)
 if GCONF_SCHEMAS_INSTALL
-install-data-local:
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/aisleriot/$(schema_DATA)
+	if test -z "$(DESTDIR)" ; then \
+		for p in $^ ; do \
+			GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $$p 2>&1 > /dev/null; \
+		done \
+	fi
 endif
 
-endif
+install-data-local: install-schemas-local
+
+EXTRA_DIST = \
+	AUTHORS			\
+	TODO			\
+	$(scm_DATA)		\
+	$(cardimage_DATA)	\
+	$(icon_DATA)		\
+	$(allicons)		\
+	$(ossobackup_in_files)	\
+	$(ossoscript_in_files)	\
+	$(ossoservice_in_files)	\
+	$(schema_in_files)	\
+	translatable_game_names.h
+
+CLEANFILES = \
+	$(desktop_DATA)	\
+	$(schema_DATA)	\
+	$(service_DATA)
+
+DISTCLEANFILES = \
+	$(desktop_DATA)	\
+	$(schema_DATA)	\
+	$(service_DATA)
+
+@INTLTOOL_DESKTOP_RULE@
+@INTLTOOL_SCHEMAS_RULE@

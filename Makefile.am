@@ -1,17 +1,21 @@
+ACLOCAL_AMFLAGS = -I m4
+
 SUBDIRS= \
 	po \
 	dependencies \
 	icons \
 	libgames-support \
-	sounds \
 	tests \
 	$(gamelist)
 
+if HAVE_GSTREAMER
+SUBDIRS += sounds
+endif
+
 DIST_SUBDIRS = po dependencies icons sounds libgames-support tests $(allgames)
 
-ACLOCAL_AMFLAGS = -I m4
-
 EXTRA_DIST = \
+	autogen.sh \
 	gnome-games.spec.in \
 	gnome-games.spec \
 	COPYING-DOCS \
@@ -30,22 +34,10 @@ DISTCLEANFILES = \
 	intltool-update \
 	gnome-doc-utils.make
 
-gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
-
-install-data-hook: update-icon-cache
-uninstall-hook: update-icon-cache
-update-icon-cache:
-	@-if test -z "$(DESTDIR)"; then \
-		echo "Updating Gtk icon cache."; \
-		$(gtk_update_icon_cache); \
-	else \
-		echo "*** Icon cache not updated.  After (un)install, run this:"; \
-		echo "***   $(gtk_update_icon_cache)"; \
-	fi
-
 # Ignore score files, these *should* be left behind.
 distuninstallcheck_listfiles = find . -type f -print | grep -v '.scores' | grep-v scrollkeeper
 
 DISTCHECK_CONFIGURE_FLAGS = \
-	--disable-scrollkeeper \
-	--disable-schemas-install
+	--with-platform=gnome \
+	--disable-schemas-install \
+	--disable-scrollkeeper

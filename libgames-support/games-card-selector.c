@@ -1,5 +1,5 @@
 /* games-card-selector.c
-   Copyright 2004 Callum McKenzie
+   Copyright © 2004 Callum McKenzie
  
    This library is free software; you can redistribute it and'or modify
    it under the terms of the GNU Library General Public License as published
@@ -52,20 +52,8 @@ signal_propagator (GtkWidget * widget, GamesCardSelector * selector)
   g_signal_emit (selector, signals[CHANGED], 0, name);
 }
 
-gint 
-games_card_selector_get_size (void) 
-{
-  gint size;
-
-  GamesFileList *files = games_file_list_new_images (CARDDIR, NULL);
-  size = g_list_length (files->list);
-  g_object_unref (files);
-
-  return size;
-}
-
 GtkWidget *
-games_card_selector_new (gchar * current)
+games_card_selector_new (gboolean scalable, const gchar * current)
 {
   GamesCardSelector *selector;
 
@@ -73,13 +61,10 @@ games_card_selector_new (gchar * current)
 
   games_frame_set_label (GAMES_FRAME (selector), _("Card Style"));
 
-  selector->files = games_file_list_new_images (CARDDIR, NULL);
-  games_file_list_transform_basename (selector->files);
+  selector->files = games_file_list_card_themes (scalable);
 
   selector->combobox = games_file_list_create_widget (selector->files,
 						      current,
-						      GAMES_FILE_LIST_REMOVE_EXTENSION
-						      |
 						      GAMES_FILE_LIST_REPLACE_UNDERSCORES);
 
   gtk_container_add (GTK_CONTAINER (selector), selector->combobox);

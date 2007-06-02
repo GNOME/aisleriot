@@ -1,7 +1,5 @@
 /*
- * games-stock.h: games stock items and icon registation
- *
- * Copyright (C) 2005 Richard Hoelscher
+ * Copyright © 2005 Richard Hoelscher
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,17 +23,24 @@
 #define __GAMES_STOCK_H__
 
 #include <glib/gmacros.h>
-#include <gtk/gtk.h>
+#include <gtk/gtkwidget.h>
+#include <gtk/gtkaction.h>
+#include <gtk/gtkuimanager.h>
+#include <gtk/gtkstock.h>
+#include <gtk/gtkversion.h>
 
 G_BEGIN_DECLS
+
 /* These uses new icons */
 #define GAMES_STOCK_SCORES           "games-scores"
 #define GAMES_STOCK_PAUSE_GAME       "games-pause-game"
 #define GAMES_STOCK_RESUME_GAME      "games-resume-game"
+
+/* These use stock gtk icons */
 #define GAMES_STOCK_FULLSCREEN       "games-fullscreen"
 #define GAMES_STOCK_LEAVE_FULLSCREEN "games-leave-fullscreen"
-/* These use stock gtk icons */
 #define GAMES_STOCK_NEW_GAME         "games-new-game"
+#define GAMES_STOCK_START_NEW_GAME   "games-start-new-game"
 #define GAMES_STOCK_NETWORK_GAME     "games-network-game"
 #define GAMES_STOCK_NETWORK_LEAVE    "games-network-leave"
 #define GAMES_STOCK_PLAYER_LIST      "games-player-list"
@@ -45,17 +50,21 @@ G_BEGIN_DECLS
 #define GAMES_STOCK_HINT             "games-hint"
 #define GAMES_STOCK_END_GAME         "games-end-game"
 #define GAMES_STOCK_CONTENTS         "games-contents"
+#define GAMES_STOCK_RESET            "games-reset"
 /* These belong to us */
 #define GAMES_STOCK_TELEPORT         "games-teleport"
 #define GAMES_STOCK_RTELEPORT        "games-random-teleport"
+
 void games_stock_init (void);
 
 void games_stock_set_pause_actions (GtkAction * pause_action,
-				    GtkAction * resume_action);
+                                    GtkAction * resume_action);
 
 void games_stock_prepare_for_statusbar_tooltips (GtkUIManager * ui_manager,
-						 GtkWidget * statusbar);
+                                                 GtkWidget * statusbar);
+
 gchar *games_get_license (const gchar * game_name);
 
 G_END_DECLS
+
 #endif /* __GAMES_STOCK_H__ */

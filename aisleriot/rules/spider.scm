@@ -16,9 +16,9 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
-(define suits-four #t)
-(define suits-two #f)
 (define suits-one #f)
+(define suits-two #f)
+(define suits-four #t)
 
 ;set up the deck
 (set-ace-low)
@@ -44,6 +44,8 @@
     (else (make-standard-double-deck))))
 
 (define winning-score 96)
+
+(define allow-empty-slots #f)
 
 (define (new-game)
   (initialize-playing-area)
@@ -120,7 +122,8 @@
   #t)
 
 (define (check-for-points slot)
-  (and (is-visible? (cadr (get-cards slot)))
+  (and (> (length (get-cards slot)) 1)
+       (is-visible? (cadr (get-cards slot)))
        (eq? (get-suit (get-top-card slot))
             (get-suit (cadr (get-cards slot))))
        (= (+ 1 (get-value (get-top-card slot)))
@@ -174,7 +177,8 @@
 (define (button-clicked slot)
   (and (= stock slot)
        (not (empty-slot? stock))
-       (if (any-slot-empty? tableau)
+       (if (and (not allow-empty-slots)
+                (any-slot-empty? tableau))
 	   (begin
              (set-statusbar-message (_"Please fill in empty pile first."))
              #f)

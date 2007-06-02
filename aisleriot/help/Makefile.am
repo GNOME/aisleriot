@@ -1,14 +1,19 @@
+SUBDIRS =
+
+# Pre-GNOME-Doc-Utils help doesn't build in scratchbox, so disable it there
+if !HAVE_MAEMO
 # The languages below have not converted to gnome-doc-utils yet;
 # remove your language code from SUBDIRS here and from AC_CONFIG_FILES
 # in configure.in once you've migrated.
 
-SUBDIRS = fr
+SUBDIRS += fr
+endif
 
 # GNOME doc utils
 
 include $(top_srcdir)/gnome-doc-utils.make
 
-DOC_LINGUAS = sv
+DOC_LINGUAS =
 
 DOC_MODULE = aisleriot
 
@@ -78,6 +83,7 @@ DOC_ENTITIES = \
 	sir_tommy.xml \
 	spiderette.xml \
 	spider.xml \
+	spider_three_decks.xml \
 	straight_up.xml \
 	streets_and_alleys.xml \
 	ten_across.xml \

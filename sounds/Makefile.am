@@ -1,28 +1,31 @@
-sounddir=$(datadir)/gnome-games/sounds
+NULL =
+
+sounddir = $(pkgdatadir)/sounds
 
 sound_DATA = \
 	appear.ogg  \
-	die.ogg \
-	gobble.ogg \
-	lines1.ogg \
-	reverse.ogg \
-	turn.ogg \
 	bad.ogg \
-	flip-piece.ogg \
-	land.ogg \
-	lines2.ogg \
-	slide.ogg \
-	victory.ogg \
 	bonus.ogg \
-	gameover.ogg \
-	laughter.ogg \
-	lines3.ogg \
-	splat.ogg \
-	yahoo.ogg \
 	crash.ogg \
+	die.ogg \
+	flip-piece.ogg \
+	gameover.ogg \
 	gnometris.ogg \
+	gobble.ogg \
+	land.ogg \
+	laughter.ogg \
 	life.ogg \
+	lines1.ogg \
+	lines2.ogg \
+	lines3.ogg \
 	pop.ogg \
-	teleport.ogg
+	reverse.ogg \
+	slide.ogg \
+	splat.ogg \
+	teleport.ogg \
+	turn.ogg \
+	victory.ogg \
+	yahoo.ogg \
+	$(NULL)
 
 EXTRA_DIST = $(sound_DATA)

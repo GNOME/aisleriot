@@ -1,14 +1,14 @@
 /*
  * clock.c: 
  *
- * Copyright (C) 2001, 2003 Iain Holmes
- *           (C) 2001 Mark McLoughlin
+ * Copyright © 2001, 2003 Iain Holmes
+ *           © 2001 Mark McLoughlin
  *
  * Authors: Iain Holmes <iain@ximian.com>
  *          Mark McLoughlin <mark@skynet.ie>
  */
 
-#include <glib.h>
+#include <config.h>
 
 #include "games-clock.h"
 
@@ -47,41 +47,32 @@ games_clock_init (GamesClock * clock)
 GtkWidget *
 games_clock_new (void)
 {
-  GamesClock *clock;
-
-  clock = g_object_new (games_clock_get_type (), NULL);
-
-  return GTK_WIDGET (clock);
+  return g_object_new (GAMES_TYPE_CLOCK, NULL);
 }
 
 static void
 clock_paint (GamesClock * clock)
 {
-  char *string;
+  char string[32];
   int secs;
   int mins;
   int hours;
-
-  g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
 
   hours = clock->seconds / 3600;
   secs = clock->seconds - hours * 3600;
   mins = secs / 60;
   secs = secs - mins * 60;
 
-  string = g_strdup_printf ("%.2d:%.2d:%.2d", hours, mins, secs);
+  /* FIXMEchpe: i18n! */
+  g_snprintf (string, sizeof (string), "%.2d:%.2d:%.2d", hours, mins, secs);
 
   gtk_label_set_text (GTK_LABEL (clock), string);
-
-  g_free (string);
 }
 
 
 static gboolean
 games_clock_update (GamesClock * clock)
 {
-  g_return_val_if_fail (clock && GAMES_IS_CLOCK (clock), FALSE);
-
   clock->seconds++;
 
   clock_paint (clock);
@@ -92,7 +83,7 @@ games_clock_update (GamesClock * clock)
 void
 games_clock_start (GamesClock * clock)
 {
-  g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
+  g_return_if_fail (GAMES_IS_CLOCK (clock));
 
   if (clock->timer_id != 0)
     return;
@@ -104,7 +95,7 @@ games_clock_start (GamesClock * clock)
 void
 games_clock_stop (GamesClock * clock)
 {
-  g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
+  g_return_if_fail (GAMES_IS_CLOCK (clock));
 
   if (clock->timer_id == 0)
     return;
@@ -115,9 +106,10 @@ games_clock_stop (GamesClock * clock)
 }
 
 void
-games_clock_set_seconds (GamesClock * clock, time_t seconds)
+games_clock_set_seconds (GamesClock * clock,
+                         time_t seconds)
 {
-  g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
+  g_return_if_fail (GAMES_IS_CLOCK (clock));
 
   clock->seconds = seconds;
   clock_paint (clock);
@@ -126,15 +118,16 @@ games_clock_set_seconds (GamesClock * clock, time_t seconds)
 time_t
 games_clock_get_seconds (GamesClock * clock)
 {
-  g_return_val_if_fail (clock && GAMES_IS_CLOCK (clock), 0);
+  g_return_val_if_fail ( GAMES_IS_CLOCK (clock), 0);
 
   return clock->seconds;
 }
 
 void
-games_clock_add_seconds (GamesClock * clock, time_t seconds)
+games_clock_add_seconds (GamesClock * clock,
+                         time_t seconds)
 {
-  g_return_if_fail (clock && GAMES_IS_CLOCK (clock));
+  g_return_if_fail (GAMES_IS_CLOCK (clock));
 
   clock->seconds += seconds;
   clock_paint (clock);

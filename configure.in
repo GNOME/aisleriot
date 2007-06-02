@@ -1,97 +1,213 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-
 AC_PREREQ([2.53])
-AC_INIT([gnome-games], [2.19.2],
-        [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games])
+AC_INIT([GNOME Games], [2.19.2+git],
+  [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games],
+  [gnome-games])
 
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([gnomine/gnomine.c])
 AC_CONFIG_HEADERS([config.h])
 
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2])
-AM_MAINTAINER_MODE
+
+# First parse the list of enabled games, so we know which options
+# we support and which features to check for
+
+# This is the canonical list of all game subdirectories.
+allgames="aisleriot blackjack gnometris gnect gnomine same-gnome mahjongg gtali gnotravex gnotski glines iagno glchess gnobots2 gnibbles gnome-sudoku"
+AC_SUBST([allgames])
+
+gamelist=""
+
+AC_MSG_CHECKING([which games to build])
+
+AC_ARG_WITH([games],
+  [--with-games=game1,game2,...],
+  [],[with_games=all])
+
+AC_ARG_ENABLE([games],
+  [AS_HELP_STRING([--enable-games=list],[Enable the games in the comma separated list ("all" and "none" are valid)])],
+  [with_games="$enableval"],[])
+
+if test -n "$with_games"; then
+  gamelist=""
+  IFS="${IFS=	}"; gg_saved_ifs="$IFS"; IFS=","
+  for item in $with_games; do
+    case $item in
+      all) gamelist="$allgames" ;;
+      none) gamelist="" ;;
+      *) if test -z "$gamelist"; then
+           gamelist="$item"
+         else
+           gamelist="$gamelist $item"
+         fi
+         ;;
+    esac
+  done
+  IFS="$gg_saved_ifs"
+else
+  gamelist="$allgames"   
+fi
+
+## This has a particularly silly name because autoconf doesn't allow 
+## --disable-foo to have arguments so we have to use an --enable-fubar form.
+AC_ARG_ENABLE(omitgames,
+  AC_HELP_STRING([--enable-omitgames=list],
+    [Don't compile games in the comma separated list. ("all" and "none" are valid)]))
+if test -n "$enable_omitgames"; then
+   enable_omitgames=`echo ,"${enable_omitgames}", | sed -e 's/[[	,]][[	,]]*/ /g' -e 's/,$//'`
+   omittedgames=""
+   gamelist=""
+   for item in ${enable_omitgames}; do
+     for game in ${allgames}; do
+       case ${item} in
+	  all) omittedgames=${allgames};;
+	  none) omittedgames="";;
+          ${game}) omittedgames="${game} ${omittedgames}";;
+	  *) ;; 
+        esac
+     done
+   done
+   echo ${omittedgames}
+   for game in ${allgames}; do
+     case ${omittedgames} in
+       *${game}*) ;;
+       *) gamelist="${gamelist} ${game}";;
+     esac
+   done
+elif test -z "$gamelist"; then
+   # Everything on by default
+   gamelist=${allgames}
+fi
+
+AC_MSG_RESULT([$gamelist])
+
+AC_SUBST([gamelist])
+
+# Feature matrix
+
+need_cxx=no
+need_ggz=no
+need_guile=no
+need_gnome=no
+need_python=no
+need_gstreamer=no
+allow_gnuchess=no
+disallow_maemo=no
+disallow_gtk_only=no
+
+for game in $gamelist; do
+  case $game in
+    gnometris|blackjack) need_cxx=yes ;;
+    *) ;;
+  esac
+  case $game in
+    gnibbles|iagno|gnect) need_ggz=yes ;;
+    *) ;;
+  esac
+  case $game in
+    aisleriot) need_guile=yes ;;
+    *) ;;
+  esac
+  case $game in
+    glchess) allow_gnuchess=yes ;;
+    *) ;;
+  esac
+  case $game in
+    glchess|gnome-sudoku) need_python=yes ;;
+    *) ;;
+  esac
+  case $game in
+    gnect|gnibbles|gnobots2|gnometris|iagno) need_gstreamer=yes ;;
+    *) ;;
+  esac
+  case $game in
+    aisleriot) ;;
+    *) need_gnome=yes
+       disallow_maemo=yes
+       disallow_gtk_only=yes
+       ;;
+  esac
+done
 
 # Locate various programs
+
+PKG_PROG_PKG_CONFIG([0.15])
+
 AC_PROG_CC
 AC_PROG_CPP
 AC_PROG_CXX
-IT_PROG_INTLTOOL([0.35.0])
 AC_PROG_LN_S
+
+# Run these before AC_PROG_LIBTOOL, else it bugs
 AC_GGZ_INIT
 AC_GGZ_PLATFORM_BASE
-AC_PROG_LIBTOOL
 AC_GGZ_PLATFORM
 
-GNOME_DOC_INIT
+AC_PROG_LIBTOOL
 
-# See if C++ support is actually there and tell automake about it
-# so we can conditionally compile.
-AC_CHECK_PROG(CXX_PRESENT, $CXX, yes, no)
-AM_CONDITIONAL([HAVE_CXX], [test "x$CXX_PRESENT" = xyes])
+# See if C++ support is actually there
+AC_CHECK_PROG([have_cxx],[$CXX],[yes],[no])
 
-dnl Checking for the header file is basically the only way to find
-dnl out if the _development_ files are present. guile-config returns
-dnl a value regardless of what is actually installed. The problem
-dnl with this is if the header ever gets moved to a non-default location.
-AC_CHECK_HEADER([libguile.h], [GUILE_PRESENT=yes], [GUILE_PRESENT=no])
-if test "$GUILE_PRESENT" = "yes" ; then
-  GUILE_CFLAGS=`guile-config compile`
-  GUILE_LDFLAGS=`guile-config link`
-  AC_SUBST(GUILE_CFLAGS)
-  AC_SUBST(GUILE_LDFLAGS)
-  dnl On 64-bit machines guile < 1.6.5 causes a crash in aisleriot.
-  dnl But since 1.6.5 is only a few months old as I write this we 
-  dnl will be more lenient with 32-bit machines.
-  if uname -m | grep 64 ; then
-     GUILE_TARGET="1.6.5"
-  else 
-     GUILE_TARGET="1.6.0"
-  fi
-  if test `guile -c '(if (string<? (version) (cadr (command-line))) (display "no") (display "yes")) (newline)' $GUILE_TARGET` != yes ; then 
-    GUILE_PRESENT="no"
-    AC_MSG_WARN([Your version of guile is too old, please install a recent guile package (>= $GUILE_TARGET)])
-  fi
+if test "$need_cxx" = "yes" -a "$have_cxx" != "yes"; then
+  AC_MSG_ERROR([No C++ compiler found; either install one or use --enable-omitgames=gnometric,blackjack])
 fi
-AM_CONDITIONAL([HAVE_GUILE], [test "x$GUILE_PRESENT" = xyes])
-
-# Possibly disable the included gnuchess
-AC_ARG_ENABLE(gnuchess, [  --disable-gnuchess      disable included gnuchess for glChess])
-if test "x$enable_gnuchess" != "xno"; then
- AC_DEFINE(ENABLE_GNUCHESS, 1, [Enable compilation of included GNU Chess as AI chess engine for glChess])
-fi
-AM_CONDITIONAL(ENABLE_GNUCHESS, [test "x$enable_gnuchess" != "xno"])
 
 GNOME_COMMON_INIT
-GNOME_COMPILE_WARNINGS(yes)
-GNOME_CXX_WARNINGS(yes)
+GNOME_COMPILE_WARNINGS([maximum])
+GNOME_CXX_WARNINGS([yes])
 
 AC_C99_VARIADIC_MACROS
 AC_C99_VARIABLE_ARRAYS
 AC_C99_INITIALIZERS
 AC_C99_STDINT_H   
 
-AM_GCONF_SOURCE_2
-AC_PATH_PROG(GCONFTOOL, gconftool-2)
+# *************
+# Documentation
+# *************
 
-
-## Begin tests for scrollkeeper
-# SCROLLKEEPER_REQUIRED is never used?
-SCROLLKEEPER_REQUIRED=0.3.8
-AC_SUBST(SCROLLKEEPER_REQUIRED)
-
-
-AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
-if test x$SCROLLKEEPER_CONFIG = xno; then
-  AC_MSG_ERROR([Couldn't find scrollkeeper-config, please install the scrollkeeper package])
-fi
+GNOME_DOC_INIT([0.10.0],[have_gdu=yes],[have_gdu=no])
 
 dnl ****************************************************************************
 dnl * Python 2.4
 dnl ****************************************************************************
-AM_PATH_PYTHON(2.4)
 
+AM_PATH_PYTHON([2.4],[have_python=yes],[have_python=no])
+
+# ************
+# Dependencies
+# ************
+
+# Check which platform to use
+
+AC_MSG_CHECKING([for which platform to build])
+AC_ARG_WITH([platform],
+  [AS_HELP_STRING([--with-platform=gnome|maemo|gtk-only (default: gnome)])],
+  [case "$withval" in
+    gnome|maemo|gtk-only) ;;
+    *) AC_MSG_ERROR([invalid argument "$withval" for --with-platform]) ;;
+   esac],
+  [with_platform=gnome])
+AC_MSG_RESULT([$with_platform])
+
+if test "$with_platform" = "maemo" -a "$disallow_maemo" = "yes"; then
+  AC_MSG_ERROR([Trying to build with Maemo platform, but some of the following games don't support this: $gamelist])
+fi
+if test "$with_platform" = "gtk-only" -a "$disallow_gtk_only" = "yes"; then
+  AC_MSG_ERROR([Trying to build with gtk-only platform, but some of the following games don't support this: $gamelist])
+fi
+
+AM_CONDITIONAL([HAVE_GNOME],[test "$with_platform" = "gnome"])
+AM_CONDITIONAL([HAVE_MAEMO],[test "$with_platform" = "maemo"])
+
+if test "$with_platform" = "gnome"; then
+  AC_DEFINE([HAVE_GNOME],[1],[Define if GNOME support is enabled])
+fi
+if test "$with_platform" = "maemo"; then
+  AC_DEFINE([HAVE_MAEMO],[1],[Define if Maemo support is enabled])
+fi
 
 # Checks for libraries.
 LIBGNOMEUI_REQUIRED=2.16.0
@@ -99,37 +215,164 @@ LIBGNOME_REQUIRED=2.16.0
 PYGTK_REQUIRED=2.10.0
 GNOME_PYTHON_DESKTOP_REQUIRED=2.17.3
 
+if test "$with_platform" = "maemo"; then
+GTK_REQUIRED=2.6.0
+else
 GTK_REQUIRED=2.8.0
+fi
+
 GCONF_REQUIRED=2.0
-LIBRSVG_REQUIRED=2.0
 CAIRO_REQUIRED=1.0
 LIBXML_REQUIRED=2.4.0
+RSVG_REQUIRED=2.14.0
 GSTREAMER_REQUIRED=0.10.11
+HILDON_REQUIRED=0.14
 
-## Common flags for libraries that all games use.
-PKG_CHECK_MODULES(GNOME_GAMES, libxml-2.0 >= $LIBXML_REQUIRED libgnome-2.0 >= $LIBGNOME_REQUIRED gconf-2.0 >= $GCONF_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gtk+-2.0 >= $GTK_REQUIRED librsvg-2.0 >= $LIBRSVG_REQUIRED pygtk-2.0 >= $PYGTK_REQUIRED gnome-python-desktop-2.0 >= $GNOME_PYTHON_DESKTOP_REQUIRED gstreamer-0.10 >= $GSTREAMER_REQUIRED)
-AC_SUBST(GNOME_GAMES_CFLAGS)
-AC_SUBST(GNOME_GAMES_LIBS)
+# Check for common modules
 
-## Flags for Cairo
-PKG_CHECK_MODULES(CAIRO, cairo)
+need_gthread=no
+PKG_CHECK_MODULES([GTHREAD],[gthread-2.0])
+AC_SUBST([GTHREAD_CFLAGS])
+AC_SUBST([GTHREAD_LIBS])
+
+PKG_CHECK_MODULES([GTK],[gtk+-2.0 >= $GTK_REQUIRED])
+AC_SUBST([GTK_CFLAGS])
+AC_SUBST([GTK_LIBS])
+
+# Check for GConf
+
+have_gconf=no
+if test "$with_platform" = "gnome" -o "$with_platform" = "maemo"; then
+  PKG_CHECK_MODULES([GCONF],[gconf-2.0 >= $GCONF_REQUIRED],[have_gconf=yes])
+  AC_SUBST([GCONF_CFLAGS])
+  AC_SUBST([GCONF_LIBS])
+fi
+
+AM_CONDITIONAL([HAVE_GCONF],[test "$have_gconf" = "yes"])
+
+if test "$have_gconf" = "yes"; then
+  AC_DEFINE([HAVE_GCONF],[1],[Define if GConf is available])
+fi
+
+AM_GCONF_SOURCE_2
+AC_PATH_PROG([GCONFTOOL],[gconftool-2])
+
+# Check for GNOME modules
+
+if test "$with_platform" = "gnome"; then
+  PKG_CHECK_MODULES([GNOME],[
+    libxml-2.0 >= $LIBXML_REQUIRED
+    libgnome-2.0 >= $LIBGNOME_REQUIRED
+    libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED])
+  AC_SUBST([GNOME_CFLAGS])
+  AC_SUBST([GNOME_LIBS])
+
+  need_gthread=yes
+fi
+
+# Check for Maemo modules
+
+if test "$with_platform" = "maemo"; then
+  PKG_CHECK_MODULES([MAEMO],[
+    libosso
+    hildon-libs >= $HILDON_REQUIRED])
+  AC_SUBST([MAEMO_CFLAGS])
+  AC_SUBST([MAEMO_LIBS])
+fi
+
+# Check for Cairo (optional for Maemo)
+
+PKG_CHECK_MODULES([CAIRO],[cairo >= $CAIRO_REQUIRED],[have_cairo=yes],[have_cairo=no])
 AC_SUBST(CAIRO_CFLAGS)
 AC_SUBST(CAIRO_LIBS)
 
-## Flags for glade
-## We need gmodule to ensure --export-dynamic is used and
-##  glade_xml_signal_autoconnect works.
-PKG_CHECK_MODULES(GLADE, libglade-2.0 gmodule-2.0)
-AC_SUBST(GLADE_CFLAGS)
-AC_SUBST(GLADE_LIBS)
+if test "$have_cairo" = "yes"; then
+  AC_DEFINE([HAVE_CAIRO],[1],[Define if cairo is available])
+fi
 
+AM_CONDITIONAL([HAVE_CAIRO],[test "$have_cairo" = "yes"])
 
-dnl Check for GGZ
+# Check for librsvg (optional for Maemo)
+
+PKG_CHECK_MODULES([RSVG],[librsvg-2.0 >= $RSVG_REQUIRED],[have_rsvg=yes],[have_rsvg=no])
+
+if test "$have_rsvg" = "yes"; then
+  AC_SUBST([RSVG_CFLAGS])
+  AC_SUBST([RSVG_LIBS])
+
+  AC_DEFINE([HAVE_RSVG],[1],[Refine if librsvg is available])
+
+  # Check whether librsvg was compiled with gnome-vfs support
+  AC_MSG_CHECKING([whether librsvg supports gnome-vfs])
+
+  have_rsvg_gnomevfs=$($PKG_CONFIG --variable=gnome_vfs_supported librsvg-2.0)
+
+  if test -z "$have_rsvg_gnomevfs" -o "$have_rsvg_gnomevfs" = "yes"; then
+    have_rsvg_gnomevfs=yes
+    AC_DEFINE([HAVE_RSVG_GNOMEVFS],[1],[Define if librsvg has gnome-vfs support])
+  
+    need_gthread=yes
+fi
+
+  AC_MSG_RESULT([$have_rsvg_gnomevfs])
+fi
+
+AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
+
+# Check for PyGTK
+
+if test "$have_python" = "yes"; then
+  PKG_CHECK_MODULES([PYGTK],[
+    pygtk-2.0 >= $PYGTK_REQUIRED
+    gnome-python-desktop-2.0 >= $GNOME_PYTHON_DESKTOP_REQUIRED],
+    [have_pygtk=yes],[have_pygtk=no])
+fi
+
+enable_python=no
+if test "$have_python" = "yes" -a "$have_pygtk" = "yes"; then
+  AC_SUBST([PYGTK_CFLAGS])
+  AC_SUBST([PYGTK_LIBS])
+  
+  enable_python=yes
+fi
+
+if test "$enable_python" = "no" -a "$need_python" = "yes"; then
+  AC_MSG_ERROR([Some games need python, but python or pygtk not found])
+fi
+
+AM_CONDITIONAL([HAVE_PYTHON],[test "$enable_python" = "yes"])
+
+# GThread
+
+AM_CONDITIONAL([WITH_GTHREAD],[test "$need_gthread" = "yes"])
+
+# GStreamer
+
+if test "$need_gstreamer" = "yes"; then
+  PKG_CHECK_MODULES([GSTREAMER],[gstreamer-0.10 >= $GSTREAMER_REQUIRED])
+  AC_SUBST([GSTREAMER_CFLAGS])
+  AC_SUBST([GSTREAMER_LIBS])
+fi
+
+AM_CONDITIONAL([HAVE_GSTREAMER],[test "$need_gstreamer" = "yes"])
+
+# Compat defines (FIXMEchpe: update all games to only use those flags they require!)
+
+GNOME_GAMES_CFLAGS="$GTK_CFLAGS $GCONF_CFLAGS $GNOME_CFLAGS $PYGTK_CFLAGS $RSVG_CFLAGS $GSTREAMER_CFLAGS"
+GNOME_GAMES_LIBS="$GTK_LIBS $GCONF_LIBS $GNOME_LIBS $PYGTK_LIBS $RSVG_LIBS $GSTREAMER_LIBS"
+
+# *************
+# Check for GGZ
+# *************
+
 AC_GGZ_CHECK_SERVER
 
 AC_GGZ_PTHREADS
 AC_GGZ_GCRYPT
 AC_GGZ_TLS
+
+# FIXMEchpe?
+AM_CONDITIONAL([WITH_INCLUDED_GGZ],[test "$need_ggz" = "yes"])
 
 LIBGGZ_INCLUDES="-I\$(top_srcdir)/dependencies/libggz"
 AC_SUBST(LIBGGZ_INCLUDES)
@@ -199,10 +442,74 @@ case "$ac_cv_build" in
 esac
 GNOME_GAMES_CFLAGS="$OS_FLAGS $GNOME_GAMES_CFLAGS"
 
+# ****
+# i18n
+# ****
+
 GETTEXT_PACKAGE=gnome-games
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [The gettext package name])
 AM_GLIB_GNU_GETTEXT
+
+IT_PROG_INTLTOOL([0.35.0])
+
+# ********************
+# Game specific checks
+# ********************
+
+have_guile=no
+have_guile_1_8=no
+if test "$need_guile" = "yes"; then
+  GUILE_PROGS
+
+  GUILE_CFLAGS=`$GUILE_CONFIG compile`
+  GUILE_LIBS=`$GUILE_CONFIG link`
+  AC_SUBST([GUILE_CFLAGS])
+  AC_SUBST([GUILE_LIBS])
+
+  # Checking for the header file is basically the only way to find
+  # out if the _development_ files are present. guile-config returns
+  # a value regardless of what is actually installed. The problem
+  # with this is if the header ever gets moved to a non-default location.
+  gg_save_CFLAGS="$CFLAGS"
+  CFLAGS="$GUILE_CFLAGS $CFLAGS"
+  AC_CHECK_HEADER([libguile.h],[have_guile=yes],
+    [AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])])
+  CFLAGS="$gg_save_CFLAGS"
+
+  # On 64-bit machines guile < 1.6.5 causes a crash in aisleriot
+  if uname -m | grep -q 64 > /dev/null; then
+    GUILE_TARGET="1.6.5"
+  else
+    GUILE_TARGET="1.6.0"
+  fi
+  if test `$GUILE -c '(if (string<? (version) (cadr (command-line))) (display "no") (display "yes")) (newline)' $GUILE_TARGET` != yes ; then
+    AC_MSG_ERROR([Your version of guile is too old, please install a recent guile package (>= $GUILE_TARGET)])
+  fi
+
+  have_guile_1_8=$($GUILE -c '(if (string<? (version) (cadr (command-line))) (display "no") (display "yes")) (newline)' 1.8.0)
+
+  if test "$have_guile_1_8" = "yes"; then
+    AC_DEFINE([HAVE_GUILE_1_8],[1],[Define if guile version is 1.8.0 or above])
+  fi
+fi
+
+AM_CONDITIONAL([HAVE_GUILE],[test "$have_guile" = "yes"])
+AM_CONDITIONAL([HAVE_GUILE_1_8],[test "$have_guile_1_8" = "yes"])
+
+# Possibly disable the included gnuchess
+
+if test "$allow_gnuchess" = "yes"; then
+  AC_ARG_ENABLE([gnuchess],
+  [AS_HELP_STRING([--disable-gnuchess],[Disable included gnuchess for glChess])],
+  [],[enable_gnuchess=yes])
+
+  if test "$enable_gnuchess" = "yes"; then
+    AC_DEFINE([ENABLE_GNUCHESS],[1],[Enable compilation of included GNU Chess as AI chess engine for glChess])
+  fi
+fi
+
+AM_CONDITIONAL([WITH_INCLUDED_GNUCHESS],[test "$enable_gnuchess" = "yes"])
 
 # Check for library functions
 # ===========================
@@ -224,13 +531,16 @@ AC_FUNC_FORK
 AC_FUNC_STRCOLL
 AC_FUNC_VPRINTF
 
-# Check for expat
-# ===============
-AC_CHECK_LIB(expat, XML_ParserCreate, [LIBEXPAT="-lexpat"],
-             [AC_MSG_ERROR(cannot find expat library)])
-AC_CHECK_HEADER(expat.h, [],
-                [AC_MSG_ERROR(cannot find expat.h header)])
-AC_SUBST(LIBEXPAT)
+# Check for expat, which is needed by ggz
+# =======================================
+
+if test "$need_ggz" = "yes"; then
+  AC_CHECK_LIB(expat, XML_ParserCreate, [LIBEXPAT="-lexpat"],
+              [AC_MSG_ERROR(cannot find expat library)])
+  AC_CHECK_HEADER(expat.h, [],
+                  [AC_MSG_ERROR(cannot find expat.h header)])
+  AC_SUBST(LIBEXPAT)
+fi
 
 # Check for PF_LOCAL/PF_UNIX
 # ==========================
@@ -246,7 +556,7 @@ AC_EGREP_CPP(PF_LOCAL,
              [AC_MSG_RESULT(no)
               AC_MSG_CHECKING([for PF_UNIX])
               AC_EGREP_CPP(PF_UNIX, [ #include <sys/types.h>
-				      #include <sys/socket.h>
+                                      #include <sys/socket.h>
 				      PF_UNIX ],
                            [AC_MSG_RESULT(no)],
                            [AC_MSG_RESULT(yes)
@@ -274,6 +584,7 @@ AC_C_INLINE
 AC_TYPE_SIZE_T
 AC_HEADER_TIME
 
+# FIXMEchpe! FIXME
 if test "x${prefix}" = "xNONE"; then
    AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${ac_default_prefix}/share/pixmaps", [Pix
 map directory])
@@ -306,8 +617,12 @@ esac
 AC_MSG_RESULT([$os_win32])
 AM_CONDITIONAL(OS_WIN32, test "$os_win32" = "yes")
 
-dnl check for "check", unit testing library/header
-PKG_CHECK_MODULES([CHECK], [check >= 0.9.4], 
+# **********
+# Unit tests
+# **********
+
+# check for "check", unit testing library/header
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.4],
     [
         HAVE_CHECK=yes
         #AC_MSG_NOTICE(CHECK_CFLAGS: $CHECK_CFLAGS)
@@ -325,17 +640,17 @@ AC_ARG_ENABLE(tests,
       no)  BUILD_TESTS=no ;;
       *)   AC_MSG_ERROR(bad value ${enableval} for --disable-tests) ;;
     esac
-  ], 
+  ],
 [BUILD_TESTS=yes]) dnl Default value
 AM_CONDITIONAL(BUILD_TESTS,         test "x$BUILD_TESTS" = "xyes")
 
-AC_ARG_ENABLE(setgid,
-  AC_HELP_STRING([--disable-setgid],
-    [Disable the use of setgid binaries]),
+AC_ARG_ENABLE([setgid],
+  [AS_HELP_STRING([--disable-setgid],
+    [Disable the use of setgid binaries])],
   [case "${enableval}" in
     yes) setgid=true ;;
     no)  setgid=false ;;
-    *) AC_MSG_ERROR(bad value ${enableval} for --disable-setgid) ;;
+    *) AC_MSG_ERROR([bad value ${enableval} for --disable-setgid]) ;;
    esac],[setgid=true])
 AC_SUBST(setgid)
 
@@ -367,64 +682,12 @@ AC_ARG_ENABLE(mega-build-breaker,
   [GNOME_GAMES_CFLAGS="$GNOME_GAMES_CFLAGS $BUILD_BREAKER_BASIC $MEGA_BUILD_BREAKER"
    GNOME_GAMES_CXXFLAGS="$GNOME_GAMES_CXXFLAGS $BUILD_BREAKER_BASIC $MEGA_BUILD_BREAKER"])  
 
+AC_SUBST([GNOME_GAMES_CFLAGS])
+AC_SUBST([GNOME_GAMES_CXXFLAGS])
+AC_SUBST([GNOME_GAMES_LIBS])
 
-## Handle the disabling and enabling of games
-
-# This is the canonical list of all game subdirectories.
-allgames="aisleriot blackjack gnometris gnect gnomine same-gnome mahjongg gtali gnotravex gnotski glines iagno glchess gnobots2 gnibbles gnome-sudoku"
-
-gamelist=""
-
-## This has a particularly silly name because autoconf doesn't allow 
-## --disable-foo to have arguments so we have to use an --enable-fubar form.
-AC_ARG_ENABLE(omitgames,
-  AC_HELP_STRING([--enable-omitgames=list],
-    [Don't compile games in the comma separated list. ("all" and "none" are valid)]))
-if test "x${enable_omitgames}" != "x"; then
-   enable_omitgames=`echo ,"${enable_omitgames}", | sed -e 's/[[	,]][[	,]]*/ /g' -e 's/,$//'`
-   omittedgames=""
-   gamelist=""
-   for item in ${enable_omitgames}; do
-     for game in ${allgames}; do
-       case ${item} in
-	  all) omittedgames=${allgames};;
-	  none) omittedgames="";;
-          ${game}) omittedgames="${game} ${omittedgames}";;
-	  *) ;; 
-        esac
-     done
-   done
-   echo ${omittedgames}
-   for game in ${allgames}; do
-     case ${omittedgames} in
-       *${game}*) ;;
-       *) gamelist="${gamelist} ${game}";;
-     esac
-   done
-else
-   gamelist=${allgames} # Everything on by default
-fi
-
-AC_ARG_ENABLE(games, 
-  AC_HELP_STRING([--enable-games=list],
-    [Enable the games in the comma separated list ("all" and "none" are valid)]))
-if test "x${enable_games}" != "x"; then
-   gamelist=""
-   enable_games=`echo ,"${enable_games}", | sed -e 's/[[	,]][[	,]]*/ /g' -e 's/,$//'`
-   for item in ${enable_games}; do
-     for game in ${allgames}; do
-       case ${item} in
-	  all) gamelist=${allgames};;
-	  none) gamelist="";;
-          ${game}) gamelist="${gamelist} ${game}";;
-	  *) ;; 
-        esac
-     done
-   done
-fi
-
-AC_SUBST(gamelist)
-AC_SUBST(allgames)
+##############################################
+##############################################
 
 AC_CONFIG_FILES([
 gnome-games.spec
@@ -469,11 +732,13 @@ iagno/iagno-client.dsc
 iagno/iagno-server.dsc
 iagno/help/Makefile
 gnotravex/Makefile
+gnotravex/gnotravex.desktop.in
 gnotravex/help/Makefile
 gnotravex/pixmaps/Makefile
 gnotski/Makefile
 gnotski/help/Makefile
 glines/Makefile
+glines/glines.desktop.in
 glines/help/Makefile
 gnometris/Makefile
 gnometris/pix/Makefile
@@ -489,6 +754,8 @@ gnibbles/gnibbles-server.dsc
 gnibbles/help/Makefile
 gnibbles/pix/Makefile
 aisleriot/Makefile
+aisleriot/sol.desktop.in
+aisleriot/freecell.desktop.in
 aisleriot/rules/Makefile
 aisleriot/help/Makefile
 aisleriot/help/fr/Makefile
@@ -525,21 +792,18 @@ AC_OUTPUT
 echo "
 Configuration:
 
-	Source code location:	  	   ${srcdir}
-	Compiler:		  	   ${CC}
+    Source code location:  ${srcdir}
+    Compiler:              ${CC}
 
-	Games to be compiled:		  ${gamelist}
+    Platform:              ${with_platform}
+    Games to be compiled:  ${gamelist}
 
-	C++ compiler found	
-	(Gnometris and Blackjack):	   ${CXX_PRESENT}
-	Guile found (Aisleriot):	   ${GUILE_PRESENT}
-
-        Use setgid binaries                ${setgid}
-        Scores user                        ${scores_user}
-        Scores & setgid group              ${scores_group}
+    Use setgid binaries:   ${setgid}
+    Scores user:           ${scores_user}
+    Scores & setgid group: ${scores_group}
 "
 
-if grep "$scores_group:" /etc/group ; then
+if grep "$scores_group:" /etc/group > /dev/null; then
 :;
 else
 echo
@@ -549,8 +813,10 @@ echo "         different group use the --with-scores-group option."
 echo
 fi
 
-libgnomeprefix=`pkg-config libgnome-2.0 --variable=prefix`
-if test x$libgnomeprefix = x$prefix -o x$libgnomeprefix = x$prefix/ ; then
+if test "$with_platform" = "gnome"; then
+
+libgnomeprefix=`$PKG_CONFIG libgnome-2.0 --variable=prefix`
+if test "$libgnomeprefix" = "$prefix" -o "$libgnomeprefix" = "$prefix/" ; then
 :;
 else
 echo "Warning: This package is not being installed with the same prefix"
@@ -561,6 +827,8 @@ echo "         Red Hat 9 and Fedora need --localstatedir=/var/lib if you"
 echo "         are using the default libgnome package since scores are"
 echo "         stored in /var/lib/games/."
 echo
+fi
+
 fi
 
 if echo foo | xgettext --from-code=UTF-8 -LC -o - - 2>/dev/null ; then 

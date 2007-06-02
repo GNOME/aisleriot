@@ -1,3 +1,40 @@
+2007-06-01  Christian Persch  <chpe@gnome.org>
+
+	Landed the AisleRiot refactoring from my GIT branch at
+	http://www.gnome.org/~chpe/git/gnome-games.git/
+
+	Overview of the changes:
+
+	* Refactored code
+	* Maemo port
+	* GTK-only port
+	* Improve SVG rendering time for supported themes
+	  (right now only Bellot theme)
+	* Support pre-rendered themes with one file per card per size per theme
+	* Decrease memory used for theme caching by only caching the pixmaps or
+	  pixbufs, not both
+	* Reduced startup time
+	* Improved antialiased card rendering quality
+	* Reduced response times by only rendering the changes cards instead
+	  of the whole board
+	* New click-to-select mode adapted for use with stylus and fingers
+	  on touchscreen devices
+
+	Bugs fixed includes the following:
+	* SVG card set takes too long to load (Bug #337080)
+	* Add "Restart Game" to game-over dialogue. (Bug #386827)
+	* Also highlight empty slots if dropping there is possible.
+	  Adapted from a patch by Amnon Aaronsohn from bug #338466.
+	* Abort the click if the mouse moved away from the clicked slot.
+	  (See bug #329183).
+	* Make Fullscreen menu item a check item, as per HIG. Bug #352084.
+	* Pause the game timer while the window is iconified. Bug #347448.
+	* Fixed drawing artifacts (very noticeable with the Ornamental theme
+	  at high sizes)
+
+	You can access the full changelog as ChangeLog.git,
+	or use svn history.
+
 2007-05-18  Andreas Røsdal  <andreasr@gnome.org>
 
 	* menu.c: Hide "Cards" menu item if only one one card

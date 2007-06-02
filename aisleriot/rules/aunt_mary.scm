@@ -59,7 +59,7 @@
 
   (give-status-message)
 
-  (list 7 3) 
+  (list 6 3)
 )
 
 (define (get-options) 

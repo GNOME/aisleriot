@@ -1,5 +1,6 @@
-/* AisleRiot - sol.c
- * Copyright (C) 1998, 2001, 2003, 2006 Jonathan Blandford <jrb@alum.mit.edu>
+/*
+ * Copyright © 1998, 2001, 2003, 2006 Jonathan Blandford <jrb@alum.mit.edu>
+ * Copyright © 2007 Christian Persch
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,652 +18,665 @@
  * USA
  */
 
-#include <config.h>
+#include "config.h"
 
-#ifdef HAVE_ALLOCA_H
-#include <alloca.h>
-#endif
-
-#include <sys/types.h>
 #include <string.h>
-#include <stdlib.h>
+#include <locale.h>
+
 #include <libguile.h>
-#include <ctype.h>
-#include "sol.h"
-#include "events.h"
-#include "draw.h"
-#include <gnome.h>
-#include <gconf/gconf-client.h>
-#include <glade/glade.h>
-#include "slot.h"
-#include "card.h"
-#include "cscmi.h"
-#include "menu.h"
-#include "statistics.h"
-#include <games-clock.h>
-#include <games-gconf.h>
-#include <games-files.h>
 
-/* The minimum size for the playing area. Almost completely arbitrary. */
-#define BOARD_MIN_WIDTH 300
-#define BOARD_MIN_HEIGHT 250
+#include <glib/gi18n.h>
+#include <glib/gthread.h>
 
+#include <gtk/gtkaboutdialog.h>
+#include <gtk/gtkicontheme.h>
+#include <gtk/gtkmain.h>
+#include <gtk/gtkmessagedialog.h>
 
-/*
- * Global Variables
- */
-GtkWidget *app;
-GtkWidget *vbox;
-GtkWidget *playing_area;
-GtkWidget *statusbar;
-GtkWidget *score_box;
-GdkGC *draw_gc;
-GdkGC *bg_gc;
-GdkGC *slot_gc;
-GdkPixmap *surface;
-GdkPixmap *moving_card_pixmap;
-gchar *card_style;
-gboolean dont_save = FALSE;	/* If the game is selected on the
-				 * command line we assume that it is
-				 * special and don't save the state.
-				 * This is essential for Freecell
-				 * emulation.*/
+#ifdef HAVE_GNOME
+#include <libgnome/gnome-program.h>
+#include <libgnomeui/gnome-app-helper.h>
+#include <libgnomeui/gnome-client.h>
+#include <libgnomeui/gnome-help.h>
+#include <libgnomeui/gnome-ui-init.h>
+#endif /* HAVE_GNOME */
 
-gboolean droppable_is_featured;
-gboolean score_is_hidden;
+#ifdef HAVE_MAEMO
+#include <libosso.h>
+#include <osso-browser-interface.h>
+#include <hildon-widgets/hildon-program.h>
 
-guint score;
-guint timeout;
-guint32 seed;
-gchar *game_file = "";
-gchar *game_name;
-gboolean game_in_progress = FALSE;
-gboolean game_over;
-gboolean game_won;
-gboolean click_to_move = FALSE;
-gchar *variation = "";
-gchar *gamesdir;
+#define SERVICE_NAME "org.gnome.Games.AisleRiot"
+#define MAEMO_HELP_EXT "xhtml"
 
-GConfClient *gconf_client = NULL;
+#endif /* HAVE_MAEMO */
 
-#define DEFAULT_VARIATION "klondike.scm"
-#define GNOME_SESSION_BUG
+#include <libgames-support/games-stock.h>
 
-gchar *
-game_file_to_name (const gchar * file)
+#include "conf.h"
+#include "game.h"
+#include "util.h"
+#include "window.h"
+
+typedef struct {
+  AisleriotWindow *window;
+  char *variation;
+  guint seed;
+  gboolean freecell;
+#ifdef HAVE_GNOME
+  GnomeProgram *program;
+#endif
+#ifdef HAVE_MAEMO
+  osso_context_t *osso_context;
+  HildonProgram *program;
+#endif
+} AppData;
+
+#ifndef HAVE_GNOME
+
+static void
+about_url_hook (GtkAboutDialog *about,
+                const char *link,
+                gpointer user_data)
 {
-  char *p, *buf = g_path_get_basename (file);
-  gchar *ts;
+#ifdef HAVE_MAEMO
+  AppData *data = (AppData *) user_data;
 
-  if ((p = strrchr (buf, '.')))
-    *p = '\0';
-  for (p = buf; p = strchr (p, '_'), p && *p;)
-    *p = ' ';
-  for (p = buf; p = strchr (p, '-'), p && *p;)
-    *p = ' ';
-  for (p = buf; p = strchr (p, ' '), p && *p;) {
-    if (*(p + 1)) {
-      *(p + 1) = g_ascii_toupper (*(p + 1));
-      p++;
-    }
+  osso_rpc_run_with_defaults (data->osso_context,
+                              "osso_browser",
+                              OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
+                              NULL,
+                              DBUS_TYPE_STRING, link,
+                              DBUS_TYPE_INVALID);
+
+#else
+
+  GdkScreen *screen;
+  GError *error = NULL;
+  char *argv[3] = { (char *) "gnome-open", (char *) link, NULL };
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (about));
+
+  if (!gdk_spawn_on_screen (screen,
+                            NULL /* working directory */,
+                            argv,
+                            NULL /* environment */,
+                            G_SPAWN_SEARCH_PATH,
+                            NULL, NULL,
+                            NULL,
+                            &error)) {
+    GtkWidget *dialog;
+
+    dialog = gtk_message_dialog_new (GTK_WINDOW (about),
+                                     GTK_DIALOG_DESTROY_WITH_PARENT |
+                                     GTK_DIALOG_MODAL,
+                                     GTK_MESSAGE_ERROR,
+                                     GTK_BUTTONS_CLOSE,
+                                     _("Could not show link"));
+    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                              "%s", error->message);
+    g_error_free (error);
+
+    gtk_window_set_title (GTK_WINDOW (dialog), "");
+    gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+
+    g_signal_connect (dialog, "response",
+                      G_CALLBACK (gtk_widget_destroy), NULL);
+
+    gtk_window_present (GTK_WINDOW (dialog));
   }
-  buf[0] = g_ascii_toupper (buf[0]);
-
-  ts = g_strdup (_(buf));
-  g_free (buf);
-
-  return ts;
+#endif /* HAVE_MAEMO */
 }
 
-gchar *
-game_file_to_help_section (const gchar * file)
+#endif /* !HAVE_GNOME */
+
+static char *
+variation_to_game_file (const char *variation)
 {
-  char *p, *buf = g_path_get_basename (file);
+  char *game_file, *s;
+
+  game_file = g_ascii_strdown (variation, -1);
+
+  /* Replace dangerous characters: '.' (as in "..") and '/' */
+  g_strdelimit (game_file, "." G_DIR_SEPARATOR_S, '\0');
+  g_strdelimit (game_file, NULL, '_');
+
+  if (game_file[0] == '\0') {
+    g_free (game_file);
+    return NULL;
+  }
+
+  /* Add the suffix */
+  s = g_strconcat (game_file, ".scm", NULL);
+  g_free (game_file);
+
+  return s;
+}
+
+#ifdef HAVE_GNOME
+
+static gboolean
+save_yourself_cb (GnomeClient *client,
+                  int phase,
+                  GnomeSaveStyle save_style,
+                  gboolean shutdown,
+                  GnomeInteractStyle interact_style,
+                  gboolean fast,
+                  AppData *data)
+{
+  AisleriotGame *game;
+  char *argv[5];
+  const char *game_name;
+  char *seed;
+  int argc = 0;
+
+  game = aisleriot_window_get_game (data->window);
+
+  game_name = aisleriot_game_get_game_file (game);
+  seed = g_strdup_printf ("%u", aisleriot_game_get_seed (game));
+
+  argv[argc++] = g_get_prgname ();
+
+  if (data->freecell) {
+    argv[argc++] = "--freecell";
+  } else {
+    argv[argc++] = "--variation";
+    argv[argc++] = (char *) game_name;
+  }
+
+  argv[argc++] = "--seed";
+  argv[argc++] = seed;
+
+  /* FIXMEchpe: save game state too? */
+
+  gnome_client_set_restart_command (client, argc, argv);
+
+  g_free (seed);
+
+  return TRUE;
+}
+
+static void
+die_cb (GnomeClient *client,
+        AppData *data)
+{
+  /* This will cause gtk_main_quit */
+  gtk_widget_destroy (GTK_WIDGET (data->window));
+}
+
+#endif /* HAVE_GNOME */
+
+static char *
+game_file_to_help_section (const char *game_file)
+{
+  char *p, *buf;
+
+  buf = g_path_get_basename (game_file);
 
   if ((p = strrchr (buf, '.')))
     *p = '\0';
   for (p = buf; p = strchr (p, '-'), p && *p;)
     *p = '_';
   for (p = buf; p = strchr (p, '_'), p && *p;) {
-    if (*(p + 1)) {
-      *(p + 1) = g_ascii_toupper (*(p + 1));
-      p++;
+    char *next = p + 1;
+    char q = *next;
+
+    if (q != '\0' && g_ascii_islower (q)) {
+      *next = g_ascii_toupper (q);
+      ++p;
     }
   }
-  buf[0] = g_ascii_toupper (buf[0]);
+  if (g_ascii_islower (buf[0])) {
+    buf[0] = g_ascii_toupper (buf[0]);
+  }
 
   return buf;
 }
 
-/* Note that this is not the inverse of game_file_to_name. This
- * only works on untranslated names. game_file_to_name only produces
- * translated names. Be careful. */
-static gchar *
-game_name_to_file (const gchar * name)
-{
-  char *p, *s;
+#ifdef HAVE_MAEMO
 
-  s = g_strdup (name);
-  p = s;
-  while (*p) {
-    if (*p == ' ')
-      *p = '_';
-    *p = g_ascii_tolower (*p);
-    p++;
+static void
+help_hook (GtkWindow *parent,
+           const char *game_file,
+           gpointer user_data)
+{
+  AppData *data = (AppData *) user_data;
+  char *help_section = NULL;
+  char *help_url = NULL;
+  guint i;
+  const char * const *langs;
+
+  if (game_file != NULL) {
+    help_section = game_file_to_help_section (game_file);
   }
 
-  if (!g_str_has_suffix (s, ".scm")) {	/* We may have been given a filename. */
-    p = s;
-    s = g_strconcat (s, ".scm", NULL);
-    g_free (p);
+  langs = g_get_language_names ();
+
+  for (i = 0; langs[i] != NULL; ++i) {
+    const char *lang = langs[i];
+    char *path;
+
+    /* Filter out variants */
+    if (strchr (lang, '.') != NULL ||
+        strchr (lang, '@') != NULL)
+      continue;
+
+    path = g_strdup_printf (HELPDIR G_DIR_SEPARATOR_S "%s" G_DIR_SEPARATOR_S "%s." MAEMO_HELP_EXT,
+                            lang,
+                            help_section ? help_section : "aisleriot");
+    if (g_file_test (path, G_FILE_TEST_EXISTS)) {
+      help_url = g_strdup_printf ("file://%s", path);
+      g_free (path);
+      break;
+    }
+
+    g_free (path);
   }
 
-  p = g_build_filename (gamesdir, s, NULL);
-  g_free (s);
+  if (!help_url) {
+    GtkWidget *dialog;
 
-  return p;
-}
+    dialog = gtk_message_dialog_new (parent,
+                                     GTK_DIALOG_DESTROY_WITH_PARENT |
+                                     GTK_DIALOG_MODAL,
+                                     GTK_MESSAGE_ERROR,
+                                     GTK_BUTTONS_CLOSE,
+                                     /* %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html" */
+                                     _("Help file \"%s.%s\" not found"),
+                                     help_section ? help_section : "aisleriot",
+                                     MAEMO_HELP_EXT);
 
-void
-eval_installed_file (char *file)
-{
-  char *installed_filename;
-  char *relative;
+    /* Empty title shows up as "<unnamed>" on maemo */
+    gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
+    gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+    g_signal_connect (dialog, "response",
+                      G_CALLBACK (gtk_widget_destroy), NULL);
 
-  if (g_file_test (file, G_FILE_TEST_EXISTS)) {
-    scm_c_primitive_load (file);
+    gtk_window_present (GTK_WINDOW (dialog));
+
     return;
   }
 
-  relative = g_strconcat (GAMESDIR, file, NULL);
-  installed_filename = gnome_program_locate_file (NULL,
-						  GNOME_FILE_DOMAIN_APP_DATADIR,
-						  relative, FALSE, NULL);
+  osso_rpc_run_with_defaults (data->osso_context,
+                              "osso_browser",
+                              OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
+                              NULL,
+                              DBUS_TYPE_STRING, help_url,
+                              DBUS_TYPE_INVALID);
 
-  if (g_file_test (installed_filename, G_FILE_TEST_EXISTS)) {
-    scm_c_primitive_load (installed_filename);
-  } else {
-    char *message =
-      g_strdup_printf (_
-		       ("Aisleriot can't load the file: \n%s\n\n"
-			"Please check your Aisleriot installation"),
-		       installed_filename);
-    GtkWidget *w = gtk_message_dialog_new (NULL, 0,
-					   GTK_MESSAGE_ERROR,
-					   GTK_BUTTONS_OK,
-					   message);
+  g_free (help_url);
+}
+  
+#else /* !HAVE_MAEMO */
 
-    gtk_dialog_run (GTK_DIALOG (w));
-    gtk_widget_destroy (w);
-    g_free (message);
-    exit (1);
+static void
+help_hook (GtkWindow *parent,
+           const char *game_file,
+           gpointer user_data)
+{
+  GdkScreen *screen;
+  char *help_section = NULL;
+  GError *error = NULL;
+#ifndef HAVE_GNOME
+  char *help_url = NULL;
+  char *argv[3];
+#endif /* !HAVE_GNOME */
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (parent));
+
+  if (game_file != NULL) {
+    help_section = game_file_to_help_section (game_file);
   }
-  g_free (installed_filename);
-  g_free (relative);
+
+#ifdef HAVE_GNOME
+  if (!gnome_help_display_on_screen ("aisleriot.xml", help_section, screen, &error)) {
+#else
+
+  if (help_section != NULL) {
+    /* FIXMEchpe: URL-escape? */
+    help_url = g_strdup_printf ("ghelp:aisleriot?%s", help_section);
+  } else {
+    help_url = g_strdup ("ghelp:aisleriot");
+  }
+
+  argv[0] = "gnome-open";
+  argv[1] = help_url;
+  argv[2] = NULL;
+
+  if (!gdk_spawn_on_screen (screen,
+                            NULL /* working directory */,
+                            argv,
+                            NULL /* environment */,
+                            G_SPAWN_SEARCH_PATH,
+                            NULL, NULL,
+                            NULL,
+                            &error)) {
+#endif /* !HAVE_GNOME */
+    GtkWidget *dialog;
+    char *primary;
+
+    if (game_file != NULL) {
+      char *game_name;
+ 
+      game_name = aisleriot_util_get_display_filename (game_file);
+      primary = g_strdup_printf (_("Could not show help for \"%s\""), game_name);
+      g_free (game_name);
+    } else {
+      primary = g_strdup (_("Could not show Aisleriot help"));
+    }
+
+    dialog = gtk_message_dialog_new (parent,
+                                     GTK_DIALOG_DESTROY_WITH_PARENT |
+                                     GTK_DIALOG_MODAL,
+                                     GTK_MESSAGE_ERROR,
+                                     GTK_BUTTONS_CLOSE,
+                                     "%s", primary);
+    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                              "%s", error->message);
+    g_free (primary);
+    g_error_free (error);
+
+#ifdef HAVE_MAEMO
+  /* Empty title shows up as "<unnamed>" on maemo */
+  gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
+#else
+  gtk_window_set_title (GTK_WINDOW (dialog), "");
+#endif /* HAVE_MAEMO */
+
+    gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+
+    g_signal_connect (dialog, "response",
+                      G_CALLBACK (gtk_widget_destroy), NULL);
+
+    gtk_window_present (GTK_WINDOW (dialog));
+  }
+
+  g_free (help_section);
+#ifndef HAVE_GNOME
+  g_free (help_url);
+#endif /* !HAVE_GNOME */
+}
+
+#endif /* HAVE_MAEMO */
+
+#ifdef HAVE_MAEMO
+
+static void
+osso_hw_event_cb (osso_hw_state_t *state,
+                  gpointer user_data)
+{
+  AppData *data = (AppData *) user_data;
+
+  /* This callback can be called immediately upon registration.
+   * So check if we're started up yet.
+   */
+  if (data->program == NULL)
+    return;
+
+#if GNOME_ENABLE_DEBUG
+  if (state->shutdown_ind) {
+    g_print ("Going to shut down\n");
+  } else if (state->save_unsaved_data_ind) {
+    g_print ("Should save unsaved data\n");
+  } else if (state->memory_low_ind) {
+    g_print ("Should try to free some memory\n");
+  } else if (state->system_inactivity_ind) {
+    g_print ("System inactive\n");
+  }
+#endif
 }
 
 static int
-save_state (GnomeClient * client)
+osso_rpc_cb (const char *interface,
+             const char *method,
+             GArray *args,
+             gpointer user_data,
+             osso_rpc_t *ret)
 {
-  gconf_client_set_string (gconf_client, "/apps/aisleriot/game_file",
-			   game_file, NULL);
-  gconf_client_set_string (gconf_client, "/apps/aisleriot/card_style",
-			   card_style, NULL);
+  AppData *data = (AppData *) user_data;
 
-  return TRUE;
+#if GNOME_ENABLE_DEBUG
+  g_print ("OSSO RPC iface %s method %s\n", interface, method);
+#endif
+
+  if (strcmp (method, "top_application") == 0) {
+    gtk_window_present (GTK_WINDOW (data->window));
+  }
+
+  ret->type = DBUS_TYPE_INVALID;
+  return OSSO_OK;
 }
 
-/* Check for the existence of a particular variation and fall back to
-   a default if it isn't found. */
-/* FIXME: There is a lot of duplication with the eval_installed_file
-   function, but we need this called earlier. */
 static void
-check_game_file_name (void)
+sync_is_topmost_cb (HildonProgram *program,
+                    GParamSpec *pspec,
+                    AppData *data)
 {
-  gchar *fullpath;
-  gchar *partialpath;
-  GtkWidget *dialog;
-
-  partialpath = g_strconcat (GAMESDIR, game_file, NULL);
-  fullpath = gnome_program_locate_file (NULL,
-					GNOME_FILE_DOMAIN_APP_DATADIR,
-					partialpath, FALSE, NULL);
-  if (!g_file_test (fullpath, G_FILE_TEST_EXISTS)) {
-    dialog = gtk_message_dialog_new (NULL, 0,
-				     GTK_MESSAGE_INFO,
-				     GTK_BUTTONS_OK,
-				     _
-				     ("Aisleriot cannot find the last game you played."));
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-					      _
-					      ("This usually occurs when you run an older version of Aisleriot which does not have the game you last played. The default game, Klondike, is being started instead."));
-    gtk_dialog_run (GTK_DIALOG (dialog));
-    gtk_widget_destroy (dialog);
-    game_file = DEFAULT_VARIATION;
-  }
-
-  g_free (fullpath);
-  g_free (partialpath);
-}
-
-void
-new_game (gchar * file, guint * seedp)
-{
-  double width, height;
-
-  /* If we're aborting an old game count it as a failure for
-   * statistical purposes. */
-  if (game_in_progress) {
-    update_statistics (FALSE, 0);
-  }
-  /* The game isn't actually in progress until the user makes a move. */
-  game_in_progress = FALSE;
-  option_list_set_sensitive ();
-
-  if (file && strcmp (file, game_file)) {
-    game_file = file;
-
-    /* Although this line slows down game switching by a noticeable amount, we
-     * add it here in order to make sure all the original functions are
-     * "clean". */
-    eval_installed_file ("sol.scm");
-    /* This is here so that the previous lines can catch bad installations 
-     * and report it before reporting the fallback to defaults. */
-    check_game_file_name ();
-    eval_installed_file (game_file);
-
-    game_name = game_file_to_name (game_file);
-    update_statistics_display ();
-    help_update_game_name ();
-    install_options_menu ();
-
-    if (score_is_hidden)
-      gtk_widget_hide (score_box);
-    else
-      gtk_widget_show (score_box);
-
-    if (!dont_save)
-      save_state (gnome_master_client ());
-
-  }
-
-  if (seedp) {
-    seed = *seedp;
+  if (hildon_program_get_is_topmost (program)) {
+    hildon_program_set_can_hibernate (program, FALSE);
   } else {
-    seed = g_random_int ();
+    /* FIXMEchpe: save state here */
+
+    hildon_program_set_can_hibernate (program, TRUE);
   }
-
-  g_random_set_seed (seed);
-  set_score (0);
-  timer_reset ();
-
-  cscmi_start_game_lambda (&width, &height);
-  scm_c_eval_string ("(start-game)");
-
-  set_geometry (width, height);
-
-  /* It is possible for some games to not have any moves right from the
-   * start. If this happens we redeal. */
-  if (!cscmi_game_over_lambda ()) {
-    new_game (file, NULL);
-  } else {
-    if (surface)
-      refresh_screen ();
-
-    undo_set_sensitive (FALSE);
-    redo_set_sensitive (FALSE);
-
-    game_over = FALSE;
-    gtk_window_set_title (GTK_WINDOW (app), _(game_name));
-  }
-  /* We've just started a new game. Add this to the list of games the user likes */
-  add_recently_played_game (file);
 }
 
-GtkWidget *score_value;
-
-guint score;
-
-void
-set_score (guint new_score)
-{
-  char b[10];
-  score = new_score;
-  g_snprintf (b, sizeof (b), "%6d  ", score);
-  gtk_label_set_text (GTK_LABEL (score_value), b);
-}
-
-guint
-get_score ()
-{
-  return score;
-}
-
-GtkWidget *time_value;
-
-static gint
-timer_cb ()
-{
-  timeout = 3600;
-  /* All the games return #f and nothing else with this call, but just in
-   * case someone changes their mind in the future. */
-  if (cscmi_timeout_lambda ())
-    end_of_game_test ();
-  return 0;
-}
-
-guint timer_timeout = 0;
-
-void
-timer_restart (void)
-{
-  games_clock_start (GAMES_CLOCK (time_value));
-  timer_timeout =
-    g_timeout_add (timeout * 1000 - timer_get (), (GSourceFunc) (timer_cb),
-		   NULL);
-}
-
-void
-timer_start (void)
-{
-  if (timer_timeout)
-    games_clock_stop (GAMES_CLOCK (time_value));
-  timeout = 3600;
-  games_clock_set_seconds (GAMES_CLOCK (time_value), 0);
-  games_clock_start (GAMES_CLOCK (time_value));
-  timer_timeout =
-    g_timeout_add (timeout * 1000, (GSourceFunc) (timer_cb), NULL);
-}
-
-void
-timer_stop (void)
-{
-  games_clock_stop (GAMES_CLOCK (time_value));
-  if (timer_timeout)
-    g_source_remove (timer_timeout);
-  timer_timeout = 0;
-}
-
-void
-timer_reset (void)
-{
-  timer_stop ();
-  games_clock_set_seconds (GAMES_CLOCK (time_value), 0);
-}
-
-guint
-timer_get (void)
-{
-  return (guint) games_clock_get_seconds (GAMES_CLOCK (time_value));
-}
-
-/*
- * setup stuff
- */
-
+#endif /* HAVE_MAEMO */
 
 static void
-create_sol_board ()
+add_main_options (GOptionContext *option_context,
+                  AppData *data)
 {
-  playing_area = gtk_drawing_area_new ();
-  gtk_widget_set_events (playing_area,
-			 gtk_widget_get_events (playing_area) | GAME_EVENTS);
-  /* This only enforces the minimum size. It is actually set using the
-   * window size. */
-  gtk_widget_set_size_request (playing_area, BOARD_MIN_WIDTH,
-			       BOARD_MIN_HEIGHT);
+  const GOptionEntry aisleriot_options[] = {
+    { "variation", 'v', 0, G_OPTION_ARG_STRING, &data->variation,
+      N_("Select the game type to play"), N_("NAME") },
+    { "seed", 's', 0, G_OPTION_ARG_STRING, &data->seed,
+      N_("Select the game number"), N_("NUMBER") },
+    { "freecell", 0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &data->freecell,
+      NULL, NULL },
+    { NULL }
+  };
 
-  gtk_box_pack_start (GTK_BOX (vbox), playing_area, TRUE, TRUE, 0);
-
-  gtk_widget_realize (playing_area);
-
-  draw_gc = gdk_gc_new (playing_area->window);
-
-  bg_gc = gdk_gc_new (playing_area->window);
-  if (get_background_pixmap ())
-    gdk_gc_set_tile (bg_gc, get_background_pixmap ());
-  gdk_gc_set_fill (bg_gc, GDK_TILED);
-
-  slot_gc = gdk_gc_new (playing_area->window);
-
-  g_signal_connect (G_OBJECT (playing_area), "button_release_event",
-		    GTK_SIGNAL_FUNC (button_release_event), NULL);
-  g_signal_connect (G_OBJECT (playing_area), "motion_notify_event",
-		    GTK_SIGNAL_FUNC (motion_notify_event), NULL);
-  g_signal_connect (G_OBJECT (playing_area), "button_press_event",
-		    GTK_SIGNAL_FUNC (button_press_event), NULL);
-  g_signal_connect (G_OBJECT (playing_area), "configure_event",
-		    GTK_SIGNAL_FUNC (configure_event), NULL);
-  g_signal_connect (G_OBJECT (playing_area), "expose_event",
-		    GTK_SIGNAL_FUNC (expose_event), NULL);
-  /* No need for gtk's double buffering, since we have our own. */
-  gtk_widget_set_double_buffered (playing_area, FALSE);
+  g_option_context_add_main_entries (option_context,
+				     aisleriot_options, GETTEXT_PACKAGE);
 }
-
-void
-quit_app (GtkMenuItem * menuitem)
-{
-  /* If the game isn't over, then it counts as a failure. */
-  if (game_in_progress) {
-    update_statistics (FALSE, 0);
-  }
-
-  gtk_main_quit ();
-}
-
-/*
- * Takes the name of the file that drives the game and
- * stores it as a recently played game
- * Recent games are stored at the end of the list.
- */
-void
-add_recently_played_game (gchar * game_file)
-{
-  if (game_file == NULL)
-    return;
-
-  GConfClient *gconf_client = gconf_client_get_default ();
-
-  gchar *recent_games =
-    gconf_client_get_string (gconf_client, RECENT_GAMES_GCONF_KEY, NULL);
-  gchar *new_games = NULL;
-
-  if (recent_games == NULL)
-    new_games = g_strdup (game_file);
-  else {
-    gchar **games_list = g_strsplit (recent_games, (gchar *) ",", 0);
-
-    /* Start off with our latest game at the front */
-    new_games = g_strdup (game_file);
-    int game_count = 1;
-    int index = 0;
-
-    while ((games_list[index] != NULL) && (game_count < 5)) {
-      /* If the game is already in the list, don't add it again */
-      if (g_ascii_strcasecmp (game_file, games_list[index]) == 0) {
-	++index;
-	continue;
-      }
-      new_games =
-	g_strconcat (new_games, (gchar *) ",", games_list[index], NULL);
-
-      ++game_count;
-      ++index;
-    }
-
-    new_games = g_strconcat (new_games, NULL);
-    g_strfreev (games_list);
-  }
-
-  /* Update the gconf key with the new list of games */
-  gconf_client_set_string (gconf_client, RECENT_GAMES_GCONF_KEY, new_games,
-			   NULL);
-
-  g_free (recent_games);
-  g_free (new_games);
-
-  install_recently_played_menu ();
-}
-
-static void
-create_main_window ()
-{
-  GConfClient *gconf_client = gconf_client_get_default ();
-  gint width, height;
-
-  width = gconf_client_get_int (gconf_client, WIDTH_GCONF_KEY, NULL);
-  height = gconf_client_get_int (gconf_client, HEIGHT_GCONF_KEY, NULL);
-
-  app = gnome_app_new ("aisleriot", _("Aisleriot"));
-  gtk_window_set_default_size (GTK_WINDOW (app), width, height);
-
-  gtk_widget_realize (app);
-
-  g_signal_connect (GTK_OBJECT (app), "delete_event",
-		    GTK_SIGNAL_FUNC (quit_app), NULL);
-  g_signal_connect (GTK_OBJECT (app), "configure_event",
-		    GTK_SIGNAL_FUNC (app_configure_event), NULL);
-}
-
-gchar *start_game;
 
 static void
 main_prog (void *closure, int argc, char *argv[])
 {
-  GtkWidget *score_label, *time_label, *time_box;
+  AppData data;
+  GOptionContext *option_context;
+#ifdef HAVE_GNOME
+  GnomeClient *master_client;
+#else
+  GError *error = NULL;
+  gboolean retval;
+#endif
+#if HAVE_MAEMO
+  osso_hw_state_t hw_events = {
+    TRUE /* shutdown */,
+    TRUE /* save unsaved data */,
+    FALSE /* low memory */,
+    FALSE /* system inactivity */,
+    OSSO_DEVMODE_NORMAL /* device mode */
+    /* FIXMEchpe: or is OSSO_DEVMODE_INVALID the value to use
+     * when not interested in this signal? The docs don't tell.
+     */
+  };
+#endif
 
-  cscm_init ();
+  memset (&data, 0, sizeof (AppData));
 
-  create_main_window ();
-  vbox = gtk_vbox_new (FALSE, 0);
-  gnome_app_set_contents (GNOME_APP (app), vbox);
+#ifdef HAVE_MAEMO
+  /* Set OSSO callbacks */
+  /* NOTE: Passing the "org.gnome.games.aisleriot" service name to
+   * osso_initialize as first parameter to specify the full service name
+   * instead of getting com.nokia.* is undocumented.
+   */
+  data.osso_context = osso_initialize (SERVICE_NAME, VERSION, FALSE, NULL);
+  if (!data.osso_context) {
+    g_print ("Failed to initialise osso\n");
+    goto cleanup;
+  }
 
-  load_pixmaps ();
+  if (osso_rpc_set_default_cb_f (data.osso_context,
+                                 osso_rpc_cb,
+                                 &data) != OSSO_OK ||
+      osso_hw_set_event_cb (data.osso_context,
+                            &hw_events,
+                            osso_hw_event_cb,
+                            &data) != OSSO_OK) {
+    g_print ("Failed to connect OSSO handlers\n");
+    goto cleanup;
+  }
+#endif /* HAVE_MAEMO */
 
-  statusbar = gtk_statusbar_new ();
-  gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (statusbar), FALSE);
+  option_context = g_option_context_new (NULL);
+#if GLIB_CHECK_VERSION (2, 12, 0)
+  g_option_context_set_translation_domain (option_context, GETTEXT_PACKAGE);
+#endif
 
-  create_menus ();
+  add_main_options (option_context, &data);
 
-  gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (vbox), toolbar, FALSE, FALSE, 0);
-  create_sol_board ();
-  gtk_box_pack_end (GTK_BOX (vbox), statusbar, FALSE, FALSE, 0);
+#ifdef HAVE_GNOME
+  data.program = gnome_program_init ("aisleriot", VERSION,
+                                     LIBGNOMEUI_MODULE,
+                                     argc, argv,
+                                     GNOME_PARAM_GOPTION_CONTEXT, option_context,
+                                     GNOME_PARAM_APP_DATADIR, DATADIR,
+                                     NULL);
+#else /* !HAVE_GNOME */
+  g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
 
-  time_box = gtk_hbox_new (0, FALSE);
-  score_box = gtk_hbox_new (0, FALSE);
-  score_label = gtk_label_new (_("Score:"));
-  gtk_box_pack_start (GTK_BOX (score_box), score_label, FALSE, FALSE, 0);
-  score_value = gtk_label_new ("   0");
-  gtk_box_pack_start (GTK_BOX (score_box), score_value, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (time_box), score_box, FALSE, FALSE, 0);
-  time_label = gtk_label_new (_("Time:"));
-  gtk_box_pack_start (GTK_BOX (time_box), time_label, FALSE, FALSE, 0);
-  time_value = games_clock_new ();
-  gtk_box_pack_start (GTK_BOX (time_box), time_value, FALSE, FALSE,
-		      GNOME_PAD_SMALL);
+  retval = g_option_context_parse (option_context, &argc, &argv, &error);
+  g_option_context_free (option_context);
 
-  gtk_box_pack_end (GTK_BOX (statusbar), time_box, FALSE, FALSE, 0);
+  if (!retval) {
+    g_print ("%s\n", error->message);
+    goto cleanup;
+  }
+#endif /* HAVE_GNOME */
 
-  new_game (start_game, NULL);
+#ifdef HAVE_MAEMO
+  data.program = HILDON_PROGRAM (hildon_program_get_instance ());
 
-  gtk_widget_show_all (app);
+  g_signal_connect (data.program, "notify::is-topmost",
+                    G_CALLBACK(sync_is_topmost_cb), &data);
+#endif /* HAVE_MAEMO */
 
-  if (score_is_hidden)
-    gtk_widget_hide (score_box);
-  else
-    gtk_widget_show (score_box);
+  g_set_application_name (data.freecell ? _("FreeCell Solitaire") : _("AisleRiot"));
 
-  gtk_window_set_focus (GTK_WINDOW (app), NULL);
+  aisleriot_conf_init ();
 
-  if (!gconf_client_get_bool (gconf_client,
-			      "/apps/aisleriot/show_toolbar", NULL))
-    gtk_widget_hide (toolbar);
+  /* If we are asked for a specific game, check that it is valid. */
+  if (!data.freecell &&
+      data.variation != NULL) {
+    char *game_file = NULL;
 
-  click_to_move = gconf_client_get_bool (gconf_client,
-					 "/apps/aisleriot/click_to_move",
-					 NULL);
+    if (data.variation[0] != '\0') {
+      game_file = variation_to_game_file (data.variation);
+    }
 
-  create_press_data (playing_area->window);
+    g_free (data.variation);
+    data.variation = game_file;
+  }
+
+  if (!data.freecell && !data.variation) {
+    data.variation = aisleriot_conf_get_string (CONF_VARIATION, DEFAULT_VARIATION);
+  }
+
+  g_assert (data.variation != NULL || data.freecell);
+
+  gtk_window_set_default_icon_name (data.freecell ? "gnome-freecell" : "gnome-aisleriot");
+
+  games_stock_init ();
+
+  aisleriot_util_set_help_func (help_hook, &data);
+
+#ifndef HAVE_GNOME
+  gtk_about_dialog_set_url_hook (about_url_hook, &data, NULL);
+#endif
+
+  data.window = AISLERIOT_WINDOW (aisleriot_window_new ());
+  g_signal_connect (data.window, "destroy",
+		    G_CALLBACK (gtk_main_quit), NULL);
+
+#ifdef HAVE_GNOME
+  master_client = gnome_master_client ();
+  g_signal_connect (master_client, "save-yourself",
+		    G_CALLBACK (save_yourself_cb), &data);
+  g_signal_connect_swapped (master_client, "die",
+                            G_CALLBACK (die_cb), &data);
+#endif /* HAVE_GNOME */
+
+#ifdef HAVE_MAEMO
+  hildon_program_add_window (data.program, HILDON_WINDOW (data.window));
+
+  /* FIXMEchpe sort of strange that maemo doesn't all of this out-of-the-box... */
+  g_object_set (gtk_widget_get_settings (GTK_WIDGET (data.window)),
+                "gtk-alternative-button-order", TRUE,
+                "gtk-menu-images", FALSE,
+                "gtk-button-images", FALSE,
+                "gtk-toolbar-style", (glong) GTK_TOOLBAR_ICONS,
+#if GTK_CHECK_VERSION (2, 10, 0)
+                "gtk-enable-accels", FALSE,
+                "gtk-enable-mnemonics", FALSE,
+#else
+                "hildon-keyboard-shortcuts", FALSE,
+#endif /* GTK 2.10.0 */
+                NULL);
+#endif /* HAVE_MAEMO */
+
+  if (data.freecell) {
+    aisleriot_window_set_freecell_mode (data.window);
+    aisleriot_window_set_game (data.window, FREECELL_VARIATION, data.seed);
+  } else {
+    aisleriot_window_set_game (data.window, data.variation, data.seed);
+  }
+
+  gtk_window_present (GTK_WINDOW (data.window));
 
   gtk_main ();
 
-  gnome_accelerators_sync ();
+  aisleriot_conf_shutdown ();
 
-  free_pixmaps ();
-  g_object_unref (surface);
-}
+#ifndef HAVE_GNOME
+cleanup:
+#endif
 
-static void
-retrieve_state (GnomeClient * client)
-{
-  start_game = games_gconf_get_string (gconf_client,
-				       "/apps/aisleriot/game_file",
-				       "klondike.scm");
-  card_style = games_gconf_get_string (gconf_client,
-				       THEME_GCONF_KEY, "bonded.svg");
+  g_free (data.variation);
+
+#ifdef HAVE_GNOME
+  g_object_unref (data.program);
+#endif /* HAVE_GNOME */
+
+#ifdef HAVE_MAEMO
+  if (data.program != NULL) {
+    g_object_unref (data.program);
+  }
+  if (data.osso_context != NULL) {
+    osso_deinitialize (data.osso_context);
+  }
+#endif /* HAVE_MAEMO */
 }
 
 int
 main (int argc, char *argv[])
 {
-  static const GOptionEntry aisleriot_opts[] = {
-    {"variation", 'v', 0, G_OPTION_ARG_STRING, &variation,
-     N_("Select the game to play"), N_("NAME")},
-    {NULL}
-  };
-  gchar *var_file;
-  GOptionContext *option_context;
-  GnomeProgram *program;
+  setlocale (LC_ALL, "");
 
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  option_context = g_option_context_new ("");
-  g_option_context_add_main_entries (option_context,
-				     aisleriot_opts, GETTEXT_PACKAGE);
-
-  program = gnome_program_init ("aisleriot", VERSION,
-				LIBGNOMEUI_MODULE,
-				argc, argv,
-				GNOME_PARAM_GOPTION_CONTEXT, option_context,
-				GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
-  glade_init ();
-
-  gconf_client = gconf_client_get_default ();
-  games_gconf_sanity_check_string (gconf_client, "/apps/aisleriot/game_file");
-  gconf_client_add_dir (gconf_client, "/apps/aisleriot",
-			GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
-  gconf_client_notify_add (gconf_client, STATISTICS_KEY,
-			   (GConfClientNotifyFunc) load_statistics,
-			   NULL, NULL, NULL);
-  load_statistics ();
-
-  gtk_window_set_default_icon_name ("gnome-aisleriot");
-  g_signal_connect (GTK_OBJECT (gnome_master_client ()), "save_yourself",
-		    GTK_SIGNAL_FUNC (save_state),
-		    (gpointer) g_path_get_basename (argv[0]));
-  g_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
-		    GTK_SIGNAL_FUNC (quit_app), NULL);
-
-  retrieve_state (gnome_master_client ());
-
-  gamesdir = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_DATADIR,
-					GAMESDIR, FALSE, NULL);
-
-  /* If we are asked for a specific game, check that it is valid. */
-  if (variation && *variation) {
-    var_file = game_name_to_file (variation);
-    if (g_file_test (var_file, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_REGULAR)) {
-      dont_save = TRUE;
-      start_game = g_path_get_basename (var_file);
-    }
-    g_free (var_file);
-  }
+#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS)
+  /* If we're going to use gnome-vfs, we need to init threads before
+   * calling any glib functions.
+   */
+  g_thread_init (NULL);
+#endif
 
   scm_boot_guile (argc, argv, main_prog, NULL);
 
-  g_object_unref (program);
   return 0;
 }

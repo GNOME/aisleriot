@@ -1,4 +1,21 @@
-This is now an empty file. It will occasionally be used to track which
+Things to fix:
+  - multi-line statusbar messages text get cuts off in the toolbar on maemo,
+    instead of being two lines (and we might need to make the text smaller)
+  - consider setting board.c:MAX_DELTA to 0.25 which looks nicer
+  - remove delayed call timeouts on game-clear and finalize
+  - check why some calls in cscmi.c are protected by the exception catcher,
+    while others are not
+  - now that we put CallData on the stack, we shouldn't need to explicitly
+    gc_protect our objects in game.c
+
+Ideas:
+  - reimplement game timeout handling (no rule sets require them atm)
+  - portrait mode
+  - implement keynav
+  - implement a11y
+
+Game features:
+
+This is now an empty section. It will occasionally be used to track which
 games have, or have not, been adapted for particular features. The
 droppable feature was the last such example (see bug #305609).
-

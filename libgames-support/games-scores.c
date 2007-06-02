@@ -27,8 +27,6 @@
 
 #include <config.h>
 
-#include <gnome.h>
-
 #include <math.h>
 #include <fcntl.h>
 #include <unistd.h>

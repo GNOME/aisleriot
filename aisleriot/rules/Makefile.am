@@ -1,6 +1,6 @@
 NULL = 
 
-rulesdir  = $(datadir)/sol-games
+rulesdir  = $(pkgdatadir)/aisleriot/games
 
 rules_DATA  = 			\
 	agnes.scm		\
@@ -64,6 +64,7 @@ rules_DATA  = 			\
 	seahaven.scm		\
 	sir_tommy.scm		\
 	spider.scm		\
+	spider_three_decks.scm	\
 	spiderette.scm		\
 	straight_up.scm		\
 	streets_and_alleys.scm	\
@@ -84,4 +85,6 @@ rules_DATA  = 			\
 	plait.scm		\
 	$(NULL)
 
-EXTRA_DIST = $(rules_DATA) template.scm
+EXTRA_DIST = \
+	$(rules_DATA)	\
+	template.scm

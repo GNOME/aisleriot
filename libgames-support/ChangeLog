@@ -1,28 +1,58 @@
-2007-05-18  Andreas Røsdal  <andreasr@gnome.org>
+2007-06-01  Christian Persch  <chpe@gnome.org>
+
+        * games-card-common.h:
+	* games-card-images.c:
+	* games-card-images.h:
+	* games-preimage.c:
+	* games-preimage.h:
+	A games-card-theme.c:
+	A games-card-theme.h:
+	R games-card-pixmaps.c:
+	R games-card-pixmaps.h:
+
+        Landed the AisleRiot refactoring from my GIT branch at
+        http://www.gnome.org/~chpe/git/gnome-games.git/
+
+        Overview of the changes for libgames-support:
+
+        * Refactored code
+        * Improve SVG rendering time for supported themes
+          (right now only Bellot theme)
+        * Support pre-rendered themes with one file per card per size per theme
+        * Decrease memory used for theme caching by only caching the pixmaps or
+          pixbufs, not both
+        * Improved antialiased card rendering quality
+
+        Bugs fixed includes the following:
+        * SVG card set takes too long to load (Bug #337080)
+
+        You can access the full changelog in the svn history.
+
+2007-05-18  Andreas Rsdal  <andreasr@gnome.org>
 
 	* games-card-selector.c:
 	* games-card-selector.h:  Add games_card_selector_get_size () for Bug #438079.
 
-2007-05-18  Andreas Røsdal  <andreasr@gnome.org>
+2007-05-18  Andreas Rsdal  <andreasr@gnome.org>
 
 	* libgnomegames.schemas.in:
 	* Makefile.am: Remove libgnomegames.schemas.in since it is unused.
 
-2007-05-18  Andreas Røsdal  <andreasr@gnome.org>
+2007-05-18  Andreas Rsdal  <andreasr@gnome.org>
 
 	* games-sound.c: Play sounds in a separate thread.
 
-2007-03-20  Andreas Røsdal  <andreasr@gnome.org>
+2007-03-20  Andreas Rsdal  <andreasr@gnome.org>
 
 	* bonded.svg: XLink URI that should read "w3.org" instead of "w3org",
 	patch from Evert Verhellen in bug #414426. 
 
-2007-02-10  Andreas Røsdal  <andreasr@gnome.org>
+2007-02-10  Andreas Rsdal  <andreasr@gnome.org>
 
 	* games-clock.c: 0 is the correct value of an invalid timeout.
 	Patch from Christian Persch in Bug #405063. 
 
-2007-02-03  Andreas Røsdal  <andreasr@gnome.org>
+2007-02-03  Andreas Rsdal  <andreasr@gnome.org>
 
 	* games-files.h
 	* games-controls.h
@@ -61,7 +91,7 @@
 
 	* games-stock.c (games_get_license): Updated FSF snail mail address.
 
-2006-12-03  Andreas Røsdal  <andrearo@pvv.ntnu.no>
+2006-12-03  Andreas Rsdal  <andrearo@pvv.ntnu.no>
 
 	* games-dlg-chat.c: ggz multiply defined on darwin,
 	patch by Paul in Bug #381812.
@@ -71,7 +101,7 @@
 	* games-scores-dialog.c (games_scores_dialog_finalize): Add an
 	explicit finalize function to avoid memory leaks.
 
-2006-09-05  Andreas Røsdal  <andrearo@pvv.ntnu.no>
+2006-09-05  Andreas Rsdal  <andrearo@pvv.ntnu.no>
 
 	* Makefile.am:
 	* paris.svg: Deprecated and moved to gnome-games-extra-data.
@@ -96,7 +126,7 @@
 	pointer to char* first.
 	* games-files.c (games_file_list_find): Removed incorrect cast.
 
-2006-09-05  Andreas Røsdal  <andrearo@pvv.ntnu.no>
+2006-09-05  Andreas Rsdal  <andrearo@pvv.ntnu.no>
 
 	* Makefile.am:
 	* games-server.py:
@@ -735,7 +765,7 @@
 	games-server.py. They are only usefil for developers who are quite
 	capable of setting PATH for themselves.
 
-2004-10-04  Andreas Røsdal <andrearo@stud.ntnu.no>
+2004-10-04  Andreas Rsdal <andrearo@stud.ntnu.no>
 
 	* Makefile.am: Install games-server in bin directory.
 	* games-network-dialog.[c|h]: Implement GUI support for howl.
@@ -761,7 +791,7 @@
 	* games-preimage.*: Rendering speed optimisations from Richard
 	Hoelscher.
 
-2004-09-21  Andreas Røsdal <andrearo stud ntnu no>
+2004-09-21  Andreas Rsdal <andrearo stud ntnu no>
  
          * games-network.c: Update GUI when network disconnects. 
  
@@ -771,7 +801,7 @@
 	* games-network.c: Patch from Heikki Tauriainen to make the code
 	strictly C compliant. See bug #153064.
 
-2004-09-20  Andreas Røsdal <andrearo stud ntnu no>
+2004-09-20  Andreas Rsdal <andrearo stud ntnu no>
 
 	* games-network.c: Use callback functions to handle the function
 	calls from the network layer to the game. Also add the
@@ -823,7 +853,7 @@
 	* games-network*
 	* games-server.py: Move the network code from iagno into the
 	shared repository. Also make the game server available for any
-	server. (Patch from Andreas Røsdal.)
+	server. (Patch from Andreas Rsdal.)
 
 2004-07-19  Callum McKenzie  <callum@physics.otago.ac.nz>
 

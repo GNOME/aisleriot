@@ -26,6 +26,28 @@
      </schema>
 
     <schema>
+      <key>/schemas/apps/aisleriot/maximized</key>
+      <applyto>/apps/aisleriot/maximized</applyto>
+      <owner>aisleriot</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Window maximized</short>
+      </locale>
+     </schema>
+
+    <schema>
+      <key>/schemas/apps/aisleriot/fullscreen</key>
+      <applyto>/apps/aisleriot/fullscreen</applyto>
+      <owner>aisleriot</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Window fullscreened</short>
+      </locale>
+     </schema>
+
+    <schema>
       <key>/schemas/apps/aisleriot/card_style</key>
       <applyto>/apps/aisleriot/card_style</applyto>
       <owner>aisleriot</owner>
@@ -86,15 +108,16 @@
       </locale>
     </schema>
 	
-	<schema>
-      <key>/schemas/apps/aisleriot/recent_games</key>
-      <applyto>/apps/aisleriot/recent_games</applyto>
+    <schema>
+      <key>/schemas/apps/aisleriot/recent_games_list</key>
+      <applyto>/apps/aisleriot/recent_games_list</applyto>
       <owner>aisleriot</owner>
-      <type>string</type>
-      <default></default>
+      <type>list</type>
+      <list_type>string</list_type>
+      <default>[]</default>
       <locale name="C">
-        <short>Recently Played Games</short>
-        <long>A comma seperated list of recently played games. The filenames are stored here, not the actual game name.</long>
+        <short>Recently played games</short>
+        <long>A list of recently played games.</long>
       </locale>
      </schema>
 

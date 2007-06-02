@@ -19,4 +19,4 @@ which gnome-autogen.sh || {
     exit 1
 }
 
-REQUIRED_AUTOMAKE_VERSION=1.9.0 USE_GNOME2_MACROS=1 . gnome-autogen.sh
+REQUIRED_GNOME_DOC_UTILS_VERSION=0.10.0 REQUIRED_AUTOMAKE_VERSION=1.9 USE_GNOME2_MACROS=1 . gnome-autogen.sh
