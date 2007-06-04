@@ -170,6 +170,7 @@ struct _AisleriotBoardPrivate
   guint click_status : 4; /* enough bits for MoveStatus */
 
   guint show_selection : 1;
+  guint show_highlight : 1;
   guint scalable_cards : 1;
 };
 
@@ -828,7 +829,8 @@ slot_update_card_images (AisleriotBoard *board,
   AisleriotBoardPrivate *priv = board->priv;
   int highlight_start_card_id = G_MAXINT;
 
-  if (G_UNLIKELY (slot == priv->highlight_slot)) {
+  if (G_UNLIKELY (slot == priv->highlight_slot &&
+                  priv->show_highlight)) {
     highlight_start_card_id = slot->cards->len - 1;
   } else if (G_UNLIKELY (slot == priv->selection_slot &&
                          priv->selection_start_card_id >= 0 &&
@@ -1104,14 +1106,17 @@ drag_end (AisleriotBoard *board,
 
 static gboolean
 cards_are_droppable (AisleriotBoard *board,
-                     Slot *hslot)
+                     Slot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
 
-  return hslot && priv->moving_cards_origin_slot &&
-    aisleriot_game_drop_valid (priv->game, priv->moving_cards_origin_slot->id, hslot->id,
-                               priv->moving_cards->data,
-                               priv->moving_cards->len);
+  return slot != NULL &&
+         priv->moving_cards_origin_slot &&
+         aisleriot_game_drop_valid (priv->game,
+                                    priv->moving_cards_origin_slot->id,
+                                    slot->id,
+                                    priv->moving_cards->data,
+                                    priv->moving_cards->len);
 }
 
 static Slot *
@@ -1131,7 +1136,7 @@ find_drop_target (AisleriotBoard *board,
                                 y + priv->card_size.height / 2,
                                 &new_hslot, &new_cardid);
 
-  if (new_hslot && cards_are_droppable (board, new_hslot))
+  if (cards_are_droppable (board, new_hslot))
     return new_hslot;
 
   /* If that didn't work, look for a target at all 4 corners of the card. */
@@ -1208,7 +1213,8 @@ highlight_drop_target (AisleriotBoard *board,
     return;
 
   /* Invalidate the old highlight rect */
-  if (priv->highlight_slot != NULL) {
+  if (priv->highlight_slot != NULL &&
+      priv->show_highlight) {
     get_rect_by_slot_and_card (board,
                                priv->highlight_slot,
                                priv->highlight_slot->cards->len - 1 /* it's ok if this is == -1 */,
@@ -1221,10 +1227,16 @@ highlight_drop_target (AisleriotBoard *board,
      */
     slot_update_card_images_full (board, priv->highlight_slot, G_MAXINT);
   }
-    
+
+  /* Need to set the highlight slot even when we the cards aren't droppable
+   * since that can happen when the game doesn't support FEATURE_DROPPABLE.
+   */
   priv->highlight_slot = slot;
   
-  if (slot == NULL || !cards_are_droppable (board, slot))
+  if (!cards_are_droppable (board, slot))
+    return;
+
+  if (!priv->show_highlight)
     return;
 
   /* Prepare the highlight pixbuf/pixmaps and invalidate the new highlight rect */
@@ -1310,6 +1322,7 @@ game_type_changed_cb (AisleriotGame *game,
   features = aisleriot_game_get_features (game);
 
   priv->droppable_supported = ((features & FEATURE_DROPPABLE) != 0);
+  priv->show_highlight = priv->droppable_supported;
 }
 
 static void
@@ -2041,7 +2054,8 @@ aisleriot_board_expose_event (GtkWidget *widget,
       if (G_LIKELY (hslot != highlight_slot)) {
         pixbuf = priv->slot_image;
       } else {
-        pixbuf = games_card_images_get_slot_pixbuf (priv->images, TRUE);
+        pixbuf = games_card_images_get_slot_pixbuf (priv->images,
+                                                    priv->show_highlight);
       }
 
       if (!pixbuf)
@@ -2057,7 +2071,8 @@ aisleriot_board_expose_event (GtkWidget *widget,
       if (G_LIKELY (hslot != highlight_slot)) {
         pixmap = priv->slot_image;
       } else {
-        pixmap = games_card_images_get_slot_pixmap (priv->images, TRUE);
+        pixmap = games_card_images_get_slot_pixmap (priv->images,
+                                                    priv->show_highlight);
       }
 
       if (!pixmap)
