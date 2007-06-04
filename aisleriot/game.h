@@ -116,6 +116,8 @@ void aisleriot_game_slot_add_cards (AisleriotGame * game,
 
 guint aisleriot_game_get_state (AisleriotGame * game);
 
+guint aisleriot_game_get_features (AisleriotGame *game);
+
 void aisleriot_game_start (AisleriotGame * game);
 
 void aisleriot_game_set_paused (AisleriotGame * game, gboolean paused);

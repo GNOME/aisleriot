@@ -1528,25 +1528,6 @@ sync_window_topmost_cb (AisleriotWindow *window,
 
 #endif /* HAVE_MAEMO */
 
-#ifndef HAVE_MAEMO
-
-static void
-sync_game_features (AisleriotGame *game,
-                    GParamSpec *pspec,
-                    AisleriotWindow *window)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-  guint features = 0;
-  gboolean show;
-
-  g_object_get (game, "features", &features, NULL);
-
-  show = (features & FEATURE_SCORE_HIDDEN) == 0;
-  g_object_set (priv->score_box, "visible", show, NULL);
-}
-
-#endif /* !HAVE_MAEMO */
-
 /* Game state synchronisation */
 
 #ifndef HAVE_MAEMO
@@ -1646,6 +1627,10 @@ game_type_changed_cb (AisleriotGame *game,
 {
   AisleriotWindowPrivate *priv = window->priv;
   char *game_name;
+#ifndef HAVE_MAEMO
+  guint features;
+  gboolean show_scores;
+#endif /* !HAVE_MAEMO */
 
   priv->changing_game_type = TRUE;
 
@@ -1672,6 +1657,11 @@ game_type_changed_cb (AisleriotGame *game,
   games_clock_set_seconds (GAMES_CLOCK (priv->clock), 0);
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
+
+  features = aisleriot_game_get_features (game);
+
+  show_scores = (features & FEATURE_SCORE_HIDDEN) == 0;
+  g_object_set (priv->score_box, "visible", show_scores, NULL);
 #endif
 
   priv->changing_game_type = FALSE;
@@ -2319,9 +2309,6 @@ aisleriot_window_init (AisleriotWindow *window)
 
   /* Synchronise */
 #ifndef HAVE_MAEMO
-  sync_game_features (priv->game, NULL, window);
-  g_signal_connect (priv->game, "notify::features",
-                    G_CALLBACK (sync_game_features), window);
   sync_game_score (priv->game, NULL, window);
   g_signal_connect (priv->game, "notify::score",
                     G_CALLBACK (sync_game_score), window);

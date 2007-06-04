@@ -95,7 +95,6 @@ enum
   PROP_CAN_UNDO,
   PROP_CAN_REDO,
   PROP_GAME_FILE,
-  PROP_FEATURES,
   PROP_SCORE,
   PROP_STATE,
 };
@@ -636,12 +635,10 @@ static SCM
 scm_get_feature_word ()
 {
   AisleriotGame *game = app_game;
-  guint enabled_features = 0;
 
-  if (game)
-    enabled_features = game->features;
-
-  return scm_from_uint (enabled_features);
+  g_return_val_if_fail (game != NULL, SCM_EOL);
+  
+  return scm_from_uint (game->features);
 }
 
 static SCM
@@ -649,16 +646,9 @@ scm_set_feature_word (SCM features)
 {
   AisleriotGame *game = app_game;
 
-  if (game) {
-    guint enabled_features;
+  g_return_val_if_fail (game != NULL, SCM_EOL);
 
-    enabled_features = scm_to_uint (features);
-
-    if (game->features != enabled_features) {
-      game->features = enabled_features;
-      g_object_notify (G_OBJECT (game), "features");
-    }
-  }
+  game->features = scm_to_uint (features);
 
   return SCM_EOL;
 }
@@ -1125,9 +1115,6 @@ aisleriot_game_get_property (GObject *object,
     case PROP_GAME_FILE:
       g_value_set_string (value, game->game_file);
       break;
-    case PROP_FEATURES:
-      g_value_set_uint (value, game->features);
-      break;
     case PROP_SCORE:
       g_value_set_uint (value, game->score);
       break;
@@ -1228,13 +1215,6 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
 
   g_object_class_install_property
     (gobject_class,
-     PROP_FEATURES,
-     g_param_spec_uint ("features", "", "",
-                        0, ALL_FEATURES, 0, 
-                        G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
-
-  g_object_class_install_property
-    (gobject_class,
      PROP_SCORE,
      g_param_spec_uint ("score", "", "",
                         0, G_MAXUINT, 0,
@@ -1310,6 +1290,20 @@ guint
 aisleriot_game_get_state (AisleriotGame *game)
 {
   return game->state;
+}
+
+/**
+ * aisleriot_game_get_features:
+ * @game:
+ *
+ * Returns the game features.
+ *
+ * Returns: a #AisleriotGameFeatures
+ */
+guint
+aisleriot_game_get_features (AisleriotGame *game)
+{
+  return game->features;
 }
 
 /**

@@ -1301,14 +1301,13 @@ clear_state (AisleriotBoard *board)
 /* Game state handling */
 
 static void
-sync_game_features (AisleriotGame *game,
-                    GParamSpec *pspec,
-                    AisleriotBoard *board)
+game_type_changed_cb (AisleriotGame *game,
+                      AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  guint features = 0;
+  guint features;
 
-  g_object_get (game, "features", &features, NULL);
+  features = aisleriot_game_get_features (game);
 
   priv->droppable_supported = ((features & FEATURE_DROPPABLE) != 0);
 }
@@ -2283,15 +2282,15 @@ aisleriot_board_set_property (GObject *object,
   switch (prop_id) {
     case PROP_GAME:
       priv->game = AISLERIOT_GAME (g_value_dup_object (value));
-      sync_game_features (priv->game, NULL, board);
+
+      g_signal_connect (priv->game, "game-type",
+                        G_CALLBACK (game_type_changed_cb), board);
       g_signal_connect (priv->game, "game-cleared",
                         G_CALLBACK (game_cleared_cb), board);
       g_signal_connect (priv->game, "game-new",
                         G_CALLBACK (game_new_cb), board);
       g_signal_connect (priv->game, "slot-changed",
                         G_CALLBACK (slot_changed_cb), board);
-      g_signal_connect (priv->game, "notify::features",
-                        G_CALLBACK (sync_game_features), board);
 
       break;
     case PROP_THEME:
