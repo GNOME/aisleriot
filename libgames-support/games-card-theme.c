@@ -256,12 +256,12 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
     games_preimage_set_antialias (theme->theme_data.slot_preimage,
                                   theme->antialias, theme->subpixel_order);
 
-  /* Use subrendering? */
+  /* Use subrendering by default, but allow to override with the env var */
+  theme->subrender = TRUE;
+
   env = g_getenv ("GAMES_CARDS_SUBRENDERING");
   if (env != NULL) {
     theme->subrender = g_ascii_strtoull (env, NULL, 0) != 0;
-  } else {
-    theme->subrender = strcmp (theme_name, "bellot") == 0;
   }
 #ifdef GNOME_ENABLE_DEBUG
   if (theme->subrender)
@@ -402,8 +402,8 @@ games_card_theme_load_theme_with_fallback (GamesCardTheme * theme,
   if (games_card_theme_load_theme (theme, theme_name))
     return TRUE;
 
-  g_warning ("Failed to load theme; trying fallback theme '%s'",
-             GAMES_CARD_THEME_DEFAULT);
+  g_warning ("Failed to load theme '%s'; trying fallback theme '%s'",
+             theme_name, GAMES_CARD_THEME_DEFAULT);
 
   if (strcmp (theme_name, GAMES_CARD_THEME_DEFAULT) != 0 &&
       games_card_theme_load_theme (theme, GAMES_CARD_THEME_DEFAULT))

@@ -52,8 +52,8 @@ typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; 
 
 /* Some defines */
 
-#define SCALABLE_CARDS_DIR  DATADIR "/pixmaps/gnome-games-common/cards"
-#define PRERENDERED_CARDS_DIR  DATADIR "/gnome-games-common/card-themes"
+#define SCALABLE_CARDS_DIR    COMMON_DATADIR G_DIR_SEPARATOR_S "cards"
+#define PRERENDERED_CARDS_DIR COMMON_DATADIR G_DIR_SEPARATOR_S "card-themes"
 
 #ifdef HAVE_MAEMO
 #define GAMES_CARD_THEME_DEFAULT "paris"

@@ -1,7 +1,9 @@
 NULL =
 
-carddir = $(datadir)/pixmaps/gnome-games-common/cards
-card_DATA = bonded.svg
+carddir = $(datadir)/gnome-games-common/cards
+card_DATA = \
+	bonded.svg	\
+	$(NULL)
 
 slotdir = $(pkgdatadir)/pixmaps
 slot_DATA = slot.svg
@@ -13,11 +15,12 @@ EXTRA_DIST = \
 	$(NULL)
 
 if !HAVE_MAEMO
-icondir = $(datadir)/pixmaps/gnome-games-common/icons
+icondir = $(datadir)/gnome-games-common/icons
 icon_DATA = \
 	icons/teleport.png	\
 	icons/rteleport.png	\
 	$(NULL)
+
 EXTRA_DIST += $(icon_DATA)
 endif
 
@@ -91,11 +94,14 @@ libgames_support_la_SOURCES +=		\
 endif
 
 libgames_support_la_CPPFLAGS = \
-	-DPKGDATADIR="\"$(pkgdatadir)\""	\
-	-DDATADIR="\"$(datadir)\""		\
-	-DICONDIR="\"$(icondir)\""		\
-	-DSCORESDIR="\"$(scoredir)\""		\
-	-DSOUNDDIR="\"$(pkgdatadir)/sounds\""
+	-DPKGDATADIR="\"$(pkgdatadir)\""			\
+	-DDATADIR="\"$(datadir)\""				\
+	-DCOMMON_DATADIR="\"$(datadir)/gnome-games-common\""	\
+	-DCARDDIR="\"$(carddir)\""				\
+	-DICONDIR="\"$(icondir)\""				\
+	-DSCORESDIR="\"$(scoredir)\""				\
+	-DSOUNDDIR="\"$(pkgdatadir)/sounds\""			\
+	$(NULL)
 
 libgames_support_la_CFLAGS = 	\
 	$(WARN_CFLAGS)		\
