@@ -2228,11 +2228,12 @@ aisleriot_window_init (AisleriotWindow *window)
   /* Score */
   priv->score_box = gtk_hbox_new (12, FALSE);
   label = gtk_label_new (_("Score:"));
+  gtk_widget_show (label);
   gtk_box_pack_start (GTK_BOX (priv->score_box), label, FALSE, FALSE, 0);
   priv->score_label = gtk_label_new ("   0");
+  gtk_widget_show (priv->score_label);
   gtk_box_pack_start (GTK_BOX (priv->score_box), priv->score_label, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (statusbar_hbox), priv->score_box, FALSE, FALSE, 0);
-  gtk_widget_show_all (priv->score_box);
 
   time_box = gtk_hbox_new (12, FALSE);
   label = gtk_label_new (_("Time:"));
