@@ -1,3 +1,47 @@
+gnome-games 2.19.3
+==================
+
+This is yet another development release of the 2.19.x development branch,
+which should have been codenamed "On the road to stability"...
+These are the groundbreaking news:
+
+ * Aisleriot:
+  - Aisleriot has recieved a mayor overhaul thanks to Christian Persch, 
+    which includes:
+    - Port Aisleriot to the Maemo platform. This is the first of the games
+      which are aviailable on a this handheld platform. Hopefully, the other
+      games will be ported later.
+    - GTK+ only port. This will enable a win32 port of Aisleriot, without
+      the libgnome dependencies.
+    - Code refactoring.
+  - New theme format and path of svg images. See the ChangeLog for details.
+  - Bugfixes as a byproduct of the refactorings: #337080, #386827, #338466,
+    #329183, #352084, #347448, #438079. 
+
+ * General:
+  - GStreamer support to all the gnome-games. This means that gnome-games now
+    requires GStreamer >= 0.10. The common sound code is integrated into 
+    libgames-support. The sounds are stored in /sounds in ogg vorbis format,
+    which will reduce the total size of the gnome-games tarball.
+  - Use new Tango icons from Daniel Derozier (closes #354507).
+  - Application icons now in icons/ (closes #359499).
+
+ * Nibbles:
+  - Resolve a bug where Nibbles no longer allows 1 worm, due to a bug in the 
+    victory conditions check (#439236). 
+
+ * glChess:
+  - Catch IOError on explicitly loaded games (Bug #442383).
+  - Change 2D knights to face left (Bug #434496).
+  - Add board numbering for 2D mode (Bug #392286).
+  - Speed up 2D rotating.
+  - Don't animate rotation on startup or when changing between 2/3D.
+
+ * Tali:
+  - Add new AI based on Monte Carlo simulation (#401880).
+  - Track the roll count to display a meaningful label at game end (#407453).
+
+
 gnome-games 2.19.2
 ==================
 
