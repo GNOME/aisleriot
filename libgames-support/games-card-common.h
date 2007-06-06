@@ -29,26 +29,26 @@
  * Red Joker: value = 0, suit = heart or diamond
  */
 typedef union {
-  guint8 __value;
+  guint8 value;
   struct {
-    guint8 _face_down : 1;
-    guint8 _suit : 2;
-    guint8 _rank : 4;
-  };
+    guint8 face_down : 1;
+    guint8 suit : 2;
+    guint8 rank : 4;
+  } attr;
 } Card;
 
 typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; /* static assertion */
 
 #define CARD(c)               ((Card) c)
-#define CARD_UINT(c)          (c.__value)
+#define CARD_UINT(c)          (c.value)
 
-#define CARD_GET_SUIT(c)      (c._suit)
-#define CARD_GET_RANK(c)      (c._rank)
-#define CARD_GET_FACE_DOWN(c) (c._face_down)
+#define CARD_GET_SUIT(c)      (c.attr.suit)
+#define CARD_GET_RANK(c)      (c.attr.rank)
+#define CARD_GET_FACE_DOWN(c) (c.attr.face_down)
 #define CARD_FACE_UP(c)       (!CARD_FACE_DOWN(c))
 
 #define POINTER_TO_CARD(ptr)  ((Card) (guint8) GPOINTER_TO_UINT (ptr))
-#define CARD_TO_POINTER(card) (GUINT_TO_POINTER((guint) card.__value))
+#define CARD_TO_POINTER(card) (GUINT_TO_POINTER((guint) card.value))
 
 /* Some defines */
 

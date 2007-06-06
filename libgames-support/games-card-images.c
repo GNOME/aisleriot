@@ -91,7 +91,7 @@ card_to_index (Card card)
 
   if (CARD_GET_FACE_DOWN (card)) {
     card_id = GAMES_CARD_BACK;
-  } else if (G_UNLIKELY (card._rank == 0)) {
+  } else if (G_UNLIKELY (CARD_GET_RANK (card) == 0)) {
     /* A joker */
     if (CARD_GET_SUIT (card) == GAMES_CARDS_CLUBS ||
         CARD_GET_SUIT (card) == GAMES_CARDS_SPADES) {

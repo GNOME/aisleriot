@@ -48,12 +48,12 @@ struct _GamesCardTheme {
       GamesPreimage *slot_preimage;
       GdkPixbuf *source;
       CardSize subsize;
-    };
+    } scalable;
     struct {
       char *themesizepath;
       CardSize *card_sizes;
       guint n_card_sizes;
-    };
+    } prerendered;
   } theme_data;
 
   CardSize slot_size;
@@ -143,11 +143,11 @@ games_card_theme_clear_source_pixbuf (GamesCardTheme * theme)
 {
 #ifdef ENABLE_SCALABLE
   if (theme->use_scalable) {
-    if (theme->theme_data.source) {
-      g_object_unref (theme->theme_data.source);
+    if (theme->theme_data.scalable.source) {
+      g_object_unref (theme->theme_data.scalable.source);
     }
 
-    theme->theme_data.source = NULL;
+    theme->theme_data.scalable.source = NULL;
   }
 #endif /* ENABLE_SCALABLE */
 
@@ -162,26 +162,26 @@ games_card_theme_clear_theme_data (GamesCardTheme * theme)
 {
 #ifdef ENABLE_SCALABLE
   if (theme->use_scalable) {
-    if (theme->theme_data.cards_preimage != NULL) {
-      g_object_unref (theme->theme_data.cards_preimage);
-      theme->theme_data.cards_preimage = NULL;
+    if (theme->theme_data.scalable.cards_preimage != NULL) {
+      g_object_unref (theme->theme_data.scalable.cards_preimage);
+      theme->theme_data.scalable.cards_preimage = NULL;
     }
-    if (theme->theme_data.slot_preimage != NULL) {
-      g_object_unref (theme->theme_data.slot_preimage);
-      theme->theme_data.slot_preimage = NULL;
+    if (theme->theme_data.scalable.slot_preimage != NULL) {
+      g_object_unref (theme->theme_data.scalable.slot_preimage);
+      theme->theme_data.scalable.slot_preimage = NULL;
     }
 
-    theme->theme_data.subsize.width = -1;
-    theme->theme_data.subsize.height = -1;
+    theme->theme_data.scalable.subsize.width = -1;
+    theme->theme_data.scalable.subsize.height = -1;
   } else
 #endif /* ENABLE_SCALABLE */
   {
-    g_free (theme->theme_data.card_sizes);
-    theme->theme_data.card_sizes = NULL;
-    theme->theme_data.n_card_sizes = 0;
+    g_free (theme->theme_data.prerendered.card_sizes);
+    theme->theme_data.prerendered.card_sizes = NULL;
+    theme->theme_data.prerendered.n_card_sizes = 0;
 
-    g_free (theme->theme_data.themesizepath);
-    theme->theme_data.themesizepath = NULL;
+    g_free (theme->theme_data.prerendered.themesizepath);
+    theme->theme_data.prerendered.themesizepath = NULL;
 
     theme->size_available = FALSE;
   }
@@ -205,7 +205,7 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
   t1 = clock ();
 #endif
 
-  if (theme->theme_data.cards_preimage != NULL)
+  if (theme->theme_data.scalable.cards_preimage != NULL)
     return TRUE;
 
   theme_dir =
@@ -236,24 +236,24 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
                                   theme->subpixel_order);
   }
 
-  theme->theme_data.cards_preimage = preimage;
+  theme->theme_data.scalable.cards_preimage = preimage;
   theme->prescaled = games_preimage_is_scalable (preimage);
 
   /* If we don't have a scalable format, build a scaled pixbuf that we'll cut up later */
   if (!theme->prescaled) {
-    theme->theme_data.source =
-      games_preimage_render_unscaled_pixbuf (theme->theme_data.
+    theme->theme_data.scalable.source =
+      games_preimage_render_unscaled_pixbuf (theme->theme_data.scalable.
                                              cards_preimage);
   }
 
   /* And the slot image */
   path = g_build_filename (SLOTDIR, "slot.svg", NULL);
-  theme->theme_data.slot_preimage = games_preimage_new_from_file (path, NULL);
+  theme->theme_data.scalable.slot_preimage = games_preimage_new_from_file (path, NULL);
   g_free (path);
-  g_return_val_if_fail (theme->theme_data.slot_preimage != NULL, FALSE);
+  g_return_val_if_fail (theme->theme_data.scalable.slot_preimage != NULL, FALSE);
 
   if (theme->antialias_set)
-    games_preimage_set_antialias (theme->theme_data.slot_preimage,
+    games_preimage_set_antialias (theme->theme_data.scalable.slot_preimage,
                                   theme->antialias, theme->subpixel_order);
 
   /* Use subrendering by default, but allow to override with the env var */
@@ -280,11 +280,11 @@ out:
            totaltime * 1.0 / CLOCKS_PER_SEC);
 #endif
 
-  if (theme->theme_data.cards_preimage == NULL) {
+  if (theme->theme_data.scalable.cards_preimage == NULL) {
     games_card_theme_clear_theme_data (theme);
   }
 
-  return theme->theme_data.cards_preimage != NULL;
+  return theme->theme_data.scalable.cards_preimage != NULL;
 }
 
 #endif /* ENABLE_SCALABLE */
@@ -326,8 +326,8 @@ games_card_theme_load_theme_prerendered (GamesCardTheme * theme,
     goto loser;
   }
 
-  theme->theme_data.card_sizes = g_new (CardSize, n_sizes);
-  theme->theme_data.n_card_sizes = n_sizes;
+  theme->theme_data.prerendered.card_sizes = g_new (CardSize, n_sizes);
+  theme->theme_data.prerendered.n_card_sizes = n_sizes;
 
   for (i = 0; i < n_sizes; ++i) {
     char group[32];
@@ -351,8 +351,8 @@ games_card_theme_load_theme_prerendered (GamesCardTheme * theme,
       goto loser;
     }
 
-    theme->theme_data.card_sizes[i].width = width;
-    theme->theme_data.card_sizes[i].height = height;
+    theme->theme_data.prerendered.card_sizes[i].width = width;
+    theme->theme_data.prerendered.card_sizes[i].height = height;
   }
 
   retval = TRUE;
@@ -426,21 +426,21 @@ games_card_theme_prerender_scalable (GamesCardTheme * theme)
 #endif
 
   g_return_val_if_fail (theme->use_scalable, FALSE);
-  g_return_val_if_fail (theme->theme_data.cards_preimage != NULL, FALSE);
+  g_return_val_if_fail (theme->theme_data.scalable.cards_preimage != NULL, FALSE);
   g_return_val_if_fail (theme->prescaled
-                        || theme->theme_data.source != NULL, FALSE);
+                        || theme->theme_data.scalable.source != NULL, FALSE);
 
-  theme->theme_data.source =
-    games_preimage_render (theme->theme_data.cards_preimage,
+  theme->theme_data.scalable.source =
+    games_preimage_render (theme->theme_data.scalable.cards_preimage,
                            theme->card_size.width * 13,
                            theme->card_size.height * 5);
-  if (!theme->theme_data.source)
+  if (!theme->theme_data.scalable.source)
     return FALSE;
 
-  theme->theme_data.subsize.width =
-    gdk_pixbuf_get_width (theme->theme_data.source) / 13;
-  theme->theme_data.subsize.height =
-    gdk_pixbuf_get_height (theme->theme_data.source) / 5;
+  theme->theme_data.scalable.subsize.width =
+    gdk_pixbuf_get_width (theme->theme_data.scalable.source) / 13;
+  theme->theme_data.scalable.subsize.height =
+    gdk_pixbuf_get_height (theme->theme_data.scalable.source) / 5;
 
 #ifdef INSTRUMENT_LOADING
   t2 = clock ();
@@ -453,7 +453,7 @@ games_card_theme_prerender_scalable (GamesCardTheme * theme)
 static GdkPixbuf *
 games_card_theme_render_card (GamesCardTheme * theme, int card_id)
 {
-  GamesPreimage *preimage = theme->theme_data.cards_preimage;
+  GamesPreimage *preimage = theme->theme_data.scalable.cards_preimage;
   GdkPixbuf *subpixbuf, *card_pixbuf;
   int suit, rank;
 
@@ -466,7 +466,7 @@ games_card_theme_render_card (GamesCardTheme * theme, int card_id)
   rank = card_id % 13;
 
   if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
-    subpixbuf = games_preimage_render (theme->theme_data.slot_preimage,
+    subpixbuf = games_preimage_render (theme->theme_data.scalable.slot_preimage,
                                        theme->card_size.width,
                                        theme->card_size.height);
 
@@ -508,17 +508,17 @@ games_card_theme_render_card (GamesCardTheme * theme, int card_id)
   }
 
   /* Not using subrendering */
-  if (!theme->theme_data.source &&
+  if (!theme->theme_data.scalable.source &&
       !games_card_theme_prerender_scalable (theme))
     return NULL;
 
-  subpixbuf = gdk_pixbuf_new_subpixbuf (theme->theme_data.source,
+  subpixbuf = gdk_pixbuf_new_subpixbuf (theme->theme_data.scalable.source,
                                         rank *
-                                        theme->theme_data.subsize.width,
+                                        theme->theme_data.scalable.subsize.width,
                                         suit *
-                                        theme->theme_data.subsize.height,
-                                        theme->theme_data.subsize.width,
-                                        theme->theme_data.subsize.height);
+                                        theme->theme_data.scalable.subsize.height,
+                                        theme->theme_data.scalable.subsize.width,
+                                        theme->theme_data.scalable.subsize.height);
   if (theme->prescaled) {
     card_pixbuf = subpixbuf;
   } else {
@@ -549,7 +549,7 @@ games_card_theme_load_card (GamesCardTheme * theme, int card_id)
 
   print_card_name (card_id, name, sizeof (name));
   g_snprintf (filename, sizeof (filename), "%s.png", name);
-  path = g_build_filename (theme->theme_data.themesizepath, filename, NULL);
+  path = g_build_filename (theme->theme_data.prerendered.themesizepath, filename, NULL);
 
   pixbuf = gdk_pixbuf_new_from_file (path, &error);
   if (!pixbuf) {
@@ -803,8 +803,8 @@ games_card_theme_set_size (GamesCardTheme * theme,
     theight = FLOAT_TO_INT_CEIL (((double) height) * proportion);
 
     /* Find the closest prerendered size */
-    for (i = 0; i < theme->theme_data.n_card_sizes; ++i) {
-      CardSize info = theme->theme_data.card_sizes[i];
+    for (i = 0; i < theme->theme_data.prerendered.n_card_sizes; ++i) {
+      CardSize info = theme->theme_data.prerendered.card_sizes[i];
 
       if (info.width > width || info.height > height)
         continue;
@@ -828,10 +828,10 @@ games_card_theme_set_size (GamesCardTheme * theme,
           size.height == theme->card_size.height)
         return FALSE;
 
-      g_free (theme->theme_data.themesizepath);
+      g_free (theme->theme_data.prerendered.themesizepath);
 
       g_snprintf (sizestr, sizeof (sizestr), "%d", size.width);
-      theme->theme_data.themesizepath =
+      theme->theme_data.prerendered.themesizepath =
         g_build_filename (theme->theme_dir !=
                           NULL ? theme->theme_dir : PRERENDERED_CARDS_DIR,
                           theme->theme_name, sizestr, NULL);
@@ -883,9 +883,9 @@ games_card_theme_get_aspect (GamesCardTheme * theme)
 #ifdef ENABLE_SCALABLE
   if (theme->use_scalable) {
     aspect =
-      (((double) games_preimage_get_width (theme->theme_data.cards_preimage))
+      (((double) games_preimage_get_width (theme->theme_data.scalable.cards_preimage))
        * N_ROWS) /
-      (((double) games_preimage_get_height (theme->theme_data.cards_preimage))
+      (((double) games_preimage_get_height (theme->theme_data.scalable.cards_preimage))
        * N_COLS);
   } else
 #endif

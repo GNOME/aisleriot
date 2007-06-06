@@ -1,3 +1,17 @@
+2007-06-06  Christian Persch  <chpe@gnome.org>
+
+	* games-card-common.h:
+	* games-card-images.c: (card_to_index):
+	* games-card-theme.c: (games_card_theme_clear_source_pixbuf),
+	(games_card_theme_clear_theme_data),
+	(games_card_theme_load_theme_scalable),
+	(games_card_theme_load_theme_prerendered),
+	(games_card_theme_prerender_scalable),
+	(games_card_theme_render_card), (games_card_theme_load_card),
+	(games_card_theme_set_size), (games_card_theme_get_aspect): Don't use
+	anonymous structs, since the solaris compiler chokes on them. Bug
+	#444802, patch by Damien Carbery.
+
 007-06-04  Christian Persch  <chpe@gnome.org>
 
 	* bonded.svg: Changed to new theme format.
