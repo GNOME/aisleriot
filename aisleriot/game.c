@@ -460,15 +460,15 @@ scm2c_card (SCM card_data)
   Card card;
   guint rank, suit, face_down;
 
-  card.__value = 0;
+  card.value = 0;
 
   rank = scm_to_int (SCM_CAR (card_data));
   suit = scm_to_int (SCM_CADR (card_data));
   face_down = !(SCM_NFALSEP (SCM_CADDR (card_data)));
 
-  card._rank = rank;
-  card._suit = suit;
-  card._face_down = face_down;
+  card.attr.rank = rank;
+  card.attr.suit = suit;
+  card.attr.face_down = face_down;
 
   return card;
 }
