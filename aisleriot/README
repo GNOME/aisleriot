@@ -33,25 +33,24 @@ behaviour of AisleRiot:
 
 GAMES_CARDS_SUBRENDERING:
   Values: 0 or 1
-  Detault: 0
+  Default: 1
   
     Set to 1 to use librsvg's subrendering which speeds up
   the card rendering in case we don't need them all at once.
-  Needs support from the cards svg in form of special node IDs;
-  only works with 'bellot' theme right now; set to 0 to suppress
-  subrendering even for the 'bellot' theme.
+  Needs support from the cards svg in form of special node IDs.
+  Set to 0 to suppress subrendering.
 
 AISLERIOT_CARDS_SCALABLE:
   Values: 0 or 1
-  Default: 1
+  Default: 1 (maemo: 0)
 
     Set to 0 to use prerendered cards; to 1 to use scalable cards.
 
 AISLERIOT_PIXBUF_DRAWING:
   Values: 0 or 1
-  Default: 0
+  Default: 1 (maemo: 0)
   
-    Set to 1 to enable pixbuf drawing instead of pixmap drawing. This
-  has the benefit of using full alphachannels, eliminating ugly
+    Set to 0 to disable pixbuf drawing and use pixmap drawing instead. Pixbuf
+  drawing has the benefit of using full alphachannels, eliminating ugly
   rendering artifacts caused by the 1-bit alphachannels of the pixmaps.
   Might be a bit slower though.
