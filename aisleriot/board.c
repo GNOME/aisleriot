@@ -1697,18 +1697,19 @@ aisleriot_board_button_press (GtkWidget *widget,
     guint8 *cards;
     guint n_cards;
 
-    /* Check if we should move */
+    /* NOTE: We cannot use aisleriot_game_drop_valid here since the
+     * game may not support the "droppable" feature.
+     */
     if (!priv->click_to_move ||
-        selection_start_card_id < 0 ||
-        !aisleriot_game_drop_valid (priv->game,
-                                    selection_slot->id,
-                                    hslot->id,
-                                    selection_slot->cards->data + selection_start_card_id,
-                                    selection_slot->cards->len - selection_start_card_id))
+        selection_start_card_id < 0)
       goto set_selection;
 
-    /* Unset the selection; we'll re-set it after the move */
+    /* Remove the old selection. If the move doesn't succeed, we'll select
+     * the clicked-on cards instead.
+     */
     set_selection (board, NULL, -1);
+
+    priv->click_status = STATUS_NONE;
 
     aisleriot_game_record_move (priv->game,
                                 selection_slot->id,
@@ -1740,19 +1741,18 @@ aisleriot_board_button_press (GtkWidget *widget,
         g_signal_emit_by_name (priv->game, "slot-changed", selection_slot); /* FIXMEchpe! */
 
       aisleriot_game_test_end_of_game (priv->game);
-    } else {
-      aisleriot_game_discard_move (priv->game);
 
-      /* FIXMEchpe: maybe beep? */
-
-      /* Add the cards back to the origin slot, and select them */
-      aisleriot_game_slot_add_cards (priv->game, selection_slot, cards, n_cards);
-      set_selection_with_cards (board, selection_slot, cards, n_cards);
+      return TRUE;
     }
 
-    priv->click_status = STATUS_NONE;
+    /* Not moved; discard the move and select the new cards */
+    aisleriot_game_discard_move (priv->game);
 
-    return TRUE;
+    aisleriot_game_slot_add_cards (priv->game, selection_slot, cards, n_cards);
+
+    /* FIXMEchpe: maybe beep? */
+
+    goto set_selection;
   }
 
   if (cardid != priv->selection_start_card_id)
@@ -2402,9 +2402,6 @@ aisleriot_board_set_card_theme (AisleriotBoard *board,
   priv->slot_image = NULL;
 
   retval = games_card_images_set_theme (priv->images, card_theme);
-  if (!retval) {
-    g_warning ("Loading theme %d failed!", card_theme);
-  }
 
   /* NOTE! We need to do this even if setting the theme failed, since
    * the attempt will have wiped out the old theme data!
