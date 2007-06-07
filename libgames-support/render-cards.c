@@ -111,6 +111,7 @@ main (int argc, char *argv[])
       g_print
         ("Unknown antialias mode '%s' specified. Valid modes are default, none, grey and subpixel.\n",
          antialias);
+      goto loser;
     }
     antialias_set = TRUE;
   }
