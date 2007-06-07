@@ -1401,8 +1401,10 @@ aisleriot_board_realize (GtkWidget *widget)
   GtkSettings *settings;
 #ifndef HAVE_MAEMO
   gboolean touchscreen_mode;
+#ifdef GDK_WINDOWING_X11
   char *xft_rgba = NULL;
-#endif
+#endif /* GDK_WINDOWING_X11 */
+#endif /* !HAVE_MAEMO */
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->realize (widget);
 
@@ -1432,11 +1434,13 @@ aisleriot_board_realize (GtkWidget *widget)
                 "gtk-double-click-time", &priv->double_click_time,
 #ifndef HAVE_MAEMO
                 "gtk-touchscreen-mode", &touchscreen_mode,
+#ifdef GDK_WINDOWING_X11
                 "gtk-xft-rgba", &xft_rgba,
-#endif
+#endif /* GDK_WINDOWING_X11 */
+#endif /* !HAVE_MAEMO */
                 NULL);
 
-#ifndef HAVE_MAEMO
+#if defined (GDK_WINDOWING_X11) && !defined (HAVE_MAEMO)
   if (xft_rgba != NULL) {
     gboolean antialias_set = TRUE;
     cairo_antialias_t antialias_mode = CAIRO_ANTIALIAS_DEFAULT;
@@ -1466,9 +1470,10 @@ aisleriot_board_realize (GtkWidget *widget)
                                        subpixel_order);
     }
   }
-
+#endif /* GDK_WINDOWING_X11 && !HAVE_MAEMO */
+#ifndef HAVE_MAEMO
   priv->touchscreen_mode = touchscreen_mode != FALSE;
-#endif
+#endif /* !HAVE_MAEMO */
 
   aisleriot_board_setup_geometry (board);
 }
