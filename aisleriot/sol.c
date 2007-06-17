@@ -1,6 +1,7 @@
 /*
  * Copyright © 1998, 2001, 2003, 2006 Jonathan Blandford <jrb@alum.mit.edu>
  * Copyright © 2007 Christian Persch
+ * Copyright © 2007 Andreas Røsdal <andreasr@gnome.org> 
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,10 +48,20 @@
 #include <hildon-widgets/hildon-program.h>
 
 #define SERVICE_NAME "org.gnome.Games.AisleRiot"
-#define MAEMO_HELP_EXT "xhtml"
+#define HELP_EXT "xhtml"
 
 #endif /* HAVE_MAEMO */
 
+#if defined (G_OS_WIN32)
+#include <windows.h>
+#include <io.h>
+#define HELP_EXT "xhtml"
+//FIXME On win32 help is created as html with gnome-doc-tool,
+//and put manually in the directory below.
+#define HELPDIR PKGDATADIR "/aisleriot/help"
+#endif
+
+#include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
 
 #include "conf.h"
@@ -89,6 +100,8 @@ about_url_hook (GtkAboutDialog *about,
                               DBUS_TYPE_STRING, link,
                               DBUS_TYPE_INVALID);
 
+#elif defined (G_OS_WIN32)
+  ShellExecute( NULL, "open", link, NULL, NULL, SW_SHOWNORMAL ); 
 #else
 
   GdkScreen *screen;
@@ -233,7 +246,7 @@ game_file_to_help_section (const char *game_file)
   return buf;
 }
 
-#ifdef HAVE_MAEMO
+#if (defined HAVE_MAEMO || defined G_OS_WIN32)
 
 static void
 help_hook (GtkWindow *parent,
@@ -261,9 +274,10 @@ help_hook (GtkWindow *parent,
         strchr (lang, '@') != NULL)
       continue;
 
-    path = g_strdup_printf (HELPDIR G_DIR_SEPARATOR_S "%s" G_DIR_SEPARATOR_S "%s." MAEMO_HELP_EXT,
-                            lang,
-                            help_section ? help_section : "aisleriot");
+    path = games_path_runtime_fix (g_strdup_printf (HELPDIR G_DIR_SEPARATOR_S "%s" 
+				   G_DIR_SEPARATOR_S "%s." HELP_EXT,
+                                   lang,
+                                   help_section ? help_section : "aisleriot"));
     if (g_file_test (path, G_FILE_TEST_EXISTS)) {
       help_url = g_strdup_printf ("file://%s", path);
       g_free (path);
@@ -284,7 +298,7 @@ help_hook (GtkWindow *parent,
                                      /* %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html" */
                                      _("Help file \"%s.%s\" not found"),
                                      help_section ? help_section : "aisleriot",
-                                     MAEMO_HELP_EXT);
+                                     HELP_EXT);
 
     /* Empty title shows up as "<unnamed>" on maemo */
     gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
@@ -297,16 +311,19 @@ help_hook (GtkWindow *parent,
     return;
   }
 
+#ifdef HAVE_MAEMO
   osso_rpc_run_with_defaults (data->osso_context,
                               "osso_browser",
                               OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
                               NULL,
                               DBUS_TYPE_STRING, help_url,
                               DBUS_TYPE_INVALID);
-
+#elif defined (G_OS_WIN32)
+  ShellExecute( NULL, "open", help_url, NULL, NULL, SW_SHOWNORMAL ); 
+#endif
   g_free (help_url);
 }
-  
+
 #else /* !HAVE_MAEMO */
 
 static void
@@ -486,6 +503,7 @@ main_prog (void *closure, int argc, char *argv[])
 {
   AppData data;
   GOptionContext *option_context;
+  GtkIconTheme *sol_icon_theme;
 #ifdef HAVE_GNOME
   GnomeClient *master_client;
 #else
@@ -587,19 +605,23 @@ main_prog (void *closure, int argc, char *argv[])
 
   g_assert (data.variation != NULL || data.freecell);
 
-  gtk_window_set_default_icon_name (data.freecell ? "gnome-freecell" : "gnome-aisleriot");
-
   games_stock_init ();
 
   aisleriot_util_set_help_func (help_hook, &data);
 
-#ifndef HAVE_GNOME
+#if (!defined (HAVE_GNOME) || defined (G_OS_WIN32))
   gtk_about_dialog_set_url_hook (about_url_hook, &data, NULL);
 #endif
 
   data.window = AISLERIOT_WINDOW (aisleriot_window_new ());
   g_signal_connect (data.window, "destroy",
 		    G_CALLBACK (gtk_main_quit), NULL);
+
+  sol_icon_theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (GTK_WIDGET (data.window)));
+  gtk_icon_theme_append_search_path (sol_icon_theme, games_path_runtime_fix (ICONDIR));
+
+  gtk_window_set_default_icon_name (data.freecell ? "gnome-freecell" : "gnome-aisleriot");
+
 
 #ifdef HAVE_GNOME
   master_client = gnome_master_client ();
@@ -665,7 +687,7 @@ main (int argc, char *argv[])
 {
   setlocale (LC_ALL, "");
 
-  bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+  bindtextdomain (GETTEXT_PACKAGE, games_path_runtime_fix (GNOMELOCALEDIR));
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 

@@ -54,14 +54,10 @@ libgames_support_la_SOURCES +=		\
 	games-card-selector.h		\
 	games-preimage.c                \
 	games-preimage.h                \
-	games-setgid-io.c		\
-	games-setgid-io.h		\
 	games-score.h			\
 	games-score.c			\
 	games-scores.c			\
 	games-scores.h			\
-	games-scores-backend.c		\
-	games-scores-backend.h		\
 	games-scores-dialog.c		\
 	games-scores-dialog.h		\
 	games-scores-dialog-private.h	\
@@ -74,6 +70,10 @@ libgames_support_la_SOURCES +=		\
 	games-controls.h		\
 	games-gconf.c			\
 	games-gconf.h			\
+	games-setgid-io.c		\
+	games-setgid-io.h		\
+	games-scores-backend.c		\
+	games-scores-backend.h		\
 	$(NULL)
 
 if GGZ_CLIENT

@@ -1,6 +1,6 @@
 SUBDIRS = rules
 
-if !HAVE_MAEMO
+if HAVE_GNOME
 SUBDIRS += help
 endif
 
@@ -42,6 +42,7 @@ sol_CPPFLAGS = \
 	-I$(top_srcdir)				\
 	-I$(top_srcdir)/libgames-support	\
 	-DDATADIR="\"$(datadir)\""		\
+	-DICONDIR="\"$(datadir)/icons/hicolor\""\
 	-DGAMESDIR="\"$(scmdir)\""		\
 	-DGNOMELOCALEDIR="\"$(datadir)/locale\""\
 	-DPIXMAPDIR="\"$(pkgdatadir)/pixmaps\""	\

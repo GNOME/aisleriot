@@ -226,7 +226,7 @@ select_game_cb (GtkAction *action,
   list_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list));
   g_object_unref (list);
 
-  files = games_file_list_new ("*.scm", GAMESDIR, NULL);
+  files = games_file_list_new ("*.scm", games_path_runtime_fix (GAMESDIR), NULL);
   games_file_list_transform_basename (files);
 
   current_game_file = aisleriot_game_get_game_file (priv->game);
@@ -760,7 +760,7 @@ debug_cycle_cb (GtkAction *action,
   GamesFileList *files;
   DebugCycleData *data;
 
-  files = games_file_list_new ("*.scm", GAMESDIR, NULL);
+  files = games_file_list_new ("*.scm", games_path_runtime_fix (GAMESDIR), NULL);
   games_file_list_transform_basename (files);
 
   data = g_slice_new (DebugCycleData);

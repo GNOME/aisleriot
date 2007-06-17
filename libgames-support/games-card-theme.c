@@ -197,7 +197,7 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
 {
   GamesPreimage *preimage;
   const char *theme_dir, *env;
-  char *filename, *path;
+  gchar *filename, *path;
 
 #ifdef INSTRUMENT_LOADING
   clock_t t1, t2;
@@ -213,7 +213,7 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
 
   /* First try and load the given file. */
   filename = g_strdup_printf ("%s.svg", theme_name);
-  path = g_build_filename (theme_dir, filename, NULL);
+  path = games_build_filename (theme_dir, filename);
   preimage = games_preimage_new_from_file (path, NULL);
   g_free (path);
 
@@ -247,7 +247,7 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
   }
 
   /* And the slot image */
-  path = g_build_filename (SLOTDIR, "slot.svg", NULL);
+  path = games_build_filename (SLOTDIR, "slot.svg");
   theme->theme_data.scalable.slot_preimage = games_preimage_new_from_file (path, NULL);
   g_free (path);
   g_return_val_if_fail (theme->theme_data.scalable.slot_preimage != NULL, FALSE);
@@ -301,7 +301,7 @@ games_card_theme_load_theme_prerendered (GamesCardTheme * theme,
   gboolean retval = FALSE;
 
   filename = g_strdup_printf ("%s.card-theme", theme_name);
-  path = g_build_filename (PRERENDERED_CARDS_DIR, filename, NULL);
+  path = games_build_filename (PRERENDERED_CARDS_DIR, filename);
   g_free (filename);
 
   key_file = g_key_file_new ();
@@ -549,7 +549,7 @@ games_card_theme_load_card (GamesCardTheme * theme, int card_id)
 
   print_card_name (card_id, name, sizeof (name));
   g_snprintf (filename, sizeof (filename), "%s.png", name);
-  path = g_build_filename (theme->theme_data.prerendered.themesizepath, filename, NULL);
+  path = games_build_filename (theme->theme_data.prerendered.themesizepath, filename);
 
   pixbuf = gdk_pixbuf_new_from_file (path, &error);
   if (!pixbuf) {
@@ -796,6 +796,7 @@ games_card_theme_set_size (GamesCardTheme * theme,
   {
     guint i;
     int twidth, theight;
+    gchar *spath;
     CardSize size = { -1, -1 }, fit_size = {
     -1, -1};
 
@@ -831,10 +832,13 @@ games_card_theme_set_size (GamesCardTheme * theme,
       g_free (theme->theme_data.prerendered.themesizepath);
 
       g_snprintf (sizestr, sizeof (sizestr), "%d", size.width);
-      theme->theme_data.prerendered.themesizepath =
-        g_build_filename (theme->theme_dir !=
+      spath = g_build_filename (theme->theme_dir !=
                           NULL ? theme->theme_dir : PRERENDERED_CARDS_DIR,
-                          theme->theme_name, sizestr, NULL);
+                          theme->theme_name, NULL);
+      
+      theme->theme_data.prerendered.themesizepath = 
+	      				games_build_filename (spath, sizestr);
+      g_free (spath);
 
       theme->size_available = TRUE;
       theme->card_size = size;

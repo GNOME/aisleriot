@@ -28,6 +28,8 @@
 #include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
 
+#include "games-files.h"
+
 #include "games-stock.h"
 
 #ifndef HAVE_MAEMO
@@ -231,7 +233,7 @@ add_icon_from_file (GtkIconFactory * icon_factory,
   source = gtk_icon_source_new ();
   set = gtk_icon_set_new ();
 
-  path = g_build_filename (ICONDIR, filename, NULL);
+  path = games_build_filename (ICONDIR, filename);
   gtk_icon_source_set_filename (source, path);
   g_free (path);
 

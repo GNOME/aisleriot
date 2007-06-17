@@ -26,6 +26,7 @@
 #include <gtk/gtk.h>
 
 #include <libgames-support/games-card-images.h>
+#include <libgames-support/games-files.h>
 #include <libgames-support/games-pixbuf-utils.h>
 
 #include "conf.h"
@@ -343,7 +344,7 @@ set_background_from_baize (GtkWidget *widget,
   char *path;
   int width, height;
 
-  path = g_build_filename (PIXMAPDIR, "baize.png", NULL);
+  path = games_build_filename (PIXMAPDIR, "baize.png");
 
   pixbuf = gdk_pixbuf_new_from_file (path, &error);
   g_free (path);

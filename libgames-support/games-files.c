@@ -30,6 +30,17 @@
 #include <gtk/gtk.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
+#ifdef G_OS_WIN32
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <io.h>
+#ifndef S_IWUSR
+# define S_IWUSR _S_IWRITE
+#endif
+#endif
+
+
 #include "games-files.h"
 #include "games-card-common.h"
 
@@ -40,8 +51,8 @@
 G_DEFINE_TYPE (GamesFileList, games_file_list, G_TYPE_OBJECT)
 
 /* Remove duplicate names form the list */
-static void
-games_file_list_remove_duplicates (GamesFileList * filelist)
+     static void
+       games_file_list_remove_duplicates (GamesFileList * filelist)
 {
   GList *l;
 
@@ -307,7 +318,7 @@ games_file_list_create_widget (GamesFileList * gamesfilelist,
     if (flags & GAMES_FILE_LIST_REMOVE_EXTENSION) {
       s = g_strrstr (visible, ".");
       if (s)
-        *s = '\0';
+	*s = '\0';
     }
     if (flags & GAMES_FILE_LIST_REPLACE_UNDERSCORES) {
       s = visible;
@@ -394,9 +405,9 @@ games_file_list_get_nth (GamesFileList * filelist, gint n)
 }
 
 static void
-games_file_list_finalize (GObject *object)
+games_file_list_finalize (GObject * object)
 {
-  GamesFileList * filelist = GAMES_FILE_LIST (object);
+  GamesFileList *filelist = GAMES_FILE_LIST (object);
 
   /* For simplicity we haven't used the dispose method since we can
    * guarantee that everything this references doesn't reference itself. */
@@ -463,4 +474,128 @@ games_file_list_card_themes (gboolean scalable)
   }
 
   return files;
+}
+
+#if defined (G_OS_WIN32) && defined (PREFIX)
+
+static const gchar *
+games_toplevel_directory (void)
+{
+  static gchar *toplevel = NULL;
+
+  if (toplevel)
+    return toplevel;
+
+  {
+    gchar *filename;
+    gchar *sep1, *sep2;
+
+    if (G_WIN32_HAVE_WIDECHAR_API ()) {
+      wchar_t w_filename[MAX_PATH];
+
+      if (GetModuleFileNameW (NULL,
+			      w_filename, G_N_ELEMENTS (w_filename)) == 0)
+	g_error ("GetModuleFilenameW failed");
+
+      filename = g_utf16_to_utf8 (w_filename, -1, NULL, NULL, NULL);
+      if (filename == NULL)
+	g_error ("Converting module filename to UTF-8 failed");
+    } else {
+      gchar cp_filename[MAX_PATH];
+
+      if (GetModuleFileNameA (NULL,
+			      cp_filename, G_N_ELEMENTS (cp_filename)) == 0)
+	g_error ("GetModuleFilenameA failed");
+
+      filename = g_locale_to_utf8 (cp_filename, -1, NULL, NULL, NULL);
+      if (filename == NULL)
+	g_error ("Converting module filename to UTF-8 failed");
+    }
+
+    /* If the executable file name is of the format
+     * <foobar>\bin\*.exe , use <foobar>.
+     * Otherwise, use the directory where the executable is.
+     */
+
+    sep1 = strrchr (filename, '\\');
+    *sep1 = '\0';
+
+    sep2 = strrchr (filename, '\\');
+    if (sep2 != NULL) {
+      *sep2 = '\0';
+    }
+
+    toplevel = filename;
+  }
+
+  return toplevel;
+}
+#endif
+
+
+/**
+ * games_path_runtime_fix:
+ * @path: A pointer to a string (allocated with g_malloc) that is
+ *        (or could be) a pathname.
+ *
+ * On Windows, this function checks if the string pointed to by @path
+ * starts with the compile-time prefix, and in that case, replaces the
+ * prefix with the run-time one.  @path should be a pointer to a
+ * dynamically allocated (with g_malloc, g_strconcat, etc) string. If
+ * the replacement takes place, the original string is deallocated,
+ * and *@path is replaced with a pointer to a new string with the
+ * run-time prefix spliced in.
+ *
+ * On Linux, it does the same thing, but only if BinReloc support is enabled.
+ * On other Unices, it does nothing because those platforms don't have a
+ * way to find out where our binary is.
+ */
+static void
+games_path_runtime_fix_private (gchar **path)
+{
+#if defined (G_OS_WIN32) && defined (PREFIX)
+  gchar *p;
+
+      /* This is a compile-time entry. Replace the path with the
+       * real one on this machine.
+       */
+      p = *path;
+      *path = g_strconcat (games_toplevel_directory (),
+                           "\\",
+                           *path + strlen (PREFIX "/"),
+                           NULL);
+      g_free (p);
+  /* Replace forward slashes with backslashes, just for
+   * completeness */
+  p = *path;
+  while ((p = strchr (p, '/')) != NULL)
+    {
+      *p = '\\';
+      p++;
+    }
+#endif
+}
+
+
+gchar *
+games_path_runtime_fix (gchar *path)
+{
+  gchar *p = g_strdup (path);
+  games_path_runtime_fix_private (&p);
+
+  return p;
+}
+
+
+gchar *
+games_build_filename (const gchar * path, const gchar * filename)
+{
+  gchar *p = g_strdup (path);
+	  
+  games_path_runtime_fix_private (&p);
+
+  gchar *result = g_build_filename (p, filename, NULL);
+  g_free (p);
+
+  return result;
 }

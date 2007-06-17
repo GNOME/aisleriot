@@ -38,6 +38,8 @@
 #include "conf.h"
 #include "util.h"
 
+#include <libgames-support/games-files.h>
+
 #include "game.h"
 
 #include "board.h"
@@ -1030,7 +1032,7 @@ cscmi_eval_installed_file (const char *filename,
     return FALSE;
   }
 
-  path = g_build_filename (GAMESDIR, filename, NULL);
+  path = games_build_filename (GAMESDIR, filename);
   if (g_file_test (path, G_FILE_TEST_EXISTS) &&
       g_file_test (path, G_FILE_TEST_IS_REGULAR)) {
     scm_c_primitive_load (path);

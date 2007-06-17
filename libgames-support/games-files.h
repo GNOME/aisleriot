@@ -69,6 +69,9 @@ games_file_list_new (const gchar * glob, ...)
 
 GamesFileList *games_file_list_card_themes (gboolean scalable);
 
+gchar *games_build_filename (const gchar *path, const gchar *filename);
+gchar *games_path_runtime_fix (gchar *path);
+
 G_END_DECLS
 
 #endif /* GAMES_FILES_H */
