@@ -1,3 +1,38 @@
+gnome-games 2.19.4
+==================
+
+This is the fourth development release leading up to gnome-games 2.20.0.
+
+* General changes:
+  - GamesConf, an API for storing user preferences has been added
+    to libgames-support. GamesConf allows the games to store preferences
+    using either GConf or flat files (#448432).
+  - Mingw32 compilation fixes for libgames-support (#448317).
+  - Correct icon names in desktop files (#444777).
+  - Check for gcc before adding -fsigned-char parameter (#445556).
+
+Aisleriot:
+  - Port Aisleriot to the new GamesConf API (#448432).
+  - Support for compiling Aisleriot with mingw32 (bug #448317). 
+  - Don't use anonymous structs (#444802).
+Mines:
+  - Only redraw the necessary fields when clicking on a mine (#375691).
+
+glChess:
+  - Use correct pid not 0 for killing AIs (Bug #443073).
+    This is a severe bug that causes the X server to be
+    killed accidentally on some systems.
+
+Sudoku:
+  - Ensure that g_thread_init is called before all other GLib functions.
+    Fedora bug #241917.
+  - Disable saving and loading.
+  - Don't allow grey fields to be changed by mouse (#422666). 
+  - Remove the option for selecting black background option (#395135).
+  - Store highlight setting in gconf (bug #445590).
+  - Set number popup transient for the main window. (bug #406767).
+
+
 gnome-games 2.19.3
 ==================
 
