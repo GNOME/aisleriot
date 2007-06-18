@@ -84,6 +84,11 @@ gboolean games_conf_get_boolean (const char *group, const char *key,
 void games_conf_set_boolean (const char *group, const char *key,
                              gboolean value);
 
+double games_conf_get_double (const char *group, const char *key,
+                              GError ** error);
+
+void games_conf_set_double (const char *group, const char *key, double value);
+
 void games_conf_add_window (GtkWindow *window);
 
 G_END_DECLS

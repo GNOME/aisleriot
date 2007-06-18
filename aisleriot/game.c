@@ -167,7 +167,7 @@ set_game_redoable (AisleriotGame *game,
   }
 }
 
-/* Yes, there is a gconf race condition here, but since this is all
+/* Yes, there is a race condition here, but since this is all
    per user they're going to have to be either playing impossibly fast
    or using sharing an account. In the later case they won't be caring
    about the statistics. */

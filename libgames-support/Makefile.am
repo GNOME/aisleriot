@@ -187,7 +187,7 @@ if GCONF_SCHEMAS_INSTALL
 endif
 
 CLEANFILES = $(BUILT_SOURCES)
-DISTCLEANFILES = $(schema_DATA) stamp-games-marshal.c stamp-games-marshal.h games-marshal.list
+DISTCLEANFILES = $(schema_DATA)
 
 games-marshal.c: stamp-games-marshal.c
 	@true

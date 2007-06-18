@@ -176,11 +176,17 @@ gconf_notify_cb (GConfClient *client,
                  GamesConf *conf)
 {
   GamesConfPrivate *priv = conf->priv;
+  char *key;
   char **path;
 
-  g_assert (g_str_has_prefix (gcentry->key, priv->base_path));
+  if (!g_str_has_prefix (gcentry->key, priv->base_path))
+    return;
 
-  path = g_strsplit (gcentry->key + priv->base_path_len, "/", 2);
+  key = gcentry->key + priv->base_path_len;
+  if (*key != '/')
+    return;
+
+  path = g_strsplit (key + 1, "/", 2);
   if (!path)
     return;
 
@@ -374,7 +380,6 @@ loser:
 
   instance = NULL;
 }
-
 
 static void
 games_conf_set_property (GObject *object,
@@ -830,6 +835,62 @@ void games_conf_set_boolean (const char *group, const char *key,
   g_free (key_name);
 #else
   g_key_file_set_boolean (priv->key_file, group ? group : priv->main_group, key, value);
+  g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
+#endif /* HAVE_GNOME */
+}
+
+/**
+ * games_conf_get_double:
+ * @group: the group name, or %NULL to use the default group
+ * @key: the key name
+ * @error: a location for a #GError
+ *
+ * Returns the integer associated with @key in @group, or 0 if
+ * @key is not set, or an error occurred
+ *
+ * Returns: a double
+ */
+double
+games_conf_get_double (const char *group, const char *key,
+                       GError ** error)
+{
+  GamesConfPrivate *priv = instance->priv;
+
+#ifdef HAVE_GNOME
+  double value;
+  char *key_name;
+
+  key_name = get_gconf_key_name (group, key);
+  value = gconf_client_get_float (priv->gconf_client, key_name, error);
+  g_free (key_name);
+
+  return value;
+#else
+  return g_key_file_get_double (priv->key_file, group ? group : priv->main_group, key, error);
+#endif /* HAVE_GNOME */
+}
+
+/**
+ * games_conf_set_double:
+ * @group: the group name, or %NULL to use the default group
+ * @key: the key name
+ * @value: the value to store
+ *
+ * Associates @value with the key @key in group @group.
+ */
+void
+games_conf_set_double (const char *group, const char *key, double value)
+{
+  GamesConfPrivate *priv = instance->priv;
+
+#ifdef HAVE_GNOME
+  char *key_name;
+
+  key_name = get_gconf_key_name (group, key);
+  gconf_client_set_float (priv->gconf_client, key_name, value, NULL);
+  g_free (key_name);
+#else
+  g_key_file_set_double (priv->key_file, group ? group : priv->main_group, key, value);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
 #endif /* HAVE_GNOME */
 }
