@@ -12,6 +12,7 @@ EXTRA_DIST = \
 	$(schema_in_files)	\
 	$(card_DATA)		\
 	$(slot_DATA)		\
+	games-marshal.list	\
 	$(NULL)
 
 if !HAVE_MAEMO
@@ -26,12 +27,20 @@ endif
 
 noinst_LTLIBRARIES = libgames-support.la
 
+BUILT_SOURCES = \
+	games-marshal.c			\
+	games-marshal.h			\
+	$(NULL)
+
 libgames_support_la_SOURCES =		\
+	$(BUILT_SOURCES)		\
 	games-card-common.h		\
 	games-card-images.c		\
 	games-card-images.h		\
 	games-card-theme.c		\
 	games-card-theme.h		\
+	games-conf.c			\
+	games-conf.h			\
 	games-files.c			\
 	games-files.h			\
 	games-pixbuf-utils.c		\
@@ -177,4 +186,17 @@ if GCONF_SCHEMAS_INSTALL
 	fi
 endif
 
+CLEANFILES = $(BUILT_SOURCES)
 DISTCLEANFILES = $(schema_DATA)
+
+games-marshal.c: stamp-games-marshal.c
+	@true
+stamp-games-marshal.c: games-marshal.list Makefile
+	$(GLIB_GENMARSHAL) --prefix=games_marshal $< --header --body > games-marshal.c \
+	&& echo timestamp > $(@F)
+
+games-marshal.h: stamp-games-marshal.h
+	@true
+stamp-games-marshal.h: games-marshal.list Makefile
+	$(GLIB_GENMARSHAL) --prefix=games_marshal $< --header > games-marshal.h \
+	&& echo timestamp > $(@F)

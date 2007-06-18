@@ -600,7 +600,7 @@ main_prog (void *closure, int argc, char *argv[])
   }
 
   if (!data.freecell && !data.variation) {
-    data.variation = aisleriot_conf_get_string (CONF_VARIATION, DEFAULT_VARIATION);
+    data.variation = games_conf_get_string_with_default (NULL, aisleriot_conf_get_key (CONF_VARIATION), DEFAULT_VARIATION);
   }
 
   g_assert (data.variation != NULL || data.freecell);

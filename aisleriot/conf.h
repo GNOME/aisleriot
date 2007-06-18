@@ -22,16 +22,13 @@
 #define AISLERIOT_CONF_H
 
 #include <glib.h>
+#include <libgames-support/games-conf.h>
 
 G_BEGIN_DECLS
 
 typedef enum {
   CONF_THEME,
   CONF_VARIATION,
-  CONF_WIDTH,
-  CONF_HEIGHT,
-  CONF_SHOW_MAXIMISED,
-  CONF_SHOW_FULLSCREEN,
   CONF_RECENT_GAMES,
   CONF_SHOW_TOOLBAR,
   CONF_CLICK_TO_MOVE,
@@ -49,23 +46,7 @@ void aisleriot_conf_init (void);
 
 void aisleriot_conf_shutdown (void);
 
-char *aisleriot_conf_get_string (AisleriotConfKey key,
-                                 const char *default_value);
-
-void aisleriot_conf_set_string (AisleriotConfKey key, const char *value);
-
-char **aisleriot_conf_get_strings (AisleriotConfKey key, gsize * n_values);
-
-void aisleriot_conf_set_strings (AisleriotConfKey key,
-                                 const char *const *values, gsize n_values);
-
-int aisleriot_conf_get_int (AisleriotConfKey key);
-
-void aisleriot_conf_set_int (AisleriotConfKey key, int value);
-
-gboolean aisleriot_conf_get_boolean (AisleriotConfKey key);
-
-void aisleriot_conf_set_boolean (AisleriotConfKey key, gboolean value);
+const char *aisleriot_conf_get_key (AisleriotConfKey key);
 
 gboolean aisleriot_conf_get_options (const char *game_file, int *options);
 

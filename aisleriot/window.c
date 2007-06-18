@@ -143,8 +143,6 @@ struct _AisleriotWindowPrivate
   guint scalable_cards : 1;
   guint use_pixbuf_drawing : 1;
   guint changing_game_type : 1;
-  guint is_maximised : 1;
-  guint is_fullscreen : 1;
   guint freecell_mode : 1;
   guint toolbar_visible : 1;
 };
@@ -855,7 +853,7 @@ toolbar_toggled_cb (GtkToggleAction *action,
 
   priv->toolbar_visible = state != FALSE;
 
-  aisleriot_conf_set_boolean (CONF_SHOW_TOOLBAR, state);
+  games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), state);
 }
 
 static void
@@ -908,7 +906,7 @@ clickmove_toggle_cb (GtkToggleAction *action,
   aisleriot_game_set_click_to_move (priv->game, click_to_move);
   aisleriot_board_set_click_to_move (priv->board, click_to_move);
   
-  aisleriot_conf_set_boolean (CONF_CLICK_TO_MOVE, click_to_move);
+  games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), click_to_move);
 }
 
 static void
@@ -1288,7 +1286,7 @@ add_recently_played_game (AisleriotWindow *window,
   if (priv->freecell_mode)
     return;
 
-  recent_games = aisleriot_conf_get_strings (CONF_RECENT_GAMES, &n_recent);
+  recent_games = games_conf_get_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES), &n_recent, NULL);
 
   if (recent_games == NULL) {
     new_recent = g_new (char *, 2);
@@ -1313,7 +1311,8 @@ add_recently_played_game (AisleriotWindow *window,
     g_strfreev (recent_games);
   }
 
-  aisleriot_conf_set_strings (CONF_RECENT_GAMES, (const char * const *) new_recent, n_new_recent);
+  games_conf_set_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES),
+                              (const char * const *) new_recent, n_new_recent);
   g_strfreev (new_recent);
 }
 
@@ -1328,7 +1327,7 @@ recent_game_cb (GtkAction *action,
 
   aisleriot_window_set_game (window, game_file, 0);
   
-  aisleriot_conf_set_string (CONF_VARIATION, game_file);
+  games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), game_file);
 }
 
 static void
@@ -1355,7 +1354,7 @@ install_recently_played_menu (AisleriotWindow *window)
 
   priv->recent_games_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
-  recent_games = aisleriot_conf_get_strings (CONF_RECENT_GAMES, &n_recent);
+  recent_games = games_conf_get_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES), &n_recent, NULL);
 
   for (i = 0; i < n_recent; ++i) {
     GtkAction *action;
@@ -1416,7 +1415,7 @@ card_theme_changed_cb (GtkToggleAction *action,
 #endif /* HAVE_GNOME */
 
   if (aisleriot_board_set_card_theme (priv->board, theme)) {
-    aisleriot_conf_set_string (CONF_THEME, theme);
+    games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme);
   }
 }
 
@@ -1825,27 +1824,6 @@ G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, HILDON_TYPE_WINDOW);
 G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, GTK_TYPE_WINDOW);
 #endif
 
-#ifndef HAVE_MAEMO
-
-/* FIXMEchpe maybe use size-allocate instead? */
-static gboolean
-aisleriot_window_configure (GtkWidget *widget,
-                            GdkEventConfigure *event)
-{
-  AisleriotWindow *window = AISLERIOT_WINDOW (widget);
-  AisleriotWindowPrivate *priv = window->priv;
-
-  if (!priv->is_maximised && !priv->is_fullscreen) {
-    /* FIXMEchpe: not on every configure event !!! do it on idle afterwards */
-    aisleriot_conf_set_int (CONF_WIDTH, event->width);
-    aisleriot_conf_set_int (CONF_HEIGHT, event->height);
-  }
-
-  return GTK_WIDGET_CLASS (aisleriot_window_parent_class)->configure_event (widget, event);
-}
-
-#endif /* !HAVE_MAEMO */
-
 static gboolean
 aisleriot_window_state_event (GtkWidget *widget,
                               GdkEventWindowState *event)
@@ -1854,21 +1832,20 @@ aisleriot_window_state_event (GtkWidget *widget,
   AisleriotWindowPrivate *priv = window->priv;
 
   if (event->changed_mask & (GDK_WINDOW_STATE_FULLSCREEN | GDK_WINDOW_STATE_MAXIMIZED)) {
-    priv->is_fullscreen = (event->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) != 0;
-    priv->is_maximised = (event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) != 0;
+    gboolean is_fullscreen, is_maximised;
 
-    set_fullscreen_actions (window, priv->is_fullscreen);
+    is_fullscreen = (event->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) != 0;
+    is_maximised = (event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) != 0;
+
+    set_fullscreen_actions (window, is_fullscreen);
 
 #ifndef HAVE_MAEMO
 #if GTK_CHECK_VERSION (2, 11, 0)
-    gtk_statusbar_set_has_resize_grip (priv->statusbar, !priv->is_maximised && !priv->is_fullscreen);
+    gtk_statusbar_set_has_resize_grip (priv->statusbar, !is_maximised && !is_fullscreen);
 #else
     gtk_statusbar_set_has_resize_grip (priv->statusbar, FALSE);
 #endif
 #endif /* !HAVE_MAEMO */
-
-    aisleriot_conf_set_boolean (CONF_SHOW_MAXIMISED, priv->is_maximised);
-    aisleriot_conf_set_boolean (CONF_SHOW_FULLSCREEN, priv->is_fullscreen);
   }
 
 #ifndef HAVE_MAEMO
@@ -2120,7 +2097,6 @@ aisleriot_window_init (AisleriotWindow *window)
     "</ui>";
 
   AisleriotWindowPrivate *priv;
-  gint width, height;
   GtkWidget *main_vbox;
   GtkAccelGroup *accel_group;
   GtkAction *action;
@@ -2169,7 +2145,7 @@ aisleriot_window_init (AisleriotWindow *window)
 
   aisleriot_board_set_pixbuf_drawing (priv->board, priv->use_pixbuf_drawing);
 
-  theme = aisleriot_conf_get_string (CONF_THEME, GAMES_CARD_THEME_DEFAULT);
+  theme = games_conf_get_string_with_default (NULL, aisleriot_conf_get_key (CONF_THEME), GAMES_CARD_THEME_DEFAULT);
 #ifdef HAVE_GNOME
   /* Compatibility with old settings */
   if (g_str_has_suffix (theme, ".svg")) {
@@ -2279,12 +2255,12 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
   action = gtk_action_group_get_action (priv->action_group, "Toolbar");
-  priv->toolbar_visible = aisleriot_conf_get_boolean (CONF_SHOW_TOOLBAR) != FALSE;
+  priv->toolbar_visible = games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), NULL) != FALSE;
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 priv->toolbar_visible);
   action = gtk_action_group_get_action (priv->action_group, "ClickToMove");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-                                aisleriot_conf_get_boolean (CONF_CLICK_TO_MOVE));
+                                games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), NULL));
   action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
   g_object_set (action, "hide-if-empty", FALSE, NULL);
 
@@ -2334,22 +2310,11 @@ aisleriot_window_init (AisleriotWindow *window)
   g_signal_connect (priv->game, "exception",
                     G_CALLBACK (game_exception_cb), window);
 
+  /* Fallback, if there is no saved size */
+  gtk_window_set_default_size (GTK_WINDOW (window), MIN_WIDTH, MIN_HEIGHT);
+
   /* Restore window state */
-  width = aisleriot_conf_get_int (CONF_WIDTH);
-  height = aisleriot_conf_get_int (CONF_HEIGHT);
-
-  if (width > 0 && height > 0) {
-    gtk_window_set_default_size (GTK_WINDOW (window), width, height);
-  } else {
-    gtk_window_set_default_size (GTK_WINDOW (window), MIN_WIDTH, MIN_HEIGHT);
-  }
-
-  if (aisleriot_conf_get_boolean (CONF_SHOW_MAXIMISED)) {
-    gtk_window_maximize (GTK_WINDOW (window));
-  }
-  if (aisleriot_conf_get_boolean (CONF_SHOW_FULLSCREEN)) {
-    gtk_window_fullscreen (GTK_WINDOW (window));
-  }
+  games_conf_add_window (GTK_WINDOW (window));
 
   /* Initial focus is in the board */
   gtk_widget_grab_focus (GTK_WIDGET (priv->board));
@@ -2421,9 +2386,6 @@ aisleriot_window_class_init (AisleriotWindowClass *klass)
 
   gobject_class->finalize = aisleriot_window_finalize;
 
-#ifndef HAVE_MAEMO
-  widget_class->configure_event = aisleriot_window_configure;
-#endif
   widget_class->window_state_event = aisleriot_window_state_event;
 
   g_type_class_add_private (gobject_class, sizeof (AisleriotWindowPrivate));
@@ -2528,7 +2490,7 @@ load_idle_cb (LoadIdleData *data)
    * store it in conf, except when we're running in freecell mode.
    */
   if (!priv->freecell_mode) {
-    aisleriot_conf_set_string (CONF_VARIATION, data->game_file);
+    games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), data->game_file);
   }
 
   aisleriot_game_new_game (priv->game, data->seed != 0 ? &data->seed : NULL);

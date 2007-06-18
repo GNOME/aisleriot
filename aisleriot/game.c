@@ -973,17 +973,15 @@ cscmi_start_game_lambda (double *width,
 {
   AisleriotGame *game = app_game;
   CallData data = CALL_DATA_INIT;
-  SCM retval;
 
   data.lambda = game->start_game_lambda;
   data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
                             cscmi_catch_handler, NULL);
-  retval = data.retval;
 
-  *width = scm_num2double (SCM_CAR (retval), 0, NULL);
-  *height = scm_num2double (SCM_CADR (retval), 0, NULL);
+  *width = scm_num2double (SCM_CAR (data.retval), 0, NULL);
+  *height = scm_num2double (SCM_CADR (data.retval), 0, NULL);
 }
 
 static gboolean

@@ -29,32 +29,31 @@
 
 #ifdef HAVE_GNOME
 #include <gconf/gconf-client.h>
-#include <libgames-support/games-gconf.h>
-#include <libgnomeui/gnome-app-helper.h>
-#else
-#include <glib/gkeyfile.h>
-#include <gtk/gtkaccelmap.h>
-
-#define CONFIG_FILE   "aisleriot"
-#define ACCELMAP_FILE "aisleriot.accels"
-
 #endif
 
 #ifdef HAVE_GNOME
-
-static const char gconf_key[][34] = {
-  "/apps/aisleriot/card_style",
-  "/apps/aisleriot/game_file",
-  "/apps/aisleriot/width",
-  "/apps/aisleriot/height",
-  "/apps/aisleriot/maximized",
-  "/apps/aisleriot/fullscreen",
-  "/apps/aisleriot/recent_games_list",
-  "/apps/aisleriot/show_toolbar",
-  "/apps/aisleriot/click_to_move",
-  "/apps/aisleriot/statistics",
+static const char key_name[][18] = {
+  "card_style",
+  "game_file",
+  "recent_games_list",
+  "show_toolbar",
+  "click_to_move",
 };
 
+static const char statistics_key[] = "/apps/aisleriot/statistics";
+
+#else
+static const char key_name[][12] = {
+  "Theme",
+  "Variation",
+  "Recent",
+  "ShowToolbar",
+  "ClickToMove"
+};
+#endif /* HAVE_GNOME */
+
+#ifdef HAVE_GNOME
+  
 static GConfClient *gconf_client;
 static GHashTable *stats;
 
@@ -72,7 +71,7 @@ load_statistics (void)
   GSList *raw_list;
   AisleriotStatistic *new_stats;
 
-  raw_list = gconf_client_get_list (gconf_client, gconf_key[CONF_STATISTICS],
+  raw_list = gconf_client_get_list (gconf_client, statistics_key,
 				    GCONF_VALUE_STRING, NULL);
 
   while (raw_list) {
@@ -137,37 +136,29 @@ save_statistics (void)
 
   g_hash_table_foreach (stats, (GHFunc) save_single_stat, &stats_list);
 
-  gconf_client_set_list (gconf_client, gconf_key[CONF_STATISTICS],
+  gconf_client_set_list (gconf_client, statistics_key,
                          GCONF_VALUE_STRING, stats_list, NULL);
 
   g_slist_foreach (stats_list, (GFunc) g_free, NULL);
   g_slist_free (stats_list);
 }
 
-#else /* !HAVE_GNOME */
-
-static GKeyFile *key_file;
-
-static const char CONFIG_GROUP[] = "Aisleriot Config";
-
-static const char key_name[][12] = {
-  "Theme",
-  "Variation",
-  "Width",
-  "Height",
-  "Maximised",
-  "Fullscreen",
-  "Recent",
-  "ShowToolbar",
-  "ClickToMove"
-};
-
 #endif /* HAVE_GNOME */
 
 void
 aisleriot_conf_init (void)
 {
+  if (!games_conf_initialise ("Aisleriot")) {
+    /* Set defaults */
+    games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), TRUE);
+
+#ifdef HAVE_MAEMO
+    games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), TRUE);
+#endif
+  }
+
 #ifdef HAVE_GNOME
+  
   gconf_client = gconf_client_get_default ();
 
   gconf_client_add_dir (gconf_client, "/apps/aisleriot",
@@ -176,46 +167,9 @@ aisleriot_conf_init (void)
   stats = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 
   load_statistics ();
-  gconf_client_notify_add (gconf_client, gconf_key[CONF_STATISTICS],
+  gconf_client_notify_add (gconf_client, statistics_key,
 			   (GConfClientNotifyFunc) load_statistics,
 			   NULL, NULL, NULL);
-
-#else /* !HAVE_GNOME */
-
-  char *conf_file;
-  GError *error = NULL;
-
-  conf_file = g_build_filename (g_get_user_config_dir (), "gnome-games", CONFIG_FILE, NULL);
-
-  key_file = g_key_file_new ();
-  if (!g_key_file_load_from_file (key_file, conf_file, 0, &error)) {
-    /* Don't warn on non-existent file */
-    if (error->domain != G_FILE_ERROR ||
-        error->code != G_FILE_ERROR_NOENT) {
-      g_warning ("Failed to read settings from \"%s\": %s",
-                  conf_file, error->message);
-    }
-
-    g_error_free (error);
-
-    /* This will leave us with a half-initialised key file, but no matter */
-
-    /* Set defaults */
-    aisleriot_conf_set_boolean (CONF_SHOW_TOOLBAR, TRUE);
-
-#ifdef HAVE_MAEMO
-    aisleriot_conf_set_boolean (CONF_CLICK_TO_MOVE, TRUE);
-#endif
-  }
-
-  g_free (conf_file);
-
-  /* Load the accel map, which libgnome does for us in the HAVE_GNOME case */
-#ifndef HAVE_MAEMO
-  conf_file = g_build_filename (g_get_user_config_dir(), "gnome-games", ACCELMAP_FILE, NULL);
-  gtk_accel_map_load (conf_file);
-  g_free (conf_file);
-#endif /* !HAVE_MAEMO */
 
 #endif /* HAVE_GNOME */
 }
@@ -231,201 +185,15 @@ aisleriot_conf_shutdown (void)
 
   g_hash_table_destroy (stats);
   stats = NULL;
-
-  /* Save the accel map */
-  gnome_accelerators_sync ();
-
-#else /* !HAVE_GNOME */
-
-  char *conf_file, *conf_dir = NULL, *data = NULL;
-  gsize len = 0;
-  GError *error = NULL;
-
-  conf_file = g_build_filename (g_get_user_config_dir (), "gnome-games", CONFIG_FILE, NULL);
-
-  data = g_key_file_to_data (key_file, &len, &error);
-  if (!data) {
-    g_warning ("Failed to save settings to \"%s\": %s",
-               conf_file, error->message);
-    g_error_free (error);
-    goto loser;
-  }
-     
-  /* Ensure the directory exists */
-  conf_dir = g_build_filename (g_get_user_config_dir (), "gnome-games", NULL);
-  /* Mode 0700 per the XDG basedir spec */
-  if (g_mkdir_with_parents (conf_dir, 0700) < 0) {
-    int err = errno;
-
-    if (err != EEXIST) {
-      g_warning ("Failed to create config directory \"%s\": %s\n", conf_dir, g_strerror (err));
-      goto loser;
-    }
-  }
-
-  if (!g_file_set_contents (conf_file, data, len, &error)) {
-    g_warning ("Failed to save settings to \"%s\": %s",
-              conf_file, error->message);
-    g_error_free (error);
-  }
-
-loser:
-  g_free (data);
-  g_free (conf_file);
-  g_free (conf_dir);
-
-  /* Save the accel map */
-#ifndef HAVE_MAEMO
-  conf_file = g_build_filename (g_get_user_config_dir(), "gnome-games", ACCELMAP_FILE, NULL);
-  gtk_accel_map_save (conf_file);
-  g_free (conf_file);
-#endif /* !HAVE_MAEMO */
-
 #endif /* HAVE_GNOME */
+
+  games_conf_shutdown ();
 }
 
-char *
-aisleriot_conf_get_string (AisleriotConfKey key,
-                           const char *default_value)
+const char *
+aisleriot_conf_get_key (AisleriotConfKey key)
 {
-  char *value;
-
-#ifdef HAVE_GNOME
-  value = games_gconf_get_string (gconf_client, gconf_key[key], default_value);
-#else
-  GError *error = NULL;
-
-  value = g_key_file_get_string (key_file, CONFIG_GROUP, key_name[key], &error);
-  if (error) {
-    value = NULL;
-    g_error_free (error);
-  }
-#endif /* HAVE_GNOME */
-
-  return value ? value : g_strdup (default_value);
-}
-
-void
-aisleriot_conf_set_string (AisleriotConfKey key,
-                           const char *value)
-{
-#ifdef HAVE_GNOME
-  gconf_client_set_string (gconf_client, gconf_key[key], value, NULL);
-#else
-  g_key_file_set_string (key_file, CONFIG_GROUP, key_name[key], value);
-#endif /* HAVE_GNOME */
-}
-
-char **
-aisleriot_conf_get_strings (AisleriotConfKey key,
-                            gsize *n_values)
-{
-#ifdef HAVE_GNOME
-  GSList *list, *l;
-  char **values = NULL;
-  gsize n = 0;
-
-  list = gconf_client_get_list (gconf_client, gconf_key[key], GCONF_VALUE_STRING, NULL);
-  if (list != NULL) {
-    values = g_new (char *, g_slist_length (list) + 1);
-
-    for (l = list; l != NULL; l = l->next) {
-      values[n++] = l->data;
-    }
-
-    /* NULL termination */
-    values[n] = NULL;
-
-    g_slist_free (list); /* the strings themselves are now owned by the array */
-  }
-
-  *n_values = n;
-  return values;
-#else
-  return g_key_file_get_string_list (key_file, CONFIG_GROUP, key_name[key], n_values, NULL);
-#endif /* HAVE_GNOME */
-}
-
-void
-aisleriot_conf_set_strings (AisleriotConfKey key,
-                            const char * const *values,
-                            gsize n_values)
-{
-#ifdef HAVE_GNOME
-  GSList *list = NULL;
-  gsize i;
-
-  for (i = 0; i < n_values; ++i) {
-    list = g_slist_prepend (list, (gpointer) values[i]);
-  }
-  list = g_slist_reverse (list);
-
-  gconf_client_set_list (gconf_client, gconf_key[key], GCONF_VALUE_STRING, list, NULL);
-
-  g_slist_free (list);
-#else
-  g_key_file_set_string_list (key_file, CONFIG_GROUP, key_name[key], values, n_values);
-#endif /* HAVE_GNOME */
-}
-
-int
-aisleriot_conf_get_int (AisleriotConfKey key)
-{
-#ifdef HAVE_GNOME
-  return gconf_client_get_int (gconf_client, gconf_key[key], NULL);
-#else
-  int value;
-  GError *error = NULL;
-
-  value = g_key_file_get_integer (key_file, CONFIG_GROUP, key_name[key], &error);
-  if (error) {
-    value = 0;
-    g_error_free (error);
-  }
-
-  return value;
-#endif /* HAVE_GNOME */
-}
-
-void
-aisleriot_conf_set_int (AisleriotConfKey key,
-                        int value)
-{
-#ifdef HAVE_GNOME
-  gconf_client_set_int (gconf_client, gconf_key[key], value, NULL);
-#else
-  g_key_file_set_integer (key_file, CONFIG_GROUP, key_name[key], value);
-#endif /* HAVE_GNOME */
-}
-
-gboolean
-aisleriot_conf_get_boolean (AisleriotConfKey key)
-{
-#ifdef HAVE_GNOME
-  return gconf_client_get_bool (gconf_client, gconf_key[key], NULL);
-#else
-  int value;
-  GError *error = NULL;
-
-  value = g_key_file_get_boolean (key_file, CONFIG_GROUP, key_name[key], &error);
-  if (error) {
-    value = FALSE;
-    g_error_free (error);
-  }
-
-  return value;
-#endif /* HAVE_GNOME */
-}
-
-void
-aisleriot_conf_set_boolean (AisleriotConfKey key,
-                            gboolean value)
-{
-#ifdef HAVE_GNOME
-  gconf_client_set_bool (gconf_client, gconf_key[key], value, NULL);
-#else
-  g_key_file_set_boolean (key_file, CONFIG_GROUP, key_name[key], value);
-#endif /* HAVE_GNOME */
+  return key_name[key];
 }
 
 gboolean
@@ -457,7 +225,7 @@ aisleriot_conf_get_options (const char *game_file,
 #else
   GError *error = NULL;
 
-  *options = g_key_file_get_integer (key_file, game_file, "Options", &error);
+  *options = games_conf_get_integer (game_file, "Options", &error);
   if (error) {
     g_error_free (error);
     return FALSE;
@@ -508,7 +276,7 @@ aisleriot_conf_set_options (const char *game_file,
   gconf_client_set_int (gconf_client, gconf_key, value, NULL);
   g_free (gconf_key);
 #else
-  g_key_file_set_integer (key_file, game_file, "Options", value);
+  games_conf_set_integer (game_file, "Options", value);
 #endif /* HAVE_GNOME */
 }
 
@@ -534,7 +302,7 @@ aisleriot_conf_get_statistic (const char *game_file,
 
   memset (statistic, 0, sizeof (AisleriotStatistic));
 
-  values = g_key_file_get_integer_list (key_file, game_file, "Statistic", &len, &error);
+  values = games_conf_get_integer_list (game_file, "Statistic", &len, &error);
   if (error) {
     g_error_free (error);
     return;
@@ -589,6 +357,6 @@ aisleriot_conf_set_statistic (const char *game_file,
   values[2] = statistic->best;
   values[3] = statistic->worst;
 
-  g_key_file_set_integer_list (key_file, game_file, "Statistic", values, G_N_ELEMENTS (values));
+  games_conf_set_integer_list (game_file, "Statistic", values, G_N_ELEMENTS (values));
 #endif /* HAVE_GNOME */
 }
