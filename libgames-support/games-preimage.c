@@ -207,6 +207,7 @@ games_preimage_render_sub (GamesPreimage * preimage,
   guint8 *data;
   cairo_surface_t *surface;
   cairo_t *cx;
+  cairo_matrix_t matrix;
 
   if (!preimage->scalable)
     return NULL;
@@ -243,8 +244,6 @@ games_preimage_render_sub (GamesPreimage * preimage,
     cairo_set_font_options (cx, options);
     cairo_font_options_destroy (options);
   }
-
-  cairo_matrix_t matrix;
 
   cairo_matrix_init_identity (&matrix);
   cairo_matrix_scale (&matrix, xzoom, yzoom);
