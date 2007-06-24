@@ -35,5 +35,6 @@
 #define scm_from_int(object) (SCM_MAKINUM (object))
 #define scm_from_uint(object) (SCM_MAKINUM (object))
 #define scm_from_uint32(object) (SCM_MAKINUM (object))
+#define scm_from_locale_symbol(string) (scm_str2symbol (string))
 
 #endif /* !AISLERIOT_GUILE16_COMPAT_H */

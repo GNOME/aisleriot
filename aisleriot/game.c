@@ -58,6 +58,7 @@ struct _AisleriotGame
   guint timeout;
   guint score;
   guint32 seed;
+  guint delayed_call_timeout_id;
 
   time_t start_time;
 
@@ -117,6 +118,15 @@ static guint signals[LAST_SIGNAL];
 G_DEFINE_TYPE (AisleriotGame, aisleriot_game, G_TYPE_OBJECT);
 
 /* helper functions */
+
+static void
+clear_delayed_call (AisleriotGame *game)
+{
+  if (game->delayed_call_timeout_id != 0) {
+    g_source_remove (game->delayed_call_timeout_id);
+    game->delayed_call_timeout_id = 0;
+  }
+}
 
 static void
 set_game_state (AisleriotGame *game,
@@ -892,7 +902,11 @@ scm_get_timeout ()
 static void
 scm_delayed_call_destroy_data (SCM callback)
 {
+  AisleriotGame *game = app_game;
+
   scm_gc_unprotect_object (callback);
+
+  game->delayed_call_timeout_id = 0;
 }
 
 static gboolean
@@ -900,6 +914,11 @@ scm_execute_delayed_function (SCM callback)
 {
   AisleriotGame *game = app_game;
   CallData data = CALL_DATA_INIT;
+
+  /* We set game->delayed_call_timeout_id to 0 _before_ calling |callback|,
+   * since it might install a new delayed call.
+   */
+  game->delayed_call_timeout_id = 0;
 
   data.lambda = callback;
   data.n_args = 0;
@@ -912,10 +931,17 @@ scm_execute_delayed_function (SCM callback)
   return FALSE;
 }
 
-/* FIXMEchpe remove the timeout when starting a new game! */
 static SCM
 scm_delayed_call (SCM callback)
 {
+  AisleriotGame *game = app_game;
+
+  /* We can only have one pending delayed call! */
+  if (game->delayed_call_timeout_id != 0) {
+    return scm_throw (scm_from_locale_symbol ("invalid-call"),
+                      scm_cons (scm_from_locale_string ("Already have a delayed callback pending."), SCM_EOL));
+  }
+
   /* We need to protect the callback data from being GC'd until the
    * timeout has run.
    */
@@ -1087,6 +1113,7 @@ aisleriot_game_finalize (GObject *object)
     update_statistics (game);
   }
 
+  clear_delayed_call (game);
   clear_slots (game, FALSE);
   g_ptr_array_free (game->slots, TRUE);
 
@@ -1419,6 +1446,7 @@ aisleriot_game_load_game (AisleriotGame *game,
 
   g_object_freeze_notify (object);
 
+  clear_delayed_call (game);
   set_game_state (game, GAME_UNINITIALISED);
   set_game_score (game, 0);
   set_game_undoable (game, FALSE);
@@ -1503,7 +1531,8 @@ aisleriot_game_new_game (AisleriotGame *game,
     update_statistics (game);
   }
 
-  /* The game isn't actually in progress until the user makes a move. */
+  clear_delayed_call (game);
+  /* The game isn't actually in progress until the user makes a move */
   set_game_state (game, GAME_BEGIN);
   set_game_score (game, 0);
   set_game_undoable (game, FALSE);
