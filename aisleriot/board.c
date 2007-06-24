@@ -1075,6 +1075,8 @@ drag_begin (AisleriotBoard *board)
 
   slot_update_geometry (board, hslot);
   slot_update_card_images (board, hslot);
+      
+  set_cursor (board, CURSOR_CLOSED);
 }
 
 static void
@@ -1900,7 +1902,6 @@ aisleriot_board_motion_notify (GtkWidget *widget,
                                        event->x,
                                        event->y)) {
     drag_begin (board);
-    set_cursor (board, CURSOR_CLOSED);
   } else {
     set_cursor_by_location (board, event->x, event->y);
   }
