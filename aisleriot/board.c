@@ -1385,6 +1385,10 @@ slot_changed_cb (AisleriotGame *game,
   slot_update_geometry (board, slot);
   slot_update_card_images (board, slot);
 
+  if (slot == priv->moving_cards_origin_slot) {
+    /* PANIC! */
+    /* FIXMEchpe */
+  }
   if (slot == priv->selection_slot) {
     set_selection (board, NULL, -1);
 
