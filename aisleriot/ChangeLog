@@ -1,3 +1,9 @@
+2007-06-24  Christian Persch  <chpe@gnome.org>\
+
+        * board.c: Don't redraw the board on focus-in/out if we're not
+        showing the focus anyway. Eliminates unnecessary and costly redraws
+        when showing a dialogue.
+
 2007-06-24  Christian Persch  <chpe@gnome.org>
 
         * board.c: Abort the click cycle if a slot changes during the
