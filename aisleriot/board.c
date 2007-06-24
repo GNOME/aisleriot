@@ -937,8 +937,10 @@ drag_begin (AisleriotBoard *board)
   GdkWindowAttr attributes;
 
   if (!priv->selection_slot ||
-      priv->selection_start_card_id < 0)
+      priv->selection_start_card_id < 0) {
+    priv->click_status = STATUS_NONE;
     return;
+  }
 
   priv->click_status = STATUS_IS_DRAG;
 
