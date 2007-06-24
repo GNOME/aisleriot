@@ -1592,6 +1592,13 @@ static gboolean
 aisleriot_board_focus_in (GtkWidget *widget,
                           GdkEventFocus *event)
 {
+  AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  AisleriotBoardPrivate *priv = board->priv;
+
+  /* If we're not showing focus, no need to redraw on focus change */
+  if (!priv->show_focus)
+    return FALSE;
+
   return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus_in_event (widget, event);
 }
 
@@ -1600,8 +1607,13 @@ aisleriot_board_focus_out (GtkWidget *widget,
                            GdkEventFocus *event)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  AisleriotBoardPrivate *priv = board->priv;
 
   clear_state (board);
+
+  /* If we're not showing focus, no need to redraw on focus change */
+  if (!priv->show_focus)
+    return FALSE;
 
   return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus_out_event (widget, event);
 }
