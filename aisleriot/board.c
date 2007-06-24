@@ -936,11 +936,14 @@ drag_begin (AisleriotBoard *board)
   GdkDrawable *drawable;
   GdkWindowAttr attributes;
 
+  if (!priv->selection_slot ||
+      priv->selection_start_card_id < 0)
+    return;
+
   priv->click_status = STATUS_IS_DRAG;
 
   hslot = priv->moving_cards_origin_slot = priv->selection_slot;
   priv->moving_cards_origin_card_id = priv->selection_start_card_id;
-  g_assert (hslot != NULL && priv->moving_cards_origin_card_id >= 0);
 
   num_moving_cards = hslot->cards->len - priv->moving_cards_origin_card_id;
 
@@ -1382,6 +1385,16 @@ slot_changed_cb (AisleriotGame *game,
 
   if (slot == priv->selection_slot) {
     set_selection (board, NULL, -1);
+
+    /* If this slot changes while we're in a click cycle, abort the action.
+     * That prevents a problem where the cards that were selected and
+     * about to be dragged have vanished because of autoplay; c.f. bug #449767.
+     * Note: we don't use clear_state() here since we only want to disable
+     * the highlight and revealed card if that particular slot changed, see
+     * the code above. And we don't clear last_clicked_slot/card_id either, so
+     * a double-click will still work.
+     */
+    priv->click_status = STATUS_NONE;
   }
   if (slot == priv->focus_slot) {
     set_focus (board, slot, priv->focus_card_id, priv->show_focus);
