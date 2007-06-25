@@ -2314,7 +2314,7 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_window_set_default_size (GTK_WINDOW (window), MIN_WIDTH, MIN_HEIGHT);
 
   /* Restore window state */
-  games_conf_add_window (GTK_WINDOW (window));
+  games_conf_add_window (GTK_WINDOW (window), NULL);
 
   /* Initial focus is in the board */
   gtk_widget_grab_focus (GTK_WIDGET (priv->board));

@@ -100,7 +100,7 @@ guint games_conf_get_keyval_with_default (const char *group, const char *key,
 
 void games_conf_set_keyval (const char *group, const char *key, guint value);
 
-void games_conf_add_window (GtkWindow *window);
+void games_conf_add_window (GtkWindow *window, const char *group);
 
 G_END_DECLS
 

@@ -99,6 +99,7 @@ static const char window_state_key_name[][12] = {
 };
 
 typedef struct {
+  char *group;
   guint timeout_id;
   int width;
   int height;
@@ -109,8 +110,8 @@ typedef struct {
 static gboolean
 window_state_timeout_cb (WindowState *state)
 {
-  games_conf_set_integer (NULL, window_state_key_name[STATE_KEY_WIDTH], state->width);
-  games_conf_set_integer (NULL, window_state_key_name[STATE_KEY_HEIGHT], state->height);
+  games_conf_set_integer (state->group, window_state_key_name[STATE_KEY_WIDTH], state->width);
+  games_conf_set_integer (state->group, window_state_key_name[STATE_KEY_HEIGHT], state->height);
 
   state->timeout_id = 0;
   return FALSE;
@@ -125,6 +126,8 @@ free_window_state (WindowState *state)
     /* And store now */
     window_state_timeout_cb (state);
   }
+
+  g_free (state->group);
 
   g_slice_free (WindowState, state);
 }
@@ -160,11 +163,11 @@ window_state_event_cb (GtkWidget *widget,
 {
   if (event->changed_mask & GDK_WINDOW_STATE_MAXIMIZED) {
     state->is_maximised = (event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) != 0;
-    games_conf_set_boolean (NULL, window_state_key_name[STATE_KEY_MAXIMISED], state->is_maximised);
+    games_conf_set_boolean (state->group, window_state_key_name[STATE_KEY_MAXIMISED], state->is_maximised);
   }
   if (event->changed_mask & GDK_WINDOW_STATE_FULLSCREEN) {
     state->is_fullscreen = (event->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) != 0;
-    games_conf_set_boolean (NULL, window_state_key_name[STATE_KEY_FULLSCREEN], state->is_fullscreen);
+    games_conf_set_boolean (state->group, window_state_key_name[STATE_KEY_FULLSCREEN], state->is_fullscreen);
   }
 
   return FALSE;
@@ -1106,13 +1109,16 @@ games_conf_set_keyval (const char *group, const char *key, guint value)
 /**
  * games_conf_add_window:
  * @window: a #GtkWindow
- *
+ * @group: the group to store the state in, or %NULL to use
+ * the default group
+ * 
  * Restore the window configuration, and persist changes to the window configuration:
  * window width and height, and maximised and fullscreen state.
  * @window must not be realised yet.
  */
 void
-games_conf_add_window (GtkWindow *window)
+games_conf_add_window (GtkWindow *window,
+                       const char *group)
 {
   WindowState *state;
   int width, height;
@@ -1122,6 +1128,7 @@ games_conf_add_window (GtkWindow *window)
   g_return_if_fail (!GTK_WIDGET_REALIZED (window));
 
   state = g_slice_new0 (WindowState);
+  state->group = g_strdup (group);
   g_object_set_data_full (G_OBJECT (window), "GamesConf::WindowState",
                           state, (GDestroyNotify) free_window_state);
 
