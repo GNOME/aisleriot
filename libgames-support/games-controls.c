@@ -21,54 +21,32 @@
 
 #include "config.h"
 
-#include <glib/gi18n-lib.h>
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <gconf/gconf.h>
-#include <gconf/gconf-client.h>
 
+#include "games-conf.h"
 #include "games-controls.h"
 
-
-/* FIXME: The listeners for gconf events are still listening after
- * the controls_list is destroyed. */
-
 enum {
-  GCONFKEY_COLUMN = 0,
+  CONFKEY_COLUMN = 0,
   LABEL_COLUMN,
   KEYNAME_COLUMN,
   EDITABLE_COLUMN,
   KEYCODE_COLUMN,
-  TYPE_COLUMN,
+  DEFAULT_KEYCODE_COLUMN,
   N_COLUMNS
 };
 
-G_DEFINE_TYPE (GamesControlsList, games_controls_list, GTK_TYPE_VBOX)
-
-static void
-games_controls_list_dispose (GObject *object)
-	
+static const char *
+get_keyname_from_keyval (guint keyval)
 {
-  GamesControlsList *list = GAMES_CONTROLS_LIST (object);
-  GConfClient *client;
-  GSList *l;
+  char *keyname;
 
-  client = gconf_client_get_default ();
-  for (l = list->notify_list; l != NULL; l = l->next) {
-    gconf_client_notify_remove (client, GPOINTER_TO_UINT (l->data));
-  }
-  g_slist_free (list->notify_list);
-  list->notify_list = NULL;
-  g_object_unref (client);
+  keyname = gdk_keyval_name (keyval);
+  if (!keyname)
+    keyname = N_("No key");
 
-  G_OBJECT_CLASS (games_controls_list_parent_class)->dispose (object);
-}
-
-static void
-games_controls_list_class_init (GamesControlsListClass * class)
-{
-  GObjectClass *oclass = G_OBJECT_CLASS (class);
-
-  oclass->dispose = games_controls_list_dispose;
+  return keyname;
 }
 
 /*
@@ -84,10 +62,7 @@ grab_key (GtkWidget * widget, GdkEventKey * event, GamesControlsList * list)
   GtkTreeSelection *selection;
   GtkTreeIter iter;
   gboolean editing;
-  const gchar *gconf_key;
-  GConfClient *client;
-  GConfValueType type;
-  gchar *keyname;
+  char *conf_key;
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list->view));
   if (!selection)
@@ -97,26 +72,20 @@ grab_key (GtkWidget * widget, GdkEventKey * event, GamesControlsList * list)
     return FALSE;
 
   gtk_tree_model_get (GTK_TREE_MODEL (list->store), &iter,
-		      GCONFKEY_COLUMN, &gconf_key,
-		      EDITABLE_COLUMN, &editing, TYPE_COLUMN, &type, -1);
+		      CONFKEY_COLUMN, &conf_key,
+		      EDITABLE_COLUMN, &editing,
+                      -1);
 
-  if (!editing || !gconf_key)
+  if (!editing || !conf_key)
     return FALSE;
 
-  client = gconf_client_get_default ();
-  if (type == GCONF_VALUE_STRING) {
-    keyname = gdk_keyval_name (event->keyval);
-    gconf_client_set_string (client, gconf_key, keyname, NULL);
-  } else if (type == GCONF_VALUE_INT) {
-    gconf_client_set_int (client, gconf_key, event->keyval, NULL);
-  } else
-    g_warning ("GConf key not a string or int.\n");
-  g_object_unref (G_OBJECT (client));
-
   /* just set the editable flag, the key name is updated
-   * in the gconf notification callback.
+   * in the conf notification callback.
    */
   gtk_list_store_set (list->store, &iter, EDITABLE_COLUMN, FALSE, -1);
+
+  games_conf_set_keyval (list->conf_group, conf_key, event->keyval);
+  g_free (conf_key);
 
   return TRUE;
 }
@@ -129,25 +98,27 @@ abort_grab_key (GamesControlsList * list)
 
   g_return_if_fail (GAMES_IS_CONTROLS_LIST (list));
 
-  /* find our gconf key in the list store and reset it to the previous value */
+  /* find our conf key in the list store and reset it to the previous value */
   valid = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (list->store), &iter);
   while (valid) {
     gboolean editable;
-    const gchar *keyname;
-    guint keycode;
+    guint keyval;
 
     gtk_tree_model_get (GTK_TREE_MODEL (list->store), &iter,
-			KEYCODE_COLUMN, &keycode,
-			EDITABLE_COLUMN, &editable, -1);
+			KEYCODE_COLUMN, &keyval,
+			EDITABLE_COLUMN, &editable,
+                        -1);
 
     if (editable) {
-      keyname = gdk_keyval_name (keycode);
-      if (!keyname)
-	keyname = N_("No key");
+      const char *keyname;
+
+      keyname = get_keyname_from_keyval (keyval);
 
       gtk_list_store_set (list->store, &iter,
 			  KEYNAME_COLUMN, keyname,
-			  EDITABLE_COLUMN, FALSE, -1);
+			  EDITABLE_COLUMN, FALSE,
+                          -1);
+      break;
     }
 
     valid = gtk_tree_model_iter_next (GTK_TREE_MODEL (list->store), &iter);
@@ -187,8 +158,60 @@ control_row_activated (GtkTreeView * view,
    */
   gtk_list_store_set (list->store, &iter,
 		      KEYNAME_COLUMN, _("<Press a Key>"),
-		      EDITABLE_COLUMN, TRUE, -1);
+		      EDITABLE_COLUMN, TRUE,
+                      -1);
 }
+
+static void
+conf_value_changed_cb (GamesConf *conf,
+                       const char *group,
+                       const char *key,
+                       GamesControlsList *list)
+{
+  GtkTreeIter iter;
+  gboolean valid;
+  guint keyval, default_keyval;
+  char *conf_key;
+  const char *keyname;
+
+  g_print ("key notify group %s key %s\n", group, key);
+  if ((group == NULL && list->conf_group != NULL) ||
+      (group != NULL && (list->conf_group == NULL ||
+                         strcmp (group, list->conf_group) != 0)))
+    return;
+
+  g_print ("checked\n");
+
+  /* find our gconf key in the list store and update it */
+  valid = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (list->store), &iter);
+  while (valid) {
+    gtk_tree_model_get (GTK_TREE_MODEL (list->store), &iter,
+                        CONFKEY_COLUMN, &conf_key,
+                        -1);
+
+    if (strcmp (key, conf_key) == 0) {
+      gtk_tree_model_get (GTK_TREE_MODEL (list->store), &iter,
+                          DEFAULT_KEYCODE_COLUMN, &default_keyval,
+                          -1);
+
+      keyval = games_conf_get_keyval_with_default (list->conf_group, key, default_keyval);
+      keyname = get_keyname_from_keyval (keyval);
+
+      gtk_list_store_set (list->store, &iter,
+                          KEYNAME_COLUMN, keyname,
+                          KEYCODE_COLUMN, keyval,
+                          EDITABLE_COLUMN, FALSE,
+                          -1);
+      break;
+    }
+
+    valid = gtk_tree_model_iter_next (GTK_TREE_MODEL (list->store), &iter);
+  }
+}
+
+/* Class implementation */
+
+G_DEFINE_TYPE (GamesControlsList, games_controls_list, GTK_TYPE_VBOX)
 
 static void
 games_controls_list_init (GamesControlsList * list)
@@ -201,9 +224,11 @@ games_controls_list_init (GamesControlsList * list)
 				    G_TYPE_STRING,
 				    G_TYPE_STRING,
 				    G_TYPE_STRING,
-				    G_TYPE_BOOLEAN, G_TYPE_UINT, G_TYPE_UINT);
+				    G_TYPE_BOOLEAN,
+                                    G_TYPE_UINT,
+                                    G_TYPE_UINT);
   list->view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list->store));
-  g_object_unref (G_OBJECT (list->store));
+  g_object_unref (list->store);
 
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list->view), FALSE);
   gtk_tree_view_set_enable_search (GTK_TREE_VIEW (list->view), FALSE);
@@ -238,132 +263,90 @@ games_controls_list_init (GamesControlsList * list)
    * assigning a new key and then we check that flag during the
    * key_press handler.
    */
-  g_signal_connect (G_OBJECT (list->view), "row_activated",
+  g_signal_connect (list->view, "row-activated",
 		    G_CALLBACK (control_row_activated), list);
-  g_signal_connect (G_OBJECT (list->view), "key_press_event",
+  g_signal_connect (list->view, "key-press-event",
 		    G_CALLBACK (grab_key), list);
 
   /* on focus_out abort the change of the control key */
-  g_signal_connect (G_OBJECT (list->view), "focus_out_event",
+  g_signal_connect (list->view, "focus-out-event",
 		    G_CALLBACK (abort_on_focus_out_event), list);
-  g_signal_connect (G_OBJECT (list->view), "button_press_event",
+  g_signal_connect (list->view, "button-press-event",
 		    G_CALLBACK (abort_on_button_press_event), list);
 
-  list->notify_list = NULL;
-}
-
-GtkWidget *
-games_controls_list_new (void)
-{
-  return g_object_new (GAMES_TYPE_CONTROLS_LIST, NULL);
+  list->notify_handler_id = g_signal_connect (games_conf_get_default (),
+                                              "value-changed",
+                                              G_CALLBACK (conf_value_changed_cb),
+                                              list);
 }
 
 static void
-gconf_key_changed (GConfClient * client,
-		   guint cnxn_id,
-		   GConfEntry * entry, GamesControlsList * list)
+games_controls_list_dispose (GObject *object)
+        
 {
-  const gchar *gconf_key;
-  const gchar *keyname;
-  guint keycode;
-  GtkTreeIter iter;
-  gboolean valid;
-  GConfValue *value;
+  GamesControlsList *list = GAMES_CONTROLS_LIST (object);
 
-  g_return_if_fail (GAMES_IS_CONTROLS_LIST (list));
+  g_signal_handler_disconnect (games_conf_get_default (), list->notify_handler_id);
+  list->notify_handler_id = 0;
 
-  keyname = NULL;
-  keycode = 0;
-  value = gconf_client_get (client, entry->key, NULL);
-  if (value->type == GCONF_VALUE_INT) {
-    keycode = gconf_value_get_int (value);
-    keyname = gdk_keyval_name (keycode);
-  } else if (value->type == GCONF_VALUE_STRING) {
-    keyname = gconf_value_get_string (value);
-    keycode = gdk_keyval_from_name (keyname);
-  }
+  g_free (list->conf_group);
+  list->conf_group = NULL;
 
-  if (!keyname)
-    keyname = N_("No key");
+  list->store = NULL;
 
-  /* find our gconf key in the list store and update it */
-  valid = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (list->store), &iter);
-  while (valid) {
-    gtk_tree_model_get (GTK_TREE_MODEL (list->store), &iter,
-			GCONFKEY_COLUMN, &gconf_key, -1);
+  G_OBJECT_CLASS (games_controls_list_parent_class)->dispose (object);
+}
 
-    if (strcmp (entry->key, gconf_key) == 0) {
-      gtk_list_store_set (list->store, &iter,
-			  KEYNAME_COLUMN, keyname,
-			  KEYCODE_COLUMN, keycode,
-			  EDITABLE_COLUMN, FALSE, -1);
-      break;
-    }
+static void
+games_controls_list_class_init (GamesControlsListClass * class)
+{
+  GObjectClass *oclass = G_OBJECT_CLASS (class);
 
-    valid = gtk_tree_model_iter_next (GTK_TREE_MODEL (list->store), &iter);
-  }
+  oclass->dispose = games_controls_list_dispose;
+}
 
-  gconf_value_free (value);
+/* Public API */
+
+GtkWidget *
+games_controls_list_new (const char *conf_group)
+{
+  GamesControlsList *list;
+
+  list = g_object_new (GAMES_TYPE_CONTROLS_LIST, NULL);
+
+  list->conf_group = g_strdup (conf_group);
+
+  return GTK_WIDGET (list);
 }
 
 void
 games_controls_list_add_control (GamesControlsList * list,
-				 const gchar * gconf_key)
+				 const gchar * conf_key,
+                                 const gchar * label,
+                                 guint default_keyval)
 {
-  GConfClient *client;
-  GConfEntry *entry;
-  GConfSchema *schema;
-  const gchar *label, *keyname;
-  guint keycode;
   GtkTreeIter iter;
-  GConfValueType type;
-  guint cid;
-  const gchar *schemaname;
+  const char *keyname;
+  guint keyval;
 
   g_return_if_fail (GAMES_IS_CONTROLS_LIST (list));
-  g_return_if_fail (gconf_key != NULL);
+  g_return_if_fail (conf_key != NULL);
 
-  client = gconf_client_get_default ();
-
-  entry = gconf_client_get_entry (client, gconf_key, NULL, TRUE, NULL);
-  schemaname = gconf_entry_get_schema_name (entry);
-  schema = gconf_client_get_schema (client, schemaname, NULL);
-  g_return_if_fail (schema != NULL);
-
-  label = gconf_schema_get_short_desc (schema);
   if (!label)
-    label = N_("Unknown Command");
+    label = _("Unknown Command");
 
-  type = gconf_schema_get_type (schema);
-
-  /* The result could be a keycode or a key name. */
-  if (type == GCONF_VALUE_INT) {
-    keycode = gconf_client_get_int (client, gconf_key, NULL);
-    keyname = gdk_keyval_name (keycode);
-  } else if (type == GCONF_VALUE_STRING) {
-    keyname = gconf_client_get_string (client, gconf_key, NULL);
-    keycode = gdk_keyval_from_name (keyname);
-  } else
-    return;			/* We don't understand anything else. */
-  if (!keyname)
-    keyname = N_("No key");
+  keyval = games_conf_get_keyval_with_default (list->conf_group, conf_key, default_keyval);
+  keyname = get_keyname_from_keyval (keyval);
 
   gtk_list_store_append (list->store, &iter);
   gtk_list_store_set (list->store, &iter,
-		      GCONFKEY_COLUMN, gconf_key,
+		      CONFKEY_COLUMN, conf_key,
 		      LABEL_COLUMN, label,
 		      KEYNAME_COLUMN, keyname,
 		      EDITABLE_COLUMN, FALSE,
-		      KEYCODE_COLUMN, keycode, TYPE_COLUMN, type, -1);
-
-  cid = gconf_client_notify_add (client, gconf_key,
-				 (GConfClientNotifyFunc) gconf_key_changed,
-				 list, NULL, NULL);
-
-  list->notify_list =
-    g_slist_prepend (list->notify_list, GUINT_TO_POINTER (cid));
-
-  g_object_unref (G_OBJECT (client));
+		      KEYCODE_COLUMN, keyval,
+                      DEFAULT_KEYCODE_COLUMN, default_keyval,
+                      -1);
 }
 
 void
@@ -371,7 +354,9 @@ games_controls_list_add_controls (GamesControlsList * list,
 				  const gchar * first_gconf_key, ...)
 {
   va_list args;
-  const gchar *key;
+  const char *key;
+  const char *label;
+  guint keyval;
 
   g_return_if_fail (GAMES_IS_CONTROLS_LIST (list));
   g_return_if_fail (first_gconf_key != NULL);
@@ -380,7 +365,10 @@ games_controls_list_add_controls (GamesControlsList * list,
 
   key = first_gconf_key;
   while (key) {
-    games_controls_list_add_control (list, key);
+    label = va_arg (args, gchar *);
+    keyval = va_arg (args, guint);
+
+    games_controls_list_add_control (list, key, label, keyval);
 
     key = va_arg (args, gchar *);
   }

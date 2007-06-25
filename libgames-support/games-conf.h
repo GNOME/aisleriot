@@ -89,6 +89,14 @@ double games_conf_get_double (const char *group, const char *key,
 
 void games_conf_set_double (const char *group, const char *key, double value);
 
+guint games_conf_get_keyval (const char *group, const char *key,
+                             GError ** error);
+
+guint games_conf_get_keyval_with_default (const char *group, const char *key,
+                                          guint default_keyval);
+
+void games_conf_set_keyval (const char *group, const char *key, guint value);
+
 void games_conf_add_window (GtkWindow *window);
 
 G_END_DECLS
