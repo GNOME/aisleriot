@@ -70,6 +70,9 @@ void games_conf_set_string_list (const char *group, const char *key,
 int games_conf_get_integer (const char *group, const char *key,
                             GError ** error);
 
+int games_conf_get_integer_with_default (const char *group, const char *key,
+                                         int def_value);
+
 void games_conf_set_integer (const char *group, const char *key, int value);
 
 int *games_conf_get_integer_list (const char *group, const char *key,

@@ -717,6 +717,34 @@ games_conf_get_integer (const char *group, const char *key,
 }
 
 /**
+ * games_conf_get_integer_with_default:
+ * @group: the group name, or %NULL to use the default group
+ * @key: the key name
+ * @def_value: the default value
+ *
+ * Returns the integer associated with @key in @group, or @def_value if
+ * @key is not set, or an error occurred
+ *
+ * Returns: an integer
+ */
+int
+games_conf_get_integer_with_default (const char *group, const char *key,
+                                     int def_value)
+{
+  GError *error = NULL;
+  int value;
+
+  value = games_conf_get_integer (group, key, &error);
+  if (error) {
+    g_error_free (error);
+    value = def_value;
+  }
+
+  return def_value;
+}
+
+
+/**
  * games_conf_set_integer:
  * @group: the group name, or %NULL to use the default group
  * @key: the key name
