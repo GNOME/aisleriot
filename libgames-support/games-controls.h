@@ -1,7 +1,7 @@
 /*
  * games-controls.h: keyboard controls utility functions. 
  *
- * Copyright (C) 2004 Paolo Borelli
+ * Copyright © 2004 Paolo Borelli
  *
  */
 
