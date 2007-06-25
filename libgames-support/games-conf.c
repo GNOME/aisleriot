@@ -134,7 +134,8 @@ window_configure_event_cb (GtkWidget *widget,
                            GdkEventConfigure *event,
                            WindowState *state)
 {
-  if (!state->is_maximised && !state->is_fullscreen) {
+  if (!state->is_maximised && !state->is_fullscreen &&
+      (state->width != event->width || state->height != event->height)) {
     state->width = event->width;
     state->height = event->height;
 
