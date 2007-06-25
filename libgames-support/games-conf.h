@@ -50,8 +50,6 @@ void games_conf_shutdown (void);
 
 GamesConf *games_conf_get_default (void);
 
-gboolean games_conf_has_key (const char *group, const char *key);
-
 char *games_conf_get_string (const char *group, const char *key,
                              GError ** error);
 

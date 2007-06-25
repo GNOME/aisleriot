@@ -229,9 +229,6 @@ get_gconf_value_type_from_schema (const char *key_name)
   if (schema) {
     type = gconf_schema_get_type (schema);
     gconf_schema_free (schema);
-    g_print ("Schema %s has type %d\n", schema_key, type);
-  } else {
-    g_print ("No schema for %s\n", schema_key);
   }
 
   g_free (schema_key);
@@ -508,11 +505,6 @@ games_conf_get_default (void)
   g_assert (instance != NULL);
 
   return instance;
-}
-
-gboolean
-games_conf_has_key (const char *group, const char *key);
-{
 }
 
 /**
@@ -1010,8 +1002,6 @@ games_conf_get_keyval (const char *group, const char *key,
 
   g_free (key_name);
 
-  g_print ("get-keyval group %s key %s returning %s\n", group, key, gdk_keyval_name (keyval));
-
   return keyval;
 #else
   char *value;
@@ -1022,8 +1012,6 @@ games_conf_get_keyval (const char *group, const char *key,
     keyval = gdk_keyval_from_name (value);
     g_free (value);
   }
-
-  g_print ("get-keyval group %s key %s returning %s\n", group, key, gdk_keyval_name (keyval));
 
   return keyval;
 #endif /* HAVE_GNOME */
