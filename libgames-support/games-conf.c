@@ -511,9 +511,8 @@ games_conf_get_default (void)
 }
 
 gboolean
-games_conf_has_key (const char *group, const char *key)
+games_conf_has_key (const char *group, const char *key);
 {
-#warning FIXME
 }
 
 /**
