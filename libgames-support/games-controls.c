@@ -281,20 +281,18 @@ games_controls_list_init (GamesControlsList * list)
 }
 
 static void
-games_controls_list_dispose (GObject *object)
+games_controls_list_finalize (GObject *object)
         
 {
   GamesControlsList *list = GAMES_CONTROLS_LIST (object);
 
   g_signal_handler_disconnect (games_conf_get_default (), list->notify_handler_id);
-  list->notify_handler_id = 0;
 
   g_free (list->conf_group);
-  list->conf_group = NULL;
 
   list->store = NULL;
 
-  G_OBJECT_CLASS (games_controls_list_parent_class)->dispose (object);
+  G_OBJECT_CLASS (games_controls_list_parent_class)->finalize (object);
 }
 
 static void
@@ -302,7 +300,7 @@ games_controls_list_class_init (GamesControlsListClass * class)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (class);
 
-  oclass->dispose = games_controls_list_dispose;
+  oclass->finalize = games_controls_list_finalize;
 }
 
 /* Public API */
