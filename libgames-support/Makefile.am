@@ -77,8 +77,6 @@ if HAVE_GNOME
 libgames_support_la_SOURCES +=		\
 	games-controls.c		\
 	games-controls.h		\
-	games-gconf.c			\
-	games-gconf.h			\
 	games-setgid-io.c		\
 	games-setgid-io.h		\
 	games-scores-backend.c		\
