@@ -6,6 +6,7 @@ sound_DATA = \
 	appear.ogg  \
 	bad.ogg \
 	bonus.ogg \
+	click.ogg \
 	crash.ogg \
 	die.ogg \
 	flip-piece.ogg \
