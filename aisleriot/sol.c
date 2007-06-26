@@ -64,6 +64,10 @@
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
 
+#ifdef HAVE_GNOME
+#include <libgames-support/games-sound.h>
+#endif /* HAVE_GNOME */
+
 #include "conf.h"
 #include "game.h"
 #include "util.h"
@@ -554,6 +558,9 @@ main_prog (void *closure, int argc, char *argv[])
   g_option_context_set_translation_domain (option_context, GETTEXT_PACKAGE);
 #endif
 
+#ifdef HAVE_GNOME
+  g_option_context_add_group (option_context, games_sound_get_option_group ());
+#endif
   add_main_options (option_context, &data);
 
 #ifdef HAVE_GNOME
@@ -629,6 +636,11 @@ main_prog (void *closure, int argc, char *argv[])
 		    G_CALLBACK (save_yourself_cb), &data);
   g_signal_connect_swapped (master_client, "die",
                             G_CALLBACK (die_cb), &data);
+
+  games_sound_enable (games_conf_get_boolean (NULL, 
+					      aisleriot_conf_get_key (CONF_SOUND),
+                                              NULL));
+
 #endif /* HAVE_GNOME */
 
 #ifdef HAVE_MAEMO

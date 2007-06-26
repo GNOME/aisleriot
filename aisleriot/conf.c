@@ -38,6 +38,7 @@ static const char key_name[][18] = {
   "recent_games_list",
   "show_toolbar",
   "click_to_move",
+  "sound",
 };
 
 static const char statistics_key[] = "/apps/aisleriot/statistics";
@@ -48,7 +49,8 @@ static const char key_name[][12] = {
   "Variation",
   "Recent",
   "ShowToolbar",
-  "ClickToMove"
+  "ClickToMove",
+  "Sound"
 };
 #endif /* HAVE_GNOME */
 

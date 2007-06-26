@@ -402,8 +402,15 @@ show_game_over_dialog (AisleriotWindow *window)
 
   if (game_won) {
     message = _("Congratulations, you have won!");
+    #ifdef HAVE_GNOME
+    games_sound_play ("victory");
+    #endif
+
   } else {
     message =  _("There are no more moves");
+    #ifdef HAVE_GNOME
+    games_sound_play ("splat");
+    #endif
   }
 
   dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
@@ -910,6 +917,22 @@ clickmove_toggle_cb (GtkToggleAction *action,
   aisleriot_board_set_click_to_move (priv->board, click_to_move);
   
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), click_to_move);
+}
+
+static void
+sound_toggle_cb (GtkToggleAction *action,
+                 AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+  gboolean sound_enabled;
+
+  sound_enabled = gtk_toggle_action_get_active (action);
+
+#ifdef HAVE_GNOME
+  games_sound_enable (sound_enabled);
+#endif
+  
+  games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), sound_enabled);
 }
 
 static void
@@ -1972,6 +1995,10 @@ aisleriot_window_init (AisleriotWindow *window)
       ACTION_TOOLTIP (N_("Pick up and drop cards by clicking")),
       G_CALLBACK (clickmove_toggle_cb),
       FALSE /* not active by default */ },
+   { "Sound", NULL, N_("_Enable sounds"), NULL,
+      ACTION_TOOLTIP (N_("Whether or not to play event sounds.")),
+      G_CALLBACK (sound_toggle_cb),
+      FALSE /* not active by default */ },
 #ifdef ENABLE_DEBUG_UI
     { "DebugPixbufDrawing", NULL, "_Pixbuf drawing", NULL, NULL,
       G_CALLBACK (debug_pixbuf_drawing_cb),
@@ -2059,6 +2086,7 @@ aisleriot_window_init (AisleriotWindow *window)
           "<menuitem action='Hint'/>"
           "<separator/>"
           "<menuitem action='ClickToMove'/>"
+          "<menuitem action='Sound'/>"
         "</menu>"
         "<menu action='OptionsMenu'/>"
         "<menu action='HelpMenu'>"
@@ -2264,6 +2292,9 @@ aisleriot_window_init (AisleriotWindow *window)
   action = gtk_action_group_get_action (priv->action_group, "ClickToMove");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), NULL));
+  action = gtk_action_group_get_action (priv->action_group, "Sound");
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+                                games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), NULL));
   action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
   g_object_set (action, "hide-if-empty", FALSE, NULL);
 

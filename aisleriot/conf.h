@@ -32,6 +32,7 @@ typedef enum {
   CONF_RECENT_GAMES,
   CONF_SHOW_TOOLBAR,
   CONF_CLICK_TO_MOVE,
+  CONF_SOUND,
   CONF_STATISTICS
 } AisleriotConfKey;
 

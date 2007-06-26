@@ -1199,8 +1199,14 @@ drop_moving_cards (AisleriotBoard *board,
 
   if (moved) {
     aisleriot_game_end_move (priv->game);
+    #ifdef HAVE_GNOME
+    games_sound_play ("click");
+    #endif
   } else {
     aisleriot_game_discard_move (priv->game);
+    #ifdef HAVE_GNOME
+    games_sound_play ("slide");
+    #endif
   }
 
   drag_end (board, moved);
@@ -1880,6 +1886,7 @@ aisleriot_board_button_release (GtkWidget *widget,
       aisleriot_game_record_move (priv->game, -1, NULL, 0);
       if (aisleriot_game_button_clicked_lambda (priv->game, slot->id)) {
         aisleriot_game_end_move (priv->game);
+	games_sound_play ("click");
       } else {
         aisleriot_game_discard_move (priv->game);
       }
