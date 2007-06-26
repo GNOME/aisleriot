@@ -548,6 +548,7 @@ help_about_cb (GtkAction *action,
     "Rosanna Yuen <zana@webwynk.net>",
     "Callum McKenzie <callum@physics.otago.ac.nz>",
     "Christian Persch <chpe" "\100" "gnome.org>",
+    "Andreas Røsdal <andreasr" "\100" "gnome.org>",
     "",
     _("Card games:"),
     "Jonathan Blandford <jrb@redhat.com>",
@@ -557,6 +558,8 @@ help_about_cb (GtkAction *action,
     "Changwoo Ryu <cwryu@adam.kaist.ac.kr>",
     "Matthew Wilcox <matthew@wil.cx>",
     "Rosanna Yuen <zana@webwynk.net>",
+    "Alan Horkan <horkana@maths.tcd.ie>",
+    "Richard Hoelscher <rah@rahga.com>",
     NULL
   };
   const char *artists[] = {
