@@ -54,6 +54,7 @@ DOC_ENTITIES = \
 	legal.xml \
 	maze.xml \
 	monte_carlo.xml \
+	napoleons_tomb.xml \
 	neighbor.xml \
 	odessa.xml \
 	osmosis.xml \

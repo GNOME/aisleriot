@@ -50,6 +50,7 @@ rules_DATA  = 			\
 	lady_jane.scm		\
 	maze.scm		\
 	monte_carlo.scm		\
+	napoleons_tomb.scm	\
 	neighbor.scm		\
 	odessa.scm		\
 	osmosis.scm		\
