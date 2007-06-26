@@ -253,18 +253,6 @@ get_slot (AisleriotGame *game,
   return NULL;
 }
 
-#if 0
-static gboolean
-timer_cb ()
-{
-  timeout = 3600;
-  /* All the games return #f and nothing else with this call, but just in
-   * case someone changes their mind in the future. */
-  if (aisleriot_game_timeout_lambda (app_game))
-    aisleriot_game_test_end_of_game (app_game);
-  return 0;
-}
-#endif
 
 /* Scheme helpers */
 
