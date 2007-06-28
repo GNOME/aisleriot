@@ -175,13 +175,10 @@ conf_value_changed_cb (GamesConf *conf,
   char *conf_key;
   const char *keyname;
 
-  g_print ("key notify group %s key %s\n", group, key);
   if ((group == NULL && list->conf_group != NULL) ||
       (group != NULL && (list->conf_group == NULL ||
                          strcmp (group, list->conf_group) != 0)))
     return;
-
-  g_print ("checked\n");
 
   /* find our gconf key in the list store and update it */
   valid = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (list->store), &iter);
