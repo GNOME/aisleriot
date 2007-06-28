@@ -352,6 +352,8 @@ if test "$need_gstreamer" = "yes"; then
   PKG_CHECK_MODULES([GSTREAMER],[gstreamer-0.10 >= $GSTREAMER_REQUIRED])
   AC_SUBST([GSTREAMER_CFLAGS])
   AC_SUBST([GSTREAMER_LIBS])
+
+  AC_DEFINE([HAVE_GSTREAMER],[1],[Define if GStreamer is available])
 fi
 
 AM_CONDITIONAL([HAVE_GSTREAMER],[test "$need_gstreamer" = "yes"])
