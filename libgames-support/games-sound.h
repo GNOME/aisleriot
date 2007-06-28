@@ -1,7 +1,7 @@
 /*
  * games-sound.h: common sound player for gnome-games 
  *
- * Copyright (C) 2007 Andreas Røsdal
+ * Copyright © 2007 Andreas Røsdal
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@
  *
  */
 
-
 #ifndef GAMES_SOUND_H
 #define GAMES_SOUND_H
 
@@ -27,11 +26,12 @@
 
 G_BEGIN_DECLS
 
+gboolean games_sound_is_available (void);
+void games_sound_add_option_group  (GOptionContext *context);
 void games_sound_play (const gchar *filename);
 void games_sound_enable (gboolean enabled);
 gboolean games_sound_is_enabled (void);
-GOptionGroup *games_sound_get_option_group  (void);
 
 G_END_DECLS
 
-#endif
+#endif /* !GAMES_SOUND_H */

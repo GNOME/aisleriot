@@ -1,7 +1,7 @@
 /*
  * games-sound.c: common sound player for gnome-games 
  *
- * Copyright (C) 2007 Andreas Røsdal
+ * Copyright © 2007 Andreas Røsdal
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +21,17 @@
 
 #include <config.h>
 
-#include <gnome.h>
 #include <glib.h>
+#include <glib/gi18n.h>
+
+#if defined (HAVE_GSTREAMER) && !defined (HAVE_MAEMO)
 #include <gst/gst.h>
+#define ENABLE_SOUND
+#endif /* HAVE_GSTREAMER && !HAVE_MAEMO */
 
 #include "games-sound.h"
+
+#ifdef ENABLE_SOUND
 
 static GstElement *pipeline;
 static gboolean sound_enabled = TRUE;
@@ -97,23 +103,33 @@ games_sound_init (void)
 
 }
 
+#endif /* ENABLE_SOUND */
+
 /**
- * games_sound_get_option_group:
+ * games_sound_add_option_group:
+ * @context: a #GOptionContext
  *
- * Returns: a new #GOptionGroup containing the GStreamer options
+ * Adds the GStreamer option group to @context.
  */
-GOptionGroup *
-games_sound_get_option_group (void)
+void
+games_sound_add_option_group (GOptionContext *context)
 {
-  return gst_init_get_option_group ();
+#ifdef ENABLE_SOUND
+  g_option_context_add_group (context, gst_init_get_option_group ());
+#endif /* ENABLE_SOUND */
 }
 
-/* Plays a sound with the given filename using GStreamer. The sound file is stored in 
+/**
+ * games_sound_play:
+ * @filename: the sound file to player
+ * 
+ * Plays a sound with the given filename using GStreamer. The sound file is stored in
  * the SOUNDDIR directory in .ogg format. Sound is played in a separate thread.
  */
 void
 games_sound_play (const gchar * filename)
 {
+#ifdef ENABLE_SOUND
   GError *err = NULL;
 
   if (!sound_enabled)
@@ -122,19 +138,49 @@ games_sound_play (const gchar * filename)
     games_sound_init ();
 
   g_thread_pool_push (threads, (gchar *) filename, &err);
-
+#endif /* ENABLE_SOUND */
 }
 
-/* Enables or disables sound support. */
+/**
+ * games_sound_enable:
+ * @enabled:
+ *
+ * Enables or disables sound support.
+ */
 void
-games_sound_enable (gboolean status)
+games_sound_enable (gboolean enabled)
 {
-  sound_enabled = status;
+#ifdef ENABLE_SOUND
+  sound_enabled = enabled;
+#endif /* ENABLE_SOUND */
 }
 
-/* Determines if sound support is enabled. */
+/**
+ * games_sound_is_enabled:
+ *
+ * Returns: %TRUE iff sound support is enabled.
+ */
 gboolean
 games_sound_is_enabled (void)
 {
+#ifdef ENABLE_SOUND
   return sound_enabled;
+#else
+  return FALSE;
+#endif /* ENABLE_SOUND */
+}
+
+/**
+ * games_sound_is_available:
+ *
+ * Returns: whether sound is available
+ */
+gboolean
+games_sound_is_available (void)
+{
+#ifdef ENABLE_SOUND
+  return TRUE;
+#else
+  return FALSE;
+#endif /* ENABLE_SOUND */
 }

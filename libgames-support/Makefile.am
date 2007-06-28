@@ -45,6 +45,8 @@ libgames_support_la_SOURCES =		\
 	games-files.h			\
 	games-pixbuf-utils.c		\
 	games-pixbuf-utils.h		\
+	games-sound.c			\
+	games-sound.h			\
 	games-stock.c			\
 	games-stock.h			\
 	$(NULL)
@@ -91,13 +93,6 @@ libgames_support_la_SOURCES +=		\
 	games-dlg-players.h		\
 	$(NULL)	
 endif
-endif
-
-if HAVE_GSTREAMER
-libgames_support_la_SOURCES +=		\
-	games-sound.c			\
-	games-sound.h			\
-	$(NULL)
 endif
 
 libgames_support_la_CPPFLAGS = \
