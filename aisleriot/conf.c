@@ -163,9 +163,6 @@ aisleriot_conf_init (void)
   
   gconf_client = gconf_client_get_default ();
 
-  gconf_client_add_dir (gconf_client, "/apps/aisleriot",
-                        GCONF_CLIENT_PRELOAD_NONE, NULL);
-
   stats = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 
   load_statistics ();
