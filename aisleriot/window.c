@@ -51,11 +51,7 @@
 #include <libgames-support/games-clock.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
-
-#if defined (HAVE_GSTREAMER) && !defined (HAVE_MAEMO)
-#define ENABLE_SOUND
 #include <libgames-support/games-sound.h>
-#endif /* HAVE_GSTREAMER && !HAVE_MAEMO */
 
 #include "board.h"
 #include "conf.h"
@@ -407,15 +403,11 @@ show_game_over_dialog (AisleriotWindow *window)
 
   if (game_won) {
     message = _("Congratulations, you have won!");
-#ifdef ENABLE_SOUND
     games_sound_play ("victory");
-#endif /* ENABLE_SOUND */
 
   } else {
     message =  _("There are no more moves");
-#ifdef ENABLE_SOUND
     games_sound_play ("splat");
-#endif /* ENABLE_SOUND */
   }
 
   dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
@@ -933,9 +925,7 @@ sound_toggle_cb (GtkToggleAction *action,
 
   sound_enabled = gtk_toggle_action_get_active (action);
 
-#ifdef ENABLE_SOUND
   games_sound_enable (sound_enabled);
-#endif /* ENABLE_SOUND */
   
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), sound_enabled);
 }
@@ -2000,12 +1990,10 @@ aisleriot_window_init (AisleriotWindow *window)
       ACTION_TOOLTIP (N_("Pick up and drop cards by clicking")),
       G_CALLBACK (clickmove_toggle_cb),
       FALSE /* not active by default */ },
-#ifdef ENABLE_SOUND
    { "Sound", NULL, N_("_Enable sounds"), NULL,
       ACTION_TOOLTIP (N_("Whether or not to play event sounds.")),
       G_CALLBACK (sound_toggle_cb),
       FALSE /* not active by default */ },
-#endif /* ENABLE_SOUND */
 #ifdef ENABLE_DEBUG_UI
     { "DebugPixbufDrawing", NULL, "_Pixbuf drawing", NULL, NULL,
       G_CALLBACK (debug_pixbuf_drawing_cb),
@@ -2093,9 +2081,7 @@ aisleriot_window_init (AisleriotWindow *window)
           "<menuitem action='Hint'/>"
           "<separator/>"
           "<menuitem action='ClickToMove'/>"
-#ifdef ENABLE_SOUND
           "<menuitem action='Sound'/>"
-#endif /* ENABLE_SOUND */
         "</menu>"
         "<menu action='OptionsMenu'/>"
         "<menu action='HelpMenu'>"
@@ -2301,11 +2287,10 @@ aisleriot_window_init (AisleriotWindow *window)
   action = gtk_action_group_get_action (priv->action_group, "ClickToMove");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), NULL));
-#ifdef ENABLE_SOUND
   action = gtk_action_group_get_action (priv->action_group, "Sound");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), NULL));
-#endif /* ENABLE_SOUND */
+  gtk_action_set_visible (action, games_sound_is_available ());
   action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
   g_object_set (action, "hide-if-empty", FALSE, NULL);
 

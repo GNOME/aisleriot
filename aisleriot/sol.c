@@ -63,11 +63,7 @@
 
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
-
-#if defined (HAVE_GSTREAMER) && !defined (HAVE_MAEMO)
-#define ENABLE_SOUND
 #include <libgames-support/games-sound.h>
-#endif /* HAVE_GSTREAMER && !HAVE_MAEMO */
 
 #include "conf.h"
 #include "game.h"
@@ -561,10 +557,8 @@ main_prog (void *closure, int argc, char *argv[])
 
   add_main_options (option_context, &data);
 
-#ifdef ENABLE_SOUND
   games_sound_enable (FALSE);
-  g_option_context_add_group (option_context, games_sound_get_option_group ());
-#endif
+  games_sound_add_option_group (option_context);
 
 #ifdef HAVE_GNOME
   data.program = gnome_program_init ("aisleriot", VERSION,

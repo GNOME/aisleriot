@@ -28,11 +28,7 @@
 #include <libgames-support/games-card-images.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-pixbuf-utils.h>
-
-#if defined (HAVE_GSTREAMER) && !defined (HAVE_MAEMO)
-#define ENABLE_SOUND
 #include <libgames-support/games-sound.h>
-#endif /* HAVE_GSTREAMER && !HAVE_MAEMO */
 
 #include "conf.h"
 
@@ -1204,14 +1200,10 @@ drop_moving_cards (AisleriotBoard *board,
 
   if (moved) {
     aisleriot_game_end_move (priv->game);
-#ifdef ENABLE_SOUND
     games_sound_play ("click");
-#endif /* ENABLE_SOUND */
   } else {
     aisleriot_game_discard_move (priv->game);
-#ifdef ENABLE_SOUND
     games_sound_play ("slide");
-#endif /* ENABLE_SOUND */
   }
 
   drag_end (board, moved);
@@ -1891,9 +1883,7 @@ aisleriot_board_button_release (GtkWidget *widget,
       aisleriot_game_record_move (priv->game, -1, NULL, 0);
       if (aisleriot_game_button_clicked_lambda (priv->game, slot->id)) {
         aisleriot_game_end_move (priv->game);
-#ifdef ENABLE_SOUND
 	games_sound_play ("click");
-#endif /* ENABLE_SOUND */
       } else {
         aisleriot_game_discard_move (priv->game);
       }
