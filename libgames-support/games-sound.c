@@ -34,7 +34,7 @@
 #ifdef ENABLE_SOUND
 
 static GstElement *pipeline;
-static gboolean sound_enabled = TRUE;
+static gboolean sound_enabled = FALSE;
 static gboolean sound_init = FALSE;
 static GThreadPool *threads;
 
