@@ -30,7 +30,7 @@
 #include <glib/gkeyfile.h>
 #include <gtk/gtkaccelmap.h>
 
-#define ACCELMAP_EXT ".accels"
+#define ACCELMAP_EXT "accels"
 
 #endif
 
@@ -324,6 +324,8 @@ games_conf_constructor (GType type,
 
 #endif /* HAVE_GNOME */
 
+  g_free (game_name);
+
   return object;
 }
 
@@ -383,7 +385,6 @@ loser:
   g_free (data);
   g_free (conf_file);
   g_free (conf_dir);
-  g_free (game_name);
 
   /* Save the accel map */
 #ifndef HAVE_MAEMO
