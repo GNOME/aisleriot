@@ -93,7 +93,7 @@ need_ggz=no
 need_guile=no
 need_gnome=no
 need_python=no
-need_gstreamer=no
+want_gstreamer=no
 allow_gnuchess=no
 disallow_maemo=no
 disallow_gtk_only=no
@@ -120,7 +120,7 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    gnect|gnibbles|gnobots2|gnometris|iagno) need_gstreamer=yes ;;
+    aisleriot|gnect|gnibbles|gnobots2|gnometris|iagno) want_gstreamer=yes ;;
     *) ;;
   esac
   case $game in
@@ -348,15 +348,18 @@ AM_CONDITIONAL([WITH_GTHREAD],[test "$need_gthread" = "yes"])
 
 # GStreamer
 
-if test "$need_gstreamer" = "yes"; then
-  PKG_CHECK_MODULES([GSTREAMER],[gstreamer-0.10 >= $GSTREAMER_REQUIRED])
+have_gstreamer=no
+if test "$want_gstreamer" = "yes"; then
+  PKG_CHECK_MODULES([GSTREAMER],[gstreamer-0.10 >= $GSTREAMER_REQUIRED],[have_gstreamer=yes],[have_gstreamer=no])
   AC_SUBST([GSTREAMER_CFLAGS])
   AC_SUBST([GSTREAMER_LIBS])
+fi
 
+if test "$have_gstreamer" = "yes"; then
   AC_DEFINE([HAVE_GSTREAMER],[1],[Define if GStreamer is available])
 fi
 
-AM_CONDITIONAL([HAVE_GSTREAMER],[test "$need_gstreamer" = "yes"])
+AM_CONDITIONAL([HAVE_GSTREAMER],[test "$have_gstreamer" = "yes"])
 
 # Compat defines (FIXMEchpe: update all games to only use those flags they require!)
 
