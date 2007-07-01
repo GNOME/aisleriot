@@ -177,8 +177,6 @@ void
 aisleriot_conf_shutdown (void)
 {
 #ifdef HAVE_GNOME
-  gconf_client_remove_dir (gconf_client, "/apps/aisleriot", NULL);
-
   g_object_unref (gconf_client);
   gconf_client = NULL;
 
