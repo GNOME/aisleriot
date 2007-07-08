@@ -469,7 +469,18 @@ IT_PROG_INTLTOOL([0.35.0])
 have_guile=no
 have_guile_1_8=no
 if test "$need_guile" = "yes"; then
-  GUILE_PROGS
+  AC_PATH_PROG([GUILE],[guile])
+  if test -z "$GUILE" ; then
+    AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])
+  fi
+
+  AC_PATH_PROG([GUILE_CONFIG],[guile-config])
+  if test -z "$GUILE_CONFIG"; then
+    AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])
+  fi
+
+  AC_SUBST([GUILE])
+  AC_SUBST([GUILE_CONFIG])
 
   GUILE_CFLAGS=`$GUILE_CONFIG compile`
   GUILE_LIBS=`$GUILE_CONFIG link`
