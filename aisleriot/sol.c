@@ -689,11 +689,9 @@ cleanup:
 int
 main (int argc, char *argv[])
 {
-  setlocale (LC_ALL, "");
+  char *localedir;
 
-  bindtextdomain (GETTEXT_PACKAGE, games_path_runtime_fix (GNOMELOCALEDIR));
-  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-  textdomain (GETTEXT_PACKAGE);
+  setlocale (LC_ALL, "");
 
 #if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS)
   /* If we're going to use gnome-vfs, we need to init threads before
@@ -701,6 +699,12 @@ main (int argc, char *argv[])
    */
   g_thread_init (NULL);
 #endif
+
+  localedir = games_path_runtime_fix (g_strdup (GNOMELOCALEDIR));
+  bindtextdomain (GETTEXT_PACKAGE, localedir);
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain (GETTEXT_PACKAGE);
+  g_free (localedir);
 
   scm_boot_guile (argc, argv, main_prog, NULL);
 
