@@ -1,5 +1,7 @@
 include $(top_srcdir)/gnome-doc-utils.make
 
+NULL =
+
 DOC_LINGUAS = es fr sv
 
 DOC_MODULE = aisleriot
@@ -87,10 +89,12 @@ DOC_ENTITIES = \
 	will_o_the_wisp.xml \
 	yield.xml \
 	yukon.xml \
-	zebra.xml
+	zebra.xml \
+	$(NULL)
 
 DOC_FIGURES = \
 	figures/camelot-goal.png \
-  	figures/clock-rules.png
+  	figures/clock-rules.png \
+	$(NULL)
 
 dist-hook: doc-dist-hook
