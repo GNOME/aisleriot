@@ -78,6 +78,7 @@ struct _AisleriotGame
   SCM apply_options_lambda;
   SCM timeout_lambda;
   SCM droppable_lambda;
+  SCM dealable_lambda;
 
   guint click_to_move : 1;
   guint can_undo : 1;
@@ -184,7 +185,7 @@ set_game_dealable (AisleriotGame *game,
                    gboolean enabled)
 {
   if (enabled != game->can_deal) {
-    game->can_deal = enabled;
+    game->can_deal = enabled != FALSE;
 
     g_object_notify (G_OBJECT (game), "can-deal");
   }
@@ -850,6 +851,13 @@ scm_set_lambda (SCM start_game_lambda,
     game->droppable_lambda = SCM_UNDEFINED;
   }
 
+  if (game->features & FEATURE_DEALABLE) {
+    game->dealable_lambda = SCM_CAR (rest);
+    rest = SCM_CDR (rest);
+  } else {
+    game->dealable_lambda = SCM_UNDEFINED;
+  }
+
   return SCM_EOL;
 }
 
@@ -1013,6 +1021,24 @@ cscm_init ()
   scm_c_define_gsubr ("undo-set-sensitive", 1, 0, 0, scm_undo_set_sensitive);
   scm_c_define_gsubr ("redo-set-sensitive", 1, 0, 0, scm_redo_set_sensitive);
   scm_c_define_gsubr ("dealable-set-sensitive", 1, 0, 0, scm_dealable_set_sensitive);
+}
+
+static void
+update_game_dealable (AisleriotGame *game)
+{
+  CallData data = CALL_DATA_INIT;
+
+  if ((game->features & FEATURE_DEALABLE) == 0)
+    return;
+
+  data.lambda = game->dealable_lambda;
+  data.n_args = 0;
+  scm_internal_stack_catch (SCM_BOOL_T,
+                            cscmi_call_lambda, &data,
+                            cscmi_catch_handler, NULL);
+
+  g_print ("dealable returned %d\n", SCM_NFALSEP (data.retval));
+  set_game_dealable (game, SCM_NFALSEP (data.retval));
 }
 
 static void
@@ -1417,6 +1443,8 @@ aisleriot_game_undo_move (AisleriotGame *game)
   }
 
   cscmi_eval_string ("(undo)");
+
+  update_game_dealable (game);
 }
 
 /**
@@ -1589,6 +1617,8 @@ aisleriot_game_new_game (AisleriotGame *game,
     cscmi_start_game_lambda (&game->width, &game->height);
     scm_c_eval_string ("(start-game)");
   } while (!cscmi_game_over_lambda ());
+
+  update_game_dealable (game);
 
   g_object_thaw_notify (object);
 
@@ -1958,7 +1988,7 @@ aisleriot_game_discard_move (AisleriotGame *game)
 }
 
 /**
- * aisleriot_game_test_end_of_game:
+ * aisleriot_game_update_game_state:
  * @game:
  *
  * Tests whether the game is over.
@@ -1967,6 +1997,8 @@ void
 aisleriot_game_test_end_of_game (AisleriotGame *game)
 {
   aisleriot_game_end_move (game);
+
+  update_game_dealable (game);
 
   if (game->state < GAME_OVER) {
     if (!cscmi_game_over_lambda ()) {
@@ -2012,8 +2044,21 @@ aisleriot_game_generate_exception (AisleriotGame *game)
   cscmi_eval_string ("(how-about-a-nice-crash?)");
 }
 
+/**
+ * aisleriot_game_deal_cards:
+ * @game:
+ *
+ * Deals the next card or cards, if possible.
+ *
+ * Returns: %TRUE iff cards were dealt
+ */
 void
-aisleriot_game_deal_next_round (AisleriotGame *game)
+aisleriot_game_deal_cards (AisleriotGame *game)
 {
-  cscmi_eval_string ("(deal-next-round)");
+  aisleriot_game_record_move (game, -1, NULL, 0);
+
+  cscmi_eval_string ("(do-deal-next-cards)");
+    
+  aisleriot_game_end_move (game);
+  aisleriot_game_test_end_of_game (game);
 }

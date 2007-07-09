@@ -1089,7 +1089,7 @@ deal_cb (GtkAction *action,
 {
   AisleriotWindowPrivate *priv = window->priv;
 
-  aisleriot_game_deal_next_round (priv->game);
+  aisleriot_game_deal_cards (priv->game);
 }
 
 /* Make something that's easier to store in conf */
@@ -1962,7 +1962,7 @@ aisleriot_window_init (AisleriotWindow *window)
     { "RedoMove", GAMES_STOCK_REDO_MOVE, NULL, NULL, NULL,
       G_CALLBACK (redo_cb) },
     { "Deal", GTK_STOCK_OK /* FIXMEchpe */, _("_Deal"), "<control>D",
-      ACTION_TOOLTIP (N_("Deal next round")),
+      ACTION_TOOLTIP (N_("Deal next card or cards")),
       G_CALLBACK (deal_cb) },
     { "Hint", GAMES_STOCK_HINT, NULL, NULL, NULL,
       G_CALLBACK (show_hint_cb) },

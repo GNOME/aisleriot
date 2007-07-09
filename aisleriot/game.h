@@ -185,7 +185,7 @@ void aisleriot_game_test_end_of_game (AisleriotGame * game);
 
 void aisleriot_game_generate_exception (AisleriotGame * game);
 
-void aisleriot_game_deal_next_round (AisleriotGame *game);
+void aisleriot_game_deal_cards (AisleriotGame *game);
 
 G_END_DECLS
 
