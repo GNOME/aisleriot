@@ -700,7 +700,7 @@ main (int argc, char *argv[])
   g_thread_init (NULL);
 #endif
 
-  localedir = games_path_runtime_fix (g_strdup (GNOMELOCALEDIR));
+  localedir = games_path_runtime_fix (GNOMELOCALEDIR);
   bindtextdomain (GETTEXT_PACKAGE, localedir);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
