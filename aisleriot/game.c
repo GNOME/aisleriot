@@ -833,14 +833,22 @@ scm_set_lambda (SCM start_game_lambda,
   game->game_over_lambda = game_over_lambda;
   game->winning_game_lambda = winning_game_lambda;
   game->hint_lambda = hint_lambda;
-  game->get_options_lambda = SCM_CAR (rest);
-  game->apply_options_lambda = SCM_CADR (rest);
-  game->timeout_lambda = SCM_CADDR (rest);
 
-  if (game->features & FEATURE_DROPPABLE)
-    game->droppable_lambda = SCM_CADDDR (rest);
-  else
+  game->get_options_lambda = SCM_CAR (rest);
+  rest = SCM_CDR (rest);
+
+  game->apply_options_lambda = SCM_CAR (rest);
+  rest = SCM_CDR (rest);
+
+  game->timeout_lambda = SCM_CAR (rest);
+  rest = SCM_CDR (rest);
+
+  if (game->features & FEATURE_DROPPABLE) {
+    game->droppable_lambda = SCM_CAR (rest);
+    rest = SCM_CDR (rest);
+  } else {
     game->droppable_lambda = SCM_UNDEFINED;
+  }
 
   return SCM_EOL;
 }
