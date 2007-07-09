@@ -88,6 +88,7 @@ enum
   ACTION_FULLSCREEN,
   ACTION_HELP_GAME,
   ACTION_OPTIONS_MENU,
+  ACTION_DEAL,
   ACTION_HINT,
 #ifdef HAVE_MAEMO
   ACTION_ACCEL_UNDO_MOVE,
@@ -1082,6 +1083,15 @@ show_hint_cb (GtkAction *action,
   g_free (message);
 }
 
+static void
+deal_cb (GtkAction *action,
+         AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+
+  aisleriot_game_deal_next_round (priv->game);
+}
+
 /* Make something that's easier to store in conf */
 static guint
 compress_options_to_int (SCM options_list)
@@ -1642,13 +1652,27 @@ sync_game_redoable (AisleriotGame *game,
 }
 
 static void
+sync_game_dealable (AisleriotGame *game,
+                    GParamSpec *pspec,
+                    AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+  gboolean enabled;
+
+  g_object_get (game, "can-deal", &enabled, NULL);
+
+  gtk_action_set_sensitive (priv->action[ACTION_DEAL], enabled);
+}
+
+static void
 game_type_changed_cb (AisleriotGame *game,
                       AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
   char *game_name;
-#ifndef HAVE_MAEMO
   guint features;
+  gboolean dealable;
+#ifndef HAVE_MAEMO
   gboolean show_scores;
 #endif /* !HAVE_MAEMO */
 
@@ -1671,14 +1695,17 @@ game_type_changed_cb (AisleriotGame *game,
 
   update_statistics_display (window);
 
+  features = aisleriot_game_get_features (game);
+
+  dealable = (features & FEATURE_DEALABLE) != 0;
+  gtk_action_set_visible (priv->action[ACTION_DEAL], dealable);
+
 #ifdef HAVE_MAEMO
   gtk_label_set_text (priv->game_message_label, NULL);
 #else
   games_clock_set_seconds (GAMES_CLOCK (priv->clock), 0);
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
-
-  features = aisleriot_game_get_features (game);
 
   show_scores = (features & FEATURE_SCORE_HIDDEN) == 0;
   g_object_set (priv->score_box, "visible", show_scores, NULL);
@@ -1934,6 +1961,9 @@ aisleriot_window_init (AisleriotWindow *window)
       G_CALLBACK (undo_cb) },
     { "RedoMove", GAMES_STOCK_REDO_MOVE, NULL, NULL, NULL,
       G_CALLBACK (redo_cb) },
+    { "Deal", GTK_STOCK_OK /* FIXMEchpe */, _("_Deal"), "<control>D",
+      ACTION_TOOLTIP (N_("Deal next round")),
+      G_CALLBACK (deal_cb) },
     { "Hint", GAMES_STOCK_HINT, NULL, NULL, NULL,
       G_CALLBACK (show_hint_cb) },
     { "Contents", GAMES_STOCK_CONTENTS, NULL, NULL,
@@ -2008,6 +2038,7 @@ aisleriot_window_init (AisleriotWindow *window)
     "Fullscreen",
     "HelpGame",
     "OptionsMenu",
+    "Deal",
     "Hint",
 #ifdef HAVE_MAEMO
     "AccelUndoMove",
@@ -2039,6 +2070,7 @@ aisleriot_window_init (AisleriotWindow *window)
         "<menu action='ControlMenu'>"
           "<menuitem action='UndoMove'/>"
           "<menuitem action='RedoMove'/>"
+          "<menuitem action='Deal'/>"
           "<menuitem action='Hint'/>"
           "<separator/>"
           "<menuitem action='ClickToMove'/>"
@@ -2078,6 +2110,7 @@ aisleriot_window_init (AisleriotWindow *window)
         "<menu action='ControlMenu'>"
           "<menuitem action='UndoMove'/>"
           "<menuitem action='RedoMove'/>"
+          "<menuitem action='Deal'/>"
           "<menuitem action='Hint'/>"
           "<separator/>"
           "<menuitem action='ClickToMove'/>"
@@ -2109,6 +2142,7 @@ aisleriot_window_init (AisleriotWindow *window)
         "<separator/>"
         "<toolitem action='UndoMove'/>"
         "<toolitem action='RedoMove'/>"
+        "<toolitem action='Deal'/>"
         "<toolitem action='Hint'/>"
 #ifndef HAVE_MAEMO
         "<toolitem action='LeaveFullscreen'/>"
@@ -2203,6 +2237,9 @@ aisleriot_window_init (AisleriotWindow *window)
     priv->action[i] = gtk_action_group_get_action (priv->action_group, names[i]);
     g_assert (priv->action[i]);
   }
+
+  /* Hide the "Deal" action initially, since not all games support it */
+  gtk_action_set_visible (priv->action[ACTION_DEAL], FALSE);
 
 #ifndef HAVE_MAEMO
   statusbar = priv->statusbar = GTK_STATUSBAR (gtk_statusbar_new ());
@@ -2330,6 +2367,9 @@ aisleriot_window_init (AisleriotWindow *window)
   sync_game_redoable (priv->game, NULL, window);
   g_signal_connect (priv->game, "notify::can-redo",
                     G_CALLBACK (sync_game_redoable), window);
+  sync_game_dealable (priv->game, NULL, window);
+  g_signal_connect (priv->game, "notify::can-deal",
+                    G_CALLBACK (sync_game_dealable), window);
 
   g_signal_connect (priv->game, "game-type",
                     G_CALLBACK (game_type_changed_cb), window);

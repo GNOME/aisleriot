@@ -82,8 +82,9 @@ struct _AisleriotGame
   guint click_to_move : 1;
   guint can_undo : 1;
   guint can_redo : 1;
+  guint can_deal : 1;
   guint show_score : 1;
-  guint features : 2; /* enough bits for ALL_FEATURES */
+  guint features : 3; /* enough bits for ALL_FEATURES */
   guint state : 3; /* enough bits for LAST_GAME_STATE */
   guint had_exception : 1;
   guint paused : 1;
@@ -97,6 +98,7 @@ enum
   PROP_0,
   PROP_CAN_UNDO,
   PROP_CAN_REDO,
+  PROP_CAN_DEAL,
   PROP_GAME_FILE,
   PROP_SCORE,
   PROP_STATE,
@@ -174,6 +176,17 @@ set_game_redoable (AisleriotGame *game,
     game->can_redo = enabled;
 
     g_object_notify (G_OBJECT (game), "can-redo");
+  }
+}
+
+static void
+set_game_dealable (AisleriotGame *game,
+                   gboolean enabled)
+{
+  if (enabled != game->can_deal) {
+    game->can_deal = enabled;
+
+    g_object_notify (G_OBJECT (game), "can-deal");
   }
 }
 
@@ -632,6 +645,18 @@ scm_redo_set_sensitive (SCM in_state)
 }
 
 static SCM
+scm_dealable_set_sensitive (SCM in_state)
+{
+  AisleriotGame *game = app_game;
+  gboolean state;
+
+  state = SCM_NFALSEP (in_state) ? TRUE : FALSE;
+  set_game_dealable (game, state);
+
+  return SCM_EOL;
+}
+
+static SCM
 scm_get_feature_word ()
 {
   AisleriotGame *game = app_game;
@@ -979,6 +1004,7 @@ cscm_init ()
   scm_c_define_gsubr ("_", 1, 0, 0, scm_gettext);
   scm_c_define_gsubr ("undo-set-sensitive", 1, 0, 0, scm_undo_set_sensitive);
   scm_c_define_gsubr ("redo-set-sensitive", 1, 0, 0, scm_redo_set_sensitive);
+  scm_c_define_gsubr ("dealable-set-sensitive", 1, 0, 0, scm_dealable_set_sensitive);
 }
 
 static void
@@ -1127,6 +1153,9 @@ aisleriot_game_get_property (GObject *object,
     case PROP_CAN_REDO:
       g_value_set_boolean (value, game->can_redo);
       break;
+    case PROP_CAN_DEAL:
+      g_value_set_boolean (value, game->can_deal);
+      break;
     case PROP_GAME_FILE:
       g_value_set_string (value, game->game_file);
       break;
@@ -1218,6 +1247,13 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
     (gobject_class,
      PROP_CAN_REDO,
      g_param_spec_boolean ("can-redo", NULL, NULL,
+                           FALSE,
+                           G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+  g_object_class_install_property
+    (gobject_class,
+     PROP_CAN_DEAL,
+     g_param_spec_boolean ("can-deal", NULL, NULL,
                            FALSE,
                            G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
@@ -1439,6 +1475,7 @@ aisleriot_game_load_game (AisleriotGame *game,
   set_game_score (game, 0);
   set_game_undoable (game, FALSE);
   set_game_redoable (game, FALSE);
+  set_game_dealable (game, FALSE);
   game->features = 0;
   game->had_exception = FALSE;
 
@@ -1965,4 +2002,10 @@ void
 aisleriot_game_generate_exception (AisleriotGame *game)
 {
   cscmi_eval_string ("(how-about-a-nice-crash?)");
+}
+
+void
+aisleriot_game_deal_next_round (AisleriotGame *game)
+{
+  cscmi_eval_string ("(deal-next-round)");
 }

@@ -89,9 +89,10 @@ enum {
 };
 
 typedef enum {
-  FEATURE_DROPPABLE = 1 << 0,
-  FEATURE_SCORE_HIDDEN = 1 << 1,
-  ALL_FEATURES = 0x3
+  FEATURE_DROPPABLE     = 1 << 0,
+  FEATURE_SCORE_HIDDEN  = 1 << 1,
+  FEATURE_DEALABLE      = 1 << 2,
+  ALL_FEATURES          = 0x7
 } AisleriotGameFeatures;
 
 typedef enum {
@@ -183,6 +184,8 @@ void aisleriot_game_set_click_to_move (AisleriotGame * game,
 void aisleriot_game_test_end_of_game (AisleriotGame * game);
 
 void aisleriot_game_generate_exception (AisleriotGame * game);
+
+void aisleriot_game_deal_next_round (AisleriotGame *game);
 
 G_END_DECLS
 
