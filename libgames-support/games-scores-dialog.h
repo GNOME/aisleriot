@@ -22,6 +22,8 @@
 #ifndef GAMES_SCORES_DIALOG_H
 #define GAMES_SCORES_DIALOG_H
 
+#include <gtk/gtkdialog.h>
+
 #include "games-score.h" /* For GamesScoreStyle. */
 #include "games-scores.h"
 
