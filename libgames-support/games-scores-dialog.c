@@ -19,12 +19,12 @@
 
 /* Authors:   Callum McKenzie <callum@physics.otago.ac.nz> */
 
-#include <glib/gi18n.h>
-#include <gtk/gtk.h>
+#include <config.h>
 
 #include <math.h>
 
-#include "config.h"
+#include <glib/gi18n.h>
+#include <gtk/gtk.h>
 
 #include "games-scores-dialog.h"
 #include "games-scores-dialog-private.h"

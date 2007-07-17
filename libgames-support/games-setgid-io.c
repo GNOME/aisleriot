@@ -57,6 +57,8 @@
  *
  */
 
+#include <config.h>
+
 #include <glib.h>
 
 #include <sys/types.h>

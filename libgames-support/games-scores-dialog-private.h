@@ -25,7 +25,7 @@
 G_BEGIN_DECLS
 
 struct _GamesScoresDialogPrivate {
-    GtkWidget *message;
+  GtkWidget *message;
   GtkWidget *hdiv;
   GtkWidget *combo;
   GtkWidget *label;
