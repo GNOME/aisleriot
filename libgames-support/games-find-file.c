@@ -18,6 +18,8 @@
 
 /* Authors:   Callum McKenzie <callum@spooky-possum.org> */
 
+#include <config.h>
+
 #include <glib.h>
 
 #include "games-files.h"

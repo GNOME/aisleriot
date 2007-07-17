@@ -21,8 +21,7 @@
 /* We don't make it a proper object, basically to reduce overhead (system
    memory and programmers time) */
 
-/* FIXME: Should memory for these be allocated as a block? (see GMemChunk 
-   and GAllocator)*/
+#include <config.h>
 
 #include "games-score.h"
 
