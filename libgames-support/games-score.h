@@ -40,12 +40,6 @@ typedef union {
 
 typedef struct {
   GamesScoreValue value;
-#if 0
-  union {
-    guint32 plain;
-    gdouble time_double;	/* minutes.seconds */
-  };
-#endif
   time_t time;
   gchar *name;
 } GamesScore;

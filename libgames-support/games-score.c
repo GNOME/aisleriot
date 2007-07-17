@@ -31,7 +31,7 @@ games_score_new (void)
 {
   GamesScore *newscore;
 
-  newscore = g_new0 (GamesScore, 1);
+  newscore = g_slice_new0 (GamesScore);
   newscore->time = time (NULL);
   /* FIXME: We don't handle the "Unknown" case. */
   newscore->name = g_strdup (g_get_real_name ());
@@ -44,15 +44,8 @@ games_score_dup (GamesScore * orig)
 {
   GamesScore *new;
 
-  new = games_score_new ();
-
-  /* FIXME: What is the canonical way to duplicate a union?
-   * Can we just use the largest item or is it more subtle than
-   * that. */
-  new->value.plain = orig->value.plain;
-  new->value.time_double = orig->value.time_double;
-
-  new->time = orig->time;
+  new = g_slice_new (GamesScore);
+  *new = *orig;
   new->name = g_strdup (orig->name);
 
   return new;
@@ -64,7 +57,7 @@ games_score_destroy (GamesScore * score)
   if (score->name)
     g_free (score->name);
 
-  g_free (score);
+  g_slice_free (GamesScore, score);
 }
 
 gint
