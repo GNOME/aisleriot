@@ -72,11 +72,6 @@ libgames_support_la_SOURCES +=		\
 	games-scores-dialog.c		\
 	games-scores-dialog.h		\
 	games-scores-dialog-private.h	\
-	$(NULL)
-endif
-
-if HAVE_GNOME
-libgames_support_la_SOURCES +=		\
 	games-controls.c		\
 	games-controls.h		\
 	games-setgid-io.c		\
@@ -84,7 +79,9 @@ libgames_support_la_SOURCES +=		\
 	games-scores-backend.c		\
 	games-scores-backend.h		\
 	$(NULL)
+endif
 
+if HAVE_GNOME
 if GGZ_CLIENT
 libgames_support_la_SOURCES +=		\
 	games-dlg-chat.c		\
