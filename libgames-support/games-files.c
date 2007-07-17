@@ -335,6 +335,8 @@ games_file_list_create_widget (GamesFileList * gamesfilelist,
       found = TRUE;
     }
 
+    g_free (visible);
+
     itemno++;
     filelist = g_list_next (filelist);
   }
