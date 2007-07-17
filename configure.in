@@ -124,11 +124,14 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    aisleriot) ;;
+    aisleriot|glines|gnotravex) ;;
     *) need_gnome=yes
-       disallow_maemo=yes
        disallow_gtk_only=yes
        ;;
+  esac
+  case $game in
+    aisleriot) ;;
+    *) disallow_maemo=yes ;;
   esac
 done
 
