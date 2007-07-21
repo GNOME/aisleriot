@@ -46,8 +46,6 @@
 
 #define DELAYED_CALLBACK_DELAY (50)
 
-#define ERROR_QUARK (g_quark_from_static_string ("AisleRiot"))
-
 struct _AisleriotGame
 {
   GObject parent_instance;
@@ -1099,7 +1097,7 @@ cscmi_eval_installed_file (const char *filename,
   /* FIXMEchpe: install exception handlers and set error if an exception occurs while loading the file? */
 
   if (!g_str_has_suffix (filename, ".scm")) {
-    g_set_error (error, ERROR_QUARK, GAME_ERROR_GENERIC,
+    g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_GENERIC,
                  "%s is not a scheme file", filename);
     return FALSE;
   }
@@ -1112,7 +1110,7 @@ cscmi_eval_installed_file (const char *filename,
     return TRUE;
   }
 
-  g_set_error (error, ERROR_QUARK, GAME_ERROR_GENERIC,
+  g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_GENERIC,
                _("Aisleriot cannot load the file \"%s\". "
                  "Please check your Aisleriot installation."),
                path);
@@ -1319,6 +1317,23 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
 /* public API */
 
 /**
+ * aisleriot_game_error_quark:
+ *
+ * Returns: the #GQuark used for errors
+ */
+GQuark
+aisleriot_game_error_quark (void)
+{
+  static GQuark quark = 0;
+
+  if (G_UNLIKELY (quark == 0)) {
+    quark = g_quark_from_static_string ("AisleRiotGameError");
+  }
+
+  return quark;
+}
+
+/**
  * aisleriot_game_new:
  *
  * Returns: a new #AisleriotGame
@@ -1492,7 +1507,7 @@ aisleriot_game_load_game (AisleriotGame *game,
    * as a key, we also require it to be valid UTF-8 !
    */
   if (!g_utf8_validate (game_file, -1, NULL)) {
-    g_set_error (error, ERROR_QUARK, GAME_ERROR_GENERIC,
+    g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_GENERIC,
                  "Invalid UTF-8");
     return FALSE;
   }
@@ -1528,7 +1543,7 @@ aisleriot_game_load_game (AisleriotGame *game,
     } else {
       g_error_free (err);
 
-      g_set_error (error, ERROR_QUARK, GAME_ERROR_FALLBACK,
+      g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_FALLBACK,
                    "%s %s",
                    _("Aisleriot cannot find the last game you played."),
                    _("This usually occurs when you run an older version of Aisleriot "

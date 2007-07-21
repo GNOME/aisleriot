@@ -2536,20 +2536,21 @@ load_idle_cb (LoadIdleData *data)
                                      name);
     g_free (name);
 
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                              "%s", error->message);
-    g_error_free (error);
-
     if (priv->freecell_mode ||
-        (error->domain == g_quark_from_static_string ("AisleRiot") &&
-         error->code == GAME_ERROR_FALLBACK)) {
-      /* Loading the fallback game failed; all we can do is exit */
+        error->domain != AISLERIOT_GAME_ERROR ||
+        error->code != GAME_ERROR_FALLBACK) {
+      /* Loading freecell/the fallback game failed; all we can do is exit */
       g_signal_connect_swapped (dialog, "response",
                                 G_CALLBACK (gtk_widget_destroy), data->window);
     } else {
+      gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                                "%s", error->message);
+
       g_signal_connect (dialog, "response",
                         G_CALLBACK (load_error_response_cb), data->window);
     }
+
+    g_error_free (error);
 
     gtk_window_present (GTK_WINDOW (dialog));
 

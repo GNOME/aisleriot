@@ -80,6 +80,8 @@ typedef struct {
 #define DEFAULT_VARIATION  "klondike.scm"
 #define FREECELL_VARIATION "freecell.scm"
 
+#define AISLERIOT_GAME_ERROR  (aisleriot_game_error_quark ())
+
 typedef struct _AisleriotGame AisleriotGame;
 typedef GObjectClass AisleriotGameClass;
 
@@ -104,6 +106,8 @@ typedef enum {
   GAME_WON,
   LAST_GAME_STATE
 } AisleriotGameState;
+
+GQuark aisleriot_game_error_quark (void);
 
 GType aisleriot_game_get_type (void);
 
