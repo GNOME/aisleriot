@@ -1,3 +1,39 @@
+gnome-games 2.19.6
+==================
+
+This is a new development release of gnome-games in preparation for
+the next stable 2.20.0 version. Most of the development effort has
+focused on bugfixes and cleanups.
+
+General changes:
+  - Comilation fixes on Solaris (bug #445556 and #444806).
+  - Port games to gtk-only: aisleriot, glines, gnotravex, 
+    gnotski, mahjongg, same-gnome. (bug #452813)
+  - Port all games (except gnomine) to the GamesConf API (#449505).
+  - Fix memory leak in libgames-support API.
+
+Aisleriot: 
+  - Add the new game Napoleon's Tomb.
+  - Add sound support to Aisleriot.
+  - Abort the click cycle if a slot changes during the operation (#449767).
+  - Fix error handling when failing to load the game file.
+
+Tali:
+  - Added CardGame to category in Tali desktop file (bug #417014).
+
+Sudoku:
+  - Fix crash when pressing Ctrl-C in gnome-terminal (#401411).
+  - Fix parameter to setcheckinterval method (bug #437270).
+  - Remove faulty conversion from html to rgb color when 
+    printing puzzles with trackers (bug #429854)
+
+Gnobots:
+  - Apply "view toolbar" property on startup (#451360).
+  - Don't enter endless loop when there are no safe teleport
+    locations (bug #438829)
+  - Change default keys to non-numlock values (Bug #392584).
+
+
 gnome-games 2.19.4
 ==================
 
