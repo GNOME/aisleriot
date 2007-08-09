@@ -3,6 +3,7 @@ NULL =
 carddir = $(datadir)/gnome-games-common/cards
 
 card_DATA = \
+	anglo.svg	\
 	bellot.svg	\
 	dondorf.svg	\
 	ornamental.svg	\
