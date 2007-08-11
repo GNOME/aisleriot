@@ -605,7 +605,8 @@ help_about_cb (GtkAction *action,
                            NULL :
                            _("AisleRiot provides a rule-based solitaire "
                              "card engine that allows many different "
-                             "games to be played."),
+                             "games to be played.\n\n"
+			     "AisleRiot is a part of GNOME Games."),
 #endif
                          "copyright", "Copyright © 1998-2006 Jonathan Blandford\n"
                                       "Copyright © 2007 Christian Persch",
