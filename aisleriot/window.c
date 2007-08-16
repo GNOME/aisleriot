@@ -575,6 +575,8 @@ help_about_cb (GtkAction *action,
     "Nicu Buculei http://www.nicubunu.ro/cards",
     /* Dondorf and Paris cards */
     "Richard Hoelscher http://www.rahga.com/svg",
+    /* Anglo-American cards */
+    "Aike Reyer",
     /* FIXMEchpe: who did the Bonded cards? */
     NULL
   };
