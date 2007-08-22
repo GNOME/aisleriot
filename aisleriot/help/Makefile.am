@@ -2,7 +2,7 @@ include $(top_srcdir)/gnome-doc-utils.make
 
 NULL =
 
-DOC_LINGUAS = es fr sv
+DOC_LINGUAS = es fr oc sv
 
 DOC_MODULE = aisleriot
 
