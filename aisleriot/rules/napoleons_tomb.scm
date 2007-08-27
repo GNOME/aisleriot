@@ -367,10 +367,10 @@
 ;;;;
 (define (get-options) 
   (list 'begin-exclusive 
-	(list (_ "Three card deals") deal-three)
-	(list (_ "Single card deals") (not deal-three))
+	(list (_"Three card deals") deal-three)
+	(list (_"Single card deals") (not deal-three))
 	'end-exclusive
-	(list (_ "Autoplay") autoplay)))
+	(list (_"Autoplay") autoplay)))
 
 
 ;;;;
