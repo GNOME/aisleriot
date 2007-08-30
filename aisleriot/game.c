@@ -1035,7 +1035,6 @@ update_game_dealable (AisleriotGame *game)
                             cscmi_call_lambda, &data,
                             cscmi_catch_handler, NULL);
 
-  g_print ("dealable returned %d\n", SCM_NFALSEP (data.retval));
   set_game_dealable (game, SCM_NFALSEP (data.retval));
 }
 
