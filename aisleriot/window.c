@@ -2244,6 +2244,10 @@ aisleriot_window_init (AisleriotWindow *window)
   /* Hide the "Deal" action initially, since not all games support it */
   gtk_action_set_visible (priv->action[ACTION_DEAL], FALSE);
 
+  /* Set labels for toolbar items */
+  action = gtk_action_group_get_action (priv->action_group, "Select");
+  g_object_set (action, "short-label", _("Select Game"), NULL);
+
 #ifndef HAVE_MAEMO
   statusbar = priv->statusbar = GTK_STATUSBAR (gtk_statusbar_new ());
   priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "game-message");
