@@ -340,7 +340,7 @@ if test "$have_python" = "yes" -a "$have_pygtk" = "yes"; then
 fi
 
 if test "$enable_python" = "no" -a "$need_python" = "yes"; then
-  AC_MSG_ERROR([Some games need python, but python or pygtk not found])
+  AC_MSG_ERROR([Some games need python, but python, pygtk or gnome-python-desktop packages were not found.])
 fi
 
 AM_CONDITIONAL([HAVE_PYTHON],[test "$enable_python" = "yes"])
