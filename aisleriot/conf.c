@@ -72,6 +72,7 @@ load_statistics (void)
 {
   GSList *raw_list;
   AisleriotStatistic *new_stats;
+  guint64 value;
 
   raw_list = gconf_client_get_list (gconf_client, statistics_key,
 				    GCONF_VALUE_STRING, NULL);
@@ -106,13 +107,25 @@ load_statistics (void)
 
     if (!raw_list)
       break;
-    new_stats->best = g_ascii_strtoull (raw_list->data, NULL, 10);
+    value = g_ascii_strtoull (raw_list->data, NULL, 10);
+    /* Sanitise value to fix statistics from bug #474615 */
+    if (value > 0 && value <= 6000) {
+      new_stats->best = value;
+    } else {
+      new_stats->best = 0;
+    }
     g_free (raw_list->data);
     raw_list = g_slist_delete_link (raw_list, raw_list);
 
     if (!raw_list)
       break;
-    new_stats->worst = g_ascii_strtoull (raw_list->data, NULL, 10);
+    value = g_ascii_strtoull (raw_list->data, NULL, 10);
+    /* Sanitise value to fix statistics from bug #474615 */
+    if (value > 0 && value <= 6000) {
+      new_stats->worst = value;
+    } else {
+      new_stats->worst = 0;
+    }
     g_free (raw_list->data);
     raw_list = g_slist_delete_link (raw_list, raw_list);
   }
