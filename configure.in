@@ -149,13 +149,15 @@ AC_GGZ_INIT
 AC_GGZ_PLATFORM_BASE
 AC_GGZ_PLATFORM
 
+AM_PROG_CC_C_O
+
 AC_PROG_LIBTOOL
 
 # See if C++ support is actually there
 AC_CHECK_PROG([have_cxx],[$CXX],[yes],[no])
 
 if test "$need_cxx" = "yes" -a "$have_cxx" != "yes"; then
-  AC_MSG_ERROR([No C++ compiler found; either install one or use --enable-omitgames=gnometric,blackjack])
+  AC_MSG_ERROR([No C++ compiler found; either install one or use --enable-omitgames=gnometris,blackjack])
 fi
 
 GNOME_COMMON_INIT
