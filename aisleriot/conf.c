@@ -316,6 +316,7 @@ aisleriot_conf_get_statistic (const char *game_file,
     return;
   }
   if (len != 4) {
+    g_free (values);
     return;
   }
 
