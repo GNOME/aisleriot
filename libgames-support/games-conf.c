@@ -735,7 +735,7 @@ games_conf_get_integer_with_default (const char *group, const char *key,
     value = def_value;
   }
 
-  return def_value;
+  return value;
 }
 
 
