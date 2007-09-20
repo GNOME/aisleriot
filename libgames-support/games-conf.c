@@ -132,8 +132,6 @@ free_window_state (WindowState *state)
   g_slice_free (WindowState, state);
 }
 
-#ifndef HAVE_MAEMO
-
 static gboolean
 window_configure_event_cb (GtkWidget *widget,
                            GdkEventConfigure *event,
@@ -153,8 +151,6 @@ window_configure_event_cb (GtkWidget *widget,
 
   return FALSE;
 }
-
-#endif /* !HAVE_MAEMO */
 
 static gboolean
 window_state_event_cb (GtkWidget *widget,
@@ -260,8 +256,11 @@ games_conf_constructor (GType type,
   GamesConfPrivate *priv;
   char *game_name;
 #ifndef HAVE_GNOME
-  char *conf_file, *accelmap_filename;
+  char *conf_file;
   GError *error = NULL;
+#ifndef HAVE_MAEMO
+  char *accelmap_filename;
+#endif /* !HAVE_MAEMO */
 #endif /* HAVE_GNOME */
 
   g_assert (instance == NULL);
@@ -348,9 +347,11 @@ games_conf_finalize (GObject *object)
 
 #else /* !HAVE_GNOME */
   char *game_name, *conf_file, *conf_dir, *data = NULL;
-  char *accelmap_filename;
   gsize len = 0;
   GError *error = NULL;
+#ifndef HAVE_MAEMO
+  char *accelmap_filename;
+#endif /* !HAVE_MAEMO */
 
   game_name = g_ascii_strdown (priv->game_name, -1);
   conf_file = g_build_filename (g_get_user_config_dir (), "gnome-games", game_name, NULL);
@@ -909,7 +910,7 @@ games_conf_set_boolean (const char *group, const char *key,
  * @key: the key name
  * @error: a location for a #GError
  *
- * Returns the integer associated with @key in @group, or 0 if
+ * Returns the value associated with @key in @group, or 0 if
  * @key is not set, or an error occurred
  *
  * Returns: a double
@@ -920,7 +921,7 @@ games_conf_get_double (const char *group, const char *key,
 {
   GamesConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
+#if defined(HAVE_GNOME)
   double value;
   char *key_name;
 
@@ -929,6 +930,9 @@ games_conf_get_double (const char *group, const char *key,
   g_free (key_name);
 
   return value;
+#elif defined(HAVE_MAEMO)
+#warning games_conf_set_double not supported on maemo!
+  return 0.0;
 #else
   return g_key_file_get_double (priv->key_file, group ? group : priv->main_group, key, error);
 #endif /* HAVE_GNOME */
@@ -947,12 +951,14 @@ games_conf_set_double (const char *group, const char *key, double value)
 {
   GamesConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
+#if defined(HAVE_GNOME)
   char *key_name;
 
   key_name = get_gconf_key_name (group, key);
   gconf_client_set_float (priv->gconf_client, key_name, value, NULL);
   g_free (key_name);
+#elif defined(HAVE_MAEMO)
+#warning games_conf_set_double not implemented on maemo!
 #else
   g_key_file_set_double (priv->key_file, group ? group : priv->main_group, key, value);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);

@@ -1,3 +1,10 @@
+2007-09-20  Christian Persch  <chpe@gnome.org>
+
+	* games-conf.c: (games_conf_constructor), (games_conf_finalize),
+	(games_conf_get_double), (games_conf_set_double): Fix compilation on
+	maemo where g_key_file_[sg]et_double isn't available (since it's glib
+	>= 2.12 only). No code change on !maemo.
+
 2007-09-10  Thomas H.P. Andersen <phomes@gmail.com>
 
 	* games-conf.c: games_conf_get_integer_with_default should not always return default value.
