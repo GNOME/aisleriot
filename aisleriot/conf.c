@@ -322,14 +322,15 @@ aisleriot_conf_get_statistic (const char *game_file,
 
   statistic->wins = values[0];
   statistic->total = values[1];
-  statistic->best = values[2];
-  statistic->worst = values[3];
-
-  /* Sanitise value to fix statistics from bug #474615 */
-  if (statistic->best < 0 || statistic->best > 6000) {
+  /* Sanitise values to fix statistics from bug #474615 */
+  if (values[2] > 0 && values[2] <= 6000) {
+    statistic->best = values[2];
+  } else {
     statistic->best = 0;
   }
-  if (statistic->worst < 0 || statistic->worst > 6000) {
+  if (values[3] > 0 && values[3] <= 6000) {
+    statistic->worst = values[3];
+  } else {
     statistic->worst = 0;
   }
 
