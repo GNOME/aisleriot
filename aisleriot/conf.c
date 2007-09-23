@@ -325,6 +325,14 @@ aisleriot_conf_get_statistic (const char *game_file,
   statistic->best = values[2];
   statistic->worst = values[3];
 
+  /* Sanitise value to fix statistics from bug #474615 */
+  if (statistic->best < 0 || statistic->best > 6000) {
+    statistic->best = 0;
+  }
+  if (statistic->worst < 0 || statistic->worst > 6000) {
+    statistic->worst = 0;
+  }
+
   g_free (values);
 #endif /* HAVE_GNOME */
 }
