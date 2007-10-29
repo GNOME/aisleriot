@@ -1,3 +1,59 @@
+gnome-games 2.21.1
+=====================
+
+This is the first development release of the 2.21 series. It's a great release
+with a new simple UI for selecting game for sudoku, a lot of bug fix for chess, 
+and a new feature to undo a wrong score in tali.
+
+Aisleriot:
+  - Add autoplay in spider when double-clicking foundation (Vincent Povirk)
+  - Fix statistics for !HAVE_GNOME (Christian Persch)
+
+Chess:
+  - Display error dialog and quit if unable to import glchess.glchess 
+    (Robert Ancell)
+  - Catch and ignore all exceptions writing to stdout (Robert Ancell)
+  - Catch exception killing AI (Robert Ancell)
+  - Fix exception when autoloading games with invalid AIs (Robert Ancell)
+  - Moved pygtk.require() to glchess.in so it is always called first 
+    (Robert Ancell)
+  - Added tests/ dir containing PGN test files (Robert Ancell)
+  - Add better support for informal PGN files (Robert Ancell)
+  - GtkFileChooser.get_current_folder() can return None, handle this case 
+    (Robert Ancell)
+  - Catch GLU exception building mipmaps and fallback to standard textures 
+    (Robert Ancell)
+  - Disable navigation buttons when at start/end of moves (Robert Ancell)
+  - Merged glchess-ggz branch to give glchess initial ggz support 
+    (Robert Ancell)
+  - Removed tab support and added game history support (Robert Ancell)
+  - Added ability to resign and claim draws (Robert Ancell)
+  - Reworked some strings that were hard to translate (Robert Ancell)
+
+Klotski:
+  - fix imposible move (Thomas H.P. Andersen)
+
+Robots:
+  - Fix typo in score-category nightmare with super safe moves 
+    (Thomas H.P. Andersen)
+  - Show highscore and new/quit option even when score is not good enough to 
+    enter the highscore (Thomas H.P. Andersen)
+
+Sudoku:
+  - New select game/load game menu (Thomas H. Hinkle)
+  - don't keep all generated puzzles in memory (Thomas H. Hinkle)
+  - simplify print dialog (Thomas H. Hinkle)
+
+Tali:
+  - Add undo feature (Geoffrey Buchan)
+
+Libgames-support:
+  - Fix compilation on maemo (Christian Persch)
+
+Translations:
+  - ar (Anas Husseini)
+  - nb (Kjartan Maraas)
+
 gnome-games 2.20.0
 =====================
 
