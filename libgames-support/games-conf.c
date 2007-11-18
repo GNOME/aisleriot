@@ -879,6 +879,33 @@ games_conf_get_boolean (const char *group, const char *key,
 }
 
 /**
+ * games_conf_get_boolean_width_default:
+ * @group: the group name, or %NULL to use the default group
+ * @key: the key name
+ * @def_value: the default value
+ *
+ * Returns the boolean associated with @key in @group, or @def_value if
+ * @key is not set, or an error occurred
+ *
+ * Returns: a boolean
+ */
+gboolean
+games_conf_get_boolean_with_default (const char *group, const char *key,
+                                     gboolean def_value)
+{
+  GError *error = NULL;
+  gboolean value;
+
+  value = games_conf_get_boolean (group, key, &error);
+  if (error) {
+    g_error_free (error);
+    value = def_value;
+  }
+
+  return value;
+}
+
+/**
  * games_conf_set_boolean:
  * @group: the group name, or %NULL to use the default group
  * @key: the key name

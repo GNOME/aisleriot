@@ -82,6 +82,9 @@ void games_conf_set_integer_list (const char *group, const char *key,
 gboolean games_conf_get_boolean (const char *group, const char *key,
                                  GError ** error);
 
+gboolean games_conf_get_boolean_with_default (const char *group, const char *key,
+                                              gboolean def_value);
+
 void games_conf_set_boolean (const char *group, const char *key,
                              gboolean value);
 
