@@ -409,10 +409,10 @@ if test "$need_ggz" = "yes"; then
 fi # need_ggz = yes
 
 AC_GGZ_CHECK_SERVER_DEFINES
-AM_CONDITIONAL([GGZ_GTK],[test "have_ggz" = "yes"])
+AM_CONDITIONAL([GGZ_GTK],[test "$have_ggz" = "yes"])
 AM_CONDITIONAL([INSTALL_GGZ_GTK],[false])
-AM_CONDITIONAL([GGZ_CLIENT], [test "have_ggz" = "yes"])
-AM_CONDITIONAL([WITH_INCLUDED_GGZ],[test "have_ggz" = "yes"])
+AM_CONDITIONAL([GGZ_CLIENT], [test "$have_ggz" = "yes"])
+AM_CONDITIONAL([WITH_INCLUDED_GGZ],[test "$have_ggz" = "yes"])
 
 # ********
 
