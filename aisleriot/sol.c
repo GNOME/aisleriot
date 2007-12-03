@@ -43,11 +43,12 @@
 #endif /* HAVE_GNOME */
 
 #ifdef HAVE_HILDON
+#include <libosso.h>
+
 #ifdef HAVE_MAEMO_3
 #include <osso-browser-interface.h>
 #include <hildon-widgets/hildon-program.h>
 #else
-#include <libosso.h>
 #include <hildon/hildon-program.h>
 #endif /* HAVE_MAEMO_3 */
 
