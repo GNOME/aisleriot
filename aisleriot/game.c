@@ -654,7 +654,7 @@ scm_dealable_set_sensitive (SCM in_state)
 }
 
 static SCM
-scm_get_feature_word ()
+scm_get_feature_word (void)
 {
   AisleriotGame *game = app_game;
 
@@ -915,7 +915,7 @@ scm_set_timeout (SCM new)
 }
 
 static SCM
-scm_get_timeout ()
+scm_get_timeout (void)
 {
   AisleriotGame *game = app_game;
 
@@ -982,7 +982,7 @@ scm_delayed_call (SCM callback)
 }
 
 static void
-cscm_init ()
+cscm_init (void)
 {
   /* Enable useful debugging options. */
   SCM_DEVAL_P = 1;
@@ -1599,6 +1599,9 @@ aisleriot_game_new_game (AisleriotGame *game,
    * But treat a restart as part of the same game. Eventually either
    * the player will win or lose and then it gets counted.
    */
+  /* FIXMEchpe: this allows cheating the statistics by doing
+   * Restart, then New Game.
+   */
   if (game->state >= GAME_RUNNING &&
       (!seed || *seed != game->seed)) {
     update_statistics (game);
@@ -1726,7 +1729,6 @@ aisleriot_game_drag_valid (AisleriotGame *game,
                            guint n_cards)
 {
   CallData data = CALL_DATA_INIT;
-  SCM retval;
 
   data.lambda = game->button_pressed_lambda;
   data.n_args = 2;
@@ -1736,10 +1738,9 @@ aisleriot_game_drag_valid (AisleriotGame *game,
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
                             cscmi_catch_handler, NULL);
-  retval = data.retval;
   scm_gc_unprotect_object (data.arg2);
 
-  return SCM_NFALSEP (retval);
+  return SCM_NFALSEP (data.retval);
 }
 
 /**
