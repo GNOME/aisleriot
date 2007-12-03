@@ -515,7 +515,7 @@ main_prog (void *closure, int argc, char *argv[])
   GError *error = NULL;
   gboolean retval;
 #endif
-#if HAVE_MAEMO
+#ifdef HAVE_MAEMO
   osso_hw_state_t hw_events = {
     TRUE /* shutdown */,
     TRUE /* save unsaved data */,
