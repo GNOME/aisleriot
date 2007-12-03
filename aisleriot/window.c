@@ -208,13 +208,13 @@ select_game_cb (GtkAction *action,
   GtkWidget *dialog;
   GtkListStore *list;
   GtkWidget *list_view;
-  GtkTreeSelection *select;
+  GtkTreeSelection *selection;
   GtkWidget *scrolled_window;
   GtkTreeViewColumn *column;
   GtkCellRenderer *renderer;
   GamesFileList *files;
   GtkWidget *hbox;
-  GtkTreeIter iter, current_iter;
+  GtkTreeIter current_iter, selection_iter;
   gboolean current_iter_set = FALSE;
   const char *current_game_file;
   GList *l;
@@ -298,8 +298,8 @@ select_game_cb (GtkAction *action,
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (list_view), column);
 
-  priv->game_choice_selection = select = gtk_tree_view_get_selection (GTK_TREE_VIEW (list_view));
-  gtk_tree_selection_set_mode (select, GTK_SELECTION_BROWSE);
+  priv->game_choice_selection = selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list_view));
+  gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
@@ -332,13 +332,13 @@ select_game_cb (GtkAction *action,
    * and scroll to it.
    */
   if (current_iter_set) {
-    gtk_tree_selection_select_iter (select, &current_iter);
+    gtk_tree_selection_select_iter (selection, &current_iter);
   }
 
-  if (gtk_tree_selection_get_selected (select, NULL, &iter)) {
+  if (gtk_tree_selection_get_selected (selection, NULL, &selection_iter)) {
     GtkTreePath *path;
 
-    path = gtk_tree_model_get_path (GTK_TREE_MODEL (list), &iter);
+    path = gtk_tree_model_get_path (GTK_TREE_MODEL (list), &selection_iter);
     gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (list_view), path, NULL,
                                   TRUE,
 				  0.5, 0.0);
@@ -1788,13 +1788,13 @@ game_exception_response_cb (GtkWidget *dialog,
   if (response == GTK_RESPONSE_ACCEPT) {
     GError *err = NULL;
     char pidstr[64];
-    char *argv[] = {
+    const char * const argv[] = {
       "bug-buddy",
       "--package", "gnome-games",
       "--package-ver", VERSION,
       "--appname", "aisleriot",
       "--pid", pidstr,
-      "--include", (char *) error_file,
+      "--include", (const char *) error_file,
       NULL
     };
 
@@ -1802,7 +1802,7 @@ game_exception_response_cb (GtkWidget *dialog,
 
     if (!gdk_spawn_on_screen (gtk_widget_get_screen (GTK_WIDGET (window)),
                               NULL /* working dir */,
-                              argv,
+                              (char **) argv,
                               NULL /* envp */,
                               G_SPAWN_SEARCH_PATH,
                               NULL, NULL,
