@@ -1,3 +1,56 @@
+gnome-games 2.21.3
+=====================
+
+A new version of gnome-games is now available. This version brings a lot of 
+cool new features and some bugfixes. Most notable is the new graphics for the
+face in gnomine and the tooltips showing what the score will be in gtali.
+
+Notice that gnome-games now depends on GGZ 0.0.14 for network games. Also the 
+dependency on GTK was bumped to 2.12 to make the tooltips for gtali.
+
+General:
+  - Remove embedded libggz and ggz-client-libs. (Andreas Røsdal)
+  - Require GGZ Gaming Zone 0.0.14 for network games. (Andreas Røsdal)
+  - Only require ggz if building those games that support it (Christian Persch)
+  - Rename "maemo" platform to "hildon", in preparation for generalised hildon 
+    support. (Christian Persch)
+
+Aisleriot:
+  - Lots of cleanups and fixes (Christian Persch)
+
+Chess:
+  - Set toolbar style to default system style (Robert Ancell)
+  - Choose AI for default game from first detected AI not first known AI
+    (Robert Ancell)
+  - Mark board numbers for translation (Robert Ancell)
+  - Remove stray "Iagno" from chess help files (Andreas Røsdal)
+
+Gnomine:
+  - Fix redraw error when holiding right and repeatedly clicking left button
+    (WuSonghai/Robert Ancell)
+  - Change from GConf to GamesConf (Robert Ancell)
+  - Tangoified faces (Lapo Calamandrei/Ulisse Perusin)
+
+Gtali:
+  - Tooltips that show what will be scored. (Geoff Buchan)
+
+Sudoku:
+  - Add walk-through option to step through code. (Thomas M. Hinkle)
+  - Fix error that made status-bar not update after 1st puzzle played.
+    (Thomas M. Hinkle)
+  - Add debug statements. (Thomas M. Hinkle)
+  - Speed up make_new_game_model substantially. (Thomas M. Hinkle)
+  - Speed up is_valid_puzzle. (Thomas M. Hinkle)
+  - Ignore invalid lines in puzzle files. (Thomas M. Hinkle)
+
+Translations:
+  - ca (Joan Duran)
+  - el (ta_panta_rei)
+  - es (Jorge Gonzalez)
+  - et (Ivar Smolin)
+  - oc (Yannig Marchegay)
+  - sl (Matej Urbancic)
+
 gnome-games 2.21.2
 =====================
 
