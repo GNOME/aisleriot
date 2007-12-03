@@ -1,3 +1,18 @@
+2007-11-28  Christian Persch  <chpe@gnome.org>
+ 
+        Based on a patch by Danny Varner <danny.varner@intel.com>:
+ 
+        * Makefile.am
+        * games-card-common.h
+        * games-card-theme.c:
+        * games-conf.c
+        * games-files.c
+        * games-sound.c
+        * games-stock.c:
+		
+	Add Hildon support. Use the HAVE_RSVG define on whether to enable scalable
+	cards, and HAVE_GSTREAMER on whether to enable sound.
+
 2007-11-18  Robert Ancell  <robert.ancell@gmail.com>
 
 	* games-conf.c: Added games_conf_get_boolean_with_default() (required for Gnomine in bug #449505)
