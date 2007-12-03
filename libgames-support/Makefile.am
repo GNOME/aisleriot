@@ -15,7 +15,7 @@ EXTRA_DIST = \
 	games-marshal.list	\
 	$(NULL)
 
-if !HAVE_MAEMO
+if !HAVE_HILDON
 icondir = $(datadir)/gnome-games-common/icons
 icon_DATA = \
 	icons/teleport.png	\
@@ -51,7 +51,7 @@ libgames_support_la_SOURCES =		\
 	games-stock.h			\
 	$(NULL)
 
-if !HAVE_MAEMO
+if !HAVE_HILDON
 libgames_support_la_SOURCES +=		\
 	games-clock.c			\
 	games-clock.h			\
@@ -135,7 +135,6 @@ endif
 # Auxiliary programme to prerender card images
 
 if HAVE_RSVG
-if HAVE_CAIRO
 
 utildir = $(pkglibdir)
 util_PROGRAMS = gnome-games-render-cards
@@ -164,8 +163,7 @@ gnome_games_render_cards_CFLAGS += $(GHTREAD_CFLAGS)
 gnome_games_render_cards_LDADD += $(GTHREAD_LIBS)
 endif
 
-endif
-endif
+endif # HAVE_RSVG
 
 install-data-local:
 if GCONF_SCHEMAS_INSTALL
