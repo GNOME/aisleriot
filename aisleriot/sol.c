@@ -42,15 +42,18 @@
 #include <libgnomeui/gnome-ui-init.h>
 #endif /* HAVE_GNOME */
 
-#ifdef HAVE_MAEMO
-#include <libosso.h>
+#ifdef HAVE_HILDON
+#ifdef HAVE_MAEMO_3
 #include <osso-browser-interface.h>
 #include <hildon-widgets/hildon-program.h>
+#else
+#include <libosso.h>
+#include <hildon/hildon-program.h>
+#endif /* HAVE_MAEMO_3 */
 
 #define SERVICE_NAME "org.gnome.Games.AisleRiot"
 #define HELP_EXT "xhtml"
-
-#endif /* HAVE_MAEMO */
+#endif /* HAVE_HILDON */
 
 #if defined (G_OS_WIN32)
 #include <windows.h>
@@ -78,7 +81,7 @@ typedef struct {
 #ifdef HAVE_GNOME
   GnomeProgram *program;
 #endif
-#ifdef HAVE_MAEMO
+#ifdef HAVE_HILDON
   osso_context_t *osso_context;
   HildonProgram *program;
 #endif
@@ -247,7 +250,7 @@ game_file_to_help_section (const char *game_file)
   return buf;
 }
 
-#if (defined HAVE_MAEMO || defined G_OS_WIN32)
+#if defined (HAVE_HILDON) || defined (G_OS_WIN32)
 
 static void
 help_hook (GtkWindow *parent,
@@ -394,12 +397,12 @@ help_hook (GtkWindow *parent,
     g_free (primary);
     g_error_free (error);
 
-#ifdef HAVE_MAEMO
+#ifdef HAVE_HILDON
   /* Empty title shows up as "<unnamed>" on maemo */
   gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
 #else
   gtk_window_set_title (GTK_WINDOW (dialog), "");
-#endif /* HAVE_MAEMO */
+#endif /* HAVE_HILDON */
 
     gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
 
@@ -415,7 +418,7 @@ help_hook (GtkWindow *parent,
 #endif /* !HAVE_GNOME */
 }
 
-#endif /* HAVE_MAEMO */
+#endif /* HAVE_HILDON */
 
 #ifdef HAVE_MAEMO
 
@@ -635,7 +638,7 @@ main_prog (void *closure, int argc, char *argv[])
                             G_CALLBACK (die_cb), &data);
 #endif /* HAVE_GNOME */
 
-#ifdef HAVE_MAEMO
+#ifdef HAVE_HILDON
   hildon_program_add_window (data.program, HILDON_WINDOW (data.window));
 
   /* FIXMEchpe sort of strange that maemo doesn't all of this out-of-the-box... */
