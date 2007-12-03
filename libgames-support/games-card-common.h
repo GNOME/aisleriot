@@ -55,7 +55,7 @@ typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; 
 #define SCALABLE_CARDS_DIR    COMMON_DATADIR G_DIR_SEPARATOR_S "cards"
 #define PRERENDERED_CARDS_DIR COMMON_DATADIR G_DIR_SEPARATOR_S "card-themes"
 
-#ifdef HAVE_MAEMO
+#ifdef HAVE_HILDON
 #define GAMES_CARD_THEME_DEFAULT "paris"
 #else
 #define GAMES_CARD_THEME_DEFAULT "bonded"
