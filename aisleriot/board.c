@@ -48,7 +48,7 @@
 #define MAX_OVERHANG (0.2)
 
 /* The proportion of a slot dedicated to the card (horiz or vert). */
-#ifdef HAVE_MAEMO
+#ifdef HAVE_HILDON
 #define CARD_SLOT_PROP (0.9)
 #else
 #define CARD_SLOT_PROP (0.8)
@@ -60,11 +60,11 @@
 #define STATIC_ASSERT_IMPL(condition, line) STATIC_ASSERT_IMPL2(condition, line)
 #define STATIC_ASSERT_IMPL2(condition, line) typedef int _static_assert_line_##line[(condition) ? 1 : -1]
 
-#ifdef HAVE_MAEMO
+#ifdef HAVE_HILDON 
 #define PIXBUF_DRAWING_LIKELIHOOD(cond) G_UNLIKELY (cond)
 #else
 #define PIXBUF_DRAWING_LIKELIHOOD(cond) (cond)
-#endif /* HAVE_MAEMO */
+#endif /* HAVE_HILDON */
 
 typedef enum {
   CURSOR_DEFAULT,
@@ -195,7 +195,7 @@ static void slot_update_card_images_full (AisleriotBoard *board,
                                           Slot *slot,
                                           int highlight_start_card_id);
 
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON 
 
 /* These cursors borrowed from EOG */
 /* FIXMEchpe use themeable cursors here! */
@@ -239,11 +239,11 @@ static const char hand_open_mask_bits[] = {
   0x80, 0x7f, 0x00, 0x80, 0x7f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
 
 /* Cursor */
 
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON 
 
 static GdkCursor *
 make_cursor (GtkWidget *widget,
@@ -268,18 +268,18 @@ make_cursor (GtkWidget *widget,
   return cursor;
 }
 
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
 
 static void
 set_cursor (AisleriotBoard *board,
             CursorType cursor)
 {
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON 
   AisleriotBoardPrivate *priv = board->priv;
 
   gdk_window_set_cursor (GTK_WIDGET (board)->window,
                          priv->cursor[cursor]);
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
 }
 
 /* If we are over a slot, set the cursor to the given cursor,
@@ -289,7 +289,7 @@ set_cursor_by_location (AisleriotBoard *board,
                         int x,
                         int y)
 {
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON 
   AisleriotBoardPrivate *priv = board->priv;
   Slot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
@@ -328,7 +328,7 @@ set_cursor_by_location (AisleriotBoard *board,
   }
 
   set_cursor (board, cursor);
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
 }
 
 /* card drawing functions */
@@ -1422,12 +1422,12 @@ aisleriot_board_realize (GtkWidget *widget)
   AisleriotBoardPrivate *priv = board->priv;
   GdkDisplay *display;
   GtkSettings *settings;
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON 
   gboolean touchscreen_mode;
 #ifdef GDK_WINDOWING_X11
   char *xft_rgba = NULL;
 #endif /* GDK_WINDOWING_X11 */
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->realize (widget);
 
@@ -1442,28 +1442,28 @@ aisleriot_board_realize (GtkWidget *widget)
   
   priv->slot_gc = gdk_gc_new (widget->window);
 
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON 
   /* Create cursors */
   priv->cursor[CURSOR_DEFAULT] = gdk_cursor_new_for_display (display, GDK_LEFT_PTR);
   priv->cursor[CURSOR_OPEN] = make_cursor (widget, hand_open_data_bits, hand_open_mask_bits);
   priv->cursor[CURSOR_CLOSED] = make_cursor (widget, hand_closed_data_bits, hand_closed_mask_bits);
   priv->cursor[CURSOR_DROPPABLE] = gdk_cursor_new_for_display (display, GDK_DOUBLE_ARROW); /* FIXMEchpe: better cursor */
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
 
    /* Set up the double-click detection. */
   settings = gtk_widget_get_settings (widget);
   /* FIXMEchpe listen to changes! */
   g_object_get (settings,
                 "gtk-double-click-time", &priv->double_click_time,
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON 
                 "gtk-touchscreen-mode", &touchscreen_mode,
 #ifdef GDK_WINDOWING_X11
                 "gtk-xft-rgba", &xft_rgba,
 #endif /* GDK_WINDOWING_X11 */
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
                 NULL);
 
-#if defined (GDK_WINDOWING_X11) && !defined (HAVE_MAEMO)
+#if defined (GDK_WINDOWING_X11) && !defined (HAVE_HILDON)
   if (xft_rgba != NULL) {
     gboolean antialias_set = TRUE;
     cairo_antialias_t antialias_mode = CAIRO_ANTIALIAS_DEFAULT;
@@ -1493,10 +1493,10 @@ aisleriot_board_realize (GtkWidget *widget)
                                        subpixel_order);
     }
   }
-#endif /* GDK_WINDOWING_X11 && !HAVE_MAEMO */
-#ifndef HAVE_MAEMO
+#endif /* GDK_WINDOWING_X11 && !HAVE_HILDON */
+#ifndef HAVE_HILDON 
   priv->touchscreen_mode = touchscreen_mode != FALSE;
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
 
   aisleriot_board_setup_geometry (board);
 }
@@ -1506,7 +1506,7 @@ aisleriot_board_unrealize (GtkWidget *widget)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON 
   guint i;
 #endif
 
@@ -1519,12 +1519,12 @@ aisleriot_board_unrealize (GtkWidget *widget)
   g_object_unref (priv->slot_gc);
   priv->slot_gc = NULL;
 
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON 
   for (i = 0; i < LAST_CURSOR; ++i) {
     gdk_cursor_unref (priv->cursor[i]);
     priv->cursor[i] = NULL;
   }
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON*/
 
   games_card_images_set_drawable (priv->images, NULL);
 
