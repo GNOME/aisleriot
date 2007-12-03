@@ -31,10 +31,6 @@
 
 #include "games-card-theme.h"
 
-#if defined (HAVE_RSVG) && defined (HAVE_CAIRO)
-#define ENABLE_SCALABLE
-#endif
-
 struct _GamesCardTheme {
   GObject parent;
 
@@ -141,7 +137,7 @@ print_card_name (int card_id, char *buffer, gsize _size)
 static void
 games_card_theme_clear_source_pixbuf (GamesCardTheme * theme)
 {
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   if (theme->use_scalable) {
     if (theme->theme_data.scalable.source) {
       g_object_unref (theme->theme_data.scalable.source);
@@ -149,7 +145,7 @@ games_card_theme_clear_source_pixbuf (GamesCardTheme * theme)
 
     theme->theme_data.scalable.source = NULL;
   }
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
 
 #ifdef INSTRUMENT_LOADING
   /* Reset the time */
@@ -160,7 +156,7 @@ games_card_theme_clear_source_pixbuf (GamesCardTheme * theme)
 static void
 games_card_theme_clear_theme_data (GamesCardTheme * theme)
 {
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   if (theme->use_scalable) {
     if (theme->theme_data.scalable.cards_preimage != NULL) {
       g_object_unref (theme->theme_data.scalable.cards_preimage);
@@ -174,7 +170,7 @@ games_card_theme_clear_theme_data (GamesCardTheme * theme)
     theme->theme_data.scalable.subsize.width = -1;
     theme->theme_data.scalable.subsize.height = -1;
   } else
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
   {
     g_free (theme->theme_data.prerendered.card_sizes);
     theme->theme_data.prerendered.card_sizes = NULL;
@@ -189,7 +185,7 @@ games_card_theme_clear_theme_data (GamesCardTheme * theme)
   theme->theme_loaded = FALSE;
 }
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
 
 static gboolean
 games_card_theme_load_theme_scalable (GamesCardTheme * theme,
@@ -287,7 +283,7 @@ out:
   return theme->theme_data.scalable.cards_preimage != NULL;
 }
 
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
 
 static gboolean
 games_card_theme_load_theme_prerendered (GamesCardTheme * theme,
@@ -376,11 +372,11 @@ games_card_theme_load_theme (GamesCardTheme * theme, const gchar * theme_name)
 {
   gboolean success;
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   if (theme->use_scalable) {
     success = games_card_theme_load_theme_scalable (theme, theme_name);
   } else
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
   {
     success = games_card_theme_load_theme_prerendered (theme, theme_name);
   }
@@ -414,7 +410,7 @@ games_card_theme_load_theme_with_fallback (GamesCardTheme * theme,
   return FALSE;
 }
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
 
 static gboolean
 games_card_theme_prerender_scalable (GamesCardTheme * theme)
@@ -532,7 +528,7 @@ games_card_theme_render_card (GamesCardTheme * theme, int card_id)
   return card_pixbuf;
 }
 
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
 
 static GdkPixbuf *
 games_card_theme_load_card (GamesCardTheme * theme, int card_id)
@@ -590,12 +586,12 @@ games_card_theme_init (GamesCardTheme * cardtheme)
 
   cardtheme->prescaled = FALSE;
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   cardtheme->subrender = FALSE;
   cardtheme->use_scalable = TRUE;
 #else
   cardtheme->use_scalable = FALSE;
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
 }
 
 static void
@@ -767,7 +763,7 @@ games_card_theme_set_size (GamesCardTheme * theme,
   theme->slot_size.width = width;
   theme->slot_size.height = height;
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   if (theme->use_scalable) {
     double aspect_ratio, twidth, theight;
 
@@ -792,7 +788,7 @@ games_card_theme_set_size (GamesCardTheme * theme,
     theme->card_size.height = theight;
 
   } else
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
   {
     guint i;
     int twidth, theight;
@@ -884,7 +880,7 @@ games_card_theme_get_aspect (GamesCardTheme * theme)
 
   g_return_val_if_fail (GAMES_IS_CARD_THEME (theme), 1.0);
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   if (theme->use_scalable) {
     aspect =
       (((double) games_preimage_get_width (theme->theme_data.scalable.cards_preimage))
@@ -925,11 +921,11 @@ games_card_theme_get_card_pixbuf (GamesCardTheme * theme, gint card_id)
   t1 = clock ();
 #endif
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   if (theme->use_scalable) {
     pixbuf = games_card_theme_render_card (theme, card_id);
   } else
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
   {
     pixbuf = games_card_theme_load_card (theme, card_id);
   }
