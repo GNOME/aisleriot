@@ -47,6 +47,7 @@
 #else
 #include <hildon/hildon-banner.h>
 #endif
+#endif /* HAVE_HILDON */
 
 #include <libgames-support/games-card-common.h>
 #include <libgames-support/games-clock.h>

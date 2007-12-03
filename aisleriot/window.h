@@ -27,6 +27,7 @@
 #else
 #include <hildon/hildon-window.h>
 #endif
+#endif /* HAVE_HILDON */
 
 #include "game.h"
 
