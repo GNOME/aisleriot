@@ -353,7 +353,7 @@ fi
 # Check for librsvg
 
 have_rsvg=no
-if test "$enable_scalable"; then
+if test "$enable_scalable" = "yes"; then
   PKG_CHECK_MODULES([RSVG],[
     librsvg-2.0 >= $RSVG_REQUIRED
     cairo >= $CAIRO_REQUIRED],
