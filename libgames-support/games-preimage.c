@@ -28,12 +28,10 @@
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-#if defined(HAVE_RSVG) && defined(HAVE_CAIRO)
-#define ENABLE_SCALABLE
-
+#ifdef HAVE_RSVG
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
-#endif /* HAVE_RSVG && HAVE_CAIRO */
+#endif /* HAVE_RSVG */
 
 #include "games-preimage.h"
 
@@ -43,7 +41,7 @@ struct _GamesPreimage {
   gint width;
   gint height;
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   RsvgHandle *rsvg_handle;
 #endif
 
@@ -72,7 +70,7 @@ games_preimage_finalize (GObject * object)
 {
   GamesPreimage *preimage = GAMES_PREIMAGE (object);
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   if (preimage->rsvg_handle != NULL) {
     g_object_unref (preimage->rsvg_handle);
   }
@@ -92,7 +90,7 @@ games_preimage_class_init (GamesPreimageClass * klass)
 
   oclass->finalize = games_preimage_finalize;
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   rsvg_init ();
 #endif
 }
@@ -116,7 +114,7 @@ games_preimage_render (GamesPreimage * preimage, gint width, gint height)
   g_return_val_if_fail (width > 0 && height > 0, NULL);
   g_return_val_if_fail (preimage != NULL, NULL);
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   if (preimage->scalable) {     /* Render vector image */
     pixbuf = games_preimage_render_sub (preimage,
                                         NULL,
@@ -128,7 +126,7 @@ games_preimage_render (GamesPreimage * preimage, gint width, gint height)
                                         ((double) height) /
                                         ((double) preimage->height));
   } else
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
   {
     /* Render raster image */
     pixbuf = gdk_pixbuf_scale_simple (preimage->pixbuf,
@@ -138,7 +136,7 @@ games_preimage_render (GamesPreimage * preimage, gint width, gint height)
   return pixbuf;
 }
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
 
 /* This routine is copied from librsvg:
    Copyright © 2005 Dom Lachowicz <cinamod@hotmail.com>
@@ -275,7 +273,7 @@ games_preimage_render_sub (GamesPreimage * preimage,
   return pixbuf;
 }
 
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
 
 /**
  * games_preimage_new_from_file:
@@ -296,7 +294,7 @@ games_preimage_new_from_file (const gchar * filename, GError ** error)
 
   preimage = g_object_new (GAMES_TYPE_PREIMAGE, NULL);
 
-#ifdef ENABLE_SCALABLE
+#ifdef HAVE_RSVG
   preimage->rsvg_handle = rsvg_handle_new_from_file (filename, NULL);
   if (preimage->rsvg_handle) {
     RsvgDimensionData data;
@@ -318,7 +316,7 @@ games_preimage_new_from_file (const gchar * filename, GError ** error)
 
     return preimage;
   }
-#endif /* ENABLE_SCALABLE */
+#endif /* HAVE_RSVG */
 
   /* Not an SVG */
   preimage->scalable = FALSE;
