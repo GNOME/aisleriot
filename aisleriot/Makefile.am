@@ -62,10 +62,10 @@ sol_LDADD = \
 	$(GTK_LIBS)	\
 	$(GUILE_LIBS)
 
-if HAVE_MAEMO
+if HAVE_HILDON
 sol_CPPFLAGS += -DHELPDIR="\"$(pkgdatadir)/aisleriot/help\""
-sol_CFLAGS += $(MAEMO_CFLAGS)
-sol_LDADD += $(MAEMO_LIBS)
+sol_CFLAGS += $(HILDON_CFLAGS)
+sol_LDADD += $(HILDON_LIBS)
 endif
 
 if HAVE_GNOME
@@ -86,7 +86,7 @@ endif
 desktop_in_files = \
 	sol.desktop.in.in
 
-if !HAVE_MAEMO
+if !HAVE_HILDON
 desktop_in_files += \
 	freecell.desktop.in.in
 endif
