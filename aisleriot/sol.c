@@ -62,7 +62,7 @@
 //FIXME On win32 help is created as html with gnome-doc-tool,
 //and put manually in the directory below.
 #define HELPDIR PKGDATADIR "/aisleriot/help"
-#endif
+#endif /* G_OS_WIN32 */
 
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
