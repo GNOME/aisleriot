@@ -27,12 +27,13 @@
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
+#include <gtk/gtkversion.h>
 
 #include "games-files.h"
 
 #include "games-stock.h"
 
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON
 
 typedef struct {
   const char *stock_id;
@@ -243,7 +244,7 @@ add_icon_from_file (GtkIconFactory * icon_factory,
   gtk_icon_source_free (source);
 }
 
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
 
 void
 games_stock_init (void)
@@ -257,16 +258,16 @@ games_stock_init (void)
     { GAMES_STOCK_RESET,            GTK_STOCK_CLEAR },
     { GAMES_STOCK_RESTART_GAME,     GTK_STOCK_REFRESH },
     { GAMES_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON
     { GAMES_STOCK_FULLSCREEN,       GTK_STOCK_FULLSCREEN },
     { GAMES_STOCK_LEAVE_FULLSCREEN, GTK_STOCK_LEAVE_FULLSCREEN },
     { GAMES_STOCK_NETWORK_GAME,     GTK_STOCK_NETWORK },
     { GAMES_STOCK_NETWORK_LEAVE,    GTK_STOCK_STOP },
     { GAMES_STOCK_PLAYER_LIST,      GTK_STOCK_INFO },
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
   };
 
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON
   /* These stocks has a icon name */
   const char *stock_item_with_icon_name[][2] = {
     { GAMES_STOCK_PAUSE_GAME,   "stock_timer_stopped" },
@@ -279,13 +280,13 @@ games_stock_init (void)
     { GAMES_STOCK_TELEPORT,   "teleport.png" },
     { GAMES_STOCK_RTELEPORT,  "rteleport.png" },
   };
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
 
 /* Use different accels on GTK/GNOME and Maemo */
-#ifdef HAVE_MAEMO
-#define STOCK_ACCEL(normal,maemo) (maemo)
+#ifdef HAVE_HILDON
+#define STOCK_ACCEL(normal,hildon) (hildon)
 #else
-#define STOCK_ACCEL(normal,maemo) (normal)
+#define STOCK_ACCEL(normal,hildon) (normal)
 #endif
 
   static const GtkStockItem games_stock_items[] = {
@@ -302,7 +303,7 @@ games_stock_init (void)
     /* Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game" */
     { GAMES_STOCK_RESTART_GAME,     N_("_Restart"),           0, 0, NULL },
     { GAMES_STOCK_UNDO_MOVE,        N_("_Undo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('z', GDK_F8), NULL },
-#ifndef HAVE_MAEMO
+#ifndef HAVE_HILDON
     { GAMES_STOCK_LEAVE_FULLSCREEN, N_("_Leave Fullscreen"),  0, GDK_F11, NULL },
     { GAMES_STOCK_NETWORK_GAME,     N_("Network _Game"),      GDK_CONTROL_MASK, 'g', NULL },
     { GAMES_STOCK_NETWORK_LEAVE,    N_("L_eave Game"),        GDK_CONTROL_MASK, 'e', NULL },
@@ -312,13 +313,14 @@ games_stock_init (void)
     { GAMES_STOCK_SCORES,           N_("_Scores"),            0, 0, NULL },
     { GAMES_STOCK_END_GAME,         N_("_End Game"),          0, 0, NULL },
 #endif
+
     /* Work around maemo brokenness wrt. stock item translations */
-#ifdef HAVE_MAEMO
+#ifdef HAVE_HILDON
     { GTK_STOCK_ABOUT,              N_("_About"),             0, 0, NULL },
     { GTK_STOCK_CANCEL,             N_("_Cancel"),            0, 0, NULL },
     { GTK_STOCK_CLOSE,              N_("_Close"),             0, 0, NULL },
     { GTK_STOCK_OK,                 N_("_OK"),                0, 0, NULL },
-#endif /* HAVE_MAEMO */
+#endif /* HAVE_HILDON */
   };
 
 #undef STOCK_ACCEL
@@ -340,7 +342,7 @@ games_stock_init (void)
                           icon_set);
   }
 
-#ifndef HAVE_MAEMO              /* only need icons on non-maemo */
+#ifndef HAVE_HILDON /* only need icons on non-hildon */
   for (i = 0; i < G_N_ELEMENTS (stock_item_with_icon_name); ++i) {
     add_stock_icon (icon_factory,
                     stock_item_with_icon_name[i][0],
@@ -352,7 +354,7 @@ games_stock_init (void)
                         stock_item_with_file[i][0],
                         stock_item_with_file[i][1]);
   }
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_HILDON */
 
   gtk_icon_factory_add_default (icon_factory);
   g_object_unref (icon_factory);
@@ -385,7 +387,7 @@ games_get_license (const gchar * game_name)
   license_trans = g_strjoin ("\n\n", _(license0), _(license1),
                              _(license2), NULL);
 
-#ifdef HAVE_MAEMO
+#if !GTK_CHECK_VERSION (2, 8, 0)
   /* We have to manually wrap the text, since the about dialogue cannot
    * do it itselfbefore gtk 2.8.
    */
@@ -405,7 +407,7 @@ games_get_license (const gchar * game_name)
       }
     }
   }
-#endif
+#endif /* ! GTK+ 2.8.0 */
 
   license_str =
     g_strdup_printf (license_trans, game_name, game_name, game_name);
