@@ -24,14 +24,13 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 
-#if defined (HAVE_GSTREAMER) && !defined (HAVE_MAEMO)
+#ifdef HAVE_GSTREAMER
 #include <gst/gst.h>
-#define ENABLE_SOUND
-#endif /* HAVE_GSTREAMER && !HAVE_MAEMO */
+#endif /* HAVE_GSTREAMER */
 
 #include "games-sound.h"
 
-#ifdef ENABLE_SOUND
+#ifdef HAVE_GSTREAMER
 
 static GstElement *pipeline;
 static gboolean sound_enabled = FALSE;
@@ -103,7 +102,7 @@ games_sound_init (void)
 
 }
 
-#endif /* ENABLE_SOUND */
+#endif /* HAVE_GSTREAMER */
 
 /**
  * games_sound_add_option_group:
@@ -114,9 +113,9 @@ games_sound_init (void)
 void
 games_sound_add_option_group (GOptionContext *context)
 {
-#ifdef ENABLE_SOUND
+#ifdef HAVE_GSTREAMER
   g_option_context_add_group (context, gst_init_get_option_group ());
-#endif /* ENABLE_SOUND */
+#endif /* HAVE_GSTREAMER */
 }
 
 /**
@@ -129,7 +128,7 @@ games_sound_add_option_group (GOptionContext *context)
 void
 games_sound_play (const gchar * filename)
 {
-#ifdef ENABLE_SOUND
+#ifdef HAVE_GSTREAMER
   GError *err = NULL;
 
   if (!sound_enabled)
@@ -138,7 +137,7 @@ games_sound_play (const gchar * filename)
     games_sound_init ();
 
   g_thread_pool_push (threads, (gchar *) filename, &err);
-#endif /* ENABLE_SOUND */
+#endif /* HAVE_GSTREAMER */
 }
 
 /**
@@ -150,9 +149,9 @@ games_sound_play (const gchar * filename)
 void
 games_sound_enable (gboolean enabled)
 {
-#ifdef ENABLE_SOUND
+#ifdef HAVE_GSTREAMER
   sound_enabled = enabled;
-#endif /* ENABLE_SOUND */
+#endif /* HAVE_GSTREAMER */
 }
 
 /**
@@ -163,11 +162,11 @@ games_sound_enable (gboolean enabled)
 gboolean
 games_sound_is_enabled (void)
 {
-#ifdef ENABLE_SOUND
+#ifdef HAVE_GSTREAMER
   return sound_enabled;
 #else
   return FALSE;
-#endif /* ENABLE_SOUND */
+#endif /* HAVE_GSTREAMER */
 }
 
 /**
@@ -178,9 +177,9 @@ games_sound_is_enabled (void)
 gboolean
 games_sound_is_available (void)
 {
-#ifdef ENABLE_SOUND
+#ifdef HAVE_GSTREAMER
   return TRUE;
 #else
   return FALSE;
-#endif /* ENABLE_SOUND */
+#endif /* HAVE_GSTREAMER */
 }
