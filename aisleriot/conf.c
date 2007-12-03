@@ -165,7 +165,7 @@ aisleriot_conf_init (void)
     /* Set defaults */
     games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), TRUE);
 
-#ifdef HAVE_MAEMO
+#ifdef HAVE_HILDON
     games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), TRUE);
 #endif
   }
