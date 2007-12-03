@@ -958,7 +958,7 @@ games_conf_get_double (const char *group, const char *key,
 
   return value;
 #elif defined(HAVE_HILDON)
-#warning games_conf_set_double not supported on maemo!
+#warning games_conf_get_double not supported on maemo!
   return 0.0;
 #else
   return g_key_file_get_double (priv->key_file, group ? group : priv->main_group, key, error);
