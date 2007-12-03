@@ -529,9 +529,8 @@ games_toplevel_directory (void)
 }
 #endif
 
-
 /**
- * games_path_runtime_fix:
+ * games_path_runtime_fix_private:
  * @path: A pointer to a string (allocated with g_malloc) that is
  *        (or could be) a pathname.
  *
@@ -575,7 +574,7 @@ games_path_runtime_fix_private (gchar **path)
 
 
 gchar *
-games_path_runtime_fix (gchar *path)
+games_path_runtime_fix (const gchar *path)
 {
   gchar *p = g_strdup (path);
   games_path_runtime_fix_private (&p);
