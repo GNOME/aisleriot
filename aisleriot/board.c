@@ -524,7 +524,7 @@ set_focus (AisleriotBoard *board,
   int top_card_id;
 
   /* Sanitise */
-  top_card_id = slot ? slot->cards->len - 1 : -1;
+  top_card_id = slot ? ((int) slot->cards->len) - 1 : -1;
   card_id = MAX (card_id, top_card_id);
 
   if (priv->focus_slot == slot &&
@@ -1757,8 +1757,8 @@ aisleriot_board_button_press (GtkWidget *widget,
                                 selection_slot->cards->len);
 
     /* Store the cards, since the move could alter slot->cards! */
+    g_assert (selection_slot->cards->len >= selection_start_card_id);
     n_cards = selection_slot->cards->len - selection_start_card_id;
-    g_assert (n_cards >= 0);
 
     cards = g_alloca (n_cards);
     memcpy (cards,
