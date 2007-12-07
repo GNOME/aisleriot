@@ -109,7 +109,8 @@
        (= (length card-list) 1)))
 
 (define (droppable? start-slot card-list end-slot)
-  (cond ((and (> end-slot 3)
+  (cond ((= start-slot end-slot) #f)
+	((and (> end-slot 3)
 	      (< end-slot 8))
 	 (cond ((empty-slot? end-slot)
 		(= (get-value (car card-list)) ace))
