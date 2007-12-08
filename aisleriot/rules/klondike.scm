@@ -16,11 +16,12 @@
 ; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
 ; USA
 
-(define deal-one #t)
-(define deal-three #f)
-(define no-redeal #f)
+(define deal-one #t)    ;deal one card at a time from stock to waste
+(define deal-three #f)  ;deal three cards at a time from stock to waste
+(define no-redeal #f)   ;stock deals a card face-up to each pile in the tableau instead of to waste
+(define kings-only #t)  ;only allow kings to be moved to empty slots
 
-(define max-redeal 2)
+(define max-redeal 2)   ;number of redeals, -1 for unlimited
 
 ; The set up:
 
@@ -111,7 +112,8 @@
   (and (not (= start-slot end-slot))
        (or (and (member end-slot tableau)
 		(if (empty-slot? end-slot)
-		    (= king (get-value (car (reverse card-list))))
+		    (or (not kings-only)
+		        (= king (get-value (car (reverse card-list)))))
 		    (and (not (eq? (is-red? (get-top-card end-slot))
 				   (is-red? (car (reverse card-list)))))
 			 (= (get-value (get-top-card end-slot))
@@ -222,7 +224,11 @@
 	   (set! card (get-top-card waste))
 	   (or-map addable? tableau))
       (or-map ploppable? foundation)
-      (and (or (and (or deal-three
+      (and (not kings-only)
+           (any-slot-empty? tableau)
+           (any-slot-full? (cons waste tableau))
+           (list 0 (_"Place something on empty slot")))
+      (and (or (and (or (= max-redeal -1)
 			(< FLIP-COUNTER max-redeal))
 		    (not (empty-slot? waste)))
 	       (not (empty-slot? stock))) 
