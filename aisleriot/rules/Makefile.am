@@ -35,6 +35,7 @@ rules_DATA  = 			\
 	gaps.scm		\
 	gay_gordons.scm		\
 	glenwood.scm		\
+	gold_mine.scm		\
 	golf.scm		\
 	gypsy.scm		\
 	helsinki.scm		\
