@@ -38,6 +38,7 @@ DOC_ENTITIES = \
 	fourteen.xml \
 	freecell.xml \
 	gaps.xml \
+	gold_mine.xml \
 	gay_gordons.xml \
 	glenwood.xml \
 	golf.xml \
