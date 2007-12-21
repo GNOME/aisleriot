@@ -217,6 +217,18 @@
 	   (not (= (get-color (get-top-card slot-id)) (get-color card)))
 	   (list 1 (get-name card) (get-name (get-top-card slot-id))))))
 
+(define (any-slot-empty? slots)
+  (if (eq? slots '())
+      #f
+      (or (empty-slot? (car slots))
+          (any-slot-empty? (cdr slots)))))
+
+(define (any-slot-nonempty? slots)
+  (if (eq? slots '())
+      #f
+      (or (not (empty-slot? (car slots)))
+          (any-slot-nonempty? (cdr slots)))))
+
 (define (get-hint)
   (or (or-map is-ace? (cons waste tableau))
       (or-map shiftable-iter tableau)
@@ -226,8 +238,8 @@
       (or-map ploppable? foundation)
       (and (not kings-only)
            (any-slot-empty? tableau)
-           (any-slot-full? (cons waste tableau))
-           (list 0 (_"Place something on empty slot")))
+           (any-slot-nonempty? (cons waste tableau))
+           (list 0 (_"Consider moving something into an empty slot")))
       (and (or (and (or (= max-redeal -1)
 			(< FLIP-COUNTER max-redeal))
 		    (not (empty-slot? waste)))
