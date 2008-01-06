@@ -697,8 +697,8 @@ main (int argc, char *argv[])
 
   setlocale (LC_ALL, "");
 
-#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS)
-  /* If we're going to use gnome-vfs, we need to init threads before
+#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_GSTREAMER)
+  /* If we're going to use gnome-vfs or gstreamer, we need to init threads before
    * calling any glib functions.
    */
   g_thread_init (NULL);
