@@ -567,6 +567,7 @@ help_about_cb (GtkAction *action,
     "Rosanna Yuen <zana@webwynk.net>",
     "Alan Horkan <horkana@maths.tcd.ie>",
     "Richard Hoelscher <rah@rahga.com>",
+    "Vincent Povirk",
     NULL
   };
   const char *artists[] = {
@@ -613,7 +614,7 @@ help_about_cb (GtkAction *action,
 			     "AisleRiot is a part of GNOME Games."),
 #endif
                          "copyright", "Copyright © 1998-2006 Jonathan Blandford\n"
-                                      "Copyright © 2007 Christian Persch",
+                                      "Copyright © 2007, 2008 Christian Persch",
                          "license", licence,
                          "authors", authors,
                          "artists", artists,
