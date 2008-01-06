@@ -91,8 +91,13 @@
       (suit-next? lower higher)))
 
 (define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
+       (add-card! end-slot (car card-list))))
+
+(define (droppable? start-slot card-list end-slot)
   (set! card (car card-list))
-  (and (empty-slot? end-slot)
+  (and (not (= start-slot end-slot))
+       (empty-slot? end-slot)
        (or (if (= end-slot 0)
 	       (= ace (get-value card))
 	       (and (not (empty-slot? (- end-slot 1)))
@@ -100,8 +105,7 @@
 	   (if (= end-slot 53)
 	       (= queen (get-value card))
 	       (and (not (empty-slot? (1+ end-slot)))
-		    (card-next? card (get-top-card (1+ end-slot))))))
-       (add-card! end-slot (car card-list))))
+		    (card-next? card (get-top-card (1+ end-slot))))))))
 
 (define (button-clicked slot-id)
   #f)
@@ -151,6 +155,8 @@
 (define (timeout) 
   #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-over game-won get-hint get-options
-apply-options timeout)
+apply-options timeout droppable?)

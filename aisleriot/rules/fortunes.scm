@@ -52,17 +52,16 @@
 	   (empty-slot? 4))))
 
 (define (button-released start-slot card-list end-slot)
-  (if (= end-slot start-slot)
-      (if (= 1 (length card-list))
-	  (begin
-	    (move-n-cards! start-slot end-slot card-list)
-	    (if (button-clicked start-slot)
-		#t
-		#t))
-	  #f)
-      (if (empty-slot? end-slot)
-	  (move-n-cards! start-slot end-slot card-list)
-	  #f)))
+  (if (droppable? start-slot card-list end-slot)
+      (begin
+        (move-n-cards! start-slot end-slot card-list)
+        #t)
+      #f))
+
+(define (droppable? start-slot card-list end-slot)
+  (and (member end-slot '(1 2 3 4))
+       (not (= end-slot start-slot))
+       (empty-slot? end-slot)))
 
 (define (removable? slot-id reason)
   (if (= slot-id reason)
@@ -166,4 +165,6 @@
 
 (define (timeout) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout)
+(set-features droppable-feature)
+
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)

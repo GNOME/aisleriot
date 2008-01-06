@@ -126,7 +126,14 @@
 )
 
 (define (button-released start-slot card-list end-slot)
+  (and (droppable? start-slot card-list end-slot)
+       (complete-transaction start-slot card-list end-slot)
+  ) 
+)
+
+(define (droppable? start-slot card-list end-slot)
   (and (empty-slot? end-slot)
+       (not (= start-slot end-slot))
        (or (and (= 0 (modulo end-slot 13)) 
                 (= 2 (get-value(car card-list)))
            )
@@ -140,8 +147,7 @@
                 )
            )               
        )
-       (complete-transaction start-slot card-list end-slot)
-  ) 
+  )
 )
 
 (define (complete-transaction start-slot card-list end-slot)
@@ -322,7 +328,9 @@
 
 (define (timeout) #f)
 
+(set-features droppable-feature)
+
 (set-lambda new-game button-pressed button-released button-clicked 
             button-double-clicked game-continuable game-won get-hint 
-            get-options apply-options timeout
+            get-options apply-options timeout droppable?
 )
