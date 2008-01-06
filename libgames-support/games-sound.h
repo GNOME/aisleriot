@@ -1,7 +1,7 @@
 /*
  * games-sound.h: common sound player for gnome-games 
  *
- * Copyright © 2007 Andreas Røsdal
+ * Copyright © 2007-2008 Andreas Røsdal
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

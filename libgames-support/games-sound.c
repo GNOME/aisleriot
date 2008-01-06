@@ -1,7 +1,7 @@
 /*
  * games-sound.c: common sound player for gnome-games 
  *
- * Copyright © 2007 Andreas Røsdal
+ * Copyright © 2007-2008 Andreas Røsdal
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,16 +25,32 @@
 #include <glib/gi18n.h>
 
 #ifdef HAVE_GSTREAMER
-#include <gst/gst.h>
-#endif /* HAVE_GSTREAMER */
+  #include <gst/gst.h>
+#elif HAVE_SDL_MIXER
+  #include "SDL.h"
+  #include "SDL_mixer.h"
+#endif 
 
 #include "games-sound.h"
 
-#ifdef HAVE_GSTREAMER
-
-static GstElement *pipeline;
 static gboolean sound_enabled = FALSE;
 static gboolean sound_init = FALSE;
+
+
+#ifdef HAVE_SDL_MIXER
+/* Sounds don't sound good on Windows unless the buffer size is 4k,
+ * but this seems to cause strange behaviour on other systems,
+ * such as a delay before playing the sound. */
+#ifdef WIN32_NATIVE
+const size_t buf_size = 4096;
+#else
+const size_t buf_size = 1024;
+#endif
+#endif /* HAVE_SDL_MIXER */
+
+
+#ifdef HAVE_GSTREAMER
+static GstElement *pipeline;
 static GThreadPool *threads;
 
 /* This function is called as a separate thread, playing the sound. */
@@ -86,10 +102,33 @@ games_sound_thread_run (gchar * data, gchar * user_data)
   g_free (fullname);
 }
 
-/* Initializes the games-sound support, GStreamer and threads. */
+#endif /* HAVE_GSTREAMER */
+
+
+#if HAVE_SDL_MIXER
+static void
+games_sound_sdl_play (gchar *filename)
+{
+  Mix_Chunk *wave = NULL;
+  gchar *fullpath = NULL;
+  
+  fullpath = g_strdup_printf ("%s/%s.ogg", SOUNDDIR, (char *) filename);
+
+  wave = Mix_LoadWAV(fullpath);
+  if (wave == NULL) {
+    g_print (_("Error playing sound: %s\n"), Mix_GetError());
+  }
+
+  Mix_PlayChannel(-1, wave, 0); 
+
+}
+#endif /* HAVE_SDL_MIXER */
+
+/* Initializes the games-sound support */
 static void
 games_sound_init (void)
 {
+#ifdef HAVE_GSTREAMER
   GError *err = NULL;
 
   g_assert (g_thread_supported ());
@@ -100,9 +139,23 @@ games_sound_init (void)
 			       NULL, 10, FALSE, &err);
   sound_init = TRUE;
 
-}
+#elif HAVE_SDL_MIXER
+  const int audio_rate = MIX_DEFAULT_FREQUENCY;
+  const int audio_format = MIX_DEFAULT_FORMAT;
+  const int audio_channels = 2;
 
-#endif /* HAVE_GSTREAMER */
+  SDL_Init(SDL_INIT_AUDIO | SDL_INIT_NOPARACHUTE);
+
+  if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, buf_size) < 0) {
+    g_print ("Error calling Mix_OpenAudio");
+    return;
+  }
+
+ //Mix_AllocateChannels(MIX_CHANNELS);
+
+#endif /* HAVE_SDL_MIXER */
+
+}
 
 /**
  * games_sound_add_option_group:
@@ -137,6 +190,16 @@ games_sound_play (const gchar * filename)
     games_sound_init ();
 
   g_thread_pool_push (threads, (gchar *) filename, &err);
+#elif HAVE_SDL_MIXER
+  
+ 
+  if (!sound_enabled)
+    return;
+  if (!sound_init)
+    games_sound_init ();
+
+  games_sound_sdl_play (filename);
+
 #endif /* HAVE_GSTREAMER */
 }
 
@@ -151,6 +214,8 @@ games_sound_enable (gboolean enabled)
 {
 #ifdef HAVE_GSTREAMER
   sound_enabled = enabled;
+#elif HAVE_SDL_MIXER
+  sound_enabled = enabled;
 #endif /* HAVE_GSTREAMER */
 }
 
@@ -163,6 +228,8 @@ gboolean
 games_sound_is_enabled (void)
 {
 #ifdef HAVE_GSTREAMER
+  return sound_enabled;
+#elif HAVE_SDL_MIXER
   return sound_enabled;
 #else
   return FALSE;
@@ -178,6 +245,8 @@ gboolean
 games_sound_is_available (void)
 {
 #ifdef HAVE_GSTREAMER
+  return TRUE;
+#elif HAVE_SDL_MIXER
   return TRUE;
 #else
   return FALSE;

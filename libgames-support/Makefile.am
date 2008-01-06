@@ -132,6 +132,11 @@ libgames_support_la_CFLAGS += $(GSTREAMER_CFLAGS)
 libgames_support_la_LIBADD += $(GSTREAMER_LIBS)
 endif
 
+if HAVE_SDL_MIXER
+libgames_support_la_CFLAGS += $(SDL_MIXER_CFLAGS)
+libgames_support_la_LIBADD += $(SDL_MIXER_LIBS)
+endif
+
 # Auxiliary programme to prerender card images
 
 if HAVE_RSVG
