@@ -415,7 +415,7 @@ AM_CONDITIONAL([HAVE_PYTHON],[test "$enable_python" = "yes"])
 AM_CONDITIONAL([WITH_GTHREAD],[test "$need_gthread" = "yes"])
 
 # Sound support: GStreamer and SDL_mixer
-
+# FIXME: The logic here could probably be cleaned up a bit.
 have_gstreamer=no
 if test "$enable_sound" = "yes"; then
 
@@ -429,8 +429,8 @@ if test "$enable_sound" = "yes"; then
       [have_gstreamer=yes],[have_gstreamer=no])
 
     # SDL_mixer is default, while GStreamer is a required dependency if SDL_mixer isn't found.
-    if test "$enable_sound" = "yes" -a "$have_gstreamer" = "no"; then
-      AC_MSG_ERROR([Sound enabled but GStreamer not found])
+    if test "$enable_sound" = "yes" -a "$have_gstreamer" = "no" -a "x$SDL_mixer" = "no"; then
+      AC_MSG_ERROR([Sound enabled but GStreamer or SDL_Mixer not found])
     fi
   fi
 
