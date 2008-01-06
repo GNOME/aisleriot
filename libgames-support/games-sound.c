@@ -120,7 +120,7 @@ games_sound_sdl_play (gchar *filename)
   }
 
   Mix_PlayChannel(-1, wave, 0); 
-
+  g_free(fullpath);
 }
 #endif /* HAVE_SDL_MIXER */
 
@@ -150,8 +150,6 @@ games_sound_init (void)
     g_print ("Error calling Mix_OpenAudio");
     return;
   }
-
- //Mix_AllocateChannels(MIX_CHANNELS);
 
 #endif /* HAVE_SDL_MIXER */
 
