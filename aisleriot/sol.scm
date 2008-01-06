@@ -297,6 +297,17 @@
 (define (empty-slot? slot-id)
   (null? (get-cards slot-id)))
 
+(define (any-slot-empty? slots)
+  (if (eq? slots '())
+      #f
+      (or (empty-slot? (car slots))
+          (any-slot-empty? (cdr slots)))))
+
+(define (find-empty-slot slots)
+  (if (empty-slot? (car slots))
+      (car slots)
+      (find-empty-slot (cdr slots))))
+
 ; Get the nth card from a slot. Returns #f if n is out of range.
 (define (get-nth-card slot-id n)
   (let ((cards (get-cards slot-id)))
@@ -522,6 +533,12 @@
 ; common lisp procedure not provided in guile 1.3
 (define (nthcdr n lst)
   (if (zero? n) lst (nthcdr (+ -1 n) (cdr lst))))
+
+; guile library function I'm not sure I can rely on
+(define (list-head lst k)
+  (if (= k 0)
+      '()
+      (cons (car lst) (list-head (cdr lst) (- k 1)))))
 
 ;; INTERNAL procedures
 

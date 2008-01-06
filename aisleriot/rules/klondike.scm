@@ -217,12 +217,6 @@
 	   (not (= (get-color (get-top-card slot-id)) (get-color card)))
 	   (list 1 (get-name card) (get-name (get-top-card slot-id))))))
 
-(define (any-slot-empty? slots)
-  (if (eq? slots '())
-      #f
-      (or (empty-slot? (car slots))
-          (any-slot-empty? (cdr slots)))))
-
 (define (any-slot-nonempty? slots)
   (if (eq? slots '())
       #f

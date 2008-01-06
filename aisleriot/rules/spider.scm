@@ -168,12 +168,6 @@
   (and (droppable? start-slot card-list end-slot)
        (complete-transaction start-slot card-list end-slot)))
 
-(define (any-slot-empty? slots)
-  (if (eq? slots '())
-      #f
-      (or (empty-slot? (car slots))
-          (any-slot-empty? (cdr slots)))))
-
 (define (button-clicked slot)
   (and (= stock slot)
        (not (empty-slot? stock))
@@ -187,8 +181,21 @@
 	     (give-status-message)
 	     #t))))
 
+
+(define (is-playable-stack cards n)
+  (and (not (null? cards))
+       (= (get-value (car cards)) n)
+       (is-visible? (car cards))
+       (or (= n 13)
+           (is-playable-stack (cdr cards) (+ n 1)))))
+
 (define (button-double-clicked slot)
-  #f)
+  (and (member slot tableau)
+       (is-playable-stack (get-cards slot) 1)
+       (let ((card-list (list-head (get-cards slot) 13)))
+            (remove-n-cards slot 13)
+            (complete-transaction slot card-list (find-empty-slot foundation)))
+       #t))
 
 (define (game-over)
   (and (not (game-won))
