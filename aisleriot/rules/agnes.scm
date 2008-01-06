@@ -55,6 +55,7 @@
   (set! BASE-VAL (get-value (get-top-card 1)))
 
   (give-status-message)
+  (dealable-set-sensitive (dealable?))
   
   (list 7 4))
 
@@ -141,10 +142,16 @@
       (and (deal-cards-face-up 0 (list slot))
 	   (check-slot-and-deal (+ 1 slot)))))
 
+(define (do-deal-next-cards)
+  (and (dealable?)
+       (check-slot-and-deal 5)))
+
 (define (button-clicked slot-id)
   (and (= slot-id 0)
-       (not (empty-slot? 0))
-       (check-slot-and-deal 5)))
+       (do-deal-next-cards)))
+
+(define (dealable?)
+  (not (empty-slot? 0)))
 
 (define (check-dc slot f-slot just-checking?)
   (cond ((= f-slot 5)
@@ -197,6 +204,7 @@
 
 (define (game-continuable)
   (give-status-message)
+  (dealable-set-sensitive (dealable?))
   (not (game-won)))
 
 (define (game-won)
@@ -255,14 +263,14 @@
 	(#t (check-to-tableau? slot1 (+ 1 slot2)))))
 
 
-(define (dealable?)
-  (and (not (empty-slot? 0))
+(define (check-deal?)
+  (and (dealable?)
        (list 0 (_"Deal more cards"))))
 
 (define (get-hint)
   (or (check-to-foundation? 5)
       (check-to-tableau? 5 6)
-      (dealable?)
+      (check-deal?)
       (list 0 (_"Try rearranging the cards"))))
 
 (define (get-options) 
@@ -274,8 +282,8 @@
 (define (timeout) 
   #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout droppable?)
+apply-options timeout droppable? dealable?)
