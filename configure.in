@@ -259,6 +259,15 @@ else
   enable_sound=no
 fi
 
+# Check which sound library to use
+
+AC_MSG_CHECKING([for which sound library to use])
+AC_ARG_WITH([sound],
+  [AS_HELP_STRING([--with-sound=gstreamer|sdl_mixer (default: sdl_mixer)])],
+  [with_sound="$withval"],
+  [with_sound=sdl_mixer])
+AC_MSG_RESULT([$with_sound])
+
 # Scalable graphics
 
 AC_MSG_CHECKING([whether to enable scalable graphics])
@@ -415,25 +424,27 @@ AM_CONDITIONAL([HAVE_PYTHON],[test "$enable_python" = "yes"])
 AM_CONDITIONAL([WITH_GTHREAD],[test "$need_gthread" = "yes"])
 
 # Sound support: GStreamer and SDL_mixer
-# FIXME: The logic here could probably be cleaned up a bit.
 have_gstreamer=no
-if test "$enable_sound" = "yes"; then
-
+if test "$enable_sound" = "yes" -a "$with_sound" = "sdl_mixer"; then
   # Check for SDL_Mixer sound support, sets SDL_MIXER_CFLAGS, SDL_MIXER_LIBS, AUDIO_SDL
   GAMES_CHECK_SOUND()
 
-  if test "x$SDL_mixer" != "xyes"; then
-    # Check for GStreamer 
-    PKG_CHECK_MODULES([GSTREAMER],
-      [gstreamer-0.10 >= $GSTREAMER_REQUIRED],
-      [have_gstreamer=yes],[have_gstreamer=no])
-
-    # SDL_mixer is default, while GStreamer is a required dependency if SDL_mixer isn't found.
-    if test "$enable_sound" = "yes" -a "$have_gstreamer" = "no" -a "x$SDL_mixer" = "no"; then
-      AC_MSG_ERROR([Sound enabled but GStreamer or SDL_Mixer not found])
-    fi
+  if test "$SDL_mixer" = "no"; then
+    with_sound=gstreamer
+    echo "SDL_Mixer not found, fallback to GStreamer."
   fi
 
+fi
+
+if test "$enable_sound" = "yes" -a "$with_sound" = "gstreamer"; then
+  # Check for GStreamer 
+  PKG_CHECK_MODULES([GSTREAMER],
+    [gstreamer-0.10 >= $GSTREAMER_REQUIRED],
+    [have_gstreamer=yes],[have_gstreamer=no])
+    # SDL_mixer is default, while GStreamer is a required dependency if SDL_mixer isn't found.
+    if test "$enable_sound" = "yes" -a "$have_gstreamer" = "no" -a "$SDL_mixer" = "no"; then
+      AC_MSG_ERROR([Sound enabled but GStreamer or SDL_Mixer not found])
+    fi
 fi
 
 
@@ -898,8 +909,7 @@ echo "
     Games to be compiled:  ${gamelist}
 
     Using RSVG:            ${have_rsvg}
-    SDL_Mixer support:     ${SDL_mixer}
-    GStreamer support:     ${have_gstreamer}
+    Sound support:         ${with_sound}
     Use setgid binaries:   ${setgid}
     Scores user:           ${scores_user}
     Scores & setgid group: ${scores_group}
