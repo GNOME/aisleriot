@@ -6,6 +6,7 @@ card_DATA = \
 	anglo.svg	\
 	bellot.svg	\
 	dondorf.svg	\
+	gnomangelo.svg	\
 	ornamental.svg	\
 	paris.svg	\
 	$(NULL)
