@@ -1837,7 +1837,11 @@ aisleriot_board_move_cursor_start_end_by_slot (AisleriotBoard *board,
     new_focus_card_id = ((int) new_focus_slot->cards->len) - 1;
   } else {
     new_focus_slot = (Slot *) slots->pdata[0];
-    new_focus_card_id = new_focus_slot->cards->len > 0 ? 0 : -1;
+    if (new_focus_slot->cards->len > 0) {
+      new_focus_card_id = ((int) new_focus_slot->cards->len) - ((int) new_focus_slot->exposed);
+    } else {
+      new_focus_card_id = -1;
+    }
   }
 
   g_assert (new_focus_slot != NULL);
