@@ -37,18 +37,6 @@ static gboolean sound_enabled = FALSE;
 static gboolean sound_init = FALSE;
 
 
-#ifdef HAVE_SDL_MIXER
-/* Sounds don't sound good on Windows unless the buffer size is 4k,
- * but this seems to cause strange behaviour on other systems,
- * such as a delay before playing the sound. */
-#ifdef WIN32_NATIVE
-const size_t buf_size = 4096;
-#else
-const size_t buf_size = 1024;
-#endif
-#endif /* HAVE_SDL_MIXER */
-
-
 #ifdef HAVE_GSTREAMER
 static GstElement *pipeline;
 static GThreadPool *threads;
@@ -147,10 +135,20 @@ games_sound_init (void)
   const int audio_format = MIX_DEFAULT_FORMAT;
   const int audio_channels = 2;
 
-  SDL_Init(SDL_INIT_AUDIO | SDL_INIT_NOPARACHUTE);
+/* Sounds don't sound good on Windows unless the buffer size is 4k,
+ * but this seems to cause strange behaviour on other systems,
+ * such as a delay before playing the sound. */
+#ifdef WIN32_NATIVE
+#define BUF_SIZE (4096)
+  const size_t buf_size = 4096;
+#else
+  const size_t buf_size = 1024;
+#endif
 
-  if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, buf_size) < 0) {
-    g_print ("Error calling Mix_OpenAudio");
+  SDL_Init (SDL_INIT_AUDIO | SDL_INIT_NOPARACHUTE);
+
+  if (Mix_OpenAudio (audio_rate, audio_format, audio_channels, buf_size) < 0) {
+    g_warning ("Error calling Mix_OpenAudio\n");
     return;
   }
 #endif /* HAVE_SDL_MIXER */
