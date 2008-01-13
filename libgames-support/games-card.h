@@ -99,16 +99,16 @@ typedef enum {
   GAMES_CARDS_TOTAL = 56,
 } GamesCardIDType;
 
-int games_card_get_name_by_id_snprintf (char *buffer,
-                                        gsize bufsize,
-                                        int card_id);
 int games_card_get_node_by_suit_and_rank_snprintf (char *buffer,
                                                    gsize bufsize,
                                                    int suit,
                                                    int rank);
-char * games_card_get_name_by_id (int card_id);
 
-const char *games_card_get_name (Card card);
+int games_card_get_name_by_id_snprintf (char *buffer,
+                                        gsize bufsize,
+                                        int card_id);
+
+char * games_card_get_name_by_id (int card_id);
 
 G_END_DECLS
 

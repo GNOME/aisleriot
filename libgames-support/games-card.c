@@ -61,6 +61,37 @@ static const guint8 rank_offsets[] = {
 };
 
 /**
+ * games_card_get_node_by_suit_and_rank_snprintf:
+ * @buffer: the output buffer
+ * @bufsize: the size of the output buffer
+ * @card_id: the ID of the card
+ *
+ * Prints the identifier for the card @card into @buffer.
+ *
+ * Returns: the number of bytes which would be produced if the buffer
+ * was large enough.
+ */
+int
+games_card_get_node_by_suit_and_rank_snprintf (char *buffer,
+                                               gsize bufsize,
+                                               int suit,
+                                               int rank)
+{
+  int len;
+
+  if (G_LIKELY (suit < 4)) {
+    len = g_snprintf (buffer, bufsize, "#%s_%s",
+                      ranks + rank_offsets[rank],
+                      suites + suite_offsets[suit]);
+  } else {
+    len = g_snprintf (buffer, bufsize, "#%s",
+                      extra_cards + extra_card_offsets[rank]);
+  }
+
+  return len;
+}
+
+/**
  * games_card_get_name_by_id_snprintf:
  * @buffer: the output buffer
  * @bufsize: the size of the output buffer
@@ -94,37 +125,6 @@ games_card_get_name_by_id_snprintf (char *buffer,
 }
 
 /**
- * games_card_get_node_by_suit_and_rank_snprintf:
- * @buffer: the output buffer
- * @bufsize: the size of the output buffer
- * @card_id: the ID of the card
- *
- * Prints the identifier for the card @card into @buffer.
- *
- * Returns: the number of bytes which would be produced if the buffer
- * was large enough.
- */
-int
-games_card_get_node_by_suit_and_rank_snprintf (char *buffer,
-                                               gsize bufsize,
-                                               int suit,
-                                               int rank)
-{
-  int len;
-
-  if (G_LIKELY (suit < 4)) {
-    len = g_snprintf (buffer, bufsize, "#%s_%s",
-                      ranks + rank_offsets[rank],
-                      suites + suite_offsets[suit]);
-  } else {
-    len = g_snprintf (buffer, bufsize, "#%s",
-                      extra_cards + extra_card_offsets[rank]);
-  }
-
-  return len;
-}
-
-/**
  * games_card_get_name_by_id:
  * @card_id:
  *
@@ -140,17 +140,4 @@ games_card_get_name_by_id (gint card_id)
   games_card_get_name_by_id_snprintf (name, sizeof (name), card_id);
 
   return g_strdup (name);
-}
-
-/**
- * games_card_get_name:
- * @card:
- *
- * Returns: a localised name for @card, e.g. "Face-down card" or
- * "9 of clubs", etc.
- */
-const char *
-games_card_get_name (Card card)
-{
-  return NULL;
 }
