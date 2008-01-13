@@ -60,6 +60,7 @@ add_atk_relation (GtkWidget *widget,
   relation = atk_relation_new (&object, 1, type);
   atk_relation_set_add (set, relation);
   g_object_unref (relation);
+  g_object_unref (set);
 }
 #endif /* !HAVE_HILDON */
 
