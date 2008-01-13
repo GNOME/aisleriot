@@ -1666,73 +1666,55 @@ aisleriot_board_extend_selection_in_slot (AisleriotBoard *board,
   return TRUE;
 }
 
-/* @direction is in slot coordinates, not visual coordinates */
 static gboolean
-aisleriot_board_move_cursor_by_slot (AisleriotBoard *board,
-                                     GtkDirectionType direction)
+aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
+                                                int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
   GPtrArray *slots;
-  guint i, n_slots;
-  Slot *focus_slot;
-  int new_focus_slot_index = 0;
-  Slot *new_focus_slot = NULL;
-  int new_focus_card_id;
-
-  /* Move visually, not logically */
-  if (gtk_widget_get_direction (GTK_WIDGET (board)) == GTK_TEXT_DIR_RTL) {
-    switch (direction) {
-      case GTK_DIR_TAB_FORWARD:
-      case GTK_DIR_RIGHT:
-        direction = GTK_DIR_LEFT;
-        break;
-      case GTK_DIR_TAB_BACKWARD:
-      case GTK_DIR_LEFT:
-        direction = GTK_DIR_RIGHT;
-        break;
-      default:
-        break;
-    }
-  }
+  guint n_slots;
+  Slot *focus_slot, *new_focus_slot;
+  int focus_slot_index, new_focus_slot_index;
+  int new_focus_slot_topmost_card_id, new_focus_card_id;
+  gboolean is_rtl;
 
   slots = aisleriot_game_get_slots (priv->game);
   if (!slots || slots->len == 0)
     return FALSE;
 
   focus_slot = priv->focus_slot;
+  g_assert (focus_slot != NULL);
 
   n_slots = slots->len;
-  for (i = 0; i < n_slots; ++i) {
-    if (g_ptr_array_index (slots, i) == focus_slot)
+  for (focus_slot_index = 0; focus_slot_index < n_slots; ++focus_slot_index) {
+    if (g_ptr_array_index (slots, focus_slot_index) == focus_slot)
       break;
   }
 
-  g_assert (i < n_slots); /* the focus_slot EXISTS after all */
+  g_assert (focus_slot_index < n_slots); /* the focus_slot EXISTS after all */
 
-  switch (direction) {
-    case GTK_DIR_TAB_FORWARD:
-    case GTK_DIR_RIGHT:
-      new_focus_slot_index = i + 1;
-      break;
-    case GTK_DIR_TAB_BACKWARD:
-    case GTK_DIR_LEFT:
-      new_focus_slot_index = i - 1;
-      break;
-    case GTK_DIR_UP:
-    case GTK_DIR_DOWN:
-//      new_focus_slot_index = find_closest_slot_in_direction
-    default:
-      return FALSE;
+  /* Move visually */
+  is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
+  if (is_rtl) {
+    new_focus_slot_index = focus_slot_index - count;
+  } else {
+    new_focus_slot_index = focus_slot_index + count;
   }
 
   /* Wrap-around? */
   if (new_focus_slot_index < 0 ||
       new_focus_slot_index >= n_slots) {
 #if GTK_CHECK_VERSION (2, 12, 0)
-    g_print ("wrap-around n_slots %d new_focus_slot_index %d\n", n_slots, new_focus_slot_index);
+    GtkDirectionType direction;
+
+    if (count > 0) {
+      direction = GTK_DIR_RIGHT;
+    } else {
+      direction = GTK_DIR_LEFT;
+    }
+
     if (!gtk_widget_keynav_failed (widget, direction)) {
-       g_print ("keynav-failed \n");
        // FIXMEchpe: if FALSE, continue below?
        return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
     }
@@ -1747,13 +1729,30 @@ aisleriot_board_move_cursor_by_slot (AisleriotBoard *board,
 
   g_assert (new_focus_slot_index >= 0 && new_focus_slot_index < n_slots);
 
-  g_print ("=> new_focus_slot_index %d\n", new_focus_slot_index);
-
   new_focus_slot = slots->pdata[new_focus_slot_index];
-  new_focus_card_id = ((int) new_focus_slot->cards->len) - 1;
+  new_focus_slot_topmost_card_id = ((int) new_focus_slot->cards->len) - 1;
+
+  if (new_focus_slot->expanded_right) {
+    if ((is_rtl && count < 0) ||
+        (!is_rtl && count > 0)) {
+      new_focus_card_id = new_focus_slot_topmost_card_id >= 0 ? 0 : -1;
+    } else {
+      new_focus_card_id = new_focus_slot_topmost_card_id;
+    }
+  } else {
+    /* Just take the topmost card */
+    new_focus_card_id = new_focus_slot_topmost_card_id;
+  }
 
   set_focus (board, new_focus_slot, new_focus_card_id, TRUE);
   return TRUE;
+}
+
+static gboolean
+aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
+                                             int count)
+{
+  return FALSE; // FIXMEchpe
 }
 
 static gboolean
@@ -1806,9 +1805,7 @@ aisleriot_board_move_cursor_left_right (AisleriotBoard *board,
     return TRUE;
 
   /* Cannot move in-slot; move focused slot */
-  return aisleriot_board_move_cursor_by_slot (board,
-                                              count > 0 ? GTK_DIR_RIGHT
-                                                        : GTK_DIR_LEFT);
+  return aisleriot_board_move_cursor_left_right_by_slot (board, count);
 }
 
 static gboolean
@@ -1833,9 +1830,7 @@ aisleriot_board_move_cursor_up_down (AisleriotBoard *board,
     return TRUE;
 
   /* Cannot move in-slot; move focused slot */
-  return aisleriot_board_move_cursor_by_slot (board,
-                                              count > 0 ? GTK_DIR_DOWN
-                                                        : GTK_DIR_UP);
+  return aisleriot_board_move_cursor_up_down_by_slot (board, count);
 }
 
 static gboolean
@@ -2178,11 +2173,37 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
 static void
 aisleriot_board_select_all (AisleriotBoard *board)
 {
-/*  AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot;
-  int focus_card_id,new_selection_start_card_id;*/
+  AisleriotBoardPrivate *priv = board->priv;
+  Slot *focus_slot = priv->focus_slot;
+  int new_selection_start_card_id, n_selected;
 
-  aisleriot_board_error_bell (board);
+  if (!focus_slot ||
+      focus_slot->cards->len == 0) {
+    set_selection (board, NULL, -1, FALSE);
+    aisleriot_board_error_bell (board);
+    return;
+  }
+
+  n_selected = 0;
+  new_selection_start_card_id = ((int) focus_slot->cards->len) - 1;
+  while (new_selection_start_card_id >= 0) {
+    if (!aisleriot_game_drag_valid (priv->game,
+                                    focus_slot->id,
+                                    focus_slot->cards->data + new_selection_start_card_id,
+                                    focus_slot->cards->len - new_selection_start_card_id))
+      break;
+
+    ++n_selected;
+    --new_selection_start_card_id;
+  }
+
+  if (n_selected == 0) {
+    set_selection (board, NULL, -1, FALSE);
+    aisleriot_board_error_bell (board);
+    return;
+  }
+
+  set_selection (board, focus_slot, new_selection_start_card_id + 1, TRUE);
 }
 
 static void
