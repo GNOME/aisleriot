@@ -537,7 +537,7 @@ cscmi_slot_set_cards (Slot *slot,
   aisleriot_game_slot_add_cards (game, slot, data, n_cards);
 }    
 
-static void
+static SCM
 cscmi_add_slot (SCM slot_data)
 {
   AisleriotGame *game = app_game;
@@ -547,8 +547,9 @@ cscmi_add_slot (SCM slot_data)
   int expansion_depth = 0;
 
   if (game->state > GAME_BEGIN) {
-    scm_throw (scm_from_locale_symbol ("game-started"),
-               scm_cons (scm_from_locale_string ("Cannot add a new slot after the game has started."), SCM_EOL));
+    return scm_throw (scm_from_locale_symbol ("game-started"),
+                      scm_cons (scm_from_locale_string ("Cannot add a new slot after the game has started."),
+                                SCM_EOL));
   }
 
 #ifdef HAVE_GUILE_1_8
@@ -594,6 +595,8 @@ cscmi_add_slot (SCM slot_data)
 
   /* this will update the slot length too */
   cscmi_slot_set_cards (slot, SCM_CADR (slot_data));
+
+  return SCM_EOL;
 }
 
 /* Scheme functions */
@@ -704,36 +707,11 @@ scm_set_statusbar_message (SCM message)
 }
 
 static SCM
-scm_set_surface_layout (SCM surface)
-{
-  AisleriotGame *game = app_game;
-
-  if (surface != SCM_EOL) {
-    SCM list_el;
-
-    clear_slots (game, TRUE);
-
-    for (list_el = surface; list_el != SCM_EOL; list_el = SCM_CDR (list_el))
-      cscmi_add_slot (SCM_CAR (list_el));
-  }
-
-  return SCM_EOL;
-}
-
-
-static SCM
 scm_reset_surface (void)
 {
   AisleriotGame *game = app_game;
 
   clear_slots (game, TRUE);
-  return SCM_EOL;
-}
-
-static SCM
-ar_scm_add_slot (SCM slot)
-{
-  cscmi_add_slot (slot);
   return SCM_EOL;
 }
 
@@ -1001,9 +979,8 @@ cscm_init (void)
   scm_c_define_gsubr ("get-feature-word", 0, 0, 0, scm_get_feature_word);
   scm_c_define_gsubr ("set-statusbar-message", 1, 0, 0,
                       scm_set_statusbar_message);
-  scm_c_define_gsubr ("set-surface-layout", 1, 0, 0, scm_set_surface_layout);
   scm_c_define_gsubr ("reset-surface", 0, 0, 0, scm_reset_surface);
-  scm_c_define_gsubr ("add-slot", 1, 0, 0, ar_scm_add_slot);
+  scm_c_define_gsubr ("add-slot", 1, 0, 0, cscmi_add_slot);
   scm_c_define_gsubr ("get-slot", 1, 0, 0, scm_get_slot);
   scm_c_define_gsubr ("set-cards-c!", 2, 0, 0, scm_set_cards);
   scm_c_define_gsubr ("set-slot-y-expansion!", 2, 0, 0,
