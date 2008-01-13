@@ -22,34 +22,41 @@
 
 #include "games-card.h"
 
-static const char extra_cards[][12] = {
-  "black_joker",
-  "red_joker",
-  "back",
-  "slot"
+static const char extra_cards[] =
+  "black_joker\0"
+  "red_joker\0"
+  "back\0"
+  "slot";
+static const guint8 extra_card_offsets[] = {
+  0, 12, 22, 27
 };
 
-static const char suites[][8] = {
-  "club",
-  "diamond",
-  "heart",
-  "spade"
+static const char suites[] =
+  "club\0"
+  "diamond\0"
+  "heart\0"
+  "spade";
+static const guint8 suite_offsets[] = {
+  0, 5, 13, 19
 };
 
-static const char ranks[][6] = {
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "jack",
-  "queen",
-  "king"
+static const char ranks[] =
+  "1\0"
+  "2\0"
+  "3\0"
+  "4\0"
+  "5\0"
+  "6\0"
+  "7\0"
+  "8\0"
+  "9\0"
+  "10\0"
+  "jack\0"
+  "queen\0"
+  "king";
+static const guint8 rank_offsets[] = {
+  0, 2, 4, 6, 8, 10, 12, 14, 
+  16, 18, 21, 26, 32
 };
 
 /**
@@ -74,9 +81,12 @@ games_card_get_name_by_id_snprintf (char *buffer,
   rank = card_id % 13;
 
   if (G_LIKELY (suit < 4)) {
-    len = g_snprintf (buffer, bufsize, "%s-%s", suites[suit], ranks[rank]);
+    len = g_snprintf (buffer, bufsize, "%s-%s",
+                      suites + suite_offsets[suit],
+                      ranks + rank_offsets[rank]);
   } else {
-    len = g_snprintf (buffer, bufsize, "%s", extra_cards[rank]);
+    len = g_snprintf (buffer, bufsize, "%s",
+                      extra_cards + extra_card_offsets[rank]);
   }
 
   return len;
@@ -102,9 +112,12 @@ games_card_get_node_by_suit_and_rank_snprintf (char *buffer,
   int len;
 
   if (G_LIKELY (suit < 4)) {
-    len = g_snprintf (buffer, bufsize, "#%s_%s", ranks[rank], suites[suit]);
+    len = g_snprintf (buffer, bufsize, "#%s_%s",
+                      ranks + rank_offsets[rank],
+                      suites + suite_offsets[suit]);
   } else {
-    len = g_snprintf (buffer, bufsize, "#%s", extra_cards[rank]);
+    len = g_snprintf (buffer, bufsize, "#%s",
+                      extra_cards + extra_card_offsets[rank]);
   }
 
   return len;
