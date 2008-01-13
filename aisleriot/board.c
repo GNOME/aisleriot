@@ -1477,7 +1477,8 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
  *   topmost/bottommost card of the slot
  * PageUp, PageDown: act like <control>Up, <control>Down
  * Space: selects the cards from the currently focused card to the topmost
- *   card of the slot, if this is allowed by the game
+ *   card of the slot, if this is allowed by the game. If the selection
+ *   already is exactly these cards, unsets the selection.
  * Return: performs button press on the focused card. If no action was
  *   performed by this:
  *     If not in move mode, picks up the selected cards, enters move mode.
