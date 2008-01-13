@@ -560,8 +560,7 @@ set_focus (AisleriotBoard *board,
   GtkWidget *widget = GTK_WIDGET (board);
   int top_card_id;
 
-  g_print ("set-focus slot %d card %d \n", slot ? slot->id : -1, card_id);
-  show_focus = TRUE;
+  g_print ("set-focus slot %d card %d show-focus %d\n", slot ? slot->id : -1, card_id, show_focus);
 
   /* Sanitise */
   top_card_id = slot ? ((int) slot->cards->len) - 1 : -1;
@@ -575,7 +574,8 @@ set_focus (AisleriotBoard *board,
   // FIXMEchpe take GTK_WIDGET_HAS_FOCUS into account before invalidating!
 
   if (priv->focus_slot != NULL) {
-    if (priv->show_focus) {
+    if (priv->show_focus &&
+        GTK_WIDGET_HAS_FOCUS (widget)) {
       g_print ("invalidating old focus rect\n");
       gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
     
@@ -595,7 +595,8 @@ set_focus (AisleriotBoard *board,
   priv->focus_card_id = card_id;
 
   priv->show_focus = show_focus;
-  if (show_focus) {
+  if (show_focus &&
+      GTK_WIDGET_HAS_FOCUS (widget)) {
     g_print ("invalidating new focus rect\n");
     get_focus_rect (board, &priv->focus_rect);
     gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
