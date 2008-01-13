@@ -927,7 +927,6 @@ static void
 sound_toggle_cb (GtkToggleAction *action,
                  AisleriotWindow *window)
 {
-  AisleriotWindowPrivate *priv = window->priv;
   gboolean sound_enabled;
 
   sound_enabled = gtk_toggle_action_get_active (action);
