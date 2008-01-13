@@ -565,7 +565,8 @@ get_focus_rect (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
 
-  g_return_if_fail (priv->focus_slot != NULL);
+  if (!priv->focus_slot)
+    return;
 
   get_rect_by_slot_and_card (board,
                              priv->focus_slot,
@@ -629,7 +630,8 @@ get_selection_rect (AisleriotBoard *board,
   AisleriotBoardPrivate *priv = board->priv;
   int n_cards;
 
-  g_return_if_fail (priv->selection_slot != NULL);
+  if (!priv->selection_slot)
+    return;
 
   n_cards = priv->selection_slot->cards->len - priv->selection_start_card_id;
 
@@ -960,6 +962,10 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
     slot_update_geometry (board, slot);
     slot_update_card_images (board, slot);
   }
+
+  /* Update the focus and selection rects */
+  get_focus_rect (board, &priv->focus_rect);
+  get_selection_rect (board, &priv->selection_rect);
 }
 
 static void
@@ -2485,8 +2491,6 @@ aisleriot_board_style_set (GtkWidget *widget,
                         "focus-line-width", &priv->focus_line_width,
                         "selection-color", &colour,
                         NULL);
-
-  /* FIXMEchpe: recalculate the focus_rect!!! */
 
   if (colour != NULL) {
     priv->selection_colour = *colour;
