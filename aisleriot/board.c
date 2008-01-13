@@ -2168,10 +2168,17 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
                         step == GTK_MOVEMENT_BUFFER_ENDS, FALSE);
 
   /* No focus? Set focus to the first/last slot */
-  /* FIXMEchpe: only if !shift ? */
   /* This will always return TRUE, no need for keynav-failed handling */
-  if (!priv->focus_slot)
-    return aisleriot_board_move_cursor_start_end_by_slot (board, -count);
+  if (!priv->focus_slot) {
+    switch (step) {
+      case GTK_MOVEMENT_LOGICAL_POSITIONS:
+      case GTK_MOVEMENT_VISUAL_POSITIONS:
+        /* Move as if we'd been on the last/first slot */
+        return aisleriot_board_move_cursor_start_end_by_slot (board, -count);
+      default:
+        return aisleriot_board_move_cursor_start_end_by_slot (board, count);
+    }
+  }
 
 //  if (!priv->show_focus)
     // show it; return
