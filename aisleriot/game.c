@@ -546,9 +546,9 @@ cscmi_add_slot (SCM slot_data)
   gboolean expanded_right = FALSE;
   int expansion_depth = 0;
 
-  /* FIXMEchpe check whether this can happen; if it does, fix assumption that it doesn't in Board class. */
   if (game->state > GAME_BEGIN) {
-    g_warning ("Trying to add slot after game has started!\n");
+    scm_throw (scm_from_locale_symbol ("game-started"),
+               scm_cons (scm_from_locale_string ("Cannot add a new slot after the game has started."), SCM_EOL));
   }
 
 #ifdef HAVE_GUILE_1_8
