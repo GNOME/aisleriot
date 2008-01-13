@@ -34,6 +34,7 @@ G_BEGIN_DECLS
 
 typedef struct _AisleriotBoard		AisleriotBoard;
 typedef struct _AisleriotBoardPrivate	AisleriotBoardPrivate;
+typedef struct _AisleriotBoardClass	AisleriotBoardClass;
 
 struct _AisleriotBoard {
   GtkDrawingArea parent_instance;
@@ -42,7 +43,16 @@ struct _AisleriotBoard {
   AisleriotBoardPrivate *priv;
 };
 
-typedef GtkDrawingAreaClass AisleriotBoardClass;
+struct _AisleriotBoardClass {
+  GtkDrawingAreaClass parent_class;
+
+  /* keybinding signals */
+  gboolean (* move_cursor) (AisleriotBoard *board,
+                            GtkMovementStep step,
+                            int count);
+  void (* activate) (AisleriotBoard *board);
+  void (* toggle_selection) (AisleriotBoard *board);
+};
 
 GType aisleriot_board_get_type (void);
 

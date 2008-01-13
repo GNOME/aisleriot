@@ -1,6 +1,9 @@
 /*
  *  Copyright © 1998, 2003 Jonathan Blandford <jrb@mit.edu>
- *  Copyright © 2007 Christian Persch
+ *  Copyright © 2007, 2008 Christian Persch
+ *
+ *  Some code copied from gtk+/gtk/gtkiconview:
+ *  Copyright © 2002, 2004  Anders Carlsson <andersca@gnu.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,12 +22,16 @@
 
 #include "config.h"
 
+#define ENABLE_KEYNAV
+
 #include <string.h>
 
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 
 #include <libgames-support/games-card-images.h>
 #include <libgames-support/games-files.h>
+#include <libgames-support/games-marshal.h>
 #include <libgames-support/games-pixbuf-utils.h>
 #include <libgames-support/games-sound.h>
 
@@ -65,6 +72,12 @@
 #else
 #define PIXBUF_DRAWING_LIKELIHOOD(cond) (cond)
 #endif /* HAVE_HILDON */
+
+#if GLIB_CHECK_VERSION (2, 10, 0)
+#define I_(string) g_intern_static_string (string)
+#else
+#define I_(string) string
+#endif
 
 typedef enum {
   CURSOR_DEFAULT,
@@ -183,6 +196,16 @@ enum
   PROP_SCALABLE_CARDS,
   PROP_THEME
 };
+
+enum
+{
+  ACTIVATE,
+  MOVE_CURSOR,
+  TOGGLE_SELECTION,
+  LAST_SIGNAL
+};
+
+static guint signals[LAST_SIGNAL];
 
 static void get_slot_and_card_from_point (AisleriotBoard *board,
                                           int x,
@@ -444,6 +467,17 @@ get_slot_and_card_from_point (AisleriotBoard *board,
   *_cardid = cardid > 0 ? cardid - 1 : -1;
 }
 
+#if 0
+static Slot *
+get_slot_from_slot_and_direction (AisleriotBoard *board,
+                                  Slot *origin_slot,
+                                  GtkDirectionType direction)
+{
+//  XXX FIXME;
+  return origin_slot;
+}
+#endif
+
 static void
 get_rect_by_slot_and_card (AisleriotBoard *board,
                            Slot *slot,
@@ -457,7 +491,7 @@ get_rect_by_slot_and_card (AisleriotBoard *board,
 
   g_return_if_fail (slot != NULL && card_id >= -1);
 
-  first_card_id = slot->cards->len - slot->exposed;
+  first_card_id = ((int) slot->cards->len) - ((int) slot->exposed);
 
   if (card_id >= first_card_id) {
     delta = card_id - first_card_id;
@@ -498,6 +532,7 @@ widen_rect (GdkRectangle *rect,
   rect->height = rect->height + 2 * delta;
 }
 
+#define PRINT_RECT(rect)g_print("Rect %s is %d x %d at (%d, %d)\n", #rect, rect->width, rect->height, rect->x, rect->y);
 static void
 get_focus_rect (AisleriotBoard *board,
                 GdkRectangle *rect)
@@ -511,6 +546,8 @@ get_focus_rect (AisleriotBoard *board,
                              priv->focus_card_id,
                              1, rect);
   widen_rect (rect, 2 * priv->focus_line_width);
+
+  PRINT_RECT (rect);
 }
 
 static void
@@ -523,16 +560,23 @@ set_focus (AisleriotBoard *board,
   GtkWidget *widget = GTK_WIDGET (board);
   int top_card_id;
 
+  g_print ("set-focus slot %d card %d \n", slot ? slot->id : -1, card_id);
+  show_focus = TRUE;
+
   /* Sanitise */
   top_card_id = slot ? ((int) slot->cards->len) - 1 : -1;
-  card_id = MAX (card_id, top_card_id);
+  card_id = MIN (card_id, top_card_id);
 
+  g_print ("top-card-id %d card-id %d\n", top_card_id, card_id);
   if (priv->focus_slot == slot &&
       priv->focus_card_id == card_id)
     return;
 
+  // FIXMEchpe take GTK_WIDGET_HAS_FOCUS into account before invalidating!
+
   if (priv->focus_slot != NULL) {
     if (priv->show_focus) {
+      g_print ("invalidating old focus rect\n");
       gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
     
       priv->show_focus = FALSE;
@@ -552,6 +596,7 @@ set_focus (AisleriotBoard *board,
 
   priv->show_focus = show_focus;
   if (show_focus) {
+    g_print ("invalidating new focus rect\n");
     get_focus_rect (board, &priv->focus_rect);
     gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
   }
@@ -574,7 +619,7 @@ get_selection_rect (AisleriotBoard *board,
                              priv->selection_slot,
                              priv->selection_start_card_id,
                              n_cards, rect);
-  widen_rect (rect, 4 * priv->focus_line_width);
+  widen_rect (rect, 4 * priv->focus_line_width); // FIXMEchpe why?
 }
 
 static void
@@ -617,6 +662,7 @@ set_selection (AisleriotBoard *board,
   }
 }
 
+#if 0
 /* If a prefix of @cards is on top of @slot, set the selection to that prefix;
  * else set selection to NULL.
  */
@@ -646,6 +692,7 @@ set_selection_with_cards (AisleriotBoard *board,
 
   set_selection (board, NULL, -1);
 }
+#endif
 
 /* Slot functions */
 
@@ -685,7 +732,7 @@ slot_update_geometry (AisleriotBoard *board,
   /* We need to make sure the cards fit within the board, even
    * when there are many of them. See bug #171417.
    */
-  /* FIXMEchpe: check slot->exposed instead of cards->len? */
+  /* FIXMEchpe: check |cards->len - slot->exposed| instead of cards->len? */
   pixeldx = 0;
   if (cards->len > 1) {
     double dx = 0, dy = 0;
@@ -842,6 +889,14 @@ slot_update_card_images (AisleriotBoard *board,
 }
 
 /* helper functions */
+
+static void
+aisleriot_board_error_bell (AisleriotBoard *board)
+{
+#if GTK_CHECK_VERSION (2, 12, 0)
+  gtk_widget_error_bell (GTK_WIDGET (board));
+#endif
+}
 
 /* Work out new sizes and spacings for the cards. */
 static void
@@ -1079,7 +1134,7 @@ drag_begin (AisleriotBoard *board)
 
   slot_update_geometry (board, hslot);
   slot_update_card_images (board, hslot);
-      
+
   set_cursor (board, CURSOR_CLOSED);
 }
 
@@ -1319,6 +1374,428 @@ clear_state (AisleriotBoard *board)
   priv->last_clicked_card_id = -1;
 }
 
+/* Keynav */
+
+#ifdef ENABLE_KEYNAV
+
+/** Keynav specification:
+ *
+ * Focus state consists of the slot that has the focus, and the card ID
+ * in that slot of the card that has the focus; -1 if the slot has no
+ * cards on it and is thus itself focused.
+ *
+ * Without modifiers, for focus movement:
+ * Left, Right: for right-extended slots, moves the focus to the card
+ *   under/over the currently focused card on the same slot.
+ *   Otherwise, or if the focused card is already the bottommost/topmost
+ *   card of the slot, moves the focus to the topmost/bottommost card
+ *   on the slot left/right to the currently focused slot
+ * Up, Down:  for down-extended slots, moves the focus to the card
+ *   under/over the currently focused card on the same slot.
+ *   Otherwise, or if the focused card is already the bottommost/topmost
+ *   card of the slot, moves the focus to the topmost/bottommost card
+ *   on the slot over/under the currently focused slot
+ * Home, End: for down- or right-extended slots, moves the focus to the
+ *   topmost/bottommost card of the slot
+ * PageUp, PageDown: act like <control>Up, <control>Down
+ * Space: selects the cards from the currently focused card to the topmost
+ *   card of the slot, if this is allowed by the game
+ * Return: performs button press on the focused card. If no action was
+ *   performed by this:
+ *     If not in move mode, picks up the selected cards, enters move mode.
+ *     If already in move mode, puts down the selected cards on top of
+ *     the focused slot, if this is allowed by the game, and exits move mode
+ *
+ * With <control>, for focus movement:
+ * Left, Right: moves the focus to the topmost/bottommost card on the
+ *   slot; if that card is already focused, moves the focus to the
+ *   topmost/bottommost card on the slot left/right to the currently
+ *   focused slot
+ * Up, Down: moves the focus to the topmost/bottommost card on the
+ *   slot; if that card is already focused, moves the focus to the
+ *   topmost/bottommost card on the slot over/under the currently
+ *   focused slot
+ * Home, End: moves the focus to the bottommost/topmost card on the
+ *   first/last slot
+ * Return: performs double-click on the focused card
+ *
+ * With <shift>: extends the selection; focus movement itself occurs
+ *   like for the same key without modifiers.
+ * Left, Right: for right-extended slots, shrinks/extends the selection
+ *   by one card, if this is allowed by the game
+ * Up, Down: for down-extended slots, extends/shrinks the selection
+ *   by one card, if this is allowed by the game
+ * Home, End: for down- or right-extended slots, selects the topmost
+ *   card/all cards on the slot, if this is allowed by the game
+ * 
+ * With <control><shift>: extends selection like with <shift> alone,
+ *   and moves focus like with <control> alone
+ *
+ *
+ * Notes:
+ * - if no slot is currently focused, any cursor moves set the focus to the
+ *   topmost card on the first slot
+ */
+
+static void
+aisleriot_board_add_move_binding (GtkBindingSet  *binding_set,
+                                  guint           keyval,
+                                  guint           modmask,
+                                  GtkMovementStep step,
+                                  gint            count)
+{
+  gtk_binding_entry_add_signal (binding_set, keyval,
+                                modmask,
+                                "move-cursor", 2,
+                                G_TYPE_ENUM, step,
+                                G_TYPE_INT, count);
+
+  if (modmask & GDK_CONTROL_MASK)
+   return;
+
+  gtk_binding_entry_add_signal (binding_set, keyval,
+                                modmask | GDK_CONTROL_MASK,
+                                "move-cursor", 2,
+                                G_TYPE_ENUM, step,
+                                G_TYPE_INT, count);
+
+}
+
+static void
+aisleriot_board_add_move_and_select_binding (GtkBindingSet  *binding_set,
+                                             guint           keyval,
+                                             guint           modmask,
+                                             GtkMovementStep step,
+                                             gint            count)
+{
+  aisleriot_board_add_move_binding (binding_set, keyval, modmask, step, count);
+  aisleriot_board_add_move_binding (binding_set, keyval, modmask | GDK_SHIFT_MASK, step, count);
+}
+
+static gboolean
+aisleriot_board_move_cursor_in_slot (AisleriotBoard *board,
+                                     int count)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  Slot *focus_slot;
+  int new_focus_card_id, first_card_id;
+
+  focus_slot = priv->focus_slot;
+  first_card_id = ((int) focus_slot->cards->len) - ((int) focus_slot->exposed);
+  new_focus_card_id = priv->focus_card_id + count;
+  if (new_focus_card_id < first_card_id || new_focus_card_id >= (int) focus_slot->cards->len)
+    return FALSE;
+
+  set_focus (board, focus_slot, new_focus_card_id, TRUE);
+  return TRUE;
+}
+
+static gboolean
+aisleriot_board_move_cursor_start_end_in_slot (AisleriotBoard *board,
+                                               int count)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  Slot *focus_slot;
+  int new_focus_card_id;
+
+  g_print ("start-end-in-slot %d\n", count);
+
+  focus_slot = priv->focus_slot;
+  if (count > 0) {
+    new_focus_card_id = ((int) focus_slot->cards->len) - 1;
+  } else {
+    if (focus_slot->cards->len > 0) {
+      new_focus_card_id = ((int) focus_slot->cards->len) - ((int) focus_slot->exposed);
+    } else {
+      new_focus_card_id = -1;
+    }
+  }
+
+  g_assert (new_focus_card_id >= -1);
+
+  /* FIXMEchpe: maybe just eat it up silently? */
+  if (new_focus_card_id == priv->focus_card_id)
+    return FALSE;
+
+  set_focus (board, focus_slot, new_focus_card_id, TRUE);
+  return TRUE;
+}
+
+static gboolean
+aisleriot_board_extend_selection_in_slot (AisleriotBoard *board,
+                                          int count)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  Slot *focus_slot, *selection_slot;
+  int new_selection_start_card_id, first_card_id;
+
+  focus_slot = priv->focus_slot;
+  selection_slot = priv->selection_slot;
+  first_card_id = ((int) focus_slot->cards->len) - ((int) focus_slot->exposed);
+
+  if (selection_slot == focus_slot) {
+    new_selection_start_card_id = priv->selection_start_card_id + count;
+
+    /* Can only extend the selection if the focus is adjacent to the selection */
+    if (priv->focus_card_id - 1 > new_selection_start_card_id ||
+        priv->focus_card_id + 1 < new_selection_start_card_id)
+      return FALSE;
+  } else {
+    /* No selection yet */
+    new_selection_start_card_id = ((int) focus_slot->cards->len) + count;
+
+    /* Must have the topmost card focused */
+    if (new_selection_start_card_id != priv->focus_card_id)
+      return FALSE;
+  }
+
+  g_print ("extend-selection-in-slot count %d old-selection-start %d new-selection-start %d focus %d\n",
+           count, priv->selection_start_card_id, new_selection_start_card_id, priv->focus_card_id);
+
+  if (new_selection_start_card_id < first_card_id)
+    return FALSE;
+
+  /* If it's the top card, unselect all */
+  if (new_selection_start_card_id >= focus_slot->cards->len) {
+    set_selection (board, NULL, -1);
+    return TRUE;
+  }
+    
+  if (!aisleriot_game_drag_valid (priv->game,
+                                  focus_slot->id,
+                                  focus_slot->cards->data + new_selection_start_card_id,
+                                  focus_slot->cards->len - new_selection_start_card_id))
+    return FALSE;
+
+  set_selection (board, focus_slot, new_selection_start_card_id);
+
+  /* Try to move the cursor too, but don't beep if that fails */
+  aisleriot_board_move_cursor_in_slot (board, count);
+  return TRUE;
+}
+
+/* @direction is in slot coordinates, not visual coordinates */
+static gboolean
+aisleriot_board_move_cursor_by_slot (AisleriotBoard *board,
+                                     GtkDirectionType direction)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+//   GtkWidget *widget = GTK_WIDGET (board);
+  GPtrArray *slots;
+  guint i, n_slots;
+  Slot *focus_slot;
+  guint new_focus_slot_index = 0;
+  Slot *new_focus_slot = NULL;
+  int new_focus_card_id;
+
+  /* Move visually, not logically */
+  if (gtk_widget_get_direction (GTK_WIDGET (board)) == GTK_TEXT_DIR_RTL) {
+    switch (direction) {
+      case GTK_DIR_RIGHT:
+        direction = GTK_DIR_LEFT;
+        break;
+      case GTK_DIR_LEFT:
+        direction = GTK_DIR_RIGHT;
+        break;
+      default:
+        break;
+    }
+  }
+
+  slots = aisleriot_game_get_slots (priv->game);
+  if (!slots || slots->len == 0)
+    return FALSE;
+
+  focus_slot = priv->focus_slot;
+
+  n_slots = slots->len;
+  for (i = 0; i < n_slots; ++i) {
+    if (g_ptr_array_index (slots, i) == focus_slot)
+      break;
+  }
+
+  g_assert (i < n_slots); /* the focus_slot EXISTS after all */
+
+  switch (direction) {
+    case GTK_DIR_RIGHT:
+      if (i < n_slots - 1) {
+        new_focus_slot_index = i + 1;
+      } else {
+        new_focus_slot_index = 0;
+      }
+      break;
+    case GTK_DIR_LEFT:
+      if (i > 0) {
+        new_focus_slot_index = i - 1;
+      } else {
+        new_focus_slot_index = n_slots - 1;
+      }
+      break;
+    case GTK_DIR_UP:
+    case GTK_DIR_DOWN:
+//      new_focus_slot_index = find_closest_slot_in_direction
+    default:
+      return FALSE;
+  }
+
+  new_focus_slot = slots->pdata[new_focus_slot_index];
+  new_focus_card_id = ((int) new_focus_slot->cards->len) - 1;
+
+  set_focus (board, new_focus_slot, new_focus_card_id, TRUE);
+  return TRUE;
+}
+
+static gboolean
+aisleriot_board_move_cursor_start_end_by_slot (AisleriotBoard *board,
+                                               int count)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  GPtrArray *slots;
+  Slot *new_focus_slot;
+  int new_focus_card_id;
+
+  g_print ("start-end-by-slot %d\n", count);
+
+  slots = aisleriot_game_get_slots (priv->game);
+  if (!slots || slots->len == 0)
+    return FALSE;
+
+  if (count > 0) {
+    new_focus_slot = (Slot *) slots->pdata[slots->len - 1];
+    new_focus_card_id = ((int) new_focus_slot->cards->len) - 1;
+  } else {
+    new_focus_slot = (Slot *) slots->pdata[0];
+    new_focus_card_id = new_focus_slot->cards->len > 0 ? 0 : -1;
+  }
+
+  g_assert (new_focus_slot != NULL);
+  g_assert (new_focus_card_id >= -1);
+
+  set_focus (board, new_focus_slot, new_focus_card_id, TRUE);
+  return TRUE;
+}
+
+static gboolean
+aisleriot_board_move_cursor_left_right (AisleriotBoard *board,
+                                        int count,
+                                        gboolean is_control)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  GtkWidget *widget = GTK_WIDGET (board);
+  gboolean is_rtl;
+
+  g_print ("left-right %d\n", count);
+
+  is_rtl = (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL);
+
+  /* First try in-slot focus movement */
+  if (!is_control &&
+      priv->focus_slot->expanded_right &&
+      aisleriot_board_move_cursor_in_slot (board, is_rtl ? -count : count))
+    return TRUE;
+
+  /* Cannot move in-slot; move focused slot */
+  return aisleriot_board_move_cursor_by_slot (board,
+                                              count > 0 ? GTK_DIR_RIGHT
+                                                        : GTK_DIR_LEFT);
+}
+
+static gboolean
+aisleriot_board_move_cursor_up_down (AisleriotBoard *board,
+                                     int count,
+                                     gboolean is_control)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  GtkWidget *widget = GTK_WIDGET (board);
+  gboolean is_rtl;
+
+  g_print ("up-down %d\n", count);
+
+  g_assert (priv->focus_slot != NULL);
+
+  is_rtl = (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL);
+
+  /* First try in-slot focus movement */
+  if (!is_control &&
+      priv->focus_slot->expanded_down &&
+      aisleriot_board_move_cursor_in_slot (board, is_rtl ? -count : count))
+    return TRUE;
+
+  /* Cannot move in-slot; move focused slot */
+  return aisleriot_board_move_cursor_by_slot (board,
+                                              count > 0 ? GTK_DIR_DOWN
+                                                        : GTK_DIR_UP);
+}
+
+static gboolean
+aisleriot_board_extend_selection_left_right (AisleriotBoard *board,
+                                             int count)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+
+  g_print ("extend-selection-left-right\n");
+  if (!priv->focus_slot->expanded_right)
+    return FALSE;
+
+  return aisleriot_board_extend_selection_in_slot (board, count);
+}
+
+static gboolean
+aisleriot_board_extend_selection_up_down (AisleriotBoard *board,
+                                          int count)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+
+  g_print ("extend-selection-up-down\n");
+  if (!priv->focus_slot->expanded_down)
+    return FALSE;
+
+  return aisleriot_board_extend_selection_in_slot (board, count);
+}
+
+
+static gboolean
+aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
+                                            int count)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+
+  g_print ("extend-selection-start-end\n");
+
+  if (count > 0) {
+    set_selection (board, NULL, -1);
+  } else {
+    Slot *focus_slot;
+    int first_card_id;
+    GByteArray *cards;
+//     int new_selection_start_card_id;
+
+    focus_slot = priv->focus_slot;
+    cards = focus_slot->cards;
+    first_card_id = ((int) cards->len) - ((int) focus_slot->exposed);
+
+/*    if (priv->focus_card_id = ((int) cards->len - 1))
+    new_selection_start_card_id = priv->focus_card_id;
+        aisleriot_game_drag_valid (priv->game,
+                                   focus_slot->id,
+                                   focus_slot->cards->data + first_card_id,
+                                   focus_slot->cards->len - first_card_id)) {*/
+    if (priv->focus_card_id >= first_card_id &&
+        priv->focus_card_id == ((int) focus_slot->cards->len) - 1 &&
+        aisleriot_game_drag_valid (priv->game,
+                                   focus_slot->id,
+                                   focus_slot->cards->data + first_card_id,
+                                   focus_slot->cards->len - first_card_id)) {
+      set_selection (board, focus_slot, first_card_id);
+    }
+  }
+
+  aisleriot_board_move_cursor_start_end_in_slot (board, count);
+  return TRUE;
+}
+
+#endif /* ENABLE_KEYNAV */
+
 /* Game state handling */
 
 static void
@@ -1404,6 +1881,10 @@ slot_changed_cb (AisleriotGame *game,
     priv->click_status = STATUS_NONE;
   }
   if (slot == priv->focus_slot) {
+    /* Try to keep the focus intact. If the focused card isn't there
+     * anymore, this will set the focus to the topmost card of there
+     * same slot, or the slot itself if there are no cards on it.
+     */
     set_focus (board, slot, priv->focus_card_id, priv->show_focus);
   }
   if (slot == priv->highlight_slot) {
@@ -1415,6 +1896,243 @@ slot_changed_cb (AisleriotGame *game,
 
 G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GTK_TYPE_DRAWING_AREA);
 
+/* AisleriotBoardClass methods */
+
+#ifdef ENABLE_KEYNAV
+
+static void
+aisleriot_board_activate (AisleriotBoard *board)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  GtkWidget *widget = GTK_WIDGET (board);
+  Slot *focus_slot = priv->focus_slot;
+  Slot *selection_slot = priv->selection_slot;
+  int selection_start_card_id = priv->selection_start_card_id;
+  guint state = 0;
+  gboolean moved;
+  guint8 *cards;
+  guint n_cards;
+
+  if (!GTK_WIDGET_HAS_FOCUS (widget))
+    return;
+
+  if (!focus_slot) {
+    aisleriot_board_error_bell (board);
+    return;
+  }
+
+  if (!gtk_get_current_event_state (&state))
+    state = 0;
+
+  /* Control-Activate is double-click */
+  if (state & GDK_CONTROL_MASK) {
+    aisleriot_game_record_move (priv->game, -1, NULL, 0);
+    if (aisleriot_game_button_double_clicked_lambda (priv->game, focus_slot->id)) {
+      aisleriot_game_end_move (priv->game);
+    } else {
+      aisleriot_game_discard_move (priv->game);
+      aisleriot_board_error_bell (board);
+    }
+
+    aisleriot_game_test_end_of_game (priv->game);
+
+    return;
+  }
+
+  /* Try single click action */
+  aisleriot_game_record_move (priv->game, -1, NULL, 0);
+
+  if (aisleriot_game_button_clicked_lambda (priv->game, focus_slot->id)) {
+    aisleriot_game_end_move (priv->game);
+    games_sound_play ("click");
+    aisleriot_game_test_end_of_game (priv->game);
+
+    return;
+  }
+
+  aisleriot_game_discard_move (priv->game);
+
+  /* If we have a selection, and the topmost card of a slot is focused,
+   * try to move the selected cards to the focused slot.
+   *
+   * NOTE: We cannot use aisleriot_game_drop_valid here since the
+   * game may not support the "droppable" feature.
+   */
+  if (selection_slot != NULL &&
+      selection_start_card_id >= 0 &&
+      priv->focus_card_id == ((int) focus_slot->cards->len) - 1) {
+    /* Remove the old selection. If the move doesn't succeed,
+     * we'll re-select them later.
+     */
+    set_selection (board, NULL, -1);
+
+    priv->click_status = STATUS_NONE;
+
+    aisleriot_game_record_move (priv->game,
+                                selection_slot->id,
+                                selection_slot->cards->data,
+                                selection_slot->cards->len);
+
+    /* Store the cards, since the move could alter slot->cards! */
+    g_assert (selection_slot->cards->len >= selection_start_card_id);
+    n_cards = selection_slot->cards->len - selection_start_card_id;
+
+    cards = g_alloca (n_cards);
+    memcpy (cards,
+            selection_slot->cards->data + selection_start_card_id,
+            n_cards);
+
+    /* Now take the cards off of the origin slot. We'll update the slot geometry later */
+    g_byte_array_set_size (selection_slot->cards, selection_start_card_id);
+    selection_slot->needs_update = TRUE;
+
+    moved = aisleriot_game_drop_cards (priv->game,
+                                       selection_slot->id,
+                                       focus_slot->id,
+                                       cards,
+                                       n_cards);
+    if (moved) {
+      aisleriot_game_end_move (priv->game);
+
+      games_sound_play ("click");
+
+      /* Select the new topmost card */
+      set_focus (board, focus_slot, ((int) focus_slot->cards->len - 1), TRUE);
+
+      if (selection_slot->needs_update)
+        g_signal_emit_by_name (priv->game, "slot-changed", selection_slot); /* FIXMEchpe! */
+
+      aisleriot_game_test_end_of_game (priv->game);
+
+      return;
+    }
+
+    aisleriot_game_discard_move (priv->game);
+    aisleriot_game_slot_add_cards (priv->game, selection_slot, cards, n_cards);
+
+    g_print ("set-selection start %d len %d\n", selection_start_card_id, selection_slot->cards->len);
+    set_selection (board, selection_slot, selection_start_card_id);
+  }
+
+  aisleriot_board_error_bell (board);
+}
+
+static gboolean
+aisleriot_board_move_cursor (AisleriotBoard *board,
+                             GtkMovementStep step,
+                             int count)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  guint state;
+  gboolean is_control, is_shift, rv = FALSE;
+
+  if (!GTK_WIDGET_HAS_FOCUS (GTK_WIDGET (board)))
+    return FALSE;
+
+  g_return_val_if_fail (step == GTK_MOVEMENT_LOGICAL_POSITIONS ||
+                        step == GTK_MOVEMENT_VISUAL_POSITIONS ||
+                        step == GTK_MOVEMENT_DISPLAY_LINES ||
+                        step == GTK_MOVEMENT_PAGES ||
+                        step == GTK_MOVEMENT_BUFFER_ENDS, FALSE);
+
+  /* No focus? Set focus to the first/last slot */
+  /* FIXMEchpe: only if !shift ? */
+  /* This will always return TRUE, no need for keynav-failed handling */
+  if (!priv->focus_slot)
+    return aisleriot_board_move_cursor_start_end_by_slot (board, -count);
+
+//  if (!priv->show_focus)
+    // show it; return
+
+  g_assert (priv->focus_slot != NULL);
+
+  if (!gtk_get_current_event_state (&state))
+    state = 0;
+
+  is_shift = (state & GDK_SHIFT_MASK) != 0;
+  is_control = (state & GDK_CONTROL_MASK) != 0;
+
+  switch (step) {
+    case GTK_MOVEMENT_LOGICAL_POSITIONS:
+    case GTK_MOVEMENT_VISUAL_POSITIONS:
+      if (is_shift) {
+        rv = aisleriot_board_extend_selection_left_right (board, count);
+      } else {
+        rv = aisleriot_board_move_cursor_left_right (board, count, is_control);
+      }
+      break;
+    case GTK_MOVEMENT_DISPLAY_LINES:
+      if (is_shift) {
+        rv = aisleriot_board_extend_selection_up_down (board, count);
+      } else {
+        rv = aisleriot_board_move_cursor_up_down (board, count, is_control);
+      }
+      break;
+    case GTK_MOVEMENT_PAGES:
+      if (!is_shift) {
+        rv = aisleriot_board_move_cursor_up_down (board, count, TRUE);
+      }
+      break;
+    case GTK_MOVEMENT_BUFFER_ENDS:
+      if (is_shift) {
+        rv = aisleriot_board_extend_selection_start_end (board, count);
+      } else if (is_control) {
+        rv = aisleriot_board_move_cursor_start_end_by_slot (board, count);
+      } else {
+        rv = aisleriot_board_move_cursor_start_end_in_slot (board, count);
+      }
+      break;
+    default:
+      g_assert_not_reached ();
+  }
+
+  if (!rv) {
+//     gtk_widget_keynav_failed (widget, count > 0 ? GTK_DIR_TAB_FORWARD : GTK_DIR_TAB_BACKWARD)
+  }
+
+  return rv;
+}
+
+static void
+aisleriot_board_toggle_selection (AisleriotBoard *board)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  Slot *focus_slot;
+  int focus_card_id,new_selection_start_card_id;
+
+  focus_slot = priv->focus_slot;
+  focus_card_id = priv->focus_card_id;
+  if (focus_card_id < 0)
+    return;
+
+  if (priv->selection_slot == focus_slot &&
+      priv->selection_start_card_id <= focus_card_id) {
+    /* Truncate selection */
+    new_selection_start_card_id = focus_card_id + 1;
+  } else {
+    /* Extend selection */
+    new_selection_start_card_id = focus_card_id;
+  }
+
+  g_print ("select-card old-selection-start %d new-selection-start %d focus %d\n",
+           priv->selection_start_card_id, new_selection_start_card_id, focus_card_id);
+
+  if (new_selection_start_card_id < 0 ||
+      new_selection_start_card_id >= focus_slot->cards->len)
+    return;
+
+  if (!aisleriot_game_drag_valid (priv->game,
+                                  focus_slot->id,
+                                  focus_slot->cards->data + new_selection_start_card_id,
+                                  focus_slot->cards->len - new_selection_start_card_id))
+    return;
+
+  set_selection (board, focus_slot, new_selection_start_card_id);
+}
+
+#endif /* ENABLE_KEYNAV */
+
+/* GtkWidgetClass methods */
 static void
 aisleriot_board_realize (GtkWidget *widget)
 {
@@ -1548,6 +2266,8 @@ aisleriot_board_style_set (GtkWidget *widget,
                         "selection-color", &colour,
                         NULL);
 
+  /* FIXMEchpe: recalculate the focus_rect!!! */
+
   if (colour != NULL) {
     priv->selection_colour = *colour;
     gdk_color_free (colour);
@@ -1561,6 +2281,7 @@ aisleriot_board_style_set (GtkWidget *widget,
                                          &priv->selection_colour);
 
   /* FIXMEchpe: is this the right place? */
+  // XXX move to direction-changed signal handler
   priv->is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->style_set (widget, previous_style);
@@ -1585,6 +2306,14 @@ aisleriot_board_size_allocate (GtkWidget *widget,
   }
 }
 
+static void
+aisleriot_board_size_request (GtkWidget *widget,
+                              GtkRequisition *requisition)
+{
+  requisition->width = BOARD_MIN_WIDTH;
+  requisition->height = BOARD_MIN_HEIGHT;
+}
+
 /* The gtkwidget.c focus in/out handlers queue a shallow draw;
  * that's ok for us but maybe we want to optimise this a bit to
  * only do it if we have a focus to draw/erase?
@@ -1596,11 +2325,14 @@ aisleriot_board_focus_in (GtkWidget *widget,
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
 
-  /* If we're not showing focus, no need to redraw on focus change */
-  if (!priv->show_focus)
-    return FALSE;
+  /* Paint focus */
+  if (priv->show_focus &&
+      priv->focus_slot != NULL) {
+    gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
+  }
 
-  return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus_in_event (widget, event);
+  return FALSE;
+//  return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus_in_event (widget, event);
 }
 
 static gboolean
@@ -1612,11 +2344,14 @@ aisleriot_board_focus_out (GtkWidget *widget,
 
   clear_state (board);
 
-  /* If we're not showing focus, no need to redraw on focus change */
-  if (!priv->show_focus)
-    return FALSE;
+  /* Hide focus */
+  if (priv->show_focus &&
+      priv->focus_slot != NULL) {
+    gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
+  }
 
-  return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus_out_event (widget, event);
+  return FALSE;
+//  return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus_out_event (widget, event);
 }
 
 static gboolean
@@ -2221,13 +2956,36 @@ aisleriot_board_expose_event (GtkWidget *widget,
 
 draw_focus:
 
-  /* FIXMEchpe: Once we support focus, draw the focus here */
+#ifdef ENABLE_KEYNAV
+  if (G_UNLIKELY (priv->show_focus &&
+                  priv->focus_slot != NULL &&
+                  GTK_WIDGET_HAS_FOCUS (widget))) {
+    GdkRectangle *focus_rect = &priv->focus_rect;
+
+    /* Check whether this needs to be drawn */
+    if (gdk_region_rect_in (region, focus_rect) == GDK_OVERLAP_RECTANGLE_OUT)
+      goto expose_done;
+
+    gtk_paint_focus (widget->style,
+                     widget->window,
+                     GTK_WIDGET_STATE (widget),
+                     &event->area,
+                     widget,
+                     "card-focus",
+                     focus_rect->x,
+                     focus_rect->y,
+                     focus_rect->width,
+                     focus_rect->height);
+  }
 
 expose_done:
+#endif /* ENABLE_KEYNAV */
 
   /* Parent class has no expose handler, no need to chain up */
   return TRUE;
 }
+
+/* GObjectClass methods */
 
 static void
 aisleriot_board_init (AisleriotBoard *board)
@@ -2362,7 +3120,11 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+#ifdef ENABLE_KEYNAV
   GtkBindingSet *binding_set;
+#endif
+
+  g_type_class_add_private (gobject_class, sizeof (AisleriotBoardPrivate));
 
   gobject_class->constructor = aisleriot_board_constructor;
   gobject_class->finalize = aisleriot_board_finalize;
@@ -2373,6 +3135,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->unrealize = aisleriot_board_unrealize;
   widget_class->style_set = aisleriot_board_style_set;
   widget_class->size_allocate = aisleriot_board_size_allocate;
+  widget_class->size_request = aisleriot_board_size_request;
   widget_class->focus_in_event = aisleriot_board_focus_in;
   widget_class->focus_out_event = aisleriot_board_focus_out;
   widget_class->button_press_event = aisleriot_board_button_press;
@@ -2385,6 +3148,46 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->tap_and_hold = aisleriot_board_tap_and_hold;
 #endif /* HAVE_MAEMO */
 
+#ifdef ENABLE_KEYNAV
+  klass->activate = aisleriot_board_activate;
+  klass->move_cursor = aisleriot_board_move_cursor;
+  klass->toggle_selection = aisleriot_board_toggle_selection;
+
+  /* Keybinding signals */
+  widget_class->activate_signal = signals[ACTIVATE] =
+    g_signal_new (I_("activate"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (AisleriotBoardClass, activate),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  signals[MOVE_CURSOR] =
+    g_signal_new (I_("move-cursor"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (AisleriotBoardClass, move_cursor),
+                  NULL, NULL,
+                  games_marshal_BOOLEAN__ENUM_INT,
+                  G_TYPE_BOOLEAN,
+                  2,
+                  GTK_TYPE_MOVEMENT_STEP,
+                  G_TYPE_INT);
+
+  signals[TOGGLE_SELECTION] =
+    g_signal_new (I_("toggle-selection"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (AisleriotBoardClass, toggle_selection),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+#endif /* ENABLE_KEYNAV */
+
+  /* Properties */
   g_object_class_install_property
     (gobject_class,
      PROP_GAME,
@@ -2412,9 +3215,63 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                          GDK_TYPE_COLOR,
                          G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
+#ifdef ENABLE_KEYNAV
+  /* Keybindings */
   binding_set = gtk_binding_set_by_class (klass);
 
-  g_type_class_add_private (gobject_class, sizeof (AisleriotBoardPrivate));
+  /* Cursor movement */
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Left, 0,
+                                               GTK_MOVEMENT_VISUAL_POSITIONS, -1);
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Left, 0,
+                                               GTK_MOVEMENT_VISUAL_POSITIONS, -1);
+
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Right, 0,
+                                               GTK_MOVEMENT_VISUAL_POSITIONS, 1);
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Right, 0,
+                                               GTK_MOVEMENT_VISUAL_POSITIONS, 1);
+  
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Up, 0,
+                                               GTK_MOVEMENT_DISPLAY_LINES, -1);
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Up, 0,
+                                               GTK_MOVEMENT_DISPLAY_LINES, -1);
+
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Down, 0,
+                                               GTK_MOVEMENT_DISPLAY_LINES, 1);
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Down, 0,
+                                               GTK_MOVEMENT_DISPLAY_LINES, 1);
+
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Home, 0,
+                                               GTK_MOVEMENT_BUFFER_ENDS, -1);
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Home, 0,
+                                               GTK_MOVEMENT_BUFFER_ENDS, -1);
+
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_End, 0,
+                                               GTK_MOVEMENT_BUFFER_ENDS, 1);
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_End, 0,
+                                               GTK_MOVEMENT_BUFFER_ENDS, 1);
+
+  aisleriot_board_add_move_binding (binding_set, GDK_Page_Up, 0,
+                                    GTK_MOVEMENT_PAGES, -1);
+  aisleriot_board_add_move_binding (binding_set, GDK_KP_Page_Up, 0,
+                                    GTK_MOVEMENT_PAGES, -1);
+
+  aisleriot_board_add_move_binding (binding_set, GDK_Page_Down, 0,
+                                    GTK_MOVEMENT_PAGES, 1);
+  aisleriot_board_add_move_binding (binding_set, GDK_KP_Page_Down, 0,
+                                    GTK_MOVEMENT_PAGES, 1);
+
+  /* Selection */
+  gtk_binding_entry_add_signal (binding_set, GDK_space, 0,
+                                "toggle-selection", 0);
+
+  /* Activate */
+  gtk_binding_entry_add_signal (binding_set, GDK_Return, 0,
+                                "activate", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_ISO_Enter, 0,
+                                "activate", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_KP_Enter, 0,
+                                "activate", 0);
+#endif /* ENABLE_KEYNAV */
 }
 
 /* public API */
