@@ -1577,8 +1577,10 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
  * <shift><control>A: unsets the selection
  *
  * Notes:
- * - if no slot is currently focused, any cursor moves set the focus to the
- *   topmost card on the first slot
+ * If no slot is currently focused:
+ * Right, Up, Down, PgUp, PgDown, Home: moves the focus to the bottommost card on the first
+ *   slot
+ * Left, End: moves the focus to the topmost card on the last slot
  */
 
 static void
@@ -2303,6 +2305,7 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
   if (!priv->focus_slot) {
     switch (step) {
       case GTK_MOVEMENT_DISPLAY_LINES:
+      case GTK_MOVEMENT_PAGES:
         /* Focus the first slot */
         return aisleriot_board_move_cursor_start_end_by_slot (board, -1);
       case GTK_MOVEMENT_LOGICAL_POSITIONS:
