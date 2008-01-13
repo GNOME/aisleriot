@@ -1517,58 +1517,64 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
 
 /** Keynav specification:
  *
- * Focus state consists of the slot that has the focus, and the card ID
- * in that slot of the card that has the focus; -1 if the slot has no
- * cards on it and is thus itself focused.
+ * Focus state consists of the slot that has the focus, and the card
+ * in that slot of the card that has the focus; if the slot has no cards
+ * the focus is on the empty slot itself.
  *
  * Without modifiers, for focus movement:
- * Left, Right: for right-extended slots, moves the focus to the card
- *   under/over the currently focused card on the same slot.
- *   Otherwise, or if the focused card is already the bottommost/topmost
- *   card of the slot, moves the focus to the topmost/bottommost card
- *   on the slot left/right to the currently focused slot
- * Up, Down:  for down-extended slots, moves the focus to the card
- *   under/over the currently focused card on the same slot.
- *   Otherwise, or if the focused card is already the bottommost/topmost
- *   card of the slot, moves the focus to the topmost/bottommost card
- *   on the slot over/under the currently focused slot
- * Home, End: for down- or right-extended slots, moves the focus to the
- *   topmost/bottommost card of the slot
- * PageUp, PageDown: act like <control>Up, <control>Down
+ * Left (Right): For right-extended slots, moves the focus to the card
+ *   under (over) the currently focused card on the same slot.
+ *   If the focused card is already the bottommost (topmost)
+ *   card of the slot, or the slot is not right-extended, moves the focus
+ *   to the topmost (bottommost) card on the slot left (right) to the currently
+ *   focused slot (wraps around from first to last slot and vv.)
+ * Up (Down): For down-extended slots, moves the focus to the card
+ *   under (over) the currently focused card on the same slot.
+ *   If the focused card is already the bottommost (topmost) card
+ *   of the slot, or the slot is not down-extended, moves the focus to
+ *   the topmost (bottommost) card of the slot over (under) the currently
+ *   focused slot (wraps around vertically)
+ * Home (End): For down- or right-extended slots, moves the focus to the
+ *   start (end) of the stack of face-up cards on the currently focused slot.
+ *   If the focus is already on that card, moves the focus over a stack of
+ *   face-down cards into the next stack of face-up cards (e.g. Athena), or
+ *   the bottommost (topmost) card on the slot if there are no such cards.
+ * PageUp, PageDown: Acts like <control>Up, <control>Down
  * Space: selects the cards from the currently focused card to the topmost
- *   card of the slot, if this is allowed by the game. If the selection
- *   already is exactly these cards, unsets the selection.
- * Return: performs button press on the focused card. If no action was
- *   performed by this:
- *     If not in move mode, picks up the selected cards, enters move mode.
- *     If already in move mode, puts down the selected cards on top of
- *     the focused slot, if this is allowed by the game, and exits move mode
+ *   card of the slot, if this is allowed by the game. If the focused card is
+ *   the first selected card already, unsets the selection.
+ * Return: Performs the button press action on the focused card.
+ *   If no action was performed by that, moves the selected card(s) to the top
+ *   of the focused slot, if this is allowed by the game.
  *
  * With <control>, for focus movement:
- * Left, Right: moves the focus to the topmost/bottommost card on the
+ * Left (Right): Moves the focus to the bottommost (topmost) card on the
  *   slot; if that card is already focused, moves the focus to the
  *   topmost/bottommost card on the slot left/right to the currently
- *   focused slot
- * Up, Down: moves the focus to the topmost/bottommost card on the
- *   slot; if that card is already focused, moves the focus to the
- *   topmost/bottommost card on the slot over/under the currently
- *   focused slot
- * Home, End: moves the focus to the bottommost/topmost card on the
- *   first/last slot
- * Return: performs double-click on the focused card
+ *   focused slot (wraps around from first to last slot and vv.)
+ * Up (Down): Moves the focus to the topmost (bottommost) card of the slot
+ *   over (under) the currently focused slot (wraps around vertically)
+ * Home (End): moves the focus to the bottommost (topmost) card on the
+ *   first (last) slot
+ * Return: Performs the double-click action on the focused card
  *
  * With <shift>: extends the selection; focus movement itself occurs
  *   like for the same key without modifiers.
- * Left, Right: for right-extended slots, shrinks/extends the selection
+ * Left (Right): for right-extended slots, extends (shrinks) the selection
  *   by one card, if this is allowed by the game
- * Up, Down: for down-extended slots, extends/shrinks the selection
+ * Up (Down): for down-extended slots, extends (shrinks) the selection
  *   by one card, if this is allowed by the game
- * Home, End: for down- or right-extended slots, selects the topmost
- *   card/all cards on the slot, if this is allowed by the game
+ * Home: extends the selection maximally in the focused slot, as allowed
+ *   by the game
+ * End: shrinks the selection into nonexistence
  * 
  * With <control><shift>: extends selection like with <shift> alone,
  *   and moves focus like with <control> alone
  *
+ * Other keyboard shortcuts:
+ * <control>A: extends the selection maximally in the focused slot, as allowed
+ *   by the game
+ * <shift><control>A: unsets the selection
  *
  * Notes:
  * - if no slot is currently focused, any cursor moves set the focus to the
