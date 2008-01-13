@@ -1549,6 +1549,21 @@ aisleriot_board_add_move_and_select_binding (GtkBindingSet  *binding_set,
   aisleriot_board_add_move_binding (binding_set, keyval, modmask | GDK_SHIFT_MASK, step, count);
 }
 
+static void
+aisleriot_board_add_activate_binding (GtkBindingSet  *binding_set,
+                                      guint           keyval,
+                                      guint           modmask)
+{
+  gtk_binding_entry_add_signal (binding_set, keyval, modmask,
+                                "activate", 0);
+
+  if (modmask & GDK_CONTROL_MASK)
+    return;
+
+  gtk_binding_entry_add_signal (binding_set, keyval, modmask | GDK_CONTROL_MASK,
+                                "activate", 0);
+}
+
 static gboolean
 aisleriot_board_move_cursor_in_slot (AisleriotBoard *board,
                                      int count)
@@ -2004,6 +2019,7 @@ aisleriot_board_activate (AisleriotBoard *board)
   if (!gtk_get_current_event_state (&state))
     state = 0;
 
+  g_print ("activate state %x\n", state);
   /* Control-Activate is double-click */
   if (state & GDK_CONTROL_MASK) {
     aisleriot_game_record_move (priv->game, -1, NULL, 0);
@@ -3299,12 +3315,9 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                                 "select-all", 0);
 
   /* Activate */
-  gtk_binding_entry_add_signal (binding_set, GDK_Return, 0,
-                                "activate", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_ISO_Enter, 0,
-                                "activate", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_KP_Enter, 0,
-                                "activate", 0);
+  aisleriot_board_add_activate_binding (binding_set, GDK_Return, 0);
+  aisleriot_board_add_activate_binding (binding_set, GDK_ISO_Enter, 0);
+  aisleriot_board_add_activate_binding (binding_set, GDK_KP_Enter, 0);
 #endif /* ENABLE_KEYNAV */
 }
 
