@@ -570,7 +570,6 @@ widen_rect (GdkRectangle *rect,
   rect->height = rect->height + 2 * delta;
 }
 
-#define PRINT_RECT(rect)g_print("Rect %s is %d x %d at (%d, %d)\n", #rect, rect->width, rect->height, rect->x, rect->y);
 static void
 get_focus_rect (AisleriotBoard *board,
                 GdkRectangle *rect)
@@ -584,8 +583,6 @@ get_focus_rect (AisleriotBoard *board,
                              priv->focus_card_id,
                              1, rect);
   widen_rect (rect, 2 * priv->focus_line_width);
-
-  PRINT_RECT (rect);
 }
 
 static void
@@ -598,13 +595,10 @@ set_focus (AisleriotBoard *board,
   GtkWidget *widget = GTK_WIDGET (board);
   int top_card_id;
 
-  g_print ("set-focus slot %d card %d show-focus %d has-focus %d\n", slot ? slot->id : -1, card_id, show_focus, GTK_WIDGET_HAS_FOCUS (widget));
-
   /* Sanitise */
   top_card_id = slot ? ((int) slot->cards->len) - 1 : -1;
   card_id = MIN (card_id, top_card_id);
 
-  g_print ("top-card-id %d card-id %d\n", top_card_id, card_id);
   if (priv->focus_slot == slot &&
       priv->focus_card_id == card_id &&
       priv->show_focus == show_focus)
@@ -615,7 +609,6 @@ set_focus (AisleriotBoard *board,
   if (priv->focus_slot != NULL) {
     if (priv->show_focus &&
         GTK_WIDGET_HAS_FOCUS (widget)) {
-      g_print ("invalidating old focus rect\n");
       gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
     
       priv->show_focus = FALSE;
@@ -635,7 +628,6 @@ set_focus (AisleriotBoard *board,
 
   if (show_focus &&
       GTK_WIDGET_HAS_FOCUS (widget)) {
-    g_print ("invalidating new focus rect\n");
     get_focus_rect (board, &priv->focus_rect);
     gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
   }
@@ -1704,9 +1696,6 @@ aisleriot_board_extend_selection_in_slot (AisleriotBoard *board,
       return FALSE;
   }
 
-  g_print ("extend-selection-in-slot count %d old-selection-start %d new-selection-start %d focus %d\n",
-           count, priv->selection_start_card_id, new_selection_start_card_id, priv->focus_card_id);
-
   if (new_selection_start_card_id < first_card_id)
     return FALSE;
 
@@ -1854,8 +1843,6 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
   int new_focus_slot_topmost_card_id, new_focus_card_id;
   int x_start, x_end;
 
-  g_print ("up-down-by-slot %d\n", count);
-
   slots = aisleriot_game_get_slots (priv->game);
   if (!slots || slots->len == 0)
     return FALSE;
@@ -1940,8 +1927,6 @@ aisleriot_board_move_cursor_start_end_by_slot (AisleriotBoard *board,
   Slot *new_focus_slot;
   int new_focus_card_id;
 
-  g_print ("start-end-by-slot %d\n", count);
-
   slots = aisleriot_game_get_slots (priv->game);
   if (!slots || slots->len == 0)
     return FALSE;
@@ -1974,8 +1959,6 @@ aisleriot_board_move_cursor_left_right (AisleriotBoard *board,
   GtkWidget *widget = GTK_WIDGET (board);
   gboolean is_rtl;
 
-  g_print ("left-right %d\n", count);
-
   is_rtl = (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL);
 
   /* First try in-slot focus movement */
@@ -1997,8 +1980,6 @@ aisleriot_board_move_cursor_up_down (AisleriotBoard *board,
   GtkWidget *widget = GTK_WIDGET (board);
   gboolean is_rtl;
 
-  g_print ("up-down %d\n", count);
-
   g_assert (priv->focus_slot != NULL);
 
   is_rtl = (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL);
@@ -2019,7 +2000,6 @@ aisleriot_board_extend_selection_left_right (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
 
-  g_print ("extend-selection-left-right\n");
   if (!priv->focus_slot->expanded_right)
     return FALSE;
 
@@ -2032,7 +2012,6 @@ aisleriot_board_extend_selection_up_down (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
 
-  g_print ("extend-selection-up-down\n");
   if (!priv->focus_slot->expanded_down)
     return FALSE;
 
@@ -2046,8 +2025,6 @@ aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
   AisleriotBoardPrivate *priv = board->priv;
   Slot *focus_slot = priv->focus_slot;
   int new_focus_card_id;
-
-  g_print ("extend-selection-start-end\n");
 
   if (count > 0) {
     /* Can only shrink the selection if the focus is on the selected slot,
@@ -2215,7 +2192,6 @@ aisleriot_board_activate (AisleriotBoard *board)
   if (!gtk_get_current_event_state (&state))
     state = 0;
 
-  g_print ("activate state %x\n", state);
   /* Control-Activate is double-click */
   if (state & GDK_CONTROL_MASK) {
     aisleriot_game_record_move (priv->game, -1, NULL, 0);
