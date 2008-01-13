@@ -1381,6 +1381,74 @@ clear_state (AisleriotBoard *board)
   priv->last_clicked_card_id = -1;
 }
 
+static void
+aisleriot_board_settings_update (AisleriotBoard *board)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  GtkWidget *widget = GTK_WIDGET (board);
+  GtkSettings *settings;
+#ifndef HAVE_HILDON 
+  gboolean touchscreen_mode;
+#ifdef GDK_WINDOWING_X11
+  char *xft_rgba = NULL;
+#endif /* GDK_WINDOWING_X11 */
+#endif /* !HAVE_HILDON */
+
+   /* Set up the double-click detection. */
+  settings = gtk_widget_get_settings (widget);
+  g_object_get (settings,
+                "gtk-double-click-time", &priv->double_click_time,
+#ifndef HAVE_HILDON 
+                "gtk-touchscreen-mode", &touchscreen_mode,
+#ifdef GDK_WINDOWING_X11
+                "gtk-xft-rgba", &xft_rgba,
+#endif /* GDK_WINDOWING_X11 */
+#endif /* !HAVE_HILDON */
+                NULL);
+
+    g_print ("settings-update double-click-time:%d touchscreen:%s xft:%s\n",
+             priv->double_click_time, touchscreen_mode ? "t":"f", xft_rgba);
+
+#if defined (GDK_WINDOWING_X11) && !defined (HAVE_HILDON)
+  if (xft_rgba != NULL) {
+    gboolean antialias_set = TRUE;
+    cairo_antialias_t antialias_mode = CAIRO_ANTIALIAS_DEFAULT;
+    cairo_subpixel_order_t subpixel_order = CAIRO_SUBPIXEL_ORDER_DEFAULT;
+
+    if (strcmp (xft_rgba, "none") == 0) {
+      antialias_set = FALSE;
+    } else if (strcmp (xft_rgba, "rgb") == 0) {
+      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
+      subpixel_order = CAIRO_SUBPIXEL_ORDER_RGB;
+    } else if (strcmp (xft_rgba, "bgr") == 0) {
+      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
+      subpixel_order = CAIRO_SUBPIXEL_ORDER_BGR;
+    } else if (strcmp (xft_rgba, "vrgb") == 0) {
+      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
+      subpixel_order = CAIRO_SUBPIXEL_ORDER_VRGB;
+    } else if (strcmp (xft_rgba, "vbgr") == 0) {
+      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
+      subpixel_order = CAIRO_SUBPIXEL_ORDER_VBGR;
+    }
+
+    g_free (xft_rgba);
+
+    if (antialias_set) {
+      games_card_images_set_antialias (priv->images,
+                                       antialias_mode,
+                                       subpixel_order);
+
+      if (GTK_WIDGET_REALIZED (widget)) {
+        gtk_widget_queue_draw (widget);
+      }
+    }
+  }
+#endif /* GDK_WINDOWING_X11 && !HAVE_HILDON */
+#ifndef HAVE_HILDON 
+  priv->touchscreen_mode = touchscreen_mode != FALSE;
+#endif /* !HAVE_HILDON */
+}
+
 /* Note: this unsets the selection! */
 static gboolean
 aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
@@ -2372,13 +2440,6 @@ aisleriot_board_realize (GtkWidget *widget)
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
   GdkDisplay *display;
-  GtkSettings *settings;
-#ifndef HAVE_HILDON 
-  gboolean touchscreen_mode;
-#ifdef GDK_WINDOWING_X11
-  char *xft_rgba = NULL;
-#endif /* GDK_WINDOWING_X11 */
-#endif /* !HAVE_HILDON */
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->realize (widget);
 
@@ -2399,54 +2460,6 @@ aisleriot_board_realize (GtkWidget *widget)
   priv->cursor[CURSOR_OPEN] = make_cursor (widget, hand_open_data_bits, hand_open_mask_bits);
   priv->cursor[CURSOR_CLOSED] = make_cursor (widget, hand_closed_data_bits, hand_closed_mask_bits);
   priv->cursor[CURSOR_DROPPABLE] = gdk_cursor_new_for_display (display, GDK_DOUBLE_ARROW); /* FIXMEchpe: better cursor */
-#endif /* !HAVE_HILDON */
-
-   /* Set up the double-click detection. */
-  settings = gtk_widget_get_settings (widget);
-  /* FIXMEchpe listen to changes! */
-  g_object_get (settings,
-                "gtk-double-click-time", &priv->double_click_time,
-#ifndef HAVE_HILDON 
-                "gtk-touchscreen-mode", &touchscreen_mode,
-#ifdef GDK_WINDOWING_X11
-                "gtk-xft-rgba", &xft_rgba,
-#endif /* GDK_WINDOWING_X11 */
-#endif /* !HAVE_HILDON */
-                NULL);
-
-#if defined (GDK_WINDOWING_X11) && !defined (HAVE_HILDON)
-  if (xft_rgba != NULL) {
-    gboolean antialias_set = TRUE;
-    cairo_antialias_t antialias_mode = CAIRO_ANTIALIAS_DEFAULT;
-    cairo_subpixel_order_t subpixel_order = CAIRO_SUBPIXEL_ORDER_DEFAULT;
-
-    if (strcmp (xft_rgba, "none") == 0) {
-      antialias_set = FALSE;
-    } else if (strcmp (xft_rgba, "rgb") == 0) {
-      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
-      subpixel_order = CAIRO_SUBPIXEL_ORDER_RGB;
-    } else if (strcmp (xft_rgba, "bgr") == 0) {
-      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
-      subpixel_order = CAIRO_SUBPIXEL_ORDER_BGR;
-    } else if (strcmp (xft_rgba, "vrgb") == 0) {
-      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
-      subpixel_order = CAIRO_SUBPIXEL_ORDER_VRGB;
-    } else if (strcmp (xft_rgba, "vbgr") == 0) {
-      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
-      subpixel_order = CAIRO_SUBPIXEL_ORDER_VBGR;
-    }
-
-    g_free (xft_rgba);
-
-    if (antialias_set) {
-      games_card_images_set_antialias (priv->images,
-                                       antialias_mode,
-                                       subpixel_order);
-    }
-  }
-#endif /* GDK_WINDOWING_X11 && !HAVE_HILDON */
-#ifndef HAVE_HILDON 
-  priv->touchscreen_mode = touchscreen_mode != FALSE;
 #endif /* !HAVE_HILDON */
 
   aisleriot_board_setup_geometry (board);
@@ -2487,6 +2500,41 @@ aisleriot_board_unrealize (GtkWidget *widget)
 }
 
 static void
+aisleriot_board_screen_changed (GtkWidget *widget,
+                                GdkScreen *previous_screen)
+{
+  AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  GdkScreen *screen;
+
+  screen = gtk_widget_get_screen (widget);
+
+  g_print ("screen-changed realized %d old-screeen %p new-screen %p\n",
+           GTK_WIDGET_REALIZED (widget), previous_screen, screen);
+
+#if 0
+  if (previous_screen != NULL) {
+    GtkSettings *settings;
+
+    settings = gtk_settings_get_for_screen (previous_screen);
+    g_signal_handlers_disconnect_matched (settings, G_SIGNAL_MATCH_DATA,
+                                          0, 0, NULL, NULL,
+                                          widget);
+  }
+#endif
+
+  if (GTK_WIDGET_CLASS (aisleriot_board_parent_class)->screen_changed) {
+    GTK_WIDGET_CLASS (aisleriot_board_parent_class)->screen_changed (widget, previous_screen);
+  }
+
+  if (screen == NULL || screen == previous_screen)
+    return;
+
+  /* FIXMEchpe listen to changes! */
+
+  aisleriot_board_settings_update (board);
+}
+
+static void
 aisleriot_board_style_set (GtkWidget *widget,
                            GtkStyle *previous_style)
 {
@@ -2522,8 +2570,6 @@ aisleriot_board_style_set (GtkWidget *widget,
 
   games_card_images_set_selection_color (priv->images,
                                          &priv->selection_colour);
-
-  priv->is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->style_set (widget, previous_style);
 }
@@ -3265,6 +3311,8 @@ aisleriot_board_init (AisleriotBoard *board)
 
   GTK_WIDGET_SET_FLAGS (widget, GTK_CAN_FOCUS);
 
+  priv->is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
+
   priv->force_geometry_update = FALSE;
 
   priv->click_to_move = FALSE;
@@ -3315,6 +3363,7 @@ aisleriot_board_finalize (GObject *object)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (object);
   AisleriotBoardPrivate *priv = board->priv;
+  //GtkWidget *widget = GTK_WIDGET (board);
 
   g_signal_handlers_disconnect_matched (priv->game,
                                         G_SIGNAL_MATCH_DATA,
@@ -3326,6 +3375,13 @@ aisleriot_board_finalize (GObject *object)
   g_byte_array_free (priv->moving_cards, TRUE);
 
   g_object_unref (priv->images);
+
+#if 0
+  screen = gtk_widget_get_settings (widget);
+  g_signal_handlers_disconnect_matched (settings, G_SIGNAL_MATCH_DATA,
+                                        0, 0, NULL, NULL,
+                                        widget);
+#endif
 
   G_OBJECT_CLASS (aisleriot_board_parent_class)->finalize (object);
 }
@@ -3398,6 +3454,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
 
   widget_class->realize = aisleriot_board_realize;
   widget_class->unrealize = aisleriot_board_unrealize;
+  widget_class->screen_changed = aisleriot_board_screen_changed;
   widget_class->style_set = aisleriot_board_style_set;
   widget_class->direction_changed = aisleriot_board_direction_changed;
   widget_class->size_allocate = aisleriot_board_size_allocate;
