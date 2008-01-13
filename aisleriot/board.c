@@ -3213,7 +3213,7 @@ draw_focus:
     gtk_paint_focus (widget->style,
                      widget->window,
                      GTK_WIDGET_STATE (widget),
-                     &event->area,
+                     focus_rect,
                      widget,
                      NULL,
                      focus_rect->x,
