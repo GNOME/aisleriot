@@ -1672,20 +1672,22 @@ aisleriot_board_move_cursor_by_slot (AisleriotBoard *board,
                                      GtkDirectionType direction)
 {
   AisleriotBoardPrivate *priv = board->priv;
-//   GtkWidget *widget = GTK_WIDGET (board);
+  GtkWidget *widget = GTK_WIDGET (board);
   GPtrArray *slots;
   guint i, n_slots;
   Slot *focus_slot;
-  guint new_focus_slot_index = 0;
+  int new_focus_slot_index = 0;
   Slot *new_focus_slot = NULL;
   int new_focus_card_id;
 
   /* Move visually, not logically */
   if (gtk_widget_get_direction (GTK_WIDGET (board)) == GTK_TEXT_DIR_RTL) {
     switch (direction) {
+      case GTK_DIR_TAB_FORWARD:
       case GTK_DIR_RIGHT:
         direction = GTK_DIR_LEFT;
         break;
+      case GTK_DIR_TAB_BACKWARD:
       case GTK_DIR_LEFT:
         direction = GTK_DIR_RIGHT;
         break;
@@ -1709,19 +1711,13 @@ aisleriot_board_move_cursor_by_slot (AisleriotBoard *board,
   g_assert (i < n_slots); /* the focus_slot EXISTS after all */
 
   switch (direction) {
+    case GTK_DIR_TAB_FORWARD:
     case GTK_DIR_RIGHT:
-      if (i < n_slots - 1) {
-        new_focus_slot_index = i + 1;
-      } else {
-        new_focus_slot_index = 0;
-      }
+      new_focus_slot_index = i + 1;
       break;
+    case GTK_DIR_TAB_BACKWARD:
     case GTK_DIR_LEFT:
-      if (i > 0) {
-        new_focus_slot_index = i - 1;
-      } else {
-        new_focus_slot_index = n_slots - 1;
-      }
+      new_focus_slot_index = i - 1;
       break;
     case GTK_DIR_UP:
     case GTK_DIR_DOWN:
@@ -1729,6 +1725,27 @@ aisleriot_board_move_cursor_by_slot (AisleriotBoard *board,
     default:
       return FALSE;
   }
+
+  /* Wrap-around? */
+  if (new_focus_slot_index < 0 ||
+      new_focus_slot_index >= n_slots) {
+    g_print ("wrap-around n_slots %d new_focus_slot_index %d\n", n_slots, new_focus_slot_index);
+    if (!gtk_widget_keynav_failed (widget, direction)) {
+       g_print ("keynav-failed \n");
+       // FIXMEchpe: if FALSE, continue below?
+       return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
+    }
+
+    if (new_focus_slot_index < 0) {
+      new_focus_slot_index = ((int) n_slots) - 1;
+    } else {
+      new_focus_slot_index = 0;
+    }
+  }
+
+  g_assert (new_focus_slot_index >= 0 && new_focus_slot_index < n_slots);
+
+  g_print ("=> new_focus_slot_index %d\n", new_focus_slot_index);
 
   new_focus_slot = slots->pdata[new_focus_slot_index];
   new_focus_card_id = ((int) new_focus_slot->cards->len) - 1;
