@@ -35,40 +35,6 @@ G_BEGIN_DECLS
 #define GAMES_IS_CARD_THEME_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_THEME))
 #define GAMES_CARD_THEME_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_THEME))
 
-enum {
-  /* Cards */
-  GAMES_CARD_JOKER = 0,
-  GAMES_CARD_ACE = 1,
-  GAMES_CARD_TWO = 2,
-  GAMES_CARD_THREE = 3,
-  GAMES_CARD_FOUR = 4,
-  GAMES_CARD_FIVE = 5,
-  GAMES_CARD_SIX = 6,
-  GAMES_CARD_SEVEN = 7,
-  GAMES_CARD_EIGHT = 8,
-  GAMES_CARD_NINE = 9,
-  GAMES_CARD_TEN = 10,
-  GAMES_CARD_JACK = 11,
-  GAMES_CARD_QUEEN = 12,
-  GAMES_CARD_KING = 13,
-  GAMES_CARD_ACE_HIGH = 14,
-
-  /* Suites */
-  GAMES_CARDS_CLUBS = 0,
-  GAMES_CARDS_DIAMONDS = 2,
-  GAMES_CARDS_HEARTS = 1,
-  GAMES_CARDS_SPADES = 3,
-
-  /* Jokers */
-  GAMES_CARD_BLACK_JOKER = 52,
-  GAMES_CARD_RED_JOKER = 53,
-
-  /* Special */
-  GAMES_CARD_BACK = 54,
-  GAMES_CARD_SLOT = 55,
-  GAMES_CARDS_TOTAL = 56,
-};
-
 typedef struct {
   gint width;
   gint height;
@@ -100,8 +66,6 @@ double games_card_theme_get_aspect (GamesCardTheme * theme);
 
 GdkPixbuf *games_card_theme_get_card_pixbuf (GamesCardTheme * theme,
                                              gint cardid);
-
-gchar *games_card_theme_get_card_name (GamesCardTheme * theme, gint card_id);
 
 G_END_DECLS
 

@@ -185,7 +185,7 @@ main (int argc, char *argv[])
       if (!pixbuf)
         goto loser;
 
-      name = games_card_theme_get_card_name (theme, j);
+      name = games_card_get_name_by_id (j);
 
       filename = g_strdup_printf ("%s.png", name);
       path = g_build_filename (sizepath, filename, NULL);

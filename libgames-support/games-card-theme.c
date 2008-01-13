@@ -66,36 +66,6 @@ struct _GamesCardTheme {
   guint subpixel_order : 3; /* enough bits for cairo_subpixel_order_t */
 };
 
-static const char extra_cards[][12] = {
-  "black_joker",
-  "red_joker",
-  "back",
-  "slot"
-};
-
-static const char suites[][8] = {
-  "club",
-  "diamond",
-  "heart",
-  "spade"
-};
-
-static const char ranks[][6] = {
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "jack",
-  "queen",
-  "king"
-};
-
 enum {
   PROP_0,
   PROP_SCALABLE,
@@ -117,21 +87,6 @@ enum {
 #ifdef INSTRUMENT_LOADING
 static long totaltime = 0;
 #endif
-
-static inline void
-print_card_name (int card_id, char *buffer, gsize _size)
-{
-  int suit, rank;
-
-  suit = card_id / 13;
-  rank = card_id % 13;
-
-  if (G_LIKELY (suit < 4)) {
-    g_snprintf (buffer, _size, "%s-%s", suites[suit], ranks[rank]);
-  } else {
-    g_snprintf (buffer, _size, "%s", extra_cards[rank]);
-  }
-}
 
 static void
 games_card_theme_clear_source_pixbuf (GamesCardTheme * theme)
@@ -487,11 +442,7 @@ games_card_theme_render_card (GamesCardTheme * theme, int card_id)
     zoomx = width / card_width;
     zoomy = height / card_height;
 
-    if (G_LIKELY (suit < 4)) {
-      g_snprintf (node, sizeof (node), "#%s_%s", ranks[rank], suites[suit]);
-    } else {
-      g_snprintf (node, sizeof (node), "#%s", extra_cards[rank]);
-    }
+    games_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
 
     subpixbuf = games_preimage_render_sub (preimage,
                                            node,
@@ -542,7 +493,7 @@ games_card_theme_load_card (GamesCardTheme * theme, int card_id)
 
   g_return_val_if_fail (!theme->use_scalable, NULL);
 
-  print_card_name (card_id, name, sizeof (name));
+  games_card_get_name_by_id_snprintf (name, sizeof (name), card_id);
   g_snprintf (filename, sizeof (filename), "%s.png", name);
   path = games_build_filename (theme->theme_data.prerendered.themesizepath, filename);
 
@@ -938,23 +889,4 @@ games_card_theme_get_card_pixbuf (GamesCardTheme * theme, gint card_id)
 #endif
 
   return pixbuf;
-}
-
-/**
- * games_card_theme_get_card_name:
- * @theme:
- * @cardid:
- *
- * Returns the name of the card @cardid
- *
- * Returns: a newly allocated string containing the card's name
- */
-char *
-games_card_theme_get_card_name (GamesCardTheme * theme, gint card_id)
-{
-  char name[128];
-
-  print_card_name (card_id, name, sizeof (name));
-
-  return g_strdup (name);
 }
