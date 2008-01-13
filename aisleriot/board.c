@@ -2677,7 +2677,6 @@ aisleriot_board_focus_in (GtkWidget *widget,
   }
 
   return FALSE;
-//  return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus_in_event (widget, event);
 }
 
 static gboolean
@@ -2696,7 +2695,6 @@ aisleriot_board_focus_out (GtkWidget *widget,
   }
 
   return FALSE;
-//  return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus_out_event (widget, event);
 }
 
 static gboolean
@@ -3366,7 +3364,6 @@ aisleriot_board_finalize (GObject *object)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (object);
   AisleriotBoardPrivate *priv = board->priv;
-  //GtkWidget *widget = GTK_WIDGET (board);
 
   g_signal_handlers_disconnect_matched (priv->game,
                                         G_SIGNAL_MATCH_DATA,
