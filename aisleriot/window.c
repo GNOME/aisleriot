@@ -2292,6 +2292,9 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_box_pack_start (GTK_BOX (priv->score_box), priv->score_label, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (statusbar_hbox), priv->score_box, FALSE, FALSE, 0);
 
+  aisleriot_util_add_atk_relation (label, priv->score_label, ATK_RELATION_LABEL_FOR);
+  aisleriot_util_add_atk_relation (priv->score_label, label, ATK_RELATION_LABELLED_BY);
+
   time_box = gtk_hbox_new (12, FALSE);
   label = gtk_label_new (_("Time:"));
   gtk_box_pack_start (GTK_BOX (time_box), label, FALSE, FALSE, 0);
@@ -2299,6 +2302,9 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_box_pack_start (GTK_BOX (time_box), priv->clock, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (statusbar_hbox), time_box, FALSE, FALSE, 0);
   gtk_widget_show_all (time_box);
+
+  aisleriot_util_add_atk_relation (label, priv->clock, ATK_RELATION_LABEL_FOR);
+  aisleriot_util_add_atk_relation (priv->clock, label, ATK_RELATION_LABELLED_BY);
 #endif /* !HAVE_HILDON */
 
   /* Load the UI after we've connected the statusbar,
