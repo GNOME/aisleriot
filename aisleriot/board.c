@@ -154,6 +154,7 @@ struct _AisleriotBoardPrivate
   Slot *focus_slot;
   int focus_card_id; /* -1 for focused empty slot */
   int focus_line_width;
+  int focus_padding;
   GdkRectangle focus_rect;
 
   /* Selection */
@@ -577,7 +578,7 @@ get_focus_rect (AisleriotBoard *board,
                              priv->focus_slot,
                              priv->focus_card_id,
                              1, rect);
-  widen_rect (rect, 2 * priv->focus_line_width);
+  widen_rect (rect, priv->focus_line_width + priv->focus_padding);
 }
 
 static void
@@ -2494,6 +2495,7 @@ aisleriot_board_style_set (GtkWidget *widget,
 
   gtk_widget_style_get (widget,
                         "focus-line-width", &priv->focus_line_width,
+                        "focus-padding", &priv->focus_padding,
                         "selection-color", &colour,
                         NULL);
 
@@ -3213,7 +3215,7 @@ draw_focus:
                      GTK_WIDGET_STATE (widget),
                      &event->area,
                      widget,
-                     "card-focus",
+                     NULL,
                      focus_rect->x,
                      focus_rect->y,
                      focus_rect->width,
