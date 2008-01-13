@@ -24,9 +24,9 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 
-#ifdef HAVE_GSTREAMER
+#if defined(HAVE_GSTREAMER)
   #include <gst/gst.h>
-#elif HAVE_SDL_MIXER
+#elif defined(HAVE_SDL_MIXER)
   #include "SDL.h"
   #include "SDL_mixer.h"
 #endif 
@@ -105,7 +105,7 @@ games_sound_thread_run (gchar * data, gchar * user_data)
 #endif /* HAVE_GSTREAMER */
 
 
-#if HAVE_SDL_MIXER
+#ifdef HAVE_SDL_MIXER
 static void
 games_sound_sdl_play (gchar *filename)
 {
@@ -128,7 +128,7 @@ games_sound_sdl_play (gchar *filename)
 static void
 games_sound_init (void)
 {
-#ifdef HAVE_GSTREAMER
+#if defined(HAVE_GSTREAMER)
   GError *err = NULL;
 
   g_assert (g_thread_supported ());
@@ -139,7 +139,8 @@ games_sound_init (void)
 			       NULL, 10, FALSE, &err);
   sound_init = TRUE;
 
-#elif HAVE_SDL_MIXER
+#elif defined(HAVE_SDL_MIXER)
+
   const int audio_rate = MIX_DEFAULT_FREQUENCY;
   const int audio_format = MIX_DEFAULT_FORMAT;
   const int audio_channels = 2;
@@ -150,9 +151,7 @@ games_sound_init (void)
     g_print ("Error calling Mix_OpenAudio");
     return;
   }
-
 #endif /* HAVE_SDL_MIXER */
-
 }
 
 /**
@@ -179,7 +178,7 @@ games_sound_add_option_group (GOptionContext *context)
 void
 games_sound_play (const gchar * filename)
 {
-#ifdef HAVE_GSTREAMER
+#if defined(HAVE_GSTREAMER)
   GError *err = NULL;
 
   if (!sound_enabled)
@@ -188,16 +187,15 @@ games_sound_play (const gchar * filename)
     games_sound_init ();
 
   g_thread_pool_push (threads, (gchar *) filename, &err);
-#elif HAVE_SDL_MIXER
-  
- 
+
+#elif defined(HAVE_SDL_MIXER)
+
   if (!sound_enabled)
     return;
   if (!sound_init)
     games_sound_init ();
 
   games_sound_sdl_play (filename);
-
 #endif /* HAVE_GSTREAMER */
 }
 
@@ -210,11 +208,9 @@ games_sound_play (const gchar * filename)
 void
 games_sound_enable (gboolean enabled)
 {
-#ifdef HAVE_GSTREAMER
+#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
   sound_enabled = enabled;
-#elif HAVE_SDL_MIXER
-  sound_enabled = enabled;
-#endif /* HAVE_GSTREAMER */
+#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
 }
 
 /**
@@ -225,13 +221,11 @@ games_sound_enable (gboolean enabled)
 gboolean
 games_sound_is_enabled (void)
 {
-#ifdef HAVE_GSTREAMER
-  return sound_enabled;
-#elif HAVE_SDL_MIXER
+#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
   return sound_enabled;
 #else
   return FALSE;
-#endif /* HAVE_GSTREAMER */
+#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
 }
 
 /**
@@ -242,11 +236,9 @@ games_sound_is_enabled (void)
 gboolean
 games_sound_is_available (void)
 {
-#ifdef HAVE_GSTREAMER
-  return TRUE;
-#elif HAVE_SDL_MIXER
+#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
   return TRUE;
 #else
   return FALSE;
-#endif /* HAVE_GSTREAMER */
+#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
 }
