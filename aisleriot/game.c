@@ -44,6 +44,12 @@
 
 #define DELAYED_CALLBACK_DELAY (50)
 
+#if GLIB_CHECK_VERSION (2, 10, 0)
+#define I_(string) g_intern_static_string (string)
+#else
+#define I_(string) string
+#endif
+
 struct _AisleriotGame
 {
   GObject parent_instance;
@@ -1206,7 +1212,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
   gobject_class->get_property = aisleriot_game_get_property;
 
   signals[GAME_TYPE] =
-    g_signal_newv ("game-type",
+    g_signal_newv (I_("game-type"),
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    (GSignalFlags) (G_SIGNAL_RUN_LAST),
                    NULL,
@@ -1216,7 +1222,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                    0, NULL);
 
   signals[GAME_CLEARED] =
-    g_signal_newv ("game-cleared",
+    g_signal_newv (I_("game-cleared"),
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    (GSignalFlags) (G_SIGNAL_RUN_LAST),
                    NULL,
@@ -1226,7 +1232,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                    0, NULL);
 
   signals[GAME_NEW] =
-    g_signal_newv ("game-new",
+    g_signal_newv (I_("game-new"),
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    (GSignalFlags) (G_SIGNAL_RUN_LAST),
                    NULL,
@@ -1236,7 +1242,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                    0, NULL);
 
   signals[SLOT_CHANGED] =
-    g_signal_newv ("slot-changed",
+    g_signal_newv (I_("slot-changed"),
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    (GSignalFlags) (G_SIGNAL_RUN_LAST),
                    NULL,
@@ -1246,7 +1252,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                    1, ptr_types);
 
  signals[GAME_MESSAGE] =
-    g_signal_newv ("message",
+    g_signal_newv (I_("message"),
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    (GSignalFlags) (G_SIGNAL_RUN_LAST),
                    NULL,
@@ -1256,7 +1262,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                    1, param_types);
 
  signals[EXCEPTION] =
-    g_signal_newv ("exception",
+    g_signal_newv (I_("exception"),
                    G_OBJECT_CLASS_TYPE (gobject_class),
                    (GSignalFlags) (G_SIGNAL_RUN_LAST),
                    NULL,
