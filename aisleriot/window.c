@@ -49,7 +49,6 @@
 #endif
 #endif /* HAVE_HILDON */
 
-#include <libgames-support/games-card-common.h>
 #include <libgames-support/games-clock.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
