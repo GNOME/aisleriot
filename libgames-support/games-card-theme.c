@@ -24,7 +24,6 @@
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-#include "games-card-common.h"
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"

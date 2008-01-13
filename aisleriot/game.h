@@ -23,7 +23,7 @@
 
 #include <gdk/gdktypes.h>
 
-#include <libgames-support/games-card-common.h>
+#include <libgames-support/games-card.h>
 
 G_BEGIN_DECLS
 

@@ -1,6 +1,6 @@
 /* 
    Copyright © 2004 Callum McKenzie
-   Copyright © 2007 Christian Persch
+   Copyright © 2007, 2008 Christian Persch
 
    This library is free software; you can redistribute it and'or modify
    it under the terms of the GNU Library General Public License as published 
@@ -26,7 +26,6 @@
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-#include "games-card-common.h"
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"

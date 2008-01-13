@@ -24,10 +24,9 @@
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 
+#include "games-card.h"
 #include "games-frame.h"
 #include "games-files.h"
-
-#include "games-card-common.h"
 
 #include "games-card-selector.h"
 

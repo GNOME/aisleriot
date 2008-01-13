@@ -26,7 +26,7 @@
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-#include "games-card-common.h"
+#include "games-card.h"
 #include "games-card-theme.h"
 
 G_BEGIN_DECLS

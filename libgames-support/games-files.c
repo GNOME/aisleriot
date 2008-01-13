@@ -41,7 +41,7 @@
 #endif
 
 #include "games-files.h"
-#include "games-card-common.h"
+#include "games-card.h"
 
 G_DEFINE_TYPE (GamesFileList, games_file_list, G_TYPE_OBJECT)
 
