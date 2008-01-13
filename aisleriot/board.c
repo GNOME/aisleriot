@@ -491,6 +491,31 @@ get_slot_from_slot_and_direction (AisleriotBoard *board,
 }
 #endif
 
+static int
+get_slot_index_from_slot (AisleriotBoard *board,
+                          Slot *slot)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  GPtrArray *slots;
+  guint n_slots;
+  int slot_index;
+
+  g_assert (slot != NULL);
+
+  slots = aisleriot_game_get_slots (priv->game);
+  n_slots = slots->len;
+  g_assert (n_slots > 0);
+
+  for (slot_index = 0; slot_index < n_slots; ++slot_index) {
+    if (g_ptr_array_index (slots, slot_index) == slot)
+      break;
+  }
+
+  g_assert (slot_index < n_slots); /* the slot EXISTS after all */
+
+  return slot_index;
+}
+
 static void
 get_rect_by_slot_and_card (AisleriotBoard *board,
                            Slot *slot,
@@ -1747,16 +1772,12 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
   if (!slots || slots->len == 0)
     return FALSE;
 
+  n_slots = slots->len;
+
   focus_slot = priv->focus_slot;
   g_assert (focus_slot != NULL);
 
-  n_slots = slots->len;
-  for (focus_slot_index = 0; focus_slot_index < n_slots; ++focus_slot_index) {
-    if (g_ptr_array_index (slots, focus_slot_index) == focus_slot)
-      break;
-  }
-
-  g_assert (focus_slot_index < n_slots); /* the focus_slot EXISTS after all */
+  focus_slot_index = get_slot_index_from_slot (board, focus_slot);
 
   /* Move visually */
   is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
@@ -1834,19 +1855,15 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
   if (!slots || slots->len == 0)
     return FALSE;
 
+  n_slots = slots->len;
+
   focus_slot = priv->focus_slot;
   g_assert (focus_slot != NULL);
 
-  n_slots = slots->len;
-  for (focus_slot_index = 0; focus_slot_index < n_slots; ++focus_slot_index) {
-    if (g_ptr_array_index (slots, focus_slot_index) == focus_slot)
-      break;
-  }
-
-  g_assert (focus_slot_index < n_slots); /* the focus_slot EXISTS after all */
-
   x_start = focus_slot->rect.x;
   x_end = x_start + focus_slot->rect.width;
+
+  focus_slot_index = get_slot_index_from_slot (board, focus_slot);
 
   new_focus_slot_index = focus_slot_index;
   do {
@@ -2268,6 +2285,9 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
   /* This will always return TRUE, no need for keynav-failed handling */
   if (!priv->focus_slot) {
     switch (step) {
+      case GTK_MOVEMENT_DISPLAY_LINES:
+        /* Focus the first slot */
+        return aisleriot_board_move_cursor_start_end_by_slot (board, -1);
       case GTK_MOVEMENT_LOGICAL_POSITIONS:
       case GTK_MOVEMENT_VISUAL_POSITIONS:
         /* Move as if we'd been on the last/first slot */
