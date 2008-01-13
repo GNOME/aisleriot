@@ -1667,6 +1667,33 @@ aisleriot_board_extend_selection_in_slot (AisleriotBoard *board,
 }
 
 static gboolean
+aisleriot_board_extend_selection_in_slot_maximal (AisleriotBoard *board)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  Slot *focus_slot = priv->focus_slot;
+  int new_selection_start_card_id, n_selected;
+
+  n_selected = 0;
+  new_selection_start_card_id = ((int) focus_slot->cards->len) - 1;
+  while (new_selection_start_card_id >= 0) {
+    if (!aisleriot_game_drag_valid (priv->game,
+                                    focus_slot->id,
+                                    focus_slot->cards->data + new_selection_start_card_id,
+                                    focus_slot->cards->len - new_selection_start_card_id))
+      break;
+
+    ++n_selected;
+    --new_selection_start_card_id;
+  }
+
+  if (n_selected == 0)
+    return FALSE;
+
+  set_selection (board, focus_slot, new_selection_start_card_id + 1, TRUE);
+  return TRUE;
+}
+
+static gboolean
 aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
                                                 int count)
 {
@@ -1859,40 +1886,32 @@ aisleriot_board_extend_selection_up_down (AisleriotBoard *board,
   return aisleriot_board_extend_selection_in_slot (board, count);
 }
 
-
 static gboolean
 aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
                                             int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
+  Slot *focus_slot = priv->focus_slot;
 
   g_print ("extend-selection-start-end\n");
 
   if (count > 0) {
-    set_selection (board, NULL, -1, FALSE);
+    /* Can only shrink the selection if the focus is on the selected slot,
+     * and the focused card is on or below the start of the selection.
+     */
+    if (priv->selection_slot == focus_slot &&
+        priv->selection_start_card_id >= priv->focus_card_id) {
+      set_selection (board, NULL, -1, FALSE);
+    } else {
+      aisleriot_board_error_bell (board);
+      return FALSE;
+    }
+
   } else {
-    Slot *focus_slot;
-    int first_card_id;
-    GByteArray *cards;
-//     int new_selection_start_card_id;
-
-    focus_slot = priv->focus_slot;
-    cards = focus_slot->cards;
-    first_card_id = ((int) cards->len) - ((int) focus_slot->exposed);
-
-/*    if (priv->focus_card_id = ((int) cards->len - 1))
-    new_selection_start_card_id = priv->focus_card_id;
-        aisleriot_game_drag_valid (priv->game,
-                                   focus_slot->id,
-                                   focus_slot->cards->data + first_card_id,
-                                   focus_slot->cards->len - first_card_id)) {*/
-    if (priv->focus_card_id >= first_card_id &&
-        priv->focus_card_id == ((int) focus_slot->cards->len) - 1 &&
-        aisleriot_game_drag_valid (priv->game,
-                                   focus_slot->id,
-                                   focus_slot->cards->data + first_card_id,
-                                   focus_slot->cards->len - first_card_id)) {
-      set_selection (board, focus_slot, first_card_id, TRUE);
+    if (!aisleriot_board_extend_selection_in_slot_maximal (board)) {
+      set_selection (board, NULL, -1, FALSE);
+      aisleriot_board_error_bell (board);
+      return FALSE;
     }
   }
 
@@ -2175,35 +2194,13 @@ aisleriot_board_select_all (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
   Slot *focus_slot = priv->focus_slot;
-  int new_selection_start_card_id, n_selected;
 
   if (!focus_slot ||
-      focus_slot->cards->len == 0) {
+      focus_slot->cards->len == 0 ||
+      !aisleriot_board_extend_selection_in_slot_maximal (board)) {
     set_selection (board, NULL, -1, FALSE);
     aisleriot_board_error_bell (board);
-    return;
   }
-
-  n_selected = 0;
-  new_selection_start_card_id = ((int) focus_slot->cards->len) - 1;
-  while (new_selection_start_card_id >= 0) {
-    if (!aisleriot_game_drag_valid (priv->game,
-                                    focus_slot->id,
-                                    focus_slot->cards->data + new_selection_start_card_id,
-                                    focus_slot->cards->len - new_selection_start_card_id))
-      break;
-
-    ++n_selected;
-    --new_selection_start_card_id;
-  }
-
-  if (n_selected == 0) {
-    set_selection (board, NULL, -1, FALSE);
-    aisleriot_board_error_bell (board);
-    return;
-  }
-
-  set_selection (board, focus_slot, new_selection_start_card_id + 1, TRUE);
 }
 
 static void
