@@ -2156,10 +2156,11 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
                              int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
+  GtkWidget *widget = GTK_WIDGET (board);
   guint state;
-  gboolean is_control, is_shift, rv = FALSE;
+  gboolean is_control, is_shift, moved = FALSE;
 
-  if (!GTK_WIDGET_HAS_FOCUS (GTK_WIDGET (board)))
+  if (!GTK_WIDGET_HAS_FOCUS (widget))
     return FALSE;
 
   g_return_val_if_fail (step == GTK_MOVEMENT_LOGICAL_POSITIONS ||
@@ -2175,7 +2176,10 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
       case GTK_MOVEMENT_LOGICAL_POSITIONS:
       case GTK_MOVEMENT_VISUAL_POSITIONS:
         /* Move as if we'd been on the last/first slot */
-        return aisleriot_board_move_cursor_start_end_by_slot (board, -count);
+        if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL) {
+          return aisleriot_board_move_cursor_start_end_by_slot (board, -count);
+        }
+        /* fall-through */
       default:
         return aisleriot_board_move_cursor_start_end_by_slot (board, count);
     }
@@ -2196,44 +2200,43 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
     case GTK_MOVEMENT_LOGICAL_POSITIONS:
     case GTK_MOVEMENT_VISUAL_POSITIONS:
       if (is_shift) {
-        rv = aisleriot_board_extend_selection_left_right (board, count);
+        moved = aisleriot_board_extend_selection_left_right (board, count);
       } else {
-        rv = aisleriot_board_move_cursor_left_right (board, count, is_control);
+        moved = aisleriot_board_move_cursor_left_right (board, count, is_control);
       }
       break;
     case GTK_MOVEMENT_DISPLAY_LINES:
       if (is_shift) {
-        rv = aisleriot_board_extend_selection_up_down (board, count);
+        moved = aisleriot_board_extend_selection_up_down (board, count);
       } else {
-        rv = aisleriot_board_move_cursor_up_down (board, count, is_control);
+        moved = aisleriot_board_move_cursor_up_down (board, count, is_control);
       }
       break;
     case GTK_MOVEMENT_PAGES:
       if (!is_shift) {
-        rv = aisleriot_board_move_cursor_up_down (board, count, TRUE);
+        moved = aisleriot_board_move_cursor_up_down (board, count, TRUE);
       }
       break;
     case GTK_MOVEMENT_BUFFER_ENDS:
       if (is_shift) {
-        rv = aisleriot_board_extend_selection_start_end (board, count);
+        moved = aisleriot_board_extend_selection_start_end (board, count);
       } else if (is_control) {
-        rv = aisleriot_board_move_cursor_start_end_by_slot (board, count);
+        moved = aisleriot_board_move_cursor_start_end_by_slot (board, count);
       } else {
-        rv = aisleriot_board_move_cursor_start_end_in_slot (board, count);
+        moved = aisleriot_board_move_cursor_start_end_in_slot (board, count);
       }
       break;
     default:
       g_assert_not_reached ();
   }
 
-  if (!rv) {
-//     gtk_widget_keynav_failed (widget, count > 0 ? GTK_DIR_TAB_FORWARD : GTK_DIR_TAB_BACKWARD)
-    if (!priv->show_focus) {
-      set_focus (board, priv->focus_slot, priv->focus_card_id, TRUE);
-    }
+  /* Show focus */
+  if (!moved &&
+      !priv->show_focus) {
+    set_focus (board, priv->focus_slot, priv->focus_card_id, TRUE);
   }
 
-  return rv;
+  return moved;
 }
 
 static void
