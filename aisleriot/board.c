@@ -2727,7 +2727,7 @@ aisleriot_board_button_press (GtkWidget *widget,
     if (aisleriot_board_move_selected_cards_to_slot (board, hslot))
       return TRUE;
 
-    /* FIXMEchpe: maybe beep? */
+    aisleriot_board_error_bell (board);
 
     /* Trying to move the cards has unset the selection; select
      * the clicked-on cards instead.
