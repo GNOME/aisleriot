@@ -8,7 +8,11 @@ To compile it for some platform, configure GNOME Games with
   or
     ./configure --with-platform=gtk-only --with-games=aisleriot
   or
-    ./configure --with-platform=maemo --with-games=aisleriot
+    ./configure --with-platform=hildon --with-platform-variant=maemo --with-games=aisleriot
+  or
+    ./configure --with-platform=hildon --with-platform-variant=maemo3 --with-games=aisleriot
+  or
+    ./configure --with-platform=hildon --with-platform-variant=mid --with-games=aisleriot
 
 For GNOME and GTK-only, you can just install and run AisleRiot as normal.
 Please refer to the scratchbox documentation about how to run AilseRiot in
@@ -18,7 +22,7 @@ scratchbox for the Maemo platform.
 Notes about Maemo environment
 =============================
 
-On maemo the programme is started using DBUS service files;
+On hildon the programme is started using DBUS service files;
 org.gnome.Games.AisleRiot.service.in is our service file.
 aisleriot-backup.conf is used to backup the programme's setting
 using the device's backup manager, and aisleriot-clean.sh is used
@@ -42,13 +46,13 @@ GAMES_CARDS_SUBRENDERING:
 
 AISLERIOT_CARDS_SCALABLE:
   Values: 0 or 1
-  Default: 1 (maemo: 0)
+  Default: 1 (hildon: 0)
 
     Set to 0 to use prerendered cards; to 1 to use scalable cards.
 
 AISLERIOT_PIXBUF_DRAWING:
   Values: 0 or 1
-  Default: 1 (maemo: 0)
+  Default: 1 (hildon: 0)
   
     Set to 0 to disable pixbuf drawing and use pixmap drawing instead. Pixbuf
   drawing has the benefit of using full alphachannels, eliminating ugly
