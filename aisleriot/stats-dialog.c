@@ -26,6 +26,7 @@
 #include <libgames-support/games-stock.h>
 
 #include "conf.h"
+#include "util.h"
 
 #include "stats-dialog.h"
 
@@ -44,25 +45,6 @@ struct _AisleriotStatsDialogPrivate
 G_DEFINE_TYPE (AisleriotStatsDialog, aisleriot_stats_dialog, GTK_TYPE_DIALOG);
 
 /* helper functions */
-
-#ifndef HAVE_HILDON
-static void
-add_atk_relation (GtkWidget *widget,
-                  GtkWidget *other,
-                  AtkRelationType type)
-{
-  AtkRelationSet *set;
-  AtkRelation *relation;
-  AtkObject *object;
-
-  object = gtk_widget_get_accessible (other);
-  set = atk_object_ref_relation_set (gtk_widget_get_accessible (widget));
-  relation = atk_relation_new (&object, 1, type);
-  atk_relation_set_add (set, relation);
-  g_object_unref (relation);
-  g_object_unref (set);
-}
-#endif /* !HAVE_HILDON */
 
 static void
 pack_in_frame (GtkWidget *box,
@@ -92,8 +74,8 @@ pack_in_frame (GtkWidget *box,
   gtk_widget_show_all (frame);
 
 #ifndef HAVE_HILDON
-  add_atk_relation (label, frame, ATK_RELATION_LABEL_FOR);
-  add_atk_relation (frame, label, ATK_RELATION_LABELLED_BY);
+  aisleriot_util_add_atk_relation (label, frame, ATK_RELATION_LABEL_FOR);
+  aisleriot_util_add_atk_relation (frame, label, ATK_RELATION_LABELLED_BY);
 #endif /* !HAVE_HILDON */
 }
 
@@ -117,8 +99,8 @@ add_row (GtkTable *table,
                              1, 2, row, row + 1);
 
 #ifndef HAVE_HILDON
-  add_atk_relation (label, data_label, ATK_RELATION_LABEL_FOR);
-  add_atk_relation (data_label, label, ATK_RELATION_LABELLED_BY);
+  aisleriot_util_add_atk_relation (label, data_label, ATK_RELATION_LABEL_FOR);
+  aisleriot_util_add_atk_relation (data_label, label, ATK_RELATION_LABELLED_BY);
 #endif /* !HAVE_HILDON */
 
   return GTK_LABEL (data_label);

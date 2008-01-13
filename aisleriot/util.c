@@ -117,3 +117,31 @@ aisleriot_display_help (GtkWindow *parent,
 
   help_hook (parent, game_file, help_hook_data);
 }
+
+/**
+ * aisleriot_util_add_atk_relation:
+ * @widget:
+ * @other:
+ * @type:
+ *
+ * Adds an AtkRelation of type @type to @other into @widget's
+ * AtkRelationSet.
+ */
+void
+aisleriot_util_add_atk_relation (GtkWidget *widget,
+                                 GtkWidget *other,
+                                 AtkRelationType type)
+{
+#ifndef HAVE_HILDON
+  AtkRelationSet *set;
+  AtkRelation *relation;
+  AtkObject *object;
+
+  object = gtk_widget_get_accessible (other);
+  set = atk_object_ref_relation_set (gtk_widget_get_accessible (widget));
+  relation = atk_relation_new (&object, 1, type);
+  atk_relation_set_add (set, relation);
+  g_object_unref (relation);
+  g_object_unref (set);
+#endif /* !HAVE_HILDON */
+}
