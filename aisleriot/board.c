@@ -2688,7 +2688,7 @@ aisleriot_board_button_press (GtkWidget *widget,
   guint button;
   gboolean drag_valid;
   guint state;
-  gboolean is_double_click;
+  gboolean is_double_click, show_focus;
 
   /* NOTE: It's ok to just return instead of chaining up, since the
    * parent class has no class closure for this event.
@@ -2840,7 +2840,14 @@ set_selection:
     priv->click_status = STATUS_NOT_DRAG;
   }
 
-  set_focus (board, hslot, cardid, FALSE);
+  /* If we're already showing focus or just clicked on the
+   * card with the (hidden) focus, show the focus on the
+   * clicked card.
+   */
+  show_focus = priv->show_focus ||
+               (hslot == priv->focus_slot &&
+                cardid == priv->focus_card_id);
+  set_focus (board, hslot, cardid, show_focus);
 
   /* Reveal the card on left click */
   if (priv->click_to_move) {
