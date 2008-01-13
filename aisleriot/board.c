@@ -480,17 +480,6 @@ test_slot_projection_intersects_x (Slot *slot,
          slot->rect.x + slot->rect.width >= x_start;
 }
 
-#if 0
-static Slot *
-get_slot_from_slot_and_direction (AisleriotBoard *board,
-                                  Slot *origin_slot,
-                                  GtkDirectionType direction)
-{
-//  XXX FIXME;
-  return origin_slot;
-}
-#endif
-
 static int
 get_slot_index_from_slot (AisleriotBoard *board,
                           Slot *slot)
@@ -696,38 +685,6 @@ set_selection (AisleriotBoard *board,
     slot_update_card_images_full (board, slot, card_id);
   }
 }
-
-#if 0
-/* If a prefix of @cards is on top of @slot, set the selection to that prefix;
- * else set selection to NULL.
- */
-static void
-set_selection_with_cards (AisleriotBoard *board,
-                          Slot *slot,
-                          guint8 *cards,
-                          guint n_cards)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-
-  while (n_cards > 0 &&
-         slot->cards->len >= n_cards) {
-    if (memcmp (slot->cards->data + slot->cards->len - n_cards,
-                cards,
-                n_cards) == 0 &&
-        aisleriot_game_drag_valid (priv->game,
-                                   slot->id,
-                                   cards,
-                                   n_cards)) {
-      set_selection (board, slot, slot->cards->len - n_cards);
-      return;
-    }
-
-    --n_cards;
-  }
-
-  set_selection (board, NULL, -1);
-}
-#endif
 
 /* Slot functions */
 
