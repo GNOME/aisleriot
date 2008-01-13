@@ -1585,8 +1585,7 @@ aisleriot_board_move_cursor_in_slot (AisleriotBoard *board,
 
 static gboolean
 aisleriot_board_move_cursor_start_end_in_slot (AisleriotBoard *board,
-                                               int count,
-                                               gboolean step_over_face_down_cards)
+                                               int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
   Slot *focus_slot = priv->focus_slot;
@@ -1609,20 +1608,17 @@ aisleriot_board_move_cursor_start_end_in_slot (AisleriotBoard *board,
   first_card_id = ((int) focus_slot->cards->len) - ((int) focus_slot->exposed);
   new_focus_card_id = priv->focus_card_id;
 
-  if (step_over_face_down_cards ||
-      CARD_GET_FACE_DOWN(((Card) cards[new_focus_card_id]))) {
-    /* Set new_focus_card_id to the index of the last face-down card
-     * in the run of face-down cards.
-     */
-    do {
-      new_focus_card_id += count;
-    } while (new_focus_card_id >= first_card_id &&
-            new_focus_card_id <= top_card_id &&
-            CARD_GET_FACE_DOWN (((Card) cards[new_focus_card_id])));
+  /* Set new_focus_card_id to the index of the last face-down card
+    * in the run of face-down cards.
+    */
+  do {
+    new_focus_card_id += count;
+  } while (new_focus_card_id >= first_card_id &&
+           new_focus_card_id <= top_card_id &&
+           CARD_GET_FACE_DOWN (((Card) cards[new_focus_card_id])));
 
-    /* We went one too far */
-    new_focus_card_id -= count;
-  }
+  /* We went one too far */
+  new_focus_card_id -= count;
 
   /* Now get to the start/end of the run of face-up cards */
   do {
@@ -1931,6 +1927,7 @@ aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
   Slot *focus_slot = priv->focus_slot;
+  int new_focus_card_id;
 
   g_print ("extend-selection-start-end\n");
 
@@ -1941,6 +1938,7 @@ aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
     if (priv->selection_slot == focus_slot &&
         priv->selection_start_card_id >= priv->focus_card_id) {
       set_selection (board, NULL, -1, FALSE);
+      new_focus_card_id = ((int) focus_slot->cards->len);
     } else {
       aisleriot_board_error_bell (board);
       return FALSE;
@@ -1952,9 +1950,11 @@ aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
       aisleriot_board_error_bell (board);
       return FALSE;
     }
+
+    new_focus_card_id = priv->selection_start_card_id;
   }
 
-  aisleriot_board_move_cursor_start_end_in_slot (board, count, FALSE);
+  set_focus (board, focus_slot, new_focus_card_id, TRUE);
   return TRUE;
 }
 
@@ -2211,7 +2211,7 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
       } else if (is_control) {
         rv = aisleriot_board_move_cursor_start_end_by_slot (board, count);
       } else {
-        rv = aisleriot_board_move_cursor_start_end_in_slot (board, count, TRUE);
+        rv = aisleriot_board_move_cursor_start_end_in_slot (board, count);
       }
       break;
     default:
