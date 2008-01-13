@@ -45,6 +45,24 @@ G_DEFINE_TYPE (AisleriotStatsDialog, aisleriot_stats_dialog, GTK_TYPE_DIALOG);
 
 /* helper functions */
 
+#ifndef HAVE_HILDON
+static void
+add_atk_relation (GtkWidget *widget,
+                  GtkWidget *other,
+                  AtkRelationType type)
+{
+  AtkRelationSet *set;
+  AtkRelation *relation;
+  AtkObject *object;
+
+  object = gtk_widget_get_accessible (other);
+  set = atk_object_ref_relation_set (gtk_widget_get_accessible (widget));
+  relation = atk_relation_new (&object, 1, type);
+  atk_relation_set_add (set, relation);
+  g_object_unref (relation);
+}
+#endif /* !HAVE_HILDON */
+
 static void
 pack_in_frame (GtkWidget *box,
                GtkWidget *content,
@@ -71,6 +89,11 @@ pack_in_frame (GtkWidget *box,
 
   gtk_box_pack_start (GTK_BOX (box), frame, FALSE, FALSE, 0);
   gtk_widget_show_all (frame);
+
+#ifndef HAVE_HILDON
+  add_atk_relation (label, frame, ATK_RELATION_LABEL_FOR);
+  add_atk_relation (frame, label, ATK_RELATION_LABELLED_BY);
+#endif /* !HAVE_HILDON */
 }
 
 static GtkLabel *
@@ -78,7 +101,7 @@ add_row (GtkTable *table,
          int row,
          const char *text)
 {
-  GtkWidget *label;
+  GtkWidget *label, *data_label;
 
   label = gtk_label_new (text);
   gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
@@ -86,13 +109,18 @@ add_row (GtkTable *table,
                     0, 1, row, row + 1,
                     GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
 
-  label = gtk_label_new (NULL);
-  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
-  gtk_table_attach_defaults (table, label,
+  data_label = gtk_label_new (NULL);
+  gtk_misc_set_alignment (GTK_MISC (data_label), 0.0, 0.5);
+  gtk_label_set_selectable (GTK_LABEL (data_label), TRUE);
+  gtk_table_attach_defaults (table, data_label,
                              1, 2, row, row + 1);
 
-  return GTK_LABEL (label);
+#ifndef HAVE_HILDON
+  add_atk_relation (label, data_label, ATK_RELATION_LABEL_FOR);
+  add_atk_relation (data_label, label, ATK_RELATION_LABELLED_BY);
+#endif /* !HAVE_HILDON */
+
+  return GTK_LABEL (data_label);
 }
 
 /* Class implementation */
