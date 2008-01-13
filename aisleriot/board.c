@@ -185,6 +185,8 @@ struct _AisleriotBoardPrivate
   guint show_selection : 1;
   guint show_highlight : 1;
   guint scalable_cards : 1;
+
+  guint force_geometry_update : 1;
 };
 
 STATIC_ASSERT (LAST_STATUS < 16 /* 2^4 */);
@@ -2504,11 +2506,29 @@ aisleriot_board_style_set (GtkWidget *widget,
   games_card_images_set_selection_color (priv->images,
                                          &priv->selection_colour);
 
-  /* FIXMEchpe: is this the right place? */
-  // XXX move to direction-changed signal handler
   priv->is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->style_set (widget, previous_style);
+}
+
+static void
+aisleriot_board_direction_changed (GtkWidget *widget,
+                                   GtkTextDirection previous_direction)
+{
+  AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  AisleriotBoardPrivate *priv = board->priv;
+  GtkTextDirection direction;
+
+  direction = gtk_widget_get_direction (widget);
+
+  priv->is_rtl = (direction == GTK_TEXT_DIR_RTL);
+
+  if (direction != previous_direction) {
+    priv->force_geometry_update = TRUE;
+  }
+
+  /* This will queue a resize */
+  GTK_WIDGET_CLASS (aisleriot_board_parent_class)->direction_changed (widget, previous_direction);
 }
 
 static void
@@ -2516,14 +2536,17 @@ aisleriot_board_size_allocate (GtkWidget *widget,
                                GtkAllocation *allocation)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  AisleriotBoardPrivate *priv = board->priv;
   gboolean is_same;
 
   is_same = (memcmp (&widget->allocation, allocation, sizeof (GtkAllocation)) == 0);
   
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->size_allocate (widget, allocation);
 
-  if (is_same)
+  if (is_same && !priv->force_geometry_update)
     return;
+
+  priv->force_geometry_update = FALSE;
 
   if (GTK_WIDGET_REALIZED (widget)) {
     aisleriot_board_setup_geometry (board);
@@ -3213,6 +3236,8 @@ aisleriot_board_init (AisleriotBoard *board)
 
   GTK_WIDGET_SET_FLAGS (widget, GTK_CAN_FOCUS);
 
+  priv->force_geometry_update = FALSE;
+
   priv->click_to_move = FALSE;
   priv->show_selection = FALSE;
 
@@ -3350,6 +3375,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->realize = aisleriot_board_realize;
   widget_class->unrealize = aisleriot_board_unrealize;
   widget_class->style_set = aisleriot_board_style_set;
+  widget_class->direction_changed = aisleriot_board_direction_changed;
   widget_class->size_allocate = aisleriot_board_size_allocate;
   widget_class->size_request = aisleriot_board_size_request;
   widget_class->focus = aisleriot_board_focus;
