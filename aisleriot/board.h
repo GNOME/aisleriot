@@ -47,11 +47,12 @@ struct _AisleriotBoardClass {
   GtkDrawingAreaClass parent_class;
 
   /* keybinding signals */
-  gboolean (* move_cursor) (AisleriotBoard *board,
-                            GtkMovementStep step,
-                            int count);
-  void (* activate) (AisleriotBoard *board);
+  gboolean (* move_cursor)  (AisleriotBoard *board,
+                             GtkMovementStep step,
+                             int count);
+  void (* activate)         (AisleriotBoard *board);
   void (* toggle_selection) (AisleriotBoard *board);
+  void (* select_all)       (AisleriotBoard *board);
 };
 
 GType aisleriot_board_get_type (void);

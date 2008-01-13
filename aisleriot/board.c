@@ -197,15 +197,18 @@ enum
   PROP_THEME
 };
 
+#ifdef ENABLE_KEYNAV
 enum
 {
   ACTIVATE,
   MOVE_CURSOR,
   TOGGLE_SELECTION,
+  SELECT_ALL,
   LAST_SIGNAL
 };
 
 static guint signals[LAST_SIGNAL];
+#endif /* ENABLE_KEYNAV */
 
 static void get_slot_and_card_from_point (AisleriotBoard *board,
                                           int x,
@@ -895,6 +898,8 @@ slot_update_card_images (AisleriotBoard *board,
 
 /* helper functions */
 
+#ifdef ENABLE_KEYNAV
+
 static void
 aisleriot_board_error_bell (AisleriotBoard *board)
 {
@@ -902,6 +907,8 @@ aisleriot_board_error_bell (AisleriotBoard *board)
   gtk_widget_error_bell (GTK_WIDGET (board));
 #endif
 }
+
+#endif /* ENABLE_KEYNAV */
 
 /* Work out new sizes and spacings for the cards. */
 static void
@@ -1377,6 +1384,71 @@ clear_state (AisleriotBoard *board)
   priv->click_status = STATUS_NONE;
   priv->last_clicked_slot = NULL;
   priv->last_clicked_card_id = -1;
+}
+
+/* Note: this unsets the selection! */
+static gboolean
+aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
+                                             Slot *hslot)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  Slot *selection_slot = priv->selection_slot;
+  int selection_start_card_id = priv->selection_start_card_id;
+  gboolean moved;
+  guint8 *cards;
+  guint n_cards;
+
+  if (!selection_slot ||
+      priv->selection_start_card_id < 0)
+    return FALSE;
+
+  /* NOTE: We cannot use aisleriot_game_drop_valid here since the
+    * game may not support the "droppable" feature.
+    */
+
+  set_selection (board, NULL, -1, FALSE);
+
+  priv->click_status = STATUS_NONE;
+
+  aisleriot_game_record_move (priv->game,
+                              selection_slot->id,
+                              selection_slot->cards->data,
+                              selection_slot->cards->len);
+
+  /* Store the cards, since the move could alter slot->cards! */
+  g_assert (selection_slot->cards->len >= selection_start_card_id);
+  n_cards = selection_slot->cards->len - selection_start_card_id;
+
+  cards = g_alloca (n_cards);
+  memcpy (cards,
+          selection_slot->cards->data + selection_start_card_id,
+          n_cards);
+
+  /* Now take the cards off of the origin slot. We'll update the slot geometry later */
+  g_byte_array_set_size (selection_slot->cards, selection_start_card_id);
+  selection_slot->needs_update = TRUE;
+
+  moved = aisleriot_game_drop_cards (priv->game,
+                                      selection_slot->id,
+                                      hslot->id,
+                                      cards,
+                                      n_cards);
+  if (moved) {
+    aisleriot_game_end_move (priv->game);
+
+    if (selection_slot->needs_update)
+      g_signal_emit_by_name (priv->game, "slot-changed", selection_slot); /* FIXMEchpe! */
+
+    aisleriot_game_test_end_of_game (priv->game);
+  } else {
+    /* Not moved; discard the move add the cards back to the origin slot */
+    aisleriot_game_discard_move (priv->game);
+    aisleriot_game_slot_add_cards (priv->game, selection_slot, cards, n_cards);
+
+    /* FIXMEchpe: maybe beep? */
+  }
+
+  return moved;
 }
 
 /* Keynav */
@@ -1914,9 +1986,6 @@ aisleriot_board_activate (AisleriotBoard *board)
   Slot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
   guint state = 0;
-  gboolean moved;
-  guint8 *cards;
-  guint n_cards;
 
   if (!GTK_WIDGET_HAS_FOCUS (widget))
     return;
@@ -1972,56 +2041,14 @@ aisleriot_board_activate (AisleriotBoard *board)
   if (selection_slot != NULL &&
       selection_start_card_id >= 0 &&
       priv->focus_card_id == ((int) focus_slot->cards->len) - 1) {
-    /* Remove the old selection. If the move doesn't succeed,
-     * we'll re-select them later.
-     */
-    set_selection (board, NULL, -1, FALSE);
-
-    priv->click_status = STATUS_NONE;
-
-    aisleriot_game_record_move (priv->game,
-                                selection_slot->id,
-                                selection_slot->cards->data,
-                                selection_slot->cards->len);
-
-    /* Store the cards, since the move could alter slot->cards! */
-    g_assert (selection_slot->cards->len >= selection_start_card_id);
-    n_cards = selection_slot->cards->len - selection_start_card_id;
-
-    cards = g_alloca (n_cards);
-    memcpy (cards,
-            selection_slot->cards->data + selection_start_card_id,
-            n_cards);
-
-    /* Now take the cards off of the origin slot. We'll update the slot geometry later */
-    g_byte_array_set_size (selection_slot->cards, selection_start_card_id);
-    selection_slot->needs_update = TRUE;
-
-    moved = aisleriot_game_drop_cards (priv->game,
-                                       selection_slot->id,
-                                       focus_slot->id,
-                                       cards,
-                                       n_cards);
-    if (moved) {
-      aisleriot_game_end_move (priv->game);
-
-      games_sound_play ("click");
-
+    if (aisleriot_board_move_selected_cards_to_slot (board, focus_slot)) {
       /* Select the new topmost card */
       set_focus (board, focus_slot, ((int) focus_slot->cards->len - 1), TRUE);
-
-      if (selection_slot->needs_update)
-        g_signal_emit_by_name (priv->game, "slot-changed", selection_slot); /* FIXMEchpe! */
-
-      aisleriot_game_test_end_of_game (priv->game);
 
       return;
     }
 
-    aisleriot_game_discard_move (priv->game);
-    aisleriot_game_slot_add_cards (priv->game, selection_slot, cards, n_cards);
-
-    g_print ("set-selection start %d len %d\n", selection_start_card_id, selection_slot->cards->len);
+    /* Trying to move the cards has unset the selection; re-select them */
     set_selection (board, selection_slot, selection_start_card_id, TRUE);
   }
 
@@ -2105,6 +2132,16 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
   }
 
   return rv;
+}
+
+static void
+aisleriot_board_select_all (AisleriotBoard *board)
+{
+/*  AisleriotBoardPrivate *priv = board->priv;
+  Slot *focus_slot;
+  int focus_card_id,new_selection_start_card_id;*/
+
+  aisleriot_board_error_bell (board);
 }
 
 static void
@@ -2497,67 +2534,20 @@ aisleriot_board_button_press (GtkWidget *widget,
    * (in click-to-select mode only), or we set the selection.
    */
   if (hslot != priv->selection_slot) {
-    Slot *selection_slot = priv->selection_slot;
-    int selection_start_card_id = priv->selection_start_card_id;
-    gboolean moved;
-    guint8 *cards;
-    guint n_cards;
 
-    /* NOTE: We cannot use aisleriot_game_drop_valid here since the
-     * game may not support the "droppable" feature.
-     */
     if (!priv->click_to_move ||
-        selection_start_card_id < 0)
+        priv->selection_start_card_id < 0)
       goto set_selection;
 
-    /* Remove the old selection. If the move doesn't succeed, we'll select
-     * the clicked-on cards instead.
-     */
-    set_selection (board, NULL, -1, FALSE);
-
-    priv->click_status = STATUS_NONE;
-
-    aisleriot_game_record_move (priv->game,
-                                selection_slot->id,
-                                selection_slot->cards->data,
-                                selection_slot->cards->len);
-
-    /* Store the cards, since the move could alter slot->cards! */
-    g_assert (selection_slot->cards->len >= selection_start_card_id);
-    n_cards = selection_slot->cards->len - selection_start_card_id;
-
-    cards = g_alloca (n_cards);
-    memcpy (cards,
-            selection_slot->cards->data + selection_start_card_id,
-            n_cards);
-
-    /* Now take the cards off of the origin slot. We'll update the slot geometry later */
-    g_byte_array_set_size (selection_slot->cards, selection_start_card_id);
-    selection_slot->needs_update = TRUE;
-
-    moved = aisleriot_game_drop_cards (priv->game,
-                                       selection_slot->id,
-                                       hslot->id,
-                                       cards,
-                                       n_cards);
-    if (moved) {
-      aisleriot_game_end_move (priv->game);
-
-      if (selection_slot->needs_update)
-        g_signal_emit_by_name (priv->game, "slot-changed", selection_slot); /* FIXMEchpe! */
-
-      aisleriot_game_test_end_of_game (priv->game);
-
+    /* Try to move the selected cards to the clicked slot */
+    if (aisleriot_board_move_selected_cards_to_slot (board, hslot))
       return TRUE;
-    }
-
-    /* Not moved; discard the move and select the new cards */
-    aisleriot_game_discard_move (priv->game);
-
-    aisleriot_game_slot_add_cards (priv->game, selection_slot, cards, n_cards);
 
     /* FIXMEchpe: maybe beep? */
 
+    /* Trying to move the cards has unset the selection; select
+     * the clicked-on cards instead.
+     */
     goto set_selection;
   }
 
@@ -3182,6 +3172,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
 #ifdef ENABLE_KEYNAV
   klass->activate = aisleriot_board_activate;
   klass->move_cursor = aisleriot_board_move_cursor;
+  klass->select_all = aisleriot_board_select_all;
   klass->toggle_selection = aisleriot_board_toggle_selection;
 
   /* Keybinding signals */
@@ -3212,6 +3203,16 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, toggle_selection),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  signals[SELECT_ALL] =
+    g_signal_new (I_("select-all"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (AisleriotBoardClass, select_all),
                   NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,
@@ -3294,6 +3295,8 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   /* Selection */
   gtk_binding_entry_add_signal (binding_set, GDK_space, 0,
                                 "toggle-selection", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_a, GDK_CONTROL_MASK,
+                                "select-all", 0);
 
   /* Activate */
   gtk_binding_entry_add_signal (binding_set, GDK_Return, 0,
