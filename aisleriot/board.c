@@ -560,7 +560,7 @@ set_focus (AisleriotBoard *board,
   GtkWidget *widget = GTK_WIDGET (board);
   int top_card_id;
 
-  g_print ("set-focus slot %d card %d show-focus %d\n", slot ? slot->id : -1, card_id, show_focus);
+  g_print ("set-focus slot %d card %d show-focus %d has-focus %d\n", slot ? slot->id : -1, card_id, show_focus, GTK_WIDGET_HAS_FOCUS (widget));
 
   /* Sanitise */
   top_card_id = slot ? ((int) slot->cards->len) - 1 : -1;
@@ -568,7 +568,8 @@ set_focus (AisleriotBoard *board,
 
   g_print ("top-card-id %d card-id %d\n", top_card_id, card_id);
   if (priv->focus_slot == slot &&
-      priv->focus_card_id == card_id)
+      priv->focus_card_id == card_id &&
+      priv->show_focus == show_focus)
     return;
 
   // FIXMEchpe take GTK_WIDGET_HAS_FOCUS into account before invalidating!
@@ -586,15 +587,14 @@ set_focus (AisleriotBoard *board,
     priv->focus_card_id = -1;
   }
 
+  priv->show_focus = show_focus;
+
   if (!slot)
     return;
-
-  /* FIXMEchpe: check that if cardid >= 0, it's either face-up or the topmost face-down card */
 
   priv->focus_slot = slot;
   priv->focus_card_id = card_id;
 
-  priv->show_focus = show_focus;
   if (show_focus &&
       GTK_WIDGET_HAS_FOCUS (widget)) {
     g_print ("invalidating new focus rect\n");
@@ -1926,6 +1926,12 @@ aisleriot_board_activate (AisleriotBoard *board)
     return;
   }
 
+  /* Focus not shown? Show it, and do nothing else */
+  if (!priv->show_focus) {
+    set_focus (board, focus_slot, priv->focus_card_id, TRUE);
+    return;
+  }
+
   if (!gtk_get_current_event_state (&state))
     state = 0;
 
@@ -2093,6 +2099,9 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
 
   if (!rv) {
 //     gtk_widget_keynav_failed (widget, count > 0 ? GTK_DIR_TAB_FORWARD : GTK_DIR_TAB_BACKWARD)
+    if (!priv->show_focus) {
+      set_focus (board, priv->focus_slot, priv->focus_card_id, TRUE);
+    }
   }
 
   return rv;
@@ -2106,9 +2115,20 @@ aisleriot_board_toggle_selection (AisleriotBoard *board)
   int focus_card_id,new_selection_start_card_id;
 
   focus_slot = priv->focus_slot;
-  focus_card_id = priv->focus_card_id;
-  if (focus_card_id < 0)
+  if (!focus_slot)
     return;
+
+  focus_card_id = priv->focus_card_id;
+
+  /* Focus not shown? Show it, and proceed*/
+  if (!priv->show_focus) {
+    set_focus (board, focus_slot, focus_card_id, TRUE);
+  }
+
+  if (focus_card_id < 0) {
+    aisleriot_board_error_bell (board);
+    return;
+  }
 
   /* If the selection isn't currently showing, don't truncate it.
    * Otherwise we get unexpected results when clicking on some cards
