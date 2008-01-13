@@ -1729,12 +1729,14 @@ aisleriot_board_move_cursor_by_slot (AisleriotBoard *board,
   /* Wrap-around? */
   if (new_focus_slot_index < 0 ||
       new_focus_slot_index >= n_slots) {
+#if GTK_CHECK_VERSION (2, 12, 0)
     g_print ("wrap-around n_slots %d new_focus_slot_index %d\n", n_slots, new_focus_slot_index);
     if (!gtk_widget_keynav_failed (widget, direction)) {
        g_print ("keynav-failed \n");
        // FIXMEchpe: if FALSE, continue below?
        return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
     }
+#endif /* GTK 2.12. 0 */
 
     if (new_focus_slot_index < 0) {
       new_focus_slot_index = ((int) n_slots) - 1;
