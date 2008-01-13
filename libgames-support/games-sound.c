@@ -107,20 +107,22 @@ games_sound_thread_run (gchar * data, gchar * user_data)
 
 #ifdef HAVE_SDL_MIXER
 static void
-games_sound_sdl_play (gchar *filename)
+games_sound_sdl_play (const gchar *filename)
 {
   Mix_Chunk *wave = NULL;
-  gchar *fullpath = NULL;
-  
-  fullpath = g_strdup_printf ("%s/%s.ogg", SOUNDDIR, (char *) filename);
+  gchar *name, *path;
 
-  wave = Mix_LoadWAV(fullpath);
+  name = g_strdup_printf ("%s.ogg", filename);
+  path = g_build_filename (SOUNDDIR, name, NULL);
+  g_free (name);
+
+  wave = Mix_LoadWAV (path);
   if (wave == NULL) {
-    g_print (_("Error playing sound: %s\n"), Mix_GetError());
+    g_print (_("Error playing sound %s: %s\n"), path, Mix_GetError ());
   }
 
-  Mix_PlayChannel(-1, wave, 0); 
-  g_free(fullpath);
+  Mix_PlayChannel (-1, wave, 0);
+  g_free (path);
 }
 #endif /* HAVE_SDL_MIXER */
 
