@@ -1406,9 +1406,6 @@ aisleriot_board_settings_update (AisleriotBoard *board)
 #endif /* !HAVE_HILDON */
                 NULL);
 
-    g_print ("settings-update double-click-time:%d touchscreen:%s xft:%s\n",
-             priv->double_click_time, touchscreen_mode ? "t":"f", xft_rgba);
-
 #if defined (GDK_WINDOWING_X11) && !defined (HAVE_HILDON)
   if (xft_rgba != NULL) {
     gboolean antialias_set = TRUE;
@@ -2507,9 +2504,6 @@ aisleriot_board_screen_changed (GtkWidget *widget,
   GdkScreen *screen;
 
   screen = gtk_widget_get_screen (widget);
-
-  g_print ("screen-changed realized %d old-screeen %p new-screen %p\n",
-           GTK_WIDGET_REALIZED (widget), previous_screen, screen);
 
 #if 0
   if (previous_screen != NULL) {
