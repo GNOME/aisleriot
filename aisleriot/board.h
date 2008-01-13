@@ -53,6 +53,7 @@ struct _AisleriotBoardClass {
   void (* activate)         (AisleriotBoard *board);
   void (* toggle_selection) (AisleriotBoard *board);
   void (* select_all)       (AisleriotBoard *board);
+  void (* deselect_all)     (AisleriotBoard *board);
 };
 
 GType aisleriot_board_get_type (void);

@@ -204,6 +204,7 @@ enum
   MOVE_CURSOR,
   TOGGLE_SELECTION,
   SELECT_ALL,
+  DESELECT_ALL,
   LAST_SIGNAL
 };
 
@@ -2204,6 +2205,12 @@ aisleriot_board_select_all (AisleriotBoard *board)
 }
 
 static void
+aisleriot_board_deselect_all (AisleriotBoard *board)
+{
+  set_selection (board, NULL, -1, FALSE);
+}
+
+static void
 aisleriot_board_toggle_selection (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
@@ -3224,6 +3231,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   klass->activate = aisleriot_board_activate;
   klass->move_cursor = aisleriot_board_move_cursor;
   klass->select_all = aisleriot_board_select_all;
+  klass->deselect_all = aisleriot_board_deselect_all;
   klass->toggle_selection = aisleriot_board_toggle_selection;
 
   /* Keybinding signals */
@@ -3264,6 +3272,16 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, select_all),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  signals[DESELECT_ALL] =
+    g_signal_new (I_("deselect-all"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (AisleriotBoardClass, deselect_all),
                   NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,
@@ -3348,6 +3366,8 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                                 "toggle-selection", 0);
   gtk_binding_entry_add_signal (binding_set, GDK_a, GDK_CONTROL_MASK,
                                 "select-all", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_a, GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+                                "deselect-all", 0);
 
   /* Activate */
   aisleriot_board_add_activate_binding (binding_set, GDK_Return, 0);
