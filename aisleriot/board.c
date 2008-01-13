@@ -471,6 +471,15 @@ get_slot_and_card_from_point (AisleriotBoard *board,
   *_cardid = cardid > 0 ? cardid - 1 : -1;
 }
 
+static gboolean
+test_slot_projection_intersects_x (Slot *slot,
+                                   int x_start,
+                                   int x_end)
+{
+  return slot->rect.x <= x_end &&
+         slot->rect.x + slot->rect.width >= x_start;
+}
+
 #if 0
 static Slot *
 get_slot_from_slot_and_direction (AisleriotBoard *board,
@@ -1811,7 +1820,93 @@ static gboolean
 aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
                                              int count)
 {
-  return FALSE; // FIXMEchpe
+  AisleriotBoardPrivate *priv = board->priv;
+  GPtrArray *slots;
+  guint n_slots;
+  Slot *focus_slot, *new_focus_slot;
+  int focus_slot_index, new_focus_slot_index;
+  int new_focus_slot_topmost_card_id, new_focus_card_id;
+  int x_start, x_end;
+
+  g_print ("up-down-by-slot %d\n", count);
+
+  slots = aisleriot_game_get_slots (priv->game);
+  if (!slots || slots->len == 0)
+    return FALSE;
+
+  focus_slot = priv->focus_slot;
+  g_assert (focus_slot != NULL);
+
+  n_slots = slots->len;
+  for (focus_slot_index = 0; focus_slot_index < n_slots; ++focus_slot_index) {
+    if (g_ptr_array_index (slots, focus_slot_index) == focus_slot)
+      break;
+  }
+
+  g_assert (focus_slot_index < n_slots); /* the focus_slot EXISTS after all */
+
+  x_start = focus_slot->rect.x;
+  x_end = x_start + focus_slot->rect.width;
+
+  new_focus_slot_index = focus_slot_index;
+  do {
+    new_focus_slot_index += count;
+  } while (new_focus_slot_index >= 0 &&
+           new_focus_slot_index < n_slots &&
+           !test_slot_projection_intersects_x (slots->pdata[new_focus_slot_index], x_start, x_end));
+
+  if (new_focus_slot_index < 0 || new_focus_slot_index == n_slots) {
+#if GTK_CHECK_VERSION (2, 12, 0)
+    GtkWidget *widget = GTK_WIDGET (board);
+    GtkDirectionType direction;
+
+    if (count > 0) {
+      direction = GTK_DIR_DOWN;
+    } else {
+      direction = GTK_DIR_UP;
+    }
+
+    if (!gtk_widget_keynav_failed (widget, direction)) {
+       // FIXMEchpe: if FALSE, continue below?
+       return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
+    }
+#endif /* GTK 2.12. 0 */
+
+    /* Wrap around */
+    if (count > 0) {
+      new_focus_slot_index = -1;
+    } else {
+      new_focus_slot_index = n_slots;
+    }
+
+    do {
+      new_focus_slot_index += count;
+    } while (new_focus_slot_index != focus_slot_index &&
+             !test_slot_projection_intersects_x (slots->pdata[new_focus_slot_index], x_start, x_end));
+  }
+
+  g_assert (new_focus_slot_index >= 0 && new_focus_slot_index < n_slots);
+
+  new_focus_slot = slots->pdata[new_focus_slot_index];
+  new_focus_slot_topmost_card_id = ((int) new_focus_slot->cards->len) - 1;
+
+  if (new_focus_slot->expanded_down) {
+    if (count > 0) {
+      if (new_focus_slot->cards->len > 0) {
+        new_focus_card_id = ((int) new_focus_slot->cards->len) - ((int) new_focus_slot->exposed);
+      } else {
+        new_focus_card_id = -1;
+      }
+    } else {
+      new_focus_card_id = new_focus_slot_topmost_card_id;
+    }
+  } else {
+    /* Just take the topmost card */
+    new_focus_card_id = new_focus_slot_topmost_card_id;
+  }
+
+  set_focus (board, new_focus_slot, new_focus_card_id, TRUE);
+  return TRUE;
 }
 
 static gboolean
@@ -2184,9 +2279,6 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
         return aisleriot_board_move_cursor_start_end_by_slot (board, count);
     }
   }
-
-//  if (!priv->show_focus)
-    // show it; return
 
   g_assert (priv->focus_slot != NULL);
 
