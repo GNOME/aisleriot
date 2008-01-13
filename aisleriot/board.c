@@ -625,13 +625,15 @@ get_selection_rect (AisleriotBoard *board,
 static void
 set_selection (AisleriotBoard *board,
                Slot *slot,
-               int card_id)
+               int card_id,
+               gboolean show_selection)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
 
   if (priv->selection_slot == slot &&
-      priv->selection_start_card_id == card_id)
+      priv->selection_start_card_id == card_id &&
+      priv->show_selection == show_selection)
     return;
 
   if (priv->selection_slot != NULL) {
@@ -646,11 +648,13 @@ set_selection (AisleriotBoard *board,
     priv->selection_start_card_id = -1;
   }
 
-  if (!slot)
-    return;
-
+  priv->show_selection = show_selection;
   priv->selection_slot = slot;
   priv->selection_start_card_id = card_id;
+  g_assert (slot != NULL || card_id == -1);
+
+  if (!slot)
+    return;
 
   g_assert (card_id < 0 || card_id < slot->cards->len);
 
@@ -1010,7 +1014,7 @@ drag_begin (AisleriotBoard *board)
                               cards->data, cards->len);
 
   /* Unset the selection. It'll be re-set if the drag is aborted */
-  set_selection (board, NULL, -1);
+  set_selection (board, NULL, -1, FALSE);
 
   delta = hslot->exposed - num_moving_cards;
 
@@ -1557,7 +1561,7 @@ aisleriot_board_extend_selection_in_slot (AisleriotBoard *board,
 
   /* If it's the top card, unselect all */
   if (new_selection_start_card_id >= focus_slot->cards->len) {
-    set_selection (board, NULL, -1);
+    set_selection (board, NULL, -1, FALSE);
     return TRUE;
   }
     
@@ -1567,7 +1571,7 @@ aisleriot_board_extend_selection_in_slot (AisleriotBoard *board,
                                   focus_slot->cards->len - new_selection_start_card_id))
     return FALSE;
 
-  set_selection (board, focus_slot, new_selection_start_card_id);
+  set_selection (board, focus_slot, new_selection_start_card_id, TRUE);
 
   /* Try to move the cursor too, but don't beep if that fails */
   aisleriot_board_move_cursor_in_slot (board, count);
@@ -1763,7 +1767,7 @@ aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
   g_print ("extend-selection-start-end\n");
 
   if (count > 0) {
-    set_selection (board, NULL, -1);
+    set_selection (board, NULL, -1, FALSE);
   } else {
     Slot *focus_slot;
     int first_card_id;
@@ -1786,7 +1790,7 @@ aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
                                    focus_slot->id,
                                    focus_slot->cards->data + first_card_id,
                                    focus_slot->cards->len - first_card_id)) {
-      set_selection (board, focus_slot, first_card_id);
+      set_selection (board, focus_slot, first_card_id, TRUE);
     }
   }
 
@@ -1838,7 +1842,7 @@ game_new_cb (AisleriotGame *game,
   clear_state (board);
 
   set_focus (board, NULL, -1, FALSE);
-  set_selection (board, NULL, -1);
+  set_selection (board, NULL, -1, FALSE);
 
   aisleriot_game_get_geometry (game, &priv->width, &priv->height);
 
@@ -1868,7 +1872,7 @@ slot_changed_cb (AisleriotGame *game,
     /* FIXMEchpe */
   }
   if (slot == priv->selection_slot) {
-    set_selection (board, NULL, -1);
+    set_selection (board, NULL, -1, FALSE);
 
     /* If this slot changes while we're in a click cycle, abort the action.
      * That prevents a problem where the cards that were selected and
@@ -1964,7 +1968,7 @@ aisleriot_board_activate (AisleriotBoard *board)
     /* Remove the old selection. If the move doesn't succeed,
      * we'll re-select them later.
      */
-    set_selection (board, NULL, -1);
+    set_selection (board, NULL, -1, FALSE);
 
     priv->click_status = STATUS_NONE;
 
@@ -2011,7 +2015,7 @@ aisleriot_board_activate (AisleriotBoard *board)
     aisleriot_game_slot_add_cards (priv->game, selection_slot, cards, n_cards);
 
     g_print ("set-selection start %d len %d\n", selection_start_card_id, selection_slot->cards->len);
-    set_selection (board, selection_slot, selection_start_card_id);
+    set_selection (board, selection_slot, selection_start_card_id, TRUE);
   }
 
   aisleriot_board_error_bell (board);
@@ -2105,8 +2109,14 @@ aisleriot_board_toggle_selection (AisleriotBoard *board)
   if (focus_card_id < 0)
     return;
 
+  /* If the selection isn't currently showing, don't truncate it.
+   * Otherwise we get unexpected results when clicking on some cards
+   * (which selects them but doesn't show the selection) and then press
+   * Space or Shift-Up/Down etc.
+   */
   if (priv->selection_slot == focus_slot &&
-      priv->selection_start_card_id <= focus_card_id) {
+      priv->selection_start_card_id <= focus_card_id &&
+      priv->show_selection) {
     /* Truncate selection */
     new_selection_start_card_id = focus_card_id + 1;
   } else {
@@ -2127,7 +2137,7 @@ aisleriot_board_toggle_selection (AisleriotBoard *board)
                                   focus_slot->cards->len - new_selection_start_card_id))
     return;
 
-  set_selection (board, focus_slot, new_selection_start_card_id);
+  set_selection (board, focus_slot, new_selection_start_card_id, TRUE);
 }
 
 #endif /* ENABLE_KEYNAV */
@@ -2411,7 +2421,7 @@ aisleriot_board_button_press (GtkWidget *widget,
 
   if (!hslot) {
     set_focus (board, NULL, -1, FALSE);
-    set_selection (board, NULL, -1);
+    set_selection (board, NULL, -1, FALSE);
 
     priv->click_status = STATUS_NONE;
 
@@ -2482,7 +2492,7 @@ aisleriot_board_button_press (GtkWidget *widget,
     /* Remove the old selection. If the move doesn't succeed, we'll select
      * the clicked-on cards instead.
      */
-    set_selection (board, NULL, -1);
+    set_selection (board, NULL, -1, FALSE);
 
     priv->click_status = STATUS_NONE;
 
@@ -2537,7 +2547,7 @@ aisleriot_board_button_press (GtkWidget *widget,
    * but only in click-to-move mode.
    */
   if (priv->click_to_move) {
-    set_selection (board, NULL, -1);
+    set_selection (board, NULL, -1, FALSE);
 
     /* Reveal the card on left click */
     reveal_card (board, hslot, cardid);
@@ -2557,10 +2567,10 @@ set_selection:
   }
 
   if (drag_valid) {
-    set_selection (board, hslot, cardid);
+    set_selection (board, hslot, cardid, priv->click_to_move);
     priv->click_status = priv->click_to_move ? STATUS_NOT_DRAG : STATUS_MAYBE_DRAG;
   } else {
-    set_selection (board, NULL, -1);
+    set_selection (board, NULL, -1, FALSE);
     priv->click_status = STATUS_NOT_DRAG;
   }
 
@@ -3340,11 +3350,11 @@ aisleriot_board_set_click_to_move (AisleriotBoard *board,
   /* Clear the selection. Do this before setting the new value,
    * since otherwise selection won't get cleared correctly.
    */
-  set_selection (board, NULL, -1);
+  set_selection (board, NULL, -1, FALSE);
 
   priv->click_to_move = click_to_move;
-  priv->show_selection = click_to_move;
 
+  /* FIXMEchpe why? */
   if (GTK_WIDGET_REALIZED (widget)) {
     gtk_widget_queue_draw (widget);
   }
