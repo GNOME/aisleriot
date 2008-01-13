@@ -593,8 +593,6 @@ set_focus (AisleriotBoard *board,
       priv->show_focus == show_focus)
     return;
 
-  // FIXMEchpe take GTK_WIDGET_HAS_FOCUS into account before invalidating!
-
   if (priv->focus_slot != NULL) {
     if (priv->show_focus &&
         GTK_WIDGET_HAS_FOCUS (widget)) {
