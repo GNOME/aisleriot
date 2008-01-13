@@ -1748,7 +1748,6 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
     }
 
     if (!gtk_widget_keynav_failed (widget, direction)) {
-       // FIXMEchpe: if FALSE, continue below?
        return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
     }
 #endif /* GTK 2.12. 0 */
@@ -1830,7 +1829,6 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
     }
 
     if (!gtk_widget_keynav_failed (widget, direction)) {
-       // FIXMEchpe: if FALSE, continue below?
        return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
     }
 #endif /* GTK 2.12. 0 */
