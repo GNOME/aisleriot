@@ -3216,14 +3216,13 @@ draw_focus:
   if (G_UNLIKELY (priv->show_focus &&
                   priv->focus_slot != NULL &&
                   GTK_WIDGET_HAS_FOCUS (widget))) {
-    gboolean interior_focus = priv->interior_focus;
     GdkRectangle focus_rect;
 
     /* Check whether this needs to be drawn */
     if (gdk_region_rect_in (region, &priv->focus_rect) == GDK_OVERLAP_RECTANGLE_OUT)
       goto expose_done;
 
-    if (interior_focus) {
+    if (priv->interior_focus) {
       focus_rect = priv->focus_rect;
     } else {
       get_rect_by_slot_and_card (board,
@@ -3238,7 +3237,7 @@ draw_focus:
                      GTK_WIDGET_STATE (widget),
                      &priv->focus_rect,
                      widget,
-                     NULL,
+                     NULL /* FIXME ? */,
                      focus_rect.x,
                      focus_rect.y,
                      focus_rect.width,
@@ -3282,11 +3281,6 @@ aisleriot_board_init (AisleriotBoard *board)
                          GDK_POINTER_MOTION_MASK |
                          GDK_BUTTON_RELEASE_MASK);
   /* FIMXEchpe: no need for motion events on maemo, unless we explicitly activate drag mode */
-
-  /* This only enforces the minimum size. It is actually set using the
-   * window size.
-   */
-  gtk_widget_set_size_request (widget, BOARD_MIN_WIDTH, BOARD_MIN_HEIGHT);
 
 #ifdef HAVE_MAEMO
   gtk_widget_tap_and_hold_setup (widget, NULL, NULL, GTK_TAP_AND_HOLD_PASS_PRESS);
@@ -3338,9 +3332,9 @@ aisleriot_board_finalize (GObject *object)
 
 static void
 aisleriot_board_get_property (GObject *object,
-			   guint prop_id,
-			   GValue *value,
-			   GParamSpec *pspec)
+                              guint prop_id,
+                              GValue *value,
+                              GParamSpec *pspec)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (object);
   AisleriotBoardPrivate *priv = board->priv;
@@ -3356,9 +3350,9 @@ aisleriot_board_get_property (GObject *object,
 
 static void
 aisleriot_board_set_property (GObject *object,
-			   guint prop_id,
-			   const GValue *value,
-			   GParamSpec *pspec)
+                              guint prop_id,
+                              const GValue *value,
+                              GParamSpec *pspec)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (object);
   AisleriotBoardPrivate *priv = board->priv;
