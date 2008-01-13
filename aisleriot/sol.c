@@ -60,8 +60,9 @@
 #include <windows.h>
 #include <io.h>
 #define HELP_EXT "xhtml"
-//FIXME On win32 help is created as html with gnome-doc-tool,
-//and put manually in the directory below.
+/* FIXME On win32 help is created as html with gnome-doc-tool,
+ * and put manually in the directory below.
+ */
 #define HELPDIR PKGDATADIR "/aisleriot/help"
 #endif /* G_OS_WIN32 */
 
