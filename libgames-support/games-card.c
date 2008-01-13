@@ -21,3 +21,16 @@
 #include <glib/gi18n.h>
 
 #include "games-card.h"
+
+/**
+ * games_card_get_name:
+ * @card:
+ *
+ * Returns: a localised name for @card, e.g. "Face-down card" or
+ * "9 of clubs", etc.
+ */
+const char *
+games_card_get_name (Card card)
+{
+  return NULL;
+}

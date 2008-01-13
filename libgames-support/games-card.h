@@ -61,4 +61,6 @@ typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; 
 #define GAMES_CARD_THEME_DEFAULT "bonded"
 #endif
 
+const char *games_card_get_name (Card card);
+
 #endif /* !GAMES_CARD_H */
