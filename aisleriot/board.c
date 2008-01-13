@@ -22,8 +22,6 @@
 
 #include "config.h"
 
-#define ENABLE_KEYNAV
-
 #include <string.h>
 
 #include <gtk/gtk.h>
@@ -42,6 +40,11 @@
 #include "board.h"
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
+
+/* Enable keynav on non-hildon by default */
+#ifndef HAVE_HILDON
+#define ENABLE_KEYNAV
+#endif /* !HAVE_HILDON */
 
 /* The minimum size for the playing area. Almost completely arbitrary. */
 #define BOARD_MIN_WIDTH 300
