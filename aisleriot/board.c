@@ -637,7 +637,6 @@ get_selection_rect (AisleriotBoard *board,
                              priv->selection_slot,
                              priv->selection_start_card_id,
                              n_cards, rect);
-  widen_rect (rect, 4 * priv->focus_line_width); // FIXMEchpe why?
 }
 
 static void
