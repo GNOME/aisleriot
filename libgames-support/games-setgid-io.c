@@ -100,7 +100,7 @@ write_cmd (unsigned char cmd)
 
 
 static gboolean
-write_n_bytes (int fd, const char *buffer, int n)
+write_n_bytes (int fd, const void *buffer, int n)
 {
   int totalcnt;
   int cnt;
@@ -117,7 +117,7 @@ write_n_bytes (int fd, const char *buffer, int n)
 }
 
 static gboolean
-read_n_bytes (int fd, char *buffer, int n)
+read_n_bytes (int fd, void *buffer, int n)
 {
   int totalcnt;
   int cnt;
@@ -405,7 +405,7 @@ setgid_io_stat (char *filename, struct stat *buffer)
   write_int (setgid_io_outfd, length);
   write_n_bytes (setgid_io_outfd, filename, length);
 
-  read_n_bytes (setgid_io_infd, (char *) buffer, sizeof (struct stat));
+  read_n_bytes (setgid_io_infd, buffer, sizeof (struct stat));
   return read_int (setgid_io_infd);
 }
 
@@ -424,7 +424,7 @@ setgid_io_stat_priv (int outfd, int infd)
 
   result = stat (filename, &buffer);
 
-  write_n_bytes (outfd, (char *) &buffer, sizeof (struct stat));
+  write_n_bytes (outfd, &buffer, sizeof (struct stat));
   write_int (outfd, result);
 }
 
