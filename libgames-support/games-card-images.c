@@ -476,7 +476,7 @@ games_card_images_set_background_color (GamesCardImages * images,
   g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
   g_return_if_fail (color != NULL);
 
-  if (memcmp (&images->background_colour, color, sizeof (GdkColor)) == 0)
+  if (gdk_color_equal (&images->background_colour, color))
     return;
 
   images->background_colour = *color;
@@ -502,7 +502,7 @@ games_card_images_set_selection_color (GamesCardImages * images,
   g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
   g_return_if_fail (color != NULL);
 
-  if (memcmp (&images->selection_colour, color, sizeof (GdkColor)) == 0)
+  if (gdk_color_equal (&images->selection_colour, color))
     return;
 
   images->selection_colour = *color;
