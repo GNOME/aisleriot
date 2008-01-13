@@ -176,7 +176,8 @@ struct _AisleriotBoardPrivate
   guint droppable_supported : 1;
   guint touchscreen_mode : 1;
   guint use_pixbuf_drawing : 1;
-  guint show_focus; /* whether the focus is drawn */
+  guint show_focus : 1; /* whether the focus is drawn */
+  guint interior_focus : 1;
 
   guint click_to_move : 1;
 
@@ -2492,12 +2493,23 @@ aisleriot_board_style_set (GtkWidget *widget,
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
   GdkColor *colour = NULL;
+  gboolean interior_focus;
 
   gtk_widget_style_get (widget,
                         "focus-line-width", &priv->focus_line_width,
                         "focus-padding", &priv->focus_padding,
+                        "interior-focus", &interior_focus,
                         "selection-color", &colour,
                         NULL);
+
+#if 0
+  g_print ("style-set: focus width %d padding %d interior-focus %s\n",
+           priv->focus_line_width,
+           priv->focus_padding,
+           interior_focus ? "t" : "f");
+#endif
+
+  priv->interior_focus = interior_focus != FALSE;
 
   if (colour != NULL) {
     priv->selection_colour = *colour;
@@ -3204,28 +3216,33 @@ draw_focus:
   if (G_UNLIKELY (priv->show_focus &&
                   priv->focus_slot != NULL &&
                   GTK_WIDGET_HAS_FOCUS (widget))) {
-    GdkRectangle *focus_rect = &priv->focus_rect;
-    GdkRectangle focus_card_rect;
+    gboolean interior_focus = priv->interior_focus;
+    GdkRectangle focus_rect;
 
     /* Check whether this needs to be drawn */
-    if (gdk_region_rect_in (region, focus_rect) == GDK_OVERLAP_RECTANGLE_OUT)
+    if (gdk_region_rect_in (region, &priv->focus_rect) == GDK_OVERLAP_RECTANGLE_OUT)
       goto expose_done;
 
-    get_rect_by_slot_and_card (board,
-                               priv->focus_slot,
-                               priv->focus_card_id,
-                               1,
-                               &focus_card_rect);
+    if (interior_focus) {
+      focus_rect = priv->focus_rect;
+    } else {
+      get_rect_by_slot_and_card (board,
+                                 priv->focus_slot,
+                                 priv->focus_card_id,
+                                 1,
+                                 &focus_rect);
+    }
+
     gtk_paint_focus (widget->style,
                      widget->window,
                      GTK_WIDGET_STATE (widget),
-                     focus_rect,
+                     &priv->focus_rect,
                      widget,
                      NULL,
-                     focus_card_rect.x,
-                     focus_card_rect.y,
-                     focus_card_rect.width,
-                     focus_card_rect.height);
+                     focus_rect.x,
+                     focus_rect.y,
+                     focus_rect.width,
+                     focus_rect.height);
   }
 
 expose_done:
@@ -3244,6 +3261,8 @@ aisleriot_board_init (AisleriotBoard *board)
   AisleriotBoardPrivate *priv;
 
   priv = board->priv = AISLERIOT_BOARD_GET_PRIVATE (board);
+
+  gtk_widget_set_name (widget, "aisleriot-board");
 
   GTK_WIDGET_SET_FLAGS (widget, GTK_CAN_FOCUS);
 
