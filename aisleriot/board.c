@@ -3205,21 +3205,27 @@ draw_focus:
                   priv->focus_slot != NULL &&
                   GTK_WIDGET_HAS_FOCUS (widget))) {
     GdkRectangle *focus_rect = &priv->focus_rect;
+    GdkRectangle focus_card_rect;
 
     /* Check whether this needs to be drawn */
     if (gdk_region_rect_in (region, focus_rect) == GDK_OVERLAP_RECTANGLE_OUT)
       goto expose_done;
 
+    get_rect_by_slot_and_card (board,
+                               priv->focus_slot,
+                               priv->focus_card_id,
+                               1,
+                               &focus_card_rect);
     gtk_paint_focus (widget->style,
                      widget->window,
                      GTK_WIDGET_STATE (widget),
                      focus_rect,
                      widget,
                      NULL,
-                     focus_rect->x,
-                     focus_rect->y,
-                     focus_rect->width,
-                     focus_rect->height);
+                     focus_card_rect.x,
+                     focus_card_rect.y,
+                     focus_card_rect.width,
+                     focus_card_rect.height);
   }
 
 expose_done:
