@@ -1056,8 +1056,9 @@ drag_begin (AisleriotBoard *board)
   aisleriot_game_record_move (priv->game, hslot->id,
                               cards->data, cards->len);
 
-  /* Unset the selection. It'll be re-set if the drag is aborted */
+  /* Unset the selection and focus. It'll be re-set if the drag is aborted */
   set_selection (board, NULL, -1, FALSE);
+  set_focus (board, NULL, -1, FALSE);
 
   delta = hslot->exposed - num_moving_cards;
 
