@@ -1793,7 +1793,11 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
   if (new_focus_slot->expanded_right) {
     if ((is_rtl && count < 0) ||
         (!is_rtl && count > 0)) {
-      new_focus_card_id = new_focus_slot_topmost_card_id >= 0 ? 0 : -1;
+      if (new_focus_slot_topmost_card_id >= 0) {
+        new_focus_slot_topmost_card_id = ((int) new_focus_slot->cards->len) - ((int) new_focus_slot->exposed);
+      } else {
+        new_focus_card_id = -1;
+      }
     } else {
       new_focus_card_id = new_focus_slot_topmost_card_id;
     }
