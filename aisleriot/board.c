@@ -721,7 +721,7 @@ slot_update_geometry (AisleriotBoard *board,
   /* We need to make sure the cards fit within the board, even
    * when there are many of them. See bug #171417.
    */
-  /* FIXMEchpe: check |cards->len - slot->exposed| instead of cards->len? */
+  /* FIXMEchpe: check |slot->exposed| instead of cards->len? */
   pixeldx = 0;
   if (cards->len > 1) {
     double dx = 0, dy = 0;
@@ -1385,8 +1385,8 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
     return FALSE;
 
   /* NOTE: We cannot use aisleriot_game_drop_valid here since the
-    * game may not support the "droppable" feature.
-    */
+   * game may not support the "droppable" feature.
+   */
 
   set_selection (board, NULL, -1, FALSE);
 
@@ -1418,6 +1418,8 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
   if (moved) {
     aisleriot_game_end_move (priv->game);
 
+    games_sound_play ("click");
+
     if (selection_slot->needs_update)
       g_signal_emit_by_name (priv->game, "slot-changed", selection_slot); /* FIXMEchpe! */
 
@@ -1426,8 +1428,6 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
     /* Not moved; discard the move add the cards back to the origin slot */
     aisleriot_game_discard_move (priv->game);
     aisleriot_game_slot_add_cards (priv->game, selection_slot, cards, n_cards);
-
-    /* FIXMEchpe: maybe beep? */
   }
 
   return moved;
