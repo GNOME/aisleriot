@@ -1,7 +1,7 @@
 /*
  *  Copyright © 1998, 2003 Jonathan Blandford <jrb@alum.mit.edu>
  *  Copyright © 2003 Callum McKenzie <callum@physics.otago.ac.nz>
- *  Copyright © 2007 Christian Persch
+ *  Copyright © 2007, 2008 Christian Persch
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -2183,7 +2183,8 @@ aisleriot_window_init (AisleriotWindow *window)
 
   priv->game = aisleriot_game_new ();
 
-#ifdef HAVE_HILDON 
+  /* FIXMEchpe: case HAVE_HILDON && HAVE_RSVG ! */
+#ifdef HAVE_HILDON
   priv->scalable_cards = FALSE;
   priv->use_pixbuf_drawing = FALSE;
 #else
@@ -2205,7 +2206,8 @@ aisleriot_window_init (AisleriotWindow *window)
     g_print ("Using pixbuf drawing method\n");
   else
     g_print ("Using pixmap drawing method\n");
-#endif
+#endif /* GNOME_ENABLE_DEBUG */
+
 #endif /* HAVE_MAEMO */
 
   priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->game, priv->scalable_cards));
