@@ -1757,7 +1757,8 @@ aisleriot_board_extend_selection_in_slot_maximal (AisleriotBoard *board)
 
 static gboolean
 aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
-                                                int count)
+                                                int count,
+                                                gboolean wrap)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
@@ -1790,6 +1791,9 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
   /* Wrap-around? */
   if (new_focus_slot_index < 0 ||
       new_focus_slot_index >= n_slots) {
+    if (!wrap)
+      return FALSE;
+
 #if GTK_CHECK_VERSION (2, 12, 0)
     GtkDirectionType direction;
 
@@ -1980,7 +1984,7 @@ aisleriot_board_move_cursor_left_right (AisleriotBoard *board,
     return TRUE;
 
   /* Cannot move in-slot; move focused slot */
-  return aisleriot_board_move_cursor_left_right_by_slot (board, count);
+  return aisleriot_board_move_cursor_left_right_by_slot (board, count, TRUE);
 }
 
 static gboolean
@@ -2599,6 +2603,38 @@ aisleriot_board_size_request (GtkWidget *widget,
 {
   requisition->width = BOARD_MIN_WIDTH;
   requisition->height = BOARD_MIN_HEIGHT;
+}
+
+static gboolean
+aisleriot_board_focus (GtkWidget *widget,
+                       GtkDirectionType direction)
+{
+  AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  AisleriotBoardPrivate *priv = board->priv;
+
+  if (!priv->focus_slot) {
+    int count;
+
+    switch (direction) {
+      case GTK_DIR_TAB_FORWARD:
+        count = 1;
+        break;
+      case GTK_DIR_TAB_BACKWARD:
+        count = -1;
+        break;
+      default:
+        break;
+    }
+
+    return aisleriot_board_move_cursor_start_end_by_slot (board, -count);
+  }
+
+#if 0
+  if (aisleriot_board_move_cursor_left_right_by_slot (board, count, FALSE))
+    return TRUE;
+#endif
+
+  return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus (widget, direction);
 }
 
 /* The gtkwidget.c focus in/out handlers queue a shallow draw;
@@ -3376,6 +3412,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->style_set = aisleriot_board_style_set;
   widget_class->size_allocate = aisleriot_board_size_allocate;
   widget_class->size_request = aisleriot_board_size_request;
+  widget_class->focus = aisleriot_board_focus;
   widget_class->focus_in_event = aisleriot_board_focus_in;
   widget_class->focus_out_event = aisleriot_board_focus_out;
   widget_class->button_press_event = aisleriot_board_button_press;
