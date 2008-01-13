@@ -1976,8 +1976,14 @@ slot_changed_cb (AisleriotGame *game,
     /* Try to keep the focus intact. If the focused card isn't there
      * anymore, this will set the focus to the topmost card of there
      * same slot, or the slot itself if there are no cards on it.
+     * If the slot was empty but now isn't, we set the focus to the
+     * topmost card.
      */
-    set_focus (board, slot, priv->focus_card_id, priv->show_focus);
+    if (priv->focus_card_id < 0) {
+      set_focus (board, slot, ((int) slot->cards->len) - 1, priv->show_focus);
+    } else {
+      set_focus (board, slot, priv->focus_card_id, priv->show_focus);
+    }
   }
   if (slot == priv->highlight_slot) {
     highlight_drop_target (board, NULL);
