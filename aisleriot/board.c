@@ -1889,7 +1889,7 @@ aisleriot_board_move_cursor_up_down (AisleriotBoard *board,
   /* First try in-slot focus movement */
   if (!is_control &&
       priv->focus_slot->expanded_down &&
-      aisleriot_board_move_cursor_in_slot (board, is_rtl ? -count : count))
+      aisleriot_board_move_cursor_in_slot (board, count))
     return TRUE;
 
   /* Cannot move in-slot; move focused slot */
