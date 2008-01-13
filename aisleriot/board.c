@@ -2171,7 +2171,7 @@ aisleriot_board_toggle_selection (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
   Slot *focus_slot;
-  int focus_card_id,new_selection_start_card_id;
+  int focus_card_id;
 
   focus_slot = priv->focus_slot;
   if (!focus_slot)
@@ -2179,7 +2179,7 @@ aisleriot_board_toggle_selection (AisleriotBoard *board)
 
   focus_card_id = priv->focus_card_id;
 
-  /* Focus not shown? Show it, and proceed*/
+  /* Focus not shown? Show it, and proceed */
   if (!priv->show_focus) {
     set_focus (board, focus_slot, focus_card_id, TRUE);
   }
@@ -2195,29 +2195,21 @@ aisleriot_board_toggle_selection (AisleriotBoard *board)
    * Space or Shift-Up/Down etc.
    */
   if (priv->selection_slot == focus_slot &&
-      priv->selection_start_card_id <= focus_card_id &&
+      priv->selection_start_card_id == focus_card_id &&
       priv->show_selection) {
-    /* Truncate selection */
-    new_selection_start_card_id = focus_card_id + 1;
-  } else {
-    /* Extend selection */
-    new_selection_start_card_id = focus_card_id;
-  }
-
-  g_print ("select-card old-selection-start %d new-selection-start %d focus %d\n",
-           priv->selection_start_card_id, new_selection_start_card_id, focus_card_id);
-
-  if (new_selection_start_card_id < 0 ||
-      new_selection_start_card_id >= focus_slot->cards->len)
+    set_selection (board, NULL, -1, FALSE);
     return;
+  }
 
   if (!aisleriot_game_drag_valid (priv->game,
                                   focus_slot->id,
-                                  focus_slot->cards->data + new_selection_start_card_id,
-                                  focus_slot->cards->len - new_selection_start_card_id))
+                                  focus_slot->cards->data + focus_card_id,
+                                  focus_slot->cards->len - focus_card_id)) {
+    aisleriot_board_error_bell (board);
     return;
+  }
 
-  set_selection (board, focus_slot, new_selection_start_card_id, TRUE);
+  set_selection (board, focus_slot, focus_card_id, TRUE);
 }
 
 #endif /* ENABLE_KEYNAV */
