@@ -1316,7 +1316,7 @@ highlight_drop_target (AisleriotBoard *board,
   /* It's ok to call this directly, since the highlight slot is always
    * different from the selection slot!
    */
-  slot_update_card_images_full (board, slot, slot->cards->len - 1);
+  slot_update_card_images_full (board, slot, ((int) slot->cards->len) - 1);
 }
 
 static void
