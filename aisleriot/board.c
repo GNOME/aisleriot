@@ -2667,6 +2667,7 @@ static gboolean
 aisleriot_board_focus_in (GtkWidget *widget,
                           GdkEventFocus *event)
 {
+#ifdef ENABLE_KEYNAV
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
 
@@ -2675,6 +2676,7 @@ aisleriot_board_focus_in (GtkWidget *widget,
       priv->focus_slot != NULL) {
     gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
   }
+#endif /* ENABLE_KEYNAV */
 
   return FALSE;
 }
@@ -2684,15 +2686,19 @@ aisleriot_board_focus_out (GtkWidget *widget,
                            GdkEventFocus *event)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
+#ifdef ENABLE_KEYNAV
   AisleriotBoardPrivate *priv = board->priv;
+#endif /* ENABLE_KEYNAV */
 
   clear_state (board);
 
+#ifdef ENABLE_KEYNAV
   /* Hide focus */
   if (priv->show_focus &&
       priv->focus_slot != NULL) {
     gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
   }
+#endif /* ENABLE_KEYNAV */
 
   return FALSE;
 }
