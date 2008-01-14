@@ -552,9 +552,18 @@ games_card_theme_set_property (GObject * object,
   GamesCardTheme *theme = GAMES_CARD_THEME (object);
 
   switch (prop_id) {
-  case PROP_SCALABLE:
-    theme->use_scalable = g_value_get_boolean (value) != FALSE;
+  case PROP_SCALABLE: {
+    gboolean use_scalable = (g_value_get_boolean (value) != FALSE);
+
+#ifndef HAVE_RSVG
+    if (use_scalable) {
+      g_warning ("Cannot enable scalable cards since RSVG support is not compiled in\n");
+      use_scalable = FALSE;
+    }
+#endif
+    theme->use_scalable = use_scalable; 
     break;
+  }
   case PROP_THEME_DIRECTORY:
     theme->theme_dir = g_value_dup_string (value);
     break;
