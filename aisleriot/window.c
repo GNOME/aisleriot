@@ -2193,9 +2193,13 @@ aisleriot_window_init (AisleriotWindow *window)
   priv->scalable_cards = FALSE;
   priv->use_pixbuf_drawing = FALSE;
 #else
+#ifdef HAVE_RSVG
   /* Default to scalable */
   env = g_getenv ("AISLERIOT_CARDS_SCALABLE");
   priv->scalable_cards = env == NULL || g_ascii_strtoull (env, NULL, 0) != 0;
+#else
+  priv->scalable_cards = FALSE;
+#endif /* HAVE_RSVG */
 
   /* Default to pixbuf drawing */
   env = g_getenv ("AISLERIOT_PIXBUF_DRAWING");
