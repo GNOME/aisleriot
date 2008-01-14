@@ -3407,6 +3407,7 @@ aisleriot_board_get_property (GObject *object,
       break;
     case PROP_SCALABLE_CARDS:
       g_value_set_boolean (value, priv->scalable_cards);
+      break;
   }
 }
 
