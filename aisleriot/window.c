@@ -735,31 +735,87 @@ debug_exception_cb (GtkAction *action,
   aisleriot_game_generate_exception (priv->game);
 }
 
+#define DEBUG_WINDOW_DATA_KEY "debug-data"
+
 typedef struct {
   AisleriotWindow *window;
   GList *games_list;
-} DebugCycleData;
+  GList *current_game;
+} DebugWindowData;
+
+static void
+debug_data_free (DebugWindowData *data)
+{
+  g_list_foreach (data->games_list, (GFunc) g_free, NULL);
+  g_list_free (data->games_list);
+  g_slice_free (DebugWindowData, data);
+}
+
+static DebugWindowData *
+debug_ensure_game_list (AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+  DebugWindowData *data;
+  GamesFileList *files;
+  GList *l;
+
+  data = g_object_get_data (G_OBJECT (window), DEBUG_WINDOW_DATA_KEY);
+  if (data != NULL)
+    return data;
+
+  files = games_file_list_new ("*.scm", games_path_runtime_fix (GAMESDIR), NULL);
+  games_file_list_transform_basename (files);
+
+  data = g_slice_new (DebugWindowData);
+  data->window = window;
+  data->games_list = files->list;
+  data->current_game = g_list_find_custom (data->games_list,
+                                           aisleriot_game_get_game_file (priv->game),
+                                           (GCompareFunc) strcmp);
+
+  /* Remove the base sol.scm from the list */
+  for (l = data->games_list; l != NULL; l = l->next) {
+    char *game_file = (char *) l->data;
+
+    if (game_file != NULL &&
+        strcmp (game_file, "sol.scm") == 0) {
+      data->games_list = g_list_delete_link (data->games_list, l);
+      g_free (game_file);
+      break;
+    }
+  }
+
+  files->list = NULL;
+  g_object_unref (files);
+
+  g_object_set_data_full (G_OBJECT (window), DEBUG_WINDOW_DATA_KEY,
+                          data, (GDestroyNotify) debug_data_free);
+
+  return data;
+}
 
 static gboolean
-debug_cycle_timeout_cb (DebugCycleData *data)
+debug_cycle_timeout_cb (AisleriotWindow *window)
 {
+  DebugWindowData *data;
+  GList *l;
   char *game_file;
 
-  if (data->games_list == NULL) {
-    g_slice_free (DebugCycleData, data);
+  data = debug_ensure_game_list (window);
+  if (data->current_game != NULL) {
+    data->current_game = data->current_game->next;
+    /* We're done */
+    if (!data->current_game)
+      return FALSE;
+  }
+  if (!data->current_game) {
+    data->current_game = data->games_list;
+  }
+  if (!data->current_game)
     return FALSE;
-  }
 
-  game_file = data->games_list->data;
-  /* Take the head off of the list */
-  data->games_list = g_list_delete_link (data->games_list, data->games_list);
-
-  if (game_file != NULL &&
-      strcmp (game_file, "sol.scm") != 0) {
-    aisleriot_window_set_game (data->window, game_file, 0);
-  }
-
-  g_free (game_file);
+  game_file = data->current_game->data;  
+  aisleriot_window_set_game (data->window, game_file, 0);
 
   return TRUE;
 }
@@ -768,20 +824,73 @@ static void
 debug_cycle_cb (GtkAction *action,
                 AisleriotWindow *window)
 {
-  GamesFileList *files;
-  DebugCycleData *data;
+  g_timeout_add (500, (GSourceFunc) debug_cycle_timeout_cb, window);
+}
 
-  files = games_file_list_new ("*.scm", games_path_runtime_fix (GAMESDIR), NULL);
-  games_file_list_transform_basename (files);
+static void
+debug_game_first (GtkAction *action,
+                  AisleriotWindow *window)
+{
+  DebugWindowData *data;
 
-  data = g_slice_new (DebugCycleData);
-  data->window = window;
-  data->games_list = files->list;
+  data = debug_ensure_game_list (window);
+  data->current_game = data->games_list;
+  if (!data->current_game)
+    return;
 
-  files->list = NULL;
-  g_object_unref (files);
+  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, 0);
+}
 
-  g_timeout_add (500, (GSourceFunc) debug_cycle_timeout_cb, data);
+static void
+debug_game_last (GtkAction *action,
+                 AisleriotWindow *window)
+{
+  DebugWindowData *data;
+
+  data = debug_ensure_game_list (window);
+  data->current_game = g_list_last (data->games_list);
+  if (!data->current_game)
+    return;
+
+  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, 0);
+}
+
+static void
+debug_game_next (GtkAction *action,
+                 AisleriotWindow *window)
+{
+  DebugWindowData *data;
+
+  data = debug_ensure_game_list (window);
+  if (data->current_game) {
+    data->current_game = data->current_game->next;
+  }
+  if (!data->current_game) {
+    data->current_game = data->games_list;
+  }
+  if (!data->current_game)
+    return;
+
+  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, 0);
+}
+
+static void
+debug_game_prev (GtkAction *action,
+                 AisleriotWindow *window)
+{
+  DebugWindowData *data;
+
+  data = debug_ensure_game_list (window);
+  if (data->current_game) {
+    data->current_game = data->current_game->prev;
+  }
+  if (!data->current_game) {
+    data->current_game = data->games_list;
+  }
+  if (!data->current_game)
+    return;
+
+  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, 0);
 }
 
 #endif /* !HAVE_HILDON */
@@ -805,6 +914,8 @@ debug_choose_seed_response_cb (GtkWidget *dialog,
     seed = g_ascii_strtoull (text, &endptr, 10);
     if (errno == 0 && endptr != text) {
       aisleriot_game_new_game (priv->game, &seed);
+
+      gtk_widget_grab_focus (GTK_WIDGET (priv->board));
     }
   }
 
@@ -2009,6 +2120,14 @@ aisleriot_window_init (AisleriotWindow *window)
       G_CALLBACK (debug_exception_cb) },
     { "DebugCycle", NULL, "Cycle through _all games", NULL, NULL,
       G_CALLBACK (debug_cycle_cb) },
+    { "DebugGameFirst", GTK_STOCK_GOTO_FIRST, NULL, NULL, NULL,
+      G_CALLBACK (debug_game_first) },
+    { "DebugGameLast", GTK_STOCK_GOTO_LAST, NULL, NULL, NULL,
+      G_CALLBACK (debug_game_last) },
+    { "DebugGameNext", GTK_STOCK_GO_FORWARD, NULL, NULL, NULL,
+      G_CALLBACK (debug_game_next) },
+    { "DebugGamePrev", GTK_STOCK_GO_BACK, NULL, NULL, NULL,
+      G_CALLBACK (debug_game_prev) },
 #endif /* !HAVE_HILDON */
 #endif /* ENABLE_DEBUG_UI */
 
@@ -2142,7 +2261,13 @@ aisleriot_window_init (AisleriotWindow *window)
           "<menuitem action='DebugMoveNextScreen'/>"
           "<menuitem action='DebugDelayedMoveNextScreen'/>"
           "<menuitem action='DebugException'/>"
+          "<separator/>"
           "<menuitem action='DebugCycle'/>"
+          "<separator/>"
+          "<menuitem action='DebugGameFirst'/>"
+          "<menuitem action='DebugGamePrev'/>"
+          "<menuitem action='DebugGameNext'/>"
+          "<menuitem action='DebugGameLast'/>"
         "</menu>"
 #endif /* ENABLE_DEBUG_UI */
       "</menubar>"
@@ -2158,6 +2283,12 @@ aisleriot_window_init (AisleriotWindow *window)
         "<toolitem action='Hint'/>"
 #ifndef HAVE_MAEMO
         "<toolitem action='LeaveFullscreen'/>"
+#endif
+#ifdef ENABLE_DEBUG_UI
+        "<toolitem action='DebugGameFirst'/>"
+        "<toolitem action='DebugGamePrev'/>"
+        "<toolitem action='DebugGameNext'/>"
+        "<toolitem action='DebugGameLast'/>"
 #endif
 #ifdef HAVE_MAEMO
         "<separator/>"
