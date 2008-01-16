@@ -3616,6 +3616,8 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   /* Selection */
   gtk_binding_entry_add_signal (binding_set, GDK_space, 0,
                                 "toggle-selection", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_KP_Space, 0,
+                                "toggle-selection", 0);
   gtk_binding_entry_add_signal (binding_set, GDK_a, GDK_CONTROL_MASK,
                                 "select-all", 0);
   gtk_binding_entry_add_signal (binding_set, GDK_a, GDK_CONTROL_MASK | GDK_SHIFT_MASK,
