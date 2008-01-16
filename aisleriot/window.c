@@ -798,7 +798,6 @@ static gboolean
 debug_cycle_timeout_cb (AisleriotWindow *window)
 {
   DebugWindowData *data;
-  GList *l;
   char *game_file;
 
   data = debug_ensure_game_list (window);
