@@ -2037,7 +2037,7 @@ aisleriot_game_set_click_to_move (AisleriotGame *game,
 void
 aisleriot_game_generate_exception (AisleriotGame *game)
 {
-  cscmi_eval_string ("(how-about-a-nice-crash?)");
+  cscmi_eval_string ("(/ 1 0)");
 }
 
 /**
