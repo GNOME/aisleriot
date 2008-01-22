@@ -3,12 +3,14 @@ NULL =
 carddir = $(datadir)/gnome-games-common/cards
 
 card_DATA = \
-	anglo.svg	\
-	bellot.svg	\
-	dondorf.svg	\
-	gnomangelo.svg	\
-	ornamental.svg	\
-	paris.svg	\
+	anglo.svg \
+	anglo_bitmap.svg \
+	bellot.svg \
+	dondorf.svg \
+	gnomangelo.svg \
+	gnomangelo_bitmap.svg \
+	ornamental.svg \
+	paris.svg \
 	$(NULL)
 
 EXTRA_DIST = \
