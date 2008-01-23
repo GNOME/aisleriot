@@ -205,6 +205,34 @@ games_stock_set_pause_actions (GtkAction * pause_action,
 }
 
 static void
+add_icon_from_file (GtkIconFactory * icon_factory,
+                    const char *stock_id, const char *filename)
+{
+  GtkIconSource *source;
+  GtkIconSet *set;
+  char *path;
+
+  source = gtk_icon_source_new ();
+  set = gtk_icon_set_new ();
+
+  path = games_build_filename (ICONDIR, filename);
+  gtk_icon_source_set_filename (source, path);
+  g_free (path);
+
+  gtk_icon_set_add_source (set, source);
+  gtk_icon_factory_add (icon_factory, stock_id, set);
+  gtk_icon_set_unref (set);
+  gtk_icon_source_free (source);
+}
+
+#endif /* !HAVE_HILDON */
+
+/* This will become GTK_CHECK_VERSION (2, 15, x) once the patch from gtk+ bug 511332 is committed */
+#undef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
+
+#ifndef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
+
+static void
 register_stock_icon (GtkIconFactory * icon_factory,
                      const char * stock_id,
                      const char * icon_name)
@@ -232,8 +260,6 @@ register_stock_icon_bidi (GtkIconFactory * icon_factory,
   GtkIconSource *source;
   GtkIconSet *set;
 
-  g_print ("register-bidi %s LTR %s RTL %s\n", stock_id, icon_name_ltr, icon_name_rtl);
-
   set = gtk_icon_set_new ();
 
   source = gtk_icon_source_new ();
@@ -254,41 +280,23 @@ register_stock_icon_bidi (GtkIconFactory * icon_factory,
   gtk_icon_set_unref (set);
 }
 
-/* The same routine, but for filenames instead. */
-static void
-add_icon_from_file (GtkIconFactory * icon_factory,
-                    const char *stock_id, const char *filename)
-{
-  GtkIconSource *source;
-  GtkIconSet *set;
-  char *path;
-
-  source = gtk_icon_source_new ();
-  set = gtk_icon_set_new ();
-
-  path = games_build_filename (ICONDIR, filename);
-  gtk_icon_source_set_filename (source, path);
-  g_free (path);
-
-  gtk_icon_set_add_source (set, source);
-  gtk_icon_factory_add (icon_factory, stock_id, set);
-  gtk_icon_set_unref (set);
-  gtk_icon_source_free (source);
-}
-
-#endif /* !HAVE_HILDON */
+#endif /* HAVE_GTK_ICON_FACTORY_ADD_ALIAS */
 
 void
 games_stock_init (void)
 {
   /* These stocks have a gtk stock icon */
-  const char *stock_item_with_icon_name[][2] = {
+  const char *stock_icon_aliases[][2] = {
     { GAMES_STOCK_CONTENTS,         GTK_STOCK_HELP },
     { GAMES_STOCK_HINT,             GTK_STOCK_DIALOG_INFO },
     { GAMES_STOCK_NEW_GAME,         GTK_STOCK_NEW },
     { GAMES_STOCK_RESET,            GTK_STOCK_CLEAR },
     { GAMES_STOCK_RESTART_GAME,     GTK_STOCK_REFRESH },
     { GAMES_STOCK_DEAL_CARDS,       GTK_STOCK_OK } /* FIXMEchpe */,
+#ifdef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
+    { GAMES_STOCK_REDO_MOVE,        GTK_STOCK_REDO },
+    { GAMES_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
+#endif
 #ifndef HAVE_HILDON
     { GAMES_STOCK_FULLSCREEN,       GTK_STOCK_FULLSCREEN },
     { GAMES_STOCK_LEAVE_FULLSCREEN, GTK_STOCK_LEAVE_FULLSCREEN },
@@ -302,10 +310,12 @@ games_stock_init (void)
 #endif /* !HAVE_HILDON */
   };
 
-  const char *stock_item_with_icon_name_bidi[][3] = {
+#ifndef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
+  const char *stock_icon_aliases_bidi[][3] = {
     { GAMES_STOCK_REDO_MOVE, GTK_STOCK_REDO "-ltr", GTK_STOCK_REDO "-rtl" },
     { GAMES_STOCK_UNDO_MOVE, GTK_STOCK_UNDO "-ltr", GTK_STOCK_UNDO "-rtl" },
   };
+#endif
 
 #ifndef HAVE_HILDON
   /* These stocks are using a private icon file */
@@ -360,22 +370,33 @@ games_stock_init (void)
 
 #undef STOCK_ACCEL
 
-  GtkIconFactory *icon_factory;
   guint i;
+#if !defined(HAVE_GTK_ICON_FACTORY_ADD_ALIAS) || !defined(HAVE_HILDON)
+  GtkIconFactory *icon_factory;
 
   icon_factory = gtk_icon_factory_new ();
+#endif /* !HAVE_GTK_ICON_FACTORY_ADD_ALIAS || !HAVE_HILDON */
 
-  for (i = 0; i < G_N_ELEMENTS (stock_item_with_icon_name); ++i) {
-    register_stock_icon (icon_factory, stock_item_with_icon_name[i][0],
-                         stock_item_with_icon_name[i][1]);
+#ifdef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
+  for (i = 0; i < G_N_ELEMENTS (stock_icon_aliases); ++i) {
+    gtk_icon_factory_add_alias (stock_icon_aliases[i][0],
+                                stock_icon_aliases[i][1]);
   }
 
-  for (i = 0; i < G_N_ELEMENTS (stock_item_with_icon_name_bidi); ++i) {
+#else
+  for (i = 0; i < G_N_ELEMENTS (stock_icon_aliases); ++i) {
+    register_stock_icon (icon_factory,
+                         stock_icon_aliases[i][0],
+                         stock_icon_aliases[i][1]);
+  }
+
+  for (i = 0; i < G_N_ELEMENTS (stock_icon_aliases_bidi); ++i) {
     register_stock_icon_bidi (icon_factory,
-                              stock_item_with_icon_name_bidi[i][0],
-                              stock_item_with_icon_name_bidi[i][1],
-                              stock_item_with_icon_name_bidi[i][2]);
+                              stock_icon_aliases_bidi[i][0],
+                              stock_icon_aliases_bidi[i][1],
+                              stock_icon_aliases_bidi[i][2]);
   }
+#endif /* HAVE_GTK_ICON_FACTORY_ADD_ALIAS */
 
 #ifndef HAVE_HILDON
   /* only need icons on non-hildon */
@@ -386,13 +407,15 @@ games_stock_init (void)
   }
 #endif /* !HAVE_HILDON */
 
+#if !defined(HAVE_GTK_ICON_FACTORY_ADD_ALIAS) || !defined(HAVE_HILDON)
   gtk_icon_factory_add_default (icon_factory);
   g_object_unref (icon_factory);
+#endif /* !HAVE_GTK_ICON_FACTORY_ADD_ALIAS || !HAVE_HILDON */
 
   gtk_stock_add_static (games_stock_items, G_N_ELEMENTS (games_stock_items));
 }
 
-/* Returns a GPL license string for a specific game. */
+/* Returns a GPL 2+ license string for a specific game. */
 gchar *
 games_get_license (const gchar * game_name)
 {
