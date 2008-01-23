@@ -204,22 +204,54 @@ games_stock_set_pause_actions (GtkAction * pause_action,
   set_pause_actions (resume_action, actions);
 }
 
-/* FIXME: This is for non-gtk icons. It only seems to go for the hicolor defaults. */
 static void
-add_stock_icon (GtkIconFactory * icon_factory,
-                const char *stock_id, const char *icon_name)
+register_stock_icon (GtkIconFactory * icon_factory,
+                     const char * stock_id,
+                     const char * icon_name)
 {
   GtkIconSource *source;
   GtkIconSet *set;
 
-  source = gtk_icon_source_new ();
   set = gtk_icon_set_new ();
-  gtk_icon_source_set_icon_name (source, icon_name);
 
+  source = gtk_icon_source_new ();
+  gtk_icon_source_set_icon_name (source, icon_name);
   gtk_icon_set_add_source (set, source);
+  gtk_icon_source_free (source);
+
   gtk_icon_factory_add (icon_factory, stock_id, set);
   gtk_icon_set_unref (set);
+}
+
+static void
+register_stock_icon_bidi (GtkIconFactory * icon_factory,
+                          const char * stock_id,
+                          const char * icon_name_ltr,
+                          const char * icon_name_rtl)
+{
+  GtkIconSource *source;
+  GtkIconSet *set;
+
+  g_print ("register-bidi %s LTR %s RTL %s\n", stock_id, icon_name_ltr, icon_name_rtl);
+
+  set = gtk_icon_set_new ();
+
+  source = gtk_icon_source_new ();
+  gtk_icon_source_set_icon_name (source, icon_name_ltr);
+  gtk_icon_source_set_direction (source, GTK_TEXT_DIR_LTR);
+  gtk_icon_source_set_direction_wildcarded (source, FALSE);
+  gtk_icon_set_add_source (set, source);
   gtk_icon_source_free (source);
+
+  source = gtk_icon_source_new ();
+  gtk_icon_source_set_icon_name (source, icon_name_rtl);
+  gtk_icon_source_set_direction (source, GTK_TEXT_DIR_RTL);
+  gtk_icon_source_set_direction_wildcarded (source, FALSE);
+  gtk_icon_set_add_source (set, source);
+  gtk_icon_source_free (source);
+
+  gtk_icon_factory_add (icon_factory, stock_id, set);
+  gtk_icon_set_unref (set);
 }
 
 /* The same routine, but for filenames instead. */
@@ -250,14 +282,12 @@ void
 games_stock_init (void)
 {
   /* These stocks have a gtk stock icon */
-  const char *stock_item_with_gtk_stock[][2] = {
+  const char *stock_item_with_icon_name[][2] = {
     { GAMES_STOCK_CONTENTS,         GTK_STOCK_HELP },
     { GAMES_STOCK_HINT,             GTK_STOCK_DIALOG_INFO },
     { GAMES_STOCK_NEW_GAME,         GTK_STOCK_NEW },
-    { GAMES_STOCK_REDO_MOVE,        GTK_STOCK_REDO },
     { GAMES_STOCK_RESET,            GTK_STOCK_CLEAR },
     { GAMES_STOCK_RESTART_GAME,     GTK_STOCK_REFRESH },
-    { GAMES_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
     { GAMES_STOCK_DEAL_CARDS,       GTK_STOCK_OK } /* FIXMEchpe */,
 #ifndef HAVE_HILDON
     { GAMES_STOCK_FULLSCREEN,       GTK_STOCK_FULLSCREEN },
@@ -265,17 +295,19 @@ games_stock_init (void)
     { GAMES_STOCK_NETWORK_GAME,     GTK_STOCK_NETWORK },
     { GAMES_STOCK_NETWORK_LEAVE,    GTK_STOCK_STOP },
     { GAMES_STOCK_PLAYER_LIST,      GTK_STOCK_INFO },
+
+    { GAMES_STOCK_PAUSE_GAME,       "stock_timer_stopped" },
+    { GAMES_STOCK_RESUME_GAME,      "stock_timer" },
+    { GAMES_STOCK_SCORES,           "stock_scores" },
 #endif /* !HAVE_HILDON */
   };
 
-#ifndef HAVE_HILDON
-  /* These stocks has a icon name */
-  const char *stock_item_with_icon_name[][2] = {
-    { GAMES_STOCK_PAUSE_GAME,   "stock_timer_stopped" },
-    { GAMES_STOCK_RESUME_GAME,  "stock_timer" },
-    { GAMES_STOCK_SCORES,       "stock_scores" },
+  const char *stock_item_with_icon_name_bidi[][3] = {
+    { GAMES_STOCK_REDO_MOVE, GTK_STOCK_REDO "-ltr", GTK_STOCK_REDO "-rtl" },
+    { GAMES_STOCK_UNDO_MOVE, GTK_STOCK_UNDO "-ltr", GTK_STOCK_UNDO "-rtl" },
   };
 
+#ifndef HAVE_HILDON
   /* These stocks are using a private icon file */
   const char *stock_item_with_file[][2] = {
     { GAMES_STOCK_TELEPORT,   "teleport.png" },
@@ -333,25 +365,20 @@ games_stock_init (void)
 
   icon_factory = gtk_icon_factory_new ();
 
-  for (i = 0; i < G_N_ELEMENTS (stock_item_with_gtk_stock); ++i) {
-    GtkIconSet *icon_set;
-
-    /* FIXME: Only for gtk stock icons.
-     * Seems to support theme switching... but not for a11y?
-     */
-    icon_set =
-      gtk_icon_factory_lookup_default (stock_item_with_gtk_stock[i][1]);
-    gtk_icon_factory_add (icon_factory, stock_item_with_gtk_stock[i][0],
-                          icon_set);
-  }
-
-#ifndef HAVE_HILDON /* only need icons on non-hildon */
   for (i = 0; i < G_N_ELEMENTS (stock_item_with_icon_name); ++i) {
-    add_stock_icon (icon_factory,
-                    stock_item_with_icon_name[i][0],
-                    stock_item_with_icon_name[i][1]);
+    register_stock_icon (icon_factory, stock_item_with_icon_name[i][0],
+                         stock_item_with_icon_name[i][1]);
   }
 
+  for (i = 0; i < G_N_ELEMENTS (stock_item_with_icon_name_bidi); ++i) {
+    register_stock_icon_bidi (icon_factory,
+                              stock_item_with_icon_name_bidi[i][0],
+                              stock_item_with_icon_name_bidi[i][1],
+                              stock_item_with_icon_name_bidi[i][2]);
+  }
+
+#ifndef HAVE_HILDON
+  /* only need icons on non-hildon */
   for (i = 0; i < G_N_ELEMENTS (stock_item_with_file); i++) {
     add_icon_from_file (icon_factory,
                         stock_item_with_file[i][0],
