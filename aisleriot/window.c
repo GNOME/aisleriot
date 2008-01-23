@@ -2079,7 +2079,7 @@ aisleriot_window_init (AisleriotWindow *window)
     { "RedoMove", GAMES_STOCK_REDO_MOVE, NULL, NULL,
       ACTION_TOOLTIP (N_("Redo the undone move")),
       G_CALLBACK (redo_cb) },
-    { "Deal", GTK_STOCK_OK /* FIXMEchpe */, _("_Deal"), "<control>D",
+    { "Deal", GAMES_STOCK_DEAL_CARDS, NULL, NULL,
       ACTION_TOOLTIP (N_("Deal next card or cards")),
       G_CALLBACK (deal_cb) },
     { "Hint", GAMES_STOCK_HINT, NULL, NULL,

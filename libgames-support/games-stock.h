@@ -35,6 +35,7 @@ G_BEGIN_DECLS
 #define GAMES_STOCK_SCORES           "games-scores"
 #define GAMES_STOCK_PAUSE_GAME       "games-pause-game"
 #define GAMES_STOCK_RESUME_GAME      "games-resume-game"
+#define GAMES_STOCK_DEAL_CARDS       "games-stock-deal-cards"
 
 /* These use stock gtk icons */
 #define GAMES_STOCK_FULLSCREEN       "games-fullscreen"

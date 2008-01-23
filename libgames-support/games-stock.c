@@ -258,6 +258,7 @@ games_stock_init (void)
     { GAMES_STOCK_RESET,            GTK_STOCK_CLEAR },
     { GAMES_STOCK_RESTART_GAME,     GTK_STOCK_REFRESH },
     { GAMES_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
+    { GAMES_STOCK_DEAL_CARDS,       GTK_STOCK_OK } /* FIXMEchpe */,
 #ifndef HAVE_HILDON
     { GAMES_STOCK_FULLSCREEN,       GTK_STOCK_FULLSCREEN },
     { GAMES_STOCK_LEAVE_FULLSCREEN, GTK_STOCK_LEAVE_FULLSCREEN },
@@ -303,6 +304,7 @@ games_stock_init (void)
     /* Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game" */
     { GAMES_STOCK_RESTART_GAME,     N_("_Restart"),           0, 0, NULL },
     { GAMES_STOCK_UNDO_MOVE,        N_("_Undo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('z', GDK_F8), NULL },
+    { GAMES_STOCK_DEAL_CARDS,       N_("_Deal"),              GDK_CONTROL_MASK, 'd', NULL },
 #ifndef HAVE_HILDON
     { GAMES_STOCK_LEAVE_FULLSCREEN, N_("_Leave Fullscreen"),  0, GDK_F11, NULL },
     { GAMES_STOCK_NETWORK_GAME,     N_("Network _Game"),      GDK_CONTROL_MASK, 'g', NULL },
@@ -315,6 +317,7 @@ games_stock_init (void)
 #endif
 
     /* Work around maemo brokenness wrt. stock item translations */
+    /* FIXMEchpe: this only applies to maemo3; should be fixed in maemo4 */
 #ifdef HAVE_HILDON
     { GTK_STOCK_ABOUT,              N_("_About"),             0, 0, NULL },
     { GTK_STOCK_CANCEL,             N_("_Cancel"),            0, 0, NULL },
@@ -389,7 +392,7 @@ games_get_license (const gchar * game_name)
 
 #if !GTK_CHECK_VERSION (2, 8, 0)
   /* We have to manually wrap the text, since the about dialogue cannot
-   * do it itselfbefore gtk 2.8.
+   * do it itself before gtk 2.8.
    */
   {
     char *p;
