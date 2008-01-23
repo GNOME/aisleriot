@@ -2051,6 +2051,9 @@ aisleriot_game_generate_exception (AisleriotGame *game)
 void
 aisleriot_game_deal_cards (AisleriotGame *game)
 {
+  /* If the game hasn't started yet, start it now */
+  aisleriot_game_start (game);
+
   aisleriot_game_record_move (game, -1, NULL, 0);
 
   cscmi_eval_string ("(do-deal-next-cards)");
