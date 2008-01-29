@@ -27,6 +27,16 @@
 
 G_BEGIN_DECLS
 
+/* __attribute__((__packed__)) is needed on some archs to make
+ * the Card type below fit into one byte. See bug #512799.
+ */
+#if __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ > 6)
+#define GNOME_GAMES_GNUC_PACKED \
+  __attribute__((__packed__))
+#else
+#define GNOME_GAMES_GNUC_PACKED
+#endif  /* !__GNUC__ */
+
 /* A card */
 
 /* Black Joker: value = 0, suit = spade or club
@@ -38,8 +48,8 @@ typedef union {
     guint8 face_down : 1;
     guint8 suit : 2;
     guint8 rank : 4;
-  } attr;
-} Card;
+  } GNOME_GAMES_GNUC_PACKED attr;
+} GNOME_GAMES_GNUC_PACKED Card;
 
 typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; /* static assertion */
 
@@ -49,7 +59,6 @@ typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; 
 #define CARD_GET_SUIT(c)      (c.attr.suit)
 #define CARD_GET_RANK(c)      (c.attr.rank)
 #define CARD_GET_FACE_DOWN(c) (c.attr.face_down)
-#define CARD_FACE_UP(c)       (!CARD_FACE_DOWN(c))
 
 #define POINTER_TO_CARD(ptr)  ((Card) (guint8) GPOINTER_TO_UINT (ptr))
 #define CARD_TO_POINTER(card) (GUINT_TO_POINTER((guint) card.value))
