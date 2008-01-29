@@ -1,3 +1,58 @@
+gnome-games 2.21.90
+==================
+This is a pretty calm release of the development series as we prepare for an 
+awesome 2.22 soon. Chess saw a reorganization of it's menu and got a preference 
+dialog. Sudoku now works in fullscreen and the .room files for Nibbles, 
+Four-in-a-Row, and Iagno are now translatable. Also small fixes here and there.
+
+Aisleriot:
+  - Start the game when dealing a new card, too (Christian Persch)
+  - Support KP_Space too. (Christian Persch)
+  - Add stock item for "Deal cards" Bug #474698 (Christian Persch)
+  - Code cleanups (Christian Persch)
+
+Chess:
+  - Add preferece dialog and reorganize menus (Andreas Røsdal / Robert Ancell)
+  - Make all dialogs transient of the main window (Robert Ancell)
+  - Add support for Shredder Classic 3 (Andreas Røsdal)
+  - Code cleanups (Robert Ancell)
+
+Gtali:
+  - Use G_STRFUNC instead of the deprecated G_GNUC_FUNCTION (Christian Persch)
+
+Nibbles/Four-in-a-Row/Iagno:
+  - Make .room files translatable (Christian Persch)
+  - Add the .room.in files to EXTRA_DIST (Christian Persch)
+  - Install ggz demons in libexecdir, not bindir (Christian Persch)
+
+Sudoku:
+  - Use type=gtk.WINDOW_POPUP for number selector (Thomas M. Hinkle)
+    Fixes bug #479938 (Thomas M. Hinkle)
+  - Fix problem with 100% cpu usage. Fixes bug #502675 (Didier Vidal)
+
+Games support lib:
+  - Use the same code to register stock icons and named icons. Add LTR and RTL 
+    variants for the GAMES_STOCK_UNDO/REDO_MOVE stock IDs (Christian Persch)
+  - Rework stock icon registration in preparation for using the gtk facilities. 
+    Bug #511332 (Christian Persch)
+
+Documentation fixes:
+  - Andreas Røsdal
+  - Gil forcada
+
+Translations:
+  - ar: Anas Husseini
+  - ca: Gil Forcada/David Planella/Joan Duran
+  - da: Kenneth Nielsen
+  - es: Lucas Vieites
+  - fr: Claude Paroz
+  - gu: Ankit Patel
+  - he: Yair Hershkovitz
+  - lv: Raivis Dejus
+  - nb: Kjartan Maraas
+  - oc: Yannig Marchegay
+  - sv: Daniel Nylander
+
 gnome-games 2.21.5
 ==================
 Anther rocking release from the gnome-games team. Mostly improvements for chess
