@@ -146,9 +146,18 @@ PKG_PROG_PKG_CONFIG([0.15])
 
 AC_PROG_CC
 AC_PROG_CPP
-AC_PROG_CXX
 AC_PROG_LN_S
 AC_PROG_SED
+
+if test "$need_cxx" = "yes"; then
+  AC_PROG_CXX
+
+  # Check whether a C++ was found (AC_PROG_CXX sets $CXX to "g++" even when it
+  # doesn't exist)
+  AC_LANG_PUSH([C++])
+  AC_COMPILE_IFELSE([AC_LANG_PROGRAM([],[])],[],[AC_MSG_ERROR([No C++ compiler found])])
+  AC_LANG_POP([C++])
+fi
 
 # Run these before AC_PROG_LIBTOOL, else it bugs
 AC_GGZ_INIT
@@ -158,13 +167,6 @@ AC_GGZ_PLATFORM
 AM_PROG_CC_C_O
 
 AC_PROG_LIBTOOL
-
-# See if C++ support is actually there
-AC_CHECK_PROG([have_cxx],[$CXX],[yes],[no])
-
-if test "$need_cxx" = "yes" -a "$have_cxx" != "yes"; then
-  AC_MSG_ERROR([No C++ compiler found; either install one or use --enable-omitgames=gnometris,blackjack])
-fi
 
 GNOME_COMMON_INIT
 GNOME_COMPILE_WARNINGS([maximum])
