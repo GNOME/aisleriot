@@ -30,26 +30,34 @@
 #endif
 
 #ifdef HAVE_GNOME
-static const char key_name[][18] = {
-  "card_style",
-  "game_file",
-  "recent_games_list",
-  "show_toolbar",
-  "click_to_move",
-  "sound",
+static const char key_names[] =
+  "card_style\0"
+  "game_file\0"
+  "recent_games_list\0"
+  "show_toolbar\0"
+  "click_to_move\0"
+  "sound";
+
+static const guint8 key_name_offsets[] = {
+  0, 11, 21, 39, 52, 66
 };
 
 static const char statistics_key[] = "/apps/aisleriot/statistics";
 
 #else
-static const char key_name[][12] = {
-  "Theme",
-  "Variation",
-  "Recent",
-  "ShowToolbar",
-  "ClickToMove",
-  "Sound"
+
+static const char key_names[] =
+  "Theme\0"
+  "Variation\0"
+  "Recent\0"
+  "ShowToolbar\0"
+  "ClickToMove\0"
+  "Sound";
+
+static const guint8 key_name_offsets[] = {
+  0, 6, 16, 23, 35, 47
 };
+
 #endif /* HAVE_GNOME */
 
 #ifdef HAVE_GNOME
@@ -201,7 +209,7 @@ aisleriot_conf_shutdown (void)
 const char *
 aisleriot_conf_get_key (AisleriotConfKey key)
 {
-  return key_name[key];
+  return key_names + key_name_offsets[key];
 }
 
 gboolean
