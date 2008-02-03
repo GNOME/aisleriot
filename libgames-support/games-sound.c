@@ -33,9 +33,10 @@
 
 #include "games-sound.h"
 
+#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
 static gboolean sound_enabled = FALSE;
 static gboolean sound_init = FALSE;
-
+#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
 
 #ifdef HAVE_GSTREAMER
 static GstElement *pipeline;
@@ -114,6 +115,8 @@ games_sound_sdl_play (const gchar *filename)
 }
 #endif /* HAVE_SDL_MIXER */
 
+#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
+
 /* Initializes the games-sound support */
 static void
 games_sound_init (void)
@@ -153,6 +156,8 @@ games_sound_init (void)
   }
 #endif /* HAVE_SDL_MIXER */
 }
+
+#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
 
 /**
  * games_sound_add_option_group:
