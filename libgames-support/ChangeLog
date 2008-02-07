@@ -1,3 +1,9 @@
+2008-02-07  Christian Persch  <chpe@gnome.org>
+
+	* games-setgid-io.c: (write_n_bytes), (read_n_bytes),
+	(setgid_io_stat), (setgid_io_stat_priv): Don't do pointer arithmetic
+	on void*. Fixes compiler warnings.
+
 2008-02-03  Christian Persch  <chpe@gnome.org>
 
 	* games-sound.c: Fix unused variables and function warnings when sound
