@@ -71,7 +71,7 @@ typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; 
 #ifdef HAVE_HILDON
 #define GAMES_CARD_THEME_DEFAULT "paris"
 #else
-#define GAMES_CARD_THEME_DEFAULT "bonded"
+#define GAMES_CARD_THEME_DEFAULT "gnomangelo_bitmap"
 #endif
 
 typedef enum {
