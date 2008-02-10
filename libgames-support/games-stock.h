@@ -31,13 +31,11 @@
 
 G_BEGIN_DECLS
 
-/* These uses new icons */
+/* These use stock gtk icons */
 #define GAMES_STOCK_SCORES           "games-scores"
 #define GAMES_STOCK_PAUSE_GAME       "games-pause-game"
 #define GAMES_STOCK_RESUME_GAME      "games-resume-game"
-#define GAMES_STOCK_DEAL_CARDS       "games-stock-deal-cards"
 
-/* These use stock gtk icons */
 #define GAMES_STOCK_FULLSCREEN       "games-fullscreen"
 #define GAMES_STOCK_LEAVE_FULLSCREEN "games-leave-fullscreen"
 #define GAMES_STOCK_NEW_GAME         "games-new-game"
@@ -52,9 +50,11 @@ G_BEGIN_DECLS
 #define GAMES_STOCK_END_GAME         "games-end-game"
 #define GAMES_STOCK_CONTENTS         "games-contents"
 #define GAMES_STOCK_RESET            "games-reset"
+
 /* These belong to us */
 #define GAMES_STOCK_TELEPORT         "teleport"
 #define GAMES_STOCK_RTELEPORT        "teleport-random"
+#define GAMES_STOCK_DEAL_CARDS       "cards-deal"
 
 void games_stock_init (void);
 

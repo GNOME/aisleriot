@@ -271,7 +271,6 @@ games_stock_init (void)
     { GAMES_STOCK_NEW_GAME,         GTK_STOCK_NEW },
     { GAMES_STOCK_RESET,            GTK_STOCK_CLEAR },
     { GAMES_STOCK_RESTART_GAME,     GTK_STOCK_REFRESH },
-    { GAMES_STOCK_DEAL_CARDS,       GTK_STOCK_OK } /* FIXMEchpe */,
 #ifdef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
     { GAMES_STOCK_REDO_MOVE,        GTK_STOCK_REDO },
     { GAMES_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
@@ -300,8 +299,9 @@ games_stock_init (void)
   const char *private_icon_names[] = {
 #ifndef HAVE_HILDON
     GAMES_STOCK_TELEPORT,
-    GAMES_STOCK_RTELEPORT
+    GAMES_STOCK_RTELEPORT,
 #endif /* !HAVE_HILDON */
+    GAMES_STOCK_DEAL_CARDS
   };
 
 /* Use different accels on GTK/GNOME and Maemo */
