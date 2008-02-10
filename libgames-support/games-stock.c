@@ -296,12 +296,12 @@ games_stock_init (void)
 #endif
 
   /* Private icon names */
-  const char *private_icon_names[] = {
+  const char *private_icon_names[][2] = {
 #ifndef HAVE_HILDON
-    GAMES_STOCK_TELEPORT,
-    GAMES_STOCK_RTELEPORT,
+    { GAMES_STOCK_TELEPORT, "teleport" },
+    { GAMES_STOCK_RTELEPORT, "teleport-random" },
 #endif /* !HAVE_HILDON */
-    GAMES_STOCK_DEAL_CARDS
+    { GAMES_STOCK_DEAL_CARDS, "cards-deal" }
   };
 
 /* Use different accels on GTK/GNOME and Maemo */
@@ -378,8 +378,8 @@ games_stock_init (void)
   /* Register our private themeable icons */
   for (i = 0; i < G_N_ELEMENTS (private_icon_names); i++) {
     register_stock_icon (icon_factory,
-                         private_icon_names[i],
-                         private_icon_names[i]);
+                         private_icon_names[i][0],
+                         private_icon_names[i][1]);
   }
 
   gtk_icon_factory_add_default (icon_factory);
