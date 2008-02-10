@@ -15,16 +15,6 @@ EXTRA_DIST = \
 	games-marshal.list	\
 	$(NULL)
 
-if !HAVE_HILDON
-icondir = $(datadir)/gnome-games-common/icons
-icon_DATA = \
-	icons/teleport.png	\
-	icons/rteleport.png	\
-	$(NULL)
-
-EXTRA_DIST += $(icon_DATA)
-endif
-
 noinst_LTLIBRARIES = libgames-support.la
 
 BUILT_SOURCES = \
@@ -98,7 +88,7 @@ libgames_support_la_CPPFLAGS = \
 	-DDATADIR="\"$(datadir)\""				\
 	-DCOMMON_DATADIR="\"$(datadir)/gnome-games-common\""	\
 	-DCARDDIR="\"$(carddir)\""				\
-	-DICONDIR="\"$(icondir)\""				\
+	-DICONDIR="\"$(pkgdatadir)/icons\""			\
 	-DSCORESDIR="\"$(scoredir)\""				\
 	-DSOUNDDIR="\"$(pkgdatadir)/sounds\""			\
 	$(NULL)

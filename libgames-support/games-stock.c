@@ -204,27 +204,6 @@ games_stock_set_pause_actions (GtkAction * pause_action,
   set_pause_actions (resume_action, actions);
 }
 
-static void
-add_icon_from_file (GtkIconFactory * icon_factory,
-                    const char *stock_id, const char *filename)
-{
-  GtkIconSource *source;
-  GtkIconSet *set;
-  char *path;
-
-  source = gtk_icon_source_new ();
-  set = gtk_icon_set_new ();
-
-  path = games_build_filename (ICONDIR, filename);
-  gtk_icon_source_set_filename (source, path);
-  g_free (path);
-
-  gtk_icon_set_add_source (set, source);
-  gtk_icon_factory_add (icon_factory, stock_id, set);
-  gtk_icon_set_unref (set);
-  gtk_icon_source_free (source);
-}
-
 #endif /* !HAVE_HILDON */
 
 /* This will become GTK_CHECK_VERSION (2, 15, x) once the patch from gtk+ bug 511332 is committed */
@@ -317,13 +296,13 @@ games_stock_init (void)
   };
 #endif
 
+  /* Private icon names */
+  const char *private_icon_names[] = {
 #ifndef HAVE_HILDON
-  /* These stocks are using a private icon file */
-  const char *stock_item_with_file[][2] = {
-    { GAMES_STOCK_TELEPORT,   "teleport.png" },
-    { GAMES_STOCK_RTELEPORT,  "rteleport.png" },
-  };
+    GAMES_STOCK_TELEPORT,
+    GAMES_STOCK_RTELEPORT
 #endif /* !HAVE_HILDON */
+  };
 
 /* Use different accels on GTK/GNOME and Maemo */
 #ifdef HAVE_HILDON
@@ -371,11 +350,9 @@ games_stock_init (void)
 #undef STOCK_ACCEL
 
   guint i;
-#if !defined(HAVE_GTK_ICON_FACTORY_ADD_ALIAS) || !defined(HAVE_HILDON)
   GtkIconFactory *icon_factory;
 
   icon_factory = gtk_icon_factory_new ();
-#endif /* !HAVE_GTK_ICON_FACTORY_ADD_ALIAS || !HAVE_HILDON */
 
 #ifdef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
   for (i = 0; i < G_N_ELEMENTS (stock_icon_aliases); ++i) {
@@ -398,20 +375,22 @@ games_stock_init (void)
   }
 #endif /* HAVE_GTK_ICON_FACTORY_ADD_ALIAS */
 
-#ifndef HAVE_HILDON
-  /* only need icons on non-hildon */
-  for (i = 0; i < G_N_ELEMENTS (stock_item_with_file); i++) {
-    add_icon_from_file (icon_factory,
-                        stock_item_with_file[i][0],
-                        stock_item_with_file[i][1]);
+  /* Register our private themeable icons */
+  for (i = 0; i < G_N_ELEMENTS (private_icon_names); i++) {
+    register_stock_icon (icon_factory,
+                         private_icon_names[i],
+                         private_icon_names[i]);
   }
-#endif /* !HAVE_HILDON */
 
-#if !defined(HAVE_GTK_ICON_FACTORY_ADD_ALIAS) || !defined(HAVE_HILDON)
   gtk_icon_factory_add_default (icon_factory);
   g_object_unref (icon_factory);
-#endif /* !HAVE_GTK_ICON_FACTORY_ADD_ALIAS || !HAVE_HILDON */
 
+  /* GtkIconTheme will then look in our custom hicolor dir
+   * for icons as well as the standard search paths.
+   */
+  /* FIXME: multi-head! */
+  gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (), ICONDIR);
+ 
   gtk_stock_add_static (games_stock_items, G_N_ELEMENTS (games_stock_items));
 }
 

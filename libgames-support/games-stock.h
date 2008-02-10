@@ -53,8 +53,8 @@ G_BEGIN_DECLS
 #define GAMES_STOCK_CONTENTS         "games-contents"
 #define GAMES_STOCK_RESET            "games-reset"
 /* These belong to us */
-#define GAMES_STOCK_TELEPORT         "games-teleport"
-#define GAMES_STOCK_RTELEPORT        "games-random-teleport"
+#define GAMES_STOCK_TELEPORT         "teleport"
+#define GAMES_STOCK_RTELEPORT        "teleport-random"
 
 void games_stock_init (void);
 
