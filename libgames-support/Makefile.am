@@ -2,6 +2,7 @@ NULL =
 
 carddir = $(datadir)/gnome-games-common/cards
 card_DATA = \
+	bonded.svg		\
 	gnomangelo_bitmap.svg	\
 	$(NULL)
 
