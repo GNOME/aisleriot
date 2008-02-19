@@ -144,7 +144,7 @@ set_game_state (AisleriotGame *game,
       /* Reset the timer */
       g_timer_start (game->timer);
     } else if (state >= GAME_OVER) {
-      /* Stop the timer now so we will record the right time. See bug #FIXME */
+      /* Stop the timer now so we will record the right time. See bug #514239. */
       g_timer_stop (game->timer);
     }
 
