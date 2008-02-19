@@ -62,7 +62,7 @@ struct _AisleriotGame
   guint32 seed;
   guint delayed_call_timeout_id;
 
-  time_t start_time;
+  GTimer *timer;
 
   double width;
   double height;
@@ -141,8 +141,11 @@ set_game_state (AisleriotGame *game,
     game->state = state;
 
     if (state == GAME_RUNNING) {
-      /* Record start time */
-      game->start_time = time (NULL);
+      /* Reset the timer */
+      g_timer_start (game->timer);
+    } else if (state >= GAME_OVER) {
+      /* Stop the timer now so we will record the right time. See bug #FIXME */
+      g_timer_stop (game->timer);
     }
 
     g_object_notify (G_OBJECT (game), "state");
@@ -210,12 +213,7 @@ update_statistics (AisleriotGame *game)
   if (game->state == GAME_WON) {
     current_stats.wins++;
 
-    if (game->paused) {
-      t = game->start_time;
-    } else {
-      t = time (NULL) - game->start_time;
-    }
-
+    t = (time_t) (g_timer_elapsed (game->timer, NULL) + 0.5);
     if (t > 0) {
       if ((current_stats.best == 0) || (t < current_stats.best)) {
 	current_stats.best = t;
@@ -1108,6 +1106,8 @@ aisleriot_game_init (AisleriotGame *game)
 
   game->slots = g_ptr_array_sized_new (SLOT_CARDS_N_PREALLOC);
 
+  game->timer = g_timer_new ();
+
   game->timeout = 60 * 60;
 }
 
@@ -1144,6 +1144,8 @@ aisleriot_game_finalize (GObject *object)
   g_ptr_array_free (game->slots, TRUE);
 
   g_free (game->game_file);
+
+  g_timer_destroy (game->timer);
 
   app_game = NULL;
 
@@ -1419,8 +1421,11 @@ aisleriot_game_set_paused (AisleriotGame *game,
 
   game->paused = paused;
 
-  /* (Re)store the start time */
-  game->start_time = time (NULL) - game->start_time;
+  if (paused) {
+    g_timer_stop (game->timer);
+  } else {
+    g_timer_continue (game->timer);
+  }
 }
 
 /**
