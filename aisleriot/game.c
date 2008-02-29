@@ -288,14 +288,10 @@ cscmi_write_exception_details (int error_fd, SCM tag, SCM throw_args)
   char *message;
   SCM port;
   SCM stack;
-  char *game_name;
   GPtrArray *slots;
   guint i, n_slots;
 
-  game_name = aisleriot_game_get_name (game);
-  message = g_strdup_printf ("Variation: %s\n", game_name);
-  g_free (game_name);
-  game_name = NULL;
+  message = g_strdup_printf ("Variation: %s\n", aisleriot_game_get_game_file (game));
 
   write (error_fd, message, strlen (message));
   g_free (message);
