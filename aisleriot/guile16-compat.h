@@ -23,7 +23,7 @@
 #include <string.h>
 
 #ifdef HAVE_GUILE_1_8
-#error Don't include this file on guile 1.8
+#error Do not include this file on guile 1.8
 #endif
 
 #define scm_to_locale_string(object) (strdup (SCM_STRING_CHARS (object)))
