@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-11 10:50+0000\n"
-"PO-Revision-Date: 2008-02-24 15:53+0100\n"
+"POT-Creation-Date: 2008-02-25 09:00+0000\n"
+"PO-Revision-Date: 2008-03-02 02:24+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,9 @@ msgstr "De speelstijl selecteren"
 msgid ""
 "Select whether to drag the cards or to click on the source then the "
 "destination."
-msgstr "Kiezen of kaarten verplaatst worden door te slepen, of door eerst de kaart aan te klikken en daarna de bestemming."
+msgstr ""
+"Kiezen of kaarten verplaatst worden door te slepen, of door eerst de kaart "
+"aan te klikken en daarna de bestemming."
 
 #: ../aisleriot/aisleriot.schemas.in.h:6 ../gnect/data/gnect.schemas.in.h:11
 #: ../iagno/iagno.schemas.in.h:1
@@ -127,7 +129,7 @@ msgstr "FreeCell Solitaire"
 msgid "Play the popular FreeCell card game"
 msgstr "Het populaire FreeCell kaartspel"
 
-#: ../aisleriot/game.c:1094
+#: ../aisleriot/game.c:1092
 #, c-format
 msgid ""
 "Aisleriot cannot load the file \"%s\". Please check your Aisleriot "
@@ -136,11 +138,11 @@ msgstr ""
 "Aisleriot kan het volgende bestand niet laden: ‘%s’. Controleer uw Aisleriot "
 "installatie."
 
-#: ../aisleriot/game.c:1528
+#: ../aisleriot/game.c:1533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot kan het laatst gespeelde spel niet vinden."
 
-#: ../aisleriot/game.c:1529
+#: ../aisleriot/game.c:1534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -886,7 +888,7 @@ msgstr "Treize"
 
 #: ../aisleriot/translatable_game_names.h:75
 msgid "Triple Peaks"
-msgstr "Drie toppen"
+msgstr "Drie pieken"
 
 #: ../aisleriot/translatable_game_names.h:76
 msgid "Union Square"
@@ -938,7 +940,7 @@ msgstr "Er zijn geen geldige zetten meer"
 
 # voorbij/afgelopen
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:424 ../gnometris/field.cpp:229
+#: ../aisleriot/window.c:424 ../gnometris/field.cpp:247
 msgid "Game Over"
 msgstr "Spel afgelopen"
 
@@ -978,7 +980,7 @@ msgstr ""
 #: ../aisleriot/window.c:621 ../blackjack/src/menu.cpp:164
 #: ../glchess/src/lib/gtkui/gtkui.py:929 ../glines/glines.c:1221
 #: ../gnect/src/main.c:922 ../gnibbles/main.c:257 ../gnobots2/menu.c:269
-#: ../gnometris/tetris.cpp:1403 ../gnome-sudoku/src/lib/main.py:869
+#: ../gnometris/tetris.cpp:1405 ../gnome-sudoku/src/lib/main.py:869
 #: ../gnomine/gnomine.c:466 ../gnotravex/gnotravex.c:1944
 #: ../gnotski/gnotski.c:1638 ../gtali/gyahtzee.c:626 ../iagno/gnothello.c:291
 #: ../mahjongg/mahjongg.c:949 ../same-gnome/ui.c:139
@@ -995,7 +997,7 @@ msgstr ""
 #: ../aisleriot/window.c:625 ../blackjack/src/menu.cpp:163
 #: ../glchess/src/lib/defaults.py.in:60 ../glines/glines.c:1224
 #: ../gnect/src/main.c:919 ../gnibbles/main.c:260 ../gnobots2/menu.c:265
-#: ../gnometris/tetris.cpp:1400 ../gnome-sudoku/src/lib/defaults.py.in:47
+#: ../gnometris/tetris.cpp:1402 ../gnome-sudoku/src/lib/defaults.py.in:47
 #: ../gnomine/gnomine.c:469 ../gnotravex/gnotravex.c:1947
 #: ../gnotski/gnotski.c:1641 ../gtali/gyahtzee.c:630 ../iagno/gnothello.c:293
 #: ../mahjongg/mahjongg.c:952 ../same-gnome/ui.c:143
@@ -1187,7 +1189,7 @@ msgstr "Kaarten pakken en leggen door te klikken"
 # BUG
 #. not active by default
 #: ../aisleriot/window.c:2153 ../gnobots2/properties.c:502
-#: ../gnometris/tetris.cpp:754
+#: ../gnometris/tetris.cpp:756
 msgid "_Enable sounds"
 msgstr "_Geluiden aanzetten"
 
@@ -1815,13 +1817,19 @@ msgstr "Geef een kaart van de stapel"
 msgid "Match the top two cards of the waste."
 msgstr "Gebruik de bovenste twee kaarten van de gebruikte stapel."
 
+# Points double for every card played in a run. A run of cards will score 1, 2,
+# 4, 16, and 32 points for a total of 55 points.
+# Scoreverdubbeling
 #: ../aisleriot/rules/triple_peaks.scm.h:2
 msgid "Multiplier Scoring"
-msgstr ""
+msgstr "Scorevermenigvuldiging"
 
+# After all cards have been cleared from the tableu, a new round begins.
+# The score form the last round carries over into the new round.
+# Score meenemen naar volgende ronden
 #: ../aisleriot/rules/triple_peaks.scm.h:3
 msgid "Progressive Rounds"
-msgstr ""
+msgstr "Score meenemen"
 
 #: ../aisleriot/rules/union_square.scm.h:4
 msgid "appropriate foundation pile"
@@ -2022,7 +2030,7 @@ msgstr "Blackjack voorkeuren"
 
 #: ../blackjack/src/dialog.cpp:246 ../dependencies/ggz-gtk/client.c:919
 #: ../gnect/src/prefs.c:298 ../gnibbles/preferences.c:251
-#: ../gnobots2/properties.c:523 ../gnometris/tetris.cpp:681
+#: ../gnobots2/properties.c:523 ../gnometris/tetris.cpp:683
 #: ../iagno/properties.c:421
 msgid "Game"
 msgstr "Spel"
@@ -2564,9 +2572,10 @@ msgstr "Wachter"
 msgid "Captain"
 msgstr "Kapitein"
 
+# Oef, deze wordt dus ook door glchess gebruikt en daar is Knight een Paard.
 #: ../dependencies/ggz-gtk/first.c:58 ../glchess/src/lib/gtkui/dialogs.py:597
 msgid "Knight"
-msgstr "Ridder"
+msgstr "Paard"
 
 #: ../dependencies/ggz-gtk/first.c:58
 msgid "Angel"
@@ -2877,7 +2886,6 @@ msgid "Not Implemented"
 msgstr "Niet geïmplementeerd"
 
 #: ../dependencies/ggz-gtk/types.c:183 ../dependencies/ggz-gtk/tablelist.c:201
-#: ../glchess/src/lib/gtkui/network.py:65
 #: ../glchess/src/lib/gtkui/network.py:100
 msgid "Description"
 msgstr "Omschrijving"
@@ -2908,9 +2916,8 @@ msgstr "Informatie over speler"
 
 #. Add 'handle' label
 #: ../dependencies/ggz-gtk/playerinfo.c:132
-#, fuzzy
 msgid "Player Handle:"
-msgstr "_Naam speler:"
+msgstr "Speler-hendel:"
 
 #. Add "table" label
 #: ../dependencies/ggz-gtk/playerinfo.c:150
@@ -3100,7 +3107,6 @@ msgid "Other Rooms"
 msgstr "Andere kamers"
 
 #: ../dependencies/ggz-gtk/roomlist.c:424
-#: ../glchess/src/lib/gtkui/network.py:59
 msgid "Room"
 msgstr "Kamer"
 
@@ -3199,6 +3205,9 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"Server-statistieken zijn nog niet\n"
+"geïmplementeerd. Wanneer u wilt meehelpen, \n"
+"ga dan naar http://www.ggzgamingzone.org/"
 
 #: ../dependencies/ggz-gtk/client.c:246 ../dependencies/ggz-gtk/client.c:508
 msgid ""
@@ -3206,6 +3215,9 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"Speler-statistieken zijn nog niet\n"
+"geïmplementeerd. Wanneer u wilt meehelpen, \n"
+"ga dan naar http://www.ggzgamingzone.org/"
 
 #: ../dependencies/ggz-gtk/client.c:529
 msgid "You must highlight a table before you can join it."
@@ -3237,9 +3249,10 @@ msgstr ""
 "Kon niet bij tafel aanschuiven.\n"
 "Aanschuiven afgebroken."
 
+# hoort bij vorige foutmelding
 #: ../dependencies/ggz-gtk/client.c:611
 msgid "Join Error"
-msgstr ""
+msgstr "Fout bij aanschuiven"
 
 #: ../dependencies/ggz-gtk/client.c:640
 msgid "Disconnect from the GGZ Gaming Zone server"
@@ -3263,7 +3276,7 @@ msgstr "Het spel wat u nu speelt verlaten"
 
 #: ../dependencies/ggz-gtk/client.c:651
 msgid "Show the properties dialog to change the client settings"
-msgstr ""
+msgstr "Het eigenschappen-dialoogvenster tonen om de instellingen van de client te wijzigen"
 
 #: ../dependencies/ggz-gtk/client.c:655
 msgid "Show the game stats for the current room's game type"
@@ -3549,7 +3562,8 @@ msgstr "%s: optie ‘-W %s’ mag geen argumenten hebben\n"
 
 #: ../glchess/data/glchess.schemas.in.h:1
 msgid "A flag to allow remote players to watch new games"
-msgstr "Een vlag om externe spelers te kunnen laten meekijken met nieuwe spellen"
+msgstr ""
+"Een vlag om externe spelers te kunnen laten meekijken met nieuwe spellen"
 
 #: ../glchess/data/glchess.schemas.in.h:2
 msgid "A flag to enable 3D mode"
@@ -3613,15 +3627,15 @@ msgstr "Het standaard spelerstype voor wit in nieuwe spellen"
 
 #: ../glchess/data/glchess.schemas.in.h:17
 msgid "The directory to open the load game dialog in"
-msgstr ""
+msgstr "De map waarin het dialoogvenster voor het laden van spellen opent "
 
 #: ../glchess/data/glchess.schemas.in.h:18
 msgid "The directory to open the save game dialog in"
-msgstr ""
+msgstr "De map waarin het dialoogvenster voor het opslaan van spellen opent"
 
 #: ../glchess/data/glchess.schemas.in.h:19
 msgid "The format to display moves in"
-msgstr ""
+msgstr "De vorm waarin zetten worden genoteerd"
 
 #: ../glchess/data/glchess.schemas.in.h:20
 msgid ""
@@ -3648,14 +3662,14 @@ msgstr "Het stuk waar pionnen naar promoveren"
 msgid ""
 "The piece to promote to when a human player moves a pawn to the far rank. "
 "Can be one of: 'queen', 'knight', 'rook', 'bishop'."
-msgstr ""
+msgstr "Het stuk waarmee gepromoveerd wordt wanneer een menselijke speler een pion naar de overzijde brengt. Dit kan zijn: ‘queen’, ‘knight’, ‘rook’, ‘bishop’."
 
 #: ../glchess/data/glchess.schemas.in.h:25
 msgid ""
 "The side of the board that is in the foreground, either 'white', 'black', "
 "'current' (the current player) or 'human' (the side of the current human "
 "player)"
-msgstr ""
+msgstr "De kant van het bord dat onderaan (of voorop) staat; Dit kan zijn ‘white’, ‘black’, ‘current’ (de huidige speler), of ‘human’ (de kant van de huidige menselijke speler)"
 
 #: ../glchess/data/glchess.schemas.in.h:26
 msgid "The width of the main window in pixels."
@@ -3722,7 +3736,7 @@ msgid "Board Orientation:"
 msgstr "Bordrichting:"
 
 # het gaat hier om de notatie van de zetten:
-# human is in leesbare vorm
+# human is in leesbare zinnen
 # korte notatie is bijv. e4
 # lange notatie is bijv. e2e4
 #: ../glchess/glade/preferences.glade.h:3
@@ -3765,7 +3779,9 @@ msgstr "Zetmogelijkheden tonen bij schaakspellen"
 msgid ""
 "View the chess board by default in 2D mode, or optionally in 3D mode using "
 "OpenGL."
-msgstr "Het schaakbord standaard in 2D-modus weergeven, of indien gewenst in 3D via OpenGL."
+msgstr ""
+"Het schaakbord standaard in 2D-modus weergeven, of indien gewenst in 3D via "
+"OpenGL."
 
 # schaakbordcoordinaten/bordcoordinaten
 #: ../glchess/glade/preferences.glade.h:13
@@ -3945,12 +3961,13 @@ msgstr "Het klassieke schaakspel voor twee spelers spelen"
 msgid "Chess incorrectly installed"
 msgstr "Schaken is niet goed geïnstalleerd"
 
+# vergelijk hetzelfde berichtv oor sudoku
 #: ../glchess/src/glchess.in.in:48
 msgid ""
 "Chess is not able to start because required application files are not "
 "installed. If you are currently upgrading your system please wait until the "
 "upgrade has completed."
-msgstr ""
+msgstr "Schaken kan niet opstarten omdat de benodigde programmabestanden niet geïnstalleerd zijn. Wanneer uw systeem momenteel een upgrade krijgt, wacht dan tot de upgrade voltooid is."
 
 # move time: unlimited|1 minute|5 minute|
 # zonder limiet/ongelimiteerd
@@ -4154,7 +4171,9 @@ msgstr "Geen ondersteuning voor Python GTKGLExt"
 
 #: ../glchess/src/lib/gtkui/chessview.py:32
 msgid "OpenGL libraries do not support required display mode"
-msgstr "OpenGL-bibliotheekfuncties geven geen ondersteuning voor de gevraagde weergavemodus"
+msgstr ""
+"OpenGL-bibliotheekfuncties geven geen ondersteuning voor de gevraagde "
+"weergavemodus"
 
 #: ../glchess/src/lib/gtkui/chessview.py:37
 msgid "pawn"
@@ -4198,175 +4217,169 @@ msgstr "Schaakmat"
 msgid "Stalemate"
 msgstr "Pat"
 
-#: ../glchess/src/lib/gtkui/chessview.py:409
+#. Translators: This string is used in the move history to indicate which white move is being described.
+#. In a chess game the turns are '1w.', '1b.', '2w.', ...
+#: ../glchess/src/lib/gtkui/chessview.py:411
 #, python-format
 msgid "%(movenum)2iw."
 msgstr "%(movenum)2iw."
 
-#: ../glchess/src/lib/gtkui/chessview.py:410
+#. Translators: This string is used in the move history to indicate which black move is being described.
+#. In a chess game the turns are '1w.', '1b.', '2w.', ...
+#: ../glchess/src/lib/gtkui/chessview.py:414
 #, python-format
 msgid "%(movenum)2ib."
 msgstr "%(movenum)2iz."
 
-#: ../glchess/src/lib/gtkui/chessview.py:413
-#, python-format
-msgid "%(move)s White castles long (%(result)s)"
-msgstr ""
-
-#: ../glchess/src/lib/gtkui/chessview.py:414
-#, python-format
-msgid "%(move)s White castles long"
-msgstr ""
-
-#: ../glchess/src/lib/gtkui/chessview.py:415
-#, python-format
-msgid "%(move)s Black castles long (%(result)s)"
-msgstr ""
-
-#: ../glchess/src/lib/gtkui/chessview.py:416
-#, python-format
-msgid "%(move)s Black castles long"
-msgstr ""
-
-#: ../glchess/src/lib/gtkui/chessview.py:418
-#, python-format
-msgid "%(move)s White castles short (%(result)s)"
-msgstr ""
-
 #: ../glchess/src/lib/gtkui/chessview.py:419
 #, python-format
-msgid "%(move)s White castles short"
-msgstr ""
+msgid "%(move)s White castles long (%(result)s)"
+msgstr "%(move)s Wit maakt lange rokade (%(result)s)"
 
 #: ../glchess/src/lib/gtkui/chessview.py:420
 #, python-format
-msgid "%(move)s Black castles short (%(result)s)"
-msgstr ""
+msgid "%(move)s White castles long"
+msgstr "%(move)s Wit maakt lange rokade"
 
 #: ../glchess/src/lib/gtkui/chessview.py:421
 #, python-format
-msgid "%(move)s Black castles short"
-msgstr ""
+msgid "%(move)s Black castles long (%(result)s)"
+msgstr "%(move)s Zwart maakt lange rokade (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:423
+#: ../glchess/src/lib/gtkui/chessview.py:422
 #, python-format
-msgid ""
-"%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %"
-"(end)s (%(result)s)"
-msgstr ""
+msgid "%(move)s Black castles long"
+msgstr "%(move)s Zwart maakt lange rokade"
 
 #: ../glchess/src/lib/gtkui/chessview.py:424
 #, python-format
+msgid "%(move)s White castles short (%(result)s)"
+msgstr "%(move)s Wit maakt korte rokade (%(result)s)"
+
+#: ../glchess/src/lib/gtkui/chessview.py:425
+#, python-format
+msgid "%(move)s White castles short"
+msgstr "%(move)s Wit maakt korte rokade"
+
+#: ../glchess/src/lib/gtkui/chessview.py:426
+#, python-format
+msgid "%(move)s Black castles short (%(result)s)"
+msgstr "%(move)s Zwart maakt korte rokade (%(result)s)"
+
+#: ../glchess/src/lib/gtkui/chessview.py:427
+#, python-format
+msgid "%(move)s Black castles short"
+msgstr "%(move)s Zwart maakt korte rokade"
+
+#: ../glchess/src/lib/gtkui/chessview.py:429
+#, python-format
+msgid ""
+"%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %"
+"(end)s (%(result)s)"
+msgstr "%(move)s Witte %(piece)s op %(start)s slaat de zwarte %(victim_piece)s op %(end)s (%(result)s)"
+
+#: ../glchess/src/lib/gtkui/chessview.py:430
+#, python-format
 msgid ""
 "%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %"
 "(end)s"
-msgstr ""
+msgstr "%(move)s Witte %(piece)s op %(start)s slaat de zwarte %(victim_piece)s op %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:425
+#: ../glchess/src/lib/gtkui/chessview.py:431
 #, python-format
 msgid ""
 "%(move)s Black %(piece)s at %(start)s takes the white %(victim_piece)s at %"
 "(end)s (%(result)s)"
-msgstr ""
+msgstr "%(move)s Zwarte %(piece)s op %(start)s slaat de witte %(victim_piece)s op %(end)s (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:426
+#: ../glchess/src/lib/gtkui/chessview.py:432
 #, python-format
 msgid ""
 "%(move)s Black %(piece)s at %(start)s takes the white %(victim_piece)s at %"
 "(end)s"
-msgstr ""
+msgstr "%(move)s Zwarte %(piece)s op %(start)s slaat de witte %(victim_piece)s op %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:428
+#: ../glchess/src/lib/gtkui/chessview.py:434
 #, python-format
 msgid "%(move)s White %(piece)s moves from %(start)s to %(end)s (%(result)s)"
-msgstr ""
+msgstr "%(move)s Witte %(piece)s gaat van %(start)s naar %(end)s (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:429
+#: ../glchess/src/lib/gtkui/chessview.py:435
 #, python-format
 msgid "%(move)s White %(piece)s moves from %(start)s to %(end)s"
-msgstr ""
+msgstr "%(move)s Witte %(piece)s gaat van %(start)s naar %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:430
+#: ../glchess/src/lib/gtkui/chessview.py:436
 #, python-format
 msgid "%(move)s Black %(piece)s moves from %(start)s to %(end)s (%(result)s)"
-msgstr ""
+msgstr "%(move)s Zwarte %(piece)s gaat van %(start)s naar %(end)s (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:431
+#: ../glchess/src/lib/gtkui/chessview.py:437
 #, python-format
 msgid "%(move)s Black %(piece)s moves from %(start)s to %(end)s"
-msgstr ""
+msgstr "%(move)s Zwarte %(piece)s gaat van %(start)s naar %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:456
-#: ../glchess/src/lib/gtkui/chessview.py:458
+#: ../glchess/src/lib/gtkui/chessview.py:462
+#: ../glchess/src/lib/gtkui/chessview.py:464
 #, python-format
 msgid "%s wins"
 msgstr "%s heeft gewonnen"
 
 # gelijkspel/remise
-#: ../glchess/src/lib/gtkui/chessview.py:460
+#: ../glchess/src/lib/gtkui/chessview.py:466
 msgid "Game is drawn"
 msgstr "Het is remise"
 
-#: ../glchess/src/lib/gtkui/chessview.py:464
+#: ../glchess/src/lib/gtkui/chessview.py:470
 msgid "Opponent is in check and cannot move (checkmate)"
 msgstr "Tegenstander staat schaak en heeft geen zetten meer (schaakmat)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:466
+#: ../glchess/src/lib/gtkui/chessview.py:472
 msgid "Opponent cannot move (stalemate)"
 msgstr "Tegenstander heeft geen zetten meer (mat)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:468
+#: ../glchess/src/lib/gtkui/chessview.py:474
 msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgstr ""
 "Er zijn geen stukken geslagen of pionnen verzet in laatste vijftig zetten"
 
 # tijd meer over/tijd meer
-#: ../glchess/src/lib/gtkui/chessview.py:470
+#: ../glchess/src/lib/gtkui/chessview.py:476
 msgid "Opponent has run out of time"
 msgstr "Tegenstander heeft geen tijd meer"
 
-#: ../glchess/src/lib/gtkui/chessview.py:472
+#: ../glchess/src/lib/gtkui/chessview.py:478
 msgid "The same board state has occured three times (three fold repetition)"
 msgstr ""
 "Dezelfde stelling is drie keer eerder voorgekomen (drievoudige herhaling)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:475
+#: ../glchess/src/lib/gtkui/chessview.py:481
 msgid "Neither player can cause checkmate (insufficient material)"
 msgstr "Geen van de spelers kan schaakmat maken (onvoldoende materiaal)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:477
+#: ../glchess/src/lib/gtkui/chessview.py:483
 msgid "Black player is unable to cause checkmate (insufficient material)"
 msgstr "Zwart kan geen schaakmat maken (onvoldoende materiaal)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:479
+#: ../glchess/src/lib/gtkui/chessview.py:485
 msgid "White player is unable to cause checkmate (insufficient material)"
 msgstr "Wit kan geen schaakmat maken (onvoldoende materiaal)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:482
+#: ../glchess/src/lib/gtkui/chessview.py:488
 msgid "The black player has resigned"
 msgstr "Zwart heeft opgegeven"
 
-#: ../glchess/src/lib/gtkui/chessview.py:484
+#: ../glchess/src/lib/gtkui/chessview.py:490
 msgid "The white player has resigned"
 msgstr "Wit heeft opgegeven"
 
-#: ../glchess/src/lib/gtkui/chessview.py:488
+#: ../glchess/src/lib/gtkui/chessview.py:494
 msgid "One of the players has died"
 msgstr "Een van de spelers is dood"
 
 #: ../glchess/src/lib/gtkui/network.py:35 ../glchess/src/lib/network.py:170
 msgid "Disconnected"
 msgstr "Verbinding verbroken"
-
-#: ../glchess/src/lib/gtkui/network.py:51
-#: ../libgames-support/games-dlg-players.c:205
-msgid "#"
-msgstr "#"
-
-#: ../glchess/src/lib/gtkui/network.py:79
-#: ../glchess/src/lib/gtkui/network.py:109
-msgid "Player"
-msgstr "Speler"
 
 #: ../glchess/src/lib/gtkui/network.py:92
 msgid "Table"
@@ -4376,6 +4389,10 @@ msgstr "Tafel"
 #: ../glchess/src/lib/gtkui/network.py:106
 msgid "Seat"
 msgstr "Zitplaats"
+
+#: ../glchess/src/lib/gtkui/network.py:109
+msgid "Player"
+msgstr "Speler"
 
 #: ../glchess/src/lib/gtkui/network.py:255
 #: ../libgames-support/games-dlg-players.c:168
@@ -4398,68 +4415,68 @@ msgid "AI (%s)"
 msgstr "KI (%s)"
 
 #. Chess board columns (files) label marked for translation. Please translate to the first eight letters of your alphabet, or the most appropriate eight characters/symbols for labelling the columns of a chess board.
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "a"
 msgstr "a"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "b"
 msgstr "b"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "c"
 msgstr "c"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "d"
 msgstr "d"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "e"
 msgstr "e"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "f"
 msgstr "f"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "g"
 msgstr "g"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "h"
 msgstr "h"
 
 #. Chess board rows (ranks) label marked for translation. Please translate to the first eight numbers with your native number symbols, or the most appropriate eight numbers/symbols for labelling the rows of a chess board.
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:66
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:66
 msgid "8"
 msgstr "8"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "7"
 msgstr "7"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "6"
 msgstr "6"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "5"
 msgstr "5"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "4"
 msgstr "4"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "3"
 msgstr "3"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "2"
 msgstr "2"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "1"
 msgstr "1"
 
@@ -4523,7 +4540,7 @@ msgid ""
 "terms of the GNU General Public License as published by the Free Software "
 "Foundation; either version 2 of the License, or (at your option) any later "
 "version."
-msgstr ""
+msgstr "%s is vrije software; herdistributie en/of het aanbrengen van wijzigingen is toegestaan onder de voorwaarden genoemd in de GNU General Public License die gepubliceerd is door de Free Software Foundation; ofwel versie 2 van de licentie of, (zo u wilt) elke latere versie."
 
 #: ../glchess/src/lib/defaults.py.in:71
 #: ../gnome-sudoku/src/lib/defaults.py.in:57
@@ -4534,7 +4551,7 @@ msgid ""
 "WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
 "FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
 "details."
-msgstr ""
+msgstr "%s wordt gedistribueerd met de hoop dat het bruikbaar zal zijn, maar zonder enige garantie; zelfs niet een geïmpliceerde garantie van verkoopbaarheid of geschiktheid voor een bepaald doel. Zie de GNU General Public License voor meer informatie."
 
 #: ../glchess/src/lib/defaults.py.in:75
 #: ../gnome-sudoku/src/lib/defaults.py.in:61
@@ -4544,7 +4561,7 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
 "Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr ""
+msgstr "U moet gelijk met %s een kopie van de GNU General Public License hebben ontvangen; zo niet, schrijf dan naar de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA"
 
 #: ../glchess/src/lib/defaults.py.in:87
 #: ../gnome-sudoku/src/lib/defaults.py.in:72
@@ -4800,13 +4817,13 @@ msgstr "Niveau van de tweede speler"
 
 #: ../gnect/data/gnect.schemas.in.h:9 ../gnect/src/prefs.c:376
 #: ../gnibbles/gnibbles.schemas.in.h:16 ../gnibbles/preferences.c:444
-#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:824
+#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:826
 msgid "Move left"
 msgstr "Naar links"
 
 #: ../gnect/data/gnect.schemas.in.h:10 ../gnect/src/prefs.c:377
 #: ../gnibbles/gnibbles.schemas.in.h:17 ../gnibbles/preferences.c:445
-#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:825
+#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:827
 msgid "Move right"
 msgstr "Naar rechts"
 
@@ -4970,12 +4987,12 @@ msgstr "_Animatie gebruiken"
 msgid "E_nable sounds"
 msgstr "_Geluid aanzetten"
 
-#: ../gnect/src/prefs.c:364 ../gnometris/tetris.cpp:813
+#: ../gnect/src/prefs.c:364 ../gnometris/tetris.cpp:815
 msgid "Controls"
 msgstr "Elementen"
 
 #: ../gnect/src/prefs.c:368 ../gnibbles/preferences.c:434
-#: ../gnobots2/properties.c:569 ../gnometris/tetris.cpp:816
+#: ../gnobots2/properties.c:569 ../gnometris/tetris.cpp:818
 msgid "Keyboard Controls"
 msgstr "Bedieningstoetsen"
 
@@ -5175,7 +5192,7 @@ msgstr "Toets voor beweging naar boven"
 
 # Beweeg de stukken omlaag
 #: ../gnibbles/gnibbles.schemas.in.h:15 ../gnibbles/preferences.c:447
-#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:826
+#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:828
 msgid "Move down"
 msgstr "Omlaag"
 
@@ -5313,7 +5330,7 @@ msgstr "Nep_bonussen gebruiken"
 
 # begin-level
 #. starting level
-#: ../gnibbles/preferences.c:348 ../gnometris/tetris.cpp:728
+#: ../gnibbles/preferences.c:348 ../gnometris/tetris.cpp:730
 msgid "_Starting level:"
 msgstr "_Begin-niveau:"
 
@@ -5902,7 +5919,7 @@ msgstr "Niveau:"
 msgid "Remaining:"
 msgstr "Overgebleven:"
 
-#: ../gnometris/field.cpp:227
+#: ../gnometris/field.cpp:245
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:185
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:224
 msgid "Paused"
@@ -5913,12 +5930,12 @@ msgid "Fit falling blocks together"
 msgstr "De vallende blokken goed op elkaar stapelen"
 
 #: ../gnometris/gnometris.desktop.in.in.h:2 ../gnometris/tetris.cpp:159
-#: ../gnometris/tetris.cpp:1388 ../gnometris/tetris.cpp:1392
-#: ../gnometris/tetris.cpp:1394
+#: ../gnometris/tetris.cpp:1390 ../gnometris/tetris.cpp:1394
+#: ../gnometris/tetris.cpp:1396
 msgid "Gnometris"
 msgstr "Gnometris"
 
-#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:827
+#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:829
 msgid "Drop"
 msgstr "Laten vallen"
 
@@ -5955,11 +5972,11 @@ msgstr "Begin-niveau"
 msgid "Level to start with."
 msgstr "Begin-niveau."
 
-#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:829
+#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:831
 msgid "Pause"
 msgstr "Pauzeren"
 
-#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:828
+#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:830
 msgid "Rotate"
 msgstr "Draaien"
 
@@ -6086,61 +6103,63 @@ msgstr "Tango schaduw"
 msgid "Lines:"
 msgstr "Lijnen:"
 
-#: ../gnometris/tetris.cpp:631 ../gnometris/tetris.cpp:632
+#. Translators: This is the placeholder item in the theme combo box
+#. (preferences dialog) when no themes are available
+#: ../gnometris/tetris.cpp:633 ../gnometris/tetris.cpp:634
 msgid "<none>"
 msgstr "<geen>"
 
-#: ../gnometris/tetris.cpp:660
+#: ../gnometris/tetris.cpp:662
 msgid "Gnometris Preferences"
 msgstr "Gnometris voorkeuren"
 
-#: ../gnometris/tetris.cpp:684
+#: ../gnometris/tetris.cpp:686
 msgid "Setup"
 msgstr "Instellen"
 
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:690
+#: ../gnometris/tetris.cpp:692
 msgid "_Number of pre-filled rows:"
 msgstr "_Aantal voorgevulde rijen:"
 
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:709
+#: ../gnometris/tetris.cpp:711
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "_Dichtheid van blokken in een voorgevulde rij:"
 
 # Operatie
-#: ../gnometris/tetris.cpp:749
+#: ../gnometris/tetris.cpp:751
 msgid "Operation"
 msgstr "Bewerking"
 
-#: ../gnometris/tetris.cpp:763
+#: ../gnometris/tetris.cpp:765
 msgid "_Preview next block"
 msgstr "_Volgend blok tonen"
 
 # 'gebruiken' kan eventueel worden weggelaten
-#: ../gnometris/tetris.cpp:772
+#: ../gnometris/tetris.cpp:774
 msgid "_Use random block colors"
 msgstr "_Willekeurige blokkleuren gebruiken"
 
 # antikloksgewijs draaien/tegen de klok in draaien
-#: ../gnometris/tetris.cpp:783
+#: ../gnometris/tetris.cpp:785
 msgid "_Rotate blocks counterclockwise"
 msgstr "_Blokken tegen de klok in draaien"
 
-#: ../gnometris/tetris.cpp:792
+#: ../gnometris/tetris.cpp:794
 msgid "Show _where the block will land"
 msgstr "_Tonen waar het blok terechtkomt"
 
-#: ../gnometris/tetris.cpp:804 ../gnometris/tetris.cpp:837
+#: ../gnometris/tetris.cpp:806 ../gnometris/tetris.cpp:839
 #: ../same-gnome/ui.c:328
 msgid "Theme"
 msgstr "Thema"
 
-#: ../gnometris/tetris.cpp:840
+#: ../gnometris/tetris.cpp:842
 msgid "Block Style"
 msgstr "Blokkenstijl"
 
-#: ../gnometris/tetris.cpp:1397
+#: ../gnometris/tetris.cpp:1399
 msgid ""
 "A classic game of fitting falling blocks together.\n"
 "\n"
@@ -6299,7 +6318,7 @@ msgid ""
 "Sudoku is not able to start because required application files are not "
 "installed. If you are currently upgrading your system please wait until the "
 "upgrade has completed."
-msgstr "Sudoku kan niet opstarten omdat benodigde programmabestanden niet geïnstalleerd zijn. Wanneer u uw systeem een upgrade geeft, wacht dan tot de upgrade voltooid is."
+msgstr "Sudoku kan niet opstarten omdat benodigde programmabestanden niet geïnstalleerd zijn. Wanneer uw systeem momenteel een upgrade krijgt, wacht dan tot de upgrade voltooid is."
 
 #: ../gnome-sudoku/src/lib/defaults.py.in:41
 msgid "GNOME Sudoku"
@@ -6555,7 +6574,8 @@ msgstr "_Spel spelen"
 #: ../gnome-sudoku/src/lib/main.py:466
 #, python-format
 msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
-msgstr "U heeft de puzzel in %(totalTime)s voltooid. (%(activeTime)s effectief)"
+msgstr ""
+"U heeft de puzzel in %(totalTime)s voltooid. (%(activeTime)s effectief)"
 
 #: ../gnome-sudoku/src/lib/main.py:470
 #, python-format
@@ -6996,7 +7016,7 @@ msgstr ""
 msgid ""
 "Set to true to have gnomine automatically flag squares as mined when enough "
 "squares are revealed"
-msgstr ""
+msgstr "Inschakelen om gnomine automatisch de mijnen te laten tonen wanneer voldoende vakjes ingedrukt zijn"
 
 #: ../gnomine/gnomine.schemas.in.h:9
 msgid "The number of mines in a custom game"
@@ -7204,19 +7224,19 @@ msgstr "Leg de puzzelstukjes zo dat gelijke cijfers elkaar raken"
 
 #: ../gnotravex/gnotravex.schemas.in.h:1
 msgid "A flag to enable coloured tiles."
-msgstr ""
+msgstr "Een vlag om de gekleurde stenen te gebruiken."
 
-# gaat het om de plaatjes op de stenen of de stapelwijze?
 #: ../gnotravex/gnotravex.schemas.in.h:2
-#, fuzzy
 msgid "Control coloured tiles"
-msgstr "Kon de stenenverzameling niet laden"
+msgstr "Gekleurde stenen aan/uit"
 
 #: ../gnotravex/gnotravex.schemas.in.h:4
 msgid ""
 "Select whether to drag the tiles or to click on the source then the "
 "destination."
-msgstr "Selecteren of stenen verplaatst worden door te slepen of door de steen aan te klikken en daarna de bestemming."
+msgstr ""
+"Selecteren of stenen verplaatst worden door te slepen of door de steen aan "
+"te klikken en daarna de bestemming."
 
 #: ../gnotravex/gnotravex.schemas.in.h:5
 msgid "The size of the playing grid"
@@ -7535,7 +7555,7 @@ msgid "Score: %d"
 msgstr "Score: %d"
 
 #: ../gtali/clist.c:416
-#, fuzzy, c-format
+#, c-format
 msgid "Field used"
 msgstr "Veldgrootte"
 
@@ -7612,14 +7632,14 @@ msgstr "Spelkeuze: standaard of kleuren"
 msgid "STRING"
 msgstr "TEKENREEKS"
 
+# maximum aantal?
 #: ../gtali/gyahtzee.c:116
-#, fuzzy
 msgid "Number of computer-only games to play"
-msgstr "Aantal computer spelers"
+msgstr "Aantal spellen dat alleen door de computer gespeeld wordt"
 
 #: ../gtali/gyahtzee.c:118
 msgid "Number of trials for each roll for the computer"
-msgstr ""
+msgstr "Aantal probeerrondes voor elke gooi van de computer"
 
 # alle stenen gooien
 #: ../gtali/gyahtzee.c:153
@@ -7696,7 +7716,7 @@ msgstr "Tali voorkeuren"
 
 #: ../gtali/setup.c:287
 msgid "Human Players"
-msgstr "Menselijke Spelers"
+msgstr "Menselijke spelers"
 
 #: ../gtali/setup.c:298
 msgid "_Number of players:"
@@ -7711,9 +7731,10 @@ msgstr "Computerspelers"
 msgid "_Delay between rolls"
 msgstr "_Vertraging tussen worpen"
 
+# de A wordt gebruikt voor Aantal spelers
 #: ../gtali/setup.c:330
 msgid "N_umber of opponents:"
-msgstr "_Aantal tegenspelers:"
+msgstr "Aantal _tegenspelers:"
 
 #: ../gtali/setup.c:344
 msgid "_Difficulty:"
@@ -7726,7 +7747,7 @@ msgstr "Kleuren"
 #. --- PLAYER NAMES FRAME ----
 #: ../gtali/setup.c:373
 msgid "Player Names"
-msgstr "Namen Spelers"
+msgstr "Namen van de spelers"
 
 #: ../gtali/yahtzee.c:85 ../gtali/yahtzee.c:109 ../gtali/yahtzee.c:516
 msgid "1s [total of 1s]"
@@ -7768,11 +7789,11 @@ msgstr "3+2 dezelfde [25]"
 
 #: ../gtali/yahtzee.c:95 ../gtali/yahtzee.c:525
 msgid "Small Straight [30]"
-msgstr "Kleine Straat [30]"
+msgstr "Kleine straat [30]"
 
 #: ../gtali/yahtzee.c:96 ../gtali/yahtzee.c:121 ../gtali/yahtzee.c:526
 msgid "Large Straight [40]"
-msgstr "Grote Straat [40]"
+msgstr "Grote straat [40]"
 
 # moet dit wel vertaald worden?
 #: ../gtali/yahtzee.c:97
@@ -7783,19 +7804,21 @@ msgstr "Vijf dezelfde [50]"
 msgid "Chance [total]"
 msgstr "Chance [totaal]"
 
+# vrij vertaald, maar dit is wat het is:
+# 1e en 2e subtotaal, en eindtotaal
 #. End of lower panel
 #: ../gtali/yahtzee.c:100 ../gtali/yahtzee.c:126
 msgid "Lower Total"
-msgstr "Onderste Totaal"
+msgstr "Tweede subtotaal"
 
 #: ../gtali/yahtzee.c:101 ../gtali/yahtzee.c:127
 msgid "Grand Total"
-msgstr "Groot Totaal"
+msgstr "Eindtotaal"
 
 #. Need to squish between upper and lower pannel
 #: ../gtali/yahtzee.c:103 ../gtali/yahtzee.c:129
 msgid "Upper total"
-msgstr "Bovenste Totaal"
+msgstr "Eerste subtotaal"
 
 #: ../gtali/yahtzee.c:104 ../gtali/yahtzee.c:130
 msgid "Bonus if >62"
@@ -7919,7 +7942,9 @@ msgstr "Domineer het bord in een klassieke versie van Reversi"
 msgid ""
 "The GNOME version of Reversi. The goal is to control the most disks on the "
 "board."
-msgstr "De Gnome versie van Reversi. Het doel is om het grootste aantal stenen op het bord te verkrijgen"
+msgstr ""
+"De Gnome versie van Reversi. Het doel is om het grootste aantal stenen op "
+"het bord te verkrijgen"
 
 #: ../iagno/othello.c:697
 msgid "Light player wins!"
@@ -8006,6 +8031,10 @@ msgstr "Verlaten"
 #: ../libgames-support/games-dlg-players.c:138
 msgid "-"
 msgstr "-"
+
+#: ../libgames-support/games-dlg-players.c:205
+msgid "#"
+msgstr "#"
 
 # toestand/stand/status
 #: ../libgames-support/games-dlg-players.c:212
@@ -8598,10 +8627,6 @@ msgstr ""
 #~ msgid "Bad room number"
 #~ msgstr "Foutief kamernummer"
 
-#, fuzzy
-#~ msgid "Unknown room-joining error"
-#~ msgstr "Onbekende kleur"
-
 #~ msgid "Unable to connect"
 #~ msgstr "Kon geen verbinding maken"
 
@@ -8950,11 +8975,6 @@ msgstr ""
 #~ msgid "Browser to launch URLs with:"
 #~ msgstr "Browser waarmee URL's worden geladen:"
 
-# meedoen met spel/meespelen
-#, fuzzy
-#~ msgid "_Join Game"
-#~ msgstr "Spel beëindigen"
-
 #~ msgid "A 2D/3D chess interface for Gnome"
 #~ msgstr "Een 2D/3D schaakspel voor Gnome"
 
@@ -9223,10 +9243,6 @@ msgstr ""
 
 #~ msgid "Copyright (c) 2005, Thomas M. Hinkle. GNU GPL"
 #~ msgstr "Copyright (c) 2005, Thomas M. Hinkle. GNU GPL"
-
-#, fuzzy
-#~ msgid "Start with unfinished games"
-#~ msgstr "Een nieuw spel beginnen"
 
 #~ msgid "Set the state of the board at start-up."
 #~ msgstr "De toestand van het bord, bij opstarten."
