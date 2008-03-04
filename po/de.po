@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-12 18:57+0100\n"
-"PO-Revision-Date: 2008-02-12 18:58+0100\n"
+"POT-Creation-Date: 2008-03-04 10:20+0100\n"
+"PO-Revision-Date: 2008-03-04 19:47+0100\n"
 "Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -119,7 +119,7 @@ msgstr "FreeCell Solitaire"
 msgid "Play the popular FreeCell card game"
 msgstr "Das populäre Kartenspiel FreeCell spielen"
 
-#: ../aisleriot/game.c:1094
+#: ../aisleriot/game.c:1088
 #, c-format
 msgid ""
 "Aisleriot cannot load the file \"%s\". Please check your Aisleriot "
@@ -128,11 +128,11 @@ msgstr ""
 "Die Datei »%s« konnte nicht von AisleRiot geladen werden. Bitte überprüfen "
 "Sie die AisleRiot-Installation"
 
-#: ../aisleriot/game.c:1528
+#: ../aisleriot/game.c:1529
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot konnte das zuletzt von Ihnen gespielte Spiel nicht finden."
 
-#: ../aisleriot/game.c:1529
+#: ../aisleriot/game.c:1530
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -922,7 +922,7 @@ msgid "There are no more moves"
 msgstr "Es gibt keine gültigen Züge mehr."
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:424 ../gnometris/field.cpp:229
+#: ../aisleriot/window.c:424 ../gnometris/field.cpp:247
 msgid "Game Over"
 msgstr "Spiel vorbei"
 
@@ -962,7 +962,7 @@ msgstr ""
 #: ../aisleriot/window.c:621 ../blackjack/src/menu.cpp:164
 #: ../glchess/src/lib/gtkui/gtkui.py:929 ../glines/glines.c:1221
 #: ../gnect/src/main.c:922 ../gnibbles/main.c:257 ../gnobots2/menu.c:269
-#: ../gnometris/tetris.cpp:1403 ../gnome-sudoku/src/lib/main.py:869
+#: ../gnometris/tetris.cpp:1405 ../gnome-sudoku/src/lib/main.py:869
 #: ../gnomine/gnomine.c:466 ../gnotravex/gnotravex.c:1944
 #: ../gnotski/gnotski.c:1638 ../gtali/gyahtzee.c:626 ../iagno/gnothello.c:291
 #: ../mahjongg/mahjongg.c:949 ../same-gnome/ui.c:139
@@ -983,7 +983,7 @@ msgstr ""
 #: ../aisleriot/window.c:625 ../blackjack/src/menu.cpp:163
 #: ../glchess/src/lib/defaults.py.in:60 ../glines/glines.c:1224
 #: ../gnect/src/main.c:919 ../gnibbles/main.c:260 ../gnobots2/menu.c:265
-#: ../gnometris/tetris.cpp:1400 ../gnome-sudoku/src/lib/defaults.py.in:47
+#: ../gnometris/tetris.cpp:1402 ../gnome-sudoku/src/lib/defaults.py.in:47
 #: ../gnomine/gnomine.c:469 ../gnotravex/gnotravex.c:1947
 #: ../gnotski/gnotski.c:1641 ../gtali/gyahtzee.c:630 ../iagno/gnothello.c:293
 #: ../mahjongg/mahjongg.c:952 ../same-gnome/ui.c:143
@@ -1167,7 +1167,7 @@ msgstr "Karten durch Klicken aufnehmen bzw. ablegen"
 
 #. not active by default
 #: ../aisleriot/window.c:2153 ../gnobots2/properties.c:502
-#: ../gnometris/tetris.cpp:754
+#: ../gnometris/tetris.cpp:756
 msgid "_Enable sounds"
 msgstr "_Klang aktivieren"
 
@@ -1997,7 +1997,7 @@ msgstr "Blackjack-Einstellungen"
 
 #: ../blackjack/src/dialog.cpp:246 ../dependencies/ggz-gtk/client.c:919
 #: ../gnect/src/prefs.c:298 ../gnibbles/preferences.c:251
-#: ../gnobots2/properties.c:523 ../gnometris/tetris.cpp:681
+#: ../gnobots2/properties.c:523 ../gnometris/tetris.cpp:683
 #: ../iagno/properties.c:421
 msgid "Game"
 msgstr "Spiel"
@@ -2845,7 +2845,6 @@ msgid "Not Implemented"
 msgstr "Nicht implementiert"
 
 #: ../dependencies/ggz-gtk/types.c:183 ../dependencies/ggz-gtk/tablelist.c:201
-#: ../glchess/src/lib/gtkui/network.py:65
 #: ../glchess/src/lib/gtkui/network.py:100
 msgid "Description"
 msgstr "Beschreibung"
@@ -3062,7 +3061,6 @@ msgid "Other Rooms"
 msgstr "Andere Räume"
 
 #: ../dependencies/ggz-gtk/roomlist.c:424
-#: ../glchess/src/lib/gtkui/network.py:59
 msgid "Room"
 msgstr "Raum"
 
@@ -4142,58 +4140,62 @@ msgid "Stalemate"
 msgstr "Patt"
 
 # CHECK
-#: ../glchess/src/lib/gtkui/chessview.py:409
+#. Translators: This string is used in the move history to indicate which white move is being described.
+#. In a chess game the turns are '1w.', '1b.', '2w.', ...
+#: ../glchess/src/lib/gtkui/chessview.py:411
 #, python-format
 msgid "%(movenum)2iw."
 msgstr "%(movenum)2iw."
 
 # %(movenum)2iw.
-#: ../glchess/src/lib/gtkui/chessview.py:410
+#. Translators: This string is used in the move history to indicate which black move is being described.
+#. In a chess game the turns are '1w.', '1b.', '2w.', ...
+#: ../glchess/src/lib/gtkui/chessview.py:414
 #, python-format
 msgid "%(movenum)2ib."
 msgstr "%(movenum)2is."
 
-#: ../glchess/src/lib/gtkui/chessview.py:413
+#: ../glchess/src/lib/gtkui/chessview.py:419
 #, python-format
 msgid "%(move)s White castles long (%(result)s)"
 msgstr "%(move)s Weiß rochiert lang (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:414
+#: ../glchess/src/lib/gtkui/chessview.py:420
 #, python-format
 msgid "%(move)s White castles long"
 msgstr "%(move)s Weiß rochiert lang"
 
-#: ../glchess/src/lib/gtkui/chessview.py:415
+#: ../glchess/src/lib/gtkui/chessview.py:421
 #, python-format
 msgid "%(move)s Black castles long (%(result)s)"
 msgstr "%(move)s Schwarz rochiert lang (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:416
+#: ../glchess/src/lib/gtkui/chessview.py:422
 #, python-format
 msgid "%(move)s Black castles long"
 msgstr "%(move)s Schwarz rochiert lang"
 
-#: ../glchess/src/lib/gtkui/chessview.py:418
+#: ../glchess/src/lib/gtkui/chessview.py:424
 #, python-format
 msgid "%(move)s White castles short (%(result)s)"
 msgstr "%(move)s Weiß rochiert kurz (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:419
+#: ../glchess/src/lib/gtkui/chessview.py:425
 #, python-format
 msgid "%(move)s White castles short"
 msgstr "%(move)s Weiß rochiert kurz"
 
-#: ../glchess/src/lib/gtkui/chessview.py:420
+#: ../glchess/src/lib/gtkui/chessview.py:426
 #, python-format
 msgid "%(move)s Black castles short (%(result)s)"
 msgstr "%(move)s Schwarz rochiert kurz (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:421
+#: ../glchess/src/lib/gtkui/chessview.py:427
 #, python-format
 msgid "%(move)s Black castles short"
 msgstr "%(move)s Schwarz rochiert kurz"
 
-#: ../glchess/src/lib/gtkui/chessview.py:423
+#: ../glchess/src/lib/gtkui/chessview.py:429
 #, python-format
 msgid ""
 "%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %"
@@ -4202,7 +4204,7 @@ msgstr ""
 "%(move)s %(piece)s Weiß bei %(start)s schlägt %(victim_piece)s Schwarz bei %"
 "(end)s (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:424
+#: ../glchess/src/lib/gtkui/chessview.py:430
 #, python-format
 msgid ""
 "%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %"
@@ -4211,7 +4213,7 @@ msgstr ""
 "%(move)s %(piece)s Weiß bei %(start)s schlägt %(victim_piece)s Schwarz bei %"
 "(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:425
+#: ../glchess/src/lib/gtkui/chessview.py:431
 #, python-format
 msgid ""
 "%(move)s Black %(piece)s at %(start)s takes the white %(victim_piece)s at %"
@@ -4220,7 +4222,7 @@ msgstr ""
 "%(move)s %(piece)s Schwarz bei %(start)s schlägt %(victim_piece)s Weiß bei %"
 "(end)s (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:426
+#: ../glchess/src/lib/gtkui/chessview.py:432
 #, python-format
 msgid ""
 "%(move)s Black %(piece)s at %(start)s takes the white %(victim_piece)s at %"
@@ -4229,97 +4231,86 @@ msgstr ""
 "%(move)s %(piece)s Weiß bei %(start)s schlägt %(victim_piece)s Schwarz bei %"
 "(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:428
+#: ../glchess/src/lib/gtkui/chessview.py:434
 #, python-format
 msgid "%(move)s White %(piece)s moves from %(start)s to %(end)s (%(result)s)"
 msgstr "%(move)s %(piece)s Weiß zieht von %(start)s auf %(end)s (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:429
+#: ../glchess/src/lib/gtkui/chessview.py:435
 #, python-format
 msgid "%(move)s White %(piece)s moves from %(start)s to %(end)s"
 msgstr "%(move)s %(piece)s Weiß zieht von %(start)s auf %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:430
+#: ../glchess/src/lib/gtkui/chessview.py:436
 #, python-format
 msgid "%(move)s Black %(piece)s moves from %(start)s to %(end)s (%(result)s)"
 msgstr ""
 "%(move)s %(piece)s Schwarz zieht von %(start)s auf %(end)s (%(result)s)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:431
+#: ../glchess/src/lib/gtkui/chessview.py:437
 #, python-format
 msgid "%(move)s Black %(piece)s moves from %(start)s to %(end)s"
 msgstr "%(move)s %(piece)s Schwarz zieht von %(start)s auf %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:456
-#: ../glchess/src/lib/gtkui/chessview.py:458
+#: ../glchess/src/lib/gtkui/chessview.py:462
+#: ../glchess/src/lib/gtkui/chessview.py:464
 #, python-format
 msgid "%s wins"
 msgstr "%s gewinnt"
 
-#: ../glchess/src/lib/gtkui/chessview.py:460
+#: ../glchess/src/lib/gtkui/chessview.py:466
 msgid "Game is drawn"
 msgstr "Spiel ist remis"
 
-#: ../glchess/src/lib/gtkui/chessview.py:464
+#: ../glchess/src/lib/gtkui/chessview.py:470
 msgid "Opponent is in check and cannot move (checkmate)"
 msgstr "Gegenspieler ist im Schach und bewegungsunfähig (Schachmatt)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:466
+#: ../glchess/src/lib/gtkui/chessview.py:472
 msgid "Opponent cannot move (stalemate)"
 msgstr "Gegenspieler ist bewegungsunfähig (Patt)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:468
+#: ../glchess/src/lib/gtkui/chessview.py:474
 msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgstr ""
 "In den letzten 50 Zügen wurde keine Figur geschlagen und kein Bauer bewegt"
 
-#: ../glchess/src/lib/gtkui/chessview.py:470
+#: ../glchess/src/lib/gtkui/chessview.py:476
 msgid "Opponent has run out of time"
 msgstr "Gegenspieler hat keine Zeit mehr"
 
-#: ../glchess/src/lib/gtkui/chessview.py:472
+#: ../glchess/src/lib/gtkui/chessview.py:478
 msgid "The same board state has occured three times (three fold repetition)"
 msgstr "Die selbe Stellung ist drei Mal aufgetreten (dreimalige Wiederholung)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:475
+#: ../glchess/src/lib/gtkui/chessview.py:481
 msgid "Neither player can cause checkmate (insufficient material)"
 msgstr "Kein Spieler kann Schachmatt erreichen (unzureichende Figuren)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:477
+#: ../glchess/src/lib/gtkui/chessview.py:483
 msgid "Black player is unable to cause checkmate (insufficient material)"
 msgstr ""
 "Schwarzer Spieler kann kein Schachmatt erreichen (unzureichende Figuren)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:479
+#: ../glchess/src/lib/gtkui/chessview.py:485
 msgid "White player is unable to cause checkmate (insufficient material)"
 msgstr "Weißer Spieler kann kein Schachmatt erreichen (unzureichende Figuren)"
 
-#: ../glchess/src/lib/gtkui/chessview.py:482
+#: ../glchess/src/lib/gtkui/chessview.py:488
 msgid "The black player has resigned"
 msgstr "Schwarzer Spieler hat aufgegeben"
 
-#: ../glchess/src/lib/gtkui/chessview.py:484
+#: ../glchess/src/lib/gtkui/chessview.py:490
 msgid "The white player has resigned"
 msgstr "Weißer Spieler hat aufgegeben"
 
-#: ../glchess/src/lib/gtkui/chessview.py:488
+#: ../glchess/src/lib/gtkui/chessview.py:494
 msgid "One of the players has died"
 msgstr "Einer der Spieler hat verloren"
 
 #: ../glchess/src/lib/gtkui/network.py:35 ../glchess/src/lib/network.py:170
-#, fuzzy
 msgid "Disconnected"
-msgstr "Trennen"
-
-#: ../glchess/src/lib/gtkui/network.py:51
-#: ../libgames-support/games-dlg-players.c:205
-msgid "#"
-msgstr "#"
-
-#: ../glchess/src/lib/gtkui/network.py:79
-#: ../glchess/src/lib/gtkui/network.py:109
-msgid "Player"
-msgstr "Spieler"
+msgstr "Getrennt"
 
 #: ../glchess/src/lib/gtkui/network.py:92
 msgid "Table"
@@ -4328,6 +4319,10 @@ msgstr "Tisch"
 #: ../glchess/src/lib/gtkui/network.py:106
 msgid "Seat"
 msgstr "Platz"
+
+#: ../glchess/src/lib/gtkui/network.py:109
+msgid "Player"
+msgstr "Spieler"
 
 #: ../glchess/src/lib/gtkui/network.py:255
 #: ../libgames-support/games-dlg-players.c:168
@@ -4349,68 +4344,68 @@ msgid "AI (%s)"
 msgstr "KI (%s)"
 
 #. Chess board columns (files) label marked for translation. Please translate to the first eight letters of your alphabet, or the most appropriate eight characters/symbols for labelling the columns of a chess board.
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "a"
 msgstr "a"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "b"
 msgstr "b"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "c"
 msgstr "c"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "d"
 msgstr "d"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "e"
 msgstr "e"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "f"
 msgstr "f"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "g"
 msgstr "g"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:370
+#: ../glchess/src/lib/scene/cairo/__init__.py:372
 msgid "h"
 msgstr "h"
 
 #. Chess board rows (ranks) label marked for translation. Please translate to the first eight numbers with your native number symbols, or the most appropriate eight numbers/symbols for labelling the rows of a chess board.
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:66
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:66
 msgid "8"
 msgstr "8"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "7"
 msgstr "7"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "6"
 msgstr "6"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "5"
 msgstr "5"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "4"
 msgstr "4"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "3"
 msgstr "3"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "2"
 msgstr "2"
 
-#: ../glchess/src/lib/scene/cairo/__init__.py:372 ../gnotravex/gnotravex.c:65
+#: ../glchess/src/lib/scene/cairo/__init__.py:374 ../gnotravex/gnotravex.c:65
 msgid "1"
 msgstr "1"
 
@@ -4449,9 +4444,8 @@ msgid "glChess"
 msgstr "glChess"
 
 #: ../glchess/src/lib/defaults.py.in:57
-#, fuzzy
 msgid "Copyright 2005-2008 Robert Ancell (and contributors)"
-msgstr "Copyright 2005-2007 Robert Ancell (und Mitwirkende)"
+msgstr "Copyright 2005-2008 Robert Ancell (und Mitwirkende)"
 
 #: ../glchess/src/lib/defaults.py.in:58
 msgid ""
@@ -4478,8 +4472,8 @@ msgid ""
 msgstr ""
 "%s ist freie Software, Sie können sie weitergeben und/oder verändern solange "
 "Sie sich an die Regeln der GNU General Public License halten, so wie sie von "
-"der Free Software Foundation festgelegt wurden; entweder in Version 2 "
-"der Lizenz oder (nach Ihrem Ermessen) in jeder folgenden Lizenz."
+"der Free Software Foundation festgelegt wurden; entweder in Version 2 der "
+"Lizenz oder (nach Ihrem Ermessen) in jeder folgenden Lizenz."
 
 #: ../glchess/src/lib/defaults.py.in:71
 #: ../gnome-sudoku/src/lib/defaults.py.in:57
@@ -4517,9 +4511,8 @@ msgid "Unable to make data directory %(dir)s: %(error)s"
 msgstr "Datenordner %(dir)s konnte nicht erstellt werden: %(error)s"
 
 #: ../glchess/src/lib/network.py:170
-#, fuzzy
 msgid "You have been disconnected from the server"
-msgstr "Sie wurden von %s des Tisches verwiesen."
+msgstr "Sie wurden vom Server getrennt"
 
 #: ../glchess/src/lib/network.py:219
 msgid "No description"
@@ -4764,13 +4757,13 @@ msgstr "Level von Spieler 2"
 
 #: ../gnect/data/gnect.schemas.in.h:9 ../gnect/src/prefs.c:376
 #: ../gnibbles/gnibbles.schemas.in.h:16 ../gnibbles/preferences.c:444
-#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:824
+#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:826
 msgid "Move left"
 msgstr "Nach links bewegen"
 
 #: ../gnect/data/gnect.schemas.in.h:10 ../gnect/src/prefs.c:377
 #: ../gnibbles/gnibbles.schemas.in.h:17 ../gnibbles/preferences.c:445
-#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:825
+#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:827
 msgid "Move right"
 msgstr "Nach rechts bewegen"
 
@@ -4929,12 +4922,12 @@ msgstr "_Animationen aktivieren"
 msgid "E_nable sounds"
 msgstr "_Klang aktivieren"
 
-#: ../gnect/src/prefs.c:364 ../gnometris/tetris.cpp:813
+#: ../gnect/src/prefs.c:364 ../gnometris/tetris.cpp:815
 msgid "Controls"
 msgstr "Steuerung"
 
 #: ../gnect/src/prefs.c:368 ../gnibbles/preferences.c:434
-#: ../gnobots2/properties.c:569 ../gnometris/tetris.cpp:816
+#: ../gnobots2/properties.c:569 ../gnometris/tetris.cpp:818
 msgid "Keyboard Controls"
 msgstr "Tastatursteuerung"
 
@@ -5128,7 +5121,7 @@ msgid "Key to use for motion up."
 msgstr "Zum Bewegen nach oben zu verwendende Taste."
 
 #: ../gnibbles/gnibbles.schemas.in.h:15 ../gnibbles/preferences.c:447
-#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:826
+#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:828
 msgid "Move down"
 msgstr "Nach unten bewegen"
 
@@ -5261,7 +5254,7 @@ msgid "_Enable fake bonuses"
 msgstr "Unechte _Boni aktivieren"
 
 #. starting level
-#: ../gnibbles/preferences.c:348 ../gnometris/tetris.cpp:728
+#: ../gnibbles/preferences.c:348 ../gnometris/tetris.cpp:730
 msgid "_Starting level:"
 msgstr "Anfangs_level:"
 
@@ -5862,7 +5855,7 @@ msgstr "Level:"
 msgid "Remaining:"
 msgstr "Verbleibend:"
 
-#: ../gnometris/field.cpp:227
+#: ../gnometris/field.cpp:245
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:185
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:224
 msgid "Paused"
@@ -5873,12 +5866,12 @@ msgid "Fit falling blocks together"
 msgstr "Fallende Blöcke zusammenfügen"
 
 #: ../gnometris/gnometris.desktop.in.in.h:2 ../gnometris/tetris.cpp:159
-#: ../gnometris/tetris.cpp:1388 ../gnometris/tetris.cpp:1392
-#: ../gnometris/tetris.cpp:1394
+#: ../gnometris/tetris.cpp:1390 ../gnometris/tetris.cpp:1394
+#: ../gnometris/tetris.cpp:1396
 msgid "Gnometris"
 msgstr "GNOMEtris"
 
-#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:827
+#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:829
 msgid "Drop"
 msgstr "Abwerfen"
 
@@ -5914,11 +5907,11 @@ msgstr "Anfängliches Level"
 msgid "Level to start with."
 msgstr "Anfängliches Level"
 
-#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:829
+#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:831
 msgid "Pause"
 msgstr "Pause"
 
-#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:828
+#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:830
 msgid "Rotate"
 msgstr "Drehen"
 
@@ -6036,59 +6029,61 @@ msgstr "Tango schattiert"
 msgid "Lines:"
 msgstr "Zeilen:"
 
-#: ../gnometris/tetris.cpp:631 ../gnometris/tetris.cpp:632
+#. Translators: This is the placeholder item in the theme combo box
+#. (preferences dialog) when no themes are available
+#: ../gnometris/tetris.cpp:633 ../gnometris/tetris.cpp:634
 msgid "<none>"
 msgstr "<keine>"
 
-#: ../gnometris/tetris.cpp:660
+#: ../gnometris/tetris.cpp:662
 msgid "Gnometris Preferences"
 msgstr "Gnometris Einstellungen"
 
 # setup => Einrichtung, das wäre hier falsch
-#: ../gnometris/tetris.cpp:684
+#: ../gnometris/tetris.cpp:686
 msgid "Setup"
 msgstr "Allgemein"
 
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:690
+#: ../gnometris/tetris.cpp:692
 msgid "_Number of pre-filled rows:"
 msgstr "Zu Beginn gefüllte _Zeilen:"
 
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:709
+#: ../gnometris/tetris.cpp:711
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "Block_dichte vorgefüllter Zeilen:"
 
-#: ../gnometris/tetris.cpp:749
+#: ../gnometris/tetris.cpp:751
 msgid "Operation"
 msgstr "Betrieb"
 
-#: ../gnometris/tetris.cpp:763
+#: ../gnometris/tetris.cpp:765
 msgid "_Preview next block"
 msgstr "_Vorschau auf nächsten Block anzeigen"
 
-#: ../gnometris/tetris.cpp:772
+#: ../gnometris/tetris.cpp:774
 msgid "_Use random block colors"
 msgstr "Zu_fällige Blockfarben verwenden"
 
-#: ../gnometris/tetris.cpp:783
+#: ../gnometris/tetris.cpp:785
 msgid "_Rotate blocks counterclockwise"
 msgstr "Blöcke ent_gegen dem Uhrzeigersinn drehen"
 
-#: ../gnometris/tetris.cpp:792
+#: ../gnometris/tetris.cpp:794
 msgid "Show _where the block will land"
 msgstr "Anzeigen, wo der Block _landen wird"
 
-#: ../gnometris/tetris.cpp:804 ../gnometris/tetris.cpp:837
+#: ../gnometris/tetris.cpp:806 ../gnometris/tetris.cpp:839
 #: ../same-gnome/ui.c:328
 msgid "Theme"
 msgstr "Thema"
 
-#: ../gnometris/tetris.cpp:840
+#: ../gnometris/tetris.cpp:842
 msgid "Block Style"
 msgstr "Stil der Blöcke"
 
-#: ../gnometris/tetris.cpp:1397
+#: ../gnometris/tetris.cpp:1399
 msgid ""
 "A classic game of fitting falling blocks together.\n"
 "\n"
@@ -6266,50 +6261,47 @@ msgstr ""
 "GNOME-Sudoku ist ein Teil von GNOME Games."
 
 #: ../gnome-sudoku/src/lib/saver.py:103
-#, fuzzy
 msgid "No Space"
-msgstr "Kein Markierer"
+msgstr "Kein Platz"
 
 #: ../gnome-sudoku/src/lib/saver.py:104
 msgid "No space left on disk"
-msgstr ""
+msgstr "Kein freier Speicherplatz auf Festplatte verfügbar"
 
 #: ../gnome-sudoku/src/lib/saver.py:106
 #, python-format
 msgid "Sudoku is unable to created data folder %(path)s."
-msgstr ""
+msgstr "Datenordner »%(path)s« konnte nicht erstellt werden."
 
 #: ../gnome-sudoku/src/lib/saver.py:107
-#, fuzzy
 msgid "There is no disk space left!"
-msgstr "Kein Rätsel aktiv."
+msgstr "Es ist kein freier Speicherplatz auf der Festplatte verfügbar!"
 
 #: ../gnome-sudoku/src/lib/saver.py:113
 #, python-format
 msgid "Sudoku was unable to create data folder %(path)s."
-msgstr ""
+msgstr "Datenordner »%(path)s« konnte nicht erstellt werden."
 
 #: ../gnome-sudoku/src/lib/saver.py:114 ../gnome-sudoku/src/lib/saver.py:144
 #: ../gnome-sudoku/src/lib/saver.py:169 ../gnome-sudoku/src/lib/saver.py:187
 #, python-format
 msgid "Error %(errno)s: %(error)s"
-msgstr ""
+msgstr "Fehler %(errno)s: %(error)s"
 
 #: ../gnome-sudoku/src/lib/saver.py:139 ../gnome-sudoku/src/lib/saver.py:140
-#, fuzzy
 msgid "Sudoku unable to save game."
-msgstr "Das Spiel konnte nicht gespeichert werden"
+msgstr "Das Spiel konnte nicht gespeichert werden."
 
 #: ../gnome-sudoku/src/lib/saver.py:142 ../gnome-sudoku/src/lib/saver.py:168
 #: ../gnome-sudoku/src/lib/saver.py:186
-#, fuzzy, python-format
+#, python-format
 msgid "Unable to save file %(filename)s."
-msgstr "Das Spiel konnte nicht gespeichert werden"
+msgstr "Datei »%(filename)s« konnte nicht gespeichert werden."
 
 #: ../gnome-sudoku/src/lib/saver.py:165 ../gnome-sudoku/src/lib/saver.py:166
 #: ../gnome-sudoku/src/lib/saver.py:183 ../gnome-sudoku/src/lib/saver.py:184
 msgid "Sudoku unable to mark game as finished."
-msgstr ""
+msgstr "Das Spiel konnte nicht als beendet markiert werden."
 
 #: ../gnome-sudoku/src/lib/main.py:31
 msgid "Track moves"
@@ -7929,6 +7921,10 @@ msgstr "Herrenlos"
 #: ../libgames-support/games-dlg-players.c:138
 msgid "-"
 msgstr "-"
+
+#: ../libgames-support/games-dlg-players.c:205
+msgid "#"
+msgstr "#"
 
 #: ../libgames-support/games-dlg-players.c:212
 msgid "Status"
