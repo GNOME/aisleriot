@@ -1,3 +1,45 @@
+gnome-games 2.20.0
+==================
+
+This is the final release of Gnome Games for 2.22. This release fixes two
+critical blockers as well as a build problem with automake 1.9. We also
+include translation updates. Individual module changes are below:
+
+Overall:
+  - Fix GGZ crash (Roger Light, Andreas Røsdal, bug #363015)
+  - Support building with GCC 4.3 (Matthias Clasen, Andreas Røsdal, bug #516616)
+  - Fix automake 1.9 build problems (Paul, Andreas, Thomas, Jason, bug #518918)
+
+Gnome Sudoku:
+  - Fix bug that led to game not being registered as solved after user had
+    used "clear" button. (Greg Fawcett, Thomas Hinkle, bug #423478)
+  - Fix crash when starting new game. (Andreas Røsdal, bug #513894)
+
+GLChess:
+  - Re-add pygtk.require() call (Robert Ancell, bug #521154)
+  - Handle gtk.gtkgl.widget_get_gl_drawable() returning None (Robert Ancell,
+    bugs #488902 and #512068)
+  - Made AI monitor process more resiliant to OSError exceptions (Robert Ancell,
+    bug #517347)
+
+Aisleriot:
+  - Fix the build with guile 1.6 and older gccs. (Jasper Lievisse Adriaanse
+    Christian Persch, bug #519990)
+  - Use the game filename in the backtrace, not the localised game name.
+    (Christian Persch)
+
+Gnobots2:
+  - Fix a bug where an annoying blank rectangle is left after a robot splat.
+    (Fernando Martins, Andreas Røsdal, bug #506162)
+
+Translators, whose hard work is much appreciated:
+ Luca Ferretti, Jorge Gonzalez, Djihed Afifi, Priit Laes, Baris Cicek, Petr
+ Kovar, Kjartan Maraas, Gabor Kelemen, Kenneth Nielsen, Ani Peter, Gintautas
+ Miliauskas, Stéphane Raimbault, Hendrik Richter, Vincent van Adrighem,
+ Rahul Bhalerao, Philip Withnall, Guntupalli Karunakar, Claude Paroz, Takeshi
+ AIHANA
+
+
 gnome-games 2.21.92
 ==================
 This is the release candidate for 2.22 of gnome-games. Mostly stability and 
