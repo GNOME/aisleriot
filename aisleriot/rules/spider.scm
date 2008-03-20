@@ -182,16 +182,17 @@
 	     #t))))
 
 
-(define (is-playable-stack cards n)
+(define (is-playable-stack cards suit n)
   (and (not (null? cards))
        (= (get-value (car cards)) n)
        (is-visible? (car cards))
+       (eq? (get-suit (car cards)) suit)
        (or (= n 13)
-           (is-playable-stack (cdr cards) (+ n 1)))))
+           (is-playable-stack (cdr cards) suit (+ n 1)))))
 
 (define (button-double-clicked slot)
   (and (member slot tableau)
-       (is-playable-stack (get-cards slot) 1)
+       (is-playable-stack (get-cards slot) (get-suit (get-cards slot)) 1)
        (let ((card-list (list-head (get-cards slot) 13)))
             (remove-n-cards slot 13)
             (complete-transaction slot card-list (find-empty-slot foundation)))
