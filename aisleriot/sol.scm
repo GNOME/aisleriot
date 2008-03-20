@@ -141,7 +141,7 @@
 (define (shuffle-deck)
   (let* ((vec (list->vector DECK))
 	 (len (vector-length vec)))
-    (set! DECK (shuffle-deck-helper vec 0 len))))
+    (set! DECK (shuffle-deck-helper vec '() 0 len))))
 					     
 ; The playing area is divided into slots, where cards can be placed.
 ; Each slot can hold any amount of cards.  The slots are identified 
@@ -503,13 +503,13 @@
       (cons (make-card value suit) 
 	    (make-standard-deck-list-ace-low (+ 1 value) suit))))
 
-(define (shuffle-deck-helper deck ref1 len)
+(define (shuffle-deck-helper deck result ref1 len)
   (if (zero? len)
-      '()
+      result
       (let* ((ref2 (+ ref1 (random len)))
 	     (val-at-ref2 (vector-ref deck ref2)))
 	(vector-set! deck ref2 (vector-ref deck ref1))
-	(cons val-at-ref2 (shuffle-deck-helper deck (+ ref1 1) (- len 1))))))
+	(shuffle-deck-helper deck (cons val-at-ref2 result) (+ ref1 1) (- len 1)))))
 
 (define (new-slot deck placement)
   (list #f deck placement))

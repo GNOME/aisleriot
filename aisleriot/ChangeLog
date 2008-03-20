@@ -1,3 +1,9 @@
+2008-03-21  Christian Persch  <chpe@gnome.org>
+
+	* sol.scm: Make shuffle-deck-helper tail recursive. Fixes stack
+	overflow exception with guile 1.8.4. Bug #519554; patch by Vincent
+	Povirk.
+
 2008-03-03  Christian Persch  <chpe@gnome.org>
 
 	* guile16-compat.h: Fix the build with guile 1.6 and older gccs. Bug
