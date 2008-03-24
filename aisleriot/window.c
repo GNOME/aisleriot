@@ -2353,7 +2353,11 @@ aisleriot_window_init (AisleriotWindow *window)
 
   aisleriot_board_set_pixbuf_drawing (priv->board, priv->use_pixbuf_drawing);
 
-  theme = games_conf_get_string_with_default (NULL, aisleriot_conf_get_key (CONF_THEME), GAMES_CARD_THEME_DEFAULT);
+  theme = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
+  if (!theme || !theme[0]) {
+    g_free (theme);
+    theme = g_strdup (GAMES_CARD_THEME_DEFAULT);
+  }
 #ifdef HAVE_GNOME
   /* Compatibility with old settings */
   if (g_str_has_suffix (theme, ".svg")) {
