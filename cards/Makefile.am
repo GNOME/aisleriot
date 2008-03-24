@@ -6,13 +6,12 @@ card_DATA = \
 	anglo.svg \
 	anglo_bitmap.svg \
 	bellot.svg \
+	bonded.svg \
 	dondorf.svg \
 	gnomangelo.svg \
 	ornamental.svg \
 	paris.svg \
 	$(NULL)
-
-#	bonded.svg
 
 EXTRA_DIST = \
 	$(card_DATA)		\
