@@ -30,6 +30,7 @@ rules_DATA  = 			\
 	first_law.scm		\
 	fortress.scm		\
 	fortunes.scm		\
+	forty_thieves.scm	\
 	fourteen.scm		\
 	freecell.scm		\
 	gaps.scm		\

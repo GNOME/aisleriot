@@ -35,6 +35,7 @@ DOC_ENTITIES = \
 	first_law.xml \
 	fortress.xml \
 	fortunes.xml \
+	forty_thieves.xml \
 	fourteen.xml \
 	freecell.xml \
 	gaps.xml \
