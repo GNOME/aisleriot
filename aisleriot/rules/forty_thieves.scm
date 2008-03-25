@@ -351,24 +351,14 @@
 )
 
 
-; To check that a game is continuable we need any of the following
-; cards to deal, something to move to a foundation,
-; top waste card movable, something to move around the tableau;
-; as well as game not won
-
 (define (game-continuable)
   (give-status-message)
   (and (not (game-won))
-       (or
-          (not (empty-slot? stock-pile))
-          (car (find-any-move-to-foundation start-with-waste))
-          (and (not (empty-slot? waste-pile))
-               (car (find-tableau-place waste-pile (get-top-card waste-pile) ) ) 
-          )
-          (car (find-any-move-in-tableau start-with-tableau) ) 
-       )
+       (get-hint)
   )
 )
+
+
 
 (define (game-won)
   (and (= (length (get-cards 1)) 13)
@@ -386,8 +376,8 @@
 ;this is the last-straw hint maker
 (define (check-for-deal)
   (if (not (empty-slot? stock-pile)) 
-         (list 0 (_"Deal a card from stock"))
-         (list 0 (_"Try undoing and playing differently?"))
+        (list 0 (_"Deal a card from stock"))
+	 #f
   )
 )
 
