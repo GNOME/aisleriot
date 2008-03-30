@@ -304,6 +304,17 @@ aisleriot_conf_get_statistic (const char *game_file,
   AisleriotStatistic *game_stat;
 
   game_stat = g_hash_table_lookup (stats, game_file);
+  if (!game_stat) {
+    char *display_name;
+
+    /* Previous versions used the localised name as key, so try it as fall-back.
+     * See bug #406267 and bug #525177.
+     */
+    display_name = aisleriot_util_get_display_filename (game_file);
+    game_stat = g_hash_table_lookup (stats, display_name);
+    g_free (display_name);
+  }
+
   if (game_stat) {
     *statistic = *game_stat;
   } else {
