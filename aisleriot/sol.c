@@ -50,6 +50,7 @@
 #include <hildon-widgets/hildon-program.h>
 #else
 #include <hildon/hildon-program.h>
+#include <tablet-browser-interface.h>
 #endif /* HAVE_MAEMO_3 */
 
 #define SERVICE_NAME "org.gnome.Games.AisleRiot"
