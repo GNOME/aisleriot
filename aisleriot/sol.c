@@ -653,8 +653,13 @@ main_prog (void *closure, int argc, char *argv[])
                 "gtk-button-images", FALSE,
 #endif /* HAVE_MAEMO_3 */
 #if GTK_CHECK_VERSION (2, 10, 0)
-                "gtk-enable-accels", FALSE,
                 "gtk-enable-mnemonics", FALSE,
+
+                /* We want the default of FALSE for this property, but to work
+                 * around https://bugs.maemo.org/show_bug.cgi?id=2278 we have
+                 * to set this to TRUE.
+                 */
+                "gtk-enable-accels", TRUE,
 #else
                 "hildon-keyboard-shortcuts", FALSE,
 #endif /* GTK 2.10.0 */
