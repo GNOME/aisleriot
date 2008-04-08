@@ -210,9 +210,10 @@ if test "$with_platform" = "hildon"; then
   # "maemo" is Maemo 4.x
   AC_MSG_CHECKING([for which platform variant to build])
   AC_ARG_WITH([platform-variant],
-    [AS_HELP_STRING([--with-platform-variant=maemo|maemo3|mid (default: maemo3)])],
+    [AS_HELP_STRING([--with-platform-variant=maemo3|maemo4|mid (default: maemo4)])],
     [case "$withval" in
-       maemo|maemo3|mid) ;;
+       maemo4|maemo3|mid) ;;
+       maemo) with_platform_variant=maemo4 ;;
        *) AC_MSG_ERROR([unknown platform variant "$withval"]) ;;
      esac],
     [with_platform_variant=maemo3])
@@ -303,6 +304,8 @@ GNOME_PYTHON_DESKTOP_REQUIRED=2.17.3
 
 if test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo3"; then
 GTK_REQUIRED=2.6.0
+elif test "$with_platform" = "hildon"; then
+GTK_REQUIRED=2.10.0
 else
 GTK_REQUIRED=2.12.0
 fi
@@ -488,6 +491,14 @@ GNOME_GAMES_LIBS="$GTK_LIBS $GCONF_LIBS $GNOME_LIBS $PYGTK_LIBS $RSVG_LIBS $GSTR
 # *************
 
 AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal])
+
+# Maemo's (OS2007 & OS2008) glib-genmarshal breaks on --internal
+if test "$with_platform" = "hildon"; then
+  GLIB_GENMARSHAL_INTERNAL=
+else
+  GLIB_GENMARSHAL_INTERNAL="--internal"
+fi
+AC_SUBST([GLIB_GENMARSHAL_INTERNAL])
 
 # *************
 # Check for GGZ

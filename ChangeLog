@@ -1,3 +1,11 @@
+2008-04-08  Christian Persch  <chpe@gnome.org>
+
+	* configure.in: Make maemo4 the default for --with-platform=hildon,
+	and fix the required gtk version. Define GLIB_GENMARSHAL_INTERNAL to
+	--internal only for non-hildon platforms.
+	* libgames-support/Makefile.am: Use GLIB_GENMARSHAL_INTERNAL instead
+	of literal --internal since hildon breaks on it.
+
 2008-03-24  Christian Persch  <chpe@gnome.org>
 
 	* configure.in: Add --with-default-card-theme. Bug #513557.
