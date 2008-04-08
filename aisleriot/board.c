@@ -888,17 +888,13 @@ slot_update_card_images (AisleriotBoard *board,
 
 /* helper functions */
 
-#ifdef ENABLE_KEYNAV
-
 static void
 aisleriot_board_error_bell (AisleriotBoard *board)
 {
-#if GTK_CHECK_VERSION (2, 12, 0)
+#if GTK_CHECK_VERSION (2, 12, 0) || (defined (HAVE_HILDON) && !defined(HAVE_MAEMO_3))
   gtk_widget_error_bell (GTK_WIDGET (board));
 #endif
 }
-
-#endif /* ENABLE_KEYNAV */
 
 /* Work out new sizes and spacings for the cards. */
 static void
@@ -2627,6 +2623,8 @@ aisleriot_board_size_request (GtkWidget *widget,
   requisition->height = BOARD_MIN_HEIGHT;
 }
 
+#ifdef ENABLE_KEYNAV
+
 static gboolean
 aisleriot_board_focus (GtkWidget *widget,
                        GtkDirectionType direction)
@@ -2658,6 +2656,8 @@ aisleriot_board_focus (GtkWidget *widget,
 
   return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus (widget, direction);
 }
+
+#endif /* ENABLE_KEYNAV */
 
 /* The gtkwidget.c focus in/out handlers queue a shallow draw;
  * that's ok for us but maybe we want to optimise this a bit to
@@ -3466,7 +3466,9 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->direction_changed = aisleriot_board_direction_changed;
   widget_class->size_allocate = aisleriot_board_size_allocate;
   widget_class->size_request = aisleriot_board_size_request;
+#ifdef ENABLE_KEYNAV
   widget_class->focus = aisleriot_board_focus;
+#endif /* ENABLE_KEYNAV */
   widget_class->focus_in_event = aisleriot_board_focus_in;
   widget_class->focus_out_event = aisleriot_board_focus_out;
   widget_class->button_press_event = aisleriot_board_button_press;
