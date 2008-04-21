@@ -1,3 +1,80 @@
+gnome-games 2.23.1
+==================
+
+This is the first development release of the 2.23 series. 
+
+Overall:
+  - Merge changes in ggz.m4 from ggz trunk. (Roger Light, Andreas Røsdal, bug
+    #520599, bug #510917)
+  - define GAMES_STOCK_FULLSCREEN on hildon (Christian Persch)
+  - Reorder the -I/path/to in Makefile.am to import GGZ libraries in correct 
+    order (Andreas Røsdal)
+  - Maemo4 fixes (Christian Persch)
+  - Merge changes in ggz.m4 from ggz trunk (Robert Light)
+
+Aisleriot:
+  - Add back the statistics fallback (Christian Persch, bug #406267, bug
+    #525177)
+  - Don't allow moving non-uniformly suited card stacks to foundation (Philippe
+    Gauthier, Christian Persch, bug #443307)
+  - Make shuffle-deck-helper tail recursive. Fixes stack overflow exception
+    with guile 1.8.4. (Vincent Povirk, Christian Persch, bug #519554)
+  - Set gtk-enable-accels to TRUE (Christian Persch)
+  - Fix the build without ENABLE_KEYNAV (Christian Persch)
+  - Use gtk_widget_error_bell on hildon/maemo4. (Christian Persch)
+  - Include tablet-browser-interface.h on hildon (Christian Persch)
+  - Remove an unnecessary string, and simplify code. (Ed Sirett)
+  - Add "Forty Thieves" game. (Ed Sirett / Vincent Povirk)
+  - Handle default theme better. (Christian Persch)
+
+GLChess:
+  - Abort 3D render if widget_get_gl_context() returns None (Robert Ancell,
+    bug #512068)
+  - Add Gambit Fruit to AI list (Robert Ancell, bug #521623)
+  - Handle AI players dying before the game starts (Robert Ancell, bug #522341)
+  - Handle GLError->GLerror, GLUError -> GLUerror objects being renamed in
+    PyOpenGL 3.0 (Robert Ancell, bug #503238)
+  - Fix board rotation animation bug when viewing black side (Robert Ancell)
+  - Check PID returned on SIGCHLD (Robert Ancell)
+  - Add missing gettext call for the Application Log viewer. (Jordi Mallach)
+  - Handle missing throbber icons (Robert Ancell)
+  - Disable room 'new' and 'join' buttons when network protocol is busy 
+    (Robert Ancell)
+  - Import the main module on initialisation not runtime (Robert Ancell)
+  - Abort history saving if cannot create history directory (Robert Ancell)
+    
+Klotski:
+  - Remove Minoru Climb. (Thomas H.P. Andersen)
+
+Mahjongg: 
+  - Change title string to be easier to translate (Robert Ancell)
+
+Nibbles:
+  - Fixed collision detection of worms (Simon McNeilly)
+  - Only allow human players to get a high score (Simon McNeilly)
+  - Correct respawn direction of worms after death. (Simon McNeilly)
+  - Prevent restart of worms after all lives lost (Simon McNeilly)
+
+Sudoku:
+  - Don't crash when clearing a tracker (Thomas M. Hinkle)
+  - Handle when no more puzzles of a certain difficulty exists (Thomas M. Hinkle)
+  - Don't always show the same puzzle until it has been completed or saved
+    (Thomas M. Hinkle)
+  - Fix crash on cancel in new game dialog (Thomas H.P. Andersen)
+  - Fix crash caused by race when creating a directory (Thomas H.P. Andersen)
+  - Don't hardcode time formats. (Claude Paroz)
+
+Translations:
+  - bg: Yavor Doganov
+  - ca: Jordi Mallach
+  - el: Christos Mpountalis, Simos Xenitellis, Stavros Daliakopoulos, 
+        Kostas Papadimas
+  - en_GB: Philip Withnall
+  - es: Jorge Gonzalez
+  - et: Ivar Smolin
+  - lt:  Gintautas Miliauskas
+  - nn: Eskild Hustvedt 
+
 gnome-games 2.22.0
 ==================
 
