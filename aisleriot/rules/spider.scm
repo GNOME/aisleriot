@@ -192,7 +192,8 @@
 
 (define (button-double-clicked slot)
   (and (member slot tableau)
-       (is-playable-stack (get-cards slot) (get-suit (get-cards slot)) 1)
+       (not (empty-slot? slot))
+       (is-playable-stack (get-cards slot) (get-suit (car (get-cards slot))) 1)
        (let ((card-list (list-head (get-cards slot) 13)))
             (remove-n-cards slot 13)
             (complete-transaction slot card-list (find-empty-slot foundation)))
