@@ -1,3 +1,36 @@
+gnome-games 2.23.3
+==================
+
+This development release incorporates a few critical bugfixes. No new features
+over the previous 2.23.1 have been added.
+
+Overall:
+  - Set AM_MAINTAINER_MODE (Josselin Mouette, Andreas Røsdal, bug #53255)
+  - Stop distributing generated defaults.py (Robert Ancell)
+  - Add the new parameter --with-ggz-server=force (Josselin Mouette, Andreas
+    Røsdal, bug #532555)
+  - Drop server configuration files to ggzdconfdir (Josselin Mouette, Andreas
+    Røsdal, bug #532553)
+
+Sudoku and GLChess:
+  - Fix our Python sys.path usage to make it easier to package for distros
+    and possible to run directly out of the build directory for developers
+    (Jason Clinton, Josselin Mouette, Robert Ancell, bug #528953, bug #524665)
+  - Open files in binary mode so they work in Windows. (Robert Ancell)
+  - Massive GGZ multiplayer fixups (Robert Ancell)
+
+Gnotski:
+  - Remove Minoru Climb.
+
+Aisleriot:
+  - Don't crash on double click (Christian Persch, Vincent Povirk, bug #443307)
+
+
+Translations:
+Jonh Wendell, Vladimir Melo, Clytie Siddall, Vincent van Adrighem, Djihed Afifi,
+Tino Meinen, Kjartan Maraas, Petr Kovar, Lucas Lommer, Priit Laes, Ivar Smolin
+  
+
 gnome-games 2.23.1
 ==================
 
