@@ -23,9 +23,6 @@ EXTRA_DIST = \
 	omf.make \
 	MAINTAINERS	\
 	HACKING		 \
-	intltool-extract.in \
-	intltool-merge.in    \
-	intltool-update.in \
 	gnome-doc-utils.make
 
 DISTCLEANFILES = \
