@@ -220,7 +220,7 @@ static gboolean games_scores_dialog_set_edit (GamesScoresDialog *self)
 			      self->_priv->namecolumn, TRUE);
   g_signal_handler_unblock (self->_priv->treeview, 
 			      self->_priv->cursor_handler_id); 
-  g_free (path);
+  gtk_tree_path_free (path);
 
   return FALSE;
 }
