@@ -56,13 +56,21 @@
 (define (timeout) 
   #f)
 
+(define (dealable?)
+  #f)
+
+(define (do-deal-next-cards)
+  #f)
+
 ;; Define the optional features the game uses. Valid options are:
 ;;  droppable-feature: An predicate, droppable?, is defined that will 
 ;;                     return whether the card can be dropped here. 
 ;;                     This is used by the drawing code to highlight
 ;;                     droppable locations.
-(set-features droppable-feature)
+;;  dealable-feature: An predicate, dealable?, is defined that will
+;;                    return whether new card(s) can be dealt.
+(set-features droppable-feature dealable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout droppable?)
+apply-options timeout droppable? dealable?)
