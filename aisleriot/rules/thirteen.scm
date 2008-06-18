@@ -403,14 +403,17 @@
 		    (get-name (get-top-card slot2)))))))
 
 (define (dealable?)
-  (if (not (empty-slot? 0))
-      (list 0 (_"Deal a card"))
-      #f))
+  (not (empty-slot? 0)))
+
+(define (do-deal-next-cards)
+  (deal-cards-face-up 0 (list waste-slot)))
 
 (define (get-hint)
   (or (check-waste-for-move) 
       (check-move waste-slot 2)
-      (dealable?)))
+      (if (not (empty-slot? 0))
+          (list 0 (_"Deal a card"))
+          #f)))
 
 (define (get-options) 
   #f)
@@ -421,8 +424,8 @@
 (define (timeout) 
   #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout droppable?)
+apply-options timeout droppable? dealable?)
