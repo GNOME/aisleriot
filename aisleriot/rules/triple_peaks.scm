@@ -298,18 +298,24 @@
        (move-n-cards! start-slot end-slot card-list)
        (tally-score start-slot)))
 
+(define (do-deal-next-cards)
+  (and (flip-deck 1 2)
+       (deal-cards-face-up 0 '(2))
+       (if (not multiplier-scoring)
+           (set-score! (max (- (get-score) 5) 0)))))
+
 (define (button-clicked slot-id)
   (if (= slot-id 0)
       (and (not (empty-slot? 0))
-           (flip-deck 1 2)
-           (deal-cards-face-up 0 '(2))
-           (if (not multiplier-scoring)
-               (set-score! (max (- (get-score) 5) 0))))
+           (do-deal-next-cards))
       (and (> slot-id 2)
            (available? slot-id)
            (movable? (get-top-card slot-id))
            (deal-cards slot-id '(2))
            (tally-score slot-id))))
+
+(define (dealable?)
+  (not (empty-slot? 0)))
 
 (define (button-double-clicked slot-id)
     (button-clicked slot-id))
@@ -352,6 +358,6 @@
 (define (timeout) 
   #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-continuable game-won get-hint get-options apply-options timeout droppable?)
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-continuable game-won get-hint get-options apply-options timeout droppable? dealable?)
