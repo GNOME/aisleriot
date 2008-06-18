@@ -151,11 +151,17 @@
   (and (droppable? start-slot card-list end-slot)
        (complete-transaction start-slot (reverse card-list) end-slot)))
 
+(define (dealable?)
+  (flippable? 0 2))
+
+(define (do-deal-next-cards)
+  (begin
+    (flip-stock 0 1 2)
+    (give-status-message)))
+
 (define (button-clicked slot-id)
   (if (= slot-id 0)
-      (begin
-	(flip-stock 0 1 2)
-	(give-status-message))
+      (do-deal-next-cards)
       #f))
 
 (define (button-double-clicked slot)
@@ -356,6 +362,6 @@
 
 (define (timeout) #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable? dealable?)
