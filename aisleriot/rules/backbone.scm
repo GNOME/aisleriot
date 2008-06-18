@@ -182,6 +182,12 @@
        (is-legal-move? start-slot card-list end-slot)
        (complete-transaction start-slot card-list end-slot)))
 
+(define (dealable?)
+  (flippable? stock 1))
+
+(define (do-deal-next-cards)
+  (flip-stock stock waste 1 1))
+
 (define (button-clicked start-slot)
   (and (= start-slot stock)
        (flip-stock stock waste 1 1)))
@@ -283,6 +289,6 @@
 
 (define (timeout) #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout is-legal-move?)
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout is-legal-move? dealable?)
