@@ -115,10 +115,16 @@
        (empty-tableau start-slot)
        (give-status-message)))
 
+(define (do-deal-next-cards)
+  (flip-stock 0 1 1)
+  (give-status-message))
+
+(define (dealable?)
+  (flippable? 0 1))
+
 (define (button-clicked slot-id)
   (and (= slot-id 0)
-       (flip-stock 0 1 1)
-       (give-status-message)))
+       (do-deal-next-cards)))
 
 (define (move-to-foundation slot-id foundation-id)
   (cond ((= foundation-id 10)
@@ -153,13 +159,6 @@
        (= (length (get-cards 7)) 13)
        (= (length (get-cards 8)) 13)
        (= (length (get-cards 9)) 13)))
-
-(define (dealable?)
-  (or (and (not (empty-slot? 0))
-	   (list 0 (_"Deal another round")))
-      (and (not (empty-slot? 1))
-	   (< FLIP-COUNTER 1)
-	   (list 0 (_"Move waste back to stock")))))
 
 (define (check-a-foundation slot-id foundation-id)
   (cond ((= foundation-id 10)
@@ -215,7 +214,11 @@
 (define (get-hint)
   (or (check-to-foundations 1)
       (check-to-tableaus 1)
-      (dealable?)))
+      (or (and (not (empty-slot? 0))
+              (list 0 (_"Deal another round")))
+          (and (not (empty-slot? 1))
+              (< FLIP-COUNTER 1)
+              (list 0 (_"Move waste back to stock"))))))
 
 (define (get-options) 
   #f)
@@ -226,8 +229,8 @@
 (define (timeout) 
   #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout droppable?)
+apply-options timeout droppable? dealable?)
