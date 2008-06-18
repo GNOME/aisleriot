@@ -68,6 +68,12 @@
        (move-n-cards! start-slot end-slot card-list)
        (add-to-score! 1)))
 
+(define (dealable?)
+  (not (empty-slot? 0)))
+
+(define (do-deal-next-cards)
+  (deal-cards-face-up 0 '(5 6 7 8)))
+
 (define (button-clicked slot-id)
   (and (= slot-id 0)
        (not (empty-slot? 0))
@@ -130,8 +136,8 @@
 (define (timeout) 
   #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout droppable?)
+apply-options timeout droppable? dealable?)
