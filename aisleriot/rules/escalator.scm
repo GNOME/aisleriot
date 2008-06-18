@@ -175,6 +175,12 @@
 	      (deal-cards slot-id '(1))))
 	(#t #f)))
 
+(define (dealable?)
+  (not (empty-slot? 0)))
+
+(define (do-deal-next-cards)
+  (play-card 0))
+
 ;; Single-clicking isn't sane in click-to-move more, so we mostly ignore it 
 ;; in that case.
 (define (button-clicked slot-id)
@@ -230,8 +236,8 @@
 (define (timeout) 
   #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout droppable?)
+apply-options timeout droppable? dealable?)
