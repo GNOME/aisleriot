@@ -98,9 +98,15 @@
 	    (#t #f))
       #f))
 
+(define (do-deal-next-cards)
+  (flip-stock 0 1 0))
+
 (define (button-clicked slot-id)
   (and (= slot-id 0)
-       (flip-stock 0 1 0)))
+       (do-deal-next-cards)))
+
+(define (dealable?)
+  (flippable? 0 0))
 
 (define (check-to-foundation card f-slot)
   (cond ((= f-slot 6)
@@ -234,16 +240,13 @@
 	      (list 0 (_"Move a build of cards on to the empty Tableau slot"))))
 	(#t (empty-tab? (+ 1 slot)))))
 
-(define (dealable?)
-  (and (not (empty-slot? 0))
-       (list 0 (_"Deal another card"))))
-
 (define (get-hint)
   (or (check-foundations 1)
       (check-same-suit-builds 1 6)
       (check-same-color-builds 1 6)
       (empty-tab? 6)
-      (dealable?)))
+      (and (not (empty-slot? 0))
+          (list 0 (_"Deal another card")))))
 
 (define (get-options) 
   #f)
@@ -254,8 +257,8 @@
 (define (timeout) 
   #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout droppable?)
+apply-options timeout droppable? dealable?)
