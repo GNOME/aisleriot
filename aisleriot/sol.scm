@@ -230,6 +230,11 @@
 
 ;; Utilities
 
+(define (flippable? stock-slot flip-limit)
+  (or (not (empty-slot? stock-slot))
+      (< flip-limit 0)
+      (< FLIP-COUNTER flip-limit)))
+
 ; deal a card from the stock-slot to the waste-slot.
 ; when the stock slot is empty than the waste slot will be flipped back
 ; onto the stock unless the flip limit has been reached.

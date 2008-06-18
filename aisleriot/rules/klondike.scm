@@ -127,6 +127,12 @@
 			 (= (get-value (get-top-card end-slot)) 
 			    (- (get-value (car card-list)) 1))))))))
 
+(define (dealable?)
+  (flippable? stock max-redeal))
+
+(define (do-deal-next-cards)
+  (flip-stock stock waste max-redeal (if deal-three 3 1)))
+
 (define (button-clicked start-slot)
   (and (= start-slot stock)
        (flip-stock stock waste max-redeal 
@@ -279,6 +285,6 @@
 
 (define (timeout) #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable? dealable?)
