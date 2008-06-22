@@ -23,7 +23,8 @@ EXTRA_DIST = \
 	omf.make \
 	MAINTAINERS	\
 	HACKING		 \
-	gnome-doc-utils.make
+	gnome-doc-utils.make \
+	ChangeLog
 
 DISTCLEANFILES = \
 	intltool-extract \
@@ -38,3 +39,17 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--with-platform=gnome \
 	--disable-schemas-install \
 	--disable-scrollkeeper
+
+# Build ChangeLog from SVN history (r7699 was the first ChangeLog-less checkin).
+# Only build this when in an svn checkout.
+
+ChangeLog:
+	@if test -f $(top_srcdir)/.svn/entries; then \
+		svn log -v --xml -r HEAD:7699 $(SVN_ROOT)/$(SVN_MODULE)/$(SVN_BRANCH) | \
+		xsltproc --stringparam strip-prefix "$(SVN_MODULE)/$(SVN_BRANCH)" \
+		--stringparam include-rev "yes" $(top_srcdir)/svn2cl.xsl - > $@; \
+	fi
+
+dist: ChangeLog
+
+.PHONY: ChangeLog
