@@ -6,6 +6,17 @@ AC_INIT([GNOME Games], [2.23.4],
   [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games],
   [gnome-games])
 
+# This can be either "trunk" or "branches/gnome-x-y"
+m4_define([gnome-games_branch],["trunk"])
+
+# ****************************
+# SVN for ChangeLog generation
+# ****************************
+
+AC_SUBST([SVN_ROOT],[http://svn.gnome.org/svn])
+AC_SUBST([SVN_MODULE],[gnome-games])
+AC_SUBST([SVN_BRANCH],[gnome-games_branch])
+
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([gnomine/gnomine.c])
 AC_CONFIG_HEADERS([config.h])
