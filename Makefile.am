@@ -40,12 +40,12 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-schemas-install \
 	--disable-scrollkeeper
 
-# Build ChangeLog from SVN history (r7699 was the first ChangeLog-less checkin).
+# Build ChangeLog from SVN history (r7722 was the first ChangeLog-less checkin).
 # Only build this when in an svn checkout.
 
 ChangeLog:
 	@if test -f $(top_srcdir)/.svn/entries; then \
-		svn log -v --xml -r HEAD:7699 $(SVN_ROOT)/$(SVN_MODULE)/$(SVN_BRANCH) | \
+		svn log -v --xml -r HEAD:7722 $(SVN_ROOT)/$(SVN_MODULE)/$(SVN_BRANCH) | \
 		xsltproc --stringparam strip-prefix "$(SVN_MODULE)/$(SVN_BRANCH)" \
 		--stringparam include-rev "yes" $(top_srcdir)/svn2cl.xsl - > $@; \
 	fi
