@@ -935,7 +935,7 @@ debug_choose_seed_cb (GtkAction *action,
                                    GTK_DIALOG_MODAL,
                                    GTK_MESSAGE_QUESTION,
                                    GTK_BUTTONS_OK_CANCEL,
-                                   "Choose game seed");
+                                   "%s", "Choose game seed");
   g_signal_connect (dialog, "response",
                     G_CALLBACK (debug_choose_seed_response_cb), window);
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
@@ -1963,7 +1963,7 @@ game_exception_cb (AisleriotGame *game,
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
                                    GTK_MESSAGE_ERROR,
                                    GTK_BUTTONS_NONE,
-                                   _("A scheme exception occurred"));
+                                   "%s", _("A scheme exception occurred"));
   gtk_message_dialog_format_secondary_text
     (GTK_MESSAGE_DIALOG (dialog),
      "%s", _("Please report this bug to the developers."));
