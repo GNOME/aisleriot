@@ -148,6 +148,7 @@ struct _AisleriotWindowPrivate
   guint changing_game_type : 1;
   guint freecell_mode : 1;
   guint toolbar_visible : 1;
+  guint statusbar_visible : 1;
 };
 
 enum {
@@ -977,6 +978,22 @@ toolbar_toggled_cb (GtkToggleAction *action,
   priv->toolbar_visible = state != FALSE;
 
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), state);
+}
+
+static void
+statusbar_toggled_cb (GtkToggleAction *action,
+                      AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+  gboolean state;
+
+  state = gtk_toggle_action_get_active (action);
+
+  g_object_set (priv->statusbar, "visible", state, NULL);
+
+  priv->statusbar_visible = state != FALSE;
+
+  games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), state);
 }
 
 static void
@@ -2144,7 +2161,12 @@ aisleriot_window_init (AisleriotWindow *window)
     { "Toolbar", NULL, N_("_Toolbar"), NULL,
       ACTION_TOOLTIP (N_("Show or hide the toolbar")),
       G_CALLBACK (toolbar_toggled_cb),
-      TRUE /* active by default */
+      FALSE
+    },
+    { "Statusbar", NULL, N_("_Statusbar"), NULL,
+      ACTION_TOOLTIP (N_("Show or hide statusbar")),
+      G_CALLBACK (statusbar_toggled_cb),
+      FALSE
     },
     { "ClickToMove", NULL, N_("_Click to Move"), NULL,
       ACTION_TOOLTIP (N_("Pick up and drop cards by clicking")),
@@ -2234,6 +2256,7 @@ aisleriot_window_init (AisleriotWindow *window)
         "<menu action='ViewMenu'>"
           "<menuitem action='Fullscreen'/>"
           "<menuitem action='Toolbar'/>"
+          "<menuitem action='Statusbar'/>"
           "<separator/>"
           "<menu action='ThemeMenu'/>"
         "</menu>"
@@ -2483,6 +2506,10 @@ aisleriot_window_init (AisleriotWindow *window)
   priv->toolbar_visible = games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), NULL) != FALSE;
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 priv->toolbar_visible);
+  action = gtk_action_group_get_action (priv->action_group, "Statusbar");
+  priv->statusbar_visible = games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), NULL) != FALSE;
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+                                priv->statusbar_visible);
   action = gtk_action_group_get_action (priv->action_group, "ClickToMove");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), NULL));
@@ -2507,7 +2534,6 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_box_pack_start (GTK_BOX (main_vbox), priv->main_menu, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (main_vbox), priv->toolbar, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (main_vbox), GTK_WIDGET (priv->statusbar), FALSE, FALSE, 0);
-  gtk_widget_show (GTK_WIDGET (priv->statusbar));
 #endif /* HAVE_HILDON */
 
   gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (priv->board), TRUE, TRUE, 0);

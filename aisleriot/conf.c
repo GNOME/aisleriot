@@ -36,10 +36,11 @@ static const char key_names[] =
   "recent_games_list\0"
   "show_toolbar\0"
   "click_to_move\0"
-  "sound";
+  "sound\0"
+  "show_statusbar";
 
 static const guint8 key_name_offsets[] = {
-  0, 11, 21, 39, 52, 66
+  0, 11, 21, 39, 52, 66, 72
 };
 
 static const char statistics_key[] = "/apps/aisleriot/statistics";
@@ -52,16 +53,17 @@ static const char key_names[] =
   "Recent\0"
   "ShowToolbar\0"
   "ClickToMove\0"
-  "Sound";
+  "Sound\0"
+  "ShowStatusbar";
 
 static const guint8 key_name_offsets[] = {
-  0, 6, 16, 23, 35, 47
+  0, 6, 16, 23, 35, 47, 53
 };
 
 #endif /* HAVE_GNOME */
 
 #ifdef HAVE_GNOME
-  
+
 static GConfClient *gconf_client;
 static GHashTable *stats;
 
@@ -172,6 +174,7 @@ aisleriot_conf_init (void)
   if (!games_conf_initialise ("Aisleriot")) {
     /* Set defaults */
     games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), TRUE);
+    games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), TRUE);
 
 #ifdef HAVE_HILDON
     games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), TRUE);
