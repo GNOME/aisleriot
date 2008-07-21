@@ -1,3 +1,54 @@
+gnome-games 2.23.5
+==================
+
+This is the first release of Gnome Games that generates its ChangeLog from SVN
+commit messages.
+
+In this release cycle we have implemented a handful of new features and made
+some fundamental fixes to our utilization of Python for GLChess and Sudoku.
+
+GLChess:
+ - Give users a helpful error message when python-support has missing modules.
+   (Jason D. Clinton, Justin Dugger, Dani Nordli, Bug #524665)
+ - Add fix for blank playing field from Ubuntu Launchpad (rhussey, Ubuntu
+   Bug #239905)
+ - Fix improper use of openGLErrors list (Jason D. Clinton, Gubianas, Bug
+   #530981)
+ - Disable network controls when disconnected (Robert Ancell, Bug #523818)
+ - Handle empty combo boxes in the preferences dialog (Robert Ancell, Bug
+   #532908)
+ - Don't disable load button on load dialog as we cannot tell if the user has
+   selected a valid file (Robert Ancell, Bug #540527)
+ - Catch GLU exception making numbering texture and fall back to non-mipmapped
+   version (Robert Ancell, Bug #542253)
+   
+Gnibbles:
+ - Patch to support CAPSLOCK key in Gnibbles (Emil Andersson, Thomas H.P.
+   Andersen, Bug #472355)
+   
+Gnobots:
+ - Allow CAPSLOCK with directional buttons (Emil Andersson, Bug #540755)
+ 
+Gnometris:
+ - Allow CAPSLOCK with directional buttons (Emil Andersson, Bug #540740)
+
+Gnomine:
+ - Allow user to flag a mine by holding the control key. (Emil Andersson.
+   Bug #539725)
+   * Handle double right-click correctly as a result of this fix (Thomas H.P.
+     Andersen)
+ - Handle right click dragging. (Thomas H.P. Andersen, Bug #515497)
+ 
+Aisleriot:
+ - Add statusbar toggle to View menu. Makes the game more playable on small
+   screens (e.g. eeepc) by allowing to enlarge the vertical space available.
+   (Christian Persch)
+
+Translations:
+Mario Blättermann, Leonardo Ferreira Fontenelle, Vladimir Melo, Kjartan Maraas,
+Theppitak Karoonboonyanan, Philipp Kerling, Jorge Gonzalez, Yannig Marchegay
+
+
 gnome-games 2.23.4
 ==================
 
