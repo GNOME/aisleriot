@@ -108,6 +108,7 @@ struct _AisleriotBoardPrivate
   GdkGC *slot_gc;
   GdkCursor *cursor[LAST_CURSOR];
 
+  GamesCardTheme *theme;
   char *card_theme;
   CardSize card_size;
 
@@ -1427,10 +1428,11 @@ aisleriot_board_settings_update (AisleriotBoard *board)
     g_free (xft_rgba);
 
     if (antialias_set) {
-      games_card_images_set_antialias (priv->images,
-                                       antialias_mode,
-                                       subpixel_order);
+      games_card_theme_set_antialias (priv->theme,
+                                      antialias_mode,
+                                      subpixel_order);
 
+      /* FIXMEchpe: clear the cached cards in the slots! */
       if (GTK_WIDGET_REALIZED (widget)) {
         gtk_widget_queue_draw (widget);
       }
@@ -3360,7 +3362,8 @@ aisleriot_board_constructor (GType type,
   g_assert (priv->game != NULL);
 
   /* Create this down here since we need to have the scalable_cards value */
-  priv->images = games_card_images_new (priv->scalable_cards);
+  priv->theme = games_card_theme_new (NULL, priv->scalable_cards);
+  priv->images = games_card_images_new (priv->theme);
 
   return object;
 }
@@ -3381,6 +3384,7 @@ aisleriot_board_finalize (GObject *object)
   g_byte_array_free (priv->moving_cards, TRUE);
 
   g_object_unref (priv->images);
+  g_object_unref (priv->theme);
 
 #if 0
   screen = gtk_widget_get_settings (widget);
@@ -3656,7 +3660,7 @@ aisleriot_board_set_card_theme (AisleriotBoard *board,
   priv->geometry_set = FALSE;
   priv->slot_image = NULL;
 
-  retval = games_card_images_set_theme (priv->images, card_theme);
+  retval = games_card_theme_set_theme (priv->theme, card_theme);
 
   /* NOTE! We need to do this even if setting the theme failed, since
    * the attempt will have wiped out the old theme data!
@@ -3679,7 +3683,7 @@ aisleriot_board_get_card_theme (AisleriotBoard *board)
   AisleriotBoardPrivate *priv = board->priv;
   const char *theme;
 
-  theme = games_card_images_get_theme (priv->images);
+  theme = games_card_theme_get_theme (priv->theme);
 
   return theme != NULL ? theme : GAMES_CARD_THEME_DEFAULT;
 }

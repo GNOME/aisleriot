@@ -40,8 +40,8 @@ typedef struct {
   gint height;
 } CardSize;
 
-typedef struct _GamesCardTheme GamesCardTheme;
-typedef GObjectClass GamesCardThemeClass;
+typedef struct _GamesCardThemeClass GamesCardThemeClass;
+typedef struct _GamesCardTheme      GamesCardTheme;
 
 GType games_card_theme_get_type (void);
 

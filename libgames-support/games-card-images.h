@@ -56,15 +56,14 @@ typedef struct _GamesCardImages {
   GdkColor background_colour;
   GdkColor selection_colour;
 
-  guint scalable : 1;
-  guint cache_mode : 1;
+  guint cache_mode;
 } GamesCardImages;
 
 typedef GObjectClass GamesCardImagesClass;
 
 GType games_card_images_get_type (void);
 
-GamesCardImages *games_card_images_new (gboolean scalable);
+GamesCardImages *games_card_images_new (GamesCardTheme * theme);
 
 void games_card_images_set_cache_mode (GamesCardImages * images,
                                        GamesCardImagesCacheMode mode);
@@ -72,21 +71,11 @@ void games_card_images_set_cache_mode (GamesCardImages * images,
 void games_card_images_set_drawable (GamesCardImages * images,
                                      GdkWindow * drawable);
 
-void games_card_images_set_antialias (GamesCardImages * images,
-                                      guint antialias, guint subpixel_order);
-
-gboolean games_card_images_set_theme (GamesCardImages * images,
-                                      const gchar * name);
-
-const gchar *games_card_images_get_theme (GamesCardImages * images);
-
 gboolean games_card_images_set_size (GamesCardImages * images,
                                      gint width,
                                      gint height, gdouble proportion);
 
 CardSize games_card_images_get_size (GamesCardImages * images);
-
-double games_card_images_get_aspect (GamesCardImages * images);
 
 void games_card_images_set_background_color (GamesCardImages * images,
                                              const GdkColor * color);

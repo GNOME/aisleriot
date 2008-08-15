@@ -35,7 +35,7 @@
 
 enum {
   PROP_0,
-  PROP_SCALABLE
+  PROP_THEME
 };
 
 /* MARK_IS_TRANSFORMED must be the same value as GAMES_CARD_IMAGES_HIGHLIGHTED ! */
@@ -81,6 +81,13 @@ games_card_images_clear_cache (GamesCardImages * images)
     g_object_unref (images->slot_mask);
     images->slot_mask = NULL;
   }
+}
+
+static void
+games_card_images_theme_changed_cb (GamesCardTheme * theme,
+                                    GamesCardImages * images)
+{
+  games_card_images_clear_cache (images);
 }
 
 static inline guint
@@ -197,23 +204,6 @@ games_card_images_init (GamesCardImages * images)
   images->cache_mode = CACHE_PIXMAPS;
 }
 
-static GObject *
-games_card_images_constructor (GType type,
-                               guint n_construct_properties,
-                               GObjectConstructParam * construct_params)
-{
-  GObject *object;
-  GamesCardImages *images;
-
-  object = G_OBJECT_CLASS (games_card_images_parent_class)->constructor
-    (type, n_construct_properties, construct_params);
-  images = GAMES_CARD_IMAGES (object);
-
-  images->theme = games_card_theme_new (NULL, images->scalable);
-
-  return object;
-}
-
 static void
 games_card_images_finalize (GObject * object)
 {
@@ -222,6 +212,8 @@ games_card_images_finalize (GObject * object)
   games_card_images_clear_cache (images);
   g_free (images->cache);
 
+  g_signal_handlers_disconnect_by_func
+    (images->theme, G_CALLBACK (games_card_images_theme_changed_cb), images);
   g_object_unref (images->theme);
 
   G_OBJECT_CLASS (games_card_images_parent_class)->finalize (object);
@@ -235,8 +227,12 @@ games_card_images_set_property (GObject * object,
   GamesCardImages *images = GAMES_CARD_IMAGES (object);
 
   switch (prop_id) {
-  case PROP_SCALABLE:
-    images->scalable = g_value_get_boolean (value) != FALSE;
+  case PROP_THEME:
+    images->theme = g_value_dup_object (value);
+    g_assert (images->theme);
+
+    g_signal_connect (images->theme, "changed",
+                      G_CALLBACK (games_card_images_theme_changed_cb), images);
     break;
   }
 }
@@ -246,18 +242,19 @@ games_card_images_class_init (GamesCardImagesClass * class)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (class);
 
-  gobject_class->constructor = games_card_images_constructor;
   gobject_class->set_property = games_card_images_set_property;
   gobject_class->finalize = games_card_images_finalize;
 
   g_object_class_install_property
     (gobject_class,
-     PROP_SCALABLE,
-     g_param_spec_boolean ("scalable", NULL, NULL,
-                           TRUE,
-                           G_PARAM_WRITABLE | G_PARAM_STATIC_NAME |
-                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB |
-                           G_PARAM_CONSTRUCT_ONLY));
+     PROP_THEME,
+     g_param_spec_object ("theme", NULL, NULL,
+                          GAMES_TYPE_CARD_THEME,
+                          G_PARAM_WRITABLE |
+                          G_PARAM_STATIC_NAME |
+                          G_PARAM_STATIC_NICK |
+                          G_PARAM_STATIC_BLURB |
+                          G_PARAM_CONSTRUCT_ONLY));
 }
 
 /* public API */
@@ -266,15 +263,15 @@ games_card_images_class_init (GamesCardImagesClass * class)
  * games_card_images_new:
  * @theme_dir: the directory to load the theme data from, or %NULL to use
  * the default directory
- * @scalable: whether to use scalable themes, or prerendered themes
+ * @theme: the #GamesCardTheme to cache images from
  *
  * Returns: a new #GamesCardImages
  */
 GamesCardImages *
-games_card_images_new (gboolean scalable)
+games_card_images_new (GamesCardTheme * theme)
 {
   return g_object_new (GAMES_TYPE_CARD_IMAGES,
-                       "scalable", scalable,
+                       "theme", theme,
                        NULL);
 }
 
@@ -334,75 +331,6 @@ games_card_images_set_drawable (GamesCardImages * images,
 }
 
 /**
- * games_card_images_set_antialias:
- * @images:
- * @antialias: the antialiasing mode to use (see @cairo_antialias_t)
- * @subpixel_order: the subpixel order to use (see @cairo_subpixel_order_t)
- * if @antialias is %CAIRO_ANTIALIAS_SUBPIXEL 
- *
- * Turns on antialising of cards, if using a scalable theme.
- * Changing the antialias settings invalidates all cached pixbufs and pixmaps.
- */
-void
-games_card_images_set_antialias (GamesCardImages * images,
-                                 guint antialias, guint subpixel_order)
-{
-  g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
-
-  games_card_images_clear_cache (images);
-
-  games_card_theme_set_antialias (images->theme, antialias, subpixel_order);
-}
-
-/**
- * games_card_images_set_theme:
- * @images:
- * @theme_name: the name of the theme to load
- *
- * Loads the card theme @theme_name. If the card theme cannot be loaded,
- * it falls back to the default card theme, if present.
- * Changing the card theme invalidates all cache pixbufs and pixmaps.
- * After changing the theme, the card size will be undefined; you need
- * to call games_card_images_set_size() to set it before getting a
- * card from @images again.
- * 
- * Returns: %TRUE iff loading the new card theme succeeded
- */
-gboolean
-games_card_images_set_theme (GamesCardImages * images,
-                             const gchar * theme_name)
-{
-  const char *old_theme;
-
-  g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), FALSE);
-  g_return_val_if_fail (theme_name != NULL && theme_name[0] != '\0', FALSE);
-
-  old_theme = games_card_theme_get_theme (images->theme);
-  if (old_theme != NULL && strcmp (old_theme, theme_name) == 0)
-    return TRUE;
-
-  /* We need to clear the cache even if changing the theme fails! */
-  games_card_images_clear_cache (images);
-
-  return games_card_theme_set_theme (images->theme, theme_name);
-}
-
-/**
- * games_card_images_get_theme:
- * @images:
- *
- * Returns: the name of the currently loaded card theme, or %NULL if no theme
- * is loaded
- */
-const gchar *
-games_card_images_get_theme (GamesCardImages * images)
-{
-  g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), NULL);
-
-  return games_card_theme_get_theme (images->theme);
-}
-
-/**
  * games_card_images_set_size:
  * @images:
  * @width: the maximum width
@@ -444,20 +372,6 @@ CardSize
 games_card_images_get_size (GamesCardImages * images)
 {
   return games_card_theme_get_size (images->theme);
-}
-
-/**
- * games_card_images_get_aspect:
- * @images:
- *
- * Returns: the aspect ratio of the cards in the currently loaded theme
- */
-double
-games_card_images_get_aspect (GamesCardImages * images)
-{
-  g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), 1.0);
-
-  return games_card_theme_get_aspect (images->theme);
 }
 
 /**

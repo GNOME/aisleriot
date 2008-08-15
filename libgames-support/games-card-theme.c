@@ -30,6 +30,10 @@
 
 #include "games-card-theme.h"
 
+struct _GamesCardThemeClass {
+  GObjectClass parent_class;
+};
+
 struct _GamesCardTheme {
   GObject parent;
 
@@ -71,6 +75,13 @@ enum {
   PROP_SCALABLE,
   PROP_THEME_DIRECTORY
 };
+
+enum {
+  CHANGED,
+  LAST_SIGNAL
+};
+
+static guint signals[LAST_SIGNAL];
 
 /* FIXMEchpe: use uninstalled data dir for rendering the card theme! */
 #define SLOTDIR  PKGDATADIR "/pixmaps"
@@ -571,12 +582,30 @@ games_card_theme_set_property (GObject * object,
 }
 
 static void
-games_card_theme_class_init (GamesCardThemeClass * class)
+games_card_theme_class_init (GamesCardThemeClass * klass)
 {
-  GObjectClass *gobject_class = G_OBJECT_CLASS (class);
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
   gobject_class->set_property = games_card_theme_set_property;
   gobject_class->finalize = games_card_theme_finalize;
+
+  /**
+   * GamesCardTheme:changed:
+   * @theme: the object on which the signal is emitted
+   *
+   * The ::changed signal is emitted when the card theme has
+   * changed in any way that makes it necessary to re-render
+   * any displayed or cached images.
+   */
+  signals[CHANGED] =
+    g_signal_newv ("changed",
+                   G_TYPE_FROM_CLASS (klass),
+                   (GSignalFlags) (G_SIGNAL_RUN_LAST),
+                   NULL,
+                   NULL, NULL,
+                   g_cclosure_marshal_VOID__VOID,
+                   G_TYPE_NONE,
+                   0, NULL);
 
   g_object_class_install_property
     (gobject_class,
@@ -642,6 +671,7 @@ games_card_theme_set_antialias (GamesCardTheme * theme,
   theme->subpixel_order = subpixel_order;
 
   games_card_theme_clear_source_pixbuf (theme);
+  g_signal_emit (theme, signals[CHANGED], 0);
 }
 
 /**
@@ -669,6 +699,7 @@ games_card_theme_set_theme (GamesCardTheme * theme, const gchar * theme_name)
 
   games_card_theme_clear_source_pixbuf (theme);
   games_card_theme_clear_theme_data (theme);
+  g_signal_emit (theme, signals[CHANGED], 0);
 
   theme->card_size.width = theme->card_size.height = theme->slot_size.width =
     theme->slot_size.width = -1;
@@ -715,8 +746,8 @@ games_card_theme_set_size (GamesCardTheme * theme,
     return FALSE;
   }
 
-  if ((width == theme->slot_size.width)
-      && (height == theme->slot_size.height))
+  if ((width == theme->slot_size.width) &&
+      (height == theme->slot_size.height))
     return FALSE;
 
   theme->slot_size.width = width;
@@ -810,6 +841,7 @@ games_card_theme_set_size (GamesCardTheme * theme,
   }
 
   games_card_theme_clear_source_pixbuf (theme);
+  g_signal_emit (theme, signals[CHANGED], 0);
 
   return TRUE;
 }
