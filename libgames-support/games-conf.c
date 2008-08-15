@@ -299,8 +299,7 @@ games_conf_constructor (GType type,
   priv->key_file = g_key_file_new ();
   if (!g_key_file_load_from_file (priv->key_file, conf_file, 0, &error)) {
     /* Don't warn on non-existent file */
-    if (error->domain != G_FILE_ERROR ||
-        error->code != G_FILE_ERROR_NOENT) {
+    if (!g_error_matches (error, G_FILE_ERROR, G_FILE_ERROR_NOENT)) {
       g_warning ("Failed to read settings from \"%s\": %s",
                   conf_file, error->message);
     }
