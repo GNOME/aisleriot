@@ -23,6 +23,7 @@
 #define GAMES_PREIMAGE_H
 
 #include <glib.h>
+#include <cairo.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 G_BEGIN_DECLS
