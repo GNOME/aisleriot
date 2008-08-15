@@ -68,8 +68,6 @@ struct _GamesCardTheme {
 
 #if GTK_CHECK_VERSION (2, 10, 0)
   cairo_font_options_t *font_options;
-  cairo_antialias_t antialias;
-  cairo_subpixel_order_t subpixel_order;
 #endif
 };
 
@@ -196,8 +194,6 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
     goto out;
 
 #if GTK_CHECK_VERSION (2, 10, 0)
-  games_preimage_set_antialias (preimage, theme->antialias, theme->subpixel_order);
-
   if (theme->font_options) {
     games_preimage_set_font_options (preimage, theme->font_options);
   }
@@ -220,9 +216,6 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
   g_return_val_if_fail (theme->theme_data.scalable.slot_preimage != NULL, FALSE);
 
 #if GTK_CHECK_VERSION (2, 10, 0)
-  games_preimage_set_antialias (theme->theme_data.scalable.slot_preimage,
-                                theme->antialias, theme->subpixel_order);
-
   if (theme->font_options) {
     games_preimage_set_font_options (theme->theme_data.scalable.slot_preimage,
                                      theme->font_options);
@@ -571,11 +564,6 @@ games_card_theme_init (GamesCardTheme * cardtheme)
 #else
   cardtheme->use_scalable = FALSE;
 #endif /* HAVE_RSVG */
-
-#if GTK_CHECK_VERSION (2, 10, 0)
-  cardtheme->antialias = CAIRO_ANTIALIAS_DEFAULT;
-  cardtheme->subpixel_order = CAIRO_SUBPIXEL_ORDER_DEFAULT;
-#endif /* GTK 2.10.0 */
 }
 
 static void
@@ -670,32 +658,6 @@ games_card_theme_new (const char *theme_dir, gboolean scalable)
 }
 
 #if GTK_CHECK_VERSION (2, 10, 0)
-
-/**
- * games_preimage_set_antialias:
- * @theme:
- * @antialias: the antialiasing mode to use
- * @subpixel_order: the subpixel order to use
- *
- * Turns on antialising of @theme, if is is has loaded a scalable theme.
- */
-void
-games_card_theme_set_antialias (GamesCardTheme * theme,
-                                cairo_antialias_t antialias,
-                                cairo_subpixel_order_t subpixel_order)
-{
-  g_return_if_fail (GAMES_IS_CARD_THEME (theme));
-
-  if (theme->antialias == antialias &&
-      theme->subpixel_order == subpixel_order)
-    return;
-
-  theme->antialias = antialias;
-  theme->subpixel_order = subpixel_order;
-
-  games_card_theme_clear_source_pixbuf (theme);
-  g_signal_emit (theme, signals[CHANGED], 0);
-}
 
 /**
  * games_card_theme_set_font_options:

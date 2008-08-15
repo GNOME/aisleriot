@@ -43,7 +43,6 @@ main (int argc, char *argv[])
   int *sizes = NULL, n_sizes = 0;
   char *data = NULL;
   gsize len;
-  cairo_font_options_t *font_options;
   cairo_subpixel_order_t subpixels = CAIRO_SUBPIXEL_ORDER_DEFAULT;
   cairo_antialias_t antialias_mode = CAIRO_ANTIALIAS_DEFAULT;
   char *outpath = NULL, *theme_name = NULL, *theme_dir =
@@ -135,7 +134,7 @@ main (int argc, char *argv[])
   theme = games_card_theme_new (NULL, TRUE);
 
   if (antialias_set) {
-    games_card_theme_set_antialias (theme, antialias_mode, subpixels);
+    cairo_font_options_t *font_options;
 
     font_options = cairo_font_options_create ();
     cairo_font_options_set_antialias (font_options, antialias_mode);

@@ -49,10 +49,6 @@ GamesCardTheme *games_card_theme_new (const char *theme_dir,
                                       gboolean scalable);
 
 #if GTK_CHECK_VERSION (2, 10, 0)
-void games_card_theme_set_antialias (GamesCardTheme * theme,
-                                     cairo_antialias_t antialias,
-                                     cairo_subpixel_order_t subpixel_order);
-
 void games_card_theme_set_font_options (GamesCardTheme *theme,
                                         const cairo_font_options_t *font_options);
 #endif

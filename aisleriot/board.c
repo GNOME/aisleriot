@@ -1416,9 +1416,6 @@ aisleriot_board_screen_font_options_changed (GdkScreen *screen,
   const cairo_font_options_t *font_options;
 
   font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
-  games_card_theme_set_antialias (priv->theme,
-                                  cairo_font_options_get_antialias (font_options),
-                                  cairo_font_options_get_subpixel_order (font_options));
   games_card_theme_set_font_options (priv->theme, font_options);
 
   /* FIXMEchpe: clear the cached cards in the slots! */

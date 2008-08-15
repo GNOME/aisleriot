@@ -44,8 +44,6 @@ struct _GamesPreimage {
 #ifdef HAVE_RSVG
   RsvgHandle *rsvg_handle;
   cairo_font_options_t *font_options;
-  cairo_antialias_t antialias;
-  cairo_subpixel_order_t subpixel_order;
 #endif
 
   /* raster pixbuf data */
@@ -62,11 +60,6 @@ games_preimage_init (GamesPreimage * preimage)
   preimage->scalable = FALSE;
   preimage->width = 0;
   preimage->height = 0;
-
-#ifdef HAVE_RSVG
-  preimage->antialias = CAIRO_ANTIALIAS_DEFAULT;
-  preimage->subpixel_order = CAIRO_SUBPIXEL_ORDER_DEFAULT;
-#endif
 }
 
 static void
@@ -237,9 +230,9 @@ games_preimage_render_sub (GamesPreimage * preimage,
 
   cx = cairo_create (surface);
 
-  cairo_set_antialias (cx, preimage->antialias);
-
   if (preimage->font_options) {
+    cairo_set_antialias (cx, cairo_font_options_get_antialias (preimage->font_options));
+
     cairo_set_font_options (cx, preimage->font_options);
   }
 
@@ -332,25 +325,6 @@ games_preimage_new_from_file (const gchar * filename, GError ** error)
   preimage->height = gdk_pixbuf_get_height (pixbuf);
 
   return preimage;
-}
-
-/**
- * games_preimage_set_antialias:
- * @preimage: a #GamesPreimage
- * @antialias: the antialiasing mode to use
- * @subpixel_order: the subpixel order to use
- *
- * Turns on antialising of @preimage, if it contains an SVG image.
- */
-void
-games_preimage_set_antialias (GamesPreimage * preimage,
-                              cairo_antialias_t antialias,
-                              cairo_subpixel_order_t subpixel_order)
-{
-  g_return_if_fail (GAMES_IS_PREIMAGE (preimage));
-
-  preimage->antialias = antialias;
-  preimage->subpixel_order = subpixel_order;
 }
 
 /**
