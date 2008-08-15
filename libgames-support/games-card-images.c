@@ -228,7 +228,7 @@ games_card_images_set_property (GObject * object,
 
   switch (prop_id) {
   case PROP_THEME:
-    images->theme = g_value_dup_object (value);
+    images->theme = GAMES_CARD_THEME (g_value_dup_object (value));
     g_assert (images->theme);
 
     g_signal_connect (images->theme, "changed",
