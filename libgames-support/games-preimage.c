@@ -43,16 +43,15 @@ struct _GamesPreimage {
 
 #ifdef HAVE_RSVG
   RsvgHandle *rsvg_handle;
+  cairo_font_options_t *font_options;
+  cairo_antialias_t antialias;
+  cairo_subpixel_order_t subpixel_order;
 #endif
 
   /* raster pixbuf data */
   GdkPixbuf *pixbuf;
 
   guint scalable : 1;
-
-  guint antialias_set : 1;
-  guint antialias : 2; /* enough bits for cairo_antialias_t */
-  guint subpixel_order : 3; /* enough bits for cairo_subpixel_order_t */
 };
 
 G_DEFINE_TYPE (GamesPreimage, games_preimage, G_TYPE_OBJECT);
@@ -63,6 +62,11 @@ games_preimage_init (GamesPreimage * preimage)
   preimage->scalable = FALSE;
   preimage->width = 0;
   preimage->height = 0;
+
+#ifdef HAVE_RSVG
+  preimage->antialias = CAIRO_ANTIALIAS_DEFAULT;
+  preimage->subpixel_order = CAIRO_SUBPIXEL_ORDER_DEFAULT;
+#endif
 }
 
 static void
@@ -73,6 +77,9 @@ games_preimage_finalize (GObject * object)
 #ifdef HAVE_RSVG
   if (preimage->rsvg_handle != NULL) {
     g_object_unref (preimage->rsvg_handle);
+  }
+  if (preimage->font_options) {
+    cairo_font_options_destroy (preimage->font_options);
   }
 #endif
 
@@ -210,7 +217,11 @@ games_preimage_render_sub (GamesPreimage * preimage,
   if (!preimage->scalable)
     return NULL;
 
+#if CAIRO_VERSION >= CAIRO_VERSION_ENCODE (1, 6, 0)
+  rowstride = cairo_format_stride_for_width (CAIRO_FORMAT_ARGB32, width);
+#else
   rowstride = width * 4;
+#endif
 
   data = g_try_malloc0 (rowstride * height);
   if (!data)
@@ -226,21 +237,10 @@ games_preimage_render_sub (GamesPreimage * preimage,
 
   cx = cairo_create (surface);
 
-  if (preimage->antialias_set) {
-    cairo_font_options_t *options;
+  cairo_set_antialias (cx, preimage->antialias);
 
-    cairo_set_antialias (cx, (cairo_antialias_t) preimage->antialias);
-
-    options = cairo_font_options_create ();
-    cairo_get_font_options (cx, options);
-    cairo_font_options_set_antialias (options,
-                                      (cairo_antialias_t) preimage->
-                                      antialias);
-    cairo_font_options_set_subpixel_order (options,
-                                           (cairo_subpixel_order_t) preimage->
-                                           subpixel_order);
-    cairo_set_font_options (cx, options);
-    cairo_font_options_destroy (options);
+  if (preimage->font_options) {
+    cairo_set_font_options (cx, preimage->font_options);
   }
 
   cairo_matrix_init_identity (&matrix);
@@ -336,22 +336,45 @@ games_preimage_new_from_file (const gchar * filename, GError ** error)
 
 /**
  * games_preimage_set_antialias:
- * @preimage:
- * @antialias: the antialiasing mode to use (see @cairo_antialias_t)
- * @subpixel_order: the subpixel order to use (see @cairo_subpixel_order_t)
- * if @antialias is %CAIRO_ANTIALIAS_SUBPIXEL 
+ * @preimage: a #GamesPreimage
+ * @antialias: the antialiasing mode to use
+ * @subpixel_order: the subpixel order to use
  *
  * Turns on antialising of @preimage, if it contains an SVG image.
  */
 void
 games_preimage_set_antialias (GamesPreimage * preimage,
-                              guint antialias, guint subpixel_order)
+                              cairo_antialias_t antialias,
+                              cairo_subpixel_order_t subpixel_order)
 {
   g_return_if_fail (GAMES_IS_PREIMAGE (preimage));
 
-  preimage->antialias_set = TRUE;
   preimage->antialias = antialias;
   preimage->subpixel_order = subpixel_order;
+}
+
+/**
+ * games_preimage_set_font_options:
+ * @preimage: a #GamesPreimage
+ * @font_options: the font options
+ *
+ * Turns on antialising of @preimage, if it contains an SVG image.
+ */
+void
+games_preimage_set_font_options (GamesPreimage * preimage,
+                                 const cairo_font_options_t * font_options)
+{
+  g_return_if_fail (GAMES_IS_PREIMAGE (preimage));
+
+  if (preimage->font_options) {
+    cairo_font_options_destroy (preimage->font_options);
+  }
+
+  if (font_options) {
+    preimage->font_options = cairo_font_options_copy (font_options);
+  } else {
+    preimage->font_options = NULL;
+  }
 }
 
 /**

@@ -1383,70 +1383,50 @@ clear_state (AisleriotBoard *board)
 }
 
 static void
-aisleriot_board_settings_update (AisleriotBoard *board)
+aisleriot_board_settings_update (GtkSettings *settings,
+                                 GParamSpec *pspec,
+                                 AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-  GtkSettings *settings;
-#ifndef HAVE_HILDON 
+#ifndef HAVE_HILDON
   gboolean touchscreen_mode;
-#ifdef GDK_WINDOWING_X11
-  char *xft_rgba = NULL;
-#endif /* GDK_WINDOWING_X11 */
 #endif /* !HAVE_HILDON */
 
    /* Set up the double-click detection. */
-  settings = gtk_widget_get_settings (widget);
   g_object_get (settings,
                 "gtk-double-click-time", &priv->double_click_time,
 #ifndef HAVE_HILDON 
                 "gtk-touchscreen-mode", &touchscreen_mode,
-#ifdef GDK_WINDOWING_X11
-                "gtk-xft-rgba", &xft_rgba,
-#endif /* GDK_WINDOWING_X11 */
 #endif /* !HAVE_HILDON */
                 NULL);
 
-#if defined (GDK_WINDOWING_X11) && !defined (HAVE_HILDON)
-  if (xft_rgba != NULL) {
-    gboolean antialias_set = TRUE;
-    cairo_antialias_t antialias_mode = CAIRO_ANTIALIAS_DEFAULT;
-    cairo_subpixel_order_t subpixel_order = CAIRO_SUBPIXEL_ORDER_DEFAULT;
-
-    if (strcmp (xft_rgba, "none") == 0) {
-      antialias_set = FALSE;
-    } else if (strcmp (xft_rgba, "rgb") == 0) {
-      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
-      subpixel_order = CAIRO_SUBPIXEL_ORDER_RGB;
-    } else if (strcmp (xft_rgba, "bgr") == 0) {
-      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
-      subpixel_order = CAIRO_SUBPIXEL_ORDER_BGR;
-    } else if (strcmp (xft_rgba, "vrgb") == 0) {
-      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
-      subpixel_order = CAIRO_SUBPIXEL_ORDER_VRGB;
-    } else if (strcmp (xft_rgba, "vbgr") == 0) {
-      antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
-      subpixel_order = CAIRO_SUBPIXEL_ORDER_VBGR;
-    }
-
-    g_free (xft_rgba);
-
-    if (antialias_set) {
-      games_card_theme_set_antialias (priv->theme,
-                                      antialias_mode,
-                                      subpixel_order);
-
-      /* FIXMEchpe: clear the cached cards in the slots! */
-      if (GTK_WIDGET_REALIZED (widget)) {
-        gtk_widget_queue_draw (widget);
-      }
-    }
-  }
-#endif /* GDK_WINDOWING_X11 && !HAVE_HILDON */
-#ifndef HAVE_HILDON 
+#ifndef HAVE_HILDON
   priv->touchscreen_mode = touchscreen_mode != FALSE;
 #endif /* !HAVE_HILDON */
 }
+
+#if GTK_CHECK_VERSION (2, 10, 0)
+static void
+aisleriot_board_screen_font_options_changed (GdkScreen *screen,
+                                             GParamSpec *pspec,
+                                             AisleriotBoard *board)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  GtkWidget *widget = GTK_WIDGET (board);
+  const cairo_font_options_t *font_options;
+
+  font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
+  games_card_theme_set_antialias (priv->theme,
+                                  cairo_font_options_get_antialias (font_options),
+                                  cairo_font_options_get_subpixel_order (font_options));
+  games_card_theme_set_font_options (priv->theme, font_options);
+
+  /* FIXMEchpe: clear the cached cards in the slots! */
+  if (GTK_WIDGET_REALIZED (widget)) {
+    gtk_widget_queue_draw (widget);
+  }
+}
+#endif /* GTK 2.10.0 */
 
 /* Note: this unsets the selection! */
 static gboolean
@@ -2513,19 +2493,7 @@ aisleriot_board_screen_changed (GtkWidget *widget,
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   GdkScreen *screen;
-
-  screen = gtk_widget_get_screen (widget);
-
-#if 0
-  if (previous_screen != NULL) {
-    GtkSettings *settings;
-
-    settings = gtk_settings_get_for_screen (previous_screen);
-    g_signal_handlers_disconnect_matched (settings, G_SIGNAL_MATCH_DATA,
-                                          0, 0, NULL, NULL,
-                                          widget);
-  }
-#endif
+  GtkSettings *settings;
 
   if (GTK_WIDGET_CLASS (aisleriot_board_parent_class)->screen_changed) {
     GTK_WIDGET_CLASS (aisleriot_board_parent_class)->screen_changed (widget, previous_screen);
@@ -2534,9 +2502,31 @@ aisleriot_board_screen_changed (GtkWidget *widget,
   if (screen == NULL || screen == previous_screen)
     return;
 
-  /* FIXMEchpe listen to changes! */
+  if (previous_screen) {
+    g_signal_handlers_disconnect_by_func (gtk_settings_get_for_screen (previous_screen),
+                                          G_CALLBACK (aisleriot_board_settings_update),
+                                          board);
+    g_signal_handlers_disconnect_by_func (previous_screen,
+                                          G_CALLBACK (aisleriot_board_screen_font_options_changed),
+                                          board);
+  }
 
-  aisleriot_board_settings_update (board);
+  screen = gtk_widget_get_screen (widget);
+  settings = gtk_settings_get_for_screen (screen);
+
+  aisleriot_board_settings_update (settings, NULL, board);
+  g_signal_connect (settings, "notify::gtk-double-click-time",
+                    G_CALLBACK (aisleriot_board_settings_update), board);
+#ifndef HAVE_HILDON 
+  g_signal_connect (settings, "notify::gtk-touchscreen-mode",
+                    G_CALLBACK (aisleriot_board_settings_update), board);
+#endif /* !HAVE_HILDON */
+
+#if GTK_CHECK_VERSION (2, 10, 0)
+  aisleriot_board_screen_font_options_changed (screen, NULL, board);
+  g_signal_connect (screen, "notify::font-options",
+                    G_CALLBACK (aisleriot_board_screen_font_options_changed), board);
+#endif
 }
 
 static void
@@ -3396,6 +3386,10 @@ aisleriot_board_finalize (GObject *object)
                                         0, 0, NULL, NULL,
                                         widget);
 #endif
+
+  g_signal_handlers_disconnect_by_func (gtk_widget_get_screen (GTK_WIDGET (object)),
+                                        G_CALLBACK (aisleriot_board_screen_font_options_changed),
+                                        board);
 
   G_OBJECT_CLASS (aisleriot_board_parent_class)->finalize (object);
 }

@@ -23,6 +23,7 @@
 #include <string.h>
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gtk/gtk.h>
 
 #include "games-find-file.h"
 #include "games-files.h"
@@ -65,9 +66,11 @@ struct _GamesCardTheme {
   guint subrender : 1;
   guint prescaled : 1;
 
-  guint antialias_set : 1;
-  guint antialias : 2; /* enough bits for cairo_antialias_t */
-  guint subpixel_order : 3; /* enough bits for cairo_subpixel_order_t */
+#if GTK_CHECK_VERSION (2, 10, 0)
+  cairo_font_options_t *font_options;
+  cairo_antialias_t antialias;
+  cairo_subpixel_order_t subpixel_order;
+#endif
 };
 
 enum {
@@ -192,10 +195,13 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
   if (!preimage)
     goto out;
 
-  if (theme->antialias_set) {
-    games_preimage_set_antialias (preimage, theme->antialias,
-                                  theme->subpixel_order);
+#if GTK_CHECK_VERSION (2, 10, 0)
+  games_preimage_set_antialias (preimage, theme->antialias, theme->subpixel_order);
+
+  if (theme->font_options) {
+    games_preimage_set_font_options (preimage, theme->font_options);
   }
+#endif
 
   theme->theme_data.scalable.cards_preimage = preimage;
   theme->prescaled = games_preimage_is_scalable (preimage);
@@ -213,9 +219,15 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
   g_free (path);
   g_return_val_if_fail (theme->theme_data.scalable.slot_preimage != NULL, FALSE);
 
-  if (theme->antialias_set)
-    games_preimage_set_antialias (theme->theme_data.scalable.slot_preimage,
-                                  theme->antialias, theme->subpixel_order);
+#if GTK_CHECK_VERSION (2, 10, 0)
+  games_preimage_set_antialias (theme->theme_data.scalable.slot_preimage,
+                                theme->antialias, theme->subpixel_order);
+
+  if (theme->font_options) {
+    games_preimage_set_font_options (theme->theme_data.scalable.slot_preimage,
+                                     theme->font_options);
+  }
+#endif
 
   /* Use subrendering by default, but allow to override with the env var */
   theme->subrender = TRUE;
@@ -536,6 +548,12 @@ games_card_theme_finalize (GObject * object)
   g_free (theme->theme_name);
   g_free (theme->theme_dir);
 
+#if GTK_CHECK_VERSION (2, 10, 0)
+  if (theme->font_options) {
+    cairo_font_options_destroy (theme->font_options);
+  }
+#endif
+
   G_OBJECT_CLASS (games_card_theme_parent_class)->finalize (object);
 }
 
@@ -553,6 +571,11 @@ games_card_theme_init (GamesCardTheme * cardtheme)
 #else
   cardtheme->use_scalable = FALSE;
 #endif /* HAVE_RSVG */
+
+#if GTK_CHECK_VERSION (2, 10, 0)
+  cardtheme->antialias = CAIRO_ANTIALIAS_DEFAULT;
+  cardtheme->subpixel_order = CAIRO_SUBPIXEL_ORDER_DEFAULT;
+#endif /* GTK 2.10.0 */
 }
 
 static void
@@ -646,33 +669,67 @@ games_card_theme_new (const char *theme_dir, gboolean scalable)
                        NULL);
 }
 
+#if GTK_CHECK_VERSION (2, 10, 0)
+
 /**
- * games_card_theme_set_antialias:
+ * games_preimage_set_antialias:
  * @theme:
- * @antialias: the antialiasing mode to use (see @cairo_antialias_t)
- * @subpixel_order: the subpixel order to use (see @cairo_subpixel_order_t)
- * if @antialias is %CAIRO_ANTIALIAS_SUBPIXEL 
+ * @antialias: the antialiasing mode to use
+ * @subpixel_order: the subpixel order to use
  *
- * Turns on antialising of cards, if using a scalable theme.
+ * Turns on antialising of @theme, if is is has loaded a scalable theme.
  */
 void
 games_card_theme_set_antialias (GamesCardTheme * theme,
-                                guint antialias, guint subpixel_order)
+                                cairo_antialias_t antialias,
+                                cairo_subpixel_order_t subpixel_order)
 {
   g_return_if_fail (GAMES_IS_CARD_THEME (theme));
 
-  if (theme->antialias_set &&
-      theme->antialias == antialias &&
+  if (theme->antialias == antialias &&
       theme->subpixel_order == subpixel_order)
     return;
 
-  theme->antialias_set = TRUE;
   theme->antialias = antialias;
   theme->subpixel_order = subpixel_order;
 
   games_card_theme_clear_source_pixbuf (theme);
   g_signal_emit (theme, signals[CHANGED], 0);
 }
+
+/**
+ * games_card_theme_set_font_options:
+ * @theme:
+ * @font_options: the #cairo_font_options_t to use
+ *
+ * Sets the font options to use when drawing the card images.
+ */
+void
+games_card_theme_set_font_options (GamesCardTheme * theme,
+                                   const cairo_font_options_t *font_options)
+{
+  g_return_if_fail (GAMES_IS_CARD_THEME (theme));
+
+  if (font_options &&
+      theme->font_options &&
+      cairo_font_options_equal (font_options, theme->font_options))
+    return;
+
+  if (theme->font_options) {
+    cairo_font_options_destroy (theme->font_options);
+  }
+
+  if (font_options) {
+    theme->font_options = cairo_font_options_copy (font_options);
+  } else {
+    theme->font_options = NULL;
+  }
+
+  games_card_theme_clear_source_pixbuf (theme);
+  g_signal_emit (theme, signals[CHANGED], 0);
+}
+
+#endif /* GTK 2.10.0 */
 
 /**
  * games_card_theme_set_theme:

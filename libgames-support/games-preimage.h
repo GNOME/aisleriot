@@ -46,7 +46,11 @@ GamesPreimage *games_preimage_new_from_file (const gchar * filename,
                                              GError ** error);
 
 void games_preimage_set_antialias (GamesPreimage * preimage,
-                                   guint antialias, guint subpixel_order);
+                                   cairo_antialias_t antialias,
+                                   cairo_subpixel_order_t subpixel_order);
+
+void games_preimage_set_font_options (GamesPreimage * preimage,
+                                      const cairo_font_options_t *font_options);
 
 GdkPixbuf *games_preimage_render (GamesPreimage * preimage,
                                   gint width, gint height);
