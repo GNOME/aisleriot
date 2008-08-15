@@ -479,6 +479,8 @@ get_slot_and_card_from_point (AisleriotBoard *board,
   *_cardid = cardid > 0 ? cardid - 1 : -1;
 }
 
+#ifdef ENABLE_KEYNAV
+
 static gboolean
 test_slot_projection_intersects_x (Slot *slot,
                                    int x_start,
@@ -512,6 +514,8 @@ get_slot_index_from_slot (AisleriotBoard *board,
 
   return slot_index;
 }
+
+#endif /* ENABLE_KEYNAV */
 
 static void
 get_rect_by_slot_and_card (AisleriotBoard *board,

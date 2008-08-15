@@ -2008,7 +2008,9 @@ aisleriot_window_state_event (GtkWidget *widget,
                               GdkEventWindowState *event)
 {
   AisleriotWindow *window = AISLERIOT_WINDOW (widget);
+#ifndef HAVE_HILDON
   AisleriotWindowPrivate *priv = window->priv;
+#endif
 
   if (event->changed_mask & (GDK_WINDOW_STATE_FULLSCREEN | GDK_WINDOW_STATE_MAXIMIZED)) {
     gboolean is_fullscreen, is_maximised;
