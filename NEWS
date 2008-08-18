@@ -1,3 +1,35 @@
+gnome-games 2.23.90
+==================
+
+Another development release of gnome-games leading up to the 2.24 release. Lots
+of bug and stabilization fixes for aisleriot, chess, and sudoku. 
+
+Aisleriot:
+  - Add "changed" signal to GamesCardTheme. (Christian Persch)
+  - Get the cairo font options from the screen instead of creating them from 
+    the gtk settings. (Christian Persch)
+  - Take the antialias setting from the font options instead of storing it 
+    separately. (Christian Persch)
+ 
+Chess:
+  - Fix save related crasher. (Robert Ancell)
+  - Chess now works if gconf is read-only. (Robert Ancell)
+  - Keep checkboxes for "3D view" in synch (Robert Ancell)
+
+Sudoku:
+  - Don't create temp files when drawing thumbnails. (Josselin Mouette)
+  - Show All Hints now works on at start of new game. (Zhang Sen)
+  - Undo/redo is now unsensitive at start of new game. (Zhang Sen)
+  - Start timer when puzzle is selected, not at game start. (Thomas H.P. Andersen)
+  - Active time should never be more that total time (Thomas H.P. Andersen)
+
+Translations:
+ - es: Esteban Sanchez
+ - et: Ivar Smolin
+ - fr: Claude Paroz
+ - pt_BR: Vladimir Melo	
+ - th: Theppitak Karoonboonyanan
+
 gnome-games 2.23.6
 ==================
 
