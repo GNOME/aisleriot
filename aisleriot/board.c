@@ -2497,7 +2497,7 @@ aisleriot_board_screen_changed (GtkWidget *widget,
   }
 
   screen = gtk_widget_get_screen (widget);
-  if (screen == NULL || screen == previous_screen)
+  if (screen == previous_screen)
     return;
 
   if (previous_screen) {
@@ -2508,6 +2508,9 @@ aisleriot_board_screen_changed (GtkWidget *widget,
                                           G_CALLBACK (aisleriot_board_screen_font_options_changed),
                                           board);
   }
+
+  if (screen == NULL)
+    return;
 
   settings = gtk_settings_get_for_screen (screen);
 
