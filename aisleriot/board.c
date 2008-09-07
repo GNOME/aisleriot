@@ -2496,6 +2496,7 @@ aisleriot_board_screen_changed (GtkWidget *widget,
     GTK_WIDGET_CLASS (aisleriot_board_parent_class)->screen_changed (widget, previous_screen);
   }
 
+  screen = gtk_widget_get_screen (widget);
   if (screen == NULL || screen == previous_screen)
     return;
 
@@ -2508,7 +2509,6 @@ aisleriot_board_screen_changed (GtkWidget *widget,
                                           board);
   }
 
-  screen = gtk_widget_get_screen (widget);
   settings = gtk_settings_get_for_screen (screen);
 
   aisleriot_board_settings_update (settings, NULL, board);
