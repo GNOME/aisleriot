@@ -143,17 +143,28 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
   gtk_table_set_row_spacings (table, 6);
   gtk_table_set_col_spacings (table, 12);
 
+  /* Translators: this is the total number of won games */
   priv->wins_label = add_row (table, 0, _("Wins:"));
+  /* Translators: this is the number of games played */
   priv->total_label = add_row (table, 1, _("Total:"));
+  /* Translators: this is the percentage of games won out of all games played */
   priv->percentage_label = add_row (table, 2, _("Percentage:"));
+  /* Translators: this is the section title of a section which contains the n
+   * number of games played, number of games won, and the ratio of these 2 numbers.
+   */
   pack_in_frame (hbox, GTK_WIDGET (table), _("Wins"));
 
   table = GTK_TABLE (gtk_table_new (2, 2, FALSE));
   gtk_table_set_row_spacings (table, 6);
   gtk_table_set_col_spacings (table, 12);
 
+  /* Translators: this is the best time of all wins */
   priv->best_label = add_row (table, 0, _("Best:"));
+  /* Translators: this is the worst time of all wins */
   priv->worst_label = add_row (table, 1, _("Worst:"));
+  /* Translators: this is the section title of a section containing the
+   * best and worst time taken to win a game.
+   */
   pack_in_frame (hbox, GTK_WIDGET (table), _("Time"));
 
   gtk_dialog_add_buttons (dialog,
