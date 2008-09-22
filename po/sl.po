@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-10 03:51+0000\n"
-"PO-Revision-Date: 2008-09-10 15:40+0100\n"
+"POT-Creation-Date: 2008-09-22 06:06+0000\n"
+"PO-Revision-Date: 2008-09-22 11:12+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,11 +22,11 @@ msgstr ""
 
 #: ../aisleriot/aisleriot.schemas.in.h:1
 msgid "A list of recently played games."
-msgstr "Seznam nedavno igranih iger"
+msgstr "Seznam nedavno igranih iger."
 
 #: ../aisleriot/aisleriot.schemas.in.h:2
 msgid "A list of strings that come in the form of a quintuple: name, wins, total games played, best time (in seconds) and worst time (also in seconds). Unplayed games do not need to be represented."
-msgstr "Seznam nizov, ki se pojavljajo v peterkah: ime, zmage, skupaj igranih iger, najboljši čas (v sekundah) in najslabši čas (tudi v sekundah). Novih iger ni treba prikazati."
+msgstr "Seznam nizov, ki se pojavljajo v peterkah: ime, zmage, skupno igranih iger, najboljši čas (v sekundah) in najslabši čas (tudi v sekundah). Neigranih iger ni treba prikazati."
 
 #: ../aisleriot/aisleriot.schemas.in.h:3
 msgid "Recently played games"
@@ -35,11 +35,11 @@ msgstr "Nedavno igrane igre"
 #: ../aisleriot/aisleriot.schemas.in.h:4
 #: ../gnotravex/gnotravex.schemas.in.h:3
 msgid "Select the style of control"
-msgstr "Izberite stil nadzora"
+msgstr "Izberite slog nadzora"
 
 #: ../aisleriot/aisleriot.schemas.in.h:5
 msgid "Select whether to drag the cards or to click on the source then the destination."
-msgstr "Izberite med vlečenjem kart ali klikom najprej na vir in nato na cilj."
+msgstr "Izberite med vlečenjem kart in klikom najprej na vir in nato na cilj."
 
 #: ../aisleriot/aisleriot.schemas.in.h:6
 #: ../gnect/data/gnect.schemas.in.h:11
@@ -53,16 +53,16 @@ msgstr "Statistika odigranih iger"
 
 #: ../aisleriot/aisleriot.schemas.in.h:8
 msgid "The game file to use"
-msgstr "Ime datoteke igre, ki naj se uporabi"
+msgstr "Ime datoteke igre, ki jo želite igrati"
 
 #: ../aisleriot/aisleriot.schemas.in.h:9
 #: ../blackjack/data/blackjack.schemas.in.h:7
 msgid "The name of the file with the graphics for the cards."
-msgstr "Ime datoteke z grafiko za karte."
+msgstr "Ime datoteke z slokovno podobo kart."
 
 #: ../aisleriot/aisleriot.schemas.in.h:10
 msgid "The name of the scheme file containing the solitaire game to play."
-msgstr "Ime datoteke s shemo, ki vsebuje igro pasjanse, ki jo želite igrati."
+msgstr "Ime datoteke sheme z igro pasjanse, ki jo želite igrati."
 
 #: ../aisleriot/aisleriot.schemas.in.h:11
 #: ../blackjack/data/blackjack.schemas.in.h:10
@@ -99,7 +99,7 @@ msgstr "Igrajte priljubljeno igro s kartami FreeCell"
 #: ../aisleriot/game.c:1088
 #, c-format
 msgid "Aisleriot cannot load the file \"%s\". Please check your Aisleriot installation."
-msgstr "Aisleriot ne more naložiti datoteke: \"%s\". Prosim, preverite vašo namestitev."
+msgstr "V igro Aisleriot ni mogoče naložiti datoteke \"%s\". Prosim, preverite vašo namestitev."
 
 #: ../aisleriot/game.c:1529
 msgid "Aisleriot cannot find the last game you played."
@@ -166,7 +166,7 @@ msgstr "Izberite številko igre za igranje"
 #: ../gtali/gyahtzee.c:118
 #: ../same-gnome/same-gnome.c:141
 msgid "NUMBER"
-msgstr "ŠTEVILO"
+msgstr "ŠTEVLKA"
 
 #: ../aisleriot/sol.c:595
 #: ../aisleriot/window.c:602
@@ -188,7 +188,7 @@ msgstr "Neznana barva"
 
 #: ../aisleriot/sol.scm.h:2
 msgid "Unknown suit"
-msgstr "Neznana serija kart"
+msgstr "Neznana barva karte"
 
 #: ../aisleriot/sol.scm.h:3
 msgid "Unknown value"
@@ -484,44 +484,55 @@ msgstr "trojka"
 msgid "two"
 msgstr "dvojka"
 
-#: ../aisleriot/stats-dialog.c:146
-msgid "Wins:"
-msgstr "Zmage: "
-
+#. Translators: this is the total number of won games
 #: ../aisleriot/stats-dialog.c:147
+msgid "Wins:"
+msgstr "Zmage:"
+
+#. Translators: this is the number of games played
+#: ../aisleriot/stats-dialog.c:149
 msgid "Total:"
 msgstr "Skupaj:"
 
-#: ../aisleriot/stats-dialog.c:148
+#. Translators: this is the percentage of games won out of all games played
+#: ../aisleriot/stats-dialog.c:151
 msgid "Percentage:"
 msgstr "Odstotek:"
 
-#: ../aisleriot/stats-dialog.c:149
+#. Translators: this is the section title of a section which contains the n
+#. * number of games played, number of games won, and the ratio of these 2 numbers.
+#.
+#: ../aisleriot/stats-dialog.c:155
 msgid "Wins"
 msgstr "Zmage"
 
-#: ../aisleriot/stats-dialog.c:155
+#. Translators: this is the best time of all wins
+#: ../aisleriot/stats-dialog.c:162
 msgid "Best:"
 msgstr "Najboljši:"
 
-#: ../aisleriot/stats-dialog.c:156
+#. Translators: this is the worst time of all wins
+#: ../aisleriot/stats-dialog.c:164
 msgid "Worst:"
 msgstr "Najslabši:"
 
-#: ../aisleriot/stats-dialog.c:157
+#. Translators: this is the section title of a section containing the
+#. * best and worst time taken to win a game.
+#.
+#: ../aisleriot/stats-dialog.c:168
 #: ../libgames-support/games-scores-dialog.c:116
 msgid "Time"
 msgstr "Čas"
 
-#: ../aisleriot/stats-dialog.c:189
+#: ../aisleriot/stats-dialog.c:200
 msgid "Statistics"
 msgstr "Statistika"
 
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
-#: ../aisleriot/stats-dialog.c:203
-#: ../aisleriot/stats-dialog.c:209
+#: ../aisleriot/stats-dialog.c:214
+#: ../aisleriot/stats-dialog.c:220
 #, c-format
 msgid "%d"
 msgstr "%d"
@@ -533,24 +544,24 @@ msgstr "%d"
 #. * instead, or leave it as "%%". If you chose a character other than
 #. * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
 #.
-#: ../aisleriot/stats-dialog.c:220
+#: ../aisleriot/stats-dialog.c:231
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
 
 #. For translators: N/A means "Not Applicable", use whatever
 #. * abbreviation you have for a value that has no meaning.
-#: ../aisleriot/stats-dialog.c:226
-#: ../aisleriot/stats-dialog.c:235
-#: ../aisleriot/stats-dialog.c:243
+#: ../aisleriot/stats-dialog.c:237
+#: ../aisleriot/stats-dialog.c:246
+#: ../aisleriot/stats-dialog.c:254
 #: ../dependencies/ggz-gtk/roominfo.c:162
 #: ../dependencies/ggz-gtk/roominfo.c:169
 msgid "N/A"
 msgstr "N/A"
 
 #. Translators: this represents minutes:seconds.
-#: ../aisleriot/stats-dialog.c:230
-#: ../aisleriot/stats-dialog.c:238
+#: ../aisleriot/stats-dialog.c:241
+#: ../aisleriot/stats-dialog.c:249
 #, c-format
 msgid "%d:%02d"
 msgstr "%d:%02d"
@@ -709,7 +720,7 @@ msgstr "Hopscotch"
 
 #: ../aisleriot/translatable_game_names.h:39
 msgid "Isabel"
-msgstr "Isabel"
+msgstr "Izabela"
 
 #: ../aisleriot/translatable_game_names.h:40
 msgid "Jamestown"
@@ -729,7 +740,7 @@ msgstr "Kralj Albert"
 
 #: ../aisleriot/translatable_game_names.h:44
 msgid "Kings Audience"
-msgstr "Kraljevo občinstvo"
+msgstr "Kraljevo občestvo"
 
 #: ../aisleriot/translatable_game_names.h:45
 msgid "Klondike"
@@ -902,11 +913,11 @@ msgstr "_Izberi"
 
 #: ../aisleriot/window.c:408
 msgid "Congratulations, you have won!"
-msgstr "Čestitke! Zmagali ste!"
+msgstr "Čestitke, zmagali ste!"
 
 #: ../aisleriot/window.c:412
 msgid "There are no more moves"
-msgstr "Ni več možnih korakov."
+msgstr "Ni več mogočih korakov."
 
 #. Empty title shows up as "<unnamed>" on maemo
 #: ../aisleriot/window.c:425
@@ -990,7 +1001,7 @@ msgstr "Spletna stran GNOME iger"
 
 #: ../aisleriot/window.c:1094
 msgid "This game does not have hint support yet."
-msgstr "Ta igra še nima podpore za namige."
+msgstr "Ta igra še nima podpore za prikaz namigov."
 
 #. Both %s are card names
 #. The first %s is a card name, the 2nd %s a sentence fragment.
@@ -1009,7 +1020,7 @@ msgstr "Iščete %s."
 
 #: ../aisleriot/window.c:1183
 msgid "This game is unable to provide a hint."
-msgstr "Ta igra nima možnosti namigov."
+msgstr "Ta igra nima možnosti prikaza namigov."
 
 #: ../aisleriot/window.c:1531
 #, c-format
@@ -1140,7 +1151,7 @@ msgstr "Prikaži igralno statistiko"
 #: ../aisleriot/window.c:2093
 #: ../libgames-support/games-stock.c:63
 msgid "Close this window"
-msgstr "Zapri okno"
+msgstr "Zapri trenutno okno"
 
 #: ../aisleriot/window.c:2096
 #: ../libgames-support/games-stock.c:61
@@ -1345,7 +1356,7 @@ msgstr "Razdeli več kart"
 #: ../aisleriot/rules/yield.scm.h:2
 #: ../aisleriot/rules/zebra.scm.h:4
 msgid "Stock left:"
-msgstr "Preostali kupček:  "
+msgstr "Preostali kupček:"
 
 #: ../aisleriot/rules/agnes.scm.h:8
 #: ../aisleriot/rules/lady_jane.scm.h:8
@@ -1370,7 +1381,7 @@ msgstr "Poskusite prerazporediti karte"
 #: ../aisleriot/rules/royal_east.scm.h:8
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:5
 msgid "an empty foundation pile"
-msgstr "prazna osnovni talon"
+msgstr "prazni osnovni talon"
 
 #: ../aisleriot/rules/athena.scm.h:1
 #: ../aisleriot/rules/klondike.scm.h:8
@@ -1416,7 +1427,7 @@ msgstr "Razdeli novo karto s kupčka"
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:3
 #: ../aisleriot/rules/zebra.scm.h:3
 msgid "Redeals left:"
-msgstr "Preostalih deljenj:  "
+msgstr "Preostalih razdelitev:"
 
 #: ../aisleriot/rules/backbone.scm.h:5
 msgid "an empty slot on the foundation"
@@ -1516,14 +1527,14 @@ msgstr "Osnovna karta: "
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:2
 #: ../aisleriot/rules/zebra.scm.h:2
 msgid "Move waste back to stock"
-msgstr "Premaknite smeti na kupček"
+msgstr "Premaknite neuporabne karte na kupček"
 
 #: ../aisleriot/rules/canfield.scm.h:8
 #: ../aisleriot/rules/eagle_wing.scm.h:10
 #: ../aisleriot/rules/kansas.scm.h:7
 #: ../aisleriot/rules/straight_up.scm.h:4
 msgid "Reserve left:"
-msgstr "Preostala zaloga:  "
+msgstr "Preostala zaloga:"
 
 #: ../aisleriot/rules/canfield.scm.h:11
 #: ../aisleriot/rules/glenwood.scm.h:12
@@ -1545,11 +1556,11 @@ msgstr "Postavite nekaj na prazno polje okvirja"
 
 #: ../aisleriot/rules/clock.scm.h:1
 msgid "Consistency is key"
-msgstr "V slogi je moč"
+msgstr "Doslednost je moč"
 
 #: ../aisleriot/rules/clock.scm.h:2
 msgid "Fishing wire makes bad dental floss"
-msgstr "Laks za ribarjenje je učinkovit proti zobnim oblogam"
+msgstr "Laks za ribarjenje je neučinkovit proti zobnim oblogam"
 
 #: ../aisleriot/rules/clock.scm.h:3
 msgid "Have you read the help file?"
@@ -1573,7 +1584,7 @@ msgstr "Poglejte v obe smeri preden prečkate cesto"
 
 #: ../aisleriot/rules/clock.scm.h:8
 msgid "Monitors won't give you Vitamin D -- but sunlight will..."
-msgstr "Zasloni  vam ne bodo dali vitamina D -- pač pa sončna svetloba ..."
+msgstr "Zasloni vam ne bodo dali vitamina D -- pač pa sončna svetloba ..."
 
 #: ../aisleriot/rules/clock.scm.h:9
 msgid "Never blow in a dog's ear"
@@ -1601,7 +1612,7 @@ msgstr "Ponovno deli."
 
 #: ../aisleriot/rules/diamond_mine.scm.h:2
 msgid "the foundation pile"
-msgstr "osnovna skladovnica"
+msgstr "osnovni talon"
 
 #: ../aisleriot/rules/eagle_wing.scm.h:6
 #: ../aisleriot/rules/elevator.scm.h:1
@@ -1622,7 +1633,7 @@ msgstr "Premakni ~a na prazno osnovo"
 
 #: ../aisleriot/rules/eagle_wing.scm.h:12
 msgid "an empty slot on tableau"
-msgstr "prazno polje v registru"
+msgstr "prazno polje v okvirju"
 
 #: ../aisleriot/rules/easthaven.scm.h:2
 msgid "Move a King on to the empty tableau slot"
@@ -1631,7 +1642,7 @@ msgstr "Premaknite kralja na prazno polje okvirja"
 #: ../aisleriot/rules/easthaven.scm.h:3
 #: ../aisleriot/rules/klondike.scm.h:3
 msgid "No hint available right now"
-msgstr "Trenutno ni nobenega namiga na voljo"
+msgstr "Trenutno ni na voljo nobenega namiga"
 
 #: ../aisleriot/rules/first_law.scm.h:2
 msgid "I'm not sure"
@@ -1704,7 +1715,7 @@ msgstr "Premakni ~a iz igralne plošče"
 
 #: ../aisleriot/rules/forty_thieves.scm.h:1
 msgid "Bug! make-hint called on false move."
-msgstr ""
+msgstr "Hrošč! make-hint je klican ob napačnem premiku."
 
 #: ../aisleriot/rules/forty_thieves.scm.h:2
 msgid "Deal a card from stock"
@@ -1716,7 +1727,7 @@ msgstr "prazno polje"
 
 #: ../aisleriot/rules/freecell.scm.h:1
 msgid "No moves are possible. Undo or start again."
-msgstr "Nobena poteza ni več možna. Razveljavite potezo ali pa začnite znova."
+msgstr "Ni več mogočih potez. Razveljavite zadnjo potezo ali pa začnite znova."
 
 #: ../aisleriot/rules/freecell.scm.h:2
 msgid "The game has no solution. Undo or start again."
@@ -1756,7 +1767,7 @@ msgstr "Premakni ~a ob ~a"
 
 #: ../aisleriot/rules/gaps.scm.h:6
 msgid "Randomly Placed Gaps on Redeal"
-msgstr ""
+msgstr "Naključno postavi vrzeli ob ponovnem deljenju"
 
 #: ../aisleriot/rules/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
@@ -1764,7 +1775,7 @@ msgstr "Premakni karto iz zaloge na prazno polje okvirja"
 
 #: ../aisleriot/rules/glenwood.scm.h:10
 msgid "Select a card from the reserve for first foundation pile"
-msgstr ""
+msgstr "Izberite karto iz zaloge za prvi osnovni talon."
 
 #: ../aisleriot/rules/glenwood.scm.h:13
 msgid "on to the empty tableau slot"
@@ -1795,11 +1806,11 @@ msgstr "Premakni karto ali pa kupček kart na prosto polje."
 
 #: ../aisleriot/rules/hopscotch.scm.h:2
 msgid "Move card from waste"
-msgstr "Premakni karte iz smeti"
+msgstr "Premakni karte iz neuporabnih kart"
 
 #: ../aisleriot/rules/jumbo.scm.h:2
 msgid "Move waste to stock"
-msgstr "Premaknite ostanek kart na kupček"
+msgstr "Premaknite neuporabne karte na kupček"
 
 #: ../aisleriot/rules/jumbo.scm.h:7
 #: ../aisleriot/rules/kansas.scm.h:10
@@ -1870,7 +1881,7 @@ msgstr "Naključni način"
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:6
 #: ../aisleriot/rules/westhaven.scm.h:4
 msgid "an empty tableau pile"
-msgstr "prazna skladovnica"
+msgstr "prazen talon"
 
 #: ../aisleriot/rules/scorpion.scm.h:1
 msgid "Deal the cards"
@@ -1882,7 +1893,7 @@ msgstr "Ponovno premešaj karte"
 
 #: ../aisleriot/rules/sir_tommy.scm.h:2
 msgid "Move waste on to a reserve slot"
-msgstr "Premaknite ostanek kart na polje zaloge"
+msgstr "Premaknite neuporabne karte na polje zaloge"
 
 #: ../aisleriot/rules/sir_tommy.scm.h:4
 msgid "empty foundation"
@@ -1902,7 +1913,7 @@ msgstr "Postavite nekaj na prazno polje"
 
 #: ../aisleriot/rules/spider.scm.h:5
 msgid "Please fill in empty pile first."
-msgstr "Prosim, najprej napolnite prazno skladovnico."
+msgstr "Prosim, najprej napolnite prazen talon."
 
 #: ../aisleriot/rules/spider.scm.h:7
 msgid "Try moving card piles around"
@@ -1938,7 +1949,7 @@ msgstr "Deli karto s kupčka"
 
 #: ../aisleriot/rules/thirteen.scm.h:2
 msgid "Match the top two cards of the waste."
-msgstr ""
+msgstr "Primerjaj zgornji dve neuporabni karti"
 
 #: ../aisleriot/rules/triple_peaks.scm.h:2
 msgid "Multiplier Scoring"
@@ -1946,11 +1957,11 @@ msgstr "Točkovanje več igralcev"
 
 #: ../aisleriot/rules/triple_peaks.scm.h:3
 msgid "Progressive Rounds"
-msgstr ""
+msgstr "Napredovalne igre"
 
 #: ../aisleriot/rules/union_square.scm.h:4
 msgid "appropriate foundation pile"
-msgstr "primerna osnovna skladovnica"
+msgstr "primerni osnovni talon"
 
 #: ../aisleriot/rules/whitehead.scm.h:2
 msgid "Move a build of cards on to the empty Tableau slot"
@@ -1958,7 +1969,7 @@ msgstr "Premakni več kart na prazno polje okvirja"
 
 #: ../aisleriot/rules/zebra.scm.h:5
 msgid "the appropriate Foundation pile"
-msgstr "primerna osnovna skladovnica"
+msgstr "primerni osnovni talon"
 
 #: ../blackjack/data/blackjack.desktop.in.in.h:1
 #: ../blackjack/src/menu.cpp:152
@@ -1976,31 +1987,31 @@ msgstr "Prikaži verjetnosti"
 
 #: ../blackjack/data/blackjack.schemas.in.h:2
 msgid "Display the probabilities of each dealer hand outcome and the expected value of your hand."
-msgstr "Prikaže verjetnosti izida roke vsakega delivca in pričakovano vrednost vaše roke."
+msgstr "Prikaže verjetnosti zmage delivčevih kart in pričakovano vrednost vaših kart."
 
 #: ../blackjack/data/blackjack.schemas.in.h:3
 msgid "Never take insurance"
-msgstr "Nikoli ne vzemi zavarovanja"
+msgstr "Nikoli ne stavi na delivčeve karte"
 
 #: ../blackjack/data/blackjack.schemas.in.h:4
 msgid "Never take insurance with a dealer showing an ace."
-msgstr "Nikoli ne vzemi zavarovanja, če delivec pokaže asa."
+msgstr "Nikoli ne stavi na delivčeve karte, kadar dobi ta kot prvo karto karto as."
 
 #: ../blackjack/data/blackjack.schemas.in.h:5
 msgid "The amount of money in your bank"
-msgstr "Količina denarja v vaši banki"
+msgstr "Vsota denarja v banki"
 
 #: ../blackjack/data/blackjack.schemas.in.h:6
 msgid "The amount of money in your bank."
-msgstr "Količina denarja v vaši banki."
+msgstr "Vsota denarja v vaši banki."
 
 #: ../blackjack/data/blackjack.schemas.in.h:8
 msgid "The name of the rules file containing the variation of the rules to play."
-msgstr "Ime datoteke s pravili, ki vsebuje variacijo pravil za igranje."
+msgstr "Ime datoteke s pravili, ki vsebuje različico pravil igranja."
 
 #: ../blackjack/data/blackjack.schemas.in.h:9
 msgid "The variation of the rules file to use"
-msgstr "Ime datoteke z variacijo pravil, ki naj bo uporabljena"
+msgstr "Ime datoteke z različico pravil, ki naj se uporabi"
 
 #: ../blackjack/data/blackjack.schemas.in.h:11
 msgid "Use a quick deal"
@@ -2022,7 +2033,7 @@ msgstr "Blackjack - %s"
 #: ../blackjack/src/blackjack.cpp:335
 #: ../mahjongg/mahjongg.c:1280
 msgid "Restart the current game"
-msgstr "Začni trenutno igro znova"
+msgstr "Znova začni trenutno igro"
 
 #: ../blackjack/src/blackjack.cpp:336
 #: ../mahjongg/mahjongg.c:1289
@@ -2040,7 +2051,7 @@ msgstr "Prikaži namig"
 #: ../gtali/gyahtzee.c:702
 #: ../mahjongg/mahjongg.c:1275
 msgid "_Settings"
-msgstr "Na_stavitve"
+msgstr "_Nastavitve"
 
 #: ../blackjack/src/blackjack.cpp:343
 msgid "D_eal"
@@ -2050,11 +2061,11 @@ msgstr "D_eli"
 #: ../blackjack/src/dialog.cpp:98
 #: ../blackjack/src/dialog.cpp:101
 msgid "Deal a new hand"
-msgstr "Deli novo roko"
+msgstr "Deli nove karte"
 
 #: ../blackjack/src/blackjack.cpp:344
 msgid "_Hit"
-msgstr ""
+msgstr "_Dodaj karto"
 
 #: ../blackjack/src/blackjack.cpp:344
 msgid "Add a card to the hand"
@@ -2062,11 +2073,11 @@ msgstr "Dodaj karto v roke"
 
 #: ../blackjack/src/blackjack.cpp:345
 msgid "_Stand"
-msgstr ""
+msgstr "_Ustavi karte"
 
 #: ../blackjack/src/blackjack.cpp:345
 msgid "Stop adding cards to the hand"
-msgstr "Prenehaj dodajati karte v roko"
+msgstr "Ne dodaj več novih kart med svoje karte"
 
 #: ../blackjack/src/blackjack.cpp:346
 msgid "S_urrender"
@@ -2078,11 +2089,11 @@ msgstr "Izgubite karte v roki za pol vaše stave"
 
 #: ../blackjack/src/blackjack.cpp:347
 msgid "_Double down"
-msgstr ""
+msgstr "_Podvoji"
 
 #: ../blackjack/src/blackjack.cpp:347
 msgid "Double your wager for a single hit"
-msgstr ""
+msgstr "Podvoji stavo in vzemi še natanko eno karto"
 
 #: ../blackjack/src/blackjack.cpp:348
 msgid "S_plit the hand"
@@ -2090,7 +2101,7 @@ msgstr "Prepolovi karte:"
 
 #: ../blackjack/src/blackjack.cpp:348
 msgid "Split cards in two new hands"
-msgstr ""
+msgstr "Podvoji stavo in razdeli karte v dva nova kupčka kart."
 
 #: ../blackjack/src/blackjack.cpp:355
 #: ../gnobots2/gnobots2.schemas.in.h:23
@@ -2119,20 +2130,20 @@ msgstr "Izbor pravil igre Black Jack"
 
 #: ../blackjack/src/dialog.cpp:51
 msgid "Would you like insurance?"
-msgstr "Ali želite zavarovanje?"
+msgstr "Ali želite staviti na delivčeve karte?"
 
 #: ../blackjack/src/dialog.cpp:52
 #, c-format
 msgid "Insurance is a side wager of 50%% of the original wager that the dealer has a natural 21 (aka blackjack) that is offered when the dealer's face up card is an ace. If the dealer has a natural 21 then the player is paid double."
-msgstr ""
+msgstr "Stava na delivčeve karte je postranska stava v višini 50%% osnovne stave, da ima delivec naravnih enaindvajset točk (torej blackjack). Možnost se pojavi, kadar je prva prikazana delivčeva karta as. V primeru, da z drugo karto delivec res dobi enaindvajset točk, igralcu izplača polovico stave."
 
 #: ../blackjack/src/dialog.cpp:99
 msgid "Set your wager and click in the white outline to deal a new hand."
-msgstr ""
+msgstr "Izberite stavo in kliknite na beli rob za ponovno delitev kart."
 
 #: ../blackjack/src/dialog.cpp:102
 msgid "Set your wager or click on the cards to deal a new hand."
-msgstr ""
+msgstr "Izberite stavo in kliknite na karte za ponovno delitev kart."
 
 #: ../blackjack/src/dialog.cpp:230
 msgid "Blackjack Preferences"
@@ -2150,7 +2161,7 @@ msgstr "Igra"
 
 #: ../blackjack/src/dialog.cpp:253
 msgid "_Display hand probabilities"
-msgstr "Pr_ikaži verjetnosti roke"
+msgstr "Pr_ikaži verjetnosti kart v roki"
 
 #: ../blackjack/src/dialog.cpp:263
 msgid "_Quick deals (no delay between each card)"
@@ -2158,7 +2169,7 @@ msgstr "_Hitre delitve (ni zamika med vsako karto)"
 
 #: ../blackjack/src/dialog.cpp:272
 msgid "_Never take insurance"
-msgstr "_Nikoli ne vzemi zavarovanja"
+msgstr "_Nikoli ne stavi na delivčeve karte"
 
 #: ../blackjack/src/dialog.cpp:279
 msgid "_Reset Balance"
@@ -2183,11 +2194,11 @@ msgstr "Kupčki kart"
 
 #: ../blackjack/src/dialog.cpp:320
 msgid "Hit Soft 17"
-msgstr ""
+msgstr "Deli na mehko 17"
 
 #: ../blackjack/src/dialog.cpp:325
 msgid "Double Any Total"
-msgstr ""
+msgstr "Podvoji vsak seštevek"
 
 #: ../blackjack/src/dialog.cpp:330
 msgid "Double 9"
@@ -2199,19 +2210,19 @@ msgstr "Double Soft"
 
 #: ../blackjack/src/dialog.cpp:340
 msgid "Double After Hit"
-msgstr ""
+msgstr "Podvoji po delitvi"
 
 #: ../blackjack/src/dialog.cpp:345
 msgid "Double After Split"
-msgstr ""
+msgstr "Podvoji po razdelitvi kupčka"
 
 #: ../blackjack/src/dialog.cpp:350
 msgid "Resplit"
-msgstr ""
+msgstr "Ponovno razdeli kupček"
 
 #: ../blackjack/src/dialog.cpp:355
 msgid "Resplit Aces"
-msgstr ""
+msgstr "Razdeli ase"
 
 #: ../blackjack/src/dialog.cpp:360
 #: ../blackjack/src/player.cpp:303
@@ -2229,16 +2240,16 @@ msgstr "Kliknite za podvojitev svoje stave"
 #: ../blackjack/src/events.cpp:513
 #, c-format
 msgid "Double click to increase your wager by %.2f"
-msgstr "Dvokliknite za povečanje stave za %.2f"
+msgstr "Dvakrat kliknite za povečanje stave za %.2f"
 
 #: ../blackjack/src/events.cpp:525
 #, c-format
 msgid "Double click to decrease your wager by %.2f"
-msgstr "Dvokliknite za pomanjšanje stave za %.2f"
+msgstr "Dvakrat kliknite za pomanjšanje stave za %.2f"
 
 #: ../blackjack/src/events.cpp:542
 msgid "Click to deal another card; drag card to split pair"
-msgstr ""
+msgstr "Kliknite za novo karto; povlecite karto za razdelitev para"
 
 #: ../blackjack/src/events.cpp:544
 msgid "Click to deal another card"
@@ -2262,43 +2273,43 @@ msgstr "Preverite namestitev igre BlackJack"
 
 #: ../blackjack/src/hand.cpp:120
 msgid "The best option is to stand"
-msgstr ""
+msgstr "Najbolje bi bilo če ustavite prejemanje kart."
 
 #: ../blackjack/src/hand.cpp:122
 msgid "To stand means to stop adding cards to your hand.  Do this by clicking on the dealer's cards or by selecting the option from the Control menu."
-msgstr ""
+msgstr "Zaustavitev kart pomeni, da ne boste dobili več novih kart v roko. To lahko naredite tako, da kliknete na delivčeve karte ali pa izberete možnost iz nadzornega menija."
 
 #: ../blackjack/src/hand.cpp:125
 msgid "The best option is to hit"
-msgstr ""
+msgstr "Najbolje bi bilo, če vzamete se eno karto."
 
 #: ../blackjack/src/hand.cpp:127
 msgid "To hit means to add another card to your hand.  Do this by clicking once on your cards or by selecting the option from the Control menu."
-msgstr ""
+msgstr "Če vzamete novo karto pomeni, da boste vzeli nove karte v roko. To lahko naredite tako, da kliknete na vaše karte ali pa izberete možnost iz nadzornega menija."
 
 #: ../blackjack/src/hand.cpp:130
 msgid "The best option is to double down"
-msgstr ""
+msgstr "Najbolje bi bilo, da podvojite vašo stavo."
 
 #: ../blackjack/src/hand.cpp:132
 msgid "To double down means to double the initial wager and receive exactly one more card.  Do this by clicking once on the chips at the bottom of the window or by selecting the option from the Control menu."
-msgstr ""
+msgstr "Podvojitev stave pomeni, da povečate vašo stavo in vzamete natanko še eno karto. To lahko naredite tako, da kliknete na vaš denar ali pa izberete možnost iz nadzornega menija."
 
 #: ../blackjack/src/hand.cpp:135
 msgid "The best option is to split"
-msgstr ""
+msgstr "Najbolje bi bilo, da razdelite kupček"
 
 #: ../blackjack/src/hand.cpp:137
 msgid "To split means to divide your current hand into two separate hands.  Do this by dragging one of your cards and dropping it off to the side or by selecting the option from the Control menu."
-msgstr ""
+msgstr "Razdelitev pomeni, da razdelite trenutne karte v dva ločena kupčka. To lahko naredite tako, da potegnete eno izmed vaših kart in spustite nekje na robu ali pa izberete možnost iz nadzornega menija."
 
 #: ../blackjack/src/hand.cpp:139
 msgid "The best option is to surrender"
-msgstr ""
+msgstr "Najbolje bi bilo, da se predate"
 
 #: ../blackjack/src/hand.cpp:141
-msgid "To surrender means to give up half your wager and not complete the hand.  Do this by selecting the option from the Control menu."
-msgstr ""
+msgid "To surrender means to give up half your wager and not complete the hand. Do this by selecting the option from the Control menu."
+msgstr "Predaja pomeni, da boste izgubili polovico stave in položili karte. To lahko naredite tako, da izberete možnost iz nadzornega menija."
 
 #: ../blackjack/src/menu.cpp:159
 msgid ""
@@ -2317,7 +2328,7 @@ msgstr "Računanje osnovne strategije ..."
 #: ../blackjack/src/player.cpp:178
 #: ../blackjack/src/player.cpp:433
 msgid "Bust"
-msgstr ""
+msgstr "Presežek seštevka"
 
 #: ../blackjack/src/player.cpp:180
 msgid "Blackjack!"
@@ -2325,7 +2336,7 @@ msgstr "Blackjack!"
 
 #: ../blackjack/src/player.cpp:183
 msgid "Soft"
-msgstr ""
+msgstr "Mehko"
 
 #: ../blackjack/src/player.cpp:189
 msgid "Win"
@@ -2345,23 +2356,23 @@ msgstr "Pričakovane vrednosti igralca"
 
 #: ../blackjack/src/player.cpp:257
 msgid "Stand"
-msgstr ""
+msgstr "Zaustavi"
 
 #: ../blackjack/src/player.cpp:266
 msgid "Hit"
-msgstr "Hit"
+msgstr "Vzemi novo karto"
 
 #: ../blackjack/src/player.cpp:277
 msgid "Double"
-msgstr "Double"
+msgstr "Podvoji"
 
 #: ../blackjack/src/player.cpp:291
 msgid "Split"
-msgstr "Split"
+msgstr "Razdeli"
 
 #: ../blackjack/src/player.cpp:432
 msgid "Dealer hand probabilities"
-msgstr "Verjetnosti roke delivca"
+msgstr "Verjetnosti kart delivca"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:122
 #, c-format
@@ -2404,15 +2415,15 @@ msgstr "GGZ območje igranja"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:429
 msgid "You can't chat while not in a room."
-msgstr "Ko niste v sobi ni mogoče klepetati."
+msgstr "Brez prijave v sobo, ni mogoče klepetati."
 
 #: ../dependencies/ggz-gtk/ggzclient.c:434
 msgid "You don't have permission to chat here."
-msgstr "Tu nimate dovoljenja za klepetanje."
+msgstr "Za klepetanje nimate ustreznih dovoljenj."
 
 #: ../dependencies/ggz-gtk/ggzclient.c:438
 msgid "No private chatting at a table!"
-msgstr "Pri mizi ni dovoljeno klepetanje med igralci!"
+msgstr "Pri mizi ni dovoljeno zasebno klepetanje med igralci!"
 
 #: ../dependencies/ggz-gtk/ggzclient.c:442
 msgid "That player isn't in the room!"
@@ -2449,7 +2460,7 @@ msgstr "Napaka med pridruževanjem k igralni mizi: %s"
 #: ../dependencies/ggz-gtk/ggzclient.c:616
 #, c-format
 msgid "You have been booted from the table by %s."
-msgstr ""
+msgstr "Igralec %s vas je odgnal od mize."
 
 #: ../dependencies/ggz-gtk/ggzclient.c:621
 #, c-format
@@ -2615,7 +2626,7 @@ msgstr "Geslo:"
 
 #: ../dependencies/ggz-gtk/login.c:687
 msgid "Email:"
-msgstr "E-pošta:"
+msgstr "Elektronska pošta:"
 
 #: ../dependencies/ggz-gtk/login.c:702
 msgid "Authentication type"
@@ -2732,7 +2743,7 @@ msgstr "Krajevni razvojni strežnik"
 
 #: ../dependencies/ggz-gtk/first.c:190
 msgid "This is the first time you are running the GTK+ GGZ Gaming Zone client. Would you like to create some default server profiles?"
-msgstr ""
+msgstr "To je vaš prvi poskus zagona odjamelca GTK+ GGZ igralnega območja. Ali želite ustvariti privzeti strežniški profil?"
 
 #: ../dependencies/ggz-gtk/chat.c:96
 msgid "/msg <username> <message> . Private message a player"
@@ -2740,7 +2751,7 @@ msgstr "/msg <uporabniško ime> <sporočilo> . Osebno sporočilo igralcu"
 
 #: ../dependencies/ggz-gtk/chat.c:98
 msgid "/table <message> .......... Message to your table"
-msgstr "/table <sporočilo> .......... pošlji sporočilo celotni mizi"
+msgstr "/table <sporočilo> .......... Pošlji sporočilo celotni mizi"
 
 #: ../dependencies/ggz-gtk/chat.c:100
 msgid "/wall <message> ........... Admin command"
@@ -2760,23 +2771,23 @@ msgstr "/friends .................. Seznam prijateljev"
 
 #: ../dependencies/ggz-gtk/chat.c:108
 msgid "/ignore ................... List people you're ignoring"
-msgstr "/ignore ................... seznam neželenih oseb"
+msgstr "/ignore ................... Seznam neželenih oseb"
 
 #: ../dependencies/ggz-gtk/chat.c:111
 msgid "/kick <username> .......... Kick a player from the room"
-msgstr "/kick <uporabniško ime> .......... brcni igralca iz sobe"
+msgstr "/kick <uporabniško ime> .......... Brcni igralca iz sobe"
 
 #: ../dependencies/ggz-gtk/chat.c:114
 msgid "/gag <username> ........... Gag a player to prevent them from talking"
-msgstr ""
+msgstr "/gag <uporabniško ime> ........... Oviraj igralca pri govoru"
 
 #: ../dependencies/ggz-gtk/chat.c:117
 msgid "/ungag <username> ......... Reverse the gag operation to allow a player to talk"
-msgstr ""
+msgstr "/ungag <uporabniško ime> ........... Prenehaj ovirati igralca pri govoru"
 
 #: ../dependencies/ggz-gtk/chat.c:120
 msgid "/ban <username> ........... Ban a player from the server"
-msgstr "/ban <uporabniško ime> ........... prepovej igralcu uporabo strežnika"
+msgstr "/ban <uporabniško ime> ........... Prepovej igralcu uporabo strežnika"
 
 #: ../dependencies/ggz-gtk/chat.c:261
 #, c-format
@@ -2861,7 +2872,7 @@ msgid ""
 "You don't have this game installed. You can download\n"
 "it from %s."
 msgstr ""
-"Ta igra še ni nameščena.Lahko jo prenesete\n"
+"Te igre še nimate nameščene. Lahko jo prenesete\n"
 "preko %s."
 
 #: ../dependencies/ggz-gtk/game.c:76
@@ -2879,6 +2890,8 @@ msgid ""
 "Failed to execute game module.\n"
 " Launch aborted."
 msgstr ""
+"Napaka med zagonom modula igre.\n"
+" Zagon prekinjen."
 
 #: ../dependencies/ggz-gtk/game.c:201
 msgid "Launched game"
@@ -2909,7 +2922,7 @@ msgid ""
 "You must be in a room to launch a game.\n"
 "Launch aborted"
 msgstr ""
-"Morate biti v sobi, če želite zagnati igro.\n"
+"Če želite zagnati igro, morate biti v sobi.\n"
 "Zagon prekinjen."
 
 #: ../dependencies/ggz-gtk/game.c:323
@@ -2929,6 +2942,8 @@ msgid ""
 "You need to launch the GGZ client directly\n"
 "to be able to play this game."
 msgstr ""
+"Neposredno morate zagnati odjemalca GGZ,\n"
+"če želite igrati to igro."
 
 #: ../dependencies/ggz-gtk/about.c:87
 #: ../dependencies/ggz-gtk/client.c:1043
@@ -2950,13 +2965,16 @@ msgid ""
 "you would like to help head over to\n"
 "http://www.ggzgamingzone.org/"
 msgstr ""
+"Filtriranje sobe še ni mogoče. V primeru\n"
+"da želite pomegati, obiščite spletno stran\n"
+"http://www.ggzgamingzone.org/"
 
 #: ../dependencies/ggz-gtk/types.c:151
 #: ../dependencies/ggz-gtk/client.c:237
 #: ../dependencies/ggz-gtk/client.c:249
 #: ../dependencies/ggz-gtk/client.c:510
 msgid "Not Implemented"
-msgstr "Ni vključeno v program"
+msgstr "Ni omogočeno v programu"
 
 #: ../dependencies/ggz-gtk/types.c:183
 #: ../dependencies/ggz-gtk/tablelist.c:202
@@ -3049,7 +3067,7 @@ msgstr "Skrbnik"
 #: ../dependencies/ggz-gtk/playerinfo.c:349
 #: ../libgames-support/games-dlg-players.c:126
 msgid "Bot"
-msgstr ""
+msgstr "Bot"
 
 #. FIXME: what about bot/reservation seats?
 #: ../dependencies/ggz-gtk/playerlist.c:94
@@ -3090,7 +3108,7 @@ msgstr "Statistika"
 
 #: ../dependencies/ggz-gtk/pick_module.c:89
 msgid "Which client would you like to use to play this game?"
-msgstr ""
+msgstr "Katerega odjemalca bi radi uporabili za igranje te igre?"
 
 #: ../dependencies/ggz-gtk/pick_module.c:131
 msgid "Don't ask me again."
@@ -3214,7 +3232,7 @@ msgstr ""
 
 #: ../dependencies/ggz-gtk/launch.c:325
 msgid "Invalid number of bots specified"
-msgstr ""
+msgstr "Določeno neustrezno število botov."
 
 #: ../dependencies/ggz-gtk/launch.c:334
 #: ../dependencies/ggz-gtk/client.c:548
@@ -3331,7 +3349,7 @@ msgstr "Napaka pridruževanja"
 
 #: ../dependencies/ggz-gtk/client.c:640
 msgid "Disconnect from the GGZ Gaming Zone server"
-msgstr "Prekini povezavo s strežnikom GGZ Gaming Zone"
+msgstr "Prekini povezavo s strežnikom GGZ igralnega ombočja"
 
 #: ../dependencies/ggz-gtk/client.c:642
 msgid "Start playing a game at a new table"
@@ -3343,19 +3361,19 @@ msgstr "Pridruži se obstoječi igri"
 
 #: ../dependencies/ggz-gtk/client.c:646
 msgid "Watch an existing game - become a spectator of the table"
-msgstr ""
+msgstr "Opazujte trenutno igro - postanite opazovalec ob mizi"
 
 #: ../dependencies/ggz-gtk/client.c:649
 msgid "Leave the game you're currently playing"
-msgstr ""
+msgstr "Zapustite igro, ki jo trenutno igrate"
 
 #: ../dependencies/ggz-gtk/client.c:651
 msgid "Show the properties dialog to change the client settings"
-msgstr ""
+msgstr "Prikaži lastnosti pogovornega okna za spreminjanje nastavitev odjemalce."
 
 #: ../dependencies/ggz-gtk/client.c:655
 msgid "Show the game stats for the current room's game type"
-msgstr ""
+msgstr "Prikaži statistiko igre za trenutno vrsto igre v sobi"
 
 #: ../dependencies/ggz-gtk/client.c:658
 msgid "Exit the GGZ client application."
@@ -3461,7 +3479,7 @@ msgstr "Spremeni"
 
 #: ../dependencies/ggz-gtk/props.c:1131
 msgid "Ignore Join/Part Messages"
-msgstr ""
+msgstr "Prezri pridružitvena sporočila"
 
 #: ../dependencies/ggz-gtk/props.c:1139
 msgid "Play Sounds"
@@ -3477,7 +3495,7 @@ msgstr "Klepetu beleži časovni žig"
 
 #: ../dependencies/ggz-gtk/props.c:1163
 msgid "Word Wrap"
-msgstr "Lomi vrstice ob besedah"
+msgstr "Prelomi vrstice ob besedah"
 
 #: ../dependencies/ggz-gtk/props.c:1171
 msgid "Chat Color"
@@ -3814,7 +3832,7 @@ msgstr "Vrsta povišanja:"
 
 #: ../glchess/glade/preferences.glade.h:6
 msgid "Show _History"
-msgstr "Prikaži :zgodovino"
+msgstr "Prikaži _zgodovino"
 
 #: ../glchess/glade/preferences.glade.h:7
 #: ../gnome-sudoku/src/lib/main.py:320
@@ -4008,7 +4026,7 @@ msgstr "Šah ni pravilno nameščen"
 
 #: ../glchess/src/glchess.in.in:35
 msgid "Chess is not able to start because required application files are not installed. If you are currently upgrading your system please wait until the upgrade has completed."
-msgstr ""
+msgstr "Igre šaha ni mogoče zagnati, ker zahtevan program ni nameščen. V primeru, da ravnokar nadgrajujete sistem, počakajte, da se sistem nadgradi do konca."
 
 #: ../glchess/src/lib/gtkui/dialogs.py:123
 msgid "Unlimited"
@@ -4188,6 +4206,10 @@ msgid ""
 "\n"
 "Please contact your system administrator to resolve these problems, until then you will be able to play chess in 2D mode."
 msgstr ""
+"Ni mogoče igrati igre v 3D načinu, zaradi naslednjih težav:\n"
+"%(errors)s\n"
+"\n"
+"Prosim, stopite v stik s sistemskim skrbnikom za razrešitev problema. Do takrat boste šah lahko igrali le v 2D načinu."
 
 #: ../glchess/src/lib/gtkui/gtkui.py:818
 msgid "Unable to claim draw"
@@ -4199,6 +4221,9 @@ msgid ""
 "a) The board has been in the same state three times (Three fold repitition)\n"
 "b) Fifty moves have occured where no pawn has moved and no piece has been captured (50 move rule)"
 msgstr ""
+"Neodločeno igro lahko zahtevate:\n"
+"a) kadar so figure na plošli trikrat ostale nepremaknjene\n"
+"b) petdeset premikov je narejenih ne da bi premaknili kmeta ali vzeli katerekoli druge figure"
 
 #. TODO: This should be a pop-up dialog
 #. FIXME: This should create a pop-up dialog
@@ -4277,82 +4302,82 @@ msgstr "%(movenum)2ib."
 #: ../glchess/src/lib/gtkui/chessview.py:423
 #, python-format
 msgid "%(move)s White castles long (%(result)s)"
-msgstr ""
+msgstr "%(move)s beli izvede kraljevo rokado (%(result)s)"
 
 #: ../glchess/src/lib/gtkui/chessview.py:424
 #, python-format
 msgid "%(move)s White castles long"
-msgstr ""
+msgstr "%(move)s beli izvede kraljevo rokado"
 
 #: ../glchess/src/lib/gtkui/chessview.py:425
 #, python-format
 msgid "%(move)s Black castles long (%(result)s)"
-msgstr ""
+msgstr "%(move)s črni izvede kraljevo rokado (%(result)s)"
 
 #: ../glchess/src/lib/gtkui/chessview.py:426
 #, python-format
 msgid "%(move)s Black castles long"
-msgstr ""
+msgstr "%(move)s črni izvede kraljevo rokado"
 
 #: ../glchess/src/lib/gtkui/chessview.py:428
 #, python-format
 msgid "%(move)s White castles short (%(result)s)"
-msgstr ""
+msgstr "%(move)s beli izvede damino rokado (%(result)s)"
 
 #: ../glchess/src/lib/gtkui/chessview.py:429
 #, python-format
 msgid "%(move)s White castles short"
-msgstr ""
+msgstr "%(move)s beli izvede damino rokado"
 
 #: ../glchess/src/lib/gtkui/chessview.py:430
 #, python-format
 msgid "%(move)s Black castles short (%(result)s)"
-msgstr ""
+msgstr "%(move)s črni izvede damino rokado (%(result)s)"
 
 #: ../glchess/src/lib/gtkui/chessview.py:431
 #, python-format
 msgid "%(move)s Black castles short"
-msgstr ""
+msgstr "%(move)s črni izvede damino rokado"
 
 #: ../glchess/src/lib/gtkui/chessview.py:433
 #, python-format
 msgid "%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %(end)s (%(result)s)"
-msgstr ""
+msgstr "%(move)s beli %(piece)s na %(start)s vzame črnega %(victim_piece)s na %(end)s (%(result)s)"
 
 #: ../glchess/src/lib/gtkui/chessview.py:434
 #, python-format
 msgid "%(move)s White %(piece)s at %(start)s takes the black %(victim_piece)s at %(end)s"
-msgstr ""
+msgstr "%(move)s beli %(piece)s na %(start)s vzame črnega %(victim_piece)s na %(end)s"
 
 #: ../glchess/src/lib/gtkui/chessview.py:435
 #, python-format
 msgid "%(move)s Black %(piece)s at %(start)s takes the white %(victim_piece)s at %(end)s (%(result)s)"
-msgstr ""
+msgstr "%(move)s črni %(piece)s na %(start)s vzame belega %(victim_piece)s na %(end)s (%(result)s)"
 
 #: ../glchess/src/lib/gtkui/chessview.py:436
 #, python-format
 msgid "%(move)s Black %(piece)s at %(start)s takes the white %(victim_piece)s at %(end)s"
-msgstr ""
+msgstr "%(move)s črni %(piece)s na %(start)s vzame belega %(victim_piece)s na %(end)s"
 
 #: ../glchess/src/lib/gtkui/chessview.py:438
 #, python-format
 msgid "%(move)s White %(piece)s moves from %(start)s to %(end)s (%(result)s)"
-msgstr ""
+msgstr "%(move)s beli %(piece)s se premakne od %(start)s na %(end)s (%(result)s)"
 
 #: ../glchess/src/lib/gtkui/chessview.py:439
 #, python-format
 msgid "%(move)s White %(piece)s moves from %(start)s to %(end)s"
-msgstr ""
+msgstr "%(move)s beli %(piece)s se premakne od %(start)s na %(end)s"
 
 #: ../glchess/src/lib/gtkui/chessview.py:440
 #, python-format
 msgid "%(move)s Black %(piece)s moves from %(start)s to %(end)s (%(result)s)"
-msgstr ""
+msgstr "%(move)s črni %(piece)s se premakne od %(start)s na %(end)s (%(result)s)"
 
 #: ../glchess/src/lib/gtkui/chessview.py:441
 #, python-format
 msgid "%(move)s Black %(piece)s moves from %(start)s to %(end)s"
-msgstr ""
+msgstr "%(move)s črni %(piece)s se premakne od %(start)s na %(end)s"
 
 #: ../glchess/src/lib/gtkui/chessview.py:466
 #: ../glchess/src/lib/gtkui/chessview.py:468
@@ -4374,7 +4399,7 @@ msgstr "Nasprotnik se ne more premikati (pat)"
 
 #: ../glchess/src/lib/gtkui/chessview.py:478
 msgid "No piece has been taken or pawn moved in the last fifty moves"
-msgstr ""
+msgstr "V zadnjih petdesetih potezah ni bilo zajete nobene figure in noben kmet ni bil premaknjen"
 
 #: ../glchess/src/lib/gtkui/chessview.py:480
 msgid "Opponent has run out of time"
@@ -5115,7 +5140,7 @@ msgstr "Steklene frnikole"
 
 #: ../gnect/src/theme.c:82
 msgid "Nightfall"
-msgstr ""
+msgstr "Pomračitev"
 
 #: ../gnect/src/theme.c:90
 msgid "Blocks"
@@ -5342,19 +5367,19 @@ msgstr "Hitro"
 
 #: ../gnibbles/main.c:64
 msgid "Beginner with Fakes"
-msgstr ""
+msgstr "Začetniško s pomočjo"
 
 #: ../gnibbles/main.c:65
 msgid "Slow with Fakes"
-msgstr ""
+msgstr "Počasi s pomočjo"
 
 #: ../gnibbles/main.c:66
 msgid "Medium with Fakes"
-msgstr ""
+msgstr "Srednje s pomočjo"
 
 #: ../gnibbles/main.c:67
 msgid "Fast with Fakes"
-msgstr ""
+msgstr "Hitro s pomočjo"
 
 #: ../gnibbles/main.c:255
 msgid ""
@@ -5637,7 +5662,7 @@ msgstr "Omogoči brizganje"
 
 #: ../gnobots2/gnobots2.schemas.in.h:6
 msgid "Enable splats. Play a sound and show a \"Splat!\" on the screen."
-msgstr ""
+msgstr "omogoči pljuske. Predvajaj zvok in prikaži pljusk \"Splat!\" na zaslonu."
 
 #: ../gnobots2/gnobots2.schemas.in.h:7
 msgid "Game type"
@@ -5920,7 +5945,7 @@ msgstr "Predvajanje zvoka ob dogodkih, kot so končanje stopnje in umiranje."
 
 #: ../gnobots2/properties.c:512
 msgid "E_nable splats"
-msgstr ""
+msgstr "Omogoči _pljuske."
 
 #: ../gnobots2/properties.c:519
 msgid "Play a sound when two robots collide"
@@ -5972,7 +5997,7 @@ msgstr "Premor"
 
 #: ../gnometris/gnometris.desktop.in.in.h:1
 msgid "Fit falling blocks together"
-msgstr ""
+msgstr "Prilagodi padajoče like skupaj"
 
 #: ../gnometris/gnometris.desktop.in.in.h:2
 #: ../gnometris/tetris.cpp:159
@@ -6039,7 +6064,7 @@ msgstr "Barva ozadja v zapisu razumljivem za gdk_color_parse."
 
 #: ../gnometris/gnometris.schemas.in.h:19
 msgid "The density of blocks in rows filled at the start of the game. The value is between 0 (for no blocks) and 10 (for a completely filled row)."
-msgstr ""
+msgstr "Gostota polnosti vrstic z liki ob začetku igranja igre. Vrednosti je določena med  0 (ni likov) in 10 (polno zasedene vrstice)."
 
 #: ../gnometris/gnometris.schemas.in.h:20
 msgid "The density of filled rows"
@@ -6047,11 +6072,11 @@ msgstr "Gostota napolnjenih vrstic"
 
 #: ../gnometris/gnometris.schemas.in.h:21
 msgid "The name of the theme used for rendering the blocks and the background."
-msgstr ""
+msgstr "Ime teme uporabljene za slog likov in ozadja."
 
 #: ../gnometris/gnometris.schemas.in.h:22
 msgid "The number of rows that are filled with random blocks at the start of the game."
-msgstr ""
+msgstr "Število vrstic, ki naj bodo zapolnjene z naključnimi liki ob začetku igre."
 
 #: ../gnometris/gnometris.schemas.in.h:23
 msgid "The number of rows to fill"
@@ -6063,7 +6088,7 @@ msgstr "Tema za upodobitev blokov"
 
 #: ../gnometris/gnometris.schemas.in.h:25
 msgid "This selects whether or not to draw the background image over the background color."
-msgstr ""
+msgstr "Določa ali naj se izriše slika ozadja nad barvo ozadja."
 
 #: ../gnometris/gnometris.schemas.in.h:26
 msgid "Whether to give blocks random colors"
@@ -6083,7 +6108,7 @@ msgstr "Ali naj bo omogočen predogled naslednjega bloka."
 
 #: ../gnometris/gnometris.schemas.in.h:30
 msgid "Whether to provide a graphical representation of where a block will land."
-msgstr ""
+msgstr "Ali naj bo prikazana predočitev kje bo pristal lik."
 
 #: ../gnometris/gnometris.schemas.in.h:31
 msgid "Whether to provide a target"
@@ -6119,11 +6144,11 @@ msgstr "Povezano"
 
 #: ../gnometris/renderer.cpp:29
 msgid "Tango Flat"
-msgstr ""
+msgstr "Tango Flat"
 
 #: ../gnometris/renderer.cpp:30
 msgid "Tango Shaded"
-msgstr ""
+msgstr "Tango Shaded"
 
 #: ../gnometris/scoreframe.cpp:59
 msgid "Lines:"
@@ -6190,6 +6215,9 @@ msgid ""
 "\n"
 "Gnometris is a part of GNOME Games."
 msgstr ""
+"Igra prilagajanja padajočih likov.\n"
+"\n"
+"Igra Gnometris je del GNOME iger"
 
 #: ../gnometris/highscores.cpp:56
 msgid "Gnometris Scores"
@@ -6334,7 +6362,7 @@ msgstr "Sudoku ni pravilno nameščen"
 
 #: ../gnome-sudoku/src/gnome-sudoku.in.in:43
 msgid "Sudoku is not able to start because required application files are not installed. If you are currently upgrading your system please wait until the upgrade has completed."
-msgstr ""
+msgstr "Igre sudoku ni mogoče zagnati, saj zahteva program, ki ni nameščen. V primeru, da trenutno posodabljate sistem, počakajte, da se sistem nadgradi do konca."
 
 #: ../gnome-sudoku/src/lib/defaults.py.in:40
 msgid "GNOME Sudoku"
@@ -6487,7 +6515,7 @@ msgstr "Opozori na _neizpolnjena polja"
 
 #: ../gnome-sudoku/src/lib/main.py:314
 msgid "Warn about squares made unfillable by a move"
-msgstr ""
+msgstr "Opozori na prostore, ki so s premikom postali nezapolnjivi"
 
 #: ../gnome-sudoku/src/lib/main.py:316
 msgid "_Track additions"
@@ -6591,10 +6619,10 @@ msgstr[3] "Na voljo imate %(n)s namige"
 #, python-format
 msgid "You had %(n)s impossibility pointed out."
 msgid_plural "You had %(n)s impossibilities pointed out."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Izpisanih je bilo %(n)s nemogočih vrednosti."
+msgstr[1] "Izpisana je bila %(n)s nemogoča vrednost."
+msgstr[2] "Izpisani sta bili %(n)s nemogoči vrednosti."
+msgstr[3] "Izpisane so bile %(n)s nemogoče vrednosti."
 
 #: ../gnome-sudoku/src/lib/main.py:483
 #, python-format
@@ -6636,11 +6664,11 @@ msgstr "Izračunana zahtevnost:"
 
 #: ../gnome-sudoku/src/lib/main.py:820
 msgid "Number of moves instantly fillable by elimination: "
-msgstr ""
+msgstr "Število potez, ki jih je mogoče takoj zapolniti s izločevanjem:"
 
 #: ../gnome-sudoku/src/lib/main.py:823
 msgid "Number of moves instantly fillable by filling: "
-msgstr ""
+msgstr "Število potez, ki jih je mogoče takoj zapolniti s polnjenjem:"
 
 #: ../gnome-sudoku/src/lib/main.py:826
 msgid "Amount of trial-and-error required to solve: "
@@ -6718,10 +6746,10 @@ msgstr "Zaustavljeno"
 #, python-format
 msgid "Generated %(n)s out of %(total)s puzzle"
 msgid_plural "Generated %(n)s out of %(total)s puzzles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Ustvarjenih %(n)s od %(total)s iger"
+msgstr[1] "Ustvarjena %(n)s od %(total)s iger"
+msgstr[2] "Ustvarjeni %(n)s od %(total)s iger"
+msgstr[3] "Ustvarjene %(n)s od %(total)s iger"
 
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:223
 #, python-format
