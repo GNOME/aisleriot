@@ -31,6 +31,8 @@
   #include "SDL_mixer.h"
 #endif 
 
+#include "games-runtime.h"
+
 #include "games-sound.h"
 
 #if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
@@ -46,15 +48,18 @@ static GThreadPool *threads;
 static void
 games_sound_thread_run (gchar * data, gchar * user_data)
 {
-  gchar *fullname = NULL;
-
+  const char *dir;
+  char *uri;
   gboolean done = FALSE;
   GstBus *bus;
 
   bus = gst_pipeline_get_bus (GST_PIPELINE (pipeline));
   /* Set URL for sound to play. */
-  fullname = g_strdup_printf ("file:///%s/%s.ogg", SOUNDDIR, (char *) data);
-  g_object_set (G_OBJECT (pipeline), "uri", fullname, NULL);
+  dir = games_runtime_get_directory (GAMES_RUNTIME_SOUND_DIRECTORY);
+  uri = g_strdup_printf ("file:///%s/%s.ogg", dir, (char *) data);
+  g_object_set (G_OBJECT (pipeline), "uri", uri, NULL);
+  g_free (uri);
+
   /* Set playbin to playing state. */
   gst_element_set_state (pipeline, GST_STATE_PLAYING);
 
@@ -88,7 +93,6 @@ games_sound_thread_run (gchar * data, gchar * user_data)
   while (!done);
 
   gst_element_set_state (pipeline, GST_STATE_NULL);
-  g_free (fullname);
 }
 
 #endif /* HAVE_GSTREAMER */
@@ -102,7 +106,7 @@ games_sound_sdl_play (const gchar *filename)
   gchar *name, *path;
 
   name = g_strdup_printf ("%s.ogg", filename);
-  path = g_build_filename (SOUNDDIR, name, NULL);
+  path = games_runtime_get_file (GAMES_RUNTIME_SOUND_DIRECTORY, name);
   g_free (name);
 
   wave = Mix_LoadWAV (path);

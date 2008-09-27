@@ -65,9 +65,6 @@ typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; 
 
 /* Some defines */
 
-#define SCALABLE_CARDS_DIR    COMMON_DATADIR G_DIR_SEPARATOR_S "cards"
-#define PRERENDERED_CARDS_DIR COMMON_DATADIR G_DIR_SEPARATOR_S "card-themes"
-
 typedef enum {
   /* Cards */
   GAMES_CARD_JOKER = 0,

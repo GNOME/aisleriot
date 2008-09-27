@@ -40,8 +40,10 @@
 #endif
 #endif
 
-#include "games-files.h"
 #include "games-card.h"
+#include "games-runtime.h"
+
+#include "games-files.h"
 
 G_DEFINE_TYPE (GamesFileList, games_file_list, G_TYPE_OBJECT)
 
@@ -442,156 +444,34 @@ games_file_list_card_themes (gboolean scalable)
 {
   GamesFileList *files;
   GList *l;
-  const char *glob, *ext, *dir;
+  GamesRuntimeDirectory dir;
+  const char *glob, *path;
 
 #ifdef HAVE_RSVG
   if (scalable) {
     glob = "*.svg";
-    ext = ".svg";
-    dir = SCALABLE_CARDS_DIR;
+    dir = GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY;
   } else
 #endif /* HAVE_RSVG */
   {
     glob = "*.card-theme";
-    ext = ".card-theme";
-    dir = PRERENDERED_CARDS_DIR;
+    dir = GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY;
   }
 
-  files = games_file_list_new (glob, dir, NULL);
+  path = games_runtime_get_directory (dir);
+  files = games_file_list_new (glob, path, NULL);
+
   games_file_list_transform_basename (files);
 
   for (l = files->list; l != NULL; l = l->next) {
     const char *filename = (const char *) l->data;
     char *dot;
 
-    dot = g_strrstr (filename, ext);
+    dot = strrchr (filename, '.');
     if (dot) {
       *dot = '\0';
     }
   }
 
   return files;
-}
-
-#if defined (G_OS_WIN32) && defined (PREFIX)
-
-static const gchar *
-games_toplevel_directory (void)
-{
-  static gchar *toplevel = NULL;
-
-  if (toplevel)
-    return toplevel;
-
-  {
-    gchar *filename;
-    gchar *sep1, *sep2;
-
-    if (G_WIN32_HAVE_WIDECHAR_API ()) {
-      wchar_t w_filename[MAX_PATH];
-
-      if (GetModuleFileNameW (NULL,
-			      w_filename, G_N_ELEMENTS (w_filename)) == 0)
-	g_error ("GetModuleFilenameW failed");
-
-      filename = g_utf16_to_utf8 (w_filename, -1, NULL, NULL, NULL);
-      if (filename == NULL)
-	g_error ("Converting module filename to UTF-8 failed");
-    } else {
-      gchar cp_filename[MAX_PATH];
-
-      if (GetModuleFileNameA (NULL,
-			      cp_filename, G_N_ELEMENTS (cp_filename)) == 0)
-	g_error ("GetModuleFilenameA failed");
-
-      filename = g_locale_to_utf8 (cp_filename, -1, NULL, NULL, NULL);
-      if (filename == NULL)
-	g_error ("Converting module filename to UTF-8 failed");
-    }
-
-    /* If the executable file name is of the format
-     * <foobar>\bin\*.exe , use <foobar>.
-     * Otherwise, use the directory where the executable is.
-     */
-
-    sep1 = strrchr (filename, '\\');
-    *sep1 = '\0';
-
-    sep2 = strrchr (filename, '\\');
-    if (sep2 != NULL) {
-      *sep2 = '\0';
-    }
-
-    toplevel = filename;
-  }
-
-  return toplevel;
-}
-#endif
-
-/**
- * games_path_runtime_fix_private:
- * @path: A pointer to a string (allocated with g_malloc) that is
- *        (or could be) a pathname.
- *
- * On Windows, this function checks if the string pointed to by @path
- * starts with the compile-time prefix, and in that case, replaces the
- * prefix with the run-time one.  @path should be a pointer to a
- * dynamically allocated (with g_malloc, g_strconcat, etc) string. If
- * the replacement takes place, the original string is deallocated,
- * and *@path is replaced with a pointer to a new string with the
- * run-time prefix spliced in.
- *
- * On Linux, it does the same thing, but only if BinReloc support is enabled.
- * On other Unices, it does nothing because those platforms don't have a
- * way to find out where our binary is.
- */
-static void
-games_path_runtime_fix_private (gchar **path)
-{
-#if defined (G_OS_WIN32) && defined (PREFIX)
-  gchar *p;
-
-      /* This is a compile-time entry. Replace the path with the
-       * real one on this machine.
-       */
-      p = *path;
-      *path = g_strconcat (games_toplevel_directory (),
-                           "\\",
-                           *path + strlen (PREFIX "/"),
-                           NULL);
-      g_free (p);
-  /* Replace forward slashes with backslashes, just for
-   * completeness */
-  p = *path;
-  while ((p = strchr (p, '/')) != NULL)
-    {
-      *p = '\\';
-      p++;
-    }
-#endif
-}
-
-
-gchar *
-games_path_runtime_fix (const gchar *path)
-{
-  gchar *p = g_strdup (path);
-  games_path_runtime_fix_private (&p);
-
-  return p;
-}
-
-
-gchar *
-games_build_filename (const gchar * path, const gchar * filename)
-{
-  gchar *p = g_strdup (path);
-	  
-  games_path_runtime_fix_private (&p);
-
-  gchar *result = g_build_filename (p, filename, NULL);
-  g_free (p);
-
-  return result;
 }

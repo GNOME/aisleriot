@@ -36,6 +36,8 @@ libgames_support_la_SOURCES =		\
 	games-files.h			\
 	games-pixbuf-utils.c		\
 	games-pixbuf-utils.h		\
+	games-runtime.c			\
+	games-runtime.h			\
 	games-sound.c			\
 	games-sound.h			\
 	games-stock.c			\
@@ -87,10 +89,7 @@ libgames_support_la_CPPFLAGS = \
 	-DPKGDATADIR="\"$(pkgdatadir)\""			\
 	-DDATADIR="\"$(datadir)\""				\
 	-DCOMMON_DATADIR="\"$(datadir)/gnome-games-common\""	\
-	-DCARDDIR="\"$(carddir)\""				\
-	-DICONDIR="\"$(pkgdatadir)/icons\""			\
 	-DSCORESDIR="\"$(scoredir)\""				\
-	-DSOUNDDIR="\"$(pkgdatadir)/sounds\""			\
 	$(NULL)
 
 libgames_support_la_CFLAGS = 	\

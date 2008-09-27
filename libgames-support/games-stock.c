@@ -30,6 +30,7 @@
 #include <gtk/gtkversion.h>
 
 #include "games-files.h"
+#include "games-runtime.h"
 
 #include "games-stock.h"
 
@@ -389,7 +390,8 @@ games_stock_init (void)
    * for icons as well as the standard search paths.
    */
   /* FIXME: multi-head! */
-  gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (), ICONDIR);
+  gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
+                                     games_runtime_get_directory (GAMES_RUNTIME_ICON_THEME_DIRECTORY));
  
   gtk_stock_add_static (games_stock_items, G_N_ELEMENTS (games_stock_items));
 }

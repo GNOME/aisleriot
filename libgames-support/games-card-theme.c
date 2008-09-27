@@ -28,6 +28,7 @@
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"
+#include "games-runtime.h"
 
 #include "games-card-theme.h"
 
@@ -83,9 +84,6 @@ enum {
 };
 
 static guint signals[LAST_SIGNAL];
-
-/* FIXMEchpe: use uninstalled data dir for rendering the card theme! */
-#define SLOTDIR  PKGDATADIR "/pixmaps"
 
 #define N_ROWS ((double) 5.0)
 #define N_COLS ((double) 13.0)
@@ -158,7 +156,7 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
                                       const gchar * theme_name)
 {
   GamesPreimage *preimage;
-  const char *theme_dir, *env;
+  const char *theme_dir, *slot_dir, *env;
   gchar *filename, *path;
 
 #ifdef INSTRUMENT_LOADING
@@ -170,12 +168,13 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
   if (theme->theme_data.scalable.cards_preimage != NULL)
     return TRUE;
 
-  theme_dir =
-    theme->theme_dir != NULL ? theme->theme_dir : SCALABLE_CARDS_DIR;
+  theme_dir = theme->theme_dir;
+  if (!theme_dir)
+    return FALSE;
 
   /* First try and load the given file. */
   filename = g_strdup_printf ("%s.svg", theme_name);
-  path = games_build_filename (theme_dir, filename);
+  path = g_build_filename (theme_dir, filename, NULL);
   preimage = games_preimage_new_from_file (path, NULL);
   g_free (path);
 
@@ -210,7 +209,9 @@ games_card_theme_load_theme_scalable (GamesCardTheme * theme,
   }
 
   /* And the slot image */
-  path = games_build_filename (SLOTDIR, "slot.svg");
+  /* FIXMEchpe: use uninstalled data dir for rendering the card theme! */
+  slot_dir = games_runtime_get_directory (GAMES_RUNTIME_PIXMAP_DIRECTORY);
+  path = g_build_filename (slot_dir, "slot.svg", NULL);
   theme->theme_data.scalable.slot_preimage = games_preimage_new_from_file (path, NULL);
   g_free (path);
   g_return_val_if_fail (theme->theme_data.scalable.slot_preimage != NULL, FALSE);
@@ -260,14 +261,16 @@ games_card_theme_load_theme_prerendered (GamesCardTheme * theme,
                                          const gchar * theme_name)
 {
   GKeyFile *key_file;
+  const char *theme_dir;
   char *filename, *path;
   GError *error = NULL;
   int *sizes = NULL;
   gsize n_sizes, i;
   gboolean retval = FALSE;
 
+  theme_dir = games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY);
   filename = g_strdup_printf ("%s.card-theme", theme_name);
-  path = games_build_filename (PRERENDERED_CARDS_DIR, filename);
+  path = g_build_filename (theme_dir, filename, NULL);
   g_free (filename);
 
   key_file = g_key_file_new ();
@@ -511,7 +514,7 @@ games_card_theme_load_card (GamesCardTheme * theme, int card_id)
 
   games_card_get_name_by_id_snprintf (name, sizeof (name), card_id);
   g_snprintf (filename, sizeof (filename), "%s.png", name);
-  path = games_build_filename (theme->theme_data.prerendered.themesizepath, filename);
+  path = g_build_filename (theme->theme_data.prerendered.themesizepath, filename, NULL);
 
   pixbuf = gdk_pixbuf_new_from_file (path, &error);
   if (!pixbuf) {
@@ -588,6 +591,10 @@ games_card_theme_set_property (GObject * object,
   }
   case PROP_THEME_DIRECTORY:
     theme->theme_dir = g_value_dup_string (value);
+    if (!theme->theme_dir)
+      theme->theme_dir = g_strdup (games_runtime_get_directory (theme->use_scalable ? GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY
+                                                                                    : GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY));
+
     break;
   }
 }
@@ -626,7 +633,8 @@ games_card_theme_class_init (GamesCardThemeClass * klass)
                            G_PARAM_WRITABLE |
                            G_PARAM_STATIC_NAME |
                            G_PARAM_STATIC_NICK |
-                           G_PARAM_STATIC_BLURB | G_PARAM_CONSTRUCT_ONLY));
+                           G_PARAM_STATIC_BLURB |
+                           G_PARAM_CONSTRUCT_ONLY));
   g_object_class_install_property
     (gobject_class,
      PROP_THEME_DIRECTORY,
@@ -635,7 +643,8 @@ games_card_theme_class_init (GamesCardThemeClass * klass)
                           G_PARAM_WRITABLE |
                           G_PARAM_STATIC_NAME |
                           G_PARAM_STATIC_NICK |
-                          G_PARAM_STATIC_BLURB | G_PARAM_CONSTRUCT_ONLY));
+                          G_PARAM_STATIC_BLURB |
+                          G_PARAM_CONSTRUCT_ONLY));
 }
 
 /* public API */
@@ -652,8 +661,8 @@ GamesCardTheme *
 games_card_theme_new (const char *theme_dir, gboolean scalable)
 {
   return g_object_new (GAMES_TYPE_CARD_THEME,
-                       "theme-directory", theme_dir,
                        "scalable", scalable,
+                       "theme-directory", theme_dir,
                        NULL);
 }
 
@@ -801,9 +810,7 @@ games_card_theme_set_size (GamesCardTheme * theme,
   {
     guint i;
     int twidth, theight;
-    gchar *spath;
-    CardSize size = { -1, -1 }, fit_size = {
-    -1, -1};
+    CardSize size = { -1, -1 }, fit_size = { -1, -1};
 
     twidth = FLOAT_TO_INT_CEIL (((double) width) * proportion);
     theight = FLOAT_TO_INT_CEIL (((double) height) * proportion);
@@ -828,7 +835,7 @@ games_card_theme_set_size (GamesCardTheme * theme,
       size = fit_size;
 
     if (size.width > 0 && size.height > 0) {
-      char sizestr[32];
+      char sizestr[16];
 
       if (size.width == theme->card_size.width &&
           size.height == theme->card_size.height)
@@ -837,13 +844,8 @@ games_card_theme_set_size (GamesCardTheme * theme,
       g_free (theme->theme_data.prerendered.themesizepath);
 
       g_snprintf (sizestr, sizeof (sizestr), "%d", size.width);
-      spath = g_build_filename (theme->theme_dir !=
-                          NULL ? theme->theme_dir : PRERENDERED_CARDS_DIR,
-                          theme->theme_name, NULL);
-      
-      theme->theme_data.prerendered.themesizepath = 
-	      				games_build_filename (spath, sizestr);
-      g_free (spath);
+      theme->theme_data.prerendered.themesizepath =
+        g_build_filename (theme->theme_dir, theme->theme_name, sizestr, NULL);
 
       theme->size_available = TRUE;
       theme->card_size = size;
