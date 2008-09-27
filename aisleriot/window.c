@@ -52,6 +52,7 @@
 #include <libgames-support/games-clock.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
+#include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
 
 #include "board.h"
@@ -217,6 +218,7 @@ select_game_cb (GtkAction *action,
   GtkTreeIter current_iter, selection_iter;
   gboolean current_iter_set = FALSE;
   const char *current_game_file;
+  const char *games_dir;
   GList *l;
 
   if (priv->game_choice_dialog) {
@@ -228,7 +230,8 @@ select_game_cb (GtkAction *action,
   list_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list));
   g_object_unref (list);
 
-  files = games_file_list_new ("*.scm", games_path_runtime_fix (GAMESDIR), NULL);
+  games_dir = games_runtime_get_directory (GAMES_RUNTIME_GAME_GAMES_DIRECTORY);
+  files = games_file_list_new ("*.scm", games_dir, NULL);
   games_file_list_transform_basename (files);
 
   current_game_file = aisleriot_game_get_game_file (priv->game);
@@ -759,12 +762,14 @@ debug_ensure_game_list (AisleriotWindow *window)
   DebugWindowData *data;
   GamesFileList *files;
   GList *l;
+  const char *games_dir;
 
   data = g_object_get_data (G_OBJECT (window), DEBUG_WINDOW_DATA_KEY);
   if (data != NULL)
     return data;
 
-  files = games_file_list_new ("*.scm", games_path_runtime_fix (GAMESDIR), NULL);
+  games_dir = games_runtime_get_directory (GAMES_RUNTIME_GAME_GAMES_DIRECTORY);
+  files = games_file_list_new ("*.scm", games_dir, NULL);
   games_file_list_transform_basename (files);
 
   data = g_slice_new (DebugWindowData);

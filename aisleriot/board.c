@@ -31,6 +31,7 @@
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-marshal.h>
 #include <libgames-support/games-pixbuf-utils.h>
+#include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
 
 #include "conf.h"
@@ -378,7 +379,7 @@ set_background_from_baize (GtkWidget *widget,
   char *path;
   int width, height;
 
-  path = games_build_filename (PIXMAPDIR, "baize.png");
+  path = games_runtime_get_file (GAMES_RUNTIME_PIXMAP_DIRECTORY, "baize.png");
 
   pixbuf = gdk_pixbuf_new_from_file (path, &error);
   g_free (path);

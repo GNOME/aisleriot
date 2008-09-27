@@ -36,7 +36,7 @@
 #include "conf.h"
 #include "util.h"
 
-#include <libgames-support/games-files.h>
+#include <libgames-support/games-runtime.h>
 
 #include "game.h"
 
@@ -1076,7 +1076,7 @@ cscmi_eval_installed_file (const char *filename,
     return FALSE;
   }
 
-  path = games_build_filename (GAMESDIR, filename);
+  path = games_runtime_get_file (GAMES_RUNTIME_GAME_GAMES_DIRECTORY, filename);
   if (g_file_test (path, G_FILE_TEST_EXISTS) &&
       g_file_test (path, G_FILE_TEST_IS_REGULAR)) {
     scm_c_primitive_load (path);

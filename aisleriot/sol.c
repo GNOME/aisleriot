@@ -69,6 +69,7 @@
 
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
+#include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
 
 #include "conf.h"
@@ -510,7 +511,6 @@ main_prog (void *closure, int argc, char *argv[])
 {
   AppData data;
   GOptionContext *option_context;
-  GtkIconTheme *sol_icon_theme;
 #ifdef HAVE_GNOME
   GnomeClient *master_client;
 #else
@@ -627,9 +627,6 @@ main_prog (void *closure, int argc, char *argv[])
   g_signal_connect (data.window, "destroy",
 		    G_CALLBACK (gtk_main_quit), NULL);
 
-  sol_icon_theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (GTK_WIDGET (data.window)));
-  gtk_icon_theme_append_search_path (sol_icon_theme, games_path_runtime_fix (ICONDIR));
-
   gtk_window_set_default_icon_name (data.freecell ? "gnome-freecell" : "gnome-aisleriot");
 
 
@@ -697,13 +694,13 @@ cleanup:
     osso_deinitialize (data.osso_context);
   }
 #endif /* HAVE_MAEMO */
+
+  games_runtime_shutdown ();
 }
 
 int
 main (int argc, char *argv[])
 {
-  char *localedir;
-
   setlocale (LC_ALL, "");
 
 #if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_GSTREAMER)
@@ -713,13 +710,14 @@ main (int argc, char *argv[])
   g_thread_init (NULL);
 #endif
 
-  localedir = games_path_runtime_fix (GNOMELOCALEDIR);
-  bindtextdomain (GETTEXT_PACKAGE, localedir);
+  if (!games_runtime_init ("aisleriot"))
+    return 1;
+
+  bindtextdomain (GETTEXT_PACKAGE, games_runtime_get_directory (GAMES_RUNTIME_LOCALE_DIRECTORY));
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
-  g_free (localedir);
 
-  scm_boot_guile (argc, argv, main_prog, NULL);
+  scm_boot_guile (argc, argv, main_prog, NULL); /* no return */
 
   return 0;
 }
