@@ -1533,7 +1533,7 @@ install_recently_played_menu (AisleriotWindow *window)
 #ifdef HAVE_HILDON
     tooltip = NULL;
 #else
-    tooltip = g_strdup_printf (_("Play \"%s\""), game_name);
+    tooltip = g_strdup_printf (_("Play “%s”"), game_name);
 #endif /* HAVE_HILDON */
     action = gtk_action_new (actionname, game_name, tooltip, NULL);
     g_free (game_name);
@@ -1637,7 +1637,7 @@ install_card_theme_menu (AisleriotWindow *window)
 #ifdef HAVE_HILDON
     tooltip = NULL;
 #else
-    tooltip = g_strdup_printf (_("Display cards with \"%s\" card theme"), display_name);
+    tooltip = g_strdup_printf (_("Display cards with “%s” card theme"), display_name);
 #endif
     action = gtk_radio_action_new (actionname, display_name, tooltip, NULL, i);
     g_free (display_name);
@@ -2728,7 +2728,7 @@ load_idle_cb (LoadIdleData *data)
                                      GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                      GTK_MESSAGE_ERROR,
                                      GTK_BUTTONS_OK,
-                                     _("Cannot start the game \"%s\""),
+                                     _("Cannot start the game “%s”"),
                                      name);
     g_free (name);
 

@@ -1085,7 +1085,7 @@ cscmi_eval_installed_file (const char *filename,
   }
 
   g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_GENERIC,
-               _("Aisleriot cannot load the file \"%s\". "
+               _("Aisleriot cannot load the file “%s”. "
                  "Please check your Aisleriot installation."),
                path);
   g_free (path);

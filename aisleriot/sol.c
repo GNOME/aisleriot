@@ -384,7 +384,7 @@ help_hook (GtkWindow *parent,
       char *game_name;
  
       game_name = aisleriot_util_get_display_filename (game_file);
-      primary = g_strdup_printf (_("Could not show help for \"%s\""), game_name);
+      primary = g_strdup_printf (_("Could not show help for “%s”"), game_name);
       g_free (game_name);
     } else {
       primary = g_strdup (_("Could not show Aisleriot help"));
