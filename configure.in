@@ -23,7 +23,10 @@ AC_CONFIG_HEADERS([config.h])
 
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2 foreign])
 
-AM_MAINTAINER_MODE
+if test -z "$enable_maintainer_mode"; then
+  enable_maintainer_mode=yes
+fi
+AM_MAINTAINER_MODE([enable])
 
 # First parse the list of enabled games, so we know which options
 # we support and which features to check for
