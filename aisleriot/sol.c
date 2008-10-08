@@ -97,7 +97,7 @@ about_url_hook (GtkAboutDialog *about,
                 const char *link,
                 gpointer user_data)
 {
-#ifdef HAVE_MAEMO
+#if defined(HAVE_MAEMO)
   AppData *data = (AppData *) user_data;
 
   osso_rpc_run_with_defaults (data->osso_context,
@@ -113,18 +113,10 @@ about_url_hook (GtkAboutDialog *about,
 
   GdkScreen *screen;
   GError *error = NULL;
-  char *argv[3] = { (char *) "gnome-open", (char *) link, NULL };
 
   screen = gtk_widget_get_screen (GTK_WIDGET (about));
 
-  if (!gdk_spawn_on_screen (screen,
-                            NULL /* working directory */,
-                            argv,
-                            NULL /* environment */,
-                            G_SPAWN_SEARCH_PATH,
-                            NULL, NULL,
-                            NULL,
-                            &error)) {
+  if (!gtk_show_uri (screen, link, gtk_get_current_event_time (), &error))
     GtkWidget *dialog;
 
     dialog = gtk_message_dialog_new (GTK_WINDOW (about),
@@ -132,7 +124,7 @@ about_url_hook (GtkAboutDialog *about,
                                      GTK_DIALOG_MODAL,
                                      GTK_MESSAGE_ERROR,
                                      GTK_BUTTONS_CLOSE,
-                                     _("Could not show link"));
+                                     "%s", _("Could not show link"));
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
                                               "%s", error->message);
     g_error_free (error);
