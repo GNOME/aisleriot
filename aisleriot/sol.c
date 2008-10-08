@@ -132,6 +132,21 @@ about_url_hook (GtkAboutDialog *about,
 #endif /* HAVE_MAEMO */
 }
 
+static void
+about_email_hook (GtkAboutDialog *about,
+                  const char *email_address,
+                  gpointer user_data)
+{
+  char *escaped, *uri;
+
+  escaped = g_uri_escape_string (email_address, NULL, FALSE);
+  uri = g_strdup_printf ("mailto:%s", escaped);
+  g_free (escaped);
+
+  about_url_hook (about, uri, user_data);
+  g_free (uri);
+}
+
 static char *
 variation_to_game_file (const char *variation)
 {
@@ -570,6 +585,7 @@ main_prog (void *closure, int argc, char *argv[])
   aisleriot_util_set_help_func (help_hook, &data);
 
   gtk_about_dialog_set_url_hook (about_url_hook, &data, NULL);
+  gtk_about_dialog_set_email_hook (about_email_hook, &data, NULL);
 
   data.window = AISLERIOT_WINDOW (aisleriot_window_new ());
   g_signal_connect (data.window, "destroy",
