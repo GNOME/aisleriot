@@ -99,6 +99,26 @@ libgames_support_la_CFLAGS = 	\
 libgames_support_la_LIBADD = 	\
 	$(GTK_LIBS)
 
+if WITH_SMCLIENT
+libgames_support_la_SOURCES += \
+	eggdesktopfile.c \
+	eggdesktopfile.h \
+	eggsmclient.c \
+	eggsmclient.h \
+	eggsmclient-private.h \
+	$(NULL)
+if WITH_SMCLIENT_XSMP
+libgames_support_la_SOURCES += eggsmclient-xsmp.c
+libgames_support_la_CPPFLAGS += -DEGG_SM_CLIENT_BACKEND_XSMP
+endif
+if WITH_SMCLIENT_WIN32
+libgames_support_la_SOURCES += eggsmclient-win32.c
+endif
+if WITH_SMCLIENT_QUARTZ
+libgames_support_la_SOURCES += eggsmclient-osx.c
+endif
+endif
+
 if HAVE_GNOME
 libgames_support_la_CFLAGS += $(GNOME_CFLAGS)
 libgames_support_la_LIBADD += $(GNOME_LIBS)
