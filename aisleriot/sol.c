@@ -34,13 +34,6 @@
 #include <gtk/gtkmain.h>
 #include <gtk/gtkmessagedialog.h>
 
-#ifdef HAVE_GNOME
-#include <libgnome/gnome-program.h>
-#include <libgnomeui/gnome-app-helper.h>
-#include <libgnomeui/gnome-client.h>
-#include <libgnomeui/gnome-ui-init.h>
-#endif /* HAVE_GNOME */
-
 #ifdef HAVE_HILDON
 #include <libosso.h>
 
@@ -71,6 +64,10 @@
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
 
+#ifdef WITH_SMCLIENT
+#include <libgames-support/eggsmclient.h>
+#endif
+
 #include "conf.h"
 #include "game.h"
 #include "util.h"
@@ -81,16 +78,11 @@ typedef struct {
   char *variation;
   guint seed;
   gboolean freecell;
-#ifdef HAVE_GNOME
-  GnomeProgram *program;
-#endif
 #ifdef HAVE_HILDON
   osso_context_t *osso_context;
   HildonProgram *program;
 #endif
 } AppData;
-
-#ifndef HAVE_GNOME
 
 static void
 about_url_hook (GtkAboutDialog *about,
@@ -116,7 +108,7 @@ about_url_hook (GtkAboutDialog *about,
 
   screen = gtk_widget_get_screen (GTK_WIDGET (about));
 
-  if (!gtk_show_uri (screen, link, gtk_get_current_event_time (), &error))
+  if (!gtk_show_uri (screen, link, gtk_get_current_event_time (), &error)) {
     GtkWidget *dialog;
 
     dialog = gtk_message_dialog_new (GTK_WINDOW (about),
@@ -139,8 +131,6 @@ about_url_hook (GtkAboutDialog *about,
   }
 #endif /* HAVE_MAEMO */
 }
-
-#endif /* !HAVE_GNOME */
 
 static char *
 variation_to_game_file (const char *variation)
@@ -165,16 +155,12 @@ variation_to_game_file (const char *variation)
   return s;
 }
 
-#ifdef HAVE_GNOME
+#ifdef WITH_SMCLIENT
 
-static gboolean
-save_yourself_cb (GnomeClient *client,
-                  int phase,
-                  GnomeSaveStyle save_style,
-                  gboolean shutdown,
-                  GnomeInteractStyle interact_style,
-                  gboolean fast,
-                  AppData *data)
+static void
+save_state_cb (EggSMClient *client,
+               GKeyFile *key_file,
+               AppData *data)
 {
   AisleriotGame *game;
   char *argv[5];
@@ -201,22 +187,20 @@ save_yourself_cb (GnomeClient *client,
 
   /* FIXMEchpe: save game state too? */
 
-  gnome_client_set_restart_command (client, argc, argv);
+  egg_sm_client_set_restart_command (client, argc, (const char **) argv);
 
   g_free (seed);
-
-  return TRUE;
 }
 
 static void
-die_cb (GnomeClient *client,
-        AppData *data)
+quit_cb (EggSMClient *client,
+         AppData *data)
 {
   /* This will cause gtk_main_quit */
   gtk_widget_destroy (GTK_WIDGET (data->window));
 }
 
-#endif /* HAVE_GNOME */
+#endif /* WITH_SMCLIENT */
 
 static char *
 game_file_to_help_section (const char *game_file)
@@ -484,11 +468,10 @@ main_prog (void *closure, int argc, char *argv[])
 {
   AppData data;
   GOptionContext *option_context;
-#ifdef HAVE_GNOME
-  GnomeClient *master_client;
-#else
   GError *error = NULL;
   gboolean retval;
+#ifdef WITH_SMCLIENT
+  EggSMClient *sm_client;
 #endif
 #ifdef HAVE_MAEMO
   osso_hw_state_t hw_events = {
@@ -539,15 +522,10 @@ main_prog (void *closure, int argc, char *argv[])
   games_sound_enable (FALSE);
   games_sound_add_option_group (option_context);
 
-#ifdef HAVE_GNOME
-  data.program = gnome_program_init ("aisleriot", VERSION,
-                                     LIBGNOMEUI_MODULE,
-                                     argc, argv,
-                                     GNOME_PARAM_GOPTION_CONTEXT, option_context,
-                                     GNOME_PARAM_APP_DATADIR, DATADIR,
-                                     NULL);
-#else /* !HAVE_GNOME */
   g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
+#ifdef WITH_SMCLIENT
+  g_option_context_add_group (option_context, egg_sm_client_get_option_group ());
+#endif
 
   retval = g_option_context_parse (option_context, &argc, &argv, &error);
   g_option_context_free (option_context);
@@ -556,7 +534,6 @@ main_prog (void *closure, int argc, char *argv[])
     g_print ("%s\n", error->message);
     goto cleanup;
   }
-#endif /* HAVE_GNOME */
 
 #ifdef HAVE_MAEMO
   data.program = HILDON_PROGRAM (hildon_program_get_instance ());
@@ -592,9 +569,7 @@ main_prog (void *closure, int argc, char *argv[])
 
   aisleriot_util_set_help_func (help_hook, &data);
 
-#if (!defined (HAVE_GNOME) || defined (G_OS_WIN32))
   gtk_about_dialog_set_url_hook (about_url_hook, &data, NULL);
-#endif
 
   data.window = AISLERIOT_WINDOW (aisleriot_window_new ());
   g_signal_connect (data.window, "destroy",
@@ -602,13 +577,12 @@ main_prog (void *closure, int argc, char *argv[])
 
   gtk_window_set_default_icon_name (data.freecell ? "gnome-freecell" : "gnome-aisleriot");
 
-
-#ifdef HAVE_GNOME
-  master_client = gnome_master_client ();
-  g_signal_connect (master_client, "save-yourself",
-		    G_CALLBACK (save_yourself_cb), &data);
-  g_signal_connect_swapped (master_client, "die",
-                            G_CALLBACK (die_cb), &data);
+#ifdef WITH_SMCLIENT
+  sm_client = egg_sm_client_get ();
+  g_signal_connect (sm_client, "save-state",
+		    G_CALLBACK (save_state_cb), &data);
+  g_signal_connect (sm_client, "quit",
+                    G_CALLBACK (quit_cb), &data);
 #endif /* HAVE_GNOME */
 
 #ifdef HAVE_HILDON
@@ -649,15 +623,13 @@ main_prog (void *closure, int argc, char *argv[])
 
   aisleriot_conf_shutdown ();
 
-#ifndef HAVE_GNOME
 cleanup:
-#endif
-
   g_free (data.variation);
 
-#ifdef HAVE_GNOME
-  g_object_unref (data.program);
-#endif /* HAVE_GNOME */
+#ifdef WITH_SMCLIENT
+  g_signal_handlers_disconnect_matched (sm_client, G_SIGNAL_MATCH_DATA,
+                                        0, 0, NULL, NULL, &data);
+#endif /* WITH_SMCLIENT */
 
 #ifdef HAVE_MAEMO
   if (data.program != NULL) {
