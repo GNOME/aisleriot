@@ -38,7 +38,6 @@
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-app-helper.h>
 #include <libgnomeui/gnome-client.h>
-#include <libgnomeui/gnome-help.h>
 #include <libgnomeui/gnome-ui-init.h>
 #endif /* HAVE_GNOME */
 
@@ -332,7 +331,7 @@ help_hook (GtkWindow *parent,
   g_free (help_url);
 }
 
-#else /* !HAVE_MAEMO */
+#else /* !HAVE_HILDON */
 
 static void
 help_hook (GtkWindow *parent,
@@ -340,12 +339,9 @@ help_hook (GtkWindow *parent,
            gpointer user_data)
 {
   GdkScreen *screen;
-  char *help_section = NULL;
   GError *error = NULL;
-#ifndef HAVE_GNOME
-  char *help_url = NULL;
-  char *argv[3];
-#endif /* !HAVE_GNOME */
+  char *help_section = NULL;
+  char *help_uri;
 
   screen = gtk_widget_get_screen (GTK_WIDGET (parent));
 
@@ -353,30 +349,17 @@ help_hook (GtkWindow *parent,
     help_section = game_file_to_help_section (game_file);
   }
 
-#ifdef HAVE_GNOME
-  if (!gnome_help_display_on_screen ("aisleriot.xml", help_section, screen, &error)) {
-#else
-
   if (help_section != NULL) {
-    /* FIXMEchpe: URL-escape? */
-    help_url = g_strdup_printf ("ghelp:aisleriot?%s", help_section);
+    char *escaped;
+
+    escaped = g_uri_escape_string  (help_section, NULL, TRUE);
+    help_uri = g_strdup_printf ("ghelp:aisleriot?%s", escaped);
+    g_free (escaped);
   } else {
-    help_url = g_strdup ("ghelp:aisleriot");
+    help_uri = g_strdup ("ghelp:aisleriot");
   }
 
-  argv[0] = "gnome-open";
-  argv[1] = help_url;
-  argv[2] = NULL;
-
-  if (!gdk_spawn_on_screen (screen,
-                            NULL /* working directory */,
-                            argv,
-                            NULL /* environment */,
-                            G_SPAWN_SEARCH_PATH,
-                            NULL, NULL,
-                            NULL,
-                            &error)) {
-#endif /* !HAVE_GNOME */
+  if (!gtk_show_uri (screen, help_uri, gtk_get_current_event_time (), &error)) {
     GtkWidget *dialog;
     char *primary;
 
@@ -417,9 +400,7 @@ help_hook (GtkWindow *parent,
   }
 
   g_free (help_section);
-#ifndef HAVE_GNOME
-  g_free (help_url);
-#endif /* !HAVE_GNOME */
+  g_free (help_uri);
 }
 
 #endif /* HAVE_HILDON */
