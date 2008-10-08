@@ -25,6 +25,7 @@
 
 #ifdef HAVE_GNOME
 #include <gconf/gconf-client.h>
+#include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-app-helper.h>
 #else
 #include <glib/gkeyfile.h>
@@ -169,6 +170,100 @@ window_state_event_cb (GtkWidget *widget,
   return FALSE;
 }
 
+#ifndef HAVE_HILDON
+
+static char *
+games_conf_get_accel_map_path (GamesConf *conf,
+                               gboolean ensure_dir_exists)
+{
+  GamesConfPrivate *priv = conf->priv;
+  char *game_name, *conf_dir;
+  char *conf_file = NULL;
+
+  game_name = g_ascii_strdown (priv->game_name, -1);
+
+#ifdef HAVE_GNOME
+  conf_dir = g_build_filename (g_get_home_dir (), ".gnome2", "accels", NULL);
+#else
+  conf_dir = g_build_filename (g_get_user_config_dir (), "gnome-games", NULL);
+#endif
+  if (!conf_dir)
+    goto loser;
+
+  /* Mode 0700 per the XDG basedir spec */
+  if (ensure_dir_exists &&
+      g_mkdir_with_parents (conf_dir, 0700) < 0) {
+    int err = errno;
+
+    if (err != EEXIST) {
+      g_warning ("Failed to create config directory \"%s\": %s\n", conf_dir, g_strerror (err));
+      goto loser;
+    }
+  }
+
+#ifdef HAVE_GNOME
+  conf_file = g_build_filename (conf_dir, game_name, NULL);
+#else
+{
+  char *accelmap_filename;
+
+  accelmap_filename = g_strdup_printf ("%s.%s", game_name, ACCELMAP_EXT);
+  conf_file = g_build_filename (conf_dir, accelmap_filename, NULL);
+  g_free (accelmap_filename);
+}
+#endif
+
+loser:
+  g_free (conf_dir);
+  g_free (game_name);
+
+  return conf_file;
+}
+
+static void
+games_conf_load_accel_map (GamesConf *conf)
+{
+  char *conf_file;
+
+#ifdef HAVE_GNOME
+  if (gnome_program_get ())
+    return; /* Nothing to do, since gnome_program_init already loaded the accel map */
+
+  /* Fall back to our custom loading code if the game doesn't use GnomeProgram (e.g. aisleriot) */
+#endif
+
+  conf_file = games_conf_get_accel_map_path (conf, FALSE);
+  if (!conf_file)
+    return;
+
+  gtk_accel_map_load (conf_file);
+  g_free (conf_file);
+}
+
+static void
+games_conf_save_accel_map (GamesConf *conf)
+{
+  char *conf_file;
+
+#ifdef HAVE_GNOME
+  /* Save the accel map */
+  if (gnome_program_get ()) {
+    gnome_accelerators_sync ();
+    return;
+  }
+  /* Fall back to our custom saving code if the game doesn't use GnomeProgram (e.g. aisleriot) */
+#endif
+
+  conf_file = games_conf_get_accel_map_path (conf, TRUE);
+  if (!conf_file)
+    return;
+
+  gtk_accel_map_save (conf_file);
+  g_free (conf_file);
+}
+
+#endif /* !HAVE_HILDON */
+
 #ifdef HAVE_GNOME
 
 static void
@@ -258,9 +353,6 @@ games_conf_constructor (GType type,
 #ifndef HAVE_GNOME
   char *conf_file;
   GError *error = NULL;
-#ifndef HAVE_HILDON
-  char *accelmap_filename;
-#endif /* !HAVE_HILDON */
 #endif /* HAVE_GNOME */
 
   g_assert (instance == NULL);
@@ -311,16 +403,11 @@ games_conf_constructor (GType type,
 
   g_free (conf_file);
 
-  /* Load the accel map, which libgnome does for us in the HAVE_GNOME case */
-#ifndef HAVE_HILDON
-  accelmap_filename = g_strdup_printf ("%s.%s", game_name, ACCELMAP_EXT);
-  conf_file = g_build_filename (g_get_user_config_dir(), "gnome-games", accelmap_filename, NULL);
-  gtk_accel_map_load (conf_file);
-  g_free (accelmap_filename);
-  g_free (conf_file);
-#endif /* !HAVE_HILDON */
-
 #endif /* HAVE_GNOME */
+
+#ifndef HAVE_HILDON
+  games_conf_load_accel_map (conf);
+#endif /* !HAVE_HILDON */
 
   g_free (game_name);
 
@@ -333,10 +420,12 @@ games_conf_finalize (GObject *object)
   GamesConf *conf = GAMES_CONF (object);
   GamesConfPrivate *priv = conf->priv;
 
-#ifdef HAVE_GNOME
+#ifndef HAVE_HILDON
   /* Save the accel map */
-  gnome_accelerators_sync ();
+  games_conf_save_accel_map (conf);
+#endif /* !HAVE_HILDON */
 
+#ifdef HAVE_GNOME
   gconf_client_remove_dir (priv->gconf_client, priv->base_path, NULL);
 
   g_free (priv->base_path);
@@ -348,9 +437,6 @@ games_conf_finalize (GObject *object)
   char *game_name, *conf_file, *conf_dir, *data = NULL;
   gsize len = 0;
   GError *error = NULL;
-#ifndef HAVE_HILDON
-  char *accelmap_filename;
-#endif /* !HAVE_HILDON */
 
   game_name = g_ascii_strdown (priv->game_name, -1);
   conf_file = g_build_filename (g_get_user_config_dir (), "gnome-games", game_name, NULL);
@@ -385,16 +471,6 @@ loser:
   g_free (data);
   g_free (conf_file);
   g_free (conf_dir);
-
-  /* Save the accel map */
-#ifndef HAVE_HILDON
-  accelmap_filename = g_strdup_printf ("%s.%s", game_name, ACCELMAP_EXT);
-  conf_file = g_build_filename (g_get_user_config_dir(), "gnome-games", accelmap_filename, NULL);
-  gtk_accel_map_save (conf_file);
-  g_free (accelmap_filename);
-  g_free (conf_file);
-#endif /* !HAVE_HILDON */
-
   g_free (game_name);
 
   g_free (priv->main_group);
