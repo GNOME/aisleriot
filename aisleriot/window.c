@@ -33,13 +33,8 @@
 
 #include <glib/gi18n.h>
 
+#include <gdk/gdk.h>
 #include <gtk/gtk.h>
-
-#ifdef HAVE_GNOME
-#include <libgnomeui/gnome-help.h>
-#else
-#include <gdk/gdkspawn.h>
-#endif
 
 #ifdef HAVE_HILDON
 #ifdef HAVE_MAEMO_3
