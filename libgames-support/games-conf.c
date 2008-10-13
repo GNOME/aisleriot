@@ -1235,10 +1235,10 @@ games_conf_add_window (GtkWindow *window,
   g_signal_connect (window, "window-state-event",
                     G_CALLBACK (window_state_event_cb), state);
 
-  maximised = games_conf_get_boolean (NULL, window_state_key_name[STATE_KEY_MAXIMISED], NULL);
-  fullscreen = games_conf_get_boolean (NULL, window_state_key_name[STATE_KEY_FULLSCREEN], NULL);
-  width = games_conf_get_integer (NULL, window_state_key_name[STATE_KEY_WIDTH], NULL);
-  height = games_conf_get_integer (NULL, window_state_key_name[STATE_KEY_HEIGHT], NULL);
+  maximised = games_conf_get_boolean (group, window_state_key_name[STATE_KEY_MAXIMISED], NULL);
+  fullscreen = games_conf_get_boolean (group, window_state_key_name[STATE_KEY_FULLSCREEN], NULL);
+  width = games_conf_get_integer (group, window_state_key_name[STATE_KEY_WIDTH], NULL);
+  height = games_conf_get_integer (group, window_state_key_name[STATE_KEY_HEIGHT], NULL);
 
   if (width > 0 && height > 0) {
     gtk_window_set_default_size (GTK_WINDOW (window), width, height);
