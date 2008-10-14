@@ -66,7 +66,7 @@
 
 #ifdef WITH_SMCLIENT
 #include <libgames-support/eggsmclient.h>
-#endif
+#endif /* WITH_SMCLIENT */
 
 #include "conf.h"
 #include "game.h"
@@ -81,7 +81,7 @@ typedef struct {
 #ifdef HAVE_HILDON
   osso_context_t *osso_context;
   HildonProgram *program;
-#endif
+#endif /* HAVE_HILDON */
 } AppData;
 
 static void
@@ -420,7 +420,7 @@ osso_hw_event_cb (osso_hw_state_t *state,
   } else if (state->system_inactivity_ind) {
     g_print ("System inactive\n");
   }
-#endif
+#endif /* GNOME_ENABLE_DEBUG */
 }
 
 static int
@@ -434,7 +434,7 @@ osso_rpc_cb (const char *interface,
 
 #if GNOME_ENABLE_DEBUG
   g_print ("OSSO RPC iface %s method %s\n", interface, method);
-#endif
+#endif /* GNOME_ENABLE_DEBUG */
 
   if (strcmp (method, "top_application") == 0) {
     gtk_window_present (GTK_WINDOW (data->window));
@@ -487,7 +487,7 @@ main_prog (void *closure, int argc, char *argv[])
   gboolean retval;
 #ifdef WITH_SMCLIENT
   EggSMClient *sm_client;
-#endif
+#endif /* WITH_SMCLIENT */
 #ifdef HAVE_MAEMO
   osso_hw_state_t hw_events = {
     TRUE /* shutdown */,
@@ -499,7 +499,7 @@ main_prog (void *closure, int argc, char *argv[])
      * when not interested in this signal? The docs don't tell.
      */
   };
-#endif
+#endif /* HAVE_MAEMO */
 
   memset (&data, 0, sizeof (AppData));
 
@@ -530,7 +530,7 @@ main_prog (void *closure, int argc, char *argv[])
   option_context = g_option_context_new (NULL);
 #if GLIB_CHECK_VERSION (2, 12, 0)
   g_option_context_set_translation_domain (option_context, GETTEXT_PACKAGE);
-#endif
+#endif /* GLIB 2.12.0 */
 
   add_main_options (option_context, &data);
 
@@ -540,7 +540,7 @@ main_prog (void *closure, int argc, char *argv[])
   g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
 #ifdef WITH_SMCLIENT
   g_option_context_add_group (option_context, egg_sm_client_get_option_group ());
-#endif
+#endif /* WITH_SMCLIENT */
 
   retval = g_option_context_parse (option_context, &argc, &argv, &error);
   g_option_context_free (option_context);
@@ -599,7 +599,7 @@ main_prog (void *closure, int argc, char *argv[])
 		    G_CALLBACK (save_state_cb), &data);
   g_signal_connect (sm_client, "quit",
                     G_CALLBACK (quit_cb), &data);
-#endif /* HAVE_GNOME */
+#endif /* WITH_SMCLIENT */
 
 #ifdef HAVE_HILDON
   hildon_program_add_window (data.program, HILDON_WINDOW (data.window));
@@ -624,7 +624,7 @@ main_prog (void *closure, int argc, char *argv[])
                 "hildon-keyboard-shortcuts", FALSE,
 #endif /* GTK 2.10.0 */
                 NULL);
-#endif /* HAVE_MAEMO */
+#endif /* HAVE_HILDON */
 
   if (data.freecell) {
     aisleriot_window_set_freecell_mode (data.window);
@@ -639,7 +639,7 @@ main_prog (void *closure, int argc, char *argv[])
 
   aisleriot_conf_shutdown ();
 
-cleanup:
+  cleanup:
   g_free (data.variation);
 
 #ifdef WITH_SMCLIENT
@@ -664,7 +664,7 @@ main (int argc, char *argv[])
 {
   setlocale (LC_ALL, "");
 
-#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_GSTREAMER)
+#if defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_GSTREAMER)
   /* If we're going to use gnome-vfs or gstreamer, we need to init threads before
    * calling any glib functions.
    */
