@@ -45,8 +45,8 @@ typedef void (*GamesScoresCategoryForeachFunc) (GamesScoresCategory * cat,
 typedef struct {
   const GamesScoresCategory *categories;	/* Array of categories, terminate
 						 * with GAMES_SCORES_LAST_CATEGORY. */
-  gchar *deflt;			/* The key of the default category. */
-  gchar *basename;		/* The base of the filename. The old appname. */
+  const gchar *deflt;			/* The key of the default category. */
+  const gchar *basename;		/* The base of the filename. The old appname. */
   GamesScoreStyle style;
 } GamesScoresDescription;
 
