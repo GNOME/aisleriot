@@ -1,3 +1,71 @@
+gnome-games 2.24.1
+==================
+
+This maintenance release brings huge improvements to the stability of GLChess
+in 3D mode and fixes for a few crashers and a few translation fix-ups.
+
+General:
+ - Fix up compatiblity with Gtk/Glib 2.14 (Spin buttons) (Thomas)
+ - Reclassify Gnibbles as Arcade game not logic game (Bug #553484) (Robert)
+ - Read saved window configuration from correct GConf group (affects
+   gnometris, gnibbles, gnobots) (Bug #544389) (Robert)
+
+Aisleriot:
+ - Remove vestigal flowRoot elements from solitaire svg icons.  They caused a
+   black box when rendering.  (Bug #553458) (mterry)
+ - Don't crash when the session manager terminates aisleriot (Christian)
+
+GLChess:
+ - Fix crash in error handler when GGZ connection closed (Bug #553982) (Robert)
+ - Fix crash in empty scene when no AI engines available (Bug #551844) (Robert)
+ - Fix crash when have OpenGL libraries but cannot get valid display
+   (Bug #551427) (Robert)
+ - Implement GGZ config parser instead of using Python config parser which does
+   not handle '%' characters as GGZ does (Bug #554108) (Robert)
+ - Ignore GGZ server remove player/table for unknown players/tables
+   (Bug #545155) (Robert)
+ - Handle exceptions loading OpenGL textures (Bug #548916) (Robert)
+ - Reset pause menu when starting new game (gnomine, gnotravex) (Bug #552391)
+   (Robert)
+ - Only allow one new/load game dialog to be visible at once. (Bug #546702)
+   (Robert)
+ - Fix incorrect function call for single buffered 3D display (Bug #555567)
+   (Robert)
+ - Handle fork() errors in AI processes (Bug #530425) (Robert)
+ - Fixes to compile in Solaris (Bug #554746) (Robert)
+ - Print failure to start message to stdout if cannot import GTK+ (Robert)
+ - Handle invalid response from glRenderMode(GL_RENDER) and print debugging
+   information (Bug #535256) (Robert)
+ - More logging messages about selection rendering bugs (Robert)
+ - After looking at failure case in PyOpenGL code we don't need to change
+   render modes after failed to change to GL_SELECT (Bug #538252) (Robert)
+ - Fix potential bugs found by PyChecker (Robert)
+ - Fix crash when validly claiming a draw (Robert)
+ - Don't display failed to claim draw dialog when successfully claimed draw
+   (Robert)
+ 
+GTali:
+ - Undoing 5 of a kind reduces the score by 50 as there might be multiple
+   scores (Geoff Buchan, Bug #537673) (Robert)
+
+Sudoku:
+ - Add not overwrite time and also remember to actually save the time in the
+   file. Fixes (Bug #556155)
+ - Correct typo in error message that led to an exception. Patch by Zhang Sen
+   (Bug #530380) (Thomas)
+
+Gnotravex:
+ - Stop paused tiles becoming visible after changing colour settings
+   (Bug #550023) (Robert)
+
+Blackjack:
+ - Fix compiler warnings (Robert)
+
+Translations:
+jorgegonz, Priit Laes, Ivar Smolin, mateju, Mario Blättermann, Vladimir Melo,
+dnylande, gforcada, Joan Duran, djihed, Anas Afif Emad, snavin
+
+
 gnome-games 2.24.0
 ==================
 
