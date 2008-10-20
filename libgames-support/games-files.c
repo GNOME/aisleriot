@@ -166,11 +166,13 @@ games_image_suffix_list_init (void)
   gchar **suffices;
   gchar **suffix;
 
+  /* Results in strict-aliasing warning due to glib bug #316221 */
   g_static_mutex_lock (&image_suffix_mutex);
 
   /* This check needs to be inside the lock to make sure that another
    * thread haasn't half-completed the list. */
   if (image_suffix_list) {
+    /* Results in strict-aliasing warning due to glib bug #316221 */
     g_static_mutex_unlock (&image_suffix_mutex);
     return;
   }
@@ -199,6 +201,7 @@ games_image_suffix_list_init (void)
 
   g_slist_free (pixbuf_formats);
 
+  /* Results in strict-aliasing warning due to glib bug #316221 */
   g_static_mutex_unlock (&image_suffix_mutex);
 }
 
