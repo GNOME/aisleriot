@@ -74,6 +74,8 @@ CoglHandle aisleriot_card_cache_get_card_texture_by_id
                                                   guint card_id,
                                                   gboolean highlighted);
 
+void aisleriot_card_cache_clear (AisleriotCardCache *cache);
+
 G_END_DECLS
 
 #endif /* AISLERIOT_CARD_CACHE_H */

@@ -30,8 +30,6 @@
 static void aisleriot_card_cache_dispose (GObject *object);
 static void aisleriot_card_cache_finalize (GObject *object);
 
-static void aisleriot_card_cache_clear (AisleriotCardCache *cache);
-
 static void aisleriot_card_cache_set_property (GObject      *self,
                                                guint         property_id,
                                                const GValue *value,
@@ -192,7 +190,7 @@ aisleriot_card_cache_new (GamesCardImages *images)
   return self;
 }
 
-static void
+void
 aisleriot_card_cache_clear (AisleriotCardCache *cache)
 {
   AisleriotCardCachePrivate *priv = cache->priv;
