@@ -205,7 +205,7 @@ typedef struct _AnimationData AnimationData;
 
 struct _AnimationData
 {
-  ClutterBehaviour *move, *rotate;
+  ClutterBehaviour *move, *rotate, *depth;
 };
 
 STATIC_ASSERT (LAST_STATUS < 16 /* 2^4 */);
@@ -849,6 +849,8 @@ destroy_animation_data (ClutterActor *actor, AnimationData *data)
     g_object_unref (data->move);
   if (data->rotate)
     g_object_unref (data->rotate);
+  if (data->depth)
+    g_object_unref (data->depth);
 
   g_slice_free (AnimationData, data);
 }
@@ -875,9 +877,6 @@ add_animation (AisleriotBoard *board,
 
   tl = clutter_timeline_new_for_duration (500);
   alpha = clutter_alpha_new_full (tl, CLUTTER_ALPHA_RAMP_INC, NULL, NULL);
-  clutter_timeline_start (tl);
-  g_object_unref (tl);
-
   data->move = clutter_behaviour_path_new (alpha, knots,
                                            G_N_ELEMENTS (knots));
 
@@ -901,6 +900,15 @@ add_animation (AisleriotBoard *board,
 
     clutter_behaviour_apply (data->rotate, actor);
   }
+
+  alpha = clutter_alpha_new_full (tl, CLUTTER_ALPHA_SINE, NULL, NULL);
+
+  data->depth = clutter_behaviour_depth_new (alpha,
+                                             0, priv->card_size.height);
+  clutter_behaviour_apply (data->depth, actor);
+
+  clutter_timeline_start (tl);
+  g_object_unref (tl);
 }
 
 static void
