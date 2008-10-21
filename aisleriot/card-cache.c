@@ -220,7 +220,7 @@ aisleriot_card_cache_get_card_texture_by_id (AisleriotCardCache *cache,
 
   index = card_id;
   if (highlighted)
-    index *= 2;
+    index += GAMES_CARDS_TOTAL;
 
   if (priv->cards[index] == COGL_INVALID_HANDLE) {
     CoglHandle tex;
