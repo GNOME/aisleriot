@@ -55,7 +55,7 @@ typedef struct {
   /* The location in pixel units. Filled in by the scaling code. */
   GdkRectangle rect;
 
-  /* GdkPixbuf* or GdkPixmap*, no reference owned */
+  /* ClutterActor *, reference owned */
   GPtrArray *card_images;
   /* Actor for the slot */
   ClutterActor *slot_texture;
