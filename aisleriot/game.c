@@ -33,11 +33,14 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 
+#ifdef HAVE_CLUTTER
+#include <clutter/clutter-actor.h>
+#endif
+
 #include "conf.h"
 #include "util.h"
 
 #include <libgames-support/games-runtime.h>
-#include <clutter/clutter-actor.h>
 
 #include "game.h"
 
@@ -238,13 +241,17 @@ clear_slots (AisleriotGame *game,
   for (i = 0; i < n_slots; ++i) {
     Slot *slot = game->slots->pdata[i];
 
+#ifdef HAVE_CLUTTER
     if (slot->slot_renderer) {
       clutter_actor_destroy (slot->slot_renderer);
       g_object_unref (slot->slot_renderer);
     }
 
-    g_byte_array_free (slot->cards, TRUE);
     g_byte_array_free (slot->old_cards, TRUE);
+#else
+    g_ptr_array_free (slot->card_images, TRUE);
+#endif /* HAVE_CLUTTER */
+    g_byte_array_free (slot->cards, TRUE);
 
     g_slice_free (Slot, slot);
   }
@@ -579,7 +586,6 @@ cscmi_add_slot (SCM slot_data)
   slot->id = scm_to_int (SCM_CAR (slot_data));
 
   slot->cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
-  slot->old_cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
   slot->exposed = 0;
   slot->x = scm_num2dbl (SCM_CAR (SCM_CADR (SCM_CADDR (slot_data))), NULL);
   slot->y = scm_num2dbl (SCM_CADR (SCM_CADR (SCM_CADDR (slot_data))), NULL);
@@ -589,6 +595,12 @@ cscmi_add_slot (SCM slot_data)
   slot->expansion.dx = 0.0;
   slot->expanded_down = expanded_down != FALSE;
   slot->expanded_right = expanded_right != FALSE;
+
+#ifdef HAVE_CLUTTER
+  slot->old_cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
+#else
+  slot->card_images = g_ptr_array_sized_new (SLOT_CARDS_N_PREALLOC);
+#endif
 
   slot->needs_update = TRUE;
 
@@ -2068,6 +2080,8 @@ aisleriot_game_deal_cards (AisleriotGame *game)
   aisleriot_game_test_end_of_game (game);
 }
 
+#ifdef HAVE_CLUTTER
+
 void
 aisleriot_game_get_card_offset (Slot *slot,
                                 guint card_num,
@@ -2101,3 +2115,5 @@ aisleriot_game_reset_old_cards (Slot *slot)
   g_byte_array_append (slot->old_cards, slot->cards->data, slot->cards->len);
   slot->old_exposed = slot->exposed;
 }
+
+#endif /* HAVE_CLUTTER */

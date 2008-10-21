@@ -33,7 +33,10 @@
 #include <gtk/gtkicontheme.h>
 #include <gtk/gtkmain.h>
 #include <gtk/gtkmessagedialog.h>
+
+#ifdef HAVE_CLUTTER
 #include <clutter-gtk/gtk-clutter-embed.h>
+#endif
 
 #ifdef HAVE_HILDON
 #include <libosso.h>
@@ -538,7 +541,10 @@ main_prog (void *closure, int argc, char *argv[])
   games_sound_enable (FALSE);
   games_sound_add_option_group (option_context);
 
+#ifdef HAVE_CLUTTER
+  /* FIXMEchpe: use option group instead */
   gtk_clutter_init (&argc, &argv);
+#endif
 
   g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
 #ifdef WITH_SMCLIENT

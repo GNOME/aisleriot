@@ -17,20 +17,11 @@ scm_DATA = \
 bin_PROGRAMS = sol
 
 sol_SOURCES = \
-	baize.c		\
-	baize.h		\
-	board.c		\
 	board.h		\
-	card.c          \
-	card.h          \
-	card-cache.c    \
-	card-cache.h    \
 	conf.c		\
 	conf.h		\
 	game.c		\
 	game.h		\
-	slot-renderer.c \
-	slot-renderer.h \
 	sol.c		\
 	stats-dialog.c	\
 	stats-dialog.h	\
@@ -39,6 +30,24 @@ sol_SOURCES = \
 	window.c	\
 	window.h	\
 	$(NULL)
+
+if HAVE_CLUTTER
+sol_SOURCES += \
+	board.c		\
+	baize.c		\
+	baize.h		\
+	card.c          \
+	card.h          \
+	card-cache.c    \
+	card-cache.h    \
+	slot-renderer.c \
+	slot-renderer.h \
+	$(NULL)
+else
+sol_SOURCES += \
+	board-noclutter.c \
+	$(NULL)
+endif
 
 if !HAVE_GUILE_1_8
 sol_SOURCES += guile16-compat.h
@@ -59,8 +68,6 @@ sol_CPPFLAGS = \
 
 sol_CFLAGS = \
 	$(GTK_CFLAGS)	      \
-	$(CLUTTER_CFLAGS)     \
-	$(CLUTTER_GTK_CFLAGS) \
 	$(GUILE_CFLAGS)	      \
 	$(AM_CFLAGS)
 
@@ -70,8 +77,6 @@ sol_LDFLAGS = \
 sol_LDADD = \
 	$(top_builddir)/libgames-support/libgames-support.la	\
 	$(GTK_LIBS)	    \
-	$(CLUTTER_LIBS)     \
-	$(CLUTTER_GTK_LIBS) \
 	$(GUILE_LIBS)
 
 if HAVE_HILDON
@@ -93,6 +98,11 @@ endif
 if WITH_GTHREAD
 sol_CFLAGS += $(GHTREAD_CFLAGS)
 sol_LDADD += $(GTHREAD_LIBS)
+endif
+
+if HAVE_CLUTTER
+sol_CFLAGS += $(CLUTTER_CFLAGS)
+sol_LDADD += $(CLUTTER_LIBS)
 endif
 
 desktop_in_files = \
