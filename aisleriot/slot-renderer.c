@@ -127,24 +127,22 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
   g_object_class_install_property (gobject_class, PROP_SLOT, pspec);
 
   pspec = g_param_spec_int ("highlight", NULL, NULL,
-                            0, G_MAXINT, 0,
+                            -1, G_MAXINT, -1,
                             G_PARAM_WRITABLE |
                             G_PARAM_READABLE |
-                            G_PARAM_CONSTRUCT_ONLY |
                             G_PARAM_STATIC_NAME |
                             G_PARAM_STATIC_NICK |
                             G_PARAM_STATIC_BLURB);
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
 
   pspec = g_param_spec_int ("revealed-card", NULL, NULL,
-                            0, G_MAXINT, 0,
+                            -1, G_MAXINT, 0,
                             G_PARAM_WRITABLE |
                             G_PARAM_READABLE |
-                            G_PARAM_CONSTRUCT_ONLY |
                             G_PARAM_STATIC_NAME |
                             G_PARAM_STATIC_NICK |
                             G_PARAM_STATIC_BLURB);
-  g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
+  g_object_class_install_property (gobject_class, PROP_REVEALED_CARD, pspec);
 
   pspec = g_param_spec_object ("animation-layer", NULL, NULL,
                                CLUTTER_TYPE_CONTAINER,
