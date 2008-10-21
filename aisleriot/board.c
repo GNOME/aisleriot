@@ -178,6 +178,9 @@ struct _AisleriotBoardPrivate
   /* Actor used for drawing the baize */
   ClutterActor *baize_actor;
 
+  /* Array RemovedCards to be dropped in animations */
+  GArray *removed_cards;
+
 #ifdef HAVE_MAEMO
   /* Tap-and-Hold */
   Slot *tap_and_hold_slot;
@@ -840,7 +843,6 @@ check_animations (AisleriotBoard *board)
   GPtrArray *slots;
   int slot_num, i;
   Slot *slot;
-  GArray *removed_cards = g_array_new (FALSE, FALSE, sizeof (RemovedCard));
   GArray *animations = g_array_new (FALSE, FALSE, sizeof (AisleriotAnimStart));
 
   slots = aisleriot_game_get_slots (priv->game);
@@ -871,7 +873,7 @@ check_animations (AisleriotBoard *board)
                                           &removed_card.cardy);
           removed_card.cardx += slot->rect.x;
           removed_card.cardy += slot->rect.y;
-          g_array_append_val (removed_cards, removed_card);
+          g_array_append_val (priv->removed_cards, removed_card);
         }
       }
     }
@@ -916,8 +918,8 @@ check_animations (AisleriotBoard *board)
         Card added_card = CARD (slot->cards->data[i]);
         int j;
 
-        for (j = 0; j < removed_cards->len; j++) {
-          RemovedCard *removed_card = &g_array_index (removed_cards,
+        for (j = 0; j < priv->removed_cards->len; j++) {
+          RemovedCard *removed_card = &g_array_index (priv->removed_cards,
                                                       RemovedCard, j);
 
           if (added_card.attr.suit == removed_card->card.attr.suit
@@ -930,7 +932,7 @@ check_animations (AisleriotBoard *board)
 
             g_array_append_val (animations, anim);
 
-            g_array_remove_index (removed_cards, j);
+            g_array_remove_index (priv->removed_cards, j);
 
             break;
           }
@@ -943,13 +945,12 @@ check_animations (AisleriotBoard *board)
        animations->len, (const AisleriotAnimStart *) animations->data);
 
     /* Set the old cards back to the new cards */
-    g_byte_array_set_size (slot->old_cards, 0);
-    g_byte_array_append (slot->old_cards, slot->cards->data, slot->cards->len);
-    slot->old_exposed = slot->exposed;
+    aisleriot_game_reset_old_cards (slot);
   }
 
+  g_array_set_size (priv->removed_cards, 0);
+
   g_array_free (animations, TRUE);
-  g_array_free (removed_cards, TRUE);
 }
 
 static void
@@ -1141,9 +1142,6 @@ drag_begin (AisleriotBoard *board)
                        cards->data + priv->moving_cards_origin_card_id,
                        cards->len - priv->moving_cards_origin_card_id);
 
-  /* Take the cards off of the stack */
-  g_byte_array_set_size (cards, priv->moving_cards_origin_card_id);
-
   width = priv->card_size.width + (num_moving_cards - 1) * hslot->pixeldx;
   height = priv->card_size.height + (num_moving_cards - 1) * hslot->pixeldy;
 
@@ -1161,6 +1159,13 @@ drag_begin (AisleriotBoard *board)
   for (i = 0; i < priv->moving_cards->len; ++i) {
     Card hcard = CARD (priv->moving_cards->data[i]);
     ClutterActor *card_tex;
+    RemovedCard removed_card;
+
+    removed_card.cardx = x;
+    removed_card.cardy = y;
+    removed_card.card = hcard;
+
+    g_array_append_val (priv->removed_cards, removed_card);
 
     card_tex = aisleriot_card_new (priv->textures, hcard);
     clutter_actor_set_position (card_tex, x, y);
@@ -1171,8 +1176,12 @@ drag_begin (AisleriotBoard *board)
     y += hslot->pixeldy;
   }
 
+  /* Take the cards off of the stack */
+  g_byte_array_set_size (cards, priv->moving_cards_origin_card_id);
+
   slot_update_geometry (board, hslot);
   slot_update_card_images (board, hslot);
+  aisleriot_game_reset_old_cards (hslot);
 
   stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
   clutter_container_add (CLUTTER_CONTAINER (stage),
@@ -1281,10 +1290,21 @@ drop_moving_cards (AisleriotBoard *board,
   AisleriotBoardPrivate *priv = board->priv;
   Slot *hslot;
   gboolean moved = FALSE;
+  guint i;
 
   hslot = find_drop_target (board,
                             x - priv->last_click_x,
                             y - priv->last_click_y);
+
+  /* Reposition the removed cards so that they are relative to the
+     cursor position */
+  for (i = 0; i < priv->removed_cards->len; i++) {
+    RemovedCard *removed_card = &g_array_index (priv->removed_cards,
+                                                RemovedCard, i);
+
+    removed_card->cardx += x - priv->last_click_x;
+    removed_card->cardy += y - priv->last_click_y;
+  }
 
   if (hslot) {
     moved = aisleriot_game_drop_cards (priv->game,
@@ -3107,6 +3127,8 @@ aisleriot_board_init (AisleriotBoard *board)
 
   priv->moving_cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
 
+  priv->removed_cards = g_array_new (FALSE, FALSE, sizeof (RemovedCard));
+
   gtk_widget_set_events (widget,
 			 gtk_widget_get_events (widget) |
                          GDK_EXPOSURE_MASK |
@@ -3162,6 +3184,8 @@ aisleriot_board_finalize (GObject *object)
   g_object_unref (priv->game);
 
   g_free (priv->card_theme);
+
+  g_array_free (priv->removed_cards, TRUE);
 
   g_byte_array_free (priv->moving_cards, TRUE);
 

@@ -2093,3 +2093,11 @@ aisleriot_game_get_card_offset (Slot *slot,
     *yoff = 0;
   }
 }
+
+void
+aisleriot_game_reset_old_cards (Slot *slot)
+{
+  g_byte_array_set_size (slot->old_cards, 0);
+  g_byte_array_append (slot->old_cards, slot->cards->data, slot->cards->len);
+  slot->old_exposed = slot->exposed;
+}

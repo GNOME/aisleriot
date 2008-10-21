@@ -198,6 +198,8 @@ void aisleriot_game_get_card_offset (Slot *slot,
                                      gboolean old_cards,
                                      gint *xoff, gint *yoff);
 
+void aisleriot_game_reset_old_cards (Slot *slot);
+
 G_END_DECLS
 
 #endif /* !AISLERIOT_GAME_H */
