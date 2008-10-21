@@ -146,7 +146,7 @@ struct _AisleriotBoardPrivate
   /* Moving cards */
   Slot *moving_cards_origin_slot;
   int moving_cards_origin_card_id; /* The index of the card that was clicked on in hslot->cards; or -1 if the click wasn't on a card */
-  GdkWindow *moving_cards_window;
+  ClutterActor *moving_cards_group;
   GByteArray *moving_cards;
 
   /* The 'reveal card' action's slot and card link */
@@ -1003,22 +1003,13 @@ static void
 drag_begin (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
   Slot *hslot;
   int delta, height, width;
   int x, y;
-  GdkPixmap *moving_pixmap;
-  GdkBitmap *card_mask;
-  GdkBitmap *moving_mask;
-  GdkGC *gc1, *gc2;
-  const GdkColor masked = { 0, 0, 0, 0 };
-  const GdkColor unmasked = { 1, 0xffff, 0xffff, 0xffff };
   int num_moving_cards;
-  gboolean use_pixbuf_drawing = priv->use_pixbuf_drawing;
   guint i;
   GByteArray *cards;
-  GdkDrawable *drawable;
-  GdkWindowAttr attributes;
+  ClutterActor *stage;
 
   if (!priv->selection_slot ||
       priv->selection_start_card_id < 0) {
@@ -1068,42 +1059,7 @@ drag_begin (AisleriotBoard *board)
   width = priv->card_size.width + (num_moving_cards - 1) * hslot->pixeldx;
   height = priv->card_size.height + (num_moving_cards - 1) * hslot->pixeldy;
 
-  drawable = GDK_DRAWABLE (widget->window);
-
-  attributes.wclass = GDK_INPUT_OUTPUT;
-  attributes.window_type = GDK_WINDOW_CHILD;
-  attributes.event_mask = 0;
-  attributes.x = x;
-  attributes.y = y;
-  attributes.width = width;
-  attributes.height = height;
-  attributes.colormap = gdk_drawable_get_colormap (drawable);
-  attributes.visual = gdk_drawable_get_visual (drawable);
-
-  priv->moving_cards_window = gdk_window_new (widget->window, &attributes,
-                                              GDK_WA_VISUAL | GDK_WA_COLORMAP | GDK_WA_X | GDK_WA_Y);
-
-  moving_pixmap = gdk_pixmap_new (priv->moving_cards_window,
-                                  width, height,
-                                  gdk_drawable_get_visual (priv->moving_cards_window)->depth);
-  moving_mask = gdk_pixmap_new (priv->moving_cards_window,
-                                width, height,
-                                1);
-
-  gc1 = gdk_gc_new (moving_pixmap);
-  gc2 = gdk_gc_new (moving_mask);
-
-  gdk_draw_rectangle (moving_pixmap, gc1, TRUE,
-                      0, 0, width, height);
-
-  gdk_gc_set_foreground (gc2, &masked);
-  gdk_draw_rectangle (moving_mask, gc2, TRUE,
-                      0, 0, width, height);
-  gdk_gc_set_foreground (gc2, &unmasked);
-
-  card_mask = games_card_images_get_card_mask (priv->images);
-  gdk_gc_set_clip_mask (gc1, card_mask);
-  gdk_gc_set_clip_mask (gc2, card_mask);
+  priv->moving_cards_group = g_object_ref_sink (clutter_group_new ());
 
   /* FIXMEchpe: RTL issue: this doesn't work right when we allow dragging of
    * more than one card from a expand-right slot. (But right now no game .scm
@@ -1115,57 +1071,23 @@ drag_begin (AisleriotBoard *board)
 
   for (i = 0; i < priv->moving_cards->len; ++i) {
     Card hcard = CARD (priv->moving_cards->data[i]);
+    ClutterActor *card_tex;
 
-    gdk_gc_set_clip_origin (gc1, x, y);
-    gdk_gc_set_clip_origin (gc2, x, y);
-
-    if (PIXBUF_DRAWING_LIKELIHOOD (use_pixbuf_drawing)) {
-      GdkPixbuf *pixbuf;
-
-      pixbuf = games_card_images_get_card_pixbuf (priv->images, hcard, FALSE);
-      if (!pixbuf)
-        goto next;
-
-      gdk_draw_pixbuf (moving_pixmap, gc1,
-                       pixbuf,
-                       0, 0, x, y, width, height,
-                       GDK_RGB_DITHER_NONE, 0, 0);
-      gdk_draw_rectangle (moving_mask, gc2, TRUE,
-                          x, y, width, height);
-    } else {
-      GdkPixmap *pixmap;
-
-      pixmap = games_card_images_get_card_pixmap (priv->images, hcard, FALSE);
-      if (!pixmap)
-        goto next;
-
-      gdk_draw_drawable (moving_pixmap, gc1, pixmap,
-                          0, 0, x, y, width, height);
-      gdk_draw_rectangle (moving_mask, gc2, TRUE,
-                          x, y, width, height);
-    }
-
-  next:
+    card_tex = aisleriot_card_new (priv->textures, hcard);
+    clutter_actor_set_position (card_tex, x, y);
+    clutter_container_add (CLUTTER_CONTAINER (priv->moving_cards_group),
+                           card_tex, NULL);
 
     x += hslot->pixeldx;
     y += hslot->pixeldy;
   }
 
-  g_object_unref (gc1);
-  g_object_unref (gc2);
-
-  gdk_window_set_back_pixmap (priv->moving_cards_window,
-			      moving_pixmap, 0);
-  gdk_window_shape_combine_mask (priv->moving_cards_window,
-				 moving_mask, 0, 0);
-
-  g_object_unref (moving_pixmap);
-  g_object_unref (moving_mask);
-
-  gdk_window_show (priv->moving_cards_window);
-
   slot_update_geometry (board, hslot);
   slot_update_card_images (board, hslot);
+
+  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
+  clutter_container_add (CLUTTER_CONTAINER (stage),
+                         priv->moving_cards_group, NULL);
 
   set_cursor (board, CURSOR_CLOSED);
 }
@@ -1176,10 +1098,10 @@ drag_end (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
 
-  if (priv->moving_cards_window != NULL) {
-    gdk_window_hide (priv->moving_cards_window);
-    gdk_window_destroy (priv->moving_cards_window);
-    priv->moving_cards_window = NULL;
+  if (priv->moving_cards_group != NULL) {
+    clutter_actor_destroy (priv->moving_cards_group);
+    g_object_unref (priv->moving_cards_group);
+    priv->moving_cards_group = NULL;
   }
 
   /* FIXMEchpe: check that slot->cards->len == moving_cards_origin_card_id !!! FIXMEchpe what to do if not, abort the game? */
@@ -2987,9 +2909,7 @@ aisleriot_board_motion_notify (GtkWidget *widget,
     slot = find_drop_target (board, x, y);
     highlight_drop_target (board, slot);
 
-    gdk_window_move (priv->moving_cards_window, x, y);
-    /* FIXMEchpe: why? */
-    gdk_window_clear (priv->moving_cards_window);
+    clutter_actor_set_position (priv->moving_cards_group, x, y);
 
     set_cursor (board, CURSOR_CLOSED);
   } else if (priv->click_status == STATUS_MAYBE_DRAG &&
