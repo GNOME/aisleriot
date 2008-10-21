@@ -1394,19 +1394,17 @@ reveal_card (AisleriotBoard *board,
              int cardid)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
   Card card;
-  GdkRectangle rect;
+  AisleriotSlotRenderer *renderer;
 
   if (priv->show_card_slot == slot)
     return;
 
   if (priv->show_card_slot != NULL) {
-    get_rect_by_slot_and_card (board,
-                               priv->show_card_slot,
-                               priv->show_card_id,
-                               1, &rect);
-    gdk_window_invalidate_rect (widget->window, &rect, FALSE);
+    if (priv->show_card_slot->slot_renderer) {
+      renderer = AISLERIOT_SLOT_RENDERER (priv->show_card_slot->slot_renderer);
+      aisleriot_slot_renderer_set_revealed_card (renderer, -1);
+    }
     priv->show_card_slot = NULL;
     priv->show_card_id = -1;
     priv->click_status = STATUS_NONE;
@@ -1423,11 +1421,8 @@ reveal_card (AisleriotBoard *board,
   priv->show_card_id = cardid;
   priv->click_status = STATUS_SHOW;
 
-  get_rect_by_slot_and_card (board,
-                            priv->show_card_slot,
-                            priv->show_card_id,
-                            1, &rect);
-  gdk_window_invalidate_rect (widget->window, &rect, FALSE);
+  renderer = AISLERIOT_SLOT_RENDERER (slot->slot_renderer);
+  aisleriot_slot_renderer_set_revealed_card (renderer, cardid);
 }
 
 static void

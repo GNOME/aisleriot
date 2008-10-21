@@ -68,6 +68,8 @@ struct _AisleriotSlotRendererPrivate
   gboolean show_highlight;
   gint highlight_start;
 
+  gint revealed_card;
+
   ClutterTimeline *timeline;
   guint completed_handler;
   GArray *animations;
@@ -88,6 +90,7 @@ enum
   PROP_CACHE,
   PROP_SLOT,
   PROP_HIGHLIGHT,
+  PROP_REVEALED_CARD,
   PROP_ANIMATION_LAYER
 };
 
@@ -133,6 +136,16 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
                             G_PARAM_STATIC_BLURB);
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
 
+  pspec = g_param_spec_int ("revealed-card", NULL, NULL,
+                            0, G_MAXINT, 0,
+                            G_PARAM_WRITABLE |
+                            G_PARAM_READABLE |
+                            G_PARAM_CONSTRUCT_ONLY |
+                            G_PARAM_STATIC_NAME |
+                            G_PARAM_STATIC_NICK |
+                            G_PARAM_STATIC_BLURB);
+  g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
+
   pspec = g_param_spec_object ("animation-layer", NULL, NULL,
                                CLUTTER_TYPE_CONTAINER,
                                G_PARAM_WRITABLE |
@@ -158,6 +171,7 @@ aisleriot_slot_renderer_init (AisleriotSlotRenderer *self)
   g_signal_connect_swapped (priv->timeline, "completed",
                             G_CALLBACK (completed_cb), self);
 
+  priv->revealed_card = -1;
 }
 
 static void
@@ -241,6 +255,11 @@ aisleriot_slot_renderer_set_property (GObject *object,
                                              g_value_get_int (value));
       break;
 
+    case PROP_REVEALED_CARD:
+      aisleriot_slot_renderer_set_revealed_card (srend,
+                                                 g_value_get_int (value));
+      break;
+
     case PROP_ANIMATION_LAYER:
       aisleriot_slot_renderer_set_animation_layer (srend,
                                                    g_value_get_object (value));
@@ -266,6 +285,11 @@ aisleriot_slot_renderer_get_property (GObject *object,
                         aisleriot_slot_renderer_get_highlight (srend));
       break;
 
+    case PROP_REVEALED_CARD:
+      g_value_set_int (value,
+                       aisleriot_slot_renderer_get_revealed_card (srend));
+      break;
+
     case PROP_ANIMATION_LAYER:
       g_value_set_object (value,
                           aisleriot_slot_renderer_get_animation_layer (srend));
@@ -278,13 +302,44 @@ aisleriot_slot_renderer_get_property (GObject *object,
 }
 
 static void
+aisleriot_slot_renderer_paint_card (AisleriotSlotRenderer *srend,
+                                    guint card_num)
+{
+  AisleriotSlotRendererPrivate *priv = srend->priv;
+  Card card = CARD (priv->slot->cards->data[card_num]);
+  gboolean is_highlighted;
+  CoglHandle cogl_tex;
+  guint tex_width, tex_height;
+  int cardx, cardy;
+
+  is_highlighted = priv->show_highlight && (card_num >= priv->highlight_start);
+
+  cogl_tex = aisleriot_card_cache_get_card_texture (priv->cache,
+                                                    card,
+                                                    is_highlighted);
+
+  tex_width = cogl_texture_get_width (cogl_tex);
+  tex_height = cogl_texture_get_height (cogl_tex);
+
+  aisleriot_game_get_card_offset (priv->slot, card_num,
+                                  FALSE,
+                                  &cardx, &cardy);
+
+  cogl_texture_rectangle (cogl_tex,
+                          CLUTTER_INT_TO_FIXED (cardx),
+                          CLUTTER_INT_TO_FIXED (cardy),
+                          CLUTTER_INT_TO_FIXED (cardx + tex_width),
+                          CLUTTER_INT_TO_FIXED (cardy + tex_height),
+                          0, 0, CFX_ONE, CFX_ONE);
+}
+
+static void
 aisleriot_slot_renderer_paint (ClutterActor *actor)
 {
   AisleriotSlotRenderer *srend = (AisleriotSlotRenderer *) actor;
   AisleriotSlotRendererPrivate *priv = srend->priv;
   guint n_cards;
   guint8 *cards;
-  int cardx, cardy;
   guint i;
 
   g_return_if_fail (priv->cache != NULL);
@@ -319,32 +374,14 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
                       n_cards - priv->slot->exposed);
     last_card = n_cards - priv->animations->len;
 
-    for (i = first_card; i < last_card; i++) {
-      Card card = CARD (cards[i]);
-      gboolean is_highlighted;
-      CoglHandle cogl_tex;
-      guint tex_width, tex_height;
+    for (i = first_card; i < last_card; i++)
+      if (i != priv->revealed_card)
+        aisleriot_slot_renderer_paint_card (srend, i);
 
-      is_highlighted = priv->show_highlight && (i >= priv->highlight_start);
-
-      cogl_tex = aisleriot_card_cache_get_card_texture (priv->cache,
-                                                        card,
-                                                        is_highlighted);
-
-      tex_width = cogl_texture_get_width (cogl_tex);
-      tex_height = cogl_texture_get_height (cogl_tex);
-
-      aisleriot_game_get_card_offset (priv->slot, i,
-                                      FALSE,
-                                      &cardx, &cardy);
-
-      cogl_texture_rectangle (cogl_tex,
-                              CLUTTER_INT_TO_FIXED (cardx),
-                              CLUTTER_INT_TO_FIXED (cardy),
-                              CLUTTER_INT_TO_FIXED (cardx + tex_width),
-                              CLUTTER_INT_TO_FIXED (cardy + tex_height),
-                              0, 0, CFX_ONE, CFX_ONE);
-    }
+    /* Paint the revealed card after all of the other cards so that it
+       will appeear on top */
+    if (priv->revealed_card >= first_card && priv->revealed_card < last_card)
+      aisleriot_slot_renderer_paint_card (srend, priv->revealed_card);
   }
 }
 
@@ -372,6 +409,31 @@ aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
   clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
 
   g_object_notify (G_OBJECT (srend), "highlight");
+}
+
+gint
+aisleriot_slot_renderer_get_revealed_card (AisleriotSlotRenderer *srend)
+{
+  g_return_val_if_fail (AISLERIOT_IS_SLOT_RENDERER (srend), 0);
+
+  return srend->priv->revealed_card;
+}
+
+void
+aisleriot_slot_renderer_set_revealed_card (AisleriotSlotRenderer *srend,
+                                           gint revealed_card)
+{
+  AisleriotSlotRendererPrivate *priv;
+
+  g_return_if_fail (AISLERIOT_IS_SLOT_RENDERER (srend));
+
+  priv = srend->priv;
+
+  priv->revealed_card = revealed_card;
+
+  clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
+
+  g_object_notify (G_OBJECT (srend), "revealed-card");
 }
 
 ClutterContainer *
