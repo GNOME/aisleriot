@@ -112,6 +112,8 @@ GdkPixmap *games_card_images_get_slot_pixmap (GamesCardImages * images,
 
 GdkBitmap *games_card_images_get_slot_mask (GamesCardImages * images);
 
+guint games_card_images_card_to_index (Card card);
+
 /* Deprecated */
 GdkPixbuf *games_card_images_get_card_pixbuf_by_suit_and_rank (GamesCardImages
                                                                * images,

@@ -90,8 +90,8 @@ games_card_images_theme_changed_cb (GamesCardTheme * theme,
   games_card_images_clear_cache (images);
 }
 
-static inline guint
-card_to_index (Card card)
+guint
+games_card_images_card_to_index (Card card)
 {
   guint card_id;
 
@@ -498,8 +498,10 @@ GdkPixbuf *
 games_card_images_get_card_pixbuf (GamesCardImages * images,
                                    Card card, gboolean highlighted)
 {
+  guint index = games_card_images_card_to_index (card);
+
   return games_card_images_get_card_pixbuf_by_id (images,
-                                                  card_to_index (card),
+                                                  index,
                                                   highlighted);
 }
 
@@ -632,8 +634,10 @@ GdkPixmap *
 games_card_images_get_card_pixmap (GamesCardImages * images,
                                    Card card, gboolean highlighted)
 {
+  guint index = games_card_images_card_to_index (card);
+
   return games_card_images_get_card_pixmap_by_id (images,
-                                                  card_to_index (card),
+                                                  index,
                                                   highlighted);
 }
 

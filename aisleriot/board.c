@@ -41,6 +41,7 @@
 #include "game.h"
 #include "board.h"
 #include "baize.h"
+#include "card-cache.h"
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
@@ -130,6 +131,7 @@ struct _AisleriotBoardPrivate
 
   /* Cards cache */
   GamesCardImages *images;
+  AisleriotCardCache *textures;
 
   /* Slot */
   gpointer slot_image; /* either a GdkPixbuf or GdkPixmap, depending on drawing mode */
@@ -394,15 +396,14 @@ set_background_from_baize (AisleriotBoard *board)
 
   g_assert (pixbuf != NULL);
 
-  if (priv->baize_actor == NULL)
-    {
-      ClutterActor *stage
-        = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
+  if (priv->baize_actor == NULL) {
+    ClutterActor *stage
+      = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
 
-      priv->baize_actor = g_object_ref_sink (aisleriot_baize_new ());
-      clutter_container_add (CLUTTER_CONTAINER (stage),
-                             priv->baize_actor, NULL);
-    }
+    priv->baize_actor = g_object_ref_sink (aisleriot_baize_new ());
+    clutter_container_add (CLUTTER_CONTAINER (stage),
+                           priv->baize_actor, NULL);
+  }
 
   gtk_clutter_texture_set_from_pixbuf (CLUTTER_TEXTURE (priv->baize_actor),
                                        pixbuf);
@@ -3356,6 +3357,7 @@ aisleriot_board_constructor (GType type,
   /* Create this down here since we need to have the scalable_cards value */
   priv->theme = games_card_theme_new (NULL, priv->scalable_cards);
   priv->images = games_card_images_new (priv->theme);
+  priv->textures = aisleriot_card_cache_new (priv->images);
 
   return object;
 }
@@ -3398,12 +3400,16 @@ aisleriot_board_dispose (GObject *object)
   AisleriotBoard *board = AISLERIOT_BOARD (object);
   AisleriotBoardPrivate *priv = board->priv;
 
-  if (priv->baize_actor)
-    {
-      clutter_actor_destroy (priv->baize_actor);
-      g_object_unref (priv->baize_actor);
-      priv->baize_actor = NULL;
-    }
+  if (priv->baize_actor) {
+    clutter_actor_destroy (priv->baize_actor);
+    g_object_unref (priv->baize_actor);
+    priv->baize_actor = NULL;
+  }
+
+  if (priv->textures) {
+    g_object_unref (priv->textures);
+    priv->textures = NULL;
+  }
 
   G_OBJECT_CLASS (aisleriot_board_parent_class)->dispose (object);
 }

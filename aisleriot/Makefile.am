@@ -21,6 +21,8 @@ sol_SOURCES = \
 	baize.h		\
 	board.c		\
 	board.h		\
+	card-cache.c    \
+	card-cache.h    \
 	conf.c		\
 	conf.h		\
 	game.c		\
