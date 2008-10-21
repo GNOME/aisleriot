@@ -42,6 +42,7 @@
 #include "board.h"
 #include "baize.h"
 #include "card-cache.h"
+#include "card.h"
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
@@ -819,18 +820,34 @@ slot_update_geometry (AisleriotBoard *board,
 }
 
 static void
+truncate_card_images_array (GPtrArray *card_images, guint size)
+{
+  guint i;
+
+  for (i = size; i < card_images->len; i++) {
+    ClutterActor *actor = g_ptr_array_index (card_images, i);
+
+    if (actor)
+      clutter_actor_destroy (actor);
+  }
+
+  g_ptr_array_set_size (card_images, size);
+}
+
+static void
 slot_update_card_images_full (AisleriotBoard *board,
                               Slot *slot,
                               int highlight_start_card_id)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GamesCardImages *images = priv->images;
   GPtrArray *card_images;
   guint n_cards, first_exposed_card_id, i;
   guint8 *cards;
+  int cardx, cardy;
 
   card_images = slot->card_images;
-  g_ptr_array_set_size (card_images, 0);
+
+  truncate_card_images_array (card_images, 0);
 
   if (!priv->geometry_set)
     return;
@@ -848,26 +865,29 @@ slot_update_card_images_full (AisleriotBoard *board,
     g_ptr_array_add (card_images, NULL);
   }
 
-  if (PIXBUF_DRAWING_LIKELIHOOD (priv->use_pixbuf_drawing)) {
-    for (i = first_exposed_card_id; i < n_cards; ++i) {
-      Card card = CARD (cards[i]);
-      gboolean is_highlighted;
+  cardx = slot->rect.x;
+  cardy = slot->rect.y;
 
-      is_highlighted = (i >= highlight_start_card_id);
+  for (i = first_exposed_card_id; i < n_cards; ++i) {
+    Card card = CARD (cards[i]);
+    gboolean is_highlighted;
+    ClutterActor *stage
+      = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
+    ClutterActor *card_tex = aisleriot_card_new (priv->textures, card);
 
-      g_ptr_array_add (card_images,
-                       games_card_images_get_card_pixbuf (images, card, is_highlighted));
-    }
-  } else {
-    for (i = first_exposed_card_id; i < n_cards; ++i) {
-      Card card = CARD (cards[i]);
-      gboolean is_highlighted;
+    is_highlighted = (i >= highlight_start_card_id);
 
-      is_highlighted = (i >= highlight_start_card_id);
+    aisleriot_card_set_highlighted (AISLERIOT_CARD (card_tex),
+                                    is_highlighted);
 
-      g_ptr_array_add (card_images,
-                       games_card_images_get_card_pixmap (images, card, is_highlighted));
-    }
+    clutter_actor_set_position (card_tex, cardx, cardy);
+
+    clutter_container_add (CLUTTER_CONTAINER (stage), card_tex, NULL);
+
+    g_ptr_array_add (card_images, card_tex);
+
+    cardx += slot->pixeldx;
+    cardy += slot->pixeldy;
   }
 }
 
@@ -925,6 +945,8 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
                                              priv->xslotstep,
                                              priv->yslotstep,
                                              CARD_SLOT_PROP);
+  if (size_changed)
+    aisleriot_card_cache_clear (priv->textures);
 
   card_size = priv->card_size = games_card_images_get_size (priv->images);
 
@@ -1038,7 +1060,8 @@ drag_begin (AisleriotBoard *board)
 
   /* Take the cards off of the stack */
   g_byte_array_set_size (cards, priv->moving_cards_origin_card_id);
-  g_ptr_array_set_size (hslot->card_images, priv->moving_cards_origin_card_id);
+  truncate_card_images_array (hslot->card_images,
+                              priv->moving_cards_origin_card_id);
 
   width = priv->card_size.width + (num_moving_cards - 1) * hslot->pixeldx;
   height = priv->card_size.height + (num_moving_cards - 1) * hslot->pixeldy;
