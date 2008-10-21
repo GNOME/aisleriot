@@ -19,8 +19,8 @@
 #include <config.h>
 
 #include <clutter/clutter-actor.h>
-#include <clutter/clutter-container.h>
 #include <clutter/clutter-timeline.h>
+#include <clutter/clutter-container.h>
 #include <clutter/clutter-behaviour-rotate.h>
 #include <clutter/clutter-behaviour-depth.h>
 #include <clutter/clutter-behaviour-path.h>
@@ -48,18 +48,10 @@ static void aisleriot_slot_renderer_paint (ClutterActor *actor);
 static void aisleriot_slot_renderer_set_cache (AisleriotSlotRenderer *srend,
                                                AisleriotCardCache *cache);
 
-static void clutter_container_iface_init (ClutterContainerIface *iface);
-
-static void aisleriot_slot_renderer_allocate (ClutterActor *actor,
-                                              const ClutterActorBox *box,
-                                              gboolean origin_changed);
-
 static void completed_cb (AisleriotSlotRenderer *srend);
 
-G_DEFINE_TYPE_WITH_CODE (AisleriotSlotRenderer, aisleriot_slot_renderer,
-                         CLUTTER_TYPE_ACTOR,
-                         G_IMPLEMENT_INTERFACE (CLUTTER_TYPE_CONTAINER,
-                                                clutter_container_iface_init));
+G_DEFINE_TYPE (AisleriotSlotRenderer, aisleriot_slot_renderer,
+               CLUTTER_TYPE_ACTOR);
 
 #define AISLERIOT_SLOT_RENDERER_GET_PRIVATE(obj) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((obj), AISLERIOT_TYPE_SLOT_RENDERER, \
@@ -79,6 +71,8 @@ struct _AisleriotSlotRendererPrivate
   ClutterTimeline *timeline;
   guint completed_handler;
   GArray *animations;
+
+  ClutterContainer *animation_layer;
 };
 
 struct _AnimationData
@@ -93,7 +87,8 @@ enum
 
   PROP_CACHE,
   PROP_SLOT,
-  PROP_HIGHLIGHT
+  PROP_HIGHLIGHT,
+  PROP_ANIMATION_LAYER
 };
 
 static void
@@ -110,7 +105,6 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
   gobject_class->get_property = aisleriot_slot_renderer_get_property;
 
   actor_class->paint = aisleriot_slot_renderer_paint;
-  actor_class->allocate = aisleriot_slot_renderer_allocate;
 
   pspec = g_param_spec_object ("cache", NULL, NULL,
                                AISLERIOT_TYPE_CARD_CACHE,
@@ -138,6 +132,15 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
                             G_PARAM_STATIC_NICK |
                             G_PARAM_STATIC_BLURB);
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
+
+  pspec = g_param_spec_object ("animation-layer", NULL, NULL,
+                               CLUTTER_TYPE_CONTAINER,
+                               G_PARAM_WRITABLE |
+                               G_PARAM_READABLE |
+                               G_PARAM_STATIC_NAME |
+                               G_PARAM_STATIC_NICK |
+                               G_PARAM_STATIC_BLURB);
+  g_object_class_install_property (gobject_class, PROP_ANIMATION_LAYER, pspec);
 
   g_type_class_add_private (klass, sizeof (AisleriotSlotRendererPrivate));
 }
@@ -172,6 +175,8 @@ aisleriot_slot_renderer_dispose (GObject *object)
     g_object_unref (priv->timeline);
     priv->timeline = NULL;
   }
+
+  aisleriot_slot_renderer_set_animation_layer (self, NULL);
 
   G_OBJECT_CLASS (aisleriot_slot_renderer_parent_class)->dispose (object);
 }
@@ -236,6 +241,11 @@ aisleriot_slot_renderer_set_property (GObject *object,
                                              g_value_get_int (value));
       break;
 
+    case PROP_ANIMATION_LAYER:
+      aisleriot_slot_renderer_set_animation_layer (srend,
+                                                   g_value_get_object (value));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -254,6 +264,11 @@ aisleriot_slot_renderer_get_property (GObject *object,
     case PROP_HIGHLIGHT:
       g_value_set_int (value,
                         aisleriot_slot_renderer_get_highlight (srend));
+      break;
+
+    case PROP_ANIMATION_LAYER:
+      g_value_set_object (value,
+                          aisleriot_slot_renderer_get_animation_layer (srend));
       break;
 
     default:
@@ -331,14 +346,6 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
                               0, 0, CFX_ONE, CFX_ONE);
     }
   }
-
-  /* Paint the animated actors */
-  for (i = 0; i < priv->animations->len; i++) {
-    AnimationData *data = &g_array_index (priv->animations, AnimationData, i);
-
-    if (CLUTTER_ACTOR_IS_VISIBLE (data->card_tex))
-      clutter_actor_paint (data->card_tex);
-  }
 }
 
 guint
@@ -353,14 +360,51 @@ void
 aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
                                        gint highlight)
 {
-  AisleriotSlotRendererPrivate *priv = srend->priv;
+  AisleriotSlotRendererPrivate *priv;
 
   g_return_if_fail (AISLERIOT_IS_SLOT_RENDERER (srend));
+
+  priv = srend->priv;
 
   priv->highlight_start = highlight;
   priv->show_highlight = priv->highlight_start != G_MAXINT;
 
   clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
+
+  g_object_notify (G_OBJECT (srend), "highlight");
+}
+
+ClutterContainer *
+aisleriot_slot_renderer_get_animation_layer (AisleriotSlotRenderer *srend)
+{
+  AisleriotSlotRendererPrivate *priv;
+
+  g_return_val_if_fail (AISLERIOT_IS_SLOT_RENDERER (srend), NULL);
+
+  priv = srend->priv;
+
+  return priv->animation_layer;
+}
+
+void
+aisleriot_slot_renderer_set_animation_layer (AisleriotSlotRenderer *srend,
+                                             ClutterContainer *animation_layer)
+{
+  AisleriotSlotRendererPrivate *priv;
+
+  g_return_if_fail (AISLERIOT_IS_SLOT_RENDERER (srend));
+
+  priv = srend->priv;
+
+  if (animation_layer)
+    g_object_ref (animation_layer);
+
+  if (priv->animation_layer)
+    g_object_unref (priv->animation_layer);
+
+  priv->animation_layer = animation_layer;
+
+  g_object_notify (G_OBJECT (srend), "animation-layer");
 }
 
 void
@@ -411,7 +455,9 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
 
     anim_data.card_tex = aisleriot_card_new (priv->cache, card);
     g_object_ref_sink (anim_data.card_tex);
-    clutter_actor_set_parent (anim_data.card_tex, CLUTTER_ACTOR (srend));
+    if (priv->animation_layer)
+      clutter_container_add (priv->animation_layer,
+                             CLUTTER_ACTOR (anim_data.card_tex), NULL);
 
     cogl_tex = aisleriot_card_cache_get_card_texture (priv->cache, card, FALSE);
     card_width = cogl_texture_get_width (cogl_tex);
@@ -422,8 +468,11 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
 
     knots[0].x = anims[i].cardx;
     knots[0].y = anims[i].cardy;
-    knots[1].x = priv->slot->pixeldx * card_num;
-    knots[1].y = priv->slot->pixeldy * card_num;
+
+    aisleriot_game_get_card_offset (priv->slot, card_num, FALSE,
+                                    &knots[1].x, &knots[1].y);
+    knots[1].x += priv->slot->rect.x;
+    knots[1].y += priv->slot->rect.y;
 
     alpha = clutter_alpha_new_full (priv->timeline, CLUTTER_ALPHA_RAMP_INC,
                                     NULL, NULL);
@@ -480,94 +529,4 @@ completed_cb (AisleriotSlotRenderer *srend)
   /* Redraw so that the animated actors will be drawn as part of the
      renderer instead */
   clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
-}
-
-static void
-aisleriot_slot_renderer_real_add (ClutterContainer *container,
-                                  ClutterActor     *actor)
-{
-  g_critical ("Do not add actors to an AisleriotSlotRenderer directly");
-}
-
-static void
-aisleriot_slot_renderer_real_remove (ClutterContainer *container,
-                                     ClutterActor     *actor)
-{
-  g_object_ref (actor);
-
-  clutter_actor_unparent (actor);
-
-  clutter_actor_queue_relayout (CLUTTER_ACTOR (container));
-
-  if (CLUTTER_ACTOR_IS_VISIBLE (CLUTTER_ACTOR (container)))
-    clutter_actor_queue_redraw (CLUTTER_ACTOR (container));
-
-  g_object_unref (actor);
-}
-
-static void
-aisleriot_slot_renderer_real_foreach (ClutterContainer *container,
-                                      ClutterCallback   callback,
-                                      gpointer          user_data)
-{
-  AisleriotSlotRenderer *srend = AISLERIOT_SLOT_RENDERER (container);
-  AisleriotSlotRendererPrivate *priv = srend->priv;
-  guint i;
-
-  for (i = 0; i < priv->animations->len; i++) {
-    AnimationData *data = &g_array_index (priv->animations, AnimationData, i);
-
-    (* callback) (data->card_tex, user_data);
-  }
-}
-
-static void
-aisleriot_slot_renderer_real_raise (ClutterContainer *container,
-                                    ClutterActor     *actor,
-                                    ClutterActor     *sibling)
-{
-}
-
-static void
-aisleriot_slot_renderer_real_lower (ClutterContainer *container,
-                                    ClutterActor     *actor,
-                                    ClutterActor     *sibling)
-{
-}
-
-static void
-aisleriot_slot_renderer_real_sort_depth_order (ClutterContainer *container)
-{
-}
-
-static void
-clutter_container_iface_init (ClutterContainerIface *iface)
-{
-  iface->add = aisleriot_slot_renderer_real_add;
-  iface->remove = aisleriot_slot_renderer_real_remove;
-  iface->foreach = aisleriot_slot_renderer_real_foreach;
-  iface->raise = aisleriot_slot_renderer_real_raise;
-  iface->lower = aisleriot_slot_renderer_real_lower;
-  iface->sort_depth_order = aisleriot_slot_renderer_real_sort_depth_order;
-}
-
-static void
-aisleriot_slot_renderer_allocate (ClutterActor *actor,
-                                  const ClutterActorBox *box,
-                                  gboolean origin_changed)
-{
-  AisleriotSlotRenderer *srend = (AisleriotSlotRenderer *) actor;
-  AisleriotSlotRendererPrivate *priv = srend->priv;
-  guint i;
-
-  /* chain up to set actor->allocation */
-  CLUTTER_ACTOR_CLASS (aisleriot_slot_renderer_parent_class)
-    ->allocate (actor, box, origin_changed);
-
-  for (i = 0; i < priv->animations->len; i++) {
-    AnimationData *anim = &g_array_index (priv->animations, AnimationData, i);
-
-    clutter_actor_allocate_preferred_size (anim->card_tex,
-                                           origin_changed);
-  }
 }

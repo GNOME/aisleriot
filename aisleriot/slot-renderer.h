@@ -20,6 +20,7 @@
 #define __AISLERIOT_SLOT_RENDERER_H__
 
 #include <clutter/clutter-actor.h>
+#include <clutter/clutter-container.h>
 #include <libgames-support/games-card-images.h>
 #include "card-cache.h"
 #include "game.h"
@@ -78,6 +79,12 @@ ClutterActor *aisleriot_slot_renderer_new (AisleriotCardCache *cache,
 void aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
                                             gint hightlight_start);
 guint aisleriot_slot_renderer_get_highlight (AisleriotSlotRenderer *srend);
+
+ClutterContainer *aisleriot_slot_renderer_get_animation_layer
+                                  (AisleriotSlotRenderer *srend);
+void aisleriot_slot_renderer_set_animation_layer
+                                  (AisleriotSlotRenderer *srend,
+                                   ClutterContainer *animation_layer);
 
 void aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
                                              guint n_anims,

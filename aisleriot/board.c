@@ -28,6 +28,7 @@
 #include <gdk/gdkkeysyms.h>
 
 #include <clutter-gtk/gtk-clutter-embed.h>
+#include <clutter/clutter-group.h>
 
 #include <libgames-support/games-card-images.h>
 #include <libgames-support/games-files.h>
@@ -146,6 +147,9 @@ struct _AisleriotBoardPrivate
   int moving_cards_origin_card_id; /* The index of the card that was clicked on in hslot->cards; or -1 if the click wasn't on a card */
   ClutterActor *moving_cards_group;
   GByteArray *moving_cards;
+
+  /* A group to put animated cards above the slots */
+  ClutterActor *animation_layer;
 
   /* The 'reveal card' action's slot and card link */
   Slot *show_card_slot;
@@ -891,6 +895,8 @@ check_animations (AisleriotBoard *board)
                                         FALSE,
                                         &anim.cardx,
                                         &anim.cardy);
+        anim.cardx += slot->rect.x;
+        anim.cardy += slot->rect.y;
         anim.face_down = old_card.attr.face_down;
 
         g_array_append_val (animations, anim);
@@ -914,8 +920,8 @@ check_animations (AisleriotBoard *board)
               && added_card.attr.rank == removed_card->card.attr.rank) {
             AisleriotAnimStart anim;
 
-            anim.cardx = removed_card->cardx - slot->rect.x;
-            anim.cardy = removed_card->cardy - slot->rect.y;
+            anim.cardx = removed_card->cardx;
+            anim.cardy = removed_card->cardy;
             anim.face_down = removed_card->card.attr.face_down;
 
             g_array_append_val (animations, anim);
@@ -958,11 +964,17 @@ slot_update_card_images_full (AisleriotBoard *board,
     slot->slot_renderer = aisleriot_slot_renderer_new (priv->textures, slot);
     g_object_ref_sink (slot->slot_renderer);
 
+    aisleriot_slot_renderer_set_animation_layer
+      (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
+       CLUTTER_CONTAINER (priv->animation_layer));
+
     clutter_actor_set_position (slot->slot_renderer,
                                 slot->rect.x, slot->rect.y);
 
     clutter_container_add (CLUTTER_CONTAINER (stage),
                            slot->slot_renderer, NULL);
+
+    clutter_actor_raise_top (priv->animation_layer);
   }
 
   aisleriot_slot_renderer_set_animations
@@ -3072,6 +3084,7 @@ aisleriot_board_init (AisleriotBoard *board)
 {
   GtkWidget *widget = GTK_WIDGET (board);
   AisleriotBoardPrivate *priv;
+  ClutterActor *stage;
 
   priv = board->priv = AISLERIOT_BOARD_GET_PRIVATE (board);
 
@@ -3101,6 +3114,11 @@ aisleriot_board_init (AisleriotBoard *board)
 #ifdef HAVE_MAEMO
   gtk_widget_tap_and_hold_setup (widget, NULL, NULL, GTK_TAP_AND_HOLD_PASS_PRESS);
 #endif
+
+  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
+  priv->animation_layer = g_object_ref_sink (clutter_group_new ());
+  clutter_container_add (CLUTTER_CONTAINER (stage),
+                         priv->animation_layer, NULL);
 }
 
 static GObject *
@@ -3175,6 +3193,11 @@ aisleriot_board_dispose (GObject *object)
   if (priv->textures) {
     g_object_unref (priv->textures);
     priv->textures = NULL;
+  }
+
+  if (priv->animation_layer) {
+    g_object_unref (priv->animation_layer);
+    priv->animation_layer = NULL;
   }
 
   G_OBJECT_CLASS (aisleriot_board_parent_class)->dispose (object);
