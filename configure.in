@@ -478,8 +478,6 @@ if test "$enable_clutter" = "yes"; then
      clutter-cairo-$CLUTTER_API_VERSION >= $CLUTTER_CAIRO_REQUIRED])
   AC_SUBST([CLUTTER_CFLAGS])
   AC_SUBST([CLUTTER_LIBS])
-
-  AC_DEFINE([HAVE_CLUTTER],[1],[Define if clutter is available])
 fi
 
 AM_CONDITIONAL([HAVE_CLUTTER],[test "$enable_clutter" = "yes"])

@@ -101,8 +101,33 @@ sol_LDADD += $(GTHREAD_LIBS)
 endif
 
 if HAVE_CLUTTER
+sol_CPPFLAGS += -DHAVE_CLUTTER
 sol_CFLAGS += $(CLUTTER_CFLAGS)
 sol_LDADD += $(CLUTTER_LIBS)
+endif
+
+if HAVE_CLUTTER
+noinst_PROGRAMS = sol-noclutter
+
+sol_noclutter_SOURCES = \
+	board.h			\
+	board-noclutter.c	\
+	conf.c			\
+	conf.h			\
+	game.c			\
+	game.h			\
+	sol.c			\
+	stats-dialog.c		\
+	stats-dialog.h		\
+	util.c			\
+	util.h			\
+	window.c		\
+	window.h		\
+	$(NULL)
+
+sol_noclutter_CPPFLAGS = $(sol_CPPFLAGS) -UHAVE_CLUTTER
+sol_noclutter_CFLAGS = $(sol_CFLAGS)
+sol_noclutter_LDADD = $(sol_LDADD)
 endif
 
 desktop_in_files = \
