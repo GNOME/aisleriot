@@ -224,18 +224,17 @@ aisleriot_card_cache_get_card_texture_by_id (AisleriotCardCache *cache,
   if (highlighted)
     index *= 2;
 
-  if (priv->cards[index] == NULL)
-    {
-      ClutterActor *tex = g_object_ref_sink (clutter_texture_new ());
-      GdkPixbuf *pixbuf
-        = games_card_images_get_card_pixbuf_by_id (priv->card_images,
-                                                   card_id,
-                                                   highlighted);
+  if (priv->cards[index] == NULL) {
+    ClutterActor *tex = g_object_ref_sink (clutter_texture_new ());
+    GdkPixbuf *pixbuf
+      = games_card_images_get_card_pixbuf_by_id (priv->card_images,
+                                                 card_id,
+                                                 highlighted);
 
-      gtk_clutter_texture_set_from_pixbuf (CLUTTER_TEXTURE (tex), pixbuf);
+    gtk_clutter_texture_set_from_pixbuf (CLUTTER_TEXTURE (tex), pixbuf);
 
-      priv->cards[index] = tex;
-    }
+    priv->cards[index] = tex;
+  }
 
   return priv->cards[index];
 }
