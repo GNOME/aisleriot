@@ -965,6 +965,9 @@ slot_update_card_images_full (AisleriotBoard *board,
                            slot->slot_renderer, NULL);
   }
 
+  aisleriot_slot_renderer_set_animations
+    (AISLERIOT_SLOT_RENDERER (slot->slot_renderer), 0, NULL);
+
   aisleriot_slot_renderer_set_highlight
     (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
      priv->show_highlight ? highlight_start_card_id : G_MAXUINT);
