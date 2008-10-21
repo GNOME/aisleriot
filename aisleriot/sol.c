@@ -537,6 +537,8 @@ main_prog (void *closure, int argc, char *argv[])
   games_sound_enable (FALSE);
   games_sound_add_option_group (option_context);
 
+  gtk_clutter_init (&argc, &argv);
+
   g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
 #ifdef WITH_SMCLIENT
   g_option_context_add_group (option_context, egg_sm_client_get_option_group ());

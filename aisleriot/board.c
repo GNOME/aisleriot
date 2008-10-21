@@ -27,6 +27,8 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
+#include <clutter-gtk/gtk-clutter-embed.h>
+
 #include <libgames-support/games-card-images.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-marshal.h>
@@ -2177,7 +2179,7 @@ slot_changed_cb (AisleriotGame *game,
 
 /* Class implementation */
 
-G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GTK_TYPE_DRAWING_AREA);
+G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GTK_TYPE_CLUTTER_EMBED);
 
 /* AisleriotBoardClass methods */
 

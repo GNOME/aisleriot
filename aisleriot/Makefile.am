@@ -50,8 +50,10 @@ sol_CPPFLAGS = \
 	$(AM_CPPFLAGS)
 
 sol_CFLAGS = \
-	$(GTK_CFLAGS)	\
-	$(GUILE_CFLAGS)	\
+	$(GTK_CFLAGS)	      \
+	$(CLUTTER_CFLAGS)     \
+	$(CLUTTER_GTK_CFLAGS) \
+	$(GUILE_CFLAGS)	      \
 	$(AM_CFLAGS)
 
 sol_LDFLAGS = \
@@ -59,7 +61,9 @@ sol_LDFLAGS = \
 
 sol_LDADD = \
 	$(top_builddir)/libgames-support/libgames-support.la	\
-	$(GTK_LIBS)	\
+	$(GTK_LIBS)	    \
+	$(CLUTTER_LIBS)     \
+	$(CLUTTER_GTK_LIBS) \
 	$(GUILE_LIBS)
 
 if HAVE_HILDON
