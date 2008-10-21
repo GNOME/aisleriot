@@ -816,6 +816,10 @@ slot_update_geometry (AisleriotBoard *board,
     slot->rect.x -= slot->rect.width - priv->card_size.width;
   }
 
+  if (slot->slot_renderer)
+    clutter_actor_set_position (slot->slot_renderer,
+                                slot->rect.x, slot->rect.y);
+
   if (GTK_WIDGET_REALIZED (widget)) {
     GdkRectangle damage = slot->rect;
 
