@@ -38,7 +38,7 @@ main (int argc, char *argv[])
   char *basepath = NULL, *kfname, *kfpath;
   GamesCardTheme *theme = NULL;
   GKeyFile *key_file = NULL;
-  guint i;
+  int i;
   int retval = EXIT_FAILURE;
   int *sizes = NULL, n_sizes = 0;
   char *data = NULL;
