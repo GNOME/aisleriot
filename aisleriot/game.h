@@ -35,6 +35,7 @@ typedef struct {
 
   GByteArray *cards;
   /* The old state of the cards so we can check for differences */
+  guint old_exposed;
   GByteArray *old_cards;
 
   /* the topmost |exposed| cards are shown on the pile */
@@ -191,6 +192,11 @@ void aisleriot_game_test_end_of_game (AisleriotGame * game);
 void aisleriot_game_generate_exception (AisleriotGame * game);
 
 void aisleriot_game_deal_cards (AisleriotGame *game);
+
+void aisleriot_game_get_card_offset (Slot *slot,
+                                     guint card_num,
+                                     gboolean old_cards,
+                                     gint *xoff, gint *yoff);
 
 G_END_DECLS
 

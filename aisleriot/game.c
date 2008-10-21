@@ -2067,3 +2067,29 @@ aisleriot_game_deal_cards (AisleriotGame *game)
   aisleriot_game_end_move (game);
   aisleriot_game_test_end_of_game (game);
 }
+
+void
+aisleriot_game_get_card_offset (Slot *slot,
+                                guint card_num,
+                                gboolean old_cards,
+                                gint *xoff, gint *yoff)
+{
+  gint n_cards, exposed;
+
+  if (old_cards) {
+    n_cards = (gint) slot->old_cards->len;
+    exposed = (gint) slot->old_exposed;
+  } else {
+    n_cards = (gint) slot->cards->len;
+    exposed = (gint) slot->exposed;
+  }
+
+  if (card_num >= n_cards - exposed) {
+    gint index = card_num + exposed - n_cards;
+    *xoff = slot->pixeldx * index;
+    *yoff = slot->pixeldy * index;
+  } else {
+    *xoff = 0;
+    *yoff = 0;
+  }
+}
