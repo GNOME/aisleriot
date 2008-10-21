@@ -1,5 +1,5 @@
 diff --git a/libegg/smclient/eggsmclient-xsmp.c b/libegg/smclient/eggsmclient-xsmp.c
-index 86dfdb7..71b0180 100644
+index e4b11f6..dcaf36b 100644
 --- a/libegg/smclient/eggsmclient-xsmp.c
 +++ b/libegg/smclient/eggsmclient-xsmp.c
 @@ -88,6 +88,8 @@ struct _EggSMClientXSMP
@@ -121,77 +121,10 @@ index 86dfdb7..71b0180 100644
    return cmd;
  }
 diff --git a/libegg/smclient/eggsmclient.c b/libegg/smclient/eggsmclient.c
-index b24968d..6bec6ed 100644
+index 8e2254f..6bec6ed 100644
 --- a/libegg/smclient/eggsmclient.c
 +++ b/libegg/smclient/eggsmclient.c
-@@ -38,7 +38,7 @@ enum {
-   LAST_SIGNAL
- };
- 
--static guint signals[LAST_SIGNAL] = { 0 };
-+static guint signals[LAST_SIGNAL];
- 
- struct _EggSMClientPrivate {
-   GKeyFile *state_file;
-@@ -179,23 +179,6 @@ static gboolean sm_client_disable = FALSE;
- static char *sm_client_state_file = NULL;
- static char *sm_client_id = NULL;
- 
--static GOptionEntry entries[] = {
--  { "sm-client-disable", 0, 0,
--    G_OPTION_ARG_NONE, &sm_client_disable,
--    N_("Disable connection to session manager"), NULL },
--  { "sm-client-state-file", 0, 0,
--    G_OPTION_ARG_STRING, &sm_client_state_file,
--    N_("Specify file containing saved configuration"), N_("FILE") },
--  { "sm-client-id", 0, 0,
--    G_OPTION_ARG_STRING, &sm_client_id,
--    N_("Specify session management ID"), N_("ID") },
--  /* Compatibility options */
--  { "sm-disable", 0, G_OPTION_FLAG_HIDDEN,
--    G_OPTION_ARG_NONE, &sm_client_disable,
--    NULL, NULL },
--  { NULL }
--};
--
- static gboolean
- sm_client_post_parse_func (GOptionContext  *context,
- 			   GOptionGroup    *group,
-@@ -235,6 +218,22 @@ sm_client_post_parse_func (GOptionContext  *context,
- GOptionGroup *
- egg_sm_client_get_option_group (void)
- {
-+  const GOptionEntry entries[] = {
-+    { "sm-client-disable", 0, 0,
-+      G_OPTION_ARG_NONE, &sm_client_disable,
-+      N_("Disable connection to session manager"), NULL },
-+    { "sm-client-state-file", 0, 0,
-+      G_OPTION_ARG_FILENAME, &sm_client_state_file,
-+      N_("Specify file containing saved configuration"), N_("FILE") },
-+    { "sm-client-id", 0, 0,
-+      G_OPTION_ARG_STRING, &sm_client_id,
-+      N_("Specify session management ID"), N_("ID") },
-+    /* Compatibility options */
-+    { "sm-disable", 0, G_OPTION_FLAG_HIDDEN,
-+      G_OPTION_ARG_NONE, &sm_client_disable,
-+      NULL, NULL },
-+    { NULL }
-+  };
-   GOptionGroup *group;
- 
-   /* Use our own debug handler for the "EggSMClient" domain. */
-@@ -242,8 +241,8 @@ egg_sm_client_get_option_group (void)
- 		     egg_sm_client_debug_handler, NULL);
- 
-   group = g_option_group_new ("sm-client",
--			      _("Session Management Options"),
--			      _("Show Session Management options"),
-+			      _("Session management options:"),
-+			      _("Show session management options"),
- 			      NULL, NULL);
-   g_option_group_add_entries (group, entries);
-   g_option_group_set_parse_hooks (group, NULL, sm_client_post_parse_func);
-@@ -438,6 +437,27 @@ egg_sm_client_set_restart_command (EggSMClient  *client,
+@@ -437,6 +437,27 @@ egg_sm_client_set_restart_command (EggSMClient  *client,
  }
  
  /**

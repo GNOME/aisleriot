@@ -837,7 +837,7 @@ save_state (EggSMClientXSMP *xsmp)
 				     G_KEY_FILE_KEEP_COMMENTS |
 				     G_KEY_FILE_KEEP_TRANSLATIONS, NULL))
 	{
-	  int g, k, i;
+	  guint g, k, i;
 	  char **groups, **keys, *value, *exec;
 
 	  groups = g_key_file_get_groups (state_file, NULL);
@@ -1106,7 +1106,7 @@ set_properties (EggSMClientXSMP *xsmp, ...)
   GPtrArray *props;
   SmProp *prop;
   va_list ap;
-  int i;
+  guint i;
 
   props = g_ptr_array_new ();
 
@@ -1199,7 +1199,7 @@ ptrarray_prop (const char *name, GPtrArray *values)
   SmProp *prop;
   SmPropValue pv;
   GArray *vals;
-  int i;
+  guint i;
 
   prop = g_new (SmProp, 1);
   prop->name = (char *)name;
