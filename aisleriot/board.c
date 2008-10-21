@@ -857,8 +857,12 @@ check_animations (AisleriotBoard *board)
           RemovedCard removed_card;
 
           removed_card.card = CARD (slot->old_cards->data[i]);
-          removed_card.cardx = slot->rect.x + slot->pixeldx * i;
-          removed_card.cardy = slot->rect.y + slot->pixeldy * i;
+          aisleriot_game_get_card_offset (slot, i,
+                                          TRUE,
+                                          &removed_card.cardx,
+                                          &removed_card.cardy);
+          removed_card.cardx += slot->rect.x;
+          removed_card.cardy += slot->rect.y;
           g_array_append_val (removed_cards, removed_card);
         }
       }
@@ -883,8 +887,10 @@ check_animations (AisleriotBoard *board)
           && old_card.attr.face_down != new_card.attr.face_down) {
         AisleriotAnimStart anim;
 
-        anim.cardx = slot->pixeldx * (slot->cards->len - 1);
-        anim.cardy = slot->pixeldy * (slot->cards->len - 1);
+        aisleriot_game_get_card_offset (slot, slot->cards->len - 1,
+                                        FALSE,
+                                        &anim.cardx,
+                                        &anim.cardy);
         anim.face_down = old_card.attr.face_down;
 
         g_array_append_val (animations, anim);
@@ -908,8 +914,8 @@ check_animations (AisleriotBoard *board)
               && added_card.attr.rank == removed_card->card.attr.rank) {
             AisleriotAnimStart anim;
 
-            anim.cardx = removed_card->cardx - slot->rect.x + slot->pixeldx * i;
-            anim.cardy = removed_card->cardy - slot->rect.y + slot->pixeldy * i;
+            anim.cardx = removed_card->cardx - slot->rect.x;
+            anim.cardy = removed_card->cardy - slot->rect.y;
             anim.face_down = removed_card->card.attr.face_down;
 
             g_array_append_val (animations, anim);
@@ -929,6 +935,7 @@ check_animations (AisleriotBoard *board)
     /* Set the old cards back to the new cards */
     g_byte_array_set_size (slot->old_cards, 0);
     g_byte_array_append (slot->old_cards, slot->cards->data, slot->cards->len);
+    slot->old_exposed = slot->exposed;
   }
 
   g_array_free (animations, TRUE);

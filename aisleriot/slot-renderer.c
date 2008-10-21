@@ -267,9 +267,10 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
 {
   AisleriotSlotRenderer *srend = (AisleriotSlotRenderer *) actor;
   AisleriotSlotRendererPrivate *priv = srend->priv;
-  guint n_cards, first_exposed_card_id, i;
+  guint n_cards;
   guint8 *cards;
   int cardx, cardy;
+  guint i;
 
   g_return_if_fail (priv->cache != NULL);
   g_return_if_fail (priv->slot != NULL);
@@ -278,9 +279,9 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
   n_cards = priv->slot->cards->len;
 
   g_assert (n_cards >= priv->slot->exposed);
-  first_exposed_card_id = n_cards - priv->slot->exposed;
+  g_assert (n_cards >= priv->animations->len);
 
-  if (priv->slot->cards->len == 0) {
+  if (priv->slot->cards->len <= priv->animations->len) {
     CoglHandle cogl_tex;
     guint tex_width, tex_height;
 
@@ -296,33 +297,39 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
                             0, 0, CFX_ONE, CFX_ONE);
   }
 
-  cardx = 0;
-  cardy = 0;
+  if (n_cards > priv->animations->len) {
+    guint first_card, last_card;
 
-  for (i = first_exposed_card_id; i < n_cards; ++i) {
-    Card card = CARD (cards[i]);
-    gboolean is_highlighted;
-    CoglHandle cogl_tex;
-    guint tex_width, tex_height;
+    first_card = MIN (n_cards - priv->animations->len - 1,
+                      n_cards - priv->slot->exposed);
+    last_card = n_cards - priv->animations->len;
 
-    is_highlighted = priv->show_highlight && (i >= priv->highlight_start);
+    for (i = first_card; i < last_card; i++) {
+      Card card = CARD (cards[i]);
+      gboolean is_highlighted;
+      CoglHandle cogl_tex;
+      guint tex_width, tex_height;
 
-    cogl_tex = aisleriot_card_cache_get_card_texture (priv->cache,
-                                                      card,
-                                                      is_highlighted);
+      is_highlighted = priv->show_highlight && (i >= priv->highlight_start);
 
-    tex_width = cogl_texture_get_width (cogl_tex);
-    tex_height = cogl_texture_get_height (cogl_tex);
+      cogl_tex = aisleriot_card_cache_get_card_texture (priv->cache,
+                                                        card,
+                                                        is_highlighted);
 
-    cogl_texture_rectangle (cogl_tex,
-                            CLUTTER_INT_TO_FIXED (cardx),
-                            CLUTTER_INT_TO_FIXED (cardy),
-                            CLUTTER_INT_TO_FIXED (cardx + tex_width),
-                            CLUTTER_INT_TO_FIXED (cardy + tex_height),
-                            0, 0, CFX_ONE, CFX_ONE);
+      tex_width = cogl_texture_get_width (cogl_tex);
+      tex_height = cogl_texture_get_height (cogl_tex);
 
-    cardx += priv->slot->pixeldx;
-    cardy += priv->slot->pixeldy;
+      aisleriot_game_get_card_offset (priv->slot, i,
+                                      FALSE,
+                                      &cardx, &cardy);
+
+      cogl_texture_rectangle (cogl_tex,
+                              CLUTTER_INT_TO_FIXED (cardx),
+                              CLUTTER_INT_TO_FIXED (cardy),
+                              CLUTTER_INT_TO_FIXED (cardx + tex_width),
+                              CLUTTER_INT_TO_FIXED (cardy + tex_height),
+                              0, 0, CFX_ONE, CFX_ONE);
+    }
   }
 
   /* Paint the animated actors */
