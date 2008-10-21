@@ -126,6 +126,8 @@ static void
 aisleriot_card_dispose (GObject *self)
 {
   aisleriot_card_unref_cache ((AisleriotCard *) self);
+
+  ((GObjectClass *) aisleriot_card_parent_class)->dispose (self);
 }
 
 ClutterActor *
