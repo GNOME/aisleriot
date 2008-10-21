@@ -2910,6 +2910,7 @@ aisleriot_board_motion_notify (GtkWidget *widget,
     highlight_drop_target (board, slot);
 
     clutter_actor_set_position (priv->moving_cards_group, x, y);
+    clutter_actor_raise_top (priv->moving_cards_group);
 
     set_cursor (board, CURSOR_CLOSED);
   } else if (priv->click_status == STATUS_MAYBE_DRAG &&
