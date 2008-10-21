@@ -208,6 +208,14 @@ struct _AnimationData
   ClutterBehaviour *move, *rotate, *depth;
 };
 
+typedef struct _RemovedCard RemovedCard;
+
+struct _RemovedCard
+{
+  Card card;
+  gint cardx, cardy;
+};
+
 STATIC_ASSERT (LAST_STATUS < 16 /* 2^4 */);
 
 enum
@@ -916,60 +924,85 @@ check_animations (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
-  int slot_num, new_i, old_i, cardx, cardy;
+  int slot_num, i;
   Slot *slot;
-  guint first_exposed_card_id;
+  GArray *removed_cards = g_array_new (FALSE, FALSE, sizeof (RemovedCard));
 
   slots = aisleriot_game_get_slots (priv->game);
 
+  /* Find any cards that have been removed from the top of the
+     slots */
   for (slot_num = 0; slot_num < slots->len; slot_num++) {
     slot = slots->pdata[slot_num];
 
     g_assert (slot->cards->len == slot->card_images->len);
 
-    first_exposed_card_id = slot->cards->len - slot->exposed;
+    if (slot->old_cards->len > slot->cards->len
+        && !memcmp (slot->old_cards->data, slot->cards->data,
+                    slot->cards->len)) {
+      for (i = slot->cards->len; i < slot->old_cards->len; i++) {
+        RemovedCard removed_card;
 
-    /* Make sure that all of the unexposed cards are the same and only
-       check for animations starting from the first exposed card */
-    for (old_i = 0; old_i < first_exposed_card_id
-           && old_i < slot->old_cards->len; old_i++)
-      if (slot->old_cards->data[old_i] != slot->cards->data[old_i])
-        break;
+        removed_card.card = CARD (slot->old_cards->data[i]);
+        removed_card.cardx = slot->rect.x + slot->pixeldx * i;
+        removed_card.cardy = slot->rect.y + slot->pixeldy * i;
+        g_array_append_val (removed_cards, removed_card);
+      }
+    }
+  }
 
-    if (old_i >= first_exposed_card_id) {
-      cardx = slot->rect.x;
-      cardy = slot->rect.y;
+  for (slot_num = 0; slot_num < slots->len; slot_num++) {
+    slot = slots->pdata[slot_num];
 
-      for (new_i = first_exposed_card_id;
-           new_i < slot->cards->len
-             && old_i < slot->old_cards->len;
-           ++new_i) {
-        Card old_card, new_card;
-        gboolean old_face_down, new_face_down;
+    /* Check if the top card has been flipped over */
+    if (slot->old_cards->len >= slot->cards->len
+        && slot->cards->len >= 1
+        && !memcmp (slot->old_cards->data, slot->cards->data,
+                    slot->cards->len - 1)) {
+      Card old_card = CARD (slot->old_cards->data[slot->cards->len - 1]);
+      Card new_card = CARD (slot->cards->data[slot->cards->len - 1]);
 
-        old_card = CARD (slot->old_cards->data[old_i]);
-        old_face_down = old_card.attr.face_down;
-        old_card.attr.face_down = FALSE;
-        new_card = CARD (slot->cards->data[new_i]);
-        new_face_down = new_card.attr.face_down;
-        new_card.attr.face_down = FALSE;
+      if (old_card.attr.suit == new_card.attr.suit
+          && old_card.attr.rank == new_card.attr.rank
+          && old_card.attr.face_down != new_card.attr.face_down
+          && slot->card_images->pdata[slot->cards->len - 1]) {
+        gint cardx = slot->rect.x + slot->pixeldx * (slot->cards->len - 1);
+        gint cardy = slot->rect.y + slot->pixeldy * (slot->cards->len - 1);
 
-        /* Check if the top card has flipped over */
-        if (new_i == slot->cards->len - 1
-            && old_card.value == new_card.value
-            && old_face_down != new_face_down)
-          add_animation (board,
-                         cardx, cardy, old_face_down,
-                         cardx, cardy, new_face_down,
-                         slot->card_images->pdata[new_i]);
+        add_animation (board,
+                       cardx, cardy, old_card.attr.face_down,
+                       cardx, cardy, new_card.attr.face_down,
+                       slot->card_images->pdata[slot->cards->len - 1]);
+      }
+      /* Check if any cards have been added from the removed cards
+         pile */
+    } else if (slot->old_cards->len < slot->cards->len
+               && !memcmp (slot->old_cards->data, slot->cards->data,
+                           slot->old_cards->len)) {
+      for (i = slot->old_cards->len; i < slot->cards->len; i++) {
+        Card added_card = CARD (slot->cards->data[i]);
+        int j;
 
-        if (old_card.value == new_card.value)
-          old_i++;
-        else
-          old_i = slot->old_cards->len;
+        for (j = 0; j < removed_cards->len; j++) {
+          RemovedCard *removed_card = &g_array_index (removed_cards,
+                                                      RemovedCard, j);
 
-        cardx += slot->pixeldx;
-        cardy += slot->pixeldy;
+          if (added_card.attr.suit == removed_card->card.attr.suit
+              && added_card.attr.rank == removed_card->card.attr.rank
+              && slot->card_images->pdata[i]) {
+            gint cardx = slot->rect.x + slot->pixeldx * i;
+            gint cardy = slot->rect.y + slot->pixeldy * i;
+
+            add_animation (board, removed_card->cardx, removed_card->cardy,
+                           removed_card->card.attr.face_down,
+                           cardx, cardy, added_card.attr.face_down,
+                           slot->card_images->pdata[i]);
+
+            g_array_remove_index (removed_cards, j);
+
+            break;
+          }
+        }
       }
     }
 
@@ -977,6 +1010,8 @@ check_animations (AisleriotBoard *board)
     g_byte_array_set_size (slot->old_cards, 0);
     g_byte_array_append (slot->old_cards, slot->cards->data, slot->cards->len);
   }
+
+  g_array_free (removed_cards, TRUE);
 }
 
 static void
