@@ -215,6 +215,7 @@ struct _RemovedCard
 {
   Card card;
   gint cardx, cardy;
+  gboolean from_drag;
 };
 
 STATIC_ASSERT (LAST_STATUS < 16 /* 2^4 */);
@@ -873,6 +874,7 @@ check_animations (AisleriotBoard *board)
                                           &removed_card.cardy);
           removed_card.cardx += slot->rect.x;
           removed_card.cardy += slot->rect.y;
+          removed_card.from_drag = FALSE;
           g_array_append_val (priv->removed_cards, removed_card);
         }
       }
@@ -904,6 +906,7 @@ check_animations (AisleriotBoard *board)
         anim.cardx += slot->rect.x;
         anim.cardy += slot->rect.y;
         anim.face_down = old_card.attr.face_down;
+        anim.raise = TRUE;
 
         g_array_append_val (animations, anim);
       }
@@ -929,6 +932,7 @@ check_animations (AisleriotBoard *board)
             anim.cardx = removed_card->cardx;
             anim.cardy = removed_card->cardy;
             anim.face_down = removed_card->card.attr.face_down;
+            anim.raise = !removed_card->from_drag;
 
             g_array_append_val (animations, anim);
 
@@ -1164,6 +1168,7 @@ drag_begin (AisleriotBoard *board)
     removed_card.cardx = x;
     removed_card.cardy = y;
     removed_card.card = hcard;
+    removed_card.from_drag = TRUE;
 
     g_array_append_val (priv->removed_cards, removed_card);
 
@@ -1302,8 +1307,10 @@ drop_moving_cards (AisleriotBoard *board,
     RemovedCard *removed_card = &g_array_index (priv->removed_cards,
                                                 RemovedCard, i);
 
-    removed_card->cardx += x - priv->last_click_x;
-    removed_card->cardy += y - priv->last_click_y;
+    if (removed_card->from_drag) {
+      removed_card->cardx += x - priv->last_click_x;
+      removed_card->cardy += y - priv->last_click_y;
+    }
   }
 
   if (hslot) {

@@ -500,12 +500,14 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
       clutter_behaviour_apply (anim_data.rotate, anim_data.card_tex);
     }
 
-    alpha = clutter_alpha_new_full (priv->timeline, CLUTTER_ALPHA_SINE,
-                                    NULL, NULL);
+    if (anims[i].raise) {
+      alpha = clutter_alpha_new_full (priv->timeline, CLUTTER_ALPHA_SINE,
+                                      NULL, NULL);
 
-    anim_data.depth = clutter_behaviour_depth_new (alpha,
-                                                   0, card_height);
-    clutter_behaviour_apply (anim_data.depth, anim_data.card_tex);
+      anim_data.depth = clutter_behaviour_depth_new (alpha,
+                                                     0, card_height);
+      clutter_behaviour_apply (anim_data.depth, anim_data.card_tex);
+    }
 
     g_array_append_val (priv->animations, anim_data);
 

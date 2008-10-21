@@ -69,6 +69,7 @@ struct _AisleriotAnimStart
 {
   gint cardx, cardy;
   gboolean face_down;
+  gboolean raise;
 };
 
 GType aisleriot_slot_renderer_get_type (void) G_GNUC_CONST;
