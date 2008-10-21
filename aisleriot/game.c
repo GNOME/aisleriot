@@ -246,6 +246,11 @@ clear_slots (AisleriotGame *game,
       }
     }
 
+    if (slot->slot_texture) {
+      clutter_actor_destroy (slot->slot_texture);
+      g_object_unref (slot->slot_texture);
+    }
+
     g_byte_array_free (slot->cards, TRUE);
     g_ptr_array_free (slot->card_images, TRUE);
 

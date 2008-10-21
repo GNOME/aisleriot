@@ -24,6 +24,7 @@
 #include <gdk/gdktypes.h>
 
 #include <libgames-support/games-card.h>
+#include <clutter/clutter-actor.h>
 
 G_BEGIN_DECLS
 
@@ -56,6 +57,8 @@ typedef struct {
 
   /* GdkPixbuf* or GdkPixmap*, no reference owned */
   GPtrArray *card_images;
+  /* Actor for the slot */
+  ClutterActor *slot_texture;
 
   guint expanded_right : 1;
   guint expanded_down : 1;

@@ -134,9 +134,6 @@ struct _AisleriotBoardPrivate
   GamesCardImages *images;
   AisleriotCardCache *textures;
 
-  /* Slot */
-  gpointer slot_image; /* either a GdkPixbuf or GdkPixmap, depending on drawing mode */
-
   /* Button press */
   int last_click_x;
   int last_click_y;
@@ -846,6 +843,8 @@ slot_update_card_images_full (AisleriotBoard *board,
   guint n_cards, first_exposed_card_id, i;
   guint8 *cards;
   int cardx, cardy;
+  ClutterActor *stage
+    = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
 
   card_images = slot->card_images;
 
@@ -870,11 +869,33 @@ slot_update_card_images_full (AisleriotBoard *board,
   cardx = slot->rect.x;
   cardy = slot->rect.y;
 
+  if (slot->slot_texture) {
+    clutter_actor_destroy (slot->slot_texture);
+    g_object_unref (slot->slot_texture);
+    slot->slot_texture = NULL;
+  }
+
+  if (slot->cards->len == 0) {
+    CoglHandle cogl_tex;
+    gboolean show_highlight;
+
+    slot->slot_texture = g_object_ref_sink (clutter_texture_new ());
+
+    show_highlight = priv->show_highlight && slot == priv->highlight_slot;
+    cogl_tex = aisleriot_card_cache_get_slot_texture (priv->textures,
+                                                      show_highlight);
+
+    clutter_texture_set_cogl_texture (CLUTTER_TEXTURE (slot->slot_texture),
+                                      cogl_tex);
+
+    clutter_actor_set_position (slot->slot_texture, cardx, cardy);
+
+    clutter_container_add (CLUTTER_CONTAINER (stage), slot->slot_texture, NULL);
+  }
+
   for (i = first_exposed_card_id; i < n_cards; ++i) {
     Card card = CARD (cards[i]);
     gboolean is_highlighted;
-    ClutterActor *stage
-      = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
     ClutterActor *card_tex = aisleriot_card_new (priv->textures, card);
 
     is_highlighted = (i >= highlight_start_card_id);
@@ -968,12 +989,6 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
 
   priv->xoffset = (priv->xslotstep - card_size.width) / 2;
   priv->yoffset = (priv->yslotstep - card_size.height) / 2;
-
-  if (PIXBUF_DRAWING_LIKELIHOOD (priv->use_pixbuf_drawing)) {
-    priv->slot_image = games_card_images_get_slot_pixbuf (priv->images, FALSE);
-  } else {
-    priv->slot_image = games_card_images_get_slot_pixmap (priv->images, FALSE);
-  }
 
   gdk_gc_set_clip_mask (priv->slot_gc, games_card_images_get_slot_mask (priv->images));
   gdk_gc_set_clip_mask (priv->draw_gc, games_card_images_get_card_mask (priv->images));
@@ -1227,16 +1242,22 @@ highlight_drop_target (AisleriotBoard *board,
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
   GdkRectangle rect;
+  Slot *old_slot = priv->highlight_slot;
 
-  if (slot == priv->highlight_slot)
+  if (slot == old_slot)
     return;
 
+  /* Need to set the highlight slot even when we the cards aren't droppable
+   * since that can happen when the game doesn't support FEATURE_DROPPABLE.
+   */
+  priv->highlight_slot = slot;
+
   /* Invalidate the old highlight rect */
-  if (priv->highlight_slot != NULL &&
+  if (old_slot != NULL &&
       priv->show_highlight) {
     get_rect_by_slot_and_card (board,
-                               priv->highlight_slot,
-                               priv->highlight_slot->cards->len - 1 /* it's ok if this is == -1 */,
+                               old_slot,
+                               old_slot->cards->len - 1 /* it's ok if this is == -1 */,
                                1, &rect);
     gdk_window_invalidate_rect (widget->window, &rect, FALSE);
 
@@ -1244,14 +1265,9 @@ highlight_drop_target (AisleriotBoard *board,
     /* It's ok to call this directly here, since the old highlight_slot cannot
      * have been the same as the current selection_slot!
      */
-    slot_update_card_images_full (board, priv->highlight_slot, G_MAXINT);
+    slot_update_card_images_full (board, old_slot, G_MAXINT);
   }
 
-  /* Need to set the highlight slot even when we the cards aren't droppable
-   * since that can happen when the game doesn't support FEATURE_DROPPABLE.
-   */
-  priv->highlight_slot = slot;
-  
   if (!cards_are_droppable (board, slot))
     return;
 
@@ -2426,8 +2442,6 @@ aisleriot_board_unrealize (GtkWidget *widget)
 
   clear_state (board);
 
-  priv->slot_image = NULL;
-
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->unrealize (widget);
 }
 
@@ -3078,7 +3092,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
       GdkPixbuf *pixbuf;
 
       if (G_LIKELY (hslot != highlight_slot)) {
-        pixbuf = priv->slot_image;
+/*         pixbuf = priv->slot_image; */
       } else {
         pixbuf = games_card_images_get_slot_pixbuf (priv->images,
                                                     priv->show_highlight);
@@ -3095,7 +3109,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
       GdkPixmap *pixmap;
 
       if (G_LIKELY (hslot != highlight_slot)) {
-        pixmap = priv->slot_image;
+/*         pixmap = priv->slot_image; */
       } else {
         pixmap = games_card_images_get_slot_pixmap (priv->images,
                                                     priv->show_highlight);
@@ -3623,7 +3637,6 @@ aisleriot_board_set_card_theme (AisleriotBoard *board,
   g_return_val_if_fail (card_theme != NULL && card_theme[0] != '\0', FALSE);
 
   priv->geometry_set = FALSE;
-  priv->slot_image = NULL;
 
   retval = games_card_theme_set_theme (priv->theme, card_theme);
 
