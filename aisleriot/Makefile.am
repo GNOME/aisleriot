@@ -17,6 +17,8 @@ scm_DATA = \
 bin_PROGRAMS = sol
 
 sol_SOURCES = \
+	baize.c		\
+	baize.h		\
 	board.c		\
 	board.h		\
 	conf.c		\

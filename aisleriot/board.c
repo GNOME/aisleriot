@@ -39,8 +39,8 @@
 #include "conf.h"
 
 #include "game.h"
-
 #include "board.h"
+#include "baize.h"
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
@@ -169,6 +169,9 @@ struct _AisleriotBoardPrivate
 
   /* Highlight */
   Slot *highlight_slot;
+
+  /* Actor used for drawing the baize */
+  ClutterActor *baize_actor;
 
 #ifdef HAVE_MAEMO
   /* Tap-and-Hold */
@@ -372,14 +375,12 @@ set_cursor_by_location (AisleriotBoard *board,
 /* card drawing functions */
 
 static void
-set_background_from_baize (GtkWidget *widget,
-                           GdkGC *gc)
+set_background_from_baize (AisleriotBoard *board)
 {
+  AisleriotBoardPrivate *priv = board->priv;
   GError *error = NULL;
   GdkPixbuf *pixbuf;
-  GdkPixmap *pixmap;
   char *path;
-  int width, height;
 
   path = games_runtime_get_file (GAMES_RUNTIME_PIXMAP_DIRECTORY, "baize.png");
 
@@ -393,26 +394,20 @@ set_background_from_baize (GtkWidget *widget,
 
   g_assert (pixbuf != NULL);
 
-  width = gdk_pixbuf_get_width (pixbuf);
-  height = gdk_pixbuf_get_height (pixbuf);
-  pixmap = gdk_pixmap_new (widget->window, width, height, -1);
-  if (!pixmap) {
-    g_object_unref (pixbuf);
-    return;
-  }
+  if (priv->baize_actor == NULL)
+    {
+      ClutterActor *stage
+        = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
 
-  /* FIXMEchpe: if we ever use a baize with an alpha channel,
-   * clear the pixmap first!
-   */
-  gdk_draw_pixbuf (pixmap, NULL, pixbuf,
-                   0, 0, 0, 0, width, height,
-                   GDK_RGB_DITHER_NORMAL, 0, 0);
+      priv->baize_actor = g_object_ref_sink (aisleriot_baize_new ());
+      clutter_container_add (CLUTTER_CONTAINER (stage),
+                             priv->baize_actor, NULL);
+    }
 
-  gdk_gc_set_tile (gc, pixmap);
-  gdk_gc_set_fill (gc, GDK_TILED);
+  gtk_clutter_texture_set_from_pixbuf (CLUTTER_TEXTURE (priv->baize_actor),
+                                       pixbuf);
 
-  gdk_pixbuf_unref (pixbuf);
-  g_object_unref (pixmap);
+  g_object_unref (pixbuf);
 }
 
 /* Slot helpers */
@@ -2438,7 +2433,7 @@ aisleriot_board_realize (GtkWidget *widget)
   priv->draw_gc = gdk_gc_new (widget->window);
 
   priv->bg_gc = gdk_gc_new (widget->window);
-  set_background_from_baize (widget, priv->bg_gc);
+  set_background_from_baize (board);
   
   priv->slot_gc = gdk_gc_new (widget->window);
 
@@ -3398,6 +3393,22 @@ aisleriot_board_finalize (GObject *object)
 }
 
 static void
+aisleriot_board_dispose (GObject *object)
+{
+  AisleriotBoard *board = AISLERIOT_BOARD (object);
+  AisleriotBoardPrivate *priv = board->priv;
+
+  if (priv->baize_actor)
+    {
+      clutter_actor_destroy (priv->baize_actor);
+      g_object_unref (priv->baize_actor);
+      priv->baize_actor = NULL;
+    }
+
+  G_OBJECT_CLASS (aisleriot_board_parent_class)->dispose (object);
+}
+
+static void
 aisleriot_board_get_property (GObject *object,
                               guint prop_id,
                               GValue *value,
@@ -3460,6 +3471,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   g_type_class_add_private (gobject_class, sizeof (AisleriotBoardPrivate));
 
   gobject_class->constructor = aisleriot_board_constructor;
+  gobject_class->dispose = aisleriot_board_dispose;
   gobject_class->finalize = aisleriot_board_finalize;
   gobject_class->set_property = aisleriot_board_set_property;
   gobject_class->get_property = aisleriot_board_get_property;
@@ -3480,7 +3492,6 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->button_release_event = aisleriot_board_button_release;
   widget_class->motion_notify_event = aisleriot_board_motion_notify;
   widget_class->key_press_event = aisleriot_board_key_press;
-  widget_class->expose_event = aisleriot_board_expose_event;
 #ifdef HAVE_MAEMO
   widget_class->tap_and_hold_query = aisleriot_board_tap_and_hold_query;
   widget_class->tap_and_hold = aisleriot_board_tap_and_hold;
