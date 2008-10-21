@@ -827,8 +827,10 @@ truncate_card_images_array (GPtrArray *card_images, guint size)
   for (i = size; i < card_images->len; i++) {
     ClutterActor *actor = g_ptr_array_index (card_images, i);
 
-    if (actor)
+    if (actor) {
       clutter_actor_destroy (actor);
+      g_object_unref (actor);
+    }
   }
 
   g_ptr_array_set_size (card_images, size);
@@ -884,7 +886,7 @@ slot_update_card_images_full (AisleriotBoard *board,
 
     clutter_container_add (CLUTTER_CONTAINER (stage), card_tex, NULL);
 
-    g_ptr_array_add (card_images, card_tex);
+    g_ptr_array_add (card_images, g_object_ref_sink (card_tex));
 
     cardx += slot->pixeldx;
     cardy += slot->pixeldy;
