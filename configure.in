@@ -161,7 +161,7 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    aisleriot) need_clutter=yes ;;
+    no-game-yet) need_clutter=yes ;;
     *) ;;
   esac
 done
@@ -309,6 +309,25 @@ AC_ARG_ENABLE([scalable],
       esac])
 AC_MSG_RESULT([$enable_scalable])
 
+# Clutter
+  
+AC_MSG_CHECKING([whether to enable clutter support])
+AC_ARG_ENABLE([clutter],
+  [AS_HELP_STRING([--enable-clutter],[whether to enable clutter support (default: disabled)])],
+  [],[case "$with_platform" in
+        gnome|gtk-only) enable_clutter=no ;;
+        hildon) enable_clutter=no ;;
+      esac])
+AC_MSG_RESULT([$enable_clutter])
+
+case "$with_platform" in
+  gnome|gtk-only) ;;
+  hildon) if test "$enable_clutter" = "yes"; then
+            AC_MSG_ERROR([Clutter is not supported on hildon])
+          fi
+          ;;
+esac
+
 # Default card theme
 
 AC_MSG_CHECKING([which card theme to use by default])
@@ -443,25 +462,27 @@ AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
 
 # Check for Clutter
 
-have_clutter=no
-if test "$need_clutter" = "yes"; then
-  PKG_CHECK_MODULES([CLUTTER],[
-     clutter-0.8
-     clutter-gtk-0.8
-     clutter-cairo-0.8],
-    [have_clutter=yes],[have_clutter=no])
-
-  if test "$have_clutter" = "no"; then
-    AC_MSG_ERROR([Clutter and Clutter-GTK are required for some games but are missing])
-  fi
-
-  AC_SUBST([CLUTTER_CFLAGS])
-  AC_SUBST([CLUTTER_LIBS])
-  AC_SUBST([CLUTTER_GTK_CFLAGS])
-  AC_SUBST([CLUTTER_GTK_LIBS])
+if test "$need_clutter" = "yes" -a "$enable_clutter" != "yes"; then
+  AC_MSG_ERROR([Some games require clutter but --enable-clutter was not passed])
 fi
 
-AM_CONDITIONAL([HAVE_CLUTTER],[test "$have_clutter" = "yes"])
+if test "$enable_clutter" = "yes"; then
+  CLUTTER_API_VERSION=0.8
+  CLUTTER_REQUIRED=0.8.0
+  CLUTTER_GTK_REQUIRED=0.8.0
+  CLUTTER_CAIRO_REQUIRED=0.8.0
+
+  PKG_CHECK_MODULES([CLUTTER],[
+     clutter-$CLUTTER_API_VERSION >= $CLUTTER_REQUIRED
+     clutter-gtk-$CLUTTER_API_VERSION  >= $CLUTTER_GTK_REQUIRED
+     clutter-cairo-$CLUTTER_API_VERSION >= $CLUTTER_CAIRO_REQUIRED])
+  AC_SUBST([CLUTTER_CFLAGS])
+  AC_SUBST([CLUTTER_LIBS])
+
+  AC_DEFINE([HAVE_CLUTTER],[1],[Define if clutter is available])
+fi
+
+AM_CONDITIONAL([HAVE_CLUTTER],[test "$enable_clutter" = "yes"])
 
 # Check for PyGTK
 
@@ -720,23 +741,6 @@ fi
 
 AM_CONDITIONAL([HAVE_GUILE],[test "$have_guile" = "yes"])
 AM_CONDITIONAL([HAVE_GUILE_1_8],[test "$have_guile_1_8" = "yes"])
-
-have_clutter=no
-have_clutter_gtk=no
-if test "$need_clutter" = "yes"; then
-  PKG_CHECK_MODULES(CLUTTER, "clutter-0.8", [have_clutter=yes], [have_clutter=no])
-  PKG_CHECK_MODULES(CLUTTER_GTK, "clutter-gtk-0.8", [have_clutter_gtk=yes], [have_clutter_gtk=no])
-
-  if test "x$have_clutter" = "xno" \
-     -o "x$have_clutter_gtk" = "xno"; then
-     AC_MSG_ERROR([Clutter and Clutter-GTK are required for some games but are missing])
-  fi;
-
-  AC_SUBST(CLUTTER_CFLAGS)
-  AC_SUBST(CLUTTER_LIBS)
-  AC_SUBST(CLUTTER_GTK_CFLAGS)
-  AC_SUBST(CLUTTER_GTK_LIBS)
-fi;
 
 # Possibly disable the included gnuchess
 
@@ -1036,6 +1040,7 @@ echo "
     Games to be compiled:  ${gamelist}
 
     Using RSVG:            ${have_rsvg}
+    Using Clutter:         ${enable_clutter}
     Sound support:         ${with_sound}
     Use setgid binaries:   ${setgid}
     Scores user:           ${scores_user}
