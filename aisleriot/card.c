@@ -148,7 +148,8 @@ aisleriot_card_paint (ClutterActor *actor)
   Card card_num;
   ClutterFixed x_angle, y_angle;
   CoglHandle tex;
-  guint tex_width, tex_height;
+  ClutterFixed tex_width, tex_height;
+  gboolean x_swapped = FALSE;
 
   g_return_if_fail (priv->cache != NULL);
 
@@ -163,19 +164,36 @@ aisleriot_card_paint (ClutterActor *actor)
      degrees in exactly one of the axes */
   if (ANGLE_IS_UPSIDE_DOWN (x_angle))
     card_num.attr.face_down = !card_num.attr.face_down;
-  if (ANGLE_IS_UPSIDE_DOWN (y_angle))
+  if (ANGLE_IS_UPSIDE_DOWN (y_angle)) {
     card_num.attr.face_down = !card_num.attr.face_down;
+    /* The picture for the back of the card is already drawn as if it
+       was rotated so we need to swap the coordinates so it will look
+       right when it is rotated again */
+    if (card_num.attr.face_down)
+      x_swapped = TRUE;
+  }
 
   tex = aisleriot_card_cache_get_card_texture (priv->cache, card_num,
                                                priv->highlighted);
 
-  tex_width = cogl_texture_get_width (tex);
-  tex_height = cogl_texture_get_height (tex);
+  tex_width = CLUTTER_INT_TO_FIXED (cogl_texture_get_width (tex));
+  tex_height = CLUTTER_INT_TO_FIXED (cogl_texture_get_height (tex));
+
+  /* Ideally we would just swap the texture coordinates, but Cogl
+     won't let you do this */
+  if (x_swapped) {
+    cogl_push_matrix ();
+    cogl_translate (CLUTTER_FIXED_TO_INT (tex_width) / 2, 0, 0);
+    cogl_rotate (180, 0, 1, 0);
+    cogl_translate (-CLUTTER_FIXED_TO_INT (tex_width) / 2, 0, 0);
+  }
 
   cogl_texture_rectangle (tex, 0, 0,
-                          CLUTTER_INT_TO_FIXED (tex_width),
-                          CLUTTER_INT_TO_FIXED (tex_height),
+                          tex_width, tex_height,
                           0, 0, CFX_ONE, CFX_ONE);
+
+  if (x_swapped)
+    cogl_pop_matrix ();
 }
 
 static void
