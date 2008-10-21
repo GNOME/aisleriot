@@ -33,6 +33,7 @@
 #include <gtk/gtkicontheme.h>
 #include <gtk/gtkmain.h>
 #include <gtk/gtkmessagedialog.h>
+#include <clutter-gtk/gtk-clutter-embed.h>
 
 #ifdef HAVE_HILDON
 #include <libosso.h>
