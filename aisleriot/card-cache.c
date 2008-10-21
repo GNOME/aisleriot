@@ -256,6 +256,15 @@ aisleriot_card_cache_get_card_texture (AisleriotCardCache *cache,
                                                       highlighted);
 }
 
+CoglHandle
+aisleriot_card_cache_get_slot_texture (AisleriotCardCache *cache,
+                                       gboolean highlighted)
+{
+  return aisleriot_card_cache_get_card_texture_by_id (cache,
+                                                      GAMES_CARD_SLOT,
+                                                      highlighted);
+}
+
 static void
 aisleriot_card_cache_unref_images (AisleriotCardCache *cache)
 {

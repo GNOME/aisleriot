@@ -73,6 +73,8 @@ CoglHandle aisleriot_card_cache_get_card_texture_by_id
                                                  (AisleriotCardCache *cache,
                                                   guint card_id,
                                                   gboolean highlighted);
+CoglHandle aisleriot_card_cache_get_slot_texture (AisleriotCardCache *cache,
+                                                  gboolean highlighted);
 
 void aisleriot_card_cache_clear (AisleriotCardCache *cache);
 
