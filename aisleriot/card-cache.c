@@ -196,7 +196,7 @@ aisleriot_card_cache_clear (AisleriotCardCache *cache)
   AisleriotCardCachePrivate *priv = cache->priv;
   int i;
 
-  for (i = 0; i < GAMES_CARDS_TOTAL; i++)
+  for (i = 0; i < GAMES_CARDS_TOTAL * 2; i++)
     if (priv->cards[i] != COGL_INVALID_HANDLE) {
       cogl_texture_unref (priv->cards[i]);
       priv->cards[i] = COGL_INVALID_HANDLE;
