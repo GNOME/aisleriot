@@ -202,13 +202,6 @@ struct _AisleriotBoardPrivate
   guint force_geometry_update : 1;
 };
 
-typedef struct _AnimationData AnimationData;
-
-struct _AnimationData
-{
-  ClutterBehaviour *move, *rotate, *depth;
-};
-
 typedef struct _RemovedCard RemovedCard;
 
 struct _RemovedCard
@@ -833,85 +826,14 @@ slot_update_geometry (AisleriotBoard *board,
 }
 
 static void
-destroy_animation_data (ClutterActor *actor, AnimationData *data)
-{
-  g_signal_handlers_disconnect_by_func (actor, destroy_animation_data, data);
-
-  if (data->move)
-    g_object_unref (data->move);
-  if (data->rotate)
-    g_object_unref (data->rotate);
-  if (data->depth)
-    g_object_unref (data->depth);
-
-  g_slice_free (AnimationData, data);
-}
-
-static void
-add_animation (AisleriotBoard *board,
-               gint oldx, gint oldy, gboolean old_face_down,
-               gint newx, gint newy, gboolean new_face_down,
-               ClutterActor *actor)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  ClutterTimeline *tl;
-  ClutterAlpha *alpha;
-  AnimationData *data;
-  ClutterKnot knots[] = { { oldx, oldy }, { newx, newy } };
-
-  data = g_slice_new0 (AnimationData);
-
-  g_signal_connect (actor, "destroy",
-                    G_CALLBACK (destroy_animation_data),
-                    data);
-
-  clutter_actor_set_position (actor, oldx, oldy);
-
-  tl = clutter_timeline_new_for_duration (500);
-  alpha = clutter_alpha_new_full (tl, CLUTTER_ALPHA_RAMP_INC, NULL, NULL);
-  data->move = clutter_behaviour_path_new (alpha, knots,
-                                           G_N_ELEMENTS (knots));
-
-  clutter_behaviour_apply (data->move, actor);
-
-  if (old_face_down != new_face_down) {
-    gint center_x = priv->card_size.width / 2;
-    gint center_y = priv->card_size.height / 2;
-
-    clutter_actor_set_rotation (actor, CLUTTER_Y_AXIS,
-                                180.0,
-                                center_x, center_y, 0);
-
-    data->rotate = clutter_behaviour_rotate_new (alpha,
-                                                 CLUTTER_Y_AXIS,
-                                                 CLUTTER_ROTATE_CW,
-                                                 180.0, 0.0);
-    clutter_behaviour_rotate_set_center (CLUTTER_BEHAVIOUR_ROTATE
-                                         (data->rotate),
-                                         center_x, center_y, 0);
-
-    clutter_behaviour_apply (data->rotate, actor);
-  }
-
-  alpha = clutter_alpha_new_full (tl, CLUTTER_ALPHA_SINE, NULL, NULL);
-
-  data->depth = clutter_behaviour_depth_new (alpha,
-                                             0, priv->card_size.height);
-  clutter_behaviour_apply (data->depth, actor);
-
-  clutter_timeline_start (tl);
-  g_object_unref (tl);
-}
-
-static void
 check_animations (AisleriotBoard *board)
 {
-#if 0
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
   int slot_num, i;
   Slot *slot;
   GArray *removed_cards = g_array_new (FALSE, FALSE, sizeof (RemovedCard));
+  GArray *animations = g_array_new (FALSE, FALSE, sizeof (AisleriotAnimStart));
 
   slots = aisleriot_game_get_slots (priv->game);
 
@@ -919,8 +841,6 @@ check_animations (AisleriotBoard *board)
      slots */
   for (slot_num = 0; slot_num < slots->len; slot_num++) {
     slot = slots->pdata[slot_num];
-
-    g_assert (slot->cards->len == slot->card_images->len);
 
     if (slot->old_cards->len > slot->cards->len) {
       for (i = 0; i < slot->cards->len; i++) {
@@ -948,6 +868,8 @@ check_animations (AisleriotBoard *board)
   for (slot_num = 0; slot_num < slots->len; slot_num++) {
     slot = slots->pdata[slot_num];
 
+    g_array_set_size (animations, 0);
+
     /* Check if the top card has been flipped over */
     if (slot->old_cards->len >= slot->cards->len
         && slot->cards->len >= 1
@@ -958,22 +880,23 @@ check_animations (AisleriotBoard *board)
 
       if (old_card.attr.suit == new_card.attr.suit
           && old_card.attr.rank == new_card.attr.rank
-          && old_card.attr.face_down != new_card.attr.face_down
-          && slot->card_images->pdata[slot->cards->len - 1]) {
-        gint cardx = slot->rect.x + slot->pixeldx * (slot->cards->len - 1);
-        gint cardy = slot->rect.y + slot->pixeldy * (slot->cards->len - 1);
+          && old_card.attr.face_down != new_card.attr.face_down) {
+        AisleriotAnimStart anim;
 
-        add_animation (board,
-                       cardx, cardy, old_card.attr.face_down,
-                       cardx, cardy, new_card.attr.face_down,
-                       slot->card_images->pdata[slot->cards->len - 1]);
+        anim.cardx = slot->pixeldx * (slot->cards->len - 1);
+        anim.cardy = slot->pixeldy * (slot->cards->len - 1);
+        anim.face_down = old_card.attr.face_down;
+
+        g_array_append_val (animations, anim);
       }
       /* Check if any cards have been added from the removed cards
          pile */
     } else if (slot->old_cards->len < slot->cards->len
                && !memcmp (slot->old_cards->data, slot->cards->data,
                            slot->old_cards->len)) {
-      for (i = slot->old_cards->len; i < slot->cards->len; i++) {
+      for (i = MAX (slot->old_cards->len, slot->cards->len - slot->exposed);
+           i < slot->cards->len;
+           i++) {
         Card added_card = CARD (slot->cards->data[i]);
         int j;
 
@@ -982,15 +905,14 @@ check_animations (AisleriotBoard *board)
                                                       RemovedCard, j);
 
           if (added_card.attr.suit == removed_card->card.attr.suit
-              && added_card.attr.rank == removed_card->card.attr.rank
-              && slot->card_images->pdata[i]) {
-            gint cardx = slot->rect.x + slot->pixeldx * i;
-            gint cardy = slot->rect.y + slot->pixeldy * i;
+              && added_card.attr.rank == removed_card->card.attr.rank) {
+            AisleriotAnimStart anim;
 
-            add_animation (board, removed_card->cardx, removed_card->cardy,
-                           removed_card->card.attr.face_down,
-                           cardx, cardy, added_card.attr.face_down,
-                           slot->card_images->pdata[i]);
+            anim.cardx = removed_card->cardx - slot->rect.x + slot->pixeldx * i;
+            anim.cardy = removed_card->cardy - slot->rect.y + slot->pixeldy * i;
+            anim.face_down = removed_card->card.attr.face_down;
+
+            g_array_append_val (animations, anim);
 
             g_array_remove_index (removed_cards, j);
 
@@ -1000,13 +922,17 @@ check_animations (AisleriotBoard *board)
       }
     }
 
+    aisleriot_slot_renderer_set_animations
+      (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
+       animations->len, (const AisleriotAnimStart *) animations->data);
+
     /* Set the old cards back to the new cards */
     g_byte_array_set_size (slot->old_cards, 0);
     g_byte_array_append (slot->old_cards, slot->cards->data, slot->cards->len);
   }
 
+  g_array_free (animations, TRUE);
   g_array_free (removed_cards, TRUE);
-#endif
 }
 
 static void

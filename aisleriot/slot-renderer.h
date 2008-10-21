@@ -50,6 +50,7 @@ G_BEGIN_DECLS
 typedef struct _AisleriotSlotRenderer        AisleriotSlotRenderer;
 typedef struct _AisleriotSlotRendererClass   AisleriotSlotRendererClass;
 typedef struct _AisleriotSlotRendererPrivate AisleriotSlotRendererPrivate;
+typedef struct _AisleriotAnimStart           AisleriotAnimStart;
 
 struct _AisleriotSlotRendererClass
 {
@@ -63,6 +64,12 @@ struct _AisleriotSlotRenderer
   AisleriotSlotRendererPrivate *priv;
 };
 
+struct _AisleriotAnimStart
+{
+  gint cardx, cardy;
+  gboolean face_down;
+};
+
 GType aisleriot_slot_renderer_get_type (void) G_GNUC_CONST;
 
 ClutterActor *aisleriot_slot_renderer_new (AisleriotCardCache *cache,
@@ -71,6 +78,10 @@ ClutterActor *aisleriot_slot_renderer_new (AisleriotCardCache *cache,
 void aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
                                             guint hightlight_start);
 guint aisleriot_slot_renderer_get_highlight (AisleriotSlotRenderer *srend);
+
+void aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
+                                             guint n_anims,
+                                             const AisleriotAnimStart *anims);
 
 G_END_DECLS
 
