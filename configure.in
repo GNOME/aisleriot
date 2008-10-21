@@ -441,29 +441,27 @@ fi
 
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
 
-# Check for libclutter
+# Check for Clutter
 
 have_clutter=no
 if test "$need_clutter" = "yes"; then
   PKG_CHECK_MODULES([CLUTTER],[
-    clutter-0.8
-    clutter-gtk-0.8
-    clutter-cairo-0.8],
+     clutter-0.8
+     clutter-gtk-0.8
+     clutter-cairo-0.8],
     [have_clutter=yes],[have_clutter=no])
+
+  if test "$have_clutter" = "no"; then
+    AC_MSG_ERROR([Clutter and Clutter-GTK are required for some games but are missing])
+  fi
+
+  AC_SUBST([CLUTTER_CFLAGS])
+  AC_SUBST([CLUTTER_LIBS])
+  AC_SUBST([CLUTTER_GTK_CFLAGS])
+  AC_SUBST([CLUTTER_GTK_LIBS])
 fi
 
-if test "$need_clutter" = "yes" -a "$have_clutter" = "no"; then
-  AC_MSG_ERROR([Clutter and Clutter-GTK are required for some games but are missing])
-fi
-
-if test "$have_clutter" = "yes"; then
-  AC_SUBST(CLUTTER_CFLAGS)
-  AC_SUBST(CLUTTER_LIBS)
-  AC_SUBST(CLUTTER_GTK_CFLAGS)
-  AC_SUBST(CLUTTER_GTK_LIBS)
-  
-  AM_CONDITIONAL([HAVE_CLUTTER],[test "$have_clutter" = "yes"])
-fi
+AM_CONDITIONAL([HAVE_CLUTTER],[test "$have_clutter" = "yes"])
 
 # Check for PyGTK
 
