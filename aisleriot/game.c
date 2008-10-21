@@ -37,6 +37,7 @@
 #include "util.h"
 
 #include <libgames-support/games-runtime.h>
+#include <clutter/clutter-actor.h>
 
 #include "game.h"
 
@@ -231,11 +232,19 @@ static void
 clear_slots (AisleriotGame *game,
              gboolean notify)
 {
-  guint i, n_slots;
+  guint i, n_slots, card_num;
 
   n_slots = game->slots->len;
   for (i = 0; i < n_slots; ++i) {
     Slot *slot = game->slots->pdata[i];
+
+    for (card_num = 0; card_num < slot->card_images->len; card_num++) {
+      ClutterActor *actor = g_ptr_array_index (slot->card_images, card_num);
+      if (actor) {
+        clutter_actor_destroy (actor);
+        g_object_unref (actor);
+      }
+    }
 
     g_byte_array_free (slot->cards, TRUE);
     g_ptr_array_free (slot->card_images, TRUE);
