@@ -243,7 +243,7 @@ static void slot_update_card_images      (AisleriotBoard *board,
                                           Slot *slot);
 static void slot_update_card_images_full (AisleriotBoard *board,
                                           Slot *slot,
-                                          guint highlight_start_card_id);
+                                          gint highlight_start_card_id);
 
 #ifndef HAVE_HILDON 
 
@@ -678,7 +678,7 @@ set_selection (AisleriotBoard *board,
       gdk_window_invalidate_rect (widget->window, &priv->selection_rect, FALSE);
 
       /* Clear selection card images */
-      slot_update_card_images_full (board, priv->selection_slot, G_MAXUINT);
+      slot_update_card_images_full (board, priv->selection_slot, G_MAXINT);
     }
 
     priv->selection_slot = NULL;
@@ -945,7 +945,7 @@ check_animations (AisleriotBoard *board)
 static void
 slot_update_card_images_full (AisleriotBoard *board,
                               Slot *slot,
-                              guint highlight_start_card_id)
+                              gint highlight_start_card_id)
 {
   AisleriotBoardPrivate *priv = board->priv;
   ClutterActor *stage
@@ -970,7 +970,7 @@ slot_update_card_images_full (AisleriotBoard *board,
 
   aisleriot_slot_renderer_set_highlight
     (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
-     priv->show_highlight ? highlight_start_card_id : G_MAXUINT);
+     priv->show_highlight ? highlight_start_card_id : G_MAXINT);
 }
 
 static void
@@ -978,7 +978,7 @@ slot_update_card_images (AisleriotBoard *board,
                          Slot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  int highlight_start_card_id = G_MAXUINT;
+  int highlight_start_card_id = G_MAXINT;
 
   if (G_UNLIKELY (slot == priv->highlight_slot &&
                   priv->show_highlight)) {
@@ -1322,7 +1322,7 @@ highlight_drop_target (AisleriotBoard *board,
     /* It's ok to call this directly here, since the old highlight_slot cannot
      * have been the same as the current selection_slot!
      */
-    slot_update_card_images_full (board, old_slot, G_MAXUINT);
+    slot_update_card_images_full (board, old_slot, G_MAXINT);
   }
 
   if (!cards_are_droppable (board, slot))

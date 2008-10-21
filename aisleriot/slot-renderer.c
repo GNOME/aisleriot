@@ -74,7 +74,7 @@ struct _AisleriotSlotRendererPrivate
   Slot *slot;
 
   gboolean show_highlight;
-  guint highlight_start;
+  gint highlight_start;
 
   ClutterTimeline *timeline;
   guint completed_handler;
@@ -129,14 +129,14 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
                                 G_PARAM_STATIC_BLURB);
   g_object_class_install_property (gobject_class, PROP_SLOT, pspec);
 
-  pspec = g_param_spec_uint ("highlight", NULL, NULL,
-                             0, G_MAXUINT, 0,
-                             G_PARAM_WRITABLE |
-                             G_PARAM_READABLE |
-                             G_PARAM_CONSTRUCT_ONLY |
-                             G_PARAM_STATIC_NAME |
-                             G_PARAM_STATIC_NICK |
-                             G_PARAM_STATIC_BLURB);
+  pspec = g_param_spec_int ("highlight", NULL, NULL,
+                            0, G_MAXINT, 0,
+                            G_PARAM_WRITABLE |
+                            G_PARAM_READABLE |
+                            G_PARAM_CONSTRUCT_ONLY |
+                            G_PARAM_STATIC_NAME |
+                            G_PARAM_STATIC_NICK |
+                            G_PARAM_STATIC_BLURB);
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
 
   g_type_class_add_private (klass, sizeof (AisleriotSlotRendererPrivate));
@@ -149,7 +149,7 @@ aisleriot_slot_renderer_init (AisleriotSlotRenderer *self)
 
   priv = self->priv = AISLERIOT_SLOT_RENDERER_GET_PRIVATE (self);
 
-  priv->highlight_start = G_MAXUINT;
+  priv->highlight_start = G_MAXINT;
   priv->animations = g_array_new (FALSE, FALSE, sizeof (AnimationData));
   priv->timeline = clutter_timeline_new_for_duration (500);
   g_signal_connect_swapped (priv->timeline, "completed",
@@ -233,7 +233,7 @@ aisleriot_slot_renderer_set_property (GObject *object,
 
     case PROP_HIGHLIGHT:
       aisleriot_slot_renderer_set_highlight (srend,
-                                             g_value_get_uint (value));
+                                             g_value_get_int (value));
       break;
 
     default:
@@ -252,7 +252,7 @@ aisleriot_slot_renderer_get_property (GObject *object,
 
   switch (property_id) {
     case PROP_HIGHLIGHT:
-      g_value_set_uint (value,
+      g_value_set_int (value,
                         aisleriot_slot_renderer_get_highlight (srend));
       break;
 
@@ -351,14 +351,14 @@ aisleriot_slot_renderer_get_highlight (AisleriotSlotRenderer *srend)
 
 void
 aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
-                                       guint highlight)
+                                       gint highlight)
 {
   AisleriotSlotRendererPrivate *priv = srend->priv;
 
   g_return_if_fail (AISLERIOT_IS_SLOT_RENDERER (srend));
 
   priv->highlight_start = highlight;
-  priv->show_highlight = priv->highlight_start != G_MAXUINT;
+  priv->show_highlight = priv->highlight_start != G_MAXINT;
 
   clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
 }

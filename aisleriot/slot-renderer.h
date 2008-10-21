@@ -76,7 +76,7 @@ ClutterActor *aisleriot_slot_renderer_new (AisleriotCardCache *cache,
                                            Slot *slot);
 
 void aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
-                                            guint hightlight_start);
+                                            gint hightlight_start);
 guint aisleriot_slot_renderer_get_highlight (AisleriotSlotRenderer *srend);
 
 void aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
