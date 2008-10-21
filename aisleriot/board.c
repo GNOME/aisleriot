@@ -1060,6 +1060,7 @@ drag_begin (AisleriotBoard *board)
   height = priv->card_size.height + (num_moving_cards - 1) * hslot->pixeldy;
 
   priv->moving_cards_group = g_object_ref_sink (clutter_group_new ());
+  clutter_actor_set_position (priv->moving_cards_group, x, y);
 
   /* FIXMEchpe: RTL issue: this doesn't work right when we allow dragging of
    * more than one card from a expand-right slot. (But right now no game .scm
