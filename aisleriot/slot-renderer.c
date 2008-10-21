@@ -53,7 +53,7 @@ struct _AisleriotSlotRendererPrivate
   AisleriotCardCache *cache;
   Slot *slot;
   gboolean show_highlight;
-  guint highlight_start_card_id;
+  guint highlight_start;
 };
 
 enum
@@ -61,7 +61,8 @@ enum
   PROP_0,
 
   PROP_CACHE,
-  PROP_SLOT
+  PROP_SLOT,
+  PROP_HIGHLIGHT
 };
 
 static void
@@ -96,6 +97,16 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
                                 G_PARAM_STATIC_BLURB);
   g_object_class_install_property (gobject_class, PROP_SLOT, pspec);
 
+  pspec = g_param_spec_uint ("highlight", NULL, NULL,
+                             0, G_MAXUINT, 0,
+                             G_PARAM_WRITABLE |
+                             G_PARAM_READABLE |
+                             G_PARAM_CONSTRUCT_ONLY |
+                             G_PARAM_STATIC_NAME |
+                             G_PARAM_STATIC_NICK |
+                             G_PARAM_STATIC_BLURB);
+  g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
+
   g_type_class_add_private (klass, sizeof (AisleriotSlotRendererPrivate));
 }
 
@@ -106,7 +117,7 @@ aisleriot_slot_renderer_init (AisleriotSlotRenderer *self)
 
   priv = self->priv = AISLERIOT_SLOT_RENDERER_GET_PRIVATE (self);
 
-  priv->highlight_start_card_id = G_MAXUINT;
+  priv->highlight_start = G_MAXUINT;
 }
 
 static void
@@ -171,6 +182,11 @@ aisleriot_slot_renderer_set_property (GObject *object,
       priv->slot = g_value_get_pointer (value);
       break;
 
+    case PROP_HIGHLIGHT:
+      aisleriot_slot_renderer_set_highlight (srend,
+                                             g_value_get_uint (value));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -183,8 +199,18 @@ aisleriot_slot_renderer_get_property (GObject *object,
                                       GValue *value,
                                       GParamSpec *pspec)
 {
-  /* All properties are write-only */
-  G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+  AisleriotSlotRenderer *srend = AISLERIOT_SLOT_RENDERER (object);
+
+  switch (property_id) {
+    case PROP_HIGHLIGHT:
+      g_value_set_uint (value,
+                        aisleriot_slot_renderer_get_highlight (srend));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+  }
 }
 
 static void
@@ -230,7 +256,7 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
     CoglHandle cogl_tex;
     guint tex_width, tex_height;
 
-    is_highlighted = (i >= priv->highlight_start_card_id);
+    is_highlighted = priv->show_highlight && (i >= priv->highlight_start);
 
     cogl_tex = aisleriot_card_cache_get_card_texture (priv->cache,
                                                       card,
@@ -249,4 +275,26 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
     cardx += priv->slot->pixeldx;
     cardy += priv->slot->pixeldy;
   }
+}
+
+guint
+aisleriot_slot_renderer_get_highlight (AisleriotSlotRenderer *srend)
+{
+  g_return_val_if_fail (AISLERIOT_IS_SLOT_RENDERER (srend), 0);
+
+  return srend->priv->highlight_start;
+}
+
+void
+aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
+                                       guint highlight)
+{
+  AisleriotSlotRendererPrivate *priv = srend->priv;
+
+  g_return_if_fail (AISLERIOT_IS_SLOT_RENDERER (srend));
+
+  priv->highlight_start = highlight;
+  priv->show_highlight = priv->highlight_start != G_MAXUINT;
+
+  clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
 }

@@ -68,6 +68,10 @@ GType aisleriot_slot_renderer_get_type (void) G_GNUC_CONST;
 ClutterActor *aisleriot_slot_renderer_new (AisleriotCardCache *cache,
                                            Slot *slot);
 
+void aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
+                                            guint hightlight_start);
+guint aisleriot_slot_renderer_get_highlight (AisleriotSlotRenderer *srend);
+
 G_END_DECLS
 
 #endif /* __AISLERIOT_SLOT_RENDERER_H__ */
