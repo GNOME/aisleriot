@@ -20,7 +20,7 @@
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
-#include <clutter/clutter-texture.h>
+#include <cogl/cogl.h>
 #include <clutter-gtk/gtk-clutter-util.h>
 
 #include <libgames-support/games-card-images.h>
@@ -51,7 +51,7 @@ G_DEFINE_TYPE (AisleriotCardCache, aisleriot_card_cache, G_TYPE_OBJECT);
 
 struct _AisleriotCardCachePrivate
 {
-  ClutterActor **cards;
+  CoglHandle *cards;
   GamesCardImages *card_images;
 
   guint theme_handler;
@@ -199,13 +199,13 @@ aisleriot_card_cache_clear (AisleriotCardCache *cache)
   int i;
 
   for (i = 0; i < GAMES_CARDS_TOTAL; i++)
-    if (priv->cards[i]) {
-      g_object_unref (priv->cards[i]);
-      priv->cards[i] = NULL;
+    if (priv->cards[i] != COGL_INVALID_HANDLE) {
+      cogl_texture_unref (priv->cards[i]);
+      priv->cards[i] = COGL_INVALID_HANDLE;
     }
 }
 
-ClutterActor *
+CoglHandle
 aisleriot_card_cache_get_card_texture_by_id (AisleriotCardCache *cache,
                                              guint card_id,
                                              gboolean highlighted)
@@ -224,14 +224,22 @@ aisleriot_card_cache_get_card_texture_by_id (AisleriotCardCache *cache,
   if (highlighted)
     index *= 2;
 
-  if (priv->cards[index] == NULL) {
-    ClutterActor *tex = g_object_ref_sink (clutter_texture_new ());
+  if (priv->cards[index] == COGL_INVALID_HANDLE) {
+    CoglHandle tex;
     GdkPixbuf *pixbuf
       = games_card_images_get_card_pixbuf_by_id (priv->card_images,
                                                  card_id,
                                                  highlighted);
 
-    gtk_clutter_texture_set_from_pixbuf (CLUTTER_TEXTURE (tex), pixbuf);
+    tex = cogl_texture_new_from_data (gdk_pixbuf_get_width (pixbuf),
+                                      gdk_pixbuf_get_height (pixbuf),
+                                      64, FALSE,
+                                      gdk_pixbuf_get_has_alpha (pixbuf)
+                                      ? COGL_PIXEL_FORMAT_RGBA_8888
+                                      : COGL_PIXEL_FORMAT_RGB_888,
+                                      COGL_PIXEL_FORMAT_ANY,
+                                      gdk_pixbuf_get_rowstride (pixbuf),
+                                      gdk_pixbuf_get_pixels (pixbuf));
 
     priv->cards[index] = tex;
   }
@@ -239,7 +247,7 @@ aisleriot_card_cache_get_card_texture_by_id (AisleriotCardCache *cache,
   return priv->cards[index];
 }
 
-ClutterActor *
+CoglHandle
 aisleriot_card_cache_get_card_texture (AisleriotCardCache *cache,
                                        Card card,
                                        gboolean highlighted)
