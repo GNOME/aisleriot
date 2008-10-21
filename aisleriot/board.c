@@ -2333,6 +2333,8 @@ aisleriot_board_activate (AisleriotBoard *board)
 
     aisleriot_game_test_end_of_game (priv->game);
 
+    check_animations (board);
+
     return;
   }
 
@@ -2343,6 +2345,8 @@ aisleriot_board_activate (AisleriotBoard *board)
     aisleriot_game_end_move (priv->game);
     games_sound_play ("click");
     aisleriot_game_test_end_of_game (priv->game);
+
+    check_animations (board);
 
     return;
   }
@@ -2367,6 +2371,8 @@ aisleriot_board_activate (AisleriotBoard *board)
 
     /* Trying to move the cards has unset the selection; re-select them */
     set_selection (board, selection_slot, selection_start_card_id, TRUE);
+
+    check_animations (board);
   }
 
   aisleriot_board_error_bell (board);
@@ -2909,6 +2915,8 @@ aisleriot_board_button_press (GtkWidget *widget,
 
     set_cursor (board, CURSOR_OPEN);
 
+    check_animations (board);
+
     return TRUE;
   }
 
@@ -3038,6 +3046,8 @@ aisleriot_board_button_release (GtkWidget *widget,
       }
 
       aisleriot_game_test_end_of_game (priv->game);
+
+      check_animations (board);
 
       break;
     }
