@@ -937,16 +937,25 @@ check_animations (AisleriotBoard *board)
 
     g_assert (slot->cards->len == slot->card_images->len);
 
-    if (slot->old_cards->len > slot->cards->len
-        && !memcmp (slot->old_cards->data, slot->cards->data,
-                    slot->cards->len)) {
-      for (i = slot->cards->len; i < slot->old_cards->len; i++) {
-        RemovedCard removed_card;
+    if (slot->old_cards->len > slot->cards->len) {
+      for (i = 0; i < slot->cards->len; i++) {
+        Card old_card = CARD (slot->old_cards->data[i]);
+        Card new_card = CARD (slot->cards->data[i]);
 
-        removed_card.card = CARD (slot->old_cards->data[i]);
-        removed_card.cardx = slot->rect.x + slot->pixeldx * i;
-        removed_card.cardy = slot->rect.y + slot->pixeldy * i;
-        g_array_append_val (removed_cards, removed_card);
+        if (old_card.attr.suit != new_card.attr.suit
+            || old_card.attr.rank != new_card.attr.rank)
+          break;
+      }
+
+      if (i >= slot->cards->len) {
+        for (; i < slot->old_cards->len; i++) {
+          RemovedCard removed_card;
+
+          removed_card.card = CARD (slot->old_cards->data[i]);
+          removed_card.cardx = slot->rect.x + slot->pixeldx * i;
+          removed_card.cardy = slot->rect.y + slot->pixeldy * i;
+          g_array_append_val (removed_cards, removed_card);
+        }
       }
     }
   }
