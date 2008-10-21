@@ -232,28 +232,19 @@ static void
 clear_slots (AisleriotGame *game,
              gboolean notify)
 {
-  guint i, n_slots, card_num;
+  guint i, n_slots;
 
   n_slots = game->slots->len;
   for (i = 0; i < n_slots; ++i) {
     Slot *slot = game->slots->pdata[i];
 
-    for (card_num = 0; card_num < slot->card_images->len; card_num++) {
-      ClutterActor *actor = g_ptr_array_index (slot->card_images, card_num);
-      if (actor) {
-        clutter_actor_destroy (actor);
-        g_object_unref (actor);
-      }
-    }
-
-    if (slot->slot_texture) {
-      clutter_actor_destroy (slot->slot_texture);
-      g_object_unref (slot->slot_texture);
+    if (slot->slot_renderer) {
+      clutter_actor_destroy (slot->slot_renderer);
+      g_object_unref (slot->slot_renderer);
     }
 
     g_byte_array_free (slot->cards, TRUE);
     g_byte_array_free (slot->old_cards, TRUE);
-    g_ptr_array_free (slot->card_images, TRUE);
 
     g_slice_free (Slot, slot);
   }
@@ -598,8 +589,6 @@ cscmi_add_slot (SCM slot_data)
   slot->expansion.dx = 0.0;
   slot->expanded_down = expanded_down != FALSE;
   slot->expanded_right = expanded_right != FALSE;
-
-  slot->card_images = g_ptr_array_sized_new (SLOT_CARDS_N_PREALLOC);
 
   slot->needs_update = TRUE;
 

@@ -29,6 +29,8 @@ sol_SOURCES = \
 	conf.h		\
 	game.c		\
 	game.h		\
+	slot-renderer.c \
+	slot-renderer.h \
 	sol.c		\
 	stats-dialog.c	\
 	stats-dialog.h	\

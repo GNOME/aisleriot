@@ -43,6 +43,7 @@
 #include "baize.h"
 #include "card-cache.h"
 #include "card.h"
+#include "slot-renderer.h"
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
@@ -832,23 +833,6 @@ slot_update_geometry (AisleriotBoard *board,
 }
 
 static void
-truncate_card_images_array (GPtrArray *card_images, guint size)
-{
-  guint i;
-
-  for (i = size; i < card_images->len; i++) {
-    ClutterActor *actor = g_ptr_array_index (card_images, i);
-
-    if (actor) {
-      clutter_actor_destroy (actor);
-      g_object_unref (actor);
-    }
-  }
-
-  g_ptr_array_set_size (card_images, size);
-}
-
-static void
 destroy_animation_data (ClutterActor *actor, AnimationData *data)
 {
   g_signal_handlers_disconnect_by_func (actor, destroy_animation_data, data);
@@ -922,6 +906,7 @@ add_animation (AisleriotBoard *board,
 static void
 check_animations (AisleriotBoard *board)
 {
+#if 0
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
   int slot_num, i;
@@ -1021,6 +1006,7 @@ check_animations (AisleriotBoard *board)
   }
 
   g_array_free (removed_cards, TRUE);
+#endif
 }
 
 static void
@@ -1029,79 +1015,24 @@ slot_update_card_images_full (AisleriotBoard *board,
                               int highlight_start_card_id)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GPtrArray *card_images;
-  guint n_cards, first_exposed_card_id, i;
-  guint8 *cards;
-  int cardx, cardy;
   ClutterActor *stage
     = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
-
-  card_images = slot->card_images;
-
-  truncate_card_images_array (card_images, 0);
 
   if (!priv->geometry_set)
     return;
 
-  cards = slot->cards->data;
-  n_cards = slot->cards->len;
+  if (slot->slot_renderer == NULL) {
+    slot->slot_renderer = aisleriot_slot_renderer_new (priv->textures, slot);
+    g_object_ref_sink (slot->slot_renderer);
 
-  g_assert (n_cards >= slot->exposed);
-  first_exposed_card_id = n_cards - slot->exposed;
+    clutter_actor_set_position (slot->slot_renderer,
+                                slot->rect.x, slot->rect.y);
 
-  /* No need to get invisible cards from cache, which will just
-   * slow us down!
-   */
-  for (i = 0; i < first_exposed_card_id; ++i) {
-    g_ptr_array_add (card_images, NULL);
+    clutter_container_add (CLUTTER_CONTAINER (stage),
+                           slot->slot_renderer, NULL);
   }
 
-  cardx = slot->rect.x;
-  cardy = slot->rect.y;
-
-  if (slot->slot_texture) {
-    clutter_actor_destroy (slot->slot_texture);
-    g_object_unref (slot->slot_texture);
-    slot->slot_texture = NULL;
-  }
-
-  if (slot->cards->len == 0) {
-    CoglHandle cogl_tex;
-    gboolean show_highlight;
-
-    slot->slot_texture = g_object_ref_sink (clutter_texture_new ());
-
-    show_highlight = priv->show_highlight && slot == priv->highlight_slot;
-    cogl_tex = aisleriot_card_cache_get_slot_texture (priv->textures,
-                                                      show_highlight);
-
-    clutter_texture_set_cogl_texture (CLUTTER_TEXTURE (slot->slot_texture),
-                                      cogl_tex);
-
-    clutter_actor_set_position (slot->slot_texture, cardx, cardy);
-
-    clutter_container_add (CLUTTER_CONTAINER (stage), slot->slot_texture, NULL);
-  }
-
-  for (i = first_exposed_card_id; i < n_cards; ++i) {
-    Card card = CARD (cards[i]);
-    gboolean is_highlighted;
-    ClutterActor *card_tex = aisleriot_card_new (priv->textures, card);
-
-    is_highlighted = (i >= highlight_start_card_id);
-
-    aisleriot_card_set_highlighted (AISLERIOT_CARD (card_tex),
-                                    is_highlighted);
-
-    clutter_actor_set_position (card_tex, cardx, cardy);
-
-    clutter_container_add (CLUTTER_CONTAINER (stage), card_tex, NULL);
-
-    g_ptr_array_add (card_images, g_object_ref_sink (card_tex));
-
-    cardx += slot->pixeldx;
-    cardy += slot->pixeldy;
-  }
+  clutter_actor_queue_redraw (slot->slot_renderer);
 }
 
 static void
@@ -1258,8 +1189,6 @@ drag_begin (AisleriotBoard *board)
 
   /* Take the cards off of the stack */
   g_byte_array_set_size (cards, priv->moving_cards_origin_card_id);
-  truncate_card_images_array (hslot->card_images,
-                              priv->moving_cards_origin_card_id);
 
   width = priv->card_size.width + (num_moving_cards - 1) * hslot->pixeldx;
   height = priv->card_size.height + (num_moving_cards - 1) * hslot->pixeldy;
