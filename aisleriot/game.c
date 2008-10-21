@@ -252,6 +252,7 @@ clear_slots (AisleriotGame *game,
     }
 
     g_byte_array_free (slot->cards, TRUE);
+    g_byte_array_free (slot->old_cards, TRUE);
     g_ptr_array_free (slot->card_images, TRUE);
 
     g_slice_free (Slot, slot);
@@ -587,6 +588,7 @@ cscmi_add_slot (SCM slot_data)
   slot->id = scm_to_int (SCM_CAR (slot_data));
 
   slot->cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
+  slot->old_cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
   slot->exposed = 0;
   slot->x = scm_num2dbl (SCM_CAR (SCM_CADR (SCM_CADDR (slot_data))), NULL);
   slot->y = scm_num2dbl (SCM_CADR (SCM_CADR (SCM_CADDR (slot_data))), NULL);

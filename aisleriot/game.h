@@ -34,6 +34,8 @@ typedef struct {
   int id;
 
   GByteArray *cards;
+  /* The old state of the cards so we can check for differences */
+  GByteArray *old_cards;
 
   /* the topmost |exposed| cards are shown on the pile */
   guint exposed;

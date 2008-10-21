@@ -201,6 +201,13 @@ struct _AisleriotBoardPrivate
   guint force_geometry_update : 1;
 };
 
+typedef struct _AnimationData AnimationData;
+
+struct _AnimationData
+{
+  ClutterBehaviour *move, *rotate;
+};
+
 STATIC_ASSERT (LAST_STATUS < 16 /* 2^4 */);
 
 enum
@@ -831,6 +838,137 @@ truncate_card_images_array (GPtrArray *card_images, guint size)
   }
 
   g_ptr_array_set_size (card_images, size);
+}
+
+static void
+destroy_animation_data (ClutterActor *actor, AnimationData *data)
+{
+  g_signal_handlers_disconnect_by_func (actor, destroy_animation_data, data);
+
+  if (data->move)
+    g_object_unref (data->move);
+  if (data->rotate)
+    g_object_unref (data->rotate);
+
+  g_slice_free (AnimationData, data);
+}
+
+static void
+add_animation (AisleriotBoard *board,
+               gint oldx, gint oldy, gboolean old_face_down,
+               gint newx, gint newy, gboolean new_face_down,
+               ClutterActor *actor)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  ClutterTimeline *tl;
+  ClutterAlpha *alpha;
+  AnimationData *data;
+  ClutterKnot knots[] = { { oldx, oldy }, { newx, newy } };
+
+  data = g_slice_new0 (AnimationData);
+
+  g_signal_connect (actor, "destroy",
+                    G_CALLBACK (destroy_animation_data),
+                    data);
+
+  clutter_actor_set_position (actor, oldx, oldy);
+
+  tl = clutter_timeline_new_for_duration (500);
+  alpha = clutter_alpha_new_full (tl, CLUTTER_ALPHA_RAMP_INC, NULL, NULL);
+  clutter_timeline_start (tl);
+  g_object_unref (tl);
+
+  data->move = clutter_behaviour_path_new (alpha, knots,
+                                           G_N_ELEMENTS (knots));
+
+  clutter_behaviour_apply (data->move, actor);
+
+  if (old_face_down != new_face_down) {
+    gint center_x = priv->card_size.width / 2;
+    gint center_y = priv->card_size.height / 2;
+
+    clutter_actor_set_rotation (actor, CLUTTER_Y_AXIS,
+                                180.0,
+                                center_x, center_y, 0);
+
+    data->rotate = clutter_behaviour_rotate_new (alpha,
+                                                 CLUTTER_Y_AXIS,
+                                                 CLUTTER_ROTATE_CW,
+                                                 180.0, 0.0);
+    clutter_behaviour_rotate_set_center (CLUTTER_BEHAVIOUR_ROTATE
+                                         (data->rotate),
+                                         center_x, center_y, 0);
+
+    clutter_behaviour_apply (data->rotate, actor);
+  }
+}
+
+static void
+check_animations (AisleriotBoard *board)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  GPtrArray *slots;
+  int slot_num, new_i, old_i, cardx, cardy;
+  Slot *slot;
+  guint first_exposed_card_id;
+
+  slots = aisleriot_game_get_slots (priv->game);
+
+  for (slot_num = 0; slot_num < slots->len; slot_num++) {
+    slot = slots->pdata[slot_num];
+
+    g_assert (slot->cards->len == slot->card_images->len);
+
+    first_exposed_card_id = slot->cards->len - slot->exposed;
+
+    /* Make sure that all of the unexposed cards are the same and only
+       check for animations starting from the first exposed card */
+    for (old_i = 0; old_i < first_exposed_card_id
+           && old_i < slot->old_cards->len; old_i++)
+      if (slot->old_cards->data[old_i] != slot->cards->data[old_i])
+        break;
+
+    if (old_i >= first_exposed_card_id) {
+      cardx = slot->rect.x;
+      cardy = slot->rect.y;
+
+      for (new_i = first_exposed_card_id;
+           new_i < slot->cards->len
+             && old_i < slot->old_cards->len;
+           ++new_i) {
+        Card old_card, new_card;
+        gboolean old_face_down, new_face_down;
+
+        old_card = CARD (slot->old_cards->data[old_i]);
+        old_face_down = old_card.attr.face_down;
+        old_card.attr.face_down = FALSE;
+        new_card = CARD (slot->cards->data[new_i]);
+        new_face_down = new_card.attr.face_down;
+        new_card.attr.face_down = FALSE;
+
+        /* Check if the top card has flipped over */
+        if (new_i == slot->cards->len - 1
+            && old_card.value == new_card.value
+            && old_face_down != new_face_down)
+          add_animation (board,
+                         cardx, cardy, old_face_down,
+                         cardx, cardy, new_face_down,
+                         slot->card_images->pdata[new_i]);
+
+        if (old_card.value == new_card.value)
+          old_i++;
+        else
+          old_i = slot->old_cards->len;
+
+        cardx += slot->pixeldx;
+        cardy += slot->pixeldy;
+      }
+    }
+
+    /* Set the old cards back to the new cards */
+    g_byte_array_set_size (slot->old_cards, 0);
+    g_byte_array_append (slot->old_cards, slot->cards->data, slot->cards->len);
+  }
 }
 
 static void
@@ -2089,6 +2227,9 @@ game_new_cb (AisleriotGame *game,
            aisleriot_game_get_game_file (priv->game));
 #endif
 
+  /* Check for animations so that the differences will be reset */
+  check_animations (board);
+
   gtk_widget_queue_draw (GTK_WIDGET (board));
 }
 
@@ -2867,6 +3008,7 @@ aisleriot_board_button_release (GtkWidget *widget,
     case STATUS_IS_DRAG:
       highlight_drop_target (board, NULL);
       drop_moving_cards (board, event->x, event->y);
+      check_animations (board);
       break;
 
     case STATUS_MAYBE_DRAG:
