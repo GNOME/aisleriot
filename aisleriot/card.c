@@ -101,6 +101,16 @@ aisleriot_card_class_init (AisleriotCardClass *klass)
                                G_PARAM_STATIC_BLURB);
   g_object_class_install_property (gobject_class, PROP_CACHE, pspec);
 
+  pspec = g_param_spec_boolean ("highlighted", NULL, NULL,
+                                FALSE,
+                                G_PARAM_WRITABLE |
+                                G_PARAM_READABLE |
+                                G_PARAM_CONSTRUCT_ONLY |
+                                G_PARAM_STATIC_NAME |
+                                G_PARAM_STATIC_NICK |
+                                G_PARAM_STATIC_BLURB);
+  g_object_class_install_property (gobject_class, PROP_HIGHLIGHTED, pspec);
+
   g_type_class_add_private (klass, sizeof (AisleriotCardPrivate));
 }
 
