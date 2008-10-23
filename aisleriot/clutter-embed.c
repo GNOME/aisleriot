@@ -140,7 +140,7 @@ aisleriot_clutter_embed_realize (GtkWidget *widget)
 
     /* We need to use the colormap from the Clutter visual */
     xvinfo = clutter_x11_get_stage_visual (CLUTTER_STAGE (priv->stage));
-    visual = gdk_x11_screen_lookup_visual (gdk_screen_get_default (),
+    visual = gdk_x11_screen_lookup_visual (gtk_widget_get_screen (widget),
                                            xvinfo->visualid);
     colormap = gdk_colormap_new (visual, FALSE);
     gtk_widget_set_colormap (widget, colormap);
