@@ -40,6 +40,8 @@ sol_SOURCES += \
 	card.h          \
 	card-cache.c    \
 	card-cache.h    \
+	clutter-embed.c	\
+	clutter-embed.h	\
 	slot-renderer.c \
 	slot-renderer.h \
 	$(NULL)
