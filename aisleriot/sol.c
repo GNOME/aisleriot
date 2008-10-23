@@ -35,7 +35,7 @@
 #include <gtk/gtkmessagedialog.h>
 
 #ifdef HAVE_CLUTTER
-#include <clutter-gtk/gtk-clutter-embed.h>
+#include <clutter-gtk/clutter-gtk.h>
 #endif
 
 #ifdef HAVE_HILDON

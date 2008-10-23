@@ -21,7 +21,6 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <cogl/cogl.h>
-#include <clutter-gtk/gtk-clutter-util.h>
 
 #include <libgames-support/games-card-images.h>
 
