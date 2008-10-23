@@ -97,7 +97,12 @@ ClutterActor *aisleriot_clutter_embed_get_stage (AisleriotClutterEmbed *embed);
 
 ClutterInitError aisleriot_clutter_init (gint    *argc,
                                    gchar ***argv);
-
+ClutterInitError aisleriot_clutter_init_with_args (int          *argc,
+                                             char       ***argv,
+                                             const char   *parameter_string,
+                                             GOptionEntry *entries,
+                                             const char   *translation_domain,
+                                             GError      **error);
 G_END_DECLS
 
 #endif /* __AISLERIOT_CLUTTER_EMBED_H__ */

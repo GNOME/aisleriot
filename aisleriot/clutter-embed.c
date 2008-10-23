@@ -454,6 +454,27 @@ aisleriot_clutter_init (int    *argc,
   return clutter_init (argc, argv);
 }
 
+ClutterInitError
+aisleriot_clutter_init_with_args (int            *argc,
+                            char         ***argv,
+                            const char     *parameter_string,
+                            GOptionEntry   *entries,
+                            const char     *translation_domain,
+                            GError        **error)
+{
+  if (!gtk_init_with_args (argc, argv, (char*) parameter_string, entries, (char*) translation_domain, error))
+    return AISLERIOT_CLUTTER_INIT_ERROR_GTK;
+
+#if defined(GDK_WINDOWING_X11)
+  clutter_x11_set_display (GDK_DISPLAY());
+  clutter_x11_disable_event_retrieval ();
+#elif defined(GDK_WINDOWING_WIN32)
+  clutter_win32_disable_event_retrieval ();
+#endif /* GDK_WINDOWING_{X11,WIN32} */
+
+  return clutter_init_with_args (argc, argv, NULL, NULL, NULL, error);
+}
+
 /**
  * aisleriot_clutter_embed_new:
  *

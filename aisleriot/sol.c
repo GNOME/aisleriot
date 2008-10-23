@@ -76,6 +76,7 @@
 #include "game.h"
 #include "util.h"
 #include "window.h"
+#include "clutter-embed.h"
 
 typedef struct {
   AisleriotWindow *window;
@@ -541,23 +542,30 @@ main_prog (void *closure, int argc, char *argv[])
   games_sound_enable (FALSE);
   games_sound_add_option_group (option_context);
 
-#ifdef HAVE_CLUTTER
-  /* FIXMEchpe: use option group instead */
-  gtk_clutter_init (&argc, &argv);
-#endif
-
   g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
 #ifdef WITH_SMCLIENT
   g_option_context_add_group (option_context, egg_sm_client_get_option_group ());
 #endif /* WITH_SMCLIENT */
+#ifdef HAVE_CLUTTER
+  g_option_context_add_group (option_context, clutter_get_option_group_without_init ());
+#endif
 
   retval = g_option_context_parse (option_context, &argc, &argv, &error);
   g_option_context_free (option_context);
 
   if (!retval) {
-    g_print ("%s\n", error->message);
+    g_printerr ("%s\n", error->message);
+    g_error_free (error);
     goto cleanup;
   }
+
+#ifdef HAVE_CLUTTER
+  if (aisleriot_clutter_init_with_args (NULL, NULL, NULL, NULL, NULL, &error) != CLUTTER_INIT_SUCCESS) {
+    g_printerr ("Failed to initialise clutter: %s\n", error->message);
+    g_error_free (error);
+    goto cleanup;
+  }
+#endif
 
 #ifdef HAVE_MAEMO
   data.program = HILDON_PROGRAM (hildon_program_get_instance ());
