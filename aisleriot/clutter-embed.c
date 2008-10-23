@@ -110,7 +110,8 @@ aisleriot_clutter_embed_show (GtkWidget *widget)
 {
   AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
 
-  clutter_actor_show (priv->stage);
+  if (GTK_WIDGET_REALIZED (widget))
+    clutter_actor_show (priv->stage);
 
   GTK_WIDGET_CLASS (aisleriot_clutter_embed_parent_class)->show (widget);
 }
@@ -132,6 +133,9 @@ aisleriot_clutter_embed_realize (GtkWidget *widget)
   GdkWindowAttr attributes;
   int attributes_mask;
   
+  /* we must realize the stage to get it ready for embedding */
+  clutter_actor_realize (priv->stage);
+
 #ifdef GDK_WINDOWING_X11
   {
     const XVisualInfo *xvinfo;
@@ -181,9 +185,6 @@ aisleriot_clutter_embed_realize (GtkWidget *widget)
   
   gdk_window_set_back_pixmap (widget->window, NULL, FALSE);
 
-  /* we must realize the stage to get it ready for embedding */
-  clutter_actor_realize (priv->stage);
-
 #if defined(GDK_WINDOWING_X11)
   clutter_x11_set_stage_foreign (CLUTTER_STAGE (priv->stage), 
                                  GDK_WINDOW_XID (widget->window));
@@ -193,6 +194,9 @@ aisleriot_clutter_embed_realize (GtkWidget *widget)
 #endif /* GDK_WINDOWING_{X11,WIN32} */
 
   clutter_actor_queue_redraw (CLUTTER_ACTOR (priv->stage));
+
+  if (GTK_WIDGET_VISIBLE (widget))
+    clutter_actor_show (priv->stage);
 
   aisleriot_clutter_embed_send_configure (AISLERIOT_CLUTTER_EMBED (widget));
 }
