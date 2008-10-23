@@ -81,14 +81,6 @@ struct _AisleriotClutterEmbedClass
 {
   /*< private >*/
   GtkWidgetClass parent_class;
-
-  /* padding for future expansion */
-  void (*_clutter_gtk_reserved1) (void);
-  void (*_clutter_gtk_reserved2) (void);
-  void (*_clutter_gtk_reserved3) (void);
-  void (*_clutter_gtk_reserved4) (void);
-  void (*_clutter_gtk_reserved5) (void);
-  void (*_clutter_gtk_reserved6) (void);
 };
 
 GType         aisleriot_clutter_embed_get_type  (void) G_GNUC_CONST;
