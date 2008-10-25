@@ -76,7 +76,10 @@
 #include "game.h"
 #include "util.h"
 #include "window.h"
+
+#ifdef HAVE_CLUTTER
 #include "clutter-embed.h"
+#endif
 
 typedef struct {
   AisleriotWindow *window;
