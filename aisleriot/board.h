@@ -20,7 +20,7 @@
 #ifndef AISLERIOT_BOARD_H
 #define AISLERIOT_BOARD_H
 
-#include <gtk/gtkdrawingarea.h>
+#include <gtk/gtk.h>
 #include "game.h"
 
 G_BEGIN_DECLS

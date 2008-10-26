@@ -26,13 +26,10 @@
 
 #include <libguile.h>
 
+#include <glib.h>
 #include <glib/gi18n.h>
-#include <glib/gthread.h>
 
-#include <gtk/gtkaboutdialog.h>
-#include <gtk/gtkicontheme.h>
-#include <gtk/gtkmain.h>
-#include <gtk/gtkmessagedialog.h>
+#include <gtk/gtk.h>
 
 #ifdef HAVE_CLUTTER
 #include <clutter/clutter-main.h>

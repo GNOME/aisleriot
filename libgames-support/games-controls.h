@@ -8,7 +8,7 @@
 #ifndef __GAMES_CONTROLS_H__
 #define __GAMES_CONTROLS_H__
 
-#include "gtk/gtk.h"
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

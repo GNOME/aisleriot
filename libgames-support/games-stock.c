@@ -27,7 +27,6 @@
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
-#include <gtk/gtkversion.h>
 
 #include "games-files.h"
 #include "games-runtime.h"

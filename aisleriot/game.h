@@ -21,7 +21,7 @@
 
 #include <libguile.h>
 
-#include <gdk/gdktypes.h>
+#include <gdk/gdk.h>
 
 #include <libgames-support/games-card.h>
 

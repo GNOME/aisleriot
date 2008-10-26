@@ -163,7 +163,7 @@ create_chat_widget (void)
 		    G_CALLBACK (inputline_return), NULL);
 
   g_signal_connect (vbox, "destroy",
-		    GTK_SIGNAL_FUNC (gtk_widget_destroyed), &list->container);
+		    G_CALLBACK (gtk_widget_destroyed), &list->container);
 
   return vbox;
 }
@@ -195,16 +195,16 @@ create_dlg_chat (GtkWindow * parent)
 /*	"This does not seem to work" - Threepwood...
 	g_object_set_data_full(G_OBJECT(dialog),
 			       "chat_widget", chat_widget,
-			       (GtkDestroyNotify) gtk_widget_unref);*/
+			       (GDestroyNotify) gtk_widget_unref);*/
   gtk_box_pack_start (GTK_BOX (vbox), chat_widget, TRUE, TRUE, 0);
 
   /* 
    * Set up callbacks
    */
   g_signal_connect (dialog, "delete_event",
-		    GTK_SIGNAL_FUNC (gtk_widget_destroy), NULL);
+		    G_CALLBACK (gtk_widget_destroy), NULL);
   g_signal_connect (dialog, "response",
-		    GTK_SIGNAL_FUNC (gtk_widget_destroy), NULL);
+		    G_CALLBACK (gtk_widget_destroy), NULL);
 
   /* 
    * Done!
@@ -221,7 +221,7 @@ create_or_raise_dlg_chat (GtkWindow * window)
   } else {
     dlg_chat = create_dlg_chat (window);
     g_signal_connect (dlg_chat, "destroy",
-		      GTK_SIGNAL_FUNC (gtk_widget_destroyed), &dlg_chat);
+		      G_CALLBACK (gtk_widget_destroyed), &dlg_chat);
     gtk_widget_set_size_request (GTK_WIDGET (dlg_chat), 400, 150);
 
     gtk_widget_show (dlg_chat);

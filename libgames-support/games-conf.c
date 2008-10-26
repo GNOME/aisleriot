@@ -21,16 +21,13 @@
 #include <string.h>
 #include <errno.h>
 
+#include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
 #ifdef HAVE_GNOME
 #include <gconf/gconf-client.h>
 #else
-#include <glib/gkeyfile.h>
-#include <gtk/gtkaccelmap.h>
-
 #define ACCELMAP_EXT "accels"
-
 #endif
 
 #include "games-marshal.h"

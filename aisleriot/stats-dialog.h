@@ -19,7 +19,7 @@
 #ifndef AISLERIOT_STATS_DIALOG_H
 #define AISLERIOT_STATS_DIALOG_H
 
-#include <gtk/gtkdialog.h>
+#include <gtk/gtk.h>
 
 #include "conf.h"
 

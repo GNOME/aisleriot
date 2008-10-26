@@ -229,7 +229,7 @@ create_player_list (void)
 
   /* FIXME:  This feature is not supported by gnome-games yet. 
    * g_signal_connect(tree, "button-press-event",
-   * GTK_SIGNAL_FUNC(player_list_button_event), NULL);
+   * G_CALLBACK(player_list_button_event), NULL);
    */
   update_player_list (tree);
 
@@ -245,7 +245,7 @@ create_playerlist_widget (void)
   player_lists = list;
 
   g_signal_connect (list->this, "destroy",
-		    GTK_SIGNAL_FUNC (gtk_widget_destroyed), &list->this);
+		    G_CALLBACK (gtk_widget_destroyed), &list->this);
 
   return list->this;
 }
@@ -283,9 +283,9 @@ create_dlg_players (GtkWindow * parent)
 #endif
 
   tree = create_player_list ();
-  gtk_widget_ref (tree);
+  g_object_ref_sink(tree);
   g_object_set_data_full (G_OBJECT (dialog), "tree", tree,
-			  (GtkDestroyNotify) gtk_widget_unref);
+			  (GDestroyNotify) g_object_unref);
   gtk_box_pack_start (GTK_BOX (vbox), tree, FALSE, FALSE, 0);
   gtk_widget_show (tree);
 
@@ -293,9 +293,9 @@ create_dlg_players (GtkWindow * parent)
    * Set up callbacks
    */
   g_signal_connect (dialog, "delete_event",
-		    GTK_SIGNAL_FUNC (gtk_widget_destroy), NULL);
+		    G_CALLBACK (gtk_widget_destroy), NULL);
   g_signal_connect (dialog, "response",
-		    GTK_SIGNAL_FUNC (gtk_widget_destroy), NULL);
+		    G_CALLBACK (gtk_widget_destroy), NULL);
 
   /* 
    * Done!
@@ -312,7 +312,7 @@ create_or_raise_dlg_players (GtkWindow * window)
   } else {
     dlg_players = create_dlg_players (window);
     g_signal_connect (dlg_players, "destroy",
-		      GTK_SIGNAL_FUNC (gtk_widget_destroyed), &dlg_players);
+		      G_CALLBACK (gtk_widget_destroyed), &dlg_players);
     gtk_widget_show (dlg_players);
   }
 }
@@ -418,13 +418,13 @@ popup_player_menu (GGZSeat * seat, GGZSpectatorSeat * sseat, guint button)
 
     /* FIXME: what about bot/reservation seats? */
     info = gtk_menu_item_new_with_label (_("Info"));
-    gtk_widget_ref (info);
-    g_object_set_data_full (G_OBJECT (menu), "info", info, (GtkDestroyNotify)
-			    gtk_widget_unref);
+    g_object_ref_sink(info);
+    g_object_set_data_full (G_OBJECT (menu), "info", info, (GDestroyNotify)
+			    g_object_unref);
     gtk_container_add (GTK_CONTAINER (menu), info);
     gtk_widget_set_sensitive (info, FALSE);
     g_signal_connect (info, "activate",
-		      GTK_SIGNAL_FUNC (player_info_activate), which);
+		      G_CALLBACK (player_info_activate), which);
   }
 
   if ((sseat && strcasecmp (sseat->name, my_name))
@@ -434,13 +434,13 @@ popup_player_menu (GGZSeat * seat, GGZSpectatorSeat * sseat, guint button)
 
     /* FIXME: you shouldn't be able to boot yourself */
     boot = gtk_menu_item_new_with_label (_("Boot player"));
-    gtk_widget_ref (boot);
-    g_object_set_data_full (G_OBJECT (menu), "boot", boot, (GtkDestroyNotify)
-			    gtk_widget_unref);
+    g_object_ref_sink(boot);
+    g_object_set_data_full (G_OBJECT (menu), "boot", boot, (GDestroyNotify)
+			    g_object_unref);
     gtk_container_add (GTK_CONTAINER (menu), boot);
     // gtk_widget_set_sensitive(boot, FALSE);
     g_signal_connect (boot, "activate",
-		      GTK_SIGNAL_FUNC (player_boot_activate), which);
+		      G_CALLBACK (player_boot_activate), which);
   }
 
   if (seat
@@ -456,13 +456,13 @@ popup_player_menu (GGZSeat * seat, GGZSpectatorSeat * sseat, guint button)
       label = _("Move here");
 
     sit = gtk_menu_item_new_with_label (label);
-    gtk_widget_ref (sit);
-    g_object_set_data_full (G_OBJECT (menu), "sit", sit, (GtkDestroyNotify)
-			    gtk_widget_unref);
+    g_object_ref_sink(sit);
+    g_object_set_data_full (G_OBJECT (menu), "sit", sit, (GDestroyNotify)
+			    g_object_unref);
     gtk_container_add (GTK_CONTAINER (menu), sit);
     // gtk_widget_set_sensitive(sit, FALSE);
     g_signal_connect (sit, "activate",
-		      GTK_SIGNAL_FUNC (player_sit_activate), which);
+		      G_CALLBACK (player_sit_activate), which);
   }
 
   if (seat && (seat->type == GGZ_SEAT_OPEN
@@ -470,12 +470,12 @@ popup_player_menu (GGZSeat * seat, GGZSpectatorSeat * sseat, guint button)
     GtkWidget *bot;
 
     bot = gtk_menu_item_new_with_label (_("Play with bot"));
-    gtk_widget_ref (bot);
-    g_object_set_data_full (G_OBJECT (menu), "bot", bot, (GtkDestroyNotify)
-			    gtk_widget_unref);
+    g_object_ref_sink(bot);
+    g_object_set_data_full (G_OBJECT (menu), "bot", bot, (GDestroyNotify)
+			    g_object_unref);
     gtk_container_add (GTK_CONTAINER (menu), bot);
     g_signal_connect (bot, "activate",
-		      GTK_SIGNAL_FUNC (player_bot_activate), which);
+		      G_CALLBACK (player_bot_activate), which);
   }
 
   if (seat && (seat->type == GGZ_SEAT_BOT || seat->type == GGZ_SEAT_RESERVED)) {
@@ -488,12 +488,12 @@ popup_player_menu (GGZSeat * seat, GGZSpectatorSeat * sseat, guint button)
       label = _("Remove bot");
 
     open = gtk_menu_item_new_with_label (label);
-    gtk_widget_ref (open);
-    g_object_set_data_full (G_OBJECT (menu), "open", open, (GtkDestroyNotify)
-			    gtk_widget_unref);
+    g_object_ref_sink (open);
+    g_object_set_data_full (G_OBJECT (menu), "open", open, (GDestroyNotify)
+			    g_object_unref);
     gtk_container_add (GTK_CONTAINER (menu), open);
     g_signal_connect (open, "activate",
-		      GTK_SIGNAL_FUNC (player_open_activate), which);
+		      G_CALLBACK (player_open_activate), which);
   }
 
   gtk_widget_show_all (menu);

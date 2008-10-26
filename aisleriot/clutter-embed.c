@@ -43,7 +43,7 @@
 #include <glib-object.h>
 
 #include <gdk/gdk.h>
-#include <gtk/gtkmain.h>
+#include <gtk/gtk.h>
 
 #include <clutter/clutter-main.h>
 #include <clutter/clutter-stage.h>

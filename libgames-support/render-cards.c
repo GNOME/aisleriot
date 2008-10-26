@@ -25,7 +25,6 @@
 #include <errno.h>
 
 #include <glib.h>
-#include <glib/gthread.h>
 
 #include <gtk/gtk.h>
 

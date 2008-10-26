@@ -20,7 +20,7 @@
 #ifndef __GAMES_FRAME_H__
 #define __GAMES_FRAME_H__
 
-#include <gtk/gtkframe.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

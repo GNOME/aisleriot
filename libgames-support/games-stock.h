@@ -22,12 +22,8 @@
 #ifndef __GAMES_STOCK_H__
 #define __GAMES_STOCK_H__
 
-#include <glib/gmacros.h>
-#include <gtk/gtkwidget.h>
-#include <gtk/gtkaction.h>
-#include <gtk/gtkuimanager.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtkversion.h>
+#include <glib.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

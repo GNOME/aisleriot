@@ -11,8 +11,8 @@
 #ifndef __GAMES_CLOCK_H__
 #define __GAMES_CLOCK_H__
 
-#include <glib/gmacros.h>
-#include <gtk/gtklabel.h>
+#include <glib.h>
+#include <gtk/gtk.h>
 #include <time.h>
 
 G_BEGIN_DECLS

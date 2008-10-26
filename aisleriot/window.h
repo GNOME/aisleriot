@@ -19,7 +19,7 @@
 #ifndef AISLERIOT_WINDOW_H
 #define AISLERIOT_WINDOW_H
 
-#include <gtk/gtkwindow.h>
+#include <gtk/gtk.h>
 
 #ifdef HAVE_HILDON
 #ifdef HAVE_MAEMO_3
