@@ -24,12 +24,13 @@
  */
 
 #include <config.h>
-#include <gnome.h>
+
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>		/* For strcasecmp */
 
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 #include "games-dlg-players.h"

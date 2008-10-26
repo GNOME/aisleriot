@@ -25,8 +25,6 @@
 
 #ifdef HAVE_GNOME
 #include <gconf/gconf-client.h>
-#include <libgnome/gnome-program.h>
-#include <libgnomeui/gnome-app-helper.h>
 #else
 #include <glib/gkeyfile.h>
 #include <gtk/gtkaccelmap.h>
@@ -225,13 +223,6 @@ games_conf_load_accel_map (GamesConf *conf)
 {
   char *conf_file;
 
-#ifdef HAVE_GNOME
-  if (gnome_program_get ())
-    return; /* Nothing to do, since gnome_program_init already loaded the accel map */
-
-  /* Fall back to our custom loading code if the game doesn't use GnomeProgram (e.g. aisleriot) */
-#endif
-
   conf_file = games_conf_get_accel_map_path (conf, FALSE);
   if (!conf_file)
     return;
@@ -244,15 +235,6 @@ static void
 games_conf_save_accel_map (GamesConf *conf)
 {
   char *conf_file;
-
-#ifdef HAVE_GNOME
-  /* Save the accel map */
-  if (gnome_program_get ()) {
-    gnome_accelerators_sync ();
-    return;
-  }
-  /* Fall back to our custom saving code if the game doesn't use GnomeProgram (e.g. aisleriot) */
-#endif
 
   conf_file = games_conf_get_accel_map_path (conf, TRUE);
   if (!conf_file)
