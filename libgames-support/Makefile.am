@@ -34,6 +34,8 @@ libgames_support_la_SOURCES =		\
 	games-conf.h			\
 	games-files.c			\
 	games-files.h			\
+	games-help.c			\
+	games-help.h			\
 	games-pixbuf-utils.c		\
 	games-pixbuf-utils.h		\
 	games-runtime.c			\
