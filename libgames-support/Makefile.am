@@ -109,10 +109,10 @@ libgames_support_la_SOURCES += \
 	eggsmclient.h \
 	eggsmclient-private.h \
 	$(NULL)
-libgames_support_la_LIBADD += -lSM
 if WITH_SMCLIENT_XSMP
 libgames_support_la_SOURCES += eggsmclient-xsmp.c
 libgames_support_la_CPPFLAGS += -DEGG_SM_CLIENT_BACKEND_XSMP
+libgames_support_la_LIBADD += -lSM
 endif
 if WITH_SMCLIENT_WIN32
 libgames_support_la_SOURCES += eggsmclient-win32.c
