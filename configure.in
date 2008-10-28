@@ -108,14 +108,13 @@ need_cxx=no
 need_ggz=no
 need_rsvg=no
 need_guile=no
-need_gnome=no
 need_python=no
+need_libxml=no
 need_clutter=no
 want_gstreamer=no
 allow_gnuchess=no
 allow_smclient=no
 disallow_hildon=no
-disallow_gtk_only=no
 
 for game in $gamelist; do
   case $game in
@@ -143,12 +142,6 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    aisleriot|glines|gnotravex|gnotski|gtali|mahjongg|same-gnome) ;;
-    *) need_gnome=yes
-       disallow_gtk_only=yes
-       ;;
-  esac
-  case $game in
     aisleriot) ;;
     *) disallow_hildon=yes ;;
   esac
@@ -158,6 +151,10 @@ for game in $gamelist; do
   esac
   case $game in
     aisleriot|glines|gnobots2|gnomine|gnotravex|gnotski|iagno) allow_smclient=yes ;;
+    *) ;;
+  esac
+  case $game in
+    blackjack) need_libxml=yes ;;
     *) ;;
   esac
   case $game in
@@ -249,9 +246,6 @@ fi
 
 if test "$with_platform" = "hildon" -a "$disallow_hildon" = "yes"; then
   AC_MSG_ERROR([Trying to build with Hildon platform, but some of the following games don't support this: $gamelist])
-fi
-if test "$with_platform" = "gtk-only" -a "$disallow_gtk_only" = "yes"; then
-  AC_MSG_ERROR([Trying to build with gtk-only platform, but some of the following games don't support this: $gamelist])
 fi
 
 AM_CONDITIONAL([HAVE_GNOME],[test "$with_platform" = "gnome"])
@@ -376,12 +370,18 @@ AC_SUBST([GTK_LIBS])
 AM_GCONF_SOURCE_2
 AC_PATH_PROG([GCONFTOOL],[gconftool-2])
 
+# Check for libXML2
+
+if test "$need_libxml" = "yes"; then
+  PKG_CHECK_MODULES([XML],[libxml-2.0 >= $LIBXML_REQUIRED])
+  AC_SUBST([XML_CFLAGS])
+  AC_SUBST([XML_LIBS])
+fi
+
 # Check for GNOME modules
 
 if test "$with_platform" = "gnome"; then
-  PKG_CHECK_MODULES([GNOME],[
-    libxml-2.0 >= $LIBXML_REQUIRED
-    gconf-2.0 >= $GCONF_REQUIRED])
+  PKG_CHECK_MODULES([GNOME],[gconf-2.0 >= $GCONF_REQUIRED])
   AC_SUBST([GNOME_CFLAGS])
   AC_SUBST([GNOME_LIBS])
 
