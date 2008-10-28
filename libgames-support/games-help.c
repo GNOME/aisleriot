@@ -45,24 +45,23 @@ games_help_display (GtkWidget *window,
 
   screen = gtk_widget_get_screen (GTK_WIDGET (window));
 
-  help_string = g_strconcat("ghelp:", app_name, "?", section, NULL);
+  help_string = g_strconcat ("ghelp:", app_name, "?", section, NULL);
 
   gtk_show_uri (screen, help_string, gtk_get_current_event_time (), &error);
 
-  if (error != NULL)
-  {
+  if (error != NULL) {
     GtkWidget *d;
     d = gtk_message_dialog_new (GTK_WINDOW (window), 
                               GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                               GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, 
                               "%s", _("Unable to open help file"));
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (d),
-                              "             %s", error->message);
+                              "%s", error->message);
     g_signal_connect (d, "response", G_CALLBACK (gtk_widget_destroy), NULL);
     gtk_window_present (GTK_WINDOW (d));
 
     g_error_free (error);
   }
-  g_free(help_string);
 
+  g_free(help_string);
 }
