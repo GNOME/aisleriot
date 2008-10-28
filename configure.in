@@ -343,8 +343,6 @@ AC_MSG_RESULT([$with_default_card_theme])
 AC_DEFINE_UNQUOTED([GAMES_CARD_THEME_DEFAULT],["$with_default_card_theme"],[The default card theme])
 
 # Checks for libraries.
-LIBGNOMEUI_REQUIRED=2.16.0
-LIBGNOME_REQUIRED=2.16.0
 PYGTK_REQUIRED=2.10.0
 GNOME_PYTHON_DESKTOP_REQUIRED=2.17.3
 
@@ -375,21 +373,6 @@ PKG_CHECK_MODULES([GTK],[gtk+-2.0 >= $GTK_REQUIRED])
 AC_SUBST([GTK_CFLAGS])
 AC_SUBST([GTK_LIBS])
 
-# Check for GConf
-
-have_gconf=no
-if test "$with_platform" = "gnome" ; then
-  PKG_CHECK_MODULES([GCONF],[gconf-2.0 >= $GCONF_REQUIRED],[have_gconf=yes])
-  AC_SUBST([GCONF_CFLAGS])
-  AC_SUBST([GCONF_LIBS])
-fi
-
-AM_CONDITIONAL([HAVE_GCONF],[test "$have_gconf" = "yes"])
-
-if test "$have_gconf" = "yes"; then
-  AC_DEFINE([HAVE_GCONF],[1],[Define if GConf is available])
-fi
-
 AM_GCONF_SOURCE_2
 AC_PATH_PROG([GCONFTOOL],[gconftool-2])
 
@@ -398,8 +381,7 @@ AC_PATH_PROG([GCONFTOOL],[gconftool-2])
 if test "$with_platform" = "gnome"; then
   PKG_CHECK_MODULES([GNOME],[
     libxml-2.0 >= $LIBXML_REQUIRED
-    libgnome-2.0 >= $LIBGNOME_REQUIRED
-    libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED])
+    gconf-2.0 >= $GCONF_REQUIRED])
   AC_SUBST([GNOME_CFLAGS])
   AC_SUBST([GNOME_LIBS])
 
@@ -601,8 +583,8 @@ AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
 
 # Compat defines (FIXMEchpe: update all games to only use those flags they require!)
 
-GNOME_GAMES_CFLAGS="$GTK_CFLAGS $GCONF_CFLAGS $GNOME_CFLAGS $PYGTK_CFLAGS $RSVG_CFLAGS $GSTREAMER_CFLAGS $SDL_MIXER_CFLAGS"
-GNOME_GAMES_LIBS="$GTK_LIBS $GCONF_LIBS $GNOME_LIBS $PYGTK_LIBS $RSVG_LIBS $GSTREAMER_LIBS $SDL_MIXER_LIBS"
+GNOME_GAMES_CFLAGS="$GTK_CFLAGS $GNOME_CFLAGS $PYGTK_CFLAGS $RSVG_CFLAGS $GSTREAMER_CFLAGS $SDL_MIXER_CFLAGS"
+GNOME_GAMES_LIBS="$GTK_LIBS $GNOME_LIBS $PYGTK_LIBS $RSVG_LIBS $GSTREAMER_LIBS $SDL_MIXER_LIBS"
 
 # *************
 
@@ -1053,6 +1035,7 @@ fi
 echo "
     Games to be compiled:  ${gamelist}
 
+    Using SM Client:       ${with_smclient}
     Using RSVG:            ${have_rsvg}
     Using Clutter:         ${enable_clutter}
     Sound support:         ${with_sound}
@@ -1069,24 +1052,6 @@ echo "Warning: The $scores_group group does not exist. Installation will"
 echo "         succeed, but high score logging will not work. To specify a"
 echo "         different group use the --with-scores-group option."
 echo
-fi
-
-if test "$with_platform" = "gnome"; then
-
-libgnomeprefix=`$PKG_CONFIG libgnome-2.0 --variable=prefix`
-if test "$libgnomeprefix" = "$prefix" -o "$libgnomeprefix" = "$prefix/" ; then
-:;
-else
-echo "Warning: This package is not being installed with the same prefix"
-echo "         as libgnome. This may lead to problems with the high"
-echo "         score tables not being found correctly. The solution"
-echo "         is to use the --localstatedir option. For example,"
-echo "         Red Hat 9 and Fedora need --localstatedir=/var/lib if you"
-echo "         are using the default libgnome package since scores are"
-echo "         stored in /var/lib/games/."
-echo
-fi
-
 fi
 
 if echo foo | xgettext --from-code=UTF-8 -LC -o - - 2>/dev/null ; then 
