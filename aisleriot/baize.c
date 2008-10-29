@@ -18,7 +18,7 @@
 
 #include <config.h>
 
-#include <clutter/clutter-texture.h>
+#include <clutter/clutter.h>
 #include <cogl/cogl.h>
 
 #include "baize.h"

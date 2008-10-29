@@ -32,7 +32,7 @@
 #include <gtk/gtk.h>
 
 #ifdef HAVE_CLUTTER
-#include <clutter/clutter-main.h>
+#include <clutter/clutter.h>
 #endif
 
 #ifdef HAVE_HILDON

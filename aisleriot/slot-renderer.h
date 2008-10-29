@@ -19,8 +19,7 @@
 #ifndef __AISLERIOT_SLOT_RENDERER_H__
 #define __AISLERIOT_SLOT_RENDERER_H__
 
-#include <clutter/clutter-actor.h>
-#include <clutter/clutter-container.h>
+#include <clutter/clutter.h>
 #include <libgames-support/games-card-images.h>
 #include "card-cache.h"
 #include "game.h"

@@ -45,9 +45,7 @@
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 
-#include <clutter/clutter-main.h>
-#include <clutter/clutter-stage.h>
-#include <clutter/clutter-container.h>
+#include <clutter/clutter.h>
 
 #if defined(GDK_WINDOWING_X11)
 

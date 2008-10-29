@@ -34,7 +34,7 @@
 #include <glib/gi18n.h>
 
 #ifdef HAVE_CLUTTER
-#include <clutter/clutter-actor.h>
+#include <clutter/clutter.h>
 #endif
 
 #include "conf.h"

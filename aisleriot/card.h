@@ -19,7 +19,7 @@
 #ifndef AISLERIOT_CARD_H
 #define AISLERIOT_CARD_H
 
-#include <clutter/clutter-actor.h>
+#include <clutter/clutter.h>
 #include <libgames-support/games-card-images.h>
 #include "card-cache.h"
 

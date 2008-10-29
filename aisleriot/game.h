@@ -26,7 +26,7 @@
 #include <libgames-support/games-card.h>
 
 #ifdef HAVE_CLUTTER
-#include <clutter/clutter-actor.h>
+#include <clutter/clutter.h>
 #endif
 
 G_BEGIN_DECLS

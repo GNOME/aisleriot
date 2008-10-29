@@ -18,12 +18,7 @@
 
 #include <config.h>
 
-#include <clutter/clutter-actor.h>
-#include <clutter/clutter-timeline.h>
-#include <clutter/clutter-container.h>
-#include <clutter/clutter-behaviour-rotate.h>
-#include <clutter/clutter-behaviour-depth.h>
-#include <clutter/clutter-behaviour-path.h>
+#include <clutter/clutter.h>
 #include <gtk/gtk.h>
 #include <cogl/cogl.h>
 #include <string.h>

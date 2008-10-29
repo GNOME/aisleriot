@@ -19,7 +19,7 @@
 #ifndef AISLERIOT_BAIZE_H
 #define AISLERIOT_BAIZE_H
 
-#include <clutter/clutter-texture.h>
+#include <clutter/clutter.h>
 
 G_BEGIN_DECLS
 

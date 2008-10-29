@@ -27,7 +27,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
-#include <clutter/clutter-group.h>
+#include <clutter/clutter.h>
 
 #include <libgames-support/games-card-images.h>
 #include <libgames-support/games-files.h>
