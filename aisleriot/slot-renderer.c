@@ -304,6 +304,7 @@ aisleriot_slot_renderer_paint_card (AisleriotSlotRenderer *srend,
   CoglHandle cogl_tex;
   guint tex_width, tex_height;
   int cardx, cardy;
+  static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
 
   is_highlighted = priv->show_highlight && (card_num >= priv->highlight_start);
 
@@ -318,6 +319,7 @@ aisleriot_slot_renderer_paint_card (AisleriotSlotRenderer *srend,
                                   FALSE,
                                   &cardx, &cardy);
 
+  cogl_color (&white);
   cogl_texture_rectangle (cogl_tex,
                           CLUTTER_INT_TO_FIXED (cardx),
                           CLUTTER_INT_TO_FIXED (cardy),
@@ -347,12 +349,14 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
   if (priv->slot->cards->len <= priv->animations->len) {
     CoglHandle cogl_tex;
     guint tex_width, tex_height;
+    static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
 
     cogl_tex = aisleriot_card_cache_get_slot_texture (priv->cache,
                                                       priv->show_highlight);
     tex_width = cogl_texture_get_width (cogl_tex);
     tex_height = cogl_texture_get_height (cogl_tex);
 
+    cogl_color (&white);
     cogl_texture_rectangle (cogl_tex,
                             0, 0,
                             CLUTTER_INT_TO_FIXED (tex_width),

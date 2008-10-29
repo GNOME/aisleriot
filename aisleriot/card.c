@@ -150,6 +150,7 @@ aisleriot_card_paint (ClutterActor *actor)
   CoglHandle tex;
   ClutterFixed tex_width, tex_height;
   gboolean x_swapped = FALSE;
+  static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
 
   g_return_if_fail (priv->cache != NULL);
 
@@ -188,6 +189,7 @@ aisleriot_card_paint (ClutterActor *actor)
     cogl_translate (-CLUTTER_FIXED_TO_INT (tex_width) / 2, 0, 0);
   }
 
+  cogl_color (&white);
   cogl_texture_rectangle (tex, 0, 0,
                           tex_width, tex_height,
                           0, 0, CFX_ONE, CFX_ONE);

@@ -58,6 +58,7 @@ aisleriot_baize_paint (ClutterActor *actor)
   CoglHandle tex;
   ClutterGeometry stage_geom;
   guint tex_width, tex_height;
+  static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
 
   if ((stage = clutter_actor_get_stage (actor)) == NULL)
     return;
@@ -75,6 +76,7 @@ aisleriot_baize_paint (ClutterActor *actor)
   clutter_actor_get_allocation_geometry (stage, &stage_geom);
 
   /* Repeat the texture to fill the size of the stage */
+  cogl_color (&white);
   cogl_texture_rectangle (tex, 0, 0,
                           CLUTTER_INT_TO_FIXED (stage_geom.width),
                           CLUTTER_INT_TO_FIXED (stage_geom.height),
