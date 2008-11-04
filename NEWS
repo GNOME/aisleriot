@@ -1,3 +1,131 @@
+gnome-games 2.25.1
+==================
+
+This is the first 2.26 development release.
+
+A huge amount of kudos should go out to Neil for his work on clutter and Thomas
+for his work on killing off libgnome.
+
+** ATTENTION **
+
+Gnome Games now optionally depends on clutter. We have run some preliminary
+testing of clutter rendering on Intel, NVidia and ATI hardware and are
+satisfied with the hardware accelerated state of things with regard those
+specific hardware use cases. However, a wide range of graphics hardware still--
+in 2008--doesn't have OpenGL acceleration. We have tested software-based
+rendering with Mesa 7.2 and clutter and found it a little lacking, even on a
+modern CPU.
+
+Therefore, at this time, we recommend that clutter only be enabled by default
+by distributors that ensure that OpenGL acceleration is working for hardware
+from the three major vendors: Intel, NVidia and ATI.
+
+We hope that in the future, low-hanging fruit in the Mesa software rendering
+pipeline can be fixed enabling even software-fallback to work optimally for the
+subset of OpenGL functions needed for rendering a clutter stage.
+
+** END ATTENTION **
+
+All games:
+  - GTK req. bumped to 2.14.0 for libgames killoff (thomashpa, chpe)
+  - Remove directory defines from CPPFLAGs (chpe)
+  - Kill off libgnome usage (thomashpa, chpe) YAY! All games now start faster!
+  - Whitespace cleanups
+  - All games now build with gtk-only. libxml now checked for independently.
+    (chpe)
+  - -lSM is now only added in the XSMP case (chpe)
+  - ggz-gtk dropped libgnome requirement, also.
+  - GNOME_MAINTAINER_MODE_DEFINES enabled, maintainer_mode also (chpe)
+  - ggz-gtk now builds better when out of srcdir (chpe)
+  - Update libegg, add egg_sm_client (thomashpa, chpe)
+  - -Wformat-security fixups (chpe)
+  - -Werror fixups (chpe)
+  - games-runtime: add runtime directory provider (thomashpa)
+  - Refactor accel map loading code to load the accel map from
+    .config/gnome-games/${game}.accels even in the HAVE_GNOME case, if the game
+    doesn't use GnomeProgram (e.g. aisleriot). (chpe)
+  - Scores: use g_get_user_name when g_get_real_name returns empty. Patch by
+    Morita Sho in bug #544376 (chpe)
+  - Read saved window configuration from correct GConf group (affects gnometris,
+    gnibbles, gnobots) (Bug #544389) (rancell)
+  
+Sudoku:
+  - GUI sensitivity fixups (thomashpa)
+  - Guard against accidental dancer activation (thomashpa)
+  - Add, not overwrite, time and also remember to actually save the time in the
+    file. Fixes bug #556155 (thomashpa)
+  - Correct typo in error message that led to an exception. Patch by Zhang Sen
+    in bug #530380 (thomashpa)
+
+Iagno:
+  - Fix warning (thomashpa)
+  - Fix SM issue with -lSM
+
+Aisleriot:
+  - Aisleriot now optionally animated and accelerated in OpenGL through the use
+    of clutter. Try it with --enable-clutter to configure. (Neil Roberts)
+  - A littel clutter cleanup (chpe)
+  - Check for HAVE_GNOME again (thomashpa)
+  - Remove duplicate include (thomashpa)
+  - Build with *_DISABLE_DEPRECATED and *_DISABLE_SINGLE_INCLUDES. Add some
+    missing includes. (chpe)
+
+GLChess:
+  - Don't display failed to claim draw dialog when successfully claimed draw
+    (rancell)
+  - Added support for Figurine Algebraic Notation (FAN) (Bug #556803) (rancell)
+  - Fix crash in error handler when GGZ connection closed (Bug #553982)
+    (rancell)
+  - Fix crash in empty scene when no AI engines available (Bug #551844)
+    (rancell)
+  - Implement GGZ config parser instead of using Python config parser which does
+    not handle '%' characters as GGZ does (Bug #554108) (rancell)
+  - Ignore GGZ server remove player/table for unknown players/tables 
+    (Bug #545155) (rancell)
+  - Handle exceptions loading OpenGL textures (Bug #548916) (rancell)
+  - Reset pause menu when starting new game (gnomine, gnotravex) (Bug #552391)
+    (rancell)
+  - Only allow one new/load game dialog to be visible at once. (Bug #546702)
+    (rancell)
+  - Fix incorrect function call for single buffered 3D display (Bug #555567)
+    (rancell)
+  - Fix errors detected by pychecker (rancell)
+  - Handle fork() errors in AI processes (Bug #530425) (rancell)
+
+GTali:
+  - Use games-runtime to locate its files (thomashpa)
+  - Undoing 5 of a kind reduces the score by 50 as there might be multiple
+    scores (Geoff Buchan, Bug #537673) (rancell)
+
+Gnomine:
+  - Fix memory leak (thomashpa)
+  - Reset pause menu when starting new game (gnomine, gnotravex) (Bug #552391)
+    (rancell)
+
+Gnotravex:
+  - Stop game immediately completing when started from high score dialog
+    (bug #558904, rancell)
+  - Stop paused tiles becoming visible after changing colour settings
+    (Bug #550023) (thomashpa)
+
+GLines:
+  - Use games-runtime to locate its files (thomashpa)
+
+Gnibbles:
+  - Fix missing prototypes warnings. (chpe)
+  - Reclassify Gnibbles as Arcade game not logic game (Bug #553484) (rancell)
+  
+Gnometris:
+  - Fix constant string cast insanity (thomashpa)
+
+Blackjack:
+  - Port game rules to GKeyFile
+  
+Mahjongg:
+  - Use games-runtime to locate its files (thomashpa)
+  
+
+
 gnome-games 2.24.0
 ==================
 
@@ -5,7 +133,12 @@ This is the Gnome 2.24 stable release. This update brings translation
 updates over the previous release candidates.
 
 Translations:
-Nickolay V. Shmyrev, Yuri Myasoedov, rsedak, claudep, mateju, jorgegonz, sandeeps, Mario Blättermann, Gintautas Miliauskas, bcicek, Milo Casagrande, lferrett, Khaled Hosny, djihed, Gabor Kelemen, ifelix, Alexander Shopov, Anas Afif Emad, gforcada, kennethn, amitakhya, dnylande, Inaki Larrañaga Murgoitio, pgeyleg, bobmauchin, simos, pkst, grakic, Miloš Popović, Philipp Kerling, Mugurel Tudor, Mişu Moldovan, Lucas Lommer, Petr Kovar
+Nickolay V. Shmyrev, Yuri Myasoedov, rsedak, claudep, mateju, jorgegonz,
+sandeeps, Mario Blättermann, Gintautas Miliauskas, bcicek, Milo Casagrande,
+lferrett, Khaled Hosny, djihed, Gabor Kelemen, ifelix, Alexander Shopov,
+Anas Afif Emad, gforcada, kennethn, amitakhya, dnylande, Inaki Larrañaga
+Murgoitio, pgeyleg, bobmauchin, simos, pkst, grakic, Miloš Popović, Philipp
+Kerling, Mugurel Tudor, Mişu Moldovan, Lucas Lommer, Petr Kovar
 
 gnome-games 2.23.92
 ==================
