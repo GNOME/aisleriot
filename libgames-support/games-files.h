@@ -45,7 +45,7 @@ GType games_file_list_get_type (void);
 GamesFileList *
 games_file_list_new (const gchar * glob, ...)
   G_GNUC_NULL_TERMINATED;
-     GamesFileList *games_file_list_new_images (gchar * path1,
+     GamesFileList *games_file_list_new_images (const gchar * path1,
 						...) G_GNUC_NULL_TERMINATED;
 
      void games_file_list_transform_basename (GamesFileList * list);

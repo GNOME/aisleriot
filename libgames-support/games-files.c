@@ -206,7 +206,7 @@ games_image_suffix_list_init (void)
 }
 
 static GList *
-games_file_list_new_images_single (gchar * directory)
+games_file_list_new_images_single (const gchar * directory)
 {
   GDir *dir;
   GList *list = NULL;
@@ -254,7 +254,7 @@ games_file_list_new_images_single (gchar * directory)
  * Return value: A new GamesFileList containing the list of image files.
  **/
 GamesFileList *
-games_file_list_new_images (gchar * path1, ...)
+games_file_list_new_images (const gchar * path1, ...)
 {
   GamesFileList *filelist;
   GList *list;
