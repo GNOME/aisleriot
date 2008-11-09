@@ -182,7 +182,8 @@ games_sound_add_option_group (GOptionContext *context)
  * @filename: the sound file to player
  * 
  * Plays a sound with the given filename using GStreamer. The sound file is stored in
- * the SOUNDDIR directory in .ogg format. Sound is played in a separate thread.
+ * the GAMES_RUNTIME_SOUND_DIRECTORY directory in .ogg format. Sound is played in a
+ * separate thread.
  */
 void
 games_sound_play (const gchar * filename)
