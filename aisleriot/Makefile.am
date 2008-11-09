@@ -58,14 +58,7 @@ endif
 # FIXMEchpe: fix localedir for maemo? $PKG_CONFIG osso-af-settings --variable=localedir
 
 sol_CPPFLAGS = \
-	-I$(top_srcdir)				\
-	-I$(top_srcdir)/libgames-support	\
-	-DDATADIR="\"$(datadir)\""		\
-	-DICONDIR="\"$(datadir)/icons/hicolor\""\
-	-DGAMESDIR="\"$(scmdir)\""		\
-	-DGNOMELOCALEDIR="\"$(datadir)/locale\""\
-	-DPIXMAPDIR="\"$(pkgdatadir)/pixmaps\""	\
-	-DPKGDATADIR="\"$(pkgdatadir)\""	\
+	-I$(top_srcdir) \
 	$(AM_CPPFLAGS)
 
 sol_CFLAGS = \
@@ -77,12 +70,11 @@ sol_LDFLAGS = \
 	$(AM_LDFLAGS)
 
 sol_LDADD = \
-	$(top_builddir)/libgames-support/libgames-support.la	\
-	$(GTK_LIBS)	    \
+	$(top_builddir)/libgames-support/libgames-support.la \
+	$(GTK_LIBS) \
 	$(GUILE_LIBS)
 
 if HAVE_HILDON
-sol_CPPFLAGS += -DHELPDIR="\"$(pkgdatadir)/aisleriot/help\""
 sol_CFLAGS += $(HILDON_CFLAGS)
 sol_LDADD += $(HILDON_LIBS)
 endif

@@ -54,10 +54,6 @@
 #include <windows.h>
 #include <io.h>
 #define HELP_EXT "xhtml"
-/* FIXME On win32 help is created as html with gnome-doc-tool,
- * and put manually in the directory below.
- */
-#define HELPDIR PKGDATADIR "/aisleriot/help"
 #endif /* G_OS_WIN32 */
 
 #include <libgames-support/games-files.h>
@@ -277,10 +273,14 @@ help_hook (GtkWindow *parent,
         strchr (lang, '@') != NULL)
       continue;
 
-    path = games_path_runtime_fix (g_strdup_printf (HELPDIR G_DIR_SEPARATOR_S "%s" 
-				   G_DIR_SEPARATOR_S "%s." HELP_EXT,
-                                   lang,
-                                   help_section ? help_section : "aisleriot"));
+    help_file_name = g_strdup_printf ("%s." HELP_EXT,
+                                      help_section ? help_section : "aisleriot");
+    path = g_build_filename (games_runtime_get_directory (GAMES_RUNTIME_GAME_HELP_DIRECTORY),
+                             lang,
+                             help_file_name,
+                             NULL);
+    g_free (help_file_name);
+
     if (g_file_test (path, G_FILE_TEST_EXISTS)) {
       help_url = g_strdup_printf ("file://%s", path);
       g_free (path);

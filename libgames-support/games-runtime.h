@@ -48,6 +48,8 @@ typedef enum {
   GAMES_RUNTIME_GAME_GAMES_DIRECTORY,
   GAMES_RUNTIME_GAME_PIXMAP_DIRECTORY,
   GAMES_RUNTIME_GAME_THEME_DIRECTORY,
+  /* FIXME On hildon and win32 help is created as html with gnome-doc-tool, and put manually in this directory */
+  GAMES_RUNTIME_GAME_HELP_DIRECTORY,
 
   GAMES_RUNTIME_LAST_DIRECTORY,
 #ifdef G_OS_WIN32
