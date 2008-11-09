@@ -8,7 +8,7 @@ SUBDIRS= \
 	tests \
 	$(gamelist)
 
-if HAVE_GSTREAMER
+if ENABLE_SOUND
 SUBDIRS += sounds
 endif
 
