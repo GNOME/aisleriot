@@ -1072,7 +1072,7 @@ egg_desktop_file_launchv (EggDesktopFile *desktop_file,
 			  GError **error)
 {
   EggDesktopFileLaunchOption option;
-  GSList *translated_documents, *docs;
+  GSList *translated_documents = NULL, *docs;
   char *command, **argv;
   int argc, i, screen_num;
   gboolean success, current_success;
@@ -1277,8 +1277,10 @@ egg_desktop_file_launchv (EggDesktopFile *desktop_file,
       g_strfreev ((char **)env->pdata);
       g_ptr_array_free (env, FALSE);
     }
-  free_document_list (translated_documents);
-
+  if (translated_documents != NULL)
+    {
+      free_document_list (translated_documents);
+    }
   return success;
 }
 

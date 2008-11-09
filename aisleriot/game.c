@@ -293,6 +293,16 @@ typedef struct {
 
 #define CALL_DATA_INIT  { 0, 0, 0, 0, 0, 0 };
 
+void
+checked_write (int fildes, const void *buf, size_t nbyte)
+{
+  int n_written;
+  n_written = write (fildes, buf, nbyte);
+  if (n_written != nbyte){
+    g_warning ("A scheme exception occurred, and subsequently writing the error to a temporary file also failed");
+  }
+}
+
 static void
 cscmi_write_exception_details (int error_fd, SCM tag, SCM throw_args)
 {
@@ -305,15 +315,15 @@ cscmi_write_exception_details (int error_fd, SCM tag, SCM throw_args)
 
   message = g_strdup_printf ("Variation: %s\n", aisleriot_game_get_game_file (game));
 
-  write (error_fd, message, strlen (message));
+  checked_write (error_fd, message, strlen (message));
   g_free (message);
 
   message = g_strdup_printf ("Seed: %u\n", game->seed);
-  write (error_fd, message, strlen (message));
+  checked_write (error_fd, message, strlen (message));
   g_free (message);
 
   message = "Scheme error:\n\t";
-  write (error_fd, message, strlen (message));
+  checked_write (error_fd, message, strlen (message));
 
   port = scm_fdopen (scm_from_int (error_fd),
                      scm_mem2string ("w", sizeof (char)));
@@ -321,23 +331,23 @@ cscmi_write_exception_details (int error_fd, SCM tag, SCM throw_args)
   scm_fsync (port);
 
   message = "\nScheme tag:\n\t";
-  write (error_fd, message, strlen (message));
+  checked_write (error_fd, message, strlen (message));
   scm_display (tag, port);
   scm_fsync (port);
 
   message = "\n\nBacktrace:\n";
-  write (error_fd, message, strlen (message));
+  checked_write (error_fd, message, strlen (message));
   stack = scm_fluid_ref (SCM_VARIABLE_REF (scm_the_last_stack_fluid_var));
   if (!SCM_FALSEP (stack)) {
     scm_display_backtrace (stack, port, SCM_UNDEFINED, SCM_UNDEFINED);
     scm_fsync (port);
   } else {
     message = "\tNo backtrace available.\n";
-    write (error_fd, message, strlen (message));
+    checked_write (error_fd, message, strlen (message));
   }
 
   message = "\n\nDeck State:\n";
-  write (error_fd, message, strlen (message));
+  checked_write (error_fd, message, strlen (message));
 
   slots = aisleriot_game_get_slots (game);
 
@@ -349,7 +359,7 @@ cscmi_write_exception_details (int error_fd, SCM tag, SCM throw_args)
       guint n_cards;
 
       message = g_strdup_printf ("\tSlot %d\n", slot->id);
-      write (error_fd, message, strlen (message));
+      checked_write (error_fd, message, strlen (message));
       g_free (message);
 
       n_cards = cards->len;
@@ -364,34 +374,34 @@ cscmi_write_exception_details (int error_fd, SCM tag, SCM throw_args)
             message = "\t\t";
           else
             message = ", ";
-          write (error_fd, message, strlen (message));
+          checked_write (error_fd, message, strlen (message));
 
           message = g_strdup_printf ("(%d %d %s)",
                                      CARD_GET_SUIT (card),
                                      CARD_GET_RANK (card),
                                      /* See c2scm_card below */
                                      CARD_GET_FACE_DOWN (card) ? "#f" : "#t");
-          write (error_fd, message, strlen (message));
+          checked_write (error_fd, message, strlen (message));
           g_free (message);
           count++;
           if (count == 5) {
             message = "\n";
-            write (error_fd, message, strlen (message));
+            checked_write (error_fd, message, strlen (message));
             count = 0;
           }
         }
         if (count != 0) {
           message = "\n";
-          write (error_fd, message, strlen (message));
+          checked_write (error_fd, message, strlen (message));
         }
       } else {
         message = "\t\t(Empty)\n";
-        write (error_fd, message, strlen (message));
+        checked_write (error_fd, message, strlen (message));
       }
     }
   } else {
     message = "\tNo cards in deck\n";
-    write (error_fd, message, strlen (message));
+    checked_write (error_fd, message, strlen (message));
   }
 }
 

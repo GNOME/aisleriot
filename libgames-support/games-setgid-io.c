@@ -95,7 +95,11 @@ static int setgid_io_child_pid;
 static void
 write_cmd (unsigned char cmd)
 {
-  write (setgid_io_outfd, &cmd, 1);
+  int cnt;
+  cnt = write (setgid_io_outfd, &cmd, 1);
+  if (cnt != 1)  {
+    g_warning ("An error occured while writing to file");
+  }
 }
 
 
@@ -136,7 +140,11 @@ read_n_bytes (int fd, char *buffer, int n)
 static void
 write_int (int fd, int i)
 {
-  write (fd, &i, sizeof (int));
+  int cnt;
+  cnt = write (fd, &i, sizeof (int));
+  if (cnt != sizeof (int))  {
+    g_warning ("An error occured while writing to file");
+  }
 }
 
 static int
@@ -153,7 +161,11 @@ read_int (int fd)
 static void
 write_off_t (int fd, off_t o)
 {
-  write (fd, &o, sizeof (off_t));
+  int cnt;
+  cnt = write (fd, &o, sizeof (off_t));
+  if (cnt != sizeof (off_t))  {
+    g_warning ("An error occured while writing to file");
+  }
 }
 
 static off_t
@@ -514,9 +526,12 @@ setgid_io_init (void)
   int setgid_io_outpipe[2];
 
   g_return_if_fail (setgid_io_initialised == 0);
-  pipe (setgid_io_inpipe);
-  pipe (setgid_io_outpipe);
-  /* FIXME: Error checking. */
+  if (pipe (setgid_io_inpipe) != 0){
+    g_warning("Unable to create pipe");
+  }
+  if (pipe (setgid_io_outpipe) != 0){
+    g_warning("Unable to create pipe");
+  }
 
   if ((setgid_io_child_pid = fork ()) != 0) {
     close (setgid_io_inpipe[1]);
