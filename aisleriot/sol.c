@@ -624,7 +624,7 @@ main_prog (void *closure, int argc, char *argv[])
   /* FIXMEchpe sort of strange that maemo doesn't all of this out-of-the-box... */
   g_object_set (gtk_widget_get_settings (GTK_WIDGET (data.window)),
                 "gtk-alternative-button-order", TRUE,
-                "gtk-toolbar-style", (glong) GTK_TOOLBAR_ICONS,
+                "gtk-toolbar-style", GTK_TOOLBAR_ICONS,
                 "gtk-menu-images", FALSE,
 #ifdef HAVE_MAEMO_3
                 "gtk-button-images", FALSE,
