@@ -1067,9 +1067,7 @@ show_hint_cb (GtkAction *action,
               AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  SCM hint, string1, string2;
-  char *message = NULL;
-  char *str1, *str2;
+  char *message;
 #ifndef HAVE_HILDON
   GtkWidget *dialog;
 #endif
@@ -1088,103 +1086,7 @@ show_hint_cb (GtkAction *action,
   if (aisleriot_game_get_state (priv->game) != GAME_RUNNING)
     return;
 
-  hint = aisleriot_game_hint_lambda (priv->game);
-
-  if (!SCM_NFALSEP (hint)) {
-    message = g_strdup (_("This game does not have hint support yet."));
-  } else {
-    switch (scm_num2int (SCM_CAR (hint), SCM_ARG1, NULL)) {
-
-    case 0:
-      string1 = SCM_CADR (hint);
-      if (!scm_is_string (string1))
-        break;
-
-      str1 = scm_to_locale_string (string1);
-      if (!str1)
-        break;
-
-      message = g_strdup (str1);
-      free (str1);
-      break;
-
-    case 1:
-      string1 = SCM_CADR (hint);
-      string2 = SCM_CADDR (hint);
-
-      if (!scm_is_string (string1) || !scm_is_string (string2))
-        break;
-
-      str1 = scm_to_locale_string (string1);
-      if (!str1)
-        break;
-      str2 = scm_to_locale_string (string2);
-      if (!str2) {
-        free (str1);
-        break;
-      }
-
-      /* Both %s are card names */
-      message = g_strdup_printf (_("Move %s onto %s."), str1, str2);
-      free (str1);
-      free (str2);
-      break;
-
-    case 2:
-      /* NOTE! This case is exactly the same as case 1, but the strings
-        * are different: the first is a card name, the 2nd a sentence fragment.
-        * NOTE! FIXMEchpe! This is bad for i18n.
-        */
-      string1 = SCM_CADR (hint);
-      string2 = SCM_CADDR (hint);
-
-      if (!scm_is_string (string1) || !scm_is_string (string2))
-        break;
-
-      str1 = scm_to_locale_string (string1);
-      if (!str1)
-        break;
-      str2 = scm_to_locale_string (string2);
-      if (!str2) {
-        free (str1);
-        break;
-      }
-
-      /* The first %s is a card name, the 2nd %s a sentence fragment.
-        * Yes, we know this is bad for i18n.
-        */
-      message = g_strdup_printf (_("Move %s onto %s."), str1, str2);
-      free (str1);
-      free (str2);
-      break;
-
-    case 3: /* This is deprecated (due to i18n issues) do not use. */
-      g_warning ("This game uses a deprecated hint method (case 3).\n"
-                 "Please file a bug at http://bugzilla.gnome.org "
-                 "including this message and the name of the game "
-                 "you were playing, which is %s.\n",
-                 aisleriot_game_get_game_file (priv->game));
-      break;
-
-    case 4:
-      string1 = SCM_CADR (hint);
-      if (!scm_is_string (string1))
-        break;
-
-      str1 = scm_to_locale_string (string1);
-      if (!str1)
-        break;
-
-      message = g_strdup_printf (_("You are searching for a %s."), str1);
-      free (str1);
-      break;
-
-    default:
-      message = g_strdup (_("This game is unable to provide a hint."));
-      break;
-    }
-  }
-
+  message = aisleriot_game_get_hint (priv->game);
   if (!message)
     return;
 

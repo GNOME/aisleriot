@@ -179,7 +179,7 @@ gboolean aisleriot_game_button_clicked_lambda (AisleriotGame * game,
 gboolean aisleriot_game_button_double_clicked_lambda (AisleriotGame * game,
                                                       int slot_id);
 
-SCM aisleriot_game_hint_lambda (AisleriotGame * game);
+char *aisleriot_game_get_hint (AisleriotGame *game);
 
 SCM aisleriot_game_get_options_lambda (AisleriotGame * game);
 
