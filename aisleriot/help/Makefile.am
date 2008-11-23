@@ -79,6 +79,7 @@ DOC_ENTITIES = \
 	straight_up.xml \
 	streets_and_alleys.xml \
 	ten_across.xml \
+	terrace.xml \
 	thieves.xml \
 	thirteen.xml \
 	thumb_and_pouch.xml \
