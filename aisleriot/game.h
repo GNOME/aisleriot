@@ -19,8 +19,6 @@
 #ifndef AISLERIOT_GAME_H
 #define AISLERIOT_GAME_H
 
-#include <libguile.h>
-
 #include <gdk/gdk.h>
 
 #include <libgames-support/games-card.h>
@@ -94,6 +92,8 @@ typedef struct {
 
 #define AISLERIOT_GAME_ERROR  (aisleriot_game_error_quark ())
 
+#define AISLERIOT_GAME_OPTIONS_MAX (0x7FFFFFFF) /* 31 bits, since we're using int not guint */
+
 typedef struct _AisleriotGame AisleriotGame;
 typedef GObjectClass AisleriotGameClass;
 
@@ -119,7 +119,21 @@ typedef enum {
   LAST_GAME_STATE
 } AisleriotGameState;
 
+typedef enum {
+  AISLERIOT_GAME_OPTION_CHECK,
+  AISLERIOT_GAME_OPTION_RADIO
+} AisleriotGameOptionType;
+
+typedef struct {
+  char *display_name;
+  AisleriotGameOptionType type;
+  guint32 value; /* exactly 1 bit set */
+  gboolean set;
+} AisleriotGameOption;
+
 GQuark aisleriot_game_error_quark (void);
+
+void aisleriot_game_option_free (AisleriotGameOption *option);
 
 GType aisleriot_game_get_type (void);
 
@@ -181,9 +195,11 @@ gboolean aisleriot_game_button_double_clicked_lambda (AisleriotGame * game,
 
 char *aisleriot_game_get_hint (AisleriotGame *game);
 
-SCM aisleriot_game_get_options_lambda (AisleriotGame * game);
+GList *aisleriot_game_get_options (AisleriotGame * game);
 
-SCM aisleriot_game_apply_options_lambda (AisleriotGame * game, SCM options);
+guint32 aisleriot_game_change_options (AisleriotGame *game,
+                                       guint32 changed_mask,
+                                       guint32 changed_value);
 
 gboolean aisleriot_game_timeout_lambda (AisleriotGame * game);
 

@@ -25,12 +25,6 @@
 #include <sys/types.h>
 #include <errno.h>
 
-#include <libguile.h>
-
-#ifndef HAVE_GUILE_1_8
-#include "guile16-compat.h"
-#endif
-
 #include <glib/gi18n.h>
 
 #include <gdk/gdk.h>
@@ -1125,63 +1119,27 @@ deal_cb (GtkAction *action,
   aisleriot_game_deal_cards (priv->game);
 }
 
-/* Make something that's easier to store in conf */
-static guint
-compress_options_to_int (SCM options_list)
-{
-  int i;
-  guint bits;
-  SCM entry;
-
-  bits = 0;
-  for (i = scm_to_int (scm_length (options_list)) - 1; i >= 0; i--) {
-    entry = scm_list_ref (options_list, scm_from_int (i));
-    if (SCM_NFALSEP (scm_list_p (entry))) {
-      bits <<= 1;
-      bits |= SCM_NFALSEP (scm_list_ref (entry, scm_from_int (1))) ? 1 : 0;
-    }
-  }
-
-  return bits;
-}
-
-/* Take the bit-string value and set the option list from it. */
-static void
-expand_options_from_int (SCM options_list, guint bits)
-{
-  gint l, i;
-  SCM entry;
-
-  l = scm_to_int (scm_length (options_list));
-  for (i = 0; i < l; i++) {
-    entry = scm_list_ref (options_list, scm_from_int (i));
-    if (SCM_NFALSEP (scm_list_p (entry))) {
-      scm_list_set_x (entry, scm_from_int (1),
-		      bits & 1 ? SCM_BOOL_T : SCM_BOOL_F);
-      bits >>= 1;
-    }
-  }
-}
-
 /* The "Game Options" menu */
 
 static void
-apply_option (SCM options_list,
-              GtkToggleAction *action)
+apply_option (GtkToggleAction *action,
+              guint32 *changed_mask,
+              guint32 *changed_value)
 {
-  SCM entry;
   gboolean active;
   const char *action_name;
-  guint n;
+  guint32 value;
 
   active = gtk_toggle_action_get_active (action);
 
   action_name = gtk_action_get_name (GTK_ACTION (action));
-  n = g_ascii_strtoull (action_name + strlen ("Option"), NULL, 10);
+  value = g_ascii_strtoull (action_name + strlen ("Option"), NULL, 16);
 
-  entry = scm_list_ref (options_list, scm_from_uint (n));
+  g_print ("option %s changed, value=%x set=%d\n", action_name, value, active);
 
-  scm_list_set_x (entry, scm_from_uint (1), active ? SCM_BOOL_T : SCM_BOOL_F);
+  *changed_mask |= value;
+  if (active)
+    *changed_value |= value;
 }
 
 static void
@@ -1189,8 +1147,8 @@ option_cb (GtkToggleAction *action,
            AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  SCM options_list;
   gboolean active;
+  guint32 changed_mask = 0, changed_value = 0, value;
 
   /* Don't change the options if we're just installing the options menu */
   if (priv->changing_game_type)
@@ -1208,8 +1166,6 @@ option_cb (GtkToggleAction *action,
       !active)
     return;
 
-  options_list = aisleriot_game_get_options_lambda (priv->game);
-
   if (GTK_IS_RADIO_ACTION (action)) {
     GSList *group, *l;
 
@@ -1220,16 +1176,15 @@ option_cb (GtkToggleAction *action,
     group = gtk_radio_action_get_group (GTK_RADIO_ACTION (action));
 
     for (l = group; l; l = l->next) {
-      apply_option (options_list, GTK_TOGGLE_ACTION (l->data));
+      apply_option (GTK_TOGGLE_ACTION (l->data), &changed_mask, &changed_value);
     }
   } else {
-    apply_option (options_list, action);
+    apply_option (action, &changed_mask, &changed_value);
   }
 
-  aisleriot_conf_set_options (aisleriot_game_get_game_file (priv->game),
-                              compress_options_to_int (options_list));
+  value = aisleriot_game_change_options (priv->game, changed_mask, changed_value);
 
-  aisleriot_game_apply_options_lambda (priv->game, options_list);
+  aisleriot_conf_set_options (aisleriot_game_get_game_file (priv->game), (int) value);
 
   /* Now re-deal, so the option is applied */
   aisleriot_game_new_game (priv->game, NULL);
@@ -1239,10 +1194,10 @@ static void
 install_options_menu (AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  SCM options_list;
-  int l, i, options;
-  gint mode = OPTION_CHECKMENU;
+  GList *options, *l;
+  int options_value = 0;
   GSList *radiogroup = NULL;
+  int radion = 0;
 
   if (priv->options_merge_id != 0) {
     gtk_ui_manager_remove_ui (priv->ui_manager, priv->options_merge_id);
@@ -1257,99 +1212,74 @@ install_options_menu (AisleriotWindow *window)
   /* See gtk bug #424448 */
   gtk_ui_manager_ensure_update (priv->ui_manager);
 
+  /* Only apply the options if they exist. Otherwise the options in the menu
+   * and the real game options are out of sync until first changed by the user.
+   */
+  if (aisleriot_conf_get_options (aisleriot_game_get_game_file (priv->game), &options_value)) {
+    aisleriot_game_change_options (priv->game, AISLERIOT_GAME_OPTIONS_MAX, options_value);
+  }
+
   /* To get radio buttons in the menu insert an atom into the option list
    * in your scheme code. To get back out of radio-button mode insert 
    * another atom. The exact value of the atoms is irrelevant - they merely
    * trigger a toggle - but descriptive names like begin-exclusive and
    * end-exclusive are probably a good idea.
    */
-  options_list = aisleriot_game_get_options_lambda (priv->game);
-
-  if (scm_is_false (scm_list_p (options_list)))
+  options = aisleriot_game_get_options (priv->game);
+  if (!options)
     return;
-    
+
   priv->options_group = gtk_action_group_new ("Options");
   gtk_ui_manager_insert_action_group (priv->ui_manager, priv->options_group, -1);
   g_object_unref (priv->options_group);
 
   priv->options_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
-  /* Only apply the options if they exist. Otherwise the options in the menu
-    * and the real game options are out of sync until first changed by the user.
-    */
-  if (aisleriot_conf_get_options (aisleriot_game_get_game_file (priv->game), &options)) {
-    expand_options_from_int (options_list, options);
-    aisleriot_game_apply_options_lambda (priv->game, options_list);
-  }
+  for (l = options; l != NULL; l = l->next) {
+    AisleriotGameOption *option = (AisleriotGameOption *) l->data;
+    GtkToggleAction *action;
+    gchar actionname[32];
 
-  l = scm_to_int (scm_length (options_list));
-  for (i = 0; i < l; i++) {
-    SCM entry;
+    g_print ("installing option value=%08x set=%d type=%d name='%s'\n",
+             option->value, option->set, option->type, option->display_name);
 
-    /* Each entry in the options list is a list consisting of a name and
-     * a variable.
-     */
-    entry = scm_list_ref (options_list, scm_from_int (i));
-    if (!scm_is_false (scm_list_p (entry))) {
-      SCM entryname;
-      char *entrynamestr;
-      gboolean entrystate;
-      GtkToggleAction *action;
-      gchar actionname[32];
+    g_snprintf (actionname, sizeof (actionname), "Option%u", option->value);
 
-      entryname = scm_list_ref (entry, scm_from_uint (0));
-      if (!scm_is_string (entryname))
-        continue; /* Shouldn't happen */
-
-      entrynamestr = scm_to_locale_string (entryname);
-      if (!entrynamestr)
-        continue;
-
-      entrystate = SCM_NFALSEP (scm_list_ref (entry, scm_from_uint (1)));
-
-      g_snprintf (actionname, sizeof (actionname), "Option%d", i);
-
-      if (mode == OPTION_CHECKMENU) {
-        action = gtk_toggle_action_new (actionname,
-                                        entrynamestr,
-                                        NULL,
-                                        NULL /* tooltip */);
-      } else {
-        action = GTK_TOGGLE_ACTION (gtk_radio_action_new (actionname,
-                                                          entrynamestr,
-                                                          NULL,
-                                                          NULL /* tooltip */,
-                                                          i));
-        gtk_radio_action_set_group (GTK_RADIO_ACTION (action),
-                                    radiogroup);
-        radiogroup = gtk_radio_action_get_group (GTK_RADIO_ACTION (action));
-      }
-
-      free (entrynamestr);
-
-      gtk_toggle_action_set_active (action, entrystate);
-      g_signal_connect (action, "toggled",
-                        G_CALLBACK (option_cb), window);
-
-      gtk_action_group_add_action (priv->options_group, GTK_ACTION (action));
-      g_object_unref (action);
-
-      gtk_ui_manager_add_ui (priv->ui_manager,
-                             priv->options_merge_id,
-                             OPTIONS_MENU_PATH,
-                             actionname, actionname,
-                             GTK_UI_MANAGER_MENUITEM, FALSE);
+    if (option->type == AISLERIOT_GAME_OPTION_CHECK) {
+      action = gtk_toggle_action_new (actionname,
+                                      option->display_name,
+                                      NULL,
+                                      NULL /* tooltip */);
+      radiogroup = NULL; /* make sure to start a new radio group when the next RADIO option comes */
+      radion = 0;
     } else {
-      /* If we encounter an atom, change the mode. What the atom is doesn't
-      * really matter. */
-      if (mode == OPTION_CHECKMENU) {
-        mode = OPTION_RADIOMENU;
-        radiogroup = NULL;	/* Start a new radio group. */
-      } else {
-        mode = OPTION_CHECKMENU;
-      }
+      action = GTK_TOGGLE_ACTION (gtk_radio_action_new (actionname,
+                                                        option->display_name,
+                                                        NULL,
+                                                        NULL /* tooltip */,
+                                                        radion++));
+      gtk_radio_action_set_group (GTK_RADIO_ACTION (action),
+                                  radiogroup);
+      radiogroup = gtk_radio_action_get_group (GTK_RADIO_ACTION (action));
     }
+
+    gtk_toggle_action_set_active (action, option->set);
+    g_signal_connect (action, "toggled",
+                      G_CALLBACK (option_cb), window);
+
+    gtk_action_group_add_action (priv->options_group, GTK_ACTION (action));
+    g_object_unref (action);
+
+    gtk_ui_manager_add_ui (priv->ui_manager,
+                           priv->options_merge_id,
+                           OPTIONS_MENU_PATH,
+                           actionname, actionname,
+                           GTK_UI_MANAGER_MENUITEM, FALSE);
+
+    aisleriot_game_option_free (option);
   }
+
+  g_list_free (options);
 }
 
 /* The "Recent Games" menu */

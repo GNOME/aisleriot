@@ -1995,15 +1995,36 @@ aisleriot_game_get_hint (AisleriotGame *game)
 }
 
 /**
- * aisleriot_game_get_options_lambda:
+ * aisleriot_game_option_free:
+ * @option: a #AisleriotGameOption
+ *
+ * Frees @options.
+ */
+void
+aisleriot_game_option_free (AisleriotGameOption *option)
+{
+  g_return_if_fail (option != NULL);
+
+  g_free (option->display_name);
+  g_slice_free (AisleriotGameOption, option);
+}
+
+/**
+ * aisleriot_game_get_options:
  * @game:
  *
- * Returns: a #SCM containing the game options
+ * Returns: a newly allocated list containing newly allocated
+ * #AisleriotGameOption structs. 
  */
-SCM
-aisleriot_game_get_options_lambda (AisleriotGame *game)
+GList *
+aisleriot_game_get_options (AisleriotGame *game)
 {
   CallData data = CALL_DATA_INIT;
+  SCM options_list;
+  int l, i;
+  guint32 bit = 1;
+  AisleriotGameOptionType type = AISLERIOT_GAME_OPTION_CHECK;
+  GList *options = NULL;
 
   data.lambda = game->get_options_lambda;
   data.n_args = 0;
@@ -2011,31 +2032,120 @@ aisleriot_game_get_options_lambda (AisleriotGame *game)
                             cscmi_call_lambda, &data,
                             cscmi_catch_handler, NULL);
 
-  return data.retval;
+  options_list = data.retval;
+  if (scm_is_false (scm_list_p (options_list)))
+    return NULL;
+
+  l = scm_to_int (scm_length (options_list));
+  bit = 1;
+  for (i = 0; i < l; i++) {
+    SCM entry;
+
+    /* Each entry in the options list is a list consisting of a name and
+     * a variable.
+     */
+    entry = scm_list_ref (options_list, scm_from_int (i));
+    if (!scm_is_false (scm_list_p (entry))) {
+      SCM entryname;
+      char *entrynamestr;
+      gboolean entrystate;
+      AisleriotGameOption *option;
+
+      entryname = scm_list_ref (entry, scm_from_uint (0));
+      if (!scm_is_string (entryname))
+        continue; /* Shouldn't happen */
+
+      entrynamestr = scm_to_locale_string (entryname);
+      if (!entrynamestr)
+        continue;
+
+      entrystate = SCM_NFALSEP (scm_list_ref (entry, scm_from_uint (1)));
+
+      option = g_slice_new (AisleriotGameOption);
+      option->display_name = g_strdup (entrynamestr);
+      option->type = type;
+      option->value = bit;
+      option->set = entrystate != FALSE;
+
+      options = g_list_prepend (options, option);
+
+      free (entrynamestr);
+
+      bit <<= 1;
+    } else {
+      /* If we encounter an atom, change the mode. What the atom is doesn't
+      * really matter. */
+      if (type == AISLERIOT_GAME_OPTION_CHECK) {
+        type = AISLERIOT_GAME_OPTION_RADIO;
+      } else {
+        type = AISLERIOT_GAME_OPTION_CHECK;
+      }
+    }
+  }
+
+  return g_list_reverse (options);
 }
 
 /**
  * aisleriot_game_apply_options_lambda:
  * @game:
- * @options:
+ * @changed_mask:
+ * @changed_value:
  *
- * Applies @options.
+ * Applies options.
  *
- * Returns: a #SCM with status information
+ * Returns: the new options value
  */
-SCM
-aisleriot_game_apply_options_lambda (AisleriotGame *game, SCM options)
+guint32
+aisleriot_game_change_options (AisleriotGame *game,
+                               guint32 changed_mask,
+                               guint32 changed_value)
 {
   CallData data = CALL_DATA_INIT;
+  CallData data2 = CALL_DATA_INIT;
+  SCM options_list;
+  guint32 bit, value;
+  int l, i;
 
-  data.lambda = game->apply_options_lambda;
-  data.n_args = 1;
-  data.arg1 = options;
+  data.lambda = game->get_options_lambda;
+  data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
                             cscmi_catch_handler, NULL);
 
-  return data.retval;
+  options_list = data.retval;
+  if (scm_is_false (scm_list_p (options_list)))
+    return 0;
+
+  value = 0;
+  bit = 1;
+  l = scm_to_int (scm_length (options_list));
+  for (i = 0; i < l; i++) {
+    SCM entry;
+
+    entry = scm_list_ref (options_list, scm_from_uint (i));
+    if (scm_is_false (scm_list_p (entry)))
+      continue;
+
+    if (changed_mask & bit)
+      scm_list_set_x (entry, scm_from_uint (1), (changed_value & bit) ? SCM_BOOL_T : SCM_BOOL_F);
+  
+    if (SCM_NFALSEP (scm_list_ref (entry, scm_from_uint (1))))
+      value |= bit;
+
+    bit <<= 1;
+  }
+
+  data2.lambda = game->apply_options_lambda;
+  data2.n_args = 1;
+  data2.arg1 = options_list;
+  scm_internal_stack_catch (SCM_BOOL_T,
+                            cscmi_call_lambda, &data2,
+                            cscmi_catch_handler, NULL);
+
+  /* FIXMEchpe: check for exceptions? */
+
+  return value;
 }
 
 /**
