@@ -1166,15 +1166,31 @@ expand_options_from_int (SCM options_list, guint bits)
 /* The "Game Options" menu */
 
 static void
+apply_option (SCM options_list,
+              GtkToggleAction *action)
+{
+  SCM entry;
+  gboolean active;
+  const char *action_name;
+  guint n;
+
+  active = gtk_toggle_action_get_active (action);
+
+  action_name = gtk_action_get_name (GTK_ACTION (action));
+  n = g_ascii_strtoull (action_name + strlen ("Option"), NULL, 10);
+
+  entry = scm_list_ref (options_list, scm_from_uint (n));
+
+  scm_list_set_x (entry, scm_from_uint (1), active ? SCM_BOOL_T : SCM_BOOL_F);
+}
+
+static void
 option_cb (GtkToggleAction *action,
            AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
   SCM options_list;
-  SCM entry;
   gboolean active;
-  const char *action_name;
-  guint n;
 
   /* Don't change the options if we're just installing the options menu */
   if (priv->changing_game_type)
@@ -1182,30 +1198,38 @@ option_cb (GtkToggleAction *action,
 
   active = gtk_toggle_action_get_active (action);
 
-  action_name = gtk_action_get_name (GTK_ACTION (action));
-  n = g_ascii_strtoull (action_name + strlen ("Option"), NULL, 10);
-
-  options_list = aisleriot_game_get_options_lambda (priv->game);
-
-  entry = scm_list_ref (options_list, scm_from_uint (n));
-
-  scm_list_set_x (entry, scm_from_uint (1), active ? SCM_BOOL_T : SCM_BOOL_F);
-
-  aisleriot_conf_set_options (aisleriot_game_get_game_file (priv->game),
-                              compress_options_to_int (options_list));
-                              
-  aisleriot_game_apply_options_lambda (priv->game, options_list);
-
   /* If we're toggling OFF a radio action, don't redeal now,
    * since we'll get called another time right again when the new option
    * is toggled ON.
-   * (Note that we _cannot_ also skip applying the options above, since
-   * otherwise the bit from the old option won't get cleared, leading to
-   * wrong game behaviour e.g. in Klondike.)
+   * The game options will be updated when we get the toggled signal
+   * for the newly active action in this group.
    */
   if (GTK_IS_RADIO_ACTION (action) &&
       !active)
     return;
+
+  options_list = aisleriot_game_get_options_lambda (priv->game);
+
+  if (GTK_IS_RADIO_ACTION (action)) {
+    GSList *group, *l;
+
+    /* If toggling ON a radio action, we didn't turn off the other option
+     * earlier. So we need to refresh the whole group.
+     */
+
+    group = gtk_radio_action_get_group (GTK_RADIO_ACTION (action));
+
+    for (l = group; l; l = l->next) {
+      apply_option (options_list, GTK_TOGGLE_ACTION (l->data));
+    }
+  } else {
+    apply_option (options_list, action);
+  }
+
+  aisleriot_conf_set_options (aisleriot_game_get_game_file (priv->game),
+                              compress_options_to_int (options_list));
+
+  aisleriot_game_apply_options_lambda (priv->game, options_list);
 
   /* Now re-deal, so the option is applied */
   aisleriot_game_new_game (priv->game, NULL);
