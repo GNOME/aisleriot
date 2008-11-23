@@ -72,6 +72,7 @@ rules_DATA  = 			\
 	straight_up.scm		\
 	streets_and_alleys.scm	\
 	ten_across.scm  	\
+	terrace.scm	  	\
 	thieves.scm     	\
 	thirteen.scm		\
 	thumb_and_pouch.scm	\
