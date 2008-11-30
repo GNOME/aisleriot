@@ -289,9 +289,10 @@ typedef struct {
   SCM arg2;
   SCM arg3;
   SCM retval;
+  gboolean exception;
 } CallData;
 
-#define CALL_DATA_INIT  { 0, 0, 0, 0, 0, 0 };
+#define CALL_DATA_INIT  { 0, 0, 0, 0, 0, 0, 0 };
 
 static char *
 cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
@@ -394,15 +395,19 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
  * exception information:
  */
 static SCM
-cscmi_catch_handler (gpointer data G_GNUC_UNUSED,
+cscmi_catch_handler (gpointer user_data,
                      SCM tag,
                      SCM throw_args)
 {
+  CallData *data = (CallData *) user_data;
   AisleriotGame *game = app_game;
   char *message;
   int error_fd;
   char *error_file = NULL;
   GError *error = NULL;
+
+  if (data)
+    data->exception = TRUE;
 
   if (game->had_exception)
     goto out;
@@ -466,9 +471,16 @@ cscmi_call_lambda (void *user_data)
 static SCM
 cscmi_eval_string (const char *string)
 {
-  return scm_internal_stack_catch (SCM_BOOL_T,
-                                   (scm_t_catch_body) scm_c_eval_string, (void *) string,
-                                   cscmi_catch_handler, NULL);
+  CallData data = CALL_DATA_INIT;
+  SCM retval;
+
+  retval = scm_internal_stack_catch (SCM_BOOL_T,
+                                     (scm_t_catch_body) scm_c_eval_string, (void *) string,
+                                     cscmi_catch_handler, &data);
+  if (data.exception)
+    return SCM_EOL;
+
+  return retval;
 }
 
 static SCM
@@ -947,7 +959,10 @@ scm_execute_delayed_function (SCM callback)
   data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+
+  if (data.exception)
+    return FALSE;
 
   aisleriot_game_test_end_of_game (game);
 
@@ -1028,12 +1043,14 @@ update_game_dealable (AisleriotGame *game)
   data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+  if (data.exception)
+    return;
 
   set_game_dealable (game, SCM_NFALSEP (data.retval));
 }
 
-static void
+static gboolean
 cscmi_start_game_lambda (double *width,
                          double *height)
 {
@@ -1044,10 +1061,13 @@ cscmi_start_game_lambda (double *width,
   data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+  if (data.exception)
+    return FALSE;
 
   *width = scm_num2double (SCM_CAR (data.retval), 0, NULL);
   *height = scm_num2double (SCM_CADR (data.retval), 0, NULL);
+  return TRUE;
 }
 
 static gboolean
@@ -1060,7 +1080,9 @@ cscmi_game_over_lambda (void)
   data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+  if (data.exception)
+    return TRUE;
 
   return SCM_NFALSEP (data.retval);
 }
@@ -1075,7 +1097,9 @@ cscmi_winning_game_lambda (void)
   data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+  if (data.exception)
+    return FALSE;
 
   return SCM_NFALSEP (data.retval);
 }
@@ -1633,7 +1657,7 @@ aisleriot_game_new_game (AisleriotGame *game,
     /* FIXMEchpe: We should NOT re-seed here, but just get another random number! */
     g_random_set_seed (game->seed);
 
-    cscmi_start_game_lambda (&game->width, &game->height);
+    cscmi_start_game_lambda (&game->width, &game->height); /* FIXME this may fail */
     scm_c_eval_string ("(start-game)");
   } while (!cscmi_game_over_lambda ());
 
@@ -1741,8 +1765,11 @@ aisleriot_game_drag_valid (AisleriotGame *game,
   scm_gc_protect_object (data.arg2);
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
   scm_gc_unprotect_object (data.arg2);
+
+  if (data.exception)
+    return FALSE;
 
   return SCM_NFALSEP (data.retval);
 }
@@ -1777,8 +1804,11 @@ aisleriot_game_drop_valid (AisleriotGame *game,
   data.arg3 = scm_from_int (end_slot);
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
   scm_gc_unprotect_object (data.arg2);
+
+  if (data.exception)
+    return FALSE;
 
   return SCM_NFALSEP (data.retval);
 }
@@ -1809,8 +1839,11 @@ aisleriot_game_drop_cards (AisleriotGame *game,
   data.arg3 = scm_from_int (end_slot);
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
   scm_gc_unprotect_object (data.arg2);
+
+  if (data.exception)
+    return FALSE;
 
   return SCM_NFALSEP (data.retval);
 }
@@ -1835,7 +1868,9 @@ aisleriot_game_button_clicked_lambda (AisleriotGame *game,
   data.arg1 = scm_from_int (slot_id);
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+  if (data.exception)
+    return FALSE;
 
   return SCM_NFALSEP (data.retval);
 }
@@ -1860,7 +1895,9 @@ aisleriot_game_button_double_clicked_lambda (AisleriotGame *game,
   data.arg1 = scm_from_int (slot_id);
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+  if (data.exception)
+    return FALSE;
 
   return SCM_NFALSEP (data.retval);
 }
@@ -1885,10 +1922,11 @@ aisleriot_game_get_hint (AisleriotGame *game)
   data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+  if (data.exception)
+    return NULL;
 
   hint = data.retval;
-  /* FIXMEchpe: check for exceptions before this, so we don't crash here! */
 
   if (!SCM_NFALSEP (hint)) {
     message = g_strdup (_("This game does not have hint support yet."));
@@ -2024,7 +2062,9 @@ aisleriot_game_get_options (AisleriotGame *game)
   data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+  if (data.exception)
+    return FALSE;
 
   options_list = data.retval;
   if (scm_is_false (scm_list_p (options_list)))
@@ -2105,7 +2145,9 @@ aisleriot_game_change_options (AisleriotGame *game,
   data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+  if (data.exception)
+    return 0;
 
   options_list = data.retval;
   if (scm_is_false (scm_list_p (options_list)))
@@ -2135,9 +2177,7 @@ aisleriot_game_change_options (AisleriotGame *game,
   data2.arg1 = options_list;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data2,
-                            cscmi_catch_handler, NULL);
-
-  /* FIXMEchpe: check for exceptions? */
+                            cscmi_catch_handler, &data);
 
   return value;
 }
@@ -2159,7 +2199,9 @@ aisleriot_game_timeout_lambda (AisleriotGame *game)
   data.n_args = 0;
   scm_internal_stack_catch (SCM_BOOL_T,
                             cscmi_call_lambda, &data,
-                            cscmi_catch_handler, NULL);
+                            cscmi_catch_handler, &data);
+  if (data.exception)
+    return FALSE;
 
   return SCM_NFALSEP (data.retval);
 }
