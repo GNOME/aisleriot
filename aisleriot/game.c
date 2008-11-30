@@ -293,61 +293,48 @@ typedef struct {
 
 #define CALL_DATA_INIT  { 0, 0, 0, 0, 0, 0 };
 
-static void
-checked_write (int fildes, const void *buf, size_t nbyte)
-{
-  int n_written;
-  n_written = write (fildes, buf, nbyte);
-  if (n_written != nbyte){
-    g_warning ("A scheme exception occurred, and subsequently writing the error to a temporary file also failed");
-  }
-}
-
-static void
-cscmi_write_exception_details (int error_fd, SCM tag, SCM throw_args)
+static char *
+cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
 {
   AisleriotGame *game = app_game;
-  char *message;
   SCM port;
   SCM stack;
   GPtrArray *slots;
   guint i, n_slots;
+  GString *message;
+  char *string;
 
-  message = g_strdup_printf ("Variation: %s\n", aisleriot_game_get_game_file (game));
+  message = g_string_sized_new (1024);
 
-  checked_write (error_fd, message, strlen (message));
-  g_free (message);
+  g_string_append_printf (message, "Variation: %s\n", aisleriot_game_get_game_file (game));
+  g_string_append_printf (message, "Seed: %u\n", game->seed);
 
-  message = g_strdup_printf ("Seed: %u\n", game->seed);
-  checked_write (error_fd, message, strlen (message));
-  g_free (message);
+  port = scm_open_output_string ();
 
-  message = "Scheme error:\n\t";
-  checked_write (error_fd, message, strlen (message));
-
-  port = scm_fdopen (scm_from_int (error_fd),
-                     scm_mem2string ("w", sizeof (char)));
+  g_string_append (message, "Scheme error:\n\t");
   scm_display (throw_args, port);
-  scm_fsync (port);
+  string = scm_to_locale_string (scm_get_output_string (port));
+  g_string_append (message, string);
+  free (string);
 
-  message = "\nScheme tag:\n\t";
-  checked_write (error_fd, message, strlen (message));
+  g_string_append (message, "\nScheme tag:\n\t");
   scm_display (tag, port);
-  scm_fsync (port);
+  string = scm_to_locale_string (scm_get_output_string (port));
+  g_string_append (message, string);
+  free (string);
 
-  message = "\n\nBacktrace:\n";
-  checked_write (error_fd, message, strlen (message));
+  g_string_append (message, "\n\nBacktrace:\n");
   stack = scm_fluid_ref (SCM_VARIABLE_REF (scm_the_last_stack_fluid_var));
   if (!SCM_FALSEP (stack)) {
     scm_display_backtrace (stack, port, SCM_UNDEFINED, SCM_UNDEFINED);
-    scm_fsync (port);
+    string = scm_to_locale_string (scm_get_output_string (port));
+    g_string_append (message, string);
+    free (string);
   } else {
-    message = "\tNo backtrace available.\n";
-    checked_write (error_fd, message, strlen (message));
+    g_string_append (message, "\tNo backtrace available.\n");
   }
 
-  message = "\n\nDeck State:\n";
-  checked_write (error_fd, message, strlen (message));
+  g_string_append (message, "\n\nDeck State:\n");
 
   slots = aisleriot_game_get_slots (game);
 
@@ -358,9 +345,7 @@ cscmi_write_exception_details (int error_fd, SCM tag, SCM throw_args)
       GByteArray *cards = slot->cards;
       guint n_cards;
 
-      message = g_strdup_printf ("\tSlot %d\n", slot->id);
-      checked_write (error_fd, message, strlen (message));
-      g_free (message);
+      g_string_append_printf (message, "\tSlot %d\n", slot->id);
 
       n_cards = cards->len;
       if (n_cards > 0) {
@@ -370,39 +355,39 @@ cscmi_write_exception_details (int error_fd, SCM tag, SCM throw_args)
         for (count = 0; count < n_cards; ++count) {
           Card card = CARD (data[count]);
 
-          if (count == 0)
-            message = "\t\t";
-          else
-            message = ", ";
-          checked_write (error_fd, message, strlen (message));
+          if (count == 0) {
+            g_string_append_c (message, '\t');
+            g_string_append_c (message, '\t');
+          } else {
+            g_string_append_c (message, ' ');
+            g_string_append_c (message, ',');
+          }
 
-          message = g_strdup_printf ("(%d %d %s)",
-                                     CARD_GET_SUIT (card),
-                                     CARD_GET_RANK (card),
-                                     /* See c2scm_card below */
-                                     CARD_GET_FACE_DOWN (card) ? "#f" : "#t");
-          checked_write (error_fd, message, strlen (message));
-          g_free (message);
+          g_string_append_printf (message,
+                                  "(%d %d %s)",
+                                  CARD_GET_SUIT (card),
+                                  CARD_GET_RANK (card),
+                                  /* See c2scm_card below */
+                                  CARD_GET_FACE_DOWN (card) ? "#f" : "#t");
+
           count++;
           if (count == 5) {
-            message = "\n";
-            checked_write (error_fd, message, strlen (message));
+            g_string_append_c (message, '\n');
             count = 0;
           }
         }
         if (count != 0) {
-          message = "\n";
-          checked_write (error_fd, message, strlen (message));
+          g_string_append_c (message, '\n');
         }
       } else {
-        message = "\t\t(Empty)\n";
-        checked_write (error_fd, message, strlen (message));
+        g_string_append (message,"\t\t(Empty)\n");
       }
     }
   } else {
-    message = "\tNo cards in deck\n";
-    checked_write (error_fd, message, strlen (message));
+    g_string_append (message, "\tNo cards in deck\n");
   }
+
+  return g_string_free (message, FALSE);
 }
 
 /* Called when we get an exception from guile.  We launch bug-buddy with the
@@ -414,6 +399,7 @@ cscmi_catch_handler (gpointer data G_GNUC_UNUSED,
                      SCM throw_args)
 {
   AisleriotGame *game = app_game;
+  char *message;
   int error_fd;
   char *error_file = NULL;
   GError *error = NULL;
@@ -421,10 +407,16 @@ cscmi_catch_handler (gpointer data G_GNUC_UNUSED,
   if (game->had_exception)
     goto out;
 
+  message = cscmi_exception_get_backtrace (tag, throw_args);
+  if (!message) {
+    g_warning ("A scheme exception occurred, but there was no exception info\n");
+    goto out;
+  }
+
   error_fd = g_file_open_tmp ("arcrashXXXXXX", &error_file, &error);
   if (error_fd >= 0) {
-    cscmi_write_exception_details (error_fd, tag, throw_args);
     close (error_fd);
+    g_file_set_contents (error_file, message, strlen (message), NULL);
 
     /* Tell the frontend about the problem */
     g_signal_emit (game, signals[EXCEPTION], 0, error_file);
@@ -434,10 +426,12 @@ cscmi_catch_handler (gpointer data G_GNUC_UNUSED,
                error->message);
     g_error_free (error);
   }
-  
+
 out:
   /* This game is over, but don't count it in the statistics */
   set_game_state (game, GAME_LOADED);
+
+  g_free (message);
 
   return SCM_UNDEFINED;
 }
