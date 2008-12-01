@@ -1,3 +1,57 @@
+gnome-games 2.25.2
+==================
+
+Lots of exciting new things in this release. The most user visible stuff are
+the addition of Terrace aka Queen of Italy to aisleriot, anti-aliasing support
+for Chess and fewer wakeups in Five or more, Iagno and Same-gnome.
+
+The beginning scafolding for gnometris clutter support has also been added; 
+this is a compile-time option enabled by --enable-clutter. Note that none of the
+game logic has been checked in yet.
+
+General: 
+  - Code cleanups and warnings (Robert Ancell, Christian Persch, Thomas Andersen,
+    Zhang Sen)
+  - High score lists are now always selectable (Thomas Andersen, Jason Clinton)
+  - Makefile modernisation (Christian Persch)
+  - Use games-runtime to locate files (Christian Persch)
+  - Clean up linking in networked game servers (Robert Light)
+
+Aisleriot:
+  - Move hint code to AisleriotGame (Christian Persch)
+  - Only update the game options once when chaning a radio option 
+    (Vincent Povirk)
+  - Add Terrace aka Queen of Italy (Vincent Povirk, David Rogers)
+  - Be more strict about rules in Seahaven (Vincent Povirk)
+  - Rewrite Baker's Game rules (Vincent Povirk)
+
+Blackjack:
+  - window-state-event callback needs to return gboolean, not void.
+    (Christian Persch)
+
+Chess:
+  - Added anti-aliasing support (Robert Ancell)
+
+Glines, iagno, same-gnome:
+  - Only run animation timer during animation (Robert Ancell)
+
+Gnibbles:
+  - Change Gnibbles to Nibbles in user visible strings (Thomas Andersen)
+
+Gnometris:
+  - Scafolding for clutter support (Jason Clinton)
+  - Use correct name in g_set_application_name (Jason Clinton)
+
+Sudoku:
+  - Fix crasher bugs: #523062, #436275, #486385, #421487, #532937 (Robert Ancell)
+  - Handle errors loading stock icons (Robert Ancell)
+  - Show highlighter at game launch (Zhang Sen)
+
+Translations:
+  - cs: Marek Lisy
+  - de: Mario Blättermann, Ulf Ehlert
+  - es: Jorge Gonzalez, Daniel Mustieles
+
 gnome-games 2.25.1
 ==================
 
