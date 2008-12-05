@@ -21,7 +21,6 @@
 #include <cogl/cogl.h>
 
 #include "card.h"
-#include "card-cache.h"
 
 static void aisleriot_card_paint (ClutterActor *actor);
 
@@ -39,7 +38,7 @@ static void aisleriot_card_get_property (GObject    *self,
 static void aisleriot_card_unref_cache (AisleriotCard *card);
 
 static void aisleriot_card_set_cache (AisleriotCard *card,
-                                      AisleriotCardCache *cache);
+                                      GamesCardTexturesCache *cache);
 
 #define ANGLE_IS_UPSIDE_DOWN(angle)             \
   ((ABS (angle) + CLUTTER_INT_TO_FIXED (90))    \
@@ -57,7 +56,7 @@ struct _AisleriotCardPrivate
   Card card;
   gboolean highlighted;
 
-  AisleriotCardCache *cache;
+  GamesCardTexturesCache *cache;
 };
 
 enum
@@ -92,7 +91,7 @@ aisleriot_card_class_init (AisleriotCardClass *klass)
   g_object_class_install_property (gobject_class, PROP_CARD, pspec);
 
   pspec = g_param_spec_object ("cache", NULL, NULL,
-                               AISLERIOT_TYPE_CARD_CACHE,
+                               GAMES_TYPE_CARD_TEXTURES_CACHE,
                                G_PARAM_WRITABLE |
                                G_PARAM_READABLE |
                                G_PARAM_CONSTRUCT_ONLY |
@@ -131,7 +130,7 @@ aisleriot_card_dispose (GObject *self)
 }
 
 ClutterActor *
-aisleriot_card_new (AisleriotCardCache *cache, Card card)
+aisleriot_card_new (GamesCardTexturesCache *cache, Card card)
 {
   ClutterActor *self = g_object_new (AISLERIOT_TYPE_CARD,
                                      "cache", cache,
@@ -174,7 +173,7 @@ aisleriot_card_paint (ClutterActor *actor)
       x_swapped = TRUE;
   }
 
-  tex = aisleriot_card_cache_get_card_texture (priv->cache, card_num,
+  tex = games_card_textures_cache_get_card_texture (priv->cache, card_num,
                                                priv->highlighted);
 
   tex_width = CLUTTER_INT_TO_FIXED (cogl_texture_get_width (tex));
@@ -287,7 +286,7 @@ aisleriot_card_unref_cache (AisleriotCard *card)
 }
 
 static void
-aisleriot_card_set_cache (AisleriotCard *card, AisleriotCardCache *cache)
+aisleriot_card_set_cache (AisleriotCard *card, GamesCardTexturesCache *cache)
 {
   AisleriotCardPrivate *priv = card->priv;
 

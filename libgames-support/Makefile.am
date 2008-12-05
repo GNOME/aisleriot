@@ -87,6 +87,13 @@ libgames_support_la_SOURCES +=		\
 endif
 endif
 
+if HAVE_CLUTTER
+libgames_support_la_SOURCES += \
+	games-card-textures-cache.c	\
+	games-card-textures-cache.c	\
+	$(NULL)
+endif
+
 libgames_support_la_CPPFLAGS = \
 	-DPKGDATADIR="\"$(pkgdatadir)\""			\
 	-DDATADIR="\"$(datadir)\""				\
@@ -138,6 +145,11 @@ endif
 if HAVE_RSVG
 libgames_support_la_CFLAGS += $(RSVG_CFLAGS)
 libgames_support_la_LIBADD += $(RSVG_LIBS)
+endif
+
+if HAVE_CLUTTER
+libgames_support_la_CFLAGS += $(CLUTTER_CFLAGS)
+libgames_support_la_LIBADD += $(CLUTTER_LIBS)
 endif
 
 if HAVE_GSTREAMER

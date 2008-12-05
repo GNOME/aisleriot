@@ -41,7 +41,7 @@ static void aisleriot_slot_renderer_get_property (GObject *object,
 static void aisleriot_slot_renderer_paint (ClutterActor *actor);
 
 static void aisleriot_slot_renderer_set_cache (AisleriotSlotRenderer *srend,
-                                               AisleriotCardCache *cache);
+                                               GamesCardTexturesCache *cache);
 
 static void completed_cb (AisleriotSlotRenderer *srend);
 
@@ -56,7 +56,7 @@ typedef struct _AnimationData AnimationData;
 
 struct _AisleriotSlotRendererPrivate
 {
-  AisleriotCardCache *cache;
+  GamesCardTexturesCache *cache;
 
   Slot *slot;
 
@@ -105,7 +105,7 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
   actor_class->paint = aisleriot_slot_renderer_paint;
 
   pspec = g_param_spec_object ("cache", NULL, NULL,
-                               AISLERIOT_TYPE_CARD_CACHE,
+                               GAMES_TYPE_CARD_TEXTURES_CACHE,
                                G_PARAM_WRITABLE |
                                G_PARAM_CONSTRUCT_ONLY |
                                G_PARAM_STATIC_NAME |
@@ -200,7 +200,7 @@ aisleriot_slot_renderer_finalize (GObject *object)
 }
 
 ClutterActor *
-aisleriot_slot_renderer_new (AisleriotCardCache *cache, Slot *slot)
+aisleriot_slot_renderer_new (GamesCardTexturesCache *cache, Slot *slot)
 {
   ClutterActor *self = g_object_new (AISLERIOT_TYPE_SLOT_RENDERER,
                                      "cache", cache,
@@ -212,7 +212,7 @@ aisleriot_slot_renderer_new (AisleriotCardCache *cache, Slot *slot)
 
 static void
 aisleriot_slot_renderer_set_cache (AisleriotSlotRenderer *srend,
-                                   AisleriotCardCache *cache)
+                                   GamesCardTexturesCache *cache)
 {
   AisleriotSlotRendererPrivate *priv = srend->priv;
 
@@ -308,7 +308,7 @@ aisleriot_slot_renderer_paint_card (AisleriotSlotRenderer *srend,
 
   is_highlighted = priv->show_highlight && (card_num >= priv->highlight_start);
 
-  cogl_tex = aisleriot_card_cache_get_card_texture (priv->cache,
+  cogl_tex = games_card_textures_cache_get_card_texture (priv->cache,
                                                     card,
                                                     is_highlighted);
 
@@ -351,7 +351,7 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
     guint tex_width, tex_height;
     static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
 
-    cogl_tex = aisleriot_card_cache_get_slot_texture (priv->cache,
+    cogl_tex = games_card_textures_cache_get_slot_texture (priv->cache,
                                                       priv->show_highlight);
     tex_width = cogl_texture_get_width (cogl_tex);
     tex_height = cogl_texture_get_height (cogl_tex);
@@ -518,7 +518,7 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
       clutter_container_add (priv->animation_layer,
                              CLUTTER_ACTOR (anim_data.card_tex), NULL);
 
-    cogl_tex = aisleriot_card_cache_get_card_texture (priv->cache, card, FALSE);
+    cogl_tex = games_card_textures_cache_get_card_texture (priv->cache, card, FALSE);
     card_width = cogl_texture_get_width (cogl_tex);
     card_height = cogl_texture_get_height (cogl_tex);
 

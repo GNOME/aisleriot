@@ -20,8 +20,7 @@
 #define __AISLERIOT_SLOT_RENDERER_H__
 
 #include <clutter/clutter.h>
-#include <libgames-support/games-card-images.h>
-#include "card-cache.h"
+#include <libgames-support/games-card-textures-cache.h>
 #include "game.h"
 
 G_BEGIN_DECLS
@@ -73,7 +72,7 @@ struct _AisleriotAnimStart
 
 GType aisleriot_slot_renderer_get_type (void) G_GNUC_CONST;
 
-ClutterActor *aisleriot_slot_renderer_new (AisleriotCardCache *cache,
+ClutterActor *aisleriot_slot_renderer_new (GamesCardTexturesCache *cache,
                                            Slot *slot);
 
 void aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,

@@ -31,6 +31,7 @@
 // #include <clutter-gtk/gtk-clutter-util.h>
 
 #include <libgames-support/games-card-images.h>
+#include <libgames-support/games-card-textures-cache.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-marshal.h>
 #include <libgames-support/games-pixbuf-utils.h>
@@ -42,7 +43,6 @@
 #include "game.h"
 #include "board.h"
 #include "baize.h"
-#include "card-cache.h"
 #include "card.h"
 #include "slot-renderer.h"
 #include "clutter-embed.h"
@@ -135,7 +135,7 @@ struct _AisleriotBoardPrivate
 
   /* Cards cache */
   GamesCardImages *images;
-  AisleriotCardCache *textures;
+  GamesCardTexturesCache *textures;
 
   /* Button press */
   int last_click_x;
@@ -1050,7 +1050,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
                                              priv->yslotstep,
                                              CARD_SLOT_PROP);
   if (size_changed)
-    aisleriot_card_cache_clear (priv->textures);
+    games_card_textures_cache_clear (priv->textures);
 
   card_size = priv->card_size = games_card_images_get_size (priv->images);
 
@@ -3170,7 +3170,7 @@ aisleriot_board_constructor (GType type,
   /* Create this down here since we need to have the scalable_cards value */
   priv->theme = games_card_theme_new (NULL, priv->scalable_cards);
   priv->images = games_card_images_new (priv->theme);
-  priv->textures = aisleriot_card_cache_new (priv->images);
+  priv->textures = games_card_textures_cache_new (priv->images);
 
   return object;
 }
