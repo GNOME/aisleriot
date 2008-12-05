@@ -208,6 +208,9 @@ struct _AisleriotBoardPrivate
   guint scalable_cards : 1;
 
   guint force_geometry_update : 1;
+
+  guint animation_mode : 1;    /* user setting */
+  guint animations_enabled: 1; /* gtk setting  */
 };
 
 typedef struct _RemovedCard RemovedCard;
@@ -848,6 +851,9 @@ check_animations (AisleriotBoard *board)
   Slot *slot;
   GArray *animations = g_array_new (FALSE, FALSE, sizeof (AisleriotAnimStart));
 
+  if (!priv->animation_mode || !priv->animations_enabled)
+    return;
+
   slots = aisleriot_game_get_slots (priv->game);
 
   /* Find any cards that have been removed from the top of the
@@ -1449,6 +1455,7 @@ aisleriot_board_settings_update (GtkSettings *settings,
                                  AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
+  gboolean animations_enabled;
 #ifndef HAVE_HILDON
   gboolean touchscreen_mode;
 #endif /* !HAVE_HILDON */
@@ -1456,10 +1463,13 @@ aisleriot_board_settings_update (GtkSettings *settings,
    /* Set up the double-click detection. */
   g_object_get (settings,
                 "gtk-double-click-time", &priv->double_click_time,
+                "gtk-enable-animations", &animations_enabled,
 #ifndef HAVE_HILDON 
                 "gtk-touchscreen-mode", &touchscreen_mode,
 #endif /* !HAVE_HILDON */
                 NULL);
+
+  priv->animations_enabled = animations_enabled;
 
 #ifndef HAVE_HILDON
   priv->touchscreen_mode = touchscreen_mode != FALSE;
@@ -2585,12 +2595,15 @@ aisleriot_board_screen_changed (GtkWidget *widget,
   aisleriot_board_settings_update (settings, NULL, board);
   g_signal_connect (settings, "notify::gtk-double-click-time",
                     G_CALLBACK (aisleriot_board_settings_update), board);
+  g_signal_connect (settings, "notify::gtk-enable-animations",
+                    G_CALLBACK (aisleriot_board_settings_update), board);
 #ifndef HAVE_HILDON 
   g_signal_connect (settings, "notify::gtk-touchscreen-mode",
                     G_CALLBACK (aisleriot_board_settings_update), board);
 #endif /* !HAVE_HILDON */
 
 #if GTK_CHECK_VERSION (2, 10, 0)
+  /* FIXMEchpe: this can be replaced by a simple style-set handler! */
   aisleriot_board_screen_font_options_changed (screen, NULL, board);
   g_signal_connect (screen, "notify::font-options",
                     G_CALLBACK (aisleriot_board_screen_font_options_changed), board);
@@ -3127,6 +3140,7 @@ aisleriot_board_init (AisleriotBoard *board)
 
   priv->click_to_move = FALSE;
   priv->show_selection = FALSE;
+  priv->animation_mode = FALSE;
 
   priv->show_card_id = -1;
 
@@ -3549,6 +3563,21 @@ aisleriot_board_set_click_to_move (AisleriotBoard *board,
   if (GTK_WIDGET_REALIZED (widget)) {
     gtk_widget_queue_draw (widget);
   }
+}
+
+void
+aisleriot_board_set_animation_mode (AisleriotBoard *board,
+                                    gboolean enabled)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+
+  enabled = enabled != FALSE;
+  if (priv->animation_mode == enabled)
+    return;
+
+  priv->animation_mode = enabled;
+
+  /* FIXME: stop in-progress animations? */
 }
 
 void

@@ -37,10 +37,11 @@ static const char key_names[] =
   "show_toolbar\0"
   "click_to_move\0"
   "sound\0"
-  "show_statusbar";
+  "show_statusbar\0"
+  "animations";
 
 static const guint8 key_name_offsets[] = {
-  0, 11, 21, 39, 52, 66, 72
+  0, 11, 21, 39, 52, 66, 72, 87
 };
 
 static const char statistics_key[] = "/apps/aisleriot/statistics";
@@ -54,10 +55,11 @@ static const char key_names[] =
   "ShowToolbar\0"
   "ClickToMove\0"
   "Sound\0"
-  "ShowStatusbar";
+  "ShowStatusbar\0"
+  "Animations";
 
 static const guint8 key_name_offsets[] = {
-  0, 6, 16, 23, 35, 47, 53
+  0, 6, 16, 23, 35, 47, 53, 67
 };
 
 #endif /* HAVE_GNOME */
@@ -175,6 +177,8 @@ aisleriot_conf_init (void)
     /* Set defaults */
     games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), TRUE);
     games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), TRUE);
+    games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), TRUE);
+    games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), TRUE);
 
 #ifdef HAVE_HILDON
     games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), TRUE);

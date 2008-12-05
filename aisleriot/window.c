@@ -1056,6 +1056,24 @@ sound_toggle_cb (GtkToggleAction *action,
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), sound_enabled);
 }
 
+#ifdef HAVE_CLUTTER
+
+static void
+animations_toggle_cb (GtkToggleAction *action,
+                      AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+  gboolean enabled;
+
+  enabled = gtk_toggle_action_get_active (action);
+
+  aisleriot_board_set_animation_mode (priv->board, enabled);
+  
+  games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), enabled);
+}
+
+#endif /* HAVE_CLUTTER */
+
 static void
 show_hint_cb (GtkAction *action,
               AisleriotWindow *window)
@@ -1851,6 +1869,52 @@ game_exception_cb (AisleriotGame *game,
   gtk_widget_show (dialog);
 }
 
+#ifdef HAVE_CLUTTER
+
+static void
+settings_changed_cb (GtkSettings *settings,
+                     GParamSpec *pspec,
+                     AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+  GtkAction *action;
+  gboolean enabled;
+
+  g_object_get (settings, "gtk-enable-animations", &enabled, NULL);
+
+  action = gtk_action_group_get_action (priv->action_group, "Animations");
+  gtk_action_set_visible (action, enabled);
+}
+
+static void
+screen_changed_cb (GtkWidget *widget,
+                   GdkScreen *previous_screen,
+                   AisleriotWindow *window)
+{
+  GdkScreen *screen;
+  GtkSettings *settings;
+
+  screen = gtk_widget_get_screen (widget);
+  if (screen == previous_screen)
+    return;
+
+  if (previous_screen) {
+    g_signal_handlers_disconnect_by_func (gtk_settings_get_for_screen (previous_screen),
+                                          G_CALLBACK (settings_changed_cb),
+                                          window);
+  }
+  
+  if (screen == NULL)
+    return;
+
+  settings = gtk_widget_get_settings (widget);
+  settings_changed_cb (settings, NULL, window);
+  g_signal_connect (settings, "notify::gtk-enable-animations",
+                    G_CALLBACK (settings_changed_cb), window);
+}
+  
+#endif /* HAVE_CLUTTER */
+
 /* Class implementation */
 
 #ifdef HAVE_HILDON
@@ -2030,10 +2094,16 @@ aisleriot_window_init (AisleriotWindow *window)
       ACTION_TOOLTIP (N_("Pick up and drop cards by clicking")),
       G_CALLBACK (clickmove_toggle_cb),
       FALSE /* not active by default */ },
-   { "Sound", NULL, N_("_Enable sounds"), NULL,
-      ACTION_TOOLTIP (N_("Whether or not to play event sounds.")),
+   { "Sound", NULL, N_("_Sound"), NULL,
+      ACTION_TOOLTIP (N_("Whether or not to play event sounds")),
       G_CALLBACK (sound_toggle_cb),
       FALSE /* not active by default */ },
+#ifdef HAVE_CLUTTER
+   { "Animations", NULL, N_("_Animations"), NULL,
+      ACTION_TOOLTIP (N_("Whether or not to animate card moves")),
+      G_CALLBACK (animations_toggle_cb),
+      FALSE /* not active by default */ },
+#endif /* HAVE_CLUTTER */
 #ifdef ENABLE_DEBUG_UI
     { "DebugPixbufDrawing", NULL, "_Pixbuf drawing", NULL, NULL,
       G_CALLBACK (debug_pixbuf_drawing_cb),
@@ -2126,6 +2196,9 @@ aisleriot_window_init (AisleriotWindow *window)
           "<separator/>"
           "<menuitem action='ClickToMove'/>"
           "<menuitem action='Sound'/>"
+#ifdef HAVE_CLUTTER
+          "<menuitem action='Animations'/>"
+#endif
         "</menu>"
         "<menu action='OptionsMenu'/>"
         "<menu action='HelpMenu'>"
@@ -2380,6 +2453,15 @@ aisleriot_window_init (AisleriotWindow *window)
 
   set_fullscreen_actions (window, FALSE);
 
+#ifdef HAVE_CLUTTER
+  action = gtk_action_group_get_action (priv->action_group, "Animations");
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
+                                games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), NULL));
+
+  /* Set the action visibility and listen for animation mode changes */
+  screen_changed_cb (GTK_WIDGET (window), NULL, window);
+#endif /* HAVE_CLUTTER */
+
   /* Now set up the widgets */
   main_vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (window), main_vbox);
@@ -2463,6 +2545,12 @@ aisleriot_window_finalize (GObject *object)
 {
   AisleriotWindow *window = AISLERIOT_WINDOW (object);
   AisleriotWindowPrivate *priv = window->priv;
+
+#ifdef HAVE_CLUTTER
+  g_signal_handlers_disconnect_by_func (gtk_widget_get_settings (GTK_WIDGET (window)),
+                                        G_CALLBACK (settings_changed_cb),
+                                        window);
+#endif /* HAVE_CLUTTER */
 
 #ifndef HAVE_HILDON
   if (priv->hint_dialog) {

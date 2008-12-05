@@ -32,6 +32,7 @@ typedef enum {
   CONF_CLICK_TO_MOVE,
   CONF_SOUND,
   CONF_SHOW_STATUSBAR,
+  CONF_ANIMATIONS,
   CONF_STATISTICS /* must be last */
 } AisleriotConfKey;
 

@@ -69,6 +69,9 @@ const char *aisleriot_board_get_card_theme (AisleriotBoard * board);
 void aisleriot_board_set_click_to_move (AisleriotBoard * board,
                                         gboolean click_to_move);
 
+void aisleriot_board_set_animation_mode (AisleriotBoard *board,
+                                         gboolean enable);
+
 void aisleriot_board_abort_move (AisleriotBoard * board);
 
 void aisleriot_board_set_pixbuf_drawing (AisleriotBoard * board,
