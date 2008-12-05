@@ -32,6 +32,7 @@
 
 #include <libgames-support/games-card-images.h>
 #include <libgames-support/games-card-textures-cache.h>
+#include <libgames-support/games-clutter-embed.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-marshal.h>
 #include <libgames-support/games-pixbuf-utils.h>
@@ -45,7 +46,6 @@
 #include "baize.h"
 #include "card.h"
 #include "slot-renderer.h"
-#include "clutter-embed.h"
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
@@ -413,8 +413,9 @@ set_background_from_baize (AisleriotBoard *board)
   g_assert (pixbuf != NULL);
 
   if (priv->baize_actor == NULL) {
-    ClutterActor *stage
-      = aisleriot_clutter_embed_get_stage (AISLERIOT_CLUTTER_EMBED (board));
+    ClutterActor *stage;
+
+    stage = games_clutter_embed_get_stage (GAMES_CLUTTER_EMBED (board));
 
     priv->baize_actor = g_object_ref_sink (aisleriot_baize_new ());
     clutter_container_add (CLUTTER_CONTAINER (stage),
@@ -964,8 +965,9 @@ slot_update_card_images_full (AisleriotBoard *board,
                               gint highlight_start_card_id)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  ClutterActor *stage
-    = aisleriot_clutter_embed_get_stage (AISLERIOT_CLUTTER_EMBED (board));
+  ClutterActor *stage;
+
+  stage = games_clutter_embed_get_stage (GAMES_CLUTTER_EMBED (board));
 
   if (!priv->geometry_set)
     return;
@@ -1189,7 +1191,7 @@ drag_begin (AisleriotBoard *board)
   slot_update_card_images (board, hslot);
   aisleriot_game_reset_old_cards (hslot);
 
-  stage = aisleriot_clutter_embed_get_stage (AISLERIOT_CLUTTER_EMBED (board));
+  stage = games_clutter_embed_get_stage (GAMES_CLUTTER_EMBED (board));
   clutter_container_add (CLUTTER_CONTAINER (stage),
                          priv->moving_cards_group, NULL);
 
@@ -2238,7 +2240,7 @@ slot_changed_cb (AisleriotGame *game,
 
 /* Class implementation */
 
-G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, AISLERIOT_TYPE_CLUTTER_EMBED);
+G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GAMES_TYPE_CLUTTER_EMBED);
 
 /* AisleriotBoardClass methods */
 
@@ -3144,7 +3146,7 @@ aisleriot_board_init (AisleriotBoard *board)
   gtk_widget_tap_and_hold_setup (widget, NULL, NULL, GTK_TAP_AND_HOLD_PASS_PRESS);
 #endif
 
-  stage = aisleriot_clutter_embed_get_stage (AISLERIOT_CLUTTER_EMBED (board));
+  stage = games_clutter_embed_get_stage (GAMES_CLUTTER_EMBED (board));
   priv->animation_layer = g_object_ref_sink (clutter_group_new ());
   clutter_container_add (CLUTTER_CONTAINER (stage),
                          priv->animation_layer, NULL);

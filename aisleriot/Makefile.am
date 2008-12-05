@@ -38,8 +38,6 @@ sol_SOURCES += \
 	baize.h		\
 	card.c          \
 	card.h          \
-	clutter-embed.c	\
-	clutter-embed.h	\
 	slot-renderer.c \
 	slot-renderer.h \
 	$(NULL)

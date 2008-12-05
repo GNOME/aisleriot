@@ -24,21 +24,19 @@
  * SECTION:gtk-clutter-embed
  * @short_description: Widget for embedding a Clutter scene
  *
- * #AisleriotClutterEmbed is a GTK+ widget embedding a #ClutterStage. Using
- * a #AisleriotClutterEmbed widget is possible to build, show and interact with
+ * #GamesClutterEmbed is a GTK+ widget embedding a #ClutterStage. Using
+ * a #GamesClutterEmbed widget is possible to build, show and interact with
  * a scene built using Clutter inside a GTK+ application.
  *
  * <note>To avoid flickering on show, you should call gtk_widget_show()
  * or gtk_widget_realize() before calling clutter_actor_show() on the
  * embedded #ClutterStage actor. This is needed for Clutter to be able
- * to paint on the #AisleriotClutterEmbed widget.</note>
+ * to paint on the #GamesClutterEmbed widget.</note>
  *
  * Since: 0.6
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+#include <config.h>
 
 #include <glib-object.h>
 
@@ -59,19 +57,19 @@
 
 #endif /* HAVE_CLUTTER_GTK_{X11,WIN32} */
 
-#include "clutter-embed.h"
+#include "games-clutter-embed.h"
 
-G_DEFINE_TYPE (AisleriotClutterEmbed, aisleriot_clutter_embed, GTK_TYPE_WIDGET);
+G_DEFINE_TYPE (GamesClutterEmbed, games_clutter_embed, GTK_TYPE_WIDGET);
 
-#define AISLERIOT_CLUTTER_EMBED_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), AISLERIOT_TYPE_CLUTTER_EMBED, AisleriotClutterEmbedPrivate))
+#define GAMES_CLUTTER_EMBED_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GAMES_TYPE_CLUTTER_EMBED, GamesClutterEmbedPrivate))
 
-struct _AisleriotClutterEmbedPrivate
+struct _GamesClutterEmbedPrivate
 {
   ClutterActor *stage;
 };
 
 static void
-aisleriot_clutter_embed_send_configure (AisleriotClutterEmbed *embed)
+games_clutter_embed_send_configure (GamesClutterEmbed *embed)
 {
   GtkWidget *widget;
   GdkEvent *event = gdk_event_new (GDK_CONFIGURE);
@@ -90,9 +88,9 @@ aisleriot_clutter_embed_send_configure (AisleriotClutterEmbed *embed)
 }
 
 static void
-aisleriot_clutter_embed_dispose (GObject *gobject)
+games_clutter_embed_dispose (GObject *gobject)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (gobject)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (gobject)->priv;
 
   if (priv->stage)
     {
@@ -100,34 +98,34 @@ aisleriot_clutter_embed_dispose (GObject *gobject)
       priv->stage = NULL;
     }
 
-  G_OBJECT_CLASS (aisleriot_clutter_embed_parent_class)->dispose (gobject);
+  G_OBJECT_CLASS (games_clutter_embed_parent_class)->dispose (gobject);
 }
 
 static void
-aisleriot_clutter_embed_show (GtkWidget *widget)
+games_clutter_embed_show (GtkWidget *widget)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv;
 
   if (GTK_WIDGET_REALIZED (widget))
     clutter_actor_show (priv->stage);
 
-  GTK_WIDGET_CLASS (aisleriot_clutter_embed_parent_class)->show (widget);
+  GTK_WIDGET_CLASS (games_clutter_embed_parent_class)->show (widget);
 }
 
 static void
-aisleriot_clutter_embed_hide (GtkWidget *widget)
+games_clutter_embed_hide (GtkWidget *widget)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv;
 
   clutter_actor_hide (priv->stage);
 
-  GTK_WIDGET_CLASS (aisleriot_clutter_embed_parent_class)->hide (widget);
+  GTK_WIDGET_CLASS (games_clutter_embed_parent_class)->hide (widget);
 }
 
 static void
-aisleriot_clutter_embed_realize (GtkWidget *widget)
+games_clutter_embed_realize (GtkWidget *widget)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv; 
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv; 
   GdkWindowAttr attributes;
   int attributes_mask;
   
@@ -196,14 +194,14 @@ aisleriot_clutter_embed_realize (GtkWidget *widget)
   if (GTK_WIDGET_VISIBLE (widget))
     clutter_actor_show (priv->stage);
 
-  aisleriot_clutter_embed_send_configure (AISLERIOT_CLUTTER_EMBED (widget));
+  games_clutter_embed_send_configure (GAMES_CLUTTER_EMBED (widget));
 }
 
 static void
-aisleriot_clutter_embed_size_allocate (GtkWidget     *widget,
+games_clutter_embed_size_allocate (GtkWidget     *widget,
                                  GtkAllocation *allocation)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv;
 
   widget->allocation = *allocation;
 
@@ -213,7 +211,7 @@ aisleriot_clutter_embed_size_allocate (GtkWidget     *widget,
                               allocation->x, allocation->y,
                               allocation->width, allocation->height);
 
-      aisleriot_clutter_embed_send_configure (AISLERIOT_CLUTTER_EMBED (widget));
+      games_clutter_embed_send_configure (GAMES_CLUTTER_EMBED (widget));
     }
 
   clutter_actor_set_size (priv->stage,
@@ -224,10 +222,10 @@ aisleriot_clutter_embed_size_allocate (GtkWidget     *widget,
 }
 
 static gboolean
-aisleriot_clutter_embed_motion_notify_event (GtkWidget      *widget,
+games_clutter_embed_motion_notify_event (GtkWidget      *widget,
                                        GdkEventMotion *event)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv;
   ClutterEvent cevent = { 0, };
 
   cevent.type = CLUTTER_MOTION;
@@ -260,10 +258,10 @@ aisleriot_clutter_embed_motion_notify_event (GtkWidget      *widget,
 }
 
 static gboolean
-aisleriot_clutter_embed_button_event (GtkWidget      *widget,
+games_clutter_embed_button_event (GtkWidget      *widget,
                                 GdkEventButton *event)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv;
   ClutterEvent cevent = { 0, };
 
   if (event->type == GDK_BUTTON_PRESS ||
@@ -292,10 +290,10 @@ aisleriot_clutter_embed_button_event (GtkWidget      *widget,
 }
 
 static gboolean
-aisleriot_clutter_embed_key_event (GtkWidget   *widget,
+games_clutter_embed_key_event (GtkWidget   *widget,
                              GdkEventKey *event)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv;
   ClutterEvent cevent = { 0, };
 
   if (event->type == GDK_KEY_PRESS)
@@ -317,10 +315,10 @@ aisleriot_clutter_embed_key_event (GtkWidget   *widget,
 }
 
 static gboolean
-aisleriot_clutter_embed_expose_event (GtkWidget      *widget,
+games_clutter_embed_expose_event (GtkWidget      *widget,
                                 GdkEventExpose *event)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv;
 
   if (CLUTTER_ACTOR_IS_VISIBLE (priv->stage))
     clutter_actor_queue_redraw (priv->stage);
@@ -329,10 +327,10 @@ aisleriot_clutter_embed_expose_event (GtkWidget      *widget,
 }
 
 static gboolean
-aisleriot_clutter_embed_map_event (GtkWidget	 *widget,
+games_clutter_embed_map_event (GtkWidget	 *widget,
                              GdkEventAny *event)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv;
 
   /* The backend wont get the XEvent as we go strait to do_event().
    * So we have to make sure we set the event here.
@@ -343,10 +341,10 @@ aisleriot_clutter_embed_map_event (GtkWidget	 *widget,
 }
 
 static gboolean
-aisleriot_clutter_embed_focus_out (GtkWidget     *widget,
+games_clutter_embed_focus_out (GtkWidget     *widget,
                              GdkEventFocus *event)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv;
 
   /* give back key focus to the stage */
   clutter_stage_set_key_focus (CLUTTER_STAGE (priv->stage), NULL);
@@ -355,10 +353,10 @@ aisleriot_clutter_embed_focus_out (GtkWidget     *widget,
 }
 
 static gboolean
-aisleriot_clutter_embed_scroll_event (GtkWidget      *widget,
+games_clutter_embed_scroll_event (GtkWidget      *widget,
                                 GdkEventScroll *event)
 {
-  AisleriotClutterEmbedPrivate *priv = AISLERIOT_CLUTTER_EMBED (widget)->priv;
+  GamesClutterEmbedPrivate *priv = GAMES_CLUTTER_EMBED (widget)->priv;
 
   ClutterEvent cevent = { 0, };
 
@@ -380,36 +378,36 @@ aisleriot_clutter_embed_scroll_event (GtkWidget      *widget,
 }
 
 static void
-aisleriot_clutter_embed_class_init (AisleriotClutterEmbedClass *klass)
+games_clutter_embed_class_init (GamesClutterEmbedClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  g_type_class_add_private (klass, sizeof (AisleriotClutterEmbedPrivate));
+  g_type_class_add_private (klass, sizeof (GamesClutterEmbedPrivate));
 
-  gobject_class->dispose = aisleriot_clutter_embed_dispose;
+  gobject_class->dispose = games_clutter_embed_dispose;
 
-  widget_class->size_allocate = aisleriot_clutter_embed_size_allocate;
-  widget_class->realize = aisleriot_clutter_embed_realize;
-  widget_class->show = aisleriot_clutter_embed_show;
-  widget_class->hide = aisleriot_clutter_embed_hide;
-  widget_class->button_press_event = aisleriot_clutter_embed_button_event;
-  widget_class->button_release_event = aisleriot_clutter_embed_button_event;
-  widget_class->key_press_event = aisleriot_clutter_embed_key_event;
-  widget_class->key_release_event = aisleriot_clutter_embed_key_event;
-  widget_class->motion_notify_event = aisleriot_clutter_embed_motion_notify_event;
-  widget_class->expose_event = aisleriot_clutter_embed_expose_event;
-  widget_class->map_event = aisleriot_clutter_embed_map_event;
-  widget_class->focus_out_event = aisleriot_clutter_embed_focus_out;
-  widget_class->scroll_event = aisleriot_clutter_embed_scroll_event;
+  widget_class->size_allocate = games_clutter_embed_size_allocate;
+  widget_class->realize = games_clutter_embed_realize;
+  widget_class->show = games_clutter_embed_show;
+  widget_class->hide = games_clutter_embed_hide;
+  widget_class->button_press_event = games_clutter_embed_button_event;
+  widget_class->button_release_event = games_clutter_embed_button_event;
+  widget_class->key_press_event = games_clutter_embed_key_event;
+  widget_class->key_release_event = games_clutter_embed_key_event;
+  widget_class->motion_notify_event = games_clutter_embed_motion_notify_event;
+  widget_class->expose_event = games_clutter_embed_expose_event;
+  widget_class->map_event = games_clutter_embed_map_event;
+  widget_class->focus_out_event = games_clutter_embed_focus_out;
+  widget_class->scroll_event = games_clutter_embed_scroll_event;
 }
 
 static void
-aisleriot_clutter_embed_init (AisleriotClutterEmbed *embed)
+games_clutter_embed_init (GamesClutterEmbed *embed)
 {
-  AisleriotClutterEmbedPrivate *priv;
+  GamesClutterEmbedPrivate *priv;
 
-  embed->priv = priv = AISLERIOT_CLUTTER_EMBED_GET_PRIVATE (embed);
+  embed->priv = priv = GAMES_CLUTTER_EMBED_GET_PRIVATE (embed);
 
   GTK_WIDGET_SET_FLAGS (embed, GTK_CAN_FOCUS);
 
@@ -423,7 +421,7 @@ aisleriot_clutter_embed_init (AisleriotClutterEmbed *embed)
 }
 
 /**
- * aisleriot_clutter_init:
+ * games_clutter_init:
  * @argc: pointer to the arguments count, or %NULL
  * @argv: pointer to the arguments vector, or %NULL
  *
@@ -436,11 +434,11 @@ aisleriot_clutter_embed_init (AisleriotClutterEmbed *embed)
  * Since: 0.8
  */
 ClutterInitError
-aisleriot_clutter_init (int    *argc,
-                  char ***argv)
+games_clutter_init (int    *argc,
+                    char ***argv)
 {
   if (!gtk_init_check (argc, argv))
-    return AISLERIOT_CLUTTER_INIT_ERROR_GTK;
+    return GAMES_CLUTTER_INIT_ERROR_GTK;
 
 #if defined(GDK_WINDOWING_X11)
   clutter_x11_set_display (GDK_DISPLAY());
@@ -453,15 +451,15 @@ aisleriot_clutter_init (int    *argc,
 }
 
 ClutterInitError
-aisleriot_clutter_init_with_args (int            *argc,
-                            char         ***argv,
-                            const char     *parameter_string,
-                            GOptionEntry   *entries,
-                            const char     *translation_domain,
-                            GError        **error)
+games_clutter_init_with_args (int            *argc,
+                              char         ***argv,
+                              const char     *parameter_string,
+                              GOptionEntry   *entries,
+                              const char     *translation_domain,
+                              GError        **error)
 {
   if (!gtk_init_with_args (argc, argv, (char*) parameter_string, entries, (char*) translation_domain, error))
-    return AISLERIOT_CLUTTER_INIT_ERROR_GTK;
+    return GAMES_CLUTTER_INIT_ERROR_GTK;
 
 #if defined(GDK_WINDOWING_X11)
   clutter_x11_set_display (GDK_DISPLAY());
@@ -474,24 +472,24 @@ aisleriot_clutter_init_with_args (int            *argc,
 }
 
 /**
- * aisleriot_clutter_embed_new:
+ * games_clutter_embed_new:
  *
- * Creates a new #AisleriotClutterEmbed widget. This widget can be
+ * Creates a new #GamesClutterEmbed widget. This widget can be
  * used to build a scene using Clutter API into a GTK+ application.
  *
- * Return value: the newly created #AisleriotClutterEmbed
+ * Return value: the newly created #GamesClutterEmbed
  *
  * Since: 0.6
  */
 GtkWidget *
-aisleriot_clutter_embed_new (void)
+games_clutter_embed_new (void)
 {
-  return g_object_new (AISLERIOT_TYPE_CLUTTER_EMBED, NULL);
+  return g_object_new (GAMES_TYPE_CLUTTER_EMBED, NULL);
 }
 
 /**
- * aisleriot_clutter_embed_get_stage:
- * @embed: a #AisleriotClutterEmbed
+ * games_clutter_embed_get_stage:
+ * @embed: a #GamesClutterEmbed
  *
  * Retrieves the #ClutterStage from @embed. The returned stage can be
  * used to add actors to the Clutter scene.
@@ -502,9 +500,9 @@ aisleriot_clutter_embed_new (void)
  * Since: 0.6
  */
 ClutterActor *
-aisleriot_clutter_embed_get_stage (AisleriotClutterEmbed *embed)
+games_clutter_embed_get_stage (GamesClutterEmbed *embed)
 {
-  g_return_val_if_fail (AISLERIOT_IS_CLUTTER_EMBED (embed), NULL);
+  g_return_val_if_fail (GAMES_IS_CLUTTER_EMBED (embed), NULL);
 
   return embed->priv->stage;
 }

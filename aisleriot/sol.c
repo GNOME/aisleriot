@@ -71,7 +71,7 @@
 #include "window.h"
 
 #ifdef HAVE_CLUTTER
-#include "clutter-embed.h"
+#include <libgames-support/games-clutter-embed.h>
 #endif
 
 typedef struct {
@@ -560,7 +560,7 @@ main_prog (void *closure, int argc, char *argv[])
   }
 
 #ifdef HAVE_CLUTTER
-  if (aisleriot_clutter_init_with_args (NULL, NULL, NULL, NULL, NULL, &error) != CLUTTER_INIT_SUCCESS) {
+  if (games_clutter_init_with_args (NULL, NULL, NULL, NULL, NULL, &error) != CLUTTER_INIT_SUCCESS) {
     g_printerr ("Failed to initialise clutter: %s\n", error->message);
     g_error_free (error);
     goto cleanup;
