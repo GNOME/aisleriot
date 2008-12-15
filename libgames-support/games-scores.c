@@ -289,7 +289,7 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
 }
 
 /**
- * games_scores_update_score:
+ * games_scores_update_score_name:
  * @self: A scores object.
  * @new_name: The new name to use.
  *
@@ -300,12 +300,11 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
  *
  **/
 void
-games_scores_update_score (GamesScores * self, gchar * new_name)
+games_scores_update_score_name (GamesScores * self, gchar * new_name, gchar * old_name)
 {
   GamesScoresCategoryPrivate *cat;
   GList *s, *scores_list;
   gint n, place;
-  gchar *old_name;
   GamesScore *sc;
   GamesScoreValue score;
 
@@ -318,7 +317,10 @@ games_scores_update_score (GamesScores * self, gchar * new_name)
   if (place == 0)
     return;
 
-  old_name = g_strdup (g_get_real_name ());
+  if (old_name)
+      old_name = g_strdup (old_name); /* Make copy so we can free it later */
+  else
+      old_name = g_strdup (g_get_real_name ());
 
   cat = games_scores_get_current (self);
 
@@ -348,6 +350,23 @@ games_scores_update_score (GamesScores * self, gchar * new_name)
   games_scores_backend_set_scores (cat->backend, scores_list);
 
   g_free (old_name);
+}
+
+/**
+ * games_scores_update_score:
+ * @self: A scores object.
+ * @new_name: The new name to use.
+ *
+ * By default add_score uses the current user name. This routine updates
+ * that name. There are a few wrinkles: the score may have moved since we
+ * got the original score. Use in normal code is discouraged, it is here 
+ * to be used by GamesScoresDialog.
+ *
+ **/
+void
+games_scores_update_score (GamesScores * self, gchar * new_name)
+{
+    games_scores_update_score_name (self, new_name, NULL);
 }
 
 /**

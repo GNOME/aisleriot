@@ -182,12 +182,18 @@ static void games_scores_dialog_name_edited (GtkCellRendererText *cell,
 					     GamesScoresDialog *self)
 {
   GtkTreeIter iter;
+  gchar *old_name = NULL;
 
   gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (self->_priv->list), 
 				       &iter, path);
+
+  /* Get old name for comparison */
+  gtk_tree_model_get (GTK_TREE_MODEL (self->_priv->list),
+                      &iter, 0, &old_name, -1);
+                           
   gtk_list_store_set (self->_priv->list, &iter, 0, new_text, -1);
 
-  games_scores_update_score (self->_priv->scores, new_text);
+  games_scores_update_score_name (self->_priv->scores, new_text, old_name);
 }
 
 /* Prevent editing of any cell in the high score list but the one we set. */
