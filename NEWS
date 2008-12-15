@@ -1,3 +1,45 @@
+gnome-games 2.25.3
+==================
+
+This release brings a few UI improvements to the games. Beating the high score 
+in a game is now congratulated in the high score dialog and gtali now defaults to
+the name of the player who won if there are multiple human players. Chess got 
+its "New Game" dialog cleaned up and mahjongg saw numerous great improvements.
+
+General:
+  - Move the card textures cache to libgames-support (Christian Persch)
+  - Move clutter-embed to libgames-support. (Christian Persch)
+  - Use different message for getting the top score versus getting a score in 
+    the top ten (Robert Ancell)
+  - Use g_timeout_add_seconds where possible (Thomas H.P. Andersen)
+
+Aisleriot:
+  - Add setting to enable animations (Christian Persch)
+
+Chess:
+  - Removed icons from new game dialog for a cleaner design (Andreas Nilsson)
+
+Gnometris:
+  - Use GamesClutterEmbed instead of ClutterGtkEmbed (Christian Persch)
+
+Gtali:
+  - Make the High score table allow the user to change name to someone other
+    than their username. (Geoff Buchan)
+
+Mahjongg:
+  - Reword the change map dialog (Robert Ancell)
+  - Use selected tile for hint if possible (Robert Ancell)
+  - Refactor new game code so all state is correctly reset (Robert Ancell)
+  - Add new game button when no more moves (Claude Paroz, Robert Ancell)
+  - When cannot shuffle tiles don't display shuffle button in 'no moves' dialog
+    (Robert Ancell)
+  - Update documentation to correct the description of the high score dialog
+    (Robert Ancell)
+
+Translations:
+  - de: Mario Blättermann
+  - sk: Marcel Telka
+
 gnome-games 2.25.2
 ==================
 
