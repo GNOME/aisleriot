@@ -716,7 +716,12 @@ static void
 delayed_move_to_next_screen_cb (GtkAction *action,
                                 GtkWidget *widget)
 {
+#if GLIB_CHECK_VERSION (2, 14, 0)
+  g_timeout_add_seconds (10, (GSourceFunc) delayed_move_to_next_screen_timeout_cb, widget);
+#else
   g_timeout_add (10 * 1000, (GSourceFunc) delayed_move_to_next_screen_timeout_cb, widget);
+#endif /* GLIB 2.14.0 */
+
 }
 
 static void
