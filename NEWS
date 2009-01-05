@@ -1,3 +1,50 @@
+gnome-games 2.25.4
+==================
+
+This release brings the beginnings of an implementation of Clutter-based
+Gnometris and a few minor tweaks to GLChess.
+
+Gnometris renders with Clutter in an extremely rudamentary way, as a first
+milestone on the way to a fully-canvas driven game engine. Right now, it's just
+two ClutterCairo surfaces, background and foreground, which are used as
+compositors. These two actors will end up staying: background for--eh--the
+background, and foreground for display of Pango text. An intermediate layer will
+be introduced on which game pieces are actually animated, rotated and exploded.
+
+Sadly, even this stupid way of rendering is faster than the old method.
+
+This pre-alpha 'leaks' memory like gang-busters, also. I do not know if it is
+merely a i915 driver bug or something more fundamental. It's not a 'leak' in the
+traditional sense: all the textures that are 'leaked' are still reachable in the
+i915 driver code. It leaks on the order of 1MB of memory per frame of animation.
+This will be fixed either by doing things the Right Way or mitigating i915 leaks
+by avoiding the use of texture uploads at all costs (a tile cache).
+
+Hopefully, the final rendering infrastructure will be in place by the next
+development release.
+
+Gnometris:
+  - Implement Clutter-based rendering surfaces (Jason D. Clinton)
+
+GLChess:
+  - Catch keyboard interrupts in AI monitor process
+  - Apply antialias setting on new game (Robert Ancell, Bug #565743)
+  - Ignore unexpected messages from the GGZ server (Robert Ancell, Bugs #559193,
+    #562482)
+  - Fix UI bug when players join a room (Robert Ancell)
+  - Change GGZ language from hardcoded en_NZ.UTF-8 to use environment variable
+    LANG (Robert Ancell, Bug #565402)
+  - Describe reason for GGZ disconnection (Robert Ancell, Bug #564515)
+  - Mark load game filters as translatable (Claude Paroz, Bug #565162)
+
+Translations:
+  - nb: Kjartan Maraas
+  - es: Daniel Mustieles
+  - fr: Claude Paroz
+  - el: Evgenia Petoumenou, Marios Zintilis
+  - de: Mario Blättermann
+
+
 gnome-games 2.25.3
 ==================
 
