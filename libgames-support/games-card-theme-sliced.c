@@ -44,7 +44,7 @@ struct _GamesCardThemeSliced {
   GdkPixbuf *source;
   CardSize subsize;
 
-  guint prescaled : 1;
+  guint scalable : 1;
 };
 
 #define N_ROWS ((double) 5.0)
@@ -61,7 +61,8 @@ games_card_theme_sliced_clear_sized_theme_data (GamesCardThemePreimage *preimage
 {
   GamesCardThemeSliced *theme = GAMES_CARD_THEME_SLICED (preimage_card_theme);
 
-  if (theme->source) {
+  if (theme->scalable &&
+      theme->source) {
     g_object_unref (theme->source);
     theme->source = NULL;
   }
@@ -77,10 +78,13 @@ games_card_theme_sliced_load (GamesCardTheme *card_theme,
   if (!GAMES_CARD_THEME_CLASS (games_card_theme_sliced_parent_class)->load (card_theme, error))
     return FALSE;
 
-  /* If we don't have a scalable format, build a scaled pixbuf that we'll cut up later */
-  theme->prescaled = games_preimage_is_scalable (preimage_card_theme->cards_preimage);
-  if (!theme->prescaled) {
+  /* If we don't have a scalable format, build an unscaled pixbuf that we'll cut up later */
+  theme->scalable = games_preimage_is_scalable (preimage_card_theme->cards_preimage);
+  if (!theme->scalable) {
     theme->source = games_preimage_render_unscaled_pixbuf (preimage_card_theme->cards_preimage);
+
+    /* This is true because in the non-scalable case GamesPreimage directly holds a GdkPixbuf */
+    g_assert (theme->source != NULL);
   }
 
   return TRUE;
@@ -91,26 +95,21 @@ games_card_theme_sliced_prerender_scalable (GamesCardThemeSliced *theme)
 {
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) theme;
 
-  // FIXMEchpe this doesn't look right
-  g_return_val_if_fail (theme->prescaled
-                        || theme->source != NULL, FALSE);
-
   _games_profile_start ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((GamesCardTheme*)theme)->theme_info->display_name);
 
-  theme->source =
-    games_preimage_render (preimage_card_theme->cards_preimage,
-                           preimage_card_theme->card_size.width * 13,
-                           preimage_card_theme->card_size.height * 5);
+  g_assert (theme->source == NULL);
+
+  theme->source = games_preimage_render (preimage_card_theme->cards_preimage,
+                                         preimage_card_theme->card_size.width * 13,
+                                         preimage_card_theme->card_size.height * 5);
 
   _games_profile_end ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((GamesCardTheme*)theme)->theme_info->display_name);
 
   if (!theme->source)
     return FALSE;
 
-  theme->subsize.width =
-    gdk_pixbuf_get_width (theme->source) / 13;
-  theme->subsize.height =
-    gdk_pixbuf_get_height (theme->source) / 5;
+  theme->subsize.width = gdk_pixbuf_get_width (theme->source) / 13;
+  theme->subsize.height = gdk_pixbuf_get_height (theme->source) / 5;
 
   return TRUE;
 }
@@ -135,10 +134,9 @@ games_card_theme_sliced_get_card_pixbuf (GamesCardTheme *card_theme,
   suit = card_id / 13;
   rank = card_id % 13;
 
-  /* Not using subrendering */
-  // FIXMEchpe this doesn't look right for non-scalable
   if (!theme->source &&
-      !games_card_theme_sliced_prerender_scalable (theme))
+      (!theme->scalable ||
+       !games_card_theme_sliced_prerender_scalable (theme)))
     return NULL;
 
   subpixbuf = gdk_pixbuf_new_subpixbuf (theme->source,
@@ -148,7 +146,7 @@ games_card_theme_sliced_get_card_pixbuf (GamesCardTheme *card_theme,
                                         theme->subsize.height,
                                         theme->subsize.width,
                                         theme->subsize.height);
-  if (theme->prescaled) {
+  if (theme->scalable) {
     card_pixbuf = subpixbuf;
   } else {
     card_pixbuf = gdk_pixbuf_scale_simple (subpixbuf,
@@ -165,6 +163,16 @@ static void
 games_card_theme_sliced_init (GamesCardThemeSliced *theme)
 {
   theme->subsize.width = theme->subsize.height = -1;
+}
+
+static void
+games_card_theme_sliced_finalize (GObject * object)
+{
+  GamesCardThemeSliced *theme = GAMES_CARD_THEME_SLICED (object);
+
+  theme->scalable = TRUE; /* so the call to clear unrefs the source pixbuf */
+
+  G_OBJECT_CLASS (games_card_theme_sliced_parent_class)->finalize (object);
 }
 
 static GamesCardThemeInfo *
@@ -215,8 +223,11 @@ games_card_theme_sliced_class_get_theme_infos (GamesCardThemeClass *klass,
 static void
 games_card_theme_sliced_class_init (GamesCardThemeSlicedClass * klass)
 {
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
   GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
+
+  gobject_class->finalize = games_card_theme_sliced_finalize;
 
   theme_class->get_theme_info = games_card_theme_sliced_class_get_theme_info;
   theme_class->get_theme_infos = games_card_theme_sliced_class_get_theme_infos;
