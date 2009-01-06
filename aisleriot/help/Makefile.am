@@ -7,6 +7,7 @@ DOC_LINGUAS = ca de es fr oc ru sv
 DOC_MODULE = aisleriot
 
 DOC_ENTITIES = \
+	accordion.xml \
 	agnes.xml \
 	athena.xml \
 	auld_lang_syne.xml \

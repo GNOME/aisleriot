@@ -3,6 +3,7 @@ NULL =
 rulesdir  = $(pkgdatadir)/aisleriot/games
 
 rules_DATA  = 			\
+	accordion.scm		\
 	agnes.scm		\
 	athena.scm		\
 	auld_lang_syne.scm	\
