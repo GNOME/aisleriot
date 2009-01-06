@@ -113,7 +113,7 @@ static GdkPixbuf *
 games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
                                       int card_id)
 {
-#ifndef HAVE_RSVG_BBOX
+#ifdef HAVE_RSVG_BBOX
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
   GamesPreimage *preimage = preimage_card_theme->cards_preimage;
   GdkPixbuf *subpixbuf;
@@ -138,9 +138,12 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
 
   games_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
 
-  if (!rsvg_handle_get_dimension_sub (preimage->rsvg_handle, &dimension, node) ||
-      !rsvg_handle_get_position_sub (preimage->rsvg_handle, &position, node)) {
-    g_print ("Failed to get dim or pos for '%s'\n", node);
+  if (!rsvg_handle_get_dimensions_sub (preimage->rsvg_handle, &dimension, node)) {
+    g_print ("Failed to get dim for '%s'\n", node);
+    return NULL;
+  }
+  if (!rsvg_handle_get_position_sub (preimage->rsvg_handle, &position, node)) {
+    g_print ("Failed to get pos for '%s'\n", node);
     return NULL;
   }
 
