@@ -45,21 +45,8 @@ typedef enum
   LAST_CACHE_MODE
 } GamesCardImagesCacheMode;
 
-typedef struct _GamesCardImages {
-  GObject parent;
-
-  GamesCardTheme *theme;
-  GdkDrawable *drawable;
-  GdkBitmap *card_mask;
-  GdkBitmap *slot_mask;
-  gpointer *cache;
-  GdkColor background_colour;
-  GdkColor selection_colour;
-
-  guint cache_mode;
-} GamesCardImages;
-
-typedef GObjectClass GamesCardImagesClass;
+typedef struct _GamesCardImages       GamesCardImages;
+typedef struct _GamesCardImagesClass  GamesCardImagesClass;;
 
 GType games_card_images_get_type (void);
 

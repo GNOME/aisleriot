@@ -34,6 +34,11 @@ struct _GamesCardTexturesCachePrivate
   guint theme_changed_handler;
 
   CoglHandle *cards;
+
+#ifdef GNOME_ENABLE_DEBUG
+  guint n_calls;
+  guint cache_hits;
+#endif
 };
 
 enum
@@ -45,6 +50,17 @@ enum
 /* This is an invalid value for a CoglHandle, and distinct from COGL_INVALID_HANDLE */
 #define FAILED_HANDLE ((gpointer) 0x1)
 #define IS_FAILED_HANDLE(ptr) (G_UNLIKELY ((ptr) == FAILED_HANDLE))
+
+/* Logging */
+#ifdef GNOME_ENABLE_DEBUG
+#define LOG_CALL(obj) obj->priv->n_calls++
+#define LOG_CACHE_HIT(obj) obj->priv->cache_hits++
+#define LOG_CACHE_MISS(obj)
+#else
+#define LOG_CALL(obj)
+#define LOG_CACHE_HIT(obj)
+#define LOG_CACHE_MISS(obj)
+#endif /* GNOME_ENABLE_DEBUG */
 
 static void games_card_textures_cache_dispose (GObject *object);
 static void games_card_textures_cache_finalize (GObject *object);
@@ -115,10 +131,19 @@ games_card_textures_cache_dispose (GObject *object)
 static void
 games_card_textures_cache_finalize (GObject *object)
 {
-  GamesCardTexturesCache *self = (GamesCardTexturesCache *) object;
-  GamesCardTexturesCachePrivate *priv = self->priv;
+  GamesCardTexturesCache *cache = GAMES_CARD_TEXTURES_CACHE (object);
+  GamesCardTexturesCachePrivate *priv = cache->priv;
 
   g_free (priv->cards);
+
+#ifdef GNOME_ENABLE_DEBUG
+  _GAMES_DEBUG_IF (GAMES_DEBUG_CARD_CACHE) {
+    _games_debug_print (GAMES_DEBUG_CARD_CACHE,
+                        "GamesCardTexturesCache %p statistics: %u calls with %u hits and %u misses for a hit/total of %.3f\n",
+                        cache, priv->n_calls, priv->cache_hits, priv->n_calls - priv->cache_hits,
+                        priv->n_calls > 0 ? (double) priv->cache_hits / (double) priv->n_calls : 0.0);
+  }
+#endif
 
   G_OBJECT_CLASS (games_card_textures_cache_parent_class)->finalize (object);
 }
@@ -261,12 +286,18 @@ games_card_textures_cache_get_card_texture_by_id (GamesCardTexturesCache *cache,
 
   g_return_val_if_fail (card_id < GAMES_CARDS_TOTAL , NULL);
 
+  LOG_CALL (cache);
+
   handle = priv->cards[card_id];
-  if (IS_FAILED_HANDLE (handle))
+  if (IS_FAILED_HANDLE (handle)) {
+    LOG_CACHE_HIT (cache);
     return COGL_INVALID_HANDLE;
+  }
 
   if (handle == COGL_INVALID_HANDLE) {
     GdkPixbuf *pixbuf;
+
+    LOG_CACHE_MISS (cache);
 
     pixbuf = games_card_theme_get_card_pixbuf (priv->theme, card_id);
     if (!pixbuf) {
@@ -291,6 +322,8 @@ games_card_textures_cache_get_card_texture_by_id (GamesCardTexturesCache *cache,
     }
 
     priv->cards[card_id] = handle;
+  } else {
+    LOG_CACHE_HIT (cache);
   }
 
   return handle;

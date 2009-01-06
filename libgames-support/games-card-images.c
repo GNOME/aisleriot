@@ -33,6 +33,29 @@
 #include "games-card-private.h"
 #include "games-debug.h"
 
+struct _GamesCardImagesClass {
+  GObjectClass parent_class;
+};
+
+struct _GamesCardImages {
+  GObject parent;
+
+  GamesCardTheme *theme;
+  GdkDrawable *drawable;
+  GdkBitmap *card_mask;
+  GdkBitmap *slot_mask;
+  gpointer *cache;
+  GdkColor background_colour;
+  GdkColor selection_colour;
+
+  guint cache_mode;
+
+#ifdef GNOME_ENABLE_DEBUG
+  guint n_calls;
+  guint cache_hits;
+#endif
+};
+
 enum {
   PROP_0,
   PROP_THEME
@@ -60,6 +83,17 @@ enum {
 /* Threshold for rendering the pixbuf to card and alpha mask */
 #define CARD_ALPHA_THRESHOLD  (127)
 #define SLOT_ALPHA_THRESHOLD  (255)
+
+/* Logging */
+#ifdef GNOME_ENABLE_DEBUG
+#define LOG_CALL(obj) obj->n_calls++
+#define LOG_CACHE_HIT(obj) obj->cache_hits++
+#define LOG_CACHE_MISS(obj)
+#else
+#define LOG_CALL(obj)
+#define LOG_CACHE_HIT(obj)
+#define LOG_CACHE_MISS(obj)
+#endif /* GNOME_ENABLE_DEBUG */
 
 static void
 games_card_images_clear_cache (GamesCardImages * images)
@@ -200,6 +234,15 @@ games_card_images_finalize (GObject * object)
                                           images);
     g_object_unref (images->theme);
   }
+
+#ifdef GNOME_ENABLE_DEBUG
+  _GAMES_DEBUG_IF (GAMES_DEBUG_CARD_CACHE) {
+    _games_debug_print (GAMES_DEBUG_CARD_CACHE,
+                        "GamesCardImages %p statistics: %u calls with %u hits and %u misses for a hit/total of %.3f\n",
+                        images, images->n_calls, images->cache_hits, images->n_calls - images->cache_hits,
+                        images->n_calls > 0 ? (double) images->cache_hits / (double) images->n_calls : 0.0);
+  }
+#endif
 
   G_OBJECT_CLASS (games_card_images_parent_class)->finalize (object);
 }
@@ -481,14 +524,18 @@ games_card_images_get_card_pixbuf_by_id (GamesCardImages * images,
                         && (card_id < GAMES_CARDS_TOTAL), NULL);
   g_return_val_if_fail (images->cache_mode == CACHE_PIXBUFS, NULL);
 
+  LOG_CALL (images);
+
   idx = card_id;
   if (G_UNLIKELY (highlighted)) {
     idx += GAMES_CARDS_TOTAL;
   }
 
   data = images->cache[idx];
-  if (IS_FAILED_POINTER (data))
+  if (IS_FAILED_POINTER (data)) {
+    LOG_CACHE_HIT (images);
     return NULL;
+  }
 
   pixbuf = UNMARK_POINTER (data);
 
@@ -497,8 +544,11 @@ games_card_images_get_card_pixbuf_by_id (GamesCardImages * images,
       (!highlighted || HAS_MARK (data, MARK_IS_TRANSFORMED))) {
     g_assert (!HAS_MARK (data, MARK_IS_PIXMAP));
     g_assert (GDK_IS_PIXBUF (pixbuf));
+    LOG_CACHE_HIT (images);
     return pixbuf;
   }
+
+  LOG_CACHE_MISS (images);
 
   /* Create the pixbuf */
   if (!pixbuf) {
@@ -576,14 +626,18 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
   g_return_val_if_fail (images->cache_mode == CACHE_PIXMAPS, NULL);
   g_return_val_if_fail (images->drawable != NULL, NULL);
 
+  LOG_CALL (images);
+
   idx = card_id;
   if (G_UNLIKELY (highlighted)) {
     idx += GAMES_CARDS_TOTAL;
   }
 
   data = images->cache[idx];
-  if (IS_FAILED_POINTER (data))
+  if (IS_FAILED_POINTER (data)) {
+    LOG_CACHE_HIT (images);
     return NULL;
+  }
 
   pixbuf_or_pixmap = UNMARK_POINTER (data);
 
@@ -592,8 +646,11 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
     g_assert (!highlighted || HAS_MARK (data, MARK_IS_TRANSFORMED));
     g_assert (GDK_IS_PIXMAP (pixbuf_or_pixmap));
 
+    LOG_CACHE_HIT (images);
     return pixbuf_or_pixmap;
   }
+
+  LOG_CACHE_MISS (images);
 
   /* We either have a pixbuf, or need to create it first */
   if (!pixbuf_or_pixmap) {
