@@ -531,6 +531,13 @@ games_conf_initialise (const char *game_name)
                            "game-name", game_name,
                            NULL);
 
+#ifdef HAVE_GNOME
+  /* GConf uses ORBit2 which needs threads (but it's too late to call
+   * g_thread_init() here). See bug #547885.
+   */
+  g_assert (g_thread_supported ());
+#endif
+
   return !instance->priv->need_init;
 }
 
@@ -545,6 +552,7 @@ games_conf_shutdown (void)
   g_assert (instance != NULL);
 
   g_object_unref (instance);
+  instance = NULL;
 }
 
 /**
