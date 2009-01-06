@@ -416,13 +416,13 @@ games_card_theme_set_font_options (GamesCardTheme *theme,
 
 
 /**
- * games_card_theme_get_theme:
+ * games_card_theme_get_theme_info:
  * @theme:
  *
  * Returns: the #GamesCardThemeInfo corresponding to @theme.
  */
 GamesCardThemeInfo *
-games_card_theme_get_theme (GamesCardTheme *theme)
+games_card_theme_get_theme_info (GamesCardTheme *theme)
 {
   g_return_val_if_fail (GAMES_IS_CARD_THEME (theme), NULL);
 

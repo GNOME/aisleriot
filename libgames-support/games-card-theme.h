@@ -76,7 +76,7 @@ void games_card_theme_set_font_options (GamesCardTheme *theme,
 gboolean games_card_theme_set_theme (GamesCardTheme *theme,
                                      GamesCardThemeInfo *info);
 
-GamesCardThemeInfo *games_card_theme_get_theme (GamesCardTheme * theme);
+GamesCardThemeInfo *games_card_theme_get_theme_info (GamesCardTheme * theme);
 
 gboolean games_card_theme_set_size (GamesCardTheme * theme,
                                     int width,

@@ -1485,10 +1485,10 @@ card_theme_changed_cb (GtkToggleAction *action,
     return;
 
   info = g_object_get_data (G_OBJECT (action), "card-theme-info");
-  g_return_if_fail (info != NULL);
+  g_assert (info != NULL);
 
   if (priv->theme != NULL &&
-      info == games_card_theme_get_theme (priv->theme))
+      info == games_card_theme_get_theme_info (priv->theme))
     return;
 
   theme = games_card_theme_get (info);
@@ -1504,7 +1504,7 @@ install_card_theme_menu (AisleriotWindow *window)
   AisleriotWindowPrivate *priv = window->priv;
   GList *list, *l;
   GSList *radio_group = NULL;
-  //GamesCardThemeInfo *card_theme;
+  GamesCardThemeInfo *current_theme_info;
   guint i = 0;
 
   /* Clean out the old menu */
@@ -1535,8 +1535,10 @@ install_card_theme_menu (AisleriotWindow *window)
 
   priv->card_themes_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
- // FIXMEchpe
-//  card_theme = aisleriot_board_get_card_theme (priv->board);
+  if (priv->theme)
+    current_theme_info = games_card_theme_get_theme_info (priv->theme);
+  else
+    current_theme_info = NULL;
 
   for (l = list; l != NULL; l = l->next) {
     GamesCardThemeInfo *info = (GamesCardThemeInfo *) l->data;
@@ -1544,7 +1546,7 @@ install_card_theme_menu (AisleriotWindow *window)
     char actionname[32];
     char *display_name, *tooltip;
 
-    display_name = g_strdup (games_card_theme_info_get_display_name (info)); //aisleriot_util_get_display_filename (theme);
+    display_name = g_strdup (games_card_theme_info_get_display_name (info));
 
     g_snprintf (actionname, sizeof (actionname), "Theme%d", i);
 #ifdef HAVE_HILDON
@@ -1559,11 +1561,10 @@ install_card_theme_menu (AisleriotWindow *window)
     gtk_radio_action_set_group (action, radio_group);
     radio_group = gtk_radio_action_get_group (action);
 
- // FIXMEchpe
     /* Check if this is the current theme's action. Do this before connecting the callback */
-//     if (games_card_theme_info_equal (card_theme, info)) {
-//       gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
-//     }
+    if (info == current_theme_info) {
+      gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+    }
 
     /* We steal the data from the list */
     g_object_set_data_full (G_OBJECT (action), "card-theme-info",
