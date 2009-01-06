@@ -1463,27 +1463,55 @@ card_theme_changed_cb (GtkToggleAction *action,
                        AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  GamesCardThemeInfo *info;
+  GamesCardThemeInfo *current_theme_info = NULL, *new_theme_info;
   GamesCardTheme *theme;
   const char *theme_name;
 
   if (!gtk_toggle_action_get_active (action))
     return;
 
-  info = g_object_get_data (G_OBJECT (action), "card-theme-info");
-  g_assert (info != NULL);
+  new_theme_info = g_object_get_data (G_OBJECT (action), "theme-info");
+  g_assert (new_theme_info != NULL);
 
-  if (priv->theme != NULL &&
-      info == games_card_theme_get_theme_info (priv->theme))
+  if (priv->theme) {
+    current_theme_info = games_card_theme_get_theme_info (priv->theme);
+  }
+
+  if (new_theme_info == current_theme_info)
     return;
 
-  theme = games_card_theme_get (info);
-  if (!theme)
-    return; // FIXMEchpe re-set the right radio action to active!!
+  theme = games_card_theme_get (new_theme_info);
+  if (!theme) {
+    GSList *group, *l;
+
+#if GTK_CHECK_VERSION (2, 12, 0) || (defined (HAVE_HILDON) && !defined(HAVE_MAEMO_3))
+    gtk_widget_error_bell (GTK_WIDGET (window));
+#endif
+  
+    /* Re-set the radio action of the current theme to active */
+    group = gtk_radio_action_get_group (GTK_RADIO_ACTION (action));
+    for (l = group; l != NULL; l = l->next) {
+      GtkToggleAction *theme_action = GTK_TOGGLE_ACTION (l->data);
+      GamesCardThemeInfo *info;
+
+      if (theme_action == action)
+        continue;
+
+      info = g_object_get_data (G_OBJECT (action), "theme-info");
+      if (info != current_theme_info)
+        continue;
+
+      /* The check at the top will prevent an infinite loop */
+      gtk_toggle_action_set_active (theme_action, TRUE);
+      break;
+    }
+
+    return;
+  }
 
   aisleriot_window_take_card_theme (window, theme);
 
-  theme_name = games_card_theme_info_get_persistent_name (info);
+  theme_name = games_card_theme_info_get_persistent_name (new_theme_info);
   games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme_name);
 }
 
@@ -1556,7 +1584,7 @@ install_card_theme_menu (AisleriotWindow *window)
     }
 
     /* We steal the data from the list */
-    g_object_set_data_full (G_OBJECT (action), "card-theme-info",
+    g_object_set_data_full (G_OBJECT (action), "theme-info",
                             l->data, (GDestroyNotify) games_card_theme_info_unref);
     l->data = NULL;
 
