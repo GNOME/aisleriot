@@ -95,6 +95,11 @@ games_card_theme_load_theme_with_fallback (GamesCardTheme *theme,
                                            const char *theme_dir,
                                            const char *theme_name)
 {
+  const char *env;
+
+  if ((env = g_getenv ("GAMES_CARD_THEME_NAME")))
+    theme_name = env;
+
   if (!theme_dir)
     theme_dir = _games_card_theme_class_get_default_theme_path (theme->klass);
 
