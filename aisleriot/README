@@ -35,20 +35,18 @@ Environment variables
 You can set the following environment variables to influence the
 behaviour of AisleRiot:
 
-GAMES_CARDS_SUBRENDERING:
-  Values: 0 or 1
-  Default: 1
-  
-    Set to 1 to use librsvg's subrendering which speeds up
-  the card rendering in case we don't need them all at once.
-  Needs support from the cards svg in form of special node IDs.
-  Set to 0 to suppress subrendering.
+GAMES_CARD_THEME_PATH_{SVG,KDE,SLICED,FIXED,PYSOL}:
+  Values: a colon-separated list of paths
+  Default: empty
 
-AISLERIOT_CARDS_SCALABLE:
-  Values: 0 or 1
-  Default: 1 (hildon: 0)
+    Set these variables to add extra paths to check for card themes.
 
-    Set to 0 to use prerendered cards; to 1 to use scalable cards.
+GAMES_DEBUG:
+  Values: use GAMES_DEBUG=help to see the list of available debug flags
+  Default: empty
+
+    Enabled extra debug output. Only available if configured with
+  --enable-debug.
 
 AISLERIOT_PIXBUF_DRAWING:
   Values: 0 or 1
