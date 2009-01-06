@@ -209,4 +209,20 @@ GType games_card_theme_fixed_get_type (void);
 
 GamesCardTheme* games_card_theme_fixed_new (void);
 
+/* GamesCardThemePysol */
+
+#define GAMES_TYPE_CARD_THEME_PYSOL            (games_card_theme_pysol_get_type ())
+#define GAMES_CARD_THEME_PYSOL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME_PYSOL, GamesCardThemePysol))
+#define GAMES_CARD_THEME_PYSOL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_THEME_PYSOL, GamesCardThemePysolClass))
+#define GAMES_IS_CARD_THEME_PYSOL(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_THEME_PYSOL))
+#define GAMES_IS_CARD_THEME_PYSOL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_THEME_PYSOL))
+#define GAMES_CARD_THEME_PYSOL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_THEME_PYSOL, GamesCardThemePysolClass))
+
+typedef struct _GamesCardThemePysolClass GamesCardThemePysolClass;
+typedef struct _GamesCardThemePysol      GamesCardThemePysol;
+
+GType games_card_theme_pysol_get_type (void);
+
+GamesCardTheme* games_card_theme_pysol_new (void);
+
 /* Utilities */

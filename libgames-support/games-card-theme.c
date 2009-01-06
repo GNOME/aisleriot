@@ -105,6 +105,7 @@ _games_card_theme_ensure_theme_infos (void)
 #endif
 #ifndef HAVE_HILDON
     GAMES_TYPE_CARD_THEME_SLICED,
+    GAMES_TYPE_CARD_THEME_PYSOL,
 #endif
     GAMES_TYPE_CARD_THEME_FIXED
   };

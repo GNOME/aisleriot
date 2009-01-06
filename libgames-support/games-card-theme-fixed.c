@@ -264,6 +264,7 @@ games_card_theme_fixed_set_card_size (GamesCardTheme *card_theme,
        * programme will surely crash when trying to render NULL pixbufs
        * later on!
        */
+      /* FIXMEchpe: emit changed signal here too!! */
       return FALSE;
     }
   }
