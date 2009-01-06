@@ -335,10 +335,10 @@ themes_foreach_by_type_and_filename (gpointer key,
 
 static void
 themes_foreach_add_to_list (gpointer key,
-                            gpointer data,
+                            GamesCardThemeInfo *theme_info,
                             GList **list)
 {
-  *list = g_list_prepend (*list, data);
+  *list = g_list_prepend (*list, games_card_theme_info_ref (theme_info));
 }
 
 typedef struct {
@@ -565,6 +565,9 @@ games_card_themes_get_theme_by_name (GamesCardThemes *theme_manager,
 
     games_card_themes_foreach_theme_dir (type, (GamesCardThemeForeachFunc) games_card_themes_try_theme_info_by_filename, &data);
     theme_info = data.theme_info;
+
+    if (theme_info)
+      g_hash_table_replace (theme_manager->theme_infos, theme_info->pref_name, theme_info);
   }
 
   g_free (filename);
