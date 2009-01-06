@@ -91,16 +91,6 @@ double games_card_theme_get_aspect (GamesCardTheme * theme);
 GdkPixbuf *games_card_theme_get_card_pixbuf (GamesCardTheme * theme,
                                              int cardid);
 
-/* Utility functions */
-
-GamesCardTheme *games_card_theme_get (GamesCardThemeInfo *info);
-
-GamesCardTheme *games_card_theme_get_by_name (const char *theme_name);
-
-GamesCardTheme *games_card_theme_get_any (void);
-
-GList *games_card_theme_get_all (void);
-
 G_END_DECLS
 
 #endif /* GAMES_CARD_THEME_H */

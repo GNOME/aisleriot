@@ -28,6 +28,7 @@
 
 #include "games-runtime.h"
 #include "games-card-theme.h"
+#include "games-card-themes.h"
 #include "games-card-theme-private.h"
 
 int
@@ -36,6 +37,7 @@ main (int argc, char *argv[])
   GError *err = NULL;
   char *basepath = NULL, *kfname, *kfpath;
   GamesCardThemeInfo *theme_info = NULL;
+  GamesCardThemes *theme_manager = NULL;
   GamesCardTheme *theme = NULL;
   GKeyFile *key_file = NULL;
   int i;
@@ -134,7 +136,8 @@ main (int argc, char *argv[])
                                            theme_name,
                                            NULL,
                                            NULL, NULL);
-  theme = games_card_theme_get (theme_info);
+  theme_manager = games_card_themes_new ();
+  theme = games_card_themes_get_theme (theme_manager, theme_info);
   if (!theme) {
     /* FIXMEchpe print real error */
     g_warning ("Failed to load theme '%s'\n", theme_name);
@@ -259,6 +262,8 @@ loser:
     g_object_unref (theme);
   if (theme_info)
     games_card_theme_info_unref (theme_info);
+  if (theme_manager)
+    g_object_unref (theme_manager);
   if (key_file)
     g_key_file_free (key_file);
 

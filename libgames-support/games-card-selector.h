@@ -26,6 +26,7 @@
 
 #include "games-frame.h"
 #include "games-card-theme.h"
+#include "games-card-themes.h"
 
 G_BEGIN_DECLS
 
@@ -51,7 +52,8 @@ typedef struct _GamesCardSelectorClass {
 
 GType games_card_selector_get_type (void);
 
-GtkWidget *games_card_selector_new (GamesCardThemeInfo *selected_info);
+GtkWidget *games_card_selector_new (GamesCardThemes *theme_manager,
+                                    GamesCardThemeInfo *selected_info);
 
 G_END_DECLS
 

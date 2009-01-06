@@ -39,6 +39,7 @@
 #endif /* HAVE_HILDON */
 
 #include <libgames-support/games-card-theme.h>
+#include <libgames-support/games-card-themes.h>
 #include <libgames-support/games-clock.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
@@ -96,6 +97,8 @@ struct _AisleriotWindowPrivate
 {
   AisleriotGame *game;
   AisleriotBoard *board;
+
+  GamesCardThemes *theme_manager;
   GamesCardTheme *theme;
 
 #ifdef HAVE_HILDON
@@ -1480,7 +1483,7 @@ card_theme_changed_cb (GtkToggleAction *action,
   if (new_theme_info == current_theme_info)
     return;
 
-  theme = games_card_theme_get (new_theme_info);
+  theme = games_card_themes_get_theme (priv->theme_manager, new_theme_info);
   if (!theme) {
     GSList *group, *l;
 
@@ -1540,7 +1543,7 @@ install_card_theme_menu (AisleriotWindow *window)
   /* See gtk bug #424448 */
   gtk_ui_manager_ensure_update (priv->ui_manager);
 
-  list = games_card_theme_get_all ();
+  list = games_card_themes_get_theme_all (priv->theme_manager);
 
   /* No need to install the menu when there's only one theme available anyway */
   if (list == NULL || list->next == NULL) {
@@ -2397,15 +2400,17 @@ aisleriot_window_init (AisleriotWindow *window)
 
 #endif /* HAVE_MAEMO */
 
+  priv->theme_manager = games_card_themes_new ();
+
   priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->game));
 
   aisleriot_board_set_pixbuf_drawing (priv->board, priv->use_pixbuf_drawing);
 
   theme_name = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
-  theme = games_card_theme_get_by_name (theme_name);
+  theme = games_card_themes_get_theme_by_name (priv->theme_manager, theme_name);
   g_free (theme_name);
   if (!theme) {
-    theme = games_card_theme_get_any ();
+    theme = games_card_themes_get_theme_any (priv->theme_manager);
   }
   if (theme) {
     aisleriot_window_take_card_theme (window, theme /* adopts */);
@@ -2663,6 +2668,8 @@ aisleriot_window_finalize (GObject *object)
   if (priv->theme) {
     g_object_unref (priv->theme);
   }
+
+  g_object_unref (priv->theme_manager);
 
   g_signal_handlers_disconnect_matched (priv->game,
                                         G_SIGNAL_MATCH_DATA,

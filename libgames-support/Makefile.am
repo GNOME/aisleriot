@@ -33,6 +33,8 @@ libgames_support_la_SOURCES =		\
 	games-card-theme.h		\
 	games-card-theme-private.h	\
 	games-card-theme-fixed.c	\
+	games-card-themes.c		\
+	games-card-themes.h		\
 	games-conf.c			\
 	games-conf.h			\
 	games-debug.c			\

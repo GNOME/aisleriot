@@ -67,7 +67,8 @@ combo_changed_cb (GtkComboBox *combo,
 }
 
 static GtkWidget *
-create_combo_box (GamesCardThemeInfo *selected_info)
+create_combo_box (GamesCardThemes *theme_manager,
+                  GamesCardThemeInfo *selected_info)
 {
   GtkListStore *store;
   GtkTreeIter iter, selection_iter;
@@ -78,7 +79,8 @@ create_combo_box (GamesCardThemeInfo *selected_info)
 
   store = gtk_list_store_new (N_COLUMNS, GAMES_TYPE_CARD_THEME_INFO, G_TYPE_STRING);
 
-  themes = games_card_theme_get_all ();
+  themes = games_card_themes_get_theme_all (theme_manager);
+
   for (l = themes; l != NULL; l = l->next) {
     GamesCardThemeInfo *info = l->data;
 
@@ -109,7 +111,8 @@ create_combo_box (GamesCardThemeInfo *selected_info)
 }
 
 GtkWidget *
-games_card_selector_new (GamesCardThemeInfo *selected_info)
+games_card_selector_new (GamesCardThemes *theme_manager,
+                         GamesCardThemeInfo *selected_info)
 {
   GamesCardSelector *selector;
 
@@ -117,7 +120,7 @@ games_card_selector_new (GamesCardThemeInfo *selected_info)
 
   games_frame_set_label (GAMES_FRAME (selector), _("Card Style"));
 
-  selector->combobox = create_combo_box (selected_info);
+  selector->combobox = create_combo_box (theme_manager, selected_info);
   g_signal_connect (selector->combobox, "changed",
 		    G_CALLBACK (combo_changed_cb), selector);
 
