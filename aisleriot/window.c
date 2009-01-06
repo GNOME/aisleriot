@@ -1436,6 +1436,46 @@ install_recently_played_menu (AisleriotWindow *window)
 /* Card Theme menu */
 
 static void
+aisleriot_window_take_card_theme (AisleriotWindow *window,
+                                  GamesCardTheme *theme /* adopting */)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+  GtkWidget *widget = GTK_WIDGET (window);
+
+  if (theme == priv->theme)
+    return;
+
+  if (priv->theme) {
+    g_object_unref (priv->theme);
+  }
+  priv->theme = theme;
+
+  if (gtk_widget_has_screen (widget)) {
+    const cairo_font_options_t *font_options;
+
+    font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
+    games_card_theme_set_font_options (theme, font_options);
+  }
+
+  //XXX FIXMEchpe
+#if 0//#ifdef HAVE_GNOME
+  /* Compatibility with old settings */
+  if (g_str_has_suffix (theme, ".svg")) {
+    *g_strrstr (theme, ".svg") = '\0';
+  } else if (g_str_has_suffix (theme, ".png")) {
+    *g_strrstr (theme, ".png") = '\0';
+  }
+#endif /* HAVE_GNOME */
+
+//  if (aisleriot_board_set_card_theme (priv->board, info)) {
+    // XXX FIXMEchpe
+    //games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme);
+//  }
+
+  aisleriot_board_set_card_theme (priv->board, theme);
+}    
+
+static void
 card_theme_changed_cb (GtkToggleAction *action,
                        AisleriotWindow *window)
 {
@@ -1457,27 +1497,7 @@ card_theme_changed_cb (GtkToggleAction *action,
   if (!theme)
     return; // FIXMEchpe re-set the right radio action to active!!
 
-  if (priv->theme) {
-    g_object_unref (priv->theme);
-  }
-  priv->theme = theme;
-
-  aisleriot_board_set_card_theme (priv->board, theme);
-
-  //XXX FIXMEchpe
-#if 0//#ifdef HAVE_GNOME
-  /* Compatibility with old settings */
-  if (g_str_has_suffix (theme, ".svg")) {
-    *g_strrstr (theme, ".svg") = '\0';
-  } else if (g_str_has_suffix (theme, ".png")) {
-    *g_strrstr (theme, ".png") = '\0';
-  }
-#endif /* HAVE_GNOME */
-
-//  if (aisleriot_board_set_card_theme (priv->board, info)) {
-    // XXX FIXMEchpe
-    //games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme);
-//  }
+  aisleriot_window_take_card_theme (window, theme);
 }
 
 static void
@@ -1951,6 +1971,32 @@ G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, HILDON_TYPE_WINDOW);
 G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, GTK_TYPE_WINDOW);
 #endif
 
+#if GTK_CHECK_VERSION (2, 10, 0)
+
+static void
+aisleriot_window_style_set (GtkWidget *widget,
+                            GtkStyle *previous_style)
+{
+  AisleriotWindow *window = AISLERIOT_WINDOW (widget);
+  AisleriotWindowPrivate *priv = window->priv;
+  const cairo_font_options_t *font_options;
+  void (* style_set) (GtkWidget *, GtkStyle *) =
+    GTK_WIDGET_CLASS (aisleriot_window_parent_class)->style_set;
+
+  if (style_set)
+    style_set (widget, previous_style);
+
+  if (!priv->theme)
+    return;
+
+  font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
+  games_card_theme_set_font_options (priv->theme, font_options);
+
+  /* FIXMEchpe: clear the cached cards in the slots?? */
+}
+
+#endif /* GTK >= 2.10.0 */
+
 static gboolean
 aisleriot_window_state_event (GtkWidget *widget,
                               GdkEventWindowState *event)
@@ -2335,8 +2381,6 @@ aisleriot_window_init (AisleriotWindow *window)
 
   aisleriot_board_set_pixbuf_drawing (priv->board, priv->use_pixbuf_drawing);
 
-  aisleriot_board_set_card_theme (priv->board, games_card_theme_get_any ());
-
 #if 0
   // FIXMEchpe
   theme = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
@@ -2356,6 +2400,8 @@ aisleriot_window_init (AisleriotWindow *window)
   aisleriot_board_set_card_theme (priv->board, theme);
   g_free (theme);
 #endif
+
+  aisleriot_window_take_card_theme (window, games_card_theme_get_any ());
 
   priv->action_group = gtk_action_group_new ("MenuActions");
   gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
@@ -2629,6 +2675,9 @@ aisleriot_window_class_init (AisleriotWindowClass *klass)
   gobject_class->finalize = aisleriot_window_finalize;
 
   widget_class->window_state_event = aisleriot_window_state_event;
+#if GTK_CHECK_VERSION (2, 10, 0)
+  widget_class->style_set = aisleriot_window_style_set;
+#endif
 
   g_type_class_add_private (gobject_class, sizeof (AisleriotWindowPrivate));
 }

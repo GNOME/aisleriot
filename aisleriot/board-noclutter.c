@@ -1403,29 +1403,6 @@ aisleriot_board_settings_update (GtkSettings *settings,
 #endif /* !HAVE_HILDON */
 }
 
-#if GTK_CHECK_VERSION (2, 10, 0)
-static void
-aisleriot_board_screen_font_options_changed (GdkScreen *screen,
-                                             GParamSpec *pspec,
-                                             AisleriotBoard *board)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-  const cairo_font_options_t *font_options;
-
-  if (!priv->theme)
-    return;
-
-  font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
-  games_card_theme_set_font_options (priv->theme, font_options);
-
-  /* FIXMEchpe: clear the cached cards in the slots! */
-  if (GTK_WIDGET_REALIZED (widget)) {
-    gtk_widget_queue_draw (widget);
-  }
-}
-#endif /* GTK 2.10.0 */
-
 /* Note: this unsets the selection! */
 static gboolean
 aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
@@ -2505,9 +2482,6 @@ aisleriot_board_screen_changed (GtkWidget *widget,
     g_signal_handlers_disconnect_by_func (gtk_settings_get_for_screen (previous_screen),
                                           G_CALLBACK (aisleriot_board_settings_update),
                                           board);
-    g_signal_handlers_disconnect_by_func (previous_screen,
-                                          G_CALLBACK (aisleriot_board_screen_font_options_changed),
-                                          board);
   }
 
   if (screen == NULL)
@@ -2522,12 +2496,6 @@ aisleriot_board_screen_changed (GtkWidget *widget,
   g_signal_connect (settings, "notify::gtk-touchscreen-mode",
                     G_CALLBACK (aisleriot_board_settings_update), board);
 #endif /* !HAVE_HILDON */
-
-#if GTK_CHECK_VERSION (2, 10, 0)
-  aisleriot_board_screen_font_options_changed (screen, NULL, board);
-  g_signal_connect (screen, "notify::font-options",
-                    G_CALLBACK (aisleriot_board_screen_font_options_changed), board);
-#endif
 }
 
 static void
@@ -3386,10 +3354,6 @@ aisleriot_board_finalize (GObject *object)
                                         widget);
 #endif
 
-  g_signal_handlers_disconnect_by_func (gtk_widget_get_screen (GTK_WIDGET (object)),
-                                        G_CALLBACK (aisleriot_board_screen_font_options_changed),
-                                        board);
-
   G_OBJECT_CLASS (aisleriot_board_parent_class)->finalize (object);
 }
 
@@ -3649,14 +3613,6 @@ aisleriot_board_set_card_theme (AisleriotBoard *board,
 
   priv->geometry_set = FALSE;
   priv->slot_image = NULL;
-
-  if (gtk_widget_has_screen (widget)) {
-#warning FIXMEchpe move this to AisleriotWindow
-    const cairo_font_options_t *font_options;
-
-    font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
-    games_card_theme_set_font_options (theme, font_options);
-  }
 
   priv->theme = g_object_ref (theme);
   
