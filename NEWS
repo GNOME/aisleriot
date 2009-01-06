@@ -1,3 +1,17 @@
+gnome-games 2.25.5
+==================
+
+General:
+  - Move GThread and gettext initialisation into games_runtime_init()
+
+Aisleriot:
+  - Refactored card themes code
+  - Reduce memory usage in aisleriot/clutter by only caching the
+    card textures and not the GdkPixbufs
+  - Reduce graphics memory usage by drawing highlighted cards with
+    a different colour instead of creating a separate texture for it
+
+
 gnome-games 2.25.4
 ==================
 
@@ -43,17 +57,6 @@ Translations:
   - fr: Claude Paroz
   - el: Evgenia Petoumenou, Marios Zintilis
   - de: Mario Blättermann
-
-General:
-  - Move GThread gettext initialisation into games_runtime_init()
-
-Aisleriot:
-  - Refactored card themes code
-  - Reduce memory usage in aisleriot/clutter by only caching the
-    card textures and not the GdkPixbufs, unnecessarily
-  - Reduce graphics memory usage by drawing highlighted cards with
-    a different colour instead of creating a separate texture for it
-
 
 gnome-games 2.25.3
 ==================
