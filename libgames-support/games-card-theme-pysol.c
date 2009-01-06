@@ -40,7 +40,38 @@ struct _GamesCardThemePysol {
   GamesCardTheme parent_instance;
 };
 
+/* Constants copied from PySol:
+ *
+ * Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003 Markus Franz Xaver Johannes Oberhumer
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ */
+
 #define PYSOL_CONFIG_FILENAME "config.txt"
+
+/* PySol cardset size */
+enum {
+  PYSOL_CARDSET_SIZE_TINY   = 1,
+  PYSOL_CARDSET_SIZE_SMALL  = 2,
+  PYSOL_CARDSET_SIZE_MEDIUM = 3,
+  PYSOL_CARDSET_SIZE_LARGE  = 4,
+  PYSOL_CARDSET_SIZE_XLARGE = 5
+};
+
+/* PySol cardset type */
+enum {
+  PYSOL_CARDSET_TYPE_FRENCH               = 1, /* French type (52 cards)                */
+  PYSOL_CARDSET_TYPE_HANAFUDA             = 2, /* Hanafuda type (48 cards)              */
+  PYSOL_CARDSET_TYPE_TAROCK               = 3, /* Tarock type (78 cards)                */
+  PYSOL_CARDSET_TYPE_MAHJONGG             = 4, /* Mahjongg type (42 tiles)              */
+  PYSOL_CARDSET_TYPE_HEXADECK             = 5, /* Hex A Deck type (68 cards)            */
+  PYSOL_CARDSET_TYPE_MUGHAL_GANJIFA       = 6, /* Mughal Ganjifa type (96 cards)        */
+  PYSOL_CARDSET_TYPE_NAVAGRAHA_GANJIFA    = 7, /* Navagraha Ganjifa type (108 cards)    */
+  PYSOL_CARDSET_TYPE_DASHAVATARA_GANJIFA  = 8, /* Dashavatara Ganjifa type (120 cards)  */
+  PYSOL_CARDSET_TYPE_TRUMP_ONLY           = 9  /* Trumps only type (variable cards)     */
+};
 
 typedef struct {
   char *name;
@@ -105,7 +136,12 @@ pysol_config_txt_parse_line_0 (PySolConfigTxtData *data,
   if (data->version >= 3) {
     if (n_fields < 4)
       goto out;
-    data->ext = g_strstrip (g_strdup (fields[2]));
+
+    if (strlen (fields[2]) > 0)
+      data->ext = g_strstrip (g_strdup (fields[2]));
+    else
+      data->ext = g_strdup (".gif");
+
     if (!parse_int (fields[3], &data->type))
       goto out;
     if (!parse_int (fields[4], &data->n_cards))
@@ -195,7 +231,9 @@ pysol_config_txt_parse (const char *path,
 
   pysol_data = g_new0 (PySolConfigTxtData, 1);
   if (!pysol_config_txt_parse_line_0 (pysol_data, g_strstrip (lines[0])) ||
+        pysol_data->type != PYSOL_CARDSET_TYPE_FRENCH ||
         pysol_data->n_cards != 52 ||
+        !pysol_data->ext ||
       !pysol_config_txt_parse_line_1 (pysol_data, g_strstrip (lines[1])) ||
         !pysol_data->name ||
       !pysol_config_txt_parse_line_2 (pysol_data, g_strstrip (lines[2])) ||
@@ -204,8 +242,6 @@ pysol_config_txt_parse (const char *path,
     goto out;
 
   pysol_data->base_path = g_build_filename (path, subdir, NULL);
-  if (!pysol_data->ext)
-    pysol_data->ext = g_strdup (".gif");
 
   retval = TRUE;
 
