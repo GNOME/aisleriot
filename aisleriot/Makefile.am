@@ -18,6 +18,7 @@ bin_PROGRAMS = sol
 
 sol_SOURCES = \
 	board.h		\
+	board-noclutter.c \
 	conf.c		\
 	conf.h		\
 	game.c		\
@@ -30,22 +31,6 @@ sol_SOURCES = \
 	window.c	\
 	window.h	\
 	$(NULL)
-
-if HAVE_CLUTTER
-sol_SOURCES += \
-	board.c		\
-	baize.c		\
-	baize.h		\
-	card.c          \
-	card.h          \
-	slot-renderer.c \
-	slot-renderer.h \
-	$(NULL)
-else
-sol_SOURCES += \
-	board-noclutter.c \
-	$(NULL)
-endif
 
 if !HAVE_GUILE_1_8
 sol_SOURCES += guile16-compat.h
@@ -91,34 +76,39 @@ sol_LDADD += $(GTHREAD_LIBS)
 endif
 
 if HAVE_CLUTTER
-sol_CPPFLAGS += -DHAVE_CLUTTER
-sol_CFLAGS += $(CLUTTER_CFLAGS)
-sol_LDADD += $(CLUTTER_LIBS)
-endif
+noinst_PROGRAMS = sol-clutter
 
-if HAVE_CLUTTER
-noinst_PROGRAMS = sol-noclutter
-
-sol_noclutter_SOURCES = \
-	board.h			\
-	board-noclutter.c	\
-	conf.c			\
-	conf.h			\
-	game.c			\
-	game.h			\
-	sol.c			\
-	stats-dialog.c		\
-	stats-dialog.h		\
-	util.c			\
-	util.h			\
-	window.c		\
-	window.h		\
+sol_clutter_SOURCES = \
+	board.h		\
+	board.c		\
+	baize.c		\
+	baize.h		\
+	card.c          \
+	card.h          \
+	conf.c		\
+	conf.h		\
+	game.c		\
+	game.h		\
+	sol.c		\
+	slot-renderer.c	\
+	slot-renderer.h \
+	stats-dialog.c	\
+	stats-dialog.h	\
+	util.c		\
+	util.h		\
+	window.c	\
+	window.h	\
 	$(NULL)
 
-sol_noclutter_CPPFLAGS = $(sol_CPPFLAGS) -UHAVE_CLUTTER
-sol_noclutter_CFLAGS = $(sol_CFLAGS)
-sol_noclutter_LDADD = $(sol_LDADD)
+if !HAVE_GUILE_1_8
+sol_clutter_SOURCES += guile16-compat.h
 endif
+		
+sol_clutter_CPPFLAGS = $(sol_CPPFLAGS) -DHAVE_CLUTTER
+sol_clutter_CFLAGS = $(sol_CFLAGS) $(CLUTTER_CFLAGS)
+sol_clutter_LDADD = $(sol_LDADD) $(CLUTTER_LIBS)
+
+endif # HAVE_CLUTTER
 
 desktop_in_files = \
 	sol.desktop.in.in
