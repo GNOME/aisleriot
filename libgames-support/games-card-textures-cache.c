@@ -81,7 +81,7 @@ games_card_textures_cache_clear (GamesCardTexturesCache *cache)
                       "games_card_textures_cache_clear\n");
 
   for (i = 0; i < GAMES_CARDS_TOTAL; i++) {
-    CoglHandle *handle = priv->cards[i];
+    CoglHandle handle = priv->cards[i];
 
     if (handle != COGL_INVALID_HANDLE &&
         !IS_FAILED_HANDLE (handle)) {
@@ -114,7 +114,7 @@ games_card_textures_cache_init (GamesCardTexturesCache *self)
 
   priv = self->priv = GAMES_CARD_TEXTURES_CACHE_GET_PRIVATE (self);
 
-  priv->cards = g_malloc0 (sizeof (ClutterActor *) * GAMES_CARDS_TOTAL);
+  priv->cards = g_malloc0 (sizeof (CoglHandle) * GAMES_CARDS_TOTAL);
 }
 
 static void
