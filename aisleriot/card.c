@@ -223,15 +223,16 @@ aisleriot_card_paint (ClutterActor *actor)
     cogl_translate (-CLUTTER_FIXED_TO_INT (tex_width) / 2, 0, 0);
   }
 
-  if (priv->highlighted) {
-    cogl_color (&priv->highlight_color);
-  } else {
-    cogl_color (&white);
-  }
-
+  cogl_color (&white);
   cogl_texture_rectangle (tex, 0, 0,
                           tex_width, tex_height,
                           0, 0, CFX_ONE, CFX_ONE);
+  if (priv->highlighted) {
+    cogl_color (&priv->highlight_color);
+    cogl_texture_rectangle (tex, 0, 0,
+                            tex_width, tex_height,
+                            0, 0, CFX_ONE, CFX_ONE);
+  }
 
   if (x_swapped)
     cogl_pop_matrix ();

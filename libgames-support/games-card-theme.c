@@ -473,7 +473,7 @@ games_card_theme_get_by_name (const char *theme_name)
   GType type = G_TYPE_INVALID;
   GamesCardThemeInfo *theme_info = NULL;
 
-  if (!theme_name)
+  if (!theme_name || !theme_name[0])
     goto default_fallback;
 
   _games_card_theme_ensure_theme_infos ();

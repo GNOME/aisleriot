@@ -342,18 +342,26 @@ aisleriot_slot_renderer_paint_card (AisleriotSlotRenderer *srend,
                                   FALSE,
                                   &cardx, &cardy);
 
-  if (priv->show_highlight && (card_num >= priv->highlight_start)) {
-    cogl_color (&priv->highlight_color);
-  } else {
-    cogl_color (&white);
-  }
-
+  cogl_color (&white);
   cogl_texture_rectangle (cogl_tex,
                           CLUTTER_INT_TO_FIXED (cardx),
                           CLUTTER_INT_TO_FIXED (cardy),
                           CLUTTER_INT_TO_FIXED (cardx + tex_width),
                           CLUTTER_INT_TO_FIXED (cardy + tex_height),
                           0, 0, CFX_ONE, CFX_ONE);
+
+  if (priv->show_highlight && (card_num >= priv->highlight_start)) {
+    ClutterColor color = priv->highlight_color;
+
+    color.alpha = 0x80;
+    cogl_color (&color);
+    cogl_texture_rectangle (cogl_tex,
+                            CLUTTER_INT_TO_FIXED (cardx),
+                            CLUTTER_INT_TO_FIXED (cardy),
+                            CLUTTER_INT_TO_FIXED (cardx + tex_width),
+                            CLUTTER_INT_TO_FIXED (cardy + tex_height),
+                            0, 0, CFX_ONE, CFX_ONE);
+  }
 }
 
 static void
@@ -385,17 +393,21 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
     tex_width = cogl_texture_get_width (cogl_tex);
     tex_height = cogl_texture_get_height (cogl_tex);
 
-    if (priv->show_highlight) {
-      cogl_color (&priv->highlight_color);
-    } else {
-      cogl_color (&white);
-    }
-
+    cogl_color (&white);
     cogl_texture_rectangle (cogl_tex,
                             0, 0,
                             CLUTTER_INT_TO_FIXED (tex_width),
                             CLUTTER_INT_TO_FIXED (tex_height),
                             0, 0, CFX_ONE, CFX_ONE);
+
+    if (priv->show_highlight) {
+      cogl_color (&priv->highlight_color);
+      cogl_texture_rectangle (cogl_tex,
+                              0, 0,
+                              CLUTTER_INT_TO_FIXED (tex_width),
+                              CLUTTER_INT_TO_FIXED (tex_height),
+                              0, 0, CFX_ONE, CFX_ONE);
+    }
   }
 
 paint_cards:
