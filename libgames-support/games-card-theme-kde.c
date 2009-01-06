@@ -27,6 +27,7 @@
 #include "games-debug.h"
 #include "games-find-file.h"
 #include "games-files.h"
+#include "games-profile.h"
 #include "games-preimage.h"
 #include "games-preimage-private.h"
 #include "games-runtime.h"
@@ -122,6 +123,7 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
   char node[64];
   RsvgDimensionData dimension;
   RsvgPositionData position;
+  gboolean retval;
 
   suit = card_id / 13;
   rank = card_id % 13;
@@ -136,39 +138,29 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
 
   games_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
 
-#ifdef DEBUG_chpe
-  clock_t t1, t2, t3, t4;
+  _games_profile_start ("rsvg_handle_get_dimensions_sub node %s", node);
+  retval = rsvg_handle_get_dimensions_sub (preimage->rsvg_handle, &dimension, node);
+  _games_profile_end ("rsvg_handle_get_dimensions_sub node %s", node);
 
-  t1 = clock ();
-#endif
-
-  if (!rsvg_handle_get_dimensions_sub (preimage->rsvg_handle, &dimension, node)) {
+  if (!retval) {
     _games_debug_print (GAMES_DEBUG_CARD_THEME,
                         "Failed to get dim for '%s'\n", node);
     return NULL;
   }
 
-#ifdef DEBUG_chpe
-  t2 = clock ();
-  g_print ("took %.3fs to get-dimension card %s\n",
-           (t2 - t1) * 1.0 / CLOCKS_PER_SEC, node);
-#endif
+  _games_profile_start ("rsvg_handle_get_position_sub node %s", node);
+  retval = rsvg_handle_get_position_sub (preimage->rsvg_handle, &position, node);
+  _games_profile_end ("rsvg_handle_get_position_sub node %s", node);
 
-  if (!rsvg_handle_get_position_sub (preimage->rsvg_handle, &position, node)) {
+  if (!retval) {
     _games_debug_print (GAMES_DEBUG_CARD_THEME,
                         "Failed to get pos for '%s'\n", node);
     return NULL;
   }
 
-#ifdef DEBUG_chpe
-  t3 = clock ();
-  g_print ("took %.3fs to get-position card %s (cumulative: %.3fs)\n",
-           (t3 - t2) * 1.0 / CLOCKS_PER_SEC, node,
-           (t3 - t1)* 1.0 / CLOCKS_PER_SEC);
-
   _games_debug_print (GAMES_DEBUG_CARD_THEME,
-                      "card %s position %d:%d dimension %d:%d\n", node, position.x, position.y, dimension.width, dimension.height);
-#endif
+                      "card %s position %d:%d dimension %d:%d\n",
+                      node, position.x, position.y, dimension.width, dimension.height);
 
   card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
   card_height = ((double) games_preimage_get_height (preimage)) / N_ROWS;
@@ -188,15 +180,9 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
                                          preimage_card_theme->card_size.height,
                                          -position.x, -position.y,
                                          zoomx, zoomy);
-#ifdef DEBUG_chpe
-  t4 = clock ();
-  g_print ("took %.3fs to render card %s (cumulative: %.3fs)\n",
-           (t4 - t3) * 1.0 / CLOCKS_PER_SEC, node,
-           (t4 - t1)* 1.0 / CLOCKS_PER_SEC);
 
   _games_debug_print (GAMES_DEBUG_CARD_THEME,
                       "Returning %p\n", subpixbuf);
-#endif
 
   return subpixbuf;
 #else
