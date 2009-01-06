@@ -64,7 +64,8 @@ static const guint8 rank_offsets[] = {
  * games_card_get_node_by_suit_and_rank_snprintf:
  * @buffer: the output buffer
  * @bufsize: the size of the output buffer
- * @card_id: the ID of the card
+ * @suit: the suit of the card
+ * @rank: the rank of the card
  *
  * Prints the identifier for the card @card into @buffer.
  *
@@ -89,6 +90,31 @@ games_card_get_node_by_suit_and_rank_snprintf (char *buffer,
   }
 
   return len;
+}
+
+
+/**
+ * games_card_get_node_by_suit_and_rank_snprintf:
+ * @buffer: the output buffer
+ * @bufsize: the size of the output buffer
+ * @card_id: the ID of the card
+ *
+ * Prints the identifier for the card @card into @buffer.
+ *
+ * Returns: the number of bytes which would be produced if the buffer
+ * was large enough.
+ */
+int
+games_card_get_node_by_id_snprintf (char *buffer,
+                                    gsize bufsize,
+                                    int card_id)
+{
+  int suit, rank;
+
+  suit = card_id / 13;
+  rank = card_id % 13;
+
+  return games_card_get_node_by_suit_and_rank_snprintf (buffer, bufsize, suit, rank);
 }
 
 /**

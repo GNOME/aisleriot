@@ -267,7 +267,7 @@ games_card_theme_fixed_get_card_pixbuf (GamesCardTheme *card_theme,
   GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
   GdkPixbuf *pixbuf;
   GError *error = NULL;
-  char name[64], filename[64];
+  char name[32], filename[36];
   char *path;
 
   if (!theme->size_available)

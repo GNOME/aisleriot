@@ -84,7 +84,7 @@ games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
   double width, height;
   double offsetx, offsety;
   double zoomx, zoomy;
-  char node[64];
+  char node[32];
 
   suit = card_id / 13;
   rank = card_id % 13;

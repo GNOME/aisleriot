@@ -530,9 +530,17 @@ games_card_theme_get (GamesCardThemeInfo *info)
 
   theme = g_object_new (info->type, "theme-info", info, NULL);
   if (!theme->klass->load (theme, &error)) {
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Failed to load card theme %s: %s\n",
+                        info->display_name, error ? error->message : "(no error information)");
+
     g_clear_error (&error);
     g_object_unref (theme);
     theme = NULL;
+  } else {
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Successfully loaded card theme %s\n",
+                        info->display_name);
   }
 
   _games_profile_end ("loading %s card theme %s", g_type_name (info->type), info->display_name);
