@@ -29,6 +29,7 @@
 #include "games-preimage.h"
 #include "games-preimage-private.h"
 #include "games-runtime.h"
+#include "games-string-utils.h"
 
 #include "games-card-theme.h"
 #include "games-card-theme-private.h"
@@ -167,14 +168,21 @@ games_card_theme_kde_class_get_theme_info (GamesCardThemeClass *klass,
                                            const char *path,
                                            const char *filename)
 {
+  GamesCardThemeInfo *info;
+  char *display_name;
+
   if (!g_str_has_suffix (filename, ".svgz")) // FIXMEchpe 
     return NULL;
 
-  return _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
+  display_name = games_filename_to_display_name (filename);
+  info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,
-                                     filename, /* FIXME */
-                                     filename, /* FIXME */
+                                     filename,
+                                     display_name,
                                      NULL, NULL);
+  g_free (display_name);
+
+  return info;
 }
 
 static void

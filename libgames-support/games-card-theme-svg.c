@@ -29,6 +29,7 @@
 #include "games-files.h"
 #include "games-preimage.h"
 #include "games-runtime.h"
+#include "games-string-utils.h"
 
 #include "games-card-theme.h"
 #include "games-card-theme-private.h"
