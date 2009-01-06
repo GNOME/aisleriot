@@ -53,6 +53,12 @@ GamesCardThemeInfo *games_card_themes_get_theme_info_by_name (GamesCardThemes *t
 
 GList *games_card_themes_get_themes (GamesCardThemes *theme_manager);
 
+gboolean games_card_themes_can_install_themes (GamesCardThemes *theme_manager);
+
+void games_card_themes_install_themes (GamesCardThemes *theme_manager,
+                                       GtkWindow *parent_window,
+                                       guint user_time);
+
 G_END_DECLS
 
 #endif /* GAMES_CARD_THEMES_H */

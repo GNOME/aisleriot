@@ -25,6 +25,14 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
+#ifdef ENABLE_CARD_THEMES_INSTALLER
+#include <dbus/dbus-glib.h>
+#endif
+
+#ifdef GDK_WINDOWING_X11
+#include <gdk/gdkx.h>
+#endif
+
 #include "games-debug.h"
 #include "games-profile.h"
 #include "games-runtime.h"
@@ -248,6 +256,41 @@ games_card_themes_get_info_by_type_and_filename (GamesCardThemes *theme_manager,
 
   return data.theme_info;
 }
+
+#ifdef ENABLE_CARD_THEMES_INSTALLER
+
+typedef struct {
+  GamesCardThemes *theme_manager;
+  DBusGProxy *proxy;
+} ThemeInstallData;
+
+static void
+theme_install_data_free (ThemeInstallData *data)
+{
+  g_object_unref (data->theme_manager);
+  g_object_unref (data->proxy);
+  g_free (data);
+}
+
+static void
+theme_install_reply_cb (DBusGProxy *proxy,
+                        DBusGProxyCall *call,
+                        ThemeInstallData *data)
+{
+  GError *error = NULL;
+
+  if (!dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_INVALID)) {
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Failed to call InstallPackages: %s\n",
+                        error->message);
+    g_error_free (error);
+    return;
+  }
+
+  /* FIXME: re-scan theme directories, and emit "changed" signal */
+}
+
+#endif /* ENABLE_CARD_THEMES_INSTALLER */
 
 /* Class implementation */
 
@@ -528,4 +571,92 @@ games_card_themes_get_themes (GamesCardThemes *theme_manager)
   g_hash_table_foreach (theme_manager->theme_infos, (GHFunc) foreach_add_to_list, &list);
 
   return g_list_sort (list, (GCompareFunc) _games_card_theme_info_collate);
+}
+
+
+/**
+ * games_card_themes_can_install_themes:
+ * @theme_manager:
+ *
+ * Returns: whether the new theme installer is supported
+ */
+gboolean
+games_card_themes_can_install_themes (GamesCardThemes *theme_manager)
+{
+#ifdef ENABLE_CARD_THEMES_INSTALLER
+  return TRUE;
+#else
+  return FALSE;
+#endif
+}
+
+/**
+ * games_card_themes_install_themes:
+ * @theme_manager:
+ * @parent_window:
+ * @user_time:
+ *
+ * Try to install more card themes.
+ */
+void
+games_card_themes_install_themes (GamesCardThemes *theme_manager,
+                                  GtkWindow *parent_window,
+                                  guint user_time)
+{
+#ifdef ENABLE_CARD_THEMES_INSTALLER
+  /* FIXME: more packages, and test with other distros beside ubuntu! */
+  const char *packages[] = {
+    "gnome-games-extra-data",
+    NULL
+  };
+
+  DBusGConnection *connection;
+  ThemeInstallData *data;
+  guint xid = 0;
+  GError *error = NULL;
+
+  connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+  if (!connection) {
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Failed to get the session bus: %s\n",
+                        error->message);
+    g_error_free (error);
+    return;
+  }
+
+  data = g_new (ThemeInstallData, 1);
+  data->theme_manager = g_object_ref (theme_manager);
+
+  /* PackageKit-GNOME interface */
+  data->proxy = dbus_g_proxy_new_for_name (connection,
+                                           "org.freedesktop.PackageKit",
+                                           "/org/freedesktop/PackageKit",
+                                           "org.freedesktop.PackageKit");
+  g_assert (data->proxy != NULL); /* the call above never fails */
+
+#ifdef GDK_WINDOWING_X11
+  if (parent_window) {
+    xid = GDK_WINDOW_XID (GTK_WIDGET (parent_window)->window);
+  }
+#endif
+
+  /* Installing can take a long time; don't do the automatic timeout */
+  dbus_g_proxy_set_default_timeout (data->proxy, G_MAXINT);
+
+  if (!dbus_g_proxy_begin_call (data->proxy,
+                                "InstallPackageNames",
+                                (DBusGProxyCallNotify) theme_install_reply_cb,
+                                data,
+                                (GDestroyNotify) theme_install_data_free,
+                                G_TYPE_UINT, xid,
+                                G_TYPE_UINT, user_time,
+                                G_TYPE_STRV, packages,
+                                G_TYPE_INVALID)) {
+    /* Failed; cleanup. FIXME: can this happen at all? */
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Failed to call the InstallPackages method\n");
+
+    theme_install_data_free (data);
+  }
+#endif
 }

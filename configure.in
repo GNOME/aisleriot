@@ -110,6 +110,7 @@ need_guile=no
 need_python=no
 need_libxml=no
 need_clutter=no
+need_dbus_glib=no
 want_gstreamer=no
 allow_gnuchess=no
 allow_smclient=no
@@ -405,7 +406,25 @@ esac
 
 AC_DEFINE_UNQUOTED([GAMES_CARD_THEME_DEFAULT_FORMAT],[$GAMES_CARD_THEME_DEFAULT_FORMAT],[The default card theme format type])
 
-# Checks for libraries.
+# Card theme installer
+
+AC_MSG_CHECKING([whether card themes installer support is requested])
+AC_ARG_ENABLE([card-themes-installer],
+  [AS_HELP_STRING([--enable-card-themes-installer],[Enable card theme installer with PackageKit (default: disabled)])],
+  [],[enable_card_themes_installer=no])
+AC_MSG_RESULT([$enable_card_themes_installer])
+
+if test "$enable_card_themes_installer" = "yes"; then
+  AC_DEFINE([ENABLE_CARD_THEMES_INSTALLER],[1],[Define if card theme installer support is enabled])
+  need_dbus_glib=yes
+fi
+
+AM_CONDITIONAL([ENABLE_CARD_THEMES_INSTALLER],[test "$enable_card_themes_installer" = "yes"])
+
+# ********************
+# Checks for libraries
+# ********************
+
 PYGTK_REQUIRED=2.10.0
 GNOME_PYTHON_DESKTOP_REQUIRED=2.17.3
 
@@ -424,6 +443,7 @@ RSVG_REQUIRED=2.14.0
 GSTREAMER_REQUIRED=0.10.11
 HILDON_LIBS_REQUIRED=0.14
 HILDON_1_REQUIRED=1.00
+DBUS_GLIB_REQUIRED=0.75
 
 # Check for common modules
 
@@ -548,6 +568,14 @@ if test "$enable_clutter" = "yes"; then
 fi
 
 AM_CONDITIONAL([HAVE_CLUTTER],[test "$enable_clutter" = "yes"])
+
+# Check for DBUS/GLIB
+
+if test "$need_dbus_glib" = "yes"; then
+  PKG_CHECK_MODULES([DBUS_GLIB],[dbus-glib-1 >= $DBUS_GLIB_REQUIRED])
+  AC_SUBST([DBUS_GLIB_CFLAGS])
+  AC_SUBST([DBUS_GLIB_LIBS])
+fi
 
 # Check for PyGTK
 

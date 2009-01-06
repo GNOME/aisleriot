@@ -186,6 +186,11 @@ libgames_support_la_CFLAGS += $(SDL_MIXER_CFLAGS)
 libgames_support_la_LIBADD += $(SDL_MIXER_LIBS)
 endif
 
+if ENABLE_CARD_THEMES_INSTALLER
+libgames_support_la_CFLAGS += $(DBUS_GLIB_CFLAGS)
+libgames_support_la_LIBADD += $(DBUS_GLIB_LIBS)
+endif
+
 # Auxiliary programme to prerender card images
 
 if HAVE_RSVG

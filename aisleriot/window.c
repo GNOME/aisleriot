@@ -63,7 +63,11 @@
 #define MAIN_MENU_UI_PATH       "/MainMenu"
 #define RECENT_GAMES_MENU_PATH  MAIN_MENU_UI_PATH "/GameMenu/RecentMenu"
 #define OPTIONS_MENU_PATH       MAIN_MENU_UI_PATH "/OptionsMenu"
+#ifdef HAVE_HILDON
 #define CARD_THEMES_MENU_PATH   MAIN_MENU_UI_PATH "/ViewMenu/ThemeMenu"
+#else
+#define CARD_THEMES_MENU_PATH   MAIN_MENU_UI_PATH "/ViewMenu/ThemeMenu/ThemesPH"
+#endif
 #define TOOLBAR_UI_PATH         "/Toolbar"
 
 /* The maximum number of recent games saved */
@@ -683,6 +687,21 @@ statistics_cb (GtkAction *action,
 
   gtk_window_present (GTK_WINDOW (priv->stats_dialog));
 }
+
+#ifdef ENABLE_CARD_THEMES_INSTALLER
+
+static void
+install_themes_cb (GtkAction *action,
+                   AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+
+  games_card_themes_install_themes (priv->theme_manager,
+                                    GTK_WINDOW (window),
+                                    gtk_get_current_event_time ());
+}
+
+#endif /* ENABLE_CARD_THEMES_INSTALLER */
 
 #ifdef ENABLE_DEBUG_UI
 
@@ -2130,6 +2149,11 @@ aisleriot_window_init (AisleriotWindow *window)
     { "About", GTK_STOCK_ABOUT, NULL, NULL,
       ACTION_TOOLTIP (N_("About this game")),
       G_CALLBACK (help_about_cb) },
+#ifdef ENABLE_CARD_THEMES_INSTALLER
+    { "InstallThemes", NULL, N_("Install card themes…"), NULL,
+      ACTION_TOOLTIP (N_("Install new card themes from the distribution packages repositories")),
+      G_CALLBACK (install_themes_cb) },
+#endif /* ENABLE_CARD_THEMES_INSTALLER */
 
     /* Toolbar-only actions */
 #ifndef HAVE_MAEMO
@@ -2282,7 +2306,13 @@ aisleriot_window_init (AisleriotWindow *window)
           "<menuitem action='Toolbar'/>"
           "<menuitem action='Statusbar'/>"
           "<separator/>"
-          "<menu action='ThemeMenu'/>"
+          "<menu action='ThemeMenu'>"
+            "<placeholder name='ThemesPH'/>"
+#ifdef ENABLE_CARD_THEMES_INSTALLER
+            "<separator/>"
+            "<menuitem action='InstallThemes'/>"
+#endif
+          "</menu>"
         "</menu>"
         "<menu action='ControlMenu'>"
           "<menuitem action='UndoMove'/>"
@@ -2532,6 +2562,11 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_action_set_visible (action, games_sound_is_available ());
   action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
   g_object_set (action, "hide-if-empty", FALSE, NULL);
+
+#ifdef ENABLE_CARD_THEMES_INSTALLER
+  action = gtk_action_group_get_action (priv->action_group, "InstallThemes");
+  gtk_action_set_sensitive (action, games_card_themes_can_install_themes (priv->theme_manager));
+#endif /* ENABLE_CARD_THEMES_INSTALLER */
 
   set_fullscreen_actions (window, FALSE);
 
