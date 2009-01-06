@@ -334,16 +334,25 @@ theme_type_compare (GType a,
                     GType b)
 {
   const GType types[] = {
-#ifdef HAVE_HILDON
-    GAMES_TYPE_CARD_THEME_FIXED
-#else
+  /* List of supported theme types, in order of decreasing precedence */
 #ifdef HAVE_RSVG
-    GAMES_TYPE_CARD_THEME_SVG,
-    GAMES_TYPE_CARD_THEME_KDE,
+#ifdef ENABLE_CARD_THEME_FORMAT_SVG
+  GAMES_TYPE_CARD_THEME_SVG,
 #endif
-    GAMES_TYPE_CARD_THEME_PYSOL,
-    GAMES_TYPE_CARD_THEME_FIXED,
-    GAMES_TYPE_CARD_THEME_SLICED
+#ifdef ENABLE_CARD_THEME_FORMAT_KDE
+  GAMES_TYPE_CARD_THEME_KDE,
+#endif
+#endif /* HAVE_RSVG */
+#ifndef HAVE_HILDON
+#ifdef ENABLE_CARD_THEME_FORMAT_SLICED
+  GAMES_TYPE_CARD_THEME_SLICED,
+#endif
+#ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
+  GAMES_TYPE_CARD_THEME_PYSOL,
+#endif
+#endif /* !HAVE_HILDON */
+#ifdef ENABLE_CARD_THEME_FORMAT_FIXED
+  GAMES_TYPE_CARD_THEME_FIXED
 #endif
   };
   guint ia, ib;

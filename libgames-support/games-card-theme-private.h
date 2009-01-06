@@ -109,6 +109,8 @@ gboolean _games_card_theme_class_foreach_env (GamesCardThemeClass *klass,
 
 void _games_card_theme_emit_changed (GamesCardTheme *theme);
 
+#ifdef HAVE_RSVG
+
 /* GamesCardThemePreimage (abstract) */
 
 #define GAMES_TYPE_CARD_THEME_PREIMAGE            (games_card_theme_preimage_get_type ())
@@ -120,8 +122,6 @@ void _games_card_theme_emit_changed (GamesCardTheme *theme);
 
 typedef struct _GamesCardThemePreimageClass GamesCardThemePreimageClass;
 typedef struct _GamesCardThemePreimage      GamesCardThemePreimage;
-
-#ifndef HAVE_HILDON
 
 struct _GamesCardThemePreimageClass {
   GamesCardThemeClass parent_class;
@@ -150,13 +150,13 @@ struct _GamesCardThemePreimage {
   cairo_font_options_t *font_options;
 };
 
-#endif /* !HAVE_HILDON */
-
 GType games_card_theme_preimage_get_type (void);
 
 void _games_card_theme_preimage_clear_sized_theme_data (GamesCardThemePreimage *theme);
 
 /* GamesCardThemeSVG */
+
+#ifdef ENABLE_CARD_THEME_FORMAT_SVG
 
 #define GAMES_TYPE_CARD_THEME_SVG            (games_card_theme_svg_get_type ())
 #define GAMES_CARD_THEME_SVG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME_SVG, GamesCardThemeSVG))
@@ -172,23 +172,11 @@ GType games_card_theme_svg_get_type (void);
 
 GamesCardTheme* games_card_theme_svg_new (void);
 
-/* GamesCardThemeSliced */
-
-#define GAMES_TYPE_CARD_THEME_SLICED            (games_card_theme_sliced_get_type ())
-#define GAMES_CARD_THEME_SLICED(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME_SLICED, GamesCardThemeSliced))
-#define GAMES_CARD_THEME_SLICED_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_THEME_SLICED, GamesCardThemeSlicedClass))
-#define GAMES_IS_CARD_THEME_SLICED(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_THEME_SLICED))
-#define GAMES_IS_CARD_THEME_SLICED_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_THEME_SLICED))
-#define GAMES_CARD_THEME_SLICED_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_THEME_SLICED, GamesCardThemeSlicedClass))
-
-typedef struct _GamesCardThemeSlicedClass GamesCardThemeSlicedClass;
-typedef struct _GamesCardThemeSliced      GamesCardThemeSliced;
-
-GType games_card_theme_sliced_get_type (void);
-
-GamesCardTheme* games_card_theme_sliced_new (void);
+#endif /* ENABLE_CARD_THEME_FORMAT_SVG */
 
 /* GamesCardThemeKDE */
+
+#ifdef ENABLE_CARD_THEME_FORMAT_KDE
 
 #define GAMES_TYPE_CARD_THEME_KDE            (games_card_theme_kde_get_type ())
 #define GAMES_CARD_THEME_KDE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME_KDE, GamesCardThemeKDE))
@@ -204,7 +192,35 @@ GType games_card_theme_kde_get_type (void);
 
 GamesCardTheme* games_card_theme_kde_new (void);
 
+#endif /* ENABLE_CARD_THEME_FORMAT_KDE */
+
+/* */
+
+#endif /* HAVE_RSVG */
+
+/* GamesCardThemeSliced */
+
+#ifdef ENABLE_CARD_THEME_FORMAT_SLICED
+
+#define GAMES_TYPE_CARD_THEME_SLICED            (games_card_theme_sliced_get_type ())
+#define GAMES_CARD_THEME_SLICED(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME_SLICED, GamesCardThemeSliced))
+#define GAMES_CARD_THEME_SLICED_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_THEME_SLICED, GamesCardThemeSlicedClass))
+#define GAMES_IS_CARD_THEME_SLICED(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_THEME_SLICED))
+#define GAMES_IS_CARD_THEME_SLICED_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_THEME_SLICED))
+#define GAMES_CARD_THEME_SLICED_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_THEME_SLICED, GamesCardThemeSlicedClass))
+
+typedef struct _GamesCardThemeSlicedClass GamesCardThemeSlicedClass;
+typedef struct _GamesCardThemeSliced      GamesCardThemeSliced;
+
+GType games_card_theme_sliced_get_type (void);
+
+GamesCardTheme* games_card_theme_sliced_new (void);
+
+#endif /* ENABLE_CARD_THEME_FORMAT_SLICED */
+
 /* GamesCardThemeFixed */
+
+#ifdef ENABLE_CARD_THEME_FORMAT_FIXED
 
 #define GAMES_TYPE_CARD_THEME_FIXED            (games_card_theme_fixed_get_type ())
 #define GAMES_CARD_THEME_FIXED(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME_FIXED, GamesCardThemeFixed))
@@ -220,7 +236,10 @@ GType games_card_theme_fixed_get_type (void);
 
 GamesCardTheme* games_card_theme_fixed_new (void);
 
+#endif /* ENABLE_CARD_THEME_FORMAT_FIXED */
 /* GamesCardThemePysol */
+
+#ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
 
 #define GAMES_TYPE_CARD_THEME_PYSOL            (games_card_theme_pysol_get_type ())
 #define GAMES_CARD_THEME_PYSOL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME_PYSOL, GamesCardThemePysol))
@@ -236,4 +255,4 @@ GType games_card_theme_pysol_get_type (void);
 
 GamesCardTheme* games_card_theme_pysol_new (void);
 
-/* Utilities */
+#endif /* ENABLE_CARD_THEME_FORMAT_PYSOL */

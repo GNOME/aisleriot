@@ -32,7 +32,6 @@ libgames_support_la_SOURCES =		\
 	games-card-theme.c		\
 	games-card-theme.h		\
 	games-card-theme-private.h	\
-	games-card-theme-fixed.c	\
 	games-card-themes.c		\
 	games-card-themes.h		\
 	games-conf.c			\
@@ -69,9 +68,6 @@ libgames_support_la_SOURCES +=		\
 	games-gridframe.h		\
 	games-card-selector.c		\
 	games-card-selector.h		\
-	games-card-theme-preimage.c	\
-	games-card-theme-pysol.c	\
-	games-card-theme-sliced.c	\
 	games-preimage.c                \
 	games-preimage.h                \
 	games-preimage-private.h	\
@@ -102,13 +98,6 @@ libgames_support_la_SOURCES +=		\
 endif
 endif
 
-if HAVE_RSVG
-libgames_support_la_SOURCES += \
-	games-card-theme-svg.c		\
-	games-card-theme-kde.c		\
-	$(NULL)
-endif
-
 if HAVE_CLUTTER
 libgames_support_la_SOURCES += \
 	games-card-textures-cache.c	\
@@ -116,6 +105,28 @@ libgames_support_la_SOURCES += \
 	games-clutter-embed.c		\
 	games-clutter-embed.h		\
 	$(NULL)
+endif
+
+if HAVE_RSVG
+libgames_support_la_SOURCES += games-card-theme-preimage.c
+
+if ENABLE_CARD_THEME_FORMAT_SVG
+libgames_support_la_SOURCES += games-card-theme-svg.c
+endif
+if ENABLE_CARD_THEME_FORMAT_KDE
+libgames_support_la_SOURCES += games-card-theme-kde.c
+endif
+
+endif # HAVE_RSVG
+
+if ENABLE_CARD_THEME_FORMAT_SLICED
+libgames_support_la_SOURCES += games-card-theme-sliced.c
+endif
+if ENABLE_CARD_THEME_FORMAT_PYSOL
+libgames_support_la_SOURCES += games-card-theme-pysol.c
+endif
+if ENABLE_CARD_THEME_FORMAT_FIXED
+libgames_support_la_SOURCES += games-card-theme-fixed.c
 endif
 
 libgames_support_la_CPPFLAGS = \
