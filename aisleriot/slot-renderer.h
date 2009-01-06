@@ -79,6 +79,9 @@ void aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
                                             gint hightlight_start);
 guint aisleriot_slot_renderer_get_highlight (AisleriotSlotRenderer *srend);
 
+void aisleriot_slot_renderer_set_highlight_color (AisleriotSlotRenderer *srend,
+                                                  const ClutterColor *color);
+
 void aisleriot_slot_renderer_set_revealed_card (AisleriotSlotRenderer *srend,
                                                 gint revealed_card);
 gint aisleriot_slot_renderer_get_revealed_card (AisleriotSlotRenderer *srend);

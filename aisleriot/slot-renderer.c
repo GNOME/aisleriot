@@ -45,6 +45,8 @@ static void aisleriot_slot_renderer_set_cache (AisleriotSlotRenderer *srend,
 
 static void completed_cb (AisleriotSlotRenderer *srend);
 
+static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
+
 G_DEFINE_TYPE (AisleriotSlotRenderer, aisleriot_slot_renderer,
                CLUTTER_TYPE_ACTOR);
 
@@ -60,6 +62,7 @@ struct _AisleriotSlotRendererPrivate
 
   Slot *slot;
 
+  ClutterColor highlight_color;
   gboolean show_highlight;
   gint highlight_start;
 
@@ -85,6 +88,7 @@ enum
   PROP_CACHE,
   PROP_SLOT,
   PROP_HIGHLIGHT,
+  PROP_HIGHLIGHT_COLOR,
   PROP_REVEALED_CARD,
   PROP_ANIMATION_LAYER
 };
@@ -92,6 +96,7 @@ enum
 static void
 aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
 {
+  static const ClutterColor default_highlight_color = { 0, 0, 0xaa, 0xff };
   GObjectClass *gobject_class = (GObjectClass *) klass;
   ClutterActorClass *actor_class = (ClutterActorClass *) klass;
   GParamSpec *pspec;
@@ -129,6 +134,15 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
                             G_PARAM_STATIC_NICK |
                             G_PARAM_STATIC_BLURB);
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
+
+  pspec = clutter_param_spec_color ("highlight-color", NULL, NULL,
+                                    &default_highlight_color,
+                                    G_PARAM_WRITABLE |
+                                    G_PARAM_STATIC_NAME |
+                                    G_PARAM_STATIC_NICK |
+                                    G_PARAM_STATIC_BLURB |
+                                    G_PARAM_CONSTRUCT);
+  g_object_class_install_property (gobject_class, PROP_HIGHLIGHT_COLOR, pspec);
 
   pspec = g_param_spec_int ("revealed-card", NULL, NULL,
                             -1, G_MAXINT, 0,
@@ -248,6 +262,11 @@ aisleriot_slot_renderer_set_property (GObject *object,
                                              g_value_get_int (value));
       break;
 
+    case PROP_HIGHLIGHT_COLOR:
+      aisleriot_slot_renderer_set_highlight_color (srend,
+                                                   g_value_get_boxed (value));
+      break;
+
     case PROP_REVEALED_CARD:
       aisleriot_slot_renderer_set_revealed_card (srend,
                                                  g_value_get_int (value));
@@ -288,6 +307,7 @@ aisleriot_slot_renderer_get_property (GObject *object,
                           aisleriot_slot_renderer_get_animation_layer (srend));
       break;
 
+    case PROP_HIGHLIGHT_COLOR:
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -300,17 +320,12 @@ aisleriot_slot_renderer_paint_card (AisleriotSlotRenderer *srend,
 {
   AisleriotSlotRendererPrivate *priv = srend->priv;
   Card card = CARD (priv->slot->cards->data[card_num]);
-  gboolean is_highlighted;
   CoglHandle cogl_tex;
   guint tex_width, tex_height;
   int cardx, cardy;
-  static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
+  const ClutterColor *color;
 
-  is_highlighted = priv->show_highlight && (card_num >= priv->highlight_start);
-
-  cogl_tex = games_card_textures_cache_get_card_texture (priv->cache,
-                                                    card,
-                                                    is_highlighted);
+  cogl_tex = games_card_textures_cache_get_card_texture (priv->cache, card, FALSE);
 
   tex_width = cogl_texture_get_width (cogl_tex);
   tex_height = cogl_texture_get_height (cogl_tex);
@@ -319,7 +334,13 @@ aisleriot_slot_renderer_paint_card (AisleriotSlotRenderer *srend,
                                   FALSE,
                                   &cardx, &cardy);
 
-  cogl_color (&white);
+  if (priv->show_highlight && (card_num >= priv->highlight_start)) {
+    color = &priv->highlight_color;
+  } else {
+    color = &white;
+  }
+
+  cogl_color (color);
   cogl_texture_rectangle (cogl_tex,
                           CLUTTER_INT_TO_FIXED (cardx),
                           CLUTTER_INT_TO_FIXED (cardy),
@@ -349,14 +370,18 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
   if (priv->slot->cards->len <= priv->animations->len) {
     CoglHandle cogl_tex;
     guint tex_width, tex_height;
-    static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
 
     cogl_tex = games_card_textures_cache_get_slot_texture (priv->cache,
                                                       priv->show_highlight);
     tex_width = cogl_texture_get_width (cogl_tex);
     tex_height = cogl_texture_get_height (cogl_tex);
 
-    cogl_color (&white);
+    if (priv->show_highlight) {
+      cogl_color (&priv->highlight_color);
+    } else {
+      cogl_color (&white);
+    }
+
     cogl_texture_rectangle (cogl_tex,
                             0, 0,
                             CLUTTER_INT_TO_FIXED (tex_width),
@@ -406,6 +431,23 @@ aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
   clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
 
   g_object_notify (G_OBJECT (srend), "highlight");
+}
+
+void
+aisleriot_slot_renderer_set_highlight_color (AisleriotSlotRenderer *srend,
+                                             const ClutterColor *color)
+{
+  AisleriotSlotRendererPrivate *priv = srend->priv;
+
+  g_return_if_fail (color != NULL);
+
+  if (clutter_color_equal (color, &priv->highlight_color))
+    return;
+
+  priv->highlight_color = *color;
+  priv->highlight_color.alpha = 0xff;
+
+  g_object_notify (G_OBJECT (srend), "highlight-color");
 }
 
 gint

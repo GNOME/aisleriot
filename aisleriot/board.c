@@ -170,7 +170,7 @@ struct _AisleriotBoardPrivate
   Slot *selection_slot;
   int selection_start_card_id;
   GdkRectangle selection_rect;
-  GdkColor selection_colour;
+  ClutterColor selection_colour;
 
   /* Highlight */
   Slot *highlight_slot;
@@ -978,6 +978,9 @@ slot_update_card_images_full (AisleriotBoard *board,
   if (slot->slot_renderer == NULL) {
     slot->slot_renderer = aisleriot_slot_renderer_new (priv->textures, slot);
     g_object_ref_sink (slot->slot_renderer);
+
+    aisleriot_slot_renderer_set_highlight_color (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
+                                                 &priv->selection_colour);
 
     aisleriot_slot_renderer_set_animation_layer
       (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
@@ -2584,7 +2587,10 @@ aisleriot_board_style_set (GtkWidget *widget,
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
   GdkColor *colour = NULL;
+  GdkColor selection_colour;
   gboolean interior_focus;
+  GPtrArray *slots;
+  int i, n_slots;
 
   gtk_widget_style_get (widget,
                         "focus-line-width", &priv->focus_line_width,
@@ -2603,16 +2609,32 @@ aisleriot_board_style_set (GtkWidget *widget,
   priv->interior_focus = interior_focus != FALSE;
 
   if (colour != NULL) {
-    priv->selection_colour = *colour;
+    selection_colour = *colour;
     gdk_color_free (colour);
   } else {
-    const GdkColor default_colour = { 0, 0 /* red */, 0 /* green */, 0xaa00 /* blue */};
+    const GdkColor default_selection_colour = { 0, 0 /* red */, 0 /* green */, 0xaa00 /* blue */};
 
-    priv->selection_colour = default_colour;
+    selection_colour = default_selection_colour;
   }
 
   games_card_images_set_selection_color (priv->images,
-                                         &priv->selection_colour);
+                                         &selection_colour);
+
+  /* Update the existing slots */
+  priv->selection_colour.red   = selection_colour.red   >> 8;
+  priv->selection_colour.green = selection_colour.green >> 8;
+  priv->selection_colour.blue  = selection_colour.blue  >> 8;
+  priv->selection_colour.alpha = 0;
+
+  slots = aisleriot_game_get_slots (priv->game);
+  n_slots = slots->len;
+  for (i = 0; i < n_slots; ++i) {
+    Slot *slot = slots->pdata[i];
+
+    if (slot->slot_renderer)
+      aisleriot_slot_renderer_set_highlight_color (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
+                                                   &priv->selection_colour);
+  }
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->style_set (widget, previous_style);
 }
