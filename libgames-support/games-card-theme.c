@@ -44,14 +44,45 @@ enum {
 };
 
 static guint signals[LAST_SIGNAL];
-static GList *theme_infos;
+static GHashTable *theme_infos;
+
+static gboolean
+_games_card_theme_class_get_theme_info_foreach (GamesCardThemeClass *klass,
+                                                const char *path,
+                                                gpointer data)
+{
+  GHashTable *hash_table = (GHashTable *) data;
+  GDir *iter;
+  const char *filename;
+
+  _games_profile_start ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
+
+  iter = g_dir_open (path, 0, NULL);
+  if (!iter)
+    goto out;
+
+  while ((filename = g_dir_read_name (iter)) != NULL) {
+    GamesCardThemeInfo *info;
+
+    _games_profile_start ("checking for %ss card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
+    info = _games_card_theme_class_get_theme_info (klass, path, filename);
+    _games_profile_end ("checking for %ss card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
+
+    if (info)
+      g_hash_table_insert (hash_table, info->pref_name, info);
+  }
+      
+  g_dir_close (iter);
+
+out:
+  _games_profile_end ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
+
+  return TRUE;
+}
 
 static void
 _games_card_theme_ensure_theme_infos (void)
 {
-  if (theme_infos)
-    return;
-
   /* FIXME: take env vars and prefs into account on ordering here */
   GType types[] = {
 #ifdef HAVE_RSVG
@@ -66,7 +97,13 @@ _games_card_theme_ensure_theme_infos (void)
   };
   guint i;
 
-  theme_infos = NULL;
+  if (theme_infos)
+    return;
+
+  /* Hash table: pref name => theme info */
+  theme_infos = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                       NULL /* key is owned by data */,
+                                       (GDestroyNotify) games_card_theme_info_unref);
 
   _games_profile_start ("looking for card themes");
 
@@ -78,41 +115,53 @@ _games_card_theme_ensure_theme_infos (void)
       continue;
 
     _games_profile_start ("looking for %s card themes", G_OBJECT_CLASS_NAME (klass));
-    klass->get_theme_infos (klass, &theme_infos);
+    _games_card_theme_class_foreach_theme_dir (klass,
+                                               _games_card_theme_class_get_theme_info_foreach,
+                                               theme_infos);
     _games_profile_end ("looking for %s card themes", G_OBJECT_CLASS_NAME (klass));
 
     g_type_class_unref (klass);
   }
 
   _games_profile_end ("looking for card themes");
+}
 
-  theme_infos = g_list_reverse (theme_infos);
+typedef struct {
+  GType type;
+  const char *filename;
+  GamesCardThemeInfo *theme_info;
+} FindData;
+
+static void
+find_by_type_and_name (gpointer key,
+                       GamesCardThemeInfo *info,
+                       FindData *data)
+{
+  if (info->type != data->type ||
+      strcmp (info->filename, data->filename) != 0)
+    return;
+
+  data->theme_info = info;
 }
 
 static GamesCardThemeInfo *
 _games_card_theme_get_info_by_type_and_name (GType type,
                                              const char *filename)
 {
-  GList *l;
-  GamesCardThemeInfo *theme_info = NULL;
+  FindData data = { type, filename, NULL };
 
-  g_print ("_games_card_theme_get_info_by_type_and_name type %s filename %s\n", g_type_name (type), filename);
+  g_assert (theme_infos != NULL);
+  g_hash_table_foreach (theme_infos, (GHFunc) find_by_type_and_name, &data);
 
-  for (l = theme_infos; l != NULL; l = l->next) {
-    GamesCardThemeInfo *info = (GamesCardThemeInfo *) l->data;
+  return data.theme_info;
+}
 
-    g_print ("==> comparing with type %s filename %s\n", g_type_name (info->type), info->filename);
-    
-    if (info->type != type ||
-        strcmp (info->filename, filename) != 0)
-      continue;
-
-    g_print ("==> !! MATCH!!\n");
-    theme_info = info;
-    break;
-  }
-
-  return theme_info;
+static void
+foreach_add_to_list (gpointer key,
+                     gpointer data,
+                     GList **list)
+{
+  *list = g_list_prepend (*list, data);
 }
 
 /* Class implementation */
@@ -236,52 +285,32 @@ _games_card_theme_class_get_theme_info (GamesCardThemeClass *klass,
   return klass->get_theme_info (klass, dir, filename);
 }
 
-void
-_games_card_theme_class_append_theme_info_foreach (GamesCardThemeClass *klass,
-                                                   const char *path,
-                                                   GList **list)
+gboolean
+_games_card_theme_class_foreach_theme_dir (GamesCardThemeClass *klass,
+                                           GamesCardThemeForeachFunc callback,
+                                           gpointer data)
 {
-  GDir *iter;
-  const char *filename;
-
-  _games_profile_start ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
-
-  iter = g_dir_open (path, 0, NULL);
-  if (!iter)
-    goto out;
-
-  while ((filename = g_dir_read_name (iter)) != NULL) {
-    GamesCardThemeInfo *info;
-
-    _games_profile_start ("checking for %ss card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
-    info = _games_card_theme_class_get_theme_info (klass, path, filename);
-    _games_profile_end ("checking for %ss card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
-    if (info)
-      *list = g_list_prepend (*list, info);
-  }
-      
-  g_dir_close (iter);
-
-out:
-  _games_profile_end ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
+  return klass->foreach_theme_dir (klass, callback, data);
 }
 
-void
-_games_card_theme_class_append_theme_info_foreach_env (GamesCardThemeClass *klass,
-                                                       const char *env,
-                                                       GList **list)
+gboolean
+_games_card_theme_class_foreach_env (GamesCardThemeClass *klass,
+                                     const char *env,
+                                     GamesCardThemeForeachFunc callback,
+                                     gpointer data)
 {
   const char *value;
   char **paths;
   guint i;
+  gboolean retval = TRUE;
 
   value = g_getenv (env);
   if (!value || !value[0])
-    return;
+    return TRUE;
 
   paths = g_strsplit (value, ":", -1);
   if (!paths)
-    return;
+    return TRUE;
 
   for (i = 0; paths[i]; ++i) {
     const char *path = paths[i];
@@ -289,10 +318,14 @@ _games_card_theme_class_append_theme_info_foreach_env (GamesCardThemeClass *klas
     if (!paths[0])
       continue;
 
-    _games_card_theme_class_append_theme_info_foreach (klass, path, list);
+    retval = callback (klass, path, data);
+    if (!retval)
+      break;
   }
 
   g_strfreev (paths);
+
+  return retval;
 }
 
 /* public API */
@@ -563,10 +596,11 @@ default_fallback:
 GamesCardTheme *
 games_card_theme_get_any (void)
 {
-  GList *l;
+//   GList *l;
+
   _games_card_theme_ensure_theme_infos ();
 
-  if (!theme_infos)
+/*  if (!theme_infos)
     return NULL;
 
   for (l = theme_infos; l != NULL; l = l->next) {
@@ -577,7 +611,7 @@ games_card_theme_get_any (void)
     if (theme)
       return theme;
   }
-
+*/
   return NULL;
 }
 
@@ -589,16 +623,13 @@ games_card_theme_get_any (void)
 GList *
 games_card_theme_get_all (void)
 {
-  GList *list;
+  GList *list = NULL;
 
   _games_card_theme_ensure_theme_infos ();
 
-  list = g_list_copy (theme_infos);
-  g_list_foreach (list, (GFunc) games_card_theme_info_ref, NULL);
+  g_hash_table_foreach (theme_infos, (GHFunc) foreach_add_to_list, &list);
 
-  return list;
-  // FIXMEchpe
-//  return g_list_sort (list, (GCompareFunc) _games_card_theme_info_collate, NULL);
+  return g_list_sort (list, (GCompareFunc) _games_card_theme_info_collate);
 }
 
 /* GamesCardThemeInfo impl */
@@ -650,15 +681,16 @@ _games_card_theme_info_new (GType type,
   return info;
 }
 
-/**
- * _games_card_theme_info_equal:
- * @a:
- * @b:
- *
- * Compares @a and @b.
- *
- * Returns: %TRUE iff @a and @b refer to the same card theme
- */
+guint
+_games_card_theme_info_hash (GamesCardThemeInfo *a,
+                             GamesCardThemeInfo *b)
+{
+/*  return g_int_hash (a->type, b->type) ^
+         g_str_hash (a->path, b->path) ^
+         g_str_hash (a->filename, b->filename);*/
+  return 0;
+}
+
 gboolean
 _games_card_theme_info_equal (GamesCardThemeInfo *a,
                               GamesCardThemeInfo *b)

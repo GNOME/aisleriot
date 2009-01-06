@@ -44,6 +44,8 @@ GamesCardThemeInfo *_games_card_theme_info_new (GType type,
                                                 gpointer data,
                                                 GDestroyNotify destroy_notify);
 
+guint _games_card_theme_info_hash  (GamesCardThemeInfo *a,
+                                    GamesCardThemeInfo *b);
 gboolean _games_card_theme_info_equal (GamesCardThemeInfo *a,
                                        GamesCardThemeInfo *b);
 
@@ -52,15 +54,21 @@ int _games_card_theme_info_collate (GamesCardThemeInfo *a,
 
 /* GamesCardTheme */
 
+/* Return TRUE to continue, FALSE to abort */
+typedef gboolean (* GamesCardThemeForeachFunc) (GamesCardThemeClass *klass,
+                                                const char *path,
+                                                gpointer data);
+
 struct _GamesCardThemeClass {
   GObjectClass parent_class;
 
   /* class vfuncs */
-  void                 (* get_theme_infos)  (GamesCardThemeClass *klass,
-                                             GList **list /* inout */);
-  GamesCardThemeInfo * (* get_theme_info)   (GamesCardThemeClass *klass,
-                                             const char *dir,
-                                             const char *filename);
+  GamesCardThemeInfo * (* get_theme_info)     (GamesCardThemeClass *klass,
+                                               const char *dir,
+                                               const char *filename);
+  gboolean             (* foreach_theme_dir)  (GamesCardThemeClass *klass,
+                                               GamesCardThemeForeachFunc,
+                                               gpointer data);
 
   /* vfuncs */
   gboolean    (* load)              (GamesCardTheme *theme,
@@ -94,12 +102,13 @@ GamesCardThemeInfo *_games_card_theme_class_get_theme_info (GamesCardThemeClass 
                                                             const char *dir,
                                                             const char *filename);
 
-void _games_card_theme_class_append_theme_info_foreach (GamesCardThemeClass *klass,
-                                                        const char *path,
-                                                        GList **list);
-void _games_card_theme_class_append_theme_info_foreach_env (GamesCardThemeClass *klass,
-                                                            const char *env,
-                                                            GList **list);
+gboolean _games_card_theme_class_foreach_theme_dir (GamesCardThemeClass *klass,
+                                                    GamesCardThemeForeachFunc callback,
+                                                    gpointer data);
+gboolean _games_card_theme_class_foreach_env (GamesCardThemeClass *klass,
+                                              const char *env,
+                                              GamesCardThemeForeachFunc callback,
+                                              gpointer data);
 
 void _games_card_theme_emit_changed (GamesCardTheme *theme);
 

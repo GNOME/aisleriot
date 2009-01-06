@@ -325,15 +325,15 @@ games_card_theme_fixed_class_get_theme_info (GamesCardThemeClass *klass,
   return info;
 }
 
-static void
-games_card_theme_fixed_class_get_theme_infos (GamesCardThemeClass *klass,
-                                              GList **list)
+static gboolean
+games_card_theme_fixed_class_foreach_theme_dir (GamesCardThemeClass *klass,
+                                                GamesCardThemeForeachFunc callback,
+                                                gpointer data)
 {
-  _games_card_theme_class_append_theme_info_foreach_env
-    (klass, "GAMES_CARD_THEME_PATH_FIXED", list);
+  if (!_games_card_theme_class_foreach_env (klass, "GAMES_CARD_THEME_PATH_FIXED", callback, data))
+    return FALSE;
 
-  _games_card_theme_class_append_theme_info_foreach
-    (klass, games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY), list);
+  return callback (klass, games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY), data);
 }
 
 static void
@@ -345,7 +345,7 @@ games_card_theme_fixed_class_init (GamesCardThemeFixedClass * klass)
   gobject_class->finalize = games_card_theme_fixed_finalize;
 
   theme_class->get_theme_info = games_card_theme_fixed_class_get_theme_info;
-  theme_class->get_theme_infos = games_card_theme_fixed_class_get_theme_infos;
+  theme_class->foreach_theme_dir = games_card_theme_fixed_class_foreach_theme_dir;
 
   theme_class->load = games_card_theme_fixed_load;
   theme_class->set_card_size = games_card_theme_fixed_set_card_size;

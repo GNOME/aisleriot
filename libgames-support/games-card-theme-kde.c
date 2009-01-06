@@ -295,16 +295,16 @@ out:
 #endif /* HAVE_RSVG_BBOX */
 }
 
-static void
-games_card_theme_kde_class_get_theme_infos (GamesCardThemeClass *klass,
-                                            GList **list)
+static gboolean
+games_card_theme_kde_class_foreach_theme_dir (GamesCardThemeClass *klass,
+                                              GamesCardThemeForeachFunc callback,
+                                              gpointer data)
 {
-  _games_card_theme_class_append_theme_info_foreach_env
-    (klass, "GAMES_CARD_THEME_PATH_KDE", list);
+  if (!_games_card_theme_class_foreach_env (klass, "GAMES_CARD_THEME_PATH_KDE", callback, data))
+    return FALSE;
 
   /* FIXMEchpe: is this universal, or ubuntu specific? */
-  _games_card_theme_class_append_theme_info_foreach
-    (klass, "/usr/share/kde4/apps/carddecks", list);
+  return callback (klass, "/usr/share/kde4/apps/carddecks", data);
 }
 
 static void
@@ -317,7 +317,7 @@ games_card_theme_kde_class_init (GamesCardThemeKDEClass * klass)
   gobject_class->finalize = games_card_theme_kde_finalize;
 
   theme_class->get_theme_info = games_card_theme_kde_class_get_theme_info;
-  theme_class->get_theme_infos = games_card_theme_kde_class_get_theme_infos;
+  theme_class->foreach_theme_dir = games_card_theme_kde_class_foreach_theme_dir;
 
   theme_class->load = games_card_theme_kde_load;
   theme_class->get_card_aspect = games_card_theme_kde_get_card_aspect;

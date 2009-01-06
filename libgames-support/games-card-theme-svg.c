@@ -126,15 +126,15 @@ games_card_theme_svg_class_get_theme_info (GamesCardThemeClass *klass,
   return NULL;
 }
 
-static void
-games_card_theme_svg_class_get_theme_infos (GamesCardThemeClass *klass,
-                                            GList **list)
+static gboolean
+games_card_theme_svg_class_foreach_theme_dir (GamesCardThemeClass *klass,
+                                              GamesCardThemeForeachFunc callback,
+                                              gpointer data)
 {
-  _games_card_theme_class_append_theme_info_foreach_env
-    (klass, "GAMES_CARD_THEME_PATH_SVG", list);
+  if (!_games_card_theme_class_foreach_env (klass, "GAMES_CARD_THEME_PATH_SVG", callback, data))
+    return FALSE;
 
-  _games_card_theme_class_append_theme_info_foreach
-    (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), list);
+  return callback (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), data);
 }
 
 static void
@@ -144,7 +144,7 @@ games_card_theme_svg_class_init (GamesCardThemeSVGClass * klass)
   GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
 
   theme_class->get_theme_info = games_card_theme_svg_class_get_theme_info;
-  theme_class->get_theme_infos = games_card_theme_svg_class_get_theme_infos;
+  theme_class->foreach_theme_dir = games_card_theme_svg_class_foreach_theme_dir;
 
   theme_class->get_card_pixbuf = games_card_theme_svg_get_card_pixbuf;
 
