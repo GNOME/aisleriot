@@ -2435,8 +2435,6 @@ aisleriot_window_init (AisleriotWindow *window)
 #endif /* GNOME_ENABLE_DEBUG */
 
   priv->theme_manager = games_card_themes_new ();
-  g_signal_connect (priv->theme_manager, "changed",
-                    G_CALLBACK (install_card_theme_menu), window);
 
   priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->game));
 
@@ -2577,6 +2575,9 @@ aisleriot_window_init (AisleriotWindow *window)
   action = gtk_action_group_get_action (priv->action_group, "ThemeMenu");
   g_object_set (action, "hide-if-empty", GINT_TO_POINTER (FALSE), NULL);
 #endif
+
+  g_signal_connect (priv->theme_manager, "changed",
+                    G_CALLBACK (install_card_theme_menu), window);
 
   /* The actions and menus are done. The
    * recent games menu will be updated when the initial game loads.
