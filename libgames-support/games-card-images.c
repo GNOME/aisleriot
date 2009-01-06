@@ -45,10 +45,15 @@ enum {
   MARK_MASK = 0x3U
 };
 
+/* This is an invalid value for a GObject* */
+#define FAILED_POINTER ((gpointer) 0x4)
+
 #define GET_MARK(ptr) ((gsize) (ptr) & (gsize) MARK_MASK)
 #define HAS_MARK(ptr,flags) ((gsize) GET_MARK (ptr) & (gsize) (flags))
 #define MARK_POINTER(ptr,flags) ((gpointer) ((gsize) (ptr) | (gsize) (flags)))
 #define UNMARK_POINTER(ptr) ((gpointer) ((gsize) (ptr) & ~(gsize) MARK_MASK))
+
+#define IS_FAILED_POINTER(ptr) (G_UNLIKELY ((ptr) == FAILED_POINTER))
 
 #define CACHE_SIZE  (2 * GAMES_CARDS_TOTAL)
 
@@ -66,7 +71,7 @@ games_card_images_clear_cache (GamesCardImages * images)
   for (i = 0; i < CACHE_SIZE; i++) {
     gpointer data = UNMARK_POINTER (images->cache[i]);
 
-    if (data != NULL) {
+    if (data != NULL && !IS_FAILED_POINTER (data)) {
       g_object_unref (data);
     }
   }
@@ -511,6 +516,9 @@ games_card_images_get_card_pixbuf_by_id (GamesCardImages * images,
   }
 
   data = images->cache[idx];
+  if (IS_FAILED_POINTER (data))
+    return NULL;
+
   pixbuf = UNMARK_POINTER (data);
 
   /* If we already have a pixbuf and it's transformed (if necessary), we just return it */
@@ -524,14 +532,18 @@ games_card_images_get_card_pixbuf_by_id (GamesCardImages * images,
   /* Create the pixbuf */
   if (!pixbuf) {
     pixbuf = create_pixbuf (images, card_id);
-    if (!pixbuf)
+    if (!pixbuf) {
+      images->cache[idx] = FAILED_POINTER;
       return NULL;
+    }
   }
 
   if (G_UNLIKELY (highlighted)) {
     pixbuf = transform_pixbuf (images, pixbuf, idx);
-    if (!pixbuf)
+    if (!pixbuf) {
+      images->cache[idx] = FAILED_POINTER;
       return NULL;
+    }
   }
 
   g_assert (pixbuf == UNMARK_POINTER (images->cache[idx]));
@@ -599,6 +611,9 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
   }
 
   data = images->cache[idx];
+  if (IS_FAILED_POINTER (data))
+    return NULL;
+
   pixbuf_or_pixmap = UNMARK_POINTER (data);
 
   /* If we have a pixmap, it will already be transformed (if necessary); just return it */
@@ -612,8 +627,10 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
   /* We either have a pixbuf, or need to create it first */
   if (!pixbuf_or_pixmap) {
     pixbuf = create_pixbuf (images, card_id);
-    if (!pixbuf)
+    if (!pixbuf) {
+      images->cache[idx] = FAILED_POINTER;
       return NULL;
+    }
 
   } else {
     pixbuf = pixbuf_or_pixmap;
@@ -625,8 +642,10 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
   if (G_UNLIKELY
       (highlighted && !HAS_MARK (images->cache[idx], MARK_IS_TRANSFORMED))) {
     pixbuf = transform_pixbuf (images, pixbuf, idx);
-    if (!pixbuf)
+    if (!pixbuf) {
+      images->cache[idx] = FAILED_POINTER;
       return NULL;
+    }
   }
 
   g_assert (pixbuf == UNMARK_POINTER (images->cache[idx]));
@@ -648,8 +667,10 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
   }
 
   pixmap = gdk_pixmap_new (images->drawable, width, height, -1);
-  if (!pixmap)
+  if (!pixmap) {
+    images->cache[idx] = FAILED_POINTER;
     return NULL;
+  }
 
   /* Clear the pixmap, to eliminate artifacts from uninitialised
    * pixels when drawing the pixmap with gdk_draw_drawable.
