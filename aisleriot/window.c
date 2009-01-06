@@ -1487,7 +1487,10 @@ card_theme_changed_cb (GtkToggleAction *action,
 #if GTK_CHECK_VERSION (2, 12, 0) || (defined (HAVE_HILDON) && !defined(HAVE_MAEMO_3))
     gtk_widget_error_bell (GTK_WIDGET (window));
 #endif
-  
+
+    /* Set this action insensitive so we don't try again */
+    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
+
     /* Re-set the radio action of the current theme to active */
     group = gtk_radio_action_get_group (GTK_RADIO_ACTION (action));
     for (l = group; l != NULL; l = l->next) {
