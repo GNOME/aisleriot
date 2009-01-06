@@ -72,6 +72,8 @@ get_default_theme_type (void)
 #endif
     if (strcmp (env, "sliced") == 0)
       type = GAMES_TYPE_CARD_THEME_SLICED;
+    else if (strcmp (env, "kde") == 0)
+      type = GAMES_TYPE_CARD_THEME_KDE;
     else if (strcmp (env, "fixed") == 0)
       type = GAMES_TYPE_CARD_THEME_FIXED;
   }

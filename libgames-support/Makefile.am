@@ -94,6 +94,7 @@ endif
 if HAVE_RSVG
 libgames_support_la_SOURCES += \
 	games-card-theme-svg.c		\
+	games-card-theme-kde.c		\
 	$(NULL)
 endif
 

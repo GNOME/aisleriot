@@ -122,6 +122,22 @@ GType games_card_theme_sliced_get_type (void);
 
 GamesCardTheme* games_card_theme_sliced_new (void);
 
+/* GamesCardThemeKDE */
+
+#define GAMES_TYPE_CARD_THEME_KDE            (games_card_theme_kde_get_type ())
+#define GAMES_CARD_THEME_KDE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME_KDE, GamesCardThemeKDE))
+#define GAMES_CARD_THEME_KDE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_THEME_KDE, GamesCardThemeKDEClass))
+#define GAMES_IS_CARD_THEME_KDE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_THEME_KDE))
+#define GAMES_IS_CARD_THEME_KDE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_THEME_KDE))
+#define GAMES_CARD_THEME_KDE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_THEME_KDE, GamesCardThemeKDEClass))
+
+typedef struct _GamesCardThemeKDEClass GamesCardThemeKDEClass;
+typedef struct _GamesCardThemeKDE      GamesCardThemeKDE;
+
+GType games_card_theme_kde_get_type (void);
+
+GamesCardTheme* games_card_theme_kde_new (void);
+
 /* GamesCardThemeFixed */
 
 #define GAMES_TYPE_CARD_THEME_FIXED            (games_card_theme_fixed_get_type ())
