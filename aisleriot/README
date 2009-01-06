@@ -56,3 +56,29 @@ AISLERIOT_PIXBUF_DRAWING:
   drawing has the benefit of using full alphachannels, eliminating ugly
   rendering artifacts caused by the 1-bit alphachannels of the pixmaps.
   Might be a bit slower though.
+
+
+How to add a new game to Aisleriot
+==================================
+
+ * Move foo.scm file into rules/ and git add it
+ * Add foo.scm to rules_DATA in rules/Makefile.am, keeping the list
+   sorted alphabetically
+ * Move the documentation foo.xml file into help/C/ and git add it
+ * Add foo.xml to DOC_ENITIES in help/Makefile.am, keeping the list
+   sorted alphabetically
+ * Edit help/C/aisleriot.xml to add an ENTITY declaration at the top:
+
+     <!ENTITY foo SYSTEM "foo.xml">
+
+   and add this entity to the list of the game entities used:
+
+     &foo;
+
+   Make sure to keep the lists in the file sorted alphabetically.
+ * Run the ./gen-title.pl script
+ * In help/, run "make check" to make sure the documentation validates
+ * git commit help/C/foo.xml help/C/aisleriot.xml help/Makefile.am rules/foo.scm
+     rules/Makefile.am translatable_game_names.h
+
+ Done!
