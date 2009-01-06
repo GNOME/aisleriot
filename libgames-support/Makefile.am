@@ -64,6 +64,7 @@ libgames_support_la_SOURCES +=		\
 	games-card-theme-sliced.c	\
 	games-preimage.c                \
 	games-preimage.h                \
+	games-preimage-private.h	\
 	games-score.h			\
 	games-score.c			\
 	games-scores.c			\

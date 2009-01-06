@@ -34,23 +34,7 @@
 #endif /* HAVE_RSVG */
 
 #include "games-preimage.h"
-
-struct _GamesPreimage {
-  GObject parent;
-
-  gint width;
-  gint height;
-
-#ifdef HAVE_RSVG
-  RsvgHandle *rsvg_handle;
-  cairo_font_options_t *font_options;
-#endif
-
-  /* raster pixbuf data */
-  GdkPixbuf *pixbuf;
-
-  guint scalable : 1;
-};
+#include "games-preimage-private.h"
 
 G_DEFINE_TYPE (GamesPreimage, games_preimage, G_TYPE_OBJECT);
 

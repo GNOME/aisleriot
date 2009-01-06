@@ -27,6 +27,7 @@
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"
+#include "games-preimage-private.h"
 #include "games-runtime.h"
 
 #include "games-card-theme.h"
@@ -40,13 +41,9 @@ struct _GamesCardThemeKDE {
   GamesCardThemePreimage parent_instance;
 };
 
-#if defined(HAVE_RSVG)
 #include <librsvg/librsvg-features.h>
-#endif
 #if defined(HAVE_RSVG) && defined(LIBRSVG_CHECK_VERSION) && LIBRSVG_CHECK_VERSION(2, 22, 4)
 #define HAVE_RSVG_BBOX
-#else
-#error version check
 #endif
 
 #define N_ROWS ((double) 5.0)
@@ -117,9 +114,10 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
   int suit, rank;
   double card_width, card_height;
   double width, height;
-  double offsetx, offsety;
   double zoomx, zoomy;
   char node[64];
+  RsvgDimensionData dimension;
+  RsvgPositionData position;
 
   if (!preimage_card_theme->theme_loaded)
     return NULL;
@@ -135,25 +133,28 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
     return subpixbuf;
   }
 
+  games_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
+
+  if (!rsvg_handle_get_dimension_sub (preimage->rsvg_handle, &dimension, node) ||
+      !rsvg_handle_get_position_sub (preimage->rsvg_handle, &position, node)) {
+    g_print ("Failed to get dim or pos for '%s'\n", node);
+    return NULL;
+  }
+
   card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
   card_height = ((double) games_preimage_get_height (preimage)) / N_ROWS;
 
   width = preimage_card_theme->card_size.width - 2 * DELTA;
   height = preimage_card_theme->card_size.height - 2 * DELTA;
 
-  offsetx = -((double) rank) * card_width + DELTA;
-  offsety = -((double) suit) * card_height + DELTA;
-
-  zoomx = width / card_width;
-  zoomy = height / card_height;
-
-  games_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
+  zoomx = width / dimension.width;
+  zoomy = height / dimension.height;
 
   subpixbuf = games_preimage_render_sub (preimage,
                                          node,
                                          preimage_card_theme->card_size.width,
                                          preimage_card_theme->card_size.height,
-                                         offsetx, offsety,
+                                         -position.x, -position.y,
                                          zoomx, zoomy);
 
   return subpixbuf;
