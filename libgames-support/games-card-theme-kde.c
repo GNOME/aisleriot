@@ -59,6 +59,14 @@ struct _GamesCardThemeKDE {
 static long totaltime = 0;
 #endif
 
+#define KDE_BACKDECK_FILENAME     "index.desktop"
+#define KDE_BACKDECK_GROUP        "KDE Backdeck"
+#define KDE_BACKDECK_BACK_KEY     "Back"
+#define KDE_BACKDECK_BACKSIZE_KEY "BackSize"
+#define KDE_BACKDECK_NAME_KEY     "Name" /* localised */
+#define KDE_BACKDECK_PYSOL_KEY    "PySol"
+#define KDE_BACKDECK_SVG_KEY      "SVG"
+
 /* Class implementation */
 
 G_DEFINE_TYPE (GamesCardThemeKDE, games_card_theme_kde, GAMES_TYPE_CARD_THEME_PREIMAGE);
@@ -168,19 +176,44 @@ games_card_theme_kde_class_get_theme_info (GamesCardThemeClass *klass,
                                            const char *path,
                                            const char *filename)
 {
-  GamesCardThemeInfo *info;
-  char *display_name;
+  GamesCardThemeInfo *info = NULL;
+  char *base_path = NULL, *key_file_path = NULL;
+  GKeyFile *key_file = NULL;
+  char *svg_filename = NULL, *display_name = NULL;
 
-  if (!g_str_has_suffix (filename, ".svgz")) // FIXMEchpe 
-    return NULL;
+  base_path = g_build_filename (path, filename, NULL);
+  if (!g_file_test (path, G_FILE_TEST_IS_DIR))
+    goto out;
 
-  display_name = games_filename_to_display_name (filename);
+  key_file_path = g_build_filename (base_path, KDE_BACKDECK_FILENAME, NULL);
+  key_file = g_key_file_new ();
+  if (!g_key_file_load_from_file (key_file, key_file_path, 0, NULL))
+    goto out;
+      
+  if (!g_key_file_has_group (key_file, KDE_BACKDECK_GROUP))
+    goto out;
+
+  display_name = g_key_file_get_locale_string (key_file, KDE_BACKDECK_GROUP, KDE_BACKDECK_NAME_KEY, NULL, NULL);
+  svg_filename = g_key_file_get_string (key_file, KDE_BACKDECK_GROUP, KDE_BACKDECK_SVG_KEY, NULL);
+  if (!display_name || !display_name[0] || !svg_filename || !svg_filename[0])
+    goto out;
+
+  display_name = games_filename_to_display_name (svg_filename);
+
   info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
-                                     path,
-                                     filename,
+                                     base_path,
+                                     svg_filename,
                                      display_name,
                                      NULL, NULL);
+
+out:
+  g_free (base_path);
+  g_free (key_file_path);
+  g_free (svg_filename);
   g_free (display_name);
+  if (key_file) {
+    g_key_file_free (key_file);
+  }
 
   return info;
 }

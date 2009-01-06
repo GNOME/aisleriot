@@ -653,6 +653,9 @@ _games_card_theme_info_new (GType type,
   info->data = data;
   info->destroy_notify = destroy_notify;
 
+  g_print ("Created GamesCardThemeInfo for type=%s path=%s filename=%s display-name=%s\n",
+           g_type_name (type), path, filename, display_name);
+
   return info;
 }
 
