@@ -418,8 +418,19 @@ set_background_from_baize (AisleriotBoard *board)
                            priv->baize_actor, NULL);
   }
 
-  gtk_clutter_texture_set_from_pixbuf (CLUTTER_TEXTURE (priv->baize_actor),
-                                       pixbuf);
+  clutter_texture_set_from_rgb_data (CLUTTER_TEXTURE (priv->baize_actor),
+                                     gdk_pixbuf_get_pixels (pixbuf),
+                                     gdk_pixbuf_get_has_alpha (pixbuf),
+                                     gdk_pixbuf_get_width (pixbuf),
+                                     gdk_pixbuf_get_height (pixbuf),
+                                     gdk_pixbuf_get_rowstride (pixbuf),
+                                     gdk_pixbuf_get_has_alpha (pixbuf) ? 4 : 3,
+                                     0,
+                                     &error);
+  if (error) {
+    g_warning ("Failed to set texture from pixbuf: %s", error->message);
+    g_error_free (error);
+  }
 
   g_object_unref (pixbuf);
 }
