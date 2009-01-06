@@ -20,11 +20,15 @@
 
 #include <config.h>
 
+#include <locale.h>
+
 #if defined (G_OS_WIN32)
 #include <windows.h>
 #include <io.h>
 #define HELP_EXT "xhtml"
 #endif /* G_OS_WIN32 */
+
+#include <glib/gi18n.h>
 
 #include "games-debug.h"
 #include "games-runtime.h"
@@ -69,13 +73,32 @@ typedef int _assertion[G_N_ELEMENTS (derived_directories) + GAMES_RUNTIME_FIRST_
 /**
  * games_runtime_init:
  *
- * Initialises the runtime file localisator.
+ * Initialises the runtime file localisator. This also calls setlocale,
+ * and initialises gettext support and gnome-games debug support.
+ *
+ * NOTE: This must be called before using ANY other glib/gtk/etc function!
  * 
  * Returns: %TRUE iff initialisation succeeded
  */
 gboolean
 games_runtime_init (const char *name)
 {
+  setlocale (LC_ALL, "");
+
+  bindtextdomain (GETTEXT_PACKAGE, games_runtime_get_directory (GAMES_RUNTIME_LOCALE_DIRECTORY));
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain(GETTEXT_PACKAGE);
+
+#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_GSTREAMER)
+  /* If we're going to use gconf, gnome-vfs, or gstreamer, we need to
+   * init threads before calling any glib functions.
+   */
+  g_thread_init (NULL);
+  /* May call any glib function after this point */
+#endif
+
+  _games_debug_init ();
+
   app_name = g_strdup (name);
 
 #ifdef G_OS_WIN32

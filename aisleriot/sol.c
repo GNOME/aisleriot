@@ -22,7 +22,6 @@
 #include <config.h>
 
 #include <string.h>
-#include <locale.h>
 
 #include <libguile.h>
 
@@ -681,23 +680,8 @@ main_prog (void *closure, int argc, char *argv[])
 int
 main (int argc, char *argv[])
 {
-  setlocale (LC_ALL, "");
-
-#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_GSTREAMER)
-  /* If we're going to use gnome-vfs or gstreamer, we need to init threads before
-   * calling any glib functions.
-   */
-  g_thread_init (NULL);
-#endif
-
-  _games_debug_init ();
-
   if (!games_runtime_init ("aisleriot"))
     return 1;
-
-  bindtextdomain (GETTEXT_PACKAGE, games_runtime_get_directory (GAMES_RUNTIME_LOCALE_DIRECTORY));
-  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-  textdomain (GETTEXT_PACKAGE);
 
   scm_boot_guile (argc, argv, main_prog, NULL); /* no return */
 

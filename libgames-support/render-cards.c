@@ -26,6 +26,7 @@
 
 #include <gtk/gtk.h>
 
+#include "games-runtime.h"
 #include "games-card-theme.h"
 #include "games-card-theme-private.h"
 
@@ -64,12 +65,8 @@ main (int argc, char *argv[])
     { NULL }
   };
 
-#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS)
-  /* If we're going to use gnome-vfs, we need to init threads before
-   * calling any glib functions.
-   */
-  g_thread_init (NULL);
-#endif
+  if (!games_runtime_init ("aisleriot"))
+    exit (1);
 
   if (!gtk_init_with_args
       (&argc, &argv, NULL, (GOptionEntry *) options, NULL, &err)) {
