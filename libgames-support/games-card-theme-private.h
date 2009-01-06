@@ -1,6 +1,6 @@
 /*
    Copyright © 2004 Callum McKenzie
-   Copyright © 2007, 2008 Christian Persch
+   Copyright © 2007, 2008, 2009 Christian Persch
 
    This library is free software; you can redistribute it and'or modify
    it under the terms of the GNU Library General Public License as published 
@@ -44,13 +44,13 @@ GamesCardThemeInfo *_games_card_theme_info_new (GType type,
                                                 gpointer data,
                                                 GDestroyNotify destroy_notify);
 
-guint _games_card_theme_info_hash  (GamesCardThemeInfo *a,
-                                    GamesCardThemeInfo *b);
-gboolean _games_card_theme_info_equal (GamesCardThemeInfo *a,
-                                       GamesCardThemeInfo *b);
+guint _games_card_theme_info_hash  (const GamesCardThemeInfo *a);
 
-int _games_card_theme_info_collate (GamesCardThemeInfo *a,
-                                    GamesCardThemeInfo *b);
+gboolean _games_card_theme_info_equal (const GamesCardThemeInfo *a,
+                                       const GamesCardThemeInfo *b);
+
+int _games_card_theme_info_collate (const GamesCardThemeInfo *a,
+                                    const GamesCardThemeInfo *b);
 
 /* GamesCardTheme */
 

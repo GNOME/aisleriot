@@ -611,7 +611,7 @@ help_about_cb (GtkAction *action,
 			     "AisleRiot is a part of GNOME Games."),
 #endif
                          "copyright", "Copyright © 1998-2006 Jonathan Blandford\n"
-                                      "Copyright © 2007, 2008 Christian Persch",
+                                      "Copyright © 2007, 2008, 2009 Christian Persch",
                          "license", licence,
                          "authors", authors,
                          "artists", artists,
@@ -1542,7 +1542,7 @@ install_card_theme_menu (AisleriotWindow *window)
   /* See gtk bug #424448 */
   gtk_ui_manager_ensure_update (priv->ui_manager);
 
-  list = games_card_themes_get_theme_all (priv->theme_manager);
+  list = games_card_themes_get_themes (priv->theme_manager);
 
   /* No need to install the menu when there's only one theme available anyway */
   if (list == NULL || list->next == NULL) {
@@ -2353,6 +2353,7 @@ aisleriot_window_init (AisleriotWindow *window)
   GtkAccelGroup *accel_group;
   GtkAction *action;
   char *theme_name;
+  GamesCardThemeInfo *theme_info;
   GamesCardTheme *theme;
   guint i;
 #ifdef HAVE_HILDON
@@ -2391,13 +2392,16 @@ aisleriot_window_init (AisleriotWindow *window)
   aisleriot_board_set_pixbuf_drawing (priv->board, priv->use_pixbuf_drawing);
 
   theme_name = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
-  theme = games_card_themes_get_theme_by_name (priv->theme_manager, theme_name);
+  theme_info = games_card_themes_get_theme_info_by_name (priv->theme_manager, theme_name);
   g_free (theme_name);
-  if (!theme) {
-    theme = games_card_themes_get_theme_any (priv->theme_manager);
+  if (!theme_info) {
+    //XXXtheme = games_card_themes_get_theme_any (priv->theme_manager);
   }
-  if (theme) {
-    aisleriot_window_take_card_theme (window, theme /* adopts */);
+  if (theme_info) {
+    theme = games_card_themes_get_theme (priv->theme_manager, theme_info);
+    if (theme) {
+      aisleriot_window_take_card_theme (window, theme /* adopts */);
+    }
   } else {
     /* FIXMEchpe: FUCK, what now? Panic! */
   }

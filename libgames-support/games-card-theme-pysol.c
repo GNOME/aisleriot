@@ -1,6 +1,6 @@
 /*
   Copyright © 2004 Callum McKenzie
-  Copyright © 2007, 2008 Christian Persch
+  Copyright © 2007, 2008, 2009 Christian Persch
 
   This programme is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -359,7 +359,7 @@ games_card_theme_pysol_class_get_theme_info (GamesCardThemeClass *klass,
     return NULL;
 
   display_name = g_strdup_printf ("%s (PySol)", pysol_data->name);
-  pref_name = g_strdup_printf ("pysol:%s", filename + strlen ("cardset-"));
+  pref_name = g_strdup_printf ("pysol:%s", filename);
   info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,
                                      filename,

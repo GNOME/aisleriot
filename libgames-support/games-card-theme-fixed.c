@@ -1,6 +1,6 @@
 /*
    Copyright © 2004 Callum McKenzie
-   Copyright © 2007, 2008 Christian Persch
+   Copyright © 2007, 2008, 2009 Christian Persch
 
    This library is free software; you can redistribute it and'or modify
    it under the terms of the GNU Library General Public License as published 

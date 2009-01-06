@@ -86,7 +86,6 @@ if test -n "$enable_omitgames"; then
         esac
      done
    done
-   echo ${omittedgames}
    for game in ${allgames}; do
      case ${omittedgames} in
        *${game}*) ;;
@@ -293,17 +292,6 @@ AC_ARG_WITH([sound],
   [with_sound=sdl_mixer])
 AC_MSG_RESULT([$with_sound])
 
-# Scalable graphics
-
-AC_MSG_CHECKING([whether to enable scalable graphics])
-AC_ARG_ENABLE([scalable],
-  [AS_HELP_STRING([--enable-scalable],[Enable scalable graphics])],
-  [],[case "$with_platform" in
-        gnome|gtk-only) enable_scalable=yes ;;
-        hildon) enable_scalable=no ;;
-      esac])
-AC_MSG_RESULT([$enable_scalable])
-
 # Clutter
   
 AC_MSG_CHECKING([whether to enable clutter support])
@@ -323,6 +311,68 @@ case "$with_platform" in
           ;;
 esac
 
+# Card theme formats
+
+AC_MSG_CHECKING([for requested card theme formats])
+AC_ARG_WITH([card-theme-formats],
+  [AS_HELP_STRING([--with-card-theme-formats],[which card theme formats to support (svg, fixed, kde, pysol, defaults, all)])],
+  [],[case "$with_platform" in
+        gnome|gtk-only) with_card_theme_formats="svg" ;;
+        hildon) with_card_theme_formats="fixed" ;;
+      esac])
+
+enable_card_theme_format_svg=no
+enable_card_theme_format_kde=no
+enable_card_theme_format_fixed=no
+enable_card_theme_format_sliced=no
+enable_card_theme_format_pysol=no
+
+IFS="${IFS=	}"; gg_saved_ifs="$IFS"; IFS=","
+for format in "$with_card_theme_formats"; do
+  case "$format" in
+    all) enable_card_theme_format_svg=yes
+         enable_card_theme_format_kde=yes
+         enable_card_theme_format_fixed=yes
+         enable_card_theme_format_sliced=yes
+         enable_card_theme_format_pysol=yes
+         with_card_theme_formats="svg,kde,fixed,sliced,pysol"
+         ;;
+    svg) enable_card_theme_format_svg=yes ;;
+    kde) enable_card_theme_format_kde=yes ;;
+    fixed) enable_card_theme_format_fixed=yes ;;
+    sliced) enable_card_theme_format_svg=yes ;;
+    pysol) enable_card_theme_format_pysol=yes ;;
+    *) AC_MSG_ERROR([unknown card theme format $format]) ;;
+  esac
+done
+IFS="$gg_saved_ifs"
+
+AC_MSG_RESULT([$with_card_theme_formats])
+
+if test "$enable_card_theme_format_svg" = "yes"; then
+  AC_DEFINE([ENABLE_CARD_THEME_FORMAT_SVG],[1],[Define to enable SVG card theme format support])
+  need_rsvg=yes
+fi
+if test "$enable_card_theme_format_kde" = "yes"; then
+  AC_DEFINE([ENABLE_CARD_THEME_FORMAT_KDE],[1],[Define to enable KDE card theme format support])
+  need_rsvg=yes
+fi
+if test "$enable_card_theme_format_fixed" = "yes"; then
+  AC_DEFINE([ENABLE_CARD_THEME_FORMAT_FIXED],[1],[Define to enable prerendered card theme format support])
+fi
+if test "$enable_card_theme_format_sliced" = "yes"; then
+  AC_DEFINE([ENABLE_CARD_THEME_FORMAT_SLICED],[1],[Define to enable pre-2.19 card theme format support])
+fi
+if test "$enable_card_theme_format_pysol" = "yes"; then
+  AC_DEFINE([ENABLE_CARD_THEME_FORMAT_PYSOL],[1],[Define to enable PySol card theme format support])
+fi
+
+AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_SVG],[test "$enable_card_theme_format_svg" = "yes"])
+AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_KDE],[test "$enable_card_theme_format_kde" = "yes"])
+AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_FIXED],[test "$enable_card_theme_format_fixed" = "yes"])
+AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_SLICED],[test "$enable_card_theme_format_sliced" = "yes"])
+AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_PYSOL],[test "$enable_card_theme_format_pysol" = "yes"])
+
 # Default card theme
 
 AC_MSG_CHECKING([which card theme to use by default])
@@ -335,6 +385,25 @@ AC_ARG_WITH([default-card-theme],
 AC_MSG_RESULT([$with_default_card_theme])
 
 AC_DEFINE_UNQUOTED([GAMES_CARD_THEME_DEFAULT],["$with_default_card_theme"],[The default card theme])
+
+AC_MSG_CHECKING([which card theme format to use by default])
+AC_ARG_WITH([default-card-theme-format],
+  [AS_HELP_STRING([--with-default-card-theme-format=NAME],[Which card theme format to use by default (default: platform dependent)])],
+  [],[case "$with_platform" in
+        gnome|gtk-only) with_default_card_theme_format=svg ;;
+        hildon) with_default_card_theme_format=fixed ;;
+      esac])
+AC_MSG_RESULT([$with_default_card_theme_format])
+
+case "$with_default_card_theme_format" in
+  svg) GAMES_CARD_THEME_DEFAULT_FORMAT="GAMES_TYPE_CARD_THEME_SVG" ;;
+  kde) GAMES_CARD_THEME_DEFAULT_FORMAT="GAMES_TYPE_CARD_THEME_KDE" ;;
+  fixed) GAMES_CARD_THEME_DEFAULT_FORMAT="GAMES_TYPE_CARD_THEME_FIXED" ;;
+  sliced) GAMES_CARD_THEME_DEFAULT_FORMAT="GAMES_TYPE_CARD_THEME_SLICED" ;;
+  pysol) GAMES_CARD_THEME_DEFAULT_FORMAT="GAMES_TYPE_CARD_THEME_PYSOL" ;;
+esac
+
+AC_DEFINE_UNQUOTED([GAMES_CARD_THEME_DEFAULT_FORMAT],[$GAMES_CARD_THEME_DEFAULT_FORMAT],[The default card theme format type])
 
 # Checks for libraries.
 PYGTK_REQUIRED=2.10.0
@@ -409,36 +478,37 @@ fi
 # Check for librsvg
 
 have_rsvg=no
-if test "$enable_scalable" = "yes"; then
+if test "$need_rsvg" = "yes"; then
+  have_rsvg=yes
+
+  # Errors out if rsvg is not found
   PKG_CHECK_MODULES([RSVG],[
     librsvg-2.0 >= $RSVG_REQUIRED
-    cairo >= $CAIRO_REQUIRED],
-    [have_rsvg=yes],[have_rsvg=no])
-fi
+    cairo >= $CAIRO_REQUIRED])
 
-if test "$need_rsvg" = "yes" -a "$have_rsvg" = "no"; then
-  AC_MSG_ERROR([librsvg not found but is required])
-fi
-
-if test "$have_rsvg" = "yes"; then
   AC_SUBST([RSVG_CFLAGS])
   AC_SUBST([RSVG_LIBS])
 
   AC_DEFINE([HAVE_RSVG],[1],[Refine if librsvg is available])
 
-  # Check whether librsvg was compiled with gnome-vfs support
-  AC_MSG_CHECKING([whether librsvg supports gnome-vfs])
-
-  have_rsvg_gnomevfs=$($PKG_CONFIG --variable=gnome_vfs_supported librsvg-2.0)
-
-  if test -z "$have_rsvg_gnomevfs" -o "$have_rsvg_gnomevfs" = "yes"; then
-    have_rsvg_gnomevfs=yes
+  # This only existed in some pre-gio rsvg versions
+  rsvg_gnomevfs=$($PKG_CONFIG --variable=gnome_vfs_supported librsvg-2.0)
+  if test "$rsvg_gnomevfs" = "yes"; then
     AC_DEFINE([HAVE_RSVG_GNOMEVFS],[1],[Define if librsvg has gnome-vfs support])
-  
+
     need_gthread=yes
   fi
 
-  AC_MSG_RESULT([$have_rsvg_gnomevfs])
+  # These exist only since rsvg 2.22.something, so we check for != false below
+  rsvg_svgz="$($PKG_CONFIG --variable svgz_supported librsvg-2.0)"
+  rsvg_css="$($PKG_CONFIG --variable css_supported librsvg-2.0)"
+
+  if test "$rsvg_svgz" != "false"; then
+    AC_DEFINE([HAVE_RSVG_SVGZ],[1],[Define if rsvg supports gzipped SVG files])
+  fi
+  if test "$rsvg_css" != "false"; then
+    AC_DEFINE([HAVE_RSVG_CSS],[1],[Define if rsvg supports CSS])
+  fi
 fi
 
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
@@ -453,7 +523,7 @@ if test "$enable_clutter" = "yes"; then
   CLUTTER_API_VERSION=
   AC_MSG_CHECKING([for clutter API version])
   for API_VERSION in 1.0 0.9 0.8; do
-    PKG_CHECK_EXISTS([clutter-$API_VERSION clutter-gtk-$API_VERSION clutter-cairo-$API_VERSION],
+    PKG_CHECK_EXISTS([clutter-$API_VERSION clutter-cairo-$API_VERSION],
       [CLUTTER_API_VERSION=$API_VERSION; break],[])
   done
   if test -z "$CLUTTER_API_VERSION"; then
@@ -467,10 +537,14 @@ if test "$enable_clutter" = "yes"; then
 
   PKG_CHECK_MODULES([CLUTTER],[
      clutter-$CLUTTER_API_VERSION >= $CLUTTER_REQUIRED
-     clutter-gtk-$CLUTTER_API_VERSION  >= $CLUTTER_GTK_REQUIRED
      clutter-cairo-$CLUTTER_API_VERSION >= $CLUTTER_CAIRO_REQUIRED])
   AC_SUBST([CLUTTER_CFLAGS])
   AC_SUBST([CLUTTER_LIBS])
+
+  # PKG_CHECK_MODULES([CLUTTER_GTK],[
+  #   clutter-gtk-$CLUTTER_API_VERSION  >= $CLUTTER_GTK_REQUIRED])
+  # AC_SUBST([CLUTTER_GTK_CFLAGS])
+  # AC_SUBST([CLUTTER_GTK_LIBS])
 fi
 
 AM_CONDITIONAL([HAVE_CLUTTER],[test "$enable_clutter" = "yes"])
@@ -1046,6 +1120,7 @@ echo "
     Using SM Client:       ${with_smclient}
     Using RSVG:            ${have_rsvg}
     Using Clutter:         ${enable_clutter}
+    Card theme formats:    ${with_card_theme_formats}
     Sound support:         ${with_sound}
     Use setgid binaries:   ${setgid}
     Scores user:           ${scores_user}

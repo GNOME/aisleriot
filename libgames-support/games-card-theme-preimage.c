@@ -223,8 +223,11 @@ games_card_theme_preimage_class_get_theme_info (GamesCardThemeClass *klass,
   GamesCardThemeInfo *info;
   char *display_name;
 
-  if (!g_str_has_suffix (filename, ".svg") &&
-      !g_str_has_suffix (filename, ".svgz"))
+  if (!g_str_has_suffix (filename, ".svg")
+#ifdef HAVE_RSVG_SVGZ
+      && !g_str_has_suffix (filename, ".svgz")
+#endif
+     )
     return NULL;
 
   display_name = games_filename_to_display_name (filename);

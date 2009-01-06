@@ -79,7 +79,7 @@ create_combo_box (GamesCardThemes *theme_manager,
 
   store = gtk_list_store_new (N_COLUMNS, GAMES_TYPE_CARD_THEME_INFO, G_TYPE_STRING);
 
-  themes = games_card_themes_get_theme_all (theme_manager);
+  themes = games_card_themes_get_themes (theme_manager);
 
   for (l = themes; l != NULL; l = l->next) {
     GamesCardThemeInfo *info = l->data;

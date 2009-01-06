@@ -1,6 +1,6 @@
 /*
    Copyright © 2004 Callum McKenzie
-   Copyright © 2007, 2008 Christian Persch
+   Copyright © 2007, 2008, 2009 Christian Persch
 
    This library is free software; you can redistribute it and'or modify
    it under the terms of the GNU Library General Public License as published 
@@ -41,10 +41,13 @@ struct _GamesCardThemes {
 
   GHashTable *theme_infos;
   gboolean theme_infos_update_needed;
+
+  GType *theme_types;
+  guint n_theme_types;
 };
 
 enum {
-  PROP_0
+  N_THEME_TYPES = 5
 };
 
 enum {
@@ -52,12 +55,100 @@ enum {
   LAST_SIGNAL
 };
 
-/*static guint signals[LAST_SIGNAL];*/
+static guint signals[LAST_SIGNAL];
+
+static GType
+theme_type_from_string (const char *type_str,
+                        gssize type_str_len)
+{
+  const struct {
+    const char name[6];
+    GType type;
+  } type_strings[] = {
+#ifdef HAVE_RSVG
+#ifdef ENABLE_CARD_THEME_FORMAT_SVG
+    { "svg", GAMES_TYPE_CARD_THEME_SVG },
+#endif
+#ifdef ENABLE_CARD_THEME_FORMAT_KDE
+    { "kde", GAMES_TYPE_CARD_THEME_KDE },
+#endif
+#endif /* HAVE_RSVG */
+#ifndef HAVE_HILDON
+#ifdef ENABLE_CARD_THEME_FORMAT_SLICED
+    { "sliced", GAMES_TYPE_CARD_THEME_SLICED },
+#endif
+#ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
+    { "pysol", GAMES_TYPE_CARD_THEME_PYSOL },
+#endif
+#endif /* !HAVE_HILDON */
+#ifdef ENABLE_CARD_THEME_FORMAT_FIXED
+    { "fixed", GAMES_TYPE_CARD_THEME_FIXED },
+#endif
+  };
+  GType type = G_TYPE_INVALID;
+
+  if (type_str_len == 0) {
+    /* Use the default type */
+#ifdef HAVE_HILDON
+    type = GAMES_TYPE_CARD_THEME_FIXED;
+#else
+    type = GAMES_TYPE_CARD_THEME_SVG;
+#endif
+  } else {
+    guint i;
+
+    for (i = 0; i < G_N_ELEMENTS (type_strings); ++i) {
+      if (strncmp (type_str, type_strings[i].name, type_str_len) == 0) {
+        type = type_strings[i].type;
+        break;
+      }
+    }
+  }
+
+  return type;
+}
 
 static gboolean
-_games_card_themes_get_theme_info_foreach (GamesCardThemeClass *klass,
-                                           const char *path,
-                                           GamesCardThemes *theme_manager)
+games_card_themes_foreach_theme_dir (GType type,
+                                     GamesCardThemeForeachFunc callback,
+                                     gpointer data)
+{
+  GamesCardThemeClass *klass;
+  gboolean retval;
+
+  klass = g_type_class_ref (type);
+  if (!klass)
+    return TRUE;
+
+  _games_profile_start ("foreach %s card themes", G_OBJECT_CLASS_NAME (klass));
+  retval = _games_card_theme_class_foreach_theme_dir (klass, callback, data);
+  _games_profile_end ("foreach %s card themes", G_OBJECT_CLASS_NAME (klass));
+
+  g_type_class_unref (klass);
+  return retval;
+}
+
+static gboolean
+games_card_themes_foreach_theme_type_and_dir (GamesCardThemes *theme_manager,
+                                              GamesCardThemeForeachFunc callback,
+                                              gpointer data)
+{
+  guint i;
+  gboolean retval = TRUE;
+
+  for (i = 0; i < theme_manager->n_theme_types; ++i) {
+    retval = games_card_themes_foreach_theme_dir (theme_manager->theme_types[i], callback, data);
+    if (!retval)
+      break;
+  }
+
+  return retval;
+}
+
+static gboolean
+games_card_themes_get_theme_infos_in_dir (GamesCardThemeClass *klass,
+                                          const char *path,
+                                          GamesCardThemes *theme_manager)
 {
   GDir *iter;
   const char *filename;
@@ -87,45 +178,36 @@ out:
   return TRUE;
 }
 
+typedef struct {
+  const char *filename;
+  GamesCardThemeInfo *theme_info;
+} LookupData;
+
+static gboolean
+games_card_themes_try_theme_info_by_filename (GamesCardThemeClass *klass,
+                                              const char *path,
+                                              LookupData *data)
+{
+  /* Try constructing the theme info */
+  data->theme_info = _games_card_theme_class_get_theme_info (klass, path, data->filename);
+
+  /* Continue until found */
+  return data->theme_info == NULL;
+}
+
 static void
 _games_card_theme_ensure_theme_infos (GamesCardThemes *theme_manager)
 {
-  /* FIXME: take env vars and prefs into account on ordering here */
-  GType types[] = {
-#ifdef HAVE_RSVG
-    GAMES_TYPE_CARD_THEME_SVG,
-    GAMES_TYPE_CARD_THEME_KDE,
-#endif
-#ifndef HAVE_HILDON
-    GAMES_TYPE_CARD_THEME_SLICED,
-    GAMES_TYPE_CARD_THEME_PYSOL,
-#endif
-    GAMES_TYPE_CARD_THEME_FIXED
-  };
-  guint i;
-
   if (!theme_manager->theme_infos_update_needed)
     return;
 
   _games_profile_start ("looking for card themes");
-
-  for (i = 0; i < G_N_ELEMENTS (types); ++i) {
-    GamesCardThemeClass *klass;
-
-    klass = g_type_class_ref (types[i]);
-    if (!klass)
-      continue;
-
-    _games_profile_start ("looking for %s card themes", G_OBJECT_CLASS_NAME (klass));
-    _games_card_theme_class_foreach_theme_dir (klass,
-                                               (GamesCardThemeForeachFunc) _games_card_themes_get_theme_info_foreach,
-                                               theme_manager);
-    _games_profile_end ("looking for %s card themes", G_OBJECT_CLASS_NAME (klass));
-
-    g_type_class_unref (klass);
-  }
-
+  games_card_themes_foreach_theme_type_and_dir (theme_manager,
+                                                (GamesCardThemeForeachFunc) games_card_themes_get_theme_infos_in_dir,
+                                                theme_manager);
   _games_profile_end ("looking for card themes");
+
+  g_signal_emit (theme_manager, signals[CHANGED], 0);
 }
 
 typedef struct {
@@ -143,19 +225,8 @@ find_by_type_and_name (gpointer key,
       strcmp (info->filename, data->filename) != 0)
     return;
 
-  data->theme_info = info;
-}
-
-static GamesCardThemeInfo *
-_games_card_themes_get_info_by_type_and_name (GamesCardThemes *theme_manager,
-                                              GType type,
-                                              const char *filename)
-{
-  FindData data = { type, filename, NULL };
-
-  g_hash_table_foreach (theme_manager->theme_infos, (GHFunc) find_by_type_and_name, &data);
-
-  return data.theme_info;
+  if (data->theme_info == NULL)
+    data->theme_info = info;
 }
 
 static void
@@ -166,6 +237,18 @@ foreach_add_to_list (gpointer key,
   *list = g_list_prepend (*list, data);
 }
 
+static GamesCardThemeInfo *
+games_card_themes_get_info_by_type_and_filename (GamesCardThemes *theme_manager,
+                                                 GType type,
+                                                 const char *filename)
+{
+  FindData data = { type, filename, NULL };
+
+  g_hash_table_foreach (theme_manager->theme_infos, (GHFunc) find_by_type_and_name, &data);
+
+  return data.theme_info;
+}
+
 /* Class implementation */
 
 G_DEFINE_TYPE (GamesCardThemes, games_card_themes, G_TYPE_OBJECT);
@@ -173,12 +256,30 @@ G_DEFINE_TYPE (GamesCardThemes, games_card_themes, G_TYPE_OBJECT);
 static void
 games_card_themes_init (GamesCardThemes *theme_manager)
 {
+  GType *types;
+  guint n_types = 0;
+
   /* Hash table: pref name => theme info */
   theme_manager->theme_infos = g_hash_table_new_full (g_str_hash, g_str_equal,
                                                       NULL /* key is owned by data */,
                                                       (GDestroyNotify) games_card_theme_info_unref);
 
   theme_manager->theme_infos_update_needed = TRUE;
+
+  types = theme_manager->theme_types = g_new (GType, N_THEME_TYPES);
+
+  /* List of supported theme types, in order of decreasing precedence */
+#ifdef HAVE_RSVG
+  types[n_types++] = GAMES_TYPE_CARD_THEME_SVG;
+  types[n_types++] = GAMES_TYPE_CARD_THEME_KDE;
+#endif
+#ifndef HAVE_HILDON
+  types[n_types++] = GAMES_TYPE_CARD_THEME_SLICED;
+  types[n_types++] = GAMES_TYPE_CARD_THEME_PYSOL;
+#endif
+  types[n_types++] = GAMES_TYPE_CARD_THEME_FIXED;
+
+  theme_manager->n_theme_types = n_types;
 }
 
 static void
@@ -191,38 +292,18 @@ games_card_themes_finalize (GObject *object)
   G_OBJECT_CLASS (games_card_themes_parent_class)->finalize (object);
 }
 
-#if 0
-static void
-games_card_theme_set_property (GObject * object,
-                               guint prop_id,
-                               const GValue * value, GParamSpec * pspec)
-{
-  GamesCardTheme *theme = GAMES_CARD_THEME (object);
-
-  switch (prop_id) {
-    case PROP_THEME_INFO:
-      theme->theme_info = g_value_dup_boxed (value);
-      break;
-  }
-}
-#endif
-
 static void
 games_card_themes_class_init (GamesCardThemesClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
-//  gobject_class->set_property = games_card_themes_set_property;
   gobject_class->finalize = games_card_themes_finalize;
 
-#if 0
   /**
-   * GamesCardTheme:changed:
-   * @themes: the object on which the signal is emitted
+   * GamesCardThemes:changed:
    *
-   * The ::changed signal is emitted when the card themes has
-   * changed in any way that makes it necessary to re-render
-   * any displayed or cached images.
+   * The ::changed signal is emitted when the list of card themes has
+   * changed.
    */
   signals[CHANGED] =
     g_signal_newv ("changed",
@@ -233,10 +314,7 @@ games_card_themes_class_init (GamesCardThemesClass * klass)
                    g_cclosure_marshal_VOID__VOID,
                    G_TYPE_NONE,
                    0, NULL);
-#endif
 }
-
-/* private API */
 
 /* public API */
 
@@ -266,6 +344,7 @@ games_card_themes_get_theme (GamesCardThemes *theme_manager,
   GamesCardTheme *theme;
   GError *error = NULL;
 
+  g_return_val_if_fail (GAMES_IS_CARD_THEMES (theme_manager), NULL);
   g_return_val_if_fail (info != NULL, NULL);
 
   if (info->type == G_TYPE_INVALID)
@@ -294,7 +373,7 @@ games_card_themes_get_theme (GamesCardThemes *theme_manager,
 }
 
 /**
- * games_card_themes_get_theme_by_name:
+ * games_card_themes_get_theme_info_by_name:
  * @theme_name: a theme name
  *
  * This function exists only for backward compatibility with
@@ -303,94 +382,102 @@ games_card_themes_get_theme (GamesCardThemes *theme_manager,
  * Returns: a new #GamesCardTheme for @name, or %NULL if there was an
  *  error while loading the theme.
  */
-GamesCardTheme *
-games_card_themes_get_theme_by_name (GamesCardThemes *theme_manager,
-                                     const char *theme_name)
+GamesCardThemeInfo *
+games_card_themes_get_theme_info_by_name (GamesCardThemes *theme_manager,
+                                          const char *theme_name)
 {
-  char *colon, *free_me = NULL;
-  const char *filename;
-  gsize type_str_len;
-  GType type = G_TYPE_INVALID;
+  const char *colon, *filename, *dot;
+  char *free_me = NULL;
+  GType type;
+  LookupData data;
   GamesCardThemeInfo *theme_info = NULL;
 
-  if (!theme_name || !theme_name[0])
-    goto default_fallback;
+  g_return_val_if_fail (GAMES_IS_CARD_THEMES (theme_manager), NULL);
 
-  _games_card_theme_ensure_theme_infos (theme_manager);
+  if (!theme_name || !theme_name[0])
+    return NULL;
 
   colon = strchr (theme_name, ':');
-  if (colon) {
-    type_str_len = colon - theme_name;
-
-    filename = colon + 1;
-
-#ifdef HAVE_RSVG
-    if (strncmp (theme_name, "svg", type_str_len) == 0) {
-      type = GAMES_TYPE_CARD_THEME_SVG;
-    } else if (strncmp (theme_name, "kde", type_str_len) == 0) {
-      type = GAMES_TYPE_CARD_THEME_KDE;
-    } else
-#endif
-#ifndef HAVE_HILDON
-    if (strncmp (theme_name, "sliced", type_str_len) == 0) {
-      type = GAMES_TYPE_CARD_THEME_SLICED;
-    } else if (strncmp (theme_name, "pysol", type_str_len) == 0) {
-      type = GAMES_TYPE_CARD_THEME_PYSOL;
-      filename = free_me = g_strdup_printf ("cardset-%s", filename);
-    } else
-#endif
-    if (strncmp (theme_name, "fixed", type_str_len) == 0)
-      type = GAMES_TYPE_CARD_THEME_FIXED;
-  } else {
-#ifdef HAVE_GNOME
-    /* Compatibility with old settings */
-#ifdef HAVE_RSVG
-    if (g_str_has_suffix (theme_name, ".svg")) {
-      type = GAMES_TYPE_CARD_THEME_SVG;
-      filename = theme_name;
-    } else
-#endif
-    if (g_str_has_suffix (theme_name, ".png")) {
-      type = GAMES_TYPE_CARD_THEME_SLICED;
-      filename = theme_name;
-    } else
-#endif /* HAVE_GNOME */
-    {
-#ifdef HAVE_HILDON
-      type = GAMES_TYPE_CARD_THEME_FIXED;
-      filename = free_me = g_strconcat (theme_name, ".card-theme", NULL);
-#else
-      type = GAMES_TYPE_CARD_THEME_SVG;
-      filename = free_me = g_strconcat (theme_name, ".svg", NULL);
-#endif
-    }
-  }
+  type = theme_type_from_string (theme_name, colon ? colon - theme_name : 0);
   if (type == G_TYPE_INVALID)
     return NULL;
 
-  theme_info = _games_card_themes_get_info_by_type_and_name (theme_manager, type, filename);
+  if (colon) {
+    /* Get the filename from the theme name */
+
+    filename = colon + 1;
+    dot = strrchr (filename, '.');
+
+    if (dot == NULL) {
+      /* No dot? Try appending the default, for compatibility with old settings */
+#if defined(HAVE_HILDON)
+      filename = free_me = g_strconcat (filename, ".card-theme", NULL);
+#elif defined(HAVE_RSVG)
+      filename = free_me = g_strconcat (filename, ".svg", NULL);
+#endif
+    } else {
+#ifdef HAVE_GNOME
+      if (g_str_has_suffix (filename, ".png")) {
+        char *base_name;
+
+        /* Very old version; replace .png with .svg */
+        base_name = g_strndup (filename, dot - filename);
+        filename = free_me = g_strconcat (base_name, ".svg", NULL);
+        g_free (base_name);
+      }
+#endif /* HAVE_GNOME */
+    }
+  } else {
+    filename = theme_name;
+  }
+  if (!filename[0])
+    goto out;
+
+  /* First try to find the theme in our hash table */
+  theme_info = games_card_themes_get_info_by_type_and_filename (theme_manager,
+                                                                type,
+                                                                filename);
+  if (theme_info)
+    goto out;
+
+  /* Not in our hash table, and the list is uptodate? No such theme! */
+  if (!theme_manager->theme_infos_update_needed)
+    goto out;
+
+  /* Then, try to find it in one of the theme dirs */
+  data.filename = filename;
+  data.theme_info = NULL;
+  games_card_themes_foreach_theme_dir (type, (GamesCardThemeForeachFunc) games_card_themes_try_theme_info_by_filename, &data);
+  theme_info = data.theme_info;
+
+out:
   g_free (free_me);
 
-default_fallback:
-
-  if (!theme_info) {
-    /* Try falling back to the default */
-#ifdef HAVE_HILDON
-    type = GAMES_TYPE_CARD_THEME_FIXED;
-    filename = free_me = g_strconcat (GAMES_CARD_THEME_DEFAULT, ".card-theme", NULL);
-#else
-    type = GAMES_TYPE_CARD_THEME_SVG;
-    filename = free_me = g_strconcat (GAMES_CARD_THEME_DEFAULT, ".svg", NULL);
-#endif
-    theme_info = _games_card_themes_get_info_by_type_and_name (theme_manager, type, filename);
-    g_free (free_me);
-  }
-
-  if (theme_info)
-    return games_card_themes_get_theme (theme_manager, theme_info);
-
-  return NULL;
+  return theme_info;
 }
+
+#if 0
+static GamesCardThemeInfo *
+games_card_themes_get_default_theme_info (GamesCardThemes *theme_manager)
+{
+  GType type;
+  char *filename;
+  GamesCardThemeInfo *theme_info;
+
+#ifdef HAVE_HILDON
+  type = GAMES_TYPE_CARD_THEME_FIXED;
+  filename = g_strconcat (GAMES_CARD_THEME_DEFAULT, ".card-theme", NULL);
+#else
+  type = GAMES_TYPE_CARD_THEME_SVG;
+  filename = g_strconcat (GAMES_CARD_THEME_DEFAULT, ".svg", NULL);
+#endif
+
+  theme_info = games_card_themes_get_info_by_type_and_filename (theme_manager, type, filename);
+  g_free (filename);
+
+  return theme_info;
+}
+#endif
 
 /**
  * games_card_themes_get_theme_any:
@@ -404,6 +491,8 @@ GamesCardTheme *
 games_card_themes_get_theme_any (GamesCardThemes *theme_manager)
 {
 //   GList *l;
+
+  g_return_val_if_fail (GAMES_IS_CARD_THEMES (theme_manager), NULL);
 
   _games_card_theme_ensure_theme_infos (theme_manager);
 
@@ -423,14 +512,16 @@ games_card_themes_get_theme_any (GamesCardThemes *theme_manager)
 }
 
 /**
- * games_card_themes_get_theme_all:
+ * games_card_themes_get_themes:
  *
  * Returns:
  */
 GList *
-games_card_themes_get_theme_all (GamesCardThemes *theme_manager)
+games_card_themes_get_themes (GamesCardThemes *theme_manager)
 {
   GList *list = NULL;
+
+  g_return_val_if_fail (GAMES_IS_CARD_THEMES (theme_manager), NULL);
 
   _games_card_theme_ensure_theme_infos (theme_manager);
 

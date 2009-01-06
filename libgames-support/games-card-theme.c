@@ -406,18 +406,16 @@ _games_card_theme_info_new (GType type,
 }
 
 guint
-_games_card_theme_info_hash (GamesCardThemeInfo *a,
-                             GamesCardThemeInfo *b)
+_games_card_theme_info_hash (const GamesCardThemeInfo *a)
 {
-/*  return g_int_hash (a->type, b->type) ^
-         g_str_hash (a->path, b->path) ^
-         g_str_hash (a->filename, b->filename);*/
-  return 0;
+  return g_int_hash (&a->type) ^
+         g_str_hash (a->path) ^
+         g_str_hash (a->filename);
 }
 
 gboolean
-_games_card_theme_info_equal (GamesCardThemeInfo *a,
-                              GamesCardThemeInfo *b)
+_games_card_theme_info_equal (const GamesCardThemeInfo *a,
+                              const GamesCardThemeInfo *b)
 {
   g_return_val_if_fail (a != NULL && b != NULL, FALSE);
 
@@ -437,8 +435,8 @@ _games_card_theme_info_equal (GamesCardThemeInfo *a,
  * %0 if @a and @b are equal.
  */
 int
-_games_card_theme_info_collate (GamesCardThemeInfo *a,
-                                GamesCardThemeInfo *b)
+_games_card_theme_info_collate (const GamesCardThemeInfo *a,
+                                const GamesCardThemeInfo *b)
 {
   g_return_val_if_fail (a != NULL && b != NULL, 0);
 

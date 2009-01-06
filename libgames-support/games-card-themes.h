@@ -1,6 +1,6 @@
 /*
   Copyright © 2004 Callum McKenzie
-  Copyright © 2007, 2008 Christian Persch
+   Copyright © 2007, 2008, 2009 Christian Persch
 
   This library is free software; you can redistribute it and'or modify
   it under the terms of the GNU Library General Public License as published
@@ -46,12 +46,12 @@ GamesCardThemes *games_card_themes_new (void);
 GamesCardTheme *games_card_themes_get_theme (GamesCardThemes *theme_manager,
                                              GamesCardThemeInfo *info);
 
-GamesCardTheme *games_card_themes_get_theme_by_name (GamesCardThemes *theme_manager,
-                                                     const char *theme_name);
-
 GamesCardTheme *games_card_themes_get_theme_any (GamesCardThemes *theme_manager);
 
-GList *games_card_themes_get_theme_all (GamesCardThemes *theme_manager);
+GamesCardThemeInfo *games_card_themes_get_theme_info_by_name (GamesCardThemes *theme_manager,
+                                                              const char *theme_name);
+
+GList *games_card_themes_get_themes (GamesCardThemes *theme_manager);
 
 G_END_DECLS
 
