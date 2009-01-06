@@ -113,6 +113,7 @@ libgames_support_la_SOURCES += games-card-theme-preimage.c
 if ENABLE_CARD_THEME_FORMAT_SVG
 libgames_support_la_SOURCES += games-card-theme-svg.c
 endif
+
 if ENABLE_CARD_THEME_FORMAT_KDE
 libgames_support_la_SOURCES += games-card-theme-kde.c
 endif
@@ -120,11 +121,16 @@ endif
 endif # HAVE_RSVG
 
 if ENABLE_CARD_THEME_FORMAT_SLICED
+if !HAVE_RSVG
+libgames_support_la_SOURCES += games-card-theme-preimage.c
+endif
 libgames_support_la_SOURCES += games-card-theme-sliced.c
 endif
+
 if ENABLE_CARD_THEME_FORMAT_PYSOL
 libgames_support_la_SOURCES += games-card-theme-pysol.c
 endif
+
 if ENABLE_CARD_THEME_FORMAT_FIXED
 libgames_support_la_SOURCES += games-card-theme-fixed.c
 endif
