@@ -346,6 +346,9 @@ games_card_theme_pysol_class_get_theme_info (GamesCardThemeClass *klass,
   PySolConfigTxtData *pysol_data;
   char *display_name;
 
+  if (!g_str_has_prefix (filename, "cardset-"))
+    return NULL;
+
   pysol_data = pysol_config_txt_parse (path, filename);
   if (!pysol_data)
     return NULL;
