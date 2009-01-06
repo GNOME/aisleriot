@@ -3475,7 +3475,6 @@ aisleriot_board_set_card_theme (AisleriotBoard *board,
     /* Update card size and slot locations for new card theme (might have changed aspect!)*/
     aisleriot_board_setup_geometry (board);
 
-#warning FIXMEchpe queue a resize if minimum-card-size changed
     gtk_widget_queue_draw (widget);
   }
 
