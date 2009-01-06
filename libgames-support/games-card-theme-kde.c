@@ -109,6 +109,24 @@ out:
   return retval;
 }
 
+#if 0
+static double
+games_card_theme_kde_get_card_aspect (GamesCardTheme* card_theme)
+{
+  GamesCardThemeKDE *theme = (GamesCardThemeKDE *) card_theme;
+
+  /* FIXMEchpe: this doesn't work exactly right for the KDE theme */
+  double aspect;
+aspect =
+      (((double) games_preimage_get_width (theme->cards_preimage))
+       * N_ROWS) /
+      (((double) games_preimage_get_height (theme->cards_preimage))
+       * N_COLS);
+
+  return aspect;
+}
+#endif
+
 static GdkPixbuf *
 games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
                                       int card_id)
@@ -172,11 +190,14 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
   card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
   card_height = ((double) games_preimage_get_height (preimage)) / N_ROWS;
 
-  width = preimage_card_theme->card_size.width - 2 * DELTA;
-  height = preimage_card_theme->card_size.height - 2 * DELTA;
+  width = preimage_card_theme->card_size.width;
+  height = preimage_card_theme->card_size.height;
 
-  zoomx = width / dimension.width;
-  zoomy = height / dimension.height;
+  zoomx = width / card_width;
+  zoomy = height / card_height;
+
+//   zoomx = width / dimension.width;
+//   zoomy = height / dimension.height;
 
   subpixbuf = games_preimage_render_sub (preimage,
                                          node,
@@ -272,6 +293,7 @@ games_card_theme_kde_class_init (GamesCardThemeKDEClass * klass)
   theme_class->get_theme_infos = games_card_theme_kde_class_get_theme_infos;
 
   theme_class->load = games_card_theme_kde_load;
+//   theme_class->get_card_aspect = games_card_theme_kde_get_card_aspect;
   theme_class->get_card_pixbuf = games_card_theme_kde_get_card_pixbuf;
 }
 
