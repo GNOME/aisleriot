@@ -133,7 +133,6 @@ struct _GamesCardThemePreimage {
   CardSize slot_size;
   CardSize card_size;
 
-  guint theme_loaded : 1;
   guint size_available : 1;
 
   cairo_font_options_t *font_options;

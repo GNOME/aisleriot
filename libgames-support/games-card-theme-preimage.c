@@ -143,8 +143,6 @@ games_card_theme_preimage_init (GamesCardThemePreimage *theme)
   theme->subsize.width = -1;
   theme->subsize.height = -1;
 
-  theme->theme_loaded = FALSE;
-
   theme->card_size.width = theme->card_size.height = theme->slot_size.width =
     theme->slot_size.width = -1;
 }
