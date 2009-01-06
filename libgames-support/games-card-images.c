@@ -28,12 +28,10 @@
 
 #include "games-card-images.h"
 
-#include "games-find-file.h"
-#include "games-files.h"
-#include "games-preimage.h"
 #include "games-pixbuf-utils.h"
 #include "games-card.h"
 #include "games-card-private.h"
+#include "games-debug.h"
 
 enum {
   PROP_0,
@@ -67,6 +65,9 @@ static void
 games_card_images_clear_cache (GamesCardImages * images)
 {
   guint i;
+
+  _games_debug_print (GAMES_DEBUG_CARD_CACHE,
+                      "games_card_images_clear_cache\n");
 
   for (i = 0; i < CACHE_SIZE; i++) {
     gpointer data = UNMARK_POINTER (images->cache[i]);

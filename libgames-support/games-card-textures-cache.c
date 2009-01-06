@@ -26,6 +26,7 @@
 #include "games-card-textures-cache.h"
 
 #include "games-card-private.h"
+#include "games-debug.h"
 
 struct _GamesCardTexturesCachePrivate
 {
@@ -60,7 +61,8 @@ games_card_textures_cache_clear (GamesCardTexturesCache *cache)
   GamesCardTexturesCachePrivate *priv = cache->priv;
   int i;
 
-  g_print ("games_card_textures_cache_clear\n");
+  _games_debug_print (GAMES_DEBUG_CARD_CACHE,
+                      "games_card_textures_cache_clear\n");
 
   for (i = 0; i < GAMES_CARDS_TOTAL; i++) {
     CoglHandle *handle = priv->cards[i];

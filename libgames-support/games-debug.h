@@ -29,8 +29,9 @@ G_BEGIN_DECLS
 
 typedef enum {
   GAMES_DEBUG_CARD_THEME = 1 << 0,
-  GAMES_DEBUG_RUNTIME    = 1 << 1,
-  GAMES_DEBUG_SOUND      = 1 << 2,
+  GAMES_DEBUG_CARD_CACHE = 1 << 1,
+  GAMES_DEBUG_RUNTIME    = 1 << 2,
+  GAMES_DEBUG_SOUND      = 1 << 3,
 } GamesDebugFlags;
 
 #ifdef GNOME_ENABLE_DEBUG
