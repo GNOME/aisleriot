@@ -36,10 +36,11 @@
 #include <clutter/clutter.h>
 #endif
 
+#include <libgames-support/games-runtime.h>
+#include <libgames-support/games-string-utils.h>
+
 #include "conf.h"
 #include "util.h"
-
-#include <libgames-support/games-runtime.h>
 
 #include "game.h"
 
@@ -1708,7 +1709,7 @@ aisleriot_game_get_game_file (AisleriotGame *game)
 char *
 aisleriot_game_get_name (AisleriotGame *game)
 {
-  return aisleriot_util_get_display_filename (game->game_file);
+  return games_filename_to_display_name (game->game_file);
 }
 
 /**

@@ -46,6 +46,8 @@ libgames_support_la_SOURCES =		\
 	games-sound.h			\
 	games-stock.c			\
 	games-stock.h			\
+	games-string-utils.c		\
+	games-string-utils.h		\
 	$(NULL)
 
 if !HAVE_HILDON

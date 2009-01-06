@@ -16,25 +16,16 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef UTIL_H
-#define UTIL_H
+#ifndef GAMES_STRING_UTILS_H
+#define GAMES_STRING_UTILS_H
 
 #include <glib.h>
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
   
-typedef void (*AisleriotHelpFunc) (GtkWindow *, const char *, gpointer);
-
-void aisleriot_util_set_help_func (AisleriotHelpFunc func,
-                                   gpointer user_data);
-
-void aisleriot_display_help (GtkWindow * parent, const char *game_file);
-
-void aisleriot_util_add_atk_relation (GtkWidget *widget,
-                                      GtkWidget *other,
-                                      AtkRelationType type);
+char *games_filename_to_display_name (const char *filename);
 
 G_END_DECLS
 
-#endif /* !UTIL_H */
+#endif /* !GAMES_STRING_UTILS_H */

@@ -44,6 +44,7 @@
 #include <libgames-support/games-stock.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
+#include <libgames-support/games-string-utils.h>
 
 #include "board.h"
 #include "conf.h"
@@ -236,7 +237,7 @@ select_game_cb (GtkAction *action,
         strcmp (game_file, "sol.scm") == 0)
       continue;
 
-    game_name = aisleriot_util_get_display_filename (game_file);
+    game_name = games_filename_to_display_name (game_file);
 
     gtk_list_store_insert_with_values (GTK_LIST_STORE (list), &iter,
                                        -1,
@@ -1405,7 +1406,7 @@ install_recently_played_menu (AisleriotWindow *window)
     char *game_name, *tooltip;
 
     g_snprintf (actionname, sizeof (actionname), "Recent%d", i);
-    game_name = aisleriot_util_get_display_filename (recent_games[i]);
+    game_name = games_filename_to_display_name (recent_games[i]);
 #ifdef HAVE_HILDON
     tooltip = NULL;
 #else
@@ -2747,7 +2748,7 @@ load_idle_cb (LoadIdleData *data)
     GtkWidget *dialog;
     char *name;
 
-    name = aisleriot_util_get_display_filename (data->game_file);
+    name = games_filename_to_display_name (data->game_file);
 
     dialog = gtk_message_dialog_new (GTK_WINDOW (data->window),
                                      GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,

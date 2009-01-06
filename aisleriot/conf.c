@@ -22,6 +22,8 @@
 #include <string.h>
 #include <errno.h>
 
+#include <libgames-support/games-string-utils.h>
+
 #include "util.h"
 #include "conf.h"
 
@@ -317,7 +319,7 @@ aisleriot_conf_get_statistic (const char *game_file,
     /* Previous versions used the localised name as key, so try it as fall-back.
      * See bug #406267 and bug #525177.
      */
-    display_name = aisleriot_util_get_display_filename (game_file);
+    display_name = games_filename_to_display_name (game_file);
     game_stat = g_hash_table_lookup (stats, display_name);
     g_free (display_name);
   }
@@ -378,7 +380,7 @@ aisleriot_conf_set_statistic (const char *game_file,
   if (!game_stat) {
     char *localised_name;
 
-    localised_name = aisleriot_util_get_display_filename (game_file);
+    localised_name = games_filename_to_display_name (game_file);
     game_stat = g_hash_table_lookup (stats, localised_name);
     g_free (localised_name);
   }

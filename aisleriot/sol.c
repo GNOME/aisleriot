@@ -60,6 +60,7 @@
 #include <libgames-support/games-stock.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
+#include <libgames-support/games-string-utils.h>
 
 #ifdef WITH_SMCLIENT
 #include <libgames-support/eggsmclient.h>
@@ -362,7 +363,7 @@ help_hook (GtkWindow *parent,
     if (game_file != NULL) {
       char *game_name;
  
-      game_name = aisleriot_util_get_display_filename (game_file);
+      game_name = games_filename_to_display_name (game_file);
       primary = g_strdup_printf (_("Could not show help for “%s”"), game_name);
       g_free (game_name);
     } else {
