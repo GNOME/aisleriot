@@ -31,6 +31,7 @@
 #include <glib/gi18n.h>
 
 #include "games-debug.h"
+#include "games-profile.h"
 #include "games-runtime.h"
 
 static char *app_name;
@@ -83,6 +84,8 @@ typedef int _assertion[G_N_ELEMENTS (derived_directories) + GAMES_RUNTIME_FIRST_
 gboolean
 games_runtime_init (const char *name)
 {
+  gboolean retval;
+
   setlocale (LC_ALL, "");
 
 #if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_GSTREAMER)
@@ -92,6 +95,8 @@ games_runtime_init (const char *name)
   g_thread_init (NULL);
   /* May call any glib function after this point */
 #endif
+
+  _games_profile_start ("games_runtime_init");
 
   _games_debug_init ();
 
@@ -110,11 +115,15 @@ games_runtime_init (const char *name)
   _games_debug_print (GAMES_DEBUG_RUNTIME,
                       "Relocation path: %s\n", path ? path : "(null)");
 
-  return path != NULL;
+  retval = path != NULL;
 }
 #else
-  return TRUE;
+  retval = TRUE;
 #endif
+
+  _games_profile_end ("games_runtime_init");
+
+  return retval;
 }
 
 /**
