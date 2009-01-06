@@ -124,9 +124,6 @@ games_card_theme_sliced_get_card_pixbuf (GamesCardTheme *card_theme,
   GdkPixbuf *subpixbuf, *card_pixbuf;
   int suit, rank;
 
-  suit = card_id / 13;
-  rank = card_id % 13;
-
   if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
     subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
                                        preimage_card_theme->card_size.width,
@@ -134,6 +131,9 @@ games_card_theme_sliced_get_card_pixbuf (GamesCardTheme *card_theme,
 
     return subpixbuf;
   }
+
+  suit = card_id / 13;
+  rank = card_id % 13;
 
   /* Not using subrendering */
   // FIXMEchpe this doesn't look right for non-scalable

@@ -181,15 +181,11 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
   GamesCardThemeKDE *theme = (GamesCardThemeKDE *) card_theme;
   GamesPreimage *preimage = preimage_card_theme->cards_preimage;
   GdkPixbuf *subpixbuf;
-  int suit, rank;
   double card_width, card_height;
   double width, height;
   double zoomx, zoomy;
   char node[32];
   CardBbox *bbox;
-
-  suit = card_id / 13;
-  rank = card_id % 13;
 
   if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
     subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
@@ -199,7 +195,7 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
     return subpixbuf;
   }
 
-  games_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
+  games_card_get_node_by_id_snprintf (node, sizeof (node), card_id);
 
   bbox = games_card_theme_kde_get_card_bbox (theme, card_id, node);
   if (!bbox)

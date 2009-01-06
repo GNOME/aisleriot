@@ -66,9 +66,6 @@ games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
   double zoomx, zoomy;
   char node[32];
 
-  suit = card_id / 13;
-  rank = card_id % 13;
-
   if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
     subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
                                        preimage_card_theme->card_size.width,
@@ -76,6 +73,9 @@ games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
 
     return subpixbuf;
   }
+
+  suit = card_id / 13;
+  rank = card_id % 13;
 
   card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
   card_height = ((double) games_preimage_get_height (preimage)) / N_ROWS;
