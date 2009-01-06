@@ -22,6 +22,7 @@
 #include <glib/gi18n.h>
 
 #include "games-card.h"
+#include "games-card-private.h"
 
 static const char extra_cards[] =
   "black_joker\0"
@@ -220,4 +221,28 @@ games_card_get_localised_rank_symbol (int rank)
 
   return ranks[rank];
 #endif /* GLIB >= 2.18.0 */
+}
+
+guint
+_games_card_to_index (Card card)
+{
+  guint card_id;
+
+  if (CARD_GET_FACE_DOWN (card)) {
+    card_id = GAMES_CARD_BACK;
+  } else if (G_UNLIKELY (CARD_GET_RANK (card) == 0)) {
+    /* A joker */
+    if (CARD_GET_SUIT (card) == GAMES_CARDS_CLUBS ||
+        CARD_GET_SUIT (card) == GAMES_CARDS_SPADES) {
+      /* A black joker. */
+      card_id = GAMES_CARD_BLACK_JOKER;
+    } else {
+      /* A red joker. */
+      card_id = GAMES_CARD_RED_JOKER;
+    }
+  } else {
+    card_id = GAMES_CARD_ID (CARD_GET_SUIT (card), CARD_GET_RANK (card));
+  }
+
+  return card_id;
 }

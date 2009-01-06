@@ -1,5 +1,6 @@
 /*
  *  Copyright © 2008 Neil Roberts
+ *  Copyright © 2008 Christian Persch
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,7 +23,8 @@
 #include <glib-object.h>
 #include <cogl/cogl.h>
 
-#include "games-card-images.h"
+#include "games-card.h"
+#include "games-card-theme.h"
 
 G_BEGIN_DECLS
 
@@ -51,20 +53,20 @@ struct _GamesCardTexturesCache
 
 GType games_card_textures_cache_get_type (void);
 
-GamesCardTexturesCache *games_card_textures_cache_new (GamesCardImages *images);
+GamesCardTexturesCache *games_card_textures_cache_new (void);
+
+void games_card_textures_cache_set_theme (GamesCardTexturesCache *cache,
+                                          GamesCardTheme *theme);
+
+GamesCardTheme *games_card_textures_cache_get_theme (GamesCardTexturesCache *cache);
 
 CoglHandle games_card_textures_cache_get_card_texture (GamesCardTexturesCache *cache,
-                                                       Card card,
-                                                       gboolean highlighted);
+                                                       Card card);
 
 CoglHandle games_card_textures_cache_get_card_texture_by_id (GamesCardTexturesCache *cache,
-                                                             guint card_id,
-                                                             gboolean highlighted);
+                                                             guint card_id);
 
-CoglHandle games_card_textures_cache_get_slot_texture (GamesCardTexturesCache *cache,
-                                                       gboolean highlighted);
-
-void games_card_textures_cache_clear (GamesCardTexturesCache *cache);
+CoglHandle games_card_textures_cache_get_slot_texture (GamesCardTexturesCache *cache);
 
 G_END_DECLS
 

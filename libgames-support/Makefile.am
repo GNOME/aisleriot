@@ -26,6 +26,7 @@ libgames_support_la_SOURCES =		\
 	$(BUILT_SOURCES)		\
 	games-card.c			\
 	games-card.h			\
+	games-card-private.h		\
 	games-card-images.c		\
 	games-card-images.h		\
 	games-card-theme.c		\

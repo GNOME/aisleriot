@@ -111,13 +111,14 @@ struct _AisleriotBoardPrivate
 {
   AisleriotGame *game;
 
-  GdkGC *draw_gc;
-  GdkGC *bg_gc;
-  GdkGC *slot_gc;
   GdkCursor *cursor[LAST_CURSOR];
 
+  /* Card theme */
   GamesCardTheme *theme;
   CardSize card_size;
+
+  /* Cards cache */
+  GamesCardTexturesCache *textures;
 
   double width;
   double height;
@@ -131,10 +132,6 @@ struct _AisleriotBoardPrivate
 
   /* The offset within the window. */
   int xbaseoffset;
-
-  /* Cards cache */
-  GamesCardImages *images;
-  GamesCardTexturesCache *textures;
 
   /* Button press */
   int last_click_x;
@@ -1041,10 +1038,11 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   GPtrArray *slots;
   guint i, n_slots;
   CardSize card_size;
-  gboolean size_changed;
 
   /* Nothing to do yet */
   if (aisleriot_game_get_state (priv->game) <= GAME_LOADED)
+    return;
+  if (!priv->theme)
     return;
 
   g_return_if_fail (GTK_WIDGET_REALIZED (widget));
@@ -1053,14 +1051,12 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   priv->xslotstep = ((double) widget->allocation.width) / priv->width;
   priv->yslotstep = ((double) widget->allocation.height) / priv->height;
 
-  size_changed = games_card_images_set_size (priv->images,
-                                             priv->xslotstep,
-                                             priv->yslotstep,
-                                             CARD_SLOT_PROP);
-  if (size_changed)
-    games_card_textures_cache_clear (priv->textures);
+  games_card_theme_set_size (priv->theme,
+                             priv->xslotstep,
+                             priv->yslotstep,
+                             CARD_SLOT_PROP);
 
-  card_size = priv->card_size = games_card_images_get_size (priv->images);
+  card_size = priv->card_size = games_card_theme_get_size (priv->theme);
 
   /* If the cards are too far apart, bunch them in the middle. */
   priv->xbaseoffset = 0;
@@ -1078,9 +1074,6 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
 
   priv->xoffset = (priv->xslotstep - card_size.width) / 2;
   priv->yoffset = (priv->yslotstep - card_size.height) / 2;
-
-  gdk_gc_set_clip_mask (priv->slot_gc, games_card_images_get_slot_mask (priv->images));
-  gdk_gc_set_clip_mask (priv->draw_gc, games_card_images_get_card_mask (priv->images));
 
   /* NOTE! Updating the slots checks that geometry is set, so
    * we set it to TRUE already.
@@ -1181,7 +1174,7 @@ drag_begin (AisleriotBoard *board)
 
     g_array_append_val (priv->removed_cards, removed_card);
 
-    card_tex = aisleriot_card_new (priv->textures, hcard);
+    card_tex = aisleriot_card_new (priv->textures, hcard, &priv->selection_colour);
     clutter_actor_set_position (card_tex, x, y);
     clutter_container_add (CLUTTER_CONTAINER (priv->moving_cards_group),
                            card_tex, NULL);
@@ -2490,16 +2483,9 @@ aisleriot_board_realize (GtkWidget *widget)
 
   display = gtk_widget_get_display (widget);
 
-  games_card_images_set_drawable (priv->images, widget->window);
-
-  priv->draw_gc = gdk_gc_new (widget->window);
-
-  priv->bg_gc = gdk_gc_new (widget->window);
   set_background_from_baize (board);
   
-  priv->slot_gc = gdk_gc_new (widget->window);
-
-#ifndef HAVE_HILDON 
+#ifndef HAVE_HILDON
   /* Create cursors */
   priv->cursor[CURSOR_DEFAULT] = gdk_cursor_new_for_display (display, GDK_LEFT_PTR);
   priv->cursor[CURSOR_OPEN] = make_cursor (widget, hand_open_data_bits, hand_open_mask_bits);
@@ -2521,21 +2507,12 @@ aisleriot_board_unrealize (GtkWidget *widget)
 
   priv->geometry_set = FALSE;
 
-  g_object_unref (priv->draw_gc);
-  priv->draw_gc = NULL;
-  g_object_unref (priv->bg_gc);
-  priv->bg_gc = NULL;
-  g_object_unref (priv->slot_gc);
-  priv->slot_gc = NULL;
-
-#ifndef HAVE_HILDON 
+#ifndef HAVE_HILDON
   for (i = 0; i < LAST_CURSOR; ++i) {
     gdk_cursor_unref (priv->cursor[i]);
     priv->cursor[i] = NULL;
   }
 #endif /* !HAVE_HILDON*/
-
-  games_card_images_set_drawable (priv->images, NULL);
 
   clear_state (board);
 
@@ -2617,15 +2594,12 @@ aisleriot_board_style_set (GtkWidget *widget,
     selection_colour = default_selection_colour;
   }
 
-  games_card_images_set_selection_color (priv->images,
-                                         &selection_colour);
-
-  /* Update the existing slots */
   priv->selection_colour.red   = selection_colour.red   >> 8;
   priv->selection_colour.green = selection_colour.green >> 8;
   priv->selection_colour.blue  = selection_colour.blue  >> 8;
-  priv->selection_colour.alpha = 0;
+  priv->selection_colour.alpha = 0xff;
 
+  /* Update the existing slots */
   slots = aisleriot_game_get_slots (priv->game);
   n_slots = slots->len;
   for (i = 0; i < n_slots; ++i) {
@@ -3172,8 +3146,7 @@ aisleriot_board_constructor (GType type,
 
   g_assert (priv->game != NULL);
 
-  priv->images = games_card_images_new ();
-  priv->textures = games_card_textures_cache_new (priv->images);
+  priv->textures = games_card_textures_cache_new ();
 
   return object;
 }
@@ -3196,7 +3169,6 @@ aisleriot_board_finalize (GObject *object)
   if (priv->theme) {
     g_object_unref (priv->theme);
   }
-  g_object_unref (priv->images);
 
 #if 0
   screen = gtk_widget_get_settings (widget);
@@ -3490,8 +3462,7 @@ aisleriot_board_set_card_theme (AisleriotBoard *board,
 
   priv->theme = g_object_ref (theme);
 
-  games_card_images_set_theme (priv->images, priv->theme);
-  games_card_textures_cache_clear (priv->textures); // FIXMEchpe make this automatic
+  games_card_textures_cache_set_theme (priv->textures, priv->theme);
 
   if (GTK_WIDGET_REALIZED (widget)) {
     /* Update card size and slot locations for new card theme (might have changed aspect!)*/
@@ -3560,24 +3531,5 @@ void
 aisleriot_board_set_pixbuf_drawing (AisleriotBoard *board,
                                     gboolean use_pixbuf_drawing)
 {
-  AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-
-  use_pixbuf_drawing = use_pixbuf_drawing != FALSE;
-
-  if (use_pixbuf_drawing == priv->use_pixbuf_drawing)
-    return;
-
-  priv->use_pixbuf_drawing = use_pixbuf_drawing;
-
-  games_card_images_set_cache_mode (priv->images,
-                                    use_pixbuf_drawing ? CACHE_PIXBUFS : CACHE_PIXMAPS);
-
-  if (GTK_WIDGET_REALIZED (widget) &&
-      priv->geometry_set) {
-    /* Need to update the geometry, so we update the cached card images! */
-    aisleriot_board_setup_geometry (board);
-
-    gtk_widget_queue_draw (widget);
-  }
+  /* makes no sense for Clutter */
 }

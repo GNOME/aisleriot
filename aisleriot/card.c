@@ -45,6 +45,8 @@ static void aisleriot_card_set_cache (AisleriotCard *card,
    % CLUTTER_INT_TO_FIXED (360)                 \
    >= CLUTTER_INT_TO_FIXED (180))
 
+static const ClutterColor default_highlight_color = { 0, 0, 0xaa, 0xff };
+
 G_DEFINE_TYPE (AisleriotCard, aisleriot_card, CLUTTER_TYPE_ACTOR);
 
 #define AISLERIOT_CARD_GET_PRIVATE(obj) \
@@ -54,6 +56,7 @@ G_DEFINE_TYPE (AisleriotCard, aisleriot_card, CLUTTER_TYPE_ACTOR);
 struct _AisleriotCardPrivate
 {
   Card card;
+  ClutterColor highlight_color;
   gboolean highlighted;
 
   GamesCardTexturesCache *cache;
@@ -65,8 +68,25 @@ enum
 
   PROP_CACHE,
   PROP_CARD,
-  PROP_HIGHLIGHTED
+  PROP_HIGHLIGHTED,
+  PROP_HIGHLIGHT_COLOR
 };
+
+static void
+aisleriot_card_set_highlight_color (AisleriotCard *card,
+                                    const ClutterColor *color)
+{
+  AisleriotCardPrivate *priv = card->priv;
+
+  g_return_if_fail (color != NULL);
+
+  if (clutter_color_equal (color, &priv->highlight_color))
+    return;
+
+  priv->highlight_color = *color;
+
+  g_object_notify (G_OBJECT (card), "highlight-color");
+}
 
 static void
 aisleriot_card_class_init (AisleriotCardClass *klass)
@@ -110,6 +130,15 @@ aisleriot_card_class_init (AisleriotCardClass *klass)
                                 G_PARAM_STATIC_BLURB);
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHTED, pspec);
 
+  pspec = clutter_param_spec_color ("highlight-color", NULL, NULL,
+                                    &default_highlight_color,
+                                    G_PARAM_WRITABLE |
+                                    G_PARAM_STATIC_NAME |
+                                    G_PARAM_STATIC_NICK |
+                                    G_PARAM_STATIC_BLURB |
+                                    G_PARAM_CONSTRUCT);
+  g_object_class_install_property (gobject_class, PROP_HIGHLIGHT_COLOR, pspec);
+
   g_type_class_add_private (klass, sizeof (AisleriotCardPrivate));
 }
 
@@ -119,24 +148,31 @@ aisleriot_card_init (AisleriotCard *self)
   AisleriotCardPrivate *priv;
 
   priv = self->priv = AISLERIOT_CARD_GET_PRIVATE (self);
+
+  priv->highlighted = FALSE;
+  priv->highlight_color = default_highlight_color;
 }
 
 static void
 aisleriot_card_dispose (GObject *self)
 {
-  aisleriot_card_unref_cache ((AisleriotCard *) self);
+  AisleriotCard *card = AISLERIOT_CARD (self);
 
-  ((GObjectClass *) aisleriot_card_parent_class)->dispose (self);
+  aisleriot_card_unref_cache (card);
+
+  G_OBJECT_CLASS (aisleriot_card_parent_class)->dispose (self);
 }
 
 ClutterActor *
-aisleriot_card_new (GamesCardTexturesCache *cache, Card card)
+aisleriot_card_new (GamesCardTexturesCache *cache,
+                    Card card,
+                    const ClutterColor *highlight_color)
 {
-  ClutterActor *self = g_object_new (AISLERIOT_TYPE_CARD,
-                                     "cache", cache,
-                                     "card", card.value, NULL);
-
-  return self;
+  return g_object_new (AISLERIOT_TYPE_CARD,
+                       "cache", cache,
+                       "card", card.value,
+                       "highlight-color", highlight_color,
+                       NULL);
 }
 
 static void
@@ -151,9 +187,11 @@ aisleriot_card_paint (ClutterActor *actor)
   gboolean x_swapped = FALSE;
   static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
 
-  g_return_if_fail (priv->cache != NULL);
-
   card_num = priv->card;
+
+  tex = games_card_textures_cache_get_card_texture (priv->cache, card_num);
+  if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
+    return;
 
   x_angle = clutter_actor_get_rotationx (actor, CLUTTER_X_AXIS,
                                          NULL, NULL, NULL);
@@ -173,9 +211,6 @@ aisleriot_card_paint (ClutterActor *actor)
       x_swapped = TRUE;
   }
 
-  tex = games_card_textures_cache_get_card_texture (priv->cache, card_num,
-                                               priv->highlighted);
-
   tex_width = CLUTTER_INT_TO_FIXED (cogl_texture_get_width (tex));
   tex_height = CLUTTER_INT_TO_FIXED (cogl_texture_get_height (tex));
 
@@ -188,7 +223,12 @@ aisleriot_card_paint (ClutterActor *actor)
     cogl_translate (-CLUTTER_FIXED_TO_INT (tex_width) / 2, 0, 0);
   }
 
-  cogl_color (&white);
+  if (priv->highlighted) {
+    cogl_color (&priv->highlight_color);
+  } else {
+    cogl_color (&white);
+  }
+
   cogl_texture_rectangle (tex, 0, 0,
                           tex_width, tex_height,
                           0, 0, CFX_ONE, CFX_ONE);
@@ -224,6 +264,10 @@ aisleriot_card_set_property (GObject *self,
       aisleriot_card_set_highlighted (card, g_value_get_boolean (value));
       break;
 
+    case PROP_HIGHLIGHT_COLOR:
+      aisleriot_card_set_highlight_color (card, g_value_get_boxed (value));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (self, property_id, pspec);
       break;
@@ -252,6 +296,7 @@ aisleriot_card_get_property (GObject *self,
       g_value_set_boolean (value, priv->highlighted);
       break;
 
+    case PROP_HIGHLIGHT_COLOR:
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (self, property_id, pspec);
       break;
@@ -299,7 +344,7 @@ aisleriot_card_set_cache (AisleriotCard *card, GamesCardTexturesCache *cache)
 
   clutter_actor_queue_redraw (CLUTTER_ACTOR (card));
 
-  g_object_notify (G_OBJECT (cache), "card-images");
+  g_object_notify (G_OBJECT (card), "cache");
 }
 
 void

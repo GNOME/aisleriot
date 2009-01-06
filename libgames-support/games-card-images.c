@@ -26,12 +26,14 @@
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
+#include "games-card-images.h"
+
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"
 #include "games-pixbuf-utils.h"
-
-#include "games-card-images.h"
+#include "games-card.h"
+#include "games-card-private.h"
 
 enum {
   PROP_0,
@@ -60,8 +62,6 @@ enum {
 /* Threshold for rendering the pixbuf to card and alpha mask */
 #define CARD_ALPHA_THRESHOLD  (127)
 #define SLOT_ALPHA_THRESHOLD  (255)
-
-#define GAMES_CARD_ID(suit, rank) ((13*(suit)) + ((rank-1)%13))
 
 static void
 games_card_images_clear_cache (GamesCardImages * images)
@@ -93,30 +93,6 @@ games_card_images_theme_changed_cb (GamesCardTheme * theme,
                                     GamesCardImages * images)
 {
   games_card_images_clear_cache (images);
-}
-
-guint
-games_card_images_card_to_index (Card card)
-{
-  guint card_id;
-
-  if (CARD_GET_FACE_DOWN (card)) {
-    card_id = GAMES_CARD_BACK;
-  } else if (G_UNLIKELY (CARD_GET_RANK (card) == 0)) {
-    /* A joker */
-    if (CARD_GET_SUIT (card) == GAMES_CARDS_CLUBS ||
-        CARD_GET_SUIT (card) == GAMES_CARDS_SPADES) {
-      /* A black joker. */
-      card_id = GAMES_CARD_BLACK_JOKER;
-    } else {
-      /* A red joker. */
-      card_id = GAMES_CARD_RED_JOKER;
-    }
-  } else {
-    card_id = GAMES_CARD_ID (CARD_GET_SUIT (card), CARD_GET_RANK (card));
-  }
-
-  return card_id;
 }
 
 /* Consider the cache as a 2-dimensional array: [0..TOTAL-1 , 0..1]:
@@ -569,7 +545,7 @@ GdkPixbuf *
 games_card_images_get_card_pixbuf (GamesCardImages * images,
                                    Card card, gboolean highlighted)
 {
-  guint index = games_card_images_card_to_index (card);
+  guint index = _games_card_to_index (card);
 
   return games_card_images_get_card_pixbuf_by_id (images,
                                                   index,
@@ -714,7 +690,7 @@ GdkPixmap *
 games_card_images_get_card_pixmap (GamesCardImages * images,
                                    Card card, gboolean highlighted)
 {
-  guint index = games_card_images_card_to_index (card);
+  guint index = _games_card_to_index (card);
 
   return games_card_images_get_card_pixmap_by_id (images,
                                                   index,

@@ -1,5 +1,6 @@
 /*
  *  Copyright © 2008 Neil Roberts
+ *  Copyright © 2008 Christian Persch
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -24,23 +25,25 @@
 
 #include "games-card-textures-cache.h"
 
+#include "games-card-private.h"
+
 struct _GamesCardTexturesCachePrivate
 {
-  CoglHandle *cards;
-  GamesCardImages *card_images;
+  GamesCardTheme *theme;
+  guint theme_changed_handler;
 
-  guint theme_handler;
+  CoglHandle *cards;
 };
 
 enum
 {
   PROP_0,
-  PROP_CARD_IMAGES
+  PROP_THEME
 };
 
 /* This is an invalid value for a CoglHandle, and distinct from COGL_INVALID_HANDLE */
-#define FAILED_POINTER ((gpointer) 0x1)
-#define IS_FAILED_POINTER(ptr) (G_UNLIKELY ((ptr) == FAILED_POINTER))
+#define FAILED_HANDLE ((gpointer) 0x1)
+#define IS_FAILED_HANDLE(ptr) (G_UNLIKELY ((ptr) == FAILED_HANDLE))
 
 static void games_card_textures_cache_dispose (GObject *object);
 static void games_card_textures_cache_finalize (GObject *object);
@@ -52,42 +55,39 @@ G_DEFINE_TYPE (GamesCardTexturesCache, games_card_textures_cache, G_TYPE_OBJECT)
 /* Helper functions */
 
 static void
-games_card_textures_cache_unref_images (GamesCardTexturesCache *cache)
+games_card_textures_cache_clear (GamesCardTexturesCache *cache)
 {
   GamesCardTexturesCachePrivate *priv = cache->priv;
+  int i;
 
-  if (priv->card_images) {
-    g_signal_handler_disconnect (priv->card_images, priv->theme_handler);
-    g_object_unref (priv->card_images);
-    priv->card_images = NULL;
+  g_print ("games_card_textures_cache_clear\n");
+
+  for (i = 0; i < GAMES_CARDS_TOTAL; i++) {
+    CoglHandle *handle = priv->cards[i];
+
+    if (handle != COGL_INVALID_HANDLE &&
+        !IS_FAILED_HANDLE (handle)) {
+      cogl_texture_unref (handle);
+    }
+
+    priv->cards[i] = COGL_INVALID_HANDLE;
   }
 }
 
 static void
-games_card_textures_cache_set_card_images (GamesCardTexturesCache *cache,
-                                           GamesCardImages *card_images)
+games_card_textures_cache_unset_theme (GamesCardTexturesCache *cache)
 {
   GamesCardTexturesCachePrivate *priv = cache->priv;
 
-  if (card_images)
-    g_object_ref (card_images);
-
-  games_card_textures_cache_unref_images (cache);
-
-  priv->card_images = card_images;
-
-  if (card_images)
-    priv->theme_handler = g_signal_connect_swapped (card_images, "notify::theme",
-                                                    G_CALLBACK (games_card_textures_cache_clear),
-                                                    cache);
-
-  games_card_textures_cache_clear (cache);
-
-  g_object_notify (G_OBJECT (cache), "card-images");
+  if (priv->theme) {
+    g_signal_handler_disconnect (priv->theme, priv->theme_changed_handler);
+    g_object_unref (priv->theme);
+    priv->theme = NULL;
+    priv->theme_changed_handler = 0;
+  }
 }
 
 /* Class implementation */
-
 
 static void
 games_card_textures_cache_init (GamesCardTexturesCache *self)
@@ -96,17 +96,16 @@ games_card_textures_cache_init (GamesCardTexturesCache *self)
 
   priv = self->priv = GAMES_CARD_TEXTURES_CACHE_GET_PRIVATE (self);
 
-  priv->cards = g_malloc0 (sizeof (ClutterActor *) * GAMES_CARDS_TOTAL * 2);
+  priv->cards = g_malloc0 (sizeof (ClutterActor *) * GAMES_CARDS_TOTAL);
 }
 
 static void
 games_card_textures_cache_dispose (GObject *object)
 {
-  GamesCardTexturesCache *self = (GamesCardTexturesCache *) object;
+  GamesCardTexturesCache *cache = GAMES_CARD_TEXTURES_CACHE (object);
 
-  games_card_textures_cache_clear (self);
-
-  games_card_textures_cache_unref_images (self);
+  games_card_textures_cache_clear (cache);
+  games_card_textures_cache_unset_theme (cache);
 
   G_OBJECT_CLASS (games_card_textures_cache_parent_class)->dispose (object);
 }
@@ -124,15 +123,15 @@ games_card_textures_cache_finalize (GObject *object)
 
 static void
 games_card_textures_cache_set_property (GObject *self,
-                                   guint property_id,
-                                   const GValue *value,
-                                   GParamSpec *pspec)
+                                        guint property_id,
+                                        const GValue *value,
+                                        GParamSpec *pspec)
 {
   GamesCardTexturesCache *cache = GAMES_CARD_TEXTURES_CACHE (self);
 
   switch (property_id) {
-    case PROP_CARD_IMAGES:
-      games_card_textures_cache_set_card_images (cache, g_value_get_object (value));
+    case PROP_THEME:
+      games_card_textures_cache_set_theme (cache, g_value_get_object (value));
       break;
 
     default:
@@ -143,16 +142,15 @@ games_card_textures_cache_set_property (GObject *self,
 
 static void
 games_card_textures_cache_get_property (GObject *self,
-                                   guint property_id,
-                                   GValue *value,
-                                   GParamSpec *pspec)
+                                        guint property_id,
+                                        GValue *value,
+                                        GParamSpec *pspec)
 {
   GamesCardTexturesCache *cache = GAMES_CARD_TEXTURES_CACHE (self);
-  GamesCardTexturesCachePrivate *priv = cache->priv;
 
   switch (property_id) {
-    case PROP_CARD_IMAGES:
-      g_value_set_object (value, priv->card_images);
+    case PROP_THEME:
+      g_value_set_object (value, games_card_textures_cache_get_theme (cache));
       break;
 
     default:
@@ -164,7 +162,7 @@ games_card_textures_cache_get_property (GObject *self,
 static void
 games_card_textures_cache_class_init (GamesCardTexturesCacheClass *klass)
 {
-  GObjectClass *gobject_class = (GObjectClass *) klass;
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GParamSpec *pspec;
 
   gobject_class->dispose = games_card_textures_cache_dispose;
@@ -174,14 +172,14 @@ games_card_textures_cache_class_init (GamesCardTexturesCacheClass *klass)
 
   g_type_class_add_private (klass, sizeof (GamesCardTexturesCachePrivate));
 
-  pspec = g_param_spec_object ("card-images", NULL, NULL,
-                               GAMES_TYPE_CARD_IMAGES,
+  pspec = g_param_spec_object ("theme", NULL, NULL,
+                               GAMES_TYPE_CARD_THEME,
                                G_PARAM_WRITABLE |
                                G_PARAM_CONSTRUCT_ONLY |
                                G_PARAM_STATIC_NAME |
                                G_PARAM_STATIC_NICK |
                                G_PARAM_STATIC_BLURB);
-  g_object_class_install_property (gobject_class, PROP_CARD_IMAGES, pspec);
+  g_object_class_install_property (gobject_class, PROP_THEME, pspec);
 }
 
 /* Public API */
@@ -192,72 +190,85 @@ games_card_textures_cache_class_init (GamesCardTexturesCacheClass *klass)
  * Returns: a new #GamesCardTexturesCache object
  */
 GamesCardTexturesCache *
-games_card_textures_cache_new (GamesCardImages *images)
+games_card_textures_cache_new (void)
 {
-  return g_object_new (GAMES_TYPE_CARD_TEXTURES_CACHE,
-                       "card-images", images,
-                       NULL);
+  return g_object_new (GAMES_TYPE_CARD_TEXTURES_CACHE, NULL);
 }
 
-/* FIXME: make this private and automatic */
+/**
+ * games_card_textures_cache_set_theme:
+ * @cache:
+ * @theme:
+ *
+ * Sets the card theme.
+ */
 void
-games_card_textures_cache_clear (GamesCardTexturesCache *cache)
+games_card_textures_cache_set_theme (GamesCardTexturesCache *cache,
+                                     GamesCardTheme *theme)
 {
   GamesCardTexturesCachePrivate *priv = cache->priv;
-  int i;
 
-  for (i = 0; i < GAMES_CARDS_TOTAL * 2; i++) {
-    CoglHandle *handle = priv->cards[i];
+  g_return_if_fail (GAMES_IS_CARD_TEXTURES_CACHE (cache));
+  g_return_if_fail (theme == NULL || GAMES_IS_CARD_THEME (theme));
 
-    if (handle != COGL_INVALID_HANDLE &&
-        !IS_FAILED_POINTER (handle)) {
-      cogl_texture_unref (handle);
-    }
+  if (priv->theme == theme)
+    return;
 
-    priv->cards[i] = COGL_INVALID_HANDLE;
+  games_card_textures_cache_clear (cache);
+  games_card_textures_cache_unset_theme (cache);
+
+  priv->theme = theme;
+  if (theme) {
+    g_object_ref (theme);
+
+    priv->theme_changed_handler = g_signal_connect_swapped (theme, "changed",
+                                                            G_CALLBACK (games_card_textures_cache_clear),
+                                                            cache);
   }
+
+  g_object_notify (G_OBJECT (cache), "theme");
+}
+
+/**
+ * games_card_textures_cache_get_theme:
+ * @cache:
+ *
+ * Returns: the the card theme of @cache
+ */
+GamesCardTheme *
+games_card_textures_cache_get_theme (GamesCardTexturesCache *cache)
+{
+  g_return_val_if_fail (GAMES_IS_CARD_TEXTURES_CACHE (cache), NULL);
+
+  return cache->priv->theme;
 }
 
 /**
  * games_card_textures_cache_get_card_texture_by_id:
  * @cache:
  * @card_id:
- * @highlighted:
  *
  * Returns: a cached #CoglHandle for @card_id.
  */
 CoglHandle
 games_card_textures_cache_get_card_texture_by_id (GamesCardTexturesCache *cache,
-                                                  guint card_id,
-                                                  gboolean highlighted)
+                                                  guint card_id)
 {
-  GamesCardTexturesCachePrivate *priv;
-  guint index;
+  GamesCardTexturesCachePrivate *priv = cache->priv;
   CoglHandle handle;
 
-  g_return_val_if_fail (GAMES_IS_CARD_TEXTURES_CACHE (cache), NULL);
   g_return_val_if_fail (card_id < GAMES_CARDS_TOTAL , NULL);
 
-  priv = cache->priv;
-
-  g_return_val_if_fail (priv->card_images != NULL, NULL);
-
-  index = card_id;
-  if (highlighted)
-    index += GAMES_CARDS_TOTAL;
-
-  handle = priv->cards[index];
-  if (IS_FAILED_POINTER (handle))
-    return NULL;
+  handle = priv->cards[card_id];
+  if (IS_FAILED_HANDLE (handle))
+    return COGL_INVALID_HANDLE;
 
   if (handle == COGL_INVALID_HANDLE) {
-    GdkPixbuf *pixbuf
-      = games_card_images_get_card_pixbuf_by_id (priv->card_images,
-                                                 card_id,
-                                                 highlighted);
+    GdkPixbuf *pixbuf;
 
+    pixbuf = games_card_theme_get_card_pixbuf (priv->theme, card_id);
     if (!pixbuf) {
-      priv->cards[index] = FAILED_POINTER;
+      priv->cards[card_id] = FAILED_HANDLE;
       return COGL_INVALID_HANDLE;
     }
 
@@ -270,12 +281,14 @@ games_card_textures_cache_get_card_texture_by_id (GamesCardTexturesCache *cache,
                                          COGL_PIXEL_FORMAT_ANY,
                                          gdk_pixbuf_get_rowstride (pixbuf),
                                          gdk_pixbuf_get_pixels (pixbuf));
-    if (!handle) {
-      priv->cards[index] = FAILED_POINTER;
+    g_object_unref (pixbuf);
+
+    if (handle == COGL_INVALID_HANDLE) {
+      priv->cards[card_id] = FAILED_HANDLE;
       return COGL_INVALID_HANDLE;
     }
 
-    priv->cards[index] = handle;
+    priv->cards[card_id] = handle;
   }
 
   return handle;
@@ -291,13 +304,11 @@ games_card_textures_cache_get_card_texture_by_id (GamesCardTexturesCache *cache,
  */
 CoglHandle
 games_card_textures_cache_get_card_texture (GamesCardTexturesCache *cache,
-                                            Card card,
-                                            gboolean highlighted)
+                                            Card card)
 {
-  guint card_id = games_card_images_card_to_index (card);
+  guint card_id = _games_card_to_index (card);
 
-  return games_card_textures_cache_get_card_texture_by_id (cache, card_id,
-                                                           highlighted);
+  return games_card_textures_cache_get_card_texture_by_id (cache, card_id);
 }
 
 /**
@@ -308,10 +319,7 @@ games_card_textures_cache_get_card_texture (GamesCardTexturesCache *cache,
  * Returns: a cached #CoglHandle for the slot.
  */
 CoglHandle
-games_card_textures_cache_get_slot_texture (GamesCardTexturesCache *cache,
-                                            gboolean highlighted)
+games_card_textures_cache_get_slot_texture (GamesCardTexturesCache *cache)
 {
-  return games_card_textures_cache_get_card_texture_by_id (cache,
-                                                           GAMES_CARD_SLOT,
-                                                           highlighted);
+  return games_card_textures_cache_get_card_texture_by_id (cache, GAMES_CARD_SLOT);
 }
