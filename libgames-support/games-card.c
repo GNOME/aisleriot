@@ -141,3 +141,54 @@ games_card_get_name_by_id (gint card_id)
 
   return g_strdup (name);
 }
+
+/**
+ * games_card_get_localised_rank_symbol:
+ * @rank: the card rank
+ *
+ * Returns: the localised rank card symbol
+ */
+const char *
+games_card_get_localised_rank_symbol (int rank)
+{
+  static const char ranks[][2] = { "*", "A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K", "A" };
+#if 0
+#if !GLIB_CHECK_VERSION (2, 18, 0)
+#define NC_(context, string) (string)
+#endif
+  static const char *localised_rank[] = {
+    /* Translators: this is the symbol that's on a Joker card */
+    NC_("card:joker", "*"),
+    /* Translators: this is the symbol that's on an Ace (1) card */
+    NC_("card:ace",   "A"),
+    /* Translators: this is the symbol that's on a 2 card */
+    NC_("card:2",     "2"),
+    /* Translators: this is the symbol that's on a 3 card */
+    NC_("card:3",     "3"),
+    /* Translators: this is the symbol that's on a 4 card */
+    NC_("card:4",     "4"),
+    /* Translators: this is the symbol that's on a 5 card */
+    NC_("card:5",     "5"),
+    /* Translators: this is the symbol that's on a 6 card */
+    NC_("card:6",     "6"),
+    /* Translators: this is the symbol that's on a 7 card */
+    NC_("card:7",     "7"),
+    /* Translators: this is the symbol that's on a 8 card */
+    NC_("card:8",     "8"),
+    /* Translators: this is the symbol that's on a 9 card */
+    NC_("card:9",     "9"),
+    /* Translators: this is the symbol that's on a Jack card */
+    NC_("card:jack",  "J"),
+    /* Translators: this is the symbol that's on a Queen card */
+    NC_("card:queen", "Q"),
+    /* Translators: this is the symbol that's on a King card */
+    NC_("card:king",  "K"),
+    /* Translators: this is the symbol that's on an Ace (1) card */
+    NC_("card:ace",   "A")
+  };
+#endif
+
+  g_return_val_if_fail (rank >= GAMES_CARD_JOKER && rank <= GAMES_CARD_ACE_HIGH, NULL);
+
+  return ranks[rank];
+}
