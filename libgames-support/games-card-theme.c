@@ -43,9 +43,42 @@ static guint signals[LAST_SIGNAL];
 /* #defining this prints out the time it takes to render the theme */
 /* #define INSTRUMENT_LOADING */
 
+
 #ifdef INSTRUMENT_LOADING
 static long totaltime = 0;
 #endif
+
+static GType
+get_default_theme_type (void)
+{
+  GType type;
+  const char *env;
+
+#if defined(HAVE_RSVG) && !defined(HAVE_HILDON)
+  /* Default to scalable */
+  type = GAMES_TYPE_CARD_THEME_SVG;
+#else
+  /* Default to non-scalable */
+  type = GAMES_TYPE_CARD_THEME_FIXED;
+#endif
+
+#ifndef HAVE_HILDON
+  env = g_getenv ("GAMES_CARD_THEME_FORMAT");
+  if (env) {
+#ifdef HAVE_RSVG
+    if (strcmp (env, "svg") == 0)
+      type = GAMES_TYPE_CARD_THEME_SVG;
+    else
+#endif
+    if (strcmp (env, "sliced") == 0)
+      type = GAMES_TYPE_CARD_THEME_SLICED;
+    else if (strcmp (env, "fixed") == 0)
+      type = GAMES_TYPE_CARD_THEME_FIXED;
+  }
+#endif /* !HAVE_HILDON */
+
+  return type;
+}
 
 static gboolean
 games_card_theme_load_theme (GamesCardTheme *theme,
@@ -61,7 +94,7 @@ games_card_theme_load_theme_with_fallback (GamesCardTheme *theme,
                                            const char *theme_name)
 {
   if (!theme_dir)
-    theme_dir = games_card_theme_get_default_theme_path (theme->klass);
+    theme_dir = _games_card_theme_class_get_default_theme_path (theme->klass);
 
   if (games_card_theme_load_theme (theme, theme_dir, theme_name))
     return TRUE;
@@ -118,12 +151,50 @@ games_card_theme_constructor (GType type,
   return object;
 }
 
+static GList *
+games_card_theme_get_themes_list (GamesCardThemeClass *klass,
+                                  const char *theme_dir)
+{
+  GamesFileList *files;
+  GList *l, *list;
+  const char *glob;
+
+  glob = _games_card_theme_class_get_theme_glob (klass);
+
+  if (!theme_dir)
+    theme_dir = _games_card_theme_class_get_default_theme_path (klass);
+
+  if (!theme_dir || !glob)
+    return NULL;
+
+  files = games_file_list_new (glob, theme_dir, NULL);
+  games_file_list_transform_basename (files);
+
+  for (l = files->list; l != NULL; l = l->next) {
+    const char *filename = (const char *) l->data;
+    char *dot;
+
+    dot = strrchr (filename, '.');
+    if (dot) {
+      *dot = '\0';
+    }
+  }
+
+  list = files->list;
+  files->list = NULL;
+  g_object_unref (files);
+
+  return list;
+}
+
 static void
 games_card_theme_class_init (GamesCardThemeClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
   gobject_class->constructor = games_card_theme_constructor;
+
+  klass->get_themes_list = games_card_theme_get_themes_list;
 
   /**
    * GamesCardTheme:changed:
@@ -152,16 +223,55 @@ _games_card_theme_emit_changed (GamesCardTheme *theme)
   g_signal_emit (theme, signals[CHANGED], 0);
 }
 
-/* public API */
-
+/**
+ * games_card_theme_class_get_default_theme_path:
+ * @klass:
+ *
+ * Returns: the default theme path for @klass. The string is owned by
+ * @klass and must not be modified or freed.
+ */
 const char *
-games_card_theme_get_default_theme_path (GamesCardThemeClass *klass)
+_games_card_theme_class_get_default_theme_path (GamesCardThemeClass *klass)
 {
   if (klass->get_default_theme_path)
     return klass->get_default_theme_path (klass);
 
   return NULL;
 }
+
+/**
+ * games_card_theme_class_get_theme_glob:
+ * @klass:
+ *
+ * Returns: the default theme path for @klass. The string is owned by
+ * @klass and must not be modified or freed.
+ */
+const char *
+_games_card_theme_class_get_theme_glob (GamesCardThemeClass *klass)
+{
+  if (klass->get_theme_glob)
+    return klass->get_theme_glob (klass);
+
+  return NULL;
+}
+
+/**
+ * games_card_theme_class_get_themes_list:
+ * @klass:
+ *
+ * Returns: a newly allocated list of newly allocated strings of
+ * containing the names of the themes found for @klass.
+ */
+GList *
+_games_card_theme_class_get_themes_list (GamesCardThemeClass *klass)
+{
+  if (klass->get_themes_list)
+    return klass->get_themes_list (klass, NULL);
+
+  return NULL;
+}
+
+/* public API */
 
 #if GTK_CHECK_VERSION (2, 10, 0)
 
@@ -316,38 +426,31 @@ games_card_theme_get_card_pixbuf (GamesCardTheme * theme, gint card_id)
 }
 
 /**
- * games_card_theme_sliced_new:
+ * games_card_theme_new:
  *
- * Returns: a new #GamesCardThemeSliced
+ * Returns: a new #GamesCardTheme
  */
 GamesCardTheme *
 games_card_theme_new (void)
 {
-  GType type = G_TYPE_INVALID;
-  const char *env;
 
-#if defined(HAVE_RSVG) && !defined(HAVE_HILDON)
-  /* Default to scalable */
-  type = GAMES_TYPE_CARD_THEME_SVG;
-#else
-  /* Default to non-scalable */
-  type = GAMES_TYPE_CARD_THEME_FIXED;
-#endif
+  return g_object_new (get_default_theme_type (), NULL);
+}
 
-#ifndef HAVE_HILDON
-  env = g_getenv ("GAMES_CARD_THEME_FORMAT");
-  if (env) {
-#ifdef HAVE_RSVG
-    if (strcmp (env, "svg") == 0)
-      type = GAMES_TYPE_CARD_THEME_SVG;
-    else
-#endif
-    if (strcmp (env, "sliced") == 0)
-      type = GAMES_TYPE_CARD_THEME_SLICED;
-    else if (strcmp (env, "fixed") == 0)
-      type = GAMES_TYPE_CARD_THEME_FIXED;
-  }
-#endif /* !HAVE_HILDON */
+/**
+ * games_card_theme_get_themes:
+ *
+ * Returns: 
+ */
+GList *
+games_card_theme_get_themes (void)
+{
+  GamesCardThemeClass *klass;
+  GList *list;
 
-  return g_object_new (type, NULL);
+  klass = g_type_class_ref (get_default_theme_type ());
+  list = games_card_theme_get_themes_list (klass, NULL);
+  g_type_class_unref (klass);
+
+  return list;
 }

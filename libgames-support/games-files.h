@@ -67,8 +67,6 @@ games_file_list_new (const gchar * glob, ...)
 					       const gchar * selection,
 					       guint flags);
 
-GamesFileList *games_file_list_card_themes (gboolean scalable);
-
 G_END_DECLS
 
 #endif /* GAMES_FILES_H */

@@ -53,8 +53,6 @@ typedef struct _GamesCardTheme      GamesCardTheme;
 
 GType games_card_theme_get_type (void);
 
-const char * games_card_theme_get_default_theme_path (GamesCardThemeClass *klass);
-
 #if GTK_CHECK_VERSION (2, 10, 0)
 void games_card_theme_set_font_options (GamesCardTheme *theme,
                                         const cairo_font_options_t *font_options);
@@ -145,5 +143,7 @@ G_END_DECLS
 /* Utility functions */
 
 GamesCardTheme *games_card_theme_new (void);
+
+GList *games_card_theme_get_themes (void);
 
 #endif /* GAMES_CARD_THEME_H */

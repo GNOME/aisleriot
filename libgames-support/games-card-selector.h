@@ -32,7 +32,7 @@ typedef struct _GamesCardSelector {
   GamesFrame parent;
 
   GtkWidget *combobox;
-  GamesFileList *files;
+  GList *files;
 } GamesCardSelector;
 
 typedef struct _GamesCardSelectorClass {

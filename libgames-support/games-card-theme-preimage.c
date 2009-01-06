@@ -316,7 +316,20 @@ games_card_theme_preimage_get_card_aspect (GamesCardTheme* card_theme)
 static const char *
 games_card_theme_preimage_get_default_theme_path (GamesCardThemeClass *klass)
 {
+  const char *env;
+
+  if ((env = g_getenv ("GAMES_CARD_THEME_PATH_PREIMAGE")))
+    return env;
+  if ((env = g_getenv ("GAMES_CARD_THEME_PATH")))
+    return env;
+
   return games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY);
+}
+
+static const char *
+games_card_theme_preimage_get_theme_glob (GamesCardThemeClass *klass)
+{
+  return "*.svg"; // FIXMEchpe: svgz ?
 }
 
 static void
@@ -328,6 +341,7 @@ games_card_theme_preimage_class_init (GamesCardThemePreimageClass * klass)
   gobject_class->finalize = games_card_theme_preimage_finalize;
 
   theme_class->get_default_theme_path = games_card_theme_preimage_get_default_theme_path;
+  theme_class->get_theme_glob = games_card_theme_preimage_get_theme_glob;
   theme_class->load_theme = games_card_theme_preimage_load_theme;
   theme_class->get_theme_name = games_card_theme_preimage_get_theme_name;
   theme_class->set_card_size = games_card_theme_preimage_set_card_size;

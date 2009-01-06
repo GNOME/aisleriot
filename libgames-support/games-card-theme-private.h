@@ -27,6 +27,9 @@ struct _GamesCardThemeClass {
 
   /* class vfuncs */
   const char * (* get_default_theme_path) (GamesCardThemeClass *klass);
+  const char * (* get_theme_glob)         (GamesCardThemeClass *klass);
+  GList *      (* get_themes_list)        (GamesCardThemeClass *klass,
+                                           const char *theme_dir);
 
   /* vfuncs */
   gboolean    (* load_theme)        (GamesCardTheme *theme,
@@ -57,7 +60,11 @@ struct _GamesCardTheme {
   char *theme_name;
 };
 
-void _games_card_theme_emit_changed (GamesCardTheme * theme);
+const char *_games_card_theme_class_get_default_theme_path (GamesCardThemeClass *klass);
+const char *_games_card_theme_class_get_theme_glob (GamesCardThemeClass *klass);
+GList *_games_card_theme_class_get_themes_list (GamesCardThemeClass *klass);
+
+void _games_card_theme_emit_changed (GamesCardTheme *theme);
 
 /* GamesCardThemePreimage */
 

@@ -442,6 +442,8 @@ games_file_list_init (GamesFileList * filelist)
  * 
  * Returns: a new #GamesFileList containing the found themes
  */
+GamesFileList *games_file_list_card_themes (gboolean scalable);
+
 GamesFileList *
 games_file_list_card_themes (gboolean scalable)
 {

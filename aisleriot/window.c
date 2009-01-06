@@ -38,6 +38,7 @@
 #endif
 #endif /* HAVE_HILDON */
 
+#include <libgames-support/games-card-theme.h>
 #include <libgames-support/games-clock.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
@@ -1464,8 +1465,7 @@ static void
 install_card_theme_menu (AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  GamesFileList *themes;
-  GList *l;
+  GList *list, *l;
   GSList *radio_group = NULL;
   const char *card_theme;
   guint i = 0;
@@ -1483,11 +1483,12 @@ install_card_theme_menu (AisleriotWindow *window)
   /* See gtk bug #424448 */
   gtk_ui_manager_ensure_update (priv->ui_manager);
 
-  themes = games_file_list_card_themes (priv->scalable_cards);
+  list = games_card_theme_get_themes ();
 
   /* No need to install the menu when there's only one theme available anyway */
-  if (themes->list == NULL || themes->list->next == NULL) {
-    g_object_unref (themes);
+  if (list == NULL || list->next == NULL) {
+    g_list_foreach (list, (GFunc) g_free, NULL);
+    g_list_free (list);
     return;
   }
 
@@ -1499,7 +1500,7 @@ install_card_theme_menu (AisleriotWindow *window)
 
   card_theme = aisleriot_board_get_card_theme (priv->board);
 
-  for (l = themes->list; l != NULL; l = l->next) {
+  for (l = list; l != NULL; l = l->next) {
     const char *theme = (const char *) l->data;
     GtkRadioAction *action;
     char actionname[32];
@@ -1544,7 +1545,8 @@ install_card_theme_menu (AisleriotWindow *window)
     ++i;
   }
 
-  g_object_unref (themes);
+  g_list_foreach (list, (GFunc) g_free, NULL);
+  g_list_free (list);
 }
 
 /* Callbacks */

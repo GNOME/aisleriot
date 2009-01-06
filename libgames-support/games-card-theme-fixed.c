@@ -376,11 +376,23 @@ games_card_theme_fixed_get_card_pixbuf (GamesCardTheme *card_theme,
   return pixbuf;
 }
 
-
 static const char *
 games_card_theme_fixed_get_default_theme_path (GamesCardThemeClass *klass)
 {
+  const char *env;
+
+  if ((env = g_getenv ("GAMES_CARD_THEME_PATH_FIXED")))
+    return env;
+  if ((env = g_getenv ("GAMES_CARD_THEME_PATH")))
+    return env;
+
   return games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY);
+}
+
+static const char *
+games_card_theme_fixed_get_theme_glob (GamesCardThemeClass *klass)
+{
+  return "*.card-theme";
 }
 
 static void
@@ -392,6 +404,7 @@ games_card_theme_fixed_class_init (GamesCardThemeFixedClass * klass)
   gobject_class->finalize = games_card_theme_fixed_finalize;
 
   theme_class->get_default_theme_path = games_card_theme_fixed_get_default_theme_path;
+  theme_class->get_theme_glob = games_card_theme_fixed_get_theme_glob;
   theme_class->load_theme = games_card_theme_fixed_load_theme;
   theme_class->get_theme_name = games_card_theme_fixed_get_theme_name;
   theme_class->set_card_size = games_card_theme_fixed_set_card_size;

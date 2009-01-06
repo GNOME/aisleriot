@@ -27,6 +27,7 @@
 #include "games-card.h"
 #include "games-frame.h"
 #include "games-files.h"
+#include "games-card-theme.h"
 
 #include "games-card-selector.h"
 
@@ -43,14 +44,70 @@ G_DEFINE_TYPE (GamesCardSelector, games_card_selector, GAMES_TYPE_FRAME);
 static void
 signal_propagator (GtkWidget * widget, GamesCardSelector * selector)
 {
-  gchar *name;
+  GList *l;
+  const char *name;
 
-  name = games_file_list_get_nth (selector->files,
-				  gtk_combo_box_get_active (GTK_COMBO_BOX
-							    (selector->
-							     combobox)));
+  l = g_list_nth (selector->files,
+                  gtk_combo_box_get_active (GTK_COMBO_BOX (selector->combobox)));
+  if (!l)
+    return;
+
+  name = l->data;
 
   g_signal_emit (selector, signals[CHANGED], 0, name);
+}
+
+static GtkWidget *
+create_combo_box (GList *filelist,
+                  const gchar * selection,
+                  guint flags)
+{
+  gint itemno;
+  GtkComboBox *widget;
+  gchar *visible, *string;
+  gboolean found = FALSE;
+
+  widget = GTK_COMBO_BOX (gtk_combo_box_new_text ());
+
+  itemno = 0;
+  while (filelist) {
+    gchar *s;
+
+    string = (gchar *) filelist->data;
+    visible = g_strdup (string);
+
+    /* These are a bit hackish, but we don't yet have a good regexp
+     * library in glib. There are probably some ways these could
+     * seriously mangle unicode strings. */
+    if (flags & GAMES_FILE_LIST_REMOVE_EXTENSION) {
+      s = g_strrstr (visible, ".");
+      if (s)
+        *s = '\0';
+    }
+    if (flags & GAMES_FILE_LIST_REPLACE_UNDERSCORES) {
+      s = visible;
+      while (*s) {
+        if (*s == '_')
+          *s = ' ';
+        s++;
+      }
+    }
+
+    gtk_combo_box_append_text (widget, visible);
+    if (selection && (!strcmp (string, selection))) {
+      gtk_combo_box_set_active (widget, itemno);
+      found = TRUE;
+    }
+
+    g_free (visible);
+
+    itemno++;
+    filelist = g_list_next (filelist);
+  }
+  if (!found)
+    gtk_combo_box_set_active (widget, 0);
+
+  return GTK_WIDGET (widget);
 }
 
 GtkWidget *
@@ -62,11 +119,11 @@ games_card_selector_new (gboolean scalable, const gchar * current)
 
   games_frame_set_label (GAMES_FRAME (selector), _("Card Style"));
 
-  selector->files = games_file_list_card_themes (scalable);
+  selector->files = games_card_theme_get_themes ();
 
-  selector->combobox = games_file_list_create_widget (selector->files,
-						      current,
-						      GAMES_FILE_LIST_REPLACE_UNDERSCORES);
+  selector->combobox = create_combo_box (selector->files,
+                                         current,
+                                         GAMES_FILE_LIST_REPLACE_UNDERSCORES);
 
   gtk_container_add (GTK_CONTAINER (selector), selector->combobox);
 
@@ -80,7 +137,8 @@ games_card_selector_finalize (GObject *object)
 {
   GamesCardSelector *selector = GAMES_CARD_SELECTOR (object);
 
-  g_object_unref (selector->files);
+  g_list_foreach (selector->files, (GFunc) g_free, NULL);
+  g_list_free (selector->files);
 
   G_OBJECT_CLASS (games_card_selector_parent_class)->finalize (object);
 }
