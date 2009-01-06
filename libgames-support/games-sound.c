@@ -159,7 +159,8 @@ games_sound_init (void)
   SDL_Init (SDL_INIT_AUDIO | SDL_INIT_NOPARACHUTE);
 
   if (Mix_OpenAudio (audio_rate, audio_format, audio_channels, buf_size) < 0) {
-    g_warning ("Error calling Mix_OpenAudio\n");
+    _games_debug_print (GAMES_DEBUG_SOUND,
+                        "Error calling Mix_OpenAudio\n");
     return;
   }
 #endif /* HAVE_SDL_MIXER */

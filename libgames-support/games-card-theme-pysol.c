@@ -23,6 +23,7 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
+#include "games-debug.h"
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"
@@ -271,44 +272,6 @@ games_card_theme_pysol_load (GamesCardTheme *card_theme,
   return TRUE;
 }
 
-static GdkPixbuf *
-games_card_theme_pysol_load_card (PySolConfigTxtData *data,
-                                  int card_id)
-{
-  GdkPixbuf *pixbuf;
-  char *path;
-  GError *error = NULL;
-
-  if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
-    path = g_build_filename (data->base_path, "bottom01.gif" /* FIXMEchpe ext! */, NULL);
-  } else if (G_UNLIKELY (card_id == GAMES_CARD_BACK)) {
-    path = g_build_filename (data->base_path, data->back_filename, NULL);
-  } else {
-    static const char suit_char[] = "cdhs";
-    int suit, rank;
-    char filename[32];
-
-    suit = card_id / 13;
-    rank = card_id % 13;
-
-    if (G_UNLIKELY (suit == 4)) /* Joker */
-      return NULL; /* FIXMEchpe */
-
-    g_snprintf (filename, sizeof (filename), "%02d%c%s", rank + 1, suit_char[suit], data->ext);
-    path = g_build_filename (data->base_path, filename, NULL);
-  }
-
-  pixbuf = gdk_pixbuf_new_from_file (path, &error);
-  if (!pixbuf) {
-    g_warning ("Failed to load card ID %d: %s\n", card_id, error->message);
-    g_error_free (error);
-  }
-
-  g_free (path);
-
-  return pixbuf;
-}
-
 static void
 games_card_theme_pysol_init (GamesCardThemePysol *theme)
 {
@@ -345,9 +308,39 @@ static GdkPixbuf *
 games_card_theme_pysol_get_card_pixbuf (GamesCardTheme *card_theme,
                                         int card_id)
 {
+  PySolConfigTxtData *data = card_theme->theme_info->data;
   GdkPixbuf *pixbuf;
+  char *path;
+  GError *error = NULL;
 
-  pixbuf = games_card_theme_pysol_load_card (card_theme->theme_info->data, card_id);
+  if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
+    path = g_build_filename (data->base_path, "bottom01.gif" /* FIXMEchpe ext! */, NULL);
+  } else if (G_UNLIKELY (card_id == GAMES_CARD_BACK)) {
+    path = g_build_filename (data->base_path, data->back_filename, NULL);
+  } else {
+    static const char suit_char[] = "cdhs";
+    int suit, rank;
+    char filename[32];
+
+    suit = card_id / 13;
+    rank = card_id % 13;
+
+    if (G_UNLIKELY (suit == 4)) /* Joker */
+      return NULL; /* FIXMEchpe */
+
+    g_snprintf (filename, sizeof (filename), "%02d%c%s", rank + 1, suit_char[suit], data->ext);
+    path = g_build_filename (data->base_path, filename, NULL);
+  }
+
+  pixbuf = gdk_pixbuf_new_from_file (path, &error);
+  if (!pixbuf) {
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Failed to load card ID %d: %s\n",
+                        card_id, error->message);
+    g_error_free (error);
+  }
+
+  g_free (path);
 
   return pixbuf;
 }

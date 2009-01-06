@@ -25,6 +25,7 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
+#include "games-debug.h"
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"
@@ -49,7 +50,6 @@ struct _GamesCardThemeFixed {
   CardSize slot_size;
   CardSize card_size;
 
-  guint theme_loaded : 1;
   guint size_available : 1;
 };
 
@@ -74,8 +74,9 @@ games_card_theme_fixed_load (GamesCardTheme *card_theme,
 
   key_file = g_key_file_new ();
   if (!g_key_file_load_from_file (key_file, path, 0, &error)) {
-    g_warning ("Failed to load prerendered card theme from %s: %s\n", path,
-               error->message);
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Failed to load prerendered card theme from %s: %s\n", path,
+                        error->message);
     g_error_free (error);
     goto loser;
   }
@@ -84,13 +85,15 @@ games_card_theme_fixed_load (GamesCardTheme *card_theme,
     g_key_file_get_integer_list (key_file, "Card Theme", "Sizes", &n_sizes,
                                  &error);
   if (error) {
-    g_warning ("Failed to get card sizes: %s\n", error->message);
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Failed to get card sizes: %s\n", error->message);
     g_error_free (error);
     goto loser;
   }
 
   if (n_sizes == 0) {
-    g_warning ("Card theme contains no sizes\n");
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Card theme contains no sizes\n");
     goto loser;
   }
 
@@ -106,15 +109,17 @@ games_card_theme_fixed_load (GamesCardTheme *card_theme,
 
     width = g_key_file_get_integer (key_file, group, "Width", &err);
     if (err) {
-      g_warning ("Error loading width for size %d: %s\n", sizes[i],
-                 err->message);
+      _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                          "Error loading width for size %d: %s\n", sizes[i],
+                          err->message);
       g_error_free (err);
       goto loser;
     }
     height = g_key_file_get_integer (key_file, group, "Height", &err);
     if (err) {
-      g_warning ("Error loading height for size %d: %s\n", sizes[i],
-                 err->message);
+      _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                          "Error loading height for size %d: %s\n", sizes[i],
+                          err->message);
       g_error_free (err);
       goto loser;
     }
@@ -135,34 +140,6 @@ loser:
   return retval;
 }
 
-static GdkPixbuf *
-games_card_theme_fixed_load_card (GamesCardThemeFixed *theme,
-                                  int card_id)
-{
-  GdkPixbuf *pixbuf;
-  GError *error = NULL;
-  char name[64], filename[64];
-  char *path;
-
-  if (!theme->size_available)
-    return NULL;
-
-  games_card_get_name_by_id_snprintf (name, sizeof (name), card_id);
-  g_snprintf (filename, sizeof (filename), "%s.png", name);
-  path = g_build_filename (theme->themesizepath, filename, NULL);
-
-  pixbuf = gdk_pixbuf_new_from_file (path, &error);
-  if (!pixbuf) {
-    g_warning ("Failed to load card image %s: %s\n", filename,
-               error->message);
-    g_error_free (error);
-  }
-
-  g_free (path);
-
-  return pixbuf;
-}
-
 static void
 games_card_theme_fixed_init (GamesCardThemeFixed *theme)
 {
@@ -173,8 +150,6 @@ games_card_theme_fixed_init (GamesCardThemeFixed *theme)
   theme->themesizepath = NULL;
 
   theme->size_available = FALSE;
-
-  theme->theme_loaded = FALSE;
 
   theme->card_size.width = theme->card_size.height = theme->slot_size.width =
     theme->slot_size.width = -1;
@@ -250,7 +225,9 @@ games_card_theme_fixed_set_card_size (GamesCardTheme *card_theme,
       theme->size_available = TRUE;
       theme->card_size = size;
     } else {
-      g_warning ("No prerendered size available for %d:%d\n", width, height);
+      _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                          "No prerendered size available for %d:%d\n",
+                          width, height);
       theme->size_available = FALSE;
 
       /* FIXMEchpe: at least use the smallest available size here, or
@@ -289,8 +266,26 @@ games_card_theme_fixed_get_card_pixbuf (GamesCardTheme *card_theme,
 {
   GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
   GdkPixbuf *pixbuf;
+  GError *error = NULL;
+  char name[64], filename[64];
+  char *path;
 
-  pixbuf = games_card_theme_fixed_load_card (theme, card_id);
+  if (!theme->size_available)
+    return NULL;
+
+  games_card_get_name_by_id_snprintf (name, sizeof (name), card_id);
+  g_snprintf (filename, sizeof (filename), "%s.png", name);
+  path = g_build_filename (theme->themesizepath, filename, NULL);
+
+  pixbuf = gdk_pixbuf_new_from_file (path, &error);
+  if (!pixbuf) {
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Failed to load card image %s: %s\n",
+                        filename, error->message);
+    g_error_free (error);
+  }
+
+  g_free (path);
 
   return pixbuf;
 }
