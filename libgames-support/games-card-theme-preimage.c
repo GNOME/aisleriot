@@ -27,11 +27,6 @@
 
 #ifdef HAVE_RSVG
 #include <librsvg/librsvg-features.h>
-#ifdef LIBRSVG_CHECK_FEATURE
-#if LIBRSVG_CHECK_FEATURE(SVGZ)
-#define HAVE_RSVG_SVGZ
-#endif
-#endif
 #endif
 
 #include "games-preimage.h"
@@ -234,7 +229,7 @@ games_card_theme_preimage_class_get_theme_info (GamesCardThemeClass *klass,
   char *display_name;
 
   if (!g_str_has_suffix (filename, ".svg")
-#ifdef HAVE_RSVG_SVGZ
+#if defined(LIBRSVG_HAVE_SVGZ) && LIBRSVG_HAVE_SVGZ
       && !g_str_has_suffix (filename, ".svgz")
 #endif
      )
