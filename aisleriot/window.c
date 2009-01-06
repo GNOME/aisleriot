@@ -2329,7 +2329,8 @@ aisleriot_window_init (AisleriotWindow *window)
   GtkWidget *main_vbox;
   GtkAccelGroup *accel_group;
   GtkAction *action;
-//FIXMEchpe  char *theme;
+  char *theme_name;
+  GamesCardTheme *theme;
   guint i;
 #ifdef HAVE_HILDON
   GtkToolItem *tool_item;
@@ -2380,27 +2381,17 @@ aisleriot_window_init (AisleriotWindow *window)
 
   aisleriot_board_set_pixbuf_drawing (priv->board, priv->use_pixbuf_drawing);
 
-#if 0
-  // FIXMEchpe
-  theme = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
-  if (!theme || !theme[0]) {
-    g_free (theme);
-    theme = g_strdup (GAMES_CARD_THEME_DEFAULT);
+  theme_name = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
+  theme = games_card_theme_get_by_name (theme_name);
+  g_free (theme_name);
+  if (!theme) {
+    theme = games_card_theme_get_any ();
   }
-#ifdef HAVE_GNOME
-  /* Compatibility with old settings */
-  if (g_str_has_suffix (theme, ".svg")) {
-    *g_strrstr (theme, ".svg") = '\0';
-  } else if (g_str_has_suffix (theme, ".png")) {
-    *g_strrstr (theme, ".png") = '\0';
+  if (theme) {
+    aisleriot_window_take_card_theme (window, theme /* adopts */);
+  } else {
+    /* FIXMEchpe: FUCK, what now? Panic! */
   }
-#endif
-
-  aisleriot_board_set_card_theme (priv->board, theme);
-  g_free (theme);
-#endif
-
-  aisleriot_window_take_card_theme (window, games_card_theme_get_any ());
 
   priv->action_group = gtk_action_group_new ("MenuActions");
   gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);

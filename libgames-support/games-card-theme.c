@@ -46,44 +46,7 @@ enum {
 };
 
 static guint signals[LAST_SIGNAL];
-
 static GList *theme_infos;
-
-#if 0
-static GType
-get_default_theme_type (void)
-{
-  GType type;
-  const char *env;
-
-#if defined(HAVE_RSVG) && !defined(HAVE_HILDON)
-  /* Default to scalable */
-  type = GAMES_TYPE_CARD_THEME_SVG;
-#else
-  /* Default to non-scalable */
-  type = GAMES_TYPE_CARD_THEME_FIXED;
-#endif
-
-#ifndef HAVE_HILDON
-  env = g_getenv ("GAMES_CARD_THEME_FORMAT");
-  if (env) {
-#ifdef HAVE_RSVG
-    if (strcmp (env, "svg") == 0)
-      type = GAMES_TYPE_CARD_THEME_SVG;
-    else if (strcmp (env, "kde") == 0)
-      type = GAMES_TYPE_CARD_THEME_KDE;
-    else
-#endif
-    if (strcmp (env, "sliced") == 0)
-      type = GAMES_TYPE_CARD_THEME_SLICED;
-    else if (strcmp (env, "fixed") == 0)
-      type = GAMES_TYPE_CARD_THEME_FIXED;
-  }
-#endif /* !HAVE_HILDON */
-
-  return type;
-}
-#endif
 
 static void
 _games_card_theme_ensure_theme_infos (void)
@@ -126,6 +89,27 @@ _games_card_theme_ensure_theme_infos (void)
   _games_profile_end ("looking for card themes");
 
   theme_infos = g_list_reverse (theme_infos);
+}
+
+static GamesCardThemeInfo *
+_games_card_theme_get_info_by_type_and_name (GType type,
+                                             const char *filename)
+{
+  GList *l;
+  GamesCardThemeInfo *theme_info = NULL;
+
+  for (l = theme_infos; l != NULL; l = l->next) {
+    GamesCardThemeInfo *info = (GamesCardThemeInfo *) l->data;
+
+    if (info->type != type ||
+        strcmp (info->filename, filename) != 0)
+      continue;
+
+    theme_info = info;
+    break;
+  }
+
+  return theme_info;
 }
 
 #if 0
@@ -561,20 +545,86 @@ games_card_theme_get (GamesCardThemeInfo *info)
 GamesCardTheme *
 games_card_theme_get_by_name (const char *theme_name)
 {
-  GList *l;
+  char *colon, *free_me = NULL;
+  const char *filename;
+  gsize type_str_len;
+  GType type = G_TYPE_INVALID;
+  GamesCardThemeInfo *theme_info = NULL;
 
-  //XXX FIXMEchpe .svg / .png suffix stripping
-  g_return_val_if_fail (theme_name != NULL, NULL);
+  if (!theme_name)
+    goto default_fallback;
 
   _games_card_theme_ensure_theme_infos ();
 
-  for (l = theme_infos; l != NULL; l = l->next) {
-    GamesCardThemeInfo *info = (GamesCardThemeInfo *) l->data;
+  colon = strchr (theme_name, ':');
+  if (colon) {
+    type_str_len = colon - theme_name;
 
-    // FIXMEchpe
-    if (g_str_has_prefix (theme_name, info->filename))
-      return games_card_theme_get (info);
+    filename = colon + 1;
+
+#ifdef HAVE_RSVG
+    if (strncmp (theme_name, "svg", type_str_len) == 0)
+      type = GAMES_TYPE_CARD_THEME_SVG;
+    else if (strncmp (theme_name, "kde", type_str_len) == 0)
+      type = GAMES_TYPE_CARD_THEME_KDE;
+    else
+#endif
+#ifndef HAVE_HILDON
+    if (strncmp (theme_name, "sliced", type_str_len) == 0)
+      type = GAMES_TYPE_CARD_THEME_SLICED;
+    else if (strncmp (theme_name, "pysol", type_str_len) == 0)
+      type = GAMES_TYPE_CARD_THEME_PYSOL;
+    else
+#endif
+    if (strncmp (theme_name, "fixed", type_str_len) == 0)
+      type = GAMES_TYPE_CARD_THEME_FIXED;
+  } else {
+#ifdef HAVE_GNOME
+    /* Compatibility with old settings */
+#ifdef HAVE_RSVG
+    if (g_str_has_suffix (theme_name, ".svg")) {
+      type = GAMES_TYPE_CARD_THEME_SVG;
+      filename = theme_name;
+    } else
+#endif
+    if (g_str_has_suffix (theme_name, ".png")) {
+      type = GAMES_TYPE_CARD_THEME_SLICED;
+      filename = theme_name;
+    } else
+#endif /* HAVE_GNOME */
+    {
+#ifdef HAVE_HILDON
+      type = GAMES_TYPE_CARD_THEME_FIXED;
+      filename = free_me = g_strconcat (theme_name, ".card-theme", NULL);
+#else
+      type = GAMES_TYPE_CARD_THEME_SVG;
+      filename = free_me = g_strconcat (theme_name, ".svg", NULL);
+#endif
+    }
   }
+  if (type == G_TYPE_INVALID)
+    return NULL;
+
+  theme_info = _games_card_theme_get_info_by_type_and_name (type, filename);
+  g_free (free_me);
+
+default_fallback:
+
+  if (!theme_info) {
+    /* Try falling back to the default */
+#ifdef HAVE_HILDON
+    type = GAMES_TYPE_CARD_THEME_FIXED;
+    filename = free_me = g_strconcat (GAMES_CARD_THEME_DEFAULT, ".card-theme", NULL);
+#else
+    type = GAMES_TYPE_CARD_THEME_SVG;
+    filename = free_me = g_strconcat (GAMES_CARD_THEME_DEFAULT, ".svg", NULL);
+#endif
+    theme_info = _games_card_theme_get_info_by_type_and_name (type, filename);
+    g_free (free_me);
+  }
+
+  if (theme_info)
+    return games_card_theme_get (theme_info);
 
   return NULL;
 }
@@ -582,27 +632,29 @@ games_card_theme_get_by_name (const char *theme_name)
 /**
  * games_card_theme_get_any:
  *
- * FIXMEchpe
- * Loads the card theme @theme_name. If the card theme cannot be loaded,
- * it falls back to the default card theme, if present.
- * After changing the theme, the card size will be undefined; you need
- * to call games_card_theme_set_size() to set it before getting a
- * card from @theme again.
- * 
+ * Loads all card themes until loading one succeeds, and returns it; or
+ * %NULL if all card themes fail to load.
+ *
  * Returns:
  */
 GamesCardTheme *
 games_card_theme_get_any (void)
 {
+  GList *l;
   _games_card_theme_ensure_theme_infos ();
 
   if (!theme_infos)
     return NULL;
 
-  // FIXMEchpe obviously
-  return games_card_theme_get ((GamesCardThemeInfo *) theme_infos->data);
-  return games_card_theme_get_by_name (GAMES_CARD_THEME_DEFAULT);
-  // FIXMEchpe put the fallback in here
+  for (l = theme_infos; l != NULL; l = l->next) {
+    GamesCardThemeInfo *info = (GamesCardThemeInfo *) l->data;
+    GamesCardTheme *theme;
+
+    theme = games_card_theme_get (info);
+    if (theme)
+      return theme;
+  }
+
   return NULL;
 }
 
