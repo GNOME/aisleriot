@@ -391,15 +391,8 @@ gboolean
 games_card_images_set_size (GamesCardImages * images,
                             gint width, gint height, gdouble proportion)
 {
-  gboolean size_changed;
-
-  size_changed = games_card_theme_set_size (images->theme,
-                                            width, height, proportion);
-  if (size_changed) {
-    games_card_images_clear_cache (images);
-  }
-
-  return size_changed;
+  return games_card_theme_set_size (images->theme,
+                                    width, height, proportion);
 }
 
 /**
