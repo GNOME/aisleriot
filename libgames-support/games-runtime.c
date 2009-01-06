@@ -85,10 +85,6 @@ games_runtime_init (const char *name)
 {
   setlocale (LC_ALL, "");
 
-  bindtextdomain (GETTEXT_PACKAGE, games_runtime_get_directory (GAMES_RUNTIME_LOCALE_DIRECTORY));
-  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-  textdomain(GETTEXT_PACKAGE);
-
 #if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_GSTREAMER)
   /* If we're going to use gconf, gnome-vfs, or gstreamer, we need to
    * init threads before calling any glib functions.
@@ -100,6 +96,10 @@ games_runtime_init (const char *name)
   _games_debug_init ();
 
   app_name = g_strdup (name);
+
+  bindtextdomain (GETTEXT_PACKAGE, games_runtime_get_directory (GAMES_RUNTIME_LOCALE_DIRECTORY));
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain(GETTEXT_PACKAGE);
 
 #ifdef G_OS_WIN32
 {
