@@ -85,6 +85,9 @@ games_card_theme_sliced_load (GamesCardTheme *card_theme,
 
     /* This is true because in the non-scalable case GamesPreimage directly holds a GdkPixbuf */
     g_assert (theme->source != NULL);
+  
+    theme->subsize.width = gdk_pixbuf_get_width (theme->source) / 13;
+    theme->subsize.height = gdk_pixbuf_get_height (theme->source) / 5;
   }
 
   return TRUE;
