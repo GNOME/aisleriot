@@ -59,53 +59,32 @@ games_card_theme_preimage_load (GamesCardTheme *card_theme,
 {
   GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
   GamesCardThemeInfo *theme_info = card_theme->theme_info;
-  GamesPreimage *preimage;
   const char *slot_dir;
   char *path;
 
-  // XXX FIXMEchpe remove this crap
-  /* First try and load the given file. */
-  //filename = g_strdup_printf ("%s.svg", theme_name);
-  path = g_build_filename (theme_info->path, theme_info->filename, NULL);
-  preimage = games_preimage_new_from_file (path, NULL);
-  g_free (path);
-
-  /* Failing that, try and find a similar file (e.g. a suffix change). */
-  if (!preimage) {
-    // FIXMEchpe remove this crap
-    path = games_find_similar_file (theme_info->filename, theme_info->path);
-    if (path) {
-      preimage = games_preimage_new_from_file (path, NULL);
-      g_free (path);
-    }
-  }
-
-  if (!preimage)
-    goto out;
-
-  if (theme->font_options) {
-    games_preimage_set_font_options (preimage, theme->font_options);
-  }
-
-  theme->cards_preimage = preimage;
-
-  /* And the slot image */
+  /* First the slot image */
   /* FIXMEchpe: use uninstalled data dir for rendering the card theme! */
   slot_dir = games_runtime_get_directory (GAMES_RUNTIME_PIXMAP_DIRECTORY);
   path = g_build_filename (slot_dir, "slot.svg", NULL);
-  theme->slot_preimage = games_preimage_new_from_file (path, NULL);
+  theme->slot_preimage = games_preimage_new_from_file (path, error);
   g_free (path);
-  // FIXMEchpe fix this
-  g_return_val_if_fail (theme->slot_preimage != NULL, FALSE);
+  if (!theme->slot_preimage)
+    return FALSE;
+
+
+  /* Now the main course */
+  path = g_build_filename (theme_info->path, theme_info->filename, NULL);
+  theme->cards_preimage = games_preimage_new_from_file (path, error);
+  g_free (path);
+  if (!theme->cards_preimage)
+    return FALSE;
 
   if (theme->font_options) {
-    games_preimage_set_font_options (theme->slot_preimage,
-                                     theme->font_options);
+    games_preimage_set_font_options (theme->slot_preimage, theme->font_options);
+    games_preimage_set_font_options (theme->cards_preimage, theme->font_options);
   }
 
-out:
-
-  return theme->cards_preimage != NULL;
+  return TRUE;
 }
 
 static void
