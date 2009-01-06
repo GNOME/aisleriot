@@ -217,12 +217,12 @@ games_card_images_finalize (GObject * object)
   games_card_images_clear_cache (images);
   g_free (images->cache);
 
-  if (images->theme)
+  if (images->theme) {
     g_signal_handlers_disconnect_by_func (images->theme,
                                           G_CALLBACK (games_card_images_theme_changed_cb),
                                           images);
-
-  g_object_unref (images->theme);
+    g_object_unref (images->theme);
+  }
 
   G_OBJECT_CLASS (games_card_images_parent_class)->finalize (object);
 }
@@ -312,6 +312,7 @@ games_card_images_set_theme (GamesCardImages *images,
                                           G_CALLBACK (games_card_images_theme_changed_cb),
                                           images);
     games_card_images_clear_cache (images);
+    g_object_unref (images->theme);
   }
 
   images->theme = theme;
