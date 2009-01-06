@@ -136,15 +136,22 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
 
 
-  /* Don't make this CONSTRUCT, since older clutter 0.8.x releases
-   * have a bug with that leading to an invalid free.
-   */
+#if 0
   pspec = clutter_param_spec_color ("highlight-color", NULL, NULL,
                                     &default_highlight_color,
                                     G_PARAM_WRITABLE |
                                     G_PARAM_STATIC_NAME |
                                     G_PARAM_STATIC_NICK |
-                                    G_PARAM_STATIC_BLURB);
+                                    G_PARAM_STATIC_BLURB |
+                                    G_PARAM_CONSTRUCT);
+#else
+  pspec = g_param_spec_boxed ("highlight-color", NULL, NULL,
+                              CLUTTER_TYPE_COLOR,
+                              G_PARAM_WRITABLE |
+                              G_PARAM_STATIC_NAME |
+                              G_PARAM_STATIC_NICK |
+                              G_PARAM_STATIC_BLURB);
+#endif
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHT_COLOR, pspec);
 
   pspec = g_param_spec_int ("revealed-card", NULL, NULL,

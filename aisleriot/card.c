@@ -130,6 +130,7 @@ aisleriot_card_class_init (AisleriotCardClass *klass)
                                 G_PARAM_STATIC_BLURB);
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHTED, pspec);
 
+#if 0
   pspec = clutter_param_spec_color ("highlight-color", NULL, NULL,
                                     &default_highlight_color,
                                     G_PARAM_WRITABLE |
@@ -137,6 +138,15 @@ aisleriot_card_class_init (AisleriotCardClass *klass)
                                     G_PARAM_STATIC_NICK |
                                     G_PARAM_STATIC_BLURB |
                                     G_PARAM_CONSTRUCT);
+#else
+  pspec = g_param_spec_boxed ("highlight-color", NULL, NULL,
+                              CLUTTER_TYPE_COLOR,
+                              G_PARAM_WRITABLE |
+                              G_PARAM_STATIC_NAME |
+                              G_PARAM_STATIC_NICK |
+                              G_PARAM_STATIC_BLURB |
+                              G_PARAM_CONSTRUCT);
+#endif
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHT_COLOR, pspec);
 
   g_type_class_add_private (klass, sizeof (AisleriotCardPrivate));
