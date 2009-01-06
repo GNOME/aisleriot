@@ -78,6 +78,9 @@ games_card_theme_preimage_clear_theme_data (GamesCardThemePreimage *theme)
     theme->slot_preimage = NULL;
   }
 
+  g_free (theme->theme_name);
+  theme->theme_name = NULL;
+
   theme->subsize.width = -1;
   theme->subsize.height = -1;
 
@@ -110,15 +113,12 @@ games_card_theme_preimage_load_theme (GamesCardTheme *card_theme,
 
   games_card_theme_preimage_clear_theme_data (theme);
 
-  g_free (theme->theme_name);
-  theme->theme_name = NULL;
+  if (!theme_dir)
+    return FALSE;
 
   // FIXMEchpe wtf?
   if (theme->cards_preimage != NULL)
     return TRUE;
-
-  if (!theme_dir)
-    theme_dir = games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY);
 
   /* First try and load the given file. */
   filename = g_strdup_printf ("%s.svg", theme_name);
@@ -313,6 +313,12 @@ games_card_theme_preimage_get_card_aspect (GamesCardTheme* card_theme)
   return aspect;
 }
 
+static const char *
+games_card_theme_preimage_get_default_theme_path (GamesCardThemeClass *klass)
+{
+  return games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY);
+}
+
 static void
 games_card_theme_preimage_class_init (GamesCardThemePreimageClass * klass)
 {
@@ -321,6 +327,7 @@ games_card_theme_preimage_class_init (GamesCardThemePreimageClass * klass)
 
   gobject_class->finalize = games_card_theme_preimage_finalize;
 
+  theme_class->get_default_theme_path = games_card_theme_preimage_get_default_theme_path;
   theme_class->load_theme = games_card_theme_preimage_load_theme;
   theme_class->get_theme_name = games_card_theme_preimage_get_theme_name;
   theme_class->set_card_size = games_card_theme_preimage_set_card_size;

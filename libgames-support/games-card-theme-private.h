@@ -25,6 +25,9 @@
 struct _GamesCardThemeClass {
   GObjectClass parent_class;
 
+  /* class vfuncs */
+  const char * (* get_default_theme_path) (GamesCardThemeClass *klass);
+
   /* vfuncs */
   gboolean    (* load_theme)        (GamesCardTheme *theme,
                                      const char *theme_dir,

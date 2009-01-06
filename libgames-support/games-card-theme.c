@@ -60,6 +60,9 @@ games_card_theme_load_theme_with_fallback (GamesCardTheme *theme,
                                            const char *theme_dir,
                                            const char *theme_name)
 {
+  if (!theme_dir)
+    theme_dir = games_card_theme_get_default_theme_path (theme->klass);
+
   if (games_card_theme_load_theme (theme, theme_dir, theme_name))
     return TRUE;
 
@@ -150,6 +153,15 @@ _games_card_theme_emit_changed (GamesCardTheme *theme)
 }
 
 /* public API */
+
+const char *
+games_card_theme_get_default_theme_path (GamesCardThemeClass *klass)
+{
+  if (klass->get_default_theme_path)
+    return klass->get_default_theme_path (klass);
+
+  return NULL;
+}
 
 #if GTK_CHECK_VERSION (2, 10, 0)
 
