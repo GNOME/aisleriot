@@ -311,6 +311,8 @@ games_card_themes_load_theme_infos (GamesCardThemes *theme_manager)
                                                 theme_manager);
   _games_profile_end ("looking for card themes");
 
+  theme_manager->theme_infos_loaded = TRUE;
+
   g_signal_emit (theme_manager, signals[CHANGED], 0);
 }
 
