@@ -1266,9 +1266,6 @@ install_options_menu (AisleriotWindow *window)
     GtkToggleAction *action;
     gchar actionname[32];
 
-    g_print ("installing option value=%08x set=%d type=%d name='%s'\n",
-             option->value, option->set, option->type, option->display_name);
-
     g_snprintf (actionname, sizeof (actionname), "Option%u", option->value);
 
     if (option->type == AISLERIOT_GAME_OPTION_CHECK) {
