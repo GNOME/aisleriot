@@ -58,8 +58,8 @@ const char *games_card_theme_info_get_display_name (GamesCardThemeInfo *info);
 #define GAMES_CARD_THEME_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_THEME, GamesCardThemeClass))
 
 typedef struct {
-  gint width;
-  gint height;
+  int width;
+  int height;
 } CardSize;
 
 typedef struct _GamesCardThemeClass GamesCardThemeClass;

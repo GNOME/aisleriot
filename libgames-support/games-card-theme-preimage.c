@@ -39,13 +39,6 @@
 
 #define DELTA (0.0f)
 
-/* #defining this prints out the time it takes to render the theme */
-/* #define INSTRUMENT_LOADING */
-
-#ifdef INSTRUMENT_LOADING
-static long totaltime = 0;
-#endif
-
 /* Class implementation */
 
 G_DEFINE_ABSTRACT_TYPE (GamesCardThemePreimage, games_card_theme_preimage, GAMES_TYPE_CARD_THEME);
@@ -58,11 +51,6 @@ _games_card_theme_preimage_clear_sized_theme_data (GamesCardThemePreimage *theme
 
   if (clear_sized_theme_data)
     clear_sized_theme_data (theme);
-
-#ifdef INSTRUMENT_LOADING
-  /* Reset the time */
-  totaltime = 0;
-#endif
 }
 
 static gboolean
@@ -74,12 +62,6 @@ games_card_theme_preimage_load (GamesCardTheme *card_theme,
   GamesPreimage *preimage;
   const char *slot_dir;
   char *path;
-
-#ifdef INSTRUMENT_LOADING
-  clock_t t1, t2;
-
-  t1 = clock ();
-#endif
 
   // XXX FIXMEchpe remove this crap
   /* First try and load the given file. */
@@ -122,14 +104,6 @@ games_card_theme_preimage_load (GamesCardTheme *card_theme,
   }
 
 out:
-
-#ifdef INSTRUMENT_LOADING
-  t2 = clock ();
-  totaltime += (t2 - t1);
-  g_print ("took %.3fs to create preimage (cumulative %.3fs)\n",
-           (t2 - t1) * 1.0 / CLOCKS_PER_SEC,
-           totaltime * 1.0 / CLOCKS_PER_SEC);
-#endif
 
   return theme->cards_preimage != NULL;
 }

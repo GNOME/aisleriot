@@ -53,13 +53,6 @@ struct _GamesCardThemeFixed {
   guint size_available : 1;
 };
 
-/* #defining this prints out the time it takes to render the theme */
-/* #define INSTRUMENT_LOADING */
-
-#ifdef INSTRUMENT_LOADING
-static long totaltime = 0;
-#endif
-
 /* Class implementation */
 
 G_DEFINE_TYPE (GamesCardThemeFixed, games_card_theme_fixed, GAMES_TYPE_CARD_THEME);
@@ -297,21 +290,7 @@ games_card_theme_fixed_get_card_pixbuf (GamesCardTheme *card_theme,
   GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
   GdkPixbuf *pixbuf;
 
-#ifdef INSTRUMENT_LOADING
-  clock_t t1, t2;
-
-  t1 = clock ();
-#endif
-
   pixbuf = games_card_theme_fixed_load_card (theme, card_id);
-
-#ifdef INSTRUMENT_LOADING
-  t2 = clock ();
-  totaltime += (t2 - t1);
-  g_print ("took %.3fs to render card %d (cumulative: %.3fs)\n",
-           (t2 - t1) * 1.0 / CLOCKS_PER_SEC, card_id,
-           totaltime * 1.0 / CLOCKS_PER_SEC);
-#endif
 
   return pixbuf;
 }

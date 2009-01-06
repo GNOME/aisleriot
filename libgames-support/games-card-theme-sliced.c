@@ -27,6 +27,7 @@
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"
+#include "games-profile.h"
 #include "games-runtime.h"
 #include "games-string-utils.h"
 
@@ -51,13 +52,6 @@ struct _GamesCardThemeSliced {
 
 #define DELTA (0.0f)
 
-/* #defining this prints out the time it takes to render the theme */
-/* #define INSTRUMENT_LOADING */
-
-#ifdef INSTRUMENT_LOADING
-static long totaltime = 0;
-#endif
-
 /* Class implementation */
 
 G_DEFINE_TYPE (GamesCardThemeSliced, games_card_theme_sliced, GAMES_TYPE_CARD_THEME_PREIMAGE);
@@ -71,11 +65,6 @@ games_card_theme_sliced_clear_sized_theme_data (GamesCardThemePreimage *preimage
     g_object_unref (theme->source);
     theme->source = NULL;
   }
-
-#ifdef INSTRUMENT_LOADING
-  /* Reset the time */
-  totaltime = 0;
-#endif
 }
 
 static gboolean
@@ -85,12 +74,6 @@ games_card_theme_sliced_load (GamesCardTheme *card_theme,
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
   GamesCardThemeSliced *theme = (GamesCardThemeSliced *) card_theme;
   gboolean retval = FALSE;
-
-#ifdef INSTRUMENT_LOADING
-  clock_t t1, t2;
-
-  t1 = clock ();
-#endif
 
   if (!GAMES_CARD_THEME_CLASS (games_card_theme_sliced_parent_class)->load (card_theme, error))
     goto out;
@@ -105,36 +88,27 @@ games_card_theme_sliced_load (GamesCardTheme *card_theme,
 
 out:
 
-#ifdef INSTRUMENT_LOADING
-  t2 = clock ();
-  totaltime += (t2 - t1);
-  g_print ("took %.3fs to create preimage (cumulative %.3fs)\n",
-           (t2 - t1) * 1.0 / CLOCKS_PER_SEC,
-           totaltime * 1.0 / CLOCKS_PER_SEC);
-#endif
-
   return retval;
 }
 
 static gboolean
-games_card_theme_sliced_prerender_scalable (GamesCardThemeSliced * theme)
+games_card_theme_sliced_prerender_scalable (GamesCardThemeSliced *theme)
 {
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) theme;
-
-#ifdef INSTRUMENT_LOADING
-  clock_t t1, t2;
-
-  t1 = clock ();
-#endif
 
   // FIXMEchpe this doesn't look right
   g_return_val_if_fail (theme->prescaled
                         || theme->source != NULL, FALSE);
 
+  _games_profile_start ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((GamesCardTheme*)theme)->theme_info->display_name);
+
   theme->source =
     games_preimage_render (preimage_card_theme->cards_preimage,
                            preimage_card_theme->card_size.width * 13,
                            preimage_card_theme->card_size.height * 5);
+
+  _games_profile_end ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((GamesCardTheme*)theme)->theme_info->display_name);
+
   if (!theme->source)
     return FALSE;
 
@@ -142,11 +116,6 @@ games_card_theme_sliced_prerender_scalable (GamesCardThemeSliced * theme)
     gdk_pixbuf_get_width (theme->source) / 13;
   theme->subsize.height =
     gdk_pixbuf_get_height (theme->source) / 5;
-
-#ifdef INSTRUMENT_LOADING
-  t2 = clock ();
-  g_print ("took %.3fs to prerender\n", (t2 - t1) * 1.0 / CLOCKS_PER_SEC);
-#endif
 
   return TRUE;
 }

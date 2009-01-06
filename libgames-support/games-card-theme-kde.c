@@ -52,13 +52,6 @@ struct _GamesCardThemeKDE {
 
 #define DELTA (0.0f)
 
-/* #defining this prints out the time it takes to render the theme */
-/* #define INSTRUMENT_LOADING */
-
-#ifdef INSTRUMENT_LOADING
-static long totaltime = 0;
-#endif
-
 #define KDE_BACKDECK_FILENAME     "index.desktop"
 #define KDE_BACKDECK_GROUP        "KDE Backdeck"
 #define KDE_BACKDECK_BACK_KEY     "Back"
@@ -78,18 +71,12 @@ games_card_theme_kde_load (GamesCardTheme *card_theme,
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
   gboolean retval = FALSE;
 
-#ifdef INSTRUMENT_LOADING
-  clock_t t1, t2;
-
-  t1 = clock ();
+#ifndef HAVE_RSVG_BBOX
+  return FALSE;
 #endif
 
   if (!GAMES_CARD_THEME_CLASS (games_card_theme_kde_parent_class)->load (card_theme, error))
     goto out;
-
-#ifndef HAVE_RSVG_BBOX
-  goto out;
-#endif
 
   if (!games_preimage_is_scalable (preimage_card_theme->cards_preimage))
     goto out;
@@ -97,14 +84,6 @@ games_card_theme_kde_load (GamesCardTheme *card_theme,
   retval = TRUE;
 
 out:
-
-#ifdef INSTRUMENT_LOADING
-  t2 = clock ();
-  totaltime += (t2 - t1);
-  g_print ("took %.3fs to create preimage (cumulative %.3fs)\n",
-           (t2 - t1) * 1.0 / CLOCKS_PER_SEC,
-           totaltime * 1.0 / CLOCKS_PER_SEC);
-#endif
 
   return retval;
 }

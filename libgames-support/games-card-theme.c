@@ -28,6 +28,7 @@
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"
+#include "games-profile.h"
 #include "games-runtime.h"
 
 #include "games-card-theme.h"
@@ -46,14 +47,6 @@ enum {
 static guint signals[LAST_SIGNAL];
 
 static GList *theme_infos;
-
-/* #defining this prints out the time it takes to render the theme */
-/* #define INSTRUMENT_LOADING */
-
-
-#ifdef INSTRUMENT_LOADING
-static long totaltime = 0;
-#endif
 
 #if 0
 static GType
@@ -113,6 +106,8 @@ _games_card_theme_ensure_theme_infos (void)
 
   theme_infos = NULL;
 
+  _games_profile_start ("looking for card themes");
+
   for (i = 0; i < G_N_ELEMENTS (types); ++i) {
     GamesCardThemeClass *klass;
 
@@ -120,9 +115,14 @@ _games_card_theme_ensure_theme_infos (void)
     if (!klass)
       continue;
 
+    _games_profile_start ("looking for %s card themes", G_OBJECT_CLASS_NAME (klass));
     klass->get_theme_infos (klass, &theme_infos);
+    _games_profile_end ("looking for %s card themes", G_OBJECT_CLASS_NAME (klass));
+
     g_type_class_unref (klass);
   }
+
+  _games_profile_end ("looking for card themes");
 
   theme_infos = g_list_reverse (theme_infos);
 }
@@ -337,19 +337,26 @@ _games_card_theme_class_append_theme_info_foreach (GamesCardThemeClass *klass,
   GDir *iter;
   const char *filename;
 
+  _games_profile_start ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
+
   iter = g_dir_open (path, 0, NULL);
   if (!iter)
-    return;
+    goto out;
 
   while ((filename = g_dir_read_name (iter)) != NULL) {
     GamesCardThemeInfo *info;
 
+    _games_profile_start ("checking for %ss card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
     info = _games_card_theme_class_get_theme_info (klass, path, filename);
+    _games_profile_end ("checking for %ss card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
     if (info)
       *list = g_list_prepend (*list, info);
   }
       
   g_dir_close (iter);
+
+out:
+  _games_profile_end ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
 }
 
 void
@@ -484,28 +491,18 @@ games_card_theme_get_aspect (GamesCardTheme * theme)
  * Returns: a new #GdkPixbuf, or %NULL if there was an error
  */
 GdkPixbuf *
-games_card_theme_get_card_pixbuf (GamesCardTheme * theme, gint card_id)
+games_card_theme_get_card_pixbuf (GamesCardTheme *theme,
+                                  int card_id)
 {
   GdkPixbuf *pixbuf;
 
-  g_return_val_if_fail ((card_id >= 0)
-                        && (card_id < GAMES_CARDS_TOTAL), NULL);
+  g_return_val_if_fail ((card_id >= 0) && (card_id < GAMES_CARDS_TOTAL), NULL);
 
-#ifdef INSTRUMENT_LOADING
-  clock_t t1, t2;
-
-  t1 = clock ();
-#endif
+  _games_profile_start ("loading card %d from theme %s", card_id, theme->theme_info->display_name);
 
   pixbuf = theme->klass->get_card_pixbuf (theme, card_id);
 
-#ifdef INSTRUMENT_LOADING
-  t2 = clock ();
-  totaltime += (t2 - t1);
-  g_print ("took %.3fs to render card %d (cumulative: %.3fs)\n",
-           (t2 - t1) * 1.0 / CLOCKS_PER_SEC, card_id,
-           totaltime * 1.0 / CLOCKS_PER_SEC);
-#endif
+  _games_profile_end ("loading card %d from theme %s", card_id, theme->theme_info->display_name);
 
   return pixbuf;
 }
@@ -528,12 +525,16 @@ games_card_theme_get (GamesCardThemeInfo *info)
   if (info->type == G_TYPE_INVALID)
     return NULL;
 
+  _games_profile_start ("loading %s card theme %s", g_type_name (info->type), info->display_name);
+
   theme = g_object_new (info->type, "theme-info", info, NULL);
   if (!theme->klass->load (theme, &error)) {
     g_clear_error (&error);
     g_object_unref (theme);
-    return NULL;
+    theme = NULL;
   }
+
+  _games_profile_end ("loading %s card theme %s", g_type_name (info->type), info->display_name);
 
   return theme;
 }

@@ -33,6 +33,8 @@
 #include <librsvg/rsvg-cairo.h>
 #endif /* HAVE_RSVG */
 
+#include "games-profile.h"
+
 #include "games-preimage.h"
 #include "games-preimage-private.h"
 
@@ -269,6 +271,8 @@ games_preimage_new_from_file (const gchar * filename, GError ** error)
 
   g_return_val_if_fail (filename != NULL, NULL);
 
+  _games_profile_start ("creating GamesPreimage from %s", filename);
+
   preimage = g_object_new (GAMES_TYPE_PREIMAGE, NULL);
 
 #ifdef HAVE_RSVG
@@ -279,6 +283,8 @@ games_preimage_new_from_file (const gchar * filename, GError ** error)
     preimage->scalable = TRUE;
 
     rsvg_handle_get_dimensions (preimage->rsvg_handle, &data);
+
+    _games_profile_end ("creating GamesPreimage from %s", filename);
 
     if (data.width == 0 || data.height == 0) {
       g_set_error (error,
@@ -299,6 +305,8 @@ games_preimage_new_from_file (const gchar * filename, GError ** error)
   preimage->scalable = FALSE;
 
   pixbuf = gdk_pixbuf_new_from_file (filename, error);
+  _games_profile_end ("creating GamesPreimage from %s", filename);
+
   if (!pixbuf) {
     g_object_unref (preimage);
     return NULL;

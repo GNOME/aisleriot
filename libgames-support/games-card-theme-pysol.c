@@ -40,13 +40,6 @@ struct _GamesCardThemePysol {
   GamesCardTheme parent_instance;
 };
 
-/* #defining this prints out the time it takes to render the theme */
-/* #define INSTRUMENT_LOADING */
-
-#ifdef INSTRUMENT_LOADING
-static long totaltime = 0;
-#endif
-
 #define PYSOL_CONFIG_FILENAME "config.txt"
 
 typedef struct {
@@ -318,21 +311,7 @@ games_card_theme_pysol_get_card_pixbuf (GamesCardTheme *card_theme,
 {
   GdkPixbuf *pixbuf;
 
-#ifdef INSTRUMENT_LOADING
-  clock_t t1, t2;
-
-  t1 = clock ();
-#endif
-
   pixbuf = games_card_theme_pysol_load_card (card_theme->theme_info->data, card_id);
-
-#ifdef INSTRUMENT_LOADING
-  t2 = clock ();
-  totaltime += (t2 - t1);
-  g_print ("took %.3fs to render card %d (cumulative: %.3fs)\n",
-           (t2 - t1) * 1.0 / CLOCKS_PER_SEC, card_id,
-           totaltime * 1.0 / CLOCKS_PER_SEC);
-#endif
 
   return pixbuf;
 }
