@@ -46,9 +46,6 @@ GamesCardThemeInfo *_games_card_theme_info_new (GType type,
 
 guint _games_card_theme_info_hash  (const GamesCardThemeInfo *a);
 
-gboolean _games_card_theme_info_equal (const GamesCardThemeInfo *a,
-                                       const GamesCardThemeInfo *b);
-
 int _games_card_theme_info_collate (const GamesCardThemeInfo *a,
                                     const GamesCardThemeInfo *b);
 

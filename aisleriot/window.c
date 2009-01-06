@@ -1561,6 +1561,7 @@ install_card_theme_menu (AisleriotWindow *window)
   /* See gtk bug #424448 */
   gtk_ui_manager_ensure_update (priv->ui_manager);
 
+  games_card_themes_request_themes (priv->theme_manager);
   list = games_card_themes_get_themes (priv->theme_manager);
 
   /* No need to install the menu when there's only one theme available anyway */
@@ -1604,7 +1605,7 @@ install_card_theme_menu (AisleriotWindow *window)
     radio_group = gtk_radio_action_get_group (action);
 
     /* Check if this is the current theme's action. Do this before connecting the callback */
-    if (info == current_theme_info) {
+    if (games_card_theme_info_equal (info, current_theme_info)) {
       gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
     }
 

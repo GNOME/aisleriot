@@ -50,6 +50,9 @@ const char *games_card_theme_info_get_display_name (GamesCardThemeInfo *info);
 
 const char *games_card_theme_info_get_persistent_name (GamesCardThemeInfo *info);
 
+gboolean games_card_theme_info_equal (const GamesCardThemeInfo *a,
+                                      const GamesCardThemeInfo *b);
+
 /* GamesCardTheme (abstract) */
 
 #define GAMES_TYPE_CARD_THEME            (games_card_theme_get_type ())

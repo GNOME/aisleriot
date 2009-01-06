@@ -79,6 +79,8 @@ create_combo_box (GamesCardThemes *theme_manager,
 
   store = gtk_list_store_new (N_COLUMNS, GAMES_TYPE_CARD_THEME_INFO, G_TYPE_STRING);
 
+  games_card_themes_request_themes (theme_manager);
+
   themes = games_card_themes_get_themes (theme_manager);
 
   for (l = themes; l != NULL; l = l->next) {
@@ -88,7 +90,7 @@ create_combo_box (GamesCardThemes *theme_manager,
                                        COL_INFO, info,
                                        COL_NAME, games_card_theme_info_get_display_name (info),
                                        -1);
-    if (info == selected_info) {
+    if (games_card_theme_info_equal (info, selected_info)) {
       selection_iter = iter;
       selection_iter_set = TRUE;
     }

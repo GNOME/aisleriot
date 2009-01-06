@@ -413,17 +413,6 @@ _games_card_theme_info_hash (const GamesCardThemeInfo *a)
          g_str_hash (a->filename);
 }
 
-gboolean
-_games_card_theme_info_equal (const GamesCardThemeInfo *a,
-                              const GamesCardThemeInfo *b)
-{
-  g_return_val_if_fail (a != NULL && b != NULL, FALSE);
-
-  return a->type == b->type &&
-         strcmp (a->path, b->path) == 0 &&
-         strcmp (a->filename, b->filename) == 0;
-}
-
 /**
  * _games_card_theme_info_collate:
  * @a:
@@ -542,4 +531,20 @@ games_card_theme_info_get_persistent_name (GamesCardThemeInfo *info)
   g_return_val_if_fail (info->pref_name, NULL);
 
   return info->pref_name;
+}
+
+/**
+ * games_card_theme_info_equal:
+ *
+ * Returns: %TRUE iff @a and @b refer to the same card theme
+ */
+gboolean
+games_card_theme_info_equal (const GamesCardThemeInfo *a,
+                              const GamesCardThemeInfo *b)
+{
+  g_return_val_if_fail (a != NULL && b != NULL, FALSE);
+
+  return a->type == b->type &&
+         strcmp (a->path, b->path) == 0 &&
+         strcmp (a->filename, b->filename) == 0;
 }
