@@ -634,6 +634,35 @@ games_card_theme_get_all (void)
 
 /* GamesCardThemeInfo impl */
 
+static int
+theme_type_compare (GType a,
+                    GType b)
+{
+  const GType types[] = {
+#ifdef HAVE_HILDON
+    GAMES_TYPE_CARD_THEME_FIXED
+#else
+#ifdef HAVE_RSVG
+    GAMES_TYPE_CARD_THEME_SVG,
+    GAMES_TYPE_CARD_THEME_KDE,
+#endif
+    GAMES_TYPE_CARD_THEME_PYSOL,
+    GAMES_TYPE_CARD_THEME_FIXED,
+    GAMES_TYPE_CARD_THEME_SLICED
+#endif
+  };
+  guint ia, ib;
+
+  for (ia = 0; ia < G_N_ELEMENTS (types); ++ia)
+    if (types[ia] == a)
+      break;
+  for (ib = 0; ib < G_N_ELEMENTS (types); ++ib)
+    if (types[ib] == b)
+      break;
+
+  return ia - ib;
+}
+
 /* private API */
 
 /**
@@ -719,7 +748,7 @@ _games_card_theme_info_collate (GamesCardThemeInfo *a,
   g_return_val_if_fail (a != NULL && b != NULL, 0);
 
   if (a->type != b->type)
-    return a->type - b->type;
+    return theme_type_compare (a->type, b->type);
 
   return g_utf8_collate (a->display_name, b->display_name);
 }
