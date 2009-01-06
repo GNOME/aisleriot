@@ -102,6 +102,11 @@ games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
   GamesPreimage *preimage = preimage_card_theme->cards_preimage;
   GdkPixbuf *subpixbuf;
   int suit, rank;
+  double card_width, card_height;
+  double width, height;
+  double offsetx, offsety;
+  double zoomx, zoomy;
+  char node[64];
 
   if (!preimage_card_theme->theme_loaded)
     return NULL;
@@ -117,38 +122,28 @@ games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
     return subpixbuf;
   }
 
-  if (TRUE) {
-    double card_width, card_height;
-    double width, height;
-    double offsetx, offsety;
-    double zoomx, zoomy;
-    char node[64];
+  card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
+  card_height = ((double) games_preimage_get_height (preimage)) / N_ROWS;
 
-    card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
-    card_height = ((double) games_preimage_get_height (preimage)) / N_ROWS;
+  width = preimage_card_theme->card_size.width - 2 * DELTA;
+  height = preimage_card_theme->card_size.height - 2 * DELTA;
 
-    width = preimage_card_theme->card_size.width - 2 * DELTA;
-    height = preimage_card_theme->card_size.height - 2 * DELTA;
+  offsetx = -((double) rank) * card_width + DELTA;
+  offsety = -((double) suit) * card_height + DELTA;
 
-    offsetx = -((double) rank) * card_width + DELTA;
-    offsety = -((double) suit) * card_height + DELTA;
+  zoomx = width / card_width;
+  zoomy = height / card_height;
 
-    zoomx = width / card_width;
-    zoomy = height / card_height;
+  games_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
 
-    games_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
+  subpixbuf = games_preimage_render_sub (preimage,
+                                         node,
+                                         preimage_card_theme->card_size.width,
+                                         preimage_card_theme->card_size.height,
+                                         offsetx, offsety,
+                                         zoomx, zoomy);
 
-    subpixbuf = games_preimage_render_sub (preimage,
-                                           node,
-                                           preimage_card_theme->card_size.width,
-                                           preimage_card_theme->card_size.height,
-                                           offsetx, offsety,
-                                           zoomx, zoomy);
-
-    return subpixbuf;
-  }
-
-  return NULL; // FIXMEchpe
+  return subpixbuf;
 }
 
 static void
