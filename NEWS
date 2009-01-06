@@ -3,7 +3,7 @@ gnome-games 2.25.4
 
 This release brings the beginnings of an implementation of Clutter-based
 Gnometris and a few minor tweaks to GLChess.
- 
+
 Gnometris renders with Clutter in an extremely rudamentary way, as a first
 milestone on the way to a fully-canvas driven game engine. Right now, it's just
 two ClutterCairo surfaces, background and foreground, which are used as
@@ -43,6 +43,16 @@ Translations:
   - fr: Claude Paroz
   - el: Evgenia Petoumenou, Marios Zintilis
   - de: Mario Blättermann
+
+General:
+  - Move GThread gettext initialisation into games_runtime_init()
+
+Aisleriot:
+  - Refactored card themes code
+  - Reduce memory usage in aisleriot/clutter by only caching the
+    card textures and not the GdkPixbufs, unnecessarily
+  - Reduce graphics memory usage by drawing highlighted cards with
+    a different colour instead of creating a separate texture for it
 
 
 gnome-games 2.25.3
