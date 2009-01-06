@@ -32,7 +32,7 @@ AM_MAINTAINER_MODE([enable])
 # we support and which features to check for
 
 # This is the canonical list of all game subdirectories.
-allgames="aisleriot blackjack gnometris gnect gnomine same-gnome mahjongg gtali gnotravex gnotski glines iagno glchess gnobots2 gnibbles gnome-sudoku"
+allgames="aisleriot blackjack gnometris gnect gnomine same-gnome mahjongg gtali gnotravex gnotski glines iagno glchess gnobots2 gnibbles gnome-sudoku lightsoff"
 AC_SUBST([allgames])
 
 gamelist=""
@@ -158,7 +158,7 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    no-game-yet) need_clutter=yes ;;
+    lightsoff) need_clutter=yes ;;
     *) ;;
   esac
 done
@@ -446,7 +446,7 @@ AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
 # Check for Clutter
 
 if test "$need_clutter" = "yes" -a "$enable_clutter" != "yes"; then
-  AC_MSG_ERROR([Some games require clutter but --enable-clutter was not passed])
+  AC_MSG_ERROR([lightsoff requires clutter but --enable-clutter was not passed. Use --omit-games=lightsoff to build without lightsoff])
 fi
 
 if test "$enable_clutter" = "yes"; then
@@ -1015,6 +1015,13 @@ gnome-sudoku/gnome-sudoku.desktop.in
 iagno/iagno.desktop.in
 gnect/data/gnect.desktop.in
 gnomine/gnomine.desktop.in
+lightsoff/Makefile
+lightsoff/arrow.js
+lightsoff/board.js
+lightsoff/light.js
+lightsoff/main.js
+lightsoff/score.js
+lightsoff/lightsoff
 tests/Makefile
 tests/libgames-support/Makefile
 ])
