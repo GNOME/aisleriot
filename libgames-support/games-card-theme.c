@@ -737,7 +737,9 @@ _games_card_theme_info_equal (GamesCardThemeInfo *a,
 {
   g_return_val_if_fail (a != NULL && b != NULL, FALSE);
 
-  return _games_card_theme_info_collate (a, b) == 0;
+  return a->type == b->type &&
+         strcmp (a->path, b->path) == 0 &&
+         strcmp (a->filename, b->filename) == 0;
 }
 
 /**
@@ -761,23 +763,7 @@ _games_card_theme_info_collate (GamesCardThemeInfo *a,
   if (a->type != b->type)
     return a->type - b->type;
 
-  val = g_utf8_collate (a->display_name, b->display_name);
-  if (val != 0)
-    return val;
-
-  val = strcmp (a->display_name, b->display_name);
-  if (val != 0)
-    return val;
-
-  val = strcmp (a->path, b->path);
-  if (val != 0)
-    return val;
-
-  val = strcmp (a->filename, b->filename);
-  if (val != 0)
-    return val;
-
-  return 0;
+  return g_utf8_collate (a->display_name, b->display_name);
 }
 
 /* public API */
