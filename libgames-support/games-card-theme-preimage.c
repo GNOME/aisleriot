@@ -25,6 +25,15 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
+#ifdef HAVE_RSVG
+#include <librsvg/librsvg-features.h>
+#ifdef LIBRSVG_CHECK_FEATURE
+#if LIBRSVG_CHECK_FEATURE(SVGZ)
+#define HAVE_RSVG_SVGZ
+#endif
+#endif
+#endif
+
 #include "games-preimage.h"
 #include "games-runtime.h"
 
@@ -220,6 +229,7 @@ games_card_theme_preimage_class_get_theme_info (GamesCardThemeClass *klass,
                                                 const char *path,
                                                 const char *filename)
 {
+#ifdef HAVE_RSVG
   GamesCardThemeInfo *info;
   char *display_name;
 
@@ -239,6 +249,9 @@ games_card_theme_preimage_class_get_theme_info (GamesCardThemeClass *klass,
                                      NULL, NULL);
 
   return info;
+#else
+  return NULL;
+#endif
 }
 
 static void

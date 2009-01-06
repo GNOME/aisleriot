@@ -516,17 +516,6 @@ if test "$need_rsvg" = "yes"; then
 
     need_gthread=yes
   fi
-
-  # These exist only since rsvg 2.22.something, so we check for != false below
-  rsvg_svgz="$($PKG_CONFIG --variable svgz_supported librsvg-2.0)"
-  rsvg_css="$($PKG_CONFIG --variable css_supported librsvg-2.0)"
-
-  if test "$rsvg_svgz" != "false"; then
-    AC_DEFINE([HAVE_RSVG_SVGZ],[1],[Define if rsvg supports gzipped SVG files])
-  fi
-  if test "$rsvg_css" != "false"; then
-    AC_DEFINE([HAVE_RSVG_CSS],[1],[Define if rsvg supports CSS])
-  fi
 fi
 
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
