@@ -210,14 +210,16 @@ static void
 games_card_theme_sliced_class_get_theme_infos (GamesCardThemeClass *klass,
                                                GList **list)
 {
+  char *dir;
+
   _games_card_theme_class_append_theme_info_foreach_env
     (klass, "GAMES_CARD_THEME_PATH_SLICED", list);
 
-  // FIXMEchpe find the old theme path
-#if 0
-  _games_card_theme_class_append_theme_info_foreach
-    (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), list);
-#endif
+  /* Themes in the pre-2.19 theme format: $(datadir)/pixmaps/gnome-games-common/cards */
+  dir = g_build_filename (games_runtime_get_directory (GAMES_RUNTIME_DATA_DIRECTORY),
+                          "pixmaps", "gnome-games-common", "cards", NULL);
+  _games_card_theme_class_append_theme_info_foreach (klass, dir, list);
+  g_free (dir);
 }
 
 static void
