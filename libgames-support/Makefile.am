@@ -60,6 +60,8 @@ libgames_support_la_SOURCES +=		\
 	games-gridframe.h		\
 	games-card-selector.c		\
 	games-card-selector.h		\
+	games-card-theme-preimage.c	\
+	games-card-theme-sliced.c	\
 	games-preimage.c                \
 	games-preimage.h                \
 	games-score.h			\

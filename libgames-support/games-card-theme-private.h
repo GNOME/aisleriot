@@ -20,6 +20,8 @@
 
 #define FLOAT_TO_INT_CEIL(f) ((int) (f + 0.5f))
 
+/* GamesCardTheme */
+
 struct _GamesCardThemeClass {
   GObjectClass parent_class;
 
@@ -53,3 +55,39 @@ struct _GamesCardTheme {
 };
 
 void _games_card_theme_emit_changed (GamesCardTheme * theme);
+
+/* GamesCardThemePreimage */
+
+#ifndef HAVE_HILDON
+
+struct _GamesCardThemePreimageClass {
+  GamesCardThemeClass parent_class;
+
+  void (* clear_sized_theme_data) (GamesCardThemePreimage *card_theme);
+};
+
+struct _GamesCardThemePreimage {
+  GamesCardTheme parent_instance;
+
+  char *theme_dir;
+  char *theme_name;
+
+  GamesPreimage *cards_preimage;
+  GamesPreimage *slot_preimage;
+  GdkPixbuf *source;
+  CardSize subsize;
+
+  CardSize slot_size;
+  CardSize card_size;
+
+  guint theme_loaded : 1;
+  guint size_available : 1;
+
+  guint prescaled : 1;
+
+  cairo_font_options_t *font_options;
+};
+
+void _games_card_theme_preimage_clear_sized_theme_data (GamesCardThemePreimage *theme);
+
+#endif /* !HAVE_HILDON */
