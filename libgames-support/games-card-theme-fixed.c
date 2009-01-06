@@ -207,6 +207,7 @@ games_card_theme_fixed_set_card_size (GamesCardTheme *card_theme,
       size = fit_size;
 
     if (size.width > 0 && size.height > 0) {
+      char *theme_basename;
       char sizestr[16];
 
       if (size.width == theme->card_size.width &&
@@ -215,9 +216,13 @@ games_card_theme_fixed_set_card_size (GamesCardTheme *card_theme,
 
       g_free (theme->themesizepath);
 
+      theme_basename = g_strdup (theme_info->filename);
+      *(strchr (theme_basename, '.')) = '\0';
       g_snprintf (sizestr, sizeof (sizestr), "%d", size.width);
-      theme->themesizepath =
-        g_build_filename (theme_info->path, theme_info->theme_name, sizestr, NULL);
+      theme->themesizepath = g_build_filename (theme_info->path,
+                                               theme_basename,
+                                               sizestr, NULL);
+      g_free (theme_basename);
 
       theme->size_available = TRUE;
       theme->card_size = size;

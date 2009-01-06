@@ -659,7 +659,6 @@ _games_card_theme_info_new (GType type,
   info->type = type;
   info->path = g_strdup (path);
   info->filename = g_strdup (filename);
-  { char *p; info->theme_name = g_strdup (filename); p = strrchr (info->theme_name, '.'); if (p) *p = '\0'; }
   info->display_name = g_strdup (display_name);
   info->data = data;
   info->destroy_notify = destroy_notify;

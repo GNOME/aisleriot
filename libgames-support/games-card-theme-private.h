@@ -26,7 +26,6 @@ struct _GamesCardThemeInfo {
   GType type;
   char *path;
   char *filename;
-  char *theme_name; /* filename without extension, FIXMEchpe */
   char *display_name;
 
   gpointer data;
