@@ -1455,21 +1455,6 @@ aisleriot_window_take_card_theme (AisleriotWindow *window,
     games_card_theme_set_font_options (theme, font_options);
   }
 
-  //XXX FIXMEchpe
-#if 0//#ifdef HAVE_GNOME
-  /* Compatibility with old settings */
-  if (g_str_has_suffix (theme, ".svg")) {
-    *g_strrstr (theme, ".svg") = '\0';
-  } else if (g_str_has_suffix (theme, ".png")) {
-    *g_strrstr (theme, ".png") = '\0';
-  }
-#endif /* HAVE_GNOME */
-
-//  if (aisleriot_board_set_card_theme (priv->board, info)) {
-    // XXX FIXMEchpe
-    //games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme);
-//  }
-
   aisleriot_board_set_card_theme (priv->board, theme);
 }    
 
@@ -1480,6 +1465,7 @@ card_theme_changed_cb (GtkToggleAction *action,
   AisleriotWindowPrivate *priv = window->priv;
   GamesCardThemeInfo *info;
   GamesCardTheme *theme;
+  const char *theme_name;
 
   if (!gtk_toggle_action_get_active (action))
     return;
@@ -1496,6 +1482,9 @@ card_theme_changed_cb (GtkToggleAction *action,
     return; // FIXMEchpe re-set the right radio action to active!!
 
   aisleriot_window_take_card_theme (window, theme);
+
+  theme_name = games_card_theme_info_get_persistent_name (info);
+  games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme_name);
 }
 
 static void

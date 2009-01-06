@@ -231,9 +231,9 @@ games_card_theme_preimage_class_get_theme_info (GamesCardThemeClass *klass,
   info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,
                                      filename,
-                                     display_name,
+                                     display_name /* adopts */,
+                                     NULL /* filled in by the derived classes */,
                                      NULL, NULL);
-  g_free (display_name);
 
   return info;
 }

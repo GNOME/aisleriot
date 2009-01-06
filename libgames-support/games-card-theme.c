@@ -26,8 +26,6 @@
 #include <gtk/gtk.h>
 
 #include "games-debug.h"
-#include "games-find-file.h"
-#include "games-files.h"
 #include "games-preimage.h"
 #include "games-profile.h"
 #include "games-runtime.h"
@@ -98,60 +96,24 @@ _games_card_theme_get_info_by_type_and_name (GType type,
   GList *l;
   GamesCardThemeInfo *theme_info = NULL;
 
+  g_print ("_games_card_theme_get_info_by_type_and_name type %s filename %s\n", g_type_name (type), filename);
+
   for (l = theme_infos; l != NULL; l = l->next) {
     GamesCardThemeInfo *info = (GamesCardThemeInfo *) l->data;
 
+    g_print ("==> comparing with type %s filename %s\n", g_type_name (info->type), info->filename);
+    
     if (info->type != type ||
         strcmp (info->filename, filename) != 0)
       continue;
 
+    g_print ("==> !! MATCH!!\n");
     theme_info = info;
     break;
   }
 
   return theme_info;
 }
-
-#if 0
-static gboolean
-games_card_theme_load_theme_with_fallback (GamesCardTheme *theme,
-                                           GamesCardThemeInfo *info)
-{
-  const char *env;
-
-  if ((env = g_getenv ("GAMES_CARD_THEME_NAME")))
-    theme_name = env;
-
-  if (!theme_dir)
-    theme_dir = _games_card_theme_class_get_default_theme_path (theme->klass);
-
-  if (games_card_theme_load_theme (theme, theme_dir, theme_name))
-    return TRUE;
-
-  // FIXMEchpe: compare strict dir equality, not just != NULL
-  /* Try fallback in default theme directory */
-  if (theme_dir != NULL &&
-      games_card_theme_load_theme (theme, NULL, theme_name))
-    return TRUE;
-
-  g_warning ("Failed to load theme '%s'; trying fallback theme '%s'",
-             theme_name, GAMES_CARD_THEME_DEFAULT);
-
-  if (strcmp (theme_name, GAMES_CARD_THEME_DEFAULT) != 0 &&
-      (games_card_theme_load_theme (theme, theme_dir, GAMES_CARD_THEME_DEFAULT)))
-    return FALSE;
-  if (theme_dir != NULL &&
-      strcmp (theme_name, GAMES_CARD_THEME_DEFAULT) != 0 &&
-      (games_card_theme_load_theme (theme, NULL, GAMES_CARD_THEME_DEFAULT)))
-    return FALSE;
-
-  g_warning ("Failed to load fallback theme!");
-
-  return FALSE;
-  //FIXMEchpe how to design fallback now...
-//  return games_card_theme_load_theme (theme, info);
-}
-#endif
 
 /* Class implementation */
 
@@ -216,46 +178,6 @@ games_card_theme_class_get_theme_info (GamesCardThemeClass *klass,
 {
   return NULL;
 }
-
-#if 0
-
-static GList *
-games_card_theme_get_themes_list (GamesCardThemeClass *klass,
-                                  const char *theme_dir)
-{
-  GamesFileList *files;
-  GList *l, *list;
-  const char *glob;
-  GamesCardThemeInfo * (* get_theme_info) (GamesCardThemeClass *, const char *) = klass->get_theme_info;
-
-  glob = _games_card_theme_class_get_theme_glob (klass);
-
-  if (!theme_dir)
-    theme_dir = _games_card_theme_class_get_default_theme_path (klass);
-
-  if (!theme_dir || !glob)
-    return NULL;
-
-  files = games_file_list_new (glob, theme_dir, NULL);
-  games_file_list_transform_basename (files);
-
-  for (l = files->list; l != NULL; l = l->next) {
-    const char *filename = (const char *) l->data;
-    char *dot;
-
-    dot = strrchr (filename, '.');
-    if (dot) {
-      *dot = '\0';
-    }
-  }
-
-  list = files->list;
-  files->list = NULL;
-  g_object_unref (files);
-
-  return list;
-}
-#endif
 
 static void
 games_card_theme_class_init (GamesCardThemeClass * klass)
@@ -563,18 +485,19 @@ games_card_theme_get_by_name (const char *theme_name)
     filename = colon + 1;
 
 #ifdef HAVE_RSVG
-    if (strncmp (theme_name, "svg", type_str_len) == 0)
+    if (strncmp (theme_name, "svg", type_str_len) == 0) {
       type = GAMES_TYPE_CARD_THEME_SVG;
-    else if (strncmp (theme_name, "kde", type_str_len) == 0)
+    } else if (strncmp (theme_name, "kde", type_str_len) == 0) {
       type = GAMES_TYPE_CARD_THEME_KDE;
-    else
+    } else
 #endif
 #ifndef HAVE_HILDON
-    if (strncmp (theme_name, "sliced", type_str_len) == 0)
+    if (strncmp (theme_name, "sliced", type_str_len) == 0) {
       type = GAMES_TYPE_CARD_THEME_SLICED;
-    else if (strncmp (theme_name, "pysol", type_str_len) == 0)
+    } else if (strncmp (theme_name, "pysol", type_str_len) == 0) {
       type = GAMES_TYPE_CARD_THEME_PYSOL;
-    else
+      filename = free_me = g_strdup_printf ("cardset-%s", filename);
+    } else
 #endif
     if (strncmp (theme_name, "fixed", type_str_len) == 0)
       type = GAMES_TYPE_CARD_THEME_FIXED;
@@ -686,8 +609,11 @@ games_card_theme_get_all (void)
  * _games_card_theme_info_new:
  * @type:
  * @path:
- * @name:
+ * @filename:
  * @diplay_name:
+ * @pref_name:
+ * @data:
+ * @destroy_notify:
  *
  * Returns: a new #GamesCardThemeInfo with refcount 1
  */
@@ -695,8 +621,9 @@ GamesCardThemeInfo *
 _games_card_theme_info_new (GType type,
                             const char *path,
                             const char *filename,
-                            const char *display_name,
-                            gpointer data /* adopted */,
+                            char *display_name /* adopts */,
+                            char *pref_name /* adopts */,
+                            gpointer data /* adoptes */,
                             GDestroyNotify destroy_notify)
 {
   GamesCardThemeInfo *info;
@@ -711,7 +638,8 @@ _games_card_theme_info_new (GType type,
   info->type = type;
   info->path = g_strdup (path);
   info->filename = g_strdup (filename);
-  info->display_name = g_strdup (display_name);
+  info->display_name = display_name;
+  info->pref_name = pref_name;
   info->data = data;
   info->destroy_notify = destroy_notify;
 
@@ -756,8 +684,6 @@ int
 _games_card_theme_info_collate (GamesCardThemeInfo *a,
                                 GamesCardThemeInfo *b)
 {
-  int val;
-
   g_return_val_if_fail (a != NULL && b != NULL, 0);
 
   if (a->type != b->type)
@@ -822,6 +748,7 @@ games_card_theme_info_unref (GamesCardThemeInfo *info)
   g_free (info->path);
   g_free (info->filename);
   g_free (info->display_name);
+  g_free (info->pref_name);
 
   if (info->data && info->destroy_notify)
     info->destroy_notify (info->data);
@@ -834,10 +761,10 @@ games_card_theme_info_unref (GamesCardThemeInfo *info)
 }
 
 /**
- * games_card_theme_info_unref:
+ * games_card_theme_info_get_display_name :
  * @info:
  *
- * Unrefs @info. If the refcount reaches %0, frees @info.
+ * Returns: the user readable name of @info
  */
 const char *
 games_card_theme_info_get_display_name (GamesCardThemeInfo *info)
@@ -845,4 +772,20 @@ games_card_theme_info_get_display_name (GamesCardThemeInfo *info)
   g_return_val_if_fail (info != NULL, NULL);
 
   return info->display_name;
+}
+
+/**
+ * games_card_theme_info_get_persistent_name :
+ * @info:
+ *
+ * Returns: the user readable name of @info
+ */
+const char *
+games_card_theme_info_get_persistent_name (GamesCardThemeInfo *info)
+{
+  g_return_val_if_fail (info != NULL, NULL);
+
+  g_return_val_if_fail (info->pref_name, NULL);
+
+  return info->pref_name;
 }

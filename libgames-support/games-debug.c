@@ -22,7 +22,9 @@
 
 #include "games-debug.h"
 
+#ifdef GNOME_ENABLE_DEBUG
 GamesDebugFlags _games_debug_flags;
+#endif
 
 void
 _games_debug_init (void)

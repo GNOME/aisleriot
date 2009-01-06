@@ -17,6 +17,9 @@
    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
 
+#include "games-card.h"
+#include "games-preimage.h"
+
 #define FLOAT_TO_INT_CEIL(f) ((int) (f + 0.5f))
 
 /* GamesCardThemeInfo */
@@ -27,6 +30,7 @@ struct _GamesCardThemeInfo {
   char *path;
   char *filename;
   char *display_name;
+  char *pref_name;
 
   gpointer data;
   GDestroyNotify destroy_notify;
@@ -35,7 +39,8 @@ struct _GamesCardThemeInfo {
 GamesCardThemeInfo *_games_card_theme_info_new (GType type,
                                                 const char *path,
                                                 const char *filename,
-                                                const char *display_name,
+                                                char *display_name /* adopts */,
+                                                char *pref_name /* adopts */,
                                                 gpointer data,
                                                 GDestroyNotify destroy_notify);
 

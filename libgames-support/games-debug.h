@@ -18,8 +18,8 @@
 
 /* The interfaces in this file are subject to change at any time. */
 
-#ifndef GNOME_ENABLE_DEBUG_H
-#define GNOME_ENABLE_DEBUG_H
+#ifndef GNOME_DEBUG_H
+#define GNOME_DEBUG_H
 
 #include <glib.h>
 
@@ -33,22 +33,26 @@ typedef enum {
   GAMES_DEBUG_SOUND      = 1 << 2,
 } GamesDebugFlags;
 
+#ifdef GNOME_ENABLE_DEBUG
+extern GamesDebugFlags _games_debug_flags;
+#endif
+
 void _games_debug_init (void);
 
-extern GamesDebugFlags _games_debug_flags;
 static inline gboolean _games_debug_on (GamesDebugFlags flags) G_GNUC_CONST G_GNUC_UNUSED;
 
 static inline gboolean
 _games_debug_on (GamesDebugFlags flags)
 {
+#ifdef GNOME_ENABLE_DEBUG
   return (_games_debug_flags & flags) == flags;
+#else
+  return FALSE;
+#endif
 }
 
 #ifdef GNOME_ENABLE_DEBUG
 #define _GAMES_DEBUG_IF(flags) if (G_UNLIKELY (_games_debug_on (flags)))
-#else
-#define _GAMES_DEBUG_IF(flags) if (0)
-#endif
 
 #if defined(__GNUC__) && G_HAVE_GNUC_VARARGS
 #define _games_debug_print(flags, fmt, ...) \
@@ -67,6 +71,11 @@ static void _games_debug_print (guint flags, const char *fmt, ...)
 }
 #endif
 
+#else
+#define _GAMES_DEBUG_IF(flags) if (0)
+#define _games_debug_print(...)
+#endif /* GNOME_ENABLE_DEBUG */
+
 G_END_DECLS
 
-#endif /* !GNOME_ENABLE_DEBUG_H */
+#endif /* !GNOME_DEBUG_H */

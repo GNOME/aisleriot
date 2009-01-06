@@ -298,18 +298,29 @@ games_card_theme_fixed_class_get_theme_info (GamesCardThemeClass *klass,
                                              const char *filename)
 {
   GamesCardThemeInfo *info;
-  char *display_name;
+  char *display_name, *pref_name;
 
   if (!g_str_has_suffix (filename, ".card-theme"))
     return NULL;
 
   display_name = games_filename_to_display_name (filename);
+
+  /* On Hildon, fixed is the default. For pref backward compatibility,
+   * we don't add the fixed: prefix there.
+   */
+#ifdef HAVE_HILDON
+  pref_name = g_strdup (filename);
+  *(strrchr (filename, '.')) = '\0'; /* strip extension */
+#else
+  pref_name = g_strdup_printf ("fixed:%s", filename);
+#endif
+
   info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,
                                      filename,
-                                     display_name,
+                                     display_name /* adopts */,
+                                     pref_name,
                                      NULL, NULL);
-  g_free (display_name);
 
   return info;
 }

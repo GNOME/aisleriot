@@ -349,7 +349,7 @@ games_card_theme_pysol_class_get_theme_info (GamesCardThemeClass *klass,
 {
   GamesCardThemeInfo *info = NULL;
   PySolConfigTxtData *pysol_data;
-  char *display_name;
+  char *display_name, *pref_name;
 
   if (!g_str_has_prefix (filename, "cardset-"))
     return NULL;
@@ -359,14 +359,14 @@ games_card_theme_pysol_class_get_theme_info (GamesCardThemeClass *klass,
     return NULL;
 
   display_name = g_strdup_printf ("%s (PySol)", pysol_data->name);
-
+  pref_name = g_strdup_printf ("pysol:%s", filename + strlen ("cardset-"));
   info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,
                                      filename,
-                                     display_name,
+                                     display_name /* adopts */,
+                                     pref_name /* adopts */,
                                      pysol_data,
                                      (GDestroyNotify) pysol_config_txt_data_free);
-  g_free (display_name);
 
   return info;
 }

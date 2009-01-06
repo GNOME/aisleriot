@@ -133,8 +133,9 @@ main (int argc, char *argv[])
 
   theme_info = _games_card_theme_info_new (GAMES_TYPE_CARD_THEME_SVG,
                                            theme_dir,
-                                           theme_name /* FIXMEchpe append .svg */,
+                                           g_strdup_printf ("svg:%s.svg", theme_name) /* FIXMEchpe is this correct? */,
                                            theme_name,
+                                           NULL,
                                            NULL, NULL);
   theme = games_card_theme_get (theme_info);
   if (!theme) {

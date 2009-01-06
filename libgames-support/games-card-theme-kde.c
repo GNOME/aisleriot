@@ -252,7 +252,7 @@ games_card_theme_kde_class_get_theme_info (GamesCardThemeClass *klass,
   GamesCardThemeInfo *info = NULL;
   char *base_path = NULL, *key_file_path = NULL;
   GKeyFile *key_file = NULL;
-  char *svg_filename = NULL, *name = NULL, *display_name;
+  char *svg_filename = NULL, *name = NULL, *display_name, *pref_name;
 
   base_path = g_build_filename (path, filename, NULL);
   if (!g_file_test (path, G_FILE_TEST_IS_DIR))
@@ -272,13 +272,13 @@ games_card_theme_kde_class_get_theme_info (GamesCardThemeClass *klass,
     goto out;
 
   display_name = g_strdup_printf ("%s (KDE)", name);
-
+  pref_name = g_strdup_printf ("kde:%s", filename);
   info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      base_path,
                                      svg_filename,
-                                     display_name,
+                                     display_name /* adopts */,
+                                     pref_name /* adopts */,
                                      NULL, NULL);
-  g_free (display_name);
 
 out:
   g_free (base_path);

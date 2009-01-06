@@ -23,8 +23,7 @@
 
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include "games-card.h"
-#include "games-preimage.h"
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
@@ -48,6 +47,8 @@ GamesCardThemeInfo *games_card_theme_info_ref (GamesCardThemeInfo *info);
 void games_card_theme_info_unref (GamesCardThemeInfo *info);
 
 const char *games_card_theme_info_get_display_name (GamesCardThemeInfo *info);
+
+const char *games_card_theme_info_get_persistent_name (GamesCardThemeInfo *info);
 
 /* GamesCardTheme (abstract) */
 

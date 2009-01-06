@@ -104,6 +104,28 @@ games_card_theme_svg_init (GamesCardThemeSVG * cardtheme)
 {
 }
 
+static GamesCardThemeInfo *
+games_card_theme_svg_class_get_theme_info (GamesCardThemeClass *klass,
+                                           const char *path,
+                                           const char *filename)
+{
+  GamesCardThemeInfo *info;
+
+  info = GAMES_CARD_THEME_CLASS (games_card_theme_svg_parent_class)->get_theme_info (klass, path, filename);
+  if (info) {
+    g_assert (info->pref_name == NULL);
+
+    /* SVG is the default. For pref backward compatibility,
+     * we don't add a svg: prefix there. We don't strip the .svg
+     * extension anymore though.
+     */
+    info->pref_name = g_strdup (filename);
+    return info;
+  }
+
+  return NULL;
+}
+
 static void
 games_card_theme_svg_class_get_theme_infos (GamesCardThemeClass *klass,
                                             GList **list)
@@ -121,6 +143,7 @@ games_card_theme_svg_class_init (GamesCardThemeSVGClass * klass)
   GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
   GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
 
+  theme_class->get_theme_info = games_card_theme_svg_class_get_theme_info;
   theme_class->get_theme_infos = games_card_theme_svg_class_get_theme_infos;
 
   theme_class->get_card_pixbuf = games_card_theme_svg_get_card_pixbuf;

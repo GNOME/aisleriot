@@ -3364,7 +3364,6 @@ aisleriot_board_get_property (GObject *object,
                               GParamSpec *pspec)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (object);
-  AisleriotBoardPrivate *priv = board->priv;
 
   switch (prop_id) {
     case PROP_THEME:
