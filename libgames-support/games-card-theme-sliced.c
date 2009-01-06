@@ -160,9 +160,6 @@ games_card_theme_sliced_get_card_pixbuf (GamesCardTheme *card_theme,
   GdkPixbuf *subpixbuf, *card_pixbuf;
   int suit, rank;
 
-  if (!preimage_card_theme->theme_loaded)
-    return NULL;
-
   suit = card_id / 13;
   rank = card_id % 13;
 
