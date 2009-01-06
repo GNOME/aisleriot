@@ -30,7 +30,6 @@
 #include <clutter/clutter.h>
 // #include <clutter-gtk/gtk-clutter-util.h>
 
-#include <libgames-support/games-card-images.h>
 #include <libgames-support/games-card-textures-cache.h>
 #include <libgames-support/games-clutter-embed.h>
 #include <libgames-support/games-files.h>
