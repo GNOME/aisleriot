@@ -380,8 +380,8 @@ AC_MSG_CHECKING([which card theme to use by default])
 AC_ARG_WITH([default-card-theme],
   [AS_HELP_STRING([--with-default-card-theme=NAME],[Which card theme to use by default (default: gnomangelo_bitmap)])],
   [],[case "$with_platform" in
-        gnome|gtk-only) with_default_card_theme=gnomangelo_bitmap ;;
-        hildon) with_default_card_theme=paris ;;
+        gnome|gtk-only) with_default_card_theme=gnomangelo_bitmap.svg ;;
+        hildon) with_default_card_theme=paris.card-theme ;;
       esac])
 AC_MSG_RESULT([$with_default_card_theme])
 
@@ -397,14 +397,11 @@ AC_ARG_WITH([default-card-theme-format],
 AC_MSG_RESULT([$with_default_card_theme_format])
 
 case "$with_default_card_theme_format" in
-  svg) GAMES_CARD_THEME_DEFAULT_FORMAT="GAMES_TYPE_CARD_THEME_SVG" ;;
-  kde) GAMES_CARD_THEME_DEFAULT_FORMAT="GAMES_TYPE_CARD_THEME_KDE" ;;
-  fixed) GAMES_CARD_THEME_DEFAULT_FORMAT="GAMES_TYPE_CARD_THEME_FIXED" ;;
-  sliced) GAMES_CARD_THEME_DEFAULT_FORMAT="GAMES_TYPE_CARD_THEME_SLICED" ;;
-  pysol) GAMES_CARD_THEME_DEFAULT_FORMAT="GAMES_TYPE_CARD_THEME_PYSOL" ;;
+  svg|kde|fixed|sliced|pysol) ;;
+  *) AC_MSG_ERROR([card theme format $with_default_card_theme_format unknown])
 esac
 
-AC_DEFINE_UNQUOTED([GAMES_CARD_THEME_DEFAULT_FORMAT],[$GAMES_CARD_THEME_DEFAULT_FORMAT],[The default card theme format type])
+AC_DEFINE_UNQUOTED([GAMES_CARD_THEME_DEFAULT_FORMAT_STRING],["$with_default_card_theme_format"],[The default card theme format type string])
 
 # Card theme installer
 
@@ -1149,6 +1146,8 @@ echo "
     Using RSVG:            ${have_rsvg}
     Using Clutter:         ${enable_clutter}
     Card theme formats:    ${with_card_theme_formats}
+    Default theme format:  ${with_default_card_theme_format}
+    Default theme:         ${with_default_card_theme}
     Sound support:         ${with_sound}
     Use setgid binaries:   ${setgid}
     Scores user:           ${scores_user}

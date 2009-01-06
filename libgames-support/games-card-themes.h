@@ -45,17 +45,15 @@ GamesCardThemes *games_card_themes_new (void);
 
 void games_card_themes_request_themes (GamesCardThemes *theme_manager);
 
+GList *games_card_themes_get_themes (GamesCardThemes *theme_manager);
+
 GamesCardTheme *games_card_themes_get_theme (GamesCardThemes *theme_manager,
                                              GamesCardThemeInfo *info);
 
+GamesCardTheme *games_card_themes_get_theme_by_name (GamesCardThemes *theme_manager,
+                                                     const char *theme_name);
+
 GamesCardTheme *games_card_themes_get_theme_any (GamesCardThemes *theme_manager);
-
-GamesCardThemeInfo *games_card_themes_get_theme_info_by_name (GamesCardThemes *theme_manager,
-                                                              const char *theme_name);
-
-GamesCardThemeInfo *games_card_themes_get_default_theme_info (GamesCardThemes *theme_manager);
-
-GList *games_card_themes_get_themes (GamesCardThemes *theme_manager);
 
 gboolean games_card_themes_can_install_themes (GamesCardThemes *theme_manager);
 
