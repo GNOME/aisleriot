@@ -178,12 +178,11 @@ theme_filename_and_type_from_name (const char *theme_name,
         g_free (base_name);
 
         return retval;
-      } else
-#endif /* HAVE_GNOME && ENABLE_CARD_THEME_FORMAT_SVG */
-      {
-        return g_strdup (filename);
       }
+#endif /* HAVE_GNOME && ENABLE_CARD_THEME_FORMAT_SVG */
     }
+
+    return g_strdup (filename);
   }
 
   return g_strdup (theme_name);
