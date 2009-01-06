@@ -31,6 +31,7 @@
   #include "SDL_mixer.h"
 #endif 
 
+#include "games-debug.h"
 #include "games-runtime.h"
 
 #include "games-sound.h"
@@ -78,7 +79,9 @@ games_sound_thread_run (gchar * data, gchar * user_data)
 	gchar *debug;
 
 	gst_message_parse_error (message, &err, &debug);
-	g_print (_("Error playing sound: %s\n"), err->message);
+        _games_debug_print (GAMES_DEBUG_SOUND,
+                            "Error playing sound: %s\n", err->message);
+
 	g_error_free (err);
 	g_free (debug);
 
@@ -111,7 +114,8 @@ games_sound_sdl_play (const gchar *filename)
 
   wave = Mix_LoadWAV (path);
   if (wave == NULL) {
-    g_print (_("Error playing sound %s: %s\n"), path, Mix_GetError ());
+    _games_debug_print (GAMES_DEBUG_SOUND,
+                        "Error playing sound %s: %s\n", path, Mix_GetError ());
   }
 
   Mix_PlayChannel (-1, wave, 0);

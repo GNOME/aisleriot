@@ -25,6 +25,7 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
+#include "games-debug.h"
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"
@@ -655,8 +656,9 @@ _games_card_theme_info_new (GType type,
   info->data = data;
   info->destroy_notify = destroy_notify;
 
-  g_print ("Created GamesCardThemeInfo for type=%s path=%s filename=%s display-name=%s\n",
-           g_type_name (type), path, filename, display_name);
+  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                      "Created GamesCardThemeInfo for type=%s path=%s filename=%s display-name=%s\n",
+                      g_type_name (type), path, filename, display_name);
 
   return info;
 }

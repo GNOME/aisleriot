@@ -24,6 +24,7 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
+#include "games-debug.h"
 #include "games-find-file.h"
 #include "games-files.h"
 #include "games-preimage.h"
@@ -142,7 +143,8 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
 #endif
 
   if (!rsvg_handle_get_dimensions_sub (preimage->rsvg_handle, &dimension, node)) {
-    g_print ("Failed to get dim for '%s'\n", node);
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Failed to get dim for '%s'\n", node);
     return NULL;
   }
 
@@ -153,7 +155,8 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
 #endif
 
   if (!rsvg_handle_get_position_sub (preimage->rsvg_handle, &position, node)) {
-    g_print ("Failed to get pos for '%s'\n", node);
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "Failed to get pos for '%s'\n", node);
     return NULL;
   }
 
@@ -163,7 +166,8 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
            (t3 - t2) * 1.0 / CLOCKS_PER_SEC, node,
            (t3 - t1)* 1.0 / CLOCKS_PER_SEC);
 
-  g_print ("card %s position %d:%d dimension %d:%d\n", node, position.x, position.y, dimension.width, dimension.height);
+  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                      "card %s position %d:%d dimension %d:%d\n", node, position.x, position.y, dimension.width, dimension.height);
 #endif
 
   card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
@@ -190,7 +194,8 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
            (t4 - t3) * 1.0 / CLOCKS_PER_SEC, node,
            (t4 - t1)* 1.0 / CLOCKS_PER_SEC);
 
-  g_print ("Returning %p\n", subpixbuf);
+  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                      "Returning %p\n", subpixbuf);
 #endif
 
   return subpixbuf;

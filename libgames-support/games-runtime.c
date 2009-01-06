@@ -26,6 +26,7 @@
 #define HELP_EXT "xhtml"
 #endif /* G_OS_WIN32 */
 
+#include "games-debug.h"
 #include "games-runtime.h"
 
 static char *app_name;
@@ -78,7 +79,16 @@ games_runtime_init (const char *name)
   app_name = g_strdup (name);
 
 #ifdef G_OS_WIN32
-  return games_runtime_get_directory (GAMES_RUNTIME_MODULE_DIRECTORY) != NULL;
+{
+  const char *path;
+
+  path = games_runtime_get_directory (GAMES_RUNTIME_MODULE_DIRECTORY);
+
+  _games_debug_print (GAMES_DEBUG_RUNTIME,
+                      "Relocation path: %s\n", path ? path : "(null)");
+
+  return path != NULL;
+}
 #else
   return TRUE;
 #endif

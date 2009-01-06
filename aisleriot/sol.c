@@ -56,6 +56,7 @@
 #define HELP_EXT "xhtml"
 #endif /* G_OS_WIN32 */
 
+#include <libgames-support/games-debug.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
 #include <libgames-support/games-runtime.h>
@@ -688,6 +689,8 @@ main (int argc, char *argv[])
    */
   g_thread_init (NULL);
 #endif
+
+  _games_debug_init ();
 
   if (!games_runtime_init ("aisleriot"))
     return 1;
