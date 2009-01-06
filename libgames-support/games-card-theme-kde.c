@@ -63,10 +63,8 @@ static long totaltime = 0;
 G_DEFINE_TYPE (GamesCardThemeKDE, games_card_theme_kde, GAMES_TYPE_CARD_THEME_PREIMAGE);
 
 static gboolean
-games_card_theme_kde_load_theme (GamesCardTheme *card_theme,
-                                 const char *theme_dir,
-                                 const char *theme_name,
-                                 GError **error)
+games_card_theme_kde_load (GamesCardTheme *card_theme,
+                           GError **error)
 {
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
   gboolean retval = FALSE;
@@ -77,8 +75,7 @@ games_card_theme_kde_load_theme (GamesCardTheme *card_theme,
   t1 = clock ();
 #endif
 
-  if (!GAMES_CARD_THEME_CLASS (games_card_theme_kde_parent_class)->load_theme
-    (card_theme, theme_dir, theme_name, error))
+  if (!GAMES_CARD_THEME_CLASS (games_card_theme_kde_parent_class)->load (card_theme, error))
     goto out;
 
 #ifndef HAVE_RSVG_BBOX
@@ -118,9 +115,6 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
   char node[64];
   RsvgDimensionData dimension;
   RsvgPositionData position;
-
-  if (!preimage_card_theme->theme_loaded)
-    return NULL;
 
   suit = card_id / 13;
   rank = card_id % 13;
@@ -168,10 +162,30 @@ games_card_theme_kde_init (GamesCardThemeKDE * cardtheme)
 {
 }
 
-static const char *
-games_card_theme_preimage_get_theme_glob (GamesCardThemeClass *klass)
+static GamesCardThemeInfo *
+games_card_theme_kde_class_get_theme_info (GamesCardThemeClass *klass,
+                                           const char *path,
+                                           const char *filename)
 {
-  return "*.svgz";
+  if (!g_str_has_suffix (filename, ".svgz")) // FIXMEchpe 
+    return NULL;
+
+  return _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
+                                     path,
+                                     filename, /* FIXME */
+                                     filename, /* FIXME */
+                                     NULL, NULL);
+}
+
+static void
+games_card_theme_kde_class_get_theme_infos (GamesCardThemeClass *klass,
+                                            GList **list)
+{
+  _games_card_theme_class_append_theme_info_foreach_env
+    (klass, "GAMES_CARD_THEME_PATH_KDE", list);
+
+  _games_card_theme_class_append_theme_info_foreach
+    (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), list);
 }
 
 static void
@@ -179,12 +193,14 @@ games_card_theme_kde_class_init (GamesCardThemeKDEClass * klass)
 {
   GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
 
-  theme_class->get_theme_glob = games_card_theme_preimage_get_theme_glob;
-  theme_class->load_theme = games_card_theme_kde_load_theme;
+  theme_class->get_theme_info = games_card_theme_kde_class_get_theme_info;
+  theme_class->get_theme_infos = games_card_theme_kde_class_get_theme_infos;
+
+  theme_class->load = games_card_theme_kde_load;
   theme_class->get_card_pixbuf = games_card_theme_kde_get_card_pixbuf;
 }
 
-/* public API */
+/* private API */
 
 /**
  * games_card_theme_kde_new:

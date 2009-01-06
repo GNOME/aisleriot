@@ -40,9 +40,6 @@ struct _GamesCardThemeFixedClass {
 struct _GamesCardThemeFixed {
   GamesCardTheme parent_instance;
 
-  char *theme_dir;
-  char *theme_name;
-
   /* Switched on GamesCardThemeFixed.use_scalable */
   char *themesizepath;
   CardSize *card_sizes;
@@ -51,12 +48,8 @@ struct _GamesCardThemeFixed {
   CardSize slot_size;
   CardSize card_size;
 
-  guint use_scalable : 1;
   guint theme_loaded : 1;
   guint size_available : 1;
-
-  guint subrender : 1;
-  guint prescaled : 1;
 };
 
 /* #defining this prints out the time it takes to render the theme */
@@ -70,61 +63,20 @@ static long totaltime = 0;
 
 G_DEFINE_TYPE (GamesCardThemeFixed, games_card_theme_fixed, GAMES_TYPE_CARD_THEME);
 
-static void
-games_card_theme_fixed_clear_theme_data (GamesCardThemeFixed *theme)
-{
-#ifdef INSTRUMENT_LOADING
-  /* Reset the time */
-  totaltime = 0;
-#endif
-
-  g_free (theme->theme_name);
-  theme->theme_name = NULL;
-
-  g_free (theme->theme_dir);
-  theme->theme_dir = NULL;
-
-  g_free (theme->card_sizes);
-  theme->card_sizes = NULL;
-  theme->n_card_sizes = 0;
-
-  g_free (theme->themesizepath);
-  theme->themesizepath = NULL;
-
-  theme->size_available = FALSE;
-
-  theme->theme_loaded = FALSE;
-
-  theme->card_size.width = theme->card_size.height = theme->slot_size.width =
-    theme->slot_size.width = -1;
-}
-
 static gboolean
-games_card_theme_fixed_load_theme (GamesCardTheme *card_theme,
-                                   const char *theme_dir,
-                                   const char *theme_name,
-                                   GError **error__)
+games_card_theme_fixed_load (GamesCardTheme *card_theme,
+                             GError **error__)
 {
   GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
+  GamesCardThemeInfo *theme_info = card_theme->theme_info;
   GKeyFile *key_file;
-  char *filename, *path;
+  char *path;
   GError *error = NULL;
   int *sizes = NULL;
   gsize n_sizes, i;
   gboolean retval = FALSE;
 
-  if (theme->theme_name != NULL &&
-      strcmp (theme_name, theme->theme_name) == 0)
-    return TRUE;
-
-  games_card_theme_fixed_clear_theme_data (theme);
-
-  if (!theme_dir)
-    return FALSE;
-
-  filename = g_strdup_printf ("%s.card-theme", theme_name);
-  path = g_build_filename (theme_dir, filename, NULL);
-  g_free (filename);
+  path = g_build_filename (theme_info->path, theme_info->filename, NULL);
 
   key_file = g_key_file_new ();
   if (!g_key_file_load_from_file (key_file, path, 0, &error)) {
@@ -179,23 +131,12 @@ games_card_theme_fixed_load_theme (GamesCardTheme *card_theme,
 
   retval = TRUE;
     
-  theme->theme_name = g_strdup (theme_name);
-  theme->theme_dir = g_strdup (theme_dir);
-
-  theme->theme_loaded = TRUE;
-
 loser:
 
   g_free (sizes);
 
   g_key_file_free (key_file);
   g_free (path);
-
-  if (!retval) {
-    games_card_theme_fixed_clear_theme_data (theme);
-  }
-
-  _games_card_theme_emit_changed (card_theme);
 
   return retval;
 }
@@ -209,10 +150,8 @@ games_card_theme_fixed_load_card (GamesCardThemeFixed *theme,
   char name[64], filename[64];
   char *path;
 
-  if (!theme->theme_loaded || !theme->size_available)
+  if (!theme->size_available)
     return NULL;
-
-  g_return_val_if_fail (!theme->use_scalable, NULL);
 
   games_card_get_name_by_id_snprintf (name, sizeof (name), card_id);
   g_snprintf (filename, sizeof (filename), "%s.png", name);
@@ -231,28 +170,31 @@ games_card_theme_fixed_load_card (GamesCardThemeFixed *theme,
 }
 
 static void
+games_card_theme_fixed_init (GamesCardThemeFixed *theme)
+{
+  theme->card_size.width = theme->card_size.height = -1;
+
+  theme->card_sizes = NULL;
+  theme->n_card_sizes = 0;
+  theme->themesizepath = NULL;
+
+  theme->size_available = FALSE;
+
+  theme->theme_loaded = FALSE;
+
+  theme->card_size.width = theme->card_size.height = theme->slot_size.width =
+    theme->slot_size.width = -1;
+}
+
+static void
 games_card_theme_fixed_finalize (GObject * object)
 {
   GamesCardThemeFixed *theme = GAMES_CARD_THEME_FIXED (object);
 
-  games_card_theme_fixed_clear_theme_data (theme);
+  g_free (theme->card_sizes);
+  g_free (theme->themesizepath);
 
   G_OBJECT_CLASS (games_card_theme_fixed_parent_class)->finalize (object);
-}
-
-static void
-games_card_theme_fixed_init (GamesCardThemeFixed *theme)
-{
-  theme->card_size.width = theme->card_size.height = -1;
-  theme->theme_name = NULL;
-}
-
-static const gchar *
-games_card_theme_fixed_get_theme_name (GamesCardTheme *card_theme)
-{
-  GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
-
-  return theme->theme_name;
 }
 
 static gboolean
@@ -262,11 +204,7 @@ games_card_theme_fixed_set_card_size (GamesCardTheme *card_theme,
                                       double proportion)
 {
   GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
-
-  if (!theme->theme_loaded) {
-    g_warning ("Theme not loaded yet; cannot set size!");
-    return FALSE;
-  }
+  GamesCardThemeInfo *theme_info = card_theme->theme_info;
 
   if ((width == theme->slot_size.width) &&
       (height == theme->slot_size.height))
@@ -313,7 +251,7 @@ games_card_theme_fixed_set_card_size (GamesCardTheme *card_theme,
 
       g_snprintf (sizestr, sizeof (sizestr), "%d", size.width);
       theme->themesizepath =
-        g_build_filename (theme->theme_dir, theme->theme_name, sizestr, NULL);
+        g_build_filename (theme_info->path, theme_info->theme_name, sizestr, NULL);
 
       theme->size_available = TRUE;
       theme->card_size = size;
@@ -376,23 +314,30 @@ games_card_theme_fixed_get_card_pixbuf (GamesCardTheme *card_theme,
   return pixbuf;
 }
 
-static const char *
-games_card_theme_fixed_get_default_theme_path (GamesCardThemeClass *klass)
+static GamesCardThemeInfo *
+games_card_theme_fixed_class_get_theme_info (GamesCardThemeClass *klass,
+                                             const char *path,
+                                             const char *filename)
 {
-  const char *env;
+  if (!g_str_has_suffix (filename, ".card-theme"))
+    return NULL;
 
-  if ((env = g_getenv ("GAMES_CARD_THEME_PATH_FIXED")))
-    return env;
-  if ((env = g_getenv ("GAMES_CARD_THEME_PATH")))
-    return env;
-
-  return games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY);
+  return _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
+                                     path,
+                                     filename, /* FIXME */
+                                     filename, /* FIXME */
+                                     NULL, NULL);
 }
 
-static const char *
-games_card_theme_fixed_get_theme_glob (GamesCardThemeClass *klass)
+static void
+games_card_theme_fixed_class_get_theme_infos (GamesCardThemeClass *klass,
+                                              GList **list)
 {
-  return "*.card-theme";
+  _games_card_theme_class_append_theme_info_foreach_env
+    (klass, "GAMES_CARD_THEME_PATH_FIXED", list);
+
+  _games_card_theme_class_append_theme_info_foreach
+    (klass, games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY), list);
 }
 
 static void
@@ -403,10 +348,10 @@ games_card_theme_fixed_class_init (GamesCardThemeFixedClass * klass)
 
   gobject_class->finalize = games_card_theme_fixed_finalize;
 
-  theme_class->get_default_theme_path = games_card_theme_fixed_get_default_theme_path;
-  theme_class->get_theme_glob = games_card_theme_fixed_get_theme_glob;
-  theme_class->load_theme = games_card_theme_fixed_load_theme;
-  theme_class->get_theme_name = games_card_theme_fixed_get_theme_name;
+  theme_class->get_theme_info = games_card_theme_fixed_class_get_theme_info;
+  theme_class->get_theme_infos = games_card_theme_fixed_class_get_theme_infos;
+
+  theme_class->load = games_card_theme_fixed_load;
   theme_class->set_card_size = games_card_theme_fixed_set_card_size;
   theme_class->get_card_size = games_card_theme_fixed_get_card_size;
   theme_class->get_card_aspect = games_card_theme_fixed_get_card_aspect;

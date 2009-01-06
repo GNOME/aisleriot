@@ -212,27 +212,42 @@ games_card_images_finalize (GObject * object)
   games_card_images_clear_cache (images);
   g_free (images->cache);
 
-  g_signal_handlers_disconnect_by_func
-    (images->theme, G_CALLBACK (games_card_images_theme_changed_cb), images);
+  if (images->theme)
+    g_signal_handlers_disconnect_by_func (images->theme,
+                                          G_CALLBACK (games_card_images_theme_changed_cb),
+                                          images);
+
   g_object_unref (images->theme);
 
   G_OBJECT_CLASS (games_card_images_parent_class)->finalize (object);
 }
 
 static void
-games_card_images_set_property (GObject * object,
+games_card_images_set_property (GObject *object,
                                 guint prop_id,
-                                const GValue * value, GParamSpec * pspec)
+                                const GValue *value,
+                                GParamSpec *pspec)
 {
   GamesCardImages *images = GAMES_CARD_IMAGES (object);
 
   switch (prop_id) {
   case PROP_THEME:
-    images->theme = GAMES_CARD_THEME (g_value_dup_object (value));
-    g_assert (images->theme);
+    games_card_images_set_theme (images, g_value_get_object (value));
+    break;
+  }
+}
 
-    g_signal_connect (images->theme, "changed",
-                      G_CALLBACK (games_card_images_theme_changed_cb), images);
+static void
+games_card_images_get_property (GObject *object,
+                                guint prop_id,
+                                GValue *value,
+                                GParamSpec * pspec)
+{
+  GamesCardImages *images = GAMES_CARD_IMAGES (object);
+
+  switch (prop_id) {
+  case PROP_THEME:
+    g_value_set_object (value, games_card_images_get_theme (images));
     break;
   }
 }
@@ -242,6 +257,7 @@ games_card_images_class_init (GamesCardImagesClass * class)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (class);
 
+  gobject_class->get_property = games_card_images_get_property;
   gobject_class->set_property = games_card_images_set_property;
   gobject_class->finalize = games_card_images_finalize;
 
@@ -250,29 +266,71 @@ games_card_images_class_init (GamesCardImagesClass * class)
      PROP_THEME,
      g_param_spec_object ("theme", NULL, NULL,
                           GAMES_TYPE_CARD_THEME,
-                          G_PARAM_WRITABLE |
+                          G_PARAM_READWRITE |
                           G_PARAM_STATIC_NAME |
                           G_PARAM_STATIC_NICK |
-                          G_PARAM_STATIC_BLURB |
-                          G_PARAM_CONSTRUCT_ONLY));
+                          G_PARAM_STATIC_BLURB));
 }
 
 /* public API */
 
 /**
  * games_card_images_new:
- * @theme_dir: the directory to load the theme data from, or %NULL to use
- * the default directory
- * @theme: the #GamesCardTheme to cache images from
  *
  * Returns: a new #GamesCardImages
  */
 GamesCardImages *
-games_card_images_new (GamesCardTheme * theme)
+games_card_images_new (void)
 {
-  return g_object_new (GAMES_TYPE_CARD_IMAGES,
-                       "theme", theme,
-                       NULL);
+  return g_object_new (GAMES_TYPE_CARD_IMAGES, NULL);
+}
+
+/**
+ * games_card_images_set_theme:
+ * @images:
+ * @theme: a #GamesCardTheme
+ *
+ * Sets @theme in @images.
+ */
+void
+games_card_images_set_theme (GamesCardImages *images,
+                             GamesCardTheme *theme)
+{
+  g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
+  g_return_if_fail (GAMES_IS_CARD_THEME (theme));
+
+  if (images->theme == theme)
+    return;
+
+  if (images->theme) {
+    g_signal_handlers_disconnect_by_func (images->theme,
+                                          G_CALLBACK (games_card_images_theme_changed_cb),
+                                          images);
+    games_card_images_clear_cache (images);
+  }
+
+  images->theme = theme;
+  if (theme) {
+    g_object_ref (images->theme);
+    g_signal_connect (images->theme, "changed",
+                      G_CALLBACK (games_card_images_theme_changed_cb), images);
+  }
+
+  g_object_notify (G_OBJECT (images), "theme");
+}
+
+/**
+ * games_card_images_get_theme:
+ * @images:
+ *
+ * Returns the #GamesCardTheme currently in use in @images.
+ */
+GamesCardTheme *
+games_card_images_get_theme (GamesCardImages *images)
+{
+  g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), NULL);
+
+  return images->theme;
 }
 
 /**

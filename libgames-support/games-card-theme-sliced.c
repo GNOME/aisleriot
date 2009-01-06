@@ -78,10 +78,8 @@ games_card_theme_sliced_clear_sized_theme_data (GamesCardThemePreimage *preimage
 }
 
 static gboolean
-games_card_theme_sliced_load_theme (GamesCardTheme *card_theme,
-                                    const char *theme_dir,
-                                    const char *theme_name,
-                                    GError **error)
+games_card_theme_sliced_load (GamesCardTheme *card_theme,
+                              GError **error)
 {
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
   GamesCardThemeSliced *theme = (GamesCardThemeSliced *) card_theme;
@@ -93,8 +91,7 @@ games_card_theme_sliced_load_theme (GamesCardTheme *card_theme,
   t1 = clock ();
 #endif
 
-  if (!GAMES_CARD_THEME_CLASS (games_card_theme_sliced_parent_class)->load_theme
-    (card_theme, theme_dir, theme_name, error))
+  if (!GAMES_CARD_THEME_CLASS (games_card_theme_sliced_parent_class)->load (card_theme, error))
     goto out;
 
   /* If we don't have a scalable format, build a scaled pixbuf that we'll cut up later */
@@ -129,7 +126,7 @@ games_card_theme_sliced_prerender_scalable (GamesCardThemeSliced * theme)
   t1 = clock ();
 #endif
 
-  g_return_val_if_fail (preimage_card_theme->cards_preimage != NULL, FALSE);
+  // FIXMEchpe this doesn't look right
   g_return_val_if_fail (theme->prescaled
                         || theme->source != NULL, FALSE);
 
@@ -214,13 +211,13 @@ games_card_theme_sliced_class_init (GamesCardThemeSlicedClass * klass)
   GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
   GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
 
-  theme_class->load_theme = games_card_theme_sliced_load_theme;
+  theme_class->load = games_card_theme_sliced_load;
   theme_class->get_card_pixbuf = games_card_theme_sliced_get_card_pixbuf;
 
   preimage_theme_class->clear_sized_theme_data = games_card_theme_sliced_clear_sized_theme_data;
 }
 
-/* public API */
+/* private API */
 
 /**
  * games_card_theme_sliced_new:

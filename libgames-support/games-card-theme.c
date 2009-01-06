@@ -34,11 +34,18 @@
 #include "games-card-theme-private.h"
 
 enum {
+  PROP_0,
+  PROP_THEME_INFO
+};
+
+enum {
   CHANGED,
   LAST_SIGNAL
 };
 
 static guint signals[LAST_SIGNAL];
+
+static GList *theme_infos;
 
 /* #defining this prints out the time it takes to render the theme */
 /* #define INSTRUMENT_LOADING */
@@ -48,6 +55,7 @@ static guint signals[LAST_SIGNAL];
 static long totaltime = 0;
 #endif
 
+#if 0
 static GType
 get_default_theme_type (void)
 {
@@ -81,19 +89,47 @@ get_default_theme_type (void)
 
   return type;
 }
+#endif
 
-static gboolean
-games_card_theme_load_theme (GamesCardTheme *theme,
-                             const char *theme_dir,
-                             const char *theme_name)
+static void
+_games_card_theme_ensure_theme_infos (void)
 {
-  return theme->klass->load_theme (theme, theme_dir, theme_name, NULL);
+  if (theme_infos)
+    return;
+
+  /* FIXME: take env vars and prefs into account on ordering here */
+  GType types[] = {
+#ifdef HAVE_RSVG
+    GAMES_TYPE_CARD_THEME_SVG,
+    GAMES_TYPE_CARD_THEME_KDE,
+#endif
+#ifndef HAVE_HILDON
+    GAMES_TYPE_CARD_THEME_SLICED,
+#endif
+    GAMES_TYPE_CARD_THEME_FIXED
+  };
+  guint i;
+
+  theme_infos = NULL;
+
+  for (i = 0; i < G_N_ELEMENTS (types); ++i) {
+    GamesCardThemeClass *klass;
+
+    klass = g_type_class_ref (types[i]);
+    if (!klass)
+      continue;
+
+    klass->get_theme_infos (klass, &theme_infos);
+    g_type_class_unref (klass);
+  }
+
+  theme_infos = g_list_reverse (theme_infos);
 }
 
+#if 0
 static gboolean
 games_card_theme_load_theme_with_fallback (GamesCardTheme *theme,
-                                           const char *theme_dir,
-                                           const char *theme_name)
+                                           GamesCardThemeInfo *info)
 {
   const char *env;
 
@@ -126,7 +162,10 @@ games_card_theme_load_theme_with_fallback (GamesCardTheme *theme,
   g_warning ("Failed to load fallback theme!");
 
   return FALSE;
+  //FIXMEchpe how to design fallback now...
+//  return games_card_theme_load_theme (theme, info);
 }
+#endif
 
 /* Class implementation */
 
@@ -150,6 +189,8 @@ games_card_theme_constructor (GType type,
 
   theme = GAMES_CARD_THEME (object);
 
+  g_assert (theme->theme_info != NULL);
+
   /* NOTE! We have to do this here, since it returns the wrong class
    * (GamesCardThemeClass) when called in games_card_theme_init() !
    */
@@ -158,6 +199,40 @@ games_card_theme_constructor (GType type,
   return object;
 }
 
+static void
+games_card_theme_finalize (GObject *object)
+{
+  GamesCardTheme *theme = GAMES_CARD_THEME (object);
+
+  games_card_theme_info_unref (theme->theme_info);
+
+  G_OBJECT_CLASS (games_card_theme_parent_class)->finalize (object);
+}
+
+static void
+games_card_theme_set_property (GObject * object,
+                               guint prop_id,
+                               const GValue * value, GParamSpec * pspec)
+{
+  GamesCardTheme *theme = GAMES_CARD_THEME (object);
+
+  switch (prop_id) {
+    case PROP_THEME_INFO:
+      theme->theme_info = g_value_dup_boxed (value);
+      break;
+  }
+}
+
+static GamesCardThemeInfo *
+games_card_theme_class_get_theme_info (GamesCardThemeClass *klass,
+                                       const char *dir,
+                                       const char *filename)
+{
+  return NULL;
+}
+
+#if 0
+
 static GList *
 games_card_theme_get_themes_list (GamesCardThemeClass *klass,
                                   const char *theme_dir)
@@ -165,6 +240,7 @@ games_card_theme_get_themes_list (GamesCardThemeClass *klass,
   GamesFileList *files;
   GList *l, *list;
   const char *glob;
+  GamesCardThemeInfo * (* get_theme_info) (GamesCardThemeClass *, const char *) = klass->get_theme_info;
 
   glob = _games_card_theme_class_get_theme_glob (klass);
 
@@ -193,15 +269,29 @@ games_card_theme_get_themes_list (GamesCardThemeClass *klass,
 
   return list;
 }
+#endif
 
 static void
 games_card_theme_class_init (GamesCardThemeClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+  gobject_class->set_property = games_card_theme_set_property;
   gobject_class->constructor = games_card_theme_constructor;
+  gobject_class->finalize = games_card_theme_finalize;
 
-  klass->get_themes_list = games_card_theme_get_themes_list;
+  klass->get_theme_info = games_card_theme_class_get_theme_info;
+
+  g_object_class_install_property
+    (gobject_class,
+     PROP_THEME_INFO,
+     g_param_spec_boxed ("theme-info", NULL, NULL,
+                         GAMES_TYPE_CARD_THEME_INFO,
+                         G_PARAM_WRITABLE |
+                         G_PARAM_STATIC_NAME |
+                         G_PARAM_STATIC_NICK |
+                         G_PARAM_STATIC_BLURB |
+                         G_PARAM_CONSTRUCT_ONLY));
 
   /**
    * GamesCardTheme:changed:
@@ -230,52 +320,64 @@ _games_card_theme_emit_changed (GamesCardTheme *theme)
   g_signal_emit (theme, signals[CHANGED], 0);
 }
 
-/**
- * games_card_theme_class_get_default_theme_path:
- * @klass:
- *
- * Returns: the default theme path for @klass. The string is owned by
- * @klass and must not be modified or freed.
- */
-const char *
-_games_card_theme_class_get_default_theme_path (GamesCardThemeClass *klass)
+GamesCardThemeInfo *
+_games_card_theme_class_get_theme_info (GamesCardThemeClass *klass,
+                                        const char *dir,
+                                        const char *filename)
 {
-  if (klass->get_default_theme_path)
-    return klass->get_default_theme_path (klass);
-
-  return NULL;
+  return klass->get_theme_info (klass, dir, filename);
 }
 
-/**
- * games_card_theme_class_get_theme_glob:
- * @klass:
- *
- * Returns: the default theme path for @klass. The string is owned by
- * @klass and must not be modified or freed.
- */
-const char *
-_games_card_theme_class_get_theme_glob (GamesCardThemeClass *klass)
+void
+_games_card_theme_class_append_theme_info_foreach (GamesCardThemeClass *klass,
+                                                   const char *path,
+                                                   GList **list)
 {
-  if (klass->get_theme_glob)
-    return klass->get_theme_glob (klass);
+  GDir *iter;
+  const char *filename;
 
-  return NULL;
+  iter = g_dir_open (path, 0, NULL);
+  if (!iter)
+    return;
+
+  while ((filename = g_dir_read_name (iter)) != NULL) {
+    GamesCardThemeInfo *info;
+
+    info = _games_card_theme_class_get_theme_info (klass, path, filename);
+    if (info)
+      *list = g_list_prepend (*list, info);
+  }
+      
+  g_dir_close (iter);
 }
 
-/**
- * games_card_theme_class_get_themes_list:
- * @klass:
- *
- * Returns: a newly allocated list of newly allocated strings of
- * containing the names of the themes found for @klass.
- */
-GList *
-_games_card_theme_class_get_themes_list (GamesCardThemeClass *klass)
+void
+_games_card_theme_class_append_theme_info_foreach_env (GamesCardThemeClass *klass,
+                                                       const char *env,
+                                                       GList **list)
 {
-  if (klass->get_themes_list)
-    return klass->get_themes_list (klass, NULL);
+  const char *value;
+  char **paths;
+  guint i;
 
-  return NULL;
+  value = g_getenv (env);
+  if (!value || !value[0])
+    return;
+
+  paths = g_strsplit (value, ":", -1);
+  if (!paths)
+    return;
+
+  for (i = 0; paths[i]; ++i) {
+    const char *path = paths[i];
+
+    if (!paths[0])
+      continue;
+
+    _games_card_theme_class_append_theme_info_foreach (klass, path, list);
+  }
+
+  g_strfreev (paths);
 }
 
 /* public API */
@@ -303,44 +405,19 @@ games_card_theme_set_font_options (GamesCardTheme *theme,
 
 #endif /* GTK 2.10.0 */
 
-/**
- * games_card_theme_set_theme:
- * @theme:
- * @theme_dir: the theme directory, or %NULL to use the default
- * @theme_name: the name of the theme to load
- *
- * Loads the card theme @theme_name. If the card theme cannot be loaded,
- * it falls back to the default card theme, if present.
- * After changing the theme, the card size will be undefined; you need
- * to call games_card_theme_set_size() to set it before getting a
- * card from @theme again.
- * 
- * Returns: %TRUE iff loading the new card theme succeeded
- */
-gboolean
-games_card_theme_set_theme (GamesCardTheme *theme,
-                            const char *theme_dir,
-                            const char *theme_name)
-{
-  g_return_val_if_fail (GAMES_IS_CARD_THEME (theme), FALSE);
-  g_return_val_if_fail (theme_name != NULL && theme_name[0] != '\0', FALSE);
-
-  return games_card_theme_load_theme_with_fallback (theme, theme_dir, theme_name);
-}
 
 /**
  * games_card_theme_get_theme:
  * @theme:
  *
- * Returns: the name of the currently loaded card theme, or %NULL if no theme
- * is loaded
+ * Returns: the #GamesCardThemeInfo corresponding to @theme.
  */
-const char *
+GamesCardThemeInfo *
 games_card_theme_get_theme (GamesCardTheme *theme)
 {
   g_return_val_if_fail (GAMES_IS_CARD_THEME (theme), NULL);
 
-  return theme->klass->get_theme_name (theme);
+  return theme->theme_info;
 }
 
 /**
@@ -433,31 +510,287 @@ games_card_theme_get_card_pixbuf (GamesCardTheme * theme, gint card_id)
 }
 
 /**
- * games_card_theme_new:
+ * games_card_theme_get:
+ * @info: a #GamesCardThemeInfo
  *
- * Returns: a new #GamesCardTheme
+ * Returns: a new #GamesCardTheme for @info, or %NULL if there was an
+ *  error while loading the theme.
  */
 GamesCardTheme *
-games_card_theme_new (void)
+games_card_theme_get (GamesCardThemeInfo *info)
 {
+  GamesCardTheme *theme;
+  GError *error = NULL;
 
-  return g_object_new (get_default_theme_type (), NULL);
+  g_return_val_if_fail (info != NULL, NULL);
+
+  if (info->type == G_TYPE_INVALID)
+    return NULL;
+
+  theme = g_object_new (info->type, "theme-info", info, NULL);
+  if (!theme->klass->load (theme, &error)) {
+    g_clear_error (&error);
+    g_object_unref (theme);
+    return NULL;
+  }
+
+  return theme;
 }
 
 /**
- * games_card_theme_get_themes:
+ * games_card_theme_get_by_name:
+ * @theme_name: a theme name
  *
- * Returns: 
+ * This function exists only for backward compatibility with
+ * older aisleriot versions' preferences.
+ * 
+ * Returns: a new #GamesCardTheme for @name, or %NULL if there was an
+ *  error while loading the theme.
+ */
+GamesCardTheme *
+games_card_theme_get_by_name (const char *theme_name)
+{
+  GList *l;
+
+  //XXX FIXMEchpe .svg / .png suffix stripping
+  g_return_val_if_fail (theme_name != NULL, NULL);
+
+  _games_card_theme_ensure_theme_infos ();
+
+  for (l = theme_infos; l != NULL; l = l->next) {
+    GamesCardThemeInfo *info = (GamesCardThemeInfo *) l->data;
+
+    // FIXMEchpe
+    if (g_str_has_prefix (theme_name, info->filename))
+      return games_card_theme_get (info);
+  }
+
+  return NULL;
+}
+
+/**
+ * games_card_theme_get_any:
+ *
+ * FIXMEchpe
+ * Loads the card theme @theme_name. If the card theme cannot be loaded,
+ * it falls back to the default card theme, if present.
+ * After changing the theme, the card size will be undefined; you need
+ * to call games_card_theme_set_size() to set it before getting a
+ * card from @theme again.
+ * 
+ * Returns:
+ */
+GamesCardTheme *
+games_card_theme_get_any (void)
+{
+  _games_card_theme_ensure_theme_infos ();
+
+  if (!theme_infos)
+    return NULL;
+
+  // FIXMEchpe obviously
+  return games_card_theme_get ((GamesCardThemeInfo *) theme_infos->data);
+  return games_card_theme_get_by_name (GAMES_CARD_THEME_DEFAULT);
+  // FIXMEchpe put the fallback in here
+  return NULL;
+}
+
+/**
+ * games_card_theme_get_all:
+ *
+ * Returns:
  */
 GList *
-games_card_theme_get_themes (void)
+games_card_theme_get_all (void)
 {
-  GamesCardThemeClass *klass;
   GList *list;
 
-  klass = g_type_class_ref (get_default_theme_type ());
-  list = games_card_theme_get_themes_list (klass, NULL);
-  g_type_class_unref (klass);
+  _games_card_theme_ensure_theme_infos ();
+
+  list = g_list_copy (theme_infos);
+  g_list_foreach (list, (GFunc) games_card_theme_info_ref, NULL);
 
   return list;
+  // FIXMEchpe
+//  return g_list_sort (list, (GCompareFunc) _games_card_theme_info_collate, NULL);
+}
+
+/* GamesCardThemeInfo impl */
+
+/* private API */
+
+/**
+ * _games_card_theme_info_new:
+ * @type:
+ * @path:
+ * @name:
+ * @diplay_name:
+ *
+ * Returns: a new #GamesCardThemeInfo with refcount 1
+ */
+GamesCardThemeInfo *
+_games_card_theme_info_new (GType type,
+                            const char *path,
+                            const char *filename,
+                            const char *display_name,
+                            gpointer data /* adopted */,
+                            GDestroyNotify destroy_notify)
+{
+  GamesCardThemeInfo *info;
+
+#if GLIB_CHECK_VERSION (2, 10, 0)
+  info = g_slice_new (GamesCardThemeInfo);
+#else
+  info = g_new (GamesCardThemeInfo, 1);
+#endif
+
+  info->ref_count = 1;
+  info->type = type;
+  info->path = g_strdup (path);
+  info->filename = g_strdup (filename);
+  { char *p; info->theme_name = g_strdup (filename); p = strrchr (info->theme_name, '.'); if (p) *p = '\0'; }
+  info->display_name = g_strdup (display_name);
+  info->data = data;
+  info->destroy_notify = destroy_notify;
+
+  return info;
+}
+
+/**
+ * _games_card_theme_info_equal:
+ * @a:
+ * @b:
+ *
+ * Compares @a and @b.
+ *
+ * Returns: %TRUE iff @a and @b refer to the same card theme
+ */
+gboolean
+_games_card_theme_info_equal (GamesCardThemeInfo *a,
+                              GamesCardThemeInfo *b)
+{
+  g_return_val_if_fail (a != NULL && b != NULL, FALSE);
+
+  return _games_card_theme_info_collate (a, b) == 0;
+}
+
+/**
+ * _games_card_theme_info_collate:
+ * @a:
+ * @b:
+ *
+ * Compares @a and @b.
+ *
+ * Returns: %-1 if @a comes before @b, %1 if @b comes before @a, or
+ * %0 if @a and @b are equal.
+ */
+int
+_games_card_theme_info_collate (GamesCardThemeInfo *a,
+                                GamesCardThemeInfo *b)
+{
+  int val;
+
+  g_return_val_if_fail (a != NULL && b != NULL, 0);
+
+  if (a->type != b->type)
+    return a->type - b->type;
+
+  val = g_utf8_collate (a->display_name, b->display_name);
+  if (val != 0)
+    return val;
+
+  val = strcmp (a->display_name, b->display_name);
+  if (val != 0)
+    return val;
+
+  val = strcmp (a->path, b->path);
+  if (val != 0)
+    return val;
+
+  val = strcmp (a->filename, b->filename);
+  if (val != 0)
+    return val;
+
+  return 0;
+}
+
+/* public API */
+
+#if defined(G_DEFINE_BOXED_TYPE)
+G_DEFINE_BOXED_TYPE (GamesCardThemeInfo, games_card_theme_info,
+                     games_card_theme_info_ref,
+                     games_card_theme_info_unref);
+#else
+GType
+games_card_theme_info_get_type (void)
+{
+  static GType type = 0;
+
+  if (G_UNLIKELY (type == 0)) {
+    type = g_boxed_type_register_static ("GamesCardThemeInfo",
+                                         (GBoxedCopyFunc) games_card_theme_info_ref,
+                                         (GBoxedFreeFunc) games_card_theme_info_unref);
+  }
+
+  return type;
+}
+#endif /* defined(G_DEFINE_BOXED_TYPE) */
+
+/**
+ * games_card_theme_info_ref:
+ * @info:
+ *
+ * Refs @info.
+ *
+ * Returns: @info
+ */
+GamesCardThemeInfo *
+games_card_theme_info_ref (GamesCardThemeInfo *info)
+{
+  g_return_val_if_fail (info != NULL, NULL);
+
+  info->ref_count++;
+  return info;
+}
+
+/**
+ * games_card_theme_info_unref:
+ * @info:
+ *
+ * Unrefs @info. If the refcount reaches %0, @info is freed.
+ */
+void
+games_card_theme_info_unref (GamesCardThemeInfo *info)
+{
+  g_return_if_fail (info != NULL);
+
+  if (--info->ref_count > 0)
+    return;
+
+  g_free (info->path);
+  g_free (info->filename);
+  g_free (info->display_name);
+
+  if (info->data && info->destroy_notify)
+    info->destroy_notify (info->data);
+
+#if GLIB_CHECK_VERSION (2, 10, 0)
+  g_slice_free (GamesCardThemeInfo, info);
+#else
+  g_free (info);
+#endif
+}
+
+/**
+ * games_card_theme_info_unref:
+ * @info:
+ *
+ * Unrefs @info. If the refcount reaches %0, frees @info.
+ */
+const char *
+games_card_theme_info_get_display_name (GamesCardThemeInfo *info)
+{
+  g_return_val_if_fail (info != NULL, NULL);
+
+  return info->display_name;
 }

@@ -95,6 +95,7 @@ struct _AisleriotWindowPrivate
 {
   AisleriotGame *game;
   AisleriotBoard *board;
+  GamesCardTheme *theme;
 
 #ifdef HAVE_HILDON
   GtkLabel *game_message_label;
@@ -1439,15 +1440,32 @@ card_theme_changed_cb (GtkToggleAction *action,
                        AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  const char *theme;
+  GamesCardThemeInfo *info;
+  GamesCardTheme *theme;
 
   if (!gtk_toggle_action_get_active (action))
     return;
 
-  theme = g_object_get_data (G_OBJECT (action), "card-theme");
-  g_return_if_fail (theme != NULL);
+  info = g_object_get_data (G_OBJECT (action), "card-theme-info");
+  g_return_if_fail (info != NULL);
 
-#ifdef HAVE_GNOME
+  if (priv->theme != NULL &&
+      info == games_card_theme_get_theme (priv->theme))
+    return;
+
+  theme = games_card_theme_get (info);
+  if (!theme)
+    return; // FIXMEchpe re-set the right radio action to active!!
+
+  if (priv->theme) {
+    g_object_unref (priv->theme);
+  }
+  priv->theme = theme;
+
+  aisleriot_board_set_card_theme (priv->board, theme);
+
+  //XXX FIXMEchpe
+#if 0//#ifdef HAVE_GNOME
   /* Compatibility with old settings */
   if (g_str_has_suffix (theme, ".svg")) {
     *g_strrstr (theme, ".svg") = '\0';
@@ -1456,9 +1474,10 @@ card_theme_changed_cb (GtkToggleAction *action,
   }
 #endif /* HAVE_GNOME */
 
-  if (aisleriot_board_set_card_theme (priv->board, theme)) {
-    games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme);
-  }
+//  if (aisleriot_board_set_card_theme (priv->board, info)) {
+    // XXX FIXMEchpe
+    //games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme);
+//  }
 }
 
 static void
@@ -1467,7 +1486,7 @@ install_card_theme_menu (AisleriotWindow *window)
   AisleriotWindowPrivate *priv = window->priv;
   GList *list, *l;
   GSList *radio_group = NULL;
-  const char *card_theme;
+  //GamesCardThemeInfo *card_theme;
   guint i = 0;
 
   /* Clean out the old menu */
@@ -1483,11 +1502,11 @@ install_card_theme_menu (AisleriotWindow *window)
   /* See gtk bug #424448 */
   gtk_ui_manager_ensure_update (priv->ui_manager);
 
-  list = games_card_theme_get_themes ();
+  list = games_card_theme_get_all ();
 
   /* No need to install the menu when there's only one theme available anyway */
   if (list == NULL || list->next == NULL) {
-    g_list_foreach (list, (GFunc) g_free, NULL);
+    g_list_foreach (list, (GFunc) games_card_theme_info_unref, NULL);
     g_list_free (list);
     return;
   }
@@ -1498,15 +1517,16 @@ install_card_theme_menu (AisleriotWindow *window)
 
   priv->card_themes_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
-  card_theme = aisleriot_board_get_card_theme (priv->board);
+ // FIXMEchpe
+//  card_theme = aisleriot_board_get_card_theme (priv->board);
 
   for (l = list; l != NULL; l = l->next) {
-    const char *theme = (const char *) l->data;
+    GamesCardThemeInfo *info = (GamesCardThemeInfo *) l->data;
     GtkRadioAction *action;
     char actionname[32];
     char *display_name, *tooltip;
 
-    display_name = aisleriot_util_get_display_filename (theme);
+    display_name = g_strdup (games_card_theme_info_get_display_name (info)); //aisleriot_util_get_display_filename (theme);
 
     g_snprintf (actionname, sizeof (actionname), "Theme%d", i);
 #ifdef HAVE_HILDON
@@ -1521,14 +1541,15 @@ install_card_theme_menu (AisleriotWindow *window)
     gtk_radio_action_set_group (action, radio_group);
     radio_group = gtk_radio_action_get_group (action);
 
+ // FIXMEchpe
     /* Check if this is the current theme's action. Do this before connecting the callback */
-    if (strcmp (card_theme, theme) == 0) {
-      gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
-    }
+//     if (games_card_theme_info_equal (card_theme, info)) {
+//       gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+//     }
 
-    /* We steal the data from the list. A bit hackish, but works fine for now */
-    g_object_set_data_full (G_OBJECT (action), "card-theme",
-                            l->data, (GDestroyNotify) g_free);
+    /* We steal the data from the list */
+    g_object_set_data_full (G_OBJECT (action), "card-theme-info",
+                            l->data, (GDestroyNotify) games_card_theme_info_unref);
     l->data = NULL;
 
     g_signal_connect (action, "toggled",
@@ -1545,7 +1566,7 @@ install_card_theme_menu (AisleriotWindow *window)
     ++i;
   }
 
-  g_list_foreach (list, (GFunc) g_free, NULL);
+  /* The list elements' data's refcount has been adopted above */
   g_list_free (list);
 }
 
@@ -2263,7 +2284,7 @@ aisleriot_window_init (AisleriotWindow *window)
   GtkWidget *main_vbox;
   GtkAccelGroup *accel_group;
   GtkAction *action;
-  char *theme;
+//FIXMEchpe  char *theme;
   guint i;
 #ifdef HAVE_HILDON
   GtkToolItem *tool_item;
@@ -2310,10 +2331,14 @@ aisleriot_window_init (AisleriotWindow *window)
 
 #endif /* HAVE_MAEMO */
 
-  priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->game, priv->scalable_cards));
+  priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->game));
 
   aisleriot_board_set_pixbuf_drawing (priv->board, priv->use_pixbuf_drawing);
 
+  aisleriot_board_set_card_theme (priv->board, games_card_theme_get_any ());
+
+#if 0
+  // FIXMEchpe
   theme = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
   if (!theme || !theme[0]) {
     g_free (theme);
@@ -2330,6 +2355,7 @@ aisleriot_window_init (AisleriotWindow *window)
 
   aisleriot_board_set_card_theme (priv->board, theme);
   g_free (theme);
+#endif
 
   priv->action_group = gtk_action_group_new ("MenuActions");
   gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
@@ -2576,6 +2602,10 @@ aisleriot_window_finalize (GObject *object)
   if (priv->stats_dialog) {
     gtk_widget_destroy (GTK_WIDGET (priv->stats_dialog));
     g_assert (priv->stats_dialog == NULL);
+  }
+
+  if (priv->theme) {
+    g_object_unref (priv->theme);
   }
 
   g_signal_handlers_disconnect_matched (priv->game,

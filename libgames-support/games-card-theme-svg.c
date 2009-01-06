@@ -58,10 +58,8 @@ static long totaltime = 0;
 G_DEFINE_TYPE (GamesCardThemeSVG, games_card_theme_svg, GAMES_TYPE_CARD_THEME_PREIMAGE);
 
 static gboolean
-games_card_theme_svg_load_theme (GamesCardTheme *card_theme,
-                                 const char *theme_dir,
-                                 const char *theme_name,
-                                 GError **error)
+games_card_theme_svg_load (GamesCardTheme *card_theme,
+                           GError **error)
 {
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
   gboolean retval = FALSE;
@@ -72,8 +70,7 @@ games_card_theme_svg_load_theme (GamesCardTheme *card_theme,
   t1 = clock ();
 #endif
 
-  if (!GAMES_CARD_THEME_CLASS (games_card_theme_svg_parent_class)->load_theme
-    (card_theme, theme_dir, theme_name, error))
+  if (!GAMES_CARD_THEME_CLASS (games_card_theme_svg_parent_class)->load (card_theme, error))
     goto out;
 
   if (!games_preimage_is_scalable (preimage_card_theme->cards_preimage))
@@ -107,9 +104,6 @@ games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
   double offsetx, offsety;
   double zoomx, zoomy;
   char node[64];
-
-  if (!preimage_card_theme->theme_loaded)
-    return NULL;
 
   suit = card_id / 13;
   rank = card_id % 13;
@@ -156,11 +150,11 @@ games_card_theme_svg_class_init (GamesCardThemeSVGClass * klass)
 {
   GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
 
-  theme_class->load_theme = games_card_theme_svg_load_theme;
+  theme_class->load = games_card_theme_svg_load;
   theme_class->get_card_pixbuf = games_card_theme_svg_get_card_pixbuf;
 }
 
-/* public API */
+/* private API */
 
 /**
  * games_card_theme_svg_new:

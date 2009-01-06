@@ -64,42 +64,15 @@ _games_card_theme_preimage_clear_sized_theme_data (GamesCardThemePreimage *theme
 #endif
 }
 
-static void
-games_card_theme_preimage_clear_theme_data (GamesCardThemePreimage *theme)
-{
-  _games_card_theme_preimage_clear_sized_theme_data (theme);
-
-  if (theme->cards_preimage != NULL) {
-    g_object_unref (theme->cards_preimage);
-    theme->cards_preimage = NULL;
-  }
-  if (theme->slot_preimage != NULL) {
-    g_object_unref (theme->slot_preimage);
-    theme->slot_preimage = NULL;
-  }
-
-  g_free (theme->theme_name);
-  theme->theme_name = NULL;
-
-  theme->subsize.width = -1;
-  theme->subsize.height = -1;
-
-  theme->theme_loaded = FALSE;
-
-  theme->card_size.width = theme->card_size.height = theme->slot_size.width =
-    theme->slot_size.width = -1;
-}
-
 static gboolean
-games_card_theme_preimage_load_theme (GamesCardTheme *card_theme,
-                                      const char *theme_dir,
-                                      const char *theme_name,
-                                      GError **error)
+games_card_theme_preimage_load (GamesCardTheme *card_theme,
+                                GError **error)
 {
   GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
+  GamesCardThemeInfo *theme_info = card_theme->theme_info;
   GamesPreimage *preimage;
   const char *slot_dir;
-  gchar *filename, *path;
+  char *path;
 
 #ifdef INSTRUMENT_LOADING
   clock_t t1, t2;
@@ -107,35 +80,22 @@ games_card_theme_preimage_load_theme (GamesCardTheme *card_theme,
   t1 = clock ();
 #endif
 
-  if (theme->theme_name != NULL &&
-      strcmp (theme_name, theme->theme_name) == 0)
-    return TRUE;
-
-  games_card_theme_preimage_clear_theme_data (theme);
-
-  if (!theme_dir)
-    return FALSE;
-
-  // FIXMEchpe wtf?
-  if (theme->cards_preimage != NULL)
-    return TRUE;
-
+  // XXX FIXMEchpe remove this crap
   /* First try and load the given file. */
-  filename = g_strdup_printf ("%s.svg", theme_name);
-  path = g_build_filename (theme_dir, filename, NULL);
+  //filename = g_strdup_printf ("%s.svg", theme_name);
+  path = g_build_filename (theme_info->path, theme_info->filename, NULL);
   preimage = games_preimage_new_from_file (path, NULL);
   g_free (path);
 
   /* Failing that, try and find a similar file (e.g. a suffix change). */
   if (!preimage) {
-    path = games_find_similar_file (filename, theme_dir);
+    // FIXMEchpe remove this crap
+    path = games_find_similar_file (theme_info->filename, theme_info->path);
     if (path) {
       preimage = games_preimage_new_from_file (path, NULL);
       g_free (path);
     }
   }
-
-  g_free (filename);
 
   if (!preimage)
     goto out;
@@ -152,6 +112,7 @@ games_card_theme_preimage_load_theme (GamesCardTheme *card_theme,
   path = g_build_filename (slot_dir, "slot.svg", NULL);
   theme->slot_preimage = games_preimage_new_from_file (path, NULL);
   g_free (path);
+  // FIXMEchpe fix this
   g_return_val_if_fail (theme->slot_preimage != NULL, FALSE);
 
   if (theme->font_options) {
@@ -169,19 +130,22 @@ out:
            totaltime * 1.0 / CLOCKS_PER_SEC);
 #endif
 
-  if (theme->cards_preimage != NULL) {
-    theme->theme_name = g_strdup (theme_name);
+  return theme->cards_preimage != NULL;
+}
 
-    theme->theme_loaded = TRUE;
+static void
+games_card_theme_preimage_init (GamesCardThemePreimage *theme)
+{
+  theme->cards_preimage = NULL;
+  theme->slot_preimage = NULL;
 
-    _games_card_theme_emit_changed (card_theme);
-    return TRUE;
-  }
+  theme->subsize.width = -1;
+  theme->subsize.height = -1;
 
-  games_card_theme_preimage_clear_theme_data (theme);
-  _games_card_theme_emit_changed (card_theme);
+  theme->theme_loaded = FALSE;
 
-  return FALSE;
+  theme->card_size.width = theme->card_size.height = theme->slot_size.width =
+    theme->slot_size.width = -1;
 }
 
 static void
@@ -189,10 +153,14 @@ games_card_theme_preimage_finalize (GObject * object)
 {
   GamesCardThemePreimage *theme = GAMES_CARD_THEME_PREIMAGE (object);
 
-  games_card_theme_preimage_clear_theme_data (theme);
+  _games_card_theme_preimage_clear_sized_theme_data (theme);
 
-  g_free (theme->theme_name);
-  g_free (theme->theme_dir);
+  if (theme->cards_preimage != NULL) {
+    g_object_unref (theme->cards_preimage);
+  }
+  if (theme->slot_preimage != NULL) {
+    g_object_unref (theme->slot_preimage);
+  }
 
   if (theme->font_options) {
     cairo_font_options_destroy (theme->font_options);
@@ -202,15 +170,8 @@ games_card_theme_preimage_finalize (GObject * object)
 }
 
 static void
-games_card_theme_preimage_init (GamesCardThemePreimage * theme)
-{
-  theme->card_size.width = theme->card_size.height = -1;
-  theme->theme_name = NULL;
-}
-
-static void
 games_card_theme_preimage_set_font_options (GamesCardTheme *card_theme,
-                                       const cairo_font_options_t *font_options)
+                                            const cairo_font_options_t *font_options)
 {
   GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
 
@@ -233,27 +194,14 @@ games_card_theme_preimage_set_font_options (GamesCardTheme *card_theme,
   _games_card_theme_emit_changed (card_theme);
 }
 
-static const gchar *
-games_card_theme_preimage_get_theme_name (GamesCardTheme *card_theme)
-{
-  GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
-
-  return theme->theme_name;
-}
-
 static gboolean
 games_card_theme_preimage_set_card_size (GamesCardTheme *card_theme,
-                                    int width,
-                                    int height,
-                                    double proportion)
+                                         int width,
+                                         int height,
+                                         double proportion)
 {
   GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
   double aspect_ratio, twidth, theight;
-
-  if (!theme->theme_loaded) {
-    g_warning ("Theme not loaded yet; cannot set size!");
-    return FALSE;
-  }
 
   if ((width == theme->slot_size.width) &&
       (height == theme->slot_size.height))
@@ -301,10 +249,7 @@ games_card_theme_preimage_get_card_aspect (GamesCardTheme* card_theme)
 {
   GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
   double aspect;
-
-  g_return_val_if_fail (GAMES_IS_CARD_THEME_PREIMAGE (theme), 1.0);
-
-  aspect =
+aspect =
       (((double) games_preimage_get_width (theme->cards_preimage))
        * N_ROWS) /
       (((double) games_preimage_get_height (theme->cards_preimage))
@@ -313,23 +258,31 @@ games_card_theme_preimage_get_card_aspect (GamesCardTheme* card_theme)
   return aspect;
 }
 
-static const char *
-games_card_theme_preimage_get_default_theme_path (GamesCardThemeClass *klass)
+static GamesCardThemeInfo *
+games_card_theme_preimage_class_get_theme_info (GamesCardThemeClass *klass,
+                                                const char *path,
+                                                const char *filename)
 {
-  const char *env;
+  if (!g_str_has_suffix (filename, ".svg")) // FIXMEchpe .svgz
+    return NULL;
 
-  if ((env = g_getenv ("GAMES_CARD_THEME_PATH_PREIMAGE")))
-    return env;
-  if ((env = g_getenv ("GAMES_CARD_THEME_PATH")))
-    return env;
-
-  return games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY);
+  return _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
+                                     path,
+                                     filename, /* FIXME */
+                                     filename, /* FIXME */
+                                     NULL, NULL);
 }
 
-static const char *
-games_card_theme_preimage_get_theme_glob (GamesCardThemeClass *klass)
+// FIXMEchpe move this to derived classes
+static void
+games_card_theme_preimage_class_get_theme_infos (GamesCardThemeClass *klass,
+                                                 GList **list)
 {
-  return "*.svg"; // FIXMEchpe: svgz ?
+  _games_card_theme_class_append_theme_info_foreach_env
+    (klass, "GAMES_CARD_THEME_PATH_PREIMAGE", list);
+
+  _games_card_theme_class_append_theme_info_foreach
+    (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), list);
 }
 
 static void
@@ -340,15 +293,13 @@ games_card_theme_preimage_class_init (GamesCardThemePreimageClass * klass)
 
   gobject_class->finalize = games_card_theme_preimage_finalize;
 
-  theme_class->get_default_theme_path = games_card_theme_preimage_get_default_theme_path;
-  theme_class->get_theme_glob = games_card_theme_preimage_get_theme_glob;
-  theme_class->load_theme = games_card_theme_preimage_load_theme;
-  theme_class->get_theme_name = games_card_theme_preimage_get_theme_name;
+  theme_class->get_theme_info = games_card_theme_preimage_class_get_theme_info;
+  theme_class->get_theme_infos = games_card_theme_preimage_class_get_theme_infos;
+
+  theme_class->load = games_card_theme_preimage_load;
   theme_class->set_card_size = games_card_theme_preimage_set_card_size;
   theme_class->get_card_size = games_card_theme_preimage_get_card_size;
   theme_class->get_card_aspect = games_card_theme_preimage_get_card_aspect;
   theme_class->get_card_pixbuf = NULL;
   theme_class->set_font_options = games_card_theme_preimage_set_font_options;
 }
-
-/* No public API */

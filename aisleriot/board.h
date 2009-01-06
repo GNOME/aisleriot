@@ -21,6 +21,9 @@
 #define AISLERIOT_BOARD_H
 
 #include <gtk/gtk.h>
+
+#include <libgames-support/games-card-theme.h>
+
 #include "game.h"
 
 G_BEGIN_DECLS
@@ -58,13 +61,12 @@ struct _AisleriotBoardClass {
 
 GType aisleriot_board_get_type (void);
 
-GtkWidget *aisleriot_board_new (AisleriotGame * game,
-                                gboolean scalable_cards);
+GtkWidget *aisleriot_board_new (AisleriotGame *game);
 
-gboolean aisleriot_board_set_card_theme (AisleriotBoard * board,
-                                         const char *card_theme);
+void aisleriot_board_set_card_theme (AisleriotBoard * board,
+                                     GamesCardTheme *theme);
 
-const char *aisleriot_board_get_card_theme (AisleriotBoard * board);
+GamesCardTheme *aisleriot_board_get_card_theme (AisleriotBoard * board);
 
 void aisleriot_board_set_click_to_move (AisleriotBoard * board,
                                         gboolean click_to_move);

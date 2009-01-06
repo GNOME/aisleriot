@@ -110,7 +110,6 @@ struct _AisleriotBoardPrivate
   GdkCursor *cursor[LAST_CURSOR];
 
   GamesCardTheme *theme;
-  char *card_theme;
   CardSize card_size;
 
   double width;
@@ -191,7 +190,6 @@ struct _AisleriotBoardPrivate
 
   guint show_selection : 1;
   guint show_highlight : 1;
-  guint scalable_cards : 1;
 
   guint force_geometry_update : 1;
 };
@@ -202,7 +200,6 @@ enum
 {
   PROP_0,
   PROP_GAME,
-  PROP_SCALABLE_CARDS,
   PROP_THEME
 };
 
@@ -1415,6 +1412,9 @@ aisleriot_board_screen_font_options_changed (GdkScreen *screen,
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
   const cairo_font_options_t *font_options;
+
+  if (!priv->theme)
+    return;
 
   font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
   games_card_theme_set_font_options (priv->theme, font_options);
@@ -3356,9 +3356,7 @@ aisleriot_board_constructor (GType type,
 
   g_assert (priv->game != NULL);
 
-  /* Create this down here since we need to have the scalable_cards value */
-  priv->theme = games_card_theme_new ();
-  priv->images = games_card_images_new (priv->theme);
+  priv->images = games_card_images_new ();
 
   return object;
 }
@@ -3374,12 +3372,12 @@ aisleriot_board_finalize (GObject *object)
                                         0, 0, NULL, NULL, board);
   g_object_unref (priv->game);
 
-  g_free (priv->card_theme);
-
   g_byte_array_free (priv->moving_cards, TRUE);
 
   g_object_unref (priv->images);
-  g_object_unref (priv->theme);
+
+  if (priv->theme)
+    g_object_unref (priv->theme);
 
 #if 0
   screen = gtk_widget_get_settings (widget);
@@ -3406,10 +3404,7 @@ aisleriot_board_get_property (GObject *object,
 
   switch (prop_id) {
     case PROP_THEME:
-      g_value_set_string (value, aisleriot_board_get_card_theme (board));
-      break;
-    case PROP_SCALABLE_CARDS:
-      g_value_set_boolean (value, priv->scalable_cards);
+      g_value_set_object (value, aisleriot_board_get_card_theme (board));
       break;
   }
 }
@@ -3438,10 +3433,7 @@ aisleriot_board_set_property (GObject *object,
 
       break;
     case PROP_THEME:
-      aisleriot_board_set_card_theme (board, g_value_get_string (value));
-      break;
-    case PROP_SCALABLE_CARDS:
-      priv->scalable_cards = g_value_get_boolean (value) != FALSE;
+      aisleriot_board_set_card_theme (board, g_value_get_object (value));
       break;
   }
 }
@@ -3555,16 +3547,9 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
 
   g_object_class_install_property
     (gobject_class,
-     PROP_SCALABLE_CARDS,
-     g_param_spec_boolean ("scalable-cards", NULL, NULL,
-                           FALSE,
-                           G_PARAM_WRITABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_CONSTRUCT_ONLY));
-
-  g_object_class_install_property
-    (gobject_class,
      PROP_THEME,
-     g_param_spec_string ("theme", NULL, NULL,
-                          NULL,
+     g_param_spec_object ("theme", NULL, NULL,
+                          GAMES_TYPE_CARD_THEME,
                           G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
   gtk_widget_class_install_style_property
@@ -3638,53 +3623,62 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
 /* public API */
 
 GtkWidget *
-aisleriot_board_new (AisleriotGame *game,
-                     gboolean scalable_cards)
+aisleriot_board_new (AisleriotGame *game)
 {
   return g_object_new (AISLERIOT_TYPE_BOARD,
                        "game", game,
-                       "scalable-cards", scalable_cards,
                        NULL);
 }
 
-gboolean
+void
 aisleriot_board_set_card_theme (AisleriotBoard *board,
-                                const char *card_theme)
+                                GamesCardTheme *theme)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  gboolean retval;
+  GtkWidget *widget = GTK_WIDGET (board);
 
-  g_return_val_if_fail (card_theme != NULL && card_theme[0] != '\0', FALSE);
+  g_return_if_fail (AISLERIOT_IS_BOARD (board));
+  g_return_if_fail (GAMES_IS_CARD_THEME (theme));
+
+  if (theme == priv->theme)
+    return;
+
+  if (priv->theme) {
+    g_object_unref (priv->theme);
+  }
 
   priv->geometry_set = FALSE;
   priv->slot_image = NULL;
 
-  retval = games_card_theme_set_theme (priv->theme, NULL, card_theme);
+  if (gtk_widget_has_screen (widget)) {
+#warning FIXMEchpe move this to AisleriotWindow
+    const cairo_font_options_t *font_options;
 
-  /* NOTE! We need to do this even if setting the theme failed, since
-   * the attempt will have wiped out the old theme data!
-   */
-  if (GTK_WIDGET_REALIZED (board)) {
+    font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
+    games_card_theme_set_font_options (theme, font_options);
+  }
+
+  priv->theme = g_object_ref (theme);
+  
+  games_card_images_set_theme (priv->images, priv->theme);
+
+  if (GTK_WIDGET_REALIZED (widget)) {
     /* Update card size and slot locations for new card theme (might have changed aspect!)*/
     aisleriot_board_setup_geometry (board);
 
-    gtk_widget_queue_draw (GTK_WIDGET (board));
+#warning FIXMEchpe queue resize if the new card theme  has a minimum size / the old had one and the one doesnt
+    gtk_widget_queue_draw (widget);
   }
 
   g_object_notify (G_OBJECT (board), "theme");
-
-  return retval;
 }
 
-const char *
+GamesCardTheme *
 aisleriot_board_get_card_theme (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  const char *theme;
 
-  theme = games_card_theme_get_theme (priv->theme);
-
-  return theme != NULL ? theme : GAMES_CARD_THEME_DEFAULT;
+  return priv->theme;
 }
 
 void

@@ -1,5 +1,5 @@
 /*
- *  Copyright © 2007 Christian Persch
+ *  Copyright © 2007, 2008 Christian Persch
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -14,8 +14,6 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- *
- *  $Id$
  */
 
 #include <config.h>
@@ -29,12 +27,14 @@
 #include <gtk/gtk.h>
 
 #include "games-card-theme.h"
+#include "games-card-theme-private.h"
 
 int
 main (int argc, char *argv[])
 {
   GError *err = NULL;
   char *basepath = NULL, *kfname, *kfpath;
+  GamesCardThemeInfo *theme_info = NULL;
   GamesCardTheme *theme = NULL;
   GKeyFile *key_file = NULL;
   int i;
@@ -130,7 +130,18 @@ main (int argc, char *argv[])
     goto loser;
   }
 
-  theme = games_card_theme_svg_new ();
+
+  theme_info = _games_card_theme_info_new (GAMES_TYPE_CARD_THEME_SVG,
+                                           theme_dir,
+                                           theme_name /* FIXMEchpe append .svg */,
+                                           theme_name,
+                                           NULL, NULL);
+  theme = games_card_theme_get (theme_info);
+  if (!theme) {
+    /* FIXMEchpe print real error */
+    g_warning ("Failed to load theme '%s'\n", theme_name);
+    goto loser;
+  }
 
   if (antialias_set) {
     cairo_font_options_t *font_options;
@@ -140,11 +151,6 @@ main (int argc, char *argv[])
     cairo_font_options_set_subpixel_order (font_options, subpixels);
     games_card_theme_set_font_options (theme, font_options);
     cairo_font_options_destroy (font_options);
-  }
-
-  if (!games_card_theme_set_theme (theme, theme_dir, theme_name)) {
-    g_warning ("Failed to load theme '%s'\n", theme_name);
-    goto loser;
   }
 
   if (g_mkdir_with_parents (outpath, 0755) < 0) {
@@ -253,6 +259,8 @@ loser:
   g_strfreev (args);
   if (theme)
     g_object_unref (theme);
+  if (theme_info)
+    games_card_theme_info_unref (theme_info);
   if (key_file)
     g_key_file_free (key_file);
 
