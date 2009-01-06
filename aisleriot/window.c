@@ -139,7 +139,6 @@ struct _AisleriotWindowPrivate
 
   guint load_idle_id;
 
-  guint scalable_cards : 1;
   guint use_pixbuf_drawing : 1;
   guint changing_game_type : 1;
   guint freecell_mode : 1;
@@ -1558,10 +1557,11 @@ install_card_theme_menu (AisleriotWindow *window)
 
   priv->card_themes_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
-  if (priv->theme)
+  if (priv->theme) {
     current_theme_info = games_card_theme_get_theme_info (priv->theme);
-  else
+  } else {
     current_theme_info = NULL;
+  }
 
   for (l = list; l != NULL; l = l->next) {
     GamesCardThemeInfo *info = (GamesCardThemeInfo *) l->data;
@@ -2369,36 +2369,20 @@ aisleriot_window_init (AisleriotWindow *window)
 
   priv->game = aisleriot_game_new ();
 
-  /* FIXMEchpe: case HAVE_HILDON && HAVE_RSVG ! */
 #ifdef HAVE_HILDON
-  priv->scalable_cards = FALSE;
   priv->use_pixbuf_drawing = FALSE;
 #else
-#ifdef HAVE_RSVG
-  /* Default to scalable */
-  env = g_getenv ("AISLERIOT_CARDS_SCALABLE");
-  priv->scalable_cards = env == NULL || g_ascii_strtoull (env, NULL, 0) != 0;
-#else
-  priv->scalable_cards = FALSE;
-#endif /* HAVE_RSVG */
-
   /* Default to pixbuf drawing */
   env = g_getenv ("AISLERIOT_PIXBUF_DRAWING");
   priv->use_pixbuf_drawing = env == NULL || g_ascii_strtoull (env, NULL, 10) != 0;
+#endif /* HAVE_HILDON */
 
 #ifdef GNOME_ENABLE_DEBUG
-  if (priv->scalable_cards)
-    g_print ("Using scalable cards\n");
-  else
-    g_print ("Using prerendered card images\n");
-
   if (priv->use_pixbuf_drawing)
     g_print ("Using pixbuf drawing method\n");
   else
     g_print ("Using pixmap drawing method\n");
 #endif /* GNOME_ENABLE_DEBUG */
-
-#endif /* HAVE_MAEMO */
 
   priv->theme_manager = games_card_themes_new ();
 
