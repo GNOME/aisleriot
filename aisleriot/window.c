@@ -1540,7 +1540,8 @@ card_theme_changed_cb (GtkToggleAction *action,
 }
 
 static void
-install_card_theme_menu (AisleriotWindow *window)
+install_card_theme_menu (GamesCardThemes *theme_manager,
+                         AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
   GList *list, *l;
@@ -1561,7 +1562,6 @@ install_card_theme_menu (AisleriotWindow *window)
   /* See gtk bug #424448 */
   gtk_ui_manager_ensure_update (priv->ui_manager);
 
-  games_card_themes_request_themes (priv->theme_manager);
   list = games_card_themes_get_themes (priv->theme_manager);
 
   /* No need to install the menu when there's only one theme available anyway */
@@ -1630,6 +1630,24 @@ install_card_theme_menu (AisleriotWindow *window)
 
   /* The list elements' data's refcount has been adopted above */
   g_list_free (list);
+}
+
+#ifdef HAVE_HILDON
+static void
+main_menu_show_cb (GtkMenu *menu,
+                   AisleriotWindow *window)
+#else
+static void
+view_menu_activate_cb (GtkAction *action,
+                       AisleriotWindow *window)
+#endif    
+{
+  AisleriotWindowPrivate *priv = window->priv;
+
+  /* Request the list of themes. If it wasn't updated yet, the "changed"
+   * callback will build the card themes submenu.
+   */
+  games_card_themes_request_themes (priv->theme_manager);
 }
 
 /* Callbacks */
@@ -2417,6 +2435,8 @@ aisleriot_window_init (AisleriotWindow *window)
 #endif /* GNOME_ENABLE_DEBUG */
 
   priv->theme_manager = games_card_themes_new ();
+  g_signal_connect (priv->theme_manager, "changed",
+                    G_CALLBACK (install_card_theme_menu), window);
 
   priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->game));
 
@@ -2543,10 +2563,24 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_widget_show_all (GTK_WIDGET (tool_item));
 #endif
 
-  /* The actions and menus are done. Add the card themes menu; the
+  /* Defer building the card themes menu until its parent's menu is opened */
+#ifdef HAVE_HILDON
+  /* FIXMEchpe check this works! */
+  g_signal_connect (priv->main_menu, "show",
+                    G_CALLBACK (main_menu_show_cb), window);
+#else
+  action = gtk_action_group_get_action (priv->action_group, "ViewMenu");
+  g_signal_connect (action, "activate",
+                    G_CALLBACK (view_menu_activate_cb), window);
+
+  /* So the menu doesn't change size when the theme submenu is installed */
+  action = gtk_action_group_get_action (priv->action_group, "ThemeMenu");
+  g_object_set (action, "hide-if-empty", GINT_TO_POINTER (FALSE), NULL);
+#endif
+
+  /* The actions and menus are done. The
    * recent games menu will be updated when the initial game loads.
    */
-  install_card_theme_menu (window);
 
   accel_group = gtk_ui_manager_get_accel_group (priv->ui_manager);
   gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
