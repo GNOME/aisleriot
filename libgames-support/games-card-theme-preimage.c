@@ -281,18 +281,6 @@ games_card_theme_preimage_class_get_theme_info (GamesCardThemeClass *klass,
   return info;
 }
 
-// FIXMEchpe move this to derived classes
-static void
-games_card_theme_preimage_class_get_theme_infos (GamesCardThemeClass *klass,
-                                                 GList **list)
-{
-  _games_card_theme_class_append_theme_info_foreach_env
-    (klass, "GAMES_CARD_THEME_PATH_PREIMAGE", list);
-
-  _games_card_theme_class_append_theme_info_foreach
-    (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), list);
-}
-
 static void
 games_card_theme_preimage_class_init (GamesCardThemePreimageClass * klass)
 {
@@ -302,7 +290,6 @@ games_card_theme_preimage_class_init (GamesCardThemePreimageClass * klass)
   gobject_class->finalize = games_card_theme_preimage_finalize;
 
   theme_class->get_theme_info = games_card_theme_preimage_class_get_theme_info;
-  theme_class->get_theme_infos = games_card_theme_preimage_class_get_theme_infos;
 
   theme_class->load = games_card_theme_preimage_load;
   theme_class->set_card_size = games_card_theme_preimage_set_card_size;

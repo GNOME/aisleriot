@@ -207,10 +207,26 @@ games_card_theme_sliced_init (GamesCardThemeSliced *theme)
 }
 
 static void
+games_card_theme_sliced_class_get_theme_infos (GamesCardThemeClass *klass,
+                                               GList **list)
+{
+  _games_card_theme_class_append_theme_info_foreach_env
+    (klass, "GAMES_CARD_THEME_PATH_SLICED", list);
+
+  // FIXMEchpe find the old theme path
+#if 0
+  _games_card_theme_class_append_theme_info_foreach
+    (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), list);
+#endif
+}
+
+static void
 games_card_theme_sliced_class_init (GamesCardThemeSlicedClass * klass)
 {
   GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
   GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
+
+  theme_class->get_theme_infos = games_card_theme_sliced_class_get_theme_infos;
 
   theme_class->load = games_card_theme_sliced_load;
   theme_class->get_card_pixbuf = games_card_theme_sliced_get_card_pixbuf;
