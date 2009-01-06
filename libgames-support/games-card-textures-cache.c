@@ -38,6 +38,10 @@ enum
   PROP_CARD_IMAGES
 };
 
+/* This is an invalid value for a CoglHandle, and distinct from COGL_INVALID_HANDLE */
+#define FAILED_POINTER ((gpointer) 0x1)
+#define IS_FAILED_POINTER(ptr) (G_UNLIKELY ((ptr) == FAILED_POINTER))
+
 static void games_card_textures_cache_dispose (GObject *object);
 static void games_card_textures_cache_finalize (GObject *object);
 
@@ -61,7 +65,7 @@ games_card_textures_cache_unref_images (GamesCardTexturesCache *cache)
 
 static void
 games_card_textures_cache_set_card_images (GamesCardTexturesCache *cache,
-                                      GamesCardImages *card_images)
+                                           GamesCardImages *card_images)
 {
   GamesCardTexturesCachePrivate *priv = cache->priv;
 
@@ -73,10 +77,9 @@ games_card_textures_cache_set_card_images (GamesCardTexturesCache *cache,
   priv->card_images = card_images;
 
   if (card_images)
-    priv->theme_handler
-      = g_signal_connect_swapped (card_images, "notify::theme",
-                                  G_CALLBACK (games_card_textures_cache_clear),
-                                  NULL);
+    priv->theme_handler = g_signal_connect_swapped (card_images, "notify::theme",
+                                                    G_CALLBACK (games_card_textures_cache_clear),
+                                                    cache);
 
   games_card_textures_cache_clear (cache);
 
@@ -203,11 +206,16 @@ games_card_textures_cache_clear (GamesCardTexturesCache *cache)
   GamesCardTexturesCachePrivate *priv = cache->priv;
   int i;
 
-  for (i = 0; i < GAMES_CARDS_TOTAL * 2; i++)
-    if (priv->cards[i] != COGL_INVALID_HANDLE) {
-      cogl_texture_unref (priv->cards[i]);
-      priv->cards[i] = COGL_INVALID_HANDLE;
+  for (i = 0; i < GAMES_CARDS_TOTAL * 2; i++) {
+    CoglHandle *handle = priv->cards[i];
+
+    if (handle != COGL_INVALID_HANDLE &&
+        !IS_FAILED_POINTER (handle)) {
+      cogl_texture_unref (handle);
     }
+
+    priv->cards[i] = COGL_INVALID_HANDLE;
+  }
 }
 
 /**
@@ -225,6 +233,7 @@ games_card_textures_cache_get_card_texture_by_id (GamesCardTexturesCache *cache,
 {
   GamesCardTexturesCachePrivate *priv;
   guint index;
+  CoglHandle handle;
 
   g_return_val_if_fail (GAMES_IS_CARD_TEXTURES_CACHE (cache), NULL);
   g_return_val_if_fail (card_id < GAMES_CARDS_TOTAL , NULL);
@@ -237,30 +246,39 @@ games_card_textures_cache_get_card_texture_by_id (GamesCardTexturesCache *cache,
   if (highlighted)
     index += GAMES_CARDS_TOTAL;
 
-  if (priv->cards[index] == COGL_INVALID_HANDLE) {
-    CoglHandle tex;
+  handle = priv->cards[index];
+  if (IS_FAILED_POINTER (handle))
+    return NULL;
+
+  if (handle == COGL_INVALID_HANDLE) {
     GdkPixbuf *pixbuf
       = games_card_images_get_card_pixbuf_by_id (priv->card_images,
                                                  card_id,
                                                  highlighted);
 
-    if (!pixbuf)
+    if (!pixbuf) {
+      priv->cards[index] = FAILED_POINTER;
       return COGL_INVALID_HANDLE;
+    }
 
-    tex = cogl_texture_new_from_data (gdk_pixbuf_get_width (pixbuf),
-                                      gdk_pixbuf_get_height (pixbuf),
-                                      64, FALSE,
-                                      gdk_pixbuf_get_has_alpha (pixbuf)
-                                      ? COGL_PIXEL_FORMAT_RGBA_8888
-                                      : COGL_PIXEL_FORMAT_RGB_888,
-                                      COGL_PIXEL_FORMAT_ANY,
-                                      gdk_pixbuf_get_rowstride (pixbuf),
-                                      gdk_pixbuf_get_pixels (pixbuf));
+    handle = cogl_texture_new_from_data (gdk_pixbuf_get_width (pixbuf),
+                                         gdk_pixbuf_get_height (pixbuf),
+                                         64, FALSE,
+                                         gdk_pixbuf_get_has_alpha (pixbuf)
+                                         ? COGL_PIXEL_FORMAT_RGBA_8888
+                                         : COGL_PIXEL_FORMAT_RGB_888,
+                                         COGL_PIXEL_FORMAT_ANY,
+                                         gdk_pixbuf_get_rowstride (pixbuf),
+                                         gdk_pixbuf_get_pixels (pixbuf));
+    if (!handle) {
+      priv->cards[index] = FAILED_POINTER;
+      return COGL_INVALID_HANDLE;
+    }
 
-    priv->cards[index] = tex;
+    priv->cards[index] = handle;
   }
 
-  return priv->cards[index];
+  return handle;
 }
 
 /**
