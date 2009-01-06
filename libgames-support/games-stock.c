@@ -395,9 +395,10 @@ games_stock_init (void)
   gtk_stock_add_static (games_stock_items, G_N_ELEMENTS (games_stock_items));
 }
 
-/* Returns a GPL 2+ license string for a specific game. */
-gchar *
-games_get_license (const gchar * game_name)
+/* Returns a GPL N+ license string for a specific game. */
+static gchar *
+games_get_license_version (const gchar * game_name,
+                           int version)
 {
   gchar *license_trans, *license_str;
 
@@ -405,7 +406,7 @@ games_get_license (const gchar * game_name)
     /* %s is replaced with the name of the game in gnome-games. */
     N_("%s is free software; you can redistribute it and/or modify "
        "it under the terms of the GNU General Public License as published by "
-       "the Free Software Foundation; either version 2 of the License, or "
+       "the Free Software Foundation; either version %d of the License, or "
        "(at your option) any later version.");
   static const char license1[] =
     N_("%s is distributed in the hope that it will be useful, "
@@ -443,8 +444,21 @@ games_get_license (const gchar * game_name)
 #endif /* ! GTK+ 2.8.0 */
 
   license_str =
-    g_strdup_printf (license_trans, game_name, game_name, game_name);
+    g_strdup_printf (license_trans, game_name, version, game_name, game_name);
   g_free (license_trans);
 
   return license_str;
+}
+
+/**
+ * gamess_get_licence:
+ *
+ * Returns: a newly allocated string with a GPL licence notice. The GPL version used
+ *   depends on the game and the configure options and is determined from
+ *   games_runtime_get_gpl_version()
+ */
+gchar *
+games_get_license (const gchar * game_name)
+{
+  return games_get_license_version (game_name, games_runtime_get_gpl_version ());
 }

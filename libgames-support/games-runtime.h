@@ -69,6 +69,8 @@ const char * games_runtime_get_directory (GamesRuntimeDirectory directory);
 char * games_runtime_get_file (GamesRuntimeDirectory directory,
                                const char *name);
 
+int games_runtime_get_gpl_version (void);
+
 G_END_DECLS
 
 #endif /* !GAMES_RUNTIME_H */

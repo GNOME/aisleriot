@@ -35,6 +35,7 @@
 #include "games-runtime.h"
 
 static char *app_name;
+static int gpl_version;
 static char *cached_directories[GAMES_RUNTIME_LAST_DIRECTORY];
 #ifdef G_OS_WIN32
 static char *module_path;
@@ -120,6 +121,13 @@ games_runtime_init (const char *name)
 #else
   retval = TRUE;
 #endif
+
+#if defined(ENABLE_CARD_THEME_FORMAT_KDE) || defined(ENABLE_CARD_THEME_FORMAT_SLICED) || defined(ENABLE_CARD_THEME_FORMAT_PYSOL)
+  if (strcmp (app_name, "aisleriot") == 0 || strcmp (app_name, "blackjack") == 0) {
+    gpl_version = 3;
+  } else
+#endif
+  gpl_version = 2;
 
   _games_profile_end ("games_runtime_init");
 
@@ -223,4 +231,15 @@ games_runtime_get_file (GamesRuntimeDirectory directory,
     return NULL;
 
   return g_build_filename (dir, name, NULL);
+}
+
+/**
+ * games_runtime_get_gpl_version:
+ *
+ * Returns: the minimum GPL version that the executable is licensed under
+ */
+int
+games_runtime_get_gpl_version (void)
+{
+  return gpl_version;
 }
