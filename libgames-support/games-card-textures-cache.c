@@ -244,6 +244,9 @@ games_card_textures_cache_get_card_texture_by_id (GamesCardTexturesCache *cache,
                                                  card_id,
                                                  highlighted);
 
+    if (!pixbuf)
+      return COGL_INVALID_HANDLE;
+
     tex = cogl_texture_new_from_data (gdk_pixbuf_get_width (pixbuf),
                                       gdk_pixbuf_get_height (pixbuf),
                                       64, FALSE,
