@@ -24,8 +24,6 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include "games-find-file.h"
-#include "games-files.h"
 #include "games-preimage.h"
 #include "games-profile.h"
 #include "games-runtime.h"
@@ -98,9 +96,9 @@ games_card_theme_sliced_prerender_scalable (GamesCardThemeSliced *theme)
 {
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) theme;
 
-  _games_profile_start ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((GamesCardTheme*)theme)->theme_info->display_name);
-
   g_assert (theme->source == NULL);
+
+  _games_profile_start ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((GamesCardTheme*)theme)->theme_info->display_name);
 
   theme->source = games_preimage_render (preimage_card_theme->cards_preimage,
                                          preimage_card_theme->card_size.width * 13,

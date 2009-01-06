@@ -25,8 +25,6 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include "games-find-file.h"
-#include "games-files.h"
 #include "games-preimage.h"
 #include "games-runtime.h"
 

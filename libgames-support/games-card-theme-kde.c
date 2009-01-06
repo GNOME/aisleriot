@@ -25,8 +25,6 @@
 #include <gtk/gtk.h>
 
 #include "games-debug.h"
-#include "games-find-file.h"
-#include "games-files.h"
 #include "games-profile.h"
 #include "games-preimage.h"
 #include "games-preimage-private.h"
