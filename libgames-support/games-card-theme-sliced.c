@@ -172,6 +172,35 @@ games_card_theme_sliced_init (GamesCardThemeSliced *theme)
   theme->subsize.width = theme->subsize.height = -1;
 }
 
+static GamesCardThemeInfo *
+games_card_theme_sliced_class_get_theme_info (GamesCardThemeClass *klass,
+                                              const char *path,
+                                              const char *filename)
+{
+  GamesCardThemeInfo *info;
+  char *name, *display_name;
+
+  info = GAMES_CARD_THEME_CLASS (games_card_theme_sliced_parent_class)->get_theme_info (klass, path, filename);
+  if (info)
+    return info;
+
+  /* This class also supports the old-style PNG format */
+  if (!g_str_has_suffix (filename, ".png"))
+    return NULL;
+
+  name = games_filename_to_display_name (filename);
+  display_name = g_strdup_printf ("%s (Ugly)", name);
+  info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
+                                     path,
+                                     filename,
+                                     display_name,
+                                     NULL, NULL);
+  g_free (name);
+  g_free (display_name);
+
+  return info;
+}
+
 static void
 games_card_theme_sliced_class_get_theme_infos (GamesCardThemeClass *klass,
                                                GList **list)
@@ -194,6 +223,7 @@ games_card_theme_sliced_class_init (GamesCardThemeSlicedClass * klass)
   GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
   GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
 
+  theme_class->get_theme_info = games_card_theme_sliced_class_get_theme_info;
   theme_class->get_theme_infos = games_card_theme_sliced_class_get_theme_infos;
 
   theme_class->load = games_card_theme_sliced_load;
