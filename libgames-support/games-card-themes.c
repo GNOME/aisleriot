@@ -617,6 +617,19 @@ games_card_themes_get_theme_any (GamesCardThemes *theme_manager)
 }
 
 /**
+ * games_card_themes_get_themes_loaded:
+ *
+ * Returns: %TRUE iff the themes list has been loaded
+ */
+gboolean
+games_card_themes_get_themes_loaded (GamesCardThemes *theme_manager)
+{
+  g_return_val_if_fail (GAMES_IS_CARD_THEMES (theme_manager), FALSE);
+
+  return theme_manager->theme_infos_loaded;
+}
+
+/**
  * games_card_themes_get_themes:
  *
  * Gets the list of known themes. Note that you may need to call

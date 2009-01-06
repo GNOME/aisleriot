@@ -2575,6 +2575,14 @@ aisleriot_window_init (AisleriotWindow *window)
 #endif
 #endif
 
+  /* It's possible that the themes list has already been loaded (e.g.
+   * if the theme loading above involved the fallback); in that case
+   * we need to update the menu right now.
+   */
+  if (games_card_themes_get_themes_loaded (priv->theme_manager))
+    install_card_theme_menu (priv->theme_manager, window);
+
+  /* Rebuild the themes menu when the themes list changes */
   g_signal_connect (priv->theme_manager, "changed",
                     G_CALLBACK (install_card_theme_menu), window);
 

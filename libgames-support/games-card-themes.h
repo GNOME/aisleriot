@@ -45,6 +45,8 @@ GamesCardThemes *games_card_themes_new (void);
 
 void games_card_themes_request_themes (GamesCardThemes *theme_manager);
 
+gboolean games_card_themes_get_themes_loaded (GamesCardThemes *theme_manager);
+
 GList *games_card_themes_get_themes (GamesCardThemes *theme_manager);
 
 GamesCardTheme *games_card_themes_get_theme (GamesCardThemes *theme_manager,
