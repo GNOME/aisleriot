@@ -192,10 +192,9 @@ games_card_theme_kde_class_get_theme_infos (GamesCardThemeClass *klass,
   _games_card_theme_class_append_theme_info_foreach_env
     (klass, "GAMES_CARD_THEME_PATH_KDE", list);
 
-#if 0
+  /* FIXMEchpe: is this universal, or ubuntu specific? */
   _games_card_theme_class_append_theme_info_foreach
-    (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), list);
-#endif
+    (klass, "/usr/share/kde4/apps/carddecks", list);
 }
 
 static void
