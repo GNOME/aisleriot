@@ -30,6 +30,8 @@ libgames_support_la_SOURCES =		\
 	games-card-images.h		\
 	games-card-theme.c		\
 	games-card-theme.h		\
+	games-card-theme-private.h	\
+	games-card-theme-fixed.c	\
 	games-conf.c			\
 	games-conf.h			\
 	games-files.c			\
@@ -85,6 +87,12 @@ libgames_support_la_SOURCES +=		\
 	games-dlg-players.h		\
 	$(NULL)	
 endif
+endif
+
+if HAVE_RSVG
+libgames_support_la_SOURCES += \
+	games-card-theme-svg.c		\
+	$(NULL)
 endif
 
 if HAVE_CLUTTER

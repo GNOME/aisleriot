@@ -3357,7 +3357,11 @@ aisleriot_board_constructor (GType type,
   g_assert (priv->game != NULL);
 
   /* Create this down here since we need to have the scalable_cards value */
-  priv->theme = games_card_theme_new (NULL, priv->scalable_cards);
+  if (priv->scalable_cards)
+    priv->theme = games_card_theme_svg_new ();
+  else
+    priv->theme = games_card_theme_fixed_new ();
+
   priv->images = games_card_images_new (priv->theme);
 
   return object;
@@ -3659,7 +3663,7 @@ aisleriot_board_set_card_theme (AisleriotBoard *board,
   priv->geometry_set = FALSE;
   priv->slot_image = NULL;
 
-  retval = games_card_theme_set_theme (priv->theme, card_theme);
+  retval = games_card_theme_set_theme (priv->theme, NULL, card_theme);
 
   /* NOTE! We need to do this even if setting the theme failed, since
    * the attempt will have wiped out the old theme data!

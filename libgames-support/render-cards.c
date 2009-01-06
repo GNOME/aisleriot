@@ -130,7 +130,7 @@ main (int argc, char *argv[])
     goto loser;
   }
 
-  theme = games_card_theme_new (NULL, TRUE);
+  theme = games_card_theme_svg_new ();
 
   if (antialias_set) {
     cairo_font_options_t *font_options;
@@ -142,7 +142,7 @@ main (int argc, char *argv[])
     cairo_font_options_destroy (font_options);
   }
 
-  if (!games_card_theme_set_theme (theme, theme_name)) {
+  if (!games_card_theme_set_theme (theme, theme_dir, theme_name)) {
     g_warning ("Failed to load theme '%s'\n", theme_name);
     goto loser;
   }

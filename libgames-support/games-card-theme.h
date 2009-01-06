@@ -1,6 +1,6 @@
 /*
   Copyright © 2004 Callum McKenzie
-  Copyright © 2007 Christian Persch
+  Copyright © 2007, 2008 Christian Persch
 
   This library is free software; you can redistribute it and'or modify
   it under the terms of the GNU Library General Public License as published
@@ -28,12 +28,20 @@
 
 G_BEGIN_DECLS
 
+#define GAMES_CARD_THEME_ERROR  (g_quark_from_static_string ("games-card-theme"))
+
+typedef enum {
+  GAMES_CARD_THEME_ERROR_GENERIC = 0
+} GamesCardThemeError;
+
+/* GamesCardTheme */
+
 #define GAMES_TYPE_CARD_THEME            (games_card_theme_get_type ())
 #define GAMES_CARD_THEME(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME, GamesCardTheme))
 #define GAMES_CARD_THEME_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_THEME, GamesCardThemeClass))
 #define GAMES_IS_CARD_THEME(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_THEME))
 #define GAMES_IS_CARD_THEME_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_THEME))
-#define GAMES_CARD_THEME_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_THEME))
+#define GAMES_CARD_THEME_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_THEME, GamesCardThemeClass))
 
 typedef struct {
   gint width;
@@ -45,29 +53,60 @@ typedef struct _GamesCardTheme      GamesCardTheme;
 
 GType games_card_theme_get_type (void);
 
-GamesCardTheme *games_card_theme_new (const char *theme_dir,
-                                      gboolean scalable);
-
 #if GTK_CHECK_VERSION (2, 10, 0)
 void games_card_theme_set_font_options (GamesCardTheme *theme,
                                         const cairo_font_options_t *font_options);
 #endif
 
-gboolean games_card_theme_set_theme (GamesCardTheme * theme,
-                                     const gchar * name);
+gboolean games_card_theme_set_theme (GamesCardTheme *theme,
+                                     const char *theme_dir,
+                                     const char *theme_name);
 
 const gchar *games_card_theme_get_theme (GamesCardTheme * theme);
 
 gboolean games_card_theme_set_size (GamesCardTheme * theme,
-                                    gint width,
-                                    gint height, gdouble proportion);
+                                    int width,
+                                    int height,
+                                    double proportion);
 
 CardSize games_card_theme_get_size (GamesCardTheme * theme);
 
 double games_card_theme_get_aspect (GamesCardTheme * theme);
 
 GdkPixbuf *games_card_theme_get_card_pixbuf (GamesCardTheme * theme,
-                                             gint cardid);
+                                             int cardid);
+
+/* GamesCardThemeSVG */
+
+#define GAMES_TYPE_CARD_THEME_SVG            (games_card_theme_svg_get_type ())
+#define GAMES_CARD_THEME_SVG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME_SVG, GamesCardThemeSVG))
+#define GAMES_CARD_THEME_SVG_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_THEME_SVG, GamesCardThemeSVGClass))
+#define GAMES_IS_CARD_THEME_SVG(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_THEME_SVG))
+#define GAMES_IS_CARD_THEME_SVG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_THEME_SVG))
+#define GAMES_CARD_THEME_SVG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_THEME_SVG, GamesCardThemeSVGClass))
+
+typedef struct _GamesCardThemeSVGClass GamesCardThemeSVGClass;
+typedef struct _GamesCardThemeSVG      GamesCardThemeSVG;
+
+GType games_card_theme_svg_get_type (void);
+
+GamesCardTheme* games_card_theme_svg_new (void);
+
+/* GamesCardThemeFixed */
+
+#define GAMES_TYPE_CARD_THEME_FIXED            (games_card_theme_fixed_get_type ())
+#define GAMES_CARD_THEME_FIXED(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_THEME_FIXED, GamesCardThemeFixed))
+#define GAMES_CARD_THEME_FIXED_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_THEME_FIXED, GamesCardThemeFixedClass))
+#define GAMES_IS_CARD_THEME_FIXED(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_THEME_FIXED))
+#define GAMES_IS_CARD_THEME_FIXED_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_THEME_FIXED))
+#define GAMES_CARD_THEME_FIXED_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_THEME_FIXED, GamesCardThemeFixedClass))
+
+typedef struct _GamesCardThemeFixedClass GamesCardThemeFixedClass;
+typedef struct _GamesCardThemeFixed      GamesCardThemeFixed;
+
+GType games_card_theme_fixed_get_type (void);
+
+GamesCardTheme* games_card_theme_fixed_new (void);
 
 G_END_DECLS
 
