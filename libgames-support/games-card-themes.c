@@ -254,6 +254,11 @@ games_card_themes_get_theme_infos_in_dir (GamesCardThemeClass *klass,
   GDir *iter;
   const char *filename;
 
+  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                      "Looking for %s themes in %s\n",
+                      G_OBJECT_CLASS_NAME (klass),
+                      path);
+
   _games_profile_start ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
 
   iter = g_dir_open (path, 0, NULL);
@@ -290,6 +295,12 @@ games_card_themes_try_theme_info_by_filename (GamesCardThemeClass *klass,
                                               const char *path,
                                               LookupData *data)
 {
+  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                      "Looking for theme %s/%s in %s\n",
+                      G_OBJECT_CLASS_NAME (klass),
+                      data->filename,
+                      path);
+
   /* Try constructing the theme info */
   data->theme_info = _games_card_theme_class_get_theme_info (klass, path, data->filename);
 
