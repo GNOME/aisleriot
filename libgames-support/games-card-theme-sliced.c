@@ -73,10 +73,9 @@ games_card_theme_sliced_load (GamesCardTheme *card_theme,
 {
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
   GamesCardThemeSliced *theme = (GamesCardThemeSliced *) card_theme;
-  gboolean retval = FALSE;
 
   if (!GAMES_CARD_THEME_CLASS (games_card_theme_sliced_parent_class)->load (card_theme, error))
-    goto out;
+    return FALSE;
 
   /* If we don't have a scalable format, build a scaled pixbuf that we'll cut up later */
   theme->prescaled = games_preimage_is_scalable (preimage_card_theme->cards_preimage);
@@ -84,11 +83,7 @@ games_card_theme_sliced_load (GamesCardTheme *card_theme,
     theme->source = games_preimage_render_unscaled_pixbuf (preimage_card_theme->cards_preimage);
   }
 
-  retval = TRUE;
-
-out:
-
-  return retval;
+  return TRUE;
 }
 
 static gboolean
@@ -229,6 +224,7 @@ games_card_theme_sliced_class_init (GamesCardThemeSlicedClass * klass)
   theme_class->load = games_card_theme_sliced_load;
   theme_class->get_card_pixbuf = games_card_theme_sliced_get_card_pixbuf;
 
+  preimage_theme_class->needs_scalable_cards = FALSE;
   preimage_theme_class->clear_sized_theme_data = games_card_theme_sliced_clear_sized_theme_data;
 }
 

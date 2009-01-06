@@ -116,6 +116,8 @@ typedef struct _GamesCardThemePreimage      GamesCardThemePreimage;
 struct _GamesCardThemePreimageClass {
   GamesCardThemeClass parent_class;
 
+  gboolean needs_scalable_cards;
+
   void (* clear_sized_theme_data) (GamesCardThemePreimage *card_theme);
 };
 

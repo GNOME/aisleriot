@@ -52,26 +52,6 @@ struct _GamesCardThemeSVG {
 
 G_DEFINE_TYPE (GamesCardThemeSVG, games_card_theme_svg, GAMES_TYPE_CARD_THEME_PREIMAGE);
 
-static gboolean
-games_card_theme_svg_load (GamesCardTheme *card_theme,
-                           GError **error)
-{
-  GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
-  gboolean retval = FALSE;
-
-  if (!GAMES_CARD_THEME_CLASS (games_card_theme_svg_parent_class)->load (card_theme, error))
-    goto out;
-
-  if (!games_preimage_is_scalable (preimage_card_theme->cards_preimage))
-    goto out;
-
-  retval = TRUE;
-
-out:
-
-  return retval;
-}
-
 static GdkPixbuf *
 games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
                                       int card_id)
@@ -141,11 +121,13 @@ static void
 games_card_theme_svg_class_init (GamesCardThemeSVGClass * klass)
 {
   GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
+  GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
 
   theme_class->get_theme_infos = games_card_theme_svg_class_get_theme_infos;
 
-  theme_class->load = games_card_theme_svg_load;
   theme_class->get_card_pixbuf = games_card_theme_svg_get_card_pixbuf;
+
+  preimage_theme_class->needs_scalable_cards = TRUE;
 }
 
 /* private API */

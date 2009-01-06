@@ -72,6 +72,8 @@ struct _GamesCardThemeKDE {
 #define KDE_BACKDECK_PYSOL_KEY    "PySol"
 #define KDE_BACKDECK_SVG_KEY      "SVG"
 
+#ifdef HAVE_RSVG_BBOX
+
 static CardBbox *
 games_card_theme_kde_get_card_bbox (GamesCardThemeKDE *theme,
                                     int card_id,
@@ -127,6 +129,8 @@ games_card_theme_kde_get_card_bbox (GamesCardThemeKDE *theme,
   return bbox;
 }
 
+#endif /* HAVE_RSVG_BBOX */
+
 /* Class implementation */
 
 G_DEFINE_TYPE (GamesCardThemeKDE, games_card_theme_kde, GAMES_TYPE_CARD_THEME_PREIMAGE);
@@ -135,31 +139,25 @@ static gboolean
 games_card_theme_kde_load (GamesCardTheme *card_theme,
                            GError **error)
 {
-  GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
+#ifdef HAVE_RSVG_BBOX
   GamesCardThemeKDE *theme = (GamesCardThemeKDE *) card_theme;
-  gboolean retval = FALSE;
   char node[32];
 
-#ifndef HAVE_RSVG_BBOX
-  return FALSE;
-#endif
-
   if (!GAMES_CARD_THEME_CLASS (games_card_theme_kde_parent_class)->load (card_theme, error))
-    goto out;
-
-  if (!games_preimage_is_scalable (preimage_card_theme->cards_preimage))
-    goto out;
+    return FALSE;
 
   /* Get the bbox of the card back, which we use to compute the theme's aspect ratio */
   games_card_get_node_by_id_snprintf (node, sizeof (node), GAMES_CARD_BACK);
-  if (!games_card_theme_kde_get_card_bbox (theme, GAMES_CARD_BACK, node))
-    goto out;
+  if (!games_card_theme_kde_get_card_bbox (theme, GAMES_CARD_BACK, node)) {
+    g_set_error (error, GAMES_CARD_THEME_ERROR, GAMES_CARD_THEME_ERROR_GENERIC,
+                 "Failed to get the theme's aspect ratio");
+    return FALSE;
+  }
 
-  retval = TRUE;
-
-out:
-
-  return retval;
+  return TRUE;
+#else
+  return FALSE;
+#endif /* HAVE_RSVG_BBOX */
 }
 
 static double
@@ -232,7 +230,7 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
   return subpixbuf;
 #else
   return NULL;
-#endif
+#endif /* HAVE_RSVG_BBOX */
 }
 
 static void
@@ -256,6 +254,7 @@ games_card_theme_kde_class_get_theme_info (GamesCardThemeClass *klass,
                                            const char *path,
                                            const char *filename)
 {
+#ifdef HAVE_RSVG_BBOX
   GamesCardThemeInfo *info = NULL;
   char *base_path = NULL, *key_file_path = NULL;
   GKeyFile *key_file = NULL;
@@ -297,6 +296,9 @@ out:
   }
 
   return info;
+#else
+  return NULL;
+#endif /* HAVE_RSVG_BBOX */
 }
 
 static void
@@ -316,6 +318,7 @@ games_card_theme_kde_class_init (GamesCardThemeKDEClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
+  GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
 
   gobject_class->finalize = games_card_theme_kde_finalize;
 
@@ -325,6 +328,8 @@ games_card_theme_kde_class_init (GamesCardThemeKDEClass * klass)
   theme_class->load = games_card_theme_kde_load;
   theme_class->get_card_aspect = games_card_theme_kde_get_card_aspect;
   theme_class->get_card_pixbuf = games_card_theme_kde_get_card_pixbuf;
+
+  preimage_theme_class->needs_scalable_cards = TRUE;
 }
 
 /* private API */

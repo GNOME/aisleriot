@@ -79,6 +79,13 @@ games_card_theme_preimage_load (GamesCardTheme *card_theme,
   if (!theme->cards_preimage)
     return FALSE;
 
+  if (GAMES_CARD_THEME_PREIMAGE_GET_CLASS (theme)->needs_scalable_cards &&
+      !games_preimage_is_scalable (theme->cards_preimage)) {
+    g_set_error (error, GAMES_CARD_THEME_ERROR, GAMES_CARD_THEME_ERROR_NOT_SCALABLE,
+                 "Theme is not scalable");
+    return FALSE;
+  }
+
   if (theme->font_options) {
     games_preimage_set_font_options (theme->slot_preimage, theme->font_options);
     games_preimage_set_font_options (theme->cards_preimage, theme->font_options);

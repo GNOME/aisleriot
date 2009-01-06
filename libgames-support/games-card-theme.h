@@ -31,7 +31,8 @@ G_BEGIN_DECLS
 #define GAMES_CARD_THEME_ERROR  (g_quark_from_static_string ("games-card-theme"))
 
 typedef enum {
-  GAMES_CARD_THEME_ERROR_GENERIC = 0
+  GAMES_CARD_THEME_ERROR_GENERIC = 0,
+  GAMES_CARD_THEME_ERROR_NOT_SCALABLE = 1
 } GamesCardThemeError;
 
 /* GamesCardThemeInfo (boxed) */
