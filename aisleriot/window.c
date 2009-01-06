@@ -1,7 +1,7 @@
 /*
  *  Copyright © 1998, 2003 Jonathan Blandford <jrb@alum.mit.edu>
  *  Copyright © 2003 Callum McKenzie <callum@physics.otago.ac.nz>
- *  Copyright © 2007, 2008 Christian Persch
+ *  Copyright © 2007, 2008, 2009 Christian Persch
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -2384,7 +2384,7 @@ aisleriot_window_init (AisleriotWindow *window)
   GtkAction *action;
   char *theme_name;
   GamesCardThemeInfo *theme_info;
-  GamesCardTheme *theme;
+  GamesCardTheme *theme = NULL;
   guint i;
 #ifdef HAVE_HILDON
   GtkToolItem *tool_item;
@@ -2425,13 +2425,18 @@ aisleriot_window_init (AisleriotWindow *window)
   theme_info = games_card_themes_get_theme_info_by_name (priv->theme_manager, theme_name);
   g_free (theme_name);
   if (!theme_info) {
-    //XXXtheme = games_card_themes_get_theme_any (priv->theme_manager);
+    games_card_themes_request_themes (priv->theme_manager);
+    games_card_themes_get_default_theme_info (priv->theme_manager);
   }
   if (theme_info) {
     theme = games_card_themes_get_theme (priv->theme_manager, theme_info);
-    if (theme) {
-      aisleriot_window_take_card_theme (window, theme /* adopts */);
-    }
+  }
+  if (!theme) {
+    /* Last-ditch fallback: try getting *any* theme */
+    theme = games_card_themes_get_theme_any (priv->theme_manager);
+  }
+  if (theme) {
+    aisleriot_window_take_card_theme (window, theme /* adopts */);
   } else {
     /* FIXMEchpe: FUCK, what now? Panic! */
   }
