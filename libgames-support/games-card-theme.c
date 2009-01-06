@@ -302,3 +302,40 @@ games_card_theme_get_card_pixbuf (GamesCardTheme * theme, gint card_id)
 
   return pixbuf;
 }
+
+/**
+ * games_card_theme_sliced_new:
+ *
+ * Returns: a new #GamesCardThemeSliced
+ */
+GamesCardTheme *
+games_card_theme_new (void)
+{
+  GType type = G_TYPE_INVALID;
+  const char *env;
+
+#if defined(HAVE_RSVG) && !defined(HAVE_HILDON)
+  /* Default to scalable */
+  type = GAMES_TYPE_CARD_THEME_SVG;
+#else
+  /* Default to non-scalable */
+  type = GAMES_TYPE_CARD_THEME_FIXED;
+#endif
+
+#ifndef HAVE_HILDON
+  env = g_getenv ("GAMES_CARD_THEME_FORMAT");
+  if (env) {
+#ifdef HAVE_RSVG
+    if (strcmp (env, "svg") == 0)
+      type = GAMES_TYPE_CARD_THEME_SVG;
+    else
+#endif
+    if (strcmp (env, "sliced") == 0)
+      type = GAMES_TYPE_CARD_THEME_SLICED;
+    else if (strcmp (env, "fixed") == 0)
+      type = GAMES_TYPE_CARD_THEME_FIXED;
+  }
+#endif /* !HAVE_HILDON */
+
+  return g_object_new (type, NULL);
+}

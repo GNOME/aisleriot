@@ -140,4 +140,8 @@ GamesCardTheme* games_card_theme_fixed_new (void);
 
 G_END_DECLS
 
+/* Utility functions */
+
+GamesCardTheme *games_card_theme_new (void);
+
 #endif /* GAMES_CARD_THEME_H */

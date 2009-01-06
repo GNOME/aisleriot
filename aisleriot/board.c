@@ -3184,11 +3184,7 @@ aisleriot_board_constructor (GType type,
   g_assert (priv->game != NULL);
 
   /* Create this down here since we need to have the scalable_cards value */
-  if (priv->scalable_cards)
-    priv->theme = games_card_theme_svg_new ();
-  else
-    priv->theme = games_card_theme_fixed_new ();
-
+  priv->theme = games_card_theme_new ();
   priv->images = games_card_images_new (priv->theme);
   priv->textures = games_card_textures_cache_new (priv->images);
 
