@@ -40,6 +40,8 @@ libgames_support_la_SOURCES =		\
 	games-help.h			\
 	games-pixbuf-utils.c		\
 	games-pixbuf-utils.h		\
+	games-profile.c			\
+	games-profile.h			\
 	games-runtime.c			\
 	games-runtime.h			\
 	games-sound.c			\
