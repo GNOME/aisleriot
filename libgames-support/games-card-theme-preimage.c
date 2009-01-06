@@ -52,8 +52,11 @@ G_DEFINE_ABSTRACT_TYPE (GamesCardThemePreimage, games_card_theme_preimage, GAMES
 void
 _games_card_theme_preimage_clear_sized_theme_data (GamesCardThemePreimage *theme)
 {
-  if (GAMES_CARD_THEME_PREIMAGE_GET_CLASS (theme)->clear_sized_theme_data)
-    GAMES_CARD_THEME_PREIMAGE_GET_CLASS (theme)->clear_sized_theme_data (theme);
+  void (* clear_sized_theme_data) (GamesCardThemePreimage *) =
+    GAMES_CARD_THEME_PREIMAGE_GET_CLASS (theme)->clear_sized_theme_data;
+
+  if (clear_sized_theme_data)
+    clear_sized_theme_data (theme);
 
 #ifdef INSTRUMENT_LOADING
   /* Reset the time */
@@ -203,8 +206,6 @@ games_card_theme_preimage_init (GamesCardThemePreimage * theme)
 {
   theme->card_size.width = theme->card_size.height = -1;
   theme->theme_name = NULL;
-
-  theme->prescaled = FALSE;
 }
 
 static void

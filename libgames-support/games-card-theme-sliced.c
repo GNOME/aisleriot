@@ -75,8 +75,6 @@ games_card_theme_sliced_clear_sized_theme_data (GamesCardThemePreimage *preimage
   /* Reset the time */
   totaltime = 0;
 #endif
-
-  GAMES_CARD_THEME_PREIMAGE_CLASS (games_card_theme_sliced_parent_class)->clear_sized_theme_data (preimage_card_theme);
 }
 
 static gboolean
@@ -132,7 +130,7 @@ games_card_theme_sliced_prerender_scalable (GamesCardThemeSliced * theme)
 #endif
 
   g_return_val_if_fail (preimage_card_theme->cards_preimage != NULL, FALSE);
-  g_return_val_if_fail (preimage_card_theme->prescaled
+  g_return_val_if_fail (theme->prescaled
                         || theme->source != NULL, FALSE);
 
   theme->source =
