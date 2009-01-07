@@ -182,7 +182,7 @@ games_card_get_localised_rank_symbol (int rank)
   static const char *ranks[] = {
     /* Translators: this is the symbol that's on a Joker card */
     NC_("card symbol", "JOKER"),
-    /* Translators: this is the symbol that's on an Ace (1) card */
+    /* Translators: this is the symbol that's on an Ace card */
     NC_("card symbol", "A"),
     /* Translators: this is the symbol that's on a 2 card */
     NC_("card symbol", "2"),
@@ -206,8 +206,10 @@ games_card_get_localised_rank_symbol (int rank)
     NC_("card symbol", "Q"),
     /* Translators: this is the symbol that's on a King card */
     NC_("card symbol", "K"),
-    /* Translators: this is the symbol that's on an Ace (1) card */
-    NC_("card symbol", "A")
+    /* Translators: this is the symbol that's on an Ace card */
+    NC_("card symbol", "A"),
+    /* Translators: this is the symbol that's on a 1 card */
+    NC_("card symbol", "1")
   };
 
   g_return_val_if_fail (rank >= GAMES_CARD_JOKER && rank <= GAMES_CARD_ACE_HIGH, NULL);
