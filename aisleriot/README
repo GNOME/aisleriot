@@ -41,13 +41,6 @@ GAMES_CARD_THEME_PATH_{SVG,KDE,SLICED,FIXED,PYSOL}:
 
     Set these variables to add extra paths to check for card themes.
 
-GAMES_DEBUG:
-  Values: use GAMES_DEBUG=help to see the list of available debug flags
-  Default: empty
-
-    Enabled extra debug output. Only available if configured with
-  --enable-debug.
-
 AISLERIOT_PIXBUF_DRAWING:
   Values: 0 or 1
   Default: 1 (hildon: 0)
@@ -57,6 +50,16 @@ AISLERIOT_PIXBUF_DRAWING:
   rendering artifacts caused by the 1-bit alphachannels of the pixmaps.
   Might be a bit slower though.
 
+Debugging & Valgrinding AisleRiot
+=================================
+
+If you configure gnome-games with --enable-debug, there is extra debugging
+output available by setting the GAMES_DEBUG env variable. Use
+GAMES_DEBUG=help to see the list of available debug flags.
+
+When using valgrind, use the included aisleriot.supp suppressions file to
+suppress common valgrind errors relating to guile's garbage collection.
+
 
 How to add a new game to Aisleriot
 ==================================
@@ -64,6 +67,7 @@ How to add a new game to Aisleriot
  * Move foo.scm file into rules/ and git add it
  * Add foo.scm to rules_DATA in rules/Makefile.am, keeping the list
    sorted alphabetically
+ * Add foo.scm to ../po/POTFILES.in
  * Move the documentation foo.xml file into help/C/ and git add it
  * Add foo.xml to DOC_ENITIES in help/Makefile.am, keeping the list
    sorted alphabetically
@@ -79,6 +83,6 @@ How to add a new game to Aisleriot
  * Run the ./gen-title.pl script
  * In help/, run "make check" to make sure the documentation validates
  * git commit help/C/foo.xml help/C/aisleriot.xml help/Makefile.am rules/foo.scm
-     rules/Makefile.am translatable_game_names.h
+     rules/Makefile.am translatable_game_names.h ../po/POTFILES.in
 
  Done!
