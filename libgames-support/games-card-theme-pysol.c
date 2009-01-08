@@ -75,12 +75,14 @@ typedef struct {
   char *name;
   char *base_path;
   char *ext;
-  char *back_filename;
   int version;
   int type;
   int n_cards;
   CardSize card_size;
   int card_delta;
+  char **backs;
+  int n_backs;
+  int default_back_index;
 } PySolConfigTxtData;
 
 static void
@@ -89,7 +91,7 @@ pysol_config_txt_data_free (PySolConfigTxtData *data)
   g_free (data->name);
   g_free (data->base_path);
   g_free (data->ext);
-  g_free (data->back_filename);
+  g_strfreev (data->backs);
   g_free (data);
 }
 
@@ -201,10 +203,27 @@ out:
 }
 
 static gboolean
-pysol_config_txt_parse_line_4 (PySolConfigTxtData *data,
-                               const char *line)
+pysol_config_txt_parse_line_4_and_5 (PySolConfigTxtData *data,
+                                     const char *line4,
+                                     const char *line5)
 {
-  data->back_filename = g_strstrip (g_strdup (line));
+  guint i;
+
+  data->backs = g_strsplit (line5, ";", -1);
+  if (!data->backs)
+    return FALSE;
+  data->n_backs = g_strv_length (data->backs);
+  if (data->n_backs < 1)
+    return FALSE;
+  for (i = 0; i < data->n_backs; ++i)
+    g_strstrip (data->backs[i]);
+
+  /* Get the index of the default back (specified in line[4]) */
+  data->default_back_index = 0;
+  for (i = 0; i < data->n_backs; ++i)
+    if (strcmp (data->backs[i], line4) == 0)
+      data->default_back_index = i;
+
   return TRUE;
 }
 
@@ -235,8 +254,7 @@ pysol_config_txt_parse (const char *path,
       !pysol_config_txt_parse_line_1 (pysol_data, g_strstrip (lines[1])) ||
         !pysol_data->name ||
       !pysol_config_txt_parse_line_2 (pysol_data, g_strstrip (lines[2])) ||
-      !pysol_config_txt_parse_line_4 (pysol_data, g_strstrip (lines[4])) ||
-        !pysol_data->back_filename)
+      !pysol_config_txt_parse_line_4_and_5 (pysol_data, g_strstrip (lines[4]), g_strstrip (lines[5])))
     goto out;
 
   pysol_data->base_path = g_build_filename (path, subdir, NULL);
@@ -313,7 +331,7 @@ games_card_theme_pysol_get_card_pixbuf (GamesCardTheme *card_theme,
   if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
     path = g_build_filename (data->base_path, "bottom01.gif" /* FIXMEchpe ext! */, NULL);
   } else if (G_UNLIKELY (card_id == GAMES_CARD_BACK)) {
-    path = g_build_filename (data->base_path, data->back_filename, NULL);
+    path = g_build_filename (data->base_path, data->backs[data->default_back_index], NULL);
   } else {
     static const char suit_char[] = "cdhs";
     int suit, rank;
