@@ -34,6 +34,8 @@
 #include "games-card-theme.h"
 #include "games-card-theme-private.h"
 
+#define MAX_N_BACKS (10)
+
 typedef struct {
   gboolean initialised;
   double width;
@@ -50,11 +52,21 @@ struct _GamesCardThemeKDE {
   GamesCardThemePreimage parent_instance;
 
   CardBbox *bboxes;
+
+  char *backs[MAX_N_BACKS];
+  guint n_backs : 4; /* enough bits for MAX_N_BACKS */
+  guint back_index : 4; /* same */
+  guint has_2_jokers : 1;
+  guint has_joker : 1;
 };
 
 #include <librsvg/librsvg-features.h>
-#if defined(HAVE_RSVG) && defined(LIBRSVG_CHECK_VERSION) && LIBRSVG_CHECK_VERSION(2, 22, 4)
-#define HAVE_RSVG_BBOX
+
+/* We need librsvg >= 2.22.4 here */
+#if defined(LIBRSVG_CHECK_VERSION)
+#if LIBRSVG_CHECK_VERSION(2, 22, 4)
+#define HAVE_NEW_RSVG
+#endif
 #endif
 
 #define N_ROWS ((double) 5.0)
@@ -90,7 +102,7 @@ get_is_blacklisted (const char *filename)
   return FALSE;
 }
 
-#ifdef HAVE_RSVG_BBOX
+#ifdef HAVE_NEW_RSVG
 
 static CardBbox *
 games_card_theme_kde_get_card_bbox (GamesCardThemeKDE *theme,
@@ -107,7 +119,7 @@ games_card_theme_kde_get_card_bbox (GamesCardThemeKDE *theme,
   if (bbox->initialised)
     return bbox;
 
-   preimage = ((GamesCardThemePreimage *) theme)->cards_preimage;
+  preimage = ((GamesCardThemePreimage *) theme)->cards_preimage;
 
   _games_profile_start ("rsvg_handle_get_dimensions_sub node %s", node);
   retval = rsvg_handle_get_dimensions_sub (preimage->rsvg_handle, &dim, node);
@@ -147,7 +159,7 @@ games_card_theme_kde_get_card_bbox (GamesCardThemeKDE *theme,
   return bbox;
 }
 
-#endif /* HAVE_RSVG_BBOX */
+#endif /* HAVE_NEW_RSVG */
 
 /* Class implementation */
 
@@ -157,16 +169,61 @@ static gboolean
 games_card_theme_kde_load (GamesCardTheme *card_theme,
                            GError **error)
 {
-#ifdef HAVE_RSVG_BBOX
+#ifdef HAVE_NEW_RSVG
+  static const char extra_backs[][11] = {
+    "#blue_back",
+    "#red_back",
+    "#green_back"
+  };
   GamesCardThemeKDE *theme = (GamesCardThemeKDE *) card_theme;
+  GamesPreimage *preimage;
   char node[32];
+  guint i;
+  gboolean has_red_joker, has_black_joker, has_joker;
 
   if (!GAMES_CARD_THEME_CLASS (games_card_theme_kde_parent_class)->load (card_theme, error))
     return FALSE;
 
-  /* Get the bbox of the card back, which we use to compute the theme's aspect ratio */
+  preimage = ((GamesCardThemePreimage *) theme)->cards_preimage;
+
+  /* Check available backs */
+  g_assert (theme->n_backs == 0);
+
   games_card_get_node_by_id_snprintf (node, sizeof (node), GAMES_CARD_BACK);
-  if (!games_card_theme_kde_get_card_bbox (theme, GAMES_CARD_BACK, node)) {
+  if (rsvg_handle_has_sub (preimage->rsvg_handle, node)) {
+    theme->backs[theme->n_backs++] = g_strdup (node);
+  }
+
+  for (i = 0; i < G_N_ELEMENTS (extra_backs); ++i) {
+    if (rsvg_handle_has_sub (preimage->rsvg_handle, extra_backs[i])) {
+      theme->backs[theme->n_backs++] = g_strdup (extra_backs[i]);
+    }
+  }
+
+  for (i = 1; i < 10; ++i) {
+    g_snprintf (node, sizeof (node), "#back_c%d", i);
+    if (rsvg_handle_has_sub (preimage->rsvg_handle, node)) {
+      theme->backs[theme->n_backs++] = g_strdup (node);
+    }
+  }
+
+  /* No backs at all? Fail! */
+  if (theme->n_backs == 0)
+    return FALSE;
+
+  /* Look for the jokers */
+  games_card_get_node_by_id_snprintf (node, sizeof (node), GAMES_CARD_BLACK_JOKER);
+  has_black_joker = rsvg_handle_has_sub (preimage->rsvg_handle, node);
+  games_card_get_node_by_id_snprintf (node, sizeof (node), GAMES_CARD_RED_JOKER);
+  has_red_joker = rsvg_handle_has_sub (preimage->rsvg_handle, node);
+
+  has_joker = rsvg_handle_has_sub (preimage->rsvg_handle, "#joker");
+
+  theme->has_2_jokers = has_red_joker && has_black_joker;
+  theme->has_joker = has_joker;
+  
+  /* Get the bbox of the card back, which we use to compute the theme's aspect ratio */
+  if (!games_card_theme_kde_get_card_bbox (theme, GAMES_CARD_BACK, theme->backs[theme->back_index])) {
     g_set_error (error, GAMES_CARD_THEME_ERROR, GAMES_CARD_THEME_ERROR_GENERIC,
                  "Failed to get the theme's aspect ratio");
     return FALSE;
@@ -175,7 +232,7 @@ games_card_theme_kde_load (GamesCardTheme *card_theme,
   return TRUE;
 #else
   return FALSE;
-#endif /* HAVE_RSVG_BBOX */
+#endif /* HAVE_NEW_RSVG */
 }
 
 static double
@@ -194,7 +251,7 @@ static GdkPixbuf *
 games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
                                       int card_id)
 {
-#ifdef HAVE_RSVG_BBOX
+#ifdef HAVE_NEW_RSVG
   GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
   GamesCardThemeKDE *theme = (GamesCardThemeKDE *) card_theme;
   GamesPreimage *preimage = preimage_card_theme->cards_preimage;
@@ -244,21 +301,28 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
   return subpixbuf;
 #else
   return NULL;
-#endif /* HAVE_RSVG_BBOX */
+#endif /* HAVE_NEW_RSVG */
 }
 
 static void
 games_card_theme_kde_init (GamesCardThemeKDE *theme)
 {
   theme->bboxes = g_new0 (CardBbox, GAMES_CARDS_TOTAL);
+
+  theme->n_backs = 0;
+  theme->back_index = 0;
 }
 
 static void
 games_card_theme_kde_finalize (GObject * object)
 {
   GamesCardThemeKDE *theme = GAMES_CARD_THEME_KDE (object);
+  guint i;
 
   g_free (theme->bboxes);
+
+  for (i = 0; i < theme->n_backs; ++i)
+    g_free (theme->backs[i]);
 
   G_OBJECT_CLASS (games_card_theme_kde_parent_class)->finalize (object);
 }
@@ -268,7 +332,7 @@ games_card_theme_kde_class_get_theme_info (GamesCardThemeClass *klass,
                                            const char *path,
                                            const char *filename)
 {
-#ifdef HAVE_RSVG_BBOX
+#ifdef HAVE_NEW_RSVG
   GamesCardThemeInfo *info = NULL;
   char *base_path = NULL, *key_file_path = NULL;
   GKeyFile *key_file = NULL;
@@ -318,7 +382,7 @@ out:
   return info;
 #else
   return NULL;
-#endif /* HAVE_RSVG_BBOX */
+#endif /* HAVE_NEW_RSVG */
 }
 
 static gboolean
