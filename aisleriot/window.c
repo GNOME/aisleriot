@@ -1498,7 +1498,7 @@ card_theme_changed_cb (GtkToggleAction *action,
     current_theme_info = games_card_theme_get_theme_info (priv->theme);
   }
 
-  if (new_theme_info == current_theme_info)
+  if (games_card_theme_info_equal (new_theme_info, current_theme_info))
     return;
 
   theme = games_card_themes_get_theme (priv->theme_manager, new_theme_info);
@@ -1521,8 +1521,8 @@ card_theme_changed_cb (GtkToggleAction *action,
       if (theme_action == action)
         continue;
 
-      info = g_object_get_data (G_OBJECT (action), "theme-info");
-      if (info != current_theme_info)
+      info = g_object_get_data (G_OBJECT (theme_action), "theme-info");
+      if (!games_card_theme_info_equal (info, current_theme_info))
         continue;
 
       /* The check at the top will prevent an infinite loop */
