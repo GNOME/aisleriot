@@ -70,6 +70,26 @@ struct _GamesCardThemeKDE {
 #define KDE_BACKDECK_PYSOL_KEY    "PySol"
 #define KDE_BACKDECK_SVG_KEY      "SVG"
 
+static gboolean
+get_is_blacklisted (const char *filename)
+{
+  /* Let's blacklist these themes, since they exist in g-g-extra-data too,
+   * and our variants render faster.
+   */
+  static const char *blacklist[] = {
+    "svg-dondorf",
+    "svg-nicu-ornamental",
+    "svg-gm-paris"
+  };
+  guint i;
+
+  for (i = 0; i < G_N_ELEMENTS (blacklist); ++i)
+    if (strcmp (filename, blacklist[i]) == 0)
+      return TRUE;
+
+  return FALSE;
+}
+
 #ifdef HAVE_RSVG_BBOX
 
 static CardBbox *
@@ -253,6 +273,12 @@ games_card_theme_kde_class_get_theme_info (GamesCardThemeClass *klass,
   char *base_path = NULL, *key_file_path = NULL;
   GKeyFile *key_file = NULL;
   char *svg_filename = NULL, *name = NULL, *display_name, *pref_name;
+
+  if (get_is_blacklisted (filename)) {
+    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                        "KDE card theme %s is blacklisted\n", filename);
+    return NULL;
+  }
 
   base_path = g_build_filename (path, filename, NULL);
   if (!g_file_test (path, G_FILE_TEST_IS_DIR))
