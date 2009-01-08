@@ -2065,7 +2065,7 @@ aisleriot_game_get_options (AisleriotGame *game)
                             cscmi_call_lambda, &data,
                             cscmi_catch_handler, &data);
   if (data.exception)
-    return FALSE;
+    return NULL;
 
   options_list = data.retval;
   if (scm_is_false (scm_list_p (options_list)))
