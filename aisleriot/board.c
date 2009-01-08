@@ -2300,6 +2300,7 @@ aisleriot_board_activate (AisleriotBoard *board)
 
   /* If we have a selection, and the topmost card of a slot is focused,
    * try to move the selected cards to the focused slot.
+   * Note that this needs to be tested even if selection_slot == focus_slot !
    *
    * NOTE: We cannot use aisleriot_game_drop_valid here since the
    * game may not support the "droppable" feature.
