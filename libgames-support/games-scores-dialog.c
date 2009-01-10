@@ -165,9 +165,9 @@ GtkWidget * games_scores_dialog_new (GtkWindow *parent_window, GamesScores *scor
   gtk_window_set_title (GTK_WINDOW (dialog), title);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent_window));
 
-  games_scores_category_foreach (scores, 
-				 (GamesScoresCategoryForeachFunc) games_scores_dialog_load_categories, 
-				 dialog);
+  _games_scores_category_foreach (scores, 
+                                  (GamesScoresCategoryForeachFunc) games_scores_dialog_load_categories,
+                                  dialog);
 
   if (dialog->_priv->catcounter <= 1) {
     gtk_widget_hide (dialog->_priv->catbar);

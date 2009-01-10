@@ -171,17 +171,19 @@ games_scores_new (const char *app_name,
 }
 
 /**
- * add_category:
- * @self: A scores object.
- * @key: The key for the new category.
- * @name: The player-visible label for the new category.
+ * games_scores_add_category:
+ * @self:
+ * @key: the key for the new category
+ * @name: the user visible label for the new category
  *
  * Add a new category after initialisation. key and name are copied into
  * internal structures. The scores dialog is not currently updated.
  *
  **/
 void
-games_scores_add_category (GamesScores * self, gchar * key, gchar * name)
+games_scores_add_category (GamesScores *self,
+                           const char *key,
+                           const char *name)
 {
   GamesScoresPrivate *priv = self->priv;
   GamesScoresCategoryInternal *cat;
@@ -410,7 +412,7 @@ games_scores_get (GamesScores * self)
 }
 
 /**
- * category_foreach:
+ * _games_scores_category_foreach:
  * @self: A scores object.
  * @func: A function to call.
  * @userdata: Arbitrary data.
@@ -421,9 +423,9 @@ games_scores_get (GamesScores * self)
  *
  **/
 void
-games_scores_category_foreach (GamesScores * self,
-			       GamesScoresCategoryForeachFunc func,
-			       gpointer userdata)
+_games_scores_category_foreach (GamesScores * self,
+                                GamesScoresCategoryForeachFunc func,
+                                gpointer userdata)
 {
   GamesScoresPrivate *priv = self->priv;
   GSList *l;
