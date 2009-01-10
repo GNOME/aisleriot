@@ -1,6 +1,4 @@
 /*
- * games-scores.c
- *
  * Copyright 2005 Callum McKenzie
  *
  * This library is free software; you can redistribute it and'or modify
@@ -42,7 +40,7 @@ typedef struct {
   GamesScoresBackend *backend;
 } GamesScoresCategoryPrivate;
 
-typedef struct _GamesScoresPrivate {
+struct _GamesScoresPrivate {
   GHashTable *categories;
   GSList *catsordered;
   gchar *currentcat;
@@ -53,7 +51,7 @@ typedef struct _GamesScoresPrivate {
   GamesScoreValue last_score_value;
   GamesScoreStyle style;
   GamesScoresCategoryPrivate dummycat;
-} GamesScoresPrivate;
+};
 
 static void
 games_scores_category_free (GamesScoresCategoryPrivate * cat)
@@ -75,19 +73,20 @@ games_scores_category_free (GamesScoresCategoryPrivate * cat)
 static GamesScoresCategoryPrivate *
 games_scores_get_current (GamesScores * self)
 {
+  GamesScoresPrivate *priv = self->priv;
   GamesScoresCategoryPrivate *cat;
 
-  if (self->priv->currentcat == NULL) {
+  if (priv->currentcat == NULL) {
     /* We have a single, anonymous, category. */
-    cat = &(self->priv->dummycat);
+    cat = &(priv->dummycat);
   } else {
     cat =
-      g_hash_table_lookup (self->priv->categories, self->priv->currentcat);
+      g_hash_table_lookup (priv->categories, priv->currentcat);
   }
 
   if (cat->backend == NULL) {
     cat->backend =
-      games_scores_backend_new (self->priv->style, self->priv->basename,
+      games_scores_backend_new (priv->style, priv->basename,
 				cat->key);
   }
 
@@ -114,20 +113,22 @@ GamesScores *
 games_scores_new (const GamesScoresDescription * description)
 {
   GamesScores *self;
+  GamesScoresPrivate *priv;
   const GamesScoresCategory *cats;
 
   self = GAMES_SCORES (g_object_new (GAMES_TYPE_SCORES, NULL));
+  priv = self->priv;
 
   /* FIXME: Input sanity checks. */
 
-  self->priv->categories =
+  priv->categories =
     g_hash_table_new_full (g_str_hash, g_str_equal,
 			   g_free,
 			   (GDestroyNotify) games_scores_category_free);
 
   /* catsordered is a record of the ordering of the categories. 
    * Its data is shared with the hash table. */
-  self->priv->catsordered = NULL;
+  priv->catsordered = NULL;
 
   if (description->categories) {
     cats = description->categories;
@@ -136,23 +137,23 @@ games_scores_new (const GamesScoresDescription * description)
       cats++;
     }
 
-    self->priv->defcat = g_strdup (description->deflt);
-    self->priv->currentcat = g_strdup (self->priv->defcat);
+    priv->defcat = g_strdup (description->deflt);
+    priv->currentcat = g_strdup (priv->defcat);
   } else {
-    self->priv->currentcat = NULL;
-    self->priv->defcat = NULL;
-    self->priv->catsordered = NULL;
+    priv->currentcat = NULL;
+    priv->defcat = NULL;
+    priv->catsordered = NULL;
   }
 
-  self->priv->basename = g_strdup (description->basename);
+  priv->basename = g_strdup (description->basename);
   /* FIXME: Do some sanity checks on the default and the like. */
 
-  self->priv->style = description->style;
+  priv->style = description->style;
 
   /* Set up the anonymous category for use when no categories are specified. */
-  self->priv->dummycat.key = "";
-  self->priv->dummycat.name = "";
-  self->priv->dummycat.backend = NULL;
+  priv->dummycat.key = "";
+  priv->dummycat.name = "";
+  priv->dummycat.backend = NULL;
 
   return self;
 }
@@ -170,6 +171,7 @@ games_scores_new (const GamesScoresDescription * description)
 void
 games_scores_add_category (GamesScores * self, gchar * key, gchar * name)
 {
+  GamesScoresPrivate *priv = self->priv;
   GamesScoresCategoryPrivate *cat;
 
   cat = g_new (GamesScoresCategoryPrivate, 1);
@@ -177,8 +179,8 @@ games_scores_add_category (GamesScores * self, gchar * key, gchar * name)
   cat->name = g_strdup (name);
   cat->backend = NULL;
 
-  g_hash_table_insert (self->priv->categories, g_strdup (key), cat);
-  self->priv->catsordered = g_slist_append (self->priv->catsordered, cat);
+  g_hash_table_insert (priv->categories, g_strdup (key), cat);
+  priv->catsordered = g_slist_append (priv->catsordered, cat);
 }
 
 /**
@@ -196,16 +198,15 @@ games_scores_add_category (GamesScores * self, gchar * key, gchar * name)
 void
 games_scores_set_category (GamesScores * self, gchar * category)
 {
+  GamesScoresPrivate *priv = self->priv;
+
   g_return_if_fail (self != NULL);
-  g_return_if_fail (self->priv != NULL);
 
   if (category == NULL)
-    category = self->priv->defcat;
+    category = priv->defcat;
 
-  if (self->priv->currentcat)
-    g_free (self->priv->currentcat);
-
-  self->priv->currentcat = g_strdup (category);
+  g_free (priv->currentcat);
+  priv->currentcat = g_strdup (category);
 
   /* FIXME: Check validity of category (Null, the same as current, 
    * is actually a category) then just set it in the structure. */
@@ -226,13 +227,13 @@ games_scores_set_category (GamesScores * self, gchar * category)
 gint
 games_scores_add_score (GamesScores * self, GamesScoreValue score)
 {
+  GamesScoresPrivate *priv = self->priv;
   GamesScore *fullscore;
   GamesScoresCategoryPrivate *cat;
   gint place, n;
   GList *s, *scores_list;
 
   g_return_val_if_fail (self != NULL, 0);
-  g_return_val_if_fail (self->priv != NULL, 0);
 
   fullscore = games_score_new ();
   fullscore->value = score;
@@ -251,7 +252,7 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
     n++;
 
     /* If beat someone in the list, add us there. */
-    if (games_score_compare (self->priv->style, oldscore, fullscore) < 0) {
+    if (games_score_compare (priv->style, oldscore, fullscore) < 0) {
       scores_list = g_list_insert_before (scores_list, s,
 					  games_score_dup (fullscore));
       place = n;
@@ -281,9 +282,9 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
   if (games_scores_backend_set_scores (cat->backend, scores_list) == FALSE)
     place = 0;
 
-  self->priv->last_score_significant = place > 0;
-  self->priv->last_score_position = place;
-  self->priv->last_score_value = score;
+  priv->last_score_significant = place > 0;
+  priv->last_score_position = place;
+  priv->last_score_value = score;
 
   return place;
 }
@@ -302,6 +303,7 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
 void
 games_scores_update_score_name (GamesScores * self, gchar * new_name, gchar * old_name)
 {
+  GamesScoresPrivate *priv = self->priv;
   GamesScoresCategoryPrivate *cat;
   GList *s, *scores_list;
   gint n, place;
@@ -309,10 +311,9 @@ games_scores_update_score_name (GamesScores * self, gchar * new_name, gchar * ol
   GamesScoreValue score;
 
   g_return_if_fail (self != NULL);
-  g_return_if_fail (self->priv != NULL);
 
-  place = self->priv->last_score_position;
-  score = self->priv->last_score_value;
+  place = priv->last_score_position;
+  score = priv->last_score_value;
 
   if (place == 0)
     return;
@@ -337,7 +338,7 @@ games_scores_update_score_name (GamesScores * self, gchar * new_name, gchar * ol
 
   while ((n >= place) && (s != NULL)) {
     sc = (GamesScore *) (s->data);
-    if ((games_score_compare_values (self->priv->style, sc->value, score) ==
+    if ((games_score_compare_values (priv->style, sc->value, score) ==
 	 0) && (g_utf8_collate (old_name, sc->name) == 0)) {
       g_free (sc->name);
       sc->name = g_strdup (new_name);
@@ -385,7 +386,6 @@ games_scores_get (GamesScores * self)
   GList *scores;
 
   g_return_val_if_fail (self != NULL, NULL);
-  g_return_val_if_fail (self->priv != NULL, NULL);
 
   cat = games_scores_get_current (self);
 
@@ -413,13 +413,13 @@ games_scores_category_foreach (GamesScores * self,
 			       GamesScoresCategoryForeachFunc func,
 			       gpointer userdata)
 {
+  GamesScoresPrivate *priv = self->priv;
   GSList *list;
   GamesScoresCategory temp;
 
   g_return_if_fail (self != NULL);
-  g_return_if_fail (self->priv != NULL);
 
-  list = self->priv->catsordered;
+  list = priv->catsordered;
   while (list) {
     temp.key = ((GamesScoresCategoryPrivate *) list->data)->key;
     temp.name = ((GamesScoresCategoryPrivate *) list->data)->name;
@@ -439,10 +439,11 @@ games_scores_category_foreach (GamesScores * self,
 GamesScoreStyle
 games_scores_get_style (GamesScores * self)
 {
-  g_return_val_if_fail (self != NULL, 0);
-  g_return_val_if_fail (self->priv != NULL, 0);
+  GamesScoresPrivate *priv = self->priv;
 
-  return self->priv->style;
+  g_return_val_if_fail (self != NULL, 0);
+
+  return priv->style;
 }
 
 /**
@@ -457,23 +458,25 @@ games_scores_get_style (GamesScores * self)
 const gchar *
 games_scores_get_category (GamesScores * self)
 {
-  g_return_val_if_fail (self != NULL, NULL);
-  g_return_val_if_fail (self->priv != NULL, NULL);
+  GamesScoresPrivate *priv = self->priv;
 
-  return self->priv->currentcat;
+  g_return_val_if_fail (self != NULL, NULL);
+
+  return priv->currentcat;
 }
 
 static void
 games_scores_init (GamesScores * self)
 {
+  GamesScoresPrivate *priv;
+
   /* Most of the work is done in the _new method. */
 
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GAMES_TYPE_SCORES,
-					    GamesScoresPrivate);
+  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GAMES_TYPE_SCORES, GamesScoresPrivate);
 
-  self->priv->last_score_significant = FALSE;
-  self->priv->last_score_position = 0;
-  self->priv->last_score_value.plain = 0;
+  priv->last_score_significant = FALSE;
+  priv->last_score_position = 0;
+  priv->last_score_value.plain = 0;
 }
 
 static void
