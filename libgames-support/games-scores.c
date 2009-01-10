@@ -35,10 +35,9 @@
 
 /* The local version of the GamesScoresCategory. */
 typedef struct {
-  gchar *key;
-  gchar *name;
+  GamesScoresCategory category;
   GamesScoresBackend *backend;
-} GamesScoresCategoryPrivate;
+} GamesScoresCategoryInternal;
 
 struct _GamesScoresPrivate {
   GHashTable *categories;
@@ -50,14 +49,14 @@ struct _GamesScoresPrivate {
   gint last_score_position;
   GamesScoreValue last_score_value;
   GamesScoreStyle style;
-  GamesScoresCategoryPrivate dummycat;
+  GamesScoresCategoryInternal dummycat;
 };
 
 static void
-games_scores_category_free (GamesScoresCategoryPrivate * cat)
+games_scores_category_free (GamesScoresCategoryInternal *cat)
 {
-  g_free (cat->key);
-  g_free (cat->name);
+  g_free (cat->category.key);
+  g_free (cat->category.name);
   if (cat->backend)
     g_object_unref (cat->backend);
   g_free (cat);
@@ -70,24 +69,24 @@ games_scores_category_free (GamesScoresCategoryPrivate * cat)
  * Retrieves the current category and make sure it is in a state to be used.
  *
  **/
-static GamesScoresCategoryPrivate *
+static GamesScoresCategoryInternal *
 games_scores_get_current (GamesScores * self)
 {
   GamesScoresPrivate *priv = self->priv;
-  GamesScoresCategoryPrivate *cat;
+  GamesScoresCategoryInternal *cat;
 
   if (priv->currentcat == NULL) {
     /* We have a single, anonymous, category. */
     cat = &(priv->dummycat);
   } else {
-    cat =
-      g_hash_table_lookup (priv->categories, priv->currentcat);
+    cat = g_hash_table_lookup (priv->categories, priv->currentcat);
+    if (!cat)
+      return NULL;
   }
 
   if (cat->backend == NULL) {
-    cat->backend =
-      games_scores_backend_new (priv->style, priv->basename,
-				cat->key);
+    cat->backend = games_scores_backend_new (priv->style, priv->basename,
+                                             cat->category.key);
   }
 
   return cat;
@@ -164,8 +163,8 @@ games_scores_new (const char *app_name,
   priv->style = style;
 
   /* Set up the anonymous category for use when no categories are specified. */
-  priv->dummycat.key = "";
-  priv->dummycat.name = "";
+  priv->dummycat.category.key = "";
+  priv->dummycat.category.name = "";
   priv->dummycat.backend = NULL;
 
   return self;
@@ -185,11 +184,11 @@ void
 games_scores_add_category (GamesScores * self, gchar * key, gchar * name)
 {
   GamesScoresPrivate *priv = self->priv;
-  GamesScoresCategoryPrivate *cat;
+  GamesScoresCategoryInternal *cat;
 
-  cat = g_new (GamesScoresCategoryPrivate, 1);
-  cat->key = g_strdup (key);
-  cat->name = g_strdup (name);
+  cat = g_new (GamesScoresCategoryInternal, 1);
+  cat->category.key = g_strdup (key);
+  cat->category.name = g_strdup (name);
   cat->backend = NULL;
 
   g_hash_table_insert (priv->categories, g_strdup (key), cat);
@@ -242,7 +241,7 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
 {
   GamesScoresPrivate *priv = self->priv;
   GamesScore *fullscore;
-  GamesScoresCategoryPrivate *cat;
+  GamesScoresCategoryInternal *cat;
   gint place, n;
   GList *s, *scores_list;
 
@@ -317,7 +316,7 @@ void
 games_scores_update_score_name (GamesScores * self, gchar * new_name, gchar * old_name)
 {
   GamesScoresPrivate *priv = self->priv;
-  GamesScoresCategoryPrivate *cat;
+  GamesScoresCategoryInternal *cat;
   GList *s, *scores_list;
   gint n, place;
   GamesScore *sc;
@@ -395,7 +394,7 @@ games_scores_update_score (GamesScores * self, gchar * new_name)
 GList *
 games_scores_get (GamesScores * self)
 {
-  GamesScoresCategoryPrivate *cat;
+  GamesScoresCategoryInternal *cat;
   GList *scores;
 
   g_return_val_if_fail (self != NULL, NULL);
@@ -427,18 +426,12 @@ games_scores_category_foreach (GamesScores * self,
 			       gpointer userdata)
 {
   GamesScoresPrivate *priv = self->priv;
-  GSList *list;
-  GamesScoresCategory temp;
+  GSList *l;
 
   g_return_if_fail (self != NULL);
 
-  list = priv->catsordered;
-  while (list) {
-    temp.key = ((GamesScoresCategoryPrivate *) list->data)->key;
-    temp.name = ((GamesScoresCategoryPrivate *) list->data)->name;
-
-    (*func) (&temp, userdata);
-    list = g_slist_next (list);
+  for (l = priv->catsordered; l != NULL; l = l->next) {
+    func ((GamesScoresCategory*) l->data, userdata);
   }
 }
 
