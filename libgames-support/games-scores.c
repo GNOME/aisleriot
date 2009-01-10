@@ -100,55 +100,68 @@ games_scores_get_current (GamesScores * self)
 G_DEFINE_TYPE (GamesScores, games_scores, G_TYPE_OBJECT);
 
 /** 
- * new:
- * @description: A GamesScoresDescription structure with the information
- *               about this games scoring system. 
+ * games_scores_new:
+ * @app_name: the (old) app name (for backward compatibility),
+ *   used as the basename of the category filenames
+ * @categories: the score categories, or %NULL to use an anonymous category
+ * @n_categories: the number of category entries in @categories
+ * @categories_context: the translation context to use for the category names,
+ *   or %NULL to use no translation context
+ * @categories_domain: the translation domain to use for the category names,
+ *   or %NULL to use the default domain
+ * @default_category: the key of the default category, or %NULL
+ * @style: the category style
+ * 
  *
- * Create an object to handle a set of scores. Normally you will make one
- * global object. Creating and destroying these objects is inefficient. 
- * Using multipl objects referring to the same set of scores at the same
- * time should work but is unnecessary liable to be buggy.
+ * Returns: a new #GamesScores object
  */
 GamesScores *
-games_scores_new (const GamesScoresDescription * description)
+games_scores_new (const char *app_name,
+                  const GamesScoresCategory *categories,
+                  int n_categories,
+                  const char *categories_context,
+                  const char *categories_domain,
+                  int default_category_index,
+                  GamesScoreStyle style)
 {
   GamesScores *self;
   GamesScoresPrivate *priv;
-  const GamesScoresCategory *cats;
 
   self = GAMES_SCORES (g_object_new (GAMES_TYPE_SCORES, NULL));
   priv = self->priv;
 
   /* FIXME: Input sanity checks. */
 
-  priv->categories =
-    g_hash_table_new_full (g_str_hash, g_str_equal,
-			   g_free,
-			   (GDestroyNotify) games_scores_category_free);
+  priv->categories = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                            g_free,
+                                            (GDestroyNotify) games_scores_category_free);
 
   /* catsordered is a record of the ordering of the categories. 
    * Its data is shared with the hash table. */
   priv->catsordered = NULL;
 
-  if (description->categories) {
-    cats = description->categories;
-    while (cats->key) {
-      games_scores_add_category (self, cats->key, cats->name);
-      cats++;
+  if (n_categories > 0) {
+    int i;
+
+    g_return_val_if_fail (default_category_index >= 0 && default_category_index < n_categories, NULL);
+
+    for (i = 0; i < n_categories; ++i) {
+      const GamesScoresCategory *category = &categories[i];
+
+      games_scores_add_category (self, category->key, category->name);
     }
 
-    priv->defcat = g_strdup (description->deflt);
+    priv->defcat = g_strdup (categories[default_category_index].key);
     priv->currentcat = g_strdup (priv->defcat);
   } else {
     priv->currentcat = NULL;
     priv->defcat = NULL;
-    priv->catsordered = NULL;
   }
 
-  priv->basename = g_strdup (description->basename);
+  priv->basename = g_strdup (app_name);
   /* FIXME: Do some sanity checks on the default and the like. */
 
-  priv->style = description->style;
+  priv->style = style;
 
   /* Set up the anonymous category for use when no categories are specified. */
   priv->dummycat.key = "";

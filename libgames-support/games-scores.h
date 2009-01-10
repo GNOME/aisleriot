@@ -45,15 +45,6 @@ typedef void (*GamesScoresCategoryForeachFunc) (GamesScoresCategory * cat,
 
 #define GAMES_SCORES_LAST_CATEGORY {NULL, NULL}
 
-/* All elements get copied so the creator stays the owner. */
-typedef struct {
-  const GamesScoresCategory *categories;	/* Array of categories, terminate
-						 * with GAMES_SCORES_LAST_CATEGORY. */
-  const gchar *deflt;			/* The key of the default category. */
-  const gchar *basename;		/* The base of the filename. The old appname. */
-  GamesScoreStyle style;
-} GamesScoresDescription;
-
 #define GAMES_TYPE_SCORES (games_scores_get_type())
 #define GAMES_SCORES(obj) G_TYPE_CHECK_INSTANCE_CAST((obj), games_scores_get_type(), GamesScores)
 #define GAMES_SCORES_CONST(obj)	G_TYPE_CHECK_INSTANCE_CAST((obj), games_scores_get_type(), GamesScores const)
@@ -77,7 +68,13 @@ struct _GamesScoresClass {
 
 GType games_scores_get_type (void);
 
-GamesScores *games_scores_new (const GamesScoresDescription * description);
+GamesScores *games_scores_new (const char *app_name,
+                               const GamesScoresCategory *categories,
+                               int n_categories,
+                               const char *categories_context,
+                               const char *categories_domain,
+                               int default_category_index,
+                               GamesScoreStyle style);
 
 void games_scores_set_category (GamesScores * self, gchar * category);
 
