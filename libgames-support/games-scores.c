@@ -29,6 +29,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include <glib/gi18n.h>
+
 #include "games-scores-backend.h"
 #include "games-score.h"
 #include "games-scores.h"
@@ -146,8 +148,15 @@ games_scores_new (const char *app_name,
 
     for (i = 0; i < n_categories; ++i) {
       const GamesScoresCategory *category = &categories[i];
+      const char *display_name;
 
-      games_scores_add_category (self, category->key, category->name);
+      if (categories_context) {
+        display_name = g_dpgettext2 (categories_domain, categories_context, category->name);
+      } else {
+        display_name = dgettext (categories_domain, category->name);
+      }
+
+      games_scores_add_category (self, category->key, display_name);
     }
 
     priv->defcat = g_strdup (categories[default_category_index].key);

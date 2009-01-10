@@ -87,10 +87,8 @@ static void games_scores_dialog_add_category (GamesScoresDialog *self,
 static void games_scores_dialog_load_categories (GamesScoresCategory *cat, 
 						 GamesScoresDialog *self) 
 {
-    /* Note the Q_ here, this is so we can use context tags on similar
-     * names. (Medium is one that can cause trouble for translators 
-     * in different contexts.) */
-    games_scores_dialog_add_category (self, cat->key, Q_(cat->name));
+    /* category->name is already translated here! */
+    games_scores_dialog_add_category (self, cat->key, cat->name);
 }
 
 /**
