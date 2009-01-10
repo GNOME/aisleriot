@@ -1690,7 +1690,7 @@ sync_game_score (AisleriotGame *game,
    * then translate this string to "%I6d", else to "%6d".
    * Do not translate it to anything else!
    */
-  g_snprintf (str, sizeof (str), Q_("score|%6d"), score);
+  g_snprintf (str, sizeof (str), C_("score", "%6d"), score);
   gtk_label_set_text (GTK_LABEL (priv->score_label), str);
 }
 
