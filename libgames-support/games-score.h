@@ -1,5 +1,4 @@
-/* games-score.h
- *
+/*
  * Copyright (C) 2005 Callum McKenzie
  *
  * This library is free software; you can redistribute it and/or
@@ -25,8 +24,9 @@
 #include <time.h>
 
 G_BEGIN_DECLS
+
 /* GamesScore and GamesScoresStyle should be kept in sync. */
-  typedef enum {
+typedef enum {
   GAMES_SCORES_STYLE_PLAIN_DESCENDING,
   GAMES_SCORES_STYLE_PLAIN_ASCENDING,
   GAMES_SCORES_STYLE_TIME_DESCENDING,
@@ -53,4 +53,5 @@ gint games_score_compare_values (GamesScoreStyle style, GamesScoreValue a,
 void games_score_destroy (GamesScore * score);
 
 G_END_DECLS
+
 #endif /* GAMES_SCORE_H */

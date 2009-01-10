@@ -1,5 +1,4 @@
-/* games-score.c 
- *
+/*
  * Copyright (C) 2005 Callum McKenzie
  *
  * This library is free software; you can redistribute it and/or
@@ -17,9 +16,6 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  */
-
-/* We don't make it a proper object, basically to reduce overhead (system
-   memory and programmers time) */
 
 #include <config.h>
 
@@ -61,9 +57,7 @@ games_score_dup (GamesScore * orig)
 void
 games_score_destroy (GamesScore * score)
 {
-  if (score->name)
-    g_free (score->name);
-
+  g_free (score->name);
   g_slice_free (GamesScore, score);
 }
 
