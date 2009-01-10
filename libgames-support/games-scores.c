@@ -160,7 +160,7 @@ games_scores_new (const GamesScoresDescription * description)
 
 /**
  * add_category:
- * @scores: A scores object.
+ * @self: A scores object.
  * @key: The key for the new category.
  * @name: The player-visible label for the new category.
  *

@@ -32,6 +32,13 @@
 #include "games-runtime.h"
 #include "games-setgid-io.h"
 
+struct _GamesScoresBackendPrivate {
+  GamesScoreStyle style;
+  time_t timestamp;
+  gchar *filename;
+  gint fd;
+};
+
 G_DEFINE_TYPE (GamesScoresBackend, games_scores_backend, G_TYPE_OBJECT);
 
 static void

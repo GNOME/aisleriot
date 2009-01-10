@@ -30,36 +30,27 @@
 #include "games-score.h"
 
 G_BEGIN_DECLS
-#define GAMES_TYPE_SCORES_BACKEND (games_scores_backend_get_type ())
-#define GAMES_SCORES_BACKEND(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
-                                   GAMES_TYPE_SCORES_BACKEND, \
-                                   GamesScoresBackend))
-#define GAMES_SCORES_BACKEND_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), \
-                                           GAMES_TYPE_SCORES_BACKEND, \
-                                           GamesScoresBackendClass))
-#define GAMES_IS_SCORES_BACKEND(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
-                                      GAMES_TYPE_SCORES_BACKEND))
-#define GAMES_IS_SCORES_BACKEND_CLASS(kls) (G_TYPE_CHECK_CLASS_TYPE ((kls),\
-                                            GAMES_TYPE_SCORES_BACKEND))
-#define GAMES_GET_SCORES_BACKEND_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj),\
-                                             GAMES_TYPE_SCORES_BACKEND, \
-					     GamesScoresBackendClass))
-  typedef struct _GamesScoresBackendPrivate {
-  GamesScoreStyle style;
-  time_t timestamp;
-  gchar *filename;
-  gint fd;
-} GamesScoresBackendPrivate;
 
-typedef struct _GamesScoresBackend {
+#define GAMES_TYPE_SCORES_BACKEND (games_scores_backend_get_type ())
+#define GAMES_SCORES_BACKEND(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_SCORES_BACKEND, GamesScoresBackend))
+#define GAMES_SCORES_BACKEND_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_SCORES_BACKEND, GamesScoresBackendClass))
+#define GAMES_IS_SCORES_BACKEND(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_SCORES_BACKEND))
+#define GAMES_IS_SCORES_BACKEND_CLASS(kls) (G_TYPE_CHECK_CLASS_TYPE ((kls), GAMES_TYPE_SCORES_BACKEND))
+#define GAMES_GET_SCORES_BACKEND_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_SCORES_BACKEND, GamesScoresBackendClass))
+
+typedef struct _GamesScoresBackend        GamesScoresBackend;
+typedef struct _GamesScoresBackendPrivate GamesScoresBackendPrivate;
+typedef struct _GamesScoresBackendClass   GamesScoresBackendClass;
+
+struct _GamesScoresBackend {
   GObject object;
   GList *scores_list;
   GamesScoresBackendPrivate *priv;
-} GamesScoresBackend;
+};
 
-typedef struct _GamesScoresBackendClass {
+struct _GamesScoresBackendClass {
   GObjectClass parent_class;
-} GamesScoresBackendClass;
+};
 
 GType games_scores_backend_get_type (void);
 GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
