@@ -1403,7 +1403,7 @@ aisleriot_board_settings_update (GtkSettings *settings,
 #endif /* !HAVE_HILDON */
 }
 
-/* Note: this unsets the selection! */
+/* Note: this unsets the selection! hslot may be equal to priv->selection_slot. */
 static gboolean
 aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
                                              Slot *hslot)
@@ -2776,28 +2776,31 @@ aisleriot_board_button_press (GtkWidget *widget,
   if (priv->selection_slot == NULL)
     goto set_selection;
 
-  /* If clicked on a non-selected slot, we either drop the selected cards there
-   * (in click-to-select mode only), or we set the selection.
-   */
-  if (hslot != priv->selection_slot) {
-
-    if (!priv->click_to_move ||
-        priv->selection_start_card_id < 0)
-      goto set_selection;
+  /* In click-to-move mode, we need to test whether moving the selected cards
+   * to this slot does a move. Note that it is necessary to do this both if
+   * the clicked slot is the selection_slot (and the clicked card the topmost
+   * card below the selection), and if it's not the selection_slot, since some
+   * games depend on this behaviour (e.g. Treize). See bug #565560.
+   *
+   * Note that aisleriot_board_move_selected_cards_to_slot unsets the selection,
+   * so we need to fall through to set_selection if no move was done.
+    */
+  if (priv->click_to_move &&
+      priv->selection_start_card_id >= 0 &&
+      (hslot != priv->selection_slot || cardid + 1 == priv->selection_start_card_id)) {
 
     /* Try to move the selected cards to the clicked slot */
     if (aisleriot_board_move_selected_cards_to_slot (board, hslot))
       return TRUE;
 
-    aisleriot_board_error_bell (board);
-
-    /* Trying to move the cards has unset the selection; select
-     * the clicked-on cards instead.
-     */
-    goto set_selection;
+    /* Move failed if this wasn't the selection_slot slot */
+    if (hslot != priv->selection_slot) {
+      aisleriot_board_error_bell (board);
+    }
   }
 
-  if (cardid != priv->selection_start_card_id)
+  if (hslot != priv->selection_slot ||
+      cardid != priv->selection_start_card_id)
     goto set_selection;
     
   /* Single click on the selected slot & card, we take that to mean to deselect,
