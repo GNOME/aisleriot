@@ -1,9 +1,14 @@
 NULL =
 
-carddir = $(datadir)/gnome-games-common/cards
+commondatadir = $(datadir)/gnome-games-common
+
+carddir = $(commondatadir)/cards
 card_DATA = \
 	gnomangelo_bitmap.svg	\
 	$(NULL)
+
+themeinstalldir = $(commondatadir)
+themeinstall_DATA = theme-install.ini
 
 slotdir = $(pkgdatadir)/pixmaps
 slot_DATA = slot.svg
@@ -12,6 +17,7 @@ EXTRA_DIST = \
 	$(schema_in_files)	\
 	$(card_DATA)		\
 	$(slot_DATA)		\
+	$(themeinstall_DATA)	\
 	games-marshal.list	\
 	$(NULL)
 

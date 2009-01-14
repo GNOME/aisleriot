@@ -680,16 +680,78 @@ games_card_themes_install_themes (GamesCardThemes *theme_manager,
                                   guint user_time)
 {
 #ifdef ENABLE_CARD_THEMES_INSTALLER
-  /* FIXME: more packages, and test with other distros beside ubuntu! */
-  const char *packages[] = {
-    "gnome-games-extra-data",
+  static const char *formats[] = {
+#ifdef ENABLE_CARD_THEME_FORMAT_SVG
+    "ThemesSVG",
+#endif
+#ifdef ENABLE_CARD_THEME_FORMAT_KDE
+    "ThemesKDE",
+#endif
+#ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
+    "ThemesPySol",
+#endif
     NULL
   };
-
+  GKeyFile *key_file;
+  char *path;
+  const char *group;
+  GPtrArray *arr;
+  char **packages;
+  gsize n_packages, i, j;
   DBusGConnection *connection;
   ThemeInstallData *data;
   guint xid = 0;
   GError *error = NULL;
+
+  arr = g_ptr_array_new ();
+
+  key_file = g_key_file_new ();
+  path = games_runtime_get_file (GAMES_RUNTIME_COMMON_DATA_DIRECTORY, "theme-install.ini");
+  if (!g_key_file_load_from_file (key_file, path, 0, NULL))
+    goto do_install;
+
+  /* If there's a group for the specific distribution, use that one, or
+   * otherwise the generic one. E.g.:
+   * If "Ubuntu 8.10" group exists, use it, else fallback to "Ubuntu" group.
+   */
+  if (g_key_file_has_group (key_file, LSB_DISTRIBUTION))
+    group = LSB_DISTRIBUTION;
+  else if (g_key_file_has_group (key_file, LSB_DISTRIBUTOR))
+    group = LSB_DISTRIBUTOR;
+  else
+    goto do_install;
+
+  for (i = 0; formats[i] != NULL; ++i) {
+    packages = g_key_file_get_string_list (key_file, group, formats[i], &n_packages, NULL);
+    if (!packages)
+      continue;
+    
+    for (j = 0; j < n_packages; ++j) {
+      g_ptr_array_add (arr, packages[j]);
+    }
+    g_free (packages); /* The strings are now owned by the ptr array */
+  }
+  g_ptr_array_add (arr, NULL);
+
+do_install:
+  g_key_file_free (key_file);
+  g_free (path);
+
+  n_packages = arr->len;
+  packages = (char **) g_ptr_array_free (arr, FALSE);
+  if (n_packages == 0) {
+    g_strfreev (packages);
+    return; /* FIXME: show dialogue? */
+  }
+
+#ifdef GNOME_ENABLE_DEBUG
+  _GAMES_DEBUG_IF (GAMES_DEBUG_CARD_THEME) {
+    _games_debug_print (GAMES_DEBUG_CARD_THEME, "Packages to install: ");
+    for (i = 0; packages[i]; ++i)
+      _games_debug_print (GAMES_DEBUG_CARD_THEME, "%s ", packages[i]);
+    _games_debug_print (GAMES_DEBUG_CARD_THEME, "\n");
+  }
+#endif
 
   connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
   if (!connection) {
@@ -707,7 +769,7 @@ games_card_themes_install_themes (GamesCardThemes *theme_manager,
   data->proxy = dbus_g_proxy_new_for_name (connection,
                                            "org.freedesktop.PackageKit",
                                            "/org/freedesktop/PackageKit",
-                                           "org.freedesktop.PackageKit");
+                                           "org.freedesktop.PackageKit.Modify");
   g_assert (data->proxy != NULL); /* the call above never fails */
 
 #ifdef GDK_WINDOWING_X11
@@ -725,8 +787,8 @@ games_card_themes_install_themes (GamesCardThemes *theme_manager,
                                 data,
                                 (GDestroyNotify) theme_install_data_free,
                                 G_TYPE_UINT, xid,
-                                G_TYPE_UINT, user_time,
                                 G_TYPE_STRV, packages,
+                                G_TYPE_STRING, "" /* FIXME? interaction type */,
                                 G_TYPE_INVALID)) {
     /* Failed; cleanup. FIXME: can this happen at all? */
     _games_debug_print (GAMES_DEBUG_CARD_THEME,
@@ -734,5 +796,7 @@ games_card_themes_install_themes (GamesCardThemes *theme_manager,
 
     theme_install_data_free (data);
   }
+
+  g_strfreev (packages);
 #endif
 }
