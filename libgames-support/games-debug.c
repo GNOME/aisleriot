@@ -31,10 +31,11 @@ _games_debug_init (void)
 {
 #ifdef GNOME_ENABLE_DEBUG
   const GDebugKey keys[] = {
-    { "card-theme", GAMES_DEBUG_CARD_THEME },
-    { "card-cache", GAMES_DEBUG_CARD_CACHE },
-    { "runtime",    GAMES_DEBUG_RUNTIME    },
-    { "sound ",     GAMES_DEBUG_SOUND      }
+    { "card-theme",   GAMES_DEBUG_CARD_THEME   },
+    { "card-cache",   GAMES_DEBUG_CARD_CACHE   },
+    { "runtime",      GAMES_DEBUG_RUNTIME      },
+    { "sound ",       GAMES_DEBUG_SOUND        },
+    { "window-state", GAMES_DEBUG_WINDOW_STATE }
   };
 
   _games_debug_flags = g_parse_debug_string (g_getenv ("GAMES_DEBUG"),

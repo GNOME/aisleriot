@@ -30,6 +30,7 @@
 #define ACCELMAP_EXT "accels"
 #endif
 
+#include "games-debug.h"
 #include "games-marshal.h"
 
 #include "games-conf.h"
@@ -95,6 +96,7 @@ static const char window_state_key_name[][12] = {
 };
 
 typedef struct {
+  GtkWindow *window;
   char *group;
   guint timeout_id;
   int width;
@@ -108,6 +110,11 @@ window_state_timeout_cb (WindowState *state)
 {
   games_conf_set_integer (state->group, window_state_key_name[STATE_KEY_WIDTH], state->width);
   games_conf_set_integer (state->group, window_state_key_name[STATE_KEY_HEIGHT], state->height);
+
+  _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
+                      "[window %p] timeout: persisting width:%d height:%d\n",
+                      state->window,
+                      state->width, state->height);
 
   state->timeout_id = 0;
   return FALSE;
@@ -133,10 +140,22 @@ window_configure_event_cb (GtkWidget *widget,
                            GdkEventConfigure *event,
                            WindowState *state)
 {
+  _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
+                      "[window %p] configure event current %dx%d new %dx%d [state: is-maximised:%s is-fullscreen:%s]\n",
+                      state->window,
+                      state->width, state->height,
+                      event->width, event->height,
+                      state->is_maximised ? "t" : "f",
+                      state->is_fullscreen ? "t" : "f");
+
   if (!state->is_maximised && !state->is_fullscreen &&
       (state->width != event->width || state->height != event->height)) {
     state->width = event->width;
     state->height = event->height;
+
+  _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
+                      "[window %p] scheduling save of new window size\n",
+                      state->window);
 
     if (state->timeout_id == 0) {
       state->timeout_id = g_timeout_add (WINDOW_STATE_TIMEOUT,
@@ -153,6 +172,13 @@ window_state_event_cb (GtkWidget *widget,
                        GdkEventWindowState *event,
                        WindowState *state)
 {
+  _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
+                      "[window %p] state event, mask:%x new-state:%x current state: is-maximised:%s is-fullscreen:%s\n",
+                      state->window,
+                      event->changed_mask, event->new_window_state,
+                      state->is_maximised ? "t" : "f",
+                      state->is_fullscreen ? "t" : "f");
+
   if (event->changed_mask & GDK_WINDOW_STATE_MAXIMIZED) {
     state->is_maximised = (event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) != 0;
     games_conf_set_boolean (state->group, window_state_key_name[STATE_KEY_MAXIMISED], state->is_maximised);
@@ -161,6 +187,12 @@ window_state_event_cb (GtkWidget *widget,
     state->is_fullscreen = (event->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) != 0;
     games_conf_set_boolean (state->group, window_state_key_name[STATE_KEY_FULLSCREEN], state->is_fullscreen);
   }
+
+  _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
+                      "  > new state: is-maximised:%s is-fullscreen:%s\n",
+                      state->is_maximised ? "t" : "f",
+                      state->is_fullscreen ? "t" : "f");
+
 
   return FALSE;
 }
@@ -1213,6 +1245,7 @@ games_conf_add_window (GtkWindow *window,
   g_return_if_fail (!GTK_WIDGET_REALIZED (window));
 
   state = g_slice_new0 (WindowState);
+  state->window = window;
   state->group = g_strdup (group);
   g_object_set_data_full (G_OBJECT (window), "GamesConf::WindowState",
                           state, (GDestroyNotify) free_window_state);
@@ -1228,12 +1261,22 @@ games_conf_add_window (GtkWindow *window,
   height = games_conf_get_integer (group, window_state_key_name[STATE_KEY_HEIGHT], NULL);
 
   if (width > 0 && height > 0) {
+    _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
+                        "[window %p] restoring size %dx%d\n",
+                        state->window,
+                        width, height);
     gtk_window_set_default_size (GTK_WINDOW (window), width, height);
   }
   if (maximised) {
+    _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
+                        "[window %p] restoring maximised state\n",
+                        state->window);
     gtk_window_maximize (GTK_WINDOW (window));
   }
   if (fullscreen) {
+    _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
+                        "[window %p] restoring fullscreen state\n",
+                        state->window);
     gtk_window_fullscreen (GTK_WINDOW (window));
   }
 }

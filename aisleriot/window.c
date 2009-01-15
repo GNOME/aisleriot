@@ -41,6 +41,7 @@
 #include <libgames-support/games-card-theme.h>
 #include <libgames-support/games-card-themes.h>
 #include <libgames-support/games-clock.h>
+#include <libgames-support/games-debug.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
 #include <libgames-support/games-runtime.h>
@@ -1039,6 +1040,11 @@ static void
 fullscreen_toggled_cb (GtkToggleAction *action,
                        GtkWindow *window)
 {
+  _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
+                      "[window %p] fullscreen_toggled_cb, %s fullscreen\n",
+                      window,
+                      gtk_toggle_action_get_active (action) ? "going" : "leaving");
+
   if (gtk_toggle_action_get_active (action)) {
     gtk_window_fullscreen (window);
   } else {
