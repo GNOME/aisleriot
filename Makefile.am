@@ -16,8 +16,6 @@ DIST_SUBDIRS = po dependencies icons sounds libgames-support tests $(allgames)
 
 EXTRA_DIST = \
 	autogen.sh \
-	gnome-games.spec.in \
-	gnome-games.spec \
 	COPYING-DOCS \
 	xmldocs.make \
 	omf.make \
