@@ -12,7 +12,7 @@ if ENABLE_SOUND
 SUBDIRS += sounds
 endif
 
-DIST_SUBDIRS = po dependencies icons sounds libgames-support tests $(allgames)
+DIST_SUBDIRS = po dependencies icons sounds libgames-support tests $(allgames) $(staginggames)
 
 EXTRA_DIST = \
 	autogen.sh \
