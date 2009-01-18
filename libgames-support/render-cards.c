@@ -54,9 +54,9 @@ main (int argc, char *argv[])
   const GOptionEntry options[] = {
     { "theme", 't', 0, G_OPTION_ARG_STRING, &theme_name,
       "Select the theme to render", "NAME" },
-    { "theme-directory", 'd', 0, G_OPTION_ARG_STRING, &theme_dir,
+    { "theme-directory", 'd', 0, G_OPTION_ARG_FILENAME, &theme_dir,
       "The directory where the scalable card themes are installed", "DIR" },
-    { "output-directory", 'o', 0, G_OPTION_ARG_STRING, &outpath,
+    { "output-directory", 'o', 0, G_OPTION_ARG_FILENAME, &outpath,
       "Select the output root directoy", "DIR" },
     { "antialias", 'a', 0, G_OPTION_ARG_STRING, &antialias,
       "Enable antialiasing", NULL },
@@ -72,7 +72,7 @@ main (int argc, char *argv[])
 
   if (!gtk_init_with_args
       (&argc, &argv, NULL, (GOptionEntry *) options, NULL, &err)) {
-    g_print ("Error parsing arguments: %s\n", err->message);
+    g_printerr ("Error parsing arguments: %s\n", err->message);
     g_error_free (err);
     goto loser;
   }
@@ -89,7 +89,7 @@ main (int argc, char *argv[])
     } else if (g_ascii_strcasecmp (subpixel_order, "vbgr") == 0) {
       subpixels = CAIRO_SUBPIXEL_ORDER_VBGR;
     } else {
-      g_print
+      g_printerr
         ("Unknown subpixel order '%s' specified. Valid orders are none, rgb, bgr, vrgb, vbgr.\n",
          subpixel_order);
       goto loser;
@@ -106,7 +106,7 @@ main (int argc, char *argv[])
     } else if (g_ascii_strcasecmp (antialias, "subpixel") == 0) {
       antialias_mode = CAIRO_ANTIALIAS_SUBPIXEL;
     } else {
-      g_print
+      g_printerr
         ("Unknown antialias mode '%s' specified. Valid modes are default, none, grey and subpixel.\n",
          antialias);
       goto loser;
@@ -115,17 +115,17 @@ main (int argc, char *argv[])
   }
 
   if (!outpath) {
-    g_print ("No output directory specified.\n");
+    g_printerr ("No output directory specified.\n");
     goto loser;
   }
 
   if (!theme_name) {
-    g_print ("No card theme specified.\n");
+    g_printerr ("No card theme specified.\n");
     goto loser;
   }
 
   if (!args) {
-    g_print ("No output size(s) specified.\n");
+    g_printerr ("No output size(s) specified.\n");
     goto loser;
   }
 
