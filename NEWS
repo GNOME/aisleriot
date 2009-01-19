@@ -1,16 +1,43 @@
 gnome-games 2.25.5
 ==================
 
+The gnome-games team is proud to release another version with lots of nice
+improvements. Many of the changes are under the hood but the users can look
+forward to lower mem usage and a new game in aisleriot, possibility to add 
+network profiles in chess, and also undo support in chess. We hope you'll love
+it :)
+
 General:
-  - Move GThread and gettext initialisation into games_runtime_init()
-  - Refactored card themes code
+  - Move GThread and gettext initialisation into games_runtime_init() (Christian
+    Persch)
+  - Refactored card themes code (Christian Persch)
+  - Change xml entities to utf-8 (Jason Clinton)
+  - Fixed typoed XML files (Jason Clinton)
+  - Allow ChangeLog from git-svn (Jason Clinton)
+  - Distcheck and warning fixes (Thomas H.P. Andersen)
+  - Add msg context to translations (Christian Persch)
 
 Aisleriot:
   - Reduce memory usage in aisleriot/clutter by only caching the
-    card textures and not the GdkPixbufs
+    card textures and not the GdkPixbufs (Christian Persch)
   - Reduce graphics memory usage by drawing highlighted cards with
-    a different colour instead of creating a separate texture for it
-  - New game "Accordion" (#526392)
+    a different colour instead of creating a separate texture for it (Christian 
+    Persch)
+  - New game "Accordion" (by Ed Sirett in #526392)
+  - Fix Treize in click-to-move mode (Christian Persch)
+
+Chess:
+  - Add ability to resign AI vs. AI games (Robert Ancell)
+  - Made GGZ config writable so dialogs can update it (Robert Ancell)
+  - Added dialog to add new network profiles (Robert Ancell)
+  - Added undo support (Robert Ancell)
+
+Translations:
+ - de: Andre Klapper
+ - el: Marios Zindilis
+ - es: Jorge González
+ - nb: Kjartan Maraas
+ - sv: Daniel Nylander
 
 gnome-games 2.25.4
 ==================
