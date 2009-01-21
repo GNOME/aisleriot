@@ -402,7 +402,7 @@ cscmi_catch_handler (gpointer user_data,
 {
   CallData *data = (CallData *) user_data;
   AisleriotGame *game = app_game;
-  char *message;
+  char *message = NULL;
   int error_fd;
   char *error_file = NULL;
   GError *error = NULL;

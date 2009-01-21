@@ -657,13 +657,13 @@ main_prog (void *closure, int argc, char *argv[])
 
   aisleriot_conf_shutdown ();
 
-  cleanup:
-  g_free (data.variation);
-
 #ifdef WITH_SMCLIENT
   g_signal_handlers_disconnect_matched (sm_client, G_SIGNAL_MATCH_DATA,
                                         0, 0, NULL, NULL, &data);
 #endif /* WITH_SMCLIENT */
+
+cleanup:
+  g_free (data.variation);
 
 #ifdef HAVE_MAEMO
   if (data.program != NULL) {

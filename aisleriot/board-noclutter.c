@@ -2608,8 +2608,8 @@ aisleriot_board_focus (GtkWidget *widget,
         count = -1;
         break;
       default:
-        g_assert_not_reached();
-        break;
+	/* FIXME: can this happen? */
+	return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus (widget, direction);
     }
 
     return aisleriot_board_move_cursor_start_end_by_slot (board, -count);
