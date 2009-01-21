@@ -2608,6 +2608,7 @@ aisleriot_board_focus (GtkWidget *widget,
         count = -1;
         break;
       default:
+        g_assert_not_reached();
         break;
     }
 
