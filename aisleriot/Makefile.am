@@ -47,9 +47,6 @@ sol_CFLAGS = \
 	$(GUILE_CFLAGS)	      \
 	$(AM_CFLAGS)
 
-sol_LDFLAGS = \
-	$(AM_LDFLAGS)
-
 sol_LDADD = \
 	$(top_builddir)/libgames-support/libgames-support.la \
 	$(GTK_LIBS) \
