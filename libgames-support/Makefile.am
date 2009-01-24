@@ -149,8 +149,8 @@ libgames_support_la_CPPFLAGS = \
 	$(NULL)
 
 libgames_support_la_CFLAGS = 	\
-	$(WARN_CFLAGS)		\
-	$(GTK_CFLAGS)
+	$(GTK_CFLAGS)		\
+	$(AM_CFLAGS)
 
 libgames_support_la_LIBADD = 	\
 	$(GTK_LIBS)
