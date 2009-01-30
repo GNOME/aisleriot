@@ -406,7 +406,7 @@ set_background_from_baize (GtkWidget *widget,
   gdk_gc_set_tile (gc, pixmap);
   gdk_gc_set_fill (gc, GDK_TILED);
 
-  gdk_pixbuf_unref (pixbuf);
+  g_object_unref (pixbuf);
   g_object_unref (pixmap);
 }
 
