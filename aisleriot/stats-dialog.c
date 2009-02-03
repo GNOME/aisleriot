@@ -25,6 +25,10 @@
 
 #include <libgames-support/games-stock.h>
 
+#ifndef HAVE_HILDON
+#include <libgames-support/games-atk-utils.h>
+#endif
+
 #include "conf.h"
 #include "util.h"
 
@@ -74,8 +78,8 @@ pack_in_frame (GtkWidget *box,
   gtk_widget_show_all (frame);
 
 #ifndef HAVE_HILDON
-  aisleriot_util_add_atk_relation (label, frame, ATK_RELATION_LABEL_FOR);
-  aisleriot_util_add_atk_relation (frame, label, ATK_RELATION_LABELLED_BY);
+  games_atk_util_add_atk_relation (label, frame, ATK_RELATION_LABEL_FOR);
+  games_atk_util_add_atk_relation (frame, label, ATK_RELATION_LABELLED_BY);
 #endif /* !HAVE_HILDON */
 }
 
@@ -99,8 +103,8 @@ add_row (GtkTable *table,
                              1, 2, row, row + 1);
 
 #ifndef HAVE_HILDON
-  aisleriot_util_add_atk_relation (label, data_label, ATK_RELATION_LABEL_FOR);
-  aisleriot_util_add_atk_relation (data_label, label, ATK_RELATION_LABELLED_BY);
+  games_atk_util_add_atk_relation (label, data_label, ATK_RELATION_LABEL_FOR);
+  games_atk_util_add_atk_relation (data_label, label, ATK_RELATION_LABELLED_BY);
 #endif /* !HAVE_HILDON */
 
   return GTK_LABEL (data_label);

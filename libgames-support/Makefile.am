@@ -64,6 +64,8 @@ libgames_support_la_SOURCES =		\
 
 if !HAVE_HILDON
 libgames_support_la_SOURCES +=		\
+	games-atk-utils.c		\
+	games-atk-utils.h		\
 	games-clock.c			\
 	games-clock.h			\
 	games-frame.c			\

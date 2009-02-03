@@ -31,10 +31,6 @@ void aisleriot_util_set_help_func (AisleriotHelpFunc func,
 
 void aisleriot_display_help (GtkWindow * parent, const char *game_file);
 
-void aisleriot_util_add_atk_relation (GtkWidget *widget,
-                                      GtkWidget *other,
-                                      AtkRelationType type);
-
 G_END_DECLS
 
 #endif /* !UTIL_H */

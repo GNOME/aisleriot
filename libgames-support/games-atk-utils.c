@@ -20,31 +20,32 @@
 
 #include <config.h>
 
-#include <string.h>
-
-#include <glib/gi18n.h>
-
 #include <gtk/gtk.h>
 
-#include "util.h"
+#include "games-atk-utils.h"
 
-static AisleriotHelpFunc help_hook;
-static gpointer help_hook_data;
-
+/**
+ * games_atk_util_add_atk_relation:
+ * @widget:
+ * @other:
+ * @type:
+ *
+ * Adds an AtkRelation of type @type to @other into @widget's
+ * AtkRelationSet.
+ */
 void
-aisleriot_util_set_help_func (AisleriotHelpFunc func,
-                              gpointer user_data)
+games_atk_util_add_atk_relation (GtkWidget *widget,
+                                 GtkWidget *other,
+                                 AtkRelationType type)
 {
-  help_hook = func;
-  help_hook_data = user_data;
-}
+  AtkRelationSet *set;
+  AtkRelation *relation;
+  AtkObject *object;
 
-void
-aisleriot_display_help (GtkWindow *parent,
-                        const char *game_file)
-{
-  if (!help_hook)
-    return;
-
-  help_hook (parent, game_file, help_hook_data);
+  object = gtk_widget_get_accessible (other);
+  set = atk_object_ref_relation_set (gtk_widget_get_accessible (widget));
+  relation = atk_relation_new (&object, 1, type);
+  atk_relation_set_add (set, relation);
+  g_object_unref (relation);
+  g_object_unref (set);
 }
