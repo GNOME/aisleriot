@@ -302,13 +302,14 @@ games_card_theme_pysol_set_card_size (GamesCardTheme *card_theme,
   return FALSE;
 }
 
-static CardSize
-games_card_theme_pysol_get_card_size (GamesCardTheme *card_theme)
+static void
+games_card_theme_pysol_get_card_size (GamesCardTheme *card_theme,
+                                      CardSize *size)
 {
   GamesCardThemeInfo *theme_info = card_theme->theme_info;
   PySolConfigTxtData *pysol_data = theme_info->data;
 
-  return pysol_data->card_size;
+  *size = pysol_data->card_size;
 }
 
 static double

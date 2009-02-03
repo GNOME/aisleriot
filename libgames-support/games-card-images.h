@@ -67,7 +67,8 @@ gboolean games_card_images_set_size (GamesCardImages * images,
                                      gint width,
                                      gint height, gdouble proportion);
 
-CardSize games_card_images_get_size (GamesCardImages * images);
+void games_card_images_get_size (GamesCardImages *images,
+                                 CardSize *size);
 
 void games_card_images_set_background_color (GamesCardImages * images,
                                              const GdkColor * color);

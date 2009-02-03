@@ -220,7 +220,7 @@ main (int argc, char *argv[])
 
     sizes[i] = size;
 
-    card_size = games_card_theme_get_size (theme);
+    games_card_theme_get_size (theme, &card_size);
     g_key_file_set_integer (key_file, sizestr, "Width", card_size.width);
     g_key_file_set_integer (key_file, sizestr, "Height", card_size.height);
   }

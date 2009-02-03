@@ -277,13 +277,15 @@ games_card_theme_set_size (GamesCardTheme *theme,
 /**
  * games_card_theme_get_size:
  * @theme:
+ * @size: location to store the card size
  *
- * Returns: the currently selected card size
+ * Returns the currently selected card size in @size.
  */
-CardSize
-games_card_theme_get_size (GamesCardTheme *theme)
+void
+games_card_theme_get_size (GamesCardTheme *theme,
+                           CardSize *size)
 {
-  return theme->klass->get_card_size (theme);
+  theme->klass->get_card_size (theme, size);
 }
 
 /**

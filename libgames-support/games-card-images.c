@@ -445,10 +445,11 @@ games_card_images_set_size (GamesCardImages * images,
  *
  * Returns: the currently selected card size
  */
-CardSize
-games_card_images_get_size (GamesCardImages * images)
+void
+games_card_images_get_size (GamesCardImages *images,
+                            CardSize *size)
 {
-  return games_card_theme_get_size (images->theme);
+  games_card_theme_get_size (images->theme, size);
 }
 
 /**

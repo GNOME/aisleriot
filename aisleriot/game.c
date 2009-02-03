@@ -493,23 +493,21 @@ c2scm_card (Card card)
                                        SCM_EOL)));
 }
 
-static Card
-scm2c_card (SCM card_data)
+static void
+scm2c_card (SCM card_data,
+            Card *card)
 {
-  Card card;
   guint rank, suit, face_down;
 
-  card.value = 0;
+  card->value = 0;
 
   rank = scm_to_int (SCM_CAR (card_data));
   suit = scm_to_int (SCM_CADR (card_data));
   face_down = !(SCM_NFALSEP (SCM_CADDR (card_data)));
 
-  card.attr.rank = rank;
-  card.attr.suit = suit;
-  card.attr.face_down = face_down;
-
-  return card;
+  card->attr.rank = rank;
+  card->attr.suit = suit;
+  card->attr.face_down = face_down;
 }
 
 static SCM
@@ -544,7 +542,10 @@ cscmi_slot_set_cards (Slot *slot,
     i = n_cards;
 
     for (list_el = cards; list_el != SCM_EOL; list_el = SCM_CDR (list_el)) {
-      data[--i] = CARD_UINT (scm2c_card (SCM_CAR (list_el)));
+      Card card;
+
+      scm2c_card (SCM_CAR (list_el), &card);
+      data[--i] = CARD_UINT (card);
     }
   }
 

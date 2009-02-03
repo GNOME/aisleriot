@@ -1066,7 +1066,8 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
                              priv->yslotstep,
                              CARD_SLOT_PROP);
 
-  card_size = priv->card_size = games_card_theme_get_size (priv->theme);
+  games_card_theme_get_size (priv->theme, &card_size);
+  priv->card_size = card_size;
 
   /* If the cards are too far apart, bunch them in the middle. */
   priv->xbaseoffset = 0;

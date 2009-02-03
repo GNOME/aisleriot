@@ -197,12 +197,13 @@ games_card_theme_preimage_set_card_size (GamesCardTheme *card_theme,
   return TRUE;
 }
 
-static CardSize
-games_card_theme_preimage_get_card_size (GamesCardTheme *card_theme)
+static void
+games_card_theme_preimage_get_card_size (GamesCardTheme *card_theme,
+                                         CardSize *size)
 {
   GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
 
-  return theme->card_size;
+  *size = theme->card_size;
 }
 
 static double

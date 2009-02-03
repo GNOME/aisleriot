@@ -246,12 +246,13 @@ games_card_theme_fixed_set_card_size (GamesCardTheme *card_theme,
   return TRUE;
 }
 
-static CardSize
-games_card_theme_fixed_get_card_size (GamesCardTheme *card_theme)
+static void
+games_card_theme_fixed_get_card_size (GamesCardTheme *card_theme,
+                                      CardSize *size)
 {
   GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
 
-  return theme->card_size;
+  *size = theme->card_size;
 }
 
 static double

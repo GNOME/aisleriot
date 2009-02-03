@@ -87,7 +87,8 @@ gboolean games_card_theme_set_size (GamesCardTheme * theme,
                                     int height,
                                     double proportion);
 
-CardSize games_card_theme_get_size (GamesCardTheme * theme);
+void games_card_theme_get_size (GamesCardTheme *theme,
+                                CardSize *size);
 
 double games_card_theme_get_aspect (GamesCardTheme * theme);
 

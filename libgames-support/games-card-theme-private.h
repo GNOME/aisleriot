@@ -74,7 +74,8 @@ struct _GamesCardThemeClass {
                                      int width,
                                      int height,
                                      double proportion);
-  CardSize    (* get_card_size)     (GamesCardTheme *theme);
+  void        (* get_card_size)     (GamesCardTheme *theme,
+                                     CardSize *size);
   double      (* get_card_aspect)   (GamesCardTheme *theme);
   GdkPixbuf*  (* get_card_pixbuf)   (GamesCardTheme *theme,
                                      int card_id);
