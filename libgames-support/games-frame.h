@@ -1,10 +1,11 @@
-/* GTK - The GIMP Toolkit
+/*
  * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
+ * Copyright © 2009 Christian Persch
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -17,8 +18,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef __GAMES_FRAME_H__
-#define __GAMES_FRAME_H__
+#ifndef GAMES_FRAME_H
+#define GAMES_FRAME_H
 
 #include <gtk/gtk.h>
 
@@ -27,33 +28,30 @@ G_BEGIN_DECLS
 #define GAMES_TYPE_FRAME            (games_frame_get_type ())
 #define GAMES_FRAME(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_FRAME, GamesFrame))
 #define GAMES_FRAME_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_FRAME, GamesFrameClass))
-#define IS_GAMES_FRAME(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_FRAME))
-#define IS_GAMES_FRAME_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_FRAME))
+#define GAMES_IS_FRAME(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_FRAME))
+#define GAMES_IS_FRAME_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_FRAME))
 #define GAMES_FRAME_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_FRAME, GamesFrameClass))
 
+typedef struct _GamesFrame      GamesFrame;
+typedef struct _GamesFrameClass GamesFrameClass;
 
-  typedef struct _GamesFrame GamesFrame;
-  typedef struct _GamesFrameClass GamesFrameClass;
+struct _GamesFrame {
+  GtkVBox parent_instance;
+  GtkWidget *label;
+  GtkWidget *alignment;
+};
 
-  struct _GamesFrame {
-    GtkFrame parent_instance;
-  };
+struct _GamesFrameClass {
+  GtkVBoxClass parent_class;
+};
 
-  struct _GamesFrameClass {
-    GtkFrameClass parent_class;
+GType games_frame_get_type (void);
 
-    /* Padding for future expansion */
-    void (*_games_reserved1) (void);
-    void (*_games_reserved2) (void);
-    void (*_games_reserved3) (void);
-    void (*_games_reserved4) (void);
-  };
+GtkWidget *games_frame_new (const char *label);
 
-
-  GType games_frame_get_type (void) G_GNUC_CONST;
-  GtkWidget *games_frame_new (const gchar * label);
-  void games_frame_set_label (GamesFrame * frame, const gchar * label);
+void games_frame_set_label (GamesFrame *frame,
+                            const char *label);
 
 G_END_DECLS
 
-#endif				/* __GAMES_FRAME_H__ */
+#endif /* !GAMES_FRAME_H */
