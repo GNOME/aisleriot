@@ -172,7 +172,7 @@ games_runtime_get_directory (GamesRuntimeDirectory directory)
   if (cached_directories[directory])
     return cached_directories[directory];
 
-  switch (directory) {
+  switch ((int) directory) {
 #ifndef G_OS_WIN32
     case GAMES_RUNTIME_DATA_DIRECTORY:
       path = g_strdup (DATADIR);

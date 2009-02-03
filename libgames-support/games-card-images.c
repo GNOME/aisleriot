@@ -256,9 +256,13 @@ games_card_images_set_property (GObject *object,
   GamesCardImages *images = GAMES_CARD_IMAGES (object);
 
   switch (prop_id) {
-  case PROP_THEME:
-    games_card_images_set_theme (images, g_value_get_object (value));
-    break;
+    case PROP_THEME:
+      games_card_images_set_theme (images, g_value_get_object (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
   }
 }
 
@@ -271,9 +275,13 @@ games_card_images_get_property (GObject *object,
   GamesCardImages *images = GAMES_CARD_IMAGES (object);
 
   switch (prop_id) {
-  case PROP_THEME:
-    g_value_set_object (value, games_card_images_get_theme (images));
-    break;
+    case PROP_THEME:
+      g_value_set_object (value, games_card_images_get_theme (images));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
   }
 }
 

@@ -139,6 +139,8 @@ update_player_list (GtkWidget * tree)
       status = _("-");
       name = seat.name;
       break;
+    default:
+      g_assert_not_reached ();
     }
 
     gtk_list_store_set (store, &iter,

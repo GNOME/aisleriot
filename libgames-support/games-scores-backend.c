@@ -236,6 +236,8 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
       case GAMES_SCORES_STYLE_TIME_ASCENDING:
 	newscore->value.time_double = g_ascii_strtod (scorestr, NULL);
 	break;
+      default:
+        g_assert_not_reached ();
       }
       self->scores_list = g_list_append (self->scores_list, newscore);
       /* Setup again for the next time around. */
@@ -282,6 +284,8 @@ games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
     case GAMES_SCORES_STYLE_TIME_ASCENDING:
       rscore = d->value.time_double;
       break;
+    default:
+      g_assert_not_reached ();
     }
     rtime = d->time;
     rname = d->name;

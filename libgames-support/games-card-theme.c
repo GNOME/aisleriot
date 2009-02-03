@@ -97,6 +97,10 @@ games_card_theme_set_property (GObject * object,
     case PROP_THEME_INFO:
       theme->theme_info = g_value_dup_boxed (value);
       break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
   }
 }
 

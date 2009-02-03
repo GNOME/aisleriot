@@ -94,6 +94,10 @@ games_frame_set_property (GObject *object,
     case PROP_LABEL:
       games_frame_set_label (frame, g_value_get_string (value));
       break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
   }
 }
 
