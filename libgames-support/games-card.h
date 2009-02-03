@@ -48,7 +48,7 @@ typedef union {
     guint8 face_down : 1;
     guint8 suit : 2;
     guint8 rank : 4;
-  } GNOME_GAMES_GNUC_PACKED attr;
+  } attr;
 } GNOME_GAMES_GNUC_PACKED Card;
 
 typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; /* static assertion */
