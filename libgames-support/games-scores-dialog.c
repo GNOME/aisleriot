@@ -133,10 +133,12 @@ static void games_scores_dialog_set_style (GamesScoresDialog *self,
 static void games_scores_dialog_set_category (GamesScoresDialog *self, 
 					      const gchar *key) 
 {
-  gint idx;
+  gpointer value;
+  int idx;
 
-  idx = GPOINTER_TO_SIZE (g_hash_table_lookup (self->_priv->categories, 
-						key));
+  value = g_hash_table_lookup (self->_priv->categories, key);
+  idx = GPOINTER_TO_INT (value);
+
   self->_priv->preservehilight = TRUE;
   gtk_combo_box_set_active (GTK_COMBO_BOX (self->_priv->combo), idx);
 }
