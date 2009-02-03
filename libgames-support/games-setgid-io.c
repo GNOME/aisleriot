@@ -466,7 +466,7 @@ setgid_io_truncate_priv (int outfd, int infd)
   write_int (outfd, result);
 }
 
-/* This function never returns. */
+G_GNUC_NORETURN
 static void
 setgid_io_pipe_watcher (int outfd, int infd)
 {
