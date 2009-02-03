@@ -1,5 +1,5 @@
 /*
- * clock.h: Clock widget.
+ *clock_widget.h: Clock widget.
  *
  * Copyright © 2001, 2003 Iain Holmes
  *           © 2001 Mark McLoughlin
@@ -36,12 +36,12 @@ typedef GtkLabelClass GamesClockClass;
 
 GType      games_clock_get_type     (void);
 GtkWidget *games_clock_new          (void);
-void       games_clock_start        (GamesClock * clock);
-void       games_clock_stop         (GamesClock * clock);
-void       games_clock_set_seconds  (GamesClock * clock,
+void       games_clock_start        (GamesClock *clock_widget);
+void       games_clock_stop         (GamesClock *clock_widget);
+void       games_clock_set_seconds  (GamesClock *clock_widget,
                                      time_t seconds);
-time_t     games_clock_get_seconds  (GamesClock * clock);
-void       games_clock_add_seconds  (GamesClock * clock,
+time_t     games_clock_get_seconds  (GamesClock *clock_widget);
+void       games_clock_add_seconds  (GamesClock *clock_widget,
                                      time_t seconds);
 
 G_END_DECLS

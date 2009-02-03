@@ -54,7 +54,8 @@ struct _GamesScoresBackendClass {
 
 GType games_scores_backend_get_type (void);
 GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
-					      gchar * basename, gchar * name);
+					      char *base_name,
+                                              char *name);
 GList *games_scores_backend_get_scores (GamesScoresBackend * self);
 gboolean games_scores_backend_set_scores (GamesScoresBackend * self,
 				          GList * list);

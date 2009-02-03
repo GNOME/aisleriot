@@ -17,11 +17,11 @@ G_DEFINE_TYPE (GamesClock, games_clock, GTK_TYPE_LABEL)
 static void
 games_clock_finalize (GObject * object)
 {
-  GamesClock *clock = GAMES_CLOCK (object);
+  GamesClock *clock_widget = GAMES_CLOCK (object);
 
-  if (clock->timer_id != 0) {
-    g_source_remove (clock->timer_id);
-    clock->timer_id = 0;
+  if (clock_widget->timer_id != 0) {
+    g_source_remove (clock_widget->timer_id);
+    clock_widget->timer_id = 0;
   }
 
   G_OBJECT_CLASS (games_clock_parent_class)->finalize (object);
@@ -36,12 +36,12 @@ games_clock_class_init (GamesClockClass * klass)
 }
 
 static void
-games_clock_init (GamesClock * clock)
+games_clock_init (GamesClock *clock_widget)
 {
-  clock->timer_id = 0;
-  clock->seconds = 0;
+  clock_widget->timer_id = 0;
+  clock_widget->seconds = 0;
 
-  gtk_label_set_text (GTK_LABEL (clock), "00:00:00");
+  gtk_label_set_text (GTK_LABEL (clock_widget), "00:00:00");
 }
 
 GtkWidget *
@@ -51,84 +51,84 @@ games_clock_new (void)
 }
 
 static void
-clock_paint (GamesClock * clock)
+clock_paint (GamesClock *clock_widget)
 {
   char string[32];
   int secs;
   int mins;
   int hours;
 
-  hours = clock->seconds / 3600;
-  secs = clock->seconds - hours * 3600;
+  hours = clock_widget->seconds / 3600;
+  secs = clock_widget->seconds - hours * 3600;
   mins = secs / 60;
   secs = secs - mins * 60;
 
   /* FIXMEchpe: i18n! */
   g_snprintf (string, sizeof (string), "%.2d:%.2d:%.2d", hours, mins, secs);
 
-  gtk_label_set_text (GTK_LABEL (clock), string);
+  gtk_label_set_text (GTK_LABEL (clock_widget), string);
 }
 
 
 static gboolean
-games_clock_update (GamesClock * clock)
+games_clock_update (GamesClock *clock_widget)
 {
-  clock->seconds++;
+  clock_widget->seconds++;
 
-  clock_paint (clock);
+  clock_paint (clock_widget);
 
   return TRUE;
 }
 
 void
-games_clock_start (GamesClock * clock)
+games_clock_start (GamesClock *clock_widget)
 {
-  g_return_if_fail (GAMES_IS_CLOCK (clock));
+  g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
 
-  if (clock->timer_id != 0)
+  if (clock_widget->timer_id != 0)
     return;
 
-  clock->timer_id = g_timeout_add (1000,
-				   (GSourceFunc) games_clock_update, clock);
+  clock_widget->timer_id = g_timeout_add (1000,
+				   (GSourceFunc) games_clock_update, clock_widget);
 }
 
 void
-games_clock_stop (GamesClock * clock)
+games_clock_stop (GamesClock *clock_widget)
 {
-  g_return_if_fail (GAMES_IS_CLOCK (clock));
+  g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
 
-  if (clock->timer_id == 0)
+  if (clock_widget->timer_id == 0)
     return;
 
-  g_source_remove (clock->timer_id);
-  clock->timer_id = 0;
-  clock->stopped = clock->seconds;
+  g_source_remove (clock_widget->timer_id);
+  clock_widget->timer_id = 0;
+  clock_widget->stopped = clock_widget->seconds;
 }
 
 void
-games_clock_set_seconds (GamesClock * clock,
+games_clock_set_seconds (GamesClock *clock_widget,
                          time_t seconds)
 {
-  g_return_if_fail (GAMES_IS_CLOCK (clock));
+  g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
 
-  clock->seconds = seconds;
-  clock_paint (clock);
+  clock_widget->seconds = seconds;
+  clock_paint (clock_widget);
 }
 
 time_t
-games_clock_get_seconds (GamesClock * clock)
+games_clock_get_seconds (GamesClock *clock_widget)
 {
-  g_return_val_if_fail ( GAMES_IS_CLOCK (clock), 0);
+  g_return_val_if_fail ( GAMES_IS_CLOCK (clock_widget), 0);
 
-  return clock->seconds;
+  return clock_widget->seconds;
 }
 
 void
-games_clock_add_seconds (GamesClock * clock,
+games_clock_add_seconds (GamesClock *clock_widget,
                          time_t seconds)
 {
-  g_return_if_fail (GAMES_IS_CLOCK (clock));
+  g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
 
-  clock->seconds += seconds;
-  clock_paint (clock);
+  clock_widget->seconds += seconds;
+  clock_paint (clock_widget);
 }

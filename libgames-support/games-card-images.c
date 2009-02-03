@@ -590,10 +590,8 @@ GdkPixbuf *
 games_card_images_get_card_pixbuf (GamesCardImages * images,
                                    Card card, gboolean highlighted)
 {
-  guint index = _games_card_to_index (card);
-
   return games_card_images_get_card_pixbuf_by_id (images,
-                                                  index,
+                                                  _games_card_to_index (card),
                                                   highlighted);
 }
 
@@ -742,10 +740,8 @@ GdkPixmap *
 games_card_images_get_card_pixmap (GamesCardImages * images,
                                    Card card, gboolean highlighted)
 {
-  guint index = _games_card_to_index (card);
-
   return games_card_images_get_card_pixmap_by_id (images,
-                                                  index,
+                                                  _games_card_to_index (card),
                                                   highlighted);
 }
 

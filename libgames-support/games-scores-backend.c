@@ -72,7 +72,8 @@ games_scores_backend_init (GamesScoresBackend * backend)
 
 GamesScoresBackend *
 games_scores_backend_new (GamesScoreStyle style,
-			  gchar * basename, gchar * name)
+			  char *base_name,
+                          char *name)
 {
   GamesScoresBackend *backend;
   gchar *fullname;
@@ -81,9 +82,9 @@ games_scores_backend_new (GamesScoreStyle style,
 						NULL));
 
   if (name[0] == '\0')		/* Name is "" */
-    fullname = g_strjoin (".", basename, "scores", NULL);
+    fullname = g_strjoin (".", base_name, "scores", NULL);
   else
-    fullname = g_strjoin (".", basename, name, "scores", NULL);
+    fullname = g_strjoin (".", base_name, name, "scores", NULL);
 
   backend->priv->timestamp = 0;
   backend->priv->style = style;

@@ -109,11 +109,11 @@ update_player_list (GtkWidget * tree)
     GGZSeat seat = ggzmod_get_seat (ggz, p);
     GtkTreeIter iter;
     const gchar *status = NULL, *name = NULL;
-    gchar num[32];
+    gchar numstr[32];
 
     gtk_list_store_append (store, &iter);
 
-    snprintf (num, sizeof (num), "%d", p);
+    snprintf (numstr, sizeof (numstr), "%d", p);
     switch (seat.type) {
     case GGZ_SEAT_PLAYER:
       status = _("Occupied");
@@ -142,7 +142,7 @@ update_player_list (GtkWidget * tree)
     }
 
     gtk_list_store_set (store, &iter,
-			PLAYER_COLUMN_SEAT, num,
+			PLAYER_COLUMN_SEAT, numstr,
 			PLAYER_COLUMN_ISSPECTATOR,
 			(gboolean) FALSE, PLAYER_COLUMN_SEATNUM,
 			(gint) p, PLAYER_COLUMN_TYPE, status,
@@ -191,7 +191,7 @@ create_player_list (void)
   GtkWidget *tree;
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
-  GtkTreeSelection *select;
+  GtkTreeSelection *selection;
 
   assert (PLAYER_COLUMNS == 5);
   store = gtk_list_store_new (PLAYER_COLUMNS,
@@ -224,8 +224,8 @@ create_player_list (void)
 					      PLAYER_COLUMN_NAME, NULL);
   gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
 
-  select = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
-  gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
+  gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
   /* FIXME:  This feature is not supported by gnome-games yet. 
    * g_signal_connect(tree, "button-press-event",

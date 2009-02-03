@@ -3145,7 +3145,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
     GByteArray *cards = hslot->cards;
     gpointer *card_images = hslot->card_images->pdata;
     GdkRectangle card_rect;
-    guint i, n_cards;
+    guint j, n_cards;
 
     n_cards = cards->len;
     if (n_cards == 0)
@@ -3161,7 +3161,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
       card_rect.x += hslot->rect.width - priv->card_size.width;
     }
 
-    for (i = n_cards - hslot->exposed; i < n_cards; ++i) {
+    for (j = n_cards - hslot->exposed; j < n_cards; ++j) {
       /* Check whether this card needs to be drawn */
       /* FIXMEchpe: we can be even smarter here, by checking
        * with the rect of the part of the card that's not going 
@@ -3173,7 +3173,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
       if (PIXBUF_DRAWING_LIKELIHOOD (use_pixbuf_drawing)) {
         GdkPixbuf *pixbuf;
 
-        pixbuf = card_images[i];
+        pixbuf = card_images[j];
         if (!pixbuf)
           goto next;
 
@@ -3184,7 +3184,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
       } else {
         GdkPixmap *pixmap;
 
-        pixmap = card_images[i];
+        pixmap = card_images[j];
         if (!pixmap)
           goto next;
 

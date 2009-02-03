@@ -88,7 +88,7 @@ typedef struct {
 
 static void
 about_url_hook (GtkAboutDialog *about,
-                const char *link,
+                const char *uri,
                 gpointer user_data)
 {
 #if defined(HAVE_MAEMO)
@@ -98,11 +98,11 @@ about_url_hook (GtkAboutDialog *about,
                               "osso_browser",
                               OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
                               NULL,
-                              DBUS_TYPE_STRING, link,
+                              DBUS_TYPE_STRING, uri,
                               DBUS_TYPE_INVALID);
 
 #elif defined (G_OS_WIN32)
-  ShellExecute( NULL, "open", link, NULL, NULL, SW_SHOWNORMAL ); 
+  ShellExecute( NULL, "open", uri, NULL, NULL, SW_SHOWNORMAL );
 #else
 
   GdkScreen *screen;
@@ -110,7 +110,7 @@ about_url_hook (GtkAboutDialog *about,
 
   screen = gtk_widget_get_screen (GTK_WIDGET (about));
 
-  if (!gtk_show_uri (screen, link, gtk_get_current_event_time (), &error)) {
+  if (!gtk_show_uri (screen, uri, gtk_get_current_event_time (), &error)) {
     GtkWidget *dialog;
 
     dialog = gtk_message_dialog_new (GTK_WINDOW (about),

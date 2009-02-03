@@ -179,7 +179,7 @@ const char *
 games_card_get_localised_rank_symbol (int rank)
 {
 #if GLIB_CHECK_VERSION (2, 18, 0)
-  static const char *ranks[] = {
+  static const char *rank_texts[] = {
     /* Translators: this is the symbol that's on a Joker card */
     NC_("card symbol", "JOKER"),
     /* Translators: this is the symbol that's on an Ace card */
@@ -214,14 +214,14 @@ games_card_get_localised_rank_symbol (int rank)
 
   g_return_val_if_fail (rank >= GAMES_CARD_JOKER && rank <= GAMES_CARD_ACE_HIGH, NULL);
 
-  return g_dpgettext2 (GETTEXT_PACKAGE, "card symbol", ranks[rank]);
+  return g_dpgettext2 (GETTEXT_PACKAGE, "card symbol", rank_texts[rank]);
 
 #else
-  static const char ranks[][6] = { "JOKER", "A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K", "A" };
+  static const char rank_texts[][6] = { "JOKER", "A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K", "A" };
 
   g_return_val_if_fail (rank >= GAMES_CARD_JOKER && rank <= GAMES_CARD_ACE_HIGH, NULL);
 
-  return ranks[rank];
+  return rank_texts[rank];
 #endif /* GLIB >= 2.18.0 */
 }
 

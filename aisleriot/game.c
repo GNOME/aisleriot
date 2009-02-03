@@ -2357,9 +2357,9 @@ aisleriot_game_get_card_offset (Slot *slot,
   }
 
   if (card_num >= n_cards - exposed) {
-    gint index = card_num + exposed - n_cards;
-    *xoff = slot->pixeldx * index;
-    *yoff = slot->pixeldy * index;
+    gint idx = card_num + exposed - n_cards;
+    *xoff = slot->pixeldx * idx;
+    *yoff = slot->pixeldy * idx;
   } else {
     *xoff = 0;
     *yoff = 0;

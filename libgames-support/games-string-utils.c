@@ -41,7 +41,7 @@
 char *
 games_filename_to_display_name (const char *filename)
 {
-  char *basename, *display_name, *translated, *p;
+  char *base_name, *display_name, *translated, *p;
   GString *prettified_name;
   gboolean start_of_word, free_segment;
   gunichar c;
@@ -50,18 +50,18 @@ games_filename_to_display_name (const char *filename)
 
   g_return_val_if_fail (filename != NULL, NULL);
 
-  basename = g_path_get_basename (filename);
-  g_return_val_if_fail (basename != NULL, NULL);
+  base_name = g_path_get_basename (filename);
+  g_return_val_if_fail (base_name != NULL, NULL);
 
   /* Hide extension */
-  g_strdelimit (basename, ".", '\0');
+  g_strdelimit (base_name, ".", '\0');
   /* Hide undesirable characters */
-  g_strdelimit (basename, NULL, ' ');
+  g_strdelimit (base_name, NULL, ' ');
 
-  g_strstrip (basename);
+  g_strstrip (base_name);
 
-  display_name = g_filename_display_name (basename);
-  g_free (basename);
+  display_name = g_filename_display_name (base_name);
+  g_free (base_name);
 
   g_return_val_if_fail (display_name != NULL, NULL);
 
