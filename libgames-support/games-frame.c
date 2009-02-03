@@ -23,6 +23,10 @@
 
 #include "games-frame.h"
 
+#ifndef HAVE_HILDON
+#include "games-atk-utils.h"
+#endif
+
 enum {
   PROP_0,
   PROP_LABEL
@@ -71,6 +75,11 @@ games_frame_add (GtkContainer *container,
   GamesFrame *frame = GAMES_FRAME (container);
 
   gtk_container_add (GTK_CONTAINER (frame->alignment), child);
+
+#ifndef HAVE_HILDON
+  games_atk_util_add_atk_relation (frame->label, child, ATK_RELATION_LABEL_FOR);
+  games_atk_util_add_atk_relation (child, frame->label, ATK_RELATION_LABELLED_BY);
+#endif
 }
 
 static void
