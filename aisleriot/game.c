@@ -293,7 +293,7 @@ typedef struct {
   gboolean exception;
 } CallData;
 
-#define CALL_DATA_INIT  { 0, 0, 0, 0, 0, 0, 0 };
+#define CALL_DATA_INIT  { 0, 0, 0, 0, 0, 0, 0 }
 
 static char *
 cscmi_exception_get_backtrace (SCM tag, SCM throw_args)

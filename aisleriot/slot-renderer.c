@@ -609,6 +609,7 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
 
     if (anims[i].face_down != card.attr.face_down) {
       CoglHandle cogl_tex;
+      int center_x, center_y;
 
       cogl_tex = games_card_textures_cache_get_card_texture (priv->cache, card);
       if (G_UNLIKELY (cogl_tex == COGL_INVALID_HANDLE))
@@ -617,8 +618,8 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
       card_width = cogl_texture_get_width (cogl_tex);
       card_height = cogl_texture_get_height (cogl_tex);
 
-      gint center_x = card_width / 2;
-      gint center_y = card_height / 2;
+      center_x = card_width / 2;
+      center_y = card_height / 2;
 
       clutter_actor_set_rotation (anim_data.card_tex, CLUTTER_Y_AXIS,
                                   180.0,

@@ -1755,6 +1755,9 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
   int focus_slot_index, new_focus_slot_index;
   int new_focus_slot_topmost_card_id, new_focus_card_id;
   gboolean is_rtl;
+#if GTK_CHECK_VERSION (2, 12, 0)
+  GtkDirectionType direction;
+#endif
 
   slots = aisleriot_game_get_slots (priv->game);
   if (!slots || slots->len == 0)
@@ -1782,8 +1785,6 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
       return FALSE;
 
 #if GTK_CHECK_VERSION (2, 12, 0)
-    GtkDirectionType direction;
-
     if (count > 0) {
       direction = GTK_DIR_RIGHT;
     } else {
