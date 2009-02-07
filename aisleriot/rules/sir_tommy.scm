@@ -78,6 +78,7 @@
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)
+       (not (empty-slot? 0))
        (empty-slot? 1)
        (deal-cards-face-up 0 '(1))))
 
