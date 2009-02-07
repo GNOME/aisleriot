@@ -42,6 +42,8 @@
 
 (define (droppable? start-slot card-list end-slot)
   (and (not (empty-slot? end-slot))
+       (not (= start-slot end-slot))
+       (> end-slot 1)
        (= (get-suit (get-top-card end-slot))
 	  (get-suit (car card-list)))
        (= (get-value (get-top-card end-slot))
