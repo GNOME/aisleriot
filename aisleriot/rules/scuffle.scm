@@ -88,11 +88,12 @@
 		(deal-cards-out 5))
 	   (and (< FLIP-COUNTER 2)
 		(set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
-		(flip-deck 0 5)
-		(flip-deck 0 6)
-		(flip-deck 0 7)
-		(flip-deck 0 8)
-		(shuffle-deck)))))
+		(begin
+		  (flip-deck 0 5)
+		  (flip-deck 0 6)
+		  (flip-deck 0 7)
+		  (flip-deck 0 8)
+		  (shuffle-deck))))))
 
 (define (check-end-slot? slot1 slot2)
   (if (and (not (empty-slot? slot1))
