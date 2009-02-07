@@ -336,13 +336,13 @@
 			 (get-value (get-top-card end-slot))))))
 
 (define (button-released start-slot card-list end-slot)
-  (if (droppable? start-slot card-list end-slot)
-      (begin
-	(remove-card end-slot)
-	(check-for-flips start-slot)
-	(check-for-flips end-slot)
-	(check-double-flips start-slot end-slot)
-	(add-to-score! 2))))
+  (and (droppable? start-slot card-list end-slot)
+       (begin
+         (remove-card end-slot)
+         (check-for-flips start-slot)
+         (check-for-flips end-slot)
+         (check-double-flips start-slot end-slot)
+         (add-to-score! 2))))
 
 (define (button-clicked slot-id)
   (if (= slot-id 0)
