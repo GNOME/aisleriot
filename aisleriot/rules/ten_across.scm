@@ -241,94 +241,14 @@
         #f)))
 
 ;;----------------------------------------------------------------------
-(define (add-up-open-slots tmp-list)
-  (if (null? tmp-list)
-      0
-      (+ (if (= (length (get-cards (car tmp-list))) 0) 1 0)
-         (add-up-open-slots (cdr tmp-list)))))
-
-(define (all-in-order-showing-helper card-list suit value)
-  (if (null? card-list)
-      #t
-      (let ((card (car card-list)))
-        (if (or (not (= (get-suit card) suit))
-                (not (= (get-value card) value)))
-            #f
-            (all-in-order-showing-helper (cdr card-list) suit (+ 1 value))))))
-
-(define (all-in-order-showing card-list)
-  (all-in-order-showing-helper (cdr card-list) (get-suit (car card-list))
-                               (+ 1 (get-value (car card-list)))))
-
-(define (same-stack-smaller-helper card-list suit value num)
-  (if (or (null? card-list)
-          (<= 1 num))
-      #f
-      (let ((card (car card-list)))
-        (if (or (and (not (null? (cdr card-list)))
-                     (not (is-visible? (cadr card-list))))
-                (not (= suit (get-suit card)))
-                (not (= value (get-value card))))
-            card
-            (same-stack-smaller-helper (cdr card-list)
-                                       suit (+ 1 value) (- 1 num))))))
-
-(define (same-stack-smaller card-list num)
-  (let ((card (car card-list)))
-    (same-stack-smaller-helper (cdr card-list) (get-suit card)
-                               (+ 1 (get-value card)) (- 1 num))))
-
-
-(define (has-no-hidden card-list)
-  (if (null? card-list)
-      #t
-      (if (not (is-visible? (car card-list)))
-          (has-no-hidden (cdr card-list))
-          #f)))
-
-(define (less-than-same-cards card-list num)
-  (if (or (null? card-list)
-          (all-in-order-showing card-list)
-          (has-no-hidden card-list))
-      #f
-      (same-stack-smaller card-list num)))
-
-          
-          
-(define (find-good-move-to-tmp-list slot-list num)
-  (or-map (lambda (one-slot)
-            (let ((cards (get-cards one-slot)))
-              (less-than-same-cards cards num)))
-          slot-list))
-
-(define (prepare-move-response card)
-  (list 2 (string-append (get-name card) " " (_"and all cards below it"))
-        (_"empty slot(s)")))
-
-;; ** 4 **
-(define (test-for-good-tmp-move slot-list tmp-list)
-  (let ((num-open-tmp-slots (add-up-open-slots tmp-list)))
-    (if (> num-open-tmp-slots 0)
-        (let ((good-card-list (find-good-move-to-tmp-list slot-list
-                                                          num-open-tmp-slots)))
-          (if (list? good-card-list)
-              (prepare-move-response good-card-list)
-              #f))
-        #f)))
-
-(define should-we-do-tmp-move-test #f)
-
-;;----------------------------------------------------------------------
 (define (get-hint)
   (or
    (test-for-tmp-move-down tableau tmp-spots)
    (test-stack-move tableau tmp-spots) 
    (test-king-move tableau) 
-   (if should-we-do-tmp-move-test
-       (test-for-good-tmp-move tableau tmp-spots)
-       (if (have-empty-slot? tmp-spots)
-           (list 0 (_"Move a card to an empty temporary slot"))
-           (list 0 (_"No hint available"))))
+   (and allow-two-spot-use
+        (have-empty-slot? tmp-spots)
+        (list 0 (_"Move a card to an empty temporary slot")))
    (list 0 (_"No hint available"))))
 
 (define final-stack-helper
