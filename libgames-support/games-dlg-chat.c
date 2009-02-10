@@ -192,10 +192,6 @@ create_dlg_chat (GtkWindow * parent)
   gtk_widget_show (vbox);
 
   chat_widget = create_chat_widget ();
-/*	"This does not seem to work" - Threepwood...
-	g_object_set_data_full(G_OBJECT(dialog),
-			       "chat_widget", chat_widget,
-			       (GDestroyNotify) gtk_widget_unref);*/
   gtk_box_pack_start (GTK_BOX (vbox), chat_widget, TRUE, TRUE, 0);
 
   /* 

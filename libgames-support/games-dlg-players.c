@@ -277,13 +277,6 @@ create_dlg_players (GtkWindow * parent)
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 10);
   gtk_widget_show (vbox);
 
-#if 0
-  label = gtk_label_new (_("List of players:"));
-  gtk_widget_ref (label);
-  gtk_widget_show (label);
-  gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
-#endif
-
   tree = create_player_list ();
   g_object_ref_sink(tree);
   g_object_set_data_full (G_OBJECT (dialog), "tree", tree,
