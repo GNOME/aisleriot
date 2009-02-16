@@ -1,3 +1,49 @@
+gnome-games 2.25.91
+==================
+
+This second beta release brings many bugfixes to aisleriot and also many
+code cleanups all over the place. Bugs from bugbuddy are now sent to a new 
+component 'BugBuddyBugs' to help manage the bug flow. The new Gnometris rendering
+engine based on Clutter is feature complete, though a few bugs remain to be 
+squashed. The engine was massively revamped to make it more responsive to 
+keyboard controls. This rendering engine will be the default in 2.27. For now, 
+it is enabled with --enable-clutter. Due to limitations in Mesa software 
+rendering, you cannot currently play this engine without hardware acceleration.
+
+General:
+  - Send bug from bugbuddy to new component 'BugBuddyBugs' (Jason Clinton, 
+    Thomas H.P. Andersen)
+  - Rewrite of GamesFrame (Christian Persch)
+  - Code cleanups (Christian Persch, Thomas H.P. Andersen)
+  - Autogenerate changelogs in po/ from commitlogs (Christian Persch)
+
+Aisleriot:
+  - Fix cards disappearing without pairs in Thirteen (Vincent Povirk)
+  - Be more strict about allowing drops in Valentine (Vincent Povirk)
+  - Fix crash when clicking an empty stock in Sir Tommy (Vincent Povirk)
+  - Always reshuffle the deck properly in Scuffle (Vincent Povirk)
+  - Respect the temporary slot setting in the hint code in Ten Across (Vincent 
+    Povirk)
+
+Chess:
+  - Fixed a translator comment (Claude Paroz)
+
+Gnometris:
+  - New clutter rendering engine (Jason Clinton)
+
+Translations:
+ - da: Ask H. Larsen
+ - de: Hendrik Richter
+ - es: Daniel Mustieles, Jorge Gonzalez
+ - eu: Inaki Larranaga Murgoitio
+ - he: Yair Hershkovitz, Mark Krapivner
+ - hu: Gabor Kelemen
+ - ro: Adi Roiban
+ - sv: Daniel Nylander
+ - vi: Clytie Siddall
+ - zh_HK: Chao-Hsiung Liao
+ - zh_TW: Chao-Hsiung Liao
+
 gnome-games 2.25.90
 ==================
 
