@@ -192,7 +192,7 @@ _games_card_theme_class_foreach_env (GamesCardThemeClass *klass,
   if (!value || !value[0])
     return TRUE;
 
-  paths = g_strsplit (value, ":", -1);
+  paths = g_strsplit (value, G_SEARCHPATH_SEPARATOR_S, -1);
   if (!paths)
     return TRUE;
 
