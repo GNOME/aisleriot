@@ -11,6 +11,7 @@ card_DATA = \
 	gnomangelo.svg \
 	ornamental.svg \
 	paris.svg \
+	tango.svg \
 	$(NULL)
 
 EXTRA_DIST = \
