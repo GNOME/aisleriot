@@ -582,6 +582,8 @@ help_about_cb (GtkAction *action,
     "David Bellot http://david.bellot.free.fr/svg-cards",
     /* Ornamental cards */
     "Nicu Buculei http://www.nicubunu.ro/cards",
+    /* "Tango" cards */
+    "Frederik Elwert <frederik.elwert@web.de>",
     /* Dondorf and Paris cards */
     "Richard Hoelscher http://www.rahga.com/svg",
     /* Anglo-American cards */
