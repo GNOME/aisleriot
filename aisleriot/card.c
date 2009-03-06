@@ -25,6 +25,16 @@
 
 static void aisleriot_card_paint (ClutterActor *actor);
 
+static void aisleriot_card_get_preferred_width (ClutterActor *self,
+                                                ClutterUnit   for_height,
+                                                ClutterUnit  *min_width_p,
+                                                ClutterUnit  *natural_width_p);
+static void aisleriot_card_get_preferred_height
+                                               (ClutterActor *self,
+                                                ClutterUnit   for_width,
+                                                ClutterUnit  *min_height_p,
+                                                ClutterUnit  *natural_height_p);
+
 static void aisleriot_card_dispose (GObject *self);
 
 static void aisleriot_card_set_property (GObject      *self,
@@ -101,6 +111,8 @@ aisleriot_card_class_init (AisleriotCardClass *klass)
   gobject_class->get_property = aisleriot_card_get_property;
 
   actor_class->paint = aisleriot_card_paint;
+  actor_class->get_preferred_width = aisleriot_card_get_preferred_width;
+  actor_class->get_preferred_height = aisleriot_card_get_preferred_height;
 
   pspec = g_param_spec_uchar ("card", NULL, NULL,
                               0, 255, 0,
@@ -187,6 +199,56 @@ aisleriot_card_new (GamesCardTexturesCache *cache,
 }
 
 static void
+aisleriot_card_get_preferred_width (ClutterActor *self,
+                                    ClutterUnit   for_height,
+                                    ClutterUnit  *min_width_p,
+                                    ClutterUnit  *natural_width_p)
+{
+  AisleriotCard *card = AISLERIOT_CARD (self);
+  AisleriotCardPrivate *priv = card->priv;
+  CoglHandle tex;
+  guint width;
+
+  tex = games_card_textures_cache_get_card_texture (priv->cache, priv->card);
+
+  if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
+    width = 0;
+  else
+    width = cogl_texture_get_width (tex);
+
+  if (min_width_p)
+    *min_width_p = 0;
+
+  if (natural_width_p)
+    *natural_width_p = CLUTTER_UNITS_FROM_DEVICE (width);
+}
+
+static void
+aisleriot_card_get_preferred_height (ClutterActor *self,
+                                     ClutterUnit   for_width,
+                                     ClutterUnit  *min_height_p,
+                                     ClutterUnit  *natural_height_p)
+{
+  AisleriotCard *card = AISLERIOT_CARD (self);
+  AisleriotCardPrivate *priv = card->priv;
+  CoglHandle tex;
+  guint height;
+
+  tex = games_card_textures_cache_get_card_texture (priv->cache, priv->card);
+
+  if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
+    height = 0;
+  else
+    height = cogl_texture_get_height (tex);
+
+  if (min_height_p)
+    *min_height_p = 0;
+
+  if (natural_height_p)
+    *natural_height_p = CLUTTER_UNITS_FROM_DEVICE (height);
+}
+
+static void
 aisleriot_card_paint (ClutterActor *actor)
 {
   AisleriotCard *card = (AisleriotCard *) actor;
@@ -194,7 +256,7 @@ aisleriot_card_paint (ClutterActor *actor)
   Card card_num;
   ClutterFixed x_angle, y_angle;
   CoglHandle tex;
-  ClutterFixed tex_width, tex_height;
+  ClutterActorBox alloc_box;
   gboolean x_swapped = FALSE;
   static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
 
@@ -203,6 +265,8 @@ aisleriot_card_paint (ClutterActor *actor)
   tex = games_card_textures_cache_get_card_texture (priv->cache, card_num);
   if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
     return;
+
+  clutter_actor_get_allocation_box (actor, &alloc_box);
 
   x_angle = clutter_actor_get_rotationx (actor, CLUTTER_X_AXIS,
                                          NULL, NULL, NULL);
@@ -222,26 +286,29 @@ aisleriot_card_paint (ClutterActor *actor)
       x_swapped = TRUE;
   }
 
-  tex_width = CLUTTER_INT_TO_FIXED (cogl_texture_get_width (tex));
-  tex_height = CLUTTER_INT_TO_FIXED (cogl_texture_get_height (tex));
-
   /* Ideally we would just swap the texture coordinates, but Cogl
      won't let you do this */
   if (x_swapped) {
     cogl_push_matrix ();
-    cogl_translate (CLUTTER_FIXED_TO_INT (tex_width) / 2, 0, 0);
+    cogl_translate (CLUTTER_UNITS_TO_DEVICE (alloc_box.x2 - alloc_box.x1) / 2,
+                    0, 0);
     cogl_rotate (180, 0, 1, 0);
-    cogl_translate (-CLUTTER_FIXED_TO_INT (tex_width) / 2, 0, 0);
+    cogl_translate (-CLUTTER_UNITS_TO_DEVICE (alloc_box.x2 - alloc_box.x1) / 2,
+                    0, 0);
   }
 
   cogl_color (&white);
   cogl_texture_rectangle (tex, 0, 0,
-                          tex_width, tex_height,
+                          CLUTTER_UNITS_TO_FIXED (alloc_box.x2 - alloc_box.x1),
+                          CLUTTER_UNITS_TO_FIXED (alloc_box.y2 - alloc_box.y1),
                           0, 0, CFX_ONE, CFX_ONE);
   if (priv->highlighted) {
     cogl_color (&priv->highlight_color);
     cogl_texture_rectangle (tex, 0, 0,
-                            tex_width, tex_height,
+                            CLUTTER_UNITS_TO_FIXED (alloc_box.x2
+                                                    - alloc_box.x1),
+                            CLUTTER_UNITS_TO_FIXED (alloc_box.y2
+                                                    - alloc_box.y1),
                             0, 0, CFX_ONE, CFX_ONE);
   }
 
