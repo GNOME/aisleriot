@@ -579,11 +579,15 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
     ClutterAlpha *alpha;
     ClutterKnot knots[2];
     Card card = CARD (priv->slot->cards->data[card_num]);
-    guint card_width = 0, card_height = 0;
+    guint card_width, card_height;
 
     memset (&anim_data, 0, sizeof (anim_data));
 
     anim_data.card_tex = aisleriot_card_new (priv->cache, card, &priv->highlight_color);
+
+    card_width = clutter_actor_get_width (anim_data.card_tex);
+    card_height = clutter_actor_get_height (anim_data.card_tex);
+
     g_object_ref_sink (anim_data.card_tex);
     if (priv->animation_layer)
       clutter_container_add (priv->animation_layer,
@@ -608,15 +612,7 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
     clutter_behaviour_apply (anim_data.move, anim_data.card_tex);
 
     if (anims[i].face_down != card.attr.face_down) {
-      CoglHandle cogl_tex;
       int center_x, center_y;
-
-      cogl_tex = games_card_textures_cache_get_card_texture (priv->cache, card);
-      if (G_UNLIKELY (cogl_tex == COGL_INVALID_HANDLE))
-        continue; // FIXMEchpe this doesn't look right...
-
-      card_width = cogl_texture_get_width (cogl_tex);
-      card_height = cogl_texture_get_height (cogl_tex);
 
       center_x = card_width / 2;
       center_y = card_height / 2;
