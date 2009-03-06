@@ -262,12 +262,6 @@ aisleriot_card_paint (ClutterActor *actor)
 
   card_num = priv->card;
 
-  tex = games_card_textures_cache_get_card_texture (priv->cache, card_num);
-  if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
-    return;
-
-  clutter_actor_get_allocation_box (actor, &alloc_box);
-
   x_angle = clutter_actor_get_rotationx (actor, CLUTTER_X_AXIS,
                                          NULL, NULL, NULL);
   y_angle = clutter_actor_get_rotationx (actor, CLUTTER_Y_AXIS,
@@ -285,6 +279,12 @@ aisleriot_card_paint (ClutterActor *actor)
     if (card_num.attr.face_down)
       x_swapped = TRUE;
   }
+
+  tex = games_card_textures_cache_get_card_texture (priv->cache, card_num);
+  if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
+    return;
+
+  clutter_actor_get_allocation_box (actor, &alloc_box);
 
   /* Ideally we would just swap the texture coordinates, but Cogl
      won't let you do this */
