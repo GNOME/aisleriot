@@ -94,7 +94,8 @@ void aisleriot_slot_renderer_set_animation_layer
 
 void aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
                                              guint n_anims,
-                                             const AisleriotAnimStart *anims);
+                                             const AisleriotAnimStart *anims,
+                                             guint n_unexposed_animated_cards);
 
 G_END_DECLS
 

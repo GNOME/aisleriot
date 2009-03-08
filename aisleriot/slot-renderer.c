@@ -72,6 +72,7 @@ struct _AisleriotSlotRendererPrivate
   ClutterTimeline *timeline;
   guint completed_handler;
   GArray *animations;
+  guint n_unexposed_animated_cards;
 
   ClutterContainer *animation_layer;
 };
@@ -201,7 +202,7 @@ aisleriot_slot_renderer_dispose (GObject *object)
   aisleriot_slot_renderer_set_cache (self, NULL);
 
   /* Get rid of any running animations */
-  aisleriot_slot_renderer_set_animations (self, 0, NULL);
+  aisleriot_slot_renderer_set_animations (self, 0, NULL, 0);
 
   if (priv->timeline) {
     g_object_unref (priv->timeline);
@@ -376,7 +377,7 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
 {
   AisleriotSlotRenderer *srend = (AisleriotSlotRenderer *) actor;
   AisleriotSlotRendererPrivate *priv = srend->priv;
-  guint n_cards;
+  guint n_cards, n_animated_cards;
   guint8 *cards;
   guint i;
 
@@ -385,17 +386,19 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
 
   cards = priv->slot->cards->data;
   n_cards = priv->slot->cards->len;
+  n_animated_cards = priv->animations->len + priv->n_unexposed_animated_cards;
 
   g_assert (n_cards >= priv->slot->exposed);
-  g_assert (n_cards >= priv->animations->len);
+  g_assert (priv->n_unexposed_animated_cards == 0 || priv->animations->len > 0);
+  g_assert (n_cards >= n_animated_cards);
 
-  if (priv->slot->cards->len <= priv->animations->len) {
+  if (n_cards <= n_animated_cards) {
     CoglHandle cogl_tex;
     guint tex_width, tex_height;
 
     cogl_tex = games_card_textures_cache_get_slot_texture (priv->cache);
     if (G_UNLIKELY (cogl_tex == COGL_INVALID_HANDLE))
-      goto paint_cards;
+      return;
 
     tex_width = cogl_texture_get_width (cogl_tex);
     tex_height = cogl_texture_get_height (cogl_tex);
@@ -415,16 +418,12 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
                               CLUTTER_INT_TO_FIXED (tex_height),
                               0, 0, CFX_ONE, CFX_ONE);
     }
-  }
-
-paint_cards:
-
-  if (n_cards > priv->animations->len) {
+  } else {
     guint first_card, last_card;
 
-    first_card = MIN (n_cards - priv->animations->len - 1,
+    first_card = MIN (n_cards - n_animated_cards - 1,
                       n_cards - priv->slot->exposed);
-    last_card = n_cards - priv->animations->len;
+    last_card = n_cards - n_animated_cards;
 
     for (i = first_card; i < last_card; i++)
       if (i != priv->revealed_card)
@@ -541,7 +540,8 @@ aisleriot_slot_renderer_set_animation_layer (AisleriotSlotRenderer *srend,
 void
 aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
                                         guint n_anims,
-                                        const AisleriotAnimStart *anims)
+                                        const AisleriotAnimStart *anims,
+                                        guint n_unexposed_animated_cards)
 {
   AisleriotSlotRendererPrivate *priv;
   guint i;
@@ -651,6 +651,8 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
     clutter_timeline_start (priv->timeline);
   }
 
+  priv->n_unexposed_animated_cards = n_unexposed_animated_cards;
+
   clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
 }
 
@@ -658,7 +660,7 @@ static void
 completed_cb (AisleriotSlotRenderer *srend)
 {
   /* Get rid of all animation actors */
-  aisleriot_slot_renderer_set_animations (srend, 0, NULL);
+  aisleriot_slot_renderer_set_animations (srend, 0, NULL, 0);
 
   /* Redraw so that the animated actors will be drawn as part of the
      renderer instead */

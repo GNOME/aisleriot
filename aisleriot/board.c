@@ -896,6 +896,10 @@ check_animations_cb (gpointer user_data)
   }
 
   for (slot_num = 0; slot_num < slots->len; slot_num++) {
+    /* Number of extra cards that aren't visible to include in the
+       animation */
+    guint n_unexposed_animated_cards = 0;
+
     slot = slots->pdata[slot_num];
 
     g_array_set_size (animations, 0);
@@ -956,11 +960,22 @@ check_animations_cb (gpointer user_data)
           }
         }
       }
+
+      /* Check if any extra unexposed cards are included in the
+         animation. There's no point in drawing these because they
+         will be hidden by the exposed cards but we don't want to draw
+         them at the slot either. This will for example happen in
+         Canfield when the discard pile is flipped over into the draw
+         pile */
+      if (animations->len == slot->exposed)
+        n_unexposed_animated_cards = (slot->cards->len - slot->old_cards->len
+                                      - slot->exposed);
     }
 
     aisleriot_slot_renderer_set_animations
       (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
-       animations->len, (const AisleriotAnimStart *) animations->data);
+       animations->len, (const AisleriotAnimStart *) animations->data,
+       n_unexposed_animated_cards);
 
     /* Set the old cards back to the new cards */
     aisleriot_game_reset_old_cards (slot);
@@ -1033,7 +1048,7 @@ slot_update_card_images_full (AisleriotBoard *board,
   }
 
   aisleriot_slot_renderer_set_animations
-    (AISLERIOT_SLOT_RENDERER (slot->slot_renderer), 0, NULL);
+    (AISLERIOT_SLOT_RENDERER (slot->slot_renderer), 0, NULL, 0);
 
   aisleriot_slot_renderer_set_highlight
     (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
