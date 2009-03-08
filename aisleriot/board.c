@@ -177,6 +177,10 @@ struct _AisleriotBoardPrivate
   /* Array RemovedCards to be dropped in animations */
   GArray *removed_cards;
 
+  /* Idle handler where the slots will be compared for changes to
+     trigger animations */
+  guint check_animations_handler;
+
 #ifdef HAVE_MAEMO
   /* Tap-and-Hold */
   Slot *tap_and_hold_slot;
@@ -846,17 +850,15 @@ slot_update_geometry (AisleriotBoard *board,
   slot->needs_update = FALSE;
 }
 
-static void
-check_animations (AisleriotBoard *board)
+static gboolean
+check_animations_cb (gpointer user_data)
 {
+  AisleriotBoard *board = user_data;
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
   int slot_num, i;
   Slot *slot;
   GArray *animations = g_array_new (FALSE, FALSE, sizeof (AisleriotAnimStart));
-
-  if (!priv->animation_mode || !priv->animations_enabled)
-    return;
 
   slots = aisleriot_game_get_slots (priv->game);
 
@@ -967,6 +969,34 @@ check_animations (AisleriotBoard *board)
   g_array_set_size (priv->removed_cards, 0);
 
   g_array_free (animations, TRUE);
+
+  priv->check_animations_handler = 0;
+
+  return FALSE;
+}
+
+static void
+queue_check_animations (AisleriotBoard *board)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+
+  if (!priv->animation_mode || !priv->animations_enabled)
+    return;
+
+  /* The animations are checked for in an idle handler so that this
+     function can be called whenever the scheme script makes changes
+     to the board but it won't actually check until control has been
+     given back to the glib main loop */
+
+  if (priv->check_animations_handler == 0)
+    /* Check for animations with a high priority to ensure that the
+       animations are setup before the stage is repainted. Clutter's
+       redraw priority is unfortunately higher than all of the idle
+       priorities so we need to use G_PRIORITY_DEFAULT */
+    priv->check_animations_handler =
+      clutter_threads_add_idle_full (G_PRIORITY_DEFAULT,
+                                     check_animations_cb,
+                                     board, NULL);
 }
 
 static void
@@ -2183,7 +2213,7 @@ game_new_cb (AisleriotGame *game,
 #endif
 
   /* Check for animations so that the differences will be reset */
-  check_animations (board);
+  queue_check_animations (board);
 
   gtk_widget_queue_draw (GTK_WIDGET (board));
 }
@@ -2231,6 +2261,8 @@ slot_changed_cb (AisleriotGame *game,
   if (slot == priv->highlight_slot) {
     highlight_drop_target (board, NULL);
   }
+
+  queue_check_animations (board);
 }
 
 /* Class implementation */
@@ -2280,8 +2312,6 @@ aisleriot_board_activate (AisleriotBoard *board)
 
     aisleriot_game_test_end_of_game (priv->game);
 
-    check_animations (board);
-
     return;
   }
 
@@ -2292,8 +2322,6 @@ aisleriot_board_activate (AisleriotBoard *board)
     aisleriot_game_end_move (priv->game);
     games_sound_play ("click");
     aisleriot_game_test_end_of_game (priv->game);
-
-    check_animations (board);
 
     return;
   }
@@ -2319,8 +2347,6 @@ aisleriot_board_activate (AisleriotBoard *board)
 
     /* Trying to move the cards has unset the selection; re-select them */
     set_selection (board, selection_slot, selection_start_card_id, TRUE);
-
-    check_animations (board);
   }
 
   aisleriot_board_error_bell (board);
@@ -2856,8 +2882,6 @@ aisleriot_board_button_press (GtkWidget *widget,
 
     set_cursor (board, CURSOR_OPEN);
 
-    check_animations (board);
-
     return TRUE;
   }
 
@@ -2968,7 +2992,6 @@ aisleriot_board_button_release (GtkWidget *widget,
     case STATUS_IS_DRAG:
       highlight_drop_target (board, NULL);
       drop_moving_cards (board, event->x, event->y);
-      check_animations (board);
       break;
 
     case STATUS_MAYBE_DRAG:
@@ -2990,8 +3013,6 @@ aisleriot_board_button_release (GtkWidget *widget,
       }
 
       aisleriot_game_test_end_of_game (priv->game);
-
-      check_animations (board);
 
       break;
     }
@@ -3216,6 +3237,11 @@ aisleriot_board_dispose (GObject *object)
   if (priv->animation_layer) {
     g_object_unref (priv->animation_layer);
     priv->animation_layer = NULL;
+  }
+
+  if (priv->check_animations_handler) {
+    g_source_remove (priv->check_animations_handler);
+    priv->check_animations_handler = 0;
   }
 
   G_OBJECT_CLASS (aisleriot_board_parent_class)->dispose (object);
