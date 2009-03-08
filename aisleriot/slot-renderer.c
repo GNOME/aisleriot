@@ -578,15 +578,13 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
     AnimationData anim_data;
     ClutterAlpha *alpha;
     ClutterKnot knots[2];
-    Card card = CARD (priv->slot->cards->data[card_num]), flipped_card;
+    Card card = CARD (priv->slot->cards->data[card_num]);
     guint card_width, card_height;
 
     memset (&anim_data, 0, sizeof (anim_data));
 
-    flipped_card = card;
-    flipped_card.attr.face_down = !flipped_card.attr.face_down;
-    anim_data.card_tex = aisleriot_card_new (priv->cache, flipped_card, card,
-                                             &priv->highlight_color);
+    anim_data.card_tex = aisleriot_card_new (priv->cache, anims[i].old_card,
+                                             card, &priv->highlight_color);
 
     card_width = clutter_actor_get_width (anim_data.card_tex);
     card_height = clutter_actor_get_height (anim_data.card_tex);
@@ -614,7 +612,7 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
                                                  G_N_ELEMENTS (knots));
     clutter_behaviour_apply (anim_data.move, anim_data.card_tex);
 
-    if (anims[i].face_down != card.attr.face_down) {
+    if (anims[i].old_card.value != card.value) {
       int center_x, center_y;
 
       center_x = card_width / 2;

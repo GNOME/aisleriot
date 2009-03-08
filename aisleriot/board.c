@@ -923,7 +923,7 @@ check_animations_cb (gpointer user_data)
                                         &anim.cardy);
         anim.cardx += slot->rect.x;
         anim.cardy += slot->rect.y;
-        anim.face_down = old_card.attr.face_down;
+        anim.old_card = old_card;
         anim.raise = TRUE;
 
         g_array_append_val (animations, anim);
@@ -949,7 +949,7 @@ check_animations_cb (gpointer user_data)
 
             anim.cardx = removed_card->cardx;
             anim.cardy = removed_card->cardy;
-            anim.face_down = removed_card->card.attr.face_down;
+            anim.old_card = removed_card->card;
             anim.raise = !removed_card->from_drag;
 
             g_array_append_val (animations, anim);
@@ -967,9 +967,25 @@ check_animations_cb (gpointer user_data)
          them at the slot either. This will for example happen in
          Canfield when the discard pile is flipped over into the draw
          pile */
-      if (animations->len == slot->exposed)
-        n_unexposed_animated_cards = (slot->cards->len - slot->old_cards->len
-                                      - slot->exposed);
+      if (animations->len > 0 && animations->len == slot->exposed)
+        {
+          AisleriotAnimStart *anim = &g_array_index (animations,
+                                                     AisleriotAnimStart, 0);
+
+          n_unexposed_animated_cards = (slot->cards->len - slot->old_cards->len
+                                        - slot->exposed);
+
+          if (n_unexposed_animated_cards > 0)
+            {
+              /* Set the bottom card of the first animation to be the
+                 lowest unexposed card */
+              anim->old_card
+                = CARD (slot->cards->data[slot->cards->len
+                                          - animations->len
+                                          - n_unexposed_animated_cards]);
+              anim->old_card.attr.face_down = !anim->old_card.attr.face_down;
+            }
+        }
     }
 
     aisleriot_slot_renderer_set_animations

@@ -66,7 +66,7 @@ struct _AisleriotSlotRenderer
 struct _AisleriotAnimStart
 {
   gint cardx, cardy;
-  gboolean face_down;
+  Card old_card;
   gboolean raise;
 };
 
