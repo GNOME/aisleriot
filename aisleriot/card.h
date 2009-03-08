@@ -64,10 +64,13 @@ struct _AisleriotCard
 GType aisleriot_card_get_type (void) G_GNUC_CONST;
 
 ClutterActor *aisleriot_card_new (GamesCardTexturesCache *cache,
-                                  Card card,
+                                  Card bottom_card,
+                                  Card top_card,
                                   const ClutterColor *highlight_color);
 
-void aisleriot_card_set_card (AisleriotCard *card, Card card_num);
+void aisleriot_card_set_card (AisleriotCard *card,
+                              Card bottom_card,
+                              Card top_card);
 
 void aisleriot_card_set_highlighted (AisleriotCard *card,
                                      gboolean highlighted);

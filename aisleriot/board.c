@@ -1230,7 +1230,8 @@ drag_begin (AisleriotBoard *board)
 
     g_array_append_val (priv->removed_cards, removed_card);
 
-    card_tex = aisleriot_card_new (priv->textures, hcard, &priv->selection_colour);
+    card_tex = aisleriot_card_new (priv->textures, hcard, hcard,
+                                   &priv->selection_colour);
     clutter_actor_set_position (card_tex, x, y);
     clutter_container_add (CLUTTER_CONTAINER (priv->moving_cards_group),
                            card_tex, NULL);

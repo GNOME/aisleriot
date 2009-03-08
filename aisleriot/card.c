@@ -66,7 +66,7 @@ G_DEFINE_TYPE (AisleriotCard, aisleriot_card, CLUTTER_TYPE_ACTOR);
 
 struct _AisleriotCardPrivate
 {
-  Card card;
+  Card bottom_card, top_card;
   ClutterColor highlight_color;
   gboolean highlighted;
 
@@ -78,7 +78,8 @@ enum
   PROP_0,
 
   PROP_CACHE,
-  PROP_CARD,
+  PROP_BOTTOM_CARD,
+  PROP_TOP_CARD,
   PROP_HIGHLIGHTED,
   PROP_HIGHLIGHT_COLOR
 };
@@ -114,14 +115,23 @@ aisleriot_card_class_init (AisleriotCardClass *klass)
   actor_class->get_preferred_width = aisleriot_card_get_preferred_width;
   actor_class->get_preferred_height = aisleriot_card_get_preferred_height;
 
-  pspec = g_param_spec_uchar ("card", NULL, NULL,
+  pspec = g_param_spec_uchar ("bottom-card", NULL, NULL,
                               0, 255, 0,
                               G_PARAM_WRITABLE |
                               G_PARAM_READABLE |
                               G_PARAM_STATIC_NAME |
                               G_PARAM_STATIC_NICK |
                               G_PARAM_STATIC_BLURB);
-  g_object_class_install_property (gobject_class, PROP_CARD, pspec);
+  g_object_class_install_property (gobject_class, PROP_BOTTOM_CARD, pspec);
+
+  pspec = g_param_spec_uchar ("top-card", NULL, NULL,
+                              0, 255, 0,
+                              G_PARAM_WRITABLE |
+                              G_PARAM_READABLE |
+                              G_PARAM_STATIC_NAME |
+                              G_PARAM_STATIC_NICK |
+                              G_PARAM_STATIC_BLURB);
+  g_object_class_install_property (gobject_class, PROP_TOP_CARD, pspec);
 
   pspec = g_param_spec_object ("cache", NULL, NULL,
                                GAMES_TYPE_CARD_TEXTURES_CACHE,
@@ -188,12 +198,14 @@ aisleriot_card_dispose (GObject *self)
 
 ClutterActor *
 aisleriot_card_new (GamesCardTexturesCache *cache,
-                    Card card,
+                    Card bottom_card,
+                    Card top_card,
                     const ClutterColor *highlight_color)
 {
   return g_object_new (AISLERIOT_TYPE_CARD,
                        "cache", cache,
-                       "card", card.value,
+                       "bottom-card", bottom_card.value,
+                       "top-card", top_card.value,
                        "highlight-color", highlight_color,
                        NULL);
 }
@@ -209,7 +221,8 @@ aisleriot_card_get_preferred_width (ClutterActor *self,
   CoglHandle tex;
   guint width;
 
-  tex = games_card_textures_cache_get_card_texture (priv->cache, priv->card);
+  tex = games_card_textures_cache_get_card_texture (priv->cache,
+                                                    priv->top_card);
 
   if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
     width = 0;
@@ -234,7 +247,8 @@ aisleriot_card_get_preferred_height (ClutterActor *self,
   CoglHandle tex;
   guint height;
 
-  tex = games_card_textures_cache_get_card_texture (priv->cache, priv->card);
+  tex = games_card_textures_cache_get_card_texture (priv->cache,
+                                                    priv->top_card);
 
   if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
     height = 0;
@@ -259,8 +273,7 @@ aisleriot_card_paint (ClutterActor *actor)
   ClutterActorBox alloc_box;
   gboolean x_swapped = FALSE;
   static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
-
-  card_num = priv->card;
+  gboolean show_top = TRUE;
 
   x_angle = clutter_actor_get_rotationx (actor, CLUTTER_X_AXIS,
                                          NULL, NULL, NULL);
@@ -270,15 +283,13 @@ aisleriot_card_paint (ClutterActor *actor)
   /* Show the other side of the card if it is rotated more than 180
      degrees in exactly one of the axes */
   if (ANGLE_IS_UPSIDE_DOWN (x_angle))
-    card_num.attr.face_down = !card_num.attr.face_down;
+    show_top = !show_top;
   if (ANGLE_IS_UPSIDE_DOWN (y_angle)) {
-    card_num.attr.face_down = !card_num.attr.face_down;
-    /* The picture for the back of the card is already drawn as if it
-       was rotated so we need to swap the coordinates so it will look
-       right when it is rotated again */
-    if (card_num.attr.face_down)
-      x_swapped = TRUE;
+    show_top = !show_top;
+    x_swapped = TRUE;
   }
+
+  card_num = show_top ? priv->top_card : priv->bottom_card;
 
   tex = games_card_textures_cache_get_card_texture (priv->cache, card_num);
   if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
@@ -325,13 +336,23 @@ aisleriot_card_set_property (GObject *self,
   AisleriotCard *card = AISLERIOT_CARD (self);
 
   switch (property_id) {
-    case PROP_CARD:
+    case PROP_BOTTOM_CARD:
       {
         Card card_num;
 
         card_num.value = g_value_get_uchar (value);
 
-        aisleriot_card_set_card (card, card_num);
+        aisleriot_card_set_card (card, card_num, card->priv->top_card);
+      }
+      break;
+
+    case PROP_TOP_CARD:
+      {
+        Card card_num;
+
+        card_num.value = g_value_get_uchar (value);
+
+        aisleriot_card_set_card (card, card->priv->bottom_card, card_num);
       }
       break;
 
@@ -363,8 +384,12 @@ aisleriot_card_get_property (GObject *self,
   AisleriotCardPrivate *priv = card->priv;
 
   switch (property_id) {
-    case PROP_CARD:
-      g_value_set_uchar (value, priv->card.value);
+    case PROP_BOTTOM_CARD:
+      g_value_set_uchar (value, priv->bottom_card.value);
+      break;
+
+    case PROP_TOP_CARD:
+      g_value_set_uchar (value, priv->top_card.value);
       break;
 
     case PROP_CACHE:
@@ -383,7 +408,9 @@ aisleriot_card_get_property (GObject *self,
 }
 
 void
-aisleriot_card_set_card (AisleriotCard *card, Card card_num)
+aisleriot_card_set_card (AisleriotCard *card,
+                         Card bottom_card,
+                         Card top_card)
 {
   AisleriotCardPrivate *priv;
 
@@ -391,11 +418,13 @@ aisleriot_card_set_card (AisleriotCard *card, Card card_num)
 
   priv = card->priv;
 
-  priv->card = card_num;
+  priv->bottom_card = bottom_card;
+  priv->top_card = top_card;
 
   clutter_actor_queue_redraw (CLUTTER_ACTOR (card));
 
-  g_object_notify (G_OBJECT (card), "card");
+  g_object_notify (G_OBJECT (card), "bottom-card");
+  g_object_notify (G_OBJECT (card), "top-card");
 }
 
 static void
