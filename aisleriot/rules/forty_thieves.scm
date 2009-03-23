@@ -278,15 +278,20 @@
 
 
 
+(define (dealable?)
+   (not (empty-slot? stock-pile)))
 
 ;deals cards from deck to waste
 (define (button-clicked slot-id)
   (and (= slot-id stock-pile)
-       (not (empty-slot? slot-id))
+       (dealable?)
        (deal-cards-face-up stock-pile (list waste-pile))
        (recalculate-score)
   )
 )
+
+(define (do-deal-next-cards)
+  (button-clicked stock-pile))
 
 ; if we can find a move to the foundations do it and return #t or #f.
 (define (move-to-foundation) 
@@ -438,8 +443,8 @@
 (define (timeout) 
   #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout droppable?)
+apply-options timeout droppable? dealable?)
