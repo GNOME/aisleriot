@@ -109,7 +109,7 @@
 )
 
 (define (button-clicked slot-id)
-  (if (= stock slot-id)
+  (if (and (= stock slot-id) (not just-redealt))
       (redeal)
       #f
   )
