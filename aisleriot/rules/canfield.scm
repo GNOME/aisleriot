@@ -193,12 +193,12 @@
 	  (place-found slot top-card (+ search 1)))))
 
 (define (button-double-clicked slot)
-  (if (and (or (> slot 5) (eq? slot 1))
-	   (not (empty-slot? slot)))
-      (let ((top-card (get-top-card slot)))
-	(if (eq? (get-value top-card) BASE-VAL)
-	    (place-ace top-card slot)
-	    (place-found slot top-card 2)))))
+  (and (or (> slot 5) (eq? slot 1))
+       (not (empty-slot? slot))
+       (let ((top-card (get-top-card slot)))
+         (if (eq? (get-value top-card) BASE-VAL)
+             (place-ace top-card slot)
+             (place-found slot top-card 2)))))
 
 (define (game-over)
   (and (or (get-valid-move '(6 7 8 9 10 1))
