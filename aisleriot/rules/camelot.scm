@@ -91,7 +91,8 @@
 
 (define (droppable? start-slot card-list end-slot)
   (if add-stage
-      (and (empty-slot? end-slot) 
+      (and (not (= end-slot 17))
+           (empty-slot? end-slot)
 	   (cond ((= (get-value (car card-list)) king)
 		  (member end-slot '(0 3 12 15)))
 		 ((= (get-value (car card-list)) queen)
