@@ -331,7 +331,8 @@
 
 
 (define (autoplay-foundations)
-(if (move-to-foundation) (autoplay-foundations) (recalculate-score))
+(recalculate-score)
+(if (move-to-foundation) (delayed-call autoplay-foundations) #f)
 )
 
 ; double click foundation for autoplay, otherwise does auto
