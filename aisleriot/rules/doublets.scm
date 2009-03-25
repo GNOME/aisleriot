@@ -113,8 +113,8 @@
    (flip-stock 0 1 2))
 
 (define (button-clicked slot-id)
-  (if (= slot-id 0)
-      (do-deal-next-cards)))
+  (and (= slot-id 0)
+       (do-deal-next-cards)))
 
 (define (button-double-clicked slot)
   (if (and (not (empty-slot? slot))
