@@ -102,8 +102,7 @@
        (add-to-score! 1)))
  
 (define (check-slot-and-deal slot)
-  (cond ((or (empty-slot? 0)
-	     (= slot 21))
+  (cond ((= slot 21)
 	 #t)
 	((empty-slot? (- slot 8))
 	 (and (deal-cards-face-up 0 (list (- slot 8)))
@@ -113,6 +112,7 @@
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)
+       (not (empty-slot? 0))
        (set! first-row #f)
        (check-slot-and-deal 13)))
 
