@@ -5,7 +5,7 @@
 m4_define([gnome_games_branch],["trunk"])
 
 AC_PREREQ([2.53])
-AC_INIT([GNOME Games], [2.26.0],
+AC_INIT([GNOME Games], [2.27.1],
   [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games],
   [gnome-games])
 
@@ -457,14 +457,14 @@ AM_CONDITIONAL([ENABLE_CARD_THEMES_INSTALLER],[test "$enable_card_themes_install
 # Checks for libraries
 # ********************
 
-PYGTK_REQUIRED=2.10.0
+PYGTK_REQUIRED=2.14.0
 
 if test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo3"; then
 GTK_REQUIRED=2.6.0
 elif test "$with_platform" = "hildon"; then
 GTK_REQUIRED=2.10.0
 else
-GTK_REQUIRED=2.12.0
+GTK_REQUIRED=2.14.0
 fi
 
 GCONF_REQUIRED=2.0
