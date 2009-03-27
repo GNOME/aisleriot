@@ -458,14 +458,13 @@ AM_CONDITIONAL([ENABLE_CARD_THEMES_INSTALLER],[test "$enable_card_themes_install
 # ********************
 
 PYGTK_REQUIRED=2.10.0
-GNOME_PYTHON_DESKTOP_REQUIRED=2.17.3
 
 if test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo3"; then
 GTK_REQUIRED=2.6.0
 elif test "$with_platform" = "hildon"; then
 GTK_REQUIRED=2.10.0
 else
-GTK_REQUIRED=2.14.0
+GTK_REQUIRED=2.12.0
 fi
 
 GCONF_REQUIRED=2.0
@@ -602,8 +601,7 @@ fi
 
 if test "$have_python" = "yes"; then
   PKG_CHECK_MODULES([PYGTK],[
-    pygtk-2.0 >= $PYGTK_REQUIRED
-    gnome-python-desktop-2.0 >= $GNOME_PYTHON_DESKTOP_REQUIRED],
+    pygtk-2.0 >= $PYGTK_REQUIRED],
     [have_pygtk=yes],[have_pygtk=no])
 fi
 
@@ -616,7 +614,7 @@ if test "$have_python" = "yes" -a "$have_pygtk" = "yes"; then
 fi
 
 if test "$enable_python" = "no" -a "$need_python" = "yes"; then
-  AC_MSG_ERROR([Some games need python, but python, pygtk or gnome-python-desktop packages were not found.])
+  AC_MSG_ERROR([Some games need python, but python or pygtk packages were not found.])
 fi
 
 AM_CONDITIONAL([HAVE_PYTHON],[test "$enable_python" = "yes"])
