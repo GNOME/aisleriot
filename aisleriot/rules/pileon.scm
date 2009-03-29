@@ -59,6 +59,8 @@
   (deal-cards-face-up-from-deck DECK
    '(0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6 6 6 6 7 7 7 7 8 8 8 8 9 9 9 9 10 10 10 10 11 11 11 11 12 12 12 12))
 
+  (freeze-slots-if-complete '(0 1 2 3 4 5 6 7 8 9 10 11 12))
+
   (list 8 4))
 
 (define (check-same-value-list card-list)
@@ -76,11 +78,20 @@
    (and (check-same-value-list card-list)
         (is-visible? (car card-list))))
 
+(define (freeze-if-complete slot-id)
+  (and (= (length (get-cards slot-id)) 4)
+       (check-same-value-list (get-cards slot-id))
+       (freeze-slot slot-id))
+  #t)
+
+(define (freeze-slots-if-complete slots)
+  (and (not (null? slots))
+       (freeze-if-complete (car slots))
+       (freeze-slots-if-complete (cdr slots))))
+
 (define (complete-transaction start-slot card-list end-slot)
   (move-n-cards! start-slot end-slot card-list)
-  (if (and (= (length (get-cards end-slot)) 4)
-           (check-same-value-list (get-cards end-slot)))
-                (freeze-slot end-slot)) #t)
+  (freeze-if-complete end-slot))
 
 (define (droppable? start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
