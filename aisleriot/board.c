@@ -28,7 +28,6 @@
 #include <gdk/gdkkeysyms.h>
 
 #include <clutter/clutter.h>
-// #include <clutter-gtk/gtk-clutter-util.h>
 
 #include <libgames-support/games-card-textures-cache.h>
 #include <libgames-support/games-clutter-embed.h>
@@ -415,7 +414,7 @@ set_background_from_baize (AisleriotBoard *board)
   if (priv->baize_actor == NULL) {
     ClutterActor *stage;
 
-    stage = games_clutter_embed_get_stage (GAMES_CLUTTER_EMBED (board));
+    stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
 
     priv->baize_actor = g_object_ref_sink (aisleriot_baize_new ());
     clutter_container_add (CLUTTER_CONTAINER (stage),
@@ -1038,7 +1037,7 @@ slot_update_card_images_full (AisleriotBoard *board,
   AisleriotBoardPrivate *priv = board->priv;
   ClutterActor *stage;
 
-  stage = games_clutter_embed_get_stage (GAMES_CLUTTER_EMBED (board));
+  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
 
   if (!priv->geometry_set)
     return;
@@ -1263,7 +1262,7 @@ drag_begin (AisleriotBoard *board)
   slot_update_card_images (board, hslot);
   aisleriot_game_reset_old_cards (hslot);
 
-  stage = games_clutter_embed_get_stage (GAMES_CLUTTER_EMBED (board));
+  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
   clutter_container_add (CLUTTER_CONTAINER (stage),
                          priv->moving_cards_group, NULL);
 
@@ -2299,7 +2298,7 @@ slot_changed_cb (AisleriotGame *game,
 
 /* Class implementation */
 
-G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GAMES_TYPE_CLUTTER_EMBED);
+G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GTK_TYPE_CLUTTER_EMBED);
 
 /* AisleriotBoardClass methods */
 
@@ -3192,7 +3191,7 @@ aisleriot_board_init (AisleriotBoard *board)
   gtk_widget_tap_and_hold_setup (widget, NULL, NULL, GTK_TAP_AND_HOLD_PASS_PRESS);
 #endif
 
-  stage = games_clutter_embed_get_stage (GAMES_CLUTTER_EMBED (board));
+  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
   priv->animation_layer = g_object_ref_sink (clutter_group_new ());
   clutter_container_add (CLUTTER_CONTAINER (stage),
                          priv->animation_layer, NULL);

@@ -110,8 +110,6 @@ if HAVE_CLUTTER
 libgames_support_la_SOURCES += \
 	games-card-textures-cache.c	\
 	games-card-textures-cache.h	\
-	games-clutter-embed.c		\
-	games-clutter-embed.h		\
 	$(NULL)
 endif
 

@@ -32,6 +32,7 @@
 
 #ifdef HAVE_CLUTTER
 #include <clutter/clutter.h>
+#include <clutter-gtk/gtk-clutter-embed.h>
 #endif
 
 #ifdef HAVE_HILDON
@@ -70,10 +71,6 @@
 #include "game.h"
 #include "util.h"
 #include "window.h"
-
-#ifdef HAVE_CLUTTER
-#include <libgames-support/games-clutter-embed.h>
-#endif
 
 typedef struct {
   AisleriotWindow *window;
