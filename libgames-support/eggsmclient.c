@@ -445,6 +445,27 @@ egg_sm_client_set_restart_command (EggSMClient  *client,
 }
 
 /**
+ * egg_sm_client_set_discard_command:
+ * @client: the client
+ * @argc: the length of @argv
+ * @argv: argument vector
+ *
+ * Sets the command used to discard a custom state file if using
+ * egg_sm_client_set_restart_command(), which must be called before 
+ * using this function.
+ **/
+void
+egg_sm_client_set_discard_command (EggSMClient  *client,
+				   int           argc,
+				   const char  **argv)
+{
+  g_return_if_fail (EGG_IS_SM_CLIENT (client));
+
+  if (EGG_SM_CLIENT_GET_CLASS (client)->set_discard_command)
+    EGG_SM_CLIENT_GET_CLASS (client)->set_discard_command (client, argc, argv);
+}
+
+/**
  * egg_sm_client_will_quit:
  * @client: the client
  * @will_quit: whether or not the application is willing to quit

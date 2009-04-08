@@ -1,5 +1,29 @@
+diff --git a/libegg/smclient/eggdesktopfile.c b/libegg/smclient/eggdesktopfile.c
+index 357e548..ce0c6f3 100644
+--- a/libegg/smclient/eggdesktopfile.c
++++ b/libegg/smclient/eggdesktopfile.c
+@@ -1440,19 +1440,6 @@ egg_set_desktop_file (const char *desktop_file_path)
+       g_error_free (error);
+     }
+ 
+-  if (egg_desktop_file) {
+-    /* Set localized application name and default window icon */
+-    if (egg_desktop_file->name)
+-      g_set_application_name (egg_desktop_file->name);
+-    if (egg_desktop_file->icon)
+-      {
+-        if (g_path_is_absolute (egg_desktop_file->icon))
+-          gtk_window_set_default_icon_from_file (egg_desktop_file->icon, NULL);
+-        else
+-          gtk_window_set_default_icon_name (egg_desktop_file->icon);
+-      }
+-  }
+-
+   G_UNLOCK (egg_desktop_file);
+ }
+ 
 diff --git a/libegg/smclient/eggsmclient-xsmp.c b/libegg/smclient/eggsmclient-xsmp.c
-index e4b11f6..dcaf36b 100644
+index 1a56156..81af7d2 100644
 --- a/libegg/smclient/eggsmclient-xsmp.c
 +++ b/libegg/smclient/eggsmclient-xsmp.c
 @@ -88,6 +88,8 @@ struct _EggSMClientXSMP
@@ -92,7 +116,7 @@ index e4b11f6..dcaf36b 100644
        return;
      }
  
-@@ -1034,14 +1069,14 @@ xsmp_shutdown_cancelled (SmcConn   smc_conn,
+@@ -1041,14 +1076,14 @@ xsmp_shutdown_cancelled (SmcConn   smc_conn,
   * then free the array, but not its contents.
   */
  static GPtrArray *
@@ -109,7 +133,7 @@ index e4b11f6..dcaf36b 100644
  
    if (client_id)
      {
-@@ -1055,8 +1090,8 @@ generate_command (char **restart_command, const char *client_id,
+@@ -1062,8 +1097,8 @@ generate_command (char **restart_command, const char *client_id,
        g_ptr_array_add (cmd, (char *)state_file);
      }
  
@@ -121,10 +145,10 @@ index e4b11f6..dcaf36b 100644
    return cmd;
  }
 diff --git a/libegg/smclient/eggsmclient.c b/libegg/smclient/eggsmclient.c
-index 8e2254f..6bec6ed 100644
+index efa901d..85aaee4 100644
 --- a/libegg/smclient/eggsmclient.c
 +++ b/libegg/smclient/eggsmclient.c
-@@ -437,6 +437,27 @@ egg_sm_client_set_restart_command (EggSMClient  *client,
+@@ -445,6 +445,27 @@ egg_sm_client_set_restart_command (EggSMClient  *client,
  }
  
  /**
