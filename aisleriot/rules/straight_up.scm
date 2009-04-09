@@ -78,7 +78,8 @@
 	   (> slot-id 5))))
 
 (define (droppable? start-slot card-list end-slot)
-  (cond ((and (> end-slot 1)
+  (cond ((= start-slot end-slot) #f)
+        ((and (> end-slot 1)
               (< end-slot 6))
          (and (eq? (get-suit (get-top-card end-slot))
                    (get-suit (car card-list)))
@@ -96,7 +97,8 @@
         (else #f)))
 
 (define (button-released start-slot card-list end-slot)
-  (cond ((and (> end-slot 1)
+  (cond ((= start-slot end-slot) #f)
+        ((and (> end-slot 1)
 	      (< end-slot 6))
 	 (and (eq? (get-suit (get-top-card end-slot))
 		   (get-suit (car card-list)))
