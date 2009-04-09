@@ -102,7 +102,8 @@
        (add-to-score! 1)))
  
 (define (check-slot-and-deal slot)
-  (cond ((= slot 21)
+  (cond ((or (empty-slot? 0)
+             (= slot 21))
 	 #t)
 	((empty-slot? (- slot 8))
 	 (and (deal-cards-face-up 0 (list (- slot 8)))
