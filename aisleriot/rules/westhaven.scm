@@ -78,7 +78,8 @@
 					(length card-list)))))))
 
 (define (droppable? start-slot card-list end-slot)
-  (cond ((> end-slot 5)
+  (cond ((= start-slot end-slot) #f)
+        ((> end-slot 5)
 	 (or (empty-slot? end-slot)
 	     (and (not (eq? (is-red? (get-top-card end-slot))
 			    (is-red? (car (reverse card-list)))))
