@@ -91,7 +91,8 @@
       #t))
 
 (define (droppable? start-slot card-list end-slot)
-  (cond ((> end-slot 9)
+  (cond ((= start-slot end-slot) #f)
+        ((> end-slot 9)
 	 (and (= (length card-list) 1)
 	      (not (empty-slot? end-slot))
 	      (not (eq? (is-red? (car card-list))
