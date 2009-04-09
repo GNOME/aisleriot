@@ -110,26 +110,25 @@
        (add-to-score! 2)
        (remove-card end-slot)))
 
-(define (deal-the-empties slot)
+(define (deal-the-empties slot acc)
   (if (or (= slot 26)
 	  (empty-slot? 0))
-      #t
+      acc
       (and (deal-cards-face-up 0 (list slot))
-	   (deal-the-empties (+ 1 slot)))))
+	   (deal-the-empties (+ 1 slot) #t))))
 
-(define (moving-over slot blanks)
+(define (moving-over slot blanks acc)
   (cond ((= slot 26)
-	 (deal-the-empties (- 26 blanks)))
+	 (deal-the-empties (- 26 blanks) acc))
 	((empty-slot? slot)
-	 (moving-over (+ 1 slot) (+ 1 blanks)))
+	 (moving-over (+ 1 slot) (+ 1 blanks) acc))
 	((> blanks 0)
 	 (and (deal-cards slot (list (- slot blanks)))
-	      (moving-over (+ 1 slot) blanks)))
-	(#t (moving-over (+ 1 slot) blanks))))
+	      (moving-over (+ 1 slot) blanks #t)))
+	(#t (moving-over (+ 1 slot) blanks acc))))
 
 (define (move-cards-up)
-  (or (moving-over 1 0)
-      #t))
+  (moving-over 1 0 #f))
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)
