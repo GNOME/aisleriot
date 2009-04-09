@@ -258,6 +258,7 @@
 (define (droppable? start-slot card-list end-slot)
   (and (or shuffle-mode
            (empty-slot? end-slot))
+       (not (= start-slot end-slot))
        (> end-slot 1)
        (or (> start-slot 1)
            (empty-slot? end-slot))))
