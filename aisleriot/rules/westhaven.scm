@@ -171,7 +171,8 @@
 			 (+ 1 (get-value (get-top-card 5)))))
 		 (double-clicked-move slot-id 
 				      5
-				      (list (get-top-card slot-id))))))
+				      (list (get-top-card slot-id))))
+                (#t #f)))
       #f))
 
 (define (game-continuable)
