@@ -272,7 +272,8 @@
       #f))
 
 (define (droppable? start-slot card-list end-slot)
-  (cond ((or (free? end-slot) (edge? end-slot)) (and
+  (cond ((= start-slot end-slot) #f)
+        ((or (free? end-slot) (edge? end-slot)) (and
 						 (= (length card-list) 1)
 						 (not (and (= start-slot plait)
 							   (free? end-slot)))
@@ -281,7 +282,8 @@
 	(else #f)))
 
 (define (button-released start-slot card-list end-slot)
-  (cond ((free? end-slot) (move-to-cell start-slot card-list end-slot))
+  (cond ((= start-slot end-slot) #f)
+        ((free? end-slot) (move-to-cell start-slot card-list end-slot))
 	((home? end-slot) (and
 			   (move-to-home card-list end-slot)
 			   (plait-to-edge start-slot)))
