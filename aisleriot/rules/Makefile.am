@@ -36,6 +36,7 @@ rules_DATA  = 			\
 	freecell.scm		\
 	gaps.scm		\
 	gay_gordons.scm		\
+	giant.scm		\
 	glenwood.scm		\
 	gold_mine.scm		\
 	golf.scm		\

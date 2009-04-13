@@ -42,6 +42,7 @@ DOC_ENTITIES = \
 	gaps.xml \
 	gold_mine.xml \
 	gay_gordons.xml \
+	giant.xml \
 	glenwood.xml \
 	golf.xml \
 	gypsy.xml \
