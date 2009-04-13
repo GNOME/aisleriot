@@ -381,8 +381,6 @@
 ;; Returns: void
 ;;;;
 (define (apply-options options) 
-  (display options)
-  (newline)
   (set! deal-three (cadr (list-ref options 1)))
   (set! autoplay (cadr (list-ref options 4)))
   (set! max-redeals (if deal-three 2 0)))
