@@ -242,7 +242,8 @@
 ; If the flip limit is negative, it is treated as infinite.
 (define (flip-stock stock-slot waste-slot flip-limit . rest)
   (if (empty-slot? stock-slot)
-      (and (or (< flip-limit 0)
+      (and (not (empty-slot? waste-slot))
+           (or (< flip-limit 0)
 	       (< FLIP-COUNTER flip-limit))
 	   (set! FLIP-COUNTER (+ 1 FLIP-COUNTER))
 	   (flip-deck stock-slot waste-slot))
