@@ -125,8 +125,7 @@
   (if (member end-slot '(2 3 4 5))
       (add-to-score! (length card-list)))
   (move-n-cards! start-slot end-slot card-list)
-  (fill-tableau-slot start-slot)
-  (give-status-message))
+  (fill-tableau-slot start-slot))
 
 (define (droppable? start-slot card-list end-slot)
   (and (not (= start-slot end-slot))
@@ -160,9 +159,7 @@
   (flippable? 0 1 2))
 
 (define (do-deal-next-cards)
-  (begin
-    (flip-stock 0 1 2)
-    (give-status-message)))
+  (flip-stock 0 1 2))
 
 (define (button-clicked slot-id)
   (if (= slot-id 0)
@@ -239,6 +236,7 @@
       #f))
 
 (define (game-over)
+  (give-status-message)
   (and (not (game-won))
        (get-hint)))
 
