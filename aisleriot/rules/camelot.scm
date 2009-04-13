@@ -103,7 +103,7 @@
       (if (= start-slot end-slot)
 	  (= (get-value (car card-list)) 10)
 	  (and (not (empty-slot? end-slot))
-	       (not (= end-slot 17))
+	       (not (> end-slot 15))
 	       (= 10 (+ (get-value (car card-list))
 			(get-value (car (get-cards end-slot)))))))))
 
