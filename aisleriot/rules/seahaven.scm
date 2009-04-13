@@ -99,10 +99,7 @@
 			  (get-suit (car card-list)))
 		       (= (get-value (get-top-card end-slot))
 			  (+ 1 (get-value (car (reverse card-list)))))))
-              (< (length card-list) (+ 2 free-reserves))
-	      (or (> start-slot 7)
-		  (and (> start-slot 1)
-		       (< start-slot 6)))))
+              (< (length card-list) (+ 2 free-reserves))))
 	((and (> end-slot 1) ; The free reserves
 	      (< end-slot 6))
 	 (and (= (length card-list) 1)
