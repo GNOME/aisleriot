@@ -264,12 +264,11 @@
 
 
 (define (button-pressed slot card-list)
-  (if (or (free? slot)
-	  (edge? slot)
-	  (= stock slot)
-	  (= plait slot))
-      #t
-      #f))
+  (and (or (free? slot)
+           (edge? slot)
+           (= stock slot)
+           (= plait slot))
+       (= (length card-list) 1)))
 
 (define (droppable? start-slot card-list end-slot)
   (cond ((= start-slot end-slot) #f)
