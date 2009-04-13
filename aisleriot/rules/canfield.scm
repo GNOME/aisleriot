@@ -92,15 +92,13 @@
 	 #f)
 	((and (= slot-id 1) (> (length card-list) 1))
 	 #f)
+        ((and (> slot-id 1)
+              (< slot-id 6)
+              (= BASE-VAL (get-value (car card-list))))
+         #f)
 	(else
-	 (if card-list
-	     (if (is-visible? (car (reverse card-list)))
-		 (if (and (= slot-id 2)
-			  (= (length (get-cards 2)) 1))
-		     #f
-		     #t)
-		 #f)
-	     #f))))
+	 (and card-list
+	      (is-visible? (car (reverse card-list)))))))
 
 (define (complete-transaction start-slot card-list end-slot)
   (if (and (> start-slot 1)
