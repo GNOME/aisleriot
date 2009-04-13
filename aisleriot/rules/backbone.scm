@@ -249,13 +249,38 @@
       (or (get-legal-move-from-source (car sources) targets)
           (get-legal-move (cdr sources) targets))))
 
+(define (can-send-tableau-card-to-any-slot? card slots)
+  (if (eq? slots '())
+      #f
+      (or (is-legal-move? (car tableau) (list card) (car slots))
+          (can-send-tableau-card-to-any-slot? card (cdr slots)))))
+
+(define (useful-tableau-stack? cards)
+  (if (eq? cards '())
+      #t
+      (and (can-send-tableau-card-to-any-slot? (car cards) (non-empty-piles tableau))
+           (useful-tableau-stack? (cdr cards)))))
+
+(define (get-move-from-tableau sources)
+  (if (eq? sources '())
+      #f
+      (let ((move (get-legal-move-from-source (car sources) foundation)))
+           (if move
+               move
+               (let ((move (get-legal-move-from-source (car sources) (non-empty-piles tableau))))
+                    (if (and move
+                             (useful-tableau-stack? (cdr (get-cards (car sources)))))
+                        move
+                        (get-move-from-tableau (cdr sources))))))))
+
 (define (get-hint)
   (or 
     (let
          ((move (or 
                    (get-legal-move
-                     (append reserve (list waste) tableau)
+                     (append reserve (list waste))
                      (append foundation (non-empty-piles tableau) (list waste)))
+                   (get-move-from-tableau tableau)
                    (get-legal-move-from-source
                      waste
                      (empty-piles tableau)))))
