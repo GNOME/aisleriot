@@ -212,7 +212,6 @@
              (move-n-cards! start-slot end-slot card-list)
              (move-n-cards! start-slot end-slot (reverse card-list) )
        )
-       (recalculate-score)
    )
 )
 
@@ -286,7 +285,6 @@
   (and (= slot-id stock-pile)
        (dealable?)
        (deal-cards-face-up stock-pile (list waste-pile))
-       (recalculate-score)
   )
 )
 
@@ -331,7 +329,6 @@
 
 
 (define (autoplay-foundations)
-(recalculate-score)
 (if (move-to-foundation) (delayed-call autoplay-foundations) #f)
 )
 
@@ -367,15 +364,7 @@
 
 
 (define (game-won)
-  (and (= (length (get-cards 1)) 13)
-       (= (length (get-cards 2)) 13)
-       (= (length (get-cards 3)) 13)
-       (= (length (get-cards 4)) 13)
-       (= (length (get-cards 5)) 13)
-       (= (length (get-cards 6)) 13)
-       (= (length (get-cards 7)) 13)
-       (= (length (get-cards 8)) 13)
-  )
+  (= (recalculate-score) 1000)
 )
 
 
