@@ -86,8 +86,7 @@
       (and (not (empty-slot? 1))
 	   (deal-cards-face-up 1 (list slot)))
       (and (not (empty-slot? 0))
-	   (deal-cards-face-up 0 (list slot))
-	   (give-status-message))
+	   (deal-cards-face-up 0 (list slot)))
       #t))
 
 (define (droppable? start-slot card-list end-slot)
@@ -113,12 +112,10 @@
            (begin
              (move-n-cards! start-slot end-slot (reverse card-list))
              (add-to-score! (length card-list))))
-       (empty-tableau start-slot)
-       (give-status-message)))
+       (empty-tableau start-slot)))
 
 (define (do-deal-next-cards)
-  (flip-stock 0 1 1)
-  (give-status-message))
+  (flip-stock 0 1 1))
 
 (define (dealable?)
   (flippable? 0 1 1))
@@ -149,6 +146,7 @@
        (add-to-score! 1)))
 
 (define (game-continuable)
+  (give-status-message)
   (get-hint))
 
 (define (game-won)
