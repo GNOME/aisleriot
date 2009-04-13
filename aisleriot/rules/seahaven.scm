@@ -66,11 +66,12 @@
   (list 10 4))
 
 (define (sequence-matches-slot? card-list slot)
-  (and (not (empty-slot? slot))
-       (= (get-suit (car card-list))
-	  (get-suit (get-top-card slot)))
-       (= (get-value (car card-list))
-	  (+ 1 (get-value (get-top-card slot))))))
+  (if (empty-slot? slot)
+      (= (get-value (car card-list)) ace)
+      (and (= (get-suit (car card-list))
+	      (get-suit (get-top-card slot)))
+           (= (get-value (car card-list))
+	      (+ 1 (get-value (get-top-card slot)))))))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
