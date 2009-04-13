@@ -329,6 +329,15 @@
 	(car cards))))
 
 ;; Utilities - need more of these:
+(define (suit-eq? card1 card2)
+  (eq? (get-suit card1) (get-suit card2)))
+
+(define (color-eq? card1 card2)
+  (eq? (get-color card1) (get-color card2)))
+
+(define (value-eq? card1 card2)
+  (eq? (get-value card1) (get-value card2)))
+
 (define (cards-eq? card1 card2)
   (and (eq? (get-value card1) (get-value card2))
        (eq? (get-suit card1) (get-suit card2))))
