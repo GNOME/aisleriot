@@ -183,7 +183,7 @@
        (complete-transaction start-slot card-list end-slot)))
 
 (define (dealable?)
-  (flippable? stock 1))
+  (flippable? stock waste 1))
 
 (define (do-deal-next-cards)
   (flip-stock stock waste 1 1))

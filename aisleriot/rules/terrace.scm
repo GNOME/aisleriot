@@ -244,7 +244,7 @@
 
 (define (dealable?)
   (and (not (= 0 BASE-VAL))
-       (flippable? stock max-redeal)
+       (flippable? stock waste max-redeal)
        ;Do not allow deals if we've been through the deck once and the waste is not empty
        (or (< FLIP-COUNTER 1)
            (empty-slot? waste))

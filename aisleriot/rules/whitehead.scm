@@ -106,7 +106,7 @@
        (do-deal-next-cards)))
 
 (define (dealable?)
-  (flippable? 0 0))
+  (flippable? 0 1 0))
 
 (define (check-to-foundation card f-slot)
   (cond ((= f-slot 6)

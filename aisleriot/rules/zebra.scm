@@ -121,7 +121,7 @@
   (give-status-message))
 
 (define (dealable?)
-  (flippable? 0 1))
+  (flippable? 0 1 1))
 
 (define (button-clicked slot-id)
   (and (= slot-id 0)

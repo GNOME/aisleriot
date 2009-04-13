@@ -128,7 +128,7 @@
 			    (- (get-value (car card-list)) 1))))))))
 
 (define (dealable?)
-  (flippable? stock max-redeal))
+  (flippable? stock waste max-redeal))
 
 (define (do-deal-next-cards)
   (flip-stock stock waste max-redeal (if deal-three 3 1)))

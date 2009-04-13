@@ -157,7 +157,7 @@
        (complete-transaction start-slot (reverse card-list) end-slot)))
 
 (define (dealable?)
-  (flippable? 0 2))
+  (flippable? 0 1 2))
 
 (define (do-deal-next-cards)
   (begin

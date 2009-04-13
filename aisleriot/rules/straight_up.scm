@@ -157,7 +157,7 @@
        (check-up slot-id 2)))
 
 (define (dealable?)
-  (flippable? 0 2))
+  (flippable? 0 1 2))
   
 (define (do-deal-next-cards)
   (and (flip-stock 0 1 2)

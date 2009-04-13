@@ -141,7 +141,7 @@
   (give-status-message))
 
 (define (dealable?)
-  (flippable? 0 2))
+  (flippable? 0 1 2))
 
 (define (game-continuable)
   (get-hint))
