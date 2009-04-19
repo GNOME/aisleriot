@@ -18,13 +18,19 @@
 
 (define (new-game)
   (initialize-playing-area)
-)
+
+  (make-standard-deck)
+  (shuffle-deck)
+
+  (add-normal-slot DECK)
+
+  (list 1 1))
 
 (define (button-pressed slot-id card-list)
   #f)
 
 ;;; Not essential, see set-features below.
-(define (droppable)
+(define (droppable? start-slot card-list end-slot)
   #f)
 
 (define (button-released start-slot card-list end-slot)
