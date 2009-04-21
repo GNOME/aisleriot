@@ -38,18 +38,10 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-schemas-install \
 	--disable-scrollkeeper
 
-# Build ChangeLog from SVN history (r7722 was the first ChangeLog-less checkin).
-# Only build this when in an svn checkout.
-# Yes, the output is different depending on which VCS you used to checkout. It
-# will change one last time once Gnome is finished transitioning to git.
-
+# Build ChangeLog from git log
 ChangeLog:
 	@if test -f $(top_srcdir)/.git/HEAD; then \
 		git svn log --stat --no-color --since=2008-06-21 > $@; \
-	elif test -f $(top_srcdir)/.svn/entries; then \
-		svn log -v --xml -r HEAD:7722 $(SVN_ROOT)/$(SVN_MODULE)/$(SVN_BRANCH) | \
-			xsltproc --stringparam strip-prefix "$(SVN_MODULE)/$(SVN_BRANCH)" \
-				--stringparam include-rev "yes" $(top_srcdir)/svn2cl.xsl - > $@; \
 	fi
 
 dist: ChangeLog
