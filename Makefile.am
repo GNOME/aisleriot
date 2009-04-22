@@ -41,7 +41,7 @@ DISTCHECK_CONFIGURE_FLAGS = \
 # Build ChangeLog from git log
 ChangeLog:
 	@if test -f $(top_srcdir)/.git/HEAD; then \
-		git svn log --stat --no-color --since=2008-06-21 > $@; \
+		git log --stat --no-color --since=2008-06-21 > $@; \
 	fi
 
 dist: ChangeLog
