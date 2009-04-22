@@ -19,16 +19,17 @@ G_BEGIN_DECLS
 #define GAMES_IS_CONTROLS_LIST_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CONTROLS_LIST))
 #define GAMES_CONTROLS_LIST_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CONTROLS_LIST, GamesControlsListClass))
 
-typedef struct _GamesControlsList GamesControlsList;
-typedef struct _GamesControlsListClass GamesControlsListClass;
+typedef struct _GamesControlsList       GamesControlsList;
+typedef struct _GamesControlsListClass  GamesControlsListClass;
 
 struct _GamesControlsList {
   GtkVBox vbox;
 
+  GtkTreeModel *model;
   GtkListStore *store;
   GtkWidget *view;
 
-  gchar *conf_group;
+  char *conf_group;
   gulong notify_handler_id;
 };
 
@@ -38,14 +39,15 @@ struct _GamesControlsListClass {
 
 GType games_controls_list_get_type (void);
 
-GtkWidget *games_controls_list_new (const gchar *conf_group);
+GtkWidget *games_controls_list_new (const char *conf_group);
 
-void games_controls_list_add_control (GamesControlsList * list,
-				      const gchar * conf_key,
-                                      const gchar * label,
+void games_controls_list_add_control (GamesControlsList *list,
+                                      const char *conf_key,
+                                      const char *label,
                                       guint default_keyval);
-void games_controls_list_add_controls (GamesControlsList * list,
-				       const gchar * first_conf_key, ...);
+void games_controls_list_add_controls (GamesControlsList *list,
+                                       const char *first_conf_key,
+                                       ...) G_GNUC_NULL_TERMINATED;
 
 G_END_DECLS
 #endif /* __GAMES_CONTROLS_H__ */
