@@ -23,7 +23,7 @@ typedef struct _GamesControlsList       GamesControlsList;
 typedef struct _GamesControlsListClass  GamesControlsListClass;
 
 struct _GamesControlsList {
-  GtkVBox vbox;
+  GtkScrolledWindow parent_instance;
 
   GtkTreeModel *model;
   GtkListStore *store;
@@ -34,7 +34,7 @@ struct _GamesControlsList {
 };
 
 struct _GamesControlsListClass {
-  GtkVBoxClass parent_class;
+  GtkScrolledWindowClass parent_class;
 };
 
 GType games_controls_list_get_type (void);

@@ -153,15 +153,30 @@ conf_value_changed_cb (GamesConf *conf,
 
 /* Class implementation */
 
-G_DEFINE_TYPE (GamesControlsList, games_controls_list, GTK_TYPE_VBOX)
+G_DEFINE_TYPE (GamesControlsList, games_controls_list, GTK_TYPE_SCROLLED_WINDOW)
 
 static void
-games_controls_list_init (GamesControlsList * list)
+games_controls_list_init (GamesControlsList *list)
 {
+}
+
+static GObject *
+games_controls_list_constructor (GType type,
+                                 guint n_construct_properties,
+                                 GObjectConstructParam *construct_params)
+{
+  GObject *object;
+  GamesControlsList *list;
+  GtkScrolledWindow *scrolled_window;
   GtkTreeViewColumn *column;
   GtkCellRenderer *label_renderer, *key_renderer;
-  GtkWidget *scroll;
   GtkListStore *store;
+
+  object = G_OBJECT_CLASS (games_controls_list_parent_class)->constructor
+             (type, n_construct_properties, construct_params);
+
+  list = GAMES_CONTROLS_LIST (object);
+  scrolled_window = GTK_SCROLLED_WINDOW (object);
 
   store = gtk_list_store_new (N_COLUMNS,
                               G_TYPE_STRING,
@@ -205,20 +220,14 @@ games_controls_list_init (GamesControlsList * list)
 						     NULL);
   gtk_tree_view_append_column (GTK_TREE_VIEW (list->view), column);
 
-  scroll = gtk_scrolled_window_new (NULL, NULL);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
-				  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll),
-				       GTK_SHADOW_IN);
-
-  gtk_container_add (GTK_CONTAINER (scroll), list->view);
-
-  gtk_box_pack_start (GTK_BOX (list), scroll, TRUE, TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (scrolled_window), list->view);
 
   list->notify_handler_id = g_signal_connect (games_conf_get_default (),
                                               "value-changed",
                                               G_CALLBACK (conf_value_changed_cb),
                                               list);
+
+  return object;
 }
 
 static void
@@ -235,11 +244,12 @@ games_controls_list_finalize (GObject *object)
 }
 
 static void
-games_controls_list_class_init (GamesControlsListClass * class)
+games_controls_list_class_init (GamesControlsListClass *klass)
 {
-  GObjectClass *oclass = G_OBJECT_CLASS (class);
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
-  oclass->finalize = games_controls_list_finalize;
+  gobject_class->constructor = games_controls_list_constructor;
+  gobject_class->finalize = games_controls_list_finalize;
 }
 
 /* Public API */
@@ -249,7 +259,11 @@ games_controls_list_new (const char *conf_group)
 {
   GamesControlsList *list;
 
-  list = g_object_new (GAMES_TYPE_CONTROLS_LIST, NULL);
+  list = g_object_new (GAMES_TYPE_CONTROLS_LIST,
+                       "hscrollbar-policy", GTK_POLICY_NEVER,
+                       "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                       "shadow-type", GTK_SHADOW_IN,
+                       NULL);
 
   list->conf_group = g_strdup (conf_group);
 
