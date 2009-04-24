@@ -129,13 +129,18 @@
 	   (add-to-score! 1))
        (move-n-cards! start-slot end-slot card-list)))
 
+(define (dealable?)
+  (not (empty-slot? 0)))
+
+(define (do-deal-next-cards)
+  (if (> (length (get-cards 0)) 3)
+      (deal-cards-face-up 0 '(1 2 3))
+      (deal-cards-face-up 0 '(1))))
+
 (define (button-clicked slot-id)
-  (if (and (= slot-id 0)
-	   (not (empty-slot? 0)))
-      (if (> (length (get-cards slot-id)) 3)
-	  (deal-cards-face-up 0 '(1 2 3))
-	  (deal-cards-face-up 0 '(1)))
-      #f))
+  (and (= slot-id 0)
+       (dealable?)
+       (do-deal-next-cards)))
 
 (define (move-to-foundations? slot-id f-slot)
   (cond ((= f-slot 8)
@@ -260,15 +265,15 @@
 			      8)
 	  (check-tableau (+ 1 slot-id)))))
 
-(define (dealable?)
-  (and (not (empty-slot? 0))
+(define (check-deal)
+  (and (dealable?)
        (list 0 (_"Deal another round"))))
 
 (define (get-hint)
   (or (check-to-foundations 1)
       (check-reserve 1)
       (check-tableau 8)
-      (dealable?)))
+      (check-deal)))
 
 (define (get-options) 
   #f)
@@ -279,8 +284,8 @@
 (define (timeout) 
   #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout droppable?)
+apply-options timeout droppable? dealable?)
