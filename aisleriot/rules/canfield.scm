@@ -162,9 +162,15 @@
 		    (and (= (get-value (get-top-card end-slot)) king)
 			   (= (get-value (car card-list)) ace)))) )))
 
+(define (dealable?)
+  (flippable? 0 1 -1))
+
+(define (do-deal-next-cards)
+  (flip-stock 0 1 -1 3))
+
 (define (button-clicked slot-id)
   (and (= slot-id 0)
-       (flip-stock 0 1 -1 3)))
+       (do-deal-next-cards)))
 
 (define (place-ace card slot)
   (remove-card slot)
@@ -305,6 +311,6 @@
 
 (define (timeout) #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable? dealable?)
