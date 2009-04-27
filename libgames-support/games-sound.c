@@ -135,6 +135,8 @@ games_sound_init (void)
   g_assert (g_thread_supported ());
 
   pipeline = gst_element_factory_make ("playbin", "playbin");
+  if (pipeline == NULL)
+    return;
 
   threads = g_thread_pool_new ((GFunc) games_sound_thread_run,
 			       NULL, 10, FALSE, &err);
@@ -195,13 +197,14 @@ games_sound_play (const gchar * filename)
 {
 #if defined(HAVE_GSTREAMER)
   GError *err = NULL;
-
+    
   if (!sound_enabled)
     return;
   if (!sound_init)
     games_sound_init ();
 
-  g_thread_pool_push (threads, (gchar *) filename, &err);
+  if (sound_init)
+    g_thread_pool_push (threads, (gchar *) filename, &err);
 
 #elif defined(HAVE_SDL_MIXER)
 
