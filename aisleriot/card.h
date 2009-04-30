@@ -65,8 +65,7 @@ GType aisleriot_card_get_type (void) G_GNUC_CONST;
 
 ClutterActor *aisleriot_card_new (GamesCardTexturesCache *cache,
                                   Card bottom_card,
-                                  Card top_card,
-                                  const ClutterColor *highlight_color);
+                                  Card top_card);
 
 void aisleriot_card_set_card (AisleriotCard *card,
                               Card bottom_card,

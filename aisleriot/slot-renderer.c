@@ -22,6 +22,7 @@
 #include <gtk/gtk.h>
 #include <cogl/cogl.h>
 #include <string.h>
+#include <math.h>
 
 #include "slot-renderer.h"
 #include "card.h"
@@ -45,7 +46,6 @@ static void aisleriot_slot_renderer_set_cache (AisleriotSlotRenderer *srend,
 
 static void completed_cb (AisleriotSlotRenderer *srend);
 
-static const ClutterColor white = { 0xff, 0xff, 0xff, 0xff };
 static const ClutterColor default_highlight_color = { 0, 0, 0xaa, 0xff };
 
 G_DEFINE_TYPE (AisleriotSlotRenderer, aisleriot_slot_renderer,
@@ -62,6 +62,8 @@ struct _AisleriotSlotRendererPrivate
   GamesCardTexturesCache *cache;
 
   Slot *slot;
+
+  CoglHandle material;
 
   ClutterColor highlight_color;
   gboolean show_highlight;
@@ -209,6 +211,11 @@ aisleriot_slot_renderer_dispose (GObject *object)
     priv->timeline = NULL;
   }
 
+  if (priv->material != COGL_INVALID_HANDLE) {
+    cogl_handle_unref (priv->material);
+    priv->material = COGL_INVALID_HANDLE;
+  }
+
   aisleriot_slot_renderer_set_animation_layer (self, NULL);
 
   G_OBJECT_CLASS (aisleriot_slot_renderer_parent_class)->dispose (object);
@@ -330,6 +337,41 @@ aisleriot_slot_renderer_get_property (GObject *object,
 }
 
 static void
+aisleriot_slot_renderer_set_material_for_card (AisleriotSlotRenderer *srend,
+                                               CoglHandle tex,
+                                               gboolean show_highlight)
+{
+  AisleriotSlotRendererPrivate *priv = srend->priv;
+  guint8 opacity = clutter_actor_get_paint_opacity (CLUTTER_ACTOR (srend));
+
+  if (priv->material == COGL_INVALID_HANDLE)
+    priv->material = cogl_material_new ();
+
+  if (show_highlight)
+    /* The previous code for drawing the highlight rendered the normal
+       card texture and then rendered the card again multiplied by the
+       highlight color but with 50% transparency. The blend function
+       is alpha*src+(1-alpha*dst) where src is effectively the tex
+       times the highlight color and the dst is the original
+       tex. Therefore the final color is 0.5*tex+0.5*tex*highlight
+       which is the same as (0.5+highlight/2)*tex. We can precompute
+       that value to avoid having to draw the card twice */
+    cogl_material_set_color4ub (priv->material,
+                                MIN (priv->highlight_color.red
+                                     / 2 + 128, 0xff),
+                                MIN (priv->highlight_color.green
+                                     / 2 + 128, 0xff),
+                                MIN (priv->highlight_color.blue
+                                     / 2 + 128, 0xff),
+                                opacity);
+  else
+    cogl_material_set_color4ub (priv->material, 255, 255, 255, opacity);
+
+  cogl_material_set_layer (priv->material, 0, tex);
+  cogl_set_source (priv->material);
+}
+
+static void
 aisleriot_slot_renderer_paint_card (AisleriotSlotRenderer *srend,
                                     guint card_num)
 {
@@ -350,26 +392,11 @@ aisleriot_slot_renderer_paint_card (AisleriotSlotRenderer *srend,
                                   FALSE,
                                   &cardx, &cardy);
 
-  cogl_color (&white);
-  cogl_texture_rectangle (cogl_tex,
-                          CLUTTER_INT_TO_FIXED (cardx),
-                          CLUTTER_INT_TO_FIXED (cardy),
-                          CLUTTER_INT_TO_FIXED (cardx + tex_width),
-                          CLUTTER_INT_TO_FIXED (cardy + tex_height),
-                          0, 0, CFX_ONE, CFX_ONE);
+  aisleriot_slot_renderer_set_material_for_card
+    (srend, cogl_tex,
+     priv->show_highlight && card_num >= priv->highlight_start);
 
-  if (priv->show_highlight && (card_num >= priv->highlight_start)) {
-    ClutterColor color = priv->highlight_color;
-
-    color.alpha = 0x80;
-    cogl_color (&color);
-    cogl_texture_rectangle (cogl_tex,
-                            CLUTTER_INT_TO_FIXED (cardx),
-                            CLUTTER_INT_TO_FIXED (cardy),
-                            CLUTTER_INT_TO_FIXED (cardx + tex_width),
-                            CLUTTER_INT_TO_FIXED (cardy + tex_height),
-                            0, 0, CFX_ONE, CFX_ONE);
-  }
+  cogl_rectangle (cardx, cardy, cardx + tex_width, cardy + tex_height);
 }
 
 static void
@@ -403,21 +430,9 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
     tex_width = cogl_texture_get_width (cogl_tex);
     tex_height = cogl_texture_get_height (cogl_tex);
 
-    cogl_color (&white);
-    cogl_texture_rectangle (cogl_tex,
-                            0, 0,
-                            CLUTTER_INT_TO_FIXED (tex_width),
-                            CLUTTER_INT_TO_FIXED (tex_height),
-                            0, 0, CFX_ONE, CFX_ONE);
-
-    if (priv->show_highlight) {
-      cogl_color (&priv->highlight_color);
-      cogl_texture_rectangle (cogl_tex,
-                              0, 0,
-                              CLUTTER_INT_TO_FIXED (tex_width),
-                              CLUTTER_INT_TO_FIXED (tex_height),
-                              0, 0, CFX_ONE, CFX_ONE);
-    }
+    aisleriot_slot_renderer_set_material_for_card (srend, cogl_tex,
+                                                   priv->show_highlight);
+    cogl_rectangle (0, 0, tex_width, tex_height);
   } else {
     guint first_card, last_card;
 
@@ -537,6 +552,15 @@ aisleriot_slot_renderer_set_animation_layer (AisleriotSlotRenderer *srend,
   g_object_notify (G_OBJECT (srend), "animation-layer");
 }
 
+static gdouble
+aisleriot_slot_sine_animation_mode (ClutterAlpha *alpha,
+                                    gpointer data)
+{
+  ClutterTimeline *tl = clutter_alpha_get_timeline (alpha);
+
+  return sin (clutter_timeline_get_progress (tl) * G_PI);
+}
+
 void
 aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
                                         guint n_anims,
@@ -583,8 +607,9 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
 
     memset (&anim_data, 0, sizeof (anim_data));
 
-    anim_data.card_tex = aisleriot_card_new (priv->cache, anims[i].old_card,
-                                             card, &priv->highlight_color);
+    anim_data.card_tex = aisleriot_card_new (priv->cache,
+                                             anims[i].old_card,
+                                             card);
 
     card_width = clutter_actor_get_width (anim_data.card_tex);
     card_height = clutter_actor_get_height (anim_data.card_tex);
@@ -605,11 +630,11 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
     knots[1].x += priv->slot->rect.x;
     knots[1].y += priv->slot->rect.y;
 
-    alpha = clutter_alpha_new_full (priv->timeline, CLUTTER_ALPHA_RAMP_INC,
-                                    NULL, NULL);
+    alpha = clutter_alpha_new_full (priv->timeline, CLUTTER_LINEAR);
 
-    anim_data.move = clutter_behaviour_path_new (alpha, knots,
-                                                 G_N_ELEMENTS (knots));
+    anim_data.move
+      = clutter_behaviour_path_new_with_knots (alpha, knots,
+                                               G_N_ELEMENTS (knots));
     clutter_behaviour_apply (anim_data.move, anim_data.card_tex);
 
     if (anims[i].old_card.value != card.value) {
@@ -634,8 +659,9 @@ aisleriot_slot_renderer_set_animations (AisleriotSlotRenderer *srend,
     }
 
     if (anims[i].raise) {
-      alpha = clutter_alpha_new_full (priv->timeline, CLUTTER_ALPHA_SINE,
-                                      NULL, NULL);
+      alpha = clutter_alpha_new_with_func (priv->timeline,
+                                           aisleriot_slot_sine_animation_mode,
+                                           NULL, NULL);
 
       anim_data.depth = clutter_behaviour_depth_new (alpha,
                                                      0, card_height);

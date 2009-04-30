@@ -28,9 +28,9 @@
 #include <gdk/gdkkeysyms.h>
 
 #include <clutter/clutter.h>
+#include <clutter-gtk/clutter-gtk.h>
 
 #include <libgames-support/games-card-textures-cache.h>
-#include <libgames-support/games-clutter-embed.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-marshal.h>
 #include <libgames-support/games-pixbuf-utils.h>
@@ -1245,8 +1245,7 @@ drag_begin (AisleriotBoard *board)
 
     g_array_append_val (priv->removed_cards, removed_card);
 
-    card_tex = aisleriot_card_new (priv->textures, hcard, hcard,
-                                   &priv->selection_colour);
+    card_tex = aisleriot_card_new (priv->textures, hcard, hcard);
     clutter_actor_set_position (card_tex, x, y);
     clutter_container_add (CLUTTER_CONTAINER (priv->moving_cards_group),
                            card_tex, NULL);
@@ -2298,7 +2297,7 @@ slot_changed_cb (AisleriotGame *game,
 
 /* Class implementation */
 
-G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GTK_TYPE_CLUTTER_EMBED);
+G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GTK_CLUTTER_TYPE_EMBED);
 
 /* AisleriotBoardClass methods */
 
