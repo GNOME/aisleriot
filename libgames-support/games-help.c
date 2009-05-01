@@ -30,7 +30,7 @@
  *
  * @window: toplevel window
  * @application: name used for the help file
- * @section: section to open. NULL if not used.
+ * @section: section to open, or %NULL
  *
  */
 void
@@ -45,7 +45,11 @@ games_help_display (GtkWidget *window,
 
   screen = gtk_widget_get_screen (GTK_WIDGET (window));
 
-  help_string = g_strconcat ("ghelp:", app_name, "?", section, NULL);
+  if (section) {
+    help_string = g_strconcat ("ghelp:", app_name, "?", section, NULL);
+  } else {
+    help_string = g_strconcat ("ghelp:", app_name, NULL);
+  }
 
   gtk_show_uri (screen, help_string, gtk_get_current_event_time (), &error);
 
