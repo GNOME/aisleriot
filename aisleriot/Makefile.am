@@ -73,6 +73,8 @@ sol_LDADD += $(GTHREAD_LIBS)
 endif
 
 if HAVE_CLUTTER
+if ENABLE_AISLERIOT_CLUTTER
+
 noinst_PROGRAMS = sol-clutter
 
 sol_clutter_SOURCES = \
@@ -106,6 +108,7 @@ sol_clutter_CFLAGS = $(sol_CFLAGS) $(CLUTTER_CFLAGS) $(CLUTTER_GTK_CFLAGS)
 sol_clutter_LDADD = $(sol_LDADD) $(CLUTTER_LIBS) $(CLUTTER_GTK_LIBS)
 
 
+endif # ENABLE_AISLERIOT_CLUTTER
 endif # HAVE_CLUTTER
 
 desktop_in_files = \
