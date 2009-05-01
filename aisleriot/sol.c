@@ -83,6 +83,8 @@ typedef struct {
 #endif /* HAVE_HILDON */
 } AppData;
 
+#if !GTK_CHECK_VERSION (2, 17, 0)
+
 static void
 about_url_hook (GtkAboutDialog *about,
                 const char *uri,
@@ -150,6 +152,8 @@ about_email_hook (GtkAboutDialog *about,
   about_url_hook (about, uri, user_data);
   g_free (uri);
 }
+
+#endif /* GTK < 2.17.0 */
 
 static char *
 variation_to_game_file (const char *variation)
@@ -604,8 +608,10 @@ main_prog (void *closure, int argc, char *argv[])
 
   aisleriot_util_set_help_func (help_hook, &data);
 
+#if !GTK_CHECK_VERSION (2, 17, 0)
   gtk_about_dialog_set_url_hook (about_url_hook, &data, NULL);
   gtk_about_dialog_set_email_hook (about_email_hook, &data, NULL);
+#endif
 
   data.window = AISLERIOT_WINDOW (aisleriot_window_new ());
   g_signal_connect (data.window, "destroy",
