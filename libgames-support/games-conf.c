@@ -71,7 +71,7 @@ G_DEFINE_TYPE (GamesConf, games_conf, G_TYPE_OBJECT);
 
 /* helper functions */
 
-#define WINDOW_STATE_TIMEOUT 1000 /* ms */
+#define WINDOW_STATE_TIMEOUT 1 /* s */
 
 enum {
   STATE_KEY_MAXIMISED,
@@ -158,9 +158,15 @@ window_configure_event_cb (GtkWidget *widget,
                       state->window);
 
     if (state->timeout_id == 0) {
-      state->timeout_id = g_timeout_add (WINDOW_STATE_TIMEOUT,
+#if GLIB_CHECK_VERSION (2, 14, 0)
+      state->timeout_id = g_timeout_add_seconds (WINDOW_STATE_TIMEOUT,
+                                                 (GSourceFunc) window_state_timeout_cb,
+                                                 state);
+#else
+      state->timeout_id = g_timeout_add (WINDOW_STATE_TIMEOUT * 1000,
                                          (GSourceFunc) window_state_timeout_cb,
                                          state);
+#endif
     }
   }
 
