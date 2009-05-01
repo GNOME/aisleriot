@@ -138,7 +138,12 @@ about_email_hook (GtkAboutDialog *about,
 {
   char *escaped, *uri;
 
+#if GLIB_CHECK_VERSION (2, 16, 0)
   escaped = g_uri_escape_string (email_address, NULL, FALSE);
+#else
+  /* Not really correct, but the best we can do */
+  escaped = g_strdup (email_address);
+#endif
   uri = g_strdup_printf ("mailto:%s", escaped);
   g_free (escaped);
 
