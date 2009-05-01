@@ -1,0 +1,430 @@
+A guide to writing a new patience game for Aisleriot.
+
+    Copyright © 2009 Ed Sirett
+
+    Author: Ed Sirett <ed@makewrite.demon.co.uk>
+
+    This program is free software; you can redistribute it and'or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3, or (at your option)
+    any later version.
+
+    This guide is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+
+1. Introduction
+2. Getting started.
+3. A primer for the Scheme language
+4. Functions you need to define to make a game.
+5. A real example.
+6. Submitting your new work as a "bug". 
+7. A brief list of the aisleriot 'library' functions available. 
+
+1. Introduction
+------------
+I am writing this guide for someone who wishes to add a new solitaire game (or patience game in en-GB) to Aisleriot.  Wikipedia  (en.wikipedia.org/wiki/List_of_solitaire_card_games)  lists many hundreds of games,  as of Jan 2009 only a fraction are implemented in Aisleriot. Whilst the most popular and well known games have been implemented there are probably lots of good games that are still to be done. Different styles of game appeal to different people. I favour games that when played carefully have an evens chance of succeeding. 
+
+New games are therefore welcome in aisleriot, provided they have not already being implemented under another name. For example you may know a game called "Towers", but careful examination of the games list will show it has already been implemented as "Seahaven".
+
+Firstly and foremost you dont need to be able to program to make use of this guide. You could simply post the rules of a new game as suggested enhancement on bugzilla.  Maybe someone who is more familiar with developing games for aisleriot will be able to code the game. Or if you make a start someone else may be able to finish it off.
+
+The new rules are best expressed by writing the help file for the game. This is in XML format and a brief look at a few existing examples will give you all you need to know. The location of the files is given at the start of the next section.
+
+For those of you who like me thought "There's a scripting language, how hard can that be?" Then this document is for you.
+
+Almost all of the work has already been built into the Aisleriot 'engine', leaving you to specify the details of the game. The details are specified in a dialect of a Lisp like language called Scheme. This language specializes in handling lists (such as groups of cards), much more about this later. There is quite enough flexibility to specify a vast range of games. However for people more familiar C, Pascal, FORTRAN etc. you may find that Scheme is weird and perhaps unwieldy.
+
+Scheme has numerous dialects fortunately the version in aisleriot is well extended and should allow a number of useful constructs not available in some others.
+
+This document may well have many errors in it, it should be considered work in progress. I am writing it from the point of view of someone who had to find out how to do it the "hard way". What I present here is how it appeared to me rather than an "official" manual.
+
+
+2. Getting started
+------------------
+These are the locations of important files on my (Fedora) system.
+
+The aisleriot binary is /usr/bin/sol, or usr/local/bin/sol if you build gnome-games from source.
+You will need to invoke sol from a terminal window to observe errors and warnings during development.
+
+The Scheme source files are kept in /usr/share/gnome-games/aisleriot/games/
+Note that games with two word titles have an underscore in their name so  "my_game.scm" will be "My Game" when displayed. There is a file called sol.scm which contains a 'library' of definitions and functions.
+
+The (english) help files are in /usr/share/gnome/help/aisleriot/C/*.xml
+There is a master file aisleriot.xml which registers the help file for your game. You need to edit aisleriot.xml in TWO places so as to refer to your help file "my_game.xml".
+
+Again, I suggest that you may wish to stop at this point and simply post the game helpfile as an "enhancement". This will make sure that if the game already exists you won't end up reinventing the wheel.
+
+Assuming that you are up for having a go at coding in the scheme language. Then please read on. I suggest that you begin by trying to find an existing game that is close in layout and operation to your new game. However not all games are good well coded good. Spider and Klondike are fairly good examples of well written games.
+
+Copy and rename the .scm file and .xml files and edit aisleriot.xml. Take extreme care to get the case and punctuation correct. "My Game" is not the same as "my-game" or "My_Game"; follow the herd (of GNU?) to the letter and bit.  Please note that not all games are coded to the standard that the aisleriot maintainers would like. Spider and Klondike are fairly good examples of well written games.
+
+On my installation (Fedora 10, gnome-2.24) there appears to be a problem with bug-buddy. So I'm not getting any crash reports. This made development slower, although I could run the game in "Fedora 9+gnome2.22" and get proper crash details. You may well be developing on a later version of Gnome.
+
+Don't worry if you can't make the game perfect. A clear help file and a good attempt are a very useful start.
+
+
+3. A primer for the Scheme language
+--------------------------------
+
+Take a look at a typical game's Scheme source file. I'm going to look at Jumbo (jumbo.scm). Which is very like the well known Klondike but with two decks.
+
+Lines starting with ; are obviously comments and everything after a ; on the line.
+
+Whoever thought up Lisp or Scheme had (IMHO) a serious love affair with parentheses, I shall call them brackets although strictly speaking those are []s and not ()s. You'd better get to grips with them. Any source editor you use will have to be bracket matching smart or you will spend all your time (mis-)counting brackets.
+
+Everyone is, of course, free to find their own way of handling the bracket soup. Most scheme programmers put all the closing brackets together at the end this has the advantage that the code is less tall whilst still indicating the bracket nesting depth by indentation.
+
+The form of a scheme function is 
+( define (name-of-function list of zero or more dummy arguments) 
+    (do-something with-arguments)
+    (do-something)
+    (do-something which is the return value of this function)
+)
+
+Functions return all sorts of data types quite a few return booleans.  
+
+There seems to be a (loosely-held?) convention that a function whose name ends in a '?' is expected to return true or false. It does this explicitly with the symbols #t and #f, or implicitly by passing the result of a function it calls, or from the result of a conditional expression. The '-' character is treated as an alphabetical letter so allowing multi-word-names (unless on its own where it means "subtract" arg2 from arg1 ) e.g. (- score 1) evaluates as subtract 1 from score. 
+
+One of the data-objects that Scheme handles are lists. These are lists of objects which can be homogeneous (i.e  a list of cards) or varied (e.g. a number, a string, a boolean and another list!). Lists are listed out in brackets (no surprise there) with a ' before the open bracket, '(1 2 3 4 5), is a list of five numbers. '() is the empty list. [In fact I've now learnt that the ' before the list stops the first item "being applied" to the rest of the list. ]
+
+Move down the jumbo.scm  to (define (button-pressed ...  Don't worry what this function does just note that it is of the form
+
+I've applied my bracket/indent format to make it (to my eyes) a bit more readable. 
+
+(define (button-pressed slot-id card-list)
+  (and (or (> slot-id 1)
+           (and (= slot-id 1)
+                (= (length card-list) 1)))
+       (is-visible? (car (reverse card-list)))))
+
+In pseudo code with more familiar notation this would be 
+button-pressed ( slot-id card-list) 
+{
+return( is-visible?(last_member_of(card-list))  AND (slot-id > 1 OR (slot-id=1 AND length(card-list)=1 ))
+}
+  
+From the above we can see that many expressions are of the form (operator operand-1 operand-2)
+The function (reverse (a-list)) returns the list in reverse.
+The function (car (a-list)) return the first item of the list.
+Also useful but unintuitive is (cdr (my-list)) which returns my-list but without the first item.
+And (cadr list) is the same as (car (cadr list)) which returns the second item.
+
+A key concept of scheme is that a "(" will introduce an action, such as "define" or simply invoking an action or an expression. A corollary of this is that (3) or (#t) are errors. Where a simple numeric 3 or boolean #t is correct.
+
+Another construct is (if  (expression) (do-this-when-expr-true) (do-this-when-expr-false)) the return value is set by whichever of the two 'actions' is taken.
+
+Another one that comes up a lot is 
+(cond (condition1) (action1) 
+      (condition2) (action2) 
+      (last-expr) (last-action)
+)
+
+This evaluates condition1 condition2 etc. in turn until it finds one that evaluates to true then it does the corresponding action. The last-expr is invariably #t and so if all earlier expressions are false then the last-action will certainly be performed). The word else can be used instead of #t in this context. 
+
+Here's one from jumbo.scm:
+(define (check-to-foundation card f-slot)
+  (cond ((= f-slot 10)  #f)
+        ((or 
+           (and 
+             (empty-slot? f-slot)
+             (= (get-value card) ace))
+           (and 
+             (not (empty-slot? f-slot))
+             (= (get-suit card) (get-suit (get-top-card f-slot)))
+             (= (get-value card)(+ 1 (get-value (get-top-card f-slot))))))
+          f-slot)
+        (#t (check-to-foundation card (+ 1 f-slot)))))
+
+BTW Note that one of the (and...)  expressions has three elements.
+This function forms a loop by a process of tail-recursion. The first expression in the (cond...) list tests for f-slot = 10 and causes the function to return with the value #f. The 'meat' of the function is the second expression of the (cond...) which is an (or...) and returns the number f-slot if it's true. The last expression in the (cond...) list is always true and recalls (check-to-foundation...) but with the f-slot argument incremented.
+
+(list item item item) make a list of things.
+
+(set! something what-it-should-be) seems to assign what-it-should-be to something. 
+(define abc 123)  makes abc 123, this appears to only hold until a (set! abc something-else) is invoked. You can't (set! something xxx) until you have previously defined it.
+
+I don't pretend to know what or how the following works but you list out the functions you need to define to make your game. Everything that's in this list is needed. 
+
+(set-lambda new-game button-pressed button-released button-clicked
+button-double-clicked game-continuable game-won get-hint get-options apply-options timeout droppable? dealable?)
+
+Finally:
+Make small changes at a time. A small change can have a huge effect, often crashing the game.
+Those brackets will drive you crazy, you have been warned.
+In my experience the error messages are very helpful if the scheme interpreter catches the problem.
+
+
+4. Functions you need to define to make a game
+----------------------------------------------
+I'm going to need to reimplement the following functions:
+
+new-game 
+button-pressed 
+button-released 
+button-clicked
+button-double-clicked 
+game-continuable 
+game-won 
+get-hint 
+get-options
+apply-options
+timeout 
+droppable?
+dealable?
+do-deal-next-cards
+
+
+I'll deal with (new-game) later.
+
+(button-pressed slot-id card-list) it must evaluate to #t or #f depending on whether, in the game, the list of cards "card-list" found at the slot numbered "slot-id" can be picked up, according to the rules of the game at the current state of play. The sol binary will already have formed a list of cards that the mouse might be allowed to pick up.  This function says whether it is allowed to do so or not. 
+
+(button-released start-slot card-list end-slot) If the card(s) in card-list currently in slot start-slot may be dropped onto slot end-slot, then the cards should be moved and the function return #t otherwise #f.
+
+(droppable? start-slot card-list end-slot) Return #t or #f based on the whether the card(s) in card-list currently in slot start-slot may be dropped onto slot end-slot. This is well useful as a helper function for (button-released...). Probably activates the high-lighting as the mouse moves over potential dropping slots.
+
+(dealable?) returns #t if it is permissible to deal card(s) at the current state of play.
+
+(set-features droppable-feature dropable-feature) Needs to be called if your code will have (droppable?) or (dealable?) in it. A game which has all the cards laid at the start, would not need the dealable feature
+
+(do-deal-next-cards) If the game has the dealable? feature then this gets called when the user click the deal button in the menu bar. You can probably slave to (button-clicked stock-slot) in many but not all cases.
+
+(button-clicked slot) Gets called when the user clicks in a particular slot. Typically this is used to perform a deal when the user clicks on the stock. It should probably be used where there is absolutely only one possible action that could occur.
+
+(button-double-clicked slot-number) This tells you if the user has double clicked in a particular place. I implement automatic filling of the foundations if the click is in a foundation place. I would also implement the moving of a single card to the foundations if this is possible as this is in line with most games and most user's expectation.
+
+(game-continuable) Asks if the game is not stuck (and therefore not lost).
+
+(get-hint) is called when the user requests a hint. The return from hint is in the form of a list.  It seems to be used in two ways. (get-name a-card) is a very useful library function.
+
+Method 0:
+(list 0 "A single sentence.") Perhaps something like _"Deal the next row".
+Method 2:
+(list 2 "name of card to be picked up" "name of card to be covered")
+
+(game-won)  You should return #t when the game is in a won state #f Otherwise.
+
+(timeout) (get-options) (apply-options) all return false if not needed.
+
+(new-game) is called to set up a new game. There are some mandatory elements. 
+
+  (initialize-playing-area)   ;mandatory
+  (set-ace-low)
+  (make-standard-double-deck)
+  (shuffle-deck)
+Each of these is self-explanatory.
+
+Then comes a larger section which refer to 'slots'. 
+These actions makes new places for cards on the green baize called slots. Some actions simply alter the position of other slots. Slots are given id numbers starting from 0, which is usually the stock pile, and can be preloaded with all, some or none of the deck. Slots are allocated from left to right and row by row downwards.
+
+ There appear to be three kinds of slots:
+ 1) Normal ones where the cards are placed directly on top of each other, only the top card (or its backface) is shown. 
+ 2) Extended slots where the cards don't fully overlap each other, each new card placed in the slot is moved in a direction (right or down). This enales you to see all the card in the slot.
+ 3) Partially extended slots which are like extended slots but only make a maximum specified number visible in the pile.
+
+(add-blank-slot) moves the position of the next created slot a 'card space' to the right
+(add-carriage-return-slot) move the position of the next created slot to the far left and down a 'card row'.
+
+
+The action (deal-cards-face-up 0 tableau) takes cards one at a time from the first argument which is the slot-number of the DECK and puts one card (face up) in each of the slots in the second argument which is a list. 
+
+(give-status-message) is called from (new-game) and (game-won) in most games.
+
+The last action does nothing but returns a list of two numbers. These are the width and height of the playing-area measured in playing cards. The sol engine will work out all the card spacing, bit maps, margins, card styles etc for you. 8-)
+
+
+5. A real example.
+
+I am writing this guide at the same time as making a new game called "Giant". I stated by taking a previously written game "Spider". All the problems I encounter will be listed out here. 
+
+Firstly I have copied an entire game of Spider, edited the help file .xml files opened up the "giant.scm" for editing. Having done that I test it out, I can select "Giant" as a game and I can browse the help page. The game is at this stage totally a copy of "Spider" and plays like it.
+
+I don't need user selectable options so the first thing I'm going to do is to strip out or dummy out the all the code that does things with options.
+
+Did that, game still plays.
+
+I'd like the code to be totally symbolic as far as possible so all slot numbers should be symbolic and tests on slot-numbers should be almost self commenting. To this end I'm going to try defining stock-slot as 0. The using the symbol stock-slot when needed.
+
+Now I don't need the complexity of initial-deal as I only need to send one row of cards to the tableaux. So I kill off initial-deal and use the tableau list and take out the function (deal-initial-setup).
+
+Try out. Great, no crash.
+
+Now what? Let's change the tableau from 10 slots to 8 slots. So I change the definition of tableau which is a list of slots, I also change the code in (new-game) so as not to make unwanted slots. 
+
+Another good edit. 8-) I'm on a roll. My luck will change soon I'm sure.
+
+I don't need any card flipping code, all cards after dealing are visible. So I'm going to see if I can remove the function (flip-top-card-slots slots) and still get the code to run. Turns out there are no calls to (flip-t-c-s..) so I might just be OK.
+
+I want to change the message which says "Stock left" to "Deals left". Therefore I'm going to divide the number of card by 8 in the function (get-stock-no-string). Like So:   (number->string (/ (length (get-cards stock-slot)) 8 )). Apparently in Scheme the division of integers produces exact rationals. However since I hope the stock will always be a multiple of 8 then the resulting number should also be an integer.  E.g. (number->string ( / 6 7) ) makes "6/7", there must be some serious code in there. 
+
+Still works OK on testing. 
+
+Now I add (define reserve-slot 17), this is a slot which can hold a maximum of one card. In (new-game) I invoke (add-blank-slot) and (add-normal-slot '()) to make a space then the slot for the reserve card. 
+
+That works.
+OK. Now I have got to start modifying things a bit more deeply. I modify droppable? and sol crashes, bug-buddy is not talking to gnome-games, some problem about package-ver. 8-(
+Add (display-list ...) calls here and there to show where the code reaches before crashing and what it is working on. One problem is a typo. The other is those brackets. Fix those; still crashes.
+More adding of calls to (display-list...), track the problem down to (check-same-suit card-list) is wrong, the function is (check-same-suit-list card-list). 
+Adding (display-list ... ) code to track down a problem is a bit like when I was at college (in 1978). I remember trying to debug my FORTRAN programming assignments, by adding WRITE statments before the days of text mode debuggers let alone IDEs. 
+
+Still no joy. More (display-list..) calls added. Since (display-list  ) returns #t, adding (display-list) calls in (and...) groups is easy. Can also add as (not (display-list...)) in (or ...) groups. 
+Ahah! I've nailed the bug[ger] at last:  (= (get-value (get-top-card card-list)) ace) is wrong, (get-top-card ) takes a slot number not a card list. Since I actually want the top card of the list instead of (get-top-card card-list) I want (car card-list).
+
+Picking up and moving cards around now seems to be working fairly well. Can't move anything into an empty tableau space, so some more code needed I think. 
+
+More errors: Turns out that  (length (card-list)) is wrong because (card-list) is not an action but a list so I need (length card-list). Since most languages I've used have brackets around the arguments I keep making this mistake. 8-(
+
+I think this game is going to need a touch more height for card lists in the tableaux. So I change the return in new game from (list 10 4) to (list 10 4.5). Nicer.
+
+I have noticed a bug that when I move multiple cards to foundations the cards are reversed. So it looks like I need to fix up (complete-transaction ..) which is a helper function. I radically simplify this routine to one (if...) expression.
+
+My game will only have a simple score of 0-104. So everything to do with scoring is to be pruned. 
+(check-for-points) goes. (deal-new-cards slots) is radically simplified. Tests OK.
+(game-won) is now just a simple test, but includes a (set-score!... ) call to set the score.
+
+ERROR: In procedure scm_i_lreadparen:
+ERROR: /usr/local/share/gnome-games/aisleriot/games/giant.scm:280:1: end of file
+That's almost helpful. It must be a bracket error which it was. 
+
+  (if (and (null? slot-list))
+      (0)
+      (+ (length (get-cards (car slot-list))) (game-score (cdr slot-list)))
+  )
+
+What could be the problem here? the (if...)  syntax is (if expression when-true when-false).  I've got my three expressions (and...) (0) (+...).
+The problem is (0) which does not mean 0 but means do-something-named-0 which does not exist. Change to plain 0. Fixed. 
+
+OK things are looking better all the while. I'm going to need some functions to implement auto-play. So that I can double click in the foundations and have the cards play out. I decide that I need functions that find moves and functions that do the actual move. This separation is good as it will facilitate code for (get-hint) later.
+
+Got double-clicking of single cards to foundations working OK. Removed some more dead code but won't attack the (get-hint) tree just yet. 
+
+Found another problem which took some while to track down and had to read a manual on Scheme. I had some code that I hoped would make a list of tableau slots and the extra reserve-slot. I wrote (append tableau reserve-slot) this makes a heterogeneous list (it's a list of integers and an integer). Such lists are given the label improper and my code to loop through such a list crashes. To make a proper list I need to (append like with like).  So the code was changed to (append tableau (list reserve-slot)). This turns the single integer reserve-slot into a one element list and then combines the longer list "tableau" with the one element list. 
+
+More tests, very occasional random crashes. Run on Fedora 9, where I get error messages, and find problem is in the (get-hint) code so I change (get-hint) to always return (list 0 _("No hint yet.")).
+
+After a long period of testing I'm fairly sure the game works well. Now all that is left is to implement (get-hint). This has to return a list: either (list 0 "string") or (list 2 "name of a card" "name of a card"). In the second case the hint will be displayed as "put card 1 onto card 2"). The routine can also return false, which will mean that the game is stuck. In the "giant" game there is no such thing as stuck so as a last resort the return will be set to (list 0 "Try moving some cards around." ).
+
+Finally I added some code to suggest the moves from the tableau to the foundation. I got a subtle bug which took a long time to hunt down. I was testing on the first element of a list using (car some-list) but there were times when some-list was the simple scalar boolean #f. Taking the "car" of a scalar item is an error. Fortunately a list, when evaluated as a boolean, is seen as #t. So the simple test (if some-list... works.
+
+After my first submission to bugzilla (see below) I found I had to work on some more stuff. One of the things I did was to implement an option so that the game may be played with matching suit or by matching alternating colours. Apart from a little code to set the option this made for just a few lines of change in (droppable?) and (button-pressed). 
+
+The auto-play function was split into two part a head and a tail. The reason for this is that (button-double-clicked) needs to return #t if one or more cards were moved and #f if none were moved. 
+
+I was unhappy with the code that forms part of the auto-play feature. Sometimes you need to keep the outcome of a function call and use in several places inside the body of a function. What was bugging me was I needed to test the result of (find-any-to-foundation) and then use the result again in another expression. In scheme there is a construct for local variables it is like this:
+(let ( (name1 (expr1)) (name2 (expr2)) ) (body of code using name1  name2 ))
+This makes the code neater by reducing the whole of the function call to a simple result like "result" and also result is evaluated just once.
+
+
+6. Submitting your game a new 'bug'.
+------------------------------------
+
+Your new game is submitted using the gnome-games on-line bug tracking system.
+ http://bugzilla.gnome.org/browse.cgi?product=gnome-games
+It may take some time for people to review it. Very likely there will be some feedback. This is intended to make your game work better for everyone not just you. Also this code review process is part of what makes open software so much better than secret software. There are probably things your games needs to do that you may be unaware of. Don't worry if it's not all there yet. 
+
+
+
+7. Here are a list of some functions in the sol.scm "Library"
+----------------------------------------------------------
+
+
+Quite a few are self explanatory:
+(make-standard-deck)
+(make-joker-deck) 
+(make-standard-double-deck)
+(shuffle-deck)
+(initialize-playing-area)
+(is-visible? card)            ; i.e. is it face up?
+(get-suit card) 
+(get-color card)
+(get-value card)
+(get-cards slot-id)
+(empty-slot? slot-id)
+(any-slot-empty? slot-list)
+(get-top-card slot-id)
+(cards-eq? card1 card2)
+(is-red? card)
+(is-black? card)
+(is-joker? card)
+(set-ace-low)     ; make ace=1 
+(set-ace-high)    ; make ace>king
+(check-same-suit-list card-list)       ; true when card list is all same suit
+(check-same-color-list card-list)         
+(check-alternating-color-list card-list)
+(check-straight-descending-list card-list) 
+(length card-list)
+(get-value-name value)    ; card value to string
+(get-suit-name suit)      ; card suit to string
+(get-joker-name card)     ; name of a particular joker 
+(get-name card)           ; card description as a string
+(set-cards! slot-id card-list) ; puts card-list into the slot "slot-id"
+(make-card value suit)   ; turn a value and a suit into a card
+
+Other functions:
+
+(make-deck-list-ace-low start-value start-value 0) 
+Makes a desk of cards with four suits starting from start-value (1 thru 13).  Note the second parameter is repeated, and the extra 0 argument.
+Thus (make-deck-list-ace-low 7 7 0)  will make a deck with cards 7 to King in each suit.
+
+(make-deck-list-ace-high start-value start-value 0)
+As previous but start-values are 2 thru 14 representing 2 thru high-ace.
+
+Some functions set out the areas for holding cards:
+(add-normal-slot card-list)  ; generates a new place for holding cards numbers are allocated sequentially starting with zero which is often the stock. The argument is a list of cards which are placed in the slot. Usually this parameter is the entire deck DECK or null '().
+
+(add-blank-slot)   ; just moves the place where the next slot will be created one card-space rightwards. 
+
+(add-carriage-return-slot) ; just moves the place where the next slot will be created to the far left and one card-height downwards.
+
+(add-extended-slot initial-card-list direction) ; Makes a slot where each card is placed slightly non-overlapping so that all (face-up) cards are visible, directions are right or down. 
+
+(add-partially-extended-slot initial-card-list direction n) ; as above but only the top n cards are made visible.
+
+(deal-cards source-slot placement-list) ; deals cards one at a time from the pile in slot with id source-slot into each of the slots listed in the placement-list. The process continues until the source pile is exhausted or until one card has been put in every slot in the placement-list. 
+
+(deal-cards-face-up source-slot placement-list) ; as above but the cards are made visible as needed. 
+
+(flip-top-card slot-id) ; make face-up or face-down the top card in slot slot-id.
+
+(make-visible-top-card slot-id); makes the top card of slot slot-id visible.
+
+(add-card! slot-id card) ; puts a card onto the pile in slot slot-id
+
+(add-cards! slot-id cards) ; puts a list of cards into slot slot-id
+
+(remove-card slot-id) ; removes the top card from slot slot-id, function returns the card removed.
+
+(flip-stock stock-slot waste-slot flip-limit . rest)
+; deal a card from the stock-slot to the waste-slot.
+; when the stock slot is empty than the waste slot will be flipped back
+; onto the stock unless the flip limit has been reached.
+; an optional forth argument indicates the number of cards to deal.
+; If the flip limit is negative, it is treated as infinite.
+
+(flippable? stock-slot flip-limit) ; has the stock pile been flipped (i.e. waste taken to stock) less than flip-limit times so far?
+
+; turn the cards in the waste slot over and add them to the stock-slot.
+(flip-deck stock-slot waste-slot)
+
+(find-empty-slot slot-list) ; return the id of the first empty slot from the list of slots slot-list. Not a good idea to call this unless you are sure there is an empty one.
+
+(get-nth-card slot-id n) ; return #f if n is not in range, otherwise the nth card (1 is top card).
+
+(ace-high-order value) ;  makes the card values from 2-Ace when ace-high map to 0-12. 
+
+(move-n-cards! start-slot end-slot cards)    ; moves cards from start-slot to end-slot, cards which is a list of cards presumably must be in start-slot?
+
+(remove-n-cards slot-id n) ; removes n cards from slot slot-id (no ! on this one)
+
+(deal-cards-from-deck card-list slot-list) ; deals cards one by to the slots in slot-list no check on card-list running out though. 
+
+(deal-cards-face-up-from-deck deck slot-list) ; as above and makes each card face up.
+
+
+

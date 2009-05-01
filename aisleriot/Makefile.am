@@ -163,6 +163,7 @@ install-data-local: install-schemas-local
 EXTRA_DIST = \
 	AUTHORS			\
 	README			\
+	Rules.HOWTO		\
 	TODO			\
 	$(scm_DATA)		\
 	$(cardimage_DATA)	\
