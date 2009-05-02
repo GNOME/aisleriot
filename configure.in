@@ -993,6 +993,8 @@ AC_SUBST([AM_LDFLAGS])
 ##############################################
 ##############################################
 
+SHAVE_INIT([$(top_srcdir)], [enable])
+
 AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
@@ -1095,6 +1097,8 @@ lightsoff/lightsoff
 lightsoff/lightsoff.desktop.in
 tests/Makefile
 tests/libgames-support/Makefile
+shave
+shave-libtool
 ])
 AC_OUTPUT
 
