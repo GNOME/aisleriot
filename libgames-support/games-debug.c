@@ -34,7 +34,7 @@ _games_debug_init (void)
     { "card-theme",   GAMES_DEBUG_CARD_THEME   },
     { "card-cache",   GAMES_DEBUG_CARD_CACHE   },
     { "runtime",      GAMES_DEBUG_RUNTIME      },
-    { "sound ",       GAMES_DEBUG_SOUND        },
+    { "sound",        GAMES_DEBUG_SOUND        },
     { "window-state", GAMES_DEBUG_WINDOW_STATE }
   };
 
