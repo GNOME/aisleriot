@@ -1989,7 +1989,7 @@ game_exception_cb (AisleriotGame *game,
   gtk_widget_show (dialog);
 }
 
-#ifdef HAVE_CLUTTER
+#if defined(HAVE_CLUTTER) || defined(HAVE_CANBERRA_GTK)
 
 static void
 settings_changed_cb (GtkSettings *settings,
@@ -1999,11 +1999,32 @@ settings_changed_cb (GtkSettings *settings,
   AisleriotWindowPrivate *priv = window->priv;
   GtkAction *action;
   gboolean enabled;
+  const char *name;
 
-  g_object_get (settings, "gtk-enable-animations", &enabled, NULL);
+  if (pspec)
+    name = pspec->name;
+  else
+    name = NULL;
 
-  action = gtk_action_group_get_action (priv->action_group, "Animations");
-  gtk_action_set_visible (action, enabled);
+#ifdef HAVE_CLUTTER
+  if (name == NULL || strcmp (name, "gtk-enable-animations") == 0) {
+    g_object_get (settings, "gtk-enable-animations", &enabled, NULL);
+
+    g_print ("anim enabled: %d\n", enabled);
+    action = gtk_action_group_get_action (priv->action_group, "Animations");
+    gtk_action_set_visible (action, enabled);
+  }
+#endif /* HAVE_CLUTTER */
+
+#ifdef HAVE_CANBERRA_GTK
+  if (name == NULL || strcmp (name, "gtk-enable-event-sounds") == 0) {
+    g_object_get (settings, "gtk-enable-event-sounds", &enabled, NULL);
+
+    g_print ("sound enabled: %d\n", enabled);
+    action = gtk_action_group_get_action (priv->action_group, "Sound");
+    gtk_action_set_visible (action, enabled);
+  }
+#endif /* HAVE_CANBERRA_GTK */
 }
 
 static void
@@ -2029,11 +2050,17 @@ screen_changed_cb (GtkWidget *widget,
 
   settings = gtk_widget_get_settings (widget);
   settings_changed_cb (settings, NULL, window);
+#ifdef HAVE_CLUTTER
   g_signal_connect (settings, "notify::gtk-enable-animations",
                     G_CALLBACK (settings_changed_cb), window);
+#endif
+#ifdef HAVE_CANBERRA_GTK
+  g_signal_connect (settings, "notify::gtk-enable-event-sounds",
+                    G_CALLBACK (settings_changed_cb), window);
+#endif
 }
-  
-#endif /* HAVE_CLUTTER */
+
+#endif /* HAVE_CLUTTER || HAVE_CANBERRA_GTK */
 
 /* Class implementation */
 
@@ -2635,9 +2662,14 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), NULL));
 
-  /* Set the action visibility and listen for animation mode changes */
-  screen_changed_cb (GTK_WIDGET (window), NULL, window);
 #endif /* HAVE_CLUTTER */
+
+#if defined(HAVE_CLUTTER) || defined(HAVE_CANBERRA_GTK)
+  /* Set the action visibility and listen for animation and sound mode changes */
+  screen_changed_cb (GTK_WIDGET (window), NULL, window);
+  g_signal_connect (window, "screen-changed",
+                    G_CALLBACK (screen_changed_cb), window);
+#endif /* HAVE_CLUTTER || HAVE_CANBERRA_GTK */
 
   /* Now set up the widgets */
   main_vbox = gtk_vbox_new (FALSE, 0);
