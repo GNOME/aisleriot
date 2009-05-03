@@ -188,7 +188,7 @@ games_sound_canberra_play (const char *sound_name,
   }
 
   _games_debug_print (GAMES_DEBUG_SOUND,
-                      "libcanberra playing sound %s [sound_name %s]: %s\n",
+                      "libcanberra playing sound %s [file %s]: %s\n",
                       sound_name, path, ca_strerror (rv));
 
   g_free (path);
