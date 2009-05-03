@@ -39,9 +39,9 @@
 #include "games-sound.h"
 
 #ifdef ENABLE_SOUND
+
 static gboolean sound_enabled = FALSE;
 static gboolean sound_init = FALSE;
-#endif /* ENABLE_SOUND */
 
 #ifdef HAVE_GSTREAMER
 static GstElement *pipeline;
@@ -125,22 +125,84 @@ games_sound_sdl_play (const gchar *filename)
 }
 #endif /* HAVE_SDL_MIXER */
 
-#ifdef ENABLE_SOUND
+
+#ifdef HAVE_CANBERRA_GTK
+
+typedef enum {
+  GAMES_SOUND_PLAIN,
+  GAMES_SOUND_FOR_EVENT,
+  GAMES_SOUND_FOR_WIDGET
+} GamesSoundCanberraType;
+
+static void
+games_sound_canberra_play (const char *sound_name,
+                           GamesSoundCanberraType type,
+                           gpointer data)
+{
+  char *name, *path;
+  int rv;
+  ca_context *context;
+
+  if (!sound_enabled)
+    return;
+  if (!sound_init) {
+    ca_context *context;
+
+    if (!(context = ca_gtk_context_get ()))
+      return;
+
+    ca_context_change_props (context,
+                            CA_PROP_MEDIA_ROLE, "game",
+                            NULL);
+  }
+
+  if (!(context = ca_gtk_context_get ()))
+    return;
+
+  name = g_strdup_printf ("%s.ogg", sound_name);
+  path = games_runtime_get_file (GAMES_RUNTIME_SOUND_DIRECTORY, name);
+  g_free (name);
+
+  switch (type) {
+    case GAMES_SOUND_PLAIN:
+      rv =  ca_context_play (context,
+                             0,
+                             CA_PROP_MEDIA_NAME, sound_name,
+                             CA_PROP_MEDIA_FILENAME, path,
+                             NULL);
+      break;
+    case GAMES_SOUND_FOR_EVENT:
+      rv =  ca_gtk_play_for_event (data,
+                                   0,
+                                   CA_PROP_MEDIA_NAME, sound_name,
+                                   CA_PROP_MEDIA_FILENAME, path,
+                                   NULL);
+      break;
+    case GAMES_SOUND_FOR_WIDGET:
+      break;
+      rv =  ca_gtk_play_for_widget (data,
+                                    0,
+                                    CA_PROP_MEDIA_NAME, sound_name,
+                                    CA_PROP_MEDIA_FILENAME, path,
+                                    NULL);
+  }
+
+  _games_debug_print (GAMES_DEBUG_SOUND,
+                      "libcanberra playing sound %s [sound_name %s]: %s\n",
+                      sound_name, path, ca_strerror (rv));
+
+  g_free (path);
+}
+
+#endif /* HAVE_CANBERRA_GTK */
+
+#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
 
 /* Initializes the games-sound support */
 static void
 games_sound_init (void)
 {
 #if defined(HAVE_CANBERRA_GTK)
-  ca_context *context;
-
-  if (!(context = ca_gtk_context_get ()))
-    return;
-
-  ca_context_change_props (context,
-                           CA_PROP_MEDIA_ROLE, "game",
-                           NULL);
-
 #elif defined(HAVE_GSTREAMER)
   GError *err = NULL;
 
@@ -180,6 +242,8 @@ games_sound_init (void)
 #endif /* HAVE_SDL_MIXER */
 }
 
+#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
+
 #endif /* ENABLE_SOUND */
 
 /**
@@ -200,41 +264,19 @@ games_sound_add_option_group (GOptionContext *context)
  * games_sound_play:
  * @filename: the sound file to player
  * 
- * Plays a sound with the given filename using GStreamer. The sound file is stored in
- * the GAMES_RUNTIME_SOUND_DIRECTORY directory in .ogg format. Sound is played in a
- * separate thread.
+ * Plays a sound with the given filename from the
+ * GAMES_RUNTIME_SOUND_DIRECTORY directory in .ogg format.
+ * Sound is played asynchronously; i.e. this function does not block
+ * until the sound has finished playing.
+ *
+ * Consider using games_sound_play_for_event() or games_sound_play_for_widget()
+ * instead.
  */
 void
-games_sound_play (const gchar * filename)
+games_sound_play (const gchar * sound_name)
 {
 #if defined(HAVE_CANBERRA_GTK)
-  char *name, *path;
-  int rv;
-  ca_context *context;
-
-  if (!sound_enabled)
-    return;
-  if (!sound_init)
-    games_sound_init ();
-
-  if (!(context = ca_gtk_context_get ()))
-    return;
-
-  name = g_strdup_printf ("%s.ogg", filename);
-  path = games_runtime_get_file (GAMES_RUNTIME_SOUND_DIRECTORY, name);
-  g_free (name);
-
-  rv =  ca_context_play (context,
-                         0,
-                         CA_PROP_MEDIA_NAME, filename,
-                         CA_PROP_MEDIA_FILENAME, path,
-                         NULL);
-
-  _games_debug_print (GAMES_DEBUG_SOUND,
-                      "Playing sound %s [filename %s]: %s\n",
-                      filename, path, ca_strerror (rv));
-
-  g_free (path);
+  games_sound_canberra_play (sound_name, GAMES_SOUND_PLAIN, NULL);
 
 #elif defined(HAVE_GSTREAMER)
   GError *err = NULL;
@@ -245,7 +287,7 @@ games_sound_play (const gchar * filename)
     games_sound_init ();
 
   if (sound_init)
-    g_thread_pool_push (threads, (gchar *) filename, &err);
+    g_thread_pool_push (threads, (gchar *) sound_name, &err);
 
 #elif defined(HAVE_SDL_MIXER)
 
@@ -254,8 +296,52 @@ games_sound_play (const gchar * filename)
   if (!sound_init)
     games_sound_init ();
 
-  games_sound_sdl_play (filename);
+  games_sound_sdl_play (sound_name);
 #endif /* HAVE_GSTREAMER */
+}
+
+/**
+ * games_sound_play_for_event:
+ * @sound_name: the name of the sound to play
+ * @event: the #GdkEvent associated with the sound
+ *
+ * Plays a sound for @event.
+ * See games_sound_play() for more information.
+ */
+void
+games_sound_play_for_event (const gchar *sound_name,
+                            GdkEvent *event)
+{
+#ifdef ENABLE_SOUND
+#ifdef HAVE_CANBERRA_GTK
+  games_sound_canberra_play (sound_name, GAMES_SOUND_FOR_EVENT, event);
+#else
+  games_sound_play (sound_name);
+#endif /* HAVE_CANBERRA_GTK */
+#endif /* ENABLE_SOUND */
+}
+
+/**
+ * games_sound_play_for_widget:
+ * @sound_name: the name of the sound to play
+ * @event: the #GdkEvent associated with the sound
+ *
+ * Plays a sound for @widget. Use games_sound_play_for_event() instead
+ * if the sound is associated with an event.
+ * 
+ * See games_sound_play() for more information.
+ */
+void
+games_sound_play_for_widget (const gchar *sound_name,
+                             GtkWidget *widget)
+{
+#ifdef ENABLE_SOUND
+#ifdef HAVE_CANBERRA_GTK
+  games_sound_canberra_play (sound_name, GAMES_SOUND_FOR_WIDGET, widget);
+#else
+  games_sound_play (sound_name);
+#endif /* HAVE_CANBERRA_GTK */
+#endif /* ENABLE_SOUND */
 }
 
 /**

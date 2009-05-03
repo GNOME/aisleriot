@@ -1,5 +1,5 @@
 /*
- * games-sound.h: common sound player for gnome-games 
+ * games-sound.h: common sound player for gnome-games
  *
  * Copyright © 2007-2008 Andreas Røsdal
  *
@@ -22,14 +22,24 @@
 #ifndef GAMES_SOUND_H
 #define GAMES_SOUND_H
 
-#include <glib.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
 gboolean games_sound_is_available (void);
+
 void games_sound_add_option_group  (GOptionContext *context);
-void games_sound_play (const gchar *filename);
+
+void games_sound_play (const gchar *sound_name);
+
+void games_sound_play_for_event (const gchar *sound_name,
+                                 GdkEvent *event);
+
+void games_sound_play_for_widget (const gchar *sound_name,
+                                  GtkWidget *widget);
+
 void games_sound_enable (gboolean enabled);
+
 gboolean games_sound_is_enabled (void);
 
 G_END_DECLS
