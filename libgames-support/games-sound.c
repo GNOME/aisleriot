@@ -24,22 +24,24 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 
-#if defined(HAVE_GSTREAMER)
-  #include <gst/gst.h>
+#if defined(HAVE_CANBERRA_GTK)
+#include <canberra-gtk.h>
+#elif defined(HAVE_GSTREAMER)
+#include <gst/gst.h>
 #elif defined(HAVE_SDL_MIXER)
-  #include "SDL.h"
-  #include "SDL_mixer.h"
-#endif 
+#include "SDL.h"
+#include "SDL_mixer.h"
+#endif
 
 #include "games-debug.h"
 #include "games-runtime.h"
 
 #include "games-sound.h"
 
-#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
+#ifdef ENABLE_SOUND
 static gboolean sound_enabled = FALSE;
 static gboolean sound_init = FALSE;
-#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
+#endif /* ENABLE_SOUND */
 
 #ifdef HAVE_GSTREAMER
 static GstElement *pipeline;
@@ -123,13 +125,23 @@ games_sound_sdl_play (const gchar *filename)
 }
 #endif /* HAVE_SDL_MIXER */
 
-#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
+#ifdef ENABLE_SOUND
 
 /* Initializes the games-sound support */
 static void
 games_sound_init (void)
 {
-#if defined(HAVE_GSTREAMER)
+#if defined(HAVE_CANBERRA_GTK)
+  ca_context *context;
+
+  if (!(context = ca_gtk_context_get ()))
+    return;
+
+  ca_context_change_props (context,
+                           CA_PROP_MEDIA_ROLE, "game",
+                           NULL);
+
+#elif defined(HAVE_GSTREAMER)
   GError *err = NULL;
 
   g_assert (g_thread_supported ());
@@ -168,7 +180,7 @@ games_sound_init (void)
 #endif /* HAVE_SDL_MIXER */
 }
 
-#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
+#endif /* ENABLE_SOUND */
 
 /**
  * games_sound_add_option_group:
@@ -195,7 +207,36 @@ games_sound_add_option_group (GOptionContext *context)
 void
 games_sound_play (const gchar * filename)
 {
-#if defined(HAVE_GSTREAMER)
+#if defined(HAVE_CANBERRA_GTK)
+  char *name, *path;
+  int rv;
+  ca_context *context;
+
+  if (!sound_enabled)
+    return;
+  if (!sound_init)
+    games_sound_init ();
+
+  if (!(context = ca_gtk_context_get ()))
+    return;
+
+  name = g_strdup_printf ("%s.ogg", filename);
+  path = games_runtime_get_file (GAMES_RUNTIME_SOUND_DIRECTORY, name);
+  g_free (name);
+
+  rv =  ca_context_play (context,
+                         0,
+                         CA_PROP_MEDIA_NAME, filename,
+                         CA_PROP_MEDIA_FILENAME, path,
+                         NULL);
+
+  _games_debug_print (GAMES_DEBUG_SOUND,
+                      "Playing sound %s [filename %s]: %s\n",
+                      filename, path, ca_strerror (rv));
+
+  g_free (path);
+
+#elif defined(HAVE_GSTREAMER)
   GError *err = NULL;
     
   if (!sound_enabled)
@@ -226,9 +267,9 @@ games_sound_play (const gchar * filename)
 void
 games_sound_enable (gboolean enabled)
 {
-#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
+#ifdef ENABLE_SOUND
   sound_enabled = enabled;
-#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
+#endif /* ENABLE_SOUND */
 }
 
 /**
@@ -239,11 +280,11 @@ games_sound_enable (gboolean enabled)
 gboolean
 games_sound_is_enabled (void)
 {
-#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
+#ifdef ENABLE_SOUND
   return sound_enabled;
 #else
   return FALSE;
-#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
+#endif /* ENABLE_SOUND */
 }
 
 /**
@@ -254,9 +295,9 @@ games_sound_is_enabled (void)
 gboolean
 games_sound_is_available (void)
 {
-#if defined(HAVE_GSTREAMER) || defined(HAVE_SDL_MIXER)
+#ifdef ENABLE_SOUND
   return TRUE;
 #else
   return FALSE;
-#endif /* HAVE_GSTREAMER || HAVE_SDL_MIXER */
+#endif /* ENABLE_SOUND */
 }

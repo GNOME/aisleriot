@@ -201,6 +201,11 @@ libgames_support_la_CFLAGS += $(CLUTTER_CFLAGS)
 libgames_support_la_LIBADD += $(CLUTTER_LIBS)
 endif
 
+if HAVE_CANBERRA_GTK
+libgames_support_la_CFLAGS += $(CANBERRA_GTK_CFLAGS)
+libgames_support_la_LIBADD += $(CANBERRA_GTK_LIBS)
+endif
+
 if HAVE_GSTREAMER
 libgames_support_la_CFLAGS += $(GSTREAMER_CFLAGS)
 libgames_support_la_LIBADD += $(GSTREAMER_LIBS)
