@@ -2010,7 +2010,6 @@ settings_changed_cb (GtkSettings *settings,
   if (name == NULL || strcmp (name, "gtk-enable-animations") == 0) {
     g_object_get (settings, "gtk-enable-animations", &enabled, NULL);
 
-    g_print ("anim enabled: %d\n", enabled);
     action = gtk_action_group_get_action (priv->action_group, "Animations");
     gtk_action_set_visible (action, enabled);
   }
@@ -2020,7 +2019,6 @@ settings_changed_cb (GtkSettings *settings,
   if (name == NULL || strcmp (name, "gtk-enable-event-sounds") == 0) {
     g_object_get (settings, "gtk-enable-event-sounds", &enabled, NULL);
 
-    g_print ("sound enabled: %d\n", enabled);
     action = gtk_action_group_get_action (priv->action_group, "Sound");
     gtk_action_set_visible (action, enabled);
   }
