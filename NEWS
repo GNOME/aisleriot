@@ -1,3 +1,138 @@
+gnome-games 2.27.1
+=================
+
+This is the first gnome-games release to have a hard dependency on clutter. The
+clutter version must be 0.9.3 which is currently only in upstream git master.
+If this is a problem the --enable-omitgames=gnometris option can be used.
+Even if you get gnometris to build don't expect it to work well yet. It is WIP.
+The default sound backend is now libcanberra. For now the option to use sdl-mixer
+is still available with --with-sound=sdl_mixer. Let us know if you need this option
+or it may go away later in 2.27.
+The experimental clutter version of aislriot is now available with 
+--enable-aisleriot-clutter. 
+
+General:
+ - Add doap file (Thomas H.P. Andersen)
+ - Depend on clutter 0.9.3 (Jason Clinton)
+ - Update copyright year (Jason Clinton)
+ - Remove svn specific ChangeLog generation code (Jason Clinton)
+ - Handle gst_element_factory_make() returning NULL (Robert Ancell)
+ - Port to GtkCellRendererAccel (Christian Persch)
+ - Remove extraneous widget packing (Christian Persch)
+ - Add --enable-aisleriot-clutter configure option (Christian Persch)
+ - Don't append ? on ghelp URI with NULL section (Christian Persch)
+ - Add Pulse Support to Docs (Paul Cutler)
+ - Fixed DocBook validity in help translations (Claude Paroz)
+ - Use g_timeout_add_seconds when available (Christian Persch)
+ - Support shave autofoo and libtool output (Jason Clinton)
+ - Fix GAMES_DEBUG=sound (Christian Persch)
+ - Use libcanberra as default sound option (Christian Persch)
+ - Hide the Sound menu item if the global setting is disabled (Christian Persch)
+
+Aisleriot:
+ - Implement dealable feature in Bristol, Camelot, Canfield (Vincent Povirk)
+ - Upgrade to clutter 0.9 (Niel Roberts)
+ - Add a guide to making a new game for aisleriot (Ed Sirett)
+ - Use the default about dialogue hooks (Christian Persch)
+
+Chess:
+ - Update our copy of GNUChess for POSIX 2008 compatibility (Jason Clinton)
+ - Add a new display mode - face-to-face (Chris Burkhardt, Robert Ancell)
+ - Only allow selecting with the primary mouse button (Robert Ancell)
+ - Port to GtkBuilder (Robert Ancell)
+
+Gnometris:
+ - Remove our private copy of clutter-embed.h (Jason Clinton)
+ - Remove noclutter version (Jason Clinton)
+ - Switch to new-style clutter includes and initialization (Jason Clinton)
+
+Gnomine:
+ - Fix pause/resume with the pause key (Ying-Chun Liu)
+ - Code cleanup (Johannes Svensson)
+
+Lights Off:
+ - Use new import mechanism to work with seed >=0.5 (Tim Horton)
+
+Same-gnome:
+ - Update DOC_FIGURES (Claude Paroz)
+
+Sudoku:
+ - Massive code cleanup (Zhang Sen)
+ - Port to GtkBuilder (Thomas H.P. Andersen)
+ - Distribute 150 very hard puzzles instead of 20 (Thomas H.P. Andersen)
+
+Translations:
+ - es: Jorge Gonzalez, Daniel Mustieles
+ - sl: Matej Urban
+
+And these stable tree forward-ports:
+
+amitakhya (2):
+      Updated assamese translations
+
+aronxu (2):
+      Added Simplified Chinese translations by M Zhang <mymzhang at gmail dot com>
+
+bcicek (1):
+      Updated Turkish translation
+
+chpe (2):
+      Make desktop files validate without warnings.
+      Update smclient from libegg
+
+djihed (1):
+      Updated Arabic translation
+
+frolix68 (2):
+      Added Greek translation by Jennie Petoumenou
+      Added el to languages
+
+jclinton (5):
+      Branched for 2.26
+      Add glchess to list of need_ggz. Fixes build with --enable-games=glchess
+      Resync libegg smclient per mclasen request
+      Re-apply our custom patches to smclient.
+      don't kill worm by pressing backwards. Patch by Roger Light. Fixes bug #516992
+
+jorgegonz (1):
+      Updated Spansih translation
+
+kennethn (1):
+      Added Danish translation of manual by Joe Hansen
+
+kkrothap (2):
+      Updated Changelog entry
+      Updated Telugu Translations
+
+kmaraas (1):
+      Updated Norwegian bokmål translation.
+
+mariobl (2):
+      2009-03-19  Mario Blättermann  <mariobl@svn.gnome.org>
+
+ogmaciel (1):
+      Updated Brazilian Portuguese translation.
+
+rancell (1):
+      Fix crash when undoing a pawn promotion (Chris Ball, Bug #577395)
+
+simos (44):
+      Added Greek translation, figures (Marios Zindilis)
+      Added figures (Fotis Tsamis)
+      Updated Greek translation (Jennie Petoumenou)
+      Added el to DOC_LINGUAS
+      Updated Greek translation (Marios Zindilis)
+      Added screenshot (Fotis Tsamis)
+      Updated Greek translation
+
+sprasad (2):
+      updated kn.po
+
+thomashpa (3):
+      Only allow one number picker at a time. Bug #530778
+      Ignore malformed savegames. Bug #516491
+      Reverting changes to ChangeLog.old. Please don't make changes to this file
+
 gnom-games 2.26.0
 =================
 
