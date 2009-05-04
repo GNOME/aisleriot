@@ -254,9 +254,9 @@
 
 (define (my-get-card-name slot)
     (if (empty-slot? slot)
-        (cond  ((member slot foundation) (_"an empty foundation place"))
-               ((member slot tableau) (_"an empty tableau place"))
-               ( else (_"Error in hinting")))
+        (if  (member slot foundation)
+             (_"an empty foundation place")
+             (_"an empty tableau place"))
         (get-name (get-top-card slot))
     )
 )
