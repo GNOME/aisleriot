@@ -547,7 +547,6 @@ main_prog (void *closure, int argc, char *argv[])
   add_main_options (option_context, &data);
 
   games_sound_enable (FALSE);
-  games_sound_add_option_group (option_context);
 
   g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
 #ifdef WITH_SMCLIENT

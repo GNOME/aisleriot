@@ -28,8 +28,6 @@ G_BEGIN_DECLS
 
 gboolean games_sound_is_available (void);
 
-void games_sound_add_option_group  (GOptionContext *context);
-
 void games_sound_play (const gchar *sound_name);
 
 void games_sound_play_for_event (const gchar *sound_name,

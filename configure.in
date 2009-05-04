@@ -308,9 +308,9 @@ fi
 
 AC_MSG_CHECKING([for which sound library to use])
 AC_ARG_WITH([sound],
-  [AS_HELP_STRING([--with-sound=libcanberra|gstreamer|sdl_mixer (default: sdl_mixer)])],
+  [AS_HELP_STRING([--with-sound=libcanberra|sdl_mixer (default: libcanberra)])],
   [with_sound="$withval"],
-  [with_sound=sdl_mixer])
+  [with_sound=libcanberra])
 AC_MSG_RESULT([$with_sound])
 
 # Clutter
@@ -630,34 +630,13 @@ if test "$enable_sound" = "yes" -a "$with_sound" = "libcanberra"; then
   have_libcanberra=yes
 fi
 
-have_gstreamer=no
 if test "$enable_sound" = "yes" -a "$with_sound" = "sdl_mixer"; then
   # Check for SDL_Mixer sound support, sets SDL_MIXER_CFLAGS, SDL_MIXER_LIBS, AUDIO_SDL
   GAMES_CHECK_SOUND()
 
   if test "$SDL_mixer" = "no"; then
-    with_sound=gstreamer
-    echo "SDL_Mixer not found, fallback to GStreamer."
+    AC_MSG_ERROR([Sound support using SDL-Mixer was requested, but SDL-Mixer not found.])
   fi
-
-fi
-
-if test "$enable_sound" = "yes" -a "$with_sound" = "gstreamer"; then
-  # Check for GStreamer 
-  PKG_CHECK_MODULES([GSTREAMER],
-    [gstreamer-0.10 >= $GSTREAMER_REQUIRED],
-    [have_gstreamer=yes],[have_gstreamer=no])
-    # SDL_mixer is default, while GStreamer is a required dependency if SDL_mixer isn't found.
-    if test "$enable_sound" = "yes" -a "$have_gstreamer" = "no" -a "$SDL_mixer" = "no"; then
-      AC_MSG_ERROR([Sound enabled but GStreamer or SDL_Mixer not found])
-    fi
-fi
-
-if test "$have_gstreamer" = "yes"; then
-  AC_SUBST([GSTREAMER_CFLAGS])
-  AC_SUBST([GSTREAMER_LIBS])
-
-  AC_DEFINE([HAVE_GSTREAMER],[1],[Define if GStreamer is available])
 fi
 
 if test "x$SDL_mixer" = "xyes"; then
@@ -668,7 +647,6 @@ if test "x$SDL_mixer" = "xyes"; then
 fi
 
 AM_CONDITIONAL([HAVE_CANBERRA_GTK],[test "$have_libcanberra" = "yes"])
-AM_CONDITIONAL([HAVE_GSTREAMER],[test "$have_gstreamer" = "yes"])
 AM_CONDITIONAL([HAVE_SDL_MIXER],[test "x$SDL_mixer" = "xyes"])
 AM_CONDITIONAL([ENABLE_SOUND],[test "$enable_sound" = "yes"])
 
