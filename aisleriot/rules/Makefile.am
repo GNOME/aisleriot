@@ -11,6 +11,7 @@ rules_DATA  = 			\
 	backbone.scm		\
 	bakers_dozen.scm	\
 	bakers_game.scm		\
+	bear_river.scm	\
 	beleaguered_castle.scm	\
 	block_ten.scm		\
 	bristol.scm		\

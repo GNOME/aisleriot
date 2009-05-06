@@ -15,6 +15,7 @@ DOC_ENTITIES = \
 	backbone.xml \
 	bakers_dozen.xml \
 	bakers_game.xml \
+	bear_river.xml \
 	beleaguered_castle.xml \
 	block_ten.xml \
 	bristol.xml \
