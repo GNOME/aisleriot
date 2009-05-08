@@ -89,9 +89,9 @@ games_runtime_init (const char *name)
 
   setlocale (LC_ALL, "");
 
-#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_GSTREAMER)
-  /* If we're going to use gconf, gnome-vfs, or gstreamer, we need to
-   * init threads before calling any glib functions.
+#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_CANBERRA_GTK)
+  /* If we're going to use gconf, gnome-vfs, or canberra, we need to
+   * init threads; and this has to be done before calling any other glib functions.
    */
   g_thread_init (NULL);
   /* May call any glib function after this point */
