@@ -92,8 +92,10 @@ games_sound_canberra_play (const char *sound_name,
       return;
 
     ca_context_change_props (context,
-                            CA_PROP_MEDIA_ROLE, "game",
-                            NULL);
+                             CA_PROP_MEDIA_ROLE, "game",
+                             NULL);
+
+    sound_init = TRUE;
   }
 
   if (!(context = ca_gtk_context_get ()))
