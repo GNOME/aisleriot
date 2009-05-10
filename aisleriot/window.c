@@ -2046,6 +2046,8 @@ screen_changed_cb (GtkWidget *widget,
   if (screen == NULL)
     return;
 
+  games_sound_init (screen);
+
   settings = gtk_widget_get_settings (widget);
   settings_changed_cb (settings, NULL, window);
 #ifdef HAVE_CLUTTER

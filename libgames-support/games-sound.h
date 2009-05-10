@@ -28,7 +28,14 @@ G_BEGIN_DECLS
 
 gboolean games_sound_is_available (void);
 
+void games_sound_init (GdkScreen *screen);
+
+#ifndef GDK_MULTIHEAD_SAFE
 void games_sound_play (const gchar *sound_name);
+#endif
+
+void games_sound_play_for_screen (const gchar *sound_name,
+                                  GdkScreen *screen);
 
 void games_sound_play_for_event (const gchar *sound_name,
                                  GdkEvent *event);

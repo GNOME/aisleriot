@@ -40,9 +40,10 @@
 #ifdef ENABLE_SOUND
 
 static gboolean sound_enabled = FALSE;
-static gboolean sound_init = FALSE;
 
 #ifdef HAVE_SDL_MIXER
+
+static gboolean sound_init = FALSE;
 
 static void
 games_sound_sdl_play (const gchar *filename)
@@ -68,6 +69,12 @@ games_sound_sdl_play (const gchar *filename)
 
 #ifdef HAVE_CANBERRA_GTK
 
+#ifdef CA_CHECK_VERSION
+#if CA_CHECK_VERSION (0, 13)
+#define HAVE_CANBERRA_GTK_MULTIHEAD_SAFE
+#endif
+#endif
+
 typedef enum {
   GAMES_SOUND_PLAIN,
   GAMES_SOUND_FOR_EVENT,
@@ -81,24 +88,8 @@ games_sound_canberra_play (const char *sound_name,
 {
   char *name, *path;
   int rv;
-  ca_context *context;
 
   if (!sound_enabled)
-    return;
-  if (!sound_init) {
-    ca_context *context;
-
-    if (!(context = ca_gtk_context_get ()))
-      return;
-
-    ca_context_change_props (context,
-                             CA_PROP_MEDIA_ROLE, "game",
-                             NULL);
-
-    sound_init = TRUE;
-  }
-
-  if (!(context = ca_gtk_context_get ()))
     return;
 
   name = g_strdup_printf ("%s.ogg", sound_name);
@@ -107,7 +98,29 @@ games_sound_canberra_play (const char *sound_name,
 
   switch (type) {
     case GAMES_SOUND_PLAIN:
-      rv =  ca_context_play (context,
+#if 1
+      /* FIXMEchpe: instead, make sure all games call games_sound_init()
+       * themselves!
+       */
+      games_sound_init (data);
+#endif
+
+#ifdef GNOME_ENABLE_DEBUG
+      _GAMES_DEBUG_IF (GAMES_DEBUG_SOUND) {
+        if (!GPOINTER_TO_INT (g_object_get_data (G_OBJECT (data), "games-sound-initialised")))
+          _games_debug_print (GAMES_DEBUG_SOUND,
+                              "games_sound_play_for_screen called for display %s screen %d but canberra-gtk context not initialised!",
+                              gdk_display_get_name (gdk_screen_get_display (data)),
+                              gdk_screen_get_number (data));
+      }
+#endif /* GNOME_ENABLE_DEBUG */
+
+      rv =  ca_context_play (
+#ifdef HAVE_CANBERRA_GTK_MULTIHEAD_SAFE
+                             ca_gtk_context_get_for_screen (data),
+#else
+                             ca_gtk_context_get (),
+#endif /* HAVE_CANBERRA_GTK_MULTIHEAD_SAFE */
                              0,
                              CA_PROP_MEDIA_NAME, sound_name,
                              CA_PROP_MEDIA_FILENAME, path,
@@ -172,7 +185,70 @@ games_sound_init (void)
 #endif /* ENABLE_SOUND */
 
 /**
+ * games_sound_init:
+ * @screen: a #GdkScreen
+ *
+ * Initialises the sound context of @screen. Should be called
+ * when creating a window on @screen, or when a window is moved to
+ * @screen. It is safe to call this multiple times for the same
+ * @screen.
+ */
+void
+games_sound_init (GdkScreen *screen)
+{
+#ifdef ENABLE_SOUND
+#ifdef HAVE_CANBERRA_GTK
+  ca_context *context;
+
+  if (screen == NULL)
+    screen = gdk_screen_get_default ();
+
+  if (GPOINTER_TO_INT (g_object_get_data (G_OBJECT (screen), "games-sound-initialised")))
+    return;
+
+  _games_debug_print (GAMES_DEBUG_SOUND,
+                      "Initialising canberra-gtk context for display %s screen %d\n",
+                      gdk_display_get_name (gdk_screen_get_display (screen)),
+                      gdk_screen_get_number (screen));
+
+#ifdef HAVE_CANBERRA_GTK_MULTIHEAD_SAFE
+  context = ca_gtk_context_get_for_screen (screen);
+#else
+  context = ca_gtk_context_get ();
+#endif /* HAVE_CANBERRA_GTK_MULTIHEAD_SAFE */
+
+  if (!context)
+    return;
+
+  ca_context_change_props (context,
+                           CA_PROP_MEDIA_ROLE, "game",
+                           NULL);
+
+  g_object_set_data (G_OBJECT (screen), "games-sound-initialised", GINT_TO_POINTER (TRUE));
+#endif /* HAVE_CANBERRA_GTK */
+#endif /* ENABLE_SOUND */
+}
+
+/**
  * games_sound_play:
+ * @filename: the sound file to player
+ * 
+ * Plays a sound with the given filename from the
+ * GAMES_RUNTIME_SOUND_DIRECTORY directory in .ogg format.
+ * Sound is played asynchronously; i.e. this function does not block
+ * until the sound has finished playing.
+ *
+ * Use games_sound_play_for_screen(), games_sound_play_for_event()
+ * or games_sound_play_for_widget() instead.
+ */
+void
+games_sound_play (const gchar * sound_name)
+{
+  games_sound_play_for_screen (sound_name, gdk_screen_get_default ());
+}
+    
+/**
+ * games_sound_play_for_screen:
  * @filename: the sound file to player
  * 
  * Plays a sound with the given filename from the
@@ -184,10 +260,11 @@ games_sound_init (void)
  * instead.
  */
 void
-games_sound_play (const gchar * sound_name)
+games_sound_play_for_screen (const gchar * sound_name,
+                             GdkScreen *screen)
 {
 #if defined(HAVE_CANBERRA_GTK)
-  games_sound_canberra_play (sound_name, GAMES_SOUND_PLAIN, NULL);
+  games_sound_canberra_play (sound_name, GAMES_SOUND_PLAIN, screen);
 
 #elif defined(HAVE_SDL_MIXER)
 
