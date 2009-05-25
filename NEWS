@@ -1,3 +1,104 @@
+gnome-games 2.27.2
+=================
+
+Gnometris completed its port to clutter-0.9 and is now playable again. Sudoku
+saw lots of code cleanup. A new game "Bear River" was included in aisleriot. The
+bug that cause sound to turn it self back on after a few moves was fixed.
+This is also a reminder to get back to us if you need the --with-sound=sdl_mixer
+option. Otherwise it may be removed during 2.27. Shortlog follows:
+
+Christian Persch (3):
+      libgames-support: remove leftover HAVE_GSTREAMER
+      Initialise the canberra_gtk context only once
+      Use multihead-safe canberra-gtk API
+
+Daniel Mustieles (1):
+      Updated Spanish translation
+
+Fotis Tsamis (7):
+      Added Greek figures for gnome-sudoku
+      Added Greek figures for gnotski
+      Added Greek translation for same-gnome
+      Updated Greek translation
+      Added Greek translation
+      Added Greek translation
+      updated Greek documentation translation for gnect
+
+Jason D. Clinton (16):
+      Post-release bump to 2.27.2
+      gnometris: Move the previously removed po field.cpp to blockops.cpp
+      gnometris: Add binary to .gitignore
+      gnometris: Continue factoring out the Clutter animation objects
+      gnometris: Falling blocks ported to clutter-0.9
+      gnometris: Resurrect block rotation; smoother block movement
+      gnometris: Remove references to actors that are being exploded
+      gnometris: Port earthquake effect to clutter-0.9; tune the visual timings
+      gnometris: Port explosion effect to clutter-0.9
+      gnometris: Clean up fall_behaviour's when fall done
+      gnometris: Make the quake and fall timings dependent on N cleared
+      gnometris: Make stage rescaling properly affect the large textures
+      gnometris: Port explosion scale to clutter-0.9 with better performance
+      gnometris: Slow down the explosion a little
+      gnometris: Quake strength now depends on N lines cleared
+      gnometris: fixup GTK show for main window; style
+
+Jennie Petoumenou (2):
+      updated Greek translation for UI messages
+      updated Greek translation for aisleriot documentation
+
+Jorge Gonzalez (3):
+      Updated Spanish translation
+      Updated Spanish translation
+      Updated Spanish translation
+
+Marios Zindilis (1):
+      Updated Greek translation
+
+Robert Ancell (3):
+      Update tooltip style for info messages (copied from GEdit again)
+      Standardise Python class format
+      Remove dead code for old 3D models
+
+Simos Xenitellis (3):
+      Added el to DOC_LINGUAS for same-gnome
+      Updated Greek translation
+      glines: typo in documentation, "right" should be "left"
+
+Vincent Povirk (1):
+      aisleriot: add Bear River game #578855
+
+Zhang Sen (20):
+      gnome-sudoku: Fix typo in string
+      gnome-sudoku: Add *.pyc to .gitignore
+      gnome-sudoku: Remove wildcard imports
+      gnome-sudoku: Add spaces around operators
+      gnome-sudoku: Fix multiple-statements-on-one-line
+      gnome-sudoku: Remove useless import os.path
+      gnome-sudoku: Style cleanup in sudoku.py
+      gnome-sudoku: Style cleanup in game_selector.py
+      gnome-sudoku: Style cleanup in printing.py
+      gnome-sudoku: Style cleanup in several files
+      gnome-sudoku: Fix typo of omitting 'self'
+      gnome-sudoku: Delete unused method
+      gnome-sudoku: Add omitted parenthesis
+      gnome-sudoku: Delete two unused variables
+      gnome-sudoku: Delete useless parameters
+      gnome-sudoku: Instance attributes -> local variables
+      gnome-sudoku: Add test-running code to game_selector.py
+      gnome-sudoku: Delete unused classes and functions
+      gnome-sudoku: beautify imports per PEP 8
+      gnome-sudoku: Define is_fullscreen in __init__
+
+drtvasudevan (1):
+      Updated Tamil translation
+
+yselkowitz (1):
+      define LIB_GGZCORE in order to resolve undefined symbols.
+
+Βασίλης Κοντογιάνης (2):
+      Updated Greek translation for same-gnome documentation
+      Updated Greek translation for glines documentation
+
 gnome-games 2.27.1
 =================
 
