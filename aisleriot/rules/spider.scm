@@ -273,8 +273,20 @@
       (list 0 (_"Deal another round"))
       #f))
 
+(define (count-cards slots acc)
+  (if (null? slots)
+      acc
+      (count-cards (cdr slots) (+ acc (length (get-cards (car slots)))))))
+
+(define (hint-few-tableau-cards)
+  (and (not allow-empty-slots)
+       (not (empty-slot? stock))
+       (< (count-cards tableau 0) (length tableau))
+       (list 0 (_"Undo until there are enough cards to fill all tableau piles"))))
+
 (define (get-hint)
-  (or (same-suit-check tableau)
+  (or (hint-few-tableau-cards)
+      (same-suit-check tableau)
       (not-same-suit-check tableau)
       (open-slots? tableau)
       (dealable?)
