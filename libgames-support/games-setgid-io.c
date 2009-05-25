@@ -98,7 +98,7 @@ write_cmd (unsigned char cmd)
   int cnt;
   cnt = write (setgid_io_outfd, &cmd, 1);
   if (cnt != 1)  {
-    g_warning ("An error occured while writing to file");
+    g_warning ("An error occurred while writing to file");
   }
 }
 
@@ -143,7 +143,7 @@ write_int (int fd, int i)
   int cnt;
   cnt = write (fd, &i, sizeof (int));
   if (cnt != sizeof (int))  {
-    g_warning ("An error occured while writing to file");
+    g_warning ("An error occurred while writing to file");
   }
 }
 
@@ -164,7 +164,7 @@ write_off_t (int fd, off_t o)
   int cnt;
   cnt = write (fd, &o, sizeof (off_t));
   if (cnt != sizeof (off_t))  {
-    g_warning ("An error occured while writing to file");
+    g_warning ("An error occurred while writing to file");
   }
 }
 
