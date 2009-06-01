@@ -38,7 +38,7 @@ games_help_display (GtkWidget *window,
                     const char *app_name,
                     const char *section)
 {
-
+#if GTK_CHECK_VERSION (2, 14, 0)
   GdkScreen *screen;
   GError *error = NULL;
   char *help_string;
@@ -68,4 +68,8 @@ games_help_display (GtkWidget *window,
   }
 
   g_free(help_string);
+
+#else /* GTK+ < 2.14 */
+#error FIXME: games_help_display unimplemented on hildon!
+#endif /* GTK+ >= 2.14 */
 }

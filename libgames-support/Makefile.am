@@ -46,8 +46,6 @@ libgames_support_la_SOURCES =		\
 	games-debug.h			\
 	games-files.c			\
 	games-files.h			\
-	games-help.c			\
-	games-help.h			\
 	games-pixbuf-utils.c		\
 	games-pixbuf-utils.h		\
 	games-profile.c			\
@@ -74,6 +72,8 @@ libgames_support_la_SOURCES +=		\
 	games-find-file.h		\
 	games-gridframe.c		\
 	games-gridframe.h		\
+	games-help.c			\
+	games-help.h			\
 	games-card-selector.c		\
 	games-card-selector.h		\
 	games-preimage.c                \
