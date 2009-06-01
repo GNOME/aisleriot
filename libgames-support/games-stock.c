@@ -271,7 +271,10 @@ games_stock_init (void)
     { GAMES_STOCK_NEW_GAME,         GTK_STOCK_NEW },
     { GAMES_STOCK_RESET,            GTK_STOCK_CLEAR },
     { GAMES_STOCK_RESTART_GAME,     GTK_STOCK_REFRESH },
+#if GTK_CHECK_VERSION (2, 8, 0)
+    /* This is used on hildon too, but only exists since 2.8 */
     { GAMES_STOCK_FULLSCREEN,       GTK_STOCK_FULLSCREEN },
+#endif
 #ifdef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
     { GAMES_STOCK_REDO_MOVE,        GTK_STOCK_REDO },
     { GAMES_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
