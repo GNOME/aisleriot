@@ -273,7 +273,7 @@ help_hook (GtkWindow *parent,
 
   for (i = 0; langs[i] != NULL; ++i) {
     const char *lang = langs[i];
-    char *path;
+    char *help_file_name, *path;
 
     /* Filter out variants */
     if (strchr (lang, '.') != NULL ||
