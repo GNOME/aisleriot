@@ -5,11 +5,14 @@ SUBDIRS= \
 	dependencies \
 	icons \
 	libgames-support \
-	tests \
 	$(gamelist)
 
 if ENABLE_SOUND
 SUBDIRS += sounds
+endif
+
+if ENABLE_TESTS
+SUBDIRS += tests
 endif
 
 DIST_SUBDIRS = po dependencies icons sounds libgames-support tests $(allgames) $(staginggames)

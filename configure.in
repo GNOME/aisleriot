@@ -928,28 +928,24 @@ AM_CONDITIONAL(OS_WIN32, test "$os_win32" = "yes")
 # Unit tests
 # **********
 
-# check for "check", unit testing library/header
-PKG_CHECK_MODULES([CHECK], [check >= 0.9.4],
-    [
-        HAVE_CHECK=yes
-        #AC_MSG_NOTICE(CHECK_CFLAGS: $CHECK_CFLAGS)
-        #AC_MSG_NOTICE(CHECK_LIBS: $CHECK_LIBS)
-    ],
-    HAVE_CHECK=no)
-AM_CONDITIONAL(HAVE_CHECK, test "x$HAVE_CHECK" = "xyes")
+AC_ARG_ENABLE([tests],
+  [AS_HELP_STRING([--disable-tests], [disable building test apps (default: platform dependent)])],
+  [],
+  [case "$with_platform" in
+    hildon) enable_tests=no ;;
+    *) enable_tests=yes ;;
+   esac])
 
-dnl building of tests
-AC_ARG_ENABLE(tests,
-  AC_HELP_STRING([--disable-tests], [disable building test apps]),
-  [
-    case "${enableval}" in
-      yes) BUILD_TESTS=yes ;;
-      no)  BUILD_TESTS=no ;;
-      *)   AC_MSG_ERROR(bad value ${enableval} for --disable-tests) ;;
-    esac
-  ],
-[BUILD_TESTS=yes]) dnl Default value
-AM_CONDITIONAL(BUILD_TESTS,         test "x$BUILD_TESTS" = "xyes")
+if test "$enable_tests" = "yes"; then
+  PKG_CHECK_MODULES([CHECK],[check >= 0.9.4],
+    [],[AC_MSG_ERROR([check not found; install it or use --disable-tests])])
+fi
+
+AM_CONDITIONAL([ENABLE_TESTS],[test "$enable_tests" = "yes"])
+
+# *************
+# setgid checks
+# *************
 
 AC_ARG_ENABLE([setgid],
   [AS_HELP_STRING([--disable-setgid],
@@ -1117,6 +1113,7 @@ echo "
     Use setgid binaries:   ${setgid}
     Scores user:           ${scores_user}
     Scores & setgid group: ${scores_group}
+    Tests enabled:         ${enable_tests}
 "
 
 if grep "$scores_group:" /etc/group > /dev/null; then
