@@ -18,7 +18,10 @@
 */
 
 #include "games-card.h"
+
+#ifdef HAVE_RSVG
 #include "games-preimage.h"
+#endif
 
 #define FLOAT_TO_INT_CEIL(f) ((int) (f + 0.5f))
 
