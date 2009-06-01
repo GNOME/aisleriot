@@ -1475,7 +1475,9 @@ aisleriot_window_take_card_theme (AisleriotWindow *window,
                                   GamesCardTheme *theme /* adopting */)
 {
   AisleriotWindowPrivate *priv = window->priv;
+#if GTK_CHECK_VERSION (2, 10, 0)
   GtkWidget *widget = GTK_WIDGET (window);
+#endif
 
   if (theme == priv->theme)
     return;
@@ -1485,12 +1487,14 @@ aisleriot_window_take_card_theme (AisleriotWindow *window,
   }
   priv->theme = theme;
 
+#if GTK_CHECK_VERSION (2, 10, 0)
   if (gtk_widget_has_screen (widget)) {
     const cairo_font_options_t *font_options;
 
     font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
     games_card_theme_set_font_options (theme, font_options);
   }
+#endif /* GTK+ 2.10.0 */
 
   aisleriot_board_set_card_theme (priv->board, theme);
 }    
