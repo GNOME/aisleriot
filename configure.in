@@ -304,7 +304,10 @@ if test "$want_sound" = "yes"; then
     [AS_HELP_STRING([--enable-sound],[Enable sound with GStreamer or SDL_Mixer.])],
     [],[case "$with_platform" in
           gnome|gtk-only) enable_sound=yes ;;
-          hildon) enable_sound=no ;;
+          hildon) case "$with_platform_variant" in
+                    maemo5) enable_sound=yes ;;
+                    *) enable_sound=no ;;
+                  esac
         esac])
   AC_MSG_RESULT([$enable_sound])
 else
