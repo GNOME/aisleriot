@@ -256,9 +256,8 @@ if test "$with_platform" = "hildon"; then
   AC_ARG_WITH([platform-variant],
     [AS_HELP_STRING([--with-platform-variant=maemo3|maemo4|mid (default: maemo4)])],
     [case "$withval" in
-       maemo4|maemo3|mid) ;;
-       maemo) with_platform_variant=maemo4 ;;
-       *) AC_MSG_ERROR([unknown platform variant "$withval"]) ;;
+       maemo5|maemo4|maemo3|mid) ;;
+       *) with_platform_variant=maemo4 ;;
      esac],
     [with_platform_variant=maemo3])
   AC_MSG_RESULT([$with_platform_variant])
@@ -272,6 +271,8 @@ AM_CONDITIONAL([HAVE_GNOME],[test "$with_platform" = "gnome"])
 AM_CONDITIONAL([HAVE_HILDON],[test "$with_platform" = "hildon"])
 AM_CONDITIONAL([HAVE_MAEMO],[test "$with_platform" = "hildon" -a "$with_platform_variant" != "mid"])
 AM_CONDITIONAL([HAVE_MAEMO_3],[test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo3"])
+AM_CONDITIONAL([HAVE_MAEMO_4],[test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo4"])
+AM_CONDITIONAL([HAVE_MAEMO_5],[test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo5"])
 
 if test "$with_platform" = "gnome"; then
   AC_DEFINE([HAVE_GNOME],[1],[Define if GNOME support is enabled])
@@ -284,6 +285,12 @@ if test "$with_platform" = "hildon"; then
   fi
   if test "$with_platform_variant" = "maemo3"; then
     AC_DEFINE([HAVE_MAEMO_3],[1],[Define if Maemo 3.x support is enabled])
+  fi
+  if test "$with_platform_variant" = "maemo4"; then
+    AC_DEFINE([HAVE_MAEMO_4],[1],[Define if Maemo 4.x support is enabled])
+  fi
+  if test "$with_platform_variant" = "maemo5"; then
+    AC_DEFINE([HAVE_MAEMO_5],[1],[Define if Maemo 5.x support is enabled])
   fi
 fi
 
