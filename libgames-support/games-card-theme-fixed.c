@@ -306,12 +306,12 @@ games_card_theme_fixed_class_get_theme_info (GamesCardThemeClass *klass,
 
   display_name = games_filename_to_display_name (filename);
 
+#ifdef HAVE_HILDON
   /* On Hildon, fixed is the default. For pref backward compatibility,
    * we don't add the fixed: prefix there.
    */
-#ifdef HAVE_HILDON
   pref_name = g_strdup (filename);
-  *(strrchr (filename, '.')) = '\0'; /* strip extension */
+  *(strrchr (pref_name, '.')) = '\0'; /* strip extension */
 #else
   pref_name = g_strdup_printf ("fixed:%s", filename);
 #endif
