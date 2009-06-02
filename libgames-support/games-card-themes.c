@@ -130,7 +130,7 @@ static char *
 theme_filename_and_type_from_name (const char *theme_name,
                                    GType *type)
 {
-  const char *colon;
+  const char *colon, *filename, *dot;
 
   g_return_val_if_fail (type != NULL, NULL);
 
@@ -146,46 +146,45 @@ theme_filename_and_type_from_name (const char *theme_name,
   if (*type == G_TYPE_INVALID)
     return NULL;
 
+  /* Get the filename from the theme name */
   if (colon) {
-    const char *filename, *dot;
-
-    /* Get the filename from the theme name */
     filename = colon + 1;
-    dot = strrchr (filename, '.');
-    if (filename == dot || !filename[0])
-      return NULL;
-
-    if (dot == NULL) {
-      /* No dot? Try appending the default, for compatibility with old settings */
-#if defined(ENABLE_CARD_THEME_FORMAT_FIXED)
-      if (*type == GAMES_TYPE_CARD_THEME_FIXED) {
-        return g_strconcat (filename, ".card-theme", NULL);
-      }
-#elif defined(ENABLE_CARD_THEME_FORMAT_SVG)
-      if (*type == GAMES_TYPE_CARD_THEME_SVG) {
-        return g_strconcat (filename, ".svg", NULL);
-      }
-#endif
-    } else {
-#if defined(HAVE_GNOME) && defined(ENABLE_CARD_THEME_FORMAT_SVG)
-      if (*type == GAMES_TYPE_CARD_THEME_SVG &&
-          g_str_has_suffix (filename, ".png")) {
-        char *base_name, *retval;
-
-        /* Very old version; replace .png with .svg */
-        base_name = g_strndup (filename, dot - filename);
-        retval = g_strconcat (base_name, ".svg", NULL);
-        g_free (base_name);
-
-        return retval;
-      }
-#endif /* HAVE_GNOME && ENABLE_CARD_THEME_FORMAT_SVG */
-    }
-
-    return g_strdup (filename);
+  } else {
+    filename = theme_name;
   }
 
-  return g_strdup (theme_name);
+  dot = strrchr (filename, '.');
+  if (filename == dot || !filename[0])
+    return NULL;
+
+  if (dot == NULL) {
+    /* No dot? Try appending the default, for compatibility with old settings */
+#if defined(ENABLE_CARD_THEME_FORMAT_FIXED)
+    if (*type == GAMES_TYPE_CARD_THEME_FIXED) {
+      return g_strconcat (filename, ".card-theme", NULL);
+    }
+#elif defined(ENABLE_CARD_THEME_FORMAT_SVG)
+    if (*type == GAMES_TYPE_CARD_THEME_SVG) {
+      return g_strconcat (filename, ".svg", NULL);
+    }
+#endif
+  } else {
+#if defined(HAVE_GNOME) && defined(ENABLE_CARD_THEME_FORMAT_SVG)
+    if (*type == GAMES_TYPE_CARD_THEME_SVG &&
+        g_str_has_suffix (filename, ".png")) {
+      char *base_name, *retval;
+
+      /* Very old version; replace .png with .svg */
+      base_name = g_strndup (filename, dot - filename);
+      retval = g_strconcat (base_name, ".svg", NULL);
+      g_free (base_name);
+
+      return retval;
+    }
+#endif /* HAVE_GNOME && ENABLE_CARD_THEME_FORMAT_SVG */
+  }
+
+  return g_strdup (filename);
 }
 
 static gboolean
