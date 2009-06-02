@@ -2282,10 +2282,12 @@ aisleriot_window_init (AisleriotWindow *window)
       ACTION_TOOLTIP (N_("Pick up and drop cards by clicking")),
       G_CALLBACK (clickmove_toggle_cb),
       FALSE /* not active by default */ },
+#ifdef ENABLE_SOUND
    { "Sound", NULL, N_("_Sound"), NULL,
       ACTION_TOOLTIP (N_("Whether or not to play event sounds")),
       G_CALLBACK (sound_toggle_cb),
       FALSE /* not active by default */ },
+#endif /* ENABLE_SOUND */
 #ifdef HAVE_CLUTTER
    { "Animations", NULL, N_("_Animations"), NULL,
       ACTION_TOOLTIP (N_("Whether or not to animate card moves")),
@@ -2342,6 +2344,9 @@ aisleriot_window_init (AisleriotWindow *window)
           "<menuitem action='Hint'/>"
           "<separator/>"
           "<menuitem action='ClickToMove'/>"
+#ifdef ENABLE_SOUND
+          "<menuitem action='Sound'/>"
+#endif
         "</menu>"
         "<menu action='OptionsMenu'/>"
         "<menu action='HelpMenu'>"
@@ -2649,12 +2654,16 @@ aisleriot_window_init (AisleriotWindow *window)
   action = gtk_action_group_get_action (priv->action_group, "ClickToMove");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), NULL));
+
+  action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
+  g_object_set (action, "hide-if-empty", FALSE, NULL);
+
+#ifdef ENABLE_SOUND
   action = gtk_action_group_get_action (priv->action_group, "Sound");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), NULL));
   gtk_action_set_visible (action, games_sound_is_available ());
-  action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
-  g_object_set (action, "hide-if-empty", FALSE, NULL);
+#endif /* ENABLE_SOUND */
 
 #ifndef HAVE_HILDON
   action = gtk_action_group_get_action (priv->action_group, "Statusbar");
