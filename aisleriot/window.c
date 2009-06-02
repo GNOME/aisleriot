@@ -2394,7 +2394,9 @@ aisleriot_window_init (AisleriotWindow *window)
           "<menuitem action='Hint'/>"
           "<separator/>"
           "<menuitem action='ClickToMove'/>"
+#ifdef ENABLE_SOUND
           "<menuitem action='Sound'/>"
+#endif
 #ifdef HAVE_CLUTTER
           "<menuitem action='Animations'/>"
 #endif
