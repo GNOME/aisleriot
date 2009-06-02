@@ -3107,15 +3107,19 @@ aisleriot_board_key_press (GtkWidget *widget,
 #ifdef HAVE_MAEMO
 
 static gboolean
-aisleriot_board_tap_and_hold_query (GtkWidget *widget,
-                                    GdkEvent *_event)
+aisleriot_board_tap_and_hold_query_cb (GtkWidget *widget,
+                                       GdkEvent *_event,
+                                       AisleriotBoard *board)
 {
-  AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
   /* BadDocs! should mention that this is a GdkEventButton! */
   GdkEventButton *event = (GdkEventButton *) _event;
   Slot *slot;
   int card_id;
+
+  /* NOTE: Returning TRUE from this function means that tap-and-hold
+   * is disallowed here; FALSE means to allow tap-and-hold.
+   */
 
   /* In click-to-move mode, we always reveal with just the left click */
   if (priv->click_to_move)
@@ -3130,21 +3134,21 @@ aisleriot_board_tap_and_hold_query (GtkWidget *widget,
 
   priv->tap_and_hold_slot = slot;
   priv->tap_and_hold_card_id = card_id;
-  
-  return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->tap_and_hold_query (widget, _event);
+
+  return FALSE; /* chain up to the default handler */
 }
 
 static void
-aisleriot_board_tap_and_hold (GtkWidget *widget)
+aisleriot_board_tap_and_hold_cb (GtkWidget *widget,
+                                 AisleriotBoard *board)
 {
-  AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
 
-  g_assert (priv->tap_and_hold_slot != NULL && priv->tap_and_hold_card_id >= 0);
+  if (priv->tap_and_hold_slot == NULL ||
+      priv->tap_and_hold_card_id < 0)
+    return;
 
   reveal_card (board, priv->tap_and_hold_slot, priv->tap_and_hold_card_id);
-
-  GTK_WIDGET_CLASS (aisleriot_board_parent_class)->tap_and_hold (widget);
 }
 
 #endif /* HAVE_MAEMO */
@@ -3188,7 +3192,11 @@ aisleriot_board_init (AisleriotBoard *board)
 
 #ifdef HAVE_MAEMO
   gtk_widget_tap_and_hold_setup (widget, NULL, NULL, GTK_TAP_AND_HOLD_PASS_PRESS);
-#endif
+  g_signal_connect (widget, "tap-and-hold-query",
+                    G_CALLBACK (aisleriot_board_tap_and_hold_query_cb), board);
+  g_signal_connect (widget, "tap-and-hold",
+                    G_CALLBACK (aisleriot_board_tap_and_hold_cb), board);
+#endif /* HAVE_MAEMO */
 
   stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
   priv->animation_layer = g_object_ref_sink (clutter_group_new ());
