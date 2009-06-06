@@ -36,6 +36,10 @@
 #else
 #include <hildon/hildon-banner.h>
 #endif
+#ifdef HAVE_MAEMO_5
+#include <hildon/hildon-gtk.h>
+#include <hildon/hildon-pannable-area.h>
+#endif
 #endif /* HAVE_HILDON */
 
 #include <libgames-support/games-card-theme.h>
@@ -230,7 +234,12 @@ select_game_cb (GtkAction *action,
   }
 
   priv->game_choice_store = list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+
+#ifdef HAVE_MAEMO_5
+  list_view = hildon_gtk_tree_view_new_with_model (HILDON_UI_MODE_NORMAL, GTK_TREE_MODEL (list));
+#else
   list_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list));
+#endif
   g_object_unref (list);
 
   games_dir = games_runtime_get_directory (GAMES_RUNTIME_GAME_GAMES_DIRECTORY);
@@ -307,11 +316,16 @@ select_game_cb (GtkAction *action,
   priv->game_choice_selection = selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list_view));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 
+#ifdef HAVE_MAEMO_5
+  scrolled_window = hildon_pannable_area_new ();
+#else
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
                                        GTK_SHADOW_IN);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                   GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+#endif /* HAVE_MAEMO_5 */
+
   gtk_container_add (GTK_CONTAINER (scrolled_window), list_view);
 
   gtk_box_pack_end (GTK_BOX (hbox), scrolled_window, TRUE, TRUE, 0);
