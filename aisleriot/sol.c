@@ -504,7 +504,7 @@ main_prog (void *closure, int argc, char *argv[])
   osso_hw_state_t hw_events = {
     TRUE /* shutdown */,
     TRUE /* save unsaved data */,
-    FALSE /* low memory */,
+    TRUE /* low memory */,
     FALSE /* system inactivity */,
     OSSO_DEVMODE_NORMAL /* device mode */
     /* FIXMEchpe: or is OSSO_DEVMODE_INVALID the value to use
