@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: aisleriot.HEAD\n"
-"POT-Creation-Date: 2009-06-02 18:17+0000\n"
-"PO-Revision-Date: 2009-06-04 14:25+0200\n"
+"POT-Creation-Date: 2009-06-04 16:29+0000\n"
+"PO-Revision-Date: 2009-06-06 13:42+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1279,9 +1279,14 @@ msgid ""
 "order, matching suit. Cards can \"wrap-around\" from Queen to King to Ace to "
 "Two. Cards on the Foundations may not be moved back onto Tableau piles."
 msgstr ""
+"Una carta aleatoria ya se ha repartido a un montón de la fundación. El rango "
+"de la carta se convierte en la carta base. Las otras tres cartas con el "
+"mismo rango se pueden mover a una fundación vacía. Las fundaciones se "
+"construyen en orden ascendente, coincidiendo con el palo. Las cartas pueden "
+"«pasar» de la reina al rey, del rey al as, del as al dos. Las cartas en las "
+"fundaciones quizá no se puedan mover de nuevo a los montones del tablero."
 
 #: C/aisleriot.xml:81(para)
-#, fuzzy
 #| msgid ""
 #| "The top card on each Tableau can be moved to another Tableau pile if it "
 #| "has a value of one lower than the top card on the second pile. Suit is "
@@ -1292,9 +1297,11 @@ msgid ""
 "and has a face value of one higher or one lower than the top card of the "
 "pile it is being moved to. Cards can \"wrap-around\" between King and Ace."
 msgstr ""
-"La carta de la cima de cada montón del tablero se puede mover a cualquier "
-"otro montón del tablero siempre que el valor de la carta de la cima de este "
-"último montón sea uno más alto que el de la carta que se está moviendo."
+"Ninguno de los montones del tablero puede tener más de tres cartas. La carta "
+"superior de cada montón del tablero se puede mover a cualquier otro montón "
+"del tablero si el palo es el mismo y su valor es inmediatamente superior o "
+"inferior que la carta del montón al cuál se quiere mover. Las cartas «pasan» "
+"del rey al as y viceversa."
 
 #: C/aisleriot.xml:87(para)
 msgid ""
@@ -1304,26 +1311,36 @@ msgid ""
 "The last pile of each row (the ones with two cards) are the Hole piles. An "
 "empty Hole pile CAN have a new card placed on it."
 msgstr ""
+"Existen dos tipos de montones en el tablero: montones «estándar» y montones "
+"«hueco». Los primeros cinco montones de cada fila (los que tienen tres "
+"cartas) son los montones estándar. Sobre un montón estándar vacío NO se "
+"puede mover una carta. El último montón de cada fila (los que tienen dos "
+"cartas) son los montones hueco. Sobre un montón hueco SÍ se puede mover una "
+"carta."
 
 #: C/aisleriot.xml:112(para)
 msgid "Try to free up one or more Hole piles early."
-msgstr ""
+msgstr "Intente liberar uno o más montones hueco lo antes posible."
 
 #: C/aisleriot.xml:115(para)
 msgid ""
 "There is never a disadvantage in moving cards to the Foundations. Move as "
 "many as possible, as soon as possible."
 msgstr ""
+"Nunca existe desventaja al mover cartas a los montones de las fundaciones. "
+"Mueva todas las que le sea posibles y tan pronto como le sea posible."
 
 #: C/aisleriot.xml:119(para)
 msgid ""
 "Cards that have a rank one lower than the Base Card can be very difficult to "
 "move. Be careful where you place them."
 msgstr ""
+"Las cartas que tienen un rango inmediatamente inferior a la carta base "
+"pueden ser muy difíciles de mover. Tenga cuidado dónde las pone."
 
 #: C/aisleriot.xml:123(para)
 msgid "Bear River can be won about one third of the time."
-msgstr ""
+msgstr "Río oso se puede ganar una de cada tres veces."
 
 #. <sect1info>
 #.     <copyright>
@@ -3326,7 +3343,6 @@ msgstr ""
 "suelta."
 
 #: C/aisleriot.xml:69(para)
-#, fuzzy
 #| msgid ""
 #| "Cards in the Tableau are built down by alternating color. Groups of cards "
 #| "can be moved. An empty pile in the Tableau can be filled with a King or a "
@@ -3338,17 +3354,20 @@ msgid ""
 "suit. See below."
 msgstr ""
 "Las cartas en el tablero se ordenan hacia abajo alternando el color. Se "
-"pueden mover grupos de cartas. Un montón vacío en el tablero se puede "
-"rellenar con un rey o un grupo de cartas con un rey en el fondo."
+"pueden mover cartas individuales o grupos de cartas. Un montón vacío en el "
+"tablero se puede rellenar con cualquier carta. Existe una opción para "
+"restringir el movimiento a exclusivamente cartas del mismo palo. Consulte "
+"más abajo."
 
 #: C/aisleriot.xml:74(para)
 msgid ""
 "Cards are dealt from the Stock to the Tableau in complete rows. The reserve "
 "may be empty or occupied as you wish."
 msgstr ""
+"Las cartas se reparten del montón al tablero en filas completas. La reserva "
+"puede estar vacía u ocupada, según desee."
 
 #: C/aisleriot.xml:78(para)
-#, fuzzy
 #| msgid ""
 #| "Foundations are built up from suit from Ace to King. Cards in Foundations "
 #| "are still in play. Double clicking on a card will move it to the "
@@ -3361,14 +3380,13 @@ msgid ""
 "Foundations."
 msgstr ""
 "Los montones de la fundación se construyen ascendentemente por palo desde el "
-"as hasta el rey. Las cartas de la fundación se consideran todavía en juego. "
-"Pulsando dos veces en una carta hará que se mueva al montón adecuado de la "
-"fundación, si tal movimiento es posible."
+"as hasta el rey. Las cartas en la parte superior de la fundación se "
+"consideran todavía en juego. Pulsando dos veces en una carta hará que se "
+"mueva al montón adecuado de la fundación, si tal movimiento es posible. "
+"Pulsando dos veces sobre una fundación moverá automáticamente a las "
+"fundaciones tantas cartas como sea posible."
 
 #: C/aisleriot.xml:87(para)
-#| msgid ""
-#| "There are three possible ways to play. The difference between them is in "
-#| "how the cards are dealt from the stock."
 msgid ""
 "There are two ways to play. The difference between them is in how the cards "
 "may be built in the tableau."
@@ -3397,6 +3415,9 @@ msgid ""
 "To be moved as a gorup cards must be in a sequence of alternaing colors. The "
 "top card must be placed on a card of the opposite color."
 msgstr ""
+"Para moverlas como un grupo las cartas deben estar en una secuencia de "
+"colores alternantes. La carta superior se debe mover sobre una carta de "
+"color diferente."
 
 #: C/aisleriot.xml:118(para)
 msgid ""
