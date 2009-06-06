@@ -517,10 +517,6 @@ main_prog (void *closure, int argc, char *argv[])
 
 #ifdef HAVE_MAEMO
   /* Set OSSO callbacks */
-  /* NOTE: Passing the "org.gnome.games.aisleriot" service name to
-   * osso_initialize as first parameter to specify the full service name
-   * instead of getting com.nokia.* is undocumented.
-   */
   data.osso_context = osso_initialize (SERVICE_NAME, VERSION, FALSE, NULL);
   if (!data.osso_context) {
     g_print ("Failed to initialise osso\n");
