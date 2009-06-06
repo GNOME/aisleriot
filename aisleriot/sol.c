@@ -625,14 +625,22 @@ main_prog (void *closure, int argc, char *argv[])
 #ifdef HAVE_HILDON
   hildon_program_add_window (data.program, HILDON_WINDOW (data.window));
 
+  /* This is necessary since the setting is only installed
+   * during class initialisation. See bug #585024.
+   */
+  /* For "gtk-menu-images" */
+  g_type_class_unref (g_type_class_ref (GTK_TYPE_IMAGE_MENU_ITEM));
+  /* For "gtk-button-images" */
+  g_type_class_unref (g_type_class_ref (GTK_TYPE_BUTTON));
+  /* For "gtk-toolbar-style" */
+  g_type_class_unref (g_type_class_ref (GTK_TYPE_TOOLBAR));
+
   /* FIXMEchpe sort of strange that maemo doesn't all of this out-of-the-box... */
   g_object_set (gtk_widget_get_settings (GTK_WIDGET (data.window)),
                 "gtk-alternative-button-order", TRUE,
                 "gtk-toolbar-style", GTK_TOOLBAR_ICONS,
                 "gtk-menu-images", FALSE,
-#ifdef HAVE_MAEMO_3
                 "gtk-button-images", FALSE,
-#endif /* HAVE_MAEMO_3 */
 #if GTK_CHECK_VERSION (2, 10, 0)
                 "gtk-enable-mnemonics", FALSE,
 
