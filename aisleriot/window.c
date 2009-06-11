@@ -1054,6 +1054,10 @@ set_fullscreen_actions (AisleriotWindow *window,
   g_object_set (priv->main_menu, "visible", !is_fullscreen, NULL);
 
   gtk_action_set_visible (priv->action[ACTION_LEAVE_FULLSCREEN], is_fullscreen);
+  g_object_set (gtk_ui_manager_get_widget (priv->ui_manager, "/Toolbar/LeaveFullscreenSep"),
+                "visible", is_fullscreen,
+                "draw", FALSE,
+                NULL);
 #endif
 
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (priv->action[ACTION_FULLSCREEN]),
@@ -2450,6 +2454,7 @@ aisleriot_window_init (AisleriotWindow *window)
         "<toolitem action='Deal'/>"
         "<toolitem action='Hint'/>"
 #ifndef HAVE_MAEMO
+        "<separator name='LeaveFullscreenSep' expand='true'/>"
         "<toolitem action='LeaveFullscreen'/>"
 #endif
 #ifdef ENABLE_DEBUG_UI
