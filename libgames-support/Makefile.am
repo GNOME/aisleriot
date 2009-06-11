@@ -348,3 +348,35 @@ games-marshal.h: stamp-games-marshal.h
 stamp-games-marshal.h: games-marshal.list Makefile
 	$(GLIB_GENMARSHAL) --prefix=games_marshal $< --header $(GLIB_GENMARSHAL_INTERNAL) > games-marshal.h \
 	&& echo timestamp > $(@F)
+
+if HAVE_INTROSPECTION
+BUILT_GIRSOURCES =
+
+GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support.la
+	$(QUIET_GEN)$(INTROSPECTION_SCANNER) -v \
+	--namespace GnomeGamesSupport --nsversion=1.0 \
+	$(INCLUDES) \
+	--add-include-path=$(srcdir) --add-include=path=. \
+	--include=Clutter-0.9 \
+	--include=Gtk-2.0 \
+	--library=games-support \
+	--output $@ \
+	--pkg gobject-2.0 \
+	--pkg gtk+-2.0 \
+	$(libgames_support_la_SOURCES)
+
+BUILT_GIRSOURCES += GnomeGamesSupport-1.0.gir
+
+# INTROSPECTION_GIRDIR/INTROSPECTION_TYPELIBDIR aren't the right place to
+# install anything - we need to install inside our prefix.
+girdir = $(datadir)/gir-1.0
+gir_DATA = $(BUILT_GIRSOURCES)
+
+typelibsdir = $(libdir)/girepository-1.0/
+typelibs_DATA = $(BUILT_GIRSOURCES:.gir=.typelib)
+
+%.typelib: %.gir $(INTROSPECTION_COMPILER)
+	$(QUIET_GEN)$(DEBUG) $(INTROSPECTION_COMPILER) --includedir=$(srcdir) --includedir=. $(INTROSPECTION_COMPILER_OPTS) $< -o $(builddir)/$(@F)
+
+CLEANFILES += $(BUILT_GIRSOURCES) $(typelibs_DATA)
+endif

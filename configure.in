@@ -1157,6 +1157,7 @@ AC_SUBST([AM_LDFLAGS])
 ##############################################
 
 SHAVE_INIT([],[enable])
+GOBJECT_INTROSPECTION_CHECK([0.6.3])
 
 AC_CONFIG_FILES([
 Makefile
@@ -1298,6 +1299,7 @@ echo "
     Scores & setgid group: ${scores_group}
     Tests enabled:         ${enable_tests}
     Binreloc:              ${enable_binreloc}
+    Introspection data:    ${enable_introspection}
 "
 
 if grep "$scores_group:" /etc/group > /dev/null; then
