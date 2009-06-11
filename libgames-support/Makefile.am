@@ -7,7 +7,8 @@ EXTRA_DIST = \
 	games-marshal.list	\
 	$(NULL)
 
-noinst_LTLIBRARIES = libgames-support.la
+libgames_support_LTLIBRARIES = libgames-support.la
+libgames_supportdir = $(commondatadir)
 
 if BUILD_LIBGAMESCARDS
 noinst_LTLIBRARIES += libgamescards.la
@@ -145,8 +146,13 @@ libgames_support_la_CFLAGS += 	\
 	$(GGZ_GTK_INCLUDES) 	\
 	$(GGZCORE_INCLUDES)	\
 	$(LIBGGZ_INCLUDES)
-endif # GGZ_CLIENT
-endif # HAVE_GNOME
+libgames_support_la_LIBADD += 	\
+	$(GGZMOD_LIBS) 	\
+	$(GGZ_GTK_LIBS) 	\
+	$(GGZCORE_LIBS)	\
+	$(LIBGGZ_LIBS) -lggzmod
+endif
+endif
 
 if HAVE_RSVG
 libgames_support_la_CFLAGS += $(RSVG_CFLAGS)
