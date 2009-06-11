@@ -51,7 +51,8 @@ typedef union {
   } attr;
 } GNOME_GAMES_GNUC_PACKED Card;
 
-typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; /* static assertion */
+// FIXME: not even remotely introspectable
+//typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; /* static assertion */
 
 #define CARD(c)               ((Card) c)
 #define CARD_UINT(c)          (c.value)
