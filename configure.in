@@ -668,7 +668,7 @@ if test "$allow_smclient" = "yes"; then
 
   AC_MSG_CHECKING([which smclient backend to use])
   AC_ARG_WITH([smclient],
-    [AS_HELP_STRING([--with-smclient],[which smclient backend to use (xsmp/win32/quartz)])],
+    [AS_HELP_STRING([--with-smclient],[which smclient backend to use (xsmp|win32|quartz|no)])],
     [],
     [case "$with_platform" in
        gnome|gtk-only) case "$GDK_TARGET" in
@@ -901,14 +901,9 @@ AC_C_INLINE
 AC_TYPE_SIZE_T
 AC_HEADER_TIME
 
-# FIXMEchpe! FIXME
-if test "x${prefix}" = "xNONE"; then
-   AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${ac_default_prefix}/share/pixmaps", [Pix
-map directory])
-else
-   AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${prefix}/share/pixmaps", [Pixmap directo
-ry])
-fi
+# *****
+# Win32
+# *****
 
 AC_MSG_CHECKING([for some Win32 platform])
 case "$host" in
