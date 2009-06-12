@@ -47,6 +47,9 @@ sol_CFLAGS = \
 	$(GUILE_CFLAGS)	      \
 	$(AM_CFLAGS)
 
+sol_LDFLAGS = \
+	$(AM_LDFLAGS)
+
 sol_LDADD = \
 	$(top_builddir)/libgames-support/libgames-support.la \
 	$(GTK_LIBS) \
@@ -70,6 +73,10 @@ endif
 if WITH_GTHREAD
 sol_CFLAGS += $(GHTREAD_CFLAGS)
 sol_LDADD += $(GTHREAD_LIBS)
+endif
+
+if PLATFORM_WIN32_NATIVE
+sol_LDFLAGS += -mwindows
 endif
 
 if HAVE_CLUTTER
@@ -105,6 +112,7 @@ endif
 		
 sol_clutter_CPPFLAGS = $(sol_CPPFLAGS) -DHAVE_CLUTTER
 sol_clutter_CFLAGS = $(sol_CFLAGS) $(CLUTTER_CFLAGS) $(CLUTTER_GTK_CFLAGS)
+sol_clutter_LDFLAGS = $(sol_LDFLAGS)
 sol_clutter_LDADD = $(sol_LDADD) $(CLUTTER_LIBS) $(CLUTTER_GTK_LIBS)
 
 
