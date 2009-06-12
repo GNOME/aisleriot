@@ -350,7 +350,9 @@ games_runtime_init (const char *name)
   /* If we're going to use gconf, gnome-vfs, or canberra, we need to
    * init threads; and this has to be done before calling any other glib functions.
    */
-  g_thread_init (NULL);
+  if(!g_thread_get_initialized()) {
+    g_thread_init (NULL);
+  }
   /* May call any glib function after this point */
 #endif
 
