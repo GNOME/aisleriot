@@ -46,7 +46,6 @@
 #include <libgames-support/games-card-themes.h>
 #include <libgames-support/games-clock.h>
 #include <libgames-support/games-debug.h>
-#include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
@@ -220,13 +219,12 @@ select_game_cb (GtkAction *action,
   GtkWidget *scrolled_window;
   GtkTreeViewColumn *column;
   GtkCellRenderer *renderer;
-  GamesFileList *files;
   GtkWidget *hbox;
   GtkTreeIter current_iter, selection_iter;
   gboolean current_iter_set = FALSE;
   const char *current_game_file;
   const char *games_dir;
-  GList *l;
+  GDir *dir;
 
   if (priv->game_choice_dialog) {
     gtk_window_present (GTK_WINDOW (priv->game_choice_dialog));
@@ -242,39 +240,41 @@ select_game_cb (GtkAction *action,
 #endif
   g_object_unref (list);
 
-  games_dir = games_runtime_get_directory (GAMES_RUNTIME_GAME_GAMES_DIRECTORY);
-  files = games_file_list_new ("*.scm", games_dir, NULL);
-  games_file_list_transform_basename (files);
-
   current_game_file = aisleriot_game_get_game_file (priv->game);
 
-  for (l = files->list; l != NULL; l = l->next) {
-    const char *game_file = (const char *) l->data;
-    char *game_name;
-    GtkTreeIter iter;
+  games_dir = games_runtime_get_directory (GAMES_RUNTIME_GAME_GAMES_DIRECTORY);
 
-    if (!game_file ||
-        strcmp (game_file, "sol.scm") == 0)
-      continue;
+  dir = g_dir_open (games_dir, 0, NULL);
+  if (dir != NULL) {
+    const char *game_file;
 
-    game_name = games_filename_to_display_name (game_file);
+    while ((game_file = g_dir_read_name (dir)) != NULL) {
+      char *game_name;
+      GtkTreeIter iter;
 
-    gtk_list_store_insert_with_values (GTK_LIST_STORE (list), &iter,
-                                       -1,
-                                       COL_NAME, game_name,
-                                       COL_GAME_FILE, game_file,
-                                       -1);
+      if (!g_str_has_suffix (game_file, ".scm") ||
+          strcmp (game_file, "sol.scm") == 0)
+        continue;
 
-    if (current_game_file &&
-        strcmp (current_game_file, game_file) == 0) {
-      current_iter = iter;
-      current_iter_set = TRUE;
+      game_name = games_filename_to_display_name (game_file);
+
+      gtk_list_store_insert_with_values (GTK_LIST_STORE (list), &iter,
+                                         -1,
+                                         COL_NAME, game_name,
+                                         COL_GAME_FILE, game_file,
+                                         -1);
+
+      if (current_game_file &&
+          strcmp (current_game_file, game_file) == 0) {
+        current_iter = iter;
+        current_iter_set = TRUE;
+      }
+
+      g_free (game_name);
     }
 
-    g_free (game_name);
+    g_dir_close (dir);
   }
-
-  g_object_unref (files);
 
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list),
                                         0, GTK_SORT_ASCENDING);
@@ -799,8 +799,8 @@ debug_ensure_game_list (AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
   DebugWindowData *data;
-  GamesFileList *files;
-  GList *l;
+  GDir *dir;
+  GList *list = NULL;
   const char *games_dir;
 
   data = g_object_get_data (G_OBJECT (window), DEBUG_WINDOW_DATA_KEY);
@@ -808,30 +808,28 @@ debug_ensure_game_list (AisleriotWindow *window)
     return data;
 
   games_dir = games_runtime_get_directory (GAMES_RUNTIME_GAME_GAMES_DIRECTORY);
-  files = games_file_list_new ("*.scm", games_dir, NULL);
-  games_file_list_transform_basename (files);
+  dir = g_dir_open (games_dir, 0, NULL);
+  if (dir != NULL) {
+    const char *game_file;
+
+    while ((game_file = g_dir_read_name (dir)) != NULL) {
+      if (!g_str_has_suffix (game_file, ".scm") ||
+          strcmp (game_file, "sol.scm") == 0)
+        continue;
+
+      list = g_list_prepend (list, g_strdup (game_file));
+    }
+
+    list = g_list_sort (list, (GCompareFunc) strcmp);
+    g_dir_close (dir);
+  }
 
   data = g_slice_new (DebugWindowData);
   data->window = window;
-  data->games_list = files->list;
+  data->games_list = list;
   data->current_game = g_list_find_custom (data->games_list,
                                            aisleriot_game_get_game_file (priv->game),
                                            (GCompareFunc) strcmp);
-
-  /* Remove the base sol.scm from the list */
-  for (l = data->games_list; l != NULL; l = l->next) {
-    char *game_file = (char *) l->data;
-
-    if (game_file != NULL &&
-        strcmp (game_file, "sol.scm") == 0) {
-      data->games_list = g_list_delete_link (data->games_list, l);
-      g_free (game_file);
-      break;
-    }
-  }
-
-  files->list = NULL;
-  g_object_unref (files);
 
   g_object_set_data_full (G_OBJECT (window), DEBUG_WINDOW_DATA_KEY,
                           data, (GDestroyNotify) debug_data_free);
