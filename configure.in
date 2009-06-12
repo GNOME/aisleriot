@@ -915,7 +915,7 @@ case "$host" in
     ;;
 esac
 AC_MSG_RESULT([$platform_win32])
-AM_CONDITIONAL(PLATFORM_WIN32, test "$platform_win32" = "yes")
+AM_CONDITIONAL([PLATFORM_WIN32],[test "$platform_win32" = "yes"])
 
 AC_MSG_CHECKING([for native Win32])
 case "$host" in
@@ -927,7 +927,14 @@ case "$host" in
     ;;
 esac
 AC_MSG_RESULT([$os_win32])
-AM_CONDITIONAL(OS_WIN32, test "$os_win32" = "yes")
+AM_CONDITIONAL([PLATFORM_WIN32_NATIVE],[test "$os_win32" = "yes"])
+
+if test "$platform_win32" = "yes" -a "$os_win32" = "yes"; then
+  AC_CHECK_TOOL([WINDRES],[windres],[no])
+  if test "$WINDRES" = "no"; then
+    AC_MSG_ERROR([windres is required for native win32])
+  fi
+fi
 
 # **********
 # Unit tests
