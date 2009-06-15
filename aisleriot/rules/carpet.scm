@@ -129,9 +129,15 @@
        (= (get-suit (car card-list)) (get-suit (get-top-card end-slot)))
        (= (get-value (car card-list)) (+ 1 (get-value (get-top-card end-slot))))))
 
+(define (dealable?)
+  (flippable? stock waste 0))
+
+(define (do-deal-next-cards)
+  (flip-stock stock waste 0 1))
+
 (define (button-clicked start-slot)
   (and (= start-slot stock)
-       (flip-stock stock waste 0 1)))
+       (do-deal-next-cards)))
 
 (define (play-to-foundation start-slot end-slots)
   (if (or (eq? end-slots '())
@@ -192,6 +198,6 @@
 
 (define (timeout) #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
+(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable? dealable?)
