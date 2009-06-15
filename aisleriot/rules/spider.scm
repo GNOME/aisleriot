@@ -168,13 +168,20 @@
   (and (droppable? start-slot card-list end-slot)
        (complete-transaction start-slot card-list end-slot)))
 
+(define (must-undo-to-deal?)
+  (and (not allow-empty-slots)
+       (not (empty-slot? stock))
+       (< (count-cards tableau 0) (length tableau))))
+
 (define (button-clicked slot)
   (and (= stock slot)
        (not (empty-slot? stock))
        (if (and (not allow-empty-slots)
                 (any-slot-empty? tableau))
 	   (begin
-             (set-statusbar-message (_"Please fill in empty pile first."))
+	     (if (must-undo-to-deal?)
+	         (set-statusbar-message (_"Undo until there are enough cards to fill all tableau piles"))
+	         (set-statusbar-message (_"Please fill in empty pile first.")))
              #f)
 	   (begin
 	     (deal-new-cards tableau)
@@ -279,9 +286,7 @@
       (count-cards (cdr slots) (+ acc (length (get-cards (car slots)))))))
 
 (define (hint-few-tableau-cards)
-  (and (not allow-empty-slots)
-       (not (empty-slot? stock))
-       (< (count-cards tableau 0) (length tableau))
+  (and (must-undo-to-deal?)
        (list 0 (_"Undo until there are enough cards to fill all tableau piles"))))
 
 (define (get-hint)
