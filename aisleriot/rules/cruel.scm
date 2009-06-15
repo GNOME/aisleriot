@@ -108,14 +108,18 @@
   )
 )
 
+(define (dealable?)
+  (not just-redealt)
+)
+
 (define (button-clicked slot-id)
-  (if (and (= stock slot-id) (not just-redealt))
-      (redeal)
-      #f
+  (and (= stock slot-id)
+       (dealable?)
+       (do-deal-next-cards)
   )
 )
 
-(define (redeal) 
+(define (do-deal-next-cards) 
   (for-each
     (lambda (x)
       (if (not (empty-slot? x))
@@ -231,8 +235,8 @@
 (define (timeout) 
   #f)
 
-(set-features droppable-feature)
+(set-features droppable-feature dealable-feature)
 
 (set-lambda new-game button-pressed button-released button-clicked
 button-double-clicked game-continuable game-won get-hint get-options
-apply-options timeout droppable?)
+apply-options timeout droppable? dealable?)
