@@ -307,13 +307,13 @@ games_card_textures_cache_get_card_texture_by_id (GamesCardTexturesCache *cache,
 
     handle = cogl_texture_new_from_data (gdk_pixbuf_get_width (pixbuf),
                                          gdk_pixbuf_get_height (pixbuf),
+                                         COGL_TEXTURE_NONE,
                                          gdk_pixbuf_get_has_alpha (pixbuf)
                                          ? COGL_PIXEL_FORMAT_RGBA_8888
                                          : COGL_PIXEL_FORMAT_RGB_888,
                                          COGL_PIXEL_FORMAT_ANY,
-                                         COGL_PIXEL_FORMAT_ANY,
                                          gdk_pixbuf_get_rowstride (pixbuf),
-                                         (guchar *) pixbuf);
+                                         gdk_pixbuf_get_pixels (pixbuf));
     g_object_unref (pixbuf);
 
     if (handle == COGL_INVALID_HANDLE) {

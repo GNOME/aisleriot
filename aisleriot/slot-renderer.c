@@ -348,24 +348,32 @@ aisleriot_slot_renderer_set_material_for_card (AisleriotSlotRenderer *srend,
     priv->material = cogl_material_new ();
 
   if (show_highlight)
-    /* The previous code for drawing the highlight rendered the normal
-       card texture and then rendered the card again multiplied by the
-       highlight color but with 50% transparency. The blend function
-       is alpha*src+(1-alpha*dst) where src is effectively the tex
-       times the highlight color and the dst is the original
-       tex. Therefore the final color is 0.5*tex+0.5*tex*highlight
-       which is the same as (0.5+highlight/2)*tex. We can precompute
-       that value to avoid having to draw the card twice */
-    cogl_material_set_color4ub (priv->material,
-                                MIN (priv->highlight_color.red
-                                     / 2 + 128, 0xff),
-                                MIN (priv->highlight_color.green
-                                     / 2 + 128, 0xff),
-                                MIN (priv->highlight_color.blue
-                                     / 2 + 128, 0xff),
-                                opacity);
+    {
+      CoglColor color;
+
+      /* The previous code for drawing the highlight rendered the
+         normal card texture and then rendered the card again
+         multiplied by the highlight color but with 50%
+         transparency. The blend function is alpha*src+(1-alpha*dst)
+         where src is effectively the tex times the highlight color
+         and the dst is the original tex. Therefore the final color is
+         0.5*tex+0.5*tex*highlight which is the same as
+         (0.5+highlight/2)*tex. We can precompute that value to avoid
+         having to draw the card twice */
+      cogl_color_set_from_4ub (&color,
+                               MIN (priv->highlight_color.red
+                                    / 2 + 128, 0xff),
+                               MIN (priv->highlight_color.green
+                                    / 2 + 128, 0xff),
+                               MIN (priv->highlight_color.blue
+                                    / 2 + 128, 0xff),
+                               opacity);
+      cogl_color_premultiply (&color);
+      cogl_material_set_color (priv->material, &color);
+    }
   else
-    cogl_material_set_color4ub (priv->material, 255, 255, 255, opacity);
+    cogl_material_set_color4ub (priv->material,
+                                opacity, opacity, opacity, opacity);
 
   cogl_material_set_layer (priv->material, 0, tex);
   cogl_set_source (priv->material);
