@@ -1,3 +1,102 @@
+gnome-games 2.27.3
+==================
+
+No major changes, just bug fixes all over the place. Aisleriot Clutter and
+Gnometris now depend on Clutter git master due to the final Clutter API change
+having just landed there. As soon as Clutter 0.9.4 is available, our conf-
+gure.in will be updated to reflect the proper API requirement.
+
+This should be the final Clutter API change as 0.9.4 is going to be a release
+candidate.
+
+Chao-Hsiung Liao (1):
+      Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+Christian Persch (32):
+      Remove
+      Lower intltool req to 0.35.0
+      Only check for check if tests are enabled
+      Don't use "$(top_srcdir)" in SHAVE_INIT
+      Don't build games-help on hildon yet
+      Only include games-preimage.h if HAVE_RSVG
+      GTK_STOCK_FULLSCREEN only exists on gtk >= 2.8
+      Fix undeclared variable error
+      Fix build on hildon
+      Fix the build on hildon
+      Fix assertion failure on hildon
+      Normalise the filename in theme_filename_and_type_from_name
+      Fix prefname for fixed card theme on hildon
+      Add maemo5 support to --with-platform-variant
+      Enable sound on maemo5
+      Use signal connections for tap-and-hold instead of the class handlers
+      Only use the gtk-enable-event-sounds setting when available
+      Add Sound check menuitem to the menu under maemo5
+      Add maemo5 to --with-platform-variant help string
+      Also ifdef the Sound menu item in the non-maemo UI
+      Use g_mkdir_with_parents and mode 0700 to create the config dir
+      Use a HildonPannableArea for the game selection treeview
+      Remove obsolete comment
+      Also listen to memory pressure events
+      Fix gtk settings initialisation
+      Move the ExitFullscreen button to the far end of the toolbar
+      Remove obsolete GNOME_ICONDIR define
+      Check for windres on native win32
+      Define WIN32_LEAN_AND_MEAN here too
+      Use G_OS_WIN32 here instead of a nonexistent #define
+      Add -mwindows to LDFLAGS on native win32
+      emove GamesFilesList use from aisleriot
+
+Claude Paroz (3):
+      Prefix GTKBuilder files with gettext/glade
+      Fix GNOME feedback link in docs
+      Fix GNOME Feedback link in all docs translations
+
+Daniel Mustieles (1):
+      Updated Spanish translation
+
+Ivar Smolin (2):
+      Updating Estonian translation
+      Updating Estonian translation
+
+Jason D. Clinton (3):
+      First pass at updating Gnome Games use of Clutter 0.9.x API to master
+      Second pass at getting Gnometris to render with new Clutter master API
+      Bump release version to 2.27.3
+
+Jorge Gonzalez (4):
+      Updated Spanish translation
+      Updated Spanish translation
+      Updated Spanish translation
+      Updated Spanish translation
+
+Kjartan Maraas (1):
+      Updated Norwegian bokmål translation.
+
+Lubomir Rintel (1):
+      Add annoying "bastard" mode
+
+Neil Roberts (1):
+      aisleriot: Fixups for updating to the lastest Clutter master
+
+Rajesh Ranjan (2):
+      Updated Hindi Translations
+      Updated Hindi Translations
+
+Robert Ancell (2):
+      occured->occurred
+      Fix up menu icon sizes and underlines
+
+Vincent Povirk (5):
+      aisleriot: only allow moving builds of cards in Klondike-based games
+      aisleriot: add a hint for when there are too few cards in Spider games
+      aisleriot: change status message when dealing is impossible in Spider games
+      aisleriot: implement dealable feature in Carpet
+      aisleriot: implement dealable feature in Cruel
+
+drtvasudevan (1):
+      Updated Tamil translation
+
+
 gnome-games 2.27.2
 =================
 
