@@ -26,14 +26,14 @@
 static void aisleriot_card_paint (ClutterActor *actor);
 
 static void aisleriot_card_get_preferred_width (ClutterActor *self,
-                                                ClutterUnit   for_height,
-                                                ClutterUnit  *min_width_p,
-                                                ClutterUnit  *natural_width_p);
+                                                ClutterUnits   for_height,
+                                                ClutterUnits  *min_width_p,
+                                                ClutterUnits  *natural_width_p);
 static void aisleriot_card_get_preferred_height
                                                (ClutterActor *self,
-                                                ClutterUnit   for_width,
-                                                ClutterUnit  *min_height_p,
-                                                ClutterUnit  *natural_height_p);
+                                                ClutterUnits   for_width,
+                                                ClutterUnits  *min_height_p,
+                                                ClutterUnits  *natural_height_p);
 
 static void aisleriot_card_dispose (GObject *self);
 
@@ -156,9 +156,9 @@ aisleriot_card_new (GamesCardTexturesCache *cache,
 
 static void
 aisleriot_card_get_preferred_width (ClutterActor *self,
-                                    ClutterUnit   for_height,
-                                    ClutterUnit  *min_width_p,
-                                    ClutterUnit  *natural_width_p)
+                                    ClutterUnits   for_height,
+                                    ClutterUnits  *min_width_p,
+                                    ClutterUnits  *natural_width_p)
 {
   AisleriotCard *card = AISLERIOT_CARD (self);
   AisleriotCardPrivate *priv = card->priv;
@@ -174,17 +174,17 @@ aisleriot_card_get_preferred_width (ClutterActor *self,
     width = cogl_texture_get_width (tex);
 
   if (min_width_p)
-    *min_width_p = 0;
+    clutter_units_pixels (min_width_p, 0);
 
   if (natural_width_p)
-    *natural_width_p = CLUTTER_UNITS_FROM_DEVICE (width);
+    clutter_units_pixels (natural_width_p, width);
 }
 
 static void
 aisleriot_card_get_preferred_height (ClutterActor *self,
-                                     ClutterUnit   for_width,
-                                     ClutterUnit  *min_height_p,
-                                     ClutterUnit  *natural_height_p)
+                                     ClutterUnits   for_width,
+                                     ClutterUnits  *min_height_p,
+                                     ClutterUnits  *natural_height_p)
 {
   AisleriotCard *card = AISLERIOT_CARD (self);
   AisleriotCardPrivate *priv = card->priv;
@@ -200,10 +200,10 @@ aisleriot_card_get_preferred_height (ClutterActor *self,
     height = cogl_texture_get_height (tex);
 
   if (min_height_p)
-    *min_height_p = 0;
+    clutter_units_pixels (min_height_p, 0);
 
   if (natural_height_p)
-    *natural_height_p = CLUTTER_UNITS_FROM_DEVICE (height);
+    clutter_units_pixels (natural_height_p, height);
 }
 
 static void
@@ -214,7 +214,7 @@ aisleriot_card_paint (ClutterActor *actor)
   CoglHandle top_tex, bottom_tex;
   ClutterActorBox alloc_box;
 
-  cogl_enable_backface_culling (TRUE);
+  cogl_set_backface_culling_enabled (TRUE);
 
   top_tex = games_card_textures_cache_get_card_texture (priv->cache,
                                                         priv->top_card);
@@ -232,25 +232,25 @@ aisleriot_card_paint (ClutterActor *actor)
   cogl_set_source_texture (top_tex);
 
   cogl_rectangle (0.0f, 0.0f,
-                  CLUTTER_UNITS_TO_FLOAT (alloc_box.x2 - alloc_box.x1),
-                  CLUTTER_UNITS_TO_FLOAT (alloc_box.y2 - alloc_box.y1));
+                  alloc_box.x2 - alloc_box.x1,
+                  alloc_box.y2 - alloc_box.y1);
 
   cogl_set_source_texture (bottom_tex);
 
   /* Rotate along the y-axis about the center of the card to make the
      bottom of the card face the other way */
   cogl_push_matrix ();
-  cogl_translate (CLUTTER_UNITS_TO_DEVICE (alloc_box.x2 - alloc_box.x1) / 2,
+  cogl_translate ((alloc_box.x2 - alloc_box.x1) / 2,
                   0, 0);
   cogl_rotate (180, 0, 1, 0);
-  cogl_translate (-CLUTTER_UNITS_TO_DEVICE (alloc_box.x2 - alloc_box.x1) / 2,
+  cogl_translate (-(alloc_box.x2 - alloc_box.x1) / 2,
                   0, 0);
   cogl_rectangle (0.0f, 0.0f,
-                  CLUTTER_UNITS_TO_FLOAT (alloc_box.x2 - alloc_box.x1),
-                  CLUTTER_UNITS_TO_FLOAT (alloc_box.y2 - alloc_box.y1));
+                  alloc_box.x2 - alloc_box.x1,
+                  alloc_box.y2 - alloc_box.y1);
   cogl_pop_matrix ();
 
-  cogl_enable_backface_culling (FALSE);
+  cogl_set_backface_culling_enabled (FALSE);
 }
 
 static void

@@ -190,7 +190,7 @@ aisleriot_slot_renderer_init (AisleriotSlotRenderer *self)
   priv->highlight_color = default_highlight_color;
 
   priv->animations = g_array_new (FALSE, FALSE, sizeof (AnimationData));
-  priv->timeline = clutter_timeline_new_for_duration (500);
+  priv->timeline = clutter_timeline_new (500);
   g_signal_connect_swapped (priv->timeline, "completed",
                             G_CALLBACK (completed_cb), self);
 }
