@@ -86,11 +86,19 @@
   (string-append (_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
+(define (is-tableau-build? card-list)
+  (and (is-visible? (car card-list))
+       (or (null? (cdr card-list))
+           (and (not (color-eq? (car card-list) (cadr card-list)))
+                (= (get-value (cadr card-list))
+                   (+ 1 (get-value (car card-list))))
+                (is-tableau-build? (cdr card-list))))))
+
 (define (button-pressed slot-id card-list)
   (and (or (> slot-id 1)
 	   (and (= slot-id 1)
 		(= (length card-list) 1)))
-       (is-visible? (car (reverse card-list)))))
+       (is-tableau-build? card-list)))
 
 (define (complete-transaction start-slot card-list end-slot)
   (move-n-cards! start-slot end-slot card-list)
@@ -201,18 +209,26 @@
 		(not (= (get-color (get-top-card slot-id2)) color))
 		(list 1 (get-name card) (get-name (get-top-card slot-id2)))))))
 
-(define (check-visible card)
-  (and (is-visible? card) card))
+(define (get-top-build card-list acc)
+  (if (or (null? card-list)
+          (not (is-visible? (car card-list))))
+      acc
+      (if (or (null? acc)
+              (and (not (color-eq? (car card-list) (car acc)))
+                   (= (get-value (car card-list))
+                      (+ 1 (get-value (car acc))))))
+          (get-top-build (cdr card-list) (cons (car card-list) acc))
+          acc)))
 
 (define (shiftable-iter slot-id)
   (and (not (empty-slot? slot-id))
-       (let ((card-list (reverse (get-cards slot-id))))
-	 (set! card (or-map check-visible card-list))
+       (begin
+	 (set! card (car (get-top-build (get-cards slot-id) '())))
 	 (set! color (get-color card))	
 	 (set! value (get-value card))
 	 (set! slot-id1 slot-id)
 	 (and (not (and (= value king)
-			(eq? card (car card-list))))
+			(equal? card (car (reverse (get-cards slot-id))))))
 	      (or-map shiftable? tableau)))))
 
 (define (addable? slot-id)
