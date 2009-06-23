@@ -412,7 +412,7 @@ void games_scores_dialog_set_hilight (GamesScoresDialog *self, guint pos)
 void games_scores_dialog_set_buttons (GamesScoresDialog *self, guint buttons)
 {
   /* Remove an existing buttons. */
-  gtk_container_foreach (GTK_CONTAINER (GTK_DIALOG (self)->action_area),
+  gtk_container_foreach (GTK_CONTAINER (gtk_dialog_get_action_area (GTK_DIALOG (self))),
                          (GtkCallback) (gtk_widget_destroy), NULL);
 
   /* The default is a single close button, suitable for the scores
@@ -475,7 +475,7 @@ static void games_scores_dialog_init (GamesScoresDialog *self)
 
   gtk_dialog_set_has_separator (GTK_DIALOG (self), FALSE);
   gtk_container_set_border_width (GTK_CONTAINER (self), 5);
-  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (self)->vbox), 2);
+  gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (self))), 2);
 
   g_signal_connect (G_OBJECT (self), "show", 
 		      G_CALLBACK (games_scores_dialog_show), NULL);
@@ -484,8 +484,8 @@ static void games_scores_dialog_init (GamesScoresDialog *self)
 
   vbox = gtk_vbox_new (FALSE, 6);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
-  gtk_box_pack_end (GTK_BOX (GTK_DIALOG (self)->vbox), vbox, TRUE, TRUE, 
-                    0);
+  gtk_box_pack_end (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (self))),
+                    vbox, TRUE, TRUE, 0);
 
   scroll = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
