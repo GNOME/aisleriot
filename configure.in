@@ -23,7 +23,7 @@ AM_MAINTAINER_MODE([enable])
 # This is the canonical list of all game subdirectories.
 allgames="aisleriot blackjack gnometris gnect gnomine same-gnome mahjongg gtali gnotravex gnotski glines iagno glchess gnobots2 gnibbles gnome-sudoku"
 AC_SUBST([allgames])
-staginggames="lightsoff"
+staginggames="lightsoff same-gnome-clutter"
 AC_SUBST([staginggames])
 
 gamelist=""
@@ -164,7 +164,7 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    gnometris|lightsoff) need_clutter=yes ;;
+    gnometris|lightsoff|same-gnome-clutter) need_clutter=yes ;;
     *) ;;
   esac
   case $game in
@@ -1249,6 +1249,7 @@ gnome-sudoku/gnome-sudoku.desktop.in
 iagno/iagno.desktop.in
 gnect/data/gnect.desktop.in
 gnomine/gnomine.desktop.in
+same-gnome-clutter/Makefile
 lightsoff/Makefile
 lightsoff/lightsoff
 lightsoff/lightsoff.desktop.in
