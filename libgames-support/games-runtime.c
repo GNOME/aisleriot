@@ -1,6 +1,7 @@
 /*
  * Copyright © 2007 Andreas Røsdal <andreasr@gnome.org>
  * Copyright © 2007, 2008 Christian Persch
+ * Copyright © 2009 Tor Lillqvist
  *
  * This game is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,10 +23,11 @@
 
 #include <locale.h>
 
-#if defined (G_OS_WIN32)
-#include <windows.h>
+#ifdef G_OS_WIN32
 #include <io.h>
-#define HELP_EXT "xhtml"
+#include <conio.h>
+#define _WIN32_WINNT 0x0500
+#include <windows.h>
 #endif /* G_OS_WIN32 */
 
 #include <glib/gi18n.h>
@@ -89,6 +91,34 @@ games_runtime_init (const char *name)
 
   setlocale (LC_ALL, "");
 
+#ifdef G_OS_WIN32
+  /* On Windows, when called from a console, get console output. This works
+   * only with Windows XP or higher; Windows 2000 will not have console
+   * output but it will just work fine.
+   */
+  if (fileno (stdout) != -1 &&
+      _get_osfhandle (fileno (stdout)) != -1) {
+    /* stdout is fine, presumably redirected to a file or pipe.
+     * Make sure stdout goes somewhere, too.
+     */
+    if (_get_osfhandle (fileno (stderr)) == -1) {
+      dup2 (fileno (stdout), fileno (stderr));
+    }
+  } else {
+    typedef BOOL (* WINAPI AttachConsole_t) (DWORD);
+
+    AttachConsole_t p_AttachConsole =
+      (AttachConsole_t) GetProcAddress (GetModuleHandle ("kernel32.dll"), "AttachConsole");
+
+    if (p_AttachConsole != NULL && p_AttachConsole (ATTACH_PARENT_PROCESS)) {
+      freopen ("CONOUT$", "w", stdout);
+      dup2 (fileno (stdout), 1);
+      freopen ("CONOUT$", "w", stderr);
+      dup2 (fileno (stderr), 2);
+    }
+  }
+#endif /* G_OS_WIN32 */
+
 #if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_CANBERRA_GTK)
   /* If we're going to use gconf, gnome-vfs, or canberra, we need to
    * init threads; and this has to be done before calling any other glib functions.
@@ -111,6 +141,7 @@ games_runtime_init (const char *name)
 {
   const char *path;
 
+  /* Now check that we can get the module installation directory */
   path = games_runtime_get_directory (GAMES_RUNTIME_MODULE_DIRECTORY);
 
   _games_debug_print (GAMES_DEBUG_RUNTIME,
