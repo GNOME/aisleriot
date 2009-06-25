@@ -172,8 +172,8 @@ games_scores_new (const char *app_name,
   priv->style = style;
 
   /* Set up the anonymous category for use when no categories are specified. */
-  priv->dummycat.category.key = "";
-  priv->dummycat.category.name = "";
+  priv->dummycat.category.key = (char *) "";
+  priv->dummycat.category.name = (char *) "";
   priv->dummycat.backend = NULL;
 
   return self;

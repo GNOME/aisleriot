@@ -198,7 +198,7 @@ games_runtime_get_directory (GamesRuntimeDirectory directory)
   char *path = NULL;
 
   g_return_val_if_fail (app_name != NULL, NULL);
-  g_return_val_if_fail (directory >= 0 && directory < GAMES_RUNTIME_LAST_DIRECTORY, NULL);
+  g_return_val_if_fail (directory < GAMES_RUNTIME_LAST_DIRECTORY, NULL);
 
   if (cached_directories[directory])
     return cached_directories[directory];

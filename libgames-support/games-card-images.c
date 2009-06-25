@@ -383,7 +383,7 @@ games_card_images_set_cache_mode (GamesCardImages * images,
                                   GamesCardImagesCacheMode mode)
 {
   g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
-  g_return_if_fail (mode >= 0 && mode < LAST_CACHE_MODE);
+  g_return_if_fail (mode < LAST_CACHE_MODE);
 
   if (mode == images->cache_mode)
     return;
@@ -529,8 +529,7 @@ games_card_images_get_card_pixbuf_by_id (GamesCardImages * images,
   guint idx;
 
   g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), NULL);
-  g_return_val_if_fail ((card_id >= 0)
-                        && (card_id < GAMES_CARDS_TOTAL), NULL);
+  g_return_val_if_fail ((card_id < GAMES_CARDS_TOTAL), NULL);
   g_return_val_if_fail (images->cache_mode == CACHE_PIXBUFS, NULL);
 
   LOG_CALL (images);
@@ -628,8 +627,7 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
   guint idx;
 
   g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), NULL);
-  g_return_val_if_fail ((card_id >= 0)
-                        && (card_id < GAMES_CARDS_TOTAL), NULL);
+  g_return_val_if_fail ((card_id < GAMES_CARDS_TOTAL), NULL);
   g_return_val_if_fail (images->cache_mode == CACHE_PIXMAPS, NULL);
   g_return_val_if_fail (images->drawable != NULL, NULL);
 
@@ -900,7 +898,7 @@ GdkPixmap *
 games_card_images_get_card_pixmap_by_suit_and_rank (GamesCardImages * images,
                                                     guint suit, guint rank)
 {
-  g_return_val_if_fail (((suit >= GAMES_CARDS_CLUBS) &&
+  g_return_val_if_fail (( /* (suit >= GAMES_CARDS_CLUBS) && */
                          (suit <= GAMES_CARDS_SPADES)), NULL);
   g_return_val_if_fail (((rank >= GAMES_CARD_ACE) &&
                          (rank <= GAMES_CARD_ACE_HIGH)), NULL);
