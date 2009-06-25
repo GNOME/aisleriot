@@ -134,12 +134,14 @@ games_sound_canberra_play (const char *sound_name,
                                    NULL);
       break;
     case GAMES_SOUND_FOR_WIDGET:
-      break;
       rv =  ca_gtk_play_for_widget (data,
                                     0,
                                     CA_PROP_MEDIA_NAME, sound_name,
                                     CA_PROP_MEDIA_FILENAME, path,
                                     NULL);
+      break;
+    default:
+      g_assert_not_reached ();
   }
 
   _games_debug_print (GAMES_DEBUG_SOUND,
