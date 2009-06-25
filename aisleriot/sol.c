@@ -200,13 +200,13 @@ save_state_cb (EggSMClient *client,
   argv[argc++] = g_get_prgname ();
 
   if (data->freecell) {
-    argv[argc++] = "--freecell";
+    argv[argc++] = (char *) "--freecell";
   } else {
-    argv[argc++] = "--variation";
+    argv[argc++] = (char *) "--variation";
     argv[argc++] = (char *) game_name;
   }
 
-  argv[argc++] = "--seed";
+  argv[argc++] = (char *) "--seed";
   argv[argc++] = seed;
 
   /* FIXMEchpe: save game state too? */

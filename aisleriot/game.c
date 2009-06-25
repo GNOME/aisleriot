@@ -1218,6 +1218,9 @@ aisleriot_game_get_property (GObject *object,
     case PROP_SCORE:
       g_value_set_uint (value, game->score);
       break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
   }
 }
 
