@@ -24,7 +24,7 @@
 G_BEGIN_DECLS
 
 void games_help_display (GtkWidget *window,
-                         const char *app_name,
+                         const char *doc_module,
                          const char *section);
 
 G_END_DECLS

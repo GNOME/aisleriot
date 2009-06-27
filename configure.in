@@ -221,12 +221,6 @@ fi
 AC_DEFINE_UNQUOTED([LSB_DISTRIBUTOR],["$LSB_DISTRIBUTOR"],[The distributor ID])
 AC_DEFINE_UNQUOTED([LSB_DISTRIBUTION],["$LSB_DISTRIBUTION"],[The full distribution description])
 
-# *************
-# Documentation
-# *************
-
-GNOME_DOC_INIT([0.10.0],[have_gdu=yes],[have_gdu=no])
-
 dnl ****************************************************************************
 dnl * Python 2.4
 dnl ****************************************************************************
@@ -936,6 +930,64 @@ if test "$platform_win32" = "yes" -a "$os_win32" = "yes"; then
   fi
 fi
 
+# *************
+# Documentation
+# *************
+
+# We support various ways to present help to the user:
+# ghelp: using the ghelp: protocol, most likely displaying in Yelp
+# file: showing html or xhtml files in the web browser
+# library: in the web browser loaded remotedly from library.gnome.org
+#
+# Note that for help using [x]html files, we can't use gnome-doc-utils.make
+# since it doesn't currently support this. The packager will have to use
+# gnome-doc-tool directly to build the documentation in the right format.
+# The help files must be installed in $(pkgdatadir)/$(DOC_MODULE)/$(LOCALE) .
+
+AC_MSG_CHECKING([which help method to use])
+AC_ARG_WITH([help-method],
+  [AS_HELP_STRING([--with-help-method],[which help method to use (ghelp|file|library; default: ghelp)])],
+  [],
+  [case "$with_platform" in
+     hildon) with_help_method=file ;;
+     *) if test "$platform_win32" = "yes"; then
+           with_help_method=file
+         else
+           with_help_method=ghelp
+         fi ;;
+   esac])
+AC_MSG_RESULT([$with_help_method])
+
+case "$with_help_method" in
+  ghelp) AC_DEFINE([WITH_HELP_METHOD_GHELP],[1],[Define to use help using ghelp]) ;;
+  file) AC_DEFINE([WITH_HELP_METHOD_FILE],[1],[Define to use help using file]) ;;
+  library) AC_DEFINE([WITH_HELP_METHOD_LIBRARY],[1],[Define to use help using library.gnome.org]) ;;
+  *) AC_MSG_ERROR([unknown help method "$with_help_method"]) ;;
+esac
+
+if test "$with_help_method" = "file"; then
+  AC_MSG_CHECKING([for help file format])
+  AC_ARG_WITH([help-file-format],
+    [AS_HELP_STRING([--with-help-file-format],[which file format to use for help (html|xhtml; default: html)])],
+    [case "$with_help_file_format" in
+       html|xhtml) ;;
+       *) AC_MSG_ERROR([unknown help file format "$with_help_file_format"]) ;;
+     esac],
+    [with_help_file_format=html])
+  AC_MSG_RESULT([$with_help_file_format])
+
+  AC_DEFINE_UNQUOTED([HELP_FILE_FORMAT],["$with_help_file_format"],[The help file format])
+fi
+
+GNOME_DOC_INIT([0.10.0],
+  [have_gdu=yes],
+  [have_gdu=no
+   if test "$with_help_method" = "ghelp"; then
+     AC_MSG_ERROR([ghelp requested, but gnome-doc-utils not found!])
+   fi])
+
+AM_CONDITIONAL([BUILD_HELP],[test "$with_help_method" = "ghelp"])
+
 # **********
 # Unit tests
 # **********
@@ -1116,6 +1168,7 @@ fi
 echo "
     Games to be compiled:  ${gamelist}
 
+    Help method:           ${with_help_method} ${with_help_file_format}
     Using SM Client:       ${with_smclient}
     Using RSVG:            ${have_rsvg}
     Card theme formats:    ${with_card_theme_formats}
