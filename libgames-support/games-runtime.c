@@ -36,12 +36,184 @@
 #include "games-profile.h"
 #include "games-runtime.h"
 
+#if defined(G_OS_WIN32) && !defined(ENABLE_BINRELOC)
+#error binreloc must be enabled on win32
+#endif
+
+#if defined(ENABLE_BINRELOC) && !defined(G_OS_WIN32)
+
+/*
+ * BinReloc - a library for creating relocatable executables
+ * Written by: Hongli Lai <h.lai@chello.nl>
+ * http://autopackage.org/
+ *
+ * This source code is public domain. You can relicense this code
+ * under whatever license you want.
+ *
+ * See http://autopackage.org/docs/binreloc/ for
+ * more information and how to use this.
+ */
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+/** These error codes can be returned by br_init(), br_init_lib(), gbr_init() or gbr_init_lib(). */
+typedef enum {
+	/** Cannot allocate memory. */
+	GBR_INIT_ERROR_NOMEM,
+	/** Unable to open /proc/self/maps; see errno for details. */
+	GBR_INIT_ERROR_OPEN_MAPS,
+	/** Unable to read from /proc/self/maps; see errno for details. */
+	GBR_INIT_ERROR_READ_MAPS,
+	/** The file format of /proc/self/maps is invalid; kernel bug? */
+	GBR_INIT_ERROR_INVALID_MAPS,
+	/** BinReloc is disabled (the ENABLE_BINRELOC macro is not defined). */
+	GBR_INIT_ERROR_DISABLED
+} GbrInitError;
+
+/** @internal
+ * Find the canonical filename of the executable. Returns the filename
+ * (which must be freed) or NULL on error. If the parameter 'error' is
+ * not NULL, the error code will be stored there, if an error occured.
+ */
+static char *
+_br_find_exe (GbrInitError *error)
+{
+	char *path, *path2, *line, *result;
+	size_t buf_size;
+	ssize_t size;
+	struct stat stat_buf;
+	FILE *f;
+
+	/* Read from /proc/self/exe (symlink) */
+	if (sizeof (path) > SSIZE_MAX)
+		buf_size = SSIZE_MAX - 1;
+	else
+		buf_size = PATH_MAX - 1;
+	path = (char *) g_try_malloc (buf_size);
+	if (path == NULL) {
+		/* Cannot allocate memory. */
+		if (error)
+			*error = GBR_INIT_ERROR_NOMEM;
+		return NULL;
+	}
+	path2 = (char *) g_try_malloc (buf_size);
+	if (path2 == NULL) {
+		/* Cannot allocate memory. */
+		if (error)
+			*error = GBR_INIT_ERROR_NOMEM;
+		g_free (path);
+		return NULL;
+	}
+
+	strncpy (path2, "/proc/self/exe", buf_size - 1);
+
+	while (1) {
+		int i;
+
+		size = readlink (path2, path, buf_size - 1);
+		if (size == -1) {
+			/* Error. */
+			g_free (path2);
+			break;
+		}
+
+		/* readlink() success. */
+		path[size] = '\0';
+
+		/* Check whether the symlink's target is also a symlink.
+		 * We want to get the final target. */
+		i = stat (path, &stat_buf);
+		if (i == -1) {
+			/* Error. */
+			g_free (path2);
+			break;
+		}
+
+		/* stat() success. */
+		if (!S_ISLNK (stat_buf.st_mode)) {
+			/* path is not a symlink. Done. */
+			g_free (path2);
+			return path;
+		}
+
+		/* path is a symlink. Continue loop and resolve this. */
+		strncpy (path, path2, buf_size - 1);
+	}
+
+
+	/* readlink() or stat() failed; this can happen when the program is
+	 * running in Valgrind 2.2. Read from /proc/self/maps as fallback. */
+
+	buf_size = PATH_MAX + 128;
+	line = (char *) g_try_realloc (path, buf_size);
+	if (line == NULL) {
+		/* Cannot allocate memory. */
+		g_free (path);
+		if (error)
+			*error = GBR_INIT_ERROR_NOMEM;
+		return NULL;
+	}
+
+	f = fopen ("/proc/self/maps", "r");
+	if (f == NULL) {
+		g_free (line);
+		if (error)
+			*error = GBR_INIT_ERROR_OPEN_MAPS;
+		return NULL;
+	}
+
+	/* The first entry should be the executable name. */
+	result = fgets (line, (int) buf_size, f);
+	if (result == NULL) {
+		fclose (f);
+		g_free (line);
+		if (error)
+			*error = GBR_INIT_ERROR_READ_MAPS;
+		return NULL;
+	}
+
+	/* Get rid of newline character. */
+	buf_size = strlen (line);
+	if (buf_size <= 0) {
+		/* Huh? An empty string? */
+		fclose (f);
+		g_free (line);
+		if (error)
+			*error = GBR_INIT_ERROR_INVALID_MAPS;
+		return NULL;
+	}
+	if (line[buf_size - 1] == 10)
+		line[buf_size - 1] = 0;
+
+	/* Extract the filename; it is always an absolute path. */
+	path = strchr (line, '/');
+
+	/* Sanity check. */
+	if (strstr (line, " r-xp ") == NULL || path == NULL) {
+		fclose (f);
+		g_free (line);
+		if (error)
+			*error = GBR_INIT_ERROR_INVALID_MAPS;
+		return NULL;
+	}
+
+	path = g_strdup (path);
+	g_free (line);
+	fclose (f);
+	return path;
+}
+
+#endif /* ENABLE_BINRELOC && !G_OS_WIN32 */
+
 static char *app_name;
 static int gpl_version;
 static char *cached_directories[GAMES_RUNTIME_LAST_DIRECTORY];
-#ifdef G_OS_WIN32
-static char *module_path;
-#endif
 
 typedef struct {
   GamesRuntimeDirectory base_dir;
@@ -50,12 +222,12 @@ typedef struct {
 
 static const DerivedDirectory derived_directories[] = {
   /* Keep this in the same order as in the GamesRuntimeDirectory enum! */
-#ifdef G_OS_WIN32
+#ifdef ENABLE_BINRELOC
   { GAMES_RUNTIME_MODULE_DIRECTORY,   "share"              }, /* GAMES_RUNTIME_DATA_DIRECTORY              */
   { GAMES_RUNTIME_DATA_DIRECTORY,     "gnome-games-common" }, /* GAMES_RUNTIME_COMMON_DATA_DIRECTORY       */
   { GAMES_RUNTIME_DATA_DIRECTORY,     "gnome-games"        }, /* GAMES_RUNTIME_PKG_DATA_DIRECTORY          */
   { GAMES_RUNTIME_DATA_DIRECTORY,     "scores"             }, /* GAMES_RUNTIME_SCORES_DIRECTORY            */
-#endif /* G_OS_WIN32 */
+#endif /* ENABLE_BINRELOC */
   { GAMES_RUNTIME_DATA_DIRECTORY,         "locale"         }, /* GAMES_RUNTIME_LOCALE_DIRECTORY            */
   { GAMES_RUNTIME_COMMON_DATA_DIRECTORY,  "pixmaps"        }, /* GAMES_RUNTIME_COMMON_PIXMAP_DIRECTORY     */
   { GAMES_RUNTIME_COMMON_DATA_DIRECTORY,  "card-themes"    }, /* GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY */
@@ -137,7 +309,7 @@ games_runtime_init (const char *name)
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain(GETTEXT_PACKAGE);
 
-#ifdef G_OS_WIN32
+#ifdef ENABLE_BINRELOC
 {
   const char *path;
 
@@ -149,9 +321,9 @@ games_runtime_init (const char *name)
 
   retval = path != NULL;
 }
-#else
+#else /* !ENABLE_BINRELOC */
   retval = TRUE;
-#endif
+#endif /* ENABLE_BINRELOC */
 
 #if defined(ENABLE_CARD_THEME_FORMAT_KDE) || defined(ENABLE_CARD_THEME_FORMAT_SLICED) || defined(ENABLE_CARD_THEME_FORMAT_PYSOL)
   if (strcmp (app_name, "aisleriot") == 0 || strcmp (app_name, "blackjack") == 0) {
@@ -204,7 +376,35 @@ games_runtime_get_directory (GamesRuntimeDirectory directory)
     return cached_directories[directory];
 
   switch ((int) directory) {
-#ifndef G_OS_WIN32
+#ifdef ENABLE_BINRELOC
+    case GAMES_RUNTIME_MODULE_DIRECTORY:
+#ifdef G_OS_WIN32
+      path = g_win32_get_package_installation_directory_of_module (NULL);
+#else
+      {
+        GbrInitError errv = 0;
+        char *exe, *bindir, *prefix;
+
+        exe = _br_find_exe (&errv);
+        if (exe == NULL) {
+          g_printerr ("Failed to locate the binary relocation prefix (error code %u)\n", errv);
+        } else {
+          bindir = g_path_get_dirname (exe);
+          g_free (exe);
+          prefix = g_path_get_dirname (bindir);
+          g_free (bindir);
+
+          if (prefix != NULL && strcmp (prefix, ".") != 0) {
+            path = prefix;
+          } else {
+            g_free (prefix);
+          }
+        }
+      }
+#endif /* G_OS_WIN32 */
+      break;
+#else /* !ENABLE_BINRELOC */
+
     case GAMES_RUNTIME_DATA_DIRECTORY:
       path = g_strdup (DATADIR);
       break;
@@ -220,12 +420,7 @@ games_runtime_get_directory (GamesRuntimeDirectory directory)
     case GAMES_RUNTIME_SCORES_DIRECTORY:
       path = g_strdup (SCORESDIR);
       break;
-
-#else /* G_OS_WIN32 */
-    case GAMES_RUNTIME_MODULE_DIRECTORY:
-      path = g_win32_get_package_installation_directory_of_module (NULL);
-      break;
-#endif /* !G_OS_WIN32 */
+#endif /* ENABLE_BINRELOC */
 
     default: {
       const DerivedDirectory *base = &derived_directories[directory - GAMES_RUNTIME_FIRST_DERIVED_DIRECTORY];
