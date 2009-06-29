@@ -194,17 +194,26 @@ err:
 #endif
 
   if (error != NULL) {
-    GtkWidget *d;
-    d = gtk_message_dialog_new (GTK_WINDOW (window), 
-                                GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, 
-                                "%s", _("Unable to open help file"));
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (d),
-                                              "%s", error->message);
-    g_signal_connect (d, "response", G_CALLBACK (gtk_widget_destroy), NULL);
-    gtk_window_present (GTK_WINDOW (d));
+    GtkWidget *dialog;
+    dialog = gtk_message_dialog_new (GTK_WINDOW (window), 
+                                     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+                                     "%s", _("Unable to open help file"));
 
+    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                              "%s", error->message);
     g_error_free (error);
+
+#ifdef HAVE_HILDON
+  /* Empty title shows up as "<unnamed>" on maemo */
+  gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
+#else
+  gtk_window_set_title (GTK_WINDOW (dialog), "");
+#endif /* HAVE_HILDON */
+
+    g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
+    
+    gtk_window_present (GTK_WINDOW (dialog));
   }
 
   g_free (help_uri);
