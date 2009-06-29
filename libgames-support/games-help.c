@@ -128,6 +128,8 @@ games_help_display (GtkWidget *window,
 
   screen = gtk_widget_get_screen (GTK_WIDGET (window));
 
+  /* FIXME: do we need to use g_uri_escape_string for doc_module and section? */
+
 #if defined(WITH_HELP_METHOD_GHELP)
   if (section != NULL) {
     help_uri = g_strdup_printf ("ghelp:%s?%s", doc_module, section);
@@ -198,7 +200,8 @@ err:
     dialog = gtk_message_dialog_new (GTK_WINDOW (window), 
                                      GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                      GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
-                                     "%s", _("Unable to open help file"));
+                                     _("Could not show help for “%s”"),
+                                     section ? section : g_get_application_name ());
 
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
                                               "%s", error->message);
