@@ -29,7 +29,6 @@ BUILT_SOURCES = \
 	$(NULL)
 
 libgames_support_la_SOURCES =		\
-	$(BUILT_SOURCES)		\
 	games-card.c			\
 	games-card.h			\
 	games-card-private.h		\
@@ -59,6 +58,8 @@ libgames_support_la_SOURCES =		\
 	games-string-utils.c		\
 	games-string-utils.h		\
 	$(NULL)
+
+nodist_libgames_support_la_SOURCES = $(BUILT_SOURCES)
 
 if !HAVE_HILDON
 libgames_support_la_SOURCES +=		\
