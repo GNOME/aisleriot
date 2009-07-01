@@ -20,14 +20,15 @@
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007-2008.
 # Didier Vidal <didier-devel@melix.net>, 2007.
 # Pierre Lemaire <pierre.lemaire@kamick.org>, 2008.
+# Laurent Coudeur <laurentc@iol.ie>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-19 13:00+0100\n"
-"PO-Revision-Date: 2008-02-19 13:01+0100\n"
-"Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
+"POT-Creation-Date: 2009-07-01 20:28+0200\n"
+"PO-Revision-Date: 2009-07-01 20:43+0200\n"
+"Last-Translator: Laurent Coudeur <laurentc@iol.ie>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +71,7 @@ msgstr ""
 "si on glisse les cartes pour les déplacer."
 
 #: ../aisleriot/aisleriot.schemas.in.h:7 ../gnect/data/gnect.schemas.in.h:11
-#: ../iagno/iagno.schemas.in.h:1
+#: ../gnobots2/properties.c:478 ../iagno/iagno.schemas.in.h:1
 msgid "Sound"
 msgstr "Son"
 
@@ -114,8 +115,8 @@ msgstr "Indique s'il faut afficher la barre d'état"
 msgid "Whether or not to show the toolbar"
 msgstr "Indique s'il faut afficher ou non la barre d'outils"
 
-#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:578
-#: ../aisleriot/window.c:599 ../aisleriot/window.c:607
+#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:580
+#: ../aisleriot/window.c:615 ../aisleriot/window.c:623
 msgid "FreeCell Solitaire"
 msgstr "Solitaire FreeCell"
 
@@ -133,11 +134,11 @@ msgstr ""
 "Aisleriot ne peut charger le fichier « %s ». Vérifiez votre installation "
 "d'Aisleriot."
 
-#: ../aisleriot/game.c:1575
+#: ../aisleriot/game.c:1578
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot ne peut pas trouver la dernière partie que vous avez jouée."
 
-#: ../aisleriot/game.c:1576
+#: ../aisleriot/game.c:1579
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -147,7 +148,7 @@ msgstr ""
 "d'Aisleriot qui ne contient pas la jeu que vous aviez joué en dernier. Le "
 "jeu par défaut, Klondike, est lancé à la place."
 
-#: ../aisleriot/game.c:1934
+#: ../aisleriot/game.c:1937
 msgid "This game does not have hint support yet."
 msgstr "Les suggestions ne sont pas encore implémentées dans ce jeu."
 
@@ -155,17 +156,17 @@ msgstr "Les suggestions ne sont pas encore implémentées dans ce jeu."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../aisleriot/game.c:1968 ../aisleriot/game.c:1996
+#: ../aisleriot/game.c:1971 ../aisleriot/game.c:1999
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Déplacer %s sur %s."
 
-#: ../aisleriot/game.c:2018
+#: ../aisleriot/game.c:2021
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Vous recherchez un %s."
 
-#: ../aisleriot/game.c:2023
+#: ../aisleriot/game.c:2026
 msgid "This game is unable to provide a hint."
 msgstr "Ce jeu ne peut fournir de suggestion."
 
@@ -174,13 +175,13 @@ msgid "Could not show link"
 msgstr "Impossible d'afficher le lien"
 
 #. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../aisleriot/sol.c:303
+#: ../aisleriot/sol.c:310
 #, c-format
 msgid "Help file \"%s.%s\" not found"
 msgstr "Le fichier d'aide « %s.%s » est introuvable"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/sol.c:308 ../aisleriot/sol.c:386 ../aisleriot/window.c:1965
+#: ../aisleriot/sol.c:315 ../aisleriot/sol.c:393 ../aisleriot/window.c:1991
 #: ../dependencies/ggz-gtk/ggzclient.c:124
 #: ../dependencies/ggz-gtk/ggzclient.c:380
 #: ../dependencies/ggz-gtk/ggzclient.c:561
@@ -191,35 +192,35 @@ msgstr "Le fichier d'aide « %s.%s » est introuvable"
 msgid "Error"
 msgstr "Erreur"
 
-#: ../aisleriot/sol.c:367
+#: ../aisleriot/sol.c:374
 #, c-format
 msgid "Could not show help for “%s”"
 msgstr "Impossible d'afficher l'aide de « %s »"
 
-#: ../aisleriot/sol.c:370
+#: ../aisleriot/sol.c:377
 msgid "Could not show Aisleriot help"
 msgstr "Impossible d'afficher l'aide de Aisleriot"
 
-#: ../aisleriot/sol.c:475
+#: ../aisleriot/sol.c:482
 msgid "Select the game type to play"
 msgstr "Sélectionnez le type de jeu à jouer"
 
-#: ../aisleriot/sol.c:475 ../gnobots2/gnobots.c:86 ../gnobots2/gnobots.c:88
+#: ../aisleriot/sol.c:482 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
 #: ../same-gnome/same-gnome.c:127 ../same-gnome/same-gnome.c:129
 msgid "NAME"
 msgstr "NOM"
 
-#: ../aisleriot/sol.c:477
+#: ../aisleriot/sol.c:484
 msgid "Select the game number"
 msgstr "Sélectionnez le numéro du jeu"
 
-#: ../aisleriot/sol.c:477 ../gnomine/gnomine.c:961 ../gtali/gyahtzee.c:110
+#: ../aisleriot/sol.c:484 ../gnomine/gnomine.c:995 ../gtali/gyahtzee.c:110
 #: ../gtali/gyahtzee.c:112 ../gtali/gyahtzee.c:116 ../gtali/gyahtzee.c:118
 #: ../same-gnome/same-gnome.c:131
 msgid "NUMBER"
 msgstr "NOMBRE"
 
-#: ../aisleriot/sol.c:578 ../aisleriot/window.c:608 ../aisleriot/window.c:2794
+#: ../aisleriot/sol.c:580 ../aisleriot/window.c:624 ../aisleriot/window.c:2869
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -237,7 +238,7 @@ msgstr "Couleur inconnue"
 
 #: ../aisleriot/sol.scm.h:2
 msgid "Unknown suit"
-msgstr "Suite inconnue"
+msgstr "Couleur inconnue"
 
 #: ../aisleriot/sol.scm.h:3
 msgid "Unknown value"
@@ -643,367 +644,371 @@ msgid "Bakers Game"
 msgstr "Le jeu des boulangers"
 
 #: ../aisleriot/translatable_game_names.h:9
+msgid "Bear River"
+msgstr "La rivière des ours"
+
+#: ../aisleriot/translatable_game_names.h:10
 msgid "Beleaguered Castle"
 msgstr "Le château assiégé"
 
-#: ../aisleriot/translatable_game_names.h:10
+#: ../aisleriot/translatable_game_names.h:11
 msgid "Block Ten"
 msgstr "Bloc 10"
 
-#: ../aisleriot/translatable_game_names.h:11
+#: ../aisleriot/translatable_game_names.h:12
 msgid "Bristol"
 msgstr "Carte de visite"
 
-#: ../aisleriot/translatable_game_names.h:12
+#: ../aisleriot/translatable_game_names.h:13
 msgid "Camelot"
 msgstr "Camelot"
 
-#: ../aisleriot/translatable_game_names.h:13
+#: ../aisleriot/translatable_game_names.h:14
 msgid "Canfield"
 msgstr "Champ de boîtes"
 
-#: ../aisleriot/translatable_game_names.h:14
+#: ../aisleriot/translatable_game_names.h:15
 msgid "Carpet"
 msgstr "Tapis"
 
-#: ../aisleriot/translatable_game_names.h:15
+#: ../aisleriot/translatable_game_names.h:16
 msgid "Chessboard"
 msgstr "Plateau d'échecs"
 
-#: ../aisleriot/translatable_game_names.h:16
+#: ../aisleriot/translatable_game_names.h:17
 msgid "Clock"
 msgstr "Horloge"
 
-#: ../aisleriot/translatable_game_names.h:17
+#: ../aisleriot/translatable_game_names.h:18
 msgid "Cover"
 msgstr "Couvercle"
 
-#: ../aisleriot/translatable_game_names.h:18
+#: ../aisleriot/translatable_game_names.h:19
 msgid "Cruel"
 msgstr "Cruel"
 
-#: ../aisleriot/translatable_game_names.h:19
+#: ../aisleriot/translatable_game_names.h:20
 msgid "Diamond Mine"
 msgstr "La mine de diamants"
 
-#: ../aisleriot/translatable_game_names.h:20
+#: ../aisleriot/translatable_game_names.h:21
 msgid "Doublets"
 msgstr "Doublets"
 
-#: ../aisleriot/translatable_game_names.h:21
+#: ../aisleriot/translatable_game_names.h:22
 msgid "Eagle Wing"
 msgstr "L'aile de l'aigle"
 
-#: ../aisleriot/translatable_game_names.h:22
+#: ../aisleriot/translatable_game_names.h:23
 msgid "Easthaven"
 msgstr "L'asile de l'est"
 
-#: ../aisleriot/translatable_game_names.h:23
+#: ../aisleriot/translatable_game_names.h:24
 msgid "Eight Off"
 msgstr "Huit en dehors"
 
-#: ../aisleriot/translatable_game_names.h:24
+#: ../aisleriot/translatable_game_names.h:25
 msgid "Elevator"
 msgstr "L'ascenseur"
 
-#: ../aisleriot/translatable_game_names.h:25
+#: ../aisleriot/translatable_game_names.h:26
 msgid "Escalator"
 msgstr "L'escalier roulant"
 
-#: ../aisleriot/translatable_game_names.h:26
+#: ../aisleriot/translatable_game_names.h:27
 msgid "First Law"
 msgstr "Première loi"
 
-#: ../aisleriot/translatable_game_names.h:27
+#: ../aisleriot/translatable_game_names.h:28
 msgid "Fortress"
 msgstr "Forteresse"
 
-#: ../aisleriot/translatable_game_names.h:28
+#: ../aisleriot/translatable_game_names.h:29
 msgid "Fortunes"
 msgstr "Fortunes"
 
-#: ../aisleriot/translatable_game_names.h:29
+#: ../aisleriot/translatable_game_names.h:30
 msgid "Forty Thieves"
 msgstr "Les quarante voleurs"
 
 # Attention, il y a "Fourteen" et "Quatorze", éviter de traduire les
 # deux jeux de la même manière
-#: ../aisleriot/translatable_game_names.h:30
+#: ../aisleriot/translatable_game_names.h:31
 msgid "Fourteen"
 msgstr "Fourteen (14)"
 
-#: ../aisleriot/translatable_game_names.h:31
+#: ../aisleriot/translatable_game_names.h:32
 msgid "Freecell"
 msgstr "Freecell"
 
-#: ../aisleriot/translatable_game_names.h:32
+#: ../aisleriot/translatable_game_names.h:33
 msgid "Gaps"
 msgstr "Gaps"
 
-#: ../aisleriot/translatable_game_names.h:33
+#: ../aisleriot/translatable_game_names.h:34
 msgid "Gay Gordons"
 msgstr "Les joyeux gordons"
 
-#: ../aisleriot/translatable_game_names.h:34
+#: ../aisleriot/translatable_game_names.h:35
+msgid "Giant"
+msgstr "Le géant"
+
+#: ../aisleriot/translatable_game_names.h:36
 msgid "Glenwood"
 msgstr "La Forêt de Glen"
 
-#: ../aisleriot/translatable_game_names.h:35
+#: ../aisleriot/translatable_game_names.h:37
 msgid "Gold Mine"
 msgstr "La mine d'or"
 
-#: ../aisleriot/translatable_game_names.h:36
+#: ../aisleriot/translatable_game_names.h:38
 msgid "Golf"
 msgstr "Golf"
 
-#: ../aisleriot/translatable_game_names.h:37
+#: ../aisleriot/translatable_game_names.h:39
 msgid "Gypsy"
 msgstr "Bohémien"
 
-#: ../aisleriot/translatable_game_names.h:38
+#: ../aisleriot/translatable_game_names.h:40
 msgid "Helsinki"
 msgstr "Helsinki"
 
-#: ../aisleriot/translatable_game_names.h:39
+#: ../aisleriot/translatable_game_names.h:41
 msgid "Hopscotch"
 msgstr "Hopscotch"
 
-#: ../aisleriot/translatable_game_names.h:40
+#: ../aisleriot/translatable_game_names.h:42
 msgid "Isabel"
 msgstr "Isabelle"
 
-#: ../aisleriot/translatable_game_names.h:41
+#: ../aisleriot/translatable_game_names.h:43
 msgid "Jamestown"
 msgstr "Jamestown"
 
-#: ../aisleriot/translatable_game_names.h:42
+#: ../aisleriot/translatable_game_names.h:44
 msgid "Jumbo"
 msgstr "Jumbo"
 
-#: ../aisleriot/translatable_game_names.h:43
+#: ../aisleriot/translatable_game_names.h:45
 msgid "Kansas"
 msgstr "Kansas"
 
-#: ../aisleriot/translatable_game_names.h:44
+#: ../aisleriot/translatable_game_names.h:46
 msgid "King Albert"
 msgstr "Le Roi Albert"
 
-#: ../aisleriot/translatable_game_names.h:45
+#: ../aisleriot/translatable_game_names.h:47
 msgid "Kings Audience"
 msgstr "L'audience des rois"
 
-#: ../aisleriot/translatable_game_names.h:46
+#: ../aisleriot/translatable_game_names.h:48
 msgid "Klondike"
 msgstr "Klondike"
 
-#: ../aisleriot/translatable_game_names.h:47
-msgid "Klondike Three Decks"
-msgstr "Klondike à trois paquets"
-
-#: ../aisleriot/translatable_game_names.h:48
+#: ../aisleriot/translatable_game_names.h:49
 msgid "Labyrinth"
 msgstr "Labyrinthe"
 
-#: ../aisleriot/translatable_game_names.h:49
+#: ../aisleriot/translatable_game_names.h:50
 msgid "Lady Jane"
 msgstr "Mademoiselle Jeanne"
 
-#: ../aisleriot/translatable_game_names.h:50
+#: ../aisleriot/translatable_game_names.h:51
 msgid "Maze"
 msgstr "Le labyrinthe"
 
-#: ../aisleriot/translatable_game_names.h:51
+#: ../aisleriot/translatable_game_names.h:52
 msgid "Monte Carlo"
 msgstr "Monte-Carlo"
 
-#: ../aisleriot/translatable_game_names.h:52
+#: ../aisleriot/translatable_game_names.h:53
 msgid "Napoleons Tomb"
 msgstr "Le tombeau de Napoléon"
 
-#: ../aisleriot/translatable_game_names.h:53
+#: ../aisleriot/translatable_game_names.h:54
 msgid "Neighbor"
 msgstr "Le voisin"
 
-#: ../aisleriot/translatable_game_names.h:54
+#: ../aisleriot/translatable_game_names.h:55
 msgid "Odessa"
 msgstr "Odessa"
 
-#: ../aisleriot/translatable_game_names.h:55
+#: ../aisleriot/translatable_game_names.h:56
 msgid "Osmosis"
 msgstr "Osmose"
 
-#: ../aisleriot/translatable_game_names.h:56
+#: ../aisleriot/translatable_game_names.h:57
 msgid "Peek"
 msgstr "Coup d'œil"
 
-#: ../aisleriot/translatable_game_names.h:57
+#: ../aisleriot/translatable_game_names.h:58
 msgid "Pileon"
 msgstr "Pileon"
 
-#: ../aisleriot/translatable_game_names.h:58
+#: ../aisleriot/translatable_game_names.h:59
 msgid "Plait"
 msgstr "Tresse"
 
-#: ../aisleriot/translatable_game_names.h:59
+#: ../aisleriot/translatable_game_names.h:60
 msgid "Poker"
 msgstr "Poker"
 
-#: ../aisleriot/translatable_game_names.h:60
+#: ../aisleriot/translatable_game_names.h:61
 msgid "Quatorze"
 msgstr "Quatorze"
 
-#: ../aisleriot/translatable_game_names.h:61
+#: ../aisleriot/translatable_game_names.h:62
 msgid "Royal East"
 msgstr "Est Royal"
 
-#: ../aisleriot/translatable_game_names.h:62
+#: ../aisleriot/translatable_game_names.h:63
 msgid "Saratoga"
 msgstr "Saratoga"
 
-#: ../aisleriot/translatable_game_names.h:63
+#: ../aisleriot/translatable_game_names.h:64
 msgid "Scorpion"
 msgstr "Scorpion"
 
-#: ../aisleriot/translatable_game_names.h:64
+#: ../aisleriot/translatable_game_names.h:65
 msgid "Scuffle"
 msgstr "Scuffle"
 
-#: ../aisleriot/translatable_game_names.h:65
+#: ../aisleriot/translatable_game_names.h:66
 msgid "Seahaven"
 msgstr "L'asile maritime"
 
-#: ../aisleriot/translatable_game_names.h:66
+#: ../aisleriot/translatable_game_names.h:67
 msgid "Sir Tommy"
 msgstr "Sir Tommy"
 
-#: ../aisleriot/translatable_game_names.h:67
+#: ../aisleriot/translatable_game_names.h:68
 msgid "Spider"
 msgstr "L'araignée"
 
-#: ../aisleriot/translatable_game_names.h:68
+#: ../aisleriot/translatable_game_names.h:69
 msgid "Spiderette"
 msgstr "La petite araignée"
 
-#: ../aisleriot/translatable_game_names.h:69
+#: ../aisleriot/translatable_game_names.h:70
 msgid "Spider Three Decks"
 msgstr "L'araignée à trois paquets"
 
-#: ../aisleriot/translatable_game_names.h:70
+#: ../aisleriot/translatable_game_names.h:71
 msgid "Straight Up"
 msgstr "Droit debout"
 
-#: ../aisleriot/translatable_game_names.h:71
+#: ../aisleriot/translatable_game_names.h:72
 msgid "Streets And Alleys"
 msgstr "Rue et ruelles"
 
-#: ../aisleriot/translatable_game_names.h:72
+#: ../aisleriot/translatable_game_names.h:73
 msgid "Template"
 msgstr "Modèle"
 
-#: ../aisleriot/translatable_game_names.h:73
+#: ../aisleriot/translatable_game_names.h:74
 msgid "Ten Across"
 msgstr "À travers dix"
 
-#: ../aisleriot/translatable_game_names.h:74
+#: ../aisleriot/translatable_game_names.h:75
 #: ../aisleriot/rules/terrace.scm.h:14
 msgid "Terrace"
 msgstr "Terrasse"
 
-#: ../aisleriot/translatable_game_names.h:75
+#: ../aisleriot/translatable_game_names.h:76
 msgid "Thieves"
 msgstr "Les Voleurs"
 
-#: ../aisleriot/translatable_game_names.h:76
+#: ../aisleriot/translatable_game_names.h:77
 msgid "Thirteen"
 msgstr "Thirteen (13)"
 
-#: ../aisleriot/translatable_game_names.h:77
+#: ../aisleriot/translatable_game_names.h:78
 msgid "Thumb And Pouch"
 msgstr "Pouce et poche"
 
-#: ../aisleriot/translatable_game_names.h:78
+#: ../aisleriot/translatable_game_names.h:79
 msgid "Treize"
 msgstr "Treize"
 
-#: ../aisleriot/translatable_game_names.h:79
+#: ../aisleriot/translatable_game_names.h:80
 msgid "Triple Peaks"
 msgstr "Jeu de tuiles"
 
-#: ../aisleriot/translatable_game_names.h:80
+#: ../aisleriot/translatable_game_names.h:81
 msgid "Union Square"
 msgstr "Union Square"
 
-#: ../aisleriot/translatable_game_names.h:81
+#: ../aisleriot/translatable_game_names.h:82
 msgid "Valentine"
 msgstr "Valentine"
 
-#: ../aisleriot/translatable_game_names.h:82
+#: ../aisleriot/translatable_game_names.h:83
 msgid "Westhaven"
 msgstr "L'asile de l'ouest"
 
-#: ../aisleriot/translatable_game_names.h:83
+#: ../aisleriot/translatable_game_names.h:84
 msgid "Whitehead"
 msgstr "Tête blanche"
 
-#: ../aisleriot/translatable_game_names.h:84
+#: ../aisleriot/translatable_game_names.h:85
 msgid "Will O The Wisp"
 msgstr "La volonté de wisp"
 
-#: ../aisleriot/translatable_game_names.h:85
+#: ../aisleriot/translatable_game_names.h:86
 msgid "Yield"
 msgstr "Rendement"
 
-#: ../aisleriot/translatable_game_names.h:86
+#: ../aisleriot/translatable_game_names.h:87
 msgid "Yukon"
 msgstr "Yukon"
 
-#: ../aisleriot/translatable_game_names.h:87
+#: ../aisleriot/translatable_game_names.h:88
 msgid "Zebra"
 msgstr "Zèbre"
 
-#: ../aisleriot/window.c:273 ../aisleriot/window.c:2492
+#: ../aisleriot/window.c:282 ../aisleriot/window.c:2555
 msgid "Select Game"
 msgstr "Sélectionnez un jeu"
 
-#: ../aisleriot/window.c:277
+#: ../aisleriot/window.c:286
 msgid "_Select"
 msgstr "_Sélectionner"
 
-#: ../aisleriot/window.c:414
+#: ../aisleriot/window.c:428
 msgid "Congratulations, you have won!"
 msgstr "Félicitations, vous avez gagné !"
 
-#: ../aisleriot/window.c:418
+#: ../aisleriot/window.c:432
 msgid "There are no more moves"
 msgstr "Il n'y a plus de déplacement possible"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:431 ../gnometris/blockops.cpp:245
+#: ../aisleriot/window.c:445 ../gnometris/blockops.cpp:863
 msgid "Game Over"
 msgstr "Fin de partie"
 
-#: ../aisleriot/window.c:558 ../gnomine/gnomine.c:434
+#: ../aisleriot/window.c:572 ../gnomine/gnomine.c:444
 #: ../mahjongg/mahjongg.c:906
 msgid "Main game:"
 msgstr "Jeu principal :"
 
-#: ../aisleriot/window.c:566
+#: ../aisleriot/window.c:580
 msgid "Card games:"
 msgstr "Jeux de cartes :"
 
-#: ../aisleriot/window.c:580
+#: ../aisleriot/window.c:594
 msgid "Card themes:"
 msgstr "Thèmes de cartes :"
 
-#: ../aisleriot/window.c:610
+#: ../aisleriot/window.c:626
 msgid "About FreeCell Solitaire"
 msgstr "À propos du solitaire FreeCell"
 
-#: ../aisleriot/window.c:611
+#: ../aisleriot/window.c:627
 msgid "About AisleRiot"
 msgstr "À propos de AisleRiot"
 
-#: ../aisleriot/window.c:617
+#: ../aisleriot/window.c:633
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played.\n"
@@ -1013,12 +1018,12 @@ msgstr ""
 "jouer à de nombreuses parties différentes.\n"
 "AisleRiot fait partie des jeux GNOME."
 
-#: ../aisleriot/window.c:628 ../blackjack/src/menu.cpp:159
-#: ../glchess/src/lib/gtkui/gtkui.py:900 ../glines/glines.c:1221
-#: ../gnect/src/main.c:925 ../gnibbles/main.c:258 ../gnobots2/menu.c:274
-#: ../gnometris/tetris.cpp:1390 ../gnome-sudoku/src/lib/main.py:804
-#: ../gnomine/gnomine.c:474 ../gnotravex/gnotravex.c:1917
-#: ../gnotski/gnotski.c:1540 ../gtali/gyahtzee.c:623 ../iagno/gnothello.c:269
+#: ../aisleriot/window.c:644 ../blackjack/src/menu.cpp:159
+#: ../glchess/src/lib/gtkui/gtkui.py:861 ../glines/glines.c:1221
+#: ../gnect/src/main.c:925 ../gnibbles/main.c:257 ../gnobots2/menu.c:274
+#: ../gnometris/tetris.cpp:1316 ../gnome-sudoku/src/lib/main.py:730
+#: ../gnomine/gnomine.c:484 ../gnotravex/gnotravex.c:1917
+#: ../gnotski/gnotski.c:1540 ../gtali/gyahtzee.c:623 ../iagno/gnothello.c:268
 #: ../mahjongg/mahjongg.c:951 ../same-gnome/ui.c:131
 msgid "translator-credits"
 msgstr ""
@@ -1034,22 +1039,22 @@ msgstr ""
 "Didier Vidal <didier-devel@melix.net>\n"
 "Pierre Lemaire <pierre.lemaire@kamick.org>"
 
-#: ../aisleriot/window.c:632 ../blackjack/src/menu.cpp:158
-#: ../glchess/src/lib/defaults.py.in:62 ../glines/glines.c:1224
-#: ../gnect/src/main.c:922 ../gnibbles/main.c:261 ../gnobots2/menu.c:270
-#: ../gnometris/tetris.cpp:1387 ../gnome-sudoku/src/lib/defaults.py.in:46
-#: ../gnomine/gnomine.c:477 ../gnotravex/gnotravex.c:1920
-#: ../gnotski/gnotski.c:1543 ../gtali/gyahtzee.c:627 ../iagno/gnothello.c:271
+#: ../aisleriot/window.c:648 ../blackjack/src/menu.cpp:158
+#: ../glchess/src/lib/defaults.py.in:58 ../glines/glines.c:1224
+#: ../gnect/src/main.c:922 ../gnibbles/main.c:260 ../gnobots2/menu.c:270
+#: ../gnometris/tetris.cpp:1313 ../gnome-sudoku/src/lib/defaults.py.in:43
+#: ../gnomine/gnomine.c:487 ../gnotravex/gnotravex.c:1920
+#: ../gnotski/gnotski.c:1543 ../gtali/gyahtzee.c:627 ../iagno/gnothello.c:270
 #: ../mahjongg/mahjongg.c:954 ../same-gnome/ui.c:135
 msgid "GNOME Games web site"
 msgstr "Site Web des jeux GNOME"
 
-#: ../aisleriot/window.c:1441
+#: ../aisleriot/window.c:1463
 #, c-format
 msgid "Play “%s”"
 msgstr "Jouer à « %s »"
 
-#: ../aisleriot/window.c:1608
+#: ../aisleriot/window.c:1634
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Afficher les cartes avec le thème « %s »"
@@ -1058,232 +1063,233 @@ msgstr "Afficher les cartes avec le thème « %s »"
 #. * then translate this string to "%I6d", else to "%6d".
 #. * Do not translate it to anything else!
 #.
-#: ../aisleriot/window.c:1703
+#: ../aisleriot/window.c:1729
 #, c-format
 msgctxt "score"
 msgid "%6d"
 msgstr "%6d"
 
-#: ../aisleriot/window.c:1958
+#: ../aisleriot/window.c:1984
 msgid "A scheme exception occurred"
 msgstr "Une exception Scheme s'est produite"
 
-#: ../aisleriot/window.c:1961
+#: ../aisleriot/window.c:1987
 msgid "Please report this bug to the developers."
 msgstr "Veuillez signaler cette anomalie aux développeurs."
 
-#: ../aisleriot/window.c:1973
+#: ../aisleriot/window.c:1999
 msgid "_Don't report"
 msgstr "Ne _pas signaler"
 
-#: ../aisleriot/window.c:1974
+#: ../aisleriot/window.c:2000
 msgid "_Report"
 msgstr "_Signaler"
 
 #. Menu actions
 #. Preferences Dialog: Title of game options tab
-#: ../aisleriot/window.c:2134 ../blackjack/src/blackjack.cpp:331
-#: ../glchess/glade/preferences.glade.h:30 ../glchess/glade/glchess.glade.h:34
-#: ../glines/glines.c:1688 ../gnect/src/main.c:1289 ../gnibbles/main.c:764
-#: ../gnobots2/menu.c:68 ../gnometris/tetris.cpp:119
-#: ../gnome-sudoku/src/lib/main.py:231 ../gnomine/gnomine.c:791
+#: ../aisleriot/window.c:2187 ../blackjack/src/blackjack.cpp:331
+#: ../glchess/data/glchess.ui.h:24 ../glchess/data/preferences.ui.h:24
+#: ../glines/glines.c:1688 ../gnect/src/main.c:1289 ../gnibbles/main.c:763
+#: ../gnobots2/menu.c:68 ../gnometris/tetris.cpp:109
+#: ../gnome-sudoku/src/lib/main.py:243 ../gnomine/gnomine.c:825
 #: ../gnotravex/gnotravex.c:302 ../gnotski/gnotski.c:414
-#: ../gtali/gyahtzee.c:701 ../iagno/gnothello.c:802
+#: ../gtali/gyahtzee.c:701 ../iagno/gnothello.c:812
 #: ../mahjongg/mahjongg.c:1242 ../same-gnome/ui.c:455
 msgid "_Game"
 msgstr "_Jeu"
 
 #. Preferences Dialog: Title of view options tab
-#: ../aisleriot/window.c:2135 ../blackjack/src/blackjack.cpp:332
-#: ../glchess/glade/preferences.glade.h:36 ../glchess/glade/glchess.glade.h:39
-#: ../gnect/src/main.c:1290 ../gnibbles/main.c:765 ../gnobots2/menu.c:69
-#: ../gnome-sudoku/src/lib/main.py:241 ../gnotravex/gnotravex.c:303
+#: ../aisleriot/window.c:2188 ../blackjack/src/blackjack.cpp:332
+#: ../glchess/data/glchess.ui.h:29 ../glchess/data/preferences.ui.h:30
+#: ../gnect/src/main.c:1290 ../gnibbles/main.c:764 ../gnobots2/menu.c:69
+#: ../gnome-sudoku/src/lib/main.py:253 ../gnotravex/gnotravex.c:303
 #: ../gnotski/gnotski.c:415 ../same-gnome/ui.c:456
 msgid "_View"
 msgstr "_Affichage"
 
-#: ../aisleriot/window.c:2136 ../blackjack/src/blackjack.cpp:341
+#: ../aisleriot/window.c:2189 ../blackjack/src/blackjack.cpp:341
 msgid "_Control"
 msgstr "_Mouvement"
 
-#: ../aisleriot/window.c:2138 ../blackjack/src/blackjack.cpp:348
-#: ../glchess/glade/glchess.glade.h:35 ../glines/glines.c:1690
-#: ../gnect/src/main.c:1292 ../gnibbles/main.c:767 ../gnobots2/menu.c:72
-#: ../gnometris/tetris.cpp:121 ../gnome-sudoku/src/lib/main.py:257
-#: ../gnomine/gnomine.c:793 ../gnotravex/gnotravex.c:306
-#: ../gnotski/gnotski.c:416 ../gtali/gyahtzee.c:703 ../iagno/gnothello.c:804
+#: ../aisleriot/window.c:2191 ../blackjack/src/blackjack.cpp:348
+#: ../glchess/data/glchess.ui.h:25 ../glines/glines.c:1690
+#: ../gnect/src/main.c:1292 ../gnibbles/main.c:766 ../gnobots2/menu.c:72
+#: ../gnometris/tetris.cpp:111 ../gnome-sudoku/src/lib/main.py:271
+#: ../gnomine/gnomine.c:827 ../gnotravex/gnotravex.c:306
+#: ../gnotski/gnotski.c:416 ../gtali/gyahtzee.c:703 ../iagno/gnothello.c:814
 #: ../mahjongg/mahjongg.c:1244 ../same-gnome/ui.c:458
 msgid "_Help"
 msgstr "Aid_e"
 
-#. Tooltip for the New Game toolbar button
-#: ../aisleriot/window.c:2143 ../blackjack/src/blackjack.cpp:333
-#: ../glchess/glade/glchess.glade.h:26 ../gnobots2/menu.c:73
+#: ../aisleriot/window.c:2196 ../blackjack/src/blackjack.cpp:333
+#: ../glchess/data/glchess.ui.h:18 ../gnobots2/menu.c:73
 #: ../libgames-support/games-stock.c:54 ../mahjongg/mahjongg.c:1245
 msgid "Start a new game"
 msgstr "Commence une nouvelle partie"
 
-#: ../aisleriot/window.c:2146 ../libgames-support/games-stock.c:58
+#: ../aisleriot/window.c:2199 ../libgames-support/games-stock.c:58
 msgid "Restart the game"
 msgstr "Recommence la partie"
 
-#: ../aisleriot/window.c:2148
+#: ../aisleriot/window.c:2201
 msgid "_Select Game..."
 msgstr "_Sélectionner un jeu..."
 
-#: ../aisleriot/window.c:2150
+#: ../aisleriot/window.c:2203
 msgid "Play a different game"
 msgstr "Joue à un autre jeu"
 
-#: ../aisleriot/window.c:2152
+#: ../aisleriot/window.c:2205
 msgid "_Recently Played"
 msgstr "_Parties récemment jouées"
 
-#: ../aisleriot/window.c:2153
+#: ../aisleriot/window.c:2206
 msgid "S_tatistics"
 msgstr "_Statistiques"
 
-#: ../aisleriot/window.c:2154
+#: ../aisleriot/window.c:2207
 msgid "Show gameplay statistics"
 msgstr "Affiche les statistiques du jeu"
 
-#: ../aisleriot/window.c:2157 ../libgames-support/games-stock.c:63
+#: ../aisleriot/window.c:2210 ../libgames-support/games-stock.c:63
 msgid "Close this window"
 msgstr "Ferme cette fenêtre"
 
-#: ../aisleriot/window.c:2160 ../libgames-support/games-stock.c:61
+#: ../aisleriot/window.c:2213 ../libgames-support/games-stock.c:61
 #: ../mahjongg/mahjongg.c:1253
 msgid "Undo the last move"
 msgstr "Annule le dernier mouvement"
 
-#: ../aisleriot/window.c:2163 ../libgames-support/games-stock.c:57
+#: ../aisleriot/window.c:2216 ../libgames-support/games-stock.c:57
 msgid "Redo the undone move"
 msgstr "Rétablit le mouvement annulé"
 
-#: ../aisleriot/window.c:2166
+#: ../aisleriot/window.c:2219
 msgid "Deal next card or cards"
 msgstr "Distribue la ou les cartes suivantes"
 
-#: ../aisleriot/window.c:2169 ../libgames-support/games-stock.c:50
+#: ../aisleriot/window.c:2222 ../libgames-support/games-stock.c:50
 msgid "Get a hint for your next move"
 msgstr "Affiche une astuce pour votre prochain coup"
 
-#: ../aisleriot/window.c:2172
+#: ../aisleriot/window.c:2225
 msgid "View help for Aisleriot"
 msgstr "Affiche l'aide de Aisleriot"
 
-#: ../aisleriot/window.c:2176 ../libgames-support/games-stock.c:47
+#: ../aisleriot/window.c:2229 ../libgames-support/games-stock.c:47
 msgid "View help for this game"
 msgstr "Affiche l'aide pour ce jeu"
 
-#: ../aisleriot/window.c:2179 ../libgames-support/games-stock.c:62
+#: ../aisleriot/window.c:2232 ../libgames-support/games-stock.c:62
 msgid "About this game"
 msgstr "À propos de ce jeu"
 
-#: ../aisleriot/window.c:2182
+#: ../aisleriot/window.c:2235
 msgid "Install card themes…"
 msgstr "Installer des thèmes de cartes..."
 
-#: ../aisleriot/window.c:2183
+#: ../aisleriot/window.c:2236
 msgid "Install new card themes from the distribution packages repositories"
 msgstr ""
 "Installe de nouveaux thèmes de cartes à partir des dépôts de paquets de la "
 "distribution"
 
-#: ../aisleriot/window.c:2192
+#: ../aisleriot/window.c:2245
 msgid "_Card Style"
 msgstr "Style des _cartes"
 
-#: ../aisleriot/window.c:2232 ../blackjack/src/blackjack.cpp:354
+#: ../aisleriot/window.c:2285 ../blackjack/src/blackjack.cpp:354
 #: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
 msgid "_Toolbar"
 msgstr "Barre d'_outils"
 
-#. Preferences Dialog: Tooltip for Show Toolbar option
-#: ../aisleriot/window.c:2233 ../glchess/glade/preferences.glade.h:20
+#: ../aisleriot/window.c:2286 ../glchess/data/preferences.ui.h:17
 #: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
 msgid "Show or hide the toolbar"
 msgstr "Affiche ou masque la barre d'outils"
 
-#: ../aisleriot/window.c:2237
+#: ../aisleriot/window.c:2291
 msgid "_Statusbar"
 msgstr "_Barre d'état"
 
-#: ../aisleriot/window.c:2238
+#: ../aisleriot/window.c:2292
 msgid "Show or hide statusbar"
 msgstr "Affiche ou masque la barre d'état"
 
-#: ../aisleriot/window.c:2242 ../gnotravex/gnotravex.c:351
+#: ../aisleriot/window.c:2297 ../gnotravex/gnotravex.c:351
 msgid "_Click to Move"
 msgstr "_Cliquer pour déplacer"
 
-#: ../aisleriot/window.c:2243
+#: ../aisleriot/window.c:2298
 msgid "Pick up and drop cards by clicking"
 msgstr "Permet de choisir et de placer des cartes en cliquant"
 
-#. not active by default
-#: ../aisleriot/window.c:2246
+#: ../aisleriot/window.c:2302
 msgid "_Sound"
 msgstr "_Son"
 
-#: ../aisleriot/window.c:2247
+#: ../aisleriot/window.c:2303
 msgid "Whether or not to play event sounds"
 msgstr "Indique s'il faut jouer ou non les sons d'événements"
 
-#: ../aisleriot/window.c:2251
+#: ../aisleriot/window.c:2308
 msgid "_Animations"
 msgstr "_Animations"
 
-#: ../aisleriot/window.c:2252
+#: ../aisleriot/window.c:2309
 msgid "Whether or not to animate card moves"
 msgstr "Indique s'il faut animer ou non les mouvements de cartes"
 
 #. Add "Highscore" label
-#: ../aisleriot/window.c:2519 ../dependencies/ggz-gtk/playerinfo.c:241
+#: ../aisleriot/window.c:2582 ../dependencies/ggz-gtk/playerinfo.c:241
 #: ../glines/glines.c:1900 ../gnobots2/statusbar.c:67
-#: ../gnometris/scoreframe.cpp:47 ../gnomine/gnomine.c:437
+#: ../gnometris/scoreframe.cpp:47 ../gnomine/gnomine.c:447
 msgid "Score:"
 msgstr "Score :"
 
-#: ../aisleriot/window.c:2531 ../gnotravex/gnotravex.c:1382
+#: ../aisleriot/window.c:2594 ../gnotravex/gnotravex.c:1382
 #: ../mahjongg/mahjongg.c:1463
 msgid "Time:"
 msgstr "Durée :"
 
-#: ../aisleriot/window.c:2854
+#: ../aisleriot/window.c:2929
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Impossible de lancer le jeu « %s »"
 
-#: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/canfield.scm.h:2
-#: ../aisleriot/rules/chessboard.scm.h:2 ../aisleriot/rules/eagle_wing.scm.h:2
-#: ../aisleriot/rules/glenwood.scm.h:2 ../aisleriot/rules/kansas.scm.h:2
-#: ../aisleriot/rules/lady_jane.scm.h:2 ../aisleriot/rules/plait.scm.h:2
-#: ../aisleriot/rules/royal_east.scm.h:2 ../aisleriot/rules/terrace.scm.h:1
+#: ../aisleriot/rules/agnes.scm.h:1 ../aisleriot/rules/bear_river.scm.h:2
+#: ../aisleriot/rules/canfield.scm.h:2 ../aisleriot/rules/chessboard.scm.h:2
+#: ../aisleriot/rules/eagle_wing.scm.h:2 ../aisleriot/rules/glenwood.scm.h:2
+#: ../aisleriot/rules/kansas.scm.h:2 ../aisleriot/rules/lady_jane.scm.h:2
+#: ../aisleriot/rules/plait.scm.h:2 ../aisleriot/rules/royal_east.scm.h:2
+#: ../aisleriot/rules/terrace.scm.h:1
 msgid "Base Card: Ace"
 msgstr "Carte de base : As"
 
-#: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/canfield.scm.h:3
-#: ../aisleriot/rules/chessboard.scm.h:3 ../aisleriot/rules/eagle_wing.scm.h:3
-#: ../aisleriot/rules/glenwood.scm.h:3 ../aisleriot/rules/kansas.scm.h:3
-#: ../aisleriot/rules/lady_jane.scm.h:3 ../aisleriot/rules/plait.scm.h:3
-#: ../aisleriot/rules/royal_east.scm.h:3 ../aisleriot/rules/terrace.scm.h:2
+#: ../aisleriot/rules/agnes.scm.h:2 ../aisleriot/rules/bear_river.scm.h:3
+#: ../aisleriot/rules/canfield.scm.h:3 ../aisleriot/rules/chessboard.scm.h:3
+#: ../aisleriot/rules/eagle_wing.scm.h:3 ../aisleriot/rules/glenwood.scm.h:3
+#: ../aisleriot/rules/kansas.scm.h:3 ../aisleriot/rules/lady_jane.scm.h:3
+#: ../aisleriot/rules/plait.scm.h:3 ../aisleriot/rules/royal_east.scm.h:3
+#: ../aisleriot/rules/terrace.scm.h:2
 msgid "Base Card: Jack"
 msgstr "Carte de base : Valet"
 
-#: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/canfield.scm.h:4
-#: ../aisleriot/rules/chessboard.scm.h:4 ../aisleriot/rules/eagle_wing.scm.h:4
-#: ../aisleriot/rules/glenwood.scm.h:4 ../aisleriot/rules/kansas.scm.h:4
-#: ../aisleriot/rules/lady_jane.scm.h:4 ../aisleriot/rules/plait.scm.h:4
-#: ../aisleriot/rules/royal_east.scm.h:4 ../aisleriot/rules/terrace.scm.h:3
+#: ../aisleriot/rules/agnes.scm.h:3 ../aisleriot/rules/bear_river.scm.h:4
+#: ../aisleriot/rules/canfield.scm.h:4 ../aisleriot/rules/chessboard.scm.h:4
+#: ../aisleriot/rules/eagle_wing.scm.h:4 ../aisleriot/rules/glenwood.scm.h:4
+#: ../aisleriot/rules/kansas.scm.h:4 ../aisleriot/rules/lady_jane.scm.h:4
+#: ../aisleriot/rules/plait.scm.h:4 ../aisleriot/rules/royal_east.scm.h:4
+#: ../aisleriot/rules/terrace.scm.h:3
 msgid "Base Card: King"
 msgstr "Carte de base : Roi"
 
-#: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/canfield.scm.h:5
-#: ../aisleriot/rules/chessboard.scm.h:5 ../aisleriot/rules/eagle_wing.scm.h:5
-#: ../aisleriot/rules/glenwood.scm.h:5 ../aisleriot/rules/kansas.scm.h:5
-#: ../aisleriot/rules/lady_jane.scm.h:5 ../aisleriot/rules/plait.scm.h:5
-#: ../aisleriot/rules/royal_east.scm.h:5 ../aisleriot/rules/terrace.scm.h:4
+#: ../aisleriot/rules/agnes.scm.h:4 ../aisleriot/rules/bear_river.scm.h:5
+#: ../aisleriot/rules/canfield.scm.h:5 ../aisleriot/rules/chessboard.scm.h:5
+#: ../aisleriot/rules/eagle_wing.scm.h:5 ../aisleriot/rules/glenwood.scm.h:5
+#: ../aisleriot/rules/kansas.scm.h:5 ../aisleriot/rules/lady_jane.scm.h:5
+#: ../aisleriot/rules/plait.scm.h:5 ../aisleriot/rules/royal_east.scm.h:5
+#: ../aisleriot/rules/terrace.scm.h:4
 msgid "Base Card: Queen"
 msgstr "Carte de base : Dame"
 
@@ -1395,6 +1401,21 @@ msgstr "un emplacement vide dans le tableau"
 msgid "an empty foundation"
 msgstr "une fondation vide"
 
+#: ../aisleriot/rules/bear_river.scm.h:1 ../aisleriot/rules/canfield.scm.h:1
+#: ../aisleriot/rules/chessboard.scm.h:1 ../aisleriot/rules/eagle_wing.scm.h:1
+#: ../aisleriot/rules/glenwood.scm.h:1 ../aisleriot/rules/kansas.scm.h:1
+#: ../aisleriot/rules/plait.scm.h:1
+msgid "Base Card: "
+msgstr "Carte de base : "
+
+#: ../aisleriot/rules/bear_river.scm.h:6
+msgid "Move something onto an empty right-hand tableau slot"
+msgstr "Déplacez quelque chose dans un emplacement vide du tableau de droite"
+
+#: ../aisleriot/rules/bear_river.scm.h:7
+msgid "an empty foundation slot"
+msgstr "un emplacement vide dans les fondations"
+
 #: ../aisleriot/rules/camelot.scm.h:3
 msgid "an empty bottom slot"
 msgstr "un emplacement inférieur vide"
@@ -1428,12 +1449,6 @@ msgstr "un emplacement supérieur vide"
 #: ../aisleriot/rules/treize.scm.h:3 ../aisleriot/rules/yield.scm.h:3
 msgid "itself"
 msgstr "lui-même"
-
-#: ../aisleriot/rules/canfield.scm.h:1 ../aisleriot/rules/chessboard.scm.h:1
-#: ../aisleriot/rules/eagle_wing.scm.h:1 ../aisleriot/rules/glenwood.scm.h:1
-#: ../aisleriot/rules/kansas.scm.h:1 ../aisleriot/rules/plait.scm.h:1
-msgid "Base Card: "
-msgstr "Carte de base : "
 
 #: ../aisleriot/rules/canfield.scm.h:7 ../aisleriot/rules/eagle_wing.scm.h:7
 #: ../aisleriot/rules/glenwood.scm.h:8 ../aisleriot/rules/plait.scm.h:7
@@ -1687,6 +1702,42 @@ msgstr "Placez le ~a près de ~a."
 msgid "Randomly Placed Gaps on Redeal"
 msgstr "Lacunes placées aléatoirement à la redistribution"
 
+#: ../aisleriot/rules/giant.scm.h:1
+msgid "Alternating colors"
+msgstr "Couleurs alternées"
+
+#: ../aisleriot/rules/giant.scm.h:2
+msgid "Deal a row"
+msgstr "Distribuez une rangée"
+
+#: ../aisleriot/rules/giant.scm.h:3
+msgid "Deals left: ~a"
+msgstr "Distributions restantes : ~a"
+
+#: ../aisleriot/rules/giant.scm.h:4
+msgid "Same suit"
+msgstr "Même couleur"
+
+#: ../aisleriot/rules/giant.scm.h:5
+msgid "Try dealing a row of cards"
+msgstr "Essayez de distribuer une rangée de cartes"
+
+#: ../aisleriot/rules/giant.scm.h:6
+msgid "Try moving a card to the reserve"
+msgstr "Essayez de déplacer les cartes vers les réserves"
+
+#: ../aisleriot/rules/giant.scm.h:7 ../aisleriot/rules/spider.scm.h:7
+msgid "Try moving card piles around"
+msgstr "Essayez de déplacer les cartes de la pile ailleurs"
+
+#: ../aisleriot/rules/giant.scm.h:8
+msgid "an empty foundation place"
+msgstr "un emplacement vide dans les fondations"
+
+#: ../aisleriot/rules/giant.scm.h:9
+msgid "an empty tableau place"
+msgstr "un emplacement vide dans le tableau"
+
 #: ../aisleriot/rules/glenwood.scm.h:7
 msgid "Move a card from the reserve on to the empty tableau slot"
 msgstr "Déplacez une carte de la réserve vers un emplacement vide du tableau"
@@ -1763,7 +1814,7 @@ msgid ""
 "Aim to place the suits in the order which fits the current layout most "
 "naturally."
 msgstr ""
-"Essayez de placer les suites dans l'ordre qui correspond le plus "
+"Essayez de placer les couleurs dans l'ordre qui correspond le plus "
 "naturellement au modèle actuel."
 
 #: ../aisleriot/rules/osmosis.scm.h:2
@@ -1819,11 +1870,11 @@ msgstr "une fondation vide"
 
 #: ../aisleriot/rules/spider.scm.h:2
 msgid "Four Suits"
-msgstr "Quatre suites"
+msgstr "Quatre couleurs"
 
 #: ../aisleriot/rules/spider.scm.h:3
 msgid "One Suit"
-msgstr "Une suite"
+msgstr "Une couleur"
 
 #: ../aisleriot/rules/spider.scm.h:4
 msgid "Place something on empty slot"
@@ -1833,13 +1884,15 @@ msgstr "Mettez une carte sur un emplacement vide"
 msgid "Please fill in empty pile first."
 msgstr "Remplissez l'emplacement vide d'abord."
 
-#: ../aisleriot/rules/spider.scm.h:7
-msgid "Try moving card piles around"
-msgstr "Essayez de déplacer les cartes de la pile ailleurs"
-
 #: ../aisleriot/rules/spider.scm.h:8
 msgid "Two Suits"
-msgstr "Deux suites"
+msgstr "Deux couleurs"
+
+#: ../aisleriot/rules/spider.scm.h:9
+msgid "Undo until there are enough cards to fill all tableau piles"
+msgstr ""
+"Annulez jusqu'à ce qu'il y ait assez de cartes pour remplir toutes les "
+"piles du tableau"
 
 #: ../aisleriot/rules/ten_across.scm.h:1
 msgid "Allow temporary spots use"
@@ -1977,10 +2030,10 @@ msgstr "Recommence la partie"
 msgid "Show a hint"
 msgstr "Affiche une astuce"
 
-#: ../blackjack/src/blackjack.cpp:337 ../glchess/glade/glchess.glade.h:37
-#: ../glines/glines.c:1689 ../gnect/src/main.c:1291 ../gnibbles/main.c:766
-#: ../gnobots2/menu.c:71 ../gnometris/tetris.cpp:120 ../gnomine/gnomine.c:792
-#: ../gtali/gyahtzee.c:702 ../iagno/gnothello.c:803
+#: ../blackjack/src/blackjack.cpp:337 ../glchess/data/glchess.ui.h:27
+#: ../glines/glines.c:1689 ../gnect/src/main.c:1291 ../gnibbles/main.c:765
+#: ../gnobots2/menu.c:71 ../gnometris/tetris.cpp:110 ../gnomine/gnomine.c:826
+#: ../gtali/gyahtzee.c:702 ../iagno/gnothello.c:813
 #: ../mahjongg/mahjongg.c:1243
 msgid "_Settings"
 msgstr "_Paramètres"
@@ -2034,7 +2087,7 @@ msgstr "_Couper la main"
 msgid "Split cards in two new hands"
 msgstr "Coupe les cartes en deux nouvelles mains"
 
-#: ../blackjack/src/blackjack.cpp:354 ../gnobots2/gnobots2.schemas.in.h:23
+#: ../blackjack/src/blackjack.cpp:354 ../gnobots2/gnobots2.schemas.in.h:21
 msgid "Show toolbar"
 msgstr "Afficher la barre d'outils"
 
@@ -2070,9 +2123,9 @@ msgid ""
 "an ace. If the dealer has a natural 21 then the player is paid double."
 msgstr ""
 "L'assurance est une mise additionnelle de 50 % de la mise initiale si vous "
-"pensez que le donneur a un 21 naturel (c-à-d un blackjack). Cette possibilité "
-"est offerte quand la carte découverte du donneur est un as. Si la banque a "
-"un 21 naturel alors le joueur est payé double."
+"pensez que le donneur a un 21 naturel (c-à-d un blackjack). Cette "
+"possibilité est offerte quand la carte découverte du donneur est un as. Si "
+"la banque a un 21 naturel alors le joueur est payé double."
 
 #: ../blackjack/src/dialog.cpp:100
 msgid "Set your wager and click in the white outline to deal a new hand."
@@ -2092,7 +2145,7 @@ msgstr "Préférences de Blackjack"
 
 #: ../blackjack/src/dialog.cpp:241 ../dependencies/ggz-gtk/client.c:953
 #: ../gnect/src/prefs.c:301 ../gnibbles/preferences.c:253
-#: ../gnobots2/properties.c:519 ../gnometris/tetris.cpp:632
+#: ../gnobots2/properties.c:491 ../gnometris/tetris.cpp:597
 #: ../iagno/properties.c:416
 msgid "Game"
 msgstr "Jeu"
@@ -2201,11 +2254,11 @@ msgstr "Cliquez pour finir d'ajouter des cartes à votre main"
 msgid "Click to deal a new hand"
 msgstr "Cliquez pour obtenir une nouvelle main"
 
-#: ../blackjack/src/game.cpp:402
+#: ../blackjack/src/game.cpp:394
 msgid "Blackjack can't load the requested file"
 msgstr "Blackjack ne peut pas charger le fichier demandé"
 
-#: ../blackjack/src/game.cpp:404
+#: ../blackjack/src/game.cpp:396
 msgid "Please check your Blackjack installation"
 msgstr "Vérifiez votre installation de Blackjack"
 
@@ -2374,7 +2427,7 @@ msgstr "Erreur lors de l'entrée dans le salon : %s"
 #. Translators: Add Network Profile Dialog: Connect to the GGZ Gaming Zone server (the default)
 #: ../dependencies/ggz-gtk/ggzclient.c:400
 #: ../dependencies/ggz-gtk/client.c:1430
-#: ../glchess/src/lib/gtkui/network.py:27
+#: ../glchess/src/lib/gtkui/network.py:28
 msgid "GGZ Gaming Zone"
 msgstr "Zone de jeu GGZ"
 
@@ -2432,7 +2485,7 @@ msgstr "Vous avez été viré de la table par %s."
 msgid "You have left the table."
 msgstr "Vous avez quitté la table."
 
-#: ../dependencies/ggz-gtk/ggzclient.c:624 ../gnibbles/main.c:694
+#: ../dependencies/ggz-gtk/ggzclient.c:624 ../gnibbles/main.c:693
 #, c-format
 msgid "The game is over."
 msgstr "Le jeu est terminé."
@@ -2547,7 +2600,7 @@ msgid "Login failed for unknown reason: %s"
 msgstr "Connexion impossible pour une raison inconnue : %s"
 
 #: ../dependencies/ggz-gtk/login.c:336 ../dependencies/ggz-gtk/client.c:307
-#: ../libgames-support/games-help.c:57
+#: ../libgames-support/games-help.c:61
 msgid "Unable to open help file"
 msgstr "Impossible d'ouvrir le fichier d'aide"
 
@@ -2934,7 +2987,7 @@ msgstr "Non implémenté"
 
 #. Translators: Available GGZ Tables: Table description column title
 #: ../dependencies/ggz-gtk/types.c:183 ../dependencies/ggz-gtk/tablelist.c:202
-#: ../glchess/src/lib/gtkui/network.py:190
+#: ../glchess/src/lib/gtkui/network.py:192
 msgid "Description"
 msgstr "Description"
 
@@ -3086,7 +3139,7 @@ msgstr "Pas de description disponible."
 
 #. Translators: Available GGZ Tables: Seat status column title
 #: ../dependencies/ggz-gtk/tablelist.c:197
-#: ../glchess/src/lib/gtkui/network.py:185
+#: ../glchess/src/lib/gtkui/network.py:187
 msgid "Seats"
 msgstr "Sièges"
 
@@ -3527,7 +3580,7 @@ msgstr "Afficher aucun"
 
 #. Options
 #: ../dependencies/ggz-gtk/props.c:1493 ../gnibbles/preferences.c:310
-#: ../gnibbles/preferences.c:455 ../gnobots2/properties.c:474
+#: ../gnibbles/preferences.c:455 ../gnobots2/properties.c:455
 #: ../iagno/properties.c:567
 msgid "Options"
 msgstr "Options"
@@ -3717,12 +3770,14 @@ msgstr ""
 #: ../glchess/data/glchess.schemas.in.h:26
 msgid ""
 "The side of the board that is in the foreground, either 'white', 'black', "
-"'current' (the current player) or 'human' (the side of the current human "
-"player)"
+"'current' (the current player), 'human' (the side of the current human "
+"player) or 'facetoface' (suitable for players on each side of screen, e.g. "
+"handhelds)"
 msgstr ""
-"Le côté du plateau devant être au premier plan. La valeur peut être "
-"« white » (blancs), « black » (noirs), « current » (le joueur actuel) ou "
-"« human » (le côté correspondant au joueur humain actuel)."
+"Le côté du plateau devant être au premier plan, soit « white » (blanc), "
+"« black » (noir), « current » (le joueur actuel), « human » (le côté "
+"correspondant au joueur humain actuel) ou « facetoface » (face à face, pour "
+"des joueurs de chaque côté de l'écran, par ex. pour les ordinateurs de poche)"
 
 #: ../glchess/data/glchess.schemas.in.h:27
 msgid "The width of the main window in pixels."
@@ -3732,153 +3787,288 @@ msgstr "La largeur de la fenêtre principale en pixels."
 msgid "The width of the window"
 msgstr "La largeur de la fenêtre"
 
-#. Title of save game dialog
-#: ../glchess/glade/save_game.glade.h:2
-msgid "Save Chess Game"
-msgstr "Enregistrer la partie d'échecs"
+#. Preferences Dialog: Check box for selecting if 3D view is available
+#: ../glchess/data/glchess.ui.h:1 ../glchess/data/preferences.ui.h:2
+msgid "3_D Chess View"
+msgstr "Affichage 3_D"
+
+#: ../glchess/data/glchess.ui.h:2
+msgid "Claim _Draw"
+msgstr "Proposer le _nul"
+
+#: ../glchess/data/glchess.ui.h:3
+msgid "Load a saved game"
+msgstr "Charger une partie enregistrée"
+
+#. The title of the log dialaog
+#: ../glchess/data/glchess.ui.h:5
+msgid "Logs"
+msgstr "Journal"
+
+#. The Network Game toolbar button
+#: ../glchess/data/glchess.ui.h:7 ../libgames-support/games-stock.c:334
+msgid "Network _Game"
+msgstr "_Partie en réseau"
+
+#. The New Game toolbar button
+#. Title of the new game dialog
+#: ../glchess/data/glchess.ui.h:9 ../glchess/data/new_game.ui.h:13
+#: ../libgames-support/games-scores-dialog.c:438
+msgid "New Game"
+msgstr "Nouvelle partie"
+
+#. The tooltip for the Resign toolbar button
+#: ../glchess/data/glchess.ui.h:11
+msgid "Resign"
+msgstr "Abandonner"
+
+#: ../glchess/data/glchess.ui.h:12
+msgid "Rewind to the game start"
+msgstr "Revenir au début de la partie"
+
+#: ../glchess/data/glchess.ui.h:13
+msgid "Save the current game"
+msgstr "Enregistrer la partie actuelle"
+
+#: ../glchess/data/glchess.ui.h:14
+msgid "Show _Logs"
+msgstr "Afficher le _journal"
+
+#: ../glchess/data/glchess.ui.h:15
+msgid "Show the current move"
+msgstr "Afficher le coup en cours"
+
+#: ../glchess/data/glchess.ui.h:16
+msgid "Show the next move"
+msgstr "Afficher le coup suivant"
+
+#: ../glchess/data/glchess.ui.h:17
+msgid "Show the previous move"
+msgstr "Afficher le coup précédent"
+
+#: ../glchess/data/glchess.ui.h:19 ../libgames-support/games-stock.c:52
+msgid "Start a new multiplayer network game"
+msgstr "Commencer une nouvelle partie multi-joueurs en réseau"
+
+#. Message displayed in log window when no logs are present
+#: ../glchess/data/glchess.ui.h:21
+msgid "There are no active logs."
+msgstr "Pas de journal actif."
+
+#: ../glchess/data/glchess.ui.h:22
+msgid "Undo Move"
+msgstr "Annuler le coup"
+
+#: ../glchess/data/glchess.ui.h:23 ../gnome-sudoku/src/lib/main.py:275
+#: ../libgames-support/games-stock.c:318
+msgid "_Contents"
+msgstr "_Sommaire"
+
+#: ../glchess/data/glchess.ui.h:26
+msgid "_Resign"
+msgstr "_Abandonner"
+
+#: ../glchess/data/glchess.ui.h:28 ../libgames-support/games-stock.c:330
+msgid "_Undo Move"
+msgstr "A_nnuler le déplacement"
+
+#. Title of load game dialog
+#: ../glchess/data/load_game.ui.h:2
+msgid "Load Chess Game"
+msgstr "Charger une partie d'échecs"
 
 #. Log window: Title above data being logged
-#: ../glchess/glade/log.glade.h:2
+#: ../glchess/data/log.ui.h:2
 msgid "Communication:"
 msgstr "Communication :"
 
 #. Log window: Label before name of executable being logged
-#: ../glchess/glade/log.glade.h:4
+#: ../glchess/data/log.ui.h:4
 msgid "Executable:"
 msgstr "Exécutable :"
 
 #. Log window: Label before name of player being logged
-#: ../glchess/glade/log.glade.h:6
+#: ../glchess/data/log.ui.h:6
 msgid "Playing as:"
 msgstr "Joue en tant que :"
 
 #. Network Game Dialog: Title above the game settings. Do not translate the <b> tag.
-#: ../glchess/glade/network_game.glade.h:2
+#: ../glchess/data/network_game.ui.h:2
 msgid "<b>Game</b>"
 msgstr "<b>Partie</b>"
 
 #. Network Game Dialog: Title above room list. Do not translate the <b> tag.
-#: ../glchess/glade/network_game.glade.h:4
+#: ../glchess/data/network_game.ui.h:4
 msgid "<b>Rooms</b>"
 msgstr "<b>Salles</b>"
 
 #. Network Game Dialog: Title above the server settings. Do not translate the <b> tag.
-#: ../glchess/glade/network_game.glade.h:6
+#: ../glchess/data/network_game.ui.h:6
 msgid "<b>Server</b>"
 msgstr "<b>Serveur</b>"
 
 #. Network Game Dialog: Title above the chat text. Do not translate the <b> tag.
-#: ../glchess/glade/network_game.glade.h:8
+#: ../glchess/data/network_game.ui.h:8
 msgid "<b>Status/_Chat</b>"
 msgstr "<b>État/_Discussions</b>"
 
-#: ../glchess/glade/network_game.glade.h:9
-msgid "Add Account"
-msgstr "Ajouter un compte"
-
 #. Title of network game dialog
-#: ../glchess/glade/network_game.glade.h:11
+#: ../glchess/data/network_game.ui.h:10
 msgid "Join Game"
 msgstr "Rejoindre la partie"
 
-#. Add Network Profile Dialog: Label beside username entry
-#: ../glchess/glade/network_game.glade.h:13
-msgid "User _Name:"
-msgstr "_Nom d'utilisateur :"
-
-#. Add Network Profile Dialog: Button to accept values and add profile
-#: ../glchess/glade/network_game.glade.h:15
-msgid "_Add Account"
-msgstr "_Ajouter le compte"
-
-#. Add Network Profile Dialog: Label beside custom hostname entry
-#: ../glchess/glade/network_game.glade.h:17
-msgid "_Host:"
-msgstr "_Hôte :"
-
 #. Network Game Dialog: Button to join a table
-#: ../glchess/glade/network_game.glade.h:19
+#: ../glchess/data/network_game.ui.h:12
 msgid "_Join"
 msgstr "Re_joindre"
 
 #. Network Game Dialog: Leave table button
-#: ../glchess/glade/network_game.glade.h:21
+#: ../glchess/data/network_game.ui.h:14
 msgid "_Leave"
 msgstr "_Quitter"
 
-#. Add Network Profile Dialog: Label beside custom port entry
-#: ../glchess/glade/network_game.glade.h:23
-msgid "_Port:"
-msgstr "_Port :"
-
 #. Network Game Dialog: Label before the server profile combo box
-#: ../glchess/glade/network_game.glade.h:25
+#: ../glchess/data/network_game.ui.h:16
 msgid "_Profile:"
 msgstr "_Profil :"
 
+#: ../glchess/data/network_new_server.ui.h:1
+msgid "Add Account"
+msgstr "Ajouter un compte"
+
+#. Add Network Profile Dialog: Label beside username entry
+#: ../glchess/data/network_new_server.ui.h:3
+msgid "User _Name:"
+msgstr "_Nom d'utilisateur :"
+
+#. Add Network Profile Dialog: Button to accept values and add profile
+#: ../glchess/data/network_new_server.ui.h:5
+msgid "_Add Account"
+msgstr "_Ajouter le compte"
+
+#. Add Network Profile Dialog: Label beside custom hostname entry
+#: ../glchess/data/network_new_server.ui.h:7
+msgid "_Host:"
+msgstr "_Hôte :"
+
+#. Add Network Profile Dialog: Label beside custom port entry
+#: ../glchess/data/network_new_server.ui.h:9
+msgid "_Port:"
+msgstr "_Port :"
+
 #. Add Network Profile Dialog: Label beside server combo
-#: ../glchess/glade/network_game.glade.h:27
+#: ../glchess/data/network_new_server.ui.h:11
 msgid "_Server:"
 msgstr "_Serveur :"
 
-#. Preferences Dialog: Check box for selecting if 3D view is available
-#: ../glchess/glade/preferences.glade.h:2 ../glchess/glade/glchess.glade.h:1
-msgid "3_D Chess View"
-msgstr "Affichage 3_D"
+#. New Game Dialog: Title above difficulty options
+#: ../glchess/data/new_game.ui.h:2
+msgid "<b>Difficulty</b>"
+msgstr "<b>Difficulté</b>"
+
+#. New Game Dialog: Title above the game properties widgets
+#: ../glchess/data/new_game.ui.h:4
+msgid "<b>Game Properties</b>"
+msgstr "<b>Propriétés de la partie</b>"
+
+#. New Game Dialog: Title above player options
+#: ../glchess/data/new_game.ui.h:6
+msgid "<b>Players</b>"
+msgstr "<b>Joueurs</b>"
+
+#. New Game Dialog: Label before black player difficulty
+#: ../glchess/data/new_game.ui.h:8
+msgid "B_lack:"
+msgstr "_Noirs :"
+
+#: ../glchess/data/new_game.ui.h:9
+msgid "Enter the title for this game"
+msgstr "Saisissez le titre de cette partie"
+
+#. New Game Dialog: Label before game timer settings
+#: ../glchess/data/new_game.ui.h:11
+msgid "Move _Time:"
+msgstr "_Durée de jeu :"
+
+#: ../glchess/data/new_game.ui.h:14
+msgid "Start the game. The game can be started once all fields are complete"
+msgstr ""
+"Démarrer la partie. La partie peut être démarrée lorsque tous les champs ont "
+"été remplis"
+
+#. New Game Dialog: Label before white player difficulty
+#: ../glchess/data/new_game.ui.h:16
+msgid "W_hite:"
+msgstr "_Blancs :"
+
+#. New Game Dialog: Label before black player combo box
+#: ../glchess/data/new_game.ui.h:18
+msgid "_Black:"
+msgstr "_Noirs :"
+
+#. New Game Dialog: Label before the game name entry
+#: ../glchess/data/new_game.ui.h:20
+msgid "_Game name:"
+msgstr "Nom de _partie :"
+
+#. New Game Dialog: Button to start a new game
+#: ../glchess/data/new_game.ui.h:22
+msgid "_Start"
+msgstr "_Commencer"
+
+#. New Game Dialog: Label before white player combo box
+#: ../glchess/data/new_game.ui.h:24
+msgid "_White:"
+msgstr "Bl_ancs :"
 
 #. Preferences Dialog: Label before board orientation combo box
-#: ../glchess/glade/preferences.glade.h:4
+#: ../glchess/data/preferences.ui.h:4
 msgid "Board Orientation:"
 msgstr "Orientation du plateau :"
 
 #. Preferences Dialog: Label before move format combo box
-#: ../glchess/glade/preferences.glade.h:6
+#: ../glchess/data/preferences.ui.h:6
 msgid "Move Format:"
 msgstr "Notation des coups :"
 
 #. Title for preferences dialog
-#: ../glchess/glade/preferences.glade.h:8 ../glines/glines.c:196
+#: ../glchess/data/preferences.ui.h:8 ../glines/glines.c:196
 #: ../mahjongg/mahjongg.c:140
 msgid "Preferences"
 msgstr "Préférences"
 
 #. Preferences Dialog: Label before promotion type combo box
-#: ../glchess/glade/preferences.glade.h:10
+#: ../glchess/data/preferences.ui.h:10
 msgid "Promotion Type:"
 msgstr "Type de promotion :"
 
 #. Preferences Dialog: Check box for selecting if history browser is visible
-#: ../glchess/glade/preferences.glade.h:12
+#: ../glchess/data/preferences.ui.h:12
 msgid "Show _History"
 msgstr "Afficher l'_historique"
 
 #. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../glchess/glade/preferences.glade.h:14 ../gnome-sudoku/src/lib/main.py:281
+#: ../glchess/data/preferences.ui.h:14 ../gnome-sudoku/src/lib/main.py:295
 msgid "Show _Toolbar"
 msgstr "Afficher la _barre d'outils"
 
-#. Preferences Dialog: Tooltip for Board Numbering option
-#: ../glchess/glade/preferences.glade.h:16
+#: ../glchess/data/preferences.ui.h:15
 msgid "Show or hide numbering on the chess board"
 msgstr "Affiche ou masque la numérotation du plateau d'échecs"
 
-#. Preferences Dialog: Tooltip for Show History option
-#: ../glchess/glade/preferences.glade.h:18
+#: ../glchess/data/preferences.ui.h:16
 msgid "Show or hide the game history panel"
 msgstr "Affiche ou masque le volet d'historique du jeu"
 
-#. Preferences Dialog: Tooltip for Move Hints option
-#: ../glchess/glade/preferences.glade.h:22
+#: ../glchess/data/preferences.ui.h:18
 msgid "Shows hints during chess games"
 msgstr "Affiche des astuces durant les parties d'échecs"
 
-#. Preferences Dialog: Tooltip for 3D Chess smooth view option
-#: ../glchess/glade/preferences.glade.h:24
+#: ../glchess/data/preferences.ui.h:19
 msgid "Smooth edges of the 3D elements (anti-alias)"
 msgstr "Lisse les bords des éléments 3D (anticrénelage)"
 
-#. Preferences Dialog: Tooltip for 3D Chess View option
-#: ../glchess/glade/preferences.glade.h:26
+#: ../glchess/data/preferences.ui.h:20
 msgid ""
 "View the chess board by default in 2D mode, or optionally in 3D mode using "
 "OpenGL."
@@ -3887,184 +4077,27 @@ msgstr ""
 "mode 3D à l'aide d'OpenGL."
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../glchess/glade/preferences.glade.h:28
+#: ../glchess/data/preferences.ui.h:22
 msgid "_Board Numbering"
 msgstr "_Numérotation du plateau"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../glchess/glade/preferences.glade.h:32
+#: ../glchess/data/preferences.ui.h:26
 msgid "_Move Hints"
 msgstr "A_stuces de déplacement"
 
 #. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../glchess/glade/preferences.glade.h:34
+#: ../glchess/data/preferences.ui.h:28
 msgid "_Smooth Display"
 msgstr "Affichage _lissé"
 
-#. Title of load game dialog
-#: ../glchess/glade/load_game.glade.h:2
-msgid "Load Chess Game"
-msgstr "Charger une partie d'échecs"
-
-#: ../glchess/glade/glchess.glade.h:2
-msgid "Claim _Draw"
-msgstr "Proposer le _nul"
-
-#: ../glchess/glade/glchess.glade.h:3
-msgid "Leave _Fullscreen"
-msgstr "_Quitter le plein écran"
-
-#. The tooltip for the Open toolbar button
-#: ../glchess/glade/glchess.glade.h:5
-msgid "Load a saved game"
-msgstr "Charger une partie enregistrée"
-
-#. The title of the log dialaog
-#: ../glchess/glade/glchess.glade.h:7
-msgid "Logs"
-msgstr "Journal"
-
-#. The Network Game toolbar button
-#: ../glchess/glade/glchess.glade.h:9 ../libgames-support/games-stock.c:331
-msgid "Network _Game"
-msgstr "_Partie en réseau"
-
-#. The New Game toolbar button
-#. Title of the new game dialog
-#: ../glchess/glade/glchess.glade.h:11 ../glchess/glade/new_game.glade.h:14
-#: ../libgames-support/games-scores-dialog.c:438
-msgid "New Game"
-msgstr "Nouvelle partie"
-
-#. The tooltip for the Resign toolbar button
-#: ../glchess/glade/glchess.glade.h:13
-msgid "Resign"
-msgstr "Abandonner"
-
-#. The tooltip for the go to start button on the move navigator
-#: ../glchess/glade/glchess.glade.h:15
-msgid "Rewind to the game start"
-msgstr "Revenir au début de la partie"
-
-#. The tooltip for the Save toolbar button
-#: ../glchess/glade/glchess.glade.h:17
-msgid "Save the current game"
-msgstr "Enregistrer la partie actuelle"
-
-#: ../glchess/glade/glchess.glade.h:18
-msgid "Show _Logs"
-msgstr "Afficher le _journal"
-
-#. The tooltip for the show current move button on the move navigator
-#: ../glchess/glade/glchess.glade.h:20
-msgid "Show the current move"
-msgstr "Afficher le coup en cours"
-
-#. The tooltip for the go to next move button on the move navigator
-#: ../glchess/glade/glchess.glade.h:22
-msgid "Show the next move"
-msgstr "Afficher le coup suivant"
-
-#. The tooltip for the go to previous move button on the move navigator
-#: ../glchess/glade/glchess.glade.h:24
-msgid "Show the previous move"
-msgstr "Afficher le coup précédent"
-
-#. Tooltip for the Network Game toolbar button
-#: ../glchess/glade/glchess.glade.h:28 ../libgames-support/games-stock.c:52
-msgid "Start a new multiplayer network game"
-msgstr "Commencer une nouvelle partie multi-joueurs en réseau"
-
-#. Message displayed in log window when no logs are present
-#: ../glchess/glade/glchess.glade.h:30
-msgid "There are no active logs."
-msgstr "Pas de journal actif."
-
-#: ../glchess/glade/glchess.glade.h:31
-msgid "Undo Move"
-msgstr "Annuler le coup"
-
-#: ../glchess/glade/glchess.glade.h:32 ../gnome-sudoku/src/lib/main.py:261
-#: ../libgames-support/games-stock.c:315
-msgid "_Contents"
-msgstr "_Sommaire"
-
-#: ../glchess/glade/glchess.glade.h:33 ../libgames-support/games-stock.c:316
-msgid "_Fullscreen"
-msgstr "_Plein écran"
-
-#: ../glchess/glade/glchess.glade.h:36
-msgid "_Resign"
-msgstr "_Abandonner"
-
-#: ../glchess/glade/glchess.glade.h:38 ../libgames-support/games-stock.c:327
-msgid "_Undo Move"
-msgstr "A_nnuler le déplacement"
-
-#. New Game Dialog: Title above difficulty options
-#: ../glchess/glade/new_game.glade.h:2
-msgid "<b>Difficulty</b>"
-msgstr "<b>Difficulté</b>"
-
-#. New Game Dialog: Title above the game properties widgets
-#: ../glchess/glade/new_game.glade.h:4
-msgid "<b>Game Properties</b>"
-msgstr "<b>Propriétés de la partie</b>"
-
-#. New Game Dialog: Title above player options
-#: ../glchess/glade/new_game.glade.h:6
-msgid "<b>Players</b>"
-msgstr "<b>Joueurs</b>"
-
-#. New Game Dialog: Label before black player difficulty
-#: ../glchess/glade/new_game.glade.h:8
-msgid "B_lack:"
-msgstr "_Noirs :"
-
-#. New Game Dialog: Tooltip for the game name entry
-#: ../glchess/glade/new_game.glade.h:10
-msgid "Enter the title for this game"
-msgstr "Saisissez le titre de cette partie"
-
-#. New Game Dialog: Label before game timer settings
-#: ../glchess/glade/new_game.glade.h:12
-msgid "Move _Time:"
-msgstr "_Durée de jeu :"
-
-#. New Game Dialog: Tooltip on start game button
-#: ../glchess/glade/new_game.glade.h:16
-msgid "Start the game. The game can be started once all fields are complete"
-msgstr ""
-"Démarrer la partie. La partie peut être démarrée lorsque tous les champs ont "
-"été remplis"
-
-#. New Game Dialog: Label before white player difficulty
-#: ../glchess/glade/new_game.glade.h:18
-msgid "W_hite:"
-msgstr "_Blancs :"
-
-#. New Game Dialog: Label before black player combo box
-#: ../glchess/glade/new_game.glade.h:20
-msgid "_Black:"
-msgstr "_Noirs :"
-
-#. New Game Dialog: Label before the game name entry
-#: ../glchess/glade/new_game.glade.h:22
-msgid "_Game name:"
-msgstr "Nom de _partie :"
-
-#. New Game Dialog: Button to start a new game
-#: ../glchess/glade/new_game.glade.h:24
-msgid "_Start"
-msgstr "_Commencer"
-
-#. New Game Dialog: Label before white player combo box
-#: ../glchess/glade/new_game.glade.h:26
-msgid "_White:"
-msgstr "Bl_ancs :"
+#. Title of save game dialog
+#: ../glchess/data/save_game.ui.h:2
+msgid "Save Chess Game"
+msgstr "Enregistrer la partie d'échecs"
 
 #. Translators: Window title when not playing a game
-#: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:371
+#: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:332
 msgid "Chess"
 msgstr "Jeu d'échecs"
 
@@ -4087,90 +4120,90 @@ msgstr ""
 "système, veuillez patienter jusqu'à la fin de l'opération."
 
 #. Translators: Time Combo: There is no time limit
-#: ../glchess/src/lib/gtkui/dialogs.py:125
+#: ../glchess/src/lib/gtkui/dialogs.py:124
 msgid "Unlimited"
 msgstr "Sans limite"
 
 #. Translators: Time Combo: Game will last one minute
-#: ../glchess/src/lib/gtkui/dialogs.py:127
+#: ../glchess/src/lib/gtkui/dialogs.py:126
 msgid "One minute"
 msgstr "Une minute"
 
 #. Translators: Time Combo: Game will last five minutes
-#: ../glchess/src/lib/gtkui/dialogs.py:129
+#: ../glchess/src/lib/gtkui/dialogs.py:128
 msgid "Five minutes"
 msgstr "Cinq minutes"
 
 #. Translators: Time Combo: Game will last 30 minutes
-#: ../glchess/src/lib/gtkui/dialogs.py:131
+#: ../glchess/src/lib/gtkui/dialogs.py:130
 msgid "30 minutes"
 msgstr "Trente minutes"
 
 #. Translators: Time Combo: Game will last one hour
-#: ../glchess/src/lib/gtkui/dialogs.py:133
+#: ../glchess/src/lib/gtkui/dialogs.py:132
 msgid "One hour"
 msgstr "Une heure"
 
 #. Translators: Time Combo: User will configure game duration
 #. Translators: Add Network Profile Dialog: Use a custom server
-#: ../glchess/src/lib/gtkui/dialogs.py:135
-#: ../glchess/src/lib/gtkui/network.py:29
+#: ../glchess/src/lib/gtkui/dialogs.py:134
+#: ../glchess/src/lib/gtkui/network.py:30
 msgid "Custom"
 msgstr "Personnalisée"
 
 #. Translators: Custom Time Combo: User specifying number of seconds for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:156
+#: ../glchess/src/lib/gtkui/dialogs.py:155
 msgid "seconds"
 msgstr "secondes"
 
 #. Translators: Custom Time Combo: User specifying number of minutes for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:158
+#: ../glchess/src/lib/gtkui/dialogs.py:157
 msgid "minutes"
 msgstr "minutes"
 
 #. Translators: Custom Time Combo: User specifying number of hours for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:160
+#: ../glchess/src/lib/gtkui/dialogs.py:159
 msgid "hours"
 msgstr "heures"
 
 #. Translators: AI Difficulty Combo: AI set to easy difficulty
-#: ../glchess/src/lib/gtkui/dialogs.py:178
-#: ../gnome-sudoku/src/lib/sudoku.py:593
+#: ../glchess/src/lib/gtkui/dialogs.py:177
+#: ../gnome-sudoku/src/lib/sudoku.py:515
 msgid "Easy"
 msgstr "Facile"
 
 #. Translators: AI Difficulty Combo: AI set to normal diffuculty
-#: ../glchess/src/lib/gtkui/dialogs.py:180
+#: ../glchess/src/lib/gtkui/dialogs.py:179
 msgid "Normal"
 msgstr "Normal"
 
 #. Translators: AI Difficulty Combo: AI set to hard diffuculty
-#: ../glchess/src/lib/gtkui/dialogs.py:182
-#: ../gnome-sudoku/src/lib/sudoku.py:591
+#: ../glchess/src/lib/gtkui/dialogs.py:181
+#: ../gnome-sudoku/src/lib/sudoku.py:513
 msgid "Hard"
 msgstr "Difficile"
 
 #. Translators: Error displayed when unable to load a game due to
 #. the require game engine not being available. %s is replaced with
 #. the name of the missing engine.
-#: ../glchess/src/lib/gtkui/dialogs.py:247
+#: ../glchess/src/lib/gtkui/dialogs.py:246
 #, python-format
 msgid "Unable to find %s engine"
 msgstr "Impossible de trouver le moteur %s"
 
 #. Translators: New Game Dialog: Title of the dialog when continuing a loaded game
-#: ../glchess/src/lib/gtkui/dialogs.py:259
+#: ../glchess/src/lib/gtkui/dialogs.py:258
 #, python-format
 msgid "Configure loaded game (%i moves)"
 msgstr "Configurer le jeu chargé (%i coups)"
 
 #. Translators: New Game Dialog: Title of error box when loaded game had AI engines missing
-#: ../glchess/src/lib/gtkui/dialogs.py:264
+#: ../glchess/src/lib/gtkui/dialogs.py:263
 msgid "Game settings changed"
 msgstr "Les paramètres de la partie ont été modifiés"
 
 #. Translators: Default name for a new game. %(white) and %(black) are substituted for the names of the white and black players.
-#: ../glchess/src/lib/gtkui/dialogs.py:327
+#: ../glchess/src/lib/gtkui/dialogs.py:326
 #, python-format
 msgid "%(white)s versus %(black)s"
 msgstr "%(white)s contre %(black)s"
@@ -4178,18 +4211,18 @@ msgstr "%(white)s contre %(black)s"
 #. Translators: Default name for the white player
 #. Translators: GGZ seat is occupied by the white player
 #. Translators: Name of white player in a default game
-#: ../glchess/src/lib/gtkui/dialogs.py:351
-#: ../glchess/src/lib/gtkui/network.py:358
-#: ../glchess/src/lib/gtkui/network.py:535 ../glchess/src/lib/main.py:708
+#: ../glchess/src/lib/gtkui/dialogs.py:350
+#: ../glchess/src/lib/gtkui/network.py:360
+#: ../glchess/src/lib/gtkui/network.py:537 ../glchess/src/lib/main.py:680
 msgid "White"
 msgstr "Blanc"
 
 #. Translators: Default name for the black player
 #. Translators: GGZ seat is occupied by the black player
 #. Translators: Name of black player in a default game
-#: ../glchess/src/lib/gtkui/dialogs.py:358
-#: ../glchess/src/lib/gtkui/network.py:361
-#: ../glchess/src/lib/gtkui/network.py:541 ../glchess/src/lib/main.py:710
+#: ../glchess/src/lib/gtkui/dialogs.py:357
+#: ../glchess/src/lib/gtkui/network.py:363
+#: ../glchess/src/lib/gtkui/network.py:543 ../glchess/src/lib/main.py:682
 msgid "Black"
 msgstr "Noir"
 
@@ -4214,116 +4247,121 @@ msgid "Unabled to load game"
 msgstr "Impossible de charger la partie"
 
 #. Translators: Save Game Dialog: Error displayed when no file name entered
-#: ../glchess/src/lib/gtkui/dialogs.py:548
+#: ../glchess/src/lib/gtkui/dialogs.py:549
 msgid "Please enter a file name"
 msgstr "Saisissez un nom de fichier"
 
 #. Translators: Save Game Dialog: Error title when unable to save game
-#: ../glchess/src/lib/gtkui/dialogs.py:561
+#: ../glchess/src/lib/gtkui/dialogs.py:562
 msgid "Unabled to save game"
 msgstr "Impossible d'enregistrer la partie"
 
 #. Translators: Move Format Combo: Moves shown in human descriptive notation
 #. Translators: Player Type Combo: Player is human controlled
-#: ../glchess/src/lib/gtkui/dialogs.py:587
-#: ../glchess/src/lib/gtkui/gtkui.py:236 ../gnect/src/prefs.c:249
+#: ../glchess/src/lib/gtkui/dialogs.py:589
+#: ../glchess/src/lib/gtkui/gtkui.py:205 ../gnect/src/prefs.c:249
 #: ../gtali/gyahtzee.c:988 ../gtali/yahtzee.c:69 ../iagno/properties.c:449
 #: ../iagno/properties.c:490
 msgid "Human"
 msgstr "Humain"
 
 #. Translators: Move Format Combo: Moves shown in standard algebraic notation (SAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:589
+#: ../glchess/src/lib/gtkui/dialogs.py:591
 msgid "Standard Algebraic"
 msgstr "Algébrique standard"
 
 #. Translators: Move Format Combo: Moves shown in standard figurine algebraic notation (FAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:591
+#: ../glchess/src/lib/gtkui/dialogs.py:593
 msgid "Figurine"
 msgstr "Figurine"
 
 #. Translators: Move Format Combo: Moves shown in long algebraic notation (LAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:593
+#: ../glchess/src/lib/gtkui/dialogs.py:595
 msgid "Long Algebraic"
 msgstr "Algébrique long"
 
 #. Translators: Board Side Combo: Camera will face white player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:603
+#: ../glchess/src/lib/gtkui/dialogs.py:605
 msgid "White Side"
 msgstr "Côté Blancs"
 
 #. Translators: Board Side Combo: Camera will face black player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:605
+#: ../glchess/src/lib/gtkui/dialogs.py:607
 msgid "Black Side"
 msgstr "Côté Noirs"
 
 #. Translators: Board Side Combo: Camera will face human player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:607
+#: ../glchess/src/lib/gtkui/dialogs.py:609
 msgid "Human Side"
 msgstr "Côté humain"
 
 #. Translators: Board Side Combo: Camera will face current player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:609
+#: ../glchess/src/lib/gtkui/dialogs.py:611
 msgid "Current Player"
 msgstr "Joueur actuel"
 
+#. Translators: Board Side Combo: Board will be drawn suitable for players on each side of screen, e.g. handhelds
+#: ../glchess/src/lib/gtkui/dialogs.py:613
+msgid "Face to Face"
+msgstr "Face à face"
+
 #. Translators: Promotion Combo: Promote to a queen. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:619
+#: ../glchess/src/lib/gtkui/dialogs.py:623
 msgid "chess-piece|Queen"
 msgstr "Dame"
 
 #. Translators: Promotion Combo: Promote to a knight. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:621
+#: ../glchess/src/lib/gtkui/dialogs.py:625
 msgid "chess-piece|Knight"
 msgstr "Cavalier"
 
 #. Translators: Promotion Combo: Promote to a rook. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:623
+#: ../glchess/src/lib/gtkui/dialogs.py:627
 msgid "chess-piece|Rook"
 msgstr "Tour"
 
 #. Translators: Promotion Combo: Promote to a bishop. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:625
+#: ../glchess/src/lib/gtkui/dialogs.py:629
 msgid "chess-piece|Bishop"
 msgstr "Fou"
 
 #. Translators: Window title when playing a game that needs saving
-#: ../glchess/src/lib/gtkui/gtkui.py:365
+#: ../glchess/src/lib/gtkui/gtkui.py:326
 #, python-format
 msgid "Chess - *%(game_name)s"
 msgstr "Échecs - *%(game_name)s"
 
 #. Translators: Window title when playing a game that is saved
-#: ../glchess/src/lib/gtkui/gtkui.py:368
+#: ../glchess/src/lib/gtkui/gtkui.py:329
 #, python-format
 msgid "Chess - %(game_name)s"
 msgstr "Échecs - %(game_name)s"
 
 #. Translators: Game Timer Label: Indicates that game has no time limit
-#: ../glchess/src/lib/gtkui/gtkui.py:383
+#: ../glchess/src/lib/gtkui/gtkui.py:344
 msgid "∞"
 msgstr "∞"
 
 #. Translators: Save Game Dialog: Notice that game needs saving
-#: ../glchess/src/lib/gtkui/gtkui.py:456
+#: ../glchess/src/lib/gtkui/gtkui.py:417
 msgid "If you don't save the changes to this game will be permanently lost"
 msgstr ""
 "Si vous n'enregistrez pas, les modifications de cette partie seront "
 "définitivement perdues"
 
 #. Translators: Save Game Dialog: Discard game button
-#: ../glchess/src/lib/gtkui/gtkui.py:458
+#: ../glchess/src/lib/gtkui/gtkui.py:419
 msgid "Close _without saving"
 msgstr "Fermer _sans enregistrer"
 
 #. Translators: No 3D Dialog: Title
-#: ../glchess/src/lib/gtkui/gtkui.py:573
+#: ../glchess/src/lib/gtkui/gtkui.py:534
 msgid "Unable to enable 3D mode"
 msgstr "Impossible d'activer le mode 3D"
 
 #. Translators: No 3D Dialog: Notification to user that they do not have libraries required to enable 3D.
 #. %(error)s will be replaced with a list of reasons why 3D is not available.
-#: ../glchess/src/lib/gtkui/gtkui.py:577
+#: ../glchess/src/lib/gtkui/gtkui.py:538
 #, python-format
 msgid ""
 "You are unable to play in 3D mode due to the following problems:\n"
@@ -4339,12 +4377,12 @@ msgstr ""
 "attendant, vous pouvez toujours jouer aux échecs en mode 2D."
 
 #. Translators: Draw Dialog: Title
-#: ../glchess/src/lib/gtkui/gtkui.py:839
+#: ../glchess/src/lib/gtkui/gtkui.py:800
 msgid "Unable to claim draw"
 msgstr "Impossible de demander la partie nulle"
 
 #. Translators: Draw Dialog: Notify user why they cannot claim draw
-#: ../glchess/src/lib/gtkui/gtkui.py:841
+#: ../glchess/src/lib/gtkui/gtkui.py:802
 msgid ""
 "You may claim a draw when:\n"
 "a) The board has been in the same state three times (Three fold repetition)\n"
@@ -4359,7 +4397,7 @@ msgstr ""
 
 #. TODO: This should be a pop-up dialog
 #. FIXME: This should create a pop-up dialog
-#: ../glchess/src/lib/gtkui/gtkui.py:863 ../gnome-sudoku/src/lib/main.py:814
+#: ../glchess/src/lib/gtkui/gtkui.py:824 ../gnome-sudoku/src/lib/main.py:740
 #, python-format
 msgid "Unable to display help: %s"
 msgstr "Impossible d'afficher l'aide : %s"
@@ -4381,567 +4419,567 @@ msgstr ""
 "Les librairies OpenGL ne prenent pas en charhe le mode d'affichage requis"
 
 #. Translators: Move History Combo: Go to the start of the game
-#: ../glchess/src/lib/gtkui/chessview.py:254
-#: ../glchess/src/lib/gtkui/chessview.py:287
+#: ../glchess/src/lib/gtkui/chessview.py:253
+#: ../glchess/src/lib/gtkui/chessview.py:286
 msgid "Game Start"
 msgstr "Début de la partie"
 
 #. Translators: Comment text when move has no comment
-#: ../glchess/src/lib/gtkui/chessview.py:292
+#: ../glchess/src/lib/gtkui/chessview.py:291
 msgid "No comment"
 msgstr "Aucun commentaire"
 
 #. Translators: Human Move String: Description of the white player making a long castle
-#: ../glchess/src/lib/gtkui/chessview.py:419
+#: ../glchess/src/lib/gtkui/chessview.py:418
 msgid "White castles long"
 msgstr "Les Blancs font le grand roque"
 
 #. Translators: Human Move String: Description of the black player making a long castle
-#: ../glchess/src/lib/gtkui/chessview.py:421
+#: ../glchess/src/lib/gtkui/chessview.py:420
 msgid "Black castles long"
 msgstr "Les Noirs font le grand roque"
 
 #. Translators: Human Move String: Description of the white player making a short castle
-#: ../glchess/src/lib/gtkui/chessview.py:424
+#: ../glchess/src/lib/gtkui/chessview.py:423
 msgid "White castles short"
 msgstr "Les Blancs font le petit roque"
 
 #. Translators: Human Move String: Description of the black player making a short castle
-#: ../glchess/src/lib/gtkui/chessview.py:426
+#: ../glchess/src/lib/gtkui/chessview.py:425
 msgid "Black castles short"
 msgstr "Les Noirs font le petit roque"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Translators: Human Move String: Description of a white pawn moving from %(start)s to %(end)s, e.g. 'c2 to c4'
-#: ../glchess/src/lib/gtkui/chessview.py:430
+#: ../glchess/src/lib/gtkui/chessview.py:429
 #, python-format
 msgid "White pawn moves from %(start)s to %(end)s"
 msgstr "Le pion blanc se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:431
+#: ../glchess/src/lib/gtkui/chessview.py:430
 #, python-format
 msgid "White pawn at %(start)s takes the black pawn at %(end)s"
 msgstr "Le pion blanc en %(start)s prend le pion noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:432
+#: ../glchess/src/lib/gtkui/chessview.py:431
 #, python-format
 msgid "White pawn at %(start)s takes the black rook at %(end)s"
 msgstr "Le pion blanc en %(start)s prend la tour noire en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:433
+#: ../glchess/src/lib/gtkui/chessview.py:432
 #, python-format
 msgid "White pawn at %(start)s takes the black knight at %(end)s"
 msgstr "Le pion blanc en %(start)s prend le cavalier noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:434
+#: ../glchess/src/lib/gtkui/chessview.py:433
 #, python-format
 msgid "White pawn at %(start)s takes the black bishop at %(end)s"
 msgstr "Le pion blanc en %(start)s prend le fou noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:435
+#: ../glchess/src/lib/gtkui/chessview.py:434
 #, python-format
 msgid "White pawn at %(start)s takes the black queen at %(end)s"
 msgstr "Le pion blanc en %(start)s prend la dame noire en %(end)s"
 
 #. Translators: Human Move String: Description of a white rook moving from %(start)s to %(end)s, e.g. 'a1 to a5'
-#: ../glchess/src/lib/gtkui/chessview.py:437
+#: ../glchess/src/lib/gtkui/chessview.py:436
 #, python-format
 msgid "White rook moves from %(start)s to %(end)s"
 msgstr "La tour blanche se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:438
+#: ../glchess/src/lib/gtkui/chessview.py:437
 #, python-format
 msgid "White rook at %(start)s takes the black pawn at %(end)s"
 msgstr "La tour blanche en %(start)s prend le pion noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:439
+#: ../glchess/src/lib/gtkui/chessview.py:438
 #, python-format
 msgid "White rook at %(start)s takes the black rook at %(end)s"
 msgstr "La tour blanche en %(start)s prend la tour noire en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:440
+#: ../glchess/src/lib/gtkui/chessview.py:439
 #, python-format
 msgid "White rook at %(start)s takes the black knight at %(end)s"
 msgstr "La tour blanche en %(start)s prend le cavalier noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:441
+#: ../glchess/src/lib/gtkui/chessview.py:440
 #, python-format
 msgid "White rook at %(start)s takes the black bishop at %(end)s"
 msgstr "La tour blanche en %(start)s prend le fou noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:442
+#: ../glchess/src/lib/gtkui/chessview.py:441
 #, python-format
 msgid "White rook at %(start)s takes the black queen at %(end)s"
 msgstr "La tour blanche en %(start)s prend la dame noire en %(end)s"
 
 #. Translators: Human Move String: Description of a white knight moving from %(start)s to %(end)s, e.g. 'b1 to c3'
-#: ../glchess/src/lib/gtkui/chessview.py:444
+#: ../glchess/src/lib/gtkui/chessview.py:443
 #, python-format
 msgid "White knight moves from %(start)s to %(end)s"
 msgstr "Le cavalier blanc se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:445
+#: ../glchess/src/lib/gtkui/chessview.py:444
 #, python-format
 msgid "White knight at %(start)s takes the black pawn at %(end)s"
 msgstr "Le cavalier blanc en %(start)s prend le pion noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:446
+#: ../glchess/src/lib/gtkui/chessview.py:445
 #, python-format
 msgid "White knight at %(start)s takes the black rook at %(end)s"
 msgstr "Le cavalier blanc en %(start)s prend la tour noire en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:447
+#: ../glchess/src/lib/gtkui/chessview.py:446
 #, python-format
 msgid "White knight at %(start)s takes the black knight at %(end)s"
 msgstr "Le cavalier blanc en %(start)s prend le cavalier noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:448
+#: ../glchess/src/lib/gtkui/chessview.py:447
 #, python-format
 msgid "White knight at %(start)s takes the black bishop at %(end)s"
 msgstr "Le cavalier blanc en %(start)s prend le fou noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:449
+#: ../glchess/src/lib/gtkui/chessview.py:448
 #, python-format
 msgid "White knight at %(start)s takes the black queen at %(end)s"
 msgstr "Le cavalier blanc en %(start)s prend la dame noire en %(end)s"
 
 #. Translators: Human Move String: Description of a white bishop moving from %(start)s to %(end)s, e.g. 'f1 to b5'
-#: ../glchess/src/lib/gtkui/chessview.py:451
+#: ../glchess/src/lib/gtkui/chessview.py:450
 #, python-format
 msgid "White bishop moves from %(start)s to %(end)s"
 msgstr "Le fou blanc se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:452
+#: ../glchess/src/lib/gtkui/chessview.py:451
 #, python-format
 msgid "White bishop at %(start)s takes the black pawn at %(end)s"
 msgstr "Le fou blanc en %(start)s prend le pion noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:453
+#: ../glchess/src/lib/gtkui/chessview.py:452
 #, python-format
 msgid "White bishop at %(start)s takes the black rook at %(end)s"
 msgstr "Le fou blanc en %(start)s prend la tour noire en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:454
+#: ../glchess/src/lib/gtkui/chessview.py:453
 #, python-format
 msgid "White bishop at %(start)s takes the black knight at %(end)s"
 msgstr "Le fou blanc en %(start)s prend le cavalier noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:455
+#: ../glchess/src/lib/gtkui/chessview.py:454
 #, python-format
 msgid "White bishop at %(start)s takes the black bishop at %(end)s"
 msgstr "Le fou blanc en %(start)s prend le fou noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:456
+#: ../glchess/src/lib/gtkui/chessview.py:455
 #, python-format
 msgid "White bishop at %(start)s takes the black queen at %(end)s"
 msgstr "Le fou blanc en %(start)s prend la dame noire en %(end)s"
 
 #. Translators: Human Move String: Description of a white queen moving from %(start)s to %(end)s, e.g. 'd1 to d4'
-#: ../glchess/src/lib/gtkui/chessview.py:458
+#: ../glchess/src/lib/gtkui/chessview.py:457
 #, python-format
 msgid "White queen moves from %(start)s to %(end)s"
 msgstr "La dame blanche se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:459
+#: ../glchess/src/lib/gtkui/chessview.py:458
 #, python-format
 msgid "White queen at %(start)s takes the black pawn at %(end)s"
 msgstr "La dame blanche en %(start)s prend le pion noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:460
+#: ../glchess/src/lib/gtkui/chessview.py:459
 #, python-format
 msgid "White queen at %(start)s takes the black rook at %(end)s"
 msgstr "La dame blanche en %(start)s prend la tour noire en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:461
+#: ../glchess/src/lib/gtkui/chessview.py:460
 #, python-format
 msgid "White queen at %(start)s takes the black knight at %(end)s"
 msgstr "La dame blanche en %(start)s prend le cavalier noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:462
+#: ../glchess/src/lib/gtkui/chessview.py:461
 #, python-format
 msgid "White queen at %(start)s takes the black bishop at %(end)s"
 msgstr "La dame blanche en %(start)s prend le fou noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:463
+#: ../glchess/src/lib/gtkui/chessview.py:462
 #, python-format
 msgid "White queen at %(start)s takes the black queen at %(end)s"
 msgstr "La dame blanche en %(start)s prend la dame noire en %(end)s"
 
 #. Translators: Human Move String: Description of a white king moving from %(start)s to %(end)s, e.g. 'e1 to f1'
-#: ../glchess/src/lib/gtkui/chessview.py:465
+#: ../glchess/src/lib/gtkui/chessview.py:464
 #, python-format
 msgid "White king moves from %(start)s to %(end)s"
 msgstr "Le roi blanc se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:466
+#: ../glchess/src/lib/gtkui/chessview.py:465
 #, python-format
 msgid "White king at %(start)s takes the black pawn at %(end)s"
 msgstr "Le roi blanc en %(start)s prend le pion noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:467
+#: ../glchess/src/lib/gtkui/chessview.py:466
 #, python-format
 msgid "White king at %(start)s takes the black rook at %(end)s"
 msgstr "Le roi blanc en %(start)s prend la tour noire en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:468
+#: ../glchess/src/lib/gtkui/chessview.py:467
 #, python-format
 msgid "White king at %(start)s takes the black knight at %(end)s"
 msgstr "Le roi blanc en %(start)s prend le cavalier noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:469
+#: ../glchess/src/lib/gtkui/chessview.py:468
 #, python-format
 msgid "White king at %(start)s takes the black bishop at %(end)s"
 msgstr "Le roi blanc en %(start)s prend le fou noir en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:470
+#: ../glchess/src/lib/gtkui/chessview.py:469
 #, python-format
 msgid "White king at %(start)s takes the black queen at %(end)s"
 msgstr "Le roi blanc en %(start)s prend la dame noire en %(end)s"
 
 #. Translators: Human Move String: Description of a black pawn moving from %(start)s to %(end)s, e.g. 'c8 to c6'
-#: ../glchess/src/lib/gtkui/chessview.py:472
+#: ../glchess/src/lib/gtkui/chessview.py:471
 #, python-format
 msgid "Black pawn moves from %(start)s to %(end)s"
 msgstr "Le pion noir se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:473
+#: ../glchess/src/lib/gtkui/chessview.py:472
 #, python-format
 msgid "Black pawn at %(start)s takes the white pawn at %(end)s"
 msgstr "Le pion noir en %(start)s prend le pion blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:474
+#: ../glchess/src/lib/gtkui/chessview.py:473
 #, python-format
 msgid "Black pawn at %(start)s takes the white rook at %(end)s"
 msgstr "Le pion noir en %(start)s prend la tour blanche en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:475
+#: ../glchess/src/lib/gtkui/chessview.py:474
 #, python-format
 msgid "Black pawn at %(start)s takes the white knight at %(end)s"
 msgstr "Le pion noir en %(start)s prend le cavalier blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:476
+#: ../glchess/src/lib/gtkui/chessview.py:475
 #, python-format
 msgid "Black pawn at %(start)s takes the white bishop at %(end)s"
 msgstr "Le pion noir en %(start)s prend le fou blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:477
+#: ../glchess/src/lib/gtkui/chessview.py:476
 #, python-format
 msgid "Black pawn at %(start)s takes the white queen at %(end)s"
 msgstr "Le pion noir en %(start)s prend la dame blanche en %(end)s"
 
 #. Translators: Human Move String: Description of a black rook moving from %(start)s to %(end)s, e.g. 'a8 to a4'
-#: ../glchess/src/lib/gtkui/chessview.py:479
+#: ../glchess/src/lib/gtkui/chessview.py:478
 #, python-format
 msgid "Black rook moves from %(start)s to %(end)s"
 msgstr "La tour noire se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:480
+#: ../glchess/src/lib/gtkui/chessview.py:479
 #, python-format
 msgid "Black rook at %(start)s takes the white pawn at %(end)s"
 msgstr "La tour noire en %(start)s prend le pion blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:481
+#: ../glchess/src/lib/gtkui/chessview.py:480
 #, python-format
 msgid "Black rook at %(start)s takes the white rook at %(end)s"
 msgstr "La tour noire en %(start)s prend la tour blanche en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:482
+#: ../glchess/src/lib/gtkui/chessview.py:481
 #, python-format
 msgid "Black rook at %(start)s takes the white knight at %(end)s"
 msgstr "La tour noire en %(start)s prend le cavalier blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:483
+#: ../glchess/src/lib/gtkui/chessview.py:482
 #, python-format
 msgid "Black rook at %(start)s takes the white bishop at %(end)s"
 msgstr "La tour noire en %(start)s prend le fou blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:484
+#: ../glchess/src/lib/gtkui/chessview.py:483
 #, python-format
 msgid "Black rook at %(start)s takes the white queen at %(end)s"
 msgstr "La tour noire en %(start)s prend la dame blanche en %(end)s"
 
 #. Translators: Human Move String: Description of a black knight moving from %(start)s to %(end)s, e.g. 'b8 to c6'
-#: ../glchess/src/lib/gtkui/chessview.py:486
+#: ../glchess/src/lib/gtkui/chessview.py:485
 #, python-format
 msgid "Black knight moves from %(start)s to %(end)s"
 msgstr "Le cavalier noir se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:487
+#: ../glchess/src/lib/gtkui/chessview.py:486
 #, python-format
 msgid "Black knight at %(start)s takes the white pawn at %(end)s"
 msgstr "Le cavalier noir en %(start)s prend le pion blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:488
+#: ../glchess/src/lib/gtkui/chessview.py:487
 #, python-format
 msgid "Black knight at %(start)s takes the white rook at %(end)s"
 msgstr "Le cavalier noir en %(start)s prend la tour blanche en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:489
+#: ../glchess/src/lib/gtkui/chessview.py:488
 #, python-format
 msgid "Black knight at %(start)s takes the white knight at %(end)s"
 msgstr "Le cavalier noir en %(start)s prend le cavalier blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:490
+#: ../glchess/src/lib/gtkui/chessview.py:489
 #, python-format
 msgid "Black knight at %(start)s takes the white bishop at %(end)s"
 msgstr "Le cavalier noir en %(start)s prend le fou blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:491
+#: ../glchess/src/lib/gtkui/chessview.py:490
 #, python-format
 msgid "Black knight at %(start)s takes the white queen at %(end)s"
 msgstr "Le cavalier noir en %(start)s prend la dame blanche en %(end)s"
 
 #. Translators: Human Move String: Description of a black bishop moving from %(start)s to %(end)s, e.g. 'f8 to b3'
-#: ../glchess/src/lib/gtkui/chessview.py:493
+#: ../glchess/src/lib/gtkui/chessview.py:492
 #, python-format
 msgid "Black bishop moves from %(start)s to %(end)s"
 msgstr "Le fou noir se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:494
+#: ../glchess/src/lib/gtkui/chessview.py:493
 #, python-format
 msgid "Black bishop at %(start)s takes the white pawn at %(end)s"
 msgstr "Le fou noir en %(start)s prend le pion blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:495
+#: ../glchess/src/lib/gtkui/chessview.py:494
 #, python-format
 msgid "Black bishop at %(start)s takes the white rook at %(end)s"
 msgstr "Le fou noir en %(start)s prend la tour blanche en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:496
+#: ../glchess/src/lib/gtkui/chessview.py:495
 #, python-format
 msgid "Black bishop at %(start)s takes the white knight at %(end)s"
 msgstr "Le fou noir en %(start)s prend le cavalier blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:497
+#: ../glchess/src/lib/gtkui/chessview.py:496
 #, python-format
 msgid "Black bishop at %(start)s takes the white bishop at %(end)s"
 msgstr "Le fou noir en %(start)s prend le fou blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:498
+#: ../glchess/src/lib/gtkui/chessview.py:497
 #, python-format
 msgid "Black bishop at %(start)s takes the white queen at %(end)s"
 msgstr "Le fou noir en %(start)s prend la dame blanche en %(end)s"
 
 #. Translators: Human Move String: Description of a black queen moving from %(start)s to %(end)s, e.g. 'd8 to d5'
-#: ../glchess/src/lib/gtkui/chessview.py:500
+#: ../glchess/src/lib/gtkui/chessview.py:499
 #, python-format
 msgid "Black queen moves from %(start)s to %(end)s"
 msgstr "La dame noire se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:501
+#: ../glchess/src/lib/gtkui/chessview.py:500
 #, python-format
 msgid "Black queen at %(start)s takes the white pawn at %(end)s"
 msgstr "La dame noire en %(start)s prend le pion blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:502
+#: ../glchess/src/lib/gtkui/chessview.py:501
 #, python-format
 msgid "Black queen at %(start)s takes the white rook at %(end)s"
 msgstr "La dame noire en %(start)s prend la tour blanche en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:503
+#: ../glchess/src/lib/gtkui/chessview.py:502
 #, python-format
 msgid "Black queen at %(start)s takes the white knight at %(end)s"
 msgstr "La dame noire en %(start)s prend le cavalier blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:504
+#: ../glchess/src/lib/gtkui/chessview.py:503
 #, python-format
 msgid "Black queen at %(start)s takes the white bishop at %(end)s"
 msgstr "La dame noire en %(start)s prend le fou blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:505
+#: ../glchess/src/lib/gtkui/chessview.py:504
 #, python-format
 msgid "Black queen at %(start)s takes the white queen at %(end)s"
 msgstr "La dame noire en %(start)s prend la dame blanche en %(end)s"
 
 #. Translators: Human Move String: Description of a black king moving from %(start)s to %(end)s, e.g. 'e8 to f8'
-#: ../glchess/src/lib/gtkui/chessview.py:507
+#: ../glchess/src/lib/gtkui/chessview.py:506
 #, python-format
 msgid "Black king moves from %(start)s to %(end)s"
 msgstr "Le roi noir se déplace de %(start)s à %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:508
+#: ../glchess/src/lib/gtkui/chessview.py:507
 #, python-format
 msgid "Black king at %(start)s takes the white pawn at %(end)s"
 msgstr "Le roi noir en %(start)s prend le pion blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:509
+#: ../glchess/src/lib/gtkui/chessview.py:508
 #, python-format
 msgid "Black king at %(start)s takes the white rook at %(end)s"
 msgstr "Le roi noir en %(start)s prend la tour blanche en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:510
+#: ../glchess/src/lib/gtkui/chessview.py:509
 #, python-format
 msgid "Black king at %(start)s takes the white knight at %(end)s"
 msgstr "Le roi noir en %(start)s prend le cavalier blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:511
+#: ../glchess/src/lib/gtkui/chessview.py:510
 #, python-format
 msgid "Black king at %(start)s takes the white bishop at %(end)s"
 msgstr "Le roi noir en %(start)s prend le fou blanc en %(end)s"
 
-#: ../glchess/src/lib/gtkui/chessview.py:512
+#: ../glchess/src/lib/gtkui/chessview.py:511
 #, python-format
 msgid "Black king at %(start)s takes the white queen at %(end)s"
 msgstr "Le roi noir en %(start)s prend la dame blanche en %(end)s"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is in check
-#: ../glchess/src/lib/gtkui/chessview.py:537
+#: ../glchess/src/lib/gtkui/chessview.py:536
 #, python-format
 msgid "%(movenum)2iw. %(description)s (Check)"
 msgstr "%(movenum)2ib. %(description)s (échec)"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is in checkmate
-#: ../glchess/src/lib/gtkui/chessview.py:539
+#: ../glchess/src/lib/gtkui/chessview.py:538
 #, python-format
 msgid "%(movenum)2iw. %(description)s (Checkmate)"
 msgstr "%(movenum)2ib. %(description)s (échec et mat)"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is in stalemate
-#: ../glchess/src/lib/gtkui/chessview.py:541
+#: ../glchess/src/lib/gtkui/chessview.py:540
 #, python-format
 msgid "%(movenum)2iw. %(description)s (Stalemate)"
 msgstr "%(movenum)2ib. %(description)s (pat)"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is not in check or mate
-#: ../glchess/src/lib/gtkui/chessview.py:543
+#: ../glchess/src/lib/gtkui/chessview.py:542
 #, python-format
 msgid "%(movenum)2iw. %(description)s"
 msgstr "%(movenum)2ib. %(description)s"
 
 #. Translators: Human Move String: Black player has made move %(description) and the opponent is in check
-#: ../glchess/src/lib/gtkui/chessview.py:545
+#: ../glchess/src/lib/gtkui/chessview.py:544
 #, python-format
 msgid "%(movenum)2ib. %(description)s (Check)"
 msgstr "%(movenum)2in. %(description)s (échec)"
 
 #. Translators: Human Move String: Black player has made move %(description) and the opponent is in checkmate
-#: ../glchess/src/lib/gtkui/chessview.py:547
+#: ../glchess/src/lib/gtkui/chessview.py:546
 #, python-format
 msgid "%(movenum)2ib. %(description)s (Checkmate)"
 msgstr "%(movenum)2in. %(description)s (échec et mat)"
 
 #. Translators: Human Move String: Black player has made move %(description) and the opponent is in stalemate
-#: ../glchess/src/lib/gtkui/chessview.py:549
+#: ../glchess/src/lib/gtkui/chessview.py:548
 #, python-format
 msgid "%(movenum)2ib. %(description)s (Stalemate)"
 msgstr "%(movenum)2in. %(description)s (pat)"
 
 #. Translators: Human Move String: Black player has made move %(description) and the opponent is not in check or mate
-#: ../glchess/src/lib/gtkui/chessview.py:551
+#: ../glchess/src/lib/gtkui/chessview.py:550
 #, python-format
 msgid "%(movenum)2ib. %(description)s"
 msgstr "%(movenum)2in. %(description)s"
 
 # Le problème ici est que %s est parfois singulier, parfois pluriel
 #. Translators: Message displayed when a player wins. The %s is substituted with the winning player's name
-#: ../glchess/src/lib/gtkui/chessview.py:582
+#: ../glchess/src/lib/gtkui/chessview.py:581
 #, python-format
 msgid "%s wins"
 msgstr "Vainqueur : %s"
 
 #. Translators: Message displayed when a game is drawn
-#: ../glchess/src/lib/gtkui/chessview.py:591
+#: ../glchess/src/lib/gtkui/chessview.py:590
 msgid "Game is drawn"
 msgstr "La partie est nulle"
 
 #. Translators: Message displayed when the game ends due to a player being checkmated
-#: ../glchess/src/lib/gtkui/chessview.py:596
+#: ../glchess/src/lib/gtkui/chessview.py:595
 msgid "Opponent is in check and cannot move (checkmate)"
 msgstr "L'adversaire est échec et ne peut plus bouger (échec et mat)"
 
 #. Translators: Message displayed when the game terminates due to a stalemate
-#: ../glchess/src/lib/gtkui/chessview.py:599
+#: ../glchess/src/lib/gtkui/chessview.py:598
 msgid "Opponent cannot move (stalemate)"
 msgstr "L'adversaire ne peut plus bouger (pat)"
 
 #. Translators: Message displayed when the game is drawn due to the fifty move rule
-#: ../glchess/src/lib/gtkui/chessview.py:602
+#: ../glchess/src/lib/gtkui/chessview.py:601
 msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgstr ""
 "Aucune pièce n'a été prise et aucun pion n'a bougé lors des cinquante "
 "derniers coups"
 
 #. Translators: Message displayed when the game ends due to one player's clock stopping
-#: ../glchess/src/lib/gtkui/chessview.py:605
+#: ../glchess/src/lib/gtkui/chessview.py:604
 msgid "Opponent has run out of time"
 msgstr "Le temps de jeu de l'adversaire est écoulé"
 
 #. Translators: Message displayed when the game is drawn due to the three-fold-repitition rule
-#: ../glchess/src/lib/gtkui/chessview.py:608
+#: ../glchess/src/lib/gtkui/chessview.py:607
 msgid "The same board state has occurred three times (three fold repetition)"
 msgstr "Une même position s'est produite trois fois"
 
 #. Translators: Message displayed when the game is drawn due to the insufficient material rule
-#: ../glchess/src/lib/gtkui/chessview.py:611
+#: ../glchess/src/lib/gtkui/chessview.py:610
 msgid "Neither player can cause checkmate (insufficient material)"
 msgstr "Aucun joueur ne peut mater (matériel insuffisant)"
 
 #. Translators: Message displayed when the game ends due to the black player resigning
-#: ../glchess/src/lib/gtkui/chessview.py:615
+#: ../glchess/src/lib/gtkui/chessview.py:614
 msgid "The black player has resigned"
 msgstr "Le joueur noir a abandonné"
 
 #. Translators: Message displayed when the game ends due to the white player resigning
-#: ../glchess/src/lib/gtkui/chessview.py:618
+#: ../glchess/src/lib/gtkui/chessview.py:617
 msgid "The white player has resigned"
 msgstr "Le joueur blanc a abandonné"
 
 #. Translators: Message displayed when a game is abandoned
-#: ../glchess/src/lib/gtkui/chessview.py:623
+#: ../glchess/src/lib/gtkui/chessview.py:622
 msgid "The game has been abandoned"
 msgstr "La partie a été abandonnée"
 
 #. Translators: Message displayed when the game ends due to a player dying
-#: ../glchess/src/lib/gtkui/chessview.py:626
+#: ../glchess/src/lib/gtkui/chessview.py:625
 msgid "One of the players has died"
 msgstr "L'un des joueurs est mort"
 
 #. Translators: Server Combo Box: Not connected to a server
-#: ../glchess/src/lib/gtkui/network.py:115
+#: ../glchess/src/lib/gtkui/network.py:117
 msgid "Disconnected"
 msgstr "Déconnecté"
 
 #. Translators: Server Combo Box: Add new profile
-#: ../glchess/src/lib/gtkui/network.py:120
+#: ../glchess/src/lib/gtkui/network.py:122
 msgid "New profile..."
 msgstr "Nouveau profil..."
 
 #. Translators: Available GGZ Tables: Table name column title
-#: ../glchess/src/lib/gtkui/network.py:180
+#: ../glchess/src/lib/gtkui/network.py:182
 msgid "Table"
 msgstr "Table"
 
 #. Translators: Current GGZ Table: Seat name column title
-#: ../glchess/src/lib/gtkui/network.py:197
+#: ../glchess/src/lib/gtkui/network.py:199
 msgid "Seat"
 msgstr "Sièges"
 
 #. Translators: Current GGZ Table: Player name column title
-#: ../glchess/src/lib/gtkui/network.py:201
+#: ../glchess/src/lib/gtkui/network.py:203
 msgid "Player"
 msgstr "Joueur"
 
 #. Translators: GGZ seat is occupied by a spectator
-#: ../glchess/src/lib/gtkui/network.py:364
+#: ../glchess/src/lib/gtkui/network.py:366
 #: ../libgames-support/games-dlg-players.c:171
 msgid "Spectator"
 msgstr "Spectateur"
 
 #. Translators: GGZ seat status: This seat is reserved. %s is replaced with
 #. the name of the player the seat is reserved for.
-#: ../glchess/src/lib/gtkui/network.py:373
+#: ../glchess/src/lib/gtkui/network.py:375
 #, python-format
 msgid "Reserved for %s"
 msgstr "Réservé pour %s"
 
 #. Translators: GGZ seat status: This seat is not taken
-#: ../glchess/src/lib/gtkui/network.py:376
+#: ../glchess/src/lib/gtkui/network.py:378
 msgid "Seat empty"
 msgstr "Siège vide"
 
 #. Translators: GGZ seat status: This seat contains an AI player.
 #. %s is replaced with the name of the AI.
-#: ../glchess/src/lib/gtkui/network.py:380
+#: ../glchess/src/lib/gtkui/network.py:382
 #, python-format
 msgid "AI (%s)"
 msgstr "IA (%s)"
@@ -5061,31 +5099,31 @@ msgstr "R"
 #. Translators: Description of an AI player used in log window. %(name)s is replaced with
 #. the name of the AI player. %(game)s is replaced with the name of the game the AI player
 #. is in.
-#: ../glchess/src/lib/main.py:118
+#: ../glchess/src/lib/main.py:113
 #, python-format
 msgid "'%(name)s' in '%(game)s'"
 msgstr "« %(name)s » dans « %(game)s »"
 
 #. Translators: Name of the log that displays application events
-#: ../glchess/src/lib/main.py:451
+#: ../glchess/src/lib/main.py:423
 msgid "Application Log"
 msgstr "Journal d'application"
 
 #. FIXME: Should be in a dialog
 #. Translators: Text displayed on the command-line if an unknown argument is passed
-#: ../glchess/src/lib/main.py:695
+#: ../glchess/src/lib/main.py:667
 #, python-format
 msgid "Usage: %s [game]"
 msgstr "Utilisation : %s [jeu]"
 
 #. Translators: Name of a human versus AI game. The %s is replaced with the name of the AI player
-#: ../glchess/src/lib/main.py:706
+#: ../glchess/src/lib/main.py:678
 #, python-format
 msgid "Human versus %s"
 msgstr "Humain contre %s"
 
 #. FIXME: Isn't this done by bug-buddy?
-#: ../glchess/src/lib/main.py:720
+#: ../glchess/src/lib/main.py:692
 msgid ""
 "glChess has crashed. Please report this bug to http://bugzilla.gnome.org\n"
 "Debug output:"
@@ -5094,19 +5132,19 @@ msgstr ""
 "http://bugzilla.gnome.org\n"
 "Journal de débogage :"
 
-#: ../glchess/src/lib/main.py:737 ../gnome-sudoku/src/lib/main.py:488
+#: ../glchess/src/lib/main.py:709 ../gnome-sudoku/src/lib/main.py:481
 msgid "Save game before closing?"
 msgstr "Enregistrer le jeu avant de fermer ?"
 
-#: ../glchess/src/lib/defaults.py.in:56
+#: ../glchess/src/lib/defaults.py.in:52
 msgid "glChess"
 msgstr "glChess"
 
-#: ../glchess/src/lib/defaults.py.in:59
+#: ../glchess/src/lib/defaults.py.in:55
 msgid "Copyright 2005-2008 Robert Ancell (and contributors)"
 msgstr "Copyright 2005-2008 Robert Ancell (et contributeurs)"
 
-#: ../glchess/src/lib/defaults.py.in:60
+#: ../glchess/src/lib/defaults.py.in:56
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -5118,8 +5156,8 @@ msgstr ""
 
 #. The GPL license string will be translated, and the game name inserted.
 #. This license is the same as in libgames-support/games-stock.c
-#: ../glchess/src/lib/defaults.py.in:69
-#: ../gnome-sudoku/src/lib/defaults.py.in:52
+#: ../glchess/src/lib/defaults.py.in:65
+#: ../gnome-sudoku/src/lib/defaults.py.in:49
 #, python-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
@@ -5132,9 +5170,9 @@ msgstr ""
 "Software Foundation ; soit la version 2 de la licence, ou (à votre "
 "discrétion), toute version suivante."
 
-#: ../glchess/src/lib/defaults.py.in:73
-#: ../gnome-sudoku/src/lib/defaults.py.in:56
-#: ../libgames-support/games-stock.c:412
+#: ../glchess/src/lib/defaults.py.in:69
+#: ../gnome-sudoku/src/lib/defaults.py.in:53
+#: ../libgames-support/games-stock.c:415
 #, c-format, python-format
 msgid ""
 "%s is distributed in the hope that it will be useful, but WITHOUT ANY "
@@ -5147,9 +5185,9 @@ msgstr ""
 "d'ADÉQUATION À UN BESOIN PARTICULIER. Voir la Licence Publique Générale GNU "
 "pour plus d'informations."
 
-#: ../glchess/src/lib/defaults.py.in:77
-#: ../gnome-sudoku/src/lib/defaults.py.in:60
-#: ../libgames-support/games-stock.c:417
+#: ../glchess/src/lib/defaults.py.in:73
+#: ../gnome-sudoku/src/lib/defaults.py.in:57
+#: ../libgames-support/games-stock.c:420
 #, c-format, python-format
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
@@ -5160,55 +5198,55 @@ msgstr ""
 "s ; si ce n'est pas le cas, écrivez à la Free Software Foundation, Inc., 51 "
 "Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA."
 
-#: ../glchess/src/lib/defaults.py.in:89
-#: ../gnome-sudoku/src/lib/defaults.py.in:71
+#: ../glchess/src/lib/defaults.py.in:85
+#: ../gnome-sudoku/src/lib/defaults.py.in:68
 #, python-format
 msgid "Unable to make data directory %(dir)s: %(error)s"
 msgstr "Impossible de créer le dossier de données %(dir)s : %(error)s"
 
 #. Translators: GGZ disconnection error when the supplied password is incorrect
-#: ../glchess/src/lib/ggz/client.py:212
+#: ../glchess/src/lib/ggz/client.py:205
 msgid "Incorrect password"
 msgstr "Mot de passe incorrect"
 
 #. Translators: GGZ disconnection error when the selected account is already in use
-#: ../glchess/src/lib/ggz/client.py:218
+#: ../glchess/src/lib/ggz/client.py:211
 msgid "Account in use"
 msgstr "Le compte est en cours d'utilisation"
 
 #. Translators: GGZ disconnection error when the network link has broken. %s is the system provided error
-#: ../glchess/src/lib/ggz/client.py:464
+#: ../glchess/src/lib/ggz/client.py:457
 #, python-format
 msgid "Connection closed: %s"
 msgstr "Connexion interrompue : %s"
 
 #. Translators: GGZ disconnection error when a password was required for the selected account
-#: ../glchess/src/lib/ggz/client.py:605
+#: ../glchess/src/lib/ggz/client.py:598
 msgid "A password is required"
 msgstr "Un mot de passe est nécessaire"
 
-#: ../glchess/src/lib/network.py:306
+#: ../glchess/src/lib/network.py:309
 msgid "Disconnected from server"
 msgstr "Déconnecté du serveur"
 
-#: ../glchess/src/lib/network.py:356
+#: ../glchess/src/lib/network.py:359
 msgid "No description"
 msgstr "Aucune description"
 
 # Correspond à Taille
-#: ../glines/glines.c:88 ../gnomine/gnomine.c:100
+#: ../glines/glines.c:88 ../gnomine/gnomine.c:101
 #: ../same-gnome/same-gnome.c:54
 msgctxt "board size"
 msgid "Small"
 msgstr "Petite"
 
-#: ../glines/glines.c:89 ../gnomine/gnomine.c:101
+#: ../glines/glines.c:89 ../gnomine/gnomine.c:102
 #: ../same-gnome/same-gnome.c:55
 msgctxt "board size"
 msgid "Medium"
 msgstr "Moyenne"
 
-#: ../glines/glines.c:90 ../gnomine/gnomine.c:102
+#: ../glines/glines.c:90 ../gnomine/gnomine.c:103
 #: ../same-gnome/same-gnome.c:56
 msgctxt "board size"
 msgid "Large"
@@ -5426,13 +5464,13 @@ msgstr "Niveau du deuxième joueur"
 
 #: ../gnect/data/gnect.schemas.in.h:9 ../gnect/src/prefs.c:370
 #: ../gnibbles/gnibbles.schemas.in.h:16 ../gnibbles/preferences.c:446
-#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:777
+#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:745
 msgid "Move left"
 msgstr "Déplacer à gauche"
 
 #: ../gnect/data/gnect.schemas.in.h:10 ../gnect/src/prefs.c:371
 #: ../gnibbles/gnibbles.schemas.in.h:17 ../gnibbles/preferences.c:447
-#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:778
+#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:746
 msgid "Move right"
 msgstr "Déplacer à droite"
 
@@ -5478,7 +5516,7 @@ msgstr "Bienvenue à une partie en réseau de %s."
 msgid "It's a draw!"
 msgstr "Match nul !"
 
-#: ../gnect/src/main.c:583 ../gnome-sudoku/src/lib/main.py:449
+#: ../gnect/src/main.c:583 ../gnome-sudoku/src/lib/main.py:442
 msgid "You win!"
 msgstr "Vous avez gagné !"
 
@@ -5574,7 +5612,7 @@ msgstr "Niveau trois"
 msgid "Four-in-a-Row Preferences"
 msgstr "Préférences de Puissance 4"
 
-#: ../gnect/src/prefs.c:333 ../gnobots2/properties.c:558
+#: ../gnect/src/prefs.c:333 ../gnobots2/properties.c:530
 #: ../iagno/properties.c:528
 msgid "Appearance"
 msgstr "Apparence"
@@ -5594,7 +5632,7 @@ msgstr "A_ctiver les sons"
 
 #. keyboard tab
 #: ../gnect/src/prefs.c:366 ../gnibbles/preferences.c:436
-#: ../gnobots2/properties.c:565 ../gnometris/tetris.cpp:769
+#: ../gnobots2/properties.c:537 ../gnometris/tetris.cpp:737
 msgid "Keyboard Controls"
 msgstr "Commandes au clavier"
 
@@ -5707,27 +5745,27 @@ msgstr ""
 "\n"
 "Vérifiez votre installation de Nibbles"
 
-#: ../gnibbles/gnibbles.c:618
+#: ../gnibbles/gnibbles.c:619
 msgid "Nibbles Scores"
 msgstr "Scores Nibbles"
 
-#: ../gnibbles/gnibbles.c:621
+#: ../gnibbles/gnibbles.c:622
 msgid "Speed:"
 msgstr "Vitesse :"
 
-#: ../gnibbles/gnibbles.c:626 ../gnobots2/game.c:182 ../gnomine/gnomine.c:223
+#: ../gnibbles/gnibbles.c:627 ../gnobots2/game.c:182 ../gnomine/gnomine.c:224
 #: ../gnotravex/gnotravex.c:1237 ../gnotski/gnotski.c:840
 #: ../gtali/gyahtzee.c:203 ../mahjongg/mahjongg.c:668 ../same-gnome/ui.c:193
 msgid "Congratulations!"
 msgstr "Félicitations !"
 
-#: ../gnibbles/gnibbles.c:627 ../gnobots2/game.c:183 ../gnomine/gnomine.c:224
+#: ../gnibbles/gnibbles.c:628 ../gnobots2/game.c:183 ../gnomine/gnomine.c:225
 #: ../gnotravex/gnotravex.c:1238 ../gnotski/gnotski.c:841
 #: ../gtali/gyahtzee.c:204 ../mahjongg/mahjongg.c:669 ../same-gnome/ui.c:194
 msgid "Your score is the best!"
 msgstr "Votre score est le meilleur !"
 
-#: ../gnibbles/gnibbles.c:628 ../gnobots2/game.c:184 ../gnomine/gnomine.c:225
+#: ../gnibbles/gnibbles.c:629 ../gnobots2/game.c:184 ../gnomine/gnomine.c:226
 #: ../gnotravex/gnotravex.c:1239 ../gnotski/gnotski.c:842
 #: ../gtali/gyahtzee.c:205 ../mahjongg/mahjongg.c:670 ../same-gnome/ui.c:195
 msgid "Your score has made the top ten."
@@ -5737,9 +5775,9 @@ msgstr "Votre score est entré au top 10."
 msgid "Guide a worm around a maze"
 msgstr "Guider un ver à travers un labyrinthe"
 
-#: ../gnibbles/gnibbles.desktop.in.in.h:2 ../gnibbles/main.c:244
-#: ../gnibbles/main.c:248 ../gnibbles/main.c:250 ../gnibbles/main.c:872
-#: ../gnibbles/main.c:990 ../gnibbles/main.c:1053
+#: ../gnibbles/gnibbles.desktop.in.in.h:2 ../gnibbles/main.c:243
+#: ../gnibbles/main.c:247 ../gnibbles/main.c:249 ../gnibbles/main.c:871
+#: ../gnibbles/main.c:989 ../gnibbles/main.c:1051
 msgid "Nibbles"
 msgstr "Nibbles"
 
@@ -5810,7 +5848,7 @@ msgid "Key to use for motion up."
 msgstr "Touche à utiliser pour se déplacer vers le haut."
 
 #: ../gnibbles/gnibbles.schemas.in.h:15 ../gnibbles/preferences.c:449
-#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:779
+#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:747
 msgid "Move down"
 msgstr "Se déplacer vers le bas"
 
@@ -5859,22 +5897,22 @@ msgid "Use relative movement (ie. left or right only)."
 msgstr ""
 "Utiliser des mouvements relatifs (c'est-à-dire droite et gauche seulement)."
 
-#: ../gnibbles/main.c:67
+#: ../gnibbles/main.c:66
 msgctxt "game speed"
 msgid "Beginner"
 msgstr "Débutant"
 
-#: ../gnibbles/main.c:68
+#: ../gnibbles/main.c:67
 msgctxt "game speed"
 msgid "Slow"
 msgstr "Lent"
 
-#: ../gnibbles/main.c:69
+#: ../gnibbles/main.c:68
 msgctxt "game speed"
 msgid "Medium"
 msgstr "Intermédiaire"
 
-#: ../gnibbles/main.c:70
+#: ../gnibbles/main.c:69
 msgctxt "game speed"
 msgid "Fast"
 msgstr "Rapide"
@@ -5882,27 +5920,27 @@ msgstr "Rapide"
 # sans doute faudrait-il trouver un terme commun pour ces « feintes » 
 # (cette entrée et les suivantes) et les « faux bonus » 
 # (quelques entrées plus loin) : dans tous les cas, ce sont des « fake ».
-#: ../gnibbles/main.c:71
+#: ../gnibbles/main.c:70
 msgctxt "game speed"
 msgid "Beginner with Fakes"
 msgstr "Débutant avec feintes"
 
-#: ../gnibbles/main.c:72
+#: ../gnibbles/main.c:71
 msgctxt "game speed"
 msgid "Slow with Fakes"
 msgstr "Lent avec feintes"
 
-#: ../gnibbles/main.c:73
+#: ../gnibbles/main.c:72
 msgctxt "game speed"
 msgid "Medium with Fakes"
 msgstr "Intermédiaire avec feintes"
 
-#: ../gnibbles/main.c:74
+#: ../gnibbles/main.c:73
 msgctxt "game speed"
 msgid "Fast with Fakes"
 msgstr "Rapide avec feintes"
 
-#: ../gnibbles/main.c:256
+#: ../gnibbles/main.c:255
 msgid ""
 "A worm game for GNOME.\n"
 "\n"
@@ -5912,13 +5950,13 @@ msgstr ""
 "\n"
 "Nibbles fait partie des jeux GNOME."
 
-#: ../gnibbles/main.c:643
+#: ../gnibbles/main.c:642
 #, c-format
 msgid "Game over! The game has been won by %s!"
 msgstr "Partie terminée ! La partie a été gagnée par %s."
 
 #. Translators: This string will be included in the intro screen, so don't make sure it fits!
-#: ../gnibbles/main.c:1004
+#: ../gnibbles/main.c:1003
 msgid "A worm game for GNOME."
 msgstr "Un jeu de ver pour GNOME"
 
@@ -5948,16 +5986,16 @@ msgstr "Les doigts dans le nez"
 
 #: ../gnibbles/preferences.c:317
 msgid "_Play levels in random order"
-msgstr "_Jouer les niveaux dans un ordre aléatoire"
+msgstr "J_ouer les niveaux dans un ordre aléatoire"
 
 #: ../gnibbles/preferences.c:327
 msgid "_Enable fake bonuses"
 msgstr "_Activer les faux bonus"
 
 #. starting level
-#: ../gnibbles/preferences.c:350 ../gnometris/tetris.cpp:679
+#: ../gnibbles/preferences.c:350 ../gnometris/tetris.cpp:644
 msgid "_Starting level:"
-msgstr "_Niveau de départ :"
+msgstr "Niveau de dé_part :"
 
 #: ../gnibbles/preferences.c:379
 msgid "Number of _human players:"
@@ -5965,7 +6003,7 @@ msgstr "No_mbre de joueurs humains :"
 
 #: ../gnibbles/preferences.c:400
 msgid "Number of _AI players:"
-msgstr "Nombre de joueurs I_A :"
+msgstr "Nombre de joueurs _IA :"
 
 #: ../gnibbles/preferences.c:427
 msgid "Worm"
@@ -6004,13 +6042,13 @@ msgstr "Ver %d :"
 msgid "Game over!"
 msgstr "Perdu !"
 
-#: ../gnobots2/game.c:155 ../gnomine/gnomine.c:199 ../gnotski/gnotski.c:815
+#: ../gnobots2/game.c:155 ../gnomine/gnomine.c:200 ../gnotski/gnotski.c:815
 msgid "Great work, but unfortunately your score did not make the top ten."
 msgstr "Bravo mais malheureusement votre score n'est pas rentré au top 10."
 
 #. Translators: This "_New Game" is for the game-over dialogue
-#: ../gnobots2/game.c:157 ../gnomine/gnomine.c:201 ../gnotski/gnotski.c:817
-#: ../libgames-support/games-stock.c:321 ../same-gnome/ui.c:176
+#: ../gnobots2/game.c:157 ../gnomine/gnomine.c:202 ../gnotski/gnotski.c:817
+#: ../libgames-support/games-stock.c:324 ../same-gnome/ui.c:176
 msgid "_New Game"
 msgstr "_Nouvelle partie"
 
@@ -6032,109 +6070,109 @@ msgstr ""
 "Mais pourrez-vous le faire à nouveau ?"
 
 #. This should never happen.
-#: ../gnobots2/game.c:1252
+#: ../gnobots2/game.c:1248
 msgid "There are no teleport locations left!!"
 msgstr "Il ne reste plus d'emplacements de téléportation !"
 
-#: ../gnobots2/game.c:1280
+#: ../gnobots2/game.c:1276
 msgid "There are no safe locations to teleport to!!"
 msgstr "Il ne reste plus d'emplacements de téléportation sans danger !"
 
-#: ../gnobots2/gnobots.c:86
+#: ../gnobots2/gnobots.c:85
 msgid "Set game scenario"
 msgstr "Sélectionnez un scénario"
 
-#: ../gnobots2/gnobots.c:88
+#: ../gnobots2/gnobots.c:87
 msgid "Set game configuration"
 msgstr "Définir la configuration du jeu"
 
-#: ../gnobots2/gnobots.c:90 ../gnobots2/gnobots.c:92
+#: ../gnobots2/gnobots.c:89 ../gnobots2/gnobots.c:91
 msgid "Initial window position"
 msgstr "Position initiale de la fenêtre"
 
-#: ../gnobots2/gnobots.c:90 ../gnomine/gnomine.c:957 ../gnomine/gnomine.c:965
+#: ../gnobots2/gnobots.c:89 ../gnomine/gnomine.c:991 ../gnomine/gnomine.c:999
 #: ../gnotravex/gnotravex.c:399 ../gnotski/gnotski.c:467
-#: ../iagno/gnothello.c:147
+#: ../iagno/gnothello.c:146
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:92 ../gnomine/gnomine.c:959 ../gnomine/gnomine.c:967
+#: ../gnobots2/gnobots.c:91 ../gnomine/gnomine.c:993 ../gnomine/gnomine.c:1001
 #: ../gnotravex/gnotravex.c:401 ../gnotski/gnotski.c:469
-#: ../iagno/gnothello.c:149
+#: ../iagno/gnothello.c:148
 msgid "Y"
 msgstr "Y"
 
-#: ../gnobots2/gnobots.c:97
+#: ../gnobots2/gnobots.c:96
 msgid "Classic robots"
 msgstr "Robots classiques"
 
-#: ../gnobots2/gnobots.c:98
+#: ../gnobots2/gnobots.c:97
 msgid "Classic robots with safe moves"
 msgstr "Robots classiques avec mouvements sans danger"
 
-#: ../gnobots2/gnobots.c:99
+#: ../gnobots2/gnobots.c:98
 msgid "Classic robots with super-safe moves"
 msgstr "Robots classiques avec mouvements *vraiment* sans danger"
 
-#: ../gnobots2/gnobots.c:100
+#: ../gnobots2/gnobots.c:99
 msgid "Nightmare"
 msgstr "Cauchemar"
 
-#: ../gnobots2/gnobots.c:101
+#: ../gnobots2/gnobots.c:100
 msgid "Nightmare with safe moves"
 msgstr "Cauchemar avec mouvements sans danger"
 
-#: ../gnobots2/gnobots.c:102
+#: ../gnobots2/gnobots.c:101
 msgid "Nightmare with super-safe moves"
 msgstr "Cauchemar avec mouvements *vraiment* sans danger"
 
-#: ../gnobots2/gnobots.c:103
+#: ../gnobots2/gnobots.c:102
 msgid "Robots2"
 msgstr "Robots2"
 
-#: ../gnobots2/gnobots.c:104
+#: ../gnobots2/gnobots.c:103
 msgid "Robots2 with safe moves"
 msgstr "Robots2 avec mouvements sans danger"
 
-#: ../gnobots2/gnobots.c:105
+#: ../gnobots2/gnobots.c:104
 msgid "Robots2 with super-safe moves"
 msgstr "Robots2 avec mouvements *vraiment* sans danger"
 
-#: ../gnobots2/gnobots.c:106
+#: ../gnobots2/gnobots.c:105
 msgid "Robots2 easy"
 msgstr "Robots2 facile"
 
-#: ../gnobots2/gnobots.c:107
+#: ../gnobots2/gnobots.c:106
 msgid "Robots2 easy with safe moves"
 msgstr "Robots2 facile avec mouvements sans danger"
 
-#: ../gnobots2/gnobots.c:108
+#: ../gnobots2/gnobots.c:107
 msgid "Robots2 easy with super-safe moves"
 msgstr "Robots2 facile avec mouvements *vraiment* sans danger"
 
-#: ../gnobots2/gnobots.c:109
+#: ../gnobots2/gnobots.c:108
 msgid "Robots with safe teleport"
 msgstr "Robots avec téléportation sans danger"
 
-#: ../gnobots2/gnobots.c:110
+#: ../gnobots2/gnobots.c:109
 msgid "Robots with safe teleport with safe moves"
 msgstr "Robots avec téléportation et mouvements sans danger"
 
-#: ../gnobots2/gnobots.c:111
+#: ../gnobots2/gnobots.c:110
 msgid "Robots with safe teleport with super-safe moves"
 msgstr "Robots avec téléportation et mouvements *vraiment* sans danger"
 
-#: ../gnobots2/gnobots.c:239 ../gnobots2/gnobots.c:260
+#: ../gnobots2/gnobots.c:237 ../gnobots2/gnobots.c:258
 #: ../gnobots2/gnobots2.desktop.in.in.h:2 ../gnobots2/menu.c:263
 #: ../gnobots2/menu.c:266
 msgid "Robots"
 msgstr "Robots"
 
-#: ../gnobots2/gnobots.c:322
+#: ../gnobots2/gnobots.c:320
 msgid "No game data could be found."
 msgstr "Aucune donnée de jeu ne peut être trouvée."
 
-#: ../gnobots2/gnobots.c:324
+#: ../gnobots2/gnobots.c:322
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
@@ -6143,11 +6181,11 @@ msgstr ""
 "configuration de jeu valide. Vérifiez que le programme est correctement "
 "installé."
 
-#: ../gnobots2/gnobots.c:343
+#: ../gnobots2/gnobots.c:341
 msgid "Some graphics files are missing or corrupt."
 msgstr "Certains fichiers graphiques sont manquants ou corrompus."
 
-#: ../gnobots2/gnobots.c:345
+#: ../gnobots2/gnobots.c:343
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
@@ -6171,99 +6209,91 @@ msgstr ""
 "cours de la partie."
 
 #: ../gnobots2/gnobots2.schemas.in.h:5
-msgid "Enable splats"
-msgstr "Activer les splats"
-
-#: ../gnobots2/gnobots2.schemas.in.h:6
-msgid "Enable splats. Play a sound and show a \"Splat!\" on the screen."
-msgstr "Activer les splats. Joue un son et affiche un « Splat! » sur l'écran."
-
-#: ../gnobots2/gnobots2.schemas.in.h:7
 msgid "Game type"
 msgstr "Type de jeu"
 
-#: ../gnobots2/gnobots2.schemas.in.h:8
+#: ../gnobots2/gnobots2.schemas.in.h:6
 msgid "Game type. The name of the game variation to use."
 msgstr "Type de jeu. Le nom de la variante du jeu à utiliser."
 
-#: ../gnobots2/gnobots2.schemas.in.h:9 ../gnobots2/properties.c:580
+#: ../gnobots2/gnobots2.schemas.in.h:7 ../gnobots2/properties.c:552
 msgid "Key to hold"
 msgstr "Touche pour arrêter"
 
-#: ../gnobots2/gnobots2.schemas.in.h:10 ../gnobots2/properties.c:576
+#: ../gnobots2/gnobots2.schemas.in.h:8 ../gnobots2/properties.c:548
 msgid "Key to move E"
 msgstr "Touche pour se déplacer vers l'est"
 
-#: ../gnobots2/gnobots2.schemas.in.h:11 ../gnobots2/properties.c:573
+#: ../gnobots2/gnobots2.schemas.in.h:9 ../gnobots2/properties.c:545
 msgid "Key to move N"
 msgstr "Touche pour se déplacer vers le nord"
 
-#: ../gnobots2/gnobots2.schemas.in.h:12 ../gnobots2/properties.c:574
+#: ../gnobots2/gnobots2.schemas.in.h:10 ../gnobots2/properties.c:546
 msgid "Key to move NE"
 msgstr "Touche pour se déplacer vers le nord-est"
 
-#: ../gnobots2/gnobots2.schemas.in.h:13 ../gnobots2/properties.c:572
+#: ../gnobots2/gnobots2.schemas.in.h:11 ../gnobots2/properties.c:544
 msgid "Key to move NW"
 msgstr "Touche pour se déplacer vers le nord-ouest"
 
-#: ../gnobots2/gnobots2.schemas.in.h:14 ../gnobots2/properties.c:578
+#: ../gnobots2/gnobots2.schemas.in.h:12 ../gnobots2/properties.c:550
 msgid "Key to move S"
 msgstr "Touche pour se déplacer vers le sud"
 
-#: ../gnobots2/gnobots2.schemas.in.h:15 ../gnobots2/properties.c:579
+#: ../gnobots2/gnobots2.schemas.in.h:13 ../gnobots2/properties.c:551
 msgid "Key to move SE"
 msgstr "Touche pour se déplacer vers le sud-est"
 
-#: ../gnobots2/gnobots2.schemas.in.h:16 ../gnobots2/properties.c:577
+#: ../gnobots2/gnobots2.schemas.in.h:14 ../gnobots2/properties.c:549
 msgid "Key to move SW"
 msgstr "Touche pour se déplacer vers le sud-ouest"
 
-#: ../gnobots2/gnobots2.schemas.in.h:17 ../gnobots2/properties.c:575
+#: ../gnobots2/gnobots2.schemas.in.h:15 ../gnobots2/properties.c:547
 msgid "Key to move W"
 msgstr "Touche pour se déplacer vers l'ouest"
 
-#: ../gnobots2/gnobots2.schemas.in.h:18 ../gnobots2/properties.c:581
+#: ../gnobots2/gnobots2.schemas.in.h:16 ../gnobots2/properties.c:553
 msgid "Key to teleport"
 msgstr "Touche pour se téléporter"
 
-#: ../gnobots2/gnobots2.schemas.in.h:19 ../gnobots2/properties.c:582
+#: ../gnobots2/gnobots2.schemas.in.h:17 ../gnobots2/properties.c:554
 msgid "Key to teleport randomly"
 msgstr "Touche pour se téléporter aléatoirement"
 
-#: ../gnobots2/gnobots2.schemas.in.h:20 ../gnobots2/properties.c:583
+#: ../gnobots2/gnobots2.schemas.in.h:18 ../gnobots2/properties.c:555
 msgid "Key to wait"
 msgstr "Touche pour attendre"
 
-#: ../gnobots2/gnobots2.schemas.in.h:21
+#: ../gnobots2/gnobots2.schemas.in.h:19
 msgid "Robot image theme"
 msgstr "Thème d'images du jeu de Robots"
 
-#: ../gnobots2/gnobots2.schemas.in.h:22
+#: ../gnobots2/gnobots2.schemas.in.h:20
 msgid "Robot image theme. The theme of the images to use for the robots."
 msgstr ""
 "Thème d'images du jeu de Robots. Le thème d'images à utiliser pour les "
 "robots."
 
-#: ../gnobots2/gnobots2.schemas.in.h:24
+#: ../gnobots2/gnobots2.schemas.in.h:22
 msgid "Show toolbar. A standard option for toolbars."
 msgstr ""
 "Afficher la barre d'outils. Une option standard pour les barres d'outils."
 
-#: ../gnobots2/gnobots2.schemas.in.h:25
+#: ../gnobots2/gnobots2.schemas.in.h:23
 msgid ""
 "The name of the key used to hold still. The name is a standard X key name."
 msgstr ""
 "Le nom de la touche à utiliser pour rester arrêté. Le nom est un nom "
 "standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:26
+#: ../gnobots2/gnobots2.schemas.in.h:24
 msgid ""
 "The name of the key used to move east. The name is a standard X key name."
 msgstr ""
 "Le nom de la touche à utiliser pour se déplacer vers l'est. Le nom est un "
 "nom standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:27
+#: ../gnobots2/gnobots2.schemas.in.h:25
 msgid ""
 "The name of the key used to move north-east. The name is a standard X key "
 "name."
@@ -6271,7 +6301,7 @@ msgstr ""
 "Le nom de la touche à utiliser pour se déplacer vers le nord-est. Le nom est "
 "un nom standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:28
+#: ../gnobots2/gnobots2.schemas.in.h:26
 msgid ""
 "The name of the key used to move north-west. The name is a standard X key "
 "name."
@@ -6279,14 +6309,14 @@ msgstr ""
 "Le nom de la touche à utiliser pour se déplacer vers le nord-ouest. Le nom "
 "est un nom standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:29
+#: ../gnobots2/gnobots2.schemas.in.h:27
 msgid ""
 "The name of the key used to move north. The name is a standard X key name."
 msgstr ""
 "Le nom de la touche à utiliser pour se déplacer vers le nord. Le nom est un "
 "nom standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:30
+#: ../gnobots2/gnobots2.schemas.in.h:28
 msgid ""
 "The name of the key used to move south-east. The name is a standard X key "
 "name."
@@ -6294,7 +6324,7 @@ msgstr ""
 "Le nom de la touche à utiliser pour se déplacer vers le sud-est. Le nom est "
 "un nom standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:31
+#: ../gnobots2/gnobots2.schemas.in.h:29
 msgid ""
 "The name of the key used to move south-west. The name is a standard X key "
 "name."
@@ -6302,21 +6332,21 @@ msgstr ""
 "Le nom de la touche à utiliser pour se déplacer vers le sud-ouest. Le nom "
 "est un nom standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:32
+#: ../gnobots2/gnobots2.schemas.in.h:30
 msgid ""
 "The name of the key used to move south. The name is a standard X key name."
 msgstr ""
 "Le nom de la touche à utiliser pour se déplacer vers le sud. Le nom est un "
 "nom standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:33
+#: ../gnobots2/gnobots2.schemas.in.h:31
 msgid ""
 "The name of the key used to move west. The name is a standard X key name."
 msgstr ""
 "Le nom de la touche à utiliser pour se déplacer vers l'ouest. Le nom est un "
 "nom standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:34
+#: ../gnobots2/gnobots2.schemas.in.h:32
 msgid ""
 "The name of the key used to teleport randomly. The name is a standard X key "
 "name."
@@ -6324,7 +6354,7 @@ msgstr ""
 "Le nom de la touche à utiliser pour se téléporter aléatoirement. Le nom est "
 "un nom standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:35
+#: ../gnobots2/gnobots2.schemas.in.h:33
 msgid ""
 "The name of the key used to teleport safely (if possible). The name is a "
 "standard X key name."
@@ -6332,17 +6362,17 @@ msgstr ""
 "Le nom de la touche à utiliser pour se téléporter sans danger (si possible). "
 "Le nom est un nom standard de touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:36
+#: ../gnobots2/gnobots2.schemas.in.h:34
 msgid "The name of the key used to wait. The name is a standard X key name."
 msgstr ""
 "Le nom de la touche à utiliser pour attendre. Le nom est un nom standard de "
 "touche X."
 
-#: ../gnobots2/gnobots2.schemas.in.h:37
+#: ../gnobots2/gnobots2.schemas.in.h:35
 msgid "Use safe moves"
 msgstr "Utiliser des mouvements sans danger"
 
-#: ../gnobots2/gnobots2.schemas.in.h:38
+#: ../gnobots2/gnobots2.schemas.in.h:36
 msgid ""
 "Use safe moves. The safe moves option will help you to avoid being killed "
 "due to a mistake. If you try to make a move that would lead to your death "
@@ -6353,11 +6383,11 @@ msgstr ""
 "mouvement qui va entraîner votre mort alors qu'il y a un mouvement sans "
 "danger possible, vous n'allez pas être autorisé à l'effectuer."
 
-#: ../gnobots2/gnobots2.schemas.in.h:39
+#: ../gnobots2/gnobots2.schemas.in.h:37
 msgid "Use super safe moves"
 msgstr "Utiliser des mouvements *vraiment* sans danger"
 
-#: ../gnobots2/gnobots2.schemas.in.h:40
+#: ../gnobots2/gnobots2.schemas.in.h:38
 msgid ""
 "Use super safe moves. The player is alerted when there is no safe move and "
 "the only option is to teleport out."
@@ -6366,7 +6396,7 @@ msgstr ""
 "il n'y a pas de mouvement sans danger et que la seule option est de se "
 "téléporter ailleurs."
 
-#: ../gnobots2/graphics.c:155 ../iagno/gnothello.c:416
+#: ../gnobots2/graphics.c:155 ../iagno/gnothello.c:415
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Impossible de trouver l'image « %s »\n"
@@ -6409,114 +6439,106 @@ msgstr ""
 "\n"
 "Robots fait partie des jeux GNOME."
 
-#: ../gnobots2/properties.c:335
+#: ../gnobots2/properties.c:316
 msgid "classic robots"
 msgstr "robots classiques"
 
-#: ../gnobots2/properties.c:336
+#: ../gnobots2/properties.c:317
 msgid "robots2"
 msgstr "robots2"
 
-#: ../gnobots2/properties.c:337
+#: ../gnobots2/properties.c:318
 msgid "robots2 easy"
 msgstr "robots2 facile"
 
-#: ../gnobots2/properties.c:338
+#: ../gnobots2/properties.c:319
 msgid "robots with safe teleport"
 msgstr "robots avec téléportation sans danger"
 
-#: ../gnobots2/properties.c:339
+#: ../gnobots2/properties.c:320
 msgid "nightmare"
 msgstr "cauchemar"
 
-#: ../gnobots2/properties.c:378
+#: ../gnobots2/properties.c:359
 msgid "robots"
 msgstr "robots"
 
-#: ../gnobots2/properties.c:379
+#: ../gnobots2/properties.c:360
 msgid "cows"
 msgstr "vaches"
 
-#: ../gnobots2/properties.c:380
+#: ../gnobots2/properties.c:361
 msgid "eggs"
 msgstr "oeufs"
 
-#: ../gnobots2/properties.c:381
+#: ../gnobots2/properties.c:362
 msgid "gnomes"
 msgstr "gnomes"
 
-#: ../gnobots2/properties.c:382
+#: ../gnobots2/properties.c:363
 msgid "mice"
 msgstr "souris"
 
-#: ../gnobots2/properties.c:383
+#: ../gnobots2/properties.c:364
 msgid "ufo"
 msgstr "ovni"
 
-#: ../gnobots2/properties.c:384
+#: ../gnobots2/properties.c:365
 msgid "boo"
 msgstr "boo"
 
-#: ../gnobots2/properties.c:438
+#: ../gnobots2/properties.c:419
 msgid "Robots Preferences"
 msgstr "Préférences de Robots"
 
 #. --- Combo (yahtzee or kismet style ----
-#: ../gnobots2/properties.c:459 ../gtali/setup.c:361
+#: ../gnobots2/properties.c:440 ../gtali/setup.c:361
 msgid "Game Type"
 msgstr "Type de jeu"
 
-#: ../gnobots2/properties.c:484
+#: ../gnobots2/properties.c:460
 msgid "_Use safe moves"
 msgstr "_Utiliser des mouvements sans danger"
 
-#: ../gnobots2/properties.c:491
+#: ../gnobots2/properties.c:467
 msgid "Prevent accidental moves that result in getting killed."
 msgstr "Évite les mouvements accidentels qui conduisent à être tué."
 
-#: ../gnobots2/properties.c:493
+#: ../gnobots2/properties.c:469
 msgid "U_se super safe moves"
 msgstr "Ut_iliser des mouvements *vraiment* sans danger"
 
-#: ../gnobots2/properties.c:500
+#: ../gnobots2/properties.c:476
 msgid "Prevents all moves that result in getting killed."
 msgstr "Évite tous les mouvements qui conduisent à être tué."
 
-#: ../gnobots2/properties.c:502 ../gnometris/tetris.cpp:705
+#: ../gnobots2/properties.c:483 ../gnometris/tetris.cpp:670
 msgid "_Enable sounds"
 msgstr "A_ctiver les sons"
 
-#: ../gnobots2/properties.c:508
+#: ../gnobots2/properties.c:489
 msgid "Play sounds for events like winning a level and dying."
 msgstr ""
 "Joue des sons pour les événements tels que la réussite d'un niveau ou la "
 "mort."
 
-#: ../gnobots2/properties.c:510
-msgid "E_nable splats"
-msgstr "Activer les _splats"
-
-#: ../gnobots2/properties.c:517
-msgid "Play the most common, and potentially the most annoying, sound."
-msgstr "Joue le son le plus commun, et potentiellement le plus ennuyeux."
-
-#: ../gnobots2/properties.c:527
+#: ../gnobots2/properties.c:499
 msgid "Graphics Theme"
 msgstr "Thème graphique"
 
-#: ../gnobots2/properties.c:535
+#: ../gnobots2/properties.c:507
 msgid "_Image theme:"
 msgstr "T_hème d'image :"
 
-#: ../gnobots2/properties.c:546 ../mahjongg/mahjongg.c:775
+#: ../gnobots2/properties.c:518 ../mahjongg/mahjongg.c:775
 msgid "_Background color:"
 msgstr "Co_uleur d'arrière-plan :"
 
-#: ../gnobots2/properties.c:592
+#: ../gnobots2/properties.c:564
 msgid "_Restore Defaults"
 msgstr "_Paramètres par défaut"
 
-#: ../gnobots2/properties.c:597
+#: ../gnobots2/properties.c:569
 msgid "Keyboard"
 msgstr "Clavier"
 
@@ -6532,23 +6554,18 @@ msgstr "Niveau :"
 msgid "Remaining:"
 msgstr "Restant :"
 
-#: ../gnometris/blockops.cpp:243
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:186
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:225
-msgid "Paused"
-msgstr "Suspendu"
-
+#. ********************************************************************
 #: ../gnometris/gnometris.desktop.in.in.h:1
 msgid "Fit falling blocks together"
 msgstr "Faire correspondre les blocs qui tombent"
 
-#: ../gnometris/gnometris.desktop.in.in.h:2 ../gnometris/main.cpp:71
-#: ../gnometris/tetris.cpp:173 ../gnometris/tetris.cpp:1375
-#: ../gnometris/tetris.cpp:1379 ../gnometris/tetris.cpp:1381
+#: ../gnometris/gnometris.desktop.in.in.h:2 ../gnometris/main.cpp:64
+#: ../gnometris/tetris.cpp:163 ../gnometris/tetris.cpp:1301
+#: ../gnometris/tetris.cpp:1305 ../gnometris/tetris.cpp:1307
 msgid "Gnometris"
 msgstr "Gnometris"
 
-#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:780
+#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:748
 msgid "Drop"
 msgstr "Lâcher"
 
@@ -6584,11 +6601,11 @@ msgstr "Niveau de départ"
 msgid "Level to start with."
 msgstr "Niveau de départ."
 
-#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:782
+#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:750
 msgid "Pause"
 msgstr "Pause"
 
-#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:781
+#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:749
 msgid "Rotate"
 msgstr "Tourner"
 
@@ -6680,27 +6697,23 @@ msgstr "Tourner dans le sens inverse des aiguilles d'une montre ou non."
 msgid "Whether to use the background image"
 msgstr "Utiliser ou pas une image d'arrière-plan"
 
-#: ../gnometris/main.cpp:50
+#: ../gnometris/main.cpp:46
 msgid "Set starting level (1 or greater)"
 msgstr "Choix du niveau de départ (1 ou supérieur)"
 
-#: ../gnometris/main.cpp:50
+#: ../gnometris/main.cpp:46
 msgid "LEVEL"
 msgstr "NIVEAU"
 
-#: ../gnometris/renderer.cpp:31
+#: ../gnometris/renderer.cpp:30
 msgid "Plain"
 msgstr "Ordinaire"
 
-#: ../gnometris/renderer.cpp:32
-msgid "Joined"
-msgstr "Joint"
-
-#: ../gnometris/renderer.cpp:33
+#: ../gnometris/renderer.cpp:31
 msgid "Tango Flat"
 msgstr "Tango plat"
 
-#: ../gnometris/renderer.cpp:34
+#: ../gnometris/renderer.cpp:32
 msgid "Tango Shaded"
 msgstr "Tango ombré"
 
@@ -6708,58 +6721,62 @@ msgstr "Tango ombré"
 msgid "Lines:"
 msgstr "Lignes :"
 
-#: ../gnometris/tetris.cpp:611
+#: ../gnometris/tetris.cpp:576
 msgid "Gnometris Preferences"
 msgstr "Préférences de Gnometris"
 
-#: ../gnometris/tetris.cpp:635
+#: ../gnometris/tetris.cpp:600
 msgid "Setup"
 msgstr "Configuration"
 
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:641
+#: ../gnometris/tetris.cpp:606
 msgid "_Number of pre-filled rows:"
 msgstr "_Nombre de lignes préremplies :"
 
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:660
+#: ../gnometris/tetris.cpp:625
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "_Densités de blocs dans les lignes préremplies :"
 
-#: ../gnometris/tetris.cpp:700
+#: ../gnometris/tetris.cpp:665
 msgid "Operation"
 msgstr "Opération"
 
-#: ../gnometris/tetris.cpp:714
+#: ../gnometris/tetris.cpp:679
 msgid "_Preview next block"
 msgstr "_Voir le prochain bloc"
 
-#: ../gnometris/tetris.cpp:723
+#: ../gnometris/tetris.cpp:688
 msgid "_Use random block colors"
-msgstr "C_ouleurs aléatoires des blocs"
+msgstr "Co_uleurs aléatoires des blocs"
 
-#: ../gnometris/tetris.cpp:734
+#: ../gnometris/tetris.cpp:699
+msgid "_Bastard mode"
+msgstr "Mode _pernicieux"
+
+#: ../gnometris/tetris.cpp:708
 msgid "_Rotate blocks counterclockwise"
 msgstr "_Tourner les blocs dans le sens inverse des aiguilles d'une montre"
 
-#: ../gnometris/tetris.cpp:743
+#: ../gnometris/tetris.cpp:717
 msgid "Show _where the block will land"
 msgstr "Afficher _où les blocs vont atterrir"
 
-#: ../gnometris/tetris.cpp:757 ../gnometris/tetris.cpp:790
+#: ../gnometris/tetris.cpp:725 ../gnometris/tetris.cpp:758
 #: ../same-gnome/ui.c:324
 msgid "Theme"
 msgstr "Thème"
 
-#: ../gnometris/tetris.cpp:766
+#: ../gnometris/tetris.cpp:734
 msgid "Controls"
 msgstr "Contrôles"
 
-#: ../gnometris/tetris.cpp:793
+#: ../gnometris/tetris.cpp:761
 msgid "Block Style"
 msgstr "Style de blocs"
 
-#: ../gnometris/tetris.cpp:1384
+#: ../gnometris/tetris.cpp:1310
 msgid ""
 "A classic game of fitting falling blocks together.\n"
 "\n"
@@ -6773,8 +6790,14 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "Scores de Gnometris"
 
+#: ../gnometris/blockops.cpp:861
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:173
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:214
+msgid "Paused"
+msgstr "Suspendu"
+
 #: ../gnome-sudoku/gnome-sudoku.desktop.in.in.h:1
-#: ../gnome-sudoku/src/lib/defaults.py.in:41
+#: ../gnome-sudoku/src/lib/defaults.py.in:38
 msgid "Sudoku"
 msgstr "Sudoku"
 
@@ -6783,131 +6806,131 @@ msgid "Test your logic skills in this number grid puzzle"
 msgstr ""
 "Tester vos aptitudes en logique avec ce casse-tête de nombres en grille"
 
-#: ../gnome-sudoku/glade/print_games.glade.h:1
+#: ../gnome-sudoku/data/print_games.ui.h:1
 msgid "<b><i>Details</i></b>"
 msgstr "<b><i>Détails</i></b>"
 
-#: ../gnome-sudoku/glade/print_games.glade.h:2
+#: ../gnome-sudoku/data/print_games.ui.h:2
 msgid "<b><i>Levels of difficulty to print</i></b>"
 msgstr "<b><i>Niveau de difficulté à imprimer</i></b>"
 
-#: ../gnome-sudoku/glade/print_games.glade.h:3
+#: ../gnome-sudoku/data/print_games.ui.h:3
 msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
 msgstr "<span size=\"larger\" weight=\"bold\">Imprimer les parties</span>"
 
-#: ../gnome-sudoku/glade/print_games.glade.h:4
+#: ../gnome-sudoku/data/print_games.ui.h:4
 msgid "Print Sudokus"
 msgstr "Imprimer les Sudokus"
 
-#: ../gnome-sudoku/glade/print_games.glade.h:5
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:13
+#: ../gnome-sudoku/data/print_games.ui.h:5
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:13
 msgid "_Easy"
 msgstr "_Facile"
 
-#: ../gnome-sudoku/glade/print_games.glade.h:6
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:15
+#: ../gnome-sudoku/data/print_games.ui.h:6
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:15
 msgid "_Hard"
 msgstr "_Difficile"
 
-#: ../gnome-sudoku/glade/print_games.glade.h:7
+#: ../gnome-sudoku/data/print_games.ui.h:7
 msgid "_Include games you've already played in list of games to print"
 msgstr "_Inclure les parties déjà jouées dans la liste des grilles à imprimer"
 
-#: ../gnome-sudoku/glade/print_games.glade.h:8
+#: ../gnome-sudoku/data/print_games.ui.h:8
 msgid "_Mark games as played once you've printed them."
 msgstr "_Marquer les parties comme jouées après impression"
 
-#: ../gnome-sudoku/glade/print_games.glade.h:9
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:16 ../same-gnome/ui.c:479
+#: ../gnome-sudoku/data/print_games.ui.h:9
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:16 ../same-gnome/ui.c:479
 msgid "_Medium"
 msgstr "_Moyenne"
 
-#: ../gnome-sudoku/glade/print_games.glade.h:10
+#: ../gnome-sudoku/data/print_games.ui.h:10
 msgid "_Number of sudoku to print: "
 msgstr "_Nombre de sudokus à imprimer : "
 
-#: ../gnome-sudoku/glade/print_games.glade.h:11
+#: ../gnome-sudoku/data/print_games.ui.h:11
 msgid "_Sudokus per page: "
 msgstr "_Sudokus par page : "
 
-#: ../gnome-sudoku/glade/print_games.glade.h:12
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:17
+#: ../gnome-sudoku/data/print_games.ui.h:12
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:17
 msgid "_Very Hard"
 msgstr "_Très difficile"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:1
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:1
 msgid "<i><u>Number of Puzzles</u></i>"
 msgstr "<i><u>Nombre de grilles</u></i>"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:2
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:2
 msgid "<i>Easy:</i>"
 msgstr "<i>Facile :</i>"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:3
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:3
 msgid "<i>Hard:</i>"
 msgstr "<i>Difficile :</i>"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:4
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:4
 msgid "<i>Medium:</i>"
 msgstr "<i>Moyen :</i>"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:5
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:5
 msgid "<i>Very Hard:</i>"
 msgstr "<i>Très difficile :</i>"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:6
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:6
 msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
 msgstr "<span size=\"larger\" weight=\"bold\">Générateur de grilles</span>"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:7
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:7
 msgid "Criteria:"
 msgstr "Critère :"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:8
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:8
 msgid "Generate Policy"
 msgstr "Politique de génération des grilles"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:9
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:9
 msgid "Generate new puzzles _until stopped"
 msgstr "Générer de no_uvelles grilles jusqu'à interruption"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:10
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:10
 msgid "Generate until _reaching target"
 msgstr "Générer de nou_velles grilles jusqu'au nombre désiré"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:11
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:11
 msgid "Puzzle Generator"
 msgstr "Générateur de grilles"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:12
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:12
 msgid "Target _number of sudokus:"
 msgstr "_Nombre de sudokus à générer :"
 
-#: ../gnome-sudoku/glade/puzzle_generator.glade.h:14
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:14
 msgid "_Generate"
 msgstr "_Générer"
 
-#: ../gnome-sudoku/glade/select_game.glade.h:1
+#: ../gnome-sudoku/data/select_game.ui.h:1
 msgid "<b><span size=\"large\">_New Game</span></b>"
 msgstr "<span size=\"larger\" weight=\"bold\">_Nouvelle partie</span>"
 
-#: ../gnome-sudoku/glade/select_game.glade.h:2
+#: ../gnome-sudoku/data/select_game.ui.h:2
 msgid "<b><span size=\"large\">_Saved Games</span></b>"
 msgstr "<span size=\"larger\" weight=\"bold\">_Parties enregistrées</span>"
 
-#: ../gnome-sudoku/glade/tracker.glade.h:1
+#: ../gnome-sudoku/data/tracker.ui.h:1
 msgid "Clear _Others"
 msgstr "Effacer les _autres"
 
-#: ../gnome-sudoku/glade/tracker.glade.h:2
+#: ../gnome-sudoku/data/tracker.ui.h:2
 msgid "_Add Tracker"
 msgstr "_Ajouter un marqueur"
 
-#: ../gnome-sudoku/glade/tracker.glade.h:3 ../gnome-sudoku/src/lib/main.py:870
+#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:797
 msgid "_Clear Tracker"
 msgstr "_Effacer le marqueur"
 
-#: ../gnome-sudoku/glade/tracker.glade.h:4
+#: ../gnome-sudoku/data/tracker.ui.h:4
 msgid "_Trackers"
 msgstr "_Marqueurs"
 
@@ -6925,11 +6948,11 @@ msgstr ""
 "installés. Si vous êtes actuellement en train de mettre à jour votre "
 "système, veuillez patienter jusqu'à la fin de l'opération."
 
-#: ../gnome-sudoku/src/lib/defaults.py.in:40
+#: ../gnome-sudoku/src/lib/defaults.py.in:37
 msgid "GNOME Sudoku"
 msgstr "Sudoku de GNOME"
 
-#: ../gnome-sudoku/src/lib/defaults.py.in:43
+#: ../gnome-sudoku/src/lib/defaults.py.in:40
 msgid ""
 "GNOME Sudoku is a simple sudoku generator and player. Sudoku is a japanese "
 "logic puzzle.\n"
@@ -6941,154 +6964,153 @@ msgstr ""
 "\n"
 "GNOME Sudoku fait partie des jeux GNOME."
 
-#: ../gnome-sudoku/src/lib/saver.py:104
+#: ../gnome-sudoku/src/lib/saver.py:122
 msgid "No Space"
 msgstr "Espace manquant"
 
-#: ../gnome-sudoku/src/lib/saver.py:105
+#: ../gnome-sudoku/src/lib/saver.py:123
 msgid "No space left on disk"
 msgstr "L'espace disque est saturé"
 
-#: ../gnome-sudoku/src/lib/saver.py:107
+#: ../gnome-sudoku/src/lib/saver.py:125 ../gnome-sudoku/src/lib/saver.py:132
 #, python-format
-msgid "Sudoku is unable to created data folder %(path)s."
-msgstr "Sudoku ne peut pas créer le dossier de données %(path)s."
+msgid "Unable to create data folder %(path)s."
+msgstr "Impossible de créer le dossier de données %(path)s."
 
-#: ../gnome-sudoku/src/lib/saver.py:108
+#: ../gnome-sudoku/src/lib/saver.py:126
 msgid "There is no disk space left!"
 msgstr "Il n'y a plus d'espace disque disponible."
 
-#: ../gnome-sudoku/src/lib/saver.py:114
-#, python-format
-msgid "Sudoku was unable to create data folder %(path)s."
-msgstr "Sudoku n'a pas pu créer le dossier de données %(path)s."
-
-#: ../gnome-sudoku/src/lib/saver.py:115 ../gnome-sudoku/src/lib/saver.py:140
-#: ../gnome-sudoku/src/lib/saver.py:165 ../gnome-sudoku/src/lib/saver.py:183
+#: ../gnome-sudoku/src/lib/saver.py:133 ../gnome-sudoku/src/lib/saver.py:158
+#: ../gnome-sudoku/src/lib/saver.py:182 ../gnome-sudoku/src/lib/saver.py:200
 #, python-format
 msgid "Error %(errno)s: %(error)s"
 msgstr "Erreur %(errno)s : %(error)s"
 
-#: ../gnome-sudoku/src/lib/saver.py:135 ../gnome-sudoku/src/lib/saver.py:136
+#: ../gnome-sudoku/src/lib/saver.py:153 ../gnome-sudoku/src/lib/saver.py:154
 msgid "Sudoku unable to save game."
 msgstr "Sudoku n'a pas pu enregistrer la partie."
 
-#: ../gnome-sudoku/src/lib/saver.py:138 ../gnome-sudoku/src/lib/saver.py:164
-#: ../gnome-sudoku/src/lib/saver.py:182
+#: ../gnome-sudoku/src/lib/saver.py:156 ../gnome-sudoku/src/lib/saver.py:181
+#: ../gnome-sudoku/src/lib/saver.py:199
 #, python-format
 msgid "Unable to save file %(filename)s."
 msgstr "Impossible d'enregistrer le fichier %(filename)s."
 
-#: ../gnome-sudoku/src/lib/saver.py:161 ../gnome-sudoku/src/lib/saver.py:162
-#: ../gnome-sudoku/src/lib/saver.py:179 ../gnome-sudoku/src/lib/saver.py:180
+#: ../gnome-sudoku/src/lib/saver.py:178 ../gnome-sudoku/src/lib/saver.py:179
+#: ../gnome-sudoku/src/lib/saver.py:196 ../gnome-sudoku/src/lib/saver.py:197
 msgid "Sudoku unable to mark game as finished."
 msgstr "Sudoku n'a pas pu marquer le jeu comme terminé."
 
-#: ../gnome-sudoku/src/lib/main.py:35
+#: ../gnome-sudoku/src/lib/main.py:43
 msgid "Track moves"
 msgstr "Suivre les coups"
 
-#: ../gnome-sudoku/src/lib/main.py:41
-msgid "Full Screen"
-msgstr "Plein écran"
-
-#: ../gnome-sudoku/src/lib/main.py:233
+#: ../gnome-sudoku/src/lib/main.py:245
 msgid "New game"
 msgstr "Nouvelle partie"
 
-#: ../gnome-sudoku/src/lib/main.py:235
+#: ../gnome-sudoku/src/lib/main.py:247
 msgid "Print current game"
 msgstr "Imprimer le jeu en cours"
 
-#: ../gnome-sudoku/src/lib/main.py:236
+#: ../gnome-sudoku/src/lib/main.py:248
 msgid "Print _Multiple Sudokus"
 msgstr "Imprimer _plusieurs sudokus"
 
-#: ../gnome-sudoku/src/lib/main.py:237
+#: ../gnome-sudoku/src/lib/main.py:249
 msgid "Print more than one sudoku at a time."
 msgstr "Imprime plusieurs sudokus à la fois."
 
-#: ../gnome-sudoku/src/lib/main.py:239
+#: ../gnome-sudoku/src/lib/main.py:251
 msgid "Close Sudoku"
 msgstr "Ferme Sudoku"
 
-#: ../gnome-sudoku/src/lib/main.py:240
+#: ../gnome-sudoku/src/lib/main.py:252
 msgid "_Tools"
 msgstr "_Outils"
 
-#: ../gnome-sudoku/src/lib/main.py:242 ../libgames-support/games-stock.c:317
+#: ../gnome-sudoku/src/lib/main.py:254 ../libgames-support/games-stock.c:320
 msgid "_Hint"
 msgstr "_Astuce"
 
-#: ../gnome-sudoku/src/lib/main.py:244
+#: ../gnome-sudoku/src/lib/main.py:256
 msgid "Show which numbers could go in the current square."
 msgstr "Montrer quels numéros peuvent aller dans la case actuelle."
 
-#: ../gnome-sudoku/src/lib/main.py:246
+#: ../gnome-sudoku/src/lib/main.py:258
 msgid "_Fill"
 msgstr "Re_mplir"
 
-#: ../gnome-sudoku/src/lib/main.py:247
+#: ../gnome-sudoku/src/lib/main.py:259
 msgid "Automatically fill in the current square if possible."
 msgstr "Remplit automatiquement la case si possible."
 
-#: ../gnome-sudoku/src/lib/main.py:249
+#: ../gnome-sudoku/src/lib/main.py:261
 msgid "Fill _all squares"
 msgstr "Remplir toutes les c_ases"
 
-#: ../gnome-sudoku/src/lib/main.py:250
+#: ../gnome-sudoku/src/lib/main.py:262
 msgid ""
 "Automatically fill in all squares for which there is only one valid value."
 msgstr ""
 "Remplit automatiquement toutes les cases qui n'ont qu'une valeur possible."
 
-#: ../gnome-sudoku/src/lib/main.py:254
+#: ../gnome-sudoku/src/lib/main.py:266
+msgid "_Generate new puzzles"
+msgstr "_Générer de nouvelles grilles"
+
+#: ../gnome-sudoku/src/lib/main.py:266
+msgid "Generate new puzzles."
+msgstr "Génère de nouvelles grilles."
+
+#: ../gnome-sudoku/src/lib/main.py:268
 msgid "Puzzle _Statistics"
 msgstr "_Statistiques de la grille"
 
-#: ../gnome-sudoku/src/lib/main.py:255
+#: ../gnome-sudoku/src/lib/main.py:269
 msgid "Show statistics about current puzzle"
 msgstr "Affiche les statistiques sur la grille actuelle"
 
-#: ../gnome-sudoku/src/lib/main.py:267
+#: ../gnome-sudoku/src/lib/main.py:281
 msgid "_Always show hint"
 msgstr "_Toujours donner un indice"
 
-#: ../gnome-sudoku/src/lib/main.py:269
+#: ../gnome-sudoku/src/lib/main.py:283
 msgid "Always show possible numbers in a square"
 msgstr "Montre toujours les nombres possibles dans une case"
 
-#: ../gnome-sudoku/src/lib/main.py:273
+#: ../gnome-sudoku/src/lib/main.py:287
 msgid "Warn about _unfillable squares"
 msgstr "Signaler les cases non remplissables"
 
-#: ../gnome-sudoku/src/lib/main.py:275
+#: ../gnome-sudoku/src/lib/main.py:289
 msgid "Warn about squares made unfillable by a move"
 msgstr "Signale les cases qu'un coup rend non remplissables"
 
-#: ../gnome-sudoku/src/lib/main.py:277
+#: ../gnome-sudoku/src/lib/main.py:291
 msgid "_Track additions"
 msgstr "Activer le _suivi des coups"
 
-#: ../gnome-sudoku/src/lib/main.py:279
+#: ../gnome-sudoku/src/lib/main.py:293
 msgid "Mark new additions in a separate color so you can keep track of them."
 msgstr ""
 "Marque les nouveaux coups avec une couleur différente afin de pouvoir les "
 "suivre."
 
-#: ../gnome-sudoku/src/lib/main.py:282
+#: ../gnome-sudoku/src/lib/main.py:296
 msgid "_Highlighter"
 msgstr "_Surligneur"
 
-#: ../gnome-sudoku/src/lib/main.py:283
+#: ../gnome-sudoku/src/lib/main.py:297
 msgid "Highlight the current row, column and box"
 msgstr "Surligne la rangée, la colonne et la boîte sélectionnées"
 
-#: ../gnome-sudoku/src/lib/main.py:284
+#: ../gnome-sudoku/src/lib/main.py:298
 msgid "Generate new puzzles _while you play"
 msgstr "Générer de nouvelles grilles pendant la partie"
 
-#: ../gnome-sudoku/src/lib/main.py:286
+#: ../gnome-sudoku/src/lib/main.py:300
 msgid ""
 "Generate new puzzles in the background while you play. This will "
 "automatically pause when the game goes into the background."
@@ -7096,174 +7118,148 @@ msgstr ""
 "Génère de nouvelles grilles en arrière-plan pendant que vous jouez. Ceci "
 "s'arrête automatiquement lorsque le jeu passe en arrière-plan."
 
-#: ../gnome-sudoku/src/lib/main.py:292
+#: ../gnome-sudoku/src/lib/main.py:306
 msgid "_Edit"
 msgstr "É_dition"
 
-#: ../gnome-sudoku/src/lib/main.py:293
+#: ../gnome-sudoku/src/lib/main.py:307
 msgid "_Undo"
 msgstr "_Annuler"
 
-#: ../gnome-sudoku/src/lib/main.py:293
+#: ../gnome-sudoku/src/lib/main.py:307
 msgid "Undo last action"
 msgstr "Annule la dernière action"
 
-#: ../gnome-sudoku/src/lib/main.py:294
+#: ../gnome-sudoku/src/lib/main.py:308
 msgid "_Redo"
 msgstr "_Rétablir"
 
-#: ../gnome-sudoku/src/lib/main.py:294
+#: ../gnome-sudoku/src/lib/main.py:308
 msgid "Redo last action"
 msgstr "Rétablit la dernière action"
 
-#: ../gnome-sudoku/src/lib/main.py:295 ../gnome-sudoku/src/lib/gsudoku.py:85
+#: ../gnome-sudoku/src/lib/main.py:309
+#: ../gnome-sudoku/src/lib/number_box.py:54
 msgid "_Clear"
 msgstr "_Effacer"
 
-#: ../gnome-sudoku/src/lib/main.py:295
+#: ../gnome-sudoku/src/lib/main.py:309
 msgid "Clear entries you've filled in"
 msgstr "Efface les cases que vous avez remplies"
 
-#: ../gnome-sudoku/src/lib/main.py:296
+#: ../gnome-sudoku/src/lib/main.py:310
 msgid "Clear _Notes"
 msgstr "Effacer _notes"
 
-#: ../gnome-sudoku/src/lib/main.py:296
+#: ../gnome-sudoku/src/lib/main.py:310
 msgid "Clear notes and hints"
 msgstr "Efface les notes et les suggestions"
 
-#. Trackers...
-#. Our initial row...
-#: ../gnome-sudoku/src/lib/main.py:298 ../gnome-sudoku/src/lib/main.py:861
-msgid "No Tracker"
-msgstr "Pas de marqueur"
-
-#: ../gnome-sudoku/src/lib/main.py:299
-msgid "_Generate new puzzles"
-msgstr "_Génerer de nouvelles grilles"
-
-#: ../gnome-sudoku/src/lib/main.py:299
-msgid "Generate new puzzles."
-msgstr "Génère de nouvelles grilles."
-
-#: ../gnome-sudoku/src/lib/main.py:369
-msgid "Entering custom grid..."
-msgstr "Création d'une grille personnalisée..."
-
-#: ../gnome-sudoku/src/lib/main.py:373
-msgid "_Play game"
-msgstr "_Jouer"
-
-#: ../gnome-sudoku/src/lib/main.py:431
+#: ../gnome-sudoku/src/lib/main.py:424
 #, python-format
 msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
 msgstr ""
 "Vous avez fini la grille en %(totalTime)s (%(activeTime)s de temps actif)"
 
-#: ../gnome-sudoku/src/lib/main.py:435
+#: ../gnome-sudoku/src/lib/main.py:428
 #, python-format
 msgid "You got %(n)s hint"
 msgid_plural "You got %(n)s hints"
 msgstr[0] "Vous avez reçu %(n)s astuce"
 msgstr[1] "Vous avez reçu %(n)s astuces"
 
-#: ../gnome-sudoku/src/lib/main.py:438
+#: ../gnome-sudoku/src/lib/main.py:431
 #, python-format
 msgid "You had %(n)s impossibility pointed out."
 msgid_plural "You had %(n)s impossibilities pointed out."
 msgstr[0] "%(n)s impossibilité vous a été montrée"
 msgstr[1] "%(n)s impossibilités vous ont été montrées"
 
-#: ../gnome-sudoku/src/lib/main.py:443
+#: ../gnome-sudoku/src/lib/main.py:436
 #, python-format
 msgid "You used the auto-fill %(n)s time"
 msgid_plural "You used the auto-fill %(n)s times"
 msgstr[0] "Vous avez utilisé le remplissage automatique %(n)s fois"
 msgstr[1] "Vous avez utilisé le remplissage automatique %(n)s fois"
 
-#: ../gnome-sudoku/src/lib/main.py:468
+#: ../gnome-sudoku/src/lib/main.py:461
 msgid "Save this game before starting new one?"
 msgstr "Enregistrer cette partie avant d'en commencer une nouvelle ?"
 
-#: ../gnome-sudoku/src/lib/main.py:469
+#: ../gnome-sudoku/src/lib/main.py:462
 msgid "_Save game for later"
 msgstr "_Enregistrer la partie pour plus tard"
 
-#: ../gnome-sudoku/src/lib/main.py:470
+#: ../gnome-sudoku/src/lib/main.py:463
 msgid "_Abandon game"
 msgstr "_Abandonner la partie"
 
-#: ../gnome-sudoku/src/lib/main.py:722
+#: ../gnome-sudoku/src/lib/main.py:662
 #, python-format
 msgid "Playing %(difficulty)s puzzle."
 msgstr "Partie sur une grille %(difficulty)s."
 
-#: ../gnome-sudoku/src/lib/main.py:737
+#: ../gnome-sudoku/src/lib/main.py:678
 msgid "Puzzle Information"
 msgstr "Informations sur la grille"
 
-#: ../gnome-sudoku/src/lib/main.py:738
+#: ../gnome-sudoku/src/lib/main.py:679
 msgid "There is no current puzzle."
 msgstr "Pas de grille en cours."
 
-#: ../gnome-sudoku/src/lib/main.py:743
+#: ../gnome-sudoku/src/lib/main.py:684
 msgid "Calculated difficulty: "
 msgstr "Niveau de difficulté calculé : "
 
-#: ../gnome-sudoku/src/lib/main.py:747
+#: ../gnome-sudoku/src/lib/main.py:688
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "Nombre de coups possibles immédiatement par élimination : "
 
-#: ../gnome-sudoku/src/lib/main.py:750
+#: ../gnome-sudoku/src/lib/main.py:691
 msgid "Number of moves instantly fillable by filling: "
 msgstr "Nombre de coups possibles immédiatement par déduction : "
 
-#: ../gnome-sudoku/src/lib/main.py:753
+#: ../gnome-sudoku/src/lib/main.py:694
 msgid "Amount of trial-and-error required to solve: "
 msgstr "Quantité d'essais-erreurs nécessaires à la résolution : "
 
-#: ../gnome-sudoku/src/lib/main.py:756 ../gnome-sudoku/src/lib/main.py:757
+#: ../gnome-sudoku/src/lib/main.py:697 ../gnome-sudoku/src/lib/main.py:698
 msgid "Puzzle Statistics"
 msgstr "Statistiques de la grille"
 
-#: ../gnome-sudoku/src/lib/main.py:871
+#. Our initial row...
+#: ../gnome-sudoku/src/lib/main.py:788
+msgid "No Tracker"
+msgstr "Pas de marqueur"
+
+#: ../gnome-sudoku/src/lib/main.py:798
 msgid "Clear all moves tracked by selected tracker."
 msgstr "Supprime tous les coups suivis par le marqueur sélectionné."
 
-#: ../gnome-sudoku/src/lib/main.py:875
+#: ../gnome-sudoku/src/lib/main.py:802
 msgid "_Clear Others"
 msgstr "_Supprimer les autres coups"
 
-#: ../gnome-sudoku/src/lib/main.py:877
+#: ../gnome-sudoku/src/lib/main.py:804
 msgid "Clear all moves not tracked by selected tracker."
 msgstr "Supprime tous les coups non suivis par le marqueur sélectionné."
 
-#: ../gnome-sudoku/src/lib/main.py:903
+#: ../gnome-sudoku/src/lib/main.py:829
 #, python-format
 msgid "Tracker %s"
 msgstr "Marqueur %s"
 
-#: ../gnome-sudoku/src/lib/printing.py:193
-msgid "Print Sudoku"
-msgid_plural "Print Sudokus"
-msgstr[0] "Imprimer un sudoku"
-msgstr[1] "Imprimer des sudokus"
-
-#: ../gnome-sudoku/src/lib/printing.py:205
-msgid "Print Preview"
-msgstr "Aperçu avant impression"
-
-#: ../gnome-sudoku/src/lib/game_selector.py:136
+#: ../gnome-sudoku/src/lib/game_selector.py:149
 #, python-format
 msgid "Last Played %(timeAgo)s"
 msgstr "Dernière partie %(timeAgo)s"
 
-#: ../gnome-sudoku/src/lib/game_selector.py:137
+#: ../gnome-sudoku/src/lib/game_selector.py:150
 #, python-format
 msgid "%(level)s puzzle"
 msgstr "Grille %(level)s"
 
-#: ../gnome-sudoku/src/lib/game_selector.py:138
+#: ../gnome-sudoku/src/lib/game_selector.py:151
 #, python-format
 msgid "Played for %(duration)s"
 msgstr "Jouée durant %(duration)s"
@@ -7273,102 +7269,91 @@ msgstr "Jouée durant %(duration)s"
 msgid "Working..."
 msgstr "Cherche..."
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:162
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:154
 #, python-format
 msgid "%(n)s puzzle"
 msgid_plural "%(n)s puzzles"
 msgstr[0] "%(n)s grille"
 msgstr[1] "%(n)s grilles"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:191
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:179
 msgid "Stopped"
 msgstr "Arrêté"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:206
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:216
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:194
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:204
 #, python-format
 msgid "Generated %(n)s out of %(total)s puzzle"
 msgid_plural "Generated %(n)s out of %(total)s puzzles"
 msgstr[0] "%(n)s grille sur %(total)s a été générée"
 msgstr[1] "%(n)s grilles sur %(total)s ont été générées"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:224
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:212
 #, python-format
 msgid "Generated %(n)s puzzle"
 msgid_plural "Generated %(n)s puzzles"
 msgstr[0] "%(n)s grille générée"
 msgstr[1] "%(n)s grilles générées"
 
-#: ../gnome-sudoku/src/lib/sudoku.py:590
+#: ../gnome-sudoku/src/lib/sudoku.py:512
 msgid "Very Hard"
 msgstr "Très difficile"
 
-#: ../gnome-sudoku/src/lib/sudoku.py:592
+#: ../gnome-sudoku/src/lib/sudoku.py:514
 msgid "Medium"
 msgstr "Moyenne"
 
-#. setup pause button
-#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:328
-#: ../libgames-support/games-stock.c:334
-msgid "_Pause"
-msgstr "_Pause"
-
-#. setup stop button
-#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:337
-msgid "_Stop"
-msgstr "_Arrêter"
-
-#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:354
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:159
 msgid "Do you really want to do this?"
 msgstr "Voulez-vous vraiment faire cela ?"
 
-#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:388
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:193
 msgid "Don't ask me this again."
 msgstr "Ne plus poser la question."
 
-#: ../gnome-sudoku/src/lib/timer.py:21
+#: ../gnome-sudoku/src/lib/timer.py:19
 #, python-format
 msgid "%(n)s year"
 msgid_plural "%(n)s years"
 msgstr[0] "%(n)s an"
 msgstr[1] "%(n)s ans"
 
-#: ../gnome-sudoku/src/lib/timer.py:23
+#: ../gnome-sudoku/src/lib/timer.py:21
 #, python-format
 msgid "%(n)s month"
 msgid_plural "%(n)s months"
 msgstr[0] "%(n)s mois"
 msgstr[1] "%(n)s mois"
 
-#: ../gnome-sudoku/src/lib/timer.py:25
+#: ../gnome-sudoku/src/lib/timer.py:23
 #, python-format
 msgid "%(n)s week"
 msgid_plural "%(n)s weeks"
 msgstr[0] "%(n)s semaine"
 msgstr[1] "%(n)s semaines"
 
-#: ../gnome-sudoku/src/lib/timer.py:27
+#: ../gnome-sudoku/src/lib/timer.py:25
 #, python-format
 msgid "%(n)s day"
 msgid_plural "%(n)s days"
 msgstr[0] "%(n)s jour"
 msgstr[1] "%(n)s jours"
 
-#: ../gnome-sudoku/src/lib/timer.py:29
+#: ../gnome-sudoku/src/lib/timer.py:27
 #, python-format
 msgid "%(n)s hour"
 msgid_plural "%(n)s hours"
 msgstr[0] "%(n)s heure"
 msgstr[1] "%(n)s heures"
 
-#: ../gnome-sudoku/src/lib/timer.py:31
+#: ../gnome-sudoku/src/lib/timer.py:29
 #, python-format
 msgid "%(n)s minute"
 msgid_plural "%(n)s minutes"
 msgstr[0] "%(n)s minute"
 msgstr[1] "%(n)s minutes"
 
-#: ../gnome-sudoku/src/lib/timer.py:33
+#: ../gnome-sudoku/src/lib/timer.py:31
 #, python-format
 msgid "%(n)s second"
 msgid_plural "%(n)s seconds"
@@ -7381,123 +7366,102 @@ msgstr[1] "%(n)s secondes"
 #. You can of course make your language only use commas or
 #. ands or spaces or whatever you like by translating both
 #. ", " and " and " with the same string.
-#: ../gnome-sudoku/src/lib/timer.py:53
+#: ../gnome-sudoku/src/lib/timer.py:51
 msgid " and "
 msgstr " et "
 
-#: ../gnome-sudoku/src/lib/timer.py:53
+#: ../gnome-sudoku/src/lib/timer.py:51
 msgid ", "
 msgstr ", "
 
-#: ../gnome-sudoku/src/lib/timer.py:55
+#: ../gnome-sudoku/src/lib/timer.py:53
 msgid " "
 msgstr " "
 
-#. then we're today
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/timer.py:73
-msgid "Today %R %p"
-msgstr "Aujourd'hui %R"
-
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/timer.py:76
-msgid "Yesterday %R %p"
-msgstr "Hier %R"
-
-#. less than a week
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/timer.py:79
-msgid "%A %H:%M"
-msgstr "%A %H:%M"
-
-#. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/timer.py:82
-msgid "%A %B %d %R %p"
-msgstr "%A %d %B %R"
-
-#: ../gnome-sudoku/src/lib/timer.py:96
-#, python-format
-msgid "%(n)s minute ago"
-msgid_plural "%(n)s minutes ago"
-msgstr[0] "il y a %(n)s minute"
-msgstr[1] "il y a %(n)s minutes"
-
+#. Then we're today
 #. within the minute
-#: ../gnome-sudoku/src/lib/timer.py:99
+#: ../gnome-sudoku/src/lib/timer.py:63
 #, python-format
 msgid "%(n)s second ago"
 msgid_plural "%(n)s seconds ago"
 msgstr[0] "il y a %(n)s seconde"
 msgstr[1] "il y a %(n)s secondes"
 
+#: ../gnome-sudoku/src/lib/timer.py:67
+#, python-format
+msgid "%(n)s minute ago"
+msgid_plural "%(n)s minutes ago"
+msgstr[0] "il y a %(n)s minute"
+msgstr[1] "il y a %(n)s minutes"
+
 #. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/timer.py:104
+#: ../gnome-sudoku/src/lib/timer.py:71
 msgid "at %I:%M %p"
 msgstr "à %H:%M"
 
 #. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/timer.py:107
+#: ../gnome-sudoku/src/lib/timer.py:74
 msgid "yesterday at %I:%M %p"
 msgstr "hier à %H:%M"
 
 #. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/timer.py:110
+#: ../gnome-sudoku/src/lib/timer.py:77
 msgid "%A %I:%M %p"
 msgstr "%A %H:%M"
 
 #. Translators, see strftime manual in order to translate %? format strings
-#: ../gnome-sudoku/src/lib/timer.py:113
-msgid "%B%e"
+#: ../gnome-sudoku/src/lib/timer.py:80
+msgid "%B %e"
 msgstr "%e %B"
 
 #: ../gnomine/gnomine.c:51 ../gnomine/gnomine.desktop.in.in.h:2
 msgid "Mines"
 msgstr "Mines"
 
-#: ../gnomine/gnomine.c:103
+#: ../gnomine/gnomine.c:104
 msgctxt "board size"
 msgid "Custom"
 msgstr "Personnalisée"
 
-#: ../gnomine/gnomine.c:169
+#: ../gnomine/gnomine.c:170
 #, c-format
 msgid "Flags: %d/%d"
 msgstr "Drapeaux : %d/%d"
 
-#: ../gnomine/gnomine.c:197
+#: ../gnomine/gnomine.c:198
 msgid "The Mines Have Been Cleared!"
 msgstr "Les mines ont été dégagées !"
 
-#: ../gnomine/gnomine.c:213
+#: ../gnomine/gnomine.c:214
 msgid "Mines Scores"
 msgstr "Scores de Mines"
 
-#: ../gnomine/gnomine.c:216 ../gnotravex/gnotravex.c:1232
+#: ../gnomine/gnomine.c:217 ../gnotravex/gnotravex.c:1232
 #: ../same-gnome/ui.c:148
 msgid "Size:"
 msgstr "Taille :"
 
-#: ../gnomine/gnomine.c:319
+#: ../gnomine/gnomine.c:320
 msgid "Click a square, any square"
 msgstr "Cliquez sur un carré, n'importe quel carré"
 
-#: ../gnomine/gnomine.c:321
+#: ../gnomine/gnomine.c:322
 msgid "Maybe they're all mines ..."
 msgstr "Ce sont peut-être toutes des mines..."
 
-#: ../gnomine/gnomine.c:440
+#: ../gnomine/gnomine.c:450
 msgid "Resizing and SVG support:"
 msgstr "Redimensionnement et prise en charge de SVG :"
 
-#: ../gnomine/gnomine.c:447
+#: ../gnomine/gnomine.c:457
 msgid "Faces:"
 msgstr "Figures :"
 
-#: ../gnomine/gnomine.c:450
+#: ../gnomine/gnomine.c:460
 msgid "Graphics:"
 msgstr "Graphismes :"
 
-#: ../gnomine/gnomine.c:466
+#: ../gnomine/gnomine.c:476
 msgid ""
 "The popular logic puzzle minesweeper. Clear mines from a board using hints "
 "from squares you have already uncovered.\n"
@@ -7510,69 +7474,77 @@ msgstr ""
 "\n"
 "Mines fait partie des jeux GNOME."
 
-#: ../gnomine/gnomine.c:660
+#: ../gnomine/gnomine.c:687
 msgid "Field Size"
 msgstr "Taille de la grille"
 
-#: ../gnomine/gnomine.c:683
+#: ../gnomine/gnomine.c:710
 msgid "Custom Size"
 msgstr "Taille personnalisée"
 
-#: ../gnomine/gnomine.c:690
+#: ../gnomine/gnomine.c:717
 msgid "_Number of mines:"
 msgstr "_Nombre de mines :"
 
-#: ../gnomine/gnomine.c:703
+#: ../gnomine/gnomine.c:730
 msgid "_Horizontal:"
 msgstr "_Horizontale :"
 
-#: ../gnomine/gnomine.c:715
+#: ../gnomine/gnomine.c:742
 msgid "_Vertical:"
 msgstr "_Verticale :"
 
-#: ../gnomine/gnomine.c:733
+#: ../gnomine/gnomine.c:759
+msgid "Flags"
+msgstr "Drapeaux"
+
+#: ../gnomine/gnomine.c:762
 msgid "_Use \"I'm not sure\" flags"
 msgstr "_Utiliser le drapeau « Je ne suis pas sûr »"
 
-#: ../gnomine/gnomine.c:744
+#: ../gnomine/gnomine.c:773
+msgid "Warnings"
+msgstr "Avertissements"
+
+#: ../gnomine/gnomine.c:776
 msgid "_Use \"Too many flags\" warning"
 msgstr "_Utiliser l'avertissement « Trop de drapeaux »"
 
-#: ../gnomine/gnomine.c:754
+#: ../gnomine/gnomine.c:787
 msgid "Mines Preferences"
 msgstr "Préférences de GNOME Mines"
 
-#: ../gnomine/gnomine.c:957
+#: ../gnomine/gnomine.c:991
 msgid "Width of grid"
 msgstr "Largeur de la grille"
 
-#: ../gnomine/gnomine.c:958
+#: ../gnomine/gnomine.c:992
 msgid "Height of grid"
 msgstr "Hauteur de la grille"
 
-#: ../gnomine/gnomine.c:960
+#: ../gnomine/gnomine.c:994
 msgid "Number of mines"
 msgstr "Nombre de mines"
 
-#: ../gnomine/gnomine.c:963 ../gnomine/gnomine.schemas.in.h:8
+#: ../gnomine/gnomine.c:997 ../gnomine/gnomine.schemas.in.h:8
 msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "Taille du plateau (0-2 = petit-grand, 3 = personnalisé)"
 
-#: ../gnomine/gnomine.c:964 ../gnotravex/gnotravex.c:398
-#: ../gnotski/gnotski.c:466 ../iagno/gnothello.c:146
+#: ../gnomine/gnomine.c:998 ../gnotravex/gnotravex.c:398
+#: ../gnotski/gnotski.c:466 ../iagno/gnothello.c:145
 msgid "X location of window"
 msgstr "Position en X de la fenêtre"
 
-#: ../gnomine/gnomine.c:966 ../gnotravex/gnotravex.c:400
-#: ../gnotski/gnotski.c:468 ../iagno/gnothello.c:148
+#: ../gnomine/gnomine.c:1000 ../gnotravex/gnotravex.c:400
+#: ../gnotski/gnotski.c:468 ../iagno/gnothello.c:147
 msgid "Y location of window"
 msgstr "Position en Y de la fenêtre"
 
-#: ../gnomine/gnomine.c:1109
+#: ../gnomine/gnomine.c:1146
 msgid "Press to Resume"
 msgstr "Cliquez pour continuer"
 
-#: ../gnomine/gnomine.c:1143
+#: ../gnomine/gnomine.c:1180
 msgid "Time: "
 msgstr "Durée : "
 
@@ -8458,12 +8430,12 @@ msgid "5 of a Kind [total]"
 msgstr "5 identiques [total]"
 
 #. This is the short name for the room
-#: ../iagno/gnothello.c:56 ../iagno/iagno.desktop.in.in.h:2
+#: ../iagno/gnothello.c:55 ../iagno/iagno.desktop.in.in.h:2
 #: ../iagno/iagno.room.in.h:2
 msgid "Iagno"
 msgstr "Iagno"
 
-#: ../iagno/gnothello.c:266
+#: ../iagno/gnothello.c:265
 msgid ""
 "A disk flipping game derived from Reversi.\n"
 "\n"
@@ -8473,45 +8445,45 @@ msgstr ""
 "\n"
 "Iagno fait partie des jeux GNOME."
 
-#: ../iagno/gnothello.c:347
+#: ../iagno/gnothello.c:346
 msgid "Invalid move."
 msgstr "Coup incorrect."
 
-#: ../iagno/gnothello.c:621 ../iagno/gnothello.c:623
+#: ../iagno/gnothello.c:620 ../iagno/gnothello.c:622
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
 
-#: ../iagno/gnothello.c:645
+#: ../iagno/gnothello.c:644
 msgid "It is your turn to place a dark piece"
 msgstr "C'est à votre tour de placer une pièce foncée"
 
-#: ../iagno/gnothello.c:647
+#: ../iagno/gnothello.c:646
 msgid "It is your turn to place a light piece"
 msgstr "C'est à votre tour de placer une pièce claire"
 
-#: ../iagno/gnothello.c:650
+#: ../iagno/gnothello.c:649
 #, c-format
 msgid "Waiting for %s to move"
 msgstr "Attend que %s bouge"
 
-#: ../iagno/gnothello.c:657
+#: ../iagno/gnothello.c:656
 msgid "Dark's move"
 msgstr "Aux noirs de jouer"
 
-#: ../iagno/gnothello.c:659
+#: ../iagno/gnothello.c:658
 msgid "Light's move"
 msgstr "Aux blancs de jouer"
 
-#: ../iagno/gnothello.c:935
+#: ../iagno/gnothello.c:945
 msgid "Dark:"
 msgstr "Foncés :"
 
-#: ../iagno/gnothello.c:945
+#: ../iagno/gnothello.c:955
 msgid "Light:"
 msgstr "Clairs :"
 
-#: ../iagno/gnothello.c:969
+#: ../iagno/gnothello.c:979
 msgid "Welcome to Iagno!"
 msgstr "Bienvenue dans Iagno !"
 
@@ -8609,7 +8581,7 @@ msgstr "L'application n'accepte pas les documents en ligne de commande"
 msgid "Unrecognized launch option: %d"
 msgstr "Option de lancement non reconnue : %d"
 
-#: ../libgames-support/eggdesktopfile.c:1375
+#: ../libgames-support/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
@@ -8621,31 +8593,31 @@ msgstr ""
 msgid "Not a launchable item"
 msgstr "L'élément n'est pas exécutable"
 
-#: ../libgames-support/eggsmclient.c:224
+#: ../libgames-support/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "Désactive la connexion au gestionnaire de sessions"
 
-#: ../libgames-support/eggsmclient.c:227
+#: ../libgames-support/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "Indique un fichier contenant la configuration enregistrée"
 
-#: ../libgames-support/eggsmclient.c:227
+#: ../libgames-support/eggsmclient.c:228
 msgid "FILE"
 msgstr "FICHIER"
 
-#: ../libgames-support/eggsmclient.c:230
+#: ../libgames-support/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "Indique l'ID de la gestion de sessions"
 
-#: ../libgames-support/eggsmclient.c:230
+#: ../libgames-support/eggsmclient.c:231
 msgid "ID"
 msgstr "ID"
 
-#: ../libgames-support/eggsmclient.c:244
+#: ../libgames-support/eggsmclient.c:252
 msgid "Session management options:"
 msgstr "Options de gestion de sessions :"
 
-#: ../libgames-support/eggsmclient.c:245
+#: ../libgames-support/eggsmclient.c:253
 msgid "Show session management options"
 msgstr "Afficher les options de gestion de sessions"
 
@@ -8797,15 +8769,7 @@ msgstr "1"
 msgid "Card Style"
 msgstr "Style des cartes"
 
-#: ../libgames-support/games-controls.c:48
-msgid "No key"
-msgstr "Aucune touche"
-
-#: ../libgames-support/games-controls.c:161
-msgid "<Press a Key>"
-msgstr "<Appuyez sur une touche>"
-
-#: ../libgames-support/games-controls.c:332
+#: ../libgames-support/games-controls.c:286
 msgid "Unknown Command"
 msgstr "Commande inconnue"
 
@@ -8906,71 +8870,79 @@ msgstr "Configure le jeu"
 msgid "Quit this game"
 msgstr "Quitte ce jeu"
 
-#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
 #: ../libgames-support/games-stock.c:319
+msgid "_Fullscreen"
+msgstr "_Plein écran"
+
+#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: ../libgames-support/games-stock.c:322
 msgid "_New"
 msgstr "_Nouveau"
 
-#: ../libgames-support/games-stock.c:322
+#: ../libgames-support/games-stock.c:325
 msgid "_Redo Move"
 msgstr "_Rétablir le déplacement"
 
 #. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../libgames-support/games-stock.c:324
+#: ../libgames-support/games-stock.c:327
 msgid "_Reset"
 msgstr "_Réinitialiser"
 
 #. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:326
+#: ../libgames-support/games-stock.c:329
 msgid "_Restart"
 msgstr "_Recommencer"
 
-#: ../libgames-support/games-stock.c:328
+#: ../libgames-support/games-stock.c:331
 msgid "_Deal"
 msgstr "_Distribuer"
 
-#: ../libgames-support/games-stock.c:330
+#: ../libgames-support/games-stock.c:333
 msgid "_Leave Fullscreen"
 msgstr "_Quitter le plein écran"
 
-#: ../libgames-support/games-stock.c:332
+#: ../libgames-support/games-stock.c:335
 msgid "L_eave Game"
 msgstr "_Quitter la partie"
 
-#: ../libgames-support/games-stock.c:333
+#: ../libgames-support/games-stock.c:336
 msgid "Player _List"
 msgstr "_Liste des joueurs"
 
-#: ../libgames-support/games-stock.c:335
+#: ../libgames-support/games-stock.c:337
+msgid "_Pause"
+msgstr "_Pause"
+
+#: ../libgames-support/games-stock.c:338
 msgid "Res_ume"
 msgstr "_Continuer"
 
-#: ../libgames-support/games-stock.c:336
+#: ../libgames-support/games-stock.c:339
 msgid "_Scores"
 msgstr "_Scores"
 
-#: ../libgames-support/games-stock.c:337
+#: ../libgames-support/games-stock.c:340
 msgid "_End Game"
 msgstr "_Fin du jeu"
 
-#: ../libgames-support/games-stock.c:343
+#: ../libgames-support/games-stock.c:346
 msgid "_About"
 msgstr "À _propos"
 
-#: ../libgames-support/games-stock.c:344
+#: ../libgames-support/games-stock.c:347
 msgid "_Cancel"
 msgstr "Ann_uler"
 
-#: ../libgames-support/games-stock.c:345
+#: ../libgames-support/games-stock.c:348
 msgid "_Close"
 msgstr "_Fermer"
 
-#: ../libgames-support/games-stock.c:346
+#: ../libgames-support/games-stock.c:349
 msgid "_OK"
 msgstr "_Valider"
 
 #. %s is replaced with the name of the game in gnome-games.
-#: ../libgames-support/games-stock.c:407
+#: ../libgames-support/games-stock.c:410
 #, c-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
