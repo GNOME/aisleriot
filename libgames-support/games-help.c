@@ -49,8 +49,8 @@ show_uri (GdkScreen *screen,
           guint32 timestamp,
           GError **error)
 {
-#if 0 // def HAVE_HILDON
-  osso_rpc_run_with_defaults (data->osso_context,
+#ifdef HAVE_HILDON
+  osso_rpc_run_with_defaults (games_runtime_get_osso_context (),
                               "osso_browser",
                               OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
                               NULL,

@@ -219,6 +219,11 @@ libgames_support_la_CFLAGS += $(DBUS_GLIB_CFLAGS)
 libgames_support_la_LIBADD += $(DBUS_GLIB_LIBS)
 endif
 
+if HAVE_HILDON
+libgames_support_la_CFLAGS += $(HILDON_CFLAGS)
+libgames_support_la_LIBADD += $(HILDON_LIBS)
+endif
+
 # Auxiliary programme to prerender card images
 
 if HAVE_RSVG

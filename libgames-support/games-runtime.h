@@ -21,6 +21,10 @@
 
 #include <glib.h>
 
+#ifdef HAVE_HILDON
+#include <libosso.h>
+#endif
+
 G_BEGIN_DECLS
 
 typedef enum {
@@ -61,6 +65,15 @@ typedef enum {
 } GamesRuntimeDirectory;
 
 gboolean games_runtime_init (const char *name);
+
+#ifdef HAVE_HILDON
+
+gboolean games_runtime_init_with_osso (const char *name,
+                                       const char *service_name);
+
+osso_context_t* games_runtime_get_osso_context (void);
+
+#endif /* HAVE_HILDON */
 
 void games_runtime_shutdown (void);
 

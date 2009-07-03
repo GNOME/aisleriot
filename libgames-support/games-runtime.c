@@ -36,6 +36,10 @@
 #include "games-profile.h"
 #include "games-runtime.h"
 
+#ifdef HAVE_HILDON
+static osso_context_t *osso_context;
+#endif
+
 #if defined(G_OS_WIN32) && !defined(ENABLE_BINRELOC)
 #error binreloc must be enabled on win32
 #endif
@@ -337,6 +341,50 @@ games_runtime_init (const char *name)
   return retval;
 }
 
+#ifdef HAVE_HILDON
+
+/**
+ * games_runtime_init_with_osso:
+ *
+ * Like games_runtime_init(), but also initialises the osso context.
+ *
+ * NOTE: This must be called before using ANY other glib/gtk/etc function!
+ * 
+ * Returns: %TRUE iff initialisation succeeded
+ */
+gboolean
+games_runtime_init_with_osso (const char *name,
+                              const char *service_name)
+{
+  if (!games_runtime_init (name))
+    return FALSE;
+
+  osso_context = osso_initialize (service_name, VERSION, FALSE, NULL);
+  if (osso_context == NULL) {
+    g_printerr ("Failed to initialise osso\n");
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
+/**
+ * games_runtime_get_osso_context:
+ *
+ * Returns the osso context. May only be called after
+ * games_runtime_init_with_osso().
+ *
+ * Returns: a #osso_context_t
+ */
+osso_context_t*
+games_runtime_get_osso_context (void)
+{
+  g_assert (osso_context != NULL);
+  return osso_context;
+}
+
+#endif /* HAVE_HILDON */
+
 /**
  * games_runtime_shutdown:
  *
@@ -354,6 +402,13 @@ games_runtime_shutdown (void)
 
   g_free (app_name);
   app_name = NULL;
+
+#ifdef HAVE_HILDON
+  if (osso_context != NULL) {
+    osso_deinitialize (osso_context);
+    osso_context = NULL;
+  }
+#endif /* HAVE_HILDON */
 }
 
 /**
