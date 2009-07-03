@@ -330,6 +330,7 @@ void
 games_preimage_set_font_options (GamesPreimage * preimage,
                                  const cairo_font_options_t * font_options)
 {
+#ifdef HAVE_RSVG
   g_return_if_fail (GAMES_IS_PREIMAGE (preimage));
 
   if (preimage->font_options) {
@@ -341,6 +342,7 @@ games_preimage_set_font_options (GamesPreimage * preimage,
   } else {
     preimage->font_options = NULL;
   }
+#endif /* HAVE_RSVG */
 }
 
 /**
