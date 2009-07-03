@@ -89,7 +89,8 @@ aisleriot_show_help (GtkWidget *window,
                         help_section_display);
     } else {
       games_show_error (window, error,
-                        _("Could not show Aisleriot help"));
+                        _("Could not show help for “%s”"),
+                        g_get_application_name ());
     }
 
     g_error_free (error);
