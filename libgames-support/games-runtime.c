@@ -305,7 +305,7 @@ about_email_hook (GtkAboutDialog *about,
   g_free (escaped_email_address);
 #else
   /* Not really correct, but the best we can do */
-  uri = g_strdup_printf ("mailto:%s", escaped);
+  uri = g_strdup_printf ("mailto:%s", email_address);
 #endif
 
   about_url_hook (about, uri, user_data);
