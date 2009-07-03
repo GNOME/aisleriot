@@ -1,5 +1,6 @@
 /*
  *  Copyright © 2008 Thomas H.P. Andersen <phomes@gmail.com>
+ *  Copyright © 2007, 2008, 2009 Christian Persch
  *
  *  This runtime is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
@@ -23,83 +24,10 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#ifdef HAVE_HILDON
-#include <libosso.h>
-
-#ifdef HAVE_MAEMO_3
-#include <osso-browser-interface.h>
-#else
-#include <tablet-browser-interface.h>
-#endif /* HAVE_MAEMO_3 */
-#endif /* HAVE_HILDON */
-
-#ifdef G_OS_WIN32
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include <io.h>
-#endif /* G_OS_WIN32 */
-
+#include "games-show.h"
 #include "games-runtime.h"
 
 #include "games-help.h"
-
-static gboolean
-show_uri (GdkScreen *screen,
-          const char *uri,
-          guint32 timestamp,
-          GError **error)
-{
-#ifdef HAVE_HILDON
-  osso_rpc_run_with_defaults (games_runtime_get_osso_context (),
-                              "osso_browser",
-                              OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
-                              NULL,
-                              DBUS_TYPE_STRING, uri,
-                              DBUS_TYPE_INVALID);
-  return TRUE;
-#else
-
-#ifdef G_OS_WIN32
-  ShellExecute (NULL, "open", uri, NULL, NULL, SW_SHOWNORMAL);
-  return TRUE;
-#else /* !G_OS_WIN32 */
-
-#if GTK_CHECK_VERSION (2, 14, 0)
-  return gtk_show_uri (screen, uri, timestamp, error);
-#else /* GTK+ < 2.14 */
-  char *argv[3] = { (char *) "xdg-open", (char *) uri, NULL };
- 
-  if (gdk_spawn_on_screen (screen,
-                           NULL /* working directory */,
-                           argv,
-                           NULL /* environment */,
-                           G_SPAWN_SEARCH_PATH,
-                           NULL, NULL,
-                           NULL,
-                           error))
-    return TRUE;
-
-  g_clear_error (error);
-
-  /* Try falling back to gnome-open */
-  argv[0] = (char *) "gnome-open";
-  if (gdk_spawn_on_screen (screen,
-                           NULL /* working directory */,
-                           argv,
-                           NULL /* environment */,
-                           G_SPAWN_SEARCH_PATH,
-                           NULL, NULL,
-                           NULL,
-                           error))
-    return TRUE;
-
-  g_set_error (error, G_SPAWN_ERROR, G_SPAWN_ERROR_FAILED,
-               "%s", "Failed to show help");
-  return FALSE;
-#endif /* GTK+ >= 2.14 */
-#endif /* G_OS_WIN32 */
-#endif /* HAVE_HILDON */
-}
 
 /**
  * games_help_display:
@@ -189,7 +117,7 @@ games_help_display (GtkWidget *window,
   }
 #endif
 
-  show_uri (screen, help_uri, gtk_get_current_event_time (), &error);
+  games_show_uri (screen, help_uri, gtk_get_current_event_time (), &error);
 
 #if defined(WITH_HELP_METHOD_FILE)
 err:

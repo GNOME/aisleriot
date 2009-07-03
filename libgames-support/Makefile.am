@@ -93,6 +93,8 @@ libgames_support_la_SOURCES +=		\
 	games-setgid-io.h		\
 	games-scores-backend.c		\
 	games-scores-backend.h		\
+	games-show.c			\
+	games-show.h			\
 	$(NULL)
 endif
 
