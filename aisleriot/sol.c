@@ -70,7 +70,6 @@
 
 #include "conf.h"
 #include "game.h"
-#include "util.h"
 #include "window.h"
 
 typedef struct {
@@ -224,189 +223,6 @@ quit_cb (EggSMClient *client,
 }
 
 #endif /* WITH_SMCLIENT */
-
-static char *
-game_file_to_help_section (const char *game_file)
-{
-  char *p, *buf;
-
-  buf = g_path_get_basename (game_file);
-
-  if ((p = strrchr (buf, '.')))
-    *p = '\0';
-  for (p = buf; p = strchr (p, '-'), p && *p;)
-    *p = '_';
-  for (p = buf; p = strchr (p, '_'), p && *p;) {
-    char *next = p + 1;
-    char q = *next;
-
-    if (q != '\0' && g_ascii_islower (q)) {
-      *next = g_ascii_toupper (q);
-      ++p;
-    }
-  }
-  if (g_ascii_islower (buf[0])) {
-    buf[0] = g_ascii_toupper (buf[0]);
-  }
-
-  return buf;
-}
-
-#if defined (HAVE_HILDON) || defined (G_OS_WIN32)
-
-static void
-help_hook (GtkWindow *parent,
-           const char *game_file,
-           gpointer user_data)
-{
-  AppData *data = (AppData *) user_data;
-  char *help_section = NULL;
-  char *help_url = NULL;
-  guint i;
-  const char * const *langs;
-
-  if (game_file != NULL) {
-    help_section = game_file_to_help_section (game_file);
-  }
-
-  langs = g_get_language_names ();
-
-  for (i = 0; langs[i] != NULL; ++i) {
-    const char *lang = langs[i];
-    char *help_file_name, *path;
-
-    /* Filter out variants */
-    if (strchr (lang, '.') != NULL ||
-        strchr (lang, '@') != NULL)
-      continue;
-
-    help_file_name = g_strdup_printf ("%s." HELP_EXT,
-                                      help_section ? help_section : "aisleriot");
-    path = g_build_filename (games_runtime_get_directory (GAMES_RUNTIME_GAME_HELP_DIRECTORY),
-                             lang,
-                             help_file_name,
-                             NULL);
-    g_free (help_file_name);
-
-    if (g_file_test (path, G_FILE_TEST_EXISTS)) {
-      help_url = g_strdup_printf ("file://%s", path);
-      g_free (path);
-      break;
-    }
-
-    g_free (path);
-  }
-
-  if (!help_url) {
-    GtkWidget *dialog;
-
-    dialog = gtk_message_dialog_new (parent,
-                                     GTK_DIALOG_DESTROY_WITH_PARENT |
-                                     GTK_DIALOG_MODAL,
-                                     GTK_MESSAGE_ERROR,
-                                     GTK_BUTTONS_CLOSE,
-                                     /* %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html" */
-                                     _("Help file \"%s.%s\" not found"),
-                                     help_section ? help_section : "aisleriot",
-                                     HELP_EXT);
-
-    /* Empty title shows up as "<unnamed>" on maemo */
-    gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
-    gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-    g_signal_connect (dialog, "response",
-                      G_CALLBACK (gtk_widget_destroy), NULL);
-
-    gtk_window_present (GTK_WINDOW (dialog));
-
-    return;
-  }
-
-#ifdef HAVE_MAEMO
-  osso_rpc_run_with_defaults (games_runtime_get_osso_context (),
-                              "osso_browser",
-                              OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
-                              NULL,
-                              DBUS_TYPE_STRING, help_url,
-                              DBUS_TYPE_INVALID);
-#elif defined (G_OS_WIN32)
-  ShellExecute( NULL, "open", help_url, NULL, NULL, SW_SHOWNORMAL ); 
-#endif
-  g_free (help_url);
-}
-
-#else /* !HAVE_HILDON */
-
-static void
-help_hook (GtkWindow *parent,
-           const char *game_file,
-           gpointer user_data)
-{
-  GdkScreen *screen;
-  GError *error = NULL;
-  char *help_section = NULL;
-  char *help_uri;
-
-  screen = gtk_widget_get_screen (GTK_WIDGET (parent));
-
-  if (game_file != NULL) {
-    help_section = game_file_to_help_section (game_file);
-  }
-
-  if (help_section != NULL) {
-    char *escaped;
-
-    escaped = g_uri_escape_string  (help_section, NULL, TRUE);
-    help_uri = g_strdup_printf ("ghelp:aisleriot?%s", escaped);
-    g_free (escaped);
-  } else {
-    help_uri = g_strdup ("ghelp:aisleriot");
-  }
-
-  if (!gtk_show_uri (screen, help_uri, gtk_get_current_event_time (), &error)) {
-    GtkWidget *dialog;
-    char *primary;
-
-    if (game_file != NULL) {
-      char *game_name;
- 
-      game_name = games_filename_to_display_name (game_file);
-      primary = g_strdup_printf (_("Could not show help for “%s”"), game_name);
-      g_free (game_name);
-    } else {
-      primary = g_strdup (_("Could not show Aisleriot help"));
-    }
-
-    dialog = gtk_message_dialog_new (parent,
-                                     GTK_DIALOG_DESTROY_WITH_PARENT |
-                                     GTK_DIALOG_MODAL,
-                                     GTK_MESSAGE_ERROR,
-                                     GTK_BUTTONS_CLOSE,
-                                     "%s", primary);
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                              "%s", error->message);
-    g_free (primary);
-    g_error_free (error);
-
-#ifdef HAVE_HILDON
-  /* Empty title shows up as "<unnamed>" on maemo */
-  gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
-#else
-  gtk_window_set_title (GTK_WINDOW (dialog), "");
-#endif /* HAVE_HILDON */
-
-    gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-
-    g_signal_connect (dialog, "response",
-                      G_CALLBACK (gtk_widget_destroy), NULL);
-
-    gtk_window_present (GTK_WINDOW (dialog));
-  }
-
-  g_free (help_section);
-  g_free (help_uri);
-}
-
-#endif /* HAVE_HILDON */
 
 #ifdef HAVE_MAEMO
 
@@ -594,8 +410,6 @@ main_prog (void *closure, int argc, char *argv[])
   g_assert (data.variation != NULL || data.freecell);
 
   games_stock_init ();
-
-  aisleriot_util_set_help_func (help_hook, &data);
 
 #if !GTK_CHECK_VERSION (2, 17, 0)
   gtk_about_dialog_set_url_hook (about_url_hook, &data, NULL);

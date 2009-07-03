@@ -1,10 +1,13 @@
 SUBDIRS = rules
 
-if HAVE_GNOME
+if BUILD_HELP
 SUBDIRS += help
 endif
 
 NULL =
+
+# Same as in help/Makefile.am
+DOC_MODULE = aisleriot
 
 cardimagedir = $(pkgdatadir)/pixmaps
 cardimage_DATA = \
@@ -40,6 +43,7 @@ endif
 
 sol_CPPFLAGS = \
 	-I$(top_srcdir) \
+	-DDOC_MODULE=\"$(DOC_MODULE)\" \
 	$(AM_CPPFLAGS)
 
 sol_CFLAGS = \

@@ -23,11 +23,6 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-  
-typedef void (*AisleriotHelpFunc) (GtkWindow *, const char *, gpointer);
-
-void aisleriot_util_set_help_func (AisleriotHelpFunc func,
-                                   gpointer user_data);
 
 void aisleriot_display_help (GtkWindow * parent, const char *game_file);
 
