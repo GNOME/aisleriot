@@ -342,12 +342,16 @@ fi
 
 # Check which sound library to use
 
-AC_MSG_CHECKING([for which sound library to use])
-AC_ARG_WITH([sound],
-  [AS_HELP_STRING([--with-sound=libcanberra|sdl_mixer (default: libcanberra)])],
-  [with_sound="$withval"],
-  [with_sound=libcanberra])
-AC_MSG_RESULT([$with_sound])
+if test "$enable_sound" = "yes"; then
+  AC_MSG_CHECKING([for which sound library to use])
+  AC_ARG_WITH([sound],
+    [AS_HELP_STRING([--with-sound=libcanberra|sdl_mixer (default: libcanberra)])],
+    [with_sound="$withval"],
+    [with_sound=libcanberra])
+  AC_MSG_RESULT([$with_sound])
+else
+  with_sound=no
+fi
 
 # Clutter
 
