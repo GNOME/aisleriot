@@ -79,7 +79,6 @@ typedef struct {
   guint seed;
   gboolean freecell;
 #ifdef HAVE_HILDON
-  osso_context_t *osso_context;
   HildonProgram *program;
 #endif /* HAVE_HILDON */
 } AppData;
@@ -94,7 +93,7 @@ about_url_hook (GtkAboutDialog *about,
 #if defined(HAVE_MAEMO)
   AppData *data = (AppData *) user_data;
 
-  osso_rpc_run_with_defaults (data->osso_context,
+  osso_rpc_run_with_defaults (games_runtime_get_osso_context (),
                               "osso_browser",
                               OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
                               NULL,
@@ -323,7 +322,7 @@ help_hook (GtkWindow *parent,
   }
 
 #ifdef HAVE_MAEMO
-  osso_rpc_run_with_defaults (data->osso_context,
+  osso_rpc_run_with_defaults (games_runtime_get_osso_context (),
                               "osso_browser",
                               OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
                               NULL,
@@ -518,16 +517,10 @@ main_prog (void *closure, int argc, char *argv[])
 
 #ifdef HAVE_MAEMO
   /* Set OSSO callbacks */
-  data.osso_context = osso_initialize (SERVICE_NAME, VERSION, FALSE, NULL);
-  if (!data.osso_context) {
-    g_print ("Failed to initialise osso\n");
-    goto cleanup;
-  }
-
-  if (osso_rpc_set_default_cb_f (data.osso_context,
+  if (osso_rpc_set_default_cb_f (games_runtime_get_osso_context (),
                                  osso_rpc_cb,
                                  &data) != OSSO_OK ||
-      osso_hw_set_event_cb (data.osso_context,
+      osso_hw_set_event_cb (games_runtime_get_osso_context (),
                             &hw_events,
                             osso_hw_event_cb,
                             &data) != OSSO_OK) {
@@ -681,9 +674,6 @@ cleanup:
   if (data.program != NULL) {
     g_object_unref (data.program);
   }
-  if (data.osso_context != NULL) {
-    osso_deinitialize (data.osso_context);
-  }
 #endif /* HAVE_MAEMO */
 
   games_runtime_shutdown ();
@@ -692,7 +682,11 @@ cleanup:
 int
 main (int argc, char *argv[])
 {
+#ifndef HAVE_HILDON
   if (!games_runtime_init ("aisleriot"))
+#else
+  if (!games_runtime_init_with_osso ("aisleriot", SERVICE_NAME))
+#endif /* !HAVE_HILDON */
     return 1;
 
   scm_boot_guile (argc, argv, main_prog, NULL); /* no return */
