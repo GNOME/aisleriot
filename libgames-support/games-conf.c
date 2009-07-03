@@ -132,7 +132,11 @@ free_window_state (WindowState *state)
 
   g_free (state->group);
 
+#if GLIB_CHECK_VERSION (2, 10, 0)
   g_slice_free (WindowState, state);
+#else
+  g_free (state);
+#endif
 }
 
 static gboolean
@@ -1255,7 +1259,12 @@ games_conf_add_window (GtkWindow *window,
   g_return_if_fail (GTK_IS_WINDOW (window));
   g_return_if_fail (!GTK_WIDGET_REALIZED (window));
 
+#if GLIB_CHECK_VERSION (2, 10, 0)
   state = g_slice_new0 (WindowState);
+#else
+  state = g_new0 (WindowState, 1);
+#endif
+
   state->window = window;
   state->group = g_strdup (group);
   g_object_set_data_full (G_OBJECT (window), "GamesConf::WindowState",
