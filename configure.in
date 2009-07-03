@@ -118,6 +118,7 @@ want_sound=no
 allow_gnuchess=no
 allow_smclient=no
 disallow_hildon=no
+require_gtk_2_16=no
 
 for game in $gamelist; do
   case $game in
@@ -163,6 +164,10 @@ for game in $gamelist; do
   case $game in
     gnometris|lightsoff) need_clutter=yes ;;
     *) ;;
+  esac
+  case $game in
+    aisleriot) ;;
+    *) require_gtk_2_16=yes ;;
   esac
 done
 
@@ -501,11 +506,11 @@ AM_CONDITIONAL([ENABLE_CARD_THEMES_INSTALLER],[test "$enable_card_themes_install
 PYGTK_REQUIRED=2.14.0
 
 if test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo3"; then
-GTK_REQUIRED=2.6.0
-elif test "$with_platform" = "hildon"; then
-GTK_REQUIRED=2.10.0
+  GTK_REQUIRED=2.6.0
+elif test "$require_gtk_2_16" = "yes"; then
+  GTK_REQUIRED=2.16.0
 else
-GTK_REQUIRED=2.16.0
+  GTK_REQUIRED=2.8.0
 fi
 
 GCONF_REQUIRED=2.0
