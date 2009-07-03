@@ -22,15 +22,13 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#ifdef HAVE_HILDON
-#include <libosso.h>
-
+#ifdef HAVE_MAEMO
 #ifdef HAVE_MAEMO_3
 #include <osso-browser-interface.h>
 #else
 #include <tablet-browser-interface.h>
 #endif /* HAVE_MAEMO_3 */
-#endif /* HAVE_HILDON */
+#endif /* HAVE_MAEMO */
 
 #ifdef G_OS_WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -62,7 +60,7 @@ games_show_uri (GdkScreen *screen,
                 guint32 timestamp,
                 GError **error)
 {
-#ifdef HAVE_HILDON
+#ifdef HAVE_MAEMO
   osso_rpc_run_with_defaults (games_runtime_get_osso_context (),
                               "osso_browser",
                               OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
@@ -111,5 +109,5 @@ games_show_uri (GdkScreen *screen,
   return FALSE;
 #endif /* GTK+ >= 2.14 */
 #endif /* G_OS_WIN32 */
-#endif /* HAVE_HILDON */
+#endif /* HAVE_MAEMO */
 }
