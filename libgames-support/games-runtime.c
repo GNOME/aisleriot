@@ -31,6 +31,7 @@
 #endif /* G_OS_WIN32 */
 
 #include <glib/gi18n.h>
+#include <gtk/gtk.h>
 
 #include "games-debug.h"
 #include "games-profile.h"
@@ -248,6 +249,69 @@ static const DerivedDirectory derived_directories[] = {
 
 typedef int _assertion[G_N_ELEMENTS (derived_directories) + GAMES_RUNTIME_FIRST_DERIVED_DIRECTORY == GAMES_RUNTIME_LAST_DIRECTORY ? 1 : -1];
 
+#if !GTK_CHECK_VERSION (2, 17, 0)
+/* Since version 2.17.0, gtk has default about dialogue hook functions
+ * using gtk_show_uri(). For earlier versions, we need to implement
+ * our own hooks.
+ */
+
+static void
+about_url_hook (GtkAboutDialog *about,
+                const char *uri,
+                gpointer user_data)
+{
+  GdkScreen *screen;
+  GError *error = NULL;
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (about));
+
+  if (!games_show_uri (screen, uri, gtk_get_current_event_time (), &error)) {
+    GtkWidget *dialog;
+
+    dialog = gtk_message_dialog_new (GTK_WINDOW (about),
+                                     GTK_DIALOG_DESTROY_WITH_PARENT |
+                                     GTK_DIALOG_MODAL,
+                                     GTK_MESSAGE_ERROR,
+                                     GTK_BUTTONS_CLOSE,
+                                     "%s", _("Could not show link"));
+    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                              "%s", error->message);
+    g_error_free (error);
+
+    gtk_window_set_title (GTK_WINDOW (dialog), "");
+    gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+
+    g_signal_connect (dialog, "response",
+                      G_CALLBACK (gtk_widget_destroy), NULL);
+
+    gtk_window_present (GTK_WINDOW (dialog));
+  }
+}
+
+static void
+about_email_hook (GtkAboutDialog *about,
+                  const char *email_address,
+                  gpointer user_data)
+{
+  char *uri;
+
+#if GLIB_CHECK_VERSION (2, 16, 0)
+  char *escaped_email_address;
+
+  escaped_email_address = g_uri_escape_string (email_address, NULL, FALSE);
+  uri = g_strdup_printf ("mailto:%s", escaped_email_address);
+  g_free (escaped_email_address);
+#else
+  /* Not really correct, but the best we can do */
+  uri = g_strdup_printf ("mailto:%s", escaped);
+#endif
+
+  about_url_hook (about, uri, user_data);
+  g_free (uri);
+}
+
+#endif /* GTK < 2.17.0 */
+
 /* public API */
 
 /**
@@ -335,6 +399,11 @@ games_runtime_init (const char *name)
   } else
 #endif
   gpl_version = 2;
+
+#if !GTK_CHECK_VERSION (2, 17, 0)
+  gtk_about_dialog_set_url_hook (about_url_hook, NULL, NULL);
+  gtk_about_dialog_set_email_hook (about_email_hook, NULL, NULL);
+#endif
 
   _games_profile_end ("games_runtime_init");
 

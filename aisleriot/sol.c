@@ -82,78 +82,6 @@ typedef struct {
 #endif /* HAVE_HILDON */
 } AppData;
 
-#if !GTK_CHECK_VERSION (2, 17, 0)
-
-static void
-about_url_hook (GtkAboutDialog *about,
-                const char *uri,
-                gpointer user_data)
-{
-#if defined(HAVE_MAEMO)
-  AppData *data = (AppData *) user_data;
-
-  osso_rpc_run_with_defaults (games_runtime_get_osso_context (),
-                              "osso_browser",
-                              OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
-                              NULL,
-                              DBUS_TYPE_STRING, uri,
-                              DBUS_TYPE_INVALID);
-
-#elif defined (G_OS_WIN32)
-  ShellExecute( NULL, "open", uri, NULL, NULL, SW_SHOWNORMAL );
-#else
-
-  GdkScreen *screen;
-  GError *error = NULL;
-
-  screen = gtk_widget_get_screen (GTK_WIDGET (about));
-
-  if (!gtk_show_uri (screen, uri, gtk_get_current_event_time (), &error)) {
-    GtkWidget *dialog;
-
-    dialog = gtk_message_dialog_new (GTK_WINDOW (about),
-                                     GTK_DIALOG_DESTROY_WITH_PARENT |
-                                     GTK_DIALOG_MODAL,
-                                     GTK_MESSAGE_ERROR,
-                                     GTK_BUTTONS_CLOSE,
-                                     "%s", _("Could not show link"));
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                              "%s", error->message);
-    g_error_free (error);
-
-    gtk_window_set_title (GTK_WINDOW (dialog), "");
-    gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-
-    g_signal_connect (dialog, "response",
-                      G_CALLBACK (gtk_widget_destroy), NULL);
-
-    gtk_window_present (GTK_WINDOW (dialog));
-  }
-#endif /* HAVE_MAEMO */
-}
-
-static void
-about_email_hook (GtkAboutDialog *about,
-                  const char *email_address,
-                  gpointer user_data)
-{
-  char *escaped, *uri;
-
-#if GLIB_CHECK_VERSION (2, 16, 0)
-  escaped = g_uri_escape_string (email_address, NULL, FALSE);
-#else
-  /* Not really correct, but the best we can do */
-  escaped = g_strdup (email_address);
-#endif
-  uri = g_strdup_printf ("mailto:%s", escaped);
-  g_free (escaped);
-
-  about_url_hook (about, uri, user_data);
-  g_free (uri);
-}
-
-#endif /* GTK < 2.17.0 */
-
 static char *
 variation_to_game_file (const char *variation)
 {
@@ -410,11 +338,6 @@ main_prog (void *closure, int argc, char *argv[])
   g_assert (data.variation != NULL || data.freecell);
 
   games_stock_init ();
-
-#if !GTK_CHECK_VERSION (2, 17, 0)
-  gtk_about_dialog_set_url_hook (about_url_hook, &data, NULL);
-  gtk_about_dialog_set_email_hook (about_email_hook, &data, NULL);
-#endif
 
   data.window = AISLERIOT_WINDOW (aisleriot_window_new ());
   g_signal_connect (data.window, "destroy",
