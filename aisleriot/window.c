@@ -666,7 +666,7 @@ static void
 help_general_cb (GtkAction *action,
                  AisleriotWindow *window)
 {
-  aisleriot_display_help (GTK_WINDOW (window), NULL);
+  aisleriot_show_help (GTK_WIDGET (window), NULL);
 }
 
 static void
@@ -677,7 +677,7 @@ help_on_game_cb (GtkAction *action,
   const char *game_file;
   
   game_file = aisleriot_game_get_game_file (priv->game);
-  aisleriot_display_help (GTK_WINDOW (window), game_file);
+  aisleriot_show_help (GTK_WIDGET (window), game_file);
 }
 
 static void

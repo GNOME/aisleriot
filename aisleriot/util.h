@@ -24,7 +24,8 @@
 
 G_BEGIN_DECLS
 
-void aisleriot_display_help (GtkWindow * parent, const char *game_file);
+void aisleriot_show_help (GtkWidget *window,
+                          const char *game_file);
 
 G_END_DECLS
 

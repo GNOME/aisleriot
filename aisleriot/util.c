@@ -27,6 +27,8 @@
 #include <gtk/gtk.h>
 
 #include <libgames-support/games-help.h>
+#include <libgames-support/games-show.h>
+#include <libgames-support/games-string-utils.h>
 
 #include "util.h"
 
@@ -57,16 +59,41 @@ game_file_to_help_section (const char *game_file)
   return buf;
 }
 
+/**
+ * aisleriot_show_help:
+ * @window: a parent window to use for error messages
+ * @game_file: the game to show help for, or %NULL to show
+ *   general help
+ *
+ * Shows help for @game_file, or the main help if @game_file is %NULL.
+ */
 void
-aisleriot_display_help (GtkWindow *parent,
+aisleriot_show_help (GtkWidget *window,
                         const char *game_file)
 {
   char *help_section = NULL;
+  GError *error = NULL;
 
   if (game_file != NULL) {
     help_section = game_file_to_help_section (game_file);
   }
 
-  games_help_display (GTK_WIDGET (parent), DOC_MODULE, help_section);
+  if (!games_help_display_full (GTK_WIDGET (window), DOC_MODULE, help_section, &error)) {
+    if (game_file != NULL) {
+      char *help_section_display;
+
+      help_section_display = games_filename_to_display_name (game_file);
+
+      games_show_error (window, error,
+                        _("Could not show help for “%s”"),
+                        help_section_display);
+    } else {
+      games_show_error (window, error,
+                        _("Could not show Aisleriot help"));
+    }
+
+    g_error_free (error);
+  }
+
   g_free (help_section);
 }
