@@ -24,10 +24,10 @@
 
 G_BEGIN_DECLS
 
-gboolean games_show_uri (GdkScreen   *screen,
-                         const gchar *uri,
-                         guint32      timestamp,
-                         GError     **error);
+gboolean games_show_uri (GdkScreen *screen,
+                         const char *uri,
+                         guint32 timestamp,
+                         GError **error);
 
 void games_show_error (GtkWidget *window,
                        GError *error,

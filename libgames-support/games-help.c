@@ -30,29 +30,28 @@
 #include "games-help.h"
 
 /**
- * games_help_display:
+ * games_help_display_full:
  * @window: a #GdkWindow get the #GdkScreen from, and to use
  *   as parent window for an error dialogue
  * @doc_module: the doc module name (same as DOC_MODULE from help/Makefile.am)
  * @section: a section name, or %NULL
+ * @error: a #GError location, or %NULL
  *
- * Opens help or displays error dialog when unable to open help.
+ * Opens help or returns an error.
  *
- * @window: toplevel window
- * @application: name used for the help file
- * @section: section to open, or %NULL
- *
+ * Returns: %TRUE on success, or %FALSE on failure with @error filled in
  */
-void
-games_help_display (GtkWidget *window,
-                    const char *doc_module,
-                    const char *section)
+gboolean
+games_help_display_full (GtkWidget *window,
+                         const char *doc_module,
+                         const char *section,
+                         GError **error)
 {
   GdkScreen *screen;
-  GError *error = NULL;
   char *help_uri;
+  gboolean ret;
 
-  g_return_if_fail (doc_module != NULL);
+  g_return_val_if_fail (doc_module != NULL, TRUE);
 
   screen = gtk_widget_get_screen (GTK_WIDGET (window));
 
@@ -109,13 +108,13 @@ games_help_display (GtkWidget *window,
   }
 
   if (help_uri == NULL) {
-    error = g_error_new (G_IO_ERROR,
-                         G_IO_ERROR_NOT_FOUND,
-                         /* %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html" */
-                         _("Help file “%s.%s” not found"),
-                         section ? section : doc_module,
-                         HELP_FILE_FORMAT);
-    goto err;
+    g_set_error (error,
+                 g_quark_from_static_string ("games-help-error"), 0,
+                 /* %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html" */
+                 _("Help file “%s.%s” not found"),
+                 section ? section : doc_module,
+                 HELP_FILE_FORMAT);
+    return FALSE;
   }
     
 #elif defined(WITH_HELP_METHOD_LIBRARY)
@@ -126,18 +125,32 @@ games_help_display (GtkWidget *window,
   }
 #endif
 
-  games_show_uri (screen, help_uri, gtk_get_current_event_time (), &error);
+  ret = games_show_uri (screen, help_uri, gtk_get_current_event_time (), error);
 
-#if defined(WITH_HELP_METHOD_FILE)
-err:
-#endif
+  g_free (help_uri);
+  return ret;
+}
 
-  if (error != NULL) {
+/**
+ * games_help_display:
+ * @window: a #GdkWindow get the #GdkScreen from, and to use
+ *   as parent window for an error dialogue
+ * @doc_module: the doc module name (same as DOC_MODULE from help/Makefile.am)
+ * @section: a section name, or %NULL
+ *
+ * Opens help or displays error dialog when unable to open help.
+ */
+void
+games_help_display (GtkWidget *window,
+                    const char *doc_module,
+                    const char *section)
+{
+  GError *error = NULL;
+
+  if (!games_help_display_full (window, doc_module, section, &error)) {
     games_show_error (window, error,
                       _("Could not show help for “%s”"),
                       section ? section : g_get_application_name ());
     g_error_free (error);
   }
-
-  g_free (help_uri);
 }
