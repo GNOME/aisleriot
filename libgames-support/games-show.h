@@ -29,6 +29,10 @@ gboolean games_show_uri (GdkScreen   *screen,
                          guint32      timestamp,
                          GError     **error);
 
+void games_show_error (GtkWidget *window,
+                       GError *error,
+                       const char *primary_text_format,
+                       ...) G_GNUC_PRINTF (3, 4);
 
 G_END_DECLS
 

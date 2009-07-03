@@ -133,27 +133,10 @@ err:
 #endif
 
   if (error != NULL) {
-    GtkWidget *dialog;
-    dialog = gtk_message_dialog_new (GTK_WINDOW (window), 
-                                     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
-                                     _("Could not show help for “%s”"),
-                                     section ? section : g_get_application_name ());
-
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                              "%s", error->message);
+    games_show_error (window, error,
+                      _("Could not show help for “%s”"),
+                      section ? section : g_get_application_name ());
     g_error_free (error);
-
-#ifdef HAVE_HILDON
-  /* Empty title shows up as "<unnamed>" on maemo */
-  gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
-#else
-  gtk_window_set_title (GTK_WINDOW (dialog), "");
-#endif /* HAVE_HILDON */
-
-    g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
-    
-    gtk_window_present (GTK_WINDOW (dialog));
   }
 
   g_free (help_uri);

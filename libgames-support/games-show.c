@@ -111,3 +111,49 @@ games_show_uri (GdkScreen *screen,
 #endif /* G_OS_WIN32 */
 #endif /* HAVE_MAEMO */
 }
+
+/**
+ * games_show_error:
+ * @parent: a transient parent window
+ * @error: a #GError
+ * @primary_text_format:
+ * @...:
+ *
+ * Shows a message dialog with the given primary text, and @error's message
+ * as secondary text. The dialog will be transient to @parent, and modal.
+ * However, this function will *not* block until the dialogue has been dismissed.
+ */
+void
+games_show_error (GtkWidget *window,
+                  GError *error,
+                  const char *primary_text_format,
+                  ...)
+{
+  GtkWidget *dialog;
+  char *primary_text;
+  va_list args;
+
+  va_start (args, primary_text_format);
+  primary_text = g_strdup_vprintf (primary_text_format, args);
+  va_end (args);
+
+  dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+                                   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                   GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+                                   "%s", primary_text);
+  g_free (primary_text);
+
+  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                            "%s", error->message);
+
+#ifdef HAVE_HILDON
+  /* Empty title shows up as "<unnamed>" on maemo */
+  gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
+#else
+  gtk_window_set_title (GTK_WINDOW (dialog), "");
+#endif /* HAVE_HILDON */
+
+  g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
+
+  gtk_window_present (GTK_WINDOW (dialog));
+}
