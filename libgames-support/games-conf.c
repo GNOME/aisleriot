@@ -1060,13 +1060,14 @@ games_conf_get_double (const char *group, const char *key,
   g_free (key_name);
 
   return value;
-#elif defined(HAVE_HILDON)
-#warning games_conf_get_double not supported on maemo!
-  return 0.0;
-#else
+#elif GLIB_CHECK_VERSION (2, 12, 0)
   GamesConfPrivate *priv = instance->priv;
 
   return g_key_file_get_double (priv->key_file, group ? group : priv->main_group, key, error);
+#else
+#warning games_conf_get_double not implemented on glib < 2.12!
+  /* Not supported */
+  return 0.0;
 #endif /* HAVE_GNOME */
 }
 
@@ -1088,13 +1089,13 @@ games_conf_set_double (const char *group, const char *key, double value)
   key_name = get_gconf_key_name (group, key);
   gconf_client_set_float (priv->gconf_client, key_name, value, NULL);
   g_free (key_name);
-#elif defined(HAVE_HILDON)
-#warning games_conf_set_double not implemented on maemo!
-#else
+#elif GLIB_CHECK_VERSION (2, 12, 0)
   GamesConfPrivate *priv = instance->priv;
 
   g_key_file_set_double (priv->key_file, group ? group : priv->main_group, key, value);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
+#else
+#warning games_conf_set_double not implemented on glib < 2.12!
 #endif /* HAVE_GNOME */
 }
 
