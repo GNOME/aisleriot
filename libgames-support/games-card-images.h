@@ -46,7 +46,7 @@ typedef enum
 } GamesCardImagesCacheMode;
 
 typedef struct _GamesCardImages       GamesCardImages;
-typedef struct _GamesCardImagesClass  GamesCardImagesClass;;
+typedef struct _GamesCardImagesClass  GamesCardImagesClass;
 
 GType games_card_images_get_type (void);
 
