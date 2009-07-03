@@ -359,11 +359,14 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support.la
 	$(INCLUDES) \
 	--add-include-path=$(srcdir) --add-include=path=. \
 	--include=Clutter-0.9 \
+	--include=Cogl-0.9 \
 	--include=Gtk-2.0 \
 	--library=games-support \
 	--output $@ \
 	--pkg gobject-2.0 \
 	--pkg gtk+-2.0 \
+	--pkg clutter-0.9 \
+	--pkg cogl-0.9 \
 	$(libgames_support_la_SOURCES) /usr/include/ggz*.h
 
 BUILT_GIRSOURCES += GnomeGamesSupport-1.0.gir
