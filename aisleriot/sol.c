@@ -39,30 +39,19 @@
 #include <libosso.h>
 
 #ifdef HAVE_MAEMO_3
-#include <osso-browser-interface.h>
 #include <hildon-widgets/hildon-program.h>
 #else
 #include <hildon/hildon-program.h>
-#include <tablet-browser-interface.h>
 #endif /* HAVE_MAEMO_3 */
 
 #define SERVICE_NAME "org.gnome.Games.AisleRiot"
-#define HELP_EXT "xhtml"
 #endif /* HAVE_HILDON */
-
-#if defined (G_OS_WIN32)
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include <io.h>
-#define HELP_EXT "xhtml"
-#endif /* G_OS_WIN32 */
 
 #include <libgames-support/games-debug.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
-#include <libgames-support/games-string-utils.h>
 
 #ifdef WITH_SMCLIENT
 #include <libgames-support/eggsmclient.h>
