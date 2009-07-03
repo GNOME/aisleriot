@@ -35,6 +35,8 @@
 
 #include "games-debug.h"
 #include "games-profile.h"
+#include "games-show.h"
+
 #include "games-runtime.h"
 
 #ifdef HAVE_HILDON
