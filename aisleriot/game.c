@@ -253,7 +253,11 @@ clear_slots (AisleriotGame *game,
 #endif /* HAVE_CLUTTER */
     g_byte_array_free (slot->cards, TRUE);
 
+#if GLIB_CHECK_VERSION (2, 10, 0)
     g_slice_free (Slot, slot);
+#else
+    g_free (slot);
+#endif
   }
 
   g_ptr_array_set_size (game->slots, 0);
@@ -597,7 +601,12 @@ cscmi_add_slot (SCM slot_data)
 #undef CHECK_EXPANSION
 
   /* create and initialize slot */
+#if GLIB_CHECK_VERSION (2, 10, 0)
   slot = g_slice_new0 (Slot);
+#else
+  slot = g_new0 (Slot, 1);
+#endif
+
   g_ptr_array_add (game->slots, slot);
 
   slot->id = scm_to_int (SCM_CAR (slot_data));
@@ -2043,7 +2052,11 @@ aisleriot_game_option_free (AisleriotGameOption *option)
   g_return_if_fail (option != NULL);
 
   g_free (option->display_name);
+#if GLIB_CHECK_VERSION (2, 10, 0)
   g_slice_free (AisleriotGameOption, option);
+#else
+  g_free (option);
+#endif
 }
 
 /**
@@ -2100,7 +2113,12 @@ aisleriot_game_get_options (AisleriotGame *game)
 
       entrystate = SCM_NFALSEP (scm_list_ref (entry, scm_from_uint (1)));
 
+#if GLIB_CHECK_VERSION (2, 10, 0)
       option = g_slice_new (AisleriotGameOption);
+#else
+      option = g_new (AisleriotGameOption, 1);
+#endif
+
       option->display_name = g_strdup (entrynamestr);
       option->type = type;
       option->value = bit;
