@@ -102,6 +102,8 @@ egg_desktop_file_new_from_data_dirs (const char  *desktop_file_path,
   return desktop_file;
 }
 
+#if GLIB_CHECK_VERSION (2, 14, 0)
+
 /**
  * egg_desktop_file_new_from_dirs:
  * @desktop_file_path: relative path to a Freedesktop-style Desktop file
@@ -137,6 +139,8 @@ egg_desktop_file_new_from_dirs (const char  *desktop_file_path,
   g_free (full_path);
   return desktop_file;
 }
+
+#endif /* GLIB >= 2.14.0 */
 
 /**
  * egg_desktop_file_new_from_key_file:
@@ -426,9 +430,13 @@ egg_desktop_file_get_numeric (EggDesktopFile  *desktop_file,
 			      const char      *key,
 			      GError         **error)
 {
+#if GLIB_CHECK_VERSION (2, 12, 0)
   return g_key_file_get_double (desktop_file->key_file,
 				EGG_DESKTOP_FILE_GROUP, key,
 				error);
+#else
+  return 0.0;
+#endif
 }
 
 char **
