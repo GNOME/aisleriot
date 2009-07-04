@@ -67,19 +67,26 @@ libgames_support_la_SOURCES +=		\
 	games-atk-utils.h		\
 	games-clock.c			\
 	games-clock.h			\
+	games-help.c			\
+	games-help.h			\
+	games-preimage.c                \
+	games-preimage.h                \
+	games-preimage-private.h	\
+	games-show.c			\
+	games-show.h			\
+	$(NULL)
+endif # !HAVE_HILDON
+
+if LIBGAMES_SUPPORT_FULL
+libgames_support_la_SOURCES +=		\
 	games-frame.c			\
 	games-frame.h			\
 	games-find-file.c		\
 	games-find-file.h		\
 	games-gridframe.c		\
 	games-gridframe.h		\
-	games-help.c			\
-	games-help.h			\
 	games-card-selector.c		\
 	games-card-selector.h		\
-	games-preimage.c                \
-	games-preimage.h                \
-	games-preimage-private.h	\
 	games-score.h			\
 	games-score.c			\
 	games-scores.c			\
@@ -93,10 +100,8 @@ libgames_support_la_SOURCES +=		\
 	games-setgid-io.h		\
 	games-scores-backend.c		\
 	games-scores-backend.h		\
-	games-show.c			\
-	games-show.h			\
 	$(NULL)
-endif
+endif # LIBGAMES_SUPPORT_FULL
 
 if HAVE_GNOME
 if GGZ_CLIENT
