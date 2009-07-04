@@ -83,6 +83,10 @@
 
 #define SELECT_GAME_DIALOG_MIN_HEIGHT (256)
 
+#if !GLIB_CHECK_VERSION (2, 16, 0)
+#define C_(context, string) (_(string))
+#endif
+
 /* define this to enable a debug menu */
 /* #undef ENABLE_DEBUG_UI */
 
