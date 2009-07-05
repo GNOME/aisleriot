@@ -262,6 +262,7 @@
       #f
       (if (and (not (empty-slot? (car slots)))
 	       (or (= 1 (length (depth-card (get-cards (car slots)))))
+	           (not (is-visible? (cadr (depth-card (get-cards (car slots))))))
 		   (not (eq? (+ 1 (get-value (car (depth-card (get-cards (car slots))))))
 			     (get-value (cadr (depth-card (get-cards (car slots))))))))
 	       (check-a-slot (car slots) (car (depth-card (get-cards (car slots)))) tableau #f))
