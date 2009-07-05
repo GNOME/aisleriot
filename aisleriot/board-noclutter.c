@@ -1387,21 +1387,21 @@ aisleriot_board_settings_update (GtkSettings *settings,
                                  AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-#ifndef HAVE_HILDON
+#if GTK_CHECK_VERSION (2, 10, 0)
   gboolean touchscreen_mode;
-#endif /* !HAVE_HILDON */
+#endif /* GTK >= 2.10.0 */
 
    /* Set up the double-click detection. */
   g_object_get (settings,
                 "gtk-double-click-time", &priv->double_click_time,
-#ifndef HAVE_HILDON 
+#if GTK_CHECK_VERSION (2, 10, 0)
                 "gtk-touchscreen-mode", &touchscreen_mode,
-#endif /* !HAVE_HILDON */
+#endif /* GTK >= 2.10.0 */
                 NULL);
 
-#ifndef HAVE_HILDON
+#if GTK_CHECK_VERSION (2, 10, 0)
   priv->touchscreen_mode = touchscreen_mode != FALSE;
-#endif /* !HAVE_HILDON */
+#endif /* GTK >= 2.10.0 */
 }
 
 /* Note: this unsets the selection! hslot may be equal to priv->selection_slot. */
@@ -2494,10 +2494,10 @@ aisleriot_board_screen_changed (GtkWidget *widget,
   aisleriot_board_settings_update (settings, NULL, board);
   g_signal_connect (settings, "notify::gtk-double-click-time",
                     G_CALLBACK (aisleriot_board_settings_update), board);
-#ifndef HAVE_HILDON 
+#if GTK_CHECK_VERSION (2, 10, 0)
   g_signal_connect (settings, "notify::gtk-touchscreen-mode",
                     G_CALLBACK (aisleriot_board_settings_update), board);
-#endif /* !HAVE_HILDON */
+#endif /* GTK >= 2.10.0 */
 }
 
 static void
