@@ -45,12 +45,16 @@ libgames_support_la_SOURCES =		\
 	games-debug.h			\
 	games-files.c			\
 	games-files.h			\
+	games-help.c			\
+	games-help.h			\
 	games-pixbuf-utils.c		\
 	games-pixbuf-utils.h		\
 	games-profile.c			\
 	games-profile.h			\
 	games-runtime.c			\
 	games-runtime.h			\
+	games-show.c			\
+	games-show.h			\
 	games-sound.c			\
 	games-sound.h			\
 	games-stock.c			\
@@ -67,13 +71,9 @@ libgames_support_la_SOURCES +=		\
 	games-atk-utils.h		\
 	games-clock.c			\
 	games-clock.h			\
-	games-help.c			\
-	games-help.h			\
 	games-preimage.c                \
 	games-preimage.h                \
 	games-preimage-private.h	\
-	games-show.c			\
-	games-show.h			\
 	$(NULL)
 endif # !HAVE_HILDON
 
