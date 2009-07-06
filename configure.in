@@ -358,8 +358,7 @@ if test "$enable_sound" = "yes"; then
   AC_MSG_CHECKING([for which sound library to use])
   AC_ARG_WITH([sound],
     [AS_HELP_STRING([--with-sound=libcanberra|sdl_mixer (default: libcanberra)])],
-    [with_sound="$withval"],
-    [with_sound=libcanberra])
+    [],[with_sound=libcanberra])
   AC_MSG_RESULT([$with_sound])
 else
   with_sound=no
@@ -673,7 +672,7 @@ AM_CONDITIONAL([WITH_GTHREAD],[test "$need_gthread" = "yes"])
 
 # Sound support: Libcanberra, GStreamer or SDL_mixer
 
-if test "$enable_sound"; then
+if test "$enable_sound" = "yes"; then
   AC_DEFINE([ENABLE_SOUND],[1],[Define if sound support is enabled])
 fi
 
