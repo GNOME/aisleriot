@@ -28,7 +28,6 @@
 #include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
 
-#include "games-files.h"
 #include "games-runtime.h"
 
 #include "games-stock.h"
