@@ -75,8 +75,6 @@ if LIBGAMES_SUPPORT_FULL
 libgames_support_la_SOURCES +=		\
 	games-frame.c			\
 	games-frame.h			\
-	games-find-file.c		\
-	games-find-file.h		\
 	games-gridframe.c		\
 	games-gridframe.h		\
 	games-score.h			\
