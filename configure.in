@@ -755,11 +755,11 @@ AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
 
 AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal])
 
-# Maemo's (OS2007 & OS2008) glib-genmarshal breaks on --internal
-if test "$with_platform" = "hildon"; then
-  GLIB_GENMARSHAL_INTERNAL=
-else
+# glib-genmarshal --internal only exists since 2.14
+if $PKG_CONFIG --exists "glib-2.0 >= 2.14.0" ; then
   GLIB_GENMARSHAL_INTERNAL="--internal"
+else
+  GLIB_GENMARSHAL_INTERNAL=
 fi
 AC_SUBST([GLIB_GENMARSHAL_INTERNAL])
 
