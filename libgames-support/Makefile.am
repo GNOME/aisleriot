@@ -39,8 +39,6 @@ libgames_support_la_SOURCES =		\
 	games-conf.h			\
 	games-debug.c			\
 	games-debug.h			\
-	games-files.c			\
-	games-files.h			\
 	games-help.c			\
 	games-help.h			\
 	games-profile.c			\
@@ -73,6 +71,8 @@ endif # !HAVE_HILDON
 
 if LIBGAMES_SUPPORT_FULL
 libgames_support_la_SOURCES +=		\
+	games-files.c			\
+	games-files.h			\
 	games-frame.c			\
 	games-frame.h			\
 	games-gridframe.c		\
