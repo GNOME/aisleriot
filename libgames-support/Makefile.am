@@ -79,8 +79,6 @@ libgames_support_la_SOURCES +=		\
 	games-find-file.h		\
 	games-gridframe.c		\
 	games-gridframe.h		\
-	games-card-selector.c		\
-	games-card-selector.h		\
 	games-score.h			\
 	games-score.c			\
 	games-scores.c			\
@@ -196,13 +194,6 @@ libgamescards_la_SOURCES = \
 	games-pixbuf-utils.c \
 	games-pixbuf-utils.h \
 	$(NULL)
-
-if LIBGAMES_SUPPORT_FULL
-libgamescards_la_SOURCES += \
-	games-card-selector.c \
-	games-card-selector.h \
-	$(NULL)
-endif # LIBGAMES_SUPPORT_FULL
 
 if HAVE_CLUTTER
 libgamescards_la_SOURCES += \
