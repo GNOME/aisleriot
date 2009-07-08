@@ -1108,6 +1108,8 @@ clickmove_toggle_cb (GtkToggleAction *action,
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), click_to_move);
 }
 
+#ifdef ENABLE_SOUND
+
 static void
 sound_toggle_cb (GtkToggleAction *action,
                  AisleriotWindow *window)
@@ -1120,6 +1122,8 @@ sound_toggle_cb (GtkToggleAction *action,
   
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), sound_enabled);
 }
+
+#endif /* ENABLE_SOUND */
 
 #ifdef HAVE_CLUTTER
 
