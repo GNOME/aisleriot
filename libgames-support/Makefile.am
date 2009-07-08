@@ -218,7 +218,7 @@ if !HAVE_RSVG
 libgamescards_la_SOURCES += games-card-theme-preimage.c
 endif
 libgamescards_la_SOURCES += games-card-theme-sliced.c
-endif
+endif # ENABLE_CARD_THEME_FORMAT_SLICED
 
 if ENABLE_CARD_THEME_FORMAT_PYSOL
 libgamescards_la_SOURCES += games-card-theme-pysol.c
@@ -256,6 +256,7 @@ endif # ENABLE_CARD_THEMES_INSTALLER
 
 # Auxiliary programme to prerender card images
 
+if BUILD_LIBGAMESCARDS
 if HAVE_RSVG
 
 utildir = $(pkglibdir)
@@ -284,9 +285,10 @@ gnome_games_render_cards_LDADD = \
 if WITH_GTHREAD
 gnome_games_render_cards_CFLAGS += $(GHTREAD_CFLAGS)
 gnome_games_render_cards_LDADD += $(GTHREAD_LIBS)
-endif
+endif # WITH_GTHREAD
 
 endif # HAVE_RSVG
+endif # BUILD_LIBGAMESCARDS
 
 install-data-local:
 if GCONF_SCHEMAS_INSTALL
@@ -295,7 +297,7 @@ if GCONF_SCHEMAS_INSTALL
 			GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $$p 2>&1 > /dev/null; \
 		done \
 	fi
-endif
+endif # GCONF_SCHEMAS_INSTALL
 
 stamp_files = \
 	stamp-games-marshal.c \
