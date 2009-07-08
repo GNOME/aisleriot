@@ -56,6 +56,7 @@ sol_LDFLAGS = \
 
 sol_LDADD = \
 	$(top_builddir)/libgames-support/libgames-support.la \
+	$(top_builddir)/libgames-support/libgamescards.la \
 	$(GTK_LIBS) \
 	$(GUILE_LIBS)
 

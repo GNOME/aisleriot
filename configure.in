@@ -120,6 +120,7 @@ allow_smclient=no
 disallow_hildon=no
 require_gtk_2_16=no
 libgames_support_full=no
+build_libgamescards=no
 
 for game in $gamelist; do
   case $game in
@@ -174,9 +175,14 @@ for game in $gamelist; do
     aisleriot) ;;
     *) libgames_support_full=yes ;;
   esac
+  case $game in
+    aisleriot|blackjack) build_libgamescards=yes ;;
+    *) ;;
+  esac
 done
 
 AM_CONDITIONAL([LIBGAMES_SUPPORT_FULL],[test "$libgames_support_full" = "yes"])
+AM_CONDITIONAL([BUILD_LIBGAMESCARDS],[test "$build_libgamescards" = "yes"])
 
 # Locate various programs
 

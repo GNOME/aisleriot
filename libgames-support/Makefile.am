@@ -23,22 +23,18 @@ EXTRA_DIST = \
 
 noinst_LTLIBRARIES = libgames-support.la
 
+if BUILD_LIBGAMESCARDS
+noinst_LTLIBRARIES += libgamescards.la
+endif
+
+# libgames-support.la
+
 BUILT_SOURCES = \
 	games-marshal.c			\
 	games-marshal.h			\
 	$(NULL)
 
 libgames_support_la_SOURCES =		\
-	games-card.c			\
-	games-card.h			\
-	games-card-private.h		\
-	games-card-images.c		\
-	games-card-images.h		\
-	games-card-theme.c		\
-	games-card-theme.h		\
-	games-card-theme-private.h	\
-	games-card-themes.c		\
-	games-card-themes.h		\
 	games-conf.c			\
 	games-conf.h			\
 	games-debug.c			\
@@ -47,8 +43,6 @@ libgames_support_la_SOURCES =		\
 	games-files.h			\
 	games-help.c			\
 	games-help.h			\
-	games-pixbuf-utils.c		\
-	games-pixbuf-utils.h		\
 	games-profile.c			\
 	games-profile.h			\
 	games-runtime.c			\
@@ -114,47 +108,12 @@ libgames_support_la_SOURCES +=		\
 endif
 endif
 
-if HAVE_CLUTTER
-libgames_support_la_SOURCES += \
-	games-card-textures-cache.c	\
-	games-card-textures-cache.h	\
-	$(NULL)
-endif
-
-if HAVE_RSVG
-libgames_support_la_SOURCES += games-card-theme-preimage.c
-
-if ENABLE_CARD_THEME_FORMAT_SVG
-libgames_support_la_SOURCES += games-card-theme-svg.c
-endif
-
-if ENABLE_CARD_THEME_FORMAT_KDE
-libgames_support_la_SOURCES += games-card-theme-kde.c
-endif
-
-endif # HAVE_RSVG
-
-if ENABLE_CARD_THEME_FORMAT_SLICED
-if !HAVE_RSVG
-libgames_support_la_SOURCES += games-card-theme-preimage.c
-endif
-libgames_support_la_SOURCES += games-card-theme-sliced.c
-endif
-
-if ENABLE_CARD_THEME_FORMAT_PYSOL
-libgames_support_la_SOURCES += games-card-theme-pysol.c
-endif
-
-if ENABLE_CARD_THEME_FORMAT_FIXED
-libgames_support_la_SOURCES += games-card-theme-fixed.c
-endif
-
 libgames_support_la_CPPFLAGS = \
 	-DPKGDATADIR="\"$(pkgdatadir)\""			\
 	-DDATADIR="\"$(datadir)\""				\
 	-DCOMMON_DATADIR="\"$(datadir)/gnome-games-common\""	\
 	-DSCORESDIR="\"$(scoredir)\""				\
-	$(NULL)
+	$(AM_CPPFLAGS)
 
 libgames_support_la_CFLAGS = 	\
 	$(GTK_CFLAGS)		\
@@ -186,7 +145,7 @@ endif
 if WITH_SMCLIENT_QUARTZ
 libgames_support_la_SOURCES += eggsmclient-osx.c
 endif
-endif
+endif # WITH_SMCLIENT
 
 if HAVE_GNOME
 libgames_support_la_CFLAGS += $(GNOME_CFLAGS)
@@ -198,17 +157,12 @@ libgames_support_la_CFLAGS += 	\
 	$(GGZ_GTK_INCLUDES) 	\
 	$(GGZCORE_INCLUDES)	\
 	$(LIBGGZ_INCLUDES)
-endif
-endif
+endif # GGZ_CLIENT
+endif # HAVE_GNOME
 
 if HAVE_RSVG
 libgames_support_la_CFLAGS += $(RSVG_CFLAGS)
 libgames_support_la_LIBADD += $(RSVG_LIBS)
-endif
-
-if HAVE_CLUTTER
-libgames_support_la_CFLAGS += $(CLUTTER_CFLAGS)
-libgames_support_la_LIBADD += $(CLUTTER_LIBS)
 endif
 
 if HAVE_CANBERRA_GTK
@@ -221,15 +175,95 @@ libgames_support_la_CFLAGS += $(SDL_MIXER_CFLAGS)
 libgames_support_la_LIBADD += $(SDL_MIXER_LIBS)
 endif
 
-if ENABLE_CARD_THEMES_INSTALLER
-libgames_support_la_CFLAGS += $(DBUS_GLIB_CFLAGS)
-libgames_support_la_LIBADD += $(DBUS_GLIB_LIBS)
-endif
-
 if HAVE_HILDON
 libgames_support_la_CFLAGS += $(HILDON_CFLAGS)
 libgames_support_la_LIBADD += $(HILDON_LIBS)
 endif
+
+# libgamescards.la
+
+libgamescards_la_SOURCES = \
+	games-card.c \
+	games-card.h \
+	games-card-images.c \
+	games-card-images.h \
+	games-card-private.h \
+	games-card-theme.c \
+	games-card-theme.h \
+	games-card-theme-private.h \
+	games-card-themes.c \
+	games-card-themes.h \
+	games-pixbuf-utils.c \
+	games-pixbuf-utils.h \
+	$(NULL)
+
+if LIBGAMES_SUPPORT_FULL
+libgamescards_la_SOURCES += \
+	games-card-selector.c \
+	games-card-selector.h \
+	$(NULL)
+endif # LIBGAMES_SUPPORT_FULL
+
+if HAVE_CLUTTER
+libgamescards_la_SOURCES += \
+	games-card-textures-cache.c \
+	games-card-textures-cache.h \
+	$(NULL)
+endif # HAVE_CLUTTER
+
+if HAVE_RSVG
+libgamescards_la_SOURCES += games-card-theme-preimage.c
+
+if ENABLE_CARD_THEME_FORMAT_SVG
+libgamescards_la_SOURCES += games-card-theme-svg.c
+endif
+
+if ENABLE_CARD_THEME_FORMAT_KDE
+libgamescards_la_SOURCES += games-card-theme-kde.c
+endif
+
+endif # HAVE_RSVG
+
+if ENABLE_CARD_THEME_FORMAT_SLICED
+if !HAVE_RSVG
+libgamescards_la_SOURCES += games-card-theme-preimage.c
+endif
+libgamescards_la_SOURCES += games-card-theme-sliced.c
+endif
+
+if ENABLE_CARD_THEME_FORMAT_PYSOL
+libgamescards_la_SOURCES += games-card-theme-pysol.c
+endif
+
+if ENABLE_CARD_THEME_FORMAT_FIXED
+libgamescards_la_SOURCES += games-card-theme-fixed.c
+endif
+
+libgamescards_la_CPPFLAGS = \
+	$(AM_CPPFLAGS)
+
+libgamescards_la_CFLAGS = \
+	$(GTK_CFLAGS) \
+	$(AM_CFLAGS)
+
+libgamescards_la_LIBADD = \
+	libgames-support.la \
+	$(GTK_LIBS)
+
+if HAVE_RSVG
+libgamescards_la_CFLAGS += $(RSVG_CFLAGS)
+libgamescards_la_LIBADD += $(RSVG_LIBS)
+endif # HAVE_RSVG
+
+if HAVE_CLUTTER
+libgamescards_la_CFLAGS += $(CLUTTER_CFLAGS)
+libgamescards_la_LIBADD += $(CLUTTER_LIBS)
+endif # HAVE_CLUTTER
+
+if ENABLE_CARD_THEMES_INSTALLER
+libgamescards_la_CFLAGS += $(DBUS_GLIB_CFLAGS)
+libgamescards_la_LIBADD += $(DBUS_GLIB_LIBS)
+endif # ENABLE_CARD_THEMES_INSTALLER
 
 # Auxiliary programme to prerender card images
 
@@ -254,6 +288,7 @@ gnome_games_render_cards_LDFLAGS = \
 
 gnome_games_render_cards_LDADD = \
 	libgames-support.la	\
+	libgamescards.la	\
 	$(GTK_LIBS)		\
 	$(RSVG_LIBS)
 
