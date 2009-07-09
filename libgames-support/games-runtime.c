@@ -268,25 +268,10 @@ about_url_hook (GtkAboutDialog *about,
   screen = gtk_widget_get_screen (GTK_WIDGET (about));
 
   if (!games_show_uri (screen, uri, gtk_get_current_event_time (), &error)) {
-    GtkWidget *dialog;
-
-    dialog = gtk_message_dialog_new (GTK_WINDOW (about),
-                                     GTK_DIALOG_DESTROY_WITH_PARENT |
-                                     GTK_DIALOG_MODAL,
-                                     GTK_MESSAGE_ERROR,
-                                     GTK_BUTTONS_CLOSE,
-                                     "%s", _("Could not show link"));
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                              "%s", error->message);
+    games_show_error (GTK_WIDGET (about),
+                      error,
+                      "%s", _("Could not show link"));
     g_error_free (error);
-
-    gtk_window_set_title (GTK_WINDOW (dialog), "");
-    gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-
-    g_signal_connect (dialog, "response",
-                      G_CALLBACK (gtk_widget_destroy), NULL);
-
-    gtk_window_present (GTK_WINDOW (dialog));
   }
 }
 
