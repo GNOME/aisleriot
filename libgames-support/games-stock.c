@@ -339,14 +339,14 @@ games_stock_init (void)
     { GAMES_STOCK_END_GAME,         N_("_End Game"),          0, 0, NULL },
 #endif
 
-    /* Work around maemo brokenness wrt. stock item translations */
-    /* FIXMEchpe: this only applies to maemo3; should be fixed in maemo4 */
-#ifdef HAVE_HILDON
+#ifdef HAVE_MAEMO_3
+    /* Work around maemo brokenness wrt. stock item translations.
+     * See https://bugs.maemo.org/show_bug.cgi?id=1449 . */
     { GTK_STOCK_ABOUT,              N_("_About"),             0, 0, NULL },
     { GTK_STOCK_CANCEL,             N_("_Cancel"),            0, 0, NULL },
     { GTK_STOCK_CLOSE,              N_("_Close"),             0, 0, NULL },
     { GTK_STOCK_OK,                 N_("_OK"),                0, 0, NULL },
-#endif /* HAVE_HILDON */
+#endif /* HAVE_MAEMO_3 */
   };
 
 #undef STOCK_ACCEL
