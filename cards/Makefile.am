@@ -17,5 +17,7 @@ card_DATA = \
 EXTRA_DIST = \
 	$(card_DATA)		\
 	README.bellot		\
+	README.dondorf		\
 	README.ornamental	\
+	README.paris		\
 	$(NULL)
