@@ -64,7 +64,7 @@ struct _GamesCardThemeKDE {
 
 /* We need librsvg >= 2.22.4 here */
 #if defined(LIBRSVG_CHECK_VERSION)
-#if LIBRSVG_CHECK_VERSION(2, 22, 4)
+#if LIBRSVG_CHECK_VERSION(2, 26, 0)
 #define HAVE_NEW_RSVG
 #endif
 #endif
