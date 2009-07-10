@@ -184,6 +184,33 @@ done
 AM_CONDITIONAL([LIBGAMES_SUPPORT_FULL],[test "$libgames_support_full" = "yes"])
 AM_CONDITIONAL([BUILD_LIBGAMESCARDS],[test "$build_libgamescards" = "yes"])
 
+# Set a conditional for each game to build
+
+for game in $allgames $staginggames; do
+  eval AS_TR_SH([build_$game])=no
+done
+for game in $gamelist; do
+  eval AS_TR_SH([build_$game])=yes
+done
+
+AM_CONDITIONAL([BUILD_AISLERIOT],[test "$build_aisleriot" = "yes"])
+AM_CONDITIONAL([BUILD_BLACKJACK],[test "$build_blackjack" = "yes"])
+AM_CONDITIONAL([BUILD_GLCHESS],[test "$build_glchess" = "yes"])
+AM_CONDITIONAL([BUILD_GLINES],[test "$build_glines" = "yes"])
+AM_CONDITIONAL([BUILD_GNECT],[test "$build_gnect" = "yes"])
+AM_CONDITIONAL([BUILD_GNIBBLES],[test "$build_gnibbles" = "yes"])
+AM_CONDITIONAL([BUILD_GNOBOTS2],[test "$build_gnobots2" = "yes"])
+AM_CONDITIONAL([BUILD_GNOME_SUDOKU],[test "$build_gnome_sudoku" = "yes"])
+AM_CONDITIONAL([BUILD_GNOMETRIS],[test "$build_gnometris" = "yes"])
+AM_CONDITIONAL([BUILD_GNOMINE],[test "$build_gnomine" = "yes"])
+AM_CONDITIONAL([BUILD_GNOTRAVEX],[test "$build_gnotravex" = "yes"])
+AM_CONDITIONAL([BUILD_GNOTSKI],[test "$build_gnotski" = "yes"])
+AM_CONDITIONAL([BUILD_GTALI],[test "$build_gtali" = "yes"])
+AM_CONDITIONAL([BUILD_IAGNO],[test "$build_iagno" = "yes"])
+AM_CONDITIONAL([BUILD_LIGHTSOFF],[test "$build_lightsoff" = "yes"])
+AM_CONDITIONAL([BUILD_MAHJONGG],[test "$build_mahjongg" = "yes"])
+AM_CONDITIONAL([BUILD_SAME_GNOME],[test "$build_same_gnome" = "yes"])
+
 # Locate various programs
 
 PKG_PROG_PKG_CONFIG([0.15])
