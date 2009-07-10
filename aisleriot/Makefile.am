@@ -187,7 +187,7 @@ EXTRA_DIST = \
 	$(ossoservice_in_files)	\
 	$(schema_in_files)	\
 	aisleriot.supp		\
-	translatable_game_names.h
+	game-names.h
 
 CLEANFILES = \
 	$(desktop_DATA)	\

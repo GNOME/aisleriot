@@ -22,7 +22,7 @@
 #  2006 - Richard Hoelscher <rah@rahga.com>
 #  2001 - Kenneth Christiansen <kenneth@gnu.org>
 
-open OUTFILE, "| sort >translatable_game_names.h";
+open OUTFILE, "> game-names.h";
 
 opendir(DIR, "rules/");
 
@@ -30,6 +30,11 @@ while ($_ = readdir(DIR)) {
   if (s/^(.)(.*).scm/\u$1$2/) { # Match scm filenames. Upcase first letter.
     s/_(.)/ \u$1/g;             # Replace underscores and following letter
 				# with space and upcase letter.
-    print OUTFILE "gchar *s = N_(\"$_\")\n";
+    print OUTFILE "/* Translators: this string is the name of a game of patience.\n";
+    print OUTFILE " If there is an established standard name for this game in your\n";
+    print OUTFILE " locale, use that; otherwise you can translate this string\n";
+    print OUTFILE " freely, literally, or not at all, at your option.\n";
+    print OUTFILE " */\n";
+    print OUTFILE "N_(\"$_\")\n\n";
   }
 }
