@@ -48,7 +48,7 @@
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
 /* Enable keynav on non-hildon by default */
-#ifndef HAVE_HILDON
+#if !defined(HAVE_HILDON) && !defined(DISABLE_KEYNAV)
 #define ENABLE_KEYNAV
 #endif /* !HAVE_HILDON */
 
