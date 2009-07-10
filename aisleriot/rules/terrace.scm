@@ -34,12 +34,20 @@
     (10 9 #f #f 0 #f #f)))
 
 (define variation-names
-  (list (_"Terrace")
-        (_"General Patience")
+  (list
+        ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+        (_"Terrace")
+        ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+        (_"General's Patience")
+        ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
         (_"Falling Stars")
+        ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
         (_"Signora")
+        ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
         (_"Redheads")
+        ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
         (_"Blondes and Brunettes")
+        ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
         (_"Wood")))
 
 (define current-variation 0)
