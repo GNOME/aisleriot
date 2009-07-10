@@ -4,19 +4,18 @@
 #
 #  Copyright (C) 2001 Free Software Foundation.
 #
-#  This script is free software; you can redistribute it and/or
-#  modify it under the terms of the GNU General Public License as
-#  published by the Free Software Foundation; either version 2 of the
-#  License, or (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-#  This script is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-#  General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-#  You should have received a copy of the GNU General Public License
-#  along with this library; if not, write to the Free Software
-#  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #  Authors:
 #  2006 - Richard Hoelscher <rah@rahga.com>
@@ -25,6 +24,8 @@
 open OUTFILE, "> game-names.h";
 
 opendir(DIR, "rules/");
+
+print OUTFILE "/* This is a generated file; DO NOT EDIT */\n";
 
 while ($_ = readdir(DIR)) {
   if (s/^(.)(.*).scm/\u$1$2/) { # Match scm filenames. Upcase first letter.

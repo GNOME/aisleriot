@@ -385,12 +385,11 @@ games_runtime_init (const char *name)
   retval = TRUE;
 #endif /* ENABLE_BINRELOC */
 
-#if defined(ENABLE_CARD_THEME_FORMAT_KDE) || defined(ENABLE_CARD_THEME_FORMAT_SLICED) || defined(ENABLE_CARD_THEME_FORMAT_PYSOL)
   if (strcmp (app_name, "aisleriot") == 0 || strcmp (app_name, "blackjack") == 0) {
     gpl_version = 3;
-  } else
-#endif
-  gpl_version = 2;
+  } else {
+    gpl_version = 2;
+  }
 
 #if !GTK_CHECK_VERSION (2, 17, 0)
   gtk_about_dialog_set_url_hook (about_url_hook, NULL, NULL);

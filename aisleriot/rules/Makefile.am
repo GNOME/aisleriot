@@ -7,7 +7,6 @@ rules_DATA  = 			\
 	agnes.scm		\
 	athena.scm		\
 	auld_lang_syne.scm	\
-	aunt_mary.scm		\
 	backbone.scm		\
 	bakers_dozen.scm	\
 	bakers_game.scm		\
@@ -91,6 +90,10 @@ rules_DATA  = 			\
 	zebra.scm		\
 	plait.scm		\
 	$(NULL)
+
+# aunt_mary.scm
+# was temporarily disabled because the licence is unclear
+# about whether it's GPL 2 or GPL 2+ (see bug #325039 comment 5).
 
 EXTRA_DIST = \
 	$(rules_DATA)	\

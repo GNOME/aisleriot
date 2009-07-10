@@ -20,6 +20,7 @@ DIST_SUBDIRS = po dependencies icons sounds libgames-support tests $(allgames) $
 EXTRA_DIST = \
 	autogen.sh \
 	COPYING-DOCS \
+	COPYING.GPL3 \
 	xmldocs.make \
 	omf.make \
 	MAINTAINERS	\
