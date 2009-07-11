@@ -2,10 +2,12 @@ NULL =
 
 commondatadir = $(datadir)/gnome-games-common
 
+if ENABLE_CARD_THEME_FORMAT_SVG
 carddir = $(commondatadir)/cards
-card_DATA = \
+dist_card_DATA = \
 	gnomangelo_bitmap.svg	\
 	$(NULL)
+endif # ENABLE_CARD_THEME_FORMAT_SVG
 
 themeinstalldir = $(commondatadir)
 themeinstall_DATA = theme-install.ini
