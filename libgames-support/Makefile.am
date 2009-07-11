@@ -9,8 +9,10 @@ dist_card_DATA = \
 	$(NULL)
 endif # ENABLE_CARD_THEME_FORMAT_SVG
 
+if ENABLE_CARD_THEMES_INSTALLER
 themeinstalldir = $(commondatadir)
-themeinstall_DATA = theme-install.ini
+dist_themeinstall_DATA = theme-install.ini
+endif # ENABLE_CARD_THEMES_INSTALLER
 
 slotdir = $(pkgdatadir)/pixmaps
 slot_DATA = slot.svg
