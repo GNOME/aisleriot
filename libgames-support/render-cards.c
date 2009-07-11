@@ -30,12 +30,13 @@
 #include "games-card-theme.h"
 #include "games-card-themes.h"
 #include "games-card-theme-private.h"
+#include "games-string-utils.h"
 
 int
 main (int argc, char *argv[])
 {
   GError *err = NULL;
-  char *basepath = NULL, *kfname, *kfpath;
+  char *basepath = NULL, *kfname, *kfpath, *theme_filename;
   GamesCardThemeInfo *theme_info = NULL;
   GamesCardThemes *theme_manager = NULL;
   GamesCardTheme *theme = NULL;
@@ -129,18 +130,19 @@ main (int argc, char *argv[])
     goto loser;
   }
 
-
+  theme_filename = g_strdup_printf ("%s.svg", theme_name);
   theme_info = _games_card_theme_info_new (GAMES_TYPE_CARD_THEME_SVG,
-                                           theme_dir,
-                                           g_strdup_printf ("svg:%s.svg", theme_name) /* FIXMEchpe is this correct? */,
-                                           theme_name,
-                                           NULL,
+                                           theme_dir ? theme_dir : games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY),
+                                           theme_filename,
+                                           games_filename_to_display_name (theme_name),
+                                           g_strdup_printf ("svg:%s", theme_filename) /* FIXMEchpe is this correct? */,
                                            NULL, NULL);
+  g_free (theme_filename);
   theme_manager = games_card_themes_new ();
   theme = games_card_themes_get_theme (theme_manager, theme_info);
   if (!theme) {
     /* FIXMEchpe print real error */
-    g_warning ("Failed to load theme '%s'\n", theme_name);
+    g_printerr ("Failed to load theme '%s'\n", theme_name);
     goto loser;
   }
 
