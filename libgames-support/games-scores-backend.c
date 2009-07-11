@@ -33,7 +33,6 @@
 
 #ifdef ENABLE_SETGID
 #include "games-setgid-io.h"
-#error HI HI HI
 #endif
 
 struct _GamesScoresBackendPrivate {
