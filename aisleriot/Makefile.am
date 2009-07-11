@@ -140,9 +140,11 @@ endif
 
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
-schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_in_files = aisleriot.schemas.in
+if HAVE_GNOME
+schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_DATA = $(schema_in_files:.schemas.in=.schemas)
+endif
 
 ossobackup_in_files = aisleriot-backup.conf
 ossoscript_in_files = aisleriot-clean.sh
