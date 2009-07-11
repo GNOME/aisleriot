@@ -9,13 +9,15 @@ dist_card_DATA = \
 	$(NULL)
 endif # ENABLE_CARD_THEME_FORMAT_SVG
 
+if HAVE_RSVG
+slotdir = $(pkgdatadir)/pixmaps
+dist_slot_DATA = slot.svg
+endif # HAVE_RSVG
+
 if ENABLE_CARD_THEMES_INSTALLER
 themeinstalldir = $(commondatadir)
 dist_themeinstall_DATA = theme-install.ini
 endif # ENABLE_CARD_THEMES_INSTALLER
-
-slotdir = $(pkgdatadir)/pixmaps
-slot_DATA = slot.svg
 
 EXTRA_DIST = \
 	$(schema_in_files)	\
