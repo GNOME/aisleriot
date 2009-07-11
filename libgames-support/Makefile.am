@@ -86,11 +86,17 @@ libgames_support_la_SOURCES +=		\
 	games-scores-dialog-private.h	\
 	games-controls.c		\
 	games-controls.h		\
-	games-setgid-io.c		\
-	games-setgid-io.h		\
 	games-scores-backend.c		\
 	games-scores-backend.h		\
 	$(NULL)
+
+if ENABLE_SETGID
+libgames_support_la_SOURCES +=		\
+	games-setgid-io.c		\
+	games-setgid-io.h		\
+	$(NULL)
+endif # ENABLE_SETGID
+
 endif # LIBGAMES_SUPPORT_FULL
 
 if HAVE_GNOME

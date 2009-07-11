@@ -26,8 +26,11 @@
 
 #include <time.h>
 
-#include "games-setgid-io.h"
 #include "games-score.h"
+
+#ifdef ENABLE_SETGID
+#include "games-setgid-io.h"
+#endif
 
 G_BEGIN_DECLS
 

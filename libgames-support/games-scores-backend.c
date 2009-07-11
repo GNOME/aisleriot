@@ -30,7 +30,11 @@
 #include "games-scores.h"
 #include "games-scores-backend.h"
 #include "games-runtime.h"
+
+#ifdef ENABLE_SETGID
 #include "games-setgid-io.h"
+#error HI HI HI
+#endif
 
 struct _GamesScoresBackendPrivate {
   GamesScoreStyle style;
@@ -98,6 +102,8 @@ games_scores_backend_new (GamesScoreStyle style,
   return backend;
 }
 
+#ifdef ENABLE_SETGID
+
 /* Get a lock on the scores file. Block until it is available. 
  * This also supplies the file descriptor we need. The return value
  * is whether we were succesful or not. */
@@ -145,12 +151,15 @@ games_scores_backend_release_lock (GamesScoresBackend * self)
   self->priv->fd = -1;
 }
 
+#endif /* ENABLE_SETGID */
+
 /* You can alter the list returned by this function, but you must
  * make sure you set it again with the _set_scores method or discard it
  * with with the _discard_scores method. Otherwise deadlocks will ensue. */
 GList *
 games_scores_backend_get_scores (GamesScoresBackend * self)
 {
+#ifdef ENABLE_SETGID
   gchar *buffer;
   gchar *eol;
   gchar *scorestr;
@@ -251,11 +260,15 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
   /* FIXME: Sort the scores! We shouldn't rely on the file being sorted. */
 
   return self->scores_list;
+#else
+  return NULL;
+#endif /* ENABLE_SETGID */
 }
 
 gboolean
 games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
 {
+#ifdef ENABLE_SETGID
   GList *s;
   GamesScore *d;
   gchar *buffer;
@@ -310,11 +323,15 @@ games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
   games_scores_backend_release_lock (self);
 
   return TRUE;
-
+#else
+  return FALSE;
+#endif /* ENABLE_SETGID */
 }
 
 void
 games_scores_backend_discard_scores (GamesScoresBackend * self)
 {
+#ifdef ENABLE_SETGID
   games_scores_backend_release_lock (self);
+#endif
 }
