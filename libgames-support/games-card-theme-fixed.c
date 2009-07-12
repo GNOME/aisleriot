@@ -226,6 +226,11 @@ games_card_theme_fixed_set_card_size (GamesCardTheme *card_theme,
 
       theme->size_available = TRUE;
       theme->card_size = size;
+
+      _games_debug_print (GAMES_DEBUG_CARD_THEME,
+                          "Found prerendered card size %dx%d as nearest available size to %dx%d\n",
+                          size.width, size.height, twidth, theight);
+
     } else {
       _games_debug_print (GAMES_DEBUG_CARD_THEME,
                           "No prerendered size available for %d:%d\n",
