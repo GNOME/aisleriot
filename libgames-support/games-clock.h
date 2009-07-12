@@ -26,10 +26,11 @@ G_BEGIN_DECLS
 typedef struct _GamesClock {
   GtkLabel label;
 
-  guint timer_id;
-
-  time_t seconds;
-  time_t stopped;
+  guint update_timeout_id;
+  gboolean update;
+  gboolean started;
+  time_t start_time;
+  time_t stop_time;
 } GamesClock;
 
 typedef GtkLabelClass GamesClockClass;
@@ -38,11 +39,14 @@ GType      games_clock_get_type     (void);
 GtkWidget *games_clock_new          (void);
 void       games_clock_start        (GamesClock *clock_widget);
 void       games_clock_stop         (GamesClock *clock_widget);
+void       games_clock_reset        (GamesClock *clock_widget);
+time_t     games_clock_get_seconds  (GamesClock *clock_widget);
 void       games_clock_set_seconds  (GamesClock *clock_widget,
                                      time_t seconds);
-time_t     games_clock_get_seconds  (GamesClock *clock_widget);
 void       games_clock_add_seconds  (GamesClock *clock_widget,
                                      time_t seconds);
+void       games_clock_set_update   (GamesClock *clock_widget,
+                                     gboolean do_update);
 
 G_END_DECLS
 
