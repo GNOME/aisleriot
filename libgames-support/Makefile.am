@@ -2,28 +2,8 @@ NULL =
 
 commondatadir = $(datadir)/gnome-games-common
 
-if ENABLE_CARD_THEME_FORMAT_SVG
-carddir = $(commondatadir)/cards
-dist_card_DATA = \
-	gnomangelo_bitmap.svg	\
-	$(NULL)
-endif # ENABLE_CARD_THEME_FORMAT_SVG
-
-if HAVE_RSVG
-slotdir = $(pkgdatadir)/pixmaps
-dist_slot_DATA = slot.svg
-endif # HAVE_RSVG
-
-if ENABLE_CARD_THEMES_INSTALLER
-themeinstalldir = $(commondatadir)
-dist_themeinstall_DATA = theme-install.ini
-endif # ENABLE_CARD_THEMES_INSTALLER
-
 EXTRA_DIST = \
 	$(schema_in_files)	\
-	$(card_DATA)		\
-	$(slot_DATA)		\
-	$(themeinstall_DATA)	\
 	games-marshal.list	\
 	$(NULL)
 
@@ -190,6 +170,8 @@ endif
 
 # libgamescards.la
 
+if BUILD_LIBGAMESCARDS
+
 libgamescards_la_SOURCES = \
 	games-card.c \
 	games-card.h \
@@ -265,6 +247,27 @@ if ENABLE_CARD_THEMES_INSTALLER
 libgamescards_la_CFLAGS += $(DBUS_GLIB_CFLAGS)
 libgamescards_la_LIBADD += $(DBUS_GLIB_LIBS)
 endif # ENABLE_CARD_THEMES_INSTALLER
+
+# Data used in libgamescards
+
+if ENABLE_CARD_THEME_FORMAT_SVG
+carddir = $(commondatadir)/cards
+dist_card_DATA = \
+	gnomangelo_bitmap.svg	\
+	$(NULL)
+endif # ENABLE_CARD_THEME_FORMAT_SVG
+
+if HAVE_RSVG
+slotdir = $(pkgdatadir)/pixmaps
+dist_slot_DATA = slot.svg
+endif # HAVE_RSVG
+
+if ENABLE_CARD_THEMES_INSTALLER
+themeinstalldir = $(commondatadir)
+dist_themeinstall_DATA = theme-install.ini
+endif # ENABLE_CARD_THEMES_INSTALLER
+
+endif # BUILD_LIBGAMESCARDS
 
 # Auxiliary programme to prerender card images
 
