@@ -38,11 +38,10 @@ typedef GtkLabelClass GamesClockClass;
 GType      games_clock_get_type     (void);
 GtkWidget *games_clock_new          (void);
 void       games_clock_start        (GamesClock *clock_widget);
+gboolean   games_clock_is_started   (GamesClock *clock_widget);
 void       games_clock_stop         (GamesClock *clock_widget);
 void       games_clock_reset        (GamesClock *clock_widget);
 time_t     games_clock_get_seconds  (GamesClock *clock_widget);
-void       games_clock_set_seconds  (GamesClock *clock_widget,
-                                     time_t seconds);
 void       games_clock_add_seconds  (GamesClock *clock_widget,
                                      time_t seconds);
 void       games_clock_set_update   (GamesClock *clock_widget,

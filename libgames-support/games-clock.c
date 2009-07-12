@@ -116,9 +116,24 @@ games_clock_start (GamesClock *clock_widget)
   g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
 
   clock_widget->started = TRUE;
+  clock_widget->start_time = time (NULL) - (clock_widget->stop_time - clock_widget->start_time);
 
   if (clock_widget->update)
     games_clock_start_timer (clock_widget);
+}
+
+/**
+ * games_clock_is_started:
+ * @clock_widget:
+ *
+ * Returns: whether @clock_widget is running
+ */
+gboolean
+games_clock_is_started   (GamesClock *clock_widget)
+{
+  g_return_val_if_fail (GAMES_IS_CLOCK (clock_widget), FALSE);
+
+  return clock_widget->started;
 }
 
 /**
