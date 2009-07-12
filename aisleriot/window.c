@@ -1039,6 +1039,9 @@ statusbar_toggled_cb (GtkToggleAction *action,
 
   g_object_set (priv->statusbar, "visible", state, NULL);
 
+  /* Only update the clock continually if it's visible */
+  games_clock_set_update (GAMES_CLOCK (priv->clock), state);
+
   priv->statusbar_visible = state != FALSE;
 
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), state);
@@ -1860,7 +1863,7 @@ game_type_changed_cb (AisleriotGame *game,
 #ifdef HAVE_HILDON
   gtk_label_set_text (priv->game_message_label, NULL);
 #else
-  games_clock_set_seconds (GAMES_CLOCK (priv->clock), 0);
+  games_clock_reset (GAMES_CLOCK (priv->clock));
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
 
@@ -1882,7 +1885,7 @@ game_new_cb (AisleriotGame *game,
 #ifdef HAVE_HILDON
   gtk_label_set_text (priv->game_message_label, NULL);
 #else
-  games_clock_set_seconds (GAMES_CLOCK (priv->clock), 0);
+  games_clock_reset (GAMES_CLOCK (priv->clock));
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
 #endif
