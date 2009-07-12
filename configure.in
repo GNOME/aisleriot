@@ -899,18 +899,22 @@ AC_SUBST([GNOME_GAMES_GGZ_INTLTOOL_ROOM_RULE])
 have_guile=no
 have_guile_1_8=no
 if test "$need_guile" = "yes"; then
-  AC_PATH_PROG([GUILE],[guile])
+  AC_ARG_VAR([GUILE],[path to guile])
+  if test "$ac_cv_env_GUILE_set" != "set"; then
+    AC_PATH_TOOL([GUILE],[guile])
+  fi
+
   if test -z "$GUILE" ; then
     AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])
   fi
 
-  AC_PATH_PROG([GUILE_CONFIG],[guile-config])
+  AC_ARG_VAR([GUILE_CONFIG],[path to guile-config])
+  if test "$ac_cv_env_GUILE_CONFIG_set" != "set"; then
+    AC_PATH_TOOL([GUILE_CONFIG],[guile-config])
+  fi
   if test -z "$GUILE_CONFIG"; then
     AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])
   fi
-
-  AC_SUBST([GUILE])
-  AC_SUBST([GUILE_CONFIG])
 
   GUILE_CFLAGS=`$GUILE_CONFIG compile`
   GUILE_LIBS=`$GUILE_CONFIG link`
