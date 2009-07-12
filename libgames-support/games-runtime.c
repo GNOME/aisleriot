@@ -494,21 +494,27 @@ games_runtime_get_directory (GamesRuntimeDirectory directory)
 #else
       {
         GbrInitError errv = 0;
-        char *exe, *bindir, *prefix;
+        const char *env;
 
-        exe = _br_find_exe (&errv);
-        if (exe == NULL) {
-          g_printerr ("Failed to locate the binary relocation prefix (error code %u)\n", errv);
+        if ((env = g_getenv ("GAMES_RELOC_ROOT")) != NULL) {
+          path = g_strdup (env);
         } else {
-          bindir = g_path_get_dirname (exe);
-          g_free (exe);
-          prefix = g_path_get_dirname (bindir);
-          g_free (bindir);
+          char *exe, *bindir, *prefix;
 
-          if (prefix != NULL && strcmp (prefix, ".") != 0) {
-            path = prefix;
+          exe = _br_find_exe (&errv);
+          if (exe == NULL) {
+            g_printerr ("Failed to locate the binary relocation prefix (error code %u)\n", errv);
           } else {
-            g_free (prefix);
+            bindir = g_path_get_dirname (exe);
+            g_free (exe);
+            prefix = g_path_get_dirname (bindir);
+            g_free (bindir);
+
+            if (prefix != NULL && strcmp (prefix, ".") != 0) {
+              path = prefix;
+            } else {
+              g_free (prefix);
+            }
           }
         }
       }
