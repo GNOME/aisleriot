@@ -64,11 +64,13 @@
 #define MAX_OVERHANG (0.2)
 
 /* The proportion of a slot dedicated to the card (horiz or vert). */
+#ifndef CARD_SLOT_PROP
 #ifdef HAVE_HILDON
 #define CARD_SLOT_PROP (0.9)
 #else
 #define CARD_SLOT_PROP (0.8)
 #endif
+#endif /* !CARD_SLOT_PROP */
 
 #define DOUBLE_TO_INT_CEIL(d) ((int) (d + 0.5))
 
