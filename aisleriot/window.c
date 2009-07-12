@@ -2296,7 +2296,7 @@ aisleriot_window_init (AisleriotWindow *window)
     { "Toolbar", NULL, N_("_Toolbar"), NULL,
       ACTION_TOOLTIP (N_("Show or hide the toolbar")),
       G_CALLBACK (toolbar_toggled_cb),
-      FALSE
+      TRUE /* active by default since the UI manager creates the toolbar visible */
     },
 #ifndef HAVE_HILDON
     { "Statusbar", NULL, N_("_Statusbar"), NULL,
@@ -2783,6 +2783,7 @@ aisleriot_window_init (AisleriotWindow *window)
   /* Bug alert! maemo#615 and maemo#875
    * Thank you, maemo developers! This bug just cost me 2 hours of my life.
    */
+  /* FIXMEchpe: find out if this is fixed on maemo4 or maemo5 */
   gtk_widget_set_no_show_all (main_vbox, TRUE);
   gtk_widget_show_all (GTK_WIDGET (window));
   if (!priv->toolbar_visible) {
