@@ -370,7 +370,7 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support.la
 	--pkg cogl-$(CLUTTER_API_VERSION) \
 	$(libgames_support_la_SOURCES)
 
-BUILT_GIRSOURCES += GnomeGamesSupport-1.0.gir
+BUILT_GIRSOURCES += GnomeGamesSupport-1.0.gir GGZ-1.0.gir
 
 # INTROSPECTION_GIRDIR/INTROSPECTION_TYPELIBDIR aren't the right place to
 # install anything - we need to install inside our prefix.
