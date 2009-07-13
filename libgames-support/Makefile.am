@@ -248,6 +248,11 @@ libgamescards_la_CFLAGS += $(DBUS_GLIB_CFLAGS)
 libgamescards_la_LIBADD += $(DBUS_GLIB_LIBS)
 endif # ENABLE_CARD_THEMES_INSTALLER
 
+if HAVE_HILDON
+libgamescards_la_CFLAGS += $(HILDON_CFLAGS)
+libgamescards_la_LIBADD += $(HILDON_LIBS)
+endif
+
 # Data used in libgamescards
 
 if ENABLE_CARD_THEME_FORMAT_SVG
