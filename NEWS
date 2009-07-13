@@ -1,3 +1,164 @@
+gnome-games 2.27.4
+==================
+
+Mostly just bugfixes. New features include binreloc support, and better 
+maemo/win32 support. 
+
+Clutter dep bumped to 0.9.6 and clutter-gtk to 0.9.2
+
+Christian Persch (85):
+      libgames-support: [build] Only use eggdesktopfile on x11
+      libgames-support: [win32] Attach to console when run from console
+      Fix games_sound_play_for_widget() for canberra
+      Fix a few compiler warnings
+      Fix a few compiler warnings
+      libgames-support: Add more help methods
+      aisleriot: Comment out debug spew
+      build: move win32 platform check up
+      libgames-support: add binreloc support
+      libgames-support: [build] Don't distribute generated files
+      libgames-support: Set help error dialogue title to empty
+      libgames-support: Better error message when showing help fails
+      libgames-support: [smclient] Update copy from libegg master
+      libgames-support: [hildon] Add osso initialisation to games runtime
+      aisleriot: Move osso initialisation to libgames-support
+      libgames-support: Add games_show_uri()
+      libgames-support: Fix a HAVE_HILDON/HAVE_MAEMO mismatch
+      libgames-support: Use g_uri_escape_string to construct the help URI
+      aisleriot: Use games_help_display()
+      libgames-support: Add about dialogue hooks
+      aisleriot: Remove unused includes and defines
+      libgames-support: Add games_show_error()
+      libgames-support: Add games_help_display_full variant
+      aisleriot: Better error messages when showing help fails
+      aisleriot: Fix help error message in freecell mode
+      build: Only check --with-sound when sound is enabled
+      build: Fix gtk version req to the minimal values
+      libgames-support: Build with glib < 2.12
+      libgames-support: Include games-show.h
+      libgames-support: Build fix for glib < 2.16
+      libgames-support: Build fix for gtk 2.8
+      libgames-support: Build fix for !HAVE_RSVG
+      libgames-support: [build] Only build those parts of libg-s that are used
+      libgames-support: [smclient] Some build fixes for old glib
+      aisleriot: glib 2.8 build fix
+      aisleriot: glib < 2.16 build fix
+      aisleriot: Only get the gtk-touchscreen-mode setting on gtk >= 2.10
+      icons: Add prerendered icons for the "cards-deal" name
+      aisleriot: Add new games to the TODO list
+      build: Make --disable-sound work
+      libgames-support: [build] Fix build on hildon
+      build: [icons] Fix private icon theme icons on hildon
+      build: Only add help to SUBDIRS when building help is enabled
+      libgames-support: Split card theme off into its own convenience lib
+      libgames-support: blackjack: move GamesCardSelector to blackjack
+      libgames-support: gnobots2: Move games-find-file.[ch] to gnobots2
+      libgames-support: Remove unused include
+      libgames-support: Only build games-files when building the full library
+      build: Fix glib-genmarshal --internal check
+      aisleriot: Fix a unused code warning on !ENABLE_SOUND
+      libgames-support: Only build the card theme writer when building aisleriot
+      libgames-support: Fix rsvg version check
+      libgames-support: Fix #ifdef to use HAVE_MAEMO_3
+      libgames-support: Use games_show_error here
+      aisleriot: terrace: Add translator comments
+      aisleriot: Add translator comments for the game names
+      aisleriot: Add define to disable keynav code
+      ld: Add an AM conditional for each game to build
+      build: Only install the icons for games that are built
+      build: Only install the teleport icons when building gnobots2
+      build: Default --enable-setgid to off on win32
+      libgames-support: Only build games-setgid-io when --enable-setgid
+      all: Only call setgid_io_init() when --enable-setgid
+      libgames-support: Fix build with --enable-setgid
+      libgames-support: Fix render-cards
+      build: Only install the .schemas file when using GConf
+      libgames-support: Don't install the default .svg when SVG is disabled
+      libgames-support: Only install the .ini when theme installer is enabled
+      libgames-support: Don't install slot.svg when RSVG is disabled
+      aisleriot: Allow passing -DCARD_SLOT_PROP in CPPFLAGS
+      libgames-support: Print the selected card size
+      libgames-support: Only install cards data when building libgamescards
+      build: Declare GUILE and GUILE_CONFIG as precious
+      libgames-support: Add a way to specify the relocation root by env var
+      libgames-support: Add a way to inhibit the GamesClock timeout
+      gnometris: Use g_mkdir_with_parents()
+      gnotravex: Adapt to GamesClock API changes
+      libgames-support: Add games_clock_is_started()
+      gnomine: Adapt to GamesClock API changes
+      tests: Remove test that doesn't make sense
+      mahjongg: Adapt to GamesClock API changes
+      aisleriot: Adapt to GamesClock API changes
+      aisleriot: Hide toolbar at startup if requested
+      libgames-support: Fix the build on hildon
+      aisleriot: Add style property for the card/slot ratio
+
+Claude Paroz (1):
+      Updated French translation
+
+Daniel Mustieles (2):
+      Updated Spanish translation
+      Updated Spanish translation
+
+Gilles Dartiguelongue (1):
+      Use install-exec-hook to setgid games properly
+
+Ivar Smolin (1):
+      Updating Estonian translation
+
+Jason D. Clinton (1):
+      Post-release bump to 2.27.4
+
+Jorge Gonzalez (3):
+      Updated Spanish translation
+      Updated Spanish translation
+      Updated Spanish translation
+
+Maxim V. Dziumanenko (1):
+      Updated Ukrainian translation
+
+Paul Cutler (1):
+      Fix bug 582047 - updated mahjongg docs
+
+Petr Kovar (6):
+      Added Czech help translation for glines & gnometris by Marek Cernocky
+      Added Czech help translation for gnomine by Marek Cernocky
+      Added & fixed Czech help translation for various games by Marek Cernocky
+      Added Czech help translation for blackjack, glchess, gnobots2, and gtali
+      Updated Czech help translation for various GNOME games
+      Updated Czech help translation for various games by Marek Cernocky
+
+Robert Ancell (10):
+      UI strings non translated after GTKBuilder migration (Claude Paroz, Bug #586176)
+      Fix toolbar style to be user configurable (Claude Paroz, Bug #584615)
+      Use msgctext() (Claude Paroz)
+      Move pixmap install dir for gnome-sudoku and glchess from 
+        /usr/share/pixmaps/name to /usr/share/gnome-games/name/pixmaps to be 
+        consistent with the other games
+      Change texture directory from 'pixmaps' to 'textures'
+      Added gconf schema
+      Use boolean type for gconf keys
+      Consolodate bg_black and bg_custom_color keys
+      Add gconf descriptions
+      File missed from commit 484d28995afff4f46ec7d8aecb2333ea27f94ae0
+
+Thomas Hindoe Paaboel Andersen (4):
+      gnome-sudoku: Clean up data/Makefile.am to pass distcheck
+      Add some files to po/POTFILES.in
+      tests: Remove last bits of the test_games_clock_set test
+      Bump clutter dependencies
+
+Tobias Mueller (1):
+      Include necessary headers in c99 macro
+
+Vincent Povirk (1):
+      aisleriot: fix hinting in a rare situation in Spider
+
+drtvasudevan (2):
+      Updated Tamil translation
+      Updated Tamil translation
+
+
 gnome-games 2.27.3
 ==================
 
