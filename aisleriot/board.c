@@ -64,13 +64,13 @@
 #define MAX_OVERHANG (0.2)
 
 /* The proportion of a slot dedicated to the card (horiz or vert). */
-#ifndef CARD_SLOT_PROP
+#ifndef DEFAULT_CARD_SLOT_RATIO
 #ifdef HAVE_HILDON
-#define CARD_SLOT_PROP (0.9)
+#define DEFAULT_CARD_SLOT_RATIO (0.9)
 #else
-#define CARD_SLOT_PROP (0.8)
+#define DEFAULT_CARD_SLOT_RATIO (0.8)
 #endif
-#endif /* !CARD_SLOT_PROP */
+#endif /* !DEFAULT_CARD_SLOT_RATIO */
 
 #define DOUBLE_TO_INT_CEIL(d) ((int) (d + 0.5))
 
@@ -126,6 +126,9 @@ struct _AisleriotBoardPrivate
   /* The size of a slot in pixels. */
   double xslotstep;
   double yslotstep;
+
+  /* How much of the slot the card should take up */
+  double card_slot_ratio;
 
   /* The offset of the cards within the slot. */
   int xoffset, yoffset;
@@ -1126,7 +1129,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   games_card_theme_set_size (priv->theme,
                              priv->xslotstep,
                              priv->yslotstep,
-                             CARD_SLOT_PROP);
+                             priv->card_slot_ratio);
 
   games_card_theme_get_size (priv->theme, &card_size);
   priv->card_size = card_size;
@@ -2637,6 +2640,7 @@ aisleriot_board_style_set (GtkWidget *widget,
   GdkColor *colour = NULL;
   GdkColor selection_colour;
   gboolean interior_focus;
+  double card_slot_ratio;
   GPtrArray *slots;
   int i, n_slots;
 
@@ -2645,16 +2649,21 @@ aisleriot_board_style_set (GtkWidget *widget,
                         "focus-padding", &priv->focus_padding,
                         "interior-focus", &interior_focus,
                         "selection-color", &colour,
+                        "card-slot-ratio", &card_slot_ratio,
                         NULL);
 
 #if 0
-  g_print ("style-set: focus width %d padding %d interior-focus %s\n",
+  g_print ("style-set: focus width %d padding %d interior-focus %s card-slot-ratio %.2f\n",
            priv->focus_line_width,
            priv->focus_padding,
-           interior_focus ? "t" : "f");
+           interior_focus ? "t" : "f",
+           card_slot_ratio);
 #endif
 
   priv->interior_focus = interior_focus != FALSE;
+
+  priv->card_slot_ratio = card_slot_ratio;
+  /* FIXMEchpe: if the ratio changed, we should re-layout the board below */
 
   if (colour != NULL) {
     selection_colour = *colour;
@@ -3450,6 +3459,19 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
      g_param_spec_boxed ("selection-color", NULL, NULL,
                          GDK_TYPE_COLOR,
                          G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+  /**
+   * AisleriotBoard:card-slot-ratio:
+   *
+   * The ratio of card to slot size. Note that this is the ratio of
+   * card width/slot width and card height/slot height, not of
+   * card area/slot area.
+  */
+  gtk_widget_class_install_style_property
+    (widget_class,
+     g_param_spec_double ("card-slot-ratio", NULL, NULL,
+                          0.1, 1.0, DEFAULT_CARD_SLOT_RATIO,
+                          G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
 #ifdef ENABLE_KEYNAV
   /* Keybindings */
