@@ -5,6 +5,7 @@ commondatadir = $(datadir)/gnome-games-common
 EXTRA_DIST = \
 	$(schema_in_files)	\
 	games-marshal.list	\
+	GGZ-1.0.gir		\
 	$(NULL)
 
 libgames_support_LTLIBRARIES = libgames-support.la
