@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-04 16:45+0530\n"
-"PO-Revision-Date: 2009-07-04 17:15+0530\n"
+"POT-Creation-Date: 2009-07-15 21:21+0530\n"
+"PO-Revision-Date: 2009-07-15 21:29+0530\n"
 "Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
 "Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
@@ -104,8 +104,8 @@ msgstr "இருப்பு நிலை   பட்டியை காட்�
 msgid "Whether or not to show the toolbar"
 msgstr "கருவிபட்டியை காண்பிக்கவா அல்லது வேண்டாமா"
 
-#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:580
-#: ../aisleriot/window.c:615 ../aisleriot/window.c:623
+#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:306
+#: ../aisleriot/window.c:619 ../aisleriot/window.c:627
 msgid "FreeCell Solitaire"
 msgstr "இலவசகளம் சாலிடேர்"
 
@@ -113,18 +113,18 @@ msgstr "இலவசகளம் சாலிடேர்"
 msgid "Play the popular FreeCell card game"
 msgstr "பிறபலமான இலவசகளம் சீட்டு விளையாட்டை விளையாடு"
 
-#: ../aisleriot/game.c:1134
+#: ../aisleriot/game.c:1143
 #, c-format
 msgid ""
 "Aisleriot cannot load the file “%s”. Please check your Aisleriot "
 "installation."
 msgstr "எய்ல்ரயட் \"%s\" கோப்பை ஏற்ற முடியவில்லை.எய்ல்ரயட் நிறுவலை தயவு செய்து பரிசோதிக்கவும்"
 
-#: ../aisleriot/game.c:1578
+#: ../aisleriot/game.c:1587
 msgid "Aisleriot cannot find the last game you played."
 msgstr "எய்ல்ரயட் நீங்கள் கடைசியாக ஆடிய ஆட்டத்தை கண்டு பிடிக்க இயலவில்லை"
 
-#: ../aisleriot/game.c:1579
+#: ../aisleriot/game.c:1588
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -133,7 +133,7 @@ msgstr ""
 "இது வழக்கமாக நீங்கள் ஆடிய ஆட்டத்தை கொண்டிராத பழைய பதிவை இயக்கும் போது நிகழும். ஆகவே "
 "இயல்பான ஆட்டமான க்ளாண்டைக் துவங்குகிறது."
 
-#: ../aisleriot/game.c:1937
+#: ../aisleriot/game.c:1946
 msgid "This game does not have hint support yet."
 msgstr "விளையாட்டில் உதவி குறிப்புகள் எதுவும் இதுவரை இல்லை."
 
@@ -141,71 +141,851 @@ msgstr "விளையாட்டில் உதவி குறிப்ப�
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../aisleriot/game.c:1971 ../aisleriot/game.c:1999
+#: ../aisleriot/game.c:1980 ../aisleriot/game.c:2008
 #, c-format
 msgid "Move %s onto %s."
 msgstr "%s ஐ %s மேல் நகற்று."
 
-#: ../aisleriot/game.c:2021
+#: ../aisleriot/game.c:2030
 #, c-format
 msgid "You are searching for a %s."
 msgstr "%s இதற்கு நீங்கள் தேடுகிறீர்கள்."
 
-#: ../aisleriot/game.c:2026
+#: ../aisleriot/game.c:2035
 msgid "This game is unable to provide a hint."
 msgstr "விளையாட்டு உதவிக் குறிப்பு தர இயலவில்லை."
 
-#: ../aisleriot/sol.c:121
-msgid "Could not show link"
-msgstr "தொடுப்புகளை காட்ட முடியவில்லை"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:6
+msgid "Peek"
+msgstr "பீக்சம்"
 
-#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../aisleriot/sol.c:310
-#, c-format
-msgid "Help file \"%s.%s\" not found"
-msgstr "உதவி கோப்பு \"%s.%s\"  காணப்படவில்லை"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:13
+msgid "Auld Lang Syne"
+msgstr "அல்டு லன்கு சின்"
 
-#. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/sol.c:315 ../aisleriot/sol.c:393 ../aisleriot/window.c:1991
-#: ../dependencies/ggz-gtk/ggzclient.c:124
-#: ../dependencies/ggz-gtk/ggzclient.c:380
-#: ../dependencies/ggz-gtk/ggzclient.c:561
-#: ../dependencies/ggz-gtk/ggzclient.c:596
-#: ../dependencies/ggz-gtk/ggzclient.c:649
-#: ../dependencies/ggz-gtk/ggzclient.c:1079
-#: ../dependencies/ggz-gtk/launch.c:325
-msgid "Error"
-msgstr "பிழை"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:20
+msgid "Fortunes"
+msgstr "லாபங்கள்"
 
-#: ../aisleriot/sol.c:374
-#, c-format
-msgid "Could not show help for “%s”"
-msgstr "\"%s\" க்கு உதவி காட்ட முடியவில்லை"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:27
+msgid "Seahaven"
+msgstr "சீஏவன்"
 
-#: ../aisleriot/sol.c:377
-msgid "Could not show Aisleriot help"
-msgstr "எய்ல்ரயட் க்கு உதவி காட்ட முடியவில்லை"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:34
+msgid "King Albert"
+msgstr "அல்பர்ட் ராஜா"
 
-#: ../aisleriot/sol.c:482
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:41
+msgid "First Law"
+msgstr "முதல் சட்டம்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:48
+msgid "Straight Up"
+msgstr "நேர் மேல்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:55
+msgid "Jumbo"
+msgstr "ஜம்போ"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:62
+msgid "Accordion"
+msgstr "அக்கார்டியன் "
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:69
+msgid "Ten Across"
+msgstr "பத்து நடுவே"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:76
+msgid "Plait"
+msgstr "ப்ளெய்ட்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:83
+msgid "Lady Jane"
+msgstr "ஜேன் சீமாட்டி"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:90
+msgid "Gypsy"
+msgstr "ஜிப்ஸி"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:97
+msgid "Neighbor"
+msgstr "உறவினர்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:104
+msgid "Terrace~"
+msgstr "டெரெஸ்~"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:111
+msgid "Jamestown"
+msgstr "ஜெம்ஸ்டவுன்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:118
+msgid "Osmosis"
+msgstr "ஆஸ்மோசிஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:125
+msgid "Kings Audience"
+msgstr "கிங்ஸ் ஆடியன்ஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:132
+msgid "Glenwood"
+msgstr "கெலென்வுட்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:139
+msgid "Gay Gordons"
+msgstr "கே கார்டான்ஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:146
+msgid "Monte Carlo"
+msgstr "மோன்தே கார்லோ"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:153
+msgid "Kansas"
+msgstr "கன்சாஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:160
+msgid "Camelot"
+msgstr "கேம்லாட்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:167
+msgid "Fourteen"
+msgstr "பிதினாங்கு"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:174
+msgid "Scorpion"
+msgstr "தேள்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:181
+msgid "Isabel"
+msgstr "இசாபெல்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:188
+msgid "Escalator"
+msgstr "எஸ்கேலேட்டார்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:195
+msgid "Agnes"
+msgstr "எக்னஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:202
+msgid "Bristol"
+msgstr "பிரிஸ்டால்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:209
+msgid "Quatorze"
+msgstr "க்வாத்ரோஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:216
+msgid "Bear River"
+msgstr "கரடி ஆறு"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:223
+msgid "Gold Mine"
+msgstr "தங்கச்சுரங்கம்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:230
+msgid "Athena"
+msgstr "எதீனா"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:237
+msgid "Spiderette"
+msgstr "ஸ்பைடரெட்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:244
+msgid "Chessboard"
+msgstr "சதுரங்கம்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:251
+msgid "Backbone"
+msgstr "பாக்போன்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:258
+msgid "Yukon"
+msgstr "யுகான்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:265
+msgid "Union Square"
+msgstr "யூனியன்சதுரம்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:272
+msgid "Eight Off"
+msgstr "எட்டு காலி"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:279
+msgid "Napoleons Tomb"
+msgstr "நபோலியனின் சமாதி"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:286
+msgid "Forty Thieves"
+msgstr "நாற்பது திருடர்கள்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:293
+msgid "Streets And Alleys"
+msgstr "தெரு மற்றும் அலேய்ஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:300
+msgid "Maze"
+msgstr "மேஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:307
+msgid "Clock"
+msgstr "கடிகாரம்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:314
+msgid "Pileon"
+msgstr "பைல்ஆன்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:321
+msgid "Canfield"
+msgstr "கேன்பீல்டு"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:328
+msgid "Thirteen"
+msgstr "பதிமூன்று"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:335
+msgid "Bakers Game"
+msgstr "பேக்கர்ஸ் விளையாட்டு"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:342
+msgid "Triple Peaks"
+msgstr "மூன்று சிகரங்கள் தொகுப்பு"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:349
+msgid "Easthaven"
+msgstr "இஸ்தவன்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/game-names.h:356 ../aisleriot/rules/terrace.scm.h:20
+msgid "Terrace"
+msgstr "டெரெஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:363
+msgid "Aunt Mary"
+msgstr "மேரி மாமி"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:370
+msgid "Carpet"
+msgstr "கார்பட்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:377
+msgid "Sir Tommy"
+msgstr "சர் டாமீ"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:384
+msgid "Diamond Mine"
+msgstr "டைமண்ட் மைன்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:391
+msgid "Yield"
+msgstr "யீல்ட்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:398
+msgid "Labyrinth"
+msgstr "லேபிரிந்த்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:405
+msgid "Thieves"
+msgstr "திருடர்கள்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:412
+msgid "Saratoga"
+msgstr "சரதோகா"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:419
+msgid "Cruel"
+msgstr "க்ரூயல்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:426
+msgid "Block Ten"
+msgstr "பத்தை தடு"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:433
+msgid "Will O The Wisp"
+msgstr "வில் ஆப் தி விஸ்ப்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:440
+msgid "Odessa"
+msgstr "ஒடிசா"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:447
+msgid "Eagle Wing"
+msgstr "கழுகு இறக்கை"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:454
+msgid "Treize"
+msgstr "ட்ரீய்ஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:461
+msgid "Zebra"
+msgstr "வரிகுதிரை"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:468
+msgid "Cover"
+msgstr "கவர்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:475
+msgid "Elevator"
+msgstr "எலிவேட்டார்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:482
+msgid "Fortress"
+msgstr "போர்டரஸ்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:489
+msgid "Giant"
+msgstr "ராட்சசன்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:496
+msgid "Spider"
+msgstr "எட்டுகால்பூச்சி"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:503
+msgid "Gaps"
+msgstr "சந்து"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:510
+msgid "Bakers Dozen"
+msgstr "பேக்கர்ஸ் "
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:517
+msgid "Whitehead"
+msgstr "வெள்ளை தலை"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:524
+msgid "Freecell"
+msgstr "இலவசகளம்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:531
+msgid "Helsinki"
+msgstr "எல்சின்கி"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:538
+msgid "Spider Three Decks"
+msgstr "ஸ்பைடர் மூன்று அடுக்குகள்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:545
+msgid "Scuffle"
+msgstr "ஸ்கபுள்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:552
+msgid "Poker"
+msgstr "போக்கர்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:559
+msgid "Klondike Three Decks"
+msgstr "க்ளாண்டைக் மூன்று அடுக்குகள்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:566
+msgid "Valentine"
+msgstr "வேலண்டைன்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:573
+msgid "Royal East"
+msgstr "ராயல் கிழக்கு"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:580
+msgid "Thumb And Pouch"
+msgstr "கட்டைவிரல் மற்றும் பைகள்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:587
+msgid "Klondike"
+msgstr "க்லோண்டைக்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:594
+msgid "Doublets"
+msgstr "டப்புலட்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:601
+msgid "Template"
+msgstr "வார்ப்புரு"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:608
+msgid "Golf"
+msgstr "கால்ஃப்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:615
+msgid "Westhaven"
+msgstr "வெஷ்தவன்"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:622
+msgid "Beleaguered Castle"
+msgstr "பிலீகர்ட் கோட்டை"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:629
+msgid "Hopscotch"
+msgstr "அப்ஸ்காட்சு"
+
+#: ../aisleriot/sol.c:214
 msgid "Select the game type to play"
 msgstr "ஆட வேண்டிய ஆட்ட வகையை தேர்ந்தெடு"
 
-#: ../aisleriot/sol.c:482 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
+#: ../aisleriot/sol.c:214 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
 #: ../same-gnome/same-gnome.c:127 ../same-gnome/same-gnome.c:129
 msgid "NAME"
 msgstr "பெயர்"
 
-#: ../aisleriot/sol.c:484
+#: ../aisleriot/sol.c:216
 msgid "Select the game number"
 msgstr "ஆட வேண்டிய ஆட்ட எண்ணை தேர்ந்தெடு"
 
-#: ../aisleriot/sol.c:484 ../gnomine/gnomine.c:995 ../gtali/gyahtzee.c:110
+#: ../aisleriot/sol.c:216 ../gnomine/gnomine.c:996 ../gtali/gyahtzee.c:110
 #: ../gtali/gyahtzee.c:112 ../gtali/gyahtzee.c:116 ../gtali/gyahtzee.c:118
 #: ../same-gnome/same-gnome.c:131
 msgid "NUMBER"
 msgstr "NUMBER"
 
-#: ../aisleriot/sol.c:580 ../aisleriot/window.c:624 ../aisleriot/window.c:2869
+#: ../aisleriot/sol.c:306 ../aisleriot/window.c:628 ../aisleriot/window.c:2881
 msgid "AisleRiot"
 msgstr "எய்ல்ரயட்"
 
@@ -595,402 +1375,55 @@ msgstr "N/A"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../aisleriot/translatable_game_names.h:1
-msgid "Accordion"
-msgstr "அக்கார்டியன் "
-
-#: ../aisleriot/translatable_game_names.h:2
-msgid "Agnes"
-msgstr "எக்னஸ்"
-
-#: ../aisleriot/translatable_game_names.h:3
-msgid "Athena"
-msgstr "எதீனா"
-
-#: ../aisleriot/translatable_game_names.h:4
-msgid "Auld Lang Syne"
-msgstr "அல்டு லன்கு சின்"
-
-#: ../aisleriot/translatable_game_names.h:5
-msgid "Aunt Mary"
-msgstr "மேரி மாமி"
-
-#: ../aisleriot/translatable_game_names.h:6
-msgid "Backbone"
-msgstr "பாக்போன்"
-
-#: ../aisleriot/translatable_game_names.h:7
-msgid "Bakers Dozen"
-msgstr "பேக்கர்ஸ் "
-
-#: ../aisleriot/translatable_game_names.h:8
-msgid "Bakers Game"
-msgstr "பேக்கர்ஸ் விளையாட்டு"
-
-#: ../aisleriot/translatable_game_names.h:9
-msgid "Bear River"
-msgstr "கரடி ஆறு"
-
-#: ../aisleriot/translatable_game_names.h:10
-msgid "Beleaguered Castle"
-msgstr "பிலீகர்ட் கோட்டை"
-
-#: ../aisleriot/translatable_game_names.h:11
-msgid "Block Ten"
-msgstr "பத்தை தடு"
-
-#: ../aisleriot/translatable_game_names.h:12
-msgid "Bristol"
-msgstr "பிரிஸ்டால்"
-
-#: ../aisleriot/translatable_game_names.h:13
-msgid "Camelot"
-msgstr "கேம்லாட்"
-
-#: ../aisleriot/translatable_game_names.h:14
-msgid "Canfield"
-msgstr "கேன்பீல்டு"
-
-#: ../aisleriot/translatable_game_names.h:15
-msgid "Carpet"
-msgstr "கார்பட்"
-
-#: ../aisleriot/translatable_game_names.h:16
-msgid "Chessboard"
-msgstr "சதுரங்கம்"
-
-#: ../aisleriot/translatable_game_names.h:17
-msgid "Clock"
-msgstr "கடிகாரம்"
-
-#: ../aisleriot/translatable_game_names.h:18
-msgid "Cover"
-msgstr "கவர்"
-
-#: ../aisleriot/translatable_game_names.h:19
-msgid "Cruel"
-msgstr "க்ரூயல்"
-
-#: ../aisleriot/translatable_game_names.h:20
-msgid "Diamond Mine"
-msgstr "டைமண்ட் மைன்"
-
-#: ../aisleriot/translatable_game_names.h:21
-msgid "Doublets"
-msgstr "டப்புலட்"
-
-#: ../aisleriot/translatable_game_names.h:22
-msgid "Eagle Wing"
-msgstr "கழுகு இறக்கை"
-
-#: ../aisleriot/translatable_game_names.h:23
-msgid "Easthaven"
-msgstr "இஸ்தவன்"
-
-#: ../aisleriot/translatable_game_names.h:24
-msgid "Eight Off"
-msgstr "எட்டு காலி"
-
-#: ../aisleriot/translatable_game_names.h:25
-msgid "Elevator"
-msgstr "எலிவேட்டார்"
-
-#: ../aisleriot/translatable_game_names.h:26
-msgid "Escalator"
-msgstr "எஸ்கேலேட்டார்"
-
-#: ../aisleriot/translatable_game_names.h:27
-msgid "First Law"
-msgstr "முதல் சட்டம்"
-
-#: ../aisleriot/translatable_game_names.h:28
-msgid "Fortress"
-msgstr "போர்டரஸ்"
-
-#: ../aisleriot/translatable_game_names.h:29
-msgid "Fortunes"
-msgstr "லாபங்கள்"
-
-#: ../aisleriot/translatable_game_names.h:30
-msgid "Forty Thieves"
-msgstr "நாற்பது திருடர்கள்"
-
-#: ../aisleriot/translatable_game_names.h:31
-msgid "Fourteen"
-msgstr "பிதினாங்கு"
-
-#: ../aisleriot/translatable_game_names.h:32
-msgid "Freecell"
-msgstr "இலவசகளம்"
-
-#: ../aisleriot/translatable_game_names.h:33
-msgid "Gaps"
-msgstr "சந்து"
-
-#: ../aisleriot/translatable_game_names.h:34
-msgid "Gay Gordons"
-msgstr "கே கார்டான்ஸ்"
-
-#: ../aisleriot/translatable_game_names.h:35
-msgid "Giant"
-msgstr "ராட்சசன்"
-
-#: ../aisleriot/translatable_game_names.h:36
-msgid "Glenwood"
-msgstr "கெலென்வுட்"
-
-#: ../aisleriot/translatable_game_names.h:37
-msgid "Gold Mine"
-msgstr "தங்கச்சுரங்கம்"
-
-#: ../aisleriot/translatable_game_names.h:38
-msgid "Golf"
-msgstr "கால்ஃப்"
-
-#: ../aisleriot/translatable_game_names.h:39
-msgid "Gypsy"
-msgstr "ஜிப்ஸி"
-
-#: ../aisleriot/translatable_game_names.h:40
-msgid "Helsinki"
-msgstr "எல்சின்கி"
-
-#: ../aisleriot/translatable_game_names.h:41
-msgid "Hopscotch"
-msgstr "அப்ஸ்காட்சு"
-
-#: ../aisleriot/translatable_game_names.h:42
-msgid "Isabel"
-msgstr "இசாபெல்"
-
-#: ../aisleriot/translatable_game_names.h:43
-msgid "Jamestown"
-msgstr "ஜெம்ஸ்டவுன்"
-
-#: ../aisleriot/translatable_game_names.h:44
-msgid "Jumbo"
-msgstr "ஜம்போ"
-
-#: ../aisleriot/translatable_game_names.h:45
-msgid "Kansas"
-msgstr "கன்சாஸ்"
-
-#: ../aisleriot/translatable_game_names.h:46
-msgid "King Albert"
-msgstr "அல்பர்ட் ராஜா"
-
-#: ../aisleriot/translatable_game_names.h:47
-msgid "Kings Audience"
-msgstr "கிங்ஸ் ஆடியன்ஸ்"
-
-#: ../aisleriot/translatable_game_names.h:48
-msgid "Klondike"
-msgstr "க்லோண்டைக்"
-
-#: ../aisleriot/translatable_game_names.h:49
-msgid "Labyrinth"
-msgstr "லேபிரிந்த்"
-
-#: ../aisleriot/translatable_game_names.h:50
-msgid "Lady Jane"
-msgstr "ஜேன் சீமாட்டி"
-
-#: ../aisleriot/translatable_game_names.h:51
-msgid "Maze"
-msgstr "மேஸ்"
-
-#: ../aisleriot/translatable_game_names.h:52
-msgid "Monte Carlo"
-msgstr "மோன்தே கார்லோ"
-
-#: ../aisleriot/translatable_game_names.h:53
-msgid "Napoleons Tomb"
-msgstr "நபோலியனின் சமாதி"
-
-#: ../aisleriot/translatable_game_names.h:54
-msgid "Neighbor"
-msgstr "உறவினர்"
-
-#: ../aisleriot/translatable_game_names.h:55
-msgid "Odessa"
-msgstr "ஒடிசா"
-
-#: ../aisleriot/translatable_game_names.h:56
-msgid "Osmosis"
-msgstr "ஆஸ்மோசிஸ்"
-
-#: ../aisleriot/translatable_game_names.h:57
-msgid "Peek"
-msgstr "பீக்சம்"
-
-#: ../aisleriot/translatable_game_names.h:58
-msgid "Pileon"
-msgstr "பைல்ஆன்"
-
-#: ../aisleriot/translatable_game_names.h:59
-msgid "Plait"
-msgstr "ப்ளெய்ட்"
-
-#: ../aisleriot/translatable_game_names.h:60
-msgid "Poker"
-msgstr "போக்கர்"
-
-#: ../aisleriot/translatable_game_names.h:61
-msgid "Quatorze"
-msgstr "க்வாத்ரோஸ்"
-
-#: ../aisleriot/translatable_game_names.h:62
-msgid "Royal East"
-msgstr "ராயல் கிழக்கு"
-
-#: ../aisleriot/translatable_game_names.h:63
-msgid "Saratoga"
-msgstr "சரதோகா"
-
-#: ../aisleriot/translatable_game_names.h:64
-msgid "Scorpion"
-msgstr "தேள்"
-
-#: ../aisleriot/translatable_game_names.h:65
-msgid "Scuffle"
-msgstr "ஸ்கபுள்"
-
-#: ../aisleriot/translatable_game_names.h:66
-msgid "Seahaven"
-msgstr "சீஏவன்"
-
-#: ../aisleriot/translatable_game_names.h:67
-msgid "Sir Tommy"
-msgstr "சர் டாமீ"
-
-#: ../aisleriot/translatable_game_names.h:68
-msgid "Spider"
-msgstr "எட்டுகால்பூச்சி"
-
-#: ../aisleriot/translatable_game_names.h:69
-msgid "Spiderette"
-msgstr "ஸ்பைடரெட்"
-
-#: ../aisleriot/translatable_game_names.h:70
-msgid "Spider Three Decks"
-msgstr "ஸ்பைடர் மூன்று அடுக்குகள்"
-
-#: ../aisleriot/translatable_game_names.h:71
-msgid "Straight Up"
-msgstr "நேர் மேல்"
-
-#: ../aisleriot/translatable_game_names.h:72
-msgid "Streets And Alleys"
-msgstr "தெரு மற்றும் அலேய்ஸ்"
-
-#: ../aisleriot/translatable_game_names.h:73
-msgid "Template"
-msgstr "வார்ப்புரு"
-
-#: ../aisleriot/translatable_game_names.h:74
-msgid "Ten Across"
-msgstr "பத்து நடுவே"
-
-#: ../aisleriot/translatable_game_names.h:75
-#: ../aisleriot/rules/terrace.scm.h:14
-msgid "Terrace"
-msgstr "டெரெஸ்"
-
-#: ../aisleriot/translatable_game_names.h:76
-msgid "Thieves"
-msgstr "திருடர்கள்"
-
-#: ../aisleriot/translatable_game_names.h:77
-msgid "Thirteen"
-msgstr "பதிமூன்று"
-
-#: ../aisleriot/translatable_game_names.h:78
-msgid "Thumb And Pouch"
-msgstr "கட்டைவிரல் மற்றும் பைகள்"
-
-#: ../aisleriot/translatable_game_names.h:79
-msgid "Treize"
-msgstr "ட்ரீய்ஸ்"
-
-#: ../aisleriot/translatable_game_names.h:80
-msgid "Triple Peaks"
-msgstr "மூன்று சிகரங்கள் தொகுப்பு"
-
-#: ../aisleriot/translatable_game_names.h:81
-msgid "Union Square"
-msgstr "யூனியன்சதுரம்"
-
-#: ../aisleriot/translatable_game_names.h:82
-msgid "Valentine"
-msgstr "வேலண்டைன்"
-
-#: ../aisleriot/translatable_game_names.h:83
-msgid "Westhaven"
-msgstr "வெஷ்தவன்"
-
-#: ../aisleriot/translatable_game_names.h:84
-msgid "Whitehead"
-msgstr "வெள்ளை தலை"
-
-#: ../aisleriot/translatable_game_names.h:85
-msgid "Will O The Wisp"
-msgstr "வில் ஆப் தி விஸ்ப்"
-
-#: ../aisleriot/translatable_game_names.h:86
-msgid "Yield"
-msgstr "யீல்ட்"
-
-#: ../aisleriot/translatable_game_names.h:87
-msgid "Yukon"
-msgstr "யுகான்"
-
-#: ../aisleriot/translatable_game_names.h:88
-msgid "Zebra"
-msgstr "வரிகுதிரை"
-
-#: ../aisleriot/window.c:282 ../aisleriot/window.c:2555
+#: ../aisleriot/util.c:88 ../aisleriot/util.c:92
+#: ../libgames-support/games-help.c:152
+#, c-format
+msgid "Could not show help for “%s”"
+msgstr "\"%s\" க்கு உதவி காட்ட முடியவில்லை"
+
+#: ../aisleriot/window.c:286 ../aisleriot/window.c:2566
 msgid "Select Game"
 msgstr "விளையாட்டை தேர்வு செய்"
 
-#: ../aisleriot/window.c:286
+#: ../aisleriot/window.c:290
 msgid "_Select"
 msgstr "_S தேர்வு செய்"
 
-#: ../aisleriot/window.c:428
+#: ../aisleriot/window.c:432
 msgid "Congratulations, you have won!"
 msgstr "வாழ்த்துக்கள், நீங்கள் வெற்றி பெற்றுவிட்டீர்!"
 
-#: ../aisleriot/window.c:432
+#: ../aisleriot/window.c:436
 msgid "There are no more moves"
 msgstr "அடுத்த நகர்த்தல்கள் இல்லை."
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:445 ../gnometris/blockops.cpp:863
+#: ../aisleriot/window.c:449 ../gnometris/blockops.cpp:863
 msgid "Game Over"
 msgstr "ஆட்டம் முடிந்தது"
 
-#: ../aisleriot/window.c:572 ../gnomine/gnomine.c:444
+#: ../aisleriot/window.c:576 ../gnomine/gnomine.c:445
 #: ../mahjongg/mahjongg.c:906
 msgid "Main game:"
 msgstr "முக்கிய விளையாட்டு"
 
-#: ../aisleriot/window.c:580
+#: ../aisleriot/window.c:584
 msgid "Card games:"
 msgstr "சீட்டு விளையாட்டுகள்:"
 
-#: ../aisleriot/window.c:594
+#: ../aisleriot/window.c:598
 msgid "Card themes:"
 msgstr "சீட்டு கருப்பொருட்கள்:"
 
-#: ../aisleriot/window.c:626
+#: ../aisleriot/window.c:630
 msgid "About FreeCell Solitaire"
 msgstr "இலவசகளம் சாலிடேர் பற்றி"
 
-#: ../aisleriot/window.c:627
+#: ../aisleriot/window.c:631
 msgid "About AisleRiot"
 msgstr "எய்ல்ரயட் பற்றி"
 
-#: ../aisleriot/window.c:633
+#: ../aisleriot/window.c:637
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played.\n"
@@ -1000,34 +1433,34 @@ msgstr ""
 "விளையாடத் தரும்.\n"
 "எய்ல்ரயட் க்னோம் விளையாட்டுகளில் ஒரு பகுதி"
 
-#: ../aisleriot/window.c:644 ../blackjack/src/menu.cpp:159
+#: ../aisleriot/window.c:648 ../blackjack/src/menu.cpp:159
 #: ../glchess/src/lib/gtkui/gtkui.py:861 ../glines/glines.c:1221
 #: ../gnect/src/main.c:925 ../gnibbles/main.c:257 ../gnobots2/menu.c:274
-#: ../gnometris/tetris.cpp:1316 ../gnome-sudoku/src/lib/main.py:730
-#: ../gnomine/gnomine.c:484 ../gnotravex/gnotravex.c:1917
-#: ../gnotski/gnotski.c:1540 ../gtali/gyahtzee.c:623 ../iagno/gnothello.c:268
+#: ../gnometris/tetris.cpp:1315 ../gnome-sudoku/src/lib/main.py:717
+#: ../gnomine/gnomine.c:485 ../gnotravex/gnotravex.c:1918
+#: ../gnotski/gnotski.c:1542 ../gtali/gyahtzee.c:623 ../iagno/gnothello.c:268
 #: ../mahjongg/mahjongg.c:951 ../same-gnome/ui.c:131
 msgid "translator-credits"
 msgstr ""
 "Zhakanini <tamilpc@ambalam.com>, 2004 Jayaradha N <jaya@pune.redhat.com>, "
 "2004 Felix <ifelix@redhat.com>, 2006.drtvasudevan <agnihot3@gmail.com>, 2008"
 
-#: ../aisleriot/window.c:648 ../blackjack/src/menu.cpp:158
-#: ../glchess/src/lib/defaults.py.in:58 ../glines/glines.c:1224
+#: ../aisleriot/window.c:652 ../blackjack/src/menu.cpp:158
+#: ../glchess/src/lib/defaults.py.in:56 ../glines/glines.c:1224
 #: ../gnect/src/main.c:922 ../gnibbles/main.c:260 ../gnobots2/menu.c:270
-#: ../gnometris/tetris.cpp:1313 ../gnome-sudoku/src/lib/defaults.py.in:43
-#: ../gnomine/gnomine.c:487 ../gnotravex/gnotravex.c:1920
-#: ../gnotski/gnotski.c:1543 ../gtali/gyahtzee.c:627 ../iagno/gnothello.c:270
+#: ../gnometris/tetris.cpp:1312 ../gnome-sudoku/src/lib/defaults.py.in:43
+#: ../gnomine/gnomine.c:488 ../gnotravex/gnotravex.c:1921
+#: ../gnotski/gnotski.c:1545 ../gtali/gyahtzee.c:627 ../iagno/gnothello.c:270
 #: ../mahjongg/mahjongg.c:954 ../same-gnome/ui.c:135
 msgid "GNOME Games web site"
 msgstr "க்னோம் விளையாட்டு வலையகம்"
 
-#: ../aisleriot/window.c:1463
+#: ../aisleriot/window.c:1474
 #, c-format
 msgid "Play “%s”"
 msgstr "\"%s\" ஐ விளையாடு"
 
-#: ../aisleriot/window.c:1634
+#: ../aisleriot/window.c:1645
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "சீட்டுகளை \"%s\" சீட்டு கருப்பொருளுடன் காட்டுக."
@@ -1036,35 +1469,46 @@ msgstr "சீட்டுகளை \"%s\" சீட்டு கருப்ப
 #. * then translate this string to "%I6d", else to "%6d".
 #. * Do not translate it to anything else!
 #.
-#: ../aisleriot/window.c:1729
+#: ../aisleriot/window.c:1740
 #, c-format
 msgctxt "score"
 msgid "%6d"
 msgstr "%6d"
 
-#: ../aisleriot/window.c:1984
+#: ../aisleriot/window.c:1995
 msgid "A scheme exception occurred"
 msgstr "ஒரு திட்ட பிழை ஏற்பட்டது"
 
-#: ../aisleriot/window.c:1987
+#: ../aisleriot/window.c:1998
 msgid "Please report this bug to the developers."
 msgstr "இந்த வழுவை உருவாக்கியோருக்கு அறிவிக்கவும்."
 
-#: ../aisleriot/window.c:1999
+#. Empty title shows up as "<unnamed>" on maemo
+#: ../aisleriot/window.c:2002 ../dependencies/ggz-gtk/ggzclient.c:124
+#: ../dependencies/ggz-gtk/ggzclient.c:380
+#: ../dependencies/ggz-gtk/ggzclient.c:561
+#: ../dependencies/ggz-gtk/ggzclient.c:596
+#: ../dependencies/ggz-gtk/ggzclient.c:649
+#: ../dependencies/ggz-gtk/ggzclient.c:1079
+#: ../dependencies/ggz-gtk/launch.c:325 ../libgames-support/games-show.c:151
+msgid "Error"
+msgstr "பிழை"
+
+#: ../aisleriot/window.c:2010
 msgid "_Don't report"
 msgstr "அறிக்கை வேண்டாம்."
 
-#: ../aisleriot/window.c:2000
+#: ../aisleriot/window.c:2011
 msgid "_Report"
 msgstr "_அறிக்கை"
 
 #. Menu actions
 #. Preferences Dialog: Title of game options tab
-#: ../aisleriot/window.c:2187 ../blackjack/src/blackjack.cpp:331
+#: ../aisleriot/window.c:2198 ../blackjack/src/blackjack.cpp:331
 #: ../glchess/data/glchess.ui.h:24 ../glchess/data/preferences.ui.h:24
 #: ../glines/glines.c:1688 ../gnect/src/main.c:1289 ../gnibbles/main.c:763
 #: ../gnobots2/menu.c:68 ../gnometris/tetris.cpp:109
-#: ../gnome-sudoku/src/lib/main.py:243 ../gnomine/gnomine.c:825
+#: ../gnome-sudoku/src/lib/main.py:241 ../gnomine/gnomine.c:826
 #: ../gnotravex/gnotravex.c:302 ../gnotski/gnotski.c:414
 #: ../gtali/gyahtzee.c:701 ../iagno/gnothello.c:812
 #: ../mahjongg/mahjongg.c:1242 ../same-gnome/ui.c:455
@@ -1072,158 +1516,158 @@ msgid "_Game"
 msgstr "_ஆட்டம்"
 
 #. Preferences Dialog: Title of view options tab
-#: ../aisleriot/window.c:2188 ../blackjack/src/blackjack.cpp:332
+#: ../aisleriot/window.c:2199 ../blackjack/src/blackjack.cpp:332
 #: ../glchess/data/glchess.ui.h:29 ../glchess/data/preferences.ui.h:30
 #: ../gnect/src/main.c:1290 ../gnibbles/main.c:764 ../gnobots2/menu.c:69
-#: ../gnome-sudoku/src/lib/main.py:253 ../gnotravex/gnotravex.c:303
+#: ../gnome-sudoku/src/lib/main.py:251 ../gnotravex/gnotravex.c:303
 #: ../gnotski/gnotski.c:415 ../same-gnome/ui.c:456
 msgid "_View"
 msgstr "பார்வை (_V)"
 
-#: ../aisleriot/window.c:2189 ../blackjack/src/blackjack.cpp:341
+#: ../aisleriot/window.c:2200 ../blackjack/src/blackjack.cpp:341
 msgid "_Control"
 msgstr "(_C)கட்டுப்பாடு"
 
-#: ../aisleriot/window.c:2191 ../blackjack/src/blackjack.cpp:348
+#: ../aisleriot/window.c:2202 ../blackjack/src/blackjack.cpp:348
 #: ../glchess/data/glchess.ui.h:25 ../glines/glines.c:1690
 #: ../gnect/src/main.c:1292 ../gnibbles/main.c:766 ../gnobots2/menu.c:72
-#: ../gnometris/tetris.cpp:111 ../gnome-sudoku/src/lib/main.py:271
-#: ../gnomine/gnomine.c:827 ../gnotravex/gnotravex.c:306
+#: ../gnometris/tetris.cpp:111 ../gnome-sudoku/src/lib/main.py:269
+#: ../gnomine/gnomine.c:828 ../gnotravex/gnotravex.c:306
 #: ../gnotski/gnotski.c:416 ../gtali/gyahtzee.c:703 ../iagno/gnothello.c:814
 #: ../mahjongg/mahjongg.c:1244 ../same-gnome/ui.c:458
 msgid "_Help"
 msgstr "உதவி (_H)"
 
-#: ../aisleriot/window.c:2196 ../blackjack/src/blackjack.cpp:333
+#: ../aisleriot/window.c:2207 ../blackjack/src/blackjack.cpp:333
 #: ../glchess/data/glchess.ui.h:18 ../gnobots2/menu.c:73
-#: ../libgames-support/games-stock.c:54 ../mahjongg/mahjongg.c:1245
+#: ../libgames-support/games-stock.c:53 ../mahjongg/mahjongg.c:1245
 msgid "Start a new game"
 msgstr "புதிய விளையாட்டை துவக்கு"
 
-#: ../aisleriot/window.c:2199 ../libgames-support/games-stock.c:58
+#: ../aisleriot/window.c:2210 ../libgames-support/games-stock.c:57
 msgid "Restart the game"
 msgstr "விளையாட்டை மீண்டும் துவக்கு"
 
-#: ../aisleriot/window.c:2201
+#: ../aisleriot/window.c:2212
 msgid "_Select Game..."
 msgstr "_விளையாட்டை தேர்வு செய்"
 
-#: ../aisleriot/window.c:2203
+#: ../aisleriot/window.c:2214
 msgid "Play a different game"
 msgstr "வேறு விளையாட்டை தேர்வு செய்"
 
-#: ../aisleriot/window.c:2205
+#: ../aisleriot/window.c:2216
 msgid "_Recently Played"
 msgstr "_அண்மையில் விளையாடியவை"
 
-#: ../aisleriot/window.c:2206
+#: ../aisleriot/window.c:2217
 msgid "S_tatistics"
 msgstr "_புள்ளிவிவரம்"
 
-#: ../aisleriot/window.c:2207
+#: ../aisleriot/window.c:2218
 msgid "Show gameplay statistics"
 msgstr "விளையாட்டு புள்ளிவிவரங்களை காட்டு"
 
-#: ../aisleriot/window.c:2210 ../libgames-support/games-stock.c:63
+#: ../aisleriot/window.c:2221 ../libgames-support/games-stock.c:62
 msgid "Close this window"
 msgstr "இந்த சாளரத்தை மூடு"
 
-#: ../aisleriot/window.c:2213 ../libgames-support/games-stock.c:61
+#: ../aisleriot/window.c:2224 ../libgames-support/games-stock.c:60
 #: ../mahjongg/mahjongg.c:1253
 msgid "Undo the last move"
 msgstr "கடைசி செயலை செயல் நீக்கு"
 
-#: ../aisleriot/window.c:2216 ../libgames-support/games-stock.c:57
+#: ../aisleriot/window.c:2227 ../libgames-support/games-stock.c:56
 msgid "Redo the undone move"
 msgstr "ரத்து செய்த நகர்வை மீளச் செய்"
 
-#: ../aisleriot/window.c:2219
+#: ../aisleriot/window.c:2230
 msgid "Deal next card or cards"
 msgstr "அடுத்த சீட்டு அல்லது சீட்டுகளை பறிமாறலாமா"
 
-#: ../aisleriot/window.c:2222 ../libgames-support/games-stock.c:50
+#: ../aisleriot/window.c:2233 ../libgames-support/games-stock.c:49
 msgid "Get a hint for your next move"
 msgstr "உங்களின் அடுத்த நகர்வுக்கு உதவி குறிப்பு கொடு"
 
-#: ../aisleriot/window.c:2225
+#: ../aisleriot/window.c:2236
 msgid "View help for Aisleriot"
 msgstr "எய்ல்ரயட் விளையாட்டிற்கான உதவியை பார்"
 
-#: ../aisleriot/window.c:2229 ../libgames-support/games-stock.c:47
+#: ../aisleriot/window.c:2240 ../libgames-support/games-stock.c:46
 msgid "View help for this game"
 msgstr "தற்போதைய விளையாட்டிற்கான உதவியை பார்"
 
-#: ../aisleriot/window.c:2232 ../libgames-support/games-stock.c:62
+#: ../aisleriot/window.c:2243 ../libgames-support/games-stock.c:61
 msgid "About this game"
 msgstr "இந்த விளையாட்டு பற்றி"
 
-#: ../aisleriot/window.c:2235
+#: ../aisleriot/window.c:2246
 msgid "Install card themes…"
 msgstr "சீட்டு கருத்துக்களை நிறுவு..."
 
-#: ../aisleriot/window.c:2236
+#: ../aisleriot/window.c:2247
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "புதிய சீட்டு கருத்துக்களை வினியோக பொதி கிடங்கில் இருந்து நிறுவுக"
 
-#: ../aisleriot/window.c:2245
+#: ../aisleriot/window.c:2256
 msgid "_Card Style"
 msgstr "சீட்டு பாணி (_C)"
 
-#: ../aisleriot/window.c:2285 ../blackjack/src/blackjack.cpp:354
+#: ../aisleriot/window.c:2296 ../blackjack/src/blackjack.cpp:354
 #: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
 msgid "_Toolbar"
 msgstr "_கருவிபட்டி"
 
-#: ../aisleriot/window.c:2286 ../glchess/data/preferences.ui.h:17
+#: ../aisleriot/window.c:2297 ../glchess/data/preferences.ui.h:17
 #: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
 msgid "Show or hide the toolbar"
 msgstr "கருவிபட்டியை காண்பிக்கவா அல்லது மறைக்கவா"
 
-#: ../aisleriot/window.c:2291
+#: ../aisleriot/window.c:2302
 msgid "_Statusbar"
 msgstr "_S நிலைப்பட்டை"
 
-#: ../aisleriot/window.c:2292
+#: ../aisleriot/window.c:2303
 msgid "Show or hide statusbar"
 msgstr "நிலைப்பட்டியை காட்டவோ மறைக்கவோ செய்யவும்."
 
-#: ../aisleriot/window.c:2297 ../gnotravex/gnotravex.c:351
+#: ../aisleriot/window.c:2308 ../gnotravex/gnotravex.c:351
 msgid "_Click to Move"
 msgstr "(_C)நகர்த்த க்ளிக் செய்யவும்"
 
-#: ../aisleriot/window.c:2298
+#: ../aisleriot/window.c:2309
 msgid "Pick up and drop cards by clicking"
 msgstr "சொடுக்குவதால் ஒரு சீட்டை எடுத்து போடவும்."
 
-#: ../aisleriot/window.c:2302
+#: ../aisleriot/window.c:2313
 msgid "_Sound"
 msgstr "_S ஒலி"
 
-#: ../aisleriot/window.c:2303
+#: ../aisleriot/window.c:2314
 msgid "Whether or not to play event sounds"
 msgstr "சம்பவ ஒலியை ஒலிக்கவா அல்லது வேண்டாமா"
 
-#: ../aisleriot/window.c:2308
+#: ../aisleriot/window.c:2319
 msgid "_Animations"
 msgstr "_A அசைவூட்டம்"
 
-#: ../aisleriot/window.c:2309
+#: ../aisleriot/window.c:2320
 msgid "Whether or not to animate card moves"
 msgstr "அசைவூட்ட சீட்டு நகர்வை பயன்படுத்துவதா அல்லது வேண்டாமா"
 
 #. Add "Highscore" label
-#: ../aisleriot/window.c:2582 ../dependencies/ggz-gtk/playerinfo.c:241
-#: ../glines/glines.c:1900 ../gnobots2/statusbar.c:67
-#: ../gnometris/scoreframe.cpp:47 ../gnomine/gnomine.c:447
+#: ../aisleriot/window.c:2593 ../dependencies/ggz-gtk/playerinfo.c:241
+#: ../glines/glines.c:1902 ../gnobots2/statusbar.c:67
+#: ../gnometris/scoreframe.cpp:47 ../gnomine/gnomine.c:448
 msgid "Score:"
 msgstr "மதிப்பெண்:"
 
-#: ../aisleriot/window.c:2594 ../gnotravex/gnotravex.c:1382
-#: ../mahjongg/mahjongg.c:1463
+#: ../aisleriot/window.c:2605 ../gnotravex/gnotravex.c:1383
+#: ../mahjongg/mahjongg.c:1465
 msgid "Time:"
 msgstr "நேரம்:"
 
-#: ../aisleriot/window.c:2929
+#: ../aisleriot/window.c:2941
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "\"%s\" விளையாட்டை துவக்க முடியவில்லை"
@@ -1292,7 +1736,7 @@ msgstr "அடுத்து சீட்டுகளை பறிமாறல�
 #: ../aisleriot/rules/plait.scm.h:11 ../aisleriot/rules/quatorze.scm.h:1
 #: ../aisleriot/rules/royal_east.scm.h:7 ../aisleriot/rules/scuffle.scm.h:4
 #: ../aisleriot/rules/sir_tommy.scm.h:3 ../aisleriot/rules/straight_up.scm.h:5
-#: ../aisleriot/rules/terrace.scm.h:13 ../aisleriot/rules/thieves.scm.h:2
+#: ../aisleriot/rules/terrace.scm.h:18 ../aisleriot/rules/thieves.scm.h:2
 #: ../aisleriot/rules/thirteen.scm.h:3
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:2 ../aisleriot/rules/triple_peaks.scm.h:4
@@ -1338,7 +1782,7 @@ msgstr "இன்னொருசுற்று விளையாடலாம�
 #: ../aisleriot/rules/canfield.scm.h:6 ../aisleriot/rules/carpet.scm.h:1
 #: ../aisleriot/rules/glenwood.scm.h:6 ../aisleriot/rules/klondike.scm.h:2
 #: ../aisleriot/rules/osmosis.scm.h:1 ../aisleriot/rules/plait.scm.h:6
-#: ../aisleriot/rules/straight_up.scm.h:1 ../aisleriot/rules/terrace.scm.h:7
+#: ../aisleriot/rules/straight_up.scm.h:1 ../aisleriot/rules/terrace.scm.h:8
 msgid "Deal a new card from the deck"
 msgstr "தட்டில் இருந்து புதிய சீட்டை ஏடு"
 
@@ -1347,16 +1791,16 @@ msgstr "தட்டில் இருந்து புதிய சீட்
 #: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
 #: ../aisleriot/rules/klondike.scm.h:5 ../aisleriot/rules/plait.scm.h:10
 #: ../aisleriot/rules/scuffle.scm.h:2 ../aisleriot/rules/straight_up.scm.h:3
-#: ../aisleriot/rules/terrace.scm.h:10
+#: ../aisleriot/rules/terrace.scm.h:13
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
 msgid "Redeals left:"
 msgstr "பறிமாற்றங்கள் இருப்பு:"
 
-#: ../aisleriot/rules/backbone.scm.h:5 ../aisleriot/rules/terrace.scm.h:16
+#: ../aisleriot/rules/backbone.scm.h:5 ../aisleriot/rules/terrace.scm.h:23
 msgid "an empty slot on the foundation"
 msgstr "அடித்தளத்தில் வெற்று செருகுவாய்"
 
-#: ../aisleriot/rules/backbone.scm.h:6 ../aisleriot/rules/terrace.scm.h:17
+#: ../aisleriot/rules/backbone.scm.h:6 ../aisleriot/rules/terrace.scm.h:24
 msgid "an empty slot on the tableau"
 msgstr "முக்கிய தளத்தில் ஒரு வெற்று செருகுவாய்"
 
@@ -1638,7 +2082,7 @@ msgstr "காலியான சேமிப்பு"
 msgid "an open tableau"
 msgstr "திறந்த முக்கிய தளம் "
 
-#: ../aisleriot/rules/freecell.scm.h:5 ../aisleriot/rules/terrace.scm.h:19
+#: ../aisleriot/rules/freecell.scm.h:5 ../aisleriot/rules/terrace.scm.h:26
 msgid "the foundation"
 msgstr "அடித்தளம்"
 
@@ -1786,7 +2230,7 @@ msgstr "தட்டில் இருந்து புதிய சீட்
 msgid "Redeals left: ~a"
 msgstr "பறிமாற்றங்கள் இருப்பு: ~a"
 
-#: ../aisleriot/rules/pileon.scm.h:2 ../aisleriot/rules/terrace.scm.h:18
+#: ../aisleriot/rules/pileon.scm.h:2 ../aisleriot/rules/terrace.scm.h:25
 msgid "something"
 msgstr "எதாவது"
 
@@ -1864,27 +2308,33 @@ msgstr "காலியான தற்காலிக செருகுவா�
 msgid "No hint available"
 msgstr "உதவி குறிப்பு எதுவும் இல்லை"
 
-#: ../aisleriot/rules/terrace.scm.h:6
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:7
 msgid "Blondes and Brunettes"
 msgstr "பொன்மகளும் தாம்பிரமகளும் "
 
-#: ../aisleriot/rules/terrace.scm.h:8
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:10
 msgid "Falling Stars"
 msgstr "வீழும் தாரகைகள் "
 
-#: ../aisleriot/rules/terrace.scm.h:9
-msgid "General Patience"
-msgstr "பொது பேஷன்ஸ்"
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:12
+msgid "General's Patience"
+msgstr "தளபதியின் பேஷன்ஸ்"
 
-#: ../aisleriot/rules/terrace.scm.h:11
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:15
 msgid "Redheads"
 msgstr "செந்தலையர் "
 
-#: ../aisleriot/rules/terrace.scm.h:12
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:17
 msgid "Signora"
 msgstr "சினோரா "
 
-#: ../aisleriot/rules/terrace.scm.h:15
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:22
 msgid "Wood"
 msgstr "மரம்"
 
@@ -1988,7 +2438,7 @@ msgstr "உதவிக் குறிப்பு காட்டு"
 
 #: ../blackjack/src/blackjack.cpp:337 ../glchess/data/glchess.ui.h:27
 #: ../glines/glines.c:1689 ../gnect/src/main.c:1291 ../gnibbles/main.c:765
-#: ../gnobots2/menu.c:71 ../gnometris/tetris.cpp:110 ../gnomine/gnomine.c:826
+#: ../gnobots2/menu.c:71 ../gnometris/tetris.cpp:110 ../gnomine/gnomine.c:827
 #: ../gtali/gyahtzee.c:702 ../iagno/gnothello.c:813
 #: ../mahjongg/mahjongg.c:1243
 msgid "_Settings"
@@ -2067,6 +2517,10 @@ msgstr "உன் பந்தயத்தை வை அல்லது கை �
 msgid "Blackjack rule set to use"
 msgstr " ப்ளாக் ஜாக் விதிக்கள்"
 
+#: ../blackjack/src/card-selector.cpp:123
+msgid "Card Style"
+msgstr "சீட்டு பாணி"
+
 #: ../blackjack/src/dialog.cpp:51
 msgid "Would you like insurance?"
 msgstr "நீங்கள் காப்பீடு விரும்புகிறீரா?"
@@ -2097,7 +2551,7 @@ msgstr "ப்ளாக் ஜாக் _விருப்பங்கள்"
 
 #: ../blackjack/src/dialog.cpp:241 ../dependencies/ggz-gtk/client.c:953
 #: ../gnect/src/prefs.c:301 ../gnibbles/preferences.c:253
-#: ../gnobots2/properties.c:491 ../gnometris/tetris.cpp:597
+#: ../gnobots2/properties.c:491 ../gnometris/tetris.cpp:596
 #: ../iagno/properties.c:416
 msgid "Game"
 msgstr "விளையாட்டு"
@@ -2547,7 +3001,6 @@ msgid "Login failed for unknown reason: %s"
 msgstr "தெரியாத காரணத்தால் உள்நுழைவு இயலவில்லை:%s"
 
 #: ../dependencies/ggz-gtk/login.c:336 ../dependencies/ggz-gtk/client.c:307
-#: ../libgames-support/games-help.c:61
 msgid "Unable to open help file"
 msgstr "உதவி கோப்பை திறக்க முடியவில்லை"
 
@@ -3739,7 +4192,7 @@ msgid "Logs"
 msgstr "பதிவுகள்"
 
 #. The Network Game toolbar button
-#: ../glchess/data/glchess.ui.h:7 ../libgames-support/games-stock.c:334
+#: ../glchess/data/glchess.ui.h:7 ../libgames-support/games-stock.c:333
 msgid "Network _Game"
 msgstr "வலைப்பின்னல் விளையாட்டு"
 
@@ -3779,7 +4232,7 @@ msgstr "அடுத்த நகர்வை காட்டு"
 msgid "Show the previous move"
 msgstr "முந்தைய நகர்வை காட்டு"
 
-#: ../glchess/data/glchess.ui.h:19 ../libgames-support/games-stock.c:52
+#: ../glchess/data/glchess.ui.h:19 ../libgames-support/games-stock.c:51
 msgid "Start a new multiplayer network game"
 msgstr "புதிய பலவீரர் வலை விளையாட்டை துவக்குக"
 
@@ -3792,8 +4245,8 @@ msgstr "செயலில் பதிகள் ஏதும் இல்லை
 msgid "Undo Move"
 msgstr "நகர்வை ரத்து செய்"
 
-#: ../glchess/data/glchess.ui.h:23 ../gnome-sudoku/src/lib/main.py:275
-#: ../libgames-support/games-stock.c:318
+#: ../glchess/data/glchess.ui.h:23 ../gnome-sudoku/src/lib/main.py:273
+#: ../libgames-support/games-stock.c:317
 msgid "_Contents"
 msgstr "உ_ள்ளடக்கம்"
 
@@ -3801,7 +4254,7 @@ msgstr "உ_ள்ளடக்கம்"
 msgid "_Resign"
 msgstr "(_R) ராஜினாமா செய்"
 
-#: ../glchess/data/glchess.ui.h:28 ../libgames-support/games-stock.c:330
+#: ../glchess/data/glchess.ui.h:28 ../libgames-support/games-stock.c:329
 msgid "_Undo Move"
 msgstr "_ரத்து செய்"
 
@@ -3979,7 +4432,7 @@ msgid "Show _History"
 msgstr "(_H) வரலாற்றை காட்டுக"
 
 #. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../glchess/data/preferences.ui.h:14 ../gnome-sudoku/src/lib/main.py:295
+#: ../glchess/data/preferences.ui.h:14 ../gnome-sudoku/src/lib/main.py:293
 msgid "Show _Toolbar"
 msgstr "கருவிப்பட்டையை காட்டு (_T)"
 
@@ -4190,7 +4643,7 @@ msgstr "விளையாட்டை சேமிக்க முடியவ�
 #. Translators: Player Type Combo: Player is human controlled
 #: ../glchess/src/lib/gtkui/dialogs.py:590
 #: ../glchess/src/lib/gtkui/gtkui.py:205 ../gnect/src/prefs.c:249
-#: ../gtali/gyahtzee.c:988 ../gtali/yahtzee.c:69 ../iagno/properties.c:449
+#: ../gtali/gyahtzee.c:990 ../gtali/yahtzee.c:69 ../iagno/properties.c:449
 #: ../iagno/properties.c:490
 msgid "Human"
 msgstr "மனிதன்"
@@ -4327,7 +4780,7 @@ msgstr ""
 
 #. TODO: This should be a pop-up dialog
 #. FIXME: This should create a pop-up dialog
-#: ../glchess/src/lib/gtkui/gtkui.py:824 ../gnome-sudoku/src/lib/main.py:740
+#: ../glchess/src/lib/gtkui/gtkui.py:824 ../gnome-sudoku/src/lib/main.py:727
 #, python-format
 msgid "Unable to display help: %s"
 msgstr "உதவியை காட்ட முடியவில்லை:%s"
@@ -5078,19 +5531,19 @@ msgstr ""
 "இந்த ஜிஎல் செஸ் முறிந்தது இந்த வழுவை http://bugzilla.gnome.org க்கு தெரிவிக்கவும்\n"
 "வழுநீக்க வெளியீடு:"
 
-#: ../glchess/src/lib/main.py:709 ../gnome-sudoku/src/lib/main.py:481
+#: ../glchess/src/lib/main.py:709 ../gnome-sudoku/src/lib/main.py:473
 msgid "Save game before closing?"
 msgstr "விளையாட்டை மூடும் முன்  சேமிக்கவா?"
 
-#: ../glchess/src/lib/defaults.py.in:52
+#: ../glchess/src/lib/defaults.py.in:50
 msgid "glChess"
 msgstr "ஜிஎல்செஸ்"
 
-#: ../glchess/src/lib/defaults.py.in:55
+#: ../glchess/src/lib/defaults.py.in:53
 msgid "Copyright 2005-2008 Robert Ancell (and contributors)"
 msgstr "பதிப்புரிமை 2005-2008 ராபர்ட் அன்சல்l (மற்றும் பங்களித்தோர்) "
 
-#: ../glchess/src/lib/defaults.py.in:56
+#: ../glchess/src/lib/defaults.py.in:54
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -5102,7 +5555,7 @@ msgstr ""
 
 #. The GPL license string will be translated, and the game name inserted.
 #. This license is the same as in libgames-support/games-stock.c
-#: ../glchess/src/lib/defaults.py.in:65
+#: ../glchess/src/lib/defaults.py.in:63
 #: ../gnome-sudoku/src/lib/defaults.py.in:49
 #, python-format
 msgid ""
@@ -5115,9 +5568,9 @@ msgstr ""
 "அனுமதிக்கான இந்த 2ம் பதிப்பு அல்லது அடுத்த பதிப்புகள் விதிகளின் படி நீங்கள் (விருப்பப்படி) "
 "மாற்றலாம். அல்லது மீண்டும் பறிமாறலாம்"
 
-#: ../glchess/src/lib/defaults.py.in:69
+#: ../glchess/src/lib/defaults.py.in:67
 #: ../gnome-sudoku/src/lib/defaults.py.in:53
-#: ../libgames-support/games-stock.c:415
+#: ../libgames-support/games-stock.c:414
 #, c-format, python-format
 msgid ""
 "%s is distributed in the hope that it will be useful, but WITHOUT ANY "
@@ -5129,9 +5582,9 @@ msgstr ""
 "செயலுக்கான தகுதி உள்பட எந்த உத்திரவாதமும் அளிக்கப்படவில்லை. மேற் கொண்டு விவரங்களுக்கு "
 "ஜிஎன்யு பொது அனுமதிக்கான விதிகளை பார்க்கவும்"
 
-#: ../glchess/src/lib/defaults.py.in:73
+#: ../glchess/src/lib/defaults.py.in:71
 #: ../gnome-sudoku/src/lib/defaults.py.in:57
-#: ../libgames-support/games-stock.c:420
+#: ../libgames-support/games-stock.c:419
 #, c-format, python-format
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
@@ -5142,7 +5595,7 @@ msgstr ""
 "வேண்டும். இல்லையானால் கீழ் கண்ட முகவரிக்கு கடிதம் எழுதவும்.Free Software Foundation, "
 "Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA "
 
-#: ../glchess/src/lib/defaults.py.in:85
+#: ../glchess/src/lib/defaults.py.in:83
 #: ../gnome-sudoku/src/lib/defaults.py.in:68
 #, python-format
 msgid "Unable to make data directory %(dir)s: %(error)s"
@@ -5247,7 +5700,7 @@ msgid "You can't move there!"
 msgstr "அங்கே நகர்த்த முடியாது!"
 
 #: ../glines/glines.c:1206 ../glines/glines.c:1210 ../glines/glines.c:1212
-#: ../glines/glines.c:1809 ../glines/glines.c:1841
+#: ../glines/glines.c:1811 ../glines/glines.c:1843
 #: ../glines/glines.desktop.in.in.h:1
 msgid "Five or More"
 msgstr "ஐந்து அல்லது அதற்கு மேல்"
@@ -5291,7 +5744,7 @@ msgstr "பொதுவான"
 msgid "_Use fast moves"
 msgstr "_வேகமான நகர்தலை பயன்படுத்து"
 
-#: ../glines/glines.c:1870
+#: ../glines/glines.c:1872
 msgid "Next:"
 msgstr "அடுத்தது:"
 
@@ -5403,13 +5856,13 @@ msgstr "இரண்டாம் விளையாடுபவரின் ம�
 
 #: ../gnect/data/gnect.schemas.in.h:9 ../gnect/src/prefs.c:370
 #: ../gnibbles/gnibbles.schemas.in.h:16 ../gnibbles/preferences.c:446
-#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:745
+#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:744
 msgid "Move left"
 msgstr "இடதுபுறம் நகர்."
 
 #: ../gnect/data/gnect.schemas.in.h:10 ../gnect/src/prefs.c:371
 #: ../gnibbles/gnibbles.schemas.in.h:17 ../gnibbles/preferences.c:447
-#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:746
+#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:745
 msgid "Move right"
 msgstr "வலதுபுறம் நகர்."
 
@@ -5453,7 +5906,7 @@ msgstr "பிணைய விளயாட்டு %s க்கு நல்வ
 msgid "It's a draw!"
 msgstr "சமமானது!"
 
-#: ../gnect/src/main.c:583 ../gnome-sudoku/src/lib/main.py:442
+#: ../gnect/src/main.c:583 ../gnome-sudoku/src/lib/main.py:435
 msgid "You win!"
 msgstr "உங்களுக்கு வெற்றி!"
 
@@ -5569,7 +6022,7 @@ msgstr "_ஒலிகளை செயல்படசெய்"
 
 #. keyboard tab
 #: ../gnect/src/prefs.c:366 ../gnibbles/preferences.c:436
-#: ../gnobots2/properties.c:537 ../gnometris/tetris.cpp:737
+#: ../gnobots2/properties.c:537 ../gnometris/tetris.cpp:736
 msgid "Keyboard Controls"
 msgstr "விசைப் பலகை கட்டுப்பாடுகள்"
 
@@ -5691,19 +6144,19 @@ msgid "Speed:"
 msgstr "வேகம்:"
 
 #: ../gnibbles/gnibbles.c:627 ../gnobots2/game.c:182 ../gnomine/gnomine.c:224
-#: ../gnotravex/gnotravex.c:1237 ../gnotski/gnotski.c:840
+#: ../gnotravex/gnotravex.c:1239 ../gnotski/gnotski.c:842
 #: ../gtali/gyahtzee.c:203 ../mahjongg/mahjongg.c:668 ../same-gnome/ui.c:193
 msgid "Congratulations!"
 msgstr "வாழ்த்துகள்!"
 
 #: ../gnibbles/gnibbles.c:628 ../gnobots2/game.c:183 ../gnomine/gnomine.c:225
-#: ../gnotravex/gnotravex.c:1238 ../gnotski/gnotski.c:841
+#: ../gnotravex/gnotravex.c:1240 ../gnotski/gnotski.c:843
 #: ../gtali/gyahtzee.c:204 ../mahjongg/mahjongg.c:669 ../same-gnome/ui.c:194
 msgid "Your score is the best!"
 msgstr "மிக அதிக புள்ளிகள் சேர்த்தவர் நீங்களே!"
 
 #: ../gnibbles/gnibbles.c:629 ../gnobots2/game.c:184 ../gnomine/gnomine.c:226
-#: ../gnotravex/gnotravex.c:1239 ../gnotski/gnotski.c:842
+#: ../gnotravex/gnotravex.c:1241 ../gnotski/gnotski.c:844
 #: ../gtali/gyahtzee.c:205 ../mahjongg/mahjongg.c:670 ../same-gnome/ui.c:195
 msgid "Your score has made the top ten."
 msgstr "அதிக புள்ளிகள் சேர்த்த பத்து பேர்களில் நீங்கள் ஒருவர்."
@@ -5714,7 +6167,7 @@ msgstr "சிக்கல் அறையில் புழுவுக்க�
 
 #: ../gnibbles/gnibbles.desktop.in.in.h:2 ../gnibbles/main.c:243
 #: ../gnibbles/main.c:247 ../gnibbles/main.c:249 ../gnibbles/main.c:871
-#: ../gnibbles/main.c:989 ../gnibbles/main.c:1051
+#: ../gnibbles/main.c:989 ../gnibbles/main.c:1053
 msgid "Nibbles"
 msgstr "நிபில்ஸ்"
 
@@ -5785,7 +6238,7 @@ msgid "Key to use for motion up."
 msgstr "மேல்பக்கம் செல்லும் இயக்கத்திற்கு பயன்படும் விசை."
 
 #: ../gnibbles/gnibbles.schemas.in.h:15 ../gnibbles/preferences.c:449
-#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:747
+#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:746
 msgid "Move down"
 msgstr "கீழே நகர்த்து"
 
@@ -5926,7 +6379,7 @@ msgid "_Enable fake bonuses"
 msgstr "_போலி ஊக்கத்தொகைகளை செயல்படசெய்"
 
 #. starting level
-#: ../gnibbles/preferences.c:350 ../gnometris/tetris.cpp:644
+#: ../gnibbles/preferences.c:350 ../gnometris/tetris.cpp:643
 msgid "_Starting level:"
 msgstr "_தொடக்க மட்டம்:"
 
@@ -5975,13 +6428,13 @@ msgstr "புழு %d:"
 msgid "Game over!"
 msgstr "ஆட்டம் முடிந்தது!"
 
-#: ../gnobots2/game.c:155 ../gnomine/gnomine.c:200 ../gnotski/gnotski.c:815
+#: ../gnobots2/game.c:155 ../gnomine/gnomine.c:200 ../gnotski/gnotski.c:817
 msgid "Great work, but unfortunately your score did not make the top ten."
 msgstr "பிரமாதம்!ஆனால் உங்கள் மதிப்பு என்னவோ மேல் பத்தில் இல்லை."
 
 #. Translators: This "_New Game" is for the game-over dialogue
-#: ../gnobots2/game.c:157 ../gnomine/gnomine.c:202 ../gnotski/gnotski.c:817
-#: ../libgames-support/games-stock.c:324 ../same-gnome/ui.c:176
+#: ../gnobots2/game.c:157 ../gnomine/gnomine.c:202 ../gnotski/gnotski.c:819
+#: ../libgames-support/games-stock.c:323 ../same-gnome/ui.c:176
 msgid "_New Game"
 msgstr "_புதிய விளையாட்டு"
 
@@ -6023,13 +6476,13 @@ msgstr "விளையாட்டு அமைப்புகளை அமை"
 msgid "Initial window position"
 msgstr "துவக்க சாளர நிலை"
 
-#: ../gnobots2/gnobots.c:89 ../gnomine/gnomine.c:991 ../gnomine/gnomine.c:999
+#: ../gnobots2/gnobots.c:89 ../gnomine/gnomine.c:992 ../gnomine/gnomine.c:1000
 #: ../gnotravex/gnotravex.c:399 ../gnotski/gnotski.c:467
 #: ../iagno/gnothello.c:146
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:91 ../gnomine/gnomine.c:993 ../gnomine/gnomine.c:1001
+#: ../gnobots2/gnobots.c:91 ../gnomine/gnomine.c:994 ../gnomine/gnomine.c:1002
 #: ../gnotravex/gnotravex.c:401 ../gnotski/gnotski.c:469
 #: ../iagno/gnothello.c:148
 msgid "Y"
@@ -6095,17 +6548,17 @@ msgstr "பாதுகாப்பான நகர்தல்கள், டெ
 msgid "Robots with safe teleport with super-safe moves"
 msgstr "பாதுகாப்பான டெலிபோர்ட்டுடன் சிறந்த பாதுகாப்பான நகர்தல்கள் கூடிய ரோபார்ட்"
 
-#: ../gnobots2/gnobots.c:237 ../gnobots2/gnobots.c:258
+#: ../gnobots2/gnobots.c:239 ../gnobots2/gnobots.c:260
 #: ../gnobots2/gnobots2.desktop.in.in.h:2 ../gnobots2/menu.c:263
 #: ../gnobots2/menu.c:266
 msgid "Robots"
 msgstr "இயந்திரங்கள்"
 
-#: ../gnobots2/gnobots.c:320
+#: ../gnobots2/gnobots.c:322
 msgid "No game data could be found."
 msgstr "விளையாட்டு தகவல்கள் எதுவும் காணவில்லை."
 
-#: ../gnobots2/gnobots.c:322
+#: ../gnobots2/gnobots.c:324
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
@@ -6113,11 +6566,11 @@ msgstr ""
 "ரோபார்ட் நிரல் செல்லுபடியாகும் விளையாட்டு கோப்புகள் எதையும் கண்டுபிடிக்கவில்லை. நிரல் "
 "சரியாக நிறுவப்பட்டதா என்பதை சோதிக்கவும்."
 
-#: ../gnobots2/gnobots.c:341
+#: ../gnobots2/gnobots.c:343
 msgid "Some graphics files are missing or corrupt."
 msgstr "சில சித்திர கோப்புகளை காணவில்லை அல்லது பழுது பட்டன."
 
-#: ../gnobots2/gnobots.c:343
+#: ../gnobots2/gnobots.c:345
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
@@ -6421,7 +6874,7 @@ msgstr "மிகவும் பத்திரமான செயல்கள�
 msgid "Prevents all moves that result in getting killed."
 msgstr "எல்லா ஆபத்தான நகர்த்தலால் கொல்லப்படுவதை தடுக்கும்."
 
-#: ../gnobots2/properties.c:483 ../gnometris/tetris.cpp:670
+#: ../gnobots2/properties.c:483 ../gnometris/tetris.cpp:669
 msgid "_Enable sounds"
 msgstr "_ஒலிகளை செயல்படசெய்"
 
@@ -6466,13 +6919,13 @@ msgstr "மீதியானவை:"
 msgid "Fit falling blocks together"
 msgstr "பொருத்தமான ஒன்றாக விழும் பகுதிகள்"
 
-#: ../gnometris/gnometris.desktop.in.in.h:2 ../gnometris/main.cpp:64
-#: ../gnometris/tetris.cpp:163 ../gnometris/tetris.cpp:1301
-#: ../gnometris/tetris.cpp:1305 ../gnometris/tetris.cpp:1307
+#: ../gnometris/gnometris.desktop.in.in.h:2 ../gnometris/main.cpp:66
+#: ../gnometris/tetris.cpp:162 ../gnometris/tetris.cpp:1300
+#: ../gnometris/tetris.cpp:1304 ../gnometris/tetris.cpp:1306
 msgid "Gnometris"
 msgstr "க்னோமெட்ரிஸ்"
 
-#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:748
+#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:747
 msgid "Drop"
 msgstr "விடு"
 
@@ -6508,11 +6961,11 @@ msgstr "தொடங்கவேண்டிய மட்டம்"
 msgid "Level to start with."
 msgstr "தொடங்கவேண்டிய மட்டம்."
 
-#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:750
+#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:749
 msgid "Pause"
 msgstr "தாமதி"
 
-#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:749
+#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:748
 msgid "Rotate"
 msgstr "சுழற்றவும்"
 
@@ -6596,11 +7049,11 @@ msgstr "வல இடமாக சுழற்ற வேண்டுமா"
 msgid "Whether to use the background image"
 msgstr "பின்னணி சித்திரத்தை பயன்படுத்த வேண்டுமா"
 
-#: ../gnometris/main.cpp:46
+#: ../gnometris/main.cpp:48
 msgid "Set starting level (1 or greater)"
 msgstr "ஆரம்ப நிலை அமைத்தல்(1-10)"
 
-#: ../gnometris/main.cpp:46
+#: ../gnometris/main.cpp:48
 msgid "LEVEL"
 msgstr "மட்டம்"
 
@@ -6620,62 +7073,62 @@ msgstr "டாங்கோ நிழலிட்ட"
 msgid "Lines:"
 msgstr "வரிகள்:"
 
-#: ../gnometris/tetris.cpp:576
+#: ../gnometris/tetris.cpp:575
 msgid "Gnometris Preferences"
 msgstr "க்னோமெட்ரிக் விருப்பங்கள்"
 
-#: ../gnometris/tetris.cpp:600
+#: ../gnometris/tetris.cpp:599
 msgid "Setup"
 msgstr "அமைப்பு"
 
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:606
+#: ../gnometris/tetris.cpp:605
 msgid "_Number of pre-filled rows:"
 msgstr "ஏற்கெனவே நிரப்பப்பட்ட வரிகளின் _எண்ணிக்கை"
 
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:625
+#: ../gnometris/tetris.cpp:624
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "ஏற்கெனவே நிரப்பட்ட வரிகளில் மரத்துண்டுகளின் _அடர்த்தி"
 
-#: ../gnometris/tetris.cpp:665
+#: ../gnometris/tetris.cpp:664
 msgid "Operation"
 msgstr "செயல்பாடு"
 
-#: ../gnometris/tetris.cpp:679
+#: ../gnometris/tetris.cpp:678
 msgid "_Preview next block"
 msgstr "_P அடுத்த மரத்துண்டின் முன்பார்வை"
 
-#: ../gnometris/tetris.cpp:688
+#: ../gnometris/tetris.cpp:687
 msgid "_Use random block colors"
 msgstr "_U தொடர்பற்ற மரத்துண்டு நிறங்களை பயன்படுத்து"
 
-#: ../gnometris/tetris.cpp:699
+#: ../gnometris/tetris.cpp:698
 msgid "_Bastard mode"
 msgstr "(_B) எரிச்சல் பாங்கு"
 
-#: ../gnometris/tetris.cpp:708
+#: ../gnometris/tetris.cpp:707
 msgid "_Rotate blocks counterclockwise"
 msgstr "மரத்துண்டை வல இடமாக சுழற்று"
 
-#: ../gnometris/tetris.cpp:717
+#: ../gnometris/tetris.cpp:716
 msgid "Show _where the block will land"
 msgstr "மரத்துண்டுகள் _விழக்கூடிய இடத்தை காட்ட"
 
-#: ../gnometris/tetris.cpp:725 ../gnometris/tetris.cpp:758
+#: ../gnometris/tetris.cpp:724 ../gnometris/tetris.cpp:757
 #: ../same-gnome/ui.c:324
 msgid "Theme"
 msgstr "கருத்து"
 
-#: ../gnometris/tetris.cpp:734
+#: ../gnometris/tetris.cpp:733
 msgid "Controls"
 msgstr "கட்டுப்பாடுகள்"
 
-#: ../gnometris/tetris.cpp:761
+#: ../gnometris/tetris.cpp:760
 msgid "Block Style"
 msgstr "மரத்துண்டின் பாணி"
 
-#: ../gnometris/tetris.cpp:1310
+#: ../gnometris/tetris.cpp:1309
 msgid ""
 "A classic game of fitting falling blocks together.\n"
 "\n"
@@ -6703,6 +7156,50 @@ msgstr "சுடோகு"
 #: ../gnome-sudoku/gnome-sudoku.desktop.in.in.h:2
 msgid "Test your logic skills in this number grid puzzle"
 msgstr "உங்கள் தர்க்க திறமையை இந்த கட்ட புதிரில் சோதியுங்கள்"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:1
+msgid "Color of the grid border"
+msgstr "வலைக்கட்ட விளிம்பின் நிறம்"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:2
+msgid "Generate new puzzles in the background"
+msgstr "பின்புலத்தில் புதிய புதிர்களை உருவாக்குக"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:3
+msgid "Height of application window in pixels"
+msgstr "பயன்பாட்டு சாளரத்தின் உயரம் படத்துணுக்குகளில்."
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:4
+msgid "Mark printed games as played"
+msgstr "அச்சிட்ட விளையாட்டுகளை ஆடி விட்டதாக குறிக்கவும்"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:5
+msgid "Number of puzzles to print on a page"
+msgstr "ஒரு பக்கத்தில் அச்சிட வேண்டிய புதிர்களின் எண்ணிக்கை"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:6
+msgid "Print games that have been played"
+msgstr "விளையாடிய விளையாட்டுகளை அச்சிடுக"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:7
+msgid "Show hint highlights"
+msgstr "உதவிக் குறிப்பு சிறப்புச்சுட்டலை காட்டு."
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:8
+msgid "Show hints"
+msgstr "உதவிக் குறிப்புகளை காட்டு"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:9
+msgid "Show the application toolbar"
+msgstr "பயன்பாட்டின் கருவிபட்டியை காண்பி"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:10
+msgid "The number of seconds between automatic saves"
+msgstr "தானியங்கி சேமிப்புகளின் நடுவே உள்ள வினாடிகள் எண்ணிக்கை"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:11
+msgid "Width of application window in pixels"
+msgstr "பயன்பாட்டு சாளரத்தின் அகலம் படத்துணுக்குகளில்."
 
 #: ../gnome-sudoku/data/print_games.ui.h:1
 msgid "<b><i>Details</i></b>"
@@ -6824,7 +7321,7 @@ msgstr "மற்றவற்றை துடைக்கவும் (_O)"
 msgid "_Add Tracker"
 msgstr "பின்பற்றியை சேர்க்கவும் (_A)"
 
-#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:797
+#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:784
 msgid "_Clear Tracker"
 msgstr "பின்பற்றியை நீக்கவும் (_C)"
 
@@ -6903,107 +7400,107 @@ msgstr "சுடோகு விளையாட்டை. முடிந்த
 msgid "Track moves"
 msgstr "நகர்வுகளை "
 
-#: ../gnome-sudoku/src/lib/main.py:245
+#: ../gnome-sudoku/src/lib/main.py:243
 msgid "New game"
 msgstr "புதிய விளையாட்டு"
 
-#: ../gnome-sudoku/src/lib/main.py:247
+#: ../gnome-sudoku/src/lib/main.py:245
 msgid "Print current game"
 msgstr "தற்போதைய விளையாட்டை அச்சிடு"
 
-#: ../gnome-sudoku/src/lib/main.py:248
+#: ../gnome-sudoku/src/lib/main.py:246
 msgid "Print _Multiple Sudokus"
 msgstr "பல சுடோகுகளை அச்சிடு"
 
-#: ../gnome-sudoku/src/lib/main.py:249
+#: ../gnome-sudoku/src/lib/main.py:247
 msgid "Print more than one sudoku at a time."
 msgstr "ஒரு நேரத்தில் ஒன்றுக்கு மேற்பட்ட சுடோகுகளை அச்சிடுக"
 
-#: ../gnome-sudoku/src/lib/main.py:251
+#: ../gnome-sudoku/src/lib/main.py:249
 msgid "Close Sudoku"
 msgstr "சுடோகுவை மூடு"
 
-#: ../gnome-sudoku/src/lib/main.py:252
+#: ../gnome-sudoku/src/lib/main.py:250
 msgid "_Tools"
 msgstr "_கருவிகள்"
 
-#: ../gnome-sudoku/src/lib/main.py:254 ../libgames-support/games-stock.c:320
+#: ../gnome-sudoku/src/lib/main.py:252 ../libgames-support/games-stock.c:319
 msgid "_Hint"
 msgstr "_உதவி குறிப்பு"
 
-#: ../gnome-sudoku/src/lib/main.py:256
+#: ../gnome-sudoku/src/lib/main.py:254
 msgid "Show which numbers could go in the current square."
 msgstr "இப்போதைய கட்டத்தில் எந்த எண் போக முடியும் எனக் காட்டுக"
 
-#: ../gnome-sudoku/src/lib/main.py:258
+#: ../gnome-sudoku/src/lib/main.py:256
 msgid "_Fill"
 msgstr "நிரப்பு"
 
-#: ../gnome-sudoku/src/lib/main.py:259
+#: ../gnome-sudoku/src/lib/main.py:257
 msgid "Automatically fill in the current square if possible."
 msgstr "இயன்றால் இப்போதைய கட்டத்தை தானாகவே நிரப்புக"
 
-#: ../gnome-sudoku/src/lib/main.py:261
+#: ../gnome-sudoku/src/lib/main.py:259
 msgid "Fill _all squares"
 msgstr "அனைத்து கட்டங்களையும் நிரப்புக"
 
-#: ../gnome-sudoku/src/lib/main.py:262
+#: ../gnome-sudoku/src/lib/main.py:260
 msgid "Automatically fill in all squares for which there is only one valid value."
 msgstr "ஒரே ஒரு செல்லுபடியாகும் மதிப்பு மட்டுமே உள்ள அனைத்து கட்டங்களையும் தானாகவே நிரப்புக."
 
-#: ../gnome-sudoku/src/lib/main.py:266
+#: ../gnome-sudoku/src/lib/main.py:264
 msgid "_Generate new puzzles"
 msgstr "_ப புதிய புதிர்களை உருவாக்குக"
 
-#: ../gnome-sudoku/src/lib/main.py:266
+#: ../gnome-sudoku/src/lib/main.py:264
 msgid "Generate new puzzles."
 msgstr "புதிய புதிர்களை உருவாக்குக"
 
-#: ../gnome-sudoku/src/lib/main.py:268
+#: ../gnome-sudoku/src/lib/main.py:266
 msgid "Puzzle _Statistics"
 msgstr "புதிர் புள்ளிவிவரம்"
 
-#: ../gnome-sudoku/src/lib/main.py:269
+#: ../gnome-sudoku/src/lib/main.py:267
 msgid "Show statistics about current puzzle"
 msgstr "இப்போதைய புதிர் பற்றிய புள்ளி விவரங்களை காட்டுக"
 
-#: ../gnome-sudoku/src/lib/main.py:281
+#: ../gnome-sudoku/src/lib/main.py:279
 msgid "_Always show hint"
 msgstr "எப்போதும் உதவிக் குறிப்பை காட்டுக"
 
-#: ../gnome-sudoku/src/lib/main.py:283
+#: ../gnome-sudoku/src/lib/main.py:281
 msgid "Always show possible numbers in a square"
 msgstr "எப்போதும் ஒரு கட்டத்தில் இடக் கூடிய எண்களை காட்டுக"
 
-#: ../gnome-sudoku/src/lib/main.py:287
+#: ../gnome-sudoku/src/lib/main.py:285
 msgid "Warn about _unfillable squares"
 msgstr "பூர்த்தி செய்ய முடியாத கட்டங்களைப் பற்றி எச்சரிக்கை செய்க (_u)"
 
-#: ../gnome-sudoku/src/lib/main.py:289
+#: ../gnome-sudoku/src/lib/main.py:287
 msgid "Warn about squares made unfillable by a move"
 msgstr "ஒரு நகர்வால் பூர்த்தி செய்ய முடியாத கட்டங்களைப் பற்றி எச்சரிக்கை செய்க"
 
-#: ../gnome-sudoku/src/lib/main.py:291
+#: ../gnome-sudoku/src/lib/main.py:289
 msgid "_Track additions"
 msgstr "சேர்க்கைகளை பின்தொடர்க"
 
-#: ../gnome-sudoku/src/lib/main.py:293
+#: ../gnome-sudoku/src/lib/main.py:291
 msgid "Mark new additions in a separate color so you can keep track of them."
 msgstr "புதிய உள்ளீடுகளை பின் தொடர வசதியாக அவற்றை தனி வண்ணத்தில் குறிக்கவும்."
 
-#: ../gnome-sudoku/src/lib/main.py:296
+#: ../gnome-sudoku/src/lib/main.py:294
 msgid "_Highlighter"
 msgstr "சிறப்புச்சுட்டி"
 
-#: ../gnome-sudoku/src/lib/main.py:297
+#: ../gnome-sudoku/src/lib/main.py:295
 msgid "Highlight the current row, column and box"
 msgstr "இப்போதைய வரி, பத்தி, மற்றும் பெட்டி ஆகியவற்றை தனிப்படுத்தி காட்டுக"
 
-#: ../gnome-sudoku/src/lib/main.py:298
+#: ../gnome-sudoku/src/lib/main.py:296
 msgid "Generate new puzzles _while you play"
 msgstr "விளையாடும்போதே புதிய புதிர்களை உருவாக்குக"
 
-#: ../gnome-sudoku/src/lib/main.py:300
+#: ../gnome-sudoku/src/lib/main.py:298
 msgid ""
 "Generate new puzzles in the background while you play. This will "
 "automatically pause when the game goes into the background."
@@ -7011,132 +7508,132 @@ msgstr ""
 "விளையாடும்போதே பின்னணியில் புதிய புதிர்களை உருவாக்குக. இது விளையாட்டு பின்னணிக்கு "
 "செல்லும்போது தானாக தாமதமாகும்."
 
-#: ../gnome-sudoku/src/lib/main.py:306
+#: ../gnome-sudoku/src/lib/main.py:304
 msgid "_Edit"
 msgstr "தொகு (_E)"
 
-#: ../gnome-sudoku/src/lib/main.py:307
+#: ../gnome-sudoku/src/lib/main.py:305
 msgid "_Undo"
 msgstr "_ரத்து செய்"
 
-#: ../gnome-sudoku/src/lib/main.py:307
+#: ../gnome-sudoku/src/lib/main.py:305
 msgid "Undo last action"
 msgstr "கடைசி செயலை செயல் நீக்கு"
 
-#: ../gnome-sudoku/src/lib/main.py:308
+#: ../gnome-sudoku/src/lib/main.py:306
 msgid "_Redo"
 msgstr "மீள் (_R)"
 
-#: ../gnome-sudoku/src/lib/main.py:308
+#: ../gnome-sudoku/src/lib/main.py:306
 msgid "Redo last action"
 msgstr "கடைசி செயலை செயல் நீக்கு"
 
-#: ../gnome-sudoku/src/lib/main.py:309
+#: ../gnome-sudoku/src/lib/main.py:307
 #: ../gnome-sudoku/src/lib/number_box.py:54
 msgid "_Clear"
 msgstr "_துப்புரவாக்கு"
 
-#: ../gnome-sudoku/src/lib/main.py:309
+#: ../gnome-sudoku/src/lib/main.py:307
 msgid "Clear entries you've filled in"
 msgstr "நீங்கள் உள்ளிட்டவற்றை நீக்குக"
 
-#: ../gnome-sudoku/src/lib/main.py:310
+#: ../gnome-sudoku/src/lib/main.py:308
 msgid "Clear _Notes"
 msgstr "குறிப்புகளை நீக்குக"
 
-#: ../gnome-sudoku/src/lib/main.py:310
+#: ../gnome-sudoku/src/lib/main.py:308
 msgid "Clear notes and hints"
 msgstr "குறிப்புகள் மற்றும் உதவி குறிப்புகளை நீக்குக"
 
-#: ../gnome-sudoku/src/lib/main.py:424
+#: ../gnome-sudoku/src/lib/main.py:417
 #, python-format
 msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
 msgstr "நீங்கள் புதிரை %(totalTime)s (%(activeTime)s active) இல் முடித்தீர்கள்"
 
-#: ../gnome-sudoku/src/lib/main.py:428
+#: ../gnome-sudoku/src/lib/main.py:421
 #, python-format
 msgid "You got %(n)s hint"
 msgid_plural "You got %(n)s hints"
 msgstr[0] "உங்களுக்கு %(n)s உதவிக்குறிப்பு உள்ளது"
 msgstr[1] "உங்களுக்கு %(n)s உதவிக்குறிப்புகள் உள்ளன"
 
-#: ../gnome-sudoku/src/lib/main.py:431
+#: ../gnome-sudoku/src/lib/main.py:424
 #, python-format
 msgid "You had %(n)s impossibility pointed out."
 msgid_plural "You had %(n)s impossibilities pointed out."
 msgstr[0] "உங்களுக்கு  %(n)s சாத்தியமில்லாதது காட்டப்பட்டது"
 msgstr[1] "உங்களுக்கு  %(n)s சாத்தியமில்லாதவை காட்டப்பட்டன"
 
-#: ../gnome-sudoku/src/lib/main.py:436
+#: ../gnome-sudoku/src/lib/main.py:429
 #, python-format
 msgid "You used the auto-fill %(n)s time"
 msgid_plural "You used the auto-fill %(n)s times"
 msgstr[0] "நீங்கள் %(n)s முறை தானியங்கி பூர்த்தியை பயனாக்கினீர்."
 msgstr[1] "நீங்கள் %(n)s முறைகள் தானியங்கி பூர்த்தியை பயனாக்கினீர்."
 
-#: ../gnome-sudoku/src/lib/main.py:461
+#: ../gnome-sudoku/src/lib/main.py:453
 msgid "Save this game before starting new one?"
 msgstr "புதிய விளையாட்டை ஆரம்பிக்கு முன் இதை சேமிக்கவா?"
 
-#: ../gnome-sudoku/src/lib/main.py:462
+#: ../gnome-sudoku/src/lib/main.py:454
 msgid "_Save game for later"
 msgstr "_S விளையாட்டை பிற்காலத்துக்கு சேமி"
 
-#: ../gnome-sudoku/src/lib/main.py:463
+#: ../gnome-sudoku/src/lib/main.py:455
 msgid "_Abandon game"
 msgstr "(_A) விளையாட்டு கைவிடப்பட்டது"
 
-#: ../gnome-sudoku/src/lib/main.py:662
+#: ../gnome-sudoku/src/lib/main.py:649
 #, python-format
 msgid "Playing %(difficulty)s puzzle."
 msgstr " கடின மட்டம் %(difficulty)s விளையாடப்படுகிறது"
 
-#: ../gnome-sudoku/src/lib/main.py:678
+#: ../gnome-sudoku/src/lib/main.py:665
 msgid "Puzzle Information"
 msgstr "புதிர் தகவல்"
 
-#: ../gnome-sudoku/src/lib/main.py:679
+#: ../gnome-sudoku/src/lib/main.py:666
 msgid "There is no current puzzle."
 msgstr "தற்போதைய புதிர் ஏதும் இல்லை."
 
-#: ../gnome-sudoku/src/lib/main.py:684
+#: ../gnome-sudoku/src/lib/main.py:671
 msgid "Calculated difficulty: "
 msgstr "கடினத்தை கணக்கிடுக"
 
-#: ../gnome-sudoku/src/lib/main.py:688
+#: ../gnome-sudoku/src/lib/main.py:675
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "நீக்கத்தால் உடனடியாக பூர்த்தி செய்யக்கூடிய நகர்வுகள்: "
 
-#: ../gnome-sudoku/src/lib/main.py:691
+#: ../gnome-sudoku/src/lib/main.py:678
 msgid "Number of moves instantly fillable by filling: "
 msgstr "பூர்த்தி செய்வதால் உடனடியாக பூர்த்தி செய்யக்கூடிய நகர்வுகள்: "
 
-#: ../gnome-sudoku/src/lib/main.py:694
+#: ../gnome-sudoku/src/lib/main.py:681
 msgid "Amount of trial-and-error required to solve: "
 msgstr "முடிவு காண தேவையான உத்தேச முயற்சிகள்: "
 
-#: ../gnome-sudoku/src/lib/main.py:697 ../gnome-sudoku/src/lib/main.py:698
+#: ../gnome-sudoku/src/lib/main.py:684 ../gnome-sudoku/src/lib/main.py:685
 msgid "Puzzle Statistics"
 msgstr "புதிர் புள்ளி விவரம்."
 
 #. Our initial row...
-#: ../gnome-sudoku/src/lib/main.py:788
+#: ../gnome-sudoku/src/lib/main.py:775
 msgid "No Tracker"
 msgstr "பின்பற்றி இல்லை"
 
-#: ../gnome-sudoku/src/lib/main.py:798
+#: ../gnome-sudoku/src/lib/main.py:785
 msgid "Clear all moves tracked by selected tracker."
 msgstr "தேர்ந்தெடுத்த பின்பற்றியின் நகர்வுகளை துடைக்கவும். "
 
-#: ../gnome-sudoku/src/lib/main.py:802
+#: ../gnome-sudoku/src/lib/main.py:789
 msgid "_Clear Others"
 msgstr "மற்றவற்றை துடைக்கவும்"
 
-#: ../gnome-sudoku/src/lib/main.py:804
+#: ../gnome-sudoku/src/lib/main.py:791
 msgid "Clear all moves not tracked by selected tracker."
 msgstr "தேர்ந்தெடுத்த பின்பற்றியுடையது அல்லாத நகர்வுகளை துடைக்கவும்."
 
-#: ../gnome-sudoku/src/lib/main.py:829
+#: ../gnome-sudoku/src/lib/main.py:816
 #, python-format
 msgid "Tracker %s"
 msgstr "பின்பற்றி %s"
@@ -7328,7 +7825,7 @@ msgstr "கண்ணிவெடிகள் அகற்றப்பட்ட�
 msgid "Mines Scores"
 msgstr "கண்ணிவெடிகள் மதிப்பு "
 
-#: ../gnomine/gnomine.c:217 ../gnotravex/gnotravex.c:1232
+#: ../gnomine/gnomine.c:217 ../gnotravex/gnotravex.c:1234
 #: ../same-gnome/ui.c:148
 msgid "Size:"
 msgstr "அளவு:"
@@ -7341,19 +7838,19 @@ msgstr "ஏதாவது ஒரு கட்டத்தில் சொடு
 msgid "Maybe they're all mines ..."
 msgstr "எல்லாமே கண்ணிவெடியாக இருக்கலாம்..."
 
-#: ../gnomine/gnomine.c:450
+#: ../gnomine/gnomine.c:451
 msgid "Resizing and SVG support:"
 msgstr "அளவு மாற்றம் மற்றும் SVG ஆதரவு"
 
-#: ../gnomine/gnomine.c:457
+#: ../gnomine/gnomine.c:458
 msgid "Faces:"
 msgstr "முகங்கள்:"
 
-#: ../gnomine/gnomine.c:460
+#: ../gnomine/gnomine.c:461
 msgid "Graphics:"
 msgstr "வரைகலை:"
 
-#: ../gnomine/gnomine.c:476
+#: ../gnomine/gnomine.c:477
 msgid ""
 "The popular logic puzzle minesweeper. Clear mines from a board using hints "
 "from squares you have already uncovered.\n"
@@ -7365,77 +7862,77 @@ msgstr ""
 "\n"
 "மைன்ஸ் க்னோம் விளையாட்டுகளில் ஒன்று"
 
-#: ../gnomine/gnomine.c:687
+#: ../gnomine/gnomine.c:688
 msgid "Field Size"
 msgstr "புலம் அளவு"
 
-#: ../gnomine/gnomine.c:710
+#: ../gnomine/gnomine.c:711
 msgid "Custom Size"
 msgstr "தனிப்பயன் அளவு"
 
-#: ../gnomine/gnomine.c:717
+#: ../gnomine/gnomine.c:718
 msgid "_Number of mines:"
 msgstr "கண்ணிகளின் _எண்ணிக்கை:"
 
-#: ../gnomine/gnomine.c:730
+#: ../gnomine/gnomine.c:731
 msgid "_Horizontal:"
 msgstr "_படுக்கைவசமாக:"
 
-#: ../gnomine/gnomine.c:742
+#: ../gnomine/gnomine.c:743
 msgid "_Vertical:"
 msgstr "_மேல்கீழாக:"
 
-#: ../gnomine/gnomine.c:759
+#: ../gnomine/gnomine.c:760
 msgid "Flags"
 msgstr "குறிப்பு கொடிகள்"
 
-#: ../gnomine/gnomine.c:762
+#: ../gnomine/gnomine.c:763
 msgid "_Use \"I'm not sure\" flags"
 msgstr "_U பயன்படுத்து \"எனக்கு தெரியும்\" குறியீடு"
 
-#: ../gnomine/gnomine.c:773
+#: ../gnomine/gnomine.c:774
 msgid "Warnings"
 msgstr "எச்சரிக்கைகள்"
 
-#: ../gnomine/gnomine.c:776
+#: ../gnomine/gnomine.c:777
 msgid "_Use \"Too many flags\" warning"
 msgstr "_U பயன்படுத்து \"மிகப் பல குறிப்புகள்\" குறியீடு"
 
-#: ../gnomine/gnomine.c:787
+#: ../gnomine/gnomine.c:788
 msgid "Mines Preferences"
 msgstr "கண்ணிவெடி விருப்பங்கள்"
 
-#: ../gnomine/gnomine.c:991
+#: ../gnomine/gnomine.c:992
 msgid "Width of grid"
 msgstr "சட்டத்தின் அகலம்"
 
-#: ../gnomine/gnomine.c:992
+#: ../gnomine/gnomine.c:993
 msgid "Height of grid"
 msgstr "சட்டத்தின் உயரம்"
 
-#: ../gnomine/gnomine.c:994
+#: ../gnomine/gnomine.c:995
 msgid "Number of mines"
 msgstr "கண்ணி வெடிகளின் எண்ணிக்கை"
 
-#: ../gnomine/gnomine.c:997 ../gnomine/gnomine.schemas.in.h:8
+#: ../gnomine/gnomine.c:998 ../gnomine/gnomine.schemas.in.h:8
 msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "பலகையின் அளவு(0-2=சிறியது-பெரியது  3 தனிப் பயன்)"
 
-#: ../gnomine/gnomine.c:998 ../gnotravex/gnotravex.c:398
+#: ../gnomine/gnomine.c:999 ../gnotravex/gnotravex.c:398
 #: ../gnotski/gnotski.c:466 ../iagno/gnothello.c:145
 msgid "X location of window"
 msgstr "X சாளர இடம்"
 
-#: ../gnomine/gnomine.c:1000 ../gnotravex/gnotravex.c:400
+#: ../gnomine/gnomine.c:1001 ../gnotravex/gnotravex.c:400
 #: ../gnotski/gnotski.c:468 ../iagno/gnothello.c:147
 msgid "Y location of window"
 msgstr "Y சாளர இடம்"
 
-#: ../gnomine/gnomine.c:1146
+#: ../gnomine/gnomine.c:1149
 msgid "Press to Resume"
 msgstr "மீண்டும் தொடர அமுக்கு"
 
-#: ../gnomine/gnomine.c:1180
+#: ../gnomine/gnomine.c:1183
 msgid "Time: "
 msgstr "நேரம்:"
 
@@ -7682,28 +8179,28 @@ msgstr "பலகையின் அளவு (2-6)"
 msgid "SIZE"
 msgstr "அளவு"
 
-#: ../gnotravex/gnotravex.c:1114
+#: ../gnotravex/gnotravex.c:1116
 msgid "Puzzle solved! Well done!"
 msgstr "வெற்றி! புதிரின் விடை காணப்பட்டது!"
 
-#: ../gnotravex/gnotravex.c:1116
+#: ../gnotravex/gnotravex.c:1118
 msgid "Puzzle solved!"
 msgstr "புதிரின் விடைகாணப்பட்டது!"
 
-#: ../gnotravex/gnotravex.c:1230
+#: ../gnotravex/gnotravex.c:1232
 msgid "Tetravex Scores"
 msgstr "டெட்ராவெக்ஸ் மதிப்புகள்"
 
-#: ../gnotravex/gnotravex.c:1497 ../mahjongg/mahjongg.c:977
+#: ../gnotravex/gnotravex.c:1498 ../mahjongg/mahjongg.c:977
 msgid "Game paused"
 msgstr "ஆட்டம் தாமதிக்கப்பட்டுள்ளது"
 
-#: ../gnotravex/gnotravex.c:1625
+#: ../gnotravex/gnotravex.c:1626
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "விளையாட்டு %d×%d பலகை"
 
-#: ../gnotravex/gnotravex.c:1907
+#: ../gnotravex/gnotravex.c:1908
 msgid ""
 "GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
 "the same numbers are touching each other.\n"
@@ -7920,23 +8417,23 @@ msgstr "அடுத்த புதிர்"
 msgid "Previous Puzzle"
 msgstr "முந்தைய புதிர்"
 
-#: ../gnotski/gnotski.c:675
+#: ../gnotski/gnotski.c:677
 msgid "Level completed."
 msgstr "மட்டம் முடிந்தது"
 
-#: ../gnotski/gnotski.c:813
+#: ../gnotski/gnotski.c:815
 msgid "The Puzzle Has Been Solved!"
 msgstr "புதிரின் விடைகாணப்பட்டது!"
 
-#: ../gnotski/gnotski.c:830
+#: ../gnotski/gnotski.c:832
 msgid "Klotski Scores"
 msgstr "க்லோட்ஸ்கி மதிப்பெண்கள்"
 
-#: ../gnotski/gnotski.c:833
+#: ../gnotski/gnotski.c:835
 msgid "Puzzle:"
 msgstr "புதிர்:"
 
-#: ../gnotski/gnotski.c:917
+#: ../gnotski/gnotski.c:919
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -7946,7 +8443,7 @@ msgstr ""
 "\n"
 "க்லோட்ஸ்கி நிரல் சரியாக நிறுவப்பட்டதா என சோதிக்கவும்."
 
-#: ../gnotski/gnotski.c:1164
+#: ../gnotski/gnotski.c:1166
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -7959,12 +8456,12 @@ msgstr ""
 "\n"
 "க்லோட்ஸ்கி நிரல் சரியாக நிறுவப்பட்டதா என சோதிக்கவும்."
 
-#: ../gnotski/gnotski.c:1203
+#: ../gnotski/gnotski.c:1205
 #, c-format
 msgid "Moves: %d"
 msgstr "நகர்வுகள்:%d"
 
-#: ../gnotski/gnotski.c:1532
+#: ../gnotski/gnotski.c:1534
 msgid ""
 "Sliding Block Puzzles\n"
 "\n"
@@ -8436,37 +8933,37 @@ msgstr "_கடைசி முடிவை மாற்று"
 msgid "_Tile set:"
 msgstr "_ஓடுல் அமைவு:"
 
-#: ../libgames-support/eggdesktopfile.c:165
+#: ../libgames-support/eggdesktopfile.c:169
 #, c-format
 msgid "File is not a valid .desktop file"
 msgstr "கோப்பு செல்லுபடியாகும்  .desktop கோப்பு அல்ல"
 
-#: ../libgames-support/eggdesktopfile.c:188
+#: ../libgames-support/eggdesktopfile.c:192
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "அடையாளம் காண இயலாத மேல்மேசை கோப்பு `%s'"
 
-#: ../libgames-support/eggdesktopfile.c:958
+#: ../libgames-support/eggdesktopfile.c:966
 #, c-format
 msgid "Starting %s"
 msgstr "%s ஐ துவக்குகிறது"
 
-#: ../libgames-support/eggdesktopfile.c:1100
+#: ../libgames-support/eggdesktopfile.c:1108
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "பயன்பாடு கட்டளை வரியில் ஆவணங்களை ஒப்புக்கொள்ளாது"
 
-#: ../libgames-support/eggdesktopfile.c:1168
+#: ../libgames-support/eggdesktopfile.c:1176
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "அடையாளம் காண இயலாத துவக்க தேர்வு : %d"
 
-#: ../libgames-support/eggdesktopfile.c:1373
+#: ../libgames-support/eggdesktopfile.c:1381
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "'Type=Link' மேல்மேசை உள்ளீடுக்கு ஆவண யூஆர்ஐ ஐ கொடுக்க இயலாது"
 
-#: ../libgames-support/eggdesktopfile.c:1394
+#: ../libgames-support/eggdesktopfile.c:1402
 #, c-format
 msgid "Not a launchable item"
 msgstr "துவக்க முடியாத உருப்படி"
@@ -8643,10 +9140,6 @@ msgctxt "card symbol"
 msgid "1"
 msgstr "1"
 
-#: ../libgames-support/games-card-selector.c:123
-msgid "Card Style"
-msgstr "சீட்டு பாணி"
-
 #: ../libgames-support/games-controls.c:286
 msgid "Unknown Command"
 msgstr "தெரியாத கட்டளை"
@@ -8696,6 +9189,15 @@ msgstr "Y பொருத்தம்."
 msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
 msgstr "உயரவாட்டு பொருத்தம்.0 முதல் (இடது) 1 வரை (வலது)"
 
+#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
+#: ../libgames-support/games-help.c:114, c-format
+msgid "Help file “%s.%s” not found"
+msgstr "உதவி கோப்பு“%s.%s” காணப்படவில்லை"
+
+#: ../libgames-support/games-runtime.c:273
+msgid "Could not show link"
+msgstr "தொடுப்புகளை காட்ட முடியவில்லை"
+
 #. Note that this assumes the default style is plain.
 #: ../libgames-support/games-scores-dialog.c:119
 #: ../libgames-support/games-scores-dialog.c:546
@@ -8708,119 +9210,121 @@ msgstr "மதிப்பெண்கள்"
 msgid "%dm %ds"
 msgstr "%dm %ds"
 
-#: ../libgames-support/games-stock.c:48
+#: ../libgames-support/games-stock.c:47
 msgid "End the current game"
 msgstr "தற்போதைய விளையாட்டை முடி"
 
-#: ../libgames-support/games-stock.c:49
+#: ../libgames-support/games-stock.c:48
 msgid "Toggle fullscreen mode"
 msgstr "முழுதிரை பாங்கிற்கு மாறுக"
 
-#: ../libgames-support/games-stock.c:51
+#: ../libgames-support/games-stock.c:50
 msgid "Leave fullscreen mode"
 msgstr "முழுத்திரை பாணியை விடவும்"
 
-#: ../libgames-support/games-stock.c:53
+#: ../libgames-support/games-stock.c:52
 msgid "End the current network game and return to network server"
 msgstr "இப்போதைய பிணைய ஆட்டத்தை முடிவு செய்து பிணைய வழங்கனுக்கு திரும்பவும்."
 
-#: ../libgames-support/games-stock.c:55 ../mahjongg/mahjongg.c:1249
+#: ../libgames-support/games-stock.c:54 ../mahjongg/mahjongg.c:1249
 msgid "Pause the game"
 msgstr "விளையாட்டை தாமதி"
 
-#: ../libgames-support/games-stock.c:56
+#: ../libgames-support/games-stock.c:55
 msgid "Show a list of players in the network game"
 msgstr "பிணைய ஆட்டத்தில் உள்ள வீரர்கள் பட்டியலைக் காட்டு"
 
-#: ../libgames-support/games-stock.c:59 ../mahjongg/mahjongg.c:1252
+#: ../libgames-support/games-stock.c:58 ../mahjongg/mahjongg.c:1252
 msgid "Resume the paused game"
 msgstr "தாமதித்த விளையாட்டை தொடர்"
 
-#: ../libgames-support/games-stock.c:60
+#: ../libgames-support/games-stock.c:59
 msgid "View the scores"
 msgstr "மதிப்பெண்களை பார்க்க"
 
-#: ../libgames-support/games-stock.c:64
+#: ../libgames-support/games-stock.c:63
 msgid "Configure the game"
 msgstr "ஆட்டத்தை அமை"
 
-#: ../libgames-support/games-stock.c:65
+#: ../libgames-support/games-stock.c:64
 msgid "Quit this game"
 msgstr "இந்த விளையாட்டை முடி"
 
-#: ../libgames-support/games-stock.c:319
+#: ../libgames-support/games-stock.c:318
 msgid "_Fullscreen"
 msgstr "_முழுத்திரை"
 
 #. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../libgames-support/games-stock.c:322
+#: ../libgames-support/games-stock.c:321
 msgid "_New"
 msgstr "_புதிய"
 
-#: ../libgames-support/games-stock.c:325
+#: ../libgames-support/games-stock.c:324
 msgid "_Redo Move"
 msgstr "_மீளச் செய்"
 
 #. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../libgames-support/games-stock.c:327
+#: ../libgames-support/games-stock.c:326
 msgid "_Reset"
 msgstr "_மீட்டமை"
 
 #. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:329
+#: ../libgames-support/games-stock.c:328
 msgid "_Restart"
 msgstr "_மீண்டும் துவக்கு"
 
-#: ../libgames-support/games-stock.c:331
+#: ../libgames-support/games-stock.c:330
 msgid "_Deal"
 msgstr "_ச சீட்டுகளை பறிமாறு"
 
-#: ../libgames-support/games-stock.c:333
+#: ../libgames-support/games-stock.c:332
 msgid "_Leave Fullscreen"
 msgstr "முழுத்திரையை _விடவும்"
 
-#: ../libgames-support/games-stock.c:335
+#: ../libgames-support/games-stock.c:334
 msgid "L_eave Game"
 msgstr "விளையாட்டை விட்டு வெளியேறுக (_e)"
 
-#: ../libgames-support/games-stock.c:336
+#: ../libgames-support/games-stock.c:335
 msgid "Player _List"
 msgstr "போட்டியாளர் பட்டியல்"
 
-#: ../libgames-support/games-stock.c:337
+#: ../libgames-support/games-stock.c:336
 msgid "_Pause"
 msgstr "_தாமதி"
 
-#: ../libgames-support/games-stock.c:338
+#: ../libgames-support/games-stock.c:337
 msgid "Res_ume"
 msgstr "தொ_டர்"
 
-#: ../libgames-support/games-stock.c:339
+#: ../libgames-support/games-stock.c:338
 msgid "_Scores"
 msgstr "_மதிப்பெண்கள்"
 
-#: ../libgames-support/games-stock.c:340
+#: ../libgames-support/games-stock.c:339
 msgid "_End Game"
 msgstr "_ஆட்டத்தை முடி"
 
-#: ../libgames-support/games-stock.c:346
+#. Work around maemo brokenness wrt. stock item translations.
+#. * See https://bugs.maemo.org/show_bug.cgi?id=1449 .
+#: ../libgames-support/games-stock.c:345
 msgid "_About"
 msgstr "_பற்றி"
 
-#: ../libgames-support/games-stock.c:347
+#: ../libgames-support/games-stock.c:346
 msgid "_Cancel"
 msgstr "_ந நீக்கு"
 
-#: ../libgames-support/games-stock.c:348
+#: ../libgames-support/games-stock.c:347
 msgid "_Close"
 msgstr "_மூடு"
 
-#: ../libgames-support/games-stock.c:349
+#: ../libgames-support/games-stock.c:348
 msgid "_OK"
 msgstr "சரி (_O)"
 
 #. %s is replaced with the name of the game in gnome-games.
-#: ../libgames-support/games-stock.c:410
+#: ../libgames-support/games-stock.c:409
 #, c-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
@@ -8952,15 +9456,15 @@ msgstr "மஹ்ஜொங்கு - %s"
 msgid "Redo the last move"
 msgstr "கடைசி செயலை செயல் நீக்கு"
 
-#: ../mahjongg/mahjongg.c:1445
+#: ../mahjongg/mahjongg.c:1447
 msgid "Tiles Left:"
 msgstr "மீதம் ஓடுகள்:"
 
-#: ../mahjongg/mahjongg.c:1454
+#: ../mahjongg/mahjongg.c:1456
 msgid "Moves Left:"
 msgstr "மீதம் நகர்வுகள்:"
 
-#: ../mahjongg/mahjongg.c:1516
+#: ../mahjongg/mahjongg.c:1518
 msgid "Remove matching pairs of tiles."
 msgstr "பொருத்தும் ஜோடி ஓடுகளை நீக்கு."
 
@@ -9149,6 +9653,9 @@ msgid ""
 "installed correctly and try again."
 msgstr "இந்த ஆட்டத்தை விளையாட இயலாது.விளையாட்டு நிரல் சரியாக நிறுவப்பட்டதா என சோதிக்கவும்."
 
+#~ msgid "Could not show Aisleriot help"
+#~ msgstr "எய்ல்ரயட் க்கு உதவி காட்ட முடியவில்லை"
+
 #~ msgid "chess-piece|Queen"
 #~ msgstr "ராணி "
 
@@ -9232,10 +9739,6 @@ msgstr "இந்த ஆட்டத்தை விளையாட இயலா
 
 #~ msgid "_Stop"
 #~ msgstr "_நிறுத்து"
-
-#~| msgid "Spider Three Decks"
-#~ msgid "Klondike Three Decks"
-#~ msgstr "க்ளாண்டைக் மூன்று அடுக்குகள்"
 
 #~ msgid "Leave _Fullscreen"
 #~ msgstr "முழுத்திரையை _விடவும்"
