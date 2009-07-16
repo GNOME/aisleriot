@@ -12,7 +12,7 @@ libgames_support_LTLIBRARIES = libgames-support.la
 libgames_supportdir = $(commondatadir)
 
 if BUILD_LIBGAMESCARDS
-noinst_LTLIBRARIES += libgamescards.la
+noinst_LTLIBRARIES = libgamescards.la
 endif
 
 # libgames-support.la
