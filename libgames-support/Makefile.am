@@ -371,7 +371,7 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support.la
 	--pkg cogl-$(CLUTTER_API_VERSION) \
 	$(libgames_support_la_SOURCES)
 
-BUILT_GIRSOURCES += GnomeGamesSupport-1.0.gir GGZ-1.0.gir
+BUILT_GIRSOURCES += GGZ-1.0.gir
 
 # INTROSPECTION_GIRDIR/INTROSPECTION_TYPELIBDIR aren't the right place to
 # install anything - we need to install inside our prefix.
@@ -384,5 +384,5 @@ typelibs_DATA = $(BUILT_GIRSOURCES:.gir=.typelib)
 %.typelib: %.gir $(INTROSPECTION_COMPILER)
 	$(QUIET_GEN)$(DEBUG) $(INTROSPECTION_COMPILER) --includedir=$(srcdir) --includedir=. $(INTROSPECTION_COMPILER_OPTS) $< -o $(builddir)/$(@F)
 
-CLEANFILES += $(BUILT_GIRSOURCES) $(typelibs_DATA)
+CLEANFILES += GnomeGamesSupport-1.0.gir $(typelibs_DATA)
 endif
