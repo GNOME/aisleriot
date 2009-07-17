@@ -8,12 +8,13 @@ EXTRA_DIST = \
 	GGZ-1.0.gir		\
 	$(NULL)
 
-libgames_support_LTLIBRARIES = libgames-support.la
-libgames_supportdir = $(commondatadir)
+noinst_LTLIBRARIES = libgames-support.la
 
 if BUILD_LIBGAMESCARDS
 noinst_LTLIBRARIES += libgamescards.la
 endif
+
+pkglib_LTLIBRARIES =
 
 # libgames-support.la
 
@@ -351,38 +352,49 @@ stamp-games-marshal.h: games-marshal.list Makefile
 	&& echo timestamp > $(@F)
 
 if HAVE_INTROSPECTION
-BUILT_GIRSOURCES =
 
-GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support.la
+pkglib_LTLIBRARIES += libgames-support-gi.la
+
+libgames_support_gi_la_SOURCES = $(libgames_support_la_SOURCES) $(nodist_libgames_support_la_SOURCES)
+libgames_support_gi_la_CPPFLAGS = $(libgames_support_la_CPPFLAGS)
+libgames_support_gi_la_CFLAGS = $(libgames_support_la_CFLAGS)
+libgames_support_gi_la_LIBADD = $(libgames_support_la_LIBADD)
+
+BUILT_GIRSOURCES = GnomeGamesSupport-1.0.gir GGZ-1.0.gir
+
+GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la
 	$(QUIET_GEN)$(INTROSPECTION_SCANNER) -v \
 	--namespace GnomeGamesSupport --nsversion=1.0 \
 	--strip-prefix=games \
-	$(INCLUDES) \
 	--add-include-path=$(srcdir) --add-include=path=. \
 	--include=Clutter-$(CLUTTER_API_VERSION) \
 	--include=Cogl-$(CLUTTER_API_VERSION) \
 	--include=Gtk-2.0 \
 	--include=GGZ-1.0 \
-	--library=games-support \
+	--library=games-support-gi \
+	--libtool="$(SHAVE_SAVED_LIBTOOL)" \
 	--output $@ \
 	--pkg gobject-2.0 \
 	--pkg gtk+-2.0 \
 	--pkg clutter-$(CLUTTER_API_VERSION) \
 	--pkg cogl-$(CLUTTER_API_VERSION) \
-	$(libgames_support_la_SOURCES)
+	-I$(top_srcdir) \
+	-I$(top_builddir) \
+	$(filter %.h,$(libgames_support_gi_la_SOURCES))
 
-BUILT_GIRSOURCES += GnomeGamesSupport-1.0.gir GGZ-1.0.gir
-
+# FIXMEchpe: this looks bogus. If the introspection.m4 macro gets it wrong, fix it!
 # INTROSPECTION_GIRDIR/INTROSPECTION_TYPELIBDIR aren't the right place to
 # install anything - we need to install inside our prefix.
 girdir = $(datadir)/gir-1.0
 gir_DATA = $(BUILT_GIRSOURCES)
 
-typelibsdir = $(libdir)/girepository-1.0/
+typelibsdir = $(libdir)/girepository-1.0
 typelibs_DATA = $(BUILT_GIRSOURCES:.gir=.typelib)
 
 %.typelib: %.gir $(INTROSPECTION_COMPILER)
-	$(QUIET_GEN)$(DEBUG) $(INTROSPECTION_COMPILER) --includedir=$(srcdir) --includedir=. $(INTROSPECTION_COMPILER_OPTS) $< -o $(builddir)/$(@F)
+	$(QUIET_GEN)$(DEBUG) $(INTROSPECTION_COMPILER) --includedir=$(srcdir) --includedir=. $(INTROSPECTION_COMPILER_OPTS) $< -o $@
 
 CLEANFILES += GnomeGamesSupport-1.0.gir $(typelibs_DATA)
-endif
+
+endif # HAVE_INTROSPECTION
+
