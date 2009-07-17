@@ -341,13 +341,13 @@ DISTCLEANFILES = $(schema_DATA)
 games-marshal.c: stamp-games-marshal.c
 	@true
 stamp-games-marshal.c: games-marshal.list Makefile
-	$(GLIB_GENMARSHAL) --prefix=games_marshal $< --header --body $(GLIB_GENMARSHAL_INTERNAL) > games-marshal.c \
+	$(GLIB_GENMARSHAL) --prefix=games_marshal $< --header --body > games-marshal.c \
 	&& echo timestamp > $(@F)
 
 games-marshal.h: stamp-games-marshal.h
 	@true
 stamp-games-marshal.h: games-marshal.list Makefile
-	$(GLIB_GENMARSHAL) --prefix=games_marshal $< --header $(GLIB_GENMARSHAL_INTERNAL) > games-marshal.h \
+	$(GLIB_GENMARSHAL) --prefix=games_marshal $< --header > games-marshal.h \
 	&& echo timestamp > $(@F)
 
 if HAVE_INTROSPECTION
