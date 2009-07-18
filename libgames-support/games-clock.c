@@ -115,6 +115,9 @@ games_clock_start (GamesClock *clock_widget)
 {
   g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
 
+  if (clock_widget->started)
+    return; /* nothing to do */
+
   clock_widget->started = TRUE;
   clock_widget->start_time = time (NULL) - (clock_widget->stop_time - clock_widget->start_time);
 
@@ -147,6 +150,9 @@ void
 games_clock_stop (GamesClock *clock_widget)
 {
   g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
+
+  if (!clock_widget->started)
+    return;
 
   clock_widget->started = FALSE;
   clock_widget->stop_time = time (NULL);
@@ -201,8 +207,10 @@ games_clock_add_seconds (GamesClock *clock_widget,
 {
   g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
 
-  if (!clock_widget->started)
+  if (!clock_widget->started) {
     g_warning ("Clock not started, cannot add seconds!\n");
+    return;
+  }
 
   clock_widget->start_time -= seconds;
   clock_paint (clock_widget);
