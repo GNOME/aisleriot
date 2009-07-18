@@ -356,7 +356,7 @@ if HAVE_INTROSPECTION
 pkglib_LTLIBRARIES += libgames-support-gi.la
 
 libgames_support_gi_la_SOURCES = $(libgames_support_la_SOURCES) $(nodist_libgames_support_la_SOURCES)
-libgames_support_gi_la_CPPFLAGS = $(libgames_support_la_CPPFLAGS)
+libgames_support_gi_la_CPPFLAGS = $(libgames_support_la_CPPFLAGS) -DLIBGAMES_SUPPORT_GI
 libgames_support_gi_la_CFLAGS = $(libgames_support_la_CFLAGS)
 libgames_support_gi_la_LIBADD = $(libgames_support_la_LIBADD)
 

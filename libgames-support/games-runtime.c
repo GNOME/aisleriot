@@ -350,11 +350,14 @@ games_runtime_init (const char *name)
   /* If we're going to use gconf, gnome-vfs, or canberra, we need to
    * init threads; and this has to be done before calling any other glib functions.
    */
-  if(!g_thread_get_initialized()) {
-    g_thread_init (NULL);
-  }
-  /* May call any glib function after this point */
+#if defined(LIBGAMES_SUPPORT_GI)
+  /* Seed has already called g_thread_init() */
+  g_assert (g_thread_get_initialized());
+#else
+  g_thread_init (NULL);
 #endif
+#endif
+  /* May call any glib function after this point */
 
   _games_profile_start ("games_runtime_init");
 
