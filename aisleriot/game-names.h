@@ -101,13 +101,6 @@ N_("Neighbor")
  locale, use that; otherwise you can translate this string
  freely, literally, or not at all, at your option.
  */
-N_("Terrace~")
-
-/* Translators: this string is the name of a game of patience.
- If there is an established standard name for this game in your
- locale, use that; otherwise you can translate this string
- freely, literally, or not at all, at your option.
- */
 N_("Jamestown")
 
 /* Translators: this string is the name of a game of patience.
