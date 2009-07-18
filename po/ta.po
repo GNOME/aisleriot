@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-15 21:21+0530\n"
-"PO-Revision-Date: 2009-07-15 21:29+0530\n"
+"POT-Creation-Date: 2009-07-18 16:48+0530\n"
+"PO-Revision-Date: 2009-07-18 16:55+0530\n"
 "Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
 "Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
@@ -1511,7 +1511,8 @@ msgstr "_அறிக்கை"
 #: ../gnome-sudoku/src/lib/main.py:241 ../gnomine/gnomine.c:826
 #: ../gnotravex/gnotravex.c:302 ../gnotski/gnotski.c:414
 #: ../gtali/gyahtzee.c:701 ../iagno/gnothello.c:812
-#: ../mahjongg/mahjongg.c:1242 ../same-gnome/ui.c:455
+#: ../lightsoff/data/lightsoff.ui.h:2 ../mahjongg/mahjongg.c:1242
+#: ../same-gnome/ui.c:455 ../same-gnome-clutter/data/same-gnome.ui.h:2
 msgid "_Game"
 msgstr "_ஆட்டம்"
 
@@ -1534,7 +1535,8 @@ msgstr "(_C)கட்டுப்பாடு"
 #: ../gnometris/tetris.cpp:111 ../gnome-sudoku/src/lib/main.py:269
 #: ../gnomine/gnomine.c:828 ../gnotravex/gnotravex.c:306
 #: ../gnotski/gnotski.c:416 ../gtali/gyahtzee.c:703 ../iagno/gnothello.c:814
-#: ../mahjongg/mahjongg.c:1244 ../same-gnome/ui.c:458
+#: ../lightsoff/data/lightsoff.ui.h:3 ../mahjongg/mahjongg.c:1244
+#: ../same-gnome/ui.c:458 ../same-gnome-clutter/data/same-gnome.ui.h:3
 msgid "_Help"
 msgstr "உதவி (_H)"
 
@@ -9190,7 +9192,8 @@ msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
 msgstr "உயரவாட்டு பொருத்தம்.0 முதல் (இடது) 1 வரை (வலது)"
 
 #. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../libgames-support/games-help.c:114, c-format
+#: ../libgames-support/games-help.c:114
+#, c-format
 msgid "Help file “%s.%s” not found"
 msgstr "உதவி கோப்பு“%s.%s” காணப்படவில்லை"
 
@@ -9336,13 +9339,32 @@ msgstr ""
 "அனுமதிக்கான இந்த %d பதிப்பு அல்லது அடுத்த பதிப்புகள் விதிகளின் படி நீங்கள் (விருப்பப்படி) "
 "மாற்றலாம். அல்லது மீண்டும் பறிமாறலாம்"
 
-#: ../lightsoff/lightsoff.desktop.in.in.h:1
+#: ../lightsoff/lightsoff.desktop.in.in.h:1 ../lightsoff/data/lightsoff.ui.h:1
+#: ../lightsoff/data/settings.ui.h:2
+#: ../same-gnome-clutter/data/settings.ui.h:6
 msgid "Lights Off"
 msgstr "விளக்குகளை அணையுங்கள்"
 
 #: ../lightsoff/lightsoff.desktop.in.in.h:2
 msgid "Turn off all the lights"
 msgstr "அனைத்து விளக்குகளையும் அணையுங்கள்"
+
+#: ../lightsoff/data/settings.ui.h:1
+msgid "<b>Look &amp; Feel</b>"
+msgstr "<b> பார்வை  &amp; உணர் </b> "
+
+#: ../lightsoff/data/settings.ui.h:3
+#: ../same-gnome-clutter/data/settings.ui.h:8
+msgid "Theme:"
+msgstr "கருத்து:"
+
+#: ../lightsoff/data/settings.ui.h:4
+msgid "Use colors from GNOME theme"
+msgstr "க்னோம் கருப்பொருளில இருந்து நிறத்தைப் பயன்படுத்து"
+
+#: ../lightsoff/data/settings.ui.h:5
+msgid "gtk-close"
+msgstr "ஜிடிகே- மூடு"
 
 #: ../mahjongg/drawing.c:305
 msgid ""
@@ -9541,10 +9563,13 @@ msgid "Game size (1=small, 3=large)"
 msgstr "பலகையின் அளவு(1=சிறியது, 3 பெரியது)"
 
 #: ../same-gnome/same-gnome.desktop.in.in.h:1
+#: ../same-gnome-clutter/same-gnome-clutter-c.desktop.in.in.h:1
+#: ../same-gnome-clutter/same-gnome-clutter.desktop.in.in.h:1
 msgid "Clear the screen by removing groups of colored balls"
 msgstr "வண்ணப் பந்துகளை குழுக்களாக நீக்கி திரையை காலி செய்"
 
 #: ../same-gnome/same-gnome.desktop.in.in.h:2
+#: ../same-gnome-clutter/data/same-gnome.ui.h:1
 msgid "Same GNOME"
 msgstr "அதே நோம்"
 
@@ -9652,6 +9677,42 @@ msgid ""
 "It is impossible to play the game. Please check that the game has been "
 "installed correctly and try again."
 msgstr "இந்த ஆட்டத்தை விளையாட இயலாது.விளையாட்டு நிரல் சரியாக நிறுவப்பட்டதா என சோதிக்கவும்."
+
+#: ../same-gnome-clutter/data/settings.ui.h:1
+msgid "<b>Appearance</b>"
+msgstr "<b>தோற்றம்</b>"
+
+#: ../same-gnome-clutter/data/settings.ui.h:2
+msgid "<b>Operation</b>"
+msgstr "<b>செயல்பாடு</b>"
+
+#: ../same-gnome-clutter/data/settings.ui.h:3
+msgid "<b>Setup</b>"
+msgstr "<b>அமைப்பு</b>"
+
+#: ../same-gnome-clutter/data/settings.ui.h:4
+msgid "Board size:"
+msgstr "பலகை அளவு:"
+
+#: ../same-gnome-clutter/data/settings.ui.h:5
+msgid "Fly score increment (words!)"
+msgstr "மதிப்பெண்கள் உயர்வு  (சொற்கள்!)"
+
+#: ../same-gnome-clutter/data/settings.ui.h:7
+msgid "Number of colors:"
+msgstr "நிறங்களின் எண்:"
+
+#: ../same-gnome-clutter/data/settings.ui.h:9
+msgid "Zealous Animation"
+msgstr "வேகமான அசைவூடு"
+
+#: ../same-gnome-clutter/same-gnome-clutter-c.desktop.in.in.h:2
+msgid "Same GNOME (Clutter, C)"
+msgstr "அதே நோம் (க்லட்டர், C)"
+
+#: ../same-gnome-clutter/same-gnome-clutter.desktop.in.in.h:2
+msgid "Same GNOME (Clutter)"
+msgstr "அதே நோம்  (க்லட்டர்)"
 
 #~ msgid "Could not show Aisleriot help"
 #~ msgstr "எய்ல்ரயட் க்கு உதவி காட்ட முடியவில்லை"
