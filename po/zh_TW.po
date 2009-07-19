@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games 2.27.2\n"
+"Project-Id-Version: gnome-games 2.27.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-27 20:19+0800\n"
-"PO-Revision-Date: 2009-05-27 20:14+0800\n"
+"POT-Creation-Date: 2009-07-19 08:25+0800\n"
+"PO-Revision-Date: 2009-07-17 06:18+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Taiwan) <zh-l10n@lists.linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -95,8 +95,8 @@ msgstr "是否顯示狀態列"
 msgid "Whether or not to show the toolbar"
 msgstr "是否顯示工具列"
 
-#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:583
-#: ../aisleriot/window.c:601 ../aisleriot/window.c:609
+#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:306
+#: ../aisleriot/window.c:619 ../aisleriot/window.c:627
 msgid "FreeCell Solitaire"
 msgstr "FreeCell 紙牌接龍遊戲"
 
@@ -104,18 +104,18 @@ msgstr "FreeCell 紙牌接龍遊戲"
 msgid "Play the popular FreeCell card game"
 msgstr "玩受歡迎的 FreeCell 紙牌接龍遊戲"
 
-#: ../aisleriot/game.c:1134
+#: ../aisleriot/game.c:1143
 #, c-format
 msgid ""
 "Aisleriot cannot load the file “%s”. Please check your Aisleriot "
 "installation."
 msgstr "Aisleriot 無法載入檔案“%s”。請檢查是否已正確安裝 Aisleriot。"
 
-#: ../aisleriot/game.c:1575
+#: ../aisleriot/game.c:1587
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot 找不到您最後玩過的遊戲。"
 
-#: ../aisleriot/game.c:1576
+#: ../aisleriot/game.c:1588
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -124,7 +124,7 @@ msgstr ""
 "這樣通常表示您準備執行舊版本的 Aisleriot，而該版本沒有您上次玩的遊戲。現在會"
 "改為執行預設的遊戲，即 Klondike (Windows 的接龍)。"
 
-#: ../aisleriot/game.c:1934
+#: ../aisleriot/game.c:1946
 msgid "This game does not have hint support yet."
 msgstr "這個遊戲仍未可以顯示提示訊息。"
 
@@ -132,71 +132,845 @@ msgstr "這個遊戲仍未可以顯示提示訊息。"
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../aisleriot/game.c:1968 ../aisleriot/game.c:1996
+#: ../aisleriot/game.c:1980 ../aisleriot/game.c:2008
 #, c-format
 msgid "Move %s onto %s."
 msgstr "將%s 移至%s 上面。"
 
-#: ../aisleriot/game.c:2018
+#: ../aisleriot/game.c:2030
 #, c-format
 msgid "You are searching for a %s."
 msgstr "您正在找%s。"
 
-#: ../aisleriot/game.c:2023
+#: ../aisleriot/game.c:2035
 msgid "This game is unable to provide a hint."
 msgstr "在此遊戲中無法提供任何提示。"
 
-#: ../aisleriot/sol.c:120
-msgid "Could not show link"
-msgstr "無法顯示連結"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:6
+msgid "Peek"
+msgstr "Peek"
 
-#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../aisleriot/sol.c:309
-#, c-format
-msgid "Help file \"%s.%s\" not found"
-msgstr "找不到說明文件檔案「%s.%s」"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:13
+msgid "Auld Lang Syne"
+msgstr "Auld Lang Syne"
 
-#. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/sol.c:314 ../aisleriot/sol.c:392 ../aisleriot/window.c:1967
-#: ../dependencies/ggz-gtk/ggzclient.c:124
-#: ../dependencies/ggz-gtk/ggzclient.c:380
-#: ../dependencies/ggz-gtk/ggzclient.c:561
-#: ../dependencies/ggz-gtk/ggzclient.c:596
-#: ../dependencies/ggz-gtk/ggzclient.c:649
-#: ../dependencies/ggz-gtk/ggzclient.c:1079
-#: ../dependencies/ggz-gtk/launch.c:325
-msgid "Error"
-msgstr "錯誤"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:20
+msgid "Fortunes"
+msgstr "Fortunes"
 
-#: ../aisleriot/sol.c:373
-#, c-format
-msgid "Could not show help for “%s”"
-msgstr "無法顯示“%s”的求助文件"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:27
+msgid "Seahaven"
+msgstr "Seahaven"
 
-#: ../aisleriot/sol.c:376
-msgid "Could not show Aisleriot help"
-msgstr "無法顯示 Aisleriot 的求助文件"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:34
+msgid "King Albert"
+msgstr "King Albert"
 
-#: ../aisleriot/sol.c:481
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:41
+msgid "First Law"
+msgstr "First Law"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:48
+msgid "Straight Up"
+msgstr "Straight Up"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:55
+msgid "Jumbo"
+msgstr "Jumbo"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:62
+msgid "Accordion"
+msgstr "Accordion"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:69
+msgid "Ten Across"
+msgstr "Ten Across"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:76
+msgid "Plait"
+msgstr "Plait"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:83
+msgid "Lady Jane"
+msgstr "Lady Jane"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:90
+msgid "Gypsy"
+msgstr "Gypsy"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:97
+msgid "Neighbor"
+msgstr "Neighbor"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:104
+msgid "Jamestown"
+msgstr "Jamestown"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:111
+msgid "Osmosis"
+msgstr "Osmosis"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:118
+msgid "Kings Audience"
+msgstr "Kings Audience"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:125
+msgid "Glenwood"
+msgstr "Glenwood"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:132
+msgid "Gay Gordons"
+msgstr "Gay Gordons"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:139
+msgid "Monte Carlo"
+msgstr "Monte Carlo"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:146
+msgid "Kansas"
+msgstr "Kansas"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:153
+msgid "Camelot"
+msgstr "Camelot"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:160
+msgid "Fourteen"
+msgstr "Fourteen"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:167
+msgid "Scorpion"
+msgstr "Scorpion"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:174
+msgid "Isabel"
+msgstr "Isabel"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:181
+msgid "Escalator"
+msgstr "Escalator"
+
+# (Abel) Remove all translated entries. Most references online are in
+# English, so translating them will create difficulty for people to
+# search reference online.
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:188
+msgid "Agnes"
+msgstr "Agnes"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:195
+msgid "Bristol"
+msgstr "Bristol"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:202
+msgid "Quatorze"
+msgstr "Quatorze"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:209
+msgid "Bear River"
+msgstr "Bear River"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:216
+msgid "Gold Mine"
+msgstr "Gold Mine"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:223
+msgid "Athena"
+msgstr "Athena"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:230
+msgid "Spiderette"
+msgstr "Spiderette"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:237
+msgid "Chessboard"
+msgstr "Chessboard"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:244
+msgid "Backbone"
+msgstr "Backbone"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:251
+msgid "Yukon"
+msgstr "Yukon"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:258
+msgid "Union Square"
+msgstr "Union Square"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:265
+msgid "Eight Off"
+msgstr "Eight Off"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:272
+msgid "Napoleons Tomb"
+msgstr "Napoleons Tomb"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:279
+msgid "Forty Thieves"
+msgstr "Forty Thieves"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:286
+msgid "Streets And Alleys"
+msgstr "Streets And Alleys"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:293
+msgid "Maze"
+msgstr "Maze"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:300
+msgid "Clock"
+msgstr "Clock"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:307
+msgid "Pileon"
+msgstr "Pileon"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:314
+msgid "Canfield"
+msgstr "Canfield"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:321
+msgid "Thirteen"
+msgstr "Thirteen"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:328
+msgid "Bakers Game"
+msgstr "Bakers Game"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:335
+msgid "Triple Peaks"
+msgstr "Triple Peaks"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:342
+msgid "Easthaven"
+msgstr "Easthaven"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/game-names.h:349 ../aisleriot/rules/terrace.scm.h:20
+msgid "Terrace"
+msgstr "Terrace"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:356
+msgid "Aunt Mary"
+msgstr "Aunt Mary"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:363
+msgid "Carpet"
+msgstr "Carpet"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:370
+msgid "Sir Tommy"
+msgstr "Sir Tommy"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:377
+msgid "Diamond Mine"
+msgstr "Diamond Mine"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:384
+msgid "Yield"
+msgstr "Yield"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:391
+msgid "Labyrinth"
+msgstr "Labyrinth"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:398
+msgid "Thieves"
+msgstr "Thieves"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:405
+msgid "Saratoga"
+msgstr "Saratoga"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:412
+msgid "Cruel"
+msgstr "Cruel"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:419
+msgid "Block Ten"
+msgstr "Block Ten"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:426
+msgid "Will O The Wisp"
+msgstr "Will O The Wisp"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:433
+msgid "Odessa"
+msgstr "Odessa"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:440
+msgid "Eagle Wing"
+msgstr "Eagle Wing"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:447
+msgid "Treize"
+msgstr "Treize"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:454
+msgid "Zebra"
+msgstr "Zebra"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:461
+msgid "Cover"
+msgstr "Cover"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:468
+msgid "Elevator"
+msgstr "Elevator"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:475
+msgid "Fortress"
+msgstr "Fortress"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:482
+msgid "Giant"
+msgstr "Giant"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:489
+msgid "Spider"
+msgstr "Spider"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:496
+msgid "Gaps"
+msgstr "Gaps"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:503
+msgid "Bakers Dozen"
+msgstr "Bakers Dozen"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:510
+msgid "Whitehead"
+msgstr "Whitehead"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:517
+msgid "Freecell"
+msgstr "Freecell"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:524
+msgid "Helsinki"
+msgstr "Helsinki"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:531
+msgid "Spider Three Decks"
+msgstr "Spider Three Decks"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:538
+msgid "Scuffle"
+msgstr "Scuffle"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:545
+msgid "Poker"
+msgstr "Poker"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:552
+msgid "Klondike Three Decks"
+msgstr "Klondike Three Decks"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:559
+msgid "Valentine"
+msgstr "Valentine"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:566
+msgid "Royal East"
+msgstr "Royal East"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:573
+msgid "Thumb And Pouch"
+msgstr "Thumb And Pouch"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:580
+msgid "Klondike"
+msgstr "Klondike"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:587
+msgid "Doublets"
+msgstr "Doublets"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:594
+msgid "Template"
+msgstr "Template"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:601
+msgid "Golf"
+msgstr "Golf"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:608
+msgid "Westhaven"
+msgstr "Westhaven"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:615
+msgid "Beleaguered Castle"
+msgstr "Beleaguered Castle"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:622
+msgid "Hopscotch"
+msgstr "Hopscotch"
+
+#: ../aisleriot/sol.c:214
 msgid "Select the game type to play"
 msgstr "選擇要玩的遊戲類型"
 
-#: ../aisleriot/sol.c:481 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
+#: ../aisleriot/sol.c:214 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
 #: ../same-gnome/same-gnome.c:127 ../same-gnome/same-gnome.c:129
 msgid "NAME"
 msgstr "名稱"
 
-#: ../aisleriot/sol.c:483
+#: ../aisleriot/sol.c:216
 msgid "Select the game number"
 msgstr "選擇遊戲編號"
 
-#: ../aisleriot/sol.c:483 ../gnomine/gnomine.c:995 ../gtali/gyahtzee.c:110
+#: ../aisleriot/sol.c:216 ../gnomine/gnomine.c:996 ../gtali/gyahtzee.c:110
 #: ../gtali/gyahtzee.c:112 ../gtali/gyahtzee.c:116 ../gtali/gyahtzee.c:118
 #: ../same-gnome/same-gnome.c:131
 msgid "NUMBER"
 msgstr "數量"
 
-#: ../aisleriot/sol.c:583 ../aisleriot/window.c:610 ../aisleriot/window.c:2828
+#: ../aisleriot/sol.c:306 ../aisleriot/window.c:628 ../aisleriot/window.c:2881
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -602,405 +1376,55 @@ msgstr "N/A"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../aisleriot/translatable_game_names.h:1
-msgid "Accordion"
-msgstr "Accordion"
-
-# (Abel) Remove all translated entries. Most references online are in
-# English, so translating them will create difficulty for people to
-# search reference online.
-#: ../aisleriot/translatable_game_names.h:2
-msgid "Agnes"
-msgstr "Agnes"
-
-#: ../aisleriot/translatable_game_names.h:3
-msgid "Athena"
-msgstr "Athena"
-
-#: ../aisleriot/translatable_game_names.h:4
-msgid "Auld Lang Syne"
-msgstr "Auld Lang Syne"
-
-#: ../aisleriot/translatable_game_names.h:5
-msgid "Aunt Mary"
-msgstr "Aunt Mary"
-
-#: ../aisleriot/translatable_game_names.h:6
-msgid "Backbone"
-msgstr "Backbone"
-
-#: ../aisleriot/translatable_game_names.h:7
-msgid "Bakers Dozen"
-msgstr "Bakers Dozen"
-
-#: ../aisleriot/translatable_game_names.h:8
-msgid "Bakers Game"
-msgstr "Bakers Game"
-
-#: ../aisleriot/translatable_game_names.h:9
-msgid "Bear River"
-msgstr "Bear River"
-
-#: ../aisleriot/translatable_game_names.h:10
-msgid "Beleaguered Castle"
-msgstr "Beleaguered Castle"
-
-#: ../aisleriot/translatable_game_names.h:11
-msgid "Block Ten"
-msgstr "Block Ten"
-
-#: ../aisleriot/translatable_game_names.h:12
-msgid "Bristol"
-msgstr "Bristol"
-
-#: ../aisleriot/translatable_game_names.h:13
-msgid "Camelot"
-msgstr "Camelot"
-
-#: ../aisleriot/translatable_game_names.h:14
-msgid "Canfield"
-msgstr "Canfield"
-
-#: ../aisleriot/translatable_game_names.h:15
-msgid "Carpet"
-msgstr "Carpet"
-
-#: ../aisleriot/translatable_game_names.h:16
-msgid "Chessboard"
-msgstr "Chessboard"
-
-#: ../aisleriot/translatable_game_names.h:17
-msgid "Clock"
-msgstr "Clock"
-
-#: ../aisleriot/translatable_game_names.h:18
-msgid "Cover"
-msgstr "Cover"
-
-#: ../aisleriot/translatable_game_names.h:19
-msgid "Cruel"
-msgstr "Cruel"
-
-#: ../aisleriot/translatable_game_names.h:20
-msgid "Diamond Mine"
-msgstr "Diamond Mine"
-
-#: ../aisleriot/translatable_game_names.h:21
-msgid "Doublets"
-msgstr "Doublets"
-
-#: ../aisleriot/translatable_game_names.h:22
-msgid "Eagle Wing"
-msgstr "Eagle Wing"
-
-#: ../aisleriot/translatable_game_names.h:23
-msgid "Easthaven"
-msgstr "Easthaven"
-
-#: ../aisleriot/translatable_game_names.h:24
-msgid "Eight Off"
-msgstr "Eight Off"
-
-#: ../aisleriot/translatable_game_names.h:25
-msgid "Elevator"
-msgstr "Elevator"
-
-#: ../aisleriot/translatable_game_names.h:26
-msgid "Escalator"
-msgstr "Escalator"
-
-#: ../aisleriot/translatable_game_names.h:27
-msgid "First Law"
-msgstr "First Law"
-
-#: ../aisleriot/translatable_game_names.h:28
-msgid "Fortress"
-msgstr "Fortress"
-
-#: ../aisleriot/translatable_game_names.h:29
-msgid "Fortunes"
-msgstr "Fortunes"
-
-#: ../aisleriot/translatable_game_names.h:30
-msgid "Forty Thieves"
-msgstr "Forty Thieves"
-
-#: ../aisleriot/translatable_game_names.h:31
-msgid "Fourteen"
-msgstr "Fourteen"
-
-#: ../aisleriot/translatable_game_names.h:32
-msgid "Freecell"
-msgstr "Freecell"
-
-#: ../aisleriot/translatable_game_names.h:33
-msgid "Gaps"
-msgstr "Gaps"
-
-#: ../aisleriot/translatable_game_names.h:34
-msgid "Gay Gordons"
-msgstr "Gay Gordons"
-
-#: ../aisleriot/translatable_game_names.h:35
-msgid "Giant"
-msgstr "Giant"
-
-#: ../aisleriot/translatable_game_names.h:36
-msgid "Glenwood"
-msgstr "Glenwood"
-
-#: ../aisleriot/translatable_game_names.h:37
-msgid "Gold Mine"
-msgstr "Gold Mine"
-
-#: ../aisleriot/translatable_game_names.h:38
-msgid "Golf"
-msgstr "Golf"
-
-#: ../aisleriot/translatable_game_names.h:39
-msgid "Gypsy"
-msgstr "Gypsy"
-
-#: ../aisleriot/translatable_game_names.h:40
-msgid "Helsinki"
-msgstr "Helsinki"
-
-#: ../aisleriot/translatable_game_names.h:41
-msgid "Hopscotch"
-msgstr "Hopscotch"
-
-#: ../aisleriot/translatable_game_names.h:42
-msgid "Isabel"
-msgstr "Isabel"
-
-#: ../aisleriot/translatable_game_names.h:43
-msgid "Jamestown"
-msgstr "Jamestown"
-
-#: ../aisleriot/translatable_game_names.h:44
-msgid "Jumbo"
-msgstr "Jumbo"
-
-#: ../aisleriot/translatable_game_names.h:45
-msgid "Kansas"
-msgstr "Kansas"
-
-#: ../aisleriot/translatable_game_names.h:46
-msgid "King Albert"
-msgstr "King Albert"
-
-#: ../aisleriot/translatable_game_names.h:47
-msgid "Kings Audience"
-msgstr "Kings Audience"
-
-#: ../aisleriot/translatable_game_names.h:48
-msgid "Klondike"
-msgstr "Klondike"
-
-#: ../aisleriot/translatable_game_names.h:49
-msgid "Labyrinth"
-msgstr "Labyrinth"
-
-#: ../aisleriot/translatable_game_names.h:50
-msgid "Lady Jane"
-msgstr "Lady Jane"
-
-#: ../aisleriot/translatable_game_names.h:51
-msgid "Maze"
-msgstr "Maze"
-
-#: ../aisleriot/translatable_game_names.h:52
-msgid "Monte Carlo"
-msgstr "Monte Carlo"
-
-#: ../aisleriot/translatable_game_names.h:53
-msgid "Napoleons Tomb"
-msgstr "Napoleons Tomb"
-
-#: ../aisleriot/translatable_game_names.h:54
-msgid "Neighbor"
-msgstr "Neighbor"
-
-#: ../aisleriot/translatable_game_names.h:55
-msgid "Odessa"
-msgstr "Odessa"
-
-#: ../aisleriot/translatable_game_names.h:56
-msgid "Osmosis"
-msgstr "Osmosis"
-
-#: ../aisleriot/translatable_game_names.h:57
-msgid "Peek"
-msgstr "Peek"
-
-#: ../aisleriot/translatable_game_names.h:58
-msgid "Pileon"
-msgstr "Pileon"
-
-#: ../aisleriot/translatable_game_names.h:59
-msgid "Plait"
-msgstr "Plait"
-
-#: ../aisleriot/translatable_game_names.h:60
-msgid "Poker"
-msgstr "Poker"
-
-#: ../aisleriot/translatable_game_names.h:61
-msgid "Quatorze"
-msgstr "Quatorze"
-
-#: ../aisleriot/translatable_game_names.h:62
-msgid "Royal East"
-msgstr "Royal East"
-
-#: ../aisleriot/translatable_game_names.h:63
-msgid "Saratoga"
-msgstr "Saratoga"
-
-#: ../aisleriot/translatable_game_names.h:64
-msgid "Scorpion"
-msgstr "Scorpion"
-
-#: ../aisleriot/translatable_game_names.h:65
-msgid "Scuffle"
-msgstr "Scuffle"
-
-#: ../aisleriot/translatable_game_names.h:66
-msgid "Seahaven"
-msgstr "Seahaven"
-
-#: ../aisleriot/translatable_game_names.h:67
-msgid "Sir Tommy"
-msgstr "Sir Tommy"
-
-#: ../aisleriot/translatable_game_names.h:68
-msgid "Spider"
-msgstr "Spider"
-
-#: ../aisleriot/translatable_game_names.h:69
-msgid "Spiderette"
-msgstr "Spiderette"
-
-#: ../aisleriot/translatable_game_names.h:70
-msgid "Spider Three Decks"
-msgstr "Spider Three Decks"
-
-#: ../aisleriot/translatable_game_names.h:71
-msgid "Straight Up"
-msgstr "Straight Up"
-
-#: ../aisleriot/translatable_game_names.h:72
-msgid "Streets And Alleys"
-msgstr "Streets And Alleys"
-
-#: ../aisleriot/translatable_game_names.h:73
-msgid "Template"
-msgstr "Template"
-
-#: ../aisleriot/translatable_game_names.h:74
-msgid "Ten Across"
-msgstr "Ten Across"
-
-#: ../aisleriot/translatable_game_names.h:75
-#: ../aisleriot/rules/terrace.scm.h:14
-msgid "Terrace"
-msgstr "Terrace"
-
-#: ../aisleriot/translatable_game_names.h:76
-msgid "Thieves"
-msgstr "Thieves"
-
-#: ../aisleriot/translatable_game_names.h:77
-msgid "Thirteen"
-msgstr "Thirteen"
-
-#: ../aisleriot/translatable_game_names.h:78
-msgid "Thumb And Pouch"
-msgstr "Thumb And Pouch"
-
-#: ../aisleriot/translatable_game_names.h:79
-msgid "Treize"
-msgstr "Treize"
-
-#: ../aisleriot/translatable_game_names.h:80
-msgid "Triple Peaks"
-msgstr "Triple Peaks"
-
-#: ../aisleriot/translatable_game_names.h:81
-msgid "Union Square"
-msgstr "Union Square"
-
-#: ../aisleriot/translatable_game_names.h:82
-msgid "Valentine"
-msgstr "Valentine"
-
-#: ../aisleriot/translatable_game_names.h:83
-msgid "Westhaven"
-msgstr "Westhaven"
-
-#: ../aisleriot/translatable_game_names.h:84
-msgid "Whitehead"
-msgstr "Whitehead"
-
-#: ../aisleriot/translatable_game_names.h:85
-msgid "Will O The Wisp"
-msgstr "Will O The Wisp"
-
-#: ../aisleriot/translatable_game_names.h:86
-msgid "Yield"
-msgstr "Yield"
-
-#: ../aisleriot/translatable_game_names.h:87
-msgid "Yukon"
-msgstr "Yukon"
-
-#: ../aisleriot/translatable_game_names.h:88
-msgid "Zebra"
-msgstr "Zebra"
-
-#: ../aisleriot/window.c:273 ../aisleriot/window.c:2521
+#: ../aisleriot/util.c:88 ../aisleriot/util.c:92
+#: ../libgames-support/games-help.c:152
+#, c-format
+msgid "Could not show help for “%s”"
+msgstr "無法顯示“%s”的求助文件"
+
+#: ../aisleriot/window.c:286 ../aisleriot/window.c:2566
 msgid "Select Game"
 msgstr "選擇遊戲"
 
-#: ../aisleriot/window.c:277
+#: ../aisleriot/window.c:290
 msgid "_Select"
 msgstr "選擇(_S)"
 
-#: ../aisleriot/window.c:414
+#: ../aisleriot/window.c:432
 msgid "Congratulations, you have won!"
 msgstr "恭喜，您已經贏了！"
 
-#: ../aisleriot/window.c:418
+#: ../aisleriot/window.c:436
 msgid "There are no more moves"
 msgstr "已經沒有其他可移動的方法了"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:431 ../gnometris/blockops.cpp:726
+#: ../aisleriot/window.c:449 ../gnometris/blockops.cpp:863
 msgid "Game Over"
 msgstr "玩完了"
 
-#: ../aisleriot/window.c:558 ../gnomine/gnomine.c:444
+#: ../aisleriot/window.c:576 ../gnomine/gnomine.c:445
 #: ../mahjongg/mahjongg.c:906
 msgid "Main game:"
 msgstr "主遊戲："
 
-#: ../aisleriot/window.c:566
+#: ../aisleriot/window.c:584
 msgid "Card games:"
 msgstr "紙牌遊戲："
 
-#: ../aisleriot/window.c:580
+#: ../aisleriot/window.c:598
 msgid "Card themes:"
 msgstr "紙牌主題:"
 
-#: ../aisleriot/window.c:612
+#: ../aisleriot/window.c:630
 msgid "About FreeCell Solitaire"
 msgstr "關於 FreeCell 紙牌接龍遊戲"
 
-#: ../aisleriot/window.c:613
+#: ../aisleriot/window.c:631
 msgid "About AisleRiot"
 msgstr "關於 AisleRiot 接龍遊戲"
 
-#: ../aisleriot/window.c:619
+#: ../aisleriot/window.c:637
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played.\n"
@@ -1009,12 +1433,12 @@ msgstr ""
 "AisleRiot 是以規則為基礎的接龍紙牌遊戲，可提供很多種不同的玩法。\n"
 "AisleRiot 是 GNOME 遊戲的一部分。"
 
-#: ../aisleriot/window.c:630 ../blackjack/src/menu.cpp:159
-#: ../glchess/src/lib/gtkui/gtkui.py:860 ../glines/glines.c:1221
+#: ../aisleriot/window.c:648 ../blackjack/src/menu.cpp:159
+#: ../glchess/src/lib/gtkui/gtkui.py:861 ../glines/glines.c:1221
 #: ../gnect/src/main.c:925 ../gnibbles/main.c:257 ../gnobots2/menu.c:274
-#: ../gnometris/tetris.cpp:1296 ../gnome-sudoku/src/lib/main.py:730
-#: ../gnomine/gnomine.c:484 ../gnotravex/gnotravex.c:1917
-#: ../gnotski/gnotski.c:1540 ../gtali/gyahtzee.c:623 ../iagno/gnothello.c:268
+#: ../gnometris/tetris.cpp:1315 ../gnome-sudoku/src/lib/main.py:717
+#: ../gnomine/gnomine.c:485 ../gnotravex/gnotravex.c:1918
+#: ../gnotski/gnotski.c:1542 ../gtali/gyahtzee.c:623 ../iagno/gnothello.c:268
 #: ../mahjongg/mahjongg.c:951 ../same-gnome/ui.c:131
 msgid "translator-credits"
 msgstr ""
@@ -1025,22 +1449,22 @@ msgstr ""
 "Abel Cheung <abel@oaka.org>, 2001-07\n"
 "Fernando <bv1al@journalist.com.tw>, 1999"
 
-#: ../aisleriot/window.c:634 ../blackjack/src/menu.cpp:158
-#: ../glchess/src/lib/defaults.py.in:58 ../glines/glines.c:1224
+#: ../aisleriot/window.c:652 ../blackjack/src/menu.cpp:158
+#: ../glchess/src/lib/defaults.py.in:56 ../glines/glines.c:1224
 #: ../gnect/src/main.c:922 ../gnibbles/main.c:260 ../gnobots2/menu.c:270
-#: ../gnometris/tetris.cpp:1293 ../gnome-sudoku/src/lib/defaults.py.in:43
-#: ../gnomine/gnomine.c:487 ../gnotravex/gnotravex.c:1920
-#: ../gnotski/gnotski.c:1543 ../gtali/gyahtzee.c:627 ../iagno/gnothello.c:270
+#: ../gnometris/tetris.cpp:1312 ../gnome-sudoku/src/lib/defaults.py.in:43
+#: ../gnomine/gnomine.c:488 ../gnotravex/gnotravex.c:1921
+#: ../gnotski/gnotski.c:1545 ../gtali/gyahtzee.c:627 ../iagno/gnothello.c:270
 #: ../mahjongg/mahjongg.c:954 ../same-gnome/ui.c:135
 msgid "GNOME Games web site"
 msgstr "GNOME Games 網站"
 
-#: ../aisleriot/window.c:1443
+#: ../aisleriot/window.c:1474
 #, c-format
 msgid "Play “%s”"
 msgstr "玩“%s”"
 
-#: ../aisleriot/window.c:1610
+#: ../aisleriot/window.c:1645
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "使用紙牌主題“%s”顯示紙牌"
@@ -1049,191 +1473,207 @@ msgstr "使用紙牌主題“%s”顯示紙牌"
 #. * then translate this string to "%I6d", else to "%6d".
 #. * Do not translate it to anything else!
 #.
-#: ../aisleriot/window.c:1705
+#: ../aisleriot/window.c:1740
 #, c-format
 msgctxt "score"
 msgid "%6d"
 msgstr "%6d"
 
-#: ../aisleriot/window.c:1960
+#: ../aisleriot/window.c:1995
 msgid "A scheme exception occurred"
 msgstr "發生 scheme 例外"
 
-#: ../aisleriot/window.c:1963
+#: ../aisleriot/window.c:1998
 msgid "Please report this bug to the developers."
 msgstr "請將這個錯誤回報給開發者。"
 
-#: ../aisleriot/window.c:1975
+#. Empty title shows up as "<unnamed>" on maemo
+#: ../aisleriot/window.c:2002 ../dependencies/ggz-gtk/ggzclient.c:124
+#: ../dependencies/ggz-gtk/ggzclient.c:380
+#: ../dependencies/ggz-gtk/ggzclient.c:561
+#: ../dependencies/ggz-gtk/ggzclient.c:596
+#: ../dependencies/ggz-gtk/ggzclient.c:649
+#: ../dependencies/ggz-gtk/ggzclient.c:1079
+#: ../dependencies/ggz-gtk/launch.c:325 ../libgames-support/games-show.c:151
+msgid "Error"
+msgstr "錯誤"
+
+#: ../aisleriot/window.c:2010
 msgid "_Don't report"
 msgstr "不要回報(_D)"
 
-#: ../aisleriot/window.c:1976
+#: ../aisleriot/window.c:2011
 msgid "_Report"
 msgstr "報告(_R)"
 
 #. Menu actions
-#: ../aisleriot/window.c:2163 ../blackjack/src/blackjack.cpp:331
+#. Preferences Dialog: Title of game options tab
+#: ../aisleriot/window.c:2198 ../blackjack/src/blackjack.cpp:331
+#: ../glchess/data/glchess.ui.h:24 ../glchess/data/preferences.ui.h:24
 #: ../glines/glines.c:1688 ../gnect/src/main.c:1289 ../gnibbles/main.c:763
-#: ../gnobots2/menu.c:68 ../gnometris/tetris.cpp:108
-#: ../gnome-sudoku/src/lib/main.py:243 ../gnomine/gnomine.c:825
+#: ../gnobots2/menu.c:68 ../gnometris/tetris.cpp:109
+#: ../gnome-sudoku/src/lib/main.py:241 ../gnomine/gnomine.c:826
 #: ../gnotravex/gnotravex.c:302 ../gnotski/gnotski.c:414
 #: ../gtali/gyahtzee.c:701 ../iagno/gnothello.c:812
-#: ../mahjongg/mahjongg.c:1242 ../same-gnome/ui.c:455
+#: ../lightsoff/data/lightsoff.ui.h:2 ../mahjongg/mahjongg.c:1242
+#: ../same-gnome/ui.c:455 ../same-gnome-clutter/data/same-gnome.ui.h:2
 msgid "_Game"
 msgstr "遊戲(_G)"
 
-#: ../aisleriot/window.c:2164 ../blackjack/src/blackjack.cpp:332
+#. Preferences Dialog: Title of view options tab
+#: ../aisleriot/window.c:2199 ../blackjack/src/blackjack.cpp:332
+#: ../glchess/data/glchess.ui.h:29 ../glchess/data/preferences.ui.h:30
 #: ../gnect/src/main.c:1290 ../gnibbles/main.c:764 ../gnobots2/menu.c:69
-#: ../gnome-sudoku/src/lib/main.py:253 ../gnotravex/gnotravex.c:303
+#: ../gnome-sudoku/src/lib/main.py:251 ../gnotravex/gnotravex.c:303
 #: ../gnotski/gnotski.c:415 ../same-gnome/ui.c:456
 msgid "_View"
 msgstr "檢視(_V)"
 
-#: ../aisleriot/window.c:2165 ../blackjack/src/blackjack.cpp:341
+#: ../aisleriot/window.c:2200 ../blackjack/src/blackjack.cpp:341
 msgid "_Control"
 msgstr "控制(_C)"
 
-#: ../aisleriot/window.c:2167 ../blackjack/src/blackjack.cpp:348
-#: ../glines/glines.c:1690 ../gnect/src/main.c:1292 ../gnibbles/main.c:766
-#: ../gnobots2/menu.c:72 ../gnometris/tetris.cpp:110
-#: ../gnome-sudoku/src/lib/main.py:271 ../gnomine/gnomine.c:827
-#: ../gnotravex/gnotravex.c:306 ../gnotski/gnotski.c:416
-#: ../gtali/gyahtzee.c:703 ../iagno/gnothello.c:814
-#: ../mahjongg/mahjongg.c:1244 ../same-gnome/ui.c:458
+#: ../aisleriot/window.c:2202 ../blackjack/src/blackjack.cpp:348
+#: ../glchess/data/glchess.ui.h:25 ../glines/glines.c:1690
+#: ../gnect/src/main.c:1292 ../gnibbles/main.c:766 ../gnobots2/menu.c:72
+#: ../gnometris/tetris.cpp:111 ../gnome-sudoku/src/lib/main.py:269
+#: ../gnomine/gnomine.c:828 ../gnotravex/gnotravex.c:306
+#: ../gnotski/gnotski.c:416 ../gtali/gyahtzee.c:703 ../iagno/gnothello.c:814
+#: ../lightsoff/data/lightsoff.ui.h:3 ../mahjongg/mahjongg.c:1244
+#: ../same-gnome/ui.c:458 ../same-gnome-clutter/data/same-gnome.ui.h:3
 msgid "_Help"
 msgstr "求助(_H)"
 
-#: ../aisleriot/window.c:2172 ../blackjack/src/blackjack.cpp:333
-#: ../gnobots2/menu.c:73 ../libgames-support/games-stock.c:54
-#: ../mahjongg/mahjongg.c:1245
+#: ../aisleriot/window.c:2207 ../blackjack/src/blackjack.cpp:333
+#: ../glchess/data/glchess.ui.h:18 ../gnobots2/menu.c:73
+#: ../libgames-support/games-stock.c:53 ../mahjongg/mahjongg.c:1245
 msgid "Start a new game"
 msgstr "開始另一局"
 
-#: ../aisleriot/window.c:2175 ../libgames-support/games-stock.c:58
+#: ../aisleriot/window.c:2210 ../libgames-support/games-stock.c:57
 msgid "Restart the game"
 msgstr "再玩這一局"
 
-#: ../aisleriot/window.c:2177
+#: ../aisleriot/window.c:2212
 msgid "_Select Game..."
 msgstr "選擇遊戲(_S)..."
 
-#: ../aisleriot/window.c:2179
+#: ../aisleriot/window.c:2214
 msgid "Play a different game"
 msgstr "選擇另一種遊戲"
 
-#: ../aisleriot/window.c:2181
+#: ../aisleriot/window.c:2216
 msgid "_Recently Played"
 msgstr "最近玩過的(_R)"
 
-#: ../aisleriot/window.c:2182
+#: ../aisleriot/window.c:2217
 msgid "S_tatistics"
 msgstr "統計(_T)"
 
-#: ../aisleriot/window.c:2183
+#: ../aisleriot/window.c:2218
 msgid "Show gameplay statistics"
 msgstr "顯示遊戲紀錄統計數字"
 
-#: ../aisleriot/window.c:2186 ../libgames-support/games-stock.c:63
+#: ../aisleriot/window.c:2221 ../libgames-support/games-stock.c:62
 msgid "Close this window"
 msgstr "關閉這個視窗"
 
-#: ../aisleriot/window.c:2189 ../libgames-support/games-stock.c:61
+#: ../aisleriot/window.c:2224 ../libgames-support/games-stock.c:60
 #: ../mahjongg/mahjongg.c:1253
 msgid "Undo the last move"
 msgstr "還原上一步"
 
-#: ../aisleriot/window.c:2192 ../libgames-support/games-stock.c:57
+#: ../aisleriot/window.c:2227 ../libgames-support/games-stock.c:56
 msgid "Redo the undone move"
 msgstr "重新進行剛才還原的一步"
 
-#: ../aisleriot/window.c:2195
+#: ../aisleriot/window.c:2230
 msgid "Deal next card or cards"
 msgstr "繼續發牌"
 
-#: ../aisleriot/window.c:2198 ../libgames-support/games-stock.c:50
+#: ../aisleriot/window.c:2233 ../libgames-support/games-stock.c:49
 msgid "Get a hint for your next move"
 msgstr "給下一步的提示"
 
-#: ../aisleriot/window.c:2201
+#: ../aisleriot/window.c:2236
 msgid "View help for Aisleriot"
 msgstr "顯示 Aisleriot 說明文件"
 
-#: ../aisleriot/window.c:2205 ../libgames-support/games-stock.c:47
+#: ../aisleriot/window.c:2240 ../libgames-support/games-stock.c:46
 msgid "View help for this game"
 msgstr "顯示有關本遊戲的說明文件"
 
-#: ../aisleriot/window.c:2208 ../libgames-support/games-stock.c:62
+#: ../aisleriot/window.c:2243 ../libgames-support/games-stock.c:61
 msgid "About this game"
 msgstr "關於本遊戲"
 
-#: ../aisleriot/window.c:2211
+#: ../aisleriot/window.c:2246
 msgid "Install card themes…"
 msgstr "安裝紙牌主題..."
 
-#: ../aisleriot/window.c:2212
+#: ../aisleriot/window.c:2247
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "從發行版本套件庫中安裝新的紙牌主題"
 
-#: ../aisleriot/window.c:2221
+#: ../aisleriot/window.c:2256
 msgid "_Card Style"
 msgstr "紙牌樣式(_C)"
 
-#: ../aisleriot/window.c:2261 ../blackjack/src/blackjack.cpp:354
+#: ../aisleriot/window.c:2296 ../blackjack/src/blackjack.cpp:354
 #: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
 msgid "_Toolbar"
 msgstr "工具列(_T)"
 
-#: ../aisleriot/window.c:2262 ../gnobots2/menu.c:96
-#: ../mahjongg/mahjongg.c:1273
+#: ../aisleriot/window.c:2297 ../glchess/data/preferences.ui.h:17
+#: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
 msgid "Show or hide the toolbar"
 msgstr "顯示或隱藏工具列"
 
-#: ../aisleriot/window.c:2266
+#: ../aisleriot/window.c:2302
 msgid "_Statusbar"
 msgstr "狀態列(_S)"
 
-#: ../aisleriot/window.c:2267
+#: ../aisleriot/window.c:2303
 msgid "Show or hide statusbar"
 msgstr "顯示或隱藏狀態列"
 
-#: ../aisleriot/window.c:2271 ../gnotravex/gnotravex.c:351
+#: ../aisleriot/window.c:2308 ../gnotravex/gnotravex.c:351
 msgid "_Click to Move"
 msgstr "點選牌來移動(_C)"
 
-#: ../aisleriot/window.c:2272
+#: ../aisleriot/window.c:2309
 msgid "Pick up and drop cards by clicking"
 msgstr "以點選抓起或放下紙牌"
 
-#. not active by default
-#: ../aisleriot/window.c:2275
+#: ../aisleriot/window.c:2313
 msgid "_Sound"
 msgstr "音效(_S)"
 
-#: ../aisleriot/window.c:2276
+#: ../aisleriot/window.c:2314
 msgid "Whether or not to play event sounds"
 msgstr "是否播放事件音效"
 
-#: ../aisleriot/window.c:2280
+#: ../aisleriot/window.c:2319
 msgid "_Animations"
 msgstr "動畫(_A)"
 
-#: ../aisleriot/window.c:2281
+#: ../aisleriot/window.c:2320
 msgid "Whether or not to animate card moves"
 msgstr "紙牌移動是否使用動畫"
 
 #. Add "Highscore" label
-#: ../aisleriot/window.c:2548 ../dependencies/ggz-gtk/playerinfo.c:241
-#: ../glines/glines.c:1900 ../gnobots2/statusbar.c:67
-#: ../gnometris/scoreframe.cpp:47 ../gnomine/gnomine.c:447
+#: ../aisleriot/window.c:2593 ../dependencies/ggz-gtk/playerinfo.c:241
+#: ../glines/glines.c:1902 ../gnobots2/statusbar.c:67
+#: ../gnometris/scoreframe.cpp:47 ../gnomine/gnomine.c:448
 msgid "Score:"
 msgstr "得分："
 
-#: ../aisleriot/window.c:2560 ../gnotravex/gnotravex.c:1382
-#: ../mahjongg/mahjongg.c:1463
+#: ../aisleriot/window.c:2605 ../gnotravex/gnotravex.c:1383
+#: ../mahjongg/mahjongg.c:1465
 msgid "Time:"
 msgstr "時間："
 
-#: ../aisleriot/window.c:2888
+#: ../aisleriot/window.c:2941
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "不能啟動遊戲「%s」"
@@ -1302,7 +1742,7 @@ msgstr "繼續發牌"
 #: ../aisleriot/rules/plait.scm.h:11 ../aisleriot/rules/quatorze.scm.h:1
 #: ../aisleriot/rules/royal_east.scm.h:7 ../aisleriot/rules/scuffle.scm.h:4
 #: ../aisleriot/rules/sir_tommy.scm.h:3 ../aisleriot/rules/straight_up.scm.h:5
-#: ../aisleriot/rules/terrace.scm.h:13 ../aisleriot/rules/thieves.scm.h:2
+#: ../aisleriot/rules/terrace.scm.h:18 ../aisleriot/rules/thieves.scm.h:2
 #: ../aisleriot/rules/thirteen.scm.h:3
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:2 ../aisleriot/rules/triple_peaks.scm.h:4
@@ -1348,7 +1788,7 @@ msgstr "發另一輪牌"
 #: ../aisleriot/rules/canfield.scm.h:6 ../aisleriot/rules/carpet.scm.h:1
 #: ../aisleriot/rules/glenwood.scm.h:6 ../aisleriot/rules/klondike.scm.h:2
 #: ../aisleriot/rules/osmosis.scm.h:1 ../aisleriot/rules/plait.scm.h:6
-#: ../aisleriot/rules/straight_up.scm.h:1 ../aisleriot/rules/terrace.scm.h:7
+#: ../aisleriot/rules/straight_up.scm.h:1 ../aisleriot/rules/terrace.scm.h:8
 msgid "Deal a new card from the deck"
 msgstr "由牌堆發一張新牌"
 
@@ -1357,16 +1797,16 @@ msgstr "由牌堆發一張新牌"
 #: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
 #: ../aisleriot/rules/klondike.scm.h:5 ../aisleriot/rules/plait.scm.h:10
 #: ../aisleriot/rules/scuffle.scm.h:2 ../aisleriot/rules/straight_up.scm.h:3
-#: ../aisleriot/rules/terrace.scm.h:10
+#: ../aisleriot/rules/terrace.scm.h:13
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
 msgid "Redeals left:"
 msgstr "剩餘重新發牌次數："
 
-#: ../aisleriot/rules/backbone.scm.h:5 ../aisleriot/rules/terrace.scm.h:16
+#: ../aisleriot/rules/backbone.scm.h:5 ../aisleriot/rules/terrace.scm.h:23
 msgid "an empty slot on the foundation"
 msgstr "目標牌堆有空位"
 
-#: ../aisleriot/rules/backbone.scm.h:6 ../aisleriot/rules/terrace.scm.h:17
+#: ../aisleriot/rules/backbone.scm.h:6 ../aisleriot/rules/terrace.scm.h:24
 msgid "an empty slot on the tableau"
 msgstr "排列區有空位"
 
@@ -1660,7 +2100,7 @@ msgstr "未用的備用位置"
 msgid "an open tableau"
 msgstr "排列區空位"
 
-#: ../aisleriot/rules/freecell.scm.h:5 ../aisleriot/rules/terrace.scm.h:19
+#: ../aisleriot/rules/freecell.scm.h:5 ../aisleriot/rules/terrace.scm.h:26
 msgid "the foundation"
 msgstr "目標牌堆"
 
@@ -1815,7 +2255,7 @@ msgstr "從牌堆中發出新牌"
 msgid "Redeals left: ~a"
 msgstr "重新發牌次數：~a"
 
-#: ../aisleriot/rules/pileon.scm.h:2 ../aisleriot/rules/terrace.scm.h:18
+#: ../aisleriot/rules/pileon.scm.h:2 ../aisleriot/rules/terrace.scm.h:25
 msgid "something"
 msgstr "一些牌"
 
@@ -1879,6 +2319,10 @@ msgstr "請先將牌移進空位。"
 msgid "Two Suits"
 msgstr "兩種花色"
 
+#: ../aisleriot/rules/spider.scm.h:9
+msgid "Undo until there are enough cards to fill all tableau piles"
+msgstr ""
+
 #: ../aisleriot/rules/ten_across.scm.h:1
 msgid "Allow temporary spots use"
 msgstr "可以再用暫時放牌的空位"
@@ -1891,27 +2335,33 @@ msgstr "將一張牌移至暫時放牌的空位"
 msgid "No hint available"
 msgstr "無法給予提示"
 
-#: ../aisleriot/rules/terrace.scm.h:6
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:7
 msgid "Blondes and Brunettes"
 msgstr "Blondes and Brunettes"
 
-#: ../aisleriot/rules/terrace.scm.h:8
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:10
 msgid "Falling Stars"
 msgstr "Falling Stars"
 
-#: ../aisleriot/rules/terrace.scm.h:9
-msgid "General Patience"
-msgstr "General Patience"
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:12
+msgid "General's Patience"
+msgstr "General's Patience"
 
-#: ../aisleriot/rules/terrace.scm.h:11
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:15
 msgid "Redheads"
 msgstr "Redheads"
 
-#: ../aisleriot/rules/terrace.scm.h:12
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:17
 msgid "Signora"
 msgstr "Signora"
 
-#: ../aisleriot/rules/terrace.scm.h:15
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:22
 msgid "Wood"
 msgstr "Wood"
 
@@ -1928,8 +2378,9 @@ msgid "Multiplier Scoring"
 msgstr "倍數積分"
 
 #: ../aisleriot/rules/triple_peaks.scm.h:3
+#, fuzzy
 msgid "Progressive Rounds"
-msgstr "Progressive Rounds"
+msgstr "前衛搖滾"
 
 #: ../aisleriot/rules/union_square.scm.h:4
 msgid "appropriate foundation pile"
@@ -2012,9 +2463,9 @@ msgstr "重新再玩這局"
 msgid "Show a hint"
 msgstr "顯示提示"
 
-#: ../blackjack/src/blackjack.cpp:337 ../glines/glines.c:1689
-#: ../gnect/src/main.c:1291 ../gnibbles/main.c:765 ../gnobots2/menu.c:71
-#: ../gnometris/tetris.cpp:109 ../gnomine/gnomine.c:826
+#: ../blackjack/src/blackjack.cpp:337 ../glchess/data/glchess.ui.h:27
+#: ../glines/glines.c:1689 ../gnect/src/main.c:1291 ../gnibbles/main.c:765
+#: ../gnobots2/menu.c:71 ../gnometris/tetris.cpp:110 ../gnomine/gnomine.c:827
 #: ../gtali/gyahtzee.c:702 ../iagno/gnothello.c:813
 #: ../mahjongg/mahjongg.c:1243
 msgid "_Settings"
@@ -2093,6 +2544,10 @@ msgstr "指定押注或者派一手牌"
 msgid "Blackjack rule set to use"
 msgstr "選擇 21 點規則"
 
+#: ../blackjack/src/card-selector.cpp:123
+msgid "Card Style"
+msgstr "紙牌款式"
+
 #: ../blackjack/src/dialog.cpp:51
 msgid "Would you like insurance?"
 msgstr "買不買保險？"
@@ -2122,7 +2577,7 @@ msgstr "21 點偏好設定"
 
 #: ../blackjack/src/dialog.cpp:241 ../dependencies/ggz-gtk/client.c:953
 #: ../gnect/src/prefs.c:301 ../gnibbles/preferences.c:253
-#: ../gnobots2/properties.c:491 ../gnometris/tetris.cpp:586
+#: ../gnobots2/properties.c:491 ../gnometris/tetris.cpp:596
 #: ../iagno/properties.c:416
 msgid "Game"
 msgstr "遊戲"
@@ -2229,11 +2684,11 @@ msgstr "按下這裡來停牌"
 msgid "Click to deal a new hand"
 msgstr "按下這裡來派另一手牌"
 
-#: ../blackjack/src/game.cpp:402
+#: ../blackjack/src/game.cpp:394
 msgid "Blackjack can't load the requested file"
 msgstr "「21 點」無法載入所要求的檔案"
 
-#: ../blackjack/src/game.cpp:404
+#: ../blackjack/src/game.cpp:396
 msgid "Please check your Blackjack installation"
 msgstr "請檢查是否已正確安裝 21 點"
 
@@ -2568,7 +3023,6 @@ msgid "Login failed for unknown reason: %s"
 msgstr "無法登入，但原因不明：%s"
 
 #: ../dependencies/ggz-gtk/login.c:336 ../dependencies/ggz-gtk/client.c:307
-#: ../libgames-support/games-help.c:61
 msgid "Unable to open help file"
 msgstr "無法開啟說明文件檔案"
 
@@ -3724,8 +4178,8 @@ msgid ""
 "handhelds)"
 msgstr ""
 "在前景棋盤的一方，可以是「white」、「black」、「current」（目前的遊戲者）、"
-"「human」（目前為人類玩家的一方）或「facetoface」（適合玩家面對面的狀況，如使"
-"用掌上型裝置）"
+"「human」（目前為人類玩家的一方）或「facetoface」（適合玩家在螢幕的兩端，例如"
+"使用掌上型裝置時）"
 
 #: ../glchess/data/glchess.schemas.in.h:27
 msgid "The width of the main window in pixels."
@@ -3735,8 +4189,315 @@ msgstr "主視窗的寬度 (像素)。"
 msgid "The width of the window"
 msgstr "視窗寬度"
 
+#. Preferences Dialog: Check box for selecting if 3D view is available
+#: ../glchess/data/glchess.ui.h:1 ../glchess/data/preferences.ui.h:2
+msgid "3_D Chess View"
+msgstr "3_D 國際象棋檢視"
+
+#: ../glchess/data/glchess.ui.h:2
+msgid "Claim _Draw"
+msgstr "宣告平手(_D)"
+
+#: ../glchess/data/glchess.ui.h:3
+msgid "Load a saved game"
+msgstr "載入一局已儲存的棋局"
+
+#. The title of the log dialaog
+#: ../glchess/data/glchess.ui.h:5
+msgid "Logs"
+msgstr "紀錄檔"
+
+#. The Network Game toolbar button
+#: ../glchess/data/glchess.ui.h:7 ../libgames-support/games-stock.c:333
+msgid "Network _Game"
+msgstr "網路遊戲(_G)"
+
+#. The New Game toolbar button
+#. Title of the new game dialog
+#: ../glchess/data/glchess.ui.h:9 ../glchess/data/new_game.ui.h:13
+#: ../libgames-support/games-scores-dialog.c:438
+msgid "New Game"
+msgstr "開新局"
+
+#. The tooltip for the Resign toolbar button
+#: ../glchess/data/glchess.ui.h:11
+msgid "Resign"
+msgstr "認輸"
+
+#: ../glchess/data/glchess.ui.h:12
+msgid "Rewind to the game start"
+msgstr "回捲到遊戲剛開始的時候"
+
+#: ../glchess/data/glchess.ui.h:13
+msgid "Save the current game"
+msgstr "儲存這局棋"
+
+#: ../glchess/data/glchess.ui.h:14
+msgid "Show _Logs"
+msgstr "顯示紀錄(_L)"
+
+#: ../glchess/data/glchess.ui.h:15
+msgid "Show the current move"
+msgstr "顯示這一步"
+
+#: ../glchess/data/glchess.ui.h:16
+msgid "Show the next move"
+msgstr "顯示下一步"
+
+#: ../glchess/data/glchess.ui.h:17
+msgid "Show the previous move"
+msgstr "顯示上一步"
+
+#: ../glchess/data/glchess.ui.h:19 ../libgames-support/games-stock.c:51
+msgid "Start a new multiplayer network game"
+msgstr "開始一個新的多人網路遊戲"
+
+#. Message displayed in log window when no logs are present
+#: ../glchess/data/glchess.ui.h:21
+msgid "There are no active logs."
+msgstr "沒有使用中的紀錄。"
+
+#: ../glchess/data/glchess.ui.h:22
+msgid "Undo Move"
+msgstr "回手"
+
+#: ../glchess/data/glchess.ui.h:23 ../gnome-sudoku/src/lib/main.py:273
+#: ../libgames-support/games-stock.c:317
+msgid "_Contents"
+msgstr "內容(_C)"
+
+#: ../glchess/data/glchess.ui.h:26
+msgid "_Resign"
+msgstr "認輸(_R)"
+
+#: ../glchess/data/glchess.ui.h:28 ../libgames-support/games-stock.c:329
+msgid "_Undo Move"
+msgstr "回手(_U)"
+
+#. Title of load game dialog
+#: ../glchess/data/load_game.ui.h:2
+msgid "Load Chess Game"
+msgstr "載入一局棋"
+
+#. Log window: Title above data being logged
+#: ../glchess/data/log.ui.h:2
+msgid "Communication:"
+msgstr "通訊："
+
+#. Log window: Label before name of executable being logged
+#: ../glchess/data/log.ui.h:4
+msgid "Executable:"
+msgstr "可執行檔："
+
+#. Log window: Label before name of player being logged
+#: ../glchess/data/log.ui.h:6
+#, fuzzy
+msgid "Playing as:"
+msgstr "電腦代表："
+
+#. Network Game Dialog: Title above the game settings. Do not translate the <b> tag.
+#: ../glchess/data/network_game.ui.h:2
+msgid "<b>Game</b>"
+msgstr "<b>遊戲</b>"
+
+#. Network Game Dialog: Title above room list. Do not translate the <b> tag.
+#: ../glchess/data/network_game.ui.h:4
+msgid "<b>Rooms</b>"
+msgstr "<b>聊天室</b>"
+
+#. Network Game Dialog: Title above the server settings. Do not translate the <b> tag.
+#: ../glchess/data/network_game.ui.h:6
+msgid "<b>Server</b>"
+msgstr "<b>伺服器</b>"
+
+#. Network Game Dialog: Title above the chat text. Do not translate the <b> tag.
+#: ../glchess/data/network_game.ui.h:8
+msgid "<b>Status/_Chat</b>"
+msgstr "<b>狀態/聊天(_C)</b>"
+
+#. Title of network game dialog
+#: ../glchess/data/network_game.ui.h:10
+msgid "Join Game"
+msgstr "加入遊戲"
+
+#. Network Game Dialog: Button to join a table
+#: ../glchess/data/network_game.ui.h:12
+msgid "_Join"
+msgstr "加入(_J)"
+
+#. Network Game Dialog: Leave table button
+#: ../glchess/data/network_game.ui.h:14
+msgid "_Leave"
+msgstr "離開(_L)"
+
+#. Network Game Dialog: Label before the server profile combo box
+#: ../glchess/data/network_game.ui.h:16
+msgid "_Profile:"
+msgstr "設定組合(_P):"
+
+#: ../glchess/data/network_new_server.ui.h:1
+msgid "Add Account"
+msgstr "加入帳號"
+
+# (Abel) username in GGZ == player name
+#. Add Network Profile Dialog: Label beside username entry
+#: ../glchess/data/network_new_server.ui.h:3
+msgid "User _Name:"
+msgstr "玩家名稱(_N):"
+
+#. Add Network Profile Dialog: Button to accept values and add profile
+#: ../glchess/data/network_new_server.ui.h:5
+msgid "_Add Account"
+msgstr "加入帳號(_A)"
+
+#. Add Network Profile Dialog: Label beside custom hostname entry
+#: ../glchess/data/network_new_server.ui.h:7
+msgid "_Host:"
+msgstr "主機(_H):"
+
+#. Add Network Profile Dialog: Label beside custom port entry
+#: ../glchess/data/network_new_server.ui.h:9
+msgid "_Port:"
+msgstr "連接埠(_P):"
+
+#. Add Network Profile Dialog: Label beside server combo
+#: ../glchess/data/network_new_server.ui.h:11
+msgid "_Server:"
+msgstr "伺服器(_S):"
+
+#. New Game Dialog: Title above difficulty options
+#: ../glchess/data/new_game.ui.h:2
+msgid "<b>Difficulty</b>"
+msgstr "<b>難度</b>"
+
+#. New Game Dialog: Title above the game properties widgets
+#: ../glchess/data/new_game.ui.h:4
+msgid "<b>Game Properties</b>"
+msgstr "<b>遊戲屬性</b>"
+
+#. New Game Dialog: Title above player options
+#: ../glchess/data/new_game.ui.h:6
+msgid "<b>Players</b>"
+msgstr "<b>玩家</b>"
+
+#. New Game Dialog: Label before black player difficulty
+#: ../glchess/data/new_game.ui.h:8
+msgid "B_lack:"
+msgstr "黑方(_L)："
+
+#: ../glchess/data/new_game.ui.h:9
+msgid "Enter the title for this game"
+msgstr "請輸入本局的標題"
+
+#. New Game Dialog: Label before game timer settings
+#: ../glchess/data/new_game.ui.h:11
+msgid "Move _Time:"
+msgstr "下棋時間(_T):"
+
+#: ../glchess/data/new_game.ui.h:14
+msgid "Start the game. The game can be started once all fields are complete"
+msgstr "開始遊戲。本遊戲會在所有區都成後開始"
+
+#. New Game Dialog: Label before white player difficulty
+#: ../glchess/data/new_game.ui.h:16
+msgid "W_hite:"
+msgstr "白方(_H):"
+
+#. New Game Dialog: Label before black player combo box
+#: ../glchess/data/new_game.ui.h:18
+msgid "_Black:"
+msgstr "黑方(_B):"
+
+#. New Game Dialog: Label before the game name entry
+#: ../glchess/data/new_game.ui.h:20
+msgid "_Game name:"
+msgstr "遊戲名稱(_G):"
+
+#. New Game Dialog: Button to start a new game
+#: ../glchess/data/new_game.ui.h:22
+msgid "_Start"
+msgstr "開始(_S)"
+
+#. New Game Dialog: Label before white player combo box
+#: ../glchess/data/new_game.ui.h:24
+msgid "_White:"
+msgstr "白方(_W):"
+
+#. Preferences Dialog: Label before board orientation combo box
+#: ../glchess/data/preferences.ui.h:4
+msgid "Board Orientation:"
+msgstr "棋盤方向："
+
+#. Preferences Dialog: Label before move format combo box
+#: ../glchess/data/preferences.ui.h:6
+msgid "Move Format:"
+msgstr "記譜格式："
+
+#. Title for preferences dialog
+#: ../glchess/data/preferences.ui.h:8 ../glines/glines.c:196
+#: ../mahjongg/mahjongg.c:140
+msgid "Preferences"
+msgstr "偏好設定"
+
+#. Preferences Dialog: Label before promotion type combo box
+#: ../glchess/data/preferences.ui.h:10
+msgid "Promotion Type:"
+msgstr "升變類型："
+
+#. Preferences Dialog: Check box for selecting if history browser is visible
+#: ../glchess/data/preferences.ui.h:12
+msgid "Show _History"
+msgstr "顯示紀錄(_H)"
+
+#. Preferences Dialog: Check box for selecting if toolbar is visible
+#: ../glchess/data/preferences.ui.h:14 ../gnome-sudoku/src/lib/main.py:293
+msgid "Show _Toolbar"
+msgstr "顯示工具列(_T)"
+
+#: ../glchess/data/preferences.ui.h:15
+msgid "Show or hide numbering on the chess board"
+msgstr "顯示或隱藏國際象棋盤的坐標名稱"
+
+#: ../glchess/data/preferences.ui.h:16
+msgid "Show or hide the game history panel"
+msgstr "顯示或隱藏遊戲紀錄面板"
+
+#: ../glchess/data/preferences.ui.h:18
+msgid "Shows hints during chess games"
+msgstr "在棋類遊戲中顯示提示"
+
+#: ../glchess/data/preferences.ui.h:19
+msgid "Smooth edges of the 3D elements (anti-alias)"
+msgstr "3D 元素的平滑邊緣（反鋸齒）"
+
+#: ../glchess/data/preferences.ui.h:20
+msgid ""
+"View the chess board by default in 2D mode, or optionally in 3D mode using "
+"OpenGL."
+msgstr "預設以 2D 模式檢視棋盤，或者可選擇使用 OpenGL 的 3D 模式。"
+
+#. Preferences Dialog: Check box for selecting if board numbering is visible
+#: ../glchess/data/preferences.ui.h:22
+msgid "_Board Numbering"
+msgstr "棋盤坐標(_B)"
+
+#. Preferences Dialog: Check box for selecting if move hints are visible
+#: ../glchess/data/preferences.ui.h:26
+msgid "_Move Hints"
+msgstr "走法提示(_M)"
+
+#. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
+#: ../glchess/data/preferences.ui.h:28
+msgid "_Smooth Display"
+msgstr "平滑顯示(_S)"
+
+#. Title of save game dialog
+#: ../glchess/data/save_game.ui.h:2
+msgid "Save Chess Game"
+msgstr "儲存這局棋"
+
 #. Translators: Window title when not playing a game
-#: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:331
+#: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:332
 msgid "Chess"
 msgstr "國際象棋"
 
@@ -3758,65 +4519,65 @@ msgstr ""
 "完成為止。"
 
 #. Translators: Time Combo: There is no time limit
-#: ../glchess/src/lib/gtkui/dialogs.py:124
+#: ../glchess/src/lib/gtkui/dialogs.py:125
 msgid "Unlimited"
 msgstr "無限"
 
 #. Translators: Time Combo: Game will last one minute
-#: ../glchess/src/lib/gtkui/dialogs.py:126
+#: ../glchess/src/lib/gtkui/dialogs.py:127
 msgid "One minute"
 msgstr "1 分鐘"
 
 #. Translators: Time Combo: Game will last five minutes
-#: ../glchess/src/lib/gtkui/dialogs.py:128
+#: ../glchess/src/lib/gtkui/dialogs.py:129
 msgid "Five minutes"
 msgstr "5 分鐘"
 
 #. Translators: Time Combo: Game will last 30 minutes
-#: ../glchess/src/lib/gtkui/dialogs.py:130
+#: ../glchess/src/lib/gtkui/dialogs.py:131
 msgid "30 minutes"
 msgstr "30 分鐘"
 
 #. Translators: Time Combo: Game will last one hour
-#: ../glchess/src/lib/gtkui/dialogs.py:132
+#: ../glchess/src/lib/gtkui/dialogs.py:133
 msgid "One hour"
 msgstr "1 小時"
 
 #. Translators: Time Combo: User will configure game duration
 #. Translators: Add Network Profile Dialog: Use a custom server
-#: ../glchess/src/lib/gtkui/dialogs.py:134
+#: ../glchess/src/lib/gtkui/dialogs.py:135
 #: ../glchess/src/lib/gtkui/network.py:30
 msgid "Custom"
 msgstr "自訂"
 
 #. Translators: Custom Time Combo: User specifying number of seconds for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:155
+#: ../glchess/src/lib/gtkui/dialogs.py:156
 msgid "seconds"
 msgstr "秒"
 
 #. Translators: Custom Time Combo: User specifying number of minutes for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:157
+#: ../glchess/src/lib/gtkui/dialogs.py:158
 msgid "minutes"
 msgstr "分鐘"
 
 #. Translators: Custom Time Combo: User specifying number of hours for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:159
+#: ../glchess/src/lib/gtkui/dialogs.py:160
 msgid "hours"
 msgstr "小時"
 
 #. Translators: AI Difficulty Combo: AI set to easy difficulty
-#: ../glchess/src/lib/gtkui/dialogs.py:177
+#: ../glchess/src/lib/gtkui/dialogs.py:178
 #: ../gnome-sudoku/src/lib/sudoku.py:515
 msgid "Easy"
 msgstr "容易"
 
 #. Translators: AI Difficulty Combo: AI set to normal diffuculty
-#: ../glchess/src/lib/gtkui/dialogs.py:179
+#: ../glchess/src/lib/gtkui/dialogs.py:180
 msgid "Normal"
 msgstr "一般"
 
 #. Translators: AI Difficulty Combo: AI set to hard diffuculty
-#: ../glchess/src/lib/gtkui/dialogs.py:181
+#: ../glchess/src/lib/gtkui/dialogs.py:182
 #: ../gnome-sudoku/src/lib/sudoku.py:513
 msgid "Hard"
 msgstr "困難"
@@ -3824,24 +4585,24 @@ msgstr "困難"
 #. Translators: Error displayed when unable to load a game due to
 #. the require game engine not being available. %s is replaced with
 #. the name of the missing engine.
-#: ../glchess/src/lib/gtkui/dialogs.py:246
+#: ../glchess/src/lib/gtkui/dialogs.py:247
 #, python-format
 msgid "Unable to find %s engine"
 msgstr "找不到 %s 引擎"
 
 #. Translators: New Game Dialog: Title of the dialog when continuing a loaded game
-#: ../glchess/src/lib/gtkui/dialogs.py:258
+#: ../glchess/src/lib/gtkui/dialogs.py:259
 #, python-format
 msgid "Configure loaded game (%i moves)"
 msgstr "設定載入的遊戲（%i 步）"
 
 #. Translators: New Game Dialog: Title of error box when loaded game had AI engines missing
-#: ../glchess/src/lib/gtkui/dialogs.py:263
+#: ../glchess/src/lib/gtkui/dialogs.py:264
 msgid "Game settings changed"
 msgstr "遊戲設定值已變更"
 
 #. Translators: Default name for a new game. %(white) and %(black) are substituted for the names of the white and black players.
-#: ../glchess/src/lib/gtkui/dialogs.py:326
+#: ../glchess/src/lib/gtkui/dialogs.py:327
 #, python-format
 msgid "%(white)s versus %(black)s"
 msgstr "%(white)s 對 %(black)s"
@@ -3849,7 +4610,7 @@ msgstr "%(white)s 對 %(black)s"
 #. Translators: Default name for the white player
 #. Translators: GGZ seat is occupied by the white player
 #. Translators: Name of white player in a default game
-#: ../glchess/src/lib/gtkui/dialogs.py:350
+#: ../glchess/src/lib/gtkui/dialogs.py:351
 #: ../glchess/src/lib/gtkui/network.py:360
 #: ../glchess/src/lib/gtkui/network.py:537 ../glchess/src/lib/main.py:680
 msgid "White"
@@ -3858,146 +4619,150 @@ msgstr "白方"
 #. Translators: Default name for the black player
 #. Translators: GGZ seat is occupied by the black player
 #. Translators: Name of black player in a default game
-#: ../glchess/src/lib/gtkui/dialogs.py:357
+#: ../glchess/src/lib/gtkui/dialogs.py:358
 #: ../glchess/src/lib/gtkui/network.py:363
 #: ../glchess/src/lib/gtkui/network.py:543 ../glchess/src/lib/main.py:682
 msgid "Black"
 msgstr "黑方"
 
 #. Translators: Load Game Dialog: Name of filter to show only PGN files
-#: ../glchess/src/lib/gtkui/dialogs.py:442
+#: ../glchess/src/lib/gtkui/dialogs.py:443
 msgid "PGN files"
 msgstr "PGN 檔案"
 
 #. Translators: Load Game Dialog: Name of filter to show all files
-#: ../glchess/src/lib/gtkui/dialogs.py:448
+#: ../glchess/src/lib/gtkui/dialogs.py:449
 msgid "All files"
 msgstr "所有檔案"
 
 #. Translators: Load Game Dialog: Message displayed when no file is selected
-#: ../glchess/src/lib/gtkui/dialogs.py:470
+#: ../glchess/src/lib/gtkui/dialogs.py:471
 msgid "Please select a file to load"
 msgstr "請選擇要載入的檔案"
 
 #. Translators: Title of error box when unable to load game
-#: ../glchess/src/lib/gtkui/dialogs.py:478
+#: ../glchess/src/lib/gtkui/dialogs.py:479
 msgid "Unabled to load game"
 msgstr "無法載入遊戲"
 
 #. Translators: Save Game Dialog: Error displayed when no file name entered
-#: ../glchess/src/lib/gtkui/dialogs.py:549
+#: ../glchess/src/lib/gtkui/dialogs.py:550
 msgid "Please enter a file name"
 msgstr "請輸入檔案名稱。"
 
 #. Translators: Save Game Dialog: Error title when unable to save game
-#: ../glchess/src/lib/gtkui/dialogs.py:562
+#: ../glchess/src/lib/gtkui/dialogs.py:563
 msgid "Unabled to save game"
 msgstr "無法儲存遊戲"
 
 #. Translators: Move Format Combo: Moves shown in human descriptive notation
 #. Translators: Player Type Combo: Player is human controlled
-#: ../glchess/src/lib/gtkui/dialogs.py:589
-#: ../glchess/src/lib/gtkui/gtkui.py:204 ../gnect/src/prefs.c:249
-#: ../gtali/gyahtzee.c:988 ../gtali/yahtzee.c:69 ../iagno/properties.c:449
+#: ../glchess/src/lib/gtkui/dialogs.py:590
+#: ../glchess/src/lib/gtkui/gtkui.py:205 ../gnect/src/prefs.c:249
+#: ../gtali/gyahtzee.c:990 ../gtali/yahtzee.c:69 ../iagno/properties.c:449
 #: ../iagno/properties.c:490
 msgid "Human"
 msgstr "人類"
 
 #. Translators: Move Format Combo: Moves shown in standard algebraic notation (SAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:591
+#: ../glchess/src/lib/gtkui/dialogs.py:592
 msgid "Standard Algebraic"
 msgstr "標準代數"
 
 #. Translators: Move Format Combo: Moves shown in standard figurine algebraic notation (FAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:593
+#: ../glchess/src/lib/gtkui/dialogs.py:594
 msgid "Figurine"
 msgstr "圖像"
 
 #. Translators: Move Format Combo: Moves shown in long algebraic notation (LAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:595
+#: ../glchess/src/lib/gtkui/dialogs.py:596
 msgid "Long Algebraic"
 msgstr "長代數記譜法"
 
 #. Translators: Board Side Combo: Camera will face white player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:605
+#: ../glchess/src/lib/gtkui/dialogs.py:606
 msgid "White Side"
 msgstr "白方"
 
 #. Translators: Board Side Combo: Camera will face black player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:607
+#: ../glchess/src/lib/gtkui/dialogs.py:608
 msgid "Black Side"
 msgstr "黑方"
 
 #. Translators: Board Side Combo: Camera will face human player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:609
+#: ../glchess/src/lib/gtkui/dialogs.py:610
 msgid "Human Side"
 msgstr "人類玩家方"
 
 #. Translators: Board Side Combo: Camera will face current player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:611
+#: ../glchess/src/lib/gtkui/dialogs.py:612
 msgid "Current Player"
 msgstr "目前玩家"
 
 #. Translators: Board Side Combo: Board will be drawn suitable for players on each side of screen, e.g. handhelds
-#: ../glchess/src/lib/gtkui/dialogs.py:613
+#: ../glchess/src/lib/gtkui/dialogs.py:614
 msgid "Face to Face"
 msgstr "面對面"
 
-#. Translators: Promotion Combo: Promote to a queen. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:623
-msgid "chess-piece|Queen"
+#. Translators: Promotion Combo: Promote to a queen
+#: ../glchess/src/lib/gtkui/dialogs.py:624
+msgctxt "chess-piece"
+msgid "Queen"
 msgstr "皇后"
 
-#. Translators: Promotion Combo: Promote to a knight. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:625
-msgid "chess-piece|Knight"
+#. Translators: Promotion Combo: Promote to a knight
+#: ../glchess/src/lib/gtkui/dialogs.py:626
+msgctxt "chess-piece"
+msgid "Knight"
 msgstr "騎士"
 
-#. Translators: Promotion Combo: Promote to a rook. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:627
-msgid "chess-piece|Rook"
+#. Translators: Promotion Combo: Promote to a rook
+#: ../glchess/src/lib/gtkui/dialogs.py:628
+msgctxt "chess-piece"
+msgid "Rook"
 msgstr "城堡"
 
-#. Translators: Promotion Combo: Promote to a bishop. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:629
-msgid "chess-piece|Bishop"
+#. Translators: Promotion Combo: Promote to a bishop
+#: ../glchess/src/lib/gtkui/dialogs.py:630
+msgctxt "chess-piece"
+msgid "Bishop"
 msgstr "主教"
 
 #. Translators: Window title when playing a game that needs saving
-#: ../glchess/src/lib/gtkui/gtkui.py:325
+#: ../glchess/src/lib/gtkui/gtkui.py:326
 #, python-format
 msgid "Chess - *%(game_name)s"
 msgstr "國際象棋 - *%(game_name)s"
 
 #. Translators: Window title when playing a game that is saved
-#: ../glchess/src/lib/gtkui/gtkui.py:328
+#: ../glchess/src/lib/gtkui/gtkui.py:329
 #, python-format
 msgid "Chess - %(game_name)s"
 msgstr "國際象棋 - %(game_name)s"
 
 #. Translators: Game Timer Label: Indicates that game has no time limit
-#: ../glchess/src/lib/gtkui/gtkui.py:343
+#: ../glchess/src/lib/gtkui/gtkui.py:344
 msgid "∞"
 msgstr "∞"
 
 #. Translators: Save Game Dialog: Notice that game needs saving
-#: ../glchess/src/lib/gtkui/gtkui.py:416
+#: ../glchess/src/lib/gtkui/gtkui.py:417
 msgid "If you don't save the changes to this game will be permanently lost"
 msgstr "如果不將對這個遊戲的變更儲存，所有變更都會永久消失。"
 
 #. Translators: Save Game Dialog: Discard game button
-#: ../glchess/src/lib/gtkui/gtkui.py:418
+#: ../glchess/src/lib/gtkui/gtkui.py:419
 msgid "Close _without saving"
 msgstr "關閉但不儲存(_W)"
 
 #. Translators: No 3D Dialog: Title
-#: ../glchess/src/lib/gtkui/gtkui.py:533
+#: ../glchess/src/lib/gtkui/gtkui.py:534
 msgid "Unable to enable 3D mode"
 msgstr "無法啟用 3D 模式"
 
 #. Translators: No 3D Dialog: Notification to user that they do not have libraries required to enable 3D.
 #. %(error)s will be replaced with a list of reasons why 3D is not available.
-#: ../glchess/src/lib/gtkui/gtkui.py:537
+#: ../glchess/src/lib/gtkui/gtkui.py:538
 #, python-format
 msgid ""
 "You are unable to play in 3D mode due to the following problems:\n"
@@ -4012,12 +4777,12 @@ msgstr ""
 "請連線您的系統管理者以解決這些問題，在那之前您可以在 2D 模式下玩西洋棋。"
 
 #. Translators: Draw Dialog: Title
-#: ../glchess/src/lib/gtkui/gtkui.py:799
+#: ../glchess/src/lib/gtkui/gtkui.py:800
 msgid "Unable to claim draw"
 msgstr "無法宣告平手"
 
 #. Translators: Draw Dialog: Notify user why they cannot claim draw
-#: ../glchess/src/lib/gtkui/gtkui.py:801
+#: ../glchess/src/lib/gtkui/gtkui.py:802
 msgid ""
 "You may claim a draw when:\n"
 "a) The board has been in the same state three times (Three fold repetition)\n"
@@ -4030,7 +4795,7 @@ msgstr ""
 
 #. TODO: This should be a pop-up dialog
 #. FIXME: This should create a pop-up dialog
-#: ../glchess/src/lib/gtkui/gtkui.py:823 ../gnome-sudoku/src/lib/main.py:740
+#: ../glchess/src/lib/gtkui/gtkui.py:824 ../gnome-sudoku/src/lib/main.py:727
 #, python-format
 msgid "Unable to display help: %s"
 msgstr "無法顯示說明文件：%s"
@@ -4464,13 +5229,13 @@ msgstr "%(movenum)2iw. %(description)s (將軍)"
 #: ../glchess/src/lib/gtkui/chessview.py:538
 #, python-format
 msgid "%(movenum)2iw. %(description)s (Checkmate)"
-msgstr "%(movenum)2iw. %(description)s (將死)"
+msgstr "%(movenum)2iw. %(description)s (被將死)"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is in stalemate
 #: ../glchess/src/lib/gtkui/chessview.py:540
 #, python-format
 msgid "%(movenum)2iw. %(description)s (Stalemate)"
-msgstr "%(movenum)2iw. %(description)s (逼和)"
+msgstr "%(movenum)2iw. %(description)s (無子可動)"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is not in check or mate
 #: ../glchess/src/lib/gtkui/chessview.py:542
@@ -4488,13 +5253,13 @@ msgstr "%(movenum)2ib. %(description)s (將軍)"
 #: ../glchess/src/lib/gtkui/chessview.py:546
 #, python-format
 msgid "%(movenum)2ib. %(description)s (Checkmate)"
-msgstr "%(movenum)2ib. %(description)s (將死)"
+msgstr "%(movenum)2ib. %(description)s (被將死)"
 
 #. Translators: Human Move String: Black player has made move %(description) and the opponent is in stalemate
 #: ../glchess/src/lib/gtkui/chessview.py:548
 #, python-format
 msgid "%(movenum)2ib. %(description)s (Stalemate)"
-msgstr "%(movenum)2ib. %(description)s (逼和)"
+msgstr "%(movenum)2ib. %(description)s (無子可動)"
 
 #. Translators: Human Move String: Black player has made move %(description) and the opponent is not in check or mate
 #: ../glchess/src/lib/gtkui/chessview.py:550
@@ -4613,116 +5378,137 @@ msgstr "座位是空的"
 msgid "AI (%s)"
 msgstr "人工智慧 (%s)"
 
-#. Translators: The first file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:12
-msgid "chess-file|a"
+#. Translators: The first file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:11
+msgctxt "chess-file"
+msgid "a"
 msgstr "a"
 
-#. Translators: The second file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:14
-msgid "chess-file|b"
+#. Translators: The second file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:13
+msgctxt "chess-file"
+msgid "b"
 msgstr "b"
 
-#. Translators: The third file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:16
-msgid "chess-file|c"
+#. Translators: The third file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:15
+msgctxt "chess-file"
+msgid "c"
 msgstr "c"
 
-#. Translators: The fourth file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:18
-msgid "chess-file|d"
+#. Translators: The fourth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:17
+msgctxt "chess-file"
+msgid "d"
 msgstr "d"
 
-#. Translators: The fifth file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:20
-msgid "chess-file|e"
+#. Translators: The fifth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:19
+msgctxt "chess-file"
+msgid "e"
 msgstr "e"
 
-#. Translators: The sixth file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:22
-msgid "chess-file|f"
+#. Translators: The sixth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:21
+msgctxt "chess-file"
+msgid "f"
 msgstr "f"
 
-#. Translators: The seventh file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:24
-msgid "chess-file|g"
+#. Translators: The seventh file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:23
+msgctxt "chess-file"
+msgid "g"
 msgstr "g"
 
-#. Translators: The eigth file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:26
-msgid "chess-file|h"
+#. Translators: The eigth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:25
+msgctxt "chess-file"
+msgid "h"
 msgstr "h"
 
-#. Translators: The first rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:35
-msgid "chess-rank|1"
+#. Translators: The first rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:28
+msgctxt "chess-rank"
+msgid "1"
 msgstr "1"
 
-#. Translators: The second rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:37
-msgid "chess-rank|2"
+#. Translators: The second rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:30
+msgctxt "chess-rank"
+msgid "2"
 msgstr "2"
 
-#. Translators: The third rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:39
-msgid "chess-rank|3"
+#. Translators: The third rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:32
+msgctxt "chess-rank"
+msgid "3"
 msgstr "3"
 
-#. Translators: The fourth rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:41
-msgid "chess-rank|4"
+#. Translators: The fourth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:34
+msgctxt "chess-rank"
+msgid "4"
 msgstr "4"
 
-#. Translators: The fifth rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:43
-msgid "chess-rank|5"
+#. Translators: The fifth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:36
+msgctxt "chess-rank"
+msgid "5"
 msgstr "5"
 
-#. Translators: The sixth rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:45
-msgid "chess-rank|6"
+#. Translators: The sixth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:38
+msgctxt "chess-rank"
+msgid "6"
 msgstr "6"
 
-#. Translators: The seventh rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:47
-msgid "chess-rank|7"
+#. Translators: The seventh rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:40
+msgctxt "chess-rank"
+msgid "7"
 msgstr "7"
 
-#. Translators: The eigth rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:49
-msgid "chess-rank|8"
+#. Translators: The eigth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:42
+msgctxt "chess-rank"
+msgid "8"
 msgstr "8"
 
 #. Translators: The notation form of a pawn.
 #. See http://en.wikipedia.org/wiki/Algebraic_chess_notation#Figurine_Algebraic_Notation for translations.
-#. Do not translate the 'chess-notation|' text.
-#: ../glchess/src/lib/chess/__init__.py:61
-msgid "chess-notation|P"
+#: ../glchess/src/lib/chess/__init__.py:46
+msgctxt "chess-notation"
+msgid "P"
 msgstr "P"
 
-#. Translators: The notation form of a knight. Do not translate the 'chess-notation|' text
-#: ../glchess/src/lib/chess/__init__.py:63
-msgid "chess-notation|N"
+#. Translators: The notation form of a knight
+#: ../glchess/src/lib/chess/__init__.py:48
+msgctxt "chess-notation"
+msgid "N"
 msgstr "N"
 
-#. Translators: The notation form of a bishop. Do not translate the 'chess-notation|' text
-#: ../glchess/src/lib/chess/__init__.py:65
-msgid "chess-notation|B"
+#. Translators: The notation form of a bishop
+#: ../glchess/src/lib/chess/__init__.py:50
+msgctxt "chess-notation"
+msgid "B"
 msgstr "B"
 
-#. Translators: The notation form of a rook. Do not translate the 'chess-notation|' text
-#: ../glchess/src/lib/chess/__init__.py:67
-msgid "chess-notation|R"
+#. Translators: The notation form of a rook
+#: ../glchess/src/lib/chess/__init__.py:52
+msgctxt "chess-notation"
+msgid "R"
 msgstr "R"
 
-#. Translators: The notation form of a queen. Do not translate the 'chess-notation|' text
-#: ../glchess/src/lib/chess/__init__.py:69
-msgid "chess-notation|Q"
+#. Translators: The notation form of a queen
+#: ../glchess/src/lib/chess/__init__.py:54
+msgctxt "chess-notation"
+msgid "Q"
 msgstr "Q"
 
-#. Translators: The notation form of a king. Do not translate the 'chess-notation|' text
-#: ../glchess/src/lib/chess/__init__.py:71
-msgid "chess-notation|K"
+#. Translators: The notation form of a king
+#: ../glchess/src/lib/chess/__init__.py:56
+msgctxt "chess-notation"
+msgid "K"
 msgstr "K"
 
 #. Translators: Description of an AI player used in log window. %(name)s is replaced with
@@ -4760,19 +5546,19 @@ msgstr ""
 "glChess 已經當機。請將這個錯誤回報給 http://bugzilla.gnome.org\n"
 "除錯輸出："
 
-#: ../glchess/src/lib/main.py:709 ../gnome-sudoku/src/lib/main.py:481
+#: ../glchess/src/lib/main.py:709 ../gnome-sudoku/src/lib/main.py:473
 msgid "Save game before closing?"
 msgstr "是否在關閉前儲存遊戲？"
 
-#: ../glchess/src/lib/defaults.py.in:52
+#: ../glchess/src/lib/defaults.py.in:50
 msgid "glChess"
 msgstr "glChess"
 
-#: ../glchess/src/lib/defaults.py.in:55
+#: ../glchess/src/lib/defaults.py.in:53
 msgid "Copyright 2005-2008 Robert Ancell (and contributors)"
 msgstr "版權所有 2005-2008 Robert Ancell 和所有貢獻者"
 
-#: ../glchess/src/lib/defaults.py.in:56
+#: ../glchess/src/lib/defaults.py.in:54
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -4784,7 +5570,7 @@ msgstr ""
 
 #. The GPL license string will be translated, and the game name inserted.
 #. This license is the same as in libgames-support/games-stock.c
-#: ../glchess/src/lib/defaults.py.in:65
+#: ../glchess/src/lib/defaults.py.in:63
 #: ../gnome-sudoku/src/lib/defaults.py.in:49
 #, python-format
 msgid ""
@@ -4797,9 +5583,9 @@ msgstr ""
 "條款規定，就本程式再為散佈與／或修改；無論您依據的是本授權的第二版或\n"
 "（您自行選擇的）任一日後發行的版本。"
 
-#: ../glchess/src/lib/defaults.py.in:69
+#: ../glchess/src/lib/defaults.py.in:67
 #: ../gnome-sudoku/src/lib/defaults.py.in:53
-#: ../libgames-support/games-stock.c:412
+#: ../libgames-support/games-stock.c:414
 #, c-format, python-format
 msgid ""
 "%s is distributed in the hope that it will be useful, but WITHOUT ANY "
@@ -4810,9 +5596,9 @@ msgstr ""
 "%s 係基於使用目的而加以散佈，然而不負任何擔保責任；亦無對適售性\n"
 "或特定目的適用性所為的默示性擔保。詳情請參照 GNU 通用公共授權。"
 
-#: ../glchess/src/lib/defaults.py.in:73
+#: ../glchess/src/lib/defaults.py.in:71
 #: ../gnome-sudoku/src/lib/defaults.py.in:57
-#: ../libgames-support/games-stock.c:417
+#: ../libgames-support/games-stock.c:419
 #, c-format, python-format
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
@@ -4823,7 +5609,7 @@ msgstr ""
 "自由軟體基金會：\n"
 "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
 
-#: ../glchess/src/lib/defaults.py.in:85
+#: ../glchess/src/lib/defaults.py.in:83
 #: ../gnome-sudoku/src/lib/defaults.py.in:68
 #, python-format
 msgid "Unable to make data directory %(dir)s: %(error)s"
@@ -4880,10 +5666,6 @@ msgstr "大"
 msgid "Could not load theme"
 msgstr "無法載入主題"
 
-#: ../glines/glines.c:196 ../mahjongg/mahjongg.c:140
-msgid "Preferences"
-msgstr "偏好設定"
-
 #: ../glines/glines.c:218
 #, c-format
 msgid ""
@@ -4932,7 +5714,7 @@ msgid "You can't move there!"
 msgstr "不能移動到那裡！"
 
 #: ../glines/glines.c:1206 ../glines/glines.c:1210 ../glines/glines.c:1212
-#: ../glines/glines.c:1809 ../glines/glines.c:1841
+#: ../glines/glines.c:1811 ../glines/glines.c:1843
 #: ../glines/glines.desktop.in.in.h:1
 msgid "Five or More"
 msgstr "五子連色棋"
@@ -4976,7 +5758,7 @@ msgstr "一般"
 msgid "_Use fast moves"
 msgstr "快速移動(_U)"
 
-#: ../glines/glines.c:1870
+#: ../glines/glines.c:1872
 msgid "Next:"
 msgstr "下次的顏色:"
 
@@ -5089,13 +5871,13 @@ msgstr "第二個玩家的棋力"
 
 #: ../gnect/data/gnect.schemas.in.h:9 ../gnect/src/prefs.c:370
 #: ../gnibbles/gnibbles.schemas.in.h:16 ../gnibbles/preferences.c:446
-#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:725
+#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:744
 msgid "Move left"
 msgstr "向左移動"
 
 #: ../gnect/data/gnect.schemas.in.h:10 ../gnect/src/prefs.c:371
 #: ../gnibbles/gnibbles.schemas.in.h:17 ../gnibbles/preferences.c:447
-#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:726
+#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:745
 msgid "Move right"
 msgstr "向右移動"
 
@@ -5139,7 +5921,7 @@ msgstr "歡迎進入網路版本的 %s。"
 msgid "It's a draw!"
 msgstr "平手！"
 
-#: ../gnect/src/main.c:583 ../gnome-sudoku/src/lib/main.py:442
+#: ../gnect/src/main.c:583 ../gnome-sudoku/src/lib/main.py:435
 msgid "You win!"
 msgstr "您贏了！"
 
@@ -5236,7 +6018,7 @@ msgid "Four-in-a-Row Preferences"
 msgstr "四子連環棋偏好設定"
 
 #: ../gnect/src/prefs.c:333 ../gnobots2/properties.c:530
-#: ../iagno/properties.c:528
+#: ../iagno/properties.c:528 ../same-gnome-clutter/data/settings.ui.h:1
 msgid "Appearance"
 msgstr "外觀"
 
@@ -5255,7 +6037,7 @@ msgstr "開啟音效(_N)"
 
 #. keyboard tab
 #: ../gnect/src/prefs.c:366 ../gnibbles/preferences.c:436
-#: ../gnobots2/properties.c:537 ../gnometris/tetris.cpp:717
+#: ../gnobots2/properties.c:537 ../gnometris/tetris.cpp:736
 msgid "Keyboard Controls"
 msgstr "鍵盤控制"
 
@@ -5378,19 +6160,19 @@ msgid "Speed:"
 msgstr "速度："
 
 #: ../gnibbles/gnibbles.c:627 ../gnobots2/game.c:182 ../gnomine/gnomine.c:224
-#: ../gnotravex/gnotravex.c:1237 ../gnotski/gnotski.c:840
+#: ../gnotravex/gnotravex.c:1239 ../gnotski/gnotski.c:842
 #: ../gtali/gyahtzee.c:203 ../mahjongg/mahjongg.c:668 ../same-gnome/ui.c:193
 msgid "Congratulations!"
 msgstr "恭喜！"
 
 #: ../gnibbles/gnibbles.c:628 ../gnobots2/game.c:183 ../gnomine/gnomine.c:225
-#: ../gnotravex/gnotravex.c:1238 ../gnotski/gnotski.c:841
+#: ../gnotravex/gnotravex.c:1240 ../gnotski/gnotski.c:843
 #: ../gtali/gyahtzee.c:204 ../mahjongg/mahjongg.c:669 ../same-gnome/ui.c:194
 msgid "Your score is the best!"
 msgstr "您的分數是最高的！"
 
 #: ../gnibbles/gnibbles.c:629 ../gnobots2/game.c:184 ../gnomine/gnomine.c:226
-#: ../gnotravex/gnotravex.c:1239 ../gnotski/gnotski.c:842
+#: ../gnotravex/gnotravex.c:1241 ../gnotski/gnotski.c:844
 #: ../gtali/gyahtzee.c:205 ../mahjongg/mahjongg.c:670 ../same-gnome/ui.c:195
 msgid "Your score has made the top ten."
 msgstr "您的分數進入頭十名。"
@@ -5402,7 +6184,7 @@ msgstr "引導不斷移動的小蟲蟲避開畫面的障礙物"
 
 #: ../gnibbles/gnibbles.desktop.in.in.h:2 ../gnibbles/main.c:243
 #: ../gnibbles/main.c:247 ../gnibbles/main.c:249 ../gnibbles/main.c:871
-#: ../gnibbles/main.c:989 ../gnibbles/main.c:1051
+#: ../gnibbles/main.c:989 ../gnibbles/main.c:1053
 msgid "Nibbles"
 msgstr "貪食蛇"
 
@@ -5473,7 +6255,7 @@ msgid "Key to use for motion up."
 msgstr "表示向上所用的按鍵"
 
 #: ../gnibbles/gnibbles.schemas.in.h:15 ../gnibbles/preferences.c:449
-#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:727
+#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:746
 msgid "Move down"
 msgstr "向下移動"
 
@@ -5614,7 +6396,7 @@ msgid "_Enable fake bonuses"
 msgstr "可出現假的獎勵(_E)"
 
 #. starting level
-#: ../gnibbles/preferences.c:350 ../gnometris/tetris.cpp:633
+#: ../gnibbles/preferences.c:350 ../gnometris/tetris.cpp:643
 msgid "_Starting level:"
 msgstr "開始版圖(_S)："
 
@@ -5663,13 +6445,13 @@ msgstr "第 %d 條蟲:"
 msgid "Game over!"
 msgstr "玩完了！"
 
-#: ../gnobots2/game.c:155 ../gnomine/gnomine.c:200 ../gnotski/gnotski.c:815
+#: ../gnobots2/game.c:155 ../gnomine/gnomine.c:200 ../gnotski/gnotski.c:817
 msgid "Great work, but unfortunately your score did not make the top ten."
 msgstr "不幸地，您的分數不能進入頭十名。"
 
 #. Translators: This "_New Game" is for the game-over dialogue
-#: ../gnobots2/game.c:157 ../gnomine/gnomine.c:202 ../gnotski/gnotski.c:817
-#: ../libgames-support/games-stock.c:321 ../same-gnome/ui.c:176
+#: ../gnobots2/game.c:157 ../gnomine/gnomine.c:202 ../gnotski/gnotski.c:819
+#: ../libgames-support/games-stock.c:323 ../same-gnome/ui.c:176
 msgid "_New Game"
 msgstr "開新局(_N)"
 
@@ -5711,13 +6493,13 @@ msgstr "修改遊戲的設定"
 msgid "Initial window position"
 msgstr "開始時視窗的位置"
 
-#: ../gnobots2/gnobots.c:89 ../gnomine/gnomine.c:991 ../gnomine/gnomine.c:999
+#: ../gnobots2/gnobots.c:89 ../gnomine/gnomine.c:992 ../gnomine/gnomine.c:1000
 #: ../gnotravex/gnotravex.c:399 ../gnotski/gnotski.c:467
 #: ../iagno/gnothello.c:146
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:91 ../gnomine/gnomine.c:993 ../gnomine/gnomine.c:1001
+#: ../gnobots2/gnobots.c:91 ../gnomine/gnomine.c:994 ../gnomine/gnomine.c:1002
 #: ../gnotravex/gnotravex.c:401 ../gnotski/gnotski.c:469
 #: ../iagno/gnothello.c:148
 msgid "Y"
@@ -5783,27 +6565,27 @@ msgstr "可使用安全空間轉移與安全移動的機器人"
 msgid "Robots with safe teleport with super-safe moves"
 msgstr "可使用安全空間轉移與超級安全移動的機器人"
 
-#: ../gnobots2/gnobots.c:237 ../gnobots2/gnobots.c:258
+#: ../gnobots2/gnobots.c:239 ../gnobots2/gnobots.c:260
 #: ../gnobots2/gnobots2.desktop.in.in.h:2 ../gnobots2/menu.c:263
 #: ../gnobots2/menu.c:266
 msgid "Robots"
 msgstr "機器人"
 
-#: ../gnobots2/gnobots.c:320
+#: ../gnobots2/gnobots.c:322
 msgid "No game data could be found."
 msgstr "找不到遊戲資料。"
 
-#: ../gnobots2/gnobots.c:322
+#: ../gnobots2/gnobots.c:324
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
 msgstr "GNOME 機器人找不到有效的設定檔。請檢查程式是否已正確安裝。"
 
-#: ../gnobots2/gnobots.c:341
+#: ../gnobots2/gnobots.c:343
 msgid "Some graphics files are missing or corrupt."
 msgstr "某些圖片檔案找不到或者已經損壞。"
 
-#: ../gnobots2/gnobots.c:343
+#: ../gnobots2/gnobots.c:345
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
@@ -6097,7 +6879,7 @@ msgstr "可使用超級安全移動(_S)"
 msgid "Prevents all moves that result in getting killed."
 msgstr "禁止任何會引致損失生命的行動。"
 
-#: ../gnobots2/properties.c:483 ../gnometris/tetris.cpp:659
+#: ../gnobots2/properties.c:483 ../gnometris/tetris.cpp:669
 msgid "_Enable sounds"
 msgstr "開啟音效(_E)"
 
@@ -6142,13 +6924,13 @@ msgstr "剩下："
 msgid "Fit falling blocks together"
 msgstr "將不同形狀而且不斷跌下的方塊拼合在一起"
 
-#: ../gnometris/gnometris.desktop.in.in.h:2 ../gnometris/main.cpp:64
-#: ../gnometris/tetris.cpp:162 ../gnometris/tetris.cpp:1281
-#: ../gnometris/tetris.cpp:1285 ../gnometris/tetris.cpp:1287
+#: ../gnometris/gnometris.desktop.in.in.h:2 ../gnometris/main.cpp:66
+#: ../gnometris/tetris.cpp:162 ../gnometris/tetris.cpp:1300
+#: ../gnometris/tetris.cpp:1304 ../gnometris/tetris.cpp:1306
 msgid "Gnometris"
 msgstr "GNOME 俄羅斯方塊"
 
-#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:728
+#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:747
 msgid "Drop"
 msgstr "跌下"
 
@@ -6184,11 +6966,11 @@ msgstr "開始時的級數"
 msgid "Level to start with."
 msgstr "開始時的級數"
 
-#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:730
+#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:749
 msgid "Pause"
 msgstr "暫停"
 
-#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:729
+#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:748
 msgid "Rotate"
 msgstr "旋轉"
 
@@ -6273,11 +7055,11 @@ msgstr "是否逆時針方向旋轉方塊"
 msgid "Whether to use the background image"
 msgstr "是否顯示背景圖案"
 
-#: ../gnometris/main.cpp:46
+#: ../gnometris/main.cpp:48
 msgid "Set starting level (1 or greater)"
 msgstr "設定開始的級數 (1 或以上)"
 
-#: ../gnometris/main.cpp:46
+#: ../gnometris/main.cpp:48
 msgid "LEVEL"
 msgstr "級數"
 
@@ -6297,58 +7079,63 @@ msgstr "Tango 陰影"
 msgid "Lines:"
 msgstr "行數："
 
-#: ../gnometris/tetris.cpp:565
+#: ../gnometris/tetris.cpp:575
 msgid "Gnometris Preferences"
 msgstr "GNOME 俄羅斯方塊偏好設定"
 
-#: ../gnometris/tetris.cpp:589
+#: ../gnometris/tetris.cpp:599 ../same-gnome-clutter/data/settings.ui.h:6
 msgid "Setup"
 msgstr "設定"
 
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:595
+#: ../gnometris/tetris.cpp:605
 msgid "_Number of pre-filled rows:"
 msgstr "預先填充的行數(_N)："
 
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:614
+#: ../gnometris/tetris.cpp:624
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "預先填充時每行的密度(_D)："
 
-#: ../gnometris/tetris.cpp:654
+#: ../gnometris/tetris.cpp:664 ../same-gnome-clutter/data/settings.ui.h:4
 msgid "Operation"
 msgstr "操作"
 
-#: ../gnometris/tetris.cpp:668
+#: ../gnometris/tetris.cpp:678
 msgid "_Preview next block"
 msgstr "預覽下個方塊(_P)"
 
-#: ../gnometris/tetris.cpp:677
+#: ../gnometris/tetris.cpp:687
 msgid "_Use random block colors"
 msgstr "方塊使用隨機顏色(_U)"
 
-#: ../gnometris/tetris.cpp:688
+#: ../gnometris/tetris.cpp:698
+#, fuzzy
+msgid "_Bastard mode"
+msgstr "<b>度量衡模式:</b>"
+
+#: ../gnometris/tetris.cpp:707
 msgid "_Rotate blocks counterclockwise"
 msgstr "方塊以逆時針方向旋轉(_R)"
 
-#: ../gnometris/tetris.cpp:697
+#: ../gnometris/tetris.cpp:716
 msgid "Show _where the block will land"
 msgstr "顯示方塊落點提示(_W)"
 
-#: ../gnometris/tetris.cpp:705 ../gnometris/tetris.cpp:738
+#: ../gnometris/tetris.cpp:724 ../gnometris/tetris.cpp:757
 #: ../same-gnome/ui.c:324
 msgid "Theme"
 msgstr "佈景主題"
 
-#: ../gnometris/tetris.cpp:714
+#: ../gnometris/tetris.cpp:733
 msgid "Controls"
 msgstr "控制"
 
-#: ../gnometris/tetris.cpp:741
+#: ../gnometris/tetris.cpp:760
 msgid "Block Style"
 msgstr "方塊樣式"
 
-#: ../gnometris/tetris.cpp:1290
+#: ../gnometris/tetris.cpp:1309
 msgid ""
 "A classic game of fitting falling blocks together.\n"
 "\n"
@@ -6362,7 +7149,7 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "GNOME 俄羅斯方塊積分榜"
 
-#: ../gnometris/blockops.cpp:724
+#: ../gnometris/blockops.cpp:861
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:173
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:214
 msgid "Paused"
@@ -6376,6 +7163,178 @@ msgstr "數獨"
 #: ../gnome-sudoku/gnome-sudoku.desktop.in.in.h:2
 msgid "Test your logic skills in this number grid puzzle"
 msgstr "透過這個數字格子題目來測試您的邏輯能力"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:1
+msgid "Color of the grid border"
+msgstr "格線外框的顏色"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:2
+msgid "Generate new puzzles in the background"
+msgstr "在背景產生新題目"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:3
+msgid "Height of application window in pixels"
+msgstr "應用程式視窗的高度（像素）"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:4
+msgid "Mark printed games as played"
+msgstr "將列印過的題目標記為已經玩過"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:5
+msgid "Number of puzzles to print on a page"
+msgstr "要列印的每頁題目數"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:6
+msgid "Print games that have been played"
+msgstr "列印已經玩過的遊戲"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:7
+msgid "Show hint highlights"
+msgstr "顯示提示的突顯效果"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:8
+msgid "Show hints"
+msgstr "顯示提示"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:9
+msgid "Show the application toolbar"
+msgstr "顯示應用程式工具列"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:10
+msgid "The number of seconds between automatic saves"
+msgstr "自動儲存間隔秒數"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:11
+msgid "Width of application window in pixels"
+msgstr "應用程式視窗的寬度（像素）"
+
+#: ../gnome-sudoku/data/print_games.ui.h:1
+msgid "<b><i>Details</i></b>"
+msgstr "<b><i>詳細資料</i></b>"
+
+#: ../gnome-sudoku/data/print_games.ui.h:2
+msgid "<b><i>Levels of difficulty to print</i></b>"
+msgstr "<b><i>要列印的遊戲難度等級</i></b>"
+
+#: ../gnome-sudoku/data/print_games.ui.h:3
+msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">列印遊戲</span>"
+
+#: ../gnome-sudoku/data/print_games.ui.h:4
+msgid "Print Sudokus"
+msgstr "列印數獨遊戲"
+
+#: ../gnome-sudoku/data/print_games.ui.h:5
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:13
+msgid "_Easy"
+msgstr "容易(_E)"
+
+#: ../gnome-sudoku/data/print_games.ui.h:6
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:15
+msgid "_Hard"
+msgstr "困難(_H)"
+
+#: ../gnome-sudoku/data/print_games.ui.h:7
+msgid "_Include games you've already played in list of games to print"
+msgstr "列印題目時包括您玩過的題目(_I)"
+
+#: ../gnome-sudoku/data/print_games.ui.h:8
+msgid "_Mark games as played once you've printed them."
+msgstr "列印題目後將題目標記為已經玩過(_M)"
+
+#: ../gnome-sudoku/data/print_games.ui.h:9
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:16 ../same-gnome/ui.c:479
+msgid "_Medium"
+msgstr "中(_M)"
+
+#: ../gnome-sudoku/data/print_games.ui.h:10
+msgid "_Number of sudoku to print: "
+msgstr "要列印的數獨遊戲數量(_N):"
+
+#: ../gnome-sudoku/data/print_games.ui.h:11
+msgid "_Sudokus per page: "
+msgstr "每頁的數獨題目數目(_S):"
+
+#: ../gnome-sudoku/data/print_games.ui.h:12
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:17
+msgid "_Very Hard"
+msgstr "極難(_V)"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:1
+msgid "<i><u>Number of Puzzles</u></i>"
+msgstr "<i><u>題目數目</u></i>"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:2
+msgid "<i>Easy:</i>"
+msgstr "<i>容易：</i>"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:3
+msgid "<i>Hard:</i>"
+msgstr "<i>困難：</i>"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:4
+msgid "<i>Medium:</i>"
+msgstr "<i>中等：</i>"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:5
+msgid "<i>Very Hard:</i>"
+msgstr "<i>極難：</i>"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:6
+msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
+msgstr "<span size=\"larger\" weight=\"bold\">題目產生器</span>"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:7
+msgid "Criteria:"
+msgstr "條件："
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:8
+msgid "Generate Policy"
+msgstr "產生的法則"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:9
+msgid "Generate new puzzles _until stopped"
+msgstr "不斷產生新題目直至玩家要求停止(_U)"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:10
+msgid "Generate until _reaching target"
+msgstr "產生題目直至達到目標數字為止(_R)"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:11
+msgid "Puzzle Generator"
+msgstr "題目產生器"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:12
+msgid "Target _number of sudokus:"
+msgstr "數獨題目的目標數字(_N):"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:14
+msgid "_Generate"
+msgstr "產生(_G)"
+
+#: ../gnome-sudoku/data/select_game.ui.h:1
+msgid "<b><span size=\"large\">_New Game</span></b>"
+msgstr "<b><span size=\"large\">新遊戲(_N)</span></b>"
+
+#: ../gnome-sudoku/data/select_game.ui.h:2
+msgid "<b><span size=\"large\">_Saved Games</span></b>"
+msgstr "<b><span size=\"large\">儲存遊戲(_S)</span></b>"
+
+#: ../gnome-sudoku/data/tracker.ui.h:1
+msgid "Clear _Others"
+msgstr "清除其他的(_O)"
+
+#: ../gnome-sudoku/data/tracker.ui.h:2
+msgid "_Add Tracker"
+msgstr "加入追蹤器(_A)"
+
+#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:784
+msgid "_Clear Tracker"
+msgstr "清除追蹤器(_C)"
+
+#: ../gnome-sudoku/data/tracker.ui.h:4
+msgid "_Trackers"
+msgstr "追蹤器(_T)"
 
 #: ../gnome-sudoku/src/gnome-sudoku.in.in:59
 msgid "Sudoku incorrectly installed"
@@ -6448,118 +7407,110 @@ msgstr "數獨(Sudoku)無法將遊戲標記為已結束。"
 msgid "Track moves"
 msgstr "追蹤填法"
 
-#: ../gnome-sudoku/src/lib/main.py:245
+#: ../gnome-sudoku/src/lib/main.py:243
 msgid "New game"
 msgstr "開新局"
 
 # zh_HK: msgstr "打印目前的遊戲"
 # zh_TW: msgstr "列印目前的遊戲"
-#: ../gnome-sudoku/src/lib/main.py:247
+#: ../gnome-sudoku/src/lib/main.py:245
 msgid "Print current game"
 msgstr "列印目前的遊戲"
 
-#: ../gnome-sudoku/src/lib/main.py:248
+#: ../gnome-sudoku/src/lib/main.py:246
 msgid "Print _Multiple Sudokus"
 msgstr "列印多份數獨遊戲(_M)"
 
-#: ../gnome-sudoku/src/lib/main.py:249
+#: ../gnome-sudoku/src/lib/main.py:247
 msgid "Print more than one sudoku at a time."
-msgstr "一次過列印多於一份的數獨。"
+msgstr "一次列印多於一份的數獨。"
 
-#: ../gnome-sudoku/src/lib/main.py:251
+#: ../gnome-sudoku/src/lib/main.py:249
 msgid "Close Sudoku"
 msgstr "關閉數獨"
 
-#: ../gnome-sudoku/src/lib/main.py:252
+#: ../gnome-sudoku/src/lib/main.py:250
 msgid "_Tools"
 msgstr "工具(_T)"
 
-#: ../gnome-sudoku/src/lib/main.py:254 ../libgames-support/games-stock.c:317
+#: ../gnome-sudoku/src/lib/main.py:252 ../libgames-support/games-stock.c:319
 msgid "_Hint"
 msgstr "提示(_H)"
 
-#: ../gnome-sudoku/src/lib/main.py:256
+#: ../gnome-sudoku/src/lib/main.py:254
 msgid "Show which numbers could go in the current square."
 msgstr "顯示目前的方格可以接受哪些數字。"
 
-#: ../gnome-sudoku/src/lib/main.py:258
+#: ../gnome-sudoku/src/lib/main.py:256
 msgid "_Fill"
 msgstr "填充(_F)"
 
-#: ../gnome-sudoku/src/lib/main.py:259
+#: ../gnome-sudoku/src/lib/main.py:257
 msgid "Automatically fill in the current square if possible."
 msgstr "在許可的情況下盡量填上目前的方格。"
 
-#: ../gnome-sudoku/src/lib/main.py:261
+#: ../gnome-sudoku/src/lib/main.py:259
 msgid "Fill _all squares"
 msgstr "填充所有方格(_A)"
 
-#: ../gnome-sudoku/src/lib/main.py:262
+#: ../gnome-sudoku/src/lib/main.py:260
 msgid ""
 "Automatically fill in all squares for which there is only one valid value."
 msgstr "自動填充所有只有一個可能性的方格。"
 
-#: ../gnome-sudoku/src/lib/main.py:266
+#: ../gnome-sudoku/src/lib/main.py:264
 msgid "_Generate new puzzles"
 msgstr "產生新題目(_G)"
 
-#: ../gnome-sudoku/src/lib/main.py:266
+#: ../gnome-sudoku/src/lib/main.py:264
 msgid "Generate new puzzles."
 msgstr "產生新題目"
 
-#: ../gnome-sudoku/src/lib/main.py:268
+#: ../gnome-sudoku/src/lib/main.py:266
 msgid "Puzzle _Statistics"
 msgstr "題目統計(_S)"
 
-#: ../gnome-sudoku/src/lib/main.py:269
+#: ../gnome-sudoku/src/lib/main.py:267
 msgid "Show statistics about current puzzle"
 msgstr "顯示有關目前題目的統計數字"
 
-#: ../gnome-sudoku/src/lib/main.py:275 ../libgames-support/games-stock.c:315
-msgid "_Contents"
-msgstr "內容(_C)"
-
-#: ../gnome-sudoku/src/lib/main.py:281
+#: ../gnome-sudoku/src/lib/main.py:279
 msgid "_Always show hint"
 msgstr "一定顯示提示(_A)"
 
-#: ../gnome-sudoku/src/lib/main.py:283
+#: ../gnome-sudoku/src/lib/main.py:281
 msgid "Always show possible numbers in a square"
 msgstr "永遠在方格中顯示所有可能出現的數字"
 
-#: ../gnome-sudoku/src/lib/main.py:287
+#: ../gnome-sudoku/src/lib/main.py:285
 msgid "Warn about _unfillable squares"
 msgstr "出現無法填上內容的方格時發出警告(_U)"
 
-#: ../gnome-sudoku/src/lib/main.py:289
+#: ../gnome-sudoku/src/lib/main.py:287
 msgid "Warn about squares made unfillable by a move"
 msgstr "當填上某個方格會令遊戲無法完成時發出警告"
 
-#: ../gnome-sudoku/src/lib/main.py:291
+#: ../gnome-sudoku/src/lib/main.py:289
 msgid "_Track additions"
 msgstr "增加追蹤(_T)"
 
-#: ../gnome-sudoku/src/lib/main.py:293
+#: ../gnome-sudoku/src/lib/main.py:291
 msgid "Mark new additions in a separate color so you can keep track of them."
 msgstr "以個別的顏色標記新填入的數字以便追蹤它們。"
 
-#: ../gnome-sudoku/src/lib/main.py:295
-msgid "Show _Toolbar"
-msgstr "顯示工具列(_T)"
-
-#: ../gnome-sudoku/src/lib/main.py:296
+#: ../gnome-sudoku/src/lib/main.py:294
 msgid "_Highlighter"
 msgstr "高亮度顯示(_H)"
 
-#: ../gnome-sudoku/src/lib/main.py:297
+#: ../gnome-sudoku/src/lib/main.py:295
 msgid "Highlight the current row, column and box"
 msgstr "加強顯示目前方格所在的行和列"
 
-#: ../gnome-sudoku/src/lib/main.py:298
+#: ../gnome-sudoku/src/lib/main.py:296
 msgid "Generate new puzzles _while you play"
 msgstr "當您在玩的時候產生新的題目(_W)"
 
-#: ../gnome-sudoku/src/lib/main.py:300
+#: ../gnome-sudoku/src/lib/main.py:298
 msgid ""
 "Generate new puzzles in the background while you play. This will "
 "automatically pause when the game goes into the background."
@@ -6567,133 +7518,129 @@ msgstr ""
 "當您正在解決題目時讓程式自行在背景產生新題目。此程序會在題目本身切換到背景時"
 "停止執行。"
 
-#: ../gnome-sudoku/src/lib/main.py:306
+#: ../gnome-sudoku/src/lib/main.py:304
 msgid "_Edit"
 msgstr "編輯(_E)"
 
-#: ../gnome-sudoku/src/lib/main.py:307
+#: ../gnome-sudoku/src/lib/main.py:305
 msgid "_Undo"
 msgstr "回手(_U)"
 
-#: ../gnome-sudoku/src/lib/main.py:307
+#: ../gnome-sudoku/src/lib/main.py:305
 msgid "Undo last action"
 msgstr "還原上一步"
 
-#: ../gnome-sudoku/src/lib/main.py:308
+#: ../gnome-sudoku/src/lib/main.py:306
 msgid "_Redo"
 msgstr "取消回手(_R)"
 
-#: ../gnome-sudoku/src/lib/main.py:308
+#: ../gnome-sudoku/src/lib/main.py:306
 msgid "Redo last action"
 msgstr "重新進行剛還原的一步"
 
-#: ../gnome-sudoku/src/lib/main.py:309
+#: ../gnome-sudoku/src/lib/main.py:307
 #: ../gnome-sudoku/src/lib/number_box.py:54
 msgid "_Clear"
 msgstr "清除(_C)"
 
-#: ../gnome-sudoku/src/lib/main.py:309
+#: ../gnome-sudoku/src/lib/main.py:307
 msgid "Clear entries you've filled in"
 msgstr "清除所有您填上的數字"
 
-#: ../gnome-sudoku/src/lib/main.py:310
+#: ../gnome-sudoku/src/lib/main.py:308
 msgid "Clear _Notes"
 msgstr "清除標記(_N)"
 
-#: ../gnome-sudoku/src/lib/main.py:310
+#: ../gnome-sudoku/src/lib/main.py:308
 msgid "Clear notes and hints"
 msgstr "清除標記和提示"
 
-#: ../gnome-sudoku/src/lib/main.py:424
+#: ../gnome-sudoku/src/lib/main.py:417
 #, python-format
 msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
 msgstr "您在 %(totalTime)s 內完成了這個題目（使用了 %(activeTime)s ）"
 
-#: ../gnome-sudoku/src/lib/main.py:428
+#: ../gnome-sudoku/src/lib/main.py:421
 #, python-format
 msgid "You got %(n)s hint"
 msgid_plural "You got %(n)s hints"
 msgstr[0] "您得到 %(n)s 次提示"
 
-#: ../gnome-sudoku/src/lib/main.py:431
+#: ../gnome-sudoku/src/lib/main.py:424
 #, python-format
 msgid "You had %(n)s impossibility pointed out."
 msgid_plural "You had %(n)s impossibilities pointed out."
 msgstr[0] "已為您指出 %(n)s 種不可能性。"
 
-#: ../gnome-sudoku/src/lib/main.py:436
+#: ../gnome-sudoku/src/lib/main.py:429
 #, python-format
 msgid "You used the auto-fill %(n)s time"
 msgid_plural "You used the auto-fill %(n)s times"
 msgstr[0] "您使用了 %(n)s 次自動填充"
 
-#: ../gnome-sudoku/src/lib/main.py:461
+#: ../gnome-sudoku/src/lib/main.py:453
 msgid "Save this game before starting new one?"
 msgstr "在開始新的遊戲前儲存這個遊戲？"
 
-#: ../gnome-sudoku/src/lib/main.py:462
+#: ../gnome-sudoku/src/lib/main.py:454
 msgid "_Save game for later"
 msgstr "儲存遊戲以後再玩(_S)"
 
-#: ../gnome-sudoku/src/lib/main.py:463
+#: ../gnome-sudoku/src/lib/main.py:455
 msgid "_Abandon game"
 msgstr "放棄遊戲(_A)"
 
-#: ../gnome-sudoku/src/lib/main.py:662
+#: ../gnome-sudoku/src/lib/main.py:649
 #, python-format
 msgid "Playing %(difficulty)s puzzle."
 msgstr "正在進行等級為 %(difficulty)s 的題目。"
 
-#: ../gnome-sudoku/src/lib/main.py:678
+#: ../gnome-sudoku/src/lib/main.py:665
 msgid "Puzzle Information"
 msgstr "題目資訊"
 
-#: ../gnome-sudoku/src/lib/main.py:679
+#: ../gnome-sudoku/src/lib/main.py:666
 msgid "There is no current puzzle."
 msgstr "目前沒有題目。"
 
-#: ../gnome-sudoku/src/lib/main.py:684
+#: ../gnome-sudoku/src/lib/main.py:671
 msgid "Calculated difficulty: "
 msgstr "經計算後的難度："
 
-#: ../gnome-sudoku/src/lib/main.py:688
+#: ../gnome-sudoku/src/lib/main.py:675
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "可以用消去法即時填上的方格："
 
-#: ../gnome-sudoku/src/lib/main.py:691
+#: ../gnome-sudoku/src/lib/main.py:678
 msgid "Number of moves instantly fillable by filling: "
 msgstr "可以即時填上的方格："
 
-#: ../gnome-sudoku/src/lib/main.py:694
+#: ../gnome-sudoku/src/lib/main.py:681
 msgid "Amount of trial-and-error required to solve: "
 msgstr "需要使用試錯法的次數："
 
-#: ../gnome-sudoku/src/lib/main.py:697 ../gnome-sudoku/src/lib/main.py:698
+#: ../gnome-sudoku/src/lib/main.py:684 ../gnome-sudoku/src/lib/main.py:685
 msgid "Puzzle Statistics"
 msgstr "題目統計"
 
 #. Our initial row...
-#: ../gnome-sudoku/src/lib/main.py:788
+#: ../gnome-sudoku/src/lib/main.py:775
 msgid "No Tracker"
 msgstr "沒有追蹤器"
 
-#: ../gnome-sudoku/src/lib/main.py:797
-msgid "_Clear Tracker"
-msgstr "清除追蹤器(_C)"
-
-#: ../gnome-sudoku/src/lib/main.py:798
+#: ../gnome-sudoku/src/lib/main.py:785
 msgid "Clear all moves tracked by selected tracker."
 msgstr "清除所有以選取的追蹤器追蹤的填法。"
 
-#: ../gnome-sudoku/src/lib/main.py:802
+#: ../gnome-sudoku/src/lib/main.py:789
 msgid "_Clear Others"
 msgstr "清除其他的(_C)"
 
-#: ../gnome-sudoku/src/lib/main.py:804
+#: ../gnome-sudoku/src/lib/main.py:791
 msgid "Clear all moves not tracked by selected tracker."
 msgstr "清除所有不被選取的追蹤器追蹤的填法。"
 
-#: ../gnome-sudoku/src/lib/main.py:829
+#: ../gnome-sudoku/src/lib/main.py:816
 #, python-format
 msgid "Tracker %s"
 msgstr "追蹤器 %s"
@@ -6873,7 +7820,7 @@ msgstr "所有地雷已經清除！"
 msgid "Mines Scores"
 msgstr "GNOME 拆地雷積分榜"
 
-#: ../gnomine/gnomine.c:217 ../gnotravex/gnotravex.c:1232
+#: ../gnomine/gnomine.c:217 ../gnotravex/gnotravex.c:1234
 #: ../same-gnome/ui.c:148
 msgid "Size:"
 msgstr "大小："
@@ -6886,19 +7833,19 @@ msgstr "按任何一個空格"
 msgid "Maybe they're all mines ..."
 msgstr "可能任何一個空格都是地雷..."
 
-#: ../gnomine/gnomine.c:450
+#: ../gnomine/gnomine.c:451
 msgid "Resizing and SVG support:"
 msgstr "放大縮小和 SVG 支援："
 
-#: ../gnomine/gnomine.c:457
+#: ../gnomine/gnomine.c:458
 msgid "Faces:"
 msgstr "笑臉："
 
-#: ../gnomine/gnomine.c:460
+#: ../gnomine/gnomine.c:461
 msgid "Graphics:"
 msgstr "圖形："
 
-#: ../gnomine/gnomine.c:476
+#: ../gnomine/gnomine.c:477
 msgid ""
 "The popular logic puzzle minesweeper. Clear mines from a board using hints "
 "from squares you have already uncovered.\n"
@@ -6910,77 +7857,77 @@ msgstr ""
 "\n"
 "拆地雷(Mines)是 GNOME 遊戲的一部分。"
 
-#: ../gnomine/gnomine.c:687
+#: ../gnomine/gnomine.c:688
 msgid "Field Size"
 msgstr "方格陣大小"
 
-#: ../gnomine/gnomine.c:710
+#: ../gnomine/gnomine.c:711
 msgid "Custom Size"
 msgstr "自訂大小"
 
-#: ../gnomine/gnomine.c:717
+#: ../gnomine/gnomine.c:718
 msgid "_Number of mines:"
 msgstr "地雷數量(_N)："
 
-#: ../gnomine/gnomine.c:730
+#: ../gnomine/gnomine.c:731
 msgid "_Horizontal:"
 msgstr "水平(_H)："
 
-#: ../gnomine/gnomine.c:742
+#: ../gnomine/gnomine.c:743
 msgid "_Vertical:"
 msgstr "垂直(_V)："
 
-#: ../gnomine/gnomine.c:759
+#: ../gnomine/gnomine.c:760
 msgid "Flags"
 msgstr "旗幟"
 
-#: ../gnomine/gnomine.c:762
+#: ../gnomine/gnomine.c:763
 msgid "_Use \"I'm not sure\" flags"
 msgstr "可將方格標記為「不知道」(_U)"
 
-#: ../gnomine/gnomine.c:773
+#: ../gnomine/gnomine.c:774
 msgid "Warnings"
 msgstr "警告"
 
-#: ../gnomine/gnomine.c:776
+#: ../gnomine/gnomine.c:777
 msgid "_Use \"Too many flags\" warning"
 msgstr "使用「標記過多」警告(_U)"
 
-#: ../gnomine/gnomine.c:787
+#: ../gnomine/gnomine.c:788
 msgid "Mines Preferences"
 msgstr "GNOME 拆地雷偏好設定"
 
-#: ../gnomine/gnomine.c:991
+#: ../gnomine/gnomine.c:992
 msgid "Width of grid"
 msgstr "格子的寬度"
 
-#: ../gnomine/gnomine.c:992
+#: ../gnomine/gnomine.c:993
 msgid "Height of grid"
 msgstr "格子的高度"
 
-#: ../gnomine/gnomine.c:994
+#: ../gnomine/gnomine.c:995
 msgid "Number of mines"
 msgstr "地雷數量"
 
-#: ../gnomine/gnomine.c:997 ../gnomine/gnomine.schemas.in.h:8
+#: ../gnomine/gnomine.c:998 ../gnomine/gnomine.schemas.in.h:8
 msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "棋盤大小 (0-2 表示小至大，3 表示自訂)"
 
-#: ../gnomine/gnomine.c:998 ../gnotravex/gnotravex.c:398
+#: ../gnomine/gnomine.c:999 ../gnotravex/gnotravex.c:398
 #: ../gnotski/gnotski.c:466 ../iagno/gnothello.c:145
 msgid "X location of window"
 msgstr "視窗水平位置"
 
-#: ../gnomine/gnomine.c:1000 ../gnotravex/gnotravex.c:400
+#: ../gnomine/gnomine.c:1001 ../gnotravex/gnotravex.c:400
 #: ../gnotski/gnotski.c:468 ../iagno/gnothello.c:147
 msgid "Y location of window"
 msgstr "視窗垂直位置"
 
-#: ../gnomine/gnomine.c:1146
+#: ../gnomine/gnomine.c:1149
 msgid "Press to Resume"
 msgstr "請按這裡繼續遊戲"
 
-#: ../gnomine/gnomine.c:1180
+#: ../gnomine/gnomine.c:1183
 msgid "Time: "
 msgstr "時間："
 
@@ -7228,28 +8175,28 @@ msgstr "版面的大小(2-6)"
 msgid "SIZE"
 msgstr "大小"
 
-#: ../gnotravex/gnotravex.c:1114
+#: ../gnotravex/gnotravex.c:1116
 msgid "Puzzle solved! Well done!"
 msgstr "解決了！做得好！"
 
-#: ../gnotravex/gnotravex.c:1116
+#: ../gnotravex/gnotravex.c:1118
 msgid "Puzzle solved!"
 msgstr "解決了！"
 
-#: ../gnotravex/gnotravex.c:1230
+#: ../gnotravex/gnotravex.c:1232
 msgid "Tetravex Scores"
 msgstr "數字拼圖積分榜"
 
-#: ../gnotravex/gnotravex.c:1497 ../mahjongg/mahjongg.c:977
+#: ../gnotravex/gnotravex.c:1498 ../mahjongg/mahjongg.c:977
 msgid "Game paused"
 msgstr "遊戲暫停"
 
-#: ../gnotravex/gnotravex.c:1625
+#: ../gnotravex/gnotravex.c:1626
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "使用 %d×%d 格的版面"
 
-#: ../gnotravex/gnotravex.c:1907
+#: ../gnotravex/gnotravex.c:1908
 msgid ""
 "GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
 "the same numbers are touching each other.\n"
@@ -7467,23 +8414,23 @@ msgstr "下個版圖"
 msgid "Previous Puzzle"
 msgstr "上個版圖"
 
-#: ../gnotski/gnotski.c:675
+#: ../gnotski/gnotski.c:677
 msgid "Level completed."
 msgstr "順利過關。"
 
-#: ../gnotski/gnotski.c:813
+#: ../gnotski/gnotski.c:815
 msgid "The Puzzle Has Been Solved!"
 msgstr "此題目已經被破解了！"
 
-#: ../gnotski/gnotski.c:830
+#: ../gnotski/gnotski.c:832
 msgid "Klotski Scores"
 msgstr "華容道積分榜"
 
-#: ../gnotski/gnotski.c:833
+#: ../gnotski/gnotski.c:835
 msgid "Puzzle:"
 msgstr "題目:"
 
-#: ../gnotski/gnotski.c:917
+#: ../gnotski/gnotski.c:919
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -7493,7 +8440,7 @@ msgstr ""
 "\n"
 "請確保華容道已正確安裝。"
 
-#: ../gnotski/gnotski.c:1164
+#: ../gnotski/gnotski.c:1166
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -7506,12 +8453,12 @@ msgstr ""
 "\n"
 "請確保華容道已正確安裝。"
 
-#: ../gnotski/gnotski.c:1203
+#: ../gnotski/gnotski.c:1205
 #, c-format
 msgid "Moves: %d"
 msgstr "步數：%d"
 
-#: ../gnotski/gnotski.c:1532
+#: ../gnotski/gnotski.c:1534
 msgid ""
 "Sliding Block Puzzles\n"
 "\n"
@@ -7686,7 +8633,7 @@ msgstr "文字模式版本 (1992)："
 
 #: ../gtali/gyahtzee.c:600
 msgid "Colors game and multi-level AI (2006):"
-msgstr "顏色遊戲與多層次 AI (2006):"
+msgstr ""
 
 #: ../gtali/gyahtzee.c:618
 msgid ""
@@ -7981,37 +8928,37 @@ msgstr "結束後分開雙方棋子(_F)"
 msgid "_Tile set:"
 msgstr "圖形集(_T)："
 
-#: ../libgames-support/eggdesktopfile.c:165
+#: ../libgames-support/eggdesktopfile.c:169
 #, c-format
 msgid "File is not a valid .desktop file"
 msgstr "檔案不是有效的 .desktop 檔案"
 
-#: ../libgames-support/eggdesktopfile.c:188
+#: ../libgames-support/eggdesktopfile.c:192
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "無法辨識的桌面檔案版本「%s」"
 
-#: ../libgames-support/eggdesktopfile.c:958
+#: ../libgames-support/eggdesktopfile.c:966
 #, c-format
 msgid "Starting %s"
 msgstr "準備啟動 %s"
 
-#: ../libgames-support/eggdesktopfile.c:1100
+#: ../libgames-support/eggdesktopfile.c:1108
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "應用程式不接受以命令列開啟文件"
 
-#: ../libgames-support/eggdesktopfile.c:1168
+#: ../libgames-support/eggdesktopfile.c:1176
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "無法辨識的啟動選項：%d"
 
-#: ../libgames-support/eggdesktopfile.c:1373
+#: ../libgames-support/eggdesktopfile.c:1381
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "不能傳送文件 URI 至「Type=Link」桌面項目"
 
-#: ../libgames-support/eggdesktopfile.c:1392
+#: ../libgames-support/eggdesktopfile.c:1402
 #, c-format
 msgid "Not a launchable item"
 msgstr "不是可以啟動的項目"
@@ -8188,10 +9135,6 @@ msgctxt "card symbol"
 msgid "1"
 msgstr "1"
 
-#: ../libgames-support/games-card-selector.c:123
-msgid "Card Style"
-msgstr "紙牌款式"
-
 #: ../libgames-support/games-controls.c:286
 msgid "Unknown Command"
 msgstr "不明指令"
@@ -8241,6 +9184,16 @@ msgstr "垂直排列"
 msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
 msgstr "垂直排列，由 0 (上) 至 1 (下)"
 
+#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
+#: ../libgames-support/games-help.c:114
+#, c-format
+msgid "Help file “%s.%s” not found"
+msgstr "找不到「%s.%s」求助檔案"
+
+#: ../libgames-support/games-runtime.c:273
+msgid "Could not show link"
+msgstr "無法顯示連結"
+
 #. Note that this assumes the default style is plain.
 #: ../libgames-support/games-scores-dialog.c:119
 #: ../libgames-support/games-scores-dialog.c:546
@@ -8253,135 +9206,121 @@ msgstr "分數"
 msgid "%dm %ds"
 msgstr "%d 分 %d 秒"
 
-#: ../libgames-support/games-scores-dialog.c:438
-msgid "New Game"
-msgstr "開新局"
-
-#: ../libgames-support/games-stock.c:48
+#: ../libgames-support/games-stock.c:47
 msgid "End the current game"
 msgstr "終止目前這局遊戲"
 
-#: ../libgames-support/games-stock.c:49
+#: ../libgames-support/games-stock.c:48
 msgid "Toggle fullscreen mode"
 msgstr "切換全螢幕模式"
 
-#: ../libgames-support/games-stock.c:51
+#: ../libgames-support/games-stock.c:50
 msgid "Leave fullscreen mode"
 msgstr "離開全螢幕模式"
 
 #: ../libgames-support/games-stock.c:52
-msgid "Start a new multiplayer network game"
-msgstr "開始一個新的多人網路遊戲"
-
-#: ../libgames-support/games-stock.c:53
 msgid "End the current network game and return to network server"
 msgstr "終止目前的網路遊戲，回到伺服器"
 
-#: ../libgames-support/games-stock.c:55 ../mahjongg/mahjongg.c:1249
+#: ../libgames-support/games-stock.c:54 ../mahjongg/mahjongg.c:1249
 msgid "Pause the game"
 msgstr "暫停遊戲"
 
-#: ../libgames-support/games-stock.c:56
+#: ../libgames-support/games-stock.c:55
 msgid "Show a list of players in the network game"
 msgstr "顯示網路遊戲中的玩家名單"
 
-#: ../libgames-support/games-stock.c:59 ../mahjongg/mahjongg.c:1252
+#: ../libgames-support/games-stock.c:58 ../mahjongg/mahjongg.c:1252
 msgid "Resume the paused game"
 msgstr "繼續遊戲"
 
-#: ../libgames-support/games-stock.c:60
+#: ../libgames-support/games-stock.c:59
 msgid "View the scores"
 msgstr "顯示得分"
 
-#: ../libgames-support/games-stock.c:64
+#: ../libgames-support/games-stock.c:63
 msgid "Configure the game"
 msgstr "遊戲設定"
 
-#: ../libgames-support/games-stock.c:65
+#: ../libgames-support/games-stock.c:64
 msgid "Quit this game"
 msgstr "退出本遊戲"
 
-#: ../libgames-support/games-stock.c:316
+#: ../libgames-support/games-stock.c:318
 msgid "_Fullscreen"
 msgstr "全螢幕(_F)"
 
 #. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../libgames-support/games-stock.c:319
+#: ../libgames-support/games-stock.c:321
 msgid "_New"
 msgstr "開新局(_N)"
 
-#: ../libgames-support/games-stock.c:322
+#: ../libgames-support/games-stock.c:324
 msgid "_Redo Move"
 msgstr "取消回手(_R)"
 
 #. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../libgames-support/games-stock.c:324
+#: ../libgames-support/games-stock.c:326
 msgid "_Reset"
 msgstr "重設(_R)"
 
 #. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:326
+#: ../libgames-support/games-stock.c:328
 msgid "_Restart"
 msgstr "再玩(_R)"
 
-#: ../libgames-support/games-stock.c:327
-msgid "_Undo Move"
-msgstr "回手(_U)"
-
-#: ../libgames-support/games-stock.c:328
+#: ../libgames-support/games-stock.c:330
 msgid "_Deal"
 msgstr "發牌(_D)"
 
-#: ../libgames-support/games-stock.c:330
+#: ../libgames-support/games-stock.c:332
 msgid "_Leave Fullscreen"
 msgstr "取消全螢幕(_L)"
 
-#: ../libgames-support/games-stock.c:331
-msgid "Network _Game"
-msgstr "網路遊戲(_G)"
-
-#: ../libgames-support/games-stock.c:332
+#: ../libgames-support/games-stock.c:334
 msgid "L_eave Game"
 msgstr "離開遊戲(_E)"
 
-#: ../libgames-support/games-stock.c:333
+#: ../libgames-support/games-stock.c:335
 msgid "Player _List"
 msgstr "玩家名單(_L)"
 
-#: ../libgames-support/games-stock.c:334
+#: ../libgames-support/games-stock.c:336
 msgid "_Pause"
 msgstr "暫停(_P)"
 
-#: ../libgames-support/games-stock.c:335
+#: ../libgames-support/games-stock.c:337
 msgid "Res_ume"
 msgstr "繼續(_U)"
 
-#: ../libgames-support/games-stock.c:336
+#: ../libgames-support/games-stock.c:338
 msgid "_Scores"
 msgstr "分數(_S)"
 
-#: ../libgames-support/games-stock.c:337
+#: ../libgames-support/games-stock.c:339
 msgid "_End Game"
 msgstr "結束遊戲(_E)"
 
-#: ../libgames-support/games-stock.c:343
+#. Work around maemo brokenness wrt. stock item translations.
+#. * See https://bugs.maemo.org/show_bug.cgi?id=1449 .
+#: ../libgames-support/games-stock.c:345
 msgid "_About"
 msgstr "關於(_A)"
 
-#: ../libgames-support/games-stock.c:344
+#: ../libgames-support/games-stock.c:346
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: ../libgames-support/games-stock.c:345
+#: ../libgames-support/games-stock.c:347
 msgid "_Close"
 msgstr "關閉(_C)"
 
-#: ../libgames-support/games-stock.c:346
+#: ../libgames-support/games-stock.c:348
 msgid "_OK"
 msgstr "確定(_O)"
 
 #. %s is replaced with the name of the game in gnome-games.
-#: ../libgames-support/games-stock.c:407
+#: ../libgames-support/games-stock.c:409
 #, c-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
@@ -8393,13 +9332,31 @@ msgstr ""
 "程式再為散佈與／或修改；無論您依據的是本授權的第二版或（您自行選擇的）第 %d "
 "版。"
 
-#: ../lightsoff/lightsoff.desktop.in.in.h:1
+#: ../lightsoff/lightsoff.desktop.in.in.h:1 ../lightsoff/data/lightsoff.ui.h:1
+#: ../lightsoff/data/settings.ui.h:1
+#, fuzzy
 msgid "Lights Off"
-msgstr "關燈"
+msgstr "關閉"
 
 #: ../lightsoff/lightsoff.desktop.in.in.h:2
+#, fuzzy
 msgid "Turn off all the lights"
-msgstr "關掉所有的燈"
+msgstr "關閉詳細輸出"
+
+#: ../lightsoff/data/settings.ui.h:2
+msgid "Look & Feel"
+msgstr ""
+
+#: ../lightsoff/data/settings.ui.h:3
+#: ../same-gnome-clutter/data/settings.ui.h:7
+#, fuzzy
+#| msgid "_Theme:"
+msgid "Theme:"
+msgstr "佈景主題(_T)："
+
+#: ../lightsoff/data/settings.ui.h:4
+msgid "Use colors from GNOME theme"
+msgstr ""
 
 #: ../mahjongg/drawing.c:305
 msgid ""
@@ -8514,15 +9471,15 @@ msgstr "上海麻將 - %s"
 msgid "Redo the last move"
 msgstr "還原上一步"
 
-#: ../mahjongg/mahjongg.c:1445
+#: ../mahjongg/mahjongg.c:1447
 msgid "Tiles Left:"
 msgstr "剩餘牌數:"
 
-#: ../mahjongg/mahjongg.c:1454
+#: ../mahjongg/mahjongg.c:1456
 msgid "Moves Left:"
 msgstr "剩餘步數:"
 
-#: ../mahjongg/mahjongg.c:1516
+#: ../mahjongg/mahjongg.c:1518
 msgid "Remove matching pairs of tiles."
 msgstr "將相同牌面的麻將一對對地移走。"
 
@@ -8599,10 +9556,14 @@ msgid "Game size (1=small, 3=large)"
 msgstr "遊戲畫面大小 (1 表示小，3 表示大)"
 
 #: ../same-gnome/same-gnome.desktop.in.in.h:1
+#: ../same-gnome-clutter/same-gnome-clutter-c.desktop.in.in.h:1
+#: ../same-gnome-clutter/same-gnome-clutter.desktop.in.in.h:1
 msgid "Clear the screen by removing groups of colored balls"
 msgstr "清除畫面上聚在一起的同色球"
 
 #: ../same-gnome/same-gnome.desktop.in.in.h:2
+#: ../same-gnome-clutter/data/same-gnome.ui.h:1
+#: ../same-gnome-clutter/data/settings.ui.h:5
 msgid "Same GNOME"
 msgstr "Same GNOME"
 
@@ -8696,10 +9657,6 @@ msgstr "佈景主題(_T)..."
 msgid "_Small"
 msgstr "小(_S)"
 
-#: ../same-gnome/ui.c:479
-msgid "_Medium"
-msgstr "中(_M)"
-
 #: ../same-gnome/ui.c:480
 msgid "_Large"
 msgstr "大(_L)"
@@ -8717,3 +9674,54 @@ msgid ""
 "It is impossible to play the game. Please check that the game has been "
 "installed correctly and try again."
 msgstr "現在無法玩遊戲。請確保遊戲已經正確安裝，並再試一次。"
+
+#: ../same-gnome-clutter/data/settings.ui.h:2
+#, fuzzy
+#| msgid "_Board size:"
+msgid "Board size:"
+msgstr "棋盤大小(_B):"
+
+#: ../same-gnome-clutter/data/settings.ui.h:3
+#, fuzzy
+#| msgid "_Number of players:"
+msgid "Number of colors:"
+msgstr "玩家數目(_N)："
+
+#: ../same-gnome-clutter/data/settings.ui.h:8
+#, fuzzy
+#| msgid "_Fast Animation"
+msgid "Zealous Animation"
+msgstr "快速動作(_F)"
+
+#: ../same-gnome-clutter/same-gnome-clutter-c.desktop.in.in.h:2
+#, fuzzy
+#| msgid "Same GNOME Theme"
+msgid "Same GNOME (Clutter, C)"
+msgstr "Same GNOME 佈景主題"
+
+#: ../same-gnome-clutter/same-gnome-clutter.desktop.in.in.h:2
+#, fuzzy
+#| msgid "Same GNOME"
+msgid "Same GNOME (Clutter)"
+msgstr "Same GNOME"
+
+#~ msgid "Terrace~"
+#~ msgstr "Terrace~"
+
+#, fuzzy
+#~| msgid "Appearance"
+#~ msgid "<b>Appearance</b>"
+#~ msgstr "外觀"
+
+#, fuzzy
+#~| msgid "Operation"
+#~ msgid "<b>Operation</b>"
+#~ msgstr "操作"
+
+#, fuzzy
+#~| msgid "<b>Server</b>"
+#~ msgid "<b>Setup</b>"
+#~ msgstr "<b>伺服器</b>"
+
+#~ msgid "Could not show Aisleriot help"
+#~ msgstr "無法顯示 Aisleriot 的求助文件"
