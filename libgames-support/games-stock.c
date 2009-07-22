@@ -419,9 +419,14 @@ games_get_license_version (const gchar * game_name,
     N_("You should have received a copy of the GNU General Public License "
        "along with %s; if not, write to the Free Software Foundation, Inc., "
        "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA");
+  static const char license3[] =
+    N_("You should have received a copy of the GNU General Public License "
+       "along with this program.  If not, see <http://www.gnu.org/licenses/>.");
 
-  license_trans = g_strjoin ("\n\n", _(license0), _(license1),
-                             _(license2), NULL);
+  if (version >= 3)
+    license_trans = g_strjoin ("\n\n", _(license0), _(license1), _(license3), NULL);
+  else
+    license_trans = g_strjoin ("\n\n", _(license0), _(license1), _(license2), NULL);
 
 #if !GTK_CHECK_VERSION (2, 8, 0)
   /* We have to manually wrap the text, since the about dialogue cannot
