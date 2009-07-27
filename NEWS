@@ -1,3 +1,156 @@
+gnome-games 2.27.5
+==================
+
+Tim's branch was merged adding introspection support for libgames-support. A 
+staging version of the seed/clutter based same-gnome was also added. 
+
+Chao-Hsiung Liao (1):
+      Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+Christian Kirbach (1):
+      Updated German translation.
+
+Christian Persch (8):
+      Revert "[libgames-support] Don't pass --internal to glib-genmarshal"
+      Revert "[libgames-support] Tiny build fix for merge of gsoc-seed-games"
+      bgames-support: Add libgames-support-gi.la for use by gobject-introspection
+      libgames-support: Make GamesClock work with multiple calls to start()
+      libgames-support: Assert that threads are initialised
+      aisleriot: Change licence to GPL 3+
+      libgames-support: Use link instead of FSF address in the GPL3 note
+      Update POTFILES.in
+
+Claude Paroz (5):
+      Updated Mahjongg French help translation
+      [lightsoff] Improve translatability of ui file
+      [aisleriot] Remove game name with tilde suffix
+      [same-gnome-clutter] Use attributes instead of embedded markup in translatable strings
+      Updated French translation
+
+Daniel Mustieles (2):
+      Updated Spanish translation
+      Updated Spanish translation
+
+Ivar Smolin (3):
+      Updating Estonian translation
+      Updating Estonian translation
+      Updating Estonian translation
+
+Robert Ancell (1):
+      Move glchess and gnome-sudoku image dirs again from /usr/share/gnome-games/name/ to /usr/share/name to match other data
+
+Thomas Hindoe Paaboel Andersen (6):
+      Post-release version bump
+      Add new files to POTFILES
+      Use accessor functions for -DGSEAL_ENABLE
+      Use accessor functions for -DGSEAL_ENABLE
+      Use accessor functions for -DGSEAL_ENABLE
+      comment out schemas files for staging games to fix build
+
+Tim Horton (98):
+      Update Lights Off to use Clutter 0.9
+      Lights Off: Many changes to match internal Clutter changes
+      Disable build of Gnometris for now; it doesn't work because of Clutter changes and I can't seem to fix it.
+      More disabling of gnometris, for now, just to get PPA working again :-(
+      Revert "Disable build of Gnometris for now; it doesn't work because of Clutter changes and I can't seem to fix it."
+      Revert "More disabling of gnometris, for now, just to get PPA working again :-("
+      [libgames-support] Install libgames-support to the commondatadir
+      [libgames-support] Copy in Clutter's introspection-building code
+      [libgames-support] Remove assertion that ensures Card fits in one byte
+      [libgames-support] Strip the 'games_' prefix in introspection data
+      [libgames-support] Only call g_thread_init if it hasn't already been called
+      [lightsoff] Consume "new" stock item from libgames-support
+      [lightsoff] Don't load themes twice, don't fade between the same theme
+      [same-gnome-clutter] Create a directory for the Seed+Clutter port of Same Gnome
+      [same-gnome-clutter] Import same-gnome from the Seed repository
+      [lightsoff] Cleanup, as Seed recently added script cwd to include path
+      [same-gnome-clutter] Build and install the C port of the Clutter port of Same
+      [lightsoff] Don't remove js files during make clean
+      Add introspection output to gitignore
+      [same-gnome-clutter] Update various parts of the Seed port
+      [lightsoff] Initial implementation of About dialog.
+      [lightsoff] Add i18n for About dialog
+      [lightsoff] Add translator + artist credits.
+      [lightsoff] Implement 'quit' and 'new game'
+      [lightsoff] Fix inefficient and poor LED display drawing
+      [lightsoff] Centralize score updating in a more reasonable place
+      [lightsoff] Lots of various bits of cleanup
+      [lightsoff] Remove old led front image that's no longer used
+      [lightsoff] Implement pretty-printed theme names
+      [lightsoff] Implement keyboard-based play (use arrow keys/enter)
+      [same-gnome-clutter] Significant overhaul fixes most of the animation/stickyness problems
+      [lightsoff] Check if loaded theme exists; if not, set to default
+      [lightsoff] Add GConf schema for score/theme keys
+      [lightsoff] Small fix to code to ensure transition direction changes
+      [lightsoff] Fix z-order of board after a manual swap.
+      [lightsoff] Keyboard accelerators for menu items
+      [lightsoff] Clean up naming in main GtkBuilder file
+      Revert "[lightsoff] Clean up naming in main GtkBuilder file"
+      Reorganize source tree into directories
+      [libgames-support] Return card size assertion wrapped in gir-scanner ifdef
+      [lightsoff] Update gettext import to match seed upstream change
+      [lightsoff] Use Clutter keysyms (surprise! they're in the GIR, toplevel)
+      [lightsoff] Don't clean main.js, because it's built at configure time
+      [lightsoff] Reorganize order of widget realization; fixes LO on Clutter HEAD
+      [libgames-support] Add pkg arguments for Clutter and COGL to reduce g-ir-scanner warnings
+      [libgames-support] Remove extra semicolon in games-card-images.h; no more scanner warnings
+      [libgames-support] Use detected CLUTTER_API_VERSION instead of 0.9
+      [lightsoff] Fix offscreen texture usage (hidden-but-added works, too)
+      [lightsoff] Add (as-yet-unwritten) LO manual. Copied from Gnometris, so there's some extra words left over.
+      [libgames-support] Use a stand-in GIR for GGZ instead of introspecting GGZ within our namespace
+      [same-gnome-clutter] Initial gtkbuilder ui
+      [same-gnome-clutter] Reorganize into directories
+      [same-gnome-clutter] Don't only unlight if we're connected to 2 lights; that's silly
+      [same-gnome-clutter] Use the LO UI file for Same
+      [same-gnome-clutter] Menu signal handlers
+      [same-gnome-clutter] About dialog
+      [same-gnome-clutter] Update strings to match shipping Same (for translations)
+      [libgames-support] GGZ-1.0.gir needs to be installed, even though it's handwritten
+      [lightsoff] Add help menuitem
+      [lightsoff] Various clarifying comments
+      [lightsoff] Reduce the number of templated javascript files
+      [lightsoff] Factor out theme loading code
+      [lightsoff] Move more code into global ThemeLoader
+      [lightsoff] Standardize on capital letters for JS files
+      [lightsoff] Menu separator
+      [same-gnome-clutter] Pull ThemeLoader over from LightsOff
+      [same-gnome-clutter] Don't show the "offscreen" source lights
+      [lightsoff] [same-gnome-clutter] Don't use fog
+      [same-gnome-clutter] Reset score on new game.
+      [same-gnome-clutter] Add initial settings ui
+      [same-gnome-clutter] Add scores menuitem
+      [same-gnome-clutter] Pull in theme selector loading code, settings display, etc.
+      [same-gnome-clutter] All settings persist through GConf now
+      [same-gnome-clutter] Initial GConf schema.
+      [same-gnome-clutter] Use small/medium/large instead of arbitrary sizes
+      [same-gnome-clutter] Use settings for number of colors and theme
+      [same-gnome-clutter] Live theme changing; add test theme
+      [same-gnome-clutter] Finish (not yet animated) live theme switching
+      [same-gnome-clutter] Size changing works now
+      [lightsoff] Fix miscapitalization of 'Path' (fresh installs run now)
+      [same-gnome-clutter] Use correct dimension to calculate new tile position
+      [same-gnome-clutter] Dist themeloader.js, not .js.in
+      [libgames-support] Distribute handwritten GGZ gir
+      [lightsoff] Use icon for window
+      [same-gnome-clutter] Use icon for window
+      [libgames-support] Tiny build fix for merge of gsoc-seed-games
+      [libgames-support] Don't clean hand-generated GGZ-1.0.gir
+      [libgames-support] Do install GnomeGamesSupport-1.0.gir
+      [libgames-support] Don't pass --internal to glib-genmarshal
+      [same-gnome-clutter] Remove "fly score" option, will merge functionality into 'zealous animation'
+      [same-gnome-clutter] Implement non-zealous animation
+      [same-gnome-clutter] Add "Help" menuitem, currently launches normal Same help
+      [lightsoff] [same-gnome-clutter] libgames-support now lives in pkglibdir
+      [same-gnome-clutter] Show current/next score in "statusbar"
+      [same-gnome-clutter] Reorganize score-management code
+      [same-gnome-clutter] Mark "Game Over!" as translatable
+      [same-gnome-clutter] Unhighlight tiles when mouse leaves game board
+      [same-gnome-clutter] Clear final score display on new game
+
+drtvasudevan (2):
+      Updated Tamil translation
+      Updated Tamil translation
+
 gnome-games 2.27.4
 ==================
 
