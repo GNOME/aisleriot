@@ -367,8 +367,8 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la
 	--namespace GnomeGamesSupport --nsversion=1.0 \
 	--strip-prefix=games \
 	--add-include-path=$(srcdir) --add-include=path=. \
-	--include=Clutter-$(CLUTTER_API_VERSION) \
-	--include=Cogl-$(CLUTTER_API_VERSION) \
+	--include=Clutter-1.0 \
+	--include=Cogl-1.0 \
 	--include=Gtk-2.0 \
 	--include=GGZ-1.0 \
 	--library=games-support-gi \
@@ -376,8 +376,8 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la
 	--output $@ \
 	--pkg gobject-2.0 \
 	--pkg gtk+-2.0 \
-	--pkg clutter-$(CLUTTER_API_VERSION) \
-	--pkg cogl-$(CLUTTER_API_VERSION) \
+	--pkg clutter-1.0 \
+	--pkg cogl-1.0 \
 	-I$(top_srcdir) \
 	-I$(top_builddir) \
 	$(filter %.h,$(libgames_support_gi_la_SOURCES))
