@@ -21,6 +21,10 @@
 
 #include <gtk/gtk.h>
 
+#ifdef HAVE_CLUTTER
+#include <clutter-gtk/clutter-gtk.h>
+#endif
+
 #include <libgames-support/games-card-theme.h>
 
 #include "game.h"
@@ -39,14 +43,22 @@ typedef struct _AisleriotBoardPrivate	AisleriotBoardPrivate;
 typedef struct _AisleriotBoardClass	AisleriotBoardClass;
 
 struct _AisleriotBoard {
+#ifdef HAVE_CLUTTER
+  GtkClutterEmbed parent_instance;
+#else
   GtkDrawingArea parent_instance;
+#endif
 
   /*< private >*/
   AisleriotBoardPrivate *priv;
 };
 
 struct _AisleriotBoardClass {
+#ifdef HAVE_CLUTTER
+  GtkClutterEmbedClass parent_class;
+#else
   GtkDrawingAreaClass parent_class;
+#endif
 
   /* keybinding signals */
   gboolean (* move_cursor)  (AisleriotBoard *board,
