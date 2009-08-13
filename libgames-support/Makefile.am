@@ -362,7 +362,7 @@ libgames_support_gi_la_LIBADD = $(libgames_support_la_LIBADD)
 
 BUILT_GIRSOURCES = GnomeGamesSupport-1.0.gir GGZ-1.0.gir
 
-GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la
+GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(libgames_support_gi_la_SOURCES)
 	$(QUIET_GEN)$(INTROSPECTION_SCANNER) -v \
 	--namespace GnomeGamesSupport --nsversion=1.0 \
 	--strip-prefix=games \
@@ -380,7 +380,7 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la
 	--pkg cogl-1.0 \
 	-I$(top_srcdir) \
 	-I$(top_builddir) \
-	$(filter %.h,$(libgames_support_gi_la_SOURCES))
+	$(filter %.h,$^)
 
 # FIXMEchpe: this looks bogus. If the introspection.m4 macro gets it wrong, fix it!
 # INTROSPECTION_GIRDIR/INTROSPECTION_TYPELIBDIR aren't the right place to
