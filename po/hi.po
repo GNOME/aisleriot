@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: hi\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "games&component=general\n"
-"POT-Creation-Date: 2009-06-08 07:51+0000\n"
-"PO-Revision-Date: 2009-06-08 13:19+0530\n"
+"POT-Creation-Date: 2009-08-06 19:43+0000\n"
+"PO-Revision-Date: 2009-06-08 14:43+0530\n"
 "Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
 "Language-Team: Hindi <hindi.sf.net>\n"
 "MIME-Version: 1.0\n"
@@ -117,8 +117,8 @@ msgstr "स्थिति-पट्टी दिखाएँ या नही�
 msgid "Whether or not to show the toolbar"
 msgstr "उपकरण-पट्टी दिखाएँ या नहीं"
 
-#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:579
-#: ../aisleriot/window.c:615 ../aisleriot/window.c:623
+#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:304
+#: ../aisleriot/window.c:618 ../aisleriot/window.c:626
 msgid "FreeCell Solitaire"
 msgstr "फ्रीसेल सॉलिटेयर"
 
@@ -126,18 +126,18 @@ msgstr "फ्रीसेल सॉलिटेयर"
 msgid "Play the popular FreeCell card game"
 msgstr "लोकप्रिय ताश का खेल फ्रीसेल खेलें"
 
-#: ../aisleriot/game.c:1134
+#: ../aisleriot/game.c:1142
 #, c-format
 msgid ""
 "Aisleriot cannot load the file “%s”. Please check your Aisleriot "
 "installation."
 msgstr "एस्लेरियॉट फ़ाइल “%s” लोड नहीं कर सका. कृपया अपना एस्लेरियॉट संस्थापन जांचें."
 
-#: ../aisleriot/game.c:1575
+#: ../aisleriot/game.c:1586
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot पता नहीं कर सका कि आपने कौन सा खेल अंतिम बार प्राप्त किया."
 
-#: ../aisleriot/game.c:1576
+#: ../aisleriot/game.c:1587
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -147,7 +147,7 @@ msgstr ""
 "आप अंतिम में खेले हैं. मूलभूत खेल, Klondike, बदले में आरंभ हो रहा है."
 
 # libgnomeprintui/gnome-font-dialog.c:793
-#: ../aisleriot/game.c:1934
+#: ../aisleriot/game.c:1945
 msgid "This game does not have hint support yet."
 msgstr "इस खेल में अब तक कोई संकेत समर्थन उपलब्ध नहीं है."
 
@@ -155,73 +155,870 @@ msgstr "इस खेल में अब तक कोई संकेत स�
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../aisleriot/game.c:1968 ../aisleriot/game.c:1996
+#: ../aisleriot/game.c:1979 ../aisleriot/game.c:2007
 #, c-format
 msgid "Move %s onto %s."
 msgstr " %s खिसकाएँ %s पर."
 
-#: ../aisleriot/game.c:2018
+#: ../aisleriot/game.c:2029
 #, c-format
 msgid "You are searching for a %s."
 msgstr "एक %s को आप ढूंढ रहे हैं."
 
-#: ../aisleriot/game.c:2023
+#: ../aisleriot/game.c:2034
 msgid "This game is unable to provide a hint."
 msgstr "यह खेल कोई संकेत उपलब्ध कराने में असमर्थ है."
 
-#: ../aisleriot/sol.c:120
-msgid "Could not show link"
-msgstr "लिंक नहीं दिखा सका"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:6
+msgid "Peek"
+msgstr "झांकें"
 
-#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../aisleriot/sol.c:309
-#, c-format
-msgid "Help file \"%s.%s\" not found"
-msgstr "मदद फाइल \"%s.%s\" नहीं मिला"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:13
+msgid "Auld Lang Syne"
+msgstr "अल्ड लेंग स्याने"
 
-#. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/sol.c:314 ../aisleriot/sol.c:392 ../aisleriot/window.c:1989
-#: ../dependencies/ggz-gtk/ggzclient.c:124
-#: ../dependencies/ggz-gtk/ggzclient.c:380
-#: ../dependencies/ggz-gtk/ggzclient.c:561
-#: ../dependencies/ggz-gtk/ggzclient.c:596
-#: ../dependencies/ggz-gtk/ggzclient.c:649
-#: ../dependencies/ggz-gtk/ggzclient.c:1079
-#: ../dependencies/ggz-gtk/launch.c:325
-msgid "Error"
-msgstr "त्रुटि"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:20
+msgid "Fortunes"
+msgstr "सौभाग्य"
 
-#: ../aisleriot/sol.c:373
-#, c-format
-msgid "Could not show help for “%s”"
-msgstr "“%s” के लिए मदद नहीं दिखा सका"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:27
+msgid "Seahaven"
+msgstr "सीहैवन"
 
-#: ../aisleriot/sol.c:376
-msgid "Could not show Aisleriot help"
-msgstr "एसलेरिएट मदद नहीं दिखा सका"
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:34
+msgid "King Albert"
+msgstr "राजा अलबर्ट"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:41
+msgid "First Law"
+msgstr "पहला नियम"
+
+# libgnomeprint/gpa/gpa-media.c:263
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:48
+msgid "Straight Up"
+msgstr "सीधा ऊपर"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:55
+msgid "Jumbo"
+msgstr "भारी भरकम"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:62
+msgid "Accordion"
+msgstr "एकार्डियन"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:69
+msgid "Ten Across"
+msgstr "दस आरपार"
+
+# #-#-#-#-#  libgnomeprint.gnome-2-2.hi.po (libgnomeprint VERSION)  #-#-#-#-#
+# libgnomeprint/gpa/gpa-media.c:343
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:76
+msgid "Plait"
+msgstr "लपेट"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:83
+msgid "Lady Jane"
+msgstr "श्रीमती ज़ेन"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:90
+msgid "Gypsy"
+msgstr "जिप्सी"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:97
+msgid "Neighbor"
+msgstr "पड़ोसी"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:104
+msgid "Jamestown"
+msgstr "जेम्सटाउन"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:111
+msgid "Osmosis"
+msgstr "ऑस्मोसिस"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:118
+msgid "Kings Audience"
+msgstr "किंग ऑडियंस"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:125
+msgid "Glenwood"
+msgstr "ग्लेनवुड"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:132
+msgid "Gay Gordons"
+msgstr "गे गोरडोन्स"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:139
+msgid "Monte Carlo"
+msgstr "मोन्ते कार्लो"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:146
+msgid "Kansas"
+msgstr "कैनसास"
+
+# #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
+# 48x48/emblems/emblem-camera.icon.in.h:1
+# 48x48/emblems/emblem-camera.icon.in.h:1
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:153
+msgid "Camelot"
+msgstr "केमेलॉट"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:160
+msgid "Fourteen"
+msgstr "चौदह"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:167
+msgid "Scorpion"
+msgstr "वृश्चिक"
+
+# #-#-#-#-#  gnome-applets.gnome-2-2.hi.po (gnome-applets 2.x)  #-#-#-#-#
+# gtk/gtkbutton.c:189 gtk/gtkframe.c:125 gtk/gtklabel.c:280
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:174
+msgid "Isabel"
+msgstr "इसाबेल"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:181
+msgid "Escalator"
+msgstr "एस्केलेटर "
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:188
+msgid "Agnes"
+msgstr "एग्नेस"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:195
+msgid "Bristol"
+msgstr "ब्रिस्टल"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:202
+msgid "Quatorze"
+msgstr "क्वातोर्जे"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:209
+#, fuzzy
+msgid "Bear River"
+msgstr "बिसात आकार"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:216
+msgid "Gold Mine"
+msgstr "सोना खदान"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:223
+msgid "Athena"
+msgstr "एथेना"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:230
+msgid "Spiderette"
+msgstr "मादा मकड़ी"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:237
+msgid "Chessboard"
+msgstr "शतरंज"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:244
+msgid "Backbone"
+msgstr "रीढ़"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:251
+msgid "Yukon"
+msgstr "युकान"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:258
+msgid "Union Square"
+msgstr "संघीय चौराहा"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:265
+msgid "Eight Off"
+msgstr "आठ बन्द"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:272
+msgid "Napoleons Tomb"
+msgstr "नेपोलियन मकबरा"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:279
+msgid "Forty Thieves"
+msgstr "चालीस चोर"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:286
+msgid "Streets And Alleys"
+msgstr "गलियां और चौबारा"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:293
+msgid "Maze"
+msgstr "भूल भुलैया"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:300
+msgid "Clock"
+msgstr "घड़ी"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:307
+msgid "Pileon"
+msgstr "पाइलेअन"
+
+# #-#-#-#-#  anjuta.ANJUTA_1_2_0.hi.po (anjuta2 VERSION)  #-#-#-#-#
+# #-#-#-#-#  gnome-session.HEAD.hi.po (gnome-session VERSION)  #-#-#-#-#
+# gnome-session/session-properties.c:179
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:314
+msgid "Canfield"
+msgstr "केनफील्ड"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:321
+msgid "Thirteen"
+msgstr "तेरह"
+
+# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
+# libgnomeui/gnome-app-helper.c:253
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:328
+msgid "Bakers Game"
+msgstr "बेकर्स खेल"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:335
+msgid "Triple Peaks"
+msgstr "तिहरी चोटी"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:342
+msgid "Easthaven"
+msgstr "ईस्टहैवन"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/game-names.h:349 ../aisleriot/rules/terrace.scm.h:20
+msgid "Terrace"
+msgstr "टेरेस"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:356
+msgid "Aunt Mary"
+msgstr "आंट मेरी"
+
+# #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
+# 48x48/emblems/emblem-camera.icon.in.h:1
+# 48x48/emblems/emblem-camera.icon.in.h:1
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:363
+msgid "Carpet"
+msgstr "दरी"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:370
+msgid "Sir Tommy"
+msgstr "श्रीमान् टॉमी"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:377
+msgid "Diamond Mine"
+msgstr "हीरा खदान"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:384
+msgid "Yield"
+msgstr "उपज"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:391
+msgid "Labyrinth"
+msgstr "भूलभुलैया"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:398
+msgid "Thieves"
+msgstr "चोर"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:405
+msgid "Saratoga"
+msgstr "साराटोगा"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:412
+msgid "Cruel"
+msgstr "कठोर"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:419
+msgid "Block Ten"
+msgstr "ब्लाक दस"
+
+# libgnomeui/gnome-druid-page-standard.c:122
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:426
+msgid "Will O The Wisp"
+msgstr "विल औ द विस्प"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:433
+msgid "Odessa"
+msgstr "ओडेसा"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:440
+msgid "Eagle Wing"
+msgstr "बाज पंख"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:447
+msgid "Treize"
+msgstr "ट्रेज"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:454
+msgid "Zebra"
+msgstr "जेब्रा"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:461
+msgid "Cover"
+msgstr "आवरण"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:468
+msgid "Elevator"
+msgstr "एलीवेटर"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:475
+msgid "Fortress"
+msgstr "किला"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:482
+#, fuzzy
+msgid "Giant"
+msgstr "संकेत (_H)"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:489
+msgid "Spider"
+msgstr "मकड़ी"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:496
+msgid "Gaps"
+msgstr "गैप"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:503
+msgid "Bakers Dozen"
+msgstr "बेकर्स दर्जन"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:510
+msgid "Whitehead"
+msgstr "सफेदसिर (व्हाइटहेड)"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:517
+msgid "Freecell"
+msgstr "फ्रीसेल"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:524
+msgid "Helsinki"
+msgstr "हेलसिंकी"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:531
+msgid "Spider Three Decks"
+msgstr "स्पाइडर तीन डेक"
+
+# libgnomecanvas/gnome-canvas-text.c:367
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:538
+msgid "Scuffle"
+msgstr "हाथापाई"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:545
+msgid "Poker"
+msgstr "पोकर"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:552
+msgid "Klondike Three Decks"
+msgstr "क्लॉन्डिके तीन डेक"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:559
+msgid "Valentine"
+msgstr "वेलेंटाइन"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:566
+msgid "Royal East"
+msgstr "रॉयल ईस्ट"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:573
+msgid "Thumb And Pouch"
+msgstr "अंगूठा और पॉकेट"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:580
+msgid "Klondike"
+msgstr "क्लॉन्डिके"
+
+# #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
+# 48x48/emblems/emblem-documents.icon.in.h:1
+# 48x48/emblems/emblem-documents.icon.in.h:1
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:587
+msgid "Doublets"
+msgstr "जोड़ा"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:594
+msgid "Template"
+msgstr "टेम्पलेट"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:601
+msgid "Golf"
+msgstr "गोल्फ"
+
+# #-#-#-#-#  anjuta.ANJUTA_1_2_0.hi.po (anjuta2 VERSION)  #-#-#-#-#
+# #-#-#-#-#  libgnomecanvas.HEAD.hi.po (PACKAGE VERSION)  #-#-#-#-#
+# libgnomecanvas/gnome-canvas-text.c:337
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:608
+msgid "Westhaven"
+msgstr "वेस्ट हैवन"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:615
+msgid "Beleaguered Castle"
+msgstr "सताने वाला किला"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../aisleriot/game-names.h:622
+msgid "Hopscotch"
+msgstr "हॉपस्कॉच"
 
 # libgnomeui/gnome-app-helper.c:254
-#: ../aisleriot/sol.c:481
+#: ../aisleriot/sol.c:212
 msgid "Select the game type to play"
 msgstr "खेलने के लिये खेल चुनें"
 
-#: ../aisleriot/sol.c:481 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
+#: ../aisleriot/sol.c:212 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
 #: ../same-gnome/same-gnome.c:127 ../same-gnome/same-gnome.c:129
 msgid "NAME"
 msgstr "नाम"
 
 # libgnomeui/gnome-app-helper.c:254
-#: ../aisleriot/sol.c:483
+#: ../aisleriot/sol.c:214
 msgid "Select the game number"
 msgstr "खेल संख्या चुनें"
 
-#: ../aisleriot/sol.c:483 ../gnomine/gnomine.c:995 ../gtali/gyahtzee.c:110
+#: ../aisleriot/sol.c:214 ../gnomine/gnomine.c:995 ../gtali/gyahtzee.c:110
 #: ../gtali/gyahtzee.c:112 ../gtali/gyahtzee.c:116 ../gtali/gyahtzee.c:118
 #: ../same-gnome/same-gnome.c:131
 msgid "NUMBER"
 msgstr "संख्या"
 
-#: ../aisleriot/sol.c:579 ../aisleriot/window.c:624 ../aisleriot/window.c:2866
+#: ../aisleriot/sol.c:304 ../aisleriot/window.c:627 ../aisleriot/window.c:2880
 msgid "AisleRiot"
 msgstr "एस्लेरियॉट"
 
@@ -538,17 +1335,17 @@ msgstr "दो"
 # #-#-#-#-#  libgnomeprint.gnome-2-2.hi.po (libgnomeprint VERSION)  #-#-#-#-#
 # libgnomeprint/gnome-print-paper.c:55
 #. Translators: this is the total number of won games
-#: ../aisleriot/stats-dialog.c:151
+#: ../aisleriot/stats-dialog.c:150
 msgid "Wins:"
 msgstr "जीता:"
 
 #. Translators: this is the number of games played
-#: ../aisleriot/stats-dialog.c:153
+#: ../aisleriot/stats-dialog.c:152
 msgid "Total:"
 msgstr "कुलः"
 
 #. Translators: this is the percentage of games won out of all games played
-#: ../aisleriot/stats-dialog.c:155
+#: ../aisleriot/stats-dialog.c:154
 msgid "Percentage:"
 msgstr "प्रतिशत:"
 
@@ -557,29 +1354,29 @@ msgstr "प्रतिशत:"
 #. Translators: this is the section title of a section which contains the n
 #. * number of games played, number of games won, and the ratio of these 2 numbers.
 #.
-#: ../aisleriot/stats-dialog.c:159
+#: ../aisleriot/stats-dialog.c:158
 msgid "Wins"
 msgstr "जीता"
 
 #. Translators: this is the best time of all wins
-#: ../aisleriot/stats-dialog.c:166
+#: ../aisleriot/stats-dialog.c:165
 msgid "Best:"
 msgstr "उत्तम:"
 
 #. Translators: this is the worst time of all wins
-#: ../aisleriot/stats-dialog.c:168
+#: ../aisleriot/stats-dialog.c:167
 msgid "Worst:"
 msgstr "सब से बुरा:"
 
 #. Translators: this is the section title of a section containing the
 #. * best and worst time taken to win a game.
 #.
-#: ../aisleriot/stats-dialog.c:172
+#: ../aisleriot/stats-dialog.c:171
 #: ../libgames-support/games-scores-dialog.c:114
 msgid "Time"
 msgstr "समय"
 
-#: ../aisleriot/stats-dialog.c:204
+#: ../aisleriot/stats-dialog.c:203
 msgid "Statistics"
 msgstr "सांख्यिकी"
 
@@ -587,7 +1384,7 @@ msgstr "सांख्यिकी"
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
-#: ../aisleriot/stats-dialog.c:218 ../aisleriot/stats-dialog.c:224
+#: ../aisleriot/stats-dialog.c:217 ../aisleriot/stats-dialog.c:223
 #, c-format
 msgid "%d"
 msgstr "%d"
@@ -599,7 +1396,7 @@ msgstr "%d"
 #. * instead, or leave it as "%%". If you chose a character other than
 #. * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
 #.
-#: ../aisleriot/stats-dialog.c:235
+#: ../aisleriot/stats-dialog.c:234
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
@@ -608,444 +1405,69 @@ msgstr "%d%%"
 #  * abbreviation you have for a value that has no meaning.
 #. For translators: N/A means "Not Applicable", use whatever
 #. * abbreviation you have for a value that has no meaning.
-#: ../aisleriot/stats-dialog.c:241 ../aisleriot/stats-dialog.c:250
-#: ../aisleriot/stats-dialog.c:258 ../dependencies/ggz-gtk/roominfo.c:162
+#: ../aisleriot/stats-dialog.c:240 ../aisleriot/stats-dialog.c:249
+#: ../aisleriot/stats-dialog.c:257 ../dependencies/ggz-gtk/roominfo.c:162
 #: ../dependencies/ggz-gtk/roominfo.c:169
 msgid "N/A"
 msgstr "लागू नहीं"
 
 #  Translators: this represents minutes:seconds.
 #. Translators: this represents minutes:seconds.
-#: ../aisleriot/stats-dialog.c:245 ../aisleriot/stats-dialog.c:253
+#: ../aisleriot/stats-dialog.c:244 ../aisleriot/stats-dialog.c:252
 #, c-format
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../aisleriot/translatable_game_names.h:1
-msgid "Accordion"
-msgstr "एकार्डियन"
-
-#: ../aisleriot/translatable_game_names.h:2
-msgid "Agnes"
-msgstr "एग्नेस"
-
-#: ../aisleriot/translatable_game_names.h:3
-msgid "Athena"
-msgstr "एथेना"
-
-#: ../aisleriot/translatable_game_names.h:4
-msgid "Auld Lang Syne"
-msgstr "अल्ड लेंग स्याने"
-
-#: ../aisleriot/translatable_game_names.h:5
-msgid "Aunt Mary"
-msgstr "आंट मेरी"
-
-#: ../aisleriot/translatable_game_names.h:6
-msgid "Backbone"
-msgstr "रीढ़"
-
-#: ../aisleriot/translatable_game_names.h:7
-msgid "Bakers Dozen"
-msgstr "बेकर्स दर्जन"
-
-# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
-# libgnomeui/gnome-app-helper.c:253
-#: ../aisleriot/translatable_game_names.h:8
-msgid "Bakers Game"
-msgstr "बेकर्स खेल"
-
-#: ../aisleriot/translatable_game_names.h:9
-#, fuzzy
-#| msgid "Board Size"
-msgid "Bear River"
-msgstr "बिसात आकार"
-
-#: ../aisleriot/translatable_game_names.h:10
-msgid "Beleaguered Castle"
-msgstr "सताने वाला किला"
-
-#: ../aisleriot/translatable_game_names.h:11
-msgid "Block Ten"
-msgstr "ब्लाक दस"
-
-#: ../aisleriot/translatable_game_names.h:12
-msgid "Bristol"
-msgstr "ब्रिस्टल"
-
-# #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
-# 48x48/emblems/emblem-camera.icon.in.h:1
-# 48x48/emblems/emblem-camera.icon.in.h:1
-#: ../aisleriot/translatable_game_names.h:13
-msgid "Camelot"
-msgstr "केमेलॉट"
-
-# #-#-#-#-#  anjuta.ANJUTA_1_2_0.hi.po (anjuta2 VERSION)  #-#-#-#-#
-# #-#-#-#-#  gnome-session.HEAD.hi.po (gnome-session VERSION)  #-#-#-#-#
-# gnome-session/session-properties.c:179
-#: ../aisleriot/translatable_game_names.h:14
-msgid "Canfield"
-msgstr "केनफील्ड"
-
-# #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
-# 48x48/emblems/emblem-camera.icon.in.h:1
-# 48x48/emblems/emblem-camera.icon.in.h:1
-#: ../aisleriot/translatable_game_names.h:15
-msgid "Carpet"
-msgstr "दरी"
-
-#: ../aisleriot/translatable_game_names.h:16
-msgid "Chessboard"
-msgstr "शतरंज"
-
-#: ../aisleriot/translatable_game_names.h:17
-msgid "Clock"
-msgstr "घड़ी"
-
-#: ../aisleriot/translatable_game_names.h:18
-msgid "Cover"
-msgstr "आवरण"
-
-#: ../aisleriot/translatable_game_names.h:19
-msgid "Cruel"
-msgstr "कठोर"
-
-#: ../aisleriot/translatable_game_names.h:20
-msgid "Diamond Mine"
-msgstr "हीरा खदान"
-
-# #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-#
-# 48x48/emblems/emblem-documents.icon.in.h:1
-# 48x48/emblems/emblem-documents.icon.in.h:1
-#: ../aisleriot/translatable_game_names.h:21
-msgid "Doublets"
-msgstr "जोड़ा"
-
-#: ../aisleriot/translatable_game_names.h:22
-msgid "Eagle Wing"
-msgstr "बाज पंख"
-
-#: ../aisleriot/translatable_game_names.h:23
-msgid "Easthaven"
-msgstr "ईस्टहैवन"
-
-#: ../aisleriot/translatable_game_names.h:24
-msgid "Eight Off"
-msgstr "आठ बन्द"
-
-#: ../aisleriot/translatable_game_names.h:25
-msgid "Elevator"
-msgstr "एलीवेटर"
-
-#: ../aisleriot/translatable_game_names.h:26
-msgid "Escalator"
-msgstr "एस्केलेटर "
-
-#: ../aisleriot/translatable_game_names.h:27
-msgid "First Law"
-msgstr "पहला नियम"
-
-#: ../aisleriot/translatable_game_names.h:28
-msgid "Fortress"
-msgstr "किला"
-
-#: ../aisleriot/translatable_game_names.h:29
-msgid "Fortunes"
-msgstr "सौभाग्य"
-
-#: ../aisleriot/translatable_game_names.h:30
-msgid "Forty Thieves"
-msgstr "चालीस चोर"
-
-#: ../aisleriot/translatable_game_names.h:31
-msgid "Fourteen"
-msgstr "चौदह"
-
-#: ../aisleriot/translatable_game_names.h:32
-msgid "Freecell"
-msgstr "फ्रीसेल"
-
-#: ../aisleriot/translatable_game_names.h:33
-msgid "Gaps"
-msgstr "गैप"
-
-#: ../aisleriot/translatable_game_names.h:34
-msgid "Gay Gordons"
-msgstr "गे गोरडोन्स"
-
-#: ../aisleriot/translatable_game_names.h:35
-#, fuzzy
-#| msgid "_Hint"
-msgid "Giant"
-msgstr "संकेत (_H)"
-
-#: ../aisleriot/translatable_game_names.h:36
-msgid "Glenwood"
-msgstr "ग्लेनवुड"
-
-#: ../aisleriot/translatable_game_names.h:37
-msgid "Gold Mine"
-msgstr "सोना खदान"
-
-#: ../aisleriot/translatable_game_names.h:38
-msgid "Golf"
-msgstr "गोल्फ"
-
-#: ../aisleriot/translatable_game_names.h:39
-msgid "Gypsy"
-msgstr "जिप्सी"
-
-#: ../aisleriot/translatable_game_names.h:40
-msgid "Helsinki"
-msgstr "हेलसिंकी"
-
-#: ../aisleriot/translatable_game_names.h:41
-msgid "Hopscotch"
-msgstr "हॉपस्कॉच"
-
-# #-#-#-#-#  gnome-applets.gnome-2-2.hi.po (gnome-applets 2.x)  #-#-#-#-#
-# gtk/gtkbutton.c:189 gtk/gtkframe.c:125 gtk/gtklabel.c:280
-#: ../aisleriot/translatable_game_names.h:42
-msgid "Isabel"
-msgstr "इसाबेल"
-
-#: ../aisleriot/translatable_game_names.h:43
-msgid "Jamestown"
-msgstr "जेम्सटाउन"
-
-#: ../aisleriot/translatable_game_names.h:44
-msgid "Jumbo"
-msgstr "भारी भरकम"
-
-#: ../aisleriot/translatable_game_names.h:45
-msgid "Kansas"
-msgstr "कैनसास"
-
-#: ../aisleriot/translatable_game_names.h:46
-msgid "King Albert"
-msgstr "राजा अलबर्ट"
-
-#: ../aisleriot/translatable_game_names.h:47
-msgid "Kings Audience"
-msgstr "किंग ऑडियंस"
-
-#: ../aisleriot/translatable_game_names.h:48
-msgid "Klondike"
-msgstr "क्लॉन्डिके"
-
-#: ../aisleriot/translatable_game_names.h:49
-msgid "Labyrinth"
-msgstr "भूलभुलैया"
-
-#: ../aisleriot/translatable_game_names.h:50
-msgid "Lady Jane"
-msgstr "श्रीमती ज़ेन"
-
-#: ../aisleriot/translatable_game_names.h:51
-msgid "Maze"
-msgstr "भूल भुलैया"
-
-#: ../aisleriot/translatable_game_names.h:52
-msgid "Monte Carlo"
-msgstr "मोन्ते कार्लो"
-
-#: ../aisleriot/translatable_game_names.h:53
-msgid "Napoleons Tomb"
-msgstr "नेपोलियन मकबरा"
-
-#: ../aisleriot/translatable_game_names.h:54
-msgid "Neighbor"
-msgstr "पड़ोसी"
-
-#: ../aisleriot/translatable_game_names.h:55
-msgid "Odessa"
-msgstr "ओडेसा"
-
-#: ../aisleriot/translatable_game_names.h:56
-msgid "Osmosis"
-msgstr "ऑस्मोसिस"
-
-#: ../aisleriot/translatable_game_names.h:57
-msgid "Peek"
-msgstr "झांकें"
-
-#: ../aisleriot/translatable_game_names.h:58
-msgid "Pileon"
-msgstr "पाइलेअन"
-
-# #-#-#-#-#  libgnomeprint.gnome-2-2.hi.po (libgnomeprint VERSION)  #-#-#-#-#
-# libgnomeprint/gpa/gpa-media.c:343
-#: ../aisleriot/translatable_game_names.h:59
-msgid "Plait"
-msgstr "लपेट"
-
-#: ../aisleriot/translatable_game_names.h:60
-msgid "Poker"
-msgstr "पोकर"
-
-#: ../aisleriot/translatable_game_names.h:61
-msgid "Quatorze"
-msgstr "क्वातोर्जे"
-
-#: ../aisleriot/translatable_game_names.h:62
-msgid "Royal East"
-msgstr "रॉयल ईस्ट"
-
-#: ../aisleriot/translatable_game_names.h:63
-msgid "Saratoga"
-msgstr "साराटोगा"
-
-#: ../aisleriot/translatable_game_names.h:64
-msgid "Scorpion"
-msgstr "वृश्चिक"
-
-# libgnomecanvas/gnome-canvas-text.c:367
-#: ../aisleriot/translatable_game_names.h:65
-msgid "Scuffle"
-msgstr "हाथापाई"
-
-#: ../aisleriot/translatable_game_names.h:66
-msgid "Seahaven"
-msgstr "सीहैवन"
-
-#: ../aisleriot/translatable_game_names.h:67
-msgid "Sir Tommy"
-msgstr "श्रीमान् टॉमी"
-
-#: ../aisleriot/translatable_game_names.h:68
-msgid "Spider"
-msgstr "मकड़ी"
-
-#: ../aisleriot/translatable_game_names.h:69
-msgid "Spiderette"
-msgstr "मादा मकड़ी"
-
-#: ../aisleriot/translatable_game_names.h:70
-msgid "Spider Three Decks"
-msgstr "स्पाइडर तीन डेक"
-
-# libgnomeprint/gpa/gpa-media.c:263
-#: ../aisleriot/translatable_game_names.h:71
-msgid "Straight Up"
-msgstr "सीधा ऊपर"
-
-#: ../aisleriot/translatable_game_names.h:72
-msgid "Streets And Alleys"
-msgstr "गलियां और चौबारा"
-
-#: ../aisleriot/translatable_game_names.h:73
-msgid "Template"
-msgstr "टेम्पलेट"
-
-#: ../aisleriot/translatable_game_names.h:74
-msgid "Ten Across"
-msgstr "दस आरपार"
-
-#: ../aisleriot/translatable_game_names.h:75
-#: ../aisleriot/rules/terrace.scm.h:14
-msgid "Terrace"
-msgstr "टेरेस"
-
-#: ../aisleriot/translatable_game_names.h:76
-msgid "Thieves"
-msgstr "चोर"
-
-#: ../aisleriot/translatable_game_names.h:77
-msgid "Thirteen"
-msgstr "तेरह"
-
-#: ../aisleriot/translatable_game_names.h:78
-msgid "Thumb And Pouch"
-msgstr "अंगूठा और पॉकेट"
-
-#: ../aisleriot/translatable_game_names.h:79
-msgid "Treize"
-msgstr "ट्रेज"
-
-#: ../aisleriot/translatable_game_names.h:80
-msgid "Triple Peaks"
-msgstr "तिहरी चोटी"
-
-#: ../aisleriot/translatable_game_names.h:81
-msgid "Union Square"
-msgstr "संघीय चौराहा"
-
-#: ../aisleriot/translatable_game_names.h:82
-msgid "Valentine"
-msgstr "वेलेंटाइन"
-
-# #-#-#-#-#  anjuta.ANJUTA_1_2_0.hi.po (anjuta2 VERSION)  #-#-#-#-#
-# #-#-#-#-#  libgnomecanvas.HEAD.hi.po (PACKAGE VERSION)  #-#-#-#-#
-# libgnomecanvas/gnome-canvas-text.c:337
-#: ../aisleriot/translatable_game_names.h:83
-msgid "Westhaven"
-msgstr "वेस्ट हैवन"
-
-#: ../aisleriot/translatable_game_names.h:84
-msgid "Whitehead"
-msgstr "सफेदसिर (व्हाइटहेड)"
-
-# libgnomeui/gnome-druid-page-standard.c:122
-#: ../aisleriot/translatable_game_names.h:85
-msgid "Will O The Wisp"
-msgstr "विल औ द विस्प"
-
-#: ../aisleriot/translatable_game_names.h:86
-msgid "Yield"
-msgstr "उपज"
-
-#: ../aisleriot/translatable_game_names.h:87
-msgid "Yukon"
-msgstr "युकान"
-
-#: ../aisleriot/translatable_game_names.h:88
-msgid "Zebra"
-msgstr "जेब्रा"
+#: ../aisleriot/util.c:86 ../aisleriot/util.c:90
+#: ../libgames-support/games-help.c:152
+#, c-format
+msgid "Could not show help for “%s”"
+msgstr "“%s” के लिए मदद नहीं दिखा सका"
 
 # libgnomeui/gnome-file-entry.c:418
-#: ../aisleriot/window.c:282 ../aisleriot/window.c:2552
+#: ../aisleriot/window.c:285 ../aisleriot/window.c:2565
 msgid "Select Game"
 msgstr "खेल चुनें"
 
-#: ../aisleriot/window.c:286
+#: ../aisleriot/window.c:289
 msgid "_Select"
 msgstr "चुनें (_S)"
 
-#: ../aisleriot/window.c:428
+#: ../aisleriot/window.c:431
 msgid "Congratulations, you have won!"
 msgstr "बधाई, आप जीत गए!"
 
-#: ../aisleriot/window.c:432
+#: ../aisleriot/window.c:435
 msgid "There are no more moves"
 msgstr "कोई चाल बाकी नहीं"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:445 ../gnometris/blockops.cpp:726
+#: ../aisleriot/window.c:448 ../gnometris/blockops.cpp:863
 msgid "Game Over"
 msgstr "खेल खत्म"
 
-#: ../aisleriot/window.c:572 ../gnomine/gnomine.c:444
+#: ../aisleriot/window.c:575 ../gnomine/gnomine.c:444
 #: ../mahjongg/mahjongg.c:906
 msgid "Main game:"
 msgstr "मुख्य खेलः"
 
-#: ../aisleriot/window.c:580
+#: ../aisleriot/window.c:583
 msgid "Card games:"
 msgstr "ताश के खेलः"
 
-#: ../aisleriot/window.c:594
+#: ../aisleriot/window.c:597
 msgid "Card themes:"
 msgstr "ताश थीम:"
 
-#: ../aisleriot/window.c:626
+#: ../aisleriot/window.c:629
 msgid "About FreeCell Solitaire"
 msgstr "फ्रीसेल सॉलिटेयर के बारे में"
 
-#: ../aisleriot/window.c:627
+#: ../aisleriot/window.c:630
 msgid "About AisleRiot"
 msgstr "एस्लेरियॉट के बारे में"
 
-#: ../aisleriot/window.c:633
+#: ../aisleriot/window.c:636
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played.\n"
@@ -1057,12 +1479,12 @@ msgstr ""
 "एसलियेरॉट ग्नोम खेल का हिस्सा है."
 
 #  Translator credits
-#: ../aisleriot/window.c:644 ../blackjack/src/menu.cpp:159
-#: ../glchess/src/lib/gtkui/gtkui.py:860 ../glines/glines.c:1221
+#: ../aisleriot/window.c:647 ../blackjack/src/menu.cpp:159
+#: ../glchess/src/lib/gtkui/gtkui.py:861 ../glines/glines.c:1222
 #: ../gnect/src/main.c:925 ../gnibbles/main.c:257 ../gnobots2/menu.c:274
-#: ../gnometris/tetris.cpp:1296 ../gnome-sudoku/src/lib/main.py:730
-#: ../gnomine/gnomine.c:484 ../gnotravex/gnotravex.c:1917
-#: ../gnotski/gnotski.c:1540 ../gtali/gyahtzee.c:623 ../iagno/gnothello.c:268
+#: ../gnometris/tetris.cpp:1315 ../gnome-sudoku/src/lib/main.py:717
+#: ../gnomine/gnomine.c:484 ../gnotravex/gnotravex.c:1919
+#: ../gnotski/gnotski.c:1542 ../gtali/gyahtzee.c:623 ../iagno/gnothello.c:268
 #: ../mahjongg/mahjongg.c:951 ../same-gnome/ui.c:131
 msgid "translator-credits"
 msgstr ""
@@ -1070,24 +1492,24 @@ msgstr ""
 "राजेश रंजन (rajeshkajha@yahoo.com)"
 
 # libgnomeprintui/gnome-print-paper-selector.c:1453
-#: ../aisleriot/window.c:648 ../blackjack/src/menu.cpp:158
-#: ../glchess/src/lib/defaults.py.in:58 ../glines/glines.c:1224
+#: ../aisleriot/window.c:651 ../blackjack/src/menu.cpp:158
+#: ../glchess/src/lib/defaults.py.in:56 ../glines/glines.c:1225
 #: ../gnect/src/main.c:922 ../gnibbles/main.c:260 ../gnobots2/menu.c:270
-#: ../gnometris/tetris.cpp:1293 ../gnome-sudoku/src/lib/defaults.py.in:43
-#: ../gnomine/gnomine.c:487 ../gnotravex/gnotravex.c:1920
-#: ../gnotski/gnotski.c:1543 ../gtali/gyahtzee.c:627 ../iagno/gnothello.c:270
+#: ../gnometris/tetris.cpp:1312 ../gnome-sudoku/src/lib/defaults.py.in:43
+#: ../gnomine/gnomine.c:487 ../gnotravex/gnotravex.c:1922
+#: ../gnotski/gnotski.c:1545 ../gtali/gyahtzee.c:627 ../iagno/gnothello.c:270
 #: ../mahjongg/mahjongg.c:954 ../same-gnome/ui.c:135
 msgid "GNOME Games web site"
 msgstr "ग्नोम खेल वेबसाइट"
 
 #  Players tab
 #  FIXME mnemonic doesn't seem to work
-#: ../aisleriot/window.c:1461
+#: ../aisleriot/window.c:1473
 #, c-format
 msgid "Play “%s”"
 msgstr "खेलें “%s”"
 
-#: ../aisleriot/window.c:1632
+#: ../aisleriot/window.c:1644
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "कार्ड थीम “%s” के साथ कार्ड दिखाएं"
@@ -1097,25 +1519,36 @@ msgstr "कार्ड थीम “%s” के साथ कार्ड द�
 #. * then translate this string to "%I6d", else to "%6d".
 #. * Do not translate it to anything else!
 #.
-#: ../aisleriot/window.c:1727
+#: ../aisleriot/window.c:1739
 #, c-format
 msgctxt "score"
 msgid "%6d"
 msgstr "%I6d"
 
-#: ../aisleriot/window.c:1982
+#: ../aisleriot/window.c:1994
 msgid "A scheme exception occurred"
 msgstr "योजना अपवाद उत्पन्न हुआ"
 
-#: ../aisleriot/window.c:1985
+#: ../aisleriot/window.c:1997
 msgid "Please report this bug to the developers."
 msgstr "डेवलेपर को इस बग को रिपोर्ट करें."
 
-#: ../aisleriot/window.c:1997
+#. Empty title shows up as "<unnamed>" on maemo
+#: ../aisleriot/window.c:2001 ../dependencies/ggz-gtk/ggzclient.c:124
+#: ../dependencies/ggz-gtk/ggzclient.c:380
+#: ../dependencies/ggz-gtk/ggzclient.c:561
+#: ../dependencies/ggz-gtk/ggzclient.c:596
+#: ../dependencies/ggz-gtk/ggzclient.c:649
+#: ../dependencies/ggz-gtk/ggzclient.c:1079
+#: ../dependencies/ggz-gtk/launch.c:325 ../libgames-support/games-show.c:151
+msgid "Error"
+msgstr "त्रुटि"
+
+#: ../aisleriot/window.c:2009
 msgid "_Don't report"
 msgstr "मत रिपोर्ट करें (_D)"
 
-#: ../aisleriot/window.c:1998
+#: ../aisleriot/window.c:2010
 msgid "_Report"
 msgstr "रिपोर्ट करें (_R)"
 
@@ -1123,175 +1556,177 @@ msgstr "रिपोर्ट करें (_R)"
 # libgnomeui/gnome-app-helper.c:95 libgnomeui/gnome-app-helper.h:534
 #. Menu actions
 #. Preferences Dialog: Title of game options tab
-#: ../aisleriot/window.c:2185 ../blackjack/src/blackjack.cpp:331
-#: ../glchess/data/glchess.ui.h:23 ../glchess/data/preferences.ui.h:24
-#: ../glines/glines.c:1688 ../gnect/src/main.c:1289 ../gnibbles/main.c:763
-#: ../gnobots2/menu.c:68 ../gnometris/tetris.cpp:108
-#: ../gnome-sudoku/src/lib/main.py:243 ../gnomine/gnomine.c:825
+#: ../aisleriot/window.c:2197 ../blackjack/src/blackjack.cpp:331
+#: ../glchess/data/glchess.ui.h:24 ../glchess/data/preferences.ui.h:24
+#: ../glines/glines.c:1690 ../gnect/src/main.c:1289 ../gnibbles/main.c:763
+#: ../gnobots2/menu.c:68 ../gnometris/tetris.cpp:109
+#: ../gnome-sudoku/src/lib/main.py:241 ../gnomine/gnomine.c:825
 #: ../gnotravex/gnotravex.c:302 ../gnotski/gnotski.c:414
 #: ../gtali/gyahtzee.c:701 ../iagno/gnothello.c:812
-#: ../mahjongg/mahjongg.c:1242 ../same-gnome/ui.c:455
+#: ../lightsoff/data/lightsoff.ui.h:2 ../mahjongg/mahjongg.c:1242
+#: ../same-gnome/ui.c:455 ../same-gnome-clutter/data/same-gnome.ui.h:2
 msgid "_Game"
 msgstr "खेल (_G)"
 
 #. Preferences Dialog: Title of view options tab
-#: ../aisleriot/window.c:2186 ../blackjack/src/blackjack.cpp:332
-#: ../glchess/data/glchess.ui.h:26 ../glchess/data/preferences.ui.h:30
+#: ../aisleriot/window.c:2198 ../blackjack/src/blackjack.cpp:332
+#: ../glchess/data/glchess.ui.h:29 ../glchess/data/preferences.ui.h:30
 #: ../gnect/src/main.c:1290 ../gnibbles/main.c:764 ../gnobots2/menu.c:69
-#: ../gnome-sudoku/src/lib/main.py:253 ../gnotravex/gnotravex.c:303
+#: ../gnome-sudoku/src/lib/main.py:251 ../gnotravex/gnotravex.c:303
 #: ../gnotski/gnotski.c:415 ../same-gnome/ui.c:456
 msgid "_View"
 msgstr "देखें (_V)"
 
-#: ../aisleriot/window.c:2187 ../blackjack/src/blackjack.cpp:341
+#: ../aisleriot/window.c:2199 ../blackjack/src/blackjack.cpp:341
 msgid "_Control"
 msgstr "नियंत्रण (_C)"
 
-#: ../aisleriot/window.c:2189 ../blackjack/src/blackjack.cpp:348
-#: ../glchess/data/glchess.ui.h:24 ../glines/glines.c:1690
+#: ../aisleriot/window.c:2201 ../blackjack/src/blackjack.cpp:348
+#: ../glchess/data/glchess.ui.h:25 ../glines/glines.c:1692
 #: ../gnect/src/main.c:1292 ../gnibbles/main.c:766 ../gnobots2/menu.c:72
-#: ../gnometris/tetris.cpp:110 ../gnome-sudoku/src/lib/main.py:271
+#: ../gnometris/tetris.cpp:111 ../gnome-sudoku/src/lib/main.py:269
 #: ../gnomine/gnomine.c:827 ../gnotravex/gnotravex.c:306
 #: ../gnotski/gnotski.c:416 ../gtali/gyahtzee.c:703 ../iagno/gnothello.c:814
-#: ../mahjongg/mahjongg.c:1244 ../same-gnome/ui.c:458
+#: ../lightsoff/data/lightsoff.ui.h:3 ../mahjongg/mahjongg.c:1244
+#: ../same-gnome/ui.c:458 ../same-gnome-clutter/data/same-gnome.ui.h:3
 msgid "_Help"
 msgstr "मदद (_H)"
 
-#: ../aisleriot/window.c:2194 ../blackjack/src/blackjack.cpp:333
+#: ../aisleriot/window.c:2206 ../blackjack/src/blackjack.cpp:333
 #: ../glchess/data/glchess.ui.h:18 ../gnobots2/menu.c:73
-#: ../libgames-support/games-stock.c:54 ../mahjongg/mahjongg.c:1245
+#: ../libgames-support/games-stock.c:53 ../mahjongg/mahjongg.c:1245
 msgid "Start a new game"
 msgstr "एक नया खेल प्रारंभ करें"
 
-#: ../aisleriot/window.c:2197 ../libgames-support/games-stock.c:58
+#: ../aisleriot/window.c:2209 ../libgames-support/games-stock.c:57
 msgid "Restart the game"
 msgstr "वर्तमान खेल पुनःप्रारंभ करें"
 
 # libgnomeui/gnome-file-entry.c:418
-#: ../aisleriot/window.c:2199
+#: ../aisleriot/window.c:2211
 msgid "_Select Game..."
 msgstr "खेल चुनें (_S)"
 
-#: ../aisleriot/window.c:2201
+#: ../aisleriot/window.c:2213
 msgid "Play a different game"
 msgstr "भिन्न प्रकार खेल खेलें"
 
 #  --- PLAYER NAMES FRAME ----
-#: ../aisleriot/window.c:2203
+#: ../aisleriot/window.c:2215
 msgid "_Recently Played"
 msgstr "हाल में खेला गया (_R)"
 
-#: ../aisleriot/window.c:2204
+#: ../aisleriot/window.c:2216
 msgid "S_tatistics"
 msgstr "सांख्यिकी (_t)"
 
-#: ../aisleriot/window.c:2205
+#: ../aisleriot/window.c:2217
 msgid "Show gameplay statistics"
 msgstr "खेल सांख्यिकी दिखायें"
 
-#: ../aisleriot/window.c:2208 ../libgames-support/games-stock.c:63
+#: ../aisleriot/window.c:2220 ../libgames-support/games-stock.c:62
 msgid "Close this window"
 msgstr "इस विंडो को बन्द करें"
 
-#: ../aisleriot/window.c:2211 ../libgames-support/games-stock.c:61
+#: ../aisleriot/window.c:2223 ../libgames-support/games-stock.c:60
 #: ../mahjongg/mahjongg.c:1253
 msgid "Undo the last move"
 msgstr "पिछली चाल पूर्ववत करें"
 
-#: ../aisleriot/window.c:2214 ../libgames-support/games-stock.c:57
+#: ../aisleriot/window.c:2226 ../libgames-support/games-stock.c:56
 msgid "Redo the undone move"
 msgstr "पिछली चाल पूर्ववत करें"
 
-#: ../aisleriot/window.c:2217
+#: ../aisleriot/window.c:2229
 msgid "Deal next card or cards"
 msgstr "अगला कार्ड या कार्ड्स की डील करें"
 
-#: ../aisleriot/window.c:2220 ../libgames-support/games-stock.c:50
+#: ../aisleriot/window.c:2232 ../libgames-support/games-stock.c:49
 msgid "Get a hint for your next move"
 msgstr "अगली चाल हेतु संकेत प्राप्त करें"
 
-#: ../aisleriot/window.c:2223
+#: ../aisleriot/window.c:2235
 msgid "View help for Aisleriot"
 msgstr "एस्लेरियाट के लिये सहायता देखें"
 
-#: ../aisleriot/window.c:2227 ../libgames-support/games-stock.c:47
+#: ../aisleriot/window.c:2239 ../libgames-support/games-stock.c:46
 msgid "View help for this game"
 msgstr "इस खेल के लिये सहायता दिखायें"
 
 # libgnomeui/gnome-app-helper.c:259
-#: ../aisleriot/window.c:2230 ../libgames-support/games-stock.c:62
+#: ../aisleriot/window.c:2242 ../libgames-support/games-stock.c:61
 msgid "About this game"
 msgstr "इस खेल के बारे में"
 
-#: ../aisleriot/window.c:2233
+#: ../aisleriot/window.c:2245
 msgid "Install card themes…"
 msgstr "ताश प्रसंग इंस्टाल करें..."
 
-#: ../aisleriot/window.c:2234
+#: ../aisleriot/window.c:2246
 msgid "Install new card themes from the distribution packages repositories"
-msgstr ""
+msgstr "नई कार्ड प्रसंग को वितरण संकुल रिपोजिटरी से संस्थापित करें"
 
-#: ../aisleriot/window.c:2243
+#: ../aisleriot/window.c:2255
 msgid "_Card Style"
 msgstr "ताश शैली (_C)"
 
-#: ../aisleriot/window.c:2283 ../blackjack/src/blackjack.cpp:354
+#: ../aisleriot/window.c:2295 ../blackjack/src/blackjack.cpp:354
 #: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
 msgid "_Toolbar"
 msgstr "उपकरण-पट्टी (_T)"
 
-#: ../aisleriot/window.c:2284 ../glchess/data/preferences.ui.h:17
+#: ../aisleriot/window.c:2296 ../glchess/data/preferences.ui.h:17
 #: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
 msgid "Show or hide the toolbar"
 msgstr "उपकरण-पट्टी छुपाएँ या दिखाएँ"
 
-#: ../aisleriot/window.c:2289
+#: ../aisleriot/window.c:2301
 msgid "_Statusbar"
 msgstr "स्थिति पट्टी (_S)"
 
-#: ../aisleriot/window.c:2290
+#: ../aisleriot/window.c:2302
 msgid "Show or hide statusbar"
 msgstr "उपकरण-पट्टी छुपाएँ या दिखाएँ"
 
-#: ../aisleriot/window.c:2295 ../gnotravex/gnotravex.c:351
+#: ../aisleriot/window.c:2307 ../gnotravex/gnotravex.c:351
 msgid "_Click to Move"
 msgstr "बढ़ने के लिये क्लिक करें (_C)"
 
-#: ../aisleriot/window.c:2296
+#: ../aisleriot/window.c:2308
 msgid "Pick up and drop cards by clicking"
 msgstr "क्लिक करके ताश ले या छोड़ें"
 
 # #-#-#-#-#  gnome-icon-theme.gnome-2-2.hi.po (gnome-icon theme 2.2)  #-#-#-#-# 48x48/emblems/emblem-sound.icon.in.h:1
 # 48x48/emblems/emblem-sound.icon.in.h:1
-#: ../aisleriot/window.c:2300
+#: ../aisleriot/window.c:2312
 msgid "_Sound"
 msgstr "ध्वनि (_S)"
 
-#: ../aisleriot/window.c:2301
+#: ../aisleriot/window.c:2313
 msgid "Whether or not to play event sounds"
 msgstr "घटनाओं हेतु ध्वनि बजाएँ या नहीं."
 
-#: ../aisleriot/window.c:2306
+#: ../aisleriot/window.c:2318
 msgid "_Animations"
 msgstr "एनीमेशन (_A)"
 
-#: ../aisleriot/window.c:2307
+#: ../aisleriot/window.c:2319
 msgid "Whether or not to animate card moves"
 msgstr "कार्ड चालों में एनीमेशन उपयोग करें या नहीं"
 
 #. Add "Highscore" label
-#: ../aisleriot/window.c:2579 ../dependencies/ggz-gtk/playerinfo.c:241
-#: ../glines/glines.c:1900 ../gnobots2/statusbar.c:67
+#: ../aisleriot/window.c:2592 ../dependencies/ggz-gtk/playerinfo.c:241
+#: ../glines/glines.c:1904 ../gnobots2/statusbar.c:67
 #: ../gnometris/scoreframe.cpp:47 ../gnomine/gnomine.c:447
 msgid "Score:"
 msgstr "अंक:"
 
-#: ../aisleriot/window.c:2591 ../gnotravex/gnotravex.c:1382
-#: ../mahjongg/mahjongg.c:1463
+#: ../aisleriot/window.c:2604 ../gnotravex/gnotravex.c:1383
+#: ../mahjongg/mahjongg.c:1465
 msgid "Time:"
 msgstr "समय:"
 
-#: ../aisleriot/window.c:2926
+#: ../aisleriot/window.c:2940
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "“%s” खेल आरंभ नहीं कर सका"
@@ -1360,7 +1795,7 @@ msgstr "और ताश बांटें"
 #: ../aisleriot/rules/plait.scm.h:11 ../aisleriot/rules/quatorze.scm.h:1
 #: ../aisleriot/rules/royal_east.scm.h:7 ../aisleriot/rules/scuffle.scm.h:4
 #: ../aisleriot/rules/sir_tommy.scm.h:3 ../aisleriot/rules/straight_up.scm.h:5
-#: ../aisleriot/rules/terrace.scm.h:13 ../aisleriot/rules/thieves.scm.h:2
+#: ../aisleriot/rules/terrace.scm.h:18 ../aisleriot/rules/thieves.scm.h:2
 #: ../aisleriot/rules/thirteen.scm.h:3
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:4
 #: ../aisleriot/rules/treize.scm.h:2 ../aisleriot/rules/triple_peaks.scm.h:4
@@ -1406,7 +1841,7 @@ msgstr "एक दौर और चलें"
 #: ../aisleriot/rules/canfield.scm.h:6 ../aisleriot/rules/carpet.scm.h:1
 #: ../aisleriot/rules/glenwood.scm.h:6 ../aisleriot/rules/klondike.scm.h:2
 #: ../aisleriot/rules/osmosis.scm.h:1 ../aisleriot/rules/plait.scm.h:6
-#: ../aisleriot/rules/straight_up.scm.h:1 ../aisleriot/rules/terrace.scm.h:7
+#: ../aisleriot/rules/straight_up.scm.h:1 ../aisleriot/rules/terrace.scm.h:8
 msgid "Deal a new card from the deck"
 msgstr "डेक में से नया पत्ता चलें"
 
@@ -1415,16 +1850,16 @@ msgstr "डेक में से नया पत्ता चलें"
 #: ../aisleriot/rules/glenwood.scm.h:9 ../aisleriot/rules/jumbo.scm.h:3
 #: ../aisleriot/rules/klondike.scm.h:5 ../aisleriot/rules/plait.scm.h:10
 #: ../aisleriot/rules/scuffle.scm.h:2 ../aisleriot/rules/straight_up.scm.h:3
-#: ../aisleriot/rules/terrace.scm.h:10
+#: ../aisleriot/rules/terrace.scm.h:13
 #: ../aisleriot/rules/thumb_and_pouch.scm.h:3 ../aisleriot/rules/zebra.scm.h:3
 msgid "Redeals left:"
 msgstr "ताश बांटना बाकीः"
 
-#: ../aisleriot/rules/backbone.scm.h:5 ../aisleriot/rules/terrace.scm.h:16
+#: ../aisleriot/rules/backbone.scm.h:5 ../aisleriot/rules/terrace.scm.h:23
 msgid "an empty slot on the foundation"
 msgstr "आधार पर खाली स्लॉट"
 
-#: ../aisleriot/rules/backbone.scm.h:6 ../aisleriot/rules/terrace.scm.h:17
+#: ../aisleriot/rules/backbone.scm.h:6 ../aisleriot/rules/terrace.scm.h:24
 msgid "an empty slot on the tableau"
 msgstr "तस्वीर में एक खाली खाँचा"
 
@@ -1450,14 +1885,12 @@ msgstr "आधार पत्ताः"
 
 #: ../aisleriot/rules/bear_river.scm.h:6
 #, fuzzy
-#| msgid "Move something into the empty Tableau slot"
 msgid "Move something onto an empty right-hand tableau slot"
 msgstr "किसी वस्तु को तस्वीर के खाली खाँचे में ले जाएँ"
 
 # libgnome-desktop/gnome-ditem-edit.c:679
 #: ../aisleriot/rules/bear_river.scm.h:7
 #, fuzzy
-#| msgid "an empty foundation"
 msgid "an empty foundation slot"
 msgstr "एक खाली आधार"
 
@@ -1694,7 +2127,7 @@ msgstr "~a को पट्ट से बाहर ले जाएँ"
 
 #: ../aisleriot/rules/forty_thieves.scm.h:1
 msgid "Bug! make-hint called on false move."
-msgstr ""
+msgstr "बग! गलत चाल पर संकेत कॉल बनाएँ."
 
 #: ../aisleriot/rules/forty_thieves.scm.h:2
 msgid "Deal a card from stock"
@@ -1721,7 +2154,7 @@ msgstr "एक खाली खाँचा"
 msgid "an open tableau"
 msgstr "एक खाली तस्वीर"
 
-#: ../aisleriot/rules/freecell.scm.h:5 ../aisleriot/rules/terrace.scm.h:19
+#: ../aisleriot/rules/freecell.scm.h:5 ../aisleriot/rules/terrace.scm.h:26
 msgid "the foundation"
 msgstr "न्यास"
 
@@ -1756,13 +2189,11 @@ msgstr ""
 
 #: ../aisleriot/rules/giant.scm.h:2
 #, fuzzy
-#| msgid "Deal a card"
 msgid "Deal a row"
 msgstr "एक पत्ता बांटें"
 
 #: ../aisleriot/rules/giant.scm.h:3
 #, fuzzy
-#| msgid "Redeals left: ~a"
 msgid "Deals left: ~a"
 msgstr "ताश बांटना बाकी: ~a"
 
@@ -1772,13 +2203,11 @@ msgstr ""
 
 #: ../aisleriot/rules/giant.scm.h:5
 #, fuzzy
-#| msgid "Try rearranging the cards"
 msgid "Try dealing a row of cards"
 msgstr "ताश को फिर से जमाने की कोशिश करें"
 
 #: ../aisleriot/rules/giant.scm.h:6
 #, fuzzy
-#| msgid "Try moving card piles around"
 msgid "Try moving a card to the reserve"
 msgstr "पत्तों के ढेर को आसपास ले जाने की कोशिश करें"
 
@@ -1788,13 +2217,11 @@ msgstr "पत्तों के ढेर को आसपास ले जा
 
 #: ../aisleriot/rules/giant.scm.h:8
 #, fuzzy
-#| msgid "an empty foundation pile"
 msgid "an empty foundation place"
 msgstr "एक खाली संस्थापन के ढेर"
 
 #: ../aisleriot/rules/giant.scm.h:9
 #, fuzzy
-#| msgid "an empty tableau pile"
 msgid "an empty tableau place"
 msgstr "एक खाली पठारी ढेर"
 
@@ -1882,7 +2309,7 @@ msgstr "डेक में से नया पत्ता चलें"
 msgid "Redeals left: ~a"
 msgstr "ताश बांटना बाकी: ~a"
 
-#: ../aisleriot/rules/pileon.scm.h:2 ../aisleriot/rules/terrace.scm.h:18
+#: ../aisleriot/rules/pileon.scm.h:2 ../aisleriot/rules/terrace.scm.h:25
 msgid "something"
 msgstr "कुछ "
 
@@ -1946,6 +2373,10 @@ msgstr "कृपया खाली ढेर को पहले भरें.
 msgid "Two Suits"
 msgstr "दो सूट"
 
+#: ../aisleriot/rules/spider.scm.h:9
+msgid "Undo until there are enough cards to fill all tableau piles"
+msgstr ""
+
 #: ../aisleriot/rules/ten_across.scm.h:1
 msgid "Allow temporary spots use"
 msgstr "अस्थायी स्पॉट उपयोग स्वीकारें"
@@ -1959,27 +2390,34 @@ msgstr "खाली अस्थायी खाँचा पर पत्त�
 msgid "No hint available"
 msgstr "कोई संकेत उपलब्ध नहीं है"
 
-#: ../aisleriot/rules/terrace.scm.h:6
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:7
 msgid "Blondes and Brunettes"
 msgstr "ब्लॉड और बर्नेट"
 
-#: ../aisleriot/rules/terrace.scm.h:8
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:10
 msgid "Falling Stars"
 msgstr "टूटते तारे"
 
-#: ../aisleriot/rules/terrace.scm.h:9
-msgid "General Patience"
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:12
+#, fuzzy
+msgid "General's Patience"
 msgstr "सामान्य पेशेन्स"
 
-#: ../aisleriot/rules/terrace.scm.h:11
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:15
 msgid "Redheads"
 msgstr "रेडहेड"
 
-#: ../aisleriot/rules/terrace.scm.h:12
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:17
 msgid "Signora"
 msgstr "सिन्योर"
 
-#: ../aisleriot/rules/terrace.scm.h:15
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../aisleriot/rules/terrace.scm.h:22
 msgid "Wood"
 msgstr "वुड"
 
@@ -2080,9 +2518,9 @@ msgstr "वर्तमान खेल पुनःप्रारंभ कर
 msgid "Show a hint"
 msgstr "एक संकेत दें"
 
-#: ../blackjack/src/blackjack.cpp:337 ../glchess/data/glchess.ui.h:25
-#: ../glines/glines.c:1689 ../gnect/src/main.c:1291 ../gnibbles/main.c:765
-#: ../gnobots2/menu.c:71 ../gnometris/tetris.cpp:109 ../gnomine/gnomine.c:826
+#: ../blackjack/src/blackjack.cpp:337 ../glchess/data/glchess.ui.h:27
+#: ../glines/glines.c:1691 ../gnect/src/main.c:1291 ../gnibbles/main.c:765
+#: ../gnobots2/menu.c:71 ../gnometris/tetris.cpp:110 ../gnomine/gnomine.c:826
 #: ../gtali/gyahtzee.c:702 ../iagno/gnothello.c:813
 #: ../mahjongg/mahjongg.c:1243
 msgid "_Settings"
@@ -2164,6 +2602,10 @@ msgstr "अपनी बाजी लगाएँ या हाथ बाटे�
 msgid "Blackjack rule set to use"
 msgstr "ब्लेकजेक नियम प्रयोग के लिये सेट"
 
+#: ../blackjack/src/card-selector.cpp:123
+msgid "Card Style"
+msgstr "ताश शैली"
+
 #: ../blackjack/src/dialog.cpp:51
 msgid "Would you like insurance?"
 msgstr "क्या आप बीमा चाहते हैं?"
@@ -2195,7 +2637,7 @@ msgstr "ब्लेकजेक वरीयताएँ"
 # libgnomeui/gnome-app-helper.c:95 libgnomeui/gnome-app-helper.h:534
 #: ../blackjack/src/dialog.cpp:241 ../dependencies/ggz-gtk/client.c:953
 #: ../gnect/src/prefs.c:301 ../gnibbles/preferences.c:253
-#: ../gnobots2/properties.c:491 ../gnometris/tetris.cpp:586
+#: ../gnobots2/properties.c:491 ../gnometris/tetris.cpp:596
 #: ../iagno/properties.c:416
 msgid "Game"
 msgstr "खेल"
@@ -2657,7 +3099,6 @@ msgid "Login failed for unknown reason: %s"
 msgstr "अनजान कारणों से लॉगिन विफल: %s"
 
 #: ../dependencies/ggz-gtk/login.c:336 ../dependencies/ggz-gtk/client.c:307
-#: ../libgames-support/games-help.c:61
 msgid "Unable to open help file"
 msgstr "मदद फाइल खोलने में अक्षम"
 
@@ -3798,7 +4239,7 @@ msgstr "मूव टिप्पणी दिखाने के लिए फ�
 
 #: ../glchess/data/glchess.schemas.in.h:11
 msgid "A flag to smooth (anti-alias) the 3D display"
-msgstr ""
+msgstr "आरामदेह (anti-alias) 3D प्रदर्शन के लिए फ्लैग"
 
 #: ../glchess/data/glchess.schemas.in.h:12
 msgid "The amount of time each player has to move in new games"
@@ -3866,10 +4307,6 @@ msgstr ""
 
 #: ../glchess/data/glchess.schemas.in.h:26
 #, fuzzy
-#| msgid ""
-#| "The side of the board that is in the foreground, either 'white', 'black', "
-#| "'current' (the current player) or 'human' (the side of the current human "
-#| "player)"
 msgid ""
 "The side of the board that is in the foreground, either 'white', 'black', "
 "'current' (the current player), 'human' (the side of the current human "
@@ -3906,7 +4343,7 @@ msgid "Logs"
 msgstr "लाग"
 
 #. The Network Game toolbar button
-#: ../glchess/data/glchess.ui.h:7 ../libgames-support/games-stock.c:334
+#: ../glchess/data/glchess.ui.h:7 ../libgames-support/games-stock.c:333
 msgid "Network _Game"
 msgstr "संजाल खेल (_G)"
 
@@ -3946,7 +4383,7 @@ msgstr "अगली चाल दिखाएँ"
 msgid "Show the previous move"
 msgstr "पिछली चाल दिखाएँ"
 
-#: ../glchess/data/glchess.ui.h:19 ../libgames-support/games-stock.c:52
+#: ../glchess/data/glchess.ui.h:19 ../libgames-support/games-stock.c:51
 msgid "Start a new multiplayer network game"
 msgstr "एक नया मल्टीप्लेयर संजाल खेल आरंभ करें"
 
@@ -3958,6 +4395,19 @@ msgstr "वहां कोई सक्रिय लाग नहीं है.
 #: ../glchess/data/glchess.ui.h:22
 msgid "Undo Move"
 msgstr "चाल वापस लें"
+
+#: ../glchess/data/glchess.ui.h:23 ../gnome-sudoku/src/lib/main.py:273
+#: ../libgames-support/games-stock.c:317
+msgid "_Contents"
+msgstr "विषय सूची (_C)"
+
+#: ../glchess/data/glchess.ui.h:26
+msgid "_Resign"
+msgstr "स्तीफा (_R)"
+
+#: ../glchess/data/glchess.ui.h:28 ../libgames-support/games-stock.c:329
+msgid "_Undo Move"
+msgstr "चाल वापस लें (_U)"
 
 #. Title of load game dialog
 #: ../glchess/data/load_game.ui.h:2
@@ -4142,7 +4592,7 @@ msgid "Show _History"
 msgstr "इतिहास दिखाएँ (_H)"
 
 #. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../glchess/data/preferences.ui.h:14 ../gnome-sudoku/src/lib/main.py:295
+#: ../glchess/data/preferences.ui.h:14 ../gnome-sudoku/src/lib/main.py:293
 msgid "Show _Toolbar"
 msgstr "औजारपट्टी दिखायें (_T)"
 
@@ -4166,7 +4616,7 @@ msgstr "३डी अवयव (एंटीअलियास) के लिए
 msgid ""
 "View the chess board by default in 2D mode, or optionally in 3D mode using "
 "OpenGL."
-msgstr ""
+msgstr "2D मोड में शतरंज बिसात देखें, या वैकल्पिक रूप से 3D मोड में OpenGL के प्रयोग से."
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
 #: ../glchess/data/preferences.ui.h:22
@@ -4190,7 +4640,7 @@ msgid "Save Chess Game"
 msgstr "सहेजें शतरंज खेल"
 
 #. Translators: Window title when not playing a game
-#: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:331
+#: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:332
 msgid "Chess"
 msgstr "शतरंज"
 
@@ -4208,29 +4658,31 @@ msgid ""
 "installed. If you are currently upgrading your system please wait until the "
 "upgrade has completed."
 msgstr ""
+"शतरंज आरंभ होने में समर्थ नहीं क्योंकि जरूरी अनुप्रयोग फ़ाइल संस्थापित नहीं है. यदि आप अभी "
+"अपने तंत्र को उन्नत कर रहे हैं उन्नयन के पूरा होने तक प्रतीक्षा करें."
 
 #. Translators: Time Combo: There is no time limit
-#: ../glchess/src/lib/gtkui/dialogs.py:124
+#: ../glchess/src/lib/gtkui/dialogs.py:125
 msgid "Unlimited"
 msgstr "असीमित"
 
 #. Translators: Time Combo: Game will last one minute
-#: ../glchess/src/lib/gtkui/dialogs.py:126
+#: ../glchess/src/lib/gtkui/dialogs.py:127
 msgid "One minute"
 msgstr "एक मिनट"
 
 #. Translators: Time Combo: Game will last five minutes
-#: ../glchess/src/lib/gtkui/dialogs.py:128
+#: ../glchess/src/lib/gtkui/dialogs.py:129
 msgid "Five minutes"
 msgstr "पांच मिनट"
 
 #. Translators: Time Combo: Game will last 30 minutes
-#: ../glchess/src/lib/gtkui/dialogs.py:130
+#: ../glchess/src/lib/gtkui/dialogs.py:131
 msgid "30 minutes"
 msgstr "30 मिनट"
 
 #. Translators: Time Combo: Game will last one hour
-#: ../glchess/src/lib/gtkui/dialogs.py:132
+#: ../glchess/src/lib/gtkui/dialogs.py:133
 msgid "One hour"
 msgstr "एक घंटा"
 
@@ -4240,39 +4692,39 @@ msgstr "एक घंटा"
 # libgnomeprint/gpa/gpa-media.c:241
 #. Translators: Time Combo: User will configure game duration
 #. Translators: Add Network Profile Dialog: Use a custom server
-#: ../glchess/src/lib/gtkui/dialogs.py:134
+#: ../glchess/src/lib/gtkui/dialogs.py:135
 #: ../glchess/src/lib/gtkui/network.py:30
 msgid "Custom"
 msgstr "पसंदीदा"
 
 #. Translators: Custom Time Combo: User specifying number of seconds for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:155
+#: ../glchess/src/lib/gtkui/dialogs.py:156
 msgid "seconds"
 msgstr "सेकण्ड"
 
 #. Translators: Custom Time Combo: User specifying number of minutes for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:157
+#: ../glchess/src/lib/gtkui/dialogs.py:158
 msgid "minutes"
 msgstr "मिनट"
 
 #. Translators: Custom Time Combo: User specifying number of hours for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:159
+#: ../glchess/src/lib/gtkui/dialogs.py:160
 msgid "hours"
 msgstr "घंटे"
 
 #. Translators: AI Difficulty Combo: AI set to easy difficulty
-#: ../glchess/src/lib/gtkui/dialogs.py:177
+#: ../glchess/src/lib/gtkui/dialogs.py:178
 #: ../gnome-sudoku/src/lib/sudoku.py:515
 msgid "Easy"
 msgstr "आसान"
 
 #. Translators: AI Difficulty Combo: AI set to normal diffuculty
-#: ../glchess/src/lib/gtkui/dialogs.py:179
+#: ../glchess/src/lib/gtkui/dialogs.py:180
 msgid "Normal"
 msgstr "सामान्य"
 
 #. Translators: AI Difficulty Combo: AI set to hard diffuculty
-#: ../glchess/src/lib/gtkui/dialogs.py:181
+#: ../glchess/src/lib/gtkui/dialogs.py:182
 #: ../gnome-sudoku/src/lib/sudoku.py:513
 msgid "Hard"
 msgstr "कठिन"
@@ -4280,25 +4732,25 @@ msgstr "कठिन"
 #. Translators: Error displayed when unable to load a game due to
 #. the require game engine not being available. %s is replaced with
 #. the name of the missing engine.
-#: ../glchess/src/lib/gtkui/dialogs.py:246
+#: ../glchess/src/lib/gtkui/dialogs.py:247
 #, python-format
 msgid "Unable to find %s engine"
 msgstr "%s इंजन ढूंढ पाने में असमर्थ"
 
 # libgnomeui/gnome-app-helper.c:254
 #. Translators: New Game Dialog: Title of the dialog when continuing a loaded game
-#: ../glchess/src/lib/gtkui/dialogs.py:258
+#: ../glchess/src/lib/gtkui/dialogs.py:259
 #, python-format
 msgid "Configure loaded game (%i moves)"
 msgstr "लोड किया खेल कान्फिगर करें (%i चालें)"
 
 #. Translators: New Game Dialog: Title of error box when loaded game had AI engines missing
-#: ../glchess/src/lib/gtkui/dialogs.py:263
+#: ../glchess/src/lib/gtkui/dialogs.py:264
 msgid "Game settings changed"
 msgstr "खेल सेटिंग बदला गया"
 
 #. Translators: Default name for a new game. %(white) and %(black) are substituted for the names of the white and black players.
-#: ../glchess/src/lib/gtkui/dialogs.py:326
+#: ../glchess/src/lib/gtkui/dialogs.py:327
 #, python-format
 msgid "%(white)s versus %(black)s"
 msgstr "%(white)s बनाम %(black)s"
@@ -4306,7 +4758,7 @@ msgstr "%(white)s बनाम %(black)s"
 #. Translators: Default name for the white player
 #. Translators: GGZ seat is occupied by the white player
 #. Translators: Name of white player in a default game
-#: ../glchess/src/lib/gtkui/dialogs.py:350
+#: ../glchess/src/lib/gtkui/dialogs.py:351
 #: ../glchess/src/lib/gtkui/network.py:360
 #: ../glchess/src/lib/gtkui/network.py:537 ../glchess/src/lib/main.py:680
 msgid "White"
@@ -4315,151 +4767,159 @@ msgstr "सफेद"
 #. Translators: Default name for the black player
 #. Translators: GGZ seat is occupied by the black player
 #. Translators: Name of black player in a default game
-#: ../glchess/src/lib/gtkui/dialogs.py:357
+#: ../glchess/src/lib/gtkui/dialogs.py:358
 #: ../glchess/src/lib/gtkui/network.py:363
 #: ../glchess/src/lib/gtkui/network.py:543 ../glchess/src/lib/main.py:682
 msgid "Black"
 msgstr "काला"
 
 #. Translators: Load Game Dialog: Name of filter to show only PGN files
-#: ../glchess/src/lib/gtkui/dialogs.py:442
+#: ../glchess/src/lib/gtkui/dialogs.py:443
 msgid "PGN files"
 msgstr "पीएनजी फ़ाइल"
 
 #. Translators: Load Game Dialog: Name of filter to show all files
-#: ../glchess/src/lib/gtkui/dialogs.py:448
+#: ../glchess/src/lib/gtkui/dialogs.py:449
 msgid "All files"
 msgstr "सभी फ़ाइलें"
 
 #. Translators: Load Game Dialog: Message displayed when no file is selected
-#: ../glchess/src/lib/gtkui/dialogs.py:470
+#: ../glchess/src/lib/gtkui/dialogs.py:471
 msgid "Please select a file to load"
 msgstr "कृपया लोड करने हेतु एक फ़ाइल चुनें"
 
 #. Translators: Title of error box when unable to load game
-#: ../glchess/src/lib/gtkui/dialogs.py:478
+#: ../glchess/src/lib/gtkui/dialogs.py:479
 msgid "Unabled to load game"
 msgstr "खेल लोड करने में अक्षम"
 
 #. Translators: Save Game Dialog: Error displayed when no file name entered
-#: ../glchess/src/lib/gtkui/dialogs.py:549
+#: ../glchess/src/lib/gtkui/dialogs.py:550
 msgid "Please enter a file name"
 msgstr "कृपया एक फाइलनाम दें"
 
 #. Translators: Save Game Dialog: Error title when unable to save game
-#: ../glchess/src/lib/gtkui/dialogs.py:562
+#: ../glchess/src/lib/gtkui/dialogs.py:563
 msgid "Unabled to save game"
 msgstr "खेल सहेजने में असमर्थ"
 
 #. Translators: Move Format Combo: Moves shown in human descriptive notation
 #. Translators: Player Type Combo: Player is human controlled
-#: ../glchess/src/lib/gtkui/dialogs.py:589
-#: ../glchess/src/lib/gtkui/gtkui.py:204 ../gnect/src/prefs.c:249
-#: ../gtali/gyahtzee.c:988 ../gtali/yahtzee.c:69 ../iagno/properties.c:449
+#: ../glchess/src/lib/gtkui/dialogs.py:590
+#: ../glchess/src/lib/gtkui/gtkui.py:205 ../gnect/src/prefs.c:249
+#: ../gtali/gyahtzee.c:990 ../gtali/yahtzee.c:69 ../iagno/properties.c:449
 #: ../iagno/properties.c:490
 msgid "Human"
 msgstr "मनुष्य "
 
 #. Translators: Move Format Combo: Moves shown in standard algebraic notation (SAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:591
+#: ../glchess/src/lib/gtkui/dialogs.py:592
 msgid "Standard Algebraic"
 msgstr "मानक बीजीय"
 
 #. Translators: Move Format Combo: Moves shown in standard figurine algebraic notation (FAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:593
+#: ../glchess/src/lib/gtkui/dialogs.py:594
 msgid "Figurine"
 msgstr "फिगरीन"
 
 #. Translators: Move Format Combo: Moves shown in long algebraic notation (LAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:595
+#: ../glchess/src/lib/gtkui/dialogs.py:596
 msgid "Long Algebraic"
 msgstr "लंबा बीजीय"
 
 #  Players tab
 #  FIXME mnemonic doesn't seem to work
 #. Translators: Board Side Combo: Camera will face white player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:605
+#: ../glchess/src/lib/gtkui/dialogs.py:606
 msgid "White Side"
 msgstr "सफेद हिस्सा"
 
 #  Players tab
 #  FIXME mnemonic doesn't seem to work
 #. Translators: Board Side Combo: Camera will face black player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:607
+#: ../glchess/src/lib/gtkui/dialogs.py:608
 msgid "Black Side"
 msgstr "काला हिस्सा"
 
 #. Translators: Board Side Combo: Camera will face human player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:609
+#: ../glchess/src/lib/gtkui/dialogs.py:610
 msgid "Human Side"
 msgstr "मानवीय हिस्सा"
 
 #. Translators: Board Side Combo: Camera will face current player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:611
+#: ../glchess/src/lib/gtkui/dialogs.py:612
 msgid "Current Player"
 msgstr "मौज़ूदा खिलाड़ी"
 
 #. Translators: Board Side Combo: Board will be drawn suitable for players on each side of screen, e.g. handhelds
-#: ../glchess/src/lib/gtkui/dialogs.py:613
+#: ../glchess/src/lib/gtkui/dialogs.py:614
 msgid "Face to Face"
 msgstr ""
 
-#. Translators: Promotion Combo: Promote to a queen. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:623
-msgid "chess-piece|Queen"
-msgstr "शतरंज की गोटी|वजीर"
+#. Translators: Promotion Combo: Promote to a queen
+#: ../glchess/src/lib/gtkui/dialogs.py:624
+#, fuzzy
+msgctxt "chess-piece"
+msgid "Queen"
+msgstr "रानी"
 
-#. Translators: Promotion Combo: Promote to a knight. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:625
-msgid "chess-piece|Knight"
-msgstr "शतरंज की गोटी|घोड़ा"
+#. Translators: Promotion Combo: Promote to a knight
+#: ../glchess/src/lib/gtkui/dialogs.py:626
+#, fuzzy
+msgctxt "chess-piece"
+msgid "Knight"
+msgstr "नाइट"
 
-#. Translators: Promotion Combo: Promote to a rook. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:627
-msgid "chess-piece|Rook"
-msgstr "शतरंज की गोटी|हाथी"
+#. Translators: Promotion Combo: Promote to a rook
+#: ../glchess/src/lib/gtkui/dialogs.py:628
+#, fuzzy
+msgctxt "chess-piece"
+msgid "Rook"
+msgstr "कमरा"
 
-#. Translators: Promotion Combo: Promote to a bishop. Do not translate the 'chess-piece|' text.
-#: ../glchess/src/lib/gtkui/dialogs.py:629
-msgid "chess-piece|Bishop"
-msgstr "शतरंज की गोटी|ऊंट"
+#. Translators: Promotion Combo: Promote to a bishop
+#: ../glchess/src/lib/gtkui/dialogs.py:630
+#, fuzzy
+msgctxt "chess-piece"
+msgid "Bishop"
+msgstr "ब्रिस्टल"
 
 #. Translators: Window title when playing a game that needs saving
-#: ../glchess/src/lib/gtkui/gtkui.py:325
+#: ../glchess/src/lib/gtkui/gtkui.py:326
 #, python-format
 msgid "Chess - *%(game_name)s"
 msgstr "शतरंज - *%(game_name)s"
 
 #. Translators: Window title when playing a game that is saved
-#: ../glchess/src/lib/gtkui/gtkui.py:328
+#: ../glchess/src/lib/gtkui/gtkui.py:329
 #, python-format
 msgid "Chess - %(game_name)s"
 msgstr "शतरंज - %(game_name)s"
 
 #. Translators: Game Timer Label: Indicates that game has no time limit
-#: ../glchess/src/lib/gtkui/gtkui.py:343
+#: ../glchess/src/lib/gtkui/gtkui.py:344
 msgid "∞"
 msgstr "∞"
 
 #. Translators: Save Game Dialog: Notice that game needs saving
-#: ../glchess/src/lib/gtkui/gtkui.py:416
+#: ../glchess/src/lib/gtkui/gtkui.py:417
 msgid "If you don't save the changes to this game will be permanently lost"
 msgstr ""
 "यदि आप इस खेल के परिवर्तनों को नहीं सहेजते हैं तो आपके सारे बदलाव स्थायी रूप से मिट जायेंगे"
 
 #. Translators: Save Game Dialog: Discard game button
-#: ../glchess/src/lib/gtkui/gtkui.py:418
+#: ../glchess/src/lib/gtkui/gtkui.py:419
 msgid "Close _without saving"
 msgstr "सहेजे बिना बन्द करव (_w)"
 
 #. Translators: No 3D Dialog: Title
-#: ../glchess/src/lib/gtkui/gtkui.py:533
+#: ../glchess/src/lib/gtkui/gtkui.py:534
 msgid "Unable to enable 3D mode"
 msgstr "3D मोड समर्थ करने में अक्षम"
 
 #. Translators: No 3D Dialog: Notification to user that they do not have libraries required to enable 3D.
 #. %(error)s will be replaced with a list of reasons why 3D is not available.
-#: ../glchess/src/lib/gtkui/gtkui.py:537
+#: ../glchess/src/lib/gtkui/gtkui.py:538
 #, python-format
 msgid ""
 "You are unable to play in 3D mode due to the following problems:\n"
@@ -4468,24 +4928,34 @@ msgid ""
 "Please contact your system administrator to resolve these problems, until "
 "then you will be able to play chess in 2D mode."
 msgstr ""
+"आप 3D मोड में खेलने में असमर्थ हैं निम्नलिखित समस्या के कारण:\n"
+"%(errors)s\n"
+"\n"
+"कृपया अपने तंत्र प्रशासक से इन समस्या के समाधान के लिए संपर्क करें, तब तक आप शतरंज को 2D "
+"मोड में खेलने में समर्थ होंगे."
 
 #. Translators: Draw Dialog: Title
-#: ../glchess/src/lib/gtkui/gtkui.py:799
+#: ../glchess/src/lib/gtkui/gtkui.py:800
 msgid "Unable to claim draw"
 msgstr "ड्रा क्लेम करने में अक्षम"
 
 #. Translators: Draw Dialog: Notify user why they cannot claim draw
-#: ../glchess/src/lib/gtkui/gtkui.py:801
+#: ../glchess/src/lib/gtkui/gtkui.py:802
+#, fuzzy
 msgid ""
 "You may claim a draw when:\n"
 "a) The board has been in the same state three times (Three fold repetition)\n"
 "b) Fifty moves have occurred where no pawn has moved and no piece has been "
 "captured (50 move rule)"
 msgstr ""
+"आप ड्रॉ का दावा कर सकते हैं जब:\n"
+"a) बोर्ड समान स्थिति में तीन बार से हो (तितरफा घुमाव)\n"
+"b) पचास चालें चली गई हों जहाँ कोई प्यादा नहीं चला गया हो और कोई हिस्सा नहीं पकड़ा गया "
+"है (50 चाल का नियम)"
 
 #. TODO: This should be a pop-up dialog
 #. FIXME: This should create a pop-up dialog
-#: ../glchess/src/lib/gtkui/gtkui.py:823 ../gnome-sudoku/src/lib/main.py:740
+#: ../glchess/src/lib/gtkui/gtkui.py:824 ../gnome-sudoku/src/lib/main.py:727
 #, python-format
 msgid "Unable to display help: %s"
 msgstr "मदद दिखाने में असमर्थ: %s"
@@ -4493,17 +4963,17 @@ msgstr "मदद दिखाने में असमर्थ: %s"
 #. Translators: Error message displayed when 3D mode is not available due to no Python OpenGL libraries
 #: ../glchess/src/lib/gtkui/chessview.py:21
 msgid "No Python OpenGL support"
-msgstr ""
+msgstr "कोई पाइथन OpenGL समर्थन नहीं"
 
 #. Translators: Error message displayed when 3D mode is not available due to no Python GTKGLExt libraries
 #: ../glchess/src/lib/gtkui/chessview.py:27
 msgid "No Python GTKGLExt support"
-msgstr ""
+msgstr "कोई पाइथन GTKGLExt समर्थन नहीं"
 
 #. Translators: Error message displayed when 3D mode is not available due to their 3D drivers not being able to provide a suitable display mode
 #: ../glchess/src/lib/gtkui/chessview.py:41
 msgid "OpenGL libraries do not support required display mode"
-msgstr ""
+msgstr "OpenGL लाइब्रेरी जरूरी प्रदर्शन मोड का समर्थन नहीं करती है"
 
 #. Translators: Move History Combo: Go to the start of the game
 #: ../glchess/src/lib/gtkui/chessview.py:253
@@ -4991,6 +5461,7 @@ msgstr "विरोधी का समय खत्म हो गया है
 
 #. Translators: Message displayed when the game is drawn due to the three-fold-repitition rule
 #: ../glchess/src/lib/gtkui/chessview.py:607
+#, fuzzy
 msgid "The same board state has occurred three times (three fold repetition)"
 msgstr "समान बोर्ड स्थिति तीन बार उत्पन्न हुई है (तितरफा दुहराव)"
 
@@ -5071,117 +5542,150 @@ msgstr "सीट खाली"
 msgid "AI (%s)"
 msgstr "कृत्रिम बुद्धि (%s)"
 
-#. Translators: The first file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:12
-msgid "chess-file|a"
-msgstr "chess-file|ए"
+#. Translators: The first file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:11
+msgctxt "chess-file"
+msgid "a"
+msgstr ""
 
-#. Translators: The second file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:14
-msgid "chess-file|b"
-msgstr "chess-file|बी"
+#. Translators: The second file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:13
+msgctxt "chess-file"
+msgid "b"
+msgstr ""
 
-#. Translators: The third file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:16
-msgid "chess-file|c"
-msgstr "chess-file|सी"
+#. Translators: The third file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:15
+msgctxt "chess-file"
+msgid "c"
+msgstr ""
 
-#. Translators: The fourth file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:18
-msgid "chess-file|d"
-msgstr "chess-file|डी"
+# libgnomeprint/gnome-print-paper.c:51
+#. Translators: The fourth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:17
+#, fuzzy
+msgctxt "chess-file"
+msgid "d"
+msgstr "%d"
 
-#. Translators: The fifth file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:20
-msgid "chess-file|e"
-msgstr "chess-file|ई"
+#. Translators: The fifth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:19
+msgctxt "chess-file"
+msgid "e"
+msgstr ""
 
-#. Translators: The sixth file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:22
-msgid "chess-file|f"
-msgstr "chess-file|एफ"
+#. Translators: The sixth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:21
+msgctxt "chess-file"
+msgid "f"
+msgstr ""
 
-#. Translators: The seventh file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:24
-msgid "chess-file|g"
-msgstr "chess-file|जी"
+#. Translators: The seventh file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:23
+msgctxt "chess-file"
+msgid "g"
+msgstr ""
 
-#. Translators: The eigth file on the chess board. Do not translate the 'chess-file|' text
-#: ../glchess/src/lib/chess/__init__.py:26
-msgid "chess-file|h"
-msgstr "chess-file|एच"
+#. Translators: The eigth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:25
+msgctxt "chess-file"
+msgid "h"
+msgstr ""
 
-#. Translators: The first rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:35
-msgid "chess-rank|1"
-msgstr "chess-rank|1"
+#. Translators: The first rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:28
+#, fuzzy
+msgctxt "chess-rank"
+msgid "1"
+msgstr "1"
 
-#. Translators: The second rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:37
-msgid "chess-rank|2"
-msgstr "chess-rank|2"
+#. Translators: The second rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:30
+#, fuzzy
+msgctxt "chess-rank"
+msgid "2"
+msgstr "2"
 
-#. Translators: The third rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:39
-msgid "chess-rank|3"
-msgstr "chess-rank|3"
+#. Translators: The third rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:32
+#, fuzzy
+msgctxt "chess-rank"
+msgid "3"
+msgstr "3"
 
-#. Translators: The fourth rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:41
-msgid "chess-rank|4"
-msgstr "chess-rank|4"
+#. Translators: The fourth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:34
+#, fuzzy
+msgctxt "chess-rank"
+msgid "4"
+msgstr "4"
 
-#. Translators: The fifth rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:43
-msgid "chess-rank|5"
-msgstr "chess-rank|5"
+#. Translators: The fifth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:36
+#, fuzzy
+msgctxt "chess-rank"
+msgid "5"
+msgstr "5"
 
-#. Translators: The sixth rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:45
-msgid "chess-rank|6"
-msgstr "chess-rank|6"
+#. Translators: The sixth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:38
+#, fuzzy
+msgctxt "chess-rank"
+msgid "6"
+msgstr "6"
 
-#. Translators: The seventh rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:47
-msgid "chess-rank|7"
-msgstr "chess-rank|7"
+#. Translators: The seventh rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:40
+#, fuzzy
+msgctxt "chess-rank"
+msgid "7"
+msgstr "7"
 
-#. Translators: The eigth rank on the chess board. Do not translate the 'chess-rank|' text
-#: ../glchess/src/lib/chess/__init__.py:49
-msgid "chess-rank|8"
-msgstr "chess-rank|8"
+#. Translators: The eigth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:42
+#, fuzzy
+msgctxt "chess-rank"
+msgid "8"
+msgstr "8"
 
 #. Translators: The notation form of a pawn.
 #. See http://en.wikipedia.org/wiki/Algebraic_chess_notation#Figurine_Algebraic_Notation for translations.
-#. Do not translate the 'chess-notation|' text.
-#: ../glchess/src/lib/chess/__init__.py:61
-msgid "chess-notation|P"
-msgstr "chess-notation|पै"
+#: ../glchess/src/lib/chess/__init__.py:46
+msgctxt "chess-notation"
+msgid "P"
+msgstr ""
 
-#. Translators: The notation form of a knight. Do not translate the 'chess-notation|' text
-#: ../glchess/src/lib/chess/__init__.py:63
-msgid "chess-notation|N"
-msgstr "chess-notation|घो"
+#. Translators: The notation form of a knight
+#: ../glchess/src/lib/chess/__init__.py:48
+msgctxt "chess-notation"
+msgid "N"
+msgstr ""
 
-#. Translators: The notation form of a bishop. Do not translate the 'chess-notation|' text
-#: ../glchess/src/lib/chess/__init__.py:65
-msgid "chess-notation|B"
-msgstr "chess-notation|ऊं"
+#. Translators: The notation form of a bishop
+#: ../glchess/src/lib/chess/__init__.py:50
+msgctxt "chess-notation"
+msgid "B"
+msgstr ""
 
-#. Translators: The notation form of a rook. Do not translate the 'chess-notation|' text
-#: ../glchess/src/lib/chess/__init__.py:67
-msgid "chess-notation|R"
-msgstr "chess-notation|हा"
+#. Translators: The notation form of a rook
+#: ../glchess/src/lib/chess/__init__.py:52
+msgctxt "chess-notation"
+msgid "R"
+msgstr ""
 
-#. Translators: The notation form of a queen. Do not translate the 'chess-notation|' text
-#: ../glchess/src/lib/chess/__init__.py:69
-msgid "chess-notation|Q"
-msgstr "chess-notation|व"
+#. Translators: The notation form of a queen
+#: ../glchess/src/lib/chess/__init__.py:54
+#, fuzzy
+msgctxt "chess-notation"
+msgid "Q"
+msgstr "Q"
 
-#. Translators: The notation form of a king. Do not translate the 'chess-notation|' text
-#: ../glchess/src/lib/chess/__init__.py:71
-msgid "chess-notation|K"
-msgstr "chess-notation|रा"
+#. Translators: The notation form of a king
+#: ../glchess/src/lib/chess/__init__.py:56
+#, fuzzy
+msgctxt "chess-notation"
+msgid "K"
+msgstr "K"
 
 #. Translators: Description of an AI player used in log window. %(name)s is replaced with
 #. the name of the AI player. %(game)s is replaced with the name of the game the AI player
@@ -5218,19 +5722,19 @@ msgstr ""
 "जीएल-चेस क्रैश हो गया. कृपया इस बग को http://bugzilla.ग्नोम.org में रिपोर्ट करें\n"
 " डीबग आउटपुट:"
 
-#: ../glchess/src/lib/main.py:709 ../gnome-sudoku/src/lib/main.py:481
+#: ../glchess/src/lib/main.py:709 ../gnome-sudoku/src/lib/main.py:473
 msgid "Save game before closing?"
 msgstr "बन्द करने से पहले सहेजें?"
 
-#: ../glchess/src/lib/defaults.py.in:52
+#: ../glchess/src/lib/defaults.py.in:50
 msgid "glChess"
 msgstr "जीएल-चेस"
 
-#: ../glchess/src/lib/defaults.py.in:55
+#: ../glchess/src/lib/defaults.py.in:53
 msgid "Copyright 2005-2008 Robert Ancell (and contributors)"
 msgstr "कापीराइट 2005-2007 राबर्ट एनसेल (और योगदानकर्ता)"
 
-#: ../glchess/src/lib/defaults.py.in:56
+#: ../glchess/src/lib/defaults.py.in:54
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -5242,7 +5746,7 @@ msgstr ""
 
 #. The GPL license string will be translated, and the game name inserted.
 #. This license is the same as in libgames-support/games-stock.c
-#: ../glchess/src/lib/defaults.py.in:65
+#: ../glchess/src/lib/defaults.py.in:63
 #: ../gnome-sudoku/src/lib/defaults.py.in:49
 #, python-format
 msgid ""
@@ -5256,9 +5760,9 @@ msgstr ""
 "Foundation; either version 2 of the License, or (at your option) any later "
 "version."
 
-#: ../glchess/src/lib/defaults.py.in:69
+#: ../glchess/src/lib/defaults.py.in:67
 #: ../gnome-sudoku/src/lib/defaults.py.in:53
-#: ../libgames-support/games-stock.c:415
+#: ../libgames-support/games-stock.c:414
 #, c-format, python-format
 msgid ""
 "%s is distributed in the hope that it will be useful, but WITHOUT ANY "
@@ -5271,9 +5775,9 @@ msgstr ""
 "FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
 "details."
 
-#: ../glchess/src/lib/defaults.py.in:73
+#: ../glchess/src/lib/defaults.py.in:71
 #: ../gnome-sudoku/src/lib/defaults.py.in:57
-#: ../libgames-support/games-stock.c:420
+#: ../libgames-support/games-stock.c:419
 #, c-format, python-format
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
@@ -5284,7 +5788,7 @@ msgstr ""
 "%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
 "Fifth Floor, Boston, MA  02110-1301  USA"
 
-#: ../glchess/src/lib/defaults.py.in:85
+#: ../glchess/src/lib/defaults.py.in:83
 #: ../gnome-sudoku/src/lib/defaults.py.in:68
 #, python-format
 msgid "Unable to make data directory %(dir)s: %(error)s"
@@ -5388,13 +5892,13 @@ msgstr "खेल खत्म!"
 msgid "You can't move there!"
 msgstr "वहां नहीं जा सकता!"
 
-#: ../glines/glines.c:1206 ../glines/glines.c:1210 ../glines/glines.c:1212
-#: ../glines/glines.c:1809 ../glines/glines.c:1841
+#: ../glines/glines.c:1207 ../glines/glines.c:1211 ../glines/glines.c:1213
+#: ../glines/glines.c:1813 ../glines/glines.c:1845
 #: ../glines/glines.desktop.in.in.h:1
 msgid "Five or More"
 msgstr "पांच या अधिक"
 
-#: ../glines/glines.c:1215
+#: ../glines/glines.c:1216
 msgid ""
 "GNOME port of the once-popular Color Lines game.\n"
 "\n"
@@ -5404,40 +5908,40 @@ msgstr ""
 "\n"
 "पांच या अधिक ग्नोम खेल का हिस्सा है."
 
-#: ../glines/glines.c:1445
+#: ../glines/glines.c:1446
 msgid "Five or More Preferences"
 msgstr "पांच या अधिक वरीयताएँ"
 
-#: ../glines/glines.c:1465
+#: ../glines/glines.c:1466
 msgid "Themes"
 msgstr "प्रसंग"
 
-#: ../glines/glines.c:1473
+#: ../glines/glines.c:1474
 msgid "_Image:"
 msgstr "छविः (_I)"
 
 # #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
 # libgnomeui/gnome-druid-page-standard.c:170
-#: ../glines/glines.c:1484
+#: ../glines/glines.c:1485
 msgid "B_ackground color:"
 msgstr "पृष्ठभूमि रंग (_a)"
 
-#: ../glines/glines.c:1499
+#: ../glines/glines.c:1500
 msgid "Board Size"
 msgstr "बिसात आकार"
 
-#: ../glines/glines.c:1518
+#: ../glines/glines.c:1519
 msgctxt "preferences"
 msgid "General"
 msgstr "सामान्य"
 
 # #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
 # libgnomeui/gnome-app-helper.c:264
-#: ../glines/glines.c:1524
+#: ../glines/glines.c:1525
 msgid "_Use fast moves"
 msgstr "तीव्र चाल उपयोग में लें (_U)"
 
-#: ../glines/glines.c:1870
+#: ../glines/glines.c:1874
 msgid "Next:"
 msgstr "अगला:"
 
@@ -5556,13 +6060,13 @@ msgstr "दूसरे खिलाड़ी का स्तर"
 
 #: ../gnect/data/gnect.schemas.in.h:9 ../gnect/src/prefs.c:370
 #: ../gnibbles/gnibbles.schemas.in.h:16 ../gnibbles/preferences.c:446
-#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:725
+#: ../gnometris/gnometris.schemas.in.h:13 ../gnometris/tetris.cpp:744
 msgid "Move left"
 msgstr "बायाँ जाएँ"
 
 #: ../gnect/data/gnect.schemas.in.h:10 ../gnect/src/prefs.c:371
 #: ../gnibbles/gnibbles.schemas.in.h:17 ../gnibbles/preferences.c:447
-#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:726
+#: ../gnometris/gnometris.schemas.in.h:14 ../gnometris/tetris.cpp:745
 msgid "Move right"
 msgstr "दाँया जाएँ"
 
@@ -5606,7 +6110,7 @@ msgstr "%s के खेल संजाल में स्वागत है.
 msgid "It's a draw!"
 msgstr "यह तो बराबर हो गया!"
 
-#: ../gnect/src/main.c:583 ../gnome-sudoku/src/lib/main.py:442
+#: ../gnect/src/main.c:583 ../gnome-sudoku/src/lib/main.py:435
 msgid "You win!"
 msgstr "आप जीते!"
 
@@ -5703,7 +6207,7 @@ msgid "Four-in-a-Row Preferences"
 msgstr "एक-पंक्ति-में-चार वरीयताएँ"
 
 #: ../gnect/src/prefs.c:333 ../gnobots2/properties.c:530
-#: ../iagno/properties.c:528
+#: ../iagno/properties.c:528 ../same-gnome-clutter/data/settings.ui.h:1
 msgid "Appearance"
 msgstr "प्रकटन"
 
@@ -5724,7 +6228,7 @@ msgstr "ध्वनियाँ सक्षम करें (_n)"
 
 #. keyboard tab
 #: ../gnect/src/prefs.c:366 ../gnibbles/preferences.c:436
-#: ../gnobots2/properties.c:537 ../gnometris/tetris.cpp:717
+#: ../gnobots2/properties.c:537 ../gnometris/tetris.cpp:736
 msgid "Keyboard Controls"
 msgstr "कुंजीपटल नियंत्रण"
 
@@ -5849,19 +6353,19 @@ msgid "Speed:"
 msgstr "गति"
 
 #: ../gnibbles/gnibbles.c:627 ../gnobots2/game.c:182 ../gnomine/gnomine.c:224
-#: ../gnotravex/gnotravex.c:1237 ../gnotski/gnotski.c:840
+#: ../gnotravex/gnotravex.c:1239 ../gnotski/gnotski.c:842
 #: ../gtali/gyahtzee.c:203 ../mahjongg/mahjongg.c:668 ../same-gnome/ui.c:193
 msgid "Congratulations!"
 msgstr "बधाइयाँ!"
 
 #: ../gnibbles/gnibbles.c:628 ../gnobots2/game.c:183 ../gnomine/gnomine.c:225
-#: ../gnotravex/gnotravex.c:1238 ../gnotski/gnotski.c:841
+#: ../gnotravex/gnotravex.c:1240 ../gnotski/gnotski.c:843
 #: ../gtali/gyahtzee.c:204 ../mahjongg/mahjongg.c:669 ../same-gnome/ui.c:194
 msgid "Your score is the best!"
 msgstr "आपका अंक सबसे अच्छा है!"
 
 #: ../gnibbles/gnibbles.c:629 ../gnobots2/game.c:184 ../gnomine/gnomine.c:226
-#: ../gnotravex/gnotravex.c:1239 ../gnotski/gnotski.c:842
+#: ../gnotravex/gnotravex.c:1241 ../gnotski/gnotski.c:844
 #: ../gtali/gyahtzee.c:205 ../mahjongg/mahjongg.c:670 ../same-gnome/ui.c:195
 msgid "Your score has made the top ten."
 msgstr "आपके अंक शीर्ष दस में हैं"
@@ -5872,7 +6376,7 @@ msgstr "भूल भुलैया में इल्ली को रास�
 
 #: ../gnibbles/gnibbles.desktop.in.in.h:2 ../gnibbles/main.c:243
 #: ../gnibbles/main.c:247 ../gnibbles/main.c:249 ../gnibbles/main.c:871
-#: ../gnibbles/main.c:989 ../gnibbles/main.c:1051
+#: ../gnibbles/main.c:989 ../gnibbles/main.c:1053
 msgid "Nibbles"
 msgstr "निब्बल्स"
 
@@ -5948,7 +6452,7 @@ msgid "Key to use for motion up."
 msgstr "ऊपर चाल के उपयोग हेतु कुंजी"
 
 #: ../gnibbles/gnibbles.schemas.in.h:15 ../gnibbles/preferences.c:449
-#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:727
+#: ../gnometris/gnometris.schemas.in.h:12 ../gnometris/tetris.cpp:746
 msgid "Move down"
 msgstr "नीचे जाएँ"
 
@@ -6091,7 +6595,7 @@ msgstr "झूठे बाउंस सक्षम करें (_E)"
 
 # gnome-session/gsm-client-row.c:34
 #. starting level
-#: ../gnibbles/preferences.c:350 ../gnometris/tetris.cpp:633
+#: ../gnibbles/preferences.c:350 ../gnometris/tetris.cpp:643
 msgid "_Starting level:"
 msgstr "लेबल शुरू कर रहा है (_S):"
 
@@ -6140,13 +6644,13 @@ msgstr "इल्ली %d:"
 msgid "Game over!"
 msgstr "खेल खत्म!"
 
-#: ../gnobots2/game.c:155 ../gnomine/gnomine.c:200 ../gnotski/gnotski.c:815
+#: ../gnobots2/game.c:155 ../gnomine/gnomine.c:200 ../gnotski/gnotski.c:817
 msgid "Great work, but unfortunately your score did not make the top ten."
 msgstr "बहुत अच्छा, लेकिन आप शीर्ष दस में नहीं आते."
 
 #. Translators: This "_New Game" is for the game-over dialogue
-#: ../gnobots2/game.c:157 ../gnomine/gnomine.c:202 ../gnotski/gnotski.c:817
-#: ../libgames-support/games-stock.c:324 ../same-gnome/ui.c:176
+#: ../gnobots2/game.c:157 ../gnomine/gnomine.c:202 ../gnotski/gnotski.c:819
+#: ../libgames-support/games-stock.c:323 ../same-gnome/ui.c:176
 msgid "_New Game"
 msgstr "नया खेल (_N)"
 
@@ -6268,17 +6772,17 @@ msgid "Robots with safe teleport with super-safe moves"
 msgstr "सुपर सुरक्षित चाल के साथ सुरक्षित टेलिपोर्ट के साथ रोबॉट्स"
 
 # gnome-session/logout.c:280
-#: ../gnobots2/gnobots.c:237 ../gnobots2/gnobots.c:258
+#: ../gnobots2/gnobots.c:239 ../gnobots2/gnobots.c:260
 #: ../gnobots2/gnobots2.desktop.in.in.h:2 ../gnobots2/menu.c:263
 #: ../gnobots2/menu.c:266
 msgid "Robots"
 msgstr "रोबॉट्स"
 
-#: ../gnobots2/gnobots.c:320
+#: ../gnobots2/gnobots.c:322
 msgid "No game data could be found."
 msgstr "कोई खेल डेटा नहीं मिला."
 
-#: ../gnobots2/gnobots.c:322
+#: ../gnobots2/gnobots.c:324
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
@@ -6286,11 +6790,11 @@ msgstr ""
 "प्रोग्राम रोबोट को वैध खेल कॉन्फ़िगरेशन फ़ाइल पाने में अक्षम रहा. कृपया जाँचें कि प्रोग्राम "
 "उचित प्रकार से संस्थापित है."
 
-#: ../gnobots2/gnobots.c:341
+#: ../gnobots2/gnobots.c:340
 msgid "Some graphics files are missing or corrupt."
 msgstr "कुछ आरेखीय फाइल नहीं मिल रहा है या खराब है."
 
-#: ../gnobots2/gnobots.c:343
+#: ../gnobots2/gnobots.c:342
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
@@ -6592,7 +7096,7 @@ msgid "Prevents all moves that result in getting killed."
 msgstr "सभी चालों को रोकें जिससे मर सकते हों."
 
 # libgnome/gnome-program.c:578
-#: ../gnobots2/properties.c:483 ../gnometris/tetris.cpp:659
+#: ../gnobots2/properties.c:483 ../gnometris/tetris.cpp:669
 msgid "_Enable sounds"
 msgstr "ध्वनियाँ सक्षम करें (_E)"
 
@@ -6642,13 +7146,13 @@ msgid "Fit falling blocks together"
 msgstr "गिरते पिण्डों को आपस में जमाएँ"
 
 # libgnomeui/gnome-file-entry.c:241
-#: ../gnometris/gnometris.desktop.in.in.h:2 ../gnometris/main.cpp:64
-#: ../gnometris/tetris.cpp:162 ../gnometris/tetris.cpp:1281
-#: ../gnometris/tetris.cpp:1285 ../gnometris/tetris.cpp:1287
+#: ../gnometris/gnometris.desktop.in.in.h:2 ../gnometris/main.cpp:66
+#: ../gnometris/tetris.cpp:162 ../gnometris/tetris.cpp:1300
+#: ../gnometris/tetris.cpp:1304 ../gnometris/tetris.cpp:1306
 msgid "Gnometris"
 msgstr "गनोमेट्रिस"
 
-#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:728
+#: ../gnometris/gnometris.schemas.in.h:1 ../gnometris/tetris.cpp:747
 msgid "Drop"
 msgstr "छोडें"
 
@@ -6685,11 +7189,11 @@ msgstr "स्तर जिससे प्रारंभ करना है"
 msgid "Level to start with."
 msgstr "स्तर जिससे प्रारंभ करना है."
 
-#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:730
+#: ../gnometris/gnometris.schemas.in.h:15 ../gnometris/tetris.cpp:749
 msgid "Pause"
 msgstr "ठहरें"
 
-#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:729
+#: ../gnometris/gnometris.schemas.in.h:16 ../gnometris/tetris.cpp:748
 msgid "Rotate"
 msgstr "घुमाएँ"
 
@@ -6782,11 +7286,11 @@ msgstr "क्या घड़ी के विपरीत दिशा मे�
 msgid "Whether to use the background image"
 msgstr "क्या पृष्ठभूमि विंब का प्रयोग करना है"
 
-#: ../gnometris/main.cpp:46
+#: ../gnometris/main.cpp:48
 msgid "Set starting level (1 or greater)"
 msgstr "प्रारंभिक स्तर नियत करें (1 या ज्यादा बड़ा)"
 
-#: ../gnometris/main.cpp:46
+#: ../gnometris/main.cpp:48
 msgid "LEVEL"
 msgstr "स्तर"
 
@@ -6808,23 +7312,23 @@ msgstr "टेंगो छायांकित"
 msgid "Lines:"
 msgstr "पंक्तियां:"
 
-#: ../gnometris/tetris.cpp:565
+#: ../gnometris/tetris.cpp:575
 msgid "Gnometris Preferences"
 msgstr "ग्नोमेट्रिस वरीयताएँ"
 
-#: ../gnometris/tetris.cpp:589
+#: ../gnometris/tetris.cpp:599 ../same-gnome-clutter/data/settings.ui.h:6
 msgid "Setup"
 msgstr " सेटअप"
 
 #  pre-filled rows
 #. pre-filled rows
-#: ../gnometris/tetris.cpp:595
+#: ../gnometris/tetris.cpp:605
 msgid "_Number of pre-filled rows:"
 msgstr "पंक्तियों की संख्या जो पहले से भरे हुए हों (_N)"
 
 #  pre-filled rows density
 #. pre-filled rows density
-#: ../gnometris/tetris.cpp:614
+#: ../gnometris/tetris.cpp:624
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "पहले से भरी हुई पंक्तियों में पिण्डों के घनत्व (_D):"
 
@@ -6835,42 +7339,46 @@ msgstr "पहले से भरी हुई पंक्तियों म�
 # gnome-session/session-properties-capplet.c:217
 # #-#-#-#-#  gnome-applets.gnome-2-2.hi.po (gnome-applets 2.x)  #-#-#-#-#
 # gnome-session/session-properties-capplet.c:217
-#: ../gnometris/tetris.cpp:654
+#: ../gnometris/tetris.cpp:664 ../same-gnome-clutter/data/settings.ui.h:4
 msgid "Operation"
 msgstr "प्रक्रिया"
 
 # #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
 # libgnomeui/gnome-font-picker.c:192
-#: ../gnometris/tetris.cpp:668
+#: ../gnometris/tetris.cpp:678
 msgid "_Preview next block"
 msgstr "अगले पिण्डों का पूर्वावलोकन (_P)"
 
-#: ../gnometris/tetris.cpp:677
+#: ../gnometris/tetris.cpp:687
 msgid "_Use random block colors"
 msgstr "बेतरतीब ब्लॉक रंग का प्रयोग करें (_U)"
 
-#: ../gnometris/tetris.cpp:688
+#: ../gnometris/tetris.cpp:698
+msgid "_Bastard mode"
+msgstr ""
+
+#: ../gnometris/tetris.cpp:707
 msgid "_Rotate blocks counterclockwise"
 msgstr "घड़ी की विपरीत दिशा में पिण्डों को घुमाएँ (_R)"
 
-#: ../gnometris/tetris.cpp:697
+#: ../gnometris/tetris.cpp:716
 msgid "Show _where the block will land"
 msgstr "दिखायें कि कहां ब्लॉक रहेगा (_w)"
 
-#: ../gnometris/tetris.cpp:705 ../gnometris/tetris.cpp:738
+#: ../gnometris/tetris.cpp:724 ../gnometris/tetris.cpp:757
 #: ../same-gnome/ui.c:324
 msgid "Theme"
 msgstr "प्रसंग"
 
-#: ../gnometris/tetris.cpp:714
+#: ../gnometris/tetris.cpp:733
 msgid "Controls"
 msgstr "नियंत्रक"
 
-#: ../gnometris/tetris.cpp:741
+#: ../gnometris/tetris.cpp:760
 msgid "Block Style"
 msgstr "ब्लाक शैली"
 
-#: ../gnometris/tetris.cpp:1290
+#: ../gnometris/tetris.cpp:1309
 msgid ""
 "A classic game of fitting falling blocks together.\n"
 "\n"
@@ -6885,7 +7393,7 @@ msgstr ""
 msgid "Gnometris Scores"
 msgstr "गनोमेट्रिस स्कोर"
 
-#: ../gnometris/blockops.cpp:724
+#: ../gnometris/blockops.cpp:861
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:173
 #: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:214
 msgid "Paused"
@@ -6899,6 +7407,60 @@ msgstr "सोडोकु"
 #: ../gnome-sudoku/gnome-sudoku.desktop.in.in.h:2
 msgid "Test your logic skills in this number grid puzzle"
 msgstr "इस क्रम ग्रिड पजल में अपना तर्क स्किल जांचें"
+
+# libgnome/gnome-program.c:435
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:1
+#, fuzzy
+msgid "Color of the grid border"
+msgstr "इल्ली हेतु उपयोग में रंग"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:2
+#, fuzzy
+msgid "Generate new puzzles in the background"
+msgstr "नया पजल उत्पन्न करें जबतक रूक न जाए (_u)"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:3
+#, fuzzy
+msgid "Height of application window in pixels"
+msgstr "पिक्सेल में विंडो की ऊंचाई."
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:4
+msgid "Mark printed games as played"
+msgstr ""
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:5
+#, fuzzy
+msgid "Number of puzzles to print on a page"
+msgstr "छापे जाने के लिए सुडोकु की संख्या (_N): "
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:6
+msgid "Print games that have been played"
+msgstr ""
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:7
+#, fuzzy
+msgid "Show hint highlights"
+msgstr "शतरंज खेल के समय संकेत दिखाएँ"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:8
+#, fuzzy
+msgid "Show hints"
+msgstr "एक संकेत दें"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:9
+#, fuzzy
+msgid "Show the application toolbar"
+msgstr "उपकरण-पट्टी छुपाएँ या दिखाएँ"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:10
+#, fuzzy
+msgid "The number of seconds between automatic saves"
+msgstr "पसंदीदा खेल में माइन की संख्या"
+
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:11
+#, fuzzy
+msgid "Width of application window in pixels"
+msgstr "पिक्सेल में मुख्य विंडो की चौड़ाई."
 
 #: ../gnome-sudoku/data/print_games.ui.h:1
 msgid "<b><i>Details</i></b>"
@@ -7020,7 +7582,7 @@ msgstr "अन्य को साफ करें (_O)"
 msgid "_Add Tracker"
 msgstr "ट्रैकर जोड़ें (_A)"
 
-#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:797
+#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:784
 msgid "_Clear Tracker"
 msgstr "ट्रैकर साफ करें (_C)"
 
@@ -7030,7 +7592,7 @@ msgstr "ट्रैकर (_T)"
 
 #: ../gnome-sudoku/src/gnome-sudoku.in.in:59
 msgid "Sudoku incorrectly installed"
-msgstr ""
+msgstr "Sudoku गलत तरीके से संस्थापित किया गया"
 
 #: ../gnome-sudoku/src/gnome-sudoku.in.in:60
 msgid ""
@@ -7038,6 +7600,8 @@ msgid ""
 "installed. If you are currently upgrading your system please wait until the "
 "upgrade has completed."
 msgstr ""
+"Sudoku आरंभ करने में असमर्थ है क्योंकि जरूरी अनुप्रयोग फ़ाइल संस्थापित नहीं है. यदि आप अभी "
+"अपने तंत्र को उन्नत कर रहे हैं, उन्नयन होने तक कृपया रुकें."
 
 #: ../gnome-sudoku/src/lib/defaults.py.in:37
 msgid "GNOME Sudoku"
@@ -7064,9 +7628,8 @@ msgstr "डिस्क में कोई जगह नहीं बची"
 
 #: ../gnome-sudoku/src/lib/saver.py:125 ../gnome-sudoku/src/lib/saver.py:132
 #, fuzzy, python-format
-#| msgid "Unable to save file %(filename)s."
 msgid "Unable to create data folder %(path)s."
-msgstr "फ़ाइल %(filename)s सहेजने में असमर्थ."
+msgstr "Sudoku आंकड़ा फ़ोल्डर %(path)s बनाने में असमर्थ है."
 
 #: ../gnome-sudoku/src/lib/saver.py:126
 msgid "There is no disk space left!"
@@ -7091,118 +7654,114 @@ msgstr "फ़ाइल %(filename)s सहेजने में असमर�
 #: ../gnome-sudoku/src/lib/saver.py:178 ../gnome-sudoku/src/lib/saver.py:179
 #: ../gnome-sudoku/src/lib/saver.py:196 ../gnome-sudoku/src/lib/saver.py:197
 msgid "Sudoku unable to mark game as finished."
-msgstr ""
+msgstr "Sudoku खेल को समाप्त रूप में चिह्नित करने में असमर्थ."
 
 #: ../gnome-sudoku/src/lib/main.py:43
 msgid "Track moves"
 msgstr "चाल ट्रैक करें"
 
-#: ../gnome-sudoku/src/lib/main.py:245
+#: ../gnome-sudoku/src/lib/main.py:243
 msgid "New game"
 msgstr "नया खेल"
 
-#: ../gnome-sudoku/src/lib/main.py:247
+#: ../gnome-sudoku/src/lib/main.py:245
 msgid "Print current game"
 msgstr "मौजूदा खेल छापें"
 
-#: ../gnome-sudoku/src/lib/main.py:248
+#: ../gnome-sudoku/src/lib/main.py:246
 msgid "Print _Multiple Sudokus"
 msgstr "बहुल सुडोकु छापें (_M)"
 
-#: ../gnome-sudoku/src/lib/main.py:249
+#: ../gnome-sudoku/src/lib/main.py:247
 msgid "Print more than one sudoku at a time."
 msgstr "एक बार में एक से अधिक सुडोकु छापें."
 
-#: ../gnome-sudoku/src/lib/main.py:251
+#: ../gnome-sudoku/src/lib/main.py:249
 msgid "Close Sudoku"
 msgstr "सुडोको चुनें"
 
-#: ../gnome-sudoku/src/lib/main.py:252
+#: ../gnome-sudoku/src/lib/main.py:250
 msgid "_Tools"
 msgstr "उपकरण (_T)"
 
-#: ../gnome-sudoku/src/lib/main.py:254 ../libgames-support/games-stock.c:320
+#: ../gnome-sudoku/src/lib/main.py:252 ../libgames-support/games-stock.c:319
 msgid "_Hint"
 msgstr "संकेत (_H)"
 
-#: ../gnome-sudoku/src/lib/main.py:256
+#: ../gnome-sudoku/src/lib/main.py:254
 msgid "Show which numbers could go in the current square."
 msgstr "दिखाएँ कि कौन सी संख्या मौजूदा वर्ग में जा सकती है."
 
-#: ../gnome-sudoku/src/lib/main.py:258
+#: ../gnome-sudoku/src/lib/main.py:256
 msgid "_Fill"
 msgstr "भरें (_F)"
 
-#: ../gnome-sudoku/src/lib/main.py:259
+#: ../gnome-sudoku/src/lib/main.py:257
 msgid "Automatically fill in the current square if possible."
 msgstr "यदि संभव हो तो स्वतः मौजूदा वर्ग में भरें."
 
-#: ../gnome-sudoku/src/lib/main.py:261
+#: ../gnome-sudoku/src/lib/main.py:259
 msgid "Fill _all squares"
 msgstr "सभी वर्ग भरें (_a)"
 
-#: ../gnome-sudoku/src/lib/main.py:262
+#: ../gnome-sudoku/src/lib/main.py:260
 msgid ""
 "Automatically fill in all squares for which there is only one valid value."
 msgstr "स्वतः मौजूदा वर्ग में भरें जिसके लिए सिर्फ एक वैध मान है."
 
-#: ../gnome-sudoku/src/lib/main.py:266
+#: ../gnome-sudoku/src/lib/main.py:264
 msgid "_Generate new puzzles"
 msgstr "नया पजल उत्पन्न करें (_G)"
 
-#: ../gnome-sudoku/src/lib/main.py:266
+#: ../gnome-sudoku/src/lib/main.py:264
 msgid "Generate new puzzles."
 msgstr "नया पजल उत्पन्न करें."
 
-#: ../gnome-sudoku/src/lib/main.py:268
+#: ../gnome-sudoku/src/lib/main.py:266
 msgid "Puzzle _Statistics"
 msgstr "पजल सांख्यिकी (_S)"
 
-#: ../gnome-sudoku/src/lib/main.py:269
+#: ../gnome-sudoku/src/lib/main.py:267
 msgid "Show statistics about current puzzle"
 msgstr "मौजूदा पजल के बारे में आंकड़े दिखाएं"
 
-#: ../gnome-sudoku/src/lib/main.py:275 ../libgames-support/games-stock.c:318
-msgid "_Contents"
-msgstr "विषय सूची (_C)"
-
-#: ../gnome-sudoku/src/lib/main.py:281
+#: ../gnome-sudoku/src/lib/main.py:279
 msgid "_Always show hint"
 msgstr "हमेशा संकेत दिखाएं (_A)"
 
-#: ../gnome-sudoku/src/lib/main.py:283
+#: ../gnome-sudoku/src/lib/main.py:281
 msgid "Always show possible numbers in a square"
 msgstr "वर्ग में हमेशा संभावित संख्या दिखाएं"
 
-#: ../gnome-sudoku/src/lib/main.py:287
+#: ../gnome-sudoku/src/lib/main.py:285
 msgid "Warn about _unfillable squares"
 msgstr "न भरे जाने योग्य वर्ग के बारे में चेतावनी (_u)"
 
-#: ../gnome-sudoku/src/lib/main.py:289
+#: ../gnome-sudoku/src/lib/main.py:287
 msgid "Warn about squares made unfillable by a move"
 msgstr "वर्ग के बारे में चेतावनी दें जो चाल के द्वारा नहीं भरा जाने वाला है"
 
-#: ../gnome-sudoku/src/lib/main.py:291
+#: ../gnome-sudoku/src/lib/main.py:289
 msgid "_Track additions"
 msgstr "ट्रैक योग (_T)"
 
-#: ../gnome-sudoku/src/lib/main.py:293
+#: ../gnome-sudoku/src/lib/main.py:291
 msgid "Mark new additions in a separate color so you can keep track of them."
 msgstr "भिन्न रंग में नया योग चिह्नित करें ताकि आप उनका ट्रैक रख सकें."
 
-#: ../gnome-sudoku/src/lib/main.py:296
+#: ../gnome-sudoku/src/lib/main.py:294
 msgid "_Highlighter"
 msgstr "हाइलाइटर (_H)"
 
-#: ../gnome-sudoku/src/lib/main.py:297
+#: ../gnome-sudoku/src/lib/main.py:295
 msgid "Highlight the current row, column and box"
 msgstr "मौजूदा पंक्ति, कॉलम, व बॉक्स उभारें"
 
-#: ../gnome-sudoku/src/lib/main.py:298
+#: ../gnome-sudoku/src/lib/main.py:296
 msgid "Generate new puzzles _while you play"
 msgstr "नया पजल बनाएं जब आप खेलते हैं (_w)"
 
-#: ../gnome-sudoku/src/lib/main.py:300
+#: ../gnome-sudoku/src/lib/main.py:298
 msgid ""
 "Generate new puzzles in the background while you play. This will "
 "automatically pause when the game goes into the background."
@@ -7211,132 +7770,132 @@ msgstr ""
 "जाता है."
 
 # libgnomeui/gnome-app-helper.c:273
-#: ../gnome-sudoku/src/lib/main.py:306
+#: ../gnome-sudoku/src/lib/main.py:304
 msgid "_Edit"
 msgstr "संपादन (_E)"
 
-#: ../gnome-sudoku/src/lib/main.py:307
+#: ../gnome-sudoku/src/lib/main.py:305
 msgid "_Undo"
 msgstr "पूर्ववत् करें (_U)"
 
-#: ../gnome-sudoku/src/lib/main.py:307
+#: ../gnome-sudoku/src/lib/main.py:305
 msgid "Undo last action"
 msgstr "अंतिम क्रिया पूर्ववत करें"
 
-#: ../gnome-sudoku/src/lib/main.py:308
+#: ../gnome-sudoku/src/lib/main.py:306
 msgid "_Redo"
 msgstr "फिर करें (_R)"
 
-#: ../gnome-sudoku/src/lib/main.py:308
+#: ../gnome-sudoku/src/lib/main.py:306
 msgid "Redo last action"
 msgstr "अंतिम क्रिया फिर करें"
 
-#: ../gnome-sudoku/src/lib/main.py:309
+#: ../gnome-sudoku/src/lib/main.py:307
 #: ../gnome-sudoku/src/lib/number_box.py:54
 msgid "_Clear"
 msgstr "साफ़ करें (_C)"
 
-#: ../gnome-sudoku/src/lib/main.py:309
+#: ../gnome-sudoku/src/lib/main.py:307
 msgid "Clear entries you've filled in"
 msgstr "प्रविष्टि साफ करें जिसे आप भरते हैं"
 
-#: ../gnome-sudoku/src/lib/main.py:310
+#: ../gnome-sudoku/src/lib/main.py:308
 msgid "Clear _Notes"
 msgstr "नोट्स साफ करें (_N)"
 
-#: ../gnome-sudoku/src/lib/main.py:310
+#: ../gnome-sudoku/src/lib/main.py:308
 msgid "Clear notes and hints"
 msgstr "नोट व संकेत साफ करें"
 
-#: ../gnome-sudoku/src/lib/main.py:424
+#: ../gnome-sudoku/src/lib/main.py:417
 #, python-format
 msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
-msgstr ""
+msgstr "आपने पहेली को %(totalTime)s (%(activeTime)s active) में खत्म कर दिया"
 
-#: ../gnome-sudoku/src/lib/main.py:428
+#: ../gnome-sudoku/src/lib/main.py:421
 #, python-format
 msgid "You got %(n)s hint"
 msgid_plural "You got %(n)s hints"
 msgstr[0] "आपको %(n)s संकेत मिले"
 msgstr[1] "आपको %(n)s संकेत मिले"
 
-#: ../gnome-sudoku/src/lib/main.py:431
+#: ../gnome-sudoku/src/lib/main.py:424
 #, python-format
 msgid "You had %(n)s impossibility pointed out."
 msgid_plural "You had %(n)s impossibilities pointed out."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपने %(n)s असंभव्यता को इंगित किया."
+msgstr[1] "आपने %(n)s असंभव्यताओं की ओर इंगित किया."
 
-#: ../gnome-sudoku/src/lib/main.py:436
+#: ../gnome-sudoku/src/lib/main.py:429
 #, python-format
 msgid "You used the auto-fill %(n)s time"
 msgid_plural "You used the auto-fill %(n)s times"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपने स्वतः भरण %(n)s समय का प्रयोग किया"
+msgstr[1] "आपने स्वतः भरण %(n)s समय का प्रयोग किया"
 
-#: ../gnome-sudoku/src/lib/main.py:461
+#: ../gnome-sudoku/src/lib/main.py:453
 msgid "Save this game before starting new one?"
-msgstr ""
+msgstr "नया आरंभ करने के पहले इस खेल को सहेजें?"
 
-#: ../gnome-sudoku/src/lib/main.py:462
+#: ../gnome-sudoku/src/lib/main.py:454
 msgid "_Save game for later"
 msgstr "बाद के लिये खेल सहेजें (_S)"
 
-#: ../gnome-sudoku/src/lib/main.py:463
+#: ../gnome-sudoku/src/lib/main.py:455
 msgid "_Abandon game"
 msgstr "खेल त्यागें (_A)"
 
-#: ../gnome-sudoku/src/lib/main.py:662
+#: ../gnome-sudoku/src/lib/main.py:649
 #, python-format
 msgid "Playing %(difficulty)s puzzle."
 msgstr "%(difficulty)s पहेली खेल रहे हैं."
 
-#: ../gnome-sudoku/src/lib/main.py:678
+#: ../gnome-sudoku/src/lib/main.py:665
 msgid "Puzzle Information"
 msgstr "पजल सूचना"
 
-#: ../gnome-sudoku/src/lib/main.py:679
+#: ../gnome-sudoku/src/lib/main.py:666
 msgid "There is no current puzzle."
 msgstr "कोई मौजूदा पजल नहीं."
 
-#: ../gnome-sudoku/src/lib/main.py:684
+#: ../gnome-sudoku/src/lib/main.py:671
 msgid "Calculated difficulty: "
 msgstr "गणना की हुई कठिनता: "
 
-#: ../gnome-sudoku/src/lib/main.py:688
+#: ../gnome-sudoku/src/lib/main.py:675
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "elimination के द्वारा तत्काल भरी गया चाल की संख्या: "
 
-#: ../gnome-sudoku/src/lib/main.py:691
+#: ../gnome-sudoku/src/lib/main.py:678
 msgid "Number of moves instantly fillable by filling: "
 msgstr "भरण के द्वारा तत्काल भरी गया चाल की संख्या: "
 
-#: ../gnome-sudoku/src/lib/main.py:694
+#: ../gnome-sudoku/src/lib/main.py:681
 msgid "Amount of trial-and-error required to solve: "
 msgstr "हल के जरूरी आजमाए जाने की मात्रा: "
 
-#: ../gnome-sudoku/src/lib/main.py:697 ../gnome-sudoku/src/lib/main.py:698
+#: ../gnome-sudoku/src/lib/main.py:684 ../gnome-sudoku/src/lib/main.py:685
 msgid "Puzzle Statistics"
 msgstr "पहेली सांख्यिकी"
 
 #. Our initial row...
-#: ../gnome-sudoku/src/lib/main.py:788
+#: ../gnome-sudoku/src/lib/main.py:775
 msgid "No Tracker"
 msgstr "कोई ट्रैकर नहीं"
 
-#: ../gnome-sudoku/src/lib/main.py:798
+#: ../gnome-sudoku/src/lib/main.py:785
 msgid "Clear all moves tracked by selected tracker."
 msgstr "चयनित ट्रैकर के द्वारा ट्रैक की गई सभी चालें."
 
-#: ../gnome-sudoku/src/lib/main.py:802
+#: ../gnome-sudoku/src/lib/main.py:789
 msgid "_Clear Others"
 msgstr "दूसरे को साफ करें (_C)"
 
-#: ../gnome-sudoku/src/lib/main.py:804
+#: ../gnome-sudoku/src/lib/main.py:791
 msgid "Clear all moves not tracked by selected tracker."
 msgstr "चयनित ट्रैकर के द्वारा ट्रैक किया सभी चालें साफ करें."
 
-#: ../gnome-sudoku/src/lib/main.py:829
+#: ../gnome-sudoku/src/lib/main.py:816
 #, python-format
 msgid "Tracker %s"
 msgstr "ट्रैकर %s"
@@ -7506,7 +8065,6 @@ msgstr "%A %I:%M %p"
 #. Translators, see strftime manual in order to translate %? format strings
 #: ../gnome-sudoku/src/lib/timer.py:80
 #, fuzzy
-#| msgid "%B%e"
 msgid "%B %e"
 msgstr "%B%e"
 
@@ -7534,7 +8092,7 @@ msgstr "खदान साफ की जा चुकी"
 msgid "Mines Scores"
 msgstr "माइन्स अंक"
 
-#: ../gnomine/gnomine.c:217 ../gnotravex/gnotravex.c:1232
+#: ../gnomine/gnomine.c:217 ../gnotravex/gnotravex.c:1234
 #: ../same-gnome/ui.c:148
 msgid "Size:"
 msgstr "आकारः"
@@ -7593,8 +8151,6 @@ msgstr "ऊर्ध्वाधर (_V):"
 
 #: ../gnomine/gnomine.c:759
 #, fuzzy
-#| msgctxt "game speed"
-#| msgid "Fast"
 msgid "Flags"
 msgstr "तेज"
 
@@ -7606,7 +8162,6 @@ msgstr " \"मैं सुनिश्चित नहीं हूं \" झ�
 # libgnomeprint/gnome-print-paper.c:55
 #: ../gnomine/gnomine.c:773
 #, fuzzy
-#| msgid "Wins"
 msgid "Warnings"
 msgstr "जीता"
 
@@ -7644,11 +8199,11 @@ msgstr "विंडो का एक्स स्थान"
 msgid "Y location of window"
 msgstr "विंडो का वाय स्थान"
 
-#: ../gnomine/gnomine.c:1146
+#: ../gnomine/gnomine.c:1148
 msgid "Press to Resume"
 msgstr "फिर से  प्रारंभ करने के लिए  दबाएँ"
 
-#: ../gnomine/gnomine.c:1180
+#: ../gnomine/gnomine.c:1182
 msgid "Time: "
 msgstr "समय:"
 
@@ -7657,6 +8212,7 @@ msgid "Clear hidden mines from a minefield"
 msgstr "सुरंग भूमि से छुपे सुरंगों को मिटाएँ"
 
 #: ../gnomine/gnomine.schemas.in.h:1
+#: ../same-gnome-clutter/same-gnome-clutter.schemas.in.h:2
 msgid "Board size"
 msgstr "बिसात आकार"
 
@@ -7896,28 +8452,28 @@ msgstr "पट्ट का आकार (2-6)"
 msgid "SIZE"
 msgstr "आकार"
 
-#: ../gnotravex/gnotravex.c:1114
+#: ../gnotravex/gnotravex.c:1116
 msgid "Puzzle solved! Well done!"
 msgstr "पहेली हल हो गई! बहुत अच्छे!"
 
-#: ../gnotravex/gnotravex.c:1116
+#: ../gnotravex/gnotravex.c:1118
 msgid "Puzzle solved!"
 msgstr "पहेली हल हो गई! "
 
-#: ../gnotravex/gnotravex.c:1230
+#: ../gnotravex/gnotravex.c:1232
 msgid "Tetravex Scores"
 msgstr "टेट्रावेक्स स्कोर"
 
-#: ../gnotravex/gnotravex.c:1497 ../mahjongg/mahjongg.c:977
+#: ../gnotravex/gnotravex.c:1498 ../mahjongg/mahjongg.c:977
 msgid "Game paused"
 msgstr "खेल ठहरा है"
 
-#: ../gnotravex/gnotravex.c:1625
+#: ../gnotravex/gnotravex.c:1627
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "%d×%d पट्ट में खेल रहे"
 
-#: ../gnotravex/gnotravex.c:1907
+#: ../gnotravex/gnotravex.c:1909
 msgid ""
 "GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
 "the same numbers are touching each other.\n"
@@ -8135,24 +8691,24 @@ msgstr "अगला पजल"
 msgid "Previous Puzzle"
 msgstr "पहले का पजल"
 
-#: ../gnotski/gnotski.c:675
+#: ../gnotski/gnotski.c:677
 msgid "Level completed."
 msgstr "स्तर पूर्ण."
 
-#: ../gnotski/gnotski.c:813
+#: ../gnotski/gnotski.c:815
 msgid "The Puzzle Has Been Solved!"
 msgstr "पहेली हल हो गई! "
 
 # libgnomeui/gnome-scores.c:94
-#: ../gnotski/gnotski.c:830
+#: ../gnotski/gnotski.c:832
 msgid "Klotski Scores"
 msgstr "क्लोत्सकी अंक"
 
-#: ../gnotski/gnotski.c:833
+#: ../gnotski/gnotski.c:835
 msgid "Puzzle:"
 msgstr "पजल:"
 
-#: ../gnotski/gnotski.c:917
+#: ../gnotski/gnotski.c:919
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -8162,7 +8718,7 @@ msgstr ""
 "\n"
 "कृपया जांचें कि क्लोत्सकी सही संस्थापित है."
 
-#: ../gnotski/gnotski.c:1164
+#: ../gnotski/gnotski.c:1166
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -8175,12 +8731,12 @@ msgstr ""
 "\n"
 "कृपया जांचें कि क्लोटस्की सही संस्थापित है."
 
-#: ../gnotski/gnotski.c:1203
+#: ../gnotski/gnotski.c:1205
 #, c-format
 msgid "Moves: %d"
 msgstr "चाल: %d"
 
-#: ../gnotski/gnotski.c:1532
+#: ../gnotski/gnotski.c:1534
 msgid ""
 "Sliding Block Puzzles\n"
 "\n"
@@ -8367,7 +8923,7 @@ msgstr "कंसोल संस्करण (1992):"
 
 #: ../gtali/gyahtzee.c:600
 msgid "Colors game and multi-level AI (2006):"
-msgstr ""
+msgstr "रंगों का खेल और मल्टी लेबल AI (2006):"
 
 #: ../gtali/gyahtzee.c:618
 msgid ""
@@ -8616,7 +9172,7 @@ msgstr "क्लासिक रिवर्सी के संस्करण
 msgid ""
 "The GNOME version of Reversi. The goal is to control the most disks on the "
 "board."
-msgstr ""
+msgstr "Reversi का GNOME संस्करण. लक्ष्य बोर्ड पर अधिकतर डिस्क को नियंत्रित करना है."
 
 #: ../iagno/othello.c:699
 msgid "Light player wins!"
@@ -8676,37 +9232,37 @@ msgstr "अंतिम परिणाम पलटें (_F)"
 msgid "_Tile set:"
 msgstr "टाइल सेट (_T):"
 
-#: ../libgames-support/eggdesktopfile.c:165
+#: ../libgames-support/eggdesktopfile.c:169
 #, c-format
 msgid "File is not a valid .desktop file"
 msgstr "फ़ाइल वैध .desktop फ़ाइल नहीं है"
 
-#: ../libgames-support/eggdesktopfile.c:188
+#: ../libgames-support/eggdesktopfile.c:192
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "अपरिचित डेस्कटाप फाइल संस्करण `%s'"
 
-#: ../libgames-support/eggdesktopfile.c:958
+#: ../libgames-support/eggdesktopfile.c:966
 #, c-format
 msgid "Starting %s"
 msgstr "प्रारंभ किया जा रहा है %s"
 
-#: ../libgames-support/eggdesktopfile.c:1100
+#: ../libgames-support/eggdesktopfile.c:1108
 #, c-format
 msgid "Application does not accept documents on command line"
-msgstr ""
+msgstr "अनुप्रयोग ने कमांड लाइन पर दस्तावेज़ को स्वीकार नहीं करता है"
 
-#: ../libgames-support/eggdesktopfile.c:1168
+#: ../libgames-support/eggdesktopfile.c:1176
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "अपरिचित प्रारंभ विकल्प: %d"
 
-#: ../libgames-support/eggdesktopfile.c:1373
+#: ../libgames-support/eggdesktopfile.c:1381
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
+msgstr "दस्तावेज़ URI को 'Type=Link' डेस्कटॉप प्रविष्ट को भेज नहीं सकता है"
 
-#: ../libgames-support/eggdesktopfile.c:1392
+#: ../libgames-support/eggdesktopfile.c:1402
 #, c-format
 msgid "Not a launchable item"
 msgstr "चलाने वाली वस्तु नहीं"
@@ -8808,92 +9364,88 @@ msgid "Remove bot"
 msgstr "बोट हटाएं"
 
 #. Translators: this is the symbol that's on a Joker card
-#: ../libgames-support/games-card.c:184
+#: ../libgames-support/games-card.c:182
 msgctxt "card symbol"
 msgid "JOKER"
 msgstr "जोकर"
 
 #. Translators: this is the symbol that's on an Ace card
-#: ../libgames-support/games-card.c:186 ../libgames-support/games-card.c:210
+#: ../libgames-support/games-card.c:184 ../libgames-support/games-card.c:208
 msgctxt "card symbol"
 msgid "A"
 msgstr "A"
 
 #. Translators: this is the symbol that's on a 2 card
-#: ../libgames-support/games-card.c:188
+#: ../libgames-support/games-card.c:186
 msgctxt "card symbol"
 msgid "2"
 msgstr "2"
 
 #. Translators: this is the symbol that's on a 3 card
-#: ../libgames-support/games-card.c:190
+#: ../libgames-support/games-card.c:188
 msgctxt "card symbol"
 msgid "3"
 msgstr "3"
 
 #. Translators: this is the symbol that's on a 4 card
-#: ../libgames-support/games-card.c:192
+#: ../libgames-support/games-card.c:190
 msgctxt "card symbol"
 msgid "4"
 msgstr "4"
 
 #. Translators: this is the symbol that's on a 5 card
-#: ../libgames-support/games-card.c:194
+#: ../libgames-support/games-card.c:192
 msgctxt "card symbol"
 msgid "5"
 msgstr "5"
 
 #. Translators: this is the symbol that's on a 6 card
-#: ../libgames-support/games-card.c:196
+#: ../libgames-support/games-card.c:194
 msgctxt "card symbol"
 msgid "6"
 msgstr "6"
 
 #. Translators: this is the symbol that's on a 7 card
-#: ../libgames-support/games-card.c:198
+#: ../libgames-support/games-card.c:196
 msgctxt "card symbol"
 msgid "7"
 msgstr "7"
 
 #. Translators: this is the symbol that's on a 8 card
-#: ../libgames-support/games-card.c:200
+#: ../libgames-support/games-card.c:198
 msgctxt "card symbol"
 msgid "8"
 msgstr "8"
 
 #. Translators: this is the symbol that's on a 9 card
-#: ../libgames-support/games-card.c:202
+#: ../libgames-support/games-card.c:200
 msgctxt "card symbol"
 msgid "9"
 msgstr "9"
 
 #. Translators: this is the symbol that's on a Jack card
-#: ../libgames-support/games-card.c:204
+#: ../libgames-support/games-card.c:202
 msgctxt "card symbol"
 msgid "J"
 msgstr "J"
 
 #. Translators: this is the symbol that's on a Queen card
-#: ../libgames-support/games-card.c:206
+#: ../libgames-support/games-card.c:204
 msgctxt "card symbol"
 msgid "Q"
 msgstr "Q"
 
 #. Translators: this is the symbol that's on a King card
-#: ../libgames-support/games-card.c:208
+#: ../libgames-support/games-card.c:206
 msgctxt "card symbol"
 msgid "K"
 msgstr "K"
 
 #. Translators: this is the symbol that's on a 1 card
-#: ../libgames-support/games-card.c:212
+#: ../libgames-support/games-card.c:210
 msgctxt "card symbol"
 msgid "1"
 msgstr "1"
-
-#: ../libgames-support/games-card-selector.c:123
-msgid "Card Style"
-msgstr "ताश शैली"
 
 # libgnomevfs/gnome-vfs-result.c:137
 #: ../libgames-support/games-controls.c:286
@@ -8945,6 +9497,16 @@ msgstr "Y पंक्तिबद्ध"
 msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
 msgstr "लंबबत पंक्तिबद्ध, 0 (शीर्ष) से 1 (तल) में"
 
+#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
+#: ../libgames-support/games-help.c:114
+#, fuzzy, c-format
+msgid "Help file “%s.%s” not found"
+msgstr "मदद फाइल \"%s.%s\" नहीं मिला"
+
+#: ../libgames-support/games-runtime.c:273
+msgid "Could not show link"
+msgstr "लिंक नहीं दिखा सका"
+
 # libgnomeui/gnome-scores.c:94
 #. Note that this assumes the default style is plain.
 #: ../libgames-support/games-scores-dialog.c:119
@@ -8959,157 +9521,200 @@ msgstr "अंक"
 msgid "%dm %ds"
 msgstr "%dमि. %dसे."
 
-#: ../libgames-support/games-stock.c:48
+#: ../libgames-support/games-stock.c:47
 msgid "End the current game"
 msgstr "वर्तमान खेल समाप्त करें"
 
-#: ../libgames-support/games-stock.c:49
+#: ../libgames-support/games-stock.c:48
 msgid "Toggle fullscreen mode"
 msgstr "पूरा स्क्रीन मोड टॉगल करें"
 
-#: ../libgames-support/games-stock.c:51
+#: ../libgames-support/games-stock.c:50
 msgid "Leave fullscreen mode"
 msgstr "पूर्ण स्क्रीन छोड़ें"
 
-#: ../libgames-support/games-stock.c:53
+#: ../libgames-support/games-stock.c:52
 msgid "End the current network game and return to network server"
 msgstr "मौजूदा संजाल खेल का अंत करें और संजाल सर्वर पर लौटें"
 
 # libgnomeui/gnome-app-helper.c:254
-#: ../libgames-support/games-stock.c:55 ../mahjongg/mahjongg.c:1249
+#: ../libgames-support/games-stock.c:54 ../mahjongg/mahjongg.c:1249
 msgid "Pause the game"
 msgstr "खेल रोकें"
 
-#: ../libgames-support/games-stock.c:56
+#: ../libgames-support/games-stock.c:55
 msgid "Show a list of players in the network game"
 msgstr "संजाल खेल में खिलाड़ियों की सूची दिखाएं"
 
-#: ../libgames-support/games-stock.c:59 ../mahjongg/mahjongg.c:1252
+#: ../libgames-support/games-stock.c:58 ../mahjongg/mahjongg.c:1252
 msgid "Resume the paused game"
 msgstr "रूका खेल पुनःप्रारंभ करें"
 
 # libgnomeui/gnome-app-helper.c:280
-#: ../libgames-support/games-stock.c:60
+#: ../libgames-support/games-stock.c:59
 msgid "View the scores"
 msgstr "अंक देखें"
 
 # libgnomeui/gnome-app-helper.c:254
-#: ../libgames-support/games-stock.c:64
+#: ../libgames-support/games-stock.c:63
 msgid "Configure the game"
 msgstr "यह खेल विन्यस्त करें"
 
 # libgnomeui/gnome-app-helper.c:259
-#: ../libgames-support/games-stock.c:65
+#: ../libgames-support/games-stock.c:64
 msgid "Quit this game"
 msgstr "इस खेल को छोड़ें"
 
-#: ../libgames-support/games-stock.c:319
+#: ../libgames-support/games-stock.c:318
 msgid "_Fullscreen"
 msgstr "फुलस्क्रीन (_F)"
 
 #. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../libgames-support/games-stock.c:322
+#: ../libgames-support/games-stock.c:321
 msgid "_New"
 msgstr "नया (_N)"
 
-#: ../libgames-support/games-stock.c:325
+#: ../libgames-support/games-stock.c:324
 msgid "_Redo Move"
 msgstr "चाल फिर चलें (_R)"
 
 #. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../libgames-support/games-stock.c:327
+#: ../libgames-support/games-stock.c:326
 msgid "_Reset"
 msgstr "रीसेट करें (_R)"
 
 #. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:329
+#: ../libgames-support/games-stock.c:328
 msgid "_Restart"
 msgstr "पुन:आरंभ करें (_R)"
 
 #: ../libgames-support/games-stock.c:330
-msgid "_Undo Move"
-msgstr "चाल वापस लें (_U)"
-
-#: ../libgames-support/games-stock.c:331
 msgid "_Deal"
 msgstr "डील (_D)"
 
-#: ../libgames-support/games-stock.c:333
+#: ../libgames-support/games-stock.c:332
 msgid "_Leave Fullscreen"
 msgstr "पूर्ण स्क्रीन छोड़ें (_L)"
 
-#: ../libgames-support/games-stock.c:335
+#: ../libgames-support/games-stock.c:334
 msgid "L_eave Game"
 msgstr "खेल छोड़ें (_e)"
 
 #  Players tab
 #  FIXME mnemonic doesn't seem to work
-#: ../libgames-support/games-stock.c:336
+#: ../libgames-support/games-stock.c:335
 msgid "Player _List"
 msgstr "खिलाड़ी सूची (_L)"
 
-#: ../libgames-support/games-stock.c:337
+#: ../libgames-support/games-stock.c:336
 msgid "_Pause"
 msgstr "ठहरें (_P)"
 
-#: ../libgames-support/games-stock.c:338
+#: ../libgames-support/games-stock.c:337
 msgid "Res_ume"
 msgstr "फिर चालू करें (_u)"
 
 # libgnomeui/gnome-scores.c:94
-#: ../libgames-support/games-stock.c:339
+#: ../libgames-support/games-stock.c:338
 msgid "_Scores"
 msgstr "अंक (_S)"
 
 # #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
 # libgnomeui/gnome-app-helper.c:95 libgnomeui/gnome-app-helper.h:534
-#: ../libgames-support/games-stock.c:340
+#: ../libgames-support/games-stock.c:339
 msgid "_End Game"
 msgstr "खेल समाप्त (_E)"
 
-#: ../libgames-support/games-stock.c:346
+#. Work around maemo brokenness wrt. stock item translations.
+#. * See https://bugs.maemo.org/show_bug.cgi?id=1449 .
+#: ../libgames-support/games-stock.c:345
 msgid "_About"
 msgstr "के बारे में (_A)"
 
 # #-#-#-#-#  anjuta.ANJUTA_1_2_0.hi.po (anjuta2 VERSION)  #-#-#-#-#
 # #-#-#-#-#  gnome-session.HEAD.hi.po (gnome-session VERSION)  #-#-#-#-#
 # gnome-session/session-properties.c:179
-#: ../libgames-support/games-stock.c:347
+#: ../libgames-support/games-stock.c:346
 msgid "_Cancel"
 msgstr "रद्द करें (_C)"
 
-#: ../libgames-support/games-stock.c:348
+#: ../libgames-support/games-stock.c:347
 msgid "_Close"
 msgstr "बंद करें (_C)"
 
-#: ../libgames-support/games-stock.c:349
+#: ../libgames-support/games-stock.c:348
 msgid "_OK"
 msgstr "ठीक (_O)"
 
 #. %s is replaced with the name of the game in gnome-games.
-#: ../libgames-support/games-stock.c:410
+#: ../libgames-support/games-stock.c:409
 #, c-format
-#| msgid ""
-#| "%s is free software; you can redistribute it and/or modify it under the "
-#| "terms of the GNU General Public License as published by the Free Software "
-#| "Foundation; either version %d of the License, or (at your option) any "
-#| "later version."
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
 "terms of the GNU General Public License as published by the Free Software "
 "Foundation; either version %d of the License, or (at your option) any later "
 "version."
 msgstr ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version %d of the License, or (at your option) any later "
+"version."
 
-#: ../lightsoff/lightsoff.desktop.in.in.h:1
+#: ../libgames-support/games-stock.c:423
+#, fuzzy
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"You should have received a copy of the GNU General Public License along with "
+"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
+"Fifth Floor, Boston, MA  02110-1301  USA"
+
+#: ../lightsoff/lightsoff.desktop.in.in.h:1 ../lightsoff/data/lightsoff.ui.h:1
+#: ../lightsoff/data/settings.ui.h:1
 msgid "Lights Off"
 msgstr "लाइट बन्द"
 
 #: ../lightsoff/lightsoff.desktop.in.in.h:2
 msgid "Turn off all the lights"
+msgstr "सभी प्रकाश बंद करें"
+
+#: ../lightsoff/lightsoff.schemas.in.h:1
+#, fuzzy
+msgid "The current score"
+msgstr "मौजूदा चाल दिखाएँ"
+
+#: ../lightsoff/lightsoff.schemas.in.h:2
+#: ../same-gnome/same-gnome.schemas.in.h:7
+#: ../same-gnome-clutter/same-gnome-clutter.schemas.in.h:5
+msgid "The theme to use"
+msgstr "प्रसंग उपयोग में"
+
+#: ../lightsoff/lightsoff.schemas.in.h:3
+#: ../same-gnome-clutter/same-gnome-clutter.schemas.in.h:6
+#, fuzzy
+msgid "The title of the tile theme to use."
+msgstr "थीम का फ़ाइल नाम उपयोग करने के लिये"
+
+#: ../lightsoff/lightsoff.schemas.in.h:4
+msgid "The users's most recent score."
 msgstr ""
 
-#: ../mahjongg/drawing.c:305
+#: ../lightsoff/data/settings.ui.h:2
+msgid "Look & Feel"
+msgstr ""
+
+#: ../lightsoff/data/settings.ui.h:3
+#: ../same-gnome-clutter/data/settings.ui.h:7
+#, fuzzy
+msgid "Theme:"
+msgstr "प्रसंग: (_T)"
+
+#: ../lightsoff/data/settings.ui.h:4
+msgid "Use colors from GNOME theme"
+msgstr ""
+
+#: ../mahjongg/drawing.c:306
 msgid ""
 "The selected theme failed to render.\n"
 "\n"
@@ -9119,7 +9724,7 @@ msgstr ""
 "\n"
 "कृपया जांचें कि महाजोंग सही संस्थापित है."
 
-#: ../mahjongg/drawing.c:465 ../mahjongg/drawing.c:478
+#: ../mahjongg/drawing.c:469 ../mahjongg/drawing.c:482
 #, c-format
 msgid ""
 "Unable to render file:\n"
@@ -9144,7 +9749,7 @@ msgstr "टाइल सेट लोड नहीं कर सका"
 
 #: ../mahjongg/mahjongg.c:306
 msgid "Do you want to start a new game with this map?"
-msgstr ""
+msgstr "क्या आप इस मानचित्र के साथ नया खेल आरंभ करना चाहते हैं?"
 
 #: ../mahjongg/mahjongg.c:308
 msgid "If you continue playing the next game will use the new map."
@@ -9156,7 +9761,7 @@ msgstr "खेल जारी रखें (_C)"
 
 #: ../mahjongg/mahjongg.c:311
 msgid "Use _new map"
-msgstr ""
+msgstr "नए मानचित्र का प्रयोग करें (_n)"
 
 #: ../mahjongg/mahjongg.c:614
 msgid "There are no more moves."
@@ -9221,15 +9826,15 @@ msgstr "महजोंग - %s"
 msgid "Redo the last move"
 msgstr "पिछली चाल पूर्ववत करें"
 
-#: ../mahjongg/mahjongg.c:1445
+#: ../mahjongg/mahjongg.c:1447
 msgid "Tiles Left:"
 msgstr "टाइल बाएँ:"
 
-#: ../mahjongg/mahjongg.c:1454
+#: ../mahjongg/mahjongg.c:1456
 msgid "Moves Left:"
 msgstr "बायाँ ले जाएँ:"
 
-#: ../mahjongg/mahjongg.c:1516
+#: ../mahjongg/mahjongg.c:1518
 msgid "Remove matching pairs of tiles."
 msgstr "टाइल के मैचिंग जोड़े को हटायें"
 
@@ -9307,10 +9912,13 @@ msgid "Game size (1=small, 3=large)"
 msgstr "खेल का आकार (1=छोटा, 3=बड़ा)"
 
 #: ../same-gnome/same-gnome.desktop.in.in.h:1
+#: ../same-gnome-clutter/same-gnome-clutter.desktop.in.in.h:1
 msgid "Clear the screen by removing groups of colored balls"
 msgstr "रंगे बॉल के समूह हटाकर स्क्रीन साफ करें"
 
 #: ../same-gnome/same-gnome.desktop.in.in.h:2
+#: ../same-gnome-clutter/data/same-gnome.ui.h:1
+#: ../same-gnome-clutter/data/settings.ui.h:5
 msgid "Same GNOME"
 msgstr "सेम गनोम"
 
@@ -9342,10 +9950,6 @@ msgstr "कस्टम बोर्ड की ऊंचाई, 101 &gt; height 
 msgid ""
 "The size of the board to use. 1 = Custom, 2 = Small, 3 = Medium, 4 = Large."
 msgstr "उपयोग के लिये बोर्ड का आकार. 1 = पसंदीदा, 2 = छोटा, 3 = मंझला, 4 = बड़ा."
-
-#: ../same-gnome/same-gnome.schemas.in.h:7
-msgid "The theme to use"
-msgstr "प्रसंग उपयोग में"
 
 #: ../same-gnome/same-gnome.schemas.in.h:8
 msgid "The width of the custom board, 101 &gt; width &gt; 3."
@@ -9412,26 +10016,150 @@ msgstr "विशाल (_L)"
 msgid "_Fast Animation"
 msgstr "तेज एनीमेशन (_F)"
 
-#: ../same-gnome/drawing.c:367
+#: ../same-gnome/drawing.c:370
 msgid "No theme data was found."
 msgstr "कोई खेल डेटा नहीं मिला."
 
-#: ../same-gnome/drawing.c:372
+#: ../same-gnome/drawing.c:375
 msgid ""
 "It is impossible to play the game. Please check that the game has been "
 "installed correctly and try again."
 msgstr "यह खेल खेलना असंभव है. कृपया जांचे कि खेल ठीक से अधिष्टापित है और फिर कोशिश करें."
 
-#~| msgid "Spider Three Decks"
-#~ msgid "Klondike Three Decks"
-#~ msgstr "क्लॉन्डिके तीन डेक"
+#: ../same-gnome-clutter/data/settings.ui.h:2
+#, fuzzy
+msgid "Board size:"
+msgstr "बिसात आकार (_B):"
+
+#: ../same-gnome-clutter/data/settings.ui.h:3
+#, fuzzy
+msgid "Number of colors:"
+msgstr "खिलाड़ियों की संख्याएँ (_N):"
+
+#: ../same-gnome-clutter/data/settings.ui.h:8
+#, fuzzy
+msgid "Zealous Animation"
+msgstr "तेज एनीमेशन (_F)"
+
+#: ../same-gnome-clutter/same-gnome-clutter.desktop.in.in.h:2
+#, fuzzy
+msgid "Same GNOME (Clutter)"
+msgstr "सेम गनोम"
+
+# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
+# libgnomeui/gnome-druid-page-standard.c:170
+#: ../same-gnome-clutter/same-gnome-clutter.schemas.in.h:1
+#, fuzzy
+msgid "Board color count"
+msgstr "पृष्ठभूमि रंग"
+
+#: ../same-gnome-clutter/same-gnome-clutter.schemas.in.h:3
+#, fuzzy
+msgid "The number of colors of tiles to use in the game."
+msgstr "पसंदीदा खेल में माइन की संख्या"
+
+#: ../same-gnome-clutter/same-gnome-clutter.schemas.in.h:4
+#, fuzzy
+msgid "The size of the game board."
+msgstr "खेले जा रहे ग्रिड का आकार"
+
+# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
+# libgnomeui/gnome-app-helper.c:264
+#: ../same-gnome-clutter/same-gnome-clutter.schemas.in.h:7
+#, fuzzy
+msgid "Use more flashy, but slower, animations."
+msgstr "तेज नकल उपयोग करें"
+
+# #-#-#-#-#  libgnomeui.gnome-2-2.hi.po (libgnomeui HEAD)  #-#-#-#-#
+# libgnomeui/gnome-app-helper.c:264
+#: ../same-gnome-clutter/same-gnome-clutter.schemas.in.h:8
+#, fuzzy
+msgid "Zealous animation"
+msgstr "तेज नकल उपयोग करें"
+
+#~ msgid "Could not show Aisleriot help"
+#~ msgstr "एसलेरिएट मदद नहीं दिखा सका"
+
+#~ msgid "chess-piece|Queen"
+#~ msgstr "शतरंज की गोटी|वजीर"
+
+#~ msgid "chess-piece|Knight"
+#~ msgstr "शतरंज की गोटी|घोड़ा"
+
+#~ msgid "chess-piece|Rook"
+#~ msgstr "शतरंज की गोटी|हाथी"
+
+#~ msgid "chess-piece|Bishop"
+#~ msgstr "शतरंज की गोटी|ऊंट"
+
+#~ msgid "chess-file|a"
+#~ msgstr "chess-file|ए"
+
+#~ msgid "chess-file|b"
+#~ msgstr "chess-file|बी"
+
+#~ msgid "chess-file|c"
+#~ msgstr "chess-file|सी"
+
+#~ msgid "chess-file|d"
+#~ msgstr "chess-file|डी"
+
+#~ msgid "chess-file|e"
+#~ msgstr "chess-file|ई"
+
+#~ msgid "chess-file|f"
+#~ msgstr "chess-file|एफ"
+
+#~ msgid "chess-file|g"
+#~ msgstr "chess-file|जी"
+
+#~ msgid "chess-file|h"
+#~ msgstr "chess-file|एच"
+
+#~ msgid "chess-rank|1"
+#~ msgstr "chess-rank|1"
+
+#~ msgid "chess-rank|2"
+#~ msgstr "chess-rank|2"
+
+#~ msgid "chess-rank|3"
+#~ msgstr "chess-rank|3"
+
+#~ msgid "chess-rank|4"
+#~ msgstr "chess-rank|4"
+
+#~ msgid "chess-rank|5"
+#~ msgstr "chess-rank|5"
+
+#~ msgid "chess-rank|6"
+#~ msgstr "chess-rank|6"
+
+#~ msgid "chess-rank|7"
+#~ msgstr "chess-rank|7"
+
+#~ msgid "chess-rank|8"
+#~ msgstr "chess-rank|8"
+
+#~ msgid "chess-notation|P"
+#~ msgstr "chess-notation|पै"
+
+#~ msgid "chess-notation|N"
+#~ msgstr "chess-notation|घो"
+
+#~ msgid "chess-notation|B"
+#~ msgstr "chess-notation|ऊं"
+
+#~ msgid "chess-notation|R"
+#~ msgstr "chess-notation|हा"
+
+#~ msgid "chess-notation|Q"
+#~ msgstr "chess-notation|व"
+
+#~ msgid "chess-notation|K"
+#~ msgstr "chess-notation|रा"
 
 #~ msgid "Leave _Fullscreen"
 #~ msgstr "पूर्ण स्क्रीन छोड़ें (_F)"
-
-#~| msgid "_Right"
-#~ msgid "_Resign"
-#~ msgstr "स्तीफा (_R)"
 
 # libgnome/gnome-program.c:578
 #~ msgid "Enable splats"
@@ -9471,11 +10199,9 @@ msgstr "यह खेल खेलना असंभव है. कृपया
 #~ msgid "_Stop"
 #~ msgstr "रोकें (_S)"
 
-#~| msgid "Today"
 #~ msgid "Today %R %p"
 #~ msgstr "आज %R %p"
 
-#~| msgid "Yesterday"
 #~ msgid "Yesterday %R %p"
 #~ msgstr "कल  %R %p"
 
@@ -9490,3 +10216,6 @@ msgstr "यह खेल खेलना असंभव है. कृपया
 
 #~ msgid "<Press a Key>"
 #~ msgstr "<एक कुंजी दबाएँ>"
+
+#~ msgid "Sudoku was unable to create data folder %(path)s."
+#~ msgstr "Sudoku आंकड़ा फ़ोल्डर %(path)s बनाने में असमर्थ था."
