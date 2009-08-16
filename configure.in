@@ -12,12 +12,7 @@ AC_CONFIG_HEADERS([config.h])
 
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2 foreign])
 
-m4_ifdef([AM_SILENT_RULES],
-  [AM_SILENT_RULES([no])],
-  [SHAVE_INIT([],[enable])
-   AC_CONFIG_FILES([shave shave-libtool])
-   AC_SUBST([AM_V_GEN],['$(QUIET_GEN)'])
-  ])
+m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([no])])
 
 if test -z "$enable_maintainer_mode"; then
   enable_maintainer_mode=yes
@@ -1159,7 +1154,13 @@ AC_SUBST([AM_LDFLAGS])
 ##############################################
 ##############################################
 
-SHAVE_INIT([],[enable])
+m4_ifdef([AM_SILENT_RULES],[],
+  [SHAVE_INIT([],[enable])
+   AC_CONFIG_FILES([shave shave-libtool])
+   AC_SUBST([AM_V_GEN],['$(QUIET_GEN)'])
+  ])
+
+##############################################
 
 AC_CONFIG_FILES([
 Makefile
