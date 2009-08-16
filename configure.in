@@ -866,6 +866,7 @@ AM_CONDITIONAL([INSTALL_GGZ_GTK],[false])
 AM_CONDITIONAL([GGZ_CLIENT], [test "$have_ggz" = "yes"])
 AM_CONDITIONAL([WITH_INCLUDED_GGZ],[test "$have_ggz" = "yes"])
 
+m4_pattern_allow([AM_V_GEN])dnl Make autoconf not complain about the rule below
 GNOME_GAMES_GGZ_DSC_RULE='%.dsc:   %.dsc.in   ; $(AM_V_GEN) $(SED) -e "s|[@]VERSION[@]|$(VERSION)|g" -e "s|[@]libexecdir[@]|$(libexecdir)|g" -e "s|[@]bindir[@]|$(bindir)|g" -e "s|[@]ggzexecmoddir[@]|$(ggzexecmoddir)|g"< $< > $[@]'
 AC_SUBST([GNOME_GAMES_GGZ_DSC_RULE])
 
