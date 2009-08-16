@@ -342,13 +342,13 @@ DISTCLEANFILES = $(schema_DATA)
 games-marshal.c: stamp-games-marshal.c
 	@true
 stamp-games-marshal.c: games-marshal.list Makefile
-	$(GLIB_GENMARSHAL) --prefix=games_marshal $< --header --body $(GLIB_GENMARSHAL_INTERNAL) > games-marshal.c \
+	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=games_marshal $< --header --body $(GLIB_GENMARSHAL_INTERNAL) > games-marshal.c \
 	&& echo timestamp > $(@F)
 
 games-marshal.h: stamp-games-marshal.h
 	@true
 stamp-games-marshal.h: games-marshal.list Makefile
-	$(GLIB_GENMARSHAL) --prefix=games_marshal $< --header $(GLIB_GENMARSHAL_INTERNAL) > games-marshal.h \
+	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=games_marshal $< --header $(GLIB_GENMARSHAL_INTERNAL) > games-marshal.h \
 	&& echo timestamp > $(@F)
 
 if HAVE_INTROSPECTION
@@ -363,7 +363,7 @@ libgames_support_gi_la_LIBADD = $(libgames_support_la_LIBADD)
 BUILT_GIRSOURCES = GnomeGamesSupport-1.0.gir GGZ-1.0.gir
 
 GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(libgames_support_gi_la_SOURCES)
-	$(QUIET_GEN)$(INTROSPECTION_SCANNER) -v \
+	$(AM_V_GEN) $(INTROSPECTION_SCANNER) -v \
 	--namespace GnomeGamesSupport --nsversion=1.0 \
 	--strip-prefix=games \
 	--add-include-path=$(srcdir) --add-include=path=. \
@@ -392,7 +392,7 @@ typelibsdir = $(libdir)/girepository-1.0
 typelibs_DATA = $(BUILT_GIRSOURCES:.gir=.typelib)
 
 %.typelib: %.gir $(INTROSPECTION_COMPILER)
-	$(QUIET_GEN)$(DEBUG) $(INTROSPECTION_COMPILER) --includedir=$(srcdir) --includedir=. $(INTROSPECTION_COMPILER_OPTS) $< -o $@
+	$(AM_V_GEN) $(DEBUG) $(INTROSPECTION_COMPILER) --includedir=$(srcdir) --includedir=. $(INTROSPECTION_COMPILER_OPTS) $< -o $@
 
 CLEANFILES += GnomeGamesSupport-1.0.gir $(typelibs_DATA)
 

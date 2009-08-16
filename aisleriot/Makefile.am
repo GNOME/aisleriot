@@ -162,7 +162,7 @@ service_DATA = $(ossoservice_in_files:.service.in=.service)
 endif
 
 %.service: %.service.in Makefile
-	sed -e "s|%bindir%|$(bindir)|" $< > $@
+	$(AM_V_GEN) sed -e "s|%bindir%|$(bindir)|" $< > $@
 
 install-schemas-local: $(schema_DATA)
 if GCONF_SCHEMAS_INSTALL
