@@ -372,7 +372,7 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(lib
 	--include=Gtk-2.0 \
 	--include=GGZ-1.0 \
 	--library=games-support-gi \
-	--libtool="$(SHAVE_SAVED_LIBTOOL)" \
+	--libtool="$(LIBTOOL)" \
 	--output $@ \
 	--pkg gobject-2.0 \
 	--pkg gtk+-2.0 \
