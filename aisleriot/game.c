@@ -1007,11 +1007,13 @@ scm_delayed_call (SCM callback)
 static void
 cscm_init (void)
 {
+#ifdef GUILE_DEBUG
   /* Enable useful debugging options. */
   SCM_DEVAL_P = 1;
   SCM_BACKTRACE_P = 1;
   SCM_RECORD_POSITIONS_P = 1;
   SCM_RESET_DEBUG_MODE;
+#endif
 
   /* Let the scheme side of things know about our C functions. */
   scm_c_define_gsubr ("set-feature-word!", 1, 0, 0, scm_set_feature_word);
