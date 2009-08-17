@@ -1154,14 +1154,6 @@ AC_SUBST([AM_LDFLAGS])
 ##############################################
 ##############################################
 
-m4_ifdef([AM_SILENT_RULES],[],
-  [SHAVE_INIT([],[enable])
-   AC_CONFIG_FILES([shave shave-libtool])
-   AC_SUBST([AM_V_GEN],['$(QUIET_GEN)'])
-  ])
-
-##############################################
-
 AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
