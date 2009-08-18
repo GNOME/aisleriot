@@ -31,6 +31,7 @@
 #endif
 
 #include "games-debug.h"
+#include "games-gtk-compat.h"
 #include "games-marshal.h"
 
 #include "games-conf.h"

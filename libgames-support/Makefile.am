@@ -28,6 +28,7 @@ libgames_support_la_SOURCES =		\
 	games-conf.h			\
 	games-debug.c			\
 	games-debug.h			\
+	games-gtk-compat.h		\
 	games-help.c			\
 	games-help.h			\
 	games-profile.c			\

@@ -28,6 +28,7 @@
 
 #include <libgames-support/games-card-images.h>
 #include <libgames-support/games-files.h>
+#include <libgames-support/games-gtk-compat.h>
 #include <libgames-support/games-marshal.h>
 #include <libgames-support/games-pixbuf-utils.h>
 #include <libgames-support/games-runtime.h>
@@ -292,10 +293,11 @@ make_cursor (GtkWidget *widget,
   GdkPixmap *source;
   GdkPixmap *mask;
   GdkCursor *cursor;
+  GdkWindow *window = gtk_widget_get_window (widget);
 
   /* Yeah, hard-coded sizes are bad. */
-  source = gdk_bitmap_create_from_data (widget->window, data, 20, 20);
-  mask = gdk_bitmap_create_from_data (widget->window, mask_data, 20, 20);
+  source = gdk_bitmap_create_from_data (window, data, 20, 20);
+  mask = gdk_bitmap_create_from_data (window, mask_data, 20, 20);
 
   cursor = gdk_cursor_new_from_pixmap (source, mask, &fg, &bg, 10, 10);
 
@@ -314,7 +316,7 @@ set_cursor (AisleriotBoard *board,
 #ifndef HAVE_HILDON 
   AisleriotBoardPrivate *priv = board->priv;
 
-  gdk_window_set_cursor (GTK_WIDGET (board)->window,
+  gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (board)),
                          priv->cursor[cursor]);
 #endif /* !HAVE_HILDON */
 }
@@ -394,7 +396,7 @@ set_background_from_baize (GtkWidget *widget,
 
   width = gdk_pixbuf_get_width (pixbuf);
   height = gdk_pixbuf_get_height (pixbuf);
-  pixmap = gdk_pixmap_new (widget->window, width, height, -1);
+  pixmap = gdk_pixmap_new (gtk_widget_get_window (widget), width, height, -1);
   if (!pixmap) {
     g_object_unref (pixbuf);
     return;
@@ -597,6 +599,7 @@ set_focus (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
+  GdkWindow *window = gtk_widget_get_window (widget);
   int top_card_id;
 
   /* Sanitise */
@@ -611,7 +614,7 @@ set_focus (AisleriotBoard *board,
   if (priv->focus_slot != NULL) {
     if (priv->show_focus &&
         GTK_WIDGET_HAS_FOCUS (widget)) {
-      gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
+      gdk_window_invalidate_rect (window, &priv->focus_rect, FALSE);
     
       priv->show_focus = FALSE;
     }
@@ -631,7 +634,7 @@ set_focus (AisleriotBoard *board,
   if (show_focus &&
       GTK_WIDGET_HAS_FOCUS (widget)) {
     get_focus_rect (board, &priv->focus_rect);
-    gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
+    gdk_window_invalidate_rect (window, &priv->focus_rect, FALSE);
   }
 }
 
@@ -663,6 +666,7 @@ set_selection (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
+  GdkWindow *window = gtk_widget_get_window (widget);
 
   if (priv->selection_slot == slot &&
       priv->selection_start_card_id == card_id &&
@@ -671,7 +675,7 @@ set_selection (AisleriotBoard *board,
 
   if (priv->selection_slot != NULL) {
     if (priv->show_selection) {
-      gdk_window_invalidate_rect (widget->window, &priv->selection_rect, FALSE);
+      gdk_window_invalidate_rect (window, &priv->selection_rect, FALSE);
 
       /* Clear selection card images */
       slot_update_card_images_full (board, priv->selection_slot, G_MAXINT);
@@ -693,7 +697,7 @@ set_selection (AisleriotBoard *board,
 
   if (priv->show_selection) {
     get_selection_rect (board, &priv->selection_rect);
-    gdk_window_invalidate_rect (widget->window, &priv->selection_rect, FALSE);
+    gdk_window_invalidate_rect (window, &priv->selection_rect, FALSE);
   
     slot_update_card_images_full (board, slot, card_id);
   }
@@ -815,7 +819,7 @@ slot_update_geometry (AisleriotBoard *board,
       gdk_rectangle_union (&damage, &old_rect, &damage);
     }
 
-    gdk_window_invalidate_rect (widget->window, &damage, FALSE);
+    gdk_window_invalidate_rect (gtk_widget_get_window (widget), &damage, FALSE);
   }
 
   slot->needs_update = FALSE;
@@ -999,6 +1003,7 @@ drag_begin (AisleriotBoard *board)
   GByteArray *cards;
   GdkDrawable *drawable;
   GdkWindowAttr attributes;
+  GdkWindow *window = gtk_widget_get_window (widget);
 
   if (!priv->selection_slot ||
       priv->selection_start_card_id < 0) {
@@ -1047,7 +1052,7 @@ drag_begin (AisleriotBoard *board)
   width = priv->card_size.width + (num_moving_cards - 1) * hslot->pixeldx;
   height = priv->card_size.height + (num_moving_cards - 1) * hslot->pixeldy;
 
-  drawable = GDK_DRAWABLE (widget->window);
+  drawable = GDK_DRAWABLE (window);
 
   attributes.wclass = GDK_INPUT_OUTPUT;
   attributes.window_type = GDK_WINDOW_CHILD;
@@ -1059,7 +1064,7 @@ drag_begin (AisleriotBoard *board)
   attributes.colormap = gdk_drawable_get_colormap (drawable);
   attributes.visual = gdk_drawable_get_visual (drawable);
 
-  priv->moving_cards_window = gdk_window_new (widget->window, &attributes,
+  priv->moving_cards_window = gdk_window_new (window, &attributes,
                                               GDK_WA_VISUAL | GDK_WA_COLORMAP | GDK_WA_X | GDK_WA_Y);
 
   moving_pixmap = gdk_pixmap_new (priv->moving_cards_window,
@@ -1282,6 +1287,7 @@ highlight_drop_target (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
+  GdkWindow *window = gtk_widget_get_window (widget);
   GdkRectangle rect;
 
   if (slot == priv->highlight_slot)
@@ -1294,7 +1300,7 @@ highlight_drop_target (AisleriotBoard *board,
                                priv->highlight_slot,
                                priv->highlight_slot->cards->len - 1 /* it's ok if this is == -1 */,
                                1, &rect);
-    gdk_window_invalidate_rect (widget->window, &rect, FALSE);
+    gdk_window_invalidate_rect (window, &rect, FALSE);
 
     /* FIXMEchpe only update the topmost card? */
     /* It's ok to call this directly here, since the old highlight_slot cannot
@@ -1319,7 +1325,7 @@ highlight_drop_target (AisleriotBoard *board,
                              slot,
                              slot->cards->len - 1 /* it's ok if this is == -1 */,
                              1, &rect);
-  gdk_window_invalidate_rect (widget->window, &rect, FALSE);
+  gdk_window_invalidate_rect (window, &rect, FALSE);
 
   /* FIXMEchpe only update the topmost card? */
   /* It's ok to call this directly, since the highlight slot is always
@@ -1337,6 +1343,7 @@ reveal_card (AisleriotBoard *board,
   GtkWidget *widget = GTK_WIDGET (board);
   Card card;
   GdkRectangle rect;
+  GdkWindow *window = gtk_widget_get_window (widget);
 
   if (priv->show_card_slot == slot)
     return;
@@ -1346,7 +1353,7 @@ reveal_card (AisleriotBoard *board,
                                priv->show_card_slot,
                                priv->show_card_id,
                                1, &rect);
-    gdk_window_invalidate_rect (widget->window, &rect, FALSE);
+    gdk_window_invalidate_rect (window, &rect, FALSE);
     priv->show_card_slot = NULL;
     priv->show_card_id = -1;
     priv->click_status = STATUS_NONE;
@@ -1367,7 +1374,7 @@ reveal_card (AisleriotBoard *board,
                             priv->show_card_slot,
                             priv->show_card_id,
                             1, &rect);
-  gdk_window_invalidate_rect (widget->window, &rect, FALSE);
+  gdk_window_invalidate_rect (window, &rect, FALSE);
 }
 
 static void
@@ -2409,19 +2416,22 @@ aisleriot_board_realize (GtkWidget *widget)
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
   GdkDisplay *display;
+  GdkWindow *window;
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->realize (widget);
 
+  window = gtk_widget_get_window (widget);
+
   display = gtk_widget_get_display (widget);
 
-  games_card_images_set_drawable (priv->images, widget->window);
+  games_card_images_set_drawable (priv->images, window);
 
-  priv->draw_gc = gdk_gc_new (widget->window);
+  priv->draw_gc = gdk_gc_new (window);
 
-  priv->bg_gc = gdk_gc_new (widget->window);
+  priv->bg_gc = gdk_gc_new (window);
   set_background_from_baize (widget, priv->bg_gc);
   
-  priv->slot_gc = gdk_gc_new (widget->window);
+  priv->slot_gc = gdk_gc_new (window);
 
 #ifndef HAVE_HILDON 
   /* Create cursors */
@@ -2652,7 +2662,8 @@ aisleriot_board_focus_in (GtkWidget *widget,
   /* Paint focus */
   if (priv->show_focus &&
       priv->focus_slot != NULL) {
-    gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
+    gdk_window_invalidate_rect (gtk_widget_get_window (widget),
+                                &priv->focus_rect, FALSE);
   }
 #endif /* ENABLE_KEYNAV */
 
@@ -2674,7 +2685,8 @@ aisleriot_board_focus_out (GtkWidget *widget,
   /* Hide focus */
   if (priv->show_focus &&
       priv->focus_slot != NULL) {
-    gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
+    gdk_window_invalidate_rect (gtk_widget_get_window (widget),
+                                &priv->focus_rect, FALSE);
   }
 #endif /* ENABLE_KEYNAV */
 
@@ -3038,12 +3050,13 @@ aisleriot_board_expose_event (GtkWidget *widget,
   Slot *highlight_slot;
   guint n_exposed_slots;
   gboolean use_pixbuf_drawing = priv->use_pixbuf_drawing;
+  GdkWindow *window = gtk_widget_get_window (widget);
 
   /* NOTE: It's ok to just return instead of chaining up, since the
    * parent class has no class closure for this event.
    */
 
-  if (event->window != widget->window)
+  if (event->window != window)
     return FALSE;
 
   if (gdk_region_empty (region))
@@ -3067,8 +3080,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
 #endif
 
   for (i = 0; i < n_rects; ++i) {
-    gdk_draw_rectangle (widget->window, priv->bg_gc,
-                        TRUE,
+    gdk_draw_rectangle (window, priv->bg_gc, TRUE,
                         rects[i].x, rects[i].y,
                         rects[i].width, rects[i].height);
   }
@@ -3130,8 +3142,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
       if (!pixbuf)
         continue;
 
-      gdk_draw_pixbuf (widget->window, priv->slot_gc, pixbuf,
-                       0, 0, x, y,
+      gdk_draw_pixbuf (window, priv->slot_gc, pixbuf, 0, 0, x, y,
                        priv->card_size.width, priv->card_size.height,
                        GDK_RGB_DITHER_NONE, 0, 0);
     } else {
@@ -3147,8 +3158,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
       if (!pixmap)
         continue;
 
-      gdk_draw_drawable (widget->window, priv->slot_gc, pixmap,
-                         0, 0, x, y,
+      gdk_draw_drawable (window, priv->slot_gc, pixmap, 0, 0, x, y,
                          priv->card_size.width, priv->card_size.height);
     }
   }
@@ -3192,7 +3202,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
           goto next;
 
         gdk_gc_set_clip_origin (priv->draw_gc, card_rect.x, card_rect.y);
-        gdk_draw_pixbuf (widget->window, priv->draw_gc, pixbuf,
+        gdk_draw_pixbuf (window, priv->draw_gc, pixbuf,
                          0, 0, card_rect.x, card_rect.y, -1, -1,
                          GDK_RGB_DITHER_NONE, 0, 0);
       } else {
@@ -3203,7 +3213,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
           goto next;
 
         gdk_gc_set_clip_origin (priv->draw_gc, card_rect.x, card_rect.y);
-        gdk_draw_drawable (widget->window, priv->draw_gc, pixmap,
+        gdk_draw_drawable (window, priv->draw_gc, pixmap,
                            0, 0, card_rect.x, card_rect.y, -1, -1);
       }
 
@@ -3232,7 +3242,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
         goto draw_focus;
 
       gdk_gc_set_clip_origin (priv->draw_gc, card_rect.x, card_rect.y);
-      gdk_draw_pixbuf (widget->window, priv->draw_gc, pixbuf,
+      gdk_draw_pixbuf (window, priv->draw_gc, pixbuf,
                        0, 0, card_rect.x, card_rect.y, -1, -1,
                        GDK_RGB_DITHER_NONE, 0, 0);
     } else {
@@ -3243,8 +3253,8 @@ aisleriot_board_expose_event (GtkWidget *widget,
         goto draw_focus;
 
       gdk_gc_set_clip_origin (priv->draw_gc, card_rect.x, card_rect.y);
-      gdk_draw_drawable (widget->window, priv->draw_gc, pixmap,
-                          0, 0, card_rect.x, card_rect.y, -1, -1);
+      gdk_draw_drawable (window, priv->draw_gc, pixmap,
+                         0, 0, card_rect.x, card_rect.y, -1, -1);
     }
   }
 
@@ -3270,9 +3280,9 @@ draw_focus:
                                  &focus_rect);
     }
 
-    gtk_paint_focus (widget->style,
-                     widget->window,
-                     GTK_WIDGET_STATE (widget),
+    gtk_paint_focus (gtk_widget_get_style (widget),
+                     window,
+                     gtk_widget_get_state (widget),
                      &priv->focus_rect,
                      widget,
                      NULL /* FIXME ? */,
