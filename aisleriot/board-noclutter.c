@@ -293,7 +293,9 @@ make_cursor (GtkWidget *widget,
   GdkPixmap *source;
   GdkPixmap *mask;
   GdkCursor *cursor;
-  GdkWindow *window = gtk_widget_get_window (widget);
+  GdkWindow *window;
+
+  window = gtk_widget_get_window (widget);
 
   /* Yeah, hard-coded sizes are bad. */
   source = gdk_bitmap_create_from_data (window, data, 20, 20);
@@ -599,7 +601,7 @@ set_focus (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
-  GdkWindow *window = gtk_widget_get_window (widget);
+  GdkWindow *window;
   int top_card_id;
 
   /* Sanitise */
@@ -610,6 +612,8 @@ set_focus (AisleriotBoard *board,
       priv->focus_card_id == card_id &&
       priv->show_focus == show_focus)
     return;
+
+  window = gtk_widget_get_window (widget);
 
   if (priv->focus_slot != NULL) {
     if (priv->show_focus &&
@@ -666,12 +670,14 @@ set_selection (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
-  GdkWindow *window = gtk_widget_get_window (widget);
+  GdkWindow *window;
 
   if (priv->selection_slot == slot &&
       priv->selection_start_card_id == card_id &&
       priv->show_selection == show_selection)
     return;
+
+  window = gtk_widget_get_window (widget);
 
   if (priv->selection_slot != NULL) {
     if (priv->show_selection) {
@@ -1003,7 +1009,7 @@ drag_begin (AisleriotBoard *board)
   GByteArray *cards;
   GdkDrawable *drawable;
   GdkWindowAttr attributes;
-  GdkWindow *window = gtk_widget_get_window (widget);
+  GdkWindow *window;
 
   if (!priv->selection_slot ||
       priv->selection_start_card_id < 0) {
@@ -1052,6 +1058,7 @@ drag_begin (AisleriotBoard *board)
   width = priv->card_size.width + (num_moving_cards - 1) * hslot->pixeldx;
   height = priv->card_size.height + (num_moving_cards - 1) * hslot->pixeldy;
 
+  window = gtk_widget_get_window (widget);
   drawable = GDK_DRAWABLE (window);
 
   attributes.wclass = GDK_INPUT_OUTPUT;
@@ -1287,11 +1294,13 @@ highlight_drop_target (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
-  GdkWindow *window = gtk_widget_get_window (widget);
+  GdkWindow *window;
   GdkRectangle rect;
 
   if (slot == priv->highlight_slot)
     return;
+
+  window = gtk_widget_get_window (widget);
 
   /* Invalidate the old highlight rect */
   if (priv->highlight_slot != NULL &&
@@ -1343,10 +1352,12 @@ reveal_card (AisleriotBoard *board,
   GtkWidget *widget = GTK_WIDGET (board);
   Card card;
   GdkRectangle rect;
-  GdkWindow *window = gtk_widget_get_window (widget);
+  GdkWindow *window;
 
   if (priv->show_card_slot == slot)
     return;
+
+  window = gtk_widget_get_window (widget);
 
   if (priv->show_card_slot != NULL) {
     get_rect_by_slot_and_card (board,
@@ -3050,7 +3061,9 @@ aisleriot_board_expose_event (GtkWidget *widget,
   Slot *highlight_slot;
   guint n_exposed_slots;
   gboolean use_pixbuf_drawing = priv->use_pixbuf_drawing;
-  GdkWindow *window = gtk_widget_get_window (widget);
+  GdkWindow *window;
+
+  window = gtk_widget_get_window (widget);
 
   /* NOTE: It's ok to just return instead of chaining up, since the
    * parent class has no class closure for this event.
