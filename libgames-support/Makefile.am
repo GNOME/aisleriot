@@ -288,8 +288,7 @@ endif # BUILD_LIBGAMESCARDS
 if BUILD_LIBGAMESCARDS
 if HAVE_RSVG
 
-utildir = $(pkglibdir)
-util_PROGRAMS = gnome-games-render-cards
+pkglib_PROGRAMS = gnome-games-render-cards
 
 gnome_games_render_cards_SOURCES = \
 	render-cards.c
