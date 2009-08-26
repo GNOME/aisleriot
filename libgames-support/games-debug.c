@@ -33,6 +33,7 @@ _games_debug_init (void)
   const GDebugKey keys[] = {
     { "card-theme",   GAMES_DEBUG_CARD_THEME   },
     { "card-cache",   GAMES_DEBUG_CARD_CACHE   },
+    { "blocks-cache", GAMES_DEBUG_BLOCKS_CACHE },
     { "runtime",      GAMES_DEBUG_RUNTIME      },
     { "sound",        GAMES_DEBUG_SOUND        },
     { "window-state", GAMES_DEBUG_WINDOW_STATE }
