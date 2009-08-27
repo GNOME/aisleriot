@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-26 15:41+0200\n"
-"PO-Revision-Date: 2009-08-26 18:17+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games&component=general\n"
+"POT-Creation-Date: 2009-08-26 16:10+0000\n"
+"PO-Revision-Date: 2009-08-27 10:16+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -1450,6 +1450,17 @@ msgstr "Jolastu honetan: \"%s\""
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Bistaratu karta-gai hau duten kartak: \"%s\""
+
+#. Translators: if you want to use localised digits for the game score,
+#. * then translate this string to "%I6d", else to "%6d".
+#. * Do not translate it to anything else!
+#.
+#: ../aisleriot/window.c:1739
+#, c-format
+#| msgid "%d"
+msgctxt "score"
+msgid "%6d"
+msgstr "%6d"
 
 #: ../aisleriot/window.c:1994
 msgid "A scheme exception occurred"
@@ -4136,8 +4147,8 @@ msgid ""
 "Can be one of: 'queen', 'knight', 'rook', 'bishop'."
 msgstr ""
 "Giza jokalariek peoiak muturreko lauki batera eramatean peoia beste pieza "
-"bat bihurtuko da. Hauetako bat izan daiteke: 'erregina', 'zalduna', "
-"'dorrea', 'alfila'."
+"bat bihurtuko da. Hauetako bat izan daiteke: 'dama' (erregina), 'zalduna', "
+"'gaztelua' (dorrea), 'alfila'."
 
 #: ../glchess/data/glchess.schemas.in.h:26
 msgid ""
@@ -4146,10 +4157,10 @@ msgid ""
 "player) or 'facetoface' (suitable for players on each side of screen, e.g. "
 "handhelds)"
 msgstr ""
-"Aurreko planoko taularen aldea; izan daiteke 'white' (zuria), 'black' (beltza), "
-"'current' (unekoa) uneko jokalariarena, 'human (gizakia) giza jokalariaren aldea "
-"edo 'facetoface' (aurpegiz aurpegi) pantailaren alde bkoitzean jokalari bat badago, "
-"adib. eskuko ordenagailuak."
+"Aurreko planoko taularen aldea; izan daiteke 'white' (zuria), "
+"'black' (beltza), 'current' (unekoa) uneko jokalariarena, 'human (gizakia) "
+"giza jokalariaren aldea edo 'facetoface' (aurpegiz aurpegi) pantailaren alde "
+"bkoitzean jokalari bat badago, adib. eskuko ordenagailuak."
 
 #: ../glchess/data/glchess.schemas.in.h:27
 msgid "The width of the main window in pixels."
@@ -4673,6 +4684,34 @@ msgstr "Uneko jokalaria"
 msgid "Face to Face"
 msgstr "Aurpegiz aurpegi"
 
+#. Translators: Promotion Combo: Promote to a queen
+#: ../glchess/src/lib/gtkui/dialogs.py:624
+#| msgid "queen"
+msgctxt "chess-piece"
+msgid "Queen"
+msgstr "Dama"
+
+#. Translators: Promotion Combo: Promote to a knight
+#: ../glchess/src/lib/gtkui/dialogs.py:626
+#| msgid "Knight"
+msgctxt "chess-piece"
+msgid "Knight"
+msgstr "Zalduna"
+
+#. Translators: Promotion Combo: Promote to a rook
+#: ../glchess/src/lib/gtkui/dialogs.py:628
+#| msgid "Room"
+msgctxt "chess-piece"
+msgid "Rook"
+msgstr "Gaztelua"
+
+#. Translators: Promotion Combo: Promote to a bishop
+#: ../glchess/src/lib/gtkui/dialogs.py:630
+#| msgid "Bristol"
+msgctxt "chess-piece"
+msgid "Bishop"
+msgstr "Alfila"
+
 #. Translators: Window title when playing a game that needs saving
 #: ../glchess/src/lib/gtkui/gtkui.py:326
 #, python-format
@@ -4808,7 +4847,7 @@ msgstr "%(start)s(e)ko peoi zuriak %(end)s(e)ko peoi beltza harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:431
 #, python-format
 msgid "White pawn at %(start)s takes the black rook at %(end)s"
-msgstr "%(start)s(e)ko peoi zuriak %(end)s(e)ko dorre beltza harrapatzen du"
+msgstr "%(start)s(e)ko peoi zuriak %(end)s(e)ko gaztelu beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:432
 #, python-format
@@ -4823,38 +4862,38 @@ msgstr "%(start)s(e)ko peoi zuriak %(end)s(e)ko alfil beltza harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:434
 #, python-format
 msgid "White pawn at %(start)s takes the black queen at %(end)s"
-msgstr "%(start)s(e)ko peoi zuriak %(end)s(e)ko erregin beltza harrapatzen du"
+msgstr "%(start)s(e)ko peoi zuriak %(end)s(e)ko dama beltza harrapatzen du"
 
 #. Translators: Human Move String: Description of a white rook moving from %(start)s to %(end)s, e.g. 'a1 to a5'
 #: ../glchess/src/lib/gtkui/chessview.py:436
 #, python-format
 msgid "White rook moves from %(start)s to %(end)s"
-msgstr "Dorre zuria %(start)s(e)tik %(end)s(e)ra mugitzen da"
+msgstr "Gaztelu zuria %(start)s(e)tik %(end)s(e)ra mugitzen da"
 
 #: ../glchess/src/lib/gtkui/chessview.py:437
 #, python-format
 msgid "White rook at %(start)s takes the black pawn at %(end)s"
-msgstr "%(start)s(e)ko dorre zuriak %(end)s(e)ko peoi beltza harrapatzen du"
+msgstr "%(start)s(e)ko gaztelu zuriak %(end)s(e)ko peoi beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:438
 #, python-format
 msgid "White rook at %(start)s takes the black rook at %(end)s"
-msgstr "%(start)s(e)ko dorre zuriak %(end)s(e)ko dorre beltza harrapatzen du"
+msgstr "%(start)s(e)ko gaztelu zuriak %(end)s(e)ko gaztelu beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:439
 #, python-format
 msgid "White rook at %(start)s takes the black knight at %(end)s"
-msgstr "%(start)s(e)ko dorre zuriak %(end)s(e)ko zaldun beltza harrapatzen du"
+msgstr "%(start)s(e)ko gaztelu zuriak %(end)s(e)ko zaldun beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:440
 #, python-format
 msgid "White rook at %(start)s takes the black bishop at %(end)s"
-msgstr "%(start)s(e)ko dorre zuriak %(end)s(e)ko alfil beltza harrapatzen du"
+msgstr "%(start)s(e)ko gaztelu zuriak %(end)s(e)ko alfil beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:441
 #, python-format
 msgid "White rook at %(start)s takes the black queen at %(end)s"
-msgstr "%(start)s(e)ko dorre zuriak %(end)s(e)ko erregin beltza harrapatzen du"
+msgstr "%(start)s(e)ko gaztelu zuriak %(end)s(e)ko dama beltza harrapatzen du"
 
 #. Translators: Human Move String: Description of a white knight moving from %(start)s to %(end)s, e.g. 'b1 to c3'
 #: ../glchess/src/lib/gtkui/chessview.py:443
@@ -4870,7 +4909,7 @@ msgstr "%(start)s(e)ko zaldun zuriak %(end)s(e)ko peoi beltza harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:445
 #, python-format
 msgid "White knight at %(start)s takes the black rook at %(end)s"
-msgstr "%(start)s(e)ko zaldun zuriak %(end)s(e)ko dorre beltza harrapatzen du"
+msgstr "%(start)s(e)ko zaldun zuriak %(end)s(e)ko gaztelu beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:446
 #, python-format
@@ -4885,7 +4924,7 @@ msgstr "%(start)s(e)ko zaldun zuriak %(end)s(e)ko alfil beltza harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:448
 #, python-format
 msgid "White knight at %(start)s takes the black queen at %(end)s"
-msgstr "%(start)s(e)ko zaldun zuriak %(end)s(e)ko erregin beltza harrapatzen du"
+msgstr "%(start)s(e)ko zaldun zuriak %(end)s(e)ko dama beltza harrapatzen du"
 
 #. Translators: Human Move String: Description of a white bishop moving from %(start)s to %(end)s, e.g. 'f1 to b5'
 #: ../glchess/src/lib/gtkui/chessview.py:450
@@ -4901,7 +4940,7 @@ msgstr "%(start)s(e)ko alfil zuriak %(end)s(e)ko peoi beltza harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:452
 #, python-format
 msgid "White bishop at %(start)s takes the black rook at %(end)s"
-msgstr "%(start)s(e)ko alfil zuriak %(end)s(e)ko dorre beltza harrapatzen du"
+msgstr "%(start)s(e)ko alfil zuriak %(end)s(e)ko gaztelu beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:453
 #, python-format
@@ -4916,38 +4955,38 @@ msgstr "%(start)s(e)ko alfil zuriak %(end)s(e)ko alfil beltza harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:455
 #, python-format
 msgid "White bishop at %(start)s takes the black queen at %(end)s"
-msgstr "%(start)s(e)ko alfil zuriak %(end)s(e)ko erregin beltza harrapatzen du"
+msgstr "%(start)s(e)ko alfil zuriak %(end)s(e)ko dama beltza harrapatzen du"
 
 #. Translators: Human Move String: Description of a white queen moving from %(start)s to %(end)s, e.g. 'd1 to d4'
 #: ../glchess/src/lib/gtkui/chessview.py:457
 #, python-format
 msgid "White queen moves from %(start)s to %(end)s"
-msgstr "Erregin zuria %(start)s(e)tik %(end)s(e)ra mugitzen da"
+msgstr "Dama zuria %(start)s(e)tik %(end)s(e)ra mugitzen da"
 
 #: ../glchess/src/lib/gtkui/chessview.py:458
 #, python-format
 msgid "White queen at %(start)s takes the black pawn at %(end)s"
-msgstr "%(start)s(e)ko erregin zuriak %(end)s(e)ko peoi beltza harrapatzen du"
+msgstr "%(start)s(e)ko dama zuriak %(end)s(e)ko peoi beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:459
 #, python-format
 msgid "White queen at %(start)s takes the black rook at %(end)s"
-msgstr "%(start)s(e)ko erregin zuriak %(end)s(e)ko dorre beltza harrapatzen du"
+msgstr "%(start)s(e)ko dama zuriak %(end)s(e)ko gaztelu beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:460
 #, python-format
 msgid "White queen at %(start)s takes the black knight at %(end)s"
-msgstr "%(start)s(e)ko erregin zuriak %(end)s(e)ko zaldun beltza harrapatzen du"
+msgstr "%(start)s(e)ko dama zuriak %(end)s(e)ko zaldun beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:461
 #, python-format
 msgid "White queen at %(start)s takes the black bishop at %(end)s"
-msgstr "%(start)s(e)ko erregin zuriak %(end)s(e)ko alfil beltza harrapatzen du"
+msgstr "%(start)s(e)ko dama zuriak %(end)s(e)ko alfil beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:462
 #, python-format
 msgid "White queen at %(start)s takes the black queen at %(end)s"
-msgstr "%(start)s(e)ko erregin zuriak %(end)s(e)ko erregin beltza harrapatzen du"
+msgstr "%(start)s(e)ko dama zuriak %(end)s(e)ko dama beltza harrapatzen du"
 
 #. Translators: Human Move String: Description of a white king moving from %(start)s to %(end)s, e.g. 'e1 to f1'
 #: ../glchess/src/lib/gtkui/chessview.py:464
@@ -4963,7 +5002,7 @@ msgstr "%(start)s(e)ko errege zuriak %(end)s(e)ko peoi beltza harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:466
 #, python-format
 msgid "White king at %(start)s takes the black rook at %(end)s"
-msgstr "%(start)s(e)ko errege zuriak %(end)s(e)ko dorre beltza harrapatzen du"
+msgstr "%(start)s(e)ko errege zuriak %(end)s(e)ko gaztelu beltza harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:467
 #, python-format
@@ -4978,7 +5017,7 @@ msgstr "%(start)s(e)ko errege zuriak %(end)s(e)ko alfil beltza harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:469
 #, python-format
 msgid "White king at %(start)s takes the black queen at %(end)s"
-msgstr "%(start)s(e)ko errege zuriak %(end)s(e)ko erregin beltza harrapatzen du"
+msgstr "%(start)s(e)ko errege zuriak %(end)s(e)ko dama beltza harrapatzen du"
 
 #. Translators: Human Move String: Description of a black pawn moving from %(start)s to %(end)s, e.g. 'c8 to c6'
 #: ../glchess/src/lib/gtkui/chessview.py:471
@@ -4994,7 +5033,7 @@ msgstr "%(start)s(e)ko peoi beltzak %(end)s(e)ko peoi zuria harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:473
 #, python-format
 msgid "Black pawn at %(start)s takes the white rook at %(end)s"
-msgstr "%(start)s(e)ko peoi beltzak %(end)s(e)ko dorre zuria harrapatzen du"
+msgstr "%(start)s(e)ko peoi beltzak %(end)s(e)ko gaztelu zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:474
 #, python-format
@@ -5009,38 +5048,38 @@ msgstr "%(start)s(e)ko peoi beltzak %(end)s(e)ko alfil zuria harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:476
 #, python-format
 msgid "Black pawn at %(start)s takes the white queen at %(end)s"
-msgstr "%(start)s(e)ko peoi beltzak %(end)s(e)ko erregin zuria harrapatzen du"
+msgstr "%(start)s(e)ko peoi beltzak %(end)s(e)ko dama zuria harrapatzen du"
 
 #. Translators: Human Move String: Description of a black rook moving from %(start)s to %(end)s, e.g. 'a8 to a4'
 #: ../glchess/src/lib/gtkui/chessview.py:478
 #, python-format
 msgid "Black rook moves from %(start)s to %(end)s"
-msgstr "Dorre beltza %(start)s(e)tik %(end)s(e)ra mugitzen da"
+msgstr "Gaztelu beltza %(start)s(e)tik %(end)s(e)ra mugitzen da"
 
 #: ../glchess/src/lib/gtkui/chessview.py:479
 #, python-format
 msgid "Black rook at %(start)s takes the white pawn at %(end)s"
-msgstr "%(start)s(e)ko dorre beltzak %(end)s(e)ko peoi zuria harrapatzen du"
+msgstr "%(start)s(e)ko gaztelu beltzak %(end)s(e)ko peoi zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:480
 #, python-format
 msgid "Black rook at %(start)s takes the white rook at %(end)s"
-msgstr "%(start)s(e)ko dorre beltzak %(end)s(e)ko dorre zuria harrapatzen du"
+msgstr "%(start)s(e)ko gaztelu beltzak %(end)s(e)ko gaztelu zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:481
 #, python-format
 msgid "Black rook at %(start)s takes the white knight at %(end)s"
-msgstr "%(start)s(e)ko dorre beltzak %(end)s(e)ko zaldun zuria harrapatzen du"
+msgstr "%(start)s(e)ko gaztelu beltzak %(end)s(e)ko zaldun zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:482
 #, python-format
 msgid "Black rook at %(start)s takes the white bishop at %(end)s"
-msgstr "%(start)s(e)ko dorre beltzak %(end)s(e)ko alfil zuria harrapatzen du"
+msgstr "%(start)s(e)ko gaztelu beltzak %(end)s(e)ko alfil zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:483
 #, python-format
 msgid "Black rook at %(start)s takes the white queen at %(end)s"
-msgstr "%(start)s(e)ko dorre beltzak %(end)s(e)ko erregin zuria harrapatzen du"
+msgstr "%(start)s(e)ko gaztelu beltzak %(end)s(e)ko dama zuria harrapatzen du"
 
 #. Translators: Human Move String: Description of a black knight moving from %(start)s to %(end)s, e.g. 'b8 to c6'
 #: ../glchess/src/lib/gtkui/chessview.py:485
@@ -5056,7 +5095,7 @@ msgstr "%(start)s(e)ko zaldun beltzak %(end)s(e)ko peoi zuria harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:487
 #, python-format
 msgid "Black knight at %(start)s takes the white rook at %(end)s"
-msgstr "%(start)s(e)ko zaldun beltzak %(end)s(e)ko dorre zuria harrapatzen du"
+msgstr "%(start)s(e)ko zaldun beltzak %(end)s(e)ko gaztelu zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:488
 #, python-format
@@ -5071,7 +5110,7 @@ msgstr "%(start)s(e)ko zaldun beltzak %(end)s(e)ko alfil zuria harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:490
 #, python-format
 msgid "Black knight at %(start)s takes the white queen at %(end)s"
-msgstr "%(start)s(e)ko zaldun beltzak %(end)s(e)ko erregin zuria harrapatzen du"
+msgstr "%(start)s(e)ko zaldun beltzak %(end)s(e)ko dama zuria harrapatzen du"
 
 #. Translators: Human Move String: Description of a black bishop moving from %(start)s to %(end)s, e.g. 'f8 to b3'
 #: ../glchess/src/lib/gtkui/chessview.py:492
@@ -5087,7 +5126,7 @@ msgstr "%(start)s(e)ko alfil beltzak %(end)s(e)ko peoi zuria harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:494
 #, python-format
 msgid "Black bishop at %(start)s takes the white rook at %(end)s"
-msgstr "%(start)s(e)ko alfil beltzak %(end)s(e)ko dorre zuria harrapatzen du"
+msgstr "%(start)s(e)ko alfil beltzak %(end)s(e)ko gaztelu zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:495
 #, python-format
@@ -5102,38 +5141,38 @@ msgstr "%(start)s(e)ko alfil beltzak %(end)s(e)ko alfil zuria harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:497
 #, python-format
 msgid "Black bishop at %(start)s takes the white queen at %(end)s"
-msgstr "%(start)s(e)ko alfil beltzak %(end)s(e)ko erregin zuria harrapatzen du"
+msgstr "%(start)s(e)ko alfil beltzak %(end)s(e)ko dama zuria harrapatzen du"
 
 #. Translators: Human Move String: Description of a black queen moving from %(start)s to %(end)s, e.g. 'd8 to d5'
 #: ../glchess/src/lib/gtkui/chessview.py:499
 #, python-format
 msgid "Black queen moves from %(start)s to %(end)s"
-msgstr "Erregin beltza %(start)s(e)tik %(end)s(e)ra mugitzen da"
+msgstr "Dama beltza %(start)s(e)tik %(end)s(e)ra mugitzen da"
 
 #: ../glchess/src/lib/gtkui/chessview.py:500
 #, python-format
 msgid "Black queen at %(start)s takes the white pawn at %(end)s"
-msgstr "%(start)s(e)ko erregin beltzak %(end)s(e)ko peoi zuria harrapatzen du"
+msgstr "%(start)s(e)ko dama beltzak %(end)s(e)ko peoi zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:501
 #, python-format
 msgid "Black queen at %(start)s takes the white rook at %(end)s"
-msgstr "%(start)s(e)ko erregin beltzak %(end)s(e)ko dorre zuria harrapatzen du"
+msgstr "%(start)s(e)ko dama beltzak %(end)s(e)ko gaztelu zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:502
 #, python-format
 msgid "Black queen at %(start)s takes the white knight at %(end)s"
-msgstr "%(start)s(e)ko erregin beltzak %(end)s(e)ko zaldun zuria harrapatzen du"
+msgstr "%(start)s(e)ko dama beltzak %(end)s(e)ko zaldun zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:503
 #, python-format
 msgid "Black queen at %(start)s takes the white bishop at %(end)s"
-msgstr "%(start)s(e)ko erregin beltzak %(end)s(e)ko alfil zuria harrapatzen du"
+msgstr "%(start)s(e)ko dama beltzak %(end)s(e)ko alfil zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:504
 #, python-format
 msgid "Black queen at %(start)s takes the white queen at %(end)s"
-msgstr "%(start)s(e)ko erregin beltzak %(end)s(e)ko erregin zuria harrapatzen du"
+msgstr "%(start)s(e)ko dama beltzak %(end)s(e)ko dama zuria harrapatzen du"
 
 #. Translators: Human Move String: Description of a black king moving from %(start)s to %(end)s, e.g. 'e8 to f8'
 #: ../glchess/src/lib/gtkui/chessview.py:506
@@ -5149,7 +5188,7 @@ msgstr "%(start)s(e)ko errege beltzak %(end)s(e)ko peoi zuria harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:508
 #, python-format
 msgid "Black king at %(start)s takes the white rook at %(end)s"
-msgstr "%(start)s(e)ko errege beltzak %(end)s(e)ko dorre zuria harrapatzen du"
+msgstr "%(start)s(e)ko errege beltzak %(end)s(e)ko gaztelu zuria harrapatzen du"
 
 #: ../glchess/src/lib/gtkui/chessview.py:509
 #, python-format
@@ -5164,7 +5203,7 @@ msgstr "%(start)s(e)ko errege beltzak %(end)s(e)ko alfil zuria harrapatzen du"
 #: ../glchess/src/lib/gtkui/chessview.py:511
 #, python-format
 msgid "Black king at %(start)s takes the white queen at %(end)s"
-msgstr "%(start)s(e)ko errege beltzak %(end)s(e)ko erregin zuria harrapatzen du"
+msgstr "%(start)s(e)ko errege beltzak %(end)s(e)ko dama zuria harrapatzen du"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is in check
 #: ../glchess/src/lib/gtkui/chessview.py:536
@@ -5327,6 +5366,140 @@ msgstr "Eserleku hutsa"
 msgid "AI (%s)"
 msgstr "AA (%s)"
 
+#. Translators: The first file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:11
+msgctxt "chess-file"
+msgid "a"
+msgstr "a"
+
+#. Translators: The second file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:13
+msgctxt "chess-file"
+msgid "b"
+msgstr "b"
+
+#. Translators: The third file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:15
+msgctxt "chess-file"
+msgid "c"
+msgstr "c"
+
+#. Translators: The fourth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:17
+#| msgid "%d"
+msgctxt "chess-file"
+msgid "d"
+msgstr "d"
+
+#. Translators: The fifth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:19
+msgctxt "chess-file"
+msgid "e"
+msgstr "e"
+
+#. Translators: The sixth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:21
+msgctxt "chess-file"
+msgid "f"
+msgstr "f"
+
+#. Translators: The seventh file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:23
+msgctxt "chess-file"
+msgid "g"
+msgstr "g"
+
+#. Translators: The eigth file on the chess board
+#: ../glchess/src/lib/chess/__init__.py:25
+msgctxt "chess-file"
+msgid "h"
+msgstr "h"
+
+#. Translators: The first rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:28
+msgctxt "chess-rank"
+msgid "1"
+msgstr "1"
+
+#. Translators: The second rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:30
+msgctxt "chess-rank"
+msgid "2"
+msgstr "2"
+
+#. Translators: The third rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:32
+msgctxt "chess-rank"
+msgid "3"
+msgstr "3"
+
+#. Translators: The fourth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:34
+msgctxt "chess-rank"
+msgid "4"
+msgstr "4"
+
+#. Translators: The fifth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:36
+msgctxt "chess-rank"
+msgid "5"
+msgstr "5"
+
+#. Translators: The sixth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:38
+msgctxt "chess-rank"
+msgid "6"
+msgstr "6"
+
+#. Translators: The seventh rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:40
+msgctxt "chess-rank"
+msgid "7"
+msgstr "7"
+
+#. Translators: The eigth rank on the chess board
+#: ../glchess/src/lib/chess/__init__.py:42
+msgctxt "chess-rank"
+msgid "8"
+msgstr "8"
+
+#. Translators: The notation form of a pawn.
+#. See http://en.wikipedia.org/wiki/Algebraic_chess_notation#Figurine_Algebraic_Notation for translations.
+#: ../glchess/src/lib/chess/__init__.py:46
+msgctxt "chess-notation"
+msgid "P"
+msgstr "P"
+
+#. Translators: The notation form of a knight
+#: ../glchess/src/lib/chess/__init__.py:48
+msgctxt "chess-notation"
+msgid "N"
+msgstr "Z"
+
+#. Translators: The notation form of a bishop
+#: ../glchess/src/lib/chess/__init__.py:50
+msgctxt "chess-notation"
+msgid "B"
+msgstr "A"
+
+#. Translators: The notation form of a rook
+#: ../glchess/src/lib/chess/__init__.py:52
+msgctxt "chess-notation"
+msgid "R"
+msgstr "G"
+
+#. Translators: The notation form of a queen
+#: ../glchess/src/lib/chess/__init__.py:54
+msgctxt "chess-notation"
+msgid "Q"
+msgstr "D"
+
+#. Translators: The notation form of a king
+#: ../glchess/src/lib/chess/__init__.py:56
+msgctxt "chess-notation"
+msgid "K"
+msgstr "E"
+
 #. Translators: Description of an AI player used in log window. %(name)s is replaced with
 #. the name of the AI player. %(game)s is replaced with the name of the game the AI player
 #. is in.
@@ -5463,6 +5636,27 @@ msgstr "Zerbitzaritik deskonektatu da."
 msgid "No description"
 msgstr "Azalpenik ez"
 
+#: ../glines/glines.c:88 ../gnomine/gnomine.c:101
+#: ../same-gnome/same-gnome.c:54
+#| msgid "_Small"
+msgctxt "board size"
+msgid "Small"
+msgstr "Txikia"
+
+#: ../glines/glines.c:89 ../gnomine/gnomine.c:102
+#: ../same-gnome/same-gnome.c:55
+#| msgid "Medium"
+msgctxt "board size"
+msgid "Medium"
+msgstr "Tartekoa"
+
+#: ../glines/glines.c:90 ../gnomine/gnomine.c:103
+#: ../same-gnome/same-gnome.c:56
+#| msgid "_Large"
+msgctxt "board size"
+msgid "Large"
+msgstr "Handia"
+
 #: ../glines/glines.c:190
 msgid "Could not load theme"
 msgstr "Ezin izan da gaia kargatu"
@@ -5549,6 +5743,12 @@ msgstr "Atzeko pla_noaren kolorea:"
 #: ../glines/glines.c:1500
 msgid "Board Size"
 msgstr "Taularen tamaina"
+
+#: ../glines/glines.c:1519
+#| msgid "General"
+msgctxt "preferences"
+msgid "General"
+msgstr "Orokorra"
 
 #: ../glines/glines.c:1525
 msgid "_Use fast moves"
@@ -6097,6 +6297,49 @@ msgstr "Erabili mugimendu erlatiboa"
 #: ../gnibbles/gnibbles.schemas.in.h:28
 msgid "Use relative movement (ie. left or right only)."
 msgstr "Erabili mugimendu erlatiboa (adib. ezkerrera edo eskuinera bakarrik)."
+
+#: ../gnibbles/main.c:66
+msgctxt "game speed"
+msgid "Beginner"
+msgstr "Hasiberria"
+
+#: ../gnibbles/main.c:67
+#| msgid "Yellow"
+msgctxt "game speed"
+msgid "Slow"
+msgstr "Motela"
+
+#: ../gnibbles/main.c:68
+#| msgid "Medium"
+msgctxt "game speed"
+msgid "Medium"
+msgstr "Tartekoa"
+
+#: ../gnibbles/main.c:69
+#| msgid "Flags"
+msgctxt "game speed"
+msgid "Fast"
+msgstr "Bizkorra"
+
+#: ../gnibbles/main.c:70
+msgctxt "game speed"
+msgid "Beginner with Fakes"
+msgstr "Gezurrezko hasiberria"
+
+#: ../gnibbles/main.c:71
+msgctxt "game speed"
+msgid "Slow with Fakes"
+msgstr "Gezurrezko motela"
+
+#: ../gnibbles/main.c:72
+msgctxt "game speed"
+msgid "Medium with Fakes"
+msgstr "Gezurrezko ertaina"
+
+#: ../gnibbles/main.c:73
+msgctxt "game speed"
+msgid "Fast with Fakes"
+msgstr "Gezurrezko bizkorra"
 
 #: ../gnibbles/main.c:255
 msgid ""
@@ -7596,6 +7839,12 @@ msgstr "%B %e"
 msgid "Mines"
 msgstr "Minak"
 
+#: ../gnomine/gnomine.c:104
+#| msgid "Custom"
+msgctxt "board size"
+msgid "Custom"
+msgstr "Pertsonalizatua"
+
 #: ../gnomine/gnomine.c:170
 #, c-format
 msgid "Flags: %d/%d"
@@ -7796,6 +8045,57 @@ msgstr "Ezin izan dira irudiak kargatu"
 #: ../gnotravex/gnotravex.c:46 ../gnotravex/gnotravex.desktop.in.in.h:2
 msgid "Tetravex"
 msgstr "Tetravex"
+
+#. Translators: in-game numbers, replaceable with single-character local ideograms
+#: ../gnotravex/gnotravex.c:67
+msgctxt "number"
+msgid "0"
+msgstr "0"
+
+#: ../gnotravex/gnotravex.c:68
+msgctxt "number"
+msgid "1"
+msgstr "1"
+
+#: ../gnotravex/gnotravex.c:69
+msgctxt "number"
+msgid "2"
+msgstr "2"
+
+#: ../gnotravex/gnotravex.c:70
+msgctxt "number"
+msgid "3"
+msgstr "3"
+
+#: ../gnotravex/gnotravex.c:71
+msgctxt "number"
+msgid "4"
+msgstr "4"
+
+#: ../gnotravex/gnotravex.c:72
+msgctxt "number"
+msgid "5"
+msgstr "5"
+
+#: ../gnotravex/gnotravex.c:73
+msgctxt "number"
+msgid "6"
+msgstr "6"
+
+#: ../gnotravex/gnotravex.c:74
+msgctxt "number"
+msgid "7"
+msgstr "7"
+
+#: ../gnotravex/gnotravex.c:75
+msgctxt "number"
+msgid "8"
+msgstr "8"
+
+#: ../gnotravex/gnotravex.c:76
+msgctxt "number"
+msgid "9"
+msgstr "9"
 
 #: ../gnotravex/gnotravex.c:86
 msgid "2×2"
@@ -8310,6 +8610,18 @@ msgstr "Soilik ordenagailuz jokatzeko jokoen kopurua"
 msgid "Number of trials for each roll for the computer"
 msgstr "Ordenagailuaren jaurtialdi bakoitzeko saio kopurua"
 
+#: ../gtali/gyahtzee.c:123 ../gtali/setup.c:365
+#| msgid "Regular"
+msgctxt "game type"
+msgid "Regular"
+msgstr "Arrunta"
+
+#: ../gtali/gyahtzee.c:124 ../gtali/setup.c:366
+#| msgid "Colors"
+msgctxt "game type"
+msgid "Colors"
+msgstr "Koloreak"
+
 #: ../gtali/gyahtzee.c:147
 msgid "Roll all!"
 msgstr "Jaurti denak!!"
@@ -8409,6 +8721,24 @@ msgstr "_Aurkari kopurua:"
 #: ../gtali/setup.c:345
 msgid "_Difficulty:"
 msgstr "_Zailtasuna:"
+
+#: ../gtali/setup.c:348
+#| msgid "Easy"
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Erraza"
+
+#: ../gtali/setup.c:349
+#| msgid "Medium"
+msgctxt "difficulty"
+msgid "Medium"
+msgstr "Tartekoa"
+
+#: ../gtali/setup.c:350
+#| msgid "Hard"
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Zaila"
 
 #. --- PLAYER NAMES FRAME ----
 #: ../gtali/setup.c:374
@@ -8768,6 +9098,90 @@ msgstr "Deuseztatu erreserba"
 #: ../libgames-support/games-dlg-players.c:483
 msgid "Remove bot"
 msgstr "Kendu robota"
+
+#. Translators: this is the symbol that's on a Joker card
+#: ../libgames-support/games-card.c:182
+msgctxt "card symbol"
+msgid "JOKER"
+msgstr "KOMODINA"
+
+#. Translators: this is the symbol that's on an Ace card
+#: ../libgames-support/games-card.c:184 ../libgames-support/games-card.c:208
+msgctxt "card symbol"
+msgid "A"
+msgstr "A"
+
+#. Translators: this is the symbol that's on a 2 card
+#: ../libgames-support/games-card.c:186
+msgctxt "card symbol"
+msgid "2"
+msgstr "2"
+
+#. Translators: this is the symbol that's on a 3 card
+#: ../libgames-support/games-card.c:188
+msgctxt "card symbol"
+msgid "3"
+msgstr "3"
+
+#. Translators: this is the symbol that's on a 4 card
+#: ../libgames-support/games-card.c:190
+msgctxt "card symbol"
+msgid "4"
+msgstr "4"
+
+#. Translators: this is the symbol that's on a 5 card
+#: ../libgames-support/games-card.c:192
+msgctxt "card symbol"
+msgid "5"
+msgstr "5"
+
+#. Translators: this is the symbol that's on a 6 card
+#: ../libgames-support/games-card.c:194
+msgctxt "card symbol"
+msgid "6"
+msgstr "6"
+
+#. Translators: this is the symbol that's on a 7 card
+#: ../libgames-support/games-card.c:196
+msgctxt "card symbol"
+msgid "7"
+msgstr "7"
+
+#. Translators: this is the symbol that's on a 8 card
+#: ../libgames-support/games-card.c:198
+msgctxt "card symbol"
+msgid "8"
+msgstr "8"
+
+#. Translators: this is the symbol that's on a 9 card
+#: ../libgames-support/games-card.c:200
+msgctxt "card symbol"
+msgid "9"
+msgstr "9"
+
+#. Translators: this is the symbol that's on a Jack card
+#: ../libgames-support/games-card.c:202
+msgctxt "card symbol"
+msgid "J"
+msgstr "J"
+
+#. Translators: this is the symbol that's on a Queen card
+#: ../libgames-support/games-card.c:204
+msgctxt "card symbol"
+msgid "Q"
+msgstr "Q"
+
+#. Translators: this is the symbol that's on a King card
+#: ../libgames-support/games-card.c:206
+msgctxt "card symbol"
+msgid "K"
+msgstr "K"
+
+#. Translators: this is the symbol that's on a 1 card
+#: ../libgames-support/games-card.c:210
+msgctxt "card symbol"
+msgid "1"
+msgstr "1"
 
 #: ../libgames-support/games-controls.c:286
 msgid "Unknown Command"
@@ -9143,6 +9557,61 @@ msgstr "Kendu bat datozen fitxa-pareak."
 #: ../mahjongg/mahjongg.desktop.in.in.h:1
 msgid "Disassemble a pile of tiles by removing matching pairs"
 msgstr "Desegin fitxa-piloa bat datozen bikoteak kenduz"
+
+#: ../mahjongg/maps.c:229
+#| msgid "Easy"
+msgctxt "mahjongg map name"
+msgid "Easy"
+msgstr "Erraza"
+
+#.
+#. * Translatable strings file generated by get_titles.pl.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: ../mahjongg/translatable_game_names.h:6
+msgctxt "mahjongg map name"
+msgid "The Ziggurat"
+msgstr "Ziggurat"
+
+#: ../mahjongg/translatable_game_names.h:7
+#| msgid "Four Suits"
+msgctxt "mahjongg map name"
+msgid "Four Bridges"
+msgstr "Lau zubiak"
+
+#: ../mahjongg/translatable_game_names.h:8
+#| msgid "Sound"
+msgctxt "mahjongg map name"
+msgid "Cloud"
+msgstr "Lainoa"
+
+#: ../mahjongg/translatable_game_names.h:9
+msgctxt "mahjongg map name"
+msgid "Tic-Tac-Toe"
+msgstr "Artzain-jokoa"
+
+#: ../mahjongg/translatable_game_names.h:10
+#| msgid "Red Donkey"
+msgctxt "mahjongg map name"
+msgid "Red Dragon"
+msgstr "Dragoi gorria"
+
+#: ../mahjongg/translatable_game_names.h:11
+msgctxt "mahjongg map name"
+msgid "Pyramid's Walls"
+msgstr "Piramidearen hormak"
+
+#: ../mahjongg/translatable_game_names.h:12
+msgctxt "mahjongg map name"
+msgid "Confounding Cross"
+msgstr "Gurutze nahaspilatsua"
+
+#: ../mahjongg/translatable_game_names.h:13
+#| msgid "_Difficulty:"
+msgctxt "mahjongg map name"
+msgid "Difficult"
+msgstr "Zailtasuna"
 
 #. FIXME: This is long enough to resize the window upwards when
 #. * the game finishes.
