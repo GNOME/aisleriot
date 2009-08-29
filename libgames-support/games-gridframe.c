@@ -28,6 +28,7 @@
 #include <glib/gi18n.h>
 
 #include "games-gridframe.h"
+#include "games-gtk-compat.h"
 
 enum {
   PROP_0,
@@ -173,7 +174,7 @@ games_grid_frame_size_allocate (GtkWidget * widget,
   GtkAllocation child_allocation;
   gint xsize, ysize, size;
 
-  widget->allocation = *allocation;
+  gtk_widget_set_allocation (widget, allocation);
 
   xsize = MAX (1, (allocation->width - frame->xpadding) / frame->xmult);
   ysize = MAX (1, (allocation->height - frame->ypadding) / frame->ymult);
@@ -195,7 +196,7 @@ games_grid_frame_size_allocate (GtkWidget * widget,
        child_allocation.y != frame->old_allocation.y ||
        child_allocation.width != frame->old_allocation.width ||
        child_allocation.height != frame->old_allocation.height))
-    gdk_window_invalidate_rect (gtk_widget_get_window (widget), &widget->allocation, FALSE);
+    gdk_window_invalidate_rect (gtk_widget_get_window (widget), allocation, FALSE);
 
   if (child && GTK_WIDGET_VISIBLE (child))
     gtk_widget_size_allocate (child, &child_allocation);

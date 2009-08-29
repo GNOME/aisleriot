@@ -27,6 +27,14 @@ G_BEGIN_DECLS
 #define GTK_OBJECT_FLAGS(i) (GTK_OBJECT (i)->GSEAL(flags))
 #endif /* GSEAL_ENABLE */
 
+#if !GTK_CHECK_VERSION (2, 17, 8)
+#define gtk_widget_set_allocation(widget, alloc) ((widget)->allocation=*(alloc))
+#endif /* GTK < 2.17.8 */
+
+#if !GTK_CHECK_VERSION (2, 17, 7)
+#define gtk_widget_get_allocation(widget, alloc) (*(alloc)=(widget)->allocation)
+#endif /* GTK < 2.17.7 */
+
 #if !GTK_CHECK_VERSION (2, 17, 5)
 #define gtk_widget_get_state(widget) ((widget)->state)
 #endif /* GTK < 2.17.5 */
