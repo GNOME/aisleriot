@@ -22,6 +22,7 @@
 
 #include <gtk/gtk.h>
 
+#include <libgames-support/games-gtk-compat.h>
 #include <libgames-support/games-stock.h>
 
 #ifndef HAVE_HILDON
@@ -116,20 +117,22 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
 {
   AisleriotStatsDialogPrivate *priv;
   GtkDialog *dialog = GTK_DIALOG (stats_dialog);
-  GtkWidget *vbox, *hbox;
+  GtkWidget *vbox, *hbox, *content_area;
   GtkTable *table;
 
   priv = stats_dialog->priv = AISLERIOT_STATS_DIALOG_GET_PRIVATE (stats_dialog);
 
   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
 
+  content_area = gtk_dialog_get_content_area (dialog);
+
   gtk_dialog_set_has_separator (dialog, FALSE);
   gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
-  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
+  gtk_box_set_spacing (GTK_BOX (content_area), 2);
 
   vbox = gtk_vbox_new (FALSE, 18);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
-  gtk_box_pack_start (GTK_BOX (dialog->vbox), vbox, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (content_area), vbox, FALSE, FALSE, 0);
   gtk_widget_show (vbox);
 
   priv->game_label = GTK_LABEL (gtk_label_new (NULL));

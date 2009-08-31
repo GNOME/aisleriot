@@ -114,6 +114,8 @@ struct _AisleriotBoardPrivate
   GamesCardTheme *theme;
   CardSize card_size;
 
+  GtkAllocation allocation;
+
   double width;
   double height;
 
@@ -760,7 +762,7 @@ slot_update_geometry (AisleriotBoard *board,
         max_dy = slot->expansion.dy;
 
       /* Calculate the compressed_dy that will let us fit within the board */
-      y_from_bottom = ((double) (widget->allocation.height - slot->rect.y)) / ((double) priv->card_size.height);
+      y_from_bottom = ((double) (priv->allocation.height - slot->rect.y)) / ((double) priv->card_size.height);
       dy = (y_from_bottom - MAX_OVERHANG) / n_cards;
       dy = CLAMP (dy, MIN_DELTA, max_dy);
     } else if (slot->expanded_right) {
@@ -782,7 +784,7 @@ slot_update_geometry (AisleriotBoard *board,
         if (slot->dx_set)
           max_dx = slot->expansion.dx;
 
-        x_from_right = ((double) (widget->allocation.width - slot->rect.x)) / ((double) priv->card_size.width);
+        x_from_right = ((double) (priv->allocation.width - slot->rect.x)) / ((double) priv->card_size.width);
         dx = (x_from_right - MAX_OVERHANG) / n_cards;
         dx = CLAMP (dx, MIN_DELTA, max_dx);
 
@@ -931,8 +933,8 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   g_return_if_fail (GTK_WIDGET_REALIZED (widget));
   g_return_if_fail (priv->width > 0 && priv->height > 0);
 
-  priv->xslotstep = ((double) widget->allocation.width) / priv->width;
-  priv->yslotstep = ((double) widget->allocation.height) / priv->height;
+  priv->xslotstep = ((double) priv->allocation.width) / priv->width;
+  priv->yslotstep = ((double) priv->allocation.height) / priv->height;
 
   size_changed = games_card_images_set_size (priv->images,
                                              priv->xslotstep,
@@ -947,12 +949,12 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   if (priv->xslotstep > (card_size.width * 3) / 2) {
     priv->xslotstep = (card_size.width * 3) / 2;
     /* FIXMEchpe: if there are expand-right slots, reserve the space for them instead? */
-    priv->xbaseoffset = (widget->allocation.width - priv->xslotstep * priv->width) / 2;
+    priv->xbaseoffset = (priv->allocation.width - priv->xslotstep * priv->width) / 2;
   }
   if (priv->yslotstep > (card_size.height * 3) / 2) {
     priv->yslotstep = (card_size.height * 3) / 2;
     /* FIXMEchpe: if there are expand-down slots, reserve the space for them instead?
-       priv->ybaseoffset = (widget->allocation.height - priv->yslotstep * priv->height) / 2;
+       priv->ybaseoffset = (priv->allocation.height - priv->yslotstep * priv->height) / 2;
     */
   }
 
@@ -2599,7 +2601,7 @@ aisleriot_board_size_allocate (GtkWidget *widget,
   AisleriotBoardPrivate *priv = board->priv;
   gboolean is_same;
 
-  is_same = (memcmp (&widget->allocation, allocation, sizeof (GtkAllocation)) == 0);
+  is_same = (memcmp (&priv->allocation, allocation, sizeof (GtkAllocation)) == 0);
   
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->size_allocate (widget, allocation);
 
@@ -2607,6 +2609,11 @@ aisleriot_board_size_allocate (GtkWidget *widget,
     return;
 
   priv->force_geometry_update = FALSE;
+
+  priv->allocation.x = allocation->x;
+  priv->allocation.y = allocation->y;
+  priv->allocation.width = allocation->width;
+  priv->allocation.height = allocation->height;
 
   if (GTK_WIDGET_REALIZED (widget)) {
     aisleriot_board_setup_geometry (board);

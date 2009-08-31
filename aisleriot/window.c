@@ -222,7 +222,7 @@ select_game_cb (GtkAction *action,
   GtkWidget *scrolled_window;
   GtkTreeViewColumn *column;
   GtkCellRenderer *renderer;
-  GtkWidget *hbox;
+  GtkWidget *hbox, *content_area;
   GtkTreeIter current_iter, selection_iter;
   gboolean current_iter_set = FALSE;
   const char *current_game_file;
@@ -298,12 +298,12 @@ select_game_cb (GtkAction *action,
 
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
   gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
-  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
+  content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+  gtk_box_set_spacing (GTK_BOX (content_area), 2);
 
   hbox = gtk_hbox_new (FALSE, 12);
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox),
-                      hbox, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 0);
   g_signal_connect (list_view, "row-activated",
                     G_CALLBACK (select_game_row_activated_cb), dialog);
 

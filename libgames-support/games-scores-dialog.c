@@ -28,6 +28,7 @@
 
 #include "games-scores-dialog.h"
 #include "games-scores-dialog-private.h"
+#include "games-gtk-compat.h"
 
 G_DEFINE_TYPE (GamesScoresDialog, games_scores_dialog, GTK_TYPE_DIALOG);
 
