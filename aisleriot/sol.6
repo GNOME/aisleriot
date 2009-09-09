@@ -1,0 +1,116 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" sol.6 is copyright 2007 by
+.\" Martin Ferrari <martin.ferrari@gmail.com>
+.\"
+.\" This is free documentation, see the latest version of the GNU Free
+.\" Documentation License for copying conditions. There is NO warranty.
+.\"
+.TH SOL 6 "March 22, 2007" "AisleRiot"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+
+.SH NAME
+AisleRiot \- a collection of card games which are easy to play with the aid of a mouse.
+
+.SH SYNOPSIS
+.B sol
+.RI [ options ]
+
+.SH DESCRIPTION
+This manual page documents briefly the
+.B sol
+command. For more information, please refer to the excellent GNOME help for
+.B AisleRiot
+
+.PP
+.B AisleRiot
+(also known as 
+.BR Solitaire " or " sol )
+is a collection of card games which are easy to play with the aid of a mouse.
+The rules for the games have been coded for your pleasure in the GNOME
+scripting language (Scheme). It is part of the
+.I gnome-games
+package.
+
+The following games can be selected from within the program, or by using a command line switch:
+
+.RS
+Agnes Athena Auld Lang Syne Aunt Mary Backbone Bakers Dozen Bakers Game
+Beleaguered Castle Block Ten Bristol Camelot Canfield Carpet Chessboard Clock
+Cover Cruel Diamond Mine Doublets Eagle Wing Easthaven Eight Off Elevator
+Escalator First Law Fortress Fortunes Fourteen Freecell Gaps Gay Gordons
+Glenwood Golf Gypsy Helsinki Hopscotch Isabel Jamestown Jumbo Kansas King
+Albert Kings Audience Klondike Labyrinth Lady Jane Maze Monte Carlo Neighbor
+Odessa Osmosis Peek Pileon Plait Poker Quatorze Royal East Saratoga Scorpion
+Scuffle Seahaven Sir Tommy Spiderette Spider One Suit Spider Spider Two Suit
+Straight Up Streets And Alleys Template Ten Across Thieves Thirteen Thumb And
+Pouch Treize Triple Peaks Union Square Valentine Westhaven Whitehead Will O The
+Wisp Yield Yukon Zebra
+.RE
+
+.SH OPTIONS
+AisleRiot accepts the following options, besides the usual Gtk+/GNOME
+switches:
+.TP
+.B \-v, \-\-variation=NAME
+Select the game to play
+.TP
+.B \-\-freecell
+Select the Freecell game
+.TP
+.B \-\-display=DISPLAY
+X display to use
+
+.SH USAGE
+This text is taken verbatim from the AisleRiot Manual V2.12.
+
+Moving the cards is reasonably obvious. Assuming you have a right-handed mouse,
+left-click on a card and drag it somewhere. Release the mouse button to deposit
+the card.
+ 
+If a card can be moved to the foundation(s), you do not need to drag it. You
+can double-click on it and it will move. If a sequence of cards can be moved to
+the foundations, you can generally move the sequence as one move.
+
+Double clicking a card will send it to a foundation, if that is possible. This
+is useful for cleaning up large numbers of cards at the end of a successful
+game.
+
+In games which have a stock pile you can redeal it by clicking on the empty
+space where it was. Be warned that some games only let you do this a limited
+number of time. Watch for the Redeals Left message at the bottom of the
+window.
+ 
+A useful tip to know is that right-clicking on a face-up card which is
+partially obscured by a card laid over it will raise it so that you can see
+what it is.
+ 
+There is an alternative way to move cards. By selecting
+.B Click to move
+from the 
+.B Control
+menu you can click once to pick up a card and then click again to place it.
+This can be faster than dragging and will be easier on your hand since you
+don't have to hold the mouse down. However, it may take a while to get used to.
+ 
+Some games have options to change the way the game is played. For example
+Klondike can be played with either single card deals or three-card deals. In
+these games there is a separate menu with the game's name. You can only change
+the rules of the game at the beginning of the game -- the menu will be
+inactive during the game.
+
+Statistics on how well you have done at a particular game are available by
+selecting
+.B Statistics
+from the Game menu. Only games where you actually start moving cards are
+counted. The statistics are here for your own enjoyment, there are numerous
+ways to cheat and it is unwise to make comparisons.
+
+.SH HOMEPAGE
+http://www.gnome.org/projects/gnome-games/
+
+.SH AUTHOR
+This manual page was written by Martin Ferrari <martin.ferrari@gmail.com>,
+for the Debian system (but may be used by others).
+You can find the list of authors and more information about AisleRiot in
+.IR /usr/share/doc/gnome-games .

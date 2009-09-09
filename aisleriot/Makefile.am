@@ -146,6 +146,8 @@ schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 endif
 
+man_MANS = sol.6
+
 ossobackup_in_files = aisleriot-backup.conf
 ossoscript_in_files = aisleriot-clean.sh
 ossoservice_in_files = org.gnome.Games.AisleRiot.service.in
@@ -188,6 +190,7 @@ EXTRA_DIST = \
 	$(ossoscript_in_files)	\
 	$(ossoservice_in_files)	\
 	$(schema_in_files)	\
+	$(man_MANS)		\
 	aisleriot.supp		\
 	game-names.h
 
