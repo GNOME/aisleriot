@@ -1,3 +1,132 @@
+gnome-games 2.28.0
+==================
+
+Versus 2.26.x, this release brings a Gnometris rewrite that depends on Clutter
+1.0 for the animation engine. The previous version of Gnometris was unplayable.
+
+GNOME Games now also defaults to depending on libcanberra-gtk for the sound
+engine. When using PulseAudio, the games benefit from sound-daemon provided
+effect mixing similar to the experience provided by the SDL back-end. When not
+using PulseAudio, if the underlying ALSA configuration supports it, dmix or
+hardware mixing should provide adequate mixing for sound effects. The gstreamer
+back-end is now removed and the SDL back-end is deprecated.
+
+For packages, the default build mode with automake 1.11 or higher is to now
+suppress verbose compile information to make it easier to catch warnings. Normal
+automake verbosity flags will disable this suppression.
+
+Finally, the experimental Clutter version of aisleriot is now available with
+--enable-aisleriot-clutter. For distributions that are feeling adventurous, we
+are not aware of any regressions in the Clutter version. It should be safe to
+enable this feature if you feel that your 3D driver situation is adequate.
+
+Since the 2.27.92 beta, the following changes have occurred:
+
+A S Alam (1):
+      Updating Translation for Punjabi by A S Alam
+
+Adi Roiban (1):
+      Updated Romanian translation
+
+Amitakhya Phukan (2):
+      Updating Assamese translations
+      Updating Assamese translations
+
+Ani (2):
+      Updated Malayalam Translations
+      Updated Malayalam Translations
+
+Ask H. Larsen (1):
+      Updated Danish translation
+
+Bruce Cowan (1):
+      Updated British English translation
+
+Changwoo Ryu (1):
+      Korean translation update
+
+Christian Kirbach (1):
+      Updated German translation
+
+Claude Paroz (1):
+      Updated French manuals translation
+
+Denis ARNAUD (1):
+      Updated breton translation
+
+Gabor Kelemen (1):
+      Hungarian translation updated
+
+Ilkka Tuohela (1):
+      Updated Finnish translation
+
+Joanna Mazgaj (1):
+      Update Polish translation
+
+Joe Hansen (2):
+      Added Danish translation
+      Updated Danish translation
+
+Kenneth Nielsen (1):
+      Added da to list of languages
+
+Kostas Papadimas (4):
+      Updated Greek help translation.
+      Updated Greek translation.
+      Updated Greek translation.
+      Updated Greek help translation.
+
+Manoj Kumar Giri (1):
+      Upadated Oriya Translation
+
+Matej Urbančič (1):
+      Updated Slovenian translation
+
+Maxim V. Dziumanenko (1):
+      Added Ukrainian translation
+
+Milo Casagrande (2):
+      Updated Italian translation
+      Updated Italian translation
+
+Philip Withnall (1):
+      Bug 581012 – [gnome-games] docs bugs
+
+Rajesh Ranjan (2):
+      hindi update
+      hindi update trasnaled by Ravi Ratlami
+
+Robert Ancell (6):
+      Make default game use the AI chosen from the previous game (Robert Ancell, Bug #446950)
+      Remove unused signal from save_game.ui
+      Detect exceptions when in OpenGL code and disable 3d mode for next restart (Robert Ancell, Bug #577240)
+      Make Tali 24x24 icon match changes to 22x22 icon
+      Update list of ignored built files
+      Bring Debian man pages upstream
+
+Runa Bhattacharjee (2):
+      Updated Bengali India Translations
+      Updated Bengali India Translations
+
+Sandeep Shedmake (1):
+      Updated Marathi Translations
+
+Shankar Prasad (1):
+      Updated Kannada(kn) translation
+
+Sweta Kothari (2):
+      Updated Gujarati Translations
+      Updated Gujarati Translations
+
+Vladimir Melo (1):
+      Corrected 'if not' translation in Brazilian Portuguese translation
+
+dooteo (2):
+      Deleted english images
+      Deleted english images
+
+
+
 gnome-games 2.27.92
 ===================
 
