@@ -227,15 +227,12 @@ This is the list of required software packages for gnome-games:
  - libxml 2.4.0
  - scrollkeeper
  - expat
- - ggz-client-libs 0.0.14
- - libggz 0.0.14
 
 
 These packages are optional, but highly recommended:
 
  - SDL_Mixer 1.2.0 or later for sound support using SDL.
  - gtkglext 1.2.0 , pygtkglext 1.1.0 and pyopengl 2.0 for 3D support in Chess.
- - ggz-server 0.0.14 for hosting GGZ servers.
 
 
 To compile these packages, we recommend using the baseline GNOME 2.18.x
@@ -342,33 +339,6 @@ about unit testing in gnome-games.
 
 Network Games
 --------------------
-Network games can be played with the games Gnibbles, Four-in-a-Row and
-Iagno. These games requires GGZ Gaming Zone version 0.0.14 or later.
-
-Network games can be started using the "Network Game" menu item
-in the supported games. Network games can also be started using
-the ggz-gtk application which is a part of GGZ.
-
-GGZ can be downloaded from http://www.ggzgamingzone.org/
-See the included file README.GGZ for an introduction to GGZ.
-
-GGZ will be automatically detected by configure, and is a required
-library requirement for gnome-games.
-
-The following libraries are required for GGZ support:
-- ggz-client-libs
-- libggz
-
-- ggzd is optional library for GGZ server hosters.
-
-To compile the gnome-games with the optional server support, use:
-/autogen.sh --with-ggz-server 
-
-Several other games in gnome-games will get GGZ support in the future.
-Further, it is planned to implement support for observers and statistics.
-
-For an up-to-date list of GGZ servers, see: http://live.gnome.org/GnomeGames
-Behave politely on the GGZ game servers, and have a lot of fun.
 
 Security Issues
 ---------------
