@@ -985,6 +985,15 @@ check_animations_cb (gpointer user_data)
        animations->len, (const AisleriotAnimStart *) animations->data,
        n_unexposed_animated_cards);
 
+    if (slot->cards->len == 0) {
+      clutter_actor_lower_bottom (slot->slot_renderer);
+      clutter_actor_lower_bottom (priv->baize_actor);
+    } else {
+      clutter_actor_raise_top (slot->slot_renderer);
+      ClutterActor *animation_layer = CLUTTER_ACTOR(aisleriot_slot_renderer_get_animation_layer(AISLERIOT_SLOT_RENDERER(slot->slot_renderer)));
+      clutter_actor_raise_top (animation_layer);
+    }
+
     /* Set the old cards back to the new cards */
     aisleriot_game_reset_old_cards (slot);
   }
@@ -1288,7 +1297,7 @@ drag_end (AisleriotBoard *board,
                                    priv->moving_cards->data,
                                    priv->moving_cards->len);
     clutter_actor_raise_top (priv->moving_cards_origin_slot->slot_renderer);
-    ClutterActor *animation_layer = aisleriot_slot_renderer_get_animation_layer(priv->moving_cards_origin_slot->slot_renderer);
+    ClutterActor *animation_layer = CLUTTER_ACTOR(aisleriot_slot_renderer_get_animation_layer(AISLERIOT_SLOT_RENDERER(priv->moving_cards_origin_slot->slot_renderer)));
     clutter_actor_raise_top (animation_layer);
   }
 
