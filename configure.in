@@ -109,7 +109,6 @@ AC_SUBST([gamelist])
 # Feature matrix
 
 need_cxx=no
-need_ggz=no
 need_rsvg=no
 need_guile=no
 need_python=no
@@ -127,10 +126,6 @@ build_libgamescards=no
 for game in $gamelist; do
   case $game in
     gnometris|blackjack) need_cxx=yes ;;
-    *) ;;
-  esac
-  case $game in
-    gnibbles|iagno|gnect|glchess) need_ggz=yes ;;
     *) ;;
   esac
   case $game in
@@ -231,11 +226,6 @@ if test "$need_cxx" = "yes"; then
   AC_COMPILE_IFELSE([AC_LANG_PROGRAM([],[])],[],[AC_MSG_ERROR([No C++ compiler found])])
   AC_LANG_POP([C++])
 fi
-
-# Run these before AC_PROG_LIBTOOL, else it bugs
-AC_GGZ_INIT
-AC_GGZ_PLATFORM_BASE
-AC_GGZ_PLATFORM
 
 AM_PROG_CC_C_O
 
@@ -821,50 +811,6 @@ if test "$enable_binreloc" = "yes"; then
   AC_DEFINE([ENABLE_BINRELOC],[1],[Define for binary relocation support])
 fi
 
-# *************
-# Check for GGZ
-# *************
-
-have_ggz=no
-if test "$need_ggz" = "yes"; then
-
-  AC_GGZ_INIT(defaults, export)
-  AC_GGZ_LIBGGZ([],[])
-  AC_GGZ_VERSION(0, 0, 14)
-  AC_GGZ_GGZCORE
-  AC_GGZ_GGZMOD
-  AC_GGZ_CONFIG("true", ignore)
-  #AC_GGZ_INTL
-
-  AC_GGZ_CHECK_SERVER
-
-  AC_GGZ_PTHREADS
-  AC_GGZ_GCRYPT
-  AC_GGZ_TLS
-
-  GGZ_GTK_INCLUDES="-I\$(top_srcdir)/dependencies/ggz-gtk"
-  AC_SUBST(GGZ_GTK_INCLUDES)
-  GGZ_GTK_LDFLAGS=""
-  AC_SUBST(GGZ_GTK_LDFLAGS)
-  LIB_GGZ_GTK="\$(top_builddir)/dependencies/ggz-gtk/libggz-gtk.la"
-  AC_SUBST(LIB_GGZ_GTK)
-
-  AC_DEFINE(GGZ_GTK, 1, [Support for embedded GGZ through libggz-gtk])
-  AC_DEFINE(GGZ_CLIENT, 1, [Client support for GGZ])
-
-  have_ggz=yes
-fi # need_ggz = yes
-
-AC_GGZ_CHECK_SERVER_DEFINES
-AM_CONDITIONAL([GGZ_GTK],[test "$have_ggz" = "yes"])
-AM_CONDITIONAL([INSTALL_GGZ_GTK],[false])
-AM_CONDITIONAL([GGZ_CLIENT], [test "$have_ggz" = "yes"])
-AM_CONDITIONAL([WITH_INCLUDED_GGZ],[test "$have_ggz" = "yes"])
-
-m4_pattern_allow([AM_V_GEN])dnl Make autoconf not complain about the rule below
-GNOME_GAMES_GGZ_DSC_RULE='%.dsc:   %.dsc.in   ; $(AM_V_GEN) $(SED) -e "s|[@]VERSION[@]|$(VERSION)|g" -e "s|[@]libexecdir[@]|$(libexecdir)|g" -e "s|[@]bindir[@]|$(bindir)|g" -e "s|[@]ggzexecmoddir[@]|$(ggzexecmoddir)|g"< $< > $[@]'
-AC_SUBST([GNOME_GAMES_GGZ_DSC_RULE])
-
 # ********
 
 AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS"
@@ -880,9 +826,6 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [The gettext package name
 AM_GLIB_GNU_GETTEXT
 
 IT_PROG_INTLTOOL([0.35.0])
-
-GNOME_GAMES_GGZ_INTLTOOL_ROOM_RULE='%.room:   %.room.in   $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; $(AM_V_GEN) LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< [$]@'
-AC_SUBST([GNOME_GAMES_GGZ_INTLTOOL_ROOM_RULE])
 
 # ********************
 # Game specific checks
@@ -1158,7 +1101,6 @@ AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
 dependencies/Makefile
-dependencies/ggz-gtk/Makefile
 dependencies/gnuchess/Makefile
 icons/Makefile
 sounds/Makefile
@@ -1215,7 +1157,6 @@ glchess/src/lib/Makefile
 glchess/src/lib/defaults.py
 glchess/src/lib/chess/Makefile
 glchess/src/lib/chess/fics/Makefile
-glchess/src/lib/ggz/Makefile
 glchess/src/lib/gtkui/Makefile
 glchess/src/lib/scene/Makefile
 glchess/src/lib/scene/cairo/Makefile

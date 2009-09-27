@@ -5,7 +5,6 @@ commondatadir = $(datadir)/gnome-games-common
 EXTRA_DIST = \
 	$(schema_in_files)	\
 	games-marshal.list	\
-	GGZ-1.0.gir		\
 	$(NULL)
 
 noinst_LTLIBRARIES = libgames-support.la
@@ -89,17 +88,6 @@ endif # ENABLE_SETGID
 
 endif # LIBGAMES_SUPPORT_FULL
 
-if HAVE_GNOME
-if GGZ_CLIENT
-libgames_support_la_SOURCES +=		\
-	games-dlg-chat.c		\
-	games-dlg-chat.h		\
-	games-dlg-players.c		\
-	games-dlg-players.h		\
-	$(NULL)	
-endif
-endif
-
 libgames_support_la_CPPFLAGS = \
 	-DPKGDATADIR="\"$(pkgdatadir)\""			\
 	-DDATADIR="\"$(datadir)\""				\
@@ -142,19 +130,6 @@ endif # WITH_SMCLIENT
 if HAVE_GNOME
 libgames_support_la_CFLAGS += $(GNOME_CFLAGS)
 libgames_support_la_LIBADD += $(GNOME_LIBS)
-
-if GGZ_CLIENT
-libgames_support_la_CFLAGS += 	\
-	$(GGZMOD_INCLUDES) 	\
-	$(GGZ_GTK_INCLUDES) 	\
-	$(GGZCORE_INCLUDES)	\
-	$(LIBGGZ_INCLUDES)
-libgames_support_la_LIBADD += 	\
-	$(GGZMOD_LIBS) 	\
-	$(GGZ_GTK_LIBS) 	\
-	$(GGZCORE_LIBS)	\
-	$(LIBGGZ_LIBS) -lggzmod
-endif
 endif
 
 if HAVE_RSVG
@@ -360,8 +335,6 @@ libgames_support_gi_la_CPPFLAGS = $(libgames_support_la_CPPFLAGS) -DLIBGAMES_SUP
 libgames_support_gi_la_CFLAGS = $(libgames_support_la_CFLAGS)
 libgames_support_gi_la_LIBADD = $(libgames_support_la_LIBADD)
 
-BUILT_GIRSOURCES = GnomeGamesSupport-1.0.gir GGZ-1.0.gir
-
 GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(libgames_support_gi_la_SOURCES)
 	$(AM_V_GEN) $(INTROSPECTION_SCANNER) -v \
 	--namespace GnomeGamesSupport --nsversion=1.0 \
@@ -370,7 +343,6 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(lib
 	--include=Clutter-1.0 \
 	--include=Cogl-1.0 \
 	--include=Gtk-2.0 \
-	--include=GGZ-1.0 \
 	--library=games-support-gi \
 	--libtool="$(LIBTOOL)" \
 	--output $@ \
