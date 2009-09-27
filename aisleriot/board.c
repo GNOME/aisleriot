@@ -1268,6 +1268,11 @@ drag_begin (AisleriotBoard *board)
   clutter_container_add (CLUTTER_CONTAINER (stage),
                          priv->moving_cards_group, NULL);
 
+  if (hslot->cards->len == 0) {
+    clutter_actor_lower_bottom (hslot->slot_renderer);
+    clutter_actor_lower_bottom (priv->baize_actor);
+  }
+
   set_cursor (board, CURSOR_CLOSED);
 }
 
@@ -1292,6 +1297,9 @@ drag_end (AisleriotBoard *board,
                                    priv->moving_cards_origin_slot,
                                    priv->moving_cards->data,
                                    priv->moving_cards->len);
+    clutter_actor_raise_top (priv->moving_cards_origin_slot->slot_renderer);
+    ClutterActor *animation_layer = aisleriot_slot_renderer_get_animation_layer(priv->moving_cards_origin_slot->slot_renderer);
+    clutter_actor_raise_top (animation_layer);
   }
 
   priv->click_status = STATUS_NONE;
