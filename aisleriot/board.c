@@ -839,16 +839,6 @@ slot_update_geometry (AisleriotBoard *board,
     clutter_actor_set_position (slot->slot_renderer,
                                 slot->rect.x, slot->rect.y);
 
-  if (GTK_WIDGET_REALIZED (widget)) {
-    GdkRectangle damage = slot->rect;
-
-    if (old_rect.width > 0 && old_rect.height > 0) {
-      gdk_rectangle_union (&damage, &old_rect, &damage);
-    }
-
-    gdk_window_invalidate_rect (widget->window, &damage, FALSE);
-  }
-
   slot->needs_update = FALSE;
 }
 
