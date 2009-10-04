@@ -1,3 +1,4 @@
+/* This is a generated file; DO NOT EDIT */
 /* Translators: this string is the name of a game of patience.
  If there is an established standard name for this game in your
  locale, use that; otherwise you can translate this string
