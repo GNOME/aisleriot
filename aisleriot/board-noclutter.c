@@ -619,7 +619,7 @@ set_focus (AisleriotBoard *board,
 
   if (priv->focus_slot != NULL) {
     if (priv->show_focus &&
-        GTK_WIDGET_HAS_FOCUS (widget)) {
+        gtk_widget_has_focus (widget)) {
       gdk_window_invalidate_rect (window, &priv->focus_rect, FALSE);
     
       priv->show_focus = FALSE;
@@ -638,7 +638,7 @@ set_focus (AisleriotBoard *board,
   priv->focus_card_id = card_id;
 
   if (show_focus &&
-      GTK_WIDGET_HAS_FOCUS (widget)) {
+      gtk_widget_has_focus (widget)) {
     get_focus_rect (board, &priv->focus_rect);
     gdk_window_invalidate_rect (window, &priv->focus_rect, FALSE);
   }
@@ -2196,7 +2196,7 @@ aisleriot_board_activate (AisleriotBoard *board)
   int selection_start_card_id = priv->selection_start_card_id;
   guint state = 0;
 
-  if (!GTK_WIDGET_HAS_FOCUS (widget))
+  if (!gtk_widget_has_focus (widget))
     return;
 
   if (!focus_slot) {
@@ -2274,7 +2274,7 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
   guint state;
   gboolean is_control, is_shift, moved = FALSE;
 
-  if (!GTK_WIDGET_HAS_FOCUS (widget))
+  if (!gtk_widget_has_focus (widget))
     return FALSE;
 
   g_return_val_if_fail (step == GTK_MOVEMENT_LOGICAL_POSITIONS ||
@@ -3283,7 +3283,7 @@ draw_focus:
 #ifdef ENABLE_KEYNAV
   if (G_UNLIKELY (priv->show_focus &&
                   priv->focus_slot != NULL &&
-                  GTK_WIDGET_HAS_FOCUS (widget))) {
+                  gtk_widget_has_focus (widget))) {
     GdkRectangle focus_rect;
 
     /* Check whether this needs to be drawn */

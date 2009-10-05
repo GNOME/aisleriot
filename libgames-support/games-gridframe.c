@@ -160,7 +160,7 @@ games_grid_frame_size_request (GtkWidget * widget,
   requisition->width = 1;
   requisition->height = 1;
 
-  if (child && GTK_WIDGET_VISIBLE (child)) {
+  if (child && gtk_widget_get_visible (child)) {
     gtk_widget_size_request (child, requisition);
   }
 }
@@ -198,7 +198,7 @@ games_grid_frame_size_allocate (GtkWidget * widget,
        child_allocation.height != frame->old_allocation.height))
     gdk_window_invalidate_rect (gtk_widget_get_window (widget), allocation, FALSE);
 
-  if (child && GTK_WIDGET_VISIBLE (child))
+  if (child && gtk_widget_get_visible (child))
     gtk_widget_size_allocate (child, &child_allocation);
 
   frame->old_allocation = child_allocation;
