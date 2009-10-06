@@ -2492,7 +2492,9 @@ aisleriot_window_init (AisleriotWindow *window)
 #else
   const char *env;
   GtkStatusbar *statusbar;
-  GtkWidget *statusbar_hbox,*label, *time_box;
+  GtkWidget *statusbar_hbox, *statusbar_label, *label, *time_box;
+  GtkContainer *statusbar_frame;
+  GList *list;
 #endif
 
   g_assert (G_N_ELEMENTS (names) == LAST_ACTION);
@@ -2580,11 +2582,15 @@ aisleriot_window_init (AisleriotWindow *window)
    * which we put in the statusbar's frame instead.
    */
   statusbar_hbox = gtk_hbox_new (FALSE, 24);
-  g_object_ref (statusbar->label);
-  gtk_container_remove (GTK_CONTAINER (statusbar->frame), statusbar->label);
-  gtk_box_pack_start (GTK_BOX (statusbar_hbox), statusbar->label, TRUE, TRUE, 0);
-  g_object_unref (statusbar->label);
-  gtk_container_add (GTK_CONTAINER (statusbar->frame), statusbar_hbox);
+  list = gtk_container_get_children (GTK_CONTAINER (statusbar));
+  statusbar_frame = GTK_CONTAINER (list->data);
+  g_list_free (list);
+  statusbar_label = gtk_bin_get_child (GTK_BIN (statusbar_frame));
+  g_object_ref (statusbar_label);
+  gtk_container_remove (statusbar_frame, statusbar_label);
+  gtk_box_pack_start (GTK_BOX (statusbar_hbox), statusbar_label, TRUE, TRUE, 0);
+  g_object_unref (statusbar_label);
+  gtk_container_add (statusbar_frame, statusbar_hbox);
   gtk_widget_show (statusbar_hbox);
 
   /* Score */
