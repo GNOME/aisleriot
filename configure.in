@@ -895,6 +895,17 @@ if test "$allow_gnuchess" = "yes"; then
 
   if test "$enable_gnuchess" = "yes"; then
     AC_DEFINE([ENABLE_GNUCHESS],[1],[Enable compilation of included GNU Chess as AI chess engine for glChess])
+    AC_CHECK_HEADER(pthread.h, [],
+                  AC_MSG_ERROR([*** Cannot find pthread.h header]))
+    AC_CHECK_LIB(pthread, pthread_create,
+                 [PTHREAD_LDFLAGS="$PTHREAD_LDFLAGS -lpthread"
+                  PTHREAD_CFLAGS="$PTHREAD_CFLAGS -D_REENTRANT"],
+                 [AC_CHECK_LIB(c_r, pthread_create,
+                               [PTHREAD_LDFLAGS="$PTHREAD_LDFLAGS -pthread"
+                                PTHREAD_CFLAGS="$PTHREAD_CFLAGS -D_THREAD_SAFE"],
+                 AC_MSG_ERROR([*** Cannot find pthread library]))])
+    AC_SUBST(PTHREAD_CFLAGS)
+    AC_SUBST(PTHREAD_LDFLAGS)
   fi
 fi
 
