@@ -89,7 +89,9 @@ menu_item_select_cb (GtkWidget * widget, GtkStatusbar * statusbar)
 
   context_id = gtk_statusbar_get_context_id (statusbar, "games-tooltip");
 
-#if GTK_CHECK_VERSION (2, 10, 0)
+#if GTK_CHECK_VERSION (2, 16, 0)
+  action = gtk_activatable_get_related_action (GTK_ACTIVATABLE (widget));
+#elif GTK_CHECK_VERSION (2, 10, 0)
   action = gtk_widget_get_action (widget);
 #else
   action = g_object_get_data (G_OBJECT (widget), "gtk-action");
