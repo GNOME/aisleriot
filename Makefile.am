@@ -2,7 +2,6 @@ ACLOCAL_AMFLAGS = -I m4
 
 SUBDIRS= \
 	po \
-	dependencies \
 	icons \
 	libgames-support \
 	$(gamelist)
@@ -15,7 +14,7 @@ if ENABLE_TESTS
 SUBDIRS += tests
 endif
 
-DIST_SUBDIRS = po dependencies icons sounds libgames-support tests $(allgames) $(staginggames)
+DIST_SUBDIRS = po icons sounds libgames-support tests $(allgames) $(staginggames)
 
 EXTRA_DIST = \
 	autogen.sh \
