@@ -385,7 +385,7 @@ games_runtime_init (const char *name)
   retval = TRUE;
 #endif /* ENABLE_BINRELOC */
 
-  if (strcmp (app_name, "aisleriot") == 0 || strcmp (app_name, "blackjack") == 0) {
+  if (strcmp (app_name, "aisleriot") == 0) {
     gpl_version = 3;
   } else {
     gpl_version = 2;

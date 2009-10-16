@@ -23,7 +23,7 @@ AM_MAINTAINER_MODE([enable])
 # we support and which features to check for
 
 # This is the canonical list of all game subdirectories.
-allgames="aisleriot blackjack gnometris gnect gnomine same-gnome mahjongg gtali gnotravex gnotski glines iagno glchess gnobots2 gnibbles gnome-sudoku lightsoff"
+allgames="aisleriot gnometris gnect gnomine same-gnome mahjongg gtali gnotravex gnotski glines iagno glchess gnobots2 gnibbles gnome-sudoku lightsoff"
 AC_SUBST([allgames])
 staginggames="same-gnome-clutter"
 AC_SUBST([staginggames])
@@ -112,7 +112,6 @@ need_cxx=no
 need_rsvg=no
 need_guile=no
 need_python=no
-need_libxml=no
 need_clutter=no
 need_dbus_glib=no
 want_sound=no
@@ -125,7 +124,7 @@ build_libgamescards=no
 
 for game in $gamelist; do
   case $game in
-    gnometris|blackjack) need_cxx=yes ;;
+    gnometris) need_cxx=yes ;;
     *) ;;
   esac
   case $game in
@@ -149,15 +148,11 @@ for game in $gamelist; do
     *) disallow_hildon=yes ;;
   esac
   case $game in
-    aisleriot|blackjack) ;;
+    aisleriot) ;;
     *) need_rsvg=yes ;;
   esac
   case $game in
     aisleriot|glines|gnobots2|gnomine|gnotravex|gnotski|iagno) allow_smclient=yes ;;
-    *) ;;
-  esac
-  case $game in
-    blackjack) need_libxml=yes ;;
     *) ;;
   esac
   case $game in
@@ -173,7 +168,7 @@ for game in $gamelist; do
     *) libgames_support_full=yes ;;
   esac
   case $game in
-    aisleriot|blackjack) build_libgamescards=yes ;;
+    aisleriot) build_libgamescards=yes ;;
     *) ;;
   esac
 done
@@ -191,7 +186,6 @@ for game in $gamelist; do
 done
 
 AM_CONDITIONAL([BUILD_AISLERIOT],[test "$build_aisleriot" = "yes"])
-AM_CONDITIONAL([BUILD_BLACKJACK],[test "$build_blackjack" = "yes"])
 AM_CONDITIONAL([BUILD_GLCHESS],[test "$build_glchess" = "yes"])
 AM_CONDITIONAL([BUILD_GLINES],[test "$build_glines" = "yes"])
 AM_CONDITIONAL([BUILD_GNECT],[test "$build_gnect" = "yes"])
@@ -562,14 +556,6 @@ AC_SUBST([GTK_LIBS])
 
 AM_GCONF_SOURCE_2
 AC_PATH_PROG([GCONFTOOL],[gconftool-2])
-
-# Check for libXML2
-
-if test "$need_libxml" = "yes"; then
-  PKG_CHECK_MODULES([XML],[libxml-2.0 >= $LIBXML_REQUIRED])
-  AC_SUBST([XML_CFLAGS])
-  AC_SUBST([XML_LIBS])
-fi
 
 # Check for GNOME modules
 
@@ -1109,11 +1095,6 @@ po/Makefile.in
 icons/Makefile
 sounds/Makefile
 libgames-support/Makefile
-blackjack/Makefile
-blackjack/data/Makefile
-blackjack/help/Makefile
-blackjack/pixmaps/Makefile
-blackjack/src/Makefile
 gnect/Makefile
 gnect/src/Makefile
 gnect/data/Makefile
@@ -1184,7 +1165,6 @@ gnibbles/gnibbles.desktop.in
 gnotski/gnotski.desktop.in
 glchess/glchess.desktop.in
 mahjongg/mahjongg.desktop.in
-blackjack/data/blackjack.desktop.in
 gtali/gtali.desktop.in
 gnome-sudoku/gnome-sudoku.desktop.in
 iagno/iagno.desktop.in
