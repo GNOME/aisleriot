@@ -206,3 +206,5 @@ DISTCLEANFILES = \
 
 @INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_SCHEMAS_RULE@
+
+-include $(top_srcdir)/git.mk

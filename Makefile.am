@@ -1,5 +1,7 @@
 ACLOCAL_AMFLAGS = -I m4
 
+NULL =
+
 SUBDIRS= \
 	po \
 	icons \
@@ -16,6 +18,12 @@ endif
 
 DIST_SUBDIRS = po icons sounds libgames-support tests $(allgames) $(staginggames)
 
+DISTCHECK_CONFIGURE_FLAGS = \
+	--with-platform=gnome \
+	--disable-schemas-install \
+	--disable-scrollkeeper \
+	--disable-silent-rules
+
 EXTRA_DIST = \
 	autogen.sh \
 	COPYING-DOCS \
@@ -25,21 +33,41 @@ EXTRA_DIST = \
 	MAINTAINERS	\
 	HACKING		 \
 	gnome-doc-utils.make \
-	ChangeLog
+	ChangeLog \
+	$(NULL)
 
 DISTCLEANFILES = \
 	intltool-extract \
 	intltool-merge \
 	intltool-update \
-	gnome-doc-utils.make
+	gnome-doc-utils.make \
+	$(NULL)
+
+MAINTAINERCLEANFILES = \
+	ChangeLog \
+	$(srcdir)/INSTALL \
+	$(srcdir)/aclocal.m4 \
+	$(srcdir)/autoscan.log \
+	$(srcdir)/compile \
+	$(srcdir)/config.guess \
+	$(srcdir)/config.h.in \
+	$(srcdir)/config.sub \
+	$(srcdir)/configure \
+	$(srcdir)/configure.scan \
+	$(srcdir)/depcomp \
+	$(srcdir)/install-sh \
+	$(srcdir)/ltmain.sh \
+	$(srcdir)/missing \
+	$(srcdir)/mkinstalldirs \
+	$(srcdir)/omf.make \
+	$(srcdir)/xmldocs.make \
+	$(srcdir)/gtk-doc.make \
+	$(srcdir)/po/Makefile.in.in \
+	`find "$(srcdir)" -type f -name Makefile.in -print` \
+	$(NULL)
 
 # Ignore score files, these *should* be left behind.
 distuninstallcheck_listfiles = find . -type f -print | grep -v '.scores' | grep-v scrollkeeper
-
-DISTCHECK_CONFIGURE_FLAGS = \
-	--with-platform=gnome \
-	--disable-schemas-install \
-	--disable-scrollkeeper
 
 # Build ChangeLog from git log
 ChangeLog:
@@ -50,3 +78,5 @@ ChangeLog:
 dist: ChangeLog
 
 .PHONY: ChangeLog
+
+-include $(top_srcdir)/git.mk

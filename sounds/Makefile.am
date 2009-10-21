@@ -30,3 +30,5 @@ sound_DATA = \
 	$(NULL)
 
 EXTRA_DIST = $(sound_DATA)
+
+-include $(top_srcdir)/git.mk

@@ -98,3 +98,5 @@ rules_DATA  = 			\
 EXTRA_DIST = \
 	$(rules_DATA)	\
 	template.scm
+
+-include $(top_srcdir)/git.mk

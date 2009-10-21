@@ -370,3 +370,5 @@ CLEANFILES += GnomeGamesSupport-1.0.gir $(typelibs_DATA)
 
 endif # HAVE_INTROSPECTION
 
+
+-include $(top_srcdir)/git.mk

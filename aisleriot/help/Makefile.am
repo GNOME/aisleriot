@@ -104,3 +104,5 @@ DOC_FIGURES = \
 	$(NULL)
 
 dist-hook: doc-dist-hook
+
+-include $(top_srcdir)/git.mk
