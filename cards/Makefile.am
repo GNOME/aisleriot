@@ -21,3 +21,5 @@ EXTRA_DIST = \
 	README.ornamental	\
 	README.paris		\
 	$(NULL)
+
+-include $(top_srcdir)/git.mk
