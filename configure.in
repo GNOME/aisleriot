@@ -23,7 +23,7 @@ AM_MAINTAINER_MODE([enable])
 # we support and which features to check for
 
 # This is the canonical list of all game subdirectories.
-allgames="aisleriot gnometris gnect gnomine same-gnome mahjongg gtali gnotravex gnotski glines iagno glchess gnobots2 gnibbles gnome-sudoku lightsoff"
+allgames="aisleriot quadrapassel gnect gnomine swell-foop mahjongg gtali gnotravex gnotski glines iagno glchess gnobots2 gnibbles gnome-sudoku lightsoff"
 AC_SUBST([allgames])
 staginggames=""
 AC_SUBST([staginggames])
@@ -124,7 +124,7 @@ build_libgamescards=no
 
 for game in $gamelist; do
   case $game in
-    gnometris) need_cxx=yes ;;
+    quadrapassle) need_cxx=yes ;;
     *) ;;
   esac
   case $game in
@@ -140,7 +140,7 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    aisleriot|gnect|gnibbles|gnobots2|gnometris|iagno) want_sound=yes ;;
+    aisleriot|gnect|gnibbles|gnobots2|quadrapassle|iagno) want_sound=yes ;;
     *) ;;
   esac
   case $game in
@@ -156,7 +156,7 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    gnometris|lightsoff|same-gnome|gnibbles) need_clutter=yes ;;
+    quadrapassle|lightsoff|swell-foop|gnibbles) need_clutter=yes ;;
     *) ;;
   esac
   case $game in
@@ -192,7 +192,7 @@ AM_CONDITIONAL([BUILD_GNECT],[test "$build_gnect" = "yes"])
 AM_CONDITIONAL([BUILD_GNIBBLES],[test "$build_gnibbles" = "yes"])
 AM_CONDITIONAL([BUILD_GNOBOTS2],[test "$build_gnobots2" = "yes"])
 AM_CONDITIONAL([BUILD_GNOME_SUDOKU],[test "$build_gnome_sudoku" = "yes"])
-AM_CONDITIONAL([BUILD_GNOMETRIS],[test "$build_gnometris" = "yes"])
+AM_CONDITIONAL([BUILD_GNOMETRIS],[test "$build_quadrapassle" = "yes"])
 AM_CONDITIONAL([BUILD_GNOMINE],[test "$build_gnomine" = "yes"])
 AM_CONDITIONAL([BUILD_GNOTRAVEX],[test "$build_gnotravex" = "yes"])
 AM_CONDITIONAL([BUILD_GNOTSKI],[test "$build_gnotski" = "yes"])
@@ -1102,8 +1102,8 @@ gnect/pixmaps/Makefile
 gnect/help/Makefile
 gnomine/Makefile
 gnomine/help/Makefile
-same-gnome/Makefile
-same-gnome/help/Makefile
+swell-foop/Makefile
+swell-foop/help/Makefile
 mahjongg/Makefile
 mahjongg/help/Makefile
 gtali/Makefile
@@ -1120,9 +1120,9 @@ gnotski/help/Makefile
 glines/Makefile
 glines/glines.desktop.in
 glines/help/Makefile
-gnometris/Makefile
-gnometris/pix/Makefile
-gnometris/help/Makefile
+quadrapassle/Makefile
+quadrapassle/pix/Makefile
+quadrapassle/help/Makefile
 gnobots2/Makefile
 gnobots2/help/Makefile
 gnibbles/Makefile
@@ -1159,13 +1159,13 @@ gnome-sudoku/src/lib/gtk_goodies/Makefile
 gnome-sudoku/data/Makefile
 gnome-sudoku/images/Makefile
 gnome-sudoku/help/Makefile
-same-gnome/data/themes/Makefile
-same-gnome/data/themes/tango/Makefile
-same-gnome/data/themes/test/Makefile
-same-gnome/same-gnome
-same-gnome/same-gnome.desktop.in
-same-gnome/src/Path.js
-gnometris/gnometris.desktop.in
+swell-foop/data/themes/Makefile
+swell-foop/data/themes/tango/Makefile
+swell-foop/data/themes/test/Makefile
+swell-foop/swell-foop
+swell-foop/swell-foop.desktop.in
+swell-foop/src/Path.js
+quadrapassle/quadrapassle.desktop.in
 gnobots2/gnobots2.desktop.in
 gnibbles/gnibbles.desktop.in
 gnotski/gnotski.desktop.in
