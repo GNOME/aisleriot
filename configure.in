@@ -25,7 +25,7 @@ AM_MAINTAINER_MODE([enable])
 # This is the canonical list of all game subdirectories.
 allgames="aisleriot gnometris gnect gnomine same-gnome mahjongg gtali gnotravex gnotski glines iagno glchess gnobots2 gnibbles gnome-sudoku lightsoff"
 AC_SUBST([allgames])
-staginggames="same-gnome-clutter"
+staginggames=""
 AC_SUBST([staginggames])
 
 gamelist=""
@@ -156,7 +156,7 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    gnometris|lightsoff|same-gnome-clutter|gnibbles) need_clutter=yes ;;
+    gnometris|lightsoff|same-gnome|gnibbles) need_clutter=yes ;;
     *) ;;
   esac
   case $game in
@@ -1159,7 +1159,12 @@ gnome-sudoku/src/lib/gtk_goodies/Makefile
 gnome-sudoku/data/Makefile
 gnome-sudoku/images/Makefile
 gnome-sudoku/help/Makefile
+same-gnome/data/themes/Makefile
+same-gnome/data/themes/tango/Makefile
+same-gnome/data/themes/test/Makefile
+same-gnome/same-gnome
 same-gnome/same-gnome.desktop.in
+same-gnome/src/Path.js
 gnometris/gnometris.desktop.in
 gnobots2/gnobots2.desktop.in
 gnibbles/gnibbles.desktop.in
@@ -1171,13 +1176,6 @@ gnome-sudoku/gnome-sudoku.desktop.in
 iagno/iagno.desktop.in
 gnect/data/gnect.desktop.in
 gnomine/gnomine.desktop.in
-same-gnome-clutter/Makefile
-same-gnome-clutter/data/themes/Makefile
-same-gnome-clutter/data/themes/tango/Makefile
-same-gnome-clutter/data/themes/test/Makefile
-same-gnome-clutter/same-gnome-clutter
-same-gnome-clutter/same-gnome-clutter.desktop.in
-same-gnome-clutter/src/Path.js
 lightsoff/Makefile
 lightsoff/help/Makefile
 lightsoff/src/lightsoff
