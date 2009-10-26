@@ -124,7 +124,7 @@ build_libgamescards=no
 
 for game in $gamelist; do
   case $game in
-    quadrapassle) need_cxx=yes ;;
+    quadrapassel) need_cxx=yes ;;
     *) ;;
   esac
   case $game in
@@ -140,7 +140,7 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    aisleriot|gnect|gnibbles|gnobots2|quadrapassle|iagno) want_sound=yes ;;
+    aisleriot|gnect|gnibbles|gnobots2|quadrapassel|iagno) want_sound=yes ;;
     *) ;;
   esac
   case $game in
@@ -156,7 +156,7 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    quadrapassle|lightsoff|swell-foop|gnibbles) need_clutter=yes ;;
+    quadrapassel|lightsoff|swell-foop|gnibbles) need_clutter=yes ;;
     *) ;;
   esac
   case $game in
@@ -192,7 +192,7 @@ AM_CONDITIONAL([BUILD_GNECT],[test "$build_gnect" = "yes"])
 AM_CONDITIONAL([BUILD_GNIBBLES],[test "$build_gnibbles" = "yes"])
 AM_CONDITIONAL([BUILD_GNOBOTS2],[test "$build_gnobots2" = "yes"])
 AM_CONDITIONAL([BUILD_GNOME_SUDOKU],[test "$build_gnome_sudoku" = "yes"])
-AM_CONDITIONAL([BUILD_GNOMETRIS],[test "$build_quadrapassle" = "yes"])
+AM_CONDITIONAL([BUILD_QUADRAPASSEL],[test "$build_quadrapassel" = "yes"])
 AM_CONDITIONAL([BUILD_GNOMINE],[test "$build_gnomine" = "yes"])
 AM_CONDITIONAL([BUILD_GNOTRAVEX],[test "$build_gnotravex" = "yes"])
 AM_CONDITIONAL([BUILD_GNOTSKI],[test "$build_gnotski" = "yes"])
@@ -200,7 +200,7 @@ AM_CONDITIONAL([BUILD_GTALI],[test "$build_gtali" = "yes"])
 AM_CONDITIONAL([BUILD_IAGNO],[test "$build_iagno" = "yes"])
 AM_CONDITIONAL([BUILD_LIGHTSOFF],[test "$build_lightsoff" = "yes"])
 AM_CONDITIONAL([BUILD_MAHJONGG],[test "$build_mahjongg" = "yes"])
-AM_CONDITIONAL([BUILD_SAME_GNOME],[test "$build_same_gnome" = "yes"])
+AM_CONDITIONAL([BUILD_SWELL_FOOP],[test "$build_swell_foop" = "yes"])
 
 # Locate various programs
 
@@ -1120,9 +1120,9 @@ gnotski/help/Makefile
 glines/Makefile
 glines/glines.desktop.in
 glines/help/Makefile
-quadrapassle/Makefile
-quadrapassle/pix/Makefile
-quadrapassle/help/Makefile
+quadrapassel/Makefile
+quadrapassel/pix/Makefile
+quadrapassel/help/Makefile
 gnobots2/Makefile
 gnobots2/help/Makefile
 gnibbles/Makefile
@@ -1165,7 +1165,7 @@ swell-foop/data/themes/test/Makefile
 swell-foop/swell-foop
 swell-foop/swell-foop.desktop.in
 swell-foop/src/Path.js
-quadrapassle/quadrapassle.desktop.in
+quadrapassel/quadrapassel.desktop.in
 gnobots2/gnobots2.desktop.in
 gnibbles/gnibbles.desktop.in
 gnotski/gnotski.desktop.in
