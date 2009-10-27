@@ -12,11 +12,7 @@ if ENABLE_SOUND
 SUBDIRS += sounds
 endif
 
-if ENABLE_TESTS
-SUBDIRS += tests
-endif
-
-DIST_SUBDIRS = po icons sounds libgames-support tests $(allgames) $(staginggames)
+DIST_SUBDIRS = po icons sounds libgames-support $(allgames) $(staginggames)
 
 DISTCHECK_CONFIGURE_FLAGS = \
 	--with-platform=gnome \

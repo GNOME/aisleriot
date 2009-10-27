@@ -1010,25 +1010,6 @@ GNOME_DOC_INIT([0.10.0],
 
 AM_CONDITIONAL([BUILD_HELP],[test "$with_help_method" = "ghelp"])
 
-# **********
-# Unit tests
-# **********
-
-AC_ARG_ENABLE([tests],
-  [AS_HELP_STRING([--disable-tests], [disable building test apps (default: platform dependent)])],
-  [],
-  [case "$with_platform" in
-    hildon) enable_tests=no ;;
-    *) enable_tests=yes ;;
-   esac])
-
-if test "$enable_tests" = "yes"; then
-  PKG_CHECK_MODULES([CHECK],[check >= 0.9.4],
-    [],[AC_MSG_ERROR([check not found; install it or use --disable-tests])])
-fi
-
-AM_CONDITIONAL([ENABLE_TESTS],[test "$enable_tests" = "yes"])
-
 # *************
 # setgid checks
 # *************
@@ -1184,8 +1165,6 @@ lightsoff/src/Path.js
 lightsoff/data/themes/Makefile
 lightsoff/data/themes/tango/Makefile
 lightsoff/data/themes/up/Makefile
-tests/Makefile
-tests/libgames-support/Makefile
 ])
 AC_OUTPUT
 
@@ -1215,7 +1194,6 @@ echo "
     Use setgid binaries:   ${enable_setgid}
     Scores user:           ${scores_user}
     Scores & setgid group: ${scores_group}
-    Tests enabled:         ${enable_tests}
     Binreloc:              ${enable_binreloc}
     Introspection data:    ${enable_introspection}
 "
