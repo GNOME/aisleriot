@@ -1,3 +1,251 @@
+gnome-games 2.29.1
+==================
+
+This first development release of gnome-games 2.29 is an exciting one with lots
+of user visible changes. The new game Lightsoff has been added to the package
+bringing a dependency on Seed. Same GNOME has also been ported to Seed/Clutter
+and at the same time changed its name to Swell Foop. Gnometris also changed
+its name to Quadrapassel. This release is delivered without network support
+except for GLChess. The dependency on GGZ has been dropped in favour of a coming
+move to Telepathy for networked gaming.
+
+To the users of Blackjack, we are sorry to inform you that the game has been
+dropped from GNOME Games.
+
+A HUGE thanks go out to Google for the three GSoC students that they sponsored
+this summer. A large amount of the work for 2.29 has come from their work.
+
+Thank you, Google!
+
+There have been a radical number of changes in master which concern
+documentation and translation teams: please see our email to the relevant
+lists.
+
+Shortlog below:
+
+Branko Kokanović (3):
+      Added Serbian translation
+
+Christian Persch (7):
+      build: Remove leftover ggz m4 macros
+      build: Remove old ggz ChangeLog file
+      build: Move included gnuchess from dependencies/ to glchess/
+      build: Change POTFILES.in for the gnuchess move
+      build: Drop blackjack
+      build: Automatically keep .gitignore files updated
+      ld: Remove .gitignore files
+
+Claude Paroz (2):
+      [gnotravex] Fix documentation errors (Fixes bug #595771)
+      Updated French translation of Tetravex manual
+
+Gintautas Miliauskas (1):
+      Updated Lithuanian translation.
+
+Guillaume Beland (132):
+      Initial commit including the work I did over the past 2 weeks
+      Added new files to the build and updated main.c
+      Forgot about that makefile, added the new svg
+      Loading pixmaps in main.c
+      First tentative to implement worm with clutter
+      Using g_object_set_property instead of ClutterScript to set special actor
+      Removed unused code for loading pixmaps in board.c
+      Various work on worm-clutter.c
+      Some minor work on worm-clutter
+      Some work on resizing worm & creating/displaying them properly
+      Small fix to resize worm properly, now reloading pixmaps on resize
+      Fixed worm resizing for good
+      Added a bunch of code from worm.c to worm-clutter.c related to AI
+      Added two files that got lost somehow along the way
+      Implemented basic movement on worms & some code cleanup
+      minor fixes
+      First succesful attemp to slow down timeline
+      First step to connect AI with worm's movement
+      Cleaned up the code, fixed some stuff, still need to tweak a lot stuff
+      Factorized a bunch of code out of main into 3 functions to move worm
+      Small fix regarding head & tail position and other small stuff
+      Added clutter support in bonus.[ch]
+      Integrated new GnibblesLevel to boni.c
+      Same process with warp, Integrated clutter to warp..
+      Integrated GnibblesLevel to wrapmanager
+      Various code cleanup
+      Fixed some silly mistake, now we're getting closer to something!
+      Fixed one more silly mistake regarding worm head & tail
+      Code clean-up, added some utility function to get head & tail actor..
+      Added debug info, changed the level & found why it was hanging in
+      Getting closer and closer to a working AI
+      Worms are now moving nicely, but need some more tweak..
+      Code refactoring & clean up & some more tweak on worm
+      Code refactoting, some improvment on worm, warp and bonus actors added to the
+      Started to tie different part of the game together & more work on worm
+      Big commit, began to remove old code, improvement on worm...
+      Fixed some compiler warning, integrating the logic to start a new game
+      Everything in place to control worm with keyboard, and some more tweak on game
+      Some minor code clean-up
+      Not using a timeline to call the move_worm_cb () function plus some fixes
+      Now handling worm's status and moved move_worm_cb to gnibbles.c and renabed it
+      Commented out all unused code, removed worm.{ch} from the build system +fix
+      Removed old code, renamed function & global variables
+      Disabled logo, fixed worm's AI movement, a playable version is close
+      Moved gnibbles_add_bonus to level.c, removed old code, fixed a lot of tiny bugs
+      Forgot to comment out those lines,
+      Renamed GnibblesCWorm to GnibblesWorm & related function, work on boni
+      WOrking on keypress handler and reseting the worm after its death
+      Fixed warp, mostly, also fixed gnibbles_worm_reset (), mostly
+      Added fade-in animation on level & worm on game start
+      Fixed logo/splash screen
+      Small fade-out effect on splash screen when the game begin
+      Fixed gnibbles_worm_reset(), Worm now restart properly after death
+      Fixed keyboard control
+      Added fade-in effect on bonus, removed useless commented code
+      Fixed keypress queue and dequeue
+      Bunch of small fixes related to colision detection, positioning and such
+      Removed the GtkClutterEmbed from GnibblesBoard and replaced it with a
+      Trivial code refactoring & small fixes
+      Rotation on bonus, still need polish, also trying to fix bugs in collision
+      Work on debugging collision detection, added debug info, gnibbles_worm_inverse()
+      Moved to ClutterAnimation to animate bonus, work on worm animation when dying
+      Trivial code refactoring
+      Nicer animation when worm die
+      Improved worm's explosion by adding a scale effect
+      More trivial code refactoring
+      Merged level.c to board.c ...
+      Made a lot of fix  on worm movement, still can't put the finger on what is wrong
+      Re-added gnibles_error()
+      Partially solved the collision bug, added utility method to lighten the code
+      Factored out code to handle bonus into a new utility function
+      Updated to clutter-1.0 ...
+      Removed useless call to floorf and roundf and simplified code with MAX call
+      Removed the stage from GnibblesBoard
+      Added GError handling where needed
+      Re-integrated proper warp management
+      Removed clutter_actor_show (stage)
+      Changed the animation when the level load & worm appear on the board
+      Added MarioBros-like animation whena part of the worm disapear...
+      New animation on bonus
+      Some tweak on bonus and warp animation
+      Completely changing the way worms are moving.
+      Made the majority of changes needed to utility function & removed old code
+      Code refactoring, removed old code and some minor fixes
+      Finally solved the colision detection bug
+      Nicer animation when worm die
+      Collision bug not solved after all & Fixed a silly mistake in gnibbles_worm_get_tail_direction
+      Solved the collision bug for good, hopefully!
+      Some work on bonus/erasing tail, animation on warp and small fix to bonus anim
+      New effect on worms when eating a bonus, still need polishing
+      Fixed the menu to work with gnome-globalmenu
+      Some trivial code refactoring, a little animation on the splash screen and ...
+      Resizing bonus on configure event
+      Also resizing warp on configure event
+      Don't reload the splash screen when changin the start level
+      Fixed bonus, worms now recognize which type of bonus they eat
+      Fixed reversing worm's direction, tweak on animation and some other trivial
+      Some work on bonushalf & other general improvement
+      Fixed a problem in worm_get_tail_direction where it returned the worng direction
+      Removed debug code
+      Removed old worm.c|h & some trivial code refactoring
+      Renamed worm-clutter.[ch] to worm.[ch]
+      Trivial code reformating
+      Changing & loading new level properly, code clean up & minor tweak
+      Destroying worm properly
+      Some improvement to reset and animate worm properly when they die, still need work
+      Reseting and animating the worm more nicely when dying
+      New animation for on walls and finally reintroduced mariobros-like animation on
+      Animation tweak and minor fix
+      Fixed the reset/colision bug.
+      Changed the tweening for the bonus show animation
+      Fixed coding style to follow the GNU coding style (removed tabs etc)
+      Not reseting the worm score and lives on new level
+      Ending the game when a player do not have lives left
+      Added an animation when a game end
+      Applying the same animation  when switching level
+      Properly reseting worm's live and score on new game
+      Solved the bug when traveling through warp, warp reset and tail follow properly
+      Using the right color for worms
+      Removed debug-related code
+      More rebust solution for the previously solved warp bug
+      Trivial code refactoring
+      Properly using setgid_io_init
+      Fix splash screen resizing/rescaling and some effort on trying to reduce CPU
+      More work on reducing CPU usage
+      Added shadow to text on the splash screen & improved resizing
+      Found what is causing the high CPU usage...
+      Using the same value everywhere when resizing splashscreen
+      small fix on splash screen text position.
+      gnibbles: removed an old an unused function.
+      gnibbles: Fixed bug #598668, Removed useless check
+      gnibbles: Fixed bug #598664, Using safe flaot comparison
+
+Jason D. Clinton (25):
+      GNOME Games 2.28.0
+      Post-release version bump to to 2.29.0
+      aisleriot: partial fix for z-order of empty slots; handles drag case (#575740)
+      aisleriot: remove usless region invalidation with Clutter; OpenGL doesn't care
+      aisleriot: resolve z-order for empty slots; handles selection case (#575740)
+      lightsoff: enable in default builds
+      gnibbles: remote all trailing whitespace to make git happy
+      i18n: remove GGZ parts in POTFILES.in to fix translations
+      same-gnome: move old help in to new same-gnome
+      same-gnome: remove the old version
+      same-gnome: move the new same-gnome-clutter in to the same-gnome directory
+      gnometris: renamed to quadrapassel due trademark concerns
+      same-gnome: renamed to swell-foop due to "GNOME" in name; we don't prefer that
+      swell-foop: s/same-gnome/swell-foop/g
+      swell-foop: fix translation issues with build
+      autogen.sh: Oddly, specifically looks for a handful of directories for sanity
+      quadrapassel: additional build fixes
+      icons: Use the right AM_CONDITIONAL for Quadrapassel's icon
+      quadrapassel: Update translations to use new file names
+      quadrapassel: Fix translations against new help file names
+      quadrapassel: Perform s/gnometris/quadrapassel/g on file paths and names
+      i18n: update the POTFILES.* files for the correct paths
+      swell-foop: reenable the build of the help subdir for help files
+      swell-foop: fix distcheck problem due to error in help Makefile.am
+      swell-foop: make sure we remove the schema file on distclean
+
+Joe Hansen (1):
+      Updated Danish translation of the dodumentation
+
+Jorge González (4):
+      Updated Spanish translation
+      Fixed misspelling, fixes bug #598311
+      Updated Spanish translation, fixes bug #599409
+
+Mario Blättermann (1):
+      Updated German doc translation
+
+Petr Kovar (1):
+      Updated Czech help translation by Marek Cernocky
+
+Thomas Hindoe Paaboel Andersen (19):
+      Gseal: mostly allocation fixes
+      gnect: Fix GSEAL issues
+      gnibbles: Fix GSEAL issues
+      iagno: Fix GSEAL issues
+      GSEAL: fixes for GTK_WIDGET_HAS_FOCUS and GTK_WIDGET_VISIBLE
+      aisleriot: Fix the statusbar-related GSEAL issues
+      add the new gnibbles/board.c to POTFILES.in
+      gnobots2: Remove trailing whitespace in makefile
+      gnomine: fix a build warning
+      lightsoff: add schema file to distclean
+      Remove GGZ
+      Remove ggz from README files. Also remove some deleted files from POTFILES.in
+      glchess: check for pthread if building gnuchess
+      Ifdef the last usage of deprecated gtk symbols
+      gnibbles: fix some code style issues. ISO C90 and missing voids
+      glines: score is guint so can't be less than zero
+      gnect: logic AND should have been bitwise AND
+      glchess: add the makefile from glchess back to configure.in
+      gnibbles: remove deleted files from Makefile.am
+
+Tim Horton (5):
+      Use @libdir@ instead of @prefix@/lib
+      lightsoff: Fix offset so board is vertically centered
+      lightsoff: Make sure cached textures are hidden
+      lightsoff: Implement "Use colors from GNOME theme" checkbox
+      lightsoff: Watch for Gtk theme changes, and update theme coloring
+
+
 gnome-games 2.28.0
 ==================
 
