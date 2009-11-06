@@ -335,6 +335,8 @@ libgames_support_gi_la_CPPFLAGS = $(libgames_support_la_CPPFLAGS) -DLIBGAMES_SUP
 libgames_support_gi_la_CFLAGS = $(libgames_support_la_CFLAGS)
 libgames_support_gi_la_LIBADD = $(libgames_support_la_LIBADD)
 
+BUILT_GIRSOURCES = GnomeGamesSupport-1.0.gir
+
 GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(libgames_support_gi_la_SOURCES)
 	$(AM_V_GEN) $(INTROSPECTION_SCANNER) -v \
 	--namespace GnomeGamesSupport --nsversion=1.0 \
