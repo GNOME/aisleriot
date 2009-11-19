@@ -17,15 +17,54 @@
 
 #include <config.h>
 
-#include <clutter/clutter.h>
+#include "baize.h"
+
+#include <gdk-pixbuf/gdk-pixbuf.h>
+
 #include <cogl/cogl.h>
 
-#include "baize.h"
+#include <libgames-support/games-runtime.h>
 
 /* Special version of ClutterTexture that repeats the texture to fill
    the entire stage. This is used to paint the baize background */
 
 static void aisleriot_baize_paint (ClutterActor *actor);
+
+static void
+load_background (AisleriotBaize *baize)
+{
+  GError *error = NULL;
+  GdkPixbuf *pixbuf;
+  char *path;
+
+  path = games_runtime_get_file (GAMES_RUNTIME_PIXMAP_DIRECTORY, "baize.png");
+
+  pixbuf = gdk_pixbuf_new_from_file (path, &error);
+  g_free (path);
+  if (error) {
+    g_warning ("Failed to load the baize pixbuf: %s\n", error->message);
+    g_error_free (error);
+    return;
+  }
+
+  g_assert (pixbuf != NULL);
+
+  clutter_texture_set_from_rgb_data (CLUTTER_TEXTURE (baize),
+                                     gdk_pixbuf_get_pixels (pixbuf),
+                                     gdk_pixbuf_get_has_alpha (pixbuf),
+                                     gdk_pixbuf_get_width (pixbuf),
+                                     gdk_pixbuf_get_height (pixbuf),
+                                     gdk_pixbuf_get_rowstride (pixbuf),
+                                     gdk_pixbuf_get_has_alpha (pixbuf) ? 4 : 3,
+                                     0,
+                                     &error);
+  if (error) {
+    g_warning ("Failed to set texture from pixbuf: %s", error->message);
+    g_error_free (error);
+  }
+
+  g_object_unref (pixbuf);
+}
 
 G_DEFINE_TYPE (AisleriotBaize, aisleriot_baize, CLUTTER_TYPE_TEXTURE);
 
@@ -38,16 +77,15 @@ aisleriot_baize_class_init (AisleriotBaizeClass *klass)
 }
 
 static void
-aisleriot_baize_init (AisleriotBaize *self)
+aisleriot_baize_init (AisleriotBaize *baize)
 {
+  load_background (baize);
 }
 
 ClutterActor *
 aisleriot_baize_new (void)
 {
-  ClutterActor *self = g_object_new (AISLERIOT_TYPE_BAIZE, NULL);
-
-  return self;
+  return g_object_new (AISLERIOT_TYPE_BAIZE, NULL);
 }
 
 static void

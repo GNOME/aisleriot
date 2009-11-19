@@ -45,6 +45,7 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/aclocal.m4 \
 	$(srcdir)/autoscan.log \
 	$(srcdir)/compile \
+	$(srcdir)/py-compile \
 	$(srcdir)/config.guess \
 	$(srcdir)/config.h.in \
 	$(srcdir)/config.sub \

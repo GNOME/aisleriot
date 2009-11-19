@@ -95,30 +95,21 @@ aisleriot_card_class_init (AisleriotCardClass *klass)
 
   pspec = g_param_spec_uchar ("bottom-card", NULL, NULL,
                               0, 255, 0,
-                              G_PARAM_WRITABLE |
-                              G_PARAM_READABLE |
-                              G_PARAM_STATIC_NAME |
-                              G_PARAM_STATIC_NICK |
-                              G_PARAM_STATIC_BLURB);
+                              G_PARAM_READWRITE |
+                              G_PARAM_STATIC_STRINGS);
   g_object_class_install_property (gobject_class, PROP_BOTTOM_CARD, pspec);
 
   pspec = g_param_spec_uchar ("top-card", NULL, NULL,
                               0, 255, 0,
-                              G_PARAM_WRITABLE |
-                              G_PARAM_READABLE |
-                              G_PARAM_STATIC_NAME |
-                              G_PARAM_STATIC_NICK |
-                              G_PARAM_STATIC_BLURB);
+                              G_PARAM_READWRITE |
+                              G_PARAM_STATIC_STRINGS);
   g_object_class_install_property (gobject_class, PROP_TOP_CARD, pspec);
 
   pspec = g_param_spec_object ("cache", NULL, NULL,
                                GAMES_TYPE_CARD_TEXTURES_CACHE,
-                               G_PARAM_WRITABLE |
-                               G_PARAM_READABLE |
+                               G_PARAM_READWRITE |
                                G_PARAM_CONSTRUCT_ONLY |
-                               G_PARAM_STATIC_NAME |
-                               G_PARAM_STATIC_NICK |
-                               G_PARAM_STATIC_BLURB);
+                               G_PARAM_STATIC_STRINGS);
   g_object_class_install_property (gobject_class, PROP_CACHE, pspec);
 
   g_type_class_add_private (klass, sizeof (AisleriotCardPrivate));

@@ -1,6 +1,6 @@
 /*
  * Copyright © 1998, 2003 Jonathan Blandford <jrb@mit.edu>
- * Copyright © 2007, 2008 Christian Persch
+ * Copyright © 2007, 2008, 2009 Christian Persch
  *
  * Some code copied from gtk+/gtk/gtkiconview (LGPL2+):
  * Copyright © 2002, 2004  Anders Carlsson <andersca@gnu.org>
@@ -29,19 +29,19 @@
 #include <clutter/clutter.h>
 
 #include <libgames-support/games-card-textures-cache.h>
+#include <libgames-support/games-debug.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-marshal.h>
 #include <libgames-support/games-pixbuf-utils.h>
-#include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
 
 #include "conf.h"
 
 #include "game.h"
 #include "board.h"
-#include "baize.h"
 #include "card.h"
 #include "slot-renderer.h"
+#include "ar-cursor.h"
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
@@ -61,40 +61,16 @@
 #define MAX_DELTA (0.2)
 #define MAX_OVERHANG (0.2)
 
-/* The proportion of a slot dedicated to the card (horiz or vert). */
-#ifndef DEFAULT_CARD_SLOT_RATIO
-#ifdef HAVE_HILDON
-#define DEFAULT_CARD_SLOT_RATIO (0.9)
-#else
-#define DEFAULT_CARD_SLOT_RATIO (0.8)
-#endif
-#endif /* !DEFAULT_CARD_SLOT_RATIO */
-
 #define DOUBLE_TO_INT_CEIL(d) ((int) (d + 0.5))
 
 #define STATIC_ASSERT(condition) STATIC_ASSERT_IMPL(condition, __LINE__)
 #define STATIC_ASSERT_IMPL(condition, line) STATIC_ASSERT_IMPL2(condition, line)
 #define STATIC_ASSERT_IMPL2(condition, line) typedef int _static_assert_line_##line[(condition) ? 1 : -1]
 
-#ifdef HAVE_HILDON 
-#define PIXBUF_DRAWING_LIKELIHOOD(cond) G_UNLIKELY (cond)
-#else
-#define PIXBUF_DRAWING_LIKELIHOOD(cond) (cond)
-#endif /* HAVE_HILDON */
-
-#if GLIB_CHECK_VERSION (2, 10, 0)
 #define I_(string) g_intern_static_string (string)
-#else
-#define I_(string) string
-#endif
 
-typedef enum {
-  CURSOR_DEFAULT,
-  CURSOR_OPEN,
-  CURSOR_CLOSED,
-  CURSOR_DROPPABLE,
-  LAST_CURSOR
-} CursorType;
+#pragma GCC poison GtkWidget
+#pragma GCC poison widget
 
 typedef enum {
   STATUS_NONE,
@@ -105,14 +81,33 @@ typedef enum {
   LAST_STATUS
 } MoveStatus;
 
+#ifdef ENABLE_KEYNAV
+
+#define MOVE_CURSOR_LEFT_RIGHT    'h'
+#define MOVE_CURSOR_LEFT_RIGHT_S  "h"
+#define MOVE_CURSOR_UP_DOWN       'v'
+#define MOVE_CURSOR_UP_DOWN_S     "v"
+#define MOVE_CURSOR_PAGES         'p'
+#define MOVE_CURSOR_PAGES_S       "p"
+#define MOVE_CURSOR_START_END     'e'
+#define MOVE_CURSOR_START_END_S   "e"
+
+#define MOVE_LEFT     'l'
+#define MOVE_LEFT_S   "l"
+#define MOVE_RIGHT    'r'
+#define MOVE_RIGHT_S  "r"
+
+#endif /* ENABLE_KEYNAV */
+
 struct _AisleriotBoardPrivate
 {
   AisleriotGame *game;
 
-  GdkCursor *cursor[LAST_CURSOR];
+  ArStyle *style;
+
+  ClutterActorBox allocation;
 
   /* Card theme */
-  GamesCardTheme *theme;
   CardSize card_size;
 
   /* Cards cache */
@@ -137,11 +132,10 @@ struct _AisleriotBoardPrivate
   /* Button press */
   int last_click_x;
   int last_click_y;
-  int double_click_time;
   guint32 last_click_time;
 
   /* Moving cards */
-  Slot *moving_cards_origin_slot;
+  ArSlot *moving_cards_origin_slot;
   int moving_cards_origin_card_id; /* The index of the card that was clicked on in hslot->cards; or -1 if the click wasn't on a card */
   ClutterActor *moving_cards_group;
   GByteArray *moving_cards;
@@ -150,31 +144,26 @@ struct _AisleriotBoardPrivate
   ClutterActor *animation_layer;
 
   /* The 'reveal card' action's slot and card link */
-  Slot *show_card_slot;
+  ArSlot *show_card_slot;
   int show_card_id;
 
   /* Click data */
-  Slot *last_clicked_slot;
+  ArSlot *last_clicked_slot;
   int last_clicked_card_id;
 
   /* Focus handling */
-  Slot *focus_slot;
+  ArSlot *focus_slot;
   int focus_card_id; /* -1 for focused empty slot */
   int focus_line_width;
   int focus_padding;
   GdkRectangle focus_rect;
 
   /* Selection */
-  Slot *selection_slot;
+  ArSlot *selection_slot;
   int selection_start_card_id;
-  GdkRectangle selection_rect;
-  ClutterColor selection_colour;
 
   /* Highlight */
-  Slot *highlight_slot;
-
-  /* Actor used for drawing the baize */
-  ClutterActor *baize_actor;
+  ArSlot *highlight_slot;
 
   /* Array RemovedCards to be dropped in animations */
   GArray *removed_cards;
@@ -182,12 +171,6 @@ struct _AisleriotBoardPrivate
   /* Idle handler where the slots will be compared for changes to
      trigger animations */
   guint check_animations_handler;
-
-#ifdef HAVE_MAEMO
-  /* Tap-and-Hold */
-  Slot *tap_and_hold_slot;
-  int tap_and_hold_card_id;
-#endif
 
   /* Bit field */
   guint droppable_supported : 1;
@@ -208,9 +191,6 @@ struct _AisleriotBoardPrivate
   guint show_highlight : 1;
 
   guint force_geometry_update : 1;
-
-  guint animation_mode : 1;    /* user setting */
-  guint animations_enabled: 1; /* gtk setting  */
 };
 
 typedef struct _RemovedCard RemovedCard;
@@ -228,119 +208,44 @@ enum
 {
   PROP_0,
   PROP_GAME,
-  PROP_THEME
+  PROP_STYLE
 };
 
-#ifdef ENABLE_KEYNAV
 enum
 {
+  REQUEST_CURSOR,
+  ERROR_BELL,
+  FOCUS,
+#ifdef ENABLE_KEYNAV
   ACTIVATE,
   MOVE_CURSOR,
   TOGGLE_SELECTION,
   SELECT_ALL,
   DESELECT_ALL,
+#endif /* ENABLE_KEYNAV */
   LAST_SIGNAL
 };
 
 static guint signals[LAST_SIGNAL];
-#endif /* ENABLE_KEYNAV */
 
 static void get_slot_and_card_from_point (AisleriotBoard *board,
                                           int x,
                                           int y,
-                                          Slot **slot,
+                                          ArSlot **slot,
                                           int *_cardid);
 static void slot_update_card_images      (AisleriotBoard *board,
-                                          Slot *slot);
+                                          ArSlot *slot);
 static void slot_update_card_images_full (AisleriotBoard *board,
-                                          Slot *slot,
+                                          ArSlot *slot,
                                           gint highlight_start_card_id);
 
-#ifndef HAVE_HILDON 
-
-/* These cursors borrowed from EOG */
-/* FIXMEchpe use themeable cursors here! */
-#define hand_closed_data_width 20
-#define hand_closed_data_height 20
-static const char hand_closed_data_bits[] = {
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x80, 0x3f, 0x00,
-  0x80, 0xff, 0x00, 0x80, 0xff, 0x00, 0xb0, 0xff, 0x00, 0xf0, 0xff, 0x00,
-  0xe0, 0xff, 0x00, 0xe0, 0x7f, 0x00, 0xc0, 0x7f, 0x00, 0x80, 0x3f, 0x00,
-  0x00, 0x3f, 0x00, 0x00, 0x3f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-
-#define hand_closed_mask_width 20
-#define hand_closed_mask_height 20
-static const char hand_closed_mask_bits[] = {
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-  0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x80, 0x3f, 0x00, 0xc0, 0xff, 0x00,
-  0xc0, 0xff, 0x01, 0xf0, 0xff, 0x01, 0xf8, 0xff, 0x01, 0xf8, 0xff, 0x01,
-  0xf0, 0xff, 0x01, 0xf0, 0xff, 0x00, 0xe0, 0xff, 0x00, 0xc0, 0x7f, 0x00,
-  0x80, 0x7f, 0x00, 0x80, 0x7f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-
-#define hand_open_data_width 20
-#define hand_open_data_height 20
-static const char hand_open_data_bits[] = {
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00,
-  0x60, 0x36, 0x00, 0x60, 0x36, 0x00, 0xc0, 0x36, 0x01, 0xc0, 0xb6, 0x01,
-  0x80, 0xbf, 0x01, 0x98, 0xff, 0x01, 0xb8, 0xff, 0x00, 0xf0, 0xff, 0x00,
-  0xe0, 0xff, 0x00, 0xe0, 0x7f, 0x00, 0xc0, 0x7f, 0x00, 0x80, 0x3f, 0x00,
-  0x00, 0x3f, 0x00, 0x00, 0x3f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-
-#define hand_open_mask_width 20
-#define hand_open_mask_height 20
-static const char hand_open_mask_bits[] = {
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x60, 0x3f, 0x00,
-  0xf0, 0x7f, 0x00, 0xf0, 0x7f, 0x01, 0xe0, 0xff, 0x03, 0xe0, 0xff, 0x03,
-  0xd8, 0xff, 0x03, 0xfc, 0xff, 0x03, 0xfc, 0xff, 0x01, 0xf8, 0xff, 0x01,
-  0xf0, 0xff, 0x01, 0xf0, 0xff, 0x00, 0xe0, 0xff, 0x00, 0xc0, 0x7f, 0x00,
-  0x80, 0x7f, 0x00, 0x80, 0x7f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-
-#endif /* !HAVE_HILDON */
-
-/* Cursor */
-
-#ifndef HAVE_HILDON 
-
-static GdkCursor *
-make_cursor (GtkWidget *widget,
-             const char *data,
-             const char *mask_data)
-{
-  const GdkColor fg = { 0, 65535, 65535, 65535 };
-  const GdkColor bg = { 0, 0, 0, 0 };
-  GdkPixmap *source;
-  GdkPixmap *mask;
-  GdkCursor *cursor;
-
-  /* Yeah, hard-coded sizes are bad. */
-  source = gdk_bitmap_create_from_data (widget->window, data, 20, 20);
-  mask = gdk_bitmap_create_from_data (widget->window, mask_data, 20, 20);
-
-  cursor = gdk_cursor_new_from_pixmap (source, mask, &fg, &bg, 10, 10);
-
-  g_object_unref (source);
-  g_object_unref (mask);
-
-  return cursor;
-}
-
-#endif /* !HAVE_HILDON */
+static void aisleriot_board_setup_geometry (AisleriotBoard *board);
 
 static void
 set_cursor (AisleriotBoard *board,
-            CursorType cursor)
+            ArCursorType cursor)
 {
-#ifndef HAVE_HILDON 
-  AisleriotBoardPrivate *priv = board->priv;
-
-  gdk_window_set_cursor (GTK_WIDGET (board)->window,
-                         priv->cursor[cursor]);
-#endif /* !HAVE_HILDON */
+  g_signal_emit (board, signals[REQUEST_CURSOR], 0, (int) cursor);
 }
 
 /* If we are over a slot, set the cursor to the given cursor,
@@ -352,12 +257,12 @@ set_cursor_by_location (AisleriotBoard *board,
 {
 #ifndef HAVE_HILDON 
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *selection_slot = priv->selection_slot;
+  ArSlot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
-  Slot *slot;
+  ArSlot *slot;
   int card_id;
   gboolean drop_valid = FALSE;
-  CursorType cursor = CURSOR_DEFAULT;
+  ArCursorType cursor = AR_CURSOR_DEFAULT;
 
   get_slot_and_card_from_point (board, x, y, &slot, &card_id);
 
@@ -377,68 +282,19 @@ set_cursor_by_location (AisleriotBoard *board,
   /* FIXMEchpe: special cursor when _drag_ is possible? */
 
   if (drop_valid) {
-    cursor = CURSOR_DROPPABLE;
+    cursor = AR_CURSOR_DROPPABLE;
   } else if (slot != NULL &&
              card_id >= 0 &&
              !CARD_GET_FACE_DOWN (CARD (slot->cards->data[card_id]))) {
     if (priv->click_status == STATUS_NONE) {
-      cursor = CURSOR_OPEN;
+      cursor = AR_CURSOR_OPEN;
     } else {
-      cursor = CURSOR_CLOSED;
+      cursor = AR_CURSOR_CLOSED;
     }
   }
 
   set_cursor (board, cursor);
 #endif /* !HAVE_HILDON */
-}
-
-/* card drawing functions */
-
-static void
-set_background_from_baize (AisleriotBoard *board)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  GError *error = NULL;
-  GdkPixbuf *pixbuf;
-  char *path;
-
-  path = games_runtime_get_file (GAMES_RUNTIME_PIXMAP_DIRECTORY, "baize.png");
-
-  pixbuf = gdk_pixbuf_new_from_file (path, &error);
-  g_free (path);
-  if (error) {
-    g_warning ("Failed to load the baize pixbuf: %s\n", error->message);
-    g_error_free (error);
-    return;
-  }
-
-  g_assert (pixbuf != NULL);
-
-  if (priv->baize_actor == NULL) {
-    ClutterActor *stage;
-
-    stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
-
-    priv->baize_actor = g_object_ref_sink (aisleriot_baize_new ());
-    clutter_container_add (CLUTTER_CONTAINER (stage),
-                           priv->baize_actor, NULL);
-  }
-
-  clutter_texture_set_from_rgb_data (CLUTTER_TEXTURE (priv->baize_actor),
-                                     gdk_pixbuf_get_pixels (pixbuf),
-                                     gdk_pixbuf_get_has_alpha (pixbuf),
-                                     gdk_pixbuf_get_width (pixbuf),
-                                     gdk_pixbuf_get_height (pixbuf),
-                                     gdk_pixbuf_get_rowstride (pixbuf),
-                                     gdk_pixbuf_get_has_alpha (pixbuf) ? 4 : 3,
-                                     0,
-                                     &error);
-  if (error) {
-    g_warning ("Failed to set texture from pixbuf: %s", error->message);
-    g_error_free (error);
-  }
-
-  g_object_unref (pixbuf);
 }
 
 /* Slot helpers */
@@ -447,7 +303,7 @@ static void
 get_slot_and_card_from_point (AisleriotBoard *board,
                               int x,
                               int y,
-                              Slot **slot,
+                              ArSlot **slot,
                               int *_cardid)
 {
   AisleriotBoardPrivate *priv = board->priv;
@@ -464,7 +320,7 @@ get_slot_and_card_from_point (AisleriotBoard *board,
 
   n_slots = slots->len;
   for (i = n_slots - 1; i >= 0; --i) {
-    Slot *hslot = slots->pdata[i];
+    ArSlot *hslot = slots->pdata[i];
 
     /* if point is within our rectangle */
     if (hslot->rect.x <= x && x <= hslot->rect.x + hslot->rect.width &&
@@ -511,7 +367,7 @@ get_slot_and_card_from_point (AisleriotBoard *board,
 #ifdef ENABLE_KEYNAV
 
 static gboolean
-test_slot_projection_intersects_x (Slot *slot,
+test_slot_projection_intersects_x (ArSlot *slot,
                                    int x_start,
                                    int x_end)
 {
@@ -521,7 +377,7 @@ test_slot_projection_intersects_x (Slot *slot,
 
 static int
 get_slot_index_from_slot (AisleriotBoard *board,
-                          Slot *slot)
+                          ArSlot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
@@ -548,7 +404,7 @@ get_slot_index_from_slot (AisleriotBoard *board,
 
 static void
 get_rect_by_slot_and_card (AisleriotBoard *board,
-                           Slot *slot,
+                           ArSlot *slot,
                            int card_id,
                            int num_cards,
                            GdkRectangle *rect)
@@ -618,12 +474,12 @@ get_focus_rect (AisleriotBoard *board,
 
 static void
 set_focus (AisleriotBoard *board,
-           Slot *slot,
+           ArSlot *slot,
            int card_id,
            gboolean show_focus)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
+//   GtkWidget *widget = GTK_WIDGET (board);
   int top_card_id;
 
   /* Sanitise */
@@ -636,12 +492,14 @@ set_focus (AisleriotBoard *board,
     return;
 
   if (priv->focus_slot != NULL) {
+#ifdef FIXMEchpe
     if (priv->show_focus &&
         GTK_WIDGET_HAS_FOCUS (widget)) {
       gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
     
       priv->show_focus = FALSE;
     }
+#endif
 
     priv->focus_slot = NULL;
     priv->focus_card_id = -1;
@@ -655,41 +513,24 @@ set_focus (AisleriotBoard *board,
   priv->focus_slot = slot;
   priv->focus_card_id = card_id;
 
+#ifdef FIXMEchpe
   if (show_focus &&
       GTK_WIDGET_HAS_FOCUS (widget)) {
     get_focus_rect (board, &priv->focus_rect);
     gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
   }
+#endif
 }
 
 /* Selection handling */
 
 static void
-get_selection_rect (AisleriotBoard *board,
-                    GdkRectangle *rect)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  int n_cards;
-
-  if (!priv->selection_slot)
-    return;
-
-  n_cards = priv->selection_slot->cards->len - priv->selection_start_card_id;
-
-  get_rect_by_slot_and_card (board,
-                             priv->selection_slot,
-                             priv->selection_start_card_id,
-                             n_cards, rect);
-}
-
-static void
 set_selection (AisleriotBoard *board,
-               Slot *slot,
+               ArSlot *slot,
                int card_id,
                gboolean show_selection)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
 
   if (priv->selection_slot == slot &&
       priv->selection_start_card_id == card_id &&
@@ -698,8 +539,6 @@ set_selection (AisleriotBoard *board,
 
   if (priv->selection_slot != NULL) {
     if (priv->show_selection) {
-      gdk_window_invalidate_rect (widget->window, &priv->selection_rect, FALSE);
-
       /* Clear selection card images */
       slot_update_card_images_full (board, priv->selection_slot, G_MAXINT);
     }
@@ -719,9 +558,6 @@ set_selection (AisleriotBoard *board,
   g_assert (card_id < 0 || card_id < slot->cards->len);
 
   if (priv->show_selection) {
-    get_selection_rect (board, &priv->selection_rect);
-    gdk_window_invalidate_rect (widget->window, &priv->selection_rect, FALSE);
-  
     slot_update_card_images_full (board, slot, card_id);
   }
 }
@@ -730,10 +566,10 @@ set_selection (AisleriotBoard *board,
 
 static void
 slot_update_geometry (AisleriotBoard *board,
-                      Slot *slot)
+                      ArSlot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
+//   GtkWidget *widget = GTK_WIDGET (board);
   GdkRectangle old_rect;
   GByteArray *cards;
   int delta, xofs, yofs, pixeldx;
@@ -772,12 +608,17 @@ slot_update_geometry (AisleriotBoard *board,
 
     if (slot->expanded_down) {
       double y_from_bottom, max_dy = MAX_DELTA;
+      float allocation_height = priv->allocation.y2 - priv->allocation.y1;
 
       if (slot->dy_set)
         max_dy = slot->expansion.dy;
 
       /* Calculate the compressed_dy that will let us fit within the board */
+#ifdef FIXMEchpe
       y_from_bottom = ((double) (widget->allocation.height - slot->rect.y)) / ((double) priv->card_size.height);
+#else
+      y_from_bottom = ((double) (allocation_height - slot->rect.y)) / ((double) priv->card_size.height);
+#endif
       dy = (y_from_bottom - MAX_OVERHANG) / n_cards;
       dy = CLAMP (dy, MIN_DELTA, max_dy);
     } else if (slot->expanded_right) {
@@ -795,11 +636,16 @@ slot_update_geometry (AisleriotBoard *board,
         pixeldx = -slot->pixeldx;
       } else {
         double x_from_right, max_dx = MAX_DELTA;
+        float allocation_width = priv->allocation.x2 - priv->allocation.x1;
 
         if (slot->dx_set)
           max_dx = slot->expansion.dx;
 
+#ifdef FIXMEchpe
         x_from_right = ((double) (widget->allocation.width - slot->rect.x)) / ((double) priv->card_size.width);
+#else
+        x_from_right = ((double) (allocation_width - slot->rect.x)) / ((double) priv->card_size.width);
+#endif
         dx = (x_from_right - MAX_OVERHANG) / n_cards;
         dx = CLAMP (dx, MIN_DELTA, max_dx);
 
@@ -849,7 +695,7 @@ check_animations_cb (gpointer user_data)
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
   int slot_num, i;
-  Slot *slot;
+  ArSlot *slot;
   GArray *animations = g_array_new (FALSE, FALSE, sizeof (AisleriotAnimStart));
 
   slots = aisleriot_game_get_slots (priv->game);
@@ -987,7 +833,6 @@ check_animations_cb (gpointer user_data)
 
     if (slot->cards->len == 0) {
       clutter_actor_lower_bottom (slot->slot_renderer);
-      clutter_actor_lower_bottom (priv->baize_actor);
     } else {
       clutter_actor_raise_top (slot->slot_renderer);
       ClutterActor *animation_layer = CLUTTER_ACTOR(aisleriot_slot_renderer_get_animation_layer(AISLERIOT_SLOT_RENDERER(slot->slot_renderer)));
@@ -1012,7 +857,7 @@ queue_check_animations (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
 
-  if (!priv->animation_mode || !priv->animations_enabled)
+  if (!ar_style_get_enable_animations (priv->style))
     return;
 
   /* The animations are checked for in an idle handler so that this
@@ -1033,23 +878,17 @@ queue_check_animations (AisleriotBoard *board)
 
 static void
 slot_update_card_images_full (AisleriotBoard *board,
-                              Slot *slot,
+                              ArSlot *slot,
                               gint highlight_start_card_id)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  ClutterActor *stage;
-
-  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
 
   if (!priv->geometry_set)
     return;
 
   if (slot->slot_renderer == NULL) {
-    slot->slot_renderer = aisleriot_slot_renderer_new (priv->textures, slot);
+    slot->slot_renderer = aisleriot_slot_renderer_new (priv->style, priv->textures, slot);
     g_object_ref_sink (slot->slot_renderer);
-
-    aisleriot_slot_renderer_set_highlight_color (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
-                                                 &priv->selection_colour);
 
     aisleriot_slot_renderer_set_animation_layer
       (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
@@ -1058,7 +897,7 @@ slot_update_card_images_full (AisleriotBoard *board,
     clutter_actor_set_position (slot->slot_renderer,
                                 slot->rect.x, slot->rect.y);
 
-    clutter_container_add (CLUTTER_CONTAINER (stage),
+    clutter_container_add (CLUTTER_CONTAINER (board),
                            slot->slot_renderer, NULL);
 
     clutter_actor_raise_top (priv->animation_layer);
@@ -1074,7 +913,7 @@ slot_update_card_images_full (AisleriotBoard *board,
 
 static void
 slot_update_card_images (AisleriotBoard *board,
-                         Slot *slot)
+                         ArSlot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
   int highlight_start_card_id = G_MAXINT;
@@ -1096,9 +935,7 @@ slot_update_card_images (AisleriotBoard *board,
 static void
 aisleriot_board_error_bell (AisleriotBoard *board)
 {
-#if GTK_CHECK_VERSION (2, 12, 0) || (defined (HAVE_HILDON) && !defined(HAVE_MAEMO_3))
-  gtk_widget_error_bell (GTK_WIDGET (board));
-#endif
+  g_signal_emit (board, signals[ERROR_BELL], 0);
 }
 
 /* Work out new sizes and spacings for the cards. */
@@ -1106,29 +943,35 @@ static void
 aisleriot_board_setup_geometry (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
+  ClutterActor *actor = CLUTTER_ACTOR (board);
+  GamesCardTheme *theme;
   GPtrArray *slots;
   guint i, n_slots;
   CardSize card_size;
 
+  if (!CLUTTER_ACTOR_IS_REALIZED (actor))
+    return;
+
   /* Nothing to do yet */
   if (aisleriot_game_get_state (priv->game) <= GAME_LOADED)
     return;
-  if (!priv->theme)
+
+  theme = ar_style_get_card_theme (priv->style);
+  if (theme == NULL)
     return;
 
-  g_return_if_fail (GTK_WIDGET_REALIZED (widget));
   g_return_if_fail (priv->width > 0 && priv->height > 0);
 
-  priv->xslotstep = ((double) widget->allocation.width) / priv->width;
-  priv->yslotstep = ((double) widget->allocation.height) / priv->height;
+  // FIXMEchpe
+  priv->xslotstep = ((double) priv->allocation.x2 - priv->allocation.x1) / priv->width;
+  priv->yslotstep = ((double) priv->allocation.y2 - priv->allocation.y1) / priv->height;
 
-  games_card_theme_set_size (priv->theme,
+  games_card_theme_set_size (theme,
                              priv->xslotstep,
                              priv->yslotstep,
                              priv->card_slot_ratio);
 
-  games_card_theme_get_size (priv->theme, &card_size);
+  games_card_theme_get_size (theme, &card_size);
   priv->card_size = card_size;
 
   /* If the cards are too far apart, bunch them in the middle. */
@@ -1136,7 +979,11 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   if (priv->xslotstep > (card_size.width * 3) / 2) {
     priv->xslotstep = (card_size.width * 3) / 2;
     /* FIXMEchpe: if there are expand-right slots, reserve the space for them instead? */
+#ifdef FIXMEchpe
     priv->xbaseoffset = (widget->allocation.width - priv->xslotstep * priv->width) / 2;
+#else
+    priv->xbaseoffset = (priv->allocation.x2 - priv->allocation.x1 - priv->xslotstep * priv->width) / 2;
+#endif
   }
   if (priv->yslotstep > (card_size.height * 3) / 2) {
     priv->yslotstep = (card_size.height * 3) / 2;
@@ -1158,7 +1005,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
 
   n_slots = slots->len;
   for (i = 0; i < n_slots; ++i) {
-    Slot *slot = slots->pdata[i];
+    ArSlot *slot = slots->pdata[i];
 
     slot_update_geometry (board, slot);
     slot_update_card_images (board, slot);
@@ -1166,20 +1013,18 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
 
   /* Update the focus and selection rects */
   get_focus_rect (board, &priv->focus_rect);
-  get_selection_rect (board, &priv->selection_rect);
 }
 
 static void
 drag_begin (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *hslot;
+  ArSlot *hslot;
   int delta, height, width;
   int x, y;
   int num_moving_cards;
   guint i;
   GByteArray *cards;
-  ClutterActor *stage;
 
   if (!priv->selection_slot ||
       priv->selection_start_card_id < 0) {
@@ -1263,16 +1108,14 @@ drag_begin (AisleriotBoard *board)
   slot_update_card_images (board, hslot);
   aisleriot_game_reset_old_cards (hslot);
 
-  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
-  clutter_container_add (CLUTTER_CONTAINER (stage),
+  clutter_container_add (CLUTTER_CONTAINER (board),
                          priv->moving_cards_group, NULL);
 
   if (hslot->cards->len == 0) {
     clutter_actor_lower_bottom (hslot->slot_renderer);
-    clutter_actor_lower_bottom (priv->baize_actor);
   }
 
-  set_cursor (board, CURSOR_CLOSED);
+  set_cursor (board, AR_CURSOR_CLOSED);
 }
 
 static void
@@ -1308,7 +1151,7 @@ drag_end (AisleriotBoard *board,
 
 static gboolean
 cards_are_droppable (AisleriotBoard *board,
-                     Slot *slot)
+                     ArSlot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
 
@@ -1321,14 +1164,14 @@ cards_are_droppable (AisleriotBoard *board,
                                     priv->moving_cards->len);
 }
 
-static Slot *
+static ArSlot *
 find_drop_target (AisleriotBoard *board,
                   gint x,
                   gint y)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *new_hslot;
-  Slot *retval = NULL;
+  ArSlot *new_hslot;
+  ArSlot *retval = NULL;
   gint i, new_cardid;
   gint min_distance = G_MAXINT;
 
@@ -1376,7 +1219,7 @@ drop_moving_cards (AisleriotBoard *board,
                    gint y)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *hslot;
+  ArSlot *hslot;
   gboolean moved = FALSE;
   guint i;
 
@@ -1420,12 +1263,10 @@ drop_moving_cards (AisleriotBoard *board,
 
 static void
 highlight_drop_target (AisleriotBoard *board,
-                       Slot *slot)
+                       ArSlot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-  GdkRectangle rect;
-  Slot *old_slot = priv->highlight_slot;
+  ArSlot *old_slot = priv->highlight_slot;
 
   if (slot == old_slot)
     return;
@@ -1438,12 +1279,6 @@ highlight_drop_target (AisleriotBoard *board,
   /* Invalidate the old highlight rect */
   if (old_slot != NULL &&
       priv->show_highlight) {
-    get_rect_by_slot_and_card (board,
-                               old_slot,
-                               old_slot->cards->len - 1 /* it's ok if this is == -1 */,
-                               1, &rect);
-    gdk_window_invalidate_rect (widget->window, &rect, FALSE);
-
     /* FIXMEchpe only update the topmost card? */
     /* It's ok to call this directly here, since the old highlight_slot cannot
      * have been the same as the current selection_slot!
@@ -1457,12 +1292,7 @@ highlight_drop_target (AisleriotBoard *board,
   if (!priv->show_highlight)
     return;
 
-  /* Prepare the highlight pixbuf/pixmaps and invalidate the new highlight rect */
-  get_rect_by_slot_and_card (board,
-                             slot,
-                             slot->cards->len - 1 /* it's ok if this is == -1 */,
-                             1, &rect);
-  gdk_window_invalidate_rect (widget->window, &rect, FALSE);
+  /* Prepare the highlight pixbuf/pixmaps */
 
   /* FIXMEchpe only update the topmost card? */
   /* It's ok to call this directly, since the highlight slot is always
@@ -1473,7 +1303,7 @@ highlight_drop_target (AisleriotBoard *board,
 
 static void
 reveal_card (AisleriotBoard *board,
-             Slot *slot,
+             ArSlot *slot,
              int cardid)
 {
   AisleriotBoardPrivate *priv = board->priv;
@@ -1523,40 +1353,13 @@ clear_state (AisleriotBoard *board)
   priv->last_clicked_card_id = -1;
 }
 
-static void
-aisleriot_board_settings_update (GtkSettings *settings,
-                                 GParamSpec *pspec,
-                                 AisleriotBoard *board)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  gboolean animations_enabled;
-#if GTK_CHECK_VERSION (2, 10, 0)
-  gboolean touchscreen_mode;
-#endif /* GTK >= 2.10.0 */
-
-   /* Set up the double-click detection. */
-  g_object_get (settings,
-                "gtk-double-click-time", &priv->double_click_time,
-                "gtk-enable-animations", &animations_enabled,
-#if GTK_CHECK_VERSION (2, 10, 0)
-                "gtk-touchscreen-mode", &touchscreen_mode,
-#endif /* GTK >= 2.10.0 */
-                NULL);
-
-  priv->animations_enabled = animations_enabled;
-
-#if GTK_CHECK_VERSION (2, 10, 0)
-  priv->touchscreen_mode = touchscreen_mode != FALSE;
-#endif /* GTK >= 2.10.0 */
-}
-
 /* Note: this unsets the selection! */
 static gboolean
 aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
-                                             Slot *hslot)
+                                             ArSlot *hslot)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *selection_slot = priv->selection_slot;
+  ArSlot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
   gboolean moved;
   guint8 *cards;
@@ -1688,53 +1491,59 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
  */
 
 static void
-aisleriot_board_add_move_binding (GtkBindingSet  *binding_set,
-                                  guint           keyval,
-                                  guint           modmask,
-                                  GtkMovementStep step,
-                                  gint            count)
+aisleriot_board_add_move_binding (ClutterBindingPool *binding_pool,
+                                  GClosure           *closure,
+                                  const char         *action,
+                                  guint               keyval,
+                                  ClutterModifierType modifiers)
 {
-  gtk_binding_entry_add_signal (binding_set, keyval,
-                                modmask,
-                                "move-cursor", 2,
-                                G_TYPE_ENUM, step,
-                                G_TYPE_INT, count);
+  clutter_binding_pool_install_closure (binding_pool,
+                                        action,
+                                        keyval,
+                                        modifiers,
+                                        closure);
 
-  if (modmask & GDK_CONTROL_MASK)
-   return;
-
-  gtk_binding_entry_add_signal (binding_set, keyval,
-                                modmask | GDK_CONTROL_MASK,
-                                "move-cursor", 2,
-                                G_TYPE_ENUM, step,
-                                G_TYPE_INT, count);
-
-}
-
-static void
-aisleriot_board_add_move_and_select_binding (GtkBindingSet  *binding_set,
-                                             guint           keyval,
-                                             guint           modmask,
-                                             GtkMovementStep step,
-                                             gint            count)
-{
-  aisleriot_board_add_move_binding (binding_set, keyval, modmask, step, count);
-  aisleriot_board_add_move_binding (binding_set, keyval, modmask | GDK_SHIFT_MASK, step, count);
-}
-
-static void
-aisleriot_board_add_activate_binding (GtkBindingSet  *binding_set,
-                                      guint           keyval,
-                                      guint           modmask)
-{
-  gtk_binding_entry_add_signal (binding_set, keyval, modmask,
-                                "activate", 0);
-
-  if (modmask & GDK_CONTROL_MASK)
+  if (modifiers & CLUTTER_CONTROL_MASK)
     return;
 
-  gtk_binding_entry_add_signal (binding_set, keyval, modmask | GDK_CONTROL_MASK,
-                                "activate", 0);
+  clutter_binding_pool_install_closure (binding_pool,
+                                        action,
+                                        keyval,
+                                        modifiers | CLUTTER_CONTROL_MASK,
+                                        closure);
+}
+
+static void
+aisleriot_board_add_move_and_select_binding (ClutterBindingPool *binding_pool,
+                                             GClosure           *closure,
+                                             const char         *action,
+                                             guint               keyval,
+                                             ClutterModifierType modifiers)
+{
+  aisleriot_board_add_move_binding (binding_pool, closure, action, keyval, modifiers);
+  aisleriot_board_add_move_binding (binding_pool, closure, action, keyval, modifiers | CLUTTER_SHIFT_MASK);
+}
+
+static void
+aisleriot_board_add_activate_binding (ClutterBindingPool *binding_pool,
+                                      GClosure           *closure,
+                                      guint               keyval,
+                                      ClutterModifierType modifiers)
+{
+  clutter_binding_pool_install_closure (binding_pool,
+                                        I_("activate"),
+                                        keyval,
+                                        modifiers,
+                                        closure);
+
+  if (modifiers & CLUTTER_CONTROL_MASK)
+    return;
+
+  clutter_binding_pool_install_closure (binding_pool,
+                                        I_("activate"),
+                                        keyval,
+                                        modifiers | CLUTTER_CONTROL_MASK,
+                                        closure);
 }
 
 static gboolean
@@ -1742,7 +1551,7 @@ aisleriot_board_move_cursor_in_slot (AisleriotBoard *board,
                                      int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot;
+  ArSlot *focus_slot;
   int new_focus_card_id, first_card_id;
 
   focus_slot = priv->focus_slot;
@@ -1760,7 +1569,7 @@ aisleriot_board_move_cursor_start_end_in_slot (AisleriotBoard *board,
                                                int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot = priv->focus_slot;
+  ArSlot *focus_slot = priv->focus_slot;
   int first_card_id, top_card_id, new_focus_card_id;
   guint8 *cards;
 
@@ -1817,7 +1626,7 @@ aisleriot_board_extend_selection_in_slot (AisleriotBoard *board,
                                           int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot, *selection_slot;
+  ArSlot *focus_slot, *selection_slot;
   int new_selection_start_card_id, first_card_id;
 
   focus_slot = priv->focus_slot;
@@ -1866,7 +1675,7 @@ static gboolean
 aisleriot_board_extend_selection_in_slot_maximal (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot = priv->focus_slot;
+  ArSlot *focus_slot = priv->focus_slot;
   int new_selection_start_card_id, n_selected;
 
   n_selected = 0;
@@ -1895,16 +1704,12 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
                                                 gboolean wrap)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
   GPtrArray *slots;
   guint n_slots;
-  Slot *focus_slot, *new_focus_slot;
+  ArSlot *focus_slot, *new_focus_slot;
   int focus_slot_index, new_focus_slot_index;
   int new_focus_slot_topmost_card_id, new_focus_card_id;
   gboolean is_rtl;
-#if GTK_CHECK_VERSION (2, 12, 0)
-  GtkDirectionType direction;
-#endif
 
   slots = aisleriot_game_get_slots (priv->game);
   if (!slots || slots->len == 0)
@@ -1918,8 +1723,8 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
   focus_slot_index = get_slot_index_from_slot (board, focus_slot);
 
   /* Move visually */
-  is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
-  if (is_rtl) {
+  is_rtl = priv->is_rtl;
+  if (priv->is_rtl) {
     new_focus_slot_index = focus_slot_index - count;
   } else {
     new_focus_slot_index = focus_slot_index + count;
@@ -1931,7 +1736,11 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
     if (!wrap)
       return FALSE;
 
+#ifdef FIXMEchpe
+{
+    GtkDirectionType direction;
 #if GTK_CHECK_VERSION (2, 12, 0)
+
     if (count > 0) {
       direction = GTK_DIR_RIGHT;
     } else {
@@ -1942,6 +1751,8 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
        return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
     }
 #endif /* GTK 2.12. 0 */
+}
+#endif // FIXMEchpe
 
     if (new_focus_slot_index < 0) {
       new_focus_slot_index = ((int) n_slots) - 1;
@@ -1982,7 +1793,7 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
   guint n_slots;
-  Slot *focus_slot, *new_focus_slot;
+  ArSlot *focus_slot, *new_focus_slot;
   int focus_slot_index, new_focus_slot_index;
   int new_focus_slot_topmost_card_id, new_focus_card_id;
   int x_start, x_end;
@@ -2009,6 +1820,7 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
            !test_slot_projection_intersects_x (slots->pdata[new_focus_slot_index], x_start, x_end));
 
   if (new_focus_slot_index < 0 || new_focus_slot_index == n_slots) {
+#ifdef FIXMEchpe
 #if GTK_CHECK_VERSION (2, 12, 0)
     GtkWidget *widget = GTK_WIDGET (board);
     GtkDirectionType direction;
@@ -2023,6 +1835,7 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
        return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
     }
 #endif /* GTK 2.12. 0 */
+#endif // FIXMEchpe
 
     /* Wrap around */
     if (count > 0) {
@@ -2067,7 +1880,7 @@ aisleriot_board_move_cursor_start_end_by_slot (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
-  Slot *new_focus_slot;
+  ArSlot *new_focus_slot;
   int new_focus_card_id;
 
   slots = aisleriot_game_get_slots (priv->game);
@@ -2075,10 +1888,10 @@ aisleriot_board_move_cursor_start_end_by_slot (AisleriotBoard *board,
     return FALSE;
 
   if (count > 0) {
-    new_focus_slot = (Slot *) slots->pdata[slots->len - 1];
+    new_focus_slot = (ArSlot *) slots->pdata[slots->len - 1];
     new_focus_card_id = ((int) new_focus_slot->cards->len) - 1;
   } else {
-    new_focus_slot = (Slot *) slots->pdata[0];
+    new_focus_slot = (ArSlot *) slots->pdata[0];
     if (new_focus_slot->cards->len > 0) {
       new_focus_card_id = ((int) new_focus_slot->cards->len) - ((int) new_focus_slot->exposed);
     } else {
@@ -2099,15 +1912,11 @@ aisleriot_board_move_cursor_left_right (AisleriotBoard *board,
                                         gboolean is_control)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-  gboolean is_rtl;
-
-  is_rtl = (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL);
 
   /* First try in-slot focus movement */
   if (!is_control &&
       priv->focus_slot->expanded_right &&
-      aisleriot_board_move_cursor_in_slot (board, is_rtl ? -count : count))
+      aisleriot_board_move_cursor_in_slot (board, priv->is_rtl ? -count : count))
     return TRUE;
 
   /* Cannot move in-slot; move focused slot */
@@ -2120,12 +1929,8 @@ aisleriot_board_move_cursor_up_down (AisleriotBoard *board,
                                      gboolean is_control)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-  gboolean is_rtl;
 
   g_assert (priv->focus_slot != NULL);
-
-  is_rtl = (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL);
 
   /* First try in-slot focus movement */
   if (!is_control &&
@@ -2166,7 +1971,7 @@ aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
                                             int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot = priv->focus_slot;
+  ArSlot *focus_slot = priv->focus_slot;
   int new_focus_card_id;
 
   if (count > 0) {
@@ -2254,13 +2059,11 @@ game_new_cb (AisleriotGame *game,
 
   /* Check for animations so that the differences will be reset */
   queue_check_animations (board);
-
-  gtk_widget_queue_draw (GTK_WIDGET (board));
 }
 
 static void
 slot_changed_cb (AisleriotGame *game,
-                 Slot *slot,
+                 ArSlot *slot,
                  AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
@@ -2305,26 +2108,147 @@ slot_changed_cb (AisleriotGame *game,
   queue_check_animations (board);
 }
 
+/* Style handling */
+
+static void
+aisleriot_board_sync_style (ArStyle *style,
+                            GParamSpec *pspec,
+                            AisleriotBoard *board)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+  const char *pspec_name;
+  gboolean update_geometry = FALSE, redraw_focus = FALSE;
+
+  g_assert (style == priv->style);
+
+  if (pspec != NULL) {
+    pspec_name = pspec->name;
+  } else {
+    pspec_name = NULL;
+  }
+
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_CARD_THEME)) {
+    GamesCardTheme *theme;
+
+    theme = ar_style_get_card_theme (style);
+    if (theme != NULL) {
+      games_card_textures_cache_set_theme (priv->textures, theme);
+
+      priv->geometry_set = FALSE;
+
+      update_geometry |= TRUE;
+    }
+  }
+
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_CARD_SLOT_RATIO)) {
+    double card_slot_ratio;
+
+    card_slot_ratio = ar_style_get_card_slot_ratio (style);
+
+    update_geometry |= (card_slot_ratio != priv->card_slot_ratio);
+
+    priv->card_slot_ratio = card_slot_ratio;
+  }
+
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_INTERIOR_FOCUS)) {
+    gboolean interior_focus;
+
+    interior_focus = ar_style_get_interior_focus (style);
+
+    redraw_focus = (interior_focus != priv->interior_focus);
+
+    priv->interior_focus = interior_focus;
+  }
+
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_FOCUS_LINE_WIDTH)) {
+    int focus_line_width;
+
+    focus_line_width = ar_style_get_focus_line_width (style);
+
+    redraw_focus = (focus_line_width != priv->focus_line_width);
+
+    priv->focus_line_width = focus_line_width;
+  }
+
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_FOCUS_PADDING)) {
+    int focus_padding;
+
+    focus_padding = ar_style_get_focus_padding (style);
+
+    redraw_focus = (focus_padding != priv->focus_padding);
+
+    priv->focus_padding = focus_padding;
+  }
+
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_RTL)) {
+    gboolean is_rtl;
+
+    is_rtl = ar_style_get_rtl (style);
+
+    update_geometry |= (is_rtl != priv->is_rtl);
+
+    priv->is_rtl = is_rtl;
+
+    /* FIXMEchpe: necessary? */
+    priv->force_geometry_update = TRUE;
+  }
+
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_ENABLE_ANIMATIONS)) {
+    /* FIXMEchpe: abort animations-in-progress if the setting is now OFF */
+  }
+
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_CLICK_TO_MOVE)) {
+    gboolean click_to_move;
+
+    click_to_move = ar_style_get_click_to_move (style);
+    if (click_to_move != priv->click_to_move) {
+      /* Clear the selection. Do this before setting the new value,
+      * since otherwise selection won't get cleared correctly.
+      */
+      set_selection (board, NULL, -1, FALSE);
+
+      priv->click_to_move = click_to_move;
+
+      /* FIXMEchpe: we used to queue a redraw here. WHY?? Check that it's safe not to. */
+    }
+  }
+
+  /* FIXMEchpe: queue a relayout instead? */
+  if (update_geometry) {
+    aisleriot_board_setup_geometry (board);
+  }
+
+  if (redraw_focus) {
+    /* FIXMEchpe: do redraw the focus! */
+  }
+}
+
 /* Class implementation */
 
-G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GTK_CLUTTER_TYPE_EMBED);
+G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, CLUTTER_TYPE_GROUP);
 
 /* AisleriotBoardClass methods */
 
 #ifdef ENABLE_KEYNAV
 
 static void
-aisleriot_board_activate (AisleriotBoard *board)
+aisleriot_board_activate (AisleriotBoard *board,
+                          const char *action,
+                          guint keyval,
+                          ClutterModifierType modifiers)
 {
-  AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-  Slot *focus_slot = priv->focus_slot;
-  Slot *selection_slot = priv->selection_slot;
+  AisleriotBoardPrivate *priv = board->priv;  ArSlot *focus_slot = priv->focus_slot;
+  ArSlot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
-  guint state = 0;
 
+#ifdef FIXMEchpe
   if (!GTK_WIDGET_HAS_FOCUS (widget))
     return;
+#endif
+
+  _games_debug_print (GAMES_DEBUG_GAME_KEYNAV,
+                      "board ::activate keyval %x modifiers %x\n",
+                      keyval, modifiers);
 
   if (!focus_slot) {
     aisleriot_board_error_bell (board);
@@ -2337,11 +2261,8 @@ aisleriot_board_activate (AisleriotBoard *board)
     return;
   }
 
-  if (!gtk_get_current_event_state (&state))
-    state = 0;
-
   /* Control-Activate is double-click */
-  if (state & GDK_CONTROL_MASK) {
+  if (modifiers & CLUTTER_CONTROL_MASK) {
     aisleriot_game_record_move (priv->game, -1, NULL, 0);
     if (aisleriot_game_button_double_clicked_lambda (priv->game, focus_slot->id)) {
       aisleriot_game_end_move (priv->game);
@@ -2394,35 +2315,39 @@ aisleriot_board_activate (AisleriotBoard *board)
 
 static gboolean
 aisleriot_board_move_cursor (AisleriotBoard *board,
-                             GtkMovementStep step,
-                             int count)
+                             const char *action,
+                             guint keyval,
+                             ClutterModifierType modifiers)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-  guint state;
   gboolean is_control, is_shift, moved = FALSE;
+  char step;
+  int count;
 
+#ifdef FIXMEchpe
   if (!GTK_WIDGET_HAS_FOCUS (widget))
     return FALSE;
+#endif
 
-  g_return_val_if_fail (step == GTK_MOVEMENT_LOGICAL_POSITIONS ||
-                        step == GTK_MOVEMENT_VISUAL_POSITIONS ||
-                        step == GTK_MOVEMENT_DISPLAY_LINES ||
-                        step == GTK_MOVEMENT_PAGES ||
-                        step == GTK_MOVEMENT_BUFFER_ENDS, FALSE);
+  step = action[0];
+  count = (action[1] == MOVE_LEFT ? -1 : 1);
+
+  _games_debug_print (GAMES_DEBUG_GAME_KEYNAV,
+                      "board ::move-cursor keyval %x modifiers %x step '%c' count %d\n",
+                      keyval, modifiers,
+                      step, count);
 
   /* No focus? Set focus to the first/last slot */
   /* This will always return TRUE, no need for keynav-failed handling */
   if (!priv->focus_slot) {
     switch (step) {
-      case GTK_MOVEMENT_DISPLAY_LINES:
-      case GTK_MOVEMENT_PAGES:
+      case MOVE_CURSOR_UP_DOWN:
+      case MOVE_CURSOR_PAGES:
         /* Focus the first slot */
         return aisleriot_board_move_cursor_start_end_by_slot (board, -1);
-      case GTK_MOVEMENT_LOGICAL_POSITIONS:
-      case GTK_MOVEMENT_VISUAL_POSITIONS:
+      case MOVE_CURSOR_LEFT_RIGHT:
         /* Move as if we'd been on the last/first slot */
-        if (gtk_widget_get_direction (widget) != GTK_TEXT_DIR_RTL) {
+        if (!priv->is_rtl) {
           return aisleriot_board_move_cursor_start_end_by_slot (board, -count);
         }
         /* fall-through */
@@ -2433,34 +2358,30 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
 
   g_assert (priv->focus_slot != NULL);
 
-  if (!gtk_get_current_event_state (&state))
-    state = 0;
-
-  is_shift = (state & GDK_SHIFT_MASK) != 0;
-  is_control = (state & GDK_CONTROL_MASK) != 0;
+  is_shift = (modifiers & CLUTTER_SHIFT_MASK) != 0;
+  is_control = (modifiers & CLUTTER_CONTROL_MASK) != 0;
 
   switch (step) {
-    case GTK_MOVEMENT_LOGICAL_POSITIONS:
-    case GTK_MOVEMENT_VISUAL_POSITIONS:
+    case MOVE_CURSOR_LEFT_RIGHT:
       if (is_shift) {
         moved = aisleriot_board_extend_selection_left_right (board, count);
       } else {
         moved = aisleriot_board_move_cursor_left_right (board, count, is_control);
       }
       break;
-    case GTK_MOVEMENT_DISPLAY_LINES:
+    case MOVE_CURSOR_UP_DOWN:
       if (is_shift) {
         moved = aisleriot_board_extend_selection_up_down (board, count);
       } else {
         moved = aisleriot_board_move_cursor_up_down (board, count, is_control);
       }
       break;
-    case GTK_MOVEMENT_PAGES:
+    case MOVE_CURSOR_PAGES:
       if (!is_shift) {
         moved = aisleriot_board_move_cursor_up_down (board, count, TRUE);
       }
       break;
-    case GTK_MOVEMENT_BUFFER_ENDS:
+    case MOVE_CURSOR_START_END:
       if (is_shift) {
         moved = aisleriot_board_extend_selection_start_end (board, count);
       } else if (is_control) {
@@ -2483,10 +2404,17 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
 }
 
 static void
-aisleriot_board_select_all (AisleriotBoard *board)
+aisleriot_board_select_all (AisleriotBoard *board,
+                            const char *action,
+                            guint keyval,
+                            ClutterModifierType modifiers)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot = priv->focus_slot;
+  ArSlot *focus_slot = priv->focus_slot;
+
+  _games_debug_print (GAMES_DEBUG_GAME_KEYNAV,
+                      "board ::select-all keyval %x modifiers %x\n",
+                      keyval, modifiers);
 
   if (!focus_slot ||
       focus_slot->cards->len == 0 ||
@@ -2497,17 +2425,31 @@ aisleriot_board_select_all (AisleriotBoard *board)
 }
 
 static void
-aisleriot_board_deselect_all (AisleriotBoard *board)
+aisleriot_board_deselect_all (AisleriotBoard *board,
+                              const char *action,
+                              guint keyval,
+                              ClutterModifierType modifiers)
 {
+  _games_debug_print (GAMES_DEBUG_GAME_KEYNAV,
+                      "board ::deselect-all keyval %x modifiers %x\n",
+                      keyval, modifiers);
+
   set_selection (board, NULL, -1, FALSE);
 }
 
 static void
-aisleriot_board_toggle_selection (AisleriotBoard *board)
+aisleriot_board_toggle_selection (AisleriotBoard *board,
+                                  const char *action,
+                                  guint keyval,
+                                  ClutterModifierType modifiers)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot;
+  ArSlot *focus_slot;
   int focus_card_id;
+
+  _games_debug_print (GAMES_DEBUG_GAME_KEYNAV,
+                      "board ::toggle-selection keyval %x modifiers %x\n",
+                      keyval, modifiers);
 
   focus_slot = priv->focus_slot;
   if (!focus_slot)
@@ -2550,27 +2492,17 @@ aisleriot_board_toggle_selection (AisleriotBoard *board)
 
 #endif /* ENABLE_KEYNAV */
 
-/* GtkWidgetClass methods */
+
+/* ClutterActorClass impl */
+
+#if 0
 static void
 aisleriot_board_realize (GtkWidget *widget)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
-  GdkDisplay *display;
+//   AisleriotBoardPrivate *priv = board->priv;
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->realize (widget);
-
-  display = gtk_widget_get_display (widget);
-
-  set_background_from_baize (board);
-  
-#ifndef HAVE_HILDON
-  /* Create cursors */
-  priv->cursor[CURSOR_DEFAULT] = gdk_cursor_new_for_display (display, GDK_LEFT_PTR);
-  priv->cursor[CURSOR_OPEN] = make_cursor (widget, hand_open_data_bits, hand_open_mask_bits);
-  priv->cursor[CURSOR_CLOSED] = make_cursor (widget, hand_closed_data_bits, hand_closed_mask_bits);
-  priv->cursor[CURSOR_DROPPABLE] = gdk_cursor_new_for_display (display, GDK_DOUBLE_ARROW); /* FIXMEchpe: better cursor */
-#endif /* !HAVE_HILDON */
 
   aisleriot_board_setup_geometry (board);
 }
@@ -2580,197 +2512,81 @@ aisleriot_board_unrealize (GtkWidget *widget)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
-#ifndef HAVE_HILDON 
-  guint i;
-#endif
 
   priv->geometry_set = FALSE;
-
-#ifndef HAVE_HILDON
-  for (i = 0; i < LAST_CURSOR; ++i) {
-    gdk_cursor_unref (priv->cursor[i]);
-    priv->cursor[i] = NULL;
-  }
-#endif /* !HAVE_HILDON*/
 
   clear_state (board);
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->unrealize (widget);
 }
-
-static void
-aisleriot_board_screen_changed (GtkWidget *widget,
-                                GdkScreen *previous_screen)
-{
-  AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  GdkScreen *screen;
-  GtkSettings *settings;
-
-  if (GTK_WIDGET_CLASS (aisleriot_board_parent_class)->screen_changed) {
-    GTK_WIDGET_CLASS (aisleriot_board_parent_class)->screen_changed (widget, previous_screen);
-  }
-
-  screen = gtk_widget_get_screen (widget);
-  if (screen == previous_screen)
-    return;
-
-  if (previous_screen) {
-    g_signal_handlers_disconnect_by_func (gtk_settings_get_for_screen (previous_screen),
-                                          G_CALLBACK (aisleriot_board_settings_update),
-                                          board);
-  }
-
-  if (screen == NULL)
-    return;
-
-  settings = gtk_settings_get_for_screen (screen);
-
-  aisleriot_board_settings_update (settings, NULL, board);
-  g_signal_connect (settings, "notify::gtk-double-click-time",
-                    G_CALLBACK (aisleriot_board_settings_update), board);
-  g_signal_connect (settings, "notify::gtk-enable-animations",
-                    G_CALLBACK (aisleriot_board_settings_update), board);
-#if GTK_CHECK_VERSION (2, 10, 0)
-  g_signal_connect (settings, "notify::gtk-touchscreen-mode",
-                    G_CALLBACK (aisleriot_board_settings_update), board);
-#endif /* GTK >= 2.10.0 */
-}
-
-static void
-aisleriot_board_style_set (GtkWidget *widget,
-                           GtkStyle *previous_style)
-{
-  AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
-  GdkColor *colour = NULL;
-  GdkColor selection_colour;
-  gboolean interior_focus;
-  double card_slot_ratio;
-  GPtrArray *slots;
-  int i, n_slots;
-
-  gtk_widget_style_get (widget,
-                        "focus-line-width", &priv->focus_line_width,
-                        "focus-padding", &priv->focus_padding,
-                        "interior-focus", &interior_focus,
-                        "selection-color", &colour,
-                        "card-slot-ratio", &card_slot_ratio,
-                        NULL);
-
-#if 0
-  g_print ("style-set: focus width %d padding %d interior-focus %s card-slot-ratio %.2f\n",
-           priv->focus_line_width,
-           priv->focus_padding,
-           interior_focus ? "t" : "f",
-           card_slot_ratio);
 #endif
 
-  priv->interior_focus = interior_focus != FALSE;
-
-  priv->card_slot_ratio = card_slot_ratio;
-  /* FIXMEchpe: if the ratio changed, we should re-layout the board below */
-
-  if (colour != NULL) {
-    selection_colour = *colour;
-    gdk_color_free (colour);
-  } else {
-    const GdkColor default_selection_colour = { 0, 0 /* red */, 0 /* green */, 0xaa00 /* blue */};
-
-    selection_colour = default_selection_colour;
-  }
-
-  priv->selection_colour.red   = selection_colour.red   >> 8;
-  priv->selection_colour.green = selection_colour.green >> 8;
-  priv->selection_colour.blue  = selection_colour.blue  >> 8;
-  priv->selection_colour.alpha = 0xff;
-
-  /* Update the existing slots */
-  slots = aisleriot_game_get_slots (priv->game);
-  n_slots = slots->len;
-  for (i = 0; i < n_slots; ++i) {
-    Slot *slot = slots->pdata[i];
-
-    if (slot->slot_renderer)
-      aisleriot_slot_renderer_set_highlight_color (AISLERIOT_SLOT_RENDERER (slot->slot_renderer),
-                                                   &priv->selection_colour);
-  }
-
-  GTK_WIDGET_CLASS (aisleriot_board_parent_class)->style_set (widget, previous_style);
-}
-
 static void
-aisleriot_board_direction_changed (GtkWidget *widget,
-                                   GtkTextDirection previous_direction)
+aisleriot_board_allocate (ClutterActor *actor,
+                          const ClutterActorBox *box,
+                          ClutterAllocationFlags flags)
 {
-  AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
-  GtkTextDirection direction;
-
-  direction = gtk_widget_get_direction (widget);
-
-  priv->is_rtl = (direction == GTK_TEXT_DIR_RTL);
-
-  if (direction != previous_direction) {
-    priv->force_geometry_update = TRUE;
-  }
-
-  /* This will queue a resize */
-  GTK_WIDGET_CLASS (aisleriot_board_parent_class)->direction_changed (widget, previous_direction);
-}
-
-static void
-aisleriot_board_size_allocate (GtkWidget *widget,
-                               GtkAllocation *allocation)
-{
-  AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  AisleriotBoard *board = AISLERIOT_BOARD (actor);
   AisleriotBoardPrivate *priv = board->priv;
   gboolean is_same;
 
-  is_same = (memcmp (&widget->allocation, allocation, sizeof (GtkAllocation)) == 0);
-  
-  GTK_WIDGET_CLASS (aisleriot_board_parent_class)->size_allocate (widget, allocation);
+  is_same = clutter_actor_box_equal (box, &priv->allocation);
+
+  _games_debug_print (GAMES_DEBUG_GAME_SIZING,
+                      "board ::allocate (%f / %f)-(%f / %f) => %f x %f is-same %s force-update %s\n",
+                      box->x1, box->y1, box->x2, box->y2,
+                      box->x2 - box->x1, box->y2 - box->y1,
+                      is_same ? "t" : "f",
+                      priv->force_geometry_update ? "t" : "f");
+
+  CLUTTER_ACTOR_CLASS (aisleriot_board_parent_class)->allocate (actor, box, flags);
+
+  priv->allocation = *box;
 
   if (is_same && !priv->force_geometry_update)
     return;
 
   priv->force_geometry_update = FALSE;
 
-  if (GTK_WIDGET_REALIZED (widget)) {
-    aisleriot_board_setup_geometry (board);
-  }
+  /* FIXMEchpe: just queue this instead maybe? */
+  aisleriot_board_setup_geometry (board);
 }
 
 static void
-aisleriot_board_size_request (GtkWidget *widget,
-                              GtkRequisition *requisition)
+aisleriot_board_get_preferred_width (ClutterActor *actor,
+                                     float for_height,
+                                     float *min_width_p,
+                                     float *natural_width_p)
 {
-  requisition->width = BOARD_MIN_WIDTH;
-  requisition->height = BOARD_MIN_HEIGHT;
+  _games_debug_print (GAMES_DEBUG_GAME_SIZING,
+                      "board ::get-preferred-width\n");
+
+  *min_width_p = BOARD_MIN_WIDTH;
+  *natural_width_p = 3 * BOARD_MIN_WIDTH;
+}
+
+static void
+aisleriot_board_get_preferred_height (ClutterActor *actor,
+                                      float for_width,
+                                      float *min_height_p,
+                                      float *natural_height_p)
+{
+  _games_debug_print (GAMES_DEBUG_GAME_SIZING,
+                      "board ::get-preferred-height\n");
+
+  *min_height_p = BOARD_MIN_HEIGHT;
+  *natural_height_p = 3 * BOARD_MIN_HEIGHT;
 }
 
 #ifdef ENABLE_KEYNAV
 
 static gboolean
-aisleriot_board_focus (GtkWidget *widget,
-                       GtkDirectionType direction)
+aisleriot_board_focus (AisleriotBoard *board,
+                       int count)
 {
-  AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
 
   if (!priv->focus_slot) {
-    int count;
-
-    switch (direction) {
-      case GTK_DIR_TAB_FORWARD:
-        count = 1;
-        break;
-      case GTK_DIR_TAB_BACKWARD:
-        count = -1;
-        break;
-      default:
-        break;
-    }
-
     return aisleriot_board_move_cursor_start_end_by_slot (board, -count);
   }
 
@@ -2779,11 +2595,31 @@ aisleriot_board_focus (GtkWidget *widget,
     return TRUE;
 #endif
 
-  return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->focus (widget, direction);
+  return FALSE;
+}
+
+static gboolean
+aisleriot_board_key_press (ClutterActor *actor,
+                           ClutterKeyEvent *event)
+{
+  ClutterBindingPool *pool;
+
+  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+                      "board ::key-press keyval %x modifiers %x\n",
+                      event->keyval, event->modifier_state);
+
+  pool = clutter_binding_pool_get_for_class (CLUTTER_ACTOR_GET_CLASS (actor));
+  g_assert (pool != NULL);
+
+  return clutter_binding_pool_activate (pool,
+                                        event->keyval,
+                                        event->modifier_state,
+                                        G_OBJECT (actor));
 }
 
 #endif /* ENABLE_KEYNAV */
 
+#ifdef FIXMEchpe
 /* The gtkwidget.c focus in/out handlers queue a shallow draw;
  * that's ok for us but maybe we want to optimise this a bit to
  * only do it if we have a focus to draw/erase?
@@ -2827,30 +2663,43 @@ aisleriot_board_focus_out (GtkWidget *widget,
 
   return FALSE;
 }
+#endif /* FIXMEchpe */
 
 static gboolean
-aisleriot_board_button_press (GtkWidget *widget,
-                              GdkEventButton *event)
+aisleriot_board_button_press (ClutterActor *actor,
+                              ClutterButtonEvent *event)
 {
-  AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  AisleriotBoard *board = AISLERIOT_BOARD (actor);
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *hslot;
+  ArSlot *hslot;
   int cardid;
-  guint button;
+  guint32 button;
   gboolean drag_valid;
   guint state;
   gboolean is_double_click, show_focus;
 
+  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+                      "board ::button-press @(%f / %f) button %d click-count %d modifiers %x\n",
+                      event->x, event->y,
+                      event->button, event->click_count,
+                      event->modifier_state);
+
   /* NOTE: It's ok to just return instead of chaining up, since the
-   * parent class has no class closure for this event.
+   * parent classes have no class closure for this event.
    */
 
+  /* FIXMEchpe: check event coordinate handling (float vs int!) */
+
+#ifdef FIXMEchpe
+  /* FIXMEchpe: we might be able to use ClutterButtonEvent::click_count for double-click detection! */
   /* ignore the gdk synthetic double/triple click events */
   if (event->type != GDK_BUTTON_PRESS)
     return FALSE;
+#endif
 
   /* Don't do anything if a modifier is pressed */
-  state = event->state & gtk_accelerator_get_default_mod_mask ();
+  /* FIXMEchpe: is there anything like gtk_accelerator_get_default_mod_mask() in clutter? */
+  state = event->modifier_state;
   if (state != 0)
     return FALSE;
 
@@ -2872,7 +2721,7 @@ aisleriot_board_button_press (GtkWidget *widget,
 
   is_double_click = button == 2 ||
                     (priv->last_click_left_click &&
-                     (event->time - priv->last_click_time <= priv->double_click_time) &&
+                     (event->time - priv->last_click_time <= ar_style_get_double_click_time (priv->style)) &&
                      priv->last_clicked_slot == hslot &&
                      priv->last_clicked_card_id == cardid);
 
@@ -2892,7 +2741,7 @@ aisleriot_board_button_press (GtkWidget *widget,
     return FALSE;
   }
 
-  set_cursor (board, CURSOR_CLOSED);
+  set_cursor (board, AR_CURSOR_CLOSED);
 
   /* First check if it's a right-click: if so, we reveal the card and do nothing else */
   if (button == 3) {
@@ -2910,7 +2759,7 @@ aisleriot_board_button_press (GtkWidget *widget,
    * different cards and a double-click on one card.
    */
   if (is_double_click) {
-    Slot *clicked_slot = hslot;
+    ArSlot *clicked_slot = hslot;
 
     priv->click_status = STATUS_NONE;
 
@@ -2926,7 +2775,7 @@ aisleriot_board_button_press (GtkWidget *widget,
 
     aisleriot_game_test_end_of_game (priv->game);
 
-    set_cursor (board, CURSOR_OPEN);
+    set_cursor (board, AR_CURSOR_OPEN);
 
     return TRUE;
   }
@@ -3012,15 +2861,23 @@ set_selection:
 }
 
 static gboolean
-aisleriot_board_button_release (GtkWidget *widget,
-                                GdkEventButton *event)
+aisleriot_board_button_release (ClutterActor *actor,
+                                ClutterButtonEvent *event)
 {
-  AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  AisleriotBoard *board = AISLERIOT_BOARD (actor);
   AisleriotBoardPrivate *priv = board->priv;
   /* guint state; */
 
+  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+                      "board ::button-release @(%f / %f) button %d click-count %d modifiers %x\n",
+                      event->x, event->y,
+                      event->button, event->click_count,
+                      event->modifier_state);
+
+  /* FIXMEchpe: check event coordinate handling (float vs int!) */
+
   /* NOTE: It's ok to just return instead of chaining up, since the
-   * parent class has no class closure for this event.
+   * parent classes have no class closure for this event.
    */
 
   /* We just abort any action on button release, even if the button-up
@@ -3042,7 +2899,7 @@ aisleriot_board_button_release (GtkWidget *widget,
 
     case STATUS_MAYBE_DRAG:
     case STATUS_NOT_DRAG: {
-      Slot *slot;
+      ArSlot *slot;
       int card_id;
 
       /* Don't do the action if the mouse moved away from the clicked slot; see bug #329183 */
@@ -3075,18 +2932,25 @@ aisleriot_board_button_release (GtkWidget *widget,
 }
 
 static gboolean
-aisleriot_board_motion_notify (GtkWidget *widget,
-                               GdkEventMotion * event)
+aisleriot_board_motion (ClutterActor *actor,
+                        ClutterMotionEvent *event)
 {
-  AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  AisleriotBoard *board = AISLERIOT_BOARD (actor);
   AisleriotBoardPrivate *priv = board->priv;
 
+  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+                      "board ::motion @(%f / %f) modifiers %x\n",
+                      event->x, event->y,
+                      event->modifier_state);
+
+  /* FIXMEchpe: check event coordinate handling (float vs int!) */
+
   /* NOTE: It's ok to just return instead of chaining up, since the
-   * parent class has no class closure for this event.
+   * parent classes have no class closure for this event.
    */
 
   if (priv->click_status == STATUS_IS_DRAG) {
-    Slot *slot;
+    ArSlot *slot;
     int x, y;
 
     x = event->x - priv->last_click_x;
@@ -3098,13 +2962,13 @@ aisleriot_board_motion_notify (GtkWidget *widget,
     clutter_actor_set_position (priv->moving_cards_group, x, y);
     clutter_actor_raise_top (priv->moving_cards_group);
 
-    set_cursor (board, CURSOR_CLOSED);
+    set_cursor (board, AR_CURSOR_CLOSED);
   } else if (priv->click_status == STATUS_MAYBE_DRAG &&
-             gtk_drag_check_threshold (widget,
-                                       priv->last_click_x,
-                                       priv->last_click_y,
-                                       event->x,
-                                       event->y)) {
+             ar_style_check_dnd_drag_threshold (priv->style,
+                                                priv->last_click_x,
+                                                priv->last_click_y,
+                                                event->x,
+                                                event->y)) {
     drag_begin (board);
   } else {
     set_cursor_by_location (board, event->x, event->y);
@@ -3114,83 +2978,72 @@ aisleriot_board_motion_notify (GtkWidget *widget,
 }
 
 static gboolean
-aisleriot_board_key_press (GtkWidget *widget,
-                           GdkEventKey* event)
+aisleriot_board_enter (ClutterActor *actor,
+                       ClutterCrossingEvent *event)
 {
-  return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->key_press_event (widget, event);
-}
+  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+                      "board ::enter @(%f / %f)\n",
+                      event->x, event->y);
 
-#ifdef HAVE_MAEMO
-
-static gboolean
-aisleriot_board_tap_and_hold_query_cb (GtkWidget *widget,
-                                       GdkEvent *_event,
-                                       AisleriotBoard *board)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  /* BadDocs! should mention that this is a GdkEventButton! */
-  GdkEventButton *event = (GdkEventButton *) _event;
-  Slot *slot;
-  int card_id;
-
-  /* NOTE: Returning TRUE from this function means that tap-and-hold
-   * is disallowed here; FALSE means to allow tap-and-hold.
+  /* NOTE: It's ok to just return instead of chaining up, since the
+   * parent classes have no class closure for this event.
    */
 
-  /* In click-to-move mode, we always reveal with just the left click */
-  if (priv->click_to_move)
-    return TRUE;
+  return FALSE;
+}
 
-  get_slot_and_card_from_point (board, event->x, event->y, &slot, &card_id);
-  if (!slot ||
-      card_id < 0 ||
-      card_id == slot->cards->len - 1 ||
-      CARD_GET_FACE_DOWN (CARD (slot->cards->data[card_id])))
-    return TRUE;
+static gboolean
+aisleriot_board_leave (ClutterActor *actor,
+                       ClutterCrossingEvent *event)
+{
+  AisleriotBoard *board = AISLERIOT_BOARD (actor);
 
-  priv->tap_and_hold_slot = slot;
-  priv->tap_and_hold_card_id = card_id;
+  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+                      "board ::leave @(%f / %f)\n",
+                      event->x, event->y);
 
-  return FALSE; /* chain up to the default handler */
+  /* NOTE: It's ok to just return instead of chaining up, since the
+   * parent classes have no class closure for this event.
+   */
+
+  set_cursor (board, AR_CURSOR_DEFAULT);
+
+  return FALSE;
 }
 
 static void
-aisleriot_board_tap_and_hold_cb (GtkWidget *widget,
-                                 AisleriotBoard *board)
+aisleriot_board_key_focus_in (ClutterActor *actor)
 {
-  AisleriotBoardPrivate *priv = board->priv;
-
-  if (priv->tap_and_hold_slot == NULL ||
-      priv->tap_and_hold_card_id < 0)
-    return;
-
-  reveal_card (board, priv->tap_and_hold_slot, priv->tap_and_hold_card_id);
+  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+                      "board ::key-focus-in\n");
 }
 
-#endif /* HAVE_MAEMO */
+static void
+aisleriot_board_key_focus_out (ClutterActor *actor)
+{
+  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+                      "board ::key-focus-out\n");
+}
 
 /* GObjectClass methods */
 
 static void
 aisleriot_board_init (AisleriotBoard *board)
 {
-  GtkWidget *widget = GTK_WIDGET (board);
+  ClutterActor *actor = CLUTTER_ACTOR (board);
   AisleriotBoardPrivate *priv;
-  ClutterActor *stage;
 
   priv = board->priv = AISLERIOT_BOARD_GET_PRIVATE (board);
 
-  gtk_widget_set_name (widget, "aisleriot-board");
+  memset (&priv->allocation, 0, sizeof (ClutterActorBox));
 
-  GTK_WIDGET_SET_FLAGS (widget, GTK_CAN_FOCUS);
-
-  priv->is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
+  /* We want to receive events! */
+  clutter_actor_set_reactive (actor, TRUE);
 
   priv->force_geometry_update = FALSE;
 
   priv->click_to_move = FALSE;
   priv->show_selection = FALSE;
-  priv->animation_mode = FALSE;
 
   priv->show_card_id = -1;
 
@@ -3198,25 +3051,8 @@ aisleriot_board_init (AisleriotBoard *board)
 
   priv->removed_cards = g_array_new (FALSE, FALSE, sizeof (RemovedCard));
 
-  gtk_widget_set_events (widget,
-			 gtk_widget_get_events (widget) |
-                         GDK_EXPOSURE_MASK |
-                         GDK_BUTTON_PRESS_MASK |
-                         GDK_POINTER_MOTION_MASK |
-                         GDK_BUTTON_RELEASE_MASK);
-  /* FIMXEchpe: no need for motion events on maemo, unless we explicitly activate drag mode */
-
-#ifdef HAVE_MAEMO
-  gtk_widget_tap_and_hold_setup (widget, NULL, NULL, GTK_TAP_AND_HOLD_PASS_PRESS);
-  g_signal_connect (widget, "tap-and-hold-query",
-                    G_CALLBACK (aisleriot_board_tap_and_hold_query_cb), board);
-  g_signal_connect (widget, "tap-and-hold",
-                    G_CALLBACK (aisleriot_board_tap_and_hold_cb), board);
-#endif /* HAVE_MAEMO */
-
-  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (board));
   priv->animation_layer = g_object_ref_sink (clutter_group_new ());
-  clutter_container_add (CLUTTER_CONTAINER (stage),
+  clutter_container_add (CLUTTER_CONTAINER (board),
                          priv->animation_layer, NULL);
 }
 
@@ -3235,6 +3071,7 @@ aisleriot_board_constructor (GType type,
   board = AISLERIOT_BOARD (object);
   priv = board->priv;
 
+  g_assert (priv->style != NULL);
   g_assert (priv->game != NULL);
 
   priv->textures = games_card_textures_cache_new ();
@@ -3257,8 +3094,12 @@ aisleriot_board_finalize (GObject *object)
 
   g_byte_array_free (priv->moving_cards, TRUE);
 
-  if (priv->theme) {
-    g_object_unref (priv->theme);
+  if (priv->style != NULL) {
+    g_signal_handlers_disconnect_matched (priv->style,
+                                          G_SIGNAL_MATCH_DATA,
+                                          0, 0, NULL, NULL, board);
+
+    g_object_unref (priv->style);
   }
 
 #if 0
@@ -3277,12 +3118,6 @@ aisleriot_board_dispose (GObject *object)
   AisleriotBoard *board = AISLERIOT_BOARD (object);
   AisleriotBoardPrivate *priv = board->priv;
 
-  if (priv->baize_actor) {
-    clutter_actor_destroy (priv->baize_actor);
-    g_object_unref (priv->baize_actor);
-    priv->baize_actor = NULL;
-  }
-
   if (priv->textures) {
     g_object_unref (priv->textures);
     priv->textures = NULL;
@@ -3299,21 +3134,6 @@ aisleriot_board_dispose (GObject *object)
   }
 
   G_OBJECT_CLASS (aisleriot_board_parent_class)->dispose (object);
-}
-
-static void
-aisleriot_board_get_property (GObject *object,
-                              guint prop_id,
-                              GValue *value,
-                              GParamSpec *pspec)
-{
-  AisleriotBoard *board = AISLERIOT_BOARD (object);
-
-  switch (prop_id) {
-    case PROP_THEME:
-      g_value_set_object (value, aisleriot_board_get_card_theme (board));
-      break;
-  }
 }
 
 static void
@@ -3339,9 +3159,17 @@ aisleriot_board_set_property (GObject *object,
                         G_CALLBACK (slot_changed_cb), board);
 
       break;
-    case PROP_THEME:
-      aisleriot_board_set_card_theme (board, g_value_get_object (value));
+
+    case PROP_STYLE:
+      priv->style = g_value_dup_object (value);
+
+      aisleriot_board_sync_style (priv->style, NULL, board);
+      g_signal_connect (priv->style, "notify",
+                        G_CALLBACK (aisleriot_board_sync_style), board);
       break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
   }
 }
 
@@ -3349,9 +3177,10 @@ static void
 aisleriot_board_class_init (AisleriotBoardClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+  ClutterActorClass *actor_class = CLUTTER_ACTOR_CLASS (klass);
 #ifdef ENABLE_KEYNAV
-  GtkBindingSet *binding_set;
+  ClutterBindingPool *binding_pool;
+  GClosure *closure;
 #endif
 
   g_type_class_add_private (gobject_class, sizeof (AisleriotBoardPrivate));
@@ -3360,30 +3189,63 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   gobject_class->dispose = aisleriot_board_dispose;
   gobject_class->finalize = aisleriot_board_finalize;
   gobject_class->set_property = aisleriot_board_set_property;
-  gobject_class->get_property = aisleriot_board_get_property;
 
+#ifdef FIXMEchpe
   widget_class->realize = aisleriot_board_realize;
   widget_class->unrealize = aisleriot_board_unrealize;
-  widget_class->screen_changed = aisleriot_board_screen_changed;
-  widget_class->style_set = aisleriot_board_style_set;
-  widget_class->direction_changed = aisleriot_board_direction_changed;
-  widget_class->size_allocate = aisleriot_board_size_allocate;
-  widget_class->size_request = aisleriot_board_size_request;
-#ifdef ENABLE_KEYNAV
-  widget_class->focus = aisleriot_board_focus;
-#endif /* ENABLE_KEYNAV */
   widget_class->focus_in_event = aisleriot_board_focus_in;
   widget_class->focus_out_event = aisleriot_board_focus_out;
-  widget_class->button_press_event = aisleriot_board_button_press;
-  widget_class->button_release_event = aisleriot_board_button_release;
-  widget_class->motion_notify_event = aisleriot_board_motion_notify;
-  widget_class->key_press_event = aisleriot_board_key_press;
-#ifdef HAVE_MAEMO
-  widget_class->tap_and_hold_query = aisleriot_board_tap_and_hold_query;
-  widget_class->tap_and_hold = aisleriot_board_tap_and_hold;
-#endif /* HAVE_MAEMO */
+#endif // FIXMEchpe
+
+  actor_class->allocate = aisleriot_board_allocate;
+  actor_class->get_preferred_width = aisleriot_board_get_preferred_width;
+  actor_class->get_preferred_height = aisleriot_board_get_preferred_height;
+#ifdef ENABLE_KEYNAV
+  actor_class->key_press_event = aisleriot_board_key_press;
+#endif /* ENABLE_KEYNAV */
+  actor_class->button_press_event = aisleriot_board_button_press;
+  actor_class->button_release_event = aisleriot_board_button_release;
+  actor_class->motion_event = aisleriot_board_motion;
+  actor_class->enter_event = aisleriot_board_enter;
+  actor_class->leave_event = aisleriot_board_leave;
+  actor_class->key_focus_in = aisleriot_board_key_focus_in;
+  actor_class->key_focus_out = aisleriot_board_key_focus_out;
+
+
+  signals[REQUEST_CURSOR] =
+    g_signal_new (I_("request-cursor"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (AisleriotBoardClass, request_cursor),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__INT,
+                  G_TYPE_NONE,
+                  1,
+                  G_TYPE_INT);
+
+  signals[ERROR_BELL] =
+    g_signal_new (I_("error-bell"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (AisleriotBoardClass, request_cursor),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  signals[ERROR_BELL] =
+    g_signal_new (I_("focus"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (AisleriotBoardClass, focus),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__INT,
+                  G_TYPE_BOOLEAN,
+                  1,
+                  G_TYPE_INT);
 
 #ifdef ENABLE_KEYNAV
+  klass->focus = aisleriot_board_focus;
   klass->activate = aisleriot_board_activate;
   klass->move_cursor = aisleriot_board_move_cursor;
   klass->select_all = aisleriot_board_select_all;
@@ -3391,15 +3253,21 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   klass->toggle_selection = aisleriot_board_toggle_selection;
 
   /* Keybinding signals */
-  widget_class->activate_signal = signals[ACTIVATE] =
+#ifdef FIXMEchpe
+  widget_class->activate_signal =
+#endif
+  signals[ACTIVATE] =
     g_signal_new (I_("activate"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, activate),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE,
-                  0);
+                  games_marshal_BOOLEAN__STRING_UINT_ENUM,
+                  G_TYPE_BOOLEAN,
+                  3,
+                  G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,
+                  G_TYPE_UINT,
+                  CLUTTER_TYPE_MODIFIER_TYPE);
 
   signals[MOVE_CURSOR] =
     g_signal_new (I_("move-cursor"),
@@ -3407,11 +3275,12 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, move_cursor),
                   NULL, NULL,
-                  games_marshal_BOOLEAN__ENUM_INT,
+                  games_marshal_BOOLEAN__STRING_UINT_ENUM,
                   G_TYPE_BOOLEAN,
-                  2,
-                  GTK_TYPE_MOVEMENT_STEP,
-                  G_TYPE_INT);
+                  3,
+                  G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,
+                  G_TYPE_UINT,
+                  CLUTTER_TYPE_MODIFIER_TYPE);
 
   signals[TOGGLE_SELECTION] =
     g_signal_new (I_("toggle-selection"),
@@ -3419,9 +3288,12 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, toggle_selection),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE,
-                  0);
+                  games_marshal_BOOLEAN__STRING_UINT_ENUM,
+                  G_TYPE_BOOLEAN,
+                  3,
+                  G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,
+                  G_TYPE_UINT,
+                  CLUTTER_TYPE_MODIFIER_TYPE);
 
   signals[SELECT_ALL] =
     g_signal_new (I_("select-all"),
@@ -3429,9 +3301,12 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, select_all),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE,
-                  0);
+                  games_marshal_BOOLEAN__STRING_UINT_ENUM,
+                  G_TYPE_BOOLEAN,
+                  3,
+                  G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,
+                  G_TYPE_UINT,
+                  CLUTTER_TYPE_MODIFIER_TYPE);
 
   signals[DESELECT_ALL] =
     g_signal_new (I_("deselect-all"),
@@ -3439,9 +3314,12 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, deselect_all),
                   NULL, NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE,
-                  0);
+                  games_marshal_BOOLEAN__STRING_UINT_ENUM,
+                  G_TYPE_BOOLEAN,
+                  3,
+                  G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,
+                  G_TYPE_UINT,
+                  CLUTTER_TYPE_MODIFIER_TYPE);
 #endif /* ENABLE_KEYNAV */
 
   /* Properties */
@@ -3450,195 +3328,148 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
      PROP_GAME,
      g_param_spec_object ("game", NULL, NULL,
                           AISLERIOT_TYPE_GAME,
-                          G_PARAM_WRITABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_CONSTRUCT_ONLY));
+                          G_PARAM_WRITABLE |
+                          G_PARAM_CONSTRUCT_ONLY |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (gobject_class,
-     PROP_THEME,
-     g_param_spec_object ("theme", NULL, NULL,
-                          GAMES_TYPE_CARD_THEME,
-                          G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
-
-  gtk_widget_class_install_style_property
-    (widget_class,
-     g_param_spec_boxed ("selection-color", NULL, NULL,
-                         GDK_TYPE_COLOR,
-                         G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
-
-  /**
-   * AisleriotBoard:card-slot-ratio:
-   *
-   * The ratio of card to slot size. Note that this is the ratio of
-   * card width/slot width and card height/slot height, not of
-   * card area/slot area.
-  */
-  gtk_widget_class_install_style_property
-    (widget_class,
-     g_param_spec_double ("card-slot-ratio", NULL, NULL,
-                          0.1, 1.0, DEFAULT_CARD_SLOT_RATIO,
-                          G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+     PROP_STYLE,
+     g_param_spec_object ("style", NULL, NULL,
+                          AR_TYPE_STYLE,
+                          G_PARAM_WRITABLE |
+                          G_PARAM_CONSTRUCT_ONLY |
+                          G_PARAM_STATIC_STRINGS));
 
 #ifdef ENABLE_KEYNAV
   /* Keybindings */
-  binding_set = gtk_binding_set_by_class (klass);
+  binding_pool = clutter_binding_pool_get_for_class (klass);
 
   /* Cursor movement */
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Left, 0,
-                                               GTK_MOVEMENT_VISUAL_POSITIONS, -1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Left, 0,
-                                               GTK_MOVEMENT_VISUAL_POSITIONS, -1);
+  closure = g_signal_type_cclosure_new (G_TYPE_FROM_CLASS (klass),
+                                        G_STRUCT_OFFSET (AisleriotBoardClass, move_cursor));
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Right, 0,
-                                               GTK_MOVEMENT_VISUAL_POSITIONS, 1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Right, 0,
-                                               GTK_MOVEMENT_VISUAL_POSITIONS, 1);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_LEFT_RIGHT_S MOVE_LEFT_S),
+                                               CLUTTER_Left, 0);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_LEFT_RIGHT_S MOVE_LEFT_S),
+                                               CLUTTER_KP_Left, 0);
+
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_LEFT_RIGHT_S MOVE_RIGHT_S),
+                                               CLUTTER_Right, 0);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_LEFT_RIGHT_S MOVE_RIGHT_S),
+                                               CLUTTER_KP_Right, 0);
   
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Up, 0,
-                                               GTK_MOVEMENT_DISPLAY_LINES, -1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Up, 0,
-                                               GTK_MOVEMENT_DISPLAY_LINES, -1);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_UP_DOWN_S MOVE_LEFT_S),
+                                               CLUTTER_Up, 0);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_UP_DOWN_S MOVE_LEFT_S),
+                                               CLUTTER_KP_Up, 0);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Down, 0,
-                                               GTK_MOVEMENT_DISPLAY_LINES, 1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Down, 0,
-                                               GTK_MOVEMENT_DISPLAY_LINES, 1);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_UP_DOWN_S MOVE_RIGHT_S),
+                                               CLUTTER_Down, 0);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_UP_DOWN_S MOVE_RIGHT_S),
+                                               CLUTTER_KP_Down, 0);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Home, 0,
-                                               GTK_MOVEMENT_BUFFER_ENDS, -1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Home, 0,
-                                               GTK_MOVEMENT_BUFFER_ENDS, -1);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_START_END_S MOVE_LEFT_S),
+                                               CLUTTER_Home, 0);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_START_END_S MOVE_LEFT_S),
+                                               CLUTTER_KP_Home, 0);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_START_END_S MOVE_LEFT_S),
+                                               CLUTTER_Begin, 0);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_End, 0,
-                                               GTK_MOVEMENT_BUFFER_ENDS, 1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_End, 0,
-                                               GTK_MOVEMENT_BUFFER_ENDS, 1);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_START_END_S MOVE_RIGHT_S),
+                                               CLUTTER_End, 0);
+  aisleriot_board_add_move_and_select_binding (binding_pool, closure,
+                                               I_(MOVE_CURSOR_START_END_S MOVE_RIGHT_S),
+                                               CLUTTER_KP_End, 0);
 
-  aisleriot_board_add_move_binding (binding_set, GDK_Page_Up, 0,
-                                    GTK_MOVEMENT_PAGES, -1);
-  aisleriot_board_add_move_binding (binding_set, GDK_KP_Page_Up, 0,
-                                    GTK_MOVEMENT_PAGES, -1);
+  aisleriot_board_add_move_binding (binding_pool, closure,
+                                    I_(MOVE_CURSOR_PAGES_S MOVE_LEFT_S),
+                                    CLUTTER_Page_Up, 0);
+  aisleriot_board_add_move_binding (binding_pool, closure,
+                                    I_(MOVE_CURSOR_PAGES_S MOVE_LEFT_S),
+                                    CLUTTER_KP_Page_Up, 0);
 
-  aisleriot_board_add_move_binding (binding_set, GDK_Page_Down, 0,
-                                    GTK_MOVEMENT_PAGES, 1);
-  aisleriot_board_add_move_binding (binding_set, GDK_KP_Page_Down, 0,
-                                    GTK_MOVEMENT_PAGES, 1);
+  aisleriot_board_add_move_binding (binding_pool, closure,
+                                    I_(MOVE_CURSOR_PAGES_S MOVE_RIGHT_S),
+                                    CLUTTER_Page_Down, 0);
+  aisleriot_board_add_move_binding (binding_pool, closure,
+                                    I_(MOVE_CURSOR_PAGES_S MOVE_RIGHT_S),
+                                    CLUTTER_KP_Page_Down, 0);
+
+  g_closure_unref (closure);
 
   /* Selection */
-  gtk_binding_entry_add_signal (binding_set, GDK_space, 0,
-                                "toggle-selection", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_KP_Space, 0,
-                                "toggle-selection", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_a, GDK_CONTROL_MASK,
-                                "select-all", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_a, GDK_CONTROL_MASK | GDK_SHIFT_MASK,
-                                "deselect-all", 0);
+  closure = g_signal_type_cclosure_new (G_TYPE_FROM_CLASS (klass),
+                                        G_STRUCT_OFFSET (AisleriotBoardClass, toggle_selection));
+
+  clutter_binding_pool_install_closure (binding_pool,
+                                        I_("toggle-selection"),
+                                        CLUTTER_space,
+                                        0,
+                                       closure);
+  clutter_binding_pool_install_closure (binding_pool,
+                                        I_("toggle-selection"),
+                                        CLUTTER_KP_Space,
+                                        0,
+                                        closure);
+  g_closure_unref (closure);
+
+  closure = g_signal_type_cclosure_new (G_TYPE_FROM_CLASS (klass),
+                                        G_STRUCT_OFFSET (AisleriotBoardClass, select_all));
+  clutter_binding_pool_install_closure (binding_pool,
+                                        I_("select-all"),
+                                        CLUTTER_a,
+                                        CLUTTER_CONTROL_MASK,
+                                        closure);
+  g_closure_unref (closure);
+
+  closure = g_signal_type_cclosure_new (G_TYPE_FROM_CLASS (klass),
+                                        G_STRUCT_OFFSET (AisleriotBoardClass, deselect_all));
+  clutter_binding_pool_install_closure (binding_pool,
+                                        I_("deselect-all"),
+                                        CLUTTER_a,
+                                        CLUTTER_CONTROL_MASK | CLUTTER_SHIFT_MASK,
+                                        closure);
+  g_closure_unref (closure);
 
   /* Activate */
-  aisleriot_board_add_activate_binding (binding_set, GDK_Return, 0);
-  aisleriot_board_add_activate_binding (binding_set, GDK_ISO_Enter, 0);
-  aisleriot_board_add_activate_binding (binding_set, GDK_KP_Enter, 0);
+  closure = g_signal_type_cclosure_new (G_TYPE_FROM_CLASS (klass),
+                                        G_STRUCT_OFFSET (AisleriotBoardClass, activate));
+
+  aisleriot_board_add_activate_binding (binding_pool, closure, CLUTTER_Return, 0);
+  aisleriot_board_add_activate_binding (binding_pool, closure, CLUTTER_ISO_Enter, 0);
+  aisleriot_board_add_activate_binding (binding_pool, closure, CLUTTER_KP_Enter, 0);
+
+  g_closure_unref (closure);
 #endif /* ENABLE_KEYNAV */
 }
 
 /* public API */
 
-GtkWidget *
-aisleriot_board_new (AisleriotGame *game)
+ClutterActor *
+aisleriot_board_new (ArStyle *style,
+                     AisleriotGame *game)
 {
   return g_object_new (AISLERIOT_TYPE_BOARD,
+                       "style", style,
                        "game", game,
                        NULL);
-}
-
-void
-aisleriot_board_set_card_theme (AisleriotBoard *board,
-                                GamesCardTheme *theme)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-
-  g_return_if_fail (AISLERIOT_IS_BOARD (board));
-  g_return_if_fail (GAMES_IS_CARD_THEME (theme));
-
-  if (theme == priv->theme)
-    return;
-
-  if (priv->theme) {
-    g_object_unref (priv->theme);
-  }
-
-  priv->geometry_set = FALSE;
-
-  priv->theme = g_object_ref (theme);
-
-  games_card_textures_cache_set_theme (priv->textures, priv->theme);
-
-  if (GTK_WIDGET_REALIZED (widget)) {
-    /* Update card size and slot locations for new card theme (might have changed aspect!)*/
-    aisleriot_board_setup_geometry (board);
-
-    gtk_widget_queue_draw (widget);
-  }
-
-  g_object_notify (G_OBJECT (board), "theme");
-}
-
-GamesCardTheme *
-aisleriot_board_get_card_theme (AisleriotBoard *board)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-
-  return priv->theme;
-}
-
-void
-aisleriot_board_set_click_to_move (AisleriotBoard *board,
-                                   gboolean click_to_move)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-
-  click_to_move = click_to_move != FALSE;
-  if (priv->click_to_move == click_to_move)
-    return;
-
-  /* Clear the selection. Do this before setting the new value,
-   * since otherwise selection won't get cleared correctly.
-   */
-  set_selection (board, NULL, -1, FALSE);
-
-  priv->click_to_move = click_to_move;
-
-  /* FIXMEchpe why? */
-  if (GTK_WIDGET_REALIZED (widget)) {
-    gtk_widget_queue_draw (widget);
-  }
-}
-
-void
-aisleriot_board_set_animation_mode (AisleriotBoard *board,
-                                    gboolean enabled)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-
-  enabled = enabled != FALSE;
-  if (priv->animation_mode == enabled)
-    return;
-
-  priv->animation_mode = enabled;
-
-  /* FIXME: stop in-progress animations? */
 }
 
 void
 aisleriot_board_abort_move (AisleriotBoard *board)
 {
   clear_state (board);
-}
-
-void
-aisleriot_board_set_pixbuf_drawing (AisleriotBoard *board,
-                                    gboolean use_pixbuf_drawing)
-{
-  /* makes no sense for Clutter */
 }

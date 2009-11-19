@@ -19,14 +19,10 @@
 #ifndef AISLERIOT_BOARD_H
 #define AISLERIOT_BOARD_H
 
-#ifndef HAVE_CLUTTER
-#error board.h requires clutter
-#endif
+#include <gtk/gtk.h>
 
-#include <clutter/clutter.h>
+#include <libgames-support/games-card-theme.h>
 
-#include "ar-style.h"
-#include "ar-cursor.h"
 #include "game.h"
 
 G_BEGIN_DECLS
@@ -43,53 +39,44 @@ typedef struct _AisleriotBoardPrivate	AisleriotBoardPrivate;
 typedef struct _AisleriotBoardClass	AisleriotBoardClass;
 
 struct _AisleriotBoard {
-  ClutterGroup parent_instance;
+  GtkDrawingArea parent_instance;
 
   /*< private >*/
   AisleriotBoardPrivate *priv;
 };
 
 struct _AisleriotBoardClass {
-  ClutterGroupClass parent_class;
-
-  void (* request_cursor)   (AisleriotBoard *board,
-                             ArCursorType cursor_type);
-
-  void (* error_bell)       (AisleriotBoard *board);
-
-  /* Focus */
-  gboolean (* focus)        (AisleriotBoard *,
-                             int direction);
+  GtkDrawingAreaClass parent_class;
 
   /* keybinding signals */
-  gboolean (* move_cursor)  (AisleriotBoard *,
-                             const char *,
-                             guint,
-                             ClutterModifierType);
-  void (* activate)         (AisleriotBoard *,
-                             const char *,
-                             guint,
-                             ClutterModifierType);
-  void (* toggle_selection) (AisleriotBoard *,
-                             const char *,
-                             guint,
-                             ClutterModifierType);
-  void (* select_all)       (AisleriotBoard *,
-                             const char *,
-                             guint,
-                             ClutterModifierType);
-  void (* deselect_all)     (AisleriotBoard *,
-                             const char *,
-                             guint,
-                             ClutterModifierType);
+  gboolean (* move_cursor)  (AisleriotBoard *board,
+                             GtkMovementStep step,
+                             int count);
+  void (* activate)         (AisleriotBoard *board);
+  void (* toggle_selection) (AisleriotBoard *board);
+  void (* select_all)       (AisleriotBoard *board);
+  void (* deselect_all)     (AisleriotBoard *board);
 };
 
 GType aisleriot_board_get_type (void);
 
-ClutterActor *aisleriot_board_new (ArStyle *style,
-                                   AisleriotGame *game);
+GtkWidget *aisleriot_board_new (AisleriotGame *game);
 
-void aisleriot_board_abort_move (AisleriotBoard *board);
+void aisleriot_board_set_card_theme (AisleriotBoard * board,
+                                     GamesCardTheme *theme);
+
+GamesCardTheme *aisleriot_board_get_card_theme (AisleriotBoard * board);
+
+void aisleriot_board_set_click_to_move (AisleriotBoard * board,
+                                        gboolean click_to_move);
+
+void aisleriot_board_set_animation_mode (AisleriotBoard *board,
+                                         gboolean enable);
+
+void aisleriot_board_abort_move (AisleriotBoard * board);
+
+void aisleriot_board_set_pixbuf_drawing (AisleriotBoard * board,
+                                         gboolean use_pixbuf_drawing);
 
 G_END_DECLS
 

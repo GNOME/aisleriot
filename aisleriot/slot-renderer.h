@@ -20,7 +20,9 @@
 
 #include <clutter/clutter.h>
 #include <libgames-support/games-card-textures-cache.h>
+
 #include "game.h"
+#include "ar-style.h"
 
 G_BEGIN_DECLS
 
@@ -71,15 +73,13 @@ struct _AisleriotAnimStart
 
 GType aisleriot_slot_renderer_get_type (void) G_GNUC_CONST;
 
-ClutterActor *aisleriot_slot_renderer_new (GamesCardTexturesCache *cache,
-                                           Slot *slot);
+ClutterActor *aisleriot_slot_renderer_new (ArStyle *style,
+                                           GamesCardTexturesCache *cache,
+                                           ArSlot *slot);
 
 void aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
                                             gint hightlight_start);
 guint aisleriot_slot_renderer_get_highlight (AisleriotSlotRenderer *srend);
-
-void aisleriot_slot_renderer_set_highlight_color (AisleriotSlotRenderer *srend,
-                                                  const ClutterColor *color);
 
 void aisleriot_slot_renderer_set_revealed_card (AisleriotSlotRenderer *srend,
                                                 gint revealed_card);

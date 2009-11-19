@@ -38,7 +38,7 @@
 
 #include "game.h"
 
-#include "board.h"
+#include "board-noclutter.h"
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
@@ -135,7 +135,7 @@ struct _AisleriotBoardPrivate
   /* Cards cache */
   GamesCardImages *images;
 
-  /* Slot */
+  /* ArSlot */
   gpointer slot_image; /* either a GdkPixbuf or GdkPixmap, depending on drawing mode */
 
   /* Button press */
@@ -145,38 +145,38 @@ struct _AisleriotBoardPrivate
   guint32 last_click_time;
 
   /* Moving cards */
-  Slot *moving_cards_origin_slot;
+  ArSlot *moving_cards_origin_slot;
   int moving_cards_origin_card_id; /* The index of the card that was clicked on in hslot->cards; or -1 if the click wasn't on a card */
   GdkWindow *moving_cards_window;
   GByteArray *moving_cards;
 
   /* The 'reveal card' action's slot and card link */
-  Slot *show_card_slot;
+  ArSlot *show_card_slot;
   int show_card_id;
 
   /* Click data */
-  Slot *last_clicked_slot;
+  ArSlot *last_clicked_slot;
   int last_clicked_card_id;
 
   /* Focus handling */
-  Slot *focus_slot;
+  ArSlot *focus_slot;
   int focus_card_id; /* -1 for focused empty slot */
   int focus_line_width;
   int focus_padding;
   GdkRectangle focus_rect;
 
   /* Selection */
-  Slot *selection_slot;
+  ArSlot *selection_slot;
   int selection_start_card_id;
   GdkRectangle selection_rect;
   GdkColor selection_colour;
 
   /* Highlight */
-  Slot *highlight_slot;
+  ArSlot *highlight_slot;
 
 #ifdef HAVE_MAEMO
   /* Tap-and-Hold */
-  Slot *tap_and_hold_slot;
+  ArSlot *tap_and_hold_slot;
   int tap_and_hold_card_id;
 #endif
 
@@ -227,12 +227,12 @@ static guint signals[LAST_SIGNAL];
 static void get_slot_and_card_from_point (AisleriotBoard *board,
                                           int x,
                                           int y,
-                                          Slot **slot,
+                                          ArSlot **slot,
                                           int *_cardid);
 static void slot_update_card_images      (AisleriotBoard *board,
-                                          Slot *slot);
+                                          ArSlot *slot);
 static void slot_update_card_images_full (AisleriotBoard *board,
-                                          Slot *slot,
+                                          ArSlot *slot,
                                           int highlight_start_card_id);
 
 #ifndef HAVE_HILDON 
@@ -334,9 +334,9 @@ set_cursor_by_location (AisleriotBoard *board,
 {
 #ifndef HAVE_HILDON 
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *selection_slot = priv->selection_slot;
+  ArSlot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
-  Slot *slot;
+  ArSlot *slot;
   int card_id;
   gboolean drop_valid = FALSE;
   CursorType cursor = CURSOR_DEFAULT;
@@ -426,7 +426,7 @@ static void
 get_slot_and_card_from_point (AisleriotBoard *board,
                               int x,
                               int y,
-                              Slot **slot,
+                              ArSlot **slot,
                               int *_cardid)
 {
   AisleriotBoardPrivate *priv = board->priv;
@@ -443,7 +443,7 @@ get_slot_and_card_from_point (AisleriotBoard *board,
 
   n_slots = slots->len;
   for (i = n_slots - 1; i >= 0; --i) {
-    Slot *hslot = slots->pdata[i];
+    ArSlot *hslot = slots->pdata[i];
 
     /* if point is within our rectangle */
     if (hslot->rect.x <= x && x <= hslot->rect.x + hslot->rect.width &&
@@ -490,7 +490,7 @@ get_slot_and_card_from_point (AisleriotBoard *board,
 #ifdef ENABLE_KEYNAV
 
 static gboolean
-test_slot_projection_intersects_x (Slot *slot,
+test_slot_projection_intersects_x (ArSlot *slot,
                                    int x_start,
                                    int x_end)
 {
@@ -500,7 +500,7 @@ test_slot_projection_intersects_x (Slot *slot,
 
 static int
 get_slot_index_from_slot (AisleriotBoard *board,
-                          Slot *slot)
+                          ArSlot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
@@ -527,7 +527,7 @@ get_slot_index_from_slot (AisleriotBoard *board,
 
 static void
 get_rect_by_slot_and_card (AisleriotBoard *board,
-                           Slot *slot,
+                           ArSlot *slot,
                            int card_id,
                            int num_cards,
                            GdkRectangle *rect)
@@ -597,7 +597,7 @@ get_focus_rect (AisleriotBoard *board,
 
 static void
 set_focus (AisleriotBoard *board,
-           Slot *slot,
+           ArSlot *slot,
            int card_id,
            gboolean show_focus)
 {
@@ -666,7 +666,7 @@ get_selection_rect (AisleriotBoard *board,
 
 static void
 set_selection (AisleriotBoard *board,
-               Slot *slot,
+               ArSlot *slot,
                int card_id,
                gboolean show_selection)
 {
@@ -715,7 +715,7 @@ set_selection (AisleriotBoard *board,
 
 static void
 slot_update_geometry (AisleriotBoard *board,
-                      Slot *slot)
+                      ArSlot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
@@ -835,7 +835,7 @@ slot_update_geometry (AisleriotBoard *board,
 
 static void
 slot_update_card_images_full (AisleriotBoard *board,
-                              Slot *slot,
+                              ArSlot *slot,
                               int highlight_start_card_id)
 {
   AisleriotBoardPrivate *priv = board->priv;
@@ -888,7 +888,7 @@ slot_update_card_images_full (AisleriotBoard *board,
 
 static void
 slot_update_card_images (AisleriotBoard *board,
-                         Slot *slot)
+                         ArSlot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
   int highlight_start_card_id = G_MAXINT;
@@ -980,7 +980,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
 
   n_slots = slots->len;
   for (i = 0; i < n_slots; ++i) {
-    Slot *slot = slots->pdata[i];
+    ArSlot *slot = slots->pdata[i];
 
     slot_update_geometry (board, slot);
     slot_update_card_images (board, slot);
@@ -996,7 +996,7 @@ drag_begin (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
-  Slot *hslot;
+  ArSlot *hslot;
   int delta, height, width;
   int x, y;
   GdkPixmap *moving_pixmap;
@@ -1193,7 +1193,7 @@ drag_end (AisleriotBoard *board,
 
 static gboolean
 cards_are_droppable (AisleriotBoard *board,
-                     Slot *slot)
+                     ArSlot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
 
@@ -1206,14 +1206,14 @@ cards_are_droppable (AisleriotBoard *board,
                                     priv->moving_cards->len);
 }
 
-static Slot *
+static ArSlot *
 find_drop_target (AisleriotBoard *board,
                   gint x,
                   gint y)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *new_hslot;
-  Slot *retval = NULL;
+  ArSlot *new_hslot;
+  ArSlot *retval = NULL;
   gint i, new_cardid;
   gint min_distance = G_MAXINT;
 
@@ -1261,7 +1261,7 @@ drop_moving_cards (AisleriotBoard *board,
                    gint y)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *hslot;
+  ArSlot *hslot;
   gboolean moved = FALSE;
 
   hslot = find_drop_target (board,
@@ -1292,7 +1292,7 @@ drop_moving_cards (AisleriotBoard *board,
 
 static void
 highlight_drop_target (AisleriotBoard *board,
-                       Slot *slot)
+                       ArSlot *slot)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
@@ -1347,7 +1347,7 @@ highlight_drop_target (AisleriotBoard *board,
 
 static void
 reveal_card (AisleriotBoard *board,
-             Slot *slot,
+             ArSlot *slot,
              int cardid)
 {
   AisleriotBoardPrivate *priv = board->priv;
@@ -1431,10 +1431,10 @@ aisleriot_board_settings_update (GtkSettings *settings,
 /* Note: this unsets the selection! hslot may be equal to priv->selection_slot. */
 static gboolean
 aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
-                                             Slot *hslot)
+                                             ArSlot *hslot)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *selection_slot = priv->selection_slot;
+  ArSlot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
   gboolean moved;
   guint8 *cards;
@@ -1620,7 +1620,7 @@ aisleriot_board_move_cursor_in_slot (AisleriotBoard *board,
                                      int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot;
+  ArSlot *focus_slot;
   int new_focus_card_id, first_card_id;
 
   focus_slot = priv->focus_slot;
@@ -1638,7 +1638,7 @@ aisleriot_board_move_cursor_start_end_in_slot (AisleriotBoard *board,
                                                int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot = priv->focus_slot;
+  ArSlot *focus_slot = priv->focus_slot;
   int first_card_id, top_card_id, new_focus_card_id;
   guint8 *cards;
 
@@ -1695,7 +1695,7 @@ aisleriot_board_extend_selection_in_slot (AisleriotBoard *board,
                                           int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot, *selection_slot;
+  ArSlot *focus_slot, *selection_slot;
   int new_selection_start_card_id, first_card_id;
 
   focus_slot = priv->focus_slot;
@@ -1744,7 +1744,7 @@ static gboolean
 aisleriot_board_extend_selection_in_slot_maximal (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot = priv->focus_slot;
+  ArSlot *focus_slot = priv->focus_slot;
   int new_selection_start_card_id, n_selected;
 
   n_selected = 0;
@@ -1776,7 +1776,7 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
   GtkWidget *widget = GTK_WIDGET (board);
   GPtrArray *slots;
   guint n_slots;
-  Slot *focus_slot, *new_focus_slot;
+  ArSlot *focus_slot, *new_focus_slot;
   int focus_slot_index, new_focus_slot_index;
   int new_focus_slot_topmost_card_id, new_focus_card_id;
   gboolean is_rtl;
@@ -1860,7 +1860,7 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
   guint n_slots;
-  Slot *focus_slot, *new_focus_slot;
+  ArSlot *focus_slot, *new_focus_slot;
   int focus_slot_index, new_focus_slot_index;
   int new_focus_slot_topmost_card_id, new_focus_card_id;
   int x_start, x_end;
@@ -1945,7 +1945,7 @@ aisleriot_board_move_cursor_start_end_by_slot (AisleriotBoard *board,
 {
   AisleriotBoardPrivate *priv = board->priv;
   GPtrArray *slots;
-  Slot *new_focus_slot;
+  ArSlot *new_focus_slot;
   int new_focus_card_id;
 
   slots = aisleriot_game_get_slots (priv->game);
@@ -1953,10 +1953,10 @@ aisleriot_board_move_cursor_start_end_by_slot (AisleriotBoard *board,
     return FALSE;
 
   if (count > 0) {
-    new_focus_slot = (Slot *) slots->pdata[slots->len - 1];
+    new_focus_slot = (ArSlot *) slots->pdata[slots->len - 1];
     new_focus_card_id = ((int) new_focus_slot->cards->len) - 1;
   } else {
-    new_focus_slot = (Slot *) slots->pdata[0];
+    new_focus_slot = (ArSlot *) slots->pdata[0];
     if (new_focus_slot->cards->len > 0) {
       new_focus_card_id = ((int) new_focus_slot->cards->len) - ((int) new_focus_slot->exposed);
     } else {
@@ -2044,7 +2044,7 @@ aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
                                             int count)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot = priv->focus_slot;
+  ArSlot *focus_slot = priv->focus_slot;
   int new_focus_card_id;
 
   if (count > 0) {
@@ -2135,7 +2135,7 @@ game_new_cb (AisleriotGame *game,
 
 static void
 slot_changed_cb (AisleriotGame *game,
-                 Slot *slot,
+                 ArSlot *slot,
                  AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
@@ -2191,8 +2191,8 @@ aisleriot_board_activate (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
-  Slot *focus_slot = priv->focus_slot;
-  Slot *selection_slot = priv->selection_slot;
+  ArSlot *focus_slot = priv->focus_slot;
+  ArSlot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
   guint state = 0;
 
@@ -2358,7 +2358,7 @@ static void
 aisleriot_board_select_all (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot = priv->focus_slot;
+  ArSlot *focus_slot = priv->focus_slot;
 
   if (!focus_slot ||
       focus_slot->cards->len == 0 ||
@@ -2378,7 +2378,7 @@ static void
 aisleriot_board_toggle_selection (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *focus_slot;
+  ArSlot *focus_slot;
   int focus_card_id;
 
   focus_slot = priv->focus_slot;
@@ -2562,7 +2562,7 @@ aisleriot_board_style_set (GtkWidget *widget,
     priv->selection_colour = *colour;
     gdk_color_free (colour);
   } else {
-    const GdkColor default_colour = { 0, 0 /* red */, 0 /* green */, 0xaa00 /* blue */};
+    static const GdkColor default_colour = { 0, 0 /* red */, 0 /* green */, 0xaa00 /* blue */};
 
     priv->selection_colour = default_colour;
   }
@@ -2717,7 +2717,7 @@ aisleriot_board_button_press (GtkWidget *widget,
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
-  Slot *hslot;
+  ArSlot *hslot;
   int cardid;
   guint button;
   gboolean drag_valid;
@@ -2793,7 +2793,7 @@ aisleriot_board_button_press (GtkWidget *widget,
    * different cards and a double-click on one card.
    */
   if (is_double_click) {
-    Slot *clicked_slot = hslot;
+    ArSlot *clicked_slot = hslot;
 
     priv->click_status = STATUS_NONE;
 
@@ -2925,7 +2925,7 @@ aisleriot_board_button_release (GtkWidget *widget,
 
     case STATUS_MAYBE_DRAG:
     case STATUS_NOT_DRAG: {
-      Slot *slot;
+      ArSlot *slot;
       int card_id;
 
       /* Don't do the action if the mouse moved away from the clicked slot; see bug #329183 */
@@ -2969,7 +2969,7 @@ aisleriot_board_motion_notify (GtkWidget *widget,
    */
 
   if (priv->click_status == STATUS_IS_DRAG) {
-    Slot *slot;
+    ArSlot *slot;
     int x, y;
 
     x = event->x - priv->last_click_x;
@@ -3014,7 +3014,7 @@ aisleriot_board_tap_and_hold_query_cb (GtkWidget *widget,
   AisleriotBoardPrivate *priv = board->priv;
   /* BadDocs! should mention that this is a GdkEventButton! */
   GdkEventButton *event = (GdkEventButton *) _event;
-  Slot *slot;
+  ArSlot *slot;
   int card_id;
 
   /* NOTE: Returning TRUE from this function means that tap-and-hold
@@ -3064,8 +3064,8 @@ aisleriot_board_expose_event (GtkWidget *widget,
   int i, n_rects;
   GPtrArray *slots;
   guint n_slots;
-  Slot **exposed_slots;
-  Slot *highlight_slot;
+  ArSlot **exposed_slots;
+  ArSlot *highlight_slot;
   guint n_exposed_slots;
   gboolean use_pixbuf_drawing = priv->use_pixbuf_drawing;
   GdkWindow *window;
@@ -3117,11 +3117,11 @@ aisleriot_board_expose_event (GtkWidget *widget,
 
   /* First check which slots are exposed */
   /* It's fine to allocate on the stack, since there'll never be very many slots */
-  exposed_slots = g_newa (Slot*, n_slots);
+  exposed_slots = g_newa (ArSlot *, n_slots);
   n_exposed_slots = 0;
 
   for (i = 0; i < n_slots; ++i) {
-    Slot *slot = slots->pdata[i];
+    ArSlot *slot = slots->pdata[i];
 
     /* Check whether this slot needs to be drawn */
     if (gdk_region_rect_in (region, &slot->rect) == GDK_OVERLAP_RECTANGLE_OUT)
@@ -3136,7 +3136,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
    * (e.g. in Elevator, after a card was removed).
    */
   for (i = 0; i < n_exposed_slots; ++i) {
-    Slot *hslot = exposed_slots[i];
+    ArSlot *hslot = exposed_slots[i];
     int x, y;
 
     /* FIXMEchpe: if ((hslot->length - hslot->exposed) >= 0) ?? */
@@ -3185,7 +3185,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
 
   /* Now draw the cards */
   for (i = 0; i < n_exposed_slots; ++i) {
-    Slot *hslot = exposed_slots[i];
+    ArSlot *hslot = exposed_slots[i];
     GByteArray *cards = hslot->cards;
     gpointer *card_images = hslot->card_images->pdata;
     GdkRectangle card_rect;

@@ -34,7 +34,12 @@ typedef enum {
   GAMES_DEBUG_RUNTIME       = 1 << 3,
   GAMES_DEBUG_SCHEME        = 1 << 4,
   GAMES_DEBUG_SOUND         = 1 << 5,
-  GAMES_DEBUG_WINDOW_STATE  = 1 << 6
+  GAMES_DEBUG_WINDOW_STATE  = 1 << 6,
+
+  GAMES_DEBUG_GAME_DRAWING  = 1 << 7,
+  GAMES_DEBUG_GAME_EVENTS   = 1 << 8,
+  GAMES_DEBUG_GAME_KEYNAV   = 1 << 9,
+  GAMES_DEBUG_GAME_SIZING   = 1 << 10
 } GamesDebugFlags;
 
 #ifdef GNOME_ENABLE_DEBUG

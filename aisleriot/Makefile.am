@@ -22,8 +22,8 @@ bin_PROGRAMS = sol
 sol_SOURCES = \
 	ar-game-chooser.c \
 	ar-game-chooser.h \
-	board.h		\
 	board-noclutter.c \
+	board-noclutter.h \
 	conf.c		\
 	conf.h		\
 	game.c		\
@@ -99,12 +99,18 @@ if ENABLE_AISLERIOT_CLUTTER
 noinst_PROGRAMS = sol-clutter
 
 sol_clutter_SOURCES = \
+	ar-clutter-embed.c \
+	ar-clutter-embed.h \
+	ar-cursor.c	\
+	ar-cursor.h	\
 	ar-game-chooser.c \
 	ar-game-chooser.h \
-	board.h		\
-	board.c		\
+	ar-style.c	\
+	ar-style.h	\
 	baize.c		\
 	baize.h		\
+	board.c		\
+	board.h		\
 	card.c          \
 	card.h          \
 	conf.c		\

@@ -50,7 +50,15 @@
 #include <libgames-support/games-atk-utils.h>
 #endif
 
+#ifdef HAVE_CLUTTER
+#include "ar-clutter-embed.h"
+#include "ar-style.h"
+#include "baize.h"
 #include "board.h"
+#else
+#include "board-noclutter.h"
+#endif
+
 #include "conf.h"
 #include "game.h"
 #include "stats-dialog.h"
@@ -121,7 +129,14 @@ enum
 struct _AisleriotWindowPrivate
 {
   AisleriotGame *game;
+#ifdef HAVE_CLUTTER
+  ArClutterEmbed *board;
+  ArStyle *board_style;
+  ClutterActor *baize_actor;
+  ClutterActor *board_actor;
+#else
   AisleriotBoard *board;
+#endif
 
   GamesCardThemes *theme_manager;
   GamesCardTheme *theme;
@@ -168,7 +183,10 @@ struct _AisleriotWindowPrivate
 
   guint load_idle_id;
 
+#ifndef HAVE_CLUTTER
   guint use_pixbuf_drawing : 1;
+#endif
+
   guint changing_game_type : 1;
   guint freecell_mode : 1;
   guint toolbar_visible : 1;
@@ -357,7 +375,7 @@ new_game_cb (GtkAction *action,
   aisleriot_game_new_game (priv->game, NULL);
 
   gtk_widget_grab_focus (GTK_WIDGET (priv->board));
-};
+}
 
 static void
 undo_cb (GtkAction *action,
@@ -366,7 +384,11 @@ undo_cb (GtkAction *action,
   AisleriotWindowPrivate *priv = window->priv;
 
   /* If a move is in progress, cancel it before changing the game! */
+#ifdef HAVE_CLUTTER
+  aisleriot_board_abort_move (AISLERIOT_BOARD (priv->board_actor));
+#else
   aisleriot_board_abort_move (priv->board);
+#endif
 
   aisleriot_game_undo_move (priv->game);
 }
@@ -377,8 +399,11 @@ redo_cb (GtkAction *action,
 {
   AisleriotWindowPrivate *priv = window->priv;
 
-  /* If a move is in progress, cancel it before changing the game! */
+#ifdef HAVE_CLUTTER
+  aisleriot_board_abort_move (AISLERIOT_BOARD (priv->board_actor));
+#else
   aisleriot_board_abort_move (priv->board);
+#endif
 
   aisleriot_game_redo_move (priv->game);
 }
@@ -831,6 +856,7 @@ debug_choose_seed_cb (GtkAction *action,
   gtk_window_present (GTK_WINDOW (dialog));
 }
 
+#ifndef HAVE_CLUTTER
 static void
 debug_pixbuf_drawing_cb (GtkToggleAction *action,
                          AisleriotWindow *window)
@@ -841,6 +867,7 @@ debug_pixbuf_drawing_cb (GtkToggleAction *action,
   active = gtk_toggle_action_get_active (action);
   aisleriot_board_set_pixbuf_drawing (priv->board, active);
 }
+#endif /* !HAVE_CLUTTER */
 
 #endif /* ENABLE_DEBUG_UI */
 
@@ -971,7 +998,11 @@ clickmove_toggle_cb (GtkToggleAction *action,
   click_to_move = gtk_toggle_action_get_active (action);
 
   aisleriot_game_set_click_to_move (priv->game, click_to_move);
+#ifdef HAVE_CLUTTER
+  ar_style_set_click_to_move (priv->board_style, click_to_move);
+#else
   aisleriot_board_set_click_to_move (priv->board, click_to_move);
+#endif
   
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), click_to_move);
 }
@@ -1004,7 +1035,11 @@ animations_toggle_cb (GtkToggleAction *action,
 
   enabled = gtk_toggle_action_get_active (action);
 
+#ifdef HAVE_CLUTTER
+  ar_style_set_enable_animations (priv->board_style, enabled);
+#else
   aisleriot_board_set_animation_mode (priv->board, enabled);
+#endif
   
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), enabled);
 }
@@ -1388,7 +1423,11 @@ aisleriot_window_take_card_theme (AisleriotWindow *window,
   }
 #endif /* GTK+ 2.10.0 */
 
+#ifdef HAVE_CLUTTER
+  ar_style_set_card_theme (priv->board_style, theme);
+#else
   aisleriot_board_set_card_theme (priv->board, theme);
+#endif
 }    
 
 static void
@@ -2006,6 +2045,37 @@ aisleriot_window_set_freecell_mode (AisleriotWindow *window,
   }
 }
 
+#ifdef HAVE_CLUTTER
+
+static void
+board_cursor_cb (AisleriotBoard *board,
+                 int cursor_type,
+                 ArClutterEmbed *embed)
+{
+  ar_clutter_embed_set_cursor (embed, (ArCursorType) cursor_type);
+}
+
+static void
+board_error_bell_cb (AisleriotBoard *board,
+                     ArClutterEmbed *embed)
+{
+#if GTK_CHECK_VERSION (2, 12, 0) || (defined (HAVE_HILDON) && !defined(HAVE_MAEMO_3))
+  gtk_widget_error_bell (GTK_WIDGET (embed));
+#endif
+}
+
+static void
+embed_size_allocate_cb (ArClutterEmbed *embed,
+                        GtkAllocation *allocation,
+                        AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+
+  clutter_actor_set_size (priv->board_actor, allocation->width, allocation->height);
+}
+
+#endif /* HAVE_CLUTTER */
+
 /* Class implementation */
 
 #ifdef HAVE_HILDON
@@ -2232,7 +2302,7 @@ aisleriot_window_init (AisleriotWindow *window)
       G_CALLBACK (animations_toggle_cb),
       FALSE /* not active by default */ },
 #endif /* HAVE_CLUTTER */
-#ifdef ENABLE_DEBUG_UI
+#if defined(ENABLE_DEBUG_UI) && !defined(HAVE_CLUTTER)
     { "DebugPixbufDrawing", NULL, "_Pixbuf drawing", NULL, NULL,
       G_CALLBACK (debug_pixbuf_drawing_cb),
       FALSE },
@@ -2296,7 +2366,9 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifdef ENABLE_DEBUG_UI
         "<menu action='DebugMenu'>"
           "<menuitem action='DebugChooseSeed'/>"
+#ifndef HAVE_CLUTTER
           "<menuitem action='DebugPixbufDrawing'/>"
+#endif /* !HAVE_CLUTTER */
         "</menu>"
 #endif /* ENABLE_DEBUG_UI */
         "<menuitem action='CloseWindow'/>"
@@ -2400,11 +2472,11 @@ aisleriot_window_init (AisleriotWindow *window)
   GamesCardTheme *theme;
   guint i;
 #ifndef HAVE_HILDON
-  const char *env;
   GtkStatusbar *statusbar;
-  GtkWidget *statusbar_hbox, *statusbar_label, *label, *time_box;
-  GtkContainer *statusbar_frame;
-  GList *list;
+  GtkWidget *statusbar_hbox, *label, *time_box;
+#endif
+#ifdef HAVE_CLUTTER
+  ClutterContainer *stage;
 #endif
 
   g_assert (G_N_ELEMENTS (names) == LAST_ACTION);
@@ -2415,12 +2487,19 @@ aisleriot_window_init (AisleriotWindow *window)
 
   priv->game = aisleriot_game_new ();
 
+#ifndef HAVE_CLUTTER
+
 #ifdef HAVE_HILDON
   priv->use_pixbuf_drawing = FALSE;
 #else
-  /* Default to pixbuf drawing */
+{
+  const char *env;
+
   env = g_getenv ("AISLERIOT_PIXBUF_DRAWING");
+
+  /* Default to pixbuf drawing */
   priv->use_pixbuf_drawing = env == NULL || g_ascii_strtoull (env, NULL, 10) != 0;
+}
 #endif /* HAVE_HILDON */
 
 #ifdef GNOME_ENABLE_DEBUG
@@ -2430,11 +2509,41 @@ aisleriot_window_init (AisleriotWindow *window)
     g_print ("Using pixmap drawing method\n");
 #endif /* GNOME_ENABLE_DEBUG */
 
+#endif /* !HAVE_CLUTTER */
+
   priv->theme_manager = games_card_themes_new ();
 
+#ifdef HAVE_CLUTTER
+  priv->board_style = ar_style_new ();
+  priv->board = ar_clutter_embed_new (priv->board_style);
+
+  priv->baize_actor = aisleriot_baize_new ();
+
+  stage = CLUTTER_CONTAINER (gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (priv->board)));
+  clutter_container_add (stage, priv->baize_actor, NULL);
+  /* FIXMEchpe: how to ensure this is ALWAYS the lowest actor? */
+  clutter_actor_lower_bottom (priv->baize_actor);
+
+  priv->board_actor = aisleriot_board_new (priv->board_style, priv->game);
+  clutter_container_add (stage, priv->board_actor, NULL);
+
+  /* FIXMEchpe */
+  clutter_stage_set_key_focus (CLUTTER_STAGE (stage), priv->board_actor);
+
+  g_signal_connect_after (priv->board, "size-allocate",
+                          G_CALLBACK (embed_size_allocate_cb), window);
+
+  g_signal_connect (priv->board_actor, "request-cursor",
+                    G_CALLBACK (board_cursor_cb), priv->board);
+  g_signal_connect (priv->board_actor, "error-bell",
+                    G_CALLBACK (board_error_bell_cb), priv->board);
+
+  /* FIXMEchpe: unref baize & board_actor here? */
+#else
   priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->game));
 
   aisleriot_board_set_pixbuf_drawing (priv->board, priv->use_pixbuf_drawing);
+#endif /* HAVE_CLUTTER */
 
   theme_name = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
   theme = games_card_themes_get_theme_by_name (priv->theme_manager, theme_name);
@@ -2490,6 +2599,15 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_statusbar_set_has_resize_grip (priv->statusbar, FALSE);
 #endif
 
+#if GTK_CHECK_VERSION (2, 19, 1)
+  statusbar_hbox = gtk_statusbar_get_message_area (statusbar);
+  gtk_box_set_spacing (GTK_BOX (statusbar_hbox), 24);
+#else
+{
+  GtkWidget *statusbar_label,
+  GtkContainer *statusbar_frame;
+  GList *list;
+
   /* Widget surgery: move the statusbar's label into a hbox
    * which we put in the statusbar's frame instead.
    */
@@ -2504,6 +2622,8 @@ aisleriot_window_init (AisleriotWindow *window)
   g_object_unref (statusbar_label);
   gtk_container_add (statusbar_frame, statusbar_hbox);
   gtk_widget_show (statusbar_hbox);
+}
+#endif /* GTK+ >= 2.19.1 */
 
   /* Score */
   priv->score_box = gtk_hbox_new (12, FALSE);
@@ -2717,10 +2837,10 @@ aisleriot_window_init (AisleriotWindow *window)
                     G_CALLBACK (sync_window_topmost_cb), NULL);
 #endif
 
-#ifdef ENABLE_DEBUG_UI
+#if defined(ENABLE_DEBUG_UI) && !defined(HAVE_CLUTTER)
   action = gtk_action_group_get_action (priv->action_group, "DebugPixbufDrawing");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), priv->use_pixbuf_drawing);
-#endif /* ENABLE_DEBUG_UI */
+#endif /* ENABLE_DEBUG_UI && !HAVE_CLUTTER */
 }
 
 static void
@@ -2774,6 +2894,10 @@ aisleriot_window_finalize (GObject *object)
 {
   AisleriotWindow *window = AISLERIOT_WINDOW (object);
   AisleriotWindowPrivate *priv = window->priv;
+
+#ifdef HAVE_CLUTTER
+  g_object_unref (priv->board_style);
+#endif /* HAVE_CLUTTER */
 
   if (priv->theme) {
     g_object_unref (priv->theme);

@@ -37,7 +37,12 @@ _games_debug_init (void)
     { "runtime",      GAMES_DEBUG_RUNTIME      },
     { "scheme",       GAMES_DEBUG_SCHEME       },
     { "sound",        GAMES_DEBUG_SOUND        },
-    { "window-state", GAMES_DEBUG_WINDOW_STATE }
+    { "window-state", GAMES_DEBUG_WINDOW_STATE },
+
+    { "game-drawing", GAMES_DEBUG_GAME_DRAWING },
+    { "game-events",  GAMES_DEBUG_GAME_EVENTS  },
+    { "game-keynav",  GAMES_DEBUG_GAME_KEYNAV  },
+    { "game-sizing",  GAMES_DEBUG_GAME_SIZING  }
   };
   const char *env;
 

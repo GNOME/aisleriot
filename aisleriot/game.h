@@ -83,7 +83,7 @@ typedef struct {
   guint dx_set : 1;
   guint dy_set : 1;
   guint needs_update : 1;
-} Slot;
+} ArSlot;
 
 #define SLOT_CARDS_N_PREALLOC (32)
 
@@ -151,7 +151,7 @@ AisleriotGame *aisleriot_game_new (void);
 GPtrArray *aisleriot_game_get_slots (AisleriotGame * game);
 
 void aisleriot_game_slot_add_cards (AisleriotGame * game,
-                                    Slot * slot,
+                                    ArSlot * slot,
                                     guint8 * cards, guint n_cards);
 
 guint aisleriot_game_get_state (AisleriotGame * game);
@@ -228,12 +228,12 @@ void aisleriot_game_generate_exception (AisleriotGame * game);
 
 void aisleriot_game_deal_cards (AisleriotGame *game);
 
-void aisleriot_game_get_card_offset (Slot *slot,
+void aisleriot_game_get_card_offset (ArSlot *slot,
                                      guint card_num,
                                      gboolean old_cards,
                                      gint *xoff, gint *yoff);
 
-void aisleriot_game_reset_old_cards (Slot *slot);
+void aisleriot_game_reset_old_cards (ArSlot *slot);
 
 G_END_DECLS
 

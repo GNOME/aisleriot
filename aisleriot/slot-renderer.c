@@ -45,7 +45,6 @@ static void aisleriot_slot_renderer_set_cache (AisleriotSlotRenderer *srend,
 
 static void completed_cb (AisleriotSlotRenderer *srend);
 
-static const ClutterColor default_highlight_color = { 0, 0, 0xaa, 0xff };
 
 G_DEFINE_TYPE (AisleriotSlotRenderer, aisleriot_slot_renderer,
                CLUTTER_TYPE_ACTOR);
@@ -58,9 +57,11 @@ typedef struct _AnimationData AnimationData;
 
 struct _AisleriotSlotRendererPrivate
 {
+  ArStyle *style;
+
   GamesCardTexturesCache *cache;
 
-  Slot *slot;
+  ArSlot *slot;
 
   CoglHandle material;
 
@@ -90,11 +91,28 @@ enum
 
   PROP_CACHE,
   PROP_SLOT,
+  PROP_STYLE,
   PROP_HIGHLIGHT,
-  PROP_HIGHLIGHT_COLOR,
   PROP_REVEALED_CARD,
   PROP_ANIMATION_LAYER
 };
+
+static void
+sync_style_selection_color (ArStyle *style,
+                            GParamSpec *pspec,
+                            AisleriotSlotRenderer *srend)
+{
+  AisleriotSlotRendererPrivate *priv = srend->priv;
+  ClutterColor color;
+
+  ar_style_get_selection_color (style, &color);
+  if (clutter_color_equal (&color, &priv->highlight_color))
+    return;
+
+  priv->highlight_color = color;
+
+  /* FIXMEchpe: queue a redraw if necessary! */
+}
 
 static void
 aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
@@ -111,67 +129,44 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
 
   actor_class->paint = aisleriot_slot_renderer_paint;
 
+  g_object_class_install_property
+    (gobject_class,
+     PROP_STYLE,
+     g_param_spec_object ("style", NULL, NULL,
+                          AR_TYPE_STYLE,
+                          G_PARAM_WRITABLE |
+                          G_PARAM_CONSTRUCT_ONLY |
+                          G_PARAM_STATIC_STRINGS));
+
   pspec = g_param_spec_object ("cache", NULL, NULL,
                                GAMES_TYPE_CARD_TEXTURES_CACHE,
                                G_PARAM_WRITABLE |
                                G_PARAM_CONSTRUCT_ONLY |
-                               G_PARAM_STATIC_NAME |
-                               G_PARAM_STATIC_NICK |
-                               G_PARAM_STATIC_BLURB);
+                               G_PARAM_STATIC_STRINGS);
   g_object_class_install_property (gobject_class, PROP_CACHE, pspec);
 
   pspec = g_param_spec_pointer ("slot", NULL, NULL,
                                 G_PARAM_WRITABLE |
                                 G_PARAM_CONSTRUCT_ONLY |
-                                G_PARAM_STATIC_NAME |
-                                G_PARAM_STATIC_NICK |
-                                G_PARAM_STATIC_BLURB);
+                                G_PARAM_STATIC_STRINGS);
   g_object_class_install_property (gobject_class, PROP_SLOT, pspec);
 
   pspec = g_param_spec_int ("highlight", NULL, NULL,
                             -1, G_MAXINT, G_MAXINT,
-                            G_PARAM_WRITABLE |
-                            G_PARAM_READABLE |
-                            G_PARAM_STATIC_NAME |
-                            G_PARAM_STATIC_NICK |
-                            G_PARAM_STATIC_BLURB);
+                               G_PARAM_READWRITE |
+                            G_PARAM_STATIC_STRINGS);
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
-
-
-#if 0
-  pspec = clutter_param_spec_color ("highlight-color", NULL, NULL,
-                                    &default_highlight_color,
-                                    G_PARAM_WRITABLE |
-                                    G_PARAM_STATIC_NAME |
-                                    G_PARAM_STATIC_NICK |
-                                    G_PARAM_STATIC_BLURB |
-                                    G_PARAM_CONSTRUCT);
-#else
-  pspec = g_param_spec_boxed ("highlight-color", NULL, NULL,
-                              CLUTTER_TYPE_COLOR,
-                              G_PARAM_WRITABLE |
-                              G_PARAM_STATIC_NAME |
-                              G_PARAM_STATIC_NICK |
-                              G_PARAM_STATIC_BLURB);
-#endif
-  g_object_class_install_property (gobject_class, PROP_HIGHLIGHT_COLOR, pspec);
 
   pspec = g_param_spec_int ("revealed-card", NULL, NULL,
                             -1, G_MAXINT, -1,
-                            G_PARAM_WRITABLE |
-                            G_PARAM_READABLE |
-                            G_PARAM_STATIC_NAME |
-                            G_PARAM_STATIC_NICK |
-                            G_PARAM_STATIC_BLURB);
+                            G_PARAM_READWRITE |
+                            G_PARAM_STATIC_STRINGS);
   g_object_class_install_property (gobject_class, PROP_REVEALED_CARD, pspec);
 
   pspec = g_param_spec_object ("animation-layer", NULL, NULL,
                                CLUTTER_TYPE_CONTAINER,
-                               G_PARAM_WRITABLE |
-                               G_PARAM_READABLE |
-                               G_PARAM_STATIC_NAME |
-                               G_PARAM_STATIC_NICK |
-                               G_PARAM_STATIC_BLURB);
+                               G_PARAM_READWRITE |
+                               G_PARAM_STATIC_STRINGS);
   g_object_class_install_property (gobject_class, PROP_ANIMATION_LAYER, pspec);
 
   g_type_class_add_private (klass, sizeof (AisleriotSlotRendererPrivate));
@@ -186,7 +181,6 @@ aisleriot_slot_renderer_init (AisleriotSlotRenderer *self)
 
   priv->revealed_card = -1;
   priv->highlight_start = G_MAXINT;
-  priv->highlight_color = default_highlight_color;
 
   priv->animations = g_array_new (FALSE, FALSE, sizeof (AnimationData));
   priv->timeline = clutter_timeline_new (500);
@@ -223,23 +217,29 @@ aisleriot_slot_renderer_dispose (GObject *object)
 static void
 aisleriot_slot_renderer_finalize (GObject *object)
 {
-  AisleriotSlotRenderer *self = (AisleriotSlotRenderer *) object;
-  AisleriotSlotRendererPrivate *priv = self->priv;
+  AisleriotSlotRenderer *srend = AISLERIOT_SLOT_RENDERER (object);
+  AisleriotSlotRendererPrivate *priv = srend->priv;
 
   g_array_free (priv->animations, TRUE);
+
+  g_signal_handlers_disconnect_by_func (priv->style,
+                                        G_CALLBACK (sync_style_selection_color),
+                                        srend);
+  g_object_unref (priv->style);
 
   G_OBJECT_CLASS (aisleriot_slot_renderer_parent_class)->finalize (object);
 }
 
 ClutterActor *
-aisleriot_slot_renderer_new (GamesCardTexturesCache *cache, Slot *slot)
+aisleriot_slot_renderer_new (ArStyle *style,
+                             GamesCardTexturesCache *cache,
+                             ArSlot *slot)
 {
-  ClutterActor *self = g_object_new (AISLERIOT_TYPE_SLOT_RENDERER,
-                                     "cache", cache,
-                                     "slot", slot,
-                                     NULL);
-
-  return self;
+  return g_object_new (AISLERIOT_TYPE_SLOT_RENDERER,
+                       "style", style,
+                       "cache", cache,
+                       "slot", slot,
+                       NULL);
 }
 
 static void
@@ -278,14 +278,17 @@ aisleriot_slot_renderer_set_property (GObject *object,
       priv->slot = g_value_get_pointer (value);
       break;
 
+    case PROP_STYLE:
+      priv->style = g_value_dup_object (value);
+
+      sync_style_selection_color (priv->style, NULL, srend);
+      g_signal_connect (priv->style, "notify::" AR_STYLE_PROP_SELECTION_COLOR,
+                        G_CALLBACK (sync_style_selection_color), srend);
+      break;
+
     case PROP_HIGHLIGHT:
       aisleriot_slot_renderer_set_highlight (srend,
                                              g_value_get_int (value));
-      break;
-
-    case PROP_HIGHLIGHT_COLOR:
-      aisleriot_slot_renderer_set_highlight_color (srend,
-                                                   g_value_get_boxed (value));
       break;
 
     case PROP_REVEALED_CARD:
@@ -328,7 +331,6 @@ aisleriot_slot_renderer_get_property (GObject *object,
                           aisleriot_slot_renderer_get_animation_layer (srend));
       break;
 
-    case PROP_HIGHLIGHT_COLOR:
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -483,22 +485,6 @@ aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,
   clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
 
   g_object_notify (G_OBJECT (srend), "highlight");
-}
-
-void
-aisleriot_slot_renderer_set_highlight_color (AisleriotSlotRenderer *srend,
-                                             const ClutterColor *color)
-{
-  AisleriotSlotRendererPrivate *priv = srend->priv;
-
-  g_return_if_fail (color != NULL);
-
-  if (clutter_color_equal (color, &priv->highlight_color))
-    return;
-
-  priv->highlight_color = *color;
-
-  g_object_notify (G_OBJECT (srend), "highlight-color");
 }
 
 gint

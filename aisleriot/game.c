@@ -44,8 +44,6 @@
 
 #include "game.h"
 
-#include "board.h"
-
 #define DELAYED_CALLBACK_DELAY (50)
 
 #if GLIB_CHECK_VERSION (2, 10, 0)
@@ -239,7 +237,7 @@ clear_slots (AisleriotGame *game,
 
   n_slots = game->slots->len;
   for (i = 0; i < n_slots; ++i) {
-    Slot *slot = game->slots->pdata[i];
+    ArSlot *slot = game->slots->pdata[i];
 
 #ifdef HAVE_CLUTTER
     if (slot->slot_renderer) {
@@ -254,7 +252,7 @@ clear_slots (AisleriotGame *game,
     g_byte_array_free (slot->cards, TRUE);
 
 #if GLIB_CHECK_VERSION (2, 10, 0)
-    g_slice_free (Slot, slot);
+    g_slice_free (ArSlot, slot);
 #else
     g_free (slot);
 #endif
@@ -267,7 +265,7 @@ clear_slots (AisleriotGame *game,
   }
 }
 
-static Slot *
+static ArSlot *
 get_slot (AisleriotGame *game,
           gint slotid)
 {
@@ -275,7 +273,7 @@ get_slot (AisleriotGame *game,
 
   n_slots = game->slots->len;
   for (i = 0; i < n_slots; ++i) {
-    Slot *hslot = game->slots->pdata[i];
+    ArSlot *hslot = game->slots->pdata[i];
 
     if (hslot->id == slotid)
       return hslot;
@@ -347,7 +345,7 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
   n_slots = slots->len;
   if (n_slots > 0) {
     for (i = 0; i < n_slots; ++i) {
-      Slot *slot = slots->pdata[i];
+      ArSlot *slot = slots->pdata[i];
       GByteArray *cards = slot->cards;
       guint n_cards;
 
@@ -529,7 +527,7 @@ c2scm_deck (guint8 *cards,
 }
 
 static void
-cscmi_slot_set_cards (Slot *slot,
+cscmi_slot_set_cards (ArSlot *slot,
                       SCM cards)
 {
   AisleriotGame *game = app_game;
@@ -569,7 +567,7 @@ static SCM
 cscmi_add_slot (SCM slot_data)
 {
   AisleriotGame *game = app_game;
-  Slot *slot;
+  ArSlot *slot;
   gboolean expanded_down = FALSE;
   gboolean expanded_right = FALSE;
   int expansion_depth = 0;
@@ -633,7 +631,7 @@ cscmi_add_slot (SCM slot_data)
 
   /* create and initialize slot */
 #if GLIB_CHECK_VERSION (2, 10, 0)
-  slot = g_slice_new0 (Slot);
+  slot = g_slice_new0 (ArSlot);
 #else
   slot = g_new0 (Slot, 1);
 #endif
@@ -789,7 +787,7 @@ scm_set_slot_x_expansion (SCM scm_slot_id,
                           SCM new_exp_val)
 {
   AisleriotGame *game = app_game;
-  Slot *slot;
+  ArSlot *slot;
 
   slot = get_slot (game, scm_num2int (scm_slot_id, SCM_ARG1, NULL));
 
@@ -813,7 +811,7 @@ scm_set_slot_y_expansion (SCM scm_slot_id,
                           SCM new_exp_val)
 {
   AisleriotGame *game = app_game;
-  Slot *slot;
+  ArSlot *slot;
 
   slot = get_slot (game, scm_num2int (scm_slot_id, SCM_ARG1, NULL));
 
@@ -836,7 +834,7 @@ static SCM
 scm_get_slot (SCM scm_slot_id)
 {
   AisleriotGame *game = app_game;
-  Slot *slot;
+  ArSlot *slot;
 
   slot = get_slot (game, scm_num2int (scm_slot_id, SCM_ARG1, NULL));
 
@@ -853,7 +851,7 @@ scm_set_cards (SCM scm_slot_id,
                SCM new_cards)
 {
   AisleriotGame *game = app_game;
-  Slot *slot;
+  ArSlot *slot;
 
   slot = get_slot (game, scm_num2int (scm_slot_id, SCM_ARG1, NULL));
 
@@ -1439,7 +1437,7 @@ aisleriot_game_get_slots (AisleriotGame *game)
  */
 void
 aisleriot_game_slot_add_cards (AisleriotGame *game,
-                               Slot *slot,
+                               ArSlot *slot,
                                guint8 *cards,
                                guint n_cards)
 {
@@ -2396,7 +2394,7 @@ aisleriot_game_deal_cards (AisleriotGame *game)
 #ifdef HAVE_CLUTTER
 
 void
-aisleriot_game_get_card_offset (Slot *slot,
+aisleriot_game_get_card_offset (ArSlot *slot,
                                 guint card_num,
                                 gboolean old_cards,
                                 gint *xoff, gint *yoff)
@@ -2422,7 +2420,7 @@ aisleriot_game_get_card_offset (Slot *slot,
 }
 
 void
-aisleriot_game_reset_old_cards (Slot *slot)
+aisleriot_game_reset_old_cards (ArSlot *slot)
 {
   g_byte_array_set_size (slot->old_cards, 0);
   g_byte_array_append (slot->old_cards, slot->cards->data, slot->cards->len);
