@@ -87,8 +87,8 @@ typedef enum {
 
   /* Suites */
   GAMES_CARDS_CLUBS = 0,
-  GAMES_CARDS_DIAMONDS = 2,
-  GAMES_CARDS_HEARTS = 1,
+  GAMES_CARDS_DIAMONDS = 1,
+  GAMES_CARDS_HEARTS = 2,
   GAMES_CARDS_SPADES = 3,
 
   /* Jokers */
