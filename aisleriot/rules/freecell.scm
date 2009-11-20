@@ -323,34 +323,34 @@
   ;; set up the board
 
   ; freecells
-  (add-normal-slot '())			; 0
+  (add-normal-slot '() 'reserve)			; 0
   (set! HORIZPOS (- HORIZPOS (/ 1 24)))
-  (add-normal-slot '())			; 1
+  (add-normal-slot '() 'reserve)			; 1
   (set! HORIZPOS (- HORIZPOS (/ 1 24)))
-  (add-normal-slot '())			; 2
+  (add-normal-slot '() 'reserve)			; 2
   (set! HORIZPOS (- HORIZPOS (/ 1 24)))
-  (add-normal-slot '())			; 3
+  (add-normal-slot '() 'reserve)			; 3
   (set! HORIZPOS (+ HORIZPOS 0.25))
 
   ; homecells
-  (add-normal-slot '())			; 4
+  (add-normal-slot '() 'foundation)			; 4
   (set! HORIZPOS (- HORIZPOS (/ 1 24)))
-  (add-normal-slot '())			; 5
+  (add-normal-slot '() 'foundation)			; 5
   (set! HORIZPOS (- HORIZPOS (/ 1 24)))
-  (add-normal-slot '())			; 6
+  (add-normal-slot '() 'foundation)			; 6
   (set! HORIZPOS (- HORIZPOS (/ 1 24)))
-  (add-normal-slot '())			; 7
+  (add-normal-slot '() 'foundation)			; 7
   (add-carriage-return-slot)
 
   ; fields
-  (add-extended-slot '() down)		; 8
-  (add-extended-slot '() down)		; 9
-  (add-extended-slot '() down)		; 10
-  (add-extended-slot '() down)		; 11
-  (add-extended-slot '() down)		; 12
-  (add-extended-slot '() down)		; 13
-  (add-extended-slot '() down)		; 14
-  (add-extended-slot '() down)		; 15
+  (add-extended-slot '() down 'tableau)		; 8
+  (add-extended-slot '() down 'tableau)		; 9
+  (add-extended-slot '() down 'tableau)		; 10
+  (add-extended-slot '() down 'tableau)		; 11
+  (add-extended-slot '() down 'tableau)		; 12
+  (add-extended-slot '() down 'tableau)		; 13
+  (add-extended-slot '() down 'tableau)		; 14
+  (add-extended-slot '() down 'tableau)		; 15
 
   (add-blank-slot)
   (deal-initial-setup)
