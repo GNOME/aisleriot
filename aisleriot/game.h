@@ -30,8 +30,18 @@ G_BEGIN_DECLS
 
 /* A slot */
 
+typedef enum {
+  AR_SLOT_UNKNOWN,
+  AR_SLOT_FOUNDATION,
+  AR_SLOT_RESERVE,
+  AR_SLOT_STOCK,
+  AR_SLOT_TABLEAU,
+  AR_SLOT_WASTE
+} ArSlotType;
+
 typedef struct {
   int id;
+  ArSlotType type;
 
   GByteArray *cards;
 #ifdef HAVE_CLUTTER

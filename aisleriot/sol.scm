@@ -160,30 +160,30 @@
 
 ; The real slots come in three varieties:
 ; A slot in which only the topmost card is visible:
-(define (add-normal-slot cards)
-  (add-slot (set-tag! (new-slot cards 
-				(list 'normal (get-and-increment-position))))))
+(define (add-normal-slot cards . type)
+  (add-slot (set-tag! (new-slot cards
+				(list 'normal (get-and-increment-position)) type))))
 
 ; A slot in which all the cards are visible, arranged as an overlapped pile:
 ; (either proceeding to the right or down).
-(define (add-extended-slot cards direction)
+(define (add-extended-slot cards direction . type)
   (if (= right direction)
       (add-slot (set-tag! (new-slot cards 
 				    (list 'expanded-right 
-					  (get-and-increment-position)))))
+					  (get-and-increment-position)) type)))
       (add-slot (set-tag! (new-slot cards 
 				    (list 'expanded 
-					  (get-and-increment-position)))))))
+					  (get-and-increment-position)) type)))))
 
 ; A slot in only the n topmost cards are visible:
-(define (add-partially-extended-slot cards direction n)
+(define (add-partially-extended-slot cards direction n . type)
   (if (= right direction)
       (add-slot (set-tag! (new-slot cards 
 				    (list 'partially-expanded-right 
-					  (get-and-increment-position) n))))
+					  (get-and-increment-position) n) type)))
       (add-slot (set-tag! (new-slot cards 
 				    (list 'partially-expanded 
-					  (get-and-increment-position) n))))))
+					  (get-and-increment-position) n) type)))))
 
 ; Cards may be dealt off one slot (usually the one containing the deck)
 ; and onto a list of other slots using these procedures:
@@ -525,8 +525,8 @@
 	(vector-set! deck ref2 (vector-ref deck ref1))
 	(shuffle-deck-helper deck (cons val-at-ref2 result) (+ ref1 1) (- len 1)))))
 
-(define (new-slot deck placement)
-  (list #f deck placement))
+(define (new-slot deck placement type)
+  (list #f deck placement (if (null? type) 'unknown (car type))))
 
 (define (set-tag! slot)
   (set! SLOTS (+ 1 SLOTS))

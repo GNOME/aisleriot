@@ -35,6 +35,7 @@
 #include <clutter/clutter.h>
 #endif
 
+#include <libgames-support/games-debug.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-string-utils.h>
 
@@ -572,6 +573,8 @@ cscmi_add_slot (SCM slot_data)
   gboolean expanded_down = FALSE;
   gboolean expanded_right = FALSE;
   int expansion_depth = 0;
+  ArSlotType type = AR_SLOT_UNKNOWN;
+  SCM slot_placement, slot_type;
 
   if (game->state > GAME_BEGIN) {
     return scm_throw (scm_from_locale_symbol ("game-started"),
@@ -580,24 +583,53 @@ cscmi_add_slot (SCM slot_data)
   }
 
 #ifdef HAVE_GUILE_1_8
-#define CHECK_EXPANSION(string,object) (scm_is_true (scm_equal_p (scm_from_locale_symbol (string), object)))
+#define EQUALS_SYMBOL(string,object) (scm_is_true (scm_equal_p (scm_from_locale_symbol (string), object)))
 #else
-#define CHECK_EXPANSION(string,object) (!strcmp (string, SCM_CHARS (object)))
+#define EQUALS_SYMBOL(string,object) (!strcmp (string, SCM_CHARS (object)))
 #endif
 
-  if (CHECK_EXPANSION ("expanded", SCM_CAR (SCM_CADDR (slot_data)))) {
+  slot_placement = SCM_CADDR (slot_data);
+  if (EQUALS_SYMBOL ("expanded", SCM_CAR (slot_placement))) {
     expanded_down = TRUE;
-  } else if (CHECK_EXPANSION ("expanded-right", SCM_CAR (SCM_CADDR (slot_data)))) {
+  } else if (EQUALS_SYMBOL ("expanded-right", SCM_CAR (slot_placement))) {
     expanded_right = TRUE;
-  } else if (CHECK_EXPANSION ("partially-expanded", SCM_CAR (SCM_CADDR (slot_data)))) {
+  } else if (EQUALS_SYMBOL ("partially-expanded", SCM_CAR (slot_placement))) {
     expanded_down = TRUE;
-    expansion_depth = scm_to_int (SCM_CADDR (SCM_CADDR (slot_data)));
-  } else if (CHECK_EXPANSION ("partially-expanded-right", SCM_CAR (SCM_CADDR (slot_data)))) {
+    expansion_depth = scm_to_int (SCM_CADDR (slot_placement));
+  } else if (EQUALS_SYMBOL ("partially-expanded-right", SCM_CAR (slot_placement))) {
     expanded_right = TRUE;
-    expansion_depth = scm_to_int (SCM_CADDR (SCM_CADDR (slot_data)));
+    expansion_depth = scm_to_int (SCM_CADDR (slot_placement));
   }
 
 #undef CHECK_EXPANSION
+
+  /* 3rd argument is the slot type (optionally) */
+  slot_type = SCM_CDDDR (slot_data);
+  if (slot_type != SCM_EOL) {
+    if (EQUALS_SYMBOL ("foundation", SCM_CAR (slot_type))) {
+      type = AR_SLOT_FOUNDATION;
+    } else if (EQUALS_SYMBOL ("reserve", SCM_CAR (slot_type))) {
+      type = AR_SLOT_RESERVE;
+    } else if (EQUALS_SYMBOL ("stock", SCM_CAR (slot_type))) {
+      type = AR_SLOT_STOCK;
+    } else if (EQUALS_SYMBOL ("tableau", SCM_CAR (slot_type))) {
+      type = AR_SLOT_TABLEAU;
+    } else if (EQUALS_SYMBOL ("waste", SCM_CAR (slot_type))) {
+      type = AR_SLOT_WASTE;
+    }
+  }
+
+#undef EQUALS_SYMBOL
+
+#ifdef GNOME_ENABLE_DEBUG
+  _GAMES_DEBUG_IF (GAMES_DEBUG_SCHEME) {
+    static const char *types[] = { "unknown", "foundation", "reserve", "stock", "tableau", "waste" };
+
+    _games_debug_print (GAMES_DEBUG_SCHEME,
+                        "Adding new slot %d type %s\n",
+                        scm_to_int (SCM_CAR (slot_data)), types[type]);
+  }
+#endif /* GNOME_ENABLE_DEBUG */
 
   /* create and initialize slot */
 #if GLIB_CHECK_VERSION (2, 10, 0)
@@ -609,6 +641,7 @@ cscmi_add_slot (SCM slot_data)
   g_ptr_array_add (game->slots, slot);
 
   slot->id = scm_to_int (SCM_CAR (slot_data));
+  slot->type = type;
 
   slot->cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
   slot->exposed = 0;
