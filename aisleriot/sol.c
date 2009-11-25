@@ -277,6 +277,20 @@ main_prog (void *closure, int argc, char *argv[])
   g_option_context_add_group (option_context, clutter_get_option_group_without_init ());
 #endif
 
+#if defined(HAVE_HILDON) && defined(HAVE_MAEMO_5)
+  {
+    char *rc_file;
+
+    /* Note: we have to use gtk_rc_add_default_file() before calling gtk_init() (via
+     * g_option_context_parse()) rather than parsing the file directly afterward, in
+     * order to get priority over the theme.
+     */
+    rc_file = games_runtime_get_file (GAMES_RUNTIME_GAME_DATA_DIRECTORY, "gtkrc-maemo");
+    gtk_rc_add_default_file (rc_file);
+    g_free (rc_file);
+  }
+#endif /* HAVE_HILDON && HAVE_MAEMO_5 */
+
   retval = g_option_context_parse (option_context, &argc, &argv, &error);
   g_option_context_free (option_context);
 

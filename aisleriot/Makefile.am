@@ -153,6 +153,7 @@ ossoscript_in_files = aisleriot-clean.sh
 ossoservice_in_files = org.gnome.Games.AisleRiot.service.in
 
 if HAVE_MAEMO
+
 ossobackupdir = $(sysconfdir)/osso-backup/applications
 ossobackup_DATA = $(ossobackup_in_files)
 
@@ -161,7 +162,13 @@ ossocud_SCRIPTS = $(ossoscript_in_files)
 
 servicedir = $(shell $(PKG_CONFIG) osso-af-settings --variable=dbusservicedir)
 service_DATA = $(ossoservice_in_files:.service.in=.service)
-endif
+
+if HAVE_MAEMO_5
+rcdir = $(pkgdatadir)/aisleriot
+dist_rc_DATA = gtkrc-maemo
+endif # HAVE_MAEMO_5
+
+endif # HAVE_MAEMO
 
 %.service: %.service.in Makefile
 	$(AM_V_GEN) $(SED) -e "s|%bindir%|$(bindir)|" $< > $@
