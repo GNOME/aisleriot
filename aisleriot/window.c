@@ -109,7 +109,7 @@ enum
 #ifdef HAVE_HILDON
   ACTION_ACCEL_UNDO_MOVE,
 #endif
-#ifndef HAVE_MAEMO
+#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
   ACTION_LEAVE_FULLSCREEN,
 #endif
   LAST_ACTION
@@ -1065,13 +1065,15 @@ set_fullscreen_actions (AisleriotWindow *window,
 
 #ifndef HAVE_MAEMO
   g_object_set (priv->main_menu, "visible", !is_fullscreen, NULL);
+#endif /* HAVE_MAEMO */
 
+#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
   gtk_action_set_visible (priv->action[ACTION_LEAVE_FULLSCREEN], is_fullscreen);
   g_object_set (gtk_ui_manager_get_widget (priv->ui_manager, "/Toolbar/LeaveFullscreenSep"),
                 "visible", is_fullscreen,
                 "draw", FALSE,
                 NULL);
-#endif
+#endif /* !HAVE_MAEMO || !MAEMO_TOOLBAR_BANNER */
 
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (priv->action[ACTION_FULLSCREEN]),
                                 is_fullscreen);
@@ -1093,7 +1095,7 @@ fullscreen_toggled_cb (GtkToggleAction *action,
   }
 }
 
-#ifndef HAVE_MAEMO
+#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
 
 static void
 leave_fullscreen_cb (GtkAction *action,
@@ -1102,7 +1104,7 @@ leave_fullscreen_cb (GtkAction *action,
   gtk_window_unfullscreen (window);
 }
 
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_MAEMO || !MAEMO_TOOLBAR_BANNER */
 
 static void
 clickmove_toggle_cb (GtkToggleAction *action,
@@ -2268,13 +2270,13 @@ aisleriot_window_init (AisleriotWindow *window)
 #endif /* ENABLE_CARD_THEMES_INSTALLER */
 
     /* Toolbar-only actions */
-#ifndef HAVE_MAEMO
+#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
     { "LeaveFullscreen", GAMES_STOCK_LEAVE_FULLSCREEN, NULL, NULL, NULL,
       G_CALLBACK (leave_fullscreen_cb) },
+#endif /* !HAVE_MAEMO || !MAEMO_TOOLBAR_BANNER */
 #ifndef HAVE_HILDON
     { "ThemeMenu", NULL, N_("_Card Style"), NULL, NULL, NULL },
 #endif /* !HAVE_HILDON */
-#endif /* !HAVE_MAEMO */
 
 #ifdef ENABLE_DEBUG_UI
     /* Debug UI actions */
@@ -2359,9 +2361,9 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifdef HAVE_HILDON
     "AccelUndoMove",
 #endif /* HAVE_HILDON */
-#ifndef HAVE_MAEMO
+#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
     "LeaveFullscreen",
-#endif /* !HAVE_MAEMO */
+#endif /* !HAVE_MAEMO || !MAEMO_TOOLBAR_BANNER */
   };
 
   static const char ui_description[] =
@@ -2481,10 +2483,10 @@ aisleriot_window_init (AisleriotWindow *window)
         "<toolitem action='RedoMove'/>"
         "<toolitem action='Deal'/>"
         "<toolitem action='Hint'/>"
-#ifndef HAVE_MAEMO
+#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
         "<separator name='LeaveFullscreenSep' expand='true'/>"
         "<toolitem action='LeaveFullscreen'/>"
-#endif
+#endif /* !HAVE_MAEMO || !MAEMO_TOOLBAR_BANNER */
 #ifdef ENABLE_DEBUG_UI
         "<toolitem action='DebugGameFirst'/>"
         "<toolitem action='DebugGamePrev'/>"
