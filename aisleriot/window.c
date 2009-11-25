@@ -86,6 +86,13 @@
 #define C_(context, string) (_(string))
 #endif
 
+/* On maemo5, the toolbar doesn't have enough space to show a
+ * significant amount of text, so we always use the banner here.
+ */
+#if defined(HAVE_HILDON) && (defined(HAVE_MAEMO_3) || defined(HAVE_MAEMO_4))
+#define MAEMO_TOOLBAR_BANNER
+#endif
+
 /* define this to enable a debug menu */
 /* #undef ENABLE_DEBUG_UI */
 
@@ -117,15 +124,17 @@ struct _AisleriotWindowPrivate
   GamesCardTheme *theme;
 
 #ifdef HAVE_HILDON
-  GtkLabel *game_message_label;
   guint game_message_hash;
+#ifdef MAEMO_TOOLBAR_BANNER
+  GtkLabel *game_message_label;
+#endif /* MAEMO_TOOLBAR_BANNER */
 #else
   GtkStatusbar *statusbar;
   guint game_message_id;
   GtkWidget *score_box;
   GtkWidget *score_label;
   GtkWidget *clock;
-#endif
+#endif /* HAVE_HILDON */
 
   GtkUIManager *ui_manager;
   GtkActionGroup *action_group;
@@ -1860,7 +1869,9 @@ game_type_changed_cb (AisleriotGame *game,
   gtk_action_set_visible (priv->action[ACTION_DEAL], dealable);
 
 #ifdef HAVE_HILDON
+#ifdef MAEMO_TOOLBAR_BANNER
   gtk_label_set_text (priv->game_message_label, NULL);
+#endif /* MAEMO_TOOLBAR_BANNER */
 #else
   games_clock_reset (GAMES_CLOCK (priv->clock));
 
@@ -1868,7 +1879,7 @@ game_type_changed_cb (AisleriotGame *game,
 
   show_scores = (features & FEATURE_SCORE_HIDDEN) == 0;
   g_object_set (priv->score_box, "visible", show_scores, NULL);
-#endif
+#endif /* HAVE_HILDON */
 
   priv->changing_game_type = FALSE;
 }
@@ -1877,17 +1888,21 @@ static void
 game_new_cb (AisleriotGame *game,
              AisleriotWindow *window)
 {
+#if defined(MAEMO_TOOLBAR_BANNER) || !defined(HAVE_HILDON)
   AisleriotWindowPrivate *priv = window->priv;
+#endif
 
   update_statistics_display (window);
 
 #ifdef HAVE_HILDON
+#ifdef MAEMO_TOOLBAR_BANNER
   gtk_label_set_text (priv->game_message_label, NULL);
+#endif /* MAEMO_TOOLBAR_BANNER */
 #else
   games_clock_reset (GAMES_CLOCK (priv->clock));
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
-#endif
+#endif /* HAVE_HILDON */
 }
 
 static void
@@ -1897,12 +1912,17 @@ game_statusbar_message_cb (AisleriotGame *game,
 {
   AisleriotWindowPrivate *priv = window->priv;
 #ifdef HAVE_HILDON
+#ifdef MAEMO_TOOLBAR_BANNER
   gtk_label_set_text (priv->game_message_label, message);
+#endif
 
   /* The banners are annoying, but until I get a better idea, use them
    * when the toolbar is hidden.
    */
-  if (!priv->toolbar_visible) {
+#ifdef MAEMO_TOOLBAR_BANNER
+  if (!priv->toolbar_visible)
+#endif
+  {
     guint hash;
 
     if (message != NULL && message[0] != '\0') {
@@ -2487,9 +2507,7 @@ aisleriot_window_init (AisleriotWindow *window)
   char *theme_name;
   GamesCardTheme *theme;
   guint i;
-#ifdef HAVE_HILDON
-  GtkToolItem *tool_item;
-#else
+#ifndef HAVE_HILDON
   const char *env;
   GtkStatusbar *statusbar;
   GtkWidget *statusbar_hbox, *statusbar_label, *label, *time_box;
@@ -2627,7 +2645,10 @@ aisleriot_window_init (AisleriotWindow *window)
   priv->main_menu = gtk_ui_manager_get_widget (priv->ui_manager, MAIN_MENU_UI_PATH);
   priv->toolbar = gtk_ui_manager_get_widget (priv->ui_manager, TOOLBAR_UI_PATH);
 
-#ifdef HAVE_HILDON
+#ifdef MAEMO_TOOLBAR_BANNER
+{
+  GtkToolItem *tool_item;
+
   /* It's a bit ugly to mess with the toolbar like this,
    * but it's simpler than to implement a dedicated action
    * which creates a tool item which ellipsises its label...
@@ -2642,7 +2663,8 @@ aisleriot_window_init (AisleriotWindow *window)
 
   gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbar), tool_item, -1);
   gtk_widget_show_all (GTK_WIDGET (tool_item));
-#endif
+}
+#endif /* MAEMO_TOOLBAR_BANNER */
 
   /* Defer building the card themes menu until its parent's menu is opened */
 #ifdef HAVE_HILDON
