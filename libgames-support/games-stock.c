@@ -276,13 +276,14 @@ games_stock_init (void)
 #if GTK_CHECK_VERSION (2, 8, 0)
     /* This is used on hildon too, but only exists since 2.8 */
     { GAMES_STOCK_FULLSCREEN,       GTK_STOCK_FULLSCREEN },
-#endif
+    /* This is used on maemo 5 */
+    { GAMES_STOCK_LEAVE_FULLSCREEN, GTK_STOCK_LEAVE_FULLSCREEN },
+#endif /* GTK+ >= 2.8.0 */
 #ifdef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
     { GAMES_STOCK_REDO_MOVE,        GTK_STOCK_REDO },
     { GAMES_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
 #endif
 #ifndef HAVE_HILDON
-    { GAMES_STOCK_LEAVE_FULLSCREEN, GTK_STOCK_LEAVE_FULLSCREEN },
     { GAMES_STOCK_NETWORK_GAME,     GTK_STOCK_NETWORK },
     { GAMES_STOCK_NETWORK_LEAVE,    GTK_STOCK_STOP },
     { GAMES_STOCK_PLAYER_LIST,      GTK_STOCK_INFO },
