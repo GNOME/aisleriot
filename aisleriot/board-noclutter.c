@@ -2745,7 +2745,7 @@ aisleriot_board_button_press (GtkWidget *widget,
 
   /* If we already have a click, ignore this new one */
   if (priv->click_status != STATUS_NONE) {
-    return FALSE;
+    return TRUE;
   }
 
   /* If the game hasn't started yet, start it now */
@@ -2891,7 +2891,7 @@ set_selection:
     reveal_card (board, hslot, cardid);
   }
 
-  return FALSE;
+  return TRUE;
 }
 
 static gboolean
