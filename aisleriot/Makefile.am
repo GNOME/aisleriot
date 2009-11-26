@@ -35,6 +35,13 @@ sol_SOURCES = \
 	window.h	\
 	$(NULL)
 
+if HAVE_MAEMO_5
+sol_SOURCES += \
+	ar-fullscreen-button.c \
+	ar-fullscreen-button.h \
+	$(NULL)
+endif
+
 if !HAVE_GUILE_1_8
 sol_SOURCES += guile16-compat.h
 endif
@@ -110,6 +117,13 @@ sol_clutter_SOURCES = \
 	window.c	\
 	window.h	\
 	$(NULL)
+
+if HAVE_MAEMO_5
+sol_clutter_SOURCES += \
+	ar-fullscreen-button.c \
+	ar-fullscreen-button.h \
+	$(NULL)
+endif
 
 if !HAVE_GUILE_1_8
 sol_clutter_SOURCES += guile16-compat.h

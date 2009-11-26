@@ -59,6 +59,7 @@
 #include "game.h"
 #include "stats-dialog.h"
 #include "util.h"
+#include "ar-fullscreen-button.h"
 
 #include "window.h"
 
@@ -91,6 +92,13 @@
  */
 #if defined(HAVE_HILDON) && (defined(HAVE_MAEMO_3) || defined(HAVE_MAEMO_4))
 #define MAEMO_TOOLBAR_BANNER
+#endif
+
+/* On maemo5, there's no hardware key to exit the fullscreen mode. So we show
+ * an overlay button to restore normal mode, if the toolbar is hidden too.
+ */
+#if defined(HAVE_HILDON) && defined(HAVE_MAEMO_5)
+#define LEAVE_FULLSCREEN_BUTTON
 #endif
 
 /* define this to enable a debug menu */
@@ -161,6 +169,10 @@ struct _AisleriotWindowPrivate
   GtkWidget *hint_dialog;
 #endif
 
+#ifdef LEAVE_FULLSCREEN_BUTTON
+  GtkWidget *fullscreen_button;
+#endif
+
   guint load_idle_id;
 
   guint use_pixbuf_drawing : 1;
@@ -168,6 +180,7 @@ struct _AisleriotWindowPrivate
   guint freecell_mode : 1;
   guint toolbar_visible : 1;
   guint statusbar_visible : 1;
+  guint fullscreen : 1;
 };
 
 enum {
@@ -1019,6 +1032,31 @@ debug_pixbuf_drawing_cb (GtkToggleAction *action,
 #endif /* ENABLE_DEBUG_UI */
 
 static void
+set_fullscreen_button_active (AisleriotWindow *window)
+{
+#ifdef LEAVE_FULLSCREEN_BUTTON
+  AisleriotWindowPrivate *priv = window->priv;
+  gboolean active;
+
+  active = priv->fullscreen && !priv->toolbar_visible;
+  if (!active) {
+    if (priv->fullscreen_button != NULL) {
+      ar_fullscreen_button_set_active (AR_FULLSCREEN_BUTTON (priv->fullscreen_button), FALSE);
+    }
+
+    return;
+  }
+
+  if (active && priv->fullscreen_button == NULL) {
+    priv->fullscreen_button = ar_fullscreen_button_new (GTK_WINDOW (window),
+                                                        GTK_CORNER_TOP_RIGHT);
+  }
+
+  ar_fullscreen_button_set_active (AR_FULLSCREEN_BUTTON (priv->fullscreen_button), TRUE);
+#endif /* LEAVE_FULLSCREEN_BUTTON */
+}
+
+static void
 toolbar_toggled_cb (GtkToggleAction *action,
                     AisleriotWindow *window)
 {
@@ -1032,6 +1070,8 @@ toolbar_toggled_cb (GtkToggleAction *action,
   priv->toolbar_visible = state != FALSE;
 
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), state);
+
+  set_fullscreen_button_active (window);
 }
 
 #ifndef HAVE_HILDON
@@ -1062,6 +1102,8 @@ set_fullscreen_actions (AisleriotWindow *window,
                         gboolean is_fullscreen)
 {
   AisleriotWindowPrivate *priv = window->priv;
+
+  priv->fullscreen = is_fullscreen;
 
 #ifndef HAVE_MAEMO
   g_object_set (priv->main_menu, "visible", !is_fullscreen, NULL);
@@ -2169,6 +2211,8 @@ aisleriot_window_state_event (GtkWidget *widget,
 
     set_fullscreen_actions (window, is_fullscreen);
 
+    set_fullscreen_button_active (window);
+
 #ifndef HAVE_HILDON
 #if GTK_CHECK_VERSION (2, 11, 0)
     gtk_statusbar_set_has_resize_grip (priv->statusbar, !is_maximised && !is_fullscreen);
@@ -2521,6 +2565,8 @@ aisleriot_window_init (AisleriotWindow *window)
 
   priv = window->priv = AISLERIOT_WINDOW_GET_PRIVATE (window);
 
+  priv->fullscreen = FALSE;
+
   priv->game = aisleriot_game_new ();
 
 #ifdef HAVE_HILDON
@@ -2832,11 +2878,11 @@ aisleriot_window_init (AisleriotWindow *window)
 }
 
 static void
-aisleriot_window_finalize (GObject *object)
+aisleriot_window_dispose (GObject *object)
 {
   AisleriotWindow *window = AISLERIOT_WINDOW (object);
   AisleriotWindowPrivate *priv = window->priv;
-
+  
 #ifdef HAVE_CLUTTER
   g_signal_handlers_disconnect_by_func (gtk_widget_get_settings (GTK_WIDGET (window)),
                                         G_CALLBACK (settings_changed_cb),
@@ -2861,6 +2907,27 @@ aisleriot_window_finalize (GObject *object)
     gtk_widget_destroy (GTK_WIDGET (priv->stats_dialog));
     g_assert (priv->stats_dialog == NULL);
   }
+  
+#ifdef LEAVE_FULLSCREEN_BUTTON
+  if (priv->fullscreen_button != NULL) {
+    gtk_widget_destroy (GTK_WIDGET (priv->fullscreen_button));
+    priv->fullscreen_button = NULL;
+  }
+#endif
+
+  if (priv->load_idle_id != 0) {
+    g_source_remove (priv->load_idle_id);
+    priv->load_idle_id = 0;
+  }
+
+  G_OBJECT_CLASS (aisleriot_window_parent_class)->dispose (object);
+}
+
+static void
+aisleriot_window_finalize (GObject *object)
+{
+  AisleriotWindow *window = AISLERIOT_WINDOW (object);
+  AisleriotWindowPrivate *priv = window->priv;
 
   if (priv->theme) {
     g_object_unref (priv->theme);
@@ -2873,10 +2940,6 @@ aisleriot_window_finalize (GObject *object)
                                         0, 0, NULL, NULL, window);
   g_object_unref (priv->game);
 
-  if (priv->load_idle_id != 0) {
-    g_source_remove (priv->load_idle_id);
-  }
-
   G_OBJECT_CLASS (aisleriot_window_parent_class)->finalize (object);
 }
 
@@ -2886,6 +2949,7 @@ aisleriot_window_class_init (AisleriotWindowClass *klass)
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
+  gobject_class->dispose = aisleriot_window_dispose;
   gobject_class->finalize = aisleriot_window_finalize;
 
   widget_class->window_state_event = aisleriot_window_state_event;
