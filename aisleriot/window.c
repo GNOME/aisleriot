@@ -276,7 +276,7 @@ select_game_cb (GtkAction *action,
   GtkTreeViewColumn *column;
   GtkCellRenderer *renderer;
   GtkWidget *hbox, *content_area;
-  GtkTreeIter current_iter, selection_iter;
+  GtkTreeIter current_iter;
   gboolean current_iter_set = FALSE;
   const char *current_game_file;
   const char *games_dir;
@@ -408,13 +408,12 @@ select_game_cb (GtkAction *action,
    * and scroll to it.
    */
   if (current_iter_set) {
-    gtk_tree_selection_select_iter (selection, &current_iter);
-  }
-
-  if (gtk_tree_selection_get_selected (selection, NULL, &selection_iter)) {
     GtkTreePath *path;
 
-    path = gtk_tree_model_get_path (GTK_TREE_MODEL (list), &selection_iter);
+    gtk_tree_selection_select_iter (selection, &current_iter);
+
+    /* Scroll view to the current item */
+    path = gtk_tree_model_get_path (GTK_TREE_MODEL (list), &current_iter);
     gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (list_view), path, NULL,
                                   TRUE,
 				  0.5, 0.0);
