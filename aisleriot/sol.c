@@ -153,11 +153,17 @@ osso_hw_event_cb (osso_hw_state_t *state,
   if (data->program == NULL)
     return;
 
+  games_conf_save ();
+
+  if (state->memory_low_ind) {
+    /* Run garbage collection */
+    scm_gc ();
+  }
+
 #if GNOME_ENABLE_DEBUG
   if (state->shutdown_ind) {
     g_print ("Going to shut down\n");
   } else if (state->save_unsaved_data_ind) {
-    g_print ("Should save unsaved data\n");
   } else if (state->memory_low_ind) {
     g_print ("Should try to free some memory\n");
   } else if (state->system_inactivity_ind) {
