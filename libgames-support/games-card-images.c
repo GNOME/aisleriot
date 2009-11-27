@@ -397,6 +397,20 @@ games_card_images_set_cache_mode (GamesCardImages * images,
 }
 
 /**
+ * games_card_images_drop_cache:
+ * @images: a #GamesCardImages
+ *
+ * Clears the image cache.
+ */
+void
+games_card_images_drop_cache (GamesCardImages *images)
+{
+  g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
+
+  games_card_images_clear_cache (images);
+}
+
+/**
  * games_card_images_set_drawable:
  * @images:
  * @drawable: a #GdkDrawable

@@ -222,6 +222,20 @@ games_card_textures_cache_new (void)
 }
 
 /**
+ * games_card_textures_cache_drop:
+ * @images: a #GamesCardImages
+ *
+ * Clears the image cache.
+ */
+void
+games_card_textures_cache_drop (GamesCardTexturesCache *cache)
+{
+  g_return_if_fail (GAMES_IS_CARD_TEXTURES_CACHE (cache));
+
+  games_card_textures_cache_clear (cache);
+}
+
+/**
  * games_card_textures_cache_set_theme:
  * @cache:
  * @theme:

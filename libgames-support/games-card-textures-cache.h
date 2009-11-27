@@ -54,6 +54,8 @@ GType games_card_textures_cache_get_type (void);
 
 GamesCardTexturesCache *games_card_textures_cache_new (void);
 
+void games_card_textures_cache_drop (GamesCardTexturesCache *cache);
+
 void games_card_textures_cache_set_theme (GamesCardTexturesCache *cache,
                                           GamesCardTheme *theme);
 

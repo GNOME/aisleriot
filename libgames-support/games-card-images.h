@@ -60,6 +60,8 @@ GamesCardTheme *games_card_images_get_theme (GamesCardImages *images);
 void games_card_images_set_cache_mode (GamesCardImages * images,
                                        GamesCardImagesCacheMode mode);
 
+void games_card_images_drop_cache (GamesCardImages *images);
+
 void games_card_images_set_drawable (GamesCardImages * images,
                                      GdkWindow * drawable);
 
