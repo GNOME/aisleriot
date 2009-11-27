@@ -195,12 +195,30 @@ enum {
   COL_GAME_FILE
 };
 
+#define SELECTED_PATH_DATA_KEY "selected-path"
+
 static void
 select_game_row_activated_cb (GtkWidget *widget,
                               GtkTreePath *path,
                               GtkTreeViewColumn *column,
                               GtkDialog *dialog)
 {
+  g_assert (path != NULL);
+
+#ifdef HAVE_MAEMO_5
+  /* On maemo5 with a treeview in a pannable area, the selection
+   * handling is special. There _never_ is any row selected!
+   * Instead, we get a row-activated signal (which normally is only
+   * emitted when double-clicking a row) when the user selects a row.
+   *
+   * Since we can't use the selection, we need to store the activated
+   * row somewhere else.
+   */
+  g_object_set_data_full (G_OBJECT (dialog), SELECTED_PATH_DATA_KEY,
+                          gtk_tree_path_copy (path),
+                          (GDestroyNotify) gtk_tree_path_free);
+#endif /* HAVE_MAEMO_5 */
+
   /* Handle a double click by faking a click on the OK button. */
   gtk_dialog_response (dialog, GTK_RESPONSE_OK);
 }
@@ -214,9 +232,21 @@ select_game_response_cb (GtkWidget *dialog,
   GtkTreeModel *model;
   GtkTreeIter iter;
   char *game_file = NULL;
+#ifdef HAVE_MAEMO_5
+  GtkTreePath *path;
+#endif
 
-  if (response == GTK_RESPONSE_OK &&
-      gtk_tree_selection_get_selected (priv->game_choice_selection, &model, &iter)) {
+  if (response != GTK_RESPONSE_OK)
+    goto done;
+
+#ifdef HAVE_MAEMO_5
+  /* See the comment in select_game_row_activated_cb() above. */
+  if ((path = g_object_get_data (G_OBJECT (dialog), SELECTED_PATH_DATA_KEY)) != NULL &&
+      gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->game_choice_store), &iter, path)) {
+    model = GTK_TREE_MODEL (priv->game_choice_store);
+#else
+  if (gtk_tree_selection_get_selected (priv->game_choice_selection, &model, &iter)) {
+#endif
     gtk_tree_model_get (model, &iter,
                         COL_GAME_FILE, &game_file,
                         -1);
@@ -229,6 +259,7 @@ select_game_response_cb (GtkWidget *dialog,
     g_free (game_file);
   }
 
+done:
   gtk_widget_destroy (dialog);
 }
 
