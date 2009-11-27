@@ -50,6 +50,7 @@ struct _GamesConfPrivate {
   char *main_group;
 #endif
   guint need_init : 1;
+  guint dirty : 1;
 };
 
 enum
@@ -351,6 +352,19 @@ get_gconf_value_type_from_schema (const char *key_name)
 
 #endif /* HAVE_GNOME */
 
+#ifndef HAVE_GNOME
+
+static void
+mark_dirty_cb (GamesConf *conf)
+{
+  GamesConfPrivate *priv = conf->priv;
+
+  g_print ("marking dirty!\n");
+  priv->dirty = TRUE;
+}
+
+#endif /* !HAVE_GNOME */
+
 /* Class implementation */
 
 static void
@@ -361,6 +375,11 @@ games_conf_init (GamesConf *conf)
   priv = conf->priv = GAMES_CONF_GET_PRIVATE (conf);
 
   priv->need_init = FALSE;
+  priv->dirty = FALSE;
+
+#ifndef HAVE_GNOME
+  g_signal_connect (conf, "value-changed", G_CALLBACK (mark_dirty_cb), NULL);
+#endif
 }
 
 static GObject *
@@ -456,44 +475,8 @@ games_conf_finalize (GObject *object)
   priv->gconf_client = NULL;
 
 #else /* !HAVE_GNOME */
-  char *game_name, *conf_file, *conf_dir, *data = NULL;
-  gsize len = 0;
-  GError *error = NULL;
 
-  game_name = g_ascii_strdown (priv->game_name, -1);
-  conf_file = g_build_filename (g_get_user_config_dir (), "gnome-games", game_name, NULL);
-
-  /* Ensure the directory exists */
-  conf_dir = g_build_filename (g_get_user_config_dir (), "gnome-games", NULL);
-  /* Mode 0700 per the XDG basedir spec */
-  if (g_mkdir_with_parents (conf_dir, 0700) < 0) {
-    int err = errno;
-
-    if (err != EEXIST) {
-      g_warning ("Failed to create config directory \"%s\": %s\n", conf_dir, g_strerror (err));
-      goto loser;
-    }
-  }
-
-  data = g_key_file_to_data (priv->key_file, &len, &error);
-  if (!data) {
-    g_warning ("Failed to save settings to \"%s\": %s",
-               conf_file, error->message);
-    g_error_free (error);
-    goto loser;
-  }
-
-  if (!g_file_set_contents (conf_file, data, len, &error)) {
-    g_warning ("Failed to save settings to \"%s\": %s",
-              conf_file, error->message);
-    g_error_free (error);
-  }
-
-loser:
-  g_free (data);
-  g_free (conf_file);
-  g_free (conf_dir);
-  g_free (game_name);
+  games_conf_save ();
 
   g_free (priv->main_group);
   g_key_file_free (priv->key_file);
@@ -616,6 +599,63 @@ games_conf_get_default (void)
   g_assert (instance != NULL);
 
   return instance;
+}
+
+/**
+ * games_conf_save:
+ *
+ * Ensures settings are written to disk.
+ */
+void
+games_conf_save (void)
+{
+#ifndef HAVE_GNOME
+  GamesConfPrivate *priv = instance->priv;
+  char *game_name, *conf_file, *conf_dir, *data = NULL;
+  gsize len = 0;
+  GError *error = NULL;
+
+  if (!priv->dirty)
+    return;
+
+  game_name = g_ascii_strdown (priv->game_name, -1);
+  conf_dir = g_build_filename (g_get_user_config_dir (), "gnome-games", NULL);
+  conf_file = g_build_filename (conf_dir, game_name, NULL);
+
+  /* Ensure the directory exists; mode 0700 per the XDG basedir spec. */
+  if (g_mkdir_with_parents (conf_dir, 0700) < 0) {
+    int err = errno;
+
+    if (err != EEXIST) {
+      g_warning ("Failed to create config directory \"%s\": %s\n", conf_dir, g_strerror (err));
+      goto loser;
+    }
+  }
+
+  data = g_key_file_to_data (priv->key_file, &len, &error);
+  if (!data) {
+    g_warning ("Failed to save settings to \"%s\": %s",
+               conf_file, error->message);
+    g_error_free (error);
+    goto loser;
+  }
+
+  if (!g_file_set_contents (conf_file, data, len, &error)) {
+    g_warning ("Failed to save settings to \"%s\": %s",
+              conf_file, error->message);
+    g_error_free (error);
+    goto loser;
+  }
+
+  /* Sucessfully saved */
+  priv->dirty = FALSE;
+
+loser:
+  g_free (data);
+  g_free (conf_file);
+  g_free (conf_dir);
+  g_free (game_name);
+#endif /* !HAVE_GNOME */
 }
 
 /**
