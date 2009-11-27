@@ -359,7 +359,6 @@ mark_dirty_cb (GamesConf *conf)
 {
   GamesConfPrivate *priv = conf->priv;
 
-  g_print ("marking dirty!\n");
   priv->dirty = TRUE;
 }
 
