@@ -195,6 +195,9 @@ sync_is_topmost_cb (HildonProgram *program,
   if (hildon_program_get_is_topmost (program)) {
     hildon_program_set_can_hibernate (program, FALSE);
   } else {
+    /* Ensure settings are saved to disk */
+    games_conf_save ();
+
     /* FIXMEchpe: save state here */
 
     hildon_program_set_can_hibernate (program, TRUE);
