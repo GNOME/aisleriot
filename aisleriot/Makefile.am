@@ -20,6 +20,8 @@ scm_DATA = \
 bin_PROGRAMS = sol
 
 sol_SOURCES = \
+	ar-game-chooser.c \
+	ar-game-chooser.h \
 	board.h		\
 	board-noclutter.c \
 	conf.c		\
@@ -97,6 +99,8 @@ if ENABLE_AISLERIOT_CLUTTER
 noinst_PROGRAMS = sol-clutter
 
 sol_clutter_SOURCES = \
+	ar-game-chooser.c \
+	ar-game-chooser.h \
 	board.h		\
 	board.c		\
 	baize.c		\

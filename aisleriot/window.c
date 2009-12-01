@@ -60,6 +60,7 @@
 #include "stats-dialog.h"
 #include "util.h"
 #include "ar-fullscreen-button.h"
+#include "ar-game-chooser.h"
 
 #include "window.h"
 
@@ -80,8 +81,6 @@
 
 /* The maximum number of recent games saved */
 #define MAX_RECENT 5
-
-#define SELECT_GAME_DIALOG_MIN_HEIGHT (256)
 
 #if !GLIB_CHECK_VERSION (2, 16, 0)
 #define C_(context, string) (_(string))
@@ -162,8 +161,6 @@ struct _AisleriotWindowPrivate
   GtkWidget *game_over_dialog;
   GtkWidget *game_choice_dialog;
   AisleriotStatsDialog *stats_dialog;
-  GtkListStore *game_choice_store;
-  GtkTreeSelection *game_choice_selection;
 
 #ifndef HAVE_HILDON
   GtkWidget *hint_dialog;
@@ -192,239 +189,6 @@ enum {
   PROP_0,
   PROP_FREECELL_MODE
 };
-
-/* Game choice dialogue */
-
-enum {
-  COL_NAME,
-  COL_GAME_FILE
-};
-
-#define SELECTED_PATH_DATA_KEY "selected-path"
-
-static void
-select_game_row_activated_cb (GtkWidget *widget,
-                              GtkTreePath *path,
-                              GtkTreeViewColumn *column,
-                              GtkDialog *dialog)
-{
-  g_assert (path != NULL);
-
-#ifdef HAVE_MAEMO_5
-  /* On maemo5 with a treeview in a pannable area, the selection
-   * handling is special. There _never_ is any row selected!
-   * Instead, we get a row-activated signal (which normally is only
-   * emitted when double-clicking a row) when the user selects a row.
-   *
-   * Since we can't use the selection, we need to store the activated
-   * row somewhere else.
-   */
-  g_object_set_data_full (G_OBJECT (dialog), SELECTED_PATH_DATA_KEY,
-                          gtk_tree_path_copy (path),
-                          (GDestroyNotify) gtk_tree_path_free);
-#endif /* HAVE_MAEMO_5 */
-
-  /* Handle a double click by faking a click on the OK button. */
-  gtk_dialog_response (dialog, GTK_RESPONSE_OK);
-}
-
-static void
-select_game_response_cb (GtkWidget *dialog,
-                         int response,
-                         AisleriotWindow *window)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-  GtkTreeModel *model;
-  GtkTreeIter iter;
-  char *game_file = NULL;
-#ifdef HAVE_MAEMO_5
-  GtkTreePath *path;
-#endif
-
-  if (response != GTK_RESPONSE_OK)
-    goto done;
-
-#ifdef HAVE_MAEMO_5
-  /* See the comment in select_game_row_activated_cb() above. */
-  if ((path = g_object_get_data (G_OBJECT (dialog), SELECTED_PATH_DATA_KEY)) != NULL &&
-      gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->game_choice_store), &iter, path)) {
-    model = GTK_TREE_MODEL (priv->game_choice_store);
-#else
-  if (gtk_tree_selection_get_selected (priv->game_choice_selection, &model, &iter)) {
-#endif
-    gtk_tree_model_get (model, &iter,
-                        COL_GAME_FILE, &game_file,
-                        -1);
-    g_assert (game_file != NULL);
-
-    aisleriot_window_set_game (window, game_file, 0);
-
-    /* We'll store the new game in conf when it's been loaded successfully */
-
-    g_free (game_file);
-  }
-
-done:
-  gtk_widget_destroy (dialog);
-}
-
-static void
-select_game_cb (GtkAction *action,
-                AisleriotWindow *window)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-  GtkWidget *dialog;
-  GtkListStore *list;
-  GtkWidget *list_view;
-  GtkTreeSelection *selection;
-  GtkWidget *scrolled_window;
-  GtkTreeViewColumn *column;
-  GtkCellRenderer *renderer;
-  GtkWidget *hbox, *content_area;
-  GtkTreeIter current_iter;
-  gboolean current_iter_set = FALSE;
-  const char *current_game_file;
-  const char *games_dir;
-  GDir *dir;
-
-  if (priv->game_choice_dialog) {
-    gtk_window_present (GTK_WINDOW (priv->game_choice_dialog));
-    return;
-  }
-
-  priv->game_choice_store = list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
-
-#ifdef HAVE_MAEMO_5
-  list_view = hildon_gtk_tree_view_new_with_model (HILDON_UI_MODE_NORMAL, GTK_TREE_MODEL (list));
-#else
-  list_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list));
-#endif
-  g_object_unref (list);
-
-  current_game_file = aisleriot_game_get_game_file (priv->game);
-
-  games_dir = games_runtime_get_directory (GAMES_RUNTIME_GAME_GAMES_DIRECTORY);
-
-  dir = g_dir_open (games_dir, 0, NULL);
-  if (dir != NULL) {
-    const char *game_file;
-
-    while ((game_file = g_dir_read_name (dir)) != NULL) {
-      char *game_name;
-      GtkTreeIter iter;
-
-      if (!g_str_has_suffix (game_file, ".scm") ||
-          strcmp (game_file, "sol.scm") == 0)
-        continue;
-
-      game_name = games_filename_to_display_name (game_file);
-
-      gtk_list_store_insert_with_values (GTK_LIST_STORE (list), &iter,
-                                         -1,
-                                         COL_NAME, game_name,
-                                         COL_GAME_FILE, game_file,
-                                         -1);
-
-      if (current_game_file &&
-          strcmp (current_game_file, game_file) == 0) {
-        current_iter = iter;
-        current_iter_set = TRUE;
-      }
-
-      g_free (game_name);
-    }
-
-    g_dir_close (dir);
-  }
-
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list),
-                                        0, GTK_SORT_ASCENDING);
-
-  dialog = gtk_dialog_new_with_buttons (_("Select Game"),
-                                        GTK_WINDOW (window),
-                                        GTK_DIALOG_DESTROY_WITH_PARENT,
-                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                        _("_Select"), GTK_RESPONSE_OK,
-                                        NULL);
-  gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
-                                           GTK_RESPONSE_OK,
-                                           GTK_RESPONSE_CANCEL,
-                                           -1);
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
-
-  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
-
-  gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
-  gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
-  content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
-  gtk_box_set_spacing (GTK_BOX (content_area), 2);
-
-  hbox = gtk_hbox_new (FALSE, 12);
-  gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
-  gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 0);
-  g_signal_connect (list_view, "row-activated",
-                    G_CALLBACK (select_game_row_activated_cb), dialog);
-
-  gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list_view), FALSE);
-
-  renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (NULL,
-                                                     renderer,
-                                                     "text", COL_NAME, NULL);
-
-  gtk_tree_view_append_column (GTK_TREE_VIEW (list_view), column);
-
-  priv->game_choice_selection = selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list_view));
-  gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
-
-#ifdef HAVE_MAEMO_5
-  scrolled_window = hildon_pannable_area_new ();
-#else
-  scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
-                                       GTK_SHADOW_IN);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
-                                  GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-#endif /* HAVE_MAEMO_5 */
-
-  gtk_container_add (GTK_CONTAINER (scrolled_window), list_view);
-
-  gtk_box_pack_end (GTK_BOX (hbox), scrolled_window, TRUE, TRUE, 0);
-
-  /* Set initial focus to the list view. Otherwise, if you press Up/Down key,
-   * the selection jumps to the first entry in the list as the view gains
-   * focus.
-   */
-  gtk_widget_grab_focus (list_view);
-
-  gtk_widget_show_all (hbox);
-
-  g_signal_connect (dialog, "response",
-                    G_CALLBACK (select_game_response_cb), window);
-
-  priv->game_choice_dialog = dialog;
-  g_signal_connect (dialog, "destroy",
-                    G_CALLBACK (gtk_widget_destroyed), &priv->game_choice_dialog);
-
-  gtk_widget_set_size_request (scrolled_window, -1, SELECT_GAME_DIALOG_MIN_HEIGHT);
-  gtk_window_present (GTK_WINDOW (dialog));
-
-  /* Select the row corresponding to the currently loaded game,
-   * and scroll to it.
-   */
-  if (current_iter_set) {
-    GtkTreePath *path;
-
-    gtk_tree_selection_select_iter (selection, &current_iter);
-
-    /* Scroll view to the current item */
-    path = gtk_tree_model_get_path (GTK_TREE_MODEL (list), &current_iter);
-    gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (list_view), path, NULL,
-                                  TRUE,
-				  0.5, 0.0);
-    gtk_tree_path_free (path);
-  }
-}
 
 /* Game Over dialogue */
 
@@ -721,6 +485,24 @@ restart_game (GtkAction *action,
 
   aisleriot_game_restart_game (priv->game);
 };
+
+static void
+select_game_cb (GtkAction *action,
+                AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+
+  if (priv->game_choice_dialog) {
+    gtk_window_present (GTK_WINDOW (priv->game_choice_dialog));
+    return;
+  }
+
+  priv->game_choice_dialog = ar_game_chooser_new (window);
+  g_signal_connect (priv->game_choice_dialog, "destroy",
+                    G_CALLBACK (gtk_widget_destroyed), &priv->game_choice_dialog);
+
+  gtk_window_present (GTK_WINDOW (priv->game_choice_dialog));
+}
 
 static void
 help_general_cb (GtkAction *action,
