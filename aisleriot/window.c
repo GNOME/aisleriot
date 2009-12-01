@@ -35,10 +35,6 @@
 #else
 #include <hildon/hildon-banner.h>
 #endif
-#ifdef HAVE_MAEMO_5
-#include <hildon/hildon-gtk.h>
-#include <hildon/hildon-pannable-area.h>
-#endif
 #endif /* HAVE_HILDON */
 
 #include <libgames-support/games-card-theme.h>

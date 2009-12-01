@@ -27,9 +27,19 @@
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-string-utils.h>
 
+#ifdef HAVE_MAEMO_5
+#include <hildon/hildon-gtk.h>
+#include <hildon/hildon-pannable-area.h>
+#include <hildon/hildon-stackable-window.h>
+#endif
+
 struct _ArGameChooser
 {
+#ifdef HAVE_MAEMO_5
+  HildonStackableWindow parent;
+#else
   GtkDialog parent;
+#endif
 
   /*< private >*/
   ArGameChooserPrivate *priv;
@@ -37,7 +47,11 @@ struct _ArGameChooser
 
 struct _ArGameChooserClass
 {
+#ifdef HAVE_MAEMO_5
+  HildonStackableWindowClass parent_class;
+#else
   GtkDialogClass parent_class;
+#endif
 };
 
 struct _ArGameChooserPrivate {
@@ -68,34 +82,37 @@ row_activated_cb (GtkWidget *widget,
                   GtkTreeViewColumn *column,
                   ArGameChooser *chooser)
 {
-  g_assert (path != NULL);
-
 #ifdef HAVE_MAEMO_5
+  ArGameChooserPrivate *priv = chooser->priv;
+  GtkTreeIter iter;
+
   /* On maemo5 with a treeview in a pannable area, the selection
    * handling is special. There _never_ is any row selected!
    * Instead, we get a row-activated signal (which normally is only
    * emitted when double-clicking a row) when the user selects a row.
-   *
-   * Since we can't use the selection, we need to store the activated
-   * row somewhere else.
    */
-  g_object_set_data_full (G_OBJECT (chooser), SELECTED_PATH_DATA_KEY,
-                          gtk_tree_path_copy (path),
-                          (GDestroyNotify) gtk_tree_path_free);
-#endif /* HAVE_MAEMO_5 */
+  if (gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path)) {
+    char *game_file = NULL;
 
+    gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
+                        COL_GAME_FILE, &game_file,
+                        -1);
+    g_assert (game_file != NULL);
+
+    aisleriot_window_set_game (priv->window, game_file, 0);
+
+    g_free (game_file);
+
+    /* And close the subview */
+    gtk_widget_destroy (GTK_WIDGET (chooser));
+  }
+#else
   /* Handle a double click by faking a click on the OK button. */
   gtk_dialog_response (GTK_DIALOG (chooser), GTK_RESPONSE_OK);
+#endif /* HAVE_MAEMO_5 */
 }
 
-static gboolean
-delete_cb (GtkDialog *dialog,
-           ArGameChooser *chooser)
-{
-  g_print ("delete!\n");
-  gtk_dialog_response (dialog, GTK_RESPONSE_DELETE_EVENT);
-  return TRUE;
-}
+#ifndef HAVE_MAEMO_5
 
 static void
 response_cb (GtkWidget *dialog,
@@ -105,22 +122,11 @@ response_cb (GtkWidget *dialog,
   ArGameChooserPrivate *priv = chooser->priv;
   GtkTreeModel *model;
   GtkTreeIter iter;
-  char *game_file = NULL;
-#ifdef HAVE_MAEMO_5
-  GtkTreePath *path;
-#endif
 
-  if (response != GTK_RESPONSE_OK)
-    goto done;
+  if (response == GTK_RESPONSE_OK &&
+      gtk_tree_selection_get_selected (priv->selection, &model, &iter)) {
+    char *game_file = NULL;
 
-#ifdef HAVE_MAEMO_5
-  /* See the comment in select_game_row_activated_cb() above. */
-  if ((path = g_object_get_data (G_OBJECT (dialog), SELECTED_PATH_DATA_KEY)) != NULL &&
-      gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path)) {
-    model = GTK_TREE_MODEL (priv->store);
-#else
-  if (gtk_tree_selection_get_selected (priv->selection, &model, &iter)) {
-#endif
     gtk_tree_model_get (model, &iter,
                         COL_GAME_FILE, &game_file,
                         -1);
@@ -128,18 +134,21 @@ response_cb (GtkWidget *dialog,
 
     aisleriot_window_set_game (priv->window, game_file, 0);
 
-    /* We'll store the new game in conf when it's been loaded successfully */
-
     g_free (game_file);
   }
 
-done:
   gtk_widget_destroy (dialog);
 }
 
+#endif /* HAVE_MAEMO_5 */
+
 /* GType impl */
 
+#ifdef HAVE_MAEMO_5
+G_DEFINE_TYPE (ArGameChooser, ar_game_chooser, HILDON_TYPE_STACKABLE_WINDOW)
+#else
 G_DEFINE_TYPE (ArGameChooser, ar_game_chooser, GTK_TYPE_DIALOG)
+#endif
 
 /* GObjectClass impl */
 
@@ -159,50 +168,34 @@ ar_game_chooser_constructor (GType type,
   ArGameChooserPrivate *priv;
   GtkWidget *widget;
   GtkWindow *window;
-  GtkDialog *dialog;
   GtkListStore *list;
   GtkWidget *list_view;
   GtkTreeSelection *selection;
   GtkWidget *scrolled_window;
   GtkTreeViewColumn *column;
   GtkCellRenderer *renderer;
-  GtkWidget *hbox, *content_area;
+  GtkWidget *hbox;
   GtkTreeIter current_iter;
   gboolean current_iter_set = FALSE;
   const char *current_game_file;
   const char *games_dir;
   GDir *dir;
+#ifndef HAVE_MAEMO_5
+  GtkWidget *content_area;
+  GtkDialog *dialog;
+#endif
 
   object = G_OBJECT_CLASS (ar_game_chooser_parent_class)->constructor
             (type, n_construct_properties, construct_params);
 
   widget = GTK_WIDGET (object);
   window = GTK_WINDOW (object);
-  dialog = GTK_DIALOG (object);
   chooser = AR_GAME_CHOOSER (object);
   priv = chooser->priv;
 
   g_assert (priv->window != NULL);
 
-  gtk_dialog_set_has_separator (dialog, FALSE);
-  gtk_dialog_add_buttons (dialog,
-                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                          _("_Select"), GTK_RESPONSE_OK,
-                          NULL);
-  gtk_dialog_set_alternative_button_order (dialog,
-                                           GTK_RESPONSE_OK,
-                                           GTK_RESPONSE_CANCEL,
-                                           -1);
-  gtk_dialog_set_default_response (dialog, GTK_RESPONSE_OK);
-
   priv->store = list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
-
-#ifdef HAVE_MAEMO_5
-  list_view = hildon_gtk_tree_view_new_with_model (HILDON_UI_MODE_NORMAL, GTK_TREE_MODEL (list));
-#else
-  list_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list));
-#endif
-  g_object_unref (list);
 
   current_game_file = aisleriot_game_get_game_file (aisleriot_window_get_game (priv->window));
 
@@ -240,21 +233,53 @@ ar_game_chooser_constructor (GType type,
     g_dir_close (dir);
   }
 
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list),
-                                        0, GTK_SORT_ASCENDING);
-
+  /* Now construct the window contents */
   gtk_window_set_title (window, _("Select Game"));
   gtk_window_set_modal (window, TRUE);
+
+#ifndef HAVE_MAEMO_5
+  dialog = GTK_DIALOG (object);
+
+  g_signal_connect (dialog, "response",
+                    G_CALLBACK (response_cb), chooser);
 
   gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
   content_area = gtk_dialog_get_content_area (dialog);
   gtk_box_set_spacing (GTK_BOX (content_area), 2);
 
+  gtk_dialog_set_has_separator (dialog, FALSE);
+  gtk_dialog_add_buttons (dialog,
+                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                          _("_Select"), GTK_RESPONSE_OK,
+                          NULL);
+  gtk_dialog_set_alternative_button_order (dialog,
+                                           GTK_RESPONSE_OK,
+                                           GTK_RESPONSE_CANCEL,
+                                           -1);
+  gtk_dialog_set_default_response (dialog, GTK_RESPONSE_OK);
+#endif /* HAVE_MAEMO_5 */
+
+#ifdef HAVE_MAEMO_5
+  list_view = hildon_gtk_tree_view_new_with_model (HILDON_UI_MODE_NORMAL, GTK_TREE_MODEL (list));
+#else
+  list_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list));
+#endif
+  g_object_unref (list);
+
+  g_signal_connect (list_view, "row-activated",
+                    G_CALLBACK (row_activated_cb), chooser);
+
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list),
+                                        0, GTK_SORT_ASCENDING);
+
   hbox = gtk_hbox_new (FALSE, 12);
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
+
+#ifdef HAVE_MAEMO_5
+  gtk_container_add (GTK_CONTAINER (window), hbox);
+#else
   gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 0);
-  g_signal_connect (list_view, "row-activated",
-                    G_CALLBACK (row_activated_cb), dialog);
+#endif
 
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list_view), FALSE);
 
@@ -290,11 +315,6 @@ ar_game_chooser_constructor (GType type,
 
   gtk_widget_show_all (hbox);
 
-  g_signal_connect (dialog, "response",
-                    G_CALLBACK (response_cb), chooser);
-  g_signal_connect (dialog, "delete-event",
-                    G_CALLBACK (delete_cb), chooser);
-
   gtk_widget_set_size_request (scrolled_window, -1, SELECT_GAME_DIALOG_MIN_HEIGHT);
 
   /* Select the row corresponding to the currently loaded game,
@@ -314,22 +334,6 @@ ar_game_chooser_constructor (GType type,
   }
 
   return object;
-}
-
-static void
-ar_game_chooser_dispose (GObject *object)
-{
-//   ArGameChooser *chooser = AR_GAME_CHOOSER (object);
-//   ArGameChooserPrivate *priv = chooser->priv;
-
-
-  G_OBJECT_CLASS (ar_game_chooser_parent_class)->dispose (object);
-}
-
-static void
-ar_game_chooser_finalize (GObject *object)
-{
-  G_OBJECT_CLASS (ar_game_chooser_parent_class)->finalize (object);
 }
 
 static void
@@ -363,9 +367,7 @@ ar_game_chooser_class_init (ArGameChooserClass *klass)
 
   object_class->constructor = ar_game_chooser_constructor;
   object_class->set_property = ar_game_chooser_set_property;
-  object_class->dispose = ar_game_chooser_dispose;
-  object_class->finalize = ar_game_chooser_finalize;
-  
+
   /**
    * ArGameChooser:window:
    *
