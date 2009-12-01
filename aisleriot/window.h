@@ -61,9 +61,7 @@ typedef GtkWindowClass AisleriotWindowClass;
 
 GType aisleriot_window_get_type (void);
 
-GtkWidget *aisleriot_window_new (void);
-
-void aisleriot_window_set_freecell_mode (AisleriotWindow * window);
+GtkWidget *aisleriot_window_new (gboolean freecell_mode);
 
 void aisleriot_window_set_game (AisleriotWindow * window,
                                 const char *game_file, guint seed);

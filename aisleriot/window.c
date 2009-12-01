@@ -188,6 +188,11 @@ enum {
   OPTION_RADIOMENU
 };
 
+enum {
+  PROP_0,
+  PROP_FREECELL_MODE
+};
+
 /* Game choice dialogue */
 
 enum {
@@ -1925,7 +1930,10 @@ game_type_changed_cb (AisleriotGame *game,
   g_object_set (priv->action[ACTION_HELP_GAME], "label", game_name, NULL);
   g_object_set (priv->action[ACTION_OPTIONS_MENU], "label", game_name, NULL);
 
-  gtk_window_set_title (GTK_WINDOW (window), game_name);
+  /* In freecell mode, we've already set the title to something different */
+  if (!priv->freecell_mode) {
+    gtk_window_set_title (GTK_WINDOW (window), game_name);
+  }
 
   g_free (game_name);
 
@@ -2189,6 +2197,36 @@ screen_changed_cb (GtkWidget *widget,
 }
 
 #endif /* HAVE_CLUTTER || HAVE_CANBERRA_GTK */
+
+/*
+ * aisleriot_window_set_freecell_mode:
+ * @window:
+ *
+ * Sets @window to FreeCell mode. In FreeCell mode,
+ * the window is using the FreeCell variation, and doesn't allow
+ * changing the game type.
+ */
+static void
+aisleriot_window_set_freecell_mode (AisleriotWindow *window,
+                                    gboolean freecell_mode)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+  GtkAction *action;
+
+  priv->freecell_mode = freecell_mode != FALSE;
+
+  if (freecell_mode) {
+    /* Inhibit game changing */
+    action = gtk_action_group_get_action (priv->action_group, "Select");
+    gtk_action_set_visible (action, FALSE);
+    action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
+    gtk_action_set_visible (action, FALSE);
+
+    gtk_window_set_title (GTK_WINDOW (window), _("Freecell Solitaire"));
+  } else {
+    gtk_window_set_title (GTK_WINDOW (window), _("AisleRiot"));
+  }
+}
 
 /* Class implementation */
 
@@ -2974,6 +3012,23 @@ aisleriot_window_finalize (GObject *object)
 }
 
 static void
+aisleriot_window_set_property (GObject      *object,
+                               guint         property_id,
+                               const GValue *value,
+                               GParamSpec   *pspec)
+{
+  AisleriotWindow *window = AISLERIOT_WINDOW (object);
+
+  switch (property_id) {
+    case PROP_FREECELL_MODE:
+      aisleriot_window_set_freecell_mode (window, g_value_get_boolean (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+  }
+}
+static void
 aisleriot_window_class_init (AisleriotWindowClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
@@ -2981,6 +3036,7 @@ aisleriot_window_class_init (AisleriotWindowClass *klass)
 
   gobject_class->dispose = aisleriot_window_dispose;
   gobject_class->finalize = aisleriot_window_finalize;
+  gobject_class->set_property = aisleriot_window_set_property;
 
   widget_class->window_state_event = aisleriot_window_state_event;
 #if GTK_CHECK_VERSION (2, 10, 0)
@@ -2988,6 +3044,20 @@ aisleriot_window_class_init (AisleriotWindowClass *klass)
 #endif
 
   g_type_class_add_private (gobject_class, sizeof (AisleriotWindowPrivate));
+
+  /**
+   * AisleriotWindow:freecell-mode:
+   *
+   * Whether the window is in freecell mode.
+   */
+  g_object_class_install_property
+    (gobject_class,
+     PROP_FREECELL_MODE,
+     g_param_spec_boolean ("freecell-mode", NULL, NULL,
+                           FALSE,
+                           G_PARAM_WRITABLE |
+                           G_PARAM_CONSTRUCT_ONLY |
+                           G_PARAM_STATIC_STRINGS));
 }
 
 /* public API */
@@ -2998,34 +3068,11 @@ aisleriot_window_class_init (AisleriotWindowClass *klass)
  * Returns: a new #AisleriotWindow
  */
 GtkWidget *
-aisleriot_window_new (void)
+aisleriot_window_new (gboolean freecell_mode)
 {
   return g_object_new (AISLERIOT_TYPE_WINDOW,
-                       "title", _("AisleRiot"),
+                       "freecell-mode", freecell_mode,
                        NULL);
-}
-
-/**
- * aisleriot_window_set_freecell_mode:
- * @window:
- *
- * Sets @window to FreeCell mode. In FreeCell mode,
- * the window is using the FreeCell variation, and doesn't allow
- * changing the game type.
- */
-void
-aisleriot_window_set_freecell_mode (AisleriotWindow *window)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-  GtkAction *action;
-
-  priv->freecell_mode = TRUE;
-
-  /* Inhibit game changing */
-  action = gtk_action_group_get_action (priv->action_group, "Select");
-  gtk_action_set_visible (action, FALSE);
-  action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
-  gtk_action_set_visible (action, FALSE);
 }
 
 typedef struct {

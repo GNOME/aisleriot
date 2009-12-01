@@ -349,11 +349,11 @@ main_prog (void *closure, int argc, char *argv[])
 
   games_stock_init ();
 
-  data.window = AISLERIOT_WINDOW (aisleriot_window_new ());
+  gtk_window_set_default_icon_name (data.freecell ? "gnome-freecell" : "gnome-aisleriot");
+
+  data.window = AISLERIOT_WINDOW (aisleriot_window_new (data.freecell));
   g_signal_connect (data.window, "destroy",
 		    G_CALLBACK (gtk_main_quit), NULL);
-
-  gtk_window_set_default_icon_name (data.freecell ? "gnome-freecell" : "gnome-aisleriot");
 
 #ifdef WITH_SMCLIENT
   sm_client = egg_sm_client_get ();
@@ -397,7 +397,6 @@ main_prog (void *closure, int argc, char *argv[])
 #endif /* HAVE_HILDON */
 
   if (data.freecell) {
-    aisleriot_window_set_freecell_mode (data.window);
     aisleriot_window_set_game (data.window, FREECELL_VARIATION, data.seed);
   } else {
     aisleriot_window_set_game (data.window, data.variation, data.seed);
