@@ -273,11 +273,10 @@ ar_game_chooser_constructor (GType type,
                                         0, GTK_SORT_ASCENDING);
 
   hbox = gtk_hbox_new (FALSE, 12);
-  gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
-
 #ifdef HAVE_MAEMO_5
   gtk_container_add (GTK_CONTAINER (window), hbox);
 #else
+  gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
   gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 0);
 #endif
 
