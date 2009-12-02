@@ -25,11 +25,8 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 
-#if defined(HAVE_CANBERRA_GTK)
+#ifdef ENABLE_SOUND
 #include <canberra-gtk.h>
-#elif defined(HAVE_SDL_MIXER)
-#include "SDL.h"
-#include "SDL_mixer.h"
 #endif
 
 #include "games-debug.h"
@@ -39,41 +36,13 @@
 
 #ifdef ENABLE_SOUND
 
-static gboolean sound_enabled = FALSE;
-
-#ifdef HAVE_SDL_MIXER
-
-static gboolean sound_init = FALSE;
-
-static void
-games_sound_sdl_play (const gchar *filename)
-{
-  Mix_Chunk *wave = NULL;
-  gchar *name, *path;
-
-  name = g_strdup_printf ("%s.ogg", filename);
-  path = games_runtime_get_file (GAMES_RUNTIME_SOUND_DIRECTORY, name);
-  g_free (name);
-
-  wave = Mix_LoadWAV (path);
-  if (wave == NULL) {
-    _games_debug_print (GAMES_DEBUG_SOUND,
-                        "Error playing sound %s: %s\n", path, Mix_GetError ());
-  }
-
-  Mix_PlayChannel (-1, wave, 0);
-  g_free (path);
-}
-
-#endif /* HAVE_SDL_MIXER */
-
-#ifdef HAVE_CANBERRA_GTK
-
 #ifdef CA_CHECK_VERSION
 #if CA_CHECK_VERSION (0, 13)
 #define HAVE_CANBERRA_GTK_MULTIHEAD_SAFE
 #endif
 #endif
+
+static gboolean sound_enabled = FALSE;
 
 typedef enum {
   GAMES_SOUND_PLAIN,
@@ -151,38 +120,6 @@ games_sound_canberra_play (const char *sound_name,
   g_free (path);
 }
 
-#endif /* HAVE_CANBERRA_GTK */
-
-#ifdef HAVE_SDL_MIXER
-
-/* Initializes the games-sound support */
-static void
-games_sound_init (void)
-{
-  const int audio_rate = MIX_DEFAULT_FREQUENCY;
-  const int audio_format = MIX_DEFAULT_FORMAT;
-  const int audio_channels = 2;
-
-/* Sounds don't sound good on Windows unless the buffer size is 4k,
- * but this seems to cause strange behaviour on other systems,
- * such as a delay before playing the sound. */
-#ifdef G_OS_WIN32
-  const size_t buf_size = 4096;
-#else
-  const size_t buf_size = 1024;
-#endif
-
-  SDL_Init (SDL_INIT_AUDIO | SDL_INIT_NOPARACHUTE);
-
-  if (Mix_OpenAudio (audio_rate, audio_format, audio_channels, buf_size) < 0) {
-    _games_debug_print (GAMES_DEBUG_SOUND,
-                        "Error calling Mix_OpenAudio\n");
-    return;
-  }
-}
-
-#endif /* HAVE_SDL_MIXER */
-
 #endif /* ENABLE_SOUND */
 
 /**
@@ -198,7 +135,6 @@ void
 games_sound_init (GdkScreen *screen)
 {
 #ifdef ENABLE_SOUND
-#ifdef HAVE_CANBERRA_GTK
   ca_context *context;
 
   if (screen == NULL)
@@ -226,7 +162,6 @@ games_sound_init (GdkScreen *screen)
                            NULL);
 
   g_object_set_data (G_OBJECT (screen), "games-sound-initialised", GINT_TO_POINTER (TRUE));
-#endif /* HAVE_CANBERRA_GTK */
 #endif /* ENABLE_SOUND */
 }
 
@@ -264,17 +199,8 @@ void
 games_sound_play_for_screen (const gchar * sound_name,
                              GdkScreen *screen)
 {
-#if defined(HAVE_CANBERRA_GTK)
+#if defined(ENABLE_SOUND)
   games_sound_canberra_play (sound_name, GAMES_SOUND_PLAIN, screen);
-
-#elif defined(HAVE_SDL_MIXER)
-
-  if (!sound_enabled)
-    return;
-  if (!sound_init)
-    games_sound_init ();
-
-  games_sound_sdl_play (sound_name);
 #endif
 }
 
@@ -291,11 +217,7 @@ games_sound_play_for_event (const gchar *sound_name,
                             GdkEvent *event)
 {
 #ifdef ENABLE_SOUND
-#ifdef HAVE_CANBERRA_GTK
   games_sound_canberra_play (sound_name, GAMES_SOUND_FOR_EVENT, event);
-#else
-  games_sound_play (sound_name);
-#endif /* HAVE_CANBERRA_GTK */
 #endif /* ENABLE_SOUND */
 }
 
@@ -314,11 +236,7 @@ games_sound_play_for_widget (const gchar *sound_name,
                              GtkWidget *widget)
 {
 #ifdef ENABLE_SOUND
-#ifdef HAVE_CANBERRA_GTK
   games_sound_canberra_play (sound_name, GAMES_SOUND_FOR_WIDGET, widget);
-#else
-  games_sound_play (sound_name);
-#endif /* HAVE_CANBERRA_GTK */
 #endif /* ENABLE_SOUND */
 }
 

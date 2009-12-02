@@ -137,14 +137,9 @@ libgames_support_la_CFLAGS += $(RSVG_CFLAGS)
 libgames_support_la_LIBADD += $(RSVG_LIBS)
 endif
 
-if HAVE_CANBERRA_GTK
+if ENABLE_SOUND
 libgames_support_la_CFLAGS += $(CANBERRA_GTK_CFLAGS)
 libgames_support_la_LIBADD += $(CANBERRA_GTK_LIBS)
-endif
-
-if HAVE_SDL_MIXER
-libgames_support_la_CFLAGS += $(SDL_MIXER_CFLAGS)
-libgames_support_la_LIBADD += $(SDL_MIXER_LIBS)
 endif
 
 if HAVE_HILDON

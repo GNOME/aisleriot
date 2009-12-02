@@ -346,7 +346,7 @@ games_runtime_init (const char *name)
   }
 #endif /* G_OS_WIN32 */
 
-#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(HAVE_CANBERRA_GTK)
+#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(ENABLE_SOUND)
   /* If we're going to use gconf, gnome-vfs, or canberra, we need to
    * init threads; and this has to be done before calling any other glib functions.
    */

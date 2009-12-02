@@ -353,7 +353,7 @@ AM_CONDITIONAL([PLATFORM_WIN32_NATIVE],[test "$os_win32" = "yes"])
 if test "$want_sound" = "yes"; then
   AC_MSG_CHECKING([whether to enable sound support])
   AC_ARG_ENABLE([sound],
-    [AS_HELP_STRING([--enable-sound],[Enable sound with GStreamer or SDL_Mixer.])],
+    [AS_HELP_STRING([--enable-sound],[Enable sound using libcanberra])],
     [],[case "$with_platform" in
           gnome|gtk-only) enable_sound=yes ;;
           hildon) case "$with_platform_variant" in
@@ -364,18 +364,6 @@ if test "$want_sound" = "yes"; then
   AC_MSG_RESULT([$enable_sound])
 else
   enable_sound=no
-fi
-
-# Check which sound library to use
-
-if test "$enable_sound" = "yes"; then
-  AC_MSG_CHECKING([for which sound library to use])
-  AC_ARG_WITH([sound],
-    [AS_HELP_STRING([--with-sound=libcanberra|sdl_mixer (default: libcanberra)])],
-    [],[with_sound=libcanberra])
-  AC_MSG_RESULT([$with_sound])
-else
-  with_sound=no
 fi
 
 # Clutter
@@ -664,39 +652,15 @@ AM_CONDITIONAL([HAVE_PYTHON],[test "$enable_python" = "yes"])
 
 AM_CONDITIONAL([WITH_GTHREAD],[test "$need_gthread" = "yes"])
 
-# Sound support: Libcanberra, GStreamer or SDL_mixer
+# libcanberra
 
 if test "$enable_sound" = "yes"; then
+  PKG_CHECK_MODULES([CANBERRA_GTK],[libcanberra-gtk >= $LIBCANBERRA_GTK_REQUIRED],[],
+    [AC_MSG_ERROR([Sound support was requested, but libcanberra-gtk not found.])])
+
   AC_DEFINE([ENABLE_SOUND],[1],[Define if sound support is enabled])
 fi
 
-have_libcanberra=no
-if test "$enable_sound" = "yes" -a "$with_sound" = "libcanberra"; then
-  PKG_CHECK_MODULES([CANBERRA_GTK],[libcanberra-gtk >= $LIBCANBERRA_GTK_REQUIRED],[],
-    [AC_MSG_ERROR([Sound support using libcanberra was requested, but libcanberra-gtk not found.])])
-
-  AC_DEFINE([HAVE_CANBERRA_GTK],[1],[Define if libcanberra-gtk support is enabled])
-  have_libcanberra=yes
-fi
-
-if test "$enable_sound" = "yes" -a "$with_sound" = "sdl_mixer"; then
-  # Check for SDL_Mixer sound support, sets SDL_MIXER_CFLAGS, SDL_MIXER_LIBS, AUDIO_SDL
-  GAMES_CHECK_SOUND()
-
-  if test "$SDL_mixer" = "no"; then
-    AC_MSG_ERROR([Sound support using SDL-Mixer was requested, but SDL-Mixer not found.])
-  fi
-fi
-
-if test "x$SDL_mixer" = "xyes"; then
-  AC_SUBST(SDL_MIXER_CFLAGS)
-  AC_SUBST(SDL_MIXER_LIBS)
-
-  AC_DEFINE([HAVE_SDL_MIXER],[1],[Define if SDL_Mixer is available])
-fi
-
-AM_CONDITIONAL([HAVE_CANBERRA_GTK],[test "$have_libcanberra" = "yes"])
-AM_CONDITIONAL([HAVE_SDL_MIXER],[test "x$SDL_mixer" = "xyes"])
 AM_CONDITIONAL([ENABLE_SOUND],[test "$enable_sound" = "yes"])
 
 # SMClient
