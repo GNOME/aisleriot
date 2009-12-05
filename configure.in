@@ -240,8 +240,8 @@ LSB_DISTRIBUTION=
 
 AC_PATH_PROG([LSB_RELEASE],[lsb_release],[false])
 if test "$LSB_RELEASE" != "false"; then
-  LSB_DISTRIBUTOR="$($LSB_RELEASE -s -i)"
-  LSB_DISTRIBUTION="$($LSB_RELEASE -s -d)"
+  LSB_DISTRIBUTOR="$($LSB_RELEASE -s -i | sed 's,^\",,;s,\"$,,')"
+  LSB_DISTRIBUTION="$($LSB_RELEASE -s -d | sed 's,^\",,;s,\"$,,')"
 fi
 
 AC_DEFINE_UNQUOTED([LSB_DISTRIBUTOR],["$LSB_DISTRIBUTOR"],[The distributor ID])
