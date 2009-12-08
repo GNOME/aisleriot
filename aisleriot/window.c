@@ -2604,7 +2604,7 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_box_set_spacing (GTK_BOX (statusbar_hbox), 24);
 #else
 {
-  GtkWidget *statusbar_label,
+  GtkWidget *statusbar_label;
   GtkContainer *statusbar_frame;
   GList *list;
 
