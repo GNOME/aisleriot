@@ -3331,7 +3331,7 @@ aisleriot_board_init (AisleriotBoard *board)
 
   gtk_widget_set_name (widget, "aisleriot-board");
 
-  GTK_WIDGET_SET_FLAGS (widget, GTK_CAN_FOCUS);
+  gtk_widget_set_can_focus (widget, TRUE);
 
   priv->is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
 

@@ -34,6 +34,8 @@ G_BEGIN_DECLS
 #define gtk_widget_has_focus(widget) (GTK_WIDGET_HAS_FOCUS (widget))
 #define gtk_widget_get_state(widget) ((widget)->state)
 #define gtk_widget_get_visible(widget) (GTK_WIDGET_VISIBLE (widget))
+#define gtk_widget_is_drawable(widget) (GTK_WIDGET_DRAWABLE (widget))
+#define gtk_widget_set_can_focus(widget, TRUE) (GTK_WIDGET_SET_FLAGS (widget, GTK_CAN_FOCUS))
 #endif /* GTK < 2.18.0 */
 
 #if !GTK_CHECK_VERSION (2, 14, 0)

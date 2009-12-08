@@ -494,7 +494,7 @@ set_focus (AisleriotBoard *board,
   if (priv->focus_slot != NULL) {
 #ifdef FIXMEchpe
     if (priv->show_focus &&
-        GTK_WIDGET_HAS_FOCUS (widget)) {
+        gtk_widget_has_focus (widget)) {
       gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
     
       priv->show_focus = FALSE;
@@ -515,7 +515,7 @@ set_focus (AisleriotBoard *board,
 
 #ifdef FIXMEchpe
   if (show_focus &&
-      GTK_WIDGET_HAS_FOCUS (widget)) {
+      gtk_widget_has_focus (widget)) {
     get_focus_rect (board, &priv->focus_rect);
     gdk_window_invalidate_rect (widget->window, &priv->focus_rect, FALSE);
   }
@@ -2242,7 +2242,7 @@ aisleriot_board_activate (AisleriotBoard *board,
   int selection_start_card_id = priv->selection_start_card_id;
 
 #ifdef FIXMEchpe
-  if (!GTK_WIDGET_HAS_FOCUS (widget))
+  if (!gtk_widget_has_focus (widget))
     return;
 #endif
 
@@ -2325,7 +2325,7 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
   int count;
 
 #ifdef FIXMEchpe
-  if (!GTK_WIDGET_HAS_FOCUS (widget))
+  if (!gtk_widget_has_focus (widget))
     return FALSE;
 #endif
 
