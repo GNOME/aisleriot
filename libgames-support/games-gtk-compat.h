@@ -36,6 +36,7 @@ G_BEGIN_DECLS
 #endif /* GTK < 2.18.0 */
 
 #if !GTK_CHECK_VERSION (2, 14, 0)
+#define gtk_dialog_get_content_area(dialog) ((dialog)->vbox)
 #define gtk_widget_get_window(widget) ((widget)->window)
 #endif /* GTK < 2.14.0 */
 
