@@ -30,6 +30,7 @@ G_BEGIN_DECLS
 #if !GTK_CHECK_VERSION (2, 18, 0)
 #define gtk_widget_set_allocation(widget, alloc) ((widget)->allocation=*(alloc))
 #define gtk_widget_get_allocation(widget, alloc) (*(alloc)=(widget)->allocation)
+#define gtk_widget_set_window (widget, window) ((widget)->window=window)
 #define gtk_widget_has_focus(widget) (GTK_WIDGET_HAS_FOCUS (widget))
 #define gtk_widget_get_state(widget) ((widget)->state)
 #define gtk_widget_get_visible(widget) (GTK_WIDGET_VISIBLE (widget))
