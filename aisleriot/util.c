@@ -96,3 +96,35 @@ aisleriot_show_help (GtkWidget *window,
 
   g_free (help_section);
 }
+
+/**
+ * aisleriot_variation_to_game_file:
+ * @variation: name of a game from command line
+ *
+ * Creates a game file name from a command line --variation argument.
+ * This strips dangerous characters like .. and /.
+ *
+ * Returns: a newly allocated string containing the game file name for @variation
+ */
+char *
+aisleriot_variation_to_game_file (const char *variation)
+{
+  char *game_file, *s;
+
+  game_file = g_ascii_strdown (variation, -1);
+
+  /* Replace dangerous characters: '.' (as in ".."), '/' and '\' */
+  g_strdelimit (game_file, "./\\" , '\0');
+  g_strdelimit (game_file, NULL, '_');
+
+  if (game_file[0] == '\0') {
+    g_free (game_file);
+    return NULL;
+  }
+
+  /* Add the suffix */
+  s = g_strconcat (game_file, ".scm", NULL);
+  g_free (game_file);
+
+  return s;
+}

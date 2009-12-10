@@ -26,6 +26,8 @@ G_BEGIN_DECLS
 void aisleriot_show_help (GtkWidget *window,
                           const char *game_file);
 
+char *aisleriot_variation_to_game_file (const char *variation);
+
 G_END_DECLS
 
 #endif /* !UTIL_H */

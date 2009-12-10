@@ -63,6 +63,7 @@
 #include "conf.h"
 #include "game.h"
 #include "window.h"
+#include "util.h"
 
 #if 0
 /* String reserve */
@@ -80,29 +81,6 @@ typedef struct {
   HildonProgram *program;
 #endif /* HAVE_HILDON */
 } AppData;
-
-static char *
-variation_to_game_file (const char *variation)
-{
-  char *game_file, *s;
-
-  game_file = g_ascii_strdown (variation, -1);
-
-  /* Replace dangerous characters: '.' (as in "..") and '/' */
-  g_strdelimit (game_file, "." G_DIR_SEPARATOR_S, '\0');
-  g_strdelimit (game_file, NULL, '_');
-
-  if (game_file[0] == '\0') {
-    g_free (game_file);
-    return NULL;
-  }
-
-  /* Add the suffix */
-  s = g_strconcat (game_file, ".scm", NULL);
-  g_free (game_file);
-
-  return s;
-}
 
 #ifdef WITH_SMCLIENT
 
@@ -353,7 +331,7 @@ main_prog (void *closure, int argc, char *argv[])
     char *game_file = NULL;
 
     if (data.variation[0] != '\0') {
-      game_file = variation_to_game_file (data.variation);
+      game_file = aisleriot_variation_to_game_file (data.variation);
     }
 
     g_free (data.variation);
