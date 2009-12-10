@@ -68,6 +68,16 @@
 #define STATIC_ASSERT_IMPL2(condition, line) typedef int _static_assert_line_##line[(condition) ? 1 : -1]
 
 #define I_(string) g_intern_static_string (string)
+  
+/* FIXMEchpe: file a bug to get an exported function like gtk_accelerator_get_default_mod_mask() for this? */
+/* Copied from clutter-binding-pool.c */
+#define CLUTTER_DEFAULT_MOD_MASK ((CLUTTER_SHIFT_MASK   | \
+                                   CLUTTER_CONTROL_MASK | \
+                                   CLUTTER_MOD1_MASK    | \
+                                   CLUTTER_SUPER_MASK   | \
+                                   CLUTTER_HYPER_MASK   | \
+                                   CLUTTER_META_MASK)   | \
+                                  CLUTTER_RELEASE_MASK)
 
 #pragma GCC poison GtkWidget
 #pragma GCC poison widget
@@ -2699,7 +2709,7 @@ aisleriot_board_button_press (ClutterActor *actor,
 
   /* Don't do anything if a modifier is pressed */
   /* FIXMEchpe: is there anything like gtk_accelerator_get_default_mod_mask() in clutter? */
-  state = event->modifier_state;
+  state = event->modifier_state & CLUTTER_DEFAULT_MOD_MASK;
   if (state != 0)
     return FALSE;
 
