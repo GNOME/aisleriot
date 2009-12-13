@@ -12,18 +12,19 @@
 # Jorge González <jorgegonz@svn.gnome.org>, 2009.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2009.
 # Jorge González <jorgegonz@svn.gnome.org>, 2009.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "games&component=general\n"
-"POT-Creation-Date: 2009-10-31 02:26+0000\n"
-"PO-Revision-Date: 2009-11-07 14:27+0100\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2009-12-09 18:06+0000\n"
+"PO-Revision-Date: 2009-12-04 09:05+0100\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
+"Language-Team: ES <gnome-es@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: UTF-8\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
@@ -105,8 +106,17 @@ msgstr "Indica si se debe mostrar la barra de estado"
 msgid "Whether or not to show the toolbar"
 msgstr "Mostrar u ocultar la barra de herramientas"
 
-#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:304
-#: ../aisleriot/window.c:618 ../aisleriot/window.c:626
+#. Now construct the window contents
+#: ../aisleriot/ar-game-chooser.c:237 ../aisleriot/window.c:2588
+msgid "Select Game"
+msgstr "Elegir un juego"
+
+#: ../aisleriot/ar-game-chooser.c:253
+msgid "_Select"
+msgstr "_Seleccionar"
+
+#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:327
+#: ../aisleriot/window.c:460 ../aisleriot/window.c:468
 msgid "FreeCell Solitaire"
 msgstr "Solitario FreeCell"
 
@@ -114,7 +124,7 @@ msgstr "Solitario FreeCell"
 msgid "Play the popular FreeCell card game"
 msgstr "Juegue al popular juego de cartas FreeCell"
 
-#: ../aisleriot/game.c:1144
+#: ../aisleriot/game.c:1175
 #, c-format
 msgid ""
 "Aisleriot cannot load the file “%s”. Please check your Aisleriot "
@@ -123,11 +133,11 @@ msgstr ""
 "Aisleriot no puede cargar el archivo: «%s». Revise su instalación de "
 "Aisleriot."
 
-#: ../aisleriot/game.c:1588
+#: ../aisleriot/game.c:1619
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot no puede encontrar el último juego que jugó."
 
-#: ../aisleriot/game.c:1589
+#: ../aisleriot/game.c:1620
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -137,7 +147,7 @@ msgstr ""
 "que no dispone del último juego que jugó. Se iniciará el juego "
 "predeterminado, Klondike, en su lugar."
 
-#: ../aisleriot/game.c:1947
+#: ../aisleriot/game.c:1978
 msgid "This game does not have hint support yet."
 msgstr "Este juego todavía no tiene soporte para sugerencias."
 
@@ -145,26 +155,27 @@ msgstr "Este juego todavía no tiene soporte para sugerencias."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../aisleriot/game.c:1981 ../aisleriot/game.c:2009
+#: ../aisleriot/game.c:2012 ../aisleriot/game.c:2040
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Mover %s en %s."
 
-#: ../aisleriot/game.c:2031
+#: ../aisleriot/game.c:2062
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Está buscando un %s."
 
-#: ../aisleriot/game.c:2036
+#: ../aisleriot/game.c:2067
 msgid "This game is unable to provide a hint."
 msgstr "Este juego no puede hacer sugerencias."
 
+#. This is a generated file; DO NOT EDIT
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:6
+#: ../aisleriot/game-names.h:7
 msgid "Peek"
 msgstr "Vistazo"
 
@@ -173,7 +184,7 @@ msgstr "Vistazo"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:13
+#: ../aisleriot/game-names.h:14
 msgid "Auld Lang Syne"
 msgstr "Auld lang syne"
 
@@ -182,7 +193,7 @@ msgstr "Auld lang syne"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:20
+#: ../aisleriot/game-names.h:21
 msgid "Fortunes"
 msgstr "Fortunas"
 
@@ -191,7 +202,7 @@ msgstr "Fortunas"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:27
+#: ../aisleriot/game-names.h:28
 msgid "Seahaven"
 msgstr "Puerto de Mar"
 
@@ -200,7 +211,7 @@ msgstr "Puerto de Mar"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:34
+#: ../aisleriot/game-names.h:35
 msgid "King Albert"
 msgstr "Rey Alberto"
 
@@ -209,7 +220,7 @@ msgstr "Rey Alberto"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:41
+#: ../aisleriot/game-names.h:42
 msgid "First Law"
 msgstr "Primera ley"
 
@@ -218,7 +229,7 @@ msgstr "Primera ley"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:48
+#: ../aisleriot/game-names.h:49
 msgid "Straight Up"
 msgstr "Secuencia completa"
 
@@ -227,7 +238,7 @@ msgstr "Secuencia completa"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:55
+#: ../aisleriot/game-names.h:56
 msgid "Jumbo"
 msgstr "Jumbo"
 
@@ -236,7 +247,7 @@ msgstr "Jumbo"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:62
+#: ../aisleriot/game-names.h:63
 msgid "Accordion"
 msgstr "Escorpión"
 
@@ -245,7 +256,7 @@ msgstr "Escorpión"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:69
+#: ../aisleriot/game-names.h:70
 msgid "Ten Across"
 msgstr "Diez a través"
 
@@ -254,7 +265,7 @@ msgstr "Diez a través"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:76
+#: ../aisleriot/game-names.h:77
 msgid "Plait"
 msgstr "Trenza"
 
@@ -263,7 +274,7 @@ msgstr "Trenza"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:83
+#: ../aisleriot/game-names.h:84
 msgid "Lady Jane"
 msgstr "Dama Jane"
 
@@ -272,7 +283,7 @@ msgstr "Dama Jane"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:90
+#: ../aisleriot/game-names.h:91
 msgid "Gypsy"
 msgstr "Gitano"
 
@@ -281,7 +292,7 @@ msgstr "Gitano"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:97
+#: ../aisleriot/game-names.h:98
 msgid "Neighbor"
 msgstr "Vecino"
 
@@ -290,7 +301,7 @@ msgstr "Vecino"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:104
+#: ../aisleriot/game-names.h:105
 msgid "Jamestown"
 msgstr "Jamestown"
 
@@ -299,7 +310,7 @@ msgstr "Jamestown"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:111
+#: ../aisleriot/game-names.h:112
 msgid "Osmosis"
 msgstr "Osmosis"
 
@@ -308,7 +319,7 @@ msgstr "Osmosis"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:118
+#: ../aisleriot/game-names.h:119
 msgid "Kings Audience"
 msgstr "Audiencia real"
 
@@ -317,7 +328,7 @@ msgstr "Audiencia real"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:125
+#: ../aisleriot/game-names.h:126
 msgid "Glenwood"
 msgstr "Glenwood"
 
@@ -326,7 +337,7 @@ msgstr "Glenwood"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:132
+#: ../aisleriot/game-names.h:133
 msgid "Gay Gordons"
 msgstr "Gay gordons"
 
@@ -335,7 +346,7 @@ msgstr "Gay gordons"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:139
+#: ../aisleriot/game-names.h:140
 msgid "Monte Carlo"
 msgstr "Monte Carlo"
 
@@ -344,7 +355,7 @@ msgstr "Monte Carlo"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:146
+#: ../aisleriot/game-names.h:147
 msgid "Kansas"
 msgstr "Kansas"
 
@@ -353,7 +364,7 @@ msgstr "Kansas"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:153
+#: ../aisleriot/game-names.h:154
 msgid "Camelot"
 msgstr "Camelot"
 
@@ -362,7 +373,7 @@ msgstr "Camelot"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:160
+#: ../aisleriot/game-names.h:161
 msgid "Fourteen"
 msgstr "Catorce"
 
@@ -371,7 +382,7 @@ msgstr "Catorce"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:167
+#: ../aisleriot/game-names.h:168
 msgid "Scorpion"
 msgstr "Escorpión"
 
@@ -380,7 +391,7 @@ msgstr "Escorpión"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:174
+#: ../aisleriot/game-names.h:175
 msgid "Isabel"
 msgstr "Isabel"
 
@@ -389,7 +400,7 @@ msgstr "Isabel"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:181
+#: ../aisleriot/game-names.h:182
 msgid "Escalator"
 msgstr "Escalador"
 
@@ -398,7 +409,7 @@ msgstr "Escalador"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:188
+#: ../aisleriot/game-names.h:189
 msgid "Agnes"
 msgstr "Agnes"
 
@@ -407,7 +418,7 @@ msgstr "Agnes"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:195
+#: ../aisleriot/game-names.h:196
 msgid "Bristol"
 msgstr "Bristol"
 
@@ -416,7 +427,7 @@ msgstr "Bristol"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:202
+#: ../aisleriot/game-names.h:203
 msgid "Quatorze"
 msgstr "Quatorze"
 
@@ -425,7 +436,7 @@ msgstr "Quatorze"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:209
+#: ../aisleriot/game-names.h:210
 msgid "Bear River"
 msgstr "Río oso"
 
@@ -434,7 +445,7 @@ msgstr "Río oso"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:216
+#: ../aisleriot/game-names.h:217
 msgid "Gold Mine"
 msgstr "Mina de oro"
 
@@ -443,7 +454,7 @@ msgstr "Mina de oro"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:223
+#: ../aisleriot/game-names.h:224
 msgid "Athena"
 msgstr "Athena"
 
@@ -452,7 +463,7 @@ msgstr "Athena"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:230
+#: ../aisleriot/game-names.h:231
 msgid "Spiderette"
 msgstr "Spiderette"
 
@@ -461,7 +472,7 @@ msgstr "Spiderette"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:237
+#: ../aisleriot/game-names.h:238
 msgid "Chessboard"
 msgstr "Tablero de ajedrez"
 
@@ -470,7 +481,7 @@ msgstr "Tablero de ajedrez"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:244
+#: ../aisleriot/game-names.h:245
 msgid "Backbone"
 msgstr "Dorsal"
 
@@ -479,7 +490,7 @@ msgstr "Dorsal"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:251
+#: ../aisleriot/game-names.h:252
 msgid "Yukon"
 msgstr "Yukon"
 
@@ -488,7 +499,7 @@ msgstr "Yukon"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:258
+#: ../aisleriot/game-names.h:259
 msgid "Union Square"
 msgstr "Union square"
 
@@ -497,7 +508,7 @@ msgstr "Union square"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:265
+#: ../aisleriot/game-names.h:266
 msgid "Eight Off"
 msgstr "Ocho fuera"
 
@@ -506,7 +517,7 @@ msgstr "Ocho fuera"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:272
+#: ../aisleriot/game-names.h:273
 msgid "Napoleons Tomb"
 msgstr "La tumba de Napoleón"
 
@@ -515,7 +526,7 @@ msgstr "La tumba de Napoleón"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:279
+#: ../aisleriot/game-names.h:280
 msgid "Forty Thieves"
 msgstr "Cuarenta ladrones"
 
@@ -524,7 +535,7 @@ msgstr "Cuarenta ladrones"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:286
+#: ../aisleriot/game-names.h:287
 msgid "Streets And Alleys"
 msgstr "Calles y callejones"
 
@@ -533,7 +544,7 @@ msgstr "Calles y callejones"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:293
+#: ../aisleriot/game-names.h:294
 msgid "Maze"
 msgstr "Malla"
 
@@ -542,7 +553,7 @@ msgstr "Malla"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:300
+#: ../aisleriot/game-names.h:301
 msgid "Clock"
 msgstr "Reloj"
 
@@ -551,7 +562,7 @@ msgstr "Reloj"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:307
+#: ../aisleriot/game-names.h:308
 msgid "Pileon"
 msgstr "Pileon"
 
@@ -560,7 +571,7 @@ msgstr "Pileon"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:314
+#: ../aisleriot/game-names.h:315
 msgid "Canfield"
 msgstr "Canfield"
 
@@ -569,7 +580,7 @@ msgstr "Canfield"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:321
+#: ../aisleriot/game-names.h:322
 msgid "Thirteen"
 msgstr "Trece"
 
@@ -578,7 +589,7 @@ msgstr "Trece"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:328
+#: ../aisleriot/game-names.h:329
 msgid "Bakers Game"
 msgstr "Juego de panaderos"
 
@@ -587,7 +598,7 @@ msgstr "Juego de panaderos"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:335
+#: ../aisleriot/game-names.h:336
 msgid "Triple Peaks"
 msgstr "Triple Peaks"
 
@@ -596,7 +607,7 @@ msgstr "Triple Peaks"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:342
+#: ../aisleriot/game-names.h:343
 msgid "Easthaven"
 msgstr "Puerto Este"
 
@@ -606,7 +617,7 @@ msgstr "Puerto Este"
 #. freely, literally, or not at all, at your option.
 #.
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../aisleriot/game-names.h:349 ../aisleriot/rules/terrace.scm.h:20
+#: ../aisleriot/game-names.h:350 ../aisleriot/rules/terrace.scm.h:20
 msgid "Terrace"
 msgstr "Tetravex"
 
@@ -615,7 +626,7 @@ msgstr "Tetravex"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:356
+#: ../aisleriot/game-names.h:357
 msgid "Aunt Mary"
 msgstr "Tía María"
 
@@ -624,7 +635,7 @@ msgstr "Tía María"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:363
+#: ../aisleriot/game-names.h:364
 msgid "Carpet"
 msgstr "Alfombra"
 
@@ -633,7 +644,7 @@ msgstr "Alfombra"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:370
+#: ../aisleriot/game-names.h:371
 msgid "Sir Tommy"
 msgstr "Sir Tommy"
 
@@ -642,7 +653,7 @@ msgstr "Sir Tommy"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:377
+#: ../aisleriot/game-names.h:378
 msgid "Diamond Mine"
 msgstr "Mina de diamantes"
 
@@ -651,7 +662,7 @@ msgstr "Mina de diamantes"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:384
+#: ../aisleriot/game-names.h:385
 msgid "Yield"
 msgstr "Yield"
 
@@ -660,7 +671,7 @@ msgstr "Yield"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:391
+#: ../aisleriot/game-names.h:392
 msgid "Labyrinth"
 msgstr "Laberinto"
 
@@ -669,7 +680,7 @@ msgstr "Laberinto"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:398
+#: ../aisleriot/game-names.h:399
 msgid "Thieves"
 msgstr "Ladrones"
 
@@ -678,7 +689,7 @@ msgstr "Ladrones"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:405
+#: ../aisleriot/game-names.h:406
 msgid "Saratoga"
 msgstr "Saratoga"
 
@@ -687,7 +698,7 @@ msgstr "Saratoga"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:412
+#: ../aisleriot/game-names.h:413
 msgid "Cruel"
 msgstr "Cruel"
 
@@ -696,7 +707,7 @@ msgstr "Cruel"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:419
+#: ../aisleriot/game-names.h:420
 msgid "Block Ten"
 msgstr "Bloque diez"
 
@@ -705,7 +716,7 @@ msgstr "Bloque diez"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:426
+#: ../aisleriot/game-names.h:427
 msgid "Will O The Wisp"
 msgstr "Will o the wisp"
 
@@ -714,7 +725,7 @@ msgstr "Will o the wisp"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:433
+#: ../aisleriot/game-names.h:434
 msgid "Odessa"
 msgstr "Odessa"
 
@@ -723,7 +734,7 @@ msgstr "Odessa"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:440
+#: ../aisleriot/game-names.h:441
 msgid "Eagle Wing"
 msgstr "Ala de águila"
 
@@ -732,7 +743,7 @@ msgstr "Ala de águila"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:447
+#: ../aisleriot/game-names.h:448
 msgid "Treize"
 msgstr "Trece"
 
@@ -741,7 +752,7 @@ msgstr "Trece"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:454
+#: ../aisleriot/game-names.h:455
 msgid "Zebra"
 msgstr "Zebra"
 
@@ -750,7 +761,7 @@ msgstr "Zebra"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:461
+#: ../aisleriot/game-names.h:462
 msgid "Cover"
 msgstr "Cubrir"
 
@@ -759,7 +770,7 @@ msgstr "Cubrir"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:468
+#: ../aisleriot/game-names.h:469
 msgid "Elevator"
 msgstr "Elevador"
 
@@ -768,7 +779,7 @@ msgstr "Elevador"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:475
+#: ../aisleriot/game-names.h:476
 msgid "Fortress"
 msgstr "Fortaleza"
 
@@ -777,7 +788,7 @@ msgstr "Fortaleza"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:482
+#: ../aisleriot/game-names.h:483
 msgid "Giant"
 msgstr "Gigante"
 
@@ -786,7 +797,7 @@ msgstr "Gigante"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:489
+#: ../aisleriot/game-names.h:490
 msgid "Spider"
 msgstr "Araña"
 
@@ -795,7 +806,7 @@ msgstr "Araña"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:496
+#: ../aisleriot/game-names.h:497
 msgid "Gaps"
 msgstr "Gaps"
 
@@ -804,7 +815,7 @@ msgstr "Gaps"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:503
+#: ../aisleriot/game-names.h:504
 msgid "Bakers Dozen"
 msgstr "Docena de panaderos"
 
@@ -813,7 +824,7 @@ msgstr "Docena de panaderos"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:510
+#: ../aisleriot/game-names.h:511
 msgid "Whitehead"
 msgstr "Whitehead"
 
@@ -822,7 +833,7 @@ msgstr "Whitehead"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:517
+#: ../aisleriot/game-names.h:518
 msgid "Freecell"
 msgstr "Freecell"
 
@@ -831,7 +842,7 @@ msgstr "Freecell"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:524
+#: ../aisleriot/game-names.h:525
 msgid "Helsinki"
 msgstr "Helsinki"
 
@@ -840,7 +851,7 @@ msgstr "Helsinki"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:531
+#: ../aisleriot/game-names.h:532
 msgid "Spider Three Decks"
 msgstr "Araña con tres barajas"
 
@@ -849,7 +860,7 @@ msgstr "Araña con tres barajas"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:538
+#: ../aisleriot/game-names.h:539
 msgid "Scuffle"
 msgstr "Reyerta"
 
@@ -858,7 +869,7 @@ msgstr "Reyerta"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:545
+#: ../aisleriot/game-names.h:546
 msgid "Poker"
 msgstr "Póker"
 
@@ -867,7 +878,7 @@ msgstr "Póker"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:552
+#: ../aisleriot/game-names.h:553
 msgid "Klondike Three Decks"
 msgstr "Araña con tres barajas"
 
@@ -876,7 +887,7 @@ msgstr "Araña con tres barajas"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:559
+#: ../aisleriot/game-names.h:560
 msgid "Valentine"
 msgstr "Valentine"
 
@@ -885,7 +896,7 @@ msgstr "Valentine"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:566
+#: ../aisleriot/game-names.h:567
 msgid "Royal East"
 msgstr "Este real"
 
@@ -894,7 +905,7 @@ msgstr "Este real"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:573
+#: ../aisleriot/game-names.h:574
 msgid "Thumb And Pouch"
 msgstr "Thumb and pouch"
 
@@ -903,7 +914,7 @@ msgstr "Thumb and pouch"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:580
+#: ../aisleriot/game-names.h:581
 msgid "Klondike"
 msgstr "Klondike"
 
@@ -912,7 +923,7 @@ msgstr "Klondike"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:587
+#: ../aisleriot/game-names.h:588
 msgid "Doublets"
 msgstr "Dobletes"
 
@@ -921,7 +932,7 @@ msgstr "Dobletes"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:594
+#: ../aisleriot/game-names.h:595
 msgid "Template"
 msgstr "Plantilla"
 
@@ -930,7 +941,7 @@ msgstr "Plantilla"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:601
+#: ../aisleriot/game-names.h:602
 msgid "Golf"
 msgstr "Golf"
 
@@ -939,7 +950,7 @@ msgstr "Golf"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:608
+#: ../aisleriot/game-names.h:609
 msgid "Westhaven"
 msgstr "Puerto Oeste"
 
@@ -948,7 +959,7 @@ msgstr "Puerto Oeste"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:615
+#: ../aisleriot/game-names.h:616
 msgid "Beleaguered Castle"
 msgstr "Castillo sitiado"
 
@@ -957,28 +968,28 @@ msgstr "Castillo sitiado"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../aisleriot/game-names.h:622
+#: ../aisleriot/game-names.h:623
 msgid "Hopscotch"
 msgstr "Rayuela"
 
-#: ../aisleriot/sol.c:212
+#: ../aisleriot/sol.c:221
 msgid "Select the game type to play"
 msgstr "Seleccione el tipo de juego que desea jugar"
 
-#: ../aisleriot/sol.c:212 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
+#: ../aisleriot/sol.c:221 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
 msgid "NAME"
 msgstr "NOMBRE"
 
-#: ../aisleriot/sol.c:214
+#: ../aisleriot/sol.c:223
 msgid "Select the game number"
 msgstr "Seleccione el número del juego"
 
-#: ../aisleriot/sol.c:214 ../gnomine/gnomine.c:1007 ../gtali/gyahtzee.c:110
+#: ../aisleriot/sol.c:223 ../gnomine/gnomine.c:1007 ../gtali/gyahtzee.c:110
 #: ../gtali/gyahtzee.c:112 ../gtali/gyahtzee.c:116 ../gtali/gyahtzee.c:118
 msgid "NUMBER"
 msgstr "NÚMERO"
 
-#: ../aisleriot/sol.c:304 ../aisleriot/window.c:627 ../aisleriot/window.c:2886
+#: ../aisleriot/sol.c:327 ../aisleriot/window.c:469 ../aisleriot/window.c:2044
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1373,49 +1384,41 @@ msgstr "%d:%02d"
 msgid "Could not show help for “%s”"
 msgstr "No se pudo mostrar la ayuda de «%s»"
 
-#: ../aisleriot/window.c:285 ../aisleriot/window.c:2567
-msgid "Select Game"
-msgstr "Elegir un juego"
-
-#: ../aisleriot/window.c:289
-msgid "_Select"
-msgstr "_Seleccionar"
-
-#: ../aisleriot/window.c:431
+#: ../aisleriot/window.c:266
 msgid "Congratulations, you have won!"
 msgstr "Enhorabuena, ha ganado."
 
-#: ../aisleriot/window.c:435
+#: ../aisleriot/window.c:270
 msgid "There are no more moves"
 msgstr "No hay más jugadas"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:448 ../quadrapassel/blockops.cpp:788
+#: ../aisleriot/window.c:283 ../quadrapassel/blockops.cpp:788
 msgid "Game Over"
 msgstr "Juego terminado"
 
-#: ../aisleriot/window.c:575 ../gnomine/gnomine.c:450
+#: ../aisleriot/window.c:417 ../gnomine/gnomine.c:450
 #: ../mahjongg/mahjongg.c:906
 msgid "Main game:"
 msgstr "Juego principal:"
 
-#: ../aisleriot/window.c:583
+#: ../aisleriot/window.c:425
 msgid "Card games:"
 msgstr "Juegos de cartas:"
 
-#: ../aisleriot/window.c:597
+#: ../aisleriot/window.c:439
 msgid "Card themes:"
 msgstr "Temas de cartas:"
 
-#: ../aisleriot/window.c:629
+#: ../aisleriot/window.c:471
 msgid "About FreeCell Solitaire"
 msgstr "Acerca del solitario FreeCell"
 
-#: ../aisleriot/window.c:630
+#: ../aisleriot/window.c:472
 msgid "About AisleRiot"
 msgstr "Acerca de AisleRiot"
 
-#: ../aisleriot/window.c:636
+#: ../aisleriot/window.c:478
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played.\n"
@@ -1425,12 +1428,12 @@ msgstr ""
 "permite jugar a muchos juegos diferentes.\n"
 "AisleRiot es parte de los Juegos de GNOME."
 
-#: ../aisleriot/window.c:647 ../glchess/src/lib/gtkui/gtkui.py:861
+#: ../aisleriot/window.c:489 ../glchess/src/lib/gtkui/gtkui.py:861
 #: ../glines/glines.c:1225 ../gnect/src/main.c:909 ../gnibbles/main.c:247
 #: ../gnobots2/menu.c:274 ../quadrapassel/tetris.cpp:1313
 #: ../gnome-sudoku/src/lib/main.py:717 ../gnomine/gnomine.c:490
 #: ../gnotravex/gnotravex.c:1921 ../gnotski/gnotski.c:1542
-#: ../gtali/gyahtzee.c:623 ../iagno/gnothello.c:268 ../mahjongg/mahjongg.c:951
+#: ../gtali/gyahtzee.c:623 ../iagno/gnothello.c:272 ../mahjongg/mahjongg.c:951
 msgid "translator-credits"
 msgstr ""
 "Daniel Mustieles <daniel.mustieles@gmail.com>, 2008\n"
@@ -1439,21 +1442,21 @@ msgstr ""
 "Germán Poo Caamaño <gpoo@ubiobio.cl>\n"
 "Pablo Saratxaga <pablo@mandrakesoft.com>"
 
-#: ../aisleriot/window.c:651 ../glchess/src/lib/defaults.py.in:56
+#: ../aisleriot/window.c:493 ../glchess/src/lib/defaults.py.in:56
 #: ../glines/glines.c:1228 ../gnect/src/main.c:906 ../gnibbles/main.c:250
 #: ../gnobots2/menu.c:270 ../quadrapassel/tetris.cpp:1310
 #: ../gnome-sudoku/src/lib/defaults.py.in:43 ../gnomine/gnomine.c:493
 #: ../gnotravex/gnotravex.c:1924 ../gnotski/gnotski.c:1545
-#: ../gtali/gyahtzee.c:627 ../iagno/gnothello.c:270 ../mahjongg/mahjongg.c:954
+#: ../gtali/gyahtzee.c:627 ../iagno/gnothello.c:274 ../mahjongg/mahjongg.c:954
 msgid "GNOME Games web site"
 msgstr "Sitio web de los juegos de GNOME"
 
-#: ../aisleriot/window.c:1473
+#: ../aisleriot/window.c:1374
 #, c-format
 msgid "Play “%s”"
 msgstr "Jugar a «%s»"
 
-#: ../aisleriot/window.c:1644
+#: ../aisleriot/window.c:1549
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Mostrar las cartas con el tema «%s»"
@@ -1462,48 +1465,52 @@ msgstr "Mostrar las cartas con el tema «%s»"
 #. * then translate this string to "%I6d", else to "%6d".
 #. * Do not translate it to anything else!
 #.
-#: ../aisleriot/window.c:1739
+#: ../aisleriot/window.c:1644
 #, c-format
 msgctxt "score"
 msgid "%6d"
 msgstr "%6d"
 
-#: ../aisleriot/window.c:1994
+#: ../aisleriot/window.c:1913
 msgid "A scheme exception occurred"
 msgstr "Ha ocurrido una excepción de esquema"
 
-#: ../aisleriot/window.c:1997
+#: ../aisleriot/window.c:1916
 msgid "Please report this bug to the developers."
 msgstr "Por favor, informe de este error a los desarrolladores."
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:2001 ../libgames-support/games-show.c:151
+#: ../aisleriot/window.c:1920 ../libgames-support/games-show.c:151
 msgid "Error"
 msgstr "Error"
 
-#: ../aisleriot/window.c:2009
+#: ../aisleriot/window.c:1928
 msgid "_Don't report"
 msgstr "_No informar"
 
-#: ../aisleriot/window.c:2010
+#: ../aisleriot/window.c:1929
 msgid "_Report"
 msgstr "_Informar"
 
+#: ../aisleriot/window.c:2042
+msgid "Freecell Solitaire"
+msgstr "Solitario FreeCell"
+
 #. Menu actions
 #. Preferences Dialog: Title of game options tab
-#: ../aisleriot/window.c:2197 ../glchess/data/glchess.ui.h:24
+#: ../aisleriot/window.c:2179 ../glchess/data/glchess.ui.h:24
 #: ../glchess/data/preferences.ui.h:24 ../glines/glines.c:1691
 #: ../gnect/src/main.c:1273 ../gnibbles/main.c:738 ../gnobots2/menu.c:68
 #: ../quadrapassel/tetris.cpp:107 ../gnome-sudoku/src/lib/main.py:241
 #: ../gnomine/gnomine.c:834 ../gnotravex/gnotravex.c:303
-#: ../gnotski/gnotski.c:414 ../gtali/gyahtzee.c:701 ../iagno/gnothello.c:812
+#: ../gnotski/gnotski.c:414 ../gtali/gyahtzee.c:701 ../iagno/gnothello.c:828
 #: ../lightsoff/data/lightsoff.ui.h:2 ../mahjongg/mahjongg.c:1242
 #: ../swell-foop/data/swell-foop.ui.h:2
 msgid "_Game"
 msgstr "_Juego"
 
 #. Preferences Dialog: Title of view options tab
-#: ../aisleriot/window.c:2198 ../glchess/data/glchess.ui.h:29
+#: ../aisleriot/window.c:2180 ../glchess/data/glchess.ui.h:29
 #: ../glchess/data/preferences.ui.h:30 ../gnect/src/main.c:1274
 #: ../gnibbles/main.c:739 ../gnobots2/menu.c:69
 #: ../gnome-sudoku/src/lib/main.py:251 ../gnotravex/gnotravex.c:304
@@ -1511,152 +1518,152 @@ msgstr "_Juego"
 msgid "_View"
 msgstr "_Ver"
 
-#: ../aisleriot/window.c:2199
+#: ../aisleriot/window.c:2181
 msgid "_Control"
 msgstr "_Control"
 
-#: ../aisleriot/window.c:2201 ../glchess/data/glchess.ui.h:25
+#: ../aisleriot/window.c:2183 ../glchess/data/glchess.ui.h:25
 #: ../glines/glines.c:1693 ../gnect/src/main.c:1276 ../gnibbles/main.c:741
 #: ../gnobots2/menu.c:72 ../quadrapassel/tetris.cpp:109
 #: ../gnome-sudoku/src/lib/main.py:269 ../gnomine/gnomine.c:836
 #: ../gnotravex/gnotravex.c:307 ../gnotski/gnotski.c:416
-#: ../gtali/gyahtzee.c:703 ../iagno/gnothello.c:814
+#: ../gtali/gyahtzee.c:703 ../iagno/gnothello.c:830
 #: ../lightsoff/data/lightsoff.ui.h:3 ../mahjongg/mahjongg.c:1244
 #: ../swell-foop/data/swell-foop.ui.h:3
 msgid "_Help"
 msgstr "Ay_uda"
 
-#: ../aisleriot/window.c:2206 ../glchess/data/glchess.ui.h:18
+#: ../aisleriot/window.c:2188 ../glchess/data/glchess.ui.h:18
 #: ../gnobots2/menu.c:73 ../libgames-support/games-stock.c:53
 #: ../mahjongg/mahjongg.c:1245
 msgid "Start a new game"
 msgstr "Iniciar un juego nuevo"
 
-#: ../aisleriot/window.c:2209 ../libgames-support/games-stock.c:57
+#: ../aisleriot/window.c:2191 ../libgames-support/games-stock.c:57
 msgid "Restart the game"
 msgstr "Reiniciar el juego"
 
-#: ../aisleriot/window.c:2211
+#: ../aisleriot/window.c:2193
 msgid "_Select Game..."
 msgstr "_Seleccionar un juego..."
 
-#: ../aisleriot/window.c:2213
+#: ../aisleriot/window.c:2195
 msgid "Play a different game"
 msgstr "Iniciar un juego distinto"
 
-#: ../aisleriot/window.c:2215
+#: ../aisleriot/window.c:2197
 msgid "_Recently Played"
 msgstr "_Recientemente jugados"
 
-#: ../aisleriot/window.c:2216
+#: ../aisleriot/window.c:2198
 msgid "S_tatistics"
 msgstr "Es_tadísticas"
 
-#: ../aisleriot/window.c:2217
+#: ../aisleriot/window.c:2199
 msgid "Show gameplay statistics"
 msgstr "Mostrar estadísticas de juego"
 
-#: ../aisleriot/window.c:2220 ../libgames-support/games-stock.c:62
+#: ../aisleriot/window.c:2202 ../libgames-support/games-stock.c:62
 msgid "Close this window"
 msgstr "Cerrar esta ventana"
 
-#: ../aisleriot/window.c:2223 ../libgames-support/games-stock.c:60
+#: ../aisleriot/window.c:2205 ../libgames-support/games-stock.c:60
 #: ../mahjongg/mahjongg.c:1253
 msgid "Undo the last move"
 msgstr "Anular el último movimiento"
 
-#: ../aisleriot/window.c:2226 ../libgames-support/games-stock.c:56
+#: ../aisleriot/window.c:2208 ../libgames-support/games-stock.c:56
 msgid "Redo the undone move"
 msgstr "Rehacer el movimiento deshecho"
 
-#: ../aisleriot/window.c:2229
+#: ../aisleriot/window.c:2211
 msgid "Deal next card or cards"
 msgstr "Repartir la siguiente carta o cartas"
 
-#: ../aisleriot/window.c:2232 ../libgames-support/games-stock.c:49
+#: ../aisleriot/window.c:2214 ../libgames-support/games-stock.c:49
 msgid "Get a hint for your next move"
 msgstr "Obtener una pista para el siguiente movimiento"
 
-#: ../aisleriot/window.c:2235
+#: ../aisleriot/window.c:2217
 msgid "View help for Aisleriot"
 msgstr "Mostrar la ayuda para Aisleriot"
 
-#: ../aisleriot/window.c:2239 ../libgames-support/games-stock.c:46
+#: ../aisleriot/window.c:2221 ../libgames-support/games-stock.c:46
 msgid "View help for this game"
 msgstr "Mostrar la ayuda de este juego"
 
-#: ../aisleriot/window.c:2242 ../libgames-support/games-stock.c:61
+#: ../aisleriot/window.c:2224 ../libgames-support/games-stock.c:61
 msgid "About this game"
 msgstr "Acerca de este juego"
 
-#: ../aisleriot/window.c:2245
+#: ../aisleriot/window.c:2227
 msgid "Install card themes…"
 msgstr "Instalar temas de las cartas..."
 
-#: ../aisleriot/window.c:2246
+#: ../aisleriot/window.c:2228
 msgid "Install new card themes from the distribution packages repositories"
 msgstr ""
 "Instalar temas de cartas nuevos desde los repositorios de distribución de "
 "paquetes"
 
-#: ../aisleriot/window.c:2255
+#: ../aisleriot/window.c:2238
 msgid "_Card Style"
 msgstr "Estilo de _carta"
 
-#: ../aisleriot/window.c:2295 ../gnobots2/menu.c:96
+#: ../aisleriot/window.c:2277 ../gnobots2/menu.c:96
 #: ../mahjongg/mahjongg.c:1273
 msgid "_Toolbar"
 msgstr "Barra de herramien_tas"
 
-#: ../aisleriot/window.c:2296 ../glchess/data/preferences.ui.h:17
+#: ../aisleriot/window.c:2278 ../glchess/data/preferences.ui.h:17
 #: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
 msgid "Show or hide the toolbar"
 msgstr "Mostrar u ocultar la barra de herramientas"
 
-#: ../aisleriot/window.c:2301
+#: ../aisleriot/window.c:2283
 msgid "_Statusbar"
 msgstr "Barra de _estado"
 
-#: ../aisleriot/window.c:2302
+#: ../aisleriot/window.c:2284
 msgid "Show or hide statusbar"
 msgstr "Mostrar u ocultar la barra de estado"
 
-#: ../aisleriot/window.c:2307 ../gnotravex/gnotravex.c:352
+#: ../aisleriot/window.c:2289 ../gnotravex/gnotravex.c:352
 msgid "_Click to Move"
 msgstr "_Pulse para mover"
 
-#: ../aisleriot/window.c:2308
+#: ../aisleriot/window.c:2290
 msgid "Pick up and drop cards by clicking"
 msgstr "Recoge y tira las cartas pulsando con el ratón"
 
-#: ../aisleriot/window.c:2312
+#: ../aisleriot/window.c:2294
 msgid "_Sound"
 msgstr "_Sonido"
 
-#: ../aisleriot/window.c:2313
+#: ../aisleriot/window.c:2295
 msgid "Whether or not to play event sounds"
 msgstr "Indica si se deben reproducir eventos de sonido"
 
-#: ../aisleriot/window.c:2318
+#: ../aisleriot/window.c:2300
 msgid "_Animations"
 msgstr "_Animaciones"
 
-#: ../aisleriot/window.c:2319
+#: ../aisleriot/window.c:2301
 msgid "Whether or not to animate card moves"
 msgstr "Indica si se debe usar animación para los movimientos de las cartas"
 
-#: ../aisleriot/window.c:2598 ../glines/glines.c:1905
+#: ../aisleriot/window.c:2630 ../glines/glines.c:1905
 #: ../gnobots2/statusbar.c:67 ../quadrapassel/scoreframe.cpp:47
 #: ../gnomine/gnomine.c:453
 msgid "Score:"
 msgstr "Puntuación:"
 
-#: ../aisleriot/window.c:2610 ../gnotravex/gnotravex.c:1384
+#: ../aisleriot/window.c:2642 ../gnotravex/gnotravex.c:1384
 #: ../mahjongg/mahjongg.c:1465
 msgid "Time:"
 msgstr "Tiempo:"
 
-#: ../aisleriot/window.c:2946
+#: ../aisleriot/window.c:3013
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "No se puede iniciar el juego «%s»"
@@ -2572,7 +2579,7 @@ msgid "Logs"
 msgstr "Registros"
 
 #. The Network Game toolbar button
-#: ../glchess/data/glchess.ui.h:7 ../libgames-support/games-stock.c:336
+#: ../glchess/data/glchess.ui.h:7 ../libgames-support/games-stock.c:337
 msgid "Network _Game"
 msgstr "_Partida en red"
 
@@ -2626,7 +2633,7 @@ msgid "Undo Move"
 msgstr "Deshacer movimiento"
 
 #: ../glchess/data/glchess.ui.h:23 ../gnome-sudoku/src/lib/main.py:273
-#: ../libgames-support/games-stock.c:320
+#: ../libgames-support/games-stock.c:321
 msgid "_Contents"
 msgstr "Índ_ice"
 
@@ -2638,12 +2645,12 @@ msgstr "De_recha"
 #: ../glchess/data/glchess.ui.h:27 ../glines/glines.c:1692
 #: ../gnect/src/main.c:1275 ../gnibbles/main.c:740 ../gnobots2/menu.c:71
 #: ../quadrapassel/tetris.cpp:108 ../gnomine/gnomine.c:835
-#: ../gtali/gyahtzee.c:702 ../iagno/gnothello.c:813
+#: ../gtali/gyahtzee.c:702 ../iagno/gnothello.c:829
 #: ../mahjongg/mahjongg.c:1243
 msgid "_Settings"
 msgstr "Aju_stes"
 
-#: ../glchess/data/glchess.ui.h:28 ../libgames-support/games-stock.c:332
+#: ../glchess/data/glchess.ui.h:28 ../libgames-support/games-stock.c:333
 msgid "_Undo Move"
 msgstr "_Deshacer movimiento"
 
@@ -2943,7 +2950,7 @@ msgstr "horas"
 
 #. Translators: AI Difficulty Combo: AI set to easy difficulty
 #: ../glchess/src/lib/gtkui/dialogs.py:178
-#: ../gnome-sudoku/src/lib/sudoku.py:515
+#: ../gnome-sudoku/src/lib/sudoku.py:516
 msgid "Easy"
 msgstr "Fácil"
 
@@ -2954,7 +2961,7 @@ msgstr "Normal"
 
 #. Translators: AI Difficulty Combo: AI set to hard diffuculty
 #: ../glchess/src/lib/gtkui/dialogs.py:182
-#: ../gnome-sudoku/src/lib/sudoku.py:513
+#: ../gnome-sudoku/src/lib/sudoku.py:514
 msgid "Hard"
 msgstr "Difícil"
 
@@ -3984,7 +3991,7 @@ msgstr ""
 
 #: ../glchess/src/lib/defaults.py.in:67
 #: ../gnome-sudoku/src/lib/defaults.py.in:53
-#: ../libgames-support/games-stock.c:417
+#: ../libgames-support/games-stock.c:418
 #, c-format, python-format
 msgid ""
 "%s is distributed in the hope that it will be useful, but WITHOUT ANY "
@@ -3999,7 +4006,7 @@ msgstr ""
 
 #: ../glchess/src/lib/defaults.py.in:71
 #: ../gnome-sudoku/src/lib/defaults.py.in:57
-#: ../libgames-support/games-stock.c:422
+#: ../libgames-support/games-stock.c:423
 #, c-format, python-format
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
@@ -4525,27 +4532,27 @@ msgstr ""
 "\n"
 "Revise su instalación de Nibbles"
 
-#: ../gnibbles/gnibbles.c:367
+#: ../gnibbles/gnibbles.c:368
 msgid "Nibbles Scores"
 msgstr "Puntuación de Nibbles"
 
-#: ../gnibbles/gnibbles.c:370
+#: ../gnibbles/gnibbles.c:371
 msgid "Speed:"
 msgstr "Velocidad:"
 
-#: ../gnibbles/gnibbles.c:375 ../gnobots2/game.c:182 ../gnomine/gnomine.c:225
+#: ../gnibbles/gnibbles.c:376 ../gnobots2/game.c:182 ../gnomine/gnomine.c:225
 #: ../gnotravex/gnotravex.c:1240 ../gnotski/gnotski.c:842
 #: ../gtali/gyahtzee.c:203 ../mahjongg/mahjongg.c:668
 msgid "Congratulations!"
 msgstr "Enhorabuena."
 
-#: ../gnibbles/gnibbles.c:376 ../gnobots2/game.c:183 ../gnomine/gnomine.c:226
+#: ../gnibbles/gnibbles.c:377 ../gnobots2/game.c:183 ../gnomine/gnomine.c:226
 #: ../gnotravex/gnotravex.c:1241 ../gnotski/gnotski.c:843
 #: ../gtali/gyahtzee.c:204 ../mahjongg/mahjongg.c:669
 msgid "Your score is the best!"
 msgstr "Su puntuación es la mejor"
 
-#: ../gnibbles/gnibbles.c:377 ../gnobots2/game.c:184 ../gnomine/gnomine.c:227
+#: ../gnibbles/gnibbles.c:378 ../gnobots2/game.c:184 ../gnomine/gnomine.c:227
 #: ../gnotravex/gnotravex.c:1242 ../gnotski/gnotski.c:844
 #: ../gtali/gyahtzee.c:205 ../mahjongg/mahjongg.c:670
 msgid "Your score has made the top ten."
@@ -4826,7 +4833,7 @@ msgstr ""
 
 #. Translators: This "_New Game" is for the game-over dialogue
 #: ../gnobots2/game.c:157 ../gnomine/gnomine.c:203 ../gnotski/gnotski.c:819
-#: ../libgames-support/games-stock.c:326
+#: ../libgames-support/games-stock.c:327
 msgid "_New Game"
 msgstr "Juego _nuevo"
 
@@ -4870,13 +4877,13 @@ msgstr "Posición inicial de la ventana"
 
 #: ../gnobots2/gnobots.c:89 ../gnomine/gnomine.c:1003
 #: ../gnomine/gnomine.c:1011 ../gnotravex/gnotravex.c:400
-#: ../gnotski/gnotski.c:467 ../iagno/gnothello.c:146
+#: ../gnotski/gnotski.c:467 ../iagno/gnothello.c:150
 msgid "X"
 msgstr "X"
 
 #: ../gnobots2/gnobots.c:91 ../gnomine/gnomine.c:1005
 #: ../gnomine/gnomine.c:1013 ../gnotravex/gnotravex.c:402
-#: ../gnotski/gnotski.c:469 ../iagno/gnothello.c:148
+#: ../gnotski/gnotski.c:469 ../iagno/gnothello.c:152
 msgid "Y"
 msgstr "Y"
 
@@ -5176,7 +5183,7 @@ msgstr ""
 "Usar movimientos superseguros. Se avisa al jugador cuando no hay movimientos "
 "seguros y la única opción es el teletransporte."
 
-#: ../gnobots2/graphics.c:155 ../iagno/gnothello.c:415
+#: ../gnobots2/graphics.c:155 ../iagno/gnothello.c:419
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "No pude encontrar el archivo pixmap «%s».\n"
@@ -5499,7 +5506,6 @@ msgid "Lines:"
 msgstr "Líneas:"
 
 #: ../quadrapassel/tetris.cpp:573
-#| msgid "Quadrapassel Scores"
 msgid "Quadrapassel Preferences"
 msgstr "Preferencias de Quadrapassel"
 
@@ -5558,10 +5564,6 @@ msgid "Qua"
 msgstr "Qua"
 
 #: ../quadrapassel/tetris.cpp:1307
-#| msgid ""
-#| "A classic game of fitting falling blocks together.\n"
-#| "\n"
-#| "Gnometris is a part of GNOME Games."
 msgid ""
 "A classic game of fitting falling blocks together.\n"
 "\n"
@@ -5576,8 +5578,8 @@ msgid "Quadrapassel Scores"
 msgstr "Puntuación de Quadrapassel"
 
 #: ../quadrapassel/blockops.cpp:786
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:173
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:214
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:174
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:215
 msgid "Paused"
 msgstr "Detenido"
 
@@ -5755,7 +5757,7 @@ msgstr "Limpiar _otros"
 msgid "_Add Tracker"
 msgstr "_Añadir seguimiento"
 
-#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:784
+#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:785
 msgid "_Clear Tracker"
 msgstr "_Limpiar seguimiento"
 
@@ -5859,7 +5861,7 @@ msgstr "Cerrar Sudoku"
 msgid "_Tools"
 msgstr "Herramien_tas"
 
-#: ../gnome-sudoku/src/lib/main.py:252 ../libgames-support/games-stock.c:322
+#: ../gnome-sudoku/src/lib/main.py:252 ../libgames-support/games-stock.c:323
 msgid "_Hint"
 msgstr "_Sugerencia"
 
@@ -6058,80 +6060,80 @@ msgid "Puzzle Statistics"
 msgstr "Estadísticas del puzle"
 
 #. Our initial row...
-#: ../gnome-sudoku/src/lib/main.py:775
+#: ../gnome-sudoku/src/lib/main.py:776
 msgid "No Tracker"
 msgstr "Sin seguimiento"
 
-#: ../gnome-sudoku/src/lib/main.py:785
+#: ../gnome-sudoku/src/lib/main.py:786
 msgid "Clear all moves tracked by selected tracker."
 msgstr ""
 "Limpiar todos los movimientos seguidos por el seguimiento seleccionado."
 
-#: ../gnome-sudoku/src/lib/main.py:789
+#: ../gnome-sudoku/src/lib/main.py:790
 msgid "_Clear Others"
 msgstr "_Limpiar otros"
 
-#: ../gnome-sudoku/src/lib/main.py:791
+#: ../gnome-sudoku/src/lib/main.py:792
 msgid "Clear all moves not tracked by selected tracker."
 msgstr ""
 "Limpiar todos los movimientos no seguidos por el seguimiento seleccionado."
 
-#: ../gnome-sudoku/src/lib/main.py:816
+#: ../gnome-sudoku/src/lib/main.py:817
 #, python-format
 msgid "Tracker %s"
 msgstr "Seguimiento %s"
 
-#: ../gnome-sudoku/src/lib/game_selector.py:149
+#: ../gnome-sudoku/src/lib/game_selector.py:150
 #, python-format
 msgid "Last Played %(timeAgo)s"
 msgstr "Su última partida fue %(timeAgo)s"
 
-#: ../gnome-sudoku/src/lib/game_selector.py:150
+#: ../gnome-sudoku/src/lib/game_selector.py:151
 #, python-format
 msgid "%(level)s puzzle"
 msgstr "Puzle %(level)s"
 
-#: ../gnome-sudoku/src/lib/game_selector.py:151
+#: ../gnome-sudoku/src/lib/game_selector.py:152
 #, python-format
 msgid "Played for %(duration)s"
 msgstr "Jugado durante %(duration)s"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:113
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:124
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:114
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:125
 msgid "Working..."
 msgstr "Pensando..."
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:154
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:155
 #, python-format
 msgid "%(n)s puzzle"
 msgid_plural "%(n)s puzzles"
 msgstr[0] "%(n)s puzle"
 msgstr[1] "%(n)s puzles"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:179
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:180
 msgid "Stopped"
 msgstr "Parado"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:194
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:204
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:195
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:205
 #, python-format
 msgid "Generated %(n)s out of %(total)s puzzle"
 msgid_plural "Generated %(n)s out of %(total)s puzzles"
 msgstr[0] "Generados %(n)s de %(total)s puzle"
 msgstr[1] "Generados %(n)s de %(total)s puzles"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:212
+#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:213
 #, python-format
 msgid "Generated %(n)s puzzle"
 msgid_plural "Generated %(n)s puzzles"
 msgstr[0] "Generado %(n)s puzle"
 msgstr[1] "Generados %(n)s puzles"
 
-#: ../gnome-sudoku/src/lib/sudoku.py:512
+#: ../gnome-sudoku/src/lib/sudoku.py:513
 msgid "Very Hard"
 msgstr "Muy difícil"
 
-#: ../gnome-sudoku/src/lib/sudoku.py:514
+#: ../gnome-sudoku/src/lib/sudoku.py:515
 msgid "Medium"
 msgstr "Mediano"
 
@@ -6361,12 +6363,12 @@ msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "Tamaño del tablero (0-2 = pequeño-grande, 3 = personalizado)"
 
 #: ../gnomine/gnomine.c:1010 ../gnotravex/gnotravex.c:399
-#: ../gnotski/gnotski.c:466 ../iagno/gnothello.c:145
+#: ../gnotski/gnotski.c:466 ../iagno/gnothello.c:149
 msgid "X location of window"
 msgstr "Coordenada X de la ventana"
 
 #: ../gnomine/gnomine.c:1012 ../gnotravex/gnotravex.c:401
-#: ../gnotski/gnotski.c:468 ../iagno/gnothello.c:147
+#: ../gnotski/gnotski.c:468 ../iagno/gnothello.c:151
 msgid "Y location of window"
 msgstr "Coordenada Y de la ventana"
 
@@ -7262,7 +7264,7 @@ msgstr "5 del mismo tipo [total]"
 msgid "Iagno"
 msgstr "Iagno"
 
-#: ../iagno/gnothello.c:265
+#: ../iagno/gnothello.c:269
 msgid ""
 "A disk flipping game derived from Reversi.\n"
 "\n"
@@ -7272,45 +7274,45 @@ msgstr ""
 "\n"
 "Iagno es parte de los Juegos de GNOME."
 
-#: ../iagno/gnothello.c:346
+#: ../iagno/gnothello.c:350
 msgid "Invalid move."
 msgstr "Movimiento no válido."
 
-#: ../iagno/gnothello.c:620 ../iagno/gnothello.c:622
+#: ../iagno/gnothello.c:636 ../iagno/gnothello.c:638
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
 
-#: ../iagno/gnothello.c:644
+#: ../iagno/gnothello.c:660
 msgid "It is your turn to place a dark piece"
 msgstr "Es su turno para colocar una pieza oscura"
 
-#: ../iagno/gnothello.c:646
+#: ../iagno/gnothello.c:662
 msgid "It is your turn to place a light piece"
 msgstr "Es su turno para colocar una pieza clara"
 
-#: ../iagno/gnothello.c:649
+#: ../iagno/gnothello.c:665
 #, c-format
 msgid "Waiting for %s to move"
 msgstr "Esperando a que %s mueva"
 
-#: ../iagno/gnothello.c:656
+#: ../iagno/gnothello.c:672
 msgid "Dark's move"
 msgstr "Juegan las negras"
 
-#: ../iagno/gnothello.c:658
+#: ../iagno/gnothello.c:674
 msgid "Light's move"
 msgstr "Juegan las blancas"
 
-#: ../iagno/gnothello.c:945
+#: ../iagno/gnothello.c:958
 msgid "Dark:"
 msgstr "Negras:"
 
-#: ../iagno/gnothello.c:955
+#: ../iagno/gnothello.c:968
 msgid "Light:"
 msgstr "Blancas:"
 
-#: ../iagno/gnothello.c:979
+#: ../iagno/gnothello.c:992
 msgid "Welcome to Iagno!"
 msgstr "Bienvenido a Iagno."
 
@@ -7641,81 +7643,81 @@ msgstr "Configurar el juego"
 msgid "Quit this game"
 msgstr "Salir de este juego"
 
-#: ../libgames-support/games-stock.c:321
+#: ../libgames-support/games-stock.c:322
 msgid "_Fullscreen"
 msgstr "_Pantalla completa"
 
 #. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../libgames-support/games-stock.c:324
+#: ../libgames-support/games-stock.c:325
 msgid "_New"
 msgstr "_Nuevo"
 
-#: ../libgames-support/games-stock.c:327
+#: ../libgames-support/games-stock.c:328
 msgid "_Redo Move"
 msgstr "_Rehacer movimiento"
 
 #. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../libgames-support/games-stock.c:329
+#: ../libgames-support/games-stock.c:330
 msgid "_Reset"
 msgstr "_Reiniciar"
 
 #. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:331
+#: ../libgames-support/games-stock.c:332
 msgid "_Restart"
 msgstr "_Reiniciar"
 
-#: ../libgames-support/games-stock.c:333
+#: ../libgames-support/games-stock.c:334
 msgid "_Deal"
 msgstr "R_epartir"
 
-#: ../libgames-support/games-stock.c:335
+#: ../libgames-support/games-stock.c:336
 msgid "_Leave Fullscreen"
 msgstr "Abandonar _pantalla completa"
 
-#: ../libgames-support/games-stock.c:337
+#: ../libgames-support/games-stock.c:338
 msgid "L_eave Game"
 msgstr "_Dejar partida"
 
-#: ../libgames-support/games-stock.c:338
+#: ../libgames-support/games-stock.c:339
 msgid "Player _List"
 msgstr "_Lista de jugadores"
 
-#: ../libgames-support/games-stock.c:339
+#: ../libgames-support/games-stock.c:340
 msgid "_Pause"
 msgstr "_Pausa"
 
-#: ../libgames-support/games-stock.c:340
+#: ../libgames-support/games-stock.c:341
 msgid "Res_ume"
 msgstr "C_ontinuar"
 
-#: ../libgames-support/games-stock.c:341
+#: ../libgames-support/games-stock.c:342
 msgid "_Scores"
 msgstr "_Puntuación"
 
-#: ../libgames-support/games-stock.c:342
+#: ../libgames-support/games-stock.c:343
 msgid "_End Game"
 msgstr "Finalizar el ju_ego"
 
 #. Work around maemo brokenness wrt. stock item translations.
 #. * See https://bugs.maemo.org/show_bug.cgi?id=1449 .
-#: ../libgames-support/games-stock.c:348
+#: ../libgames-support/games-stock.c:349
 msgid "_About"
 msgstr "_Acerca de"
 
-#: ../libgames-support/games-stock.c:349
+#: ../libgames-support/games-stock.c:350
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../libgames-support/games-stock.c:350
+#: ../libgames-support/games-stock.c:351
 msgid "_Close"
 msgstr "_Cerrar"
 
-#: ../libgames-support/games-stock.c:351
+#: ../libgames-support/games-stock.c:352
 msgid "_OK"
 msgstr "_Aceptar"
 
 #. %s is replaced with the name of the game in gnome-games.
-#: ../libgames-support/games-stock.c:412
+#: ../libgames-support/games-stock.c:413
 #, c-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
@@ -7728,7 +7730,7 @@ msgstr ""
 "Foundation; ya sea en la versión %d de la Licencia, como (a su elección) "
 "cualquier otra versión posterior."
 
-#: ../libgames-support/games-stock.c:426
+#: ../libgames-support/games-stock.c:427
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program.  If not, see <http://www.gnu.org/licenses/>."
@@ -7797,7 +7799,7 @@ msgstr ""
 "\n"
 "Compruebe su instalación de Mahjongg."
 
-#: ../mahjongg/drawing.c:470 ../mahjongg/drawing.c:483
+#: ../mahjongg/drawing.c:471 ../mahjongg/drawing.c:484
 #, c-format
 msgid ""
 "Unable to render file:\n"
