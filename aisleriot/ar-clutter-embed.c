@@ -273,7 +273,7 @@ ar_clutter_embed_style_set (GtkWidget *widget,
   ClutterColor selection_color;
   int focus_line_width, focus_padding;
   gboolean interior_focus;
-  double card_slot_ratio;
+  double card_slot_ratio, card_overhang;
 
   GTK_WIDGET_CLASS (ar_clutter_embed_parent_class)->style_set (widget, previous_style);
 
@@ -284,6 +284,7 @@ ar_clutter_embed_style_set (GtkWidget *widget,
                         "focus-line-width", &focus_line_width,
                         "focus-padding", &focus_padding,
                         "card-slot-ratio", &card_slot_ratio,
+                        "card-overhang", &card_overhang,
                         "selection-color", &color,
                         NULL);
 
@@ -309,6 +310,12 @@ ar_clutter_embed_style_set (GtkWidget *widget,
     style_priv->card_slot_ratio = card_slot_ratio;
 
     g_object_notify (style_object, AR_STYLE_PROP_CARD_SLOT_RATIO);
+  }
+
+  if (style_priv->card_overhang != card_overhang) {
+    style_priv->card_overhang = card_overhang;
+
+    g_object_notify (style_object, AR_STYLE_PROP_CARD_OVERHANG);
   }
 
   if (color != NULL) {
@@ -509,6 +516,16 @@ ar_clutter_embed_class_init (ArClutterEmbedClass *klass)
     (widget_class,
      g_param_spec_double ("card-slot-ratio", NULL, NULL,
                           0.1, 1.0, DEFAULT_CARD_SLOT_RATIO,
+                          G_PARAM_READWRITE |
+                          G_PARAM_STATIC_STRINGS));
+
+  /**
+   * ArClutterEmbed:card-overhang:
+  */
+  gtk_widget_class_install_style_property
+    (widget_class,
+     g_param_spec_double ("card-overhang", NULL, NULL,
+                          0.0, 1.0, DEFAULT_CARD_OVERHANG,
                           G_PARAM_READWRITE |
                           G_PARAM_STATIC_STRINGS));
 }

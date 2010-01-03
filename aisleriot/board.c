@@ -50,16 +50,15 @@
 #define ENABLE_KEYNAV
 #endif /* !HAVE_HILDON */
 
-/* The minimum size for the playing area. Almost completely arbitrary. */
-#define BOARD_MIN_WIDTH 300
-#define BOARD_MIN_HEIGHT 200
-
 /* The limits for how much overlap there is between cards and
  * how much is allowed to slip off the bottom or right.
  */
 #define MIN_DELTA (0.05)
 #define MAX_DELTA (0.2)
-#define MAX_OVERHANG (0.2)
+
+/* The minimum size for the playing area. Almost completely arbitrary. */
+#define BOARD_MIN_WIDTH 300
+#define BOARD_MIN_HEIGHT 200
 
 #define DOUBLE_TO_INT_CEIL(d) ((int) (d + 0.5))
 
@@ -629,7 +628,7 @@ slot_update_geometry (AisleriotBoard *board,
 #else
       y_from_bottom = ((double) (allocation_height - slot->rect.y)) / ((double) priv->card_size.height);
 #endif
-      dy = (y_from_bottom - MAX_OVERHANG) / n_cards;
+      dy = (y_from_bottom - (1.0 - ar_style_get_card_overhang (priv->style))) / n_cards;
       dy = CLAMP (dy, MIN_DELTA, max_dy);
     } else if (slot->expanded_right) {
       if (priv->is_rtl) {
@@ -639,7 +638,7 @@ slot_update_geometry (AisleriotBoard *board,
           max_dx = slot->expansion.dx;
 
         x_from_left = ((double) slot->rect.x) / ((double) priv->card_size.width) + 1.0;
-        dx = (x_from_left - MAX_OVERHANG) / n_cards;
+        dx = (x_from_left - (1.0 - ar_style_get_card_overhang (priv->style))) / n_cards;
         dx = CLAMP (dx, MIN_DELTA, max_dx);
 
         slot->pixeldx = DOUBLE_TO_INT_CEIL (- dx * priv->card_size.width);
@@ -656,7 +655,7 @@ slot_update_geometry (AisleriotBoard *board,
 #else
         x_from_right = ((double) (allocation_width - slot->rect.x)) / ((double) priv->card_size.width);
 #endif
-        dx = (x_from_right - MAX_OVERHANG) / n_cards;
+        dx = (x_from_right - (1.0 - ar_style_get_card_overhang (priv->style))) / n_cards;
         dx = CLAMP (dx, MIN_DELTA, max_dx);
 
         pixeldx = slot->pixeldx = DOUBLE_TO_INT_CEIL (dx * priv->card_size.width);        
@@ -2158,6 +2157,10 @@ aisleriot_board_sync_style (ArStyle *style,
     update_geometry |= (card_slot_ratio != priv->card_slot_ratio);
 
     priv->card_slot_ratio = card_slot_ratio;
+  }
+
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_CARD_OVERHANG)) {
+    update_geometry |= TRUE;
   }
 
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_INTERIOR_FOCUS)) {

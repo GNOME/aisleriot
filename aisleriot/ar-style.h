@@ -56,6 +56,7 @@ ArStyle* ar_style_new (void);
 
 #define AR_STYLE_PROP_CARD_SLOT_RATIO     "card-slot-prop"
 #define AR_STYLE_PROP_CARD_THEME          "card-theme"
+#define AR_STYLE_PROP_CARD_OVERHANG       "card-overhang"
 #define AR_STYLE_PROP_CLICK_TO_MOVE       "click-to-move"
 #define AR_STYLE_PROP_DND_DRAG_THRESHOLD  "dnd-drag-threshold"
 #define AR_STYLE_PROP_DOUBLE_CLICK_TIME   "double-click-time"
@@ -94,6 +95,7 @@ int ar_style_get_focus_line_width   (ArStyle *style);
 int ar_style_get_focus_padding      (ArStyle *style);
 
 double ar_style_get_card_slot_ratio (ArStyle *style);
+double ar_style_get_card_overhang   (ArStyle *style);
 
 void ar_style_get_selection_color  (ArStyle *style,
                                     ClutterColor * const color);

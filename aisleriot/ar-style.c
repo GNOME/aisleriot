@@ -33,6 +33,7 @@ enum
   PROP_FOCUS_LINE_WIDTH,
   PROP_FOCUS_PADDING,
   PROP_INTERIOR_FOCUS,
+  PROP_CARD_OVERHANG,
   PROP_RTL,
   PROP_SELECTION_COLOR,
   PROP_TOUCHSCREEN_MODE,
@@ -53,6 +54,7 @@ ar_style_init (ArStyle *style)
 
   _ar_clutter_color_from_gdk_color (&priv->selection_color, &default_selection_color);
   priv->card_slot_ratio = DEFAULT_CARD_SLOT_RATIO;
+  priv->card_overhang = DEFAULT_CARD_OVERHANG;
   priv->dnd_drag_threshold = 8;
   priv->double_click_time = 250;
   priv->focus_line_width = 1;
@@ -130,6 +132,10 @@ ar_style_get_property (GObject    *object,
       g_value_set_boolean (value, ar_style_get_interior_focus (style));
       break;
 
+    case PROP_CARD_OVERHANG:
+      g_value_set_double (value, ar_style_get_card_overhang (style));
+      break;
+
     case PROP_RTL:
       g_value_set_boolean (value, ar_style_get_rtl (style));
       break;
@@ -178,6 +184,7 @@ ar_style_set_property (GObject      *object,
     case PROP_FOCUS_LINE_WIDTH:
     case PROP_FOCUS_PADDING:
     case PROP_INTERIOR_FOCUS:
+    case PROP_CARD_OVERHANG:
     case PROP_RTL:
     case PROP_SELECTION_COLOR:
     case PROP_TOUCHSCREEN_MODE:
@@ -279,6 +286,20 @@ ar_style_class_init (ArStyleClass *klass)
                            FALSE,
                            G_PARAM_READABLE |
                            G_PARAM_STATIC_STRINGS));
+
+  /**
+   * ArStyle:card-overhang:
+   *
+   * This controls how much of a card is allowed to hang off of the bottom
+   * of the screen. If set to %0.0, the last card is always fully visible.
+   */
+  g_object_class_install_property
+    (object_class,
+     PROP_CARD_OVERHANG,
+     g_param_spec_double (AR_STYLE_PROP_CARD_OVERHANG, NULL, NULL,
+                          0.0, 1.0, DEFAULT_CARD_OVERHANG,
+                          G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (object_class,
@@ -574,6 +595,20 @@ ar_style_get_card_slot_ratio (ArStyle *style)
   ArStylePrivate *priv = style->priv;
 
   return priv->card_slot_ratio;
+}
+
+/**
+ * ar_style_get_card_overhang:
+ * @style: an #ArStyle
+ *
+ * Returns:
+ */
+double
+ar_style_get_card_overhang (ArStyle *style)
+{
+  ArStylePrivate *priv = style->priv;
+
+  return priv->card_overhang;
 }
 
 /**
