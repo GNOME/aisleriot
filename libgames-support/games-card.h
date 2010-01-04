@@ -25,6 +25,8 @@
 
 #include <glib.h>
 
+#include "games-glib-compat.h"
+
 G_BEGIN_DECLS
 
 /* __attribute__((__packed__)) is needed on some archs to make
@@ -52,7 +54,7 @@ typedef union {
 } GNOME_GAMES_GNUC_PACKED Card;
 
 #ifndef __GI_SCANNER__
-typedef int _games_card_size_assert[sizeof (Card) == sizeof (guint8) ? 1 : -1]; /* static assertion */
+G_STATIC_ASSERT(sizeof (Card) == sizeof (guint8));
 #endif
 
 #define CARD(c)               ((Card) c)

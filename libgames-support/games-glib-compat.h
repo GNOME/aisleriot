@@ -41,7 +41,16 @@ G_BEGIN_DECLS
 
 #define g_timeout_add_seconds(timeout,callback,data) g_timeout_add ((timeout)*1000, callback, data)
 #define gdk_threads_add_timeout_seconds(timeout,callback,data) g_timeout_add ((timeout)*1000, callback, data)
+
 #endif /* GLIB < 2.14 */
+
+#if !GLIB_CHECK_VERSION (2, 20, 0)
+
+#define G_PASTE_ARGS(identifier1,identifier2) identifier1 ## identifier2
+#define G_PASTE(identifier1,identifier2)      G_PASTE_ARGS (identifier1, identifier2)
+#define G_STATIC_ASSERT(expr) typedef struct { char Compile_Time_Assertion[(expr) ? 1 : -1]; } G_PASTE (_GStaticAssert_, __LINE__)
+
+#endif /* GLIB < 2.20 */
 
 G_END_DECLS
 
