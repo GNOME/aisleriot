@@ -109,6 +109,9 @@ sol_clutter_SOURCES = \
 	ar-game-chooser.h \
 	ar-style.c	\
 	ar-style.h	\
+	ar-style-private.h \
+	ar-style-gtk.c	\
+	ar-style-gtk.h	\
 	baize.c		\
 	baize.h		\
 	board.c		\
