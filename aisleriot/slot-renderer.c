@@ -111,7 +111,7 @@ sync_style_selection_color (ArStyle *style,
 
   priv->highlight_color = color;
 
-  /* FIXMEchpe: queue a redraw if necessary! */
+  clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
 }
 
 static void
