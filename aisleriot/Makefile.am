@@ -35,6 +35,8 @@ sol_SOURCES = \
 	util.h		\
 	window.c	\
 	window.h	\
+	prop-editor.c	\
+	prop-editor.h	\
 	$(NULL)
 
 if HAVE_MAEMO_5
@@ -126,6 +128,8 @@ sol_clutter_SOURCES = \
 	util.h		\
 	window.c	\
 	window.h	\
+	prop-editor.c	\
+	prop-editor.h	\
 	$(NULL)
 
 if HAVE_MAEMO_5

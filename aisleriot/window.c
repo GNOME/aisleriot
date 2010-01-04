@@ -107,6 +107,10 @@
 /* define this to enable a debug menu */
 /* #undef ENABLE_DEBUG_UI */
 
+#ifdef ENABLE_DEBUG_UI
+#include "prop-editor.h"
+#endif
+
 enum
 {
   ACTION_UNDO_MOVE,
@@ -868,6 +872,27 @@ debug_pixbuf_drawing_cb (GtkToggleAction *action,
   aisleriot_board_set_pixbuf_drawing (priv->board, active);
 }
 #endif /* !HAVE_CLUTTER */
+
+#ifdef HAVE_CLUTTER
+static void
+debug_tweak_cb (GtkAction *action,
+                AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+  GObject *object;
+  GType type;
+  GtkWidget *prop_editor;
+
+  object = G_OBJECT (priv->board_style);
+  type = G_OBJECT_TYPE (object);
+
+  g_assert (object != NULL);
+
+  prop_editor = create_prop_editor (object, type);
+  gtk_window_set_transient_for (GTK_WINDOW (prop_editor), GTK_WINDOW (window));
+  gtk_window_present (GTK_WINDOW (prop_editor));
+}
+#endif /* HAVE_CLUTTER */
 
 #endif /* ENABLE_DEBUG_UI */
 
@@ -2261,6 +2286,10 @@ aisleriot_window_init (AisleriotWindow *window)
     { "DebugGamePrev", GTK_STOCK_GO_BACK, NULL, NULL, NULL,
       G_CALLBACK (debug_game_prev) },
 #endif /* !HAVE_HILDON */
+#ifdef HAVE_CLUTTER
+    { "DebugTweakStyle", NULL, "_Tweak Style", NULL, NULL,
+      G_CALLBACK (debug_tweak_cb) },
+#endif /* HAVE_CLUTTER */
 #endif /* ENABLE_DEBUG_UI */
 
     /* Accel actions */
@@ -2369,6 +2398,9 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifndef HAVE_CLUTTER
           "<menuitem action='DebugPixbufDrawing'/>"
 #endif /* !HAVE_CLUTTER */
+#ifdef HAVE_CLUTTER
+          "<menuitem action='DebugTweakStyle'/>"
+#endif
         "</menu>"
 #endif /* ENABLE_DEBUG_UI */
         "<menuitem action='CloseWindow'/>"
@@ -2419,7 +2451,12 @@ aisleriot_window_init (AisleriotWindow *window)
         "</menu>"
 #ifdef ENABLE_DEBUG_UI
         "<menu action='DebugMenu'>"
+#ifdef HAVE_CLUTTER
+          "<menuitem action='DebugTweakStyle'/>"
+#endif
+#ifndef HAVE_CLUTTER
           "<menuitem action='DebugPixbufDrawing'/>"
+#endif
           "<separator/>"
           "<menuitem action='DebugChooseSeed'/>"
           "<menuitem action='DebugMoveNextScreen'/>"
