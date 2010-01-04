@@ -24,6 +24,7 @@
 #include <libgames-support/games-card-theme.h>
 
 #include "game.h"
+#include "ar-style.h"
 
 G_BEGIN_DECLS
 
@@ -60,18 +61,8 @@ struct _AisleriotBoardClass {
 
 GType aisleriot_board_get_type (void);
 
-GtkWidget *aisleriot_board_new (AisleriotGame *game);
-
-void aisleriot_board_set_card_theme (AisleriotBoard * board,
-                                     GamesCardTheme *theme);
-
-GamesCardTheme *aisleriot_board_get_card_theme (AisleriotBoard * board);
-
-void aisleriot_board_set_click_to_move (AisleriotBoard * board,
-                                        gboolean click_to_move);
-
-void aisleriot_board_set_animation_mode (AisleriotBoard *board,
-                                         gboolean enable);
+GtkWidget *aisleriot_board_new (ArStyle *style,
+                                AisleriotGame *game);
 
 void aisleriot_board_abort_move (AisleriotBoard * board);
 

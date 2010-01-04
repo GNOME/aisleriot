@@ -21,7 +21,6 @@
 #include "ar-clutter-embed.h"
 
 #include "ar-style.h"
-#include "ar-style-private.h"
 #include "ar-style-gtk.h"
 
 /**

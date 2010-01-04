@@ -3054,6 +3054,8 @@ aisleriot_board_init (AisleriotBoard *board)
 
   priv = board->priv = AISLERIOT_BOARD_GET_PRIVATE (board);
 
+  priv->textures = games_card_textures_cache_new ();
+
   memset (&priv->allocation, 0, sizeof (ClutterActorBox));
 
   /* We want to receive events! */
@@ -3075,29 +3077,6 @@ aisleriot_board_init (AisleriotBoard *board)
                          priv->animation_layer, NULL);
 }
 
-static GObject *
-aisleriot_board_constructor (GType type,
-			     guint n_construct_properties,
-			     GObjectConstructParam *construct_params)
-{
-  GObject *object;
-  AisleriotBoard *board;
-  AisleriotBoardPrivate *priv;
-
-  object = G_OBJECT_CLASS (aisleriot_board_parent_class)->constructor
-            (type, n_construct_properties, construct_params);
-
-  board = AISLERIOT_BOARD (object);
-  priv = board->priv;
-
-  g_assert (priv->style != NULL);
-  g_assert (priv->game != NULL);
-
-  priv->textures = games_card_textures_cache_new ();
-
-  return object;
-}
-
 static void
 aisleriot_board_finalize (GObject *object)
 {
@@ -3114,9 +3093,9 @@ aisleriot_board_finalize (GObject *object)
   g_byte_array_free (priv->moving_cards, TRUE);
 
   if (priv->style != NULL) {
-    g_signal_handlers_disconnect_matched (priv->style,
-                                          G_SIGNAL_MATCH_DATA,
-                                          0, 0, NULL, NULL, board);
+    g_signal_handlers_disconnect_by_func (priv->style,
+                                          G_CALLBACK (aisleriot_board_sync_style),
+                                          board);
 
     g_object_unref (priv->style);
   }
@@ -3204,7 +3183,6 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
 
   g_type_class_add_private (gobject_class, sizeof (AisleriotBoardPrivate));
 
-  gobject_class->constructor = aisleriot_board_constructor;
   gobject_class->dispose = aisleriot_board_dispose;
   gobject_class->finalize = aisleriot_board_finalize;
   gobject_class->set_property = aisleriot_board_set_property;

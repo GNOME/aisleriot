@@ -53,7 +53,12 @@ ar_style_init (ArStyle *style)
 
   priv = style->priv = G_TYPE_INSTANCE_GET_PRIVATE (style, AR_TYPE_STYLE, ArStylePrivate);
 
+#ifdef HAVE_CLUTTER
   _ar_clutter_color_from_gdk_color (&priv->selection_color, &default_selection_color);
+#else
+  priv->selection_color = default_selection_color;
+#endif
+
   priv->card_slot_ratio = DEFAULT_CARD_SLOT_RATIO;
   priv->card_overhang = DEFAULT_CARD_OVERHANG;
   priv->card_step = DEFAULT_CARD_STEP;
@@ -218,6 +223,7 @@ ar_style_set_property (GObject      *object,
       break;
 
     case PROP_SELECTION_COLOR: {
+#ifdef HAVE_CLUTTER
       ClutterColor *color;
 
       if ((color = g_value_get_boxed (value)) != NULL) {
@@ -225,6 +231,15 @@ ar_style_set_property (GObject      *object,
       } else {
         _ar_clutter_color_from_gdk_color (&priv->selection_color, &default_selection_color);
       }
+#else
+      GdkColor *color;
+
+      if ((color = g_value_get_boxed (value)) != NULL) {
+        priv->selection_color = *color;
+      } else {
+        priv->selection_color = default_selection_color;
+      }
+#endif
       break;
     }
 
@@ -245,7 +260,9 @@ static void
 ar_style_class_init (ArStyleClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+#ifdef HAVE_CLUTTER
   ClutterColor color;
+#endif
 
   g_type_class_add_private (klass, sizeof (ArStylePrivate));
 
@@ -369,6 +386,7 @@ ar_style_class_init (ArStyleClass *klass)
                            G_PARAM_READWRITE |
                            G_PARAM_STATIC_STRINGS));
 
+#ifdef HAVE_CLUTTER
   _ar_clutter_color_from_gdk_color (&color, &default_selection_color);
   g_object_class_install_property
     (object_class,
@@ -377,6 +395,15 @@ ar_style_class_init (ArStyleClass *klass)
                                &color,
                                G_PARAM_READWRITE |
                                G_PARAM_STATIC_STRINGS));
+#else
+  g_object_class_install_property
+    (object_class,
+     PROP_SELECTION_COLOR,
+     g_param_spec_boxed (AR_STYLE_PROP_SELECTION_COLOR, NULL, NULL,
+                         GDK_TYPE_COLOR,
+                         G_PARAM_READWRITE |
+                         G_PARAM_STATIC_STRINGS));
+#endif /* HAVE_CLUTTER */
 
   g_object_class_install_property
     (object_class,
@@ -389,6 +416,8 @@ ar_style_class_init (ArStyleClass *klass)
 
 /* private API */
 
+#ifdef HAVE_CLUTTER
+
 void
 _ar_clutter_color_from_gdk_color (ClutterColor *clutter_color,
                                   const GdkColor *gdk_color)
@@ -398,6 +427,8 @@ _ar_clutter_color_from_gdk_color (ClutterColor *clutter_color,
   clutter_color->blue  = gdk_color->blue  >> 8;
   clutter_color->alpha = 0xff;
 }
+
+#endif /* HAVE_CLUTTER */
 
 /* public API */
 
@@ -693,7 +724,11 @@ ar_style_get_card_step (ArStyle *style)
  */
 void
 ar_style_get_selection_color (ArStyle *style,
+#ifdef HAVE_CLUTTER
                               ClutterColor * const color)
+#else
+                              GdkColor * const color)
+#endif
 {
   ArStylePrivate *priv = style->priv;
 

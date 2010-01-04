@@ -212,7 +212,6 @@ style_set_cb (GtkWidget *widget,
   ArStylePrivate *style_priv = style->priv;
   GObject *style_object = G_OBJECT (style);
   GdkColor *color = NULL;
-  ClutterColor selection_color;
   int focus_line_width, focus_padding;
   gboolean interior_focus;
   double card_slot_ratio, card_overhang, card_step;
@@ -269,6 +268,10 @@ style_set_cb (GtkWidget *widget,
     g_object_notify (style_object, AR_STYLE_PROP_CARD_STEP);
   }
 
+#ifdef HAVE_CLUTTER
+{
+  ClutterColor selection_color;
+
   if (color != NULL) {
     _ar_clutter_color_from_gdk_color (&selection_color, color);
     gdk_color_free (color);
@@ -281,6 +284,25 @@ style_set_cb (GtkWidget *widget,
 
     g_object_notify (style_object, AR_STYLE_PROP_SELECTION_COLOR);
   }
+}
+#else
+{
+  GdkColor selection_color;
+
+  if (color != NULL) {
+    selection_color = *color;
+    gdk_color_free (color);
+  } else {
+    selection_color = default_selection_color;
+  }
+
+  if (!gdk_color_equal (&style_priv->selection_color, &selection_color)) {
+    style_priv->selection_color = selection_color;
+
+    g_object_notify (style_object, AR_STYLE_PROP_SELECTION_COLOR);
+  }
+}
+#endif /* HAVE_CLUTTER */
 
   g_object_thaw_notify (style_object);
 }

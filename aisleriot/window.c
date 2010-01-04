@@ -133,9 +133,9 @@ enum
 struct _AisleriotWindowPrivate
 {
   AisleriotGame *game;
+  ArStyle *board_style;
 #ifdef HAVE_CLUTTER
   ArClutterEmbed *board;
-  ArStyle *board_style;
   ClutterActor *baize_actor;
   ClutterActor *board_actor;
 #else
@@ -873,7 +873,6 @@ debug_pixbuf_drawing_cb (GtkToggleAction *action,
 }
 #endif /* !HAVE_CLUTTER */
 
-#ifdef HAVE_CLUTTER
 static void
 debug_tweak_cb (GtkAction *action,
                 AisleriotWindow *window)
@@ -892,7 +891,6 @@ debug_tweak_cb (GtkAction *action,
   gtk_window_set_transient_for (GTK_WINDOW (prop_editor), GTK_WINDOW (window));
   gtk_window_present (GTK_WINDOW (prop_editor));
 }
-#endif /* HAVE_CLUTTER */
 
 #endif /* ENABLE_DEBUG_UI */
 
@@ -1023,11 +1021,7 @@ clickmove_toggle_cb (GtkToggleAction *action,
   click_to_move = gtk_toggle_action_get_active (action);
 
   aisleriot_game_set_click_to_move (priv->game, click_to_move);
-#ifdef HAVE_CLUTTER
   ar_style_set_click_to_move (priv->board_style, click_to_move);
-#else
-  aisleriot_board_set_click_to_move (priv->board, click_to_move);
-#endif
   
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), click_to_move);
 }
@@ -1060,11 +1054,7 @@ animations_toggle_cb (GtkToggleAction *action,
 
   enabled = gtk_toggle_action_get_active (action);
 
-#ifdef HAVE_CLUTTER
   ar_style_set_enable_animations (priv->board_style, enabled);
-#else
-  aisleriot_board_set_animation_mode (priv->board, enabled);
-#endif
   
   games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), enabled);
 }
@@ -1448,11 +1438,7 @@ aisleriot_window_take_card_theme (AisleriotWindow *window,
   }
 #endif /* GTK+ 2.10.0 */
 
-#ifdef HAVE_CLUTTER
   ar_style_set_card_theme (priv->board_style, theme);
-#else
-  aisleriot_board_set_card_theme (priv->board, theme);
-#endif
 }    
 
 static void
@@ -2286,10 +2272,8 @@ aisleriot_window_init (AisleriotWindow *window)
     { "DebugGamePrev", GTK_STOCK_GO_BACK, NULL, NULL, NULL,
       G_CALLBACK (debug_game_prev) },
 #endif /* !HAVE_HILDON */
-#ifdef HAVE_CLUTTER
     { "DebugTweakStyle", NULL, "_Tweak Style", NULL, NULL,
       G_CALLBACK (debug_tweak_cb) },
-#endif /* HAVE_CLUTTER */
 #endif /* ENABLE_DEBUG_UI */
 
     /* Accel actions */
@@ -2398,9 +2382,7 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifndef HAVE_CLUTTER
           "<menuitem action='DebugPixbufDrawing'/>"
 #endif /* !HAVE_CLUTTER */
-#ifdef HAVE_CLUTTER
           "<menuitem action='DebugTweakStyle'/>"
-#endif
         "</menu>"
 #endif /* ENABLE_DEBUG_UI */
         "<menuitem action='CloseWindow'/>"
@@ -2451,9 +2433,7 @@ aisleriot_window_init (AisleriotWindow *window)
         "</menu>"
 #ifdef ENABLE_DEBUG_UI
         "<menu action='DebugMenu'>"
-#ifdef HAVE_CLUTTER
           "<menuitem action='DebugTweakStyle'/>"
-#endif
 #ifndef HAVE_CLUTTER
           "<menuitem action='DebugPixbufDrawing'/>"
 #endif
@@ -2550,8 +2530,9 @@ aisleriot_window_init (AisleriotWindow *window)
 
   priv->theme_manager = games_card_themes_new ();
 
-#ifdef HAVE_CLUTTER
   priv->board_style = ar_style_new ();
+
+#ifdef HAVE_CLUTTER
   priv->board = ar_clutter_embed_new (priv->board_style);
 
   priv->baize_actor = aisleriot_baize_new ();
@@ -2577,7 +2558,7 @@ aisleriot_window_init (AisleriotWindow *window)
 
   /* FIXMEchpe: unref baize & board_actor here? */
 #else
-  priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->game));
+  priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->board_style, priv->game));
 
   aisleriot_board_set_pixbuf_drawing (priv->board, priv->use_pixbuf_drawing);
 #endif /* HAVE_CLUTTER */

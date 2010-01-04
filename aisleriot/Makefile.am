@@ -22,6 +22,11 @@ bin_PROGRAMS = sol
 sol_SOURCES = \
 	ar-game-chooser.c \
 	ar-game-chooser.h \
+	ar-style.c	\
+	ar-style.h	\
+	ar-style-private.h \
+	ar-style-gtk.c	\
+	ar-style-gtk.h	\
 	board-noclutter.c \
 	board-noclutter.h \
 	conf.c		\

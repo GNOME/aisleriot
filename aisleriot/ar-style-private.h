@@ -41,7 +41,11 @@ struct _ArStylePrivate
 {
   GamesCardTheme* card_theme;
 
+#ifdef HAVE_CLUTTER
   ClutterColor selection_color;
+#else
+  GdkColor selection_color;
+#endif
 
   double card_slot_ratio;
   double card_overhang;
@@ -69,8 +73,10 @@ struct _ArStylePrivate
   guint show_seleccion          : 1;
 };
 
+#ifdef HAVE_CLUTTER
 void _ar_clutter_color_from_gdk_color (ClutterColor *clutter_color,
                                        const GdkColor *gdk_color);
+#endif
 
 G_END_DECLS
 
