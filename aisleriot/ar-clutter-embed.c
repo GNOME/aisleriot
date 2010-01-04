@@ -1,6 +1,6 @@
 /*
  * Copyright © 1998, 2003 Jonathan Blandford <jrb@mit.edu>
- * Copyright © 2007, 2008, 2009 Christian Persch
+ * Copyright © 2007, 2008, 2009, 2010 Christian Persch
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

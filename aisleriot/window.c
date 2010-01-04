@@ -1,7 +1,7 @@
 /*
  * Copyright © 1998, 2003 Jonathan Blandford <jrb@alum.mit.edu>
  * Copyright © 2003 Callum McKenzie <callum@physics.otago.ac.nz>
- * Copyright © 2007, 2008, 2009 Christian Persch
+ * Copyright © 2007, 2008, 2009, 2010 Christian Persch
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -481,7 +481,7 @@ help_about_cb (GtkAction *action,
 			     "AisleRiot is a part of GNOME Games."),
 #endif
                          "copyright", "Copyright © 1998-2006 Jonathan Blandford\n"
-                                      "Copyright © 2007, 2008, 2009 Christian Persch",
+                                      "Copyright © 2007, 2008, 2009, 2010 Christian Persch",
                          "license", licence,
                          "authors", authors,
                          "artists", artists,

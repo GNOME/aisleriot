@@ -1,6 +1,6 @@
 /*
  * Copyright © 1998, 2003 Jonathan Blandford <jrb@mit.edu>
- * Copyright © 2007, 2008 Christian Persch
+ * Copyright © 2007, 2008, 2009, 2010 Christian Persch
  *
  * Some code copied from gtk+/gtk/gtkiconview (LGPL2+):
  * Copyright © 2002, 2004  Anders Carlsson <andersca@gnu.org>
