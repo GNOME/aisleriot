@@ -62,10 +62,6 @@
 
 #define DOUBLE_TO_INT_CEIL(d) ((int) (d + 0.5))
 
-#define STATIC_ASSERT(condition) STATIC_ASSERT_IMPL(condition, __LINE__)
-#define STATIC_ASSERT_IMPL(condition, line) STATIC_ASSERT_IMPL2(condition, line)
-#define STATIC_ASSERT_IMPL2(condition, line) typedef int _static_assert_line_##line[(condition) ? 1 : -1]
-
 #define I_(string) g_intern_static_string (string)
   
 /* FIXMEchpe: file a bug to get an exported function like gtk_accelerator_get_default_mod_mask() for this? */
@@ -211,7 +207,7 @@ struct _RemovedCard
   gboolean from_drag;
 };
 
-STATIC_ASSERT (LAST_STATUS < 16 /* 2^4 */);
+G_STATIC_ASSERT (LAST_STATUS < 16 /* 2^4 */);
 
 enum
 {

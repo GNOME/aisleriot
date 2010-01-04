@@ -60,10 +60,6 @@
 
 #define DOUBLE_TO_INT_CEIL(d) ((int) (d + 0.5))
 
-#define STATIC_ASSERT(condition) STATIC_ASSERT_IMPL(condition, __LINE__)
-#define STATIC_ASSERT_IMPL(condition, line) STATIC_ASSERT_IMPL2(condition, line)
-#define STATIC_ASSERT_IMPL2(condition, line) typedef int _static_assert_line_##line[(condition) ? 1 : -1]
-
 #ifdef HAVE_HILDON 
 #define PIXBUF_DRAWING_LIKELIHOOD(cond) G_UNLIKELY (cond)
 #else
@@ -176,7 +172,7 @@ struct _AisleriotBoardPrivate
   guint force_geometry_update : 1;
 };
 
-STATIC_ASSERT (LAST_STATUS < 16 /* 2^4 */);
+G_STATIC_ASSERT (LAST_STATUS < 16 /* 2^4 */);
 
 enum
 {
