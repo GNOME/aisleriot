@@ -42,7 +42,8 @@ _games_debug_init (void)
     { "game-drawing", GAMES_DEBUG_GAME_DRAWING },
     { "game-events",  GAMES_DEBUG_GAME_EVENTS  },
     { "game-keynav",  GAMES_DEBUG_GAME_KEYNAV  },
-    { "game-sizing",  GAMES_DEBUG_GAME_SIZING  }
+    { "game-sizing",  GAMES_DEBUG_GAME_SIZING  },
+    { "game-style",   GAMES_DEBUG_GAME_STYLE   }
   };
   const char *env;
 
