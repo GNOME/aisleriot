@@ -20,6 +20,8 @@ scm_DATA = \
 bin_PROGRAMS = sol
 
 sol_SOURCES = \
+	ar-cursor.c	\
+	ar-cursor.h	\
 	ar-game-chooser.c \
 	ar-game-chooser.h \
 	ar-style.c	\

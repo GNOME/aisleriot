@@ -37,6 +37,7 @@
 #include "conf.h"
 #include "game.h"
 #include "ar-style-gtk.h"
+#include "ar-cursor.h"
 
 #include "board-noclutter.h"
 
@@ -75,14 +76,6 @@
 #endif
 
 typedef enum {
-  CURSOR_DEFAULT,
-  CURSOR_OPEN,
-  CURSOR_CLOSED,
-  CURSOR_DROPPABLE,
-  LAST_CURSOR
-} CursorType;
-
-typedef enum {
   STATUS_NONE,
   STATUS_MAYBE_DRAG,
   STATUS_NOT_DRAG,
@@ -100,7 +93,7 @@ struct _AisleriotBoardPrivate
   GdkGC *draw_gc;
   GdkGC *bg_gc;
   GdkGC *slot_gc;
-  GdkCursor *cursor[LAST_CURSOR];
+  GdkCursor *cursor[AR_LAST_CURSOR];
 
   CardSize card_size;
 
@@ -219,88 +212,11 @@ static void slot_update_card_images      (AisleriotBoard *board,
 static void slot_update_card_images_full (AisleriotBoard *board,
                                           ArSlot *slot,
                                           int highlight_start_card_id);
-
-#ifndef HAVE_HILDON 
-
-/* These cursors borrowed from EOG */
-/* FIXMEchpe use themeable cursors here! */
-#define hand_closed_data_width 20
-#define hand_closed_data_height 20
-static const char hand_closed_data_bits[] = {
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x80, 0x3f, 0x00,
-  0x80, 0xff, 0x00, 0x80, 0xff, 0x00, 0xb0, 0xff, 0x00, 0xf0, 0xff, 0x00,
-  0xe0, 0xff, 0x00, 0xe0, 0x7f, 0x00, 0xc0, 0x7f, 0x00, 0x80, 0x3f, 0x00,
-  0x00, 0x3f, 0x00, 0x00, 0x3f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-
-#define hand_closed_mask_width 20
-#define hand_closed_mask_height 20
-static const char hand_closed_mask_bits[] = {
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-  0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x80, 0x3f, 0x00, 0xc0, 0xff, 0x00,
-  0xc0, 0xff, 0x01, 0xf0, 0xff, 0x01, 0xf8, 0xff, 0x01, 0xf8, 0xff, 0x01,
-  0xf0, 0xff, 0x01, 0xf0, 0xff, 0x00, 0xe0, 0xff, 0x00, 0xc0, 0x7f, 0x00,
-  0x80, 0x7f, 0x00, 0x80, 0x7f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-
-#define hand_open_data_width 20
-#define hand_open_data_height 20
-static const char hand_open_data_bits[] = {
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00,
-  0x60, 0x36, 0x00, 0x60, 0x36, 0x00, 0xc0, 0x36, 0x01, 0xc0, 0xb6, 0x01,
-  0x80, 0xbf, 0x01, 0x98, 0xff, 0x01, 0xb8, 0xff, 0x00, 0xf0, 0xff, 0x00,
-  0xe0, 0xff, 0x00, 0xe0, 0x7f, 0x00, 0xc0, 0x7f, 0x00, 0x80, 0x3f, 0x00,
-  0x00, 0x3f, 0x00, 0x00, 0x3f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-
-#define hand_open_mask_width 20
-#define hand_open_mask_height 20
-static const char hand_open_mask_bits[] = {
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x60, 0x3f, 0x00,
-  0xf0, 0x7f, 0x00, 0xf0, 0x7f, 0x01, 0xe0, 0xff, 0x03, 0xe0, 0xff, 0x03,
-  0xd8, 0xff, 0x03, 0xfc, 0xff, 0x03, 0xfc, 0xff, 0x01, 0xf8, 0xff, 0x01,
-  0xf0, 0xff, 0x01, 0xf0, 0xff, 0x00, 0xe0, 0xff, 0x00, 0xc0, 0x7f, 0x00,
-  0x80, 0x7f, 0x00, 0x80, 0x7f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-
-#endif /* !HAVE_HILDON */
-
 /* Cursor */
-
-#ifndef HAVE_HILDON 
-
-static GdkCursor *
-make_cursor (GtkWidget *widget,
-             const char *data,
-             const char *mask_data)
-{
-  const GdkColor fg = { 0, 65535, 65535, 65535 };
-  const GdkColor bg = { 0, 0, 0, 0 };
-  GdkPixmap *source;
-  GdkPixmap *mask;
-  GdkCursor *cursor;
-  GdkWindow *window;
-
-  window = gtk_widget_get_window (widget);
-
-  /* Yeah, hard-coded sizes are bad. */
-  source = gdk_bitmap_create_from_data (window, data, 20, 20);
-  mask = gdk_bitmap_create_from_data (window, mask_data, 20, 20);
-
-  cursor = gdk_cursor_new_from_pixmap (source, mask, &fg, &bg, 10, 10);
-
-  g_object_unref (source);
-  g_object_unref (mask);
-
-  return cursor;
-}
-
-#endif /* !HAVE_HILDON */
 
 static void
 set_cursor (AisleriotBoard *board,
-            CursorType cursor)
+            ArCursorType cursor)
 {
 #ifndef HAVE_HILDON 
   AisleriotBoardPrivate *priv = board->priv;
@@ -324,7 +240,7 @@ set_cursor_by_location (AisleriotBoard *board,
   ArSlot *slot;
   int card_id;
   gboolean drop_valid = FALSE;
-  CursorType cursor = CURSOR_DEFAULT;
+  ArCursorType cursor = AR_CURSOR_DEFAULT;
 
   get_slot_and_card_from_point (board, x, y, &slot, &card_id);
 
@@ -344,14 +260,14 @@ set_cursor_by_location (AisleriotBoard *board,
   /* FIXMEchpe: special cursor when _drag_ is possible? */
 
   if (drop_valid) {
-    cursor = CURSOR_DROPPABLE;
+    cursor = AR_CURSOR_DROPPABLE;
   } else if (slot != NULL &&
              card_id >= 0 &&
              !CARD_GET_FACE_DOWN (CARD (slot->cards->data[card_id]))) {
     if (priv->click_status == STATUS_NONE) {
-      cursor = CURSOR_OPEN;
+      cursor = AR_CURSOR_OPEN;
     } else {
-      cursor = CURSOR_CLOSED;
+      cursor = AR_CURSOR_CLOSED;
     }
   }
 
@@ -1149,7 +1065,7 @@ drag_begin (AisleriotBoard *board)
   slot_update_geometry (board, hslot);
   slot_update_card_images (board, hslot);
 
-  set_cursor (board, CURSOR_CLOSED);
+  set_cursor (board, AR_CURSOR_CLOSED);
 }
 
 static void
@@ -2414,10 +2330,10 @@ aisleriot_board_realize (GtkWidget *widget)
 
 #ifndef HAVE_HILDON 
   /* Create cursors */
-  priv->cursor[CURSOR_DEFAULT] = gdk_cursor_new_for_display (display, GDK_LEFT_PTR);
-  priv->cursor[CURSOR_OPEN] = make_cursor (widget, hand_open_data_bits, hand_open_mask_bits);
-  priv->cursor[CURSOR_CLOSED] = make_cursor (widget, hand_closed_data_bits, hand_closed_mask_bits);
-  priv->cursor[CURSOR_DROPPABLE] = gdk_cursor_new_for_display (display, GDK_DOUBLE_ARROW); /* FIXMEchpe: better cursor */
+  priv->cursor[AR_CURSOR_DEFAULT] = gdk_cursor_new_for_display (display, GDK_LEFT_PTR);
+  priv->cursor[AR_CURSOR_OPEN] = ar_cursor_new (widget->window, AR_CURSOR_OPEN);
+  priv->cursor[AR_CURSOR_CLOSED] = ar_cursor_new (widget->window, AR_CURSOR_CLOSED);
+  priv->cursor[AR_CURSOR_DROPPABLE] = gdk_cursor_new_for_display (display, GDK_DOUBLE_ARROW); /* FIXMEchpe: better cursor */
 #endif /* !HAVE_HILDON */
 
   aisleriot_board_setup_geometry (board);
@@ -2442,7 +2358,7 @@ aisleriot_board_unrealize (GtkWidget *widget)
   priv->slot_gc = NULL;
 
 #ifndef HAVE_HILDON 
-  for (i = 0; i < LAST_CURSOR; ++i) {
+  for (i = 0; i < AR_LAST_CURSOR; ++i) {
     gdk_cursor_unref (priv->cursor[i]);
     priv->cursor[i] = NULL;
   }
@@ -2761,7 +2677,7 @@ aisleriot_board_button_press (GtkWidget *widget,
     return FALSE;
   }
 
-  set_cursor (board, CURSOR_CLOSED);
+  set_cursor (board, AR_CURSOR_CLOSED);
 
   /* First check if it's a right-click: if so, we reveal the card and do nothing else */
   if (button == 3) {
@@ -2795,7 +2711,7 @@ aisleriot_board_button_press (GtkWidget *widget,
 
     aisleriot_game_test_end_of_game (priv->game);
 
-    set_cursor (board, CURSOR_OPEN);
+    set_cursor (board, AR_CURSOR_OPEN);
 
     return TRUE;
   }
@@ -2968,7 +2884,7 @@ aisleriot_board_motion_notify (GtkWidget *widget,
     /* FIXMEchpe: why? */
     gdk_window_clear (priv->moving_cards_window);
 
-    set_cursor (board, CURSOR_CLOSED);
+    set_cursor (board, AR_CURSOR_CLOSED);
   } else if (priv->click_status == STATUS_MAYBE_DRAG &&
              gtk_drag_check_threshold (widget,
                                        priv->last_click_x,
