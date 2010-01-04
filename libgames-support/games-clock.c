@@ -11,6 +11,7 @@
 #include <config.h>
 
 #include "games-clock.h"
+#include "games-glib-compat.h"
 
 G_DEFINE_TYPE (GamesClock, games_clock, GTK_TYPE_LABEL)
 
@@ -50,11 +51,7 @@ games_clock_start_timer (GamesClock *clock_widget)
     return;
 
   clock_widget->update_timeout_id =
-#if GLIB_CHECK_VERSION (2, 14, 0)
-    g_timeout_add_seconds (1, (GSourceFunc) games_clock_update, clock_widget);
-#else
-    g_timeout_add (1000, (GSourceFunc) games_clock_update, clock_widget);
-#endif
+    gdk_threads_add_timeout_seconds (1, (GSourceFunc) games_clock_update, clock_widget);
 }
 
 static void

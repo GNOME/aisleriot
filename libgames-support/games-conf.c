@@ -31,6 +31,7 @@
 #endif
 
 #include "games-debug.h"
+#include "games-glib-compat.h"
 #include "games-gtk-compat.h"
 #include "games-marshal.h"
 
@@ -134,11 +135,7 @@ free_window_state (WindowState *state)
 
   g_free (state->group);
 
-#if GLIB_CHECK_VERSION (2, 10, 0)
   g_slice_free (WindowState, state);
-#else
-  g_free (state);
-#endif
 }
 
 static gboolean
@@ -164,15 +161,9 @@ window_configure_event_cb (GtkWidget *widget,
                       state->window);
 
     if (state->timeout_id == 0) {
-#if GLIB_CHECK_VERSION (2, 14, 0)
       state->timeout_id = g_timeout_add_seconds (WINDOW_STATE_TIMEOUT,
                                                  (GSourceFunc) window_state_timeout_cb,
                                                  state);
-#else
-      state->timeout_id = g_timeout_add (WINDOW_STATE_TIMEOUT * 1000,
-                                         (GSourceFunc) window_state_timeout_cb,
-                                         state);
-#endif
     }
   }
 
@@ -1299,11 +1290,7 @@ games_conf_add_window (GtkWindow *window,
   g_return_if_fail (GTK_IS_WINDOW (window));
   g_return_if_fail (!GTK_WIDGET_REALIZED (window));
 
-#if GLIB_CHECK_VERSION (2, 10, 0)
   state = g_slice_new0 (WindowState);
-#else
-  state = g_new0 (WindowState, 1);
-#endif
 
   state->window = window;
   state->group = g_strdup (group);
