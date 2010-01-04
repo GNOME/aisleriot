@@ -66,9 +66,6 @@ GtkWidget *aisleriot_board_new (ArStyle *style,
 
 void aisleriot_board_abort_move (AisleriotBoard * board);
 
-void aisleriot_board_set_pixbuf_drawing (AisleriotBoard * board,
-                                         gboolean use_pixbuf_drawing);
-
 G_END_DECLS
 
 #endif /* !AISLERIOT_BOARD_H */

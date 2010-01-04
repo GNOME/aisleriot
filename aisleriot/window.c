@@ -187,10 +187,6 @@ struct _AisleriotWindowPrivate
 
   guint load_idle_id;
 
-#ifndef HAVE_CLUTTER
-  guint use_pixbuf_drawing : 1;
-#endif
-
   guint changing_game_type : 1;
   guint freecell_mode : 1;
   guint toolbar_visible : 1;
@@ -859,19 +855,6 @@ debug_choose_seed_cb (GtkAction *action,
 
   gtk_window_present (GTK_WINDOW (dialog));
 }
-
-#ifndef HAVE_CLUTTER
-static void
-debug_pixbuf_drawing_cb (GtkToggleAction *action,
-                         AisleriotWindow *window)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-  gboolean active;
-
-  active = gtk_toggle_action_get_active (action);
-  aisleriot_board_set_pixbuf_drawing (priv->board, active);
-}
-#endif /* !HAVE_CLUTTER */
 
 static void
 debug_tweak_cb (GtkAction *action,
@@ -2315,11 +2298,6 @@ aisleriot_window_init (AisleriotWindow *window)
       G_CALLBACK (animations_toggle_cb),
       FALSE /* not active by default */ },
 #endif /* HAVE_CLUTTER */
-#if defined(ENABLE_DEBUG_UI) && !defined(HAVE_CLUTTER)
-    { "DebugPixbufDrawing", NULL, "_Pixbuf drawing", NULL, NULL,
-      G_CALLBACK (debug_pixbuf_drawing_cb),
-      FALSE },
-#endif /* ENABLE_DEBUG_UI */
   };
 
   static const char names[][16] = {
@@ -2379,9 +2357,6 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifdef ENABLE_DEBUG_UI
         "<menu action='DebugMenu'>"
           "<menuitem action='DebugChooseSeed'/>"
-#ifndef HAVE_CLUTTER
-          "<menuitem action='DebugPixbufDrawing'/>"
-#endif /* !HAVE_CLUTTER */
           "<menuitem action='DebugTweakStyle'/>"
         "</menu>"
 #endif /* ENABLE_DEBUG_UI */
@@ -2434,9 +2409,6 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifdef ENABLE_DEBUG_UI
         "<menu action='DebugMenu'>"
           "<menuitem action='DebugTweakStyle'/>"
-#ifndef HAVE_CLUTTER
-          "<menuitem action='DebugPixbufDrawing'/>"
-#endif
           "<separator/>"
           "<menuitem action='DebugChooseSeed'/>"
           "<menuitem action='DebugMoveNextScreen'/>"
@@ -2504,30 +2476,6 @@ aisleriot_window_init (AisleriotWindow *window)
 
   priv->game = aisleriot_game_new ();
 
-#ifndef HAVE_CLUTTER
-
-#ifdef HAVE_HILDON
-  priv->use_pixbuf_drawing = FALSE;
-#else
-{
-  const char *env;
-
-  env = g_getenv ("AISLERIOT_PIXBUF_DRAWING");
-
-  /* Default to pixbuf drawing */
-  priv->use_pixbuf_drawing = env == NULL || g_ascii_strtoull (env, NULL, 10) != 0;
-}
-#endif /* HAVE_HILDON */
-
-#ifdef GNOME_ENABLE_DEBUG
-  if (priv->use_pixbuf_drawing)
-    g_print ("Using pixbuf drawing method\n");
-  else
-    g_print ("Using pixmap drawing method\n");
-#endif /* GNOME_ENABLE_DEBUG */
-
-#endif /* !HAVE_CLUTTER */
-
   priv->theme_manager = games_card_themes_new ();
 
   priv->board_style = ar_style_new ();
@@ -2559,8 +2507,6 @@ aisleriot_window_init (AisleriotWindow *window)
   /* FIXMEchpe: unref baize & board_actor here? */
 #else
   priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->board_style, priv->game));
-
-  aisleriot_board_set_pixbuf_drawing (priv->board, priv->use_pixbuf_drawing);
 #endif /* HAVE_CLUTTER */
 
   theme_name = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
@@ -2854,11 +2800,6 @@ aisleriot_window_init (AisleriotWindow *window)
   g_signal_connect (window, "notify::is-topmost",
                     G_CALLBACK (sync_window_topmost_cb), NULL);
 #endif
-
-#if defined(ENABLE_DEBUG_UI) && !defined(HAVE_CLUTTER)
-  action = gtk_action_group_get_action (priv->action_group, "DebugPixbufDrawing");
-  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), priv->use_pixbuf_drawing);
-#endif /* ENABLE_DEBUG_UI && !HAVE_CLUTTER */
 }
 
 static void

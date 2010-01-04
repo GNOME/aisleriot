@@ -2478,6 +2478,22 @@ aisleriot_board_sync_style (ArStyle *style,
     redraw_selection = TRUE;
   }
 
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_PIXBUF_DRAWING)) {
+    gboolean pixbuf_drawing;
+
+    pixbuf_drawing = ar_style_get_pixbuf_drawing (priv->style);
+    if (pixbuf_drawing == priv->use_pixbuf_drawing)
+      return;
+
+    priv->use_pixbuf_drawing = pixbuf_drawing;
+
+    games_card_images_set_cache_mode (priv->images,
+                                      pixbuf_drawing ? CACHE_PIXBUFS : CACHE_PIXMAPS);
+
+    update_geometry |= TRUE;
+    queue_redraw |= TRUE;
+  }
+
   if (update_geometry && GTK_WIDGET_REALIZED (widget)) {
     aisleriot_board_setup_geometry (board);
   }
@@ -3528,30 +3544,4 @@ void
 aisleriot_board_abort_move (AisleriotBoard *board)
 {
   clear_state (board);
-}
-
-void
-aisleriot_board_set_pixbuf_drawing (AisleriotBoard *board,
-                                    gboolean use_pixbuf_drawing)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
-
-  use_pixbuf_drawing = use_pixbuf_drawing != FALSE;
-
-  if (use_pixbuf_drawing == priv->use_pixbuf_drawing)
-    return;
-
-  priv->use_pixbuf_drawing = use_pixbuf_drawing;
-
-  games_card_images_set_cache_mode (priv->images,
-                                    use_pixbuf_drawing ? CACHE_PIXBUFS : CACHE_PIXMAPS);
-
-  if (GTK_WIDGET_REALIZED (widget) &&
-      priv->geometry_set) {
-    /* Need to update the geometry, so we update the cached card images! */
-    aisleriot_board_setup_geometry (board);
-
-    gtk_widget_queue_draw (widget);
-  }
 }

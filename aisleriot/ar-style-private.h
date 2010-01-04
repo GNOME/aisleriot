@@ -37,6 +37,12 @@ static const GdkColor default_selection_color = { 0, 0 /* red */, 0 /* green */,
 #define MAX_CARD_STEP (1.0) /* FIXMEchpe: allow values > 1.0 here? */
 #define DEFAULT_CARD_STEP (0.2)
 
+#ifdef HAVE_HILDON
+#define DEFAULT_PIXBUF_DRAWING (FALSE)
+#else
+#define DEFAULT_PIXBUF_DRAWING (TRUE)
+#endif
+
 struct _ArStylePrivate
 {
   GamesCardTheme* card_theme;
@@ -71,6 +77,10 @@ struct _ArStylePrivate
   guint show_focus              : 1;
   guint show_highlight          : 1;
   guint show_seleccion          : 1;
+
+#ifndef HAVE_CLUTTER
+  guint pixbuf_drawing          : 1;
+#endif
 };
 
 #ifdef HAVE_CLUTTER
