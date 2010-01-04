@@ -23,7 +23,9 @@
 enum
 {
   PROP_0,
+  PROP_CARD_OVERHANG,
   PROP_CARD_SLOT_RATIO,
+  PROP_CARD_STEP,
   PROP_CARD_THEME,
   PROP_CLICK_TO_MOVE,
   PROP_DND_DRAG_THRESHOLD,
@@ -33,7 +35,6 @@ enum
   PROP_FOCUS_LINE_WIDTH,
   PROP_FOCUS_PADDING,
   PROP_INTERIOR_FOCUS,
-  PROP_CARD_OVERHANG,
   PROP_RTL,
   PROP_SELECTION_COLOR,
   PROP_TOUCHSCREEN_MODE,
@@ -55,6 +56,7 @@ ar_style_init (ArStyle *style)
   _ar_clutter_color_from_gdk_color (&priv->selection_color, &default_selection_color);
   priv->card_slot_ratio = DEFAULT_CARD_SLOT_RATIO;
   priv->card_overhang = DEFAULT_CARD_OVERHANG;
+  priv->card_step = DEFAULT_CARD_STEP;
   priv->dnd_drag_threshold = 8;
   priv->double_click_time = 250;
   priv->focus_line_width = 1;
@@ -98,6 +100,10 @@ ar_style_get_property (GObject    *object,
 
     case PROP_CARD_SLOT_RATIO:
       g_value_set_double (value, ar_style_get_card_slot_ratio (style));
+      break;
+
+    case PROP_CARD_STEP:
+      g_value_set_double (value, ar_style_get_card_step (style));
       break;
 
     case PROP_CARD_THEME:
@@ -169,6 +175,10 @@ ar_style_set_property (GObject      *object,
 
     case PROP_CARD_SLOT_RATIO:
       priv->card_slot_ratio = g_value_get_double (value);
+      break;
+
+    case PROP_CARD_STEP:
+      priv->card_step = g_value_get_double (value);
       break;
 
     case PROP_CARD_THEME:
@@ -251,6 +261,34 @@ ar_style_class_init (ArStyleClass *klass)
                           G_PARAM_READWRITE |
                           G_PARAM_STATIC_STRINGS));
 
+  /**
+   * ArStyle:card-overhang:
+   *
+   * This controls how much of a card is allowed to hang off of the bottom
+   * of the screen. If set to %0.0, the last card is always fully visible.
+   */
+  g_object_class_install_property
+    (object_class,
+     PROP_CARD_OVERHANG,
+     g_param_spec_double (AR_STYLE_PROP_CARD_OVERHANG, NULL, NULL,
+                          0.0, 1.0, DEFAULT_CARD_OVERHANG,
+                          G_PARAM_READWRITE |
+                          G_PARAM_STATIC_STRINGS));
+
+  /**
+   * ArStyle:card-step:
+   *
+   * This controls how much one card is offset the previous one in card stacks.
+   */
+  g_object_class_install_property
+    (object_class,
+     PROP_CARD_STEP,
+     g_param_spec_double (AR_STYLE_PROP_CARD_STEP, NULL, NULL,
+                          /* FIXMEchpe: allow values > 1.0 here? */
+                          0.0, 1.0, DEFAULT_CARD_STEP,
+                          G_PARAM_READWRITE |
+                          G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_property
     (object_class,
      PROP_CARD_THEME,
@@ -322,20 +360,6 @@ ar_style_class_init (ArStyleClass *klass)
                            FALSE,
                            G_PARAM_READWRITE |
                            G_PARAM_STATIC_STRINGS));
-
-  /**
-   * ArStyle:card-overhang:
-   *
-   * This controls how much of a card is allowed to hang off of the bottom
-   * of the screen. If set to %0.0, the last card is always fully visible.
-   */
-  g_object_class_install_property
-    (object_class,
-     PROP_CARD_OVERHANG,
-     g_param_spec_double (AR_STYLE_PROP_CARD_OVERHANG, NULL, NULL,
-                          0.0, 1.0, DEFAULT_CARD_OVERHANG,
-                          G_PARAM_READWRITE |
-                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (object_class,
@@ -645,6 +669,20 @@ ar_style_get_card_overhang (ArStyle *style)
   ArStylePrivate *priv = style->priv;
 
   return priv->card_overhang;
+}
+
+/**
+ * ar_style_get_card_step:
+ * @style: an #ArStyle
+ *
+ * Returns:
+ */
+double
+ar_style_get_card_step (ArStyle *style)
+{
+  ArStylePrivate *priv = style->priv;
+
+  return priv->card_step;
 }
 
 /**

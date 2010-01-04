@@ -32,6 +32,7 @@ static const GdkColor default_selection_color = { 0, 0 /* red */, 0 /* green */,
 #endif /* !DEFAULT_CARD_SLOT_RATIO */
 
 #define DEFAULT_CARD_OVERHANG (0.0)
+#define DEFAULT_CARD_STEP (0.2)
 
 struct _ArStylePrivate
 {
@@ -41,6 +42,7 @@ struct _ArStylePrivate
 
   double card_slot_ratio;
   double card_overhang;
+  double card_step;
 
   int dnd_drag_threshold;
   int double_click_time;

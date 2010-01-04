@@ -54,7 +54,6 @@
  * how much is allowed to slip off the bottom or right.
  */
 #define MIN_DELTA (0.05)
-#define MAX_DELTA (0.2)
 
 /* The minimum size for the playing area. Almost completely arbitrary. */
 #define BOARD_MIN_WIDTH 300
@@ -582,12 +581,15 @@ slot_update_geometry (AisleriotBoard *board,
   GdkRectangle old_rect;
   GByteArray *cards;
   int delta, xofs, yofs, pixeldx;
+  double card_step;
 
   if (!priv->geometry_set)
     return;
 
   cards = slot->cards;
   old_rect = slot->rect;
+
+  card_step = ar_style_get_card_step (priv->style);
 
   xofs = priv->xoffset;
   yofs = priv->yoffset;
@@ -616,7 +618,7 @@ slot_update_geometry (AisleriotBoard *board,
     double n_cards = cards->len - 1; /* FIXMEchpe: slot->exposed - 1 ? */
 
     if (slot->expanded_down) {
-      double y_from_bottom, max_dy = MAX_DELTA;
+      double y_from_bottom, max_dy = card_step;
       float allocation_height = priv->allocation.y2 - priv->allocation.y1;
 
       if (slot->dy_set)
@@ -632,7 +634,7 @@ slot_update_geometry (AisleriotBoard *board,
       dy = CLAMP (dy, MIN_DELTA, max_dy);
     } else if (slot->expanded_right) {
       if (priv->is_rtl) {
-        double x_from_left, max_dx = MAX_DELTA;
+        double x_from_left, max_dx = card_step;
 
         if (slot->dx_set)
           max_dx = slot->expansion.dx;
@@ -644,7 +646,7 @@ slot_update_geometry (AisleriotBoard *board,
         slot->pixeldx = DOUBLE_TO_INT_CEIL (- dx * priv->card_size.width);
         pixeldx = -slot->pixeldx;
       } else {
-        double x_from_right, max_dx = MAX_DELTA;
+        double x_from_right, max_dx = card_step;
         float allocation_width = priv->allocation.x2 - priv->allocation.x1;
 
         if (slot->dx_set)
@@ -2160,6 +2162,10 @@ aisleriot_board_sync_style (ArStyle *style,
   }
 
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_CARD_OVERHANG)) {
+    update_geometry |= TRUE;
+  }
+
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_CARD_STEP)) {
     update_geometry |= TRUE;
   }
 
