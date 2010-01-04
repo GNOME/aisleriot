@@ -111,7 +111,8 @@ sync_style_selection_color (ArStyle *style,
 
   priv->highlight_color = color;
 
-  clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
+  if (priv->show_highlight)
+    clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
 }
 
 static void
@@ -153,7 +154,7 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
 
   pspec = g_param_spec_int ("highlight", NULL, NULL,
                             -1, G_MAXINT, G_MAXINT,
-                               G_PARAM_READWRITE |
+                            G_PARAM_READWRITE |
                             G_PARAM_STATIC_STRINGS);
   g_object_class_install_property (gobject_class, PROP_HIGHLIGHT, pspec);
 
