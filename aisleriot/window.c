@@ -41,6 +41,7 @@
 #include <libgames-support/games-card-themes.h>
 #include <libgames-support/games-clock.h>
 #include <libgames-support/games-debug.h>
+#include <libgames-support/games-glib-compat.h>
 #include <libgames-support/games-stock.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
@@ -624,12 +625,7 @@ static void
 delayed_move_to_next_screen_cb (GtkAction *action,
                                 GtkWidget *widget)
 {
-#if GLIB_CHECK_VERSION (2, 14, 0)
   g_timeout_add_seconds (10, (GSourceFunc) delayed_move_to_next_screen_timeout_cb, widget);
-#else
-  g_timeout_add (10 * 1000, (GSourceFunc) delayed_move_to_next_screen_timeout_cb, widget);
-#endif /* GLIB 2.14.0 */
-
 }
 
 static void
@@ -3014,11 +3010,7 @@ free_load_idle_data (LoadIdleData *data)
   data->window->priv->load_idle_id = 0;
 
   g_free (data->game_file);
-#if GLIB_CHECK_VERSION (2, 10, 0)
   g_slice_free (LoadIdleData, data);
-#else
-  g_free (data);
-#endif
 }
 
 /**
@@ -3044,12 +3036,7 @@ aisleriot_window_set_game (AisleriotWindow *window,
     g_source_remove (priv->load_idle_id);
   }
 
-#if GLIB_CHECK_VERSION (2, 10, 0)
   data = g_slice_new (LoadIdleData);
-#else
-  data = g_new (LoadIdleData, 1);
-#endif
-
   data->window = window;
   data->game_file = g_strdup (game_file);
   data->seed = seed;

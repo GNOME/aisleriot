@@ -21,6 +21,7 @@
 #include "ar-style-private.h"
 
 #include <libgames-support/games-debug.h>
+#include <libgames-support/games-glib-compat.h>
 
 enum
 {

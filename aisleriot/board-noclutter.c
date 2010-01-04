@@ -28,6 +28,7 @@
 
 #include <libgames-support/games-card-images.h>
 #include <libgames-support/games-files.h>
+#include <libgames-support/games-glib-compat.h>
 #include <libgames-support/games-gtk-compat.h>
 #include <libgames-support/games-marshal.h>
 #include <libgames-support/games-pixbuf-utils.h>
@@ -69,11 +70,7 @@
 #define PIXBUF_DRAWING_LIKELIHOOD(cond) (cond)
 #endif /* HAVE_HILDON */
 
-#if GLIB_CHECK_VERSION (2, 10, 0)
 #define I_(string) g_intern_static_string (string)
-#else
-#define I_(string) string
-#endif
 
 typedef enum {
   STATUS_NONE,
@@ -3451,7 +3448,9 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
      PROP_GAME,
      g_param_spec_object ("game", NULL, NULL,
                           AISLERIOT_TYPE_GAME,
-                          G_PARAM_WRITABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_CONSTRUCT_ONLY));
+                          G_PARAM_WRITABLE |
+                          G_PARAM_CONSTRUCT_ONLY |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (gobject_class,
@@ -3460,9 +3459,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                           AR_TYPE_STYLE,
                           G_PARAM_WRITABLE |
                           G_PARAM_CONSTRUCT_ONLY |
-                          G_PARAM_STATIC_NAME |
-                          G_PARAM_STATIC_NICK |
-                          G_PARAM_STATIC_BLURB));
+                          G_PARAM_STATIC_STRINGS));
 
   _ar_style_gtk_class_install_style_properties (widget_class);
 

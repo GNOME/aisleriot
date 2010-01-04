@@ -36,6 +36,7 @@
 #endif
 
 #include <libgames-support/games-debug.h>
+#include <libgames-support/games-glib-compat.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-string-utils.h>
 
@@ -46,11 +47,7 @@
 
 #define DELAYED_CALLBACK_DELAY (50)
 
-#if GLIB_CHECK_VERSION (2, 10, 0)
 #define I_(string) g_intern_static_string (string)
-#else
-#define I_(string) string
-#endif
 
 struct _AisleriotGame
 {
@@ -251,11 +248,7 @@ clear_slots (AisleriotGame *game,
 #endif /* HAVE_CLUTTER */
     g_byte_array_free (slot->cards, TRUE);
 
-#if GLIB_CHECK_VERSION (2, 10, 0)
     g_slice_free (ArSlot, slot);
-#else
-    g_free (slot);
-#endif
   }
 
   g_ptr_array_set_size (game->slots, 0);
@@ -630,11 +623,7 @@ cscmi_add_slot (SCM slot_data)
 #endif /* GNOME_ENABLE_DEBUG */
 
   /* create and initialize slot */
-#if GLIB_CHECK_VERSION (2, 10, 0)
   slot = g_slice_new0 (ArSlot);
-#else
-  slot = g_new0 (Slot, 1);
-#endif
 
   g_ptr_array_add (game->slots, slot);
 
@@ -1341,42 +1330,48 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
      PROP_CAN_UNDO,
      g_param_spec_boolean ("can-undo", NULL, NULL,
                            FALSE,
-                           G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+                           G_PARAM_READABLE |
+                           G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (gobject_class,
      PROP_CAN_REDO,
      g_param_spec_boolean ("can-redo", NULL, NULL,
                            FALSE,
-                           G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+                           G_PARAM_READABLE |
+                           G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (gobject_class,
      PROP_CAN_DEAL,
      g_param_spec_boolean ("can-deal", NULL, NULL,
                            FALSE,
-                           G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+                           G_PARAM_READABLE |
+                           G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (gobject_class,
      PROP_GAME_FILE,
      g_param_spec_string ("game-file", NULL, NULL,
                           NULL,
-                          G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+                          G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (gobject_class,
      PROP_SCORE,
-     g_param_spec_uint ("score", "", "",
+     g_param_spec_uint ("score", NULL, NULL,
                         0, G_MAXUINT, 0,
-                        G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+                        G_PARAM_READABLE |
+                        G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (gobject_class,
      PROP_STATE,
-     g_param_spec_uint ("state", "", "",
+     g_param_spec_uint ("state", NULL, NULL,
                         0, LAST_GAME_STATE, 0, 
-                        G_PARAM_READABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+                        G_PARAM_READABLE |
+                        G_PARAM_STATIC_STRINGS));
 
   /* Initialise our scheme interfaces */
   cscm_init ();
@@ -2084,11 +2079,7 @@ aisleriot_game_option_free (AisleriotGameOption *option)
   g_return_if_fail (option != NULL);
 
   g_free (option->display_name);
-#if GLIB_CHECK_VERSION (2, 10, 0)
   g_slice_free (AisleriotGameOption, option);
-#else
-  g_free (option);
-#endif
 }
 
 /**
@@ -2145,12 +2136,7 @@ aisleriot_game_get_options (AisleriotGame *game)
 
       entrystate = SCM_NFALSEP (scm_list_ref (entry, scm_from_uint (1)));
 
-#if GLIB_CHECK_VERSION (2, 10, 0)
       option = g_slice_new (AisleriotGameOption);
-#else
-      option = g_new (AisleriotGameOption, 1);
-#endif
-
       option->display_name = g_strdup (entrynamestr);
       option->type = type;
       option->value = bit;

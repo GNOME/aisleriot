@@ -30,6 +30,8 @@ G_BEGIN_DECLS
 #define g_slice_new0(T) g_new0 (T, 1)
 #define g_slice_free(T,ptr) g_free (ptr)
 
+#define g_intern_static_string (string) g_quark_to_string(g_quark_from_static_string(string))
+
 #endif /* GLIB < 2.10 */
 
 #if !GLIB_CHECK_VERSION (2, 14, 0)

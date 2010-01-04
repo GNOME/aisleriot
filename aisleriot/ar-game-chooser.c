@@ -26,6 +26,7 @@
 #include <libgames-support/games-debug.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-string-utils.h>
+#include <libgames-support/games-glib-compat.h>
 
 #ifdef HAVE_MAEMO_5
 #include <hildon/hildon-gtk.h>

@@ -23,6 +23,8 @@
 
 #include "card.h"
 
+#include <libgames-support/games-glib-compat.h>
+
 static void aisleriot_card_paint (ClutterActor *actor);
 
 static void aisleriot_card_get_preferred_width (ClutterActor *self,
