@@ -92,6 +92,10 @@ ar_style_get_property (GObject    *object,
   ArStylePrivate *priv = style->priv;
 
   switch (property_id) {
+    case PROP_CARD_OVERHANG:
+      g_value_set_double (value, ar_style_get_card_overhang (style));
+      break;
+
     case PROP_CARD_SLOT_RATIO:
       g_value_set_double (value, ar_style_get_card_slot_ratio (style));
       break;
@@ -132,10 +136,6 @@ ar_style_get_property (GObject    *object,
       g_value_set_boolean (value, ar_style_get_interior_focus (style));
       break;
 
-    case PROP_CARD_OVERHANG:
-      g_value_set_double (value, ar_style_get_card_overhang (style));
-      break;
-
     case PROP_RTL:
       g_value_set_boolean (value, ar_style_get_rtl (style));
       break;
@@ -160,8 +160,17 @@ ar_style_set_property (GObject      *object,
                        GParamSpec   *pspec)
 {
   ArStyle *style = AR_STYLE (object);
+  ArStylePrivate *priv = style->priv;
 
   switch (property_id) {
+    case PROP_CARD_OVERHANG:
+      priv->card_overhang = g_value_get_double (value);
+      break;
+
+    case PROP_CARD_SLOT_RATIO:
+      priv->card_slot_ratio = g_value_get_double (value);
+      break;
+
     case PROP_CARD_THEME:
       ar_style_set_card_theme (style, g_value_get_object (value));
       break;
@@ -170,25 +179,52 @@ ar_style_set_property (GObject      *object,
       ar_style_set_click_to_move (style, g_value_get_boolean (value));
       break;
 
+    case PROP_DND_DRAG_THRESHOLD:
+      priv->dnd_drag_threshold = g_value_get_int (value);
+      break;
+
+    case PROP_DOUBLE_CLICK_TIME:
+      priv->double_click_time = g_value_get_int (value);
+      break;
+
     case PROP_ENABLE_ANIMATIONS:
       ar_style_set_enable_animations (style, g_value_get_boolean (value));
       break;
+
+    case PROP_FOCUS_LINE_WIDTH:
+      priv->focus_line_width = g_value_get_int (value);
+      break;
+
+    case PROP_FOCUS_PADDING:
+      priv->focus_padding = g_value_get_int (value);
+      break;
+
+    case PROP_INTERIOR_FOCUS:
+      priv->interior_focus = g_value_get_boolean (value) != FALSE;
+      break;
+
+    case PROP_RTL:
+      priv->rtl = g_value_get_boolean (value) != FALSE;
+      break;
+
+    case PROP_SELECTION_COLOR: {
+      ClutterColor *color;
+
+      if ((color = g_value_get_boxed (value)) != NULL) {
+        priv->selection_color = *color;
+      } else {
+        _ar_clutter_color_from_gdk_color (&priv->selection_color, &default_selection_color);
+      }
+      break;
+    }
 
     case PROP_ENABLE_SOUND:
       ar_style_set_enable_sound (style, g_value_get_boolean (value));
       break;
 
-    case PROP_CARD_SLOT_RATIO:
-    case PROP_DND_DRAG_THRESHOLD:
-    case PROP_DOUBLE_CLICK_TIME:
-    case PROP_FOCUS_LINE_WIDTH:
-    case PROP_FOCUS_PADDING:
-    case PROP_INTERIOR_FOCUS:
-    case PROP_CARD_OVERHANG:
-    case PROP_RTL:
-    case PROP_SELECTION_COLOR:
     case PROP_TOUCHSCREEN_MODE:
-      /* not writable */
+      priv->touchscreen_mode = g_value_get_boolean (value) != FALSE;
+      break;
 
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -212,7 +248,7 @@ ar_style_class_init (ArStyleClass *klass)
      PROP_CARD_SLOT_RATIO,
      g_param_spec_double (AR_STYLE_PROP_CARD_SLOT_RATIO, NULL, NULL,
                           0.1, 1.0, DEFAULT_CARD_SLOT_RATIO,
-                          G_PARAM_READABLE |
+                          G_PARAM_READWRITE |
                           G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
@@ -236,7 +272,7 @@ ar_style_class_init (ArStyleClass *klass)
      PROP_DND_DRAG_THRESHOLD,
      g_param_spec_int (AR_STYLE_PROP_DND_DRAG_THRESHOLD, NULL, NULL,
                        1, G_MAXINT, 8,
-                       G_PARAM_READABLE |
+                       G_PARAM_READWRITE |
                        G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
@@ -244,7 +280,7 @@ ar_style_class_init (ArStyleClass *klass)
      PROP_DOUBLE_CLICK_TIME,
      g_param_spec_int (AR_STYLE_PROP_DOUBLE_CLICK_TIME, NULL, NULL,
                        0, G_MAXINT, 250,
-                       G_PARAM_READABLE |
+                       G_PARAM_READWRITE |
                        G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
@@ -268,7 +304,7 @@ ar_style_class_init (ArStyleClass *klass)
      PROP_FOCUS_LINE_WIDTH,
      g_param_spec_int (AR_STYLE_PROP_FOCUS_LINE_WIDTH, NULL, NULL,
                        0, G_MAXINT, 1,
-                       G_PARAM_READABLE |
+                       G_PARAM_READWRITE |
                        G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
@@ -276,7 +312,7 @@ ar_style_class_init (ArStyleClass *klass)
      PROP_FOCUS_PADDING,
      g_param_spec_int (AR_STYLE_PROP_FOCUS_PADDING, NULL, NULL,
                        0, G_MAXINT, 1,
-                       G_PARAM_READABLE |
+                       G_PARAM_READWRITE |
                        G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
@@ -284,7 +320,7 @@ ar_style_class_init (ArStyleClass *klass)
      PROP_INTERIOR_FOCUS,
      g_param_spec_boolean (AR_STYLE_PROP_INTERIOR_FOCUS, NULL, NULL,
                            FALSE,
-                           G_PARAM_READABLE |
+                           G_PARAM_READWRITE |
                            G_PARAM_STATIC_STRINGS));
 
   /**
@@ -298,7 +334,7 @@ ar_style_class_init (ArStyleClass *klass)
      PROP_CARD_OVERHANG,
      g_param_spec_double (AR_STYLE_PROP_CARD_OVERHANG, NULL, NULL,
                           0.0, 1.0, DEFAULT_CARD_OVERHANG,
-                          G_PARAM_READABLE |
+                          G_PARAM_READWRITE |
                           G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
@@ -306,7 +342,7 @@ ar_style_class_init (ArStyleClass *klass)
      PROP_RTL,
      g_param_spec_boolean (AR_STYLE_PROP_RTL, NULL, NULL,
                            FALSE,
-                           G_PARAM_READABLE |
+                           G_PARAM_READWRITE |
                            G_PARAM_STATIC_STRINGS));
 
   _ar_clutter_color_from_gdk_color (&color, &default_selection_color);
@@ -315,7 +351,7 @@ ar_style_class_init (ArStyleClass *klass)
      PROP_SELECTION_COLOR,
      clutter_param_spec_color (AR_STYLE_PROP_SELECTION_COLOR, NULL, NULL,
                                &color,
-                               G_PARAM_READABLE |
+                               G_PARAM_READWRITE |
                                G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
@@ -323,7 +359,7 @@ ar_style_class_init (ArStyleClass *klass)
      PROP_TOUCHSCREEN_MODE,
      g_param_spec_boolean (AR_STYLE_PROP_TOUCHSCREEN_MODE, NULL, NULL,
                            FALSE,
-                           G_PARAM_READABLE |
+                           G_PARAM_READWRITE |
                            G_PARAM_STATIC_STRINGS));
 }
 
