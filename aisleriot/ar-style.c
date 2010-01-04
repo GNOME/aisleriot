@@ -279,13 +279,13 @@ ar_style_class_init (ArStyleClass *klass)
    * ArStyle:card-step:
    *
    * This controls how much one card is offset the previous one in card stacks.
+   * A game-specified a value for the card step takes precedence over this.
    */
   g_object_class_install_property
     (object_class,
      PROP_CARD_STEP,
      g_param_spec_double (AR_STYLE_PROP_CARD_STEP, NULL, NULL,
-                          /* FIXMEchpe: allow values > 1.0 here? */
-                          0.0, 1.0, DEFAULT_CARD_STEP,
+                          MIN_CARD_STEP, MAX_CARD_STEP, DEFAULT_CARD_STEP,
                           G_PARAM_READWRITE |
                           G_PARAM_STATIC_STRINGS));
 

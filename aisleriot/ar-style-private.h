@@ -32,6 +32,9 @@ static const GdkColor default_selection_color = { 0, 0 /* red */, 0 /* green */,
 #endif /* !DEFAULT_CARD_SLOT_RATIO */
 
 #define DEFAULT_CARD_OVERHANG (0.0)
+
+#define MIN_CARD_STEP (0.0)
+#define MAX_CARD_STEP (1.0) /* FIXMEchpe: allow values > 1.0 here? */
 #define DEFAULT_CARD_STEP (0.2)
 
 struct _ArStylePrivate

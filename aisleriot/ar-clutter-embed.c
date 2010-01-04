@@ -273,7 +273,7 @@ ar_clutter_embed_style_set (GtkWidget *widget,
   ClutterColor selection_color;
   int focus_line_width, focus_padding;
   gboolean interior_focus;
-  double card_slot_ratio, card_overhang;
+  double card_slot_ratio, card_overhang, card_step;
 
   GTK_WIDGET_CLASS (ar_clutter_embed_parent_class)->style_set (widget, previous_style);
 
@@ -285,6 +285,7 @@ ar_clutter_embed_style_set (GtkWidget *widget,
                         "focus-padding", &focus_padding,
                         "card-slot-ratio", &card_slot_ratio,
                         "card-overhang", &card_overhang,
+                        "card-step", &card_step,
                         "selection-color", &color,
                         NULL);
 
@@ -316,6 +317,12 @@ ar_clutter_embed_style_set (GtkWidget *widget,
     style_priv->card_overhang = card_overhang;
 
     g_object_notify (style_object, AR_STYLE_PROP_CARD_OVERHANG);
+  }
+
+  if (style_priv->card_step != card_step) {
+    style_priv->card_step = card_step;
+
+    g_object_notify (style_object, AR_STYLE_PROP_CARD_STEP);
   }
 
   if (color != NULL) {
@@ -521,11 +528,27 @@ ar_clutter_embed_class_init (ArClutterEmbedClass *klass)
 
   /**
    * ArClutterEmbed:card-overhang:
-  */
+   *
+   * This controls how much of a card is allowed to hang off of the bottom
+   * of the screen. If set to %0.0, the last card is always fully visible.
+   */
   gtk_widget_class_install_style_property
     (widget_class,
      g_param_spec_double ("card-overhang", NULL, NULL,
                           0.0, 1.0, DEFAULT_CARD_OVERHANG,
+                          G_PARAM_READWRITE |
+                          G_PARAM_STATIC_STRINGS));
+
+  /**
+   * ArClutterEmbed:card-step:
+   *
+   * This controls how much one card is offset the previous one in card stacks.
+   * A game-specified a value for the card step takes precedence over this.
+   */
+  gtk_widget_class_install_style_property
+    (widget_class,
+     g_param_spec_double ("card-step", NULL, NULL,
+                          MIN_CARD_STEP, MAX_CARD_STEP, DEFAULT_CARD_STEP,
                           G_PARAM_READWRITE |
                           G_PARAM_STATIC_STRINGS));
 }
