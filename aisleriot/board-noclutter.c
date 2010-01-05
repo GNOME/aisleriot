@@ -117,7 +117,6 @@ struct _AisleriotBoardPrivate
   /* Button press */
   int last_click_x;
   int last_click_y;
-  int double_click_time;
   guint32 last_click_time;
 
   /* Moving cards */
@@ -2666,7 +2665,7 @@ aisleriot_board_button_press (GtkWidget *widget,
 
   is_double_click = button == 2 ||
                     (priv->last_click_left_click &&
-                     (event->time - priv->last_click_time <= priv->double_click_time) &&
+                     (event->time - priv->last_click_time <= ar_style_get_double_click_time (priv->style)) &&
                      priv->last_clicked_slot == hslot &&
                      priv->last_clicked_card_id == cardid);
 
