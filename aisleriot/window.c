@@ -1858,6 +1858,13 @@ game_exception_response_cb (GtkWidget *dialog,
       "--appname", "aisleriot",
       "--pid", pidstr,
       "--include", (const char *) error_file,
+#if GLIB_CHECK_VERSION (2, 20, 0)
+      /* This option was added to bug-buddy 2.25.x (bug 540150). We use the
+       * 2.26 glib version as a proxy to detect this, since there's no good
+       * other way.
+       */
+      "--unlink-tempfile",
+#endif
       NULL
     };
 
