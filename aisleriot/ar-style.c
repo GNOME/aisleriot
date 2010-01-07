@@ -84,7 +84,7 @@ ar_style_init (ArStyle *style)
 #ifndef HAVE_CLUTTER
 
 #ifdef HAVE_HILDON
-  priv->use_pixbuf_drawing = FALSE;
+  priv->pixbuf_drawing = FALSE;
 #else
 {
   const char *env;
