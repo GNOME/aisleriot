@@ -1,17 +1,17 @@
 # Swedish messages for gnome-games.
-# Copyright (C) 1999-2009 Free Software Foundation, Inc.
+# Copyright (C) 1999-2010 Free Software Foundation, Inc.
 # Andreas Persenius <ndap@swipnet.se>, 1999.
 # Andreas Hyden <a.hyden@cyberpoint.se>
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000.
 # Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004, 2005.
-# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-29 11:32+0100\n"
-"PO-Revision-Date: 2009-11-29 11:33+0100\n"
+"POT-Creation-Date: 2010-01-09 17:38+0100\n"
+"PO-Revision-Date: 2010-01-09 17:48+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr "Välj huruvida korten ska dras eller om källan ska klickas på och seda
 
 #: ../aisleriot/aisleriot.schemas.in.h:7
 #: ../gnect/data/gnect.schemas.in.h:11
-#: ../gnobots2/properties.c:478
+#: ../gnobots2/properties.c:484
 #: ../iagno/iagno.schemas.in.h:1
 msgid "Sound"
 msgstr "Ljud"
@@ -89,10 +89,20 @@ msgstr "Huruvida statusraden ska visas eller inte"
 msgid "Whether or not to show the toolbar"
 msgstr "Huruvida verktygsraden ska visas eller inte"
 
+#. Now construct the window contents
+#: ../aisleriot/ar-game-chooser.c:238
+#: ../aisleriot/window.c:2555
+msgid "Select Game"
+msgstr "Välj spel"
+
+#: ../aisleriot/ar-game-chooser.c:254
+msgid "_Select"
+msgstr "_Välj"
+
 #: ../aisleriot/freecell.desktop.in.in.h:1
 #: ../aisleriot/sol.c:327
-#: ../aisleriot/window.c:670
-#: ../aisleriot/window.c:678
+#: ../aisleriot/window.c:461
+#: ../aisleriot/window.c:469
 msgid "FreeCell Solitaire"
 msgstr "Napoleon på S:t Helena-patiens"
 
@@ -100,20 +110,20 @@ msgstr "Napoleon på S:t Helena-patiens"
 msgid "Play the popular FreeCell card game"
 msgstr "Spela det populära patienskortspelet Napoleon på S:t Helena"
 
-#: ../aisleriot/game.c:1177
+#: ../aisleriot/game.c:1164
 #, c-format
 msgid "Aisleriot cannot load the file “%s”. Please check your Aisleriot installation."
 msgstr "Aisleriot kan inte läsa in filen \"%s\". Kontrollera din Aisleriot-installation."
 
-#: ../aisleriot/game.c:1621
+#: ../aisleriot/game.c:1614
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot kan inte hitta det senaste spelet du spelade."
 
-#: ../aisleriot/game.c:1622
+#: ../aisleriot/game.c:1615
 msgid "This usually occurs when you run an older version of Aisleriot which does not have the game you last played. The default game, Klondike, is being started instead."
 msgstr "Detta inträffar vanligtvis när du kör en äldre version av Aisleriot som inte har det spel som du senast spelade. Standardspelet, Klondyke, startas istället."
 
-#: ../aisleriot/game.c:1980
+#: ../aisleriot/game.c:1973
 msgid "This game does not have hint support yet."
 msgstr "Det här spelet stöder inte ledtrådar ännu."
 
@@ -121,18 +131,18 @@ msgstr "Det här spelet stöder inte ledtrådar ännu."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../aisleriot/game.c:2014
-#: ../aisleriot/game.c:2042
+#: ../aisleriot/game.c:2007
+#: ../aisleriot/game.c:2035
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Flytta %s till %s."
 
-#: ../aisleriot/game.c:2064
+#: ../aisleriot/game.c:2057
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Du letar efter en %s."
 
-#: ../aisleriot/game.c:2069
+#: ../aisleriot/game.c:2062
 msgid "This game is unable to provide a hint."
 msgstr "Det här spelet kan inte ge dig några tips."
 
@@ -978,16 +988,16 @@ msgstr "Välj spelnumret"
 
 #: ../aisleriot/sol.c:223
 #: ../gnomine/gnomine.c:1007
-#: ../gtali/gyahtzee.c:110
-#: ../gtali/gyahtzee.c:112
-#: ../gtali/gyahtzee.c:116
-#: ../gtali/gyahtzee.c:118
+#: ../gtali/gyahtzee.c:107
+#: ../gtali/gyahtzee.c:109
+#: ../gtali/gyahtzee.c:113
+#: ../gtali/gyahtzee.c:115
 msgid "NUMBER"
 msgstr "ANTAL"
 
 #: ../aisleriot/sol.c:327
-#: ../aisleriot/window.c:679
-#: ../aisleriot/window.c:3004
+#: ../aisleriot/window.c:470
+#: ../aisleriot/window.c:2041
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1386,52 +1396,43 @@ msgstr "%d.%02d"
 msgid "Could not show help for “%s”"
 msgstr "Kunde inte visa hjälp för \"%s\""
 
-#: ../aisleriot/window.c:338
-#: ../aisleriot/window.c:2663
-msgid "Select Game"
-msgstr "Välj spel"
-
-#: ../aisleriot/window.c:342
-msgid "_Select"
-msgstr "_Välj"
-
-#: ../aisleriot/window.c:483
+#: ../aisleriot/window.c:267
 msgid "Congratulations, you have won!"
 msgstr "Gratulerar, du har vunnit!"
 
-#: ../aisleriot/window.c:487
+#: ../aisleriot/window.c:271
 msgid "There are no more moves"
 msgstr "Det finns inga fler drag"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:500
+#: ../aisleriot/window.c:284
 #: ../quadrapassel/blockops.cpp:788
 msgid "Game Over"
 msgstr "Spelet är slut"
 
-#: ../aisleriot/window.c:627
+#: ../aisleriot/window.c:418
 #: ../gnomine/gnomine.c:450
 #: ../mahjongg/mahjongg.c:906
 msgid "Main game:"
 msgstr "Huvudspel:"
 
-#: ../aisleriot/window.c:635
+#: ../aisleriot/window.c:426
 msgid "Card games:"
 msgstr "Kortspel:"
 
-#: ../aisleriot/window.c:649
+#: ../aisleriot/window.c:440
 msgid "Card themes:"
 msgstr "Kortteman:"
 
-#: ../aisleriot/window.c:681
+#: ../aisleriot/window.c:472
 msgid "About FreeCell Solitaire"
 msgstr "Om Napoleon på S:t Helena-patiens"
 
-#: ../aisleriot/window.c:682
+#: ../aisleriot/window.c:473
 msgid "About AisleRiot"
 msgstr "Om AisleRiot"
 
-#: ../aisleriot/window.c:688
+#: ../aisleriot/window.c:479
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many different games to be played.\n"
 "AisleRiot is a part of GNOME Games."
@@ -1439,19 +1440,19 @@ msgstr ""
 "AisleRiot erbjuder en regelbaserad patiensmotor som låter dig att spela många olika spel.\n"
 "AisleRiot är en del av GNOME Games."
 
-#: ../aisleriot/window.c:699
+#: ../aisleriot/window.c:490
 #: ../glchess/src/lib/gtkui/gtkui.py:861
 #: ../glines/glines.c:1225
 #: ../gnect/src/main.c:909
 #: ../gnibbles/main.c:247
 #: ../gnobots2/menu.c:274
 #: ../quadrapassel/tetris.cpp:1313
-#: ../gnome-sudoku/src/lib/main.py:717
+#: ../gnome-sudoku/src/lib/main.py:720
 #: ../gnomine/gnomine.c:490
 #: ../gnotravex/gnotravex.c:1921
 #: ../gnotski/gnotski.c:1542
-#: ../gtali/gyahtzee.c:623
-#: ../iagno/gnothello.c:268
+#: ../gtali/gyahtzee.c:620
+#: ../iagno/gnothello.c:272
 #: ../mahjongg/mahjongg.c:951
 msgid "translator-credits"
 msgstr ""
@@ -1464,7 +1465,7 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../aisleriot/window.c:703
+#: ../aisleriot/window.c:494
 #: ../glchess/src/lib/defaults.py.in:56
 #: ../glines/glines.c:1228
 #: ../gnect/src/main.c:906
@@ -1475,18 +1476,18 @@ msgstr ""
 #: ../gnomine/gnomine.c:493
 #: ../gnotravex/gnotravex.c:1924
 #: ../gnotski/gnotski.c:1545
-#: ../gtali/gyahtzee.c:627
-#: ../iagno/gnothello.c:270
+#: ../gtali/gyahtzee.c:624
+#: ../iagno/gnothello.c:274
 #: ../mahjongg/mahjongg.c:954
 msgid "GNOME Games web site"
 msgstr "Webbplatsen för GNOME Games"
 
-#: ../aisleriot/window.c:1556
+#: ../aisleriot/window.c:1368
 #, c-format
 msgid "Play “%s”"
 msgstr "Spela \"%s\""
 
-#: ../aisleriot/window.c:1727
+#: ../aisleriot/window.c:1539
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Visa korten med korttemat \"%s\""
@@ -1495,37 +1496,41 @@ msgstr "Visa korten med korttemat \"%s\""
 #. * then translate this string to "%I6d", else to "%6d".
 #. * Do not translate it to anything else!
 #.
-#: ../aisleriot/window.c:1822
+#: ../aisleriot/window.c:1634
 #, c-format
 msgctxt "score"
 msgid "%6d"
 msgstr "%6d"
 
-#: ../aisleriot/window.c:2088
+#: ../aisleriot/window.c:1910
 msgid "A scheme exception occurred"
 msgstr "Ett schemaundantag inträffade"
 
-#: ../aisleriot/window.c:2091
+#: ../aisleriot/window.c:1913
 msgid "Please report this bug to the developers."
 msgstr "Rapportera det här felet till utvecklarna."
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:2095
+#: ../aisleriot/window.c:1917
 #: ../libgames-support/games-show.c:151
 msgid "Error"
 msgstr "Fel"
 
-#: ../aisleriot/window.c:2103
+#: ../aisleriot/window.c:1925
 msgid "_Don't report"
 msgstr "Rapportera _inte"
 
-#: ../aisleriot/window.c:2104
+#: ../aisleriot/window.c:1926
 msgid "_Report"
 msgstr "_Rapportera"
 
+#: ../aisleriot/window.c:2039
+msgid "Freecell Solitaire"
+msgstr "Freecell-patiens"
+
 #. Menu actions
 #. Preferences Dialog: Title of game options tab
-#: ../aisleriot/window.c:2293
+#: ../aisleriot/window.c:2176
 #: ../glchess/data/glchess.ui.h:24
 #: ../glchess/data/preferences.ui.h:24
 #: ../glines/glines.c:1691
@@ -1537,8 +1542,8 @@ msgstr "_Rapportera"
 #: ../gnomine/gnomine.c:834
 #: ../gnotravex/gnotravex.c:303
 #: ../gnotski/gnotski.c:414
-#: ../gtali/gyahtzee.c:701
-#: ../iagno/gnothello.c:812
+#: ../gtali/gyahtzee.c:705
+#: ../iagno/gnothello.c:828
 #: ../lightsoff/data/lightsoff.ui.h:2
 #: ../mahjongg/mahjongg.c:1242
 #: ../swell-foop/data/swell-foop.ui.h:2
@@ -1546,7 +1551,7 @@ msgid "_Game"
 msgstr "_Spel"
 
 #. Preferences Dialog: Title of view options tab
-#: ../aisleriot/window.c:2294
+#: ../aisleriot/window.c:2177
 #: ../glchess/data/glchess.ui.h:29
 #: ../glchess/data/preferences.ui.h:30
 #: ../gnect/src/main.c:1274
@@ -1558,11 +1563,11 @@ msgstr "_Spel"
 msgid "_View"
 msgstr "_Visa"
 
-#: ../aisleriot/window.c:2295
+#: ../aisleriot/window.c:2178
 msgid "_Control"
 msgstr "St_yrning"
 
-#: ../aisleriot/window.c:2297
+#: ../aisleriot/window.c:2180
 #: ../glchess/data/glchess.ui.h:25
 #: ../glines/glines.c:1693
 #: ../gnect/src/main.c:1276
@@ -1573,15 +1578,15 @@ msgstr "St_yrning"
 #: ../gnomine/gnomine.c:836
 #: ../gnotravex/gnotravex.c:307
 #: ../gnotski/gnotski.c:416
-#: ../gtali/gyahtzee.c:703
-#: ../iagno/gnothello.c:814
+#: ../gtali/gyahtzee.c:707
+#: ../iagno/gnothello.c:830
 #: ../lightsoff/data/lightsoff.ui.h:3
 #: ../mahjongg/mahjongg.c:1244
 #: ../swell-foop/data/swell-foop.ui.h:3
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../aisleriot/window.c:2302
+#: ../aisleriot/window.c:2185
 #: ../glchess/data/glchess.ui.h:18
 #: ../gnobots2/menu.c:73
 #: ../libgames-support/games-stock.c:53
@@ -1589,129 +1594,129 @@ msgstr "_Hjälp"
 msgid "Start a new game"
 msgstr "Starta ett nytt spel"
 
-#: ../aisleriot/window.c:2305
+#: ../aisleriot/window.c:2188
 #: ../libgames-support/games-stock.c:57
 msgid "Restart the game"
 msgstr "Starta om spelet"
 
-#: ../aisleriot/window.c:2307
+#: ../aisleriot/window.c:2190
 msgid "_Select Game..."
 msgstr "_Välj spel..."
 
-#: ../aisleriot/window.c:2309
+#: ../aisleriot/window.c:2192
 msgid "Play a different game"
 msgstr "Spela ett annat spel"
 
-#: ../aisleriot/window.c:2311
+#: ../aisleriot/window.c:2194
 msgid "_Recently Played"
 msgstr "_Tidigare spelade"
 
-#: ../aisleriot/window.c:2312
+#: ../aisleriot/window.c:2195
 msgid "S_tatistics"
 msgstr "Stat_istik"
 
-#: ../aisleriot/window.c:2313
+#: ../aisleriot/window.c:2196
 msgid "Show gameplay statistics"
 msgstr "Visa spelstatistik"
 
-#: ../aisleriot/window.c:2316
+#: ../aisleriot/window.c:2199
 #: ../libgames-support/games-stock.c:62
 msgid "Close this window"
 msgstr "Stäng det här fönstret"
 
-#: ../aisleriot/window.c:2319
+#: ../aisleriot/window.c:2202
 #: ../libgames-support/games-stock.c:60
 #: ../mahjongg/mahjongg.c:1253
 msgid "Undo the last move"
 msgstr "Ångra det senaste draget"
 
-#: ../aisleriot/window.c:2322
+#: ../aisleriot/window.c:2205
 #: ../libgames-support/games-stock.c:56
 msgid "Redo the undone move"
 msgstr "Gör om det ångrade draget"
 
-#: ../aisleriot/window.c:2325
+#: ../aisleriot/window.c:2208
 msgid "Deal next card or cards"
 msgstr "Ge nästa kort"
 
-#: ../aisleriot/window.c:2328
+#: ../aisleriot/window.c:2211
 #: ../libgames-support/games-stock.c:49
 msgid "Get a hint for your next move"
 msgstr "Få tips angående ditt nästa drag"
 
-#: ../aisleriot/window.c:2331
+#: ../aisleriot/window.c:2214
 msgid "View help for Aisleriot"
 msgstr "Visa hjälp för Aisleriot"
 
-#: ../aisleriot/window.c:2335
+#: ../aisleriot/window.c:2218
 #: ../libgames-support/games-stock.c:46
 msgid "View help for this game"
 msgstr "Visa hjälp för detta spel"
 
-#: ../aisleriot/window.c:2338
+#: ../aisleriot/window.c:2221
 #: ../libgames-support/games-stock.c:61
 msgid "About this game"
 msgstr "Om detta spel"
 
-#: ../aisleriot/window.c:2341
+#: ../aisleriot/window.c:2224
 msgid "Install card themes…"
 msgstr "Installera kortteman..."
 
-#: ../aisleriot/window.c:2342
+#: ../aisleriot/window.c:2225
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Installera nya kortteman från distributionspaketens förråd"
 
-#: ../aisleriot/window.c:2352
+#: ../aisleriot/window.c:2235
 msgid "_Card Style"
 msgstr "_Kortstil"
 
-#: ../aisleriot/window.c:2391
+#: ../aisleriot/window.c:2276
 #: ../gnobots2/menu.c:96
 #: ../mahjongg/mahjongg.c:1273
 msgid "_Toolbar"
 msgstr "_Verktygsrad"
 
-#: ../aisleriot/window.c:2392
+#: ../aisleriot/window.c:2277
 #: ../glchess/data/preferences.ui.h:17
 #: ../gnobots2/menu.c:96
 #: ../mahjongg/mahjongg.c:1273
 msgid "Show or hide the toolbar"
 msgstr "Visa eller dölj verktygsraden"
 
-#: ../aisleriot/window.c:2397
+#: ../aisleriot/window.c:2282
 msgid "_Statusbar"
 msgstr "_Statusrad"
 
-#: ../aisleriot/window.c:2398
+#: ../aisleriot/window.c:2283
 msgid "Show or hide statusbar"
 msgstr "Visa eller dölj statusraden"
 
-#: ../aisleriot/window.c:2403
+#: ../aisleriot/window.c:2288
 #: ../gnotravex/gnotravex.c:352
 msgid "_Click to Move"
 msgstr "Klicka för att _flytta"
 
-#: ../aisleriot/window.c:2404
+#: ../aisleriot/window.c:2289
 msgid "Pick up and drop cards by clicking"
 msgstr "Plocka upp och släpp kort genom att klicka"
 
-#: ../aisleriot/window.c:2408
+#: ../aisleriot/window.c:2293
 msgid "_Sound"
 msgstr "_Ljud"
 
-#: ../aisleriot/window.c:2409
+#: ../aisleriot/window.c:2294
 msgid "Whether or not to play event sounds"
 msgstr "Huruvida händelseljud ska spelas upp eller inte."
 
-#: ../aisleriot/window.c:2414
+#: ../aisleriot/window.c:2299
 msgid "_Animations"
 msgstr "A_nimationer"
 
-#: ../aisleriot/window.c:2415
+#: ../aisleriot/window.c:2300
 msgid "Whether or not to animate card moves"
 msgstr "Huruvida kortdrag ska animeras eller inte."
 
-#: ../aisleriot/window.c:2694
+#: ../aisleriot/window.c:2597
 #: ../glines/glines.c:1905
 #: ../gnobots2/statusbar.c:67
 #: ../quadrapassel/scoreframe.cpp:47
@@ -1719,13 +1724,13 @@ msgstr "Huruvida kortdrag ska animeras eller inte."
 msgid "Score:"
 msgstr "Poäng:"
 
-#: ../aisleriot/window.c:2706
+#: ../aisleriot/window.c:2609
 #: ../gnotravex/gnotravex.c:1384
 #: ../mahjongg/mahjongg.c:1465
 msgid "Time:"
 msgstr "Tid:"
 
-#: ../aisleriot/window.c:3064
+#: ../aisleriot/window.c:2975
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Kan inte starta spelet \"%s\""
@@ -2807,8 +2812,8 @@ msgstr "_Lämna spelet"
 #: ../gnobots2/menu.c:71
 #: ../quadrapassel/tetris.cpp:108
 #: ../gnomine/gnomine.c:835
-#: ../gtali/gyahtzee.c:702
-#: ../iagno/gnothello.c:813
+#: ../gtali/gyahtzee.c:706
+#: ../iagno/gnothello.c:829
 #: ../mahjongg/mahjongg.c:1243
 msgid "_Settings"
 msgstr "_Inställningar"
@@ -3166,12 +3171,16 @@ msgid "Black"
 msgstr "Svart"
 
 #. Translators: Load Game Dialog: Name of filter to show only PGN files
+#. Translators: Save Game Dialog: Name of filter to show only PGN files
 #: ../glchess/src/lib/gtkui/dialogs.py:443
+#: ../glchess/src/lib/gtkui/dialogs.py:518
 msgid "PGN files"
 msgstr "PGN-filer"
 
 #. Translators: Load Game Dialog: Name of filter to show all files
+#. Translators: Save Game Dialog: Name of filter to show all files
 #: ../glchess/src/lib/gtkui/dialogs.py:449
+#: ../glchess/src/lib/gtkui/dialogs.py:524
 msgid "All files"
 msgstr "Alla filer"
 
@@ -3186,21 +3195,21 @@ msgid "Unabled to load game"
 msgstr "Kunde inte läsa in spel"
 
 #. Translators: Save Game Dialog: Error displayed when no file name entered
-#: ../glchess/src/lib/gtkui/dialogs.py:550
+#: ../glchess/src/lib/gtkui/dialogs.py:552
 msgid "Please enter a file name"
 msgstr "Ange ett filnamn"
 
 #. Translators: Save Game Dialog: Error title when unable to save game
-#: ../glchess/src/lib/gtkui/dialogs.py:563
+#: ../glchess/src/lib/gtkui/dialogs.py:565
 msgid "Unabled to save game"
 msgstr "Kunde inte spara spel"
 
 #. Translators: Move Format Combo: Moves shown in human descriptive notation
 #. Translators: Player Type Combo: Player is human controlled
-#: ../glchess/src/lib/gtkui/dialogs.py:590
+#: ../glchess/src/lib/gtkui/dialogs.py:592
 #: ../glchess/src/lib/gtkui/gtkui.py:205
 #: ../gnect/src/prefs.c:250
-#: ../gtali/gyahtzee.c:990
+#: ../gtali/gyahtzee.c:993
 #: ../gtali/yahtzee.c:69
 #: ../iagno/properties.c:452
 #: ../iagno/properties.c:493
@@ -3208,65 +3217,65 @@ msgid "Human"
 msgstr "Mänsklig"
 
 #. Translators: Move Format Combo: Moves shown in standard algebraic notation (SAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:592
+#: ../glchess/src/lib/gtkui/dialogs.py:594
 msgid "Standard Algebraic"
 msgstr "Standardnotation"
 
 #. Translators: Move Format Combo: Moves shown in standard figurine algebraic notation (FAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:594
+#: ../glchess/src/lib/gtkui/dialogs.py:596
 msgid "Figurine"
 msgstr "Figurin"
 
 #. Translators: Move Format Combo: Moves shown in long algebraic notation (LAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:596
+#: ../glchess/src/lib/gtkui/dialogs.py:598
 msgid "Long Algebraic"
 msgstr "Lång notation"
 
 #. Translators: Board Side Combo: Camera will face white player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:606
+#: ../glchess/src/lib/gtkui/dialogs.py:608
 msgid "White Side"
 msgstr "Vit sida"
 
 #. Translators: Board Side Combo: Camera will face black player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:608
+#: ../glchess/src/lib/gtkui/dialogs.py:610
 msgid "Black Side"
 msgstr "Svart sida"
 
 #. Translators: Board Side Combo: Camera will face human player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:610
+#: ../glchess/src/lib/gtkui/dialogs.py:612
 msgid "Human Side"
 msgstr "Mänsklig sida"
 
 #. Translators: Board Side Combo: Camera will face current player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:612
+#: ../glchess/src/lib/gtkui/dialogs.py:614
 msgid "Current Player"
 msgstr "Aktuell spelare"
 
 #. Translators: Board Side Combo: Board will be drawn suitable for players on each side of screen, e.g. handhelds
-#: ../glchess/src/lib/gtkui/dialogs.py:614
+#: ../glchess/src/lib/gtkui/dialogs.py:616
 msgid "Face to Face"
 msgstr "Ansikte mot ansikte"
 
 #. Translators: Promotion Combo: Promote to a queen
-#: ../glchess/src/lib/gtkui/dialogs.py:624
+#: ../glchess/src/lib/gtkui/dialogs.py:626
 msgctxt "chess-piece"
 msgid "Queen"
 msgstr "Drottning"
 
 #. Translators: Promotion Combo: Promote to a knight
-#: ../glchess/src/lib/gtkui/dialogs.py:626
+#: ../glchess/src/lib/gtkui/dialogs.py:628
 msgctxt "chess-piece"
 msgid "Knight"
 msgstr "Springare"
 
 #. Translators: Promotion Combo: Promote to a rook
-#: ../glchess/src/lib/gtkui/dialogs.py:628
+#: ../glchess/src/lib/gtkui/dialogs.py:630
 msgctxt "chess-piece"
 msgid "Rook"
 msgstr "Torn"
 
 #. Translators: Promotion Combo: Promote to a bishop
-#: ../glchess/src/lib/gtkui/dialogs.py:630
+#: ../glchess/src/lib/gtkui/dialogs.py:632
 msgctxt "chess-piece"
 msgid "Bishop"
 msgstr "Löpare"
@@ -3337,7 +3346,7 @@ msgstr ""
 #. TODO: This should be a pop-up dialog
 #. FIXME: This should create a pop-up dialog
 #: ../glchess/src/lib/gtkui/gtkui.py:824
-#: ../gnome-sudoku/src/lib/main.py:727
+#: ../gnome-sudoku/src/lib/main.py:730
 #, python-format
 msgid "Unable to display help: %s"
 msgstr "Kunde inte visa hjälpen: %s"
@@ -4103,7 +4112,7 @@ msgstr ""
 "Felsökningsdata:"
 
 #: ../glchess/src/lib/main.py:716
-#: ../gnome-sudoku/src/lib/main.py:473
+#: ../gnome-sudoku/src/lib/main.py:476
 msgid "Save game before closing?"
 msgstr "Spara spelet innan stängning?"
 
@@ -4451,7 +4460,7 @@ msgid "It's a draw!"
 msgstr "Det är oavgjort!"
 
 #: ../gnect/src/main.c:567
-#: ../gnome-sudoku/src/lib/main.py:435
+#: ../gnome-sudoku/src/lib/main.py:438
 msgid "You win!"
 msgstr "Du vinner!"
 
@@ -4553,14 +4562,14 @@ msgstr "Inställningar för fyra-i-rad"
 
 #: ../gnect/src/prefs.c:303
 #: ../gnibbles/preferences.c:255
-#: ../gnobots2/properties.c:491
+#: ../gnobots2/properties.c:497
 #: ../quadrapassel/tetris.cpp:594
 #: ../iagno/properties.c:419
 msgid "Game"
 msgstr "Spel"
 
 #: ../gnect/src/prefs.c:335
-#: ../gnobots2/properties.c:530
+#: ../gnobots2/properties.c:536
 #: ../iagno/properties.c:531
 #: ../swell-foop/data/settings.ui.h:1
 msgid "Appearance"
@@ -4583,7 +4592,7 @@ msgstr "Ak_tivera ljud"
 #. keyboard tab
 #: ../gnect/src/prefs.c:368
 #: ../gnibbles/preferences.c:435
-#: ../gnobots2/properties.c:537
+#: ../gnobots2/properties.c:543
 #: ../quadrapassel/tetris.cpp:734
 msgid "Keyboard Controls"
 msgstr "Tangentbordsstyrning"
@@ -4693,40 +4702,40 @@ msgstr ""
 "\n"
 "Kontrollera din Nibbles-installation"
 
-#: ../gnibbles/gnibbles.c:367
+#: ../gnibbles/gnibbles.c:368
 msgid "Nibbles Scores"
 msgstr "Poänglistan för Nibbles"
 
-#: ../gnibbles/gnibbles.c:370
+#: ../gnibbles/gnibbles.c:371
 msgid "Speed:"
 msgstr "Hastighet:"
 
-#: ../gnibbles/gnibbles.c:375
+#: ../gnibbles/gnibbles.c:376
 #: ../gnobots2/game.c:182
 #: ../gnomine/gnomine.c:225
 #: ../gnotravex/gnotravex.c:1240
 #: ../gnotski/gnotski.c:842
-#: ../gtali/gyahtzee.c:203
+#: ../gtali/gyahtzee.c:200
 #: ../mahjongg/mahjongg.c:668
 msgid "Congratulations!"
 msgstr "Gratulerar!"
 
-#: ../gnibbles/gnibbles.c:376
+#: ../gnibbles/gnibbles.c:377
 #: ../gnobots2/game.c:183
 #: ../gnomine/gnomine.c:226
 #: ../gnotravex/gnotravex.c:1241
 #: ../gnotski/gnotski.c:843
-#: ../gtali/gyahtzee.c:204
+#: ../gtali/gyahtzee.c:201
 #: ../mahjongg/mahjongg.c:669
 msgid "Your score is the best!"
 msgstr "Ditt poängresultat är det bästa!"
 
-#: ../gnibbles/gnibbles.c:377
+#: ../gnibbles/gnibbles.c:378
 #: ../gnobots2/game.c:184
 #: ../gnomine/gnomine.c:227
 #: ../gnotravex/gnotravex.c:1242
 #: ../gnotski/gnotski.c:844
-#: ../gtali/gyahtzee.c:205
+#: ../gtali/gyahtzee.c:202
 #: ../mahjongg/mahjongg.c:670
 msgid "Your score has made the top ten."
 msgstr "Ditt poängresultat har hamnat bland de tio bästa."
@@ -4944,7 +4953,7 @@ msgstr "Otroligt bra"
 #. Options
 #: ../gnibbles/preferences.c:312
 #: ../gnibbles/preferences.c:454
-#: ../gnobots2/properties.c:455
+#: ../gnobots2/properties.c:461
 #: ../iagno/properties.c:570
 msgid "Options"
 msgstr "Alternativ"
@@ -5005,7 +5014,7 @@ msgid "Worm %d:"
 msgstr "Mask %d:"
 
 #: ../gnobots2/game.c:153
-#: ../gtali/gyahtzee.c:221
+#: ../gtali/gyahtzee.c:218
 msgid "Game over!"
 msgstr "Spelet är över!"
 
@@ -5069,7 +5078,7 @@ msgstr "Initial fönsterposition"
 #: ../gnomine/gnomine.c:1011
 #: ../gnotravex/gnotravex.c:400
 #: ../gnotski/gnotski.c:467
-#: ../iagno/gnothello.c:146
+#: ../iagno/gnothello.c:150
 msgid "X"
 msgstr "X"
 
@@ -5078,7 +5087,7 @@ msgstr "X"
 #: ../gnomine/gnomine.c:1013
 #: ../gnotravex/gnotravex.c:402
 #: ../gnotski/gnotski.c:469
-#: ../iagno/gnothello.c:148
+#: ../iagno/gnothello.c:152
 msgid "Y"
 msgstr "Y"
 
@@ -5142,27 +5151,27 @@ msgstr "Robotar med säker teleport och säkra förflyttningar"
 msgid "Robots with safe teleport with super-safe moves"
 msgstr "Robotar med säker teleport och supersäkra förflyttningar"
 
-#: ../gnobots2/gnobots.c:239
-#: ../gnobots2/gnobots.c:260
+#: ../gnobots2/gnobots.c:240
+#: ../gnobots2/gnobots.c:261
 #: ../gnobots2/gnobots2.desktop.in.in.h:2
 #: ../gnobots2/menu.c:263
 #: ../gnobots2/menu.c:266
 msgid "Robots"
 msgstr "Robotar"
 
-#: ../gnobots2/gnobots.c:322
+#: ../gnobots2/gnobots.c:323
 msgid "No game data could be found."
 msgstr "Inga speldata kunde hittas."
 
-#: ../gnobots2/gnobots.c:324
+#: ../gnobots2/gnobots.c:325
 msgid "The program Robots was unable to find any valid game configuration files. Please check that the program is installed correctly."
 msgstr "Programmet Robotar kunde inte hitta några giltiga spelkonfigurationsfiler. Kontrollera att programmet installerats korrekt."
 
-#: ../gnobots2/gnobots.c:340
+#: ../gnobots2/gnobots.c:341
 msgid "Some graphics files are missing or corrupt."
 msgstr "En del grafikfiler saknas eller är skadade."
 
-#: ../gnobots2/gnobots.c:342
+#: ../gnobots2/gnobots.c:343
 msgid "The program Robots was unable to load all the necessary graphics files. Please check that the program is installed correctly."
 msgstr "Programmet Robotar kunde inte läsa in alla de grafikfiler som behövs. Kontrollera att programmet installerats korrekt."
 
@@ -5188,62 +5197,62 @@ msgid "Game type. The name of the game variation to use."
 msgstr "Speltyp. Namnet på spelvarianten att använda."
 
 #: ../gnobots2/gnobots2.schemas.in.h:7
-#: ../gnobots2/properties.c:552
+#: ../gnobots2/properties.c:558
 msgid "Key to hold"
 msgstr "Tangent att hålla intryckt"
 
 #: ../gnobots2/gnobots2.schemas.in.h:8
-#: ../gnobots2/properties.c:548
+#: ../gnobots2/properties.c:554
 msgid "Key to move E"
 msgstr "Tangent för att flytta åt öster"
 
 #: ../gnobots2/gnobots2.schemas.in.h:9
-#: ../gnobots2/properties.c:545
+#: ../gnobots2/properties.c:551
 msgid "Key to move N"
 msgstr "Tangent för att flytta åt norr"
 
 #: ../gnobots2/gnobots2.schemas.in.h:10
-#: ../gnobots2/properties.c:546
+#: ../gnobots2/properties.c:552
 msgid "Key to move NE"
 msgstr "Tangent för att flytta åt nordöst"
 
 #: ../gnobots2/gnobots2.schemas.in.h:11
-#: ../gnobots2/properties.c:544
+#: ../gnobots2/properties.c:550
 msgid "Key to move NW"
 msgstr "Tangent för att flytta åt nordväst"
 
 #: ../gnobots2/gnobots2.schemas.in.h:12
-#: ../gnobots2/properties.c:550
+#: ../gnobots2/properties.c:556
 msgid "Key to move S"
 msgstr "Tangent för att flytta åt söder"
 
 #: ../gnobots2/gnobots2.schemas.in.h:13
-#: ../gnobots2/properties.c:551
+#: ../gnobots2/properties.c:557
 msgid "Key to move SE"
 msgstr "Tangent för att flytta åt sydöst"
 
 #: ../gnobots2/gnobots2.schemas.in.h:14
-#: ../gnobots2/properties.c:549
+#: ../gnobots2/properties.c:555
 msgid "Key to move SW"
 msgstr "Tangent för att flytta åt sydväst"
 
 #: ../gnobots2/gnobots2.schemas.in.h:15
-#: ../gnobots2/properties.c:547
+#: ../gnobots2/properties.c:553
 msgid "Key to move W"
 msgstr "Tangent för att flytta åt väster"
 
 #: ../gnobots2/gnobots2.schemas.in.h:16
-#: ../gnobots2/properties.c:553
+#: ../gnobots2/properties.c:559
 msgid "Key to teleport"
 msgstr "Tangent för att teleportera"
 
 #: ../gnobots2/gnobots2.schemas.in.h:17
-#: ../gnobots2/properties.c:554
+#: ../gnobots2/properties.c:560
 msgid "Key to teleport randomly"
 msgstr "Tangent för att teleportera slumpmässigt"
 
 #: ../gnobots2/gnobots2.schemas.in.h:18
-#: ../gnobots2/properties.c:555
+#: ../gnobots2/properties.c:561
 msgid "Key to wait"
 msgstr "Tangent för att vänta"
 
@@ -5328,7 +5337,7 @@ msgid "Use super safe moves. The player is alerted when there is no safe move an
 msgstr "Använd supersäkra förflyttningar. Spelaren varnas då det inte finns något säkert drag och det enda alternativet är att teleportera ut."
 
 #: ../gnobots2/graphics.c:155
-#: ../iagno/gnothello.c:415
+#: ../iagno/gnothello.c:419
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Kunde inte hitta pixmapfilen \"%s\"\n"
@@ -5372,107 +5381,107 @@ msgstr ""
 "\n"
 "Robotar är en del av GNOME Games."
 
-#: ../gnobots2/properties.c:316
+#: ../gnobots2/properties.c:320
 msgid "classic robots"
 msgstr "klassiska robotar"
 
-#: ../gnobots2/properties.c:317
+#: ../gnobots2/properties.c:321
 msgid "robots2"
 msgstr "robotar2"
 
-#: ../gnobots2/properties.c:318
+#: ../gnobots2/properties.c:322
 msgid "robots2 easy"
 msgstr "robotar2 lätt"
 
-#: ../gnobots2/properties.c:319
+#: ../gnobots2/properties.c:323
 msgid "robots with safe teleport"
 msgstr "robotar med säker teleport"
 
-#: ../gnobots2/properties.c:320
+#: ../gnobots2/properties.c:324
 msgid "nightmare"
 msgstr "mardröm"
 
-#: ../gnobots2/properties.c:359
+#: ../gnobots2/properties.c:365
 msgid "robots"
 msgstr "robotar"
 
-#: ../gnobots2/properties.c:360
+#: ../gnobots2/properties.c:366
 msgid "cows"
 msgstr "kor"
 
-#: ../gnobots2/properties.c:361
+#: ../gnobots2/properties.c:367
 msgid "eggs"
 msgstr "ägg"
 
-#: ../gnobots2/properties.c:362
+#: ../gnobots2/properties.c:368
 msgid "gnomes"
 msgstr "tomtar"
 
-#: ../gnobots2/properties.c:363
+#: ../gnobots2/properties.c:369
 msgid "mice"
 msgstr "möss"
 
-#: ../gnobots2/properties.c:364
+#: ../gnobots2/properties.c:370
 msgid "ufo"
 msgstr "ufo"
 
-#: ../gnobots2/properties.c:365
+#: ../gnobots2/properties.c:371
 msgid "boo"
 msgstr "boo"
 
-#: ../gnobots2/properties.c:419
+#: ../gnobots2/properties.c:425
 msgid "Robots Preferences"
 msgstr "Inställningar för Robotar"
 
 #. --- Combo (yahtzee or kismet style ----
-#: ../gnobots2/properties.c:440
+#: ../gnobots2/properties.c:446
 #: ../gtali/setup.c:361
 msgid "Game Type"
 msgstr "Speltyp"
 
-#: ../gnobots2/properties.c:460
+#: ../gnobots2/properties.c:466
 msgid "_Use safe moves"
 msgstr "_Använd säkra förflyttningar"
 
-#: ../gnobots2/properties.c:467
+#: ../gnobots2/properties.c:473
 msgid "Prevent accidental moves that result in getting killed."
 msgstr "Förhindra olyckliga drag som kan resultera i död."
 
-#: ../gnobots2/properties.c:469
+#: ../gnobots2/properties.c:475
 msgid "U_se super safe moves"
 msgstr "A_nvänd supersäkra förflyttningar"
 
-#: ../gnobots2/properties.c:476
+#: ../gnobots2/properties.c:482
 msgid "Prevents all moves that result in getting killed."
 msgstr "Förhindrar alla drag som kan resultera i död."
 
-#: ../gnobots2/properties.c:483
+#: ../gnobots2/properties.c:489
 #: ../quadrapassel/tetris.cpp:667
 msgid "_Enable sounds"
 msgstr "A_ktivera ljud"
 
-#: ../gnobots2/properties.c:489
+#: ../gnobots2/properties.c:495
 msgid "Play sounds for events like winning a level and dying."
 msgstr "Spela ljud för händelser som exempelvis att vinna en nivå och att dö."
 
-#: ../gnobots2/properties.c:499
+#: ../gnobots2/properties.c:505
 msgid "Graphics Theme"
 msgstr "Grafiktema"
 
-#: ../gnobots2/properties.c:507
+#: ../gnobots2/properties.c:513
 msgid "_Image theme:"
 msgstr "_Bildtema:"
 
-#: ../gnobots2/properties.c:518
+#: ../gnobots2/properties.c:524
 #: ../mahjongg/mahjongg.c:775
 msgid "_Background color:"
 msgstr "_Bakgrundsfärg:"
 
-#: ../gnobots2/properties.c:564
+#: ../gnobots2/properties.c:570
 msgid "_Restore Defaults"
 msgstr "_Återställ standardalternativen"
 
-#: ../gnobots2/properties.c:569
+#: ../gnobots2/properties.c:575
 msgid "Keyboard"
 msgstr "Tangentbord"
 
@@ -5900,7 +5909,7 @@ msgid "_Add Tracker"
 msgstr "_Lägg till spårare"
 
 #: ../gnome-sudoku/data/tracker.ui.h:3
-#: ../gnome-sudoku/src/lib/main.py:785
+#: ../gnome-sudoku/src/lib/main.py:788
 msgid "_Clear Tracker"
 msgstr "_Rensa spårare"
 
@@ -6121,96 +6130,96 @@ msgstr "Töm _anteckningar"
 msgid "Clear notes and hints"
 msgstr "Töm anteckningar och tips"
 
-#: ../gnome-sudoku/src/lib/main.py:417
+#: ../gnome-sudoku/src/lib/main.py:420
 #, python-format
 msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
 msgstr "Du lade pusslet på %(totalTime)s (%(activeTime)s aktivt)"
 
-#: ../gnome-sudoku/src/lib/main.py:421
+#: ../gnome-sudoku/src/lib/main.py:424
 #, python-format
 msgid "You got %(n)s hint"
 msgid_plural "You got %(n)s hints"
 msgstr[0] "Du fick %(n)s tips"
 msgstr[1] "Du fick %(n)s tips"
 
-#: ../gnome-sudoku/src/lib/main.py:424
+#: ../gnome-sudoku/src/lib/main.py:427
 #, python-format
 msgid "You had %(n)s impossibility pointed out."
 msgid_plural "You had %(n)s impossibilities pointed out."
 msgstr[0] "Du hade %(n)s omöjlighet påpekad."
 msgstr[1] "Du hade %(n)s omöjligheter påpekade."
 
-#: ../gnome-sudoku/src/lib/main.py:429
+#: ../gnome-sudoku/src/lib/main.py:432
 #, python-format
 msgid "You used the auto-fill %(n)s time"
 msgid_plural "You used the auto-fill %(n)s times"
 msgstr[0] "Du använde automatisk utfyllnad %(n)s gång"
 msgstr[1] "Du använde automatisk utfyllnad %(n)s gånger"
 
-#: ../gnome-sudoku/src/lib/main.py:453
+#: ../gnome-sudoku/src/lib/main.py:456
 msgid "Save this game before starting new one?"
 msgstr "Spara detta spel innan ett nytt startas?"
 
-#: ../gnome-sudoku/src/lib/main.py:454
+#: ../gnome-sudoku/src/lib/main.py:457
 msgid "_Save game for later"
 msgstr "_Spara spelet tills senare"
 
-#: ../gnome-sudoku/src/lib/main.py:455
+#: ../gnome-sudoku/src/lib/main.py:458
 msgid "_Abandon game"
 msgstr "Ö_verge spelet"
 
-#: ../gnome-sudoku/src/lib/main.py:649
+#: ../gnome-sudoku/src/lib/main.py:652
 #, python-format
 msgid "Playing %(difficulty)s puzzle."
 msgstr "Spelar %(difficulty)s pussel."
 
-#: ../gnome-sudoku/src/lib/main.py:665
+#: ../gnome-sudoku/src/lib/main.py:668
 msgid "Puzzle Information"
 msgstr "Information om pussel"
 
-#: ../gnome-sudoku/src/lib/main.py:666
+#: ../gnome-sudoku/src/lib/main.py:669
 msgid "There is no current puzzle."
 msgstr "Det finns ingen aktuell rebus."
 
-#: ../gnome-sudoku/src/lib/main.py:671
+#: ../gnome-sudoku/src/lib/main.py:674
 msgid "Calculated difficulty: "
 msgstr "Beräknad svårighetsgrad: "
 
-#: ../gnome-sudoku/src/lib/main.py:675
+#: ../gnome-sudoku/src/lib/main.py:678
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "Antal drag som direkt kan fyllas i med hjälp av uteslutning: "
 
-#: ../gnome-sudoku/src/lib/main.py:678
+#: ../gnome-sudoku/src/lib/main.py:681
 msgid "Number of moves instantly fillable by filling: "
 msgstr "Antal drag som direkt kan fyllas i: "
 
-#: ../gnome-sudoku/src/lib/main.py:681
+#: ../gnome-sudoku/src/lib/main.py:684
 msgid "Amount of trial-and-error required to solve: "
 msgstr "Antalet misslyckade försök som krävs för att lösa: "
 
-#: ../gnome-sudoku/src/lib/main.py:684
-#: ../gnome-sudoku/src/lib/main.py:685
+#: ../gnome-sudoku/src/lib/main.py:687
+#: ../gnome-sudoku/src/lib/main.py:688
 msgid "Puzzle Statistics"
 msgstr "Pusselstatistik"
 
 #. Our initial row...
-#: ../gnome-sudoku/src/lib/main.py:776
+#: ../gnome-sudoku/src/lib/main.py:779
 msgid "No Tracker"
 msgstr "Ingen bevakare"
 
-#: ../gnome-sudoku/src/lib/main.py:786
+#: ../gnome-sudoku/src/lib/main.py:789
 msgid "Clear all moves tracked by selected tracker."
 msgstr "Rensa alla drag spårade av spåraren."
 
-#: ../gnome-sudoku/src/lib/main.py:790
+#: ../gnome-sudoku/src/lib/main.py:793
 msgid "_Clear Others"
 msgstr "Rensa _andra"
 
-#: ../gnome-sudoku/src/lib/main.py:792
+#: ../gnome-sudoku/src/lib/main.py:795
 msgid "Clear all moves not tracked by selected tracker."
 msgstr "Rensa alla drag som inte spårats av vald spårare."
 
-#: ../gnome-sudoku/src/lib/main.py:817
+#: ../gnome-sudoku/src/lib/main.py:820
 #, python-format
 msgid "Tracker %s"
 msgstr "Bevakare %s"
@@ -6500,14 +6509,14 @@ msgstr "Storlek på brädet (0-2=litet-stort, 3=anpassat)"
 #: ../gnomine/gnomine.c:1010
 #: ../gnotravex/gnotravex.c:399
 #: ../gnotski/gnotski.c:466
-#: ../iagno/gnothello.c:145
+#: ../iagno/gnothello.c:149
 msgid "X location of window"
 msgstr "X-koordinat för fönstret"
 
 #: ../gnomine/gnomine.c:1012
 #: ../gnotravex/gnotravex.c:401
 #: ../gnotski/gnotski.c:468
-#: ../iagno/gnothello.c:147
+#: ../iagno/gnothello.c:151
 msgid "Y location of window"
 msgstr "Y-koordinat för fönstret"
 
@@ -7141,12 +7150,12 @@ msgstr "Pusslet som spelas"
 msgid "Already used! Where do you want to put that?"
 msgstr "Redan använd! Var vill du placera den?"
 
-#: ../gtali/clist.c:415
+#: ../gtali/clist.c:414
 #, c-format
 msgid "Score: %d"
 msgstr "Poäng: %d"
 
-#: ../gtali/clist.c:417
+#: ../gtali/clist.c:416
 #, c-format
 msgid "Field used"
 msgstr "Fält använt"
@@ -7191,110 +7200,110 @@ msgstr "Vanligt"
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr "[Mänsklig,Göran,Bengt,Monica,Kenneth,Jeanette]"
 
-#: ../gtali/gyahtzee.c:106
+#: ../gtali/gyahtzee.c:103
 msgid "Delay computer moves"
 msgstr "Fördröj datorns drag"
 
-#: ../gtali/gyahtzee.c:108
+#: ../gtali/gyahtzee.c:105
 msgid "Display computer thoughts"
 msgstr "Visa datorns tankar"
 
-#: ../gtali/gyahtzee.c:110
+#: ../gtali/gyahtzee.c:107
 msgid "Number of computer opponents"
 msgstr "Antal datormotståndare"
 
-#: ../gtali/gyahtzee.c:112
+#: ../gtali/gyahtzee.c:109
 msgid "Number of human opponents"
 msgstr "Antal mänskliga motståndare"
 
-#: ../gtali/gyahtzee.c:114
+#: ../gtali/gyahtzee.c:111
 msgid "Game choice: Regular or Colors"
 msgstr "Spelval: Vanligt eller Färger"
 
-#: ../gtali/gyahtzee.c:114
+#: ../gtali/gyahtzee.c:111
 msgid "STRING"
 msgstr "STRÄNG"
 
-#: ../gtali/gyahtzee.c:116
+#: ../gtali/gyahtzee.c:113
 msgid "Number of computer-only games to play"
 msgstr "Antal spel med endast datorspelare att spela"
 
-#: ../gtali/gyahtzee.c:118
+#: ../gtali/gyahtzee.c:115
 msgid "Number of trials for each roll for the computer"
 msgstr "Antal försök för varje tärningskast för datorn"
 
-#: ../gtali/gyahtzee.c:123
+#: ../gtali/gyahtzee.c:120
 #: ../gtali/setup.c:365
 msgctxt "game type"
 msgid "Regular"
 msgstr "Vanligt"
 
-#: ../gtali/gyahtzee.c:124
+#: ../gtali/gyahtzee.c:121
 #: ../gtali/setup.c:366
 msgctxt "game type"
 msgid "Colors"
 msgstr "Färger"
 
-#: ../gtali/gyahtzee.c:147
+#: ../gtali/gyahtzee.c:144
 msgid "Roll all!"
 msgstr "Kasta alla!"
 
-#: ../gtali/gyahtzee.c:150
-#: ../gtali/gyahtzee.c:817
+#: ../gtali/gyahtzee.c:147
+#: ../gtali/gyahtzee.c:820
 msgid "Roll!"
 msgstr "Kasta!"
 
-#: ../gtali/gyahtzee.c:185
+#: ../gtali/gyahtzee.c:182
 msgid "The game is a draw!"
 msgstr "Spelet är oavgjort!"
 
-#: ../gtali/gyahtzee.c:201
-#: ../gtali/gyahtzee.c:638
+#: ../gtali/gyahtzee.c:198
+#: ../gtali/gyahtzee.c:635
 msgid "Tali Scores"
 msgstr "Poänglistan för Tali"
 
-#: ../gtali/gyahtzee.c:217
+#: ../gtali/gyahtzee.c:214
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
 msgstr[0] "%s vinner spelet med %d poäng"
 msgstr[1] "%s vinner spelet med %d poäng"
 
-#: ../gtali/gyahtzee.c:265
+#: ../gtali/gyahtzee.c:262
 #, c-format
 msgid "Computer playing for %s"
 msgstr "Datorn spelar för %s"
 
-#: ../gtali/gyahtzee.c:267
+#: ../gtali/gyahtzee.c:264
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- Din tur."
 
-#: ../gtali/gyahtzee.c:456
+#: ../gtali/gyahtzee.c:453
 msgid "Select dice to roll or choose a score slot."
 msgstr "Välj tärning att kasta eller välj en poängruta."
 
-#: ../gtali/gyahtzee.c:485
+#: ../gtali/gyahtzee.c:482
 msgid "Roll"
 msgstr "Kasta"
 
-#: ../gtali/gyahtzee.c:543
+#: ../gtali/gyahtzee.c:540
 msgid "You are only allowed three rolls. Choose a score slot."
 msgstr "Du får bara tre kast. Välj en poängruta."
 
-#: ../gtali/gyahtzee.c:594
+#: ../gtali/gyahtzee.c:591
 msgid "GNOME version (1998):"
 msgstr "GNOME-version (1998):"
 
-#: ../gtali/gyahtzee.c:597
+#: ../gtali/gyahtzee.c:594
 msgid "Console version (1992):"
 msgstr "Konsollversion (1992):"
 
-#: ../gtali/gyahtzee.c:600
+#: ../gtali/gyahtzee.c:597
 msgid "Colors game and multi-level AI (2006):"
 msgstr "Färgspel och flernivåers-AI (2006):"
 
-#: ../gtali/gyahtzee.c:618
+#: ../gtali/gyahtzee.c:615
 msgid ""
 "A variation on poker with dice and less money.\n"
 "\n"
@@ -7498,7 +7507,7 @@ msgid "Iagno"
 msgstr "Iagno"
 
 # Osäker.
-#: ../iagno/gnothello.c:265
+#: ../iagno/gnothello.c:269
 msgid ""
 "A disk flipping game derived from Reversi.\n"
 "\n"
@@ -7508,46 +7517,46 @@ msgstr ""
 "\n"
 "Iagno är en del av GNOME Games."
 
-#: ../iagno/gnothello.c:346
+#: ../iagno/gnothello.c:350
 msgid "Invalid move."
 msgstr "Ogiltigt drag."
 
-#: ../iagno/gnothello.c:620
-#: ../iagno/gnothello.c:622
+#: ../iagno/gnothello.c:636
+#: ../iagno/gnothello.c:638
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
 
-#: ../iagno/gnothello.c:644
+#: ../iagno/gnothello.c:660
 msgid "It is your turn to place a dark piece"
 msgstr "Det är din tur att placera ut en mörk pjäs"
 
-#: ../iagno/gnothello.c:646
+#: ../iagno/gnothello.c:662
 msgid "It is your turn to place a light piece"
 msgstr "Det är din tur att placera ut en ljus pjäs"
 
-#: ../iagno/gnothello.c:649
+#: ../iagno/gnothello.c:665
 #, c-format
 msgid "Waiting for %s to move"
 msgstr "Väntar på att %s ska flytta"
 
-#: ../iagno/gnothello.c:656
+#: ../iagno/gnothello.c:672
 msgid "Dark's move"
 msgstr "Mörkt drag"
 
-#: ../iagno/gnothello.c:658
+#: ../iagno/gnothello.c:674
 msgid "Light's move"
 msgstr "Ljust drag"
 
-#: ../iagno/gnothello.c:945
+#: ../iagno/gnothello.c:958
 msgid "Dark:"
 msgstr "Mörk:"
 
-#: ../iagno/gnothello.c:955
+#: ../iagno/gnothello.c:968
 msgid "Light:"
 msgstr "Ljus:"
 
-#: ../iagno/gnothello.c:979
+#: ../iagno/gnothello.c:992
 msgid "Welcome to Iagno!"
 msgstr "Välkommen till Iagno!"
 
@@ -7976,7 +7985,7 @@ msgstr "Stäng av alla ljus"
 
 #: ../lightsoff/lightsoff.schemas.in.h:1
 msgid "If enabled, the default background color from the user's default GNOME theme is used to draw the tiles."
-msgstr ""
+msgstr "Om aktiverad så kommer standardbakgrundsfärgen från användarens GNOME-tema att användas för att rita ut brickorna."
 
 #: ../lightsoff/lightsoff.schemas.in.h:2
 msgid "The current score"
@@ -7997,9 +8006,8 @@ msgid "The users's most recent score."
 msgstr "Användarens senaste poäng."
 
 #: ../lightsoff/lightsoff.schemas.in.h:6
-#, fuzzy
 msgid "Whether or not to use the GNOME theme colors"
-msgstr "Huruvida verktygsraden ska visas eller inte"
+msgstr "Huruvida GNOME-temafärgerna ska användas eller inte"
 
 #: ../lightsoff/data/settings.ui.h:2
 msgid "Look & Feel"
@@ -8024,8 +8032,8 @@ msgstr ""
 "\n"
 "Kontrollera att Mah Jong är korrekt installerat."
 
-#: ../mahjongg/drawing.c:470
-#: ../mahjongg/drawing.c:483
+#: ../mahjongg/drawing.c:471
+#: ../mahjongg/drawing.c:484
 #, c-format
 msgid ""
 "Unable to render file:\n"
@@ -8212,11 +8220,12 @@ msgctxt "mahjongg map name"
 msgid "Difficult"
 msgstr "Svår"
 
+# Plötslig attack eller liknande.. nytt namn på Same GNOME
 #: ../swell-foop/data/swell-foop.ui.h:1
 #: ../swell-foop/data/settings.ui.h:6
 #: ../swell-foop/swell-foop.desktop.in.in.h:2
 msgid "Swell Foop"
-msgstr ""
+msgstr "Swell Foop"
 
 #: ../swell-foop/data/settings.ui.h:2
 msgid "Board size:"
@@ -8231,9 +8240,8 @@ msgid "Zealous Animation"
 msgstr "Maffig animation"
 
 #: ../swell-foop/swell-foop.desktop.in.in.h:1
-#, fuzzy
 msgid "Clear the screen by removing groups of colored and shaped tiles"
-msgstr "Rensa skärmen genom att ta bort grupper av färgade bollar"
+msgstr "Rensa skärmen genom att ta bort grupper av färgade och formade bollar"
 
 #: ../swell-foop/swell-foop.schemas.in.h:1
 msgid "Board color count"
