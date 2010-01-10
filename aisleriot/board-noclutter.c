@@ -2562,7 +2562,7 @@ aisleriot_board_sync_style (ArStyle *style,
       }
     }
   }
-#endif
+#endif /* !HAVE_HILDON */
 
   if (update_geometry && GTK_WIDGET_REALIZED (widget)) {
     aisleriot_board_setup_geometry (board);

@@ -2582,8 +2582,14 @@ aisleriot_window_init (AisleriotWindow *window)
                                               GTK_WIDGET (priv->statusbar));
 
   priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "board-message");
+
+#ifdef HAVE_CLUTTER
+  g_signal_connect (priv->board_actor, "status-message",
+                    G_CALLBACK (board_status_message_cb), window);
+#else
   g_signal_connect (priv->board, "status-message",
                     G_CALLBACK (board_status_message_cb), window);
+#endif
 
 #if GTK_CHECK_VERSION (2, 11, 0)
   gtk_statusbar_set_has_resize_grip (priv->statusbar, TRUE);

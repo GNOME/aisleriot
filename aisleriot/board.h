@@ -57,6 +57,9 @@ struct _AisleriotBoardClass {
 
   void (* error_bell)       (AisleriotBoard *board);
 
+  void (* status_message)   (AisleriotBoard *board,
+                             const char *message);
+
   /* Focus */
   gboolean (* focus)        (AisleriotBoard *,
                              int direction);

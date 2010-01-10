@@ -177,6 +177,9 @@ struct _AisleriotBoardPrivate
      trigger animations */
   guint check_animations_handler;
 
+  /* Status message */
+  const char *status_message; /* interned */
+
   /* Bit field */
   guint droppable_supported : 1;
   guint touchscreen_mode : 1;
@@ -194,6 +197,7 @@ struct _AisleriotBoardPrivate
 
   guint show_selection : 1;
   guint show_highlight : 1;
+  guint show_status_messages : 1;
 
   guint force_geometry_update : 1;
 };
@@ -220,6 +224,7 @@ enum
 {
   REQUEST_CURSOR,
   ERROR_BELL,
+  STATUS_MESSAGE,
   FOCUS,
 #ifdef ENABLE_KEYNAV
   ACTIVATE,
@@ -300,6 +305,22 @@ set_cursor_by_location (AisleriotBoard *board,
 
   set_cursor (board, cursor);
 #endif /* !HAVE_HILDON */
+}
+
+/* status message */
+
+static void
+set_status_message (AisleriotBoard *board,
+                    const char *message)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+
+  if (g_strcmp0 (priv->status_message, message) == 0)
+    return;
+
+  priv->status_message = g_intern_string (message);
+
+  g_signal_emit (board, signals[STATUS_MESSAGE], 0, priv->status_message);
 }
 
 /* Slot helpers */
@@ -2229,6 +2250,23 @@ aisleriot_board_sync_style (ArStyle *style,
     }
   }
 
+#ifndef HAVE_HILDON
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_SHOW_STATUS_MESSAGES)) {
+    gboolean show_status_messages;
+
+    show_status_messages = ar_style_get_show_status_messages (priv->style);
+
+    if (show_status_messages != priv->show_status_messages) {
+      priv->show_status_messages = show_status_messages;
+
+      if (!show_status_messages) {
+        /* Clear message */
+        set_status_message (board, NULL);
+      }
+    }
+  }
+#endif /* !HAVE_HILDON */
+
   /* FIXMEchpe: queue a relayout instead? */
   if (update_geometry) {
     aisleriot_board_setup_geometry (board);
@@ -2965,6 +3003,24 @@ aisleriot_board_motion (ClutterActor *actor,
    * parent classes have no class closure for this event.
    */
 
+#ifndef HAVE_HILDON
+  if (priv->show_status_messages) {
+    ArSlot *slot = NULL;
+    int cardid = -1;
+
+    get_slot_and_card_from_point (board, event->x, event->y, &slot, &cardid);
+    if (slot != NULL && ar_slot_get_slot_type (slot) != AR_SLOT_UNKNOWN) {
+      char *text;
+
+      text = ar_slot_get_hint_string (slot, cardid);
+      set_status_message (board, text);
+      g_free (text);
+    } else {
+      set_status_message (board, NULL);
+    }
+  }
+#endif /* !HAVE_HILDON */
+
   if (priv->click_status == STATUS_IS_DRAG) {
     ArSlot *slot;
     int x, y;
@@ -3062,6 +3118,7 @@ aisleriot_board_init (AisleriotBoard *board)
 
   priv->click_to_move = FALSE;
   priv->show_selection = FALSE;
+  priv->show_status_messages = FALSE;
 
   priv->show_card_id = -1;
 
@@ -3226,6 +3283,17 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,
                   0);
+
+  signals[STATUS_MESSAGE] =
+    g_signal_new (I_("status-message"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (AisleriotBoardClass, status_message),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__STRING,
+                  G_TYPE_NONE,
+                  1,
+                  G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE);
 
   signals[ERROR_BELL] =
     g_signal_new (I_("focus"),
