@@ -246,3 +246,94 @@ _games_card_to_index (Card card)
 
   return card_id;
 }
+
+/* FIXMEchpe compactify & constify */
+static const char *card_names[] = {
+  N_("ace of clubs"),
+  N_("two of clubs"),
+  N_("three of clubs"),
+  N_("four of clubs"),
+  N_("five of clubs"),
+  N_("six of clubs"),
+  N_("seven of clubs"),
+  N_("eight of clubs"),
+  N_("nine of clubs"),
+  N_("ten of clubs"),
+  N_("jack of clubs"),
+  N_("queen of clubs"),
+  N_("king of clubs"),
+  N_("ace of diamonds"),
+  N_("two of diamonds"),
+  N_("three of diamonds"),
+  N_("four of diamonds"),
+  N_("five of diamonds"),
+  N_("six of diamonds"),
+  N_("seven of diamonds"),
+  N_("eight of diamonds"),
+  N_("nine of diamonds"),
+  N_("ten of diamonds"),
+  N_("jack of diamonds"),
+  N_("queen of diamonds"),
+  N_("king of diamonds"),
+  N_("ace of hearts"),
+  N_("two of hearts"),
+  N_("three of hearts"),
+  N_("four of hearts"),
+  N_("five of hearts"),
+  N_("six of hearts"),
+  N_("seven of hearts"),
+  N_("eight of hearts"),
+  N_("nine of hearts"),
+  N_("ten of hearts"),
+  N_("jack of hearts"),
+  N_("queen of hearts"),
+  N_("king of hearts"),
+  N_("ace of spades"),
+  N_("two of spades"),
+  N_("three of spades"),
+  N_("four of spades"),
+  N_("five of spades"),
+  N_("six of spades"),
+  N_("seven of spades"),
+  N_("eight of spades"),
+  N_("nine of spades"),
+  N_("ten of spades"),
+  N_("jack of spades"),
+  N_("queen of spades"),
+  N_("king of spades")
+};
+#define GAMES_CARD_ID(suit, rank) ((13*(suit)) + ((rank-1)%13))
+
+/**
+ * games_card_get_localized_name:
+ * @card:
+ *
+ * Returns: a localised name for @card, e.g. "Face-down card" or
+ * "9 of clubs", etc.
+ */
+const char *
+games_card_get_locale_name (Card card)
+{
+  guint rank, suit;
+
+  if (CARD_GET_FACE_DOWN (card)) {
+    return _("face-down card");
+  };
+
+  rank = CARD_GET_RANK (card);
+  suit = CARD_GET_SUIT (card);
+
+  if (G_UNLIKELY (rank == 0)) {
+    /* A joker */
+    if (suit == GAMES_CARDS_CLUBS ||
+        suit == GAMES_CARDS_SPADES) {
+      /* A black joker. */
+      return _("black joker");
+    } else {
+      /* A red joker. */
+      return _("red joker");
+    }
+  }
+
+  return _(card_names[GAMES_CARD_ID(suit, rank)]);
+}

@@ -120,6 +120,8 @@ char * games_card_get_name_by_id (int card_id);
 
 const char * games_card_get_localised_rank_symbol (int rank);
 
+const char * games_card_get_locale_name (Card card);
+
 G_END_DECLS
 
 #endif /* !GAMES_CARD_H */
