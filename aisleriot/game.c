@@ -1449,33 +1449,33 @@ ar_slot_get_hint_string (ArSlot *slot,
 
   g_return_val_if_fail (slot != NULL, NULL);
 
+  if (slot->type == AR_SLOT_UNKNOWN)
+    return NULL;
+
   if (cardid < 0)
     return g_strdup (ar_slot_get_type_string (slot));
 
   card_name = games_card_get_locale_name (CARD (slot->cards->data[cardid]));
 
   switch (slot->type) {
-    case AR_SLOT_UNKNOWN:
-      return g_strdup (card_name);
-
     case AR_SLOT_FOUNDATION:
-      /* Translators: %s is the name of the card; foundation is the name of a type of card slot */
+      /* Translators: %s is the name of the card; "foundation" is the name of a type of card slot */
       return g_strdup_printf (C_("slot hint", "%s on foundation"), card_name);
 
     case AR_SLOT_RESERVE:
-      /* Translators: this is the name of a type of card slot */
+      /* Translators: %s is the name of the card; "reserve" is the name of a type of card slot */
       return g_strdup_printf (C_("slot hint", "%s on reserve"), card_name);
 
     case AR_SLOT_STOCK:
-      /* Translators: this is the name of a type of card slot */
+      /* Translators: %s is the name of the card; "stock" is the name of a type of card slot */
       return g_strdup_printf (C_("slot hint", "%s on stock"), card_name);
 
     case AR_SLOT_TABLEAU:
-      /* Translators: this is the name of a type of card slot */
+      /* Translators: %s is the name of the card; "tableau" is the name of a type of card slot */
       return g_strdup_printf (C_("slot hint", "%s on tableau"), card_name);
 
     case AR_SLOT_WASTE:
-      /* Translators: this is the name of a type of card slot */
+      /* Translators: %s is the name of the card; "waste" is the name of a type of card slot */
       return g_strdup_printf (C_("slot hint", "%s on waste"), card_name);
 
     default:
