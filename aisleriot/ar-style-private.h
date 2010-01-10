@@ -43,6 +43,9 @@ static const GdkColor default_selection_color = { 0, 0 /* red */, 0 /* green */,
 #define DEFAULT_PIXBUF_DRAWING (TRUE)
 #endif
 
+#define DEFAULT_SHOW_TOOLTIPS (FALSE)
+#define DEFAULT_SHOW_STATUS_MESSAGES (TRUE)
+
 struct _ArStylePrivate
 {
   GamesCardTheme* card_theme;
@@ -66,6 +69,8 @@ struct _ArStylePrivate
   guint enable_animations       : 1;
   guint enable_sound_gtk        : 1;
   guint enable_sound            : 1;
+  guint enable_tooltips         : 1;
+  guint enable_status_messages  : 1;
   guint touchscreen_mode        : 1;
 
   guint rtl                     : 1;

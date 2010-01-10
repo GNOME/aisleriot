@@ -43,6 +43,8 @@ enum
 #endif
   PROP_RTL,
   PROP_SELECTION_COLOR,
+  PROP_SHOW_TOOLTIPS,
+  PROP_SHOW_STATUS_MESSAGES,
   PROP_TOUCHSCREEN_MODE
 };
 
@@ -80,6 +82,8 @@ ar_style_init (ArStyle *style)
   priv->rtl = FALSE;
   priv->interior_focus = FALSE;
   priv->click_to_move = FALSE;
+  priv->enable_tooltips = DEFAULT_SHOW_TOOLTIPS;
+  priv->enable_status_messages = DEFAULT_SHOW_STATUS_MESSAGES;
 
 #ifndef HAVE_CLUTTER
 
@@ -188,6 +192,14 @@ ar_style_get_property (GObject    *object,
       g_value_set_boxed (value, &priv->selection_color);
       break;
 
+    case PROP_SHOW_TOOLTIPS:
+      g_value_set_boolean (value, ar_style_get_show_tooltips (style));
+      break;
+
+    case PROP_SHOW_STATUS_MESSAGES:
+      g_value_set_boolean (value, ar_style_get_show_status_messages (style));
+      break;
+
     case PROP_TOUCHSCREEN_MODE:
       g_value_set_boolean (value, ar_style_get_touchscreen_mode (style));
       break;
@@ -283,6 +295,14 @@ ar_style_set_property (GObject      *object,
 
     case PROP_ENABLE_SOUND:
       ar_style_set_enable_sound (style, g_value_get_boolean (value));
+      break;
+
+    case PROP_SHOW_TOOLTIPS:
+      priv->enable_tooltips = g_value_get_boolean (value) != FALSE;
+      break;
+
+    case PROP_SHOW_STATUS_MESSAGES:
+      priv->enable_status_messages = g_value_get_boolean (value) != FALSE;
       break;
 
     case PROP_TOUCHSCREEN_MODE:
@@ -452,6 +472,32 @@ ar_style_class_init (ArStyleClass *klass)
                          G_PARAM_READWRITE |
                          G_PARAM_STATIC_STRINGS));
 #endif /* HAVE_CLUTTER */
+
+  /**
+   * ArStyle:show-tooltips:
+   *
+   * Whether to show tooltips on the cards and slots.
+   */
+  g_object_class_install_property
+    (object_class,
+     PROP_SHOW_TOOLTIPS,
+     g_param_spec_boolean (AR_STYLE_PROP_SHOW_TOOLTIPS, NULL, NULL,
+                           DEFAULT_SHOW_TOOLTIPS,
+                           G_PARAM_READWRITE |
+                           G_PARAM_STATIC_STRINGS));
+
+  /**
+   * ArStyle:show-status-messages:
+   *
+   * Whether to show status messages on motion over the cards and slots.
+   */
+  g_object_class_install_property
+    (object_class,
+     PROP_SHOW_STATUS_MESSAGES,
+     g_param_spec_boolean (AR_STYLE_PROP_SHOW_STATUS_MESSAGES, NULL, NULL,
+                           DEFAULT_SHOW_STATUS_MESSAGES,
+                           G_PARAM_READWRITE |
+                           G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (object_class,
@@ -666,7 +712,6 @@ ar_style_get_interior_focus (ArStyle *style)
   return priv->interior_focus;
 }
 
-
 /**
  * ar_style_get_rtl:
  * @style: an #ArStyle
@@ -679,6 +724,34 @@ ar_style_get_rtl (ArStyle *style)
   ArStylePrivate *priv = style->priv;
 
   return priv->rtl;
+}
+
+/**
+ * ar_style_get_show_tooltips:
+ * @style: an #ArStyle
+ *
+ * Returns:
+ */
+gboolean
+ar_style_get_show_tooltips (ArStyle *style)
+{
+  ArStylePrivate *priv = style->priv;
+
+  return priv->enable_tooltips;
+}
+
+/**
+ * ar_style_get_show_status_messages:
+ * @style: an #ArStyle
+ *
+ * Returns:
+ */
+gboolean
+ar_style_get_show_status_messages (ArStyle *style)
+{
+  ArStylePrivate *priv = style->priv;
+
+  return priv->enable_status_messages;
 }
 
 /**

@@ -72,6 +72,8 @@ ArStyle* ar_style_new (void);
 #define AR_STYLE_PROP_INTERIOR_FOCUS      "interior-focus"
 #define AR_STYLE_PROP_RTL                 "rtl"
 #define AR_STYLE_PROP_SELECTION_COLOR     "selection-color"
+#define AR_STYLE_PROP_SHOW_TOOLTIPS       "show-tooltips"
+#define AR_STYLE_PROP_SHOW_STATUS_MESSAGES "show-status-messages"
 #define AR_STYLE_PROP_TOUCHSCREEN_MODE    "touchscreen-mode"
 
 gboolean ar_style_get_enable_animations (ArStyle *style);
@@ -94,6 +96,8 @@ void            ar_style_set_card_theme (ArStyle *style,
 gboolean ar_style_get_touchscreen_mode (ArStyle *style);
 gboolean ar_style_get_interior_focus   (ArStyle *style);
 gboolean ar_style_get_rtl              (ArStyle *style);
+gboolean ar_style_get_show_tooltips    (ArStyle *style);
+gboolean ar_style_get_show_status_messages (ArStyle *style);
 
 int ar_style_get_double_click_time  (ArStyle *style);
 int ar_style_get_focus_line_width   (ArStyle *style);

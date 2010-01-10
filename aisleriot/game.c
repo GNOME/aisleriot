@@ -1380,6 +1380,112 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
 /* public API */
 
 /**
+ * ar_slot_get_slot_type:
+ * @slot: a #ArSlot
+ *
+ * Returns: the slot type of @slot
+ */
+ArSlotType
+ar_slot_get_slot_type (ArSlot *slot)
+{
+  g_return_val_if_fail (slot != NULL, AR_SLOT_UNKNOWN);
+
+  return slot->type;
+}
+
+/**
+ * ar_slot_get_type_string:
+ * @slot: a #ArSlot
+ *
+ * Returns: a string describing the slot type
+ */
+const char *
+ar_slot_get_type_string (ArSlot *slot)
+{
+  const char *text = NULL;
+
+  g_return_val_if_fail (slot != NULL, NULL);
+
+  switch (slot->type) {
+    case AR_SLOT_UNKNOWN:
+      text = NULL;
+      break;
+    case AR_SLOT_FOUNDATION:
+      /* Translators: this is the name of a type of card slot */
+      text = C_("slot type", "foundation");
+      break;
+    case AR_SLOT_RESERVE:
+      /* Translators: this is the name of a type of card slot */
+      text = C_("slot type", "reserve");
+      break;
+    case AR_SLOT_STOCK:
+      /* Translators: this is the name of a type of card slot */
+      text = C_("slot type", "stock");
+      break;
+    case AR_SLOT_TABLEAU:
+      /* Translators: this is the name of a type of card slot */
+      text = C_("slot type", "tableau");
+      break;
+    case AR_SLOT_WASTE:
+      /* Translators: this is the name of a type of card slot */
+      text = C_("slot type", "waste");
+      break;
+  }
+
+  return text;
+}
+
+/**
+ * ar_slot_get_hint_string:
+ * @slot: a #ArSlot
+ *
+ * Returns: a string describing the slot type
+ */
+char *
+ar_slot_get_hint_string (ArSlot *slot,
+                         int cardid)
+{
+  const char *card_name;
+
+  g_return_val_if_fail (slot != NULL, NULL);
+
+  if (cardid < 0)
+    return g_strdup (ar_slot_get_type_string (slot));
+
+  card_name = games_card_get_locale_name (CARD (slot->cards->data[cardid]));
+
+  switch (slot->type) {
+    case AR_SLOT_UNKNOWN:
+      return g_strdup (card_name);
+
+    case AR_SLOT_FOUNDATION:
+      /* Translators: %s is the name of the card; foundation is the name of a type of card slot */
+      return g_strdup_printf (C_("slot hint", "%s on foundation"), card_name);
+
+    case AR_SLOT_RESERVE:
+      /* Translators: this is the name of a type of card slot */
+      return g_strdup_printf (C_("slot hint", "%s on reserve"), card_name);
+
+    case AR_SLOT_STOCK:
+      /* Translators: this is the name of a type of card slot */
+      return g_strdup_printf (C_("slot hint", "%s on stock"), card_name);
+
+    case AR_SLOT_TABLEAU:
+      /* Translators: this is the name of a type of card slot */
+      return g_strdup_printf (C_("slot hint", "%s on tableau"), card_name);
+
+    case AR_SLOT_WASTE:
+      /* Translators: this is the name of a type of card slot */
+      return g_strdup_printf (C_("slot hint", "%s on waste"), card_name);
+
+    default:
+      g_assert_not_reached ();
+  }
+
+  return NULL;
+}
+
+/**
  * aisleriot_game_error_quark:
  *
  * Returns: the #GQuark used for errors

@@ -49,6 +49,9 @@ struct _AisleriotBoard {
 struct _AisleriotBoardClass {
   GtkDrawingAreaClass parent_class;
 
+  void (* status_message)   (AisleriotBoard *board,
+                             const char *message);
+
   /* keybinding signals */
   gboolean (* move_cursor)  (AisleriotBoard *board,
                              GtkMovementStep step,

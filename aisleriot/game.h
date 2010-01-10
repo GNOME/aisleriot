@@ -87,6 +87,13 @@ typedef struct {
 
 #define SLOT_CARDS_N_PREALLOC (32)
 
+ArSlotType ar_slot_get_slot_type (ArSlot *slot);
+
+const char *ar_slot_get_type_string (ArSlot *slot);
+
+char *ar_slot_get_hint_string (ArSlot *slot,
+                               int cardid);
+
 /* The game */
 
 #define AISLERIOT_TYPE_GAME         (aisleriot_game_get_type ())

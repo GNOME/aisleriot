@@ -152,6 +152,9 @@ struct _AisleriotBoardPrivate
   int tap_and_hold_card_id;
 #endif
 
+  /* Status message */
+  const char *status_message; /* interned */
+
   /* Bit field */
   guint droppable_supported : 1;
   guint use_pixbuf_drawing : 1;
@@ -167,6 +170,7 @@ struct _AisleriotBoardPrivate
 
   guint show_selection : 1;
   guint show_highlight : 1;
+  guint show_status_messages : 1;
 
   guint force_geometry_update : 1;
 };
@@ -180,19 +184,20 @@ enum
   PROP_STYLE
 };
 
-#ifdef ENABLE_KEYNAV
 enum
 {
+  STATUS_MESSAGE,
+#ifdef ENABLE_KEYNAV
   ACTIVATE,
   MOVE_CURSOR,
   TOGGLE_SELECTION,
   SELECT_ALL,
   DESELECT_ALL,
+#endif /* ENABLE_KEYNAV */
   LAST_SIGNAL
 };
 
 static guint signals[LAST_SIGNAL];
-#endif /* ENABLE_KEYNAV */
 
 static void get_slot_and_card_from_point (AisleriotBoard *board,
                                           int x,
@@ -265,6 +270,22 @@ set_cursor_by_location (AisleriotBoard *board,
 
   set_cursor (board, cursor);
 #endif /* !HAVE_HILDON */
+}
+
+/* status message */
+
+static void
+set_status_message (AisleriotBoard *board,
+                    const char *message)
+{
+  AisleriotBoardPrivate *priv = board->priv;
+
+  if (g_strcmp0 (priv->status_message, message) == 0)
+    return;
+
+  priv->status_message = g_intern_string (message);
+
+  g_signal_emit (board, signals[STATUS_MESSAGE], 0, priv->status_message);
 }
 
 /* card drawing functions */
@@ -1366,6 +1387,40 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
 
   return moved;
 }
+
+/* Tooltips */
+
+#if GTK_CHECK_VERSION (2, 12, 0) && !defined(HAVE_HILDON)
+
+static gboolean
+aisleriot_board_query_tooltip_cb (GtkWidget *widget,
+                                  int x,
+                                  int y,
+                                  gboolean keyboard_mode,
+                                  GtkTooltip *tooltip,
+                                  AisleriotBoard *board)
+{
+  ArSlot *slot;
+  int cardid;
+  char *text;
+  GdkRectangle rect;
+
+  get_slot_and_card_from_point (board, x, y, &slot, &cardid);
+  if (!slot || ar_slot_get_slot_type (slot) == AR_SLOT_UNKNOWN)
+    return FALSE;
+
+  text = ar_slot_get_hint_string (slot, cardid);
+  gtk_tooltip_set_text (tooltip, text);
+  g_free (text);
+
+  get_rect_by_slot_and_card (board, slot, cardid, 1, &rect);
+  /* FIXMEchpe: subtract the rect of the next card, if there is one! */
+  gtk_tooltip_set_tip_area (tooltip, &rect);
+
+  return TRUE;
+}
+
+#endif /* GTK >= 2.12.0 && !HAVE_HILDON */
 
 /* Keynav */
 
@@ -2486,6 +2541,29 @@ aisleriot_board_sync_style (ArStyle *style,
     queue_redraw |= TRUE;
   }
 
+#if GTK_CHECK_VERSION (2, 12, 0) && !defined(HAVE_HILDON)
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_SHOW_TOOLTIPS)) {
+    gtk_widget_set_has_tooltip (widget, ar_style_get_show_tooltips (priv->style));
+  }
+#endif
+
+#ifndef HAVE_HILDON
+  if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_SHOW_STATUS_MESSAGES)) {
+    gboolean show_status_messages;
+
+    show_status_messages = ar_style_get_show_status_messages (priv->style);
+
+    if (show_status_messages != priv->show_status_messages) {
+      priv->show_status_messages = show_status_messages;
+
+      if (!show_status_messages) {
+        /* Clear message */
+        set_status_message (board, NULL);
+      }
+    }
+  }
+#endif
+
   if (update_geometry && GTK_WIDGET_REALIZED (widget)) {
     aisleriot_board_setup_geometry (board);
   }
@@ -2869,7 +2947,7 @@ aisleriot_board_button_release (GtkWidget *widget,
 
 static gboolean
 aisleriot_board_motion_notify (GtkWidget *widget,
-                               GdkEventMotion * event)
+                               GdkEventMotion *event)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
@@ -2877,6 +2955,24 @@ aisleriot_board_motion_notify (GtkWidget *widget,
   /* NOTE: It's ok to just return instead of chaining up, since the
    * parent class has no class closure for this event.
    */
+
+#ifndef HAVE_HILDON
+  if (priv->show_status_messages) {
+    ArSlot *slot = NULL;
+    int cardid = -1;
+
+    get_slot_and_card_from_point (board, event->x, event->y, &slot, &cardid);
+    if (slot != NULL && ar_slot_get_slot_type (slot) != AR_SLOT_UNKNOWN) {
+      char *text;
+
+      text = ar_slot_get_hint_string (slot, cardid);
+      set_status_message (board, text);
+      g_free (text);
+    } else {
+      set_status_message (board, NULL);
+    }
+  }
+#endif /* !HAVE_HILDON */
 
   if (priv->click_status == STATUS_IS_DRAG) {
     ArSlot *slot;
@@ -3249,6 +3345,7 @@ aisleriot_board_init (AisleriotBoard *board)
 
   priv->click_to_move = FALSE;
   priv->show_selection = FALSE;
+  priv->show_status_messages = FALSE;
 
   priv->show_card_id = -1;
 
@@ -3271,6 +3368,11 @@ aisleriot_board_init (AisleriotBoard *board)
   g_signal_connect (widget, "tap-and-hold",
                     G_CALLBACK (aisleriot_board_tap_and_hold_cb), board);
 #endif /* HAVE_MAEMO */
+
+#if GTK_CHECK_VERSION (2, 12, 0) && !defined(HAVE_HILDON)
+  g_signal_connect (widget, "query-tooltip",
+                    G_CALLBACK (aisleriot_board_query_tooltip_cb), board);
+#endif
 }
 
 static void
@@ -3375,6 +3477,17 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->motion_notify_event = aisleriot_board_motion_notify;
   widget_class->key_press_event = aisleriot_board_key_press;
   widget_class->expose_event = aisleriot_board_expose_event;
+
+  signals[STATUS_MESSAGE] =
+    g_signal_new (I_("status-message"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (AisleriotBoardClass, status_message),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__STRING,
+                  G_TYPE_NONE,
+                  1,
+                  G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE);
 
 #ifdef ENABLE_KEYNAV
   klass->activate = aisleriot_board_activate;

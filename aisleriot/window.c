@@ -154,6 +154,7 @@ struct _AisleriotWindowPrivate
 #else
   GtkStatusbar *statusbar;
   guint game_message_id;
+  guint board_message_id;
   GtkWidget *score_box;
   GtkWidget *score_label;
   GtkWidget *clock;
@@ -1765,6 +1766,7 @@ game_type_changed_cb (AisleriotGame *game,
   games_clock_reset (GAMES_CLOCK (priv->clock));
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
+  gtk_statusbar_pop (priv->statusbar, priv->board_message_id);
 
   show_scores = (features & FEATURE_SCORE_HIDDEN) == 0;
   g_object_set (priv->score_box, "visible", show_scores, NULL);
@@ -1791,6 +1793,7 @@ game_new_cb (AisleriotGame *game,
   games_clock_reset (GAMES_CLOCK (priv->clock));
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
+  gtk_statusbar_pop (priv->statusbar, priv->board_message_id);
 #endif /* HAVE_HILDON */
 }
 
@@ -2041,6 +2044,24 @@ aisleriot_window_set_freecell_mode (AisleriotWindow *window,
     gtk_window_set_title (GTK_WINDOW (window), _("AisleRiot"));
   }
 }
+
+#ifndef HAVE_HILDON
+
+static void
+board_status_message_cb (AisleriotBoard *board,
+                         const char *status_message,
+                         AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+
+  gtk_statusbar_pop (priv->statusbar, priv->board_message_id);
+
+  if (status_message != NULL) {
+    gtk_statusbar_push (priv->statusbar, priv->board_message_id, status_message);
+  }
+}
+
+#endif /* !HAVE_HILDON */
 
 #ifdef HAVE_CLUTTER
 
@@ -2559,6 +2580,10 @@ aisleriot_window_init (AisleriotWindow *window)
   priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "game-message");
   games_stock_prepare_for_statusbar_tooltips (priv->ui_manager,
                                               GTK_WIDGET (priv->statusbar));
+
+  priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "board-message");
+  g_signal_connect (priv->board, "status-message",
+                    G_CALLBACK (board_status_message_cb), window);
 
 #if GTK_CHECK_VERSION (2, 11, 0)
   gtk_statusbar_set_has_resize_grip (priv->statusbar, TRUE);
