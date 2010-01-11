@@ -23,15 +23,13 @@ G_BEGIN_DECLS
 static const GdkColor default_selection_color = { 0, 0 /* red */, 0 /* green */, 0xaa00 /* blue */ };
 
 /* The proportion of a slot dedicated to the card (horiz or vert). */
-#ifndef DEFAULT_CARD_SLOT_RATIO
 #ifdef HAVE_HILDON
 #define DEFAULT_CARD_SLOT_RATIO (0.9)
+#define DEFAULT_CARD_OVERHANG (0.5)
 #else
 #define DEFAULT_CARD_SLOT_RATIO (0.8)
-#endif
-#endif /* !DEFAULT_CARD_SLOT_RATIO */
-
 #define DEFAULT_CARD_OVERHANG (0.0)
+#endif
 
 #define MIN_CARD_STEP (0.0)
 #define MAX_CARD_STEP (1.0) /* FIXMEchpe: allow values > 1.0 here? */
