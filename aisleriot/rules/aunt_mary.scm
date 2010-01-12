@@ -23,24 +23,25 @@
   (shuffle-deck)
 
   ;; Stock 
-  (add-normal-slot DECK)
+  (add-normal-slot DECK 'stock)
+  ;; Waste
   (if deal-three
-      (add-partially-extended-slot '() right 3)
-      (add-normal-slot '()))
+      (add-partially-extended-slot '() right 3 'waste)
+      (add-normal-slot '() 'waste))
 
   ;; Foundation (4)
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
   (add-carriage-return-slot)
   ;; Tableau (6)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   ;; Pretty Good Solitaire (goodsol) deals Aunt Mary like this
   (deal-cards stock 
