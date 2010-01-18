@@ -11,7 +11,6 @@ DOC_ENTITIES = \
 	agnes.xml \
 	athena.xml \
 	auld_lang_syne.xml \
-	aunt_mary.xml \
 	backbone.xml \
 	bakers_dozen.xml \
 	bakers_game.xml \
