@@ -59,6 +59,13 @@
 #include "game.h"
 #include "window.h"
 
+#if 0
+/* String reserve */
+N_("Solitaire")
+N_("GNOME Solitaire")
+N_("About Solitaire")
+#endif /* 0 */
+
 typedef struct {
   AisleriotWindow *window;
   char *variation;
