@@ -235,7 +235,7 @@ aisleriot_stats_dialog_update (AisleriotStatsDialog *dialog,
      * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
      */
     g_snprintf (text, sizeof (text), _("%d%%"),
-                (100 * current_stats->wins) / current_stats->total);
+                (int) (100.0 * ((double) current_stats->wins) / ((double) current_stats->total) + 0.5));
     gtk_label_set_text (priv->percentage_label, text);
   } else
     /* For translators: N/A means "Not Applicable", use whatever
