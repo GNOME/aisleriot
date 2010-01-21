@@ -69,6 +69,10 @@
 
 #include "window.h"
 
+#ifdef ENABLE_DEBUG_UI
+#include "prop-editor.h"
+#endif
+
 #define AISLERIOT_WINDOW_GET_PRIVATE(window)(G_TYPE_INSTANCE_GET_PRIVATE ((window), AISLERIOT_TYPE_WINDOW, AisleriotWindowPrivate))
 
 #define MIN_WIDTH 600
@@ -103,13 +107,6 @@
  */
 #if defined(HAVE_HILDON) && defined(HAVE_MAEMO_5)
 #define LEAVE_FULLSCREEN_BUTTON
-#endif
-
-/* define this to enable a debug menu */
-/* #undef ENABLE_DEBUG_UI */
-
-#ifdef ENABLE_DEBUG_UI
-#include "prop-editor.h"
 #endif
 
 enum

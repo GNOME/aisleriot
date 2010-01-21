@@ -42,8 +42,6 @@ sol_SOURCES = \
 	util.h		\
 	window.c	\
 	window.h	\
-	prop-editor.c	\
-	prop-editor.h	\
 	$(NULL)
 
 if HAVE_MAEMO_5
@@ -56,7 +54,14 @@ endif
 if !HAVE_GUILE_1_8
 sol_SOURCES += guile16-compat.h
 endif
-		
+
+if ENABLE_DEBUG_UI
+sol_SOURCES += \
+	prop-editor.c	\
+	prop-editor.h	\
+	$(NULL)
+endif
+
 # FIXMEchpe: fix localedir for maemo? $PKG_CONFIG osso-af-settings --variable=localedir
 
 sol_CPPFLAGS = \
@@ -138,8 +143,6 @@ sol_clutter_SOURCES = \
 	util.h		\
 	window.c	\
 	window.h	\
-	prop-editor.c	\
-	prop-editor.h	\
 	$(NULL)
 
 if HAVE_MAEMO_5
@@ -153,6 +156,13 @@ if !HAVE_GUILE_1_8
 sol_clutter_SOURCES += guile16-compat.h
 endif
 		
+if ENABLE_DEBUG_UI
+sol_clutter_SOURCES += \
+	prop-editor.c	\
+	prop-editor.h	\
+	$(NULL)
+endif
+
 sol_clutter_CPPFLAGS = $(sol_CPPFLAGS) -DHAVE_CLUTTER
 sol_clutter_CFLAGS = $(sol_CFLAGS) $(CLUTTER_CFLAGS) $(CLUTTER_GTK_CFLAGS)
 sol_clutter_LDFLAGS = $(sol_LDFLAGS)

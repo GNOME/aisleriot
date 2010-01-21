@@ -366,7 +366,9 @@ else
   enable_sound=no
 fi
 
+# *******
 # Clutter
+# *******
 
 # We're using need_guile as a quick way to check whether building aisleriot
 if test "$need_guile" = "yes"; then
@@ -506,6 +508,22 @@ if test "$enable_card_themes_installer" = "yes"; then
 fi
 
 AM_CONDITIONAL([ENABLE_CARD_THEMES_INSTALLER],[test "$enable_card_themes_installer" = "yes"])
+
+# ******************
+# Extra Debugging UI
+# ******************
+
+AC_MSG_CHECKING([whether extra debugging UI in Aisleriot is requested])
+AC_ARG_ENABLE([debug-ui],
+  [AS_HELP_STRING([--debug-ui],[Enable extra debugging UI in Aisleriot (default: disabled)])],
+  [],[enable_debug_ui=no])
+AC_MSG_RESULT([$enable_debug_ui])
+
+if test "$enable_debug_ui" = "yes"; then
+  AC_DEFINE([ENABLE_DEBUG_UI],[1],[Define extra debugging UI in Aisleriot is enabled])
+fi
+
+AM_CONDITIONAL([ENABLE_DEBUG_UI],[test "$enable_debug_ui" = "yes"])
 
 # ********************
 # Checks for libraries
