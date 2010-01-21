@@ -28,6 +28,12 @@
 #include <clutter/clutter.h>
 #endif
 
+#ifdef HAVE_MAEMO_5
+#include <hildon/hildon-gtk.h>
+#include <hildon/hildon-pannable-area.h>
+#include <hildon/hildon-stackable-window.h>
+#endif
+
 typedef struct
 {
   gpointer instance;
@@ -1360,7 +1366,12 @@ create_prop_editor (GObject   *object,
       return win;
     }
 
+#ifdef HAVE_MAEMO_5
+  win = hildon_stackable_window_new ();
+#else
   win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+#endif
+
   if (GTK_IS_WIDGET (object))
     gtk_window_set_screen (GTK_WINDOW (win),
 			   gtk_widget_get_screen (GTK_WIDGET (object)));
