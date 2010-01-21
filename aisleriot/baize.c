@@ -19,8 +19,6 @@
 
 #include "baize.h"
 
-#include <gdk-pixbuf/gdk-pixbuf.h>
-
 #include <cogl/cogl.h>
 
 #include <libgames-support/games-runtime.h>
