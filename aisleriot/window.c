@@ -2180,9 +2180,17 @@ aisleriot_window_state_event (GtkWidget *widget,
 #ifdef HAVE_HILDON
 /* We never show tooltips, no need to put them into the binary */
 #define ACTION_TOOLTIP(string)  (NULL)
-#define ACTION_ACCEL(string1,string2) (string2)
 #else
 #define ACTION_TOOLTIP(string)  (string)
+#endif
+
+/* The maemo5 device (N900) doesn't have these extra hardware keys,
+ * so we only re-define the accels for maemo[34]. The N900 does have
+ * a slide-out keyboard, so using the regular accels should work fine.
+ */
+#if defined(HAVE_HILDON) && (defined(HAVE_MAEMO_3) || defined(HAVE_MAEMO_4))
+#define ACTION_ACCEL(string1,string2) (string2)
+#else
 #define ACTION_ACCEL(string1,string2) (string1)
 #endif
 
