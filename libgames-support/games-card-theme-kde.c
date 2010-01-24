@@ -69,6 +69,12 @@ struct _GamesCardThemeKDE {
 #endif
 #endif
 
+enum {
+  PROP_0,
+  PROP_BACK_INDEX,
+  PROP_N_BACKS,
+};
+
 #define N_ROWS ((double) 5.0)
 #define N_COLS ((double) 13.0)
 
@@ -398,6 +404,52 @@ games_card_theme_kde_class_foreach_theme_dir (GamesCardThemeClass *klass,
 }
 
 static void
+games_card_theme_kde_get_property (GObject    *object,
+                                   guint       property_id,
+                                   GValue     *value,
+                                   GParamSpec *pspec)
+{
+  GamesCardThemeKDE *theme = GAMES_CARD_THEME_KDE (object);
+
+  switch (property_id) {
+    case PROP_BACK_INDEX:
+      g_value_set_int (value, theme->back_index);
+      break;
+
+    case PROP_N_BACKS:
+      g_value_set_int (value, theme->n_backs);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+  }
+}
+
+static void
+games_card_theme_kde_set_property (GObject      *object,
+                                   guint         property_id,
+                                   const GValue *value,
+                                   GParamSpec   *pspec)
+{
+  GamesCardThemeKDE *theme = GAMES_CARD_THEME_KDE (object);
+
+  switch (property_id) {
+    case PROP_BACK_INDEX:
+      theme->back_index = g_value_get_int (value);
+      theme->back_index = CLAMP (theme->back_index, 0, theme->n_backs);
+
+      /* FIXMEchpe don't invalidate the whole thing, just the BACK card */
+      _games_card_theme_emit_changed (GAMES_CARD_THEME (theme));
+      break;
+
+    case PROP_N_BACKS:
+      /* not writable */
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+  }
+}
+
+static void
 games_card_theme_kde_class_init (GamesCardThemeKDEClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
@@ -405,6 +457,8 @@ games_card_theme_kde_class_init (GamesCardThemeKDEClass * klass)
   GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
 
   gobject_class->finalize = games_card_theme_kde_finalize;
+  gobject_class->get_property = games_card_theme_kde_get_property;
+  gobject_class->set_property = games_card_theme_kde_set_property;
 
   theme_class->get_theme_info = games_card_theme_kde_class_get_theme_info;
   theme_class->foreach_theme_dir = games_card_theme_kde_class_foreach_theme_dir;
@@ -414,6 +468,23 @@ games_card_theme_kde_class_init (GamesCardThemeKDEClass * klass)
   theme_class->get_card_pixbuf = games_card_theme_kde_get_card_pixbuf;
 
   preimage_theme_class->needs_scalable_cards = TRUE;
+
+
+  g_object_class_install_property
+    (gobject_class,
+     PROP_BACK_INDEX,
+     g_param_spec_int ("back-index", NULL, NULL,
+                       0, 15, 0,
+                       G_PARAM_READWRITE |
+                       G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_property
+    (gobject_class,
+     PROP_N_BACKS,
+     g_param_spec_int ("n-backs", NULL, NULL,
+                       1, 16, 1,
+                       G_PARAM_READABLE |
+                       G_PARAM_STATIC_STRINGS));
 }
 
 /* private API */
