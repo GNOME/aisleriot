@@ -136,7 +136,8 @@ pysol_config_txt_parse_line_0 (PySolConfigTxtData *data,
   n_fields = g_strv_length (fields);
   if (n_fields < 2)
     goto out;
-  if (strcmp (g_strstrip (fields[0]), "PySol solitaire cardset") != 0)
+  if (strcmp (g_strstrip (fields[0]), "PySol solitaire cardset") != 0 &&
+     strcmp (g_strstrip (fields[0]), "PySolFC solitaire cardset") != 0)
     goto out;
   if (!parse_int (g_strstrip (fields[1]), &data->version))
     goto out;
