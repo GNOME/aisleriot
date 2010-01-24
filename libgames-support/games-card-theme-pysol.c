@@ -39,6 +39,12 @@ struct _GamesCardThemePysol {
   GamesCardTheme parent_instance;
 };
 
+enum {
+  PROP_0,
+  PROP_BACK_INDEX,
+  PROP_N_BACKS,
+};
+
 /* Constants copied from PySol:
  *
  * Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003 Markus Franz Xaver Johannes Oberhumer
@@ -83,6 +89,7 @@ typedef struct {
   int card_delta;
   char **backs;
   int n_backs;
+  int back_index;
   int default_back_index;
 } PySolConfigTxtData;
 
@@ -259,6 +266,7 @@ pysol_config_txt_parse (const char *path,
     goto out;
 
   pysol_data->base_path = g_build_filename (path, subdir, NULL);
+  pysol_data->back_index = pysol_data->default_back_index;
 
   retval = TRUE;
 
@@ -333,7 +341,7 @@ games_card_theme_pysol_get_card_pixbuf (GamesCardTheme *card_theme,
   if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
     path = g_build_filename (data->base_path, "bottom01.gif" /* FIXMEchpe ext! */, NULL);
   } else if (G_UNLIKELY (card_id == GAMES_CARD_BACK)) {
-    path = g_build_filename (data->base_path, data->backs[data->default_back_index], NULL);
+    path = g_build_filename (data->base_path, data->backs[data->back_index], NULL);
   } else {
     static const char suit_char[] = "cdhs";
     int suit, rank;
@@ -404,9 +412,68 @@ games_card_theme_pysol_class_foreach_theme_dir (GamesCardThemeClass *klass,
 }
 
 static void
+games_card_theme_pysol_get_property (GObject    *object,
+                                     guint       property_id,
+                                     GValue     *value,
+                                     GParamSpec *pspec)
+{
+  GamesCardTheme *card_theme = GAMES_CARD_THEME (object);
+  PySolConfigTxtData *data = card_theme->theme_info->data;
+
+  switch (property_id) {
+    case PROP_BACK_INDEX:
+      g_value_set_int (value, data->back_index);
+      break;
+
+    case PROP_N_BACKS:
+      g_value_set_int (value, data->n_backs);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+  }
+}
+
+static void
+games_card_theme_pysol_set_property (GObject      *object,
+                                     guint         property_id,
+                                     const GValue *value,
+                                     GParamSpec   *pspec)
+{
+  GamesCardTheme *card_theme = GAMES_CARD_THEME (object);
+  PySolConfigTxtData *data = card_theme->theme_info->data;
+
+  switch (property_id) {
+    case PROP_BACK_INDEX: {
+      int idx;
+
+      idx = g_value_get_int (value);
+      if (idx >= 0 && idx < data->n_backs) {
+        data->back_index = idx;
+      } else {
+        data->back_index = data->default_back_index;
+      }
+
+      /* FIXMEchpe don't invalidate the whole thing, just the BACK card */
+      _games_card_theme_emit_changed (card_theme);
+      break;
+    }
+
+    case PROP_N_BACKS:
+      /* not writable */
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+  }
+}
+
+static void
 games_card_theme_pysol_class_init (GamesCardThemePysolClass * klass)
 {
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
+
+  gobject_class->get_property = games_card_theme_pysol_get_property;
+  gobject_class->set_property = games_card_theme_pysol_set_property;
 
   theme_class->get_theme_info = games_card_theme_pysol_class_get_theme_info;
   theme_class->foreach_theme_dir = games_card_theme_pysol_class_foreach_theme_dir;
@@ -416,6 +483,22 @@ games_card_theme_pysol_class_init (GamesCardThemePysolClass * klass)
   theme_class->get_card_size = games_card_theme_pysol_get_card_size;
   theme_class->get_card_aspect = games_card_theme_pysol_get_card_aspect;
   theme_class->get_card_pixbuf = games_card_theme_pysol_get_card_pixbuf;
+
+  g_object_class_install_property
+    (gobject_class,
+     PROP_BACK_INDEX,
+     g_param_spec_int ("back-index", NULL, NULL,
+                       -1, 256, -1,
+                       G_PARAM_READWRITE |
+                       G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_property
+    (gobject_class,
+     PROP_N_BACKS,
+     g_param_spec_int ("n-backs", NULL, NULL,
+                       1, 256, 1,
+                       G_PARAM_READABLE |
+                       G_PARAM_STATIC_STRINGS));
 }
 
 /* public API */
