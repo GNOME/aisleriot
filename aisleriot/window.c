@@ -2218,7 +2218,7 @@ aisleriot_window_init (AisleriotWindow *window)
       ACTION_TOOLTIP (N_("Play a different game")),
       G_CALLBACK (select_game_cb) },
     { "RecentMenu", NULL, N_("_Recently Played") },
-    { "Statistics", GTK_STOCK_ADD, N_("S_tatistics"), NULL,
+    { "Statistics", NULL, N_("S_tatistics"), NULL,
       ACTION_TOOLTIP (N_("Show gameplay statistics")),
       G_CALLBACK (statistics_cb) },
     { "CloseWindow", GTK_STOCK_CLOSE, NULL, NULL,
