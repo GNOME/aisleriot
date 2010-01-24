@@ -21,8 +21,6 @@
 
 #include <config.h>
 
-#include <math.h>
-
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
@@ -273,7 +271,7 @@ static void games_scores_dialog_redraw (GamesScoresDialog *self) {
     case GAMES_SCORES_STYLE_TIME_ASCENDING:
     case GAMES_SCORES_STYLE_TIME_DESCENDING:
       dscore = ((GamesScore *)scorelist->data)->value.time_double;
-      score = rint (100*(dscore));
+      score = (int) (100.0 * dscore + 0.5);
       /* Translators: this is for a minutes, seconds time display. */
       ss = g_strdup_printf (_("%dm %ds"), score/100, score%100);
       break; 
