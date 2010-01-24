@@ -25,7 +25,6 @@
 
 #include <config.h>
 
-#include <math.h>
 #include <fcntl.h>
 #include <unistd.h>
 
