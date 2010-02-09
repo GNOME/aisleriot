@@ -25,20 +25,20 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include "games-preimage.h"
-#include "games-profile.h"
-#include "games-runtime.h"
-#include "games-string-utils.h"
+#include <libgames-support/games-preimage.h>
+#include <libgames-support/games-profile.h>
+#include <libgames-support/games-runtime.h>
+#include <libgames-support/games-string-utils.h>
 
-#include "games-card-theme.h"
-#include "games-card-theme-private.h"
+#include "ar-card-theme.h"
+#include "ar-card-theme-private.h"
 
-struct _GamesCardThemeSlicedClass {
-  GamesCardThemePreimageClass parent_class;
+struct _ArCardThemeSlicedClass {
+  ArCardThemePreimageClass parent_class;
 };
 
-struct _GamesCardThemeSliced {
-  GamesCardThemePreimage parent_instance;
+struct _ArCardThemeSliced {
+  ArCardThemePreimage parent_instance;
 
   GdkPixbuf *source;
   CardSize subsize;
@@ -53,12 +53,12 @@ struct _GamesCardThemeSliced {
 
 /* Class implementation */
 
-G_DEFINE_TYPE (GamesCardThemeSliced, games_card_theme_sliced, GAMES_TYPE_CARD_THEME_PREIMAGE);
+G_DEFINE_TYPE (ArCardThemeSliced, ar_card_theme_sliced, AR_TYPE_CARD_THEME_PREIMAGE);
 
 static void
-games_card_theme_sliced_clear_sized_theme_data (GamesCardThemePreimage *preimage_card_theme)
+ar_card_theme_sliced_clear_sized_theme_data (ArCardThemePreimage *preimage_card_theme)
 {
-  GamesCardThemeSliced *theme = GAMES_CARD_THEME_SLICED (preimage_card_theme);
+  ArCardThemeSliced *theme = AR_CARD_THEME_SLICED (preimage_card_theme);
 
   if (theme->scalable &&
       theme->source) {
@@ -68,13 +68,13 @@ games_card_theme_sliced_clear_sized_theme_data (GamesCardThemePreimage *preimage
 }
 
 static gboolean
-games_card_theme_sliced_load (GamesCardTheme *card_theme,
+ar_card_theme_sliced_load (ArCardTheme *card_theme,
                               GError **error)
 {
-  GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
-  GamesCardThemeSliced *theme = (GamesCardThemeSliced *) card_theme;
+  ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
+  ArCardThemeSliced *theme = (ArCardThemeSliced *) card_theme;
 
-  if (!GAMES_CARD_THEME_CLASS (games_card_theme_sliced_parent_class)->load (card_theme, error))
+  if (!AR_CARD_THEME_CLASS (ar_card_theme_sliced_parent_class)->load (card_theme, error))
     return FALSE;
 
   /* If we don't have a scalable format, build an unscaled pixbuf that we'll cut up later */
@@ -93,19 +93,19 @@ games_card_theme_sliced_load (GamesCardTheme *card_theme,
 }
 
 static gboolean
-games_card_theme_sliced_prerender_scalable (GamesCardThemeSliced *theme)
+ar_card_theme_sliced_prerender_scalable (ArCardThemeSliced *theme)
 {
-  GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) theme;
+  ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) theme;
 
   g_assert (theme->source == NULL);
 
-  _games_profile_start ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((GamesCardTheme*)theme)->theme_info->display_name);
+  _games_profile_start ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((ArCardTheme*)theme)->theme_info->display_name);
 
   theme->source = games_preimage_render (preimage_card_theme->cards_preimage,
                                          preimage_card_theme->card_size.width * 13,
                                          preimage_card_theme->card_size.height * 5);
 
-  _games_profile_end ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((GamesCardTheme*)theme)->theme_info->display_name);
+  _games_profile_end ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((ArCardTheme*)theme)->theme_info->display_name);
 
   if (!theme->source)
     return FALSE;
@@ -117,15 +117,15 @@ games_card_theme_sliced_prerender_scalable (GamesCardThemeSliced *theme)
 }
 
 static GdkPixbuf *
-games_card_theme_sliced_get_card_pixbuf (GamesCardTheme *card_theme,
+ar_card_theme_sliced_get_card_pixbuf (ArCardTheme *card_theme,
                                          int card_id)
 {
-  GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
-  GamesCardThemeSliced *theme = (GamesCardThemeSliced *) card_theme;
+  ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
+  ArCardThemeSliced *theme = (ArCardThemeSliced *) card_theme;
   GdkPixbuf *subpixbuf, *card_pixbuf;
   int suit, rank;
 
-  if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
+  if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
     subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
                                        preimage_card_theme->card_size.width,
                                        preimage_card_theme->card_size.height);
@@ -138,7 +138,7 @@ games_card_theme_sliced_get_card_pixbuf (GamesCardTheme *card_theme,
 
   if (!theme->source &&
       (!theme->scalable ||
-       !games_card_theme_sliced_prerender_scalable (theme)))
+       !ar_card_theme_sliced_prerender_scalable (theme)))
     return NULL;
 
   subpixbuf = gdk_pixbuf_new_subpixbuf (theme->source,
@@ -162,30 +162,30 @@ games_card_theme_sliced_get_card_pixbuf (GamesCardTheme *card_theme,
 }
 
 static void
-games_card_theme_sliced_init (GamesCardThemeSliced *theme)
+ar_card_theme_sliced_init (ArCardThemeSliced *theme)
 {
   theme->subsize.width = theme->subsize.height = -1;
 }
 
 static void
-games_card_theme_sliced_finalize (GObject * object)
+ar_card_theme_sliced_finalize (GObject * object)
 {
-  GamesCardThemeSliced *theme = GAMES_CARD_THEME_SLICED (object);
+  ArCardThemeSliced *theme = AR_CARD_THEME_SLICED (object);
 
   theme->scalable = TRUE; /* so the call to clear unrefs the source pixbuf */
 
-  G_OBJECT_CLASS (games_card_theme_sliced_parent_class)->finalize (object);
+  G_OBJECT_CLASS (ar_card_theme_sliced_parent_class)->finalize (object);
 }
 
-static GamesCardThemeInfo *
-games_card_theme_sliced_class_get_theme_info (GamesCardThemeClass *klass,
+static ArCardThemeInfo *
+ar_card_theme_sliced_class_get_theme_info (ArCardThemeClass *klass,
                                               const char *path,
                                               const char *filename)
 {
-  GamesCardThemeInfo *info;
+  ArCardThemeInfo *info;
   char *name, *display_name, *pref_name;
 
-  info = GAMES_CARD_THEME_CLASS (games_card_theme_sliced_parent_class)->get_theme_info (klass, path, filename);
+  info = AR_CARD_THEME_CLASS (ar_card_theme_sliced_parent_class)->get_theme_info (klass, path, filename);
   if (info) {
     g_assert (info->pref_name == NULL);
     info->pref_name = g_strdup_printf ("sliced:%s", filename);
@@ -199,7 +199,7 @@ games_card_theme_sliced_class_get_theme_info (GamesCardThemeClass *klass,
   name = games_filename_to_display_name (filename);
   display_name = g_strdup_printf ("%s (Ugly)", name);
   pref_name = g_strdup_printf ("sliced:%s", filename);
-  info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
+  info = _ar_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,
                                      filename,
                                      display_name /* adopts */,
@@ -211,14 +211,14 @@ games_card_theme_sliced_class_get_theme_info (GamesCardThemeClass *klass,
 }
 
 static gboolean
-games_card_theme_sliced_class_foreach_theme_dir (GamesCardThemeClass *klass,
-                                                 GamesCardThemeForeachFunc callback,
+ar_card_theme_sliced_class_foreach_theme_dir (ArCardThemeClass *klass,
+                                                 ArCardThemeForeachFunc callback,
                                                  gpointer data)
 {
   char *dir;
   gboolean retval;
 
-  if (!_games_card_theme_class_foreach_env (klass, "GAMES_CARD_THEME_PATH_SLICED", callback, data))
+  if (!_ar_card_theme_class_foreach_env (klass, "AR_CARD_THEME_PATH_SLICED", callback, data))
     return FALSE;
 
   /* Themes in the pre-2.19 theme format: $(datadir)/pixmaps/gnome-games-common/cards */
@@ -231,33 +231,33 @@ games_card_theme_sliced_class_foreach_theme_dir (GamesCardThemeClass *klass,
 }
 
 static void
-games_card_theme_sliced_class_init (GamesCardThemeSlicedClass * klass)
+ar_card_theme_sliced_class_init (ArCardThemeSlicedClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
-  GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
+  ArCardThemeClass *theme_class = AR_CARD_THEME_CLASS (klass);
+  ArCardThemePreimageClass *preimage_theme_class = AR_CARD_THEME_PREIMAGE_CLASS (klass);
 
-  gobject_class->finalize = games_card_theme_sliced_finalize;
+  gobject_class->finalize = ar_card_theme_sliced_finalize;
 
-  theme_class->get_theme_info = games_card_theme_sliced_class_get_theme_info;
-  theme_class->foreach_theme_dir = games_card_theme_sliced_class_foreach_theme_dir;
+  theme_class->get_theme_info = ar_card_theme_sliced_class_get_theme_info;
+  theme_class->foreach_theme_dir = ar_card_theme_sliced_class_foreach_theme_dir;
 
-  theme_class->load = games_card_theme_sliced_load;
-  theme_class->get_card_pixbuf = games_card_theme_sliced_get_card_pixbuf;
+  theme_class->load = ar_card_theme_sliced_load;
+  theme_class->get_card_pixbuf = ar_card_theme_sliced_get_card_pixbuf;
 
   preimage_theme_class->needs_scalable_cards = FALSE;
-  preimage_theme_class->clear_sized_theme_data = games_card_theme_sliced_clear_sized_theme_data;
+  preimage_theme_class->clear_sized_theme_data = ar_card_theme_sliced_clear_sized_theme_data;
 }
 
 /* private API */
 
 /**
- * games_card_theme_sliced_new:
+ * ar_card_theme_sliced_new:
  *
- * Returns: a new #GamesCardThemeSliced
+ * Returns: a new #ArCardThemeSliced
  */
-GamesCardTheme*
-games_card_theme_sliced_new (void)
+ArCardTheme*
+ar_card_theme_sliced_new (void)
 {
-  return g_object_new (GAMES_TYPE_CARD_THEME_SLICED, NULL);
+  return g_object_new (AR_TYPE_CARD_THEME_SLICED, NULL);
 }

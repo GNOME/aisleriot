@@ -1,4 +1,4 @@
-SUBDIRS = rules
+SUBDIRS = rules data lib
 
 if BUILD_HELP
 SUBDIRS += help
@@ -66,6 +66,8 @@ endif
 
 sol_CPPFLAGS = \
 	-I$(top_srcdir) \
+	-I$(top_srcdir)/aisleriot/lib \
+	-Ilib \
 	-DDOC_MODULE=\"$(DOC_MODULE)\" \
 	$(AM_CPPFLAGS)
 
@@ -78,8 +80,8 @@ sol_LDFLAGS = \
 	$(AM_LDFLAGS)
 
 sol_LDADD = \
+	lib/libaisleriot.la \
 	$(top_builddir)/libgames-support/libgames-support.la \
-	$(top_builddir)/libgames-support/libgamescards.la \
 	$(GTK_LIBS) \
 	$(GUILE_LIBS)
 

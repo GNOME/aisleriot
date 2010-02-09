@@ -21,8 +21,6 @@
 
 #include <gtk/gtk.h>
 
-#include <libgames-support/games-card-theme.h>
-
 #include "game.h"
 #include "ar-style.h"
 

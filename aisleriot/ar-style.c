@@ -368,7 +368,7 @@ ar_style_class_init (ArStyleClass *klass)
     (object_class,
      PROP_CARD_THEME,
      g_param_spec_object (AR_STYLE_PROP_CARD_THEME, NULL, NULL,
-                          GAMES_TYPE_CARD_THEME,
+                          AR_TYPE_CARD_THEME,
                           G_PARAM_READWRITE |
                           G_PARAM_STATIC_STRINGS));
 
@@ -649,9 +649,9 @@ ar_style_set_click_to_move (ArStyle *style,
  * ar_style_get_card_theme:
  * @style: an #ArStyle
  *
- * Returns: @style's #GamesCardTheme
+ * Returns: @style's #ArCardTheme
  */
-GamesCardTheme *
+ArCardTheme *
 ar_style_get_card_theme (ArStyle *style)
 {
   ArStylePrivate *priv = style->priv;
@@ -662,14 +662,14 @@ ar_style_get_card_theme (ArStyle *style)
 /**
  * ar_style_set_card_theme:
  * @style: an #ArStyle
- * @card_theme: a #GamesCardTheme
+ * @card_theme: a #ArCardTheme
  *
  * Note that animations are only used when this the
  * global gtk-enable-animations setting is enabled as well.
  */
 void
 ar_style_set_card_theme (ArStyle *style,
-                         GamesCardTheme *theme)
+                         ArCardTheme *theme)
 {
   ArStylePrivate *priv = style->priv;
 

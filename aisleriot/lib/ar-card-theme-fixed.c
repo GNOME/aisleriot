@@ -25,21 +25,21 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include "games-debug.h"
-#include "games-runtime.h"
-#include "games-string-utils.h"
+#include <libgames-support/games-debug.h>
+#include <libgames-support/games-runtime.h>
+#include <libgames-support/games-string-utils.h>
 
-#include "games-card-theme.h"
-#include "games-card-theme-private.h"
+#include "ar-card-theme.h"
+#include "ar-card-theme-private.h"
 
-struct _GamesCardThemeFixedClass {
-  GamesCardThemeClass parent_class;
+struct _ArCardThemeFixedClass {
+  ArCardThemeClass parent_class;
 };
 
-struct _GamesCardThemeFixed {
-  GamesCardTheme parent_instance;
+struct _ArCardThemeFixed {
+  ArCardTheme parent_instance;
 
-  /* Switched on GamesCardThemeFixed.use_scalable */
+  /* Switched on ArCardThemeFixed.use_scalable */
   char *themesizepath;
   CardSize *card_sizes;
   guint n_card_sizes;
@@ -52,14 +52,14 @@ struct _GamesCardThemeFixed {
 
 /* Class implementation */
 
-G_DEFINE_TYPE (GamesCardThemeFixed, games_card_theme_fixed, GAMES_TYPE_CARD_THEME);
+G_DEFINE_TYPE (ArCardThemeFixed, ar_card_theme_fixed, AR_TYPE_CARD_THEME);
 
 static gboolean
-games_card_theme_fixed_load (GamesCardTheme *card_theme,
+ar_card_theme_fixed_load (ArCardTheme *card_theme,
                              GError **error__)
 {
-  GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
-  GamesCardThemeInfo *theme_info = card_theme->theme_info;
+  ArCardThemeFixed *theme = (ArCardThemeFixed *) card_theme;
+  ArCardThemeInfo *theme_info = card_theme->theme_info;
   GKeyFile *key_file;
   char *path;
   GError *error = NULL;
@@ -138,7 +138,7 @@ loser:
 }
 
 static void
-games_card_theme_fixed_init (GamesCardThemeFixed *theme)
+ar_card_theme_fixed_init (ArCardThemeFixed *theme)
 {
   theme->card_size.width = theme->card_size.height = -1;
 
@@ -153,24 +153,24 @@ games_card_theme_fixed_init (GamesCardThemeFixed *theme)
 }
 
 static void
-games_card_theme_fixed_finalize (GObject * object)
+ar_card_theme_fixed_finalize (GObject * object)
 {
-  GamesCardThemeFixed *theme = GAMES_CARD_THEME_FIXED (object);
+  ArCardThemeFixed *theme = AR_CARD_THEME_FIXED (object);
 
   g_free (theme->card_sizes);
   g_free (theme->themesizepath);
 
-  G_OBJECT_CLASS (games_card_theme_fixed_parent_class)->finalize (object);
+  G_OBJECT_CLASS (ar_card_theme_fixed_parent_class)->finalize (object);
 }
 
 static gboolean
-games_card_theme_fixed_set_card_size (GamesCardTheme *card_theme,
+ar_card_theme_fixed_set_card_size (ArCardTheme *card_theme,
                                       int width,
                                       int height,
                                       double proportion)
 {
-  GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
-  GamesCardThemeInfo *theme_info = card_theme->theme_info;
+  ArCardThemeFixed *theme = (ArCardThemeFixed *) card_theme;
+  ArCardThemeInfo *theme_info = card_theme->theme_info;
 
   if ((width == theme->slot_size.width) &&
       (height == theme->slot_size.height))
@@ -246,33 +246,33 @@ games_card_theme_fixed_set_card_size (GamesCardTheme *card_theme,
     }
   }
 
-  _games_card_theme_emit_changed (card_theme);
+  _ar_card_theme_emit_changed (card_theme);
 
   return TRUE;
 }
 
 static void
-games_card_theme_fixed_get_card_size (GamesCardTheme *card_theme,
+ar_card_theme_fixed_get_card_size (ArCardTheme *card_theme,
                                       CardSize *size)
 {
-  GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
+  ArCardThemeFixed *theme = (ArCardThemeFixed *) card_theme;
 
   *size = theme->card_size;
 }
 
 static double
-games_card_theme_fixed_get_card_aspect (GamesCardTheme *card_theme)
+ar_card_theme_fixed_get_card_aspect (ArCardTheme *card_theme)
 {
-  GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
+  ArCardThemeFixed *theme = (ArCardThemeFixed *) card_theme;
 
   return ((double) theme->card_size.width) / ((double) theme->card_size.height);
 }
 
 static GdkPixbuf *
-games_card_theme_fixed_get_card_pixbuf (GamesCardTheme *card_theme,
+ar_card_theme_fixed_get_card_pixbuf (ArCardTheme *card_theme,
                                         int card_id)
 {
-  GamesCardThemeFixed *theme = (GamesCardThemeFixed *) card_theme;
+  ArCardThemeFixed *theme = (ArCardThemeFixed *) card_theme;
   GdkPixbuf *pixbuf;
   GError *error = NULL;
   char name[32], filename[36];
@@ -281,7 +281,7 @@ games_card_theme_fixed_get_card_pixbuf (GamesCardTheme *card_theme,
   if (!theme->size_available)
     return NULL;
 
-  games_card_get_name_by_id_snprintf (name, sizeof (name), card_id);
+  ar_card_get_name_by_id_snprintf (name, sizeof (name), card_id);
   g_snprintf (filename, sizeof (filename), "%s.png", name);
   path = g_build_filename (theme->themesizepath, filename, NULL);
 
@@ -298,12 +298,12 @@ games_card_theme_fixed_get_card_pixbuf (GamesCardTheme *card_theme,
   return pixbuf;
 }
 
-static GamesCardThemeInfo *
-games_card_theme_fixed_class_get_theme_info (GamesCardThemeClass *klass,
+static ArCardThemeInfo *
+ar_card_theme_fixed_class_get_theme_info (ArCardThemeClass *klass,
                                              const char *path,
                                              const char *filename)
 {
-  GamesCardThemeInfo *info;
+  ArCardThemeInfo *info;
   char *display_name, *pref_name;
 
   if (!g_str_has_suffix (filename, ".card-theme"))
@@ -321,7 +321,7 @@ games_card_theme_fixed_class_get_theme_info (GamesCardThemeClass *klass,
   pref_name = g_strdup_printf ("fixed:%s", filename);
 #endif
 
-  info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
+  info = _ar_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,
                                      filename,
                                      display_name /* adopts */,
@@ -332,43 +332,43 @@ games_card_theme_fixed_class_get_theme_info (GamesCardThemeClass *klass,
 }
 
 static gboolean
-games_card_theme_fixed_class_foreach_theme_dir (GamesCardThemeClass *klass,
-                                                GamesCardThemeForeachFunc callback,
+ar_card_theme_fixed_class_foreach_theme_dir (ArCardThemeClass *klass,
+                                                ArCardThemeForeachFunc callback,
                                                 gpointer data)
 {
-  if (!_games_card_theme_class_foreach_env (klass, "GAMES_CARD_THEME_PATH_FIXED", callback, data))
+  if (!_ar_card_theme_class_foreach_env (klass, "AR_CARD_THEME_PATH_FIXED", callback, data))
     return FALSE;
 
   return callback (klass, games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY), data);
 }
 
 static void
-games_card_theme_fixed_class_init (GamesCardThemeFixedClass * klass)
+ar_card_theme_fixed_class_init (ArCardThemeFixedClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
+  ArCardThemeClass *theme_class = AR_CARD_THEME_CLASS (klass);
 
-  gobject_class->finalize = games_card_theme_fixed_finalize;
+  gobject_class->finalize = ar_card_theme_fixed_finalize;
 
-  theme_class->get_theme_info = games_card_theme_fixed_class_get_theme_info;
-  theme_class->foreach_theme_dir = games_card_theme_fixed_class_foreach_theme_dir;
+  theme_class->get_theme_info = ar_card_theme_fixed_class_get_theme_info;
+  theme_class->foreach_theme_dir = ar_card_theme_fixed_class_foreach_theme_dir;
 
-  theme_class->load = games_card_theme_fixed_load;
-  theme_class->set_card_size = games_card_theme_fixed_set_card_size;
-  theme_class->get_card_size = games_card_theme_fixed_get_card_size;
-  theme_class->get_card_aspect = games_card_theme_fixed_get_card_aspect;
-  theme_class->get_card_pixbuf = games_card_theme_fixed_get_card_pixbuf;
+  theme_class->load = ar_card_theme_fixed_load;
+  theme_class->set_card_size = ar_card_theme_fixed_set_card_size;
+  theme_class->get_card_size = ar_card_theme_fixed_get_card_size;
+  theme_class->get_card_aspect = ar_card_theme_fixed_get_card_aspect;
+  theme_class->get_card_pixbuf = ar_card_theme_fixed_get_card_pixbuf;
 }
 
 /* public API */
 
 /**
- * games_card_theme_fixed_new:
+ * ar_card_theme_fixed_new:
  *
- * Returns: a new #GamesCardThemeFixed
+ * Returns: a new #ArCardThemeFixed
  */
-GamesCardTheme *
-games_card_theme_fixed_new (void)
+ArCardTheme *
+ar_card_theme_fixed_new (void)
 {
-  return g_object_new (GAMES_TYPE_CARD_THEME_FIXED, NULL);
+  return g_object_new (AR_TYPE_CARD_THEME_FIXED, NULL);
 }

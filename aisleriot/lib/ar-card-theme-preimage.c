@@ -29,12 +29,12 @@
 #include <librsvg/librsvg-features.h>
 #endif
 
-#include "games-preimage.h"
-#include "games-runtime.h"
+#include <libgames-support/games-preimage.h>
+#include <libgames-support/games-runtime.h>
+#include <libgames-support/games-string-utils.h>
 
-#include "games-card-theme.h"
-#include "games-card-theme-private.h"
-#include "games-string-utils.h"
+#include "ar-card-theme.h"
+#include "ar-card-theme-private.h"
 
 #define N_ROWS ((double) 5.0)
 #define N_COLS ((double) 13.0)
@@ -43,24 +43,24 @@
 
 /* Class implementation */
 
-G_DEFINE_ABSTRACT_TYPE (GamesCardThemePreimage, games_card_theme_preimage, GAMES_TYPE_CARD_THEME);
+G_DEFINE_ABSTRACT_TYPE (ArCardThemePreimage, ar_card_theme_preimage, AR_TYPE_CARD_THEME);
 
 void
-_games_card_theme_preimage_clear_sized_theme_data (GamesCardThemePreimage *theme)
+_ar_card_theme_preimage_clear_sized_theme_data (ArCardThemePreimage *theme)
 {
-  void (* clear_sized_theme_data) (GamesCardThemePreimage *) =
-    GAMES_CARD_THEME_PREIMAGE_GET_CLASS (theme)->clear_sized_theme_data;
+  void (* clear_sized_theme_data) (ArCardThemePreimage *) =
+    AR_CARD_THEME_PREIMAGE_GET_CLASS (theme)->clear_sized_theme_data;
 
   if (clear_sized_theme_data)
     clear_sized_theme_data (theme);
 }
 
 static gboolean
-games_card_theme_preimage_load (GamesCardTheme *card_theme,
+ar_card_theme_preimage_load (ArCardTheme *card_theme,
                                 GError **error)
 {
-  GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
-  GamesCardThemeInfo *theme_info = card_theme->theme_info;
+  ArCardThemePreimage *theme = (ArCardThemePreimage *) card_theme;
+  ArCardThemeInfo *theme_info = card_theme->theme_info;
   const char *slot_dir;
   char *path;
 
@@ -81,9 +81,9 @@ games_card_theme_preimage_load (GamesCardTheme *card_theme,
   if (!theme->cards_preimage)
     return FALSE;
 
-  if (GAMES_CARD_THEME_PREIMAGE_GET_CLASS (theme)->needs_scalable_cards &&
+  if (AR_CARD_THEME_PREIMAGE_GET_CLASS (theme)->needs_scalable_cards &&
       !games_preimage_is_scalable (theme->cards_preimage)) {
-    g_set_error (error, GAMES_CARD_THEME_ERROR, GAMES_CARD_THEME_ERROR_NOT_SCALABLE,
+    g_set_error (error, AR_CARD_THEME_ERROR, AR_CARD_THEME_ERROR_NOT_SCALABLE,
                  "Theme is not scalable");
     return FALSE;
   }
@@ -97,7 +97,7 @@ games_card_theme_preimage_load (GamesCardTheme *card_theme,
 }
 
 static void
-games_card_theme_preimage_init (GamesCardThemePreimage *theme)
+ar_card_theme_preimage_init (ArCardThemePreimage *theme)
 {
   theme->cards_preimage = NULL;
   theme->slot_preimage = NULL;
@@ -110,11 +110,11 @@ games_card_theme_preimage_init (GamesCardThemePreimage *theme)
 }
 
 static void
-games_card_theme_preimage_finalize (GObject * object)
+ar_card_theme_preimage_finalize (GObject * object)
 {
-  GamesCardThemePreimage *theme = GAMES_CARD_THEME_PREIMAGE (object);
+  ArCardThemePreimage *theme = AR_CARD_THEME_PREIMAGE (object);
 
-  _games_card_theme_preimage_clear_sized_theme_data (theme);
+  _ar_card_theme_preimage_clear_sized_theme_data (theme);
 
   if (theme->cards_preimage != NULL) {
     g_object_unref (theme->cards_preimage);
@@ -127,14 +127,14 @@ games_card_theme_preimage_finalize (GObject * object)
     cairo_font_options_destroy (theme->font_options);
   }
 
-  G_OBJECT_CLASS (games_card_theme_preimage_parent_class)->finalize (object);
+  G_OBJECT_CLASS (ar_card_theme_preimage_parent_class)->finalize (object);
 }
 
 static void
-games_card_theme_preimage_set_font_options (GamesCardTheme *card_theme,
+ar_card_theme_preimage_set_font_options (ArCardTheme *card_theme,
                                             const cairo_font_options_t *font_options)
 {
-  GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
+  ArCardThemePreimage *theme = (ArCardThemePreimage *) card_theme;
 
   if (font_options &&
       theme->font_options &&
@@ -151,17 +151,17 @@ games_card_theme_preimage_set_font_options (GamesCardTheme *card_theme,
     theme->font_options = NULL;
   }
 
-  _games_card_theme_preimage_clear_sized_theme_data (theme);
-  _games_card_theme_emit_changed (card_theme);
+  _ar_card_theme_preimage_clear_sized_theme_data (theme);
+  _ar_card_theme_emit_changed (card_theme);
 }
 
 static gboolean
-games_card_theme_preimage_set_card_size (GamesCardTheme *card_theme,
+ar_card_theme_preimage_set_card_size (ArCardTheme *card_theme,
                                          int width,
                                          int height,
                                          double proportion)
 {
-  GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
+  ArCardThemePreimage *theme = (ArCardThemePreimage *) card_theme;
   double aspect_ratio, twidth, theight;
 
   if ((width == theme->slot_size.width) &&
@@ -174,7 +174,7 @@ games_card_theme_preimage_set_card_size (GamesCardTheme *card_theme,
   /* Now calculate the card size: find the maximum size that fits
    * into the given area, preserving the card's aspect ratio.
    */
-  aspect_ratio = games_card_theme_get_aspect (card_theme);
+  aspect_ratio = ar_card_theme_get_aspect (card_theme);
 
   twidth = proportion * width;
   theight = proportion * height;
@@ -191,25 +191,25 @@ games_card_theme_preimage_set_card_size (GamesCardTheme *card_theme,
   theme->card_size.width = twidth;
   theme->card_size.height = theight;
 
-  _games_card_theme_preimage_clear_sized_theme_data (theme);
-  _games_card_theme_emit_changed (card_theme);
+  _ar_card_theme_preimage_clear_sized_theme_data (theme);
+  _ar_card_theme_emit_changed (card_theme);
 
   return TRUE;
 }
 
 static void
-games_card_theme_preimage_get_card_size (GamesCardTheme *card_theme,
+ar_card_theme_preimage_get_card_size (ArCardTheme *card_theme,
                                          CardSize *size)
 {
-  GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
+  ArCardThemePreimage *theme = (ArCardThemePreimage *) card_theme;
 
   *size = theme->card_size;
 }
 
 static double
-games_card_theme_preimage_get_card_aspect (GamesCardTheme* card_theme)
+ar_card_theme_preimage_get_card_aspect (ArCardTheme* card_theme)
 {
-  GamesCardThemePreimage *theme = (GamesCardThemePreimage *) card_theme;
+  ArCardThemePreimage *theme = (ArCardThemePreimage *) card_theme;
   double aspect;
 aspect =
       (((double) games_preimage_get_width (theme->cards_preimage))
@@ -220,13 +220,13 @@ aspect =
   return aspect;
 }
 
-static GamesCardThemeInfo *
-games_card_theme_preimage_class_get_theme_info (GamesCardThemeClass *klass,
+static ArCardThemeInfo *
+ar_card_theme_preimage_class_get_theme_info (ArCardThemeClass *klass,
                                                 const char *path,
                                                 const char *filename)
 {
 #ifdef HAVE_RSVG
-  GamesCardThemeInfo *info;
+  ArCardThemeInfo *info;
   char *display_name;
 
   if (!g_str_has_suffix (filename, ".svg")
@@ -237,7 +237,7 @@ games_card_theme_preimage_class_get_theme_info (GamesCardThemeClass *klass,
     return NULL;
 
   display_name = games_filename_to_display_name (filename);
-  info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
+  info = _ar_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,
                                      filename,
                                      display_name /* adopts */,
@@ -251,19 +251,19 @@ games_card_theme_preimage_class_get_theme_info (GamesCardThemeClass *klass,
 }
 
 static void
-games_card_theme_preimage_class_init (GamesCardThemePreimageClass * klass)
+ar_card_theme_preimage_class_init (ArCardThemePreimageClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
+  ArCardThemeClass *theme_class = AR_CARD_THEME_CLASS (klass);
 
-  gobject_class->finalize = games_card_theme_preimage_finalize;
+  gobject_class->finalize = ar_card_theme_preimage_finalize;
 
-  theme_class->get_theme_info = games_card_theme_preimage_class_get_theme_info;
+  theme_class->get_theme_info = ar_card_theme_preimage_class_get_theme_info;
 
-  theme_class->load = games_card_theme_preimage_load;
-  theme_class->set_card_size = games_card_theme_preimage_set_card_size;
-  theme_class->get_card_size = games_card_theme_preimage_get_card_size;
-  theme_class->get_card_aspect = games_card_theme_preimage_get_card_aspect;
+  theme_class->load = ar_card_theme_preimage_load;
+  theme_class->set_card_size = ar_card_theme_preimage_set_card_size;
+  theme_class->get_card_size = ar_card_theme_preimage_get_card_size;
+  theme_class->get_card_aspect = ar_card_theme_preimage_get_card_aspect;
   theme_class->get_card_pixbuf = NULL;
-  theme_class->set_font_options = games_card_theme_preimage_set_font_options;
+  theme_class->set_font_options = ar_card_theme_preimage_set_font_options;
 }

@@ -26,21 +26,22 @@
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-#include "games-card-images.h"
+#include <libgames-support/games-debug.h>
 
-#include "games-pixbuf-utils.h"
-#include "games-card.h"
-#include "games-card-private.h"
-#include "games-debug.h"
+#include "ar-card-images.h"
 
-struct _GamesCardImagesClass {
+#include "ar-pixbuf-utils.h"
+#include "ar-card.h"
+#include "ar-card-private.h"
+
+struct _ArCardImagesClass {
   GObjectClass parent_class;
 };
 
-struct _GamesCardImages {
+struct _ArCardImages {
   GObject parent;
 
-  GamesCardTheme *theme;
+  ArCardTheme *theme;
   GdkDrawable *drawable;
   GdkBitmap *card_mask;
   GdkBitmap *slot_mask;
@@ -61,7 +62,7 @@ enum {
   PROP_THEME
 };
 
-/* MARK_IS_TRANSFORMED must be the same value as GAMES_CARD_IMAGES_HIGHLIGHTED ! */
+/* MARK_IS_TRANSFORMED must be the same value as AR_CARD_IMAGES_HIGHLIGHTED ! */
 enum {
   MARK_IS_PIXMAP = 1U << 0,
   MARK_IS_TRANSFORMED = 1U << 1,
@@ -78,7 +79,7 @@ enum {
 
 #define IS_FAILED_POINTER(ptr) (G_UNLIKELY ((ptr) == FAILED_POINTER))
 
-#define CACHE_SIZE  (2 * GAMES_CARDS_TOTAL)
+#define CACHE_SIZE  (2 * AR_CARDS_TOTAL)
 
 /* Threshold for rendering the pixbuf to card and alpha mask */
 #define CARD_ALPHA_THRESHOLD  (127)
@@ -96,12 +97,12 @@ enum {
 #endif /* GNOME_ENABLE_DEBUG */
 
 static void
-games_card_images_clear_cache (GamesCardImages * images)
+ar_card_images_clear_cache (ArCardImages * images)
 {
   guint i;
 
   _games_debug_print (GAMES_DEBUG_CARD_CACHE,
-                      "games_card_images_clear_cache\n");
+                      "ar_card_images_clear_cache\n");
 
   for (i = 0; i < CACHE_SIZE; i++) {
     gpointer data = UNMARK_POINTER (images->cache[i]);
@@ -124,10 +125,10 @@ games_card_images_clear_cache (GamesCardImages * images)
 }
 
 static void
-games_card_images_theme_changed_cb (GamesCardTheme * theme,
-                                    GamesCardImages * images)
+ar_card_images_theme_changed_cb (ArCardTheme * theme,
+                                    ArCardImages * images)
 {
-  games_card_images_clear_cache (images);
+  ar_card_images_clear_cache (images);
 }
 
 /* Consider the cache as a 2-dimensional array: [0..TOTAL-1 , 0..1]:
@@ -140,34 +141,33 @@ games_card_images_theme_changed_cb (GamesCardTheme * theme,
  * image), we transform it, and store the result in cache[i][j].
  */
 static GdkPixbuf *
-create_pixbuf (GamesCardImages * images, guint card_id)
+create_pixbuf (ArCardImages * images, guint card_id)
 {
   GdkPixbuf *pixbuf;
 
   g_assert (images->cache[card_id] == NULL &&
-            images->cache[card_id + GAMES_CARDS_TOTAL] == NULL);
+            images->cache[card_id + AR_CARDS_TOTAL] == NULL);
 
-  pixbuf = games_card_theme_get_card_pixbuf (images->theme, card_id);
+  pixbuf = ar_card_theme_get_card_pixbuf (images->theme, card_id);
   if (!pixbuf)
     return NULL;
 
   images->cache[card_id] = pixbuf;
-  images->cache[card_id + GAMES_CARDS_TOTAL] = g_object_ref (pixbuf);
+  images->cache[card_id + AR_CARDS_TOTAL] = g_object_ref (pixbuf);
 
   return pixbuf;
 }
 
 static GdkPixbuf *
-transform_pixbuf (GamesCardImages * images, GdkPixbuf * pixbuf, guint idx)
+transform_pixbuf (ArCardImages * images, GdkPixbuf * pixbuf, guint idx)
 {
   GdkPixbuf *transformed_pixbuf;
 
   g_assert (pixbuf != NULL);
   g_assert (pixbuf == UNMARK_POINTER (images->cache[idx]));
 
-  transformed_pixbuf = games_pixbuf_utils_create_highlight (pixbuf,
-                                                            &images->
-                                                            selection_colour);
+  transformed_pixbuf = ar_pixbuf_utils_create_highlight (pixbuf,
+                                                         &images->selection_colour);
   if (!transformed_pixbuf)
     return NULL;
 
@@ -202,10 +202,10 @@ create_mask (GdkDrawable * drawable,
 
 /* Class implementation */
 
-G_DEFINE_TYPE (GamesCardImages, games_card_images, G_TYPE_OBJECT);
+G_DEFINE_TYPE (ArCardImages, ar_card_images, G_TYPE_OBJECT);
 
 static void
-games_card_images_init (GamesCardImages * images)
+ar_card_images_init (ArCardImages * images)
 {
   const GdkColor background_colour =
     { 0, 0 /* red */ , 0 /* green */ , 0 /* blue */  };
@@ -221,16 +221,16 @@ games_card_images_init (GamesCardImages * images)
 }
 
 static void
-games_card_images_finalize (GObject * object)
+ar_card_images_finalize (GObject * object)
 {
-  GamesCardImages *images = GAMES_CARD_IMAGES (object);
+  ArCardImages *images = AR_CARD_IMAGES (object);
 
-  games_card_images_clear_cache (images);
+  ar_card_images_clear_cache (images);
   g_free (images->cache);
 
   if (images->theme) {
     g_signal_handlers_disconnect_by_func (images->theme,
-                                          G_CALLBACK (games_card_images_theme_changed_cb),
+                                          G_CALLBACK (ar_card_images_theme_changed_cb),
                                           images);
     g_object_unref (images->theme);
   }
@@ -238,26 +238,26 @@ games_card_images_finalize (GObject * object)
 #ifdef GNOME_ENABLE_DEBUG
   _GAMES_DEBUG_IF (GAMES_DEBUG_CARD_CACHE) {
     _games_debug_print (GAMES_DEBUG_CARD_CACHE,
-                        "GamesCardImages %p statistics: %u calls with %u hits and %u misses for a hit/total of %.3f\n",
+                        "ArCardImages %p statistics: %u calls with %u hits and %u misses for a hit/total of %.3f\n",
                         images, images->n_calls, images->cache_hits, images->n_calls - images->cache_hits,
                         images->n_calls > 0 ? (double) images->cache_hits / (double) images->n_calls : 0.0);
   }
 #endif
 
-  G_OBJECT_CLASS (games_card_images_parent_class)->finalize (object);
+  G_OBJECT_CLASS (ar_card_images_parent_class)->finalize (object);
 }
 
 static void
-games_card_images_set_property (GObject *object,
+ar_card_images_set_property (GObject *object,
                                 guint prop_id,
                                 const GValue *value,
                                 GParamSpec *pspec)
 {
-  GamesCardImages *images = GAMES_CARD_IMAGES (object);
+  ArCardImages *images = AR_CARD_IMAGES (object);
 
   switch (prop_id) {
     case PROP_THEME:
-      games_card_images_set_theme (images, g_value_get_object (value));
+      ar_card_images_set_theme (images, g_value_get_object (value));
       break;
 
     default:
@@ -267,16 +267,16 @@ games_card_images_set_property (GObject *object,
 }
 
 static void
-games_card_images_get_property (GObject *object,
+ar_card_images_get_property (GObject *object,
                                 guint prop_id,
                                 GValue *value,
                                 GParamSpec * pspec)
 {
-  GamesCardImages *images = GAMES_CARD_IMAGES (object);
+  ArCardImages *images = AR_CARD_IMAGES (object);
 
   switch (prop_id) {
     case PROP_THEME:
-      g_value_set_object (value, games_card_images_get_theme (images));
+      g_value_set_object (value, ar_card_images_get_theme (images));
       break;
 
     default:
@@ -286,19 +286,19 @@ games_card_images_get_property (GObject *object,
 }
 
 static void
-games_card_images_class_init (GamesCardImagesClass * class)
+ar_card_images_class_init (ArCardImagesClass * class)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (class);
 
-  gobject_class->get_property = games_card_images_get_property;
-  gobject_class->set_property = games_card_images_set_property;
-  gobject_class->finalize = games_card_images_finalize;
+  gobject_class->get_property = ar_card_images_get_property;
+  gobject_class->set_property = ar_card_images_set_property;
+  gobject_class->finalize = ar_card_images_finalize;
 
   g_object_class_install_property
     (gobject_class,
      PROP_THEME,
      g_param_spec_object ("theme", NULL, NULL,
-                          GAMES_TYPE_CARD_THEME,
+                          AR_TYPE_CARD_THEME,
                           G_PARAM_READWRITE |
                           G_PARAM_STATIC_NAME |
                           G_PARAM_STATIC_NICK |
@@ -308,38 +308,38 @@ games_card_images_class_init (GamesCardImagesClass * class)
 /* public API */
 
 /**
- * games_card_images_new:
+ * ar_card_images_new:
  *
- * Returns: a new #GamesCardImages
+ * Returns: a new #ArCardImages
  */
-GamesCardImages *
-games_card_images_new (void)
+ArCardImages *
+ar_card_images_new (void)
 {
-  return g_object_new (GAMES_TYPE_CARD_IMAGES, NULL);
+  return g_object_new (AR_TYPE_CARD_IMAGES, NULL);
 }
 
 /**
- * games_card_images_set_theme:
+ * ar_card_images_set_theme:
  * @images:
- * @theme: a #GamesCardTheme
+ * @theme: a #ArCardTheme
  *
  * Sets @theme in @images.
  */
 void
-games_card_images_set_theme (GamesCardImages *images,
-                             GamesCardTheme *theme)
+ar_card_images_set_theme (ArCardImages *images,
+                             ArCardTheme *theme)
 {
-  g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
-  g_return_if_fail (GAMES_IS_CARD_THEME (theme));
+  g_return_if_fail (AR_IS_CARD_IMAGES (images));
+  g_return_if_fail (AR_IS_CARD_THEME (theme));
 
   if (images->theme == theme)
     return;
 
   if (images->theme) {
     g_signal_handlers_disconnect_by_func (images->theme,
-                                          G_CALLBACK (games_card_images_theme_changed_cb),
+                                          G_CALLBACK (ar_card_images_theme_changed_cb),
                                           images);
-    games_card_images_clear_cache (images);
+    ar_card_images_clear_cache (images);
     g_object_unref (images->theme);
   }
 
@@ -347,42 +347,42 @@ games_card_images_set_theme (GamesCardImages *images,
   if (theme) {
     g_object_ref (images->theme);
     g_signal_connect (images->theme, "changed",
-                      G_CALLBACK (games_card_images_theme_changed_cb), images);
+                      G_CALLBACK (ar_card_images_theme_changed_cb), images);
   }
 
   g_object_notify (G_OBJECT (images), "theme");
 }
 
 /**
- * games_card_images_get_theme:
+ * ar_card_images_get_theme:
  * @images:
  *
- * Returns the #GamesCardTheme currently in use in @images.
+ * Returns the #ArCardTheme currently in use in @images.
  */
-GamesCardTheme *
-games_card_images_get_theme (GamesCardImages *images)
+ArCardTheme *
+ar_card_images_get_theme (ArCardImages *images)
 {
-  g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), NULL);
+  g_return_val_if_fail (AR_IS_CARD_IMAGES (images), NULL);
 
   return images->theme;
 }
 
 /**
- * games_card_images_set_cache_mode:
+ * ar_card_images_set_cache_mode:
  * @images:
  * @mode:
  *
  * Select whether @images stores #GdkPixbuf:s or #GdkPixmap:s.
- * It is an error to use games_card_images_get_*_pixbuf*() while
- * storing pixmaps, and to use games_card_images_get_*_pixmap*() while
+ * It is an error to use ar_card_images_get_*_pixbuf*() while
+ * storing pixmaps, and to use ar_card_images_get_*_pixmap*() while
  * storing pixbufs.
  * Changing the cache mode invalidates all stored images.
  */
 void
-games_card_images_set_cache_mode (GamesCardImages * images,
-                                  GamesCardImagesCacheMode mode)
+ar_card_images_set_cache_mode (ArCardImages * images,
+                                  ArCardImagesCacheMode mode)
 {
-  g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
+  g_return_if_fail (AR_IS_CARD_IMAGES (images));
   g_return_if_fail (mode < LAST_CACHE_MODE);
 
   if (mode == images->cache_mode)
@@ -390,28 +390,28 @@ games_card_images_set_cache_mode (GamesCardImages * images,
 
   /* If we were storing pixmaps, we need to clear them */
   if (images->cache_mode == CACHE_PIXMAPS) {
-    games_card_images_clear_cache (images);
+    ar_card_images_clear_cache (images);
   }
 
   images->cache_mode = mode;
 }
 
 /**
- * games_card_images_drop_cache:
- * @images: a #GamesCardImages
+ * ar_card_images_drop_cache:
+ * @images: a #ArCardImages
  *
  * Clears the image cache.
  */
 void
-games_card_images_drop_cache (GamesCardImages *images)
+ar_card_images_drop_cache (ArCardImages *images)
 {
-  g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
+  g_return_if_fail (AR_IS_CARD_IMAGES (images));
 
-  games_card_images_clear_cache (images);
+  ar_card_images_clear_cache (images);
 }
 
 /**
- * games_card_images_set_drawable:
+ * ar_card_images_set_drawable:
  * @images:
  * @drawable: a #GdkDrawable
  *
@@ -422,22 +422,22 @@ games_card_images_drop_cache (GamesCardImages *images)
  * Changing the drawable invalidates all cached pixmaps and masks.
  */
 void
-games_card_images_set_drawable (GamesCardImages * images,
+ar_card_images_set_drawable (ArCardImages * images,
                                 GdkWindow * drawable)
 {
-  g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
+  g_return_if_fail (AR_IS_CARD_IMAGES (images));
   g_return_if_fail (drawable == NULL || GDK_IS_DRAWABLE (drawable));
 
   if (drawable == images->drawable)
     return;
 
-  games_card_images_clear_cache (images);
+  ar_card_images_clear_cache (images);
 
   images->drawable = drawable;
 }
 
 /**
- * games_card_images_set_size:
+ * ar_card_images_set_size:
  * @images:
  * @width: the maximum width
  * @height: the maximum height
@@ -446,7 +446,7 @@ games_card_images_set_drawable (GamesCardImages * images,
  * Calculates the card size to use. The passed-in dimensions are not used
  * directly; instead the width and height used are calculated using the
  * card theme's aspect ratio and, if using a prerendered card theme, from the
- * available sizes. You can use games_card_images_get_size() to get
+ * available sizes. You can use ar_card_images_get_size() to get
  * the real card size afterwards.
  * If the card size was changed, all cached pixbufs and pixmaps will
  * have been invalidated.
@@ -454,28 +454,28 @@ games_card_images_set_drawable (GamesCardImages * images,
  * Returns: %TRUE iff the card size was changed
  */
 gboolean
-games_card_images_set_size (GamesCardImages * images,
+ar_card_images_set_size (ArCardImages * images,
                             gint width, gint height, gdouble proportion)
 {
-  return games_card_theme_set_size (images->theme,
+  return ar_card_theme_set_size (images->theme,
                                     width, height, proportion);
 }
 
 /**
- * games_card_images_get_size:
+ * ar_card_images_get_size:
  * @images:
  *
  * Returns: the currently selected card size
  */
 void
-games_card_images_get_size (GamesCardImages *images,
+ar_card_images_get_size (ArCardImages *images,
                             CardSize *size)
 {
-  games_card_theme_get_size (images->theme, size);
+  ar_card_theme_get_size (images->theme, size);
 }
 
 /**
- * games_card_images_set_background_color:
+ * ar_card_images_set_background_color:
  * @images:
  * @colour:
  *
@@ -483,10 +483,10 @@ games_card_images_get_size (GamesCardImages *images,
  * Changing the selection colour invalidates all cached pixmaps.
  */
 void
-games_card_images_set_background_color (GamesCardImages * images,
+ar_card_images_set_background_color (ArCardImages * images,
                                         const GdkColor * color)
 {
-  g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
+  g_return_if_fail (AR_IS_CARD_IMAGES (images));
   g_return_if_fail (color != NULL);
 
   if (gdk_color_equal (&images->background_colour, color))
@@ -495,12 +495,12 @@ games_card_images_set_background_color (GamesCardImages * images,
   images->background_colour = *color;
 
   if (images->cache_mode == CACHE_PIXMAPS) {
-    games_card_images_clear_cache (images);
+    ar_card_images_clear_cache (images);
   }
 }
 
 /**
- * games_card_images_set_selection_color:
+ * ar_card_images_set_selection_color:
  * @images:
  * @colour:
  *
@@ -509,10 +509,10 @@ games_card_images_set_background_color (GamesCardImages * images,
  * and pixmaps.
  */
 void
-games_card_images_set_selection_color (GamesCardImages * images,
+ar_card_images_set_selection_color (ArCardImages * images,
                                        const GdkColor * color)
 {
-  g_return_if_fail (GAMES_IS_CARD_IMAGES (images));
+  g_return_if_fail (AR_IS_CARD_IMAGES (images));
   g_return_if_fail (color != NULL);
 
   if (gdk_color_equal (&images->selection_colour, color))
@@ -520,11 +520,11 @@ games_card_images_set_selection_color (GamesCardImages * images,
 
   images->selection_colour = *color;
 
-  games_card_images_clear_cache (images);
+  ar_card_images_clear_cache (images);
 }
 
 /**
- * games_card_images_get_card_pixbuf_by_id:
+ * ar_card_images_get_card_pixbuf_by_id:
  * @images:
  * @card_id:
  *
@@ -535,22 +535,22 @@ games_card_images_set_selection_color (GamesCardImages * images,
  * Returns: a #GdkPixbuf owned by @images; you must not change or unref it
  */
 GdkPixbuf *
-games_card_images_get_card_pixbuf_by_id (GamesCardImages * images,
+ar_card_images_get_card_pixbuf_by_id (ArCardImages * images,
                                          guint card_id, gboolean highlighted)
 {
   gpointer data;
   GdkPixbuf *pixbuf;
   guint idx;
 
-  g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), NULL);
-  g_return_val_if_fail ((card_id < GAMES_CARDS_TOTAL), NULL);
+  g_return_val_if_fail (AR_IS_CARD_IMAGES (images), NULL);
+  g_return_val_if_fail ((card_id < AR_CARDS_TOTAL), NULL);
   g_return_val_if_fail (images->cache_mode == CACHE_PIXBUFS, NULL);
 
   LOG_CALL (images);
 
   idx = card_id;
   if (G_UNLIKELY (highlighted)) {
-    idx += GAMES_CARDS_TOTAL;
+    idx += AR_CARDS_TOTAL;
   }
 
   data = images->cache[idx];
@@ -597,7 +597,7 @@ games_card_images_get_card_pixbuf_by_id (GamesCardImages * images,
 }
 
 /**
- * games_card_images_get_card_pixbuf:
+ * ar_card_images_get_card_pixbuf:
  * @images:
  * @card:
  *
@@ -608,29 +608,29 @@ games_card_images_get_card_pixbuf_by_id (GamesCardImages * images,
  * Returns: a #GdkPixbuf owned by @images; you must not change or unref it
  */
 GdkPixbuf *
-games_card_images_get_card_pixbuf (GamesCardImages * images,
+ar_card_images_get_card_pixbuf (ArCardImages * images,
                                    Card card, gboolean highlighted)
 {
-  return games_card_images_get_card_pixbuf_by_id (images,
-                                                  _games_card_to_index (card),
+  return ar_card_images_get_card_pixbuf_by_id (images,
+                                                  _ar_card_to_index (card),
                                                   highlighted);
 }
 
 /**
- * games_card_images_get_card_pixmap_by_id:
+ * ar_card_images_get_card_pixmap_by_id:
  * @images:
  * @card_id:
  *
  * Returns a #GdkPixmap for @card_id using the currently loaded
  * theme and the currently selected size.
  * You must set a drawable on @images before using this function,
- * see games_card_images_set_drawable().
+ * see ar_card_images_set_drawable().
  * Returns %NULL on failure.
  *
  * Returns: a #GdkPixmap owned by @images; you must not change or unref it
  */
 GdkPixmap *
-games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
+ar_card_images_get_card_pixmap_by_id (ArCardImages * images,
                                          guint card_id, gboolean highlighted)
 {
   gpointer data, pixbuf_or_pixmap;
@@ -640,8 +640,8 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
   int width, height;
   guint idx;
 
-  g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), NULL);
-  g_return_val_if_fail ((card_id < GAMES_CARDS_TOTAL), NULL);
+  g_return_val_if_fail (AR_IS_CARD_IMAGES (images), NULL);
+  g_return_val_if_fail ((card_id < AR_CARDS_TOTAL), NULL);
   g_return_val_if_fail (images->cache_mode == CACHE_PIXMAPS, NULL);
   g_return_val_if_fail (images->drawable != NULL, NULL);
 
@@ -649,7 +649,7 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
 
   idx = card_id;
   if (G_UNLIKELY (highlighted)) {
-    idx += GAMES_CARDS_TOTAL;
+    idx += AR_CARDS_TOTAL;
   }
 
   data = images->cache[idx];
@@ -703,11 +703,11 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
   height = gdk_pixbuf_get_height (pixbuf);
 
   /* If we don't have the mask yet, create it now */
-  if (G_UNLIKELY (card_id == GAMES_CARD_BACK && images->card_mask == NULL)) {
+  if (G_UNLIKELY (card_id == AR_CARD_BACK && images->card_mask == NULL)) {
     images->card_mask =
       create_mask (images->drawable, pixbuf, CARD_ALPHA_THRESHOLD);
   } else
-    if (G_UNLIKELY (card_id == GAMES_CARD_SLOT && images->slot_mask == NULL))
+    if (G_UNLIKELY (card_id == AR_CARD_SLOT && images->slot_mask == NULL))
   {
     images->slot_mask =
       create_mask (images->drawable, pixbuf, SLOT_ALPHA_THRESHOLD);
@@ -744,54 +744,54 @@ games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
 }
 
 /**
- * games_card_pixmaps_get_card_pixmap_by_id:
+ * ar_card_pixmaps_get_card_pixmap_by_id:
  * @images:
  * @card_id:
  *
  * Returns a #GdkPixmap for @card using the currently loaded
  * theme and the currently selected size.
  * You must set a drawable on @images before using this function,
- * see games_card_images_set_drawable().
+ * see ar_card_images_set_drawable().
  * Returns %NULL on failure.
  *
  * Returns: a #GdkPixmap owned by @images; you must not change or unref it
  */
 GdkPixmap *
-games_card_images_get_card_pixmap (GamesCardImages * images,
+ar_card_images_get_card_pixmap (ArCardImages * images,
                                    Card card, gboolean highlighted)
 {
-  return games_card_images_get_card_pixmap_by_id (images,
-                                                  _games_card_to_index (card),
+  return ar_card_images_get_card_pixmap_by_id (images,
+                                                  _ar_card_to_index (card),
                                                   highlighted);
 }
 
 /**
- * games_card_images_get_card_mask:
+ * ar_card_images_get_card_mask:
  * @images:
  *
  * Returns the card mask for the currently loaded theme at the currently
  * selected size.
  * You must set a drawable on @images before using this function,
- * see games_card_images_set_drawable().
+ * see ar_card_images_set_drawable().
  * Returns %NULL on failure.
  * 
  * Returns: a #GdkBitmap owned by @images; you must not change or unref it
  */
 GdkBitmap *
-games_card_images_get_card_mask (GamesCardImages * images)
+ar_card_images_get_card_mask (ArCardImages * images)
 {
-  g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), NULL);
+  g_return_val_if_fail (AR_IS_CARD_IMAGES (images), NULL);
   g_return_val_if_fail (images->drawable != NULL, NULL);
 
   if (images->card_mask == NULL) {
     if (images->cache_mode == CACHE_PIXMAPS) {
       /* Always use the back of the cards to draw the mask */
-      games_card_images_get_card_pixmap_by_id (images, GAMES_CARD_BACK,
+      ar_card_images_get_card_pixmap_by_id (images, AR_CARD_BACK,
                                                FALSE);
     } else {
       images->card_mask = create_mask (images->drawable,
-                                       games_card_images_get_card_pixbuf_by_id
-                                       (images, GAMES_CARD_BACK, FALSE),
+                                       ar_card_images_get_card_pixbuf_by_id
+                                       (images, AR_CARD_BACK, FALSE),
                                        CARD_ALPHA_THRESHOLD);
     }
   }
@@ -800,7 +800,7 @@ games_card_images_get_card_mask (GamesCardImages * images)
 }
 
 /**
- * games_card_images_get_slot_pixbuf:
+ * ar_card_images_get_slot_pixbuf:
  * @images:
  *
  * Returns a #GdkPixbuf for card slot using the currently loaded
@@ -810,59 +810,59 @@ games_card_images_get_card_mask (GamesCardImages * images)
  * Returns: a #GdkPixbuf owned by @images; you must not change or unref it
  */
 GdkPixbuf *
-games_card_images_get_slot_pixbuf (GamesCardImages * images,
+ar_card_images_get_slot_pixbuf (ArCardImages * images,
                                    gboolean highlighted)
 {
-  return games_card_images_get_card_pixbuf_by_id (images,
-                                                  GAMES_CARD_SLOT,
+  return ar_card_images_get_card_pixbuf_by_id (images,
+                                                  AR_CARD_SLOT,
                                                   highlighted);
 }
 
 /**
- * games_card_images_get_slot_pixmap:
+ * ar_card_images_get_slot_pixmap:
  * @images:
  *
  * Returns a #GdkPixbuf for card slot using the currently loaded
  * theme at the currently selected size.
  * You must set a drawable on @images before using this function,
- * see games_card_images_set_drawable().
+ * see ar_card_images_set_drawable().
  * Returns %NULL on failure.
  * 
  * Returns: a #GdkPixmap owned by @images; you must not change or unref it
  */
 GdkPixmap *
-games_card_images_get_slot_pixmap (GamesCardImages * images,
+ar_card_images_get_slot_pixmap (ArCardImages * images,
                                    gboolean highlighted)
 {
-  return games_card_images_get_card_pixmap_by_id (images,
-                                                  GAMES_CARD_SLOT,
+  return ar_card_images_get_card_pixmap_by_id (images,
+                                                  AR_CARD_SLOT,
                                                   highlighted);
 }
 
 /**
- * games_card_images_get_slot_mask:
+ * ar_card_images_get_slot_mask:
  * @images:
  *
  * Returns the slot mask for the currently loaded theme at the currently
  * selected size.
  * You must set a drawable on @images before using this function,
- * see games_card_images_set_drawable().
+ * see ar_card_images_set_drawable().
  * Returns %NULL on failure.
  * 
  * Returns: a #GdkBitmap owned by @images; you must not change or unref it
  */
 GdkBitmap *
-games_card_images_get_slot_mask (GamesCardImages * images)
+ar_card_images_get_slot_mask (ArCardImages * images)
 {
-  g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), NULL);
+  g_return_val_if_fail (AR_IS_CARD_IMAGES (images), NULL);
   g_return_val_if_fail (images->drawable != NULL, NULL);
 
   if (images->slot_mask == NULL) {
     if (images->cache_mode == CACHE_PIXMAPS) {
-      games_card_images_get_slot_pixmap (images, FALSE);
+      ar_card_images_get_slot_pixmap (images, FALSE);
     } else {
       images->slot_mask = create_mask (images->drawable,
-                                       games_card_images_get_slot_pixbuf
+                                       ar_card_images_get_slot_pixbuf
                                        (images, FALSE), SLOT_ALPHA_THRESHOLD);
     }
   }
@@ -873,7 +873,7 @@ games_card_images_get_slot_mask (GamesCardImages * images)
 /* Deprecated, going to remove these! */
 
 /**
- * games_card_images_get_card_pixbuf_by_suit_and_rank:
+ * ar_card_images_get_card_pixbuf_by_suit_and_rank:
  * @images:
  * @suit:
  * @rank:
@@ -884,18 +884,18 @@ games_card_images_get_slot_mask (GamesCardImages * images)
  * Returns: a #GdkPixbuf owned by @images; you must not change or unref it
  */
 GdkPixbuf *
-games_card_images_get_card_pixbuf_by_suit_and_rank (GamesCardImages * images,
+ar_card_images_get_card_pixbuf_by_suit_and_rank (ArCardImages * images,
                                                     guint suit, guint rank)
 {
-  g_return_val_if_fail (GAMES_IS_CARD_IMAGES (images), NULL);
+  g_return_val_if_fail (AR_IS_CARD_IMAGES (images), NULL);
 
-  return games_card_images_get_card_pixbuf_by_id (images,
-                                                  GAMES_CARD_ID (suit, rank),
+  return ar_card_images_get_card_pixbuf_by_id (images,
+                                                  AR_CARD_ID (suit, rank),
                                                   FALSE);
 }
 
 /**
- * games_card_images_get_card_pixmap_by_suit_and_rank:
+ * ar_card_images_get_card_pixmap_by_suit_and_rank:
  * @images:
  * @suit:
  * @rank:
@@ -903,21 +903,21 @@ games_card_images_get_card_pixbuf_by_suit_and_rank (GamesCardImages * images,
  * Returns a #GdkPixmap for the selected card using the currently loaded
  * theme and the currently selected size.
  * You must set a drawable on @images before using this function,
- * see games_card_images_set_drawable().
+ * see ar_card_images_set_drawable().
  * Returns %NULL on failure.
  *
  * Returns: a #GdkPixmap owned by @images; you must not change or unref it
  */
 GdkPixmap *
-games_card_images_get_card_pixmap_by_suit_and_rank (GamesCardImages * images,
+ar_card_images_get_card_pixmap_by_suit_and_rank (ArCardImages * images,
                                                     guint suit, guint rank)
 {
-  g_return_val_if_fail (( /* (suit >= GAMES_CARDS_CLUBS) && */
-                         (suit <= GAMES_CARDS_SPADES)), NULL);
-  g_return_val_if_fail (((rank >= GAMES_CARD_ACE) &&
-                         (rank <= GAMES_CARD_ACE_HIGH)), NULL);
+  g_return_val_if_fail (( /* (suit >= AR_CARDS_CLUBS) && */
+                         (suit <= AR_CARDS_SPADES)), NULL);
+  g_return_val_if_fail (((rank >= AR_CARD_ACE) &&
+                         (rank <= AR_CARD_ACE_HIGH)), NULL);
 
-  return games_card_images_get_card_pixmap_by_id (images,
-                                                  GAMES_CARD_ID (suit, rank),
+  return ar_card_images_get_card_pixmap_by_id (images,
+                                                  AR_CARD_ID (suit, rank),
                                                   FALSE);
 }

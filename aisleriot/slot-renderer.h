@@ -19,9 +19,9 @@
 #define __AISLERIOT_SLOT_RENDERER_H__
 
 #include <clutter/clutter.h>
-#include <libgames-support/games-card-textures-cache.h>
 
 #include "game.h"
+#include "ar-card-textures-cache.h"
 #include "ar-style.h"
 
 G_BEGIN_DECLS
@@ -74,7 +74,7 @@ struct _AisleriotAnimStart
 GType aisleriot_slot_renderer_get_type (void) G_GNUC_CONST;
 
 ClutterActor *aisleriot_slot_renderer_new (ArStyle *style,
-                                           GamesCardTexturesCache *cache,
+                                           ArCardTexturesCache *cache,
                                            ArSlot *slot);
 
 void aisleriot_slot_renderer_set_highlight (AisleriotSlotRenderer *srend,

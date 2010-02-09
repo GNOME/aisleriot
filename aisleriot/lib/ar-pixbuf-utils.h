@@ -23,8 +23,8 @@
 
 G_BEGIN_DECLS
 
-GdkPixbuf *games_pixbuf_utils_create_highlight (GdkPixbuf *pixbuf,
-                                                const GdkColor *highligh_colour);
+GdkPixbuf *ar_pixbuf_utils_create_highlight (GdkPixbuf *pixbuf,
+                                             const GdkColor *highligh_colour);
 
 G_END_DECLS
 

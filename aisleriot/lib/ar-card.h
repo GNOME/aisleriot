@@ -20,12 +20,12 @@
 
 /* Common definitions for all card handling routines. */
 
-#ifndef GAMES_CARD_H
-#define GAMES_CARD_H
+#ifndef AR_CARD_H
+#define AR_CARD_H
 
 #include <glib.h>
 
-#include "games-glib-compat.h"
+#include <libgames-support/games-glib-compat.h>
 
 G_BEGIN_DECLS
 
@@ -71,57 +71,57 @@ G_STATIC_ASSERT(sizeof (Card) == sizeof (guint8));
 
 typedef enum {
   /* Cards */
-  GAMES_CARD_JOKER = 0,
-  GAMES_CARD_ACE = 1,
-  GAMES_CARD_TWO = 2,
-  GAMES_CARD_THREE = 3,
-  GAMES_CARD_FOUR = 4,
-  GAMES_CARD_FIVE = 5,
-  GAMES_CARD_SIX = 6,
-  GAMES_CARD_SEVEN = 7,
-  GAMES_CARD_EIGHT = 8,
-  GAMES_CARD_NINE = 9,
-  GAMES_CARD_TEN = 10,
-  GAMES_CARD_JACK = 11,
-  GAMES_CARD_QUEEN = 12,
-  GAMES_CARD_KING = 13,
-  GAMES_CARD_ACE_HIGH = 14,
+  AR_CARD_JOKER = 0,
+  AR_CARD_ACE = 1,
+  AR_CARD_TWO = 2,
+  AR_CARD_THREE = 3,
+  AR_CARD_FOUR = 4,
+  AR_CARD_FIVE = 5,
+  AR_CARD_SIX = 6,
+  AR_CARD_SEVEN = 7,
+  AR_CARD_EIGHT = 8,
+  AR_CARD_NINE = 9,
+  AR_CARD_TEN = 10,
+  AR_CARD_JACK = 11,
+  AR_CARD_QUEEN = 12,
+  AR_CARD_KING = 13,
+  AR_CARD_ACE_HIGH = 14,
 
   /* Suites */
-  GAMES_CARDS_CLUBS = 0,
-  GAMES_CARDS_DIAMONDS = 1,
-  GAMES_CARDS_HEARTS = 2,
-  GAMES_CARDS_SPADES = 3,
+  AR_CARDS_CLUBS = 0,
+  AR_CARDS_DIAMONDS = 1,
+  AR_CARDS_HEARTS = 2,
+  AR_CARDS_SPADES = 3,
 
   /* Jokers */
-  GAMES_CARD_BLACK_JOKER = 52,
-  GAMES_CARD_RED_JOKER = 53,
+  AR_CARD_BLACK_JOKER = 52,
+  AR_CARD_RED_JOKER = 53,
 
   /* Special */
-  GAMES_CARD_BACK = 54,
-  GAMES_CARD_SLOT = 55,
-  GAMES_CARDS_TOTAL = 56,
-} GamesCardIDType;
+  AR_CARD_BACK = 54,
+  AR_CARD_SLOT = 55,
+  AR_CARDS_TOTAL = 56,
+} ArCardIDType;
 
-int games_card_get_node_by_suit_and_rank_snprintf (char *buffer,
+int ar_card_get_node_by_suit_and_rank_snprintf (char *buffer,
                                                    gsize bufsize,
                                                    int suit,
                                                    int rank);
 
-int games_card_get_node_by_id_snprintf (char *buffer,
+int ar_card_get_node_by_id_snprintf (char *buffer,
                                         gsize bufsize,
                                         int card_id);
 
-int games_card_get_name_by_id_snprintf (char *buffer,
+int ar_card_get_name_by_id_snprintf (char *buffer,
                                         gsize bufsize,
                                         int card_id);
 
-char * games_card_get_name_by_id (int card_id);
+char * ar_card_get_name_by_id (int card_id);
 
-const char * games_card_get_localised_rank_symbol (int rank);
+const char * ar_card_get_localised_rank_symbol (int rank);
 
-const char * games_card_get_locale_name (Card card);
+const char * ar_card_get_locale_name (Card card);
 
 G_END_DECLS
 
-#endif /* !GAMES_CARD_H */
+#endif /* !AR_CARD_H */

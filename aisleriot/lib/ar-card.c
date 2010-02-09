@@ -19,8 +19,8 @@
 
 #include <glib/gi18n.h>
 
-#include "games-card.h"
-#include "games-card-private.h"
+#include "ar-card.h"
+#include "ar-card-private.h"
 
 static const char extra_cards[] =
   "black_joker\0"
@@ -60,7 +60,7 @@ static const guint8 rank_offsets[] = {
 };
 
 /**
- * games_card_get_node_by_suit_and_rank_snprintf:
+ * ar_card_get_node_by_suit_and_rank_snprintf:
  * @buffer: the output buffer
  * @bufsize: the size of the output buffer
  * @suit: the suit of the card
@@ -72,7 +72,7 @@ static const guint8 rank_offsets[] = {
  * was large enough.
  */
 int
-games_card_get_node_by_suit_and_rank_snprintf (char *buffer,
+ar_card_get_node_by_suit_and_rank_snprintf (char *buffer,
                                                gsize bufsize,
                                                int suit,
                                                int rank)
@@ -93,7 +93,7 @@ games_card_get_node_by_suit_and_rank_snprintf (char *buffer,
 
 
 /**
- * games_card_get_node_by_suit_and_rank_snprintf:
+ * ar_card_get_node_by_suit_and_rank_snprintf:
  * @buffer: the output buffer
  * @bufsize: the size of the output buffer
  * @card_id: the ID of the card
@@ -104,7 +104,7 @@ games_card_get_node_by_suit_and_rank_snprintf (char *buffer,
  * was large enough.
  */
 int
-games_card_get_node_by_id_snprintf (char *buffer,
+ar_card_get_node_by_id_snprintf (char *buffer,
                                     gsize bufsize,
                                     int card_id)
 {
@@ -113,11 +113,11 @@ games_card_get_node_by_id_snprintf (char *buffer,
   suit = card_id / 13;
   rank = card_id % 13;
 
-  return games_card_get_node_by_suit_and_rank_snprintf (buffer, bufsize, suit, rank);
+  return ar_card_get_node_by_suit_and_rank_snprintf (buffer, bufsize, suit, rank);
 }
 
 /**
- * games_card_get_name_by_id_snprintf:
+ * ar_card_get_name_by_id_snprintf:
  * @buffer: the output buffer
  * @bufsize: the size of the output buffer
  * @card_id: the ID of the card
@@ -128,7 +128,7 @@ games_card_get_node_by_id_snprintf (char *buffer,
  * was large enough.
  */
 int
-games_card_get_name_by_id_snprintf (char *buffer,
+ar_card_get_name_by_id_snprintf (char *buffer,
                                     gsize bufsize,
                                     int card_id)
 {
@@ -150,7 +150,7 @@ games_card_get_name_by_id_snprintf (char *buffer,
 }
 
 /**
- * games_card_get_name_by_id:
+ * ar_card_get_name_by_id:
  * @card_id:
  *
  * Returns the name of the card @cardid
@@ -158,23 +158,23 @@ games_card_get_name_by_id_snprintf (char *buffer,
  * Returns: a newly allocated string containing the identifier for @card_id
  */
 char *
-games_card_get_name_by_id (gint card_id)
+ar_card_get_name_by_id (gint card_id)
 {
   char name[128];
 
-  games_card_get_name_by_id_snprintf (name, sizeof (name), card_id);
+  ar_card_get_name_by_id_snprintf (name, sizeof (name), card_id);
 
   return g_strdup (name);
 }
 
 /**
- * games_card_get_localised_rank_symbol:
+ * ar_card_get_localised_rank_symbol:
  * @rank: the card rank
  *
  * Returns: the localised rank card symbol
  */
 const char *
-games_card_get_localised_rank_symbol (int rank)
+ar_card_get_localised_rank_symbol (int rank)
 {
 #if GLIB_CHECK_VERSION (2, 18, 0)
   static const char *rank_texts[] = {
@@ -210,38 +210,38 @@ games_card_get_localised_rank_symbol (int rank)
     NC_("card symbol", "1")
   };
 
-  g_return_val_if_fail (rank >= GAMES_CARD_JOKER && rank <= GAMES_CARD_ACE_HIGH, NULL);
+  g_return_val_if_fail (rank >= AR_CARD_JOKER && rank <= AR_CARD_ACE_HIGH, NULL);
 
   return g_dpgettext2 (GETTEXT_PACKAGE, "card symbol", rank_texts[rank]);
 
 #else
   static const char rank_texts[][6] = { "JOKER", "A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K", "A" };
 
-  g_return_val_if_fail (rank >= GAMES_CARD_JOKER && rank <= GAMES_CARD_ACE_HIGH, NULL);
+  g_return_val_if_fail (rank >= AR_CARD_JOKER && rank <= AR_CARD_ACE_HIGH, NULL);
 
   return rank_texts[rank];
 #endif /* GLIB >= 2.18.0 */
 }
 
 guint
-_games_card_to_index (Card card)
+_ar_card_to_index (Card card)
 {
   guint card_id;
 
   if (CARD_GET_FACE_DOWN (card)) {
-    card_id = GAMES_CARD_BACK;
+    card_id = AR_CARD_BACK;
   } else if (G_UNLIKELY (CARD_GET_RANK (card) == 0)) {
     /* A joker */
-    if (CARD_GET_SUIT (card) == GAMES_CARDS_CLUBS ||
-        CARD_GET_SUIT (card) == GAMES_CARDS_SPADES) {
+    if (CARD_GET_SUIT (card) == AR_CARDS_CLUBS ||
+        CARD_GET_SUIT (card) == AR_CARDS_SPADES) {
       /* A black joker. */
-      card_id = GAMES_CARD_BLACK_JOKER;
+      card_id = AR_CARD_BLACK_JOKER;
     } else {
       /* A red joker. */
-      card_id = GAMES_CARD_RED_JOKER;
+      card_id = AR_CARD_RED_JOKER;
     }
   } else {
-    card_id = GAMES_CARD_ID (CARD_GET_SUIT (card), CARD_GET_RANK (card));
+    card_id = AR_CARD_ID (CARD_GET_SUIT (card), CARD_GET_RANK (card));
   }
 
   return card_id;
@@ -302,17 +302,17 @@ static const char *card_names[] = {
   N_("queen of spades"),
   N_("king of spades")
 };
-#define GAMES_CARD_ID(suit, rank) ((13*(suit)) + ((rank-1)%13))
+#define AR_CARD_ID(suit, rank) ((13*(suit)) + ((rank-1)%13))
 
 /**
- * games_card_get_localized_name:
+ * ar_card_get_localized_name:
  * @card:
  *
  * Returns: a localised name for @card, e.g. "Face-down card" or
  * "9 of clubs", etc.
  */
 const char *
-games_card_get_locale_name (Card card)
+ar_card_get_locale_name (Card card)
 {
   guint rank, suit;
 
@@ -325,8 +325,8 @@ games_card_get_locale_name (Card card)
 
   if (G_UNLIKELY (rank == 0)) {
     /* A joker */
-    if (suit == GAMES_CARDS_CLUBS ||
-        suit == GAMES_CARDS_SPADES) {
+    if (suit == AR_CARDS_CLUBS ||
+        suit == AR_CARDS_SPADES) {
       /* A black joker. */
       return _("black joker");
     } else {
@@ -335,5 +335,5 @@ games_card_get_locale_name (Card card)
     }
   }
 
-  return _(card_names[GAMES_CARD_ID(suit, rank)]);
+  return _(card_names[AR_CARD_ID(suit, rank)]);
 }

@@ -19,7 +19,7 @@
 #define AISLERIOT_CARD_H
 
 #include <clutter/clutter.h>
-#include <libgames-support/games-card-textures-cache.h>
+#include "ar-card-textures-cache.h"
 
 G_BEGIN_DECLS
 
@@ -62,7 +62,7 @@ struct _AisleriotCard
 
 GType aisleriot_card_get_type (void) G_GNUC_CONST;
 
-ClutterActor *aisleriot_card_new (GamesCardTexturesCache *cache,
+ClutterActor *aisleriot_card_new (ArCardTexturesCache *cache,
                                   Card bottom_card,
                                   Card top_card);
 

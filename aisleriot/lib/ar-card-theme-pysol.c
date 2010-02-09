@@ -24,19 +24,19 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include "games-debug.h"
-#include "games-runtime.h"
-#include "games-string-utils.h"
+#include <libgames-support/games-debug.h>
+#include <libgames-support/games-runtime.h>
+#include <libgames-support/games-string-utils.h>
 
-#include "games-card-theme.h"
-#include "games-card-theme-private.h"
+#include "ar-card-theme.h"
+#include "ar-card-theme-private.h"
 
-struct _GamesCardThemePysolClass {
-  GamesCardThemeClass parent_class;
+struct _ArCardThemePysolClass {
+  ArCardThemeClass parent_class;
 };
 
-struct _GamesCardThemePysol {
-  GamesCardTheme parent_instance;
+struct _ArCardThemePysol {
+  ArCardTheme parent_instance;
 };
 
 enum {
@@ -287,10 +287,10 @@ out:
 
 /* Class implementation */
 
-G_DEFINE_TYPE (GamesCardThemePysol, games_card_theme_pysol, GAMES_TYPE_CARD_THEME);
+G_DEFINE_TYPE (ArCardThemePysol, ar_card_theme_pysol, AR_TYPE_CARD_THEME);
 
 static gboolean
-games_card_theme_pysol_load (GamesCardTheme *card_theme,
+ar_card_theme_pysol_load (ArCardTheme *card_theme,
                              GError **error)
 {
   /* nothing more to do here, we have all the info in our PySolConfigTxtData */
@@ -298,12 +298,12 @@ games_card_theme_pysol_load (GamesCardTheme *card_theme,
 }
 
 static void
-games_card_theme_pysol_init (GamesCardThemePysol *theme)
+ar_card_theme_pysol_init (ArCardThemePysol *theme)
 {
 }
 
 static gboolean
-games_card_theme_pysol_set_card_size (GamesCardTheme *card_theme,
+ar_card_theme_pysol_set_card_size (ArCardTheme *card_theme,
                                       int width,
                                       int height,
                                       double proportion)
@@ -313,17 +313,17 @@ games_card_theme_pysol_set_card_size (GamesCardTheme *card_theme,
 }
 
 static void
-games_card_theme_pysol_get_card_size (GamesCardTheme *card_theme,
+ar_card_theme_pysol_get_card_size (ArCardTheme *card_theme,
                                       CardSize *size)
 {
-  GamesCardThemeInfo *theme_info = card_theme->theme_info;
+  ArCardThemeInfo *theme_info = card_theme->theme_info;
   PySolConfigTxtData *pysol_data = theme_info->data;
 
   *size = pysol_data->card_size;
 }
 
 static double
-games_card_theme_pysol_get_card_aspect (GamesCardTheme *card_theme)
+ar_card_theme_pysol_get_card_aspect (ArCardTheme *card_theme)
 {
   PySolConfigTxtData *pysol_data = card_theme->theme_info->data;
 
@@ -331,7 +331,7 @@ games_card_theme_pysol_get_card_aspect (GamesCardTheme *card_theme)
 }
 
 static GdkPixbuf *
-games_card_theme_pysol_get_card_pixbuf (GamesCardTheme *card_theme,
+ar_card_theme_pysol_get_card_pixbuf (ArCardTheme *card_theme,
                                         int card_id)
 {
   PySolConfigTxtData *data = card_theme->theme_info->data;
@@ -339,9 +339,9 @@ games_card_theme_pysol_get_card_pixbuf (GamesCardTheme *card_theme,
   char *path;
   GError *error = NULL;
 
-  if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
+  if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
     path = g_build_filename (data->base_path, "bottom01.gif" /* FIXMEchpe ext! */, NULL);
-  } else if (G_UNLIKELY (card_id == GAMES_CARD_BACK)) {
+  } else if (G_UNLIKELY (card_id == AR_CARD_BACK)) {
     path = g_build_filename (data->base_path, data->backs[data->back_index], NULL);
   } else {
     static const char suit_char[] = "cdhs";
@@ -371,12 +371,12 @@ games_card_theme_pysol_get_card_pixbuf (GamesCardTheme *card_theme,
   return pixbuf;
 }
 
-static GamesCardThemeInfo *
-games_card_theme_pysol_class_get_theme_info (GamesCardThemeClass *klass,
+static ArCardThemeInfo *
+ar_card_theme_pysol_class_get_theme_info (ArCardThemeClass *klass,
                                              const char *path,
                                              const char *filename)
 {
-  GamesCardThemeInfo *info = NULL;
+  ArCardThemeInfo *info = NULL;
   PySolConfigTxtData *pysol_data;
   char *display_name, *pref_name;
 
@@ -389,7 +389,7 @@ games_card_theme_pysol_class_get_theme_info (GamesCardThemeClass *klass,
 
   display_name = g_strdup_printf ("%s (PySol)", pysol_data->name);
   pref_name = g_strdup_printf ("pysol:%s", filename);
-  info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
+  info = _ar_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,
                                      filename,
                                      display_name /* adopts */,
@@ -401,11 +401,11 @@ games_card_theme_pysol_class_get_theme_info (GamesCardThemeClass *klass,
 }
 
 static gboolean
-games_card_theme_pysol_class_foreach_theme_dir (GamesCardThemeClass *klass,
-                                                GamesCardThemeForeachFunc callback,
+ar_card_theme_pysol_class_foreach_theme_dir (ArCardThemeClass *klass,
+                                                ArCardThemeForeachFunc callback,
                                                 gpointer data)
 {
-  if (!_games_card_theme_class_foreach_env (klass, "GAMES_CARD_THEME_PATH_PYSOL", callback, data))
+  if (!_ar_card_theme_class_foreach_env (klass, "AR_CARD_THEME_PATH_PYSOL", callback, data))
     return FALSE;
 
   /* FIXMEchpe: is this univeral or ubuntu specific? */
@@ -413,12 +413,12 @@ games_card_theme_pysol_class_foreach_theme_dir (GamesCardThemeClass *klass,
 }
 
 static void
-games_card_theme_pysol_get_property (GObject    *object,
+ar_card_theme_pysol_get_property (GObject    *object,
                                      guint       property_id,
                                      GValue     *value,
                                      GParamSpec *pspec)
 {
-  GamesCardTheme *card_theme = GAMES_CARD_THEME (object);
+  ArCardTheme *card_theme = AR_CARD_THEME (object);
   PySolConfigTxtData *data = card_theme->theme_info->data;
 
   switch (property_id) {
@@ -436,12 +436,12 @@ games_card_theme_pysol_get_property (GObject    *object,
 }
 
 static void
-games_card_theme_pysol_set_property (GObject      *object,
+ar_card_theme_pysol_set_property (GObject      *object,
                                      guint         property_id,
                                      const GValue *value,
                                      GParamSpec   *pspec)
 {
-  GamesCardTheme *card_theme = GAMES_CARD_THEME (object);
+  ArCardTheme *card_theme = AR_CARD_THEME (object);
   PySolConfigTxtData *data = card_theme->theme_info->data;
 
   switch (property_id) {
@@ -456,7 +456,7 @@ games_card_theme_pysol_set_property (GObject      *object,
       }
 
       /* FIXMEchpe don't invalidate the whole thing, just the BACK card */
-      _games_card_theme_emit_changed (card_theme);
+      _ar_card_theme_emit_changed (card_theme);
       break;
     }
 
@@ -468,22 +468,22 @@ games_card_theme_pysol_set_property (GObject      *object,
 }
 
 static void
-games_card_theme_pysol_class_init (GamesCardThemePysolClass * klass)
+ar_card_theme_pysol_class_init (ArCardThemePysolClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
+  ArCardThemeClass *theme_class = AR_CARD_THEME_CLASS (klass);
 
-  gobject_class->get_property = games_card_theme_pysol_get_property;
-  gobject_class->set_property = games_card_theme_pysol_set_property;
+  gobject_class->get_property = ar_card_theme_pysol_get_property;
+  gobject_class->set_property = ar_card_theme_pysol_set_property;
 
-  theme_class->get_theme_info = games_card_theme_pysol_class_get_theme_info;
-  theme_class->foreach_theme_dir = games_card_theme_pysol_class_foreach_theme_dir;
+  theme_class->get_theme_info = ar_card_theme_pysol_class_get_theme_info;
+  theme_class->foreach_theme_dir = ar_card_theme_pysol_class_foreach_theme_dir;
 
-  theme_class->load = games_card_theme_pysol_load;
-  theme_class->set_card_size = games_card_theme_pysol_set_card_size;
-  theme_class->get_card_size = games_card_theme_pysol_get_card_size;
-  theme_class->get_card_aspect = games_card_theme_pysol_get_card_aspect;
-  theme_class->get_card_pixbuf = games_card_theme_pysol_get_card_pixbuf;
+  theme_class->load = ar_card_theme_pysol_load;
+  theme_class->set_card_size = ar_card_theme_pysol_set_card_size;
+  theme_class->get_card_size = ar_card_theme_pysol_get_card_size;
+  theme_class->get_card_aspect = ar_card_theme_pysol_get_card_aspect;
+  theme_class->get_card_pixbuf = ar_card_theme_pysol_get_card_pixbuf;
 
   g_object_class_install_property
     (gobject_class,
@@ -505,12 +505,12 @@ games_card_theme_pysol_class_init (GamesCardThemePysolClass * klass)
 /* public API */
 
 /**
- * games_card_theme_pysol_new:
+ * ar_card_theme_pysol_new:
  *
- * Returns: a new #GamesCardThemePysol
+ * Returns: a new #ArCardThemePysol
  */
-GamesCardTheme *
-games_card_theme_pysol_new (void)
+ArCardTheme *
+ar_card_theme_pysol_new (void)
 {
-  return g_object_new (GAMES_TYPE_CARD_THEME_PYSOL, NULL);
+  return g_object_new (AR_TYPE_CARD_THEME_PYSOL, NULL);
 }

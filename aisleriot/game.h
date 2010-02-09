@@ -20,7 +20,7 @@
 
 #include <gdk/gdk.h>
 
-#include <libgames-support/games-card.h>
+#include "ar-card.h"
 
 #ifdef HAVE_CLUTTER
 #include <clutter/clutter.h>

@@ -24,15 +24,15 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include "games-debug.h"
-#include "games-profile.h"
-#include "games-preimage.h"
-#include "games-preimage-private.h"
-#include "games-runtime.h"
-#include "games-string-utils.h"
+#include <libgames-support/games-debug.h>
+#include <libgames-support/games-profile.h>
+#include <libgames-support/games-preimage.h>
+#include <libgames-support/games-preimage-private.h>
+#include <libgames-support/games-runtime.h>
+#include <libgames-support/games-string-utils.h>
 
-#include "games-card-theme.h"
-#include "games-card-theme-private.h"
+#include "ar-card-theme.h"
+#include "ar-card-theme-private.h"
 
 #define MAX_N_BACKS (10)
 
@@ -44,12 +44,12 @@ typedef struct {
   double y;
 } CardBbox;
 
-struct _GamesCardThemeKDEClass {
-  GamesCardThemePreimageClass parent_class;
+struct _ArCardThemeKDEClass {
+  ArCardThemePreimageClass parent_class;
 };
 
-struct _GamesCardThemeKDE {
-  GamesCardThemePreimage parent_instance;
+struct _ArCardThemeKDE {
+  ArCardThemePreimage parent_instance;
 
   CardBbox *bboxes;
 
@@ -111,7 +111,7 @@ get_is_blacklisted (const char *filename)
 #ifdef HAVE_NEW_RSVG
 
 static CardBbox *
-games_card_theme_kde_get_card_bbox (GamesCardThemeKDE *theme,
+ar_card_theme_kde_get_card_bbox (ArCardThemeKDE *theme,
                                     int card_id,
                                     const char *node)
 {
@@ -125,7 +125,7 @@ games_card_theme_kde_get_card_bbox (GamesCardThemeKDE *theme,
   if (bbox->initialised)
     return bbox;
 
-  preimage = ((GamesCardThemePreimage *) theme)->cards_preimage;
+  preimage = ((ArCardThemePreimage *) theme)->cards_preimage;
 
   _games_profile_start ("rsvg_handle_get_dimensions_sub node %s", node);
   retval = rsvg_handle_get_dimensions_sub (preimage->rsvg_handle, &dim, node);
@@ -169,10 +169,10 @@ games_card_theme_kde_get_card_bbox (GamesCardThemeKDE *theme,
 
 /* Class implementation */
 
-G_DEFINE_TYPE (GamesCardThemeKDE, games_card_theme_kde, GAMES_TYPE_CARD_THEME_PREIMAGE);
+G_DEFINE_TYPE (ArCardThemeKDE, ar_card_theme_kde, AR_TYPE_CARD_THEME_PREIMAGE);
 
 static gboolean
-games_card_theme_kde_load (GamesCardTheme *card_theme,
+ar_card_theme_kde_load (ArCardTheme *card_theme,
                            GError **error)
 {
 #ifdef HAVE_NEW_RSVG
@@ -181,21 +181,21 @@ games_card_theme_kde_load (GamesCardTheme *card_theme,
     "#red_back",
     "#green_back"
   };
-  GamesCardThemeKDE *theme = (GamesCardThemeKDE *) card_theme;
+  ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
   GamesPreimage *preimage;
   char node[32];
   guint i;
   gboolean has_red_joker, has_black_joker, has_joker;
 
-  if (!GAMES_CARD_THEME_CLASS (games_card_theme_kde_parent_class)->load (card_theme, error))
+  if (!AR_CARD_THEME_CLASS (ar_card_theme_kde_parent_class)->load (card_theme, error))
     return FALSE;
 
-  preimage = ((GamesCardThemePreimage *) theme)->cards_preimage;
+  preimage = ((ArCardThemePreimage *) theme)->cards_preimage;
 
   /* Check available backs */
   g_assert (theme->n_backs == 0);
 
-  games_card_get_node_by_id_snprintf (node, sizeof (node), GAMES_CARD_BACK);
+  ar_card_get_node_by_id_snprintf (node, sizeof (node), AR_CARD_BACK);
   if (rsvg_handle_has_sub (preimage->rsvg_handle, node)) {
     theme->backs[theme->n_backs++] = g_strdup (node);
   }
@@ -218,9 +218,9 @@ games_card_theme_kde_load (GamesCardTheme *card_theme,
     return FALSE;
 
   /* Look for the jokers */
-  games_card_get_node_by_id_snprintf (node, sizeof (node), GAMES_CARD_BLACK_JOKER);
+  ar_card_get_node_by_id_snprintf (node, sizeof (node), AR_CARD_BLACK_JOKER);
   has_black_joker = rsvg_handle_has_sub (preimage->rsvg_handle, node);
-  games_card_get_node_by_id_snprintf (node, sizeof (node), GAMES_CARD_RED_JOKER);
+  ar_card_get_node_by_id_snprintf (node, sizeof (node), AR_CARD_RED_JOKER);
   has_red_joker = rsvg_handle_has_sub (preimage->rsvg_handle, node);
 
   has_joker = rsvg_handle_has_sub (preimage->rsvg_handle, "#joker");
@@ -229,8 +229,8 @@ games_card_theme_kde_load (GamesCardTheme *card_theme,
   theme->has_joker = has_joker;
   
   /* Get the bbox of the card back, which we use to compute the theme's aspect ratio */
-  if (!games_card_theme_kde_get_card_bbox (theme, GAMES_CARD_BACK, theme->backs[theme->back_index])) {
-    g_set_error (error, GAMES_CARD_THEME_ERROR, GAMES_CARD_THEME_ERROR_GENERIC,
+  if (!ar_card_theme_kde_get_card_bbox (theme, AR_CARD_BACK, theme->backs[theme->back_index])) {
+    g_set_error (error, AR_CARD_THEME_ERROR, AR_CARD_THEME_ERROR_GENERIC,
                  "Failed to get the theme's aspect ratio");
     return FALSE;
   }
@@ -242,24 +242,24 @@ games_card_theme_kde_load (GamesCardTheme *card_theme,
 }
 
 static double
-games_card_theme_kde_get_card_aspect (GamesCardTheme* card_theme)
+ar_card_theme_kde_get_card_aspect (ArCardTheme* card_theme)
 {
-  GamesCardThemeKDE *theme = (GamesCardThemeKDE *) card_theme;
+  ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
   CardBbox *bbox;
 
-  bbox = &theme->bboxes[GAMES_CARD_BACK];
+  bbox = &theme->bboxes[AR_CARD_BACK];
   g_assert (bbox->initialised);
 
   return bbox->width / bbox->height;
 }
 
 static GdkPixbuf *
-games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
+ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
                                       int card_id)
 {
 #ifdef HAVE_NEW_RSVG
-  GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
-  GamesCardThemeKDE *theme = (GamesCardThemeKDE *) card_theme;
+  ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
+  ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
   GamesPreimage *preimage = preimage_card_theme->cards_preimage;
   GdkPixbuf *subpixbuf;
   double card_width, card_height;
@@ -268,7 +268,7 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
   char node[32];
   CardBbox *bbox;
 
-  if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
+  if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
     subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
                                        preimage_card_theme->card_size.width,
                                        preimage_card_theme->card_size.height);
@@ -276,9 +276,9 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
     return subpixbuf;
   }
 
-  games_card_get_node_by_id_snprintf (node, sizeof (node), card_id);
+  ar_card_get_node_by_id_snprintf (node, sizeof (node), card_id);
 
-  bbox = games_card_theme_kde_get_card_bbox (theme, card_id, node);
+  bbox = ar_card_theme_kde_get_card_bbox (theme, card_id, node);
   if (!bbox)
     return NULL;
 
@@ -311,18 +311,18 @@ games_card_theme_kde_get_card_pixbuf (GamesCardTheme *card_theme,
 }
 
 static void
-games_card_theme_kde_init (GamesCardThemeKDE *theme)
+ar_card_theme_kde_init (ArCardThemeKDE *theme)
 {
-  theme->bboxes = g_new0 (CardBbox, GAMES_CARDS_TOTAL);
+  theme->bboxes = g_new0 (CardBbox, AR_CARDS_TOTAL);
 
   theme->n_backs = 0;
   theme->back_index = 0;
 }
 
 static void
-games_card_theme_kde_finalize (GObject * object)
+ar_card_theme_kde_finalize (GObject * object)
 {
-  GamesCardThemeKDE *theme = GAMES_CARD_THEME_KDE (object);
+  ArCardThemeKDE *theme = AR_CARD_THEME_KDE (object);
   guint i;
 
   g_free (theme->bboxes);
@@ -330,16 +330,16 @@ games_card_theme_kde_finalize (GObject * object)
   for (i = 0; i < theme->n_backs; ++i)
     g_free (theme->backs[i]);
 
-  G_OBJECT_CLASS (games_card_theme_kde_parent_class)->finalize (object);
+  G_OBJECT_CLASS (ar_card_theme_kde_parent_class)->finalize (object);
 }
 
-static GamesCardThemeInfo *
-games_card_theme_kde_class_get_theme_info (GamesCardThemeClass *klass,
+static ArCardThemeInfo *
+ar_card_theme_kde_class_get_theme_info (ArCardThemeClass *klass,
                                            const char *path,
                                            const char *filename)
 {
 #ifdef HAVE_NEW_RSVG
-  GamesCardThemeInfo *info = NULL;
+  ArCardThemeInfo *info = NULL;
   char *base_path = NULL, *key_file_path = NULL;
   GKeyFile *key_file = NULL;
   char *svg_filename = NULL, *name = NULL, *display_name, *pref_name;
@@ -369,7 +369,7 @@ games_card_theme_kde_class_get_theme_info (GamesCardThemeClass *klass,
 
   display_name = g_strdup_printf ("%s (KDE)", name);
   pref_name = g_strdup_printf ("kde:%s", filename);
-  info = _games_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
+  info = _ar_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      base_path,
                                      svg_filename,
                                      display_name /* adopts */,
@@ -392,11 +392,11 @@ out:
 }
 
 static gboolean
-games_card_theme_kde_class_foreach_theme_dir (GamesCardThemeClass *klass,
-                                              GamesCardThemeForeachFunc callback,
+ar_card_theme_kde_class_foreach_theme_dir (ArCardThemeClass *klass,
+                                              ArCardThemeForeachFunc callback,
                                               gpointer data)
 {
-  if (!_games_card_theme_class_foreach_env (klass, "GAMES_CARD_THEME_PATH_KDE", callback, data))
+  if (!_ar_card_theme_class_foreach_env (klass, "AR_CARD_THEME_PATH_KDE", callback, data))
     return FALSE;
 
   /* FIXMEchpe: is this universal, or ubuntu specific? */
@@ -404,12 +404,12 @@ games_card_theme_kde_class_foreach_theme_dir (GamesCardThemeClass *klass,
 }
 
 static void
-games_card_theme_kde_get_property (GObject    *object,
+ar_card_theme_kde_get_property (GObject    *object,
                                    guint       property_id,
                                    GValue     *value,
                                    GParamSpec *pspec)
 {
-  GamesCardThemeKDE *theme = GAMES_CARD_THEME_KDE (object);
+  ArCardThemeKDE *theme = AR_CARD_THEME_KDE (object);
 
   switch (property_id) {
     case PROP_BACK_INDEX:
@@ -426,12 +426,12 @@ games_card_theme_kde_get_property (GObject    *object,
 }
 
 static void
-games_card_theme_kde_set_property (GObject      *object,
+ar_card_theme_kde_set_property (GObject      *object,
                                    guint         property_id,
                                    const GValue *value,
                                    GParamSpec   *pspec)
 {
-  GamesCardThemeKDE *theme = GAMES_CARD_THEME_KDE (object);
+  ArCardThemeKDE *theme = AR_CARD_THEME_KDE (object);
 
   switch (property_id) {
     case PROP_BACK_INDEX:
@@ -439,7 +439,7 @@ games_card_theme_kde_set_property (GObject      *object,
       theme->back_index = CLAMP (theme->back_index, 0, theme->n_backs);
 
       /* FIXMEchpe don't invalidate the whole thing, just the BACK card */
-      _games_card_theme_emit_changed (GAMES_CARD_THEME (theme));
+      _ar_card_theme_emit_changed (AR_CARD_THEME (theme));
       break;
 
     case PROP_N_BACKS:
@@ -450,22 +450,22 @@ games_card_theme_kde_set_property (GObject      *object,
 }
 
 static void
-games_card_theme_kde_class_init (GamesCardThemeKDEClass * klass)
+ar_card_theme_kde_class_init (ArCardThemeKDEClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
-  GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
+  ArCardThemeClass *theme_class = AR_CARD_THEME_CLASS (klass);
+  ArCardThemePreimageClass *preimage_theme_class = AR_CARD_THEME_PREIMAGE_CLASS (klass);
 
-  gobject_class->finalize = games_card_theme_kde_finalize;
-  gobject_class->get_property = games_card_theme_kde_get_property;
-  gobject_class->set_property = games_card_theme_kde_set_property;
+  gobject_class->finalize = ar_card_theme_kde_finalize;
+  gobject_class->get_property = ar_card_theme_kde_get_property;
+  gobject_class->set_property = ar_card_theme_kde_set_property;
 
-  theme_class->get_theme_info = games_card_theme_kde_class_get_theme_info;
-  theme_class->foreach_theme_dir = games_card_theme_kde_class_foreach_theme_dir;
+  theme_class->get_theme_info = ar_card_theme_kde_class_get_theme_info;
+  theme_class->foreach_theme_dir = ar_card_theme_kde_class_foreach_theme_dir;
 
-  theme_class->load = games_card_theme_kde_load;
-  theme_class->get_card_aspect = games_card_theme_kde_get_card_aspect;
-  theme_class->get_card_pixbuf = games_card_theme_kde_get_card_pixbuf;
+  theme_class->load = ar_card_theme_kde_load;
+  theme_class->get_card_aspect = ar_card_theme_kde_get_card_aspect;
+  theme_class->get_card_pixbuf = ar_card_theme_kde_get_card_pixbuf;
 
   preimage_theme_class->needs_scalable_cards = TRUE;
 
@@ -490,12 +490,12 @@ games_card_theme_kde_class_init (GamesCardThemeKDEClass * klass)
 /* private API */
 
 /**
- * games_card_theme_kde_new:
+ * ar_card_theme_kde_new:
  *
- * Returns: a new #GamesCardThemeKDE
+ * Returns: a new #ArCardThemeKDE
  */
-GamesCardTheme*
-games_card_theme_kde_new (void)
+ArCardTheme*
+ar_card_theme_kde_new (void)
 {
-  return g_object_new (GAMES_TYPE_CARD_THEME_KDE, NULL);
+  return g_object_new (AR_TYPE_CARD_THEME_KDE, NULL);
 }

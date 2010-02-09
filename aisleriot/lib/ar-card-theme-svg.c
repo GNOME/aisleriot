@@ -25,20 +25,20 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include "games-preimage.h"
-#include "games-preimage-private.h"
-#include "games-runtime.h"
-#include "games-string-utils.h"
+#include <libgames-support/games-preimage.h>
+#include <libgames-support/games-preimage-private.h>
+#include <libgames-support/games-runtime.h>
+#include <libgames-support/games-string-utils.h>
 
-#include "games-card-theme.h"
-#include "games-card-theme-private.h"
+#include "ar-card-theme.h"
+#include "ar-card-theme-private.h"
 
-struct _GamesCardThemeSVGClass {
-  GamesCardThemePreimageClass parent_class;
+struct _ArCardThemeSVGClass {
+  ArCardThemePreimageClass parent_class;
 };
 
-struct _GamesCardThemeSVG {
-  GamesCardThemePreimage parent_instance;
+struct _ArCardThemeSVG {
+  ArCardThemePreimage parent_instance;
 };
 
 #define N_ROWS ((double) 5.0)
@@ -48,13 +48,13 @@ struct _GamesCardThemeSVG {
 
 /* Class implementation */
 
-G_DEFINE_TYPE (GamesCardThemeSVG, games_card_theme_svg, GAMES_TYPE_CARD_THEME_PREIMAGE);
+G_DEFINE_TYPE (ArCardThemeSVG, ar_card_theme_svg, AR_TYPE_CARD_THEME_PREIMAGE);
 
 static GdkPixbuf *
-games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
+ar_card_theme_svg_get_card_pixbuf (ArCardTheme *card_theme,
                                       int card_id)
 {
-  GamesCardThemePreimage *preimage_card_theme = (GamesCardThemePreimage *) card_theme;
+  ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
   GamesPreimage *preimage = preimage_card_theme->cards_preimage;
   GdkPixbuf *subpixbuf;
   int suit, rank;
@@ -64,7 +64,7 @@ games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
   double zoomx, zoomy;
   char node[32];
 
-  if (G_UNLIKELY (card_id == GAMES_CARD_SLOT)) {
+  if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
     subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
                                        preimage_card_theme->card_size.width,
                                        preimage_card_theme->card_size.height);
@@ -87,7 +87,7 @@ games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
   zoomx = width / card_width;
   zoomy = height / card_height;
 
-  games_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
+  ar_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
 
   subpixbuf = games_preimage_render_sub (preimage,
                                          node,
@@ -100,18 +100,18 @@ games_card_theme_svg_get_card_pixbuf (GamesCardTheme *card_theme,
 }
 
 static void
-games_card_theme_svg_init (GamesCardThemeSVG * cardtheme)
+ar_card_theme_svg_init (ArCardThemeSVG * cardtheme)
 {
 }
 
-static GamesCardThemeInfo *
-games_card_theme_svg_class_get_theme_info (GamesCardThemeClass *klass,
+static ArCardThemeInfo *
+ar_card_theme_svg_class_get_theme_info (ArCardThemeClass *klass,
                                            const char *path,
                                            const char *filename)
 {
-  GamesCardThemeInfo *info;
+  ArCardThemeInfo *info;
 
-  info = GAMES_CARD_THEME_CLASS (games_card_theme_svg_parent_class)->get_theme_info (klass, path, filename);
+  info = AR_CARD_THEME_CLASS (ar_card_theme_svg_parent_class)->get_theme_info (klass, path, filename);
   if (info) {
     g_assert (info->pref_name == NULL);
 
@@ -127,26 +127,26 @@ games_card_theme_svg_class_get_theme_info (GamesCardThemeClass *klass,
 }
 
 static gboolean
-games_card_theme_svg_class_foreach_theme_dir (GamesCardThemeClass *klass,
-                                              GamesCardThemeForeachFunc callback,
+ar_card_theme_svg_class_foreach_theme_dir (ArCardThemeClass *klass,
+                                              ArCardThemeForeachFunc callback,
                                               gpointer data)
 {
-  if (!_games_card_theme_class_foreach_env (klass, "GAMES_CARD_THEME_PATH_SVG", callback, data))
+  if (!_ar_card_theme_class_foreach_env (klass, "AR_CARD_THEME_PATH_SVG", callback, data))
     return FALSE;
 
   return callback (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), data);
 }
 
 static void
-games_card_theme_svg_class_init (GamesCardThemeSVGClass * klass)
+ar_card_theme_svg_class_init (ArCardThemeSVGClass * klass)
 {
-  GamesCardThemeClass *theme_class = GAMES_CARD_THEME_CLASS (klass);
-  GamesCardThemePreimageClass *preimage_theme_class = GAMES_CARD_THEME_PREIMAGE_CLASS (klass);
+  ArCardThemeClass *theme_class = AR_CARD_THEME_CLASS (klass);
+  ArCardThemePreimageClass *preimage_theme_class = AR_CARD_THEME_PREIMAGE_CLASS (klass);
 
-  theme_class->get_theme_info = games_card_theme_svg_class_get_theme_info;
-  theme_class->foreach_theme_dir = games_card_theme_svg_class_foreach_theme_dir;
+  theme_class->get_theme_info = ar_card_theme_svg_class_get_theme_info;
+  theme_class->foreach_theme_dir = ar_card_theme_svg_class_foreach_theme_dir;
 
-  theme_class->get_card_pixbuf = games_card_theme_svg_get_card_pixbuf;
+  theme_class->get_card_pixbuf = ar_card_theme_svg_get_card_pixbuf;
 
   preimage_theme_class->needs_scalable_cards = TRUE;
 }
@@ -154,12 +154,12 @@ games_card_theme_svg_class_init (GamesCardThemeSVGClass * klass)
 /* private API */
 
 /**
- * games_card_theme_svg_new:
+ * ar_card_theme_svg_new:
  *
- * Returns: a new #GamesCardThemeSVG
+ * Returns: a new #ArCardThemeSVG
  */
-GamesCardTheme*
-games_card_theme_svg_new (void)
+ArCardTheme*
+ar_card_theme_svg_new (void)
 {
-  return g_object_new (GAMES_TYPE_CARD_THEME_SVG, NULL);
+  return g_object_new (AR_TYPE_CARD_THEME_SVG, NULL);
 }

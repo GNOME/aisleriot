@@ -20,104 +20,104 @@
 
 /* Manage a set of pixbufs containing a deck of cards. */
 
-#ifndef GAMES_CARD_IMAGES_H
-#define GAMES_CARD_IMAGES_H
+#ifndef AR_CARD_IMAGES_H
+#define AR_CARD_IMAGES_H
 
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-#include "games-card.h"
-#include "games-card-theme.h"
+#include "ar-card.h"
+#include "ar-card-theme.h"
 
 G_BEGIN_DECLS
 
-#define GAMES_TYPE_CARD_IMAGES            (games_card_images_get_type ())
-#define GAMES_CARD_IMAGES(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_CARD_IMAGES, GamesCardImages))
-#define GAMES_CARD_IMAGES_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_CARD_IMAGES, GamesCardImagesClass))
-#define GAMES_IS_CARD_IMAGES(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CARD_IMAGES))
-#define GAMES_IS_CARD_IMAGES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CARD_IMAGES))
-#define GAMES_CARD_IMAGES_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_CARD_IMAGES, GamesCardImagesClass))
+#define AR_TYPE_CARD_IMAGES            (ar_card_images_get_type ())
+#define AR_CARD_IMAGES(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), AR_TYPE_CARD_IMAGES, ArCardImages))
+#define AR_CARD_IMAGES_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), AR_TYPE_CARD_IMAGES, ArCardImagesClass))
+#define AR_IS_CARD_IMAGES(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AR_TYPE_CARD_IMAGES))
+#define AR_IS_CARD_IMAGES_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), AR_TYPE_CARD_IMAGES))
+#define AR_CARD_IMAGES_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), AR_TYPE_CARD_IMAGES, ArCardImagesClass))
 
 typedef enum
 {
   CACHE_PIXBUFS,
   CACHE_PIXMAPS,
   LAST_CACHE_MODE
-} GamesCardImagesCacheMode;
+} ArCardImagesCacheMode;
 
-typedef struct _GamesCardImages       GamesCardImages;
-typedef struct _GamesCardImagesClass  GamesCardImagesClass;
+typedef struct _ArCardImages       ArCardImages;
+typedef struct _ArCardImagesClass  ArCardImagesClass;
 
-GType games_card_images_get_type (void);
+GType ar_card_images_get_type (void);
 
-GamesCardImages *games_card_images_new (void);
+ArCardImages *ar_card_images_new (void);
 
-void games_card_images_set_theme (GamesCardImages *images,
-                                  GamesCardTheme *theme);
+void ar_card_images_set_theme (ArCardImages *images,
+                                  ArCardTheme *theme);
 
-GamesCardTheme *games_card_images_get_theme (GamesCardImages *images);
+ArCardTheme *ar_card_images_get_theme (ArCardImages *images);
 
-void games_card_images_set_cache_mode (GamesCardImages * images,
-                                       GamesCardImagesCacheMode mode);
+void ar_card_images_set_cache_mode (ArCardImages * images,
+                                       ArCardImagesCacheMode mode);
 
-void games_card_images_drop_cache (GamesCardImages *images);
+void ar_card_images_drop_cache (ArCardImages *images);
 
-void games_card_images_set_drawable (GamesCardImages * images,
+void ar_card_images_set_drawable (ArCardImages * images,
                                      GdkWindow * drawable);
 
-gboolean games_card_images_set_size (GamesCardImages * images,
+gboolean ar_card_images_set_size (ArCardImages * images,
                                      gint width,
                                      gint height, gdouble proportion);
 
-void games_card_images_get_size (GamesCardImages *images,
+void ar_card_images_get_size (ArCardImages *images,
                                  CardSize *size);
 
-void games_card_images_set_background_color (GamesCardImages * images,
+void ar_card_images_set_background_color (ArCardImages * images,
                                              const GdkColor * color);
 
-void games_card_images_set_selection_color (GamesCardImages * images,
+void ar_card_images_set_selection_color (ArCardImages * images,
                                             const GdkColor * color);
 
 /* Pixbuf routines */
-GdkPixbuf *games_card_images_get_card_pixbuf_by_id (GamesCardImages * images,
+GdkPixbuf *ar_card_images_get_card_pixbuf_by_id (ArCardImages * images,
                                                     guint card_id,
                                                     gboolean highlighted);
 
-GdkPixbuf *games_card_images_get_card_pixbuf (GamesCardImages * images,
+GdkPixbuf *ar_card_images_get_card_pixbuf (ArCardImages * images,
                                               Card card,
                                               gboolean highlighted);
 
 /* Pixmap routines */
-GdkPixmap *games_card_images_get_card_pixmap_by_id (GamesCardImages * images,
+GdkPixmap *ar_card_images_get_card_pixmap_by_id (ArCardImages * images,
                                                     guint card_id,
                                                     gboolean highlighted);
 
-GdkPixmap *games_card_images_get_card_pixmap (GamesCardImages * images,
+GdkPixmap *ar_card_images_get_card_pixmap (ArCardImages * images,
                                               Card card,
                                               gboolean highlighted);
 
-GdkBitmap *games_card_images_get_card_mask (GamesCardImages * images);
+GdkBitmap *ar_card_images_get_card_mask (ArCardImages * images);
 
 /* Slot routines */
-GdkPixbuf *games_card_images_get_slot_pixbuf (GamesCardImages * images,
+GdkPixbuf *ar_card_images_get_slot_pixbuf (ArCardImages * images,
                                               gboolean highlighted);
 
-GdkPixmap *games_card_images_get_slot_pixmap (GamesCardImages * images,
+GdkPixmap *ar_card_images_get_slot_pixmap (ArCardImages * images,
                                               gboolean highlighted);
 
-GdkBitmap *games_card_images_get_slot_mask (GamesCardImages * images);
+GdkBitmap *ar_card_images_get_slot_mask (ArCardImages * images);
 
 /* Deprecated */
-GdkPixbuf *games_card_images_get_card_pixbuf_by_suit_and_rank (GamesCardImages
+GdkPixbuf *ar_card_images_get_card_pixbuf_by_suit_and_rank (ArCardImages
                                                                * images,
                                                                guint suit,
                                                                guint rank);
 
-GdkPixmap *games_card_images_get_card_pixmap_by_suit_and_rank (GamesCardImages
+GdkPixmap *ar_card_images_get_card_pixmap_by_suit_and_rank (ArCardImages
                                                                * images,
                                                                guint suit,
                                                                guint rank);
 
 G_END_DECLS
 
-#endif /* GAMES_CARD_IMAGES_H */
+#endif /* AR_CARD_IMAGES_H */

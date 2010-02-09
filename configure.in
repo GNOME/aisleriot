@@ -120,7 +120,6 @@ allow_smclient=no
 disallow_hildon=no
 require_gtk_2_16=no
 libgames_support_full=no
-build_libgamescards=no
 
 for game in $gamelist; do
   case $game in
@@ -167,14 +166,9 @@ for game in $gamelist; do
     aisleriot) ;;
     *) libgames_support_full=yes ;;
   esac
-  case $game in
-    aisleriot) build_libgamescards=yes ;;
-    *) ;;
-  esac
 done
 
 AM_CONDITIONAL([LIBGAMES_SUPPORT_FULL],[test "$libgames_support_full" = "yes"])
-AM_CONDITIONAL([BUILD_LIBGAMESCARDS],[test "$build_libgamescards" = "yes"])
 
 # Set a conditional for each game to build
 
@@ -470,7 +464,7 @@ AC_ARG_WITH([default-card-theme],
       esac])
 AC_MSG_RESULT([$with_default_card_theme])
 
-AC_DEFINE_UNQUOTED([GAMES_CARD_THEME_DEFAULT],["$with_default_card_theme"],[The default card theme])
+AC_DEFINE_UNQUOTED([AR_CARD_THEME_DEFAULT],["$with_default_card_theme"],[The default card theme])
 
 AC_MSG_CHECKING([which card theme format to use by default])
 AC_ARG_WITH([default-card-theme-format],
@@ -486,7 +480,7 @@ case "$with_default_card_theme_format" in
   *) AC_MSG_ERROR([card theme format $with_default_card_theme_format unknown])
 esac
 
-AC_DEFINE_UNQUOTED([GAMES_CARD_THEME_DEFAULT_FORMAT_STRING],["$with_default_card_theme_format"],[The default card theme format type string])
+AC_DEFINE_UNQUOTED([AR_CARD_THEME_DEFAULT_FORMAT_STRING],["$with_default_card_theme_format"],[The default card theme format type string])
 
 # ********************
 # Card theme installer
@@ -1093,6 +1087,8 @@ gnibbles/pix/Makefile
 aisleriot/Makefile
 aisleriot/sol.desktop.in
 aisleriot/freecell.desktop.in
+aisleriot/data/Makefile
+aisleriot/lib/Makefile
 aisleriot/rules/Makefile
 aisleriot/help/Makefile
 glchess/Makefile

@@ -21,6 +21,8 @@
 
 #include <config.h>
 
+#include "board.h"
+
 #include <string.h>
 
 #include <gtk/gtk.h>
@@ -28,20 +30,18 @@
 
 #include <clutter/clutter.h>
 
-#include <libgames-support/games-card-textures-cache.h>
 #include <libgames-support/games-debug.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-glib-compat.h>
 #include <libgames-support/games-marshal.h>
-#include <libgames-support/games-pixbuf-utils.h>
 #include <libgames-support/games-sound.h>
 
 #include "conf.h"
 
 #include "game.h"
-#include "board.h"
 #include "card.h"
 #include "slot-renderer.h"
+#include "ar-card-textures-cache.h"
 #include "ar-cursor.h"
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
@@ -116,7 +116,7 @@ struct _AisleriotBoardPrivate
   CardSize card_size;
 
   /* Cards cache */
-  GamesCardTexturesCache *textures;
+  ArCardTexturesCache *textures;
 
   double width;
   double height;
@@ -973,7 +973,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
   ClutterActor *actor = CLUTTER_ACTOR (board);
-  GamesCardTheme *theme;
+  ArCardTheme *theme;
   GPtrArray *slots;
   guint i, n_slots;
   CardSize card_size;
@@ -995,12 +995,12 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   priv->xslotstep = ((double) priv->allocation.x2 - priv->allocation.x1) / priv->width;
   priv->yslotstep = ((double) priv->allocation.y2 - priv->allocation.y1) / priv->height;
 
-  games_card_theme_set_size (theme,
+  ar_card_theme_set_size (theme,
                              priv->xslotstep,
                              priv->yslotstep,
                              priv->card_slot_ratio);
 
-  games_card_theme_get_size (theme, &card_size);
+  ar_card_theme_get_size (theme, &card_size);
   priv->card_size = card_size;
 
   /* If the cards are too far apart, bunch them in the middle. */
@@ -2157,11 +2157,11 @@ aisleriot_board_sync_style (ArStyle *style,
   }
 
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_CARD_THEME)) {
-    GamesCardTheme *theme;
+    ArCardTheme *theme;
 
     theme = ar_style_get_card_theme (style);
     if (theme != NULL) {
-      games_card_textures_cache_set_theme (priv->textures, theme);
+      ar_card_textures_cache_set_theme (priv->textures, theme);
 
       priv->geometry_set = FALSE;
 
@@ -3107,7 +3107,7 @@ aisleriot_board_init (AisleriotBoard *board)
 
   priv = board->priv = AISLERIOT_BOARD_GET_PRIVATE (board);
 
-  priv->textures = games_card_textures_cache_new ();
+  priv->textures = ar_card_textures_cache_new ();
 
   memset (&priv->allocation, 0, sizeof (ClutterActorBox));
 

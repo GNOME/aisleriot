@@ -1455,7 +1455,7 @@ ar_slot_get_hint_string (ArSlot *slot,
   if (cardid < 0)
     return g_strdup (ar_slot_get_type_string (slot));
 
-  card_name = games_card_get_locale_name (CARD (slot->cards->data[cardid]));
+  card_name = ar_card_get_locale_name (CARD (slot->cards->data[cardid]));
 
   switch (slot->type) {
     case AR_SLOT_FOUNDATION:

@@ -37,8 +37,6 @@
 #endif
 #endif /* HAVE_HILDON */
 
-#include <libgames-support/games-card-theme.h>
-#include <libgames-support/games-card-themes.h>
 #include <libgames-support/games-clock.h>
 #include <libgames-support/games-debug.h>
 #include <libgames-support/games-glib-compat.h>
@@ -60,6 +58,8 @@
 #include "board-noclutter.h"
 #endif
 
+#include "ar-card-theme.h"
+#include "ar-card-themes.h"
 #include "conf.h"
 #include "game.h"
 #include "stats-dialog.h"
@@ -140,8 +140,8 @@ struct _AisleriotWindowPrivate
   AisleriotBoard *board;
 #endif
 
-  GamesCardThemes *theme_manager;
-  GamesCardTheme *theme;
+  ArCardThemes *theme_manager;
+  ArCardTheme *theme;
 
 #ifdef HAVE_HILDON
   guint game_message_hash;
@@ -579,7 +579,7 @@ install_themes_cb (GtkAction *action,
 {
   AisleriotWindowPrivate *priv = window->priv;
 
-  games_card_themes_install_themes (priv->theme_manager,
+  ar_card_themes_install_themes (priv->theme_manager,
                                     GTK_WINDOW (window),
                                     gtk_get_current_event_time ());
 }
@@ -1391,7 +1391,7 @@ install_recently_played_menu (AisleriotWindow *window)
 
 static void
 aisleriot_window_take_card_theme (AisleriotWindow *window,
-                                  GamesCardTheme *theme /* adopting */)
+                                  ArCardTheme *theme /* adopting */)
 {
   AisleriotWindowPrivate *priv = window->priv;
 #if GTK_CHECK_VERSION (2, 10, 0)
@@ -1411,7 +1411,7 @@ aisleriot_window_take_card_theme (AisleriotWindow *window,
     const cairo_font_options_t *font_options;
 
     font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
-    games_card_theme_set_font_options (theme, font_options);
+    ar_card_theme_set_font_options (theme, font_options);
   }
 #endif /* GTK+ 2.10.0 */
 
@@ -1423,8 +1423,8 @@ card_theme_changed_cb (GtkToggleAction *action,
                        AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  GamesCardThemeInfo *current_theme_info = NULL, *new_theme_info;
-  GamesCardTheme *theme;
+  ArCardThemeInfo *current_theme_info = NULL, *new_theme_info;
+  ArCardTheme *theme;
   const char *theme_name;
 
   if (!gtk_toggle_action_get_active (action))
@@ -1434,13 +1434,13 @@ card_theme_changed_cb (GtkToggleAction *action,
   g_assert (new_theme_info != NULL);
 
   if (priv->theme) {
-    current_theme_info = games_card_theme_get_theme_info (priv->theme);
+    current_theme_info = ar_card_theme_get_theme_info (priv->theme);
   }
 
-  if (games_card_theme_info_equal (new_theme_info, current_theme_info))
+  if (ar_card_theme_info_equal (new_theme_info, current_theme_info))
     return;
 
-  theme = games_card_themes_get_theme (priv->theme_manager, new_theme_info);
+  theme = ar_card_themes_get_theme (priv->theme_manager, new_theme_info);
   if (!theme) {
     GSList *group, *l;
 
@@ -1455,13 +1455,13 @@ card_theme_changed_cb (GtkToggleAction *action,
     group = gtk_radio_action_get_group (GTK_RADIO_ACTION (action));
     for (l = group; l != NULL; l = l->next) {
       GtkToggleAction *theme_action = GTK_TOGGLE_ACTION (l->data);
-      GamesCardThemeInfo *info;
+      ArCardThemeInfo *info;
 
       if (theme_action == action)
         continue;
 
       info = g_object_get_data (G_OBJECT (theme_action), "theme-info");
-      if (!games_card_theme_info_equal (info, current_theme_info))
+      if (!ar_card_theme_info_equal (info, current_theme_info))
         continue;
 
       /* The check at the top will prevent an infinite loop */
@@ -1474,18 +1474,18 @@ card_theme_changed_cb (GtkToggleAction *action,
 
   aisleriot_window_take_card_theme (window, theme);
 
-  theme_name = games_card_theme_info_get_persistent_name (new_theme_info);
+  theme_name = ar_card_theme_info_get_persistent_name (new_theme_info);
   games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme_name);
 }
 
 static void
-install_card_theme_menu (GamesCardThemes *theme_manager,
+install_card_theme_menu (ArCardThemes *theme_manager,
                          AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
   GList *list, *l;
   GSList *radio_group = NULL;
-  GamesCardThemeInfo *current_theme_info;
+  ArCardThemeInfo *current_theme_info;
   guint i = 0;
 
   /* Clean out the old menu */
@@ -1501,11 +1501,11 @@ install_card_theme_menu (GamesCardThemes *theme_manager,
   /* See gtk bug #424448 */
   gtk_ui_manager_ensure_update (priv->ui_manager);
 
-  list = games_card_themes_get_themes (priv->theme_manager);
+  list = ar_card_themes_get_themes (priv->theme_manager);
 
   /* No need to install the menu when there's only one theme available anyway */
   if (list == NULL || list->next == NULL) {
-    g_list_foreach (list, (GFunc) games_card_theme_info_unref, NULL);
+    g_list_foreach (list, (GFunc) ar_card_theme_info_unref, NULL);
     g_list_free (list);
     return;
   }
@@ -1517,18 +1517,18 @@ install_card_theme_menu (GamesCardThemes *theme_manager,
   priv->card_themes_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
   if (priv->theme) {
-    current_theme_info = games_card_theme_get_theme_info (priv->theme);
+    current_theme_info = ar_card_theme_get_theme_info (priv->theme);
   } else {
     current_theme_info = NULL;
   }
 
   for (l = list; l != NULL; l = l->next) {
-    GamesCardThemeInfo *info = (GamesCardThemeInfo *) l->data;
+    ArCardThemeInfo *info = (ArCardThemeInfo *) l->data;
     GtkRadioAction *action;
     char actionname[32];
     char *display_name, *tooltip;
 
-    display_name = g_strdup (games_card_theme_info_get_display_name (info));
+    display_name = g_strdup (ar_card_theme_info_get_display_name (info));
 
     g_snprintf (actionname, sizeof (actionname), "Theme%d", i);
 #ifdef HAVE_HILDON
@@ -1544,13 +1544,13 @@ install_card_theme_menu (GamesCardThemes *theme_manager,
     radio_group = gtk_radio_action_get_group (action);
 
     /* Check if this is the current theme's action. Do this before connecting the callback */
-    if (games_card_theme_info_equal (info, current_theme_info)) {
+    if (ar_card_theme_info_equal (info, current_theme_info)) {
       gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
     }
 
     /* We steal the data from the list */
     g_object_set_data_full (G_OBJECT (action), "theme-info",
-                            l->data, (GDestroyNotify) games_card_theme_info_unref);
+                            l->data, (GDestroyNotify) ar_card_theme_info_unref);
     l->data = NULL;
 
     g_signal_connect (action, "toggled",
@@ -1586,7 +1586,7 @@ view_menu_activate_cb (GtkAction *action,
   /* Request the list of themes. If it wasn't updated yet, the "changed"
    * callback will build the card themes submenu.
    */
-  games_card_themes_request_themes (priv->theme_manager);
+  ar_card_themes_request_themes (priv->theme_manager);
 }
 
 /* Callbacks */
@@ -2118,7 +2118,7 @@ aisleriot_window_style_set (GtkWidget *widget,
     return;
 
   font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
-  games_card_theme_set_font_options (priv->theme, font_options);
+  ar_card_theme_set_font_options (priv->theme, font_options);
 
   /* FIXMEchpe: clear the cached cards in the slots?? */
 }
@@ -2487,7 +2487,7 @@ aisleriot_window_init (AisleriotWindow *window)
   GtkAccelGroup *accel_group;
   GtkAction *action;
   char *theme_name;
-  GamesCardTheme *theme;
+  ArCardTheme *theme;
   guint i;
 #ifndef HAVE_HILDON
   GtkStatusbar *statusbar;
@@ -2505,7 +2505,7 @@ aisleriot_window_init (AisleriotWindow *window)
 
   priv->game = aisleriot_game_new ();
 
-  priv->theme_manager = games_card_themes_new ();
+  priv->theme_manager = ar_card_themes_new ();
 
   priv->board_style = ar_style_new ();
 
@@ -2539,11 +2539,11 @@ aisleriot_window_init (AisleriotWindow *window)
 #endif /* HAVE_CLUTTER */
 
   theme_name = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
-  theme = games_card_themes_get_theme_by_name (priv->theme_manager, theme_name);
+  theme = ar_card_themes_get_theme_by_name (priv->theme_manager, theme_name);
   g_free (theme_name);
   if (!theme) {
     /* Last-ditch fallback: try getting *any* theme */
-    theme = games_card_themes_get_theme_any (priv->theme_manager);
+    theme = ar_card_themes_get_theme_any (priv->theme_manager);
   }
   if (theme) {
     aisleriot_window_take_card_theme (window, theme /* adopts */);
@@ -2707,7 +2707,7 @@ aisleriot_window_init (AisleriotWindow *window)
    * if the theme loading above involved the fallback); in that case
    * we need to update the menu right now.
    */
-  if (games_card_themes_get_themes_loaded (priv->theme_manager))
+  if (ar_card_themes_get_themes_loaded (priv->theme_manager))
     install_card_theme_menu (priv->theme_manager, window);
 
   /* Rebuild the themes menu when the themes list changes */
@@ -2748,7 +2748,7 @@ aisleriot_window_init (AisleriotWindow *window)
 
 #ifdef ENABLE_CARD_THEMES_INSTALLER
   action = gtk_action_group_get_action (priv->action_group, "InstallThemes");
-  gtk_action_set_sensitive (action, games_card_themes_can_install_themes (priv->theme_manager));
+  gtk_action_set_sensitive (action, ar_card_themes_can_install_themes (priv->theme_manager));
 #endif /* ENABLE_CARD_THEMES_INSTALLER */
 
   set_fullscreen_actions (window, FALSE);

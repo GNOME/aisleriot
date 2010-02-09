@@ -46,7 +46,7 @@ static const GdkColor default_selection_color = { 0, 0 /* red */, 0 /* green */,
 
 struct _ArStylePrivate
 {
-  GamesCardTheme* card_theme;
+  ArCardTheme* card_theme;
 
 #ifdef HAVE_CLUTTER
   ClutterColor selection_color;

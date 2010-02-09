@@ -40,7 +40,6 @@
 #endif
 #endif
 
-#include "games-card.h"
 #include "games-runtime.h"
 
 #include "games-files.h"

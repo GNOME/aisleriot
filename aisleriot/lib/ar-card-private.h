@@ -19,15 +19,15 @@
 /* Authors:   Callum McKenzie <callum@physics.otago.ac.nz> */
 
 
-#ifndef GAMES_CARD_PRIVATE_H
-#define GAMES_CARD_PRIVATE_H
+#ifndef AR_CARD_PRIVATE_H
+#define AR_CARD_PRIVATE_H
 
 G_BEGIN_DECLS
 
-#define GAMES_CARD_ID(suit, rank) ((13*(suit)) + ((rank-1)%13))
+#define AR_CARD_ID(suit, rank) ((13*(suit)) + ((rank-1)%13))
 
-guint _games_card_to_index (Card card);
+guint _ar_card_to_index (Card card);
 
 G_END_DECLS
 
-#endif /* !GAMES_CARD_PRIVATE_H */
+#endif /* !AR_CARD_PRIVATE_H */

@@ -25,12 +25,12 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include "games-debug.h"
-#include "games-profile.h"
-#include "games-runtime.h"
+#include <libgames-support/games-debug.h>
+#include <libgames-support/games-profile.h>
+#include <libgames-support/games-runtime.h>
 
-#include "games-card-theme.h"
-#include "games-card-theme-private.h"
+#include "ar-card-theme.h"
+#include "ar-card-theme-private.h"
 
 enum {
   PROP_0,
@@ -46,52 +46,52 @@ static guint signals[LAST_SIGNAL];
 
 /* Class implementation */
 
-G_DEFINE_ABSTRACT_TYPE (GamesCardTheme, games_card_theme, G_TYPE_OBJECT);
+G_DEFINE_ABSTRACT_TYPE (ArCardTheme, ar_card_theme, G_TYPE_OBJECT);
 
 static void
-games_card_theme_init (GamesCardTheme * theme)
+ar_card_theme_init (ArCardTheme * theme)
 {
 }
 
 static GObject *
-games_card_theme_constructor (GType type,
+ar_card_theme_constructor (GType type,
                               guint n_construct_properties,
                               GObjectConstructParam *construct_params)
 {
   GObject *object;
-  GamesCardTheme *theme;
+  ArCardTheme *theme;
 
-  object = G_OBJECT_CLASS (games_card_theme_parent_class)->constructor
+  object = G_OBJECT_CLASS (ar_card_theme_parent_class)->constructor
              (type, n_construct_properties, construct_params);
 
-  theme = GAMES_CARD_THEME (object);
+  theme = AR_CARD_THEME (object);
 
   g_assert (theme->theme_info != NULL);
 
   /* NOTE! We have to do this here, since it returns the wrong class
-   * (GamesCardThemeClass) when called in games_card_theme_init() !
+   * (ArCardThemeClass) when called in ar_card_theme_init() !
    */
-  theme->klass = GAMES_CARD_THEME_GET_CLASS (theme);
+  theme->klass = AR_CARD_THEME_GET_CLASS (theme);
 
   return object;
 }
 
 static void
-games_card_theme_finalize (GObject *object)
+ar_card_theme_finalize (GObject *object)
 {
-  GamesCardTheme *theme = GAMES_CARD_THEME (object);
+  ArCardTheme *theme = AR_CARD_THEME (object);
 
-  games_card_theme_info_unref (theme->theme_info);
+  ar_card_theme_info_unref (theme->theme_info);
 
-  G_OBJECT_CLASS (games_card_theme_parent_class)->finalize (object);
+  G_OBJECT_CLASS (ar_card_theme_parent_class)->finalize (object);
 }
 
 static void
-games_card_theme_set_property (GObject * object,
+ar_card_theme_set_property (GObject * object,
                                guint prop_id,
                                const GValue * value, GParamSpec * pspec)
 {
-  GamesCardTheme *theme = GAMES_CARD_THEME (object);
+  ArCardTheme *theme = AR_CARD_THEME (object);
 
   switch (prop_id) {
     case PROP_THEME_INFO:
@@ -104,8 +104,8 @@ games_card_theme_set_property (GObject * object,
   }
 }
 
-static GamesCardThemeInfo *
-games_card_theme_class_get_theme_info (GamesCardThemeClass *klass,
+static ArCardThemeInfo *
+ar_card_theme_class_get_theme_info (ArCardThemeClass *klass,
                                        const char *dir,
                                        const char *filename)
 {
@@ -113,21 +113,21 @@ games_card_theme_class_get_theme_info (GamesCardThemeClass *klass,
 }
 
 static void
-games_card_theme_class_init (GamesCardThemeClass * klass)
+ar_card_theme_class_init (ArCardThemeClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
-  gobject_class->set_property = games_card_theme_set_property;
-  gobject_class->constructor = games_card_theme_constructor;
-  gobject_class->finalize = games_card_theme_finalize;
+  gobject_class->set_property = ar_card_theme_set_property;
+  gobject_class->constructor = ar_card_theme_constructor;
+  gobject_class->finalize = ar_card_theme_finalize;
 
-  klass->get_theme_info = games_card_theme_class_get_theme_info;
+  klass->get_theme_info = ar_card_theme_class_get_theme_info;
 
   g_object_class_install_property
     (gobject_class,
      PROP_THEME_INFO,
      g_param_spec_boxed ("theme-info", NULL, NULL,
-                         GAMES_TYPE_CARD_THEME_INFO,
+                         AR_TYPE_CARD_THEME_INFO,
                          G_PARAM_WRITABLE |
                          G_PARAM_STATIC_NAME |
                          G_PARAM_STATIC_NICK |
@@ -135,7 +135,7 @@ games_card_theme_class_init (GamesCardThemeClass * klass)
                          G_PARAM_CONSTRUCT_ONLY));
 
   /**
-   * GamesCardTheme:changed:
+   * ArCardTheme:changed:
    * @theme: the object on which the signal is emitted
    *
    * The ::changed signal is emitted when the card theme has
@@ -156,13 +156,13 @@ games_card_theme_class_init (GamesCardThemeClass * klass)
 /* private API */
 
 void
-_games_card_theme_emit_changed (GamesCardTheme *theme)
+_ar_card_theme_emit_changed (ArCardTheme *theme)
 {
   g_signal_emit (theme, signals[CHANGED], 0);
 }
 
-GamesCardThemeInfo *
-_games_card_theme_class_get_theme_info (GamesCardThemeClass *klass,
+ArCardThemeInfo *
+_ar_card_theme_class_get_theme_info (ArCardThemeClass *klass,
                                         const char *dir,
                                         const char *filename)
 {
@@ -170,17 +170,17 @@ _games_card_theme_class_get_theme_info (GamesCardThemeClass *klass,
 }
 
 gboolean
-_games_card_theme_class_foreach_theme_dir (GamesCardThemeClass *klass,
-                                           GamesCardThemeForeachFunc callback,
+_ar_card_theme_class_foreach_theme_dir (ArCardThemeClass *klass,
+                                           ArCardThemeForeachFunc callback,
                                            gpointer data)
 {
   return klass->foreach_theme_dir (klass, callback, data);
 }
 
 gboolean
-_games_card_theme_class_foreach_env (GamesCardThemeClass *klass,
+_ar_card_theme_class_foreach_env (ArCardThemeClass *klass,
                                      const char *env,
-                                     GamesCardThemeForeachFunc callback,
+                                     ArCardThemeForeachFunc callback,
                                      gpointer data)
 {
   const char *value;
@@ -217,17 +217,17 @@ _games_card_theme_class_foreach_env (GamesCardThemeClass *klass,
 #if GTK_CHECK_VERSION (2, 10, 0)
 
 /**
- * games_card_theme_set_font_options:
+ * ar_card_theme_set_font_options:
  * @theme:
  * @font_options: the #cairo_font_options_t to use
  *
  * Sets the font options to use when drawing the card images.
  */
 void
-games_card_theme_set_font_options (GamesCardTheme *theme,
+ar_card_theme_set_font_options (ArCardTheme *theme,
                                    const cairo_font_options_t *font_options)
 {
-  g_return_if_fail (GAMES_IS_CARD_THEME (theme));
+  g_return_if_fail (AR_IS_CARD_THEME (theme));
 
   if (!theme->klass->set_font_options)
     return;
@@ -239,21 +239,21 @@ games_card_theme_set_font_options (GamesCardTheme *theme,
 
 
 /**
- * games_card_theme_get_theme_info:
+ * ar_card_theme_get_theme_info:
  * @theme:
  *
- * Returns: the #GamesCardThemeInfo corresponding to @theme.
+ * Returns: the #ArCardThemeInfo corresponding to @theme.
  */
-GamesCardThemeInfo *
-games_card_theme_get_theme_info (GamesCardTheme *theme)
+ArCardThemeInfo *
+ar_card_theme_get_theme_info (ArCardTheme *theme)
 {
-  g_return_val_if_fail (GAMES_IS_CARD_THEME (theme), NULL);
+  g_return_val_if_fail (AR_IS_CARD_THEME (theme), NULL);
 
   return theme->theme_info;
 }
 
 /**
- * games_card_theme_set_size:
+ * ar_card_theme_set_size:
  * @theme:
  * @width: the maximum width
  * @height: the maximum height
@@ -268,46 +268,46 @@ games_card_theme_get_theme_info (GamesCardTheme *theme)
  * Returns: %TRUE iff the card size was changed
  */
 gboolean
-games_card_theme_set_size (GamesCardTheme *theme,
+ar_card_theme_set_size (ArCardTheme *theme,
                            int width,
                            int height,
                            double proportion)
 {
-  g_return_val_if_fail (GAMES_IS_CARD_THEME (theme), FALSE);
+  g_return_val_if_fail (AR_IS_CARD_THEME (theme), FALSE);
 
   return theme->klass->set_card_size (theme, width, height, proportion);
 }
 
 /**
- * games_card_theme_get_size:
+ * ar_card_theme_get_size:
  * @theme:
  * @size: location to store the card size
  *
  * Returns the currently selected card size in @size.
  */
 void
-games_card_theme_get_size (GamesCardTheme *theme,
+ar_card_theme_get_size (ArCardTheme *theme,
                            CardSize *size)
 {
   theme->klass->get_card_size (theme, size);
 }
 
 /**
- * games_card_theme_get_aspect:
+ * ar_card_theme_get_aspect:
  * @theme:
  *
  * Returns: the aspect ratio of the cards in the currently loaded theme
  */
 double
-games_card_theme_get_aspect (GamesCardTheme * theme)
+ar_card_theme_get_aspect (ArCardTheme * theme)
 {
-  g_return_val_if_fail (GAMES_IS_CARD_THEME (theme), 1.0);
+  g_return_val_if_fail (AR_IS_CARD_THEME (theme), 1.0);
 
   return theme->klass->get_card_aspect (theme);
 }
 
 /**
- * games_card_theme_get_card_pixbuf:
+ * ar_card_theme_get_card_pixbuf:
  * @theme:
  * @card_id:
  *
@@ -317,12 +317,12 @@ games_card_theme_get_aspect (GamesCardTheme * theme)
  * Returns: a new #GdkPixbuf, or %NULL if there was an error
  */
 GdkPixbuf *
-games_card_theme_get_card_pixbuf (GamesCardTheme *theme,
+ar_card_theme_get_card_pixbuf (ArCardTheme *theme,
                                   int card_id)
 {
   GdkPixbuf *pixbuf;
 
-  g_return_val_if_fail ((card_id >= 0) && (card_id < GAMES_CARDS_TOTAL), NULL);
+  g_return_val_if_fail ((card_id >= 0) && (card_id < AR_CARDS_TOTAL), NULL);
 
   _games_profile_start ("loading card %d from theme %s", card_id, theme->theme_info->display_name);
 
@@ -333,7 +333,7 @@ games_card_theme_get_card_pixbuf (GamesCardTheme *theme,
   return pixbuf;
 }
 
-/* GamesCardThemeInfo impl */
+/* ArCardThemeInfo impl */
 
 static int
 theme_type_compare (GType a,
@@ -343,22 +343,22 @@ theme_type_compare (GType a,
   /* List of supported theme types, in order of decreasing precedence */
 #ifdef HAVE_RSVG
 #ifdef ENABLE_CARD_THEME_FORMAT_SVG
-  GAMES_TYPE_CARD_THEME_SVG,
+  AR_TYPE_CARD_THEME_SVG,
 #endif
 #ifdef ENABLE_CARD_THEME_FORMAT_KDE
-  GAMES_TYPE_CARD_THEME_KDE,
+  AR_TYPE_CARD_THEME_KDE,
 #endif
 #endif /* HAVE_RSVG */
 #ifndef HAVE_HILDON
 #ifdef ENABLE_CARD_THEME_FORMAT_SLICED
-  GAMES_TYPE_CARD_THEME_SLICED,
+  AR_TYPE_CARD_THEME_SLICED,
 #endif
 #ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
-  GAMES_TYPE_CARD_THEME_PYSOL,
+  AR_TYPE_CARD_THEME_PYSOL,
 #endif
 #endif /* !HAVE_HILDON */
 #ifdef ENABLE_CARD_THEME_FORMAT_FIXED
-  GAMES_TYPE_CARD_THEME_FIXED
+  AR_TYPE_CARD_THEME_FIXED
 #endif
   };
   guint ia, ib;
@@ -376,7 +376,7 @@ theme_type_compare (GType a,
 /* private API */
 
 /**
- * _games_card_theme_info_new:
+ * _ar_card_theme_info_new:
  * @type:
  * @path:
  * @filename:
@@ -385,10 +385,10 @@ theme_type_compare (GType a,
  * @data:
  * @destroy_notify:
  *
- * Returns: a new #GamesCardThemeInfo with refcount 1
+ * Returns: a new #ArCardThemeInfo with refcount 1
  */
-GamesCardThemeInfo *
-_games_card_theme_info_new (GType type,
+ArCardThemeInfo *
+_ar_card_theme_info_new (GType type,
                             const char *path,
                             const char *filename,
                             char *display_name /* adopts */,
@@ -396,12 +396,12 @@ _games_card_theme_info_new (GType type,
                             gpointer data /* adoptes */,
                             GDestroyNotify destroy_notify)
 {
-  GamesCardThemeInfo *info;
+  ArCardThemeInfo *info;
 
 #if GLIB_CHECK_VERSION (2, 10, 0)
-  info = g_slice_new (GamesCardThemeInfo);
+  info = g_slice_new (ArCardThemeInfo);
 #else
-  info = g_new (GamesCardThemeInfo, 1);
+  info = g_new (ArCardThemeInfo, 1);
 #endif
 
   info->ref_count = 1;
@@ -414,14 +414,14 @@ _games_card_theme_info_new (GType type,
   info->destroy_notify = destroy_notify;
 
   _games_debug_print (GAMES_DEBUG_CARD_THEME,
-                      "Created GamesCardThemeInfo for type=%s path=%s filename=%s display-name=%s\n",
+                      "Created ArCardThemeInfo for type=%s path=%s filename=%s display-name=%s\n",
                       g_type_name (type), path, filename, display_name);
 
   return info;
 }
 
 guint
-_games_card_theme_info_hash (const GamesCardThemeInfo *a)
+_ar_card_theme_info_hash (const ArCardThemeInfo *a)
 {
   return g_int_hash (&a->type) ^
          g_str_hash (a->path) ^
@@ -429,7 +429,7 @@ _games_card_theme_info_hash (const GamesCardThemeInfo *a)
 }
 
 /**
- * _games_card_theme_info_collate:
+ * _ar_card_theme_info_collate:
  * @a:
  * @b:
  *
@@ -439,8 +439,8 @@ _games_card_theme_info_hash (const GamesCardThemeInfo *a)
  * %0 if @a and @b are equal.
  */
 int
-_games_card_theme_info_collate (const GamesCardThemeInfo *a,
-                                const GamesCardThemeInfo *b)
+_ar_card_theme_info_collate (const ArCardThemeInfo *a,
+                                const ArCardThemeInfo *b)
 {
   g_return_val_if_fail (a != NULL && b != NULL, 0);
 
@@ -453,19 +453,19 @@ _games_card_theme_info_collate (const GamesCardThemeInfo *a,
 /* public API */
 
 #if defined(G_DEFINE_BOXED_TYPE)
-G_DEFINE_BOXED_TYPE (GamesCardThemeInfo, games_card_theme_info,
-                     games_card_theme_info_ref,
-                     games_card_theme_info_unref);
+G_DEFINE_BOXED_TYPE (ArCardThemeInfo, ar_card_theme_info,
+                     ar_card_theme_info_ref,
+                     ar_card_theme_info_unref);
 #else
 GType
-games_card_theme_info_get_type (void)
+ar_card_theme_info_get_type (void)
 {
   static GType type = 0;
 
   if (G_UNLIKELY (type == 0)) {
-    type = g_boxed_type_register_static ("GamesCardThemeInfo",
-                                         (GBoxedCopyFunc) games_card_theme_info_ref,
-                                         (GBoxedFreeFunc) games_card_theme_info_unref);
+    type = g_boxed_type_register_static ("ArCardThemeInfo",
+                                         (GBoxedCopyFunc) ar_card_theme_info_ref,
+                                         (GBoxedFreeFunc) ar_card_theme_info_unref);
   }
 
   return type;
@@ -473,15 +473,15 @@ games_card_theme_info_get_type (void)
 #endif /* defined(G_DEFINE_BOXED_TYPE) */
 
 /**
- * games_card_theme_info_ref:
+ * ar_card_theme_info_ref:
  * @info:
  *
  * Refs @info.
  *
  * Returns: @info
  */
-GamesCardThemeInfo *
-games_card_theme_info_ref (GamesCardThemeInfo *info)
+ArCardThemeInfo *
+ar_card_theme_info_ref (ArCardThemeInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
 
@@ -490,13 +490,13 @@ games_card_theme_info_ref (GamesCardThemeInfo *info)
 }
 
 /**
- * games_card_theme_info_unref:
+ * ar_card_theme_info_unref:
  * @info:
  *
  * Unrefs @info. If the refcount reaches %0, @info is freed.
  */
 void
-games_card_theme_info_unref (GamesCardThemeInfo *info)
+ar_card_theme_info_unref (ArCardThemeInfo *info)
 {
   g_return_if_fail (info != NULL);
 
@@ -512,20 +512,20 @@ games_card_theme_info_unref (GamesCardThemeInfo *info)
     info->destroy_notify (info->data);
 
 #if GLIB_CHECK_VERSION (2, 10, 0)
-  g_slice_free (GamesCardThemeInfo, info);
+  g_slice_free (ArCardThemeInfo, info);
 #else
   g_free (info);
 #endif
 }
 
 /**
- * games_card_theme_info_get_display_name :
+ * ar_card_theme_info_get_display_name :
  * @info:
  *
  * Returns: the user readable name of @info
  */
 const char *
-games_card_theme_info_get_display_name (GamesCardThemeInfo *info)
+ar_card_theme_info_get_display_name (ArCardThemeInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
 
@@ -533,13 +533,13 @@ games_card_theme_info_get_display_name (GamesCardThemeInfo *info)
 }
 
 /**
- * games_card_theme_info_get_persistent_name :
+ * ar_card_theme_info_get_persistent_name :
  * @info:
  *
  * Returns: the user readable name of @info
  */
 const char *
-games_card_theme_info_get_persistent_name (GamesCardThemeInfo *info)
+ar_card_theme_info_get_persistent_name (ArCardThemeInfo *info)
 {
   g_return_val_if_fail (info != NULL, NULL);
 
@@ -549,13 +549,13 @@ games_card_theme_info_get_persistent_name (GamesCardThemeInfo *info)
 }
 
 /**
- * games_card_theme_info_equal:
+ * ar_card_theme_info_equal:
  *
  * Returns: %TRUE iff @a and @b refer to the same card theme
  */
 gboolean
-games_card_theme_info_equal (const GamesCardThemeInfo *a,
-                              const GamesCardThemeInfo *b)
+ar_card_theme_info_equal (const ArCardThemeInfo *a,
+                              const ArCardThemeInfo *b)
 {
   g_return_val_if_fail (a != NULL && b != NULL, FALSE);
 

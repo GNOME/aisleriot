@@ -51,7 +51,7 @@ static void aisleriot_card_get_property (GObject    *self,
 static void aisleriot_card_unref_cache (AisleriotCard *card);
 
 static void aisleriot_card_set_cache (AisleriotCard *card,
-                                      GamesCardTexturesCache *cache);
+                                      ArCardTexturesCache *cache);
 
 #define ANGLE_IS_UPSIDE_DOWN(angle)             \
   ((ABS (angle) + CLUTTER_INT_TO_FIXED (90))    \
@@ -68,7 +68,7 @@ struct _AisleriotCardPrivate
 {
   Card bottom_card, top_card;
 
-  GamesCardTexturesCache *cache;
+  ArCardTexturesCache *cache;
 };
 
 enum
@@ -108,7 +108,7 @@ aisleriot_card_class_init (AisleriotCardClass *klass)
   g_object_class_install_property (gobject_class, PROP_TOP_CARD, pspec);
 
   pspec = g_param_spec_object ("cache", NULL, NULL,
-                               GAMES_TYPE_CARD_TEXTURES_CACHE,
+                               AR_TYPE_CARD_TEXTURES_CACHE,
                                G_PARAM_READWRITE |
                                G_PARAM_CONSTRUCT_ONLY |
                                G_PARAM_STATIC_STRINGS);
@@ -136,7 +136,7 @@ aisleriot_card_dispose (GObject *self)
 }
 
 ClutterActor *
-aisleriot_card_new (GamesCardTexturesCache *cache,
+aisleriot_card_new (ArCardTexturesCache *cache,
                     Card bottom_card,
                     Card top_card)
 {
@@ -158,7 +158,7 @@ aisleriot_card_get_preferred_width (ClutterActor *self,
   CoglHandle tex;
   guint width;
 
-  tex = games_card_textures_cache_get_card_texture (priv->cache,
+  tex = ar_card_textures_cache_get_card_texture (priv->cache,
                                                     priv->top_card);
 
   if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
@@ -184,7 +184,7 @@ aisleriot_card_get_preferred_height (ClutterActor *self,
   CoglHandle tex;
   guint height;
 
-  tex = games_card_textures_cache_get_card_texture (priv->cache,
+  tex = ar_card_textures_cache_get_card_texture (priv->cache,
                                                     priv->top_card);
 
   if (G_UNLIKELY (tex == COGL_INVALID_HANDLE))
@@ -210,9 +210,9 @@ aisleriot_card_paint (ClutterActor *actor)
 
   cogl_set_backface_culling_enabled (TRUE);
 
-  top_tex = games_card_textures_cache_get_card_texture (priv->cache,
+  top_tex = ar_card_textures_cache_get_card_texture (priv->cache,
                                                         priv->top_card);
-  bottom_tex = games_card_textures_cache_get_card_texture (priv->cache,
+  bottom_tex = ar_card_textures_cache_get_card_texture (priv->cache,
                                                            priv->bottom_card);
   if (G_UNLIKELY (top_tex == COGL_INVALID_HANDLE
                   || bottom_tex == COGL_INVALID_HANDLE))
@@ -347,7 +347,7 @@ aisleriot_card_unref_cache (AisleriotCard *card)
 }
 
 static void
-aisleriot_card_set_cache (AisleriotCard *card, GamesCardTexturesCache *cache)
+aisleriot_card_set_cache (AisleriotCard *card, ArCardTexturesCache *cache)
 {
   AisleriotCardPrivate *priv = card->priv;
 

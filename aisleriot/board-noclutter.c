@@ -21,26 +21,26 @@
 
 #include <config.h>
 
+#include "board-noclutter.h"
+
 #include <string.h>
 
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 
-#include <libgames-support/games-card-images.h>
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-glib-compat.h>
 #include <libgames-support/games-gtk-compat.h>
 #include <libgames-support/games-marshal.h>
-#include <libgames-support/games-pixbuf-utils.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>
 
 #include "conf.h"
 #include "game.h"
-#include "ar-style-gtk.h"
+#include "ar-card-images.h"
 #include "ar-cursor.h"
-
-#include "board-noclutter.h"
+#include "ar-pixbuf-utils.h"
+#include "ar-style-gtk.h"
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
@@ -109,7 +109,7 @@ struct _AisleriotBoardPrivate
   int xbaseoffset;
 
   /* Cards cache */
-  GamesCardImages *images;
+  ArCardImages *images;
 
   /* ArSlot */
   gpointer slot_image; /* either a GdkPixbuf or GdkPixmap, depending on drawing mode */
@@ -757,7 +757,7 @@ slot_update_card_images_full (AisleriotBoard *board,
                               int highlight_start_card_id)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GamesCardImages *images = priv->images;
+  ArCardImages *images = priv->images;
   GPtrArray *card_images;
   guint n_cards, first_exposed_card_id, i;
   guint8 *cards;
@@ -789,7 +789,7 @@ slot_update_card_images_full (AisleriotBoard *board,
       is_highlighted = (i >= highlight_start_card_id);
 
       g_ptr_array_add (card_images,
-                       games_card_images_get_card_pixbuf (images, card, is_highlighted));
+                       ar_card_images_get_card_pixbuf (images, card, is_highlighted));
     }
   } else {
     for (i = first_exposed_card_id; i < n_cards; ++i) {
@@ -799,7 +799,7 @@ slot_update_card_images_full (AisleriotBoard *board,
       is_highlighted = (i >= highlight_start_card_id);
 
       g_ptr_array_add (card_images,
-                       games_card_images_get_card_pixmap (images, card, is_highlighted));
+                       ar_card_images_get_card_pixmap (images, card, is_highlighted));
     }
   }
 }
@@ -854,12 +854,12 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   priv->xslotstep = ((double) priv->allocation.width) / priv->width;
   priv->yslotstep = ((double) priv->allocation.height) / priv->height;
 
-  size_changed = games_card_images_set_size (priv->images,
+  size_changed = ar_card_images_set_size (priv->images,
                                              priv->xslotstep,
                                              priv->yslotstep,
                                              priv->card_slot_ratio);
 
-  games_card_images_get_size (priv->images, &card_size);
+  ar_card_images_get_size (priv->images, &card_size);
   priv->card_size = card_size;
 
   /* If the cards are too far apart, bunch them in the middle. */
@@ -880,13 +880,13 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   priv->yoffset = (priv->yslotstep - card_size.height) / 2;
 
   if (PIXBUF_DRAWING_LIKELIHOOD (priv->use_pixbuf_drawing)) {
-    priv->slot_image = games_card_images_get_slot_pixbuf (priv->images, FALSE);
+    priv->slot_image = ar_card_images_get_slot_pixbuf (priv->images, FALSE);
   } else {
-    priv->slot_image = games_card_images_get_slot_pixmap (priv->images, FALSE);
+    priv->slot_image = ar_card_images_get_slot_pixmap (priv->images, FALSE);
   }
 
-  gdk_gc_set_clip_mask (priv->slot_gc, games_card_images_get_slot_mask (priv->images));
-  gdk_gc_set_clip_mask (priv->draw_gc, games_card_images_get_card_mask (priv->images));
+  gdk_gc_set_clip_mask (priv->slot_gc, ar_card_images_get_slot_mask (priv->images));
+  gdk_gc_set_clip_mask (priv->draw_gc, ar_card_images_get_card_mask (priv->images));
 
   /* NOTE! Updating the slots checks that geometry is set, so
    * we set it to TRUE already.
@@ -1012,7 +1012,7 @@ drag_begin (AisleriotBoard *board)
                       0, 0, width, height);
   gdk_gc_set_foreground (gc2, &unmasked);
 
-  card_mask = games_card_images_get_card_mask (priv->images);
+  card_mask = ar_card_images_get_card_mask (priv->images);
   gdk_gc_set_clip_mask (gc1, card_mask);
   gdk_gc_set_clip_mask (gc2, card_mask);
 
@@ -1033,7 +1033,7 @@ drag_begin (AisleriotBoard *board)
     if (PIXBUF_DRAWING_LIKELIHOOD (use_pixbuf_drawing)) {
       GdkPixbuf *pixbuf;
 
-      pixbuf = games_card_images_get_card_pixbuf (priv->images, hcard, FALSE);
+      pixbuf = ar_card_images_get_card_pixbuf (priv->images, hcard, FALSE);
       if (!pixbuf)
         goto next;
 
@@ -1046,7 +1046,7 @@ drag_begin (AisleriotBoard *board)
     } else {
       GdkPixmap *pixmap;
 
-      pixmap = games_card_images_get_card_pixmap (priv->images, hcard, FALSE);
+      pixmap = ar_card_images_get_card_pixmap (priv->images, hcard, FALSE);
       if (!pixmap)
         goto next;
 
@@ -2366,7 +2366,7 @@ aisleriot_board_realize (GtkWidget *widget)
 
   display = gtk_widget_get_display (widget);
 
-  games_card_images_set_drawable (priv->images, window);
+  ar_card_images_set_drawable (priv->images, window);
 
   priv->draw_gc = gdk_gc_new (window);
 
@@ -2411,7 +2411,7 @@ aisleriot_board_unrealize (GtkWidget *widget)
   }
 #endif /* !HAVE_HILDON*/
 
-  games_card_images_set_drawable (priv->images, NULL);
+  ar_card_images_set_drawable (priv->images, NULL);
 
   clear_state (board);
 
@@ -2441,14 +2441,14 @@ aisleriot_board_sync_style (ArStyle *style,
   }
 
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_CARD_THEME)) {
-    GamesCardTheme *theme;
+    ArCardTheme *theme;
 
     theme = ar_style_get_card_theme (style);
     if (theme != NULL) {
       priv->geometry_set = FALSE;
       priv->slot_image = NULL;
 
-      games_card_images_set_theme (priv->images, theme);
+      ar_card_images_set_theme (priv->images, theme);
 
       update_geometry |= TRUE;
       queue_redraw |= TRUE;
@@ -2519,7 +2519,7 @@ aisleriot_board_sync_style (ArStyle *style,
     GdkColor selection_color;
 
     ar_style_get_selection_color (priv->style, &selection_color);
-    games_card_images_set_selection_color (priv->images, &selection_color);
+    ar_card_images_set_selection_color (priv->images, &selection_color);
 
     /* FIXMEchpe: update the cached images in the selection slot!! */
     redraw_selection = TRUE;
@@ -2534,7 +2534,7 @@ aisleriot_board_sync_style (ArStyle *style,
 
     priv->use_pixbuf_drawing = pixbuf_drawing;
 
-    games_card_images_set_cache_mode (priv->images,
+    ar_card_images_set_cache_mode (priv->images,
                                       pixbuf_drawing ? CACHE_PIXBUFS : CACHE_PIXMAPS);
 
     update_geometry |= TRUE;
@@ -3161,7 +3161,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
       if (G_LIKELY (hslot != highlight_slot)) {
         pixbuf = priv->slot_image;
       } else {
-        pixbuf = games_card_images_get_slot_pixbuf (priv->images,
+        pixbuf = ar_card_images_get_slot_pixbuf (priv->images,
                                                     priv->show_highlight);
       }
 
@@ -3177,7 +3177,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
       if (G_LIKELY (hslot != highlight_slot)) {
         pixmap = priv->slot_image;
       } else {
-        pixmap = games_card_images_get_slot_pixmap (priv->images,
+        pixmap = ar_card_images_get_slot_pixmap (priv->images,
                                                     priv->show_highlight);
       }
 
@@ -3351,7 +3351,7 @@ aisleriot_board_init (AisleriotBoard *board)
 
   priv->moving_cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
 
-  priv->images = games_card_images_new ();
+  priv->images = ar_card_images_new ();
 
   gtk_widget_set_events (widget,
 			 gtk_widget_get_events (widget) |

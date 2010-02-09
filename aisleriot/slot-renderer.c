@@ -43,7 +43,7 @@ static void aisleriot_slot_renderer_get_property (GObject *object,
 static void aisleriot_slot_renderer_paint (ClutterActor *actor);
 
 static void aisleriot_slot_renderer_set_cache (AisleriotSlotRenderer *srend,
-                                               GamesCardTexturesCache *cache);
+                                               ArCardTexturesCache *cache);
 
 static void completed_cb (AisleriotSlotRenderer *srend);
 
@@ -61,7 +61,7 @@ struct _AisleriotSlotRendererPrivate
 {
   ArStyle *style;
 
-  GamesCardTexturesCache *cache;
+  ArCardTexturesCache *cache;
 
   ArSlot *slot;
 
@@ -142,7 +142,7 @@ aisleriot_slot_renderer_class_init (AisleriotSlotRendererClass *klass)
                           G_PARAM_STATIC_STRINGS));
 
   pspec = g_param_spec_object ("cache", NULL, NULL,
-                               GAMES_TYPE_CARD_TEXTURES_CACHE,
+                               AR_TYPE_CARD_TEXTURES_CACHE,
                                G_PARAM_WRITABLE |
                                G_PARAM_CONSTRUCT_ONLY |
                                G_PARAM_STATIC_STRINGS);
@@ -235,7 +235,7 @@ aisleriot_slot_renderer_finalize (GObject *object)
 
 ClutterActor *
 aisleriot_slot_renderer_new (ArStyle *style,
-                             GamesCardTexturesCache *cache,
+                             ArCardTexturesCache *cache,
                              ArSlot *slot)
 {
   return g_object_new (AISLERIOT_TYPE_SLOT_RENDERER,
@@ -247,7 +247,7 @@ aisleriot_slot_renderer_new (ArStyle *style,
 
 static void
 aisleriot_slot_renderer_set_cache (AisleriotSlotRenderer *srend,
-                                   GamesCardTexturesCache *cache)
+                                   ArCardTexturesCache *cache)
 {
   AisleriotSlotRendererPrivate *priv = srend->priv;
 
@@ -393,7 +393,7 @@ aisleriot_slot_renderer_paint_card (AisleriotSlotRenderer *srend,
   guint tex_width, tex_height;
   int cardx, cardy;
 
-  cogl_tex = games_card_textures_cache_get_card_texture (priv->cache, card);
+  cogl_tex = ar_card_textures_cache_get_card_texture (priv->cache, card);
   if (G_UNLIKELY (cogl_tex == COGL_INVALID_HANDLE))
     return;
 
@@ -435,7 +435,7 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
     CoglHandle cogl_tex;
     guint tex_width, tex_height;
 
-    cogl_tex = games_card_textures_cache_get_slot_texture (priv->cache);
+    cogl_tex = ar_card_textures_cache_get_slot_texture (priv->cache);
     if (G_UNLIKELY (cogl_tex == COGL_INVALID_HANDLE))
       return;
 

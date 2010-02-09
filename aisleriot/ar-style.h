@@ -26,7 +26,7 @@
 #include <gdk/gdk.h>
 #endif
 
-#include <libgames-support/games-card-theme.h>
+#include "ar-card-theme.h"
 
 G_BEGIN_DECLS
 
@@ -88,9 +88,9 @@ gboolean ar_style_get_click_to_move (ArStyle *style);
 void     ar_style_set_click_to_move (ArStyle *style,
                                      gboolean enable);
 
-GamesCardTheme *ar_style_get_card_theme (ArStyle *style);
+ArCardTheme *ar_style_get_card_theme (ArStyle *style);
 void            ar_style_set_card_theme (ArStyle *style,
-                                         GamesCardTheme *theme);
+                                         ArCardTheme *theme);
 
 /* Read-only properties */
 gboolean ar_style_get_touchscreen_mode (ArStyle *style);

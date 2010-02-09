@@ -26,20 +26,21 @@
 
 #include <gtk/gtk.h>
 
-#include "games-runtime.h"
-#include "games-card-theme.h"
-#include "games-card-themes.h"
-#include "games-card-theme-private.h"
-#include "games-string-utils.h"
+#include <libgames-support/games-runtime.h>
+#include <libgames-support/games-string-utils.h>
+
+#include "ar-card-theme.h"
+#include "ar-card-themes.h"
+#include "ar-card-theme-private.h"
 
 int
 main (int argc, char *argv[])
 {
   GError *err = NULL;
   char *basepath = NULL, *kfname, *kfpath, *theme_filename;
-  GamesCardThemeInfo *theme_info = NULL;
-  GamesCardThemes *theme_manager = NULL;
-  GamesCardTheme *theme = NULL;
+  ArCardThemeInfo *theme_info = NULL;
+  ArCardThemes *theme_manager = NULL;
+  ArCardTheme *theme = NULL;
   GKeyFile *key_file = NULL;
   int i;
   int retval = EXIT_FAILURE;
@@ -131,15 +132,15 @@ main (int argc, char *argv[])
   }
 
   theme_filename = g_strdup_printf ("%s.svg", theme_name);
-  theme_info = _games_card_theme_info_new (GAMES_TYPE_CARD_THEME_SVG,
-                                           theme_dir ? theme_dir : games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY),
-                                           theme_filename,
-                                           games_filename_to_display_name (theme_name),
-                                           g_strdup_printf ("svg:%s", theme_filename) /* FIXMEchpe is this correct? */,
-                                           NULL, NULL);
+  theme_info = _ar_card_theme_info_new (AR_TYPE_CARD_THEME_SVG,
+                                        theme_dir ? theme_dir : games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY),
+                                        theme_filename,
+                                        games_filename_to_display_name (theme_name),
+                                        g_strdup_printf ("svg:%s", theme_filename) /* FIXMEchpe is this correct? */,
+                                        NULL, NULL);
   g_free (theme_filename);
-  theme_manager = games_card_themes_new ();
-  theme = games_card_themes_get_theme (theme_manager, theme_info);
+  theme_manager = ar_card_themes_new ();
+  theme = ar_card_themes_get_theme (theme_manager, theme_info);
   if (!theme) {
     /* FIXMEchpe print real error */
     g_printerr ("Failed to load theme '%s'\n", theme_name);
@@ -152,7 +153,7 @@ main (int argc, char *argv[])
     font_options = cairo_font_options_create ();
     cairo_font_options_set_antialias (font_options, antialias_mode);
     cairo_font_options_set_subpixel_order (font_options, subpixels);
-    games_card_theme_set_font_options (theme, font_options);
+    ar_card_theme_set_font_options (theme, font_options);
     cairo_font_options_destroy (font_options);
   }
 
@@ -180,7 +181,7 @@ main (int argc, char *argv[])
     if (size == 0 || errno != 0)
       goto loser;
 
-    games_card_theme_set_size (theme, size, -1, 1.0);
+    ar_card_theme_set_size (theme, size, -1, 1.0);
 
     g_snprintf (sizestr, sizeof (sizestr), "%d", size);
     sizepath = g_build_filename (basepath, sizestr, NULL);
@@ -191,16 +192,16 @@ main (int argc, char *argv[])
       goto loser;
     }
 
-    for (j = 0; j < GAMES_CARDS_TOTAL; ++j) {
+    for (j = 0; j < AR_CARDS_TOTAL; ++j) {
       GdkPixbuf *pixbuf;
       char *name, *filename, *path;
       GError *error = NULL;
 
-      pixbuf = games_card_theme_get_card_pixbuf (theme, j);
+      pixbuf = ar_card_theme_get_card_pixbuf (theme, j);
       if (!pixbuf)
         goto loser;
 
-      name = games_card_get_name_by_id (j);
+      name = ar_card_get_name_by_id (j);
 
       filename = g_strdup_printf ("%s.png", name);
       path = g_build_filename (sizepath, filename, NULL);
@@ -222,7 +223,7 @@ main (int argc, char *argv[])
 
     sizes[i] = size;
 
-    games_card_theme_get_size (theme, &card_size);
+    ar_card_theme_get_size (theme, &card_size);
     g_key_file_set_integer (key_file, sizestr, "Width", card_size.width);
     g_key_file_set_integer (key_file, sizestr, "Height", card_size.height);
   }
@@ -263,7 +264,7 @@ loser:
   if (theme)
     g_object_unref (theme);
   if (theme_info)
-    games_card_theme_info_unref (theme_info);
+    ar_card_theme_info_unref (theme_info);
   if (theme_manager)
     g_object_unref (theme_manager);
   if (key_file)

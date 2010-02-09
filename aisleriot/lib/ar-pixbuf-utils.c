@@ -18,12 +18,12 @@
 
 #include <config.h>
 
+#include "ar-pixbuf-utils.h"
+
 #include <string.h>
 
-#include "games-pixbuf-utils.h"
-
 /**
- * games_pixbuf_utils_create_highlight:
+ * ar_pixbuf_utils_create_highlight:
  * @pixbuf: the original pixbuf
  * @highligh_colour: the colour to use for the highlight
  *
@@ -32,8 +32,8 @@
  * Returns: a new #GdkPixbuf, or %NULL if there was an error
  */
 GdkPixbuf *
-games_pixbuf_utils_create_highlight (GdkPixbuf *pixbuf,
-                                     const GdkColor *highligh_colour)
+ar_pixbuf_utils_create_highlight (GdkPixbuf *pixbuf,
+                                  const GdkColor *highligh_colour)
 {
   GdkPixbuf *comppixbuf;
   guint x, y, width, height, rowstride;
