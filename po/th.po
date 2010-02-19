@@ -1,9 +1,9 @@
 # translation of gnome-games.HEAD.po to Thai
 # Thai translation of gnome-games.
-# Copyright (C) 2004-2009 Free Software Foundation, Inc.
+# Copyright (C) 2004-2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-games package.
 #
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2004-2009.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2004-2010.
 # Supranee Thirawatthanasuk <supranee@opentle.org>, 2005, 2006, 2007.
 # Kitt Tientanopajai <kitty@kitty.in.th>, 2006.
 msgid ""
@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-games.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "games&component=general\n"
-"POT-Creation-Date: 2009-10-31 02:26+0000\n"
-"PO-Revision-Date: 2009-11-04 18:33+0700\n"
+"POT-Creation-Date: 2010-01-25 04:41+0000\n"
+"PO-Revision-Date: 2010-02-19 14:35+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgid ""
 msgstr "เลือกว่าจะใช้การลากไพ่ หรือจะคลิกต้นทางและปลายทาง"
 
 #: aisleriot/aisleriot.schemas.in.h:7 gnect/data/gnect.schemas.in.h:11
-#: gnobots2/properties.c:478 iagno/iagno.schemas.in.h:1
+#: gnobots2/properties.c:484 iagno/iagno.schemas.in.h:1
 msgid "Sound"
 msgstr "เสียง"
 
@@ -93,8 +93,17 @@ msgstr "จะแสดงแถบสถานะหรือไม่"
 msgid "Whether or not to show the toolbar"
 msgstr "จะแสดงแถบเครื่องมือหรือไม่"
 
-#: aisleriot/freecell.desktop.in.in.h:1 aisleriot/sol.c:304
-#: aisleriot/window.c:618 aisleriot/window.c:626
+#. Now construct the window contents
+#: aisleriot/ar-game-chooser.c:238 aisleriot/window.c:2581
+msgid "Select Game"
+msgstr "เลือกเกม"
+
+#: aisleriot/ar-game-chooser.c:254
+msgid "_Select"
+msgstr "เ_ลือก"
+
+#: aisleriot/freecell.desktop.in.in.h:1 aisleriot/sol.c:334
+#: aisleriot/window.c:459 aisleriot/window.c:467
 msgid "FreeCell Solitaire"
 msgstr "ถอดไพ่ FreeCell"
 
@@ -102,18 +111,83 @@ msgstr "ถอดไพ่ FreeCell"
 msgid "Play the popular FreeCell card game"
 msgstr "เล่น FreeCell เกมถอดไพ่ยอดนิยม"
 
-#: aisleriot/game.c:1144
+#: aisleriot/game.c:1164
 #, c-format
 msgid ""
 "Aisleriot cannot load the file “%s”. Please check your Aisleriot "
 "installation."
 msgstr "Aisleriot ไม่สามารถโหลดแฟ้ม “%s” กรุณาตรวจสอบการติดตั้ง Aisleriot"
 
-#: aisleriot/game.c:1588
+#. Translators: this is the name of a type of card slot
+#: aisleriot/game.c:1415
+msgctxt "slot type"
+msgid "foundation"
+msgstr "กองเรียง"
+
+#. Translators: this is the name of a type of card slot
+#: aisleriot/game.c:1419
+msgctxt "slot type"
+msgid "reserve"
+msgstr "กองสำรอง"
+
+#. Translators: this is the name of a type of card slot
+#: aisleriot/game.c:1423
+msgctxt "slot type"
+msgid "stock"
+msgstr "กองจั่ว"
+
+#. Translators: this is the name of a type of card slot
+#: aisleriot/game.c:1427
+msgctxt "slot type"
+msgid "tableau"
+msgstr "กระดานเล่น"
+
+#. Translators: this is the name of a type of card slot
+#: aisleriot/game.c:1431
+msgctxt "slot type"
+msgid "waste"
+msgstr "กองทิ้ง"
+
+#. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
+#: aisleriot/game.c:1463
+#, c-format
+msgctxt "slot hint"
+msgid "%s on foundation"
+msgstr "%s ในกองเรียง"
+
+#. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
+#: aisleriot/game.c:1467
+#, c-format
+msgctxt "slot hint"
+msgid "%s on reserve"
+msgstr "%s ในกองสำรอง"
+
+#. Translators: %s is the name of the card; "stock" is the name of a type of card slot
+#: aisleriot/game.c:1471
+#, c-format
+msgctxt "slot hint"
+msgid "%s on stock"
+msgstr "%s ในกองจั่ว"
+
+#. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
+#: aisleriot/game.c:1475
+#, c-format
+msgctxt "slot hint"
+msgid "%s on tableau"
+msgstr "%s ในกระดานเล่น"
+
+#. Translators: %s is the name of the card; "waste" is the name of a type of card slot
+#: aisleriot/game.c:1479
+#, c-format
+msgctxt "slot hint"
+msgid "%s on waste"
+msgstr "%s ในกองทิ้ง"
+
+#: aisleriot/game.c:1720
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot ไม่พบเกมล่าสุดที่คุณเล่น"
 
-#: aisleriot/game.c:1589
+#: aisleriot/game.c:1721
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -122,7 +196,7 @@ msgstr ""
 "เหตุการณ์นี้มักเกิดขึ้นเมื่อคุณเรียก Aisleriot รุ่นที่เก่ากว่า ซึ่งยังไม่มีเกมที่คุณเล่นครั้งล่าสุด "
 "จะเปิดเกมปริยาย คือ Klondike แทน"
 
-#: aisleriot/game.c:1947
+#: aisleriot/game.c:2079
 msgid "This game does not have hint support yet."
 msgstr "เกมนี้ยังไม่รองรับการบอกใบ้"
 
@@ -130,26 +204,27 @@ msgstr "เกมนี้ยังไม่รองรับการบอก
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: aisleriot/game.c:1981 aisleriot/game.c:2009
+#: aisleriot/game.c:2113 aisleriot/game.c:2141
 #, c-format
 msgid "Move %s onto %s."
 msgstr "ย้าย%sไปยัง%s"
 
-#: aisleriot/game.c:2031
+#: aisleriot/game.c:2163
 #, c-format
 msgid "You are searching for a %s."
 msgstr "คุณกำลังค้นหา %s"
 
-#: aisleriot/game.c:2036
+#: aisleriot/game.c:2168
 msgid "This game is unable to provide a hint."
 msgstr "เกมนี้ไม่สามารถบอกใบ้ได้"
 
+#. This is a generated file; DO NOT EDIT
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:6
+#: aisleriot/game-names.h:7
 msgid "Peek"
 msgstr "มองปราด"
 
@@ -158,7 +233,7 @@ msgstr "มองปราด"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:13
+#: aisleriot/game-names.h:14
 msgid "Auld Lang Syne"
 msgstr "ออลด์ แลง ไซน์"
 
@@ -167,7 +242,7 @@ msgstr "ออลด์ แลง ไซน์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:20
+#: aisleriot/game-names.h:21
 msgid "Fortunes"
 msgstr "โชคชะตา"
 
@@ -176,7 +251,7 @@ msgstr "โชคชะตา"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:27
+#: aisleriot/game-names.h:28
 msgid "Seahaven"
 msgstr "ซีเฮเวน"
 
@@ -185,7 +260,7 @@ msgstr "ซีเฮเวน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:34
+#: aisleriot/game-names.h:35
 msgid "King Albert"
 msgstr "พระเจ้าแอลเบิร์ต"
 
@@ -194,7 +269,7 @@ msgstr "พระเจ้าแอลเบิร์ต"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:41
+#: aisleriot/game-names.h:42
 msgid "First Law"
 msgstr "กฎข้อแรก"
 
@@ -203,7 +278,7 @@ msgstr "กฎข้อแรก"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:48
+#: aisleriot/game-names.h:49
 msgid "Straight Up"
 msgstr "แถวตรง"
 
@@ -212,7 +287,7 @@ msgstr "แถวตรง"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:55
+#: aisleriot/game-names.h:56
 msgid "Jumbo"
 msgstr "จัมโบ้"
 
@@ -221,7 +296,7 @@ msgstr "จัมโบ้"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:62
+#: aisleriot/game-names.h:63
 msgid "Accordion"
 msgstr "หีบเพลง"
 
@@ -230,7 +305,7 @@ msgstr "หีบเพลง"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:69
+#: aisleriot/game-names.h:70
 msgid "Ten Across"
 msgstr "สิบแถวข้าม"
 
@@ -239,7 +314,7 @@ msgstr "สิบแถวข้าม"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:76
+#: aisleriot/game-names.h:77
 msgid "Plait"
 msgstr "ถักเปีย"
 
@@ -248,7 +323,7 @@ msgstr "ถักเปีย"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:83
+#: aisleriot/game-names.h:84
 msgid "Lady Jane"
 msgstr "คุณหญิงเจน"
 
@@ -257,7 +332,7 @@ msgstr "คุณหญิงเจน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:90
+#: aisleriot/game-names.h:91
 msgid "Gypsy"
 msgstr "ยิปซี"
 
@@ -266,7 +341,7 @@ msgstr "ยิปซี"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:97
+#: aisleriot/game-names.h:98
 msgid "Neighbor"
 msgstr "เพื่อนบ้าน"
 
@@ -275,7 +350,7 @@ msgstr "เพื่อนบ้าน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:104
+#: aisleriot/game-names.h:105
 msgid "Jamestown"
 msgstr "เจมส์ทาวน์"
 
@@ -284,7 +359,7 @@ msgstr "เจมส์ทาวน์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:111
+#: aisleriot/game-names.h:112
 msgid "Osmosis"
 msgstr "ออสโมซิส"
 
@@ -293,7 +368,7 @@ msgstr "ออสโมซิส"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:118
+#: aisleriot/game-names.h:119
 msgid "Kings Audience"
 msgstr "ราชบริพาร"
 
@@ -302,7 +377,7 @@ msgstr "ราชบริพาร"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:125
+#: aisleriot/game-names.h:126
 msgid "Glenwood"
 msgstr "เกล็นวูด"
 
@@ -311,7 +386,7 @@ msgstr "เกล็นวูด"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:132
+#: aisleriot/game-names.h:133
 msgid "Gay Gordons"
 msgstr "เกย์ กอร์ดอนส์"
 
@@ -320,7 +395,7 @@ msgstr "เกย์ กอร์ดอนส์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:139
+#: aisleriot/game-names.h:140
 msgid "Monte Carlo"
 msgstr "มอนติคาร์โล"
 
@@ -329,7 +404,7 @@ msgstr "มอนติคาร์โล"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:146
+#: aisleriot/game-names.h:147
 msgid "Kansas"
 msgstr "แคนซัส"
 
@@ -338,7 +413,7 @@ msgstr "แคนซัส"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:153
+#: aisleriot/game-names.h:154
 msgid "Camelot"
 msgstr "คาเมล็อต"
 
@@ -347,7 +422,7 @@ msgstr "คาเมล็อต"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:160
+#: aisleriot/game-names.h:161
 msgid "Fourteen"
 msgstr "สิบสี่"
 
@@ -356,7 +431,7 @@ msgstr "สิบสี่"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:167
+#: aisleriot/game-names.h:168
 msgid "Scorpion"
 msgstr "แมงป่อง"
 
@@ -365,7 +440,7 @@ msgstr "แมงป่อง"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:174
+#: aisleriot/game-names.h:175
 msgid "Isabel"
 msgstr "อิสซาเบล"
 
@@ -374,7 +449,7 @@ msgstr "อิสซาเบล"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:181
+#: aisleriot/game-names.h:182
 msgid "Escalator"
 msgstr "บันไดเลื่อน"
 
@@ -383,7 +458,7 @@ msgstr "บันไดเลื่อน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:188
+#: aisleriot/game-names.h:189
 msgid "Agnes"
 msgstr "แอกนีส"
 
@@ -392,7 +467,7 @@ msgstr "แอกนีส"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:195
+#: aisleriot/game-names.h:196
 msgid "Bristol"
 msgstr "บริสตอล"
 
@@ -401,7 +476,7 @@ msgstr "บริสตอล"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:202
+#: aisleriot/game-names.h:203
 msgid "Quatorze"
 msgstr "จตุทศ"
 
@@ -410,7 +485,7 @@ msgstr "จตุทศ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:209
+#: aisleriot/game-names.h:210
 msgid "Bear River"
 msgstr "แม่น้ำแบร์"
 
@@ -419,7 +494,7 @@ msgstr "แม่น้ำแบร์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:216
+#: aisleriot/game-names.h:217
 msgid "Gold Mine"
 msgstr "เหมืองทอง"
 
@@ -428,7 +503,7 @@ msgstr "เหมืองทอง"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:223
+#: aisleriot/game-names.h:224
 msgid "Athena"
 msgstr "อะธีนา"
 
@@ -437,7 +512,7 @@ msgstr "อะธีนา"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:230
+#: aisleriot/game-names.h:231
 msgid "Spiderette"
 msgstr "แมงมุมน้อย"
 
@@ -446,7 +521,7 @@ msgstr "แมงมุมน้อย"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:237
+#: aisleriot/game-names.h:238
 msgid "Chessboard"
 msgstr "กระดานหมากรุก"
 
@@ -455,7 +530,7 @@ msgstr "กระดานหมากรุก"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:244
+#: aisleriot/game-names.h:245
 msgid "Backbone"
 msgstr "สันหลัง"
 
@@ -464,7 +539,7 @@ msgstr "สันหลัง"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:251
+#: aisleriot/game-names.h:252
 msgid "Yukon"
 msgstr "ยูคอน"
 
@@ -473,7 +548,7 @@ msgstr "ยูคอน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:258
+#: aisleriot/game-names.h:259
 msgid "Union Square"
 msgstr "จัตุรัสรวมพล"
 
@@ -482,7 +557,7 @@ msgstr "จัตุรัสรวมพล"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:265
+#: aisleriot/game-names.h:266
 msgid "Eight Off"
 msgstr "พักแปด"
 
@@ -491,7 +566,7 @@ msgstr "พักแปด"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:272
+#: aisleriot/game-names.h:273
 msgid "Napoleons Tomb"
 msgstr "สุสานนโปเลียน"
 
@@ -500,7 +575,7 @@ msgstr "สุสานนโปเลียน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:279
+#: aisleriot/game-names.h:280
 msgid "Forty Thieves"
 msgstr "สี่สิบโจร"
 
@@ -509,7 +584,7 @@ msgstr "สี่สิบโจร"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:286
+#: aisleriot/game-names.h:287
 msgid "Streets And Alleys"
 msgstr "ถนนหนทาง"
 
@@ -518,7 +593,7 @@ msgstr "ถนนหนทาง"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:293
+#: aisleriot/game-names.h:294
 msgid "Maze"
 msgstr "เขาวงกต"
 
@@ -527,7 +602,7 @@ msgstr "เขาวงกต"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:300
+#: aisleriot/game-names.h:301
 msgid "Clock"
 msgstr "นาฬิกา"
 
@@ -536,7 +611,7 @@ msgstr "นาฬิกา"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:307
+#: aisleriot/game-names.h:308
 msgid "Pileon"
 msgstr "กองซ้อน"
 
@@ -545,7 +620,7 @@ msgstr "กองซ้อน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:314
+#: aisleriot/game-names.h:315
 msgid "Canfield"
 msgstr "แคนฟิลด์"
 
@@ -554,7 +629,7 @@ msgstr "แคนฟิลด์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:321
+#: aisleriot/game-names.h:322
 msgid "Thirteen"
 msgstr "สิบสาม"
 
@@ -563,7 +638,7 @@ msgstr "สิบสาม"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:328
+#: aisleriot/game-names.h:329
 msgid "Bakers Game"
 msgstr "เกมร้านขนมอบ"
 
@@ -572,7 +647,7 @@ msgstr "เกมร้านขนมอบ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:335
+#: aisleriot/game-names.h:336
 msgid "Triple Peaks"
 msgstr "เขาสามยอด"
 
@@ -581,7 +656,7 @@ msgstr "เขาสามยอด"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:342
+#: aisleriot/game-names.h:343
 msgid "Easthaven"
 msgstr "อีสต์เฮเวน"
 
@@ -591,7 +666,7 @@ msgstr "อีสต์เฮเวน"
 #. freely, literally, or not at all, at your option.
 #.
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: aisleriot/game-names.h:349 aisleriot/rules/terrace.scm.h:20
+#: aisleriot/game-names.h:350 aisleriot/rules/terrace.scm.h:20
 msgid "Terrace"
 msgstr "นอกชาน"
 
@@ -600,7 +675,7 @@ msgstr "นอกชาน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:356
+#: aisleriot/game-names.h:357
 msgid "Aunt Mary"
 msgstr "ป้ามารี"
 
@@ -609,7 +684,7 @@ msgstr "ป้ามารี"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:363
+#: aisleriot/game-names.h:364
 msgid "Carpet"
 msgstr "พรม"
 
@@ -618,7 +693,7 @@ msgstr "พรม"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:370
+#: aisleriot/game-names.h:371
 msgid "Sir Tommy"
 msgstr "เซอร์ ทอมมี"
 
@@ -627,7 +702,7 @@ msgstr "เซอร์ ทอมมี"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:377
+#: aisleriot/game-names.h:378
 msgid "Diamond Mine"
 msgstr "เหมืองเพชร"
 
@@ -636,7 +711,7 @@ msgstr "เหมืองเพชร"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:384
+#: aisleriot/game-names.h:385
 msgid "Yield"
 msgstr "จำนน"
 
@@ -645,7 +720,7 @@ msgstr "จำนน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:391
+#: aisleriot/game-names.h:392
 msgid "Labyrinth"
 msgstr "ประตูกล"
 
@@ -654,7 +729,7 @@ msgstr "ประตูกล"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:398
+#: aisleriot/game-names.h:399
 msgid "Thieves"
 msgstr "ขโมย"
 
@@ -663,7 +738,7 @@ msgstr "ขโมย"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:405
+#: aisleriot/game-names.h:406
 msgid "Saratoga"
 msgstr "ซาราโทกา"
 
@@ -672,7 +747,7 @@ msgstr "ซาราโทกา"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:412
+#: aisleriot/game-names.h:413
 msgid "Cruel"
 msgstr "โหดร้าย"
 
@@ -681,7 +756,7 @@ msgstr "โหดร้าย"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:419
+#: aisleriot/game-names.h:420
 msgid "Block Ten"
 msgstr "บล็อคสิบ"
 
@@ -690,7 +765,7 @@ msgstr "บล็อคสิบ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:426
+#: aisleriot/game-names.h:427
 msgid "Will O The Wisp"
 msgstr "แสงปิศาจ"
 
@@ -699,7 +774,7 @@ msgstr "แสงปิศาจ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:433
+#: aisleriot/game-names.h:434
 msgid "Odessa"
 msgstr "โอเดสซา"
 
@@ -708,7 +783,7 @@ msgstr "โอเดสซา"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:440
+#: aisleriot/game-names.h:441
 msgid "Eagle Wing"
 msgstr "ปีกอินทรี"
 
@@ -717,7 +792,7 @@ msgstr "ปีกอินทรี"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:447
+#: aisleriot/game-names.h:448
 msgid "Treize"
 msgstr "ตรีทศ"
 
@@ -726,7 +801,7 @@ msgstr "ตรีทศ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:454
+#: aisleriot/game-names.h:455
 msgid "Zebra"
 msgstr "ม้าลาย"
 
@@ -735,7 +810,7 @@ msgstr "ม้าลาย"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:461
+#: aisleriot/game-names.h:462
 msgid "Cover"
 msgstr "คลุม"
 
@@ -744,7 +819,7 @@ msgstr "คลุม"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:468
+#: aisleriot/game-names.h:469
 msgid "Elevator"
 msgstr "ลิฟต์"
 
@@ -753,7 +828,7 @@ msgstr "ลิฟต์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:475
+#: aisleriot/game-names.h:476
 msgid "Fortress"
 msgstr "ปราการ"
 
@@ -762,7 +837,7 @@ msgstr "ปราการ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:482
+#: aisleriot/game-names.h:483
 msgid "Giant"
 msgstr "ยักษ์"
 
@@ -771,7 +846,7 @@ msgstr "ยักษ์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:489
+#: aisleriot/game-names.h:490
 msgid "Spider"
 msgstr "แมงมุม"
 
@@ -780,7 +855,7 @@ msgstr "แมงมุม"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:496
+#: aisleriot/game-names.h:497
 msgid "Gaps"
 msgstr "ช่อง"
 
@@ -789,7 +864,7 @@ msgstr "ช่อง"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:503
+#: aisleriot/game-names.h:504
 msgid "Bakers Dozen"
 msgstr "โหลแถมหนึ่ง"
 
@@ -798,7 +873,7 @@ msgstr "โหลแถมหนึ่ง"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:510
+#: aisleriot/game-names.h:511
 msgid "Whitehead"
 msgstr "ไวต์เฮด"
 
@@ -807,7 +882,7 @@ msgstr "ไวต์เฮด"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:517
+#: aisleriot/game-names.h:518
 msgid "Freecell"
 msgstr "ฟรีเซลล์"
 
@@ -816,7 +891,7 @@ msgstr "ฟรีเซลล์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:524
+#: aisleriot/game-names.h:525
 msgid "Helsinki"
 msgstr "เฮลซิงกิ"
 
@@ -825,7 +900,7 @@ msgstr "เฮลซิงกิ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:531
+#: aisleriot/game-names.h:532
 msgid "Spider Three Decks"
 msgstr "แมงมุมสามสำรับ"
 
@@ -834,7 +909,7 @@ msgstr "แมงมุมสามสำรับ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:538
+#: aisleriot/game-names.h:539
 msgid "Scuffle"
 msgstr "ตะลุมบอน"
 
@@ -843,7 +918,7 @@ msgstr "ตะลุมบอน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:545
+#: aisleriot/game-names.h:546
 msgid "Poker"
 msgstr "โปกเกอร์"
 
@@ -852,7 +927,7 @@ msgstr "โปกเกอร์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:552
+#: aisleriot/game-names.h:553
 msgid "Klondike Three Decks"
 msgstr "คลอนไดค์สามสำรับ"
 
@@ -861,7 +936,7 @@ msgstr "คลอนไดค์สามสำรับ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:559
+#: aisleriot/game-names.h:560
 msgid "Valentine"
 msgstr "วาเลนไทน์"
 
@@ -870,7 +945,7 @@ msgstr "วาเลนไทน์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:566
+#: aisleriot/game-names.h:567
 msgid "Royal East"
 msgstr "ราชบูรพา"
 
@@ -879,7 +954,7 @@ msgstr "ราชบูรพา"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:573
+#: aisleriot/game-names.h:574
 msgid "Thumb And Pouch"
 msgstr "รวบใส่ถุง"
 
@@ -888,7 +963,7 @@ msgstr "รวบใส่ถุง"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:580
+#: aisleriot/game-names.h:581
 msgid "Klondike"
 msgstr "คลอนไดค์"
 
@@ -897,7 +972,7 @@ msgstr "คลอนไดค์"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:587
+#: aisleriot/game-names.h:588
 msgid "Doublets"
 msgstr "ทวีคูณ"
 
@@ -906,7 +981,7 @@ msgstr "ทวีคูณ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:594
+#: aisleriot/game-names.h:595
 msgid "Template"
 msgstr "แม่แบบ"
 
@@ -915,7 +990,7 @@ msgstr "แม่แบบ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:601
+#: aisleriot/game-names.h:602
 msgid "Golf"
 msgstr "กอล์ฟ"
 
@@ -924,7 +999,7 @@ msgstr "กอล์ฟ"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:608
+#: aisleriot/game-names.h:609
 msgid "Westhaven"
 msgstr "เวสต์เฮเวน"
 
@@ -933,7 +1008,7 @@ msgstr "เวสต์เฮเวน"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:615
+#: aisleriot/game-names.h:616
 msgid "Beleaguered Castle"
 msgstr "ล้อมปราสาท"
 
@@ -942,28 +1017,41 @@ msgstr "ล้อมปราสาท"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: aisleriot/game-names.h:622
+#: aisleriot/game-names.h:623
 msgid "Hopscotch"
 msgstr "ตั้งเต"
 
-#: aisleriot/sol.c:212
+#. String reserve
+#: aisleriot/sol.c:64
+msgid "Solitaire"
+msgstr "ถอดไพ่"
+
+#: aisleriot/sol.c:65
+msgid "GNOME Solitaire"
+msgstr "เกมถอดไพ่ของ GNOME"
+
+#: aisleriot/sol.c:66
+msgid "About Solitaire"
+msgstr "เกี่ยวกับเกมถอดไพ่"
+
+#: aisleriot/sol.c:228
 msgid "Select the game type to play"
 msgstr "เลือกชนิดเกมที่จะเล่น"
 
-#: aisleriot/sol.c:212 gnobots2/gnobots.c:85 gnobots2/gnobots.c:87
+#: aisleriot/sol.c:228 gnobots2/gnobots.c:85 gnobots2/gnobots.c:87
 msgid "NAME"
 msgstr "NAME"
 
-#: aisleriot/sol.c:214
+#: aisleriot/sol.c:230
 msgid "Select the game number"
 msgstr "เลือกหมายเลขเกม"
 
-#: aisleriot/sol.c:214 gnomine/gnomine.c:1007 gtali/gyahtzee.c:110
-#: gtali/gyahtzee.c:112 gtali/gyahtzee.c:116 gtali/gyahtzee.c:118
+#: aisleriot/sol.c:230 gnomine/gnomine.c:1007 gtali/gyahtzee.c:107
+#: gtali/gyahtzee.c:109 gtali/gyahtzee.c:113 gtali/gyahtzee.c:115
 msgid "NUMBER"
 msgstr "NUMBER"
 
-#: aisleriot/sol.c:304 aisleriot/window.c:627 aisleriot/window.c:2886
+#: aisleriot/sol.c:334 aisleriot/window.c:468 aisleriot/window.c:2041
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -991,7 +1079,8 @@ msgstr "แต้มไม่รู้จัก"
 msgid "ace"
 msgstr "เอซ"
 
-#: aisleriot/sol.scm.h:5
+#. A black joker.
+#: aisleriot/sol.scm.h:5 libgames-support/games-card.c:331
 msgid "black joker"
 msgstr "โจ๊กเกอร์ดำ"
 
@@ -1035,7 +1124,8 @@ msgstr "เก้า"
 msgid "queen"
 msgstr "ควีน"
 
-#: aisleriot/sol.scm.h:16
+#. A red joker.
+#: aisleriot/sol.scm.h:16 libgames-support/games-card.c:334
 msgid "red joker"
 msgstr "โจ๊กเกอร์แดง"
 
@@ -1310,7 +1400,7 @@ msgstr "แย่ที่สุด:"
 #. Translators: this is the section title of a section containing the
 #. * best and worst time taken to win a game.
 #.
-#: aisleriot/stats-dialog.c:174 libgames-support/games-scores-dialog.c:115
+#: aisleriot/stats-dialog.c:174 libgames-support/games-scores-dialog.c:113
 msgid "Time"
 msgstr "เวลา"
 
@@ -1356,48 +1446,40 @@ msgstr "%d:%02d"
 msgid "Could not show help for “%s”"
 msgstr "ไม่สามารถแสดงคู่มือวิธีใช้สำหรับ “%s”"
 
-#: aisleriot/window.c:285 aisleriot/window.c:2567
-msgid "Select Game"
-msgstr "เลือกเกม"
-
-#: aisleriot/window.c:289
-msgid "_Select"
-msgstr "เ_ลือก"
-
-#: aisleriot/window.c:431
+#: aisleriot/window.c:265
 msgid "Congratulations, you have won!"
 msgstr "ยินดีด้วย คุณชนะแล้ว!"
 
-#: aisleriot/window.c:435
+#: aisleriot/window.c:269
 msgid "There are no more moves"
 msgstr "หมดตาเดินแล้ว"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: aisleriot/window.c:448 quadrapassel/blockops.cpp:788
+#: aisleriot/window.c:282 quadrapassel/blockops.cpp:788
 msgid "Game Over"
 msgstr "อวสาน"
 
-#: aisleriot/window.c:575 gnomine/gnomine.c:450 mahjongg/mahjongg.c:906
+#: aisleriot/window.c:416 gnomine/gnomine.c:450 mahjongg/mahjongg.c:906
 msgid "Main game:"
 msgstr "เกมหลัก:"
 
-#: aisleriot/window.c:583
+#: aisleriot/window.c:424
 msgid "Card games:"
 msgstr "เกมไพ่:"
 
-#: aisleriot/window.c:597
+#: aisleriot/window.c:438
 msgid "Card themes:"
 msgstr "ชุดไพ่:"
 
-#: aisleriot/window.c:629
+#: aisleriot/window.c:470
 msgid "About FreeCell Solitaire"
 msgstr "เกี่ยวกับเกมถอดไพ่ FreeCell"
 
-#: aisleriot/window.c:630
+#: aisleriot/window.c:471
 msgid "About AisleRiot"
 msgstr "เกี่ยวกับ AisleRiot"
 
-#: aisleriot/window.c:636
+#: aisleriot/window.c:477
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played.\n"
@@ -1406,33 +1488,33 @@ msgstr ""
 "AisleRiot เป็นเครื่องประมวลเกมถอดไพ่ที่ทำงานด้วยกฎ ซึ่งสามารถเล่นเกมไพ่ชนิดต่างๆ ได้สารพัด\n"
 "AisleRiot เป็นส่วนหนึ่งของ GNOME Games"
 
-#: aisleriot/window.c:647 glchess/src/lib/gtkui/gtkui.py:861
+#: aisleriot/window.c:488 glchess/src/lib/gtkui/gtkui.py:861
 #: glines/glines.c:1225 gnect/src/main.c:909 gnibbles/main.c:247
 #: gnobots2/menu.c:274 quadrapassel/tetris.cpp:1313
-#: gnome-sudoku/src/lib/main.py:717 gnomine/gnomine.c:490
-#: gnotravex/gnotravex.c:1921 gnotski/gnotski.c:1542 gtali/gyahtzee.c:623
-#: iagno/gnothello.c:268 mahjongg/mahjongg.c:951
+#: gnome-sudoku/src/lib/main.py:720 gnomine/gnomine.c:490
+#: gnotravex/gnotravex.c:1921 gnotski/gnotski.c:1542 gtali/gyahtzee.c:620
+#: iagno/gnothello.c:272 mahjongg/mahjongg.c:951
 msgid "translator-credits"
 msgstr ""
 "เทพพิทักษ์ การุญบุญญานันท์ <thep@linux.thai.net>\n"
 "สุปราณี ธีระวัฒนสุข <supranee@opentle.org>\n"
 "กิตติ์ เธียรธโนปจัย <kitty@kitty.in.th>"
 
-#: aisleriot/window.c:651 glchess/src/lib/defaults.py.in:56
+#: aisleriot/window.c:492 glchess/src/lib/defaults.py.in:56
 #: glines/glines.c:1228 gnect/src/main.c:906 gnibbles/main.c:250
 #: gnobots2/menu.c:270 quadrapassel/tetris.cpp:1310
 #: gnome-sudoku/src/lib/defaults.py.in:43 gnomine/gnomine.c:493
-#: gnotravex/gnotravex.c:1924 gnotski/gnotski.c:1545 gtali/gyahtzee.c:627
-#: iagno/gnothello.c:270 mahjongg/mahjongg.c:954
+#: gnotravex/gnotravex.c:1924 gnotski/gnotski.c:1545 gtali/gyahtzee.c:624
+#: iagno/gnothello.c:274 mahjongg/mahjongg.c:954
 msgid "GNOME Games web site"
 msgstr "เว็บไซต์ GNOME Games"
 
-#: aisleriot/window.c:1473
+#: aisleriot/window.c:1366
 #, c-format
 msgid "Play “%s”"
 msgstr "เล่น “%s”"
 
-#: aisleriot/window.c:1644
+#: aisleriot/window.c:1537
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "แสดงไพ่ด้วยชุดไพ่ “%s” "
@@ -1441,191 +1523,195 @@ msgstr "แสดงไพ่ด้วยชุดไพ่ “%s” "
 #. * then translate this string to "%I6d", else to "%6d".
 #. * Do not translate it to anything else!
 #.
-#: aisleriot/window.c:1739
+#: aisleriot/window.c:1632
 #, c-format
 msgctxt "score"
 msgid "%6d"
 msgstr "%6d"
 
-#: aisleriot/window.c:1994
+#: aisleriot/window.c:1910
 msgid "A scheme exception occurred"
 msgstr "เกิดสิ่งผิดปกติเกี่ยวกับ scheme"
 
-#: aisleriot/window.c:1997
+#: aisleriot/window.c:1913
 msgid "Please report this bug to the developers."
 msgstr "กรุณารายงานข้อผิดพลาดนี้ไปยังนักพัฒนา"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: aisleriot/window.c:2001 libgames-support/games-show.c:151
+#: aisleriot/window.c:1917 libgames-support/games-show.c:151
 msgid "Error"
 msgstr "เกิดข้อผิดพลาด"
 
-#: aisleriot/window.c:2009
+#: aisleriot/window.c:1925
 msgid "_Don't report"
 msgstr "ไ_ม่รายงาน"
 
-#: aisleriot/window.c:2010
+#: aisleriot/window.c:1926
 msgid "_Report"
 msgstr "_รายงาน"
 
+#: aisleriot/window.c:2039
+msgid "Freecell Solitaire"
+msgstr "ถอดไพ่ Freecell"
+
 #. Menu actions
 #. Preferences Dialog: Title of game options tab
-#: aisleriot/window.c:2197 glchess/data/glchess.ui.h:24
+#: aisleriot/window.c:2202 glchess/data/glchess.ui.h:24
 #: glchess/data/preferences.ui.h:24 glines/glines.c:1691 gnect/src/main.c:1273
 #: gnibbles/main.c:738 gnobots2/menu.c:68 quadrapassel/tetris.cpp:107
 #: gnome-sudoku/src/lib/main.py:241 gnomine/gnomine.c:834
-#: gnotravex/gnotravex.c:303 gnotski/gnotski.c:414 gtali/gyahtzee.c:701
-#: iagno/gnothello.c:812 lightsoff/data/lightsoff.ui.h:2
+#: gnotravex/gnotravex.c:303 gnotski/gnotski.c:414 gtali/gyahtzee.c:705
+#: iagno/gnothello.c:828 lightsoff/data/lightsoff.ui.h:2
 #: mahjongg/mahjongg.c:1242 swell-foop/data/swell-foop.ui.h:2
 msgid "_Game"
 msgstr "เ_กม"
 
 #. Preferences Dialog: Title of view options tab
-#: aisleriot/window.c:2198 glchess/data/glchess.ui.h:29
+#: aisleriot/window.c:2203 glchess/data/glchess.ui.h:29
 #: glchess/data/preferences.ui.h:30 gnect/src/main.c:1274 gnibbles/main.c:739
 #: gnobots2/menu.c:69 gnome-sudoku/src/lib/main.py:251
 #: gnotravex/gnotravex.c:304 gnotski/gnotski.c:415
 msgid "_View"
 msgstr "มุ_มมอง"
 
-#: aisleriot/window.c:2199
+#: aisleriot/window.c:2204
 msgid "_Control"
 msgstr "การ_ควบคุม"
 
-#: aisleriot/window.c:2201 glchess/data/glchess.ui.h:25 glines/glines.c:1693
+#: aisleriot/window.c:2206 glchess/data/glchess.ui.h:25 glines/glines.c:1693
 #: gnect/src/main.c:1276 gnibbles/main.c:741 gnobots2/menu.c:72
 #: quadrapassel/tetris.cpp:109 gnome-sudoku/src/lib/main.py:269
 #: gnomine/gnomine.c:836 gnotravex/gnotravex.c:307 gnotski/gnotski.c:416
-#: gtali/gyahtzee.c:703 iagno/gnothello.c:814 lightsoff/data/lightsoff.ui.h:3
+#: gtali/gyahtzee.c:707 iagno/gnothello.c:830 lightsoff/data/lightsoff.ui.h:3
 #: mahjongg/mahjongg.c:1244 swell-foop/data/swell-foop.ui.h:3
 msgid "_Help"
 msgstr "_วิธีใช้"
 
-#: aisleriot/window.c:2206 glchess/data/glchess.ui.h:18 gnobots2/menu.c:73
+#: aisleriot/window.c:2211 glchess/data/glchess.ui.h:18 gnobots2/menu.c:73
 #: libgames-support/games-stock.c:53 mahjongg/mahjongg.c:1245
 msgid "Start a new game"
 msgstr "เปิดเกมใหม่"
 
-#: aisleriot/window.c:2209 libgames-support/games-stock.c:57
+#: aisleriot/window.c:2214 libgames-support/games-stock.c:57
 msgid "Restart the game"
 msgstr "ตั้งต้นเกมใหม่"
 
-#: aisleriot/window.c:2211
+#: aisleriot/window.c:2216
 msgid "_Select Game..."
 msgstr "เ_ลือกเกม..."
 
-#: aisleriot/window.c:2213
+#: aisleriot/window.c:2218
 msgid "Play a different game"
 msgstr "เล่นเกมอื่น"
 
-#: aisleriot/window.c:2215
+#: aisleriot/window.c:2220
 msgid "_Recently Played"
 msgstr "เล่น_ก่อนหน้านี้"
 
-#: aisleriot/window.c:2216
+#: aisleriot/window.c:2221
 msgid "S_tatistics"
 msgstr "ส_ถิติ"
 
-#: aisleriot/window.c:2217
+#: aisleriot/window.c:2222
 msgid "Show gameplay statistics"
 msgstr "แสดงสถิติของผู้เล่นเกม"
 
-#: aisleriot/window.c:2220 libgames-support/games-stock.c:62
+#: aisleriot/window.c:2225 libgames-support/games-stock.c:62
 msgid "Close this window"
 msgstr "ปิดหน้าต่างนี้"
 
-#: aisleriot/window.c:2223 libgames-support/games-stock.c:60
+#: aisleriot/window.c:2228 libgames-support/games-stock.c:60
 #: mahjongg/mahjongg.c:1253
 msgid "Undo the last move"
 msgstr "ย้อนกลับไปตาที่แล้ว"
 
-#: aisleriot/window.c:2226 libgames-support/games-stock.c:56
+#: aisleriot/window.c:2231 libgames-support/games-stock.c:56
 msgid "Redo the undone move"
 msgstr "เล่นซ้ำตาที่ย้อนกลับไป"
 
-#: aisleriot/window.c:2229
+#: aisleriot/window.c:2234
 msgid "Deal next card or cards"
 msgstr "จั่วไพ่เพิ่ม"
 
-#: aisleriot/window.c:2232 libgames-support/games-stock.c:49
+#: aisleriot/window.c:2237 libgames-support/games-stock.c:49
 msgid "Get a hint for your next move"
 msgstr "ขอคำใบ้สำหรับตานี้"
 
-#: aisleriot/window.c:2235
+#: aisleriot/window.c:2240
 msgid "View help for Aisleriot"
 msgstr "ดูวิธีใช้ Aisleriot"
 
-#: aisleriot/window.c:2239 libgames-support/games-stock.c:46
+#: aisleriot/window.c:2244 libgames-support/games-stock.c:46
 msgid "View help for this game"
 msgstr "ดูวิธีเล่นเกมนี้"
 
-#: aisleriot/window.c:2242 libgames-support/games-stock.c:61
+#: aisleriot/window.c:2247 libgames-support/games-stock.c:61
 msgid "About this game"
 msgstr "เกี่ยวกับเกมนี้"
 
-#: aisleriot/window.c:2245
+#: aisleriot/window.c:2250
 msgid "Install card themes…"
 msgstr "ติดตั้งชุดไพ่…"
 
-#: aisleriot/window.c:2246
+#: aisleriot/window.c:2251
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "ติดตั้งชุดไพ่เพิ่มเติมจากคลังแพกเกจแจกจ่าย"
 
-#: aisleriot/window.c:2255
+#: aisleriot/window.c:2261
 msgid "_Card Style"
 msgstr "_สำรับไพ่"
 
-#: aisleriot/window.c:2295 gnobots2/menu.c:96 mahjongg/mahjongg.c:1273
+#: aisleriot/window.c:2302 gnobots2/menu.c:96 mahjongg/mahjongg.c:1273
 msgid "_Toolbar"
 msgstr "แถบเ_ครื่องมือ"
 
-#: aisleriot/window.c:2296 glchess/data/preferences.ui.h:17 gnobots2/menu.c:96
+#: aisleriot/window.c:2303 glchess/data/preferences.ui.h:17 gnobots2/menu.c:96
 #: mahjongg/mahjongg.c:1273
 msgid "Show or hide the toolbar"
 msgstr "ซ่อนหรือแสดงแถบเครื่องมือ"
 
-#: aisleriot/window.c:2301
+#: aisleriot/window.c:2308
 msgid "_Statusbar"
 msgstr "แถบ_สถานะ"
 
-#: aisleriot/window.c:2302
+#: aisleriot/window.c:2309
 msgid "Show or hide statusbar"
 msgstr "ซ่อนหรือแสดงแถบสถานะ"
 
-#: aisleriot/window.c:2307 gnotravex/gnotravex.c:352
+#: aisleriot/window.c:2314 gnotravex/gnotravex.c:352
 msgid "_Click to Move"
 msgstr "ย้ายด้วยการ_คลิก"
 
-#: aisleriot/window.c:2308
+#: aisleriot/window.c:2315
 msgid "Pick up and drop cards by clicking"
 msgstr "หยิบและวางไพ่ด้วยการคลิก"
 
-#: aisleriot/window.c:2312
+#: aisleriot/window.c:2319
 msgid "_Sound"
 msgstr "เ_สียง"
 
-#: aisleriot/window.c:2313
+#: aisleriot/window.c:2320
 msgid "Whether or not to play event sounds"
 msgstr "กำหนดว่าจะเล่นเสียงของเหตุการณ์ต่างๆ หรือไม่"
 
-#: aisleriot/window.c:2318
+#: aisleriot/window.c:2325
 msgid "_Animations"
 msgstr "ภาพเ_คลื่อนไหว"
 
-#: aisleriot/window.c:2319
+#: aisleriot/window.c:2326
 msgid "Whether or not to animate card moves"
 msgstr "กำหนดว่าจะใช้ภาพเคลื่อนไหวขณะย้ายไพ่หรือไม่"
 
-#: aisleriot/window.c:2598 glines/glines.c:1905 gnobots2/statusbar.c:67
+#: aisleriot/window.c:2633 glines/glines.c:1905 gnobots2/statusbar.c:67
 #: quadrapassel/scoreframe.cpp:47 gnomine/gnomine.c:453
 msgid "Score:"
 msgstr "คะแนน:"
 
-#: aisleriot/window.c:2610 gnotravex/gnotravex.c:1384 mahjongg/mahjongg.c:1465
+#: aisleriot/window.c:2645 gnotravex/gnotravex.c:1384 mahjongg/mahjongg.c:1465
 msgid "Time:"
 msgstr "เวลา:"
 
-#: aisleriot/window.c:2946
+#: aisleriot/window.c:3011
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "ไม่สามารถเริ่มเกม “%s”"
@@ -2525,14 +2611,14 @@ msgid "Logs"
 msgstr "ปูม"
 
 #. The Network Game toolbar button
-#: glchess/data/glchess.ui.h:7 libgames-support/games-stock.c:336
+#: glchess/data/glchess.ui.h:7 libgames-support/games-stock.c:337
 msgid "Network _Game"
 msgstr "เ_กมบนเครือข่าย"
 
 #. The New Game toolbar button
 #. Title of the new game dialog
 #: glchess/data/glchess.ui.h:9 glchess/data/new_game.ui.h:13
-#: libgames-support/games-scores-dialog.c:439
+#: libgames-support/games-scores-dialog.c:437
 msgid "New Game"
 msgstr "เกมใหม่"
 
@@ -2579,7 +2665,7 @@ msgid "Undo Move"
 msgstr "ย้อนตากลับ"
 
 #: glchess/data/glchess.ui.h:23 gnome-sudoku/src/lib/main.py:273
-#: libgames-support/games-stock.c:320
+#: libgames-support/games-stock.c:321
 msgid "_Contents"
 msgstr "เ_นื้อหา"
 
@@ -2589,12 +2675,12 @@ msgstr "ยอมแ_พ้"
 
 #: glchess/data/glchess.ui.h:27 glines/glines.c:1692 gnect/src/main.c:1275
 #: gnibbles/main.c:740 gnobots2/menu.c:71 quadrapassel/tetris.cpp:108
-#: gnomine/gnomine.c:835 gtali/gyahtzee.c:702 iagno/gnothello.c:813
+#: gnomine/gnomine.c:835 gtali/gyahtzee.c:706 iagno/gnothello.c:829
 #: mahjongg/mahjongg.c:1243
 msgid "_Settings"
 msgstr "_ตั้งค่า"
 
-#: glchess/data/glchess.ui.h:28 libgames-support/games-stock.c:332
+#: glchess/data/glchess.ui.h:28 libgames-support/games-stock.c:333
 msgid "_Undo Move"
 msgstr "_ย้อนตากลับ"
 
@@ -2886,7 +2972,7 @@ msgid "hours"
 msgstr "ชั่วโมง"
 
 #. Translators: AI Difficulty Combo: AI set to easy difficulty
-#: glchess/src/lib/gtkui/dialogs.py:178 gnome-sudoku/src/lib/sudoku.py:515
+#: glchess/src/lib/gtkui/dialogs.py:178 gnome-sudoku/src/lib/sudoku.py:516
 msgid "Easy"
 msgstr "ง่าย"
 
@@ -2896,7 +2982,7 @@ msgid "Normal"
 msgstr "ปกติ"
 
 #. Translators: AI Difficulty Combo: AI set to hard diffuculty
-#: glchess/src/lib/gtkui/dialogs.py:182 gnome-sudoku/src/lib/sudoku.py:513
+#: glchess/src/lib/gtkui/dialogs.py:182 gnome-sudoku/src/lib/sudoku.py:514
 msgid "Hard"
 msgstr "ยาก"
 
@@ -2942,12 +3028,14 @@ msgid "Black"
 msgstr "ดำ"
 
 #. Translators: Load Game Dialog: Name of filter to show only PGN files
-#: glchess/src/lib/gtkui/dialogs.py:443
+#. Translators: Save Game Dialog: Name of filter to show only PGN files
+#: glchess/src/lib/gtkui/dialogs.py:443 glchess/src/lib/gtkui/dialogs.py:518
 msgid "PGN files"
 msgstr "แฟ้ม PGN"
 
 #. Translators: Load Game Dialog: Name of filter to show all files
-#: glchess/src/lib/gtkui/dialogs.py:449
+#. Translators: Save Game Dialog: Name of filter to show all files
+#: glchess/src/lib/gtkui/dialogs.py:449 glchess/src/lib/gtkui/dialogs.py:524
 msgid "All files"
 msgstr "ทุกแฟ้ม"
 
@@ -2962,83 +3050,83 @@ msgid "Unabled to load game"
 msgstr "โหลดเกมไม่สำเร็จ"
 
 #. Translators: Save Game Dialog: Error displayed when no file name entered
-#: glchess/src/lib/gtkui/dialogs.py:550
+#: glchess/src/lib/gtkui/dialogs.py:552
 msgid "Please enter a file name"
 msgstr "กรุณาป้อนชื่อแฟ้ม"
 
 #. Translators: Save Game Dialog: Error title when unable to save game
-#: glchess/src/lib/gtkui/dialogs.py:563
+#: glchess/src/lib/gtkui/dialogs.py:565
 msgid "Unabled to save game"
 msgstr "บันทึกเกมไม่สำเร็จ"
 
 #. Translators: Move Format Combo: Moves shown in human descriptive notation
 #. Translators: Player Type Combo: Player is human controlled
-#: glchess/src/lib/gtkui/dialogs.py:590 glchess/src/lib/gtkui/gtkui.py:205
-#: gnect/src/prefs.c:250 gtali/gyahtzee.c:990 gtali/yahtzee.c:69
+#: glchess/src/lib/gtkui/dialogs.py:592 glchess/src/lib/gtkui/gtkui.py:205
+#: gnect/src/prefs.c:250 gtali/gyahtzee.c:993 gtali/yahtzee.c:69
 #: iagno/properties.c:452 iagno/properties.c:493
 msgid "Human"
 msgstr "มนุษย์"
 
 #. Translators: Move Format Combo: Moves shown in standard algebraic notation (SAN)
-#: glchess/src/lib/gtkui/dialogs.py:592
+#: glchess/src/lib/gtkui/dialogs.py:594
 msgid "Standard Algebraic"
 msgstr "พีชคณิตมาตรฐาน"
 
 #. Translators: Move Format Combo: Moves shown in standard figurine algebraic notation (FAN)
-#: glchess/src/lib/gtkui/dialogs.py:594
+#: glchess/src/lib/gtkui/dialogs.py:596
 msgid "Figurine"
 msgstr "รูปสัญลักษณ์"
 
 #. Translators: Move Format Combo: Moves shown in long algebraic notation (LAN)
-#: glchess/src/lib/gtkui/dialogs.py:596
+#: glchess/src/lib/gtkui/dialogs.py:598
 msgid "Long Algebraic"
 msgstr "พีชคณิตแบบยาว"
 
 #. Translators: Board Side Combo: Camera will face white player's side
-#: glchess/src/lib/gtkui/dialogs.py:606
+#: glchess/src/lib/gtkui/dialogs.py:608
 msgid "White Side"
 msgstr "ฝ่ายขาว"
 
 #. Translators: Board Side Combo: Camera will face black player's side
-#: glchess/src/lib/gtkui/dialogs.py:608
+#: glchess/src/lib/gtkui/dialogs.py:610
 msgid "Black Side"
 msgstr "ฝ่ายดำ"
 
 #. Translators: Board Side Combo: Camera will face human player's side
-#: glchess/src/lib/gtkui/dialogs.py:610
+#: glchess/src/lib/gtkui/dialogs.py:612
 msgid "Human Side"
 msgstr "ฝ่ายมนุษย์"
 
 #. Translators: Board Side Combo: Camera will face current player's side
-#: glchess/src/lib/gtkui/dialogs.py:612
+#: glchess/src/lib/gtkui/dialogs.py:614
 msgid "Current Player"
 msgstr "ผู้เล่นปัจจุบัน"
 
 #. Translators: Board Side Combo: Board will be drawn suitable for players on each side of screen, e.g. handhelds
-#: glchess/src/lib/gtkui/dialogs.py:614
+#: glchess/src/lib/gtkui/dialogs.py:616
 msgid "Face to Face"
 msgstr "นั่งประจันหน้า"
 
 #. Translators: Promotion Combo: Promote to a queen
-#: glchess/src/lib/gtkui/dialogs.py:624
+#: glchess/src/lib/gtkui/dialogs.py:626
 msgctxt "chess-piece"
 msgid "Queen"
 msgstr "ควีน"
 
 #. Translators: Promotion Combo: Promote to a knight
-#: glchess/src/lib/gtkui/dialogs.py:626
+#: glchess/src/lib/gtkui/dialogs.py:628
 msgctxt "chess-piece"
 msgid "Knight"
 msgstr "ม้า"
 
 #. Translators: Promotion Combo: Promote to a rook
-#: glchess/src/lib/gtkui/dialogs.py:628
+#: glchess/src/lib/gtkui/dialogs.py:630
 msgctxt "chess-piece"
 msgid "Rook"
 msgstr "เรือ"
 
 #. Translators: Promotion Combo: Promote to a bishop
-#: glchess/src/lib/gtkui/dialogs.py:630
+#: glchess/src/lib/gtkui/dialogs.py:632
 msgctxt "chess-piece"
 msgid "Bishop"
 msgstr "บิชอป"
@@ -3110,7 +3198,7 @@ msgstr ""
 
 #. TODO: This should be a pop-up dialog
 #. FIXME: This should create a pop-up dialog
-#: glchess/src/lib/gtkui/gtkui.py:824 gnome-sudoku/src/lib/main.py:727
+#: glchess/src/lib/gtkui/gtkui.py:824 gnome-sudoku/src/lib/main.py:730
 #, python-format
 msgid "Unable to display help: %s"
 msgstr "แสดงวิธีใช้ไม่สำเร็จ: %s"
@@ -3875,7 +3963,7 @@ msgstr ""
 "glChess พัง กรุณารายงานปัญหานี้ไปที่ http://bugzilla.gnome.org\n"
 "ข้อความดีบั๊ก:"
 
-#: glchess/src/lib/main.py:716 gnome-sudoku/src/lib/main.py:473
+#: glchess/src/lib/main.py:716 gnome-sudoku/src/lib/main.py:476
 msgid "Save game before closing?"
 msgstr "บันทึกเกมก่อนปิดหรือไม่?"
 
@@ -3912,7 +4000,7 @@ msgstr ""
 "หรือรุ่นถัดมา (ตามแต่คุณจะเลือก)"
 
 #: glchess/src/lib/defaults.py.in:67 gnome-sudoku/src/lib/defaults.py.in:53
-#: libgames-support/games-stock.c:417
+#: libgames-support/games-stock.c:418
 #, c-format, python-format
 msgid ""
 "%s is distributed in the hope that it will be useful, but WITHOUT ANY "
@@ -3925,7 +4013,7 @@ msgstr ""
 "General Public License เพื่อดูรายละเอียดเพิ่มเติม"
 
 #: glchess/src/lib/defaults.py.in:71 gnome-sudoku/src/lib/defaults.py.in:57
-#: libgames-support/games-stock.c:422
+#: libgames-support/games-stock.c:423
 #, c-format, python-format
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
@@ -4224,7 +4312,7 @@ msgstr ""
 msgid "It's a draw!"
 msgstr "เสมอกัน!"
 
-#: gnect/src/main.c:567 gnome-sudoku/src/lib/main.py:435
+#: gnect/src/main.c:567 gnome-sudoku/src/lib/main.py:438
 msgid "You win!"
 msgstr "คุณชนะ!"
 
@@ -4317,12 +4405,12 @@ msgstr "ระดับที่สาม"
 msgid "Four-in-a-Row Preferences"
 msgstr "ปรับแต่งเกมแถวเรียงสี่"
 
-#: gnect/src/prefs.c:303 gnibbles/preferences.c:255 gnobots2/properties.c:491
+#: gnect/src/prefs.c:303 gnibbles/preferences.c:255 gnobots2/properties.c:497
 #: quadrapassel/tetris.cpp:594 iagno/properties.c:419
 msgid "Game"
 msgstr "เกม"
 
-#: gnect/src/prefs.c:335 gnobots2/properties.c:530 iagno/properties.c:531
+#: gnect/src/prefs.c:335 gnobots2/properties.c:536 iagno/properties.c:531
 #: swell-foop/data/settings.ui.h:1
 msgid "Appearance"
 msgstr "หน้าตา"
@@ -4340,7 +4428,7 @@ msgid "E_nable sounds"
 msgstr "เปิดเ_สียง"
 
 #. keyboard tab
-#: gnect/src/prefs.c:368 gnibbles/preferences.c:435 gnobots2/properties.c:537
+#: gnect/src/prefs.c:368 gnibbles/preferences.c:435 gnobots2/properties.c:543
 #: quadrapassel/tetris.cpp:734
 msgid "Keyboard Controls"
 msgstr "ปุ่มควบคุม"
@@ -4438,28 +4526,28 @@ msgstr ""
 "\n"
 "กรุณาตรวจสอบการติดตั้งเกมหนอนแทะของคุณ"
 
-#: gnibbles/gnibbles.c:367
+#: gnibbles/gnibbles.c:368
 msgid "Nibbles Scores"
 msgstr "สถิติของเกมหนอนแทะ"
 
-#: gnibbles/gnibbles.c:370
+#: gnibbles/gnibbles.c:371
 msgid "Speed:"
 msgstr "ความเร็ว:"
 
-#: gnibbles/gnibbles.c:375 gnobots2/game.c:182 gnomine/gnomine.c:225
-#: gnotravex/gnotravex.c:1240 gnotski/gnotski.c:842 gtali/gyahtzee.c:203
+#: gnibbles/gnibbles.c:376 gnobots2/game.c:182 gnomine/gnomine.c:225
+#: gnotravex/gnotravex.c:1240 gnotski/gnotski.c:842 gtali/gyahtzee.c:200
 #: mahjongg/mahjongg.c:668
 msgid "Congratulations!"
 msgstr "ยินดีด้วย!"
 
-#: gnibbles/gnibbles.c:376 gnobots2/game.c:183 gnomine/gnomine.c:226
-#: gnotravex/gnotravex.c:1241 gnotski/gnotski.c:843 gtali/gyahtzee.c:204
+#: gnibbles/gnibbles.c:377 gnobots2/game.c:183 gnomine/gnomine.c:226
+#: gnotravex/gnotravex.c:1241 gnotski/gnotski.c:843 gtali/gyahtzee.c:201
 #: mahjongg/mahjongg.c:669
 msgid "Your score is the best!"
 msgstr "คุณได้คะแนนอันดับหนึ่ง!"
 
-#: gnibbles/gnibbles.c:377 gnobots2/game.c:184 gnomine/gnomine.c:227
-#: gnotravex/gnotravex.c:1242 gnotski/gnotski.c:844 gtali/gyahtzee.c:205
+#: gnibbles/gnibbles.c:378 gnobots2/game.c:184 gnomine/gnomine.c:227
+#: gnotravex/gnotravex.c:1242 gnotski/gnotski.c:844 gtali/gyahtzee.c:202
 #: mahjongg/mahjongg.c:670
 msgid "Your score has made the top ten."
 msgstr "คะแนนของคุณติดสิบอันดับแรก"
@@ -4669,7 +4757,7 @@ msgstr "ประสาทนิ้วไหลลื่น"
 
 #. Options
 #: gnibbles/preferences.c:312 gnibbles/preferences.c:454
-#: gnobots2/properties.c:455 iagno/properties.c:570
+#: gnobots2/properties.c:461 iagno/properties.c:570
 msgid "Options"
 msgstr "ตัวเลือก"
 
@@ -4727,7 +4815,7 @@ msgstr "เทา"
 msgid "Worm %d:"
 msgstr "หนอน %d:"
 
-#: gnobots2/game.c:153 gtali/gyahtzee.c:221
+#: gnobots2/game.c:153 gtali/gyahtzee.c:218
 msgid "Game over!"
 msgstr "อวสาน!"
 
@@ -4737,7 +4825,7 @@ msgstr "เยี่ยมมาก แต่น่าเสียดายท�
 
 #. Translators: This "_New Game" is for the game-over dialogue
 #: gnobots2/game.c:157 gnomine/gnomine.c:203 gnotski/gnotski.c:819
-#: libgames-support/games-stock.c:326
+#: libgames-support/games-stock.c:327
 msgid "_New Game"
 msgstr "เกมใ_หม่"
 
@@ -4779,12 +4867,12 @@ msgid "Initial window position"
 msgstr "ตำแหน่งหน้าต่างเริ่มต้น"
 
 #: gnobots2/gnobots.c:89 gnomine/gnomine.c:1003 gnomine/gnomine.c:1011
-#: gnotravex/gnotravex.c:400 gnotski/gnotski.c:467 iagno/gnothello.c:146
+#: gnotravex/gnotravex.c:400 gnotski/gnotski.c:467 iagno/gnothello.c:150
 msgid "X"
 msgstr "X"
 
 #: gnobots2/gnobots.c:91 gnomine/gnomine.c:1005 gnomine/gnomine.c:1013
-#: gnotravex/gnotravex.c:402 gnotski/gnotski.c:469 iagno/gnothello.c:148
+#: gnotravex/gnotravex.c:402 gnotski/gnotski.c:469 iagno/gnothello.c:152
 msgid "Y"
 msgstr "Y"
 
@@ -4848,26 +4936,26 @@ msgstr "โรบ็อตส์แบบมีการหายตัวนิ
 msgid "Robots with safe teleport with super-safe moves"
 msgstr "โรบ็อตส์แบบมีการหายตัวนิรภัย แบบใช้การเคลื่อนที่ปลอดภัยสุดยอด"
 
-#: gnobots2/gnobots.c:239 gnobots2/gnobots.c:260
+#: gnobots2/gnobots.c:240 gnobots2/gnobots.c:261
 #: gnobots2/gnobots2.desktop.in.in.h:2 gnobots2/menu.c:263 gnobots2/menu.c:266
 msgid "Robots"
 msgstr "โรบ็อตส์"
 
-#: gnobots2/gnobots.c:322
+#: gnobots2/gnobots.c:323
 msgid "No game data could be found."
 msgstr "ไม่พบข้อมูลของเกม"
 
-#: gnobots2/gnobots.c:324
+#: gnobots2/gnobots.c:325
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
 msgstr "โปรแกรมโรบ็อตส์ไม่พบแฟ้มค่าตั้งเกมที่ใช้ได้ กรุณาตรวจสอบการติดตั้งของโปรแกรม"
 
-#: gnobots2/gnobots.c:340
+#: gnobots2/gnobots.c:341
 msgid "Some graphics files are missing or corrupt."
 msgstr "แฟ้มรูปภาพบางแฟ้มหายไปหรือเสียหาย"
 
-#: gnobots2/gnobots.c:342
+#: gnobots2/gnobots.c:343
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
@@ -4895,51 +4983,51 @@ msgstr "ชนิดของเกม"
 msgid "Game type. The name of the game variation to use."
 msgstr "ชนิดของเกม ชื่อของแบบของเกมที่จะใช้"
 
-#: gnobots2/gnobots2.schemas.in.h:7 gnobots2/properties.c:552
+#: gnobots2/gnobots2.schemas.in.h:7 gnobots2/properties.c:558
 msgid "Key to hold"
 msgstr "ปุ่มอยู่กับที่"
 
-#: gnobots2/gnobots2.schemas.in.h:8 gnobots2/properties.c:548
+#: gnobots2/gnobots2.schemas.in.h:8 gnobots2/properties.c:554
 msgid "Key to move E"
 msgstr "ปุ่มเลื่อนตะวันออก"
 
-#: gnobots2/gnobots2.schemas.in.h:9 gnobots2/properties.c:545
+#: gnobots2/gnobots2.schemas.in.h:9 gnobots2/properties.c:551
 msgid "Key to move N"
 msgstr "ปุ่มเลื่อนเหนือ"
 
-#: gnobots2/gnobots2.schemas.in.h:10 gnobots2/properties.c:546
+#: gnobots2/gnobots2.schemas.in.h:10 gnobots2/properties.c:552
 msgid "Key to move NE"
 msgstr "ปุ่มเลื่อนตะวันออกเฉียงเหนือ"
 
-#: gnobots2/gnobots2.schemas.in.h:11 gnobots2/properties.c:544
+#: gnobots2/gnobots2.schemas.in.h:11 gnobots2/properties.c:550
 msgid "Key to move NW"
 msgstr "ปุ่มเลื่อนตะวันตกเฉียงเหนือ"
 
-#: gnobots2/gnobots2.schemas.in.h:12 gnobots2/properties.c:550
+#: gnobots2/gnobots2.schemas.in.h:12 gnobots2/properties.c:556
 msgid "Key to move S"
 msgstr "ปุ่มเลื่อนใต้"
 
-#: gnobots2/gnobots2.schemas.in.h:13 gnobots2/properties.c:551
+#: gnobots2/gnobots2.schemas.in.h:13 gnobots2/properties.c:557
 msgid "Key to move SE"
 msgstr "ปุ่มเลื่อนตะวันออกเฉียงใต้"
 
-#: gnobots2/gnobots2.schemas.in.h:14 gnobots2/properties.c:549
+#: gnobots2/gnobots2.schemas.in.h:14 gnobots2/properties.c:555
 msgid "Key to move SW"
 msgstr "ปุ่มเลื่อนตะวันตกเฉียงใต้"
 
-#: gnobots2/gnobots2.schemas.in.h:15 gnobots2/properties.c:547
+#: gnobots2/gnobots2.schemas.in.h:15 gnobots2/properties.c:553
 msgid "Key to move W"
 msgstr "ปุ่มเลื่อนตะวันตก"
 
-#: gnobots2/gnobots2.schemas.in.h:16 gnobots2/properties.c:553
+#: gnobots2/gnobots2.schemas.in.h:16 gnobots2/properties.c:559
 msgid "Key to teleport"
 msgstr "ปุ่มหายตัว"
 
-#: gnobots2/gnobots2.schemas.in.h:17 gnobots2/properties.c:554
+#: gnobots2/gnobots2.schemas.in.h:17 gnobots2/properties.c:560
 msgid "Key to teleport randomly"
 msgstr "ปุ่มหายตัวแบบสุ่มเสี่ยง"
 
-#: gnobots2/gnobots2.schemas.in.h:18 gnobots2/properties.c:555
+#: gnobots2/gnobots2.schemas.in.h:18 gnobots2/properties.c:561
 msgid "Key to wait"
 msgstr "ปุ่มหยุดรอ"
 
@@ -5050,7 +5138,7 @@ msgstr ""
 "ใช้การเคลื่อนที่แบบปลอดภัยสุดยอด จะแจ้งผู้ใช้เมื่อไม่มีการเคลื่อนที่ที่ปลอดภัย "
 "โดยทางเลือกเดียวที่เหลืออยู่คือการหายตัวหนีไป"
 
-#: gnobots2/graphics.c:155 iagno/gnothello.c:415
+#: gnobots2/graphics.c:155 iagno/gnothello.c:419
 #, c-format
 msgid "Could not find '%s' pixmap file\n"
 msgstr "หาแฟ้มรูปภาพ '%s' ไม่พบ\n"
@@ -5093,104 +5181,104 @@ msgstr ""
 "\n"
 "โรบ็อตส์ เป็นส่วนหนึ่งของ GNOME Games"
 
-#: gnobots2/properties.c:316
+#: gnobots2/properties.c:320
 msgid "classic robots"
 msgstr "โรบ็อตส์แบบดั้งเดิม"
 
-#: gnobots2/properties.c:317
+#: gnobots2/properties.c:321
 msgid "robots2"
 msgstr "โรบ็อตส์ 2"
 
-#: gnobots2/properties.c:318
+#: gnobots2/properties.c:322
 msgid "robots2 easy"
 msgstr "โรบ็อตส์ 2 แบบง่าย"
 
-#: gnobots2/properties.c:319
+#: gnobots2/properties.c:323
 msgid "robots with safe teleport"
 msgstr "โรบ็อตส์แบบมีการหายตัวนิรภัย"
 
-#: gnobots2/properties.c:320
+#: gnobots2/properties.c:324
 msgid "nightmare"
 msgstr "ฝันร้าย"
 
-#: gnobots2/properties.c:359
+#: gnobots2/properties.c:365
 msgid "robots"
 msgstr "โรบ็อตส์"
 
-#: gnobots2/properties.c:360
+#: gnobots2/properties.c:366
 msgid "cows"
 msgstr "วัว"
 
-#: gnobots2/properties.c:361
+#: gnobots2/properties.c:367
 msgid "eggs"
 msgstr "ไข่"
 
-#: gnobots2/properties.c:362
+#: gnobots2/properties.c:368
 msgid "gnomes"
 msgstr "คนแคระ"
 
-#: gnobots2/properties.c:363
+#: gnobots2/properties.c:369
 msgid "mice"
 msgstr "หนู"
 
-#: gnobots2/properties.c:364
+#: gnobots2/properties.c:370
 msgid "ufo"
 msgstr "จานบิน"
 
-#: gnobots2/properties.c:365
+#: gnobots2/properties.c:371
 msgid "boo"
 msgstr "ผี"
 
-#: gnobots2/properties.c:419
+#: gnobots2/properties.c:425
 msgid "Robots Preferences"
 msgstr "ปรับแต่งเกมโรบ็อตส์"
 
 #. --- Combo (yahtzee or kismet style ----
-#: gnobots2/properties.c:440 gtali/setup.c:361
+#: gnobots2/properties.c:446 gtali/setup.c:361
 msgid "Game Type"
 msgstr "ชนิดของเกม"
 
-#: gnobots2/properties.c:460
+#: gnobots2/properties.c:466
 msgid "_Use safe moves"
 msgstr "ใ_ช้การเคลื่อนที่แบบปลอดภัย"
 
-#: gnobots2/properties.c:467
+#: gnobots2/properties.c:473
 msgid "Prevent accidental moves that result in getting killed."
 msgstr "ป้องกันการเคลื่อนที่โดยบังเอิญที่จะทำให้ตาย"
 
-#: gnobots2/properties.c:469
+#: gnobots2/properties.c:475
 msgid "U_se super safe moves"
 msgstr "ใช้การเคลื่อนที่แบบปลอดภัย_สุดยอด"
 
-#: gnobots2/properties.c:476
+#: gnobots2/properties.c:482
 msgid "Prevents all moves that result in getting killed."
 msgstr "ป้องกันการเคลื่อนที่ทุกอย่างที่จะทำให้ตาย"
 
-#: gnobots2/properties.c:483 quadrapassel/tetris.cpp:667
+#: gnobots2/properties.c:489 quadrapassel/tetris.cpp:667
 msgid "_Enable sounds"
 msgstr "เ_ปิดเสียง"
 
-#: gnobots2/properties.c:489
+#: gnobots2/properties.c:495
 msgid "Play sounds for events like winning a level and dying."
 msgstr "เล่นเสียงในเหตุการณ์อย่างเช่นผู้ใช้ผ่านระดับหนึ่งๆ หรือตาย"
 
-#: gnobots2/properties.c:499
+#: gnobots2/properties.c:505
 msgid "Graphics Theme"
 msgstr "ชุดตกแต่งกราฟิก"
 
-#: gnobots2/properties.c:507
+#: gnobots2/properties.c:513
 msgid "_Image theme:"
 msgstr "ชุดตกแต่งรูป_ภาพ:"
 
-#: gnobots2/properties.c:518 mahjongg/mahjongg.c:775
+#: gnobots2/properties.c:524 mahjongg/mahjongg.c:775
 msgid "_Background color:"
 msgstr "สี_พื้น:"
 
-#: gnobots2/properties.c:564
+#: gnobots2/properties.c:570
 msgid "_Restore Defaults"
 msgstr "_คืนค่าปริยาย"
 
-#: gnobots2/properties.c:569
+#: gnobots2/properties.c:575
 msgid "Keyboard"
 msgstr "แป้นพิมพ์"
 
@@ -5439,8 +5527,8 @@ msgid "Quadrapassel Scores"
 msgstr "คะแนน Quadrapassel"
 
 #: quadrapassel/blockops.cpp:786
-#: gnome-sudoku/src/lib/sudoku_generator_gui.py:173
-#: gnome-sudoku/src/lib/sudoku_generator_gui.py:214
+#: gnome-sudoku/src/lib/sudoku_generator_gui.py:174
+#: gnome-sudoku/src/lib/sudoku_generator_gui.py:215
 msgid "Paused"
 msgstr "พัก"
 
@@ -5617,7 +5705,7 @@ msgstr "ล้างชุด_อื่น"
 msgid "_Add Tracker"
 msgstr "เ_พิ่มชุดช่วยตาม"
 
-#: gnome-sudoku/data/tracker.ui.h:3 gnome-sudoku/src/lib/main.py:784
+#: gnome-sudoku/data/tracker.ui.h:3 gnome-sudoku/src/lib/main.py:788
 msgid "_Clear Tracker"
 msgstr "_ล้างชุดช่วยตาม"
 
@@ -5719,7 +5807,7 @@ msgstr "ปิดซูโดกุ"
 msgid "_Tools"
 msgstr "เ_ครื่องมือ"
 
-#: gnome-sudoku/src/lib/main.py:252 libgames-support/games-stock.c:322
+#: gnome-sudoku/src/lib/main.py:252 libgames-support/games-stock.c:323
 msgid "_Hint"
 msgstr "บอกใ_บ้"
 
@@ -5840,144 +5928,144 @@ msgstr "ล้าง_บันทึก"
 msgid "Clear notes and hints"
 msgstr "ล้างบันทึกและคำใบ้"
 
-#: gnome-sudoku/src/lib/main.py:417
+#: gnome-sudoku/src/lib/main.py:420
 #, python-format
 msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
 msgstr "คุณแก้ปริศนาเสร็จภายใน %(totalTime)s (ใช้เวลาในเกม %(activeTime)s)"
 
-#: gnome-sudoku/src/lib/main.py:421
+#: gnome-sudoku/src/lib/main.py:424
 #, python-format
 msgid "You got %(n)s hint"
 msgid_plural "You got %(n)s hints"
 msgstr[0] "คุณใช้การบอกใบ้ %(n)s ครั้ง"
 
-#: gnome-sudoku/src/lib/main.py:424
+#: gnome-sudoku/src/lib/main.py:427
 #, python-format
 msgid "You had %(n)s impossibility pointed out."
 msgid_plural "You had %(n)s impossibilities pointed out."
 msgstr[0] "คุณใช้การช่วยหาทางที่เป็นไปไม่ได้ %(n)s ครั้ง"
 
-#: gnome-sudoku/src/lib/main.py:429
+#: gnome-sudoku/src/lib/main.py:432
 #, python-format
 msgid "You used the auto-fill %(n)s time"
 msgid_plural "You used the auto-fill %(n)s times"
 msgstr[0] "คุณใช้การเติมอัตโนมัติ %(n)s ครั้ง"
 
-#: gnome-sudoku/src/lib/main.py:453
+#: gnome-sudoku/src/lib/main.py:456
 msgid "Save this game before starting new one?"
 msgstr "จะบันทึกเกมก่อนเริ่มเกมใหม่หรือไม่"
 
-#: gnome-sudoku/src/lib/main.py:454
+#: gnome-sudoku/src/lib/main.py:457
 msgid "_Save game for later"
 msgstr "_บันทึกเพื่อเล่นภายหลัง"
 
-#: gnome-sudoku/src/lib/main.py:455
+#: gnome-sudoku/src/lib/main.py:458
 msgid "_Abandon game"
 msgstr "ไ_ม่ต้องบันทึกเกม"
 
-#: gnome-sudoku/src/lib/main.py:649
+#: gnome-sudoku/src/lib/main.py:652
 #, python-format
 msgid "Playing %(difficulty)s puzzle."
 msgstr "กำลังเล่นปริศนา%(difficulty)s"
 
-#: gnome-sudoku/src/lib/main.py:665
+#: gnome-sudoku/src/lib/main.py:668
 msgid "Puzzle Information"
 msgstr "ข้อมูลปริศนา"
 
-#: gnome-sudoku/src/lib/main.py:666
+#: gnome-sudoku/src/lib/main.py:669
 msgid "There is no current puzzle."
 msgstr "ไม่มีปริศนาที่กำลังเล่น"
 
-#: gnome-sudoku/src/lib/main.py:671
+#: gnome-sudoku/src/lib/main.py:674
 msgid "Calculated difficulty: "
 msgstr "ระดับความยากที่คำนวณได้: "
 
-#: gnome-sudoku/src/lib/main.py:675
+#: gnome-sudoku/src/lib/main.py:678
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "จำนวนช่องที่เติมได้ทันทีด้วยการตัดตัวเลือก: "
 
-#: gnome-sudoku/src/lib/main.py:678
+#: gnome-sudoku/src/lib/main.py:681
 msgid "Number of moves instantly fillable by filling: "
 msgstr "จำนวนช่องที่เติมได้ทันทีด้วยการเติมปกติ: "
 
-#: gnome-sudoku/src/lib/main.py:681
+#: gnome-sudoku/src/lib/main.py:684
 msgid "Amount of trial-and-error required to solve: "
 msgstr "ปริมาณการลองผิดลองถูกที่ต้องทำเพื่อแก้ปริศนา: "
 
-#: gnome-sudoku/src/lib/main.py:684 gnome-sudoku/src/lib/main.py:685
+#: gnome-sudoku/src/lib/main.py:687 gnome-sudoku/src/lib/main.py:688
 msgid "Puzzle Statistics"
 msgstr "สถิติของปริศนา"
 
 #. Our initial row...
-#: gnome-sudoku/src/lib/main.py:775
+#: gnome-sudoku/src/lib/main.py:779
 msgid "No Tracker"
 msgstr "ไม่มีชุดช่วยตาม"
 
-#: gnome-sudoku/src/lib/main.py:785
+#: gnome-sudoku/src/lib/main.py:789
 msgid "Clear all moves tracked by selected tracker."
 msgstr "ล้างตัวเลขทั้งหมดที่ช่วยตามโดยชุดช่วยตามที่เลือก"
 
-#: gnome-sudoku/src/lib/main.py:789
+#: gnome-sudoku/src/lib/main.py:793
 msgid "_Clear Others"
 msgstr "_ล้างชุดอื่น"
 
-#: gnome-sudoku/src/lib/main.py:791
+#: gnome-sudoku/src/lib/main.py:795
 msgid "Clear all moves not tracked by selected tracker."
 msgstr "ล้างตัวเลขทั้งหมดที่ไม่ได้ช่วยตามโดยชุดช่วยตามที่เลือก"
 
-#: gnome-sudoku/src/lib/main.py:816
+#: gnome-sudoku/src/lib/main.py:820
 #, python-format
 msgid "Tracker %s"
 msgstr "ชุดช่วยตาม %s"
 
-#: gnome-sudoku/src/lib/game_selector.py:149
+#: gnome-sudoku/src/lib/game_selector.py:150
 #, python-format
 msgid "Last Played %(timeAgo)s"
 msgstr "เล่นครั้งสุดท้าย %(timeAgo)s"
 
-#: gnome-sudoku/src/lib/game_selector.py:150
+#: gnome-sudoku/src/lib/game_selector.py:151
 #, python-format
 msgid "%(level)s puzzle"
 msgstr "ปริศนา%(level)s"
 
-#: gnome-sudoku/src/lib/game_selector.py:151
+#: gnome-sudoku/src/lib/game_selector.py:152
 #, python-format
 msgid "Played for %(duration)s"
 msgstr "เล่นมาแล้ว %(duration)s"
 
-#: gnome-sudoku/src/lib/sudoku_generator_gui.py:113
-#: gnome-sudoku/src/lib/sudoku_generator_gui.py:124
+#: gnome-sudoku/src/lib/sudoku_generator_gui.py:114
+#: gnome-sudoku/src/lib/sudoku_generator_gui.py:125
 msgid "Working..."
 msgstr "กำลังทำงาน..."
 
-#: gnome-sudoku/src/lib/sudoku_generator_gui.py:154
+#: gnome-sudoku/src/lib/sudoku_generator_gui.py:155
 #, python-format
 msgid "%(n)s puzzle"
 msgid_plural "%(n)s puzzles"
 msgstr[0] "%(n)s ปริศนา"
 
-#: gnome-sudoku/src/lib/sudoku_generator_gui.py:179
+#: gnome-sudoku/src/lib/sudoku_generator_gui.py:180
 msgid "Stopped"
 msgstr "หยุด"
 
-#: gnome-sudoku/src/lib/sudoku_generator_gui.py:194
-#: gnome-sudoku/src/lib/sudoku_generator_gui.py:204
+#: gnome-sudoku/src/lib/sudoku_generator_gui.py:195
+#: gnome-sudoku/src/lib/sudoku_generator_gui.py:205
 #, python-format
 msgid "Generated %(n)s out of %(total)s puzzle"
 msgid_plural "Generated %(n)s out of %(total)s puzzles"
 msgstr[0] "สร้างปริศนาไปแล้ว %(n)s จาก %(total)s ปริศนา"
 
-#: gnome-sudoku/src/lib/sudoku_generator_gui.py:212
+#: gnome-sudoku/src/lib/sudoku_generator_gui.py:213
 #, python-format
 msgid "Generated %(n)s puzzle"
 msgid_plural "Generated %(n)s puzzles"
 msgstr[0] "สร้างปริศนาไปแล้ว %(n)s ปริศนา"
 
-#: gnome-sudoku/src/lib/sudoku.py:512
+#: gnome-sudoku/src/lib/sudoku.py:513
 msgid "Very Hard"
 msgstr "ยากมาก"
 
-#: gnome-sudoku/src/lib/sudoku.py:514
+#: gnome-sudoku/src/lib/sudoku.py:515
 msgid "Medium"
 msgstr "ปานกลาง"
 
@@ -6198,12 +6286,12 @@ msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "ขนาดของสนาม (0-2 = เล็ก-ใหญ่, 3=กำหนดเอง)"
 
 #: gnomine/gnomine.c:1010 gnotravex/gnotravex.c:399 gnotski/gnotski.c:466
-#: iagno/gnothello.c:145
+#: iagno/gnothello.c:149
 msgid "X location of window"
 msgstr "ตำแหน่งตามแกน X ของหน้าต่าง"
 
 #: gnomine/gnomine.c:1012 gnotravex/gnotravex.c:401 gnotski/gnotski.c:468
-#: iagno/gnothello.c:147
+#: iagno/gnothello.c:151
 msgid "Y location of window"
 msgstr "ตำแหน่งตามแกน Y ของหน้าต่าง"
 
@@ -6772,12 +6860,12 @@ msgstr "ปริศนาที่กำลังเล่น"
 msgid "Already used! Where do you want to put that?"
 msgstr "ช่องนี้ใช้แล้ว! คุณต้องการลงที่ช่องไหน?"
 
-#: gtali/clist.c:415
+#: gtali/clist.c:414
 #, c-format
 msgid "Score: %d"
 msgstr "คะแนน: %d"
 
-#: gtali/clist.c:417
+#: gtali/clist.c:416
 #, c-format
 msgid "Field used"
 msgstr "ใช้ไปแล้ว"
@@ -6825,105 +6913,105 @@ msgstr "ตามตำรับ"
 msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
 msgstr "[มนุษย์,Wilber,Bill,Monica,Kenneth,Janet]"
 
-#: gtali/gyahtzee.c:106
+#: gtali/gyahtzee.c:103
 msgid "Delay computer moves"
 msgstr "หน่วงตาเล่นของคอมพิวเตอร์"
 
-#: gtali/gyahtzee.c:108
+#: gtali/gyahtzee.c:105
 msgid "Display computer thoughts"
 msgstr "แสดงสิ่งที่คอมพิวเตอร์คิด"
 
-#: gtali/gyahtzee.c:110
+#: gtali/gyahtzee.c:107
 msgid "Number of computer opponents"
 msgstr "จำนวนผู้เล่นที่เป็นคอมพิวเตอร์"
 
-#: gtali/gyahtzee.c:112
+#: gtali/gyahtzee.c:109
 msgid "Number of human opponents"
 msgstr "จำนวนผู้เล่นที่เป็นมนุษย์"
 
-#: gtali/gyahtzee.c:114
+#: gtali/gyahtzee.c:111
 msgid "Game choice: Regular or Colors"
 msgstr "แบบของเกม: Regular หรือ Colors"
 
-#: gtali/gyahtzee.c:114
+#: gtali/gyahtzee.c:111
 msgid "STRING"
 msgstr "STRING"
 
-#: gtali/gyahtzee.c:116
+#: gtali/gyahtzee.c:113
 msgid "Number of computer-only games to play"
 msgstr "จำนวนเกมที่จะเล่นโดยใช้คอมพิวเตอร์เล่นอย่างเดียว"
 
-#: gtali/gyahtzee.c:118
+#: gtali/gyahtzee.c:115
 msgid "Number of trials for each roll for the computer"
 msgstr "จำนวนครั้งของการทอยใหม่แต่ละรอบสำหรับคอมพิวเตอร์"
 
-#: gtali/gyahtzee.c:123 gtali/setup.c:365
+#: gtali/gyahtzee.c:120 gtali/setup.c:365
 msgctxt "game type"
 msgid "Regular"
 msgstr "ตามตำรับ"
 
-#: gtali/gyahtzee.c:124 gtali/setup.c:366
+#: gtali/gyahtzee.c:121 gtali/setup.c:366
 msgctxt "game type"
 msgid "Colors"
 msgstr "สี"
 
-#: gtali/gyahtzee.c:147
+#: gtali/gyahtzee.c:144
 msgid "Roll all!"
 msgstr "ทอยทั้งหมด!"
 
-#: gtali/gyahtzee.c:150 gtali/gyahtzee.c:817
+#: gtali/gyahtzee.c:147 gtali/gyahtzee.c:820
 msgid "Roll!"
 msgstr "ทอย!"
 
-#: gtali/gyahtzee.c:185
+#: gtali/gyahtzee.c:182
 msgid "The game is a draw!"
 msgstr "เสมอกัน!"
 
-#: gtali/gyahtzee.c:201 gtali/gyahtzee.c:638
+#: gtali/gyahtzee.c:198 gtali/gyahtzee.c:635
 msgid "Tali Scores"
 msgstr "คะแนน Tali"
 
-#: gtali/gyahtzee.c:217
+#: gtali/gyahtzee.c:214
 #, c-format
 msgid "%s wins the game with %d point"
 msgid_plural "%s wins the game with %d points"
 msgstr[0] "%s ชนะเกมนี้ด้วยแต้ม %d แต้ม"
 
-#: gtali/gyahtzee.c:265
+#: gtali/gyahtzee.c:262
 #, c-format
 msgid "Computer playing for %s"
 msgstr "คอมพิวเตอร์กำลังเล่นแทน %s"
 
-#: gtali/gyahtzee.c:267
+#: gtali/gyahtzee.c:264
 #, c-format
 msgid "%s! -- You're up."
 msgstr "%s! -- ตาคุณแล้ว"
 
-#: gtali/gyahtzee.c:456
+#: gtali/gyahtzee.c:453
 msgid "Select dice to roll or choose a score slot."
 msgstr "เลือกลูกเต๋าที่จะทอยหรือเลือกช่องคะแนน"
 
-#: gtali/gyahtzee.c:485
+#: gtali/gyahtzee.c:482
 msgid "Roll"
 msgstr "ทอย"
 
-#: gtali/gyahtzee.c:543
+#: gtali/gyahtzee.c:540
 msgid "You are only allowed three rolls. Choose a score slot."
 msgstr "คุณทอยได้สามครั้งเท่านั้น กรุณาเลือกช่องคะแนน"
 
-#: gtali/gyahtzee.c:594
+#: gtali/gyahtzee.c:591
 msgid "GNOME version (1998):"
 msgstr "ฉบับ GNOME (2541):"
 
-#: gtali/gyahtzee.c:597
+#: gtali/gyahtzee.c:594
 msgid "Console version (1992):"
 msgstr "ฉบับคอนโซล (2535):"
 
-#: gtali/gyahtzee.c:600
+#: gtali/gyahtzee.c:597
 msgid "Colors game and multi-level AI (2006):"
 msgstr "เกมแบบสีและปัญญาประดิษฐ์แบบหลายระดับ (2549)"
 
-#: gtali/gyahtzee.c:618
+#: gtali/gyahtzee.c:615
 msgid ""
 "A variation on poker with dice and less money.\n"
 "\n"
@@ -7094,7 +7182,7 @@ msgstr "แต้มเหมือนห้าลูก [รวมแต้ม]
 msgid "Iagno"
 msgstr "Iagno"
 
-#: iagno/gnothello.c:265
+#: iagno/gnothello.c:269
 msgid ""
 "A disk flipping game derived from Reversi.\n"
 "\n"
@@ -7104,45 +7192,45 @@ msgstr ""
 "\n"
 "Iagno เป็นส่วนหนึ่งของ GNOME Games"
 
-#: iagno/gnothello.c:346
+#: iagno/gnothello.c:350
 msgid "Invalid move."
 msgstr "ตาที่เดินเดินไม่ได้"
 
-#: iagno/gnothello.c:620 iagno/gnothello.c:622
+#: iagno/gnothello.c:636 iagno/gnothello.c:638
 #, c-format
 msgid "%.2d"
 msgstr "%.2d"
 
-#: iagno/gnothello.c:644
+#: iagno/gnothello.c:660
 msgid "It is your turn to place a dark piece"
 msgstr "ถึงตาคุณเดินหมากดำ"
 
-#: iagno/gnothello.c:646
+#: iagno/gnothello.c:662
 msgid "It is your turn to place a light piece"
 msgstr "ถึงตาคุณเดินหมากขาว"
 
-#: iagno/gnothello.c:649
+#: iagno/gnothello.c:665
 #, c-format
 msgid "Waiting for %s to move"
 msgstr "กำลังรอ %s เดิน"
 
-#: iagno/gnothello.c:656
+#: iagno/gnothello.c:672
 msgid "Dark's move"
 msgstr "ตาของดำ"
 
-#: iagno/gnothello.c:658
+#: iagno/gnothello.c:674
 msgid "Light's move"
 msgstr "ตาของขาว"
 
-#: iagno/gnothello.c:945
+#: iagno/gnothello.c:958
 msgid "Dark:"
 msgstr "ดำ:"
 
-#: iagno/gnothello.c:955
+#: iagno/gnothello.c:968
 msgid "Light:"
 msgstr "ขาว:"
 
-#: iagno/gnothello.c:979
+#: iagno/gnothello.c:992
 msgid "Welcome to Iagno!"
 msgstr "ยินดีต้อนรับสู่ Iagno!"
 
@@ -7245,31 +7333,31 @@ msgstr "ไม่สามารถส่ง URI ของเอกสารไ�
 msgid "Not a launchable item"
 msgstr "ไม่ใช่รายการที่เรียกทำงานได้"
 
-#: libgames-support/eggsmclient.c:225
+#: libgames-support/eggsmclient.c:226
 msgid "Disable connection to session manager"
 msgstr "ปิดใช้การเชื่อมต่อไปยังโปรแกรมจัดการวาระ"
 
-#: libgames-support/eggsmclient.c:228
+#: libgames-support/eggsmclient.c:229
 msgid "Specify file containing saved configuration"
 msgstr "ระบุแฟ้มที่บันทึกค่าตั้งไว้"
 
-#: libgames-support/eggsmclient.c:228
+#: libgames-support/eggsmclient.c:229
 msgid "FILE"
 msgstr "FILE"
 
-#: libgames-support/eggsmclient.c:231
+#: libgames-support/eggsmclient.c:232
 msgid "Specify session management ID"
 msgstr "ระบุหมายเลขการจัดการวาระ"
 
-#: libgames-support/eggsmclient.c:231
+#: libgames-support/eggsmclient.c:232
 msgid "ID"
 msgstr "ID"
 
-#: libgames-support/eggsmclient.c:252
+#: libgames-support/eggsmclient.c:253
 msgid "Session management options:"
 msgstr "ตัวเลือกเกี่ยวกับการจัดการวาระ:"
 
-#: libgames-support/eggsmclient.c:253
+#: libgames-support/eggsmclient.c:254
 msgid "Show session management options"
 msgstr "แสดงตัวเลือกเกี่ยวกับการจัดการวาระ"
 
@@ -7357,6 +7445,218 @@ msgctxt "card symbol"
 msgid "1"
 msgstr "1"
 
+#: libgames-support/games-card.c:252
+msgid "ace of clubs"
+msgstr "เอซดอกจิก"
+
+#: libgames-support/games-card.c:253
+msgid "two of clubs"
+msgstr "สองดอกจิก"
+
+#: libgames-support/games-card.c:254
+msgid "three of clubs"
+msgstr "สามดอกจิก"
+
+#: libgames-support/games-card.c:255
+msgid "four of clubs"
+msgstr "สี่ดอกจิก"
+
+#: libgames-support/games-card.c:256
+msgid "five of clubs"
+msgstr "ห้าดอกจิก"
+
+#: libgames-support/games-card.c:257
+msgid "six of clubs"
+msgstr "หกดอกจิก"
+
+#: libgames-support/games-card.c:258
+msgid "seven of clubs"
+msgstr "เจ็ดดอกจิก"
+
+#: libgames-support/games-card.c:259
+msgid "eight of clubs"
+msgstr "แปดดอกจิก"
+
+#: libgames-support/games-card.c:260
+msgid "nine of clubs"
+msgstr "เก้าดอกจิก"
+
+#: libgames-support/games-card.c:261
+msgid "ten of clubs"
+msgstr "สิบดอกจิก"
+
+#: libgames-support/games-card.c:262
+msgid "jack of clubs"
+msgstr "แจ็คดอกจิก"
+
+#: libgames-support/games-card.c:263
+msgid "queen of clubs"
+msgstr "ควีนดอกจิก"
+
+#: libgames-support/games-card.c:264
+msgid "king of clubs"
+msgstr "คิงดอกจิก"
+
+#: libgames-support/games-card.c:265
+msgid "ace of diamonds"
+msgstr "เอซข้าวหลามตัด"
+
+#: libgames-support/games-card.c:266
+msgid "two of diamonds"
+msgstr "สองข้าวหลามตัด"
+
+#: libgames-support/games-card.c:267
+msgid "three of diamonds"
+msgstr "สามข้าวหลามตัด"
+
+#: libgames-support/games-card.c:268
+msgid "four of diamonds"
+msgstr "สี่ข้าวหลามตัด"
+
+#: libgames-support/games-card.c:269
+msgid "five of diamonds"
+msgstr "ห้าข้าวหลามตัด"
+
+#: libgames-support/games-card.c:270
+msgid "six of diamonds"
+msgstr "หกข้าวหลามตัด"
+
+#: libgames-support/games-card.c:271
+msgid "seven of diamonds"
+msgstr "เจ็ดข้าวหลามตัด"
+
+#: libgames-support/games-card.c:272
+msgid "eight of diamonds"
+msgstr "แปดข้าวหลามตัด"
+
+#: libgames-support/games-card.c:273
+msgid "nine of diamonds"
+msgstr "เก้าข้าวหลามตัด"
+
+#: libgames-support/games-card.c:274
+msgid "ten of diamonds"
+msgstr "สิบข้าวหลามตัด"
+
+#: libgames-support/games-card.c:275
+msgid "jack of diamonds"
+msgstr "แจ็คข้าวหลามตัด"
+
+#: libgames-support/games-card.c:276
+msgid "queen of diamonds"
+msgstr "ควีนข้าวหลามตัด"
+
+#: libgames-support/games-card.c:277
+msgid "king of diamonds"
+msgstr "คิงข้าวหลามตัด"
+
+#: libgames-support/games-card.c:278
+msgid "ace of hearts"
+msgstr "เอซโพแดง"
+
+#: libgames-support/games-card.c:279
+msgid "two of hearts"
+msgstr "สองโพแดง"
+
+#: libgames-support/games-card.c:280
+msgid "three of hearts"
+msgstr "สามโพแดง"
+
+#: libgames-support/games-card.c:281
+msgid "four of hearts"
+msgstr "สี่โพแดง"
+
+#: libgames-support/games-card.c:282
+msgid "five of hearts"
+msgstr "ห้าโพแดง"
+
+#: libgames-support/games-card.c:283
+msgid "six of hearts"
+msgstr "หกโพแดง"
+
+#: libgames-support/games-card.c:284
+msgid "seven of hearts"
+msgstr "เจ็ดโพแดง"
+
+#: libgames-support/games-card.c:285
+msgid "eight of hearts"
+msgstr "แปดโพแดง"
+
+#: libgames-support/games-card.c:286
+msgid "nine of hearts"
+msgstr "เก้าโพแดง"
+
+#: libgames-support/games-card.c:287
+msgid "ten of hearts"
+msgstr "สิบโพแดง"
+
+#: libgames-support/games-card.c:288
+msgid "jack of hearts"
+msgstr "แจ็คโพแดง"
+
+#: libgames-support/games-card.c:289
+msgid "queen of hearts"
+msgstr "ควีนโพแดง"
+
+#: libgames-support/games-card.c:290
+msgid "king of hearts"
+msgstr "คิงโพแดง"
+
+#: libgames-support/games-card.c:291
+msgid "ace of spades"
+msgstr "เอซโพดำ"
+
+#: libgames-support/games-card.c:292
+msgid "two of spades"
+msgstr "สองโพดำ"
+
+#: libgames-support/games-card.c:293
+msgid "three of spades"
+msgstr "สามโพดำ"
+
+#: libgames-support/games-card.c:294
+msgid "four of spades"
+msgstr "สี่โพดำ"
+
+#: libgames-support/games-card.c:295
+msgid "five of spades"
+msgstr "ห้าโพดำ"
+
+#: libgames-support/games-card.c:296
+msgid "six of spades"
+msgstr "หกโพดำ"
+
+#: libgames-support/games-card.c:297
+msgid "seven of spades"
+msgstr "เจ็ดโพดำ"
+
+#: libgames-support/games-card.c:298
+msgid "eight of spades"
+msgstr "แปดโพดำ"
+
+#: libgames-support/games-card.c:299
+msgid "nine of spades"
+msgstr "เก้าโพดำ"
+
+#: libgames-support/games-card.c:300
+msgid "ten of spades"
+msgstr "สิบโพดำ"
+
+#: libgames-support/games-card.c:301
+msgid "jack of spades"
+msgstr "แจ็คโพดำ"
+
+#: libgames-support/games-card.c:302
+msgid "queen of spades"
+msgstr "ควีนโพดำ"
+
+#: libgames-support/games-card.c:303
+msgid "king of spades"
+msgstr "คิงโพดำ"
+
+#: libgames-support/games-card.c:320
+msgid "face-down card"
+msgstr "ไพ่คว่ำหน้า"
+
 #: libgames-support/games-controls.c:286
 msgid "Unknown Command"
 msgstr "คำสั่งไม่รู้จัก"
@@ -7417,18 +7717,18 @@ msgid "Could not show link"
 msgstr "ไม่สามารถแสดงลิงก์"
 
 #. Note that this assumes the default style is plain.
-#: libgames-support/games-scores-dialog.c:120
-#: libgames-support/games-scores-dialog.c:547
+#: libgames-support/games-scores-dialog.c:118
+#: libgames-support/games-scores-dialog.c:545
 msgid "Score"
 msgstr "คะแนน"
 
 #. Translators: this is for a minutes, seconds time display.
-#: libgames-support/games-scores-dialog.c:278
+#: libgames-support/games-scores-dialog.c:276
 #, c-format
 msgid "%dm %ds"
 msgstr "%d นาที %d วินาที"
 
-#: libgames-support/games-scores-dialog.c:539
+#: libgames-support/games-scores-dialog.c:537
 msgid "Name"
 msgstr "ชื่อ"
 
@@ -7472,81 +7772,81 @@ msgstr "ตั้งค่าเกม"
 msgid "Quit this game"
 msgstr "ออกจากเกมนี้"
 
-#: libgames-support/games-stock.c:321
+#: libgames-support/games-stock.c:322
 msgid "_Fullscreen"
 msgstr "เ_ต็มจอ"
 
 #. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: libgames-support/games-stock.c:324
+#: libgames-support/games-stock.c:325
 msgid "_New"
 msgstr "ใ_หม่"
 
-#: libgames-support/games-stock.c:327
+#: libgames-support/games-stock.c:328
 msgid "_Redo Move"
 msgstr "เ_ล่นตาซ้ำ"
 
 #. Translators: this is the "Reset" scores button in a scores dialogue
-#: libgames-support/games-stock.c:329
+#: libgames-support/games-stock.c:330
 msgid "_Reset"
 msgstr "_ล้าง"
 
 #. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: libgames-support/games-stock.c:331
+#: libgames-support/games-stock.c:332
 msgid "_Restart"
 msgstr "_ตั้งต้นใหม่"
 
-#: libgames-support/games-stock.c:333
+#: libgames-support/games-stock.c:334
 msgid "_Deal"
 msgstr "จั่วไ_พ่"
 
-#: libgames-support/games-stock.c:335
+#: libgames-support/games-stock.c:336
 msgid "_Leave Fullscreen"
 msgstr "เ_ลิกแสดงเต็มจอ"
 
-#: libgames-support/games-stock.c:337
+#: libgames-support/games-stock.c:338
 msgid "L_eave Game"
 msgstr "ออ_กจากเกม"
 
-#: libgames-support/games-stock.c:338
+#: libgames-support/games-stock.c:339
 msgid "Player _List"
 msgstr "ราย_ชื่อผู้เล่น"
 
-#: libgames-support/games-stock.c:339
+#: libgames-support/games-stock.c:340
 msgid "_Pause"
 msgstr "_พัก"
 
-#: libgames-support/games-stock.c:340
+#: libgames-support/games-stock.c:341
 msgid "Res_ume"
 msgstr "เล่น_ต่อ"
 
-#: libgames-support/games-stock.c:341
+#: libgames-support/games-stock.c:342
 msgid "_Scores"
 msgstr "_คะแนน"
 
-#: libgames-support/games-stock.c:342
+#: libgames-support/games-stock.c:343
 msgid "_End Game"
 msgstr "_จบเกม"
 
 #. Work around maemo brokenness wrt. stock item translations.
 #. * See https://bugs.maemo.org/show_bug.cgi?id=1449 .
-#: libgames-support/games-stock.c:348
+#: libgames-support/games-stock.c:349
 msgid "_About"
 msgstr "เ_กี่ยวกับ"
 
-#: libgames-support/games-stock.c:349
+#: libgames-support/games-stock.c:350
 msgid "_Cancel"
 msgstr "_ยกเลิก"
 
-#: libgames-support/games-stock.c:350
+#: libgames-support/games-stock.c:351
 msgid "_Close"
 msgstr "ปิ_ด"
 
-#: libgames-support/games-stock.c:351
+#: libgames-support/games-stock.c:352
 msgid "_OK"
 msgstr "_ตกลง"
 
 #. %s is replaced with the name of the game in gnome-games.
-#: libgames-support/games-stock.c:412
+#: libgames-support/games-stock.c:413
 #, c-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
@@ -7558,7 +7858,7 @@ msgstr ""
 "General Public License ที่เผยแพร่โดยมูลนิธิซอฟต์แวร์เสรี ไม่ว่าจะเป็นสัญญาอนุญาตรุ่นที่ %d "
 "หรือรุ่นถัดมา (ตามแต่คุณจะเลือก)"
 
-#: libgames-support/games-stock.c:426
+#: libgames-support/games-stock.c:427
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program.  If not, see <http://www.gnu.org/licenses/>."
@@ -7623,7 +7923,7 @@ msgstr ""
 "\n"
 "กรุณาตรวจสอบการติดตั้งของเกมถอดไพ่นกกระจอก"
 
-#: mahjongg/drawing.c:470 mahjongg/drawing.c:483
+#: mahjongg/drawing.c:471 mahjongg/drawing.c:484
 #, c-format
 msgid ""
 "Unable to render file:\n"
@@ -9136,9 +9436,6 @@ msgstr "เคลื่อนไหวแบบวูบวาบ"
 #~ msgid "Empty"
 #~ msgstr "ว่าง"
 
-#~ msgid "Reserved"
-#~ msgstr "จองแล้ว"
-
 #~ msgid "Abandoned"
 #~ msgstr "ไม่อยู่"
 
@@ -9235,9 +9532,6 @@ msgstr "เคลื่อนไหวแบบวูบวาบ"
 #~ "อยากเล่นเกมนั้นน่ะ! คุณก็รู้ หมุนๆ กลมๆ พอคลิกปุ๊บก็หายไป!\n"
 #~ "\n"
 #~ "หมากเหมือน GNOME เป็นส่วนหนึ่งของ GNOME Games"
-
-#~ msgid "Same GNOME Scores"
-#~ msgstr "สถิติของหมากเหมือน GNOME"
 
 #~ msgid "Unfortunately your score did not make the top ten."
 #~ msgstr "น่าเสียดายที่คะแนนของคุณไม่ติดสิบอันดับแรก"
@@ -9651,9 +9945,6 @@ msgstr "เคลื่อนไหวแบบวูบวาบ"
 
 #~ msgid "%s ago"
 #~ msgstr "%s ที่แล้ว"
-
-#~ msgid "Date"
-#~ msgstr "วันที่"
 
 #~ msgid "Not in database"
 #~ msgstr "ไม่อยู่ในฐานข้อมูล"
