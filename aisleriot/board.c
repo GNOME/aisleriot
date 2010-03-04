@@ -3295,7 +3295,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   1,
                   G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE);
 
-  signals[ERROR_BELL] =
+  signals[FOCUS] =
     g_signal_new (I_("focus"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
