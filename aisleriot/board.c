@@ -3278,7 +3278,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
     g_signal_new (I_("error-bell"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (AisleriotBoardClass, request_cursor),
+                  G_STRUCT_OFFSET (AisleriotBoardClass, error_bell),
                   NULL, NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,
