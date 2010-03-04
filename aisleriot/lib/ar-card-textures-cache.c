@@ -20,6 +20,7 @@
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
+
 #include <cogl/cogl.h>
 
 #include <libgames-support/games-debug.h>
@@ -84,7 +85,7 @@ ar_card_textures_cache_clear (ArCardTexturesCache *cache)
 
     if (handle != COGL_INVALID_HANDLE &&
         !IS_FAILED_HANDLE (handle)) {
-      cogl_texture_unref (handle);
+      cogl_handle_unref (handle);
     }
 
     priv->cards[i] = COGL_INVALID_HANDLE;
