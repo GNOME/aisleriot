@@ -2378,8 +2378,8 @@ aisleriot_board_realize (GtkWidget *widget)
 #ifndef HAVE_HILDON 
   /* Create cursors */
   priv->cursor[AR_CURSOR_DEFAULT] = gdk_cursor_new_for_display (display, GDK_LEFT_PTR);
-  priv->cursor[AR_CURSOR_OPEN] = ar_cursor_new (widget->window, AR_CURSOR_OPEN);
-  priv->cursor[AR_CURSOR_CLOSED] = ar_cursor_new (widget->window, AR_CURSOR_CLOSED);
+  priv->cursor[AR_CURSOR_OPEN] = ar_cursor_new (window, AR_CURSOR_OPEN);
+  priv->cursor[AR_CURSOR_CLOSED] = ar_cursor_new (window, AR_CURSOR_CLOSED);
   priv->cursor[AR_CURSOR_DROPPABLE] = gdk_cursor_new_for_display (display, GDK_DOUBLE_ARROW); /* FIXMEchpe: better cursor */
 #endif /* !HAVE_HILDON */
 
