@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games&component=general\n"
-"POT-Creation-Date: 2010-01-26 00:00+0000\n"
-"PO-Revision-Date: 2010-01-26 08:40+0100\n"
+"POT-Creation-Date: 2010-03-24 15:21+0000\n"
+"PO-Revision-Date: 2010-03-24 21:23+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -104,7 +104,7 @@ msgid "_Select"
 msgstr "_Izberi"
 
 #: ../aisleriot/freecell.desktop.in.in.h:1
-#: ../aisleriot/sol.c:334
+#: ../aisleriot/sol.c:336
 #: ../aisleriot/window.c:459
 #: ../aisleriot/window.c:467
 msgid "FreeCell Solitaire"
@@ -1020,33 +1020,33 @@ msgid "Hopscotch"
 msgstr "Hopscotch"
 
 #. String reserve
-#: ../aisleriot/sol.c:64
+#: ../aisleriot/sol.c:65
 msgid "Solitaire"
 msgstr "Pasjansa"
 
-#: ../aisleriot/sol.c:65
+#: ../aisleriot/sol.c:66
 msgid "GNOME Solitaire"
 msgstr "GNOME Pasjansa"
 
-#: ../aisleriot/sol.c:66
+#: ../aisleriot/sol.c:67
 msgid "About Solitaire"
 msgstr "O Pasjansi"
 
-#: ../aisleriot/sol.c:228
+#: ../aisleriot/sol.c:229
 msgid "Select the game type to play"
 msgstr "Izberite vrsto igre za igranje"
 
-#: ../aisleriot/sol.c:228
+#: ../aisleriot/sol.c:229
 #: ../gnobots2/gnobots.c:85
 #: ../gnobots2/gnobots.c:87
 msgid "NAME"
 msgstr "IME"
 
-#: ../aisleriot/sol.c:230
+#: ../aisleriot/sol.c:231
 msgid "Select the game number"
 msgstr "Izberite številko igre za igranje"
 
-#: ../aisleriot/sol.c:230
+#: ../aisleriot/sol.c:231
 #: ../gnomine/gnomine.c:1007
 #: ../gtali/gyahtzee.c:107
 #: ../gtali/gyahtzee.c:109
@@ -1055,7 +1055,7 @@ msgstr "Izberite številko igre za igranje"
 msgid "NUMBER"
 msgstr "ŠTEVILKA"
 
-#: ../aisleriot/sol.c:334
+#: ../aisleriot/sol.c:336
 #: ../aisleriot/window.c:468
 #: ../aisleriot/window.c:2041
 msgid "AisleRiot"
@@ -1087,7 +1087,7 @@ msgstr "as"
 
 #. A black joker.
 #: ../aisleriot/sol.scm.h:5
-#: ../libgames-support/games-card.c:331
+#: ../aisleriot/lib/ar-card.c:331
 msgid "black joker"
 msgstr "črni joker"
 
@@ -1133,7 +1133,7 @@ msgstr "kraljica"
 
 #. A red joker.
 #: ../aisleriot/sol.scm.h:16
-#: ../libgames-support/games-card.c:334
+#: ../aisleriot/lib/ar-card.c:334
 msgid "red joker"
 msgstr "rdeči joker"
 
@@ -1504,6 +1504,7 @@ msgstr ""
 "AisleRiot ponuja programski paket pasjanse, ki omogoča igranje več različnih iger.\n"
 "Igra AisleRiot je del iger GNOME."
 
+#. this doesn't work for anyone
 #: ../aisleriot/window.c:488
 #: ../glchess/src/lib/gtkui/gtkui.py:861
 #: ../glines/glines.c:1225
@@ -1517,7 +1518,9 @@ msgstr ""
 #: ../gnotski/gnotski.c:1542
 #: ../gtali/gyahtzee.c:620
 #: ../iagno/gnothello.c:272
+#: ../lightsoff/src/About.js:20
 #: ../mahjongg/mahjongg.c:951
+#: ../swell-foop/src/About.js:20
 msgid "translator-credits"
 msgstr ""
 "Matic Žgur <mr.zgur@gmail.com>\n"
@@ -1538,7 +1541,9 @@ msgstr ""
 #: ../gnotski/gnotski.c:1545
 #: ../gtali/gyahtzee.c:624
 #: ../iagno/gnothello.c:274
+#: ../lightsoff/src/About.js:19
 #: ../mahjongg/mahjongg.c:954
+#: ../swell-foop/src/About.js:19
 msgid "GNOME Games web site"
 msgstr "Spletna stran GNOME iger"
 
@@ -1794,6 +1799,303 @@ msgstr "Čas:"
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Ni mogoče začeti igre “%s”"
+
+#. Translators: this is the symbol that's on a Joker card
+#: ../aisleriot/lib/ar-card.c:182
+msgctxt "card symbol"
+msgid "JOKER"
+msgstr "JOKER"
+
+#. Translators: this is the symbol that's on an Ace card
+#: ../aisleriot/lib/ar-card.c:184
+#: ../aisleriot/lib/ar-card.c:208
+msgctxt "card symbol"
+msgid "A"
+msgstr "A"
+
+#. Translators: this is the symbol that's on a 2 card
+#: ../aisleriot/lib/ar-card.c:186
+msgctxt "card symbol"
+msgid "2"
+msgstr "2"
+
+#. Translators: this is the symbol that's on a 3 card
+#: ../aisleriot/lib/ar-card.c:188
+msgctxt "card symbol"
+msgid "3"
+msgstr "3"
+
+#. Translators: this is the symbol that's on a 4 card
+#: ../aisleriot/lib/ar-card.c:190
+msgctxt "card symbol"
+msgid "4"
+msgstr "4"
+
+#. Translators: this is the symbol that's on a 5 card
+#: ../aisleriot/lib/ar-card.c:192
+msgctxt "card symbol"
+msgid "5"
+msgstr "5"
+
+#. Translators: this is the symbol that's on a 6 card
+#: ../aisleriot/lib/ar-card.c:194
+msgctxt "card symbol"
+msgid "6"
+msgstr "6"
+
+#. Translators: this is the symbol that's on a 7 card
+#: ../aisleriot/lib/ar-card.c:196
+msgctxt "card symbol"
+msgid "7"
+msgstr "7"
+
+#. Translators: this is the symbol that's on a 8 card
+#: ../aisleriot/lib/ar-card.c:198
+msgctxt "card symbol"
+msgid "8"
+msgstr "8"
+
+#. Translators: this is the symbol that's on a 9 card
+#: ../aisleriot/lib/ar-card.c:200
+msgctxt "card symbol"
+msgid "9"
+msgstr "9"
+
+#. Translators: this is the symbol that's on a Jack card
+#: ../aisleriot/lib/ar-card.c:202
+msgctxt "card symbol"
+msgid "J"
+msgstr "J"
+
+#. Translators: this is the symbol that's on a Queen card
+#: ../aisleriot/lib/ar-card.c:204
+msgctxt "card symbol"
+msgid "Q"
+msgstr "Q"
+
+#. Translators: this is the symbol that's on a King card
+#: ../aisleriot/lib/ar-card.c:206
+msgctxt "card symbol"
+msgid "K"
+msgstr "K"
+
+#. Translators: this is the symbol that's on a 1 card
+#: ../aisleriot/lib/ar-card.c:210
+msgctxt "card symbol"
+msgid "1"
+msgstr "1"
+
+#: ../aisleriot/lib/ar-card.c:252
+msgid "ace of clubs"
+msgstr "križev as"
+
+#: ../aisleriot/lib/ar-card.c:253
+msgid "two of clubs"
+msgstr "križeva dvojka"
+
+#: ../aisleriot/lib/ar-card.c:254
+msgid "three of clubs"
+msgstr "križeva trojka"
+
+#: ../aisleriot/lib/ar-card.c:255
+msgid "four of clubs"
+msgstr "križeva štirica"
+
+#: ../aisleriot/lib/ar-card.c:256
+msgid "five of clubs"
+msgstr "križeva petica"
+
+#: ../aisleriot/lib/ar-card.c:257
+msgid "six of clubs"
+msgstr "križeva šestica"
+
+#: ../aisleriot/lib/ar-card.c:258
+msgid "seven of clubs"
+msgstr "križeva sedmica"
+
+#: ../aisleriot/lib/ar-card.c:259
+msgid "eight of clubs"
+msgstr "križeva osmica"
+
+#: ../aisleriot/lib/ar-card.c:260
+msgid "nine of clubs"
+msgstr "križeva devetica"
+
+#: ../aisleriot/lib/ar-card.c:261
+msgid "ten of clubs"
+msgstr "križeva desetica"
+
+#: ../aisleriot/lib/ar-card.c:262
+msgid "jack of clubs"
+msgstr "križev fant"
+
+#: ../aisleriot/lib/ar-card.c:263
+msgid "queen of clubs"
+msgstr "križeva kraljica"
+
+#: ../aisleriot/lib/ar-card.c:264
+msgid "king of clubs"
+msgstr "križev kralj"
+
+#: ../aisleriot/lib/ar-card.c:265
+msgid "ace of diamonds"
+msgstr "karov as"
+
+#: ../aisleriot/lib/ar-card.c:266
+msgid "two of diamonds"
+msgstr "karova dvojka"
+
+#: ../aisleriot/lib/ar-card.c:267
+msgid "three of diamonds"
+msgstr "karova trojka"
+
+#: ../aisleriot/lib/ar-card.c:268
+msgid "four of diamonds"
+msgstr "karova štirica"
+
+#: ../aisleriot/lib/ar-card.c:269
+msgid "five of diamonds"
+msgstr "karova petica"
+
+#: ../aisleriot/lib/ar-card.c:270
+msgid "six of diamonds"
+msgstr "karova šestica"
+
+#: ../aisleriot/lib/ar-card.c:271
+msgid "seven of diamonds"
+msgstr "karova sedmica"
+
+#: ../aisleriot/lib/ar-card.c:272
+msgid "eight of diamonds"
+msgstr "karova osmica"
+
+#: ../aisleriot/lib/ar-card.c:273
+msgid "nine of diamonds"
+msgstr "karova devetica"
+
+#: ../aisleriot/lib/ar-card.c:274
+msgid "ten of diamonds"
+msgstr "karova desetica"
+
+#: ../aisleriot/lib/ar-card.c:275
+msgid "jack of diamonds"
+msgstr "karov fant"
+
+#: ../aisleriot/lib/ar-card.c:276
+msgid "queen of diamonds"
+msgstr "karova kraljica"
+
+#: ../aisleriot/lib/ar-card.c:277
+msgid "king of diamonds"
+msgstr "karov kralj"
+
+#: ../aisleriot/lib/ar-card.c:278
+msgid "ace of hearts"
+msgstr "srčev as"
+
+#: ../aisleriot/lib/ar-card.c:279
+msgid "two of hearts"
+msgstr "srčeva dvojka"
+
+#: ../aisleriot/lib/ar-card.c:280
+msgid "three of hearts"
+msgstr "srčeva trojka"
+
+#: ../aisleriot/lib/ar-card.c:281
+msgid "four of hearts"
+msgstr "srčeva štirica"
+
+#: ../aisleriot/lib/ar-card.c:282
+msgid "five of hearts"
+msgstr "srčeva petica"
+
+#: ../aisleriot/lib/ar-card.c:283
+msgid "six of hearts"
+msgstr "srčeva šestica"
+
+#: ../aisleriot/lib/ar-card.c:284
+msgid "seven of hearts"
+msgstr "srčeva sedmica"
+
+#: ../aisleriot/lib/ar-card.c:285
+msgid "eight of hearts"
+msgstr "srčeva osmica"
+
+#: ../aisleriot/lib/ar-card.c:286
+msgid "nine of hearts"
+msgstr "srčeva devetica"
+
+#: ../aisleriot/lib/ar-card.c:287
+msgid "ten of hearts"
+msgstr "srčeva desetica"
+
+#: ../aisleriot/lib/ar-card.c:288
+msgid "jack of hearts"
+msgstr "srčev fant"
+
+#: ../aisleriot/lib/ar-card.c:289
+msgid "queen of hearts"
+msgstr "srčeva kraljica"
+
+#: ../aisleriot/lib/ar-card.c:290
+msgid "king of hearts"
+msgstr "srčev kralj"
+
+#: ../aisleriot/lib/ar-card.c:291
+msgid "ace of spades"
+msgstr "pikov as"
+
+#: ../aisleriot/lib/ar-card.c:292
+msgid "two of spades"
+msgstr "pikova dvojka"
+
+#: ../aisleriot/lib/ar-card.c:293
+msgid "three of spades"
+msgstr "pikova trojka"
+
+#: ../aisleriot/lib/ar-card.c:294
+msgid "four of spades"
+msgstr "pikova štirica"
+
+#: ../aisleriot/lib/ar-card.c:295
+msgid "five of spades"
+msgstr "pikova petica"
+
+#: ../aisleriot/lib/ar-card.c:296
+msgid "six of spades"
+msgstr "pikova šestica"
+
+#: ../aisleriot/lib/ar-card.c:297
+msgid "seven of spades"
+msgstr "pikova sedmica"
+
+#: ../aisleriot/lib/ar-card.c:298
+msgid "eight of spades"
+msgstr "pikova osmica"
+
+#: ../aisleriot/lib/ar-card.c:299
+msgid "nine of spades"
+msgstr "pikova devetica"
+
+#: ../aisleriot/lib/ar-card.c:300
+msgid "ten of spades"
+msgstr "pikova desetica"
+
+#: ../aisleriot/lib/ar-card.c:301
+msgid "jack of spades"
+msgstr "pikov fant"
+
+#: ../aisleriot/lib/ar-card.c:302
+msgid "queen of spades"
+msgstr "pikova kraljica"
+
+#: ../aisleriot/lib/ar-card.c:303
+msgid "king of spades"
+msgstr "pikov kralj"
+
+#: ../aisleriot/lib/ar-card.c:320
+msgid "face-down card"
+msgstr "neznana karta"
 
 #: ../aisleriot/rules/agnes.scm.h:1
 #: ../aisleriot/rules/bear_river.scm.h:2
@@ -3167,6 +3469,7 @@ msgstr "enostavno"
 
 #. Translators: AI Difficulty Combo: AI set to normal diffuculty
 #: ../glchess/src/lib/gtkui/dialogs.py:180
+#: ../swell-foop/src/Score.js:145
 msgid "Normal"
 msgstr "Običajno"
 
@@ -4303,6 +4606,7 @@ msgid "_Board size:"
 msgstr "_Velikost plošče:"
 
 #: ../glines/glines.c:511
+#: ../swell-foop/src/Score.js:109
 msgid "Game Over!"
 msgstr "Konec igre!"
 
@@ -6497,6 +6801,7 @@ msgstr "Rezultati Min"
 
 #: ../gnomine/gnomine.c:218
 #: ../gnotravex/gnotravex.c:1235
+#: ../swell-foop/src/Score.js:56
 msgid "Size:"
 msgstr "Velikost:"
 
@@ -7180,6 +7485,7 @@ msgid "Already used! Where do you want to put that?"
 msgstr "Že uporabljeno! Kje želite to postaviti?"
 
 #: ../gtali/clist.c:414
+#: ../swell-foop/src/Score.js:16
 #, c-format
 msgid "Score: %d"
 msgstr "Rezultat: %d"
@@ -7718,303 +8024,6 @@ msgstr "Možnosti upravljanja seje:"
 msgid "Show session management options"
 msgstr "Pokaži možnosti upravljanja seje"
 
-#. Translators: this is the symbol that's on a Joker card
-#: ../libgames-support/games-card.c:182
-msgctxt "card symbol"
-msgid "JOKER"
-msgstr "JOKER"
-
-#. Translators: this is the symbol that's on an Ace card
-#: ../libgames-support/games-card.c:184
-#: ../libgames-support/games-card.c:208
-msgctxt "card symbol"
-msgid "A"
-msgstr "A"
-
-#. Translators: this is the symbol that's on a 2 card
-#: ../libgames-support/games-card.c:186
-msgctxt "card symbol"
-msgid "2"
-msgstr "2"
-
-#. Translators: this is the symbol that's on a 3 card
-#: ../libgames-support/games-card.c:188
-msgctxt "card symbol"
-msgid "3"
-msgstr "3"
-
-#. Translators: this is the symbol that's on a 4 card
-#: ../libgames-support/games-card.c:190
-msgctxt "card symbol"
-msgid "4"
-msgstr "4"
-
-#. Translators: this is the symbol that's on a 5 card
-#: ../libgames-support/games-card.c:192
-msgctxt "card symbol"
-msgid "5"
-msgstr "5"
-
-#. Translators: this is the symbol that's on a 6 card
-#: ../libgames-support/games-card.c:194
-msgctxt "card symbol"
-msgid "6"
-msgstr "6"
-
-#. Translators: this is the symbol that's on a 7 card
-#: ../libgames-support/games-card.c:196
-msgctxt "card symbol"
-msgid "7"
-msgstr "7"
-
-#. Translators: this is the symbol that's on a 8 card
-#: ../libgames-support/games-card.c:198
-msgctxt "card symbol"
-msgid "8"
-msgstr "8"
-
-#. Translators: this is the symbol that's on a 9 card
-#: ../libgames-support/games-card.c:200
-msgctxt "card symbol"
-msgid "9"
-msgstr "9"
-
-#. Translators: this is the symbol that's on a Jack card
-#: ../libgames-support/games-card.c:202
-msgctxt "card symbol"
-msgid "J"
-msgstr "J"
-
-#. Translators: this is the symbol that's on a Queen card
-#: ../libgames-support/games-card.c:204
-msgctxt "card symbol"
-msgid "Q"
-msgstr "Q"
-
-#. Translators: this is the symbol that's on a King card
-#: ../libgames-support/games-card.c:206
-msgctxt "card symbol"
-msgid "K"
-msgstr "K"
-
-#. Translators: this is the symbol that's on a 1 card
-#: ../libgames-support/games-card.c:210
-msgctxt "card symbol"
-msgid "1"
-msgstr "1"
-
-#: ../libgames-support/games-card.c:252
-msgid "ace of clubs"
-msgstr "križev as"
-
-#: ../libgames-support/games-card.c:253
-msgid "two of clubs"
-msgstr "križeva dvojka"
-
-#: ../libgames-support/games-card.c:254
-msgid "three of clubs"
-msgstr "križeva trojka"
-
-#: ../libgames-support/games-card.c:255
-msgid "four of clubs"
-msgstr "križeva štirica"
-
-#: ../libgames-support/games-card.c:256
-msgid "five of clubs"
-msgstr "križeva petica"
-
-#: ../libgames-support/games-card.c:257
-msgid "six of clubs"
-msgstr "križeva šestica"
-
-#: ../libgames-support/games-card.c:258
-msgid "seven of clubs"
-msgstr "križeva sedmica"
-
-#: ../libgames-support/games-card.c:259
-msgid "eight of clubs"
-msgstr "križeva osmica"
-
-#: ../libgames-support/games-card.c:260
-msgid "nine of clubs"
-msgstr "križeva devetica"
-
-#: ../libgames-support/games-card.c:261
-msgid "ten of clubs"
-msgstr "križeva desetica"
-
-#: ../libgames-support/games-card.c:262
-msgid "jack of clubs"
-msgstr "križev fant"
-
-#: ../libgames-support/games-card.c:263
-msgid "queen of clubs"
-msgstr "križeva kraljica"
-
-#: ../libgames-support/games-card.c:264
-msgid "king of clubs"
-msgstr "križev kralj"
-
-#: ../libgames-support/games-card.c:265
-msgid "ace of diamonds"
-msgstr "karov as"
-
-#: ../libgames-support/games-card.c:266
-msgid "two of diamonds"
-msgstr "karova dvojka"
-
-#: ../libgames-support/games-card.c:267
-msgid "three of diamonds"
-msgstr "karova trojka"
-
-#: ../libgames-support/games-card.c:268
-msgid "four of diamonds"
-msgstr "karova štirica"
-
-#: ../libgames-support/games-card.c:269
-msgid "five of diamonds"
-msgstr "karova petica"
-
-#: ../libgames-support/games-card.c:270
-msgid "six of diamonds"
-msgstr "karova šestica"
-
-#: ../libgames-support/games-card.c:271
-msgid "seven of diamonds"
-msgstr "karova sedmica"
-
-#: ../libgames-support/games-card.c:272
-msgid "eight of diamonds"
-msgstr "karova osmica"
-
-#: ../libgames-support/games-card.c:273
-msgid "nine of diamonds"
-msgstr "karova devetica"
-
-#: ../libgames-support/games-card.c:274
-msgid "ten of diamonds"
-msgstr "karova desetica"
-
-#: ../libgames-support/games-card.c:275
-msgid "jack of diamonds"
-msgstr "karov fant"
-
-#: ../libgames-support/games-card.c:276
-msgid "queen of diamonds"
-msgstr "karova kraljica"
-
-#: ../libgames-support/games-card.c:277
-msgid "king of diamonds"
-msgstr "karov kralj"
-
-#: ../libgames-support/games-card.c:278
-msgid "ace of hearts"
-msgstr "srčev as"
-
-#: ../libgames-support/games-card.c:279
-msgid "two of hearts"
-msgstr "srčeva dvojka"
-
-#: ../libgames-support/games-card.c:280
-msgid "three of hearts"
-msgstr "srčeva trojka"
-
-#: ../libgames-support/games-card.c:281
-msgid "four of hearts"
-msgstr "srčeva štirica"
-
-#: ../libgames-support/games-card.c:282
-msgid "five of hearts"
-msgstr "srčeva petica"
-
-#: ../libgames-support/games-card.c:283
-msgid "six of hearts"
-msgstr "srčeva šestica"
-
-#: ../libgames-support/games-card.c:284
-msgid "seven of hearts"
-msgstr "srčeva sedmica"
-
-#: ../libgames-support/games-card.c:285
-msgid "eight of hearts"
-msgstr "srčeva osmica"
-
-#: ../libgames-support/games-card.c:286
-msgid "nine of hearts"
-msgstr "srčeva devetica"
-
-#: ../libgames-support/games-card.c:287
-msgid "ten of hearts"
-msgstr "srčeva desetica"
-
-#: ../libgames-support/games-card.c:288
-msgid "jack of hearts"
-msgstr "srčev fant"
-
-#: ../libgames-support/games-card.c:289
-msgid "queen of hearts"
-msgstr "srčeva kraljica"
-
-#: ../libgames-support/games-card.c:290
-msgid "king of hearts"
-msgstr "srčev kralj"
-
-#: ../libgames-support/games-card.c:291
-msgid "ace of spades"
-msgstr "pikov as"
-
-#: ../libgames-support/games-card.c:292
-msgid "two of spades"
-msgstr "pikova dvojka"
-
-#: ../libgames-support/games-card.c:293
-msgid "three of spades"
-msgstr "pikova trojka"
-
-#: ../libgames-support/games-card.c:294
-msgid "four of spades"
-msgstr "pikova štirica"
-
-#: ../libgames-support/games-card.c:295
-msgid "five of spades"
-msgstr "pikova petica"
-
-#: ../libgames-support/games-card.c:296
-msgid "six of spades"
-msgstr "pikova šestica"
-
-#: ../libgames-support/games-card.c:297
-msgid "seven of spades"
-msgstr "pikova sedmica"
-
-#: ../libgames-support/games-card.c:298
-msgid "eight of spades"
-msgstr "pikova osmica"
-
-#: ../libgames-support/games-card.c:299
-msgid "nine of spades"
-msgstr "pikova devetica"
-
-#: ../libgames-support/games-card.c:300
-msgid "ten of spades"
-msgstr "pikova desetica"
-
-#: ../libgames-support/games-card.c:301
-msgid "jack of spades"
-msgstr "pikov fant"
-
-#: ../libgames-support/games-card.c:302
-msgid "queen of spades"
-msgstr "pikova kraljica"
-
-#: ../libgames-support/games-card.c:303
-msgid "king of spades"
-msgstr "pikov kralj"
-
-#: ../libgames-support/games-card.c:320
-msgid "face-down card"
-msgstr "neznana karta"
-
 #: ../libgames-support/games-controls.c:286
 msgid "Unknown Command"
 msgstr "Neznan ukaz"
@@ -8218,6 +8227,8 @@ msgstr "Skupaj s programom bi morali dobiti tudi kopijo GNU splošne javne licen
 #: ../lightsoff/lightsoff.desktop.in.in.h:1
 #: ../lightsoff/data/lightsoff.ui.h:1
 #: ../lightsoff/data/settings.ui.h:1
+#: ../lightsoff/src/About.js:11
+#: ../lightsoff/src/About.js:15
 msgid "Lights Off"
 msgstr "Ugasni luči"
 
@@ -8263,6 +8274,21 @@ msgstr "Tema:"
 #: ../lightsoff/data/settings.ui.h:4
 msgid "Use colors from GNOME theme"
 msgstr "Uporabi barve GNOME teme"
+
+#: ../lightsoff/src/About.js:13
+msgid ""
+"Turn off all the lights\n"
+"\n"
+"Lights Off is a part of GNOME Games."
+msgstr ""
+"Ugasnite vse luči\n"
+"\n"
+"Igra Ugasni luči je del iger GNOME."
+
+#: ../lightsoff/src/About.js:14
+#: ../swell-foop/src/About.js:14
+msgid "Copyright  2009 Tim Horton"
+msgstr "Avtorske pravice 2009 Tim Horton"
 
 #: ../mahjongg/drawing.c:307
 msgid ""
@@ -8457,6 +8483,8 @@ msgstr "Zahtevno"
 #: ../swell-foop/data/swell-foop.ui.h:1
 #: ../swell-foop/data/settings.ui.h:6
 #: ../swell-foop/swell-foop.desktop.in.in.h:2
+#: ../swell-foop/src/About.js:11
+#: ../swell-foop/src/About.js:15
 msgid "Swell Foop"
 msgstr "Pravi Pavliha"
 
@@ -8495,6 +8523,41 @@ msgstr "Uporabi lepe animacije."
 #: ../swell-foop/swell-foop.schemas.in.h:8
 msgid "Zealous animation"
 msgstr "Polno animiranje"
+
+#: ../swell-foop/src/About.js:13
+msgid ""
+"I want to play that game! You know, they all go whirly-round and you click on them and they vanish!\n"
+"\n"
+"Swell Foop is a part of GNOME Games."
+msgstr ""
+"Želim si igrati to igro! Neprestano se obračajo in ko jih klikneš, izginejo!\n"
+"\n"
+"Igra Pravi Pavliha je del iger GNOME."
+
+#: ../swell-foop/src/Board.js:105
+#, c-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d točk"
+msgstr[1] "%d točka"
+msgstr[2] "%d točki"
+msgstr[3] "%d točke"
+
+#: ../swell-foop/src/Score.js:54
+msgid "Swell Foop Scores"
+msgstr "Rezultati igre Pravi Pavliha"
+
+#: ../swell-foop/src/Score.js:109
+msgid "points"
+msgstr "točke"
+
+#: ../swell-foop/src/Score.js:144
+msgid "Small"
+msgstr "Majhno"
+
+#: ../swell-foop/src/Score.js:146
+msgid "Large"
+msgstr "Veliko"
 
 #~ msgid "Blackjack"
 #~ msgstr "Blackjack"
@@ -9377,24 +9440,6 @@ msgstr "Polno animiranje"
 #~ msgstr "Uporabi hitro animiranje"
 #~ msgid "Width of the custom board"
 #~ msgstr "Širina poljubne plošče"
-#~ msgid "No points"
-#~ msgstr "Brez točk"
-#~ msgid "%d point"
-#~ msgid_plural "%d points"
-#~ msgstr[0] "%d točk"
-#~ msgstr[1] "%d točka"
-#~ msgstr[2] "%d točki"
-#~ msgstr[3] "%d točke"
-#~ msgid ""
-#~ "I want to play that game! You know, they all go whirly-round and you "
-#~ "click on them and they vanish!\n"
-#~ "\n"
-#~ "Same GNOME is a part of GNOME Games."
-#~ msgstr ""
-#~ "Želim si igrati to igro! Neprestano se obračajo in ko jih klikneš, "
-#~ "izginejo!\n"
-#~ "\n"
-#~ "Igra Same GNOME je del iger GNOME."
 #~ msgid "Unfortunately your score did not make the top ten."
 #~ msgstr "Na žalost se vaš rezultat ne uvršča med najboljših deset."
 #~ msgid "Same GNOME Theme"
