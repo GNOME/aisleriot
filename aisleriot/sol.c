@@ -32,6 +32,10 @@
 #include <cogl/cogl.h>
 #include <clutter/clutter.h>
 #include <clutter-gtk/clutter-gtk.h>
+
+#ifndef CLUTTER_GTK_CHECK_VERSION
+#define CLUTTER_GTK_CHECK_VERSION(a,b,c) (0)
+#endif
 #endif
 
 #ifdef HAVE_HILDON
@@ -290,10 +294,14 @@ main_prog (void *closure, int argc, char *argv[])
 #ifdef WITH_SMCLIENT
   g_option_context_add_group (option_context, egg_sm_client_get_option_group ());
 #endif /* WITH_SMCLIENT */
+
 #ifdef HAVE_CLUTTER
   g_option_context_add_group (option_context, cogl_get_option_group ());
   g_option_context_add_group (option_context, clutter_get_option_group_without_init ());
+#if CLUTTER_GTK_CHECK_VERSION (0, 90, 0)
+  g_option_context_add_group (option_context, gtk_clutter_get_option_group ());
 #endif
+#endif /* HAVE_CLUTTER */
 
 #if defined(HAVE_HILDON) && defined(HAVE_MAEMO_5)
   {
@@ -319,12 +327,14 @@ main_prog (void *closure, int argc, char *argv[])
   }
 
 #ifdef HAVE_CLUTTER
+#if !CLUTTER_GTK_CHECK_VERSION (0, 90, 0)
   if (gtk_clutter_init_with_args (NULL, NULL, NULL, NULL, NULL, &error) != CLUTTER_INIT_SUCCESS) {
     g_printerr ("Failed to initialise clutter: %s\n", error->message);
     g_error_free (error);
     goto cleanup;
   }
 #endif
+#endif /* HAVE_CLUTTER */
 
 #ifdef HAVE_MAEMO
   data.program = HILDON_PROGRAM (hildon_program_get_instance ());
