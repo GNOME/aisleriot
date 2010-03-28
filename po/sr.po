@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Гномове игре\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "games&component=general\n"
-"POT-Creation-Date: 2010-03-09 17:52+0000\n"
-"PO-Revision-Date: 2010-03-08 14:05+0100\n"
+"POT-Creation-Date: 2010-03-27 09:57+0000\n"
+"PO-Revision-Date: 2010-03-27 12:07+0100\n"
 "Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
 "Language-Team: Serbian <gnome@prevod.org>\n"
 "MIME-Version: 1.0\n"
@@ -1501,12 +1501,15 @@ msgstr ""
 "\n"
 "Пасијанс је део Гномових игара."
 
+#. this doesn't work for anyone
 #: ../aisleriot/window.c:488 ../glchess/src/lib/gtkui/gtkui.py:861
 #: ../glines/glines.c:1225 ../gnect/src/main.c:909 ../gnibbles/main.c:247
 #: ../gnobots2/menu.c:274 ../quadrapassel/tetris.cpp:1313
 #: ../gnome-sudoku/src/lib/main.py:720 ../gnomine/gnomine.c:490
 #: ../gnotravex/gnotravex.c:1921 ../gnotski/gnotski.c:1542
-#: ../gtali/gyahtzee.c:620 ../iagno/gnothello.c:272 ../mahjongg/mahjongg.c:951
+#: ../gtali/gyahtzee.c:620 ../iagno/gnothello.c:272
+#: ../lightsoff/src/About.js:20 ../mahjongg/mahjongg.c:951
+#: ../swell-foop/src/About.js:20
 msgid "translator-credits"
 msgstr ""
 "Душан Марјановић <madafaka@root.co.yu>\n"
@@ -1520,7 +1523,9 @@ msgstr ""
 #: ../gnobots2/menu.c:270 ../quadrapassel/tetris.cpp:1310
 #: ../gnome-sudoku/src/lib/defaults.py.in:43 ../gnomine/gnomine.c:493
 #: ../gnotravex/gnotravex.c:1924 ../gnotski/gnotski.c:1545
-#: ../gtali/gyahtzee.c:624 ../iagno/gnothello.c:274 ../mahjongg/mahjongg.c:954
+#: ../gtali/gyahtzee.c:624 ../iagno/gnothello.c:274
+#: ../lightsoff/src/About.js:19 ../mahjongg/mahjongg.c:954
+#: ../swell-foop/src/About.js:19
 msgid "GNOME Games web site"
 msgstr "Веб адреса за Гномове игре"
 
@@ -3314,7 +3319,7 @@ msgid "Easy"
 msgstr "Лако"
 
 #. Translators: AI Difficulty Combo: AI set to normal diffuculty
-#: ../glchess/src/lib/gtkui/dialogs.py:180
+#: ../glchess/src/lib/gtkui/dialogs.py:180 ../swell-foop/src/Score.js:145
 msgid "Normal"
 msgstr "Нормално"
 
@@ -4464,7 +4469,7 @@ msgstr "Гномово Пет или више"
 msgid "_Board size:"
 msgstr "_Величина табле:"
 
-#: ../glines/glines.c:511
+#: ../glines/glines.c:511 ../swell-foop/src/Score.js:109
 msgid "Game Over!"
 msgstr "Игра је готова!"
 
@@ -6615,6 +6620,7 @@ msgid "Mines Scores"
 msgstr "Резултати Гном мина"
 
 #: ../gnomine/gnomine.c:218 ../gnotravex/gnotravex.c:1235
+#: ../swell-foop/src/Score.js:56
 msgid "Size:"
 msgstr "Величина:"
 
@@ -7281,7 +7287,7 @@ msgstr "Слагалица која се игра"
 msgid "Already used! Where do you want to put that?"
 msgstr "Већ искоришћено! Где желите да га поставите?"
 
-#: ../gtali/clist.c:414
+#: ../gtali/clist.c:414 ../swell-foop/src/Score.js:16
 #, c-format
 msgid "Score: %d"
 msgstr "Разултат: %d"
@@ -8001,7 +8007,8 @@ msgstr ""
 "погледајте <http://www.gnu.org/licenses/>."
 
 #: ../lightsoff/lightsoff.desktop.in.in.h:1 ../lightsoff/data/lightsoff.ui.h:1
-#: ../lightsoff/data/settings.ui.h:1
+#: ../lightsoff/data/settings.ui.h:1 ../lightsoff/src/About.js:11
+#: ../lightsoff/src/About.js:15
 msgid "Lights Off"
 msgstr "Погаси светла"
 
@@ -8050,6 +8057,20 @@ msgstr "Тема:"
 #: ../lightsoff/data/settings.ui.h:4
 msgid "Use colors from GNOME theme"
 msgstr "Користи боје из Гномове теме"
+
+#: ../lightsoff/src/About.js:13
+msgid ""
+"Turn off all the lights\n"
+"\n"
+"Lights Off is a part of GNOME Games."
+msgstr ""
+"Угаси сва светла\n"
+"\n"
+"Погаси светла је део Гномових игара."
+
+#: ../lightsoff/src/About.js:14 ../swell-foop/src/About.js:14
+msgid "Copyright  2009 Tim Horton"
+msgstr "Ауторска права  2009 Tim Horton"
 
 #: ../mahjongg/drawing.c:307
 msgid ""
@@ -8238,7 +8259,8 @@ msgid "Difficult"
 msgstr "Тешко"
 
 #: ../swell-foop/data/swell-foop.ui.h:1 ../swell-foop/data/settings.ui.h:6
-#: ../swell-foop/swell-foop.desktop.in.in.h:2
+#: ../swell-foop/swell-foop.desktop.in.in.h:2 ../swell-foop/src/About.js:11
+#: ../swell-foop/src/About.js:15
 msgid "Swell Foop"
 msgstr "Ланчана реакција"
 
@@ -8277,6 +8299,43 @@ msgstr "Користи лепшу, али спорију анимацију."
 #: ../swell-foop/swell-foop.schemas.in.h:8
 msgid "Zealous animation"
 msgstr "Предана анимација"
+
+#: ../swell-foop/src/About.js:13
+msgid ""
+"I want to play that game! You know, they all go whirly-round and you click "
+"on them and they vanish!\n"
+"\n"
+"Swell Foop is a part of GNOME Games."
+msgstr ""
+"Желим да играм ту игру! Знаш, сви они иду у круг, у круг, и ти кликнеш на "
+"њих и они нестају!\n"
+"\n"
+"Ланчана реакција је део Гномових игара."
+
+#: ../swell-foop/src/Board.js:105
+#, c-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d поен"
+msgstr[1] "%d поена"
+msgstr[2] "%d поена"
+msgstr[3] "%d поен"
+
+#: ../swell-foop/src/Score.js:54
+msgid "Swell Foop Scores"
+msgstr "Резултати за Ланчану реакцију"
+
+#: ../swell-foop/src/Score.js:109
+msgid "points"
+msgstr "поени"
+
+#: ../swell-foop/src/Score.js:144
+msgid "Small"
+msgstr "Мало"
+
+#: ../swell-foop/src/Score.js:146
+msgid "Large"
+msgstr "Велико"
 
 #~ msgid "Blackjack"
 #~ msgstr "Ањц"
@@ -9542,27 +9601,6 @@ msgstr "Предана анимација"
 
 #~ msgid "Width of the custom board"
 #~ msgstr "Ширина произвољне табле"
-
-#~ msgid "No points"
-#~ msgstr "Без поена"
-
-#~ msgid "%d point"
-#~ msgid_plural "%d points"
-#~ msgstr[0] "%d поен"
-#~ msgstr[1] "%d поена"
-#~ msgstr[2] "%d поена"
-#~ msgstr[3] "%d поен"
-
-#~ msgid ""
-#~ "I want to play that game! You know, they all go whirly-round and you "
-#~ "click on them and they vanish!\n"
-#~ "\n"
-#~ "Same GNOME is a part of GNOME Games."
-#~ msgstr ""
-#~ "Желим да играм ту игру! Знаш, сви они иду у круг, у круг, и ти кликнеш на "
-#~ "њих и они нестају!\n"
-#~ "\n"
-#~ "Исто-исто је део Гномових игара."
 
 #~ msgid "Unfortunately your score did not make the top ten."
 #~ msgstr "На жалост, ваш резултат није ушао у најбољих 10."
