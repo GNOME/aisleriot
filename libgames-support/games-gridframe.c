@@ -191,7 +191,7 @@ games_grid_frame_size_allocate (GtkWidget * widget,
     (allocation->height - child_allocation.height) * frame->yalign +
     allocation->y;
 
-  if (GTK_WIDGET_MAPPED (widget) &&
+  if (gtk_widget_get_mapped (widget) &&
       (child_allocation.x != frame->old_allocation.x ||
        child_allocation.y != frame->old_allocation.y ||
        child_allocation.width != frame->old_allocation.width ||

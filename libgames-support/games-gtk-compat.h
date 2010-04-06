@@ -21,11 +21,11 @@
 
 G_BEGIN_DECLS
 
-#ifdef GSEAL_ENABLE
-/* Temporary fix from http://live.gnome.org/GnomeGoals/UseGseal */
-#undef GTK_OBJECT_FLAGS
-#define GTK_OBJECT_FLAGS(i) (GTK_OBJECT (i)->GSEAL(flags))
-#endif /* GSEAL_ENABLE */
+#if !GTK_CHECK_VERSION (2, 20, 0)
+#define gtk_widget_get_realized(widget)                 GTK_WIDGET_REALIZED(widget)
+#define gtk_widget_set_realized(w,realized)             ((realized) ? (GTK_WIDGET_SET_FLAGS (w, GTK_REALIZED)) : (GTK_WIDGET_UNSET_FLAGS (w, GTK_REALIZED)))
+#define gtk_widget_get_mapped(widget)                   GTK_WIDGET_MAPPED(widget)
+#endif /* GTK < 2.20.0 */
 
 #if !GTK_CHECK_VERSION (2, 18, 0)
 #define gtk_widget_set_allocation(widget, alloc) ((widget)->allocation=*(alloc))
@@ -35,7 +35,7 @@ G_BEGIN_DECLS
 #define gtk_widget_get_state(widget) ((widget)->state)
 #define gtk_widget_get_visible(widget) (GTK_WIDGET_VISIBLE (widget))
 #define gtk_widget_is_drawable(widget) (GTK_WIDGET_DRAWABLE (widget))
-#define gtk_widget_set_can_focus(widget, can_focus) GTK_WIDGET_SET_FLAGS (widget, GTK_CAN_FOCUS)
+#define gtk_widget_set_can_focus(w,can_focus)           ((can_focus) ? (GTK_WIDGET_SET_FLAGS (w, GTK_CAN_FOCUS)) : (GTK_WIDGET_UNSET_FLAGS (w, GTK_CAN_FOCUS)))
 #endif /* GTK < 2.18.0 */
 
 #if !GTK_CHECK_VERSION (2, 14, 0)

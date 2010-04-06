@@ -21,6 +21,7 @@
 
 #include <libgames-support/games-stock.h>
 #include <libgames-support/games-glib-compat.h>
+#include <libgames-support/games-gtk-compat.h>
 
 struct _ArFullscreenButtonPrivate {
   GtkWindow *window;
@@ -107,7 +108,7 @@ update_position (ArFullscreenButton *button)
   screen = gtk_widget_get_screen (widget);
   gdk_screen_get_monitor_geometry
     (screen,
-     GTK_WIDGET_REALIZED (widget)
+     gtk_widget_get_realized (widget)
         ? gdk_screen_get_monitor_at_window (screen, gtk_widget_get_window (widget))
         : 0,
      &screen_rect);

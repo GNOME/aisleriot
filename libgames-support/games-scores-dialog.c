@@ -210,7 +210,7 @@ static gboolean games_scores_dialog_set_edit (GamesScoresDialog *self)
   GtkTreeSelection *selection;
 
   /* Just in case we've been closed as soon as we're created. */
-  if (!GTK_WIDGET_REALIZED (self))
+  if (!gtk_widget_get_realized (GTK_WIDGET (self)))
     return FALSE;
 
   /* Temporarily disable the code that prevents editing when the

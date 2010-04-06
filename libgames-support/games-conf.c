@@ -1288,7 +1288,7 @@ games_conf_add_window (GtkWindow *window,
   gboolean maximised, fullscreen;
 
   g_return_if_fail (GTK_IS_WINDOW (window));
-  g_return_if_fail (!GTK_WIDGET_REALIZED (window));
+  g_return_if_fail (!gtk_widget_get_realized (GTK_WIDGET (window)));
 
   state = g_slice_new0 (WindowState);
 

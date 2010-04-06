@@ -738,7 +738,7 @@ slot_update_geometry (AisleriotBoard *board,
     slot->rect.x -= slot->rect.width - priv->card_size.width;
   }
 
-  if (GTK_WIDGET_REALIZED (widget)) {
+  if (gtk_widget_get_realized (widget)) {
     GdkRectangle damage = slot->rect;
 
     if (old_rect.width > 0 && old_rect.height > 0) {
@@ -848,7 +848,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   if (aisleriot_game_get_state (priv->game) <= GAME_LOADED)
     return;
 
-  g_return_if_fail (GTK_WIDGET_REALIZED (widget));
+  g_return_if_fail (gtk_widget_get_realized (widget));
   g_return_if_fail (priv->width > 0 && priv->height > 0);
 
   priv->xslotstep = ((double) priv->allocation.width) / priv->width;
@@ -2431,6 +2431,7 @@ aisleriot_board_sync_style (ArStyle *style,
   GtkWidget *widget = GTK_WIDGET (board);
   const char *pspec_name;
   gboolean update_geometry = FALSE, redraw_focus = FALSE, queue_redraw = FALSE, redraw_selection = FALSE;
+  gboolean realized;
 
   g_assert (style == priv->style);
 
@@ -2564,11 +2565,13 @@ aisleriot_board_sync_style (ArStyle *style,
   }
 #endif /* !HAVE_HILDON */
 
-  if (update_geometry && GTK_WIDGET_REALIZED (widget)) {
+  realized = gtk_widget_get_realized (widget);
+
+  if (update_geometry && realized) {
     aisleriot_board_setup_geometry (board);
   }
 
-  if (queue_redraw && GTK_WIDGET_REALIZED (widget)) {
+  if (queue_redraw && realized) {
     gtk_widget_queue_draw (widget);
   }
 
@@ -2603,7 +2606,7 @@ aisleriot_board_size_allocate (GtkWidget *widget,
   priv->allocation.width = allocation->width;
   priv->allocation.height = allocation->height;
 
-  if (GTK_WIDGET_REALIZED (widget)) {
+  if (gtk_widget_get_realized (widget)) {
     aisleriot_board_setup_geometry (board);
   }
 }
