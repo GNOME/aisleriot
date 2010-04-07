@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-games.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "games&component=general\n"
-"POT-Creation-Date: 2010-01-25 04:41+0000\n"
-"PO-Revision-Date: 2010-02-19 14:35+0700\n"
+"POT-Creation-Date: 2010-04-06 23:36+0000\n"
+"PO-Revision-Date: 2010-04-07 20:52+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr "เลือกเกม"
 msgid "_Select"
 msgstr "เ_ลือก"
 
-#: aisleriot/freecell.desktop.in.in.h:1 aisleriot/sol.c:334
+#: aisleriot/freecell.desktop.in.in.h:1 aisleriot/sol.c:324
 #: aisleriot/window.c:459 aisleriot/window.c:467
 msgid "FreeCell Solitaire"
 msgstr "ถอดไพ่ FreeCell"
@@ -1022,36 +1022,36 @@ msgid "Hopscotch"
 msgstr "ตั้งเต"
 
 #. String reserve
-#: aisleriot/sol.c:64
+#: aisleriot/sol.c:70
 msgid "Solitaire"
 msgstr "ถอดไพ่"
 
-#: aisleriot/sol.c:65
+#: aisleriot/sol.c:71
 msgid "GNOME Solitaire"
 msgstr "เกมถอดไพ่ของ GNOME"
 
-#: aisleriot/sol.c:66
+#: aisleriot/sol.c:72
 msgid "About Solitaire"
 msgstr "เกี่ยวกับเกมถอดไพ่"
 
-#: aisleriot/sol.c:228
+#: aisleriot/sol.c:211
 msgid "Select the game type to play"
 msgstr "เลือกชนิดเกมที่จะเล่น"
 
-#: aisleriot/sol.c:228 gnobots2/gnobots.c:85 gnobots2/gnobots.c:87
+#: aisleriot/sol.c:211 gnobots2/gnobots.c:85 gnobots2/gnobots.c:87
 msgid "NAME"
 msgstr "NAME"
 
-#: aisleriot/sol.c:230
+#: aisleriot/sol.c:213
 msgid "Select the game number"
 msgstr "เลือกหมายเลขเกม"
 
-#: aisleriot/sol.c:230 gnomine/gnomine.c:1007 gtali/gyahtzee.c:107
+#: aisleriot/sol.c:213 gnomine/gnomine.c:1007 gtali/gyahtzee.c:107
 #: gtali/gyahtzee.c:109 gtali/gyahtzee.c:113 gtali/gyahtzee.c:115
 msgid "NUMBER"
 msgstr "NUMBER"
 
-#: aisleriot/sol.c:334 aisleriot/window.c:468 aisleriot/window.c:2041
+#: aisleriot/sol.c:324 aisleriot/window.c:468 aisleriot/window.c:2041
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1080,7 +1080,7 @@ msgid "ace"
 msgstr "เอซ"
 
 #. A black joker.
-#: aisleriot/sol.scm.h:5 libgames-support/games-card.c:331
+#: aisleriot/sol.scm.h:5 aisleriot/lib/ar-card.c:331
 msgid "black joker"
 msgstr "โจ๊กเกอร์ดำ"
 
@@ -1125,7 +1125,7 @@ msgid "queen"
 msgstr "ควีน"
 
 #. A red joker.
-#: aisleriot/sol.scm.h:16 libgames-support/games-card.c:334
+#: aisleriot/sol.scm.h:16 aisleriot/lib/ar-card.c:334
 msgid "red joker"
 msgstr "โจ๊กเกอร์แดง"
 
@@ -1488,12 +1488,14 @@ msgstr ""
 "AisleRiot เป็นเครื่องประมวลเกมถอดไพ่ที่ทำงานด้วยกฎ ซึ่งสามารถเล่นเกมไพ่ชนิดต่างๆ ได้สารพัด\n"
 "AisleRiot เป็นส่วนหนึ่งของ GNOME Games"
 
-#: aisleriot/window.c:488 glchess/src/lib/gtkui/gtkui.py:861
+#. this doesn't work for anyone
+#: aisleriot/window.c:488 glchess/src/lib/gtkui/gtkui.py:863
 #: glines/glines.c:1225 gnect/src/main.c:909 gnibbles/main.c:247
 #: gnobots2/menu.c:274 quadrapassel/tetris.cpp:1313
-#: gnome-sudoku/src/lib/main.py:720 gnomine/gnomine.c:490
-#: gnotravex/gnotravex.c:1921 gnotski/gnotski.c:1542 gtali/gyahtzee.c:620
-#: iagno/gnothello.c:272 mahjongg/mahjongg.c:951
+#: gnome-sudoku/src/lib/main.py:721 gnomine/gnomine.c:490
+#: gnotravex/gnotravex.c:2033 gnotski/gnotski.c:1542 gtali/gyahtzee.c:620
+#: iagno/gnothello.c:272 lightsoff/src/About.js:20 mahjongg/mahjongg.c:951
+#: swell-foop/src/About.js:20
 msgid "translator-credits"
 msgstr ""
 "เทพพิทักษ์ การุญบุญญานันท์ <thep@linux.thai.net>\n"
@@ -1504,8 +1506,9 @@ msgstr ""
 #: glines/glines.c:1228 gnect/src/main.c:906 gnibbles/main.c:250
 #: gnobots2/menu.c:270 quadrapassel/tetris.cpp:1310
 #: gnome-sudoku/src/lib/defaults.py.in:43 gnomine/gnomine.c:493
-#: gnotravex/gnotravex.c:1924 gnotski/gnotski.c:1545 gtali/gyahtzee.c:624
-#: iagno/gnothello.c:274 mahjongg/mahjongg.c:954
+#: gnotravex/gnotravex.c:2036 gnotski/gnotski.c:1545 gtali/gyahtzee.c:624
+#: iagno/gnothello.c:274 lightsoff/src/About.js:19 mahjongg/mahjongg.c:954
+#: swell-foop/src/About.js:19
 msgid "GNOME Games web site"
 msgstr "เว็บไซต์ GNOME Games"
 
@@ -1556,21 +1559,21 @@ msgstr "ถอดไพ่ Freecell"
 
 #. Menu actions
 #. Preferences Dialog: Title of game options tab
-#: aisleriot/window.c:2202 glchess/data/glchess.ui.h:24
-#: glchess/data/preferences.ui.h:24 glines/glines.c:1691 gnect/src/main.c:1273
+#: aisleriot/window.c:2202 glchess/data/glchess.ui.h:22
+#: glchess/data/preferences.ui.h:26 glines/glines.c:1691 gnect/src/main.c:1273
 #: gnibbles/main.c:738 gnobots2/menu.c:68 quadrapassel/tetris.cpp:107
-#: gnome-sudoku/src/lib/main.py:241 gnomine/gnomine.c:834
-#: gnotravex/gnotravex.c:303 gnotski/gnotski.c:414 gtali/gyahtzee.c:705
+#: gnome-sudoku/src/lib/main.py:242 gnomine/gnomine.c:834
+#: gnotravex/gnotravex.c:314 gnotski/gnotski.c:414 gtali/gyahtzee.c:705
 #: iagno/gnothello.c:828 lightsoff/data/lightsoff.ui.h:2
 #: mahjongg/mahjongg.c:1242 swell-foop/data/swell-foop.ui.h:2
 msgid "_Game"
 msgstr "เ_กม"
 
 #. Preferences Dialog: Title of view options tab
-#: aisleriot/window.c:2203 glchess/data/glchess.ui.h:29
-#: glchess/data/preferences.ui.h:30 gnect/src/main.c:1274 gnibbles/main.c:739
-#: gnobots2/menu.c:69 gnome-sudoku/src/lib/main.py:251
-#: gnotravex/gnotravex.c:304 gnotski/gnotski.c:415
+#: aisleriot/window.c:2203 glchess/data/glchess.ui.h:27
+#: glchess/data/preferences.ui.h:32 gnect/src/main.c:1274 gnibbles/main.c:739
+#: gnobots2/menu.c:69 gnome-sudoku/src/lib/main.py:252
+#: gnotravex/gnotravex.c:315 gnotski/gnotski.c:415
 msgid "_View"
 msgstr "มุ_มมอง"
 
@@ -1578,16 +1581,16 @@ msgstr "มุ_มมอง"
 msgid "_Control"
 msgstr "การ_ควบคุม"
 
-#: aisleriot/window.c:2206 glchess/data/glchess.ui.h:25 glines/glines.c:1693
+#: aisleriot/window.c:2206 glchess/data/glchess.ui.h:23 glines/glines.c:1693
 #: gnect/src/main.c:1276 gnibbles/main.c:741 gnobots2/menu.c:72
-#: quadrapassel/tetris.cpp:109 gnome-sudoku/src/lib/main.py:269
-#: gnomine/gnomine.c:836 gnotravex/gnotravex.c:307 gnotski/gnotski.c:416
+#: quadrapassel/tetris.cpp:109 gnome-sudoku/src/lib/main.py:270
+#: gnomine/gnomine.c:836 gnotravex/gnotravex.c:318 gnotski/gnotski.c:416
 #: gtali/gyahtzee.c:707 iagno/gnothello.c:830 lightsoff/data/lightsoff.ui.h:3
 #: mahjongg/mahjongg.c:1244 swell-foop/data/swell-foop.ui.h:3
 msgid "_Help"
 msgstr "_วิธีใช้"
 
-#: aisleriot/window.c:2211 glchess/data/glchess.ui.h:18 gnobots2/menu.c:73
+#: aisleriot/window.c:2211 glchess/data/glchess.ui.h:16 gnobots2/menu.c:73
 #: libgames-support/games-stock.c:53 mahjongg/mahjongg.c:1245
 msgid "Start a new game"
 msgstr "เปิดเกมใหม่"
@@ -1665,7 +1668,7 @@ msgstr "_สำรับไพ่"
 msgid "_Toolbar"
 msgstr "แถบเ_ครื่องมือ"
 
-#: aisleriot/window.c:2303 glchess/data/preferences.ui.h:17 gnobots2/menu.c:96
+#: aisleriot/window.c:2303 glchess/data/preferences.ui.h:19 gnobots2/menu.c:96
 #: mahjongg/mahjongg.c:1273
 msgid "Show or hide the toolbar"
 msgstr "ซ่อนหรือแสดงแถบเครื่องมือ"
@@ -1678,7 +1681,7 @@ msgstr "แถบ_สถานะ"
 msgid "Show or hide statusbar"
 msgstr "ซ่อนหรือแสดงแถบสถานะ"
 
-#: aisleriot/window.c:2314 gnotravex/gnotravex.c:352
+#: aisleriot/window.c:2314 gnotravex/gnotravex.c:363
 msgid "_Click to Move"
 msgstr "ย้ายด้วยการ_คลิก"
 
@@ -1707,7 +1710,7 @@ msgstr "กำหนดว่าจะใช้ภาพเคลื่อนไ
 msgid "Score:"
 msgstr "คะแนน:"
 
-#: aisleriot/window.c:2645 gnotravex/gnotravex.c:1384 mahjongg/mahjongg.c:1465
+#: aisleriot/window.c:2645 gnotravex/gnotravex.c:1454 mahjongg/mahjongg.c:1465
 msgid "Time:"
 msgstr "เวลา:"
 
@@ -1715,6 +1718,302 @@ msgstr "เวลา:"
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "ไม่สามารถเริ่มเกม “%s”"
+
+#. Translators: this is the symbol that's on a Joker card
+#: aisleriot/lib/ar-card.c:182
+msgctxt "card symbol"
+msgid "JOKER"
+msgstr "JOKER"
+
+#. Translators: this is the symbol that's on an Ace card
+#: aisleriot/lib/ar-card.c:184 aisleriot/lib/ar-card.c:208
+msgctxt "card symbol"
+msgid "A"
+msgstr "A"
+
+#. Translators: this is the symbol that's on a 2 card
+#: aisleriot/lib/ar-card.c:186
+msgctxt "card symbol"
+msgid "2"
+msgstr "2"
+
+#. Translators: this is the symbol that's on a 3 card
+#: aisleriot/lib/ar-card.c:188
+msgctxt "card symbol"
+msgid "3"
+msgstr "3"
+
+#. Translators: this is the symbol that's on a 4 card
+#: aisleriot/lib/ar-card.c:190
+msgctxt "card symbol"
+msgid "4"
+msgstr "4"
+
+#. Translators: this is the symbol that's on a 5 card
+#: aisleriot/lib/ar-card.c:192
+msgctxt "card symbol"
+msgid "5"
+msgstr "5"
+
+#. Translators: this is the symbol that's on a 6 card
+#: aisleriot/lib/ar-card.c:194
+msgctxt "card symbol"
+msgid "6"
+msgstr "6"
+
+#. Translators: this is the symbol that's on a 7 card
+#: aisleriot/lib/ar-card.c:196
+msgctxt "card symbol"
+msgid "7"
+msgstr "7"
+
+#. Translators: this is the symbol that's on a 8 card
+#: aisleriot/lib/ar-card.c:198
+msgctxt "card symbol"
+msgid "8"
+msgstr "8"
+
+#. Translators: this is the symbol that's on a 9 card
+#: aisleriot/lib/ar-card.c:200
+msgctxt "card symbol"
+msgid "9"
+msgstr "9"
+
+#. Translators: this is the symbol that's on a Jack card
+#: aisleriot/lib/ar-card.c:202
+msgctxt "card symbol"
+msgid "J"
+msgstr "J"
+
+#. Translators: this is the symbol that's on a Queen card
+#: aisleriot/lib/ar-card.c:204
+msgctxt "card symbol"
+msgid "Q"
+msgstr "Q"
+
+#. Translators: this is the symbol that's on a King card
+#: aisleriot/lib/ar-card.c:206
+msgctxt "card symbol"
+msgid "K"
+msgstr "K"
+
+#. Translators: this is the symbol that's on a 1 card
+#: aisleriot/lib/ar-card.c:210
+msgctxt "card symbol"
+msgid "1"
+msgstr "1"
+
+#: aisleriot/lib/ar-card.c:252
+msgid "ace of clubs"
+msgstr "เอซดอกจิก"
+
+#: aisleriot/lib/ar-card.c:253
+msgid "two of clubs"
+msgstr "สองดอกจิก"
+
+#: aisleriot/lib/ar-card.c:254
+msgid "three of clubs"
+msgstr "สามดอกจิก"
+
+#: aisleriot/lib/ar-card.c:255
+msgid "four of clubs"
+msgstr "สี่ดอกจิก"
+
+#: aisleriot/lib/ar-card.c:256
+msgid "five of clubs"
+msgstr "ห้าดอกจิก"
+
+#: aisleriot/lib/ar-card.c:257
+msgid "six of clubs"
+msgstr "หกดอกจิก"
+
+#: aisleriot/lib/ar-card.c:258
+msgid "seven of clubs"
+msgstr "เจ็ดดอกจิก"
+
+#: aisleriot/lib/ar-card.c:259
+msgid "eight of clubs"
+msgstr "แปดดอกจิก"
+
+#: aisleriot/lib/ar-card.c:260
+msgid "nine of clubs"
+msgstr "เก้าดอกจิก"
+
+#: aisleriot/lib/ar-card.c:261
+msgid "ten of clubs"
+msgstr "สิบดอกจิก"
+
+#: aisleriot/lib/ar-card.c:262
+msgid "jack of clubs"
+msgstr "แจ็คดอกจิก"
+
+#: aisleriot/lib/ar-card.c:263
+msgid "queen of clubs"
+msgstr "ควีนดอกจิก"
+
+#: aisleriot/lib/ar-card.c:264
+msgid "king of clubs"
+msgstr "คิงดอกจิก"
+
+#: aisleriot/lib/ar-card.c:265
+msgid "ace of diamonds"
+msgstr "เอซข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:266
+msgid "two of diamonds"
+msgstr "สองข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:267
+msgid "three of diamonds"
+msgstr "สามข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:268
+msgid "four of diamonds"
+msgstr "สี่ข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:269
+msgid "five of diamonds"
+msgstr "ห้าข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:270
+msgid "six of diamonds"
+msgstr "หกข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:271
+msgid "seven of diamonds"
+msgstr "เจ็ดข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:272
+msgid "eight of diamonds"
+msgstr "แปดข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:273
+msgid "nine of diamonds"
+msgstr "เก้าข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:274
+msgid "ten of diamonds"
+msgstr "สิบข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:275
+msgid "jack of diamonds"
+msgstr "แจ็คข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:276
+msgid "queen of diamonds"
+msgstr "ควีนข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:277
+msgid "king of diamonds"
+msgstr "คิงข้าวหลามตัด"
+
+#: aisleriot/lib/ar-card.c:278
+msgid "ace of hearts"
+msgstr "เอซโพแดง"
+
+#: aisleriot/lib/ar-card.c:279
+msgid "two of hearts"
+msgstr "สองโพแดง"
+
+#: aisleriot/lib/ar-card.c:280
+msgid "three of hearts"
+msgstr "สามโพแดง"
+
+#: aisleriot/lib/ar-card.c:281
+msgid "four of hearts"
+msgstr "สี่โพแดง"
+
+#: aisleriot/lib/ar-card.c:282
+msgid "five of hearts"
+msgstr "ห้าโพแดง"
+
+#: aisleriot/lib/ar-card.c:283
+msgid "six of hearts"
+msgstr "หกโพแดง"
+
+#: aisleriot/lib/ar-card.c:284
+msgid "seven of hearts"
+msgstr "เจ็ดโพแดง"
+
+#: aisleriot/lib/ar-card.c:285
+msgid "eight of hearts"
+msgstr "แปดโพแดง"
+
+#: aisleriot/lib/ar-card.c:286
+msgid "nine of hearts"
+msgstr "เก้าโพแดง"
+
+#: aisleriot/lib/ar-card.c:287
+msgid "ten of hearts"
+msgstr "สิบโพแดง"
+
+#: aisleriot/lib/ar-card.c:288
+msgid "jack of hearts"
+msgstr "แจ็คโพแดง"
+
+#: aisleriot/lib/ar-card.c:289
+msgid "queen of hearts"
+msgstr "ควีนโพแดง"
+
+#: aisleriot/lib/ar-card.c:290
+msgid "king of hearts"
+msgstr "คิงโพแดง"
+
+#: aisleriot/lib/ar-card.c:291
+msgid "ace of spades"
+msgstr "เอซโพดำ"
+
+#: aisleriot/lib/ar-card.c:292
+msgid "two of spades"
+msgstr "สองโพดำ"
+
+#: aisleriot/lib/ar-card.c:293
+msgid "three of spades"
+msgstr "สามโพดำ"
+
+#: aisleriot/lib/ar-card.c:294
+msgid "four of spades"
+msgstr "สี่โพดำ"
+
+#: aisleriot/lib/ar-card.c:295
+msgid "five of spades"
+msgstr "ห้าโพดำ"
+
+#: aisleriot/lib/ar-card.c:296
+msgid "six of spades"
+msgstr "หกโพดำ"
+
+#: aisleriot/lib/ar-card.c:297
+msgid "seven of spades"
+msgstr "เจ็ดโพดำ"
+
+#: aisleriot/lib/ar-card.c:298
+msgid "eight of spades"
+msgstr "แปดโพดำ"
+
+#: aisleriot/lib/ar-card.c:299
+msgid "nine of spades"
+msgstr "เก้าโพดำ"
+
+#: aisleriot/lib/ar-card.c:300
+msgid "ten of spades"
+msgstr "สิบโพดำ"
+
+#: aisleriot/lib/ar-card.c:301
+msgid "jack of spades"
+msgstr "แจ็คโพดำ"
+
+#: aisleriot/lib/ar-card.c:302
+msgid "queen of spades"
+msgstr "ควีนโพดำ"
+
+#: aisleriot/lib/ar-card.c:303
+msgid "king of spades"
+msgstr "คิงโพดำ"
+
+#: aisleriot/lib/ar-card.c:320
+msgid "face-down card"
+msgstr "ไพ่คว่ำหน้า"
 
 #: aisleriot/rules/agnes.scm.h:1 aisleriot/rules/bear_river.scm.h:2
 #: aisleriot/rules/canfield.scm.h:2 aisleriot/rules/chessboard.scm.h:2
@@ -2562,10 +2861,18 @@ msgid "The height of the window"
 msgstr "ความสูงของหน้าต่าง"
 
 #: glchess/data/glchess.schemas.in.h:24
+msgid "The piece style to use"
+msgstr "รูปแบบตัวหมากที่จะใช้"
+
+#: glchess/data/glchess.schemas.in.h:25
+msgid "The piece style to use. Can be one of: 'simple' or 'fancy'"
+msgstr "รูปแบบตัวหมากที่จะใช้ ค่าที่ใช้ได้คือ 'simple' หรือ 'fancy'"
+
+#: glchess/data/glchess.schemas.in.h:26
 msgid "The piece to promote pawns to"
 msgstr "จะเลื่อนชั้นพอว์นขึ้นเป็นหมากอะไร"
 
-#: glchess/data/glchess.schemas.in.h:25
+#: glchess/data/glchess.schemas.in.h:27
 msgid ""
 "The piece to promote to when a human player moves a pawn to the far rank. "
 "Can be one of: 'queen', 'knight', 'rook', 'bishop'."
@@ -2573,7 +2880,7 @@ msgstr ""
 "เมื่อผู้เล่นมนุษย์เดินพอว์นขึ้นไปถึงแถวบนสุด จะเลื่อนชั้นพอว์นเป็นอะไร ค่าที่เป็นไปได้คือ: "
 "'queen' (ควีน), 'knight' (ม้า), 'rook' (เรือ), 'bishop' (บิชอป)"
 
-#: glchess/data/glchess.schemas.in.h:26
+#: glchess/data/glchess.schemas.in.h:28
 msgid ""
 "The side of the board that is in the foreground, either 'white', 'black', "
 "'current' (the current player), 'human' (the side of the current human "
@@ -2584,11 +2891,11 @@ msgstr ""
 "'current' (ฝ่ายผู้เล่นปัจจุบัน), 'human' (ฝ่ายผู้เล่นปัจจุบันที่เป็นมนุษย์) หรือ "
 "'facetoface' (เหมาะสำหรับการเล่นแบบนั่งคนละฝั่งของหน้าจอ เช่น เมื่อเล่นบนอุปกรณ์พกพา)"
 
-#: glchess/data/glchess.schemas.in.h:27
+#: glchess/data/glchess.schemas.in.h:29
 msgid "The width of the main window in pixels."
 msgstr "ความกว้างของหน้าต่างหลักเป็นนพิกเซล"
 
-#: glchess/data/glchess.schemas.in.h:28
+#: glchess/data/glchess.schemas.in.h:30
 msgid "The width of the window"
 msgstr "ความกว้างของหน้าต่าง"
 
@@ -2601,86 +2908,78 @@ msgstr "หมากรุก 3 _มิติ"
 msgid "Claim _Draw"
 msgstr "ประกาศว่าเ_สมอกัน"
 
-#: glchess/data/glchess.ui.h:3
-msgid "Load a saved game"
-msgstr "เรียกอ่านเกมที่บันทึกไว้"
-
 #. The title of the log dialaog
-#: glchess/data/glchess.ui.h:5
+#: glchess/data/glchess.ui.h:4
 msgid "Logs"
 msgstr "ปูม"
 
 #. The Network Game toolbar button
-#: glchess/data/glchess.ui.h:7 libgames-support/games-stock.c:337
+#: glchess/data/glchess.ui.h:6 libgames-support/games-stock.c:337
 msgid "Network _Game"
 msgstr "เ_กมบนเครือข่าย"
 
 #. The New Game toolbar button
 #. Title of the new game dialog
-#: glchess/data/glchess.ui.h:9 glchess/data/new_game.ui.h:13
+#: glchess/data/glchess.ui.h:8 glchess/data/new_game.ui.h:13
 #: libgames-support/games-scores-dialog.c:437
 msgid "New Game"
 msgstr "เกมใหม่"
 
 #. The tooltip for the Resign toolbar button
-#: glchess/data/glchess.ui.h:11
+#: glchess/data/glchess.ui.h:10
 msgid "Resign"
 msgstr "ยอมแพ้"
 
-#: glchess/data/glchess.ui.h:12
+#: glchess/data/glchess.ui.h:11
 msgid "Rewind to the game start"
 msgstr "ถอยกลับไปที่ต้นเกม"
 
-#: glchess/data/glchess.ui.h:13
-msgid "Save the current game"
-msgstr "บันทึกเกมที่กำลังเล่น"
-
-#: glchess/data/glchess.ui.h:14
+#: glchess/data/glchess.ui.h:12
 msgid "Show _Logs"
 msgstr "แสดงปู_มการเล่น"
 
-#: glchess/data/glchess.ui.h:15
+#: glchess/data/glchess.ui.h:13
 msgid "Show the current move"
 msgstr "แสดงตาเดินล่าสุด"
 
-#: glchess/data/glchess.ui.h:16
+#: glchess/data/glchess.ui.h:14
 msgid "Show the next move"
 msgstr "แสดงตาเดินตาถัดไป"
 
-#: glchess/data/glchess.ui.h:17
+#: glchess/data/glchess.ui.h:15
 msgid "Show the previous move"
 msgstr "แสดงตาเดินตาก่อนหน้า"
 
-#: glchess/data/glchess.ui.h:19 libgames-support/games-stock.c:51
+#: glchess/data/glchess.ui.h:17 libgames-support/games-stock.c:51
 msgid "Start a new multiplayer network game"
 msgstr "เริ่มเกมบนเครือข่ายแบบมีผู้เล่นหลายคนใหม่"
 
 #. Message displayed in log window when no logs are present
-#: glchess/data/glchess.ui.h:21
+#: glchess/data/glchess.ui.h:19
 msgid "There are no active logs."
 msgstr "ไม่มีรายการในปูม"
 
-#: glchess/data/glchess.ui.h:22
+#: glchess/data/glchess.ui.h:20
 msgid "Undo Move"
 msgstr "ย้อนตากลับ"
 
-#: glchess/data/glchess.ui.h:23 gnome-sudoku/src/lib/main.py:273
+#: glchess/data/glchess.ui.h:21 gnome-sudoku/src/lib/main.py:274
 #: libgames-support/games-stock.c:321
 msgid "_Contents"
 msgstr "เ_นื้อหา"
 
-#: glchess/data/glchess.ui.h:26
+#: glchess/data/glchess.ui.h:24
 msgid "_Resign"
 msgstr "ยอมแ_พ้"
 
-#: glchess/data/glchess.ui.h:27 glines/glines.c:1692 gnect/src/main.c:1275
+#: glchess/data/glchess.ui.h:25 glines/glines.c:1692 gnect/src/main.c:1275
 #: gnibbles/main.c:740 gnobots2/menu.c:71 quadrapassel/tetris.cpp:108
 #: gnomine/gnomine.c:835 gtali/gyahtzee.c:706 iagno/gnothello.c:829
 #: mahjongg/mahjongg.c:1243
 msgid "_Settings"
 msgstr "_ตั้งค่า"
 
-#: glchess/data/glchess.ui.h:28 libgames-support/games-stock.c:333
+#: glchess/data/glchess.ui.h:26 libgames-support/games-stock.c:333
 msgid "_Undo Move"
 msgstr "_ย้อนตากลับ"
 
@@ -2841,60 +3140,66 @@ msgstr "แนววางของกระดาน:"
 msgid "Move Format:"
 msgstr "รูปแบบตาเดิน:"
 
+#. Preferences Dialog: Label before piece style combo box
+#: glchess/data/preferences.ui.h:8
+msgid "Piece Style:"
+msgstr "รูปแบบตัวหมาก:"
+
 #. Title for preferences dialog
-#: glchess/data/preferences.ui.h:8 glines/glines.c:197 mahjongg/mahjongg.c:140
+#: glchess/data/preferences.ui.h:10 glines/glines.c:197
+#: mahjongg/mahjongg.c:140
 msgid "Preferences"
 msgstr "ปรับแต่ง"
 
 #. Preferences Dialog: Label before promotion type combo box
-#: glchess/data/preferences.ui.h:10
+#: glchess/data/preferences.ui.h:12
 msgid "Promotion Type:"
 msgstr "การเลื่อนชั้น:"
 
 #. Preferences Dialog: Check box for selecting if history browser is visible
-#: glchess/data/preferences.ui.h:12
+#: glchess/data/preferences.ui.h:14
 msgid "Show _History"
 msgstr "แสดง_ประวัติการเดิน"
 
 #. Preferences Dialog: Check box for selecting if toolbar is visible
-#: glchess/data/preferences.ui.h:14 gnome-sudoku/src/lib/main.py:293
+#: glchess/data/preferences.ui.h:16 gnome-sudoku/src/lib/main.py:294
 msgid "Show _Toolbar"
 msgstr "แสดงแ_ถบเครื่องมือ"
 
-#: glchess/data/preferences.ui.h:15
+#: glchess/data/preferences.ui.h:17
 msgid "Show or hide numbering on the chess board"
 msgstr "ซ่อนหรือแสดงเลขกำกับบนกระดาน"
 
-#: glchess/data/preferences.ui.h:16
+#: glchess/data/preferences.ui.h:18
 msgid "Show or hide the game history panel"
 msgstr "ซ่อนหรือแสดงช่องประวัติการเดิน"
 
-#: glchess/data/preferences.ui.h:18
+#: glchess/data/preferences.ui.h:20
 msgid "Shows hints during chess games"
 msgstr "แสดงการบอกใบ้ในระหว่างเกมหมากรุก"
 
-#: glchess/data/preferences.ui.h:19
+#: glchess/data/preferences.ui.h:21
 msgid "Smooth edges of the 3D elements (anti-alias)"
 msgstr "แสดงองค์ประกอบ 3 มิติแบบเส้นขอบเรียบ (ลบรอยหยัก)"
 
-#: glchess/data/preferences.ui.h:20
+#: glchess/data/preferences.ui.h:22
 msgid ""
 "View the chess board by default in 2D mode, or optionally in 3D mode using "
 "OpenGL."
 msgstr "แสดงตารางหมากรุกในแบบ 2 มิติตามปกติ หรือจะเลือกแสดงแบบ 3 มิติโดยใช้ OpenGL"
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: glchess/data/preferences.ui.h:22
+#: glchess/data/preferences.ui.h:24
 msgid "_Board Numbering"
 msgstr "แสดงเ_ลขกำกับกระดาน"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: glchess/data/preferences.ui.h:26
+#: glchess/data/preferences.ui.h:28
 msgid "_Move Hints"
 msgstr "ใ_บ้ตาเดิน"
 
 #. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: glchess/data/preferences.ui.h:28
+#: glchess/data/preferences.ui.h:30
 msgid "_Smooth Display"
 msgstr "แสดงเส้นเ_รียบ"
 
@@ -2904,7 +3209,7 @@ msgid "Save Chess Game"
 msgstr "บันทึกเกมหมากรุก"
 
 #. Translators: Window title when not playing a game
-#: glchess/glchess.desktop.in.in.h:1 glchess/src/lib/gtkui/gtkui.py:332
+#: glchess/glchess.desktop.in.in.h:1 glchess/src/lib/gtkui/gtkui.py:331
 msgid "Chess"
 msgstr "หมากรุก"
 
@@ -2972,17 +3277,17 @@ msgid "hours"
 msgstr "ชั่วโมง"
 
 #. Translators: AI Difficulty Combo: AI set to easy difficulty
-#: glchess/src/lib/gtkui/dialogs.py:178 gnome-sudoku/src/lib/sudoku.py:516
+#: glchess/src/lib/gtkui/dialogs.py:178 gnome-sudoku/src/lib/sudoku.py:677
 msgid "Easy"
 msgstr "ง่าย"
 
 #. Translators: AI Difficulty Combo: AI set to normal diffuculty
-#: glchess/src/lib/gtkui/dialogs.py:180
+#: glchess/src/lib/gtkui/dialogs.py:180 swell-foop/src/Score.js:145
 msgid "Normal"
 msgstr "ปกติ"
 
 #. Translators: AI Difficulty Combo: AI set to hard diffuculty
-#: glchess/src/lib/gtkui/dialogs.py:182 gnome-sudoku/src/lib/sudoku.py:514
+#: glchess/src/lib/gtkui/dialogs.py:182 gnome-sudoku/src/lib/sudoku.py:675
 msgid "Hard"
 msgstr "ยาก"
 
@@ -3131,41 +3436,51 @@ msgctxt "chess-piece"
 msgid "Bishop"
 msgstr "บิชอป"
 
+#. Translators: a simple piece set will be used in 2d mode
+#: glchess/src/lib/gtkui/dialogs.py:642
+msgid "Simple"
+msgstr "ง่ายๆ"
+
+#. Translators: a fancy piece set will be used in 2d mode
+#: glchess/src/lib/gtkui/dialogs.py:644
+msgid "Fancy"
+msgstr "แฟนซี"
+
 #. Translators: Window title when playing a game that needs saving
-#: glchess/src/lib/gtkui/gtkui.py:326
+#: glchess/src/lib/gtkui/gtkui.py:325
 #, python-format
 msgid "Chess - *%(game_name)s"
 msgstr "หมากรุก - *%(game_name)s"
 
 #. Translators: Window title when playing a game that is saved
-#: glchess/src/lib/gtkui/gtkui.py:329
+#: glchess/src/lib/gtkui/gtkui.py:328
 #, python-format
 msgid "Chess - %(game_name)s"
 msgstr "หมากรุก - %(game_name)s"
 
 #. Translators: Game Timer Label: Indicates that game has no time limit
-#: glchess/src/lib/gtkui/gtkui.py:344
+#: glchess/src/lib/gtkui/gtkui.py:343
 msgid "∞"
 msgstr "∞"
 
 #. Translators: Save Game Dialog: Notice that game needs saving
-#: glchess/src/lib/gtkui/gtkui.py:417
+#: glchess/src/lib/gtkui/gtkui.py:416
 msgid "If you don't save the changes to this game will be permanently lost"
 msgstr "ถ้าคุณไม่บันทึก การเปลี่ยนแปลงทั้งหมดในเกมนี้จะสูญหายอย่างถาวร"
 
 #. Translators: Save Game Dialog: Discard game button
-#: glchess/src/lib/gtkui/gtkui.py:419
+#: glchess/src/lib/gtkui/gtkui.py:418
 msgid "Close _without saving"
 msgstr "ปิดโดยไ_ม่บันทึก"
 
 #. Translators: No 3D Dialog: Title
-#: glchess/src/lib/gtkui/gtkui.py:534
+#: glchess/src/lib/gtkui/gtkui.py:533
 msgid "Unable to enable 3D mode"
 msgstr "ไม่สามารถเปิดใช้โหมด 3 มิติ"
 
 #. Translators: No 3D Dialog: Notification to user that they do not have libraries required to enable 3D.
 #. %(error)s will be replaced with a list of reasons why 3D is not available.
-#: glchess/src/lib/gtkui/gtkui.py:538
+#: glchess/src/lib/gtkui/gtkui.py:537
 #, python-format
 msgid ""
 "You are unable to play in 3D mode due to the following problems:\n"
@@ -3180,12 +3495,12 @@ msgstr ""
 "กรุณาติดต่อผู้ดูแลระบบของคุณเพื่อแก้ปัญหา ในระหว่างนี้ คุณยังสามารถเล่นหมากรุกในแบบ 2 มิติได้"
 
 #. Translators: Draw Dialog: Title
-#: glchess/src/lib/gtkui/gtkui.py:800
+#: glchess/src/lib/gtkui/gtkui.py:802
 msgid "Unable to claim draw"
 msgstr "ไม่สามารถประกาศว่าเสมอกัน"
 
 #. Translators: Draw Dialog: Notify user why they cannot claim draw
-#: glchess/src/lib/gtkui/gtkui.py:802
+#: glchess/src/lib/gtkui/gtkui.py:804
 msgid ""
 "You may claim a draw when:\n"
 "a) The board has been in the same state three times (Three fold repetition)\n"
@@ -3198,7 +3513,7 @@ msgstr ""
 
 #. TODO: This should be a pop-up dialog
 #. FIXME: This should create a pop-up dialog
-#: glchess/src/lib/gtkui/gtkui.py:824 gnome-sudoku/src/lib/main.py:730
+#: glchess/src/lib/gtkui/gtkui.py:826 gnome-sudoku/src/lib/main.py:731
 #, python-format
 msgid "Unable to display help: %s"
 msgstr "แสดงวิธีใช้ไม่สำเร็จ: %s"
@@ -3963,7 +4278,7 @@ msgstr ""
 "glChess พัง กรุณารายงานปัญหานี้ไปที่ http://bugzilla.gnome.org\n"
 "ข้อความดีบั๊ก:"
 
-#: glchess/src/lib/main.py:716 gnome-sudoku/src/lib/main.py:476
+#: glchess/src/lib/main.py:716 gnome-sudoku/src/lib/main.py:477
 msgid "Save game before closing?"
 msgstr "บันทึกเกมก่อนปิดหรือไม่?"
 
@@ -4115,7 +4430,7 @@ msgstr "เกมหยิบห้าของ GNOME"
 msgid "_Board size:"
 msgstr "_ขนาดกระดาน:"
 
-#: glines/glines.c:511
+#: glines/glines.c:511 swell-foop/src/Score.js:109
 msgid "Game Over!"
 msgstr "อวสาน!"
 
@@ -4312,7 +4627,7 @@ msgstr ""
 msgid "It's a draw!"
 msgstr "เสมอกัน!"
 
-#: gnect/src/main.c:567 gnome-sudoku/src/lib/main.py:438
+#: gnect/src/main.c:567 gnome-sudoku/src/lib/main.py:439
 msgid "You win!"
 msgstr "คุณชนะ!"
 
@@ -4535,19 +4850,19 @@ msgid "Speed:"
 msgstr "ความเร็ว:"
 
 #: gnibbles/gnibbles.c:376 gnobots2/game.c:182 gnomine/gnomine.c:225
-#: gnotravex/gnotravex.c:1240 gnotski/gnotski.c:842 gtali/gyahtzee.c:200
+#: gnotravex/gnotravex.c:1310 gnotski/gnotski.c:842 gtali/gyahtzee.c:200
 #: mahjongg/mahjongg.c:668
 msgid "Congratulations!"
 msgstr "ยินดีด้วย!"
 
 #: gnibbles/gnibbles.c:377 gnobots2/game.c:183 gnomine/gnomine.c:226
-#: gnotravex/gnotravex.c:1241 gnotski/gnotski.c:843 gtali/gyahtzee.c:201
+#: gnotravex/gnotravex.c:1311 gnotski/gnotski.c:843 gtali/gyahtzee.c:201
 #: mahjongg/mahjongg.c:669
 msgid "Your score is the best!"
 msgstr "คุณได้คะแนนอันดับหนึ่ง!"
 
 #: gnibbles/gnibbles.c:378 gnobots2/game.c:184 gnomine/gnomine.c:227
-#: gnotravex/gnotravex.c:1242 gnotski/gnotski.c:844 gtali/gyahtzee.c:202
+#: gnotravex/gnotravex.c:1312 gnotski/gnotski.c:844 gtali/gyahtzee.c:202
 #: mahjongg/mahjongg.c:670
 msgid "Your score has made the top ten."
 msgstr "คะแนนของคุณติดสิบอันดับแรก"
@@ -4867,12 +5182,12 @@ msgid "Initial window position"
 msgstr "ตำแหน่งหน้าต่างเริ่มต้น"
 
 #: gnobots2/gnobots.c:89 gnomine/gnomine.c:1003 gnomine/gnomine.c:1011
-#: gnotravex/gnotravex.c:400 gnotski/gnotski.c:467 iagno/gnothello.c:150
+#: gnotravex/gnotravex.c:411 gnotski/gnotski.c:467 iagno/gnothello.c:150
 msgid "X"
 msgstr "X"
 
 #: gnobots2/gnobots.c:91 gnomine/gnomine.c:1005 gnomine/gnomine.c:1013
-#: gnotravex/gnotravex.c:402 gnotski/gnotski.c:469 iagno/gnothello.c:152
+#: gnotravex/gnotravex.c:413 gnotski/gnotski.c:469 iagno/gnothello.c:152
 msgid "Y"
 msgstr "Y"
 
@@ -5143,7 +5458,7 @@ msgstr ""
 msgid "Could not find '%s' pixmap file\n"
 msgstr "หาแฟ้มรูปภาพ '%s' ไม่พบ\n"
 
-#: gnobots2/menu.c:70 gnotravex/gnotravex.c:305
+#: gnobots2/menu.c:70 gnotravex/gnotravex.c:316
 msgid "_Move"
 msgstr "เ_คลื่อนที่"
 
@@ -5705,7 +6020,7 @@ msgstr "ล้างชุด_อื่น"
 msgid "_Add Tracker"
 msgstr "เ_พิ่มชุดช่วยตาม"
 
-#: gnome-sudoku/data/tracker.ui.h:3 gnome-sudoku/src/lib/main.py:788
+#: gnome-sudoku/data/tracker.ui.h:3 gnome-sudoku/src/lib/main.py:789
 msgid "_Clear Tracker"
 msgstr "_ล้างชุดช่วยตาม"
 
@@ -5783,108 +6098,108 @@ msgstr "ซูโดกุไม่สามารถทำเครื่อง
 msgid "Track moves"
 msgstr "ช่วยตาม"
 
-#: gnome-sudoku/src/lib/main.py:243
+#: gnome-sudoku/src/lib/main.py:244
 msgid "New game"
 msgstr "เกมใหม่"
 
-#: gnome-sudoku/src/lib/main.py:245
+#: gnome-sudoku/src/lib/main.py:246
 msgid "Print current game"
 msgstr "พิมพ์เกมปัจจุบัน"
 
-#: gnome-sudoku/src/lib/main.py:246
+#: gnome-sudoku/src/lib/main.py:247
 msgid "Print _Multiple Sudokus"
 msgstr "พิมพ์ Sudoku ทีละห_ลายเกม"
 
-#: gnome-sudoku/src/lib/main.py:247
+#: gnome-sudoku/src/lib/main.py:248
 msgid "Print more than one sudoku at a time."
 msgstr "พิมพ์ sudoku ทีละมากกว่าหนึ่งเกม"
 
-#: gnome-sudoku/src/lib/main.py:249
+#: gnome-sudoku/src/lib/main.py:250
 msgid "Close Sudoku"
 msgstr "ปิดซูโดกุ"
 
-#: gnome-sudoku/src/lib/main.py:250
+#: gnome-sudoku/src/lib/main.py:251
 msgid "_Tools"
 msgstr "เ_ครื่องมือ"
 
-#: gnome-sudoku/src/lib/main.py:252 libgames-support/games-stock.c:323
+#: gnome-sudoku/src/lib/main.py:253 libgames-support/games-stock.c:323
 msgid "_Hint"
 msgstr "บอกใ_บ้"
 
-#: gnome-sudoku/src/lib/main.py:254
+#: gnome-sudoku/src/lib/main.py:255
 msgid "Show which numbers could go in the current square."
 msgstr "แสดงตัวเลขที่สามารถเติมได้ในช่องสี่เหลี่ยมปัจจุบัน"
 
-#: gnome-sudoku/src/lib/main.py:256
+#: gnome-sudoku/src/lib/main.py:257
 msgid "_Fill"
 msgstr "เ_ติม"
 
-#: gnome-sudoku/src/lib/main.py:257
+#: gnome-sudoku/src/lib/main.py:258
 msgid "Automatically fill in the current square if possible."
 msgstr "ถ้าเป็นไปได้ให้เติมค่าในช่องสี่เหลี่ยมปัจจุบัน"
 
-#: gnome-sudoku/src/lib/main.py:259
+#: gnome-sudoku/src/lib/main.py:260
 msgid "Fill _all squares"
 msgstr "เติม_ทุกช่องสี่เหลี่ยม"
 
-#: gnome-sudoku/src/lib/main.py:260
+#: gnome-sudoku/src/lib/main.py:261
 msgid ""
 "Automatically fill in all squares for which there is only one valid value."
 msgstr "เติมค่าอัตโนมัติในทุกช่องสี่เหลี่ยมใดที่สามารถเติมค่าได้เพียงค่าเดียวเท่านั้น"
 
-#: gnome-sudoku/src/lib/main.py:264
+#: gnome-sudoku/src/lib/main.py:265
 msgid "_Generate new puzzles"
 msgstr "_สร้างปริศนาใหม่"
 
-#: gnome-sudoku/src/lib/main.py:264
+#: gnome-sudoku/src/lib/main.py:265
 msgid "Generate new puzzles."
 msgstr "สร้างปริศนาใหม่"
 
-#: gnome-sudoku/src/lib/main.py:266
+#: gnome-sudoku/src/lib/main.py:267
 msgid "Puzzle _Statistics"
 msgstr "_สถิติของปริศนา"
 
-#: gnome-sudoku/src/lib/main.py:267
+#: gnome-sudoku/src/lib/main.py:268
 msgid "Show statistics about current puzzle"
 msgstr "แสดงสถิติของปริศนาปัจจุบัน"
 
-#: gnome-sudoku/src/lib/main.py:279
+#: gnome-sudoku/src/lib/main.py:280
 msgid "_Always show hint"
 msgstr "_บอกใบ้ตัวเลขทุกครั้ง"
 
-#: gnome-sudoku/src/lib/main.py:281
+#: gnome-sudoku/src/lib/main.py:282
 msgid "Always show possible numbers in a square"
 msgstr "แสดงค่าตัวเลขที่เป็นได้ในช่องสี่เหลี่ยมเสมอ"
 
-#: gnome-sudoku/src/lib/main.py:285
+#: gnome-sudoku/src/lib/main.py:286
 msgid "Warn about _unfillable squares"
 msgstr "เตือนเมื่อช่องสี่เหลี่ยมไ_ม่สามารถเติมค่าได้"
 
-#: gnome-sudoku/src/lib/main.py:287
+#: gnome-sudoku/src/lib/main.py:288
 msgid "Warn about squares made unfillable by a move"
 msgstr "เตือนเกี่ยวกับช่องที่จะถูกทำให้เติมไม่ได้จากการเติมแต่ละครั้ง"
 
-#: gnome-sudoku/src/lib/main.py:289
+#: gnome-sudoku/src/lib/main.py:290
 msgid "_Track additions"
 msgstr "_ช่วยตาม"
 
-#: gnome-sudoku/src/lib/main.py:291
+#: gnome-sudoku/src/lib/main.py:292
 msgid "Mark new additions in a separate color so you can keep track of them."
 msgstr "ทำเครื่องหมายค่าที่เติมแบบแยกสี เพื่อให้คุณสามารถติดตามลำดับการเติมแต่ละชุดได้"
 
-#: gnome-sudoku/src/lib/main.py:294
+#: gnome-sudoku/src/lib/main.py:295
 msgid "_Highlighter"
 msgstr "เ_น้นสี"
 
-#: gnome-sudoku/src/lib/main.py:295
+#: gnome-sudoku/src/lib/main.py:296
 msgid "Highlight the current row, column and box"
 msgstr "ทำสีเน้นแถวคอลัมน์และกล่องปัจจุบัน"
 
-#: gnome-sudoku/src/lib/main.py:296
+#: gnome-sudoku/src/lib/main.py:297
 msgid "Generate new puzzles _while you play"
 msgstr "สร้างปริศนาใหม่ใน_ระหว่างที่คุณเล่น"
 
-#: gnome-sudoku/src/lib/main.py:298
+#: gnome-sudoku/src/lib/main.py:299
 msgid ""
 "Generate new puzzles in the background while you play. This will "
 "automatically pause when the game goes into the background."
@@ -5892,128 +6207,128 @@ msgstr ""
 "สร้างปริศนาใหม่ในเบื้องหลังไปเรื่อยๆ ในระหว่างที่คุณเล่น "
 "การสร้างดังกล่าวจะหยุดพักโดยอัตโนมัติเมื่อหน้าต่างเกมถูกเก็บเข้าด้านหลัง"
 
-#: gnome-sudoku/src/lib/main.py:304
+#: gnome-sudoku/src/lib/main.py:305
 msgid "_Edit"
 msgstr "แ_ก้ไข"
 
-#: gnome-sudoku/src/lib/main.py:305
+#: gnome-sudoku/src/lib/main.py:306
 msgid "_Undo"
 msgstr "เรี_ยกคืน"
 
-#: gnome-sudoku/src/lib/main.py:305
+#: gnome-sudoku/src/lib/main.py:306
 msgid "Undo last action"
 msgstr "เรียกคืนการกระทำล่าสุด"
 
-#: gnome-sudoku/src/lib/main.py:306
+#: gnome-sudoku/src/lib/main.py:307
 msgid "_Redo"
 msgstr "_ทำซ้ำ"
 
-#: gnome-sudoku/src/lib/main.py:306
+#: gnome-sudoku/src/lib/main.py:307
 msgid "Redo last action"
 msgstr "ทำซ้ำการกระทำที่เรียกคืนใหม่"
 
-#: gnome-sudoku/src/lib/main.py:307 gnome-sudoku/src/lib/number_box.py:54
+#: gnome-sudoku/src/lib/main.py:308 gnome-sudoku/src/lib/number_box.py:54
 msgid "_Clear"
 msgstr "_ล้างค่า"
 
-#: gnome-sudoku/src/lib/main.py:307
+#: gnome-sudoku/src/lib/main.py:308
 msgid "Clear entries you've filled in"
 msgstr "ล้างรายการที่คุณได้เติมค่าลงไป"
 
-#: gnome-sudoku/src/lib/main.py:308
+#: gnome-sudoku/src/lib/main.py:309
 msgid "Clear _Notes"
 msgstr "ล้าง_บันทึก"
 
-#: gnome-sudoku/src/lib/main.py:308
+#: gnome-sudoku/src/lib/main.py:309
 msgid "Clear notes and hints"
 msgstr "ล้างบันทึกและคำใบ้"
 
-#: gnome-sudoku/src/lib/main.py:420
+#: gnome-sudoku/src/lib/main.py:421
 #, python-format
 msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
 msgstr "คุณแก้ปริศนาเสร็จภายใน %(totalTime)s (ใช้เวลาในเกม %(activeTime)s)"
 
-#: gnome-sudoku/src/lib/main.py:424
+#: gnome-sudoku/src/lib/main.py:425
 #, python-format
 msgid "You got %(n)s hint"
 msgid_plural "You got %(n)s hints"
 msgstr[0] "คุณใช้การบอกใบ้ %(n)s ครั้ง"
 
-#: gnome-sudoku/src/lib/main.py:427
+#: gnome-sudoku/src/lib/main.py:428
 #, python-format
 msgid "You had %(n)s impossibility pointed out."
 msgid_plural "You had %(n)s impossibilities pointed out."
 msgstr[0] "คุณใช้การช่วยหาทางที่เป็นไปไม่ได้ %(n)s ครั้ง"
 
-#: gnome-sudoku/src/lib/main.py:432
+#: gnome-sudoku/src/lib/main.py:433
 #, python-format
 msgid "You used the auto-fill %(n)s time"
 msgid_plural "You used the auto-fill %(n)s times"
 msgstr[0] "คุณใช้การเติมอัตโนมัติ %(n)s ครั้ง"
 
-#: gnome-sudoku/src/lib/main.py:456
+#: gnome-sudoku/src/lib/main.py:457
 msgid "Save this game before starting new one?"
 msgstr "จะบันทึกเกมก่อนเริ่มเกมใหม่หรือไม่"
 
-#: gnome-sudoku/src/lib/main.py:457
+#: gnome-sudoku/src/lib/main.py:458
 msgid "_Save game for later"
 msgstr "_บันทึกเพื่อเล่นภายหลัง"
 
-#: gnome-sudoku/src/lib/main.py:458
+#: gnome-sudoku/src/lib/main.py:459
 msgid "_Abandon game"
 msgstr "ไ_ม่ต้องบันทึกเกม"
 
-#: gnome-sudoku/src/lib/main.py:652
+#: gnome-sudoku/src/lib/main.py:653
 #, python-format
 msgid "Playing %(difficulty)s puzzle."
 msgstr "กำลังเล่นปริศนา%(difficulty)s"
 
-#: gnome-sudoku/src/lib/main.py:668
+#: gnome-sudoku/src/lib/main.py:669
 msgid "Puzzle Information"
 msgstr "ข้อมูลปริศนา"
 
-#: gnome-sudoku/src/lib/main.py:669
+#: gnome-sudoku/src/lib/main.py:670
 msgid "There is no current puzzle."
 msgstr "ไม่มีปริศนาที่กำลังเล่น"
 
-#: gnome-sudoku/src/lib/main.py:674
+#: gnome-sudoku/src/lib/main.py:675
 msgid "Calculated difficulty: "
 msgstr "ระดับความยากที่คำนวณได้: "
 
-#: gnome-sudoku/src/lib/main.py:678
+#: gnome-sudoku/src/lib/main.py:679
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "จำนวนช่องที่เติมได้ทันทีด้วยการตัดตัวเลือก: "
 
-#: gnome-sudoku/src/lib/main.py:681
+#: gnome-sudoku/src/lib/main.py:682
 msgid "Number of moves instantly fillable by filling: "
 msgstr "จำนวนช่องที่เติมได้ทันทีด้วยการเติมปกติ: "
 
-#: gnome-sudoku/src/lib/main.py:684
+#: gnome-sudoku/src/lib/main.py:685
 msgid "Amount of trial-and-error required to solve: "
 msgstr "ปริมาณการลองผิดลองถูกที่ต้องทำเพื่อแก้ปริศนา: "
 
-#: gnome-sudoku/src/lib/main.py:687 gnome-sudoku/src/lib/main.py:688
+#: gnome-sudoku/src/lib/main.py:688 gnome-sudoku/src/lib/main.py:689
 msgid "Puzzle Statistics"
 msgstr "สถิติของปริศนา"
 
 #. Our initial row...
-#: gnome-sudoku/src/lib/main.py:779
+#: gnome-sudoku/src/lib/main.py:780
 msgid "No Tracker"
 msgstr "ไม่มีชุดช่วยตาม"
 
-#: gnome-sudoku/src/lib/main.py:789
+#: gnome-sudoku/src/lib/main.py:790
 msgid "Clear all moves tracked by selected tracker."
 msgstr "ล้างตัวเลขทั้งหมดที่ช่วยตามโดยชุดช่วยตามที่เลือก"
 
-#: gnome-sudoku/src/lib/main.py:793
+#: gnome-sudoku/src/lib/main.py:794
 msgid "_Clear Others"
 msgstr "_ล้างชุดอื่น"
 
-#: gnome-sudoku/src/lib/main.py:795
+#: gnome-sudoku/src/lib/main.py:796
 msgid "Clear all moves not tracked by selected tracker."
 msgstr "ล้างตัวเลขทั้งหมดที่ไม่ได้ช่วยตามโดยชุดช่วยตามที่เลือก"
 
-#: gnome-sudoku/src/lib/main.py:820
+#: gnome-sudoku/src/lib/main.py:821
 #, python-format
 msgid "Tracker %s"
 msgstr "ชุดช่วยตาม %s"
@@ -6061,11 +6376,11 @@ msgid "Generated %(n)s puzzle"
 msgid_plural "Generated %(n)s puzzles"
 msgstr[0] "สร้างปริศนาไปแล้ว %(n)s ปริศนา"
 
-#: gnome-sudoku/src/lib/sudoku.py:513
+#: gnome-sudoku/src/lib/sudoku.py:674
 msgid "Very Hard"
 msgstr "ยากมาก"
 
-#: gnome-sudoku/src/lib/sudoku.py:515
+#: gnome-sudoku/src/lib/sudoku.py:676
 msgid "Medium"
 msgstr "ปานกลาง"
 
@@ -6193,7 +6508,7 @@ msgstr "กับระเบิดถูกเคลียร์หมดแล
 msgid "Mines Scores"
 msgstr "สถิติของเกมกับระเบิด"
 
-#: gnomine/gnomine.c:218 gnotravex/gnotravex.c:1235
+#: gnomine/gnomine.c:218 gnotravex/gnotravex.c:1305 swell-foop/src/Score.js:56
 msgid "Size:"
 msgstr "ขนาด:"
 
@@ -6285,12 +6600,12 @@ msgstr "จำนวนกับระเบิด"
 msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "ขนาดของสนาม (0-2 = เล็ก-ใหญ่, 3=กำหนดเอง)"
 
-#: gnomine/gnomine.c:1010 gnotravex/gnotravex.c:399 gnotski/gnotski.c:466
+#: gnomine/gnomine.c:1010 gnotravex/gnotravex.c:410 gnotski/gnotski.c:466
 #: iagno/gnothello.c:149
 msgid "X location of window"
 msgstr "ตำแหน่งตามแกน X ของหน้าต่าง"
 
-#: gnomine/gnomine.c:1012 gnotravex/gnotravex.c:401 gnotski/gnotski.c:468
+#: gnomine/gnomine.c:1012 gnotravex/gnotravex.c:412 gnotski/gnotski.c:468
 #: iagno/gnothello.c:151
 msgid "Y location of window"
 msgstr "ตำแหน่งตามแกน Y ของหน้าต่าง"
@@ -6450,124 +6765,124 @@ msgstr "5×5"
 msgid "6×6"
 msgstr "6×6"
 
-#: gnotravex/gnotravex.c:306
+#: gnotravex/gnotravex.c:317
 msgid "_Size"
 msgstr "_ขนาด"
 
-#: gnotravex/gnotravex.c:315
+#: gnotravex/gnotravex.c:326
 msgid "Sol_ve"
 msgstr "เฉล_ย"
 
-#: gnotravex/gnotravex.c:315
+#: gnotravex/gnotravex.c:326
 msgid "Solve the game"
 msgstr "เฉลยปริศนา"
 
-#: gnotravex/gnotravex.c:324
+#: gnotravex/gnotravex.c:335
 msgid "_Up"
 msgstr "_ขึ้น"
 
-#: gnotravex/gnotravex.c:325
+#: gnotravex/gnotravex.c:336
 msgid "Move the pieces up"
 msgstr "ย้ายกระเบื้องขึ้น"
 
-#: gnotravex/gnotravex.c:326
+#: gnotravex/gnotravex.c:337
 msgid "_Left"
 msgstr "ซ้า_ย"
 
-#: gnotravex/gnotravex.c:327
+#: gnotravex/gnotravex.c:338
 msgid "Move the pieces left"
 msgstr "ย้ายกระเบื้องไปทางซ้าย"
 
-#: gnotravex/gnotravex.c:328
+#: gnotravex/gnotravex.c:339
 msgid "_Right"
 msgstr "ขว_า"
 
-#: gnotravex/gnotravex.c:329
+#: gnotravex/gnotravex.c:340
 msgid "Move the pieces right"
 msgstr "ย้ายกระเบื้องไปทางขวา"
 
-#: gnotravex/gnotravex.c:330
+#: gnotravex/gnotravex.c:341
 msgid "_Down"
 msgstr "_ลง"
 
-#: gnotravex/gnotravex.c:331
+#: gnotravex/gnotravex.c:342
 msgid "Move the pieces down"
 msgstr "ย้ายกระเบื้องลง"
 
-#: gnotravex/gnotravex.c:337
+#: gnotravex/gnotravex.c:348
 msgid "_2×2"
 msgstr "_2×2"
 
-#: gnotravex/gnotravex.c:337
+#: gnotravex/gnotravex.c:348
 msgid "Play on a 2×2 board"
 msgstr "เล่นเกมขนาด 2×2"
 
-#: gnotravex/gnotravex.c:339
+#: gnotravex/gnotravex.c:350
 msgid "_3×3"
 msgstr "_3×3"
 
-#: gnotravex/gnotravex.c:339
+#: gnotravex/gnotravex.c:350
 msgid "Play on a 3×3 board"
 msgstr "เล่นเกมขนาด 3×3"
 
-#: gnotravex/gnotravex.c:341
+#: gnotravex/gnotravex.c:352
 msgid "_4×4"
 msgstr "_4×4"
 
-#: gnotravex/gnotravex.c:341
+#: gnotravex/gnotravex.c:352
 msgid "Play on a 4×4 board"
 msgstr "เล่นเกมขนาด 4×4"
 
-#: gnotravex/gnotravex.c:343
+#: gnotravex/gnotravex.c:354
 msgid "_5×5"
 msgstr "_5×5"
 
-#: gnotravex/gnotravex.c:343
+#: gnotravex/gnotravex.c:354
 msgid "Play on a 5×5 board"
 msgstr "เล่นเกมขนาด 5×5"
 
-#: gnotravex/gnotravex.c:345
+#: gnotravex/gnotravex.c:356
 msgid "_6×6"
 msgstr "_6×6"
 
-#: gnotravex/gnotravex.c:345
+#: gnotravex/gnotravex.c:356
 msgid "Play on a 6×6 board"
 msgstr "เล่นเกมขนาด 6×6"
 
-#: gnotravex/gnotravex.c:350
+#: gnotravex/gnotravex.c:361
 msgid "Tile _Colours"
 msgstr "กระเบื้อง_สี"
 
-#: gnotravex/gnotravex.c:403
+#: gnotravex/gnotravex.c:414
 msgid "Size of board (2-6)"
 msgstr "ขนาดของเกม (2-6)"
 
-#: gnotravex/gnotravex.c:404
+#: gnotravex/gnotravex.c:415
 msgid "SIZE"
 msgstr "SIZE"
 
-#: gnotravex/gnotravex.c:1117
+#: gnotravex/gnotravex.c:1177
 msgid "Puzzle solved! Well done!"
 msgstr "ปริศนาคลายแล้ว! ทำได้ดีมาก!"
 
-#: gnotravex/gnotravex.c:1119
+#: gnotravex/gnotravex.c:1179
 msgid "Puzzle solved!"
 msgstr "ปริศนาคลายแล้ว!"
 
-#: gnotravex/gnotravex.c:1233
+#: gnotravex/gnotravex.c:1303
 msgid "Tetravex Scores"
 msgstr "สถิติของ Tetravex"
 
-#: gnotravex/gnotravex.c:1499 mahjongg/mahjongg.c:977
+#: gnotravex/gnotravex.c:1565 mahjongg/mahjongg.c:977
 msgid "Game paused"
 msgstr "พักเกมอยู่"
 
-#: gnotravex/gnotravex.c:1629
+#: gnotravex/gnotravex.c:1695
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "กำลังเล่นกระดาน %d×%d"
 
-#: gnotravex/gnotravex.c:1911
+#: gnotravex/gnotravex.c:2023
 msgid ""
 "GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
 "the same numbers are touching each other.\n"
@@ -6860,7 +7175,7 @@ msgstr "ปริศนาที่กำลังเล่น"
 msgid "Already used! Where do you want to put that?"
 msgstr "ช่องนี้ใช้แล้ว! คุณต้องการลงที่ช่องไหน?"
 
-#: gtali/clist.c:414
+#: gtali/clist.c:414 swell-foop/src/Score.js:16
 #, c-format
 msgid "Score: %d"
 msgstr "คะแนน: %d"
@@ -7361,302 +7676,6 @@ msgstr "ตัวเลือกเกี่ยวกับการจัดก
 msgid "Show session management options"
 msgstr "แสดงตัวเลือกเกี่ยวกับการจัดการวาระ"
 
-#. Translators: this is the symbol that's on a Joker card
-#: libgames-support/games-card.c:182
-msgctxt "card symbol"
-msgid "JOKER"
-msgstr "JOKER"
-
-#. Translators: this is the symbol that's on an Ace card
-#: libgames-support/games-card.c:184 libgames-support/games-card.c:208
-msgctxt "card symbol"
-msgid "A"
-msgstr "A"
-
-#. Translators: this is the symbol that's on a 2 card
-#: libgames-support/games-card.c:186
-msgctxt "card symbol"
-msgid "2"
-msgstr "2"
-
-#. Translators: this is the symbol that's on a 3 card
-#: libgames-support/games-card.c:188
-msgctxt "card symbol"
-msgid "3"
-msgstr "3"
-
-#. Translators: this is the symbol that's on a 4 card
-#: libgames-support/games-card.c:190
-msgctxt "card symbol"
-msgid "4"
-msgstr "4"
-
-#. Translators: this is the symbol that's on a 5 card
-#: libgames-support/games-card.c:192
-msgctxt "card symbol"
-msgid "5"
-msgstr "5"
-
-#. Translators: this is the symbol that's on a 6 card
-#: libgames-support/games-card.c:194
-msgctxt "card symbol"
-msgid "6"
-msgstr "6"
-
-#. Translators: this is the symbol that's on a 7 card
-#: libgames-support/games-card.c:196
-msgctxt "card symbol"
-msgid "7"
-msgstr "7"
-
-#. Translators: this is the symbol that's on a 8 card
-#: libgames-support/games-card.c:198
-msgctxt "card symbol"
-msgid "8"
-msgstr "8"
-
-#. Translators: this is the symbol that's on a 9 card
-#: libgames-support/games-card.c:200
-msgctxt "card symbol"
-msgid "9"
-msgstr "9"
-
-#. Translators: this is the symbol that's on a Jack card
-#: libgames-support/games-card.c:202
-msgctxt "card symbol"
-msgid "J"
-msgstr "J"
-
-#. Translators: this is the symbol that's on a Queen card
-#: libgames-support/games-card.c:204
-msgctxt "card symbol"
-msgid "Q"
-msgstr "Q"
-
-#. Translators: this is the symbol that's on a King card
-#: libgames-support/games-card.c:206
-msgctxt "card symbol"
-msgid "K"
-msgstr "K"
-
-#. Translators: this is the symbol that's on a 1 card
-#: libgames-support/games-card.c:210
-msgctxt "card symbol"
-msgid "1"
-msgstr "1"
-
-#: libgames-support/games-card.c:252
-msgid "ace of clubs"
-msgstr "เอซดอกจิก"
-
-#: libgames-support/games-card.c:253
-msgid "two of clubs"
-msgstr "สองดอกจิก"
-
-#: libgames-support/games-card.c:254
-msgid "three of clubs"
-msgstr "สามดอกจิก"
-
-#: libgames-support/games-card.c:255
-msgid "four of clubs"
-msgstr "สี่ดอกจิก"
-
-#: libgames-support/games-card.c:256
-msgid "five of clubs"
-msgstr "ห้าดอกจิก"
-
-#: libgames-support/games-card.c:257
-msgid "six of clubs"
-msgstr "หกดอกจิก"
-
-#: libgames-support/games-card.c:258
-msgid "seven of clubs"
-msgstr "เจ็ดดอกจิก"
-
-#: libgames-support/games-card.c:259
-msgid "eight of clubs"
-msgstr "แปดดอกจิก"
-
-#: libgames-support/games-card.c:260
-msgid "nine of clubs"
-msgstr "เก้าดอกจิก"
-
-#: libgames-support/games-card.c:261
-msgid "ten of clubs"
-msgstr "สิบดอกจิก"
-
-#: libgames-support/games-card.c:262
-msgid "jack of clubs"
-msgstr "แจ็คดอกจิก"
-
-#: libgames-support/games-card.c:263
-msgid "queen of clubs"
-msgstr "ควีนดอกจิก"
-
-#: libgames-support/games-card.c:264
-msgid "king of clubs"
-msgstr "คิงดอกจิก"
-
-#: libgames-support/games-card.c:265
-msgid "ace of diamonds"
-msgstr "เอซข้าวหลามตัด"
-
-#: libgames-support/games-card.c:266
-msgid "two of diamonds"
-msgstr "สองข้าวหลามตัด"
-
-#: libgames-support/games-card.c:267
-msgid "three of diamonds"
-msgstr "สามข้าวหลามตัด"
-
-#: libgames-support/games-card.c:268
-msgid "four of diamonds"
-msgstr "สี่ข้าวหลามตัด"
-
-#: libgames-support/games-card.c:269
-msgid "five of diamonds"
-msgstr "ห้าข้าวหลามตัด"
-
-#: libgames-support/games-card.c:270
-msgid "six of diamonds"
-msgstr "หกข้าวหลามตัด"
-
-#: libgames-support/games-card.c:271
-msgid "seven of diamonds"
-msgstr "เจ็ดข้าวหลามตัด"
-
-#: libgames-support/games-card.c:272
-msgid "eight of diamonds"
-msgstr "แปดข้าวหลามตัด"
-
-#: libgames-support/games-card.c:273
-msgid "nine of diamonds"
-msgstr "เก้าข้าวหลามตัด"
-
-#: libgames-support/games-card.c:274
-msgid "ten of diamonds"
-msgstr "สิบข้าวหลามตัด"
-
-#: libgames-support/games-card.c:275
-msgid "jack of diamonds"
-msgstr "แจ็คข้าวหลามตัด"
-
-#: libgames-support/games-card.c:276
-msgid "queen of diamonds"
-msgstr "ควีนข้าวหลามตัด"
-
-#: libgames-support/games-card.c:277
-msgid "king of diamonds"
-msgstr "คิงข้าวหลามตัด"
-
-#: libgames-support/games-card.c:278
-msgid "ace of hearts"
-msgstr "เอซโพแดง"
-
-#: libgames-support/games-card.c:279
-msgid "two of hearts"
-msgstr "สองโพแดง"
-
-#: libgames-support/games-card.c:280
-msgid "three of hearts"
-msgstr "สามโพแดง"
-
-#: libgames-support/games-card.c:281
-msgid "four of hearts"
-msgstr "สี่โพแดง"
-
-#: libgames-support/games-card.c:282
-msgid "five of hearts"
-msgstr "ห้าโพแดง"
-
-#: libgames-support/games-card.c:283
-msgid "six of hearts"
-msgstr "หกโพแดง"
-
-#: libgames-support/games-card.c:284
-msgid "seven of hearts"
-msgstr "เจ็ดโพแดง"
-
-#: libgames-support/games-card.c:285
-msgid "eight of hearts"
-msgstr "แปดโพแดง"
-
-#: libgames-support/games-card.c:286
-msgid "nine of hearts"
-msgstr "เก้าโพแดง"
-
-#: libgames-support/games-card.c:287
-msgid "ten of hearts"
-msgstr "สิบโพแดง"
-
-#: libgames-support/games-card.c:288
-msgid "jack of hearts"
-msgstr "แจ็คโพแดง"
-
-#: libgames-support/games-card.c:289
-msgid "queen of hearts"
-msgstr "ควีนโพแดง"
-
-#: libgames-support/games-card.c:290
-msgid "king of hearts"
-msgstr "คิงโพแดง"
-
-#: libgames-support/games-card.c:291
-msgid "ace of spades"
-msgstr "เอซโพดำ"
-
-#: libgames-support/games-card.c:292
-msgid "two of spades"
-msgstr "สองโพดำ"
-
-#: libgames-support/games-card.c:293
-msgid "three of spades"
-msgstr "สามโพดำ"
-
-#: libgames-support/games-card.c:294
-msgid "four of spades"
-msgstr "สี่โพดำ"
-
-#: libgames-support/games-card.c:295
-msgid "five of spades"
-msgstr "ห้าโพดำ"
-
-#: libgames-support/games-card.c:296
-msgid "six of spades"
-msgstr "หกโพดำ"
-
-#: libgames-support/games-card.c:297
-msgid "seven of spades"
-msgstr "เจ็ดโพดำ"
-
-#: libgames-support/games-card.c:298
-msgid "eight of spades"
-msgstr "แปดโพดำ"
-
-#: libgames-support/games-card.c:299
-msgid "nine of spades"
-msgstr "เก้าโพดำ"
-
-#: libgames-support/games-card.c:300
-msgid "ten of spades"
-msgstr "สิบโพดำ"
-
-#: libgames-support/games-card.c:301
-msgid "jack of spades"
-msgstr "แจ็คโพดำ"
-
-#: libgames-support/games-card.c:302
-msgid "queen of spades"
-msgstr "ควีนโพดำ"
-
-#: libgames-support/games-card.c:303
-msgid "king of spades"
-msgstr "คิงโพดำ"
-
-#: libgames-support/games-card.c:320
-msgid "face-down card"
-msgstr "ไพ่คว่ำหน้า"
-
 #: libgames-support/games-controls.c:286
 msgid "Unknown Command"
 msgstr "คำสั่งไม่รู้จัก"
@@ -7867,7 +7886,8 @@ msgstr ""
 "กรุณาดูได้ที่ <http://www.gnu.org/licenses/>."
 
 #: lightsoff/lightsoff.desktop.in.in.h:1 lightsoff/data/lightsoff.ui.h:1
-#: lightsoff/data/settings.ui.h:1
+#: lightsoff/data/settings.ui.h:1 lightsoff/src/About.js:11
+#: lightsoff/src/About.js:15
 msgid "Lights Off"
 msgstr "ปิดไฟ"
 
@@ -7912,6 +7932,20 @@ msgstr "ชุดเบี้ย:"
 #: lightsoff/data/settings.ui.h:4
 msgid "Use colors from GNOME theme"
 msgstr "ใช้สีจากชุดตกแต่งของ GNOME"
+
+#: lightsoff/src/About.js:13
+msgid ""
+"Turn off all the lights\n"
+"\n"
+"Lights Off is a part of GNOME Games."
+msgstr ""
+"ปิดไฟให้หมด\n"
+"\n"
+"ปิดไฟ เป็นส่วนหนึ่งของ GNOME Games"
+
+#: lightsoff/src/About.js:14 swell-foop/src/About.js:14
+msgid "Copyright  2009 Tim Horton"
+msgstr "Copyright  2009 Tim Horton"
 
 #: mahjongg/drawing.c:307
 msgid ""
@@ -8099,9 +8133,10 @@ msgid "Difficult"
 msgstr "ยาก"
 
 #: swell-foop/data/swell-foop.ui.h:1 swell-foop/data/settings.ui.h:6
-#: swell-foop/swell-foop.desktop.in.in.h:2
+#: swell-foop/swell-foop.desktop.in.in.h:2 swell-foop/src/About.js:11
+#: swell-foop/src/About.js:15
 msgid "Swell Foop"
-msgstr ""
+msgstr "Swell Foop"
 
 #: swell-foop/data/settings.ui.h:2
 msgid "Board size:"
@@ -8138,6 +8173,45 @@ msgstr "ใช้การเคลื่อนไหวที่วูบวา
 #: swell-foop/swell-foop.schemas.in.h:8
 msgid "Zealous animation"
 msgstr "เคลื่อนไหวแบบวูบวาบ"
+
+#: swell-foop/src/About.js:13
+msgid ""
+"I want to play that game! You know, they all go whirly-round and you click "
+"on them and they vanish!\n"
+"\n"
+"Swell Foop is a part of GNOME Games."
+msgstr ""
+"อยากเล่นเกมนั้นน่ะ! คุณก็รู้ หมุนๆ กลมๆ พอคลิกปุ๊บก็หายไป!\n"
+"\n"
+"Swell Foop เป็นส่วนหนึ่งของ GNOME Games"
+
+#: swell-foop/src/Board.js:105
+#, c-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d แต้ม"
+
+#: swell-foop/src/Score.js:54
+msgid "Swell Foop Scores"
+msgstr "คะแนน Swell Foop"
+
+#: swell-foop/src/Score.js:109
+msgid "points"
+msgstr "แต้ม"
+
+#: swell-foop/src/Score.js:144
+msgid "Small"
+msgstr "เล็ก"
+
+#: swell-foop/src/Score.js:146
+msgid "Large"
+msgstr "ใหญ่"
+
+#~ msgid "Load a saved game"
+#~ msgstr "เรียกอ่านเกมที่บันทึกไว้"
+
+#~ msgid "Save the current game"
+#~ msgstr "บันทึกเกมที่กำลังเล่น"
 
 #~ msgid "Could not show Aisleriot help"
 #~ msgstr "ไม่สามารถแสดงคู่มือวิธีใช้ Aisleriot"
@@ -9515,23 +9589,6 @@ msgstr "เคลื่อนไหวแบบวูบวาบ"
 
 #~ msgid "Width of the custom board"
 #~ msgstr "ความกว้างของกระดานกำหนดเอง"
-
-#~ msgid "No points"
-#~ msgstr "ไม่มีแต้ม"
-
-#~ msgid "%d point"
-#~ msgid_plural "%d points"
-#~ msgstr[0] "%d แต้ม"
-
-#~ msgid ""
-#~ "I want to play that game! You know, they all go whirly-round and you "
-#~ "click on them and they vanish!\n"
-#~ "\n"
-#~ "Same GNOME is a part of GNOME Games."
-#~ msgstr ""
-#~ "อยากเล่นเกมนั้นน่ะ! คุณก็รู้ หมุนๆ กลมๆ พอคลิกปุ๊บก็หายไป!\n"
-#~ "\n"
-#~ "หมากเหมือน GNOME เป็นส่วนหนึ่งของ GNOME Games"
 
 #~ msgid "Unfortunately your score did not make the top ten."
 #~ msgstr "น่าเสียดายที่คะแนนของคุณไม่ติดสิบอันดับแรก"
