@@ -22,15 +22,15 @@
 G_BEGIN_DECLS
 
 #if !GTK_CHECK_VERSION (2, 20, 0)
-#define gtk_widget_get_realized(widget)                 GTK_WIDGET_REALIZED(widget)
+#define gtk_widget_get_realized(widget)                 (GTK_WIDGET_REALIZED(widget))
 #define gtk_widget_set_realized(w,realized)             ((realized) ? (GTK_WIDGET_SET_FLAGS (w, GTK_REALIZED)) : (GTK_WIDGET_UNSET_FLAGS (w, GTK_REALIZED)))
-#define gtk_widget_get_mapped(widget)                   GTK_WIDGET_MAPPED(widget)
+#define gtk_widget_get_mapped(widget)                   (GTK_WIDGET_MAPPED(widget))
 #endif /* GTK < 2.20.0 */
 
 #if !GTK_CHECK_VERSION (2, 18, 0)
 #define gtk_widget_set_allocation(widget, alloc) ((widget)->allocation=*(alloc))
 #define gtk_widget_get_allocation(widget, alloc) (*(alloc)=(widget)->allocation)
-#define gtk_widget_set_window (widget, window) ((widget)->window=window)
+#define gtk_widget_set_window(widget, window_arg) ((widget)->window=window_arg)
 #define gtk_widget_has_focus(widget) (GTK_WIDGET_HAS_FOCUS (widget))
 #define gtk_widget_get_state(widget) ((widget)->state)
 #define gtk_widget_get_visible(widget) (GTK_WIDGET_VISIBLE (widget))
