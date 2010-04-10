@@ -209,11 +209,16 @@ games_conf_get_accel_map_path (GamesConf *conf,
   GamesConfPrivate *priv = conf->priv;
   char *game_name, *conf_dir;
   char *conf_file = NULL;
+  const char *override;
 
   game_name = g_ascii_strdown (priv->game_name, -1);
 
 #ifdef HAVE_GNOME
-  conf_dir = g_build_filename (g_get_home_dir (), ".gnome2", "accels", NULL);
+  override = g_getenv ("GNOME22_USER_DIR");
+  if (override)
+    conf_dir = g_build_filename (override, "accels", NULL);
+  else
+    conf_dir = g_build_filename (g_get_home_dir (), ".gnome2", "accels", NULL);
 #else
   conf_dir = g_build_filename (g_get_user_config_dir (), "gnome-games", NULL);
 #endif
