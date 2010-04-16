@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: gnome-games HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "games&component=general\n"
-"POT-Creation-Date: 2010-03-24 03:23+0000\n"
+"POT-Creation-Date: 2010-04-10 10:52+0000\n"
 "PO-Revision-Date: 2010-03-24 08:50+0100\n"
 "Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -122,7 +122,7 @@ msgstr "Sélectionnez un jeu"
 msgid "_Select"
 msgstr "_Sélectionner"
 
-#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:336
+#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:324
 #: ../aisleriot/window.c:459 ../aisleriot/window.c:467
 msgid "FreeCell Solitaire"
 msgstr "Solitaire FreeCell"
@@ -1049,36 +1049,36 @@ msgid "Hopscotch"
 msgstr "Hopscotch"
 
 #. String reserve
-#: ../aisleriot/sol.c:65
+#: ../aisleriot/sol.c:70
 msgid "Solitaire"
 msgstr "Solitaire"
 
-#: ../aisleriot/sol.c:66
+#: ../aisleriot/sol.c:71
 msgid "GNOME Solitaire"
 msgstr "Solitaire GNOME"
 
-#: ../aisleriot/sol.c:67
+#: ../aisleriot/sol.c:72
 msgid "About Solitaire"
 msgstr "À propos de Solitaire"
 
-#: ../aisleriot/sol.c:229
+#: ../aisleriot/sol.c:211
 msgid "Select the game type to play"
 msgstr "Sélectionnez le type de jeu à jouer"
 
-#: ../aisleriot/sol.c:229 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
+#: ../aisleriot/sol.c:211 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
 msgid "NAME"
 msgstr "NOM"
 
-#: ../aisleriot/sol.c:231
+#: ../aisleriot/sol.c:213
 msgid "Select the game number"
 msgstr "Sélectionnez le numéro du jeu"
 
-#: ../aisleriot/sol.c:231 ../gnomine/gnomine.c:1007 ../gtali/gyahtzee.c:107
+#: ../aisleriot/sol.c:213 ../gnomine/gnomine.c:1007 ../gtali/gyahtzee.c:107
 #: ../gtali/gyahtzee.c:109 ../gtali/gyahtzee.c:113 ../gtali/gyahtzee.c:115
 msgid "NUMBER"
 msgstr "NOMBRE"
 
-#: ../aisleriot/sol.c:336 ../aisleriot/window.c:468 ../aisleriot/window.c:2041
+#: ../aisleriot/sol.c:324 ../aisleriot/window.c:468 ../aisleriot/window.c:2041
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1520,11 +1520,11 @@ msgstr ""
 "AisleRiot fait partie des jeux GNOME."
 
 #. this doesn't work for anyone
-#: ../aisleriot/window.c:488 ../glchess/src/lib/gtkui/gtkui.py:861
+#: ../aisleriot/window.c:488 ../glchess/src/lib/gtkui/gtkui.py:863
 #: ../glines/glines.c:1225 ../gnect/src/main.c:909 ../gnibbles/main.c:247
 #: ../gnobots2/menu.c:274 ../quadrapassel/tetris.cpp:1313
-#: ../gnome-sudoku/src/lib/main.py:720 ../gnomine/gnomine.c:490
-#: ../gnotravex/gnotravex.c:1921 ../gnotski/gnotski.c:1542
+#: ../gnome-sudoku/src/lib/main.py:724 ../gnomine/gnomine.c:490
+#: ../gnotravex/gnotravex.c:2033 ../gnotski/gnotski.c:1542
 #: ../gtali/gyahtzee.c:620 ../iagno/gnothello.c:272
 #: ../lightsoff/src/About.js:20 ../mahjongg/mahjongg.c:951
 #: ../swell-foop/src/About.js:20
@@ -1542,11 +1542,11 @@ msgstr ""
 "Didier Vidal <didier-devel@melix.net>\n"
 "Pierre Lemaire <pierre.lemaire@kamick.org>"
 
-#: ../aisleriot/window.c:492 ../glchess/src/lib/defaults.py.in:56
+#: ../aisleriot/window.c:492 ../glchess/src/lib/defaults.py.in:58
 #: ../glines/glines.c:1228 ../gnect/src/main.c:906 ../gnibbles/main.c:250
 #: ../gnobots2/menu.c:270 ../quadrapassel/tetris.cpp:1310
-#: ../gnome-sudoku/src/lib/defaults.py.in:43 ../gnomine/gnomine.c:493
-#: ../gnotravex/gnotravex.c:1924 ../gnotski/gnotski.c:1545
+#: ../gnome-sudoku/src/lib/defaults.py.in:45 ../gnomine/gnomine.c:493
+#: ../gnotravex/gnotravex.c:2036 ../gnotski/gnotski.c:1545
 #: ../gtali/gyahtzee.c:624 ../iagno/gnothello.c:274
 #: ../lightsoff/src/About.js:19 ../mahjongg/mahjongg.c:954
 #: ../swell-foop/src/About.js:19
@@ -1600,22 +1600,20 @@ msgstr "Solitaire Freecell"
 
 #. Menu actions
 #. Preferences Dialog: Title of game options tab
-#: ../aisleriot/window.c:2202 ../glchess/data/glchess.ui.h:24
-#: ../glchess/data/preferences.ui.h:24 ../glines/glines.c:1691
+#: ../aisleriot/window.c:2202 ../glchess/data/glchess.ui.h:22
+#: ../glchess/data/preferences.ui.h:28 ../glines/glines.c:1691
 #: ../gnect/src/main.c:1273 ../gnibbles/main.c:738 ../gnobots2/menu.c:68
-#: ../quadrapassel/tetris.cpp:107 ../gnome-sudoku/src/lib/main.py:241
-#: ../gnomine/gnomine.c:834 ../gnotravex/gnotravex.c:303
+#: ../quadrapassel/tetris.cpp:107 ../gnome-sudoku/src/lib/main.py:242
+#: ../gnomine/gnomine.c:834 ../gnotravex/gnotravex.c:314
 #: ../gnotski/gnotski.c:414 ../gtali/gyahtzee.c:705 ../iagno/gnothello.c:828
 #: ../lightsoff/data/lightsoff.ui.h:2 ../mahjongg/mahjongg.c:1242
 #: ../swell-foop/data/swell-foop.ui.h:2
 msgid "_Game"
 msgstr "_Jeu"
 
-#. Preferences Dialog: Title of view options tab
-#: ../aisleriot/window.c:2203 ../glchess/data/glchess.ui.h:29
-#: ../glchess/data/preferences.ui.h:30 ../gnect/src/main.c:1274
-#: ../gnibbles/main.c:739 ../gnobots2/menu.c:69
-#: ../gnome-sudoku/src/lib/main.py:251 ../gnotravex/gnotravex.c:304
+#: ../aisleriot/window.c:2203 ../glchess/data/glchess.ui.h:27
+#: ../gnect/src/main.c:1274 ../gnibbles/main.c:739 ../gnobots2/menu.c:69
+#: ../gnome-sudoku/src/lib/main.py:252 ../gnotravex/gnotravex.c:315
 #: ../gnotski/gnotski.c:415
 msgid "_View"
 msgstr "_Affichage"
@@ -1624,18 +1622,18 @@ msgstr "_Affichage"
 msgid "_Control"
 msgstr "_Mouvement"
 
-#: ../aisleriot/window.c:2206 ../glchess/data/glchess.ui.h:25
+#: ../aisleriot/window.c:2206 ../glchess/data/glchess.ui.h:23
 #: ../glines/glines.c:1693 ../gnect/src/main.c:1276 ../gnibbles/main.c:741
 #: ../gnobots2/menu.c:72 ../quadrapassel/tetris.cpp:109
-#: ../gnome-sudoku/src/lib/main.py:269 ../gnomine/gnomine.c:836
-#: ../gnotravex/gnotravex.c:307 ../gnotski/gnotski.c:416
+#: ../gnome-sudoku/src/lib/main.py:270 ../gnomine/gnomine.c:836
+#: ../gnotravex/gnotravex.c:318 ../gnotski/gnotski.c:416
 #: ../gtali/gyahtzee.c:707 ../iagno/gnothello.c:830
 #: ../lightsoff/data/lightsoff.ui.h:3 ../mahjongg/mahjongg.c:1244
 #: ../swell-foop/data/swell-foop.ui.h:3
 msgid "_Help"
 msgstr "Aid_e"
 
-#: ../aisleriot/window.c:2211 ../glchess/data/glchess.ui.h:18
+#: ../aisleriot/window.c:2211 ../glchess/data/glchess.ui.h:16
 #: ../gnobots2/menu.c:73 ../libgames-support/games-stock.c:53
 #: ../mahjongg/mahjongg.c:1245
 msgid "Start a new game"
@@ -1717,7 +1715,7 @@ msgstr "Style des _cartes"
 msgid "_Toolbar"
 msgstr "Barre d'_outils"
 
-#: ../aisleriot/window.c:2303 ../glchess/data/preferences.ui.h:17
+#: ../aisleriot/window.c:2303 ../glchess/data/preferences.ui.h:19
 #: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
 msgid "Show or hide the toolbar"
 msgstr "Affiche ou masque la barre d'outils"
@@ -1730,7 +1728,7 @@ msgstr "_Barre d'état"
 msgid "Show or hide statusbar"
 msgstr "Affiche ou masque la barre d'état"
 
-#: ../aisleriot/window.c:2314 ../gnotravex/gnotravex.c:352
+#: ../aisleriot/window.c:2314 ../gnotravex/gnotravex.c:363
 msgid "_Click to Move"
 msgstr "_Cliquer pour déplacer"
 
@@ -1760,7 +1758,7 @@ msgstr "Indique s'il faut animer ou non les mouvements de cartes"
 msgid "Score:"
 msgstr "Score :"
 
-#: ../aisleriot/window.c:2645 ../gnotravex/gnotravex.c:1384
+#: ../aisleriot/window.c:2645 ../gnotravex/gnotravex.c:1454
 #: ../mahjongg/mahjongg.c:1465
 msgid "Time:"
 msgstr "Durée :"
@@ -2939,10 +2937,19 @@ msgid "The height of the window"
 msgstr "La hauteur de la fenêtre"
 
 #: ../glchess/data/glchess.schemas.in.h:24
+msgid "The piece style to use"
+msgstr "Le style de pièce à utiliser"
+
+#: ../glchess/data/glchess.schemas.in.h:25
+msgid "The piece style to use. Can be one of: 'simple' or 'fancy'"
+msgstr "Le style de pièce à utiliser. Cette valeur peut contenir :"
+"« simple » ou « fancy » (amusant)"
+
+#: ../glchess/data/glchess.schemas.in.h:26
 msgid "The piece to promote pawns to"
 msgstr "La pièce vers laquelle promouvoir le pion"
 
-#: ../glchess/data/glchess.schemas.in.h:25
+#: ../glchess/data/glchess.schemas.in.h:27
 msgid ""
 "The piece to promote to when a human player moves a pawn to the far rank. "
 "Can be one of: 'queen', 'knight', 'rook', 'bishop'."
@@ -2951,7 +2958,7 @@ msgstr ""
 "jusqu'à la rangée opposée. Cette valeur peut contenir : « queen » (dame), "
 "« knight » (cavalier), « rook » (tour) ou « bishop » (fou)."
 
-#: ../glchess/data/glchess.schemas.in.h:26
+#: ../glchess/data/glchess.schemas.in.h:28
 msgid ""
 "The side of the board that is in the foreground, either 'white', 'black', "
 "'current' (the current player), 'human' (the side of the current human "
@@ -2963,11 +2970,11 @@ msgstr ""
 "correspondant au joueur humain actuel) ou « facetoface » (face à face, pour "
 "des joueurs de chaque côté de l'écran, par ex. pour les ordinateurs de poche)"
 
-#: ../glchess/data/glchess.schemas.in.h:27
+#: ../glchess/data/glchess.schemas.in.h:29
 msgid "The width of the main window in pixels."
 msgstr "La largeur de la fenêtre principale en pixels."
 
-#: ../glchess/data/glchess.schemas.in.h:28
+#: ../glchess/data/glchess.schemas.in.h:30
 msgid "The width of the window"
 msgstr "La largeur de la fenêtre"
 
@@ -2980,79 +2987,71 @@ msgstr "Affichage 3_D"
 msgid "Claim _Draw"
 msgstr "Proposer le _nul"
 
-#: ../glchess/data/glchess.ui.h:3
-msgid "Load a saved game"
-msgstr "Charger une partie enregistrée"
-
 #. The title of the log dialaog
-#: ../glchess/data/glchess.ui.h:5
+#: ../glchess/data/glchess.ui.h:4
 msgid "Logs"
 msgstr "Journal"
 
 #. The Network Game toolbar button
-#: ../glchess/data/glchess.ui.h:7 ../libgames-support/games-stock.c:337
+#: ../glchess/data/glchess.ui.h:6 ../libgames-support/games-stock.c:337
 msgid "Network _Game"
 msgstr "_Partie en réseau"
 
 #. The New Game toolbar button
 #. Title of the new game dialog
-#: ../glchess/data/glchess.ui.h:9 ../glchess/data/new_game.ui.h:13
+#: ../glchess/data/glchess.ui.h:8 ../glchess/data/new_game.ui.h:13
 #: ../libgames-support/games-scores-dialog.c:437
 msgid "New Game"
 msgstr "Nouvelle partie"
 
 #. The tooltip for the Resign toolbar button
-#: ../glchess/data/glchess.ui.h:11
+#: ../glchess/data/glchess.ui.h:10
 msgid "Resign"
 msgstr "Abandonner"
 
-#: ../glchess/data/glchess.ui.h:12
+#: ../glchess/data/glchess.ui.h:11
 msgid "Rewind to the game start"
 msgstr "Revenir au début de la partie"
 
-#: ../glchess/data/glchess.ui.h:13
-msgid "Save the current game"
-msgstr "Enregistrer la partie actuelle"
-
-#: ../glchess/data/glchess.ui.h:14
+#: ../glchess/data/glchess.ui.h:12
 msgid "Show _Logs"
 msgstr "Afficher le _journal"
 
-#: ../glchess/data/glchess.ui.h:15
+#: ../glchess/data/glchess.ui.h:13
 msgid "Show the current move"
 msgstr "Afficher le coup en cours"
 
-#: ../glchess/data/glchess.ui.h:16
+#: ../glchess/data/glchess.ui.h:14
 msgid "Show the next move"
 msgstr "Afficher le coup suivant"
 
-#: ../glchess/data/glchess.ui.h:17
+#: ../glchess/data/glchess.ui.h:15
 msgid "Show the previous move"
 msgstr "Afficher le coup précédent"
 
-#: ../glchess/data/glchess.ui.h:19 ../libgames-support/games-stock.c:51
+#: ../glchess/data/glchess.ui.h:17 ../libgames-support/games-stock.c:51
 msgid "Start a new multiplayer network game"
 msgstr "Commencer une nouvelle partie multi-joueurs en réseau"
 
 #. Message displayed in log window when no logs are present
-#: ../glchess/data/glchess.ui.h:21
+#: ../glchess/data/glchess.ui.h:19
 msgid "There are no active logs."
 msgstr "Pas de journal actif."
 
-#: ../glchess/data/glchess.ui.h:22
+#: ../glchess/data/glchess.ui.h:20
 msgid "Undo Move"
 msgstr "Annuler le coup"
 
-#: ../glchess/data/glchess.ui.h:23 ../gnome-sudoku/src/lib/main.py:273
+#: ../glchess/data/glchess.ui.h:21 ../gnome-sudoku/src/lib/main.py:274
 #: ../libgames-support/games-stock.c:321
 msgid "_Contents"
 msgstr "_Sommaire"
 
-#: ../glchess/data/glchess.ui.h:26
+#: ../glchess/data/glchess.ui.h:24
 msgid "_Resign"
 msgstr "_Abandonner"
 
-#: ../glchess/data/glchess.ui.h:27 ../glines/glines.c:1692
+#: ../glchess/data/glchess.ui.h:25 ../glines/glines.c:1692
 #: ../gnect/src/main.c:1275 ../gnibbles/main.c:740 ../gnobots2/menu.c:71
 #: ../quadrapassel/tetris.cpp:108 ../gnomine/gnomine.c:835
 #: ../gtali/gyahtzee.c:706 ../iagno/gnothello.c:829
@@ -3060,7 +3059,7 @@ msgstr "_Abandonner"
 msgid "_Settings"
 msgstr "_Paramètres"
 
-#: ../glchess/data/glchess.ui.h:28 ../libgames-support/games-stock.c:333
+#: ../glchess/data/glchess.ui.h:26 ../libgames-support/games-stock.c:333
 msgid "_Undo Move"
 msgstr "A_nnuler le déplacement"
 
@@ -3223,44 +3222,49 @@ msgstr "Orientation du plateau :"
 msgid "Move Format:"
 msgstr "Notation des coups :"
 
+#. Preferences Dialog: Label before piece style combo box
+#: ../glchess/data/preferences.ui.h:8
+msgid "Piece Style:"
+msgstr "Style de pièce :"
+
 #. Title for preferences dialog
-#: ../glchess/data/preferences.ui.h:8 ../glines/glines.c:197
+#: ../glchess/data/preferences.ui.h:10 ../glines/glines.c:197
 #: ../mahjongg/mahjongg.c:140
 msgid "Preferences"
 msgstr "Préférences"
 
 #. Preferences Dialog: Label before promotion type combo box
-#: ../glchess/data/preferences.ui.h:10
+#: ../glchess/data/preferences.ui.h:12
 msgid "Promotion Type:"
 msgstr "Type de promotion :"
 
 #. Preferences Dialog: Check box for selecting if history browser is visible
-#: ../glchess/data/preferences.ui.h:12
+#: ../glchess/data/preferences.ui.h:14
 msgid "Show _History"
 msgstr "Afficher l'_historique"
 
 #. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../glchess/data/preferences.ui.h:14 ../gnome-sudoku/src/lib/main.py:293
+#: ../glchess/data/preferences.ui.h:16 ../gnome-sudoku/src/lib/main.py:294
 msgid "Show _Toolbar"
 msgstr "Afficher la _barre d'outils"
 
-#: ../glchess/data/preferences.ui.h:15
+#: ../glchess/data/preferences.ui.h:17
 msgid "Show or hide numbering on the chess board"
 msgstr "Affiche ou masque la numérotation du plateau d'échecs"
 
-#: ../glchess/data/preferences.ui.h:16
+#: ../glchess/data/preferences.ui.h:18
 msgid "Show or hide the game history panel"
 msgstr "Affiche ou masque le volet d'historique du jeu"
 
-#: ../glchess/data/preferences.ui.h:18
+#: ../glchess/data/preferences.ui.h:20
 msgid "Shows hints during chess games"
 msgstr "Affiche des astuces durant les parties d'échecs"
 
-#: ../glchess/data/preferences.ui.h:19
+#: ../glchess/data/preferences.ui.h:21
 msgid "Smooth edges of the 3D elements (anti-alias)"
 msgstr "Lisse les bords des éléments 3D (anticrénelage)"
 
-#: ../glchess/data/preferences.ui.h:20
+#: ../glchess/data/preferences.ui.h:22
 msgid ""
 "View the chess board by default in 2D mode, or optionally in 3D mode using "
 "OpenGL."
@@ -3268,18 +3272,23 @@ msgstr ""
 "Affiche le plateau d'échecs en mode 2D par défaut, ou facultativement en "
 "mode 3D à l'aide d'OpenGL."
 
+#. Preferences Dialog: Title of appearance options tab
+#: ../glchess/data/preferences.ui.h:24
+msgid "_Appearance"
+msgstr "_Apparence"
+
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../glchess/data/preferences.ui.h:22
+#: ../glchess/data/preferences.ui.h:26
 msgid "_Board Numbering"
 msgstr "_Numérotation du plateau"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../glchess/data/preferences.ui.h:26
+#: ../glchess/data/preferences.ui.h:30
 msgid "_Move Hints"
 msgstr "A_stuces de déplacement"
 
 #. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../glchess/data/preferences.ui.h:28
+#: ../glchess/data/preferences.ui.h:32
 msgid "_Smooth Display"
 msgstr "Affichage _lissé"
 
@@ -3289,7 +3298,7 @@ msgid "Save Chess Game"
 msgstr "Enregistrer la partie d'échecs"
 
 #. Translators: Window title when not playing a game
-#: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:332
+#: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:331
 msgid "Chess"
 msgstr "Jeu d'échecs"
 
@@ -3360,7 +3369,7 @@ msgstr "heures"
 
 #. Translators: AI Difficulty Combo: AI set to easy difficulty
 #: ../glchess/src/lib/gtkui/dialogs.py:178
-#: ../gnome-sudoku/src/lib/sudoku.py:516
+#: ../gnome-sudoku/src/lib/sudoku.py:682
 msgid "Easy"
 msgstr "Facile"
 
@@ -3371,7 +3380,7 @@ msgstr "Normal"
 
 #. Translators: AI Difficulty Combo: AI set to hard diffuculty
 #: ../glchess/src/lib/gtkui/dialogs.py:182
-#: ../gnome-sudoku/src/lib/sudoku.py:514
+#: ../gnome-sudoku/src/lib/sudoku.py:680
 msgid "Hard"
 msgstr "Difficile"
 
@@ -3525,43 +3534,53 @@ msgctxt "chess-piece"
 msgid "Bishop"
 msgstr "Fou"
 
+#. Translators: a simple piece set will be used in 2d mode
+#: ../glchess/src/lib/gtkui/dialogs.py:642
+msgid "Simple"
+msgstr "Simple"
+
+#. Translators: a fancy piece set will be used in 2d mode
+#: ../glchess/src/lib/gtkui/dialogs.py:644
+msgid "Fancy"
+msgstr "Amusant"
+
 #. Translators: Window title when playing a game that needs saving
-#: ../glchess/src/lib/gtkui/gtkui.py:326
+#: ../glchess/src/lib/gtkui/gtkui.py:325
 #, python-format
 msgid "Chess - *%(game_name)s"
 msgstr "Échecs - *%(game_name)s"
 
 #. Translators: Window title when playing a game that is saved
-#: ../glchess/src/lib/gtkui/gtkui.py:329
+#: ../glchess/src/lib/gtkui/gtkui.py:328
 #, python-format
 msgid "Chess - %(game_name)s"
 msgstr "Échecs - %(game_name)s"
 
 #. Translators: Game Timer Label: Indicates that game has no time limit
-#: ../glchess/src/lib/gtkui/gtkui.py:344
+#: ../glchess/src/lib/gtkui/gtkui.py:343
 msgid "∞"
 msgstr "∞"
 
 #. Translators: Save Game Dialog: Notice that game needs saving
-#: ../glchess/src/lib/gtkui/gtkui.py:417
+#: ../glchess/src/lib/gtkui/gtkui.py:416
 msgid "If you don't save the changes to this game will be permanently lost"
 msgstr ""
 "Si vous n'enregistrez pas, les modifications de cette partie seront "
 "définitivement perdues"
 
 #. Translators: Save Game Dialog: Discard game button
-#: ../glchess/src/lib/gtkui/gtkui.py:419
+#: ../glchess/src/lib/gtkui/gtkui.py:418
 msgid "Close _without saving"
 msgstr "Fermer _sans enregistrer"
 
 #. Translators: No 3D Dialog: Title
-#: ../glchess/src/lib/gtkui/gtkui.py:534
+#: ../glchess/src/lib/gtkui/gtkui.py:533
 msgid "Unable to enable 3D mode"
 msgstr "Impossible d'activer le mode 3D"
 
 #. Translators: No 3D Dialog: Notification to user that they do not have libraries required to enable 3D.
 #. %(error)s will be replaced with a list of reasons why 3D is not available.
-#: ../glchess/src/lib/gtkui/gtkui.py:538
+#: ../glchess/src/lib/gtkui/gtkui.py:537
 #, python-format
 msgid ""
 "You are unable to play in 3D mode due to the following problems:\n"
@@ -3577,12 +3596,12 @@ msgstr ""
 "attendant, vous pouvez toujours jouer aux échecs en mode 2D."
 
 #. Translators: Draw Dialog: Title
-#: ../glchess/src/lib/gtkui/gtkui.py:800
+#: ../glchess/src/lib/gtkui/gtkui.py:802
 msgid "Unable to claim draw"
 msgstr "Impossible de demander la partie nulle"
 
 #. Translators: Draw Dialog: Notify user why they cannot claim draw
-#: ../glchess/src/lib/gtkui/gtkui.py:802
+#: ../glchess/src/lib/gtkui/gtkui.py:804
 msgid ""
 "You may claim a draw when:\n"
 "a) The board has been in the same state three times (Three fold repetition)\n"
@@ -3597,7 +3616,7 @@ msgstr ""
 
 #. TODO: This should be a pop-up dialog
 #. FIXME: This should create a pop-up dialog
-#: ../glchess/src/lib/gtkui/gtkui.py:824 ../gnome-sudoku/src/lib/main.py:730
+#: ../glchess/src/lib/gtkui/gtkui.py:826 ../gnome-sudoku/src/lib/main.py:734
 #, python-format
 msgid "Unable to display help: %s"
 msgstr "Impossible d'afficher l'aide : %s"
@@ -4367,19 +4386,19 @@ msgstr ""
 "http://bugzilla.gnome.org\n"
 "Journal de débogage :"
 
-#: ../glchess/src/lib/main.py:716 ../gnome-sudoku/src/lib/main.py:476
+#: ../glchess/src/lib/main.py:716 ../gnome-sudoku/src/lib/main.py:480
 msgid "Save game before closing?"
 msgstr "Enregistrer le jeu avant de fermer ?"
 
-#: ../glchess/src/lib/defaults.py.in:50
+#: ../glchess/src/lib/defaults.py.in:52
 msgid "glChess"
 msgstr "glChess"
 
-#: ../glchess/src/lib/defaults.py.in:53
+#: ../glchess/src/lib/defaults.py.in:55
 msgid "Copyright 2005-2008 Robert Ancell (and contributors)"
 msgstr "Copyright 2005-2008 Robert Ancell (et contributeurs)"
 
-#: ../glchess/src/lib/defaults.py.in:54
+#: ../glchess/src/lib/defaults.py.in:56
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -4391,8 +4410,8 @@ msgstr ""
 
 #. The GPL license string will be translated, and the game name inserted.
 #. This license is the same as in libgames-support/games-stock.c
-#: ../glchess/src/lib/defaults.py.in:63
-#: ../gnome-sudoku/src/lib/defaults.py.in:49
+#: ../glchess/src/lib/defaults.py.in:65
+#: ../gnome-sudoku/src/lib/defaults.py.in:51
 #, python-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
@@ -4405,8 +4424,8 @@ msgstr ""
 "Software Foundation ; soit la version 2 de la licence, ou (à votre "
 "discrétion), toute version suivante."
 
-#: ../glchess/src/lib/defaults.py.in:67
-#: ../gnome-sudoku/src/lib/defaults.py.in:53
+#: ../glchess/src/lib/defaults.py.in:69
+#: ../gnome-sudoku/src/lib/defaults.py.in:55
 #: ../libgames-support/games-stock.c:418
 #, c-format, python-format
 msgid ""
@@ -4420,8 +4439,8 @@ msgstr ""
 "d'ADÉQUATION À UN BESOIN PARTICULIER. Voir la Licence Publique Générale GNU "
 "pour plus d'informations."
 
-#: ../glchess/src/lib/defaults.py.in:71
-#: ../gnome-sudoku/src/lib/defaults.py.in:57
+#: ../glchess/src/lib/defaults.py.in:73
+#: ../gnome-sudoku/src/lib/defaults.py.in:59
 #: ../libgames-support/games-stock.c:423
 #, c-format, python-format
 msgid ""
@@ -4433,8 +4452,8 @@ msgstr ""
 "s ; si ce n'est pas le cas, écrivez à la Free Software Foundation, Inc., 51 "
 "Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA."
 
-#: ../glchess/src/lib/defaults.py.in:83
-#: ../gnome-sudoku/src/lib/defaults.py.in:68
+#: ../glchess/src/lib/defaults.py.in:85
+#: ../gnome-sudoku/src/lib/defaults.py.in:70
 #, python-format
 msgid "Unable to make data directory %(dir)s: %(error)s"
 msgstr "Impossible de créer le dossier de données %(dir)s : %(error)s"
@@ -4555,9 +4574,11 @@ msgstr ""
 msgid "Five or More Preferences"
 msgstr "Préférences de Cinq ou plus"
 
-#: ../glines/glines.c:1469
-msgid "Themes"
-msgstr "Thèmes"
+#: ../glines/glines.c:1469 ../gnect/src/prefs.c:335
+#: ../gnobots2/properties.c:536 ../iagno/properties.c:531
+#: ../lightsoff/data/settings.ui.h:1 ../swell-foop/data/settings.ui.h:1
+msgid "Appearance"
+msgstr "Apparence"
 
 #: ../glines/glines.c:1477
 msgid "_Image:"
@@ -4731,7 +4752,7 @@ msgstr ""
 msgid "It's a draw!"
 msgstr "Match nul !"
 
-#: ../gnect/src/main.c:567 ../gnome-sudoku/src/lib/main.py:438
+#: ../gnect/src/main.c:567 ../gnome-sudoku/src/lib/main.py:442
 msgid "You win!"
 msgstr "Vous avez gagné !"
 
@@ -4832,11 +4853,6 @@ msgstr "Préférences de Puissance 4"
 #: ../iagno/properties.c:419
 msgid "Game"
 msgstr "Jeu"
-
-#: ../gnect/src/prefs.c:335 ../gnobots2/properties.c:536
-#: ../iagno/properties.c:531 ../swell-foop/data/settings.ui.h:1
-msgid "Appearance"
-msgstr "Apparence"
 
 #: ../gnect/src/prefs.c:344
 msgid "_Theme:"
@@ -4960,19 +4976,19 @@ msgid "Speed:"
 msgstr "Vitesse :"
 
 #: ../gnibbles/gnibbles.c:376 ../gnobots2/game.c:182 ../gnomine/gnomine.c:225
-#: ../gnotravex/gnotravex.c:1240 ../gnotski/gnotski.c:842
+#: ../gnotravex/gnotravex.c:1310 ../gnotski/gnotski.c:842
 #: ../gtali/gyahtzee.c:200 ../mahjongg/mahjongg.c:668
 msgid "Congratulations!"
 msgstr "Félicitations !"
 
 #: ../gnibbles/gnibbles.c:377 ../gnobots2/game.c:183 ../gnomine/gnomine.c:226
-#: ../gnotravex/gnotravex.c:1241 ../gnotski/gnotski.c:843
+#: ../gnotravex/gnotravex.c:1311 ../gnotski/gnotski.c:843
 #: ../gtali/gyahtzee.c:201 ../mahjongg/mahjongg.c:669
 msgid "Your score is the best!"
 msgstr "Votre score est le meilleur !"
 
 #: ../gnibbles/gnibbles.c:378 ../gnobots2/game.c:184 ../gnomine/gnomine.c:227
-#: ../gnotravex/gnotravex.c:1242 ../gnotski/gnotski.c:844
+#: ../gnotravex/gnotravex.c:1312 ../gnotski/gnotski.c:844
 #: ../gtali/gyahtzee.c:202 ../mahjongg/mahjongg.c:670
 msgid "Your score has made the top ten."
 msgstr "Votre score est entré au top 10."
@@ -5253,7 +5269,8 @@ msgid "Great work, but unfortunately your score did not make the top ten."
 msgstr "Bravo mais malheureusement votre score n'est pas rentré au top 10."
 
 #. Translators: This "_New Game" is for the game-over dialogue
-#: ../gnobots2/game.c:157 ../gnomine/gnomine.c:203 ../gnotski/gnotski.c:819
+#: ../gnobots2/game.c:157 ../gnome-sudoku/data/select_game.ui.h:1
+#: ../gnomine/gnomine.c:203 ../gnotski/gnotski.c:819
 #: ../libgames-support/games-stock.c:327
 msgid "_New Game"
 msgstr "_Nouvelle partie"
@@ -5297,13 +5314,13 @@ msgid "Initial window position"
 msgstr "Position initiale de la fenêtre"
 
 #: ../gnobots2/gnobots.c:89 ../gnomine/gnomine.c:1003
-#: ../gnomine/gnomine.c:1011 ../gnotravex/gnotravex.c:400
+#: ../gnomine/gnomine.c:1011 ../gnotravex/gnotravex.c:411
 #: ../gnotski/gnotski.c:467 ../iagno/gnothello.c:150
 msgid "X"
 msgstr "X"
 
 #: ../gnobots2/gnobots.c:91 ../gnomine/gnomine.c:1005
-#: ../gnomine/gnomine.c:1013 ../gnotravex/gnotravex.c:402
+#: ../gnomine/gnomine.c:1013 ../gnotravex/gnotravex.c:413
 #: ../gnotski/gnotski.c:469 ../iagno/gnothello.c:152
 msgid "Y"
 msgstr "Y"
@@ -5611,7 +5628,7 @@ msgstr ""
 msgid "Could not find '%s' pixmap file\n"
 msgstr "Impossible de trouver l'image « %s »\n"
 
-#: ../gnobots2/menu.c:70 ../gnotravex/gnotravex.c:305
+#: ../gnobots2/menu.c:70 ../gnotravex/gnotravex.c:316
 msgid "_Move"
 msgstr "_Déplacer"
 
@@ -5679,7 +5696,7 @@ msgstr "vaches"
 
 #: ../gnobots2/properties.c:367
 msgid "eggs"
-msgstr "oeufs"
+msgstr "œufs"
 
 #: ../gnobots2/properties.c:368
 msgid "gnomes"
@@ -6010,7 +6027,7 @@ msgid "Paused"
 msgstr "Suspendu"
 
 #: ../gnome-sudoku/gnome-sudoku.desktop.in.in.h:1
-#: ../gnome-sudoku/src/lib/defaults.py.in:38
+#: ../gnome-sudoku/src/lib/defaults.py.in:40
 msgid "Sudoku"
 msgstr "Sudoku"
 
@@ -6064,28 +6081,28 @@ msgid "Width of application window in pixels"
 msgstr "La largeur de la fenêtre de l'application en pixels"
 
 #: ../gnome-sudoku/data/print_games.ui.h:1
-msgid "<b><i>Details</i></b>"
-msgstr "<b><i>Détails</i></b>"
+msgid "Details"
+msgstr "Détails"
 
 #: ../gnome-sudoku/data/print_games.ui.h:2
-msgid "<b><i>Levels of difficulty to print</i></b>"
-msgstr "<b><i>Niveau de difficulté à imprimer</i></b>"
+msgid "Levels of difficulty to print"
+msgstr "Niveaux de difficulté à imprimer"
 
 #: ../gnome-sudoku/data/print_games.ui.h:3
-msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">Imprimer les parties</span>"
+msgid "Print Games"
+msgstr "Imprimer des parties"
 
 #: ../gnome-sudoku/data/print_games.ui.h:4
 msgid "Print Sudokus"
 msgstr "Imprimer les Sudokus"
 
 #: ../gnome-sudoku/data/print_games.ui.h:5
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:13
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:12
 msgid "_Easy"
 msgstr "_Facile"
 
 #: ../gnome-sudoku/data/print_games.ui.h:6
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:15
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:14
 msgid "_Hard"
 msgstr "_Difficile"
 
@@ -6098,7 +6115,7 @@ msgid "_Mark games as played once you've printed them."
 msgstr "_Marquer les parties comme jouées après impression."
 
 #: ../gnome-sudoku/data/print_games.ui.h:9
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:16
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:15
 msgid "_Medium"
 msgstr "_Moyenne"
 
@@ -6111,69 +6128,61 @@ msgid "_Sudokus per page: "
 msgstr "_Sudokus par page : "
 
 #: ../gnome-sudoku/data/print_games.ui.h:12
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:17
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:16
 msgid "_Very Hard"
 msgstr "_Très difficile"
 
 #: ../gnome-sudoku/data/puzzle_generator.ui.h:1
-msgid "<i><u>Number of Puzzles</u></i>"
-msgstr "<i><u>Nombre de grilles</u></i>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:2
-msgid "<i>Easy:</i>"
-msgstr "<i>Facile :</i>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:3
-msgid "<i>Hard:</i>"
-msgstr "<i>Difficile :</i>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:4
-msgid "<i>Medium:</i>"
-msgstr "<i>Moyen :</i>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:5
-msgid "<i>Very Hard:</i>"
-msgstr "<i>Très difficile :</i>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:6
-msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">Générateur de grilles</span>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:7
 msgid "Criteria:"
 msgstr "Critère :"
 
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:8
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:2
+msgid "Easy:"
+msgstr "Facile :"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:3
 msgid "Generate Policy"
 msgstr "Politique de génération des grilles"
 
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:9
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:4
 msgid "Generate new puzzles _until stopped"
 msgstr "Générer de no_uvelles grilles jusqu'à interruption"
 
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:10
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:5
 msgid "Generate until _reaching target"
 msgstr "Générer de nou_velles grilles jusqu'au nombre désiré"
 
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:11
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:6
+msgid "Hard:"
+msgstr "Difficile :"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:7
+msgid "Medium:"
+msgstr "Moyenne :"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:8
+msgid "Number of Puzzles"
+msgstr "Nombre de grilles"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:9
 msgid "Puzzle Generator"
 msgstr "Générateur de grilles"
 
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:12
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:10
 msgid "Target _number of sudokus:"
 msgstr "_Nombre de sudokus à générer :"
 
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:14
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:11
+msgid "Very Hard:"
+msgstr "Très difficile :"
+
+#: ../gnome-sudoku/data/puzzle_generator.ui.h:13
 msgid "_Generate"
 msgstr "_Générer"
 
-#: ../gnome-sudoku/data/select_game.ui.h:1
-msgid "<b><span size=\"large\">_New Game</span></b>"
-msgstr "<span size=\"larger\" weight=\"bold\">_Nouvelle partie</span>"
-
 #: ../gnome-sudoku/data/select_game.ui.h:2
-msgid "<b><span size=\"large\">_Saved Games</span></b>"
-msgstr "<span size=\"larger\" weight=\"bold\">_Parties enregistrées</span>"
+msgid "_Saved Games"
+msgstr "Parties enregi_strées"
 
 #: ../gnome-sudoku/data/tracker.ui.h:1
 msgid "Clear _Others"
@@ -6183,7 +6192,7 @@ msgstr "Effacer les _autres"
 msgid "_Add Tracker"
 msgstr "_Ajouter un marqueur"
 
-#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:788
+#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:792
 msgid "_Clear Tracker"
 msgstr "_Effacer le marqueur"
 
@@ -6205,11 +6214,11 @@ msgstr ""
 "installés. Si vous êtes actuellement en train de mettre à jour votre "
 "système, veuillez patienter jusqu'à la fin de l'opération."
 
-#: ../gnome-sudoku/src/lib/defaults.py.in:37
+#: ../gnome-sudoku/src/lib/defaults.py.in:39
 msgid "GNOME Sudoku"
 msgstr "Sudoku de GNOME"
 
-#: ../gnome-sudoku/src/lib/defaults.py.in:40
+#: ../gnome-sudoku/src/lib/defaults.py.in:42
 msgid ""
 "GNOME Sudoku is a simple sudoku generator and player. Sudoku is a japanese "
 "logic puzzle.\n"
@@ -6263,111 +6272,111 @@ msgstr "Sudoku n'a pas pu marquer le jeu comme terminé."
 msgid "Track moves"
 msgstr "Suivre les coups"
 
-#: ../gnome-sudoku/src/lib/main.py:243
+#: ../gnome-sudoku/src/lib/main.py:244
 msgid "New game"
 msgstr "Nouvelle partie"
 
-#: ../gnome-sudoku/src/lib/main.py:245
+#: ../gnome-sudoku/src/lib/main.py:246
 msgid "Print current game"
 msgstr "Imprimer le jeu en cours"
 
-#: ../gnome-sudoku/src/lib/main.py:246
+#: ../gnome-sudoku/src/lib/main.py:247
 msgid "Print _Multiple Sudokus"
 msgstr "Imprimer _plusieurs sudokus"
 
-#: ../gnome-sudoku/src/lib/main.py:247
+#: ../gnome-sudoku/src/lib/main.py:248
 msgid "Print more than one sudoku at a time."
 msgstr "Imprime plusieurs sudokus à la fois."
 
-#: ../gnome-sudoku/src/lib/main.py:249
+#: ../gnome-sudoku/src/lib/main.py:250
 msgid "Close Sudoku"
 msgstr "Ferme Sudoku"
 
-#: ../gnome-sudoku/src/lib/main.py:250
+#: ../gnome-sudoku/src/lib/main.py:251
 msgid "_Tools"
 msgstr "_Outils"
 
-#: ../gnome-sudoku/src/lib/main.py:252 ../libgames-support/games-stock.c:323
+#: ../gnome-sudoku/src/lib/main.py:253 ../libgames-support/games-stock.c:323
 msgid "_Hint"
 msgstr "_Astuce"
 
-#: ../gnome-sudoku/src/lib/main.py:254
+#: ../gnome-sudoku/src/lib/main.py:255
 msgid "Show which numbers could go in the current square."
 msgstr "Montrer quels numéros peuvent aller dans la case actuelle."
 
-#: ../gnome-sudoku/src/lib/main.py:256
+#: ../gnome-sudoku/src/lib/main.py:257
 msgid "_Fill"
 msgstr "Re_mplir"
 
-#: ../gnome-sudoku/src/lib/main.py:257
+#: ../gnome-sudoku/src/lib/main.py:258
 msgid "Automatically fill in the current square if possible."
 msgstr "Remplit automatiquement la case si possible."
 
-#: ../gnome-sudoku/src/lib/main.py:259
+#: ../gnome-sudoku/src/lib/main.py:260
 msgid "Fill _all squares"
 msgstr "Remplir toutes les c_ases"
 
-#: ../gnome-sudoku/src/lib/main.py:260
+#: ../gnome-sudoku/src/lib/main.py:261
 msgid ""
 "Automatically fill in all squares for which there is only one valid value."
 msgstr ""
 "Remplit automatiquement toutes les cases qui n'ont qu'une valeur possible."
 
-#: ../gnome-sudoku/src/lib/main.py:264
+#: ../gnome-sudoku/src/lib/main.py:265
 msgid "_Generate new puzzles"
 msgstr "_Générer de nouvelles grilles"
 
-#: ../gnome-sudoku/src/lib/main.py:264
+#: ../gnome-sudoku/src/lib/main.py:265
 msgid "Generate new puzzles."
 msgstr "Génère de nouvelles grilles."
 
-#: ../gnome-sudoku/src/lib/main.py:266
+#: ../gnome-sudoku/src/lib/main.py:267
 msgid "Puzzle _Statistics"
 msgstr "_Statistiques de la grille"
 
-#: ../gnome-sudoku/src/lib/main.py:267
+#: ../gnome-sudoku/src/lib/main.py:268
 msgid "Show statistics about current puzzle"
 msgstr "Affiche les statistiques sur la grille actuelle"
 
-#: ../gnome-sudoku/src/lib/main.py:279
+#: ../gnome-sudoku/src/lib/main.py:280
 msgid "_Always show hint"
 msgstr "_Toujours donner un indice"
 
-#: ../gnome-sudoku/src/lib/main.py:281
+#: ../gnome-sudoku/src/lib/main.py:282
 msgid "Always show possible numbers in a square"
 msgstr "Montre toujours les nombres possibles dans une case"
 
-#: ../gnome-sudoku/src/lib/main.py:285
+#: ../gnome-sudoku/src/lib/main.py:286
 msgid "Warn about _unfillable squares"
 msgstr "Signaler les cases _non remplissables"
 
-#: ../gnome-sudoku/src/lib/main.py:287
+#: ../gnome-sudoku/src/lib/main.py:288
 msgid "Warn about squares made unfillable by a move"
 msgstr "Signale les cases qu'un coup rend non remplissables"
 
-#: ../gnome-sudoku/src/lib/main.py:289
+#: ../gnome-sudoku/src/lib/main.py:290
 msgid "_Track additions"
 msgstr "Activer le _suivi des coups"
 
-#: ../gnome-sudoku/src/lib/main.py:291
+#: ../gnome-sudoku/src/lib/main.py:292
 msgid "Mark new additions in a separate color so you can keep track of them."
 msgstr ""
 "Marque les nouveaux coups avec une couleur différente afin de pouvoir les "
 "suivre."
 
-#: ../gnome-sudoku/src/lib/main.py:294
+#: ../gnome-sudoku/src/lib/main.py:295
 msgid "_Highlighter"
 msgstr "_Surligneur"
 
-#: ../gnome-sudoku/src/lib/main.py:295
+#: ../gnome-sudoku/src/lib/main.py:296
 msgid "Highlight the current row, column and box"
 msgstr "Surligne la rangée, la colonne et la boîte sélectionnées"
 
-#: ../gnome-sudoku/src/lib/main.py:296
+#: ../gnome-sudoku/src/lib/main.py:297
 msgid "Generate new puzzles _while you play"
 msgstr "Générer de nouvelles grilles _pendant la partie"
 
-#: ../gnome-sudoku/src/lib/main.py:298
+#: ../gnome-sudoku/src/lib/main.py:299
 msgid ""
 "Generate new puzzles in the background while you play. This will "
 "automatically pause when the game goes into the background."
@@ -6375,133 +6384,139 @@ msgstr ""
 "Génère de nouvelles grilles en arrière-plan pendant que vous jouez. Ceci "
 "s'arrête automatiquement lorsque le jeu passe en arrière-plan."
 
-#: ../gnome-sudoku/src/lib/main.py:304
+#: ../gnome-sudoku/src/lib/main.py:305
 msgid "_Edit"
 msgstr "É_dition"
 
-#: ../gnome-sudoku/src/lib/main.py:305
+#: ../gnome-sudoku/src/lib/main.py:306
 msgid "_Undo"
 msgstr "_Annuler"
 
-#: ../gnome-sudoku/src/lib/main.py:305
+#: ../gnome-sudoku/src/lib/main.py:306
 msgid "Undo last action"
 msgstr "Annule la dernière action"
 
-#: ../gnome-sudoku/src/lib/main.py:306
+#: ../gnome-sudoku/src/lib/main.py:307
 msgid "_Redo"
 msgstr "_Rétablir"
 
-#: ../gnome-sudoku/src/lib/main.py:306
+#: ../gnome-sudoku/src/lib/main.py:307
 msgid "Redo last action"
 msgstr "Rétablit la dernière action"
 
-#: ../gnome-sudoku/src/lib/main.py:307
+#: ../gnome-sudoku/src/lib/main.py:308
 #: ../gnome-sudoku/src/lib/number_box.py:54
 msgid "_Clear"
 msgstr "_Effacer"
 
-#: ../gnome-sudoku/src/lib/main.py:307
+#: ../gnome-sudoku/src/lib/main.py:308
 msgid "Clear entries you've filled in"
 msgstr "Efface les cases que vous avez remplies"
 
-#: ../gnome-sudoku/src/lib/main.py:308
+#: ../gnome-sudoku/src/lib/main.py:309
 msgid "Clear _Notes"
 msgstr "Effacer _notes"
 
-#: ../gnome-sudoku/src/lib/main.py:308
+#: ../gnome-sudoku/src/lib/main.py:309
 msgid "Clear notes and hints"
 msgstr "Efface les notes et les suggestions"
 
-#: ../gnome-sudoku/src/lib/main.py:420
+#: ../gnome-sudoku/src/lib/main.py:422
 #, python-format
-msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
+msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)."
 msgstr ""
-"Vous avez fini la grille en %(totalTime)s (%(activeTime)s de temps actif)"
+"Vous avez fini la grille en %(totalTime)s (%(activeTime)s de temps actif)."
 
-#: ../gnome-sudoku/src/lib/main.py:424
+#: ../gnome-sudoku/src/lib/main.py:426
 #, python-format
-msgid "You got %(n)s hint"
-msgid_plural "You got %(n)s hints"
-msgstr[0] "Vous avez reçu %(n)s astuce"
-msgstr[1] "Vous avez reçu %(n)s astuces"
+msgid "You completed the puzzle in %(totalTime)s."
+msgstr ""
+"Vous avez fini la grille en %(totalTime)s."
 
-#: ../gnome-sudoku/src/lib/main.py:427
+#: ../gnome-sudoku/src/lib/main.py:428
+#, python-format
+msgid "You got %(n)s hint."
+msgid_plural "You got %(n)s hints."
+msgstr[0] "Vous avez reçu %(n)s astuce."
+msgstr[1] "Vous avez reçu %(n)s astuces."
+
+#: ../gnome-sudoku/src/lib/main.py:431
 #, python-format
 msgid "You had %(n)s impossibility pointed out."
 msgid_plural "You had %(n)s impossibilities pointed out."
-msgstr[0] "%(n)s impossibilité vous a été montrée"
-msgstr[1] "%(n)s impossibilités vous ont été montrées"
+msgstr[0] "%(n)s impossibilité vous a été montrée."
+msgstr[1] "%(n)s impossibilités vous ont été montrées."
 
-#: ../gnome-sudoku/src/lib/main.py:432
+#: ../gnome-sudoku/src/lib/main.py:436
 #, python-format
-msgid "You used the auto-fill %(n)s time"
-msgid_plural "You used the auto-fill %(n)s times"
-msgstr[0] "Vous avez utilisé le remplissage automatique %(n)s fois"
-msgstr[1] "Vous avez utilisé le remplissage automatique %(n)s fois"
+msgid "You used the auto-fill %(n)s time."
+msgid_plural "You used the auto-fill %(n)s times."
+msgstr[0] "Vous avez utilisé le remplissage automatique %(n)s fois."
+msgstr[1] "Vous avez utilisé le remplissage automatique %(n)s fois."
 
-#: ../gnome-sudoku/src/lib/main.py:456
+#: ../gnome-sudoku/src/lib/main.py:460
 msgid "Save this game before starting new one?"
 msgstr "Enregistrer cette partie avant d'en commencer une nouvelle ?"
 
-#: ../gnome-sudoku/src/lib/main.py:457
+#: ../gnome-sudoku/src/lib/main.py:461
 msgid "_Save game for later"
 msgstr "_Enregistrer la partie pour plus tard"
 
-#: ../gnome-sudoku/src/lib/main.py:458
+#: ../gnome-sudoku/src/lib/main.py:462
 msgid "_Abandon game"
 msgstr "_Abandonner la partie"
 
-#: ../gnome-sudoku/src/lib/main.py:652
+#: ../gnome-sudoku/src/lib/main.py:656
 #, python-format
 msgid "Playing %(difficulty)s puzzle."
 msgstr "Partie sur une grille %(difficulty)s."
 
-#: ../gnome-sudoku/src/lib/main.py:668
+#: ../gnome-sudoku/src/lib/main.py:672
 msgid "Puzzle Information"
 msgstr "Informations sur la grille"
 
-#: ../gnome-sudoku/src/lib/main.py:669
+#: ../gnome-sudoku/src/lib/main.py:673
 msgid "There is no current puzzle."
 msgstr "Pas de grille en cours."
 
-#: ../gnome-sudoku/src/lib/main.py:674
+#: ../gnome-sudoku/src/lib/main.py:678
 msgid "Calculated difficulty: "
 msgstr "Niveau de difficulté calculé : "
 
-#: ../gnome-sudoku/src/lib/main.py:678
+#: ../gnome-sudoku/src/lib/main.py:682
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "Nombre de coups possibles immédiatement par élimination : "
 
-#: ../gnome-sudoku/src/lib/main.py:681
+#: ../gnome-sudoku/src/lib/main.py:685
 msgid "Number of moves instantly fillable by filling: "
 msgstr "Nombre de coups possibles immédiatement par déduction : "
 
-#: ../gnome-sudoku/src/lib/main.py:684
+#: ../gnome-sudoku/src/lib/main.py:688
 msgid "Amount of trial-and-error required to solve: "
 msgstr "Quantité d'essais-erreurs nécessaires à la résolution : "
 
-#: ../gnome-sudoku/src/lib/main.py:687 ../gnome-sudoku/src/lib/main.py:688
+#: ../gnome-sudoku/src/lib/main.py:691 ../gnome-sudoku/src/lib/main.py:692
 msgid "Puzzle Statistics"
 msgstr "Statistiques de la grille"
 
 #. Our initial row...
-#: ../gnome-sudoku/src/lib/main.py:779
+#: ../gnome-sudoku/src/lib/main.py:783
 msgid "No Tracker"
 msgstr "Pas de marqueur"
 
-#: ../gnome-sudoku/src/lib/main.py:789
+#: ../gnome-sudoku/src/lib/main.py:793
 msgid "Clear all moves tracked by selected tracker."
 msgstr "Supprime tous les coups suivis par le marqueur sélectionné."
 
-#: ../gnome-sudoku/src/lib/main.py:793
+#: ../gnome-sudoku/src/lib/main.py:797
 msgid "_Clear Others"
 msgstr "_Supprimer les autres coups"
 
-#: ../gnome-sudoku/src/lib/main.py:795
+#: ../gnome-sudoku/src/lib/main.py:799
 msgid "Clear all moves not tracked by selected tracker."
 msgstr "Supprime tous les coups non suivis par le marqueur sélectionné."
 
-#: ../gnome-sudoku/src/lib/main.py:820
+#: ../gnome-sudoku/src/lib/main.py:824
 #, python-format
 msgid "Tracker %s"
 msgstr "Marqueur %s"
@@ -6552,11 +6567,11 @@ msgid_plural "Generated %(n)s puzzles"
 msgstr[0] "%(n)s grille générée"
 msgstr[1] "%(n)s grilles générées"
 
-#: ../gnome-sudoku/src/lib/sudoku.py:513
+#: ../gnome-sudoku/src/lib/sudoku.py:679
 msgid "Very Hard"
 msgstr "Très difficile"
 
-#: ../gnome-sudoku/src/lib/sudoku.py:515
+#: ../gnome-sudoku/src/lib/sudoku.py:681
 msgid "Medium"
 msgstr "Moyenne"
 
@@ -6693,7 +6708,7 @@ msgstr "Les mines ont été dégagées !"
 msgid "Mines Scores"
 msgstr "Scores de Mines"
 
-#: ../gnomine/gnomine.c:218 ../gnotravex/gnotravex.c:1235
+#: ../gnomine/gnomine.c:218 ../gnotravex/gnotravex.c:1305
 #: ../swell-foop/src/Score.js:56
 msgid "Size:"
 msgstr "Taille :"
@@ -6787,12 +6802,12 @@ msgstr "Nombre de mines"
 msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "Taille du plateau (0-2 = petit-grand, 3 = personnalisé)"
 
-#: ../gnomine/gnomine.c:1010 ../gnotravex/gnotravex.c:399
+#: ../gnomine/gnomine.c:1010 ../gnotravex/gnotravex.c:410
 #: ../gnotski/gnotski.c:466 ../iagno/gnothello.c:149
 msgid "X location of window"
 msgstr "Position en X de la fenêtre"
 
-#: ../gnomine/gnomine.c:1012 ../gnotravex/gnotravex.c:401
+#: ../gnomine/gnomine.c:1012 ../gnotravex/gnotravex.c:412
 #: ../gnotski/gnotski.c:468 ../iagno/gnothello.c:151
 msgid "Y location of window"
 msgstr "Position en Y de la fenêtre"
@@ -6954,124 +6969,124 @@ msgstr "5x5"
 msgid "6×6"
 msgstr "6x6"
 
-#: ../gnotravex/gnotravex.c:306
+#: ../gnotravex/gnotravex.c:317
 msgid "_Size"
 msgstr "_Taille"
 
-#: ../gnotravex/gnotravex.c:315
+#: ../gnotravex/gnotravex.c:326
 msgid "Sol_ve"
 msgstr "Résou_dre"
 
-#: ../gnotravex/gnotravex.c:315
+#: ../gnotravex/gnotravex.c:326
 msgid "Solve the game"
 msgstr "Résolution du puzzle"
 
-#: ../gnotravex/gnotravex.c:324
+#: ../gnotravex/gnotravex.c:335
 msgid "_Up"
 msgstr "_Haut"
 
-#: ../gnotravex/gnotravex.c:325
+#: ../gnotravex/gnotravex.c:336
 msgid "Move the pieces up"
 msgstr "Déplace les pièces sélectionnées vers le haut"
 
-#: ../gnotravex/gnotravex.c:326
+#: ../gnotravex/gnotravex.c:337
 msgid "_Left"
 msgstr "_Gauche"
 
-#: ../gnotravex/gnotravex.c:327
+#: ../gnotravex/gnotravex.c:338
 msgid "Move the pieces left"
 msgstr "Déplace les pièces sélectionnées vers la gauche"
 
-#: ../gnotravex/gnotravex.c:328
+#: ../gnotravex/gnotravex.c:339
 msgid "_Right"
 msgstr "_Droite"
 
-#: ../gnotravex/gnotravex.c:329
+#: ../gnotravex/gnotravex.c:340
 msgid "Move the pieces right"
 msgstr "Déplace les pièces sélectionnées vers la droite"
 
-#: ../gnotravex/gnotravex.c:330
+#: ../gnotravex/gnotravex.c:341
 msgid "_Down"
 msgstr "_Bas"
 
-#: ../gnotravex/gnotravex.c:331
+#: ../gnotravex/gnotravex.c:342
 msgid "Move the pieces down"
 msgstr "Déplace les pièces sélectionnées vers le bas"
 
-#: ../gnotravex/gnotravex.c:337
+#: ../gnotravex/gnotravex.c:348
 msgid "_2×2"
 msgstr "_2x2"
 
-#: ../gnotravex/gnotravex.c:337
+#: ../gnotravex/gnotravex.c:348
 msgid "Play on a 2×2 board"
 msgstr "Jouer sur un damier 2x2"
 
-#: ../gnotravex/gnotravex.c:339
+#: ../gnotravex/gnotravex.c:350
 msgid "_3×3"
 msgstr "_3x3"
 
-#: ../gnotravex/gnotravex.c:339
+#: ../gnotravex/gnotravex.c:350
 msgid "Play on a 3×3 board"
 msgstr "Jouer sur un damier 3x3"
 
-#: ../gnotravex/gnotravex.c:341
+#: ../gnotravex/gnotravex.c:352
 msgid "_4×4"
 msgstr "_4x4"
 
-#: ../gnotravex/gnotravex.c:341
+#: ../gnotravex/gnotravex.c:352
 msgid "Play on a 4×4 board"
 msgstr "Jouer sur un damier 4x4"
 
-#: ../gnotravex/gnotravex.c:343
+#: ../gnotravex/gnotravex.c:354
 msgid "_5×5"
 msgstr "_5x5"
 
-#: ../gnotravex/gnotravex.c:343
+#: ../gnotravex/gnotravex.c:354
 msgid "Play on a 5×5 board"
 msgstr "Jouer sur un damier 5x5"
 
-#: ../gnotravex/gnotravex.c:345
+#: ../gnotravex/gnotravex.c:356
 msgid "_6×6"
 msgstr "_6x6"
 
-#: ../gnotravex/gnotravex.c:345
+#: ../gnotravex/gnotravex.c:356
 msgid "Play on a 6×6 board"
 msgstr "Jouer sur un damier 6x6"
 
-#: ../gnotravex/gnotravex.c:350
+#: ../gnotravex/gnotravex.c:361
 msgid "Tile _Colours"
 msgstr "_Couleurs de la carte"
 
-#: ../gnotravex/gnotravex.c:403
+#: ../gnotravex/gnotravex.c:414
 msgid "Size of board (2-6)"
 msgstr "Taille du damier (2-6)"
 
-#: ../gnotravex/gnotravex.c:404
+#: ../gnotravex/gnotravex.c:415
 msgid "SIZE"
 msgstr "TAILLE"
 
-#: ../gnotravex/gnotravex.c:1117
+#: ../gnotravex/gnotravex.c:1177
 msgid "Puzzle solved! Well done!"
 msgstr "Puzzle résolu ! Bien joué !"
 
-#: ../gnotravex/gnotravex.c:1119
+#: ../gnotravex/gnotravex.c:1179
 msgid "Puzzle solved!"
 msgstr "Puzzle résolu !"
 
-#: ../gnotravex/gnotravex.c:1233
+#: ../gnotravex/gnotravex.c:1303
 msgid "Tetravex Scores"
 msgstr "Scores de Tetravex"
 
-#: ../gnotravex/gnotravex.c:1499 ../mahjongg/mahjongg.c:977
+#: ../gnotravex/gnotravex.c:1565 ../mahjongg/mahjongg.c:977
 msgid "Game paused"
 msgstr "Jeu suspendu"
 
-#: ../gnotravex/gnotravex.c:1629
+#: ../gnotravex/gnotravex.c:1695
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "Jeu sur un plateau %dx%d"
 
-#: ../gnotravex/gnotravex.c:1911
+#: ../gnotravex/gnotravex.c:2023
 msgid ""
 "GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
 "the same numbers are touching each other.\n"
@@ -7560,7 +7575,7 @@ msgstr "N_ombre d'adversaires :"
 
 #: ../gtali/setup.c:345
 msgid "_Difficulty:"
-msgstr "_Difficulté"
+msgstr "_Difficulté :"
 
 #: ../gtali/setup.c:348
 msgctxt "difficulty"
@@ -8083,7 +8098,7 @@ msgstr ""
 "licenses/>."
 
 #: ../lightsoff/lightsoff.desktop.in.in.h:1 ../lightsoff/data/lightsoff.ui.h:1
-#: ../lightsoff/data/settings.ui.h:1 ../lightsoff/src/About.js:11
+#: ../lightsoff/data/settings.ui.h:2 ../lightsoff/src/About.js:11
 #: ../lightsoff/src/About.js:15
 msgid "Lights Off"
 msgstr "Lights Off"
@@ -8122,10 +8137,6 @@ msgstr "Le score le plus récent des utilisateurs."
 msgid "Whether or not to use the GNOME theme colors"
 msgstr "Indique s'il faut utiliser ou non le thème de couleurs GNOME"
 
-#: ../lightsoff/data/settings.ui.h:2
-msgid "Look & Feel"
-msgstr "Apparence"
-
 #: ../lightsoff/data/settings.ui.h:3 ../swell-foop/data/settings.ui.h:7
 msgid "Theme:"
 msgstr "Thème :"
@@ -8146,7 +8157,7 @@ msgstr ""
 
 #: ../lightsoff/src/About.js:14 ../swell-foop/src/About.js:14
 msgid "Copyright  2009 Tim Horton"
-msgstr "Copyright  2009 Tim Horton"
+msgstr "Copyright 2009 Tim Horton"
 
 #: ../mahjongg/drawing.c:307
 msgid ""
@@ -8414,3 +8425,5 @@ msgstr "Petite"
 #: ../swell-foop/src/Score.js:146
 msgid "Large"
 msgstr "Grande"
+
+
