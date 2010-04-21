@@ -24,6 +24,7 @@
 #include <sys/types.h>
 #include <errno.h>
 
+#include <glib.h>
 #include <glib/gi18n.h>
 
 #include <gdk/gdk.h>
@@ -95,13 +96,6 @@
 #define C_(context, string) (_(string))
 #endif
 
-/* On maemo5, the toolbar doesn't have enough space to show a
- * significant amount of text, so we always use the banner here.
- */
-#if defined(HAVE_HILDON) && (defined(HAVE_MAEMO_3) || defined(HAVE_MAEMO_4))
-#define MAEMO_TOOLBAR_BANNER
-#endif
-
 /* On maemo5, there's no hardware key to exit the fullscreen mode. So we show
  * an overlay button to restore normal mode, if the toolbar is hidden too.
  */
@@ -119,11 +113,9 @@ enum
   ACTION_OPTIONS_MENU,
   ACTION_DEAL,
   ACTION_HINT,
+  ACTION_LEAVE_FULLSCREEN,
 #ifdef HAVE_HILDON
   ACTION_ACCEL_UNDO_MOVE,
-#endif
-#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
-  ACTION_LEAVE_FULLSCREEN,
 #endif
   LAST_ACTION
 };
@@ -145,9 +137,6 @@ struct _AisleriotWindowPrivate
 
 #ifdef HAVE_HILDON
   guint game_message_hash;
-#ifdef MAEMO_TOOLBAR_BANNER
-  GtkLabel *game_message_label;
-#endif /* MAEMO_TOOLBAR_BANNER */
 #else
   GtkStatusbar *statusbar;
   guint game_message_id;
@@ -949,13 +938,11 @@ set_fullscreen_actions (AisleriotWindow *window,
   g_object_set (priv->main_menu, "visible", !is_fullscreen, NULL);
 #endif /* HAVE_MAEMO */
 
-#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
   gtk_action_set_visible (priv->action[ACTION_LEAVE_FULLSCREEN], is_fullscreen);
   g_object_set (gtk_ui_manager_get_widget (priv->ui_manager, "/Toolbar/LeaveFullscreenSep"),
                 "visible", is_fullscreen,
                 "draw", FALSE,
                 NULL);
-#endif /* !HAVE_MAEMO || !MAEMO_TOOLBAR_BANNER */
 
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (priv->action[ACTION_FULLSCREEN]),
                                 is_fullscreen);
@@ -977,16 +964,12 @@ fullscreen_toggled_cb (GtkToggleAction *action,
   }
 }
 
-#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
-
 static void
 leave_fullscreen_cb (GtkAction *action,
                      GtkWindow *window)
 {
   gtk_window_unfullscreen (window);
 }
-
-#endif /* !HAVE_MAEMO || !MAEMO_TOOLBAR_BANNER */
 
 static void
 clickmove_toggle_cb (GtkToggleAction *action,
@@ -1756,9 +1739,6 @@ game_type_changed_cb (AisleriotGame *game,
   gtk_action_set_visible (priv->action[ACTION_DEAL], dealable);
 
 #ifdef HAVE_HILDON
-#ifdef MAEMO_TOOLBAR_BANNER
-  gtk_label_set_text (priv->game_message_label, NULL);
-#endif /* MAEMO_TOOLBAR_BANNER */
 #else
   games_clock_reset (GAMES_CLOCK (priv->clock));
 
@@ -1776,22 +1756,18 @@ static void
 game_new_cb (AisleriotGame *game,
              AisleriotWindow *window)
 {
-#if defined(MAEMO_TOOLBAR_BANNER) || !defined(HAVE_HILDON)
+#ifndef HAVE_HILDON
   AisleriotWindowPrivate *priv = window->priv;
 #endif
 
   update_statistics_display (window);
 
-#ifdef HAVE_HILDON
-#ifdef MAEMO_TOOLBAR_BANNER
-  gtk_label_set_text (priv->game_message_label, NULL);
-#endif /* MAEMO_TOOLBAR_BANNER */
-#else
+#ifndef HAVE_HILDON
   games_clock_reset (GAMES_CLOCK (priv->clock));
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
   gtk_statusbar_pop (priv->statusbar, priv->board_message_id);
-#endif /* HAVE_HILDON */
+#endif /* !HAVE_HILDON */
 }
 
 static void
@@ -1801,16 +1777,8 @@ game_statusbar_message_cb (AisleriotGame *game,
 {
   AisleriotWindowPrivate *priv = window->priv;
 #ifdef HAVE_HILDON
-#ifdef MAEMO_TOOLBAR_BANNER
-  gtk_label_set_text (priv->game_message_label, message);
-#endif
 
-  /* The banners are annoying, but until I get a better idea, use them
-   * when the toolbar is hidden.
-   */
-#ifdef MAEMO_TOOLBAR_BANNER
-  if (!priv->toolbar_visible)
-#endif
+  /* The banners are annoying, but until I get a better idea, use them */
   {
     guint hash;
 
@@ -2253,10 +2221,8 @@ aisleriot_window_init (AisleriotWindow *window)
 #endif /* ENABLE_CARD_THEMES_INSTALLER */
 
     /* Toolbar-only actions */
-#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
     { "LeaveFullscreen", GAMES_STOCK_LEAVE_FULLSCREEN, NULL, NULL, NULL,
       G_CALLBACK (leave_fullscreen_cb) },
-#endif /* !HAVE_MAEMO || !MAEMO_TOOLBAR_BANNER */
 #ifndef HAVE_HILDON
     { "ThemeMenu", NULL, N_("_Card Style"), NULL, NULL, NULL },
 #endif /* !HAVE_HILDON */
@@ -2338,12 +2304,10 @@ aisleriot_window_init (AisleriotWindow *window)
     "OptionsMenu",
     "Deal",
     "Hint",
+    "LeaveFullscreen",
 #ifdef HAVE_HILDON
     "AccelUndoMove",
 #endif /* HAVE_HILDON */
-#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
-    "LeaveFullscreen",
-#endif /* !HAVE_MAEMO || !MAEMO_TOOLBAR_BANNER */
   };
 
   static const char ui_description[] =
@@ -2463,10 +2427,8 @@ aisleriot_window_init (AisleriotWindow *window)
         "<toolitem action='RedoMove'/>"
         "<toolitem action='Deal'/>"
         "<toolitem action='Hint'/>"
-#if !defined(HAVE_MAEMO) || !defined(MAEMO_TOOLBAR_BANNER)
         "<separator name='LeaveFullscreenSep' expand='true'/>"
         "<toolitem action='LeaveFullscreen'/>"
-#endif /* !HAVE_MAEMO || !MAEMO_TOOLBAR_BANNER */
 #ifdef ENABLE_DEBUG_UI
         "<toolitem action='DebugGameFirst'/>"
         "<toolitem action='DebugGamePrev'/>"
@@ -2661,27 +2623,6 @@ aisleriot_window_init (AisleriotWindow *window)
 
   priv->main_menu = gtk_ui_manager_get_widget (priv->ui_manager, MAIN_MENU_UI_PATH);
   priv->toolbar = gtk_ui_manager_get_widget (priv->ui_manager, TOOLBAR_UI_PATH);
-
-#ifdef MAEMO_TOOLBAR_BANNER
-{
-  GtkToolItem *tool_item;
-
-  /* It's a bit ugly to mess with the toolbar like this,
-   * but it's simpler than to implement a dedicated action
-   * which creates a tool item which ellipsises its label...
-   */
-  tool_item = gtk_tool_item_new ();
-  gtk_tool_item_set_expand (tool_item, TRUE);
-
-  priv->game_message_label = GTK_LABEL (gtk_label_new (NULL));
-  gtk_misc_set_alignment (GTK_MISC (priv->game_message_label), 1.0, 0.5);
-  gtk_label_set_ellipsize (priv->game_message_label, PANGO_ELLIPSIZE_END);
-  gtk_container_add (GTK_CONTAINER (tool_item), GTK_WIDGET (priv->game_message_label));
-
-  gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbar), tool_item, -1);
-  gtk_widget_show_all (GTK_WIDGET (tool_item));
-}
-#endif /* MAEMO_TOOLBAR_BANNER */
 
   /* Defer building the card themes menu until its parent's menu is opened */
 #ifdef HAVE_HILDON
