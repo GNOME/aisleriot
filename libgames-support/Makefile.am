@@ -23,10 +23,14 @@ libgames_support_la_SOURCES =		\
 	games-conf.h			\
 	games-debug.c			\
 	games-debug.h			\
+	games-fullscreen-action.c	\
+	games-fullscreen-action.h	\
 	games-glib-compat.h		\
 	games-gtk-compat.h		\
 	games-help.c			\
 	games-help.h			\
+	games-pause-action.c	\
+	games-pause-action.h	\
 	games-profile.c			\
 	games-profile.h			\
 	games-runtime.c			\
