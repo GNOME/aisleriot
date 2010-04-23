@@ -27,13 +27,15 @@
 enum {
     PROP_0,
     PROP_WINDOW,
-    PROP_IS_FULLSCREEN
+    PROP_IS_FULLSCREEN,
+    PROP_VISIBLE_POLICY,
 };
 
 struct GamesFullscreenActionPrivate
 {
     GtkWindow *window;
     gboolean is_fullscreen;
+    GamesFullscreenActionVisiblePolicy visible_policy;
 };
 
 G_DEFINE_TYPE (GamesFullscreenAction, games_fullscreen_action, GTK_TYPE_ACTION);
@@ -41,13 +43,48 @@ G_DEFINE_TYPE (GamesFullscreenAction, games_fullscreen_action, GTK_TYPE_ACTION);
 GamesFullscreenAction *
 games_fullscreen_action_new (const gchar *name, GtkWindow *window)
 {
-    return g_object_new (GAMES_FULLSCREEN_ACTION_TYPE, "name", name, "window", window, NULL);
+    return g_object_new (GAMES_TYPE_FULLSCREEN_ACTION, "name", name, "window", window, NULL);
+}
+
+static void
+update_action (GamesFullscreenAction *action)
+{
+    gboolean visible = TRUE;
+  
+    if (action->priv->is_fullscreen) {
+        gtk_action_set_stock_id (GTK_ACTION (action), GAMES_STOCK_LEAVE_FULLSCREEN);
+        if (action->priv->visible_policy == GAMES_FULLSCREEN_ACTION_VISIBLE_ON_UNFULLSCREEN)
+            visible = FALSE;
+    }
+    else {
+        if (action->priv->visible_policy == GAMES_FULLSCREEN_ACTION_VISIBLE_ON_FULLSCREEN)
+            visible = FALSE;
+        gtk_action_set_stock_id (GTK_ACTION (action), GAMES_STOCK_FULLSCREEN);
+    }
+
+    gtk_action_set_visible (GTK_ACTION (action), visible);
+}
+
+void
+games_fullscreen_action_set_visible_policy (GamesFullscreenAction *action, GamesFullscreenActionVisiblePolicy visible_policy)
+{
+    g_return_if_fail (GAMES_IS_FULLSCREEN_ACTION (action));
+
+    action->priv->visible_policy = visible_policy;
+    update_action (action);
+}
+
+GamesFullscreenActionVisiblePolicy
+games_fullscreen_action_get_visible_policy (GamesFullscreenAction *action)
+{
+    g_return_val_if_fail (GAMES_IS_FULLSCREEN_ACTION (action), 0);
+    return action->priv->visible_policy;
 }
 
 void
 games_fullscreen_action_set_is_fullscreen (GamesFullscreenAction *action, gboolean is_fullscreen)
 {
-//    g_return_if_fail (G
+    g_return_if_fail (GAMES_IS_FULLSCREEN_ACTION (action));  
 
     if (is_fullscreen)
         gtk_window_fullscreen (action->priv->window);
@@ -58,6 +95,7 @@ games_fullscreen_action_set_is_fullscreen (GamesFullscreenAction *action, gboole
 gboolean
 games_fullscreen_action_get_is_fullscreen (GamesFullscreenAction *action)
 {
+    g_return_val_if_fail (GAMES_IS_FULLSCREEN_ACTION (action), FALSE);
     return action->priv->is_fullscreen;
 }
 
@@ -76,10 +114,8 @@ window_state_event_cb (GtkWidget *widget,
       return FALSE;
 
   action->priv->is_fullscreen = is_fullscreen;
-  if (action->priv->is_fullscreen)
-      gtk_action_set_stock_id (GTK_ACTION (action), GAMES_STOCK_LEAVE_FULLSCREEN);
-  else
-      gtk_action_set_stock_id (GTK_ACTION (action), GAMES_STOCK_FULLSCREEN);
+
+  update_action (action);
 
   g_object_notify (G_OBJECT (action), "is-fullscreen");
 
@@ -105,6 +141,9 @@ games_fullscreen_action_set_property(GObject      *object,
     case PROP_IS_FULLSCREEN:
         games_fullscreen_action_set_is_fullscreen (self, g_value_get_boolean (value));
         break;
+    case PROP_VISIBLE_POLICY:
+        games_fullscreen_action_set_visible_policy (self, g_value_get_int (value));
+        break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
         break;
@@ -128,6 +167,9 @@ games_fullscreen_action_get_property(GObject    *object,
     case PROP_IS_FULLSCREEN:
         g_value_set_boolean (value, games_fullscreen_action_get_is_fullscreen (self));
         break;
+    case PROP_VISIBLE_POLICY:
+        g_value_set_int (value, games_fullscreen_action_get_visible_policy (self));
+        break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
         break;
@@ -137,8 +179,8 @@ games_fullscreen_action_get_property(GObject    *object,
 static void
 games_fullscreen_action_init (GamesFullscreenAction *self)
 {
-    self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GAMES_FULLSCREEN_ACTION_TYPE, GamesFullscreenActionPrivate);
-    gtk_action_set_stock_id (GTK_ACTION (self), GAMES_STOCK_FULLSCREEN);
+    self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GAMES_TYPE_FULLSCREEN_ACTION, GamesFullscreenActionPrivate);
+    update_action (self);
 }
 
 static void
@@ -172,6 +214,14 @@ games_fullscreen_action_class_init (GamesFullscreenActionClass *klass)
                                                          "is-fullscreen",
                                                          "True if game is fullscreen",
                                                          FALSE,
+                                                         G_PARAM_READWRITE));
+
+    g_object_class_install_property(object_class,
+                                    PROP_VISIBLE_POLICY,
+                                    g_param_spec_boolean("visible-policy",
+                                                         "visible-policy",
+                                                         "Policy when to show this action",
+                                                         GAMES_FULLSCREEN_ACTION_VISIBLE_ALWAYS,
                                                          G_PARAM_READWRITE));
 
     g_type_class_add_private (klass, sizeof (GamesFullscreenActionPrivate));

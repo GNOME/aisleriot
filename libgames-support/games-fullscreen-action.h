@@ -26,8 +26,9 @@
 
 G_BEGIN_DECLS
 
-#define GAMES_FULLSCREEN_ACTION_TYPE  (games_fullscreen_action_get_type ())
-#define GAMES_FULLSCREEN_ACTION(obj)  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_FULLSCREEN_ACTION_TYPE, GamesFullscreenAction))
+#define GAMES_TYPE_FULLSCREEN_ACTION    (games_fullscreen_action_get_type ())
+#define GAMES_FULLSCREEN_ACTION(obj)    (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_FULLSCREEN_ACTION, GamesFullscreenAction))
+#define GAMES_IS_FULLSCREEN_ACTION(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_FULLSCREEN_ACTION))
 
 typedef struct GamesFullscreenActionPrivate GamesFullscreenActionPrivate;
 
@@ -42,9 +43,20 @@ typedef struct
     GtkActionClass parent_class;
 } GamesFullscreenActionClass;
 
+typedef enum
+{
+    GAMES_FULLSCREEN_ACTION_VISIBLE_ALWAYS,
+    GAMES_FULLSCREEN_ACTION_VISIBLE_ON_FULLSCREEN,
+    GAMES_FULLSCREEN_ACTION_VISIBLE_ON_UNFULLSCREEN
+} GamesFullscreenActionVisiblePolicy;
+
 GType games_fullscreen_action_get_type (void);
 
 GamesFullscreenAction *games_fullscreen_action_new (const gchar *name, GtkWindow *window);
+
+void games_fullscreen_action_set_visible_policy (GamesFullscreenAction *action, GamesFullscreenActionVisiblePolicy visible_policy);
+
+GamesFullscreenActionVisiblePolicy games_fullscreen_action_get_visible_policy (GamesFullscreenAction *action);
 
 void games_fullscreen_action_set_is_fullscreen (GamesFullscreenAction *action, gboolean is_fullscreen);
 
