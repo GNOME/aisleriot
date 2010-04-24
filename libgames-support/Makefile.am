@@ -3,7 +3,6 @@ NULL =
 commondatadir = $(datadir)/gnome-games-common
 
 EXTRA_DIST = \
-	$(schema_in_files)	\
 	games-marshal.list	\
 	$(NULL)
 
@@ -55,6 +54,13 @@ libgames_support_la_SOURCES +=		\
 	$(NULL)
 endif # !HAVE_HILDON
 
+if HAVE_GIO_2_26
+libgames_support_la_SOURCES += \
+	games-settings.c \
+	games-settings.h \
+	$(NULL)
+endif
+
 if LIBGAMES_SUPPORT_FULL
 libgames_support_la_SOURCES +=		\
 	games-files.c			\
@@ -103,6 +109,11 @@ libgames_support_la_CFLAGS = 	\
 libgames_support_la_LIBADD = 	\
 	$(GTK_LIBS)
 
+if HAVE_GIO_2_26
+libgames_support_la_CFLAGS += $(GIO_CFLAGS)
+libgames_support_la_LIBADD += $(GIO_LIBS)
+endif
+
 if WITH_SMCLIENT
 libgames_support_la_SOURCES += \
 	eggsmclient.c \
@@ -148,14 +159,10 @@ libgames_support_la_CFLAGS += $(HILDON_CFLAGS)
 libgames_support_la_LIBADD += $(HILDON_LIBS)
 endif
 
-install-data-local:
-if GCONF_SCHEMAS_INSTALL
-	if test -z "$(DESTDIR)" ; then \
-		for p in $^ ; do \
-			GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $$p 2>&1 > /dev/null; \
-		done \
-	fi
-endif # GCONF_SCHEMAS_INSTALL
+gsettingsschema_in_files = org.gnome.Games.WindowState.gschema.xml.in
+if HAVE_GIO_2_26
+nodist_gsettingsschema_DATA = $(gsettingsschema_in_files:.gschema.xml.in=.gschema.xml)
+endif
 
 stamp_files = \
 	stamp-games-marshal.c \
@@ -165,9 +172,10 @@ stamp_files = \
 CLEANFILES = \
 	$(BUILT_SOURCES) \
 	$(stamp_files) \
+	$(nodist_gsettingsschema_DATA) \
 	$(NULL)
 
-DISTCLEANFILES = $(schema_DATA)
+DISTCLEANFILES =
 
 games-marshal.c: stamp-games-marshal.c
 	@true
@@ -227,5 +235,13 @@ CLEANFILES += GnomeGamesSupport-1.0.gir $(typelibs_DATA)
 
 endif # HAVE_INTROSPECTION
 
+install-data-hook:
+if GSETTINGS_SCHEMAS_INSTALL
+	if test -z "$(DATADIR)"; then \
+		$(GLIB_COMPILE_SCHEMAS) $(gsettingsschemadir) ; \
+	fi
+endif # GSETTINGS_SCHEMAS_INSTALL
+
+@INTLTOOL_XML_NOMERGE_RULE@
 
 -include $(top_srcdir)/git.mk
