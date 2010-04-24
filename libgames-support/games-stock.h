@@ -54,9 +54,6 @@ G_BEGIN_DECLS
 
 void games_stock_init (void);
 
-void games_stock_set_pause_actions (GtkAction * pause_action,
-                                    GtkAction * resume_action);
-
 void games_stock_prepare_for_statusbar_tooltips (GtkUIManager * ui_manager,
                                                  GtkWidget * statusbar);
 

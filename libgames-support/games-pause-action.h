@@ -40,6 +40,8 @@ typedef struct
 typedef struct
 {
     GtkActionClass parent_class;
+
+    void (*state_changed)(GamesPauseAction *action);
 } GamesPauseActionClass;
 
 GType games_pause_action_get_type (void);

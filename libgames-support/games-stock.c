@@ -171,40 +171,6 @@ games_stock_prepare_for_statusbar_tooltips (GtkUIManager * ui_manager,
                     G_CALLBACK (disconnect_proxy_cb), statusbar);
 }
 
-typedef struct {
-  GtkAction *pause_action;
-  GtkAction *resume_action;
-} PauseActions;
-
-static void
-set_pause_actions (GtkAction * active, PauseActions * actions)
-{
-  gboolean paused;
-
-  paused = (active == actions->pause_action);
-  gtk_action_set_visible (actions->pause_action, !paused);
-  gtk_action_set_sensitive (actions->pause_action, !paused);
-  gtk_action_set_visible (actions->resume_action, paused);
-  gtk_action_set_sensitive (actions->resume_action, paused);
-}
-
-void
-games_stock_set_pause_actions (GtkAction * pause_action,
-                               GtkAction * resume_action)
-{
-  PauseActions *actions;
-
-  actions = g_new (PauseActions, 1);
-  actions->pause_action = pause_action;
-  actions->resume_action = resume_action;
-  g_signal_connect (pause_action, "activate", G_CALLBACK (set_pause_actions),
-                    actions);
-  g_signal_connect (resume_action, "activate", G_CALLBACK (set_pause_actions),
-                    actions);
-
-  set_pause_actions (resume_action, actions);
-}
-
 #endif /* !HAVE_HILDON */
 
 /* This will become GTK_CHECK_VERSION (2, 15, x) once the patch from gtk+ bug 511332 is committed */

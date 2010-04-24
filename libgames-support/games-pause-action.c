@@ -27,6 +27,12 @@ enum {
     PROP_IS_PAUSED
 };
 
+enum {
+    STATE_CHANGED,
+    LAST_SIGNAL
+};
+static guint signals[LAST_SIGNAL] = { 0, };
+
 struct GamesPauseActionPrivate
 {
     gboolean is_paused;
@@ -51,6 +57,7 @@ games_pause_action_set_is_paused (GamesPauseAction *action, gboolean is_paused)
     else
         gtk_action_set_stock_id (GTK_ACTION (action), GAMES_STOCK_PAUSE_GAME);
     g_object_notify (G_OBJECT (action), "is-paused");
+    g_signal_emit (G_OBJECT (action), signals[STATE_CHANGED], 0);
 }
 
 gboolean
@@ -130,6 +137,15 @@ games_pause_action_class_init (GamesPauseActionClass *klass)
                                                          "True if game is paused",
                                                          FALSE,
                                                          G_PARAM_READWRITE));
+
+    signals[STATE_CHANGED] =
+        g_signal_new ("state-changed",
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_LAST,
+                      G_STRUCT_OFFSET (GamesPauseActionClass, state_changed),
+                      NULL, NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE, 0);
 
     g_type_class_add_private (klass, sizeof (GamesPauseActionPrivate));
 }
