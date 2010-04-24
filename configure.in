@@ -113,7 +113,7 @@ need_rsvg=no
 need_guile=no
 need_python=no
 need_clutter=no
-need_dbus_glib=no
+need_gio_2_26=no
 want_sound=no
 allow_gnuchess=no
 allow_smclient=no
@@ -498,7 +498,7 @@ if test "$enable_card_themes_installer" = "yes"; then
   fi
 
   AC_DEFINE([ENABLE_CARD_THEMES_INSTALLER],[1],[Define if card theme installer support is enabled])
-  need_dbus_glib=yes
+  need_gio_2_26=yes
 fi
 
 AM_CONDITIONAL([ENABLE_CARD_THEMES_INSTALLER],[test "$enable_card_themes_installer" = "yes"])
@@ -534,6 +534,7 @@ else
 fi
 
 GCONF_REQUIRED=2.0
+GIO_REQUIRED=2.25.5
 CAIRO_REQUIRED=1.0
 RSVG_REQUIRED=2.14.0
 GSTREAMER_REQUIRED=0.10.11
@@ -553,10 +554,38 @@ PKG_CHECK_MODULES([GTK],[gtk+-2.0 >= $GTK_REQUIRED])
 AC_SUBST([GTK_CFLAGS])
 AC_SUBST([GTK_LIBS])
 
-AM_GCONF_SOURCE_2
-AC_PATH_PROG([GCONFTOOL],[gconftool-2])
+# GSettings
+
+PKG_CHECK_MODULES([GIO],[gio-2.0 >= $GIO_REQUIRED],
+[
+  have_gio_2_26=yes
+
+  GCONF_REQUIRED=2.31.1
+
+  AC_ARG_ENABLE([schemas-install],
+    [AS_HELP_STRING([--disable-schemas-install],
+                    [Disable installation of GSettings schemas])],
+    [],[enable_schemas_install=yes])
+
+  AC_SUBST([GLIB_COMPILE_SCHEMAS],["$($PKG_CONFIG --variable glib_compile_schemas gio-2.0)]")
+],[
+  have_gio_2_26=no
+  enable_schemas_install=no
+
+  if test "$need_gio_2_26" = "yes"; then
+    AC_MSG_ERROR([GIO >= 2.25 is required but was not found])
+  fi
+])
+
+AM_CONDITIONAL([HAVE_GIO_2_26],[test "$have_gio_2_26" = "yes"])
+
+AC_SUBST([gsettingsschemadir],['${datadir}/glib-2.0/schemas'])
+AM_CONDITIONAL([GSETTINGS_SCHEMAS_INSTALL],[test "$enable_schemas_install" = "yes"])
 
 # Check for GNOME modules
+
+AM_GCONF_SOURCE_2
+AC_PATH_PROG([GCONFTOOL],[gconftool-2])
 
 if test "$with_platform" = "gnome"; then
   PKG_CHECK_MODULES([GNOME],[gconf-2.0 >= $GCONF_REQUIRED])
@@ -629,14 +658,6 @@ if test "$need_clutter" = "yes"; then
 fi
 
 AM_CONDITIONAL([HAVE_CLUTTER],[test "$need_clutter" = "yes"])
-
-# Check for DBUS/GLIB
-
-if test "$need_dbus_glib" = "yes"; then
-  PKG_CHECK_MODULES([DBUS_GLIB],[dbus-glib-1 >= $DBUS_GLIB_REQUIRED])
-  AC_SUBST([DBUS_GLIB_CFLAGS])
-  AC_SUBST([DBUS_GLIB_LIBS])
-fi
 
 # Check for PyGTK
 
