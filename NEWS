@@ -1,3 +1,182 @@
+gnome-games 2.31.1
+==================
+
+This release includes a lot of improvements mainly for sudoku, chess, and tetravex.
+Overall the games now have more consistent menus, better HIG compliance, and now
+builds with GSEAL.
+
+The work on sudoku includes a new sharper look, less cluttered menus, removal of
+the status bar, and a ton of bug fixes. Chess now supports svgs for pieces and
+includes a new theme. Chess also moved to use GtkInfoBar. In tetravex animation
+support was added together with support for swapping pieces. In quadrapassel the
+difficulty in the later levels was tweaked to be easier.
+
+Thanks to all contributors and a big welcome to our new developer Jim Ross for
+the awesome work on sudoku.
+
+Ask H. Larsen (1):
+      Updated Danish translation
+
+Barcc (1):
+      aisleriot: patch for wrong dialog if king on last slot in helsinki game
+
+Bruno Brouard (2):
+      Updated French translation
+      Updated French translation
+
+Carles Ferrando (1):
+      Updated Catalan (Valencian) translation
+
+Christian Persch (5):
+      Use gtk_clutter_get_option_group() on clutter-gtk 0.90
+      aisleriot: Move variation_to_game_file() to util.[ch]
+      Make the render-cards utility GPL3+ too
+      libgames-support: add fullscreen and pause actions only to FULL
+      aisleriot: Remove toolbar banner support
+
+Claude Paroz (3):
+      Sudoku: Remove markup in translatable strings
+      Sudoku: Conditional display of active time
+      [gnotravex] Updated French translated screenshots
+
+Daniel Mustieles (2):
+      Updated Spanish translation
+      Updated Spanish translation
+
+Fran Diéguez (1):
+      Updated Galician translation
+
+Francisco Diéguez (1):
+      Updated Galician translations
+
+Ivar Smolin (1):
+      Estonian translation updated
+
+Javier Jardón (1):
+      Use accessor functions for -DGSEAL_ENABLE. Final patch.
+
+Jim Ross (13):
+      sudoku: Fix timer problems. Bug #562782
+      Overhaul of conflict resolution
+      sudoku: Make note window transient
+      sudoku: Fixed mark timing
+      sudoku: Fix solver for new conflict resolution code
+      sudoku:Integrate activity timer into note editor
+      sudoku: Update all hints on clear
+      sudoku:warn-unfillable-squares option fixup
+      sudoku: Check for completeness on undo clear notes
+      Added decorative frame to game selection areas
+      Support single-click game selection
+      Added Game>Reset, Edit>Clear Top/Bottom Notes
+      Clear Bottom Notes disables auto-hint
+
+Joe Hansen (2):
+      Added danish translation of the documentation
+      Updated Danish translation of documentation
+
+Jordi Serratosa (1):
+      Fixes to Catalan translation
+
+Jorge González (3):
+      Updated Spanish translation
+      Updated Spanish translation
+      Added Spanish translation
+
+Kenneth Nielsen (1):
+      Added da to list of languages
+
+Kjartan Maraas (1):
+      Updated Norwegian bokmål translation
+
+Mario Blättermann (2):
+      Updated German doc translation
+      Updated German translation
+
+Matthias Clasen (1):
+      Add libs to LDADD to fix build issues with pedantic linkers
+
+Maxim V. Dziumanenko (1):
+      Updated Ukrainian translation
+
+Ray Strode (1):
+      gnome-games doesn't support relocatable .gnome2 directory (Bug 613634)
+
+Richard Griswold (1):
+      sudoku:Add keybindings to add/remove numbers from notes
+
+Robert Ancell (49):
+      Use SVG themes for 2D chess pieces (patch by Alexey Kryukov)
+      Merge branch 'glchess-svgchess'
+      Move glchess/textures/ and glchess/mime/ into glchess/data/
+      Make toolbar text visible
+      Make prefernces dialog HIG compliant
+      swap pieces if placed on existing piece and animate moves (Dan Whitman, Bug #500957)
+      Undo accidental glchess changes
+      Allow AI profiles to set different executable flags for different difficulties
+      Fix make distcheck after glchess svg changes
+      Fix translations in non UTF-8 locale
+      Make Sudoku board less eye-straining
+      Remove Sudoku statusbar (it's not showing anything useful)
+      Always Sudoku generate puzzles in the background, they don't cost any significant CPU and there is no need to prompt the user
+      Use correct GtkLabel API to avoid warning
+      Use sharp edge to box highlight
+      Remove some dead code
+      Use sharp lines for Sudoku preview
+      Merge View menu into Settings menu to be consistent with other games
+      Make menu entries HIG compliant
+      Fix some capitalisation
+      Show error X in red
+      Fix some capitalisation
+      Reorder menus to be more consistent with other GNOME Games
+      Make toolbar buttons have text
+      Remove fill and toggle highlight from the toolbar (they aren't required to play and are easily accessible from the toolbar)
+      Add shortcut to print menu, remove from toolbar (the normal use is not to print)
+      Remove fill options (Bug #616580)
+      Remove Clear Others tracker option (none of the devs can work out what it does)
+      Make gnotravex menus standard like other games
+      Always use colours
+      Remove size submenu, put in settings menu
+      Don't show border around iagno board
+      Don't show border in notebook
+      Don't show border in notebook
+      Make game selector activate on button release
+      Use Tango colour palette and GNOME Games background if possible
+      Use Tango colour palette and GNOME Games background if possible
+      Make GamesPauseAction and GamesFullscreenAction to correctly provide toggle actions for pausing and fullscreen
+      Load background image from correct location
+      Use same colours in 3D mode as in 2D mode
+      Reinstate leave fullscreen toolbutton
+      Use new GamesActions for gnomine, gnotravex, quadrapassel
+      Migrate gnibbles to GamesPauseAction
+      Use GamesActions for glines, gnect, gnibbles, gnobots2, gnotski
+      Use standard GTK+ background behind chess board.  Make 3D view use more of the available area
+      Use GtkInfoBar (Bug #612660)
+      Simplify toolbar and add button text
+      Start clock before adding penalty for hint
+      Fix spacing in statusbar
+
+Theppitak Karoonboonyanan (1):
+      Updated Thai translation.
+
+Thomas Hindoe Paaboel Andersen (13):
+      GSEAL: window is already available directly. Bug #586731
+      Set StartupNotify=true on new games
+      Fix typos in gtk_widget_set_window
+      Standardize on using "Appearance" in all games
+      Chess: Standardize on using "Appearance" in all games
+      Sudoku: Only allow autosolver to start if it is not already running
+      Sudoku: Only generate puzzles of the selected difficulty
+      quadrapassel: Make the difficulty increase less in the higher levels
+      sudoku: Remove puzzle_generator.ui from POTFILES.in
+      sudoku: remove the puzzle_generator.ui too
+      quadrapassel: ifdef call to newly deprecated cogl_texture_unref
+      version bump
+      Remove deleted file chess_view.ui from POTFILES.in
+
+vasudeven (1):
+      updated Tamil translation
+
+
 gnome-games 2.30.0
 ==================
 
