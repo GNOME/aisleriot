@@ -560,7 +560,7 @@ statistics_cb (GtkAction *action,
   gtk_window_present (GTK_WINDOW (priv->stats_dialog));
 }
 
-#ifdef ENABLE_CARD_THEMES_INSTALLER
+#ifndef HAVE_HILDON
 
 static void
 install_themes_cb (GtkAction *action,
@@ -573,7 +573,7 @@ install_themes_cb (GtkAction *action,
                                     gtk_get_current_event_time ());
 }
 
-#endif /* ENABLE_CARD_THEMES_INSTALLER */
+#endif /* !HAVE_HILDON */
 
 #ifdef ENABLE_DEBUG_UI
 
@@ -2214,11 +2214,11 @@ aisleriot_window_init (AisleriotWindow *window)
     { "About", GTK_STOCK_ABOUT, NULL, NULL,
       ACTION_TOOLTIP (N_("About this game")),
       G_CALLBACK (help_about_cb) },
-#ifdef ENABLE_CARD_THEMES_INSTALLER
+#ifndef HAVE_HILDON
     { "InstallThemes", NULL, N_("Install card themes…"), NULL,
       ACTION_TOOLTIP (N_("Install new card themes from the distribution packages repositories")),
       G_CALLBACK (install_themes_cb) },
-#endif /* ENABLE_CARD_THEMES_INSTALLER */
+#endif /* HAVE_HILDON */
 
     /* Toolbar-only actions */
     { "LeaveFullscreen", GAMES_STOCK_LEAVE_FULLSCREEN, NULL, NULL, NULL,
@@ -2373,7 +2373,7 @@ aisleriot_window_init (AisleriotWindow *window)
           "<separator/>"
           "<menu action='ThemeMenu'>"
             "<placeholder name='ThemesPH'/>"
-#ifdef ENABLE_CARD_THEMES_INSTALLER
+#ifndef HAVE_HILDON
             "<separator/>"
             "<menuitem action='InstallThemes'/>"
 #endif
@@ -2687,10 +2687,10 @@ aisleriot_window_init (AisleriotWindow *window)
                                 priv->statusbar_visible);
 #endif /* !HAVE_HILDON */
 
-#ifdef ENABLE_CARD_THEMES_INSTALLER
+#ifndef HAVE_HILDON
   action = gtk_action_group_get_action (priv->action_group, "InstallThemes");
-  gtk_action_set_sensitive (action, ar_card_themes_can_install_themes (priv->theme_manager));
-#endif /* ENABLE_CARD_THEMES_INSTALLER */
+  gtk_action_set_visible (action, ar_card_themes_can_install_themes (priv->theme_manager));
+#endif /* HAVE_HILDON */
 
   set_fullscreen_actions (window, FALSE);
 

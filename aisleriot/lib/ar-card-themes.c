@@ -25,8 +25,8 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#ifdef ENABLE_CARD_THEMES_INSTALLER
-#include <dbus/dbus-glib.h>
+#if GLIB_CHECK_VERSION (2, 25, 5)
+#include <gio/gio.h>
 #endif
 
 #ifdef GDK_WINDOWING_X11
@@ -368,42 +368,34 @@ themes_foreach_any (gpointer key,
   data->theme = ar_card_themes_get_theme (data->theme_manager, theme_info);
 }
 
-#ifdef ENABLE_CARD_THEMES_INSTALLER
-
-typedef struct {
-  ArCardThemes *theme_manager;
-  DBusGProxy *proxy;
-} ThemeInstallData;
+#if GLIB_CHECK_VERSION (2, 25, 5)
 
 static void
-theme_install_data_free (ThemeInstallData *data)
+theme_install_reply_cb (GDBusConnection  *connection,
+                        GAsyncResult     *result,
+                        ArCardThemes     *theme_manager)
 {
-  g_object_unref (data->theme_manager);
-  g_object_unref (data->proxy);
-  g_free (data);
-}
-
-static void
-theme_install_reply_cb (DBusGProxy *proxy,
-                        DBusGProxyCall *call,
-                        ThemeInstallData *data)
-{
-  ArCardThemes *theme_manager = data->theme_manager;
+  GVariant *variant;
   GError *error = NULL;
 
-  if (!dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_INVALID)) {
+  variant = g_dbus_connection_call_finish (connection, result, &error);
+  if (variant == NULL) {
     _games_debug_print (GAMES_DEBUG_CARD_THEME,
                         "Failed to call InstallPackages: %s\n",
                         error->message);
     g_error_free (error);
+    g_object_unref (theme_manager);
     return;
   }
 
   /* Installation succeeded. Now re-scan the theme directories */
   ar_card_themes_load_theme_infos (theme_manager);
+
+  g_variant_unref (variant);
+  g_object_unref (theme_manager);
 }
 
-#endif /* ENABLE_CARD_THEMES_INSTALLER */
+#endif /* GLIB >= 2.25.5 */
 
 /* Class implementation */
 
@@ -658,7 +650,7 @@ ar_card_themes_get_themes (ArCardThemes *theme_manager)
 gboolean
 ar_card_themes_can_install_themes (ArCardThemes *theme_manager)
 {
-#ifdef ENABLE_CARD_THEMES_INSTALLER
+#if GLIB_CHECK_VERSION (2, 25, 5)
   return TRUE;
 #else
   return FALSE;
@@ -678,7 +670,7 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
                                   GtkWindow *parent_window,
                                   guint user_time)
 {
-#ifdef ENABLE_CARD_THEMES_INSTALLER
+#if GLIB_CHECK_VERSION (2, 25, 5)
   static const char *formats[] = {
 #ifdef ENABLE_CARD_THEME_FORMAT_SVG
     "ThemesSVG",
@@ -691,69 +683,15 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
 #endif
     NULL
   };
-  GKeyFile *key_file;
   char *path;
-  const char *group;
-  GPtrArray *arr;
-  char **packages;
-  gsize n_packages, i, j;
-  DBusGConnection *connection;
-  ThemeInstallData *data;
-  guint xid = 0;
+  GKeyFile *key_file;
+  GDBusConnection *connection;
+  GVariantBuilder builder;
+  gsize i;
   GError *error = NULL;
 
-  arr = g_ptr_array_new ();
-
-  key_file = g_key_file_new ();
-  path = games_runtime_get_file (GAMES_RUNTIME_COMMON_DATA_DIRECTORY, "theme-install.ini");
-  if (!g_key_file_load_from_file (key_file, path, 0, NULL))
-    goto do_install;
-
-  /* If there's a group for the specific distribution, use that one, or
-   * otherwise the generic one. E.g.:
-   * If "Ubuntu 8.10" group exists, use it, else fallback to "Ubuntu" group.
-   */
-  if (g_key_file_has_group (key_file, LSB_DISTRIBUTION))
-    group = LSB_DISTRIBUTION;
-  else if (g_key_file_has_group (key_file, LSB_DISTRIBUTOR))
-    group = LSB_DISTRIBUTOR;
-  else
-    goto do_install;
-
-  for (i = 0; formats[i] != NULL; ++i) {
-    packages = g_key_file_get_string_list (key_file, group, formats[i], &n_packages, NULL);
-    if (!packages)
-      continue;
-    
-    for (j = 0; j < n_packages; ++j) {
-      g_ptr_array_add (arr, packages[j]);
-    }
-    g_free (packages); /* The strings are now owned by the ptr array */
-  }
-  g_ptr_array_add (arr, NULL);
-
-do_install:
-  g_key_file_free (key_file);
-  g_free (path);
-
-  n_packages = arr->len;
-  packages = (char **) g_ptr_array_free (arr, FALSE);
-  if (n_packages == 0) {
-    g_strfreev (packages);
-    return; /* FIXME: show dialogue? */
-  }
-
-#ifdef GNOME_ENABLE_DEBUG
-  _GAMES_DEBUG_IF (GAMES_DEBUG_CARD_THEME) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME, "Packages to install: ");
-    for (i = 0; packages[i]; ++i)
-      _games_debug_print (GAMES_DEBUG_CARD_THEME, "%s ", packages[i]);
-    _games_debug_print (GAMES_DEBUG_CARD_THEME, "\n");
-  }
-#endif
-
-  connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
-  if (!connection) {
+  connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+  if (connection == NULL) {
     _games_debug_print (GAMES_DEBUG_CARD_THEME,
                         "Failed to get the session bus: %s\n",
                         error->message);
@@ -761,41 +699,64 @@ do_install:
     return;
   }
 
-  data = g_new (ThemeInstallData, 1);
-  data->theme_manager = g_object_ref (theme_manager);
+  key_file = g_key_file_new ();
+  path = games_runtime_get_file (GAMES_RUNTIME_COMMON_DATA_DIRECTORY, "theme-install.ini");
+  if (!g_key_file_load_from_file (key_file, path, 0, NULL)) {
+    g_free (path);
+    g_key_file_free (key_file);
+    g_object_unref (connection);
+    return;
+  }
+  g_free (path);
 
-  /* PackageKit-GNOME interface */
-  data->proxy = dbus_g_proxy_new_for_name (connection,
-                                           "org.freedesktop.PackageKit",
-                                           "/org/freedesktop/PackageKit",
-                                           "org.freedesktop.PackageKit.Modify");
-  g_assert (data->proxy != NULL); /* the call above never fails */
+  g_variant_builder_init (&builder, G_VARIANT_TYPE ("(uass)"));
 
 #ifdef GDK_WINDOWING_X11
   if (parent_window) {
-    xid = GDK_WINDOW_XID (GTK_WIDGET (parent_window)->window);
-  }
+    g_variant_builder_add (&builder, "u",
+                           (guint) GDK_WINDOW_XID (gtk_widget_get_window (GTK_WIDGET (parent_window))));
+  } else
 #endif
+    g_variant_builder_add (&builder, "u", (guint) 0);
 
-  /* Installing can take a long time; don't do the automatic timeout */
-  dbus_g_proxy_set_default_timeout (data->proxy, G_MAXINT);
+  g_variant_builder_open (&builder, G_VARIANT_TYPE ("as"));
 
-  if (!dbus_g_proxy_begin_call (data->proxy,
-                                "InstallPackageNames",
-                                (DBusGProxyCallNotify) theme_install_reply_cb,
-                                data,
-                                (GDestroyNotify) theme_install_data_free,
-                                G_TYPE_UINT, xid,
-                                G_TYPE_STRV, packages,
-                                G_TYPE_STRING, "" /* FIXME? interaction type */,
-                                G_TYPE_INVALID)) {
-    /* Failed; cleanup. FIXME: can this happen at all? */
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
-                        "Failed to call the InstallPackages method\n");
+  /* If there's a group for the specific distribution, use that one, or
+   * otherwise the generic one. E.g.:
+   * If "Ubuntu 8.10" group exists, use it, else fallback to "Ubuntu" group.
+   */
+  for (i = 0; formats[i] != NULL; ++i) {
+    char **packages;
+    gsize n_packages, j;
 
-    theme_install_data_free (data);
+    packages = g_key_file_get_string_list (key_file, LSB_DISTRIBUTION, formats[i], &n_packages, NULL);
+    if (packages == NULL)
+      packages = g_key_file_get_string_list (key_file, LSB_DISTRIBUTOR, formats[i], &n_packages, NULL);
+    if (packages == NULL)
+      continue;
+    
+    for (j = 0; j < n_packages; ++j) {
+      g_variant_builder_add (&builder, "s", packages[j]);
+    }
+
+    g_strfreev (packages);
   }
 
-  g_strfreev (packages);
-#endif
+  g_key_file_free (key_file);
+
+  g_variant_builder_close (&builder);
+  g_variant_builder_add (&builder, "s", "hide-confirm-search");
+
+  g_dbus_connection_call (connection,
+                          "org.freedesktop.PackageKit",
+                          "/org/freedesktop/PackageKit",
+                          "org.freedesktop.PackageKit.Modify",
+                          "InstallPackageNames",
+                          g_variant_builder_end (&builder),
+                          G_DBUS_CALL_FLAGS_NONE,
+                          G_MAXINT /* no timeout */,
+                          NULL,
+                          (GAsyncReadyCallback) theme_install_reply_cb,
+                          g_object_ref (theme_manager));
+#endif /* GLIB >= 2.25.5 */
 }

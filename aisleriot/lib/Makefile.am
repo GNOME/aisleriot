@@ -65,6 +65,11 @@ libaisleriot_la_LIBADD = \
 	$(top_builddir)/libgames-support/libgames-support.la \
 	$(GTK_LIBS)
 
+if HAVE_GIO_2_26
+libaisleriot_la_CFLAGS += $(GIO_CFLAGS)
+libaisleriot_la_LIBADD += $(GIO_LIBS)
+endif # HAVE_GIO_2_26
+
 if HAVE_RSVG
 libaisleriot_la_CFLAGS += $(RSVG_CFLAGS)
 libaisleriot_la_LIBADD += $(RSVG_LIBS)
@@ -74,11 +79,6 @@ if HAVE_CLUTTER
 libaisleriot_la_CFLAGS += $(CLUTTER_CFLAGS)
 libaisleriot_la_LIBADD += $(CLUTTER_LIBS)
 endif # HAVE_CLUTTER
-
-if ENABLE_CARD_THEMES_INSTALLER
-libaisleriot_la_CFLAGS += $(DBUS_GLIB_CFLAGS)
-libaisleriot_la_LIBADD += $(DBUS_GLIB_LIBS)
-endif # ENABLE_CARD_THEMES_INSTALLER
 
 if HAVE_HILDON
 libaisleriot_la_CFLAGS += $(HILDON_CFLAGS)
