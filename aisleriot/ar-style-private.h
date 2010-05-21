@@ -21,6 +21,7 @@
 G_BEGIN_DECLS
 
 static const GdkColor default_selection_color = { 0, 0 /* red */, 0 /* green */, 0xaa00 /* blue */ };
+static const GdkColor default_baize_color = { 0, 0 /* red */, 0x5000 /* green */, 0x1000 /* blue */ };
 
 /* The proportion of a slot dedicated to the card (horiz or vert). */
 #ifdef HAVE_HILDON
@@ -50,8 +51,10 @@ struct _ArStylePrivate
 
 #ifdef HAVE_CLUTTER
   ClutterColor selection_color;
+  ClutterColor baize_color;
 #else
   GdkColor selection_color;
+  GdkColor baize_color;
 #endif
 
   double card_slot_ratio;

@@ -26,6 +26,7 @@
 enum
 {
   PROP_0,
+  PROP_BAIZE_COLOR,
   PROP_CARD_OVERHANG,
   PROP_CARD_SLOT_RATIO,
   PROP_CARD_STEP,
@@ -63,8 +64,10 @@ ar_style_init (ArStyle *style)
 
 #ifdef HAVE_CLUTTER
   _ar_clutter_color_from_gdk_color (&priv->selection_color, &default_selection_color);
+  _ar_clutter_color_from_gdk_color (&priv->baize_color, &default_baize_color);
 #else
   priv->selection_color = default_selection_color;
+  priv->baize_color = default_baize_color;
 #endif
 
   priv->card_slot_ratio = DEFAULT_CARD_SLOT_RATIO;
@@ -130,6 +133,10 @@ ar_style_get_property (GObject    *object,
   ArStylePrivate *priv = style->priv;
 
   switch (property_id) {
+    case PROP_BAIZE_COLOR:
+      g_value_set_boxed (value, &priv->baize_color);
+      break;
+
     case PROP_CARD_OVERHANG:
       g_value_set_double (value, ar_style_get_card_overhang (style));
       break;
@@ -219,6 +226,27 @@ ar_style_set_property (GObject      *object,
   ArStylePrivate *priv = style->priv;
 
   switch (property_id) {
+    case PROP_BAIZE_COLOR: {
+#ifdef HAVE_CLUTTER
+      ClutterColor *color;
+
+      if ((color = g_value_get_boxed (value)) != NULL) {
+        priv->baize_color = *color;
+      } else {
+        _ar_clutter_color_from_gdk_color (&priv->baize_color, &default_baize_color);
+      }
+#else
+      GdkColor *color;
+
+      if ((color = g_value_get_boxed (value)) != NULL) {
+        priv->baize_color = *color;
+      } else {
+        priv->baize_color = default_baize_color;
+      }
+#endif
+      break;
+    }
+
     case PROP_CARD_OVERHANG:
       priv->card_overhang = g_value_get_double (value);
       break;
@@ -327,6 +355,30 @@ ar_style_class_init (ArStyleClass *klass)
   object_class->set_property = ar_style_set_property;
   object_class->get_property = ar_style_get_property;
   object_class->finalize     = ar_style_finalize;
+
+  /**
+   * ArStyle:baize-color:
+   *
+   * The board baize color.
+   */
+#ifdef HAVE_CLUTTER
+  _ar_clutter_color_from_gdk_color (&color, &default_baize_color);
+  g_object_class_install_property
+    (object_class,
+     PROP_BAIZE_COLOR,
+     clutter_param_spec_color (AR_STYLE_PROP_BAIZE_COLOR, NULL, NULL,
+                               &color,
+                               G_PARAM_READWRITE |
+                               G_PARAM_STATIC_STRINGS));
+#else
+  g_object_class_install_property
+    (object_class,
+     PROP_BAIZE_COLOR,
+     g_param_spec_boxed (AR_STYLE_PROP_BAIZE_COLOR, NULL, NULL,
+                         GDK_TYPE_COLOR,
+                         G_PARAM_READWRITE |
+                         G_PARAM_STATIC_STRINGS));
+#endif /* HAVE_CLUTTER */
 
   g_object_class_install_property
     (object_class,
@@ -854,6 +906,25 @@ ar_style_get_selection_color (ArStyle *style,
   ArStylePrivate *priv = style->priv;
 
   *color = priv->selection_color;
+}
+
+/**
+ * ar_style_get_baize_color:
+ * @style: an #ArStyle
+ * @color: location to store the color
+ *
+ */
+void
+ar_style_get_baize_color (ArStyle *style,
+#ifdef HAVE_CLUTTER
+                               ClutterColor * const color)
+#else
+                               GdkColor * const color)
+#endif
+{
+  ArStylePrivate *priv = style->priv;
+
+  *color = priv->baize_color;
 }
 
 /**

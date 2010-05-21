@@ -58,6 +58,7 @@ GType ar_style_get_type (void);
 
 ArStyle* ar_style_new (void);
 
+#define AR_STYLE_PROP_BAIZE_COLOR         "baize-color"
 #define AR_STYLE_PROP_CARD_SLOT_RATIO     "card-slot-prop"
 #define AR_STYLE_PROP_CARD_THEME          "card-theme"
 #define AR_STYLE_PROP_CARD_OVERHANG       "card-overhang"
@@ -110,8 +111,12 @@ double ar_style_get_card_step       (ArStyle *style);
 #ifdef HAVE_CLUTTER
 void ar_style_get_selection_color  (ArStyle *style,
                                     ClutterColor * const color);
+void ar_style_get_baize_color (ArStyle *style,
+                                    ClutterColor * const color);
 #else
 void ar_style_get_selection_color  (ArStyle *style,
+                                    GdkColor * const color);
+void ar_style_get_baize_color (ArStyle *style,
                                     GdkColor * const color);
 #endif
 
