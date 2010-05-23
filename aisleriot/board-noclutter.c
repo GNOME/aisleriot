@@ -288,52 +288,6 @@ set_status_message (AisleriotBoard *board,
   g_signal_emit (board, signals[STATUS_MESSAGE], 0, priv->status_message);
 }
 
-/* card drawing functions */
-
-static void
-set_background_from_baize (GtkWidget *widget,
-                           GdkGC *gc)
-{
-  GError *error = NULL;
-  GdkPixbuf *pixbuf;
-  GdkPixmap *pixmap;
-  char *path;
-  int width, height;
-
-  path = games_runtime_get_file (GAMES_RUNTIME_PIXMAP_DIRECTORY, "baize.png");
-
-  pixbuf = gdk_pixbuf_new_from_file (path, &error);
-  g_free (path);
-  if (error) {
-    g_warning ("Failed to load the baize pixbuf: %s\n", error->message);
-    g_error_free (error);
-    return;
-  }
-
-  g_assert (pixbuf != NULL);
-
-  width = gdk_pixbuf_get_width (pixbuf);
-  height = gdk_pixbuf_get_height (pixbuf);
-  pixmap = gdk_pixmap_new (gtk_widget_get_window (widget), width, height, -1);
-  if (!pixmap) {
-    g_object_unref (pixbuf);
-    return;
-  }
-
-  /* FIXMEchpe: if we ever use a baize with an alpha channel,
-   * clear the pixmap first!
-   */
-  gdk_draw_pixbuf (pixmap, NULL, pixbuf,
-                   0, 0, 0, 0, width, height,
-                   GDK_RGB_DITHER_NORMAL, 0, 0);
-
-  gdk_gc_set_tile (gc, pixmap);
-  gdk_gc_set_fill (gc, GDK_TILED);
-
-  g_object_unref (pixbuf);
-  g_object_unref (pixmap);
-}
-
 /* Slot helpers */
 
 static void
@@ -2359,6 +2313,7 @@ aisleriot_board_realize (GtkWidget *widget)
   AisleriotBoardPrivate *priv = board->priv;
   GdkDisplay *display;
   GdkWindow *window;
+  GdkColor baize_color;
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->realize (widget);
 
@@ -2371,8 +2326,10 @@ aisleriot_board_realize (GtkWidget *widget)
   priv->draw_gc = gdk_gc_new (window);
 
   priv->bg_gc = gdk_gc_new (window);
-  set_background_from_baize (widget, priv->bg_gc);
-  
+  gdk_gc_set_fill (priv->bg_gc, GDK_SOLID);
+  ar_style_get_baize_color (priv->style, &baize_color);
+  gdk_gc_set_rgb_fg_color (priv->bg_gc, &baize_color);
+
   priv->slot_gc = gdk_gc_new (window);
 
 #ifndef HAVE_HILDON 
@@ -2440,6 +2397,8 @@ aisleriot_board_sync_style (ArStyle *style,
   } else {
     pspec_name = NULL;
   }
+
+  realized = gtk_widget_get_realized (widget);
 
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_CARD_THEME)) {
     ArCardTheme *theme;
@@ -2526,6 +2485,16 @@ aisleriot_board_sync_style (ArStyle *style,
     redraw_selection = TRUE;
   }
 
+  if (realized &&
+      (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_BAIZE_COLOR))) {
+    GdkColor baize_color;
+
+    ar_style_get_baize_color (priv->style, &baize_color);
+    gdk_gc_set_rgb_fg_color (priv->bg_gc, &baize_color);
+
+    queue_redraw = TRUE;
+  }
+
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_PIXBUF_DRAWING)) {
     gboolean pixbuf_drawing;
 
@@ -2564,8 +2533,6 @@ aisleriot_board_sync_style (ArStyle *style,
     }
   }
 #endif /* !HAVE_HILDON */
-
-  realized = gtk_widget_get_realized (widget);
 
   if (update_geometry && realized) {
     aisleriot_board_setup_geometry (board);
