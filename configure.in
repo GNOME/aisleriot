@@ -549,7 +549,8 @@ PKG_CHECK_MODULES([GIO],[gio-2.0 >= $GIO_REQUIRED],
   AC_SUBST([GLIB_COMPILE_SCHEMAS],["$($PKG_CONFIG --variable glib_compile_schemas gio-2.0)]")
 
   if test -z "$LSB_DISTRIBUTOR" -o -z "$LSB_DISTRIBUTION"; then
-    AC_MSG_ERROR([couldn't determine the distribution information using lsb_release])
+    AC_MSG_WARN([couldn't determine the distribution information using lsb_release; PackageKit integration disabled])
+    have_gio_2_26=no
   fi
 ],[
   have_gio_2_26=no
