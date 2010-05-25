@@ -2,10 +2,6 @@ NULL =
 
 commondatadir = $(datadir)/gnome-games-common
 
-EXTRA_DIST = \
-	games-marshal.list	\
-	$(NULL)
-
 noinst_LTLIBRARIES = libgames-support.la
 
 pkglib_LTLIBRARIES =
@@ -167,6 +163,11 @@ endif
 stamp_files = \
 	stamp-games-marshal.c \
 	stamp-games-marshal.h \
+	$(NULL)
+
+EXTRA_DIST = \
+	games-marshal.list \
+	$(gsettingsschema_in_files) \
 	$(NULL)
 
 CLEANFILES = \
