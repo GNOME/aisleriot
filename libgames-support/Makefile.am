@@ -239,7 +239,7 @@ endif # HAVE_INTROSPECTION
 install-data-hook:
 if GSETTINGS_SCHEMAS_INSTALL
 	if test -z "$(DATADIR)"; then \
-		$(GLIB_COMPILE_SCHEMAS) $(gsettingsschemadir) ; \
+		$(GLIB_COMPILE_SCHEMAS) $(DESTDIR)$(gsettingsschemadir) ; \
 	fi
 endif # GSETTINGS_SCHEMAS_INSTALL
 
