@@ -692,7 +692,7 @@ if test "$allow_smclient" = "yes"; then
     [],
     [case "$with_platform" in
        gnome|gtk-only) case "$GDK_TARGET" in
-                         x11) with_smclient=xsmp SMCLIENT_PKGS="sm" ;;
+                         x11) with_smclient=xsmp SMCLIENT_PKGS="sm ice" ;;
                          win32|quartz) with_smclient=$GDK_TARGET ;;
                          *) with_smclient=no ;;
                        esac
