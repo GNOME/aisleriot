@@ -308,6 +308,30 @@ if test "$with_platform" = "hildon"; then
   fi
 fi
 
+# Check which gtk+ major version to use
+
+AC_MSG_CHECKING([which gtk+ version to compile against])
+AC_ARG_WITH([gtk],
+  [AS_HELP_STRING([--with-gtk=2.0|3.0],[which gtk+ version to compile against (default: 2.0)])],
+  [case "$with_gtk" in
+     2.0|3.0) ;;
+     *) AC_MSG_ERROR([invalid gtk version specified]) ;;
+   esac],
+  [with_gtk=2.0])
+AC_MSG_RESULT([$with_gtk])
+
+case "$with_gtk" in
+  2.0) GTK_API_VERSION=2.0
+       GTK_API_MAJOR_VERSION=2
+       ;;
+  2.0) GTK_API_VERSION=3.0
+       GTK_API_MAJOR_VERSION=3
+       ;;
+esac
+
+AC_SUBST([GTK_API_VERSION])
+AC_SUBST([GTK_API_MAJOR_VERSION])
+
 # Win32 platform
 
 AC_CANONICAL_HOST
@@ -504,23 +528,31 @@ AM_CONDITIONAL([ENABLE_DEBUG_UI],[test "$enable_debug_ui" = "yes"])
 
 PYGTK_REQUIRED=2.14.0
 
-if test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo3"; then
-  GTK_REQUIRED=2.6.0
-elif test "$require_gtk_2_16" = "yes"; then
-  GTK_REQUIRED=2.16.0
-else
-  GTK_REQUIRED=2.8.0
-fi
+case "$with_gtk" in
+  2.0) if test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo3"; then
+         GTK_REQUIRED=2.6.0
+       elif test "$require_gtk_2_16" = "yes"; then
+         GTK_REQUIRED=2.16.0
+       else
+         GTK_REQUIRED=2.8.0
+       fi
+       RSVG_REQUIRED=2.14.0
+       LIBCANBERRA_GTK_REQUIRED=0
+       LIBCANBERRA_PKGS="libcanberra-gtk >= $LIBCANBERRA_GTK_REQUIRED"
+        ;;
+  3.0) GTK_REQUIRED=2.90.0
+       RSVG_REQUIRED=2.26.4
+       LIBCANBERRA_GTK_REQUIRED=0.24
+       LIBCANBERRA_PKGS="libcanberra-gtk3 >= $LIBCANBERRA_GTK_REQUIRED"
+       ;;
+esac
 
 GCONF_REQUIRED=2.0
 GIO_REQUIRED=2.25.7
 CAIRO_REQUIRED=1.0
-RSVG_REQUIRED=2.14.0
 GSTREAMER_REQUIRED=0.10.11
 HILDON_LIBS_REQUIRED=0.14
 HILDON_1_REQUIRED=1.00
-DBUS_GLIB_REQUIRED=0.75
-LIBCANBERRA_GTK_REQUIRED=0
 
 # Check for common modules
 
@@ -529,7 +561,7 @@ PKG_CHECK_MODULES([GTHREAD],[gthread-2.0])
 AC_SUBST([GTHREAD_CFLAGS])
 AC_SUBST([GTHREAD_LIBS])
 
-PKG_CHECK_MODULES([GTK],[gtk+-2.0 >= $GTK_REQUIRED])
+PKG_CHECK_MODULES([GTK],[gtk+-$GTK_API_VERSION >= $GTK_REQUIRED])
 AC_SUBST([GTK_CFLAGS])
 AC_SUBST([GTK_LIBS])
 
@@ -605,7 +637,7 @@ if test "$need_rsvg" = "yes"; then
 
   # Errors out if rsvg is not found
   PKG_CHECK_MODULES([RSVG],[
-    librsvg-2.0 >= $RSVG_REQUIRED
+    librsvg-$GTK_API_VERSION >= $RSVG_REQUIRED
     cairo >= $CAIRO_REQUIRED])
 
   AC_SUBST([RSVG_CFLAGS])
@@ -614,11 +646,13 @@ if test "$need_rsvg" = "yes"; then
   AC_DEFINE([HAVE_RSVG],[1],[Refine if librsvg is available])
 
   # This only existed in some pre-gio rsvg versions
-  rsvg_gnomevfs=$($PKG_CONFIG --variable=gnome_vfs_supported librsvg-2.0)
-  if test "$rsvg_gnomevfs" = "yes"; then
-    AC_DEFINE([HAVE_RSVG_GNOMEVFS],[1],[Define if librsvg has gnome-vfs support])
+  if test "$with_gtk" = "2.0"; then
+    rsvg_gnomevfs=$($PKG_CONFIG --variable=gnome_vfs_supported librsvg-2.0)
+    if test "$rsvg_gnomevfs" = "yes"; then
+      AC_DEFINE([HAVE_RSVG_GNOMEVFS],[1],[Define if librsvg has gnome-vfs support])
 
-    need_gthread=yes
+      need_gthread=yes
+    fi
   fi
 fi
 
@@ -633,10 +667,20 @@ if test "$need_clutter" = "yes"; then
   AC_SUBST([CLUTTER_CFLAGS])
   AC_SUBST([CLUTTER_LIBS])
 
+  case "$with_gtk" in
+    2.0) CLUTTER_GTK_API_VERSION=0.90
+         CLUTTER_GTK_REQUIRED=0.90.0
+         ;;
+    3.0) CLUTTER_GTK_API_VERSION=FIXME
+         CLUTTER_GTK_REQUIRED=FIXME
+         ;;
+  esac
+    
   PKG_CHECK_MODULES([CLUTTER_GTK],
-    [clutter-gtk-0.90 >= 0.90.0],[],
-    [PKG_CHECK_MODULES([CLUTTER_GTK],
-      [clutter-gtk-0.10 >= 0.10.2])])
+    [clutter-gtk-$CLUTTER_GTK_API_VERSION >= $CLUTTER_GTK_REQUIRED],[],
+    [if test "$with_gtk" = 2.0; then
+      PKG_CHECK_MODULES([CLUTTER_GTK],[clutter-gtk-0.10 >= 0.10.2])
+     fi])
   AC_SUBST([CLUTTER_GTK_CFLAGS])
   AC_SUBST([CLUTTER_GTK_LIBS])
 fi
@@ -684,7 +728,7 @@ AM_CONDITIONAL([ENABLE_SOUND],[test "$enable_sound" = "yes"])
 
 SMCLIENT_PKGS=
 if test "$allow_smclient" = "yes"; then
-  GDK_TARGET="$($PKG_CONFIG --variable target gdk-2.0)"
+  GDK_TARGET="$($PKG_CONFIG --variable target gdk-$GTK_API_VERSION)"
 
   AC_MSG_CHECKING([which smclient backend to use])
   AC_ARG_WITH([smclient],
@@ -1167,6 +1211,7 @@ fi
 echo "
     Games to be compiled:  ${gamelist}
 
+    GTK+ API version:      ${GTK_API_VERSION}
     Help method:           ${with_help_method} ${with_help_file_format}
     Using SM Client:       ${with_smclient}
     Using RSVG:            ${have_rsvg}
