@@ -20,6 +20,9 @@
 #define GAMES_GTK_COMPAT_H
 
 G_BEGIN_DECLS
+#if !GTK_CHECK_VERSION (2, 22, 0)
+#define gdk_visual_get_depth(widget) ((widget)->depth)
+#endif /* GTK < 2.22.0 */
 
 #if !GTK_CHECK_VERSION (2, 20, 0)
 #define gtk_widget_get_realized(widget)                 (GTK_WIDGET_REALIZED(widget))

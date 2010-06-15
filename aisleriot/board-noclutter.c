@@ -950,7 +950,7 @@ drag_begin (AisleriotBoard *board)
 
   moving_pixmap = gdk_pixmap_new (priv->moving_cards_window,
                                   width, height,
-                                  gdk_drawable_get_visual (priv->moving_cards_window)->depth);
+                                  gdk_visual_get_depth (gdk_drawable_get_visual (priv->moving_cards_window)));
   moving_mask = gdk_pixmap_new (priv->moving_cards_window,
                                 width, height,
                                 1);
