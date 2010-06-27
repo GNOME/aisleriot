@@ -50,12 +50,12 @@ libgames_support_la_SOURCES +=		\
 	$(NULL)
 endif # !HAVE_HILDON
 
-if HAVE_GIO_2_26
-libgames_support_la_SOURCES += \
-	games-settings.c \
-	games-settings.h \
-	$(NULL)
-endif
+# if HAVE_GIO_2_26
+# libgames_support_la_SOURCES += \
+# 	games-settings.c \
+# 	games-settings.h \
+# 	$(NULL)
+# endif
 
 if LIBGAMES_SUPPORT_FULL
 libgames_support_la_SOURCES +=		\
@@ -156,9 +156,7 @@ libgames_support_la_LIBADD += $(HILDON_LIBS)
 endif
 
 gsettingsschema_in_files = org.gnome.Games.WindowState.gschema.xml.in
-if HAVE_GIO_2_26
-nodist_gsettingsschema_DATA = $(gsettingsschema_in_files:.gschema.xml.in=.gschema.xml)
-endif
+gsettings_SCHEMAS = $(gsettingsschema_in_files:.gschema.xml.in=.gschema.xml)
 
 stamp_files = \
 	stamp-games-marshal.c \
@@ -239,13 +237,7 @@ CLEANFILES += GnomeGamesSupport-1.0.gir $(typelibs_DATA)
 
 endif # HAVE_INTROSPECTION
 
-install-data-hook:
-if GSETTINGS_SCHEMAS_INSTALL
-	if test -z "$(DESTDIR)"; then \
-		$(GLIB_COMPILE_SCHEMAS) $(gsettingsschemadir) ; \
-	fi
-endif # GSETTINGS_SCHEMAS_INSTALL
-
 @INTLTOOL_XML_NOMERGE_RULE@
+# @GSETTINGS_RULES@
 
 -include $(top_srcdir)/git.mk
