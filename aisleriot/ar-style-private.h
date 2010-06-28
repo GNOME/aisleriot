@@ -25,12 +25,12 @@ static const GdkColor default_baize_color = { 0, 0 /* red */, 0x5000 /* green */
 
 /* The proportion of a slot dedicated to the card (horiz or vert). */
 #ifdef HAVE_HILDON
-#define DEFAULT_CARD_SLOT_RATIO (0.9)
 #define DEFAULT_CARD_OVERHANG (0.5)
 #else
-#define DEFAULT_CARD_SLOT_RATIO (0.8)
 #define DEFAULT_CARD_OVERHANG (0.0)
 #endif
+
+#define DEFAULT_CARD_SLOT_RATIO (0.95)
 
 #define MIN_CARD_STEP (0.0)
 #define MAX_CARD_STEP (1.0) /* FIXMEchpe: allow values > 1.0 here? */
