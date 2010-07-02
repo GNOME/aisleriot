@@ -161,7 +161,7 @@ ar_clutter_embed_init (ArClutterEmbed *embed)
 
   embed->priv = G_TYPE_INSTANCE_GET_PRIVATE (embed, AR_TYPE_CLUTTER_EMBED, ArClutterEmbedPrivate);
 
-  GTK_WIDGET_SET_FLAGS (widget, GTK_CAN_FOCUS);
+  gtk_widget_set_can_focus (widget, TRUE);
 }
 
 static void
@@ -265,7 +265,7 @@ ar_clutter_embed_set_cursor (ArClutterEmbed *embed,
 #ifndef HAVE_HILDON
   ArClutterEmbedPrivate *priv = embed->priv;
 
-  gdk_window_set_cursor (GTK_WIDGET (embed)->window,
+  gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (embed)),
                          priv->cursor[cursor]);
 #endif /* !HAVE_HILDON */
 }
