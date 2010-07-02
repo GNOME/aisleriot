@@ -831,7 +831,11 @@ debug_choose_seed_cb (GtkAction *action,
   g_snprintf (str, sizeof (str), "%u", aisleriot_game_get_seed (priv->game));
   entry = gtk_entry_new ();
   gtk_entry_set_text (GTK_ENTRY (entry), str);
+#if GTK_CHECK_VERSION (2, 90, 5)
+  gtk_box_pack_end (GTK_BOX (gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog))), entry, FALSE, FALSE, 0);
+#else
   gtk_box_pack_end (GTK_BOX (GTK_MESSAGE_DIALOG (dialog)->label->parent), entry, FALSE, FALSE, 0);
+#endif
   gtk_widget_show (entry);
   g_object_set_data (G_OBJECT (dialog), "entry", entry);
   gtk_entry_set_activates_default (GTK_ENTRY (entry), TRUE);
