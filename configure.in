@@ -539,13 +539,13 @@ case "$with_gtk" in
        fi
        RSVG_REQUIRED=2.14.0
        LIBCANBERRA_GTK_REQUIRED=0
-       LIBCANBERRA_PKGS="libcanberra-gtk >= $LIBCANBERRA_GTK_REQUIRED"
+       LIBCANBERRA_GTK_PKGS="libcanberra-gtk >= $LIBCANBERRA_GTK_REQUIRED"
         ;;
   3.0) GTK_API_VERSION=3.0
        GTK_REQUIRED=2.90.0
        RSVG_REQUIRED=2.26.4
        LIBCANBERRA_GTK_REQUIRED=0.24
-       LIBCANBERRA_PKGS="libcanberra-gtk3 >= $LIBCANBERRA_GTK_REQUIRED"
+       LIBCANBERRA_GTK_PKGS="libcanberra-gtk3 >= $LIBCANBERRA_GTK_REQUIRED"
        ;;
 esac
 
@@ -691,7 +691,7 @@ AM_CONDITIONAL([WITH_GTHREAD],[test "$need_gthread" = "yes"])
 # libcanberra
 
 if test "$enable_sound" = "yes"; then
-  PKG_CHECK_MODULES([CANBERRA_GTK],[libcanberra-gtk >= $LIBCANBERRA_GTK_REQUIRED],[],
+  PKG_CHECK_MODULES([CANBERRA_GTK],[$LIBCANBERRA_GTK_PKGS],[],
     [AC_MSG_ERROR([Sound support was requested, but libcanberra-gtk not found.])])
 
   AC_DEFINE([ENABLE_SOUND],[1],[Define if sound support is enabled])
