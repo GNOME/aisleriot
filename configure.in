@@ -616,7 +616,7 @@ if test "$need_rsvg" = "yes"; then
 
   # Errors out if rsvg is not found
   PKG_CHECK_MODULES([RSVG],[
-    librsvg-$GTK_API_VERSION >= $RSVG_REQUIRED
+    librsvg-2.0 >= $RSVG_REQUIRED
     cairo >= $CAIRO_REQUIRED])
 
   AC_SUBST([RSVG_CFLAGS])
