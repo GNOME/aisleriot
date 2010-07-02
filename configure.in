@@ -659,6 +659,8 @@ if test "$need_clutter" = "yes"; then
     [clutter-gtk-$CLUTTER_GTK_API_VERSION >= $CLUTTER_GTK_REQUIRED],[],
     [if test "$with_gtk" = 2.0; then
       PKG_CHECK_MODULES([CLUTTER_GTK],[clutter-gtk-0.10 >= 0.10.2])
+     else
+       AC_MSG_ERROR([clutter-gtk-$CLUTTER_GTK_API_VERSION not found])
      fi])
   AC_SUBST([CLUTTER_GTK_CFLAGS])
   AC_SUBST([CLUTTER_GTK_LIBS])
