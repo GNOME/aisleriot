@@ -302,10 +302,21 @@ ar_card_surface_cache_get_card_surface_by_id (ArCardSurfaceCache *cache,
   }
 
   if (surface == NULL) {
+    CardSize card_size;
+    cairo_t *cr;
+
     LOG_CACHE_MISS (cache);
 
-    surface = ar_card_theme_get_card_surface (priv->theme, card_id);
-    if (surface == NULL) {
+    ar_card_theme_get_size (priv->theme, &card_size);
+
+    surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
+                                          card_size.width, card_size.height);
+    cr = cairo_create (surface);
+    ar_card_theme_paint_card (priv->theme, cr, card_id);
+    cairo_destroy (cr);
+
+    if (cairo_surface_status (surface) != CAIRO_STATUS_SUCCESS) {
+      cairo_surface_destroy (surface);
       priv->cards[card_id] = FAILED_SURFACE;
       return NULL;
     }

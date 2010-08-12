@@ -96,8 +96,9 @@ GdkPixbuf *ar_card_theme_get_card_pixbuf (ArCardTheme * theme,
                                           int cardid);
 
 #if GTK_CHECK_VERSION (2, 10,0)
-cairo_surface_t *ar_card_theme_get_card_surface (ArCardTheme *theme,
-                                                 int cardid);
+void ar_card_theme_paint_card (ArCardTheme *theme,
+                                cairo_t *cr,
+                                int cardid);
 #endif
 
 G_END_DECLS

@@ -83,8 +83,9 @@ struct _ArCardThemeClass {
                                      int card_id);
 
 #if GTK_CHECK_VERSION (2, 10, 0)
-  cairo_surface_t* (* get_card_surface) (ArCardTheme *theme,
-                                         int card_id);
+  void        (* paint_card)        (ArCardTheme *theme,
+                                     cairo_t *cr,
+                                     int card_id);
   void        (* set_font_options)  (ArCardTheme *theme,
                                      const cairo_font_options_t *font_options);
 #endif

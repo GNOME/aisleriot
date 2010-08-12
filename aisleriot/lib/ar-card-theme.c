@@ -113,29 +113,23 @@ ar_card_theme_class_get_theme_info (ArCardThemeClass *klass,
 }
 
 #if GTK_CHECK_VERSION (2, 10,0)
-static cairo_surface_t *
-ar_card_theme_class_real_get_card_surface (ArCardTheme *theme,
-                                           int cardid)
+static void
+ar_card_theme_class_real_paint_card (ArCardTheme *theme,
+                                     cairo_t *cr,
+                                     int cardid)
 {
   GdkPixbuf *pixbuf;
-  cairo_surface_t *surface;
-  cairo_t *cr;
 
   pixbuf = ar_card_theme_get_card_pixbuf (theme, cardid);
   if (pixbuf == NULL)
-    return NULL;
+    return;
 
-  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
-                                        gdk_pixbuf_get_width (pixbuf),
-                                        gdk_pixbuf_get_height (pixbuf));
-  cr = cairo_create (surface);
+  cairo_save (cr);
   gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
   cairo_paint (cr);
-  cairo_destroy (cr);
+  cairo_restore (cr);
 
   g_object_unref (pixbuf);
-
-  return surface;
 }
 #endif /* GTK 2.10 */
 
@@ -151,7 +145,7 @@ ar_card_theme_class_init (ArCardThemeClass * klass)
   klass->get_theme_info = ar_card_theme_class_get_theme_info;
 
 #if GTK_CHECK_VERSION (2, 10,0)
-  klass->get_card_surface = ar_card_theme_class_real_get_card_surface;
+  klass->paint_card = ar_card_theme_class_real_paint_card;
 #endif
 
   g_object_class_install_property
@@ -366,30 +360,25 @@ ar_card_theme_get_card_pixbuf (ArCardTheme *theme,
 
 #if GTK_CHECK_VERSION (2, 10,0)
 /**
-* ar_card_theme_get_card_surface:
-* @theme:
-* @card_id:
-*
-* Returns a #cairo_surface_t for the selected card using the currently loaded
-* theme and the currently selected size.
-*
-* Returns: a new #cairo_surface_t, or %NULL if there was an error
+ * ar_card_theme_paint_card:
+ * @theme:
+ * @cr:
+ * @card_id:
+ *
+ * Paints the card to @cr.
 */
-cairo_surface_t *
-ar_card_theme_get_card_surface (ArCardTheme *theme,
-                                int cardid)
+void
+ar_card_theme_paint_card (ArCardTheme *theme,
+                          cairo_t *cr,
+                          int cardid)
 {
-  cairo_surface_t *surface = NULL;
-
-  g_return_val_if_fail ((cardid >= 0) && (cardid < AR_CARDS_TOTAL), NULL);
+  g_return_if_fail ((cardid >= 0) && (cardid < AR_CARDS_TOTAL));
 
   _games_profile_start ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
 
-  surface = theme->klass->get_card_surface (theme, cardid);
+  theme->klass->paint_card (theme, cr, cardid);
 
   _games_profile_end ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
-
-  return surface;
 }
 #endif /* GTK 2.10 */
 

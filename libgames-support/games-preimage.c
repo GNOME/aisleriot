@@ -178,9 +178,9 @@ cairo_pixels_to_pixbuf (guint8 * pixels, int rowstride, int height)
  * Returns: %TRUE, of %FALSE if there was an error or @preimage
  * isn't a scalable SVG image
  */
-gboolean
+void
 games_preimage_render_cairo_sub (GamesPreimage * preimage,
-                                 cairo_surface_t *surface,
+                                 cairo_t *cr,
                                  const char *node,
                                  int width,
                                  int height,
@@ -189,33 +189,24 @@ games_preimage_render_cairo_sub (GamesPreimage * preimage,
                                  double xzoom,
                                  double yzoom)
 {
-  cairo_t *cx;
   cairo_matrix_t matrix;
-  gboolean success;
 
   if (!preimage->scalable)
-    return FALSE;
-
-  cx = cairo_create (surface);
+    return;
 
   if (preimage->font_options) {
-    cairo_set_antialias (cx, cairo_font_options_get_antialias (preimage->font_options));
+    cairo_set_antialias (cr, cairo_font_options_get_antialias (preimage->font_options));
 
-    cairo_set_font_options (cx, preimage->font_options);
+    cairo_set_font_options (cr, preimage->font_options);
   }
 
   cairo_matrix_init_identity (&matrix);
   cairo_matrix_scale (&matrix, xzoom, yzoom);
   cairo_matrix_translate (&matrix, xoffset, yoffset);
 
-  cairo_set_matrix (cx, &matrix);
+  cairo_set_matrix (cr, &matrix);
 
-  rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cx, node);
-
-  success = (cairo_status (cx) == CAIRO_STATUS_SUCCESS);
-  cairo_destroy (cx);
-
-  return success;
+  rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cr, node);
 }
 
 /**
@@ -249,6 +240,7 @@ games_preimage_render_sub (GamesPreimage * preimage,
   int rowstride;
   guint8 *data;
   cairo_surface_t *surface;
+  cairo_t *cr;
 
   if (!preimage->scalable)
     return NULL;
@@ -266,14 +258,10 @@ games_preimage_render_sub (GamesPreimage * preimage,
   surface = cairo_image_surface_create_for_data (data,
                                                  CAIRO_FORMAT_ARGB32,
                                                  width, height, rowstride);
-  if (cairo_surface_status (surface) != CAIRO_STATUS_SUCCESS ||
-      !games_preimage_render_cairo_sub (preimage, surface, node, width, height,
-                                        xoffset, yoffset, xzoom, yzoom)) {
-    cairo_surface_destroy (surface);
-    g_free (data);
-    return NULL;
-  }
-
+  cr = cairo_create (surface);
+  games_preimage_render_cairo_sub (preimage, cr, node, width, height,
+                                   xoffset, yoffset, xzoom, yzoom);
+  cairo_destroy (cr);
   cairo_surface_destroy (surface);
   cairo_pixels_to_pixbuf (data, rowstride, height);
 
