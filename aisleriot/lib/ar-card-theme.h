@@ -93,7 +93,12 @@ void ar_card_theme_get_size (ArCardTheme *theme,
 double ar_card_theme_get_aspect (ArCardTheme * theme);
 
 GdkPixbuf *ar_card_theme_get_card_pixbuf (ArCardTheme * theme,
-                                             int cardid);
+                                          int cardid);
+
+#if GTK_CHECK_VERSION (2, 10,0)
+cairo_surface_t *ar_card_theme_get_card_surface (ArCardTheme *theme,
+                                                 int cardid);
+#endif
 
 G_END_DECLS
 

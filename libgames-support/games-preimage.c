@@ -158,6 +158,67 @@ cairo_pixels_to_pixbuf (guint8 * pixels, int rowstride, int height)
 }
 
 /**
+ * games_preimage_render_cairo_sub:
+ * @preimage:
+ * @cr:
+ * @node: a SVG node ID (starting with "#"), or %NULL
+ * @width: the width of the clip region
+ * @height: the height of the clip region
+ * @xoffset: the x offset of the clip region
+ * @yoffset: the y offset of the clip region
+ * @xzoom: the x zoom factor
+ * @yzoom: the y zoom factor
+ *
+ * Creates a #GdkPixbuf with the dimensions @width by @height,
+ * and renders the subimage of @preimage specified by @node to it,
+ * transformed by @xzoom, @yzoom and offset by @xoffset and @yoffset,
+ * clipped to @width and @height.
+ * If @node is NULL, the whole image is rendered into tha clip region.
+ *
+ * Returns: %TRUE, of %FALSE if there was an error or @preimage
+ * isn't a scalable SVG image
+ */
+gboolean
+games_preimage_render_cairo_sub (GamesPreimage * preimage,
+                                 cairo_surface_t *surface,
+                                 const char *node,
+                                 int width,
+                                 int height,
+                                 double xoffset,
+                                 double yoffset,
+                                 double xzoom,
+                                 double yzoom)
+{
+  cairo_t *cx;
+  cairo_matrix_t matrix;
+  gboolean success;
+
+  if (!preimage->scalable)
+    return FALSE;
+
+  cx = cairo_create (surface);
+
+  if (preimage->font_options) {
+    cairo_set_antialias (cx, cairo_font_options_get_antialias (preimage->font_options));
+
+    cairo_set_font_options (cx, preimage->font_options);
+  }
+
+  cairo_matrix_init_identity (&matrix);
+  cairo_matrix_scale (&matrix, xzoom, yzoom);
+  cairo_matrix_translate (&matrix, xoffset, yoffset);
+
+  cairo_set_matrix (cx, &matrix);
+
+  rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cx, node);
+
+  success = (cairo_status (cx) == CAIRO_STATUS_SUCCESS);
+  cairo_destroy (cx);
+
+  return success;
+}
+
+/**
  * games_preimage_render_sub:
  * @preimage:
  * @node: a SVG node ID (starting with "#"), or %NULL
@@ -185,12 +246,9 @@ games_preimage_render_sub (GamesPreimage * preimage,
                            double xoffset,
                            double yoffset, double xzoom, double yzoom)
 {
-  GdkPixbuf *pixbuf = NULL;
   int rowstride;
   guint8 *data;
   cairo_surface_t *surface;
-  cairo_t *cx;
-  cairo_matrix_t matrix;
 
   if (!preimage->scalable)
     return NULL;
@@ -208,47 +266,24 @@ games_preimage_render_sub (GamesPreimage * preimage,
   surface = cairo_image_surface_create_for_data (data,
                                                  CAIRO_FORMAT_ARGB32,
                                                  width, height, rowstride);
-  if (cairo_surface_status (surface) != CAIRO_STATUS_SUCCESS) {
+  if (cairo_surface_status (surface) != CAIRO_STATUS_SUCCESS ||
+      !games_preimage_render_cairo_sub (preimage, surface, node, width, height,
+                                        xoffset, yoffset, xzoom, yzoom)) {
+    cairo_surface_destroy (surface);
     g_free (data);
     return NULL;
   }
 
-  cx = cairo_create (surface);
-
-  if (preimage->font_options) {
-    cairo_set_antialias (cx, cairo_font_options_get_antialias (preimage->font_options));
-
-    cairo_set_font_options (cx, preimage->font_options);
-  }
-
-  cairo_matrix_init_identity (&matrix);
-  cairo_matrix_scale (&matrix, xzoom, yzoom);
-  cairo_matrix_translate (&matrix, xoffset, yoffset);
-
-  cairo_set_matrix (cx, &matrix);
-
-  rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cx, node);
-
+  cairo_surface_destroy (surface);
   cairo_pixels_to_pixbuf (data, rowstride, height);
 
-  if (cairo_status (cx) == CAIRO_STATUS_SUCCESS) {
-    pixbuf = gdk_pixbuf_new_from_data (data,
-                                       GDK_COLORSPACE_RGB,
-                                       TRUE,
-                                       8,
-                                       width, height,
-                                       rowstride,
-                                       (GdkPixbufDestroyNotify) g_free, NULL);
-    data = NULL;
-  }
-
-  cairo_destroy (cx);
-
-  cairo_surface_destroy (surface);
-
-  g_free (data);
-
-  return pixbuf;
+  return gdk_pixbuf_new_from_data (data,
+                                   GDK_COLORSPACE_RGB,
+                                   TRUE,
+                                   8,
+                                   width, height,
+                                   rowstride,
+                                   (GdkPixbufDestroyNotify) g_free, NULL);
 }
 
 #endif /* HAVE_RSVG */

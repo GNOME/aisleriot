@@ -112,6 +112,33 @@ ar_card_theme_class_get_theme_info (ArCardThemeClass *klass,
   return NULL;
 }
 
+#if GTK_CHECK_VERSION (2, 10,0)
+static cairo_surface_t *
+ar_card_theme_class_real_get_card_surface (ArCardTheme *theme,
+                                           int cardid)
+{
+  GdkPixbuf *pixbuf;
+  cairo_surface_t *surface;
+  cairo_t *cr;
+
+  pixbuf = ar_card_theme_get_card_pixbuf (theme, cardid);
+  if (pixbuf == NULL)
+    return NULL;
+
+  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
+                                        gdk_pixbuf_get_width (pixbuf),
+                                        gdk_pixbuf_get_height (pixbuf));
+  cr = cairo_create (surface);
+  gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
+  cairo_paint (cr);
+  cairo_destroy (cr);
+
+  g_object_unref (pixbuf);
+
+  return surface;
+}
+#endif /* GTK 2.10 */
+
 static void
 ar_card_theme_class_init (ArCardThemeClass * klass)
 {
@@ -122,6 +149,10 @@ ar_card_theme_class_init (ArCardThemeClass * klass)
   gobject_class->finalize = ar_card_theme_finalize;
 
   klass->get_theme_info = ar_card_theme_class_get_theme_info;
+
+#if GTK_CHECK_VERSION (2, 10,0)
+  klass->get_card_surface = ar_card_theme_class_real_get_card_surface;
+#endif
 
   g_object_class_install_property
     (gobject_class,
@@ -332,6 +363,35 @@ ar_card_theme_get_card_pixbuf (ArCardTheme *theme,
 
   return pixbuf;
 }
+
+#if GTK_CHECK_VERSION (2, 10,0)
+/**
+* ar_card_theme_get_card_surface:
+* @theme:
+* @card_id:
+*
+* Returns a #cairo_surface_t for the selected card using the currently loaded
+* theme and the currently selected size.
+*
+* Returns: a new #cairo_surface_t, or %NULL if there was an error
+*/
+cairo_surface_t *
+ar_card_theme_get_card_surface (ArCardTheme *theme,
+                                int cardid)
+{
+  cairo_surface_t *surface = NULL;
+
+  g_return_val_if_fail ((cardid >= 0) && (cardid < AR_CARDS_TOTAL), NULL);
+
+  _games_profile_start ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
+
+  surface = theme->klass->get_card_surface (theme, cardid);
+
+  _games_profile_end ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
+
+  return surface;
+}
+#endif /* GTK 2.10 */
 
 /* ArCardThemeInfo impl */
 

@@ -59,6 +59,16 @@ GdkPixbuf *games_preimage_render_sub (GamesPreimage * preimage,
                                       double yoffset,
                                       double xzoom, double yzoom);
 
+gboolean games_preimage_render_cairo_sub (GamesPreimage * preimage,
+                                          cairo_surface_t *surface,
+                                          const char *node,
+                                          int width,
+                                          int height,
+                                          double xoffset,
+                                          double yoffset,
+                                          double xzoom,
+                                          double yzoom);
+
 gboolean games_preimage_is_scalable (GamesPreimage * preimage);
 
 gint games_preimage_get_width (GamesPreimage * preimage);

@@ -5,8 +5,6 @@ noinst_LTLIBRARIES = libaisleriot.la
 libaisleriot_la_SOURCES = \
 	ar-card.c \
 	ar-card.h \
-	ar-card-images.c \
-	ar-card-images.h \
 	ar-card-private.h \
 	ar-card-theme.c \
 	ar-card-theme.h \
@@ -15,6 +13,19 @@ libaisleriot_la_SOURCES = \
 	ar-card-themes.h \
 	ar-pixbuf-utils.c \
 	ar-pixbuf-utils.h \
+	$(NULL)
+
+if HAVE_GTK_2
+libaisleriot_la_SOURCES += \
+	ar-card-images.c \
+	ar-card-images.h \
+	$(NULL)
+endif
+
+# FIXME conditional
+libaisleriot_la_SOURCES += \
+	ar-card-surface-cache.c \
+	ar-card-surface-cache.h \
 	$(NULL)
 
 if HAVE_CLUTTER
