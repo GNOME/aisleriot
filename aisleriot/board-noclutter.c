@@ -3436,7 +3436,6 @@ draw_focus:
     GdkRectangle focus_rect;
     double line_width;
 
-  g_print ("focus!\n");
     /* Check whether this needs to be drawn */
 #if GTK_CHECK_VERSION (2, 90, 5)
     if (cairo_region_contains_rectangle (region, &priv->focus_rect) == CAIRO_REGION_OVERLAP_OUT)
