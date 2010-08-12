@@ -283,7 +283,7 @@ games_preimage_render_sub (GamesPreimage * preimage,
                                    8,
                                    width, height,
                                    rowstride,
-                                   (GdkPixbufDestroyNotify) g_free, NULL);
+                                   (GdkPixbufDestroyNotify) g_free, data);
 }
 
 #endif /* HAVE_RSVG */
