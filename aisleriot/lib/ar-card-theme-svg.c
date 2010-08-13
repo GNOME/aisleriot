@@ -114,7 +114,6 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
   double zoomx, zoomy;
   char node[32];
 
-  g_print ("really here!\n");
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
     games_preimage_render_cairo (preimage_card_theme->slot_preimage,
                                  cr,
