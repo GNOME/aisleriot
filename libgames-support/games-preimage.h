@@ -49,7 +49,12 @@ void games_preimage_set_font_options (GamesPreimage * preimage,
                                       const cairo_font_options_t *font_options);
 
 GdkPixbuf *games_preimage_render (GamesPreimage * preimage,
-                                  gint width, gint height);
+                                  gint width,
+                                  gint height);
+void games_preimage_render_cairo (GamesPreimage * preimage,
+                                  cairo_t *cr,
+                                  gint width,
+                                  gint height);
 
 GdkPixbuf *games_preimage_render_sub (GamesPreimage * preimage,
                                       const char *node,

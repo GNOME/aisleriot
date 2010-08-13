@@ -27,6 +27,9 @@
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
+/* For gdkcairo */
+#include <gdk/gdk.h>
+
 #ifdef HAVE_RSVG
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
@@ -119,6 +122,54 @@ games_preimage_render (GamesPreimage * preimage, gint width, gint height)
   }
 
   return pixbuf;
+}
+
+/**
+ * games_preimage_render_cairo:
+ * @preimage:
+ * @cr:
+ * @width: the desired width
+ * @height: the desired height
+ *
+ * Renders from @preimage's image at the specified
+ * @width and @height to @cr.
+*/
+void
+games_preimage_render_cairo (GamesPreimage * preimage,
+                             cairo_t *cr,
+                             gint width,
+                             gint height)
+{
+  g_return_if_fail (width > 0 && height > 0);
+  g_return_if_fail (preimage != NULL);
+
+#ifdef HAVE_RSVG
+  if (preimage->scalable) {     /* Render vector image */
+    games_preimage_render_cairo_sub (preimage,
+                                     cr,
+                                     NULL,
+                                     width,
+                                     height,
+                                     0.0, 0.0,
+                                     ((double) width) /
+                                     ((double) preimage->width),
+                                     ((double) height) /
+                                     ((double) preimage->height));
+  } else
+#endif /* HAVE_RSVG */
+  {
+    GdkPixbuf *pixbuf;
+
+    /* FIXMEchpe: we don't really need this fallback anymore */
+    /* Render raster image */
+    pixbuf = gdk_pixbuf_scale_simple (preimage->pixbuf,
+                                      width, height, GDK_INTERP_BILINEAR);
+
+    cairo_save (cr);
+    gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
+    cairo_paint (cr);
+    cairo_restore (cr);
+  }
 }
 
 #ifdef HAVE_RSVG
