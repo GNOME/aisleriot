@@ -330,16 +330,15 @@ ar_card_surface_cache_get_card_surface_by_id (ArCardSurfaceCache *cache,
     ar_card_theme_get_size (priv->theme, &card_size);
 
 #if GTK_CHECK_VERSION (2, 21, 6)
-    if (priv->drawable) {
+    if (priv->drawable != NULL) {
       surface = gdk_window_create_similar_surface (priv->drawable, CAIRO_CONTENT_COLOR_ALPHA,
                                                    card_size.width, card_size.height);
     } else
-#else
+#endif /* GTK 2.21.6 */
     {
       surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
                                             card_size.width, card_size.height);
     }
-#endif /* GTK 2.21.6 */
 
     cr = cairo_create (surface);
     ar_card_theme_paint_card (priv->theme, cr, card_id);
