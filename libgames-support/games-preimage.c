@@ -169,6 +169,8 @@ games_preimage_render_cairo (GamesPreimage * preimage,
     gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
     cairo_paint (cr);
     cairo_restore (cr);
+
+    g_object_unref (pixbuf);
   }
 }
 
