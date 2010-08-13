@@ -99,6 +99,57 @@ ar_card_theme_svg_get_card_pixbuf (ArCardTheme *card_theme,
   return subpixbuf;
 }
 
+#if GTK_CHECK_VERSION (2, 10,0)
+static void
+ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
+                              cairo_t *cr,
+                              int card_id)
+{
+  ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
+  GamesPreimage *preimage = preimage_card_theme->cards_preimage;
+  int suit, rank;
+  double card_width, card_height;
+  double width, height;
+  double offsetx, offsety;
+  double zoomx, zoomy;
+  char node[32];
+
+  g_print ("really here!\n");
+  if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
+    games_preimage_render_cairo (preimage_card_theme->slot_preimage,
+                                 cr,
+                                 preimage_card_theme->card_size.width,
+                                 preimage_card_theme->card_size.height);
+    return;
+  }
+
+  suit = card_id / 13;
+  rank = card_id % 13;
+
+  card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
+  card_height = ((double) games_preimage_get_height (preimage)) / N_ROWS;
+
+  width = preimage_card_theme->card_size.width - 2 * DELTA;
+  height = preimage_card_theme->card_size.height - 2 * DELTA;
+
+  offsetx = -((double) rank) * card_width + DELTA;
+  offsety = -((double) suit) * card_height + DELTA;
+
+  zoomx = width / card_width;
+  zoomy = height / card_height;
+
+  ar_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
+
+  games_preimage_render_cairo_sub (preimage,
+                                   cr,
+                                   node,
+                                   preimage_card_theme->card_size.width,
+                                   preimage_card_theme->card_size.height,
+                                   offsetx, offsety,
+                                   zoomx, zoomy);
+}
+#endif /* GTK 2.10 */
+
 static void
 ar_card_theme_svg_init (ArCardThemeSVG * cardtheme)
 {
@@ -147,6 +198,9 @@ ar_card_theme_svg_class_init (ArCardThemeSVGClass * klass)
   theme_class->foreach_theme_dir = ar_card_theme_svg_class_foreach_theme_dir;
 
   theme_class->get_card_pixbuf = ar_card_theme_svg_get_card_pixbuf;
+#if GTK_CHECK_VERSION (2, 10, 0)
+  theme_class->paint_card = ar_card_theme_svg_paint_card;
+#endif
 
   preimage_theme_class->needs_scalable_cards = TRUE;
 }
