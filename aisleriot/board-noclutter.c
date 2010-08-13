@@ -2413,16 +2413,18 @@ static void
 aisleriot_board_realize (GtkWidget *widget)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
+  AisleriotBoardPrivate *priv = board->priv;
+  GdkWindow *window;
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->realize (widget);
 
-#ifndef CAIRO_DRAWING
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  GdkWindow *window;
-  GdkColor baize_color;
-
   window = gtk_widget_get_window (widget);
+
+#ifdef CAIRO_DRAWING
+  ar_card_surface_cache_set_drawable (priv->card_cache, window);
+#else
+{
+  GdkColor baize_color;
 
   ar_card_images_set_drawable (priv->images, window);
 
@@ -2439,11 +2441,8 @@ aisleriot_board_realize (GtkWidget *widget)
 
 #ifndef HAVE_HILDON
 {
-  AisleriotBoardPrivate *priv = board->priv;
-  GdkWindow *window;
   GdkDisplay *display;
 
-  window = gtk_widget_get_window (widget);
   display = gtk_widget_get_display (widget);
 
   /* Create cursors */
@@ -2469,6 +2468,7 @@ aisleriot_board_unrealize (GtkWidget *widget)
   priv->geometry_set = FALSE;
 
 #ifdef CAIRO_DRAWING
+  ar_card_surface_cache_set_drawable (priv->card_cache, NULL);
   priv->slot_surface = NULL;
 #else
   g_object_unref (priv->draw_gc);
@@ -2478,7 +2478,7 @@ aisleriot_board_unrealize (GtkWidget *widget)
   g_object_unref (priv->slot_gc);
   priv->slot_gc = NULL;
 
-  ar_card_images_set_drawable (priv, NULL);
+  ar_card_images_set_drawable (priv->images, NULL);
   priv->slot_image = NULL;
 #endif
 

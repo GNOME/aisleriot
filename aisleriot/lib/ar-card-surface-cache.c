@@ -19,6 +19,7 @@
 #include <config.h>
 
 #include <libgames-support/games-debug.h>
+#include <gdk/gdk.h>
 
 #include "ar-card-surface-cache.h"
 #include "ar-card-private.h"
@@ -28,6 +29,7 @@ struct _ArCardSurfaceCachePrivate
   ArCardTheme *theme;
   guint theme_changed_id;
 
+  GdkWindow *drawable;
   cairo_surface_t **cards;
 
 #ifdef GNOME_ENABLE_DEBUG
@@ -216,6 +218,24 @@ ar_card_surface_cache_new (void)
 }
 
 /**
+ * ar_card_surface_cache_set_drawable:
+ * @cache:
+ * @drawable:
+ *
+ */
+void
+ar_card_surface_cache_set_drawable (ArCardSurfaceCache *cache,
+                                    /* GdkWindow* */ gpointer drawable)
+{
+  ArCardSurfaceCachePrivate * priv = cache->priv;
+
+  if (priv->drawable != drawable)
+    ar_card_surface_cache_drop (cache);
+
+  priv->drawable = drawable;
+}
+
+/**
  * ar_card_surface_cache_drop:
  * @images: a #ArCardImages
  *
@@ -309,8 +329,18 @@ ar_card_surface_cache_get_card_surface_by_id (ArCardSurfaceCache *cache,
 
     ar_card_theme_get_size (priv->theme, &card_size);
 
-    surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
-                                          card_size.width, card_size.height);
+#if GTK_CHECK_VERSION (2, 21, 6)
+    if (priv->drawable) {
+      surface = gdk_window_create_similar_surface (priv->drawable, CAIRO_CONTENT_COLOR_ALPHA,
+                                                   card_size.width, card_size.height);
+    } else
+#else
+    {
+      surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
+                                            card_size.width, card_size.height);
+    }
+#endif /* GTK 2.21.6 */
+
     cr = cairo_create (surface);
     ar_card_theme_paint_card (priv->theme, cr, card_id);
     cairo_destroy (cr);

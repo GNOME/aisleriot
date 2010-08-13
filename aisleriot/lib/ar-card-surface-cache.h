@@ -54,6 +54,9 @@ GType ar_card_surface_cache_get_type (void);
 
 ArCardSurfaceCache *ar_card_surface_cache_new (void);
 
+void ar_card_surface_cache_set_drawable (ArCardSurfaceCache *cache,
+                                         /* GdkWindow* */ gpointer drawable);
+
 void ar_card_surface_cache_drop (ArCardSurfaceCache *cache);
 
 void ar_card_surface_cache_set_theme (ArCardSurfaceCache *cache,
