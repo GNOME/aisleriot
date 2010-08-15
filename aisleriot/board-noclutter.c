@@ -3475,15 +3475,9 @@ aisleriot_board_expose_event (GtkWidget *widget,
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
-#if GTK_CHECK_VERSION (2, 90, 5)
-  cairo_region_t *region = event->region;
-  cairo_rectangle_int_t rect_;
-  cairo_rectangle_int_t *rect = &rect_;
-#else
   GdkRegion *region = event->region;
   GdkRectangle *rects;
   GdkRectangle *rect;
-#endif
   int i, n_rects;
   GPtrArray *slots;
   guint n_slots;
@@ -3502,21 +3496,12 @@ aisleriot_board_expose_event (GtkWidget *widget,
   if (event->window != window)
     return FALSE;
 
-#if GTK_CHECK_VERSION (2, 90, 5)
-  if (cairo_region_is_empty (region))
-    return FALSE;
-#else
   if (gdk_region_empty (region))
     return FALSE;
-#endif
-  
+
   /* First paint the background */
 
-#if GTK_CHECK_VERSION (2, 90, 5)
-  n_rects = cairo_region_num_rectangles (region);
-#else
   gdk_region_get_rectangles (region, &rects, &n_rects);
-#endif
   if (n_rects == 0)
     return FALSE;
 
@@ -3532,18 +3517,14 @@ aisleriot_board_expose_event (GtkWidget *widget,
 #endif
 
   for (i = 0; i < n_rects; ++i) {
-#if GTK_CHECK_VERSION (2, 90, 5)
-    cairo_region_get_rectangle (region, i, rect);
-#else
     rect = &rects[i];
-#endif
+
     gdk_draw_rectangle (window, priv->bg_gc, TRUE,
                         rect->x, rect->y,
                         rect->width, rect->height);
   }
-#if !GTK_CHECK_VERSION (2, 90, 5)
+
   g_free (rects);
-#endif
 
   /* Only draw the the cards when the geometry is set, and we're in a resize */
   if (!priv->geometry_set)
@@ -3563,14 +3544,9 @@ aisleriot_board_expose_event (GtkWidget *widget,
     ArSlot *slot = slots->pdata[i];
 
     /* Check whether this slot needs to be drawn */
-#if GTK_CHECK_VERSION (2, 90, 5)
-    if (cairo_region_contains_rectangle (region, &slot->rect) == CAIRO_REGION_OVERLAP_OUT)
-      continue;
-#else
     if (gdk_region_rect_in (region, &slot->rect) == GDK_OVERLAP_RECTANGLE_OUT)
       continue;
-#endif
-    
+
     exposed_slots[n_exposed_slots++] = slot;
   }
 
@@ -3655,13 +3631,8 @@ aisleriot_board_expose_event (GtkWidget *widget,
        * with the rect of the part of the card that's not going 
        * to be obscured by later drawn cards anyway.
        */
-#if GTK_CHECK_VERSION (2, 90, 5)
-      if (cairo_region_contains_rectangle (region, &card_rect) == CAIRO_REGION_OVERLAP_OUT)
-        goto next;
-#else
       if (gdk_region_rect_in (region, &card_rect) == GDK_OVERLAP_RECTANGLE_OUT)
         goto next;
-#endif
 
       if (PIXBUF_DRAWING_LIKELIHOOD (use_pixbuf_drawing)) {
         GdkPixbuf *pixbuf;
@@ -3694,13 +3665,8 @@ aisleriot_board_expose_event (GtkWidget *widget,
   }
 
   /* Draw the revealed card */
-#if GTK_CHECK_VERSION (2, 90, 5)
-  if (priv->show_card_slot != NULL &&
-      cairo_region_contains_rectangle (region, &priv->show_card_slot->rect) != CAIRO_REGION_OVERLAP_OUT)
-#else
   if (priv->show_card_slot != NULL &&
       gdk_region_rect_in (region, &priv->show_card_slot->rect) != GDK_OVERLAP_RECTANGLE_OUT)
-#endif
   {
     GdkRectangle card_rect;
 
@@ -3742,13 +3708,8 @@ draw_focus:
     GdkRectangle focus_rect;
 
     /* Check whether this needs to be drawn */
-#if GTK_CHECK_VERSION (2, 90, 5)
-    if (cairo_region_contains_rectangle (region, &priv->focus_rect) == CAIRO_REGION_OVERLAP_OUT)
-      goto expose_done;
-#else
     if (gdk_region_rect_in (region, &priv->focus_rect) == GDK_OVERLAP_RECTANGLE_OUT)
       goto expose_done;
-#endif
 
     if (ar_style_get_interior_focus (priv->style)) {
       focus_rect = priv->focus_rect;
