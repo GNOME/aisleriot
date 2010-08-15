@@ -3178,7 +3178,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
 #else
   GdkRegion *region = event->region;
 #endif
-  int i, n_rects;
+  int i;
   GPtrArray *slots;
   guint n_slots;
   ArSlot **exposed_slots;
@@ -3202,20 +3202,17 @@ aisleriot_board_expose_event (GtkWidget *widget,
 #if GTK_CHECK_VERSION (2, 90, 5)
   if (cairo_region_is_empty (region))
     return FALSE;
-
-  n_rects = cairo_region_num_rectangles (region);
 #else
   if (gdk_region_empty (region))
     return FALSE;
-
-  gdk_region_get_rectangles (region, NULL, &n_rects);
 #endif
-
-  if (n_rects == 0)
-    return FALSE;
 
 #if 0
   {
+    int n_rects;
+
+    n_rects = cairo_region_num_rectangles (region);
+
     g_print ("Exposing area %d:%d@(%d,%d) ", event->area.width, event->area.height,
              event->area.x, event->area.y);
     for (i = 0; i < n_rects; ++i) {
