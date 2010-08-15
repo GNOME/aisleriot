@@ -3171,8 +3171,6 @@ aisleriot_board_expose_event (GtkWidget *widget,
   cairo_region_t *region = event->region;
 #else
   GdkRegion *region = event->region;
-  GdkRectangle *rects;
-  GdkRectangle *rect;
 #endif
   int i, n_rects;
   GPtrArray *slots;
@@ -3198,16 +3196,15 @@ aisleriot_board_expose_event (GtkWidget *widget,
 #if GTK_CHECK_VERSION (2, 90, 5)
   if (cairo_region_is_empty (region))
     return FALSE;
+
+  n_rects = cairo_region_num_rectangles (region);
 #else
   if (gdk_region_empty (region))
     return FALSE;
+
+  gdk_region_get_rectangles (region, NULL, &n_rects);
 #endif
 
-#if GTK_CHECK_VERSION (2, 90, 5)
-  n_rects = cairo_region_num_rectangles (region);
-#else
-  gdk_region_get_rectangles (region, &rects, &n_rects);
-#endif
   if (n_rects == 0)
     return FALSE;
 
@@ -3232,17 +3229,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
   ar_style_get_baize_color (priv->style, &color);
   gdk_cairo_set_source_color (cr, &color);
 
-#if GTK_CHECK_VERSION (2, 90, 5)
   gdk_cairo_region (cr, region);
-#else
-  for (i = 0; i < n_rects; ++i) {
-    rect = &rects[i];
-
-    cairo_rectangle (cr, rect->x, rect->y, rect->width, rect->height);
-  }
-  g_free (rects);
-#endif
-
   cairo_fill (cr);
 
   /* Only draw the the cards when the geometry is set, and we're in a resize */
