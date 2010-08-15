@@ -30,6 +30,11 @@
 
 #if GTK_CHECK_VERSION (2, 90, 6)
 #define CAIRO_DRAWING
+
+/* Define this to only draw the cards that overlap the expose region.
+ * This shouldn't be necessary with cairo, so it's off by default.
+ */
+#undef OPTIMISED_EXPOSE
 #endif
 
 #include <libgames-support/games-files.h>
@@ -3255,6 +3260,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
     ArSlot *slot = slots->pdata[i];
 
     /* Check whether this slot needs to be drawn */
+#ifdef OPTIMISED_EXPOSE
 #if GTK_CHECK_VERSION (2, 90, 5)
     if (cairo_region_contains_rectangle (region, &slot->rect) == CAIRO_REGION_OVERLAP_OUT)
       continue;
@@ -3262,6 +3268,7 @@ aisleriot_board_expose_event (GtkWidget *widget,
     if (gdk_region_rect_in (region, &slot->rect) == GDK_OVERLAP_RECTANGLE_OUT)
       continue;
 #endif
+#endif /* OPTIMISED_EXPOSE */
 
     exposed_slots[n_exposed_slots++] = slot;
   }
@@ -3348,6 +3355,7 @@ draw_cards:
        * with the rect of the part of the card that's not going
        * to be obscured by later drawn cards anyway.
        */
+#ifdef OPTIMISED_EXPOSE
 #if GTK_CHECK_VERSION (2, 90, 5)
       if (cairo_region_contains_rectangle (region, &card_rect) == CAIRO_REGION_OVERLAP_OUT)
         goto next;
@@ -3355,6 +3363,7 @@ draw_cards:
       if (gdk_region_rect_in (region, &card_rect) == GDK_OVERLAP_RECTANGLE_OUT)
         goto next;
 #endif
+#endif /* OPTIMISED_EXPOSE */
 
       surface = card_images[j];
       if (surface == NULL)
@@ -3388,6 +3397,7 @@ draw_cards:
   }
 
   /* Draw the revealed card */
+#ifdef OPTIMISED_EXPOSE
 #if GTK_CHECK_VERSION (2, 90, 5)
   if (priv->show_card_slot != NULL &&
       cairo_region_contains_rectangle (region, &priv->show_card_slot->rect) != CAIRO_REGION_OVERLAP_OUT)
@@ -3395,6 +3405,9 @@ draw_cards:
   if (priv->show_card_slot != NULL &&
       gdk_region_rect_in (region, &priv->show_card_slot->rect) != GDK_OVERLAP_RECTANGLE_OUT)
 #endif
+#else
+  if (priv->show_card_slot != NULL)
+#endif /* OPTIMISED_EXPOSE */
   {
     GdkRectangle card_rect;
     cairo_pattern_t *pattern;
@@ -3427,6 +3440,7 @@ draw_focus:
     double line_width;
 
     /* Check whether this needs to be drawn */
+#ifdef OPTIMISED_EXPOSE
 #if GTK_CHECK_VERSION (2, 90, 5)
     if (cairo_region_contains_rectangle (region, &priv->focus_rect) == CAIRO_REGION_OVERLAP_OUT)
       goto expose_done;
@@ -3434,6 +3448,7 @@ draw_focus:
     if (gdk_region_rect_in (region, &priv->focus_rect) == GDK_OVERLAP_RECTANGLE_OUT)
       goto expose_done;
 #endif
+#endif /* OPTIMISED_EXPOSE */
 
     if (ar_style_get_interior_focus (priv->style)) {
       focus_rect = priv->focus_rect;
@@ -3456,7 +3471,10 @@ draw_focus:
     cairo_stroke (cr);
   }
 
+#ifdef OPTIMISED_EXPOSE
 expose_done:
+#endif
+
 #endif /* ENABLE_KEYNAV */
 
   #if DEBUG_DRAWING
