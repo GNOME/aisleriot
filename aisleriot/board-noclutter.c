@@ -1030,7 +1030,7 @@ drag_begin (AisleriotBoard *board)
   cairo_set_operator (cr2, CAIRO_OPERATOR_CLEAR);
   cairo_paint (cr2);
 
-  cairo_set_operator (cr2, CAIRO_OPERATOR_SOURCE);
+  cairo_set_operator (cr2, CAIRO_OPERATOR_OVER);
   cairo_set_source_rgb (cr2, 0., 0., 0.);
 
 #else
@@ -1074,11 +1074,12 @@ drag_begin (AisleriotBoard *board)
     pattern = cairo_pattern_create_for_surface (surface);
     cairo_matrix_init_translate (&matrix, -x, -y);
     cairo_pattern_set_matrix (pattern, &matrix);
-    cairo_set_source (cr1, pattern);
 
+    cairo_set_source (cr1, pattern);
     cairo_paint (cr1);
 
-    cairo_mask (cr2, pattern);
+    cairo_set_source (cr2, pattern);
+    cairo_paint (cr2);
 
     cairo_pattern_destroy (pattern);
 
