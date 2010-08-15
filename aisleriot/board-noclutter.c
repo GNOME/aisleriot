@@ -3224,6 +3224,9 @@ aisleriot_board_expose_event (GtkWidget *widget,
 
   cr = gdk_cairo_create (window);
 
+  gdk_cairo_region (cr, region);
+  cairo_clip (cr);
+
   /* First paint the background */
 
   ar_style_get_baize_color (priv->style, &color);
