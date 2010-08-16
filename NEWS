@@ -1,3 +1,56 @@
+gnome-games 2.31.90
+===================
+
+In this release the port to cairo has been completed for a few of the games. In
+aisleriot some parts of the code has changed license from LGPL to GPL 3+. Also
+a few bug fixes and some translations.
+
+Andika Triwidada (1):
+      Updated Indonesian translation
+
+Christian Persch (19):
+      aisleriot: Add cairo drawing mode
+      aisleriot: Fix build with gtk3
+      libgames-support: Plug a mem leak
+      aisleriot: Remove debug spew
+      aisleriot: Add aisleriot_card_theme_paint_card()
+      aisleriot: Use gdk_window_create_similar_surface
+      aisleriot: Fix thinko
+      libgames-support: Add games_preimage_render_cairo
+      aisleriot: Implement cairo rendering in ArCardThemeSVG
+      libgames-support: Plug a mem leak
+      aisleriot: Remove debug spew
+      build: Use right clutter-gtk API version for gtk3
+      aisleriot: Simplify code
+      aisleriot: Remove uncessary ifdef'd code
+      aisleriot: Clip to expose region
+      aisleriot: Don't optimise exposes
+      aisleriot: Change drag mask drawing
+      aisleriot: Remove useless check
+      aisleriot: Go GPL 3+
+
+Craig Duncan (2):
+      Changed the range of lines from (1..20) to (0..19)
+      Included the rot_next variable when getting the block positions for preview
+
+Daniel Mustieles (1):
+      Updated Spanish translation
+
+Daniel Nylander (1):
+      Updated Swedish translation
+
+Thomas Hindoe Paaboel Andersen (3):
+      [glines] Port to cairo
+      [gnibbles] Store tail direction before reversing the worm
+      [gnobots2] Use cairo to draw backgrounds
+
+Xhacker Liu (1):
+      Add Simplified Chinese help translation of gntravex.
+
+lainme (2):
+      Update Simplified Chinese help translation of gnome-sudoku.
+      Update Simplified Chinese help translation of gnomine.
+
 gnome-games 2.31.6
 ===================
 
