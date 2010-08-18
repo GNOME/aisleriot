@@ -49,13 +49,8 @@ struct _ArStylePrivate
 {
   ArCardTheme* card_theme;
 
-#ifdef HAVE_CLUTTER
-  ClutterColor selection_color;
-  ClutterColor baize_color;
-#else
   GdkColor selection_color;
   GdkColor baize_color;
-#endif
 
   double card_slot_ratio;
   double card_overhang;
@@ -84,15 +79,8 @@ struct _ArStylePrivate
   guint show_highlight          : 1;
   guint show_seleccion          : 1;
 
-#ifndef HAVE_CLUTTER
   guint pixbuf_drawing          : 1;
-#endif
 };
-
-#ifdef HAVE_CLUTTER
-void _ar_clutter_color_from_gdk_color (ClutterColor *clutter_color,
-                                       const GdkColor *gdk_color);
-#endif
 
 G_END_DECLS
 

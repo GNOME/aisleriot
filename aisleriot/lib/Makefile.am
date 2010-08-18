@@ -28,13 +28,6 @@ libaisleriot_la_SOURCES += \
 	ar-card-surface-cache.h \
 	$(NULL)
 
-if HAVE_CLUTTER
-libaisleriot_la_SOURCES += \
-	ar-card-textures-cache.c \
-	ar-card-textures-cache.h \
-	$(NULL)
-endif # HAVE_CLUTTER
-
 if HAVE_RSVG
 libaisleriot_la_SOURCES += ar-card-theme-preimage.c
 
@@ -85,11 +78,6 @@ if HAVE_RSVG
 libaisleriot_la_CFLAGS += $(RSVG_CFLAGS)
 libaisleriot_la_LIBADD += $(RSVG_LIBS)
 endif # HAVE_RSVG
-
-if HAVE_CLUTTER
-libaisleriot_la_CFLAGS += $(CLUTTER_CFLAGS)
-libaisleriot_la_LIBADD += $(CLUTTER_LIBS)
-endif # HAVE_CLUTTER
 
 if HAVE_HILDON
 libaisleriot_la_CFLAGS += $(HILDON_CFLAGS)

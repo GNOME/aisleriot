@@ -27,10 +27,6 @@
 
 #include "prop-editor.h"
 
-#ifdef HAVE_CLUTTER
-#include <clutter/clutter.h>
-#endif
-
 #ifdef HAVE_MAEMO_5
 #include <hildon/hildon-gtk.h>
 #include <hildon/hildon-pannable-area.h>
@@ -716,81 +712,6 @@ color_changed (GObject *object, GParamSpec *pspec, gpointer data)
   g_value_unset (&val);
 }
 
-#ifdef HAVE_CLUTTER
-
-static void
-_clutter_color_from_gdk_color (ClutterColor *clutter_color,
-                               const GdkColor *gdk_color)
-{
-  clutter_color->red   = gdk_color->red   >> 8;
-  clutter_color->green = gdk_color->green >> 8;
-  clutter_color->blue  = gdk_color->blue  >> 8;
-  clutter_color->alpha = 0xff;
-}
-
-static void
-_clutter_color_to_gdk_color (GdkColor *gdk_color,
-                             const ClutterColor *clutter_color)
-{
-  gdk_color->red   = clutter_color->red   << 8;
-  gdk_color->green = clutter_color->green << 8;
-  gdk_color->blue  = clutter_color->blue  << 8;
-  gdk_color->pixel = 0;
-}
-
-static void
-cluttercolor_modified (GtkColorButton *cb, gpointer data)
-{
-  ObjectProperty *p = data;
-  GdkColor color;
-  ClutterColor ccolor;
-
-  gtk_color_button_get_color (cb, &color);
-  _clutter_color_from_gdk_color (&ccolor, &color);
-
-  if (is_child_property (p->spec))
-    {
-      GtkWidget *widget = GTK_WIDGET (p->obj);
-      GtkWidget *parent = gtk_widget_get_parent (widget);
-
-      gtk_container_child_set (GTK_CONTAINER (parent),
-			       widget, p->spec->name, &ccolor, NULL);
-    }
-  else
-    g_object_set (p->obj, p->spec->name, &ccolor, NULL);
-}
-
-static void
-cluttercolor_changed (GObject *object, GParamSpec *pspec, gpointer data)
-{
-  GtkColorButton *cb = GTK_COLOR_BUTTON (data);
-  GValue val = { 0, };
-  GdkColor cb_color;
-  ClutterColor *color;
-  ClutterColor cb_ccolor;
-
-  g_assert (G_PARAM_SPEC_VALUE_TYPE (pspec) == CLUTTER_TYPE_COLOR);
-
-  g_value_init (&val, CLUTTER_TYPE_COLOR);
-  get_property_value (object, pspec, &val);
-  color = g_value_get_boxed (&val);
-
-  gtk_color_button_get_color (cb, &cb_color);
-  _clutter_color_from_gdk_color (&cb_ccolor, &cb_color);
-
-  if (color != NULL && !clutter_color_equal (color, &cb_ccolor))
-    {
-      block_controller (G_OBJECT (cb));
-      _clutter_color_to_gdk_color (&cb_color, color);
-      gtk_color_button_set_color (cb, &cb_color);
-      unblock_controller (G_OBJECT (cb));
-    }
-
-  g_value_unset (&val);
-}
-
-#endif /* HAVE_CLUTTER */
-
 static GtkWidget *
 property_widget (GObject    *object, 
 		 GParamSpec *spec, 
@@ -1029,22 +950,6 @@ property_widget (GObject    *object,
 	connect_controller (G_OBJECT (prop_edit), "color-set",
 			    object, spec, G_CALLBACK (color_modified));
     }
-#ifdef HAVE_CLUTTER
-  else if ((type == G_TYPE_PARAM_BOXED &&
-            G_PARAM_SPEC_VALUE_TYPE (spec) == CLUTTER_TYPE_COLOR) ||
-           type == CLUTTER_TYPE_PARAM_COLOR)
-    {
-      prop_edit = gtk_color_button_new ();
-      
-      g_object_connect_property (object, spec, 
-				 G_CALLBACK (cluttercolor_changed),
-				 prop_edit, G_OBJECT (prop_edit));
-      
-      if (can_modify)
-	connect_controller (G_OBJECT (prop_edit), "color-set",
-			    object, spec, G_CALLBACK (cluttercolor_modified));
-    }
-#endif /* HAVE_CLUTTER */
   else
     {  
       msg = g_strdup_printf ("uneditable property type: %s",
