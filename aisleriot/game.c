@@ -56,12 +56,13 @@ struct _AisleriotGame
   GPtrArray *slots;
 
   char *game_file;
-  guint timeout;
-  guint score;
   guint32 seed;
   guint delayed_call_timeout_id;
 
   GTimer *timer;
+
+  int timeout;
+  int score;
 
   double width;
   double height;
@@ -153,7 +154,7 @@ set_game_state (AisleriotGame *game,
 
 static void
 set_game_score (AisleriotGame *game,
-                guint score)
+                int score)
 {
   if (score != game->score) {
     game->score = score;
@@ -919,7 +920,7 @@ scm_get_score (void)
 {
   AisleriotGame *game = app_game;
 
-  return scm_from_uint (game->score);
+  return scm_from_int (game->score);
 }
 
 static SCM
@@ -935,11 +936,11 @@ static SCM
 scm_add_to_score (SCM delta)
 {
   AisleriotGame *game = app_game;
-  guint new_score;
+  int new_score;
 
   new_score = game->score + scm_num2int (delta, SCM_ARG1, NULL);
   set_game_score (game, new_score);
-  return scm_from_uint (new_score);
+  return scm_from_int (new_score);
 }
 
 static SCM
@@ -961,7 +962,7 @@ scm_get_timeout (void)
 
   g_warning ("(get-timeout) unimplemented\n");
 
-  return scm_from_uint (game->timeout);
+  return scm_from_int (game->timeout);
 }
 
 static void
@@ -1246,7 +1247,7 @@ aisleriot_game_get_property (GObject *object,
       g_value_set_string (value, game->game_file);
       break;
     case PROP_SCORE:
-      g_value_set_uint (value, game->score);
+      g_value_set_int (value, game->score);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1360,10 +1361,10 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
   g_object_class_install_property
     (gobject_class,
      PROP_SCORE,
-     g_param_spec_uint ("score", NULL, NULL,
-                        0, G_MAXUINT, 0,
-                        G_PARAM_READABLE |
-                        G_PARAM_STATIC_STRINGS));
+     g_param_spec_int ("score", NULL, NULL,
+                       G_MININT, G_MAXINT, 0,
+                       G_PARAM_READABLE |
+                       G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (gobject_class,
