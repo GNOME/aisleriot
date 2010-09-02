@@ -248,7 +248,9 @@ ar_game_chooser_constructor (GType type,
   content_area = gtk_dialog_get_content_area (dialog);
   gtk_box_set_spacing (GTK_BOX (content_area), 2);
 
+#if !GTK_CHECK_VERSION (2, 90, 7)
   gtk_dialog_set_has_separator (dialog, FALSE);
+#endif
   gtk_dialog_add_buttons (dialog,
                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                           _("_Select"), GTK_RESPONSE_OK,
