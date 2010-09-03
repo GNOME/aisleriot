@@ -216,7 +216,7 @@ pysol_config_txt_parse_line_4_and_5 (PySolConfigTxtData *data,
                                      const char *line4,
                                      const char *line5)
 {
-  guint i;
+  int i;
 
   data->backs = g_strsplit (line5, ";", -1);
   if (!data->backs)
