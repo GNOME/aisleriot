@@ -747,7 +747,9 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
   g_key_file_free (key_file);
 
   g_variant_builder_close (&builder);
-  g_variant_builder_add (&builder, "s", "hide-confirm-search");
+  g_variant_builder_add (&builder, "s", "hide-confirm-search" ","
+                                        "show-confirm-install" ","
+                                        "hide-warning");
 
   g_dbus_connection_call (connection,
                           "org.freedesktop.PackageKit",
