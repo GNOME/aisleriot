@@ -737,6 +737,8 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
     
     for (j = 0; j < n_packages; ++j) {
       g_variant_builder_add (&builder, "s", packages[j]);
+      _games_debug_print (GAMES_DEBUG_CARD_THEME, "Requesting pkg '%s'\n",
+                          packages[j]);
     }
 
     g_strfreev (packages);
