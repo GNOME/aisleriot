@@ -339,7 +339,9 @@ ar_card_theme_fixed_class_foreach_theme_dir (ArCardThemeClass *klass,
   if (!_ar_card_theme_class_foreach_env (klass, "AR_CARD_THEME_PATH_FIXED", callback, data))
     return FALSE;
 
-  return callback (klass, games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY), data);
+  if (!callback (klass, games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY), data))
+    return FALSE;
+  return FALSE;
 }
 
 static void

@@ -93,6 +93,7 @@ endif # LIBGAMES_SUPPORT_FULL
 
 libgames_support_la_CPPFLAGS = \
 	-DPKGDATADIR="\"$(pkgdatadir)\""			\
+	-DPREFIX="\"$(prefix)\"" \
 	-DDATADIR="\"$(datadir)\""				\
 	-DCOMMON_DATADIR="\"$(datadir)/gnome-games-common\""	\
 	-DSCORESDIR="\"$(scoredir)\""				\

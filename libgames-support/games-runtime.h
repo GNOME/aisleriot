@@ -29,10 +29,7 @@ G_BEGIN_DECLS
 
 typedef enum {
   /* Base directories */
-#ifdef ENABLE_BINRELOC
-  GAMES_RUNTIME_MODULE_DIRECTORY,
-#endif
-
+  GAMES_RUNTIME_PREFIX,
   GAMES_RUNTIME_DATA_DIRECTORY,
   GAMES_RUNTIME_COMMON_DATA_DIRECTORY,
   GAMES_RUNTIME_PKG_DATA_DIRECTORY,
@@ -83,6 +80,8 @@ char * games_runtime_get_file (GamesRuntimeDirectory directory,
                                const char *name);
 
 int games_runtime_get_gpl_version (void);
+
+gboolean games_runtime_is_system_prefix (void);
 
 G_END_DECLS
 

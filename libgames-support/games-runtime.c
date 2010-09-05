@@ -230,7 +230,7 @@ typedef struct {
 static const DerivedDirectory derived_directories[] = {
   /* Keep this in the same order as in the GamesRuntimeDirectory enum! */
 #ifdef ENABLE_BINRELOC
-  { GAMES_RUNTIME_MODULE_DIRECTORY,   "share"              }, /* GAMES_RUNTIME_DATA_DIRECTORY              */
+  { GAMES_RUNTIME_PREFIX,             "share"              }, /* GAMES_RUNTIME_DATA_DIRECTORY              */
   { GAMES_RUNTIME_DATA_DIRECTORY,     "gnome-games-common" }, /* GAMES_RUNTIME_COMMON_DATA_DIRECTORY       */
   { GAMES_RUNTIME_DATA_DIRECTORY,     "gnome-games"        }, /* GAMES_RUNTIME_PKG_DATA_DIRECTORY          */
   { GAMES_RUNTIME_DATA_DIRECTORY,     "scores"             }, /* GAMES_RUNTIME_SCORES_DIRECTORY            */
@@ -374,7 +374,7 @@ games_runtime_init (const char *name)
   const char *path;
 
   /* Now check that we can get the module installation directory */
-  path = games_runtime_get_directory (GAMES_RUNTIME_MODULE_DIRECTORY);
+  path = games_runtime_get_directory (GAMES_RUNTIME_PREFIX);
 
   _games_debug_print (GAMES_DEBUG_RUNTIME,
                       "Relocation path: %s\n", path ? path : "(null)");
@@ -492,7 +492,7 @@ games_runtime_get_directory (GamesRuntimeDirectory directory)
 
   switch ((int) directory) {
 #ifdef ENABLE_BINRELOC
-    case GAMES_RUNTIME_MODULE_DIRECTORY:
+    case GAMES_RUNTIME_PREFIX:
 #ifdef G_OS_WIN32
       path = g_win32_get_package_installation_directory_of_module (NULL);
 #else
@@ -525,6 +525,10 @@ games_runtime_get_directory (GamesRuntimeDirectory directory)
 #endif /* G_OS_WIN32 */
       break;
 #else /* !ENABLE_BINRELOC */
+
+    case GAMES_RUNTIME_PREFIX:
+      path = g_strdup (PREFIX);
+      break;
 
     case GAMES_RUNTIME_DATA_DIRECTORY:
       path = g_strdup (DATADIR);
@@ -589,4 +593,15 @@ int
 games_runtime_get_gpl_version (void)
 {
   return gpl_version;
+}
+
+/**
+ * games_runtime_is_system_prefix:
+ *
+ * Returns: whether the runtime prefix is "/usr".
+ */
+gboolean
+games_runtime_is_system_prefix (void)
+{
+  return strcmp (games_runtime_get_directory (GAMES_RUNTIME_PREFIX), "/usr") == 0;
 }
