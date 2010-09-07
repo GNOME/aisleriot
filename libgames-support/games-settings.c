@@ -3,7 +3,7 @@
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
- *  the Free Software Foundation; either version 2.1, or (at your option)
+ *  the Free Software Foundation; either version 3, or (at your option)
  *  any later version.
  *
  *  This program is distributed in the hope conf it will be useful,
@@ -227,29 +227,28 @@ games_conf_save_accel_map (GamesConf *conf)
 
 #endif /* !HAVE_HILDON */
 
-/**
- * games_settings_new_for_state:
- * @path:
- *
- * Creates a #GSettings object to store window state.
- *
- * Returns: a new #GSettings
- */
-GSettings *
-games_settings_new_for_state (const char *game_name,
-                              const char *path)
+typedef struct {
+  guint keyval;
+  GdkModifierType modifiers;
+} KeyEntry;
+
+static gboolean
+variant_to_keyval (GVariant *value,
+                   gpointer *result,
+                   KeyEntry *entry)
 {
-  char *filename;
+  if (value == NULL) {
+    entry->keyval = GDK_VoidSymbol;
+    entry->modifiers = 0;
+    return TRUE;
+  }
 
-  filename = g_build_filename (g_get_tmp_dir (),
-                               /* FIXME: use g_get_user_cache_dir (),
-                               game_name, */
-                               "gsettings-state.ini",
-                               NULL);
-  g_settings_backend_setup_keyfile ("state", filename);
-  g_free (filename);
+  gtk_accelerator_parse (g_variant_get_string (value, NULL),
+                         &entry->keyval, &entry->modifiers);
+  if (entry->keyval == 0 && entry->modifiers == 0)
+    return FALSE;
 
-  return g_settings_new_with_context_and_path (SCHEMA_NAME, "state", path);
+  return TRUE;
 }
 
 /**
@@ -270,24 +269,16 @@ games_settings_get_keyval (GSettings *settings,
                            guint *keyval,
                            GdkModifierType *modifiers)
 {
-  char *value;
-  guint kv;
-  GdkModifierType km;
+  KeyEntry entry;
 
   g_return_if_fail (G_IS_SETTINGS (settings));
   g_return_if_fail (key != NULL && key[0] != '\0');
 
-  value = g_settings_get_string (settings, key);
-  gtk_accelerator_parse (value, &kv, &km);
-  g_free (value);
-
-  if (kv == 0 && km == 0)
-    kv = GDK_VoidSymbol;
-
+  g_settings_get_mapped (settings, key, (GSettingsGetMapping) variant_to_keyval, &entry);
   if (keyval)
-    *keyval = kv;
+    *keyval = entry.keyval;
   if (modifiers)
-    *modifiers = km;
+    *modifiers = entry.modifiers;
 }
 
 /**
@@ -323,7 +314,7 @@ games_settings_set_keyval (GSettings *settings,
 
 /**
  * games_settings_bind_window_state:
- * @settings: a #GSettings with schema org.gnome.Games.WindowState
+ * @path: a valid #GSettings path
  * @window: a #GtkWindow
  *
  * Restore the window configuration, and persist changes to the window configuration:
@@ -331,7 +322,7 @@ games_settings_set_keyval (GSettings *settings,
  * @window must not be realised yet.
  */
 void
-games_settings_bind_window_state (GSettings *settings,
+games_settings_bind_window_state (const char *path,
                                   GtkWindow *window)
 {
   WindowState *state;
@@ -344,7 +335,7 @@ games_settings_bind_window_state (GSettings *settings,
   state = g_slice_new0 (WindowState);
 
   state->window = window;
-  state->settings = g_object_ref (settings);
+  state->settings = g_settings_new_with_path (SCHEMA_NAME, path);
   g_object_set_data_full (G_OBJECT (window), "GamesSettings::WindowState",
                           state, (GDestroyNotify) free_window_state);
 
@@ -353,10 +344,10 @@ games_settings_bind_window_state (GSettings *settings,
   g_signal_connect (window, "window-state-event",
                     G_CALLBACK (window_state_event_cb), state);
 
-  maximised = g_settings_get_boolean (settings, STATE_KEY_MAXIMIZED);
-  fullscreen = g_settings_get_boolean (settings, STATE_KEY_FULLSCREEN);
-  width = g_settings_get_int (settings, STATE_KEY_WIDTH);
-  height = g_settings_get_int (settings, STATE_KEY_HEIGHT);
+  maximised = g_settings_get_boolean (state->settings, STATE_KEY_MAXIMIZED);
+  fullscreen = g_settings_get_boolean (state->settings, STATE_KEY_FULLSCREEN);
+  width = g_settings_get_int (state->settings, STATE_KEY_WIDTH);
+  height = g_settings_get_int (state->settings, STATE_KEY_HEIGHT);
 
   if (width > 0 && height > 0) {
     _games_debug_print (GAMES_DEBUG_WINDOW_STATE,

@@ -3,7 +3,7 @@
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
- *  the Free Software Foundation; either version 2.1, or (at your option)
+ *  the Free Software Foundation; either version 3, or (at your option)
  *  any later version.
  *
  *  This program is distributed in the hope conf it will be useful,
@@ -24,9 +24,6 @@
 
 G_BEGIN_DECLS
 
-GSettings *games_settings_new_for_state (const char *game_name,
-                                         const char *path);
-
 void     games_settings_get_keyval (GSettings *settings,
                                     const char *key,
                                     guint *keyval,
@@ -36,7 +33,7 @@ gboolean games_settings_set_keyval (GSettings *settings,
                                     guint keyval,
                                     GdkModifierType modifiers);
 
-void games_settings_bind_window_state (GSettings *settings,
+void games_settings_bind_window_state (const char *path,
                                        GtkWindow *window);
 
 G_END_DECLS

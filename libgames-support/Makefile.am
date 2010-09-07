@@ -50,12 +50,12 @@ libgames_support_la_SOURCES +=		\
 	$(NULL)
 endif # !HAVE_HILDON
 
-# if HAVE_GIO_2_26
-# libgames_support_la_SOURCES += \
-# 	games-settings.c \
-# 	games-settings.h \
-# 	$(NULL)
-# endif
+if HAVE_GIO_2_26
+libgames_support_la_SOURCES += \
+	games-settings.c \
+	games-settings.h \
+	$(NULL)
+endif
 
 if LIBGAMES_SUPPORT_FULL
 libgames_support_la_SOURCES +=		\
@@ -239,6 +239,6 @@ CLEANFILES += GnomeGamesSupport-1.0.gir $(typelibs_DATA)
 endif # HAVE_INTROSPECTION
 
 @INTLTOOL_XML_NOMERGE_RULE@
-# @GSETTINGS_RULES@
+@GSETTINGS_RULES@
 
 -include $(top_srcdir)/git.mk
