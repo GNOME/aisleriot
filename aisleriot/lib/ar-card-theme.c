@@ -113,12 +113,59 @@ ar_card_theme_class_get_theme_info (ArCardThemeClass *klass,
 }
 
 #if GTK_CHECK_VERSION (2, 10,0)
+
+/* This routine is copied from librsvg:
+   Copyright © 2005 Dom Lachowicz <cinamod@hotmail.com>
+   Copyright © 2005 Caleb Moore <c.moore@student.unsw.edu.au>
+   Copyright © 2005 Red Hat, Inc.
+ */
+static void
+cairo_pixels_to_pixbuf (guint8 *pixels,
+                        int rowstride,
+                        int height)
+{
+  int row;
+
+  /* un-premultiply data */
+  for (row = 0; row < height; row++) {
+    guint8 *row_data = (pixels + (row * rowstride));
+    int i;
+
+    for (i = 0; i < rowstride; i += 4) {
+      guint8 *b = &row_data[i];
+      guint32 pixel;
+      guint8 alpha;
+
+      memcpy (&pixel, b, sizeof (guint32));
+      alpha = (pixel & 0xff000000) >> 24;
+      if (alpha == 0) {
+        b[0] = b[1] = b[2] = b[3] = 0;
+      } else {
+        b[0] = (((pixel & 0xff0000) >> 16) * 255 + alpha / 2) / alpha;
+        b[1] = (((pixel & 0x00ff00) >> 8) * 255 + alpha / 2) / alpha;
+        b[2] = (((pixel & 0x0000ff) >> 0) * 255 + alpha / 2) / alpha;
+        b[3] = alpha;
+      }
+    }
+  }
+}
+
+/* Two-way adapters cairo <-> pixbuf, so theme classes only need to implement one of them. */
+
+static void ar_card_theme_class_real_paint_card (ArCardTheme *theme,
+                                                 cairo_t *cr,
+                                                 int cardid);
+static GdkPixbuf * ar_card_theme_class_real_get_card_pixbuf (ArCardTheme *card_theme,
+                                                             int card_id);
+
 static void
 ar_card_theme_class_real_paint_card (ArCardTheme *theme,
                                      cairo_t *cr,
                                      int cardid)
 {
   GdkPixbuf *pixbuf;
+
+  g_assert (AR_CARD_THEME_GET_CLASS (theme)->get_card_pixbuf != ar_card_theme_class_real_get_card_pixbuf);
 
   pixbuf = ar_card_theme_get_card_pixbuf (theme, cardid);
   if (pixbuf == NULL)
@@ -131,6 +178,51 @@ ar_card_theme_class_real_paint_card (ArCardTheme *theme,
 
   g_object_unref (pixbuf);
 }
+
+static GdkPixbuf *
+ar_card_theme_class_real_get_card_pixbuf (ArCardTheme *card_theme,
+                                          int card_id)
+{
+  int rowstride;
+  guint8 *data;
+  cairo_surface_t *surface;
+  cairo_t *cr;
+  CardSize card_size;
+
+  g_assert (AR_CARD_THEME_GET_CLASS (card_theme)->paint_card != ar_card_theme_class_real_paint_card);
+
+  ar_card_theme_get_size (card_theme, &card_size);
+
+#if CAIRO_VERSION >= CAIRO_VERSION_ENCODE (1, 6, 0)
+  rowstride = cairo_format_stride_for_width (CAIRO_FORMAT_ARGB32, card_size.width);
+#else
+  rowstride = card_size.width * 4;
+#endif
+
+  data = g_try_malloc0 (rowstride * card_size.height);
+  if (!data)
+    return NULL;
+
+  surface = cairo_image_surface_create_for_data (data,
+                                                 CAIRO_FORMAT_ARGB32,
+                                                 card_size.width, card_size.height,
+                                                 rowstride);
+  cr = cairo_create (surface);
+  ar_card_theme_paint_card (card_theme, cr, card_id);
+  cairo_destroy (cr);
+
+  cairo_surface_destroy (surface);
+  cairo_pixels_to_pixbuf (data, rowstride, card_size.height);
+
+  return gdk_pixbuf_new_from_data (data,
+                                   GDK_COLORSPACE_RGB,
+                                   TRUE,
+                                   8,
+                                   card_size.width, card_size.height,
+                                   rowstride,
+                                   (GdkPixbufDestroyNotify) g_free, data);
+}
+
 #endif /* GTK 2.10 */
 
 static void
@@ -146,6 +238,7 @@ ar_card_theme_class_init (ArCardThemeClass * klass)
 
 #if GTK_CHECK_VERSION (2, 10,0)
   klass->paint_card = ar_card_theme_class_real_paint_card;
+  klass->get_card_pixbuf = ar_card_theme_class_real_get_card_pixbuf;
 #endif
 
   g_object_class_install_property
