@@ -326,6 +326,7 @@ ar_card_theme_fixed_class_get_theme_info (ArCardThemeClass *klass,
                                      filename,
                                      display_name /* adopts */,
                                      pref_name,
+                                     FALSE /* not scalable */,
                                      NULL, NULL);
 
   return info;

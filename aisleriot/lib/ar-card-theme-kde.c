@@ -374,6 +374,7 @@ ar_card_theme_kde_class_get_theme_info (ArCardThemeClass *klass,
                                      svg_filename,
                                      display_name /* adopts */,
                                      pref_name /* adopts */,
+                                     TRUE /* scalable */,
                                      NULL, NULL);
 
 out:

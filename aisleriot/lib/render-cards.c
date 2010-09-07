@@ -137,6 +137,7 @@ main (int argc, char *argv[])
                                         theme_filename,
                                         games_filename_to_display_name (theme_name),
                                         g_strdup_printf ("svg:%s", theme_filename) /* FIXMEchpe is this correct? */,
+                                        TRUE /* scalable */,
                                         NULL, NULL);
   g_free (theme_filename);
   theme_manager = ar_card_themes_new ();

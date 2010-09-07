@@ -204,6 +204,7 @@ ar_card_theme_sliced_class_get_theme_info (ArCardThemeClass *klass,
                                      filename,
                                      display_name /* adopts */,
                                      pref_name /* adopts */,
+                                     TRUE /* scalable */,
                                      NULL, NULL);
   g_free (name);
 

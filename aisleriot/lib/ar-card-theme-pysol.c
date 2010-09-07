@@ -394,6 +394,7 @@ ar_card_theme_pysol_class_get_theme_info (ArCardThemeClass *klass,
                                      filename,
                                      display_name /* adopts */,
                                      pref_name /* adopts */,
+                                     FALSE /* not scalable */,
                                      pysol_data,
                                      (GDestroyNotify) pysol_config_txt_data_free);
 

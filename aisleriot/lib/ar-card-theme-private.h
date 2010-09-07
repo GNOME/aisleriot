@@ -33,6 +33,7 @@ struct _ArCardThemeInfo {
   char *filename;
   char *display_name;
   char *pref_name;
+  guint scalable : 1;
 
   gpointer data;
   GDestroyNotify destroy_notify;
@@ -43,6 +44,7 @@ ArCardThemeInfo *_ar_card_theme_info_new (GType type,
                                                 const char *filename,
                                                 char *display_name /* adopts */,
                                                 char *pref_name /* adopts */,
+                                                gboolean scalable,
                                                 gpointer data,
                                                 GDestroyNotify destroy_notify);
 

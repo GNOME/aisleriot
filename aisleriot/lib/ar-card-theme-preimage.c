@@ -242,6 +242,7 @@ ar_card_theme_preimage_class_get_theme_info (ArCardThemeClass *klass,
                                      filename,
                                      display_name /* adopts */,
                                      NULL /* filled in by the derived classes */,
+                                     TRUE /* scalable */,
                                      NULL, NULL);
 
   return info;

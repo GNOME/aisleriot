@@ -431,6 +431,7 @@ theme_type_compare (GType a,
  * @filename:
  * @diplay_name:
  * @pref_name:
+ * @scalable:
  * @data:
  * @destroy_notify:
  *
@@ -442,6 +443,7 @@ _ar_card_theme_info_new (GType type,
                             const char *filename,
                             char *display_name /* adopts */,
                             char *pref_name /* adopts */,
+                            gboolean scalable,
                             gpointer data /* adoptes */,
                             GDestroyNotify destroy_notify)
 {
@@ -459,6 +461,7 @@ _ar_card_theme_info_new (GType type,
   info->filename = g_strdup (filename);
   info->display_name = display_name;
   info->pref_name = pref_name;
+  info->scalable = scalable != FALSE;
   info->data = data;
   info->destroy_notify = destroy_notify;
 
