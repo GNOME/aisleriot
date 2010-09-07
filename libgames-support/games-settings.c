@@ -29,8 +29,6 @@
 #include "games-gtk-compat.h"
 #include "games-debug.h"
 
-#define WINDOW_STATE_TIMEOUT 1 /* s */
-
 #define I_(string) g_intern_static_string (string)
 
 #define SCHEMA_NAME           I_("org.gnome.Games.WindowState")
@@ -43,37 +41,22 @@
 typedef struct {
   GSettings *settings;
   GtkWindow *window;
-  guint timeout_id;
   int width;
   int height;
   guint is_maximised : 1;
   guint is_fullscreen : 1;
 } WindowState;
 
-static gboolean
-window_state_timeout_cb (WindowState *state)
-{
-  g_settings_set_int (state->settings, STATE_KEY_WIDTH, state->width);
-  g_settings_set_int (state->settings, STATE_KEY_HEIGHT, state->height);
-
-  _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
-                      "[window %p] timeout: persisting width:%d height:%d\n",
-                      state->window,
-                      state->width, state->height);
-
-  state->timeout_id = 0;
-  return FALSE;
-}
-
 static void
 free_window_state (WindowState *state)
 {
-  if (state->timeout_id != 0) {
-    g_source_remove (state->timeout_id);
+  /* Now store the settings */
+  g_settings_set_int (state->settings, STATE_KEY_WIDTH, state->width);
+  g_settings_set_int (state->settings, STATE_KEY_HEIGHT, state->height);
+  g_settings_set_boolean (state->settings, STATE_KEY_MAXIMIZED, state->is_maximised);
+  g_settings_set_boolean (state->settings, STATE_KEY_FULLSCREEN, state->is_fullscreen);
 
-    /* And store now */
-    window_state_timeout_cb (state);
-  }
+  g_settings_apply (state->settings);
 
   g_object_unref (state->settings);
 
@@ -93,20 +76,9 @@ window_configure_event_cb (GtkWidget *widget,
                       state->is_maximised ? "t" : "f",
                       state->is_fullscreen ? "t" : "f");
 
-  if (!state->is_maximised && !state->is_fullscreen &&
-      (state->width != event->width || state->height != event->height)) {
+  if (!state->is_maximised && !state->is_fullscreen) {
     state->width = event->width;
     state->height = event->height;
-
-  _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
-                      "[window %p] scheduling save of new window size\n",
-                      state->window);
-
-    if (state->timeout_id == 0) {
-      state->timeout_id = g_timeout_add_seconds (WINDOW_STATE_TIMEOUT,
-                                                 (GSourceFunc) window_state_timeout_cb,
-                                                 state);
-    }
   }
 
   return FALSE;
@@ -126,11 +98,9 @@ window_state_event_cb (GtkWidget *widget,
 
   if (event->changed_mask & GDK_WINDOW_STATE_MAXIMIZED) {
     state->is_maximised = (event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) != 0;
-    g_settings_set_boolean (state->settings, STATE_KEY_MAXIMIZED, state->is_maximised);
   }
   if (event->changed_mask & GDK_WINDOW_STATE_FULLSCREEN) {
     state->is_fullscreen = (event->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) != 0;
-    g_settings_set_boolean (state->settings, STATE_KEY_FULLSCREEN, state->is_fullscreen);
   }
 
   _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
@@ -320,6 +290,8 @@ games_settings_set_keyval (GSettings *settings,
  * Restore the window configuration, and persist changes to the window configuration:
  * window width and height, and maximised and fullscreen state.
  * @window must not be realised yet.
+ *
+ * To make sure the state is saved at exit, g_settings_sync() must be called.
  */
 void
 games_settings_bind_window_state (const char *path,
@@ -336,6 +308,10 @@ games_settings_bind_window_state (const char *path,
 
   state->window = window;
   state->settings = g_settings_new_with_path (SCHEMA_NAME, path);
+
+  /* We delay storing the state until exit */
+  g_settings_delay (state->settings);
+
   g_object_set_data_full (G_OBJECT (window), "GamesSettings::WindowState",
                           state, (GDestroyNotify) free_window_state);
 
