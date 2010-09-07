@@ -36,14 +36,6 @@
 
 #define MAX_N_BACKS (10)
 
-typedef struct {
-  gboolean initialised;
-  double width;
-  double height;
-  double x;
-  double y;
-} CardBbox;
-
 struct _ArCardThemeKDEClass {
   ArCardThemePreimageClass parent_class;
 };
@@ -51,7 +43,7 @@ struct _ArCardThemeKDEClass {
 struct _ArCardThemeKDE {
   ArCardThemePreimage parent_instance;
 
-  CardBbox *bboxes;
+  cairo_rectangle_t *bboxes;
 
   char *backs[MAX_N_BACKS];
   guint n_backs : 4; /* enough bits for MAX_N_BACKS */
@@ -110,19 +102,20 @@ get_is_blacklisted (const char *filename)
 
 #ifdef HAVE_NEW_RSVG
 
-static CardBbox *
+static cairo_rectangle_t *
 ar_card_theme_kde_get_card_bbox (ArCardThemeKDE *theme,
                                     int card_id,
                                     const char *node)
 {
-  CardBbox *bbox;
+  cairo_rectangle_t *bbox;
   GamesPreimage *preimage;
   RsvgDimensionData dim;
   RsvgPositionData pos;
   gboolean retval;
 
   bbox = &theme->bboxes[card_id];
-  if (bbox->initialised)
+  /* Is it initalised yet? */
+  if (bbox->width != G_MAXFLOAT)
     return bbox;
 
   preimage = ((ArCardThemePreimage *) theme)->cards_preimage;
@@ -151,7 +144,6 @@ ar_card_theme_kde_get_card_bbox (ArCardThemeKDE *theme,
   if (dim.width <= 0 || dim.height <= 0)
     return NULL;
 
-  bbox->initialised = TRUE;
   bbox->width = dim.width;
   bbox->height = dim.height;
   bbox->x = pos.x;
@@ -245,10 +237,10 @@ static double
 ar_card_theme_kde_get_card_aspect (ArCardTheme* card_theme)
 {
   ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
-  CardBbox *bbox;
+  cairo_rectangle_t *bbox;
 
   bbox = &theme->bboxes[AR_CARD_BACK];
-  g_assert (bbox->initialised);
+  g_assert (bbox->width != G_MAXFLOAT); /* initialised */
 
   return bbox->width / bbox->height;
 }
@@ -266,7 +258,7 @@ ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
   double width, height;
   double zoomx, zoomy;
   char node[32];
-  CardBbox *bbox;
+  cairo_rectangle_t *bbox;
 
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
     subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
@@ -313,7 +305,11 @@ ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
 static void
 ar_card_theme_kde_init (ArCardThemeKDE *theme)
 {
-  theme->bboxes = g_new0 (CardBbox, AR_CARDS_TOTAL);
+  int i;
+
+  theme->bboxes = g_new0 (cairo_rectangle_t, AR_CARDS_TOTAL);
+  for (i = 0; i < AR_CARDS_TOTAL; ++i)
+    theme->bboxes[i].width = G_MAXFLOAT; /* uninitialised */
 
   theme->n_backs = 0;
   theme->back_index = 0;
