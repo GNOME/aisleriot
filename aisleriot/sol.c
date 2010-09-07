@@ -419,6 +419,10 @@ cleanup:
   }
 #endif /* HAVE_MAEMO */
 
+#if GLIB_CHECK_VERSION (2, 25, 15)
+  g_settings_sync ();
+#endif
+
   games_runtime_shutdown ();
 }
 

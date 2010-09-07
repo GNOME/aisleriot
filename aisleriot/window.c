@@ -50,6 +50,10 @@
 #include <libgames-support/games-atk-utils.h>
 #endif
 
+#if GLIB_CHECK_VERSION (2, 25, 15)
+#include <libgames-support/games-settings.h>
+#endif
+
 #ifdef HAVE_CLUTTER
 #include "ar-clutter-embed.h"
 #include "ar-style.h"
@@ -102,6 +106,9 @@
 #if defined(HAVE_HILDON) && defined(HAVE_MAEMO_5)
 #define LEAVE_FULLSCREEN_BUTTON
 #endif
+
+#define AR_SETTINGS_PATH_PREFIX "/org/gnome/solitaire/"
+#define AR_SETTINGS_WINDOW_STATE_PATH AR_SETTINGS_PATH_PREFIX "window-state/"
 
 enum
 {
@@ -2762,7 +2769,11 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_window_set_default_size (GTK_WINDOW (window), MIN_WIDTH, MIN_HEIGHT);
 
   /* Restore window state */
+#if GLIB_CHECK_VERSION (2, 25, 15)
+  games_settings_bind_window_state (AR_SETTINGS_WINDOW_STATE_PATH, GTK_WINDOW (window));
+#else
   games_conf_add_window (GTK_WINDOW (window), NULL);
+#endif
 
   /* Initial focus is in the board */
   gtk_widget_grab_focus (GTK_WIDGET (priv->board));
