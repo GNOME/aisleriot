@@ -184,7 +184,16 @@ ar_card_theme_svg_class_foreach_theme_dir (ArCardThemeClass *klass,
   if (!_ar_card_theme_class_foreach_env (klass, "AR_CARD_THEME_PATH_SVG", callback, data))
     return FALSE;
 
-  return callback (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), data);
+  if (!callback (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), data))
+    return FALSE;
+
+  /* If we're installed in a non-system prefix, also load the card themes
+   * from the system prefix.
+   */
+  if (!games_runtime_is_system_prefix ())
+    return callback (klass, "/usr/share/gnome-games-common/cards", data);
+
+  return TRUE;
 }
 
 static void

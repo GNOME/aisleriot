@@ -227,7 +227,16 @@ ar_card_theme_sliced_class_foreach_theme_dir (ArCardThemeClass *klass,
   retval = callback (klass, dir, data);
   g_free (dir);
 
-  return retval;
+  if (!retval)
+    return FALSE;
+
+  /* If we're installed in a non-system prefix, also load the card themes
+   * from the system prefix.
+   */
+  if (!games_runtime_is_system_prefix ())
+    return callback (klass, "/usr/share/pixmaps/gnome-games-common/cards", data);
+
+  return TRUE;
 }
 
 static void

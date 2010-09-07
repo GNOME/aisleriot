@@ -341,7 +341,14 @@ ar_card_theme_fixed_class_foreach_theme_dir (ArCardThemeClass *klass,
 
   if (!callback (klass, games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY), data))
     return FALSE;
-  return FALSE;
+
+  /* If we're installed in a non-system prefix, also load the card themes
+   * from the system prefix.
+   */
+  if (!games_runtime_is_system_prefix ())
+    return callback (klass, "/usr/share/gnome-games-common/card-themes", data);
+
+  return TRUE;
 }
 
 static void
