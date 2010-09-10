@@ -938,22 +938,24 @@ drag_begin (AisleriotBoard *board)
   ArSlot *hslot;
   int delta, height, width;
   int x, y;
-  GdkPixmap *moving_pixmap;
-  GdkPixmap *moving_mask;
   int num_moving_cards;
   guint i;
   GByteArray *cards;
-  GdkDrawable *drawable;
   GdkWindowAttr attributes;
   GdkWindow *window;
 #ifdef CAIRO_DRAWING
-  cairo_t *cr1, *cr2;
+  cairo_surface_t *surface;
+  cairo_t *cr;
+  cairo_pattern_t *pattern;
+  cairo_region_t *shape;
 #else
   const GdkColor masked = { 0, 0, 0, 0 };
   const GdkColor unmasked = { 1, 0xffff, 0xffff, 0xffff };
   GdkBitmap *card_mask;
   GdkGC *gc1, *gc2;
   gboolean use_pixbuf_drawing = priv->use_pixbuf_drawing;
+  GdkPixmap *moving_pixmap;
+  GdkPixmap *moving_mask;
 #endif /* CAIRO_DRAWING */
 
   if (!priv->selection_slot ||
@@ -1004,7 +1006,6 @@ drag_begin (AisleriotBoard *board)
   height = priv->card_size.height + (num_moving_cards - 1) * hslot->pixeldy;
 
   window = gtk_widget_get_window (widget);
-  drawable = GDK_DRAWABLE (window);
 
   attributes.wclass = GDK_INPUT_OUTPUT;
   attributes.window_type = GDK_WINDOW_CHILD;
@@ -1013,11 +1014,30 @@ drag_begin (AisleriotBoard *board)
   attributes.y = y;
   attributes.width = width;
   attributes.height = height;
-  attributes.colormap = gdk_drawable_get_colormap (drawable);
-  attributes.visual = gdk_drawable_get_visual (drawable);
+#if GTK_CHECK_VERSION (2, 90, 8)
+  attributes.visual = gdk_window_get_visual (window);
+#else
+  attributes.colormap = gdk_drawable_get_colormap (GDK_DRAWABLE (window));
+  attributes.visual = gdk_drawable_get_visual (GDK_DRAWABLE (window));
+#endif
 
   priv->moving_cards_window = gdk_window_new (window, &attributes,
-                                              GDK_WA_VISUAL | GDK_WA_COLORMAP | GDK_WA_X | GDK_WA_Y);
+#if !GTK_CHECK_VERSION (2, 90, 8)
+                                              GDK_WA_COLORMAP |
+#endif
+                                              GDK_WA_VISUAL | GDK_WA_X | GDK_WA_Y);
+
+#ifdef CAIRO_DRAWING
+  surface = gdk_window_create_similar_surface (priv->moving_cards_window, CAIRO_CONTENT_COLOR_ALPHA,
+                                               width, height);
+
+  cr = cairo_create (surface);
+  cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
+  cairo_paint (cr);
+
+  cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
+
+#else
 
   moving_pixmap = gdk_pixmap_new (priv->moving_cards_window,
                                   width, height,
@@ -1025,21 +1045,6 @@ drag_begin (AisleriotBoard *board)
   moving_mask = gdk_pixmap_new (priv->moving_cards_window,
                                 width, height,
                                 1);
-
-#ifdef CAIRO_DRAWING
-  cr1 = gdk_cairo_create (moving_pixmap);
-  cairo_set_operator (cr1, CAIRO_OPERATOR_CLEAR);
-  cairo_paint (cr1);
-  cairo_set_operator (cr1, CAIRO_OPERATOR_OVER);
-
-  cr2 = gdk_cairo_create (moving_mask);
-  cairo_set_operator (cr2, CAIRO_OPERATOR_CLEAR);
-  cairo_paint (cr2);
-
-  cairo_set_operator (cr2, CAIRO_OPERATOR_OVER);
-  cairo_set_source_rgb (cr2, 0., 0., 0.);
-
-#else
 
   gc1 = gdk_gc_new (moving_pixmap);
   gc2 = gdk_gc_new (moving_mask);
@@ -1069,25 +1074,22 @@ drag_begin (AisleriotBoard *board)
     Card hcard = CARD (priv->moving_cards->data[i]);
 
 #ifdef CAIRO_DRAWING
-    cairo_surface_t *surface;
-    cairo_pattern_t *pattern;
+    cairo_surface_t *card_surface;
+    cairo_pattern_t *card_pattern;
     cairo_matrix_t matrix;
 
-    surface = ar_card_surface_cache_get_card_surface (priv->card_cache, hcard);
-    if (surface == NULL)
+    card_surface = ar_card_surface_cache_get_card_surface (priv->card_cache, hcard);
+    if (card_surface == NULL)
       goto next;
 
-    pattern = cairo_pattern_create_for_surface (surface);
+    card_pattern = cairo_pattern_create_for_surface (card_surface);
     cairo_matrix_init_translate (&matrix, -x, -y);
-    cairo_pattern_set_matrix (pattern, &matrix);
+    cairo_pattern_set_matrix (card_pattern, &matrix);
 
-    cairo_set_source (cr1, pattern);
-    cairo_paint (cr1);
+    cairo_set_source (cr, card_pattern);
+    cairo_paint (cr);
 
-    cairo_set_source (cr2, pattern);
-    cairo_paint (cr2);
-
-    cairo_pattern_destroy (pattern);
+    cairo_pattern_destroy (card_pattern);
 
 #else /* !CAIRO_DRAWING */
     gdk_gc_set_clip_origin (gc1, x, y);
@@ -1127,12 +1129,21 @@ drag_begin (AisleriotBoard *board)
   }
 
 #ifdef CAIRO_DRAWING
-  cairo_destroy (cr1);
-  cairo_destroy (cr2);
+  cairo_destroy (cr);
+
+  pattern = cairo_pattern_create_for_surface (surface);
+  gdk_window_set_background_pattern (priv->moving_cards_window, pattern);
+  cairo_pattern_destroy (pattern);
+
+  shape = gdk_cairo_region_create_from_surface (surface);
+  gdk_window_shape_combine_region (priv->moving_cards_window, shape, 0, 0);
+  cairo_region_destroy (shape);
+
+  cairo_surface_destroy (surface);
+
 #else
   g_object_unref (gc1);
   g_object_unref (gc2);
-#endif /* !CAIRO_DRAWING */
 
   gdk_window_set_back_pixmap (priv->moving_cards_window,
 			      moving_pixmap, 0);
@@ -1141,6 +1152,7 @@ drag_begin (AisleriotBoard *board)
 
   g_object_unref (moving_pixmap);
   g_object_unref (moving_mask);
+#endif /* !CAIRO_DRAWING */
 
   gdk_window_show (priv->moving_cards_window);
 
