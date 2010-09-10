@@ -26,7 +26,13 @@
 #include <string.h>
 
 #include <gtk/gtk.h>
+
+#if GTK_CHECK_VERSION (2, 90, 7)
+#define GDK_KEY(symbol) GDK_KEY_##symbol
+#else
 #include <gdk/gdkkeysyms.h>
+#define GDK_KEY(symbol) GDK_##symbol
+#endif
 
 #if GTK_CHECK_VERSION (2, 90, 6)
 #define CAIRO_DRAWING
@@ -4042,60 +4048,60 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   binding_set = gtk_binding_set_by_class (klass);
 
   /* Cursor movement */
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Left, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (Left), 0,
                                                GTK_MOVEMENT_VISUAL_POSITIONS, -1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Left, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_Left), 0,
                                                GTK_MOVEMENT_VISUAL_POSITIONS, -1);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Right, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (Right), 0,
                                                GTK_MOVEMENT_VISUAL_POSITIONS, 1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Right, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_Right), 0,
                                                GTK_MOVEMENT_VISUAL_POSITIONS, 1);
-  
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Up, 0,
+
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (Up), 0,
                                                GTK_MOVEMENT_DISPLAY_LINES, -1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Up, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_Up), 0,
                                                GTK_MOVEMENT_DISPLAY_LINES, -1);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Down, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (Down), 0,
                                                GTK_MOVEMENT_DISPLAY_LINES, 1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Down, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_Down), 0,
                                                GTK_MOVEMENT_DISPLAY_LINES, 1);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_Home, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (Home), 0,
                                                GTK_MOVEMENT_BUFFER_ENDS, -1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_Home, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_Home), 0,
                                                GTK_MOVEMENT_BUFFER_ENDS, -1);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_End, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (End), 0,
                                                GTK_MOVEMENT_BUFFER_ENDS, 1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KP_End, 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_End), 0,
                                                GTK_MOVEMENT_BUFFER_ENDS, 1);
 
-  aisleriot_board_add_move_binding (binding_set, GDK_Page_Up, 0,
+  aisleriot_board_add_move_binding (binding_set, GDK_KEY (Page_Up), 0,
                                     GTK_MOVEMENT_PAGES, -1);
-  aisleriot_board_add_move_binding (binding_set, GDK_KP_Page_Up, 0,
+  aisleriot_board_add_move_binding (binding_set, GDK_KEY (KP_Page_Up), 0,
                                     GTK_MOVEMENT_PAGES, -1);
 
-  aisleriot_board_add_move_binding (binding_set, GDK_Page_Down, 0,
+  aisleriot_board_add_move_binding (binding_set, GDK_KEY (Page_Down), 0,
                                     GTK_MOVEMENT_PAGES, 1);
-  aisleriot_board_add_move_binding (binding_set, GDK_KP_Page_Down, 0,
+  aisleriot_board_add_move_binding (binding_set, GDK_KEY (KP_Page_Down), 0,
                                     GTK_MOVEMENT_PAGES, 1);
 
   /* Selection */
-  gtk_binding_entry_add_signal (binding_set, GDK_space, 0,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY (space), 0,
                                 "toggle-selection", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_KP_Space, 0,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY (KP_Space), 0,
                                 "toggle-selection", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_a, GDK_CONTROL_MASK,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY (a), GDK_CONTROL_MASK,
                                 "select-all", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_a, GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY (a), GDK_CONTROL_MASK | GDK_SHIFT_MASK,
                                 "deselect-all", 0);
 
   /* Activate */
-  aisleriot_board_add_activate_binding (binding_set, GDK_Return, 0);
-  aisleriot_board_add_activate_binding (binding_set, GDK_ISO_Enter, 0);
-  aisleriot_board_add_activate_binding (binding_set, GDK_KP_Enter, 0);
+  aisleriot_board_add_activate_binding (binding_set, GDK_KEY (Return), 0);
+  aisleriot_board_add_activate_binding (binding_set, GDK_KEY (ISO_Enter), 0);
+  aisleriot_board_add_activate_binding (binding_set, GDK_KEY (KP_Enter), 0);
 #endif /* ENABLE_KEYNAV */
 }
 
