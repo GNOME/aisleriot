@@ -22,7 +22,13 @@
 #include <errno.h>
 
 #include <gtk/gtk.h>
+
+#if GTK_CHECK_VERSION (2, 90, 7)
+#define GDK_KEY(symbol) GDK_KEY_##symbol
+#else
 #include <gdk/gdkkeysyms.h>
+#define GDK_KEY(symbol) GDK_##symbol
+#endif
 
 #ifdef HAVE_GNOME
 #include <gconf/gconf-client.h>
@@ -1159,7 +1165,7 @@ games_conf_get_keyval (const char *group, const char *key,
 #ifdef HAVE_GNOME
   GConfValueType type;
   char *key_name, *value;
-  guint keyval = GDK_VoidSymbol;
+  guint keyval = GDK_KEY (VoidSymbol);
 
   key_name = get_gconf_key_name (group, key);
   type = get_gconf_value_type_from_schema (key_name);
@@ -1168,7 +1174,7 @@ games_conf_get_keyval (const char *group, const char *key,
   if (type == GCONF_VALUE_STRING) {
     value = gconf_client_get_string (priv->gconf_client, key_name, error);
     if (!value) {
-      keyval = GDK_VoidSymbol;
+      keyval = GDK_KEY (VoidSymbol);
     } else {
       keyval = gdk_keyval_from_name (value);
       g_free (value);
@@ -1176,7 +1182,7 @@ games_conf_get_keyval (const char *group, const char *key,
   } else if (type == GCONF_VALUE_INT) {
     keyval = gconf_client_get_int (priv->gconf_client, key_name, error);
     if (*error || keyval == 0)
-      keyval = GDK_VoidSymbol;
+      keyval = GDK_KEY (VoidSymbol);
   } else {
     g_warning ("Unknown value type for key %s\n", key_name);
   }
@@ -1186,7 +1192,7 @@ games_conf_get_keyval (const char *group, const char *key,
   return keyval;
 #else
   char *value;
-  guint keyval = GDK_VoidSymbol;
+  guint keyval = GDK_KEY (VoidSymbol);
 
   value = g_key_file_get_string (priv->key_file, group, key, error);
   if (value) {
@@ -1221,7 +1227,7 @@ games_conf_get_keyval_with_default (const char *group, const char *key,
     g_error_free (error);
     value = default_keyval;
   }
-  if (value == GDK_VoidSymbol) {
+  if (value == GDK_KEY (VoidSymbol)) {
     value = default_keyval;
   }
 
@@ -1245,7 +1251,7 @@ games_conf_set_keyval (const char *group, const char *key, guint value)
   GConfValueType type;
   char *key_name, *name;
 
-  if (value == GDK_VoidSymbol)
+  if (value == GDK_KEY (VoidSymbol))
     return;
 
   key_name = get_gconf_key_name (group, key);
@@ -1265,7 +1271,7 @@ games_conf_set_keyval (const char *group, const char *key, guint value)
 #else
   char *name;
 
-  if (value == GDK_VoidSymbol)
+  if (value == GDK_KEY (VoidSymbol))
     return;
   
   name = gdk_keyval_name (value);

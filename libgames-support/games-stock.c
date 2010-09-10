@@ -26,7 +26,13 @@
 #include <string.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
+
+#if GTK_CHECK_VERSION (2, 90, 7)
+#define GDK_KEY(symbol) GDK_KEY_##symbol
+#else
 #include <gdk/gdkkeysyms.h>
+#define GDK_KEY(symbol) GDK_##symbol
+#endif
 
 #include "games-runtime.h"
 
@@ -284,27 +290,27 @@ games_stock_init (void)
 #endif
 
   static const GtkStockItem games_stock_items[] = {
-    { GAMES_STOCK_CONTENTS,         N_("_Contents"),          0, STOCK_ACCEL (GDK_F1, 0), NULL },
-    { GAMES_STOCK_FULLSCREEN,       N_("_Fullscreen"),        0, STOCK_ACCEL (GDK_F11, GDK_F6), NULL },
-    { GAMES_STOCK_HINT,             N_("_Hint"),              STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('h', GDK_Return), NULL },
+    { GAMES_STOCK_CONTENTS,         N_("_Contents"),          0, STOCK_ACCEL (GDK_KEY (F1), 0), NULL },
+    { GAMES_STOCK_FULLSCREEN,       N_("_Fullscreen"),        0, STOCK_ACCEL (GDK_KEY (F11), GDK_KEY (F6)), NULL },
+    { GAMES_STOCK_HINT,             N_("_Hint"),              STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('h', GDK_KEY (Return)), NULL },
     /* Translators: This "_New" is for the menu item 'Game->New', implies "New Game" */
     { GAMES_STOCK_NEW_GAME,         N_("_New"),               STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('n', 0), NULL },
     /* Translators: This "_New Game" is for the game-over dialogue */
     { GAMES_STOCK_START_NEW_GAME,   N_("_New Game"),          0, 0, NULL },
-    { GAMES_STOCK_REDO_MOVE,        N_("_Redo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK | GDK_SHIFT_MASK, 0), STOCK_ACCEL ('z', GDK_F7), NULL },
+    { GAMES_STOCK_REDO_MOVE,        N_("_Redo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK | GDK_SHIFT_MASK, 0), STOCK_ACCEL ('z', GDK_KEY (F7)), NULL },
     /* Translators: this is the "Reset" scores button in a scores dialogue */
     { GAMES_STOCK_RESET,            N_("_Reset"),             0, 0, NULL },
     /* Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game" */
     { GAMES_STOCK_RESTART_GAME,     N_("_Restart"),           0, 0, NULL },
-    { GAMES_STOCK_UNDO_MOVE,        N_("_Undo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('z', GDK_F8), NULL },
+    { GAMES_STOCK_UNDO_MOVE,        N_("_Undo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('z', GDK_KEY (F8)), NULL },
     { GAMES_STOCK_DEAL_CARDS,       N_("_Deal"),              GDK_CONTROL_MASK, 'd', NULL },
 #ifndef HAVE_HILDON
-    { GAMES_STOCK_LEAVE_FULLSCREEN, N_("_Leave Fullscreen"),  0, GDK_F11, NULL },
+    { GAMES_STOCK_LEAVE_FULLSCREEN, N_("_Leave Fullscreen"),  0, GDK_KEY (F11), NULL },
     { GAMES_STOCK_NETWORK_GAME,     N_("Network _Game"),      GDK_CONTROL_MASK, 'g', NULL },
     { GAMES_STOCK_NETWORK_LEAVE,    N_("L_eave Game"),        GDK_CONTROL_MASK, 'e', NULL },
     { GAMES_STOCK_PLAYER_LIST,      N_("Player _List"),       GDK_CONTROL_MASK, 'l', NULL },
-    { GAMES_STOCK_PAUSE_GAME,       N_("_Pause"),             0, GDK_Pause, NULL },
-    { GAMES_STOCK_RESUME_GAME,      N_("Res_ume"),            0, GDK_Pause, NULL },
+    { GAMES_STOCK_PAUSE_GAME,       N_("_Pause"),             0, GDK_KEY (Pause), NULL },
+    { GAMES_STOCK_RESUME_GAME,      N_("Res_ume"),            0, GDK_KEY (Pause), NULL },
     { GAMES_STOCK_SCORES,           N_("_Scores"),            0, 0, NULL },
     { GAMES_STOCK_END_GAME,         N_("_End Game"),          0, 0, NULL },
 #endif

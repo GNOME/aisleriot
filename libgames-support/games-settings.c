@@ -21,10 +21,13 @@
 #include "games-settings.h"
 
 #include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
 
-#define G_SETTINGS_ENABLE_BACKEND
-#include <gio/gsettingsbackend.h>
+#if GTK_CHECK_VERSION (2, 90, 7)
+#define GDK_KEY(symbol) GDK_KEY_##symbol
+#else
+#include <gdk/gdkkeysyms.h>
+#define GDK_KEY(symbol) GDK_##symbol
+#endif
 
 #include "games-gtk-compat.h"
 #include "games-debug.h"
@@ -208,7 +211,7 @@ variant_to_keyval (GVariant *value,
                    KeyEntry *entry)
 {
   if (value == NULL) {
-    entry->keyval = GDK_VoidSymbol;
+    entry->keyval = GDK_KEY (VoidSymbol);
     entry->modifiers = 0;
     return TRUE;
   }
