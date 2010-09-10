@@ -126,7 +126,9 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
 
   content_area = gtk_dialog_get_content_area (dialog);
 
+#if !GTK_CHECK_VERSION (2, 90, 7)
   gtk_dialog_set_has_separator (dialog, FALSE);
+#endif
   gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
   gtk_box_set_spacing (GTK_BOX (content_area), 2);
 
