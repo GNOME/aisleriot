@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games&component=general\n"
-"POT-Creation-Date: 2010-03-24 03:23+0000\n"
-"PO-Revision-Date: 2010-03-27 10:18+0530\n"
+"POT-Creation-Date: 2010-08-18 11:09+0000\n"
+"PO-Revision-Date: 2010-09-11 08:40+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
-"Language-Team: Punjabi/Panjabi <kde-i18n-doc@kde.org>\n"
+"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,7 +42,7 @@ msgstr "ਐਨੀਮੇਸ਼ਨ"
 msgid "Recently played games"
 msgstr "ਤਾਜ਼ਾ ਖੇਡੀਆਂ ਖੇਡਾਂ"
 
-#: ../aisleriot/aisleriot.schemas.in.h:5 ../gnotravex/gnotravex.schemas.in.h:3
+#: ../aisleriot/aisleriot.schemas.in.h:5 ../gnotravex/gnotravex.schemas.in.h:1
 msgid "Select the style of control"
 msgstr "ਕੰਟਰੋਲ ਦਾ ਸਟਾਈਲ ਚੁਣੋ"
 
@@ -95,7 +95,7 @@ msgid "Whether or not to show the toolbar"
 msgstr "ਟੂਲਬਾਰ ਹੋਵੇ ਜਾਂ ਨਹੀਂ"
 
 #. Now construct the window contents
-#: ../aisleriot/ar-game-chooser.c:238 ../aisleriot/window.c:2581
+#: ../aisleriot/ar-game-chooser.c:238 ../aisleriot/window.c:2421
 msgid "Select Game"
 msgstr "ਖੇਡ ਚੁਣੋ"
 
@@ -103,8 +103,8 @@ msgstr "ਖੇਡ ਚੁਣੋ"
 msgid "_Select"
 msgstr "ਚੁਣੋ(_S)"
 
-#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:336
-#: ../aisleriot/window.c:459 ../aisleriot/window.c:467
+#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:296
+#: ../aisleriot/window.c:427 ../aisleriot/window.c:435
 msgid "FreeCell Solitaire"
 msgstr "ਫਰੀਸੈੱਲ ਸੋਲੀਟਾਇਰ"
 
@@ -112,7 +112,7 @@ msgstr "ਫਰੀਸੈੱਲ ਸੋਲੀਟਾਇਰ"
 msgid "Play the popular FreeCell card game"
 msgstr "ਹਰਮਨ-ਪਿਆਰੀ ਫਰੀਸੈੱਲ ਤਾਸ਼ ਖੇਡ ਖੇਡੋ"
 
-#: ../aisleriot/game.c:1164
+#: ../aisleriot/game.c:1147
 #, c-format
 msgid ""
 "Aisleriot cannot load the file “%s”. Please check your Aisleriot "
@@ -120,84 +120,75 @@ msgid ""
 msgstr "ਇਸਲੀਰੀਉਟ ਫਾਇਲ “%s” ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀ। ਇਸਲੀਰੀਉਟ ਇੰਸਟਾਲੇਸ਼ਨ ਚੈੱਕ ਕਰੋ"
 
 #. Translators: this is the name of a type of card slot
-#: ../aisleriot/game.c:1415
-#| msgid "the foundation"
+#: ../aisleriot/game.c:1398
 msgctxt "slot type"
 msgid "foundation"
 msgstr "ਫਾਊਂਡੇਸ਼ਨ"
 
 #. Translators: this is the name of a type of card slot
-#: ../aisleriot/game.c:1419
-#| msgid "Reserved"
+#: ../aisleriot/game.c:1402
 msgctxt "slot type"
 msgid "reserve"
 msgstr "ਰਾਖਵਾਂ"
 
 #. Translators: this is the name of a type of card slot
-#: ../aisleriot/game.c:1423
-#| msgid "Clock"
+#: ../aisleriot/game.c:1406
 msgctxt "slot type"
 msgid "stock"
 msgstr "ਸਟਾਕ"
 
 #. Translators: this is the name of a type of card slot
-#: ../aisleriot/game.c:1427
-#| msgid "Table"
+#: ../aisleriot/game.c:1410
 msgctxt "slot type"
 msgid "tableau"
 msgstr "ਟੇਬਲ"
 
 #. Translators: this is the name of a type of card slot
-#: ../aisleriot/game.c:1431
-#| msgid "Date"
+#: ../aisleriot/game.c:1414
 msgctxt "slot type"
 msgid "waste"
 msgstr "ਬੇਕਾਰ"
 
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../aisleriot/game.c:1463
+#: ../aisleriot/game.c:1446
 #, c-format
-#| msgid "empty slot on foundation"
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "ਫਾਊਂਡੇਸ਼ਨ ਉੱਤੇ %s"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../aisleriot/game.c:1467
+#: ../aisleriot/game.c:1450
 #, c-format
-#| msgid "an empty reserve"
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "ਰਾਖਵੇਂ ਉੱਤੇ %s"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../aisleriot/game.c:1471
+#: ../aisleriot/game.c:1454
 #, c-format
-#| msgid "Move waste to stock"
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "ਸਟਾਕ ਉੱਤੇ %s"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../aisleriot/game.c:1475
+#: ../aisleriot/game.c:1458
 #, c-format
-#| msgid "an open tableau"
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "ਟੇਬਲ ਉੱਤੇ %s"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../aisleriot/game.c:1479
+#: ../aisleriot/game.c:1462
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "ਬੇਕਾਰ ਉੱਤੇ %s"
 
-#: ../aisleriot/game.c:1720
+#: ../aisleriot/game.c:1703
 msgid "Aisleriot cannot find the last game you played."
 msgstr "ਇਸਲੀਰੀਉਟ ਤੁਹਾਡੇ ਵਲੋਂ ਪੁਰਾਣੀ ਖੇਡੀ ਫਾਇਲ ਨਹੀਂ ਖੋਜ ਸਕਿਆ ਹੈ।"
 
-#: ../aisleriot/game.c:1721
+#: ../aisleriot/game.c:1704
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -206,7 +197,7 @@ msgstr ""
 "ਇਹ ਆਮ ਤੌਰ ਉੱਤੇ ਉਦੋਂ ਹੁੰਦਾ ਹੈ, ਜਦੋਂ ਤੁਸੀਂ ਇਸਲੀਰੋਟ ਦਾ ਇੱਕ ਪੁਰਾਣਾ ਵਰਜਨ ਚਲਾ ਰਹੇ ਹੋਵੇ, ਜਿਸ ਵਿੱਚ ਤੁਹਾਡੇ "
 "ਵਲੋਂ ਖੇਡੀ ਆਖਰੀ ਖੇਡ ਨੂੰ ਰੱਖਦਾ ਨਹੀਂ ਹੈ। ਮੂਲ ਖੇਡ, ਕਲੋਨਡੀਕ ਹੈ, ਜਿਸ ਨੂੰ ਸ਼ੁਰੂ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।"
 
-#: ../aisleriot/game.c:2079
+#: ../aisleriot/game.c:2062
 msgid "This game does not have hint support yet."
 msgstr "ਹੁਣ ਤੱਕ ਇਸ ਖੇਡ ਲਈ ਸਹਾਇਕ ਇਸ਼ਾਰੇ ਨਹੀਂ ਹਨ।"
 
@@ -214,17 +205,17 @@ msgstr "ਹੁਣ ਤੱਕ ਇਸ ਖੇਡ ਲਈ ਸਹਾਇਕ ਇਸ਼ਾਰ
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../aisleriot/game.c:2113 ../aisleriot/game.c:2141
+#: ../aisleriot/game.c:2096 ../aisleriot/game.c:2124
 #, c-format
 msgid "Move %s onto %s."
 msgstr " %s ਨੂੰ %s ਉੱਤੇ ਲਿਜਾਓ।"
 
-#: ../aisleriot/game.c:2163
+#: ../aisleriot/game.c:2146
 #, c-format
 msgid "You are searching for a %s."
 msgstr "ਤੁਸੀਂ %s ਲਈ ਖੋਜ ਕਰ ਰਹੇਂ ਹੋ।"
 
-#: ../aisleriot/game.c:2168
+#: ../aisleriot/game.c:2151
 msgid "This game is unable to provide a hint."
 msgstr "ਇਹ ਖੇਡ ਇਸ਼ਾਰਾ ਉਪਲੱਬਧ ਕਰਨ ਲਈ ਅਸਫਲ ਹੈ।"
 
@@ -1032,39 +1023,36 @@ msgid "Hopscotch"
 msgstr "ਹੋਪਸਕੌਚ"
 
 #. String reserve
-#: ../aisleriot/sol.c:65
-#| msgid "FreeCell Solitaire"
+#: ../aisleriot/sol.c:60
 msgid "Solitaire"
 msgstr "ਸੋਲੀਟਾਇਰ"
 
-#: ../aisleriot/sol.c:66
-#| msgid "Same GNOME Scores"
+#: ../aisleriot/sol.c:61
 msgid "GNOME Solitaire"
 msgstr "ਗਨੋਮ ਸੋਲੀਟਾਇਰ"
 
-#: ../aisleriot/sol.c:67
-#| msgid "About FreeCell Solitaire"
+#: ../aisleriot/sol.c:62
 msgid "About Solitaire"
 msgstr "ਸੋਲੀਟਾਇਰ ਬਾਰੇ"
 
-#: ../aisleriot/sol.c:229
+#: ../aisleriot/sol.c:201
 msgid "Select the game type to play"
 msgstr "ਖੇਡਣ ਲਈ ਖੇਡ ਕਿਸਮ ਚੁਣੋ"
 
-#: ../aisleriot/sol.c:229 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
+#: ../aisleriot/sol.c:201 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
 msgid "NAME"
 msgstr "ਨਾਂ"
 
-#: ../aisleriot/sol.c:231
+#: ../aisleriot/sol.c:203
 msgid "Select the game number"
 msgstr "ਖੇਡ ਨੰਬਰ ਚੁਣੋ"
 
-#: ../aisleriot/sol.c:231 ../gnomine/gnomine.c:1007 ../gtali/gyahtzee.c:107
+#: ../aisleriot/sol.c:203 ../gnomine/gnomine.c:933 ../gtali/gyahtzee.c:107
 #: ../gtali/gyahtzee.c:109 ../gtali/gyahtzee.c:113 ../gtali/gyahtzee.c:115
 msgid "NUMBER"
 msgstr "ਗਿਣਤੀ"
 
-#: ../aisleriot/sol.c:336 ../aisleriot/window.c:468 ../aisleriot/window.c:2041
+#: ../aisleriot/sol.c:296 ../aisleriot/window.c:436 ../aisleriot/window.c:1957
 msgid "AisleRiot"
 msgstr "ਇਸਲੀਰੀਉਟ"
 
@@ -1461,41 +1449,41 @@ msgstr "%d:%02d"
 msgid "Could not show help for “%s”"
 msgstr "“%s” ਲਈ ਮੱਦਦ ਵੇਖਾਈ ਨਹੀਂ ਜਾ ਸਕੀ"
 
-#: ../aisleriot/window.c:265
+#: ../aisleriot/window.c:241
 msgid "Congratulations, you have won!"
 msgstr "ਮੁਬਾਰਕ, ਤੁਸੀਂ ਜਿੱਤ ਗਏ!"
 
-#: ../aisleriot/window.c:269
+#: ../aisleriot/window.c:245
 msgid "There are no more moves"
 msgstr "ਕੋਈ ਹੋਰ ਚਾਲ ਨਹੀਂ ਬਚੀ"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:282 ../quadrapassel/blockops.cpp:788
+#: ../aisleriot/window.c:258 ../quadrapassel/blockops.cpp:788
 msgid "Game Over"
 msgstr "ਖੇਡ ਖਤਮ"
 
-#: ../aisleriot/window.c:416 ../gnomine/gnomine.c:450
-#: ../mahjongg/mahjongg.c:906
+#: ../aisleriot/window.c:384 ../gnomine/gnomine.c:440
+#: ../mahjongg/mahjongg.c:871
 msgid "Main game:"
 msgstr "ਮੁੱਖ ਖੇਡ:"
 
-#: ../aisleriot/window.c:424
+#: ../aisleriot/window.c:392
 msgid "Card games:"
 msgstr "ਤਾਸ਼ ਖੇਡਾਂ:"
 
-#: ../aisleriot/window.c:438
+#: ../aisleriot/window.c:406
 msgid "Card themes:"
 msgstr "ਤਾਸ਼ ਥੀਮ:"
 
-#: ../aisleriot/window.c:470
+#: ../aisleriot/window.c:438
 msgid "About FreeCell Solitaire"
 msgstr "ਫਰੀਸੈੱਲ ਸੋਲੀਟਾਇਰ ਬਾਰੇ"
 
-#: ../aisleriot/window.c:471
+#: ../aisleriot/window.c:439
 msgid "About AisleRiot"
 msgstr "ਇਸਲੀਰੀਉਟ ਬਾਰੇ"
 
-#: ../aisleriot/window.c:477
+#: ../aisleriot/window.c:445
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played.\n"
@@ -1505,13 +1493,13 @@ msgstr ""
 "ਇਸਲੀਰੀਉਟ ਗਨੋਮ ਖੇਡਾਂ ਦਾ ਭਾਗ ਹੈ।"
 
 #. this doesn't work for anyone
-#: ../aisleriot/window.c:488 ../glchess/src/lib/gtkui/gtkui.py:861
-#: ../glines/glines.c:1225 ../gnect/src/main.c:909 ../gnibbles/main.c:247
-#: ../gnobots2/menu.c:274 ../quadrapassel/tetris.cpp:1313
-#: ../gnome-sudoku/src/lib/main.py:720 ../gnomine/gnomine.c:490
-#: ../gnotravex/gnotravex.c:1921 ../gnotski/gnotski.c:1542
+#: ../aisleriot/window.c:456 ../glchess/src/lib/gtkui/gtkui.py:831
+#: ../glines/glines.c:1240 ../gnect/src/main.c:879 ../gnibbles/main.c:213
+#: ../gnobots2/menu.c:267 ../quadrapassel/tetris.cpp:1303
+#: ../gnome-sudoku/src/lib/main.py:691 ../gnomine/gnomine.c:480
+#: ../gnotravex/gnotravex.c:1642 ../gnotski/gnotski.c:1497
 #: ../gtali/gyahtzee.c:620 ../iagno/gnothello.c:272
-#: ../lightsoff/src/About.js:20 ../mahjongg/mahjongg.c:951
+#: ../lightsoff/src/About.js:20 ../mahjongg/mahjongg.c:916
 #: ../swell-foop/src/About.js:20
 msgid "translator-credits"
 msgstr ""
@@ -1519,23 +1507,23 @@ msgstr ""
 "ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮਵਾਲਾ\n"
 "http://www.satluj.org/"
 
-#: ../aisleriot/window.c:492 ../glchess/src/lib/defaults.py.in:56
-#: ../glines/glines.c:1228 ../gnect/src/main.c:906 ../gnibbles/main.c:250
-#: ../gnobots2/menu.c:270 ../quadrapassel/tetris.cpp:1310
-#: ../gnome-sudoku/src/lib/defaults.py.in:43 ../gnomine/gnomine.c:493
-#: ../gnotravex/gnotravex.c:1924 ../gnotski/gnotski.c:1545
+#: ../aisleriot/window.c:460 ../glchess/src/lib/defaults.py.in:62
+#: ../glines/glines.c:1243 ../gnect/src/main.c:876 ../gnibbles/main.c:216
+#: ../gnobots2/menu.c:263 ../quadrapassel/tetris.cpp:1300
+#: ../gnome-sudoku/src/lib/defaults.py.in:45 ../gnomine/gnomine.c:483
+#: ../gnotravex/gnotravex.c:1645 ../gnotski/gnotski.c:1500
 #: ../gtali/gyahtzee.c:624 ../iagno/gnothello.c:274
-#: ../lightsoff/src/About.js:19 ../mahjongg/mahjongg.c:954
+#: ../lightsoff/src/About.js:19 ../mahjongg/mahjongg.c:919
 #: ../swell-foop/src/About.js:19
 msgid "GNOME Games web site"
 msgstr "ਗਨੋਮ ਖੇਡ ਵੈੱਬ ਸਾਇਟ"
 
-#: ../aisleriot/window.c:1366
+#: ../aisleriot/window.c:1314
 #, c-format
 msgid "Play “%s”"
 msgstr "“%s” ਖੇਡੋ"
 
-#: ../aisleriot/window.c:1537
+#: ../aisleriot/window.c:1485
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "“%s” ਤਾਸ਼ ਥੀਮ ਨਾਲ ਪੱਤੇ ਵੇਖੋ"
@@ -1544,204 +1532,191 @@ msgstr "“%s” ਤਾਸ਼ ਥੀਮ ਨਾਲ ਪੱਤੇ ਵੇਖੋ"
 #. * then translate this string to "%I6d", else to "%6d".
 #. * Do not translate it to anything else!
 #.
-#: ../aisleriot/window.c:1632
+#: ../aisleriot/window.c:1580
 #, c-format
 msgctxt "score"
 msgid "%6d"
 msgstr "%6d"
 
-#: ../aisleriot/window.c:1910
+#: ../aisleriot/window.c:1843
 msgid "A scheme exception occurred"
 msgstr "ਇੱਕ ਸਕੀਮ ਅਪਵਾਦ ਆਇਆ"
 
-#: ../aisleriot/window.c:1913
+#: ../aisleriot/window.c:1846
 msgid "Please report this bug to the developers."
 msgstr "ਇਹ ਬੱਗ ਰਿਪੋਰਟ ਡਿਵੈਲਪਰ ਨੂੰ ਭੇਜੋ।"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:1917 ../libgames-support/games-show.c:151
+#: ../aisleriot/window.c:1850 ../libgames-support/games-show.c:151
 msgid "Error"
 msgstr "ਗਲਤੀ"
 
-#: ../aisleriot/window.c:1925
+#: ../aisleriot/window.c:1858
 msgid "_Don't report"
 msgstr "ਰਿਪੋਰਟ ਨਾ ਭੇਜੋ(_D)"
 
-#: ../aisleriot/window.c:1926
+#: ../aisleriot/window.c:1859
 msgid "_Report"
 msgstr "ਰਿਪੋਰਟ(_R)"
 
-#: ../aisleriot/window.c:2039
-#| msgid "FreeCell Solitaire"
+#: ../aisleriot/window.c:1955
 msgid "Freecell Solitaire"
 msgstr "ਫਰੀਸੈੱਲ ਸੋਲੀਟਾਇਰ"
 
 #. Menu actions
 #. Preferences Dialog: Title of game options tab
-#: ../aisleriot/window.c:2202 ../glchess/data/glchess.ui.h:24
-#: ../glchess/data/preferences.ui.h:24 ../glines/glines.c:1691
-#: ../gnect/src/main.c:1273 ../gnibbles/main.c:738 ../gnobots2/menu.c:68
-#: ../quadrapassel/tetris.cpp:107 ../gnome-sudoku/src/lib/main.py:241
-#: ../gnomine/gnomine.c:834 ../gnotravex/gnotravex.c:303
-#: ../gnotski/gnotski.c:414 ../gtali/gyahtzee.c:705 ../iagno/gnothello.c:828
-#: ../lightsoff/data/lightsoff.ui.h:2 ../mahjongg/mahjongg.c:1242
+#: ../aisleriot/window.c:2087 ../glchess/data/glchess.ui.h:22
+#: ../glchess/data/preferences.ui.h:28 ../glines/glines.c:1677
+#: ../gnect/src/main.c:1243 ../gnibbles/main.c:692 ../gnobots2/menu.c:66
+#: ../quadrapassel/tetris.cpp:108 ../gnome-sudoku/src/lib/main.py:231
+#: ../gnomine/gnomine.c:773 ../gnotravex/gnotravex.c:1752
+#: ../gnotski/gnotski.c:411 ../gtali/gyahtzee.c:705 ../iagno/gnothello.c:828
+#: ../lightsoff/data/lightsoff.ui.h:2 ../mahjongg/mahjongg.c:1208
 #: ../swell-foop/data/swell-foop.ui.h:2
 msgid "_Game"
 msgstr "ਖੇਡ(_G)"
 
-#. Preferences Dialog: Title of view options tab
-#: ../aisleriot/window.c:2203 ../glchess/data/glchess.ui.h:29
-#: ../glchess/data/preferences.ui.h:30 ../gnect/src/main.c:1274
-#: ../gnibbles/main.c:739 ../gnobots2/menu.c:69
-#: ../gnome-sudoku/src/lib/main.py:251 ../gnotravex/gnotravex.c:304
-#: ../gnotski/gnotski.c:415
+#: ../aisleriot/window.c:2088 ../gnect/src/main.c:1244 ../gnibbles/main.c:693
+#: ../gnobots2/menu.c:67 ../gnotski/gnotski.c:412
 msgid "_View"
 msgstr "ਵੇਖੋ(_V)"
 
-#: ../aisleriot/window.c:2204
+#: ../aisleriot/window.c:2089
 msgid "_Control"
 msgstr "ਕੰਟਰੋਲ(_C)"
 
-#: ../aisleriot/window.c:2206 ../glchess/data/glchess.ui.h:25
-#: ../glines/glines.c:1693 ../gnect/src/main.c:1276 ../gnibbles/main.c:741
-#: ../gnobots2/menu.c:72 ../quadrapassel/tetris.cpp:109
-#: ../gnome-sudoku/src/lib/main.py:269 ../gnomine/gnomine.c:836
-#: ../gnotravex/gnotravex.c:307 ../gnotski/gnotski.c:416
+#: ../aisleriot/window.c:2091 ../glchess/data/glchess.ui.h:23
+#: ../glines/glines.c:1679 ../gnect/src/main.c:1246 ../gnibbles/main.c:695
+#: ../gnobots2/menu.c:70 ../quadrapassel/tetris.cpp:110
+#: ../gnome-sudoku/src/lib/main.py:254 ../gnomine/gnomine.c:775
+#: ../gnotravex/gnotravex.c:1756 ../gnotski/gnotski.c:413
 #: ../gtali/gyahtzee.c:707 ../iagno/gnothello.c:830
-#: ../lightsoff/data/lightsoff.ui.h:3 ../mahjongg/mahjongg.c:1244
+#: ../lightsoff/data/lightsoff.ui.h:3 ../mahjongg/mahjongg.c:1210
 #: ../swell-foop/data/swell-foop.ui.h:3
 msgid "_Help"
 msgstr "ਮੱਦਦ(_H)"
 
-#: ../aisleriot/window.c:2211 ../glchess/data/glchess.ui.h:18
-#: ../gnobots2/menu.c:73 ../libgames-support/games-stock.c:53
-#: ../mahjongg/mahjongg.c:1245
+#: ../aisleriot/window.c:2096 ../glchess/data/glchess.ui.h:16
+#: ../gnobots2/menu.c:71 ../libgames-support/games-stock.c:53
+#: ../mahjongg/mahjongg.c:1211
 msgid "Start a new game"
 msgstr "ਨਵੀਂ ਖੇਡ ਸ਼ੁਰੂ ਕਰੋ"
 
-#: ../aisleriot/window.c:2214 ../libgames-support/games-stock.c:57
+#: ../aisleriot/window.c:2099 ../libgames-support/games-stock.c:57
 msgid "Restart the game"
 msgstr "ਖੇਡ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ"
 
-#: ../aisleriot/window.c:2216
+#: ../aisleriot/window.c:2101
 msgid "_Select Game..."
 msgstr "ਖੇਡ ਚੁਣੋ(_S)..."
 
-#: ../aisleriot/window.c:2218
+#: ../aisleriot/window.c:2103
 msgid "Play a different game"
 msgstr "ਇੱਕ ਵੱਖਰੀ ਖੇਡ ਖੇਡੋ"
 
-#: ../aisleriot/window.c:2220
+#: ../aisleriot/window.c:2105
 msgid "_Recently Played"
 msgstr "ਤਾਜ਼ਾ ਖੇਡੀਆਂ(_R)"
 
-#: ../aisleriot/window.c:2221
+#: ../aisleriot/window.c:2106
 msgid "S_tatistics"
 msgstr "ਅੰਕੜੇ(_t)"
 
-#: ../aisleriot/window.c:2222
+#: ../aisleriot/window.c:2107
 msgid "Show gameplay statistics"
 msgstr "ਖੇਡ ਅੰਕੜੇ ਵੇਖੋ"
 
-#: ../aisleriot/window.c:2225 ../libgames-support/games-stock.c:62
+#: ../aisleriot/window.c:2110 ../libgames-support/games-stock.c:62
 msgid "Close this window"
 msgstr "ਇਹ ਵਿੰਡੋ ਬੰਦ ਕਰੋ"
 
-#: ../aisleriot/window.c:2228 ../libgames-support/games-stock.c:60
-#: ../mahjongg/mahjongg.c:1253
+#: ../aisleriot/window.c:2113 ../libgames-support/games-stock.c:60
+#: ../mahjongg/mahjongg.c:1215
 msgid "Undo the last move"
 msgstr "ਆਖਰੀ ਚਾਲ ਰੱਦ ਕਰੋ"
 
-#: ../aisleriot/window.c:2231 ../libgames-support/games-stock.c:56
+#: ../aisleriot/window.c:2116 ../libgames-support/games-stock.c:56
 msgid "Redo the undone move"
 msgstr "ਆਖਰੀ ਚਾਲ ਮੁੜ ਕਰੋ"
 
-#: ../aisleriot/window.c:2234
+#: ../aisleriot/window.c:2119
 msgid "Deal next card or cards"
 msgstr "ਹੋਰ ਪੱਤਾ ਜਾਂ ਪੱਤੇ ਤਰਾਸ਼ੋ"
 
-#: ../aisleriot/window.c:2237 ../libgames-support/games-stock.c:49
+#: ../aisleriot/window.c:2122 ../libgames-support/games-stock.c:49
 msgid "Get a hint for your next move"
 msgstr "ਆਪਣੀ ਅਗਲੀ ਚਾਲ ਲਈ ਇਸ਼ਾਰਾ ਪ੍ਰਾਪਤ ਕਰੋ"
 
-#: ../aisleriot/window.c:2240
+#: ../aisleriot/window.c:2125
 msgid "View help for Aisleriot"
 msgstr "ਇਸਲੀਰੋਟ ਲਈ ਮੱਦਦ ਵੇਖੋ"
 
-#: ../aisleriot/window.c:2244 ../libgames-support/games-stock.c:46
+#: ../aisleriot/window.c:2129 ../libgames-support/games-stock.c:46
 msgid "View help for this game"
 msgstr "ਇਸ ਖੇਡ ਲਈ ਮੱਦਦ ਵੇਖੋ"
 
-#: ../aisleriot/window.c:2247 ../libgames-support/games-stock.c:61
+#: ../aisleriot/window.c:2132 ../libgames-support/games-stock.c:61
 msgid "About this game"
 msgstr "ਇਹ ਖੇਡ ਮੁੜ ਸ਼ੁਰੂ"
 
-#: ../aisleriot/window.c:2250
+#: ../aisleriot/window.c:2135
 msgid "Install card themes…"
 msgstr "ਪੱਤੇ ਥੀਮ ਇੰਸਟਾਲ ਕਰੋ..."
 
-#: ../aisleriot/window.c:2251
+#: ../aisleriot/window.c:2136
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਪੈਕੇਜ ਰਿਪੋਜ਼ਟਰੀਆਂ ਤੋਂ ਨਵੇਂ ਪੱਤੇ ਥੀਮ ਇੰਸਟਾਲ ਕਰੋ"
 
-#: ../aisleriot/window.c:2261
+#: ../aisleriot/window.c:2144
 msgid "_Card Style"
 msgstr "ਕਾਰਡ ਸਟਾਇਲ(_C)"
 
-#: ../aisleriot/window.c:2302 ../gnobots2/menu.c:96
-#: ../mahjongg/mahjongg.c:1273
+#: ../aisleriot/window.c:2185 ../gnobots2/menu.c:90
+#: ../mahjongg/mahjongg.c:1231
 msgid "_Toolbar"
 msgstr "ਟੂਲਬਾਰ(_T)"
 
-#: ../aisleriot/window.c:2303 ../glchess/data/preferences.ui.h:17
-#: ../gnobots2/menu.c:96 ../mahjongg/mahjongg.c:1273
+#: ../aisleriot/window.c:2186 ../glchess/data/preferences.ui.h:19
+#: ../gnobots2/menu.c:90 ../mahjongg/mahjongg.c:1231
 msgid "Show or hide the toolbar"
 msgstr "ਟੂਲਬਾਰ ਵੇਖੋ ਅਤੇ ਓਹਲੇ"
 
-#: ../aisleriot/window.c:2308
+#: ../aisleriot/window.c:2191
 msgid "_Statusbar"
 msgstr "ਹਾਲਤ-ਪੱਟੀ(_S)"
 
-#: ../aisleriot/window.c:2309
+#: ../aisleriot/window.c:2192
 msgid "Show or hide statusbar"
 msgstr "ਹਾਲਤ-ਪੱਟੀ ਵੇਖੋ ਜਾਂ ਓਹਲੇ"
 
-#: ../aisleriot/window.c:2314 ../gnotravex/gnotravex.c:352
+#: ../aisleriot/window.c:2197 ../gnotravex/gnotravex.c:1776
 msgid "_Click to Move"
 msgstr "ਚਾਲ ਲਈ ਦਬਾਓ(_C)"
 
-#: ../aisleriot/window.c:2315
+#: ../aisleriot/window.c:2198
 msgid "Pick up and drop cards by clicking"
 msgstr "ਕਲਿੱਕ ਕਰਨ ਨਾਲ ਪੱਤੇ ਚੱਕੋ ਅਤੇ ਸੁੱਟੋ"
 
-#: ../aisleriot/window.c:2319
+#: ../aisleriot/window.c:2202
 msgid "_Sound"
 msgstr "ਸਾਊਂਡ(_S)"
 
-#: ../aisleriot/window.c:2320
+#: ../aisleriot/window.c:2203
 msgid "Whether or not to play event sounds"
 msgstr "ਕੀ ਈਵੈਂਟ ਸਾਊਂਡ ਚਲਾਉਣੀ ਹੈ ਜਾਂ ਨਹੀਂ"
 
-#: ../aisleriot/window.c:2325
-msgid "_Animations"
-msgstr "ਐਨੀਮੇਸ਼ਨ(_A)"
-
-#: ../aisleriot/window.c:2326
-msgid "Whether or not to animate card moves"
-msgstr "ਕੀ ਪੱਤਿਆਂ ਦੀ ਚਾਲ ਨਾਲ ਐਨੀਮੇਸ਼ਨ ਵੇਖੀ ਜਾਂ ਨਹੀਂ"
-
-#: ../aisleriot/window.c:2633 ../glines/glines.c:1905
+#: ../aisleriot/window.c:2468 ../glines/glines.c:1881
 #: ../gnobots2/statusbar.c:67 ../quadrapassel/scoreframe.cpp:47
-#: ../gnomine/gnomine.c:453
+#: ../gnomine/gnomine.c:443
 msgid "Score:"
 msgstr "ਸਕੋਰ:"
 
-#: ../aisleriot/window.c:2645 ../gnotravex/gnotravex.c:1384
-#: ../mahjongg/mahjongg.c:1465
+#: ../aisleriot/window.c:2480 ../gnotravex/gnotravex.c:1436
+#: ../mahjongg/mahjongg.c:1418
 msgid "Time:"
 msgstr "ਸਮਾਂ:"
 
-#: ../aisleriot/window.c:3011
+#: ../aisleriot/window.c:2808
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "ਖੇਡ “%s” ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ"
@@ -1831,267 +1806,214 @@ msgid "1"
 msgstr "੧"
 
 #: ../aisleriot/lib/ar-card.c:252
-#| msgid "the ace of clubs"
 msgid "ace of clubs"
 msgstr "ਚਿੜੀਏ ਦਾ ਯੱਕਾ"
 
 #: ../aisleriot/lib/ar-card.c:253
-#| msgid "the two of clubs"
 msgid "two of clubs"
 msgstr "ਚਿੜੀਏ ਦੀ ਦੁੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:254
-#| msgid "the three of clubs"
 msgid "three of clubs"
 msgstr "ਚਿੜੀਏ ਦੀ ਤਿੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:255
-#| msgid "the four of clubs"
 msgid "four of clubs"
 msgstr "ਚਿੜੀਏ ਦੀ ਚੌਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:256
-#| msgid "the five of clubs"
 msgid "five of clubs"
 msgstr "ਚਿੜੀਏ ਦੀ ਪੰਜੀ"
 
 #: ../aisleriot/lib/ar-card.c:257
-#| msgid "the six of clubs"
 msgid "six of clubs"
 msgstr "ਚਿੜੀਏ ਦੀ ਛਿੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:258
-#| msgid "the seven of clubs"
 msgid "seven of clubs"
 msgstr "ਚਿੜੀਏ ਦੀ ਸੱਤੀ"
 
 #: ../aisleriot/lib/ar-card.c:259
-#| msgid "the eight of clubs"
 msgid "eight of clubs"
 msgstr "ਚਿੜੀਏ ਦੀ ਅੱਠੀ"
 
 #: ../aisleriot/lib/ar-card.c:260
-#| msgid "the nine of clubs"
 msgid "nine of clubs"
 msgstr "ਚਿੜੀਏ ਦਾ ਨਹਿਲਾ"
 
 #: ../aisleriot/lib/ar-card.c:261
-#| msgid "the ten of clubs"
 msgid "ten of clubs"
 msgstr "ਚਿੜੀਏ ਦਾ ਦਹਿਲਾ"
 
 #: ../aisleriot/lib/ar-card.c:262
-#| msgid "the jack of clubs"
 msgid "jack of clubs"
 msgstr "ਚਿੜੀਏ ਦਾ ਗੋਲ਼ਾ"
 
 #: ../aisleriot/lib/ar-card.c:263
-#| msgid "the queen of clubs"
 msgid "queen of clubs"
 msgstr "ਚਿੜੀਏ ਦੀ ਬੇਗਮ"
 
 #: ../aisleriot/lib/ar-card.c:264
-#| msgid "the king of clubs"
 msgid "king of clubs"
 msgstr "ਚਿੜੀਏ ਦਾ ਬਾਦਸ਼ਾਹ"
 
 #: ../aisleriot/lib/ar-card.c:265
-#| msgid "the ace of diamonds"
 msgid "ace of diamonds"
 msgstr "ਇੱਟ ਦਾ ਯੱਕਾ"
 
 #: ../aisleriot/lib/ar-card.c:266
-#| msgid "the two of diamonds"
 msgid "two of diamonds"
 msgstr "ਇੱਟ ਦੀ ਦੁੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:267
-#| msgid "the three of diamonds"
 msgid "three of diamonds"
 msgstr "ਇੱਟ ਦੀ ਤਿੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:268
-#| msgid "the four of diamonds"
 msgid "four of diamonds"
 msgstr "ਇੱਟ ਦੀ ਚੌਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:269
-#| msgid "the five of diamonds"
 msgid "five of diamonds"
 msgstr "ਇੱਟ ਦੀ ਪੰਜੀ"
 
 #: ../aisleriot/lib/ar-card.c:270
-#| msgid "the six of diamonds"
 msgid "six of diamonds"
 msgstr "ਇੱਟ ਦੀ ਛਿੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:271
-#| msgid "the seven of diamonds"
 msgid "seven of diamonds"
 msgstr "ਇੱਟ ਦੀ ਸੱਤੀ"
 
 #: ../aisleriot/lib/ar-card.c:272
-#| msgid "the eight of diamonds"
 msgid "eight of diamonds"
 msgstr "ਇੱਟ ਦੀ ਅੱਠੀ"
 
 #: ../aisleriot/lib/ar-card.c:273
-#| msgid "the nine of diamonds"
 msgid "nine of diamonds"
 msgstr "ਇੱਟ ਦਾ ਨਹਿਲਾ"
 
 #: ../aisleriot/lib/ar-card.c:274
-#| msgid "the ten of diamonds"
 msgid "ten of diamonds"
 msgstr "ਇੱਟ ਦਾ ਦਹਿਲਾ"
 
 #: ../aisleriot/lib/ar-card.c:275
-#| msgid "the jack of diamonds"
 msgid "jack of diamonds"
 msgstr "ਇੱਟ ਦਾ ਗੋਲ਼ਾ"
 
 #: ../aisleriot/lib/ar-card.c:276
-#| msgid "the queen of diamonds"
 msgid "queen of diamonds"
 msgstr "ਇੱਟ ਦੀ ਬੇਗਮ"
 
 #: ../aisleriot/lib/ar-card.c:277
-#| msgid "the king of diamonds"
 msgid "king of diamonds"
 msgstr "ਇੱਟ ਦਾ ਬਾਦਸ਼ਾਹ"
 
 #: ../aisleriot/lib/ar-card.c:278
-#| msgid "the ace of hearts"
 msgid "ace of hearts"
 msgstr "ਪਾਨ ਦਾ ਯੱਕਾ"
 
 #: ../aisleriot/lib/ar-card.c:279
-#| msgid "the two of hearts"
 msgid "two of hearts"
 msgstr "ਪਾਨ ਦੀ ਦੁੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:280
-#| msgid "the three of hearts"
 msgid "three of hearts"
 msgstr "ਪਾਨ ਦੀ ਤਿੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:281
-#| msgid "the four of hearts"
 msgid "four of hearts"
 msgstr "ਪਾਨ ਦੀ ਚੌਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:282
-#| msgid "the five of hearts"
 msgid "five of hearts"
 msgstr "ਪਾਨ ਦੀ ਪੰਜੀ"
 
 #: ../aisleriot/lib/ar-card.c:283
-#| msgid "the six of hearts"
 msgid "six of hearts"
 msgstr "ਪਾਨ ਦੀ ਛਿੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:284
-#| msgid "the seven of hearts"
 msgid "seven of hearts"
 msgstr "ਪਾਨ ਦੀ ਸੱਤੀ"
 
 #: ../aisleriot/lib/ar-card.c:285
-#| msgid "the eight of hearts"
 msgid "eight of hearts"
 msgstr "ਪਾਨ ਦੀ ਅੱਠੀ"
 
 #: ../aisleriot/lib/ar-card.c:286
-#| msgid "the nine of hearts"
 msgid "nine of hearts"
 msgstr "ਪਾਨ ਦਾ ਨਹਿਲਾ"
 
 #: ../aisleriot/lib/ar-card.c:287
-#| msgid "the ten of hearts"
 msgid "ten of hearts"
 msgstr "ਪਾਨ ਦਾ ਦਹਿਲਾ"
 
 #: ../aisleriot/lib/ar-card.c:288
-#| msgid "the jack of hearts"
 msgid "jack of hearts"
 msgstr "ਪਾਨ ਦਾ ਗੋਲ਼ਾ"
 
 #: ../aisleriot/lib/ar-card.c:289
-#| msgid "the queen of hearts"
 msgid "queen of hearts"
 msgstr "ਪਾਨ ਦੀ ਬੇਗਮ"
 
 #: ../aisleriot/lib/ar-card.c:290
-#| msgid "the king of hearts"
 msgid "king of hearts"
 msgstr "ਪਾਨ ਦਾ ਬਾਦਸ਼ਾਹ"
 
 #: ../aisleriot/lib/ar-card.c:291
-#| msgid "the ace of spades"
 msgid "ace of spades"
 msgstr "ਹੁਕਮ ਦਾ ਯੱਕਾ"
 
 #: ../aisleriot/lib/ar-card.c:292
-#| msgid "the two of spades"
 msgid "two of spades"
 msgstr "ਹੁਕਮ ਦੀ ਦੁੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:293
-#| msgid "the three of spades"
 msgid "three of spades"
 msgstr "ਹੁਕਮ ਦੀ ਤਿੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:294
-#| msgid "the four of spades"
 msgid "four of spades"
 msgstr "ਹੁਕਮ ਦੀ ਚੌਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:295
-#| msgid "the five of spades"
 msgid "five of spades"
 msgstr "ਹੁਕਮ ਦੀ ਪੰਜੀ"
 
 #: ../aisleriot/lib/ar-card.c:296
-#| msgid "the six of spades"
 msgid "six of spades"
 msgstr "ਹੁਕਮ ਦੀ ਛਿੱਕੀ"
 
 #: ../aisleriot/lib/ar-card.c:297
-#| msgid "the seven of spades"
 msgid "seven of spades"
 msgstr "ਹੁਕਮ ਦੀ ਸੱਤੀ"
 
 #: ../aisleriot/lib/ar-card.c:298
-#| msgid "the eight of spades"
 msgid "eight of spades"
 msgstr "ਹੁਕਮ ਦੀ ਅੱਠੀ"
 
 #: ../aisleriot/lib/ar-card.c:299
-#| msgid "the nine of spades"
 msgid "nine of spades"
 msgstr "ਹੁਕਮ ਦਾ ਨਹਿਲਾ"
 
 #: ../aisleriot/lib/ar-card.c:300
-#| msgid "the ten of spades"
 msgid "ten of spades"
 msgstr "ਹੁਕਮ ਦਾ ਦਹਿਲਾ"
 
 #: ../aisleriot/lib/ar-card.c:301
-#| msgid "the jack of spades"
 msgid "jack of spades"
 msgstr "ਹੁਕਮ ਦਾ ਗੋਲ਼ਾ"
 
 #: ../aisleriot/lib/ar-card.c:302
-#| msgid "the queen of spades"
 msgid "queen of spades"
 msgstr "ਹੁਕਮ ਦੀ ਬੇਗਮ"
 
 #: ../aisleriot/lib/ar-card.c:303
-#| msgid "the king of spades"
 msgid "king of spades"
 msgstr "ਹੁਕਮ ਦਾ ਬਾਦਸ਼ਾਹ"
 
 #: ../aisleriot/lib/ar-card.c:320
-#| msgid "the unknown card"
 msgid "face-down card"
 msgstr "ਫੇਸ-ਡਾਊਨ ਪੱਤਾ"
 
@@ -2947,10 +2869,19 @@ msgid "The height of the window"
 msgstr "ਵਿੰਡੋ ਦੀ ਉਚਾਈ"
 
 #: ../glchess/data/glchess.schemas.in.h:24
+#| msgid "The game file to use"
+msgid "The piece style to use"
+msgstr "ਵਰਤਣ ਲਈ ਟੁਕੜੇ ਸਟਾਈਲ"
+
+#: ../glchess/data/glchess.schemas.in.h:25
+msgid "The piece style to use. Can be one of: 'simple' or 'fancy'"
+msgstr "ਵਰਤਣ ਲਈ ਟੁਕੜੇ ਸਟਾਈਲ। ਸੰਭਵ ਹੈ: 'ਸਧਾਰਨ' ਜਾਂ 'ਫੈਂਸੀ'"
+
+#: ../glchess/data/glchess.schemas.in.h:26
 msgid "The piece to promote pawns to"
 msgstr "pawns ਪਰਮੋਟ ਕਰਨ ਲਈ ਟੁੱਕੜਾ"
 
-#: ../glchess/data/glchess.schemas.in.h:25
+#: ../glchess/data/glchess.schemas.in.h:27
 msgid ""
 "The piece to promote to when a human player moves a pawn to the far rank. "
 "Can be one of: 'queen', 'knight', 'rook', 'bishop'."
@@ -2958,7 +2889,7 @@ msgstr ""
 "ਪਰਚਾਰ ਲਈ ਟੁਕੜਾ ਹੈ, ਜਦੋਂ ਕਿ ਇਨਸਾਨ ਖਿਡਾਰੀ ਇੱਕ pawn ਨੂੰ ਫੇਅਰ ਰੈਂਕ 'ਚ ਚਲਾਏ। ਇਹ ਹੋ ਸਕਦਾ ਹੈ: "
 "'ਰਾਣੀ', 'ਨਾਇਟ', 'ਰੂਕ', 'ਬਿਸਪ'"
 
-#: ../glchess/data/glchess.schemas.in.h:26
+#: ../glchess/data/glchess.schemas.in.h:28
 msgid ""
 "The side of the board that is in the foreground, either 'white', 'black', "
 "'current' (the current player), 'human' (the side of the current human "
@@ -2969,11 +2900,11 @@ msgstr ""
 "(current)' (ਮੌਜੂਦਾ ਖਿਡਾਰੀ), 'ਇਨਸਾਨ(human)' (ਮੌਜੂਦਾ ਖਿਡਾਰੀ ਪਲੇਅਰ ਦੀ ਸਾਇਡ ਹੈ) ਜਾਂ "
 "'ਆਹਮੋ-ਸਾਹਮਣੀ (facetoface)' (ਜਿਵੇਂ ਕਿ ਹੱਥਲੇ ਜੰਤਰਾਂ ਵਿੱਚ ਸਕਰੀਨ ਦੇ ਦੋਵਾਂ ਪਾਸੇ ਦੇ ਖਿਡਾਰੀਆਂ ਲਈ)।"
 
-#: ../glchess/data/glchess.schemas.in.h:27
+#: ../glchess/data/glchess.schemas.in.h:29
 msgid "The width of the main window in pixels."
 msgstr "ਮੁੱਖ ਵਿੰਡੋ ਦੀ ਚੌੜਾਈ ਪਿਕਸਲ 'ਚ ਹੈ।"
 
-#: ../glchess/data/glchess.schemas.in.h:28
+#: ../glchess/data/glchess.schemas.in.h:30
 msgid "The width of the window"
 msgstr "ਵਿੰਡੋ ਦੀ ਚੌੜਾਈ"
 
@@ -2986,87 +2917,80 @@ msgstr "੩_D ਸਤੰਰਜ਼ ਝਲਕ"
 msgid "Claim _Draw"
 msgstr "ਡਰਾਅ ਐਲਾਨੋ(_D)"
 
-#: ../glchess/data/glchess.ui.h:3
-msgid "Load a saved game"
-msgstr "ਇੱਕ ਸੰਭਾਲੀ ਖੇਡ ਲੋਡ ਕਰੋ"
-
 #. The title of the log dialaog
-#: ../glchess/data/glchess.ui.h:5
+#: ../glchess/data/glchess.ui.h:4
 msgid "Logs"
 msgstr "ਲਾਗ"
 
 #. The Network Game toolbar button
-#: ../glchess/data/glchess.ui.h:7 ../libgames-support/games-stock.c:337
+#: ../glchess/data/glchess.ui.h:6 ../libgames-support/games-stock.c:303
 msgid "Network _Game"
 msgstr "ਨੈੱਟਵਰਕ ਖੇਡ(_G)"
 
 #. The New Game toolbar button
 #. Title of the new game dialog
-#: ../glchess/data/glchess.ui.h:9 ../glchess/data/new_game.ui.h:13
+#: ../glchess/data/glchess.ui.h:8 ../glchess/data/new_game.ui.h:13
 #: ../libgames-support/games-scores-dialog.c:437
 msgid "New Game"
 msgstr "ਨਵੀਂ ਖੇਡ"
 
 #. The tooltip for the Resign toolbar button
-#: ../glchess/data/glchess.ui.h:11
+#: ../glchess/data/glchess.ui.h:10
 msgid "Resign"
 msgstr "ਮੁੜ-ਦਿਓ"
 
-#: ../glchess/data/glchess.ui.h:12
+#: ../glchess/data/glchess.ui.h:11
 msgid "Rewind to the game start"
 msgstr "ਖੇਡ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਰੀਵਾਇਡ"
 
-#: ../glchess/data/glchess.ui.h:13
-msgid "Save the current game"
-msgstr "ਮੌਜੂਦਾ ਖੇਡ ਸੰਭਾਲੋ"
-
-#: ../glchess/data/glchess.ui.h:14
+#: ../glchess/data/glchess.ui.h:12
 msgid "Show _Logs"
 msgstr "ਲਾਗ ਵੇਖੋ(_L)"
 
-#: ../glchess/data/glchess.ui.h:15
+#: ../glchess/data/glchess.ui.h:13
 msgid "Show the current move"
 msgstr "ਮੌਜੂਦਾ ਚਾਲ ਸੰਭਾਲੋ"
 
-#: ../glchess/data/glchess.ui.h:16
+#: ../glchess/data/glchess.ui.h:14
 msgid "Show the next move"
 msgstr "ਅਗਲੀ ਚਾਲ ਵੇਖੋ"
 
-#: ../glchess/data/glchess.ui.h:17
+#: ../glchess/data/glchess.ui.h:15
 msgid "Show the previous move"
 msgstr "ਪਿਛਲੀ ਚਾਲ ਵੇਖੋ"
 
-#: ../glchess/data/glchess.ui.h:19 ../libgames-support/games-stock.c:51
+#: ../glchess/data/glchess.ui.h:17 ../libgames-support/games-stock.c:51
 msgid "Start a new multiplayer network game"
 msgstr "ਇੱਕ ਨਵੀਂ ਬਹੁ-ਖਿਡਾਰੀ ਨੈੱਟਵਰਕ ਖੇਡ ਸ਼ੁਰੂ ਕਰੋ"
 
 #. Message displayed in log window when no logs are present
-#: ../glchess/data/glchess.ui.h:21
+#: ../glchess/data/glchess.ui.h:19
 msgid "There are no active logs."
 msgstr "ਕੋਈ ਐਕਟਿਵ ਲਾਗ ਨਹੀਂ ਹੈ"
 
-#: ../glchess/data/glchess.ui.h:22
+#: ../glchess/data/glchess.ui.h:20
 msgid "Undo Move"
 msgstr "ਚਾਲ਼ ਵਾਪਿਸ"
 
-#: ../glchess/data/glchess.ui.h:23 ../gnome-sudoku/src/lib/main.py:273
-#: ../libgames-support/games-stock.c:321
+#: ../glchess/data/glchess.ui.h:21 ../gnome-sudoku/src/lib/main.py:255
+#: ../libgames-support/games-stock.c:287
 msgid "_Contents"
 msgstr "ਸਮੱਗਰੀ(_C)"
 
-#: ../glchess/data/glchess.ui.h:26
+#: ../glchess/data/glchess.ui.h:24
 msgid "_Resign"
 msgstr "ਛੱਡੋ(_R)"
 
-#: ../glchess/data/glchess.ui.h:27 ../glines/glines.c:1692
-#: ../gnect/src/main.c:1275 ../gnibbles/main.c:740 ../gnobots2/menu.c:71
-#: ../quadrapassel/tetris.cpp:108 ../gnomine/gnomine.c:835
+#: ../glchess/data/glchess.ui.h:25 ../glines/glines.c:1678
+#: ../gnect/src/main.c:1245 ../gnibbles/main.c:694 ../gnobots2/menu.c:69
+#: ../quadrapassel/tetris.cpp:109 ../gnome-sudoku/src/lib/main.py:245
+#: ../gnomine/gnomine.c:774 ../gnotravex/gnotravex.c:1754
 #: ../gtali/gyahtzee.c:706 ../iagno/gnothello.c:829
-#: ../mahjongg/mahjongg.c:1243
+#: ../mahjongg/mahjongg.c:1209
 msgid "_Settings"
 msgstr "ਸੈਟਿੰਗ(_S)"
 
-#: ../glchess/data/glchess.ui.h:28 ../libgames-support/games-stock.c:333
+#: ../glchess/data/glchess.ui.h:26 ../libgames-support/games-stock.c:299
 msgid "_Undo Move"
 msgstr "ਚਾਲ ਵਾਪਸ(_U)"
 
@@ -3227,61 +3151,73 @@ msgstr "ਬੋਰਡ ਸਥਿਤੀ:"
 msgid "Move Format:"
 msgstr "ਚਾਲ ਫਾਰਮੈਟ:"
 
+#. Preferences Dialog: Label before piece style combo box
+#: ../glchess/data/preferences.ui.h:8
+#| msgid "Percentage:"
+msgid "Piece Style:"
+msgstr "ਟੁਕੜੇ ਸਟਾਈਲ:"
+
 #. Title for preferences dialog
-#: ../glchess/data/preferences.ui.h:8 ../glines/glines.c:197
-#: ../mahjongg/mahjongg.c:140
+#: ../glchess/data/preferences.ui.h:10 ../glines/glines.c:197
+#: ../mahjongg/mahjongg.c:141
 msgid "Preferences"
 msgstr "ਪਸੰਦ"
 
 #. Preferences Dialog: Label before promotion type combo box
-#: ../glchess/data/preferences.ui.h:10
+#: ../glchess/data/preferences.ui.h:12
 msgid "Promotion Type:"
 msgstr "ਪਰਚਾਰ ਟਾਈਪ:"
 
 #. Preferences Dialog: Check box for selecting if history browser is visible
-#: ../glchess/data/preferences.ui.h:12
+#: ../glchess/data/preferences.ui.h:14
 msgid "Show _History"
 msgstr "ਅਤੀਤ ਵੇਖੋ(_H)"
 
 #. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../glchess/data/preferences.ui.h:14 ../gnome-sudoku/src/lib/main.py:293
+#: ../glchess/data/preferences.ui.h:16 ../gnome-sudoku/src/lib/main.py:275
 msgid "Show _Toolbar"
 msgstr "ਟੂਲਬਾਰ ਵੇਖੋ(_T)"
 
-#: ../glchess/data/preferences.ui.h:15
+#: ../glchess/data/preferences.ui.h:17
 msgid "Show or hide numbering on the chess board"
 msgstr "ਸਤਰੰਜ਼ ਬੋਰਡ ਉੱਤੇ ਗਿਣਤੀ ਵੇਖੋ ਜਾਂ ਓਹਲੇ"
 
-#: ../glchess/data/preferences.ui.h:16
+#: ../glchess/data/preferences.ui.h:18
 msgid "Show or hide the game history panel"
 msgstr "ਖੇਡ ਅਤੀਤ ਪੈਨਲ ਵੇਖੋ ਜਾਂ ਓਹਲੇ"
 
-#: ../glchess/data/preferences.ui.h:18
+#: ../glchess/data/preferences.ui.h:20
 msgid "Shows hints during chess games"
 msgstr "ਸਤਰੰਜ਼ ਖੇਡ ਦੌਰਾਨ ਹਿੰਟ ਵੀ ਵੇਖੋ"
 
-#: ../glchess/data/preferences.ui.h:19
+#: ../glchess/data/preferences.ui.h:21
 msgid "Smooth edges of the 3D elements (anti-alias)"
 msgstr "੩ਡੀ ਐਲੀਮੈਂਟ ਦੇ ਕੂਲ਼ੇ ਕਿਨਾਰੇ (ਐਂਟੀ-ਏਲੀਆਸ)"
 
-#: ../glchess/data/preferences.ui.h:20
+#: ../glchess/data/preferences.ui.h:22
 msgid ""
 "View the chess board by default in 2D mode, or optionally in 3D mode using "
 "OpenGL."
 msgstr "ਸਤਰੰਜ਼ ਬੋਰਡ ਡਿਫਾਲਟ ੨D ਮੋਡ ਵਿੱਚ ਵੇਖੋ ਜਾਂ OpenGL ਦੀ ਵਰਤੋਂ ਕਰਕੇ ੩D ਰੂਪ ਵਿੱਚ ਵੀ ਵੇਖ ਸਕਦੇ ਹੋ।"
 
+#. Preferences Dialog: Title of appearance options tab
+#: ../glchess/data/preferences.ui.h:24
+#| msgid "Appearance"
+msgid "_Appearance"
+msgstr "ਦਿੱਖ(_A)"
+
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../glchess/data/preferences.ui.h:22
+#: ../glchess/data/preferences.ui.h:26
 msgid "_Board Numbering"
 msgstr "ਬੋਰਡ ਨੰਬਰਿੰਗ(_B)"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../glchess/data/preferences.ui.h:26
+#: ../glchess/data/preferences.ui.h:30
 msgid "_Move Hints"
 msgstr "ਚਾਲ ਹਿੰਟ(_M)"
 
 #. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../glchess/data/preferences.ui.h:28
+#: ../glchess/data/preferences.ui.h:32
 msgid "_Smooth Display"
 msgstr "ਕੂਲ਼ਾ ਦਰਿਸ਼(_S)"
 
@@ -3291,7 +3227,7 @@ msgid "Save Chess Game"
 msgstr "ਸਤਰੰਜ਼ ਖੇਡ ਸੰਭਾਲੋ"
 
 #. Translators: Window title when not playing a game
-#: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:332
+#: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/lib/gtkui/gtkui.py:299
 msgid "Chess"
 msgstr "ਸ਼ਤਰੰਜ"
 
@@ -3299,11 +3235,11 @@ msgstr "ਸ਼ਤਰੰਜ"
 msgid "Play the classic two-player boardgame of chess"
 msgstr "ਸਤਰੰਜ਼ ਦੀ ਦੋ ਖਿਡਾਰੀਆਂ ਵਾਲੀ ਕਲਾਸੀਕਲ ਖੇਡ ਖੇਡੋ"
 
-#: ../glchess/src/glchess.in.in:50
+#: ../glchess/src/glchess.in.in:51
 msgid "Chess incorrectly installed"
 msgstr "ਸਤਰੰਜ਼ ਗਲਤ ਢੰਗ ਨਾਲ ਇੰਸਟਾਲ ਹੈ"
 
-#: ../glchess/src/glchess.in.in:52
+#: ../glchess/src/glchess.in.in:53
 msgid ""
 "Chess is not able to start because required application files are not "
 "installed. If you are currently upgrading your system please wait until the "
@@ -3313,90 +3249,90 @@ msgstr ""
 "ਸਿਸਟਮ ਅੱਪਗਰੇਡ ਕਰ ਰਹੇ ਹੋ ਤਾਂ ਅੱਪਗਰੇਡ ਪੂਰਾ ਹੋਣ ਦੀ ਉਡੀਕ ਕਰੋ ਜੀ।"
 
 #. Translators: Time Combo: There is no time limit
-#: ../glchess/src/lib/gtkui/dialogs.py:125
+#: ../glchess/src/lib/gtkui/dialogs.py:135
 msgid "Unlimited"
 msgstr "ਬੇਅੰਤ"
 
 #. Translators: Time Combo: Game will last one minute
-#: ../glchess/src/lib/gtkui/dialogs.py:127
+#: ../glchess/src/lib/gtkui/dialogs.py:137
 msgid "One minute"
 msgstr "ਇੱਕ ਮਿੰਟ"
 
 #. Translators: Time Combo: Game will last five minutes
-#: ../glchess/src/lib/gtkui/dialogs.py:129
+#: ../glchess/src/lib/gtkui/dialogs.py:139
 msgid "Five minutes"
 msgstr "5 ਮਿੰਟ"
 
 #. Translators: Time Combo: Game will last 30 minutes
-#: ../glchess/src/lib/gtkui/dialogs.py:131
+#: ../glchess/src/lib/gtkui/dialogs.py:141
 msgid "30 minutes"
 msgstr "30 ਮਿੰਟ"
 
 #. Translators: Time Combo: Game will last one hour
-#: ../glchess/src/lib/gtkui/dialogs.py:133
+#: ../glchess/src/lib/gtkui/dialogs.py:143
 msgid "One hour"
 msgstr "1 ਘੰਟਾ"
 
 #. Translators: Time Combo: User will configure game duration
 #. Translators: Add Network Profile Dialog: Use a custom server
-#: ../glchess/src/lib/gtkui/dialogs.py:135
+#: ../glchess/src/lib/gtkui/dialogs.py:145
 #: ../glchess/src/lib/gtkui/network.py:30
 msgid "Custom"
 msgstr "ਪਸੰਦੀਦਾ"
 
 #. Translators: Custom Time Combo: User specifying number of seconds for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:156
+#: ../glchess/src/lib/gtkui/dialogs.py:166
 msgid "seconds"
 msgstr "ਸਕਿੰਟ"
 
 #. Translators: Custom Time Combo: User specifying number of minutes for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:158
+#: ../glchess/src/lib/gtkui/dialogs.py:168
 msgid "minutes"
 msgstr "ਮਿੰਟ"
 
 #. Translators: Custom Time Combo: User specifying number of hours for game duration
-#: ../glchess/src/lib/gtkui/dialogs.py:160
+#: ../glchess/src/lib/gtkui/dialogs.py:170
 msgid "hours"
 msgstr "ਘੰਟੇ"
 
 #. Translators: AI Difficulty Combo: AI set to easy difficulty
-#: ../glchess/src/lib/gtkui/dialogs.py:178
-#: ../gnome-sudoku/src/lib/sudoku.py:516
+#: ../glchess/src/lib/gtkui/dialogs.py:188
+#: ../gnome-sudoku/src/lib/sudoku.py:690
 msgid "Easy"
 msgstr "ਆਸਾਨ"
 
 #. Translators: AI Difficulty Combo: AI set to normal diffuculty
-#: ../glchess/src/lib/gtkui/dialogs.py:180 ../swell-foop/src/Score.js:145
+#: ../glchess/src/lib/gtkui/dialogs.py:190 ../swell-foop/src/Score.js:145
 msgid "Normal"
 msgstr "ਸਧਾਰਨ"
 
 #. Translators: AI Difficulty Combo: AI set to hard diffuculty
-#: ../glchess/src/lib/gtkui/dialogs.py:182
-#: ../gnome-sudoku/src/lib/sudoku.py:514
+#: ../glchess/src/lib/gtkui/dialogs.py:192
+#: ../gnome-sudoku/src/lib/sudoku.py:688
 msgid "Hard"
 msgstr "ਸਖਤ"
 
 #. Translators: Error displayed when unable to load a game due to
 #. the require game engine not being available. %s is replaced with
 #. the name of the missing engine.
-#: ../glchess/src/lib/gtkui/dialogs.py:247
+#: ../glchess/src/lib/gtkui/dialogs.py:257
 #, python-format
 msgid "Unable to find %s engine"
 msgstr "%s ਇੰਜਣ ਲੱਭਣ ਲਈ ਫੇਲ੍ਹ ਹੈ"
 
 #. Translators: New Game Dialog: Title of the dialog when continuing a loaded game
-#: ../glchess/src/lib/gtkui/dialogs.py:259
+#: ../glchess/src/lib/gtkui/dialogs.py:269
 #, python-format
 msgid "Configure loaded game (%i moves)"
 msgstr "ਲੋਡ ਕੀਤੀ ਖੇਡ ਸੰਰਚਨਾ (%i ਚਾਲਾਂ)"
 
 #. Translators: New Game Dialog: Title of error box when loaded game had AI engines missing
-#: ../glchess/src/lib/gtkui/dialogs.py:264
+#: ../glchess/src/lib/gtkui/dialogs.py:274
 msgid "Game settings changed"
 msgstr "ਖੇਡ ਸੈਟਿੰਗ ਬਦਲੀ ਗਈ"
 
 #. Translators: Default name for a new game. %(white) and %(black) are substituted for the names of the white and black players.
-#: ../glchess/src/lib/gtkui/dialogs.py:327
+#: ../glchess/src/lib/gtkui/dialogs.py:337
 #, python-format
 msgid "%(white)s versus %(black)s"
 msgstr "%(white)s ਬਨਾਮ %(black)s"
@@ -3404,163 +3340,175 @@ msgstr "%(white)s ਬਨਾਮ %(black)s"
 #. Translators: Default name for the white player
 #. Translators: GGZ seat is occupied by the white player
 #. Translators: Name of white player in a default game
-#: ../glchess/src/lib/gtkui/dialogs.py:351
-#: ../glchess/src/lib/gtkui/network.py:360
-#: ../glchess/src/lib/gtkui/network.py:537 ../glchess/src/lib/main.py:687
+#: ../glchess/src/lib/gtkui/dialogs.py:361
+#: ../glchess/src/lib/gtkui/network.py:374
+#: ../glchess/src/lib/gtkui/network.py:551 ../glchess/src/lib/main.py:687
 msgid "White"
 msgstr "ਚਿੱਟਾ"
 
 #. Translators: Default name for the black player
 #. Translators: GGZ seat is occupied by the black player
 #. Translators: Name of black player in a default game
-#: ../glchess/src/lib/gtkui/dialogs.py:358
-#: ../glchess/src/lib/gtkui/network.py:363
-#: ../glchess/src/lib/gtkui/network.py:543 ../glchess/src/lib/main.py:689
+#: ../glchess/src/lib/gtkui/dialogs.py:368
+#: ../glchess/src/lib/gtkui/network.py:377
+#: ../glchess/src/lib/gtkui/network.py:557 ../glchess/src/lib/main.py:689
 msgid "Black"
 msgstr "ਕਾਲਾ"
 
 #. Translators: Load Game Dialog: Name of filter to show only PGN files
 #. Translators: Save Game Dialog: Name of filter to show only PGN files
-#: ../glchess/src/lib/gtkui/dialogs.py:443
-#: ../glchess/src/lib/gtkui/dialogs.py:518
+#: ../glchess/src/lib/gtkui/dialogs.py:463
+#: ../glchess/src/lib/gtkui/dialogs.py:550
 msgid "PGN files"
 msgstr "PGN ਫਾਇਲਾਂ"
 
 #. Translators: Load Game Dialog: Name of filter to show all files
 #. Translators: Save Game Dialog: Name of filter to show all files
-#: ../glchess/src/lib/gtkui/dialogs.py:449
-#: ../glchess/src/lib/gtkui/dialogs.py:524
+#: ../glchess/src/lib/gtkui/dialogs.py:469
+#: ../glchess/src/lib/gtkui/dialogs.py:556
 msgid "All files"
 msgstr "ਸਭ ਫਾਇਲਾਂ"
 
 #. Translators: Load Game Dialog: Message displayed when no file is selected
-#: ../glchess/src/lib/gtkui/dialogs.py:471
+#: ../glchess/src/lib/gtkui/dialogs.py:491
 msgid "Please select a file to load"
 msgstr "ਲੋਡ ਕਰਨ ਲਈ ਫਾਇਲ ਚੁਣੋ ਜੀ"
 
 #. Translators: Title of error box when unable to load game
-#: ../glchess/src/lib/gtkui/dialogs.py:479
+#: ../glchess/src/lib/gtkui/dialogs.py:499
 msgid "Unabled to load game"
 msgstr "ਖੇਡ ਲੋਡ ਕਰਨ ਲਈ ਅਸਮਰੱਥ"
 
 #. Translators: Save Game Dialog: Error displayed when no file name entered
-#: ../glchess/src/lib/gtkui/dialogs.py:552
+#: ../glchess/src/lib/gtkui/dialogs.py:585
 msgid "Please enter a file name"
 msgstr "ਇੱਕ ਫਾਇਲ ਨਾਂ ਦਿਓ"
 
 #. Translators: Save Game Dialog: Error title when unable to save game
-#: ../glchess/src/lib/gtkui/dialogs.py:565
+#: ../glchess/src/lib/gtkui/dialogs.py:598
 msgid "Unabled to save game"
 msgstr "ਖੇਡ ਸੰਭਾਲਣ ਲਈ ਅਸਮਰੱਥ ਹੈ"
 
 #. Translators: Move Format Combo: Moves shown in human descriptive notation
 #. Translators: Player Type Combo: Player is human controlled
-#: ../glchess/src/lib/gtkui/dialogs.py:592
-#: ../glchess/src/lib/gtkui/gtkui.py:205 ../gnect/src/prefs.c:250
+#: ../glchess/src/lib/gtkui/dialogs.py:625
+#: ../glchess/src/lib/gtkui/gtkui.py:196 ../gnect/src/prefs.c:250
 #: ../gtali/gyahtzee.c:993 ../gtali/yahtzee.c:69 ../iagno/properties.c:452
 #: ../iagno/properties.c:493
 msgid "Human"
 msgstr "ਇਨਸਾਨੀ"
 
 #. Translators: Move Format Combo: Moves shown in standard algebraic notation (SAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:594
+#: ../glchess/src/lib/gtkui/dialogs.py:627
 msgid "Standard Algebraic"
 msgstr "ਸਟੈਂਡਰਡ ਐਲਜਬਰਾ"
 
 #. Translators: Move Format Combo: Moves shown in standard figurine algebraic notation (FAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:596
+#: ../glchess/src/lib/gtkui/dialogs.py:629
 msgid "Figurine"
 msgstr "Figurine"
 
 #. Translators: Move Format Combo: Moves shown in long algebraic notation (LAN)
-#: ../glchess/src/lib/gtkui/dialogs.py:598
+#: ../glchess/src/lib/gtkui/dialogs.py:631
 msgid "Long Algebraic"
 msgstr "ਲੰਮਾ ਐਲਜ਼ਬਰਾ"
 
 #. Translators: Board Side Combo: Camera will face white player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:608
+#: ../glchess/src/lib/gtkui/dialogs.py:641
 msgid "White Side"
 msgstr "ਚਿੱਟੀ ਸਾਈਡ"
 
 #. Translators: Board Side Combo: Camera will face black player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:610
+#: ../glchess/src/lib/gtkui/dialogs.py:643
 msgid "Black Side"
 msgstr "ਕਾਲੀ ਸਾਈਡ"
 
 #. Translators: Board Side Combo: Camera will face human player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:612
+#: ../glchess/src/lib/gtkui/dialogs.py:645
 msgid "Human Side"
 msgstr "ਇਨਸਾਨੀ ਸਾਈਡ"
 
 #. Translators: Board Side Combo: Camera will face current player's side
-#: ../glchess/src/lib/gtkui/dialogs.py:614
+#: ../glchess/src/lib/gtkui/dialogs.py:647
 msgid "Current Player"
 msgstr "ਮੌਜੂਦਾ ਖਿਡਾਰੀ"
 
 #. Translators: Board Side Combo: Board will be drawn suitable for players on each side of screen, e.g. handhelds
-#: ../glchess/src/lib/gtkui/dialogs.py:616
+#: ../glchess/src/lib/gtkui/dialogs.py:649
 msgid "Face to Face"
 msgstr "ਆਹਮੋ ਸਾਹਮਣੇ"
 
 #. Translators: Promotion Combo: Promote to a queen
-#: ../glchess/src/lib/gtkui/dialogs.py:626
+#: ../glchess/src/lib/gtkui/dialogs.py:659
 msgctxt "chess-piece"
 msgid "Queen"
 msgstr "ਰਾਣੀ"
 
 #. Translators: Promotion Combo: Promote to a knight
-#: ../glchess/src/lib/gtkui/dialogs.py:628
+#: ../glchess/src/lib/gtkui/dialogs.py:661
 msgctxt "chess-piece"
 msgid "Knight"
 msgstr "ਨਾਈਟ"
 
 #. Translators: Promotion Combo: Promote to a rook
-#: ../glchess/src/lib/gtkui/dialogs.py:630
+#: ../glchess/src/lib/gtkui/dialogs.py:663
 msgctxt "chess-piece"
 msgid "Rook"
 msgstr "ਰੂਕ"
 
 #. Translators: Promotion Combo: Promote to a bishop
-#: ../glchess/src/lib/gtkui/dialogs.py:632
+#: ../glchess/src/lib/gtkui/dialogs.py:665
 msgctxt "chess-piece"
 msgid "Bishop"
 msgstr "ਬਿਸਪ"
 
+#. Translators: a simple piece set will be used in 2d mode
+#: ../glchess/src/lib/gtkui/dialogs.py:675
+#| msgid "Time"
+msgid "Simple"
+msgstr "ਸਧਾਰਨ"
+
+#. Translators: a fancy piece set will be used in 2d mode
+#: ../glchess/src/lib/gtkui/dialogs.py:677
+#| msgid "Pansy"
+msgid "Fancy"
+msgstr "ਫੈਂਸੀ"
+
 #. Translators: Window title when playing a game that needs saving
-#: ../glchess/src/lib/gtkui/gtkui.py:326
+#: ../glchess/src/lib/gtkui/gtkui.py:293
 #, python-format
 msgid "Chess - *%(game_name)s"
 msgstr "ਸਤਰੰਜ਼ - *%(game_name)s"
 
 #. Translators: Window title when playing a game that is saved
-#: ../glchess/src/lib/gtkui/gtkui.py:329
+#: ../glchess/src/lib/gtkui/gtkui.py:296
 #, python-format
 msgid "Chess - %(game_name)s"
 msgstr "ਸਤਰੰਜ਼ - %(game_name)s"
 
 #. Translators: Game Timer Label: Indicates that game has no time limit
-#: ../glchess/src/lib/gtkui/gtkui.py:344
+#: ../glchess/src/lib/gtkui/gtkui.py:311
 msgid "∞"
 msgstr "∞"
 
 #. Translators: Save Game Dialog: Notice that game needs saving
-#: ../glchess/src/lib/gtkui/gtkui.py:417
+#: ../glchess/src/lib/gtkui/gtkui.py:384
 msgid "If you don't save the changes to this game will be permanently lost"
 msgstr "ਜੇ ਤੁਸੀਂ ਬਦਲਾਅ ਨਾ ਸੰਭਾਲੇ ਤਾਂ ਇਹ ਖੇਡ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਖਤਮ ਹੋ ਜਾਵੇਗੀ"
 
 #. Translators: Save Game Dialog: Discard game button
-#: ../glchess/src/lib/gtkui/gtkui.py:419
+#: ../glchess/src/lib/gtkui/gtkui.py:386
 msgid "Close _without saving"
 msgstr "ਬਿਨਾਂ ਸੰਭਾਲੇ ਬੰਦ ਕਰੋ(_w)"
 
 #. Translators: No 3D Dialog: Title
-#: ../glchess/src/lib/gtkui/gtkui.py:534
+#: ../glchess/src/lib/gtkui/gtkui.py:501
 msgid "Unable to enable 3D mode"
 msgstr "3D ਢੰਗ ਚਾਲੂ ਕਰਨ ਅਸਫ਼ਲ"
 
 #. Translators: No 3D Dialog: Notification to user that they do not have libraries required to enable 3D.
 #. %(error)s will be replaced with a list of reasons why 3D is not available.
-#: ../glchess/src/lib/gtkui/gtkui.py:538
+#: ../glchess/src/lib/gtkui/gtkui.py:505
 #, python-format
 msgid ""
 "You are unable to play in 3D mode due to the following problems:\n"
@@ -3576,12 +3524,12 @@ msgstr ""
 "ਸਤਰੰਜ਼ ਖੇਡ ਸਕਦੇ ਹੋ।"
 
 #. Translators: Draw Dialog: Title
-#: ../glchess/src/lib/gtkui/gtkui.py:800
+#: ../glchess/src/lib/gtkui/gtkui.py:770
 msgid "Unable to claim draw"
 msgstr "ਡਰਾਅ ਲੈਣ ਲਈ ਅਸਮਰੱਥ"
 
 #. Translators: Draw Dialog: Notify user why they cannot claim draw
-#: ../glchess/src/lib/gtkui/gtkui.py:802
+#: ../glchess/src/lib/gtkui/gtkui.py:772
 msgid ""
 "You may claim a draw when:\n"
 "a) The board has been in the same state three times (Three fold repetition)\n"
@@ -3595,7 +3543,7 @@ msgstr ""
 
 #. TODO: This should be a pop-up dialog
 #. FIXME: This should create a pop-up dialog
-#: ../glchess/src/lib/gtkui/gtkui.py:824 ../gnome-sudoku/src/lib/main.py:730
+#: ../glchess/src/lib/gtkui/gtkui.py:794 ../gnome-sudoku/src/lib/main.py:701
 #, python-format
 msgid "Unable to display help: %s"
 msgstr "ਮੱਦਦ ਵੇਖਾਉਣ ਲਈ ਅਸਮਰੱਥ: %s"
@@ -3616,515 +3564,509 @@ msgid "OpenGL libraries do not support required display mode"
 msgstr "OpenGL ਲਾਇਬਰੇਰੀਆਂ ਡਿਸਪਲੇਅ ਮੋਡ ਲਈ ਸਹਿਯੋਗੀ ਨਹੀਂ ਹਨ"
 
 #. Translators: Move History Combo: Go to the start of the game
-#: ../glchess/src/lib/gtkui/chessview.py:270
-#: ../glchess/src/lib/gtkui/chessview.py:303
+#: ../glchess/src/lib/gtkui/chessview.py:279
 msgid "Game Start"
 msgstr "ਖੇਡ ਸ਼ੁਰੂ"
 
-#. Translators: Comment text when move has no comment
-#: ../glchess/src/lib/gtkui/chessview.py:308
-msgid "No comment"
-msgstr "ਟਿੱਪਣੀ ਨਹੀਂ"
-
 #. Translators: Human Move String: Description of the white player making a long castle
-#: ../glchess/src/lib/gtkui/chessview.py:435
+#: ../glchess/src/lib/gtkui/chessview.py:413
 msgid "White castles long"
 msgstr "ਚਿੱਟਾ ਹਾਥੀ ਲੰਮਾ"
 
 #. Translators: Human Move String: Description of the black player making a long castle
-#: ../glchess/src/lib/gtkui/chessview.py:437
+#: ../glchess/src/lib/gtkui/chessview.py:415
 msgid "Black castles long"
 msgstr "ਕਾਲਾ ਹਾਥੀ ਲੰਮਾ"
 
 #. Translators: Human Move String: Description of the white player making a short castle
-#: ../glchess/src/lib/gtkui/chessview.py:440
+#: ../glchess/src/lib/gtkui/chessview.py:418
 msgid "White castles short"
 msgstr "ਚਿੱਟਾ ਹਾਥੀ ਛੋਟਾ"
 
 #. Translators: Human Move String: Description of the black player making a short castle
-#: ../glchess/src/lib/gtkui/chessview.py:442
+#: ../glchess/src/lib/gtkui/chessview.py:420
 msgid "Black castles short"
 msgstr "ਕਾਲਾ ਹਾਥੀ ਛੋਟਾ"
 
 #. Note there are no move formats for pieces taking kings and this is not allowed in Chess rules
 #. Translators: Human Move String: Description of a white pawn moving from %(start)s to %(end)s, e.g. 'c2 to c4'
-#: ../glchess/src/lib/gtkui/chessview.py:446
+#: ../glchess/src/lib/gtkui/chessview.py:424
 #, python-format
 msgid "White pawn moves from %(start)s to %(end)s"
 msgstr "ਚਿੱਟਾ ਪਿਆਦਾ %(start)s ਤੋਂ %(end)s ਉੱਤੇ ਗਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:447
+#: ../glchess/src/lib/gtkui/chessview.py:425
 #, python-format
 msgid "White pawn at %(start)s takes the black pawn at %(end)s"
 msgstr "ਚਿੱਟੇ ਪਿਆਦੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:448
+#: ../glchess/src/lib/gtkui/chessview.py:426
 #, python-format
 msgid "White pawn at %(start)s takes the black rook at %(end)s"
 msgstr "ਚਿੱਟੇ ਪਿਆਦੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਹਾਥੀ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:449
+#: ../glchess/src/lib/gtkui/chessview.py:427
 #, python-format
 msgid "White pawn at %(start)s takes the black knight at %(end)s"
 msgstr "ਚਿੱਟੇ ਪਿਆਦੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਵਜ਼ੀਰ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:450
+#: ../glchess/src/lib/gtkui/chessview.py:428
 #, python-format
 msgid "White pawn at %(start)s takes the black bishop at %(end)s"
 msgstr "ਚਿੱਟੇ ਪਿਆਦੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਫੀਲੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:451
+#: ../glchess/src/lib/gtkui/chessview.py:429
 #, python-format
 msgid "White pawn at %(start)s takes the black queen at %(end)s"
 msgstr "ਚਿੱਟੇ ਪਿਆਦੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: Description of a white rook moving from %(start)s to %(end)s, e.g. 'a1 to a5'
-#: ../glchess/src/lib/gtkui/chessview.py:453
+#: ../glchess/src/lib/gtkui/chessview.py:431
 #, python-format
 msgid "White rook moves from %(start)s to %(end)s"
 msgstr "ਚਿੱਟਾ ਹਾਥੀ %(start)s ਤੋਂ %(end)s ਉੱਤੇ ਗਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:454
+#: ../glchess/src/lib/gtkui/chessview.py:432
 #, python-format
 msgid "White rook at %(start)s takes the black pawn at %(end)s"
 msgstr "ਚਿੱਟੇ ਹਾਥੀ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:455
+#: ../glchess/src/lib/gtkui/chessview.py:433
 #, python-format
 msgid "White rook at %(start)s takes the black rook at %(end)s"
 msgstr "ਚਿੱਟੇ ਹਾਥੀ ਨੇ %(start)s ਤੋਂ ਕਾਲਾ ਹਾਥੀ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:456
+#: ../glchess/src/lib/gtkui/chessview.py:434
 #, python-format
 msgid "White rook at %(start)s takes the black knight at %(end)s"
 msgstr "ਚਿੱਟੇ ਹਾਥੀ ਨੇ %(start)s ਤੋਂ ਕਾਲਾ ਵਜ਼ੀਰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:457
+#: ../glchess/src/lib/gtkui/chessview.py:435
 #, python-format
 msgid "White rook at %(start)s takes the black bishop at %(end)s"
 msgstr "ਚਿੱਟੇ ਹਾਥੀ ਨੇ %(start)s ਤੋਂ ਕਾਲਾ ਫੀਲਾ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:458
+#: ../glchess/src/lib/gtkui/chessview.py:436
 #, python-format
 msgid "White rook at %(start)s takes the black queen at %(end)s"
 msgstr "ਚਿੱਟੇ ਹਾਥੀ ਨੇ %(start)s ਤੋਂ ਕਾਲੀ ਰਾਣੀ %(end)s ਉੱਤੇ ਮਾਰੀ"
 
 #. Translators: Human Move String: Description of a white knight moving from %(start)s to %(end)s, e.g. 'b1 to c3'
-#: ../glchess/src/lib/gtkui/chessview.py:460
+#: ../glchess/src/lib/gtkui/chessview.py:438
 #, python-format
 msgid "White knight moves from %(start)s to %(end)s"
 msgstr "ਚਿੱਟਾ ਵਜ਼ੀਰ %(start)s ਤੋਂ %(end)s ਉੱਤੇ ਗਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:461
+#: ../glchess/src/lib/gtkui/chessview.py:439
 #, python-format
 msgid "White knight at %(start)s takes the black pawn at %(end)s"
 msgstr "ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:462
+#: ../glchess/src/lib/gtkui/chessview.py:440
 #, python-format
 msgid "White knight at %(start)s takes the black rook at %(end)s"
 msgstr "ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੇ %(start)s ਤੋਂ ਕਾਲਾ ਹਾਥੀ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:463
+#: ../glchess/src/lib/gtkui/chessview.py:441
 #, python-format
 msgid "White knight at %(start)s takes the black knight at %(end)s"
 msgstr "ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੇ %(start)s ਤੋਂ ਕਾਲਾ ਵਜ਼ੀਰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:464
+#: ../glchess/src/lib/gtkui/chessview.py:442
 #, python-format
 msgid "White knight at %(start)s takes the black bishop at %(end)s"
 msgstr "ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੇ %(start)s ਤੋਂ ਕਾਲਾ ਫੀਲਾ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:465
+#: ../glchess/src/lib/gtkui/chessview.py:443
 #, python-format
 msgid "White knight at %(start)s takes the black queen at %(end)s"
 msgstr "ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੇ %(start)s ਤੋਂ ਕਾਲੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: Description of a white bishop moving from %(start)s to %(end)s, e.g. 'f1 to b5'
-#: ../glchess/src/lib/gtkui/chessview.py:467
+#: ../glchess/src/lib/gtkui/chessview.py:445
 #, python-format
 msgid "White bishop moves from %(start)s to %(end)s"
 msgstr "ਚਿੱਟਾ ਫੀਲਾ %(start)s ਤੋਂ %(end)s ਉੱਤੇ ਗਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:468
+#: ../glchess/src/lib/gtkui/chessview.py:446
 #, python-format
 msgid "White bishop at %(start)s takes the black pawn at %(end)s"
 msgstr "ਚਿੱਟੇ ਫੀਲੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:469
+#: ../glchess/src/lib/gtkui/chessview.py:447
 #, python-format
 msgid "White bishop at %(start)s takes the black rook at %(end)s"
 msgstr "ਚਿੱਟੇ ਫੀਲੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਹਾਥੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:470
+#: ../glchess/src/lib/gtkui/chessview.py:448
 #, python-format
 msgid "White bishop at %(start)s takes the black knight at %(end)s"
 msgstr "ਚਿੱਟੇ ਫੀਲੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਵਜ਼ੀਰ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:471
+#: ../glchess/src/lib/gtkui/chessview.py:449
 #, python-format
 msgid "White bishop at %(start)s takes the black bishop at %(end)s"
 msgstr "ਚਿੱਟੇ ਫੀਲੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਫੀਲੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:472
+#: ../glchess/src/lib/gtkui/chessview.py:450
 #, python-format
 msgid "White bishop at %(start)s takes the black queen at %(end)s"
 msgstr "ਚਿੱਟੇ ਫੀਲੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: Description of a white queen moving from %(start)s to %(end)s, e.g. 'd1 to d4'
-#: ../glchess/src/lib/gtkui/chessview.py:474
+#: ../glchess/src/lib/gtkui/chessview.py:452
 #, python-format
 msgid "White queen moves from %(start)s to %(end)s"
 msgstr "ਚਿੱਟੀ ਰਾਣੀ %(start)s ਤੋਂ %(end)s ਉੱਤੇ ਗਈ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:475
+#: ../glchess/src/lib/gtkui/chessview.py:453
 #, python-format
 msgid "White queen at %(start)s takes the black pawn at %(end)s"
 msgstr "ਚਿੱਟੀ ਰਾਣੀ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:476
+#: ../glchess/src/lib/gtkui/chessview.py:454
 #, python-format
 msgid "White queen at %(start)s takes the black rook at %(end)s"
 msgstr "ਚਿੱਟੀ ਰਾਣੀ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਹਾਥੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:477
+#: ../glchess/src/lib/gtkui/chessview.py:455
 #, python-format
 msgid "White queen at %(start)s takes the black knight at %(end)s"
 msgstr "ਚਿੱਟੀ ਰਾਣੀ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਵਜ਼ੀਰ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:478
+#: ../glchess/src/lib/gtkui/chessview.py:456
 #, python-format
 msgid "White queen at %(start)s takes the black bishop at %(end)s"
 msgstr "ਚਿੱਟੀ ਰਾਣੀ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਫੀਲੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:479
+#: ../glchess/src/lib/gtkui/chessview.py:457
 #, python-format
 msgid "White queen at %(start)s takes the black queen at %(end)s"
 msgstr "ਚਿੱਟੀ ਰਾਣੀ ਨੇ %(start)s ਤੋਂ ਕਾਲੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: Description of a white king moving from %(start)s to %(end)s, e.g. 'e1 to f1'
-#: ../glchess/src/lib/gtkui/chessview.py:481
+#: ../glchess/src/lib/gtkui/chessview.py:459
 #, python-format
 msgid "White king moves from %(start)s to %(end)s"
 msgstr "ਚਿੱਟਾ ਰਾਜਾ %(start)s ਤੋਂ %(end)s ਗਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:482
+#: ../glchess/src/lib/gtkui/chessview.py:460
 #, python-format
 msgid "White king at %(start)s takes the black pawn at %(end)s"
 msgstr "ਚਿੱਟੇ ਰਾਜੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:483
+#: ../glchess/src/lib/gtkui/chessview.py:461
 #, python-format
 msgid "White king at %(start)s takes the black rook at %(end)s"
 msgstr "ਚਿੱਟੇ ਰਾਜੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਹਾਥੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:484
+#: ../glchess/src/lib/gtkui/chessview.py:462
 #, python-format
 msgid "White king at %(start)s takes the black knight at %(end)s"
 msgstr "ਚਿੱਟੇ ਰਾਜੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਵਜ਼ੀਰ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:485
+#: ../glchess/src/lib/gtkui/chessview.py:463
 #, python-format
 msgid "White king at %(start)s takes the black bishop at %(end)s"
 msgstr "ਚਿੱਟੇ ਰਾਜੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੇ ਫੀਲੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:486
+#: ../glchess/src/lib/gtkui/chessview.py:464
 #, python-format
 msgid "White king at %(start)s takes the black queen at %(end)s"
 msgstr "ਚਿੱਟੇ ਰਾਜੇ ਨੇ %(start)s ਤੋਂ ਕਾਲੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: Description of a black pawn moving from %(start)s to %(end)s, e.g. 'c8 to c6'
-#: ../glchess/src/lib/gtkui/chessview.py:488
+#: ../glchess/src/lib/gtkui/chessview.py:466
 #, python-format
 msgid "Black pawn moves from %(start)s to %(end)s"
 msgstr "ਕਾਲਾ ਪਿਆਦਾ %(start)s ਤੋਂ %(end)s ਉੱਤੇ ਗਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:489
+#: ../glchess/src/lib/gtkui/chessview.py:467
 #, python-format
 msgid "Black pawn at %(start)s takes the white pawn at %(end)s"
 msgstr "ਕਾਲੇ ਪਿਆਦੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:490
+#: ../glchess/src/lib/gtkui/chessview.py:468
 #, python-format
 msgid "Black pawn at %(start)s takes the white rook at %(end)s"
 msgstr "ਕਾਲੇ ਪਿਆਦੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਹਾਥੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:491
+#: ../glchess/src/lib/gtkui/chessview.py:469
 #, python-format
 msgid "Black pawn at %(start)s takes the white knight at %(end)s"
 msgstr "ਕਾਲੇ ਪਿਆਦੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:492
+#: ../glchess/src/lib/gtkui/chessview.py:470
 #, python-format
 msgid "Black pawn at %(start)s takes the white bishop at %(end)s"
 msgstr "ਕਾਲੇ ਪਿਆਦੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਫੀਲੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:493
+#: ../glchess/src/lib/gtkui/chessview.py:471
 #, python-format
 msgid "Black pawn at %(start)s takes the white queen at %(end)s"
 msgstr "ਕਾਲੇ ਪਿਆਦੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: Description of a black rook moving from %(start)s to %(end)s, e.g. 'a8 to a4'
-#: ../glchess/src/lib/gtkui/chessview.py:495
+#: ../glchess/src/lib/gtkui/chessview.py:473
 #, python-format
 msgid "Black rook moves from %(start)s to %(end)s"
 msgstr "ਕਾਲਾ ਹਾਥੀ %(start)s ਤੋਂ %(end)s ਗਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:496
+#: ../glchess/src/lib/gtkui/chessview.py:474
 #, python-format
 msgid "Black rook at %(start)s takes the white pawn at %(end)s"
 msgstr "ਕਾਲੇ ਹਾਥੀ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:497
+#: ../glchess/src/lib/gtkui/chessview.py:475
 #, python-format
 msgid "Black rook at %(start)s takes the white rook at %(end)s"
 msgstr "ਕਾਲੇ ਹਾਥੀ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਹਾਥੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:498
+#: ../glchess/src/lib/gtkui/chessview.py:476
 #, python-format
 msgid "Black rook at %(start)s takes the white knight at %(end)s"
 msgstr "ਕਾਲੇ ਹਾਥੀ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:499
+#: ../glchess/src/lib/gtkui/chessview.py:477
 #, python-format
 msgid "Black rook at %(start)s takes the white bishop at %(end)s"
 msgstr "ਕਾਲੇ ਹਾਥੀ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਫੀਲੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:500
+#: ../glchess/src/lib/gtkui/chessview.py:478
 #, python-format
 msgid "Black rook at %(start)s takes the white queen at %(end)s"
 msgstr "ਕਾਲੇ ਹਾਥੀ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: Description of a black knight moving from %(start)s to %(end)s, e.g. 'b8 to c6'
-#: ../glchess/src/lib/gtkui/chessview.py:502
+#: ../glchess/src/lib/gtkui/chessview.py:480
 #, python-format
 msgid "Black knight moves from %(start)s to %(end)s"
 msgstr "ਕਾਲਾ ਵਜ਼ੀਰ %(start)s ਤੋਂ %(end)s ਉੱਤੇ ਗਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:503
+#: ../glchess/src/lib/gtkui/chessview.py:481
 #, python-format
 msgid "Black knight at %(start)s takes the white pawn at %(end)s"
 msgstr "ਕਾਲੇ ਵਜ਼ੀਰ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:504
+#: ../glchess/src/lib/gtkui/chessview.py:482
 #, python-format
 msgid "Black knight at %(start)s takes the white rook at %(end)s"
 msgstr "ਕਾਲੇ ਵਜ਼ੀਰ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਹਾਥੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:505
+#: ../glchess/src/lib/gtkui/chessview.py:483
 #, python-format
 msgid "Black knight at %(start)s takes the white knight at %(end)s"
 msgstr "ਕਾਲੇ ਵਜ਼ੀਰ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:506
+#: ../glchess/src/lib/gtkui/chessview.py:484
 #, python-format
 msgid "Black knight at %(start)s takes the white bishop at %(end)s"
 msgstr "ਕਾਲੇ ਵਜ਼ੀਰ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਫੀਲੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:507
+#: ../glchess/src/lib/gtkui/chessview.py:485
 #, python-format
 msgid "Black knight at %(start)s takes the white queen at %(end)s"
 msgstr "ਕਾਲੇ ਵਜ਼ੀਰ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: Description of a black bishop moving from %(start)s to %(end)s, e.g. 'f8 to b3'
-#: ../glchess/src/lib/gtkui/chessview.py:509
+#: ../glchess/src/lib/gtkui/chessview.py:487
 #, python-format
 msgid "Black bishop moves from %(start)s to %(end)s"
 msgstr "ਕਾਲਾ ਫੀਲਾ %(start)s ਤੋਂ %(end)s ਉੱਤੇ ਗਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:510
+#: ../glchess/src/lib/gtkui/chessview.py:488
 #, python-format
 msgid "Black bishop at %(start)s takes the white pawn at %(end)s"
 msgstr "ਕਾਲੇ ਫੀਲੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:511
+#: ../glchess/src/lib/gtkui/chessview.py:489
 #, python-format
 msgid "Black bishop at %(start)s takes the white rook at %(end)s"
 msgstr "ਕਾਲੇ ਫੀਲੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਹਾਥੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:512
+#: ../glchess/src/lib/gtkui/chessview.py:490
 #, python-format
 msgid "Black bishop at %(start)s takes the white knight at %(end)s"
 msgstr "ਕਾਲੇ ਫੀਲੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:513
+#: ../glchess/src/lib/gtkui/chessview.py:491
 #, python-format
 msgid "Black bishop at %(start)s takes the white bishop at %(end)s"
 msgstr "ਕਾਲੇ ਫੀਲੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਫੀਲੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:514
+#: ../glchess/src/lib/gtkui/chessview.py:492
 #, python-format
 msgid "Black bishop at %(start)s takes the white queen at %(end)s"
 msgstr "ਕਾਲੇ ਫੀਲੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: Description of a black queen moving from %(start)s to %(end)s, e.g. 'd8 to d5'
-#: ../glchess/src/lib/gtkui/chessview.py:516
+#: ../glchess/src/lib/gtkui/chessview.py:494
 #, python-format
 msgid "Black queen moves from %(start)s to %(end)s"
 msgstr "ਕਾਲੀ ਰਾਣੀ %(start)s ਤੋਂ %(end)s ਉੱਤੇ ਗਈ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:517
+#: ../glchess/src/lib/gtkui/chessview.py:495
 #, python-format
 msgid "Black queen at %(start)s takes the white pawn at %(end)s"
 msgstr "ਕਾਲੀ ਰਾਣੀ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:518
+#: ../glchess/src/lib/gtkui/chessview.py:496
 #, python-format
 msgid "Black queen at %(start)s takes the white rook at %(end)s"
 msgstr "ਕਾਲੀ ਰਾਣੀ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਹਾਥੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:519
+#: ../glchess/src/lib/gtkui/chessview.py:497
 #, python-format
 msgid "Black queen at %(start)s takes the white knight at %(end)s"
 msgstr "ਕਾਲੀ ਰਾਣੀ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:520
+#: ../glchess/src/lib/gtkui/chessview.py:498
 #, python-format
 msgid "Black queen at %(start)s takes the white bishop at %(end)s"
 msgstr "ਕਾਲੀ ਰਾਣੀ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਫੀਲੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:521
+#: ../glchess/src/lib/gtkui/chessview.py:499
 #, python-format
 msgid "Black queen at %(start)s takes the white queen at %(end)s"
 msgstr "ਕਾਲੀ ਰਾਣੀ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: Description of a black king moving from %(start)s to %(end)s, e.g. 'e8 to f8'
-#: ../glchess/src/lib/gtkui/chessview.py:523
+#: ../glchess/src/lib/gtkui/chessview.py:501
 #, python-format
 msgid "Black king moves from %(start)s to %(end)s"
 msgstr "ਕਾਲਾ ਰਾਜਾ %(start)s ਤੋਂ %(end)s ਗਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:524
+#: ../glchess/src/lib/gtkui/chessview.py:502
 #, python-format
 msgid "Black king at %(start)s takes the white pawn at %(end)s"
 msgstr "ਕਾਲੇ ਰਾਜੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਪਿਆਦੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:525
+#: ../glchess/src/lib/gtkui/chessview.py:503
 #, python-format
 msgid "Black king at %(start)s takes the white rook at %(end)s"
 msgstr "ਕਾਲੇ ਰਾਜੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਹਾਥੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:526
+#: ../glchess/src/lib/gtkui/chessview.py:504
 #, python-format
 msgid "Black king at %(start)s takes the white knight at %(end)s"
 msgstr "ਕਾਲੇ ਰਾਜੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਵਜ਼ੀਰ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:527
+#: ../glchess/src/lib/gtkui/chessview.py:505
 #, python-format
 msgid "Black king at %(start)s takes the white bishop at %(end)s"
 msgstr "ਕਾਲੇ ਰਾਜੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੇ ਫੀਲੇ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
-#: ../glchess/src/lib/gtkui/chessview.py:528
+#: ../glchess/src/lib/gtkui/chessview.py:506
 #, python-format
 msgid "Black king at %(start)s takes the white queen at %(end)s"
 msgstr "ਕਾਲੇ ਰਾਜੇ ਨੇ %(start)s ਤੋਂ ਚਿੱਟੀ ਰਾਣੀ ਨੂੰ %(end)s ਉੱਤੇ ਮਾਰਿਆ"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is in check
-#: ../glchess/src/lib/gtkui/chessview.py:553
+#: ../glchess/src/lib/gtkui/chessview.py:531
 #, python-format
 msgid "%(movenum)2iw. %(description)s (Check)"
 msgstr "%(movenum)2iw. %(description)s (Check)"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is in checkmate
-#: ../glchess/src/lib/gtkui/chessview.py:555
+#: ../glchess/src/lib/gtkui/chessview.py:533
 #, python-format
 msgid "%(movenum)2iw. %(description)s (Checkmate)"
 msgstr "%(movenum)2iw. %(description)s (Checkmate)"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is in stalemate
-#: ../glchess/src/lib/gtkui/chessview.py:557
+#: ../glchess/src/lib/gtkui/chessview.py:535
 #, python-format
 msgid "%(movenum)2iw. %(description)s (Stalemate)"
 msgstr "%(movenum)2iw. %(description)s (Stalemate)"
 
 #. Translators: Human Move String: White player has made move %(description) and the opponent is not in check or mate
-#: ../glchess/src/lib/gtkui/chessview.py:559
+#: ../glchess/src/lib/gtkui/chessview.py:537
 #, python-format
 msgid "%(movenum)2iw. %(description)s"
 msgstr "%(movenum)2iw. %(description)s"
 
 #. Translators: Human Move String: Black player has made move %(description) and the opponent is in check
-#: ../glchess/src/lib/gtkui/chessview.py:561
+#: ../glchess/src/lib/gtkui/chessview.py:539
 #, python-format
 msgid "%(movenum)2ib. %(description)s (Check)"
 msgstr "%(movenum)2ib. %(description)s (Check)"
 
 #. Translators: Human Move String: Black player has made move %(description) and the opponent is in checkmate
-#: ../glchess/src/lib/gtkui/chessview.py:563
+#: ../glchess/src/lib/gtkui/chessview.py:541
 #, python-format
 msgid "%(movenum)2ib. %(description)s (Checkmate)"
 msgstr "%(movenum)2ib. %(description)s (Checkmate)"
 
 #. Translators: Human Move String: Black player has made move %(description) and the opponent is in stalemate
-#: ../glchess/src/lib/gtkui/chessview.py:565
+#: ../glchess/src/lib/gtkui/chessview.py:543
 #, python-format
 msgid "%(movenum)2ib. %(description)s (Stalemate)"
 msgstr "%(movenum)2ib. %(description)s (Stalemate)"
 
 #. Translators: Human Move String: Black player has made move %(description) and the opponent is not in check or mate
-#: ../glchess/src/lib/gtkui/chessview.py:567
+#: ../glchess/src/lib/gtkui/chessview.py:545
 #, python-format
 msgid "%(movenum)2ib. %(description)s"
 msgstr "%(movenum)2ib. %(description)s"
 
 #. Translators: Message displayed when a player wins. The %s is substituted with the winning player's name
-#: ../glchess/src/lib/gtkui/chessview.py:598
+#: ../glchess/src/lib/gtkui/chessview.py:576
 #, python-format
 msgid "%s wins"
 msgstr "%s ਜਿੱਤਿਆ"
 
 #. Translators: Message displayed when a game is drawn
-#: ../glchess/src/lib/gtkui/chessview.py:607
+#: ../glchess/src/lib/gtkui/chessview.py:585
 msgid "Game is drawn"
 msgstr "ਖੇਡ ਡਰਾਅ ਹੋ ਗਈ"
 
 #. Translators: Message displayed when the game ends due to a player being checkmated
-#: ../glchess/src/lib/gtkui/chessview.py:612
+#: ../glchess/src/lib/gtkui/chessview.py:590
 msgid "Opponent is in check and cannot move (checkmate)"
 msgstr "ਵਿਰੋਧੀ ਚੈਕ ਇਨ ਹੈ ਅਤੇ ਚਾਲ ਨਹੀਂ ਚੱਲ ਸਕਦਾ (ਚੈਕਮੇਟ)"
 
 #. Translators: Message displayed when the game terminates due to a stalemate
-#: ../glchess/src/lib/gtkui/chessview.py:615
+#: ../glchess/src/lib/gtkui/chessview.py:593
 msgid "Opponent cannot move (stalemate)"
 msgstr "ਵਿਰੋਧੀ ਚਾਲ ਨਹੀਂ ਚੱਲ ਸਕਦਾ (ਸਲੇਟਮੇਟ)"
 
 #. Translators: Message displayed when the game is drawn due to the fifty move rule
-#: ../glchess/src/lib/gtkui/chessview.py:618
+#: ../glchess/src/lib/gtkui/chessview.py:596
 msgid "No piece has been taken or pawn moved in the last fifty moves"
 msgstr "ਕੋਈ ਟੁਕੜਾ ਨਹੀਂ ਲਿਆ ਜਾਂ ਆਖਰੀ ਪੰਦਰਾਂ ਚਾਲਾਂ ਵਿੱਚ pawn ਨਹੀਂ ਚੱਲਿਆ"
 
 #. Translators: Message displayed when the game ends due to one player's clock stopping
-#: ../glchess/src/lib/gtkui/chessview.py:621
+#: ../glchess/src/lib/gtkui/chessview.py:599
 msgid "Opponent has run out of time"
 msgstr "ਵਿਰੋਧੀ ਦਾ ਸਮਾਂ ਖਤਮ ਹੋ ਗਿਆ"
 
 #. Translators: Message displayed when the game is drawn due to the three-fold-repitition rule
-#: ../glchess/src/lib/gtkui/chessview.py:624
+#: ../glchess/src/lib/gtkui/chessview.py:602
 msgid "The same board state has occurred three times (three fold repetition)"
 msgstr "ਇਹੀ ਬੋਰਡ ਹਾਲਤ ਤਿੰਨ ਵਾਰ ਆ ਚੁੱਕੀ ਹੈ (ਤਿੰਨ ਲਗਾਤਾਰ ਦੁਹਰਾ)"
 
 #. Translators: Message displayed when the game is drawn due to the insufficient material rule
-#: ../glchess/src/lib/gtkui/chessview.py:627
+#: ../glchess/src/lib/gtkui/chessview.py:605
 msgid "Neither player can cause checkmate (insufficient material)"
 msgstr "ਕੋਈ ਪਲੇਅਰ ਚੈਕ-ਮੇਟ ਨਹੀਂ ਕਰ ਸਕਦਾ (ਗੈਰ-ਲੋੜੀਦੇ ਪਦਾਰਥ)"
 
 #. Translators: Message displayed when the game ends due to the black player resigning
-#: ../glchess/src/lib/gtkui/chessview.py:631
+#: ../glchess/src/lib/gtkui/chessview.py:609
 msgid "The black player has resigned"
 msgstr "ਕਾਲਾ ਪਲੇਅਰ ਹੱਥ ਖੜ੍ਹੇ ਕਰ ਗਿਆ"
 
 #. Translators: Message displayed when the game ends due to the white player resigning
-#: ../glchess/src/lib/gtkui/chessview.py:634
+#: ../glchess/src/lib/gtkui/chessview.py:612
 msgid "The white player has resigned"
 msgstr "ਚਿੱਟਾ ਪਲੇਅਰ ਹੱਥ ਖੜ੍ਹੇ ਕਰ ਗਿਆ"
 
 #. Translators: Message displayed when a game is abandoned
-#: ../glchess/src/lib/gtkui/chessview.py:639
+#: ../glchess/src/lib/gtkui/chessview.py:617
 msgid "The game has been abandoned"
 msgstr "ਖੇਡ ਅਧੂਰੀ ਛੱਡੀ ਜਾ ਚੁੱਕੀ ਹੈ"
 
 #. Translators: Message displayed when the game ends due to a player dying
-#: ../glchess/src/lib/gtkui/chessview.py:642
+#: ../glchess/src/lib/gtkui/chessview.py:620
 msgid "One of the players has died"
 msgstr "ਇੱਕ ਪਲੇਅਰ ਮਰ ਗਿਆ"
 
@@ -4134,60 +4076,60 @@ msgid "GGZ Gaming Zone"
 msgstr "GGZ ਖੇਡ ਜ਼ੋਨ"
 
 #. Translators: Server Combo Box: Not connected to a server
-#: ../glchess/src/lib/gtkui/network.py:117
+#: ../glchess/src/lib/gtkui/network.py:131
 msgid "Disconnected"
 msgstr "ਕੁਨੈਕਸ਼ਨ ਬੰਦ"
 
 #. Translators: Server Combo Box: Add new profile
-#: ../glchess/src/lib/gtkui/network.py:122
+#: ../glchess/src/lib/gtkui/network.py:136
 msgid "New profile..."
 msgstr "ਨਵਾਂ ਪਰੋਫਾਇਲ..."
 
 #. Translators: Available GGZ Tables: Table name column title
-#: ../glchess/src/lib/gtkui/network.py:182
+#: ../glchess/src/lib/gtkui/network.py:196
 msgid "Table"
 msgstr "ਟੇਬਲ"
 
 #. Translators: Available GGZ Tables: Seat status column title
-#: ../glchess/src/lib/gtkui/network.py:187
+#: ../glchess/src/lib/gtkui/network.py:201
 msgid "Seats"
 msgstr "ਸੀਟਾਂ"
 
 #. Translators: Available GGZ Tables: Table description column title
-#: ../glchess/src/lib/gtkui/network.py:192
+#: ../glchess/src/lib/gtkui/network.py:206
 msgid "Description"
 msgstr "ਵੇਰਵਾ"
 
 #. Translators: Current GGZ Table: Seat name column title
-#: ../glchess/src/lib/gtkui/network.py:199
+#: ../glchess/src/lib/gtkui/network.py:213
 msgid "Seat"
 msgstr "ਸੀਟ"
 
 #. Translators: Current GGZ Table: Player name column title
-#: ../glchess/src/lib/gtkui/network.py:203
+#: ../glchess/src/lib/gtkui/network.py:217
 msgid "Player"
 msgstr "ਖਿਡਾਰੀ"
 
 #. Translators: GGZ seat is occupied by a spectator
-#: ../glchess/src/lib/gtkui/network.py:366
+#: ../glchess/src/lib/gtkui/network.py:380
 msgid "Spectator"
 msgstr "ਸਪੇਕਟਰ"
 
 #. Translators: GGZ seat status: This seat is reserved. %s is replaced with
 #. the name of the player the seat is reserved for.
-#: ../glchess/src/lib/gtkui/network.py:375
+#: ../glchess/src/lib/gtkui/network.py:389
 #, python-format
 msgid "Reserved for %s"
 msgstr "%s ਲਈ ਰਾਖਵਾਂ"
 
 #. Translators: GGZ seat status: This seat is not taken
-#: ../glchess/src/lib/gtkui/network.py:378
+#: ../glchess/src/lib/gtkui/network.py:392
 msgid "Seat empty"
 msgstr "ਸੀਟ ਖਾਲੀ"
 
 #. Translators: GGZ seat status: This seat contains an AI player.
 #. %s is replaced with the name of the AI.
-#: ../glchess/src/lib/gtkui/network.py:382
+#: ../glchess/src/lib/gtkui/network.py:396
 #, python-format
 msgid "AI (%s)"
 msgstr "AI (%s)"
@@ -4360,19 +4302,19 @@ msgstr ""
 "glChess ਕਰੈਸ਼ ਹੋ ਗਈ ਹੈ। ਬੱਗ ਰਿਪੋਰਟ http://bugzilla.gnome.org ਉੱਤੇ ਦਿਓ\n"
 "ਡੀਬੱਗ ਆਉਟਪੁੱਟ:"
 
-#: ../glchess/src/lib/main.py:716 ../gnome-sudoku/src/lib/main.py:476
+#: ../glchess/src/lib/main.py:716 ../gnome-sudoku/src/lib/main.py:448
 msgid "Save game before closing?"
 msgstr "ਕੀ ਬੰਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਖੇਡ ਸੰਭਾਲਣੀ ਹੈ?"
 
-#: ../glchess/src/lib/defaults.py.in:50
+#: ../glchess/src/lib/defaults.py.in:56
 msgid "glChess"
 msgstr "glChess"
 
-#: ../glchess/src/lib/defaults.py.in:53
+#: ../glchess/src/lib/defaults.py.in:59
 msgid "Copyright 2005-2008 Robert Ancell (and contributors)"
 msgstr "ਕਾਪੀਰਾਈਟ ੨੦੦੫-੨੦੦੮ Robert Ancell (ਅਤੇ ਹੋਰ ਯੋਗਦਾਨੀ)"
 
-#: ../glchess/src/lib/defaults.py.in:54
+#: ../glchess/src/lib/defaults.py.in:60
 msgid ""
 "The 2D/3D chess game for GNOME. \n"
 "\n"
@@ -4384,8 +4326,8 @@ msgstr ""
 
 #. The GPL license string will be translated, and the game name inserted.
 #. This license is the same as in libgames-support/games-stock.c
-#: ../glchess/src/lib/defaults.py.in:63
-#: ../gnome-sudoku/src/lib/defaults.py.in:49
+#: ../glchess/src/lib/defaults.py.in:69
+#: ../gnome-sudoku/src/lib/defaults.py.in:51
 #, python-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
@@ -4397,9 +4339,9 @@ msgstr ""
 "ਨੇ ਤਿਆਰ ਕੀਤਾ ਹੈ, ਦੇ ਵਰਜਨ 2 ਜਾਂ ਨਵੇਂ ਦੀਆਂਸ਼ਰਤਾਂ (ਉਹ ਤੁਹਾਡੀ ਆਪਣੀ ਮਰਜ਼ੀ ਹੈ) ਅਧੀਨ ਵੰਡ ਅਤੇ/ਜਾਂ "
 "ਸੋਧ ਸਕਦੇ ਹੋ।"
 
-#: ../glchess/src/lib/defaults.py.in:67
-#: ../gnome-sudoku/src/lib/defaults.py.in:53
-#: ../libgames-support/games-stock.c:418
+#: ../glchess/src/lib/defaults.py.in:73
+#: ../gnome-sudoku/src/lib/defaults.py.in:55
+#: ../libgames-support/games-stock.c:384
 #, c-format, python-format
 msgid ""
 "%s is distributed in the hope that it will be useful, but WITHOUT ANY "
@@ -4411,9 +4353,9 @@ msgstr ""
 "ਰਹੀ ਹੈ, ਕਿਸੇ ਖਾਸ ਕੰਮ ਲਈ ਅਨੁਕੂਲ ਹੋਣ ਜਾਂਠੀਕ ਤਰ੍ਹਾਂ ਕੰਮ ਕਰਨ ਦੀ ਵੀ ਕੋਈ ਗਾਰੰਟੀ ਨਹੀਂ ਹੈ।  ਹੋਰ ਵੇਰਵੇ "
 "ਲਈ ਗਨੂ ਜਰਨਲਪਬਲਿਕ ਲਾਇਸੈਂਸ ਨੂੰ ਪੜ੍ਹੋ।"
 
-#: ../glchess/src/lib/defaults.py.in:71
-#: ../gnome-sudoku/src/lib/defaults.py.in:57
-#: ../libgames-support/games-stock.c:423
+#: ../glchess/src/lib/defaults.py.in:77
+#: ../gnome-sudoku/src/lib/defaults.py.in:59
+#: ../libgames-support/games-stock.c:389
 #, c-format, python-format
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
@@ -4424,8 +4366,8 @@ msgstr ""
 "ਸਾਫਟਵੇਅਰ ਫਾਊਨਡੇਸ਼ਨ, 51 ਫਰਾਕਲਿੰਨ ਸਟਰੀਟ, ਪੰਜਵੀਂ ਮੰਜ਼ਲ,ਬੋਸਟਨ, ਐਮ ਏ 02110-1301, ਅਮਰੀਕਾ ਨੂੰ "
 "ਲਿਖੋ।"
 
-#: ../glchess/src/lib/defaults.py.in:83
-#: ../gnome-sudoku/src/lib/defaults.py.in:68
+#: ../glchess/src/lib/defaults.py.in:89
+#: ../gnome-sudoku/src/lib/defaults.py.in:70
 #, python-format
 msgid "Unable to make data directory %(dir)s: %(error)s"
 msgstr "ਡਾਟਾ ਡਾਇਰੈਕਟਰੀ %(dir)s ਬਣਾਉਣ ਲਈ ਫੇਲ੍ਹ: %(error)s"
@@ -4459,17 +4401,17 @@ msgstr "ਸਰਵਰ ਨਾਲ ਡਿਸ-ਕੁਨੈਕਟਡ"
 msgid "No description"
 msgstr "ਕੋਈ ਵੇਰਵਾ ਨਹੀਂ"
 
-#: ../glines/glines.c:89 ../gnomine/gnomine.c:102
+#: ../glines/glines.c:90 ../gnomine/gnomine.c:101
 msgctxt "board size"
 msgid "Small"
 msgstr "ਛੋਟਾ"
 
-#: ../glines/glines.c:90 ../gnomine/gnomine.c:103
+#: ../glines/glines.c:91 ../gnomine/gnomine.c:102
 msgctxt "board size"
 msgid "Medium"
 msgstr "ਮੱਧਮ"
 
-#: ../glines/glines.c:91 ../gnomine/gnomine.c:104
+#: ../glines/glines.c:92 ../gnomine/gnomine.c:103
 msgctxt "board size"
 msgid "Large"
 msgstr "ਵੱਡਾ"
@@ -4503,34 +4445,34 @@ msgstr ""
 "\n"
 "ਕਿਰਪਾ ਕਰਕੇ ਪੜਤਾਲ ਕਰੋ ਕਿ ਪੰਜ ਜਾਂ ਜਿਆਦਾ ਠੀਕ ਤਰਾਂ ਇੰਸਟਾਲ ਹਨ।"
 
-#: ../glines/glines.c:430
+#: ../glines/glines.c:443
 msgid "Match five objects of the same type in a row to score!"
 msgstr "ਅੰਕ ਲੈਣ ਲਈ ਇੱਕ ਕਤਾਰ 'ਚ ਪੰਜ ਇੱਕੋ ਜਿਹੀਆਂ ਚੀਜ਼ਾਂ ਇੱਕਠੀਆਂ ਕਰੋ!"
 
-#: ../glines/glines.c:491
+#: ../glines/glines.c:504
 msgid "GNOME Five or More"
 msgstr "ਗਨੋਮ ਪੰਜ ਜਾਂ ਜਿਆਦਾ"
 
-#: ../glines/glines.c:493
+#: ../glines/glines.c:506
 msgid "_Board size:"
 msgstr "ਬੋਰਡ ਆਕਾਰ(_B):"
 
-#: ../glines/glines.c:511 ../swell-foop/src/Score.js:109
+#: ../glines/glines.c:524 ../swell-foop/src/Score.js:109
 msgid "Game Over!"
 msgstr "ਖੇਡ ਖਤਮ!"
 
 #. Can't move there!
-#: ../glines/glines.c:669
+#: ../glines/glines.c:682
 msgid "You can't move there!"
 msgstr "ਤੁਸੀਂ ਉੱਥੇ ਜਾ ਨਹੀਂ ਸਕਦੇ!"
 
-#: ../glines/glines.c:1210 ../glines/glines.c:1214 ../glines/glines.c:1216
-#: ../glines/glines.c:1814 ../glines/glines.c:1846
+#: ../glines/glines.c:1225 ../glines/glines.c:1229 ../glines/glines.c:1231
+#: ../glines/glines.c:1792 ../glines/glines.c:1824
 #: ../glines/glines.desktop.in.in.h:1
 msgid "Five or More"
 msgstr "ਪੰਜ ਜਾਂ ਵੱਧ"
 
-#: ../glines/glines.c:1219
+#: ../glines/glines.c:1234
 msgid ""
 "GNOME port of the once-popular Color Lines game.\n"
 "\n"
@@ -4540,36 +4482,38 @@ msgstr ""
 "\n"
 "ਪੰਜ ਜਾਂ ਹੋਰ ਗਨੋਮ ਖੇਡਾਂ ਦਾ ਭਾਗ ਹੈ।"
 
-#: ../glines/glines.c:1449
+#: ../glines/glines.c:1435
 msgid "Five or More Preferences"
 msgstr "ਪੰਜ ਜਾਂ ਵੱਧ ਪਸੰਦ"
 
-#: ../glines/glines.c:1469
-msgid "Themes"
-msgstr "ਥੀਮ"
+#: ../glines/glines.c:1455 ../gnect/src/prefs.c:335
+#: ../gnobots2/properties.c:536 ../iagno/properties.c:531
+#: ../lightsoff/data/settings.ui.h:1 ../swell-foop/data/settings.ui.h:1
+msgid "Appearance"
+msgstr "ਦਿੱਖ"
 
-#: ../glines/glines.c:1477
+#: ../glines/glines.c:1463
 msgid "_Image:"
 msgstr "ਚਿੱਤਰ(_I):"
 
-#: ../glines/glines.c:1488
+#: ../glines/glines.c:1474
 msgid "B_ackground color:"
 msgstr "ਬੈਕਗਰਾਊਂਡ ਰੰਗ(_a):"
 
-#: ../glines/glines.c:1503
+#: ../glines/glines.c:1489
 msgid "Board Size"
 msgstr "ਬੋਰਡ ਅਕਾਰ"
 
-#: ../glines/glines.c:1522
+#: ../glines/glines.c:1508
 msgctxt "preferences"
 msgid "General"
 msgstr "ਸਾਧਾਰਨ"
 
-#: ../glines/glines.c:1528
+#: ../glines/glines.c:1514
 msgid "_Use fast moves"
 msgstr "ਤੇਜ਼ ਚਾਲਾਂ ਵਰਤੋਂ(_U)"
 
-#: ../glines/glines.c:1875
+#: ../glines/glines.c:1851
 msgid "Next:"
 msgstr "ਅੱਗੇ:"
 
@@ -4677,13 +4621,13 @@ msgstr "ਦੂਜੇ ਖਿਡਾਰੀ ਦਾ ਪੱਧਰ"
 
 #: ../gnect/data/gnect.schemas.in.h:9 ../gnect/src/prefs.c:372
 #: ../gnibbles/gnibbles.schemas.in.h:16 ../gnibbles/preferences.c:445
-#: ../quadrapassel/quadrapassel.schemas.in.h:13 ../quadrapassel/tetris.cpp:742
+#: ../quadrapassel/quadrapassel.schemas.in.h:13 ../quadrapassel/tetris.cpp:739
 msgid "Move left"
 msgstr "ਖੱਬੇ ਚੱਲੋ"
 
 #: ../gnect/data/gnect.schemas.in.h:10 ../gnect/src/prefs.c:373
 #: ../gnibbles/gnibbles.schemas.in.h:17 ../gnibbles/preferences.c:446
-#: ../quadrapassel/quadrapassel.schemas.in.h:14 ../quadrapassel/tetris.cpp:743
+#: ../quadrapassel/quadrapassel.schemas.in.h:14 ../quadrapassel/tetris.cpp:740
 msgid "Move right"
 msgstr "ਸੱਜੇ ਚੱਲੋ"
 
@@ -4710,58 +4654,58 @@ msgstr ""
 "ਚਿੱਤਰ ਲੋਡ ਕਰਨ ਲਈ ਅਸਮਰਥ:\n"
 "%s"
 
-#: ../gnect/src/main.c:558
+#: ../gnect/src/main.c:528
 msgid "It's a draw!"
 msgstr "ਇਹ ਬਰਾਬਰ ਰਹੀ ਹੈ!"
 
-#: ../gnect/src/main.c:567 ../gnome-sudoku/src/lib/main.py:438
+#: ../gnect/src/main.c:537 ../gnome-sudoku/src/lib/main.py:410
 msgid "You win!"
 msgstr "ਤੁਸੀਂ ਜਿੱਤ ਗਏ!"
 
-#: ../gnect/src/main.c:569 ../gnect/src/main.c:602
+#: ../gnect/src/main.c:539 ../gnect/src/main.c:572
 msgid "It is your move."
 msgstr "ਤੁਹਾਡੀ ਚਾਲ ਹੈ।"
 
-#: ../gnect/src/main.c:572
+#: ../gnect/src/main.c:542
 msgid "I win!"
 msgstr "ਮੈਂ ਜਿੱਤ ਗਿਆ!"
 
-#: ../gnect/src/main.c:574 ../gnect/src/main.c:707
+#: ../gnect/src/main.c:544 ../gnect/src/main.c:677
 msgid "Thinking..."
 msgstr "ਸੋਚ ਰਿਹਾ ਹੈ..."
 
-#: ../gnect/src/main.c:595 ../gnect/src/main.c:599
+#: ../gnect/src/main.c:565 ../gnect/src/main.c:569
 #, c-format
 msgid "%s wins!"
 msgstr "%s ਜਿੱਤ ਗਿਆ ਹੈ!"
 
-#: ../gnect/src/main.c:605
+#: ../gnect/src/main.c:575
 #, c-format
 msgid "Waiting for %s to move."
 msgstr "%s ਦੀ ਚਾਲ ਵਾਸਤੇ ਉਡੀਕ ਜਾਰੀ।"
 
-#: ../gnect/src/main.c:724
+#: ../gnect/src/main.c:694
 #, c-format
 msgid "Hint: Column %d"
 msgstr "ਇਸ਼ਾਰਾ: ਕਾਲਮ %d"
 
-#: ../gnect/src/main.c:752 ../gnect/src/main.c:756
+#: ../gnect/src/main.c:722 ../gnect/src/main.c:726
 msgid "You:"
 msgstr "ਤੁਸੀਂ:"
 
-#: ../gnect/src/main.c:753 ../gnect/src/main.c:755
+#: ../gnect/src/main.c:723 ../gnect/src/main.c:725
 msgid "Me:"
 msgstr "ਮੈਂ:"
 
-#: ../gnect/src/main.c:801
+#: ../gnect/src/main.c:771
 msgid "Scores"
 msgstr "ਸਕੋਰ"
 
-#: ../gnect/src/main.c:852
+#: ../gnect/src/main.c:822
 msgid "Drawn:"
 msgstr "ਬਰਾਬਰੀ:"
 
-#: ../gnect/src/main.c:905
+#: ../gnect/src/main.c:875
 msgid ""
 "\"Four in a Row\" for GNOME, with a computer player driven by Giuliano "
 "Bertoletti's Velena Engine.\n"
@@ -4811,15 +4755,10 @@ msgid "Four-in-a-Row Preferences"
 msgstr "ਇੱਕ ਕਤਾਰ 'ਚ ਚਾਰ ਪਸੰਦ"
 
 #: ../gnect/src/prefs.c:303 ../gnibbles/preferences.c:255
-#: ../gnobots2/properties.c:497 ../quadrapassel/tetris.cpp:594
+#: ../gnobots2/properties.c:497 ../quadrapassel/tetris.cpp:591
 #: ../iagno/properties.c:419
 msgid "Game"
 msgstr "ਖੇਡ"
-
-#: ../gnect/src/prefs.c:335 ../gnobots2/properties.c:536
-#: ../iagno/properties.c:531 ../swell-foop/data/settings.ui.h:1
-msgid "Appearance"
-msgstr "ਦਿੱਖ"
 
 #: ../gnect/src/prefs.c:344
 msgid "_Theme:"
@@ -4836,7 +4775,7 @@ msgstr "ਆਵਾਜ਼ ਯੋਗ(_n)"
 
 #. keyboard tab
 #: ../gnect/src/prefs.c:368 ../gnibbles/preferences.c:435
-#: ../gnobots2/properties.c:543 ../quadrapassel/tetris.cpp:734
+#: ../gnobots2/properties.c:543 ../quadrapassel/tetris.cpp:731
 msgid "Keyboard Controls"
 msgstr "ਕੀ-ਬੋਰਡ ਕੰਟਰੋਲ"
 
@@ -4942,21 +4881,21 @@ msgstr "ਨਿੱਬਲ ਸਕੋਰ"
 msgid "Speed:"
 msgstr "ਗਤੀ:"
 
-#: ../gnibbles/gnibbles.c:376 ../gnobots2/game.c:182 ../gnomine/gnomine.c:225
-#: ../gnotravex/gnotravex.c:1240 ../gnotski/gnotski.c:842
-#: ../gtali/gyahtzee.c:200 ../mahjongg/mahjongg.c:668
+#: ../gnibbles/gnibbles.c:376 ../gnobots2/game.c:182 ../gnomine/gnomine.c:224
+#: ../gnotravex/gnotravex.c:1119 ../gnotski/gnotski.c:801
+#: ../gtali/gyahtzee.c:200 ../mahjongg/mahjongg.c:633
 msgid "Congratulations!"
 msgstr "ਮੁਬਾਰਕ!"
 
-#: ../gnibbles/gnibbles.c:377 ../gnobots2/game.c:183 ../gnomine/gnomine.c:226
-#: ../gnotravex/gnotravex.c:1241 ../gnotski/gnotski.c:843
-#: ../gtali/gyahtzee.c:201 ../mahjongg/mahjongg.c:669
+#: ../gnibbles/gnibbles.c:377 ../gnobots2/game.c:183 ../gnomine/gnomine.c:225
+#: ../gnotravex/gnotravex.c:1120 ../gnotski/gnotski.c:802
+#: ../gtali/gyahtzee.c:201 ../mahjongg/mahjongg.c:634
 msgid "Your score is the best!"
 msgstr "ਤੁਹਾਡਾ ਸਕੋਰ ਸਭ ਤੋਂ ਵਧੀਆ ਹੈ!"
 
-#: ../gnibbles/gnibbles.c:378 ../gnobots2/game.c:184 ../gnomine/gnomine.c:227
-#: ../gnotravex/gnotravex.c:1242 ../gnotski/gnotski.c:844
-#: ../gtali/gyahtzee.c:202 ../mahjongg/mahjongg.c:670
+#: ../gnibbles/gnibbles.c:378 ../gnobots2/game.c:184 ../gnomine/gnomine.c:226
+#: ../gnotravex/gnotravex.c:1121 ../gnotski/gnotski.c:803
+#: ../gtali/gyahtzee.c:202 ../mahjongg/mahjongg.c:635
 msgid "Your score has made the top ten."
 msgstr "ਤੁਹਾਡਾ ਸਕੋਰ ਪਹਿਲੇ ਦਸਾਂ ਵਿੱਚ ਹੈ।"
 
@@ -4964,9 +4903,9 @@ msgstr "ਤੁਹਾਡਾ ਸਕੋਰ ਪਹਿਲੇ ਦਸਾਂ ਵਿੱ�
 msgid "Guide a worm around a maze"
 msgstr "ਗੁੰਝਲ ਦੁਆਲੇ ਕੀੜੇ ਨੂੰ ਰਾਹ ਵਿਖਾਓ"
 
-#: ../gnibbles/gnibbles.desktop.in.in.h:2 ../gnibbles/main.c:231
-#: ../gnibbles/main.c:235 ../gnibbles/main.c:237 ../gnibbles/main.c:860
-#: ../gnibbles/main.c:940 ../gnibbles/main.c:1086
+#: ../gnibbles/gnibbles.desktop.in.in.h:2 ../gnibbles/main.c:197
+#: ../gnibbles/main.c:201 ../gnibbles/main.c:203 ../gnibbles/main.c:803
+#: ../gnibbles/main.c:881 ../gnibbles/main.c:1027
 msgid "Nibbles"
 msgstr "ਨਿਬਲਜ਼"
 
@@ -5027,7 +4966,7 @@ msgid "Key to use for motion up."
 msgstr "ਗਤੀ ਉੱਤੇ ਵੱਲ ਕਰਨ ਲਈ ਸਵਿੱਚ ਹੈ।"
 
 #: ../gnibbles/gnibbles.schemas.in.h:15 ../gnibbles/preferences.c:448
-#: ../quadrapassel/quadrapassel.schemas.in.h:12 ../quadrapassel/tetris.cpp:744
+#: ../quadrapassel/quadrapassel.schemas.in.h:12 ../quadrapassel/tetris.cpp:741
 msgid "Move down"
 msgstr "ਹੇਠਾਂ ਲਿਜਾਓ"
 
@@ -5075,47 +5014,47 @@ msgstr "ਸਬੰਧਤ ਸਥਾਨ ਪਰਿਵਰਤਨ ਵਰਤੋਂ"
 msgid "Use relative movement (ie. left or right only)."
 msgstr "ਸਬੰਧਤ ਸਥਾਨ ਪਰਿਵਰਤਨ ਵਰਤੋ (ਜਿਵੇਂ ਕਿ ਸਿਰਫ ਖੱਬੇ ਜਾਂ ਸੱਜੇ)।"
 
-#: ../gnibbles/main.c:71
+#: ../gnibbles/main.c:73
 msgctxt "game speed"
 msgid "Beginner"
 msgstr "ਸਿਖਾਂਦਰੂ"
 
-#: ../gnibbles/main.c:72
+#: ../gnibbles/main.c:74
 msgctxt "game speed"
 msgid "Slow"
 msgstr "ਹੌਲੀ"
 
-#: ../gnibbles/main.c:73
+#: ../gnibbles/main.c:75
 msgctxt "game speed"
 msgid "Medium"
 msgstr "ਮੱਧਮ"
 
-#: ../gnibbles/main.c:74
+#: ../gnibbles/main.c:76
 msgctxt "game speed"
 msgid "Fast"
 msgstr "ਤੇਜ਼"
 
-#: ../gnibbles/main.c:75
+#: ../gnibbles/main.c:77
 msgctxt "game speed"
 msgid "Beginner with Fakes"
 msgstr "ਫ਼ਰਜੀ ਨਾਲ ਸ਼ੁਰੂਆਤੀ"
 
-#: ../gnibbles/main.c:76
+#: ../gnibbles/main.c:78
 msgctxt "game speed"
 msgid "Slow with Fakes"
 msgstr "ਫ਼ਰਜੀ ਨਾਲ ਹੌਲੀ"
 
-#: ../gnibbles/main.c:77
+#: ../gnibbles/main.c:79
 msgctxt "game speed"
 msgid "Medium with Fakes"
 msgstr "ਫ਼ਰਜੀ ਨਾਲ ਮੱਧਮ"
 
-#: ../gnibbles/main.c:78
+#: ../gnibbles/main.c:80
 msgctxt "game speed"
 msgid "Fast with Fakes"
 msgstr "ਫ਼ਰਜੀ ਨਾਲ ਤੇਜ਼"
 
-#: ../gnibbles/main.c:244
+#: ../gnibbles/main.c:210
 msgid ""
 "A worm game for GNOME.\n"
 "\n"
@@ -5125,17 +5064,17 @@ msgstr ""
 "\n"
 "ਨਿੱਬਲ ਗਨੋਮ ਖੇਡਾਂ ਦਾ ਭਾਗ ਹੈ।"
 
-#: ../gnibbles/main.c:618
+#: ../gnibbles/main.c:572
 #, c-format
 msgid "Game over! The game has been won by %s!"
 msgstr "ਖੇਡ ਖਤਮ! ਖੇਡ %s ਜਿੱਤ ਗਿਆ ਹੈ!"
 
-#: ../gnibbles/main.c:666
+#: ../gnibbles/main.c:620
 msgid "The game is over."
 msgstr "ਖੇਡ ਖਤਮ ਹੋਈ।"
 
 #. Translators: This string will be included in the intro screen, so don't make sure it fits!
-#: ../gnibbles/main.c:942
+#: ../gnibbles/main.c:883
 msgid "A worm game for GNOME."
 msgstr "ਗਨੋਮ ਲਈ ਇੱਕ ਕੀੜਾ ਖੇਡ ਹੈ।"
 
@@ -5178,7 +5117,7 @@ msgid "_Enable fake bonuses"
 msgstr "ਫ਼ਰਜ਼ੀ ਲਾਭ ਯੋਗ(_E)"
 
 #. starting level
-#: ../gnibbles/preferences.c:352 ../quadrapassel/tetris.cpp:641
+#: ../gnibbles/preferences.c:352 ../quadrapassel/tetris.cpp:638
 msgid "_Starting level:"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਪੱਧਰ(_S):"
 
@@ -5227,13 +5166,14 @@ msgstr "ਕੀੜਾ %d:"
 msgid "Game over!"
 msgstr "ਖੇਡ ਖਤਮ!"
 
-#: ../gnobots2/game.c:155 ../gnomine/gnomine.c:201 ../gnotski/gnotski.c:817
+#: ../gnobots2/game.c:155 ../gnomine/gnomine.c:200 ../gnotski/gnotski.c:776
 msgid "Great work, but unfortunately your score did not make the top ten."
 msgstr "ਬਹੁਤ ਸ਼ਾਬਸ਼, ਪਰ ਬਦਕਿਸਮਤੀ ਨਾਲ ਤੁਹਾਡਾ ਸਕੋਰ ਪਹਿਲੇ ਦਸਾਂ ਵਿੱਚ ਨਹੀਂ ਹੈ।"
 
 #. Translators: This "_New Game" is for the game-over dialogue
-#: ../gnobots2/game.c:157 ../gnomine/gnomine.c:203 ../gnotski/gnotski.c:819
-#: ../libgames-support/games-stock.c:327
+#: ../gnobots2/game.c:157 ../gnome-sudoku/data/select_game.ui.h:1
+#: ../gnomine/gnomine.c:202 ../gnotski/gnotski.c:778
+#: ../libgames-support/games-stock.c:293
 msgid "_New Game"
 msgstr "ਨਵੀਂ ਖੇਡ(_N)"
 
@@ -5241,8 +5181,8 @@ msgstr "ਨਵੀਂ ਖੇਡ(_N)"
 msgid "Robots Scores"
 msgstr "ਰੋਬੋਟ ਸਕੋਰ"
 
-#: ../gnobots2/game.c:173 ../mahjongg/mahjongg.c:666
-#: ../mahjongg/mahjongg.c:995
+#: ../gnobots2/game.c:173 ../mahjongg/mahjongg.c:631
+#: ../mahjongg/mahjongg.c:961
 msgid "Map:"
 msgstr "ਨਕਸ਼ੇ:"
 
@@ -5275,15 +5215,15 @@ msgstr "ਖੇਡ ਬਣਤਰ ਠੀਕ ਕਰੋ"
 msgid "Initial window position"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਵਿੰਡੋ ਸਥਿਤੀ"
 
-#: ../gnobots2/gnobots.c:89 ../gnomine/gnomine.c:1003
-#: ../gnomine/gnomine.c:1011 ../gnotravex/gnotravex.c:400
-#: ../gnotski/gnotski.c:467 ../iagno/gnothello.c:150
+#: ../gnobots2/gnobots.c:89 ../gnomine/gnomine.c:929 ../gnomine/gnomine.c:937
+#: ../gnotravex/gnotravex.c:263 ../gnotski/gnotski.c:459
+#: ../iagno/gnothello.c:150
 msgid "X"
 msgstr "X"
 
-#: ../gnobots2/gnobots.c:91 ../gnomine/gnomine.c:1005
-#: ../gnomine/gnomine.c:1013 ../gnotravex/gnotravex.c:402
-#: ../gnotski/gnotski.c:469 ../iagno/gnothello.c:152
+#: ../gnobots2/gnobots.c:91 ../gnomine/gnomine.c:931 ../gnomine/gnomine.c:939
+#: ../gnotravex/gnotravex.c:265 ../gnotski/gnotski.c:461
+#: ../iagno/gnothello.c:152
 msgid "Y"
 msgstr "Y"
 
@@ -5348,16 +5288,16 @@ msgid "Robots with safe teleport with super-safe moves"
 msgstr "ਸੁਪਰ-ਸੇਵ ਚਾਲਾਂ ਨਾਲ ਸੁਰੱਖਿਅਤ ਟੈਲੀਪੋਰਟ ਸਮੇਤ ਰੋਬੋਟ"
 
 #: ../gnobots2/gnobots.c:240 ../gnobots2/gnobots.c:261
-#: ../gnobots2/gnobots2.desktop.in.in.h:2 ../gnobots2/menu.c:263
-#: ../gnobots2/menu.c:266
+#: ../gnobots2/gnobots2.desktop.in.in.h:2 ../gnobots2/menu.c:256
+#: ../gnobots2/menu.c:259
 msgid "Robots"
 msgstr "ਰੋਬੋਟ"
 
-#: ../gnobots2/gnobots.c:323
+#: ../gnobots2/gnobots.c:321
 msgid "No game data could be found."
 msgstr "ਕੋਈ ਖੇਡ ਡਾਟਾ ਨਹੀਂ ਲੱਭ ਸਕਿਆ।"
 
-#: ../gnobots2/gnobots.c:325
+#: ../gnobots2/gnobots.c:323
 msgid ""
 "The program Robots was unable to find any valid game configuration files. "
 "Please check that the program is installed correctly."
@@ -5365,11 +5305,11 @@ msgstr ""
 "ਕੋਈ ਵੀ ਯੋਗ ਖੇਡ ਬਣਤਰ ਫਾਇਲਾਂ ਲੱਭਣ ਵਿੱਚ ਪਰੋਗਰਾਮ ਗਨੋਮ ਰੋਬੋਟ ਅਸਮਰਥ ਸੀ। ਕਿਰਪਾ ਕਰਕੇ ਜਾਂਚ ਕਰੋ ਕਿ "
 "ਕੀ ਪਰੋਗਰਾਮ ਠੀਕ ਤਰਾਂ ਇੰਸਟਾਲ ਹੈ।"
 
-#: ../gnobots2/gnobots.c:341
+#: ../gnobots2/gnobots.c:339
 msgid "Some graphics files are missing or corrupt."
 msgstr "ਕੁਝ ਗਰਾਫਿਕਸ ਫਾਇਲਾਂ ਗੁੰਮ ਹਨ ਜਾਂ ਨਿਕਾਰਾ ਹਨ।"
 
-#: ../gnobots2/gnobots.c:343
+#: ../gnobots2/gnobots.c:341
 msgid ""
 "The program Robots was unable to load all the necessary graphics files. "
 "Please check that the program is installed correctly."
@@ -5565,35 +5505,35 @@ msgstr ""
 msgid "Could not find '%s' pixmap file\n"
 msgstr "ਪਿਕਸਮੈਪ ਫਾਇਲ '%s' ਲੱਭ ਨਹੀਂ ਸਕਿਆ\n"
 
-#: ../gnobots2/menu.c:70 ../gnotravex/gnotravex.c:305
+#: ../gnobots2/menu.c:68 ../gnotravex/gnotravex.c:1753
 msgid "_Move"
 msgstr "ਏਧਰ-ਓਧਰ"
 
-#: ../gnobots2/menu.c:77
+#: ../gnobots2/menu.c:75
 msgid "_Teleport"
 msgstr "ਟੈਲੀਪੋਰਟ(_T)"
 
-#: ../gnobots2/menu.c:78
+#: ../gnobots2/menu.c:76
 msgid "Teleport, safely if possible"
 msgstr "ਟੈਲੀਪੋਰਟ, ਸੁਰੱਖਿਅਤ ਜੇਕਰ ਸੰਭਵ ਹੋਵੇ ਤਾਂ"
 
-#: ../gnobots2/menu.c:79
+#: ../gnobots2/menu.c:77
 msgid "_Random"
 msgstr "ਰਲਵਾਂ(_R)"
 
-#: ../gnobots2/menu.c:80
+#: ../gnobots2/menu.c:78
 msgid "Teleport randomly"
 msgstr "ਟੈਲੀਪੋਰਟ ਰਲਵਾਂ"
 
-#: ../gnobots2/menu.c:81
+#: ../gnobots2/menu.c:79
 msgid "_Wait"
 msgstr "ਉਡੀਕ(_W)"
 
-#: ../gnobots2/menu.c:81
+#: ../gnobots2/menu.c:79
 msgid "Wait for the robots"
 msgstr "ਰੋਬੋਟ ਲਈ ਇੰਤਜ਼ਾਰ"
 
-#: ../gnobots2/menu.c:271
+#: ../gnobots2/menu.c:264
 msgid ""
 "Based on classic BSD Robots.\n"
 "\n"
@@ -5676,7 +5616,7 @@ msgstr "ਵੱਧ ਸੁਰੱਖਿਅਤ ਚਾਲਾਂ ਵਰਤੋਂ(_s)"
 msgid "Prevents all moves that result in getting killed."
 msgstr "ਮਰਨ ਵਾਲੀਆਂ ਚਾਲਾਂ ਤੋਂ ਬਚੋ।"
 
-#: ../gnobots2/properties.c:489 ../quadrapassel/tetris.cpp:667
+#: ../gnobots2/properties.c:489 ../quadrapassel/tetris.cpp:664
 msgid "_Enable sounds"
 msgstr "ਆਵਾਜ਼ਾਂ ਯੋਗ(_E)"
 
@@ -5692,7 +5632,7 @@ msgstr "ਗਰਾਫਿਕਸ ਥੀਮ"
 msgid "_Image theme:"
 msgstr "ਚਿੱਤਰ ਥੀਮ(_I):"
 
-#: ../gnobots2/properties.c:524 ../mahjongg/mahjongg.c:775
+#: ../gnobots2/properties.c:524 ../mahjongg/mahjongg.c:740
 msgid "_Background color:"
 msgstr "ਬੈਕਗਰਾਊਂਡ ਰੰਗ(_B):"
 
@@ -5722,12 +5662,12 @@ msgid "Fit falling blocks together"
 msgstr "ਡਿੱਗਦੇ ਬਲਾਕਾਂ ਨੂੰ ਇੱਕਠੇ ਕਰਕੇ ਫਿੱਟ ਕਰੋ"
 
 #: ../quadrapassel/quadrapassel.desktop.in.in.h:2 ../quadrapassel/main.cpp:66
-#: ../quadrapassel/tetris.cpp:160 ../quadrapassel/tetris.cpp:1298
-#: ../quadrapassel/tetris.cpp:1304
+#: ../quadrapassel/tetris.cpp:158 ../quadrapassel/tetris.cpp:1288
+#: ../quadrapassel/tetris.cpp:1294
 msgid "Quadrapassel"
 msgstr "ਕੁਆਡਰਾਪੱਸੀਲ"
 
-#: ../quadrapassel/quadrapassel.schemas.in.h:1 ../quadrapassel/tetris.cpp:745
+#: ../quadrapassel/quadrapassel.schemas.in.h:1 ../quadrapassel/tetris.cpp:742
 msgid "Drop"
 msgstr "ਸੁੱਟੋ"
 
@@ -5763,11 +5703,11 @@ msgstr "ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਦਰਜਾ"
 msgid "Level to start with."
 msgstr "ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਦਰਜਾ ਹੈ।"
 
-#: ../quadrapassel/quadrapassel.schemas.in.h:15 ../quadrapassel/tetris.cpp:747
+#: ../quadrapassel/quadrapassel.schemas.in.h:15 ../quadrapassel/tetris.cpp:744
 msgid "Pause"
 msgstr "ਵਿਰਾਮ"
 
-#: ../quadrapassel/quadrapassel.schemas.in.h:16 ../quadrapassel/tetris.cpp:746
+#: ../quadrapassel/quadrapassel.schemas.in.h:16 ../quadrapassel/tetris.cpp:743
 msgid "Rotate"
 msgstr "ਘੁੰਮਾਓ"
 
@@ -5875,70 +5815,65 @@ msgstr "ਟਾਂਗੋ ਸ਼ੇਡਡ"
 msgid "Lines:"
 msgstr "ਲਾਈਨਾਂ:"
 
-#: ../quadrapassel/tetris.cpp:573
-#| msgid "Tali Preferences"
+#: ../quadrapassel/tetris.cpp:570
 msgid "Quadrapassel Preferences"
 msgstr "ਕੁਆਡਰਾਪੱਸੀਲ ਪਸੰਦ"
 
-#: ../quadrapassel/tetris.cpp:597 ../swell-foop/data/settings.ui.h:5
+#: ../quadrapassel/tetris.cpp:594 ../swell-foop/data/settings.ui.h:5
 msgid "Setup"
 msgstr "ਸੈਟਅੱਪ"
 
 #. pre-filled rows
-#: ../quadrapassel/tetris.cpp:603
+#: ../quadrapassel/tetris.cpp:600
 msgid "_Number of pre-filled rows:"
 msgstr "ਪਹਿਲਾਂ ਭਰੀਆਂ ਕਤਾਰਾਂ ਦੀ ਗਿਣਤੀ(_N):"
 
 #. pre-filled rows density
-#: ../quadrapassel/tetris.cpp:622
+#: ../quadrapassel/tetris.cpp:619
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "ਪਹਿਲਾਂ ਭਰੀਆਂ ਕਤਾਰਾਂ ਵਿੱਚ ਬਲਾਕਾਂ ਦੀ ਗਿਣਤੀ(_D):"
 
-#: ../quadrapassel/tetris.cpp:662 ../swell-foop/data/settings.ui.h:4
+#: ../quadrapassel/tetris.cpp:659 ../swell-foop/data/settings.ui.h:4
 msgid "Operation"
 msgstr "ਕਾਰਵਾਈ"
 
-#: ../quadrapassel/tetris.cpp:676
+#: ../quadrapassel/tetris.cpp:673
 msgid "_Preview next block"
 msgstr "ਅੱਗੇ ਬਲਾਕ ਝਲਕ(_P)"
 
-#: ../quadrapassel/tetris.cpp:685
+#: ../quadrapassel/tetris.cpp:682
 msgid "_Use random block colors"
 msgstr "ਰਲਵਾਂ ਬਲਾਕ ਰੰਗ ਵਰਤੋਂ(_U)"
 
-#: ../quadrapassel/tetris.cpp:696
-msgid "_Bastard mode"
-msgstr "ਬਾਸਟਰਡ ਮੋਡ(_B)"
+#: ../quadrapassel/tetris.cpp:693
+msgid "Choose difficult _blocks"
+msgstr "ਔਖੇ ਬਲਾਕ ਚੁਣੋ(_b)"
 
-#: ../quadrapassel/tetris.cpp:705
+#: ../quadrapassel/tetris.cpp:702
 msgid "_Rotate blocks counterclockwise"
 msgstr "ਬਲਾਕਾਂ ਨੂੰ ਖੱਬੇ ਦਾਅ ਘੁੰਮਾਉ(_R)"
 
-#: ../quadrapassel/tetris.cpp:714
+#: ../quadrapassel/tetris.cpp:711
 msgid "Show _where the block will land"
 msgstr "ਵੇਖੋ, ਜਿੱਥੇ ਬਲਾਕ ਜਾਵੇਗਾ(_w)"
 
-#: ../quadrapassel/tetris.cpp:722 ../quadrapassel/tetris.cpp:755
+#: ../quadrapassel/tetris.cpp:719 ../quadrapassel/tetris.cpp:752
 msgid "Theme"
 msgstr "ਥੀਮ"
 
-#: ../quadrapassel/tetris.cpp:731
+#: ../quadrapassel/tetris.cpp:728
 msgid "Controls"
 msgstr "ਕੰਟਰੋਲ"
 
-#: ../quadrapassel/tetris.cpp:758
+#: ../quadrapassel/tetris.cpp:755
 msgid "Block Style"
 msgstr "ਬਲਾਕ ਸ਼ੈਲੀ"
 
-#: ../quadrapassel/tetris.cpp:1302
+#: ../quadrapassel/tetris.cpp:1292
 msgid "Qua"
 msgstr "ਕੁਆ"
 
-#: ../quadrapassel/tetris.cpp:1307
-#| msgid ""
-#| "A classic game of fitting falling blocks together.\n"
-#| "\n"
-#| "Gnometris is a part of GNOME Games."
+#: ../quadrapassel/tetris.cpp:1297
 msgid ""
 "A classic game of fitting falling blocks together.\n"
 "\n"
@@ -5949,18 +5884,15 @@ msgstr ""
 "ਕੁਆਡਰਾਪੱਸੀਲ ਗਨੋਮ ਖੇਡ ਦਾ ਭਾਗ ਹੈ।"
 
 #: ../quadrapassel/highscores.cpp:52
-#| msgid "Tali Scores"
 msgid "Quadrapassel Scores"
 msgstr "ਕੁਆਡਰਾਪੱਸੀਲਟੇਲੀ ਸਕੋਰ"
 
 #: ../quadrapassel/blockops.cpp:786
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:174
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:215
 msgid "Paused"
 msgstr "ਵਿਰਾਮ"
 
 #: ../gnome-sudoku/gnome-sudoku.desktop.in.in.h:1
-#: ../gnome-sudoku/src/lib/defaults.py.in:38
+#: ../gnome-sudoku/src/lib/defaults.py.in:40
 msgid "Sudoku"
 msgstr "Sudoku"
 
@@ -5973,68 +5905,65 @@ msgid "Color of the grid border"
 msgstr "ਗਰਿੱਡ ਬਾਰਡਰ ਦਾ ਰੰਗ"
 
 #: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:2
-msgid "Generate new puzzles in the background"
-msgstr "ਬੈਕਗਰਾਊਂਡ ਵਿੱਚ ਨਵੀਂ ਬੁਝਾਰਤ ਬਣਾਓ"
-
-#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:3
 msgid "Height of application window in pixels"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਿੰਡੋ ਦੀ ਉਚਾਈ ਪਿਕਸਲ ਵਿੱਚ"
 
-#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:4
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:3
 msgid "Mark printed games as played"
 msgstr "ਪਰਿੰਟ ਕੀਤੀਆਂ ਖੇਡਾਂ ਖੇਡੀਆਂ ਬਣਾਉ"
 
-#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:5
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:4
 msgid "Number of puzzles to print on a page"
 msgstr "ਇੱਕ ਪੇਜ਼ ਉੱਤੇ ਛਾਪਣ ਲਈ ਬੁਝਾਰਤਾਂ ਦੀ ਗਿਣਤੀ"
 
-#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:6
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:5
 msgid "Print games that have been played"
 msgstr "ਖੇਡਾਂ ਪਰਿੰਟ ਕਰੋ, ਜੋ ਕਿ ਖੇਡੀਆਂ ਗਈਆਂ"
 
-#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:7
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:6
 msgid "Show hint highlights"
 msgstr "ਇਸ਼ਾਰਾ ਹਾਈਲਾਈਟ ਵੇਖੋ"
 
-#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:8
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:7
 msgid "Show hints"
 msgstr "ਇਸ਼ਾਰੇ ਵੇਖੋ"
 
-#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:9
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:8
 msgid "Show the application toolbar"
 msgstr "ਐਪਲੀਕੇਸਨ ਟੂਲਬਾਰ ਵੇਖੋ"
 
-#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:10
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:9
 msgid "The number of seconds between automatic saves"
 msgstr "ਆਟੋਮੈਟਿਕ ਸੰਭਾਲਣ ਲਈ ਸਕਿੰਟਾਂ ਦੀ ਗਿਣਤੀ"
 
-#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:11
+#: ../gnome-sudoku/data/gnome-sudoku.schemas.in.h:10
 msgid "Width of application window in pixels"
 msgstr "ਪਿਕਸਲਾਂ ਵਿੱਚ ਐਪਲੀਕੇਸ਼ਨ ਵਿੰਡੋ ਦੀ ਚੌੜਾਈ"
 
 #: ../gnome-sudoku/data/print_games.ui.h:1
-msgid "<b><i>Details</i></b>"
-msgstr "<b><i>ਵੇਰਵਾ</i></b>"
+#| msgid "_Details"
+msgid "Details"
+msgstr "ਵੇਰਵਾ"
 
 #: ../gnome-sudoku/data/print_games.ui.h:2
-msgid "<b><i>Levels of difficulty to print</i></b>"
-msgstr "<b><i>ਪਰਿੰਟ ਲਈ ਔਖਾਈ ਦਾ ਲੈਵਲ</i></b>"
+#| msgid "<b><i>Levels of difficulty to print</i></b>"
+msgid "Levels of difficulty to print"
+msgstr "ਪਰਿੰਟ ਲਈ ਔਖਾਈ ਦਾ ਲੈਵਲ"
 
 #: ../gnome-sudoku/data/print_games.ui.h:3
-msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">ਖੇਡਾਂ ਪਰਿੰਟ ਕਰੋ</span>"
+#| msgid "Join Game"
+msgid "Print Games"
+msgstr "ਖੇਡ ਪਰਿੰਟ ਕਰੋ"
 
 #: ../gnome-sudoku/data/print_games.ui.h:4
 msgid "Print Sudokus"
 msgstr "ਸੂਡੋਕੁਸ ਪਰਿੰਟ ਕਰੋ"
 
 #: ../gnome-sudoku/data/print_games.ui.h:5
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:13
 msgid "_Easy"
 msgstr "ਸੌਖੀ(_E)"
 
 #: ../gnome-sudoku/data/print_games.ui.h:6
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:15
 msgid "_Hard"
 msgstr "ਔਖੀ(_H)"
 
@@ -6047,7 +5976,6 @@ msgid "_Mark games as played once you've printed them."
 msgstr "ਜਦੋਂ ਤੁਸੀਂ ਖੇਡਾਂ ਛਾਪ ਲਵੋ ਤਾਂ ਉਨ੍ਹਾਂ ਨੂੰ ਖੇਡਿਆ ਬਣਾਓ(_M)।"
 
 #: ../gnome-sudoku/data/print_games.ui.h:9
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:16
 msgid "_Medium"
 msgstr "ਮੱਧਮ(_M)"
 
@@ -6060,85 +5988,36 @@ msgid "_Sudokus per page: "
 msgstr "ਸੁਡੋਕੁ ਪ੍ਰਤੀ ਸਫ਼ਾ(_S): "
 
 #: ../gnome-sudoku/data/print_games.ui.h:12
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:17
 msgid "_Very Hard"
 msgstr "ਬਹੁਤ ਔਖੀ(_V)"
 
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:1
-msgid "<i><u>Number of Puzzles</u></i>"
-msgstr "<i><u>ਬੁਝਾਰਤਾਂ ਦੀ ਗਿਣਤੀ</u></i>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:2
-msgid "<i>Easy:</i>"
-msgstr "<i>ਸੌਖੀ:</i>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:3
-msgid "<i>Hard:</i>"
-msgstr "<i>ਔਖੀ:</i>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:4
-msgid "<i>Medium:</i>"
-msgstr "<i>ਮੱਧਮ:</i>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:5
-msgid "<i>Very Hard:</i>"
-msgstr "<i>ਬਹੁਤ ਔਖੀ:</i>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:6
-msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">ਬੁਝਾਰਤ ਨਿਰਮਾਤਾ</span>"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:7
-msgid "Criteria:"
-msgstr "ਸੀਮਾ:"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:8
-msgid "Generate Policy"
-msgstr "ਨਿਰਮਾਣ ਨੀਤੀ"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:9
-msgid "Generate new puzzles _until stopped"
-msgstr "ਜਦੋਂ ਤੱਕ ਰੁਕੇ ਨਾਂ ਨਵੀਆਂ ਬੁਝਾਰਤਾਂ ਬਣਾਓ(_u)"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:10
-msgid "Generate until _reaching target"
-msgstr "ਜਦੋਂ ਤੱਕ ਨਿਸ਼ਾਨੇ ਤੱਕ ਨਹੀਂ ਅੱਪੜਦੇ ਬਣਾਓ(_r)"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:11
-msgid "Puzzle Generator"
-msgstr "ਬੁਝਾਰਤ ਪਾਉਣ ਵਾਲਾ"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:12
-msgid "Target _number of sudokus:"
-msgstr "ਸੁਡੋਕੁ ਦੀ ਨਿਸ਼ਾਨਾ ਗਿਣਤੀ(_n):"
-
-#: ../gnome-sudoku/data/puzzle_generator.ui.h:14
-msgid "_Generate"
-msgstr "ਬਣਾਓ(_G)"
-
-#: ../gnome-sudoku/data/select_game.ui.h:1
-msgid "<b><span size=\"large\">_New Game</span></b>"
-msgstr "<b><span size=\"large\">ਨਵੀਂ ਖੇਡ(_N)</span></b>"
-
 #: ../gnome-sudoku/data/select_game.ui.h:2
-msgid "<b><span size=\"large\">_Saved Games</span></b>"
-msgstr "<b><span size=\"large\">ਸੰਭਾਲੀਆਂ ਖੇਡਾਂ(_S)</span></b>"
+#| msgid "L_eave Game"
+msgid "_Saved Games"
+msgstr "ਸੰਭਾਲੀਆਂ ਖੇਡਾਂ(_S)"
 
 #: ../gnome-sudoku/data/tracker.ui.h:1
-msgid "Clear _Others"
-msgstr "ਹੋਰ ਸਾਫ਼ ਕਰੋ(_O)"
+#| msgid "_Add Tracker"
+msgid "Add a new tracker"
+msgstr "ਨਵਾਂ ਟਰੇਕਰ ਸ਼ਾਮਿਲ"
 
-#: ../gnome-sudoku/data/tracker.ui.h:2
-msgid "_Add Tracker"
-msgstr "ਟਰੇਕਰ ਸ਼ਾਮਿਲ(_A)"
+#: ../gnome-sudoku/data/tracker.ui.h:2 ../gnome-sudoku/src/lib/main.py:772
+#| msgid "_View"
+msgid "H_ide"
+msgstr "ਓਹਲੇ(_i)"
 
-#: ../gnome-sudoku/data/tracker.ui.h:3 ../gnome-sudoku/src/lib/main.py:788
-msgid "_Clear Tracker"
-msgstr "ਟਰੇਕਰ ਸਾਫ਼ ਕਰੋ(_C)"
+#: ../gnome-sudoku/data/tracker.ui.h:3
+msgid "Hide the tracked values"
+msgstr "ਟਰੈਕ ਕੀਤੇ ਮੁੱਲ ਓਹਲੇ ਕਰੋ"
 
 #: ../gnome-sudoku/data/tracker.ui.h:4
-msgid "_Trackers"
-msgstr "ਟਰੇਕਰ(_T)"
+msgid "Make the tracked changes permanent"
+msgstr "ਟਰੈਕ ਕੀਤੇ ਬਦਲਾਅ ਪੱਕੇ ਬਣਾਓ"
+
+#: ../gnome-sudoku/data/tracker.ui.h:5
+#| msgid "Clear all moves tracked by selected tracker."
+msgid "Remove the selected tracker"
+msgstr "ਚੁਣੇ ਟਰੈਕਰ ਹਟਾਓ"
 
 #: ../gnome-sudoku/src/gnome-sudoku.in.in:59
 msgid "Sudoku incorrectly installed"
@@ -6153,13 +6032,18 @@ msgstr ""
 "ਸੂਡੋਕੂ ਲੋੜੀਦੀਆਂ ਐਪਲੀਕੇਸ਼ਨ ਫਾਇਲਾਂ ਇੰਸਟਾਲ ਨਾ ਹੋਣ ਕਰਕੇ ਸਟਾਰਟ ਨਹੀਂ ਹੋ ਸਕਦੀ ਹੈ। ਜੇ ਤੁਸੀਂ ਆਪਣਾ "
 "ਸਿਸਟਮ ਅੱਪਗਰੇਡ ਕਰ ਰਹੇ ਹੋ ਤਾਂ ਅੱਪਗਰੇਡ ਪੂਰਾ ਹੋਣ ਦੀ ਉਡੀਕ ਕਰੋ ਜੀ।"
 
-#: ../gnome-sudoku/src/lib/defaults.py.in:37
+#: ../gnome-sudoku/src/lib/defaults.py.in:39
 msgid "GNOME Sudoku"
 msgstr "ਗਨੋਮ ਸੂਡੋਕੁ"
 
-#: ../gnome-sudoku/src/lib/defaults.py.in:40
+#: ../gnome-sudoku/src/lib/defaults.py.in:42
+#| msgid ""
+#| "GNOME Sudoku is a simple sudoku generator and player. Sudoku is a "
+#| "japanese logic puzzle.\n"
+#| "\n"
+#| "GNOME Sudoku is a part of GNOME Games."
 msgid ""
-"GNOME Sudoku is a simple sudoku generator and player. Sudoku is a japanese "
+"GNOME Sudoku is a simple Sudoku generator and player. Sudoku is a Japanese "
 "logic puzzle.\n"
 "\n"
 "GNOME Sudoku is a part of GNOME Games."
@@ -6168,345 +6052,302 @@ msgstr ""
 "\n"
 "ਗਨੋਮ ਸੁਡੋਕੁ ਗਨੋਮ ਖੇਡਾਂ ਦਾ ਭਾਗ ਹੈ।"
 
-#: ../gnome-sudoku/src/lib/saver.py:122
+#: ../gnome-sudoku/src/lib/saver.py:137
 msgid "No Space"
 msgstr "ਖਾਲੀ ਥਾਂ ਨਹੀਂ"
 
-#: ../gnome-sudoku/src/lib/saver.py:123
+#: ../gnome-sudoku/src/lib/saver.py:138
 msgid "No space left on disk"
 msgstr "ਡਿਸਕ ਉੱਤੇ ਥਾਂ ਨਹੀਂ ਬਚੀ ਹੈ।"
 
-#: ../gnome-sudoku/src/lib/saver.py:125 ../gnome-sudoku/src/lib/saver.py:132
+#: ../gnome-sudoku/src/lib/saver.py:140 ../gnome-sudoku/src/lib/saver.py:147
 #, python-format
 msgid "Unable to create data folder %(path)s."
 msgstr "ਡਾਟਾ ਫੋਲਡਰ %(path)s ਬਣਾਉਣ ਲਈ ਅਸਮਰੱਥ ਹੈ।"
 
-#: ../gnome-sudoku/src/lib/saver.py:126
+#: ../gnome-sudoku/src/lib/saver.py:141
 msgid "There is no disk space left!"
 msgstr "ਡਿਸਕ ਥਾਂ ਖਾਲੀ ਨਹੀਂ ਬਚੀ ਹੈ!"
 
-#: ../gnome-sudoku/src/lib/saver.py:133 ../gnome-sudoku/src/lib/saver.py:158
-#: ../gnome-sudoku/src/lib/saver.py:182 ../gnome-sudoku/src/lib/saver.py:200
+#: ../gnome-sudoku/src/lib/saver.py:148 ../gnome-sudoku/src/lib/saver.py:173
+#: ../gnome-sudoku/src/lib/saver.py:197 ../gnome-sudoku/src/lib/saver.py:215
 #, python-format
 msgid "Error %(errno)s: %(error)s"
 msgstr "ਗਲਤੀ %(errno)s: %(error)s"
 
-#: ../gnome-sudoku/src/lib/saver.py:153 ../gnome-sudoku/src/lib/saver.py:154
+#: ../gnome-sudoku/src/lib/saver.py:168 ../gnome-sudoku/src/lib/saver.py:169
 msgid "Sudoku unable to save game."
 msgstr "ਸੂਡੋਕੂ ਖੇਡ ਸੰਭਾਲਣ ਲਈ ਅਸਮਰੱਥ ਹੈ।"
 
-#: ../gnome-sudoku/src/lib/saver.py:156 ../gnome-sudoku/src/lib/saver.py:181
-#: ../gnome-sudoku/src/lib/saver.py:199
+#: ../gnome-sudoku/src/lib/saver.py:171 ../gnome-sudoku/src/lib/saver.py:196
+#: ../gnome-sudoku/src/lib/saver.py:214
 #, python-format
 msgid "Unable to save file %(filename)s."
 msgstr "ਫਾਇਲ %(filename)s ਸੰਭਾਲਣ ਲਈ ਅਸਮਰੱਥ ਹੈ।"
 
-#: ../gnome-sudoku/src/lib/saver.py:178 ../gnome-sudoku/src/lib/saver.py:179
-#: ../gnome-sudoku/src/lib/saver.py:196 ../gnome-sudoku/src/lib/saver.py:197
+#: ../gnome-sudoku/src/lib/saver.py:193 ../gnome-sudoku/src/lib/saver.py:194
+#: ../gnome-sudoku/src/lib/saver.py:211 ../gnome-sudoku/src/lib/saver.py:212
 msgid "Sudoku unable to mark game as finished."
 msgstr "ਸੂਡੋਕੂ ਖੇਡ ਖਤਮ ਹੋਈ ਮਾਰਕ ਕਰਨ ਲਈ ਅਸਮਰੱਥ ਹੈ।"
 
-#: ../gnome-sudoku/src/lib/main.py:43
+#: ../gnome-sudoku/src/lib/main.py:44
 msgid "Track moves"
 msgstr "ਚਾਲਾਂ ਦਾ ਧਿਆਨ ਰੱਖੋ"
 
-#: ../gnome-sudoku/src/lib/main.py:243
+#: ../gnome-sudoku/src/lib/main.py:232
 msgid "New game"
 msgstr "ਨਵੀਂ ਖੇਡ"
 
-#: ../gnome-sudoku/src/lib/main.py:245
-msgid "Print current game"
-msgstr "ਮੌਜੂਦਾ ਖੇਡ ਪਰਿੰਟ ਕਰੋ"
+#. Translators: this is the "Reset" scores button in a scores dialogue
+#: ../gnome-sudoku/src/lib/main.py:233 ../libgames-support/games-stock.c:296
+msgid "_Reset"
+msgstr "ਮੁੜ ਸੈਟ(_R)"
 
-#: ../gnome-sudoku/src/lib/main.py:246
-msgid "Print _Multiple Sudokus"
-msgstr "ਕਈ ਸੁਡੋਕੁ ਪਰਿੰਟ ਕਰੋ(_M)"
+#: ../gnome-sudoku/src/lib/main.py:234
+msgid "Reset current grid(do-over)"
+msgstr "ਮੌਜੂਦਾ ਗਰਿੱਡ ਮੁੜ-ਸੈੱਟ (ਡੂ-ਓਵਰ)"
 
-#: ../gnome-sudoku/src/lib/main.py:247
-msgid "Print more than one sudoku at a time."
-msgstr "ਇੱਕ ਸੁਡੋਕੁ ਇੱਕ ਸਮੇਂ ਇੱਕ ਤੋਂ ਵੱਧ ਵਾਰ ਪਰਿੰਟ ਕਰੋ।"
-
-#: ../gnome-sudoku/src/lib/main.py:249
-msgid "Close Sudoku"
-msgstr "Sudoku ਬੰਦ ਕਰੋ"
-
-#: ../gnome-sudoku/src/lib/main.py:250
-msgid "_Tools"
-msgstr "ਟੂਲ(_T)"
-
-#: ../gnome-sudoku/src/lib/main.py:252 ../libgames-support/games-stock.c:323
-msgid "_Hint"
-msgstr "ਇਸ਼ਾਰਾ(_H)"
-
-#: ../gnome-sudoku/src/lib/main.py:254
-msgid "Show which numbers could go in the current square."
-msgstr "ਵੇਖੋ ਕਿ ਕਿਹੜਾ ਨੰਬਰ ਮੌਜੂਦਾ ਵਰਗ ਵਿੱਚ ਜਾ ਸਕਦਾ ਹੈ।"
-
-#: ../gnome-sudoku/src/lib/main.py:256
-msgid "_Fill"
-msgstr "ਭਰੋ(_F)"
-
-#: ../gnome-sudoku/src/lib/main.py:257
-msgid "Automatically fill in the current square if possible."
-msgstr "ਜੇ ਸੰਭਵ ਹੋਵੇ ਤਾਂ ਮੌਜੂਦਾ ਵਰਗ ਆਟੋਮੈਟਿਕ ਹੀ ਭਰੋ।"
-
-#: ../gnome-sudoku/src/lib/main.py:259
-msgid "Fill _all squares"
-msgstr "ਸਭ ਵਰਗ ਭਰੋ(_a)"
-
-#: ../gnome-sudoku/src/lib/main.py:260
-msgid "Automatically fill in all squares for which there is only one valid value."
-msgstr "ਸਭ ਵਰਗ ਆਟੋਮੈਟਿਕ ਹੀ ਭਰੋ, ਜਿੱਥੇ ਕਿ ਸਿਰਫ਼ ਇੱਕ ਹੀ ਮੁੱਲ ਹੋਵੇ।"
-
-#: ../gnome-sudoku/src/lib/main.py:264
-msgid "_Generate new puzzles"
-msgstr "ਨਵੀਂ ਬੁਝਾਰਤ ਪਾਓ(_G)"
-
-#: ../gnome-sudoku/src/lib/main.py:264
-msgid "Generate new puzzles."
-msgstr "ਨਵੀਂ ਬੁਝਾਰਤ ਪਾਓ।"
-
-#: ../gnome-sudoku/src/lib/main.py:266
-msgid "Puzzle _Statistics"
-msgstr "ਬੁਝਾਰਤ ਅੰਕੜੇ(_S)"
-
-#: ../gnome-sudoku/src/lib/main.py:267
-msgid "Show statistics about current puzzle"
-msgstr "ਮੌਜੂਦਾ ਬੁਝਾਰਤ ਬਾਰੇ ਅੰਕੜੇ ਵੇਖੋ"
-
-#: ../gnome-sudoku/src/lib/main.py:279
-msgid "_Always show hint"
-msgstr "ਹਮੇਸ਼ਾ ਇਸ਼ਾਰਾ ਵੇਖੋ(_A)"
-
-#: ../gnome-sudoku/src/lib/main.py:281
-msgid "Always show possible numbers in a square"
-msgstr "ਇੱਕ ਵਰਗ ਵਿੱਚ ਸੰਭਵ ਨੰਬਰ ਵੇਖੋ"
-
-#: ../gnome-sudoku/src/lib/main.py:285
-msgid "Warn about _unfillable squares"
-msgstr "ਨਾ-ਭਰੇ ਵਰਗ ਬਾਰੇ ਚੇਤਾਵਨੀ ਦਿਓ(_u)"
-
-#: ../gnome-sudoku/src/lib/main.py:287
-msgid "Warn about squares made unfillable by a move"
-msgstr "ਵਰਗ ਬਾਰੇ ਚੇਤਾਵਨੀ ਦਿਓ, ਜੇ ਇੱਕ ਚਾਲ ਨਾਲ ਨਾ ਭਰਿਆ ਜਾਵੇ"
-
-#: ../gnome-sudoku/src/lib/main.py:289
-msgid "_Track additions"
-msgstr "ਨਵੇਂ ਜੋੜੇ ਦਾ ਧਿਆਨ(_T)"
-
-#: ../gnome-sudoku/src/lib/main.py:291
-msgid "Mark new additions in a separate color so you can keep track of them."
-msgstr "ਨਵੀਂ ਜੋੜੇ ਇੱਕ ਵੱਖਰੇ ਰੰਗ ਨਾਲ ਵੇਖੋ ਤਾਂ ਕਿ ਤੁਸੀਂ ਉਨ੍ਹਾਂ ਦਾ ਧਿਆਨ ਰੱਖ ਸਕੋ।"
-
-#: ../gnome-sudoku/src/lib/main.py:294
-msgid "_Highlighter"
-msgstr "ਉਘਾੜਨ(_H)"
-
-#: ../gnome-sudoku/src/lib/main.py:295
-msgid "Highlight the current row, column and box"
-msgstr "ਮੌਜੂਦਾ ਕਤਾਰ, ਕਾਲਮ ਅਤੇ ਬਕਸਾ ਉਭਾਰੋ"
-
-#: ../gnome-sudoku/src/lib/main.py:296
-msgid "Generate new puzzles _while you play"
-msgstr "ਜਦੋਂ ਤੁਸੀਂ ਖੇਡਦੇ ਹੋ ਤਾਂ ਨਵੀਂ ਬੁਝਾਰਤ ਬਣਾਓ(_w)"
-
-#: ../gnome-sudoku/src/lib/main.py:298
-msgid ""
-"Generate new puzzles in the background while you play. This will "
-"automatically pause when the game goes into the background."
-msgstr ""
-"ਜਦੋਂ ਤੁਸੀਂ ਖੇਡ ਰਹੇ ਹੋ ਤਾਂ ਨਵੀਂ ਬੁਝਾਰਤ ਬੈਕਗਰਾਊਂਡ 'ਚ ਬਣਾਈ ਜਾਵੇ। ਇਹ ਆਟੋਮੈਟਿਕ ਹੀ ਰੁੱਕ ਜਾਵੇਗੀ, ਜਦੋਂ "
-"ਖੇਡ ਬੈਕਗਰਾਊਂਡ 'ਚ ਜਾਵੇਗੀ।"
-
-#: ../gnome-sudoku/src/lib/main.py:304
-msgid "_Edit"
-msgstr "ਸੋਧ(_E)"
-
-#: ../gnome-sudoku/src/lib/main.py:305
+#: ../gnome-sudoku/src/lib/main.py:235
 msgid "_Undo"
 msgstr "ਵਾਪਿਸ(_U)"
 
-#: ../gnome-sudoku/src/lib/main.py:305
+#: ../gnome-sudoku/src/lib/main.py:236
 msgid "Undo last action"
 msgstr "ਆਖਰੀ ਕਾਰਵਾਈ ਵਾਪਿਸ ਲਵੋ"
 
-#: ../gnome-sudoku/src/lib/main.py:306
+#: ../gnome-sudoku/src/lib/main.py:237
 msgid "_Redo"
 msgstr "ਮੁੜ ਵਾਪਿਸ(_R)"
 
-#: ../gnome-sudoku/src/lib/main.py:306
+#: ../gnome-sudoku/src/lib/main.py:238
 msgid "Redo last action"
 msgstr "ਆਖਰੀ ਕਾਰਵਾਈ ਮੁੜ-ਵਾਪਿਸ ਕਰੋ"
 
-#: ../gnome-sudoku/src/lib/main.py:307
-#: ../gnome-sudoku/src/lib/number_box.py:54
-msgid "_Clear"
-msgstr "ਸਾਫ਼ ਕਰੋ(_C)"
+#: ../gnome-sudoku/src/lib/main.py:239
+#| msgid "Puzzle _Statistics"
+msgid "Puzzle _Statistics..."
+msgstr "ਬੁਝਾਰਤ ਅੰਕੜੇ(_S)..."
 
-#: ../gnome-sudoku/src/lib/main.py:307
-msgid "Clear entries you've filled in"
-msgstr "ਇੰਦਰਾਜ਼, ਜੋ ਤੁਸੀਂ ਭਰੇ ਹਨ, ਸਾਫ਼ ਕਰੋ"
+#: ../gnome-sudoku/src/lib/main.py:240
+msgid "Show statistics about current puzzle"
+msgstr "ਮੌਜੂਦਾ ਬੁਝਾਰਤ ਬਾਰੇ ਅੰਕੜੇ ਵੇਖੋ"
 
-#: ../gnome-sudoku/src/lib/main.py:308
-msgid "Clear _Notes"
-msgstr "ਸੂਚਨਾ ਸਾਫ਼ ਕਰੋ(_N)"
+#: ../gnome-sudoku/src/lib/main.py:241
+#| msgid "Working..."
+msgid "_Print..."
+msgstr "ਪਰਿੰਟ ਕਰੋ(_P)..."
 
-#: ../gnome-sudoku/src/lib/main.py:308
-msgid "Clear notes and hints"
-msgstr "ਸੂਚਨਾ ਅਤੇ ਇਸ਼ਾਰੇ ਸਾਫ਼ ਕਰੋ"
+#: ../gnome-sudoku/src/lib/main.py:241
+msgid "Print current game"
+msgstr "ਮੌਜੂਦਾ ਖੇਡ ਪਰਿੰਟ ਕਰੋ"
 
-#: ../gnome-sudoku/src/lib/main.py:420
+#: ../gnome-sudoku/src/lib/main.py:242
+#| msgid "Print _Multiple Sudokus"
+msgid "Print _Multiple Sudokus..."
+msgstr "ਕਈ ਸੁਡੋਕੁ ਪਰਿੰਟ ਕਰੋ(_M)..."
+
+#: ../gnome-sudoku/src/lib/main.py:243
+msgid "Print more than one sudoku at a time."
+msgstr "ਇੱਕ ਸੁਡੋਕੁ ਇੱਕ ਸਮੇਂ ਇੱਕ ਤੋਂ ਵੱਧ ਵਾਰ ਪਰਿੰਟ ਕਰੋ।"
+
+#: ../gnome-sudoku/src/lib/main.py:244
+msgid "Close Sudoku"
+msgstr "Sudoku ਬੰਦ ਕਰੋ"
+
+#: ../gnome-sudoku/src/lib/main.py:247
+msgid "_Tools"
+msgstr "ਟੂਲ(_T)"
+
+#: ../gnome-sudoku/src/lib/main.py:248 ../libgames-support/games-stock.c:289
+msgid "_Hint"
+msgstr "ਇਸ਼ਾਰਾ(_H)"
+
+#: ../gnome-sudoku/src/lib/main.py:249
+msgid "Show a square that is easy to fill."
+msgstr "ਵਰਗ ਵੇਖੋ, ਜੋ ਕਿ ਸੌਖੀ ਤਰ੍ਹਾਂ ਭਰਿਆ ਜਾਵੇ।"
+
+#: ../gnome-sudoku/src/lib/main.py:250
+#| msgid "Clear _Notes"
+msgid "Clear _Top Notes"
+msgstr "ਉਤਲੇ ਨੋਟਿਸ ਸਾਫ਼ ਕਰੋ(_T)"
+
+#: ../gnome-sudoku/src/lib/main.py:251
+msgid "Clear all of the top notes"
+msgstr "ਸਭ ਉਤਲੇ ਨੋਟਿਸ ਸਾਫ਼ ਕਰੋ"
+
+#: ../gnome-sudoku/src/lib/main.py:252
+#| msgid "Clear _Notes"
+msgid "Clear _Bottom Notes"
+msgstr "ਹੇਠਲੇ ਨੋਟਿਸ ਸਾਫ਼ ਕਰੋ(_B)"
+
+#: ../gnome-sudoku/src/lib/main.py:253
+msgid "Clear all of the bottom notes"
+msgstr "ਸਭ ਹੇਠਲੇ ਨੋਟਿਸ ਸਾਫ਼ ਕਰੋ"
+
+#: ../gnome-sudoku/src/lib/main.py:261
+msgid "Show _Possible Numbers"
+msgstr "ਸੰਭਵ ਨੰਬਰ ਵੇਖੋ(_P)"
+
+#: ../gnome-sudoku/src/lib/main.py:263
+msgid "Always show possible numbers in a square"
+msgstr "ਇੱਕ ਵਰਗ ਵਿੱਚ ਸੰਭਵ ਨੰਬਰ ਵੇਖੋ"
+
+#: ../gnome-sudoku/src/lib/main.py:267
+#| msgid "Warn about _unfillable squares"
+msgid "Warn About _Unfillable Squares"
+msgstr "ਨਾ-ਭਰੇ ਵਰਗ ਬਾਰੇ ਚੇਤਾਵਨੀ ਦਿਓ(_U)"
+
+#: ../gnome-sudoku/src/lib/main.py:269
+msgid "Warn about squares made unfillable by a move"
+msgstr "ਵਰਗ ਬਾਰੇ ਚੇਤਾਵਨੀ ਦਿਓ, ਜੇ ਇੱਕ ਚਾਲ ਨਾਲ ਨਾ ਭਰਿਆ ਜਾਵੇ"
+
+#: ../gnome-sudoku/src/lib/main.py:271
+#| msgid "_Track additions"
+msgid "_Track Additions"
+msgstr "ਜੋੜ ਦਾ ਧਿਆਨ(_T)"
+
+#: ../gnome-sudoku/src/lib/main.py:273
+msgid "Mark new additions in a separate color so you can keep track of them."
+msgstr "ਨਵੀਂ ਜੋੜੇ ਇੱਕ ਵੱਖਰੇ ਰੰਗ ਨਾਲ ਵੇਖੋ ਤਾਂ ਕਿ ਤੁਸੀਂ ਉਨ੍ਹਾਂ ਦਾ ਧਿਆਨ ਰੱਖ ਸਕੋ।"
+
+#: ../gnome-sudoku/src/lib/main.py:276
+msgid "_Highlighter"
+msgstr "ਉਘਾੜਨ(_H)"
+
+#: ../gnome-sudoku/src/lib/main.py:277
+msgid "Highlight the current row, column and box"
+msgstr "ਮੌਜੂਦਾ ਕਤਾਰ, ਕਾਲਮ ਅਤੇ ਬਕਸਾ ਉਭਾਰੋ"
+
+#: ../gnome-sudoku/src/lib/main.py:396
 #, python-format
-msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
-msgstr "ਤੁਸੀਂ %(totalTime)s ਵਿੱਚ ਬੁਝਾਰਤ ਪੂਰੀ ਕੀਤੀ (%(activeTime)s ਐਕਟਿਵ)"
+#| msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
+msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)."
+msgstr "ਤੁਸੀਂ %(totalTime)s ਵਿੱਚ ਬੁਝਾਰਤ ਪੂਰੀ ਕੀਤੀ (%(activeTime)s ਐਕਟਿਵ) ਹੈ।"
 
-#: ../gnome-sudoku/src/lib/main.py:424
+#: ../gnome-sudoku/src/lib/main.py:400
 #, python-format
-msgid "You got %(n)s hint"
-msgid_plural "You got %(n)s hints"
-msgstr[0] "ਤੁਹਾਨੂੰ %(n)s ਹਿੰਟ ਮਿਲਿਆ"
-msgstr[1] "ਤੁਹਾਨੂੰ %(n)s ਹਿੰਟ ਮਿਲੇ"
+#| msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)"
+msgid "You completed the puzzle in %(totalTime)s."
+msgstr "ਤੁਸੀਂ %(totalTime)s ਵਿੱਚ ਬੁਝਾਰਤ ਪੂਰੀ ਕੀਤੀ ਹੈ।"
 
-#: ../gnome-sudoku/src/lib/main.py:427
+#: ../gnome-sudoku/src/lib/main.py:402
+#, python-format
+#| msgid "You got %(n)s hint"
+#| msgid_plural "You got %(n)s hints"
+msgid "You got %(n)s hint."
+msgid_plural "You got %(n)s hints."
+msgstr[0] "ਤੁਹਾਨੂੰ %(n)s ਹਿੰਟ ਮਿਲਿਆ।"
+msgstr[1] "ਤੁਹਾਨੂੰ %(n)s ਹਿੰਟ ਮਿਲੇ।"
+
+#: ../gnome-sudoku/src/lib/main.py:405
 #, python-format
 msgid "You had %(n)s impossibility pointed out."
 msgid_plural "You had %(n)s impossibilities pointed out."
 msgstr[0] "ਤੁਸੀਂ %(n)s ਸੰਭਵ ਹੱਲ ਕੱਢ ਚੁੱਕੇ ਹੋ।"
 msgstr[1] "ਤੁਸੀਂ %(n)s ਸੰਭਵ ਹੱਲ ਕੱਢ ਚੁੱਕੇ ਹੋ।"
 
-#: ../gnome-sudoku/src/lib/main.py:432
-#, python-format
-msgid "You used the auto-fill %(n)s time"
-msgid_plural "You used the auto-fill %(n)s times"
-msgstr[0] "ਤੁਸੀਂ ਆਟੋਮੈਟਿਕ ਭਰੋ %(n)s ਵਾਰ ਵਰਤਿਆ।"
-msgstr[1] "ਤੁਸੀਂ ਆਟੋਮੈਟਿਕ ਭਰੋ %(n)s ਵਾਰ ਵਰਤਿਆ।"
-
-#: ../gnome-sudoku/src/lib/main.py:456
+#: ../gnome-sudoku/src/lib/main.py:428
 msgid "Save this game before starting new one?"
 msgstr "ਕੀ ਨਵੀਂ ਖੇਡ ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕੀ ਇਹ ਖੇਡ ਸੰਭਾਲਣੀ ਹੈ?"
 
-#: ../gnome-sudoku/src/lib/main.py:457
+#: ../gnome-sudoku/src/lib/main.py:429
 msgid "_Save game for later"
 msgstr "ਖੇਡ ਬਾਅਦ 'ਚ ਸੰਭਾਲੋ(_S)"
 
-#: ../gnome-sudoku/src/lib/main.py:458
+#: ../gnome-sudoku/src/lib/main.py:430
 msgid "_Abandon game"
 msgstr "ਖੇਡ ਛੱਡੋ(_A)"
 
-#: ../gnome-sudoku/src/lib/main.py:652
-#, python-format
-msgid "Playing %(difficulty)s puzzle."
-msgstr "%(difficulty)s ਬੁਝਾਰਤ ਖੇਡੀ ਜਾ ਰਹੀ ਹੈ।"
-
-#: ../gnome-sudoku/src/lib/main.py:668
+#: ../gnome-sudoku/src/lib/main.py:646
 msgid "Puzzle Information"
 msgstr "ਬੁਝਾਰਤ ਜਾਣਕਾਰੀ"
 
-#: ../gnome-sudoku/src/lib/main.py:669
+#: ../gnome-sudoku/src/lib/main.py:647
 msgid "There is no current puzzle."
 msgstr "ਕੋਈ ਵੀ ਬੁਝਾਰਤ ਨਹੀਂ ਹੈ।"
 
-#: ../gnome-sudoku/src/lib/main.py:674
+#: ../gnome-sudoku/src/lib/main.py:652
 msgid "Calculated difficulty: "
 msgstr "ਔਖਾਈ ਗਿਣੀ ਜਾਂਦੀ ਹੈ: "
 
-#: ../gnome-sudoku/src/lib/main.py:678
+#: ../gnome-sudoku/src/lib/main.py:656
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "ਹਟਾਉਣ ਨਾਲ ਤਰੁੰਤ ਭਰਨਯੋਗ ਚਾਲਾਂ ਦੀ ਗਿਣਤੀ: "
 
-#: ../gnome-sudoku/src/lib/main.py:681
+#: ../gnome-sudoku/src/lib/main.py:659
 msgid "Number of moves instantly fillable by filling: "
 msgstr "ਭਰਨ ਨਾਲ ਤਰੁੰਤ ਭਰਨਯੋਗ ਚਾਲਾਂ ਦੀ ਗਿਣਤੀ: "
 
-#: ../gnome-sudoku/src/lib/main.py:684
+#: ../gnome-sudoku/src/lib/main.py:662
 msgid "Amount of trial-and-error required to solve: "
 msgstr "ਹੱਲ ਕਰਨ ਲਈ ਕੋਸ਼ਿਸ਼ ਅਤੇ ਗਲਤੀ ਦੀ ਮਾਤਰਾ: "
 
-#: ../gnome-sudoku/src/lib/main.py:687 ../gnome-sudoku/src/lib/main.py:688
+#: ../gnome-sudoku/src/lib/main.py:665 ../gnome-sudoku/src/lib/main.py:666
 msgid "Puzzle Statistics"
 msgstr "ਬੁਝਾਰਤ ਅੰਕੜੇ"
 
-#. Our initial row...
+#: ../gnome-sudoku/src/lib/main.py:757
+msgid "Untracked"
+msgstr "ਨਾ-ਟਰੈਕ ਕੀਤੇ"
+
+#: ../gnome-sudoku/src/lib/main.py:766
+#| msgid "_Redo Move"
+msgid "_Remove"
+msgstr "ਹਟਾਓ(_R)"
+
+#: ../gnome-sudoku/src/lib/main.py:767
+#| msgid "Clear all moves tracked by selected tracker."
+msgid "Delete selected tracker."
+msgstr "ਚੁਣਿਆ ਟਰੈਕਰ ਹਟਾਓ।"
+
+#: ../gnome-sudoku/src/lib/main.py:773
+msgid "Hide current tracker entries."
+msgstr "ਮੌਜੂਦਾ ਟਰੈਕਰ ਐਂਟਰੀਆਂ ਓਹਲੇ।"
+
+#: ../gnome-sudoku/src/lib/main.py:778
+msgid "A_pply"
+msgstr "ਲਾਗੂ ਕਰੋ(_p)"
+
 #: ../gnome-sudoku/src/lib/main.py:779
-msgid "No Tracker"
-msgstr "ਕੋਈ ਟਰੈਕਰ ਨਹੀਂ"
+#| msgid "Clear all moves tracked by selected tracker."
+msgid "Apply all tracked values and remove the tracker."
+msgstr "ਸਭ ਟਰੈਕ ਕੀਤੇ ਮੁੱਲ ਲਾਗੂ ਕਰੋ ਤੇ ਟਰੈਕਰ ਹਟਾਓ।"
 
-#: ../gnome-sudoku/src/lib/main.py:789
-msgid "Clear all moves tracked by selected tracker."
-msgstr "ਚੁਣੇ ਟਰੈਕਰ ਰਾਹੀਂ ਟਰੈਕ ਕੀਤੀਆਂ ਸਭ ਚਾਲਾਂ ਸਾਫ਼ ਕਰੋ।"
-
-#: ../gnome-sudoku/src/lib/main.py:793
-msgid "_Clear Others"
-msgstr "ਹੋਰ ਸਾਫ਼ ਕਰੋ(_C)"
-
-#: ../gnome-sudoku/src/lib/main.py:795
-msgid "Clear all moves not tracked by selected tracker."
-msgstr "ਚੁਣੇ ਟਰੈਕਰ ਰਾਹੀਂ ਨਾ ਟਰੈਕ ਕੀਤੀਆਂ ਸਭ ਚਾਲਾਂ ਸਾਫ਼ ਕਰੋ।"
-
-#: ../gnome-sudoku/src/lib/main.py:820
+#: ../gnome-sudoku/src/lib/main.py:815
 #, python-format
 msgid "Tracker %s"
 msgstr "ਟਰੈਕਰ %s"
 
-#: ../gnome-sudoku/src/lib/game_selector.py:150
+#: ../gnome-sudoku/src/lib/game_selector.py:157
 #, python-format
-msgid "Last Played %(timeAgo)s"
+#| msgid "Last Played %(timeAgo)s"
+msgid "Last played %(timeAgo)s"
 msgstr "ਆਖਰੀ %(timeAgo)s ਪਹਿਲਾਂ ਖੇਡੀ"
 
-#: ../gnome-sudoku/src/lib/game_selector.py:151
+#: ../gnome-sudoku/src/lib/game_selector.py:158
 #, python-format
 msgid "%(level)s puzzle"
 msgstr "%(level)s ਬੁਝਾਰਤ"
 
-#: ../gnome-sudoku/src/lib/game_selector.py:152
+#: ../gnome-sudoku/src/lib/game_selector.py:159
 #, python-format
 msgid "Played for %(duration)s"
 msgstr "%(duration)s ਟੈਮ ਲਈ ਖੇਡੀ"
 
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:114
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:125
-msgid "Working..."
-msgstr "ਜਾਰੀ ਹੈ..."
-
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:155
-#, python-format
-msgid "%(n)s puzzle"
-msgid_plural "%(n)s puzzles"
-msgstr[0] "%(n)s ਬੁਝਾਰਤ"
-msgstr[1] "%(n)s ਬੁਝਾਰਤਾਂ"
-
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:180
-msgid "Stopped"
-msgstr "ਰੁਕੀ"
-
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:195
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:205
-#, python-format
-msgid "Generated %(n)s out of %(total)s puzzle"
-msgid_plural "Generated %(n)s out of %(total)s puzzles"
-msgstr[0] "%(total)s ਬੁਝਾਰਤਾਂ ਵਿੱਚ %(n)s ਬਣਾਓ"
-msgstr[1] "%(total)s ਬੁਝਾਰਤਾਂ ਵਿੱਚ %(n)s ਬਣਾਓ"
-
-#: ../gnome-sudoku/src/lib/sudoku_generator_gui.py:213
-#, python-format
-msgid "Generated %(n)s puzzle"
-msgid_plural "Generated %(n)s puzzles"
-msgstr[0] "%(n)s ਬੁਝਾਰਤ ਤਿਆਰ ਕੀਤੀ"
-msgstr[1] "%(n)s ਬੁਝਾਰਤਾਂ ਤਿਆਰ ਕੀਤੀਆਂ"
-
-#: ../gnome-sudoku/src/lib/sudoku.py:513
-msgid "Very Hard"
+#: ../gnome-sudoku/src/lib/sudoku.py:687
+#| msgid "Very Hard"
+msgid "Very hard"
 msgstr "ਬਹੁਤ ਔਖੀ"
 
-#: ../gnome-sudoku/src/lib/sudoku.py:515
+#: ../gnome-sudoku/src/lib/sudoku.py:689
 msgid "Medium"
 msgstr "ਮੱਧਮ"
 
-#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:159
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:158
 msgid "Do you really want to do this?"
 msgstr "ਕੀ ਤੁਸੀਂ ਇਹ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:193
+#: ../gnome-sudoku/src/lib/gtk_goodies/dialog_extras.py:192
 msgid "Don't ask me this again."
 msgstr "ਮੈਨੂੰ ਇਹ ਮੁੜ ਨਾ ਪੁੱਛੋ।"
 
@@ -6613,54 +6454,58 @@ msgstr "%A %I:%M %p"
 msgid "%B %e"
 msgstr "%e %B"
 
-#: ../gnomine/gnomine.c:52 ../gnomine/gnomine.desktop.in.in.h:2
+#: ../gnome-sudoku/src/lib/number_box.py:54
+msgid "_Clear"
+msgstr "ਸਾਫ਼ ਕਰੋ(_C)"
+
+#: ../gnomine/gnomine.c:54 ../gnomine/gnomine.desktop.in.in.h:2
 msgid "Mines"
 msgstr "ਸੁਰੰਗਾਂ"
 
-#: ../gnomine/gnomine.c:105
+#: ../gnomine/gnomine.c:104
 msgctxt "board size"
 msgid "Custom"
 msgstr "ਕਸਟਮ"
 
-#: ../gnomine/gnomine.c:171
+#: ../gnomine/gnomine.c:170
 #, c-format
 msgid "Flags: %d/%d"
 msgstr "ਨਿਸ਼ਾਨ: %d/%d"
 
-#: ../gnomine/gnomine.c:199
+#: ../gnomine/gnomine.c:198
 msgid "The Mines Have Been Cleared!"
 msgstr "ਸੁਰੰਗਾਂ ਨੂੰ ਹਟਾਇਆ ਜਾ ਚੁੱਕਾ ਹੈ!"
 
-#: ../gnomine/gnomine.c:215
+#: ../gnomine/gnomine.c:214
 msgid "Mines Scores"
 msgstr "ਸੁਰੰਗ ਅੰਕ"
 
-#: ../gnomine/gnomine.c:218 ../gnotravex/gnotravex.c:1235
+#: ../gnomine/gnomine.c:217 ../gnotravex/gnotravex.c:1114
 #: ../swell-foop/src/Score.js:56
 msgid "Size:"
 msgstr "ਅਕਾਰ:"
 
-#: ../gnomine/gnomine.c:326
+#: ../gnomine/gnomine.c:322
 msgid "Click a square, any square"
 msgstr "ਵਰਗ ਉੱਤੇ ਦਬਾਓ, ਕੋਈ ਵਰਗ"
 
-#: ../gnomine/gnomine.c:328
+#: ../gnomine/gnomine.c:324
 msgid "Maybe they're all mines ..."
 msgstr "ਹੋ ਸਕਦਾ ਉਹ ਸਾਰੀਆਂ ਸੁਰੰਗਾਂ ਹੋਣ..."
 
-#: ../gnomine/gnomine.c:456
+#: ../gnomine/gnomine.c:446
 msgid "Resizing and SVG support:"
 msgstr "ਮੁੜ ਆਕਾਰ ਅਤੇ SVG ਮੱਦਦ:"
 
-#: ../gnomine/gnomine.c:463
+#: ../gnomine/gnomine.c:453
 msgid "Faces:"
 msgstr "ਚਿਹਰੇ:"
 
-#: ../gnomine/gnomine.c:466
+#: ../gnomine/gnomine.c:456
 msgid "Graphics:"
 msgstr "ਗਰਾਫਿਕਸ:"
 
-#: ../gnomine/gnomine.c:482
+#: ../gnomine/gnomine.c:472
 msgid ""
 "The popular logic puzzle minesweeper. Clear mines from a board using hints "
 "from squares you have already uncovered.\n"
@@ -6672,77 +6517,77 @@ msgstr ""
 "\n"
 "ਮਾਈਨ ਗਨੋਮ ਖੇਡਾਂ ਦਾ ਭਾਗ ਹੈ।"
 
-#: ../gnomine/gnomine.c:696
+#: ../gnomine/gnomine.c:635
 msgid "Field Size"
 msgstr "ਖੇਤਰ ਆਕਾਰ"
 
-#: ../gnomine/gnomine.c:719
+#: ../gnomine/gnomine.c:658
 msgid "Custom Size"
 msgstr "ਸੋਧਿਆ ਅਕਾਰ"
 
-#: ../gnomine/gnomine.c:726
+#: ../gnomine/gnomine.c:665
 msgid "_Number of mines:"
 msgstr "ਸੁਰੰਗਾਂ ਦੀ ਗਿਣਤੀ(_N):"
 
-#: ../gnomine/gnomine.c:739
+#: ../gnomine/gnomine.c:678
 msgid "_Horizontal:"
 msgstr "ਲੇਟਵਾਂ(_H):"
 
-#: ../gnomine/gnomine.c:751
+#: ../gnomine/gnomine.c:690
 msgid "_Vertical:"
 msgstr "ਲੰਬਕਾਰੀ(_V):"
 
-#: ../gnomine/gnomine.c:768
+#: ../gnomine/gnomine.c:707
 msgid "Flags"
 msgstr "ਫਲੈਗ਼"
 
-#: ../gnomine/gnomine.c:771
+#: ../gnomine/gnomine.c:710
 msgid "_Use \"I'm not sure\" flags"
 msgstr "\"ਮੈਨੂੰ ਯਕੀਨੀ ਨਹੀਂ\" ਨਿਸ਼ਾਨ ਵਰਤੋਂ(_U)"
 
-#: ../gnomine/gnomine.c:782
+#: ../gnomine/gnomine.c:721
 msgid "Warnings"
 msgstr "ਚੇਤਾਵਨੀਆਂ"
 
-#: ../gnomine/gnomine.c:785
+#: ../gnomine/gnomine.c:724
 msgid "_Use \"Too many flags\" warning"
 msgstr "\"ਬਹੁਤ ਸਾਰੇ ਨਿਸ਼ਾਨ\" ਚੇਤਾਵਨੀ ਵਰਤੋਂ(_U)"
 
-#: ../gnomine/gnomine.c:796
+#: ../gnomine/gnomine.c:735
 msgid "Mines Preferences"
 msgstr "ਸੁਰੰਗ ਪਸੰਦ"
 
-#: ../gnomine/gnomine.c:1003
+#: ../gnomine/gnomine.c:929
 msgid "Width of grid"
 msgstr "ਗਰਿੱਡ ਦੀ ਚੌੜਾਈ"
 
-#: ../gnomine/gnomine.c:1004
+#: ../gnomine/gnomine.c:930
 msgid "Height of grid"
 msgstr "ਗਰਿੱਡ ਦੀ ਉਚਾਈ"
 
-#: ../gnomine/gnomine.c:1006
+#: ../gnomine/gnomine.c:932
 msgid "Number of mines"
 msgstr "ਸੁਰੰਗਾਂ ਦੀ ਗਿਣਤੀ"
 
-#: ../gnomine/gnomine.c:1009 ../gnomine/gnomine.schemas.in.h:8
+#: ../gnomine/gnomine.c:935 ../gnomine/gnomine.schemas.in.h:8
 msgid "Size of the board (0-2 = small-large, 3=custom)"
 msgstr "ਬੋਰਡ ਦਾ ਆਕਾਰ (0-2=ਛੋਟਾ-ਵੱਡਾ, 3=ਪਸੰਦੀਦਾ)"
 
-#: ../gnomine/gnomine.c:1010 ../gnotravex/gnotravex.c:399
-#: ../gnotski/gnotski.c:466 ../iagno/gnothello.c:149
+#: ../gnomine/gnomine.c:936 ../gnotravex/gnotravex.c:262
+#: ../gnotski/gnotski.c:458 ../iagno/gnothello.c:149
 msgid "X location of window"
 msgstr "ਵਿੰਡੋ ਦਾ X ਟਿਕਾਣਾ"
 
-#: ../gnomine/gnomine.c:1012 ../gnotravex/gnotravex.c:401
-#: ../gnotski/gnotski.c:468 ../iagno/gnothello.c:151
+#: ../gnomine/gnomine.c:938 ../gnotravex/gnotravex.c:264
+#: ../gnotski/gnotski.c:460 ../iagno/gnothello.c:151
 msgid "Y location of window"
 msgstr "ਵਿੰਡੋ ਦਾ Y ਟਿਕਾਣਾ"
 
-#: ../gnomine/gnomine.c:1156
+#: ../gnomine/gnomine.c:1076
 msgid "Press to Resume"
 msgstr "ਮੁੜ-ਪਰਾਪਤ ਕਰਨ ਲਈ ਦੱਬੋ"
 
-#: ../gnomine/gnomine.c:1190
+#: ../gnomine/gnomine.c:1110
 msgid "Time: "
 msgstr "ਸਮਾਂ: "
 
@@ -6816,199 +6661,151 @@ msgstr ""
 msgid "Could not load images"
 msgstr "ਚਿੱਤਰ ਲੋਡ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕੇ"
 
-#: ../gnotravex/gnotravex.c:47 ../gnotravex/gnotravex.desktop.in.in.h:2
+#: ../gnotravex/gnotravex.c:46 ../gnotravex/gnotravex.desktop.in.in.h:2
 msgid "Tetravex"
 msgstr "ਟੈਟਰਾਵੈਕਸ"
 
+#: ../gnotravex/gnotravex.c:116
+msgid "2×2"
+msgstr "੨×੨"
+
+#: ../gnotravex/gnotravex.c:117
+msgid "3×3"
+msgstr "੩×੩"
+
+#: ../gnotravex/gnotravex.c:118
+msgid "4×4"
+msgstr "੪×੪"
+
+#: ../gnotravex/gnotravex.c:119
+msgid "5×5"
+msgstr "੫×੫"
+
+#: ../gnotravex/gnotravex.c:120
+msgid "6×6"
+msgstr "੬×੬"
+
+#: ../gnotravex/gnotravex.c:199
+msgid "_2×2"
+msgstr "_2×2"
+
+#: ../gnotravex/gnotravex.c:199
+msgid "Play on a 2×2 board"
+msgstr "2×2 ਬੋਰਡ ਉੱਤੇ ਖੇਡੋ"
+
+#: ../gnotravex/gnotravex.c:201
+msgid "_3×3"
+msgstr "_3×3"
+
+#: ../gnotravex/gnotravex.c:201
+msgid "Play on a 3×3 board"
+msgstr "3×3 ਬੋਰਡ ਉੱਤੇ ਖੇਡੋ"
+
+#: ../gnotravex/gnotravex.c:203
+msgid "_4×4"
+msgstr "_4×4"
+
+#: ../gnotravex/gnotravex.c:203
+msgid "Play on a 4×4 board"
+msgstr "4×4 ਬੋਰਡ ਉੱਤੇ ਖੇਡੋ"
+
+#: ../gnotravex/gnotravex.c:205
+msgid "_5×5"
+msgstr "_5×5"
+
+#: ../gnotravex/gnotravex.c:205
+msgid "Play on a 5×5 board"
+msgstr "5×5 ਬੋਰਡ ਉੱਤੇ ਖੇਡੋ"
+
+#: ../gnotravex/gnotravex.c:207
+msgid "_6×6"
+msgstr "_6×6"
+
+#: ../gnotravex/gnotravex.c:207
+msgid "Play on a 6×6 board"
+msgstr "6×6 ਬੋਰਡ ਉੱਤੇ ਖੇਡੋ"
+
+#: ../gnotravex/gnotravex.c:266
+msgid "Size of board (2-6)"
+msgstr "ਬੋਰਡ ਦਾ ਆਕਾਰ (2-6)"
+
+#: ../gnotravex/gnotravex.c:267
+msgid "SIZE"
+msgstr "ਆਕਾਰ"
+
 #. Translators: in-game numbers, replaceable with single-character local ideograms
-#: ../gnotravex/gnotravex.c:68
+#: ../gnotravex/gnotravex.c:460
 msgctxt "number"
 msgid "0"
 msgstr "੦"
 
-#: ../gnotravex/gnotravex.c:69
+#: ../gnotravex/gnotravex.c:461
 msgctxt "number"
 msgid "1"
 msgstr "੧(1)"
 
-#: ../gnotravex/gnotravex.c:70
+#: ../gnotravex/gnotravex.c:462
 msgctxt "number"
 msgid "2"
 msgstr "੨(2)"
 
-#: ../gnotravex/gnotravex.c:71
+#: ../gnotravex/gnotravex.c:463
 msgctxt "number"
 msgid "3"
 msgstr "੩(3)"
 
-#: ../gnotravex/gnotravex.c:72
+#: ../gnotravex/gnotravex.c:464
 msgctxt "number"
 msgid "4"
 msgstr "੪(4)"
 
-#: ../gnotravex/gnotravex.c:73
+#: ../gnotravex/gnotravex.c:465
 msgctxt "number"
 msgid "5"
 msgstr "੫(5)"
 
-#: ../gnotravex/gnotravex.c:74
+#: ../gnotravex/gnotravex.c:466
 msgctxt "number"
 msgid "6"
 msgstr "੬(6)"
 
-#: ../gnotravex/gnotravex.c:75
+#: ../gnotravex/gnotravex.c:467
 msgctxt "number"
 msgid "7"
 msgstr "੭(7)"
 
-#: ../gnotravex/gnotravex.c:76
+#: ../gnotravex/gnotravex.c:468
 msgctxt "number"
 msgid "8"
 msgstr "੮(8)"
 
-#: ../gnotravex/gnotravex.c:77
+#: ../gnotravex/gnotravex.c:469
 msgctxt "number"
 msgid "9"
 msgstr "੯(9)"
 
-#: ../gnotravex/gnotravex.c:87
-msgid "2×2"
-msgstr "੨×੨"
-
-#: ../gnotravex/gnotravex.c:88
-msgid "3×3"
-msgstr "੩×੩"
-
-#: ../gnotravex/gnotravex.c:89
-msgid "4×4"
-msgstr "੪×੪"
-
-#: ../gnotravex/gnotravex.c:90
-msgid "5×5"
-msgstr "੫×੫"
-
-#: ../gnotravex/gnotravex.c:91
-msgid "6×6"
-msgstr "੬×੬"
-
-#: ../gnotravex/gnotravex.c:306
-msgid "_Size"
-msgstr "ਅਕਾਰ(_S)"
-
-#: ../gnotravex/gnotravex.c:315
-msgid "Sol_ve"
-msgstr "ਹੱਲ(_v)"
-
-#: ../gnotravex/gnotravex.c:315
-msgid "Solve the game"
-msgstr "ਖੇਡ ਦਾ ਹੱਲ ਲੱਭੋ"
-
-#: ../gnotravex/gnotravex.c:324
-msgid "_Up"
-msgstr "ਉੱਤੇ(_U)"
-
-#: ../gnotravex/gnotravex.c:325
-msgid "Move the pieces up"
-msgstr "ਟੁਕੜੇ ਉੱਤੇ ਲਿਜਾਓ"
-
-#: ../gnotravex/gnotravex.c:326
-msgid "_Left"
-msgstr "ਖੱਬੇ(_L)"
-
-#: ../gnotravex/gnotravex.c:327
-msgid "Move the pieces left"
-msgstr "ਟੁਕੜੇ ਖੱਬੇ ਪਾਸੇ ਲਿਜਾਓ"
-
-#: ../gnotravex/gnotravex.c:328
-msgid "_Right"
-msgstr "ਸੱਜੇ(_R)"
-
-#: ../gnotravex/gnotravex.c:329
-msgid "Move the pieces right"
-msgstr "ਟੁਕੜੇ ਸੱਜੇ ਪਾਸੇ ਲਿਜਾਓ"
-
-#: ../gnotravex/gnotravex.c:330
-msgid "_Down"
-msgstr "ਹੇਠਾਂ(_D)"
-
-#: ../gnotravex/gnotravex.c:331
-msgid "Move the pieces down"
-msgstr "ਟੁਕੜੇ ਹੇਠਾਂ ਲਿਜਾਓ"
-
-#: ../gnotravex/gnotravex.c:337
-msgid "_2×2"
-msgstr "_2×2"
-
-#: ../gnotravex/gnotravex.c:337
-msgid "Play on a 2×2 board"
-msgstr "2×2 ਬੋਰਡ ਉੱਤੇ ਖੇਡੋ"
-
-#: ../gnotravex/gnotravex.c:339
-msgid "_3×3"
-msgstr "_3×3"
-
-#: ../gnotravex/gnotravex.c:339
-msgid "Play on a 3×3 board"
-msgstr "3×3 ਬੋਰਡ ਉੱਤੇ ਖੇਡੋ"
-
-#: ../gnotravex/gnotravex.c:341
-msgid "_4×4"
-msgstr "_4×4"
-
-#: ../gnotravex/gnotravex.c:341
-msgid "Play on a 4×4 board"
-msgstr "4×4 ਬੋਰਡ ਉੱਤੇ ਖੇਡੋ"
-
-#: ../gnotravex/gnotravex.c:343
-msgid "_5×5"
-msgstr "_5×5"
-
-#: ../gnotravex/gnotravex.c:343
-msgid "Play on a 5×5 board"
-msgstr "5×5 ਬੋਰਡ ਉੱਤੇ ਖੇਡੋ"
-
-#: ../gnotravex/gnotravex.c:345
-msgid "_6×6"
-msgstr "_6×6"
-
-#: ../gnotravex/gnotravex.c:345
-msgid "Play on a 6×6 board"
-msgstr "6×6 ਬੋਰਡ ਉੱਤੇ ਖੇਡੋ"
-
-#: ../gnotravex/gnotravex.c:350
-msgid "Tile _Colours"
-msgstr "ਟਾਇਲ ਰੰਗ(_C)"
-
-#: ../gnotravex/gnotravex.c:403
-msgid "Size of board (2-6)"
-msgstr "ਬੋਰਡ ਦਾ ਆਕਾਰ (2-6)"
-
-#: ../gnotravex/gnotravex.c:404
-msgid "SIZE"
-msgstr "ਆਕਾਰ"
-
-#: ../gnotravex/gnotravex.c:1117
-msgid "Puzzle solved! Well done!"
-msgstr "ਸਮੱਸਿਆ ਹੱਲ ਹੋਈ! ਸ਼ਾਬਾਸ਼!"
-
-#: ../gnotravex/gnotravex.c:1119
-msgid "Puzzle solved!"
-msgstr "ਸਮੱਸਿਆ ਹੱਲ ਹੋਈ!"
-
-#: ../gnotravex/gnotravex.c:1233
-msgid "Tetravex Scores"
-msgstr "ਟੈਟਰਾਵੈਕਸ ਸਕਰੋ"
-
-#: ../gnotravex/gnotravex.c:1499 ../mahjongg/mahjongg.c:977
+#: ../gnotravex/gnotravex.c:939 ../mahjongg/mahjongg.c:943
 msgid "Game paused"
 msgstr "ਖੇਡ ਵਿਰਾਮ ਹੈ"
 
-#: ../gnotravex/gnotravex.c:1629
+#: ../gnotravex/gnotravex.c:1002
 #, c-format
 msgid "Playing %d×%d board"
 msgstr "ਬੋਰਡ %d×%d ਖੇਡਣਾ"
 
-#: ../gnotravex/gnotravex.c:1911
+#: ../gnotravex/gnotravex.c:1112
+msgid "Tetravex Scores"
+msgstr "ਟੈਟਰਾਵੈਕਸ ਸਕਰੋ"
+
+#: ../gnotravex/gnotravex.c:1176
+msgid "Puzzle solved! Well done!"
+msgstr "ਸਮੱਸਿਆ ਹੱਲ ਹੋਈ! ਸ਼ਾਬਾਸ਼!"
+
+#: ../gnotravex/gnotravex.c:1178
+msgid "Puzzle solved!"
+msgstr "ਸਮੱਸਿਆ ਹੱਲ ਹੋਈ!"
+
+#: ../gnotravex/gnotravex.c:1632
 msgid ""
 "GNOME Tetravex is a simple puzzle where pieces must be positioned so that "
 "the same numbers are touching each other.\n"
@@ -7019,29 +6816,65 @@ msgstr ""
 "\n"
 "ਟੈਟਰਾਵਿਕਸ ਗਨੋਮ ਖੇਡਾਂ ਦਾ ਭਾਗ ਹੈ।"
 
+#: ../gnotravex/gnotravex.c:1755
+msgid "_Size"
+msgstr "ਅਕਾਰ(_S)"
+
+#: ../gnotravex/gnotravex.c:1760
+msgid "Sol_ve"
+msgstr "ਹੱਲ(_v)"
+
+#: ../gnotravex/gnotravex.c:1760
+msgid "Solve the game"
+msgstr "ਖੇਡ ਦਾ ਹੱਲ ਲੱਭੋ"
+
+#: ../gnotravex/gnotravex.c:1764
+msgid "_Up"
+msgstr "ਉੱਤੇ(_U)"
+
+#: ../gnotravex/gnotravex.c:1765
+msgid "Move the pieces up"
+msgstr "ਟੁਕੜੇ ਉੱਤੇ ਲਿਜਾਓ"
+
+#: ../gnotravex/gnotravex.c:1766
+msgid "_Left"
+msgstr "ਖੱਬੇ(_L)"
+
+#: ../gnotravex/gnotravex.c:1767
+msgid "Move the pieces left"
+msgstr "ਟੁਕੜੇ ਖੱਬੇ ਪਾਸੇ ਲਿਜਾਓ"
+
+#: ../gnotravex/gnotravex.c:1768
+msgid "_Right"
+msgstr "ਸੱਜੇ(_R)"
+
+#: ../gnotravex/gnotravex.c:1769
+msgid "Move the pieces right"
+msgstr "ਟੁਕੜੇ ਸੱਜੇ ਪਾਸੇ ਲਿਜਾਓ"
+
+#: ../gnotravex/gnotravex.c:1770
+msgid "_Down"
+msgstr "ਹੇਠਾਂ(_D)"
+
+#: ../gnotravex/gnotravex.c:1771
+msgid "Move the pieces down"
+msgstr "ਟੁਕੜੇ ਹੇਠਾਂ ਲਿਜਾਓ"
+
 #: ../gnotravex/gnotravex.desktop.in.in.h:1
 msgid "Complete the puzzle by matching numbered tiles"
 msgstr "ਰਲਦੇ ਨੰਬਰਾਂ ਦੀਆਂ ਟਾਇਲਾਂ ਨਾਲ ਬੁਝਾਰਤ ਬੁੱਝੋ"
 
-#: ../gnotravex/gnotravex.schemas.in.h:1
-msgid "A flag to enable coloured tiles."
-msgstr "ਰੰਗਦਾਰ ਟਾਇਟਲਾਂ ਨੂੰ ਚਾਲੂ ਕਰਨ ਲਈ ਇੱਕ ਨਿਸ਼ਾਨ"
-
 #: ../gnotravex/gnotravex.schemas.in.h:2
-msgid "Control coloured tiles"
-msgstr "ਰੰਗਦਾਰ ਟਾਇਲ ਕੰਟਰੋਲ"
-
-#: ../gnotravex/gnotravex.schemas.in.h:4
 msgid ""
 "Select whether to drag the tiles or to click on the source then the "
 "destination."
 msgstr "ਚੁਣੋ ਕਿ ਕੀ ਟਾਇਲ ਨੂੰ ਸੁੱਟਣਾ ਹੈ ਜਾਂ ਟਿਕਾਣੇ ਨਾਲੋਂ ਸਰੋਤ ਦਬਾਉਣਾ ਹੈ।"
 
-#: ../gnotravex/gnotravex.schemas.in.h:5
+#: ../gnotravex/gnotravex.schemas.in.h:3
 msgid "The size of the playing grid"
 msgstr "ਖੇਡਣ ਵਾਲੇ ਗਰਿੱਡ ਦਾ ਆਕਾਰ"
 
-#: ../gnotravex/gnotravex.schemas.in.h:6
+#: ../gnotravex/gnotravex.schemas.in.h:4
 msgid ""
 "The value of this key is used to decide the size of the playing grid. The "
 "valid values are 2 to 8, anything else gets set to 3."
@@ -7049,7 +6882,7 @@ msgstr ""
 "ਇਸ ਕੀ ਦੀ ਕੀਮਤ ਖੇਡ ਜੰਗਲੇ ਦਾ ਆਕਾਰ ਨਿਸਚਿਤ ਕਰਨ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਹੈ। ਯੋਗ ਕੀਮਤਾਂ ਹਨ 2 ਤੋਂ 8, "
 "ਹੋਰ ਸਭ ਕੁਝ 3 ਦਰਸਾ ਕੇ ਪ੍ਰਾਪਤ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।"
 
-#: ../gnotski/gnotski.c:47 ../gnotski/gnotski.desktop.in.in.h:1
+#: ../gnotski/gnotski.c:48 ../gnotski/gnotski.desktop.in.in.h:1
 msgid "Klotski"
 msgstr "ਕਲੋਟਸਕੀ"
 
@@ -7058,189 +6891,189 @@ msgid "Only 18 steps"
 msgstr "ਸਿਰਫ਼ 18 ਸਟੈਪ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:104 ../gnotski/gnotski.c:194
+#: ../gnotski/gnotski.c:104 ../gnotski/gnotski.c:191
 msgid "Daisy"
 msgstr "ਡੈਨਸੀ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:105 ../gnotski/gnotski.c:200
+#: ../gnotski/gnotski.c:105 ../gnotski/gnotski.c:197
 msgid "Violet"
 msgstr "ਵੈਂਗਣੀ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:106 ../gnotski/gnotski.c:206
+#: ../gnotski/gnotski.c:106 ../gnotski/gnotski.c:203
 msgid "Poppy"
 msgstr "ਪੋਪੀ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:107 ../gnotski/gnotski.c:212
+#: ../gnotski/gnotski.c:107 ../gnotski/gnotski.c:209
 msgid "Pansy"
 msgstr "ਪੰਸਾ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:108 ../gnotski/gnotski.c:218
+#: ../gnotski/gnotski.c:108 ../gnotski/gnotski.c:215
 msgid "Snowdrop"
 msgstr "ਬਰਫ ਦੀ ਬੂੰਦ"
 
 #. puzzle name - sometimes called "Le'Ane Rouge"
-#: ../gnotski/gnotski.c:109 ../gnotski/gnotski.c:224
+#: ../gnotski/gnotski.c:109 ../gnotski/gnotski.c:221
 msgid "Red Donkey"
 msgstr "ਲਾਲ ਗਧਾ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:110 ../gnotski/gnotski.c:230
+#: ../gnotski/gnotski.c:110 ../gnotski/gnotski.c:227
 msgid "Trail"
 msgstr "ਟਰਾਏਲ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:111 ../gnotski/gnotski.c:236
+#: ../gnotski/gnotski.c:111 ../gnotski/gnotski.c:233
 msgid "Ambush"
 msgstr "ਅੰਬੁਸ਼"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:112 ../gnotski/gnotski.c:242
+#: ../gnotski/gnotski.c:112 ../gnotski/gnotski.c:239
 msgid "Agatka"
 msgstr "ਅਗਾਟਕਾ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:113 ../gnotski/gnotski.c:247
+#: ../gnotski/gnotski.c:113 ../gnotski/gnotski.c:244
 msgid "Success"
 msgstr "ਸਫਲ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:114 ../gnotski/gnotski.c:252
+#: ../gnotski/gnotski.c:114 ../gnotski/gnotski.c:249
 msgid "Bone"
 msgstr "ਬੋਨੀ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:115 ../gnotski/gnotski.c:258
+#: ../gnotski/gnotski.c:115 ../gnotski/gnotski.c:255
 msgid "Fortune"
 msgstr "ਫੋਰਟਿਨੇ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:116 ../gnotski/gnotski.c:266
+#: ../gnotski/gnotski.c:116 ../gnotski/gnotski.c:263
 msgid "Fool"
 msgstr "ਫੂਲ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:117 ../gnotski/gnotski.c:272
+#: ../gnotski/gnotski.c:117 ../gnotski/gnotski.c:269
 msgid "Solomon"
 msgstr "ਸੋਲੋਮੋਨ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:118 ../gnotski/gnotski.c:279
+#: ../gnotski/gnotski.c:118 ../gnotski/gnotski.c:276
 msgid "Cleopatra"
 msgstr "ਕਲੇਓਪਾਟਰਾ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:119 ../gnotski/gnotski.c:284
+#: ../gnotski/gnotski.c:119 ../gnotski/gnotski.c:281
 msgid "Shark"
 msgstr "ਸ਼ਾਰਕ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:120 ../gnotski/gnotski.c:292
+#: ../gnotski/gnotski.c:120 ../gnotski/gnotski.c:289
 msgid "Rome"
 msgstr "ਰੋਮੀ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:121 ../gnotski/gnotski.c:299
+#: ../gnotski/gnotski.c:121 ../gnotski/gnotski.c:296
 msgid "Pennant Puzzle"
 msgstr "ਪਿੱਨਟ ਪਹੇਲੀ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:122 ../gnotski/gnotski.c:305
+#: ../gnotski/gnotski.c:122 ../gnotski/gnotski.c:302
 msgid "Ithaca"
 msgstr "ਇਥਾਕਾ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:123 ../gnotski/gnotski.c:326
+#: ../gnotski/gnotski.c:123 ../gnotski/gnotski.c:323
 msgid "Pelopones"
 msgstr "ਪੀਲੋਪੋਨੀਸ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:124 ../gnotski/gnotski.c:333
+#: ../gnotski/gnotski.c:124 ../gnotski/gnotski.c:330
 msgid "Transeuropa"
 msgstr "ਟਰਾਂਸੀਉਰੋਪਾ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:125 ../gnotski/gnotski.c:342
+#: ../gnotski/gnotski.c:125 ../gnotski/gnotski.c:339
 msgid "Lodzianka"
 msgstr "ਲੋਡਜ਼ੀਂਕਾ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:126 ../gnotski/gnotski.c:348
+#: ../gnotski/gnotski.c:126 ../gnotski/gnotski.c:345
 msgid "Polonaise"
 msgstr "ਪੋਲੋਨਾਈਸੇ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:127 ../gnotski/gnotski.c:353
+#: ../gnotski/gnotski.c:127 ../gnotski/gnotski.c:350
 msgid "Baltic Sea"
 msgstr "ਬਾਲਟਿਕ ਸਮੁੰਦਰ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:128 ../gnotski/gnotski.c:358
+#: ../gnotski/gnotski.c:128 ../gnotski/gnotski.c:355
 msgid "American Pie"
 msgstr "ਅਮਰੀਕੀ ਪਾਈ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:129 ../gnotski/gnotski.c:370
+#: ../gnotski/gnotski.c:129 ../gnotski/gnotski.c:367
 msgid "Traffic Jam"
 msgstr "ਟਰੈਫਿਕ ਜਾਮ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:130 ../gnotski/gnotski.c:377
+#: ../gnotski/gnotski.c:130 ../gnotski/gnotski.c:374
 msgid "Sunshine"
 msgstr "ਚਮਕਦਾ ਸੂਰਜ"
 
 #. puzzle name
-#: ../gnotski/gnotski.c:188
+#: ../gnotski/gnotski.c:185
 msgid "Only 18 Steps"
 msgstr "ਸਿਰਫ਼ 18 ਪਗ਼"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:418
+#: ../gnotski/gnotski.c:415
 msgid "HuaRong Trail"
 msgstr "ਹੂਰੰਗ ਟਰਾਇਲ"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:420
+#: ../gnotski/gnotski.c:417
 msgid "Challenge Pack"
 msgstr "ਮੁਕਾਬਲਾ ਪੈਕ"
 
 #. set of puzzles
-#: ../gnotski/gnotski.c:422
+#: ../gnotski/gnotski.c:419
 msgid "Skill Pack"
 msgstr "ਸਕਿਲ ਪੀਕ"
 
-#: ../gnotski/gnotski.c:423
+#: ../gnotski/gnotski.c:420
 msgid "_Restart Puzzle"
 msgstr "ਪਹੇਲੀ ਮੁੜ-ਚਾਲੂ(_R)"
 
-#: ../gnotski/gnotski.c:425
+#: ../gnotski/gnotski.c:422
 msgid "Next Puzzle"
 msgstr "ਅੱਗੇ ਪਹੇਲੀ"
 
-#: ../gnotski/gnotski.c:427
+#: ../gnotski/gnotski.c:424
 msgid "Previous Puzzle"
 msgstr "ਪਿੱਛੇ ਪਹੇਲੀ"
 
-#: ../gnotski/gnotski.c:677
+#: ../gnotski/gnotski.c:636
 msgid "Level completed."
 msgstr "ਪੱਧਰ ਮੁਕੰਮਲ ਹੋਇਆ।"
 
-#: ../gnotski/gnotski.c:815
+#: ../gnotski/gnotski.c:774
 msgid "The Puzzle Has Been Solved!"
 msgstr "ਬੁਝਾਰਤ ਹੱਲ਼ ਹੋਈ!"
 
-#: ../gnotski/gnotski.c:832
+#: ../gnotski/gnotski.c:791
 msgid "Klotski Scores"
 msgstr "ਕਲੋਟਸਕੀ ਸਕੋਰ"
 
-#: ../gnotski/gnotski.c:835
+#: ../gnotski/gnotski.c:794
 msgid "Puzzle:"
 msgstr "ਬੁਝਾਰਤ:"
 
-#: ../gnotski/gnotski.c:919
+#: ../gnotski/gnotski.c:878
 msgid ""
 "The theme for this game failed to render.\n"
 "\n"
@@ -7250,7 +7083,7 @@ msgstr ""
 "\n"
 "ਕਿਰਪਾ ਕਰਕੇ ਜਾਂਚ ਕਰੋ ਕਿ ਕਲੋਸਕੀ ਠੀਕ ਤਰਾਂ ਇੰਸਟਾਲ ਹੈ।"
 
-#: ../gnotski/gnotski.c:1166
+#: ../gnotski/gnotski.c:1121
 #, c-format
 msgid ""
 "Could not find the image:\n"
@@ -7263,12 +7096,12 @@ msgstr ""
 "\n"
 "ਕਿਰਪਾ ਕਰਕੇ ਜਾਂਚ ਕਰੋ ਕਿ ਕਲੋਸਕੀ ਠੀਕ ਤਰਾਂ ਇੰਸਟਾਲ ਹੈ।"
 
-#: ../gnotski/gnotski.c:1205
+#: ../gnotski/gnotski.c:1160
 #, c-format
 msgid "Moves: %d"
 msgstr "ਚਾਲਾਂ: %d"
 
-#: ../gnotski/gnotski.c:1534
+#: ../gnotski/gnotski.c:1489
 msgid ""
 "Sliding Block Puzzles\n"
 "\n"
@@ -7509,48 +7342,48 @@ msgstr "ਸਖਤ"
 msgid "Player Names"
 msgstr "ਖਿਡਾਰੀਆਂ ਦੇ ਨਾਂ"
 
-#: ../gtali/yahtzee.c:85 ../gtali/yahtzee.c:109 ../gtali/yahtzee.c:516
+#: ../gtali/yahtzee.c:85 ../gtali/yahtzee.c:109 ../gtali/yahtzee.c:517
 msgid "1s [total of 1s]"
 msgstr "1 ਦਾ [1 ਦਾ ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:86 ../gtali/yahtzee.c:110 ../gtali/yahtzee.c:517
+#: ../gtali/yahtzee.c:86 ../gtali/yahtzee.c:110 ../gtali/yahtzee.c:518
 msgid "2s [total of 2s]"
 msgstr "2 ਦਾ [2 ਦਾ ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:87 ../gtali/yahtzee.c:111 ../gtali/yahtzee.c:518
+#: ../gtali/yahtzee.c:87 ../gtali/yahtzee.c:111 ../gtali/yahtzee.c:519
 msgid "3s [total of 3s]"
 msgstr "3 ਦਾ [3 ਦਾ ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:88 ../gtali/yahtzee.c:112 ../gtali/yahtzee.c:519
+#: ../gtali/yahtzee.c:88 ../gtali/yahtzee.c:112 ../gtali/yahtzee.c:520
 msgid "4s [total of 4s]"
 msgstr "4 ਦਾ [4 ਦਾ ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:89 ../gtali/yahtzee.c:113 ../gtali/yahtzee.c:520
+#: ../gtali/yahtzee.c:89 ../gtali/yahtzee.c:113 ../gtali/yahtzee.c:521
 msgid "5s [total of 5s]"
 msgstr "5 ਦਾ [5 ਦਾ ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:90 ../gtali/yahtzee.c:114 ../gtali/yahtzee.c:521
+#: ../gtali/yahtzee.c:90 ../gtali/yahtzee.c:114 ../gtali/yahtzee.c:522
 msgid "6s [total of 6s]"
 msgstr "6 ਦਾ [6 ਦਾ ਕੁੱਲ]"
 
 #. End of upper panel
-#: ../gtali/yahtzee.c:92 ../gtali/yahtzee.c:117 ../gtali/yahtzee.c:522
+#: ../gtali/yahtzee.c:92 ../gtali/yahtzee.c:117 ../gtali/yahtzee.c:523
 msgid "3 of a Kind [total]"
 msgstr "ਇੱਕ ਕਿਸਮ ਦਾ 3 [ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:93 ../gtali/yahtzee.c:523
+#: ../gtali/yahtzee.c:93 ../gtali/yahtzee.c:524
 msgid "4 of a Kind [total]"
 msgstr "ਇੱਕ ਕਿਸਮ ਦਾ 4 [ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:94 ../gtali/yahtzee.c:524
+#: ../gtali/yahtzee.c:94 ../gtali/yahtzee.c:525
 msgid "Full House [25]"
 msgstr "ਭਰਿਆ ਘਰ [25]"
 
-#: ../gtali/yahtzee.c:95 ../gtali/yahtzee.c:525
+#: ../gtali/yahtzee.c:95 ../gtali/yahtzee.c:526
 msgid "Small Straight [30]"
 msgstr "ਛੋਟਾ ਸਿੱਧਾ [30]"
 
-#: ../gtali/yahtzee.c:96 ../gtali/yahtzee.c:121 ../gtali/yahtzee.c:526
+#: ../gtali/yahtzee.c:96 ../gtali/yahtzee.c:121 ../gtali/yahtzee.c:527
 msgid "Large Straight [40]"
 msgstr "ਵੱਡਾ ਸਿੱਧਾ [40]"
 
@@ -7558,7 +7391,7 @@ msgstr "ਵੱਡਾ ਸਿੱਧਾ [40]"
 msgid "5 of a Kind [50]"
 msgstr "ਇੱਕ ਕਿਸਮ ਦਾ 5 [50]"
 
-#: ../gtali/yahtzee.c:98 ../gtali/yahtzee.c:124 ../gtali/yahtzee.c:528
+#: ../gtali/yahtzee.c:98 ../gtali/yahtzee.c:124 ../gtali/yahtzee.c:529
 msgid "Chance [total]"
 msgstr "ਮੌਕਾ [ਕੁੱਲ]"
 
@@ -7581,35 +7414,35 @@ msgid "Bonus if >62"
 msgstr "ਲਾਭਾਂਸ਼ ਜੇ >62"
 
 #. End of upper panel
-#: ../gtali/yahtzee.c:116 ../gtali/yahtzee.c:529
+#: ../gtali/yahtzee.c:116 ../gtali/yahtzee.c:530
 msgid "2 pair Same Color [total]"
 msgstr "ਇੱਕ ਰੰਗ ਦੇ 1 ਜੋੜੇ [ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:118 ../gtali/yahtzee.c:530
+#: ../gtali/yahtzee.c:118 ../gtali/yahtzee.c:531
 msgid "Full House [15 + total]"
 msgstr "ਪੂਰਾ ਘੜ [15 + ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:119 ../gtali/yahtzee.c:531
+#: ../gtali/yahtzee.c:119 ../gtali/yahtzee.c:532
 msgid "Full House Same Color [20 + total]"
 msgstr "ਇੱਕੋ ਰੰਗ ਦਾ ਪੂਰਾ ਡੱਬਾ [20 + ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:120 ../gtali/yahtzee.c:532
+#: ../gtali/yahtzee.c:120 ../gtali/yahtzee.c:533
 msgid "Flush (all same color) [35]"
 msgstr "ਸਾਫ਼ (ਸਭ ਇੱਕੋ ਰੰਗ) [35]"
 
-#: ../gtali/yahtzee.c:122 ../gtali/yahtzee.c:533
+#: ../gtali/yahtzee.c:122 ../gtali/yahtzee.c:534
 msgid "4 of a Kind [25 + total]"
 msgstr "ਇੱਕ ਕਿਸਮ ਦਾ 4 [25 + ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:123 ../gtali/yahtzee.c:534
+#: ../gtali/yahtzee.c:123 ../gtali/yahtzee.c:535
 msgid "5 of a Kind [50 + total]"
 msgstr "ਇੱਕ ਕਿਸਮ ਦਾ 5 [50 + ਕੁੱਲ]"
 
-#: ../gtali/yahtzee.c:250
+#: ../gtali/yahtzee.c:251
 msgid "Choose a score slot."
 msgstr "ਇੱਕ ਸਕੋਰ ਥਾਂ ਚੁਣੋ।"
 
-#: ../gtali/yahtzee.c:527
+#: ../gtali/yahtzee.c:528
 msgid "5 of a Kind [total]"
 msgstr "ਇੱਕ ਕਿਸਮ ਦਾ 5 [ਕੁੱਲ]"
 
@@ -7657,15 +7490,15 @@ msgstr "ਗੂੜੇ ਦੀ ਚਾਲ"
 msgid "Light's move"
 msgstr "ਹਲਕੇ ਦੀ ਚਾਲ"
 
-#: ../iagno/gnothello.c:958
+#: ../iagno/gnothello.c:959
 msgid "Dark:"
 msgstr "ਗੂੜਾ:"
 
-#: ../iagno/gnothello.c:968
+#: ../iagno/gnothello.c:969
 msgid "Light:"
 msgstr "ਹਲਕਾ:"
 
-#: ../iagno/gnothello.c:992
+#: ../iagno/gnothello.c:993
 msgid "Welcome to Iagno!"
 msgstr "ਲੈਗਨੋ ਵੱਲੋਂ ਜੀ ਆਇਆਂ ਨੂੰ!"
 
@@ -7729,7 +7562,7 @@ msgstr "ਗਰਿੱਡ ਵੇਖੋ(_h)"
 msgid "_Flip final results"
 msgstr "ਅੰਤਮ ਨਤੀਜੇ ਪਲਟੋ(_F)"
 
-#: ../iagno/properties.c:597 ../mahjongg/mahjongg.c:733
+#: ../iagno/properties.c:597 ../mahjongg/mahjongg.c:698
 msgid "_Tile set:"
 msgstr "ਟਾਇਲ ਸੈਟ(_T):"
 
@@ -7887,7 +7720,7 @@ msgstr "ਪੂਰੀ ਸਕਰੀਨ ਮੋਡ ਛੱਡੋ"
 msgid "End the current network game and return to network server"
 msgstr "ਮੌਜੂਦਾ ਨੈੱਟਵਰਕ ਖੇਡ ਖਤਮ ਅਤੇ ਨੈੱਟਵਰਕ ਸਰਵਰ ਉੱਤੇ ਜਾਓ"
 
-#: ../libgames-support/games-stock.c:54 ../mahjongg/mahjongg.c:1249
+#: ../libgames-support/games-stock.c:54
 msgid "Pause the game"
 msgstr "ਖੇਡ ਵਿਰਾਮ ਕਰੋ"
 
@@ -7895,7 +7728,7 @@ msgstr "ਖੇਡ ਵਿਰਾਮ ਕਰੋ"
 msgid "Show a list of players in the network game"
 msgstr "ਨੈੱਟਵਰਕ ਖੇਡ 'ਚ ਖਿਡਾਰੀਆਂ ਦੀ ਲਿਸਟ ਵੇਖੋ"
 
-#: ../libgames-support/games-stock.c:58 ../mahjongg/mahjongg.c:1252
+#: ../libgames-support/games-stock.c:58
 msgid "Resume the paused game"
 msgstr "ਵਿਰਾਮ ਖੇਡ ਮੁੜ ਚਲਾਓ"
 
@@ -7911,81 +7744,76 @@ msgstr "ਖੇਡ ਸੰਰਚਨਾ"
 msgid "Quit this game"
 msgstr "ਇਹ ਖੇਡ ਬੰਦ ਕਰੋ"
 
-#: ../libgames-support/games-stock.c:322
+#: ../libgames-support/games-stock.c:288
 msgid "_Fullscreen"
 msgstr "ਪੂਰੀ ਸਕਰੀਨ(_F)"
 
 #. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../libgames-support/games-stock.c:325
+#: ../libgames-support/games-stock.c:291
 msgid "_New"
 msgstr "ਨਵੀਂ(_N)"
 
-#: ../libgames-support/games-stock.c:328
+#: ../libgames-support/games-stock.c:294
 msgid "_Redo Move"
 msgstr "ਚਾਲ ਮੁੜ ਵਾਪਿਸ(_R)"
 
-#. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../libgames-support/games-stock.c:330
-msgid "_Reset"
-msgstr "ਮੁੜ ਸੈਟ(_R)"
-
 #. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:332
+#: ../libgames-support/games-stock.c:298
 msgid "_Restart"
 msgstr "ਮੁੜ-ਚਾਲੂ(_R)"
 
-#: ../libgames-support/games-stock.c:334
+#: ../libgames-support/games-stock.c:300
 msgid "_Deal"
 msgstr "ਵੰਡੋ(_D)"
 
-#: ../libgames-support/games-stock.c:336
+#: ../libgames-support/games-stock.c:302
 msgid "_Leave Fullscreen"
 msgstr "ਪੂਰੀ ਸਕਰੀਨ ਛੱਡੋ(_L)"
 
-#: ../libgames-support/games-stock.c:338
+#: ../libgames-support/games-stock.c:304
 msgid "L_eave Game"
 msgstr "ਖੇਡ ਛੱਡੋ(_e)"
 
-#: ../libgames-support/games-stock.c:339
+#: ../libgames-support/games-stock.c:305
 msgid "Player _List"
 msgstr "ਖਿਡਾਰੀ ਲਿਸਟ(_L)"
 
-#: ../libgames-support/games-stock.c:340
+#: ../libgames-support/games-stock.c:306
 msgid "_Pause"
 msgstr "ਵਿਰਾਮ(_P)"
 
-#: ../libgames-support/games-stock.c:341
+#: ../libgames-support/games-stock.c:307
 msgid "Res_ume"
 msgstr "ਮੁੜ-ਪਰਾਪਤ(_u)"
 
-#: ../libgames-support/games-stock.c:342
+#: ../libgames-support/games-stock.c:308
 msgid "_Scores"
 msgstr "ਸਕੋਰ(_S)"
 
-#: ../libgames-support/games-stock.c:343
+#: ../libgames-support/games-stock.c:309
 msgid "_End Game"
 msgstr "ਖੇਡ ਖਤਮ(_E)"
 
 #. Work around maemo brokenness wrt. stock item translations.
 #. * See https://bugs.maemo.org/show_bug.cgi?id=1449 .
-#: ../libgames-support/games-stock.c:349
+#: ../libgames-support/games-stock.c:315
 msgid "_About"
 msgstr "ਇਸ ਬਾਰੇ(_A)"
 
-#: ../libgames-support/games-stock.c:350
+#: ../libgames-support/games-stock.c:316
 msgid "_Cancel"
 msgstr "ਰੱਦ ਕਰੋ(_C)"
 
-#: ../libgames-support/games-stock.c:351
+#: ../libgames-support/games-stock.c:317
 msgid "_Close"
 msgstr "ਬੰਦ ਕਰੋ(_C)"
 
-#: ../libgames-support/games-stock.c:352
+#: ../libgames-support/games-stock.c:318
 msgid "_OK"
 msgstr "ਠੀਕ ਹੈ(_O)"
 
 #. %s is replaced with the name of the game in gnome-games.
-#: ../libgames-support/games-stock.c:413
+#: ../libgames-support/games-stock.c:379
 #, c-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
@@ -7997,7 +7825,7 @@ msgstr ""
 "ਨੇ ਤਿਆਰ ਕੀਤਾ ਹੈ, ਦੇ ਵਰਜਨ %d ਜਾਂ ਨਵੇਂ ਦੀਆਂ ਸ਼ਰਤਾਂ (ਉਹ ਤੁਹਾਡੀ ਆਪਣੀ ਮਰਜ਼ੀ ਹੈ) ਅਧੀਨ ਵੰਡ ਅਤੇ/ਜਾਂ "
 "ਸੋਧ ਸਕਦੇ ਹੋ।"
 
-#: ../libgames-support/games-stock.c:427
+#: ../libgames-support/games-stock.c:393
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program.  If not, see <http://www.gnu.org/licenses/>."
@@ -8006,7 +7834,7 @@ msgstr ""
 "<http://www.gnu.org/licenses/> ਵੇਖੋ।"
 
 #: ../lightsoff/lightsoff.desktop.in.in.h:1 ../lightsoff/data/lightsoff.ui.h:1
-#: ../lightsoff/data/settings.ui.h:1 ../lightsoff/src/About.js:11
+#: ../lightsoff/data/settings.ui.h:2 ../lightsoff/src/About.js:11
 #: ../lightsoff/src/About.js:15
 msgid "Lights Off"
 msgstr "ਲਾਈਟ ਬੰਦ ਕਰੋ"
@@ -8020,8 +7848,8 @@ msgid ""
 "If enabled, the default background color from the user's default GNOME theme "
 "is used to draw the tiles."
 msgstr ""
-"ਜੇ ਚਾਲੂ ਕੀਤਾ ਤਾਂ ਯੂਜ਼ਰ ਦੇ ਡਿਫਾਲਟ ਗਨੋਮ ਥੀਮ ਤੋਂ ਡਿਫਾਲਟ ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਨੂੰ ਟਾਈਟਲਾਂ ਬਣਾਉਣ "
-"ਲਈ ਵਰਤਿਆ ਜਾਵੇਗਾ।"
+"ਜੇ ਚਾਲੂ ਕੀਤਾ ਤਾਂ ਯੂਜ਼ਰ ਦੇ ਡਿਫਾਲਟ ਗਨੋਮ ਥੀਮ ਤੋਂ ਡਿਫਾਲਟ ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਨੂੰ ਟਾਈਟਲਾਂ ਬਣਾਉਣ ਲਈ "
+"ਵਰਤਿਆ ਜਾਵੇਗਾ।"
 
 #: ../lightsoff/lightsoff.schemas.in.h:2
 msgid "The current score"
@@ -8042,13 +7870,8 @@ msgid "The users's most recent score."
 msgstr "ਯੂਜ਼ਰ ਤਾਂ ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਸਕੋਰ ਹੈ।"
 
 #: ../lightsoff/lightsoff.schemas.in.h:6
-#| msgid "Whether or not to show the toolbar"
 msgid "Whether or not to use the GNOME theme colors"
 msgstr "ਕੀ ਗਨੋਮ ਥੀਮ ਰੰਗ ਵਰਤਣੇ ਹਨ ਕਿ ਨਹੀਂ"
-
-#: ../lightsoff/data/settings.ui.h:2
-msgid "Look & Feel"
-msgstr "ਦਿੱਖ ਅਤੇ ਪਰਭਾਵ"
 
 #: ../lightsoff/data/settings.ui.h:3 ../swell-foop/data/settings.ui.h:7
 msgid "Theme:"
@@ -8059,10 +7882,6 @@ msgid "Use colors from GNOME theme"
 msgstr "ਗਨੋਮ ਥੀਮ ਤੋਂ ਰੰਗ ਵਰਤੋਂ"
 
 #: ../lightsoff/src/About.js:13
-#| msgid ""
-#| "Sliding Block Puzzles\n"
-#| "\n"
-#| "Klotski is a part of GNOME Games."
 msgid ""
 "Turn off all the lights\n"
 "\n"
@@ -8099,77 +7918,77 @@ msgstr ""
 "\n"
 "ਕਿਰਪਾ ਕਰਕੇ ਜਾਂਚ ਕਰੋ ਕਿ ਮਹਜੋਂਗ ਠੀਕ ਤਰਾਂ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ।"
 
-#: ../mahjongg/mahjongg.c:43 ../mahjongg/mahjongg.c:934
-#: ../mahjongg/mahjongg.c:938 ../mahjongg/mahjongg.c:940
+#: ../mahjongg/mahjongg.c:45 ../mahjongg/mahjongg.c:899
+#: ../mahjongg/mahjongg.c:903 ../mahjongg/mahjongg.c:905
 #: ../mahjongg/mahjongg.desktop.in.in.h:2
 msgid "Mahjongg"
 msgstr "ਮਹਜੌਂਗ"
 
-#: ../mahjongg/mahjongg.c:135
+#: ../mahjongg/mahjongg.c:136
 msgid "Could not load tile set"
 msgstr "ਟਾਇਲ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀ"
 
-#: ../mahjongg/mahjongg.c:306
+#: ../mahjongg/mahjongg.c:271
 msgid "Do you want to start a new game with this map?"
 msgstr "ਕੀ ਤੁਸੀਂ ਇਹ ਨਕਸ਼ੇ ਲਈ ਨਵੀਂ ਖੇਡ ਸ਼ੁਰੂ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../mahjongg/mahjongg.c:308
+#: ../mahjongg/mahjongg.c:273
 msgid "If you continue playing the next game will use the new map."
 msgstr "ਤੁਸੀਂ ਨਵੀਂ ਖੇਡ ਨਵੇਂ ਨਕਸ਼ੇ ਨਾਲ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ।"
 
-#: ../mahjongg/mahjongg.c:310
+#: ../mahjongg/mahjongg.c:275
 msgid "_Continue playing"
 msgstr "ਖੇਡਣਾ ਜਾਰੀ ਰੱਖੋ(_C)"
 
-#: ../mahjongg/mahjongg.c:311
+#: ../mahjongg/mahjongg.c:276
 msgid "Use _new map"
 msgstr "ਨਵਾਂ ਮੈਪ ਵਰਤੋਂ(_n)"
 
-#: ../mahjongg/mahjongg.c:614
+#: ../mahjongg/mahjongg.c:579
 msgid "There are no more moves."
 msgstr "ਉੱਥੇ ਹੋਰ ਚਾਲਾਂ ਨਹੀਂ ਹਨ।"
 
-#: ../mahjongg/mahjongg.c:617
+#: ../mahjongg/mahjongg.c:582
 msgid "_New game"
 msgstr "ਨਵੀਂ ਖੇਡ(_N)"
 
-#: ../mahjongg/mahjongg.c:622
+#: ../mahjongg/mahjongg.c:587
 msgid "_Shuffle"
 msgstr "ਰਲਾਓ(_S)"
 
-#: ../mahjongg/mahjongg.c:664 ../mahjongg/mahjongg.c:993
+#: ../mahjongg/mahjongg.c:629 ../mahjongg/mahjongg.c:959
 msgid "Mahjongg Scores"
 msgstr "ਮਹਜੌਂਗ ਸਕੋਰ"
 
-#: ../mahjongg/mahjongg.c:705
+#: ../mahjongg/mahjongg.c:670
 msgid "Mahjongg Preferences"
 msgstr "ਮਹਜੋਂਗ ਪਸੰਦ"
 
-#: ../mahjongg/mahjongg.c:726
+#: ../mahjongg/mahjongg.c:691
 msgid "Tiles"
 msgstr "ਟਾਈਲਾਂ"
 
-#: ../mahjongg/mahjongg.c:747
+#: ../mahjongg/mahjongg.c:712
 msgid "Maps"
 msgstr "ਨਕਸ਼ੇ"
 
-#: ../mahjongg/mahjongg.c:754
+#: ../mahjongg/mahjongg.c:719
 msgid "_Select map:"
 msgstr "ਨਕਸ਼ਾ ਚੁਣੋ(_S):"
 
-#: ../mahjongg/mahjongg.c:768
+#: ../mahjongg/mahjongg.c:733
 msgid "Colors"
 msgstr "ਰੰਗ"
 
-#: ../mahjongg/mahjongg.c:914
+#: ../mahjongg/mahjongg.c:879
 msgid "Maps:"
 msgstr "ਨਕਸ਼ੇ:"
 
-#: ../mahjongg/mahjongg.c:921
+#: ../mahjongg/mahjongg.c:886
 msgid "Tiles:"
 msgstr "ਟਾਈਲਾਂ:"
 
-#: ../mahjongg/mahjongg.c:944
+#: ../mahjongg/mahjongg.c:909
 msgid ""
 "A matching game played with Mahjongg tiles.\n"
 "\n"
@@ -8179,32 +7998,32 @@ msgstr ""
 "\n"
 "ਮਹਜੋਂਗ ਗਨੋਮ ਖੇਡਾਂ ਦਾ ਭਾਗ ਹੈ।"
 
-#: ../mahjongg/mahjongg.c:1188
+#: ../mahjongg/mahjongg.c:1154
 #, c-format
 msgid "Mahjongg - %s"
 msgstr "ਮਹਜੌਂਗ - %s"
 
-#: ../mahjongg/mahjongg.c:1248
+#: ../mahjongg/mahjongg.c:1214
 msgid "Restart the current game"
 msgstr "ਮੌਜੂਦਾ ਖੇਡ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ"
 
-#: ../mahjongg/mahjongg.c:1255
+#: ../mahjongg/mahjongg.c:1217
 msgid "Redo the last move"
 msgstr "ਆਖਰੀ ਚਾਲ ਮੁੜ ਵਾਪਿਸ ਕਰੋ"
 
-#: ../mahjongg/mahjongg.c:1257
+#: ../mahjongg/mahjongg.c:1219
 msgid "Show a hint"
 msgstr "ਇਸ਼ਾਰਾ ਵੇਖੋ"
 
-#: ../mahjongg/mahjongg.c:1447
+#: ../mahjongg/mahjongg.c:1400
 msgid "Tiles Left:"
 msgstr "ਬਚੀਆਂ ਟਾਈਲਾਂ:"
 
-#: ../mahjongg/mahjongg.c:1456
+#: ../mahjongg/mahjongg.c:1409
 msgid "Moves Left:"
 msgstr "ਬਚੀਆਂ ਚਾਲਾਂ:"
 
-#: ../mahjongg/mahjongg.c:1518
+#: ../mahjongg/mahjongg.c:1472
 msgid "Remove matching pairs of tiles."
 msgstr "ਟਾਇਲਾਂ ਦੇ ਰਲਦੇ ਜੋੜੇ ਹਟਾਓ।"
 
@@ -8281,7 +8100,6 @@ msgid "Zealous Animation"
 msgstr "ਜੋਸ਼ੀਲੀ ਐਨੀਮੇਸ਼ਨ"
 
 #: ../swell-foop/swell-foop.desktop.in.in.h:1
-#| msgid "Clear the screen by removing groups of colored balls"
 msgid "Clear the screen by removing groups of colored and shaped tiles"
 msgstr "ਰੰਗਦਾਰ ਅਤੇ ਸੇਪ ਟਾਈਲਾਂ ਦੇ ਗਰੁੱਪ ਹਟਾ ਕੇ ਸਕਰੀਨ ਸਾਫ਼ ਕਰੋ"
 
@@ -8306,11 +8124,6 @@ msgid "Zealous animation"
 msgstr "ਜੋਸ਼ੀਲੀ ਐਨੀਮੇਸ਼ਨ"
 
 #: ../swell-foop/src/About.js:13
-#| msgid ""
-#| "I want to play that game! You know, they all go whirly-round and you "
-#| "click on them and they vanish!\n"
-#| "\n"
-#| "Same GNOME is a part of GNOME Games."
 msgid ""
 "I want to play that game! You know, they all go whirly-round and you click "
 "on them and they vanish!\n"
@@ -8321,7 +8134,12 @@ msgstr ""
 "ਅਤੇ ਉਹ ਖਤਮ ਹੁੰਦੇ ਜਾਦੇ ਹਨ!\n"
 "ਸਵਿੱਲ ਫੂਪ ਗਨੋਮ ਗਨੋਮ ਖੇਡਾਂ ਦਾ ਭਾਗ ਹੈ।"
 
-#: ../swell-foop/src/Board.js:105
+#: ../swell-foop/src/Board.js:102
+#| msgid "points"
+msgid "No points"
+msgstr "ਕੋਈ ਅੰਕ ਨਹੀਂ"
+
+#: ../swell-foop/src/Board.js:105 ../swell-foop/src/Score.js:109
 #, c-format
 msgid "%d point"
 msgid_plural "%d points"
@@ -8329,26 +8147,191 @@ msgstr[0] "%d ਅੰਕ"
 msgstr[1] "%d ਅੰਕ"
 
 #: ../swell-foop/src/Score.js:54
-#| msgid "Robots Scores"
 msgid "Swell Foop Scores"
 msgstr "ਸਵਿੱਲ ਫੂਪ ਸਕੋਰ"
 
-#: ../swell-foop/src/Score.js:109
-#| msgid "No points"
-msgid "points"
-msgstr "ਅੰਕ"
-
 #: ../swell-foop/src/Score.js:144
-#| msgctxt "board size"
-#| msgid "Small"
 msgid "Small"
 msgstr "ਛੋਟਾ"
 
 #: ../swell-foop/src/Score.js:146
-#| msgctxt "board size"
-#| msgid "Large"
 msgid "Large"
 msgstr "ਵੱਡਾ"
+
+#~ msgid "_Animations"
+#~ msgstr "ਐਨੀਮੇਸ਼ਨ(_A)"
+
+#~ msgid "Whether or not to animate card moves"
+#~ msgstr "ਕੀ ਪੱਤਿਆਂ ਦੀ ਚਾਲ ਨਾਲ ਐਨੀਮੇਸ਼ਨ ਵੇਖੀ ਜਾਂ ਨਹੀਂ"
+
+#~ msgid "Load a saved game"
+#~ msgstr "ਇੱਕ ਸੰਭਾਲੀ ਖੇਡ ਲੋਡ ਕਰੋ"
+
+#~ msgid "Save the current game"
+#~ msgstr "ਮੌਜੂਦਾ ਖੇਡ ਸੰਭਾਲੋ"
+
+#~ msgid "No comment"
+#~ msgstr "ਟਿੱਪਣੀ ਨਹੀਂ"
+
+#~ msgid "Themes"
+#~ msgstr "ਥੀਮ"
+
+#~ msgid "_Bastard mode"
+#~ msgstr "ਬਾਸਟਰਡ ਮੋਡ(_B)"
+
+#~ msgid "Generate new puzzles in the background"
+#~ msgstr "ਬੈਕਗਰਾਊਂਡ ਵਿੱਚ ਨਵੀਂ ਬੁਝਾਰਤ ਬਣਾਓ"
+
+#~ msgid "<b><i>Details</i></b>"
+#~ msgstr "<b><i>ਵੇਰਵਾ</i></b>"
+
+#~ msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
+#~ msgstr "<span size=\"larger\" weight=\"bold\">ਖੇਡਾਂ ਪਰਿੰਟ ਕਰੋ</span>"
+
+#~ msgid "<i><u>Number of Puzzles</u></i>"
+#~ msgstr "<i><u>ਬੁਝਾਰਤਾਂ ਦੀ ਗਿਣਤੀ</u></i>"
+
+#~ msgid "<i>Easy:</i>"
+#~ msgstr "<i>ਸੌਖੀ:</i>"
+
+#~ msgid "<i>Hard:</i>"
+#~ msgstr "<i>ਔਖੀ:</i>"
+
+#~ msgid "<i>Medium:</i>"
+#~ msgstr "<i>ਮੱਧਮ:</i>"
+
+#~ msgid "<i>Very Hard:</i>"
+#~ msgstr "<i>ਬਹੁਤ ਔਖੀ:</i>"
+
+#~ msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
+#~ msgstr "<span size=\"larger\" weight=\"bold\">ਬੁਝਾਰਤ ਨਿਰਮਾਤਾ</span>"
+
+#~ msgid "Criteria:"
+#~ msgstr "ਸੀਮਾ:"
+
+#~ msgid "Generate Policy"
+#~ msgstr "ਨਿਰਮਾਣ ਨੀਤੀ"
+
+#~ msgid "Generate new puzzles _until stopped"
+#~ msgstr "ਜਦੋਂ ਤੱਕ ਰੁਕੇ ਨਾਂ ਨਵੀਆਂ ਬੁਝਾਰਤਾਂ ਬਣਾਓ(_u)"
+
+#~ msgid "Generate until _reaching target"
+#~ msgstr "ਜਦੋਂ ਤੱਕ ਨਿਸ਼ਾਨੇ ਤੱਕ ਨਹੀਂ ਅੱਪੜਦੇ ਬਣਾਓ(_r)"
+
+#~ msgid "Puzzle Generator"
+#~ msgstr "ਬੁਝਾਰਤ ਪਾਉਣ ਵਾਲਾ"
+
+#~ msgid "Target _number of sudokus:"
+#~ msgstr "ਸੁਡੋਕੁ ਦੀ ਨਿਸ਼ਾਨਾ ਗਿਣਤੀ(_n):"
+
+#~ msgid "_Generate"
+#~ msgstr "ਬਣਾਓ(_G)"
+
+#~ msgid "<b><span size=\"large\">_New Game</span></b>"
+#~ msgstr "<b><span size=\"large\">ਨਵੀਂ ਖੇਡ(_N)</span></b>"
+
+#~ msgid "<b><span size=\"large\">_Saved Games</span></b>"
+#~ msgstr "<b><span size=\"large\">ਸੰਭਾਲੀਆਂ ਖੇਡਾਂ(_S)</span></b>"
+
+#~ msgid "Clear _Others"
+#~ msgstr "ਹੋਰ ਸਾਫ਼ ਕਰੋ(_O)"
+
+#~ msgid "_Clear Tracker"
+#~ msgstr "ਟਰੇਕਰ ਸਾਫ਼ ਕਰੋ(_C)"
+
+#~ msgid "_Trackers"
+#~ msgstr "ਟਰੇਕਰ(_T)"
+
+#~ msgid "Show which numbers could go in the current square."
+#~ msgstr "ਵੇਖੋ ਕਿ ਕਿਹੜਾ ਨੰਬਰ ਮੌਜੂਦਾ ਵਰਗ ਵਿੱਚ ਜਾ ਸਕਦਾ ਹੈ।"
+
+#~ msgid "_Fill"
+#~ msgstr "ਭਰੋ(_F)"
+
+#~ msgid "Automatically fill in the current square if possible."
+#~ msgstr "ਜੇ ਸੰਭਵ ਹੋਵੇ ਤਾਂ ਮੌਜੂਦਾ ਵਰਗ ਆਟੋਮੈਟਿਕ ਹੀ ਭਰੋ।"
+
+#~ msgid "Fill _all squares"
+#~ msgstr "ਸਭ ਵਰਗ ਭਰੋ(_a)"
+
+#~ msgid ""
+#~ "Automatically fill in all squares for which there is only one valid value."
+#~ msgstr "ਸਭ ਵਰਗ ਆਟੋਮੈਟਿਕ ਹੀ ਭਰੋ, ਜਿੱਥੇ ਕਿ ਸਿਰਫ਼ ਇੱਕ ਹੀ ਮੁੱਲ ਹੋਵੇ।"
+
+#~ msgid "_Generate new puzzles"
+#~ msgstr "ਨਵੀਂ ਬੁਝਾਰਤ ਪਾਓ(_G)"
+
+#~ msgid "Generate new puzzles."
+#~ msgstr "ਨਵੀਂ ਬੁਝਾਰਤ ਪਾਓ।"
+
+#~ msgid "_Always show hint"
+#~ msgstr "ਹਮੇਸ਼ਾ ਇਸ਼ਾਰਾ ਵੇਖੋ(_A)"
+
+#~ msgid "Generate new puzzles _while you play"
+#~ msgstr "ਜਦੋਂ ਤੁਸੀਂ ਖੇਡਦੇ ਹੋ ਤਾਂ ਨਵੀਂ ਬੁਝਾਰਤ ਬਣਾਓ(_w)"
+
+#~ msgid ""
+#~ "Generate new puzzles in the background while you play. This will "
+#~ "automatically pause when the game goes into the background."
+#~ msgstr ""
+#~ "ਜਦੋਂ ਤੁਸੀਂ ਖੇਡ ਰਹੇ ਹੋ ਤਾਂ ਨਵੀਂ ਬੁਝਾਰਤ ਬੈਕਗਰਾਊਂਡ 'ਚ ਬਣਾਈ ਜਾਵੇ। ਇਹ ਆਟੋਮੈਟਿਕ ਹੀ ਰੁੱਕ ਜਾਵੇਗੀ, "
+#~ "ਜਦੋਂ ਖੇਡ ਬੈਕਗਰਾਊਂਡ 'ਚ ਜਾਵੇਗੀ।"
+
+#~ msgid "_Edit"
+#~ msgstr "ਸੋਧ(_E)"
+
+#~ msgid "Clear entries you've filled in"
+#~ msgstr "ਇੰਦਰਾਜ਼, ਜੋ ਤੁਸੀਂ ਭਰੇ ਹਨ, ਸਾਫ਼ ਕਰੋ"
+
+#~ msgid "Clear notes and hints"
+#~ msgstr "ਸੂਚਨਾ ਅਤੇ ਇਸ਼ਾਰੇ ਸਾਫ਼ ਕਰੋ"
+
+#~ msgid "You used the auto-fill %(n)s time"
+#~ msgid_plural "You used the auto-fill %(n)s times"
+#~ msgstr[0] "ਤੁਸੀਂ ਆਟੋਮੈਟਿਕ ਭਰੋ %(n)s ਵਾਰ ਵਰਤਿਆ।"
+#~ msgstr[1] "ਤੁਸੀਂ ਆਟੋਮੈਟਿਕ ਭਰੋ %(n)s ਵਾਰ ਵਰਤਿਆ।"
+
+#~ msgid "Playing %(difficulty)s puzzle."
+#~ msgstr "%(difficulty)s ਬੁਝਾਰਤ ਖੇਡੀ ਜਾ ਰਹੀ ਹੈ।"
+
+#~ msgid "No Tracker"
+#~ msgstr "ਕੋਈ ਟਰੈਕਰ ਨਹੀਂ"
+
+#~ msgid "_Clear Others"
+#~ msgstr "ਹੋਰ ਸਾਫ਼ ਕਰੋ(_C)"
+
+#~ msgid "Clear all moves not tracked by selected tracker."
+#~ msgstr "ਚੁਣੇ ਟਰੈਕਰ ਰਾਹੀਂ ਨਾ ਟਰੈਕ ਕੀਤੀਆਂ ਸਭ ਚਾਲਾਂ ਸਾਫ਼ ਕਰੋ।"
+
+#~ msgid "%(n)s puzzle"
+#~ msgid_plural "%(n)s puzzles"
+#~ msgstr[0] "%(n)s ਬੁਝਾਰਤ"
+#~ msgstr[1] "%(n)s ਬੁਝਾਰਤਾਂ"
+
+#~ msgid "Stopped"
+#~ msgstr "ਰੁਕੀ"
+
+#~ msgid "Generated %(n)s out of %(total)s puzzle"
+#~ msgid_plural "Generated %(n)s out of %(total)s puzzles"
+#~ msgstr[0] "%(total)s ਬੁਝਾਰਤਾਂ ਵਿੱਚ %(n)s ਬਣਾਓ"
+#~ msgstr[1] "%(total)s ਬੁਝਾਰਤਾਂ ਵਿੱਚ %(n)s ਬਣਾਓ"
+
+#~ msgid "Generated %(n)s puzzle"
+#~ msgid_plural "Generated %(n)s puzzles"
+#~ msgstr[0] "%(n)s ਬੁਝਾਰਤ ਤਿਆਰ ਕੀਤੀ"
+#~ msgstr[1] "%(n)s ਬੁਝਾਰਤਾਂ ਤਿਆਰ ਕੀਤੀਆਂ"
+
+#~ msgid "Tile _Colours"
+#~ msgstr "ਟਾਇਲ ਰੰਗ(_C)"
+
+#~ msgid "A flag to enable coloured tiles."
+#~ msgstr "ਰੰਗਦਾਰ ਟਾਇਟਲਾਂ ਨੂੰ ਚਾਲੂ ਕਰਨ ਲਈ ਇੱਕ ਨਿਸ਼ਾਨ"
+
+#~ msgid "Control coloured tiles"
+#~ msgstr "ਰੰਗਦਾਰ ਟਾਇਲ ਕੰਟਰੋਲ"
+
+#~ msgid "Look & Feel"
+#~ msgstr "ਦਿੱਖ ਅਤੇ ਪਰਭਾਵ"
 
 #~ msgid "Blackjack"
 #~ msgstr "ਕਾਲਾ ਗੋਲ਼ਾ"
@@ -10087,9 +10070,6 @@ msgstr "ਵੱਡਾ"
 
 #~ msgid "Choose the _level of difficulty for your new game."
 #~ msgstr "ਆਪਣੀ ਨਵੀਂ ਖੇਡ ਲਈ ਔਖ ਪੱਧਰ ਚੁਣੋ(_l)।"
-
-#~ msgid "_Details"
-#~ msgstr "ਵੇਰਵਾ(_D)"
 
 #~ msgid "_Play"
 #~ msgstr "ਖੇਡੋ(_P)"
