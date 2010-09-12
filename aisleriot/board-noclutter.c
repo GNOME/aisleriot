@@ -34,15 +34,6 @@
 #define GDK_KEY(symbol) GDK_##symbol
 #endif
 
-#if GTK_CHECK_VERSION (2, 90, 6)
-#define CAIRO_DRAWING
-
-/* Define this to only draw the cards that overlap the expose region.
- * This shouldn't be necessary with cairo, so it's off by default.
- */
-#undef OPTIMISED_EXPOSE
-#endif
-
 #include <libgames-support/games-files.h>
 #include <libgames-support/games-glib-compat.h>
 #include <libgames-support/games-gtk-compat.h>
@@ -56,13 +47,18 @@
 #include "ar-pixbuf-utils.h"
 #include "ar-style-gtk.h"
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
 #include "ar-card-surface-cache.h"
 #else
 #include "ar-card-images.h"
 #endif
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
+
+/* Define this to only draw the cards that overlap the expose region.
+* This shouldn't be necessary with cairo, so it's off by default.
+*/
+#undef OPTIMISED_EXPOSE
 
 /* Enable keynav on non-hildon by default */
 #if !defined(HAVE_HILDON) && !defined(DISABLE_KEYNAV)
@@ -106,11 +102,11 @@ struct _AisleriotBoardPrivate
 
   ArStyle *style;
 
-#ifndef CAIRO_DRAWING
+#if !GTK_CHECK_VERSION (2, 90, 8)
   GdkGC *draw_gc;
   GdkGC *bg_gc;
   GdkGC *slot_gc;
-#endif /* !CAIRO_DRAWING */
+#endif /* GTK < 3.0 */
 
   GdkCursor *cursor[AR_LAST_CURSOR];
 
@@ -135,7 +131,7 @@ struct _AisleriotBoardPrivate
   int xbaseoffset;
 
   /* Cards cache */
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   ArCardSurfaceCache *card_cache;
   cairo_surface_t *slot_surface;
 #else
@@ -205,7 +201,7 @@ struct _AisleriotBoardPrivate
 
   guint force_geometry_update : 1;
 
-#ifndef CAIRO_DRAWING
+#if !GTK_CHECK_VERSION (2, 90, 8)
   guint use_pixbuf_drawing : 1;
 #endif
 };
@@ -749,7 +745,7 @@ slot_update_card_images_full (AisleriotBoard *board,
   GPtrArray *card_images;
   guint n_cards, first_exposed_card_id, i;
   guint8 *cards;
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   ArCardSurfaceCache *card_cache = priv->card_cache;
 #else
   ArCardImages *images = priv->images;
@@ -774,7 +770,7 @@ slot_update_card_images_full (AisleriotBoard *board,
     g_ptr_array_add (card_images, NULL);
   }
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   for (i = first_exposed_card_id; i < n_cards; ++i) {
     Card card = CARD (cards[i]);
 
@@ -803,7 +799,7 @@ slot_update_card_images_full (AisleriotBoard *board,
                        ar_card_images_get_card_pixmap (images, card, is_highlighted));
     }
   }
-#endif /* CAIRO_DRAWING */
+#endif /* GTK 3.0 */
 }
 
 static void
@@ -845,7 +841,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   guint i, n_slots;
   CardSize card_size;
   gboolean size_changed;
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   ArCardTheme *theme;
 #endif
 
@@ -859,7 +855,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   priv->xslotstep = ((double) priv->allocation.width) / priv->width;
   priv->yslotstep = ((double) priv->allocation.height) / priv->height;
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   theme = ar_style_get_card_theme (priv->style);
   if (theme == NULL)
     return;
@@ -896,7 +892,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   priv->xoffset = (priv->xslotstep - card_size.width) / 2;
   priv->yoffset = (priv->yslotstep - card_size.height) / 2;
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   priv->slot_surface = ar_card_surface_cache_get_slot_surface (priv->card_cache);
 #else
   if (PIXBUF_DRAWING_LIKELIHOOD (priv->use_pixbuf_drawing)) {
@@ -907,7 +903,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
 
   gdk_gc_set_clip_mask (priv->slot_gc, ar_card_images_get_slot_mask (priv->images));
   gdk_gc_set_clip_mask (priv->draw_gc, ar_card_images_get_card_mask (priv->images));
-#endif /* CAIRO_DRAWING */
+#endif /* GTK 3.0 */
 
   /* NOTE! Updating the slots checks that geometry is set, so
    * we set it to TRUE already.
@@ -943,7 +939,7 @@ drag_begin (AisleriotBoard *board)
   GByteArray *cards;
   GdkWindowAttr attributes;
   GdkWindow *window;
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   cairo_surface_t *surface;
   cairo_t *cr;
   cairo_pattern_t *pattern;
@@ -956,7 +952,7 @@ drag_begin (AisleriotBoard *board)
   gboolean use_pixbuf_drawing = priv->use_pixbuf_drawing;
   GdkPixmap *moving_pixmap;
   GdkPixmap *moving_mask;
-#endif /* CAIRO_DRAWING */
+#endif /* GTK 3.0 */
 
   if (!priv->selection_slot ||
       priv->selection_start_card_id < 0) {
@@ -1027,7 +1023,7 @@ drag_begin (AisleriotBoard *board)
 #endif
                                               GDK_WA_VISUAL | GDK_WA_X | GDK_WA_Y);
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   surface = gdk_window_create_similar_surface (priv->moving_cards_window, CAIRO_CONTENT_COLOR_ALPHA,
                                                width, height);
 
@@ -1060,7 +1056,7 @@ drag_begin (AisleriotBoard *board)
   card_mask = ar_card_images_get_card_mask (priv->images);
   gdk_gc_set_clip_mask (gc1, card_mask);
   gdk_gc_set_clip_mask (gc2, card_mask);
-#endif /* CAIRO_DRAWING */
+#endif /* GTK 3.0 */
 
   /* FIXMEchpe: RTL issue: this doesn't work right when we allow dragging of
    * more than one card from a expand-right slot. (But right now no game .scm
@@ -1073,7 +1069,7 @@ drag_begin (AisleriotBoard *board)
   for (i = 0; i < priv->moving_cards->len; ++i) {
     Card hcard = CARD (priv->moving_cards->data[i]);
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
     cairo_surface_t *card_surface;
     cairo_pattern_t *card_pattern;
     cairo_matrix_t matrix;
@@ -1091,7 +1087,7 @@ drag_begin (AisleriotBoard *board)
 
     cairo_pattern_destroy (card_pattern);
 
-#else /* !CAIRO_DRAWING */
+#else /* GTK < 3.0 */
     gdk_gc_set_clip_origin (gc1, x, y);
     gdk_gc_set_clip_origin (gc2, x, y);
 
@@ -1120,7 +1116,7 @@ drag_begin (AisleriotBoard *board)
       gdk_draw_rectangle (moving_mask, gc2, TRUE,
                           x, y, width, height);
     }
-#endif /* CAIRO_DRAWING */
+#endif /* GTK 3.0 */
 
   next:
 
@@ -1128,7 +1124,7 @@ drag_begin (AisleriotBoard *board)
     y += hslot->pixeldy;
   }
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   cairo_destroy (cr);
 
   pattern = cairo_pattern_create_for_surface (surface);
@@ -1152,7 +1148,7 @@ drag_begin (AisleriotBoard *board)
 
   g_object_unref (moving_pixmap);
   g_object_unref (moving_mask);
-#endif /* !CAIRO_DRAWING */
+#endif /* GTK 3.0 */
 
   gdk_window_show (priv->moving_cards_window);
 
@@ -2444,7 +2440,7 @@ aisleriot_board_realize (GtkWidget *widget)
 
   window = gtk_widget_get_window (widget);
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   ar_card_surface_cache_set_drawable (priv->card_cache, window);
 #else
 {
@@ -2461,7 +2457,7 @@ aisleriot_board_realize (GtkWidget *widget)
 
   priv->slot_gc = gdk_gc_new (window);
 }
-#endif /* !CAIRO_DRAWING */
+#endif /* GTK < 3.0 */
 
 #ifndef HAVE_HILDON
 {
@@ -2491,7 +2487,7 @@ aisleriot_board_unrealize (GtkWidget *widget)
 
   priv->geometry_set = FALSE;
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   ar_card_surface_cache_set_drawable (priv->card_cache, NULL);
   priv->slot_surface = NULL;
 #else
@@ -2548,7 +2544,7 @@ aisleriot_board_sync_style (ArStyle *style,
     if (theme != NULL) {
       priv->geometry_set = FALSE;
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
       priv->slot_surface = NULL;
       ar_card_surface_cache_set_theme (priv->card_cache, theme);
 #else
@@ -2622,7 +2618,7 @@ aisleriot_board_sync_style (ArStyle *style,
   }
 
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_SELECTION_COLOR)) {
-#ifndef CAIRO_DRAWING
+#if !GTK_CHECK_VERSION (2, 90, 8)
     GdkColor selection_color;
 
     ar_style_get_selection_color (priv->style, &selection_color);
@@ -2636,17 +2632,17 @@ aisleriot_board_sync_style (ArStyle *style,
 
   if (realized &&
       (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_BAIZE_COLOR))) {
-#ifndef CAIRO_DRAWING
+#if !GTK_CHECK_VERSION (2, 90, 8)
     GdkColor baize_color;
 
     ar_style_get_baize_color (priv->style, &baize_color);
     gdk_gc_set_rgb_fg_color (priv->bg_gc, &baize_color);
-#endif /* !CAIRO_DRAWING */
+#endif /* GTK < 3.0 */
 
     queue_redraw = TRUE;
   }
 
-#ifndef CAIRO_DRAWING
+#if !GTK_CHECK_VERSION (2, 90, 8)
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_PIXBUF_DRAWING)) {
     gboolean pixbuf_drawing;
 
@@ -2662,7 +2658,7 @@ aisleriot_board_sync_style (ArStyle *style,
     update_geometry |= TRUE;
     queue_redraw |= TRUE;
   }
-#endif /* !CAIRO_DRAWING */
+#endif /* GTK < 3.0 */
 
 #if GTK_CHECK_VERSION (2, 12, 0) && !defined(HAVE_HILDON)
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_SHOW_TOOLTIPS)) {
@@ -3182,44 +3178,56 @@ aisleriot_board_tap_and_hold_cb (GtkWidget *widget,
 
 #endif /* HAVE_MAEMO */
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
 
 static gboolean
-aisleriot_board_expose_event (GtkWidget *widget,
-                              GdkEventExpose *event)
+aisleriot_board_draw (GtkWidget *widget,
+                      cairo_t *cr,
+                      int draw_width,
+                      int draw_height)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
-  cairo_t *cr;
-#if GTK_CHECK_VERSION (2, 90, 5)
-  cairo_region_t *region = event->region;
-#else
-  GdkRegion *region = event->region;
-#endif
   int i;
   GPtrArray *slots;
   guint n_slots;
   ArSlot **exposed_slots;
   ArSlot *highlight_slot;
   guint n_exposed_slots;
-  GdkWindow *window;
   GdkColor color;
   cairo_surface_t *surface;
   cairo_pattern_t *pattern;
   cairo_matrix_t matrix;
-
-  window = gtk_widget_get_window (widget);
+#if GTK_CHECK_VERSION (2, 90, 8)
+  cairo_rectangle_int_t clip_rect;
+  cairo_region_t *region;
+#else
+  GdkWindow *window;
+  GdkRegion *region = event->region;
+  cairo_t *cr;
+#endif
 
   /* NOTE: It's ok to just return instead of chaining up, since the
    * parent class has no class closure for this event.
    */
 
+#if !GTK_CHECK_VERSION (2, 90, 8)
+  window = gtk_widget_get_window (widget);
+
   if (event->window != window)
     return FALSE;
+#endif
 
-#if GTK_CHECK_VERSION (2, 90, 5)
-  if (cairo_region_is_empty (region))
+#if GTK_CHECK_VERSION (2, 90, 8)
+  if (!gdk_cairo_get_clip_rectangle (cr, &clip_rect))
     return FALSE;
+
+  region = cairo_region_create_rectangle (&clip_rect);
+
+  if (cairo_region_is_empty (region)) {
+    cairo_region_destroy (region);
+    return FALSE;
+  }
 #else
   if (gdk_region_empty (region))
     return FALSE;
@@ -3243,10 +3251,12 @@ aisleriot_board_expose_event (GtkWidget *widget,
   }
 #endif
 
+#if !GTK_CHECK_VERSION (2, 90, 8)
   cr = gdk_cairo_create (window);
 
   gdk_cairo_region (cr, region);
   cairo_clip (cr);
+#endif
 
   /* First paint the background */
 
@@ -3258,7 +3268,11 @@ aisleriot_board_expose_event (GtkWidget *widget,
 
   /* Only draw the the cards when the geometry is set, and we're in a resize */
   if (!priv->geometry_set) {
+#if GTK_CHECK_VERSION (2, 90, 8)
+    cairo_region_destroy (region);
+#else
     cairo_destroy (cr);
+#endif
     return TRUE;
   }
 
@@ -3519,13 +3533,18 @@ expose_done:
     g_print ("expose-event cairo status %d\n", cairo_status (cr));
   }
   #endif
+
+#if GTK_CHECK_VERSION (2, 90, 8)
+  cairo_region_destroy (region);
+#else
   cairo_destroy (cr);
+#endif
 
   /* Parent class has no expose handler, no need to chain up */
   return TRUE;
 }
 
-#else /* !CAIRO_DRAWING */
+#else /* GTK < 3.0 */
 
 static gboolean
 aisleriot_board_expose_event (GtkWidget *widget,
@@ -3798,7 +3817,7 @@ expose_done:
   return TRUE;
 }
 
-#endif /* CAIRO_DRAWING */
+#endif /* GTK 3.0 */
 
 /* GObjectClass methods */
 
@@ -3826,7 +3845,7 @@ aisleriot_board_init (AisleriotBoard *board)
 
   priv->moving_cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   priv->card_cache = ar_card_surface_cache_new ();
   // FIXMEchpe connect changed handler
 #else
@@ -3888,7 +3907,7 @@ aisleriot_board_finalize (GObject *object)
 
   g_byte_array_free (priv->moving_cards, TRUE);
 
-#ifdef CAIRO_DRAWING
+#if GTK_CHECK_VERSION (2, 90, 8)
   g_object_unref (priv->card_cache);
 #else
   g_object_unref (priv->images);
@@ -3960,7 +3979,11 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->button_release_event = aisleriot_board_button_release;
   widget_class->motion_notify_event = aisleriot_board_motion_notify;
   widget_class->key_press_event = aisleriot_board_key_press;
+#if GTK_CHECK_VERSION (2, 90, 8)
+  widget_class->draw = aisleriot_board_draw;
+#else
   widget_class->expose_event = aisleriot_board_expose_event;
+#endif
 
   signals[STATUS_MESSAGE] =
     g_signal_new (I_("status-message"),
