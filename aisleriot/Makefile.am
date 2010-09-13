@@ -83,7 +83,8 @@ sol_LDADD = \
 	lib/libaisleriot.la \
 	$(top_builddir)/libgames-support/libgames-support.la \
 	$(GTK_LIBS) \
-	$(GUILE_LIBS)
+	$(GUILE_LIBS) \
+	-lm
 
 if HAVE_HILDON
 sol_CFLAGS += $(HILDON_CFLAGS)
