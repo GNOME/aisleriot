@@ -3265,9 +3265,7 @@ ar_cairo_get_clip_region (cairo_t *cr)
 #if GTK_CHECK_VERSION (2, 90, 8)
 static gboolean
 aisleriot_board_draw (GtkWidget *widget,
-                      cairo_t *cr,
-                      int draw_width G_GNUC_UNUSED,
-                      int draw_height G_GNUC_UNUSED)
+                      cairo_t *cr)
 #else
 static gboolean
 aisleriot_board_expose_event (GtkWidget *widget,
