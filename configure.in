@@ -119,6 +119,7 @@ allow_gnuchess=no
 allow_smclient=no
 disallow_hildon=no
 require_gtk_2_16=no
+require_cairo_1_10=no
 libgames_support_full=no
 
 for game in $gamelist; do
@@ -466,6 +467,7 @@ if test "$enable_card_theme_format_svg" = "yes"; then
 fi
 if test "$enable_card_theme_format_kde" = "yes"; then
   AC_DEFINE([ENABLE_CARD_THEME_FORMAT_KDE],[1],[Define to enable KDE card theme format support])
+  require_cairo_1_10=yes
   need_rsvg=yes
 fi
 if test "$enable_card_theme_format_fixed" = "yes"; then
@@ -586,7 +588,6 @@ esac
 
 GCONF_REQUIRED=2.0
 GIO_REQUIRED=2.25.7
-CAIRO_REQUIRED=1.0
 GSTREAMER_REQUIRED=0.10.11
 HILDON_LIBS_REQUIRED=0.14
 HILDON_1_REQUIRED=1.00
@@ -648,6 +649,12 @@ fi
 have_rsvg=no
 if test "$need_rsvg" = "yes"; then
   have_rsvg=yes
+
+  if test "$require_cairo_1_10" = "yes"; then
+    CAIRO_REQUIRED=1.10.0
+  else
+    CAIRO_REQUIRED=1.0
+  fi
 
   # Errors out if rsvg is not found
   PKG_CHECK_MODULES([RSVG],[
