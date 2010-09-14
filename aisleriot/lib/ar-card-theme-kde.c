@@ -1,6 +1,6 @@
 /*
   Copyright © 2004 Callum McKenzie
-  Copyright © 2007, 2008 Christian Persch
+  Copyright © 2007, 2008, 2010 Christian Persch
 
   This programme is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,8 +21,10 @@
 
 #include <string.h>
 #include <glib.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
+
+#include <librsvg/rsvg.h>
+#include <librsvg/rsvg-cairo.h>
 
 #include <libgames-support/games-debug.h>
 #include <libgames-support/games-profile.h>
@@ -43,7 +45,7 @@ struct _ArCardThemeKDEClass {
 struct _ArCardThemeKDE {
   ArCardThemePreimage parent_instance;
 
-  cairo_rectangle_t *bboxes;
+  cairo_rectangle_t *card_extents;
 
   char *backs[MAX_N_BACKS];
   guint n_backs : 4; /* enough bits for MAX_N_BACKS */
@@ -51,15 +53,6 @@ struct _ArCardThemeKDE {
   guint has_2_jokers : 1;
   guint has_joker : 1;
 };
-
-#include <librsvg/librsvg-features.h>
-
-/* We need librsvg >= 2.22.4 here */
-#if defined(LIBRSVG_CHECK_VERSION)
-#if LIBRSVG_CHECK_VERSION(2, 26, 0)
-#define HAVE_NEW_RSVG
-#endif
-#endif
 
 enum {
   PROP_0,
@@ -83,13 +76,27 @@ enum {
 static gboolean
 get_is_blacklisted (const char *filename)
 {
-  /* Let's blacklist these themes, since they exist in g-g-extra-data too,
-   * and our variants render faster.
-   */
   static const char *blacklist[] = {
+    /* These exist in g-g-extra-data too, and ours render faster */
     "svg-dondorf",
     "svg-nicu-ornamental",
-    "svg-gm-paris"
+    "svg-gm-paris",
+    /* These are defective, they have no back card */
+    "svg-ancient-egyptians",
+    "svg-future",
+    "svg-jolly-royal",
+    "svg-konqi-modern",
+    "svg-oxygen",
+    "svg-penguins",
+    "svg-standard",
+    "svg-xskat-french",
+    /* These are broken in some other way */
+    "svg-tigullio-international",
+    "svg-xskat-german",
+    /* These just crash librsvg / cairo */
+    "svg-oxygen-white",
+    /* This is a combinded theme containing card backs */
+    "decks"
   };
   guint i;
 
@@ -100,64 +107,48 @@ get_is_blacklisted (const char *filename)
   return FALSE;
 }
 
-#ifdef HAVE_NEW_RSVG
-
 static cairo_rectangle_t *
-ar_card_theme_kde_get_card_bbox (ArCardThemeKDE *theme,
+ar_card_theme_kde_get_card_extents (ArCardThemeKDE *theme,
                                     int card_id,
                                     const char *node)
 {
-  cairo_rectangle_t *bbox;
   GamesPreimage *preimage;
-  RsvgDimensionData dim;
-  RsvgPositionData pos;
-  gboolean retval;
+  cairo_rectangle_t *card_extents;
+  cairo_rectangle_t rect;
+  cairo_surface_t *surface;
+  cairo_t *cr;
 
-  bbox = &theme->bboxes[card_id];
+  card_extents = &theme->card_extents[card_id];
   /* Is it initalised yet? */
-  if (bbox->width != G_MAXFLOAT)
-    return bbox;
+  if (card_extents->width != 0. && card_extents->height != 0.)
+    return card_extents;
 
   preimage = ((ArCardThemePreimage *) theme)->cards_preimage;
 
-  _games_profile_start ("rsvg_handle_get_dimensions_sub node %s", node);
-  retval = rsvg_handle_get_dimensions_sub (preimage->rsvg_handle, &dim, node);
-  _games_profile_end ("rsvg_handle_get_dimensions_sub node %s", node);
+  surface = cairo_recording_surface_create (CAIRO_CONTENT_ALPHA, NULL);
+  cr = cairo_create (surface);
+  _games_profile_start ("getting ink extents for node %s", node);
+  rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cr, node);
+  _games_profile_end ("getting ink extents for node %s", node);
+  cairo_destroy (cr);
 
-  if (!retval) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
-                        "Failed to get dim for '%s'\n", node);
-    return NULL;
-  }
-
-  _games_profile_start ("rsvg_handle_get_position_sub node %s", node);
-  retval = rsvg_handle_get_position_sub (preimage->rsvg_handle, &pos, node);
-  _games_profile_end ("rsvg_handle_get_position_sub node %s", node);
-
-  if (!retval) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
-                        "Failed to get pos for '%s'\n", node);
-    return NULL;
-  }
-
-  /* Sanity check; necessary? */
-  if (dim.width <= 0 || dim.height <= 0)
-    return NULL;
-
-  bbox->width = dim.width;
-  bbox->height = dim.height;
-  bbox->x = pos.x;
-  bbox->y = pos.y;
+  cairo_recording_surface_ink_extents (surface, &rect.x, &rect.y, &rect.width, &rect.height);
+  cairo_surface_destroy (surface);
 
   _games_debug_print (GAMES_DEBUG_CARD_THEME,
-                      "card %s position %.3f:%.3f dimension %.3f:%.3f\n",
+                      "card %s %.3f x%.3f at (%.3f | %.3f)\n",
                       node,
-                      bbox->x, bbox->y, bbox->width, bbox->height);
+                      card_extents->width, card_extents->height,
+                      card_extents->x, card_extents->y);
 
-  return bbox;
+  *card_extents = rect;
+
+  /* Sanity check; necessary? */
+  if (rect.width == 0. || rect.height == 0.)
+    return NULL;
+
+  return card_extents;
 }
-
-#endif /* HAVE_NEW_RSVG */
 
 /* Class implementation */
 
@@ -165,9 +156,8 @@ G_DEFINE_TYPE (ArCardThemeKDE, ar_card_theme_kde, AR_TYPE_CARD_THEME_PREIMAGE);
 
 static gboolean
 ar_card_theme_kde_load (ArCardTheme *card_theme,
-                           GError **error)
+                        GError **error)
 {
-#ifdef HAVE_NEW_RSVG
   static const char extra_backs[][11] = {
     "#blue_back",
     "#red_back",
@@ -206,8 +196,11 @@ ar_card_theme_kde_load (ArCardTheme *card_theme,
   }
 
   /* No backs at all? Fail! */
-  if (theme->n_backs == 0)
+  if (theme->n_backs == 0) {
+    g_set_error (error, AR_CARD_THEME_ERROR, AR_CARD_THEME_ERROR_MISSING_ELEMENT,
+                 "Missing element for card back");
     return FALSE;
+  }
 
   /* Look for the jokers */
   ar_card_get_node_by_id_snprintf (node, sizeof (node), AR_CARD_BLACK_JOKER);
@@ -219,37 +212,33 @@ ar_card_theme_kde_load (ArCardTheme *card_theme,
 
   theme->has_2_jokers = has_red_joker && has_black_joker;
   theme->has_joker = has_joker;
-  
-  /* Get the bbox of the card back, which we use to compute the theme's aspect ratio */
-  if (!ar_card_theme_kde_get_card_bbox (theme, AR_CARD_BACK, theme->backs[theme->back_index])) {
+
+  /* Get the card_extents of the card back, which we use to compute the theme's aspect ratio */
+  if (!ar_card_theme_kde_get_card_extents (theme, AR_CARD_BACK, theme->backs[theme->back_index])) {
     g_set_error (error, AR_CARD_THEME_ERROR, AR_CARD_THEME_ERROR_GENERIC,
                  "Failed to get the theme's aspect ratio");
     return FALSE;
   }
 
   return TRUE;
-#else
-  return FALSE;
-#endif /* HAVE_NEW_RSVG */
 }
 
 static double
 ar_card_theme_kde_get_card_aspect (ArCardTheme* card_theme)
 {
   ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
-  cairo_rectangle_t *bbox;
+  cairo_rectangle_t *card_extents;
 
-  bbox = &theme->bboxes[AR_CARD_BACK];
-  g_assert (bbox->width != G_MAXFLOAT); /* initialised */
+  card_extents = &theme->card_extents[AR_CARD_BACK];
+  g_assert (card_extents->width != 0 && card_extents->height != 0); /* initialised */
 
-  return bbox->width / bbox->height;
+  return card_extents->width / card_extents->height;
 }
 
 static GdkPixbuf *
 ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
-                                      int card_id)
+                                   int card_id)
 {
-#ifdef HAVE_NEW_RSVG
   ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
   ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
   GamesPreimage *preimage = preimage_card_theme->cards_preimage;
@@ -258,7 +247,7 @@ ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
   double width, height;
   double zoomx, zoomy;
   char node[32];
-  cairo_rectangle_t *bbox;
+  cairo_rectangle_t *card_extents;
 
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
     subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
@@ -270,8 +259,8 @@ ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
 
   ar_card_get_node_by_id_snprintf (node, sizeof (node), card_id);
 
-  bbox = ar_card_theme_kde_get_card_bbox (theme, card_id, node);
-  if (!bbox)
+  card_extents = ar_card_theme_kde_get_card_extents (theme, card_id, node);
+  if (!card_extents)
     return NULL;
 
   card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
@@ -283,23 +272,67 @@ ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
   zoomx = width / card_width;
   zoomy = height / card_height;
 
-//   zoomx = width / bbox->width;
-//   zoomy = height / bbox->height;
+//   zoomx = width / card_extents->width;
+//   zoomy = height / card_extents->height;
 
   subpixbuf = games_preimage_render_sub (preimage,
                                          node,
                                          preimage_card_theme->card_size.width,
                                          preimage_card_theme->card_size.height,
-                                         -bbox->x, -bbox->y,
+                                         -card_extents->x, -card_extents->y,
                                          zoomx, zoomy);
 
   _games_debug_print (GAMES_DEBUG_CARD_THEME,
                       "Returning %p\n", subpixbuf);
 
   return subpixbuf;
-#else
-  return NULL;
-#endif /* HAVE_NEW_RSVG */
+}
+
+static void
+ar_card_theme_kde_paint_card (ArCardTheme *card_theme,
+                              cairo_t *cr,
+                              int card_id)
+{
+  ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
+  ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
+  GamesPreimage *preimage = preimage_card_theme->cards_preimage;
+  char node[32];
+  cairo_rectangle_t *card_extents;
+  cairo_matrix_t matrix;
+
+  if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
+    games_preimage_render_cairo (preimage_card_theme->slot_preimage,
+                                 cr,
+                                 preimage_card_theme->card_size.width,
+                                 preimage_card_theme->card_size.height);
+    return;
+  }
+
+  ar_card_get_node_by_id_snprintf (node, sizeof (node), card_id);
+
+  card_extents = ar_card_theme_kde_get_card_extents (theme, card_id, node);
+  if (!card_extents)
+    return;
+
+  cairo_save (cr);
+
+  if (preimage->font_options) {
+    cairo_set_antialias (cr, cairo_font_options_get_antialias (preimage->font_options));
+
+    cairo_set_font_options (cr, preimage->font_options);
+  }
+
+  cairo_matrix_init_identity (&matrix);
+  cairo_matrix_scale (&matrix,
+                      preimage_card_theme->card_size.width / card_extents->width,
+                      preimage_card_theme->card_size.height / card_extents->height);
+  cairo_matrix_translate (&matrix, -card_extents->x, -card_extents->y);
+
+  cairo_set_matrix (cr, &matrix);
+
+  rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cr, node);
+
+  cairo_restore (cr);
 }
 
 static void
@@ -307,9 +340,9 @@ ar_card_theme_kde_init (ArCardThemeKDE *theme)
 {
   int i;
 
-  theme->bboxes = g_new0 (cairo_rectangle_t, AR_CARDS_TOTAL);
+  theme->card_extents = g_new0 (cairo_rectangle_t, AR_CARDS_TOTAL);
   for (i = 0; i < AR_CARDS_TOTAL; ++i)
-    theme->bboxes[i].width = G_MAXFLOAT; /* uninitialised */
+    theme->card_extents[i].width = theme->card_extents[i].height = 0.;
 
   theme->n_backs = 0;
   theme->back_index = 0;
@@ -321,7 +354,7 @@ ar_card_theme_kde_finalize (GObject * object)
   ArCardThemeKDE *theme = AR_CARD_THEME_KDE (object);
   guint i;
 
-  g_free (theme->bboxes);
+  g_free (theme->card_extents);
 
   for (i = 0; i < theme->n_backs; ++i)
     g_free (theme->backs[i]);
@@ -331,10 +364,9 @@ ar_card_theme_kde_finalize (GObject * object)
 
 static ArCardThemeInfo *
 ar_card_theme_kde_class_get_theme_info (ArCardThemeClass *klass,
-                                           const char *path,
-                                           const char *filename)
+                                        const char *path,
+                                        const char *filename)
 {
-#ifdef HAVE_NEW_RSVG
   ArCardThemeInfo *info = NULL;
   char *base_path = NULL, *key_file_path = NULL;
   GKeyFile *key_file = NULL;
@@ -354,7 +386,7 @@ ar_card_theme_kde_class_get_theme_info (ArCardThemeClass *klass,
   key_file = g_key_file_new ();
   if (!g_key_file_load_from_file (key_file, key_file_path, 0, NULL))
     goto out;
-      
+
   if (!g_key_file_has_group (key_file, KDE_BACKDECK_GROUP))
     goto out;
 
@@ -366,12 +398,12 @@ ar_card_theme_kde_class_get_theme_info (ArCardThemeClass *klass,
   display_name = g_strdup_printf ("%s (KDE)", name);
   pref_name = g_strdup_printf ("kde:%s", filename);
   info = _ar_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
-                                     base_path,
-                                     svg_filename,
-                                     display_name /* adopts */,
-                                     pref_name /* adopts */,
-                                     TRUE /* scalable */,
-                                     NULL, NULL);
+                                  base_path,
+                                  svg_filename,
+                                  display_name /* adopts */,
+                                  pref_name /* adopts */,
+                                  TRUE /* scalable */,
+                                  NULL, NULL);
 
 out:
   g_free (base_path);
@@ -383,9 +415,6 @@ out:
   }
 
   return info;
-#else
-  return NULL;
-#endif /* HAVE_NEW_RSVG */
 }
 
 static gboolean
@@ -401,15 +430,16 @@ ar_card_theme_kde_class_foreach_theme_dir (ArCardThemeClass *klass,
 
 static void
 ar_card_theme_kde_get_property (GObject    *object,
-                                   guint       property_id,
-                                   GValue     *value,
-                                   GParamSpec *pspec)
+                                guint       property_id,
+                                GValue     *value,
+                                GParamSpec *pspec)
 {
   ArCardThemeKDE *theme = AR_CARD_THEME_KDE (object);
 
   switch (property_id) {
     case PROP_BACK_INDEX:
       g_value_set_int (value, theme->back_index);
+      theme->card_extents[AR_CARD_BACK].width = theme->card_extents[AR_CARD_BACK].height = 0;
       break;
 
     case PROP_N_BACKS:
@@ -423,9 +453,9 @@ ar_card_theme_kde_get_property (GObject    *object,
 
 static void
 ar_card_theme_kde_set_property (GObject      *object,
-                                   guint         property_id,
-                                   const GValue *value,
-                                   GParamSpec   *pspec)
+                                guint         property_id,
+                                const GValue *value,
+                                GParamSpec   *pspec)
 {
   ArCardThemeKDE *theme = AR_CARD_THEME_KDE (object);
 
@@ -462,6 +492,7 @@ ar_card_theme_kde_class_init (ArCardThemeKDEClass * klass)
   theme_class->load = ar_card_theme_kde_load;
   theme_class->get_card_aspect = ar_card_theme_kde_get_card_aspect;
   theme_class->get_card_pixbuf = ar_card_theme_kde_get_card_pixbuf;
+  theme_class->paint_card = ar_card_theme_kde_paint_card;
 
   preimage_theme_class->needs_scalable_cards = TRUE;
 
