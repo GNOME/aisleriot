@@ -422,11 +422,17 @@ esac
 
 AC_MSG_CHECKING([for requested card theme formats])
 AC_ARG_WITH([card-theme-formats],
-  [AS_HELP_STRING([--with-card-theme-formats],[which card theme formats to support (svg, fixed, kde, pysol, defaults, all)])],
-  [],[case "$with_platform" in
-        gnome|gtk-only) with_card_theme_formats="svg" ;;
-        hildon) with_card_theme_formats="fixed" ;;
-      esac])
+  [AS_HELP_STRING([--with-card-theme-formats],[which card theme formats to support (svg,fixed,kde,pysol|default|all)])],
+  [],[with_card_theme_formats=default])
+
+case "$with_card_theme_formats" in
+  default) case "$with_platform" in
+             gnome|gtk-only) with_card_theme_formats="svg" ;;
+             hildon) with_card_theme_formats="fixed" ;;
+           esac
+           ;;
+  all) with_card_theme_formats="svg,kde,fixed,sliced,pysol" ;;
+esac
 
 enable_card_theme_format_svg=no
 enable_card_theme_format_kde=no
@@ -435,21 +441,14 @@ enable_card_theme_format_sliced=no
 enable_card_theme_format_pysol=no
 
 IFS="${IFS=	}"; gg_saved_ifs="$IFS"; IFS=","
-for format in "$with_card_theme_formats"; do
+for format in $with_card_theme_formats; do
   case "$format" in
-    all) enable_card_theme_format_svg=yes
-         enable_card_theme_format_kde=yes
-         enable_card_theme_format_fixed=yes
-         enable_card_theme_format_sliced=yes
-         enable_card_theme_format_pysol=yes
-         with_card_theme_formats="svg,kde,fixed,sliced,pysol"
-         ;;
     svg) enable_card_theme_format_svg=yes ;;
     kde) enable_card_theme_format_kde=yes ;;
     fixed) enable_card_theme_format_fixed=yes ;;
     sliced) enable_card_theme_format_svg=yes ;;
     pysol) enable_card_theme_format_pysol=yes ;;
-    *) AC_MSG_ERROR([unknown card theme format $format]) ;;
+    *) IFS="$gg_saved_ifs" AC_MSG_ERROR([unknown card theme format $format requested]) ;;
   esac
 done
 IFS="$gg_saved_ifs"
