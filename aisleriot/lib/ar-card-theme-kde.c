@@ -40,6 +40,8 @@
 
 struct _ArCardThemeKDEClass {
   ArCardThemePreimageClass parent_class;
+
+  GHashTable *back_names;
 };
 
 struct _ArCardThemeKDE {
@@ -65,10 +67,13 @@ enum {
 
 #define DELTA (0.0f)
 
+#define KDE_CARDS_GROUP           "KDE Cards"
+#define KDE_CARDS_NAME_KEY        "Name"
+#define KDE_CARDS_SVG_KEY         "SVG"
+
 #define KDE_BACKDECK_FILENAME     "index.desktop"
 #define KDE_BACKDECK_GROUP        "KDE Backdeck"
 #define KDE_BACKDECK_BACK_KEY     "Back"
-#define KDE_BACKDECK_BACKSIZE_KEY "BackSize"
 #define KDE_BACKDECK_NAME_KEY     "Name" /* localised */
 #define KDE_BACKDECK_PYSOL_KEY    "PySol"
 #define KDE_BACKDECK_SVG_KEY      "SVG"
@@ -105,6 +110,78 @@ get_is_blacklisted (const char *filename)
       return TRUE;
 
   return FALSE;
+}
+
+static gboolean
+ar_card_theme_kde_class_load_back_infos (ArCardThemeClass *theme_klass,
+                                         const char *base_path,
+                                         GHashTable *back_names)
+{
+  char *deck_path;
+  const char *filename;
+  GDir *dir;
+  GKeyFile *key_file;
+
+  deck_path = g_build_filename (base_path, "decks", NULL);
+  dir = g_dir_open (deck_path, 0, NULL);
+  if (dir == NULL)
+    goto out;
+
+  while ((filename = g_dir_read_name (dir)) != NULL) {
+    char *path = NULL, *name = NULL, *svg_filename = NULL;
+
+    if (!g_str_has_suffix (filename, ".desktop"))
+      continue;
+
+    path = g_build_filename (deck_path, filename, NULL);
+    key_file = g_key_file_new ();
+    if (!g_key_file_load_from_file (key_file, path, 0, NULL))
+      goto next;
+
+    if (!g_key_file_has_group (key_file, KDE_CARDS_GROUP))
+      goto next;
+
+    name = g_key_file_get_string (key_file, KDE_CARDS_GROUP, KDE_CARDS_NAME_KEY, NULL);
+    svg_filename = g_key_file_get_string (key_file, KDE_CARDS_GROUP, KDE_CARDS_SVG_KEY, NULL);
+    if (!name || !name[0] || !svg_filename || !svg_filename[0])
+      goto next;
+
+    g_hash_table_insert (back_names,
+                         name /* adopts */,
+                         g_build_filename (deck_path, svg_filename, NULL) /* adopts */);
+    name = NULL; /* adopted above */
+
+  next:
+    g_free (path);
+    g_free (name);
+    g_free (svg_filename);
+    g_key_file_free (key_file);
+
+  }
+
+  g_dir_close (dir);
+
+out:
+  g_free (deck_path);
+
+  return TRUE;
+}
+
+static void
+ar_card_theme_kde_class_ensure_back_infos (ArCardThemeKDEClass *klass)
+{
+  ArCardThemeClass *theme_class;
+
+  if (klass->back_names != NULL)
+    return;
+
+  klass->back_names = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                             g_free, g_free);
+
+  theme_class = AR_CARD_THEME_CLASS (klass);
+  theme_class->foreach_theme_dir (theme_class,
+                                  (ArCardThemeForeachFunc) ar_card_theme_kde_class_load_back_infos,
+                                  klass->back_names);
 }
 
 static cairo_rectangle_t *
@@ -369,6 +446,7 @@ ar_card_theme_kde_class_get_theme_info (ArCardThemeClass *klass,
 {
   ArCardThemeInfo *info = NULL;
   char *base_path = NULL, *key_file_path = NULL;
+  char *back_name;
   GKeyFile *key_file = NULL;
   char *svg_filename = NULL, *name = NULL, *display_name, *pref_name;
 
@@ -395,6 +473,8 @@ ar_card_theme_kde_class_get_theme_info (ArCardThemeClass *klass,
   if (!name || !name[0] || !svg_filename || !svg_filename[0])
     goto out;
 
+  back_name = g_key_file_get_string (key_file, KDE_BACKDECK_GROUP, KDE_BACKDECK_BACK_KEY, NULL);
+
   display_name = g_strdup_printf ("%s (KDE)", name);
   pref_name = g_strdup_printf ("kde:%s", filename);
   info = _ar_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
@@ -403,7 +483,7 @@ ar_card_theme_kde_class_get_theme_info (ArCardThemeClass *klass,
                                   display_name /* adopts */,
                                   pref_name /* adopts */,
                                   TRUE /* scalable */,
-                                  NULL, NULL);
+                                  back_name, g_free);
 
 out:
   g_free (base_path);
