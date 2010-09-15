@@ -206,7 +206,7 @@ BUILT_GIRSOURCES = GnomeGamesSupport-1.0.gir
 GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(libgames_support_gi_la_SOURCES)
 	$(AM_V_GEN) $(INTROSPECTION_SCANNER) -v \
 	--namespace GnomeGamesSupport --nsversion=1.0 \
-	--strip-prefix=games \
+	--strip-prefix=Games \
 	--add-include-path=$(srcdir) --add-include=path=. \
 	--include=Clutter-1.0 \
 	--include=Cogl-1.0 \
