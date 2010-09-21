@@ -3142,8 +3142,10 @@ aisleriot_board_motion_notify (GtkWidget *widget,
     highlight_drop_target (board, slot);
 
     gdk_window_move (priv->moving_cards_window, x, y);
+#if !GTK_CHECK_VERSION (2, 90, 8)
     /* FIXMEchpe: why? */
     gdk_window_clear (priv->moving_cards_window);
+#endif
 
     set_cursor (board, AR_CURSOR_CLOSED);
   } else if (priv->click_status == STATUS_MAYBE_DRAG &&
