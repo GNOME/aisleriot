@@ -239,6 +239,7 @@ CLEANFILES += GnomeGamesSupport-1.0.gir $(typelibs_DATA)
 endif # HAVE_INTROSPECTION
 
 @INTLTOOL_XML_NOMERGE_RULE@
-@GSETTINGS_RULES@
+
+@HAVE_GIO_2_26_TRUE@@GSETTINGS_RULES@
 
 -include $(top_srcdir)/git.mk
