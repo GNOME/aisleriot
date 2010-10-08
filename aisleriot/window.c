@@ -2124,11 +2124,13 @@ aisleriot_window_state_event (GtkWidget *widget,
     set_fullscreen_button_active (window);
 
 #ifndef HAVE_HILDON
+#if !GTK_CHECK_VERSION (2, 91, 0)
 #if GTK_CHECK_VERSION (2, 11, 0)
     gtk_statusbar_set_has_resize_grip (priv->statusbar, !is_maximised && !is_fullscreen);
 #else
     gtk_statusbar_set_has_resize_grip (priv->statusbar, FALSE);
 #endif
+#endif /* GTK < 3.0 */
 #endif /* !HAVE_HILDON */
   }
 
@@ -2569,11 +2571,15 @@ aisleriot_window_init (AisleriotWindow *window)
                     G_CALLBACK (board_status_message_cb), window);
 #endif
 
+#if GTK_CHECK_VERSION (2, 91, 0)
+  gtk_window_set_has_resize_grip (GTK_WINDOW (window), TRUE);
+#else
 #if GTK_CHECK_VERSION (2, 11, 0)
   gtk_statusbar_set_has_resize_grip (priv->statusbar, TRUE);
 #else
   gtk_statusbar_set_has_resize_grip (priv->statusbar, FALSE);
 #endif
+#endif /* GTK 3.0 */
 
 #if GTK_CHECK_VERSION (2, 19, 1)
   statusbar_hbox = gtk_statusbar_get_message_area (statusbar);
