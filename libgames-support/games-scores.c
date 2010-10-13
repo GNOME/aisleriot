@@ -64,7 +64,7 @@ games_scores_category_free (GamesScoresCategoryInternal *cat)
 }
 
 /**
- * get_current:
+ * games_scores_get_current:
  * @self: A scores object.
  *
  * Retrieves the current category and make sure it is in a state to be used.
@@ -99,17 +99,17 @@ games_scores_get_current (GamesScores * self)
 
 G_DEFINE_TYPE (GamesScores, games_scores, G_TYPE_OBJECT);
 
-/** 
+/**
  * games_scores_new:
  * @app_name: the (old) app name (for backward compatibility),
  *   used as the basename of the category filenames
- * @categories: the score categories, or %NULL to use an anonymous category
- * @n_categories: the number of category entries in @categories
- * @categories_context: the translation context to use for the category names,
+ * @categories: (allow-none): the score categories, or %NULL to use an anonymous category
+ * @n_categories: (allow-none): the number of category entries in @categories
+ * @categories_context: (allow-none): the translation context to use for the category names,
  *   or %NULL to use no translation context
- * @categories_domain: the translation domain to use for the category names,
+ * @categories_domain: (allow-none): the translation domain to use for the category names,
  *   or %NULL to use the default domain
- * @default_category: the key of the default category, or %NULL
+ * @default_category_index: (allow-none): the key of the default category, or %NULL
  * @style: the category style
  * 
  *
@@ -206,8 +206,8 @@ games_scores_add_category (GamesScores *self,
 }
 
 /**
- * set_category:
- * @scores: A scores object.
+ * games_scores_set_category:
+ * @self: A scores object.
  * @category: A string identifying the category to use (the key in
  *            the GamesScoresCategory structure).
  *
@@ -235,7 +235,7 @@ games_scores_set_category (GamesScores * self, gchar * category)
 }
 
 /**
- * add_score:
+ * games_scores_add_score:
  * @self: A scores object.
  * @score: A GamesScoreValue - it is up to the caller to convert their
  *         raw value to one of the supported types.
@@ -315,6 +315,7 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
  * games_scores_update_score_name:
  * @self: A scores object.
  * @new_name: The new name to use.
+ * @old_name: (allow-none):
  *
  * By default add_score uses the current user name. This routine updates
  * that name. There are a few wrinkles: the score may have moved since we
@@ -393,13 +394,15 @@ games_scores_update_score (GamesScores * self, gchar * new_name)
 }
 
 /**
- * get:
+ * games_scores_get:
  * @self: A scores object.
  *
  * Get a list of GamesScore objects for the current category. The list
  * is still owned by the GamesScores object and is not guaranteed to
  * be the either the same or accurate after any games_scores call
  * except games_scores_get. Do not alter the data either.
+ *
+ * Returns: (transfer none): A list of GamesScore objects.
  **/
 GList *
 games_scores_get (GamesScores * self)
@@ -446,7 +449,7 @@ _games_scores_category_foreach (GamesScores * self,
 }
 
 /**
- * get_style:
+ * games_scores_get_style:
  * @self: A scores object.
  *
  * Returns the style of the scores.
@@ -463,7 +466,7 @@ games_scores_get_style (GamesScores * self)
 }
 
 /**
- * get_category:
+ * games_scores_get_category:
  * @self: A scores object.
  *
  * Returns the current category key. It is owned by the GamesScores object and
