@@ -206,7 +206,7 @@ BUILT_GIRSOURCES = GnomeGamesSupport-1.0.gir
 GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(libgames_support_gi_la_SOURCES)
 	$(AM_V_GEN) $(INTROSPECTION_SCANNER) -v \
 	--namespace GnomeGamesSupport --nsversion=1.0 \
-	--strip-prefix=Games \
+	--identifier-prefix=Games --symbol-prefix=games_ --accept-unprefixed \
 	--add-include-path=$(srcdir) --add-include=path=. \
 	--include=Clutter-1.0 \
 	--include=Cogl-1.0 \
@@ -218,9 +218,10 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(lib
 	--pkg gtk+-$(GTK_API_VERSION) \
 	--pkg clutter-1.0 \
 	--pkg cogl-1.0 \
+	--warn-all \
 	-I$(top_srcdir) \
 	-I$(top_builddir) \
-	$(filter %.h,$^)
+	$(filter games%,$^)
 
 # FIXMEchpe: this looks bogus. If the introspection.m4 macro gets it wrong, fix it!
 # INTROSPECTION_GIRDIR/INTROSPECTION_TYPELIBDIR aren't the right place to
