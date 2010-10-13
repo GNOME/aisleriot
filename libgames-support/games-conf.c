@@ -661,9 +661,9 @@ loser:
 
 /**
  * games_conf_get_string:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
- * @error: a location for a #GError
+ * @error: (allow-none): a location for a #GError
  *
  * Returns the string associated with @key in @group, or %NULL if
  * @key is not set, or an error occurred
@@ -691,7 +691,7 @@ games_conf_get_string (const char *group, const char *key,
 
 /**
  * games_conf_get_string_with_default:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @def_value: the default value
  *
@@ -720,7 +720,7 @@ games_conf_get_string_with_default (const char *group, const char *key,
 
 /**
  * games_conf_set_string:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @value: the value to store
  *
@@ -746,10 +746,10 @@ games_conf_set_string (const char *group, const char *key,
 
 /**
  * games_conf_get_string_list:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
- * @len: a location to store the length of the returned array
- * @error: a location for a #GError
+ * @n_values: a location to store the length of the returned array
+ * @error: (allow-none): a location for a #GError
  *
  * Returns the string array associated with @key in @group, or %NULL if
  * @key is not set, or an error occurred
@@ -795,7 +795,7 @@ games_conf_get_string_list (const char *group, const char *key,
 
 /**
  * games_conf_set_string_list:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @values: the value to store
  * @n_values: the length of the @values array
@@ -833,9 +833,9 @@ games_conf_set_string_list (const char *group, const char *key,
 
 /**
  * games_conf_get_integer:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
- * @error: a location for a #GError
+ * @error: (allow-none): a location for a #GError
  *
  * Returns the integer associated with @key in @group, or 0 if
  * @key is not set, or an error occurred
@@ -864,7 +864,7 @@ games_conf_get_integer (const char *group, const char *key,
 
 /**
  * games_conf_get_integer_with_default:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @def_value: the default value
  *
@@ -892,7 +892,7 @@ games_conf_get_integer_with_default (const char *group, const char *key,
 
 /**
  * games_conf_set_integer:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @value: the value to store
  *
@@ -917,10 +917,10 @@ games_conf_set_integer (const char *group, const char *key, int value)
 
 /**
  * games_conf_get_integer_list:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
- * @len: a location to store the length of the returned array
- * @error: a location for a #GError
+ * @n_values: a location to store the length of the returned array
+ * @error: (allow-none): a location for a #GError
  *
  * Returns the integer associated with @key in @group, or 0 if
  * @key is not set, or an error occurred
@@ -961,7 +961,7 @@ games_conf_get_integer_list (const char *group, const char *key,
 
 /**
  * games_conf_set_integer_list:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @values: the value to store
  * @n_values: the length of the @values array
@@ -999,9 +999,9 @@ games_conf_set_integer_list (const char *group, const char *key,
 
 /**
  * games_conf_get_boolean:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
- * @error: a location for a #GError
+ * @error: (allow-none): a location for a #GError
  *
  * Returns the boolean associated with @key in @group, or %FALSE if
  * @key is not set, or an error occurred
@@ -1029,8 +1029,8 @@ games_conf_get_boolean (const char *group, const char *key,
 }
 
 /**
- * games_conf_get_boolean_width_default:
- * @group: the group name, or %NULL to use the default group
+ * games_conf_get_boolean_with_default:
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @def_value: the default value
  *
@@ -1057,7 +1057,7 @@ games_conf_get_boolean_with_default (const char *group, const char *key,
 
 /**
  * games_conf_set_boolean:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @value: the value to store
  *
@@ -1083,7 +1083,7 @@ games_conf_set_boolean (const char *group, const char *key,
 
 /**
  * games_conf_get_double:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @error: a location for a #GError
  *
@@ -1119,7 +1119,7 @@ games_conf_get_double (const char *group, const char *key,
 
 /**
  * games_conf_set_double:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @value: the value to store
  *
@@ -1147,9 +1147,9 @@ games_conf_set_double (const char *group, const char *key, double value)
 
 /**
  * games_conf_get_keyval:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
- * @error: a location for a #GError
+ * @error: (allow-none): a location for a #GError
  *
  * Returns the keyboard key associated with @key in @group, or 0 if
  * @key is not set, or an error occurred
@@ -1205,8 +1205,8 @@ games_conf_get_keyval (const char *group, const char *key,
 }
 
 /**
- * games_conf_get_keyval:
- * @group: the group name, or %NULL to use the default group
+ * games_conf_get_keyval_with_default:
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @default_keyval: the default value
  *
@@ -1236,7 +1236,7 @@ games_conf_get_keyval_with_default (const char *group, const char *key,
 
 /**
  * games_conf_set_keyval:
- * @group: the group name, or %NULL to use the default group
+ * @group: (allow-none): the group name, or %NULL to use the default group
  * @key: the key name
  * @value: the value to store
  *
@@ -1283,7 +1283,7 @@ games_conf_set_keyval (const char *group, const char *key, guint value)
 /**
  * games_conf_add_window:
  * @window: a #GtkWindow
- * @group: the group to store the state in, or %NULL to use
+ * @group: (allow-none): the group to store the state in, or %NULL to use
  * the default group
  * 
  * Restore the window configuration, and persist changes to the window configuration:
