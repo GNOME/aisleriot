@@ -169,11 +169,9 @@ ar_cursor_new_from_data (GdkWindow *window,
   GdkCursor *cursor;
   GdkPixbuf *pixbuf;
 
-  pixbuf = gdk_pixbuf_new_from_data ((const guchar *) data,
-                                     GDK_COLORSPACE_RGB, TRUE, 8,
-                                     CURSOR_WIDTH, CURSOR_HEIGHT,
-                                     CURSOR_ROW_STRIDE,
-                                     NULL, NULL);
+  pixbuf = gdk_pixbuf_new_from_inline (sizeof (data),
+                                       (const guint8 *) data,
+                                       FALSE, NULL);
   cursor = gdk_cursor_new_from_pixbuf (gdk_window_get_display (window),
                                        pixbuf,
                                        CURSOR_HOT_X, CURSOR_HOT_Y);
