@@ -115,6 +115,7 @@ need_python=no
 need_clutter=no
 need_gio_2_26=no
 want_sound=no
+allow_gtk2=yes
 allow_gnuchess=no
 allow_smclient=no
 disallow_hildon=no
@@ -123,6 +124,10 @@ require_cairo_1_10=no
 libgames_support_full=no
 
 for game in $gamelist; do
+  case $game in
+    aisleriot) allow_gtk2=yes ;;
+    *) ;;
+  esac
   case $game in
     quadrapassel) need_cxx=yes ;;
     *) ;;
@@ -325,6 +330,10 @@ AC_ARG_WITH([gtk],
    esac],
   [with_gtk=2.0])
 AC_MSG_RESULT([$with_gtk])
+
+if test "$with_gtk" = "2.0" -a "$allow_gtk2" = "no"; then
+  AC_MSG_ERROR([gtk+-2.0 build requested but not all selected games still support this])
+fi
 
 case "$with_gtk" in
   2.0) GTK_API_VERSION=2.0
