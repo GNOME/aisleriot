@@ -471,8 +471,6 @@ static void games_scores_dialog_init (GamesScoresDialog *self)
   self->_priv->catcounter = 0;
   self->_priv->hilight = 0;
   self->_priv->sethilight = -1;
-
-  gtk_dialog_set_has_separator (GTK_DIALOG (self), FALSE);
   gtk_container_set_border_width (GTK_CONTAINER (self), 5);
   gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (self))), 2);
 
