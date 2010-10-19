@@ -172,7 +172,6 @@ EXTRA_DIST = \
 CLEANFILES = \
 	$(BUILT_SOURCES) \
 	$(stamp_files) \
-	$(nodist_gsettingsschema_DATA) \
 	$(NULL)
 
 DISTCLEANFILES =
