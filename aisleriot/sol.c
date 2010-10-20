@@ -51,7 +51,6 @@
 #endif /* HAVE_HILDON */
 
 #include <libgames-support/games-debug.h>
-#include <libgames-support/games-files.h>
 #include <libgames-support/games-stock.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-sound.h>

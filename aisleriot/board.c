@@ -31,7 +31,6 @@
 #include <clutter/clutter.h>
 
 #include <libgames-support/games-debug.h>
-#include <libgames-support/games-files.h>
 #include <libgames-support/games-glib-compat.h>
 #include <libgames-support/games-marshal.h>
 #include <libgames-support/games-sound.h>

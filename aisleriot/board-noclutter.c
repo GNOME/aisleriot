@@ -35,7 +35,6 @@
 #define GDK_KEY(symbol) GDK_##symbol
 #endif
 
-#include <libgames-support/games-files.h>
 #include <libgames-support/games-glib-compat.h>
 #include <libgames-support/games-gtk-compat.h>
 #include <libgames-support/games-marshal.h>
