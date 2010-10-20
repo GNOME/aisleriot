@@ -1,3 +1,192 @@
+gnome-games 2.91.1
+==================
+
+This is the first release on the road to a gtk3 based gnome-games. So far only
+aisleriot and glines have been ported but the rest is comming.
+
+To build with gtk3 use "--with-gtk=3.0 --enable-games=aisleriot,glines"
+
+New dependencies:
+GTK+ ≥ 2.90.0
+RSVG ≥ 2.32.0
+LIBCANBERRA_GTK ≥ 0.26
+
+Shortlog:
+A S Alam (1):
+      update for Punjabi
+
+Aurimas Černius (1):
+      Updated Lithuanian translation
+
+Baurzhan Muftakhidinov (1):
+      Initial translation to Kazakh
+
+Bruce Cowan (1):
+      Updated British English translation
+
+Bruno Brouard (1):
+      Updated French doc translation
+
+Christian Kirbach (1):
+      [l10n] Updated German translation
+
+Christian Persch (43):
+      build: Restore correct version
+      aisleriot: Fix the build with gtk3
+      aisleriot: Fix signed/unsigned int comparision warning
+      build: Fix the gtk 3 API version define
+      aisleriot: Add Fedora packages to theme-install.ini
+      aisleriot: Add some debug output to card theme install process
+      aisleriot: Show install confirmation
+      libgames-support: Add GAMES_RUNTIME_PREFIX
+      build: Remove redundant redefinition of GTK_API_VERSION
+      aisleriot: Also look for card themes in the system prefix
+      libgames-support: Add games-settings.[ch]
+      libgames-support: Delay state saving until exit
+      aisleriot: Port window state persistence to gsettings
+      build: Fix --with-card-theme-formats=default
+      aisleriot: Make PySol and KDE card theme paths configurable
+      libgames-support: Fix for gdk keysym name change
+      aisleriot: Fix for gdk keysym name change
+      aisleriot: dialogues no longer have separators
+      aisleriot: Add scalable attribute to ArCardThemeInfo
+      aisleriot: Add adapter for get_card_pixbuf
+      aisleriot: Use cairo_rectangle_t directly here
+      aisleriot: Use pixdata for the cursors on gtk 3
+      build: Add suse and debian default for the card theme paths
+      build: Add ACLOCAL_FLAGS
+      aisleriot: Make kde card theme support work
+      build: Require cairo 1.10 for the kde card theme support
+      aisleriot: Remove GdkPixmap use
+      aisleriot: Port to GtkWidget::draw
+      aisleriot: Make cairo drawing work on gtk 2 and gtk 3
+      aisleriot: Port to latest rendering-cleanup-next branch
+      aisleriot: Load KDE card back desktop files
+      aisleriot: Remove gdk_window_clear
+      build: Bump gtk 3 req version
+      build: Don't implicitly depend on glib 2.26
+      build: Update libcanberra-gtk3 required version
+      aisleriot: Use the new window resize grip on gtk 3
+      aisleriot: Use gdk_pixbuf_new_from_inline() here
+      gnobots2: Convert cursors to PNG
+      build: Remove unnecessary entry from CLEANFILES
+      aisleriot: Regenerate cursor source
+      build: Error out when building games with gtk2 that don't support gtk2
+      aisleriot: Remove unnecessary include
+      build: Also clean the generated .gschema.xml file
+
+Claude Paroz (1):
+      [help-mahjongg] Fix XML validity of French translation
+
+Daniel Mustieles (1):
+      Updated Spanish translation
+
+Djavan Fagundes (1):
+      Updated Brazilian Portuguese translation by André Gondim <andregondim@ubuntu.com> and myself
+
+Duarte Loreto (1):
+      Updated Portuguese translation
+
+Friedel Wolff (1):
+      Update Afrikaans (af) translation
+
+Gil Forcada (1):
+      Updated Catalan translation
+
+Hiroyuki Sekihara (1):
+      Added Japanese translation.
+
+Ivar Smolin (2):
+      [l10n] Updated Estonian translation
+      [l10n] Updated Estonian translation
+
+Manu (1):
+      glines: use a more sensible scoring system (#503953)
+
+Marek Černocký (3):
+      Updated Czech translation
+      Updated Czech translation
+      Updated Czech translation
+
+Mario Blättermann (1):
+      [i18n] Updated German doc translation
+
+Matej Urbančič (30):
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Added sl for Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+      Updated Slovenian translation
+      Added sl for Slovenian translation
+
+Matthias Clasen (7):
+      libgames-support: Port to new combo box text API
+      gnect: Port to new combo box text API
+      mahjongg: Port to new combo box text API
+      gtali: Port to new combo box text API
+      gnobots2: Port to new combo box text API
+      gnibbles: Port to new combo box text API
+      aisleriot: Port to new combo box text API
+
+Michael Kotsarinis (1):
+      l10n: Updated Greek translation for gnome-games
+
+Milo Casagrande (1):
+      [l10n] Updated Italian translation
+
+Piotr Drąg (1):
+      Updated Polish translation
+
+Robert Ancell (1):
+      Remove NEWS changes
+
+Takayuki KUSANO (2):
+      Updated Japanese translation
+      Fix Japanese translation.
+
+Thomas Hindoe Paaboel Andersen (3):
+      Version bump
+      glines: fix some gtk3 issues
+      glines: gtk3 port
+
+Timo Jyrinki (1):
+      Updated Finnish translation by Ubuntu Finnish translators.
+
+Vincent Untz (3):
+      aisleriot: Add openSUSE packages to theme-install.ini
+      libgames-support: Fix build with gobject-introspection >= 0.9.5
+      aisleriot: Fix broken test that forced checking the path for card themes
+
+Xandru Armesto (1):
+      Updated asturian translation
+
+Yaron Shahrabani (1):
+      Updated Hebrew translation.
+
 gnome-games 2.31.90
 ===================
 
