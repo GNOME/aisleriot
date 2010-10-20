@@ -302,7 +302,7 @@ games_file_list_create_widget (GamesFileList * gamesfilelist,
   GList *filelist = gamesfilelist->list;
   gboolean found = FALSE;
 
-  widget = GTK_COMBO_BOX (gtk_combo_box_new_text ());
+  widget = GTK_COMBO_BOX (gtk_combo_box_text_new ());
 
   itemno = 0;
   while (filelist) {
@@ -328,7 +328,7 @@ games_file_list_create_widget (GamesFileList * gamesfilelist,
       }
     }
 
-    gtk_combo_box_append_text (widget, visible);
+    gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (widget), visible);
     if (selection && (!strcmp (string, selection))) {
       gtk_combo_box_set_active (widget, itemno);
       found = TRUE;

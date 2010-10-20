@@ -78,7 +78,7 @@ static void games_scores_dialog_add_category (GamesScoresDialog *self,
 			 GINT_TO_POINTER (self->_priv->catcounter),
 			 k);
   self->_priv->catcounter++;
-  gtk_combo_box_append_text (GTK_COMBO_BOX (self->_priv->combo), name);
+  gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (self->_priv->combo), name);
 }
 
 /* This is a helper function for loading the initial list of categories
@@ -510,7 +510,7 @@ static void games_scores_dialog_init (GamesScoresDialog *self)
   gtk_box_pack_start (GTK_BOX (self->_priv->catbar), self->_priv->label,
 			FALSE, FALSE, 0);	
  
-  self->_priv->combo = gtk_combo_box_new_text ();
+  self->_priv->combo = gtk_combo_box_text_new ();
   gtk_combo_box_set_focus_on_click (GTK_COMBO_BOX (self->_priv->combo), FALSE);
   gtk_box_pack_start (GTK_BOX (self->_priv->catbar), 
 			self->_priv->combo, TRUE, TRUE, 0);
