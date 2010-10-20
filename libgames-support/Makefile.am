@@ -172,6 +172,7 @@ EXTRA_DIST = \
 CLEANFILES = \
 	$(BUILT_SOURCES) \
 	$(stamp_files) \
+	$(gsettings_SCHEMAS) \
 	$(NULL)
 
 DISTCLEANFILES =
