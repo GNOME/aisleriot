@@ -104,7 +104,7 @@ static void games_scores_dialog_load_categories (GamesScoresCategory *cat,
 static void games_scores_dialog_set_style (GamesScoresDialog *self, 
 					   GamesScoreStyle style) 
 {
-  gchar *header;
+  const gchar *header;
 
   self->_priv->style = style;
   switch (style) {
