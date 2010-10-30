@@ -2764,6 +2764,26 @@ aisleriot_board_size_allocate (GtkWidget *widget,
   }
 }
 
+#if GTK_CHECK_VERSION (2, 91, 0)
+
+static void
+aisleriot_board_get_preferred_width (GtkWidget *widget,
+                                     gint      *minimum,
+                                     gint      *natural)
+{
+  *minimum = *natural = BOARD_MIN_WIDTH;
+}
+
+static void
+aisleriot_board_get_preferred_height (GtkWidget *widget,
+                                      gint      *minimum,
+                                      gint      *natural)
+{
+  *minimum = *natural = BOARD_MIN_HEIGHT;
+}
+
+#else
+
 static void
 aisleriot_board_size_request (GtkWidget *widget,
                               GtkRequisition *requisition)
@@ -2771,6 +2791,8 @@ aisleriot_board_size_request (GtkWidget *widget,
   requisition->width = BOARD_MIN_WIDTH;
   requisition->height = BOARD_MIN_HEIGHT;
 }
+
+#endif /* GTK 3.0 */
 
 #ifdef ENABLE_KEYNAV
 
@@ -4072,7 +4094,12 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->realize = aisleriot_board_realize;
   widget_class->unrealize = aisleriot_board_unrealize;
   widget_class->size_allocate = aisleriot_board_size_allocate;
+#if GTK_CHECK_VERSION (2, 91, 0)
+  widget_class->get_preferred_width = aisleriot_board_get_preferred_width;
+  widget_class->get_preferred_height = aisleriot_board_get_preferred_height;
+#else
   widget_class->size_request = aisleriot_board_size_request;
+#endif
 #ifdef ENABLE_KEYNAV
   widget_class->focus = aisleriot_board_focus;
 #endif /* ENABLE_KEYNAV */
