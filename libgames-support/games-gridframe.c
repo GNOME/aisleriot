@@ -152,20 +152,6 @@ games_grid_frame_get_property (GObject * object, guint prop_id,
 }
 
 static void
-games_grid_frame_size_request (GtkWidget * widget,
-			       GtkRequisition * requisition)
-{
-  GtkWidget *child = gtk_bin_get_child (GTK_BIN (widget));
-
-  requisition->width = 1;
-  requisition->height = 1;
-
-  if (child && gtk_widget_get_visible (child)) {
-    gtk_widget_size_request (child, requisition);
-  }
-}
-
-static void
 games_grid_frame_size_allocate (GtkWidget * widget,
 				GtkAllocation * allocation)
 {
@@ -217,7 +203,6 @@ games_grid_frame_class_init (GamesGridFrameClass * class)
   object_class->get_property = games_grid_frame_get_property;
 
   widget_class->size_allocate = games_grid_frame_size_allocate;
-  widget_class->size_request = games_grid_frame_size_request;
 
   g_object_class_install_property (object_class, PROP_X_PADDING,
 				   g_param_spec_int ("x_padding",
