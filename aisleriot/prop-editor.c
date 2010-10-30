@@ -41,7 +41,7 @@ typedef struct
 {
   gpointer instance;
   GObject *alive_object;
-  guint id;
+  gulong id;
 } DisconnectData;
 
 static void
@@ -115,7 +115,7 @@ typedef struct
 {
   GObject *obj;
   GParamSpec *spec;
-  gint modified_id;
+  gulong modified_id;
 } ObjectProperty;
 
 static void
