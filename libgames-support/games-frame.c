@@ -43,9 +43,7 @@ games_frame_init (GamesFrame * frame)
 
   gtk_box_set_spacing (box, 6);
   gtk_box_set_homogeneous (box, FALSE);
-#if GTK_CHECK_VERSION (2, 15, 0)
   gtk_orientable_set_orientation (GTK_ORIENTABLE (frame), GTK_ORIENTATION_VERTICAL);
-#endif
 
   frame->label = gtk_label_new (NULL);
   gtk_misc_set_alignment (GTK_MISC (frame->label), 0.0, 0.5);
