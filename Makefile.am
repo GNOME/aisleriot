@@ -24,8 +24,6 @@ EXTRA_DIST = \
 	autogen.sh \
 	COPYING-DOCS \
 	COPYING.GPL3 \
-	xmldocs.make \
-	omf.make \
 	MAINTAINERS	\
 	HACKING		 \
 	gnome-doc-utils.make \
@@ -56,8 +54,6 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/ltmain.sh \
 	$(srcdir)/missing \
 	$(srcdir)/mkinstalldirs \
-	$(srcdir)/omf.make \
-	$(srcdir)/xmldocs.make \
 	$(srcdir)/gtk-doc.make \
 	$(srcdir)/po/Makefile.in.in \
 	`find "$(srcdir)" -type f -name Makefile.in -print` \
