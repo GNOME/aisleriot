@@ -10,12 +10,13 @@ PKG_NAME="Gnome Games"
   && test -d $srcdir/gnomine \
   && test -d $srcdir/swell-foop) || {
     echo -n "**Error**: Directory \"\`$srcdir\'\" does not look like the"
-    echo " top-level gnome directory"
+    echo " top-level $PKG_NAME directory"
     exit 1
 }
 
 which gnome-autogen.sh || {
-    echo "You need to install gnome-common from the GNOME CVS"
+    echo "You need to install gnome-common from GNOME git (or from"
+    echo "your OS vendor's package manager)."
     exit 1
 }
 
