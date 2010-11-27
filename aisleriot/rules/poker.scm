@@ -267,6 +267,7 @@
            (deal-cards end-slot (list start-slot)))
        (move-n-cards! start-slot end-slot card-list)
        (or (> start-slot 1)
+           (= (length (get-cards 0)) 27)
            (deal-cards-face-up 0 '(1)))
        (recalculate-score)))
 
@@ -276,9 +277,14 @@
 (define (button-double-clicked slot-id)
   #f)
 
+(define (all-slots-full slot-id)
+  (or (= slot-id 27)
+      (and (not (empty-slot? slot-id))
+           (all-slots-full (+ slot-id 1)))))
+
 (define (game-continuable)
-  (or (> (length (get-cards 0)) 27)
-      (not (empty-slot? 1))))
+  (or shuffle-mode
+      (not (all-slots-full 2))))
 
 (define (game-won)
   (if shuffle-mode
