@@ -106,7 +106,7 @@ ar_card_theme_preimage_init (ArCardThemePreimage *theme)
   theme->subsize.height = -1;
 
   theme->card_size.width = theme->card_size.height = theme->slot_size.width =
-    theme->slot_size.width = -1;
+    theme->slot_size.height = -1;
 }
 
 static void
