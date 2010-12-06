@@ -1352,7 +1352,7 @@ install_recently_played_menu (AisleriotWindow *window)
     char actionname[32];
     char *game_name, *tooltip;
 
-    g_snprintf (actionname, sizeof (actionname), "Recent%d", i);
+    g_snprintf (actionname, sizeof (actionname), "Recent%"G_GSIZE_FORMAT, i);
     game_name = games_filename_to_display_name (recent_games[i]);
 #ifdef HAVE_HILDON
     tooltip = NULL;

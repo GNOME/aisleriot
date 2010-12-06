@@ -302,7 +302,7 @@ games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
     rtime = d->time;
     rname = d->name;
 
-    buffer = g_strdup_printf ("%s %lld %s\n",
+    buffer = g_strdup_printf ("%s %"G_GUINT64_FORMAT" %s\n",
 			      g_ascii_dtostr (dtostrbuf, sizeof (dtostrbuf),
 					      rscore), rtime, rname);
     setgid_io_write (self->priv->fd, buffer, strlen (buffer));
