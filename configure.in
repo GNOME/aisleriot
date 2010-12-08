@@ -141,7 +141,11 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    glchess|gnome-sudoku) need_python=yes ;;
+    glchess) need_gtkglext=yes ;;
+    *) ;;
+  esac
+  case $game in
+    gnome-sudoku) need_python=yes ;;
     *) ;;
   esac
   case $game in
@@ -153,7 +157,7 @@ for game in $gamelist; do
     *) disallow_hildon=yes ;;
   esac
   case $game in
-    aisleriot) ;;
+    aisleriot|glchess) ;;
     *) need_rsvg=yes ;;
   esac
   case $game in
@@ -208,6 +212,7 @@ PKG_PROG_PKG_CONFIG([0.15])
 
 AC_PROG_CC
 AC_PROG_CPP
+AM_PROG_VALAC
 AC_PROG_LN_S
 AC_PROG_SED
 
@@ -608,6 +613,10 @@ PKG_CHECK_MODULES([GTHREAD],[gthread-2.0])
 AC_SUBST([GTHREAD_CFLAGS])
 AC_SUBST([GTHREAD_LIBS])
 
+PKG_CHECK_MODULES([GMODULE],[gmodule-2.0])
+AC_SUBST([GMODULE_CFLAGS])
+AC_SUBST([GMODULE_LIBS])
+
 PKG_CHECK_MODULES([GTK],[gtk+-$GTK_API_VERSION >= $GTK_REQUIRED])
 AC_SUBST([GTK_CFLAGS])
 AC_SUBST([GTK_LIBS])
@@ -687,6 +696,24 @@ if test "$need_rsvg" = "yes"; then
 fi
 
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
+
+# Check for GTKGLExt
+
+have_gtkglext=no
+if test "$need_gtkglext" = "yes"; then
+  have_gtkglext=yes
+
+  # Errors out if gtkglext is not found
+  PKG_CHECK_MODULES([GTKGLEXT],[
+    gtklext-1.0])
+
+  AC_SUBST([GTKGLEXT_CFLAGS])
+  AC_SUBST([GTKGLEXT_LIBS])
+
+  AC_DEFINE([HAVE_GTKGLEXT],[1],[Define if GtkGLExt is available])
+fi
+
+AM_CONDITIONAL([HAVE_GTKGLEXT],[test "$have_gtkglext" = "yes"])
 
 # Check for Clutter
 
@@ -1169,23 +1196,13 @@ aisleriot/help/Makefile
 glchess/Makefile
 glchess/data/Makefile
 glchess/data/pieces/Makefile
+glchess/data/pieces/3d/Makefile
 glchess/data/pieces/fancy/Makefile
 glchess/data/pieces/simple/Makefile
 glchess/data/textures/Makefile
 glchess/gnuchess/Makefile
 glchess/help/Makefile
-glchess/src/glchess.in
 glchess/src/Makefile
-glchess/src/lib/Makefile
-glchess/src/lib/defaults.py
-glchess/src/lib/chess/Makefile
-glchess/src/lib/chess/fics/Makefile
-glchess/src/lib/ggz/Makefile
-glchess/src/lib/gtkui/Makefile
-glchess/src/lib/scene/Makefile
-glchess/src/lib/scene/cairo/Makefile
-glchess/src/lib/scene/opengl/Makefile
-glchess/src/lib/ui/Makefile
 gnome-sudoku/Makefile
 gnome-sudoku/src/gnome-sudoku.in
 gnome-sudoku/src/Makefile
@@ -1241,6 +1258,7 @@ echo "
     Help method:           ${with_help_method} ${with_help_file_format}
     Using SM Client:       ${with_smclient}
     Using RSVG:            ${have_rsvg}
+    Using GtkGLExt:        ${have_gtkglext}
     Card theme formats:    ${with_card_theme_formats}
     Default theme format:  ${with_default_card_theme_format}
     Default theme:         ${with_default_card_theme}
