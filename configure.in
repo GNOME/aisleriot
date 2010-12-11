@@ -23,9 +23,9 @@ AM_MAINTAINER_MODE([enable])
 # we support and which features to check for
 
 # This is the canonical list of all game subdirectories.
-allgames="aisleriot glines gnect gnibbles gnobots2 gnomine gnotravex gnotski gtali iagno mahjongg quadrapassel"
+allgames="aisleriot glchess glines gnect gnibbles gnobots2 gnomine gnotravex gnotski gtali iagno mahjongg quadrapassel"
 AC_SUBST([allgames])
-staginggames="swell-foop glchess gnome-sudoku lightsoff"
+staginggames="swell-foop gnome-sudoku lightsoff"
 AC_SUBST([staginggames])
 
 gamelist=""
@@ -137,11 +137,19 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
-    glchess) allow_gnuchess=yes ;;
+    glchess) need_gdk_x11=yes ;;
     *) ;;
   esac
   case $game in
-    glchess) need_gtkglext=yes ;;
+    glchess) need_opengl=yes ;;
+    *) ;;
+  esac
+  case $game in
+    glchess) need_glx=yes ;;
+    *) ;;
+  esac
+  case $game in
+    glchess) allow_gnuchess=yes ;;
     *) ;;
   esac
   case $game in
@@ -593,7 +601,7 @@ case "$with_gtk" in
        LIBCANBERRA_GTK_REQUIRED=0
        LIBCANBERRA_GTK_PKGS="libcanberra-gtk >= $LIBCANBERRA_GTK_REQUIRED"
         ;;
-  3.0) GTK_REQUIRED=2.91.0
+  3.0) GTK_REQUIRED=2.91.6
        RSVG_REQUIRED=2.32.0
        LIBCANBERRA_GTK_REQUIRED=0.26
        LIBCANBERRA_GTK_PKGS="libcanberra-gtk3 >= $LIBCANBERRA_GTK_REQUIRED"
@@ -697,23 +705,59 @@ fi
 
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
 
-# Check for GTKGLExt
+# Check for GDK X11
 
-have_gtkglext=no
-if test "$need_gtkglext" = "yes"; then
-  have_gtkglext=yes
+have_gdk_x11=no
+if test "$need_gdk_x11" = "yes"; then
+  have_gdk_x11=yes
 
-  # Errors out if gtkglext is not found
-  PKG_CHECK_MODULES([GTKGLEXT],[
-    gtklext-1.0])
+  # Errors out if GDK X11 is not found
+  PKG_CHECK_MODULES([GDK_X11],[
+    gdk-x11-$GTK_API_VERSION x11])
 
-  AC_SUBST([GTKGLEXT_CFLAGS])
-  AC_SUBST([GTKGLEXT_LIBS])
+  AC_SUBST([GDK_X11_CFLAGS])
+  AC_SUBST([GDK_X11_LIBS])
 
-  AC_DEFINE([HAVE_GTKGLEXT],[1],[Define if GtkGLExt is available])
+  AC_DEFINE([HAVE_GDK_X11],[1],[Define if GDK X11 is available])
 fi
 
-AM_CONDITIONAL([HAVE_GTKGLEXT],[test "$have_gtkglext" = "yes"])
+AM_CONDITIONAL([HAVE_GDK_X11],[test "$have_gdk_x11" = "yes"])
+
+# Check for OpenGL
+
+have_opengl=no
+if test "$need_opengl" = "yes"; then
+  have_opengl=yes
+
+  # Errors out if OpenGL is not found
+  PKG_CHECK_MODULES([OPENGL],[
+    gl glu])
+
+  AC_SUBST([OPENGL_CFLAGS])
+  AC_SUBST([OPENGL_LIBS])
+
+  AC_DEFINE([HAVE_OPENGL],[1],[Define if OpenGL is available])
+fi
+
+AM_CONDITIONAL([HAVE_OPENGL],[test "$have_opengl" = "yes"])
+
+# Check for GLX
+
+have_glx=no
+if test "$need_glx" = "yes"; then
+  have_glx=yes
+
+  # Errors out if GLX is not found
+  PKG_CHECK_MODULES([GLX],[
+    gl])
+
+  AC_SUBST([GLX_CFLAGS])
+  AC_SUBST([GLX_LIBS])
+
+  AC_DEFINE([HAVE_GLX],[1],[Define if GLX is available])
+fi
+
+AM_CONDITIONAL([HAVE_GLX],[test "$have_glx" = "yes"])
 
 # Check for Clutter
 
