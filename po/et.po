@@ -15,10 +15,11 @@ msgstr ""
 "Project-Id-Version: gnome-games MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "games&component=general\n"
-"POT-Creation-Date: 2010-08-23 12:59+0000\n"
+"POT-Creation-Date: 2010-12-15 21:06+0000\n"
 "PO-Revision-Date: 2010-10-03 12:07+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2442,6 +2443,10 @@ msgstr "Eelistused"
 msgid "Promotion Type:"
 msgstr "Lipustamise moodus:"
 
+#. Preferences Dialog: Check box for selecting if captured pieces are visible
+msgid "Show _Captured Pieces"
+msgstr ""
+
 #. Preferences Dialog: Check box for selecting if history browser is visible
 msgid "Show _History"
 msgstr "_Ajalugu on nähtaval"
@@ -2449,6 +2454,10 @@ msgstr "_Ajalugu on nähtaval"
 #. Preferences Dialog: Check box for selecting if toolbar is visible
 msgid "Show _Toolbar"
 msgstr "_Tööriistariba on nähtaval"
+
+#, fuzzy
+msgid "Show or hide captured pieces"
+msgstr "Olekuriba näitamine või peitmine"
 
 msgid "Show or hide numbering on the chess board"
 msgstr "Malelaua numeratsiooni näitamine või peitmine"
@@ -4512,6 +4521,10 @@ msgstr "Lame Tango"
 msgid "Tango Shaded"
 msgstr "Varjuga Tango"
 
+#, fuzzy
+msgid "Clean"
+msgstr "_Puhasta"
+
 msgid "Lines:"
 msgstr "Ridu:"
 
@@ -4707,12 +4720,17 @@ msgstr "Kettal pole enam vaba ruumi!"
 msgid "Error %(errno)s: %(error)s"
 msgstr "Viga %(errno)s: %(error)s"
 
-msgid "Sudoku unable to save game."
-msgstr "Sudoku mängu pole võimalik salvestada."
+#, fuzzy
+msgid "Unable to save game."
+msgstr "Mängu pole võimalik salvestada"
 
 #, python-format
 msgid "Unable to save file %(filename)s."
 msgstr "Faili %(filename)s pole võimalik salvestada."
+
+#, fuzzy
+msgid "Unable to mark game as finished."
+msgstr "Sudokul pole võimalik mägnu lõpetatuks märkida."
 
 msgid "Sudoku unable to mark game as finished."
 msgstr "Sudokul pole võimalik mägnu lõpetatuks märkida."
@@ -4726,9 +4744,6 @@ msgstr "Uus mäng"
 #. Translators: this is the "Reset" scores button in a scores dialogue
 msgid "_Reset"
 msgstr "_Lähtesta"
-
-msgid "Reset current grid(do-over)"
-msgstr ""
 
 msgid "_Undo"
 msgstr "_Unusta"
@@ -4745,23 +4760,11 @@ msgstr "Unustatud tegevuse uuesti tegemine"
 msgid "Puzzle _Statistics..."
 msgstr "Mõistatuse _statistika..."
 
-msgid "Show statistics about current puzzle"
-msgstr "Käesoleva mõistatuse kohta statistika näitamine"
-
 msgid "_Print..."
 msgstr "_Prindi..."
 
-msgid "Print current game"
-msgstr "Käesoleva mängu printimine"
-
 msgid "Print _Multiple Sudokus..."
 msgstr "Prindi _mitu sudokut..."
-
-msgid "Print more than one sudoku at a time."
-msgstr "Korraga rohkem kui ühe sudoku printimine."
-
-msgid "Close Sudoku"
-msgstr "Sudoku sulgemine"
 
 msgid "_Tools"
 msgstr "_Tööriistad"
@@ -4775,14 +4778,8 @@ msgstr "Hõlpsasti täidetava ruudu näitamine."
 msgid "Clear _Top Notes"
 msgstr "P_uhasta ülemised märkmed"
 
-msgid "Clear all of the top notes"
-msgstr "Kõigi ülemiste märkmete puhastamine"
-
 msgid "Clear _Bottom Notes"
 msgstr "Pu_hasta alumised märkmed"
-
-msgid "Clear all of the bottom notes"
-msgstr "Kõigi alumiste märkmete puhastamine"
 
 msgid "Show _Possible Numbers"
 msgstr "_Näita võimalikke numbreid"
@@ -4811,14 +4808,36 @@ msgstr "_Esiletõstja"
 msgid "Highlight the current row, column and box"
 msgstr "Käesoleva rea, veeru ja kasti esiletõstmine"
 
-#, python-format
-msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)."
-msgstr ""
-"Sa lahendasid mõistatuse ajaga %(totalTime)s (sellest %(activeTime)s "
-"aktiivselt)."
+#, fuzzy, python-format
+msgid "You completed the puzzle in %d second"
+msgid_plural "You completed the puzzle in %d seconds"
+msgstr[0] "Sa lahendasid mõistatuse ajaga %(totalTime)s."
+msgstr[1] "Sa lahendasid mõistatuse ajaga %(totalTime)s."
 
-#, python-format
-msgid "You completed the puzzle in %(totalTime)s."
+#, fuzzy, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%(n)s minut"
+msgstr[1] "%(n)s minutit"
+
+#, fuzzy, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%(n)s sekund"
+msgstr[1] "%(n)s sekundit"
+
+#, fuzzy, python-format
+msgid "You completed the puzzle in %(minute)s and %(second)s"
+msgstr "Sa lahendasid mõistatuse ajaga %(totalTime)s."
+
+#, fuzzy, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%(n)s tund"
+msgstr[1] "%(n)s tundi"
+
+#, fuzzy, python-format
+msgid "You completed the puzzle in %(hour)s, %(minute)s and %(second)s"
 msgstr "Sa lahendasid mõistatuse ajaga %(totalTime)s."
 
 #, python-format
@@ -4850,6 +4869,13 @@ msgstr "Praegu ei lahendata ühtegi mõistatust."
 
 msgid "Calculated difficulty: "
 msgstr "Arvutuslik raskusaste:"
+
+msgid "Medium"
+msgstr "Keskmine"
+
+#, fuzzy
+msgid "Very Hard"
+msgstr "_Väga raske"
 
 msgid "Number of moves instantly fillable by elimination: "
 msgstr "Välistamise teel vahetult täidetavate väljade arv: "
@@ -4885,116 +4911,82 @@ msgstr "Kõikide jälgitavata väärtuste rakendamine ja jälgija eemaldamine."
 msgid "Tracker %s"
 msgstr "Jälgija %s"
 
-#, python-format
-msgid "Last played %(timeAgo)s"
-msgstr "Viimati mängitud %(timeAgo)s"
-
-#, python-format
-msgid "%(level)s puzzle"
-msgstr "%(level)s mõistatus"
-
-#, python-format
-msgid "Played for %(duration)s"
-msgstr "Mängimise kestus %(duration)s"
-
 msgid "Very hard"
 msgstr "Väga raske"
 
-msgid "Medium"
-msgstr "Keskmine"
+#. Then we're today
+#. within the minute
+#, fuzzy, python-format
+msgid "Last played %(n)s second ago"
+msgid_plural "Last played %(n)s seconds ago"
+msgstr[0] "%(n)s sekund tagasi"
+msgstr[1] "%(n)s sekundit tagasi"
+
+#, fuzzy, python-format
+msgid "Last played %(n)s minute ago"
+msgid_plural "Last played %(n)s minutes ago"
+msgstr[0] "%(n)s minut tagasi"
+msgstr[1] "%(n)s minutit tagasi"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#, fuzzy
+msgid "Last played at %I:%M %p"
+msgstr "eile kell %H:%M"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#, fuzzy
+msgid "Last played yesterday at %I:%M %p"
+msgstr "eile kell %H:%M"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#, fuzzy
+msgid "Last played on %A at %I:%M %p"
+msgstr "eile kell %H:%M"
+
+#. Translators, see strftime manual in order to translate %? format strings
+#, fuzzy
+msgid "Last played on %B %e %Y"
+msgstr "Viimati mängitud %(timeAgo)s"
+
+#, fuzzy
+msgid "Easy puzzle"
+msgstr "%(n)s mõistatus"
+
+#, fuzzy
+msgid "Medium puzzle"
+msgstr "Eelmine mõistatus"
+
+#, fuzzy
+msgid "Hard puzzle"
+msgstr "_Alusta mõistatust uuesti"
+
+#, fuzzy
+msgid "Very hard puzzle"
+msgstr "Väga raske"
+
+#, fuzzy, python-format
+msgid "Played for %d hour"
+msgid_plural "Played for %d hours"
+msgstr[0] "Mängimise kestus %(duration)s"
+msgstr[1] "Mängimise kestus %(duration)s"
+
+#, fuzzy, python-format
+msgid "Played for %d minute"
+msgid_plural "Played for %d minutes"
+msgstr[0] "Mängimise kestus %(duration)s"
+msgstr[1] "Mängimise kestus %(duration)s"
+
+#, fuzzy, python-format
+msgid "Played for %d second"
+msgid_plural "Played for %d seconds"
+msgstr[0] "Mängimise kestus %(duration)s"
+msgstr[1] "Mängimise kestus %(duration)s"
 
 msgid "Do you really want to do this?"
 msgstr "Soovid sa seda teha?"
 
 msgid "Don't ask me this again."
 msgstr "Seda küsimust rohkem mitte küsida."
-
-#, python-format
-msgid "%(n)s year"
-msgid_plural "%(n)s years"
-msgstr[0] "%(n)s aasta"
-msgstr[1] "%(n)s aastat"
-
-#, python-format
-msgid "%(n)s month"
-msgid_plural "%(n)s months"
-msgstr[0] "%(n)s kuu"
-msgstr[1] "%(n)s kuud"
-
-#, python-format
-msgid "%(n)s week"
-msgid_plural "%(n)s weeks"
-msgstr[0] "%(n)s nädal"
-msgstr[1] "%(n)s nädalat"
-
-#, python-format
-msgid "%(n)s day"
-msgid_plural "%(n)s days"
-msgstr[0] "%(n)s päev"
-msgstr[1] "%(n)s päeva"
-
-#, python-format
-msgid "%(n)s hour"
-msgid_plural "%(n)s hours"
-msgstr[0] "%(n)s tund"
-msgstr[1] "%(n)s tundi"
-
-#, python-format
-msgid "%(n)s minute"
-msgid_plural "%(n)s minutes"
-msgstr[0] "%(n)s minut"
-msgstr[1] "%(n)s minutit"
-
-#, python-format
-msgid "%(n)s second"
-msgid_plural "%(n)s seconds"
-msgstr[0] "%(n)s sekund"
-msgstr[1] "%(n)s sekundit"
-
-#. Translators... this is a messay way of concatenating
-#. lists. In English we do lists this way: 1, 2, 3, 4, 5
-#. and 6. This set-up allows for the English system only.
-#. You can of course make your language only use commas or
-#. ands or spaces or whatever you like by translating both
-#. ", " and " and " with the same string.
-msgid " and "
-msgstr " ja "
-
-msgid ", "
-msgstr ", "
-
-msgid " "
-msgstr " "
-
-#. Then we're today
-#. within the minute
-#, python-format
-msgid "%(n)s second ago"
-msgid_plural "%(n)s seconds ago"
-msgstr[0] "%(n)s sekund tagasi"
-msgstr[1] "%(n)s sekundit tagasi"
-
-#, python-format
-msgid "%(n)s minute ago"
-msgid_plural "%(n)s minutes ago"
-msgstr[0] "%(n)s minut tagasi"
-msgstr[1] "%(n)s minutit tagasi"
-
-#. Translators, see strftime manual in order to translate %? format strings
-msgid "at %I:%M %p"
-msgstr "kell %H:%M"
-
-#. Translators, see strftime manual in order to translate %? format strings
-msgid "yesterday at %I:%M %p"
-msgstr "eile kell %H:%M"
-
-#. Translators, see strftime manual in order to translate %? format strings
-msgid "%A %I:%M %p"
-msgstr "%A, %H:%M"
-
-#. Translators, see strftime manual in order to translate %? format strings
-msgid "%B %e"
-msgstr "%e. %B"
 
 msgid "_Clear"
 msgstr "_Puhasta"
@@ -6328,6 +6320,73 @@ msgstr "Väike"
 msgid "Large"
 msgstr "Suur"
 
+#~ msgid "Sudoku unable to save game."
+#~ msgstr "Sudoku mängu pole võimalik salvestada."
+
+#~ msgid "Show statistics about current puzzle"
+#~ msgstr "Käesoleva mõistatuse kohta statistika näitamine"
+
+#~ msgid "Print current game"
+#~ msgstr "Käesoleva mängu printimine"
+
+#~ msgid "Print more than one sudoku at a time."
+#~ msgstr "Korraga rohkem kui ühe sudoku printimine."
+
+#~ msgid "Close Sudoku"
+#~ msgstr "Sudoku sulgemine"
+
+#~ msgid "Clear all of the top notes"
+#~ msgstr "Kõigi ülemiste märkmete puhastamine"
+
+#~ msgid "Clear all of the bottom notes"
+#~ msgstr "Kõigi alumiste märkmete puhastamine"
+
+#~ msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)."
+#~ msgstr ""
+#~ "Sa lahendasid mõistatuse ajaga %(totalTime)s (sellest %(activeTime)s "
+#~ "aktiivselt)."
+
+#~ msgid "%(level)s puzzle"
+#~ msgstr "%(level)s mõistatus"
+
+#~ msgid "%(n)s year"
+#~ msgid_plural "%(n)s years"
+#~ msgstr[0] "%(n)s aasta"
+#~ msgstr[1] "%(n)s aastat"
+
+#~ msgid "%(n)s month"
+#~ msgid_plural "%(n)s months"
+#~ msgstr[0] "%(n)s kuu"
+#~ msgstr[1] "%(n)s kuud"
+
+#~ msgid "%(n)s week"
+#~ msgid_plural "%(n)s weeks"
+#~ msgstr[0] "%(n)s nädal"
+#~ msgstr[1] "%(n)s nädalat"
+
+#~ msgid "%(n)s day"
+#~ msgid_plural "%(n)s days"
+#~ msgstr[0] "%(n)s päev"
+#~ msgstr[1] "%(n)s päeva"
+
+#~ msgid " and "
+#~ msgstr " ja "
+
+#~ msgid ", "
+#~ msgstr ", "
+
+#~ msgid " "
+#~ msgstr " "
+
+#~ msgid "at %I:%M %p"
+#~ msgstr "kell %H:%M"
+
+#~ msgid "%A %I:%M %p"
+#~ msgstr "%A, %H:%M"
+
+#~ msgid "%B %e"
+#~ msgstr "%e. %B"
+
 #~ msgid "Show which numbers could go in the current square."
 #~ msgstr "Käesolevasse ruutu sobivate numbrite näitamine."
 
@@ -6453,11 +6512,6 @@ msgstr "Suur"
 
 #~ msgid "Playing %(difficulty)s puzzle."
 #~ msgstr "Mõistatuse \"%(difficulty)s\" lahendamine."
-
-#~ msgid "%(n)s puzzle"
-#~ msgid_plural "%(n)s puzzles"
-#~ msgstr[0] "%(n)s mõistatus"
-#~ msgstr[1] "%(n)s mõistatust"
 
 #~ msgid "Stopped"
 #~ msgstr "Seisatud"
