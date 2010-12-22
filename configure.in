@@ -111,6 +111,8 @@ AC_SUBST([gamelist])
 need_cxx=no
 need_rsvg=no
 need_guile=no
+need_opengl=no
+need_glx=no
 need_python=no
 need_clutter=no
 need_gio_2_26=no
@@ -134,10 +136,6 @@ for game in $gamelist; do
   esac
   case $game in
     aisleriot) need_guile=yes ;;
-    *) ;;
-  esac
-  case $game in
-    glchess) need_gdk_x11=yes ;;
     *) ;;
   esac
   case $game in
@@ -601,7 +599,7 @@ case "$with_gtk" in
        LIBCANBERRA_GTK_REQUIRED=0
        LIBCANBERRA_GTK_PKGS="libcanberra-gtk >= $LIBCANBERRA_GTK_REQUIRED"
         ;;
-  3.0) GTK_REQUIRED=2.91.6
+  3.0) GTK_REQUIRED=2.91.7
        RSVG_REQUIRED=2.32.0
        LIBCANBERRA_GTK_REQUIRED=0.26
        LIBCANBERRA_GTK_PKGS="libcanberra-gtk3 >= $LIBCANBERRA_GTK_REQUIRED"
@@ -705,24 +703,6 @@ fi
 
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
 
-# Check for GDK X11
-
-have_gdk_x11=no
-if test "$need_gdk_x11" = "yes"; then
-  have_gdk_x11=yes
-
-  # Errors out if GDK X11 is not found
-  PKG_CHECK_MODULES([GDK_X11],[
-    gdk-x11-$GTK_API_VERSION x11])
-
-  AC_SUBST([GDK_X11_CFLAGS])
-  AC_SUBST([GDK_X11_LIBS])
-
-  AC_DEFINE([HAVE_GDK_X11],[1],[Define if GDK X11 is available])
-fi
-
-AM_CONDITIONAL([HAVE_GDK_X11],[test "$have_gdk_x11" = "yes"])
-
 # Check for OpenGL
 
 have_opengl=no
@@ -749,7 +729,7 @@ if test "$need_glx" = "yes"; then
 
   # Errors out if GLX is not found
   PKG_CHECK_MODULES([GLX],[
-    gl])
+    gl x11])
 
   AC_SUBST([GLX_CFLAGS])
   AC_SUBST([GLX_LIBS])
