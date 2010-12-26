@@ -2,15 +2,23 @@
 #
 #
 # Besondere Ausdrücke
+# base card  = Grundkarte
+# color       = Farbgruppe
+# deck       = Kartensatz
+# face down  = verdeckt (Karte)
+# face up      = sichtbar (Karte)
 # foundation = Fundamentstapel
+# move      = Spielzug
+# pile         =  Stapel?
+# rank        = Rang (Wert)
+# redeal     = Neuverteilung/Neuausgabe
 # reserve    = Reservestapel
+# slot         = Ablage?
+# stock      = Talon (Der Kartenstoß, der nach dem Geben übrig bleibt)
+# suit         = Farbe
 # tableau    = Spieltisch
 # waste      = Restestapel
-# stock      = Talon (Der Kartenstoß, der nach dem Geben übrig bleibt)
-# base card  = Grundkarte
-# pile         =  Stapel?
-# slot         = Ablage?
-# suit         = ??
+#
 #
 # Mario Blättermann <mariobl@gnome.org>, 2008-2010.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010.
@@ -18,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: aisleriot\n"
-"POT-Creation-Date: 2010-10-03 10:01+0000\n"
-"PO-Revision-Date: 2010-10-07 00:33+0200\n"
+"POT-Creation-Date: 2010-12-06 13:45+0000\n"
+"PO-Revision-Date: 2010-12-26 22:43+0100\n"
 "Last-Translator: Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +36,7 @@ msgstr ""
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
@@ -276,7 +284,7 @@ msgid ""
 "Use the mouse to move cards. Click a card and drag it somewhere. Release the "
 "mouse button to deposit the card."
 msgstr ""
-"Verwenden sie die Maus, um die Karten zu bewegen. Klicken Sie eine Karte an "
+"Verwenden Sie die Maus, um die Karten zu bewegen. Klicken Sie eine Karte an "
 "und ziehen Sie sie irgendwohin. Lassen Sie die Maustaste los, um die Karte "
 "abzulegen."
 
@@ -398,14 +406,14 @@ msgstr "Geschrieben von Ed Sirett"
 #: C/aisleriot.xml:14(title) C/aisleriot.xml:19(title)
 #: C/aisleriot.xml:23(title)
 msgid "Setup"
-msgstr "Einrichtung"
+msgstr "Spielaufbau"
 
 #: C/aisleriot.xml:24(entry) C/aisleriot.xml:23(entry)
 #: C/aisleriot.xml:27(entry) C/aisleriot.xml:25(entry)
 #: C/aisleriot.xml:19(entry) C/aisleriot.xml:26(entry)
 #: C/aisleriot.xml:29(entry)
 msgid "Type of Deck"
-msgstr "Typen von Kartensätzen"
+msgstr "Art des Kartensatzes"
 
 #: C/aisleriot.xml:25(entry) C/aisleriot.xml:24(entry)
 #: C/aisleriot.xml:28(entry) C/aisleriot.xml:20(entry)
@@ -462,7 +470,7 @@ msgstr ""
 #: C/aisleriot.xml:73(title) C/aisleriot.xml:61(title)
 #: C/aisleriot.xml:67(title) C/aisleriot.xml:63(title)
 msgid "Goal"
-msgstr "Ziel"
+msgstr "Ziel des Spiels"
 
 #: C/aisleriot.xml:45(para)
 msgid "To remove all cards except one."
@@ -501,11 +509,11 @@ msgid ""
 msgstr ""
 "Die Karten werden einzeln bewegt. Jede Karte kann auf eine andere Karte der "
 "gleichen Farbe oder des gleichen Wertes gelegt werden, die sich unmittelbar "
-"links oder auf dem dritten Platz links befindet. Die Karte, die verdeckt "
-"wird, geht aus dem Spiel. Alle Karten (falls vorhanden) in Plätzen rechts "
-"der entstehenden Lücke werden in Richtung der Lücke verschoben, um sie zu "
-"schließen. Ein Doppelklick bewegt die Karte drei Plätze - sofern möglich - "
-"oder füllt? jenen Platz links."
+"links oder drei Plätze weiter links befindet. Die Karte, die verdeckt wird, "
+"geht aus dem Spiel. Alle Karten (falls vorhanden) in Plätzen rechts der "
+"entstehenden Lücke werden in Richtung der Lücke verschoben, um sie zu "
+"schließen. Ein Doppelklick bewegt die Karte drei Plätze - sofern möglich - "
+"oder füllt? jenen Platz links."
 
 #: C/aisleriot.xml:62(title) C/aisleriot.xml:81(title)
 #: C/aisleriot.xml:106(title) C/aisleriot.xml:73(title)
@@ -686,10 +694,11 @@ msgid ""
 "in the Tableau will move it to the appropriate Foundation pile if such a "
 "move is possible."
 msgstr ""
-"Fundamentstapel werden nach Rang aufsteigend von Ass bis König aufgebaut, "
-"falls möglich. Die Karten in den Fundamentstapeln sind noch im Spiel. Durch "
-"einen Doppelklick auf eine Karte des Spieltisches wird diese auf den "
-"entsprechenden Fundamentstapel gelegt, falls ein solcher Zug möglich ist."
+"Fundamentstapel werden nach Farbe aufsteigend aufgebaut, bei Bedarf wird von "
+"König nach Ass gesprungen. Die Karten in den Fundamentstapeln sind noch im "
+"Spiel. Durch einen Doppelklick auf eine Karte des Spieltisches wird diese "
+"auf den entsprechenden Fundamentstapel gelegt, falls ein solcher Zug möglich "
+"ist."
 
 #: C/aisleriot.xml:82(para)
 msgid "Each card in Foundation scores one point."
@@ -714,9 +723,9 @@ msgid ""
 "Try to build down in suit whenever possible. Try to score as many points as "
 "you can as this game is very hard to win."
 msgstr ""
-"Versuchen Sie, wenn möglich, absteigend nach Farbe aufzubauen. Versuchen "
-"Sie, so viele Punkte wie möglich zu erzielen, da dieses Spiel sehr schwer zu "
-"gewinnen ist."
+"Versuchen Sie, wann immer möglich, absteigend nach Farbe aufzubauen. "
+"Versuchen Sie, so viele Punkte wie möglich zu erzielen, da dieses Spiel sehr "
+"schwer zu gewinnen ist."
 
 #. <sect1info>
 #.     <copyright>
@@ -817,7 +826,7 @@ msgid ""
 "Waste is in play. When Stock is empty, move all cards in Waste back to the "
 "Stock, maintaining order. You can go through the deck three times."
 msgstr ""
-"Karten werden vom Talon einzeln auf den Restestapel gewendet. Die oberste "
+"Karten werden vom Talon auf den Restestapel einzeln aufgedeckt. Die oberste "
 "Karte auf dem Restestapel ist im Spiel. Legen Sie alle Karten in bleibender "
 "Reihenfolge vom Restestapel in den Talon zurück, sobald dieser leer ist. Sie "
 "können drei Mal das Kartendeck durcharbeiten."
@@ -830,10 +839,10 @@ msgid ""
 "still in play. Double clicking on a card will move it to the appropriate "
 "Foundation pile if such a move is possible."
 msgstr ""
-"Fundamentstapel werden aufsteigend von Ass nach König aufgebaut. Die Karten "
-"in den Fundamentstapeln sind noch im Spiel. Durch einen Doppelklick auf eine "
-"Karte wird diese auf den entsprechenden Fundamentstapel gelegt, falls solch "
-"ein Zug möglich ist."
+"Fundamentstapel werden aufsteigend nach Farbe von Ass nach König aufgebaut. "
+"Die Karten in den Fundamentstapeln sind noch im Spiel. Durch einen "
+"Doppelklick auf eine Karte wird diese auf den entsprechenden Fundamentstapel "
+"gelegt, falls solch ein Zug möglich ist."
 
 #: C/aisleriot.xml:107(para) C/aisleriot.xml:98(para) C/aisleriot.xml:87(para)
 #: C/aisleriot.xml:115(para) C/aisleriot.xml:84(para)
@@ -887,8 +896,8 @@ msgid ""
 "begin the game. The Foundation piles are to be built up regardless of suit."
 msgstr ""
 "Vier Ablagen oben, rechts vom Talon. Legen Sie ein Ass auf jeden "
-"Fundamentstapel am Beginn des Spiels. Die Fundamentstapel werden ungeachtet "
-"der Farbe gebaut."
+"Fundamentstapel am Beginn des Spiels. Die Fundamentstapel werden aufsteigend "
+"ungeachtet der Farbe aufgebaut."
 
 #: C/aisleriot.xml:43(entry) C/aisleriot.xml:49(entry)
 #: C/aisleriot.xml:35(entry) C/aisleriot.xml:54(entry)
@@ -955,7 +964,7 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Backbone"
-msgstr "Backbone"
+msgstr "Rückgrat"
 
 #: C/aisleriot.xml:15(para)
 msgid "Written by Vincent Povirk"
@@ -987,7 +996,7 @@ msgstr ""
 #: C/aisleriot.xml:43(entry)
 msgid "Eight piles top right. To be built up in suit from Ace to King."
 msgstr ""
-"Acht Ablagen oben rechts. Aufbau aufsteigend nach Farbe von Ass bis König."
+"Acht Ablagen oben rechts. Der Aufbau erfolgt nach Farbe von Ass bis König."
 
 #: C/aisleriot.xml:50(entry)
 msgid ""
@@ -1024,7 +1033,7 @@ msgid ""
 "Waste is in play. When Stock is empty, move all cards in Waste back to the "
 "Stock, maintaining order. You can go through the deck twice."
 msgstr ""
-"Karten werden vom Talon einzeln auf den Restestapel gewendet. Die oberste "
+"Karten werden vom Talon auf den Restestapel einzeln aufgedeckt. Die oberste "
 "Karte des Stapels ist im Spiel. Legen Sie alle Karten in bleibender "
 "Reihenfolge vom Restestapel in den Talon zurück, wenn der Talon leer ist. "
 "Sie können zwei Mal das Kartendeck durcharbeiten."
@@ -1035,10 +1044,10 @@ msgid ""
 "are no longer in play. Double clicking on a card will move it to the "
 "appropriate Foundation pile if such a move is possible."
 msgstr ""
-"Fundamentstapel werden aufsteigend von Ass bis König aufgebaut. Die Karten "
-"in den Fundamentstapeln sind nicht mehr im Spiel. Durch einen Doppelklick "
-"auf eine Karte des Spieltisches wird diese auf den entsprechenden "
-"Fundamentstapel gelegt, falls ein solcher Zug möglich ist."
+"Fundamentstapel werden aufsteigend nach Farbe von Ass nach König aufgebaut. "
+"Die Karten in den Fundamentstapeln sind nicht mehr im Spiel. Durch einen "
+"Doppelklick auf eine Karte wird diese auf den entsprechenden Fundamentstapel "
+"gelegt, falls ein solcher Zug möglich ist."
 
 #: C/aisleriot.xml:101(para) C/aisleriot.xml:111(para)
 #: C/aisleriot.xml:96(para) C/aisleriot.xml:92(para)
@@ -1069,7 +1078,7 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Bakers Dozen"
-msgstr "Bakers Dozen"
+msgstr "Des Bäckers Dutzend"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
@@ -1097,7 +1106,7 @@ msgstr ""
 "Die oberste Karte jedes Spieltisches kann in einen anderen Spieltisch "
 "verschoben werden, wenn deren Wert um 1 niedriger ist als die oberste Karte "
 "der zweiten Ablage. Die Farbe ist nicht von Bedeutung. Leere Ablagen des "
-"Spieltisches können nicht wieder gefüllt werden."
+"Spieltisches dürfen nicht wieder gefüllt werden."
 
 #: C/aisleriot.xml:62(para) C/aisleriot.xml:75(para)
 msgid ""
@@ -1105,10 +1114,10 @@ msgid ""
 "still in play. Double clicking on a card in the Tableau will move it to the "
 "appropriate Foundation pile if such a move is possible."
 msgstr ""
-"Fundamentstapel werden aufsteigend von Ass bis König aufgebaut. Die Karten "
-"in den Fundamentstapeln sind noch im Spiel. Durch einen Doppelklick auf eine "
-"Karte des Spieltisches wird diese auf den entsprechenden Fundamentstapel "
-"gelegt, falls ein solcher Zug möglich ist."
+"Fundamentstapel werden aufsteigend nach Farbe von Ass nach König aufgebaut. "
+"Die Karten in den Fundamentstapeln sind noch im Spiel. Durch einen "
+"Doppelklick auf eine Karte des Spieltisches wird diese auf den "
+"entsprechenden Fundamentstapel gelegt, falls ein solcher Zug möglich ist."
 
 #: C/aisleriot.xml:72(para) C/aisleriot.xml:100(para)
 msgid "Each card moved to the Foundation scores one point."
@@ -1134,7 +1143,7 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Bakers Game"
-msgstr "Bakers Game"
+msgstr "Des Bäckers Spiel"
 
 #: C/aisleriot.xml:29(entry)
 msgid "Four piles top right. Built from Ace to King in suit."
@@ -1171,6 +1180,11 @@ msgid ""
 "Empty spaces in the Tableau can only be filled with a King or a build "
 "starting with a King."
 msgstr ""
+"Der Spieltisch wird nach Farbe abgebaut. Nur die oberste Karte oder "
+"Kartengruppe darf bewegt werden. Ein Satz Karten darf nur bewegt werden, "
+"wenn die Anzahl der Karten gleich oder kleiner der Anzahl freier "
+"Reserveplätze plus eins ist. Leere Plätze auf dem Spieltisch können nur mit "
+"einem König oder einem mit einem König beginnenden Satz belegt werden."
 
 #: C/aisleriot.xml:70(para) C/aisleriot.xml:71(para)
 msgid ""
@@ -1178,6 +1192,9 @@ msgid ""
 "Foundations are technically still in play, there really is no need as "
 "playing these cards are not in any way helpful."
 msgstr ""
+"Fundamentstapel werden nach Farbe von Ass bis König aufgebaut. Obwohl Karten "
+"im Fundamentstapel praktisch noch im Spiel sind, besteht kein Bedarf, diese "
+"zu bewegen, weil dies in keiner Weise sinnvoll ist."
 
 #: C/aisleriot.xml:75(para) C/aisleriot.xml:76(para)
 msgid ""
@@ -1185,6 +1202,9 @@ msgid ""
 "cards are available for play back into the Tableau or on to a Foundation "
 "pile."
 msgstr ""
+"Jede oberste Karte auf dem Spieltisch darf in einen leeren Reserveplatz "
+"gelegt werden. Diese Karten stehen für ein Zurückspielen auf den Spieltisch "
+"oder den Fundamentstapel zur Verfügung."
 
 #: C/aisleriot.xml:84(para) C/aisleriot.xml:85(para) C/aisleriot.xml:104(para)
 #: C/aisleriot.xml:80(para) C/aisleriot.xml:90(para)
@@ -1232,6 +1252,10 @@ msgid ""
 "first five piles of each row start with three cards each. The sixth pile of "
 "each row starts with two cards each."
 msgstr ""
+"Es sind 18 Tischstapel in drei Reihen zu je sechs Stapeln angeordnet. Alle "
+"Karten werden offen ausgeteilt und aufgefächert, so dass alle Karten "
+"sichtbar sind. Die ersten fünf Stapel jeder Reihe beginnen mit jeweils drei "
+"Karten. Der sechste Stapel jeder Reihe beginnt jeweils mit zwei Karten."
 
 #: C/aisleriot.xml:73(para)
 msgid ""
@@ -1241,6 +1265,13 @@ msgid ""
 "order, matching suit. Cards can \"wrap-around\" from Queen to King to Ace to "
 "Two. Cards on the Foundations may not be moved back onto Tableau piles."
 msgstr ""
+"Eine zufällige Karte ist bereits auf den Fundamentstapel verteilt worden. "
+"Der Rang dieser Karte wird zur Grundkarte. Die anderen drei Karten gleichen "
+"Ranges dürfen auf einen leeren Fundamentstapel gelegt werden. "
+"Fundamentstapel werden nach Farbe in absteigender Reihenfolge aufgebaut. "
+"Karten dürfen von Dame nach König nach Ass nach Zwei fortlaufen. Karten auf "
+"dem Fundamentstapel dürfen nicht zurück auf Stapel auf dem Spieltisch gelegt "
+"werden."
 
 #: C/aisleriot.xml:81(para)
 msgid ""
@@ -1249,6 +1280,11 @@ msgid ""
 "and has a face value of one higher or one lower than the top card of the "
 "pile it is being moved to. Cards can \"wrap-around\" between King and Ace."
 msgstr ""
+"Keiner der Stapel auf dem Spieltisch darf mehr als drei Karten haben. Die "
+"oberste Karte jedes Stapels darf auf jeden anderen Stapel auf dem Spieltisch "
+"gelegt werden, wenn die Farbe übereinstimmt und einen Wert eins höher oder "
+"niedriger als die oberste Karte des Zielstapels hat. Karten dürfen zwischen "
+"König und Ass fortlaufen."
 
 #: C/aisleriot.xml:87(para)
 msgid ""
@@ -1281,8 +1317,9 @@ msgstr ""
 
 #: C/aisleriot.xml:123(para)
 msgid "Bear River can be won about one third of the time."
-msgstr ""
+msgstr "»Bear River« kann ungefähr jedes dritte Mal gewonnen werden."
 
+# Belagerte Burg?
 #. <sect1info>
 #.     <copyright>
 #.       <year>2001</year>
@@ -1296,7 +1333,7 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Beleaguered Castle"
-msgstr "Beleaguered Castle"
+msgstr "Belagerte Burg"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
@@ -1304,28 +1341,33 @@ msgid ""
 "pile, before the shuffle. To be built from Ace to King. Topmost card in each "
 "Foundation can be played back on to the Tableau."
 msgstr ""
+"Vier Stapel in der mittleren Spalte. Vier Asse werden dort vor dem Mischen "
+"platziert, eins in jeden Stapel. Aufbau erfolgt von Ass nach König. Die "
+"oberste Karte jedes Fundamentstapels darf zurück auf den Spieltisch gespielt "
+"werden."
 
 #: C/aisleriot.xml:38(entry)
 msgid ""
 "Eight slots (four to the left and four to the right of Foundations.) Deal "
 "all cards face up and extended on to these eight piles so that there are six "
 "cards in each pile and all cards are showing."
-msgstr "Acht Ablagen (vier links und vier rechts von den Fundamentstapeln). "
+msgstr ""
+"Acht Ablagen (vier links und vier rechts des Fundamentstapels). Alle Karten "
+"werden sichtbar ausgegeben und auf diese acht Stapel verteilt, so dass auf "
+"jedem Stapel sechs sichtbare Karten liegen."
 
 #: C/aisleriot.xml:59(para)
-#, fuzzy
 msgid ""
 "Cards in the Tableau are built down regardless of suit. Only one card can be "
 "moved at a time. Empty piles can be filled with any single card."
 msgstr ""
-"Karten werden auf dem Spieltisch absteigend nach Farbe(?) aufgebaut. Karten "
-"können nur einzeln verschoben werden. Leere Plätze können mit jeder "
-"beliebigen Karte belegt werden."
+"Karten auf dem Spieltisch werden absteigend ungeachtet der Farbe aufgebaut. "
+"Karten können nur einzeln verschoben werden. Leere Plätze können mit jeder "
+"beliebigen Einzelkarte belegt werden."
 
 #: C/aisleriot.xml:64(para)
-#, fuzzy
 msgid "Foundations are built up in suit."
-msgstr "Fundamentstapel werden nach aufsteigend nach Farbe(?) aufgebaut."
+msgstr "Fundamentstapel werden aufsteigend nach Farbe aufgebaut."
 
 #: C/aisleriot.xml:71(para)
 msgid ""
@@ -1345,6 +1387,8 @@ msgstr "Maximal erzielbare Punkte: 48"
 #: C/aisleriot.xml:82(para)
 msgid "Build evenly on to Foundations if possible. Try and get an empty slot."
 msgstr ""
+"Bauen Sie die Fundamentstapel nach Möglichkeit gleichmäßig auf. Versuchen "
+"Sie, eine leere Ablage zu bekommen."
 
 #. <sect1info>
 #. 	  <copyright>
@@ -1359,7 +1403,7 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Block Ten"
-msgstr "Block Ten"
+msgstr "Zehner blockiert"
 
 #: C/aisleriot.xml:29(entry)
 msgid "Top left pile. All cards are placed here at beginning of play."
@@ -1376,7 +1420,7 @@ msgstr ""
 #: C/aisleriot.xml:42(para) C/aisleriot.xml:47(para) C/aisleriot.xml:41(para)
 #: C/aisleriot.xml:53(para) C/aisleriot.xml:51(para) C/aisleriot.xml:56(para)
 msgid "Remove all cards."
-msgstr "Alle Karten entfernen."
+msgstr "Entfernen Sie alle Karten."
 
 #: C/aisleriot.xml:55(para)
 msgid ""
@@ -1479,6 +1523,10 @@ msgid ""
 "dealt with as soon as possible. Move as many cards from the Reserve on to "
 "the Tableau as you can, for Kings are hard to move."
 msgstr ""
+"Blicken Sie niemals zurück. Karten, die in umgekehrter Reihenfolge versperrt "
+"sind, müssen so früh wie möglich angegangen werden. Bewegen Sie so viele "
+"Karten wie möglich vom Reservestapel auf den Spieltisch, weil Könige "
+"schwierig zu verschieben sind."
 
 #. <sect1info>
 #. 		<copyright>
@@ -1508,6 +1556,8 @@ msgid ""
 "To be taken from Stock. Can only hold one card which must immediately be "
 "played on to Tableau."
 msgstr ""
+"Es wird vom Talon gespielt. Kann nur eine Karte halten, die sofort auf den "
+"Spieltisch gebracht werden muss."
 
 #: C/aisleriot.xml:43(entry)
 msgid ""
@@ -1570,7 +1620,8 @@ msgstr ""
 
 #: C/aisleriot.xml:93(para)
 msgid "King: Place in one of the empty four corner spaces."
-msgstr "König: Legen Sie ihn auf einen der vier leeren Plätze in den Ecken."
+msgstr ""
+"ein König ist: Legen Sie sie auf einen der vier leeren Plätze in den Ecken."
 
 #: C/aisleriot.xml:98(para)
 msgid ""
@@ -1596,7 +1647,7 @@ msgid ""
 "Phase Two -- Remove 10's singly by clicking on them. Remove pairs that add "
 "up to 10 by dragging one card on top of its pair."
 msgstr ""
-"Phase 2 -- Entfernen Sie die Zehnen einzeln, indem Sie darauf klicken. "
+"Phase 2 -- Entfernen Sie die Zehner einzeln, indem Sie darauf klicken. "
 "Entfernen Sie Paare, die zusammen mehr als 10 ergeben, indem Sie eine Karte "
 "über dieses Paar legen."
 
@@ -1661,18 +1712,27 @@ msgid ""
 "On left under stock. Deal thirteen cards here with top card face up. Top "
 "card available for play to Foundations or Tableau."
 msgstr ""
+"Zur linken unter dem Talon. Dreizehn Karten werden hier ausgegeben. Die "
+"oberste Karte ist sichtbar und kann auf Fundamentstapel oder den Spieltisch "
+"gespielt werden."
 
 #: C/aisleriot.xml:51(entry)
 msgid ""
 "Four piles below Foundations. Deal one card face up on to each pile. Tableau "
 "can be built down in alternating color. Groups of cards can be moved."
 msgstr ""
+"Vier Ablagen unter den Fundamentstapeln. Eine Karte wird sichtbar auf jeden "
+"Fundamentstapel ausgegeben. Der Spieltisch kann in wechselnden Farben "
+"aufgebaut werden. Karten können in Gruppen bewegt werden."
 
 #: C/aisleriot.xml:59(entry)
 msgid ""
 "Four piles top right. Deal one card face up on first Foundation pile. This "
 "card is now the base card. Built up by suit."
 msgstr ""
+"Vier Stapel oben rechts. Eine Karte wird sichtbar auf den ersten "
+"Fundamentstapel ausgegeben. Diese Karte ist nun die Basiskarte. Aufbau "
+"erfolgt nach Farbe."
 
 #: C/aisleriot.xml:78(para)
 msgid ""
@@ -1681,6 +1741,11 @@ msgid ""
 "Reserve. If the Reserve is empty, an empty slot can be filled by any card or "
 "group of cards in sequence."
 msgstr ""
+"Karten im Spieltisch werden absteigend nach wechselnder Farbe aufgebaut. "
+"Karten können in Gruppen bewegt werden.  Ein leerer Platz auf dem Spieltisch "
+"wird automatisch aus dem Reservestapel aufgefüllt. Wenn der Reservestapel "
+"leer ist, kann eine leere Ablage mit einer beliebigen Karte oder "
+"Kartengruppe in Reihenfolge belegt werden."
 
 #: C/aisleriot.xml:84(para)
 msgid ""
@@ -1688,6 +1753,10 @@ msgid ""
 "less than three cards, that many cards are flipped for that move only. When "
 "Stock is empty, move all cards in Waste back to the Stock, maintaining order."
 msgstr ""
+"Karten werden vom Talon auf den Restestapel in Dreiergruppen aufgedeckt. "
+"Wenn der letzte Kartenstoß weniger als drei Karten hat, so werden nur "
+"dementsprechend viele aufgedeckt. Legen Sie alle Karten in bleibender "
+"Reihenfolge vom Restestapel in den Talon zurück, sobald dieser leer ist. "
 
 #: C/aisleriot.xml:90(para)
 msgid ""
@@ -1698,6 +1767,14 @@ msgid ""
 "Foundations are still in play. Double clicking on a card will move it to the "
 "appropriate Foundation pile if such a move is possible."
 msgstr ""
+"Fundamentstapel werden von der Basiskarte aufsteigend nach Farbe aufgebaut "
+"(die erste Karte wird auf den Fundamentstapel ausgegeben). Neue "
+"Fundamentstapel werden begonnen, sobald eine Karte des gleichen Ranges wie "
+"die bei der Verteilung zuerst ausgegebene auf einen leeren Fundamentstapel "
+"abgelegt wird. Asse werden auf Könige und Zweier auf Asse abgelegt. Die "
+"Karten in den Fundamentstapeln sind noch im Spiel. Durch einen Doppelklick "
+"auf eine Karte wird diese auf den entsprechenden Fundamentstapel gelegt, "
+"falls solch ein Zug möglich ist."
 
 #: C/aisleriot.xml:102(para)
 msgid ""
@@ -1734,7 +1811,7 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Carpet"
-msgstr "Carpet"
+msgstr "Teppich"
 
 #: C/aisleriot.xml:28(entry)
 msgid ""
@@ -1797,7 +1874,7 @@ msgstr "Legen Sie einfach alles, was möglich ist, auf den Fundamentstapel."
 #.   </sect1info>
 #: C/aisleriot.xml:12(title)
 msgid "Chessboard"
-msgstr "Chessboard"
+msgstr "Schachbrett"
 
 #: C/aisleriot.xml:28(entry)
 msgid ""
@@ -1805,6 +1882,9 @@ msgid ""
 "choice, wrapping from King to Ace if necessary. Cards in Foundation piles "
 "are no longer in play."
 msgstr ""
+"Vier Stapel in der Mitte. Es wird nach Farbe von der Grundkarte Ihrer Wahl "
+"aufgebaut, wobei von König zu Ass bei Bedarf ein Sprung erfolgt. Karten in "
+"Fundamentstapeln sind nicht mehr im Spiel."
 
 #: C/aisleriot.xml:37(entry) C/aisleriot.xml:35(entry)
 msgid ""
@@ -1812,6 +1892,10 @@ msgid ""
 "each of these piles and one more on the top two piles. The top card in any "
 "Tableau pile is available for play."
 msgstr ""
+"Fünf Stapel auf jeder Seite des Fundamentstapels. Fünf Karten werden "
+"sichtbar auf jeden dieser Stapel ausgegeben und eine weitere auf die "
+"obersten beiden Stapel. Die oberste Karte eines jeden Spieltischstapels "
+"steht für das Spiel zur Verfügung."
 
 #: C/aisleriot.xml:51(para) C/aisleriot.xml:49(para) C/aisleriot.xml:63(para)
 #: C/aisleriot.xml:59(para)
@@ -1824,6 +1908,9 @@ msgid ""
 "every pile is available for play. Empty slots can be filled with any "
 "available card."
 msgstr ""
+"Karten in den Spieltischstapeln werden nach Farbe auf- oder abgebaut. Nur "
+"die obersten Karte jedes Stapels ist im Spiel. Leere Ablagen dürfen mit "
+"einer beliebigen Karte belegt werden."
 
 #: C/aisleriot.xml:63(para)
 msgid ""
@@ -1831,6 +1918,9 @@ msgid ""
 "from King to Ace if necessary. Cards in Foundation piles are no longer in "
 "play."
 msgstr ""
+"Die Fundamentstapel werden von der Grundkarte Ihrer Wahl aufgebaut, wobei "
+"von König zu Ass bei Bedarf ein Sprung erfolgt. Karten in Fundamentstapeln "
+"sind nicht mehr im Spiel."
 
 #: C/aisleriot.xml:72(para) C/aisleriot.xml:69(para) C/aisleriot.xml:89(para)
 msgid "Each card in Foundation piles scores one point."
@@ -1841,6 +1931,8 @@ msgid ""
 "Choose your base card wisely. The obvious choice may lead to nought but a "
 "dead end."
 msgstr ""
+"Wählen Sie Ihre Basiskarte sorgfältig. Die offensichtliche Wahl könnte zu "
+"nichts außer einem vorzeitigen Ende führen."
 
 #. <sect1info>
 #. 		<copyright>
@@ -1855,25 +1947,31 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Clock"
-msgstr "Clock"
+msgstr "Uhr"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
 "Deal cards in a clock shape, for a total of twelve piles with four cards "
 "each."
 msgstr ""
+"Karten werden im Kreis ausgegeben, so dass es insgesamt zwölf Stapel zu vier "
+"Karten sind."
 
 #: C/aisleriot.xml:36(entry)
 msgid ""
 "Place last four cards in the Stock pile (middle of the Tableau) Flip over "
 "top card."
 msgstr ""
+"Die letzten vier Karten werden in den Talon (in der Mitte des Tisches) "
+"gelegt. Die oberste Karte wird aufgedeckt."
 
 #: C/aisleriot.xml:48(para)
 msgid ""
 "To have all four cards in each pile be the rank corresponding to the number "
 "on a clock face."
 msgstr ""
+"Alle vier Karten in jedem Stapel entsprechen dem Rang, den ein Zifferblatt "
+"einer Uhr an dieser Position hätte."
 
 #: C/aisleriot.xml:56(para)
 msgid ""
@@ -1883,10 +1981,15 @@ msgid ""
 "the elevens and twelves go respectively. For all the people who have never "
 "had an analog watch/clock, this is the pattern:"
 msgstr ""
+"Legen Sie die oberste Karte in der Mitte auf den passenden Stapel. Der "
+"Spieltisch bildet die Form einer Uhr, d.h. die nummerierten Karten werden an "
+"die entsprechende Position der Ziffer auf dem Zifferblatt gelegt. Asse gehen "
+"auf die Eins, Buben auf die Elf und Damen auf die Zwölf. Für diejenigen, die "
+"kein analoges Zifferblatt kennen, ist hier das Schema:"
 
 #: C/aisleriot.xml:69(phrase)
 msgid "Clock Layout."
-msgstr ""
+msgstr "Anordnung wie bei einer Uhr."
 
 #: C/aisleriot.xml:73(para)
 msgid ""
@@ -1896,6 +1999,11 @@ msgid ""
 "This new card is ready for play. To move a card to the appropriate pile, "
 "either drag the card over or double click on the appropriate receptor pile."
 msgstr ""
+"Könige werden in der Mitte gehalten. Wenn eine Karte auf einen neuen Stapel "
+"gelegt wird (oder im Falle des Königs auf dem gleichen Stapel verbleibt), so "
+"wird die unterste Karte des Zielstapels sichtbar zuoberst auf den mittleren "
+"Stapel abgelegt. Diese neue Karte ist nun im Spiel. Zum Legen ziehen Sie "
+"entweder die Karte auf den neuen Zielstapel oder klicken Sie zweimal auf ihn."
 
 #: C/aisleriot.xml:81(para)
 msgid ""
@@ -1903,18 +2011,26 @@ msgid ""
 "won if goal is achieved. Note that if a card in a pile is in the right place "
 "it is okay even if it is faced down."
 msgstr ""
+"Das Spiel ist beendet, wenn vier Könige in der Mitte liegen. Sie haben dann "
+"gewonnen, wenn das Ziel erreicht worden ist. Beachten Sie, dass auch eine "
+"verdeckte Karte in einem Stapel an der richtigen Position gültig ist."
 
 #: C/aisleriot.xml:90(para)
 msgid ""
 "Each card in the appropriate pile of the clock (not counting Kings, as there "
 "are no Kings on real clocks) scores one point."
 msgstr ""
+"Jede Karte in einem passenden Stapel der Uhr zählt einen Punkt (außer "
+"Königen, die gibt es nicht auf Zifferblättern)."
 
 #: C/aisleriot.xml:101(para)
 msgid ""
 "Find a way to automate this game. There are no decisions ever to be made. If "
 "you lose it's not your fault. (Contrariwise, if you win, it's just luck!)"
 msgstr ""
+"Suchen Sie nach einem Weg, das Spiel zu automatisieren. Es müssen niemals "
+"Entscheidungen getroffen werden. Wenn Sie verlieren, so ist es nicht Ihre "
+"Schuld. (Im Gegensatz ist ein Sieg nur Glück!)"
 
 #. <sect1info>
 #. 	  <copyright>
@@ -1942,6 +2058,8 @@ msgid ""
 "Four piles. One card is dealt in each slot at the beginning of the game. "
 "Empty slots are immediately filled from the Stock."
 msgstr ""
+"Vier Stapel. Eine Karte wird zu Spielbeginn in jede Ablage gelegt. Leere "
+"Ablagen werden sofort aus dem Talon gefüllt."
 
 #: C/aisleriot.xml:49(para)
 msgid "Empty the Stock."
@@ -1953,16 +2071,22 @@ msgid ""
 "Spaces are immediately filled by cards in the Stock. The game is over when "
 "each suit is represented by one card in the Tableau."
 msgstr ""
+"Zwei beliebige Karten auf dem Spieltisch können verschoben werden, wenn Sie "
+"von gleicher Farbe sind. Leerräume werden sofort durch Karten aus dem Talon "
+"aufgefüllt. Das Spiel ist beendet, sobald jede Farbe durch eine Karte auf "
+"dem Spieltisch vorhanden ist."
 
 #: C/aisleriot.xml:66(para)
 msgid "Each pair removed from the game scores two points."
-msgstr ""
+msgstr "Jedes Kartenpaar, das aus dem Spiel geht, zählt zwei Punkte."
 
 #: C/aisleriot.xml:76(para)
 msgid ""
 "A quick short game with not much thought involved, cover is best played with "
 "minimal thought and quick reflexes."
 msgstr ""
+"Ein sehr schnelles Spiel ohne große Überlegungen. Cover spielt sich am "
+"Besten gedankenlos mit schnellen Reflexen."
 
 #. <sect1info>
 #.     <copyright>
@@ -1977,7 +2101,7 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Cruel"
-msgstr "Cruel"
+msgstr "Grausam"
 
 #: C/aisleriot.xml:15(para)
 msgid "Written by Zach Keene"
@@ -1988,18 +2112,26 @@ msgid ""
 "Top left slot. Since all remaining cards are always dealt to the tableau, it "
 "will always be empty. Redeals are unlimited."
 msgstr ""
+"Die Ablage oben links. Weil alle verbleibenden Karten immer auf dem "
+"Spieltisch ausgegeben werden, ist sie immer leer. Es wird unbegrenzt neu "
+"ausgegeben."
 
 #: C/aisleriot.xml:35(entry)
 msgid ""
 "Rightmost piles in the top row; the aces are placed here upon the start of "
 "the game. Build up in suit from ace to king."
 msgstr ""
+"Der Stapel ganz rechts in der obersten Reihe; Die Asse werden hier zu "
+"Spielbeginn abgelegt. Es wird nach Farbe von Ass bis König aufgebaut."
 
 #: C/aisleriot.xml:42(entry)
 msgid ""
 "Up to thirteen piles, dealt four cards at a time until the stock is "
 "exhausted. Tableau piles can be built down in suit."
 msgstr ""
+"Bis zu dreizehn Stapeln. Es werden jeweils vier Karten zugleich ausgegeben, "
+"bis der Talon leer ist. Stapel auf dem Spieltisch werden nach Farbe "
+"absteigend aufgebaut."
 
 #: C/aisleriot.xml:54(para)
 msgid "Move all cards to the foundation piles."
@@ -2011,6 +2143,9 @@ msgid ""
 "available (or you just feel like it), click on the empty top left slot for a "
 "redeal."
 msgstr ""
+"Bauen Sie Fundamentstapel nach Farbe aufsteigend und Tischstapel nach Farbe "
+"absteigend auf. Falls keine Züge mehr möglich sind (oder wenn Sie möchten), "
+"klicken Sie für eine Neuverteilung auf die leere Ablage oben links."
 
 #: C/aisleriot.xml:66(para)
 msgid ""
@@ -2020,6 +2155,12 @@ msgid ""
 "made, redealing will not alter the arrangement of the cards. Therefore, the "
 "game is lost if no move is possible immediately after a redeal."
 msgstr ""
+"Neuverteilung werden durch stapeln der Spieltischstapel in Reihenfolge "
+"erreicht, beginnend mit dem letzten. Anschließend wird der Kartensatz "
+"umgedreht und jeweils vier Karten zugleich neu auf den Tisch ausgegeben. "
+"Wenn keine Spielzüge gemacht wurden, so ändert eine Neuausgabe die "
+"Kartenanordnung nicht. Demnach ist das Spiel verloren, sobald nach einer "
+"Neuausgabe kein Spielzug möglich ist."
 
 #: C/aisleriot.xml:74(para)
 msgid ""
@@ -2029,6 +2170,11 @@ msgid ""
 "the original card arrangement. AisleRiot will end the game if this situation "
 "is detected."
 msgstr ""
+"Hinweis: Ein Entartungsfall tritt ein, sobald nach einer Neuverteilung der "
+"letzte Stapel auf dem Tisch nur eine Karte enthält und der einzig mögliche "
+"Spielzug vom Stapel davor ist. Nach Ausführen des Zuges und Neuverteilung "
+"besteht wieder die gleiche Kartenanordnung. AisleRiot beendet in diesem Fall "
+"das Spiel."
 
 #: C/aisleriot.xml:85(para)
 msgid "Each card placed in the foundation piles scores one point."
@@ -2040,6 +2186,8 @@ msgid ""
 "If more than one pile on the tableau can be built upon, choose to build upon "
 "the one with the highest rank first."
 msgstr ""
+"Wenn auf mehr als einen Stapel auf dem Tisch aufgebaut werden kann, dann "
+"wählen Sie denjenigen mit dem höchsten Rang."
 
 #. <sect1info>
 #. 		<copyright>
@@ -2054,19 +2202,23 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Diamond Mine"
-msgstr "Diamond Mine"
+msgstr "Diamantenmine"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
 "One pile at top. Build in sequence for diamonds starting from any diamond of "
 "your choice."
 msgstr ""
+"Ein Stapel oben. Aufbau erfolgt in Reihenfolge für alle Karo-Karten "
+"beginnend mit einer Karo-Karte Ihrer Wahl."
 
 #: C/aisleriot.xml:36(entry) C/aisleriot.xml:29(entry)
 msgid ""
 "Thirteen piles. Deal three cards face down and one card face up on every "
 "pile."
 msgstr ""
+"Dreizehn Stapel. Drei Karten werden verdeckt und eine sichtbar auf jeden "
+"Stapel ausgegeben."
 
 #: C/aisleriot.xml:48(para)
 msgid ""
@@ -2112,6 +2264,8 @@ msgid ""
 "Each Ace through King in sequence and in suit on the Tableau pile scores "
 "three points."
 msgstr ""
+"Jede farbliche Folge von Ass bis König auf dem Spieltisch erzielt dreizehn "
+"Punkte."
 
 #: C/aisleriot.xml:79(para) C/aisleriot.xml:76(para)
 msgid "Maximum possible score: 100"
@@ -2123,6 +2277,9 @@ msgid ""
 "worth the same. Don't forget to clean up after yourself and put the other "
 "suits in order."
 msgstr ""
+"Die Diamantensuche ist harte Arbeit. Bedenken Sie, dass nicht alle Diamanten "
+"(Karo-Karten) gleich viel wert sind. Vergessen Sie nicht, nachher "
+"aufzuräumen und die anderen Farben in Reihenfolge zu bringen."
 
 #. <sect1info>
 #.     <copyright>
@@ -2139,7 +2296,7 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:15(title)
 msgid "Doublets"
-msgstr "Doublets"
+msgstr "Dubletten"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
@@ -2160,16 +2317,27 @@ msgid ""
 "from the Stock. Once original deal is over, when a King is placed in a pile "
 "of the Reserve, this pile is frozen as Kings cannot be moved."
 msgstr ""
+"Sieben Ablagen, die zur Rechten einen Bogen formen (ein umgedrehtes »U«). "
+"Eine Karte wird sichtbar auf jeden Stapel ausgegeben. Ein König wird nicht "
+"ausgegeben, sondern unter den Kartensatz gelegt. Auf diesen Stapel wird eine "
+"weitere Karte gegeben. Jeder Reservestapel kann höchstens von einer Karte "
+"belegt werden. Wenn ein Reservestapel leer ist, so wird er automatisch vom "
+"Ablagestapel gefüllt oder, falls dieser leer ist, vom Talon. Sobald die "
+"Ausgabe beendet ist und ein König auf einen Reservestapel gelegt wird, so "
+"ist dieser blockiert, weil Könige nicht bewegt werden können."
 
 #: C/aisleriot.xml:58(entry)
 msgid ""
 "One pile, the center pile on the bottom row of the Reserve slots. To be "
 "built on from original card by doubling, regardless of suit or color."
 msgstr ""
+"Ein Stapel, es ist der mittlere Stapel in der unteren Reihe der "
+"Reserveablagen. Aufbau erfolgt von der ursprünglichen Karte durch "
+"verdoppeln, unabhängig von der Farbe."
 
 #: C/aisleriot.xml:71(para)
 msgid "Move all cards to the Foundation pile."
-msgstr "Schieben Sie alle Karten auf den Fundamentstapel."
+msgstr "Bingen Sie alle Karten auf den Fundamentstapel."
 
 #: C/aisleriot.xml:78(para)
 msgid ""
@@ -2178,10 +2346,15 @@ msgid ""
 "twelve, respectively. If the doubled number exceeds thirteen, subtract "
 "thirteen to find next needed card. The series goes:"
 msgstr ""
+"Karten können auf den Fundamentstapel gelegt werden, wenn sie den doppelten "
+"Wert der dort obersten Stapelkarte haben. Buben und Damen zählen elf bzw. "
+"zwölf Punkte. Wenn der doppelte Wert dreizehn überschreitet, so wird vom "
+"Wert dreizehn subtrahiert, um den erforderlichen Kartenwert zu ermitteln. "
+"Die Serie entspricht:"
 
 #: C/aisleriot.xml:85(para)
 msgid "A, 2, 4, 8, 3, 6, Q, J, 9, 5, 10, 7, repeat..."
-msgstr ""
+msgstr "A, 2, 4, 8, 3, 6, D, B, 9, 5, 10, 7, Wiederholen …"
 
 #: C/aisleriot.xml:88(para)
 msgid ""
@@ -2199,7 +2372,7 @@ msgstr "Jede Karte im Fundamentstapel zählt einen Punkt."
 
 #: C/aisleriot.xml:107(para)
 msgid "Without a King, you can't have regicide. Avoid them."
-msgstr ""
+msgstr "Ohne einen König gibt es keinen Herrschermord. Vermeiden Sie sie."
 
 #. <sect1info>
 #.     <copyright>
@@ -2214,7 +2387,7 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Eagle Wing"
-msgstr "Eagle Wing"
+msgstr "Adlerschwinge"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
@@ -2232,6 +2405,10 @@ msgid ""
 "card of the same rank as the base card. To be built up in suit from the base "
 "card."
 msgstr ""
+"Vier Ablagen oben rechts. Eine Karte wird in den ersten Fundamentstapel zu "
+"Spielbeginn ausgegeben, es ist die Basiskarte. Andere Fundamentstapel müssen "
+"mit einer Karte gleichen Ranges begonnen werden. Der Aufbau erfolgt nach "
+"Farbe ab der Basiskarte."
 
 #: C/aisleriot.xml:55(entry)
 msgid ""
@@ -2239,6 +2416,11 @@ msgid ""
 "fill any spaces in the Tableau. When only one card is left in the Reserve, "
 "it will flip up and can be played on Foundation or a Tableau pile."
 msgstr ""
+"Mittlere (und tiefste) Ablage. Dreizehn Karten werden hier verdeckt "
+"ausgegeben. Karten werden gedreht, um alle Lücken auf dem Spieltisch zu "
+"füllen. Sobald nur noch eine Karte auf dem Reservestapel ist, so wird diese "
+"umgedreht und kann auf einen Fundamentstapel oder einen Tischstapel gespielt "
+"werden."
 
 #: C/aisleriot.xml:64(entry)
 msgid ""
@@ -2247,6 +2429,11 @@ msgid ""
 "singly to other slots on the Tableau, or in a group on to the Foundation. "
 "Each Tableau slot can hold a maximum of three cards."
 msgstr ""
+"Acht Ablagen (vier zur linken und vier zur rechten des Reservestapels). Pro "
+"Ablage wird eine Karte sichtbar ausgegeben. Der Spieltisch kann nach Farbe "
+"absteigend aufgebaut werden. Karten können einzeln auf andere Ablagen gelegt "
+"werden oder in Gruppen auf den Fundamentstapel. Jede Tischablage kann "
+"höchstens drei Karten aufnehmen."
 
 #: C/aisleriot.xml:86(para)
 msgid ""
@@ -2256,6 +2443,13 @@ msgid ""
 "from the Reserve. If the Reserve is empty, an empty slot can be filled by a "
 "card from the Waste or from another Tableau pile."
 msgstr ""
+"Karten werden auf dem Spieltisch absteigend nach Farbe aufgebaut. Karten "
+"können nur einzeln auf eine andere Ablage auf dem Spieltisch gelegt werden. "
+"Um dies nicht zur langweiligen Routine werden zu lassen, können Sie auch "
+"Kartengruppen auf den Fundamentstapel legen. Ein leerer Platz auf dem "
+"Spieltisch wird automatisch aus dem Reservestapel aufgefüllt. Falls der "
+"Reservestapel leer ist, kann ein leerer Platz aus dem Restestapel oder aus "
+"einem anderen Stapel des Spieltisches aufgefüllt werden."
 
 #: C/aisleriot.xml:94(para)
 msgid ""
@@ -2282,6 +2476,12 @@ msgid ""
 "Foundation piles. Aces are placed on Kings, and twos on Aces. Cards in "
 "Foundations are not in play."
 msgstr ""
+"Fundamentstapel werden von der Basiskarte aufsteigend nach Farbe aufgebaut "
+"(die erste Karte wird auf den Fundamentstapel ausgegeben). Neue "
+"Fundamentstapel werden begonnen, sobald eine Karte des gleichen Ranges wie "
+"die bei der Verteilung zuerst ausgegebene auf einen leeren Fundamentstapel "
+"abgelegt wird. Asse werden auf Könige und Zweien auf Asse abgelegt. Karten "
+"in Fundamentstapeln sind nicht im Spiel."
 
 #: C/aisleriot.xml:125(para)
 msgid ""
@@ -2302,7 +2502,7 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Easthaven"
-msgstr "Easthaven"
+msgstr "Osthafen"
 
 #: C/aisleriot.xml:29(entry)
 msgid "Top left pile. Deck is placed here after dealing on to the Tableau."
@@ -2313,13 +2513,15 @@ msgstr ""
 #: C/aisleriot.xml:36(entry)
 msgid "Four piles top right. To be built up in suit from Ace to King."
 msgstr ""
-"Vier Ablagen oben rechts. Aufbau aufsteigend nach Farbe von Ass bis König."
+"Vier Ablagen oben rechts. Der Aufbau erfolgt nach Farbe von Ass bis König."
 
 #: C/aisleriot.xml:43(entry)
 msgid ""
 "Seven piles on the bottom. Deal two cards face down and one card face up for "
 "every pile."
 msgstr ""
+"Sieben Ablagen unten. Auf jeden Stapel werden zwei Karten verdeckt und eine "
+"sichtbar ausgegeben."
 
 #: C/aisleriot.xml:62(para)
 msgid ""
@@ -2327,14 +2529,19 @@ msgid ""
 "and alternating color can be moved as a unit. Empty Tableau piles can be "
 "filled by Kings or builds starting with a King."
 msgstr ""
+"Der Spieltisch wird nach wechselnden Farben absteigend aufgebaut. "
+"Kartengruppen in Reihenfolge und abwechselnden Farben können zusammen bewegt "
+"werden. Leere Tischstapel können mit Königen oder mit einem König "
+"beginnenden Kartengruppen gefüllt werden."
 
 #: C/aisleriot.xml:67(para)
+#, fuzzy
 msgid ""
 "Any empty Tableau slots must be filled if possible before dealing more "
 "cards. Clicking on the Stock deals one card face up on to each Tableau pile. "
 "The last deal places one card face up on the first three piles. There are no "
 "redeals."
-msgstr ""
+msgstr " Es gibt keine Neuverteilungen."
 
 #: C/aisleriot.xml:73(para)
 msgid ""
@@ -2357,6 +2564,7 @@ msgid ""
 "difficult one facing you today."
 msgstr ""
 
+# Acht weg?
 #. <sect1info>
 #. 		<copyright>
 #. 			<year>2001</year>
@@ -2401,7 +2609,7 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Elevator"
-msgstr "Elevator"
+msgstr "Aufzug"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
@@ -2414,7 +2622,7 @@ msgstr ""
 
 #: C/aisleriot.xml:37(entry)
 msgid "To be taken from Stock."
-msgstr ""
+msgstr "Es wird vom Talon gespielt."
 
 #: C/aisleriot.xml:43(entry)
 msgid ""
@@ -2439,10 +2647,12 @@ msgstr ""
 msgid ""
 "Cards can be flipped singly from the Stock to the Waste. There is no redeal."
 msgstr ""
+"Karten können vom Talon auf den Restestapel einzeln aufgedeckt werden. Es "
+"gibt keine Neuverteilungen."
 
 #: C/aisleriot.xml:76(para)
 msgid "Each card removed from the pyramid scores one point."
-msgstr ""
+msgstr "Jede Karte, die von der Pyramide entfernt wird, zählt einen Punkt."
 
 #: C/aisleriot.xml:79(para) C/aisleriot.xml:80(para)
 msgid "Maximum possible score: 28"
@@ -2467,7 +2677,7 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Escalator"
-msgstr "Escalator"
+msgstr "Rolltreppe"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
@@ -2496,6 +2706,8 @@ msgstr ""
 msgid ""
 "Cards are flipped singly from the Stock to the Waste. There is no redeal."
 msgstr ""
+"Karten werden vom Talon auf den Restestapel einzeln aufgedeckt. Es gibt "
+"keine Neuverteilungen."
 
 #: C/aisleriot.xml:77(para)
 msgid "Each card removed from the Tableau scores one point."
@@ -2518,19 +2730,23 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "First Law"
-msgstr "First Law"
+msgstr "Erstes Gesetz"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
 "Top left pile. All cards are placed here in beginning. When emptied, cards "
 "are brought back from Tableau and put back in the Stock."
 msgstr ""
+"Ablage oben links. Alle Karten werden zu Spielbeginn hier abgelegt. Sobald "
+"leer, werden Karten vom Spieltisch zurück in den Talon gelegt."
 
 #: C/aisleriot.xml:37(entry)
 msgid ""
 "Four piles on the right. Each deal from Stock will deal one card to each "
 "Tableau pile."
 msgstr ""
+"Vier Stapel rechts. Bei jeder Ausgabe vom Talon wird eine Karte auf jeden "
+"Stapel des Spieltisches ausgegeben."
 
 #: C/aisleriot.xml:56(para)
 msgid ""
@@ -2578,13 +2794,15 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:12(title)
 msgid "Fortress"
-msgstr "Fortress"
+msgstr "Festung"
 
 #: C/aisleriot.xml:28(entry)
 msgid ""
 "Four piles in the middle. To be built up in suit from Ace to King. Cards in "
 "Foundation piles are no longer in play."
 msgstr ""
+"Vier Stapel in der Mitte. Der Aufbau erfolgt nach Farbe von Ass bis König. "
+"Karten in Fundamentstapeln sind nicht mehr im Spiel."
 
 #: C/aisleriot.xml:61(para)
 msgid ""
@@ -2618,10 +2836,14 @@ msgstr "Fortunes"
 #: C/aisleriot.xml:29(entry)
 msgid "Top left pile. Deals a card to each Tableau pile when clicked."
 msgstr ""
+"Ablage oben links. Eine Klick darauf gibt eine Karte auf jeden Tischstapel "
+"aus."
 
 #: C/aisleriot.xml:36(entry)
 msgid "Four piles on right. Groups of cards can be moved on to empty piles."
 msgstr ""
+"Vier Stapel zur Rechten. Karten können in Gruppen auf leere Stapel gelegt "
+"werden."
 
 #: C/aisleriot.xml:48(para)
 msgid "To remove all cards except the four Aces."
@@ -2641,6 +2863,7 @@ msgid ""
 "possible, as this is a great way to get rid of buried cards."
 msgstr ""
 
+# Bezieht sich wohl auf »Ali Baba und die vierzig Räuber«
 #. <sect1info>
 #. 		<copyright>
 #. 			<year>2008</year>
@@ -2654,7 +2877,7 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Forty Thieves"
-msgstr "Forty Thieves"
+msgstr "Vierzig Räuber"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
@@ -2662,6 +2885,9 @@ msgid ""
 "Tableau. Cards are dealt singly to the waste, The top card of the waste is "
 "available for play."
 msgstr ""
+"Ablage oben links. Der Rest des Kartensatzes wird nach dem Geben des "
+"Spieltisches hier abgelegt. Karten werden einzeln auf den Restestapel "
+"ausgegeben. Die oberste Karte des Restestapels ist im Spiel."
 
 #: C/aisleriot.xml:37(entry)
 msgid "Eight piles top right. To be built in suit from Ace to King."
@@ -2669,10 +2895,11 @@ msgstr ""
 "Acht Ablagen oben rechts. Aufbau aufsteigend nach Farbe von Ass bis König."
 
 #: C/aisleriot.xml:44(entry)
+#, fuzzy
 msgid ""
 "Ten piles. Deal four rows face up to start. Tableau can be built down in "
 "suit. Cards are moved singly. Empty piles can be filled with any card."
-msgstr ""
+msgstr " Leere Stapel können mit einer beliebigen Karte belegt werden."
 
 #: C/aisleriot.xml:64(para)
 msgid ""
@@ -2687,6 +2914,8 @@ msgid ""
 "Cards are played singly from the Stock to the waste pile, whose top card is "
 "available for play. There are no redeals."
 msgstr ""
+"Karten werden einzeln vom Talon auf den Reservestapel gespielt. Die oberste "
+"Karte des Reservestapels ist im Spiel. Es gibt keine Neuverteilungen."
 
 #: C/aisleriot.xml:75(para)
 msgid ""
@@ -2695,6 +2924,11 @@ msgid ""
 "waste will move it to the appropriate Foundation pile if such a move is "
 "possible, or to the tableau if possible."
 msgstr ""
+"Fundamentstapel werden aufsteigend nach Farbe von Ass nach König aufgebaut. "
+"Ein Doppelklick auf einen Fundamentstapel spielt die Karten automatisch. Ein "
+"Doppelklick auf eine Karte auf dem Spieltisch oder auf dem Ablagestapel legt "
+"die Karte auf den passenden Fundamentstapel, wenn ein solcher Zug möglich "
+"ist, oder falls möglich auf den Spieltisch."
 
 #: C/aisleriot.xml:85(para)
 msgid ""
@@ -2742,12 +2976,16 @@ msgid ""
 "Cards can be removed in pairs that add up to fourteen. Aces are worth one "
 "and Jacks, Queens, and Kings are worth 11, 12, and 13 respectively."
 msgstr ""
+"Karten können in Paaren entfernt werden, deren Summe vierzehn ergibt. Asse "
+"zählen eins, Buben, Damen und Könige zählen jeweils 11, 12 bzw. 13."
 
 #: C/aisleriot.xml:68(para)
 msgid ""
 "Watch your step! Try to move cards that are resting on matching pairs as "
 "otherwise you might get stuck."
 msgstr ""
+"Seien Sie vorsichtig! Versuchen Sie Karten zu verschieben, die auf passenden "
+"Paaren liegen, andernfalls kann es zu einer Blockade kommen."
 
 #. <sect1info>
 #. 		<copyright>
@@ -2771,21 +3009,26 @@ msgstr "Geschrieben von Changwoo Ryu"
 #: C/aisleriot.xml:29(entry)
 msgid "Four left piles on top row. Each Reserve pile can only hold one card."
 msgstr ""
+"Die linken vier Stapel in der obersten Reihe. Jeder Reservestapel kann nur "
+"eine Karte fassen."
 
 #: C/aisleriot.xml:35(entry)
 msgid ""
 "Four piles top right. To be built up in suit from Ace to King. Cards in "
 "Foundations are no longer in play."
 msgstr ""
+"Vier Ablagen oben rechts. Der Aufbau erfolgt nach Farbe von Ass bis König. "
+"Karten im Fundamentstapel sind nicht mehr im Spiel."
 
 #: C/aisleriot.xml:42(entry)
+#, fuzzy
 msgid ""
 "Eight piles. Deal all cards face up on to these eight piles, ending up with "
 "seven cards in each of the first four piles and six cards in the last four "
 "piles. Tableau can be built down in alternating colors. Cards can only be "
 "moved singly, but as a shortcut, if there are enough Reserve piles free to "
 "allow it, cards in sequence can be moved together."
-msgstr ""
+msgstr " Der Spieltisch kann in wechselnden Farben aufgebaut werden."
 
 #: C/aisleriot.xml:65(para)
 msgid ""
@@ -2794,6 +3037,10 @@ msgid ""
 "cards were moved singly. An empty pile in the Tableau can be filled with any "
 "card or group of cards."
 msgstr ""
+"Karten im Spieltisch werden absteigend nach wechselnder Farbe aufgebaut. "
+"Karten können in Gruppen bewegt werden, sofern es genügend freie "
+"Reservestapel gibt, die den Spielzug mit Einzelbewegungen ermöglichen. Ein "
+"leerer Tischstapel kann mit jeder Karte oder Kartengruppe belegt werden."
 
 #: C/aisleriot.xml:71(para)
 msgid ""
@@ -2801,22 +3048,26 @@ msgid ""
 "not in play. Double clicking on a card will move it to the appropriate "
 "Foundation pile if such a move is possible."
 msgstr ""
-"Fundamentstapel werden aufsteigend von Ass nach König aufgebaut. Die Karten "
-"in den Fundamentstapeln sind nicht mehr im Spiel. Durch einen Doppelklick "
-"auf eine Karte wird diese auf den entsprechenden Fundamentstapel gelegt, "
-"falls solch ein Zug möglich ist."
+"Fundamentstapel werden aufsteigend nach Farbe von Ass nach König aufgebaut. "
+"Die Karten in den Fundamentstapeln sind nicht im Spiel. Durch einen "
+"Doppelklick auf eine Karte wird diese auf den entsprechenden Fundamentstapel "
+"gelegt, falls solch ein Zug möglich ist."
 
 #: C/aisleriot.xml:76(para)
 msgid ""
 "Cards in Reserve piles can be played back on to Tableau or on to the "
 "Foundation."
 msgstr ""
+"Die Karten der Reservestapel können auf den Tisch zurück oder auf den "
+"Fundamentstapel gespielt werden."
 
 #: C/aisleriot.xml:94(para)
 msgid ""
 "Space is a valuable commodity. Keep as many of the Reserve piles free as "
 "possible."
 msgstr ""
+"Platz ist ein kostbares Gut. Halten Sie so viele Reservestapel wie möglich "
+"frei."
 
 #. <sect1info>
 #.     <copyright>
@@ -2912,6 +3163,8 @@ msgid ""
 "Top left pile. Deal two cards face up here. The top card is in play. Cannot "
 "be refilled or built on."
 msgstr ""
+"Ablage oben links. Zwei Karten werden sichtbar hier ausgegeben. Die oberste "
+"Karte ist im Spiel. Sie kann nicht neu gefüllt oder aufgebaut werden."
 
 #: C/aisleriot.xml:36(entry)
 msgid ""
@@ -2954,6 +3207,9 @@ msgid ""
 "Top left pile. All cards are placed here after dealing on the Tableau. Cards "
 "are dealt a row at a time onto the tableau piles. No redeals."
 msgstr ""
+"Ablage oben links. Alle Karten werden hier nach dem Geben des Spieltisches "
+"abgelegt. Die Karten werden gleichzeitig reihenweise auf den Spieltisch "
+"ausgegeben. Es gibt keine Neuverteilungen."
 
 #: C/aisleriot.xml:37(entry) C/aisleriot.xml:45(entry)
 msgid ""
@@ -2966,12 +3222,14 @@ msgstr ""
 
 #: C/aisleriot.xml:45(entry)
 msgid "Eight piles. Deal one card face up to all eight piles."
-msgstr ""
+msgstr "Acht Stapel. Eine Karte wird sichtbar auf alle acht Stapel ausgegeben."
 
 #: C/aisleriot.xml:51(entry)
 msgid ""
 "To the right of the Tableau. Initially empty. May contain any single card."
 msgstr ""
+"Auf dem Spieltisch rechts. Ist anfangs leer. Darf mit jeder Einzelkarte "
+"belegt werden."
 
 #: C/aisleriot.xml:69(para)
 msgid ""
@@ -2980,6 +3238,11 @@ msgid ""
 "card. There is an option to restrict the movement to only cards of the same "
 "suit. See below."
 msgstr ""
+"Karten im Spieltisch werden absteigend nach wechselnder Farbe aufgebaut. "
+"Karten können einzeln oder gruppenweise verschoben werden. Leere Ablagen auf "
+"dem Spieltisch können mit jeder beliebigen Karte belegt werden. Es gibt die "
+"Möglichkeit, die Verschiebung auf Karten der selben Farbe zu beschränken. "
+"Lesen Sie weiter unten."
 
 #: C/aisleriot.xml:74(para)
 msgid ""
@@ -2988,6 +3251,7 @@ msgid ""
 msgstr ""
 
 #: C/aisleriot.xml:78(para)
+#, fuzzy
 msgid ""
 "Foundations are built up from suit from Ace to King. Top cards in "
 "Foundations are still in play. Double clicking on a card will move it to the "
@@ -2995,6 +3259,9 @@ msgid ""
 "Foundation will automatically move as many cards as possible to the "
 "Foundations."
 msgstr ""
+" Die obersten Karten in den Fundamentstapeln sind noch im Spiel. Durch einen "
+"Doppelklick auf eine Karte wird diese auf den entsprechenden Fundamentstapel "
+"gelegt, falls solch ein Zug möglich ist."
 
 #: C/aisleriot.xml:87(para)
 msgid ""
@@ -3057,6 +3324,9 @@ msgid ""
 "card from the Reserves. Built up by suit, wrapping from King to Ace when "
 "necessary."
 msgstr ""
+"Vier Stapel oben rechts. Der erste Fundamentstapel wird durch Wahl einer "
+"Karte vom Reservestapel durch den Spieler begonnen. Es wird nach Farbe "
+"aufgebaut, wobei von König zu Ass bei Bedarf ein Sprung erfolgt."
 
 #: C/aisleriot.xml:52(entry)
 msgid ""
@@ -3071,6 +3341,10 @@ msgid ""
 "can be built down in alternating color. Top card can be played on to "
 "Foundation. Whole piles can be played on to another Tableau."
 msgstr ""
+"Vier Ablagen unter den Fundamentstapeln. Eine Karte wird sichtbar auf jeden "
+"Fundamentstapel ausgegeben. Der Spieltisch kann in wechselnden Farben "
+"aufgebaut werden. Die oberste Karte kann auf den Fundamentstapel gespielt "
+"werden. Ganze Stapel können auf den Spieltisch verschoben werden."
 
 #: C/aisleriot.xml:81(para)
 msgid ""
@@ -3084,18 +3358,25 @@ msgid ""
 "Foundations are built up by suit, wrapping from King to Ace where necessary. "
 "Once a card is placed on a Foundation pile, it is out of play."
 msgstr ""
+"Die Fundamentstapel werden nach Farbe aufgebaut, wobei von König zu Ass bei "
+"Bedarf ein Sprung erfolgt. Auf einen Fundamentstapel gelegte Karten sind "
+"nicht mehr im Spiel."
 
 #: C/aisleriot.xml:91(para)
+#, fuzzy
 msgid ""
 "Cards in the Tableau are built down by alternating color. Whole piles of "
 "cards can be moved on to another Tableau pile. Empty slots in the Tableau "
 "can be filled by any available card in the Reserves or, if all the Reserves "
 "are empty, from the Waste."
 msgstr ""
+"Karten im Spieltisch werden absteigend nach wechselnder Farbe aufgebaut. "
 
 #: C/aisleriot.xml:97(para)
 msgid "Cards are flipped singly from Stock to Waste. There is one redeal."
 msgstr ""
+"Karten werden einzeln vom Talon auf den Restestapel gelegt. Es gibt eine "
+"Neuverteilung."
 
 #: C/aisleriot.xml:114(para)
 msgid ""
@@ -3103,6 +3384,10 @@ msgid ""
 "out of the Reserves as early as possible. Sometimes keeping cards in play is "
 "more important than moving them to the Foundation."
 msgstr ""
+"Seien Sie vorsichtig bei der Auswahl Ihres ersten Fundamentstapels. "
+"Versuchen Sie, so früh wie möglich Karten aus den Reservestapeln zu nehmen. "
+"Manchmal ist es besser, Karten im Spiel zu behalten, als diese auf den "
+"Fundamentstapel zu legen."
 
 #. <sect1info>
 #.     <copyright>
@@ -3148,12 +3433,19 @@ msgid ""
 ">. Tableau can be built down in alternating colors. Groups of cards can be "
 "moved. Empty piles can be filled with any card."
 msgstr ""
+"Sieben Stapel, alle anfangs leer. »Goldmine« ist eine Variation von "
+"<placeholder-1/>. Der Spieltisch kann in wechselnden Farben absteigend "
+"aufgebaut werden. Karten können in Gruppen bewegt werden. Leere Stapel "
+"können mit einer beliebigen Karte belegt werden."
 
 #: C/aisleriot.xml:69(para)
 msgid ""
 "Cards in the Tableau are built down by alternating color. Groups of cards "
 "can be moved. An empty pile in the Tableau can be filled with any card."
 msgstr ""
+"Karten im Spieltisch werden absteigend nach wechselnder Farbe aufgebaut. "
+"Mehrere Karten können gleichzeitig verschoben werden. Leere Ablagen auf dem "
+"Spieltisch können mit jeder beliebigen Karte belegt werden."
 
 #: C/aisleriot.xml:74(para)
 msgid ""
@@ -3161,6 +3453,10 @@ msgid ""
 "Waste is in play. When Stock is empty, game over. Only one chance to get it "
 "right and establish your gold mine."
 msgstr ""
+"Karten werden vom Talon auf den Restestapel einzeln aufgedeckt. Die oberste "
+"Karte auf dem Restestapel ist im Spiel. Das Spiel ist zu Ende, sobald der "
+"Talon leer ist. Es gibt nur eine Chance, alles richtig zu machen und Ihre "
+"Goldmine in Betrieb zu nehmen."
 
 #: C/aisleriot.xml:96(para)
 msgid ""
@@ -3197,6 +3493,7 @@ msgstr ""
 #: C/aisleriot.xml:44(entry)
 msgid "Seven piles. Deal five cards face up on every pile."
 msgstr ""
+"Sieben Stapel. Fünf Karten werden sichtbar auf jeden Stapel ausgegeben."
 
 #: C/aisleriot.xml:62(para)
 msgid ""
@@ -3207,10 +3504,14 @@ msgstr ""
 #: C/aisleriot.xml:67(para)
 msgid "Cards are dealt singly from Stock to Waste. There are no redeals."
 msgstr ""
+"Karten werden einzeln vom Talon auf den Restestapel ausgegeben. Es gibt "
+"keine Neuverteilungen."
 
 #: C/aisleriot.xml:74(para)
 msgid "Every card moved from Tableau to Waste scores one point."
 msgstr ""
+"Jede Karte, die vom Spieltisch auf den Restestapel gelegt wird, erzielt "
+"einen Punkt."
 
 #: C/aisleriot.xml:77(para)
 msgid "Maximum possible score: 35"
@@ -3238,14 +3539,13 @@ msgid "Gypsy"
 msgstr "Gypsy"
 
 #: C/aisleriot.xml:29(entry)
-#, fuzzy
 msgid ""
 "Top left pile. The rest of the deck is placed here after dealing the "
 "Tableau. Cards are dealt in batches of eight, one on every Tableau."
 msgstr ""
 "Ablage oben links. Der Rest des Kartensatzes wird nach dem Geben des "
 "Spieltisches hier abgelegt. Jeweils acht Karten werden zusammen gegeben, "
-"eine auf jede Ablage (?) des Spieltisches."
+"eine auf jeden Spieltisch."
 
 #: C/aisleriot.xml:37(entry)
 msgid ""
@@ -3257,11 +3557,14 @@ msgstr ""
 "zurückgelegt werden."
 
 #: C/aisleriot.xml:45(entry)
+#, fuzzy
 msgid ""
 "Eight piles. Deal two rows face down and one row face up to start. Tableau "
 "can be built down in alternating colors. Builds of cards can be moved. Empty "
 "piles can be filled with any card or build."
 msgstr ""
+" Der Spieltisch kann in wechselnden Farben aufgebaut werden. Kartengruppen "
+"können gleichzeitig verschoben werden."
 
 #: C/aisleriot.xml:66(para)
 msgid ""
@@ -3306,10 +3609,13 @@ msgid ""
 "Tableau. Cards are automatically placed on to the Tableau whenever a space "
 "opens up."
 msgstr ""
+"Ablage oben links. Der Rest des Kartensatzes wird nach dem Geben des "
+"Spieltisches hier abgelegt. Karten werden automatisch auf den Spieltisch "
+"gebracht, sobald es eine Lücke gibt."
 
 #: C/aisleriot.xml:36(entry)
 msgid "Ten piles. Deal a card face up in every pile."
-msgstr ""
+msgstr "Zehn Stapel. Eine Karte wird sichtbar auf jeden Stapel ausgegeben."
 
 #: C/aisleriot.xml:54(para)
 msgid ""
@@ -3341,19 +3647,22 @@ msgid "Hopscotch"
 msgstr "Hopscotch"
 
 #: C/aisleriot.xml:29(entry)
+#, fuzzy
 msgid ""
 "Top left pile. All cards except the Ace to four of clubs are placed here at "
 "beginning of play. Cards are dealt singly to Waste."
-msgstr ""
+msgstr "Ablage oben links."
 
 #: C/aisleriot.xml:36(entry)
+#, fuzzy
 msgid ""
 "Directly to the right of Stock. Can only hold one card at a time. Card must "
 "immediately be placed on either a Foundation pile or on to the Reserve pile "
 "of your choice."
-msgstr ""
+msgstr "Unmittelbar rechts des Talon."
 
 #: C/aisleriot.xml:44(entry)
+#, fuzzy
 msgid ""
 "Four piles on top, to the right of Stock. Place an Ace on the first pile, a "
 "two on the second pile, a three on the third pile, and a four on the fourth "
@@ -3361,7 +3670,7 @@ msgid ""
 "by two, the third by three, and the fourth by four, all of which wrap around "
 "to Ace when it reaches past thirteen. cards in Foundations are no longer in "
 "play. Suits do not matter."
-msgstr ""
+msgstr "Vier Ablagen oben, rechts vom Talon."
 
 #: C/aisleriot.xml:55(entry)
 msgid ""
@@ -3478,6 +3787,8 @@ msgid ""
 "Directly to the right of the Stock. Cards to be dealt from the Stock during "
 "play one at a time. Top card available for play."
 msgstr ""
+"Unmittelbar rechts des Talon. Karten werden jeweils einzeln vom Talon "
+"ausgeteilt. Die oberste Karte ist für das Spiel verfügbar."
 
 #: C/aisleriot.xml:53(entry)
 msgid ""
@@ -3545,18 +3856,20 @@ msgstr ""
 "aufgedeckt. Keine Neuverteilungen."
 
 #: C/aisleriot.xml:43(entry)
+#, fuzzy
 msgid ""
 "Four piles on top right. Deal one card on first Foundation pile to start. "
 "Other Foundation piles are to be started with the other three cards with the "
 "same rank as this base card. All four piles are to be built up, with the "
 "ranks continuous."
-msgstr ""
+msgstr "Vier Ablagen oben rechts."
 
 #: C/aisleriot.xml:52(entry)
+#, fuzzy
 msgid ""
 "Pile under Stock. Deal twelve cards here to begin. Top card available for "
 "play on to Tableau or Foundation piles."
-msgstr ""
+msgstr "Die oberste Karte ist für das Spiel verfügbar."
 
 #: C/aisleriot.xml:59(entry)
 msgid ""
@@ -3577,12 +3890,19 @@ msgid ""
 "Reserve. If the Reserve is empty, an empty slot can be filled by the top "
 "card of the Waste at your leisure."
 msgstr ""
+"Karten auf dem Spieltisch werden absteigend ungeachtet der Farbe aufgebaut. "
+"Karten können in Gruppen bewegt werden. Ein leerer Platz auf dem Spieltisch "
+"wird automatisch aus dem Reservestapel aufgefüllt. Wenn der Reservestapel "
+"leer ist, darf eine leere Ablage mit der obersten Karte des Ablagestapels "
+"nach Ihrem Belieben gefüllt werden."
 
 #: C/aisleriot.xml:86(para)
 msgid ""
 "Cards can be flipped singly from the Stock to the Waste. Top card is "
 "available for play. There is no redeal."
 msgstr ""
+"Karten werden einzeln vom Talon auf den Reservestapel gelegt. Die oberste "
+"Karte ist im Spiel. Es gibt keine Neuverteilungen."
 
 #: C/aisleriot.xml:90(para)
 msgid ""
@@ -3593,6 +3913,14 @@ msgid ""
 "clicking on a card will move it to the appropriate Foundation pile if such a "
 "move is possible."
 msgstr ""
+"Fundamentstapel werden von der Basiskarte aufsteigend nach Farbe aufgebaut "
+"(die erste Karte wird auf den ersten Fundamentstapel ausgegeben). Neue "
+"Fundamentstapel werden begonnen, sobald eine Karte des gleichen Ranges wie "
+"die bei der Verteilung zuerst ausgegebene auf einen leeren Fundamentstapel "
+"abgelegt wird. Asse werden auf Könige und Zweier auf Asse abgelegt. Die "
+"Karten in den Fundamentstapeln sind nicht mehr im Spiel. Durch einen "
+"Doppelklick auf eine Karte wird diese auf den entsprechenden Fundamentstapel "
+"gelegt, falls solch ein Zug möglich ist."
 
 #: C/aisleriot.xml:112(para)
 msgid ""
@@ -3614,20 +3942,23 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "King Albert"
-msgstr "King Albert"
+msgstr "König Albert"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
 "Four piles on the top. Foundations are built up in both suit and sequence "
 "from Ace to King."
 msgstr ""
+"Vier Ablagen oben rechts. Der Aufbau der Fundamentstapel erfolgt nach Farbe "
+"und Reihenfolge von Ass bis König."
 
 #: C/aisleriot.xml:36(entry)
+#, fuzzy
 msgid ""
 "Seven piles on the right. One card is dealt face up on each Reserve pile at "
 "the start. There is no building on the Reserves. Empty Reserve piles can not "
 "be filled."
-msgstr ""
+msgstr "Sieben Ablagen. "
 
 #: C/aisleriot.xml:44(entry)
 msgid ""
@@ -3678,7 +4009,7 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "King's Audience"
-msgstr "Kings Audience"
+msgstr "Audienz beim König"
 
 #: C/aisleriot.xml:27(entry)
 msgid "Reserves (Antechamber)"
@@ -3702,10 +4033,12 @@ msgid ""
 "Slot to the right of the Stock. The top card of the Waste is available to "
 "play."
 msgstr ""
+"Die Ablage rechts des Talon. Die oberste Karte des Ablagestapels ist im "
+"Spiel."
 
 #: C/aisleriot.xml:49(entry)
 msgid "\"Thrones\""
-msgstr ""
+msgstr "»Throne«"
 
 #: C/aisleriot.xml:50(entry)
 msgid ""
@@ -3713,6 +4046,9 @@ msgid ""
 "sixteen cards.) Whenever a King and Queen of the same suit are available, "
 "they can be move to one of these slots."
 msgstr ""
+"Vier Ablagen oben im »Audienzsaal«, dem Bereich innerhalb der sechzehn "
+"umgebenden Karten. Immer wenn ein König und ein Ass der gleichen Farbe "
+"verfügbar sind, können diese auf eine der Ablagen verschoben werden."
 
 #: C/aisleriot.xml:59(entry)
 msgid ""
@@ -3720,10 +4056,15 @@ msgid ""
 "same suit are available, they can be moved to an empty Foundation slot, with "
 "the Jack on top. The foundation then may be built down in suit."
 msgstr ""
+"Vier Ablagen unten im Audienzsaal. Immer wenn ein Bube und ein Ass der "
+"gleichen Farbe verfügbar sind, können diese auf einen leeren Fundamentstapel "
+"verschoben werden, mit dem Buben nach oben. Der Fundamentstapel kann dann "
+"absteigend nach Farbe aufgebaut werden."
 
 #: C/aisleriot.xml:73(para)
+#, fuzzy
 msgid "Move all cards to the foundation piles or thrones."
-msgstr ""
+msgstr "Verschieben Sie alle Karten auf die Fundamentstapel oder ."
 
 #: C/aisleriot.xml:80(para)
 msgid ""
@@ -3735,14 +4076,12 @@ msgid ""
 msgstr ""
 
 #: C/aisleriot.xml:91(para)
-#, fuzzy
 msgid "Each card placed in the audience chamber receives one point."
-msgstr ""
-"Jede Karte, die in den Fundamentstapeln abgelegt wird, zählt einen Punkt."
+msgstr "Jede Karte, die in den Audienzsaal abgelegt wird, zählt einen Punkt."
 
 #: C/aisleriot.xml:101(para)
 msgid "None; King's Audience is pretty much entirely based on luck."
-msgstr ""
+msgstr "Keine. »Audienz beim König« basiert weitestgehend auf Glück."
 
 #: C/aisleriot.xml:15(para)
 msgid "Written by Jonathan Blandford"
@@ -3757,6 +4096,14 @@ msgid ""
 "be moved. Empty piles can only be filled by Kings or group of cards starting "
 "with a King."
 msgstr ""
+"Sieben Ablagen. Die Karten werden in der ersten Ablage sichtbar abgelegt. "
+"Legen Sie eine Karte verdeckt auf alle anderen Ablagen. Legen Sie eine Karte "
+"sichtbar auf den nächsten Stapel, gefolgt von einer verdeckten Karte auf "
+"alle bedeckten Stapel. Wiederholen Sie dies, bis sich sieben Karten in der "
+"letzten Ablage befinden. Der Spieltisch kann in wechselnden Farben "
+"absteigend aufgebaut werden. Karten können in Gruppen bewegt werden. Leere "
+"Ablagen können nur mit Königen belegt werden, oder mit Gruppen, die mit "
+"einem König beginnen."
 
 #: C/aisleriot.xml:92(para)
 msgid ""
@@ -3780,6 +4127,8 @@ msgid ""
 "Cards are dealt from the stock three at a time. There is no limit to how "
 "many times you can redeal the stock."
 msgstr ""
+"Es werden jeweils drei Karten zugleich vom Talon ausgeteilt. Der Talon darf "
+"beliebig oft neu gegeben werden."
 
 #: C/aisleriot.xml:111(term)
 msgid "Single card deals"
@@ -3790,6 +4139,8 @@ msgid ""
 "Cards are dealt from the stock one at a time. However you can only turn the "
 "stock over and redeal twice."
 msgstr ""
+"Die Karten werden einzeln vom Talon ausgeteilt. Der Talon darf jedoch nur "
+"einmal umgedreht und zwei Mal neu gegeben werden."
 
 #: C/aisleriot.xml:116(term)
 msgid "No redeals"
@@ -3800,14 +4151,18 @@ msgid ""
 "Cards are dealt one at a time from the stock. There is no redeal. Play this "
 "way if you want a challenge (and some frustration)."
 msgstr ""
+"Karten werden einzeln vom Talon ausgeteilt. Es darf nicht neu gegeben "
+"werden. Spielen Sie so, wenn Sie eine Herausforderung (und Frustration) "
+"suchen."
 
 #: C/aisleriot.xml:123(para)
+#, fuzzy
 msgid ""
 "Most likely you will consider one of the first two methods traditional - "
 "depending on where you live and who taught you. The no redeals option is the "
 "one normally found in older sets of rules, but the game is rarely played "
 "that way."
-msgstr ""
+msgstr "Es gibt keine Neuverteilungen."
 
 #. <sect1info>
 #. 		<copyright>
@@ -3832,15 +4187,16 @@ msgstr ""
 "Spieltisches abgelegt."
 
 #: C/aisleriot.xml:36(entry)
+#, fuzzy
 msgid ""
 "Four piles top right. Aces are placed in their respective Foundation pile "
 "prior to shuffling the deck."
-msgstr ""
+msgstr "Vier Ablagen oben rechts. "
 
 #: C/aisleriot.xml:43(entry)
 msgid ""
 "One card is dealt face up in each Tableau pile at the start of the game."
-msgstr ""
+msgstr "Eine Karte wird offen auf jeden Tischstapel zu Spielbeginn gelegt."
 
 #: C/aisleriot.xml:62(para)
 msgid ""
@@ -3885,28 +4241,34 @@ msgid "Lady Jane"
 msgstr "Lady Jane"
 
 #: C/aisleriot.xml:29(entry)
+#, fuzzy
 msgid ""
 "Top left pile. The rest of the deck is placed here after dealing. Cards are "
 "turned on to the Reserve one on each pile per deal. When there are only two "
 "cards left in Stock, they are dealt such that both cards are available for "
 "play."
 msgstr ""
+"Ablage oben links. Der Rest des Kartensatzes wird nach dem Geben hier "
+"abgelegt."
 
 #: C/aisleriot.xml:38(entry)
+#, fuzzy
 msgid ""
 "Four piles on top right. Deal one card on to first Foundation pile after "
 "dealing on to Tableau and Reserve. This card is now the base card. Built up "
 "by suit."
-msgstr ""
+msgstr "Vier Ablagen oben rechts."
 
 #: C/aisleriot.xml:46(entry)
+#, fuzzy
 msgid ""
 "Seven piles on the right. Top card of each pile is available for play on to "
 "either the Tableau or the Foundation. Empty spaces are not filled except by "
 "a deal from Stock."
-msgstr ""
+msgstr "Sieben Ablagen. "
 
 #: C/aisleriot.xml:54(entry)
+#, fuzzy
 msgid ""
 "Seven piles below Stock and Foundation. Deal card face up in first pile. "
 "Place one card face down on all other piles. Place one card face up on next "
@@ -3916,14 +4278,22 @@ msgid ""
 "card whose rank is one lower than the base card or group of cards starting "
 "with a card of this rank."
 msgstr ""
+"Sieben Ablagen. Die Karten werden in der ersten Ablage sichtbar abgelegt. "
+"Legen Sie eine Karte mit der Bildseite nach unten auf alle anderen Ablagen. "
+"Wiederholen Sie dies, bis sich sieben Karten in der letzten Ablage befinden. "
+"Karten können in Gruppen bewegt werden.  Der Spieltisch kann in wechselnden "
+"Farben aufgebaut werden."
 
 #: C/aisleriot.xml:78(para)
+#, fuzzy
 msgid ""
 "Cards in the Tableau are built down by alternating color. Groups of cards "
 "can be moved. An empty pile in the Tableau can be filled with a card whose "
 "rank is one lower than the base card or with a group of cards starting with "
 "a card with this rank."
 msgstr ""
+"Karten im Spieltisch werden absteigend nach wechselnder Farbe aufgebaut. "
+"Karten können in Gruppen bewegt werden. "
 
 #: C/aisleriot.xml:84(para)
 msgid ""
@@ -3945,6 +4315,12 @@ msgid ""
 "Foundations are still in play. Double clicking on a card will move it to the "
 "appropriate Foundation pile if such a move is possible."
 msgstr ""
+"Fundamentstapel werden von der Basiskarte aufsteigend nach Farbe aufgebaut. "
+"Neue Fundamentstapel werden begonnen, wenn eine Karte des gleichen Ranges "
+"wie die Basiskarte auf leere Fundamentstapel gelegt wird. Asse werden auf "
+"Könige und Zweien auf Asse abgelegt. Die Karten in den Fundamentstapeln sind "
+"noch im Spiel. Durch einen Doppelklick auf eine Karte wird diese auf den "
+"entsprechenden Fundamentstapel gelegt, falls solch ein Zug möglich ist."
 
 #: C/aisleriot.xml:115(para)
 msgid ""
@@ -3973,7 +4349,7 @@ msgstr "Geschrieben von Matthew Wilcox"
 
 #: C/aisleriot.xml:25(entry)
 msgid "48 cards: Standard Deck without the kings"
-msgstr ""
+msgstr "48 Karten: Standard-Kartensatz ohne Könige"
 
 #: C/aisleriot.xml:30(entry)
 msgid ""
@@ -4035,11 +4411,15 @@ msgid "Monte Carlo"
 msgstr "Monte Carlo"
 
 #: C/aisleriot.xml:29(entry)
+#, fuzzy
 msgid ""
 "Top left pile. The rest of the deck is placed here after dealing the "
 "Tableau. Cards are dealt after concatenating the Tableau onto the empty "
 "slots."
 msgstr ""
+"Ablage oben links. Der Rest des Kartensatzes wird nach dem Geben des "
+"Spieltisches hier abgelegt. Karten werden nach ? gegeben, eine auf jede "
+"Ablage des Spieltisches."
 
 #: C/aisleriot.xml:37(entry)
 msgid ""
@@ -4083,7 +4463,7 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Napoleon's Tomb"
-msgstr "Napoleons Tomb"
+msgstr "Napoleons Grab"
 
 #: C/aisleriot.xml:15(para)
 msgid "Written by Kimmo Karlsson"
@@ -4095,7 +4475,7 @@ msgstr "Ablage oben links."
 
 #: C/aisleriot.xml:35(entry)
 msgid "Next to Stock."
-msgstr ""
+msgstr "Neben dem Talon."
 
 #: C/aisleriot.xml:41(entry)
 msgid "Three by three grid, all face up."
@@ -4158,11 +4538,12 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Neighbor"
-msgstr "Neighbor"
+msgstr "Nachbar"
 
 #: C/aisleriot.xml:29(entry)
+#, fuzzy
 msgid "Top left pile. Dealt to the Tableau in the manner described below."
-msgstr ""
+msgstr "Ablage oben links."
 
 #: C/aisleriot.xml:36(entry)
 msgid ""
@@ -4183,7 +4564,6 @@ msgstr ""
 "die Karten horizontal, vertikal oder diagonal berühren."
 
 #: C/aisleriot.xml:67(para) C/aisleriot.xml:71(para)
-#, fuzzy
 msgid "None"
 msgstr "Keine"
 
@@ -4213,10 +4593,11 @@ msgid "Four piles on left. To be built up in suit from Ace to King."
 msgstr "Vier Ablagen links. Aufbau aufsteigend nach Farbe von Ass bis König."
 
 #: C/aisleriot.xml:36(entry)
+#, fuzzy
 msgid ""
 "Seven piles. Deal three rows face down followed by three rows face up. Then "
 "deal two more rows face up in the middle five piles."
-msgstr ""
+msgstr "Sieben Ablagen. "
 
 #: C/aisleriot.xml:56(para)
 msgid ""
@@ -4225,14 +4606,20 @@ msgid ""
 "appropriate and receptive Foundation pile. An empty pile in the Tableau can "
 "be filled with a King or a group of cards with a King on the bottom."
 msgstr ""
+"Karten werden auf dem Spieltisch absteigend nach Farbe aufgebaut. Karten "
+"können in Gruppen bewegt werden, ungeachtet der inneren Reihenfolge der "
+"Gruppe. Kartengruppen in der richtigen Reihenfolge können auf den "
+"entsprechenden Fundamentstapel gelegt werden. Ein leerer Stapel auf dem "
+"Spieltisch kann mit einem König oder einer Kartengruppe belegt werden, die "
+"als unterste Karte einen König enthält."
 
 #: C/aisleriot.xml:63(para) C/aisleriot.xml:64(para)
 msgid ""
 "Foundations are built up in suit from Ace to King. Cards in Foundations are "
 "no longer in play."
 msgstr ""
-"Fundamentstapel werden farbenweise von Ass bis König aufgebaut. Die Karten "
-"in den Fundamentstapeln sind dann nicht mehr im Spiel."
+"Fundamentstapel werden aufsteigend nach Farbe von Ass nach König aufgebaut. "
+"Die Karten in den Fundamentstapeln sind dann nicht mehr im Spiel."
 
 #: C/aisleriot.xml:76(para)
 msgid ""
@@ -4277,6 +4664,8 @@ msgstr ""
 #: C/aisleriot.xml:36(entry)
 msgid "Four piles on right. Deal one card on to first Foundation."
 msgstr ""
+"Vier Stapel zur Rechten. Eine Karte wird auf den ersten Fundamentstapel "
+"ausgegeben."
 
 #: C/aisleriot.xml:42(entry)
 msgid ""
@@ -4375,12 +4764,13 @@ msgid ""
 msgstr ""
 
 #: C/aisleriot.xml:51(para)
+#, fuzzy
 msgid ""
 "Cards can be moved on top of any other card or cards of the same value so "
 "long as no pile grows to have more than four cards. Groups of cards can be "
 "moved if they are of the same value, but it doesn't gain you anything. An "
 "empty slot can be filled with any card or group of cards with the same value."
-msgstr ""
+msgstr "Karten können in Gruppen bewegt werden. "
 
 #: C/aisleriot.xml:58(para)
 msgid ""
@@ -4444,7 +4834,7 @@ msgstr ""
 
 #: C/aisleriot.xml:55(entry)
 msgid "Edges"
-msgstr "Ränder"
+msgstr "Edges"
 
 #: C/aisleriot.xml:56(entry)
 msgid ""
@@ -4507,7 +4897,7 @@ msgstr "Poker"
 
 #: C/aisleriot.xml:35(entry)
 msgid "Next to Stock. The Waste can only hold one card."
-msgstr ""
+msgstr "Neben dem Talon. Der Ablagestapel kann höchstens eine Karte aufnehmen."
 
 #: C/aisleriot.xml:41(entry)
 msgid "Five by five grid. Each slot can only hold one card."
@@ -4556,7 +4946,7 @@ msgstr ""
 
 #: C/aisleriot.xml:92(entry)
 msgid "Cards are all in sequence and are the same suit"
-msgstr ""
+msgstr "Alle Karten sind in Reihenfolge und von gleicher Farbe"
 
 #: C/aisleriot.xml:93(entry)
 msgid "30"
@@ -4575,12 +4965,13 @@ msgid "16"
 msgstr "16"
 
 #: C/aisleriot.xml:101(entry)
+#, fuzzy
 msgid "Straight"
-msgstr ""
+msgstr "Straße"
 
 #: C/aisleriot.xml:102(entry)
 msgid "Cards are all in sequence"
-msgstr ""
+msgstr "Alle Karten sind in Reihenfolge"
 
 #: C/aisleriot.xml:103(entry)
 msgid "12"
@@ -4588,7 +4979,7 @@ msgstr "12"
 
 #: C/aisleriot.xml:106(entry)
 msgid "Full House"
-msgstr "Full House [25]"
+msgstr "Full House"
 
 #: C/aisleriot.xml:107(entry)
 msgid "Three of one rank and two of another"
@@ -4673,11 +5064,14 @@ msgid "Quatorze"
 msgstr "Quatorze"
 
 #: C/aisleriot.xml:29(entry)
+#, fuzzy
 msgid ""
 "Top left pile. The rest of the deck is placed here after dealing the "
 "Tableau. Empty spaces in the Tableau are immediately filled in with cards "
 "from the Stock."
 msgstr ""
+"Ablage oben links. Der Rest des Kartensatzes wird nach dem Geben des "
+"Spieltisches hier abgelegt."
 
 #: C/aisleriot.xml:37(entry)
 msgid ""
@@ -4723,11 +5117,12 @@ msgid "Royal East"
 msgstr "Royal East"
 
 #: C/aisleriot.xml:42(entry)
+#, fuzzy
 msgid ""
 "Four corner piles of three by three grid. Deal one card on to first "
 "Foundation pile. This card is now the base card. Build up in suit, playing "
 "Aces on Kings as necessary."
-msgstr ""
+msgstr "Es wird nach Farbe aufgebaut."
 
 #: C/aisleriot.xml:50(entry)
 msgid ""
@@ -4749,12 +5144,19 @@ msgid ""
 "Aces on top of Kings if necessary. Cards in Foundation piles are no longer "
 "in play."
 msgstr ""
+"Jeder Fundamentstapel muss mit einer Karte gleichen Ranges wie die "
+"Basiskarte begonnen werden. Fundamentstapel werden mit der Basiskarte "
+"beginnend nach Farbe aufgebaut, wobei Asse auf Könige gelegt werden können, "
+"falls nötig. Karten in Fundamentstapeln sind nicht mehr im Spiel."
 
 #: C/aisleriot.xml:81(para) C/aisleriot.xml:75(para)
 msgid ""
 "Cards are flipped singly from Stock to Waste. Top card of Waste pile is "
 "always available for play. There are no redeals."
 msgstr ""
+"Karten werden einzeln vom Talon auf den Reservestapel gelegt. Die oberste "
+"Karte des Reservestapels steht immer für das Spiel zur Verfügung. Es gibt "
+"keine Neuverteilungen."
 
 #: C/aisleriot.xml:99(para)
 msgid ""
@@ -4779,6 +5181,7 @@ msgid "Saratoga"
 msgstr "Saratoga"
 
 #: C/aisleriot.xml:57(entry)
+#, fuzzy
 msgid ""
 "Seven piles. Place one card face up on all piles. Next row skip the first "
 "pile and place cards on all the other piles. Continue this process skipping "
@@ -4789,6 +5192,10 @@ msgid ""
 "can be built down in alternating colors. Builds of cards can be moved. Empty "
 "piles can only be filled by Kings or group of cards starting with a King."
 msgstr ""
+"Sieben Ablagen. Mehrere Karten können gleichzeitig verschoben werden.  Der "
+"Spieltisch kann in wechselnden Farben aufgebaut werden. Leere Ablagen können "
+"nur mit Königen belegt werden, oder mit Gruppen, die mit einem König "
+"beginnen."
 
 #. <sect1info>
 #. 		<copyright>
@@ -4803,7 +5210,7 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Scorpion"
-msgstr "Scorpion"
+msgstr "Skorpion"
 
 #: C/aisleriot.xml:29(entry)
 msgid "Top left pile. The last three cards are placed here after the deal."
@@ -4812,12 +5219,13 @@ msgstr ""
 "abgelegt."
 
 #: C/aisleriot.xml:35(entry)
+#, fuzzy
 msgid ""
 "Seven piles to the right of Stock. * Deal one cards face down on each of the "
 "first four rows. Deal one card face up on the last three rows. Repeat from * "
 "two more times, dealing a total of three rows. Deal one card face up on each "
 "pile for four more rows."
-msgstr ""
+msgstr "Sieben Ablagen.  Eine Karte wird sichtbar auf jeden Stapel ausgegeben."
 
 #: C/aisleriot.xml:49(para)
 msgid ""
@@ -4826,11 +5234,14 @@ msgid ""
 msgstr ""
 
 #: C/aisleriot.xml:57(para)
+#, fuzzy
 msgid ""
 "Cards in the Tableau are built down by suit. Groups of cards can be moved "
 "regardless of sequence. An empty pile in the Tableau can be filled with a "
 "King or a group of cards with a King on the bottom."
 msgstr ""
+"Karten werden auf dem Spieltisch absteigend nach Farbe aufgebaut. Karten "
+"können in Gruppen bewegt werden. "
 
 #: C/aisleriot.xml:62(para)
 msgid ""
@@ -4872,6 +5283,9 @@ msgid ""
 "play. Clicking on the Stock will deal one card to each of the four Reserve "
 "piles. Two redeals allowed."
 msgstr ""
+"Ablage oben links. Alle Karten mit Ausnahme der Asse werden hier am Beginn "
+"des Spiels abgelegt. Durch Anklicken des Fundamentstapels wird jeweils eine "
+"Karte auf jeden Reservestapel gelegt. Zwei Neuverteilungen sind möglich."
 
 #: C/aisleriot.xml:66(para)
 msgid ""
@@ -4882,10 +5296,11 @@ msgid ""
 msgstr ""
 
 #: C/aisleriot.xml:72(para)
+#, fuzzy
 msgid ""
 "Take all cards left over on the Reserve and reshuffle. Place these cards "
 "back to the stock for redealing. There are two redeals."
-msgstr ""
+msgstr " Zwei Neuverteilungen."
 
 #: C/aisleriot.xml:90(para)
 msgid ""
@@ -4950,10 +5365,11 @@ msgid "Sir Tommy"
 msgstr "Sir Tommy"
 
 #: C/aisleriot.xml:29(entry)
+#, fuzzy
 msgid ""
 "Top left pile. All cards are placed here at beginning of play. Cards are "
 "dealt singly to Waste."
-msgstr ""
+msgstr "Ablage oben links."
 
 #: C/aisleriot.xml:36(entry)
 msgid ""
@@ -4966,6 +5382,8 @@ msgid ""
 "Four piles on top, to the right of Waste. To be built in sequence from Ace "
 "to King regardless of suit."
 msgstr ""
+"Vier Ablagen oben, rechts des Ablagestapels. Der Aufbau erfolgt ungeachtet "
+"der Farbe in Reihenfolge von Ass bis König."
 
 #: C/aisleriot.xml:51(entry)
 msgid ""
@@ -4978,13 +5396,14 @@ msgid "Move all cards to the Foundations"
 msgstr "Verschieben Sie alle Karten auf die Fundamentstapel"
 
 #: C/aisleriot.xml:70(para)
+#, fuzzy
 msgid ""
 "Build on to Foundations in sequence from Ace to King regardless of suit. "
 "Cards in Foundations are no longer in play. Cards are dealt singly in to the "
 "Waste from the Stock. However, as the Waste pile can only hold one card, "
 "this card must immediately be played on to a Foundation pile or on to any of "
 "the four Reserve piles. Cards in the Reserve piles cannot be rearranged."
-msgstr ""
+msgstr "Die Karten in den Fundamentstapeln sind nicht mehr im Spiel."
 
 #: C/aisleriot.xml:92(para)
 msgid ""
@@ -5005,13 +5424,14 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Spider"
-msgstr "Spider"
+msgstr "Spinne"
 
 #: C/aisleriot.xml:29(entry) C/aisleriot.xml:28(entry)
+#, fuzzy
 msgid ""
 "Top left pile. Deck placed here after dealing onto Tableau. Clicking deals "
 "one card face up to every pile."
-msgstr ""
+msgstr "Ablage oben links."
 
 #: C/aisleriot.xml:36(entry)
 msgid ""
@@ -5067,7 +5487,7 @@ msgstr ""
 
 #: C/aisleriot.xml:95(term)
 msgid "One Suit"
-msgstr "One Suit"
+msgstr "Eine Farbe"
 
 #: C/aisleriot.xml:97(para)
 msgid ""
@@ -5077,7 +5497,7 @@ msgstr ""
 
 #: C/aisleriot.xml:100(term)
 msgid "Two Suits"
-msgstr "Two Suits"
+msgstr "Zwei Farben"
 
 #: C/aisleriot.xml:102(para)
 msgid ""
@@ -5088,14 +5508,15 @@ msgstr ""
 
 #: C/aisleriot.xml:105(term)
 msgid "Four Suits"
-msgstr "Four Suits"
+msgstr "Vier Farben"
 
 #: C/aisleriot.xml:107(para)
+#, fuzzy
 msgid ""
 "The deck is a standard double deck. There are two complete sequences of "
 "cards for each suit. This is the standard Spider deck. It is also the most "
 "difficult."
-msgstr ""
+msgstr "Kartensatz"
 
 #: C/aisleriot.xml:112(para)
 msgid ""
@@ -5103,7 +5524,7 @@ msgid ""
 "simply remove completed sequences of cards. This has no impact upon game "
 "play."
 msgstr ""
-"Viele traditionelle Implementationen von Spider verwenden keinen "
+"Viele traditionelle Implementationen von »Spinne« verwenden keinen "
 "Fundamentstapel und entfernen einfach komplettierte Kartenfolgen. Dies hat "
 "keinen Einfluss auf den Spielverlauf."
 
@@ -5134,7 +5555,7 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Spider Three Decks"
-msgstr "Spider Three Decks"
+msgstr "Spinne mit drei Sätzen"
 
 #: C/aisleriot.xml:15(para)
 msgid "written by Jonathan Blandford, Daniel Werner"
@@ -5208,12 +5629,13 @@ msgid "Four piles top right."
 msgstr "Vier Ablagen oben rechts."
 
 #: C/aisleriot.xml:42(entry)
+#, fuzzy
 msgid ""
 "Seven piles on the bottom. Deal one card face down on all seven piles, then "
 "one on the last six piles, followed by one on the last five piles. Continue "
 "in this manner until you have seven cards in the last pile. Flip up the top "
 "card on every pile."
-msgstr ""
+msgstr "Sieben Ablagen. "
 
 #: C/aisleriot.xml:57(para) C/aisleriot.xml:55(para)
 msgid ""
@@ -5266,16 +5688,18 @@ msgid "Straight Up"
 msgstr "Straight Up"
 
 #: C/aisleriot.xml:43(entry)
+#, fuzzy
 msgid ""
 "Four piles on top right. Deal one two on each Foundation pile to start. To "
 "be built up in suit to Ace."
-msgstr ""
+msgstr "Vier Ablagen oben rechts."
 
 #: C/aisleriot.xml:50(entry)
+#, fuzzy
 msgid ""
 "Pile under Stock. Deal thirteen cards here to begin. Top card available for "
 "play on to Tableau or Foundation piles."
-msgstr ""
+msgstr "Die oberste Karte ist für das Spiel verfügbar."
 
 #: C/aisleriot.xml:57(entry)
 msgid ""
@@ -5291,12 +5715,19 @@ msgid ""
 "the Reserve is empty, an empty slot can be filled by the top card of the "
 "Waste at your leisure."
 msgstr ""
+"Karten auf dem Spieltisch werden absteigend nach Farbe aufgebaut. Karten "
+"können in Gruppen bewegt werden. Ein leerer Platz auf dem Spieltisch wird "
+"automatisch aus dem Reservestapel aufgefüllt. Wenn der Reservestapel leer "
+"ist, darf eine leere Ablage mit der obersten Karte des Ablagestapels nach "
+"Ihrem Belieben gefüllt werden."
 
 #: C/aisleriot.xml:84(para)
 msgid ""
 "Cards can be flipped singly from the Stock to the Waste. Top card is "
 "available for play. There are two redeals"
 msgstr ""
+"Karten werden einzeln vom Talon auf den Ablagestapel gelegt. Die oberste "
+"Karte ist im Spiel. Es gibt keine Neuverteilungen."
 
 #: C/aisleriot.xml:88(para)
 msgid ""
@@ -5318,6 +5749,8 @@ msgstr ""
 msgid ""
 "No point lagging behind! Move cards to Foundation piles whenever possible."
 msgstr ""
+"Es gibt keinen Grund zurück zustehen! Legen Sie wenn immer möglich Karten "
+"auf die Fundamentstapel."
 
 #. <sect1info>
 #.     <copyright>
@@ -5332,17 +5765,16 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Streets and Alleys"
-msgstr "Streets and Alleys"
+msgstr "Straßen und Gassen"
 
 #: C/aisleriot.xml:29(entry)
-#, fuzzy
 msgid ""
 "Four piles in the middle column. To be built from Ace to King. Topmost card "
 "in each Foundation can be played back on to the Tableau."
 msgstr ""
-"Vier Ablagen in der Mitte, die nach Farbe von Ass bis König aufgebaut "
-"werden. Die oberste Karte jedes Fundamentstapels kann auf den Spieltisch "
-"zurückgelegt werden."
+"Vier Ablagen in der Mitte, die von Ass nach König aufgebaut werden. Die "
+"oberste Karte jedes Fundamentstapels kann auf den Spieltisch zurückgelegt "
+"werden."
 
 #: C/aisleriot.xml:37(entry)
 msgid ""
@@ -5379,7 +5811,7 @@ msgstr "Geschrieben von James LewisMoss"
 
 #: C/aisleriot.xml:28(entry)
 msgid "Temporary Spots"
-msgstr "Temporärplätze"
+msgstr "Vorübergehende Orte"
 
 #: C/aisleriot.xml:29(entry)
 msgid ""
@@ -5449,7 +5881,7 @@ msgstr ""
 #. 	</sect1info>
 #: C/aisleriot.xml:13(title) C/aisleriot.xml:116(para)
 msgid "Terrace"
-msgstr "Terrace"
+msgstr "Terrasse"
 
 #: C/aisleriot.xml:15(para)
 msgid "Written by David Rogers"
@@ -5461,6 +5893,9 @@ msgid ""
 "and on to the Tableau. Cards are turned over one at a time to Waste. Stock "
 "cannot be turned."
 msgstr ""
+"Ablage oben links. Der Rest des Kartensatzes wird nach dem Geben des "
+"Reservestapels auf den Spieltisch hier abgelegt. Karten werden einzeln auf "
+"den Reststapel aufgedeckt. Der Talon darf nicht aufgedeckt werden."
 
 #: C/aisleriot.xml:37(entry)
 msgid "To be taken from the Stock. Top card available for play."
@@ -5472,16 +5907,22 @@ msgid ""
 "Eleven cards dealt face up in a pile. All cards are visible but only top "
 "card is in play."
 msgstr ""
+"Elf Karten werden sichtbar in einen Stapel ausgegeben. Alle Karten sind "
+"sichtbar, aber nur die oberste ist im Spiel."
 
 #: C/aisleriot.xml:50(entry)
 msgid ""
 "Eight piles in the middle. To be built up in sequence by alternating colours "
 "from the base card."
 msgstr ""
+"Elf Stapel in der Mitte. Es wird in Reihenfolge nach wechselnden Farben ab "
+"der Grundkarte aufgebaut."
 
 #: C/aisleriot.xml:57(entry)
 msgid "Nine cards dealt face up from the deck once based card is selected."
 msgstr ""
+"Neun Karten werden sichtbar aus dem Kartensatz ausgegeben, sobald die "
+"Basiskarte ausgewählt wurde."
 
 #: C/aisleriot.xml:76(para)
 msgid ""
@@ -5505,6 +5946,7 @@ msgid ""
 msgstr ""
 
 #: C/aisleriot.xml:93(para)
+#, fuzzy
 msgid ""
 "Cards are flipped from the Stock to the Waste individually as many times as "
 "you like unless there is a space in the tableau. If there is a space in the "
@@ -5515,6 +5957,9 @@ msgid ""
 "is empty a card from the Stock is automatically dealt. Top card in Waste is "
 "in play. Stock cannot be turned."
 msgstr ""
+"Karten werden vom Talon einzeln auf den Restestapel aufgedeckt. Die oberste "
+"Karte auf dem Restestapel ist im Spiel. Der Talon darf nicht aufgedeckt "
+"werden."
 
 #: C/aisleriot.xml:104(para)
 msgid ""
@@ -5546,6 +5991,7 @@ msgstr ""
 "wird auf jeden Tischstapel verteilt. Der Talon darf nicht aufgedeckt werden."
 
 #: C/aisleriot.xml:125(para)
+#, fuzzy
 msgid "General Patience"
 msgstr "General Patience"
 
@@ -5565,7 +6011,7 @@ msgstr ""
 
 #: C/aisleriot.xml:135(para)
 msgid "Falling Stars"
-msgstr "Falling Stars"
+msgstr "Sternschnuppen"
 
 #: C/aisleriot.xml:138(para)
 msgid ""
@@ -5619,7 +6065,7 @@ msgstr ""
 
 #: C/aisleriot.xml:166(para)
 msgid "Blondes and Brunettes"
-msgstr "Blondes and Brunettes"
+msgstr "Blonde und Brünette"
 
 #: C/aisleriot.xml:169(para)
 msgid ""
@@ -5635,7 +6081,7 @@ msgstr ""
 
 #: C/aisleriot.xml:175(para)
 msgid "Wood"
-msgstr "Wood"
+msgstr "Wald"
 
 #: C/aisleriot.xml:178(para)
 msgid ""
@@ -5695,7 +6141,7 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:15(title)
 msgid "Thieves"
-msgstr "Thieves"
+msgstr "Diebe"
 
 #: C/aisleriot.xml:17(para)
 msgid "Written by Robert Brady"
@@ -5800,11 +6246,11 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:12(title)
 msgid "Thirteen"
-msgstr "Thirteen"
+msgstr "Dreizehn"
 
 #: C/aisleriot.xml:36(entry)
 msgid "To be taken from Stock. The top card is available for play."
-msgstr ""
+msgstr "Es wird vom Talon gespielt. Die oberste Karte ist im Spiel."
 
 #: C/aisleriot.xml:63(para)
 msgid ""
@@ -5833,9 +6279,10 @@ msgstr ""
 #.   </sect1info>
 #: C/aisleriot.xml:13(title)
 msgid "Thumb and Pouch"
-msgstr "Thumb and Pouch"
+msgstr "Daumen und Beutel"
 
 #: C/aisleriot.xml:52(entry)
+#, fuzzy
 msgid ""
 "Seven piles. Deal card face up in first pile. Place one card face down on "
 "all other piles. Place one card face up on next pile followed by one card "
@@ -5843,13 +6290,18 @@ msgid ""
 "pile. Tableau can be built down in any suit but own. Groups of cards can be "
 "moved. Empty piles can be filled by any legal sequence of cards."
 msgstr ""
+"Sieben Ablagen. Die Karten werden in der ersten Ablage sichtbar abgelegt. "
+"Legen Sie eine Karte mit der Bildseite nach unten auf alle anderen Ablagen. "
+"Wiederholen Sie dies, bis sich sieben Karten in der letzten Ablage befinden. "
+"Karten können in Gruppen bewegt werden. "
 
 #: C/aisleriot.xml:76(para)
+#, fuzzy
 msgid ""
 "Cards in the Tableau are built down by any suit but own. Groups of cards can "
 "be moved. An empty pile in the Tableau can be filled with a any legal "
 "sequence of cards."
-msgstr ""
+msgstr "Karten können in Gruppen bewegt werden. "
 
 #: C/aisleriot.xml:81(para)
 msgid ""
@@ -5857,6 +6309,10 @@ msgid ""
 "Waste is in play. When Stock is empty, move all cards in Waste back to the "
 "Stock, maintaining order. You can go through the deck three times."
 msgstr ""
+"Karten werden vom Talon einzeln auf den Restestapel umgedreht. Die oberste "
+"Karte auf dem Restestapel ist im Spiel. Legen Sie alle Karten in bleibender "
+"Reihenfolge vom Restestapel in den Talon zurück, sobald dieser leer ist. Sie "
+"können drei Mal das Kartendeck durcharbeiten."
 
 #: C/aisleriot.xml:106(para)
 msgid "Brute force may not always work, but in this case it probably will."
@@ -5880,6 +6336,8 @@ msgstr "Treize"
 #: C/aisleriot.xml:37(entry)
 msgid "To be taken from Stock. Top card and bottom card available for play."
 msgstr ""
+"Karten werden vom Talon genommen. Die oberste und unterste Karte sind im "
+"Spiel."
 
 #: C/aisleriot.xml:43(entry)
 msgid ""
@@ -5960,7 +6418,7 @@ msgstr ""
 
 #: C/aisleriot.xml:75(para)
 msgid "Cards can be flipped singly from Stock to the top of Waste."
-msgstr ""
+msgstr "Karten können vom Talon auf den Restestapel einzeln aufgedeckt werden."
 
 #: C/aisleriot.xml:82(para)
 msgid ""
@@ -6030,17 +6488,20 @@ msgid ""
 msgstr ""
 
 #: C/aisleriot.xml:76(para)
+#, fuzzy
 msgid ""
 "Foundation piles are to be built in suit from Ace to King, followed by "
 "another King, then back down to Ace, giving 26 cards per pile when game is "
 "won. Cards in Foundation piles are no longer in play."
-msgstr ""
+msgstr " Karten in Fundamentstapeln sind nicht mehr im Spiel."
 
 #: C/aisleriot.xml:81(para)
 msgid ""
 "Cards can be flipped singly from the Stock to the Waste. Top card of Waste "
 "is available for play. There is no redeal."
 msgstr ""
+"Karten werden einzeln vom Talon auf den Restestapel umgedreht. Die oberste "
+"Karte des Restestapels ist im Spiel. Es gibt keine Neuverteilungen."
 
 #: C/aisleriot.xml:99(para)
 msgid ""
@@ -6069,11 +6530,12 @@ msgid "Top right pile. Can only hold one card."
 msgstr "Ablage oben rechts, die nur eine Karte enthalten kann."
 
 #: C/aisleriot.xml:42(entry)
+#, fuzzy
 msgid ""
 "Four piles. One card is dealt in each slot at the beginning of the game. "
 "Redealing from the stock moves all cards currently in the Tableau to the "
 "bottom of the Stock slot."
-msgstr ""
+msgstr "Vier Stapel. Eine Karte wird zu Spielbeginn in jede Ablage gelegt."
 
 #: C/aisleriot.xml:56(para)
 msgid ""
@@ -6128,11 +6590,13 @@ msgstr ""
 #. 		<address><email>rwsy@mit.edu</email></address></sect1info>
 #: C/aisleriot.xml:12(title)
 msgid "Westhaven"
-msgstr "Westhaven"
+msgstr "Westhafen"
 
 #: C/aisleriot.xml:42(entry)
 msgid "Four piles on top row. To be built up in suit from Ace to King."
 msgstr ""
+"Vier Ablagen in der obersten Reihe. Der Aufbau erfolgt nach Farbe von Ass "
+"bis König."
 
 #: C/aisleriot.xml:48(entry)
 msgid "Ten piles of three cards each, with the last row of cards face up."
@@ -6179,17 +6643,21 @@ msgid "Whitehead"
 msgstr "Whitehead"
 
 #: C/aisleriot.xml:52(entry)
+#, fuzzy
 msgid ""
 "Seven piles. Deal all cards face up such that there is one card in the first "
 "pile, two in the second pile, ending with seven in the seventh pile."
-msgstr ""
+msgstr "Sieben Ablagen. "
 
 #: C/aisleriot.xml:72(para)
+#, fuzzy
 msgid ""
 "Cards in the Tableau are built down by same color. Builds of cards that are "
 "the same suit and in sequence can be moved as a unit. Empty Tableau slots "
 "can be filled with any card or build of cards."
 msgstr ""
+"Karten des Spieltisches werden absteigend nach gleicher Farbe "
+"zusammengestellt. "
 
 #: C/aisleriot.xml:100(para)
 msgid ""
@@ -6213,16 +6681,19 @@ msgid "Will o' the Wisp"
 msgstr "Will O the Wisp"
 
 #: C/aisleriot.xml:29(entry)
+#, fuzzy
 msgid ""
 "Top left pile. When clicked, deal a card on to every Tableau pile except for "
 "the last deal which places one card on each of the first three piles."
-msgstr ""
+msgstr "Ablage oben links."
 
 #: C/aisleriot.xml:43(entry)
 msgid ""
 "Seven piles on the bottom. Deal two cards face down and one card face up on "
 "every pile."
 msgstr ""
+"Sieben Stapel unten. Auf jeden Stapel werden zwei Karten verdeckt und eine "
+"sichtbar ausgegeben."
 
 #: C/aisleriot.xml:62(para)
 msgid ""
@@ -6276,6 +6747,7 @@ msgid "Yukon"
 msgstr "Yukon"
 
 #: C/aisleriot.xml:35(entry)
+#, fuzzy
 msgid ""
 "Seven piles. Deal card face up in first pile. Place one card face down on "
 "all other piles. Place one card face up on next pile followed by one card "
@@ -6283,14 +6755,18 @@ msgid ""
 "pile. Deal the rest of the cards face up on the second to seventh piles. To "
 "be built down in opposite color."
 msgstr ""
+"Sieben Ablagen. Die Karten werden in der ersten Ablage sichtbar abgelegt. "
+"Legen Sie eine Karte mit der Bildseite nach unten auf alle anderen Ablagen. "
+"Wiederholen Sie dies, bis sich sieben Karten in der letzten Ablage befinden. "
 
 #: C/aisleriot.xml:58(para)
+#, fuzzy
 msgid ""
 "Cards in Tableau are built down in opposite color. Groups of cards can be "
 "moved regardless of sequence. A faced-down card is flipped when it is "
 "unburied. An empty pile in the Tableau can be filled with a King or a group "
 "of cards with a King on the bottom."
-msgstr ""
+msgstr "Karten können in Gruppen bewegt werden. "
 
 #: C/aisleriot.xml:82(para)
 msgid ""
@@ -6356,12 +6832,15 @@ msgid ""
 "Stock is dealt on to Waste singly. Top card of Waste is available for play. "
 "There is one redeal."
 msgstr ""
+"Karten werden einzeln vom Talon auf den Restestapel gelegt. Die oberste "
+"Karte des Restestapels ist im Spiel. Es gibt eine Neuverteilungen."
 
 #: C/aisleriot.xml:88(para)
+#, fuzzy
 msgid ""
 "Foundations are built up by alternate color from Aces to Kings. Cards in "
 "Foundation piles are no longer in play."
-msgstr ""
+msgstr " Karten in Fundamentstapeln sind nicht mehr im Spiel."
 
 #: C/aisleriot.xml:106(para)
 msgid ""
@@ -6417,10 +6896,9 @@ msgstr ""
 
 #: C/aisleriot.xml:24(term)
 msgid "Build by any suit but own"
-msgstr ""
+msgstr "Nach beliebiger Farbe außer der eigenen aufbauen"
 
 #: C/aisleriot.xml:25(para)
-#, fuzzy
 msgid ""
 "Building by placing a card on to another card of any suit but the suit of "
 "the original card is permitted. Example: Placing a Diamond on a Heart is "
@@ -6457,32 +6935,29 @@ msgid "Build by suit"
 msgstr "Nach Farbe legen"
 
 #: C/aisleriot.xml:44(para)
-#, fuzzy
 msgid ""
 "Building by placing a card on to another card of the same suit is permitted. "
 "Example: Placing a Spade on a Spade is good, but placing a Spade on a Club "
 "is not."
 msgstr ""
 "Aufbauen von Karten der selben Farbe aufeinander ist erlaubt. Beispiel: "
-"Ablegen von Karo auf eine Herz ist in Ordnung, aber Karo auf Kreuz ist es "
-"nicht."
+"Ablegen von Pik auf Pik ist in Ordnung, aber Pik auf Kreuz ist es nicht."
 
 #: C/aisleriot.xml:50(term)
 msgid "Build down"
 msgstr "Absteigend legen"
 
 #: C/aisleriot.xml:51(para)
-#, fuzzy
 msgid ""
 "Building by placing a card of a lower rank on to a card of a higher rank is "
 "permitted. Usually implies a difference of only one ranking between the two "
 "cards. Example: Placing a 10 on a Jack is good, but placing a 10 on a 9 is "
 "not."
 msgstr ""
-"Aufbauen einer Karte niedrigeren Wertes auf eine höheren Wertes ist erlaubt. "
-"Gewöhnlich beträgt der Wertunterschied zwischen beiden eins. Beispiel: "
-"Ablegen einer 10 auf einen Buben ist in Ordnung, aber eine 10 auf eine 9 ist "
-"es nicht."
+"Aufbauen einer Karte niedrigeren Wertes auf eine höheren Wertes ist erlaubt. "
+"Gewöhnlich beträgt der Wertunterschied zwischen beiden Karten eins. "
+"Beispiel: Ablegen einer 10 auf einen Buben ist in Ordnung, aber eine 10 auf "
+"eine 9 ist es nicht."
 
 #: C/aisleriot.xml:58(term)
 msgid "Build down by *"
