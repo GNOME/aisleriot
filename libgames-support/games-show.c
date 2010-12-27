@@ -114,7 +114,7 @@ games_show_uri (GdkScreen *screen,
 
 /**
  * games_show_error:
- * @parent: a transient parent window
+ * @window: a transient parent window
  * @error: a #GError
  * @primary_text_format:
  * @...:

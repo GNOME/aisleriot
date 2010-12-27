@@ -473,7 +473,6 @@ games_runtime_shutdown (void)
 
 /**
  * games_runtime_get_directory:
- * @runtime: the #GamesProgram instance
  * @directory:
  *
  * Returns: the path to use for @directory
@@ -562,7 +561,6 @@ games_runtime_get_directory (GamesRuntimeDirectory directory)
 
 /**
  * games_runtime_get_file:
- * @runtime: the #GamesProgram instance
  * @directory:
  * @name:
  *
