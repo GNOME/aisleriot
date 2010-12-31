@@ -110,6 +110,7 @@ AC_SUBST([gamelist])
 
 need_cxx=no
 need_rsvg=no
+need_sqlite=no
 need_guile=no
 need_opengl=no
 need_glx=no
@@ -165,6 +166,10 @@ for game in $gamelist; do
   case $game in
     aisleriot|glchess) ;;
     *) need_rsvg=yes ;;
+  esac
+  case $game in
+    glchess) ;;
+    *) need_sqlite=yes ;;
   esac
   case $game in
     aisleriot|glines|gnobots2|gnomine|gnotravex|gnotski|iagno) allow_smclient=yes ;;
@@ -704,8 +709,25 @@ if test "$need_rsvg" = "yes"; then
     fi
   fi
 fi
-
+  
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
+
+# Check for SQLite
+
+have_sqlite=no
+if test "$need_sqlite" = "yes"; then
+  have_sqlite=yes
+
+  # Errors out if sqlite is not found
+  PKG_CHECK_MODULES([SQLITE],[sqlite3])
+
+  AC_SUBST([SQLITE_CFLAGS])
+  AC_SUBST([SQLITE_LIBS])
+
+  AC_DEFINE([HAVE_SQLITE],[1],[Refine if sqlite is available])
+fi
+
+AM_CONDITIONAL([HAVE_SQLITE],[test "$have_sqlite" = "yes"])
 
 # Check for OpenGL
 
@@ -1286,7 +1308,7 @@ echo "
     Help method:           ${with_help_method} ${with_help_file_format}
     Using SM Client:       ${with_smclient}
     Using RSVG:            ${have_rsvg}
-    Using GtkGLExt:        ${have_gtkglext}
+    Using SQLite:          ${have_sqlite}
     Card theme formats:    ${with_card_theme_formats}
     Default theme format:  ${with_default_card_theme_format}
     Default theme:         ${with_default_card_theme}
