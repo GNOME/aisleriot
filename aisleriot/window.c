@@ -1849,7 +1849,11 @@ game_exception_response_cb (GtkWidget *dialog,
 
     g_snprintf (pidstr, sizeof (pidstr), "%d", getpid ());
 
+#if GTK_CHECK_VERSION (2, 91, 8)
+    if (!g_spawn_async (
+#else
     if (!gdk_spawn_on_screen (gtk_widget_get_screen (GTK_WIDGET (window)),
+#endif
                               NULL /* working dir */,
                               (char **) argv,
                               NULL /* envp */,
