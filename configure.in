@@ -23,9 +23,9 @@ AM_MAINTAINER_MODE([enable])
 # we support and which features to check for
 
 # This is the canonical list of all game subdirectories.
-allgames="aisleriot glines gnect gnibbles gnobots2 gnomine gnotravex gnotski gtali iagno mahjongg quadrapassel"
+allgames="aisleriot glchess glines gnect gnibbles gnobots2 gnomine gnotravex gnotski gtali iagno mahjongg quadrapassel"
 AC_SUBST([allgames])
-staginggames="swell-foop glchess gnome-sudoku lightsoff"
+staginggames="swell-foop gnome-sudoku lightsoff"
 AC_SUBST([staginggames])
 
 gamelist=""
@@ -110,7 +110,10 @@ AC_SUBST([gamelist])
 
 need_cxx=no
 need_rsvg=no
+need_sqlite=no
 need_guile=no
+need_opengl=no
+need_glx=no
 need_python=no
 need_clutter=no
 need_gio_2_26=no
@@ -137,11 +140,19 @@ for game in $gamelist; do
     *) ;;
   esac
   case $game in
+    glchess) need_opengl=yes ;;
+    *) ;;
+  esac
+  case $game in
+    glchess) need_glx=yes ;;
+    *) ;;
+  esac
+  case $game in
     glchess) allow_gnuchess=yes ;;
     *) ;;
   esac
   case $game in
-    glchess|gnome-sudoku) need_python=yes ;;
+    gnome-sudoku) need_python=yes ;;
     *) ;;
   esac
   case $game in
@@ -153,8 +164,12 @@ for game in $gamelist; do
     *) disallow_hildon=yes ;;
   esac
   case $game in
-    aisleriot) ;;
+    aisleriot|glchess) ;;
     *) need_rsvg=yes ;;
+  esac
+  case $game in
+    glchess) ;;
+    *) need_sqlite=yes ;;
   esac
   case $game in
     aisleriot|glines|gnobots2|gnomine|gnotravex|gnotski|iagno) allow_smclient=yes ;;
@@ -208,6 +223,7 @@ PKG_PROG_PKG_CONFIG([0.15])
 
 AC_PROG_CC
 AC_PROG_CPP
+AM_PROG_VALAC
 AC_PROG_LN_S
 AC_PROG_SED
 
@@ -588,7 +604,7 @@ case "$with_gtk" in
        LIBCANBERRA_GTK_REQUIRED=0
        LIBCANBERRA_GTK_PKGS="libcanberra-gtk >= $LIBCANBERRA_GTK_REQUIRED"
         ;;
-  3.0) GTK_REQUIRED=2.91.0
+  3.0) GTK_REQUIRED=2.91.7
        RSVG_REQUIRED=2.32.0
        LIBCANBERRA_GTK_REQUIRED=0.26
        LIBCANBERRA_GTK_PKGS="libcanberra-gtk3 >= $LIBCANBERRA_GTK_REQUIRED"
@@ -607,6 +623,14 @@ need_gthread=no
 PKG_CHECK_MODULES([GTHREAD],[gthread-2.0])
 AC_SUBST([GTHREAD_CFLAGS])
 AC_SUBST([GTHREAD_LIBS])
+
+PKG_CHECK_MODULES([GMODULE],[gmodule-2.0])
+AC_SUBST([GMODULE_CFLAGS])
+AC_SUBST([GMODULE_LIBS])
+
+PKG_CHECK_MODULES([GOBJECT],[gobject-2.0])
+AC_SUBST([GOBJECT_CFLAGS])
+AC_SUBST([GOBJECT_LIBS])
 
 PKG_CHECK_MODULES([GTK],[gtk+-$GTK_API_VERSION >= $GTK_REQUIRED])
 AC_SUBST([GTK_CFLAGS])
@@ -685,8 +709,61 @@ if test "$need_rsvg" = "yes"; then
     fi
   fi
 fi
-
+  
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
+
+# Check for SQLite
+
+have_sqlite=no
+if test "$need_sqlite" = "yes"; then
+  have_sqlite=yes
+
+  # Errors out if sqlite is not found
+  PKG_CHECK_MODULES([SQLITE],[sqlite3])
+
+  AC_SUBST([SQLITE_CFLAGS])
+  AC_SUBST([SQLITE_LIBS])
+
+  AC_DEFINE([HAVE_SQLITE],[1],[Refine if sqlite is available])
+fi
+
+AM_CONDITIONAL([HAVE_SQLITE],[test "$have_sqlite" = "yes"])
+
+# Check for OpenGL
+
+have_opengl=no
+if test "$need_opengl" = "yes"; then
+  have_opengl=yes
+
+  # Errors out if OpenGL is not found
+  PKG_CHECK_MODULES([OPENGL],[
+    gl glu])
+
+  AC_SUBST([OPENGL_CFLAGS])
+  AC_SUBST([OPENGL_LIBS])
+
+  AC_DEFINE([HAVE_OPENGL],[1],[Define if OpenGL is available])
+fi
+
+AM_CONDITIONAL([HAVE_OPENGL],[test "$have_opengl" = "yes"])
+
+# Check for GLX
+
+have_glx=no
+if test "$need_glx" = "yes"; then
+  have_glx=yes
+
+  # Errors out if GLX is not found
+  PKG_CHECK_MODULES([GLX],[
+    gl x11])
+
+  AC_SUBST([GLX_CFLAGS])
+  AC_SUBST([GLX_LIBS])
+
+  AC_DEFINE([HAVE_GLX],[1],[Define if GLX is available])
+fi
+
+AM_CONDITIONAL([HAVE_GLX],[test "$have_glx" = "yes"])
 
 # Check for Clutter
 
@@ -1183,23 +1260,13 @@ aisleriot/help/Makefile
 glchess/Makefile
 glchess/data/Makefile
 glchess/data/pieces/Makefile
+glchess/data/pieces/3d/Makefile
 glchess/data/pieces/fancy/Makefile
 glchess/data/pieces/simple/Makefile
 glchess/data/textures/Makefile
 glchess/gnuchess/Makefile
 glchess/help/Makefile
-glchess/src/glchess.in
 glchess/src/Makefile
-glchess/src/lib/Makefile
-glchess/src/lib/defaults.py
-glchess/src/lib/chess/Makefile
-glchess/src/lib/chess/fics/Makefile
-glchess/src/lib/ggz/Makefile
-glchess/src/lib/gtkui/Makefile
-glchess/src/lib/scene/Makefile
-glchess/src/lib/scene/cairo/Makefile
-glchess/src/lib/scene/opengl/Makefile
-glchess/src/lib/ui/Makefile
 gnome-sudoku/Makefile
 gnome-sudoku/src/gnome-sudoku.in
 gnome-sudoku/src/Makefile
@@ -1255,6 +1322,7 @@ echo "
     Help method:           ${with_help_method} ${with_help_file_format}
     Using SM Client:       ${with_smclient}
     Using RSVG:            ${have_rsvg}
+    Using SQLite:          ${have_sqlite}
     Card theme formats:    ${with_card_theme_formats}
     Default theme format:  ${with_default_card_theme_format}
     Default theme:         ${with_default_card_theme}
