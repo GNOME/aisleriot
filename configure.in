@@ -109,6 +109,7 @@ AC_SUBST([gamelist])
 # Feature matrix
 
 need_cxx=no
+need_vala=no
 need_rsvg=no
 need_sqlite=no
 need_guile=no
@@ -133,6 +134,10 @@ for game in $gamelist; do
   esac
   case $game in
     quadrapassel) need_cxx=yes ;;
+    *) ;;
+  esac
+  case $game in
+    glchess) need_vala=yes ;;
     *) ;;
   esac
   case $game in
@@ -223,9 +228,12 @@ PKG_PROG_PKG_CONFIG([0.15])
 
 AC_PROG_CC
 AC_PROG_CPP
-AM_PROG_VALAC
 AC_PROG_LN_S
 AC_PROG_SED
+
+if test "$need_vala" = "yes"; then
+  AM_PROG_VALAC([0.11.4])
+fi
 
 if test "$need_cxx" = "yes"; then
   AC_PROG_CXX
