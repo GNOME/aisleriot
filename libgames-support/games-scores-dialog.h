@@ -54,14 +54,14 @@ typedef enum {
 
 typedef struct _GamesScoresDialogPrivate GamesScoresDialogPrivate;
 
-typedef struct _GamesScoresDialog {
+typedef struct {
   GtkDialog dialog;
 
   /* <private> */
   GamesScoresDialogPrivate *_priv;
 } GamesScoresDialog;
 
-typedef struct _GamesScoresDialogClass {
+typedef struct {
   GtkDialogClass parent_class;
 } GamesScoresDialogClass;
 

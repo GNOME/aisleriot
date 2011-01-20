@@ -36,7 +36,10 @@ G_BEGIN_DECLS
 #define GAMES_GET_PREIMAGE_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_PREIMAGE, GamesPreimageClass))
 
 typedef struct _GamesPreimage GamesPreimage;
-typedef GObjectClass GamesPreimageClass;
+
+typedef struct {
+  GObjectClass parent_class;
+} GamesPreimageClass;
 
 GType games_preimage_get_type (void);
 

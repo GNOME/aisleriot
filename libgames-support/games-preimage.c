@@ -85,15 +85,15 @@ games_preimage_class_init (GamesPreimageClass * klass)
 
 /**
  * games_preimage_render:
- * @preimage:
+ * @preimage: the image to render
  * @width: the desired width
  * @height: the desired height
  *
  * Creates a #GdkPixbuf from @preimage's image at the specified
  * @width and @height.
  *
- * Returns: a new #GdkPixbuf
-*/
+ * Returns: (transfer full): the new #GdkPixbuf
+ **/
 GdkPixbuf *
 games_preimage_render (GamesPreimage * preimage, gint width, gint height)
 {
@@ -133,7 +133,7 @@ games_preimage_render (GamesPreimage * preimage, gint width, gint height)
  *
  * Renders from @preimage's image at the specified
  * @width and @height to @cr.
-*/
+ **/
 void
 games_preimage_render_cairo (GamesPreimage * preimage,
                              cairo_t *cr,
@@ -230,7 +230,7 @@ cairo_pixels_to_pixbuf (guint8 * pixels, int rowstride, int height)
  *
  * Returns: %TRUE, of %FALSE if there was an error or @preimage
  * isn't a scalable SVG image
- */
+ **/
 void
 games_preimage_render_cairo_sub (GamesPreimage * preimage,
                                  cairo_t *cr,
@@ -279,7 +279,7 @@ games_preimage_render_cairo_sub (GamesPreimage * preimage,
  * clipped to @width and @height.
  * If @node is NULL, the whole image is rendered into tha clip region.
  *
- * Returns: a new #GdkPixbuf, or %NULL if there was an error or @preimage
+ * Returns: (transfer full) (allow-none): a new #GdkPixbuf, or %NULL if there was an error or @preimage
  * isn't a scalable SVG image
  */
 GdkPixbuf *
@@ -336,7 +336,7 @@ games_preimage_render_sub (GamesPreimage * preimage,
  *
  * Creates a new #GamesPreimage from the image in @filename.
  *
- * Returns: a new #GamesPreimage, or %NULL if there was an error
+ * Returns: (allow-none): a new #GamesPreimage, or %NULL if there was an error
  */
 GamesPreimage *
 games_preimage_new_from_file (const gchar * filename, GError ** error)
@@ -468,7 +468,7 @@ games_preimage_get_height (GamesPreimage * preimage)
  *
  * Renders @preimage onto a new #GdkPixbuf at its natural size
  *
- * Returns: a reference to a #GdkPixbuf possibly owned by @images which
+ * Returns: (transfer full) (allow-none): a reference to a #GdkPixbuf possibly owned by @images which
  * you must not modify; or %NULL if there was an error
  */
 GdkPixbuf *

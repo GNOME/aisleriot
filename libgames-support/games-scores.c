@@ -296,7 +296,7 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
     s = g_list_nth (scores_list, GAMES_SCORES_SIGNIFICANT - 1);
     /* Note that we are guaranteed to only need to remove one link
      * and it is also guaranteed not to be the first one. */
-    games_score_destroy ((GamesScore *) (g_list_next (s)->data));
+    g_object_unref (g_list_next (s)->data);
     g_list_free (g_list_next (s));
     s->next = NULL;
   }
@@ -402,7 +402,7 @@ games_scores_update_score (GamesScores * self, gchar * new_name)
  * be the either the same or accurate after any games_scores call
  * except games_scores_get. Do not alter the data either.
  *
- * Returns: (transfer none): A list of GamesScore objects.
+ * Returns: (element-type GnomeGamesSupport.Score) (transfer none): A list of GamesScore objects.
  **/
 GList *
 games_scores_get (GamesScores * self)

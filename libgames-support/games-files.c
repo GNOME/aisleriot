@@ -279,7 +279,7 @@ games_file_list_new_images (const gchar * path1, ...)
 
 /**
  * games_file_list_create_widget:
- * @gamesfilelist: The list of files to use.
+ * @filelist: The list of files to use.
  * @selection: The name to select as the default. NULL means no default.
  * @flags: A set of flags to specify how the names are displayed. 
  * 
@@ -290,25 +290,25 @@ games_file_list_new_images (const gchar * path1, ...)
  * removes extensions, and GAMES_FILE_LIST_REPLACE_UNDERSCORES with replaces
  * underscores with spaces.
  * 
- * Return value: A widget with the list of names.
+ * Return value: (transfer full): A widget with the list of names.
  **/
 GtkWidget *
-games_file_list_create_widget (GamesFileList * gamesfilelist,
+games_file_list_create_widget (GamesFileList * filelist,
 			       const gchar * selection, guint flags)
 {
   gint itemno;
   GtkComboBox *widget;
   gchar *visible, *string;
-  GList *filelist = gamesfilelist->list;
+  GList *iter = filelist->list;
   gboolean found = FALSE;
 
   widget = GTK_COMBO_BOX (gtk_combo_box_text_new ());
 
   itemno = 0;
-  while (filelist) {
+  while (iter) {
     gchar *s;
 
-    string = (gchar *) filelist->data;
+    string = (gchar *) iter->data;
     visible = g_strdup (string);
 
     /* These are a bit hackish, but we don't yet have a good regexp
@@ -337,7 +337,7 @@ games_file_list_create_widget (GamesFileList * gamesfilelist,
     g_free (visible);
 
     itemno++;
-    filelist = g_list_next (filelist);
+    iter = g_list_next (iter);
   }
   if (!found)
     gtk_combo_box_set_active (widget, 0);
@@ -348,17 +348,17 @@ games_file_list_create_widget (GamesFileList * gamesfilelist,
 /**
  * games_file_list_for_each:
  * @filelist: The file list to iterate over.
- * @function: The function to call on each item. It gets called with two 
+ * @function: (scope call): The function to call on each item. It gets called with two 
  * arguments: the file name and the pointer supplied to this function in 
  * the userdata argument.
- * @userdata: An arbitrary pointer that gets passed as the second argument
+ * @userdata: (closure): An arbitrary pointer that gets passed as the second argument
  * to each call of function.
  * 
  * Apply a function to each file name in the list.
  **/
 void
 games_file_list_for_each (GamesFileList * filelist, GFunc function,
-			  gpointer userdata)
+                          gpointer userdata)
 {
   g_list_foreach (filelist->list, function, userdata);
 }
@@ -366,10 +366,10 @@ games_file_list_for_each (GamesFileList * filelist, GFunc function,
 /**
  * games_file_list_find:
  * @filelist: The file list to iterate over.
- * @function: The function to call on each item. It gets called with two 
+ * @function: (scope call): The function to call on each item. It gets called with two 
  * arguments: the file name and the pointer supplied to this function in 
  * the userdata argument.
- * @userdata: An arbitrary pointer that gets passed as the second argument
+ * @userdata: (closure): An arbitrary pointer that gets passed as the second argument
  * to each call of function.
  * 
  * Find a file name by iterating through a list until the given function

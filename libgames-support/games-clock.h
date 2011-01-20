@@ -23,7 +23,7 @@ G_BEGIN_DECLS
 #define GAMES_IS_CLOCK(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CLOCK))
 #define GAMES_IS_CLOCK_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CLOCK))
 
-typedef struct _GamesClock {
+typedef struct {
   GtkLabel label;
 
   guint update_timeout_id;
@@ -33,7 +33,9 @@ typedef struct _GamesClock {
   time_t stop_time;
 } GamesClock;
 
-typedef GtkLabelClass GamesClockClass;
+typedef struct {
+  GtkLabelClass parent_class;
+} GamesClockClass;
 
 GType      games_clock_get_type     (void);
 GtkWidget *games_clock_new          (void);

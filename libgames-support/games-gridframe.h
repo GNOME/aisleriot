@@ -31,7 +31,7 @@ G_BEGIN_DECLS
 #define GAMES_IS_GRID_FRAME(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_GRID_FRAME))
 #define GAMES_IS_GRID_FRAME_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_GRID_FRAME))
 #define GAMES_GRID_FRAME_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_GRID_FRAME))
-  typedef struct _GamesGridFrame {
+typedef struct _GamesGridFrame {
   GtkBin bin;
 
   gint xmult;
@@ -46,7 +46,7 @@ G_BEGIN_DECLS
   GtkAllocation old_allocation;
 } GamesGridFrame;
 
-typedef struct _GamesGridFrameClass {
+typedef struct {
   GtkBinClass parent;
 } GamesGridFrameClass;
 

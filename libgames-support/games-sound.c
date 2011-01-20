@@ -167,7 +167,7 @@ games_sound_init (GdkScreen *screen)
 
 /**
  * games_sound_play:
- * @filename: the sound file to player
+ * @sound_name: the sound file to player
  * 
  * Plays a sound with the given filename from the
  * GAMES_RUNTIME_SOUND_DIRECTORY directory in .ogg format.
@@ -185,7 +185,7 @@ games_sound_play (const gchar * sound_name)
     
 /**
  * games_sound_play_for_screen:
- * @filename: the sound file to player
+ * @sound_name: the sound file to player
  * 
  * Plays a sound with the given filename from the
  * GAMES_RUNTIME_SOUND_DIRECTORY directory in .ogg format.
@@ -224,7 +224,7 @@ games_sound_play_for_event (const gchar *sound_name,
 /**
  * games_sound_play_for_widget:
  * @sound_name: the name of the sound to play
- * @event: the #GdkEvent associated with the sound
+ * @widget: the #GtkWidget to play the sound for
  *
  * Plays a sound for @widget. Use games_sound_play_for_event() instead
  * if the sound is associated with an event.

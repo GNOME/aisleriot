@@ -31,16 +31,18 @@ G_BEGIN_DECLS
 #define GAMES_IS_CONF_CLASS(k)	(G_TYPE_CHECK_CLASS_TYPE ((k), GAMES_TYPE_CONF))
 #define GAMES_CONF_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), GAMES_TYPE_CONF, GamesConfClass))
 
-typedef  GObjectClass             GamesConfClass;
-typedef struct _GamesConf         GamesConf;
-typedef struct _GamesConfPrivate  GamesConfPrivate;
+typedef struct GamesConfPrivate  GamesConfPrivate;
 
-struct _GamesConf {
+typedef struct {
   GObject parent_instance;
 
   /*< private > */
   GamesConfPrivate *priv;
-};
+} GamesConf;
+
+typedef struct {
+  GObjectClass parent_class;  
+} GamesConfClass;
 
 GType games_conf_get_type (void);
 

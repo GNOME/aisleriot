@@ -258,9 +258,10 @@ games_settings_get_keyval (GSettings *settings,
  * games_settings_set_keyval:
  * @settings: a #GSettings
  * @key: the key name
- * @value: the value to store
+ * @keyval: the value to store
+ * @modifiers: key modifiers with @keyval
  *
- * Associates @value with the key @key in group @group.
+ * Associates @keyval with the key @key in group @group.
  *
  * It is a programmer error to pass a key that isn't valid for settings.
  *

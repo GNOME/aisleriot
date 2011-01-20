@@ -69,22 +69,22 @@ static void
 games_scores_backend_init (GamesScoresBackend * backend)
 {
   backend->priv = G_TYPE_INSTANCE_GET_PRIVATE (backend,
-					       GAMES_TYPE_SCORES_BACKEND,
-					       GamesScoresBackendPrivate);
+                                               GAMES_TYPE_SCORES_BACKEND,
+                                               GamesScoresBackendPrivate);
 }
 
 GamesScoresBackend *
 games_scores_backend_new (GamesScoreStyle style,
-			  char *base_name,
+                          char *base_name,
                           char *name)
 {
   GamesScoresBackend *backend;
   gchar *fullname;
 
   backend = GAMES_SCORES_BACKEND (g_object_new (GAMES_TYPE_SCORES_BACKEND,
-						NULL));
+                                                NULL));
 
-  if (name[0] == '\0')		/* Name is "" */
+  if (name[0] == '\0')                /* Name is "" */
     fullname = g_strjoin (".", base_name, "scores", NULL);
   else
     fullname = g_strjoin (".", base_name, name, "scores", NULL);
@@ -115,7 +115,7 @@ games_scores_backend_get_lock (GamesScoresBackend * self)
     /* Assume we already have the lock and rewind the file to
      * the beginning. */
     setgid_io_seek (self->priv->fd, 0, SEEK_SET);
-    return TRUE;		/* Assume we already have the lock. */
+    return TRUE;                /* Assume we already have the lock. */
   }
 
   self->priv->fd = setgid_io_open (self->priv->filename, O_RDWR);
@@ -152,9 +152,16 @@ games_scores_backend_release_lock (GamesScoresBackend * self)
 
 #endif /* ENABLE_SETGID */
 
-/* You can alter the list returned by this function, but you must
+/**
+ * games_scores_backend_get_scores:
+ * @self: the backend to get the scores from
+ * 
+ * You can alter the list returned by this function, but you must
  * make sure you set it again with the _set_scores method or discard it
- * with with the _discard_scores method. Otherwise deadlocks will ensue. */
+ * with with the _discard_scores method. Otherwise deadlocks will ensue.
+ *
+ * Return value: (transfer none) (allow-none) (element-type GnomeGamesSupport.Score): The list of scores
+ */
 GList *
 games_scores_backend_get_scores (GamesScoresBackend * self)
 {
@@ -183,7 +190,7 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
     /* Dump the old list of scores. */
     t = self->scores_list;
     while (t != NULL) {
-      games_score_destroy ((GamesScore *) t->data);
+      g_object_unref (t->data);
       t = g_list_next (t);
     }
     g_list_free (self->scores_list);
@@ -205,9 +212,9 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
       target -= length;
       length = setgid_io_read (self->priv->fd, buffer, info.st_size);
       if (length == -1) {
-	games_scores_backend_release_lock (self);
-	g_free (buffer);
-	return NULL;
+        games_scores_backend_release_lock (self);
+        g_free (buffer);
+        return NULL;
       }
     } while (length < target);
 
@@ -224,11 +231,11 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
       *eol++ = '\0';
       timestr = strchr (scorestr, ' ');
       if (timestr == NULL)
-	break;
+        break;
       *timestr++ = '\0';
       namestr = strchr (timestr, ' ');
       if (namestr == NULL)
-	break;
+        break;
       *namestr++ = '\0';
       /* At this point we have three strings, all null terminated. All
        * part of the original buffer. */
@@ -238,12 +245,12 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
       switch (self->priv->style) {
       case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
       case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
-	newscore->value.plain = g_ascii_strtod (scorestr, NULL);
-	break;
+        newscore->value.plain = g_ascii_strtod (scorestr, NULL);
+        break;
       case GAMES_SCORES_STYLE_TIME_DESCENDING:
       case GAMES_SCORES_STYLE_TIME_ASCENDING:
-	newscore->value.time_double = g_ascii_strtod (scorestr, NULL);
-	break;
+        newscore->value.time_double = g_ascii_strtod (scorestr, NULL);
+        break;
       default:
         g_assert_not_reached ();
       }
@@ -303,8 +310,8 @@ games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
     rname = d->name;
 
     buffer = g_strdup_printf ("%s %"G_GUINT64_FORMAT" %s\n",
-			      g_ascii_dtostr (dtostrbuf, sizeof (dtostrbuf),
-					      rscore), rtime, rname);
+                              g_ascii_dtostr (dtostrbuf, sizeof (dtostrbuf),
+                                              rscore), rtime, rname);
     setgid_io_write (self->priv->fd, buffer, strlen (buffer));
     output_length += strlen (buffer);
     /* Ignore any errors and blunder on. */

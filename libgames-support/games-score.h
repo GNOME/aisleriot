@@ -20,10 +20,16 @@
 #ifndef GAMES_SCORE_H
 #define GAMES_SCORE_H
 
-#include <glib.h>
+#include <glib-object.h>
 #include <time.h>
 
 G_BEGIN_DECLS
+
+#define GAMES_TYPE_SCORE            (games_score_get_type ())
+#define GAMES_SCORE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_TYPE_SCORE, GamesScore))
+#define GAMES_SCORE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GAMES_TYPE_SCORE, GamesScoreClass))
+#define GAMES_IS_SCORE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_SCORE))
+#define GAMES_IS_SCORE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_SCORE))
 
 /* GamesScore and GamesScoresStyle should be kept in sync. */
 typedef enum {
@@ -39,18 +45,25 @@ typedef union {
 } GamesScoreValue;
 
 typedef struct {
+  GObject parent;
   GamesScoreValue value;
   time_t time;
   gchar *name;
 } GamesScore;
 
-GamesScore *games_score_new (void);
-GamesScore *games_score_dup (GamesScore * orig);
-gint games_score_compare (GamesScoreStyle style, GamesScore * a,
-			  GamesScore * b);
-gint games_score_compare_values (GamesScoreStyle style, GamesScoreValue a,
-				 GamesScoreValue b);
-void games_score_destroy (GamesScore * score);
+typedef struct {
+  GObjectClass parent_class;
+} GamesScoreClass;
+
+GType       games_score_get_type       (void);
+GamesScore *games_score_new            (void);
+GamesScore *games_score_dup            (GamesScore * orig);
+gint        games_score_compare        (GamesScoreStyle style,
+                                        GamesScore * a,
+			                            GamesScore * b);
+gint        games_score_compare_values (GamesScoreStyle style,
+                                        GamesScoreValue a,
+                                        GamesScoreValue b);
 
 G_END_DECLS
 

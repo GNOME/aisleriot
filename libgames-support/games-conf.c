@@ -45,7 +45,7 @@
 
 #define GAMES_CONF_GET_PRIVATE(that)(G_TYPE_INSTANCE_GET_PRIVATE ((that), GAMES_TYPE_CONF, GamesConfPrivate))
 
-struct _GamesConfPrivate {
+struct GamesConfPrivate {
   char *game_name;
 
 #ifdef HAVE_GNOME
@@ -592,7 +592,7 @@ games_conf_shutdown (void)
  * Returns the default #GamesConf instance. games_conf_init() must have
  * been called before this!
  *
- * Returns: a #GamesConf (no reference)
+ * Returns: (transfer none): a #GamesConf (no reference)
  */
 GamesConf *
 games_conf_get_default (void)
@@ -754,7 +754,7 @@ games_conf_set_string (const char *group, const char *key,
  * Returns the string array associated with @key in @group, or %NULL if
  * @key is not set, or an error occurred
  *
- * Returns: a newly allocated string array, or %NULL
+ * Returns: (transfer full): a newly allocated string array, or %NULL
  */
 char **
 games_conf_get_string_list (const char *group, const char *key,

@@ -93,6 +93,13 @@ games_clock_init (GamesClock *clock_widget)
   gtk_label_set_text (GTK_LABEL (clock_widget), "00:00:00");
 }
 
+/**
+ * games_clock_new:
+ * 
+ * Create a new game clock
+ * 
+ * Returns: A new #GamesClock
+ **/
 GtkWidget *
 games_clock_new (void)
 {
