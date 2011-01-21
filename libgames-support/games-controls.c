@@ -167,6 +167,7 @@ conf_value_changed_cb (GamesConf *conf,
 static void
 games_controls_list_init (GamesControlsList *list)
 {
+  list->priv = G_TYPE_INSTANCE_GET_PRIVATE (list, GAMES_TYPE_CONTROLS_LIST, GamesControlsListPrivate);
 }
 
 static GObject *
@@ -241,7 +242,6 @@ games_controls_list_constructor (GType type,
 
 static void
 games_controls_list_finalize (GObject *object)
-        
 {
   GamesControlsList *list = GAMES_CONTROLS_LIST (object);
 

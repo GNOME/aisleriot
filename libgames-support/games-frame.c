@@ -46,6 +46,8 @@ games_frame_init (GamesFrame * frame)
   PangoAttrList *attr_list;
   PangoAttribute *attr;
 
+  frame->priv = G_TYPE_INSTANCE_GET_PRIVATE (frame, GAMES_TYPE_FRAME, GamesFramePrivate);
+
   gtk_box_set_spacing (box, 6);
   gtk_box_set_homogeneous (box, FALSE);
   gtk_orientable_set_orientation (GTK_ORIENTABLE (frame), GTK_ORIENTATION_VERTICAL);

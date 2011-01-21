@@ -21,8 +21,6 @@
 
 /* FIXME: Document */
 
-/* FIXME: Add a finaliser to get rid of some of the strings. */
-
 #include <config.h>
 
 #include <fcntl.h>
@@ -125,20 +123,18 @@ games_scores_new (const char *app_name,
                   GamesScoreStyle style)
 {
   GamesScores *self;
-  GamesScoresPrivate *priv;
 
   self = GAMES_SCORES (g_object_new (GAMES_TYPE_SCORES, NULL));
-  priv = self->priv;
 
   /* FIXME: Input sanity checks. */
 
-  priv->categories = g_hash_table_new_full (g_str_hash, g_str_equal,
-                                            g_free,
-                                            (GDestroyNotify) games_scores_category_free);
+  self->priv->categories = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                                  g_free,
+                                                  (GDestroyNotify) games_scores_category_free);
 
   /* catsordered is a record of the ordering of the categories. 
    * Its data is shared with the hash table. */
-  priv->catsordered = NULL;
+  self->priv->catsordered = NULL;
 
   if (n_categories > 0) {
     int i;
@@ -158,22 +154,18 @@ games_scores_new (const char *app_name,
       games_scores_add_category (self, category->key, display_name);
     }
 
-    priv->defcat = g_strdup (categories[default_category_index].key);
-    priv->currentcat = g_strdup (priv->defcat);
-  } else {
-    priv->currentcat = NULL;
-    priv->defcat = NULL;
+    self->priv->defcat = g_strdup (categories[default_category_index].key);
+    self->priv->currentcat = g_strdup (self->priv->defcat);
   }
 
-  priv->basename = g_strdup (app_name);
+  self->priv->basename = g_strdup (app_name);
   /* FIXME: Do some sanity checks on the default and the like. */
 
-  priv->style = style;
+  self->priv->style = style;
 
   /* Set up the anonymous category for use when no categories are specified. */
-  priv->dummycat.category.key = (char *) "";
-  priv->dummycat.category.name = (char *) "";
-  priv->dummycat.backend = NULL;
+  self->priv->dummycat.category.key = (char *) "";
+  self->priv->dummycat.category.name = (char *) "";
 
   return self;
 }
@@ -505,7 +497,24 @@ games_scores_init (GamesScores * self)
 }
 
 static void
+games_scores_finalize (GObject * object)
+{
+  GamesScores *scores = GAMES_SCORES (object);
+
+  g_hash_table_unref (scores->priv->categories);
+  g_free (scores->priv->catsordered);
+  g_free (scores->priv->currentcat);
+  g_free (scores->priv->defcat);
+  g_free (scores->priv->basename);
+  g_object_unref (scores->priv->last_score);
+
+  G_OBJECT_CLASS (games_scores_parent_class)->finalize (object);
+}
+
+static void
 games_scores_class_init (GamesScoresClass * klass)
 {
+  GObjectClass *object_class = (GObjectClass *) klass;  
+  object_class->finalize = games_scores_finalize;
   g_type_class_add_private (klass, sizeof (GamesScoresPrivate));
 }

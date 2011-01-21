@@ -437,4 +437,5 @@ games_file_list_class_init (GamesFileListClass * class)
 static void
 games_file_list_init (GamesFileList * filelist)
 {
+  filelist->priv = G_TYPE_INSTANCE_GET_PRIVATE (filelist, GAMES_FILE_LIST_TYPE, GamesFileListPrivate);
 }

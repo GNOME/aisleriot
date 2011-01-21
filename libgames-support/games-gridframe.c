@@ -270,6 +270,8 @@ games_grid_frame_class_init (GamesGridFrameClass * class)
 static void
 games_grid_frame_init (GamesGridFrame * frame)
 {
+  frame->priv = G_TYPE_INSTANCE_GET_PRIVATE (frame, GAMES_TYPE_GRID_FRAME, GamesGridFramePrivate);
+
   frame->priv->xmult = 1;
   frame->priv->ymult = 1;
 

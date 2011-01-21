@@ -176,6 +176,8 @@ games_score_init (GamesScore *score)
 {
   const gchar* name;
 
+  score->priv = G_TYPE_INSTANCE_GET_PRIVATE (score, GAMES_TYPE_SCORE, GamesScorePrivate);
+
   score->priv->time = time (NULL);
   /* FIXME: We don't handle the "Unknown" case. */
   name = g_get_real_name ();

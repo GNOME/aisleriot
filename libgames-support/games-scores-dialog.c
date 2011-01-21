@@ -480,7 +480,7 @@ static void games_scores_dialog_init (GamesScoresDialog *self)
   GtkCellRenderer *renderer;
 
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GAMES_TYPE_SCORES_DIALOG,
-					     GamesScoresDialogPrivate);
+                                            GamesScoresDialogPrivate);
 
   self->priv->style = GAMES_SCORES_STYLE_PLAIN_DESCENDING;
   /* These two hashes are the reverse of each other. As an optimisation 

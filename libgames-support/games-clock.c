@@ -94,6 +94,8 @@ games_clock_class_init (GamesClockClass * klass)
 static void
 games_clock_init (GamesClock *clock_widget)
 {
+  clock_widget->priv = G_TYPE_INSTANCE_GET_PRIVATE (clock_widget, GAMES_TYPE_CLOCK, GamesClockPrivate);
+
   clock_widget->priv->update_timeout_id = 0;
   clock_widget->priv->start_time = clock_widget->priv->stop_time = 0;
   clock_widget->priv->started = FALSE;

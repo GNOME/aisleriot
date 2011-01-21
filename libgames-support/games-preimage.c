@@ -59,6 +59,7 @@ struct GamesPreimagePrivate {
 static void
 games_preimage_init (GamesPreimage * preimage)
 {
+  preimage->priv = G_TYPE_INSTANCE_GET_PRIVATE (preimage, GAMES_TYPE_PREIMAGE, GamesPreimagePrivate);
   preimage->priv->scalable = FALSE;
   preimage->priv->width = 0;
   preimage->priv->height = 0;
