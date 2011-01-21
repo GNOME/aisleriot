@@ -35,55 +35,52 @@ G_BEGIN_DECLS
 #define GAMES_IS_PREIMAGE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_PREIMAGE))
 #define GAMES_GET_PREIMAGE_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_PREIMAGE, GamesPreimageClass))
 
-typedef struct _GamesPreimage GamesPreimage;
+typedef struct GamesPreimagePrivate GamesPreimagePrivate;
+
+typedef struct
+{
+  GObject parent;
+  /*< private >*/
+  GamesPreimagePrivate *priv;
+} GamesPreimage;
 
 typedef struct {
   GObjectClass parent_class;
 } GamesPreimageClass;
 
-GType games_preimage_get_type (void);
-
-GamesPreimage *games_preimage_new (void);
-
-GamesPreimage *games_preimage_new_from_file (const gchar * filename,
-                                             GError ** error);
-
-void games_preimage_set_font_options (GamesPreimage * preimage,
-                                      const cairo_font_options_t *font_options);
-
-GdkPixbuf *games_preimage_render (GamesPreimage * preimage,
-                                  gint width,
-                                  gint height);
-void games_preimage_render_cairo (GamesPreimage * preimage,
-                                  cairo_t *cr,
-                                  gint width,
-                                  gint height);
-
-GdkPixbuf *games_preimage_render_sub (GamesPreimage * preimage,
-                                      const char *node,
-                                      int width,
-                                      int height,
-                                      double xoffset,
-                                      double yoffset,
-                                      double xzoom, double yzoom);
-
-void games_preimage_render_cairo_sub (GamesPreimage * preimage,
-                                      cairo_t *cr,
-                                      const char *node,
-                                      int width,
-                                      int height,
-                                      double xoffset,
-                                      double yoffset,
-                                      double xzoom,
-                                      double yzoom);
-
-gboolean games_preimage_is_scalable (GamesPreimage * preimage);
-
-gint games_preimage_get_width (GamesPreimage * preimage);
-
-gint games_preimage_get_height (GamesPreimage * preimage);
-
-GdkPixbuf *games_preimage_render_unscaled_pixbuf (GamesPreimage * preimage);
+GType          games_preimage_get_type               (void);
+GamesPreimage *games_preimage_new                    (void);
+GamesPreimage *games_preimage_new_from_file          (const gchar * filename,
+                                                      GError ** error);
+void           games_preimage_set_font_options       (GamesPreimage * preimage,
+                                                      const cairo_font_options_t *font_options);
+GdkPixbuf      *games_preimage_render                (GamesPreimage * preimage,
+                                                      gint width,
+                                                      gint height);
+void            games_preimage_render_cairo          (GamesPreimage * preimage,
+                                                      cairo_t *cr,
+                                                      gint width,
+                                                      gint height);
+GdkPixbuf      *games_preimage_render_sub            (GamesPreimage * preimage,
+                                                      const char *node,
+                                                      int width,
+                                                      int height,
+                                                      double xoffset,
+                                                      double yoffset,
+                                                      double xzoom, double yzoom);
+void            games_preimage_render_cairo_sub       (GamesPreimage * preimage,
+                                                       cairo_t *cr,
+                                                       const char *node,
+                                                       int width,
+                                                       int height,
+                                                       double xoffset,
+                                                       double yoffset,
+                                                       double xzoom,
+                                                       double yzoom);
+gboolean        games_preimage_is_scalable            (GamesPreimage * preimage);
+gint            games_preimage_get_width              (GamesPreimage * preimage);
+gint            games_preimage_get_height             (GamesPreimage * preimage);
+GdkPixbuf      *games_preimage_render_unscaled_pixbuf (GamesPreimage * preimage);
 
 G_END_DECLS
 

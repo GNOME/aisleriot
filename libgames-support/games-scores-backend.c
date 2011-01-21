@@ -35,7 +35,8 @@
 #include "games-setgid-io.h"
 #endif
 
-struct _GamesScoresBackendPrivate {
+struct GamesScoresBackendPrivate {
+  GList *scores_list;
   GamesScoreStyle style;
   time_t timestamp;
   gchar *filename;
@@ -91,7 +92,7 @@ games_scores_backend_new (GamesScoreStyle style,
 
   backend->priv->timestamp = 0;
   backend->priv->style = style;
-  backend->scores_list = NULL;
+  backend->priv->scores_list = NULL;
   backend->priv->filename = g_build_filename (games_runtime_get_directory (GAMES_RUNTIME_SCORES_DIRECTORY),
                                               fullname, NULL);
   g_free (fullname);
@@ -184,17 +185,17 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
   if (error != 0)
     return NULL;
 
-  if ((info.st_mtime > self->priv->timestamp) || (self->scores_list == NULL)) {
+  if ((info.st_mtime > self->priv->timestamp) || (self->priv->scores_list == NULL)) {
     self->priv->timestamp = info.st_mtime;
 
     /* Dump the old list of scores. */
-    t = self->scores_list;
+    t = self->priv->scores_list;
     while (t != NULL) {
       g_object_unref (t->data);
       t = g_list_next (t);
     }
-    g_list_free (self->scores_list);
-    self->scores_list = NULL;
+    g_list_free (self->priv->scores_list);
+    self->priv->scores_list = NULL;
 
     /* Lock the file and get the list. */
     if (!games_scores_backend_get_lock (self))
@@ -253,7 +254,7 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
       }
       games_score_set_name (newscore, namestr);
       games_score_set_time (newscore, g_ascii_strtoull (timestr, NULL, 10));
-      self->scores_list = g_list_append (self->scores_list, newscore);
+      self->priv->scores_list = g_list_append (self->priv->scores_list, newscore);
       /* Setup again for the next time around. */
       scorestr = eol;
       eol = strchr (eol, '\n');
@@ -264,7 +265,7 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
 
   /* FIXME: Sort the scores! We shouldn't rely on the file being sorted. */
 
-  return self->scores_list;
+  return self->priv->scores_list;
 #else
   return NULL;
 #endif /* ENABLE_SETGID */
@@ -283,7 +284,7 @@ games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
   if (!games_scores_backend_get_lock (self))
     return FALSE;
 
-  self->scores_list = list;
+  self->priv->scores_list = list;
 
   s = list;
   while (s != NULL) {

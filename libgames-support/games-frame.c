@@ -34,6 +34,11 @@ enum {
 
 G_DEFINE_TYPE (GamesFrame, games_frame, GTK_TYPE_VBOX);
 
+struct GamesFramePrivate {
+  GtkWidget *label;
+  GtkWidget *alignment;
+};
+
 static void
 games_frame_init (GamesFrame * frame)
 {
@@ -45,25 +50,25 @@ games_frame_init (GamesFrame * frame)
   gtk_box_set_homogeneous (box, FALSE);
   gtk_orientable_set_orientation (GTK_ORIENTABLE (frame), GTK_ORIENTATION_VERTICAL);
 
-  frame->label = gtk_label_new (NULL);
-  gtk_misc_set_alignment (GTK_MISC (frame->label), 0.0, 0.5);
+  frame->priv->label = gtk_label_new (NULL);
+  gtk_misc_set_alignment (GTK_MISC (frame->priv->label), 0.0, 0.5);
 
   attr_list = pango_attr_list_new ();
   attr = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
   attr->start_index = 0;
   attr->end_index = -1;
   pango_attr_list_insert (attr_list, attr);
-  gtk_label_set_attributes (GTK_LABEL (frame->label), attr_list);
+  gtk_label_set_attributes (GTK_LABEL (frame->priv->label), attr_list);
   pango_attr_list_unref (attr_list);
 
-  frame->alignment = gtk_alignment_new (0.0, 0.0, 1.0, 1.0);
-  gtk_alignment_set_padding (GTK_ALIGNMENT (frame->alignment), 0, 0, 12, 0);
+  frame->priv->alignment = gtk_alignment_new (0.0, 0.0, 1.0, 1.0);
+  gtk_alignment_set_padding (GTK_ALIGNMENT (frame->priv->alignment), 0, 0, 12, 0);
 
-  gtk_box_pack_start (box, frame->label, FALSE, FALSE, 0);
-  gtk_box_pack_start (box, frame->alignment, TRUE, TRUE, 0);
+  gtk_box_pack_start (box, frame->priv->label, FALSE, FALSE, 0);
+  gtk_box_pack_start (box, frame->priv->alignment, TRUE, TRUE, 0);
 
-  gtk_widget_set_no_show_all (frame->label, TRUE);
-  gtk_widget_show (frame->alignment);
+  gtk_widget_set_no_show_all (frame->priv->label, TRUE);
+  gtk_widget_show (frame->priv->alignment);
 }
 
 static void
@@ -72,11 +77,11 @@ games_frame_add (GtkContainer *container,
 {
   GamesFrame *frame = GAMES_FRAME (container);
 
-  gtk_container_add (GTK_CONTAINER (frame->alignment), child);
+  gtk_container_add (GTK_CONTAINER (frame->priv->alignment), child);
 
 #ifndef HAVE_HILDON
-  games_atk_util_add_atk_relation (frame->label, child, ATK_RELATION_LABEL_FOR);
-  games_atk_util_add_atk_relation (child, frame->label, ATK_RELATION_LABELLED_BY);
+  games_atk_util_add_atk_relation (frame->priv->label, child, ATK_RELATION_LABEL_FOR);
+  games_atk_util_add_atk_relation (child, frame->priv->label, ATK_RELATION_LABELLED_BY);
 #endif
 }
 
@@ -107,6 +112,8 @@ games_frame_class_init (GamesFrameClass * klass)
 
   object_class->set_property = games_frame_set_property;
   container_class->add = games_frame_add;
+
+  g_type_class_add_private (object_class, sizeof (GamesFramePrivate));
 
   g_object_class_install_property
     (object_class,
@@ -147,12 +154,12 @@ games_frame_set_label (GamesFrame *frame,
   g_return_if_fail (GAMES_IS_FRAME (frame));
 
   if (label) {
-    gtk_label_set_text (GTK_LABEL (frame->label), label);
+    gtk_label_set_text (GTK_LABEL (frame->priv->label), label);
   } else {
-    gtk_label_set_text (GTK_LABEL (frame->label), "");
+    gtk_label_set_text (GTK_LABEL (frame->priv->label), "");
   }
 
-  g_object_set (frame->label, "visible", label && label[0], NULL);
+  g_object_set (frame->priv->label, "visible", label && label[0], NULL);
 
   g_object_notify (G_OBJECT (frame), "label");
 }

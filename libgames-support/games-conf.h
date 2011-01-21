@@ -35,8 +35,7 @@ typedef struct GamesConfPrivate  GamesConfPrivate;
 
 typedef struct {
   GObject parent_instance;
-
-  /*< private > */
+  /*< private >*/
   GamesConfPrivate *priv;
 } GamesConf;
 
@@ -44,68 +43,71 @@ typedef struct {
   GObjectClass parent_class;  
 } GamesConfClass;
 
-GType games_conf_get_type (void);
-
-gboolean games_conf_initialise (const char *game_name);
-
-void games_conf_shutdown (void);
-
-GamesConf *games_conf_get_default (void);
-
-void games_conf_save (void);
-
-char *games_conf_get_string (const char *group, const char *key,
-                             GError ** error);
-
-char *games_conf_get_string_with_default (const char *group, const char *key,
-                                          const char *def_value);
-
-void games_conf_set_string (const char *group, const char *key,
-                            const char *value);
-
-char **games_conf_get_string_list (const char *group, const char *key,
-                                   gsize * n_values, GError ** error);
-
-void games_conf_set_string_list (const char *group, const char *key,
-                                 const char * const *values, gsize n_values);
-
-int games_conf_get_integer (const char *group, const char *key,
-                            GError ** error);
-
-int games_conf_get_integer_with_default (const char *group, const char *key,
-                                         int def_value);
-
-void games_conf_set_integer (const char *group, const char *key, int value);
-
-int *games_conf_get_integer_list (const char *group, const char *key,
-                                  gsize * n_values, GError ** error);
-
-void games_conf_set_integer_list (const char *group, const char *key,
-                                  int *values, gsize n_values);
-
-gboolean games_conf_get_boolean (const char *group, const char *key,
-                                 GError ** error);
-
-gboolean games_conf_get_boolean_with_default (const char *group, const char *key,
-                                              gboolean def_value);
-
-void games_conf_set_boolean (const char *group, const char *key,
-                             gboolean value);
-
-double games_conf_get_double (const char *group, const char *key,
-                              GError ** error);
-
-void games_conf_set_double (const char *group, const char *key, double value);
-
-guint games_conf_get_keyval (const char *group, const char *key,
-                             GError ** error);
-
-guint games_conf_get_keyval_with_default (const char *group, const char *key,
-                                          guint default_keyval);
-
-void games_conf_set_keyval (const char *group, const char *key, guint value);
-
-void games_conf_add_window (GtkWindow *window, const char *group);
+GType      games_conf_get_type                 (void);
+gboolean   games_conf_initialise               (const char *game_name);
+void       games_conf_shutdown                 (void);
+GamesConf *games_conf_get_default              (void);
+void       games_conf_save                     (void);
+char      *games_conf_get_string               (const char *group,
+                                                const char *key,
+                                                GError ** error);
+char      *games_conf_get_string_with_default  (const char *group,
+                                                const char *key,
+                                                const char *def_value);
+void       games_conf_set_string               (const char *group,
+                                                const char *key,
+                                                const char *value);
+char     **games_conf_get_string_list          (const char *group,
+                                                const char *key,
+                                                gsize * n_values,
+                                                GError ** error);
+void       games_conf_set_string_list          (const char *group,
+                                                const char *key,
+                                                const char * const *values,
+                                                gsize n_values);
+int        games_conf_get_integer              (const char *group,
+                                                const char *key,
+                                                GError ** error);
+int        games_conf_get_integer_with_default (const char *group,
+                                                const char *key,
+                                                int def_value);
+void       games_conf_set_integer              (const char *group,
+                                                const char *key,
+                                                int value);
+int       *games_conf_get_integer_list         (const char *group,
+                                                const char *key,
+                                                gsize * n_values,
+                                                GError ** error);
+void       games_conf_set_integer_list         (const char *group,
+                                                const char *key,
+                                                int *values,
+                                                gsize n_values);
+gboolean   games_conf_get_boolean              (const char *group,
+                                                const char *key,
+                                                GError ** error);
+gboolean   games_conf_get_boolean_with_default (const char *group,
+                                                const char *key,
+                                                gboolean def_value);
+void       games_conf_set_boolean              (const char *group,
+                                                const char *key,
+                                                gboolean value);
+double     games_conf_get_double               (const char *group,
+                                                const char *key,
+                                                GError ** error);
+void       games_conf_set_double               (const char *group,
+                                                const char *key,
+                                                double value);
+guint      games_conf_get_keyval               (const char *group,
+                                                const char *key,
+                                                GError ** error);
+guint      games_conf_get_keyval_with_default  (const char *group,
+                                                const char *key,
+                                                guint default_keyval);
+void       games_conf_set_keyval               (const char *group,
+                                                const char *key,
+                                                guint value);
+void       games_conf_add_window               (GtkWindow *window,
+                                                const char *group);
 
 G_END_DECLS
 

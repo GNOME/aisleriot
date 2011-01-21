@@ -46,7 +46,6 @@ libgames_support_la_SOURCES +=		\
 	games-clock.h			\
 	games-preimage.c                \
 	games-preimage.h                \
-	games-preimage-private.h	\
 	$(NULL)
 endif # !HAVE_HILDON
 
@@ -75,7 +74,6 @@ libgames_support_la_SOURCES +=		\
 	games-scores.h			\
 	games-scores-dialog.c		\
 	games-scores-dialog.h		\
-	games-scores-dialog-private.h	\
 	games-controls.c		\
 	games-controls.h		\
 	games-scores-backend.c		\

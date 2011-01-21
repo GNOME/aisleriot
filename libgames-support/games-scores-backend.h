@@ -41,28 +41,26 @@ G_BEGIN_DECLS
 #define GAMES_IS_SCORES_BACKEND_CLASS(kls) (G_TYPE_CHECK_CLASS_TYPE ((kls), GAMES_TYPE_SCORES_BACKEND))
 #define GAMES_GET_SCORES_BACKEND_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_SCORES_BACKEND, GamesScoresBackendClass))
 
-typedef struct _GamesScoresBackend        GamesScoresBackend;
-typedef struct _GamesScoresBackendPrivate GamesScoresBackendPrivate;
-typedef struct _GamesScoresBackendClass   GamesScoresBackendClass;
+typedef struct GamesScoresBackendPrivate GamesScoresBackendPrivate;
 
-struct _GamesScoresBackend {
+typedef struct {
   GObject object;
-  GList *scores_list;
+  /*< private >*/
   GamesScoresBackendPrivate *priv;
-};
+} GamesScoresBackend;
 
-struct _GamesScoresBackendClass {
+typedef struct {
   GObjectClass parent_class;
-};
+} GamesScoresBackendClass;
 
-GType games_scores_backend_get_type (void);
-GamesScoresBackend *games_scores_backend_new (GamesScoreStyle style,
-					      char *base_name,
-                                              char *name);
-GList *games_scores_backend_get_scores (GamesScoresBackend * self);
-gboolean games_scores_backend_set_scores (GamesScoresBackend * self,
-				          GList * list);
-void games_scores_backend_discard_scores (GamesScoresBackend * self);
+GType               games_scores_backend_get_type       (void);
+GamesScoresBackend *games_scores_backend_new            (GamesScoreStyle style,
+                                                         char *base_name,
+                                                         char *name);
+GList              *games_scores_backend_get_scores     (GamesScoresBackend * self);
+gboolean            games_scores_backend_set_scores     (GamesScoresBackend * self,
+                                                         GList * list);
+void                games_scores_backend_discard_scores (GamesScoresBackend * self);
 
 G_END_DECLS
 #endif /* GAMES_SCORES_BACKEND_H */

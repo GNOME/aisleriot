@@ -61,27 +61,18 @@ typedef enum {
 #endif
 } GamesRuntimeDirectory;
 
-gboolean games_runtime_init (const char *name);
-
+gboolean        games_runtime_init             (const char *name);
 #ifdef HAVE_HILDON
-
-gboolean games_runtime_init_with_osso (const char *name,
-                                       const char *service_name);
-
+gboolean        games_runtime_init_with_osso   (const char *name,
+                                                const char *service_name);
 osso_context_t* games_runtime_get_osso_context (void);
-
 #endif /* HAVE_HILDON */
-
-void games_runtime_shutdown (void);
-
-const char * games_runtime_get_directory (GamesRuntimeDirectory directory);
-
-char * games_runtime_get_file (GamesRuntimeDirectory directory,
-                               const char *name);
-
-int games_runtime_get_gpl_version (void);
-
-gboolean games_runtime_is_system_prefix (void);
+void            games_runtime_shutdown         (void);
+const char     *games_runtime_get_directory    (GamesRuntimeDirectory directory);
+char           *games_runtime_get_file         (GamesRuntimeDirectory directory,
+                                                const char *name);
+int             games_runtime_get_gpl_version  (void);
+gboolean        games_runtime_is_system_prefix (void);
 
 G_END_DECLS
 

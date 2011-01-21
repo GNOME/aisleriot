@@ -52,11 +52,9 @@ G_BEGIN_DECLS
 #define GAMES_STOCK_RTELEPORT        "games-teleport-random"
 #define GAMES_STOCK_DEAL_CARDS       "games-cards-deal"
 
-void games_stock_init (void);
-
-void games_stock_prepare_for_statusbar_tooltips (GtkUIManager * ui_manager,
-                                                 GtkWidget * statusbar);
-
+void   games_stock_init (void);
+void   games_stock_prepare_for_statusbar_tooltips (GtkUIManager * ui_manager,
+                                                   GtkWidget * statusbar);
 gchar *games_get_license (const gchar * game_name);
 
 G_END_DECLS

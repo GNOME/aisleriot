@@ -40,7 +40,7 @@ typedef struct {
   GamesScoresBackend *backend;
 } GamesScoresCategoryInternal;
 
-struct _GamesScoresPrivate {
+struct GamesScoresPrivate {
   GHashTable *categories;
   GSList *catsordered;
   gchar *currentcat;

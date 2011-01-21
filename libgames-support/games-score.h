@@ -43,6 +43,7 @@ typedef enum {
 
 typedef struct {
   GObject parent;
+  /*< private >*/
   GamesScorePrivate *priv;
 } GamesScore;
 

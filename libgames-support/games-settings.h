@@ -24,17 +24,16 @@
 
 G_BEGIN_DECLS
 
-void     games_settings_get_keyval (GSettings *settings,
-                                    const char *key,
-                                    guint *keyval,
-                                    GdkModifierType *modifiers);
-gboolean games_settings_set_keyval (GSettings *settings,
-                                    const char *key,
-                                    guint keyval,
-                                    GdkModifierType modifiers);
-
-void games_settings_bind_window_state (const char *path,
-                                       GtkWindow *window);
+void     games_settings_get_keyval        (GSettings *settings,
+                                           const char *key,
+                                           guint *keyval,
+                                           GdkModifierType *modifiers);
+gboolean games_settings_set_keyval        (GSettings *settings,
+                                           const char *key,
+                                           guint keyval,
+                                           GdkModifierType modifiers);
+void     games_settings_bind_window_state (const char *path,
+                                           GtkWindow *window);
 
 G_END_DECLS
 

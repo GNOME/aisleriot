@@ -52,28 +52,30 @@ typedef enum {
   GAMES_SCORES_QUIT_BUTTON = 8,
 } GamesScoresButtons;
 
-typedef struct _GamesScoresDialogPrivate GamesScoresDialogPrivate;
+typedef struct GamesScoresDialogPrivate GamesScoresDialogPrivate;
 
 typedef struct {
   GtkDialog dialog;
-
-  /* <private> */
-  GamesScoresDialogPrivate *_priv;
+  /*< private >*/
+  GamesScoresDialogPrivate *priv;
 } GamesScoresDialog;
 
 typedef struct {
   GtkDialogClass parent_class;
 } GamesScoresDialogClass;
 
-GType games_scores_dialog_get_type (void);
-
-GtkWidget * games_scores_dialog_new (GtkWindow *parent_window, GamesScores *scores, const gchar *title);
-void games_scores_dialog_set_category_description (GamesScoresDialog *self, 
-						   const gchar *description);
-void games_scores_dialog_set_hilight (GamesScoresDialog *self, guint pos);
-void games_scores_dialog_set_message (GamesScoresDialog *self, 
-				      const gchar *message);
-void games_scores_dialog_set_buttons (GamesScoresDialog *self, guint buttons);
+GType      games_scores_dialog_get_type                 (void);
+GtkWidget *games_scores_dialog_new                      (GtkWindow *parent_window,
+                                                         GamesScores *scores,
+                                                         const gchar *title);
+void       games_scores_dialog_set_category_description (GamesScoresDialog *self, 
+                                                         const gchar *description);
+void       games_scores_dialog_set_hilight              (GamesScoresDialog *self,
+                                                         guint pos);
+void       games_scores_dialog_set_message              (GamesScoresDialog *self, 
+                                                         const gchar *message);
+void       games_scores_dialog_set_buttons              (GamesScoresDialog *self,
+                                                         guint buttons);
 
 G_END_DECLS
 #endif

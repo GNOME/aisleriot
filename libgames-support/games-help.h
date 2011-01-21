@@ -23,10 +23,9 @@
 
 G_BEGIN_DECLS
 
-void games_help_display (GtkWidget *window,
-                         const char *doc_module,
-                         const char *section);
-
+void     games_help_display      (GtkWidget *window,
+                                  const char *doc_module,
+                                  const char *section);
 gboolean games_help_display_full (GtkWidget *window,
                                   const char *doc_module,
                                   const char *section,

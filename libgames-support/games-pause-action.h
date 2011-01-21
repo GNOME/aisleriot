@@ -33,15 +33,15 @@ typedef struct GamesPauseActionPrivate GamesPauseActionPrivate;
 
 typedef struct
 {
-    GtkAction parent_instance;
-    GamesPauseActionPrivate *priv;
+  GtkAction parent_instance;
+  /*< private >*/
+  GamesPauseActionPrivate *priv;
 } GamesPauseAction;
 
 typedef struct
 {
-    GtkActionClass parent_class;
-
-    void (*state_changed)(GamesPauseAction *action);
+  GtkActionClass parent_class;
+  void (*state_changed)(GamesPauseAction *action);
 } GamesPauseActionClass;
 
 GType games_pause_action_get_type (void);

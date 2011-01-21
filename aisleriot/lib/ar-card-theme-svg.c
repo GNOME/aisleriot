@@ -26,7 +26,6 @@
 #include <gtk/gtk.h>
 
 #include <libgames-support/games-preimage.h>
-#include <libgames-support/games-preimage-private.h>
 #include <libgames-support/games-runtime.h>
 #include <libgames-support/games-string-utils.h>
 

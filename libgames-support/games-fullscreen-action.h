@@ -34,33 +34,32 @@ typedef struct GamesFullscreenActionPrivate GamesFullscreenActionPrivate;
 
 typedef struct
 {
-    GtkAction parent_instance;
-    GamesFullscreenActionPrivate *priv;
+  GtkAction parent_instance;
+  /*< private >*/
+  GamesFullscreenActionPrivate *priv;
 } GamesFullscreenAction;
 
 typedef struct
 {
-    GtkActionClass parent_class;
+  GtkActionClass parent_class;
 } GamesFullscreenActionClass;
 
 typedef enum
 {
-    GAMES_FULLSCREEN_ACTION_VISIBLE_ALWAYS,
-    GAMES_FULLSCREEN_ACTION_VISIBLE_ON_FULLSCREEN,
-    GAMES_FULLSCREEN_ACTION_VISIBLE_ON_UNFULLSCREEN
+  GAMES_FULLSCREEN_ACTION_VISIBLE_ALWAYS,
+  GAMES_FULLSCREEN_ACTION_VISIBLE_ON_FULLSCREEN,
+  GAMES_FULLSCREEN_ACTION_VISIBLE_ON_UNFULLSCREEN
 } GamesFullscreenActionVisiblePolicy;
 
-GType games_fullscreen_action_get_type (void);
-
-GamesFullscreenAction *games_fullscreen_action_new (const gchar *name, GtkWindow *window);
-
-void games_fullscreen_action_set_visible_policy (GamesFullscreenAction *action, GamesFullscreenActionVisiblePolicy visible_policy);
-
+GType                              games_fullscreen_action_get_type           (void);
+GamesFullscreenAction             *games_fullscreen_action_new                (const gchar *name,
+                                                                               GtkWindow *window);
+void                               games_fullscreen_action_set_visible_policy (GamesFullscreenAction *action,
+                                                                               GamesFullscreenActionVisiblePolicy visible_policy);
 GamesFullscreenActionVisiblePolicy games_fullscreen_action_get_visible_policy (GamesFullscreenAction *action);
-
-void games_fullscreen_action_set_is_fullscreen (GamesFullscreenAction *action, gboolean is_fullscreen);
-
-gboolean games_fullscreen_action_get_is_fullscreen (GamesFullscreenAction *action);
+void                               games_fullscreen_action_set_is_fullscreen  (GamesFullscreenAction *action,
+                                                                               gboolean is_fullscreen);
+gboolean                           games_fullscreen_action_get_is_fullscreen  (GamesFullscreenAction *action);
 
 G_END_DECLS
 

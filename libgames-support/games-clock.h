@@ -23,14 +23,12 @@ G_BEGIN_DECLS
 #define GAMES_IS_CLOCK(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_CLOCK))
 #define GAMES_IS_CLOCK_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_CLOCK))
 
+typedef struct GamesClockPrivate GamesClockPrivate;
+
 typedef struct {
   GtkLabel label;
-
-  guint update_timeout_id;
-  gboolean update;
-  gboolean started;
-  time_t start_time;
-  time_t stop_time;
+  /*< private >*/
+  GamesClockPrivate *priv;
 } GamesClock;
 
 typedef struct {

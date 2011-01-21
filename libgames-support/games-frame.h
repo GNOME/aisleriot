@@ -32,25 +32,22 @@ G_BEGIN_DECLS
 #define GAMES_IS_FRAME_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_FRAME))
 #define GAMES_FRAME_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GAMES_TYPE_FRAME, GamesFrameClass))
 
-typedef struct _GamesFrame      GamesFrame;
-typedef struct _GamesFrameClass GamesFrameClass;
+typedef struct GamesFramePrivate GamesFramePrivate;
 
-struct _GamesFrame {
+typedef struct {
   GtkVBox parent_instance;
-  GtkWidget *label;
-  GtkWidget *alignment;
-};
+  /*< private >*/
+  GamesFramePrivate *priv;
+} GamesFrame;
 
-struct _GamesFrameClass {
+typedef struct {
   GtkVBoxClass parent_class;
-};
+} GamesFrameClass;
 
-GType games_frame_get_type (void);
-
-GtkWidget *games_frame_new (const char *label);
-
-void games_frame_set_label (GamesFrame *frame,
-                            const char *label);
+GType      games_frame_get_type  (void);
+GtkWidget *games_frame_new       (const char *label);
+void       games_frame_set_label (GamesFrame *frame,
+                                  const char *label);
 
 G_END_DECLS
 

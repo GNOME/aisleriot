@@ -24,48 +24,43 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GamesFileList GamesFileList;
-typedef struct _GamesFileListClass GamesFileListClass;
+typedef struct GamesFileListPrivate GamesFileListPrivate;
 
-struct _GamesFileList {
+typedef struct {
   GObject parent;
+  /*< private >*/
+  GamesFileListPrivate *priv;
+} GamesFileList;
 
-  GList *list;
-};
-
-struct _GamesFileListClass {
+typedef struct {
   GObjectClass parent;
+} GamesFileListClass;
+
+enum {
+  GAMES_FILE_LIST_REMOVE_EXTENSION = 1 << 0,
+  GAMES_FILE_LIST_REPLACE_UNDERSCORES = 1 << 1,
 };
 
 #define GAMES_FILE_LIST_TYPE (games_file_list_get_type ())
 #define GAMES_FILE_LIST(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GAMES_FILE_LIST_TYPE, GamesFileList))
 
-GType games_file_list_get_type (void);
-
-GamesFileList *
-games_file_list_new (const gchar * glob, ...)
-  G_GNUC_NULL_TERMINATED;
-     GamesFileList *games_file_list_new_images (const gchar * path1,
-						...) G_GNUC_NULL_TERMINATED;
-
-     void games_file_list_transform_basename (GamesFileList * list);
-
-     void games_file_list_for_each (GamesFileList * filelist, GFunc function,
-				    gpointer userdata);
-
-     gchar *games_file_list_find (GamesFileList * filelist,
-				  GCompareFunc function, gpointer userdata);
-
-     gchar *games_file_list_get_nth (GamesFileList * filelist, gint n);
-
-     enum {
-       GAMES_FILE_LIST_REMOVE_EXTENSION = 1 << 0,
-       GAMES_FILE_LIST_REPLACE_UNDERSCORES = 1 << 1,
-     };
-
-     GtkWidget *games_file_list_create_widget (GamesFileList * filelist,
-					       const gchar * selection,
-					       guint flags);
+GType          games_file_list_get_type           (void);
+GamesFileList *games_file_list_new                (const gchar * glob,
+                                                   ...) G_GNUC_NULL_TERMINATED;
+GamesFileList *games_file_list_new_images         (const gchar * path1,
+                                                   ...) G_GNUC_NULL_TERMINATED;
+void           games_file_list_transform_basename (GamesFileList * list);
+void           games_file_list_for_each           (GamesFileList * filelist,
+                                                   GFunc function,
+                                                   gpointer userdata);
+gchar         *games_file_list_find               (GamesFileList * filelist,
+                                                   GCompareFunc function,
+                                                   gpointer userdata);
+gchar         *games_file_list_get_nth            (GamesFileList * filelist,
+                                                   gint n);
+GtkWidget     *games_file_list_create_widget      (GamesFileList * filelist,
+                                                   const gchar * selection,
+                                                   guint flags);
 
 G_END_DECLS
 
