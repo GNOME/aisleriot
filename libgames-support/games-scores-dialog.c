@@ -255,7 +255,7 @@ static void games_scores_dialog_set_hilight_private (GamesScoresDialog *self)
 /* Load up the list with the current set of scores. */
 static void games_scores_dialog_redraw (GamesScoresDialog *self) {
   GtkTreeIter iter;
-  gchar *name;
+  const gchar *name;
   gint score;
   gchar *ss;
   gdouble dscore;
@@ -266,11 +266,11 @@ static void games_scores_dialog_redraw (GamesScoresDialog *self) {
   scorelist = games_scores_get (self->_priv->scores);
 
   while (scorelist) {
-    name = ((GamesScore *)scorelist->data)->name;
+    name = games_score_get_name ((GamesScore *)scorelist->data);
     switch (self->_priv->style) {
     case GAMES_SCORES_STYLE_TIME_ASCENDING:
     case GAMES_SCORES_STYLE_TIME_DESCENDING:
-      dscore = ((GamesScore *)scorelist->data)->value.time_double;
+      dscore = games_score_get_value_as_time ((GamesScore *)scorelist->data);
       score = (int) (100.0 * dscore + 0.5);
       /* Translators: this is for a minutes, seconds time display. */
       ss = g_strdup_printf (_("%dm %ds"), score/100, score%100);
@@ -278,7 +278,7 @@ static void games_scores_dialog_redraw (GamesScoresDialog *self) {
     case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
     case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
     default:
-      score = ((GamesScore *)scorelist->data)->value.plain;
+      score = games_score_get_value_as_plain ((GamesScore *)scorelist->data);
       ss = g_strdup_printf ("%d", score);
     }
     gtk_list_store_append (self->_priv->list, &iter);

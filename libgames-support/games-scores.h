@@ -76,7 +76,11 @@ GamesScores *games_scores_new (const char *app_name,
 
 void games_scores_set_category (GamesScores * self, gchar * category);
 
-gint games_scores_add_score (GamesScores * self, GamesScoreValue score);
+gint games_scores_add_score (GamesScores * self, GamesScore *score);
+
+gint games_scores_add_plain_score (GamesScores * self, guint32 value);
+
+gint games_scores_add_time_score (GamesScores * self, gdouble value);
 
 void games_scores_update_score (GamesScores * self, gchar * new_name);
 

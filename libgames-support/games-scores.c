@@ -48,7 +48,7 @@ struct _GamesScoresPrivate {
   gchar *basename;
   gboolean last_score_significant;
   gint last_score_position;
-  GamesScoreValue last_score_value;
+  GamesScore *last_score;
   GamesScoreStyle style;
   GamesScoresCategoryInternal dummycat;
 };
@@ -237,7 +237,7 @@ games_scores_set_category (GamesScores * self, gchar * category)
 /**
  * games_scores_add_score:
  * @self: A scores object.
- * @score: A GamesScoreValue - it is up to the caller to convert their
+ * @score: A #GamesScore - it is up to the caller to convert their
  *         raw value to one of the supported types.
  *
  * Add a score to the set of scores. Retention of anything but the
@@ -247,18 +247,14 @@ games_scores_set_category (GamesScores * self, gchar * category)
  *
  **/
 gint
-games_scores_add_score (GamesScores * self, GamesScoreValue score)
+games_scores_add_score (GamesScores * self, GamesScore *score)
 {
   GamesScoresPrivate *priv = self->priv;
-  GamesScore *fullscore;
   GamesScoresCategoryInternal *cat;
   gint place, n;
   GList *s, *scores_list;
 
   g_return_val_if_fail (self != NULL, 0);
-
-  fullscore = games_score_new ();
-  fullscore->value = score;
 
   cat = games_scores_get_current (self);
 
@@ -274,9 +270,9 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
     n++;
 
     /* If beat someone in the list, add us there. */
-    if (games_score_compare (priv->style, oldscore, fullscore) < 0) {
+    if (games_score_compare (priv->style, oldscore, score) < 0) {
       scores_list = g_list_insert_before (scores_list, s,
-					  games_score_dup (fullscore));
+					  g_object_ref (score));
       place = n;
       break;
     }
@@ -289,7 +285,7 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
    * This also handles the empty-file case. */
   if ((place == 0) && (n < GAMES_SCORES_SIGNIFICANT)) {
     place = n + 1;
-    scores_list = g_list_append (scores_list, games_score_dup (fullscore));
+    scores_list = g_list_append (scores_list, g_object_ref (score));
   }
 
   if (g_list_length (scores_list) > GAMES_SCORES_SIGNIFICANT) {
@@ -306,9 +302,22 @@ games_scores_add_score (GamesScores * self, GamesScoreValue score)
 
   priv->last_score_significant = place > 0;
   priv->last_score_position = place;
-  priv->last_score_value = score;
+  g_object_unref (priv->last_score);
+  priv->last_score = g_object_ref (score);
 
   return place;
+}
+
+gint
+games_scores_add_plain_score (GamesScores * self, guint32 value)
+{
+  return games_scores_add_score (self, games_score_new_plain (value));
+}
+
+gint
+games_scores_add_time_score (GamesScores * self, gdouble value)
+{
+  return games_scores_add_score (self, games_score_new_time (value));
 }
 
 /**
@@ -331,12 +340,10 @@ games_scores_update_score_name (GamesScores * self, gchar * new_name, gchar * ol
   GList *s, *scores_list;
   gint n, place;
   GamesScore *sc;
-  GamesScoreValue score;
 
   g_return_if_fail (self != NULL);
 
   place = priv->last_score_position;
-  score = priv->last_score_value;
 
   if (place == 0)
     return;
@@ -361,10 +368,9 @@ games_scores_update_score_name (GamesScores * self, gchar * new_name, gchar * ol
 
   while ((n >= place) && (s != NULL)) {
     sc = (GamesScore *) (s->data);
-    if ((games_score_compare_values (priv->style, sc->value, score) ==
-	 0) && (g_utf8_collate (old_name, sc->name) == 0)) {
-      g_free (sc->name);
-      sc->name = g_strdup (new_name);
+    if ((games_score_compare (priv->style, sc, priv->last_score) ==
+	 0) && (g_utf8_collate (old_name, games_score_get_name (sc)) == 0)) {
+      games_score_set_name (sc, new_name);
     }
 
     s = g_list_previous (s);
@@ -495,7 +501,7 @@ games_scores_init (GamesScores * self)
 
   priv->last_score_significant = FALSE;
   priv->last_score_position = 0;
-  priv->last_score_value.plain = 0;
+  priv->last_score = games_score_new ();
 }
 
 static void

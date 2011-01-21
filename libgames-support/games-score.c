@@ -23,6 +23,15 @@
 
 G_DEFINE_TYPE (GamesScore, games_score, G_TYPE_OBJECT)
 
+struct GamesScorePrivate {
+  union {
+    guint32 plain;
+    gdouble time_double;		/* minutes.seconds */
+  } value;
+  time_t time;
+  gchar *name;
+};
+
 /**
  * games_score_new:
  * 
@@ -31,61 +40,108 @@ G_DEFINE_TYPE (GamesScore, games_score, G_TYPE_OBJECT)
  * Return value: the new #GamesScore
  **/
 GamesScore *
-games_score_new (void)
+games_score_new ()
 {
   return g_object_new (GAMES_TYPE_SCORE, NULL);
 }
 
 /**
- * games_score_dup:
- * @orig: The score to duplicate
+ * games_score_new_plain:
+ * @value: The value of the score.
  * 
- * Duplicates a score object.
+ * Creates a new score object.
  * 
- * Return value: (transfer full): A copy of @orig.
+ * Return value: the new #GamesScore
  **/
 GamesScore *
-games_score_dup (GamesScore * orig)
+games_score_new_plain (guint32 value)
 {
-  GamesScore *duplicate;
+  GamesScore *score = g_object_new (GAMES_TYPE_SCORE, NULL);
+  score->priv->value.plain = value;
+  return score;
+}
 
-  duplicate = games_score_new ();
-  duplicate->value = orig->value;
-  duplicate->time = orig->time;
-  g_free (duplicate->name);
-  duplicate->name = g_strdup (orig->name);
+/**
+ * games_score_new_time:
+ * @value: The timer value of the score.
+ * 
+ * Creates a new score object.
+ * 
+ * Return value: the new #GamesScore
+ **/
+GamesScore *
+games_score_new_time (gdouble value)
+{
+  GamesScore *score = g_object_new (GAMES_TYPE_SCORE, NULL);
+  score->priv->value.time_double = value;
+  return score;
+}
 
-  return duplicate;
+const gchar *
+games_score_get_name (GamesScore *score)
+{
+  return score->priv->name;
+}
+
+void
+games_score_set_name (GamesScore *score, const gchar *name)
+{
+  g_free (score->priv->name);
+  score->priv->name = g_strdup (name);
+}
+
+time_t
+games_score_get_time (GamesScore *score)
+{
+  return score->priv->time;
+}
+
+void
+games_score_set_time (GamesScore *score, time_t time)
+{
+  score->priv->time = time;  
+}
+
+guint32
+games_score_get_value_as_plain (GamesScore *score)
+{
+  return score->priv->value.plain;
+}
+
+gdouble
+games_score_get_value_as_time (GamesScore *score)
+{
+  return score->priv->value.time_double;
 }
 
 gint
-games_score_compare_values (GamesScoreStyle style,
-                            GamesScoreValue a,
-                            GamesScoreValue b)
+games_score_compare (GamesScoreStyle style,
+                     GamesScore * a,
+                     GamesScore * b)
 {
   switch (style) {
   case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
-    if (a.plain > b.plain)
+    if (a->priv->value.plain > b->priv->value.plain)
       return +1;
-    if (a.plain < b.plain)
+    if (a->priv->value.plain < b->priv->value.plain)
       return -1;
     return 0;
   case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
-    if (a.plain > b.plain)
+    if (a->priv->value.plain > b->priv->value.plain)
       return -1;
-    if (a.plain < b.plain)
+    if (a->priv->value.plain < b->priv->value.plain)
       return +1;
     return 0;
   case GAMES_SCORES_STYLE_TIME_DESCENDING:
-    if (a.time_double > b.time_double)
+    if (a->priv->value.time_double > b->priv->value.time_double)
       return +1;
-    if (a.time_double < b.time_double)
+    if (a->priv->value.time_double < b->priv->value.time_double)
       return -1;
     return 0;
   case GAMES_SCORES_STYLE_TIME_ASCENDING:
-    if (a.time_double > b.time_double)
+    if (a->priv->value.time_double > b->priv->value.time_double)
       return -1;
-    if (a.time_double < b.time_double)
+    if (a->priv->value.time_double < b->priv->value.time_double)
       return +1;
     return 0;
   default:
@@ -95,18 +151,12 @@ games_score_compare_values (GamesScoreStyle style,
   }
 }
 
-gint
-games_score_compare (GamesScoreStyle style, GamesScore * a, GamesScore * b)
-{
-  return games_score_compare_values (style, a->value, b->value);
-}
-
 static void
 games_score_finalize (GObject * object)
 {
   GamesScore *score = GAMES_SCORE (object);
 
-  g_free (score->name);
+  g_free (score->priv->name);
 
   G_OBJECT_CLASS (games_score_parent_class)->finalize (object);
 }
@@ -117,6 +167,8 @@ games_score_class_init (GamesScoreClass * klass)
   GObjectClass *object_class = (GObjectClass *) klass;
 
   object_class->finalize = games_score_finalize;
+
+  g_type_class_add_private (object_class, sizeof (GamesScorePrivate));
 }
 
 static void
@@ -124,7 +176,7 @@ games_score_init (GamesScore *score)
 {
   const gchar* name;
 
-  score->time = time (NULL);
+  score->priv->time = time (NULL);
   /* FIXME: We don't handle the "Unknown" case. */
   name = g_get_real_name ();
   if (name[0] == '\0' || g_utf8_validate (name, -1, NULL) != TRUE) {
@@ -133,5 +185,5 @@ games_score_init (GamesScore *score)
       name = "";
     }
   }
-  score->name = g_strdup (name);
+  score->priv->name = g_strdup (name);
 }

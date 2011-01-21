@@ -239,21 +239,20 @@ games_scores_backend_get_scores (GamesScoresBackend * self)
       *namestr++ = '\0';
       /* At this point we have three strings, all null terminated. All
        * part of the original buffer. */
-      newscore = games_score_new ();
-      newscore->name = g_strdup (namestr);
-      newscore->time = g_ascii_strtoull (timestr, NULL, 10);
       switch (self->priv->style) {
       case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
       case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
-        newscore->value.plain = g_ascii_strtod (scorestr, NULL);
+        newscore = games_score_new_plain (g_ascii_strtod (scorestr, NULL));
         break;
       case GAMES_SCORES_STYLE_TIME_DESCENDING:
       case GAMES_SCORES_STYLE_TIME_ASCENDING:
-        newscore->value.time_double = g_ascii_strtod (scorestr, NULL);
+        newscore = games_score_new_time (g_ascii_strtod (scorestr, NULL));
         break;
       default:
         g_assert_not_reached ();
       }
+      games_score_set_name (newscore, namestr);
+      games_score_set_time (newscore, g_ascii_strtoull (timestr, NULL, 10));
       self->scores_list = g_list_append (self->scores_list, newscore);
       /* Setup again for the next time around. */
       scorestr = eol;
@@ -290,24 +289,24 @@ games_scores_backend_set_scores (GamesScoresBackend * self, GList * list)
   while (s != NULL) {
     gdouble rscore;
     guint64 rtime;
-    gchar *rname;
+    const gchar *rname;
 
     d = (GamesScore *) s->data;
     rscore = 0.0;
     switch (self->priv->style) {
     case GAMES_SCORES_STYLE_PLAIN_DESCENDING:
     case GAMES_SCORES_STYLE_PLAIN_ASCENDING:
-      rscore = d->value.plain;
+      rscore = games_score_get_value_as_plain (d);
       break;
     case GAMES_SCORES_STYLE_TIME_DESCENDING:
     case GAMES_SCORES_STYLE_TIME_ASCENDING:
-      rscore = d->value.time_double;
+      rscore = games_score_get_value_as_time(d);
       break;
     default:
       g_assert_not_reached ();
     }
-    rtime = d->time;
-    rname = d->name;
+    rtime = games_score_get_time (d);
+    rname = games_score_get_name(d);
 
     buffer = g_strdup_printf ("%s %"G_GUINT64_FORMAT" %s\n",
                               g_ascii_dtostr (dtostrbuf, sizeof (dtostrbuf),

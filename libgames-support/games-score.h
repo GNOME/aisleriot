@@ -31,6 +31,8 @@ G_BEGIN_DECLS
 #define GAMES_IS_SCORE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GAMES_TYPE_SCORE))
 #define GAMES_IS_SCORE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GAMES_TYPE_SCORE))
 
+typedef struct GamesScorePrivate GamesScorePrivate;
+
 /* GamesScore and GamesScoresStyle should be kept in sync. */
 typedef enum {
   GAMES_SCORES_STYLE_PLAIN_DESCENDING,
@@ -39,31 +41,28 @@ typedef enum {
   GAMES_SCORES_STYLE_TIME_ASCENDING,
 } GamesScoreStyle;
 
-typedef union {
-  guint32 plain;
-  gdouble time_double;		/* minutes.seconds */
-} GamesScoreValue;
-
 typedef struct {
   GObject parent;
-  GamesScoreValue value;
-  time_t time;
-  gchar *name;
+  GamesScorePrivate *priv;
 } GamesScore;
 
 typedef struct {
   GObjectClass parent_class;
 } GamesScoreClass;
 
-GType       games_score_get_type       (void);
-GamesScore *games_score_new            (void);
-GamesScore *games_score_dup            (GamesScore * orig);
-gint        games_score_compare        (GamesScoreStyle style,
-                                        GamesScore * a,
-			                            GamesScore * b);
-gint        games_score_compare_values (GamesScoreStyle style,
-                                        GamesScoreValue a,
-                                        GamesScoreValue b);
+GType        games_score_get_type           (void);
+GamesScore  *games_score_new                (void);
+GamesScore  *games_score_new_plain          (guint32 value);
+GamesScore  *games_score_new_time           (gdouble value);
+const gchar *games_score_get_name           (GamesScore *score);
+void         games_score_set_name           (GamesScore *score, const gchar *name);
+time_t       games_score_get_time           (GamesScore *score);
+void         games_score_set_time           (GamesScore *score, time_t time);
+guint32      games_score_get_value_as_plain (GamesScore *score);
+gdouble      games_score_get_value_as_time  (GamesScore *score);
+gint         games_score_compare            (GamesScoreStyle style,
+                                             GamesScore * a,
+                                             GamesScore * b);
 
 G_END_DECLS
 
