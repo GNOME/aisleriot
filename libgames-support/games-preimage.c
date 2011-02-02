@@ -38,31 +38,16 @@
 #include "games-profile.h"
 
 #include "games-preimage.h"
+#include "games-preimage-private.h"
 
 G_DEFINE_TYPE (GamesPreimage, games_preimage, G_TYPE_OBJECT);
-
-struct GamesPreimagePrivate {
-  gint width;
-  gint height;
-
-#ifdef HAVE_RSVG
-  RsvgHandle *rsvg_handle;
-  cairo_font_options_t *font_options;
-#endif
-
-  /* raster pixbuf data */
-  GdkPixbuf *pixbuf;
-
-  guint scalable : 1;
-};
 
 static void
 games_preimage_init (GamesPreimage * preimage)
 {
-  preimage->priv = G_TYPE_INSTANCE_GET_PRIVATE (preimage, GAMES_TYPE_PREIMAGE, GamesPreimagePrivate);
-  preimage->priv->scalable = FALSE;
-  preimage->priv->width = 0;
-  preimage->priv->height = 0;
+  preimage->scalable = FALSE;
+  preimage->width = 0;
+  preimage->height = 0;
 }
 
 static void
@@ -71,16 +56,16 @@ games_preimage_finalize (GObject * object)
   GamesPreimage *preimage = GAMES_PREIMAGE (object);
 
 #ifdef HAVE_RSVG
-  if (preimage->priv->rsvg_handle != NULL) {
-    g_object_unref (preimage->priv->rsvg_handle);
+  if (preimage->rsvg_handle != NULL) {
+    g_object_unref (preimage->rsvg_handle);
   }
-  if (preimage->priv->font_options) {
-    cairo_font_options_destroy (preimage->priv->font_options);
+  if (preimage->font_options) {
+    cairo_font_options_destroy (preimage->font_options);
   }
 #endif
 
-  if (preimage->priv->pixbuf != NULL) {
-    g_object_unref (preimage->priv->pixbuf);
+  if (preimage->pixbuf != NULL) {
+    g_object_unref (preimage->pixbuf);
   }
 
   G_OBJECT_CLASS (games_preimage_parent_class)->finalize (object);
@@ -92,8 +77,6 @@ games_preimage_class_init (GamesPreimageClass * klass)
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
 
   oclass->finalize = games_preimage_finalize;
-
-  g_type_class_add_private (oclass, sizeof (GamesPreimagePrivate));
 
 #ifdef HAVE_RSVG
   rsvg_init ();
@@ -120,21 +103,21 @@ games_preimage_render (GamesPreimage * preimage, gint width, gint height)
   g_return_val_if_fail (preimage != NULL, NULL);
 
 #ifdef HAVE_RSVG
-  if (preimage->priv->scalable) {     /* Render vector image */
+  if (preimage->scalable) {     /* Render vector image */
     pixbuf = games_preimage_render_sub (preimage,
                                         NULL,
                                         width,
                                         height,
                                         0.0, 0.0,
                                         ((double) width) /
-                                        ((double) preimage->priv->width),
+                                        ((double) preimage->width),
                                         ((double) height) /
-                                        ((double) preimage->priv->height));
+                                        ((double) preimage->height));
   } else
 #endif /* HAVE_RSVG */
   {
     /* Render raster image */
-    pixbuf = gdk_pixbuf_scale_simple (preimage->priv->pixbuf,
+    pixbuf = gdk_pixbuf_scale_simple (preimage->pixbuf,
                                       width, height, GDK_INTERP_BILINEAR);
   }
 
@@ -161,7 +144,7 @@ games_preimage_render_cairo (GamesPreimage * preimage,
   g_return_if_fail (preimage != NULL);
 
 #ifdef HAVE_RSVG
-  if (preimage->priv->scalable) {     /* Render vector image */
+  if (preimage->scalable) {     /* Render vector image */
     games_preimage_render_cairo_sub (preimage,
                                      cr,
                                      NULL,
@@ -169,9 +152,9 @@ games_preimage_render_cairo (GamesPreimage * preimage,
                                      height,
                                      0.0, 0.0,
                                      ((double) width) /
-                                     ((double) preimage->priv->width),
+                                     ((double) preimage->width),
                                      ((double) height) /
-                                     ((double) preimage->priv->height));
+                                     ((double) preimage->height));
   } else
 #endif /* HAVE_RSVG */
   {
@@ -179,7 +162,7 @@ games_preimage_render_cairo (GamesPreimage * preimage,
 
     /* FIXMEchpe: we don't really need this fallback anymore */
     /* Render raster image */
-    pixbuf = gdk_pixbuf_scale_simple (preimage->priv->pixbuf,
+    pixbuf = gdk_pixbuf_scale_simple (preimage->pixbuf,
                                       width, height, GDK_INTERP_BILINEAR);
 
     cairo_save (cr);
@@ -261,13 +244,13 @@ games_preimage_render_cairo_sub (GamesPreimage * preimage,
 {
   cairo_matrix_t matrix;
 
-  if (!preimage->priv->scalable)
+  if (!preimage->scalable)
     return;
 
-  if (preimage->priv->font_options) {
-    cairo_set_antialias (cr, cairo_font_options_get_antialias (preimage->priv->font_options));
+  if (preimage->font_options) {
+    cairo_set_antialias (cr, cairo_font_options_get_antialias (preimage->font_options));
 
-    cairo_set_font_options (cr, preimage->priv->font_options);
+    cairo_set_font_options (cr, preimage->font_options);
   }
 
   cairo_matrix_init_identity (&matrix);
@@ -276,7 +259,7 @@ games_preimage_render_cairo_sub (GamesPreimage * preimage,
 
   cairo_set_matrix (cr, &matrix);
 
-  rsvg_handle_render_cairo_sub (preimage->priv->rsvg_handle, cr, node);
+  rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cr, node);
 }
 
 /**
@@ -312,7 +295,7 @@ games_preimage_render_sub (GamesPreimage * preimage,
   cairo_surface_t *surface;
   cairo_t *cr;
 
-  if (!preimage->priv->scalable)
+  if (!preimage->scalable)
     return NULL;
 
 #if CAIRO_VERSION >= CAIRO_VERSION_ENCODE (1, 6, 0)
@@ -368,13 +351,13 @@ games_preimage_new_from_file (const gchar * filename, GError ** error)
   preimage = g_object_new (GAMES_TYPE_PREIMAGE, NULL);
 
 #ifdef HAVE_RSVG
-  preimage->priv->rsvg_handle = rsvg_handle_new_from_file (filename, NULL);
-  if (preimage->priv->rsvg_handle) {
+  preimage->rsvg_handle = rsvg_handle_new_from_file (filename, NULL);
+  if (preimage->rsvg_handle) {
     RsvgDimensionData data;
 
-    preimage->priv->scalable = TRUE;
+    preimage->scalable = TRUE;
 
-    rsvg_handle_get_dimensions (preimage->priv->rsvg_handle, &data);
+    rsvg_handle_get_dimensions (preimage->rsvg_handle, &data);
 
     _games_profile_end ("creating GamesPreimage from %s", filename);
 
@@ -386,15 +369,15 @@ games_preimage_new_from_file (const gchar * filename, GError ** error)
       return NULL;
     }
 
-    preimage->priv->width = data.width;
-    preimage->priv->height = data.height;
+    preimage->width = data.width;
+    preimage->height = data.height;
 
     return preimage;
   }
 #endif /* HAVE_RSVG */
 
   /* Not an SVG */
-  preimage->priv->scalable = FALSE;
+  preimage->scalable = FALSE;
 
   pixbuf = gdk_pixbuf_new_from_file (filename, error);
   _games_profile_end ("creating GamesPreimage from %s", filename);
@@ -404,9 +387,9 @@ games_preimage_new_from_file (const gchar * filename, GError ** error)
     return NULL;
   }
 
-  preimage->priv->pixbuf = pixbuf;
-  preimage->priv->width = gdk_pixbuf_get_width (pixbuf);
-  preimage->priv->height = gdk_pixbuf_get_height (pixbuf);
+  preimage->pixbuf = pixbuf;
+  preimage->width = gdk_pixbuf_get_width (pixbuf);
+  preimage->height = gdk_pixbuf_get_height (pixbuf);
 
   return preimage;
 }
@@ -425,14 +408,14 @@ games_preimage_set_font_options (GamesPreimage * preimage,
 #ifdef HAVE_RSVG
   g_return_if_fail (GAMES_IS_PREIMAGE (preimage));
 
-  if (preimage->priv->font_options) {
-    cairo_font_options_destroy (preimage->priv->font_options);
+  if (preimage->font_options) {
+    cairo_font_options_destroy (preimage->font_options);
   }
 
   if (font_options) {
-    preimage->priv->font_options = cairo_font_options_copy (font_options);
+    preimage->font_options = cairo_font_options_copy (font_options);
   } else {
-    preimage->priv->font_options = NULL;
+    preimage->font_options = NULL;
   }
 #endif /* HAVE_RSVG */
 }
@@ -448,7 +431,7 @@ games_preimage_is_scalable (GamesPreimage * preimage)
 {
   g_return_val_if_fail (GAMES_IS_PREIMAGE (preimage), FALSE);
 
-  return preimage->priv->scalable;
+  return preimage->scalable;
 }
 
 /**
@@ -462,7 +445,7 @@ games_preimage_get_width (GamesPreimage * preimage)
 {
   g_return_val_if_fail (GAMES_IS_PREIMAGE (preimage), 0);
 
-  return preimage->priv->width;
+  return preimage->width;
 }
 
 /**
@@ -476,7 +459,7 @@ games_preimage_get_height (GamesPreimage * preimage)
 {
   g_return_val_if_fail (GAMES_IS_PREIMAGE (preimage), 0);
 
-  return preimage->priv->height;
+  return preimage->height;
 }
 
 /**
@@ -495,12 +478,12 @@ games_preimage_render_unscaled_pixbuf (GamesPreimage * preimage)
 
   g_return_val_if_fail (GAMES_IS_PREIMAGE (preimage), NULL);
 
-  if ((unscaled_pixbuf = preimage->priv->pixbuf)) {
+  if ((unscaled_pixbuf = preimage->pixbuf)) {
     g_object_ref (unscaled_pixbuf);
   } else {
     unscaled_pixbuf = games_preimage_render (preimage,
-                                             preimage->priv->width,
-                                             preimage->priv->height);
+                                             preimage->width,
+                                             preimage->height);
   }
 
   return unscaled_pixbuf;
