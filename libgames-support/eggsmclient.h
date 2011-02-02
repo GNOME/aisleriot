@@ -51,6 +51,7 @@ typedef enum {
 struct _EggSMClient
 {
   GObject parent;
+
 };
 
 struct _EggSMClientClass
@@ -102,19 +103,19 @@ GKeyFile        *egg_sm_client_get_state_file      (EggSMClient *client);
 
 /* Alternate means of saving state */
 void             egg_sm_client_set_restart_command (EggSMClient  *client,
-                                                    int           argc,
-                                                    const char  **argv);
+						    int           argc,
+						    const char  **argv);
 void             egg_sm_client_set_discard_command (EggSMClient  *client,
-                                                    int           argc,
-                                                    const char  **argv);
+						    int           argc,
+						    const char  **argv);
 
 /* Handling "quit_requested" signal */
 void             egg_sm_client_will_quit           (EggSMClient *client,
-                                                    gboolean     will_quit);
+						    gboolean     will_quit);
 
 /* Initiate a logout/reboot/shutdown */
 gboolean         egg_sm_client_end_session         (EggSMClientEndStyle  style,
-                                                    gboolean             request_confirmation);
+						    gboolean             request_confirmation);
 
 G_END_DECLS
 
