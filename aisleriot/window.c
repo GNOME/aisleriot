@@ -1109,7 +1109,7 @@ apply_option (GtkToggleAction *action,
   active = gtk_toggle_action_get_active (action);
 
   action_name = gtk_action_get_name (GTK_ACTION (action));
-  value = g_ascii_strtoull (action_name + strlen ("Option"), NULL, 16);
+  value = g_ascii_strtoull (action_name + strlen ("Option"), NULL, 10);
 
   /* g_print ("option %s changed, value=%x set=%d\n", action_name, value, active); */
 
