@@ -1,3 +1,195 @@
+gnome-games 2.91.90
+==================
+
+In this release Chess was rewritten in vala. Iagno and gnomine had graphical
+glitches fixed. All games except swell-foop, lightsoff, and sudoku are now
+working with GTK3.
+
+Shortlog:
+Benjamin Otte (1):
+      gnomine: Queue repaints instead of immediate repainting
+
+Chao-Hsiung Liao (1):
+      Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+Christian Persch (4):
+      build: Include git.mk in all makefiles
+      Sync prop-editor with gtk+
+      libgames-support: Re-add games-preimage-private.h
+      libgames-support: Don't do gratuitous changes to copypasted files
+
+Daniel Mustieles (3):
+      Updated Spanish translation
+      Updated Spanish translation
+      Updated Spanish translation
+
+Daniel Nylander (2):
+      Updated Swedish translation
+      Updated Swedish translation
+
+Emilio Pozuelo Monfort (1):
+      libgames-support: fix missing icons
+
+Fran Diéguez (3):
+      QA of Galician translations
+      Updated Galician translations
+      Updating Galician translations
+
+Inaki Larranaga Murgoitio (2):
+      Updated Basque language
+      Updated Basque language
+
+Ivar Smolin (4):
+      [l10n] Updated Estonian translation
+      [l10n] Updated Estonian translation
+      [l10n] Updated Estonian translation
+      [l10n] Updated Estonian translation
+
+Jorge González (2):
+      Updated Spanish translation
+      Updated Spanish translation
+
+Kjartan Maraas (3):
+      Remove non-existing file
+      Updated Norwegian bokmål translation.
+      Updated Norwegian bokmål translation.
+
+Kåre Fiedler Chrisitiansen (1):
+      aisleriot: Fix option menu for games with more than three options
+
+Marek Černocký (3):
+      Updated Czech translation
+      Updated Czech translation
+      Updated Czech translation
+
+Michael Kotsarinis (1):
+      Updated Greek translation
+
+Robert Ancell (100):
+      Port of glchess from Python to Vala. 3D is disabled for now as it doesn't work in GTK3
+      Get OpenGL working directly using GLX
+      Load data from installed location
+      Fix up about dialog
+      Fix 2d/3d switch
+      Delete GLX context when widget destroyed
+      Handle failure to create GLX visuals/contexts
+      Add command line option
+      Correctly load games from the command line
+      Work with latest GTK+3
+      Work with latest GTK+3
+      Fix rank numbering
+      Almost got bitboards working
+      Working without promotion
+      Promotion working
+      Use FEN notation
+      Load castling flags from FEN
+      Support PGN games with FEN setup
+      Add a test program
+      Track if can castle
+      Gen en-passant working
+      Don't install test program
+      Handle castling rules better
+      En-passant only allowed if square available
+      Check FEN state is valid after move
+      Add in basic history framework
+      Remove non-required GLib namespaces
+      Tidy up history code
+      Autosave games
+      Update history index when game saved, fix date for games
+      Add back 3D board numbering
+      Rotate the black pieces
+      Apply board orientation setting
+      Render the time box
+      Glade can't make it's mind up which order to save widgets in...
+      Workaround GTK bug that makes the history buttons wrap around
+      Add piece and board texturing
+      Start work on a chess clock
+      Get a chess clock working
+      Only use game clock if configured
+      Use existing piece colors
+      Fix 3d board normals
+      Use the same texturing as the old glchess
+      Connect engine difficulty settings
+      Fix unreliable glX usage
+      Fix GNU Chess config
+      Log AI profiles better
+      Merge branch 'glchess-vala'
+      Mark strings for translation
+      Fix translations for new glchess
+      Workaround for gdk_x11_window_get_xid not being in the vala bindings yet
+      Remove copyright that was accidentally copied
+      Simplify .vapi files in Makefile
+      Only use chess engine for new games, loaded games may not have an engine
+      Fix up SAN and FAN notation
+      Fix engine string being freed (bug in vala with string properties)
+      Make vala support optional and version it
+      Compile with Vala 0.11.4
+      Set window title to name of loaded game
+      Update glchess move strings for new format
+      chess: Add translator comments
+      chess: Correctly restore AI games
+      chess: Make history combo correctly track move number
+      chess: Set correct plural form in time units combobox
+      chess: Add context to translatable strings
+      gnuchess: Don't translate strings - this engine only communicates with glchess and the strings are not user visible
+      Detect checkmate
+      chess: Fix detect checkmate
+      chess: Fix disabling of chess clock
+      Update annotations on libgames-support
+      Refactor GamesScore to be more GObject
+      libgames-support: Make all objects private members private
+      libgames-support: add missing code for new private code, finalize GamesScores
+      chess: Add test for checkmate
+      chess: Add test for check
+      chess: Track halfmove clock
+      chess: Only allow draw for fifty move rule
+      chess: Compile with latest vala
+      chess: Detect stalemate
+      chess: Test for insufficient material, fix pawn promotion, put check/checmate suffix on SAN/LAN move text, Use correct notation for castling with SAN/LAN move text, better unit tests
+      chess: Add comments about needing claim draw tests
+      chess: Detect draw by three fold repetition
+      chess: Start to get undo to work again
+      chess: Decode promotion type from UCI engines
+      chess: Get undo working:
+      chess: Pre-render the 2D models.  Instead of colouring squares that can be moved onto, use draw faint models into those squares
+      chess: Show the selected piece as larger instead of using colours
+      chess: Make 3D board match 2D hint changes
+      chess: Fix play as white/black preferences option
+      chess: Prompt user to save/abandon when starting new game
+      chess: Use int.parse() instead of string.to_int()
+      chess: Add back animation
+      chess: Fix promotion to knight detection
+      chess: Set the animation timer to low priority so the rendering has higher priority
+      chess: Fix crash starting new game when viewing history of a previous one
+      chess: Tidy up rendering code
+      chess: Fix variable name typo
+      chess: Install GSetting schema
+      chess: Fix POTFILES.in for file changes
+      chess: Remove schema file on distclean
+
+Rufus (1):
+      Reenable iagno's dashed grid, and the grid enabling/disabling option.
+
+Thomas Hindoe Paaboel Andersen (10):
+      quadrapassel: use gtk_clutter_init... instead
+      sudoku: move imports to individual lines
+      sudoku: Rename class to avoid conflict in pygobject conversion
+      version bump
+      gnibbles: use new games-score API
+      fix distcheck
+      quadrapassel: Fix typo in program name
+      gtali: Check for error when loading image files
+      glchess: Bump required vala version
+      version bump
+
+Yaron Shahrabani (3):
+      Updated Hebrew translation
+      Updated Hebrew translation
+      Updated Hebrew translation
+
+方真 (1):
+      Add simplified Chinese glines help  translation.
+
 gnome-games 2.91.5
 ==================
 
