@@ -167,9 +167,9 @@ sol_clutter_SOURCES += \
 endif
 
 sol_clutter_CPPFLAGS = $(sol_CPPFLAGS) -DHAVE_CLUTTER
-sol_clutter_CFLAGS = $(sol_CFLAGS) $(CLUTTER_CFLAGS) $(CLUTTER_GTK_CFLAGS)
+sol_clutter_CFLAGS = $(sol_CFLAGS) $(CLUTTER_GTK_CFLAGS) $(CLUTTER_CFLAGS)
 sol_clutter_LDFLAGS = $(sol_LDFLAGS)
-sol_clutter_LDADD = $(sol_LDADD) $(CLUTTER_LIBS) $(CLUTTER_GTK_LIBS)
+sol_clutter_LDADD = $(sol_LDADD) $(CLUTTER_GTK_LIBS) $(CLUTTER_LIBS)
 
 
 endif # ENABLE_AISLERIOT_CLUTTER
