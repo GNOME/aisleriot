@@ -43,7 +43,7 @@ static const GdkColor default_baize_color = { 0, 0 /* red */, 0x5000 /* green */
 #endif
 
 #define DEFAULT_SHOW_TOOLTIPS (FALSE)
-#define DEFAULT_SHOW_STATUS_MESSAGES (TRUE)
+#define DEFAULT_SHOW_STATUS_MESSAGES (FALSE)
 
 struct _ArStylePrivate
 {
