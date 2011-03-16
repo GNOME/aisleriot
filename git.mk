@@ -144,6 +144,7 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			"*.lo" \
 			"*.gmo" \
 			"*.mo" \
+			"*.page" \
 			$(DISTCLEANFILES) \
 			$(am__CONFIG_DISTCLEAN_FILES) \
 			$(CONFIG_CLEAN_FILES) \
