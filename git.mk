@@ -113,8 +113,6 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 				po/POTFILES \
 				po/stamp-it \
 				po/.intltool-merge-cache \
-				"po/*.gmo" \
-				"po/*.mo" \
 				po/$(GETTEXT_PACKAGE).pot \
 				intltool-extract.in \
 				intltool-merge.in \
@@ -144,6 +142,8 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			$(MOSTLYCLEANFILES) \
 			"*.$(OBJEXT)" \
 			"*.lo" \
+			"*.gmo" \
+			"*.mo" \
 			$(DISTCLEANFILES) \
 			$(am__CONFIG_DISTCLEAN_FILES) \
 			$(CONFIG_CLEAN_FILES) \
