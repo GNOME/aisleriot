@@ -1,4 +1,4 @@
-SUBDIRS = rules data lib
+SUBDIRS = rules data lib icons
 
 if BUILD_HELP
 SUBDIRS += help
