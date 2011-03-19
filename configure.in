@@ -553,9 +553,9 @@ fi
 
 AC_MSG_CHECKING([which card theme to use by default])
 AC_ARG_WITH([default-card-theme],
-  [AS_HELP_STRING([--with-default-card-theme=NAME],[Which card theme to use by default (default: gnomangelo_bitmap)])],
+  [AS_HELP_STRING([--with-default-card-theme=NAME],[Which card theme to use by default (default: bonded)])],
   [],[case "$with_platform" in
-        gnome|gtk-only) with_default_card_theme=gnomangelo_bitmap.svg ;;
+        gnome|gtk-only) with_default_card_theme=bonded.svg ;;
         hildon) with_default_card_theme=paris.card-theme ;;
       esac])
 AC_MSG_RESULT([$with_default_card_theme])
