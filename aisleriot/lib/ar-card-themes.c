@@ -270,11 +270,15 @@ ar_card_themes_get_theme_infos_in_dir (ArCardThemeClass *klass,
     info = _ar_card_theme_class_get_theme_info (klass, path, filename);
     _games_profile_end ("checking for %s card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
 
-    if (info)
-      /* Replace existing info with the new one */
-      g_hash_table_replace (theme_manager->theme_infos, info->pref_name, info);
+    if (info != NULL) {
+      /* Don't replace an already existing theme info! */
+      if (g_hash_table_lookup (theme_manager->theme_infos, info->pref_name))
+        ar_card_theme_info_unref (info);
+      else
+        g_hash_table_insert (theme_manager->theme_infos, info->pref_name, info);
+    }
   }
-      
+
   g_dir_close (iter);
 
 out:
