@@ -851,8 +851,8 @@ debug_choose_seed_cb (GtkAction *action,
 }
 
 static void
-debug_tweak_cb (GtkAction *action,
-                AisleriotWindow *window)
+debug_tweak_style_cb (GtkAction *action,
+                      AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
   GObject *object;
@@ -860,6 +860,24 @@ debug_tweak_cb (GtkAction *action,
   GtkWidget *prop_editor;
 
   object = G_OBJECT (priv->board_style);
+  type = G_OBJECT_TYPE (object);
+
+  g_assert (object != NULL);
+
+  prop_editor = create_prop_editor (object, type);
+  gtk_window_set_transient_for (GTK_WINDOW (prop_editor), GTK_WINDOW (window));
+  gtk_window_present (GTK_WINDOW (prop_editor));
+}
+
+static void
+debug_tweak_settings_cb (GtkAction *action,
+                         AisleriotWindow *window)
+{
+  GObject *object;
+  GType type;
+  GtkWidget *prop_editor;
+
+  object = G_OBJECT (gtk_widget_get_settings (GTK_WIDGET (window)));
   type = G_OBJECT_TYPE (object);
 
   g_assert (object != NULL);
@@ -2268,7 +2286,9 @@ aisleriot_window_init (AisleriotWindow *window)
       G_CALLBACK (debug_game_prev) },
 #endif /* !HAVE_HILDON */
     { "DebugTweakStyle", NULL, "_Tweak Style", NULL, NULL,
-      G_CALLBACK (debug_tweak_cb) },
+      G_CALLBACK (debug_tweak_style_cb) },
+    { "DebugTweakSettings", NULL, "_Tweak GtkSettings", NULL, NULL,
+      G_CALLBACK (debug_tweak_settings_cb) },
 #endif /* ENABLE_DEBUG_UI */
 
     /* Accel actions */
@@ -2368,7 +2388,8 @@ aisleriot_window_init (AisleriotWindow *window)
         "<menu action='DebugMenu'>"
           "<menuitem action='DebugChooseSeed'/>"
           "<menuitem action='DebugTweakStyle'/>"
-        "</menu>"
+          "<menuitem action='DebugTweakSettings'/>"
+          "</menu>"
 #endif /* ENABLE_DEBUG_UI */
         "<menuitem action='CloseWindow'/>"
       "</popup>"
@@ -2419,6 +2440,7 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifdef ENABLE_DEBUG_UI
         "<menu action='DebugMenu'>"
           "<menuitem action='DebugTweakStyle'/>"
+          "<menuitem action='DebugTweakSettings'/>"
           "<separator/>"
           "<menuitem action='DebugChooseSeed'/>"
           "<menuitem action='DebugMoveNextScreen'/>"
