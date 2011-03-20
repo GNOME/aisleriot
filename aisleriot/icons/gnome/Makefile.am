@@ -8,6 +8,7 @@ dist_noinst_DATA = \
 	hicolor_apps_24x24_gnome-aisleriot.png \
 	hicolor_apps_32x32_gnome-aisleriot.png \
 	hicolor_apps_48x48_gnome-aisleriot.png \
+	hicolor_apps_256x256_gnome-aisleriot.png \
 	hicolor_apps_scalable_gnome-aisleriot.svg \
 	hicolor_apps_16x16_gnome-freecell.png \
 	hicolor_apps_22x22_gnome-freecell.png \
@@ -15,6 +16,10 @@ dist_noinst_DATA = \
 	hicolor_apps_32x32_gnome-freecell.png \
 	hicolor_apps_48x48_gnome-freecell.png \
 	hicolor_apps_scalable_gnome-freecell.svg \
+	$(NULL)
+
+EXTRA_DIST = \
+	hicolor_apps_256x256_gnome-aisleriot.svg \
 	$(NULL)
 
 install-public-icons:
